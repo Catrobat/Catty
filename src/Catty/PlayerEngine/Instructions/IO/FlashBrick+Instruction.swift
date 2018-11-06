@@ -27,18 +27,14 @@
         let choice = self.flashChoice
         return CBInstruction.execClosure { (context, _) in
             //            self.logger.debug("Performing: FlashLightOffBrick/LEDOffBrick")
-            if (choice == 0)
-            {
+            if choice == 0 {
                 FlashHelper.sharedFlashHandler().turnOff()
-            }
-            else if (choice == 1)
-            {
+            } else if choice == 1 {
                 FlashHelper.sharedFlashHandler().turnOn()
             }
-            
+
             context.state = .runnable
         }
     }
-    
 
 }

@@ -20,32 +20,32 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc class AltitudeSensor : NSObject, DeviceSensor {
-    
+@objc class AltitudeSensor: NSObject, DeviceSensor {
+
     @objc static let tag = "ALTITUDE"
     static let name = kUIFESensorAltitude
     static let defaultRawValue = 0.0
     static let position = 110
     static let requiredResource = ResourceType.location
-    
+
     let getLocationManager: () -> LocationManager?
-    
+
     init(locationManagerGetter: @escaping () -> LocationManager?) {
         self.getLocationManager = locationManagerGetter
     }
-    
+
     func tag() -> String {
         return type(of: self).tag
     }
-    
+
     func rawValue() -> Double {
         return self.getLocationManager()?.location?.altitude ?? type(of: self).defaultRawValue
     }
-    
+
     func convertToStandardized(rawValue: Double) -> Double {
         return rawValue
     }
-    
+
     func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
         return .device(position: type(of: self).position)
     }

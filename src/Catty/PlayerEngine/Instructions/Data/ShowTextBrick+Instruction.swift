@@ -21,7 +21,7 @@
  */
 
 @objc extension ShowTextBrick: CBInstructionProtocol {
-    
+
     @nonobjc func instruction() -> CBInstruction {
 
         guard let spriteObject = self.script?.object,
@@ -36,7 +36,7 @@
             let xResult = context.formulaInterpreter.interpretDouble(xFormula, for: spriteObject)
             let yResult = context.formulaInterpreter.interpretDouble(yFormula, for: spriteObject)
             var value = ""
-            
+
             if let userVariable = userVariable {
                 if let userVariableValue = (userVariable.value as? NSNumber) {
                     value = userVariableValue.stringValue
@@ -46,7 +46,7 @@
                     value = "0"
                 }
                 userVariable.textLabel.text = value
-                
+
                 guard let scene = userVariable.textLabel.scene else {
                     fatalError("This should never happen!")
                 }

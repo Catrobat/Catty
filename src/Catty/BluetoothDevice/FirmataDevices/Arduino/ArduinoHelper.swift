@@ -24,55 +24,47 @@ import Foundation
 import CoreBluetooth
 import BluetoothHelper
 
-
 open class ArduinoHelper {
-    var analogPin0 = 0;
-    var analogPin1 = 0;
-    var analogPin2 = 0;
-    var analogPin3 = 0;
-    var analogPin4 = 0;
-    var analogPin5 = 0;
-    
-    var digitalValues:[Int] = [Int](repeating: 0, count: 21)
-    
+    var analogPin0 = 0
+    var analogPin1 = 0
+    var analogPin2 = 0
+    var analogPin3 = 0
+    var analogPin4 = 0
+    var analogPin5 = 0
+
+    var digitalValues: [Int] = [Int](repeating: 0, count: 21)
+
     var portValues = Array(repeating: Array(repeating: 0, count: 8), count: 3)
     //Helper
-    private var previousDigitalPin:UInt8 = 255;
-    private var previousAnalogPin:UInt8 = 255;
-    
-    func didReceiveAnalogMessage(_ pin:Int,value:Int){
-        switch (pin) {
+    private var previousDigitalPin: UInt8 = 255
+    private var previousAnalogPin: UInt8 = 255
+
+    func didReceiveAnalogMessage(_ pin: Int, value: Int) {
+        switch pin {
         case 0:
             analogPin0 = value
-            break
         case 1:
             analogPin1 = value
-            break
         case 2:
             analogPin2 = value
-            break
         case 3:
             analogPin3 = value
-            break
         case 4:
             analogPin4 = value
-            break
         case 5:
             analogPin5 = value
-            break
-            
-        default: break
-            //NOT USED SENSOR
+        default:
+            break //NOT USED SENSOR
         }
 
     }
-    
-    func didReceiveDigitalPort(_ port:Int, portData:[Int]){
+
+    func didReceiveDigitalPort(_ port: Int, portData: [Int]) {
         portValues[port] = portData
     }
-    
-    func didReceiveDigitalMessage(_ pin:Int,value:Int){
+
+    func didReceiveDigitalMessage(_ pin: Int, value: Int) {
         digitalValues[pin] = value
     }
-    
+
 }

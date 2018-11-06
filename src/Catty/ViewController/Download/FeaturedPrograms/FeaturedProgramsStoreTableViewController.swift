@@ -21,23 +21,23 @@
  */
 
 class FeaturedProgramsStoreTableViewController: UITableViewController, SelectedFeaturedProgramsDataSource {
-    
+
     // MARK: - Properties
-    
+
     private var dataSource: FeaturedProgramsStoreTableDataSource
 
     var loadingView: LoadingView?
     var shouldHideLoadingView = false
     var programForSegue: StoreProgram?
     var catrobatProject: StoreProgram?
-    
+
     // MARK: - Initializers
 
     required init?(coder aDecoder: NSCoder) {
         self.dataSource = FeaturedProgramsStoreTableDataSource.dataSource()
         super.init(coder: aDecoder)
     }
-    
+
     // MARK: - Life Cycle
 
     override func viewDidLoad() {
@@ -46,12 +46,12 @@ class FeaturedProgramsStoreTableViewController: UITableViewController, SelectedF
         shouldHideLoadingView = false
         dataSource.delegate = self
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         fetchData()
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == kSegueToProgramDetail {
             if let programDetailStoreViewController = segue.destination as? ProgramDetailStoreViewController,
@@ -60,9 +60,9 @@ class FeaturedProgramsStoreTableViewController: UITableViewController, SelectedF
             }
         }
     }
-    
+
     // MARK: - Helper Methods
-    
+
     private func mapStoreProgramToCatrobatProgram(program: StoreProgram) -> CatrobatProgram {
         var programDictionary = [String: Any]()
         programDictionary["ProjectName"] = program.projectName
@@ -80,7 +80,7 @@ class FeaturedProgramsStoreTableViewController: UITableViewController, SelectedF
         programDictionary["Version"] = program.version ?? ""
         programDictionary["Views"] = program.views ?? 0
         programDictionary["FileSize"] = program.fileSize ?? 0.0
-        
+
         return CatrobatProgram(dict: programDictionary, andBaseUrl: kFeaturedImageBaseUrl)
     }
 
@@ -89,11 +89,11 @@ class FeaturedProgramsStoreTableViewController: UITableViewController, SelectedF
         self.tableView.dataSource = self.dataSource
         self.tableView.delegate = self.dataSource
     }
-    
+
     private func fetchData() {
         if tableView.visibleCells.isEmpty {
             self.showLoadingView()
-            self.dataSource.fetchItems() { error in
+            self.dataSource.fetchItems { error in
                 if error != nil {
                     self.shouldHideLoadingView = true
                     self.hideLoadingView()
@@ -104,32 +104,31 @@ class FeaturedProgramsStoreTableViewController: UITableViewController, SelectedF
                 self.shouldHideLoadingView = true
                 self.hideLoadingView()
             }
-        }
-        else {
+        } else {
             self.shouldHideLoadingView = true
             self.hideLoadingView()
         }
     }
-    
+
     private func showConnectionIssueAlertAndDismiss(error: StoreProgramDownloaderError) {
         var title = ""
         var message = ""
         let buttonTitle = kLocalizedOK
-        
+
         switch error {
-            case .timeout:
-                title = kLocalizedServerTimeoutIssueTitle
-                message = kLocalizedServerTimeoutIssueMessage
-            default:
-                title = kLocalizedFeaturedProgramsLoadFailureTitle
-                message = kLocalizedFeaturedProgramsLoadFailureMessage
+        case .timeout:
+            title = kLocalizedServerTimeoutIssueTitle
+            message = kLocalizedServerTimeoutIssueMessage
+        default:
+            title = kLocalizedFeaturedProgramsLoadFailureTitle
+            message = kLocalizedFeaturedProgramsLoadFailureMessage
         }
 
         AlertControllerBuilder.alert(title: title, message: message)
             .addDefaultAction(title: buttonTitle) { self.navigationController?.popViewController(animated: true) }.build()
             .showWithController(self)
     }
-    
+
     func showLoadingView() {
         if loadingView == nil {
             loadingView = LoadingView()
@@ -138,7 +137,7 @@ class FeaturedProgramsStoreTableViewController: UITableViewController, SelectedF
         loadingView!.show()
         loadingIndicator(true)
     }
-    
+
     func hideLoadingView() {
         if shouldHideLoadingView {
             loadingView!.hide()
@@ -146,16 +145,16 @@ class FeaturedProgramsStoreTableViewController: UITableViewController, SelectedF
             self.shouldHideLoadingView = false
         }
     }
-    
+
     func loadingIndicator(_ value: Bool) {
         let app = UIApplication.shared
         app.isNetworkActivityIndicatorVisible = value
     }
-    
+
 }
 
 extension FeaturedProgramsStoreTableViewController: FeaturedProgramsCellProtocol {
-    
+
     func selectedCell(dataSource datasource: FeaturedProgramsStoreTableDataSource, didSelectCellWith cell: FeaturedProgramsCell) {
         if let program = cell.program {
            self.showLoadingView()

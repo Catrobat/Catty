@@ -23,7 +23,6 @@
 import Foundation
 import UIKit
 
-
 @objc public protocol AlertControllerProtocol {
     func showWithController(_ controller: UIViewController)
     func showWithController(_ controller: UIViewController, completion: @escaping () -> Void)
@@ -32,20 +31,17 @@ import UIKit
     func viewWillDisappear(_ handler: @escaping () -> Void) -> AlertControllerProtocol
 }
 
-
 @objc public protocol BuilderProtocol {
     func build() -> AlertControllerProtocol
 }
 
-
-protocol CustomAlertControllerDelegate {
+protocol CustomAlertControllerDelegate: class {
     var viewDidAppear: ((UIView) -> Void)? { get set }
     var viewWillDisappear: (() -> Void)? { get set }
 }
 
-
 final class CustomAlertController: UIAlertController {
-    fileprivate var delegate: CustomAlertControllerDelegate?
+    fileprivate weak var delegate: CustomAlertControllerDelegate?
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -60,12 +56,10 @@ final class CustomAlertController: UIAlertController {
     }
 }
 
-
 class BaseAlertController: NSObject, AlertControllerProtocol, BuilderProtocol, CustomAlertControllerDelegate {
     let alertController: CustomAlertController
     var viewDidAppear: ((UIView) -> Void)?
     var viewWillDisappear: (() -> Void)?
-
 
     init(title: String?, message: String?, style: UIAlertControllerStyle) {
         alertController = CustomAlertController(title: title, message: message, preferredStyle: style)
@@ -89,7 +83,7 @@ class BaseAlertController: NSObject, AlertControllerProtocol, BuilderProtocol, C
         self.viewWillDisappear = handler
         return self
     }
-    
+
     @objc func showWithController(_ controller: UIViewController) {
         showWithController(controller, completion: {})
     }

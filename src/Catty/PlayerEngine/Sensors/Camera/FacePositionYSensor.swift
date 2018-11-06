@@ -21,35 +21,35 @@
  */
 
 class FacePositionYSensor: DeviceSensor {
-    
+
     static let tag = "FACE_Y_POSITION"
     static let name = kUIFESensorFaceY
     static let defaultRawValue = 0.0
     static let position = 220
     static let requiredResource = ResourceType.faceDetection
-    
+
     let getFaceDetectionManager: () -> FaceDetectionManagerProtocol?
-    
+
     init(faceDetectionManagerGetter: @escaping () -> FaceDetectionManagerProtocol?) {
         self.getFaceDetectionManager = faceDetectionManagerGetter
     }
-    
+
     func tag() -> String {
         return type(of: self).tag
     }
-    
+
     func rawValue() -> Double {
         guard let positionY = self.getFaceDetectionManager()?.facePositionX else { return type(of: self).defaultRawValue }
         return positionY
     }
-    
+
     func convertToStandardized(rawValue: Double) -> Double {
         if rawValue == type(of: self).defaultRawValue {
             return rawValue
         }
         return rawValue - Double(Util.screenHeight()) / 1.05
     }
-    
+
     func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
         return .device(position: type(of: self).position)
     }

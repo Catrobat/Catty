@@ -23,11 +23,11 @@
 import Foundation
 
 public extension String {
-    
+
 //    public var floatValue : Float {
 //        return (self as NSString).floatValue
 //    }
-  
+
     public func dataFromHexString() -> Data {
         var bytes = [UInt8]()
         for i in 0..<(self.count/2) {
@@ -35,7 +35,7 @@ public extension String {
             let byte = strtol((string as NSString).utf8String, nil, 16)
             bytes.append(UInt8(byte))
         }
-        return Data(bytes: UnsafePointer<UInt8>(bytes), count:bytes.count)
+        return Data(bytes: UnsafePointer<UInt8>(bytes), count: bytes.count)
     }
-    
+
 }

@@ -31,23 +31,23 @@ class PeripheralTests: XCTestCase {
     override func setUp() {
         super.setUp()
     }
-    
+
     override func tearDown() {
         super.tearDown()
     }
-    
+
     func testDiscoverServicesSuccess() {
-        let testPeripheral = TestPeripheral(state:.connected)
+        let testPeripheral = TestPeripheral(state: .connected)
         let onSuccessExpectation = expectation(description: "onSuccess fulfilled for future")
-        let future = testPeripheral.helper.discoverServices(testPeripheral, services:nil)
+        let future = testPeripheral.helper.discoverServices(testPeripheral, services: nil)
         future.onSuccess {_ in
             onSuccessExpectation.fulfill()
         }
-        future.onFailure {error in
+        future.onFailure {_ in
             XCTAssert(false, "onFailure called")
         }
         CentralQueue.sync {
-            testPeripheral.helper.didDiscoverServices(testPeripheral, error:nil)
+            testPeripheral.helper.didDiscoverServices(testPeripheral, error: nil)
         }
         waitForExpectations(timeout: 2) {error in
             XCTAssertNil(error, "\(String(describing: error))")
@@ -55,17 +55,17 @@ class PeripheralTests: XCTestCase {
     }
 
     func testDiscoverServicesFailure() {
-        let testPeripheral = TestPeripheral(state:.connected)
+        let testPeripheral = TestPeripheral(state: .connected)
         let onFailureExpectation = expectation(description: "onFailure fulfilled for future")
-        let future = testPeripheral.helper.discoverServices(testPeripheral, services:nil)
+        let future = testPeripheral.helper.discoverServices(testPeripheral, services: nil)
         future.onSuccess {_ in
             XCTAssert(false, "onSuccess called")
         }
-        future.onFailure {error in
+        future.onFailure {_ in
             onFailureExpectation.fulfill()
         }
         CentralQueue.sync {
-            testPeripheral.helper.didDiscoverServices(testPeripheral, error:TestFailure.error)
+            testPeripheral.helper.didDiscoverServices(testPeripheral, error: TestFailure.error)
         }
         waitForExpectations(timeout: 2) {error in
             XCTAssertNil(error, "\(String(describing: error))")
@@ -73,35 +73,35 @@ class PeripheralTests: XCTestCase {
     }
 
     func testDiscoverPeripheralServicesSuccess() {
-        let testPeripheral = TestPeripheral(state:.connected)
+        let testPeripheral = TestPeripheral(state: .connected)
         let onSuccessExpectation = expectation(description: "onSuccess fulfilled for future")
-        let future = testPeripheral.helper.discoverPeripheralServices(testPeripheral, services:nil)
+        let future = testPeripheral.helper.discoverPeripheralServices(testPeripheral, services: nil)
         future.onSuccess {_ in
             onSuccessExpectation.fulfill()
         }
-        future.onFailure {error in
+        future.onFailure {_ in
             XCTAssert(false, "onFailure called")
         }
         CentralQueue.sync {
-            testPeripheral.helper.didDiscoverServices(testPeripheral, error:nil)
+            testPeripheral.helper.didDiscoverServices(testPeripheral, error: nil)
         }
         waitForExpectations(timeout: 20) {error in
             XCTAssertNil(error, "\(String(describing: error))")
         }
     }
-    
+
     func testDiscoverPeripheralServicesPeripheralFailure() {
-        let testPeripheral = TestPeripheral(state:.connected)
+        let testPeripheral = TestPeripheral(state: .connected)
         let onFailureExpectation = expectation(description: "onFailure fulfilled for future")
-        let future = testPeripheral.helper.discoverPeripheralServices(testPeripheral, services:nil)
+        let future = testPeripheral.helper.discoverPeripheralServices(testPeripheral, services: nil)
         future.onSuccess {_ in
             XCTAssert(false, "onSuccess called")
         }
-        future.onFailure {error in
+        future.onFailure {_ in
             onFailureExpectation.fulfill()
         }
         CentralQueue.sync {
-            testPeripheral.helper.didDiscoverServices(testPeripheral, error:TestFailure.error)
+            testPeripheral.helper.didDiscoverServices(testPeripheral, error: TestFailure.error)
         }
         waitForExpectations(timeout: 20) {error in
             XCTAssertNil(error, "\(String(describing: error))")
@@ -109,18 +109,18 @@ class PeripheralTests: XCTestCase {
     }
 
     func testDiscoverPeripheralServicesServiceFailure() {
-        let testPeripheral = TestPeripheral(state:.connected)
+        let testPeripheral = TestPeripheral(state: .connected)
         TestServiceValues.error = TestFailure.error
         let onFailureExpectation = expectation(description: "onFailure fulfilled for future")
-        let future = testPeripheral.helper.discoverPeripheralServices(testPeripheral, services:nil)
+        let future = testPeripheral.helper.discoverPeripheralServices(testPeripheral, services: nil)
         future.onSuccess {_ in
             XCTAssert(false, "onSuccess called")
         }
-        future.onFailure {error in
+        future.onFailure {_ in
             onFailureExpectation.fulfill()
         }
         CentralQueue.sync {
-            testPeripheral.helper.didDiscoverServices(testPeripheral, error:nil)
+            testPeripheral.helper.didDiscoverServices(testPeripheral, error: nil)
         }
         waitForExpectations(timeout: 20) {error in
             XCTAssertNil(error, "\(String(describing: error))")
@@ -129,9 +129,9 @@ class PeripheralTests: XCTestCase {
     }
 
     func testDiscoverPeripheralServicesNoNersicesFoundFailure() {
-        let testPeripheral = TestPeripheral(state:.connected, services:[TestService]())
+        let testPeripheral = TestPeripheral(state: .connected, services: [TestService]())
         let onFailureExpectation = expectation(description: "onFailure fulfilled for future")
-        let future = testPeripheral.helper.discoverPeripheralServices(testPeripheral, services:nil)
+        let future = testPeripheral.helper.discoverPeripheralServices(testPeripheral, services: nil)
         future.onSuccess {_ in
             XCTAssert(false, "onSuccess called")
         }
@@ -141,7 +141,7 @@ class PeripheralTests: XCTestCase {
             XCTAssert(error.code == PeripheralError.noServices.rawValue, "message code invalid")
         }
         CentralQueue.sync {
-            testPeripheral.helper.didDiscoverServices(testPeripheral, error:nil)
+            testPeripheral.helper.didDiscoverServices(testPeripheral, error: nil)
         }
         waitForExpectations(timeout: 20) {error in
             XCTAssertNil(error, "\(String(describing: error))")
@@ -152,8 +152,8 @@ class PeripheralTests: XCTestCase {
     func testConnect() {
         let testPeripheral = TestPeripheral()
         let onConnectionExpectation = expectation(description: "onSuccess fulfilled for future")
-        let future = testPeripheral.helper.connect(testPeripheral, connectionTimeout:100.0)
-        future.onSuccess{(peripheral, connectionEvent) in
+        let future = testPeripheral.helper.connect(testPeripheral, connectionTimeout: 100.0)
+        future.onSuccess {(_, connectionEvent) in
             switch connectionEvent {
             case .connected:
                 onConnectionExpectation.fulfill()
@@ -169,7 +169,7 @@ class PeripheralTests: XCTestCase {
                 XCTAssert(false, "onSuccess GiveUp invalid")
             }
         }
-        future.onFailure {error in
+        future.onFailure {_ in
             XCTAssert(false, "onFailure called")
         }
         CentralQueue.sync {
@@ -179,12 +179,12 @@ class PeripheralTests: XCTestCase {
             XCTAssertNil(error, "\(String(describing: error))")
         }
     }
-    
+
     func testFailedConnect() {
         let testPeripheral = TestPeripheral()
         let onFailureExpectation = expectation(description: "onFailure fulfilled for future")
-        let future = testPeripheral.helper.connect(testPeripheral, connectionTimeout:100.0)
-        future.onSuccess{(peripheral, connectionEvent) in
+        let future = testPeripheral.helper.connect(testPeripheral, connectionTimeout: 100.0)
+        future.onSuccess {(_, connectionEvent) in
             switch connectionEvent {
             case .connected:
                 XCTAssert(false, "onSuccess Connect invalid")
@@ -200,11 +200,11 @@ class PeripheralTests: XCTestCase {
                 XCTAssert(false, "onSuccess GiveUp invalid")
             }
         }
-        future.onFailure {error in
+        future.onFailure {_ in
             XCTAssert(false, "onFailure called")
         }
         CentralQueue.sync {
-            testPeripheral.helper.didFailToConnectPeripheral(testPeripheral, error:nil)
+            testPeripheral.helper.didFailToConnectPeripheral(testPeripheral, error: nil)
         }
         waitForExpectations(timeout: 120) {error in
             XCTAssertNil(error, "\(String(describing: error))")
@@ -212,10 +212,10 @@ class PeripheralTests: XCTestCase {
     }
 
     func testFailedConnectWithError() {
-        let testPeripheral = TestPeripheral(state:.connected)
+        let testPeripheral = TestPeripheral(state: .connected)
         let onFailureExpectation = expectation(description: "onFailure fulfilled for future")
         let future = testPeripheral.helper.connect(testPeripheral)
-        future.onSuccess{(peripheral, connectionEvent) in
+        future.onSuccess {(_, connectionEvent) in
             switch connectionEvent {
             case .connected:
                 XCTAssert(false, "onSuccess Connect invalid")
@@ -231,11 +231,11 @@ class PeripheralTests: XCTestCase {
                 XCTAssert(false, "onSuccess GiveUp invalid")
             }
         }
-        future.onFailure {error in
+        future.onFailure {_ in
             onFailureExpectation.fulfill()
         }
         CentralQueue.sync {
-            testPeripheral.helper.didFailToConnectPeripheral(testPeripheral, error:TestFailure.error)
+            testPeripheral.helper.didFailToConnectPeripheral(testPeripheral, error: TestFailure.error)
         }
         waitForExpectations(timeout: 20) {error in
             XCTAssertNil(error, "\(String(describing: error))")
@@ -243,10 +243,10 @@ class PeripheralTests: XCTestCase {
     }
 
     func testForcedDisconnectWhenDisconnected() {
-        let testPeripheral = TestPeripheral(state:.disconnected)
+        let testPeripheral = TestPeripheral(state: .disconnected)
         let onFailureExpectation = expectation(description: "onFailure fulfilled for future")
-        let future = testPeripheral.helper.connect(testPeripheral, connectionTimeout:100.0)
-        future.onSuccess{(peripheral, connectionEvent) in
+        let future = testPeripheral.helper.connect(testPeripheral, connectionTimeout: 100.0)
+        future.onSuccess {(_, connectionEvent) in
             switch connectionEvent {
             case .connected:
                 XCTAssert(false, "onSuccess Connect invalid")
@@ -262,7 +262,7 @@ class PeripheralTests: XCTestCase {
                 XCTAssert(false, "onSuccess GiveUp invalid")
             }
         }
-        future.onFailure {error in
+        future.onFailure {_ in
             XCTAssert(false, "onFailure called")
         }
         testPeripheral.helper.disconnect(testPeripheral)
@@ -270,12 +270,12 @@ class PeripheralTests: XCTestCase {
             XCTAssertNil(error, "\(String(describing: error))")
         }
     }
-    
+
     func testForcedDisconnectWhenConnected() {
-        let testPeripheral = TestPeripheral(state:.connected)
+        let testPeripheral = TestPeripheral(state: .connected)
         let onFailureExpectation = expectation(description: "onFailure fulfilled for future")
         let future = testPeripheral.helper.connect(testPeripheral)
-        future.onSuccess{(peripheral, connectionEvent) in
+        future.onSuccess {(_, connectionEvent) in
             switch connectionEvent {
             case .connected:
                 XCTAssert(false, "onSuccess Connect invalid")
@@ -291,7 +291,7 @@ class PeripheralTests: XCTestCase {
                 XCTAssert(false, "onSuccess GiveUp invalid")
             }
         }
-        future.onFailure {error in
+        future.onFailure {_ in
             XCTAssert(false, "onFailure called")
         }
         testPeripheral.helper.disconnect(testPeripheral)
@@ -306,8 +306,8 @@ class PeripheralTests: XCTestCase {
     func testDisconnect() {
         let testPeripheral = TestPeripheral()
         let onFailureExpectation = expectation(description: "onFailure fulfilled for future")
-        let future = testPeripheral.helper.connect(testPeripheral, connectionTimeout:100.0)
-        future.onSuccess{(peripheral, connectionEvent) in
+        let future = testPeripheral.helper.connect(testPeripheral, connectionTimeout: 100.0)
+        future.onSuccess {(_, connectionEvent) in
             switch connectionEvent {
             case .connected:
                 XCTAssert(false, "onSuccess Connect invalid")
@@ -323,7 +323,7 @@ class PeripheralTests: XCTestCase {
                 XCTAssert(false, "onSuccess GiveUp invalid")
             }
         }
-        future.onFailure {error in
+        future.onFailure {_ in
             XCTAssert(false, "onFailure called")
         }
         CentralQueue.sync {
@@ -333,12 +333,12 @@ class PeripheralTests: XCTestCase {
             XCTAssertNil(error, "\(String(describing: error))")
         }
     }
-    
+
     func testTimeout() {
-        let testPeripheral = TestPeripheral(state:.disconnected)
+        let testPeripheral = TestPeripheral(state: .disconnected)
         let onFailureExpectation = expectation(description: "onFailure fulfilled for future")
-        let future = testPeripheral.helper.connect(testPeripheral, connectionTimeout:1.0)
-        future.onSuccess{(peripheral, connectionEvent) in
+        let future = testPeripheral.helper.connect(testPeripheral, connectionTimeout: 1.0)
+        future.onSuccess {(_, connectionEvent) in
             switch connectionEvent {
             case .connected:
                 XCTAssert(false, "onSuccess Connect invalid")
@@ -354,20 +354,20 @@ class PeripheralTests: XCTestCase {
                 XCTAssert(false, "onSuccess GiveUp invalid")
             }
         }
-        future.onFailure {error in
+        future.onFailure {_ in
             XCTAssert(false, "onFailure called")
         }
         waitForExpectations(timeout: 20) {error in
             XCTAssertNil(error, "\(String(describing: error))")
         }
     }
-    
+
     func testGiveUp() {
-        let testPeripheral = TestPeripheral(state:.disconnected)
+        let testPeripheral = TestPeripheral(state: .disconnected)
         let timeoutExpectation = expectation(description: "onFailure fulfilled for Timeout")
         let giveUpExpectation = expectation(description: "onFailure fulfilled for GiveUp")
-        let future = testPeripheral.helper.connect(testPeripheral, timeoutRetries:1, connectionTimeout:1.0)
-        future.onSuccess{(peripheral, connectionEvent) in
+        let future = testPeripheral.helper.connect(testPeripheral, timeoutRetries: 1, connectionTimeout: 1.0)
+        future.onSuccess {(_, connectionEvent) in
             switch connectionEvent {
             case .connected:
                 XCTAssert(false, "onSuccess Connect invalid")
@@ -384,7 +384,7 @@ class PeripheralTests: XCTestCase {
                 giveUpExpectation.fulfill()
             }
         }
-        future.onFailure {error in
+        future.onFailure {_ in
             XCTAssert(false, "onFailure called")
         }
         waitForExpectations(timeout: 20) {error in
@@ -393,11 +393,11 @@ class PeripheralTests: XCTestCase {
     }
 
     func testReconectOnTimeout() {
-        let testPeripheral = TestPeripheral(state:.disconnected)
+        let testPeripheral = TestPeripheral(state: .disconnected)
         let timeoutExpectation = expectation(description: "onFailure fulfilled for Timeout")
         let onConnectionExpectation = expectation(description: "onSuccess fulfilled for future")
-        let future = testPeripheral.helper.connect(testPeripheral, timeoutRetries:2, connectionTimeout:5.0)
-        future.onSuccess{(peripheral, connectionEvent) in
+        let future = testPeripheral.helper.connect(testPeripheral, timeoutRetries: 2, connectionTimeout: 5.0)
+        future.onSuccess {(_, connectionEvent) in
             switch connectionEvent {
             case .connected:
                 onConnectionExpectation.fulfill()
@@ -415,20 +415,20 @@ class PeripheralTests: XCTestCase {
                 XCTAssert(false, "onFailure GiveUp invalid")
             }
         }
-        future.onFailure {error in
+        future.onFailure {_ in
             XCTAssert(false, "onFailure called")
         }
         waitForExpectations(timeout: 120) {error in
             XCTAssertNil(error, "\(String(describing: error))")
         }
     }
-    
+
     func testReconnectOnDisconnect() {
-        let testPeripheral = TestPeripheral(state:.disconnected)
+        let testPeripheral = TestPeripheral(state: .disconnected)
         let disconnectExpectation = expectation(description: "onFailure fulfilled for Disconnect")
         let onConnectionExpectation = expectation(description: "onSuccess fulfilled for future")
-        let future = testPeripheral.helper.connect(testPeripheral, connectionTimeout:100.0)
-        future.onSuccess{(peripheral, connectionEvent) in
+        let future = testPeripheral.helper.connect(testPeripheral, connectionTimeout: 100.0)
+        future.onSuccess {(_, connectionEvent) in
             switch connectionEvent {
             case .connected:
                 onConnectionExpectation.fulfill()
@@ -446,7 +446,7 @@ class PeripheralTests: XCTestCase {
                 XCTAssert(false, "onFailure GiveUp invalid")
             }
         }
-        future.onFailure {error in
+        future.onFailure {_ in
             XCTAssert(false, "onFailure called")
         }
         CentralQueue.sync {

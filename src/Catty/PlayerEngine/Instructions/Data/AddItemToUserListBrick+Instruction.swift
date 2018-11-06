@@ -21,7 +21,7 @@
  */
 
 @objc extension AddItemToUserListBrick: CBInstructionProtocol {
-    
+
     @nonobjc func instruction() -> CBInstruction {
 
         guard let spriteObject = self.script?.object,
@@ -32,7 +32,7 @@
         let userList = self.userList
 
         return CBInstruction.execClosure { (context, _) in
-            if (userList != nil){
+            if userList != nil {
                 let result = context.formulaInterpreter.interpret(listFormula, for: spriteObject)
                 variablesContainer.add(toUserList: userList, value: result)
             }

@@ -26,7 +26,7 @@
         return .action { (_) in SKAction.run(self.actionBlock()) }
     }
 
-    @objc func actionBlock() -> ()->() {
+    @objc func actionBlock() -> () -> Void {
         guard let object = self.script?.object,
             let spriteNode = object.spriteNode,
             let pointedObjectPosition = self.pointedObject?.spriteNode?.position
@@ -39,13 +39,13 @@
             if (objectPosition.x == pointedObjectPosition.x) && (objectPosition.y == pointedObjectPosition.y) {
                 rotationDegrees = 0.0
             } else if objectPosition.x == pointedObjectPosition.x {
-                if (objectPosition.y > pointedObjectPosition.y) {
+                if objectPosition.y > pointedObjectPosition.y {
                     rotationDegrees = 180.0
                 } else {
                     rotationDegrees = 0.0
                 }
-            } else if (objectPosition.y == pointedObjectPosition.y) {
-                if (objectPosition.x > pointedObjectPosition.x) {
+            } else if objectPosition.y == pointedObjectPosition.y {
+                if objectPosition.x > pointedObjectPosition.x {
                     rotationDegrees = 270.0
                 } else {
                     rotationDegrees = 90.0

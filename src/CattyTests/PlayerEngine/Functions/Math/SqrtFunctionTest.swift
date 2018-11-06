@@ -25,48 +25,48 @@ import XCTest
 @testable import Pocket_Code
 
 class SqrtFunctionTest: XCTestCase {
-    
+
     var function: SqrtFunction!
-    
+
     override func setUp() {
         function = SqrtFunction()
     }
-    
+
     override func tearDown() {
         function = nil
     }
-    
+
     func testDefaultValue() {
         XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: "invalidParameter" as AnyObject), accuracy: 0.0001)
         XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: nil), accuracy: 0.0001)
     }
-    
+
     func testValue() {
         XCTAssertEqual(sqrt(100), function.value(parameter: 100 as AnyObject), accuracy: 0.0001)
-        
+
         XCTAssertEqual(sqrt(81), function.value(parameter: 81 as AnyObject), accuracy: 0.0001)
     }
-    
+
     func testParameter() {
         XCTAssertEqual(.number(defaultValue: 0), function.firstParameter())
     }
-    
+
     func testTag() {
         XCTAssertEqual("SQRT", type(of: function).tag)
     }
-    
+
     func testName() {
         XCTAssertEqual("sqrt", type(of: function).name)
     }
-    
+
     func testRequiredResources() {
         XCTAssertEqual(ResourceType.noResources, type(of: function).requiredResource)
     }
-    
+
     func testIsIdempotent() {
         XCTAssertTrue(type(of: function).isIdempotent)
     }
-    
+
     func testFormulaEditorSection() {
         XCTAssertEqual(.math(position: type(of: function).position), function.formulaEditorSection())
     }

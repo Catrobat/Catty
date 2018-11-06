@@ -25,48 +25,48 @@ import XCTest
 @testable import Pocket_Code
 
 class ExpFunctionTest: XCTestCase {
-    
+
     var function: ExpFunction!
-    
+
     override func setUp() {
         function = ExpFunction()
     }
-    
+
     override func tearDown() {
         function = nil
     }
-    
+
     func testDefaultValue() {
         XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: "invalidParameter" as AnyObject), accuracy: 0.0001)
         XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: nil), accuracy: 0.0001)
     }
-    
+
     func testValue() {
         XCTAssertEqual(exp(2), function.value(parameter: 2 as AnyObject), accuracy: 0.0001)
-        
+
         XCTAssertEqual(exp(-5), function.value(parameter: -5 as AnyObject), accuracy: 0.0001)
     }
-    
+
     func testParameter() {
         XCTAssertEqual(.number(defaultValue: 1), function.firstParameter())
     }
-    
+
     func testTag() {
         XCTAssertEqual("EXP", type(of: function).tag)
     }
-    
+
     func testName() {
         XCTAssertEqual("exp", type(of: function).name)
     }
-    
+
     func testRequiredResources() {
         XCTAssertEqual(ResourceType.noResources, type(of: function).requiredResource)
     }
-    
+
     func testIsIdempotent() {
         XCTAssertTrue(type(of: function).isIdempotent)
     }
-    
+
     func testFormulaEditorSection() {
         XCTAssertEqual(.math(position: type(of: function).position), function.formulaEditorSection())
     }

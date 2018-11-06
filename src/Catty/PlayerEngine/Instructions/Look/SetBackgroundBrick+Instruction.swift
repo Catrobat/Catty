@@ -25,17 +25,17 @@
     @nonobjc func instruction() -> CBInstruction {
         return .action { (context) in SKAction.run(self.actionBlock()) }
     }
-    
-    @objc func actionBlock() -> ()->() {
+
+    @objc func actionBlock() -> () -> Void {
         guard let object = self.script.object.program.objectList.firstObject as? SpriteObject,
               let spriteNode = object.spriteNode
         else { fatalError("This should never happen!") }
 
         return {
-            let cache:RuntimeImageCache = RuntimeImageCache.shared()
+            let cache: RuntimeImageCache = RuntimeImageCache.shared()
             var image = cache.cachedImage(forPath: self.pathForLook())
-            
-            if(image == nil){
+
+            if image == nil {
                 print("LoadImageFromDisk")
                 cache.loadImageFromDisk(withPath: self.pathForLook())
                 guard let imageFromDisk = UIImage(contentsOfFile: self.pathForLook()) else { return }

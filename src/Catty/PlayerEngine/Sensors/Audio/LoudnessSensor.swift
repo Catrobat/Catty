@@ -28,11 +28,11 @@
     static let requiredResource = ResourceType.loudness
 
     let getAudioManager: () -> AudioManagerProtocol?
-    
+
     init(audioManagerGetter: @escaping () -> AudioManagerProtocol?) {
         self.getAudioManager = audioManagerGetter
     }
-    
+
     func tag() -> String {
         return type(of: self).tag
     }
@@ -40,12 +40,12 @@
     func rawValue() -> Double {
         return self.getAudioManager()?.loudness() ?? type(of: self).defaultRawValue
     }
-    
+
     func convertToStandardized(rawValue: Double) -> Double {
         let rawValueConverted = pow(10, 0.05 * rawValue)
         return rawValueConverted * 100
     }
-   
+
     func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
         return .device(position: type(of: self).position)
     }

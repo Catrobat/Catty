@@ -23,67 +23,65 @@
 import UIKit
 import CoreBluetooth
 
-//MARK: Service
-public final class Service : ServiceWrapper {
-    
+// MARK: Service
+public final class Service: ServiceWrapper {
+
     internal var helper = ServiceHelper<Service>()
-    private let profile         : ServiceProfile?
-    internal let _peripheral    : Peripheral
-    internal let cbService      : CBService
-    
-    internal var ownCharacteristics  = [CBUUID:Characteristic]()
-    
-    
-    //MARK: init
-    internal init(ownService:CBService, peripheral:Peripheral) {
+    private let profile: ServiceProfile?
+    internal let _peripheral: Peripheral
+    internal let cbService: CBService
+
+    internal var ownCharacteristics  = [CBUUID: Characteristic]()
+
+    // MARK: init
+    internal init(ownService: CBService, peripheral: Peripheral) {
         self.cbService = ownService
         self._peripheral = peripheral
         self.profile = ProfileManager.sharedInstance.serviceProfiles[cbService.uuid]
     }
-    
 
-    //MARK:getter
-    public var characteristics : [Characteristic]{
-        let values : [Characteristic] = [Characteristic](self.ownCharacteristics.values)
+    // MARK: getter
+    public var characteristics: [Characteristic] {
+        let values: [Characteristic] = [Characteristic](self.ownCharacteristics.values)
         return values
     }
-    
-    public var peripheral : Peripheral {
+
+    public var peripheral: Peripheral {
         return self._peripheral
     }
-    
-    //MARK:Characteristic
-    public func discoverCharacteristics(_ characteristics:[CBUUID]) -> Future<Service> {
-        return self.helper.discoverCharacteristicsIfConnected(self, characteristics:characteristics)
+
+    // MARK: Characteristic
+    public func discoverCharacteristics(_ characteristics: [CBUUID]) -> Future<Service> {
+        return self.helper.discoverCharacteristicsIfConnected(self, characteristics: characteristics)
     }
-    public func characteristic(_ uuid:CBUUID) -> Characteristic? {
+    public func characteristic(_ uuid: CBUUID) -> Characteristic? {
         return self.ownCharacteristics[uuid]
     }
-    public func didDiscoverCharacteristics(_ error:NSError?) {
-        self.helper.didDiscoverCharacteristics(self, error:error)
+    public func didDiscoverCharacteristics(_ error: NSError?) {
+        self.helper.didDiscoverCharacteristics(self, error: error)
     }
-    
-    //MARK: ServiceWrapper
-    public var name : String {
+
+    // MARK: ServiceWrapper
+    public var name: String {
         if let profile = self.profile {
             return profile.name
         } else {
             return "Unknown"
         }
     }
-    
-    public var uuid : CBUUID {
+
+    public var uuid: CBUUID {
         return self.cbService.uuid
     }
-    
-    public var state : CBPeripheralState {
+
+    public var state: CBPeripheralState {
         return self.peripheral.state
     }
-    
-    public func discoverCharacteristics(_ characteristics:[CBUUID]?) {
-        self.peripheral.cbPeripheral.discoverCharacteristics(characteristics, for:self.cbService)
+
+    public func discoverCharacteristics(_ characteristics: [CBUUID]?) {
+        self.peripheral.cbPeripheral.discoverCharacteristics(characteristics, for: self.cbService)
     }
-    
+
     public func initCharacteristics() {
         self.ownCharacteristics.removeAll()
         guard let ownChracteristics = self.cbService.characteristics else {
@@ -91,31 +89,29 @@ public final class Service : ServiceWrapper {
             return
         }
         for cbCharacteristic in ownChracteristics {
-            let ownCharacteristic = Characteristic(cbCharacteristic:cbCharacteristic, service:self)
+            let ownCharacteristic = Characteristic(cbCharacteristic: cbCharacteristic, service: self)
             self.ownCharacteristics[ownCharacteristic.uuid] = ownCharacteristic
             ownCharacteristic.didDiscover()
 //            NSLog("Characteristic uuid=\(ownCharacteristic.uuid.UUIDString), name=\(ownCharacteristic.name)")
         }
-        
-    }
-    
-    public func discoverAllCharacteristics() -> Future<Service> {
-        return self.helper.discoverCharacteristicsIfConnected(self, characteristics:nil)
+
     }
 
+    public func discoverAllCharacteristics() -> Future<Service> {
+        return self.helper.discoverCharacteristicsIfConnected(self, characteristics: nil)
+    }
 
 }
 
-//MARK: Service Implementation
-public final class ServiceHelper<S:ServiceWrapper> {
-    
+// MARK: Service Implementation
+public final class ServiceHelper<S: ServiceWrapper> {
+
     private var characteristicsDiscoveredPromise = Promise<S>()
-    
+
     public init() {
     }
-    
-    
-    public func discoverCharacteristicsIfConnected(_ service:S, characteristics:[CBUUID]?=nil) -> Future<S> {
+
+    public func discoverCharacteristicsIfConnected(_ service: S, characteristics: [CBUUID]?=nil) -> Future<S> {
 //        NSLog("uuid=\(service.uuid.UUIDString), name=\(service.name)")
         self.characteristicsDiscoveredPromise = Promise<S>()
         if service.state == .connected {
@@ -125,10 +121,8 @@ public final class ServiceHelper<S:ServiceWrapper> {
         }
         return self.characteristicsDiscoveredPromise.future
     }
-    
-    
-    
-    public func didDiscoverCharacteristics(_ service:S, error:NSError?) {
+
+    public func didDiscoverCharacteristics(_ service: S, error: NSError?) {
         if let error = error {
             self.characteristicsDiscoveredPromise.failure(error)
         } else {
@@ -136,5 +130,5 @@ public final class ServiceHelper<S:ServiceWrapper> {
             self.characteristicsDiscoveredPromise.success(service)
         }
     }
-    
+
 }

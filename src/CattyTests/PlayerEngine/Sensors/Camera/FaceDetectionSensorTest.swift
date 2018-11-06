@@ -25,46 +25,46 @@ import XCTest
 @testable import Pocket_Code
 
 final class FaceDetectionSensorTest: XCTestCase {
-    
+
     var sensor: FaceDetectedSensor!
     var cameraManagerMock: FaceDetectionManagerMock!
-    
+
     func testDefaultRawValue() {
         let sensor = FaceDetectedSensor { nil }
         XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(), accuracy: 0.0001)
     }
-    
+
     override func setUp() {
         self.cameraManagerMock = FaceDetectionManagerMock()
         self.sensor = FaceDetectedSensor { [ weak self ] in self?.cameraManagerMock }
     }
-    
+
     override func tearDown() {
         self.cameraManagerMock = nil
         self.sensor = nil
     }
-    
+
     func testRawValue() {
         self.cameraManagerMock.isFaceDetected = true
         XCTAssertEqual(1, self.sensor.rawValue())
-        
+
         self.cameraManagerMock.isFaceDetected = false
         XCTAssertEqual(0, self.sensor.rawValue())
     }
-    
+
     func testConvertToStandardized() {
         XCTAssertEqual(0, sensor.convertToStandardized(rawValue: 0))
         XCTAssertEqual(1, sensor.convertToStandardized(rawValue: 1))
     }
-    
+
     func testTag() {
         XCTAssertEqual("FACE_DETECTED", sensor.tag())
     }
-    
+
     func testRequiredResources() {
         XCTAssertEqual(ResourceType.faceDetection, type(of: sensor).requiredResource)
     }
-    
+
     func testFormulaEditorSection() {
         XCTAssertEqual(.device(position: type(of: sensor).position), sensor.formulaEditorSection(for: SpriteObject()))
     }

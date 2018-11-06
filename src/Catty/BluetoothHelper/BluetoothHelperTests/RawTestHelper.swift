@@ -24,23 +24,22 @@ import Foundation
 import CoreBluetooth
 import BluetoothHelper
 
+struct RawPairTest: RawPairDeserialize {
 
-struct RawPairTest : RawPairDeserialize {
-    
-    let value1:Int8
-    let value2:UInt8
-    
+    let value1: Int8
+    let value2: UInt8
+
     static let uuid = "TEST"
-    
-    var rawValue1 : Int8  {
+
+    var rawValue1: Int8 {
         return self.value1
     }
-    
-    var rawValue2 : UInt8 {
+
+    var rawValue2: UInt8 {
         return self.value2
     }
-    
-    init?(rawValue1:Int8, rawValue2:UInt8) {
+
+    init?(rawValue1: Int8, rawValue2: UInt8) {
         if rawValue2 > 10 {
             self.value1 = rawValue1
             self.value2 = rawValue2
@@ -48,19 +47,19 @@ struct RawPairTest : RawPairDeserialize {
             return nil
         }
     }
-    
+
 }
 
-struct RawArrayTest : RawArrayDeserialize {
-    
-    let value1:Int8
-    let value2:Int8
-    let value3:Int8
-    
+struct RawArrayTest: RawArrayDeserialize {
+
+    let value1: Int8
+    let value2: Int8
+    let value3: Int8
+
     static let uuid = "TEST"
     static let size = 3
-    
-    init?(rawValue:[Int8]) {
+
+    init?(rawValue: [Int8]) {
         if rawValue.count == 3 {
             self.value1 = rawValue[0]
             self.value2 = rawValue[1]
@@ -69,31 +68,31 @@ struct RawArrayTest : RawArrayDeserialize {
             return nil
         }
     }
-    
-    var rawValue : [Int8] {
-        return [self.value1, self.value2,self.value3]
+
+    var rawValue: [Int8] {
+        return [self.value1, self.value2, self.value3]
     }
-    
+
 }
 
-struct RawArrayPairTest : RawArrayPairDeserialize {
-    
-    let value1:[Int8]
-    let value2:[UInt8]
-    static let size1 : Int = 2
-    static let size2 : Int = 2
-    
+struct RawArrayPairTest: RawArrayPairDeserialize {
+
+    let value1: [Int8]
+    let value2: [UInt8]
+    static let size1: Int = 2
+    static let size2: Int = 2
+
     static let uuid = "TEST"
-    
-    var rawValue1 : [Int8]  {
+
+    var rawValue1: [Int8] {
         return self.value1
     }
-    
-    var rawValue2 : [UInt8] {
+
+    var rawValue2: [UInt8] {
         return self.value2
     }
-    
-    init?(rawValue1:[Int8], rawValue2:[UInt8]) {
+
+    init?(rawValue1: [Int8], rawValue2: [UInt8]) {
         if rawValue1.count == RawArrayPairTest.size1 &&
             rawValue2.count == RawArrayPairTest.size2 {
                 self.value1 = rawValue1
@@ -102,5 +101,5 @@ struct RawArrayPairTest : RawArrayPairDeserialize {
             return nil
         }
     }
-    
+
 }

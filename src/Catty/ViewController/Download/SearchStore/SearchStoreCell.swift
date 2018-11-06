@@ -27,25 +27,25 @@ protocol SearchStoreCellProtocol: class {
 }
 
 class SearchStoreCell: UITableViewCell {
-    
+
     weak var delegete: SearchStoreCellProtocol?
     var program: StoreProgram?
-    
+
     @IBOutlet weak var searchProgramImage: UIImageView!
     @IBOutlet weak var searchProgramTitle: UILabel!
-    
+
     var searchImage: UIImage? {
         didSet {
             self.updateTable()
         }
     }
-    
+
     var searchTitle: String? {
         didSet {
             self.updateTable()
         }
     }
-    
+
     func updateTable() {
         searchProgramImage?.image = searchImage
         searchProgramTitle?.text = searchTitle

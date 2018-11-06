@@ -23,38 +23,38 @@
 @testable import Pocket_Code
 
 final class TouchManagerMock: TouchManagerProtocol {
-    
+
     var touchRecognizer: UILongPressGestureRecognizer?
     var scene: CBScene?
     var isScreenTouched: Bool = false
     var touches: [CGPoint] = []
     var lastTouch: CGPoint?
-    
+
     var isStarted = false
-    
+
     func startTrackingTouches(for scene: CBScene) {
         isStarted = true
     }
-    
+
     func stopTrackingTouches() {
         isStarted = false
     }
-    
+
     func reset() {
     }
-    
+
     func screenTouched() -> Bool {
         return isScreenTouched
     }
-    
+
     func numberOfTouches() -> Int {
         return touches.count
     }
-    
+
     func lastPositionInScene() -> CGPoint? {
         return lastTouch
     }
-    
+
     func getPositionInScene(for touchNumber: Int) -> CGPoint? {
         if touchNumber <= 0 || touches.count < touchNumber {
             return nil

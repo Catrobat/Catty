@@ -112,7 +112,7 @@ extension IntroductionPageViewController: UIPageViewControllerDataSource {
         if current + 1 < self.content.count {
             viewController.content = self.content[current + 1]
         }
-        self.pages = self.pages + [viewController]
+        self.pages += [viewController]
         return viewController
     }
 

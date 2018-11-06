@@ -30,7 +30,7 @@ class CentralManagerTests: XCTestCase {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
-    
+
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
@@ -47,31 +47,30 @@ class CentralManagerTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
-    
-    
+
     func testPowerOnWhenPoweredOn() {
-        let testCentralManager = TestCentralManager(state:.poweredOn)
+        let testCentralManager = TestCentralManager(state: .poweredOn)
         let expectation = self.expectation(description: "onSuccess fulfilled for future")
         let future = testCentralManager.helper.start(testCentralManager)
         future.onSuccess {
             expectation.fulfill()
         }
-        future.onFailure{error in
+        future.onFailure {_ in
             XCTAssert(false, "onFailure called")
         }
         waitForExpectations(timeout: 2) {error in
             XCTAssertNil(error, "\(String(describing: error))")
         }
     }
-    
+
     func testPowerOnWhenPoweredOff() {
-        let testCentralManager = TestCentralManager(state:.poweredOff)
+        let testCentralManager = TestCentralManager(state: .poweredOff)
         let expectation = self.expectation(description: "onSuccess fulfilled for future")
         let future = testCentralManager.helper.start(testCentralManager)
         future.onSuccess {
             expectation.fulfill()
         }
-        future.onFailure{error in
+        future.onFailure {_ in
             XCTAssert(false, "onFailure called")
         }
         testCentralManager.state = .poweredOn
@@ -80,15 +79,15 @@ class CentralManagerTests: XCTestCase {
             XCTAssertNil(error, "\(String(describing: error))")
         }
     }
-    
+
     func testPowerOffWhenPoweredOn() {
-        let testCentralManager = TestCentralManager(state:.poweredOn)
+        let testCentralManager = TestCentralManager(state: .poweredOn)
         let expectation = self.expectation(description: "onSuccess fulfilled for future")
         let future = testCentralManager.helper.stop(testCentralManager)
         future.onSuccess {
             expectation.fulfill()
         }
-        future.onFailure{error in
+        future.onFailure {_ in
             XCTAssert(false, "onFailure called")
         }
         testCentralManager.state = .poweredOff
@@ -97,37 +96,36 @@ class CentralManagerTests: XCTestCase {
             XCTAssertNil(error, "\(String(describing: error))")
         }
     }
-    
+
     func testPowerOffWhenPoweredOff() {
-        let testCentralManager = TestCentralManager(state:.poweredOff)
+        let testCentralManager = TestCentralManager(state: .poweredOff)
         let expectation = self.expectation(description: "onSuccess fulfilled for future")
         let future = testCentralManager.helper.stop(testCentralManager)
         future.onSuccess {
             expectation.fulfill()
         }
-        future.onFailure{error in
+        future.onFailure {_ in
             XCTAssert(false, "onFailure called")
         }
-        waitForExpectations(timeout: 2) {error in
-            XCTAssertNil(error, "\(String(describing: error))")
-        }
-    }
-    
-    func testServiceScanning() {
-        let testCentralManager = TestCentralManager(state:.poweredOff)
-        let expectation = self.expectation(description: "onSuccess fulfilled for future")
-        let future = testCentralManager.helper.startScanningForServiceUUIDs(testCentralManager, uuids: nil)
-        future.onSuccess {_ in
-            expectation.fulfill()
-        }
-        future.onFailure{error in
-            XCTAssert(false, "onFailure called")
-        }
-        testCentralManager.helper.didDiscoverPeripheral(TestPeripheral(name:"testCentralManager"))
         waitForExpectations(timeout: 2) {error in
             XCTAssertNil(error, "\(String(describing: error))")
         }
     }
 
+    func testServiceScanning() {
+        let testCentralManager = TestCentralManager(state: .poweredOff)
+        let expectation = self.expectation(description: "onSuccess fulfilled for future")
+        let future = testCentralManager.helper.startScanningForServiceUUIDs(testCentralManager, uuids: nil)
+        future.onSuccess {_ in
+            expectation.fulfill()
+        }
+        future.onFailure {_ in
+            XCTAssert(false, "onFailure called")
+        }
+        testCentralManager.helper.didDiscoverPeripheral(TestPeripheral(name: "testCentralManager"))
+        waitForExpectations(timeout: 2) {error in
+            XCTAssertNil(error, "\(String(describing: error))")
+        }
+    }
 
 }

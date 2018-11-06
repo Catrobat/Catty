@@ -25,83 +25,83 @@ import XCTest
 @testable import Pocket_Code
 
 final class InclinationYSensorTest: XCTestCase {
-    
+
     var motionManager: MotionManagerMock!
     var sensor: InclinationYSensor!
-    
+
     override func setUp() {
         motionManager = MotionManagerMock()
         sensor = InclinationYSensor { [weak self] in self?.motionManager }
     }
-    
+
     override func tearDown() {
         sensor = nil
         motionManager = nil
     }
-    
+
     func testDefaultRawValue() {
         let sensor = InclinationYSensor { nil }
         XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(), accuracy: 0.0001)
     }
-    
+
     func testRawValue() {
         // test maximum value
         motionManager.attitude = (pitch: Double.pi/2, roll: 0)
         XCTAssertEqual(sensor.rawValue(), Double.pi/2, accuracy: 0.0001)
-        
+
         // test minimum value
         motionManager.attitude = (pitch: -Double.pi/2, roll: 0)
         XCTAssertEqual(sensor.rawValue(), -Double.pi/2, accuracy: 0.0001)
-        
+
         // test no inclination
         motionManager.attitude = (pitch: 0, roll: 0)
         XCTAssertEqual(sensor.rawValue(), 0, accuracy: 0.0001)
-        
+
         // tests inside the range
         motionManager.attitude = (pitch: Double.pi/3, roll: 0)
         XCTAssertEqual(sensor.rawValue(), Double.pi/3, accuracy: 0.0001)
-        
+
         motionManager.attitude = (pitch: -Double.pi/6, roll: 0)
         XCTAssertEqual(sensor.rawValue(), -Double.pi/6, accuracy: 0.0001)
     }
-    
+
     func testConvertToStandardizedScreenUp() {
         motionManager.zAcceleration = -0.5 // or any other negative value read by acceleration the sensors
-        
+
         // no inclination
         XCTAssertEqual(sensor.convertToStandardized(rawValue: 0), 0, accuracy: 0.0001)
-        
+
         // half up - home botton down
         XCTAssertEqual(sensor.convertToStandardized(rawValue: Double.pi/4), 45, accuracy: 0.0001)
-        
+
         // up - face to face to the user
         XCTAssertEqual(sensor.convertToStandardized(rawValue: Double.pi/2), 90, accuracy: 0.0001)
-        
+
         // half up - home button up
         XCTAssertEqual(sensor.convertToStandardized(rawValue: -Double.pi/4), -45, accuracy: 0.0001)
     }
-    
+
     func testConvertToStandardizedScreenDown() {
         motionManager.zAcceleration = 0.5 //or any other positive value read by the acceleration sensors
-        
+
         // half down - home button down
         XCTAssertEqual(sensor.convertToStandardized(rawValue: Double.pi/4), 135, accuracy: 0.0001)
-        
+
         // up - with the back to the user
         XCTAssertEqual(sensor.convertToStandardized(rawValue: -Double.pi/2), -90, accuracy: 0.0001)
-        
+
         // half down - home button up
         XCTAssertEqual(sensor.convertToStandardized(rawValue: -Double.pi/4), -135, accuracy: 0.0001)
     }
-    
+
     func testTag() {
         XCTAssertEqual("Y_INCLINATION", sensor.tag())
     }
-    
+
     func testRequiredResources() {
         XCTAssertEqual(ResourceType.accelerometerAndDeviceMotion, type(of: sensor).requiredResource)
     }
-    
+
     func testFormulaEditorSection() {
         XCTAssertEqual(.device(position: type(of: sensor).position), sensor.formulaEditorSection(for: SpriteObject()))
     }

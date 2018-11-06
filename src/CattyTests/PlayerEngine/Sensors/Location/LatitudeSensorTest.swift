@@ -25,65 +25,64 @@ import XCTest
 @testable import Pocket_Code
 
 final class LatitudeSensorTest: XCTestCase {
-    
+
     var locationManager: LocationManagerMock!
     var sensor: LatitudeSensor!
-    
+
     override func setUp() {
         locationManager = LocationManagerMock()
         sensor = LatitudeSensor { [weak self] in self?.locationManager }
     }
-    
+
     override func tearDown() {
         sensor = nil
         locationManager = nil
     }
-    
+
     func testDefaultRawValue() {
         let sensor = LatitudeSensor { nil }
         XCTAssertEqual(LatitudeSensor.defaultRawValue, sensor.rawValue(), accuracy: 0.0001)
     }
-    
+
     func testRawValue() {
         // min value - South Pole
         locationManager.latitude = -90
         XCTAssertEqual(-90, sensor.rawValue())
-        
+
         // max value - North Pole
         locationManager.latitude = 90
         XCTAssertEqual(90, sensor.rawValue())
-        
+
         // center
         locationManager.latitude = 0
         XCTAssertEqual(0, sensor.rawValue())
-        
+
         // London
         locationManager.latitude = 51.5
         XCTAssertEqual(51.5, sensor.rawValue())
-        
+
         // Cape Town
         locationManager.latitude = -33.92
         XCTAssertEqual(-33.92, sensor.rawValue())
-        
+
         // Munich
         locationManager.latitude = 48.13
         XCTAssertEqual(48.13, sensor.rawValue())
     }
-    
+
     func testConvertToStandardized() {
         XCTAssertEqual(100, sensor.convertToStandardized(rawValue: 100))
     }
-    
+
     func testTag() {
         XCTAssertEqual("LATITUDE", sensor.tag())
     }
-    
+
     func testRequiredResources() {
         XCTAssertEqual(ResourceType.location, type(of: sensor).requiredResource)
     }
-    
+
     func testFormulaEditorSection() {
         XCTAssertEqual(.device(position: type(of: sensor).position), sensor.formulaEditorSection(for: SpriteObject()))
     }
 }
-

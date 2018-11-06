@@ -36,13 +36,13 @@ class MediaLibraryCollectionViewDataSourceTests: XCTestCase {
 
     var downloaderMock: MediaLibraryDownloaderMock!
     var collectionView: UICollectionView!
-    
+
     override func setUp() {
         super.setUp()
         self.downloaderMock = MediaLibraryDownloaderMock()
         self.collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     }
-    
+
     override func tearDown() {
         self.downloaderMock = nil
         self.collectionView = nil
@@ -456,7 +456,7 @@ private extension MediaItem {
 // Equatable conformance is added here in order to be able to check a cell's state easily. The image of the
 // state .loaded is not taken into conisderation.
 extension LibraryImageCollectionViewCell.State: Equatable {
-    public static func ==(lhs: LibraryImageCollectionViewCell.State, rhs: LibraryImageCollectionViewCell.State) -> Bool {
+    public static func == (lhs: LibraryImageCollectionViewCell.State, rhs: LibraryImageCollectionViewCell.State) -> Bool {
         switch (lhs, rhs) {
         case (.noImage, .noImage), (.loading, .loading), (.loaded, .loaded):
             return true

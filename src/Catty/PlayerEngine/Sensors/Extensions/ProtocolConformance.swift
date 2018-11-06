@@ -57,7 +57,7 @@ extension CLLocationManager: LocationManager {
     var heading: Heading? {
         return self.value(forKey: "heading") as? CLHeading
     }
-    
+
     var location: Location? {
         return self.value(forKey: "location") as? CLLocation
     }

@@ -25,13 +25,13 @@ import XCTest
 @testable import Pocket_Code
 
 final class HeaderTests: XCTestCase {
-    
+
     override func setUp() {
     }
-    
+
     func testDefaultHeader() {
         let header = Header.default()!
-        
+
         XCTAssertEqual(Util.appBuildName(), header.applicationBuildName)
         XCTAssertEqual(Util.appBuildVersion(), header.applicationBuildNumber)
         XCTAssertEqual(Util.appName(), header.applicationName)
@@ -44,14 +44,14 @@ final class HeaderTests: XCTestCase {
         XCTAssertEqual(UtilMock.platformVersionWithoutPatch(), "11.4")
         XCTAssertEqual(UtilMock.platformVersionWithPatch(), "11.4.1")
         XCTAssertEqual(Util.catrobatProgramLicense(), header.programLicense)
-    
+
         XCTAssertEqual(Util.screenHeight(true), CGFloat(truncating: header.screenHeight))
         XCTAssertEqual(Util.screenWidth(true), CGFloat(truncating: header.screenWidth))
         XCTAssertEqual(kCatrobatHeaderScreenModeStretch, header.screenMode)
-        
+
         XCTAssertFalse(header.isArduinoProject)
         XCTAssertFalse(header.landscapeMode)
-        
+
         XCTAssertNil(header.dateTimeUpload)
         XCTAssertNil(header.programDescription)
         XCTAssertNil(header.programName)
@@ -63,8 +63,8 @@ final class HeaderTests: XCTestCase {
     }
 }
 
-class UtilMock : Util {
+class UtilMock: Util {
     override class func platformVersion() -> OperatingSystemVersion {
-        return OperatingSystemVersion(majorVersion: 11,minorVersion: 4,patchVersion: 1)
+        return OperatingSystemVersion(majorVersion: 11, minorVersion: 4, patchVersion: 1)
     }
 }

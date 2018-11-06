@@ -26,7 +26,7 @@ protocol CBScriptContextProtocol: class {
     var script: Script { get }
     var formulaInterpreter: FormulaInterpreterProtocol { get }
     var state: CBScriptContextState { get set }
-    var index:Int { get set }
+    var index: Int { get set }
 
     func appendInstructions(_ instructionList: [CBInstruction])
     func nextInstruction() -> CBInstruction?
@@ -129,17 +129,17 @@ final class CBWhenScriptContext: CBScriptContext {
 
 //--------------------------------------------------------------------------------------------------
 final class CBWhenTouchDownScriptContext: CBScriptContext {
-    
+
     convenience init?(whenTouchDownScript: WhenTouchDownScript, spriteNode: CBSpriteNode, formulaInterpreter: FormulaInterpreterProtocol, state: CBScriptContextState) {
         self.init(whenTouchDownScript: whenTouchDownScript, spriteNode: spriteNode, formulaInterpreter: formulaInterpreter, state: state, instructionList: [])
     }
-    
+
     init?(whenTouchDownScript: WhenTouchDownScript, spriteNode: CBSpriteNode, formulaInterpreter: FormulaInterpreterProtocol, state: CBScriptContextState, instructionList: [CBInstruction]
         ) {
         super.init(script: whenTouchDownScript, spriteNode: spriteNode, formulaInterpreter: formulaInterpreter, state: state,
                    instructionList: instructionList)
     }
-    
+
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -152,8 +152,7 @@ final class CBBroadcastScriptContext: CBScriptContext, CBBroadcastScriptContextP
         self.init(broadcastScript: broadcastScript, spriteNode: spriteNode, formulaInterpreter: formulaInterpreter, state: state, instructionList: [])
     }
 
-    init?(broadcastScript: BroadcastScript, spriteNode: CBSpriteNode, formulaInterpreter: FormulaInterpreterProtocol, state: CBScriptContextState,
-        instructionList: [CBInstruction]
+    init?(broadcastScript: BroadcastScript, spriteNode: CBSpriteNode, formulaInterpreter: FormulaInterpreterProtocol, state: CBScriptContextState, instructionList: [CBInstruction]
     ) {
         broadcastMessage = broadcastScript.receivedMessage
         waitingContext = nil
@@ -170,8 +169,7 @@ final class CBStartScriptContext: CBScriptContext {
         self.init(startScript: startScript, spriteNode: spriteNode, formulaInterpreter: formulaInterpreter, state: state, instructionList: [])
     }
 
-    init?(startScript: StartScript, spriteNode: CBSpriteNode, formulaInterpreter: FormulaInterpreterProtocol, state: CBScriptContextState,
-        instructionList: [CBInstruction]
+    init?(startScript: StartScript, spriteNode: CBSpriteNode, formulaInterpreter: FormulaInterpreterProtocol, state: CBScriptContextState, instructionList: [CBInstruction]
     ) {
         super.init(script: startScript, spriteNode: spriteNode, formulaInterpreter: formulaInterpreter, state: state,
             instructionList: instructionList)

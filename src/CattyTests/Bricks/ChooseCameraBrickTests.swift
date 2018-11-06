@@ -25,83 +25,83 @@ import XCTest
 @testable import Pocket_Code
 
 final class ChooseCameraBrickTests: XCTestCase {
-    
+
     var spriteObject: SpriteObject!
     var spriteNode: CBSpriteNode!
     var scheduler: CBScheduler!
     var program: Program!
     var script: Script!
     var context: CBScriptContextProtocol!
-    
+
     override func setUp() {
         program = Program()
-        
+
         spriteObject = SpriteObject()
         spriteObject.name = "SpriteObjectName"
-        
+
         spriteNode = CBSpriteNode(spriteObject: spriteObject)
         spriteObject.spriteNode = spriteNode
         spriteObject.program = program
-        
-        script = Script();
-        script.object = spriteObject;
-        
+
+        script = Script()
+        script.object = spriteObject
+
         let logger = CBLogger(name: "Logger")
         let broadcastHandler = CBBroadcastHandler(logger: logger)
         let formulaInterpreter = FormulaManager()
         scheduler = CBScheduler(logger: logger, broadcastHandler: broadcastHandler, formulaInterpreter: formulaInterpreter)
-        
+
         context = CBScriptContext(script: script, spriteNode: spriteNode, formulaInterpreter: formulaInterpreter)
     }
-    
+
     func testDefaultCameraPosition() {
         // front camera should be default
         CameraPreviewHandler.shared().reset()
         XCTAssertEqual(AVCaptureDevice.Position.front, CameraPreviewHandler.shared().cameraPosition)
     }
-    
+
     func testChooseCameraBrick() {
-        let brick = ChooseCameraBrick();
-        brick.script = script;
-        
-        let instruction = brick.instruction();
-        
+        let brick = ChooseCameraBrick()
+        brick.script = script
+
+        let instruction = brick.instruction()
+
         switch instruction {
         case let .execClosure(closure):
             closure(context, scheduler)
-        default: break;
+        default: break
         }
-        
+
         XCTAssertEqual(AVCaptureDevice.Position.back, CameraPreviewHandler.shared().cameraPosition)
     }
-    
+
     func testChooseCameraBrickInitWithZero() {
-        let brick = ChooseCameraBrick(choice: 0);
-        brick?.script = script;
-        
-        let instruction = brick?.instruction();
-        
+        let brick = ChooseCameraBrick(choice: 0)
+        brick?.script = script
+
+        let instruction = brick?.instruction()
+
         switch instruction! {
         case let .execClosure(closure):
             closure(context, scheduler)
-        default: break;
+        default: break
         }
-        
+
         XCTAssertEqual(AVCaptureDevice.Position.back, CameraPreviewHandler.shared().cameraPosition)
     }
-    
+
     func testChooseCameraBrickInitWithOne() {
-        let brick = ChooseCameraBrick(choice: 1);
-        brick?.script = script;
-        
-        let instruction = brick?.instruction();
-        
+        let brick = ChooseCameraBrick(choice: 1)
+        brick?.script = script
+
+        let instruction = brick?.instruction()
+
         switch instruction! {
         case let .execClosure(closure):
             closure(context, scheduler)
-        default: break;
+        default: break
         }
-        
+
         XCTAssertEqual(AVCaptureDevice.Position.front, CameraPreviewHandler.shared().cameraPosition)
     }
 }

@@ -21,32 +21,32 @@
  */
 
 class FaceDetectedSensor: DeviceSensor {
-    
+
     static let tag = "FACE_DETECTED"
     static let name = kUIFESensorFaceDetected
     static let defaultRawValue = 0.0
     static let position = 190
     static let requiredResource = ResourceType.faceDetection
-    
+
     let getFaceDetectionManager: () -> FaceDetectionManagerProtocol?
-    
+
     init(faceDetectionManagerGetter: @escaping () -> FaceDetectionManagerProtocol?) {
         self.getFaceDetectionManager = faceDetectionManagerGetter
     }
-    
+
     func tag() -> String {
         return type(of: self).tag
     }
-    
+
     func rawValue() -> Double {
         guard let isFaceDetected = self.getFaceDetectionManager()?.isFaceDetected else { return type(of: self).defaultRawValue }
         return isFaceDetected ? 1.0 : 0.0
     }
-    
+
     func convertToStandardized(rawValue: Double) -> Double {
         return rawValue
     }
-    
+
     func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
         return .device(position: type(of: self).position)
     }

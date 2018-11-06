@@ -21,7 +21,7 @@
  */
 
 @objc class CBSceneHelper: NSObject {
-    
+
     // MARK: - Operations (Helpers)
     @objc class func convertTouchCoordinateToPoint(coordinate: CGPoint, sceneSize: CGSize) -> CGPoint {
         let screenSize = Util.screenSize(false)

@@ -26,49 +26,48 @@ import XCTest
 
 final class TimeSecondSensorMock: TimeSecondSensor {
     var mockDate: Date = Date()
-    
+
     override func date() -> Date {
         return mockDate
     }
 }
 
 final class TimeSecondSensorTest: XCTestCase {
-    
+
     var sensor: TimeSecondSensorMock!
-    
+
     override func setUp() {
         sensor = TimeSecondSensorMock()
     }
-    
+
     override func tearDown() {
         sensor = nil
     }
-    
+
     func testTag() {
         XCTAssertEqual("TIME_SECOND", sensor.tag())
     }
-    
+
     func testRequiredResources() {
         XCTAssertEqual(ResourceType.noResources, type(of: sensor).requiredResource)
     }
-    
+
     func testRawValue() {
         /* test one digit */
         self.sensor.mockDate = Date.init(timeIntervalSince1970: 1529301965)
         XCTAssertEqual(5, Int(sensor.rawValue()))
-        
+
         /* test two digits */
         self.sensor.mockDate = Date.init(timeIntervalSince1970: 1528265185)
         XCTAssertEqual(25, Int(sensor.rawValue()))
     }
-    
+
     func testConvertToStandardized() {
         XCTAssertEqual(1, sensor.convertToStandardized(rawValue: 1))
         XCTAssertEqual(100, sensor.convertToStandardized(rawValue: 100))
     }
-    
+
     func testFormulaEditorSection() {
         XCTAssertEqual(.device(position: type(of: sensor).position), sensor.formulaEditorSection(for: SpriteObject()))
     }
 }
-

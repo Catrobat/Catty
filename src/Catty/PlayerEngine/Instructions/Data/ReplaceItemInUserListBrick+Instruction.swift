@@ -21,25 +21,25 @@
  */
 
 @objc extension ReplaceItemInUserListBrick: CBInstructionProtocol {
-    
+
     @nonobjc func instruction() -> CBInstruction {
-        
+
         guard let spriteObject = self.script?.object,
             let variablesContainer = spriteObject.program?.variables,
             let elementFormula = self.elementFormula,
             let position = self.index
             else { fatalError("This should never happen!") }
-        
+
         let userList = self.userList
-        
+
         return CBInstruction.execClosure { (context, _) in
-            if (userList != nil){
+            if userList != nil {
                 let valueResult = context.formulaInterpreter.interpret(elementFormula, for: spriteObject)
                 let positionResult = context.formulaInterpreter.interpret(position, for: spriteObject)
                 variablesContainer.replaceItem(inUserList: userList, value: valueResult, atIndex: positionResult)
             }
             context.state = .runnable
         }
-        
+
     }
 }

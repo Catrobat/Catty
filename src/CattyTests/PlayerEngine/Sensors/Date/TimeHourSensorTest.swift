@@ -26,52 +26,52 @@ import XCTest
 
 final class TimeHourSensorMock: TimeHourSensor {
     var mockDate: Date = Date()
-    
+
     override func date() -> Date {
         return mockDate
     }
 }
 
 final class TimeHourSensorTest: XCTestCase {
-    
+
     var sensor: TimeHourSensorMock!
-    
+
     override func setUp() {
         sensor = TimeHourSensorMock()
     }
-    
+
     override func tearDown() {
         sensor = nil
     }
-    
+
     func testTag() {
         XCTAssertEqual("TIME_HOUR", sensor.tag())
     }
-    
+
     func testRequiredResources() {
         XCTAssertEqual(ResourceType.noResources, type(of: sensor).requiredResource)
     }
-    
+
     func testRawValue() {
         /* test one digit */
         sensor.mockDate = Calendar.current.date(from: DateComponents(year: 2018, month: 6, day: 6, hour: 7))!
         XCTAssertEqual(7, Int(sensor.rawValue()))
-        
+
         /* test two digits */
         sensor.mockDate = Calendar.current.date(from: DateComponents(year: 2017, month: 8, day: 10, hour: 16))!
         XCTAssertEqual(16, Int(sensor.rawValue()))
-        
+
         /* test edge case - almost the beginning of the next day */
         sensor.mockDate = Calendar.current.date(from: DateComponents(year: 2018, month: 8, day: 22, hour: 23))!
         XCTAssertEqual(23, Int(sensor.rawValue()))
-        
+
     }
-    
+
     func testConvertToStandardized() {
         XCTAssertEqual(1, sensor.convertToStandardized(rawValue: 1))
         XCTAssertEqual(10, sensor.convertToStandardized(rawValue: 10))
     }
-    
+
     func testFormulaEditorSection() {
         XCTAssertEqual(.device(position: type(of: sensor).position), sensor.formulaEditorSection(for: SpriteObject()))
     }

@@ -25,53 +25,52 @@ import XCTest
 @testable import Pocket_Code
 
 final class LocationAccuracySensorTest: XCTestCase {
-    
+
     var locationManager: LocationManagerMock!
     var sensor: LocationAccuracySensor!
-    
+
     override func setUp() {
         locationManager = LocationManagerMock()
         sensor = LocationAccuracySensor { [weak self] in self?.locationManager }
     }
-    
+
     override func tearDown() {
         self.sensor = nil
         self.locationManager = nil
     }
-    
+
     func testDefaultRawValue() {
         let sensor = LocationAccuracySensor { nil }
         XCTAssertEqual(LocationAccuracySensor.defaultRawValue, sensor.rawValue(), accuracy: 0.0001)
     }
-    
+
     func testRawValue() {
         // positive value => valid location
         locationManager.locationAccuracy = 10
         XCTAssertEqual(10, sensor.rawValue())
-        
+
         // negative value => invalid location
         locationManager.locationAccuracy = -5
         XCTAssertEqual(-5, sensor.rawValue())
     }
-    
+
     func testConvertToStandardized() {
         // valid location
         XCTAssertEqual(100, sensor.convertToStandardized(rawValue: 100))
-        
+
         // invalid location
         XCTAssertEqual(0, sensor.convertToStandardized(rawValue: -1))
     }
-    
+
     func testTag() {
         XCTAssertEqual("LOCATION_ACCURACY", sensor.tag())
     }
-    
+
     func testRequiredResources() {
         XCTAssertEqual(ResourceType.location, type(of: sensor).requiredResource)
     }
-    
+
     func testFormulaEditorSection() {
         XCTAssertEqual(.device(position: type(of: sensor).position), sensor.formulaEditorSection(for: SpriteObject()))
     }
 }
-

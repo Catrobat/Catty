@@ -24,34 +24,34 @@ import Foundation
 import CoreBluetooth
 
 open class ServiceProfile {
-    
-    internal var characteristicProfiles = [CBUUID:CharacteristicProfile]()
 
-    public let uuid : CBUUID
-    public let name : String
-    public let tag  : String
-    
-    open var characteristics : [CharacteristicProfile] {
+    internal var characteristicProfiles = [CBUUID: CharacteristicProfile]()
+
+    public let uuid: CBUUID
+    public let name: String
+    public let tag: String
+
+    open var characteristics: [CharacteristicProfile] {
         let values: [CharacteristicProfile] = [CharacteristicProfile](self.characteristicProfiles.values)
         return values
     }
-    
-    open var characteristic : [CBUUID:CharacteristicProfile] {
+
+    open var characteristic: [CBUUID: CharacteristicProfile] {
         return self.characteristicProfiles
     }
-    
-    public init(uuid:String, name:String, tag:String = "Miscellaneous") {
+
+    public init(uuid: String, name: String, tag: String = "Miscellaneous") {
         self.name = name
-        self.uuid = CBUUID(string:uuid)
+        self.uuid = CBUUID(string: uuid)
         self.tag = tag
     }
-    
-    public convenience init(uuid:String) {
-        self.init(uuid:uuid, name:"Unknown")
+
+    public convenience init(uuid: String) {
+        self.init(uuid: uuid, name: "Unknown")
     }
 
-    open func addCharacteristic(_ characteristicProfile:CharacteristicProfile) {
+    open func addCharacteristic(_ characteristicProfile: CharacteristicProfile) {
         self.characteristicProfiles[characteristicProfile.uuid] = characteristicProfile
     }
-    
+
 }

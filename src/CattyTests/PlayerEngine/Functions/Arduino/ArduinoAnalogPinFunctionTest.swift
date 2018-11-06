@@ -25,54 +25,54 @@ import XCTest
 @testable import Pocket_Code
 
 class ArduinoAnalogPingFunctionTest: XCTestCase {
-    
+
     var function: ArduinoAnalogPinFunction!
     var bluetoothService: BluetoothService!
-    
+
     override func setUp() {
         bluetoothService = BluetoothService.sharedInstance()
         function = ArduinoAnalogPinFunction { [ weak self ] in self?.bluetoothService }
     }
-    
+
     override func tearDown() {
         bluetoothService = nil
         function = nil
     }
-    
+
     func testDefaultValue() {
         XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: "invalidParameter" as AnyObject), accuracy: 0.0001)
         XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: 110 as AnyObject), accuracy: 0.0001)
         XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: 0.5 as AnyObject), accuracy: 0.0001)
     }
-    
+
     func testValue() {
         // TODO: add tests
     }
-    
+
     func testParameter() {
         XCTAssertEqual(.number(defaultValue: 0), function.firstParameter())
     }
-    
+
     func testTag() {
         XCTAssertEqual("analogPin", type(of: function).tag)
     }
-    
+
     func testName() {
         XCTAssertEqual(kUIFESensorArduinoAnalog, type(of: function).name)
     }
-    
+
     func testRequiredResources() {
         XCTAssertEqual(ResourceType.bluetoothArduino, type(of: function).requiredResource)
     }
-    
+
     func testIsIdempotent() {
         XCTAssertFalse(type(of: function).isIdempotent)
     }
-    
+
     func testFormulaEditorSection() {
         UserDefaults.standard.set(true, forKey: kUseArduinoBricks)
         XCTAssertEqual(.device(position: type(of: function).position), function.formulaEditorSection())
-        
+
         UserDefaults.standard.set(false, forKey: kUseArduinoBricks)
         XCTAssertEqual(.hidden, function.formulaEditorSection())
     }

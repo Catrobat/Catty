@@ -28,89 +28,89 @@ import UIKit
 
 @objc class ProgramDescriptionViewController: UIViewController {
     @objc weak var delegate: SetProgramDescriptionDelegate?
-    
+
     private var header: UILabel!
     private var descriptionTextView: UITextView!
     private var descriptionTextViewBottomConstraint: NSLayoutConstraint!
-    
-    //Mark: Init
+
+    // MARK: Init
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
-    
-    //Mark: View Lifecycle
+
+    // MARK: View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.whiteGray()
-        
+
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: .UIKeyboardWillHide, object: nil)
-        
+
         initNavBar()
         initControls()
         initTextView()
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         descriptionTextView.becomeFirstResponder()
     }
-    
-    //MARK: Initialization
+
+    // MARK: Initialization
     func initControls() {
         header = UILabel()
         descriptionTextView = UITextView()
         view.addSubview(header)
         view.addSubview(descriptionTextView)
-        
+
         header.textAlignment = .center
         header.text = kLocalizedSetDescription
         header.textColor = UIColor.globalTint()
-        var navTopAnchor = view.safeTopAnchor;
-        if (self.navigationController != nil) {
+        var navTopAnchor = view.safeTopAnchor
+        if self.navigationController != nil {
             navTopAnchor = topLayoutGuide.bottomAnchor
         }
-        header.setAnchors(top: navTopAnchor, left: view.safeLeftAnchor, right: view.safeRightAnchor, bottom: nil, topPadding:20, leftPadding: 20, rightPadding: 20, bottomPadding: 0)
-        
+        header.setAnchors(top: navTopAnchor, left: view.safeLeftAnchor, right: view.safeRightAnchor, bottom: nil, topPadding: 20, leftPadding: 20, rightPadding: 20, bottomPadding: 0)
+
         descriptionTextView.isAccessibilityElement = true
         descriptionTextView.accessibilityIdentifier = "descriptionTextView"
-        descriptionTextView.setAnchors(top: header.bottomAnchor, left: view.safeLeftAnchor, right: view.safeRightAnchor, bottom: nil, topPadding:20, leftPadding: 20, rightPadding: 20, bottomPadding: 0)
+        descriptionTextView.setAnchors(top: header.bottomAnchor, left: view.safeLeftAnchor, right: view.safeRightAnchor, bottom: nil, topPadding: 20, leftPadding: 20, rightPadding: 20, bottomPadding: 0)
         //manual constraint (because we need to store the bottom anchor)
         descriptionTextViewBottomConstraint = descriptionTextView.bottomAnchor.constraint(equalTo: view.safeBottomAnchor, constant: -20)
         descriptionTextViewBottomConstraint.isActive = true
     }
-    
+
     func initNavBar() {
-        let doneBarButton = UIBarButtonItem(title: kLocalizedDone, style: .plain, target: self, action:#selector(doneAction(sender:)))
-        let cancelBarButton = UIBarButtonItem(title: kLocalizedCancel, style: .plain, target: self, action:#selector(cancelAction(sender:)))
+        let doneBarButton = UIBarButtonItem(title: kLocalizedDone, style: .plain, target: self, action: #selector(doneAction(sender:)))
+        let cancelBarButton = UIBarButtonItem(title: kLocalizedCancel, style: .plain, target: self, action: #selector(cancelAction(sender:)))
         doneBarButton.tintColor = UIColor.white
         cancelBarButton.tintColor = UIColor.white
         self.navigationItem.leftBarButtonItem  = cancelBarButton
         self.navigationItem.rightBarButtonItem  = doneBarButton
     }
-    
+
     func initTextView() {
         descriptionTextView.keyboardAppearance = UIKeyboardAppearance.default
         descriptionTextView.backgroundColor = UIColor.white
         descriptionTextView.textColor = UIColor.textTint()
         descriptionTextView.tintColor = UIColor.globalTint()
-        
-        if (delegate is MyProgramsViewController) {
+
+        if delegate is MyProgramsViewController {
             var mpvc: MyProgramsViewController?
             mpvc = delegate as? MyProgramsViewController
             descriptionTextView.text = mpvc?.selectedProgram.header.programDescription ?? ""
         }
-        if (delegate is ProgramTableViewController) {
+        if delegate is ProgramTableViewController {
             var mpvc: ProgramTableViewController?
             mpvc = delegate as? ProgramTableViewController
             descriptionTextView.text = mpvc?.program.header.programDescription ?? ""
         }
     }
-    
-    //MARK: keyboard
+
+    // MARK: keyboard
     @objc func keyboardWillShow(notification: Notification) {
         if let userInfo = notification.userInfo, let keyboardFrameValue = userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue {
             let keyboardFrame = keyboardFrameValue.cgRectValue
@@ -120,22 +120,21 @@ import UIKit
             })
         }
     }
-    
-    @objc func keyboardWillHide(notification: Notification){
+
+    @objc func keyboardWillHide(notification: Notification) {
         UIView.animate(withDuration: 0.5) {
             self.descriptionTextViewBottomConstraint.constant = -20
             self.view.layoutIfNeeded()
         }
     }
-    
-    //MARK: Action
+
+    // MARK: Action
     @objc func cancelAction(sender: UIBarButtonItem) {
         dismiss(animated: true)
     }
-    
-    @objc func doneAction(sender: UIBarButtonItem){
+
+    @objc func doneAction(sender: UIBarButtonItem) {
         delegate?.setDescription(descriptionTextView.text)
         dismiss(animated: true)
     }
 }
-

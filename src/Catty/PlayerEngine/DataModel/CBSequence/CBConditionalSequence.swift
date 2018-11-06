@@ -47,13 +47,13 @@ class CBConditionalSequence: CBSequenceProtocol, CBSequenceVisitProtocol {
     final func resetCondition() {
         condition.resetCondition()
     }
-    
+
     final func bufferCondition(context: CBScriptContextProtocol) {
         for formula in condition.conditionFormulas() {
-            let _ = context.formulaInterpreter.interpretAndCache(formula, for: context.spriteNode.spriteObject)
+            _ = context.formulaInterpreter.interpretAndCache(formula, for: context.spriteNode.spriteObject)
         }
     }
-    
+
     final func hasBluetoothFormula() -> Bool {
         for formula in condition.conditionFormulas() {
             if (formula.getRequiredResources() & ResourceType.bluetoothArduino.rawValue) > 0 {
@@ -62,7 +62,7 @@ class CBConditionalSequence: CBSequenceProtocol, CBSequenceVisitProtocol {
         }
         return false
     }
-    
+
     func accept(_ visitor: CBOptimizeSequenceVisitorProtocol) {
         visitor.visit(self)
     }

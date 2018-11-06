@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-final class CBOperationSequence : CBSequenceProtocol, CBSequenceVisitProtocol {
+final class CBOperationSequence: CBSequenceProtocol, CBSequenceVisitProtocol {
 
     // MARK: - Properties
     final weak var rootSequenceList: CBScriptSequenceList?
@@ -36,7 +36,7 @@ final class CBOperationSequence : CBSequenceProtocol, CBSequenceVisitProtocol {
         return (operationList.count == 0)
     }
 
-    func addOperation(_ operation : CBOperation) {
+    func addOperation(_ operation: CBOperation) {
         operationList.append(operation)
     }
 

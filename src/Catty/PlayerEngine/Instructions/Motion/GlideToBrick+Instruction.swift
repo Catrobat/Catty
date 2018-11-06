@@ -21,30 +21,30 @@
  */
 
 @objc extension GlideToBrick: CBInstructionProtocol {
-    
+
     @nonobjc func instruction() -> CBInstruction {
         guard let durationFormula = self.durationInSeconds else { fatalError("This should never happen!") }
-        
+
         return .longDurationAction(duration: CBDuration.varTime(formula: durationFormula), closure: {
             (duration, context) -> SKAction in
             return self.action(duration, context.formulaInterpreter)
         })
     }
-    
-    @objc func action(_ duration : TimeInterval, _ formulaInterpreter: FormulaInterpreterProtocol) -> SKAction {
+
+    @objc func action(_ duration: TimeInterval, _ formulaInterpreter: FormulaInterpreterProtocol) -> SKAction {
         guard let object = self.script?.object,
             let spriteNode = object.spriteNode
             else { fatalError("This should never happen!") }
-        
+
         let xDestination = formulaInterpreter.interpretFloat(self.xDestination, for: object)
         let yDestination = formulaInterpreter.interpretFloat(self.yDestination, for: object)
         let duration = formulaInterpreter.interpretDouble(self.durationInSeconds, for: object)
-        
+
         guard let scene = spriteNode.scene else {
             fatalError("This should never happen!")
         }
         let destPoint = CGPoint(x: scene.size.width / 2 + CGFloat(xDestination), y: scene.size.height / 2 + CGFloat(yDestination))
-        
+
         let action = SKAction.move(to: destPoint, duration: duration)
         return action
     }

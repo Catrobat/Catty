@@ -26,9 +26,9 @@ import CoreBluetooth
 
 class BluetoothDevicesTableViewController: UITableViewController {
 
-    weak var delegate : BluetoothPopupVC?
+    weak var delegate: BluetoothPopupVC?
     weak var loadingView: LoadingView!
-    var scenePresenterVC : ScenePresenterViewController!
+    var scenePresenterVC: ScenePresenterViewController!
 
     override func viewDidLoad() {
         let loadingView = LoadingView() // helper variable due to self.loadingView being a weak property
@@ -37,13 +37,13 @@ class BluetoothDevicesTableViewController: UITableViewController {
         self.scenePresenterVC = ScenePresenterViewController()
         self.tableView.backgroundColor = UIColor.background()
     }
-    
+
     func updateWhenActive() {
-        DispatchQueue.main.async{
+        DispatchQueue.main.async {
             self.tableView.reloadData()
         }
     }
-    
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         var peri = CentralManager.sharedInstance.peripherals[indexPath.row]
         if type(of: self) == SearchDevicesTableViewController.self {
@@ -51,17 +51,15 @@ class BluetoothDevicesTableViewController: UITableViewController {
         } else if type(of: self) == KnownDevicesTableViewController.self, let knownController = self as? KnownDevicesTableViewController {
             peri = knownController.knownDevices[indexPath.row]
             var found = false
-            for peripheral in CentralManager.sharedInstance.peripherals {
-                if peripheral.id == peri.id {
-                    peri = peripheral
-                    found = true
-                }
+            for peripheral in CentralManager.sharedInstance.peripherals where (peripheral.id == peri.id) {
+                peri = peripheral
+                found = true
             }
             if !found {
                 return
             }
         }
-        
+
         BluetoothService.swiftSharedInstance.selectionManager = self
         if peri.state == CBPeripheralState.connected {
             self.deviceConnected(peri)
@@ -72,8 +70,8 @@ class BluetoothDevicesTableViewController: UITableViewController {
         })
         BluetoothService.swiftSharedInstance.connectDevice(peri)
     }
-    
-    func deviceConnected(_ peripheral:Peripheral) {
+
+    func deviceConnected(_ peripheral: Peripheral) {
         if let delegate = self.delegate, let deviceArray = delegate.deviceArray, deviceArray.count > 0 {
             if deviceArray[0] == BluetoothDeviceID.phiro.rawValue {
                 guard let _ = BluetoothService.sharedInstance().selectionManager else {
@@ -87,7 +85,7 @@ class BluetoothDevicesTableViewController: UITableViewController {
             } else if deviceArray[0] == BluetoothDeviceID.arduino.rawValue {
                 guard let _ = BluetoothService.sharedInstance().selectionManager else {
                     DispatchQueue.main.async {
-                        Util.alert(withTitle: klocalizedBluetoothConnectionNotPossible, andText:  klocalizedBluetoothConnectionTryResetting)
+                        Util.alert(withTitle: klocalizedBluetoothConnectionNotPossible, andText: klocalizedBluetoothConnectionTryResetting)
                         self.delegate?.dismissAndDisconnect()
                     }
                     return
@@ -96,7 +94,7 @@ class BluetoothDevicesTableViewController: UITableViewController {
             }
         }
     }
-    
+
     func initScan() {
         let central = CentralManager.sharedInstance
         if central.isScanning {
@@ -112,44 +110,44 @@ class BluetoothDevicesTableViewController: UITableViewController {
             }
         }
     }
-    
-    func startScan(){
-        
-        let afterPeripheralDiscovered = {(peripheral:Peripheral) -> Void in
+
+    func startScan() {
+
+        let afterPeripheralDiscovered = {(peripheral: Peripheral) -> Void in
             self.updateWhenActive()
         }
-        let afterTimeout = {(error:NSError) -> Void in
+        let afterTimeout = {(error: NSError) -> Void in
         }
-        let future : FutureStream<Peripheral> = CentralManager.sharedInstance.startScan()
+        let future: FutureStream<Peripheral> = CentralManager.sharedInstance.startScan()
         future.onSuccess(afterPeripheralDiscovered)
         future.onFailure(afterTimeout)
     }
-    
-    func deviceFailedConnection(){
+
+    func deviceFailedConnection() {
         DispatchQueue.main.async(execute: {
             self.loadingView.hide()
             CentralManager.sharedInstance.stopScanning()
             self.initScan()
         })
     }
-    
-    func deviceNotResponding(){
+
+    func deviceNotResponding() {
         DispatchQueue.main.async(execute: {
             self.loadingView.hide()
             CentralManager.sharedInstance.stopScanning()
             self.initScan()
         })
     }
-    
-    func giveUpConnectionToDevice(){
+
+    func giveUpConnectionToDevice() {
         DispatchQueue.main.async(execute: {
             self.loadingView.hide()
             CentralManager.sharedInstance.stopScanning()
             self.initScan()
         })
     }
-    
-    func checkStart(){
+
+    func checkStart() {
         delegate?.deviceArray?.remove(at: 0)
         if let count = delegate?.deviceArray?.count, count > 0 {
             delegate?.setHeader()
@@ -159,7 +157,7 @@ class BluetoothDevicesTableViewController: UITableViewController {
         startScene()
     }
 
-    func startScene(){
+    func startScene() {
         let central = CentralManager.sharedInstance
         if central.isScanning {
             central.stopScanning()

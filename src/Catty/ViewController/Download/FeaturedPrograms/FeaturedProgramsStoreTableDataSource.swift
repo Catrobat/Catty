@@ -31,25 +31,25 @@ protocol SelectedFeaturedProgramsDataSource: class {
 class FeaturedProgramsStoreTableDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
 
     // MARK: - Properties
-    
+
     weak var delegate: SelectedFeaturedProgramsDataSource?
-    
+
     fileprivate let downloader: StoreProgramDownloaderProtocol
     fileprivate var programs = [StoreProgram]()
     fileprivate var baseUrl = ""
-    
+
     // MARK: - Initializer
-    
+
     fileprivate init(with downloader: StoreProgramDownloaderProtocol) {
         self.downloader = downloader
     }
-    
+
     static func dataSource(with downloader: StoreProgramDownloaderProtocol = StoreProgramDownloader()) -> FeaturedProgramsStoreTableDataSource {
         return FeaturedProgramsStoreTableDataSource(with: downloader)
     }
-    
+
     // MARK: - DataSource
-    
+
     func fetchItems(completion: @escaping (StoreProgramDownloaderError?) -> Void) {
         self.downloader.fetchPrograms(forType: .featured, offset: 0) {items, error in
             guard let collection = items, error == nil else { completion(error); return }
@@ -58,15 +58,15 @@ class FeaturedProgramsStoreTableDataSource: NSObject, UITableViewDataSource, UIT
             completion(nil)
         }
     }
-    
+
     func numberOfRows(in tableView: UITableView) -> Int {
         return self.programs.count
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.programs.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: kFeaturedCell, for: indexPath)
         if let cell = cell as? FeaturedProgramsCell {
@@ -76,12 +76,12 @@ class FeaturedProgramsStoreTableDataSource: NSObject, UITableViewDataSource, UIT
 
         return cell
     }
-    
+
     // MARK: - Delegate
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell: FeaturedProgramsCell? = tableView.cellForRow(at: indexPath) as? FeaturedProgramsCell
-        
+
         self.downloader.downloadProgram(for: (cell?.program)!) { program, error in
             guard let StoreProgram = program, error == nil else { return }
             cell?.program = StoreProgram

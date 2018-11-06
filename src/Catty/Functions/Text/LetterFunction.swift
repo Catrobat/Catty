@@ -27,24 +27,24 @@ class LetterFunction: DoubleParameterStringFunction {
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = true
     static let position = 220
-    
+
     func tag() -> String {
         return type(of: self).tag
     }
-    
+
     func firstParameter() -> FunctionParameter {
         return .number(defaultValue: 1)
     }
-    
+
     func secondParameter() -> FunctionParameter {
         return .string(defaultValue: "hello world")
     }
-    
+
     func value(firstParameter: AnyObject?, secondParameter: AnyObject?) -> String {
         guard let number = firstParameter as? Int else {
                 return type(of: self).defaultValue
         }
-        
+
         let text = type(of: self).interpretParameter(parameter: secondParameter)
         if number - 1 < 0 || number - 1 >= text.count {
             return type(of: self).defaultValue
@@ -52,7 +52,7 @@ class LetterFunction: DoubleParameterStringFunction {
         let index = text.index(text.startIndex, offsetBy: number - 1)
         return String(text[index])
     }
-    
+
     func formulaEditorSection() -> FormulaEditorSection {
         return .math(position: type(of: self).position)
     }

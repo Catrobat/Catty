@@ -25,26 +25,26 @@ import MXSegmentedPager
 import BluetoothHelper
 
 @objc class BluetoothPopupVC: MXSegmentedPagerController {
-    
-    @objc var deviceArray:[Int]?
-    @objc var rightButton:UIBarButtonItem = UIBarButtonItem()
-    
+
+    @objc var deviceArray: [Int]?
+    @objc var rightButton: UIBarButtonItem = UIBarButtonItem()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.segmentedPager.backgroundColor = UIColor.navBar()
         self.navigationController?.navigationBar.tintColor = UIColor.navTint()
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.navText()]
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.navText()]
         // Segmented Control customization
-        self.segmentedPager.segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocation.down;
+        self.segmentedPager.segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocation.down
         self.segmentedPager.segmentedControl.backgroundColor = UIColor.globalTint()
-        self.segmentedPager.segmentedControl.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.background(), NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12)];
-        self.segmentedPager.segmentedControl.selectedTitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.navTint()]
+        self.segmentedPager.segmentedControl.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.background(), NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12)]
+        self.segmentedPager.segmentedControl.selectedTitleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.navTint()]
         self.segmentedPager.segmentedControl.selectionStyle = HMSegmentedControlSelectionStyle.box
         self.segmentedPager.segmentedControl.selectionIndicatorColor = UIColor.globalTint()
         self.segmentedPager.segmentedControl.segmentWidthStyle = HMSegmentedControlSegmentWidthStyle.fixed
 
         setHeader()
-        
+
         rightButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.cancel, target: self, action: #selector(BluetoothPopupVC.dismissAndDisconnect))
         self.navigationItem.rightBarButtonItem = rightButton
     }
@@ -53,18 +53,18 @@ import BluetoothHelper
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
     override func segmentedPager(_ segmentedPager: MXSegmentedPager, titleForSectionAt index: Int) -> String {
-        return [klocalizedBluetoothKnown,klocalizedBluetoothSearch][index];//
+        return [klocalizedBluetoothKnown, klocalizedBluetoothSearch][index];//
     }
-    
+
     override func segmentedPager(_ segmentedPager: MXSegmentedPager, viewControllerForPageAt index: Int) -> UIViewController {
-        let vc:BluetoothDevicesTableViewController = super.segmentedPager(segmentedPager, viewControllerForPageAt: index) as! BluetoothDevicesTableViewController
+        let vc: BluetoothDevicesTableViewController = super.segmentedPager(segmentedPager, viewControllerForPageAt: index) as! BluetoothDevicesTableViewController
         vc.delegate = self
         return vc
     }
-    
-    @objc func dismissAndDisconnect(){
+
+    @objc func dismissAndDisconnect() {
         self .dismiss(animated: true, completion: {
             let central = CentralManager.sharedInstance
             if central.isScanning {
@@ -75,16 +75,16 @@ import BluetoothHelper
         })
     }
 
-    @objc func dismiss(){
+    @objc func dismiss() {
         self.dismiss(animated: true, completion: nil)
     }
 
     func setHeader() {
-        if(deviceArray!.count > 0){
-            if(deviceArray![0] == BluetoothDeviceID.phiro.rawValue){
+        if deviceArray!.count > 0 {
+            if deviceArray![0] == BluetoothDeviceID.phiro.rawValue {
                 self.navigationController!.title = klocalizedBluetoothSelectPhiro
                 self.title = klocalizedBluetoothSelectPhiro
-            } else if (deviceArray![0] == BluetoothDeviceID.arduino.rawValue){
+            } else if deviceArray![0] == BluetoothDeviceID.arduino.rawValue {
                 self.navigationController!.title = klocalizedBluetoothSelectArduino
                 self.title = klocalizedBluetoothSelectArduino
             }
@@ -92,4 +92,3 @@ import BluetoothHelper
         view.setNeedsDisplay()
     }
 }
-

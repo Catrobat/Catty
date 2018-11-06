@@ -21,68 +21,68 @@
  */
 
 protocol Function { // TODO remove CB prefix
-    
+
     // Display name (e.g. for formula editor)
     static var name: String { get }
-    
+
     // Resources required in order to get value of this function (e.g. Accelerometer)
     static var requiredResource: ResourceType { get }
-    
+
     // True if the value does not change when executed multiple times (e.g. sin(0)) or false if the value changes (e.g. random(0, 1))
     static var isIdempotent: Bool { get }
-    
+
     // Tag for serialization
     func tag() -> String
-    
+
     // Return the section to show sensor in formula editor (FormulaEditorSection) and the position within that section (Int)
     // Use .hidden to not show the sensor at all
     func formulaEditorSection() -> FormulaEditorSection
 }
 
 extension Function {
-    static var parameterDelimiter: String { get { return ", " } }
-    static var bracketOpen: String { get { return "(" } }
-    static var bracketClose: String { get { return ")" } }
-    
+    static var parameterDelimiter: String { return ", " }
+    static var bracketOpen: String { return "(" }
+    static var bracketClose: String { return ")" }
+
     func parameters() -> [FunctionParameter] {
         var parameters = [FunctionParameter]()
-        
+
         if let function = self as? SingleParameterFunctionProtocol {
             parameters.append(function.firstParameter())
         } else if let function = self as? DoubleParameterFunctionProtocol {
             parameters.append(function.firstParameter())
             parameters.append(function.secondParameter())
         }
-        
+
         return parameters
     }
-    
+
     func nameWithParameters() -> String {
         var functionHeader = type(of: self).name
         let params = self.parameters()
         var count = 0
-        
+
         if params.count == 0 {
             return functionHeader       // no parameter function
         }
-        
+
         functionHeader += type(of: self).bracketOpen
         for param in params {
-            
+
             // add the parameter value
             functionHeader += param.defaultValueForFunctionSignature()
             count += 1
-            
+
             // add delimiter between parameters
             if count < params.count && params.count > 1 {
                 functionHeader += type(of: self).parameterDelimiter
             }
         }
-        
+
         functionHeader += type(of: self).bracketClose
         return functionHeader
     }
-    
+
     /* this function is used for the text functions and it allows to
        add both string and numbers as parameters, interpreting them as strings;
        if the number does not have a floating part, then it is
@@ -100,7 +100,7 @@ extension Function {
         }
         return ""
     }
-    
+
 }
 
 protocol DoubleFunction: Function {

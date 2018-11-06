@@ -27,38 +27,38 @@ class ContainsFunction: DoubleParameterDoubleFunction {
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = false
     static let position = 260
-    
+
     func tag() -> String {
         return type(of: self).tag
     }
-    
+
     func firstParameter() -> FunctionParameter {
         return .list(defaultValue: "list name")
     }
-    
+
     func secondParameter() -> FunctionParameter {
         return .number(defaultValue: 1)
     }
-    
+
     func value(firstParameter: AnyObject?, secondParameter: AnyObject?) -> Double {
         guard let list = firstParameter as? UserVariable,
               let elements = list.value as? [AnyObject] else {
             return type(of: self).defaultValue
         }
-        
+
         if elements.contains(where: { self.parameterMatch(firstParam: $0, secondParam: secondParameter) }) {
             return 1.0
         }
         return 0.0
-        
+
     }
-    
+
     private func parameterMatch(firstParam: AnyObject?, secondParam: AnyObject?) -> Bool {
         let first = type(of: self).interpretParameter(parameter: firstParam)
         let second = type(of: self).interpretParameter(parameter: secondParam)
         return first == second
     }
-    
+
     func formulaEditorSection() -> FormulaEditorSection {
         return .math(position: (type(of: self).position))
     }

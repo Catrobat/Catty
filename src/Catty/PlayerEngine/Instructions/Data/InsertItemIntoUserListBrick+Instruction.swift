@@ -21,7 +21,7 @@
  */
 
 @objc extension InsertItemIntoUserListBrick: CBInstructionProtocol {
-    
+
     @nonobjc func instruction() -> CBInstruction {
 
         guard let spriteObject = self.script?.object,
@@ -33,7 +33,7 @@
         let userList = self.userList
 
         return CBInstruction.execClosure { (context, _) in
-            if (userList != nil){
+            if userList != nil {
                 let valueResult = context.formulaInterpreter.interpret(elementFormula, for: spriteObject)
                 let positionResult = context.formulaInterpreter.interpret(position, for: spriteObject)
                 variablesContainer.insert(toUserList: userList, value: valueResult, atIndex: positionResult)

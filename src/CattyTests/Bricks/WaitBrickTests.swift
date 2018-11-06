@@ -25,38 +25,38 @@ import XCTest
 @testable import Pocket_Code
 
 final class WaitBrickTests: XCTestCase {
-    
-    var spriteObject : SpriteObject!
-    var spriteNode : CBSpriteNode!
-    var script : Script!
-    var logger : CBLogger!
-    
+
+    var spriteObject: SpriteObject!
+    var spriteNode: CBSpriteNode!
+    var script: Script!
+    var logger: CBLogger!
+
     override func setUp() {
         super.setUp()
-        
-        logger = CBLogger(name: "Logger");
-        
-        spriteObject = SpriteObject();
-        
+
+        logger = CBLogger(name: "Logger")
+
+        spriteObject = SpriteObject()
+
         spriteNode = CBSpriteNode(spriteObject: spriteObject)
-        spriteNode.name = "SpriteNode";
-        spriteNode.spriteObject = spriteObject;
-        spriteObject.spriteNode = spriteNode;
-        
-        script = Script();
-        script.object = spriteObject;
+        spriteNode.name = "SpriteNode"
+        spriteNode.spriteObject = spriteObject
+        spriteObject.spriteNode = spriteNode
+
+        script = Script()
+        script.object = spriteObject
     }
-    
+
     func testWaitDuration() {
         let duration = 2.0 // 2 seconds
         let waitBrick = WaitBrick()
         waitBrick.timeToWaitInSeconds = Formula(double: duration)
-        waitBrick.script = script;
-        
+        waitBrick.script = script
+
         let executionTime = measureExecutionTime(instruction: waitBrick.instruction())
         XCTAssertEqual(executionTime, duration, accuracy: 0.1, "Wrong execution time")
     }
-    
+
     /*func testSpeakAndWaitDuration() {
         let speakAndWaitBrick = SpeakAndWaitBrick()
         speakAndWaitBrick.formula = Formula(double: 1010101.0)
@@ -71,24 +71,24 @@ final class WaitBrickTests: XCTestCase {
         waitBrick.timeToWaitInSeconds = Formula(double: 1)
         XCTAssertEqual(kLocalizedWait + "%@ " + kLocalizedSecond, waitBrick.brickTitle, "Wrong brick title")
     }
-    
+
     func testTitlePlural() {
         let waitBrick = WaitBrick()
         waitBrick.timeToWaitInSeconds = Formula(double: 2)
         XCTAssertEqual(kLocalizedWait + "%@ " + kLocalizedSeconds, waitBrick.brickTitle, "Wrong brick title")
     }
-    
+
     func measureExecutionTime(instruction: CBInstruction) -> Double {
         let start = NSDate()
         let formulaInterpreter = FormulaManager()
         let scheduler = CBScheduler(logger: self.logger, broadcastHandler: CBBroadcastHandler(logger: self.logger), formulaInterpreter: formulaInterpreter)
-       
+
         switch instruction {
-            case let .waitExecClosure(closure):
+        case let .waitExecClosure(closure):
                 closure(CBScriptContext(script: self.script, spriteNode: self.spriteNode, formulaInterpreter: formulaInterpreter)!, scheduler)
-            default: break
+        default: break
         }
-        
+
         let end = NSDate()
         let timeIntervalInSeconds: Double = end.timeIntervalSince(start as Date)
         return timeIntervalInSeconds

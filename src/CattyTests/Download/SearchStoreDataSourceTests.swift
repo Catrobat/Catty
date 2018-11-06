@@ -24,34 +24,34 @@ import XCTest
 @testable import Pocket_Code
 
 class SearchStoreDataSourceTests: XCTestCase {
-    
+
     var downloaderMock: StoreProgramDownloaderMock!
     var tableView: UITableView!
-    
+
     override func setUp() {
         super.setUp()
         self.downloaderMock = StoreProgramDownloaderMock()
         self.tableView = UITableView(frame: .zero)
     }
-    
+
     override func tearDown() {
         self.downloaderMock = nil
         self.tableView = nil
         super.tearDown()
     }
-    
+
     // MARK: - SearchStoreDataSource Tests
-    
+
     func testFetchSearchProgram() {
         let dataSource = SearchStoreDataSource.dataSource(with: self.downloaderMock)
         let expectation = XCTestExpectation(description: "Fetch program from data source")
-        
+
         dataSource.fetchItems(searchTerm: "Galaxy") { [unowned self] error in
             XCTAssertNil(error)
             XCTAssertEqual(dataSource.numberOfRows(in: self.tableView), 0)
             expectation.fulfill()
         }
-        
+
         wait(for: [expectation], timeout: 1.0)
     }
 }

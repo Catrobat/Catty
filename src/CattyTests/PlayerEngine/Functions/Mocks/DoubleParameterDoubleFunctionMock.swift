@@ -23,22 +23,22 @@
 @testable import Pocket_Code
 
 final class DoubleParameterDoubleFunctionMock: DoubleParameterDoubleFunction {
-    
+
     static var name = "doubleParameterDoubleFunctionMockName"
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = false
     static var defaultValue: Double = 0
-    
+
     private let mockedTag: String
     private let mockedValue: Double
     private let mockedSection: FormulaEditorSection
     private let mockedFirstParameter: FunctionParameter
     private let mockedSecondParameter: FunctionParameter
-    
+
     convenience init(tag: String, value: Double, firstParameter: FunctionParameter, secondParameter: FunctionParameter) {
         self.init(tag: tag, value: value, firstParameter: firstParameter, secondParameter: secondParameter, formulaEditorSection: .hidden)
     }
-    
+
     init(tag: String, value: Double, firstParameter: FunctionParameter, secondParameter: FunctionParameter, formulaEditorSection: FormulaEditorSection) {
         self.mockedTag = tag
         self.mockedValue = value
@@ -46,23 +46,23 @@ final class DoubleParameterDoubleFunctionMock: DoubleParameterDoubleFunction {
         self.mockedSecondParameter = secondParameter
         self.mockedSection = formulaEditorSection
     }
-    
+
     func tag() -> String {
         return mockedTag
     }
-    
+
     func firstParameter() -> FunctionParameter {
         return self.mockedFirstParameter
     }
-    
+
     func secondParameter() -> FunctionParameter {
         return self.mockedSecondParameter
     }
-    
+
     func formulaEditorSection() -> FormulaEditorSection {
         return self.mockedSection
     }
-    
+
     func value(firstParameter: AnyObject?, secondParameter: AnyObject?) -> Double {
         return self.mockedValue
     }

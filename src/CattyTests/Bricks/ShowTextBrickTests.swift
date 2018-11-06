@@ -25,54 +25,54 @@ import XCTest
 @testable import Pocket_Code
 
 final class ShowTextBrickTests: XCTestCase {
-    
+
     var program: Program!
     var spriteObject: SpriteObject!
     var spriteNode: CBSpriteNode!
     var script: Script!
     var scheduler: CBScheduler!
     var context: CBScriptContextProtocol!
-    
+
     override func setUp() {
         program = Program()
-        
+
         spriteObject = SpriteObject()
         spriteObject.name = "SpriteObjectName"
-        
+
         spriteNode = CBSpriteNode(spriteObject: spriteObject)
         spriteObject.spriteNode = spriteNode
         spriteObject.program = program
-        
+
         script = Script()
         script.object = spriteObject
-        
+
         let logger = CBLogger(name: "Logger")
         let broadcastHandler = CBBroadcastHandler(logger: logger)
         let formulaInterpreter = FormulaManager()
         scheduler = CBScheduler(logger: logger, broadcastHandler: broadcastHandler, formulaInterpreter: formulaInterpreter)
         context = CBScriptContext(script: script, spriteNode: spriteNode, formulaInterpreter: formulaInterpreter)
     }
-    
+
     func testShowTextBrickUserVariablesNil() {
         spriteNode.position = CGPoint(x: 0, y: 0)
-        
+
         let varContainer = VariablesContainer()
         spriteObject.program.variables = varContainer
-        
+
         let brick = ShowTextBrick()
         brick.script = script
         brick.xFormula = Formula(integer: 220)
         brick.yFormula = Formula(integer: 330)
-        
+
         let instruction = brick.instruction()
-        
+
         switch instruction {
         case let .execClosure(closure):
             closure(context, scheduler)
         default:
-            XCTFail();
+            XCTFail("Fatal Error")
         }
-        
+
         XCTAssertTrue(true); // The purpose of this test is to show that the program does not crash
                              // when no UserVariable is selected in the IDE and the brick is executed    
     }

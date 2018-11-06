@@ -22,33 +22,33 @@
 
 protocol FirmataDelegate: class {
     func sendData(_ newData: Data)
-    func didReceiveAnalogMessage(_ pin:Int,value:Int)
-    func didReceiveDigitalMessage(_ pin:Int,value:Int)
-    func firmwareVersionReceived(_ name:String)
-    func protocolVersionReceived(_ name:String)
+    func didReceiveAnalogMessage(_ pin: Int, value: Int)
+    func didReceiveDigitalMessage(_ pin: Int, value: Int)
+    func firmwareVersionReceived(_ name: String)
+    func protocolVersionReceived(_ name: String)
 //    func I2cMessageReceived(message:String)
-    func stringDataReceived(_ message:String)
-    func didReceiveDigitalPort(_ port:Int, portData:[Int])
-    func didUpdateAnalogMapping(_ mapping:NSMutableDictionary)
-    func didUpdateCapability(_ pins:[[Int:Int]])
+    func stringDataReceived(_ message: String)
+    func didReceiveDigitalPort(_ port: Int, portData: [Int])
+    func didUpdateAnalogMapping(_ mapping: NSMutableDictionary)
+    func didUpdateCapability(_ pins: [[Int: Int]])
 }
 
 protocol FirmataProtocol {
-    func writePinMode(_ newMode:PinMode, pin:UInt8)
+    func writePinMode(_ newMode: PinMode, pin: UInt8)
     func reportVersion()
     func reportFirmware()
     func analogMappingQuery()
     func capabilityQuery()
-    func pinStateQuery(_ pin:UInt8)
-    func servoConfig(_ pin:UInt8,minPulse:UInt8,maxPulse:UInt8)
-    func stringData(_ string:String)
-    func samplingInterval(_ intervalMilliseconds:UInt8)
-    func writePWMValue(_ value:UInt8, pin:UInt8)
-    func writePinState(_ newState: PinState, pin:UInt8)
-    func setAnalogValueReportingforPin(_ pin:UInt8, enabled:Bool)
-    func setDigitalStateReportingForPin(_ digitalPin:UInt8, enabled:Bool)
-    func setDigitalStateReportingForPort(_ port:UInt8, enabled:Bool)
-    func receiveData(_ data:Data)
-    
-    var delegate : FirmataDelegate? { get set }
+    func pinStateQuery(_ pin: UInt8)
+    func servoConfig(_ pin: UInt8, minPulse: UInt8, maxPulse: UInt8)
+    func stringData(_ string: String)
+    func samplingInterval(_ intervalMilliseconds: UInt8)
+    func writePWMValue(_ value: UInt8, pin: UInt8)
+    func writePinState(_ newState: PinState, pin: UInt8)
+    func setAnalogValueReportingforPin(_ pin: UInt8, enabled: Bool)
+    func setDigitalStateReportingForPin(_ digitalPin: UInt8, enabled: Bool)
+    func setDigitalStateReportingForPort(_ port: UInt8, enabled: Bool)
+    func receiveData(_ data: Data)
+
+    var delegate: FirmataDelegate? { get set }
 }

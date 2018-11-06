@@ -25,119 +25,154 @@ import XCTest
 @testable import Pocket_Code
 
 final class FormulaManagerTest: XCTestCase {
-    
+
     var spriteObject: SpriteObject!
-    
+
     override func setUp() {
         spriteObject = SpriteObjectMock()
     }
-    
+
     func testFormulaEditorItemsEmpty() {
         let manager = FormulaManager(sensorManager: SensorManager(sensors: []),
                                      functionManager: FunctionManager(functions: []))
-        
+
         XCTAssertEqual(0, manager.formulaEditorItems(spriteObject: spriteObject).count)
         XCTAssertEqual(0, manager.formulaEditorItemsForMathSection(spriteObject: spriteObject).count)
         XCTAssertEqual(0, manager.formulaEditorItemsForDeviceSection(spriteObject: spriteObject).count)
         XCTAssertEqual(0, manager.formulaEditorItemsForObjectSection(spriteObject: spriteObject).count)
     }
-    
+
     func testFormulaEditorItems() {
-        let functionA = ZeroParameterDoubleFunctionMock(tag: "functionTagA", value: 1.0, formulaEditorSection: .object(position: 1))
-        let functionB = ZeroParameterDoubleFunctionMock(tag: "functionTagB", value: 1.0, formulaEditorSection: .device(position: 2))
-        let functionC = DoubleParameterDoubleFunctionMock(tag: "functionTagC", value: 3.0, firstParameter: .number(defaultValue: 1), secondParameter: .number(defaultValue: 1), formulaEditorSection: .hidden)
-        
+        let functionA = ZeroParameterDoubleFunctionMock(tag: "functionTagA",
+                                                        value: 1.0,
+                                                        formulaEditorSection: .object(position: 1))
+        let functionB = ZeroParameterDoubleFunctionMock(tag: "functionTagB",
+                                                        value: 1.0,
+                                                        formulaEditorSection: .device(position: 2))
+        let functionC = DoubleParameterDoubleFunctionMock(tag: "functionTagC",
+                                                          value: 3.0, firstParameter: .number(defaultValue: 1),
+                                                          secondParameter: .number(defaultValue: 1),
+                                                          formulaEditorSection: .hidden)
+
         let sensorA = SensorMock(tag: "sensorTagA", formulaEditorSection: .object(position: 3))
         let sensorB = SensorMock(tag: "sensorTagB", formulaEditorSection: .hidden)
-        
+
         let manager = FormulaManager(sensorManager: SensorManager(sensors: [sensorA, sensorB]),
                                      functionManager: FunctionManager(functions: [functionA, functionB, functionC]))
-        
+
         let items = manager.formulaEditorItems(spriteObject: spriteObject)
         XCTAssertEqual(3, items.count)
         XCTAssertEqual(functionA.formulaEditorSection(), items[0].function?.formulaEditorSection())
         XCTAssertEqual(functionB.formulaEditorSection(), items[1].function?.formulaEditorSection())
-        XCTAssertEqual(sensorA.formulaEditorSection(for: spriteObject), items[2].sensor?.formulaEditorSection(for: spriteObject))
+        XCTAssertEqual(sensorA.formulaEditorSection(for: spriteObject),
+                       items[2].sensor?.formulaEditorSection(for: spriteObject))
     }
-    
+
     func testFormulaEditorItemsSamePosition() {
-        let functionA = ZeroParameterDoubleFunctionMock(tag: "functionTagA", value: 1.0, formulaEditorSection: .object(position: 1))
-        let functionB = SingleParameterDoubleFunctionMock(tag: "functionTagB", value: 2.0, parameter: .number(defaultValue: 1), formulaEditorSection: .object(position: 1))
-        
+        let functionA = ZeroParameterDoubleFunctionMock(tag: "functionTagA",
+                                                        value: 1.0,
+                                                        formulaEditorSection: .object(position: 1))
+        let functionB = SingleParameterDoubleFunctionMock(tag: "functionTagB",
+                                                          value: 2.0,
+                                                          parameter: .number(defaultValue: 1),
+                                                          formulaEditorSection: .object(position: 1))
+
         let sensorA = SensorMock(tag: "sensorTagA", formulaEditorSection: .object(position: 1))
-        
+
         let manager = FormulaManager(sensorManager: SensorManager(sensors: [sensorA]),
                                      functionManager: FunctionManager(functions: [functionA, functionB]))
-        
+
         XCTAssertEqual(3, manager.formulaEditorItems(spriteObject: spriteObject).count)
     }
-    
+
     func testFormulaEditorItemsForMathSection() {
-        let functionA = ZeroParameterDoubleFunctionMock(tag: "functionTagA", value: 1.0, formulaEditorSection: .math(position: 10))
-        let functionB = SingleParameterDoubleFunctionMock(tag: "functionTagB", value: 2.0, parameter: .number(defaultValue: 1.0), formulaEditorSection: .object(position: 1))
-        
+        let functionA = ZeroParameterDoubleFunctionMock(tag: "functionTagA",
+                                                        value: 1.0,
+                                                        formulaEditorSection: .math(position: 10))
+        let functionB = SingleParameterDoubleFunctionMock(tag: "functionTagB",
+                                                          value: 2.0,
+                                                          parameter: .number(defaultValue: 1.0),
+                                                          formulaEditorSection: .object(position: 1))
+
         let sensorA = SensorMock(tag: "sensorTagA", formulaEditorSection: .math(position: 20))
         let sensorB = SensorMock(tag: "sensorTagB", formulaEditorSection: .hidden)
-        
+
         let manager = FormulaManager(sensorManager: SensorManager(sensors: [sensorA, sensorB]),
                                      functionManager: FunctionManager(functions: [functionA, functionB]))
-        
+
         let items = manager.formulaEditorItemsForMathSection(spriteObject: spriteObject)
         XCTAssertEqual(2, items.count)
         XCTAssertEqual(functionA.formulaEditorSection(), items[0].function?.formulaEditorSection())
-        XCTAssertEqual(sensorA.formulaEditorSection(for: spriteObject), items[1].sensor?.formulaEditorSection(for: spriteObject))
+        XCTAssertEqual(sensorA.formulaEditorSection(for: spriteObject),
+                       items[1].sensor?.formulaEditorSection(for: spriteObject))
     }
-    
+
     func testFormulaEditorItemsForDeviceSection() {
-        let functionA = ZeroParameterDoubleFunctionMock(tag: "functionTagA", value: 1.0, formulaEditorSection: .math(position: 10))
-        let functionB = SingleParameterDoubleFunctionMock(tag: "functionTagB", value: 2.0, parameter: .number(defaultValue: 20), formulaEditorSection: .device(position: 20))
-        
+        let functionA = ZeroParameterDoubleFunctionMock(tag: "functionTagA",
+                                                        value: 1.0,
+                                                        formulaEditorSection: .math(position: 10))
+        let functionB = SingleParameterDoubleFunctionMock(tag: "functionTagB",
+                                                          value: 2.0,
+                                                          parameter: .number(defaultValue: 20),
+                                                          formulaEditorSection: .device(position: 20))
+
         let sensorA = SensorMock(tag: "sensorTagA", formulaEditorSection: .device(position: 1))
         let sensorB = SensorMock(tag: "sensorTagB", formulaEditorSection: .hidden)
-        
+
         let manager = FormulaManager(sensorManager: SensorManager(sensors: [sensorA, sensorB]),
                                      functionManager: FunctionManager(functions: [functionA, functionB]))
-        
+
         let items = manager.formulaEditorItemsForDeviceSection(spriteObject: spriteObject)
         XCTAssertEqual(2, items.count)
-        XCTAssertEqual(sensorA.formulaEditorSection(for: spriteObject), items[0].sensor?.formulaEditorSection(for: spriteObject))
+        XCTAssertEqual(sensorA.formulaEditorSection(for: spriteObject),
+                       items[0].sensor?.formulaEditorSection(for: spriteObject))
         XCTAssertEqual(functionB.formulaEditorSection(), items[1].function?.formulaEditorSection())
     }
-    
+
     func testFormulaEditorItemsForObjectSection() {
-        let functionA = ZeroParameterDoubleFunctionMock(tag: "functionTagA", value: 1.0, formulaEditorSection: .math(position: 10))
-        let functionB = ZeroParameterDoubleFunctionMock(tag: "functionTagB", value: 2.0, formulaEditorSection: .device(position: 20))
-        
+        let functionA = ZeroParameterDoubleFunctionMock(tag: "functionTagA",
+                                                        value: 1.0,
+                                                        formulaEditorSection: .math(position: 10))
+        let functionB = ZeroParameterDoubleFunctionMock(tag: "functionTagB",
+                                                        value: 2.0,
+                                                        formulaEditorSection: .device(position: 20))
+
         let sensorA = SensorMock(tag: "sensorTagA", formulaEditorSection: .object(position: 30))
         let sensorB = SensorMock(tag: "sensorTagB", formulaEditorSection: .hidden)
-        
+
         let manager = FormulaManager(sensorManager: SensorManager(sensors: [sensorA, sensorB]),
                                      functionManager: FunctionManager(functions: [functionA, functionB]))
-        
+
         let items = manager.formulaEditorItemsForObjectSection(spriteObject: spriteObject)
         XCTAssertEqual(1, items.count)
-        XCTAssertEqual(sensorA.formulaEditorSection(for: spriteObject), items[0].sensor?.formulaEditorSection(for: spriteObject))
+        XCTAssertEqual(sensorA.formulaEditorSection(for: spriteObject),
+                       items[0].sensor?.formulaEditorSection(for: spriteObject))
     }
-    
+
     func testFunctionExists() {
-        let functionA = ZeroParameterDoubleFunctionMock(tag: "functionTagA", value: 1.0, formulaEditorSection: .math(position: 10))
-        let functionB = SingleParameterDoubleFunctionMock(tag: "functionTagB", value: 2.0, parameter: .number(defaultValue: 20), formulaEditorSection: .device(position: 20))
-        
+        let functionA = ZeroParameterDoubleFunctionMock(tag: "functionTagA",
+                                                        value: 1.0,
+                                                        formulaEditorSection: .math(position: 10))
+        let functionB = SingleParameterDoubleFunctionMock(tag: "functionTagB",
+                                                          value: 2.0,
+                                                          parameter: .number(defaultValue: 20),
+                                                          formulaEditorSection: .device(position: 20))
+
         let manager = FormulaManager(sensorManager: SensorManager(sensors: []),
                                      functionManager: FunctionManager(functions: [functionA, functionB]))
-        
+
         XCTAssertFalse(manager.functionExists(tag: "unavailableFunctionTag"))
         XCTAssertTrue(manager.functionExists(tag: functionA.tag()))
         XCTAssertTrue(manager.functionExists(tag: functionB.tag()))
     }
-    
+
     func testSensorExists() {
         let sensorA = AccelerationXSensor(motionManagerGetter: { nil })
         let sensorB = AccelerationXSensor(motionManagerGetter: { nil })
-        
+
         let manager = FormulaManager(sensorManager: SensorManager(sensors: [sensorA, sensorB]),
                                      functionManager: FunctionManager(functions: []))
-        
+
         XCTAssertFalse(manager.sensorExists(tag: "unavailableSensorTag"))
         XCTAssertTrue(manager.sensorExists(tag: sensorA.tag()))
         XCTAssertTrue(manager.sensorExists(tag: sensorB.tag()))

@@ -25,36 +25,36 @@ import XCTest
 @testable import Pocket_Code
 
 final class AccelerationYSensorTest: XCTestCase {
-    
+
     var motionManager: MotionManagerMock!
     var sensor: AccelerationYSensor!
-    
+
     override func setUp() {
         motionManager = MotionManagerMock()
         sensor = AccelerationYSensor { [weak self] in self?.motionManager }
     }
-    
+
     override func tearDown() {
         sensor = nil
         motionManager = nil
     }
-    
+
     func testDefaultRawValue() {
         let sensor = AccelerationYSensor { nil }
         XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(), accuracy: 0.0001)
     }
-    
+
     func testRawValue() {
         motionManager.yUserAcceleration = 0
         XCTAssertEqual(0, sensor.rawValue(), accuracy: 0.0001)
-        
+
         motionManager.yUserAcceleration = 9.8
         XCTAssertEqual(9.8, sensor.rawValue(), accuracy: 0.0001)
-        
+
         motionManager.yUserAcceleration = -9.8
         XCTAssertEqual(-9.8, sensor.rawValue(), accuracy: 0.0001)
     }
-    
+
     func testConvertToStandardized() {
         XCTAssertEqual(0, sensor.convertToStandardized(rawValue: 0), accuracy: 0.0001)
         XCTAssertEqual(9.8, sensor.convertToStandardized(rawValue: 1), accuracy: 0.0001)
@@ -62,15 +62,15 @@ final class AccelerationYSensorTest: XCTestCase {
         XCTAssertEqual(98, sensor.convertToStandardized(rawValue: 10), accuracy: 0.0001)
         XCTAssertEqual(-98, sensor.convertToStandardized(rawValue: -10), accuracy: 0.0001)
     }
-    
+
     func testTag() {
         XCTAssertEqual("Y_ACCELERATION", sensor.tag())
     }
-    
+
     func testRequiredResources() {
         XCTAssertEqual(ResourceType.deviceMotion, type(of: sensor).requiredResource)
     }
-   
+
     func testFormulaEditorSection() {
         XCTAssertEqual(.device(position: type(of: sensor).position), sensor.formulaEditorSection(for: SpriteObject()))
     }

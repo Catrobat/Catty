@@ -25,26 +25,26 @@ import XCTest
 @testable import Pocket_Code
 
 final class UserVariableTests: XCTestCase {
-    
+
     override func setUp() {
     }
-    
+
     func testSizeForSKLabel() {
         let userVariable = UserVariable()
         let defaultSize = CGFloat(42)
-        
+
         XCTAssertEqual(defaultSize, userVariable.sizeForSKLabel(sceneSize: CGSize(width: 1080, height: 1920))) // iPhone 6/6s/7/8 Plus
         XCTAssertEqual(defaultSize / 1920 * 2436, userVariable.sizeForSKLabel(sceneSize: CGSize(width: 1125, height: 2436))) // iPhone X
         XCTAssertEqual(defaultSize / 1920 * 1334, userVariable.sizeForSKLabel(sceneSize: CGSize(width: 750, height: 1334))) // iPhone 6, 6s, 7, 8
         XCTAssertEqual(defaultSize / 1920 * 1136, userVariable.sizeForSKLabel(sceneSize: CGSize(width: 640, height: 1136))) // iPhone 5, 5s, 5c, SE
     }
-    
+
     func testMutableCopyWithContext() {
         let userVariable = UserVariable()
         userVariable.name = "userVar"
-        
+
         let userVariableCopy = userVariable.mutableCopy(with: CBMutableCopyContext()) as! UserVariable
-        
+
         XCTAssertEqual(userVariable.name, userVariableCopy.name, "mutableCopyWithContext not working")
         XCTAssertTrue(userVariable === userVariableCopy, "mutableCopyWithContext not working")
     }

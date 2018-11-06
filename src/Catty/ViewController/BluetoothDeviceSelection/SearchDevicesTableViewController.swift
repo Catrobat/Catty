@@ -25,8 +25,8 @@ import CoreBluetooth
 import BluetoothHelper
 
 class SearchDevicesTableViewController: BluetoothDevicesTableViewController {
-    
-    var debugData:UInt8 = 0x01
+
+    var debugData: UInt8 = 0x01
      override func viewDidLoad() {
         super.viewDidLoad()
         initScan()
@@ -36,7 +36,6 @@ class SearchDevicesTableViewController: BluetoothDevicesTableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
-
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -54,7 +53,6 @@ class SearchDevicesTableViewController: BluetoothDevicesTableViewController {
         return CentralManager.sharedInstance.peripherals.count
     }
 
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         let peripheral = CentralManager.sharedInstance.peripherals[indexPath.row]
@@ -71,7 +69,7 @@ class SearchDevicesTableViewController: BluetoothDevicesTableViewController {
 
         return cell
     }
-    
+
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {

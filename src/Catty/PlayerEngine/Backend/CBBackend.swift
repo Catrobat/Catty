@@ -24,7 +24,7 @@ final class CBBackend: CBBackendProtocol {
 
     // MARK: - Properties
     let logger: CBLogger
-    
+
     // MARK: - Initializers
     init(logger: CBLogger) {
         self.logger = logger
@@ -73,7 +73,7 @@ final class CBBackend: CBBackendProtocol {
         if ifSequence.hasBluetoothFormula() {
             instructionList += CBInstruction.conditionalFormulaBuffer(conditionalBrick: ifSequence)
         }
-        instructionList += CBInstruction.execClosure { (context, scheduler) in
+        instructionList += CBInstruction.execClosure { (context, _) in
             if ifSequence.checkCondition(context: context) == false {
                 var numberOfInstructionsToJump = numberOfIfInstructions
                 if ifSequence.elseSequenceList != nil {
@@ -93,7 +93,7 @@ final class CBBackend: CBBackendProtocol {
             numberOfElseInstructions = elseInstructions.count
             // add jump instruction to be the last if-instruction
             // (needed to avoid execution of else sequence)
-            instructionList += CBInstruction.execClosure { (context, scheduler) in
+            instructionList += CBInstruction.execClosure { (context, _) in
                 context.jump(numberOfInstructions: numberOfElseInstructions)
                 context.state = .runnable
             }
@@ -114,7 +114,7 @@ final class CBBackend: CBBackendProtocol {
                 } else {
                    numOfInstructionsToJump -= numOfBodyInstructions + 1 // omits loop begin instruction
                 }
-                
+
                 loopSequence.lastLoopIterationStartTime = Date()
             } else {
                 loopSequence.resetCondition() // IMPORTANT: reset loop counter right now
@@ -135,8 +135,8 @@ final class CBBackend: CBBackendProtocol {
                     DispatchQueue.main.async(execute: {
                         context.jump(numberOfInstructions: numOfInstructionsToJump)
                         scheduler.runNextInstructionOfContext(context)
-                    });
-                });
+                    })
+                })
             } else {
                 // now switch back to the main queue for executing the sequence!
                 context.jump(numberOfInstructions: numOfInstructionsToJump)
@@ -144,7 +144,7 @@ final class CBBackend: CBBackendProtocol {
             }
         }
 
-        let loopBeginInstruction = CBInstruction.execClosure { (context, scheduler) in
+        let loopBeginInstruction = CBInstruction.execClosure { (context, _) in
             if loopSequence.checkCondition(context: context) {
                 loopSequence.lastLoopIterationStartTime = Date()
             } else {
@@ -154,7 +154,7 @@ final class CBBackend: CBBackendProtocol {
                 } else {
                     context.jump(numberOfInstructions: numOfBodyInstructions + 1) // includes loop end instr.!
                 }
-                
+
             }
             context.state = .runnable
         }

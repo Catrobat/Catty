@@ -25,48 +25,48 @@ import XCTest
 @testable import Pocket_Code
 
 class SinFunctionTest: XCTestCase {
-    
+
     var function: SinFunction!
-    
+
     override func setUp() {
         function = SinFunction()
     }
-    
+
     override func tearDown() {
         function = nil
     }
-    
+
     func testDefaultValue() {
         XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: "invalidParameter" as AnyObject), accuracy: 0.0001)
         XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: nil), accuracy: 0.0001)
     }
-    
+
     func testValue() {
         XCTAssertEqual(sin(Util.degree(toRadians: 45)), function.value(parameter: 45 as AnyObject), accuracy: 0.0001)
-        
+
         XCTAssertEqual(sin(Util.degree(toRadians: -15)), function.value(parameter: -15 as AnyObject), accuracy: 0.0001)
     }
-    
+
     func testParameter() {
         XCTAssertEqual(.number(defaultValue: 0), function.firstParameter())
     }
-    
+
     func testTag() {
         XCTAssertEqual("SIN", type(of: function).tag)
     }
-    
+
     func testName() {
         XCTAssertEqual("sin", type(of: function).name)
     }
-    
+
     func testRequiredResources() {
         XCTAssertEqual(ResourceType.noResources, type(of: function).requiredResource)
     }
-    
+
     func testIsIdempotent() {
         XCTAssertTrue(type(of: function).isIdempotent)
     }
-    
+
     func testFormulaEditorSection() {
         XCTAssertEqual(.math(position: type(of: function).position), function.formulaEditorSection())
     }

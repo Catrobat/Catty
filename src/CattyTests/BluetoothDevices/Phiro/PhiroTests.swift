@@ -25,23 +25,22 @@ import CoreBluetooth
 import BluetoothHelper
 @testable import Pocket_Code
 
-
 class PhiroTests: XCTestCase {
-    
-    var phiroTest = Phiro(peripheral: Peripheral(cbPeripheral:PeripheralMock(test: true), advertisements:[String:String](), rssi: 0))
+
+    var phiroTest = Phiro(peripheral: Peripheral(cbPeripheral: PeripheralMock(test: true), advertisements: [String: String](), rssi: 0))
 
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
         phiroTest.firmata = FirmataMock()
     }
-    
+
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         phiroTest.toneTimer.invalidate()
         super.tearDown()
     }
-    
+
     func fakePhiroHelper() {
         phiroTest.phiroHelper.didReceiveAnalogMessage(0, value: 0)
         phiroTest.phiroHelper.didReceiveAnalogMessage(1, value: 10)
@@ -50,10 +49,8 @@ class PhiroTests: XCTestCase {
         phiroTest.phiroHelper.didReceiveAnalogMessage(4, value: 50)
         phiroTest.phiroHelper.didReceiveAnalogMessage(5, value: 200)
     }
-    
-    
 
-    //MARK: Motor tests
+    // MARK: Motor tests
     func testMoveMotorLeftForward10() {
         //When
         phiroTest.moveLeftMotorForward(10)
@@ -62,9 +59,9 @@ class PhiroTests: XCTestCase {
             XCTAssert(true)
             return
         }
-        XCTAssertEqual(firmataMock.receivedPin, 11 , "Pin is wrong")
-        XCTAssertEqual(firmataMock.receivedPinMode, .pwm , "PinMode is wrong")
-        XCTAssertEqual(firmataMock.receivedValue, 25 , "PinValue is wrong")
+        XCTAssertEqual(firmataMock.receivedPin, 11, "Pin is wrong")
+        XCTAssertEqual(firmataMock.receivedPinMode, .pwm, "PinMode is wrong")
+        XCTAssertEqual(firmataMock.receivedValue, 25, "PinValue is wrong")
 
     }
     func testMoveMotorLeftForward260() {
@@ -75,10 +72,10 @@ class PhiroTests: XCTestCase {
             XCTAssert(true)
             return
         }
-        XCTAssertEqual(firmataMock.receivedPin, 11 , "Pin is wrong")
-        XCTAssertEqual(firmataMock.receivedPinMode, .pwm , "PinMode is wrong")
-        XCTAssertEqual(firmataMock.receivedValue, 255 , "PinValue is wrong")
-        
+        XCTAssertEqual(firmataMock.receivedPin, 11, "Pin is wrong")
+        XCTAssertEqual(firmataMock.receivedPinMode, .pwm, "PinMode is wrong")
+        XCTAssertEqual(firmataMock.receivedValue, 255, "PinValue is wrong")
+
     }
     func testMoveMotorLeftForwardMinus10() {
         //When
@@ -88,12 +85,12 @@ class PhiroTests: XCTestCase {
             XCTAssert(true)
             return
         }
-        XCTAssertEqual(firmataMock.receivedPin, 11 , "Pin is wrong")
-        XCTAssertEqual(firmataMock.receivedPinMode, .pwm , "PinMode is wrong")
-        XCTAssertEqual(firmataMock.receivedValue, 0 , "PinValue is wrong")
-        
+        XCTAssertEqual(firmataMock.receivedPin, 11, "Pin is wrong")
+        XCTAssertEqual(firmataMock.receivedPinMode, .pwm, "PinMode is wrong")
+        XCTAssertEqual(firmataMock.receivedValue, 0, "PinValue is wrong")
+
     }
-    
+
     func testMoveMotorLeftBackward10() {
         //When
         phiroTest.moveLeftMotorBackward(10)
@@ -102,10 +99,10 @@ class PhiroTests: XCTestCase {
             XCTAssert(true)
             return
         }
-        XCTAssertEqual(firmataMock.receivedPin, 10 , "Pin is wrong")
-        XCTAssertEqual(firmataMock.receivedPinMode, .pwm , "PinMode is wrong")
-        XCTAssertEqual(firmataMock.receivedValue, 25 , "PinValue is wrong")
-        
+        XCTAssertEqual(firmataMock.receivedPin, 10, "Pin is wrong")
+        XCTAssertEqual(firmataMock.receivedPinMode, .pwm, "PinMode is wrong")
+        XCTAssertEqual(firmataMock.receivedValue, 25, "PinValue is wrong")
+
     }
     func testMoveMotorLeftBackward260() {
         //When
@@ -116,9 +113,9 @@ class PhiroTests: XCTestCase {
             return
         }
         XCTAssertEqual(firmataMock.receivedPin, 10, "Pin is wrong")
-        XCTAssertEqual(firmataMock.receivedPinMode, .pwm , "PinMode is wrong")
-        XCTAssertEqual(firmataMock.receivedValue, 255 , "PinValue is wrong")
-        
+        XCTAssertEqual(firmataMock.receivedPinMode, .pwm, "PinMode is wrong")
+        XCTAssertEqual(firmataMock.receivedValue, 255, "PinValue is wrong")
+
     }
     func testMoveMotorLeftBackwardMinus10() {
         //When
@@ -128,12 +125,12 @@ class PhiroTests: XCTestCase {
             XCTAssert(true)
             return
         }
-        XCTAssertEqual(firmataMock.receivedPin, 10 , "Pin is wrong")
-        XCTAssertEqual(firmataMock.receivedPinMode, .pwm , "PinMode is wrong")
-        XCTAssertEqual(firmataMock.receivedValue, 0 , "PinValue is wrong")
-        
+        XCTAssertEqual(firmataMock.receivedPin, 10, "Pin is wrong")
+        XCTAssertEqual(firmataMock.receivedPinMode, .pwm, "PinMode is wrong")
+        XCTAssertEqual(firmataMock.receivedValue, 0, "PinValue is wrong")
+
     }
-    
+
     func testMoveMotorRightForward10() {
         //When
         phiroTest.moveRightMotorForward(10)
@@ -142,10 +139,10 @@ class PhiroTests: XCTestCase {
             XCTAssert(true)
             return
         }
-        XCTAssertEqual(firmataMock.receivedPin, 12 , "Pin is wrong")
-        XCTAssertEqual(firmataMock.receivedPinMode, .pwm , "PinMode is wrong")
-        XCTAssertEqual(firmataMock.receivedValue, 25 , "PinValue is wrong")
-        
+        XCTAssertEqual(firmataMock.receivedPin, 12, "Pin is wrong")
+        XCTAssertEqual(firmataMock.receivedPinMode, .pwm, "PinMode is wrong")
+        XCTAssertEqual(firmataMock.receivedValue, 25, "PinValue is wrong")
+
     }
     func testMoveMotorRightForward260() {
         //When
@@ -155,10 +152,10 @@ class PhiroTests: XCTestCase {
             XCTAssert(true)
             return
         }
-        XCTAssertEqual(firmataMock.receivedPin, 12 , "Pin is wrong")
-        XCTAssertEqual(firmataMock.receivedPinMode, .pwm , "PinMode is wrong")
-        XCTAssertEqual(firmataMock.receivedValue, 255 , "PinValue is wrong")
-        
+        XCTAssertEqual(firmataMock.receivedPin, 12, "Pin is wrong")
+        XCTAssertEqual(firmataMock.receivedPinMode, .pwm, "PinMode is wrong")
+        XCTAssertEqual(firmataMock.receivedValue, 255, "PinValue is wrong")
+
     }
     func testMoveMotorRightForwardMinus10() {
         //When
@@ -168,12 +165,12 @@ class PhiroTests: XCTestCase {
             XCTAssert(true)
             return
         }
-        XCTAssertEqual(firmataMock.receivedPin, 12 , "Pin is wrong")
-        XCTAssertEqual(firmataMock.receivedPinMode, .pwm , "PinMode is wrong")
-        XCTAssertEqual(firmataMock.receivedValue, 0 , "PinValue is wrong")
-        
+        XCTAssertEqual(firmataMock.receivedPin, 12, "Pin is wrong")
+        XCTAssertEqual(firmataMock.receivedPinMode, .pwm, "PinMode is wrong")
+        XCTAssertEqual(firmataMock.receivedValue, 0, "PinValue is wrong")
+
     }
-    
+
     func testMoveMotorRightBackward10() {
         //When
         phiroTest.moveRightMotorBackward(10)
@@ -182,10 +179,10 @@ class PhiroTests: XCTestCase {
             XCTAssert(true)
             return
         }
-        XCTAssertEqual(firmataMock.receivedPin, 13 , "Pin is wrong")
-        XCTAssertEqual(firmataMock.receivedPinMode, .pwm , "PinMode is wrong")
-        XCTAssertEqual(firmataMock.receivedValue, 25 , "PinValue is wrong")
-        
+        XCTAssertEqual(firmataMock.receivedPin, 13, "Pin is wrong")
+        XCTAssertEqual(firmataMock.receivedPinMode, .pwm, "PinMode is wrong")
+        XCTAssertEqual(firmataMock.receivedValue, 25, "PinValue is wrong")
+
     }
     func testMoveMotorRightBackward260() {
         //When
@@ -195,10 +192,10 @@ class PhiroTests: XCTestCase {
             XCTAssert(true)
             return
         }
-        XCTAssertEqual(firmataMock.receivedPin, 13 , "Pin is wrong")
-        XCTAssertEqual(firmataMock.receivedPinMode, .pwm , "PinMode is wrong")
-        XCTAssertEqual(firmataMock.receivedValue, 255 , "PinValue is wrong")
-        
+        XCTAssertEqual(firmataMock.receivedPin, 13, "Pin is wrong")
+        XCTAssertEqual(firmataMock.receivedPinMode, .pwm, "PinMode is wrong")
+        XCTAssertEqual(firmataMock.receivedValue, 255, "PinValue is wrong")
+
     }
     func testMoveMotorRightBackwardMinus10() {
         //When
@@ -208,12 +205,12 @@ class PhiroTests: XCTestCase {
             XCTAssert(true)
             return
         }
-        XCTAssertEqual(firmataMock.receivedPin, 13 , "Pin is wrong")
-        XCTAssertEqual(firmataMock.receivedPinMode, .pwm , "PinMode is wrong")
-        XCTAssertEqual(firmataMock.receivedValue, 0 , "PinValue is wrong")
-        
+        XCTAssertEqual(firmataMock.receivedPin, 13, "Pin is wrong")
+        XCTAssertEqual(firmataMock.receivedPinMode, .pwm, "PinMode is wrong")
+        XCTAssertEqual(firmataMock.receivedValue, 0, "PinValue is wrong")
+
     }
-    
+
     func testStopLeftMotor () {
         //When
         phiroTest.stopLeftMotor()
@@ -222,11 +219,11 @@ class PhiroTests: XCTestCase {
             XCTAssert(true)
             return
         }
-        XCTAssertEqual(firmataMock.receivedPin, 10 , "Pin is wrong")
-        XCTAssertEqual(firmataMock.receivedPinMode, .pwm , "PinMode is wrong")
-        XCTAssertEqual(firmataMock.receivedValue, 0 , "PinValue is wrong")
+        XCTAssertEqual(firmataMock.receivedPin, 10, "Pin is wrong")
+        XCTAssertEqual(firmataMock.receivedPinMode, .pwm, "PinMode is wrong")
+        XCTAssertEqual(firmataMock.receivedValue, 0, "PinValue is wrong")
     }
-    
+
     func testStopRightMotor () {
         //When
         phiroTest.stopRightMotor()
@@ -235,11 +232,11 @@ class PhiroTests: XCTestCase {
             XCTAssert(true)
             return
         }
-        XCTAssertEqual(firmataMock.receivedPin, 13 , "Pin is wrong")
-        XCTAssertEqual(firmataMock.receivedPinMode, .pwm , "PinMode is wrong")
-        XCTAssertEqual(firmataMock.receivedValue, 0 , "PinValue is wrong")
+        XCTAssertEqual(firmataMock.receivedPin, 13, "Pin is wrong")
+        XCTAssertEqual(firmataMock.receivedPinMode, .pwm, "PinMode is wrong")
+        XCTAssertEqual(firmataMock.receivedValue, 0, "PinValue is wrong")
     }
-    
+
     func testStopMotors () {
         //When
         phiroTest.stopAllMotors()
@@ -248,13 +245,13 @@ class PhiroTests: XCTestCase {
             XCTAssert(true)
             return
         }
-        XCTAssertEqual(firmataMock.receivedPin, 13 , "Pin is wrong")
-        XCTAssertEqual(firmataMock.receivedPinMode, .pwm , "PinMode is wrong")
-        XCTAssertEqual(firmataMock.receivedValue, 0 , "PinValue is wrong")
+        XCTAssertEqual(firmataMock.receivedPin, 13, "Pin is wrong")
+        XCTAssertEqual(firmataMock.receivedPinMode, .pwm, "PinMode is wrong")
+        XCTAssertEqual(firmataMock.receivedValue, 0, "PinValue is wrong")
     }
-    
-    //MARK: light tests
-    
+
+    // MARK: light tests
+
     func testLightLeftOFF () {
         //When
         phiroTest.setLeftRGBLightColor(0, green: 0, blue: 0)
@@ -263,11 +260,11 @@ class PhiroTests: XCTestCase {
             XCTAssert(true)
             return
         }
-        XCTAssertEqual(firmataMock.receivedPin, 6 , "Pin is wrong")
-        XCTAssertEqual(firmataMock.receivedPinMode, .pwm , "PinMode is wrong")
-        XCTAssertEqual(firmataMock.receivedValue, 0 , "PinValue is wrong")
+        XCTAssertEqual(firmataMock.receivedPin, 6, "Pin is wrong")
+        XCTAssertEqual(firmataMock.receivedPinMode, .pwm, "PinMode is wrong")
+        XCTAssertEqual(firmataMock.receivedValue, 0, "PinValue is wrong")
     }
-    
+
     func testLightRightOFF () {
         //When
         phiroTest.setRightRGBLightColor(0, green: 0, blue: 0)
@@ -276,9 +273,9 @@ class PhiroTests: XCTestCase {
             XCTAssert(true)
             return
         }
-        XCTAssertEqual(firmataMock.receivedPin, 9 , "Pin is wrong")
-        XCTAssertEqual(firmataMock.receivedPinMode, .pwm , "PinMode is wrong")
-        XCTAssertEqual(firmataMock.receivedValue, 0 , "PinValue is wrong")
+        XCTAssertEqual(firmataMock.receivedPin, 9, "Pin is wrong")
+        XCTAssertEqual(firmataMock.receivedPinMode, .pwm, "PinMode is wrong")
+        XCTAssertEqual(firmataMock.receivedValue, 0, "PinValue is wrong")
     }
     func testLightLeft () {
         //When
@@ -288,11 +285,11 @@ class PhiroTests: XCTestCase {
             XCTAssert(true)
             return
         }
-        XCTAssertEqual(firmataMock.receivedPin, 6 , "Pin is wrong")
-        XCTAssertEqual(firmataMock.receivedPinMode, .pwm , "PinMode is wrong")
-        XCTAssertEqual(firmataMock.receivedValue, 50 , "PinValue is wrong")
+        XCTAssertEqual(firmataMock.receivedPin, 6, "Pin is wrong")
+        XCTAssertEqual(firmataMock.receivedPinMode, .pwm, "PinMode is wrong")
+        XCTAssertEqual(firmataMock.receivedValue, 50, "PinValue is wrong")
     }
-    
+
     func testLightRight () {
         //When
         phiroTest.setRightRGBLightColor(50, green: 50, blue: 50)
@@ -301,9 +298,9 @@ class PhiroTests: XCTestCase {
             XCTAssert(true)
             return
         }
-        XCTAssertEqual(firmataMock.receivedPin, 9 , "Pin is wrong")
-        XCTAssertEqual(firmataMock.receivedPinMode, .pwm , "PinMode is wrong")
-        XCTAssertEqual(firmataMock.receivedValue, 50 , "PinValue is wrong")
+        XCTAssertEqual(firmataMock.receivedPin, 9, "Pin is wrong")
+        XCTAssertEqual(firmataMock.receivedPinMode, .pwm, "PinMode is wrong")
+        XCTAssertEqual(firmataMock.receivedValue, 50, "PinValue is wrong")
     }
     func testLightLeftWrongInput () {
         //When
@@ -313,11 +310,11 @@ class PhiroTests: XCTestCase {
             XCTAssert(true)
             return
         }
-        XCTAssertEqual(firmataMock.receivedPin, 6 , "Pin is wrong")
-        XCTAssertEqual(firmataMock.receivedPinMode, .pwm , "PinMode is wrong")
-        XCTAssertEqual(firmataMock.receivedValue, 255 , "PinValue is wrong")
+        XCTAssertEqual(firmataMock.receivedPin, 6, "Pin is wrong")
+        XCTAssertEqual(firmataMock.receivedPinMode, .pwm, "PinMode is wrong")
+        XCTAssertEqual(firmataMock.receivedValue, 255, "PinValue is wrong")
     }
-    
+
     func testLightRightWrongInput () {
         //When
         phiroTest.setRightRGBLightColor(350, green: 350, blue: 350)
@@ -326,11 +323,11 @@ class PhiroTests: XCTestCase {
             XCTAssert(true)
             return
         }
-        XCTAssertEqual(firmataMock.receivedPin, 9 , "Pin is wrong")
-        XCTAssertEqual(firmataMock.receivedPinMode, .pwm , "PinMode is wrong")
-        XCTAssertEqual(firmataMock.receivedValue, 255 , "PinValue is wrong")
+        XCTAssertEqual(firmataMock.receivedPin, 9, "Pin is wrong")
+        XCTAssertEqual(firmataMock.receivedPinMode, .pwm, "PinMode is wrong")
+        XCTAssertEqual(firmataMock.receivedValue, 255, "PinValue is wrong")
     }
-    //MARK: TONE tests
+    // MARK: TONE tests
     func testPlayTone () {
         //When
         phiroTest.playTone(450, duration: 2.0)
@@ -340,12 +337,12 @@ class PhiroTests: XCTestCase {
             XCTAssert(true)
             return
         }
-        XCTAssertEqual(firmataMock.receivedPin, 3 , "Pin is wrong")
-        XCTAssertEqual(firmataMock.receivedPinMode, .pwm , "PinMode is wrong")
-        XCTAssertEqual(firmataMock.receivedValue, 255 , "PinValue is wrong")
+        XCTAssertEqual(firmataMock.receivedPin, 3, "Pin is wrong")
+        XCTAssertEqual(firmataMock.receivedPinMode, .pwm, "PinMode is wrong")
+        XCTAssertEqual(firmataMock.receivedValue, 255, "PinValue is wrong")
     }
-    
-    //MARK: Reset test
+
+    // MARK: Reset test
     func testPhiroReset () {
         //When
         phiroTest.resetPins()
@@ -354,12 +351,12 @@ class PhiroTests: XCTestCase {
             XCTAssert(true)
             return
         }
-        XCTAssertEqual(firmataMock.receivedPin, 3 , "Pin is wrong")
-        XCTAssertEqual(firmataMock.receivedPinMode, .pwm , "PinMode is wrong")
-        XCTAssertEqual(firmataMock.receivedValue, 0 , "PinValue is wrong")
+        XCTAssertEqual(firmataMock.receivedPin, 3, "Pin is wrong")
+        XCTAssertEqual(firmataMock.receivedPinMode, .pwm, "PinMode is wrong")
+        XCTAssertEqual(firmataMock.receivedValue, 0, "PinValue is wrong")
     }
-    
-    //MARK: Sensor reporting
+
+    // MARK: Sensor reporting
     func testReportSensors() {
         //When
         phiroTest.reportSensorData(true)
@@ -368,11 +365,11 @@ class PhiroTests: XCTestCase {
             XCTAssert(true)
             return
         }
-        XCTAssertEqual(firmataMock.receivedPinMode, .input , "PinMode is wrong")
-        XCTAssertEqual(firmataMock.receivedBool, true , "Reporting is wrong")
-        XCTAssertEqual(firmataMock.receivedPin, 5 , "Reporting is wrong")
+        XCTAssertEqual(firmataMock.receivedPinMode, .input, "PinMode is wrong")
+        XCTAssertEqual(firmataMock.receivedBool, true, "Reporting is wrong")
+        XCTAssertEqual(firmataMock.receivedPin, 5, "Reporting is wrong")
     }
-    
+
     func testStopReportSensors() {
         //Given
         phiroTest.reportSensorData(true)
@@ -383,20 +380,20 @@ class PhiroTests: XCTestCase {
             XCTAssert(true)
             return
         }
-        XCTAssertEqual(firmataMock.receivedPinMode, .input , "PinMode is wrong")
-        XCTAssertEqual(firmataMock.receivedBool, false , "Reporting is wrong")
-        XCTAssertEqual(firmataMock.receivedPin, 5 , "Pin is wrong")
+        XCTAssertEqual(firmataMock.receivedPinMode, .input, "PinMode is wrong")
+        XCTAssertEqual(firmataMock.receivedBool, false, "Reporting is wrong")
+        XCTAssertEqual(firmataMock.receivedPin, 5, "Pin is wrong")
     }
-    
-    //MARK: get SensorValues
-    
+
+    // MARK: get SensorValues
+
     func testGetPhiroSensor0 () {
         //Given
         fakePhiroHelper()
         //When
         let sensorValue = phiroTest.getSensorValue(0)
         //Then
-        XCTAssertEqual(sensorValue, 0 , "SensorValue is wrong")
+        XCTAssertEqual(sensorValue, 0, "SensorValue is wrong")
     }
     func testGetPhiroSensor1 () {
         //Given
@@ -404,7 +401,7 @@ class PhiroTests: XCTestCase {
         //When
         let sensorValue = phiroTest.getSensorValue(1)
         //Then
-        XCTAssertEqual(sensorValue, 10 , "SensorValue is wrong")
+        XCTAssertEqual(sensorValue, 10, "SensorValue is wrong")
     }
     func testGetPhiroSensor2 () {
         //Given
@@ -412,7 +409,7 @@ class PhiroTests: XCTestCase {
         //When
         let sensorValue = phiroTest.getSensorValue(2)
         //Then
-        XCTAssertEqual(sensorValue,20 , "SensorValue is wrong")
+        XCTAssertEqual(sensorValue, 20, "SensorValue is wrong")
     }
     func testGetPhiroSensor3 () {
         //Given
@@ -420,7 +417,7 @@ class PhiroTests: XCTestCase {
         //When
         let sensorValue = phiroTest.getSensorValue(3)
         //Then
-        XCTAssertEqual(sensorValue, 30 , "SensorValue is wrong")
+        XCTAssertEqual(sensorValue, 30, "SensorValue is wrong")
     }
     func testGetPhiroSensor4 () {
         //Given
@@ -428,7 +425,7 @@ class PhiroTests: XCTestCase {
         //When
         let sensorValue = phiroTest.getSensorValue(4)
         //Then
-        XCTAssertEqual(sensorValue, 50 , "SensorValue is wrong")
+        XCTAssertEqual(sensorValue, 50, "SensorValue is wrong")
     }
     func testGetPhiroSensor5 () {
         //Given
@@ -436,6 +433,6 @@ class PhiroTests: XCTestCase {
         //When
         let sensorValue = phiroTest.getSensorValue(5)
         //Then
-        XCTAssertEqual(sensorValue, 200 , "SensorValue is wrong")
+        XCTAssertEqual(sensorValue, 200, "SensorValue is wrong")
     }
 }

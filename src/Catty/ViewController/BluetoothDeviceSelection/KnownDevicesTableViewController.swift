@@ -25,8 +25,8 @@ import BluetoothHelper
 import CoreBluetooth
 
 class KnownDevicesTableViewController: BluetoothDevicesTableViewController {
-    
-    var knownDevices:[Peripheral] = Array()
+
+    var knownDevices: [Peripheral] = Array()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,11 +37,11 @@ class KnownDevicesTableViewController: BluetoothDevicesTableViewController {
             CentralManager.sharedInstance.start().onSuccess {
                 self.getKnownDevices()
             }
-            
+
         }
 
     }
-  
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -58,18 +58,17 @@ class KnownDevicesTableViewController: BluetoothDevicesTableViewController {
         return knownDevices.count
     }
 
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         cell.textLabel?.textColor = UIColor.globalTint()
         cell.isUserInteractionEnabled = true
-        
+
         cell.textLabel?.text = knownDevices[indexPath.row].name
 
         return cell
     }
-    
-    func getKnownDevices(){
+
+    func getKnownDevices() {
 //        let afterPeripheralDiscovered = {(peripherals:[Peripheral]) -> Void in
 //            self.knownDevices = peripherals
 //            self.updateWhenActive()
@@ -77,7 +76,7 @@ class KnownDevicesTableViewController: BluetoothDevicesTableViewController {
 //        let afterTimeout = {(error:NSError) -> Void in
 //            
 //        }
-        var knownCBPeripherals:[CBPeripheral]
+        var knownCBPeripherals: [CBPeripheral]
         let stringArray = UserDefaults.standard.array(forKey: "KnownBluetoothDevices") as? [String]
         let uuidArray = stringArray?.compactMap { UUID(uuidString: $0) }
         knownCBPeripherals = CentralManager.sharedInstance.getKnownPeripheralsWithIdentifiers(uuidArray ?? [])
@@ -88,7 +87,6 @@ class KnownDevicesTableViewController: BluetoothDevicesTableViewController {
         }
         self.updateWhenActive()
     }
-    
 
     /*
     // Override to support conditional editing of the table view.

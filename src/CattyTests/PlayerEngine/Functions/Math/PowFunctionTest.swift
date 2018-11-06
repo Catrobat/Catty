@@ -25,17 +25,17 @@ import XCTest
 @testable import Pocket_Code
 
 class PowFunctionTest: XCTestCase {
-    
+
     var function: PowFunction!
-    
+
     override func setUp() {
         function = PowFunction()
     }
-    
+
     override func tearDown() {
         function = nil
     }
-    
+
     func testDefaultValue() {
         XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: "invalidParameter" as AnyObject, secondParameter: "invalidParameter" as AnyObject), accuracy: 0.0001)
         XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: nil, secondParameter: nil), accuracy: 0.0001)
@@ -43,41 +43,40 @@ class PowFunctionTest: XCTestCase {
         XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: 3 as AnyObject, secondParameter: "invalidParameter" as AnyObject), accuracy: 0.0001)
         XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: "invalidParameter" as AnyObject, secondParameter: 10 as AnyObject), accuracy: 0.0001)
     }
-    
+
     func testValue() {
         XCTAssertEqual(pow(10, 7), function.value(firstParameter: 10 as AnyObject, secondParameter: 7 as AnyObject), accuracy: 0.0001)
-        
+
         XCTAssertEqual(pow(-3, 5), function.value(firstParameter: -3 as AnyObject, secondParameter: 5 as AnyObject), accuracy: 0.0001)
-        
+
         XCTAssertEqual(pow(13, -2), function.value(firstParameter: 13 as AnyObject, secondParameter: -2 as AnyObject), accuracy: 0.0001)
     }
-    
+
     func testFirstParameter() {
         XCTAssertEqual(.number(defaultValue: 2), function.firstParameter())
     }
-    
+
     func testSecondParameter() {
         XCTAssertEqual(.number(defaultValue: 3), function.secondParameter())
     }
-    
+
     func testTag() {
         XCTAssertEqual("POW", type(of: function).tag)
     }
-    
+
     func testName() {
         XCTAssertEqual("power", type(of: function).name)
     }
-    
+
     func testRequiredResources() {
         XCTAssertEqual(ResourceType.noResources, type(of: function).requiredResource)
     }
-    
+
     func testIsIdempotent() {
         XCTAssertTrue(type(of: function).isIdempotent)
     }
-    
+
     func testFormulaEditorSection() {
         XCTAssertEqual(.math(position: type(of: function).position), function.formulaEditorSection())
     }
 }
-

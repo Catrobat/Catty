@@ -25,8 +25,8 @@
     @nonobjc func instruction() -> CBInstruction {
         return .action { (_) in SKAction.run(self.actionBlock()) }
     }
-    
-    @objc func actionBlock() -> ()->() {
+
+    @objc func actionBlock() -> () -> Void {
         guard let object = self.script?.object,
               let spriteNode = object.spriteNode
         else { fatalError("This should never happen!") }

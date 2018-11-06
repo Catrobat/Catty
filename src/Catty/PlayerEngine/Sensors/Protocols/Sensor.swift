@@ -27,12 +27,12 @@ protocol Sensor { // TODO remove CB prefix
 
     // Default value for the iOS specific raw value (rawValue)
     static var defaultRawValue: Double { get }
-    
+
     static var requiredResource: ResourceType { get }
-    
+
     // Tag for serialization
     func tag() -> String
-    
+
     // Return the section to show sensor in formula editor (FormulaEditorSection) and the position within that section (Int)
     // Use .hidden to not show the sensor at all
     func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection

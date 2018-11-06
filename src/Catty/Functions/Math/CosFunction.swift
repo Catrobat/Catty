@@ -21,27 +21,27 @@
  */
 
 class CosFunction: SingleParameterDoubleFunction {
-    
+
     static var tag = "COS"
     static var name = "cos"
     static var defaultValue = 1.0
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = true
     static let position = 20
-    
+
     func tag() -> String {
         return type(of: self).tag
     }
-    
+
     func firstParameter() -> FunctionParameter {
         return .number(defaultValue: 0)
     }
-    
+
     func value(parameter: AnyObject?) -> Double {
         guard let degree = parameter as? Double else { return type(of: self).defaultValue }
         return cos(Util.degree(toRadians: degree))
     }
-    
+
     func formulaEditorSection() -> FormulaEditorSection {
         return .math(position: type(of: self).position)
     }

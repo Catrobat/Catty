@@ -23,7 +23,7 @@
 @testable import Pocket_Code
 
 final class CBSceneMock: CBScene {
-    
+
     init(size: CGSize) {
         let logger = CBLogger(name: "CBSceneMockLogger")
         let broadcastHandler = CBBroadcastHandler(logger: logger)

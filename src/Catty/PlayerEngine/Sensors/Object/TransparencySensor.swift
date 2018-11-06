@@ -27,24 +27,24 @@
     @objc static let defaultRawValue = 1.0
     static let position = 10
     static let requiredResource = ResourceType.noResources
-    
+
     func tag() -> String {
         return type(of: self).tag
     }
-    
+
     static func rawValue(for spriteObject: SpriteObject) -> Double {
         guard let spriteNode = spriteObject.spriteNode else {
             return TransparencySensor.defaultRawValue
         }
-        
+
         return Double(spriteNode.alpha)
     }
-    
+
     static func setRawValue(userInput: Double, for spriteObject: SpriteObject) {
         let rawValue = self.convertToRaw(userInput: userInput, for: spriteObject)
         spriteObject.spriteNode.alpha = CGFloat(rawValue)
     }
-    
+
     /*  on iOS, the transparency function is descending:
         1.0 - no transparency
         0.0 - maximum transaprency
@@ -55,10 +55,10 @@
      
         And they also have different ranges and scales.
      */
-    
+
     // f:[0, 1] -> [0, 100]
     static func convertToStandardized(rawValue: Double, for spriteObject: SpriteObject) -> Double {
-        
+
         if rawValue >= 1 {
             return 0.0 // maximum transparency
         }
@@ -67,10 +67,10 @@
         }
         return 100 - 100 * rawValue
     }
-    
+
     // f:[0, 100] -> [0, 1]
     static func convertToRaw(userInput: Double, for spriteObject: SpriteObject) -> Double {
-        
+
         if userInput >= 100 {
             return 0.0 // maximum transparency
         }
@@ -79,7 +79,7 @@
         }
         return (100 - userInput) / 100
     }
-    
+
     func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
         return .object(position: type(of: self).position)
     }

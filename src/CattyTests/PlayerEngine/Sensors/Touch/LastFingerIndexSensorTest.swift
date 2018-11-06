@@ -25,48 +25,48 @@ import XCTest
 @testable import Pocket_Code
 
 final class LastFingerIndexSensorTest: XCTestCase {
-    
+
     var touchManager: TouchManagerMock!
     var sensor: LastFingerIndexSensor!
-    
+
     override func setUp() {
         touchManager = TouchManagerMock()
         sensor = LastFingerIndexSensor { [weak self] in self?.touchManager }
     }
-    
+
     override func tearDown() {
         sensor = nil
         touchManager = nil
     }
-    
+
     func testDefaultRawValue() {
         let sensor = LastFingerIndexSensor { nil }
         XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(), accuracy: 0.0001)
     }
-    
+
     func testRawValue() {
         touchManager.touches = [CGPoint(x: 10, y: 20),
                                 CGPoint(x: 100, y: 210),
                                 CGPoint(x: -210, y: 40)]
         XCTAssertEqual(3, sensor.rawValue())
-        
+
         touchManager.touches = [CGPoint(x: 100, y: 200)]
         XCTAssertEqual(1, sensor.rawValue())
     }
-    
+
     func testConvertToStandardized() {
         XCTAssertEqual(2, sensor.convertToStandardized(rawValue: 2, for: SpriteObject()))
         XCTAssertEqual(10, sensor.convertToStandardized(rawValue: 10, for: SpriteObject()))
     }
-    
+
     func testTag() {
         XCTAssertEqual("LAST_FINGER_INDEX", sensor.tag())
     }
-    
+
     func testRequiredResources() {
         XCTAssertEqual(ResourceType.touchHandler, type(of: sensor).requiredResource)
     }
-    
+
     func testFormulaEditorSection() {
         XCTAssertEqual(.device(position: type(of: sensor).position), sensor.formulaEditorSection(for: SpriteObject()))
     }

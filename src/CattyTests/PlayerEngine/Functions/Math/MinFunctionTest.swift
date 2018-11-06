@@ -25,17 +25,17 @@ import XCTest
 @testable import Pocket_Code
 
 class MinFunctionTest: XCTestCase {
-    
+
     var function: MinFunction!
-    
+
     override func setUp() {
         function = MinFunction()
     }
-    
+
     override func tearDown() {
         function = nil
     }
-    
+
     func testDefaultValue() {
         XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: "invalidParameter" as AnyObject, secondParameter: "invalidParameter" as AnyObject), accuracy: 0.0001)
         XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: nil, secondParameter: nil), accuracy: 0.0001)
@@ -43,39 +43,38 @@ class MinFunctionTest: XCTestCase {
         XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: 3 as AnyObject, secondParameter: "invalidParameter" as AnyObject), accuracy: 0.0001)
         XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: "invalidParameter" as AnyObject, secondParameter: 10 as AnyObject), accuracy: 0.0001)
     }
-    
+
     func testValue() {
         XCTAssertEqual(min(100, 200), function.value(firstParameter: 100 as AnyObject, secondParameter: 200 as AnyObject), accuracy: 0.0001)
-        
+
         XCTAssertEqual(min(-100, -200), function.value(firstParameter: -100 as AnyObject, secondParameter: -200 as AnyObject), accuracy: 0.0001)
     }
-    
+
     func testFirstParameter() {
         XCTAssertEqual(.number(defaultValue: 0), function.firstParameter())
     }
-    
+
     func testSecondParameter() {
         XCTAssertEqual(.number(defaultValue: 1), function.secondParameter())
     }
-    
+
     func testTag() {
         XCTAssertEqual("MIN", type(of: function).tag)
     }
-    
+
     func testName() {
         XCTAssertEqual("min", type(of: function).name)
     }
-    
+
     func testRequiredResources() {
         XCTAssertEqual(ResourceType.noResources, type(of: function).requiredResource)
     }
-    
+
     func testIsIdempotent() {
         XCTAssertTrue(type(of: function).isIdempotent)
     }
-    
+
     func testFormulaEditorSection() {
         XCTAssertEqual(.math(position: type(of: function).position), function.formulaEditorSection())
     }
 }
-

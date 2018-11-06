@@ -27,22 +27,22 @@ class PositionXSensor: ObjectDoubleSensor {
     static let defaultRawValue = 0.0
     static let position = 60
     static let requiredResource = ResourceType.noResources
-    
+
     func tag() -> String {
         return type(of: self).tag
     }
 
     static func rawValue(for spriteObject: SpriteObject) -> Double {
         guard let spriteNode = spriteObject.spriteNode else { return defaultRawValue }
-        
+
         return Double(spriteNode.position.x)
     }
-    
+
     static func setRawValue(userInput: Double, for spriteObject: SpriteObject) {
         let rawValue = convertToRaw(userInput: userInput, for: spriteObject)
         spriteObject.spriteNode.position.x = CGFloat(rawValue)
     }
-    
+
     static func convertToRaw(userInput: Double, for spriteObject: SpriteObject) -> Double {
         guard let scene = spriteObject.spriteNode.scene else { return defaultRawValue }
         return Double(scene.size.width)/2.0 + userInput
@@ -52,7 +52,7 @@ class PositionXSensor: ObjectDoubleSensor {
         guard let spriteNode = spriteObject.spriteNode, let scene = spriteNode.scene else { return defaultRawValue }
         return rawValue - Double(scene.size.width)/2.0
     }
-    
+
     func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
         return .object(position: type(of: self).position)
     }

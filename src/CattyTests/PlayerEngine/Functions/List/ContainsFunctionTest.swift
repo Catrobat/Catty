@@ -25,75 +25,75 @@ import XCTest
 @testable import Pocket_Code
 
 class ContainsFunctionTest: XCTestCase {
-    
+
     var function: ContainsFunction!
-    
+
     override func setUp() {
         function = ContainsFunction()
     }
-    
+
     override func tearDown() {
         function = nil
     }
-    
+
     func testDefaultValue() {
         XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: "list name" as AnyObject, secondParameter: "invalidParameter" as AnyObject), accuracy: 0.0001)
         XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: 100 as AnyObject, secondParameter: 2 as AnyObject), accuracy: 0.0001)
         XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: nil, secondParameter: nil), accuracy: 0.0001)
-        
+
         let userVariable = UserVariable()
         userVariable.isList = true
         userVariable.value = nil
-    
+
         XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: userVariable as AnyObject, secondParameter: 1 as AnyObject), accuracy: 0.0001)
     }
-    
+
     func testValue() {
         // number list
         let userVariableNumber = UserVariable()
         userVariableNumber.name = "myListNumber"
         userVariableNumber.isList = true
         userVariableNumber.value = [1, 5, -7]
-        
+
         XCTAssertEqual(1.0, function.value(firstParameter: userVariableNumber as AnyObject, secondParameter: 1 as AnyObject), accuracy: 0.0001)
         XCTAssertEqual(1.0, function.value(firstParameter: userVariableNumber as AnyObject, secondParameter: -7 as AnyObject), accuracy: 0.0001)
         XCTAssertEqual(0.0, function.value(firstParameter: userVariableNumber as AnyObject, secondParameter: 10 as AnyObject), accuracy: 0.0001)
-        
+
         // string list
         let userVariableString = UserVariable()
         userVariableString.name = "myListString"
         userVariableString.isList = true
         userVariableString.value = ["a", "b", "c"]
-        
+
         XCTAssertEqual(1.0, function.value(firstParameter: userVariableString as AnyObject, secondParameter: "a" as AnyObject), accuracy: 0.0001)
         XCTAssertEqual(1.0, function.value(firstParameter: userVariableString as AnyObject, secondParameter: "b" as AnyObject), accuracy: 0.0001)
         XCTAssertEqual(0.0, function.value(firstParameter: userVariableString as AnyObject, secondParameter: "x" as AnyObject), accuracy: 0.0001)
     }
-    
+
     func testFirstParameter() {
         XCTAssertEqual(.list(defaultValue: "list name"), function.firstParameter())
     }
-    
+
     func testSecondParameter() {
         XCTAssertEqual(.number(defaultValue: 1), function.secondParameter())
     }
-    
+
     func testTag() {
         XCTAssertEqual("CONTAINS", type(of: function).tag)
     }
-    
+
     func testName() {
         XCTAssertEqual("contains", type(of: function).name)
     }
-    
+
     func testRequiredResources() {
         XCTAssertEqual(ResourceType.noResources, type(of: function).requiredResource)
     }
-    
+
     func testIsIdempotent() {
         XCTAssertFalse(type(of: function).isIdempotent)
     }
-    
+
     func testFormulaEditorSection() {
         XCTAssertEqual(.math(position: type(of: function).position), function.formulaEditorSection())
     }

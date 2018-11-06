@@ -20,7 +20,6 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-
 /*
      _       _     _                       _              _         _
     / \   __| | __| |   ___ ___  _ __  ___| |_ __ _ _ __ | |_ ___  | |_ ___
@@ -34,7 +33,6 @@
  |_____\__,_|_| |_|\__, |\__,_|\__,_|\__, |\___||_||_|  \__,_|_| |_|___/_|\__,_|\__|_|\___/|_| |_|____/ \___|_| |_|_| |_|\___||___(_)_| |_|
                    |___/             |___/
  */
-
 
 //************************************************************************************************************
 //************************************       TERMS/BUZZWORDS      ********************************************
@@ -297,8 +295,6 @@ let kLocalizedEnterYourListNameHere = NSLocalizedString("Enter your list name he
 let kLocalizedEnterYourObjectNameHere = NSLocalizedString("Enter your object name here...", comment: "Placeholder for add object-name input field")
 let kLocalizedEnterYourImageNameHere = NSLocalizedString("Enter your image name here...", comment: "Placeholder for add image-name input field")
 let kLocalizedEnterYourSoundNameHere = NSLocalizedString("Enter your sound name here...", comment: "Placeholder for add sound-name input field")
-let kLocalizedNoImportedSoundsFoundTitle = NSLocalizedString("No imported sounds found", comment: "Title of AlertView if the user tries to import a sound but no sound has been imported using iTunes.")
-let kLocalizedNoImportedSoundsFoundDescription = NSLocalizedString("Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app.", comment: "Description of AlertView if the user tries to import a sound but no sound has been imported using iTunes.")
 let kLocalizedNoOrTooShortInputDescription = NSLocalizedString("No input. Please enter at least %lu character(s).", comment: "")
 let kLocalizedTooLongInputDescription = NSLocalizedString("The input is too long. Please enter maximal %lu character(s).", comment: "")
 let kLocalizedSpaceInputDescription = NSLocalizedString("Only space is not allowed. Please enter at least %lu other character(s).", comment: "")
@@ -323,7 +319,6 @@ let kLocalizedNoAccesToMicrophoneCheckSettingsDescription = NSLocalizedString("P
 //************************************************************************************************************
 //*******************************       BRICK TITLE TRANSLATIONS      ****************************************
 //************************************************************************************************************
-
 
 // control bricks
 let kLocalizedWhenProgramStarted = NSLocalizedString("When program started", comment: "")
@@ -421,7 +416,6 @@ let kLocalizedInsertItemIntoUserList = NSLocalizedString("Insert%@into list\n%@\
 let kLocalizedReplaceItemInUserList = NSLocalizedString("Replace item in list\n%@\nat position %@ with %", comment: "")
 let kLocalizedAt = NSLocalizedString("at ", comment: "")
 
-
 let kLocalizedAddCommentHere = NSLocalizedString("add comment here...", comment: "")
 let kLocalizedMessage1 = NSLocalizedString("message 1", comment: "")
 let kLocalizedHello = NSLocalizedString("Hello!", comment: "")
@@ -442,13 +436,10 @@ let kLocalizedPhiroSecondsToPlay = NSLocalizedString("seconds", comment: "")
 let kLocalizedPhiroIfLogic = NSLocalizedString("If", comment: "")
 let kLocalizedPhiroThenLogic = NSLocalizedString("is true then", comment: "")
 
-
 // Arduino bricks
 let kLocalizedArduinoSetDigitalValue = NSLocalizedString("Set Arduino digital pin", comment: "")
 let kLocalizedArduinoSetPinValueTo = NSLocalizedString("to", comment: "")
 let kLocalizedArduinoSendPWMValue = NSLocalizedString("Set Arduino PWM~ pin", comment: "")
-
-
 
 //************************************************************************************************************
 //**********************************       Login/Upload            *******************************************
@@ -527,6 +518,7 @@ let kLocalizedPaintBold = NSLocalizedString("bold", comment: "paint")
 let kLocalizedPaintItalic = NSLocalizedString("italic", comment: "paint")
 let kLocalizedPaintUnderline = NSLocalizedString("underline", comment: "paint")
 let kLocalizedPaintTextAlert = NSLocalizedString("Please enter a text!", comment: "paint")
+
 //************************************************************************************************************
 //************************************       FormulaEditor        ********************************************
 //************************************************************************************************************
@@ -558,7 +550,6 @@ let kUIFEonly15Char = NSLocalizedString("only 15 characters allowed", comment: "
 let kUIFEVarName = NSLocalizedString("Variable name:", comment: "")
 let kUIFEListName = NSLocalizedString("List name:", comment: "")
 let kUIFEOtherName = NSLocalizedString("Please choose another name:", comment: "")
-
 
 let kUIFEProgramVars = NSLocalizedString("Program variables:", comment: "")
 let kUIFEObjectVars = NSLocalizedString("Object variables:", comment: "")
@@ -664,23 +655,22 @@ let kUIFEUnknownElementType = NSLocalizedString("Unknown Element", comment: "")
 //************************************************************************************************************
 //************************************       BrickCategoryTitles        ********************************************
 //************************************************************************************************************
+
 let kUIFENewText = NSLocalizedString("New Text", comment: "")
 let kUIFETextMessage = NSLocalizedString("Text message:", comment: "")
 let kUIFavouritesTitle = NSLocalizedString("Frequently Used", comment: "Title of View where the user can see the frequently used bricks.")
-let kUIScriptTitle = NSLocalizedString("Script", comment: "");
-let kUIControlTitle = NSLocalizedString("Control", comment: "");
-let kUIMotionTitle  = NSLocalizedString("Motion", comment: "");
-let kUISoundTitle  = NSLocalizedString("Sound", comment: "");
-let kUILookTitle  = NSLocalizedString("Look", comment: "");
-let kUIVariableTitle  = NSLocalizedString("Variable", comment: "");
-let kUIArduinoTitle  = NSLocalizedString("Arduino", comment: "");
-let kUIPhiroTitle  = NSLocalizedString("Phiro", comment: "");
-
+let kUIScriptTitle = NSLocalizedString("Script", comment: "")
+let kUIControlTitle = NSLocalizedString("Control", comment: "")
+let kUIMotionTitle  = NSLocalizedString("Motion", comment: "")
+let kUISoundTitle  = NSLocalizedString("Sound", comment: "")
+let kUILookTitle  = NSLocalizedString("Look", comment: "")
+let kUIVariableTitle  = NSLocalizedString("Variable", comment: "")
+let kUIArduinoTitle  = NSLocalizedString("Arduino", comment: "")
+let kUIPhiroTitle  = NSLocalizedString("Phiro", comment: "")
 
 //************************************************************************************************************
 //************************************       PhiroDefines         ********************************************
 //************************************************************************************************************
-
 
 let kLocalizedPhiroBoth  = NSLocalizedString("Both", comment: "")
 let kLocalizedPhiroLeft  = NSLocalizedString("Left", comment: "")
@@ -694,7 +684,6 @@ let kLocalizedPhiroSO  = NSLocalizedString("SO", comment: "")
 let kLocalizedPhiroLA  = NSLocalizedString("LA", comment: "")
 let kLocalizedPhiroTI  = NSLocalizedString("TI", comment: "")
 
-
 let klocalizedBluetoothSearch = NSLocalizedString("Search", comment: "bluetooth")
 let klocalizedBluetoothKnown = NSLocalizedString("Known devices", comment: "bluetooth")
 let klocalizedBluetoothSelectPhiro = NSLocalizedString("Select Phiro", comment: "bluetooth")
@@ -706,7 +695,6 @@ let klocalizedBluetoothCannotConnect = NSLocalizedString("Cannot connect to devi
 let klocalizedBluetoothNotResponding = NSLocalizedString("Cannot connect to device. The device is not responding.", comment: "bluetooth")
 let klocalizedBluetoothConnectionLost = NSLocalizedString("Connection Lost", comment: "bluetooth")
 let klocalizedBluetoothDisconnected = NSLocalizedString("Device disconnected.", comment: "bluetooth")
-
 
 //************************************************************************************************************
 //************************************       MediaLibrary        *********************************************
@@ -750,8 +738,6 @@ let kLocalizedUnexpectedErrorMessage = NSLocalizedString("Unexpected Error, plea
 //************************************************************************************************************
 let kLocalizedDebugModeTitle = NSLocalizedString("Debug mode", comment: "")
 let kLocalizedStartedInDebugMode = NSLocalizedString("Pocket Code has been started in debug mode.", comment: "")
-
-
 
 /*
      _       _     _                       _              _         _

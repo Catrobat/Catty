@@ -25,41 +25,41 @@ import XCTest
 @testable import Pocket_Code
 
 class FalseFunctionTest: XCTestCase {
-    
+
     var function: FalseFunction!
-    
+
     override func setUp() {
         function = FalseFunction()
     }
-    
+
     override func tearDown() {
         function = nil
     }
-    
+
     func testDefaultValue() {
         XCTAssertEqual(type(of: function).defaultValue, function.value(), accuracy: 0.0001)
     }
-    
+
     func testValue() {
         XCTAssertEqual(0.0, function.value(), accuracy: 0.0001)
     }
-    
+
     func testTag() {
         XCTAssertEqual("FALSE", type(of: function).tag)
     }
-    
+
     func testName() {
         XCTAssertEqual("false", type(of: function).name)
     }
-    
+
     func testRequiredResources() {
         XCTAssertEqual(ResourceType.noResources, type(of: function).requiredResource)
     }
-    
+
     func testIsIdempotent() {
         XCTAssertTrue(type(of: function).isIdempotent)
     }
-    
+
     func testFormulaEditorSection() {
         XCTAssertEqual(.math(position: type(of: function).position), function.formulaEditorSection())
     }

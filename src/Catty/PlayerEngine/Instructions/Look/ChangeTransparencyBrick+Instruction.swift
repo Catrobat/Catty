@@ -25,8 +25,8 @@
     @nonobjc func instruction() -> CBInstruction {
         return .action { (context) in SKAction.run(self.actionBlock(context.formulaInterpreter)) }
     }
-    
-    @objc func actionBlock(_ formulaInterpreter: FormulaInterpreterProtocol) -> ()->() {
+
+    @objc func actionBlock(_ formulaInterpreter: FormulaInterpreterProtocol) -> () -> Void {
         guard let object = self.script?.object,
               let spriteNode = object.spriteNode,
               let transparency = self.changeTransparency
@@ -34,7 +34,7 @@
 
         return {
             let transparencyIncrease = formulaInterpreter.interpretDouble(transparency, for: object)
-            spriteNode.catrobatTransparency = spriteNode.catrobatTransparency + transparencyIncrease
+            spriteNode.catrobatTransparency += transparencyIncrease
         }
     }
 }

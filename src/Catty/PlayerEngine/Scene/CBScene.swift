@@ -66,18 +66,18 @@ final class CBScene: SKScene {
     func touchedWithTouch(_ touch: UITouch) -> Bool {
         assert(scheduler.running == true)
         logger.debug("StartTouchOfScene (x:\(position.x), y:\(position.y))")
-        
+
         let location = touch.location(in: self)
-        
+
         //Start all "When screen touched"-scripts
         scheduler.startWhenTouchDownContexts()
 
         // Get sprite nodes only (ShowTextBrick creates a SKLabelNode)
         let nodes = self.nodes(at: location).filter({$0 is CBSpriteNode})
         if nodes.count == 0 { return false } // needed if scene has no background image!
-        
+
         logger.debug("Number of touched nodes: \(nodes.count)")
-        
+
         nodes.forEach { print(">>> \(String(describing: $0.name))") }
         for node in nodes {
             guard let currentNode = node as? CBSpriteNode
@@ -88,7 +88,7 @@ final class CBScene: SKScene {
             print("Current node: \(currentNode)")
             logger.debug("Current node: \(currentNode)")
             if currentNode.isHidden { continue }
-            
+
             let newPosition = touch.location(in: currentNode)
             if currentNode.touchedWithTouch(touch, atPosition: newPosition) {
                 print("Found sprite node: \(String(describing: currentNode.name)) with zPosition: \(currentNode.zPosition)")
@@ -96,7 +96,7 @@ final class CBScene: SKScene {
             } else {
                 var zPosition = currentNode.zPosition
                 zPosition -= 1
-                if (zPosition == -1) {
+                if zPosition == -1 {
                     logger.debug("Found Object")
                     return true
                 }
@@ -105,13 +105,12 @@ final class CBScene: SKScene {
         return true
     }
 
-
     // MARK: - Start program
     @objc func startProgram() {
         guard let program = frontend.program else {
             fatalError("Invalid program. This should never happen!")
         }
-        
+
         guard let spriteObjectList = program.objectList as NSArray? as? [SpriteObject],
               let variableList = frontend.program?.variables.allVariables() as NSArray? as? [UserVariable] else {
                 fatalError("!! Invalid sprite object list given !! This should never happen!")
@@ -119,7 +118,7 @@ final class CBScene: SKScene {
         assert(Thread.current.isMainThread)
 
         removeAllChildren() // just to ensure
-        
+
         var zPosition = 1
         for spriteObject in spriteObjectList {
             let spriteNode = CBSpriteNode(spriteObject: spriteObject)
@@ -149,16 +148,16 @@ final class CBScene: SKScene {
             for script in scriptList {
                 let scriptSequence = frontend.computeSequenceListForScript(script)
                 let instructions = backend.instructionsForSequence(scriptSequence.sequenceList)
-                
+
                 logger.info("Generating Context of \(script)")
-                var context: CBScriptContext? = nil
+                var context: CBScriptContext?
                 switch script {
                 case let startScript as StartScript:
                     context = CBStartScriptContext(startScript: startScript, spriteNode: spriteNode, formulaInterpreter: formulaManager, state: .runnable)
 
                 case let whenScript as WhenScript:
                     context = CBWhenScriptContext(whenScript: whenScript, spriteNode: spriteNode, formulaInterpreter: formulaManager, state: .runnable)
-                    
+
                 case let whenTouchDownScript as WhenTouchDownScript:
                     context = CBWhenTouchDownScriptContext(whenTouchDownScript: whenTouchDownScript, spriteNode: spriteNode, formulaInterpreter: formulaManager, state: .runnable)
 
@@ -177,7 +176,7 @@ final class CBScene: SKScene {
                 scheduler.registerContext(scriptContext)
             }
         }
-        for variable:UserVariable in variableList {
+        for variable: UserVariable in variableList {
             variable.textLabel = SKLabelNode()
             variable.textLabel.text = ""
             variable.textLabel.zPosition = CGFloat(zPosition + 1)
@@ -195,12 +194,12 @@ final class CBScene: SKScene {
         scheduler.pause()
         formulaManager.pause()
     }
-    
+
     @objc func resumeScheduler() {
         scheduler.resume()
         formulaManager.resume()
     }
-    
+
     // MARK: - Stop program
     @objc func stopProgram() {
         view?.isPaused = true

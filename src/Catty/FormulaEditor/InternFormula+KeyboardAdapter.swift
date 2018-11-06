@@ -23,24 +23,24 @@
 import UIKit
 
 extension InternFormula {
-    
+
     @objc func createInternTokenListByResourceId(resource: Int, name: String) -> [InternToken] {
         // USER VARIABLES
-        if (resource == 0 && name.count != 0) {
+        if (resource == 0) && (name.count != 0) {
             return buildUserVariable(name: name)
         }
-        
+
         // USER LISTS
-        if (resource == 11 && name.count != 0) {
+        if (resource == 11) && (name.count != 0) {
             return buildUserList(name: name)
         }
-        
+
         // STRING
-        if(resource == TOKEN_TYPE_STRING.rawValue) {
+        if resource == TOKEN_TYPE_STRING.rawValue {
             return buildString(name: name)
         }
-        
-        switch (resource) {
+
+        switch resource {
         case Int(TOKEN_TYPE_NUMBER_0.rawValue):
             return buildNumber(numberValue: "0")
         case Int(TOKEN_TYPE_NUMBER_1.rawValue):
@@ -61,11 +61,11 @@ extension InternFormula {
             return buildNumber(numberValue: "8")
         case Int(TOKEN_TYPE_NUMBER_9.rawValue):
             return buildNumber(numberValue: "9")
-            
+
         // PERIOD
         case Int(Operator.DECIMAL_MARK.rawValue):
             return buildPeriod()
-            
+
         // OPERATOR
         case Operator.PLUS.rawValue:
             return buildOperator(mathOperator: Operator.PLUS)
@@ -93,105 +93,105 @@ extension InternFormula {
             return buildOperator(mathOperator: Operator.LOGICAL_OR)
         case Operator.LOGICAL_NOT.rawValue:
             return buildOperator(mathOperator: Operator.LOGICAL_NOT)
-            
+
         // BRACKETS
         case Int(BRACKET_OPEN.rawValue):
             return buildBracketOpen()
         case Int(BRACKET_CLOSE.rawValue):
             return buildBracketClose()
-            
+
         default:
             return []
         }
     }
-    
+
     func handleKeyInput(for sensor: Sensor) {
         let keyInputInternTokenList = NSMutableArray(array: self.createInternTokenListForSensor(sensor: sensor))
         self.handleKeyInput(withInternTokenList: keyInputInternTokenList, andResourceId: Int32(TOKEN_TYPE_SENSOR.rawValue))
     }
-    
+
     func handleKeyInput(for function: Function) {
         let keyInputInternTokenList = NSMutableArray(array: self.createInternTokenListForFunction(function: function))
         self.handleKeyInput(withInternTokenList: keyInputInternTokenList, andResourceId: Int32(TOKEN_TYPE_FUNCTION_NAME.rawValue))
     }
-    
+
     private func createInternTokenListForSensor(sensor: Sensor) -> [InternToken] {
         return buildSensor(sensor: sensor)
     }
-    
+
     private func createInternTokenListForFunction(function: Function) -> [InternToken] {
         return buildFunction(function: function)
     }
-    
+
     private func buildUserVariable(name: String) -> [InternToken] {
         return [InternToken.init(type: TOKEN_TYPE_USER_VARIABLE, andValue: name)]
     }
-    
+
     private func buildUserList(name: String) -> [InternToken] {
         return [InternToken.init(type: TOKEN_TYPE_USER_LIST, andValue: name)]
     }
-    
+
     private func buildString(name: String) -> [InternToken] {
         return [InternToken.init(type: TOKEN_TYPE_STRING, andValue: name)]
     }
-    
+
     private func buildNumber(numberValue: String) -> [InternToken] {
         return [InternToken.init(type: TOKEN_TYPE_NUMBER, andValue: numberValue)]
     }
-    
+
     private func buildPeriod() -> [InternToken] {
         return [InternToken.init(type: TOKEN_TYPE_PERIOD)]
     }
-    
+
     private func buildBracketOpen() -> [InternToken] {
         return [InternToken.init(type: TOKEN_TYPE_BRACKET_OPEN)]
     }
-    
+
     private func buildBracketClose() -> [InternToken] {
         return [InternToken.init(type: TOKEN_TYPE_BRACKET_CLOSE)]
     }
-    
+
     private func buildOperator(mathOperator: Operator) -> [InternToken] {
         return [InternToken.init(type: TOKEN_TYPE_OPERATOR, andValue: Operators.getName(mathOperator))]
     }
-    
+
     private func buildSensor(sensor: Sensor) -> [InternToken] {
         return [InternToken.init(type: TOKEN_TYPE_SENSOR, andValue: sensor.tag())]
     }
-    
+
     private func buildFunction(function: Function) -> [InternToken] {
         var tokenList = [InternToken]()
         let parameters = function.parameters()
         var count = 0
-        
+
         tokenList.append(InternToken.init(type: TOKEN_TYPE_FUNCTION_NAME, andValue: function.tag()))
         if parameters.count == 0 {
             return tokenList    // no parameter
         }
-        
+
         tokenList.append(InternToken.init(type: TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_OPEN))
         for parameter in parameters {
             tokenList.append(functionParameter(parameter: parameter))
             count += 1
-            
+
             if count < parameters.count && parameters.count > 1 {
                 tokenList.append(InternToken.init(type: TOKEN_TYPE_FUNCTION_PARAMETER_DELIMITER))
             }
         }
-        
+
         tokenList.append(InternToken.init(type: TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_CLOSE))
         return tokenList
     }
-    
+
     private func functionParameter(parameter: FunctionParameter) -> InternToken {
         let defaultValueString = parameter.defaultValueString()
-        
+
         switch parameter {
-        case .number(_):
+        case .number:
             return InternToken.init(type: TOKEN_TYPE_NUMBER, andValue: defaultValueString)
-        case .string(_):
+        case .string:
             return InternToken.init(type: TOKEN_TYPE_STRING, andValue: defaultValueString)
-        case .list(_):
+        case .list:
             return InternToken.init(type: TOKEN_TYPE_USER_LIST, andValue: defaultValueString)
         }
     }

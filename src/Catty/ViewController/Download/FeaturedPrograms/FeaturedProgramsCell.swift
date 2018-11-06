@@ -27,20 +27,20 @@ protocol FeaturedProgramsCellProtocol: class {
 }
 
 class FeaturedProgramsCell: UITableViewCell {
-    
+
     weak var delegete: FeaturedProgramsCellProtocol?
     var program: StoreProgram?
-    
+
     @IBOutlet weak var featuredImageView: UIImageView!
-    
+
     var featuredImage: String? {
         didSet {
             self.updateTable()
         }
     }
-    
+
     func updateTable() {
-        if (featuredImage != nil) {
+        if featuredImage != nil {
             featuredImageView?.kf.setImage(with: URL(string: featuredImage!))
         }
     }

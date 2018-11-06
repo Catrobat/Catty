@@ -42,7 +42,7 @@ final class MediaLibraryViewController: UICollectionViewController {
     private var originalAudioSessionCategoryOptions: AVAudioSessionCategoryOptions?
 
     private var audioPlayer: AVAudioPlayer?
-    private var audioPlayerDelegate: AudioPlayerFinishPlayingCompletionCaller?
+    private weak var audioPlayerDelegate: AudioPlayerFinishPlayingCompletionCaller?
 
     // MARK: - Initializers
 

@@ -28,28 +28,28 @@ private let EPSILON = 0.0001
         return .action { (_) in SKAction.run(self.actionBlock()) }
     }
 
-    @objc func actionBlock() -> ()->() {
+    @objc func actionBlock() -> () -> Void {
         guard let object = self.script?.object,
               let spriteNode = object.spriteNode,
               let scene = spriteNode.scene
         else { fatalError("This should never happen!") }
-        
+
         return {
-        
+
             let width = spriteNode.size.width
             let height = spriteNode.size.height
-            
+
             let virtualScreenWidth = scene.size.width/2.0
             let virtualScreenHeight = scene.size.height/2.0
-            
+
             var xPosition = CGFloat(spriteNode.catrobatPositionX)
             var yPosition = CGFloat(spriteNode.catrobatPositionY)
             var rotation = spriteNode.catrobatRotation
-            
+
             //Check left/right edge
             let leftEdge = -virtualScreenWidth + (width/2.0)
             let rightEdge = virtualScreenWidth - (width/2.0)
-            
+
             if xPosition < leftEdge {
                 xPosition = leftEdge
                 if self.isLookingLeft(rotation) {
@@ -61,11 +61,11 @@ private let EPSILON = 0.0001
                     rotation = -rotation
                 }
             }
-            
+
             //Check upper/lowerEdge
             let upperEdge = virtualScreenHeight - (height/2.0)
             let lowerEdge = -virtualScreenHeight + (height/2.0)
-            
+
             if yPosition > upperEdge {
                 yPosition = upperEdge
                 if self.isLookingUp(rotation) {
@@ -77,38 +77,38 @@ private let EPSILON = 0.0001
                     rotation = 180 - rotation
                 }
             }
-            
+
             spriteNode.catrobatRotation = rotation
             spriteNode.catrobatPositionX = Double(xPosition)
             spriteNode.catrobatPositionY = Double(yPosition)
         }
     }
-    
-    func isLookingDown(_ rotation:Double) -> Bool {
+
+    func isLookingDown(_ rotation: Double) -> Bool {
         let normalizedRotation = self.normalizeRotation(rotation)
         if self.isGreater(normalizedRotation, second: 90.0) && self.isLess(normalizedRotation, second: 270.0) {
             return true
         }
         return false
     }
-    
-    func isLookingUp(_ rotation:Double) -> Bool {
+
+    func isLookingUp(_ rotation: Double) -> Bool {
         let normalizedRotation = self.normalizeRotation(rotation)
         if (self.isGreaterOrEqual(normalizedRotation, second: 0.0) && self.isLess(normalizedRotation, second: 90.0)) || (self.isGreater(normalizedRotation, second: 270.0) && self.isLessOrEqual(normalizedRotation, second: 360.0)) {
             return true
         }
         return false
     }
-    
-    func isLookingLeft(_ rotation:Double) -> Bool {
+
+    func isLookingLeft(_ rotation: Double) -> Bool {
         let normalizedRotation = self.normalizeRotation(rotation)
         if (self.isGreater(normalizedRotation, second: 180.0)) && (self.isLess(normalizedRotation, second: 360.0)) {
             return true
         }
         return false
     }
-    
-    func isLookingRight(_ rotation:Double) -> Bool {
+
+    func isLookingRight(_ rotation: Double) -> Bool {
         let normalizedRotation = self.normalizeRotation(rotation)
         if (self.isGreater(normalizedRotation, second: 0.0)) && (self.isLess(normalizedRotation, second: 180.0)) {
             return true
@@ -116,32 +116,32 @@ private let EPSILON = 0.0001
         return false
     }
 
-    private func normalizeRotation(_ rotation:Double) -> Double {
+    private func normalizeRotation(_ rotation: Double) -> Double {
         var normalizedRotation = rotation
-        
+
         if self.isLess(normalizedRotation, second: 0.0) {
-            normalizedRotation = 360.0 + (normalizedRotation.truncatingRemainder(dividingBy: -360.0));
+            normalizedRotation = 360.0 + (normalizedRotation.truncatingRemainder(dividingBy: -360.0))
         }
         return normalizedRotation.truncatingRemainder(dividingBy: 360)
     }
-    
-    private func isGreater(_ first:Double, second:Double) -> Bool {
+
+    private func isGreater(_ first: Double, second: Double) -> Bool {
         return first - second > EPSILON
     }
-    
-    private func isGreaterOrEqual(_ first:Double, second:Double) -> Bool {
+
+    private func isGreaterOrEqual(_ first: Double, second: Double) -> Bool {
         return first - second > EPSILON || self.isEqual(first, second: second)
     }
-    
-    private func isLess(_ first:Double, second:Double) -> Bool {
+
+    private func isLess(_ first: Double, second: Double) -> Bool {
         return first - second < EPSILON && !self.isEqual(first, second: second)
     }
-    
-    private func isLessOrEqual(_ first:Double, second:Double) -> Bool {
+
+    private func isLessOrEqual(_ first: Double, second: Double) -> Bool {
         return first - second < EPSILON || self.isEqual(first, second: second)
     }
-    
-    private func isEqual(_ first:Double, second:Double) -> Bool {
+
+    private func isEqual(_ first: Double, second: Double) -> Bool {
         return abs(first - second) <= EPSILON
     }
 }

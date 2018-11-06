@@ -21,29 +21,29 @@
  */
 
 class ChartProgramsStoreViewController: UIViewController, SelectedChartProgramsDataSource {
-    
+
     @IBOutlet weak var chartProgramsTableView: UITableView!
     @IBOutlet weak var chartProgramsSegmentedControl: UISegmentedControl!
-    
+
     // MARK: - Properties
-    
+
     private var dataSource: ChartProgramStoreDataSource
-    
+
     var loadingView: LoadingView?
     var shouldHideLoadingView = false
     var programForSegue: StoreProgram?
     var catrobatProject: StoreProgram?
     var loadingViewFlag = false
-    
+
     // MARK: - Initializers
-    
+
     required init?(coder aDecoder: NSCoder) {
         self.dataSource = ChartProgramStoreDataSource.dataSource()
         super.init(coder: aDecoder)
     }
-    
+
     // MARK: - Life Cycle
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         shouldHideLoadingView = false
@@ -51,12 +51,12 @@ class ChartProgramsStoreViewController: UIViewController, SelectedChartProgramsD
         setupTableView()
         initSegmentedControl()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         loadingViewHandlerAfterFetchData()
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == kSegueToProgramDetail {
             if let programDetailStoreViewController = segue.destination as? ProgramDetailStoreViewController,
@@ -65,7 +65,7 @@ class ChartProgramsStoreViewController: UIViewController, SelectedChartProgramsD
             }
         }
     }
-    
+
     @IBAction func segmentTapped(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
@@ -78,9 +78,9 @@ class ChartProgramsStoreViewController: UIViewController, SelectedChartProgramsD
             break
         }
     }
-    
+
     // MARK: - Helper Methods
-    
+
     private func mapStoreProgramToCatrobatProgram(program: StoreProgram) -> CatrobatProgram {
         var programDictionary = [String: Any]()
         programDictionary["ProjectName"] = program.projectName
@@ -98,28 +98,28 @@ class ChartProgramsStoreViewController: UIViewController, SelectedChartProgramsD
         programDictionary["Version"] = program.version ?? ""
         programDictionary["Views"] = program.views ?? 0
         programDictionary["FileSize"] = program.fileSize ?? 0.0
-        
+
         return CatrobatProgram(dict: programDictionary, andBaseUrl: kFeaturedImageBaseUrl)
     }
-    
+
     func initSegmentedControl() {
         chartProgramsSegmentedControl?.setTitle(kLocalizedMostDownloaded, forSegmentAt: 0)
         chartProgramsSegmentedControl?.setTitle(kLocalizedMostViewed, forSegmentAt: 1)
         chartProgramsSegmentedControl?.setTitle(kLocalizedNewest, forSegmentAt: 2)
         fetchData(type: .mostDownloaded)
-        
-        if(checkIphoneScreenSize()) {
+
+        if checkIphoneScreenSize() {
             let font = UIFont.systemFont(ofSize: 10)
             chartProgramsSegmentedControl.setTitleTextAttributes([NSAttributedStringKey.font: font], for: .normal)
         }
     }
-    
+
     // check iPhone4 or iphone5
     private func checkIphoneScreenSize() -> Bool {
         let screenHeight = Float(Util.screenHeight())
         return (((screenHeight - kIphone4ScreenHeight) == 0) || ((screenHeight - kIphone5ScreenHeight) == 0)) ? true : false
     }
-    
+
     private func setupTableView() {
         self.chartProgramsTableView.separatorStyle = UITableViewCellSeparatorStyle.none
         self.chartProgramsTableView.backgroundColor = UIColor.background()
@@ -127,12 +127,12 @@ class ChartProgramsStoreViewController: UIViewController, SelectedChartProgramsD
         self.chartProgramsTableView.dataSource = self.dataSource
         self.chartProgramsTableView.delegate = self.dataSource
     }
-    
+
     private func fetchData(type: ProgramType) {
         DispatchQueue.main.async {
             self.showLoadingView()
         }
-        
+
         self.dataSource.fetchItems(type: type) { error in
             if error != nil {
                 self.shouldHideLoadingView = true
@@ -147,12 +147,12 @@ class ChartProgramsStoreViewController: UIViewController, SelectedChartProgramsD
             self.chartProgramsTableView.separatorStyle = .singleLine
         }
     }
-    
+
     private func showConnectionIssueAlertAndDismiss(error: StoreProgramDownloaderError) {
         var title = ""
         var message = ""
         let buttonTitle = kLocalizedOK
-        
+
         switch error {
         case .timeout:
             title = kLocalizedServerTimeoutIssueTitle
@@ -161,27 +161,26 @@ class ChartProgramsStoreViewController: UIViewController, SelectedChartProgramsD
             title = kLocalizedChartProgramsLoadFailureTitle
             message = kLocalizeChartProgramsLoadFailureMessage
         }
-        
+
         DispatchQueue.main.async {
             AlertControllerBuilder.alert(title: title, message: message)
                 .addDefaultAction(title: buttonTitle) { self.navigationController?.popViewController(animated: true) }.build()
                 .showWithController(self)
         }
     }
-    
+
     func loadingViewHandlerAfterFetchData() {
         if loadingViewFlag == false {
             self.showLoadingView()
             self.shouldHideLoadingView = true
             self.hideLoadingView()
-        }
-        else {
+        } else {
             self.shouldHideLoadingView = true
             self.hideLoadingView()
             loadingViewFlag = false
         }
     }
-    
+
     func showLoadingView() {
         if loadingView == nil {
             loadingView = LoadingView()
@@ -190,7 +189,7 @@ class ChartProgramsStoreViewController: UIViewController, SelectedChartProgramsD
         loadingView?.show()
         loadingIndicator(true)
     }
-    
+
     func hideLoadingView() {
         if shouldHideLoadingView {
             loadingView?.hide()
@@ -198,14 +197,14 @@ class ChartProgramsStoreViewController: UIViewController, SelectedChartProgramsD
             self.shouldHideLoadingView = false
         }
     }
-    
+
     func loadingIndicator(_ value: Bool) {
         let app = UIApplication.shared
         app.isNetworkActivityIndicatorVisible = value
     }
 }
 
-extension ChartProgramsStoreViewController: ChartProgramCellProtocol{
+extension ChartProgramsStoreViewController: ChartProgramCellProtocol {
     func selectedCell(dataSource datasource: ChartProgramStoreDataSource, didSelectCellWith cell: ChartProgramCell) {
         if let program = cell.program {
             self.showLoadingView()
@@ -220,7 +219,7 @@ extension ChartProgramsStoreViewController {
     func scrollViewHandler() {
         chartProgramsTableView.reloadData()
     }
-    
+
     func errorAlertHandler(error: StoreProgramDownloaderError) {
         self.shouldHideLoadingView = true
         self.hideLoadingView()
@@ -228,14 +227,14 @@ extension ChartProgramsStoreViewController {
         self.chartProgramsTableView.separatorStyle = .singleLine
         return
     }
-    
+
     func showLoadingIndicator(_ inTableFooter: Bool = false) {
         DispatchQueue.main.async {
             if inTableFooter {
                 let spinner = UIActivityIndicatorView(activityIndicatorStyle: .gray)
                 spinner.startAnimating()
                 spinner.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: self.chartProgramsTableView.bounds.width, height: CGFloat(44))
-                
+
                 self.chartProgramsTableView.tableFooterView = spinner
                 self.chartProgramsTableView.tableFooterView?.isHidden = false
             } else {
@@ -244,7 +243,7 @@ extension ChartProgramsStoreViewController {
             }
         }
     }
-    
+
     func hideLoadingIndicator(_ inTableFooter: Bool = false) {
         DispatchQueue.main.async {
             if inTableFooter {

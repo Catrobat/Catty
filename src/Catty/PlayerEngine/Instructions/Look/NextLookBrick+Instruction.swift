@@ -26,22 +26,22 @@
         return .action { (_) in SKAction.run(self.actionBlock()) }
     }
 
-    @objc func actionBlock() -> ()->() {
+    @objc func actionBlock() -> () -> Void {
         guard let object = self.script?.object,
               let spriteNode = object.spriteNode
         else { fatalError("This should never happen!") }
         return {
             guard let look = spriteNode.nextLook() else { return  }
-            let cache:RuntimeImageCache = RuntimeImageCache.shared()
+            let cache: RuntimeImageCache = RuntimeImageCache.shared()
             var image = cache.cachedImage(forPath: self.path(for: look))
-            
-            if(image == nil){
+
+            if image == nil {
                 print("LoadImageFromDisk")
                 cache.loadImageFromDisk(withPath: self.path(for: look))
                 guard let imageFromDisk = UIImage(contentsOfFile: self.path(for: look)) else { return }
                 image = imageFromDisk
             }
-           
+
             spriteNode.currentLook = look
             spriteNode.executeFilter(image)
         }

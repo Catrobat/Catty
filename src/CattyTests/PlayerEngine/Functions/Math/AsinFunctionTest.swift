@@ -25,48 +25,48 @@ import XCTest
 @testable import Pocket_Code
 
 class AsinFunctionTest: XCTestCase {
-    
+
     var function: AsinFunction!
-    
+
     override func setUp() {
         function = AsinFunction()
     }
-    
+
     override func tearDown() {
         function = nil
     }
-    
+
     func testDefaultValue() {
         XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: "invalidParameter" as AnyObject), accuracy: 0.0001)
         XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: nil), accuracy: 0.0001)
     }
-    
+
     func testValue() {
         XCTAssertEqual(Util.radians(toDegree: asin(1)), function.value(parameter: 1 as AnyObject), accuracy: 0.0001)
-        
+
         XCTAssertEqual(Util.radians(toDegree: asin(-0.2)), function.value(parameter: -0.2 as AnyObject), accuracy: 0.0001)
     }
-    
+
     func testParameter() {
         XCTAssertEqual(.number(defaultValue: 0), function.firstParameter())
     }
-    
+
     func testTag() {
         XCTAssertEqual("ASIN", type(of: function).tag)
     }
-    
+
     func testName() {
         XCTAssertEqual("arcsin", type(of: function).name)
     }
-    
+
     func testRequiredResources() {
         XCTAssertEqual(ResourceType.noResources, type(of: function).requiredResource)
     }
-    
+
     func testIsIdempotent() {
         XCTAssertTrue(type(of: function).isIdempotent)
     }
-    
+
     func testFormulaEditorSection() {
         XCTAssertEqual(.math(position: type(of: function).position), function.formulaEditorSection())
     }

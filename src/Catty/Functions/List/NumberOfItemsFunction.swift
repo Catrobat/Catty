@@ -21,31 +21,31 @@
  */
 
 class NumberOfItemsFunction: SingleParameterDoubleFunction {
-    
+
     static var tag = "NUMBER_OF_ITEMS"
     static var name = "number_of_items"
     static var defaultValue = 0.0
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = false
     static let position = 240
-    
+
     func tag() -> String {
         return type(of: self).tag
     }
-    
+
     func firstParameter() -> FunctionParameter {
         return .list(defaultValue: "list name")
     }
-    
+
     func value(parameter: AnyObject?) -> Double {
         guard let list = parameter as? UserVariable,
               let elements = list.value as? [AnyObject] else {
             return type(of: self).defaultValue
         }
-        
+
         return Double(elements.count)
     }
-    
+
     func formulaEditorSection() -> FormulaEditorSection {
         return .math(position: (type(of: self).position))
     }

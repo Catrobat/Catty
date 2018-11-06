@@ -38,7 +38,7 @@ struct StoreProgram: Codable {
     let downloadUrl: String?
     let fileSize: Float?
     let featuredImage: String?
-    
+
     private enum CodingKeys: String, CodingKey {
         case projectId = "ProjectId"
         case projectName = "ProjectName"

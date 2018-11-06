@@ -25,48 +25,48 @@ import XCTest
 @testable import Pocket_Code
 
 class FloorFunctionTest: XCTestCase {
-    
+
     var function: FloorFunction!
-    
+
     override func setUp() {
         function = FloorFunction()
     }
-    
+
     override func tearDown() {
         function = nil
     }
-    
+
     func testDefaultValue() {
         XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: "invalidParameter" as AnyObject), accuracy: 0.0001)
         XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: nil), accuracy: 0.0001)
     }
-    
+
     func testValue() {
         XCTAssertEqual(floor(13.45), function.value(parameter: 13.45 as AnyObject), accuracy: 0.0001)
-        
+
         XCTAssertEqual(floor(-4.66), function.value(parameter: -4.66 as AnyObject), accuracy: 0.0001)
     }
-    
+
     func testParameter() {
         XCTAssertEqual(.number(defaultValue: 0.7), function.firstParameter())
     }
-    
+
     func testTag() {
         XCTAssertEqual("FLOOR", type(of: function).tag)
     }
-    
+
     func testName() {
         XCTAssertEqual("floor", type(of: function).name)
     }
-    
+
     func testRequiredResources() {
         XCTAssertEqual(ResourceType.noResources, type(of: function).requiredResource)
     }
-    
+
     func testIsIdempotent() {
         XCTAssertTrue(type(of: function).isIdempotent)
     }
-    
+
     func testFormulaEditorSection() {
         XCTAssertEqual(.math(position: type(of: function).position), function.formulaEditorSection())
     }

@@ -22,38 +22,31 @@
 
 import Foundation
 
-@objc extension PhiroPlayToneBrick :CBInstructionProtocol {
-    
+@objc extension PhiroPlayToneBrick: CBInstructionProtocol {
+
     @nonobjc func instruction() -> CBInstruction {
         guard let object = self.script?.object
             else { fatalError("This should never happen!") }
         return CBInstruction.execClosure { (context, _) in
             let durationInterpretation = context.formulaInterpreter.interpretDouble(self.durationFormula, for: object)
-            
-            guard let phiro:Phiro = BluetoothService.swiftSharedInstance.phiro else { return }
-            
-            switch (self.phiroTone()) {
+
+            guard let phiro: Phiro = BluetoothService.swiftSharedInstance.phiro else { return }
+
+            switch self.phiroTone() {
             case .DO:
-                    phiro.playTone(262, duration: durationInterpretation);
-                break;
+                phiro.playTone(262, duration: durationInterpretation)
             case .RE:
-                    phiro.playTone(294, duration: durationInterpretation);
-                break;
+                phiro.playTone(294, duration: durationInterpretation)
             case .MI:
-                    phiro.playTone(330, duration: durationInterpretation);
-                break;
+                phiro.playTone(330, duration: durationInterpretation)
             case .FA:
-                    phiro.playTone(349, duration: durationInterpretation);
-                break;
+                phiro.playTone(349, duration: durationInterpretation)
             case .SO:
-                    phiro.playTone(392, duration: durationInterpretation);
-                break;
+                phiro.playTone(392, duration: durationInterpretation)
             case .LA:
-                    phiro.playTone(440, duration: durationInterpretation);
-                break;
+                phiro.playTone(440, duration: durationInterpretation)
             case .TI:
-                    phiro.playTone(494, duration: durationInterpretation);
-                break;
+                phiro.playTone(494, duration: durationInterpretation)
             }
             context.state = .runnable
         }

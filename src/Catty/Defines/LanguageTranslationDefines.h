@@ -20,7 +20,6 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-
 /*
      _       _     _                       _              _         _
     / \   __| | __| |   ___ ___  _ __  ___| |_ __ _ _ __ | |_ ___  | |_ ___
@@ -34,7 +33,6 @@
  |_____\__,_|_| |_|\__, |\__,_|\__,_|\__, |\___||_||_|  \__,_|_| |_|___/_|\__,_|\__|_|\___/|_| |_|____/ \___|_| |_|_| |_|\___||___(_)_| |_|
                    |___/             |___/
  */
-
 
 //************************************************************************************************************
 //************************************       TERMS/BUZZWORDS      ********************************************
@@ -297,8 +295,6 @@
 #define kLocalizedEnterYourObjectNameHere NSLocalizedString(@"Enter your object name here...", @"Placeholder for add object-name input field")
 #define kLocalizedEnterYourImageNameHere NSLocalizedString(@"Enter your image name here...", @"Placeholder for add image-name input field")
 #define kLocalizedEnterYourSoundNameHere NSLocalizedString(@"Enter your sound name here...", @"Placeholder for add sound-name input field")
-#define kLocalizedNoImportedSoundsFoundTitle NSLocalizedString(@"No imported sounds found", @"Title of AlertView if the user tries to import a sound but no sound has been imported using iTunes.")
-#define kLocalizedNoImportedSoundsFoundDescription NSLocalizedString(@"Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app.", @"Description of AlertView if the user tries to import a sound but no sound has been imported using iTunes.")
 #define kLocalizedNoOrTooShortInputDescription NSLocalizedString(@"No input. Please enter at least %lu character(s).", nil)
 #define kLocalizedTooLongInputDescription NSLocalizedString(@"The input is too long. Please enter maximal %lu character(s).", nil)
 #define kLocalizedSpaceInputDescription NSLocalizedString(@"Only space is not allowed. Please enter at least %lu other character(s).", nil)
@@ -323,7 +319,6 @@
 //************************************************************************************************************
 //*******************************       BRICK TITLE TRANSLATIONS      ****************************************
 //************************************************************************************************************
-
 
 // control bricks
 #define kLocalizedWhenProgramStarted NSLocalizedString(@"When program started", nil)
@@ -421,7 +416,6 @@
 #define kLocalizedReplaceItemInUserList NSLocalizedString(@"Replace item in list\n%@\nat position %@ with %@", nil)
 #define kLocalizedAt NSLocalizedString(@"at ", nil)
 
-
 #define kLocalizedAddCommentHere NSLocalizedString(@"add comment here...", nil)
 #define kLocalizedMessage1 NSLocalizedString(@"message 1", nil)
 #define kLocalizedHello NSLocalizedString(@"Hello!", nil)
@@ -442,13 +436,10 @@
 #define kLocalizedPhiroIfLogic NSLocalizedString(@"If", nil)
 #define kLocalizedPhiroThenLogic NSLocalizedString(@"is true then", nil)
 
-
 // Arduino bricks
 #define kLocalizedArduinoSetDigitalValue NSLocalizedString(@"Set Arduino digital pin", nil)
 #define kLocalizedArduinoSetPinValueTo NSLocalizedString(@"to", nil)
 #define kLocalizedArduinoSendPWMValue NSLocalizedString(@"Set Arduino PWM~ pin", nil)
-
-
 
 //************************************************************************************************************
 //**********************************       Login/Upload            *******************************************
@@ -527,6 +518,7 @@
 #define kLocalizedPaintItalic NSLocalizedString(@"italic", @"paint")
 #define kLocalizedPaintUnderline NSLocalizedString(@"underline", @"paint")
 #define kLocalizedPaintTextAlert NSLocalizedString(@"Please enter a text!", @"paint")
+
 //************************************************************************************************************
 //************************************       FormulaEditor        ********************************************
 //************************************************************************************************************
@@ -558,7 +550,6 @@
 #define kUIFEVarName NSLocalizedString(@"Variable name:", nil)
 #define kUIFEListName NSLocalizedString(@"List name:", nil)
 #define kUIFEOtherName NSLocalizedString(@"Please choose another name:", nil)
-
 
 #define kUIFEProgramVars NSLocalizedString(@"Program variables:", nil)
 #define kUIFEObjectVars NSLocalizedString(@"Object variables:", nil)
@@ -664,23 +655,22 @@
 //************************************************************************************************************
 //************************************       BrickCategoryTitles        ********************************************
 //************************************************************************************************************
+
 #define kUIFENewText NSLocalizedString(@"New Text", nil)
 #define kUIFETextMessage NSLocalizedString(@"Text message:", nil)
 #define kUIFavouritesTitle NSLocalizedString(@"Frequently Used", @"Title of View where the user can see the frequently used bricks.")
-#define kUIScriptTitle NSLocalizedString(@"Script", nil);
-#define kUIControlTitle NSLocalizedString(@"Control", nil);
-#define kUIMotionTitle  NSLocalizedString(@"Motion", nil);
-#define kUISoundTitle  NSLocalizedString(@"Sound", nil);
-#define kUILookTitle  NSLocalizedString(@"Look", nil);
-#define kUIVariableTitle  NSLocalizedString(@"Variable", nil);
-#define kUIArduinoTitle  NSLocalizedString(@"Arduino", nil);
-#define kUIPhiroTitle  NSLocalizedString(@"Phiro", nil);
-
+#define kUIScriptTitle NSLocalizedString(@"Script", nil)
+#define kUIControlTitle NSLocalizedString(@"Control", nil)
+#define kUIMotionTitle  NSLocalizedString(@"Motion", nil)
+#define kUISoundTitle  NSLocalizedString(@"Sound", nil)
+#define kUILookTitle  NSLocalizedString(@"Look", nil)
+#define kUIVariableTitle  NSLocalizedString(@"Variable", nil)
+#define kUIArduinoTitle  NSLocalizedString(@"Arduino", nil)
+#define kUIPhiroTitle  NSLocalizedString(@"Phiro", nil)
 
 //************************************************************************************************************
 //************************************       PhiroDefines         ********************************************
 //************************************************************************************************************
-
 
 #define kLocalizedPhiroBoth  NSLocalizedString(@"Both", nil)
 #define kLocalizedPhiroLeft  NSLocalizedString(@"Left", nil)
@@ -694,7 +684,6 @@
 #define kLocalizedPhiroLA  NSLocalizedString(@"LA", nil)
 #define kLocalizedPhiroTI  NSLocalizedString(@"TI", nil)
 
-
 #define klocalizedBluetoothSearch NSLocalizedString(@"Search", @"bluetooth")
 #define klocalizedBluetoothKnown NSLocalizedString(@"Known devices", @"bluetooth")
 #define klocalizedBluetoothSelectPhiro NSLocalizedString(@"Select Phiro", @"bluetooth")
@@ -706,7 +695,6 @@
 #define klocalizedBluetoothNotResponding NSLocalizedString(@"Cannot connect to device. The device is not responding.", @"bluetooth")
 #define klocalizedBluetoothConnectionLost NSLocalizedString(@"Connection Lost", @"bluetooth")
 #define klocalizedBluetoothDisconnected NSLocalizedString(@"Device disconnected.", @"bluetooth")
-
 
 //************************************************************************************************************
 //************************************       MediaLibrary        *********************************************
@@ -750,8 +738,6 @@
 //************************************************************************************************************
 #define kLocalizedDebugModeTitle NSLocalizedString(@"Debug mode", nil)
 #define kLocalizedStartedInDebugMode NSLocalizedString(@"Pocket Code has been started in debug mode.", nil)
-
-
 
 /*
      _       _     _                       _              _         _

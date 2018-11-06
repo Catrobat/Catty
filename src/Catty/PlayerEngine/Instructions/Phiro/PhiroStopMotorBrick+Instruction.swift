@@ -22,33 +22,28 @@
 
 import Foundation
 
+@objc extension PhiroMotorStopBrick: CBInstructionProtocol {
 
-@objc extension PhiroMotorStopBrick :CBInstructionProtocol {
-    
     @nonobjc func instruction() -> CBInstruction {
-        
+
         return CBInstruction.execClosure { (context, _) in
-            
-            guard let phiro:Phiro = BluetoothService.swiftSharedInstance.phiro else {
+
+            guard let phiro: Phiro = BluetoothService.swiftSharedInstance.phiro else {
                 //ERROR
-                return;
+                return
             }
-            switch (self.phiroMotor()) {
+            switch self.phiroMotor() {
             case .Left:
-                phiro.stopLeftMotor();
-                break;
+                phiro.stopLeftMotor()
             case .Right:
-                phiro.stopRightMotor();
-                break;
+                phiro.stopRightMotor()
             case .Both:
-                phiro.stopRightMotor();
-                phiro.stopLeftMotor();
-                break;
+                phiro.stopRightMotor()
+                phiro.stopLeftMotor()
             }
             context.state = .runnable
         }
-        
+
     }
 
-    
 }

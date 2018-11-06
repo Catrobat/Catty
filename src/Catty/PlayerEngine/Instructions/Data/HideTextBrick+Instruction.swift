@@ -21,7 +21,7 @@
  */
 
 @objc extension HideTextBrick: CBInstructionProtocol {
-    
+
     @nonobjc func instruction() -> CBInstruction {
 
         guard let spriteObject = self.script?.object,

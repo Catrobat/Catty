@@ -57,7 +57,7 @@ class MediaLibraryDownloaderTests: XCTestCase {
         let downloader = MediaLibraryDownloader(session: mockSession)
         let expectation = XCTestExpectation(description: "Download index for backgrounds")
 
-        downloader.downloadIndex(for: .backgrounds) { categories, error in
+        downloader.downloadIndex(for: .backgrounds) { _, error in
             guard let error = error else { XCTFail("no error returned"); return }
             XCTAssertEqual(error, .unexpectedError)
             expectation.fulfill()
@@ -71,7 +71,7 @@ class MediaLibraryDownloaderTests: XCTestCase {
         let downloader = MediaLibraryDownloader(session: dvrSession)
         let expectation = XCTestExpectation(description: "Download index for backgrounds")
 
-        downloader.downloadIndex(for: .backgrounds) { categories, error in
+        downloader.downloadIndex(for: .backgrounds) { _, error in
             guard let error = error else { XCTFail("no error received"); return }
             switch error {
             case let .request(error: _, statusCode: statusCode):
@@ -90,7 +90,7 @@ class MediaLibraryDownloaderTests: XCTestCase {
         let downloader = MediaLibraryDownloader(session: dvrSession)
         let expectation = XCTestExpectation(description: "Download index for backgrounds")
 
-        downloader.downloadIndex(for: .backgrounds) { categories, error in
+        downloader.downloadIndex(for: .backgrounds) { _, error in
             guard let error = error else { XCTFail("no error received"); return }
             switch error {
             case .parse(error: _):
@@ -127,7 +127,7 @@ class MediaLibraryDownloaderTests: XCTestCase {
         let mediaItem = MediaItem(name: "", fileExtension: "", category: "", relativePath: "", cachedData: nil)
         let expectation = XCTestExpectation(description: "Download background item")
 
-        downloader.downloadData(for: mediaItem) { data, error in
+        downloader.downloadData(for: mediaItem) { _, error in
             guard let error = error else { XCTFail("no error returned"); return }
             switch error {
             case .unexpectedError:
@@ -147,7 +147,7 @@ class MediaLibraryDownloaderTests: XCTestCase {
         let mediaItem = MediaItem(name: "", fileExtension: "", category: "", relativePath: "/pocketcode/download-media/99999", cachedData: nil)
         let expectation = XCTestExpectation(description: "Download background item")
 
-        downloader.downloadData(for: mediaItem) { data, error in
+        downloader.downloadData(for: mediaItem) { _, error in
             guard let error = error else { XCTFail("no error received"); return }
             switch error {
             case let .request(error: _, statusCode: statusCode):
@@ -165,7 +165,7 @@ class MediaLibraryDownloaderTests: XCTestCase {
 // Equatable conformance is added here in order to be able to compare a download operation's error code.
 // Wrapped error values won't be compared.
 extension MediaLibraryDownloadError: Equatable {
-    public static func ==(lhs: MediaLibraryDownloadError, rhs: MediaLibraryDownloadError) -> Bool {
+    public static func == (lhs: MediaLibraryDownloadError, rhs: MediaLibraryDownloadError) -> Bool {
         switch (lhs, rhs) {
         case (.request, .request), (.parse, .parse), (.unexpectedError, .unexpectedError):
             return true

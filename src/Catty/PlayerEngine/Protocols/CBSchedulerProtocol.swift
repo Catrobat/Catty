@@ -20,10 +20,10 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-protocol CBSchedulerProtocol : class {
+protocol CBSchedulerProtocol: class {
 
     // properties
-    var running:Bool { get set }
+    var running: Bool { get set }
 
     // queries
     func isContextScheduled(_ context: CBScriptContextProtocol) -> Bool

@@ -25,48 +25,48 @@ import XCTest
 @testable import Pocket_Code
 
 class CosFunctionTest: XCTestCase {
-    
+
     var function: CosFunction!
-    
+
     override func setUp() {
         function = CosFunction()
     }
-    
+
     override func tearDown() {
         function = nil
     }
-    
+
     func testDefaultValue() {
         XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: "invalidParameter" as AnyObject), accuracy: 0.0001)
         XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: nil), accuracy: 0.0001)
     }
-    
+
     func testValue() {
         XCTAssertEqual(cos(Util.degree(toRadians: 15)), function.value(parameter: 15 as AnyObject), accuracy: 0.0001)
-        
+
         XCTAssertEqual(cos(Util.degree(toRadians: -90)), function.value(parameter: -90 as AnyObject), accuracy: 0.0001)
     }
-    
+
     func testParameter() {
         XCTAssertEqual(.number(defaultValue: 0), function.firstParameter())
     }
-    
+
     func testTag() {
         XCTAssertEqual("COS", type(of: function).tag)
     }
-    
+
     func testName() {
         XCTAssertEqual("cos", type(of: function).name)
     }
-    
+
     func testRequiredResources() {
         XCTAssertEqual(ResourceType.noResources, type(of: function).requiredResource)
     }
-    
+
     func testIsIdempotent() {
         XCTAssertTrue(type(of: function).isIdempotent)
     }
-    
+
     func testFormulaEditorSection() {
         XCTAssertEqual(.math(position: type(of: function).position), function.formulaEditorSection())
     }

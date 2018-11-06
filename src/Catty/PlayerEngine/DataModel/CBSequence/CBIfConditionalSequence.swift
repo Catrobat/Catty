@@ -20,20 +20,18 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-final class CBIfConditionalSequence : CBConditionalSequence {
+final class CBIfConditionalSequence: CBConditionalSequence {
 
     // MARK: - Properties
-    let elseSequenceList : CBSequenceList?
+    let elseSequenceList: CBSequenceList?
 
     // MARK: - Initializers
-    override init(rootSequenceList: CBScriptSequenceList, condition: CBConditionProtocol, sequenceList: CBSequenceList)
-    {
+    override init(rootSequenceList: CBScriptSequenceList, condition: CBConditionProtocol, sequenceList: CBSequenceList) {
         self.elseSequenceList = nil
         super.init(rootSequenceList: rootSequenceList, condition: condition, sequenceList: sequenceList)
     }
 
-    init(rootSequenceList: CBScriptSequenceList, condition: CBConditionProtocol, ifSequenceList: CBSequenceList, elseSequenceList: CBSequenceList)
-    {
+    init(rootSequenceList: CBScriptSequenceList, condition: CBConditionProtocol, ifSequenceList: CBSequenceList, elseSequenceList: CBSequenceList) {
         self.elseSequenceList = elseSequenceList
         super.init(rootSequenceList: rootSequenceList, condition: condition, sequenceList: ifSequenceList)
     }

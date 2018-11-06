@@ -27,25 +27,25 @@ protocol ChartProgramCellProtocol: class {
 }
 
 class ChartProgramCell: UITableViewCell {
-    
+
     weak var delegete: ChartProgramCellProtocol?
     var program: StoreProgram?
 
     @IBOutlet weak var chartProgramImage: UIImageView!
     @IBOutlet weak var chartProgramTitle: UILabel!
-    
+
     var chartImage: UIImage? {
         didSet {
             self.updateTable()
         }
     }
-    
+
     var chartTitle: String? {
         didSet {
             self.updateTable()
         }
     }
-    
+
     func updateTable() {
         chartProgramImage?.image = chartImage
         chartProgramTitle?.text = chartTitle

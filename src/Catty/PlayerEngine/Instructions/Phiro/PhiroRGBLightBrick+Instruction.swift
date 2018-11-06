@@ -22,48 +22,43 @@
 
 import Foundation
 
-@objc extension PhiroRGBLightBrick :CBInstructionProtocol {
-    
+@objc extension PhiroRGBLightBrick: CBInstructionProtocol {
+
     @nonobjc func instruction() -> CBInstruction {
-        
+
         return CBInstruction.execClosure { (context, _) in
             let redValue = self.getFormulaValue(self.redFormula, formulaInterpreter: context.formulaInterpreter)
             let greenValue = self.getFormulaValue(self.greenFormula, formulaInterpreter: context.formulaInterpreter)
             let blueValue = self.getFormulaValue(self.blueFormula, formulaInterpreter: context.formulaInterpreter)
-            
-            
-            guard let phiro:Phiro = BluetoothService.swiftSharedInstance.phiro else {
+
+            guard let phiro: Phiro = BluetoothService.swiftSharedInstance.phiro else {
                 //ERROR
-                return;
+                return
             }
-            
-            switch (self.phiroLight()) {
+
+            switch self.phiroLight() {
             case .LLeft:
-                phiro.setLeftRGBLightColor(redValue, green: greenValue, blue: blueValue);
-                break;
+                phiro.setLeftRGBLightColor(redValue, green: greenValue, blue: blueValue)
             case .LRight:
-                phiro.setRightRGBLightColor(redValue, green: greenValue, blue: blueValue);
-                break;
+                phiro.setRightRGBLightColor(redValue, green: greenValue, blue: blueValue)
             case .LBoth:
-                phiro.setLeftRGBLightColor(redValue, green: greenValue, blue: blueValue);
-                phiro.setRightRGBLightColor(redValue, green: greenValue, blue: blueValue);
-                break;
+                phiro.setLeftRGBLightColor(redValue, green: greenValue, blue: blueValue)
+                phiro.setRightRGBLightColor(redValue, green: greenValue, blue: blueValue)
             }
             context.state = .runnable
         }
-        
+
     }
-    
-    
-    @objc func getFormulaValue(_ formula:Formula, formulaInterpreter: FormulaInterpreterProtocol) -> Int {
+
+    @objc func getFormulaValue(_ formula: Formula, formulaInterpreter: FormulaInterpreterProtocol) -> Int {
         var rgbValue = formulaInterpreter.interpretInteger(formula, for: (self.script?.object)!)
-        if (rgbValue < 0) {
-            rgbValue = 0;
-        } else if (rgbValue > 255) {
-            rgbValue = 255;
+        if rgbValue < 0 {
+            rgbValue = 0
+        } else if rgbValue > 255 {
+            rgbValue = 255
         }
-    
-        return rgbValue;
+
+        return rgbValue
     }
-    
+
 }

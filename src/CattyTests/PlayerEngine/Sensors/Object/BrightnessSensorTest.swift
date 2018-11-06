@@ -25,91 +25,91 @@ import XCTest
 @testable import Pocket_Code
 
 final class BrightnessSensorTest: XCTestCase {
-    
+
     var spriteObject: SpriteObject!
     var spriteNode: CBSpriteNodeMock!
     var sensor: BrightnessSensor!
-    
+
     override func setUp() {
         spriteObject = SpriteObject()
         spriteNode = CBSpriteNodeMock(spriteObject: spriteObject)
         sensor = BrightnessSensor()
     }
-    
+
     override func tearDown() {
         spriteObject = nil
     }
-    
+
     func testDefaultRawValue() {
         spriteObject.spriteNode = nil
         XCTAssertEqual(type(of: sensor).defaultRawValue, type(of: sensor).rawValue(for: spriteObject))
     }
-    
+
     func testRawValue() {
         spriteNode.ciBrightness = -1.0
         XCTAssertEqual(-1.0, type(of: sensor).rawValue(for: spriteObject))
-        
+
         spriteNode.ciBrightness = 1.0
         XCTAssertEqual(1.0, type(of: sensor).rawValue(for: spriteObject))
-        
+
         spriteNode.ciBrightness = 0.5
         XCTAssertEqual(0.5, type(of: sensor).rawValue(for: spriteObject))
     }
-    
+
     func testSetRawValue() {
         let expectedRawValue = type(of: sensor).convertToRaw(userInput: 0.5, for: spriteObject)
         type(of: sensor).setRawValue(userInput: 0.5, for: spriteObject)
         XCTAssertEqual(expectedRawValue, Double(spriteNode.ciBrightness), accuracy: 0.001)
     }
-    
+
     func testConvertToStandardized() {
         // test minimum value
         XCTAssertEqual(0, type(of: sensor).convertToStandardized(rawValue: -1.0, for: spriteObject))
-        
+
         // test maximum value
         XCTAssertEqual(200, type(of: sensor).convertToStandardized(rawValue: 1.0, for: spriteObject))
-        
+
         // test mean value
         XCTAssertEqual(100, type(of: sensor).convertToStandardized(rawValue: 0.0, for: spriteObject))
-        
+
         // test lower than minimum value
         XCTAssertEqual(0, type(of: sensor).convertToStandardized(rawValue: -2.5, for: spriteObject))
-        
+
         // test bigger than maximum value
         XCTAssertEqual(200, type(of: sensor).convertToStandardized(rawValue: 22.0, for: spriteObject))
-        
+
         // test random value
         XCTAssertEqual(175, type(of: sensor).convertToStandardized(rawValue: 0.75, for: spriteObject))
     }
-    
+
     func testConvertToRaw() {
         // test minimum value
         XCTAssertEqual(-1, type(of: sensor).convertToRaw(userInput: 0.0, for: spriteObject))
-        
+
         // test maximum value
         XCTAssertEqual(1, type(of: sensor).convertToRaw(userInput: 200.0, for: spriteObject))
-        
+
         // test mean value
         XCTAssertEqual(0, type(of: sensor).convertToRaw(userInput: 100.0, for: spriteObject))
-        
+
         // test lower than minimum value
         XCTAssertEqual(-1, type(of: sensor).convertToRaw(userInput: -10.0, for: spriteObject))
-        
+
         // test bigger than maximum value
         XCTAssertEqual(1, type(of: sensor).convertToRaw(userInput: 280.0, for: spriteObject))
-        
+
         // test random value
         XCTAssertEqual(-0.17, type(of: sensor).convertToRaw(userInput: 83.0, for: spriteObject))
     }
-    
+
     func testTag() {
         XCTAssertEqual("OBJECT_BRIGHTNESS", sensor.tag())
     }
-    
+
     func testRequiredResources() {
         XCTAssertEqual(ResourceType.noResources, type(of: sensor).requiredResource)
     }
-    
+
     func testFormulaEditorSection() {
         XCTAssertEqual(.object(position: type(of: sensor).position), sensor.formulaEditorSection(for: spriteObject))
     }

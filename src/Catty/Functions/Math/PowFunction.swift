@@ -27,19 +27,19 @@ class PowFunction: DoubleParameterDoubleFunction {
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = true
     static let position = 160
-    
+
     func tag() -> String {
         return type(of: self).tag
     }
-    
+
     func firstParameter() -> FunctionParameter {
         return .number(defaultValue: 2)
     }
-    
+
     func secondParameter() -> FunctionParameter {
         return .number(defaultValue: 3)
     }
-    
+
     func value(firstParameter: AnyObject?, secondParameter: AnyObject?) -> Double {
         guard let base = firstParameter as? Double,
             let exponent = secondParameter as? Double else {
@@ -47,7 +47,7 @@ class PowFunction: DoubleParameterDoubleFunction {
         }
         return pow(base, exponent)
     }
-    
+
     func formulaEditorSection() -> FormulaEditorSection {
         return .math(position: type(of: self).position)
     }

@@ -23,7 +23,6 @@
 import Foundation
 import UIKit
 
-
 @objc public protocol AlertActionAdding {
     @discardableResult
     @objc(addDefaultActionWithTitle:handler:)
@@ -38,9 +37,7 @@ import UIKit
     func addCancelAction(title: String, handler: (() -> Void)?) -> AlertControllerBuilding
 }
 
-
 @objc public protocol AlertControllerBuilding: BuilderProtocol, AlertActionAdding { }
-
 
 final class AlertController: BaseAlertController, AlertControllerBuilding {
     @objc(addCancelActionWithTitle:handler:)

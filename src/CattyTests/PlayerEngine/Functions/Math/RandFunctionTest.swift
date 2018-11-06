@@ -25,120 +25,120 @@ import XCTest
 @testable import Pocket_Code
 
 class RandFunctionTest: XCTestCase {
-    
+
     var function: RandFunction!
-    
+
     override func setUp() {
         function = RandFunction()
     }
-    
+
     override func tearDown() {
         function = nil
     }
-    
+
     func testDefaultValue() {
         XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: "invalidParameter" as AnyObject, secondParameter: "invalidParameter" as AnyObject), accuracy: 0.0001)
         XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: nil, secondParameter: nil), accuracy: 0.0001)
         XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: "invalidParameter" as AnyObject, secondParameter: nil), accuracy: 0.0001)
     }
-    
+
     func testValue() {
         let firstCall = function.value(firstParameter: 10 as AnyObject, secondParameter: 100 as AnyObject)
         XCTAssertGreaterThanOrEqual(firstCall, 10)
         XCTAssertLessThanOrEqual(firstCall, 100)
         XCTAssertEqual(Double(Int(firstCall)), firstCall, accuracy: 0.0001)
-        
+
         let secondCall = function.value(firstParameter: 100 as AnyObject, secondParameter: 10 as AnyObject)
         XCTAssertGreaterThanOrEqual(secondCall, 10)
         XCTAssertLessThanOrEqual(firstCall, 100)
         XCTAssertEqual(Double(Int(secondCall)), secondCall, accuracy: 0.0001)
-        
+
         // there are 1 / [(max - min) + 1] ^ 2 chances of having the same number twice
         XCTAssertNotEqual(firstCall, secondCall)
-        
+
         let float = function.value(firstParameter: 10.5 as AnyObject, secondParameter: 20.8 as AnyObject)
         XCTAssertGreaterThanOrEqual(float, 10.5)
         XCTAssertLessThanOrEqual(float, 20.8)
         XCTAssertNotEqual(Double(Int(float)), float)
     }
-    
+
     func testValueBetweenZeroAndOne() {
         var results = [Double]()
-        
+
         for _ in 1..<50 {
             let value = function.value(firstParameter: 0 as AnyObject, secondParameter: 1 as AnyObject)
             results.append(value)
         }
-        
+
         XCTAssertEqual(2, Set(results).count)
         XCTAssertTrue(results.contains(0))
         XCTAssertTrue(results.contains(1))
     }
-    
+
     func testValueBetweenZeroAndTwo() {
         var results = [Double]()
-        
+
         for _ in 1..<50 {
             let value = function.value(firstParameter: 0 as AnyObject, secondParameter: 2 as AnyObject)
             results.append(value)
         }
-        
+
         XCTAssertEqual(3, Set(results).count)
         XCTAssertTrue(results.contains(0))
         XCTAssertTrue(results.contains(1))
         XCTAssertTrue(results.contains(2))
     }
-    
+
     func testValueWithNegativeAndPositiveParameter() {
         var result = function.value(firstParameter: -350 as AnyObject, secondParameter: 350 as AnyObject)
         XCTAssertGreaterThanOrEqual(result, -350)
         XCTAssertLessThanOrEqual(result, 350)
-        
+
         result = function.value(firstParameter: 350 as AnyObject, secondParameter: -350 as AnyObject)
         XCTAssertGreaterThanOrEqual(result, -350)
         XCTAssertLessThanOrEqual(result, 350)
         XCTAssertEqual(Double(Int(result)), result, accuracy: 0.0001)
     }
-    
+
     func testValueWithSmallParameterRange() {
         var result = function.value(firstParameter: -0.2 as AnyObject, secondParameter: 2 as AnyObject)
         XCTAssertGreaterThanOrEqual(result, -0.2)
         XCTAssertLessThanOrEqual(result, 2)
-        
+
         result = function.value(firstParameter: 0.22 as AnyObject, secondParameter: 0.44 as AnyObject)
         XCTAssertGreaterThanOrEqual(result, 0.22)
         XCTAssertLessThanOrEqual(result, 0.44)
-        
+
         result = function.value(firstParameter: 0.5 as AnyObject, secondParameter: 1 as AnyObject)
         XCTAssertGreaterThanOrEqual(result, 0.5)
         XCTAssertLessThanOrEqual(result, 1)
         XCTAssertNotEqual(Double(Int(result)), result, accuracy: 0.0001)
     }
-    
+
     func testFirstParameter() {
         XCTAssertEqual(.number(defaultValue: 0), function.firstParameter())
     }
-    
+
     func testSecondParameter() {
         XCTAssertEqual(.number(defaultValue: 1), function.secondParameter())
     }
-    
+
     func testTag() {
         XCTAssertEqual("RAND", type(of: function).tag)
     }
-    
+
     func testName() {
         XCTAssertEqual("random", type(of: function).name)
     }
-    
+
     func testRequiredResources() {
         XCTAssertEqual(ResourceType.noResources, type(of: function).requiredResource)
     }
-    
+
     func testIsIdempotent() {
         XCTAssertFalse(type(of: function).isIdempotent)
     }
-    
+
     func testFormulaEditorSection() {
         XCTAssertEqual(.math(position: type(of: function).position), function.formulaEditorSection())
     }

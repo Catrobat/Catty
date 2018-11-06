@@ -38,7 +38,7 @@ final class CBFrontend: CBFrontendProtocol {
         _sequenceFilters += sequenceFilter
     }
 
-    func computeSequenceListForScript(_ script : Script) -> CBScriptSequenceList {
+    func computeSequenceListForScript(_ script: Script) -> CBScriptSequenceList {
         var currentSequenceList = CBSequenceList(rootSequenceList: nil)
         let scriptSequenceList = CBScriptSequenceList(script: script, sequenceList: currentSequenceList)
         var currentOperationSequence = CBOperationSequence(rootSequenceList: scriptSequenceList)
@@ -73,14 +73,14 @@ final class CBFrontend: CBFrontendProtocol {
                 // new sequence list for If
                 currentSequenceList = CBSequenceList(rootSequenceList: scriptSequenceList)
                 currentOperationSequence = CBOperationSequence(rootSequenceList: scriptSequenceList)
-                
+
             case is IfThenLogicBeginBrick:
                 // preserve currentSequenceList and push it to stack
                 sequenceStack.push(currentSequenceList)
                 // new sequence list for If
                 currentSequenceList = CBSequenceList(rootSequenceList: scriptSequenceList)
                 currentOperationSequence = CBOperationSequence(rootSequenceList: scriptSequenceList)
-                
+
             case is IfLogicElseBrick:
                 // preserve currentSequenceList and push it to stack
                 sequenceStack.push(currentSequenceList)
@@ -101,7 +101,7 @@ final class CBFrontend: CBFrontendProtocol {
                     assert(topMostSequenceList != nil, "topMostSequenceList must NOT be nil!")
                     currentSequenceList = topMostSequenceList!
                     ifSequence = CBIfConditionalSequence(rootSequenceList: scriptSequenceList,
-                        condition: ifBrick!, ifSequenceList:currentSequenceList,
+                        condition: ifBrick!, ifSequenceList: currentSequenceList,
                         elseSequenceList: elseSequenceList)
                 }
                 let topMostSequenceList = sequenceStack.pop() // pop currentSequenceList from stack
@@ -109,12 +109,12 @@ final class CBFrontend: CBFrontendProtocol {
                 currentSequenceList = topMostSequenceList!
                 currentSequenceList += ifSequence
                 currentOperationSequence = CBOperationSequence(rootSequenceList: scriptSequenceList)
-            
+
             case let ifLogicEndBrick as IfThenLogicEndBrick:
                 let ifBrick = ifLogicEndBrick.ifBeginBrick
                 let ifSequence = CBIfConditionalSequence(rootSequenceList: scriptSequenceList,
                                                          condition: ifBrick!, sequenceList: currentSequenceList)
-                
+
                 let topMostSequenceList = sequenceStack.pop() // pop currentSequenceList from stack
                 assert(topMostSequenceList != nil, "topMostSequenceList must NOT be nil!")
                 currentSequenceList = topMostSequenceList!

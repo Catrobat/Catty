@@ -21,9 +21,9 @@
  */
 
 @objc extension PlaySoundBrick: CBInstructionProtocol {
-    
+
     @nonobjc func instruction() -> CBInstruction {
-        
+
         guard let objectName = self.script?.object?.name,
             let projectPath = self.script?.object?.projectPath()
             else { fatalError("This should never happen!") }
@@ -37,7 +37,7 @@
 
         return CBInstruction.execClosure { (context, _) in
             //            self.logger.debug("Performing: PlaySoundBrick")
-            DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async{
+            DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async {
                 audioManager?.playSound(withFileName: fileName, andKey: objectName, atFilePath: filePath)
             }
             context.state = .runnable

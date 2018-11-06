@@ -25,8 +25,8 @@ import CoreBluetooth
 import BluetoothHelper
 
 class ConnectedDevicesTableViewController: BluetoothDevicesTableViewController {
-    
-     var connectedDevices:[Peripheral] = Array()
+
+     var connectedDevices: [Peripheral] = Array()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +37,7 @@ class ConnectedDevicesTableViewController: BluetoothDevicesTableViewController {
             CentralManager.sharedInstance.start().onSuccess {
                 self.getConnectedDevices()
             }
-            
+
         }
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -45,20 +45,19 @@ class ConnectedDevicesTableViewController: BluetoothDevicesTableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
-    
-    func getConnectedDevices(){
-        let afterPeripheralDiscovered = {(peripherals:[Peripheral]) -> Void in
+
+    func getConnectedDevices() {
+        let afterPeripheralDiscovered = {(peripherals: [Peripheral]) -> Void in
             self.updateWhenActive()
         }
-        let afterTimeout = {(error:NSError) -> Void in
-    
+        let afterTimeout = {(error: NSError) -> Void in
+
         }
-    
+
         let future: FutureStream<[Peripheral]> = CentralManager.sharedInstance.getConnectedPeripheralsWithServices([])
         future.onSuccess(afterPeripheralDiscovered)
         future.onFailure(afterTimeout)
     }
-
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -76,7 +75,6 @@ class ConnectedDevicesTableViewController: BluetoothDevicesTableViewController {
         return connectedDevices.count
     }
 
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
 
@@ -84,7 +82,6 @@ class ConnectedDevicesTableViewController: BluetoothDevicesTableViewController {
 
         return cell
     }
-    
 
     /*
     // Override to support conditional editing of the table view.

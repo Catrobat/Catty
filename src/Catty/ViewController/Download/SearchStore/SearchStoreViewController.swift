@@ -21,30 +21,30 @@
  */
 
 class SearchStoreViewController: UIViewController, SelectedSearchStoreDataSource, UISearchBarDelegate {
-    
+
     @IBOutlet weak var searchStoreTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
-    
+
     // MARK: - Properties
-    
+
     private var dataSource: SearchStoreDataSource
-    
+
     var loadingView: LoadingView?
     var shouldHideLoadingView = false
     var programForSegue: StoreProgram?
     var catrobatProject: StoreProgram?
     var loadingViewFlag = false
     var noSearchResultsLabel: UILabel!
-    
+
     // MARK: - Initializers
-    
+
     required init?(coder aDecoder: NSCoder) {
         self.dataSource = SearchStoreDataSource.dataSource()
         super.init(coder: aDecoder)
     }
-    
+
     // MARK: - Life Cycle
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
@@ -54,12 +54,12 @@ class SearchStoreViewController: UIViewController, SelectedSearchStoreDataSource
         searchStoreTableView.tableFooterView = UIView(frame: CGRect.zero)
         searchBar.becomeFirstResponder()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         loadingViewHandlerAfterFetchData()
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == kSegueToProgramDetail {
             if let programDetailStoreViewController = segue.destination as? ProgramDetailStoreViewController,
@@ -68,9 +68,9 @@ class SearchStoreViewController: UIViewController, SelectedSearchStoreDataSource
             }
         }
     }
-    
+
     // MARK: - Helper Methods
-    
+
     private func mapStoreProgramToCatrobatProgram(program: StoreProgram) -> CatrobatProgram {
         var programDictionary = [String: Any]()
         programDictionary["ProjectName"] = program.projectName
@@ -88,10 +88,10 @@ class SearchStoreViewController: UIViewController, SelectedSearchStoreDataSource
         programDictionary["Version"] = program.version ?? ""
         programDictionary["Views"] = program.views ?? 0
         programDictionary["FileSize"] = program.fileSize ?? 0.0
-        
+
         return CatrobatProgram(dict: programDictionary, andBaseUrl: kFeaturedImageBaseUrl)
     }
-    
+
     func initNoSearchResultsLabel() {
         DispatchQueue.main.async {
             self.noSearchResultsLabel = UILabel(frame: self.view.frame)
@@ -103,12 +103,12 @@ class SearchStoreViewController: UIViewController, SelectedSearchStoreDataSource
             self.view.addSubview(self.noSearchResultsLabel)
         }
     }
-    
+
     private func showConnectionIssueAlertAndDismiss(error: StoreProgramDownloaderError) {
         var title = ""
         var message = ""
         let buttonTitle = kLocalizedOK
-        
+
         switch error {
         case .timeout:
             title = kLocalizedServerTimeoutIssueTitle
@@ -117,12 +117,12 @@ class SearchStoreViewController: UIViewController, SelectedSearchStoreDataSource
             title = kLocalizedUnexpectedErrorTitle
             message = kLocalizedUnexpectedErrorMessage
         }
-        
+
         AlertControllerBuilder.alert(title: title, message: message)
             .addDefaultAction(title: buttonTitle) { self.navigationController?.popViewController(animated: true) }.build()
             .showWithController(self)
     }
-    
+
     private func setupTableView() {
         self.searchStoreTableView.separatorStyle = UITableViewCellSeparatorStyle.none
         self.searchStoreTableView.backgroundColor = UIColor.background()
@@ -131,7 +131,7 @@ class SearchStoreViewController: UIViewController, SelectedSearchStoreDataSource
         self.searchStoreTableView.delegate = self.dataSource
         self.searchBar.delegate  = self
     }
-    
+
     func loadingViewHandlerAfterFetchData() {
         if loadingViewFlag == false {
             self.showLoadingView()
@@ -143,7 +143,7 @@ class SearchStoreViewController: UIViewController, SelectedSearchStoreDataSource
             loadingViewFlag = false
         }
     }
-    
+
     func showLoadingView() {
         if loadingView == nil {
             loadingView = LoadingView()
@@ -152,7 +152,7 @@ class SearchStoreViewController: UIViewController, SelectedSearchStoreDataSource
         loadingView?.show()
         loadingIndicator(true)
     }
-    
+
     func hideLoadingView() {
         if shouldHideLoadingView {
             loadingView?.hide()
@@ -160,16 +160,16 @@ class SearchStoreViewController: UIViewController, SelectedSearchStoreDataSource
             self.shouldHideLoadingView = false
         }
     }
-    
+
     func loadingIndicator(_ value: Bool) {
         let app = UIApplication.shared
         app.isNetworkActivityIndicatorVisible = value
     }
-    
+
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.count > 2 {
             hideNoResultsAlert()
-            
+
             showLoadingView()
             self.dataSource.fetchItems(searchTerm: searchText) { error in
                 if error != nil {
@@ -188,11 +188,11 @@ class SearchStoreViewController: UIViewController, SelectedSearchStoreDataSource
             self.updateTableView()
         }
     }
-    
+
     public func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
     }
-    
+
     public func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
     }
@@ -209,21 +209,21 @@ extension SearchStoreViewController: SearchStoreCellProtocol {
 }
 
 extension SearchStoreViewController {
-    
+
     func updateTableView() {
         self.searchStoreTableView.reloadData()
         self.searchStoreTableView.separatorStyle = UITableViewCellSeparatorStyle.none
     }
-    
+
     func showNoResultsAlert() {
         self.searchStoreTableView.separatorStyle = UITableViewCellSeparatorStyle.none
         noSearchResultsLabel.isHidden = false
     }
-    
+
     func hideNoResultsAlert() {
         noSearchResultsLabel.isHidden = true
     }
-    
+
     func errorAlertHandler(error: StoreProgramDownloaderError) {
         self.shouldHideLoadingView = true
         self.hideLoadingView()
@@ -231,7 +231,6 @@ extension SearchStoreViewController {
         self.searchStoreTableView.separatorStyle = .singleLine
         return
     }
-    
 
     func showLoadingIndicator() {
         DispatchQueue.main.async {
@@ -239,7 +238,7 @@ extension SearchStoreViewController {
             self.showLoadingView()
         }
     }
-    
+
     func hideLoadingIndicator() {
         DispatchQueue.main.async {
             self.shouldHideLoadingView = true
