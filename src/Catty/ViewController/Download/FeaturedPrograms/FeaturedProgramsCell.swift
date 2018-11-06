@@ -33,13 +33,15 @@ class FeaturedProgramsCell: UITableViewCell {
     
     @IBOutlet weak var featuredImageView: UIImageView!
     
-    var featuredImage: UIImage? {
+    var featuredImage: String? {
         didSet {
             self.updateTable()
         }
     }
     
     func updateTable() {
-        featuredImageView?.image = featuredImage
+        if ((featuredImage) != nil) {
+            featuredImageView?.kf.setImage(with: URL(string: featuredImage!))
+        }
     }
 }
