@@ -44,21 +44,21 @@ class RandFunctionTest: XCTestCase {
     
     func testValue() {
         let firstCall = function.value(firstParameter: 10 as AnyObject, secondParameter: 100 as AnyObject)
-        XCTAssertGreaterThan(firstCall, 9.9999)
-        XCTAssertLessThan(firstCall, 99.9999)
+        XCTAssertGreaterThanOrEqual(firstCall, 10)
+        XCTAssertLessThanOrEqual(firstCall, 100)
         XCTAssertEqual(Double(Int(firstCall)), firstCall, accuracy: 0.0001)
         
         let secondCall = function.value(firstParameter: 100 as AnyObject, secondParameter: 10 as AnyObject)
-        XCTAssertGreaterThan(secondCall, 9.9999)
-        XCTAssertLessThan(secondCall, 99.9999)
+        XCTAssertGreaterThanOrEqual(secondCall, 10)
+        XCTAssertLessThanOrEqual(firstCall, 100)
         XCTAssertEqual(Double(Int(secondCall)), secondCall, accuracy: 0.0001)
         
         // there are 1 / [(max - min) + 1] ^ 2 chances of having the same number twice
         XCTAssertNotEqual(firstCall, secondCall)
         
         let float = function.value(firstParameter: 10.5 as AnyObject, secondParameter: 20.8 as AnyObject)
-        XCTAssertGreaterThan(float, 10.4999)
-        XCTAssertLessThan(float, 20.7999)
+        XCTAssertGreaterThanOrEqual(float, 10.5)
+        XCTAssertLessThanOrEqual(float, 20.8)
         XCTAssertNotEqual(Double(Int(float)), float)
     }
     
@@ -91,27 +91,27 @@ class RandFunctionTest: XCTestCase {
     
     func testValueWithNegativeAndPositiveParameter() {
         var result = function.value(firstParameter: -350 as AnyObject, secondParameter: 350 as AnyObject)
-        XCTAssertGreaterThan(result, -350)
-        XCTAssertLessThan(result, 350)
+        XCTAssertGreaterThanOrEqual(result, -350)
+        XCTAssertLessThanOrEqual(result, 350)
         
         result = function.value(firstParameter: 350 as AnyObject, secondParameter: -350 as AnyObject)
-        XCTAssertGreaterThan(result, -350)
-        XCTAssertLessThan(result, 350)
+        XCTAssertGreaterThanOrEqual(result, -350)
+        XCTAssertLessThanOrEqual(result, 350)
         XCTAssertEqual(Double(Int(result)), result, accuracy: 0.0001)
     }
     
     func testValueWithSmallParameterRange() {
         var result = function.value(firstParameter: -0.2 as AnyObject, secondParameter: 2 as AnyObject)
-        XCTAssertGreaterThan(result, -0.2)
-        XCTAssertLessThan(result, 2)
+        XCTAssertGreaterThanOrEqual(result, -0.2)
+        XCTAssertLessThanOrEqual(result, 2)
         
         result = function.value(firstParameter: 0.22 as AnyObject, secondParameter: 0.44 as AnyObject)
-        XCTAssertGreaterThan(result, 0.22)
-        XCTAssertLessThan(result, 0.44)
+        XCTAssertGreaterThanOrEqual(result, 0.22)
+        XCTAssertLessThanOrEqual(result, 0.44)
         
         result = function.value(firstParameter: 0.5 as AnyObject, secondParameter: 1 as AnyObject)
-        XCTAssertGreaterThan(result, 0.5)
-        XCTAssertLessThan(result, 1)
+        XCTAssertGreaterThanOrEqual(result, 0.5)
+        XCTAssertLessThanOrEqual(result, 1)
         XCTAssertNotEqual(Double(Int(result)), result, accuracy: 0.0001)
     }
     

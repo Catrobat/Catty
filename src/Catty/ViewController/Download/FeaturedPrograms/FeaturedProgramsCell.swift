@@ -40,7 +40,7 @@ class FeaturedProgramsCell: UITableViewCell {
     }
     
     func updateTable() {
-        if ((featuredImage) != nil) {
+        if (featuredImage != nil) {
             featuredImageView?.kf.setImage(with: URL(string: featuredImage!))
         }
     }
