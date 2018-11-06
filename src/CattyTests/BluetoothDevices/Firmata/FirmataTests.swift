@@ -350,7 +350,14 @@ final class FirmataTests: XCTestCase {
         let bytestoSend: [UInt8] = [START_SYSEX, ANALOG_MAPPING_RESPONSE, bytes[0], bytes[1], bytes[2], bytes[3], END_SYSEX]
         let receivedData: Data = Data(bytes: UnsafePointer<UInt8>(bytestoSend), count: 7)
 
-        let givenMapping = NSMutableDictionary(objects: [NSNumber(value: 0 as UInt8), NSNumber(value: 1 as UInt8), NSNumber(value: 2 as UInt8), NSNumber(value: 3 as UInt8)], forKeys: [NSNumber(value: 0 as UInt8), NSNumber(value: 1 as UInt8), NSNumber(value: 2 as UInt8), NSNumber(value: 3 as UInt8)])
+        let givenMapping = NSMutableDictionary(objects: [NSNumber(value: 0 as UInt8),
+                                                         NSNumber(value: 1 as UInt8),
+                                                         NSNumber(value: 2 as UInt8),
+                                                         NSNumber(value: 3 as UInt8)],
+                                               forKeys: [NSNumber(value: 0 as UInt8),
+                                                         NSNumber(value: 1 as UInt8),
+                                                         NSNumber(value: 2 as UInt8),
+                                                         NSNumber(value: 3 as UInt8)])
         //When
         mock.testfirmata.receiveData(receivedData)
         //Then

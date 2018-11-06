@@ -77,7 +77,14 @@ import UIKit
 
         descriptionTextView.isAccessibilityElement = true
         descriptionTextView.accessibilityIdentifier = "descriptionTextView"
-        descriptionTextView.setAnchors(top: header.bottomAnchor, left: view.safeLeftAnchor, right: view.safeRightAnchor, bottom: nil, topPadding: 20, leftPadding: 20, rightPadding: 20, bottomPadding: 0)
+        descriptionTextView.setAnchors(top: header.bottomAnchor,
+                                       left: view.safeLeftAnchor,
+                                       right: view.safeRightAnchor,
+                                       bottom: nil,
+                                       topPadding: 20,
+                                       leftPadding: 20,
+                                       rightPadding: 20,
+                                       bottomPadding: 0)
         //manual constraint (because we need to store the bottom anchor)
         descriptionTextViewBottomConstraint = descriptionTextView.bottomAnchor.constraint(equalTo: view.safeBottomAnchor, constant: -20)
         descriptionTextViewBottomConstraint.isActive = true

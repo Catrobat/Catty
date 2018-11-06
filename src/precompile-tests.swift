@@ -208,7 +208,8 @@ func licenseCheck(_ filePath: String, fileContent: String, lineNumberOffset: Int
     }
 
     let lineNumber = 1 // license header must be at the very top of source file
-    let errorMessage: String = "\(filePath):\(lineNumber + lineNumberOffset): error : No valid License Header at the beginning of the file found! Maybe the license header is valid but contains some whitespaces at the end of some lines!\n"
+    let errorMessage: String = "\(filePath):\(lineNumber + lineNumberOffset): error : No valid License Header at the beginning of the file found! "
+        + "Maybe the license header is valid but contains some whitespaces at the end of some lines!\n"
     return (true, errorMessage)
 }
 

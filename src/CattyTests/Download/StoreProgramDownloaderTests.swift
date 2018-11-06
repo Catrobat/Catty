@@ -411,7 +411,12 @@ class StoreProgramsDowloaderTests: XCTestCase {
         let dvrSession = Session(cassetteName: "StoreProgramDownloader.downloadData.success")
         let downloader = StoreProgramDownloader(session: dvrSession)
 
-        let program = StoreProgram(projectId: 821, projectName: "Whack A Mole", projectNameShort: "", author: "VesnaK", description: "", version: "", views: 0, downloads: 0, isPrivate: false, uploaded: 0, uploadedString: "", screenshotBig: "", screenshotSmall: "", projectUrl: "", downloadUrl: "", fileSize: 1.0, featuredImage: "")
+        let program = StoreProgram(projectId: 821,
+                                   projectName: "Whack A Mole", projectNameShort: "",
+                                   author: "VesnaK", description: "", version: "",
+                                   views: 0, downloads: 0, isPrivate: false, uploaded: 0,
+                                   uploadedString: "", screenshotBig: "", screenshotSmall: "",
+                                   projectUrl: "", downloadUrl: "", fileSize: 1.0, featuredImage: "")
         let expectation = XCTestExpectation(description: "Download Featured Program")
 
         downloader.downloadProgram(for: program) { data, error in
@@ -427,7 +432,12 @@ class StoreProgramsDowloaderTests: XCTestCase {
         let mockSession = URLSessionMock()
         let downloader = StoreProgramDownloader(session: mockSession)
         let expectation = XCTestExpectation(description: "Fetch Featured Programs")
-        let program = StoreProgram(projectId: 821, projectName: "Whack A Mole", projectNameShort: "", author: "VesnaK", description: "", version: "", views: 0, downloads: 0, isPrivate: false, uploaded: 0, uploadedString: "", screenshotBig: "", screenshotSmall: "", projectUrl: "", downloadUrl: "", fileSize: 1.0, featuredImage: "")
+        let program = StoreProgram(projectId: 821, projectName: "Whack A Mole",
+                                   projectNameShort: "", author: "VesnaK",
+                                   description: "", version: "", views: 0, downloads: 0,
+                                   isPrivate: false, uploaded: 0, uploadedString: "",
+                                   screenshotBig: "", screenshotSmall: "", projectUrl: "",
+                                   downloadUrl: "", fileSize: 1.0, featuredImage: "")
 
         downloader.downloadProgram(for: program) { _, error in
             guard let error = error else { XCTFail("no error returned"); return }
@@ -442,7 +452,12 @@ class StoreProgramsDowloaderTests: XCTestCase {
         let dvrSession = Session(cassetteName: "StoreProgramDownloader.downloadData.fail.request")
         let downloader = StoreProgramDownloader(session: dvrSession)
         let expectation = XCTestExpectation(description: "Fetch Featured Programs")
-        let program = StoreProgram(projectId: 821, projectName: "Whack A Mole", projectNameShort: "", author: "VesnaK", description: "", version: "", views: 0, downloads: 0, isPrivate: false, uploaded: 0, uploadedString: "", screenshotBig: "", screenshotSmall: "", projectUrl: "", downloadUrl: "", fileSize: 1.0, featuredImage: "")
+        let program = StoreProgram(projectId: 821, projectName: "Whack A Mole",
+                                   projectNameShort: "", author: "VesnaK", description: "",
+                                   version: "", views: 0, downloads: 0, isPrivate: false,
+                                   uploaded: 0, uploadedString: "", screenshotBig: "",
+                                   screenshotSmall: "", projectUrl: "", downloadUrl: "",
+                                   fileSize: 1.0, featuredImage: "")
 
         downloader.downloadProgram(for: program) { _, error in
             guard let error = error else { XCTFail("no error received"); return }

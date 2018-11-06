@@ -27,26 +27,18 @@ class ProgramsTVCTests: XCTestCase, UITestProtocol {
     override func setUp() {
         super.setUp()
 
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-
-        // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
-        // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
         XCUIApplication().launch()
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
 
         dismissWelcomeScreenIfShown()
         restoreDefaultProgram()
     }
 
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
 
     func testCanAddNewProgram() {
-
         let app = XCUIApplication()
         app.tables.staticTexts["Programs"].tap()
         app.toolbars.buttons["Add"].tap()
@@ -64,7 +56,6 @@ class ProgramsTVCTests: XCTestCase, UITestProtocol {
     }
 
     func testCanCancelAddNewProgram() {
-
         let app = XCUIApplication()
         app.tables.staticTexts["Programs"].tap()
         app.toolbars.buttons["Add"].tap()
@@ -78,7 +69,6 @@ class ProgramsTVCTests: XCTestCase, UITestProtocol {
     }
 
     func testCanCancelEdit() {
-
         let app = XCUIApplication()
         app.tables.staticTexts["Programs"].tap()
         app.navigationBars["Programs"].buttons["Edit"].tap()
@@ -88,7 +78,6 @@ class ProgramsTVCTests: XCTestCase, UITestProtocol {
     }
 
     func testCanCancelMoreActionSheetMenu() {
-
         let app = XCUIApplication()
         app.tables.staticTexts["Programs"].tap()
 
@@ -103,7 +92,6 @@ class ProgramsTVCTests: XCTestCase, UITestProtocol {
     }
 
     func testCanCopyMyFirstProgram() {
-
         let app = XCUIApplication()
         app.tables.staticTexts["Programs"].tap()
 
@@ -136,7 +124,6 @@ class ProgramsTVCTests: XCTestCase, UITestProtocol {
     }
 
     func testCanCancelCopyMyFirstProgram() {
-
         let app = XCUIApplication()
         app.tables.staticTexts["Programs"].tap()
 
@@ -169,7 +156,6 @@ class ProgramsTVCTests: XCTestCase, UITestProtocol {
     }
 
     func testCanRenameMyFirstProgram() {
-
         let app = XCUIApplication()
         app.tables.staticTexts["Programs"].tap()
 
@@ -203,7 +189,6 @@ class ProgramsTVCTests: XCTestCase, UITestProtocol {
     }
 
     func testCanCancelRenameMyFirstProgram() {
-
         let app = XCUIApplication()
         app.tables.staticTexts["Programs"].tap()
 

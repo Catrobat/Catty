@@ -33,7 +33,13 @@ final class CBScene: SKScene {
     private final let formulaManager: FormulaManagerProtocol
     private final let logger: CBLogger
 
-    init(size: CGSize, logger: CBLogger, scheduler: CBSchedulerProtocol, frontend: CBFrontendProtocol, backend: CBBackendProtocol, broadcastHandler: CBBroadcastHandlerProtocol, formulaManager: FormulaManagerProtocol) {
+    init(size: CGSize,
+         logger: CBLogger,
+         scheduler: CBSchedulerProtocol,
+         frontend: CBFrontendProtocol,
+         backend: CBBackendProtocol,
+         broadcastHandler: CBBroadcastHandlerProtocol,
+         formulaManager: FormulaManagerProtocol) {
         self.logger = logger
         self.scheduler = scheduler
         self.frontend = frontend

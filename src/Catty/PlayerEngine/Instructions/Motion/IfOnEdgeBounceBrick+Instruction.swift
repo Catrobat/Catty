@@ -94,7 +94,10 @@ private let EPSILON = 0.0001
 
     func isLookingUp(_ rotation: Double) -> Bool {
         let normalizedRotation = self.normalizeRotation(rotation)
-        if (self.isGreaterOrEqual(normalizedRotation, second: 0.0) && self.isLess(normalizedRotation, second: 90.0)) || (self.isGreater(normalizedRotation, second: 270.0) && self.isLessOrEqual(normalizedRotation, second: 360.0)) {
+        if (self.isGreaterOrEqual(normalizedRotation, second: 0.0) &&
+            self.isLess(normalizedRotation, second: 90.0)) ||
+            (self.isGreater(normalizedRotation, second: 270.0) &&
+             self.isLessOrEqual(normalizedRotation, second: 360.0)) {
             return true
         }
         return false

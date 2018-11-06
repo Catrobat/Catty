@@ -36,7 +36,17 @@ final class StoreProgramDownloader: StoreProgramDownloaderProtocol {
 
     func fetchSearchQuery(searchTerm: String, completion: @escaping (StoreProgramCollection.StoreProgramCollectionNumber?, StoreProgramDownloaderError?) -> Void) {
 
-        guard let indexURL = URL(string: String(format: "%@/%@?q=%@&%@%i&%@%i&%@%@", kConnectionHost, kConnectionSearch, searchTerm.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? "", kProgramsLimit, kSearchStoreMaxResults, kProgramsOffset, 0, kMaxVersion, Util.catrobatLanguageVersion())) else { return }
+        guard let indexURL = URL(string: String(format: "%@/%@?q=%@&%@%i&%@%i&%@%@",
+                                                kConnectionHost,
+                                                kConnectionSearch,
+                                                searchTerm.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? "",
+                                                kProgramsLimit,
+                                                kSearchStoreMaxResults,
+                                                kProgramsOffset,
+                                                0,
+                                                kMaxVersion,
+                                                Util.catrobatLanguageVersion()))
+            else { return }
 
         self.session.dataTask(with: indexURL) { (data, response, error) in
             let handleDataTaskCompletion: (Data?, URLResponse?, Error?) -> (items: StoreProgramCollection.StoreProgramCollectionNumber?, error: StoreProgramDownloaderError?)
@@ -73,7 +83,8 @@ final class StoreProgramDownloader: StoreProgramDownloaderProtocol {
             indexURL = url
 
         case .mostDownloaded:
-            guard let url = URL(string: "\(kConnectionHost)/\(kConnectionMostDownloaded)?\(kProgramsOffset)\(offset)\(kProgramsLimit)\(kRecentProgramsMaxResults)&\(kMaxVersion)\(version)") else { return }
+            guard let url = URL(string: "\(kConnectionHost)/\(kConnectionMostDownloaded)?\(kProgramsOffset)"
+                + "\(offset)\(kProgramsLimit)\(kRecentProgramsMaxResults)&\(kMaxVersion)\(version)") else { return }
             indexURL = url
 
         case .mostViewed:

@@ -45,18 +45,47 @@ import CoreLocation
         let touchManager = TouchManager()
         let bluetoothService = BluetoothService.sharedInstance()
 
-        let sensorManager = FormulaManager.buildSensorManager(motionManager: motionManager, locationManager: locationManager, faceDetectionManager: faceDetectionManager, audioManager: audioManager, touchManager: touchManager, bluetoothService: bluetoothService)
+        let sensorManager =
+            FormulaManager.buildSensorManager(motionManager: motionManager,
+                                              locationManager: locationManager,
+                                              faceDetectionManager: faceDetectionManager,
+                                              audioManager: audioManager,
+                                              touchManager: touchManager,
+                                              bluetoothService: bluetoothService)
 
-        let functionManager = FormulaManager.buildFunctionManager(touchManager: touchManager, bluetoothService: bluetoothService)
+        let functionManager =
+            FormulaManager.buildFunctionManager(touchManager: touchManager,
+                                                bluetoothService: bluetoothService)
 
-        self.init(sensorManager: sensorManager, functionManager: functionManager, motionManager: motionManager, locationManager: locationManager, faceDetectionManager: faceDetectionManager, audioManager: audioManager, touchManager: touchManager, bluetoothService: bluetoothService)
+        self.init(sensorManager: sensorManager,
+                  functionManager: functionManager,
+                  motionManager: motionManager,
+                  locationManager: locationManager,
+                  faceDetectionManager: faceDetectionManager,
+                  audioManager: audioManager,
+                  touchManager: touchManager,
+                  bluetoothService: bluetoothService)
     }
 
     convenience init(sensorManager: SensorManagerProtocol, functionManager: FunctionManagerProtocol) {
-        self.init(sensorManager: sensorManager, functionManager: functionManager, motionManager: CMMotionManager(), locationManager: CLLocationManager(), faceDetectionManager: FaceDetectionManager.shared, audioManager: AudioManager(), touchManager: TouchManager(), bluetoothService: BluetoothService.sharedInstance())
+        self.init(sensorManager: sensorManager,
+                  functionManager: functionManager,
+                  motionManager: CMMotionManager(),
+                  locationManager: CLLocationManager(),
+                  faceDetectionManager: FaceDetectionManager.shared,
+                  audioManager: AudioManager(),
+                  touchManager: TouchManager(),
+                  bluetoothService: BluetoothService.sharedInstance())
     }
 
-    init(sensorManager: SensorManagerProtocol, functionManager: FunctionManagerProtocol, motionManager: MotionManager, locationManager: LocationManager, faceDetectionManager: FaceDetectionManagerProtocol, audioManager: AudioManagerProtocol, touchManager: TouchManagerProtocol, bluetoothService: BluetoothService) {
+    init(sensorManager: SensorManagerProtocol,
+         functionManager: FunctionManagerProtocol,
+         motionManager: MotionManager,
+         locationManager: LocationManager,
+         faceDetectionManager: FaceDetectionManagerProtocol,
+         audioManager: AudioManagerProtocol,
+         touchManager: TouchManagerProtocol,
+         bluetoothService: BluetoothService) {
 
         self.sensorManager = sensorManager
         self.functionManager = functionManager
@@ -77,7 +106,12 @@ import CoreLocation
         return self.sensorManager.exists(tag: tag)
     }
 
-    private static func buildSensorManager(motionManager: MotionManager, locationManager: LocationManager, faceDetectionManager: FaceDetectionManager, audioManager: AudioManagerProtocol, touchManager: TouchManagerProtocol, bluetoothService: BluetoothService) -> SensorManager {
+    private static func buildSensorManager(motionManager: MotionManager,
+                                           locationManager: LocationManager,
+                                           faceDetectionManager: FaceDetectionManager,
+                                           audioManager: AudioManagerProtocol,
+                                           touchManager: TouchManagerProtocol,
+                                           bluetoothService: BluetoothService) -> SensorManager {
 
         let sensorList: [Sensor] = [
             LoudnessSensor(audioManagerGetter: { audioManager }),

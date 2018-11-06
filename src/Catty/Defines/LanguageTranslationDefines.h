@@ -34,6 +34,8 @@
                    |___/             |___/
  */
 
+// swiftlint:disable line_length
+
 //************************************************************************************************************
 //************************************       TERMS/BUZZWORDS      ********************************************
 //************************************************************************************************************
@@ -738,6 +740,8 @@
 //************************************************************************************************************
 #define kLocalizedDebugModeTitle NSLocalizedString(@"Debug mode", nil)
 #define kLocalizedStartedInDebugMode NSLocalizedString(@"Pocket Code has been started in debug mode.", nil)
+
+// swiftlint:enable line_length
 
 /*
      _       _     _                       _              _         _

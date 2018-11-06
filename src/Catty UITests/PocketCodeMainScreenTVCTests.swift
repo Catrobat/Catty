@@ -27,29 +27,18 @@ class PocketCodeMainScreenTVCTests: XCTestCase, UITestProtocol {
     override func setUp() {
         super.setUp()
 
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-
-        // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
-        // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
         XCUIApplication().launch()
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
 
         dismissWelcomeScreenIfShown()
         restoreDefaultProgram()
     }
 
     override func tearDown() {
-
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
 
     func testContinue() {
-
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
         restoreDefaultProgram()
 
         let app = XCUIApplication()
@@ -59,7 +48,6 @@ class PocketCodeMainScreenTVCTests: XCTestCase, UITestProtocol {
     }
 
     func testNew() {
-
         let app = XCUIApplication()
 
         app.tables.staticTexts["New"].tap()
@@ -88,9 +76,10 @@ class PocketCodeMainScreenTVCTests: XCTestCase, UITestProtocol {
     }
 
     func testNewInvalidNames() {
-
         let progNamesErrorMsgMap = ["": "No input. Please enter at least 1 character.",
-                                    "i am tooooooo looooogi am tooooooo looooogi am tooooooo looooogi am tooooooo looooogi am tooooooo looooogi am tooooooo looooogi am tooooooo looooogi am tooooooo looooogi am tooooooo looooogi am tooooooo looooogi am tooooooo looooogi am tooooooo looooog": "The input is too long. Please enter maximal 250 character(s).",
+                                    "i am tooooooo looooogi am tooooooo looooogi am tooooooo looooogi am tooooooo looooogi am tooooooo looooogi am "
+                                    + "tooooooo looooogi am tooooooo looooogi am tooooooo looooogi am tooooooo "
+                                    + "looooogi am tooooooo looooogi am tooooooo looooogi am tooooooo looooog": "The input is too long. Please enter maximal 250 character(s).",
                                     ".": "Only special characters are not allowed. Please enter at least 1 other character.",
                                     "/": "Only special characters are not allowed. Please enter at least 1 other character.",
                                     "./": "Only special characters are not allowed. Please enter at least 1 other character.",
@@ -116,8 +105,7 @@ class PocketCodeMainScreenTVCTests: XCTestCase, UITestProtocol {
     }
 
     func testNewCanceled() {
-
-        let app = XCUIApplication()
+       let app = XCUIApplication()
         app.tables.staticTexts["New"].tap()
 
         let alertQuery = app.alerts["New Program"]
@@ -128,7 +116,6 @@ class PocketCodeMainScreenTVCTests: XCTestCase, UITestProtocol {
     }
 
     func testPrograms() {
-
         let programNames = ["testProgram1", "testProgram2", "testProgram3"]
 
         let app = XCUIApplication()
@@ -159,7 +146,6 @@ class PocketCodeMainScreenTVCTests: XCTestCase, UITestProtocol {
     }
 
     func testHelp() {
-
         let app = XCUIApplication()
         app.tables.staticTexts["Help"].tap()
 
@@ -167,7 +153,6 @@ class PocketCodeMainScreenTVCTests: XCTestCase, UITestProtocol {
     }
 
     func testExplore() {
-
         let app = XCUIApplication()
         app.tables.staticTexts["Explore"].tap()
 
@@ -175,7 +160,6 @@ class PocketCodeMainScreenTVCTests: XCTestCase, UITestProtocol {
     }
 
     func testUpload() {
-
         let app = XCUIApplication()
         app.tables.staticTexts["Upload"].tap()
 
@@ -183,7 +167,6 @@ class PocketCodeMainScreenTVCTests: XCTestCase, UITestProtocol {
     }
 
     func testDebugMode() {
-
         let app = XCUIApplication()
         app.navigationBars.buttons["Debug mode"].tap()
 
@@ -194,7 +177,6 @@ class PocketCodeMainScreenTVCTests: XCTestCase, UITestProtocol {
     }
 
     func testSettings() {
-
         let app = XCUIApplication()
         app.navigationBars.buttons["Item"].tap()
 

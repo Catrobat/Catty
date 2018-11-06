@@ -27,28 +27,18 @@ class BackgroundsTVCTests: XCTestCase, UITestProtocol {
     override func setUp() {
         super.setUp()
 
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-
-        // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
-        // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
         XCUIApplication().launch()
 
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
-
         dismissWelcomeScreenIfShown()
-
         restoreDefaultProgram()
-
     }
 
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
 
     func testScriptsCanEnterScripts() {
-
         let app = XCUIApplication()
 
         app.tables.staticTexts["Programs"].tap()
@@ -60,7 +50,6 @@ class BackgroundsTVCTests: XCTestCase, UITestProtocol {
     }
 
     func testScriptsCanDeleteAllScriptsViaDelete() {
-
         let app = XCUIApplication()
         let toolbarsQuery = app.toolbars
 
@@ -78,7 +67,6 @@ class BackgroundsTVCTests: XCTestCase, UITestProtocol {
     }
 
     func testScriptsCanDeleteWhenProgramStartsViaTap() {
-
         let app = XCUIApplication()
 
         testScriptsCanEnterScripts()
@@ -95,7 +83,6 @@ class BackgroundsTVCTests: XCTestCase, UITestProtocol {
     }
 
     func testBackgroundsCanEnterBackgrounds() {
-
         let app = XCUIApplication()
 
         app.tables.staticTexts["Continue"].tap()
@@ -107,7 +94,6 @@ class BackgroundsTVCTests: XCTestCase, UITestProtocol {
     }
 
     func testBackgroundsCanCopyAndDeleteSingleBackgroundViaEditMode() {
-
         let app = XCUIApplication()
         let toolbarsQuery = app.toolbars
 
@@ -132,7 +118,6 @@ class BackgroundsTVCTests: XCTestCase, UITestProtocol {
     }
 
     func testBackgroundsCanDeleteAllBackgroundsViaEditMode() {
-
         let app = XCUIApplication()
         let toolbarsQuery = app.toolbars
 
@@ -165,8 +150,8 @@ class BackgroundsTVCTests: XCTestCase, UITestProtocol {
 
         XCTAssertEqual(app.tables.staticTexts.count, 0)
     }
-    func testBackgroundsCanAbortDeleteAllBackgroundsViaEditMode() {
 
+    func testBackgroundsCanAbortDeleteAllBackgroundsViaEditMode() {
         let app = XCUIApplication()
         let toolbarsQuery = app.toolbars
 
@@ -204,7 +189,6 @@ class BackgroundsTVCTests: XCTestCase, UITestProtocol {
     }
 
     func testBackgroundsCanDeleteSingleBackgroundViaSwipe() {
-
         let app = XCUIApplication()
         let tablesQuery = app.tables
 
@@ -221,7 +205,6 @@ class BackgroundsTVCTests: XCTestCase, UITestProtocol {
     }
 
     func testBackgroundsCanAbortDeleteSingleBackgroundViaSwipe() {
-
         let app = XCUIApplication()
         let tablesQuery = app.tables
 
@@ -238,7 +221,6 @@ class BackgroundsTVCTests: XCTestCase, UITestProtocol {
     }
 
     func testBackgroundsCanShowAndHideDetailsForBackgroundViaEditMode() {
-
         let app = XCUIApplication()
         testBackgroundsCanEnterBackgrounds()
 
@@ -263,7 +245,6 @@ class BackgroundsTVCTests: XCTestCase, UITestProtocol {
     }
 
     func testSoundsCanEnterSounds() {
-
         let app = XCUIApplication()
 
         app.tables.staticTexts["Programs"].tap()

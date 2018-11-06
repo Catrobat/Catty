@@ -64,6 +64,7 @@ final class FunctionTests: XCTestCase {
         XCTAssertEqual(type(of: functionB).name + type(of: functionB).bracketOpen + parameters[0].defaultValueForFunctionSignature() + type(of: functionB).bracketClose, functionB.nameWithParameters())
 
         parameters = functionC.parameters()
-        XCTAssertEqual(type(of: functionC).name + type(of: functionC).bracketOpen + parameters[0].defaultValueForFunctionSignature() + type(of: functionC).parameterDelimiter + parameters[1].defaultValueForFunctionSignature() + type(of: functionC).bracketClose, functionC.nameWithParameters())
+        XCTAssertEqual(type(of: functionC).name + type(of: functionC).bracketOpen + parameters[0].defaultValueForFunctionSignature() + type(of: functionC).parameterDelimiter +
+            parameters[1].defaultValueForFunctionSignature() + type(of: functionC).bracketClose, functionC.nameWithParameters())
     }
 }

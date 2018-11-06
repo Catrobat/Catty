@@ -27,11 +27,7 @@ class MyFirstProgramVCTests: XCTestCase, UITestProtocol {
     override func setUp() {
         super.setUp()
 
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-
-        // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
-        // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
         XCUIApplication().launch()
 
         dismissWelcomeScreenIfShown()
@@ -39,13 +35,11 @@ class MyFirstProgramVCTests: XCTestCase, UITestProtocol {
     }
 
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
 
     func testCanDeleteMultipleObjectsViaEditMode() {
-
-        let app = XCUIApplication()
+      let app = XCUIApplication()
         app.tables.staticTexts["Programs"].tap()
         app.tables.staticTexts["My first program"].tap()
         app.navigationBars["My first program"].buttons["Edit"].tap()
@@ -62,7 +56,6 @@ class MyFirstProgramVCTests: XCTestCase, UITestProtocol {
     }
 
     func testCanRenameProgramViaEditMode() {
-
         let app = XCUIApplication()
         app.tables.staticTexts["Programs"].tap()
         app.tables.staticTexts["My first program"].tap()
@@ -90,7 +83,6 @@ class MyFirstProgramVCTests: XCTestCase, UITestProtocol {
     }
 
     func testCanAbortRenameProgramViaEditMode() {
-
         let app = XCUIApplication()
         app.tables.staticTexts["Programs"].tap()
         app.tables.staticTexts["My first program"].tap()
@@ -117,7 +109,6 @@ class MyFirstProgramVCTests: XCTestCase, UITestProtocol {
     }
 
     func testCanShowAndHideDetailsViaEditMode() {
-
         let app = XCUIApplication()
         app.tables.staticTexts["Programs"].tap()
         app.tables.staticTexts["My first program"].tap()
@@ -142,7 +133,6 @@ class MyFirstProgramVCTests: XCTestCase, UITestProtocol {
     }
 
     func testCanEditDescriptionViaEditMode() {
-
         let app = XCUIApplication()
         app.tables.staticTexts["Programs"].tap()
         app.tables.staticTexts["My first program"].tap()
@@ -165,7 +155,6 @@ class MyFirstProgramVCTests: XCTestCase, UITestProtocol {
     }
 
     func testCanAbortEditDescriptionViaEditMode() {
-
         let app = XCUIApplication()
         app.tables.staticTexts["Programs"].tap()
         app.tables.staticTexts["My first program"].tap()
@@ -179,7 +168,6 @@ class MyFirstProgramVCTests: XCTestCase, UITestProtocol {
     }
 
     func testCanAbortDeleteSingleObjectViaSwipe() {
-
         let app = XCUIApplication()
         app.tables.staticTexts["Programs"].tap()
         app.tables.staticTexts["My first program"].tap()
@@ -194,7 +182,6 @@ class MyFirstProgramVCTests: XCTestCase, UITestProtocol {
     }
 
     func testCanDeleteSingleObjectViaSwipe() {
-
         let app = XCUIApplication()
         app.tables.staticTexts["Programs"].tap()
         app.tables.staticTexts["My first program"].tap()
@@ -209,7 +196,6 @@ class MyFirstProgramVCTests: XCTestCase, UITestProtocol {
     }
 
     func testCanRenameSingleObjectViaSwipe() {
-
         let app = XCUIApplication()
         app.tables.staticTexts["Programs"].tap()
         app.tables.staticTexts["My first program"].tap()
@@ -229,7 +215,6 @@ class MyFirstProgramVCTests: XCTestCase, UITestProtocol {
     }
 
     func testCanAbortRenameSingleObjectViaSwipe() {
-
         let app = XCUIApplication()
         app.tables.staticTexts["Programs"].tap()
         app.tables.staticTexts["My first program"].tap()
@@ -249,7 +234,6 @@ class MyFirstProgramVCTests: XCTestCase, UITestProtocol {
     }
 
     func testCanCopySingleObjectViaSwipe() {
-
         let app = XCUIApplication()
         app.tables.staticTexts["Programs"].tap()
         app.tables.staticTexts["My first program"].tap()
@@ -264,7 +248,6 @@ class MyFirstProgramVCTests: XCTestCase, UITestProtocol {
     }
 
     func testCanAbortSwipe() {
-
         let app = XCUIApplication()
         app.tables.staticTexts["Programs"].tap()
         app.tables.staticTexts["My first program"].tap()

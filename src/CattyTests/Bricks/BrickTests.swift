@@ -63,6 +63,8 @@ final class BrickTests: XCTestCase {
         XCTAssertEqual(1, script.brickList.count, "Invalid number of Bricks")
 
         let brick = script.brickList[0] as! SetVariableBrick
-        XCTAssertEqual(1.0, formulaManager.interpretDouble(brick.variableFormula, for: SpriteObject()), "Invalid formula")
+        XCTAssertEqual(1.0,
+                       formulaManager.interpretDouble(brick.variableFormula, for: SpriteObject()),
+                       "Invalid formula")
     }
 }

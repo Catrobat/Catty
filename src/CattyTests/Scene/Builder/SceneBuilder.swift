@@ -30,6 +30,8 @@ final class CBSceneMock: CBScene {
         let formulaManager = FormulaManager()
         let scheduler = CBScheduler(logger: logger, broadcastHandler: broadcastHandler, formulaInterpreter: formulaManager)
         scheduler.running = true
-        super(size: size, logger: logger, scheduler: scheduler, frontend: CBFrontend(logger: logger, program: nil), backend: CBBackend(logger: logger), broadcastHandler: broadcastHandler, formulaManager: formulaManager)
+        super(size: size, logger: logger, scheduler: scheduler,
+        frontend: CBFrontend(logger: logger, program: nil), backend: CBBackend(logger: logger),
+        broadcastHandler: broadcastHandler, formulaManager: formulaManager)
     }
 }

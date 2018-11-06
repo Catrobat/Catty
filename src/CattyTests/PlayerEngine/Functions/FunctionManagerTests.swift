@@ -144,7 +144,10 @@ final class FunctionManagerTests: XCTestCase {
     func testValue() {
         let functionA = ZeroParameterDoubleFunctionMock(tag: "tagA", value: 12.3)
         let functionB = SingleParameterDoubleFunctionMock(tag: "tagB", value: 45.6, parameter: FunctionParameter.number(defaultValue: 2))
-        let functionC = DoubleParameterDoubleFunctionMock(tag: "tagC", value: 78.9, firstParameter: FunctionParameter.number(defaultValue: 2), secondParameter: FunctionParameter.number(defaultValue: 3))
+        let functionC = DoubleParameterDoubleFunctionMock(tag: "tagC",
+                                                          value: 78.9,
+                                                          firstParameter: FunctionParameter.number(defaultValue: 2),
+                                                          secondParameter: FunctionParameter.number(defaultValue: 3))
         let functionD = SingleParameterStringFunctionMock(tag: "tagD", value: "test", parameter: FunctionParameter.number(defaultValue: 2))
 
         var manager = FunctionManager(functions: [])
@@ -153,14 +156,21 @@ final class FunctionManagerTests: XCTestCase {
         manager = FunctionManager(functions: [functionA, functionB, functionC, functionD])
         XCTAssertEqual(functionA.value(), manager.value(tag: functionA.tag(), firstParameter: nil, secondParameter: nil, spriteObject: spriteObject) as! Double)
         XCTAssertEqual(functionB.value(parameter: nil), manager.value(tag: functionB.tag(), firstParameter: nil, secondParameter: nil, spriteObject: spriteObject) as! Double)
-        XCTAssertEqual(functionC.value(firstParameter: nil, secondParameter: nil), manager.value(tag: functionC.tag(), firstParameter: nil, secondParameter: nil, spriteObject: spriteObject) as! Double)
+        XCTAssertEqual(functionC.value(firstParameter: nil, secondParameter: nil),
+                       manager.value(tag: functionC.tag(),
+                                     firstParameter: nil,
+                                     secondParameter: nil, spriteObject: spriteObject) as! Double)
         XCTAssertEqual(functionD.value(parameter: nil), manager.value(tag: functionD.tag(), firstParameter: nil, secondParameter: nil, spriteObject: spriteObject) as! String)
     }
 
     func testFormulaEditorItems() {
         let functionA = ZeroParameterDoubleFunctionMock(tag: "tagA", value: 12.3, formulaEditorSection: .hidden)
         let functionB = SingleParameterDoubleFunctionMock(tag: "tagB", value: 45.6, parameter: FunctionParameter.list(defaultValue: "list"), formulaEditorSection: .device(position: 1))
-        let functionC = DoubleParameterDoubleFunctionMock(tag: "tagC", value: 12.3, firstParameter: FunctionParameter.list(defaultValue: "list"), secondParameter: FunctionParameter.number(defaultValue: 1), formulaEditorSection: .object(position: 2))
+        let functionC = DoubleParameterDoubleFunctionMock(tag: "tagC",
+                                                          value: 12.3,
+                                                          firstParameter: FunctionParameter.list(defaultValue: "list"),
+                                                          secondParameter: FunctionParameter.number(defaultValue: 1),
+                                                          formulaEditorSection: .object(position: 2))
 
         let manager = FunctionManager(functions: [functionA, functionB, functionC])
         let items = manager.formulaEditorItems()

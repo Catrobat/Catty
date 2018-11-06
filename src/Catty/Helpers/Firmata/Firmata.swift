@@ -22,38 +22,38 @@
 import Foundation
 
 // message command bytes (128-255/0x80-0xFF)
-let START_SYSEX: UInt8   = 0xF0
-let SET_PIN_MODE: UInt8   = 0xF4
-let RESET: UInt8   = 0xFF
-let END_SYSEX: UInt8   = 0xF7
-let REPORT_VERSION: UInt8   = 0xF9 // report firmware version
+let START_SYSEX: UInt8 = 0xF0
+let SET_PIN_MODE: UInt8 = 0xF4
+let RESET: UInt8 = 0xFF
+let END_SYSEX: UInt8 = 0xF7
+let REPORT_VERSION: UInt8 = 0xF9 // report firmware version
 
 // extended command set using sysex (0-127/0x00-0x7F)
 /* 0x00-0x0F reserved for user-defined commands */
-let REPORT_ANALOG: UInt8   = 0xC0 // query for analog pin
-let REPORT_DIGITAL: UInt8   = 0xD0 // query for digital pin
-let ANALOG_MESSAGE: UInt8   = 0xE0 // data for a analog pin
+let REPORT_ANALOG: UInt8 = 0xC0 // query for analog pin
+let REPORT_DIGITAL: UInt8 = 0xD0 // query for digital pin
+let ANALOG_MESSAGE: UInt8 = 0xE0 // data for a analog pin
 
-let REPORT_FIRMWARE: UInt8   = 0x79 // report name and version of the firmware
-let DIGITAL_MESSAGE: UInt8   = 0x90 // data for a digital port
+let REPORT_FIRMWARE: UInt8 = 0x79 // report name and version of the firmware
+let DIGITAL_MESSAGE: UInt8 = 0x90 // data for a digital port
 
-let RESERVED_COMMAND: UInt8   = 0x00 // 2nd SysEx data byte is a chip-specific command (AVR, PIC, TI, etc).
-let ANALOG_MAPPING_QUERY: UInt8   = 0x69 // ask for mapping of analog to pin numbers
-let ANALOG_MAPPING_RESPONSE: UInt8   = 0x6A // reply with mapping info
-let CAPABILITY_QUERY: UInt8   = 0x6B // ask for supported modes and resolution of all pins
-let CAPABILITY_RESPONSE: UInt8   = 0x6C // reply with supported modes and resolution
-let PIN_STATE_QUERY: UInt8   = 0x6D // ask for a pin's current mode and value
-let PIN_STATE_RESPONSE: UInt8   = 0x6E // reply with a pin's current mode and value
-let EXTENDED_ANALOG: UInt8   = 0x6F // analog write (PWM, Servo, etc) to any pin
-let SERVO_CONFIG: UInt8   = 0x70 // set max angle, minPulse, maxPulse, freq
-let STRING_DATA: UInt8   = 0x71 // a string message with 14-bits per char
-let SHIFT_DATA: UInt8   = 0x75 // shiftOut config/data message (34 bits)
-let I2C_REQUEST: UInt8   = 0x76 // I2C request messages from a host to an I/O board
-let I2C_REPLY: UInt8   = 0x77 // I2C reply messages from an I/O board to a host
-let I2C_CONFIG: UInt8   = 0x78 // Configure special I2C settings such as power pins and delay times
-let SAMPLING_INTERVAL: UInt8   = 0x7A // sampling interval
-let SYSEX_NON_REALTIME: UInt8   = 0x7E // MIDI Reserved for non-realtime messages
-let SYSEX_REALTIME: UInt8   = 0x7F // MIDI Reserved for realtime messages
+let RESERVED_COMMAND: UInt8 = 0x00 // 2nd SysEx data byte is a chip-specific command (AVR, PIC, TI, etc).
+let ANALOG_MAPPING_QUERY: UInt8 = 0x69 // ask for mapping of analog to pin numbers
+let ANALOG_MAPPING_RESPONSE: UInt8 = 0x6A // reply with mapping info
+let CAPABILITY_QUERY: UInt8 = 0x6B // ask for supported modes and resolution of all pins
+let CAPABILITY_RESPONSE: UInt8 = 0x6C // reply with supported modes and resolution
+let PIN_STATE_QUERY: UInt8 = 0x6D // ask for a pin's current mode and value
+let PIN_STATE_RESPONSE: UInt8 = 0x6E // reply with a pin's current mode and value
+let EXTENDED_ANALOG: UInt8 = 0x6F // analog write (PWM, Servo, etc) to any pin
+let SERVO_CONFIG: UInt8 = 0x70 // set max angle, minPulse, maxPulse, freq
+let STRING_DATA: UInt8 = 0x71 // a string message with 14-bits per char
+let SHIFT_DATA: UInt8 = 0x75 // shiftOut config/data message (34 bits)
+let I2C_REQUEST: UInt8 = 0x76 // I2C request messages from a host to an I/O board
+let I2C_REPLY: UInt8 = 0x77 // I2C reply messages from an I/O board to a host
+let I2C_CONFIG: UInt8 = 0x78 // Configure special I2C settings such as power pins and delay times
+let SAMPLING_INTERVAL: UInt8 = 0x7A // sampling interval
+let SYSEX_NON_REALTIME: UInt8 = 0x7E // MIDI Reserved for non-realtime messages
+let SYSEX_REALTIME: UInt8 = 0x7F // MIDI Reserved for realtime messages
 
 enum PinState: Int {
     case low = 0

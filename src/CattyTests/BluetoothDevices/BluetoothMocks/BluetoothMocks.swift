@@ -185,7 +185,14 @@ class CharacteristicMock: CBCharacteristic {
 
 class ArduinoTestMock: ArduinoPropertyProtocol {
     internal var totalPins = 3
-    internal var analogMapping = NSMutableDictionary(objects: [NSNumber(value: 0 as UInt8), NSNumber(value: 1 as UInt8), NSNumber(value: 2 as UInt8), NSNumber(value: 3 as UInt8)], forKeys: [NSNumber(value: 0 as UInt8), NSNumber(value: 1 as UInt8), NSNumber(value: 2 as UInt8), NSNumber(value: 3 as UInt8)])
+    internal var analogMapping = NSMutableDictionary(objects: [NSNumber(value: 0 as UInt8),
+                                                               NSNumber(value: 1 as UInt8),
+                                                               NSNumber(value: 2 as UInt8),
+                                                               NSNumber(value: 3 as UInt8)],
+                                                     forKeys: [NSNumber(value: 0 as UInt8),
+                                                               NSNumber(value: 1 as UInt8),
+                                                               NSNumber(value: 2 as UInt8),
+                                                               NSNumber(value: 3 as UInt8)])
     internal var pinsArray = [[String: Any]]()
 
     internal let arduinoHelper: ArduinoHelper = ArduinoHelper()
