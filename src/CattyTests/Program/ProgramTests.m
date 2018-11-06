@@ -87,14 +87,13 @@
 
 - (void)testCopyObjectWithIfThenLogicBeginBrick
 {
-    NSString *objectName = @"object";
+    NSString *objectName = @"newObject";
     NSString *copiedObjectName = @"copiedObject";
     
-    Program * program = [Program new];
+    [self setupForNewProgram];
     
     SpriteObject* object = [SpriteObject new];
     object.name = objectName;
-    StartScript *script = [StartScript new];
     
     IfThenLogicBeginBrick *ifThenLogicBeginBrick = [IfThenLogicBeginBrick new];
     ifThenLogicBeginBrick.ifCondition = [[Formula alloc] initWithDouble:2];
@@ -103,17 +102,19 @@
     ifThenLogicBeginBrick.ifEndBrick = ifThenLogicEndBrick;
     ifThenLogicEndBrick.ifBeginBrick = ifThenLogicBeginBrick;
     
+    StartScript *script = [StartScript new];
     [script.brickList addObjectsFromArray:@[ifThenLogicBeginBrick, ifThenLogicEndBrick]];
     [object.scriptList addObject:script];
-    [program.objectList addObject:object];
+    [self.program.objectList addObject:object];
     
-    SpriteObject *copiedObject = [program copyObject:object withNameForCopiedObject:copiedObjectName];
+    NSUInteger initialObjectSize = self.program.objectList.count;
+    
+    SpriteObject *copiedObject = [self.program copyObject:object withNameForCopiedObject:copiedObjectName];
     XCTAssertEqual(1, copiedObject.scriptList.count);
     
-    NSArray<SpriteObject*> *objectList = program.objectList;
-    XCTAssertEqual(2, objectList.count);
-    XCTAssertTrue([objectList[0].name isEqualToString:objectName]);
-    XCTAssertTrue([objectList[1].name isEqualToString:copiedObjectName]);
+    NSArray<SpriteObject*> *objectList = self.program.objectList;
+    XCTAssertEqual(initialObjectSize + 1, objectList.count);
+    XCTAssertTrue([objectList[initialObjectSize].name isEqualToString:copiedObjectName]);
     
     XCTAssertEqual(2, copiedObject.scriptList[0].brickList.count);
     XCTAssertTrue([copiedObject.scriptList[0].brickList[0] isKindOfClass:[IfThenLogicBeginBrick class]]);
@@ -130,14 +131,13 @@
 
 - (void)testCopyObjectWithIfTLogicBeginBrick
 {
-    NSString *objectName = @"object";
+    NSString *objectName = @"newObject";
     NSString *copiedObjectName = @"copiedObject";
     
-    Program * program = [Program new];
+    [self setupForNewProgram];
     
     SpriteObject* object = [SpriteObject new];
     object.name = objectName;
-    StartScript *script = [StartScript new];
     
     IfLogicBeginBrick *ifLogicBeginBrick = [IfLogicBeginBrick new];
     ifLogicBeginBrick.ifCondition = [[Formula alloc] initWithDouble:1];
@@ -151,17 +151,19 @@
     ifLogicEndBrick.ifBeginBrick = ifLogicBeginBrick;
     ifLogicEndBrick.ifElseBrick = ifLogicElseBrick;
     
+    StartScript *script = [StartScript new];
     [script.brickList addObjectsFromArray:@[ifLogicBeginBrick, ifLogicElseBrick, ifLogicEndBrick]];
     [object.scriptList addObject:script];
-    [program.objectList addObject:object];
+    [self.program.objectList addObject:object];
     
-    SpriteObject *copiedObject = [program copyObject:object withNameForCopiedObject:copiedObjectName];
+    NSUInteger initialObjectSize = self.program.objectList.count;
+    
+    SpriteObject *copiedObject = [self.program copyObject:object withNameForCopiedObject:copiedObjectName];
     XCTAssertEqual(1, copiedObject.scriptList.count);
     
-    NSArray<SpriteObject*> *objectList = program.objectList;
-    XCTAssertEqual(2, objectList.count);
-    XCTAssertTrue([objectList[0].name isEqualToString:objectName]);
-    XCTAssertTrue([objectList[1].name isEqualToString:copiedObjectName]);
+    NSArray<SpriteObject*> *objectList = self.program.objectList;
+    XCTAssertEqual(initialObjectSize + 1, objectList.count);
+    XCTAssertTrue([objectList[initialObjectSize].name isEqualToString:copiedObjectName]);
     
     XCTAssertEqual(3, copiedObject.scriptList[0].brickList.count);
     XCTAssertTrue([copiedObject.scriptList[0].brickList[0] isKindOfClass:[IfLogicBeginBrick class]]);
