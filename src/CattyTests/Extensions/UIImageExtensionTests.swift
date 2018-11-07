@@ -116,7 +116,7 @@ final class UIImageExtensionTests: XCTestCase {
     }
 
     func testTransparencyARGB() {
-      let pixels: [PixelDataARGB] = [
+        let pixels: [PixelDataARGB] = [
             PixelDataARGB(a: 0, r: 0, g: 0, b: 0),
             PixelDataARGB(a: 255, r: 0, g: 0, b: 0),
             PixelDataARGB(a: 10, r: 10, g: 10, b: 10)

@@ -32,7 +32,7 @@
 
         let userList = self.userList
 
-        return CBInstruction.execClosure { (context, _) in
+        return CBInstruction.execClosure { context, _ in
             if userList != nil {
                 let valueResult = context.formulaInterpreter.interpret(elementFormula, for: spriteObject)
                 let positionResult = context.formulaInterpreter.interpret(position, for: spriteObject)

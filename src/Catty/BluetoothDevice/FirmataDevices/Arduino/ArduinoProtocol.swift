@@ -20,9 +20,9 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import Foundation
-import CoreBluetooth
 import BluetoothHelper
+import CoreBluetooth
+import Foundation
 
 @objc protocol ArduinoProtocol {
     func setDigitalArduinoPin(_ digitalPinNumber: Int, pinValue: Int)

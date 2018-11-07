@@ -20,8 +20,8 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import CoreMotion
 import CoreLocation
+import CoreMotion
 
 // MARK: - CoreMotion protocol conformance
 

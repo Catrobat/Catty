@@ -52,7 +52,7 @@ final class FingerYSensorTest: XCTestCase {
 
     func testDefaultRawValue() {
         let sensor = FingerYSensor { nil }
-        XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(), accuracy: 0.0001)
+        XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(), accuracy: Double.epsilon)
     }
 
     func testRawValue() {
@@ -66,10 +66,10 @@ final class FingerYSensorTest: XCTestCase {
     func testConvertToStandardized() {
         touchManager.lastTouch = CGPoint(x: 200, y: 200) // a random point to mock the screen touching
 
-        XCTAssertEqual(Double(screenHeight/2), sensor.convertToStandardized(rawValue: 0, for: spriteObject))
-        XCTAssertEqual(Double(screenHeight/2) - 100, sensor.convertToStandardized(rawValue: 100, for: spriteObject))
-        XCTAssertEqual(Double(screenHeight/2) - 333, sensor.convertToStandardized(rawValue: 333, for: spriteObject))
-        XCTAssertEqual(Double(screenHeight/2) + 333, sensor.convertToStandardized(rawValue: -333, for: spriteObject))
+        XCTAssertEqual(Double(screenHeight / 2), sensor.convertToStandardized(rawValue: 0, for: spriteObject))
+        XCTAssertEqual(Double(screenHeight / 2) - 100, sensor.convertToStandardized(rawValue: 100, for: spriteObject))
+        XCTAssertEqual(Double(screenHeight / 2) - 333, sensor.convertToStandardized(rawValue: 333, for: spriteObject))
+        XCTAssertEqual(Double(screenHeight / 2) + 333, sensor.convertToStandardized(rawValue: -333, for: spriteObject))
     }
 
     func testTag() {

@@ -69,7 +69,8 @@ final class ChooseCameraBrickTests: XCTestCase {
         switch instruction {
         case let .execClosure(closure):
             closure(context, scheduler)
-        default: break
+        default:
+            break
         }
 
         XCTAssertEqual(AVCaptureDevice.Position.back, CameraPreviewHandler.shared().cameraPosition)
@@ -84,7 +85,8 @@ final class ChooseCameraBrickTests: XCTestCase {
         switch instruction! {
         case let .execClosure(closure):
             closure(context, scheduler)
-        default: break
+        default:
+            break
         }
 
         XCTAssertEqual(AVCaptureDevice.Position.back, CameraPreviewHandler.shared().cameraPosition)
@@ -99,7 +101,8 @@ final class ChooseCameraBrickTests: XCTestCase {
         switch instruction! {
         case let .execClosure(closure):
             closure(context, scheduler)
-        default: break
+        default:
+            break
         }
 
         XCTAssertEqual(AVCaptureDevice.Position.front, CameraPreviewHandler.shared().cameraPosition)

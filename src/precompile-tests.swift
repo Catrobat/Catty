@@ -1,3 +1,4 @@
+// swiftlint:disable all
 #!/usr/bin/env xcrun swift -I .
 /**
  *  Copyright (C) 2010-2018 The Catrobat Team
@@ -361,3 +362,4 @@ do {
 } catch {
     printErrorAndExitIfFailed("\(#file):\(pathToReadmeFileLine): error: Unable to open file or invalid filePath given!\n")
 }
+// swiftlint:enable all

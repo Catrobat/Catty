@@ -25,7 +25,7 @@ import Foundation
 extension Data: Serialize {
 
     public static func fromString(_ value: String, encoding: String.Encoding = String.Encoding.utf8) -> Data? {
-        return value.data(using: encoding).map {(NSData(data: $0) as Data)}
+        return value.data(using: encoding).map { (NSData(data: $0) as Data) }
     }
 
     public static func serialize<T>(_ value: T) -> Data {
@@ -35,9 +35,9 @@ extension Data: Serialize {
     }
 
     public static func serializeArray<T>(_ values: [T]) -> Data {
-        let littleValues = values.map {fromHostByteOrder($0)}
+        let littleValues = values.map { fromHostByteOrder($0) }
         let bytes = UnsafeRawPointer(littleValues).assumingMemoryBound(to: UInt8.self)
-        return Data(bytes: bytes, count: MemoryLayout<T>.size*littleValues.count)
+        return Data(bytes: bytes, count: MemoryLayout<T>.size * littleValues.count)
     }
 
     public static func serialize<T1, T2>(_ value1: T1, value2: T2) -> Data {
@@ -58,7 +58,7 @@ extension Data: Serialize {
         var dataBytes = [UInt8](repeating: 0x0, count: self.count)
         (self as NSData).getBytes(&dataBytes, length: self.count)
         let hexString = dataBytes.reduce("") {(out: String, dataByte: UInt8) in
-            return out + (NSString(format: "%02lx", dataByte) as String)
+            out + (NSString(format: "%02lx", dataByte) as String)
         }
         return hexString
     }

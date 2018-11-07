@@ -45,12 +45,12 @@ class PositionXSensor: ObjectDoubleSensor {
 
     static func convertToRaw(userInput: Double, for spriteObject: SpriteObject) -> Double {
         guard let scene = spriteObject.spriteNode.scene else { return defaultRawValue }
-        return Double(scene.size.width)/2.0 + userInput
+        return Double(scene.size.width) / 2.0 + userInput
     }
 
     static func convertToStandardized(rawValue: Double, for spriteObject: SpriteObject) -> Double {
         guard let spriteNode = spriteObject.spriteNode, let scene = spriteNode.scene else { return defaultRawValue }
-        return rawValue - Double(scene.size.width)/2.0
+        return rawValue - Double(scene.size.width) / 2.0
     }
 
     func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {

@@ -37,14 +37,14 @@ class LogFunctionTest: XCTestCase {
     }
 
     func testDefaultValue() {
-        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: "invalidParameter" as AnyObject), accuracy: 0.0001)
-        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: nil), accuracy: 0.0001)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: "invalidParameter" as AnyObject), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: nil), accuracy: Double.epsilon)
     }
 
     func testValue() {
-        XCTAssertEqual(log10(100), function.value(parameter: 100 as AnyObject), accuracy: 0.0001)
+        XCTAssertEqual(log10(100), function.value(parameter: 100 as AnyObject), accuracy: Double.epsilon)
 
-        XCTAssertEqual(log10(156), function.value(parameter: 156 as AnyObject), accuracy: 0.0001)
+        XCTAssertEqual(log10(156), function.value(parameter: 156 as AnyObject), accuracy: Double.epsilon)
     }
 
     func testParameter() {

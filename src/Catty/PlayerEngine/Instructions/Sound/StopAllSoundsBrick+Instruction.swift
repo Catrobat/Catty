@@ -26,7 +26,7 @@
 
         let audioManager = AudioManager.shared()
 
-        return CBInstruction.execClosure { (context, _) in
+        return CBInstruction.execClosure { context, _ in
             //            self.logger.debug("Performing: StopAllSoundsBrick")
             audioManager?.stopAllSounds()
             context.state = .runnable

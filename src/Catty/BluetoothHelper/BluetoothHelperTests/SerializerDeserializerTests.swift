@@ -20,9 +20,9 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import XCTest
-import CoreBluetooth
 import BluetoothHelper
+import CoreBluetooth
+import XCTest
 
 class SerializerDeserializerTests: XCTestCase {
 
@@ -85,9 +85,9 @@ class SerializerDeserializerTests: XCTestCase {
     // MARK: Deserialize UINT16
 
     func testDeserializeUInt16Sucess() {
-        let data = Serializer.serialize(UInt16(20000))
+        let data = Serializer.serialize(UInt16(20_000))
         if let value: UInt16 = Deserializer.deserialize(data) {
-            XCTAssert(value == 20000, "UInt16 deserialization value invalid: \(value)")
+            XCTAssert(value == 20_000, "UInt16 deserialization value invalid: \(value)")
         } else {
             XCTFail("UInt16 deserialization failed")
         }
@@ -102,9 +102,9 @@ class SerializerDeserializerTests: XCTestCase {
     // MARK: Deserialize INT16
 
     func testDeserializeInt16Sucess() {
-        let data = Serializer.serialize(Int16(-10000))
+        let data = Serializer.serialize(Int16(-10_000))
         if let value: Int16 = Deserializer.deserialize(data) {
-            XCTAssert(value == -10000, "Int16 deserialization value invalid: \(value)")
+            XCTAssert(value == -10_000, "Int16 deserialization value invalid: \(value)")
         } else {
             XCTFail("Int16 deserialization failed")
         }
@@ -117,7 +117,7 @@ class SerializerDeserializerTests: XCTestCase {
         }
     }
 
-     // MARK: Deserialize UINT8 Array
+    // MARK: Deserialize UINT8 Array
     func testDeserializeUInt8Array() {
         let value: [UInt8] = [10, 20]
         let data = Serializer.serialize(value)
@@ -134,17 +134,17 @@ class SerializerDeserializerTests: XCTestCase {
     }
     // MARK: Deserialize UINT8 Array
     func testDeserializeUInt16Array() {
-        let value: [UInt16] = [20000, 1000]
+        let value: [UInt16] = [20_000, 1_000]
         let data = Serializer.serialize(value)
         let des: [UInt16] = UInt16.deserialize(data)
-        XCTAssert(des == [20000, 1000], "UInt16 array deserialization value invalid: \(des)")
+        XCTAssert(des == [20_000, 1_000], "UInt16 array deserialization value invalid: \(des)")
     }
     // MARK: Deserialize UINT8 Array
     func testDeserializeInt16Array() {
-        let value: [Int16] = [-10000, 1000]
+        let value: [Int16] = [-10_000, 1_000]
         let data = Serializer.serialize(value)
         let des: [Int16] = Int16.deserialize(data)
-        XCTAssert(des == [-10000, 1000], "Int16 array deserialization value invalid: \(des)")
+        XCTAssert(des == [-10_000, 1_000], "Int16 array deserialization value invalid: \(des)")
     }
 
     // MARK: Serialize UINT8
@@ -152,55 +152,55 @@ class SerializerDeserializerTests: XCTestCase {
         let data = Serializer.serialize(UInt8(10))
         XCTAssert(data.hexStringValue() == "0a", "UInt8 serialization value invalid: \(data.hexStringValue())")
     }
-     // MARK: Serialize INT8
+    // MARK: Serialize INT8
     func testSerializeInt8() {
         let data = Serializer.serialize(Int8(-50))
         XCTAssert(data.hexStringValue() == "ce", "Int8 serialization value invalid: \(data.hexStringValue())")
     }
-     // MARK: Serialize UINT16
+    // MARK: Serialize UINT16
     func testSerializeUInt16() {
-        let data = Serializer.serialize(UInt16(1000))
+        let data = Serializer.serialize(UInt16(1_000))
         XCTAssert(data.hexStringValue() == "e803", "UInt16 serialization value invalid: \(data.hexStringValue())")
     }
-     // MARK: Serialize INT16
+    // MARK: Serialize INT16
     func testSerializeInt16() {
-        let data = Serializer.serialize(Int16(-1100))
+        let data = Serializer.serialize(Int16(-1_100))
         XCTAssert(data.hexStringValue() == "b4fb", "Int16 serialization value invalid: \(data.hexStringValue())")
     }
-     // MARK: Serialize UINT8 Array
+    // MARK: Serialize UINT8 Array
     func testSerializeUInt8Array() {
         let value: [UInt8] = [100, 10]
         let data = Serializer.serialize(value)
         XCTAssert(data.hexStringValue() == "640a", "UInt8 array serialization value invalid: \(data.hexStringValue())")
     }
-     // MARK: Serialize INT8 Array
+    // MARK: Serialize INT8 Array
     func testSerializeInt8Array() {
         let value: [Int8] = [-50, 10]
         let data = Serializer.serialize(value)
         XCTAssert(data.hexStringValue() == "ce0a", "Int8 array serialization value invalid: \(data.hexStringValue())")
     }
-     // MARK: Serialize UINT16 Array
+    // MARK: Serialize UINT16 Array
     func testSerializeUInt16Array() {
-        let value: [UInt16] = [1000, 10]
+        let value: [UInt16] = [1_000, 10]
         let data = Serializer.serialize(value)
         XCTAssert(data.hexStringValue() == "e8030a00", "UInt16 array serialization value invalid: \(data.hexStringValue())")
     }
-     // MARK: Serialize INT16 Array
+    // MARK: Serialize INT16 Array
     func testSerializeInt16Array() {
-        let value: [Int16] = [-1100, 10]
+        let value: [Int16] = [-1_100, 10]
         let data = Serializer.serialize(value)
         XCTAssert(data.hexStringValue() == "b4fb0a00", "Int16 array serialization value invalid: \(data.hexStringValue())")
     }
 
     // MARK: Serialize Pair
     func testSerializePair() {
-        let data = Data.serialize(Int16(-1100), value2: UInt8(100))
+        let data = Data.serialize(Int16(-1_100), value2: UInt8(100))
         XCTAssert(data.hexStringValue() == "b4fb64", "Pair serialization value invalid: \(data.hexStringValue())")
     }
 
     // MARK: Serialize Pair Array
     func testSerializeArrayPair() {
-        let value1 = [Int16(-1100), Int16(1000)]
+        let value1 = [Int16(-1_100), Int16(1_000)]
         let value2 = [UInt8(100), UInt8(75)]
         let data = Data.serializeArrays(value1, values2: value2)
         XCTAssert(data.hexStringValue() == "b4fbe803644b", "Pair serialization value invalid: \(data.hexStringValue())")

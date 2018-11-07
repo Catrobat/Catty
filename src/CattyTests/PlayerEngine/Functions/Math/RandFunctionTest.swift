@@ -37,21 +37,21 @@ class RandFunctionTest: XCTestCase {
     }
 
     func testDefaultValue() {
-        XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: "invalidParameter" as AnyObject, secondParameter: "invalidParameter" as AnyObject), accuracy: 0.0001)
-        XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: nil, secondParameter: nil), accuracy: 0.0001)
-        XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: "invalidParameter" as AnyObject, secondParameter: nil), accuracy: 0.0001)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: "invalidParameter" as AnyObject, secondParameter: "invalidParameter" as AnyObject), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: nil, secondParameter: nil), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: "invalidParameter" as AnyObject, secondParameter: nil), accuracy: Double.epsilon)
     }
 
     func testValue() {
         let firstCall = function.value(firstParameter: 10 as AnyObject, secondParameter: 100 as AnyObject)
         XCTAssertGreaterThanOrEqual(firstCall, 10)
         XCTAssertLessThanOrEqual(firstCall, 100)
-        XCTAssertEqual(Double(Int(firstCall)), firstCall, accuracy: 0.0001)
+        XCTAssertEqual(Double(Int(firstCall)), firstCall, accuracy: Double.epsilon)
 
         let secondCall = function.value(firstParameter: 100 as AnyObject, secondParameter: 10 as AnyObject)
         XCTAssertGreaterThanOrEqual(secondCall, 10)
         XCTAssertLessThanOrEqual(firstCall, 100)
-        XCTAssertEqual(Double(Int(secondCall)), secondCall, accuracy: 0.0001)
+        XCTAssertEqual(Double(Int(secondCall)), secondCall, accuracy: Double.epsilon)
 
         // there are 1 / [(max - min) + 1] ^ 2 chances of having the same number twice
         XCTAssertNotEqual(firstCall, secondCall)
@@ -97,7 +97,7 @@ class RandFunctionTest: XCTestCase {
         result = function.value(firstParameter: 350 as AnyObject, secondParameter: -350 as AnyObject)
         XCTAssertGreaterThanOrEqual(result, -350)
         XCTAssertLessThanOrEqual(result, 350)
-        XCTAssertEqual(Double(Int(result)), result, accuracy: 0.0001)
+        XCTAssertEqual(Double(Int(result)), result, accuracy: Double.epsilon)
     }
 
     func testValueWithSmallParameterRange() {
@@ -112,7 +112,7 @@ class RandFunctionTest: XCTestCase {
         result = function.value(firstParameter: 0.5 as AnyObject, secondParameter: 1 as AnyObject)
         XCTAssertGreaterThanOrEqual(result, 0.5)
         XCTAssertLessThanOrEqual(result, 1)
-        XCTAssertNotEqual(Double(Int(result)), result, accuracy: 0.0001)
+        XCTAssertNotEqual(Double(Int(result)), result, accuracy: Double.epsilon)
     }
 
     func testFirstParameter() {

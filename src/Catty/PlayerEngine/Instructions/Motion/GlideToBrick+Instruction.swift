@@ -26,8 +26,8 @@
         guard let durationFormula = self.durationInSeconds else { fatalError("This should never happen!") }
 
         return .longDurationAction(duration: CBDuration.varTime(formula: durationFormula), closure: {
-            (duration, context) -> SKAction in
-            return self.action(duration, context.formulaInterpreter)
+            duration, context -> SKAction in
+            self.action(duration, context.formulaInterpreter)
         })
     }
 

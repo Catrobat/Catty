@@ -20,8 +20,8 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import Foundation
 import CoreBluetooth
+import Foundation
 
 open class ProfileManager {
 
@@ -43,7 +43,7 @@ open class ProfileManager {
     }
 
     open class var sharedInstance: ProfileManager {
-        struct Static {
+        enum Static {
             static let instance = ProfileManager()
         }
         return Static.instance

@@ -20,12 +20,12 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import CoreBluetooth
 import BluetoothHelper
+import CoreBluetooth
 
 class FirmataDelegateMock: FirmataDelegate {
     var callbackInvolved = false
-    var data: Data = Data()
+    var data = Data()
     var receivedString: String = ""
     var receivedPin: Int = 0
     var receivedPort: Int = 0
@@ -159,7 +159,8 @@ class FirmataMock: Firmata {
 
 class PeripheralMock: CBPeripheral {
 
-    var dataToSend: Data = Data()
+    var dataToSend = Data()
+
     init(test: Bool) {
         //HACK
     }
@@ -173,7 +174,7 @@ class CharacteristicMock: CBCharacteristic {
 
     init(test: Bool) {
         //HACK
-//        self.properties = CBCharacteristicProperties(CBCharacteristicProperties.WriteWithoutResponse.rawValue)
+        //        self.properties = CBCharacteristicProperties(CBCharacteristicProperties.WriteWithoutResponse.rawValue)
 
     }
 
@@ -195,5 +196,5 @@ class ArduinoTestMock: ArduinoPropertyProtocol {
                                                                NSNumber(value: 3 as UInt8)])
     internal var pinsArray = [[String: Any]]()
 
-    internal let arduinoHelper: ArduinoHelper = ArduinoHelper()
+    internal let arduinoHelper = ArduinoHelper()
 }

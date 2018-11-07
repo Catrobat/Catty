@@ -46,14 +46,14 @@
     }
 
     /*  on iOS, the transparency function is descending:
-        1.0 - no transparency
-        0.0 - maximum transaprency
- 
-        on Android the transparency function is ascending:
-        0.0 - no transparency
-        100.0 - maximum transparency
-     
-        And they also have different ranges and scales.
+     1.0 - no transparency
+     0.0 - maximum transaprency
+
+     on Android the transparency function is ascending:
+     0.0 - no transparency
+     100.0 - maximum transparency
+
+     And they also have different ranges and scales.
      */
 
     // f:[0, 1] -> [0, 100]

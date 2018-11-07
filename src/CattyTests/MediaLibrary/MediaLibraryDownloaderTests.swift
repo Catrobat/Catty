@@ -20,9 +20,9 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import XCTest
-@testable import Pocket_Code
 import DVR
+@testable import Pocket_Code
+import XCTest
 
 class MediaLibraryDownloaderTests: XCTestCase {
 

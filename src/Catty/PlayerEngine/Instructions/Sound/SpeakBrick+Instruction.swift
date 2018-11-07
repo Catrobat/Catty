@@ -26,15 +26,15 @@
 
         guard let object = self.script?.object else { fatalError("This should never happen!") }
 
-        return CBInstruction.execClosure { (context, _) in
+        return CBInstruction.execClosure { context, _ in
             var speakText = context.formulaInterpreter.interpretString(self.formula, for: object)
-            if Double(speakText) !=  nil {
+            if Double(speakText) != nil {
                 let num = (speakText as NSString).doubleValue
                 speakText = (num as NSNumber).stringValue
             }
 
             let utterance = AVSpeechUtterance(string: speakText)
-            utterance.rate = (floor(NSFoundationVersionNumber) < 1200 ? 0.15 : 0.5)
+            utterance.rate = (floor(NSFoundationVersionNumber) < 1_200 ? 0.15 : 0.5)
 
             let synthesizer = AVSpeechSynthesizer()
             synthesizer.speak(utterance)

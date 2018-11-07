@@ -20,49 +20,49 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import Foundation
-import CoreBluetooth
 import BluetoothHelper
+import CoreBluetooth
+import Foundation
 
-private let PIN_SPEAKER_OUT: Int = 3
+private let kPIN_SPEAKER_OUT: Int = 3
 
-private let PIN_RGB_RED_LEFT: Int = 4
-private let PIN_RGB_GREEN_LEFT: Int = 5
-private let PIN_RGB_BLUE_LEFT: Int = 6
+private let kPIN_RGB_RED_LEFT: Int = 4
+private let kPIN_RGB_GREEN_LEFT: Int = 5
+private let kPIN_RGB_BLUE_LEFT: Int = 6
 
-private let PIN_RGB_RED_RIGHT: Int = 7
-private let PIN_RGB_GREEN_RIGHT: Int = 8
-private let PIN_RGB_BLUE_RIGHT: Int = 9
+private let kPIN_RGB_RED_RIGHT: Int = 7
+private let kPIN_RGB_GREEN_RIGHT: Int = 8
+private let kPIN_RGB_BLUE_RIGHT: Int = 9
 
-private let PIN_LEFT_MOTOR_BACKWARD: Int = 10
-private let PIN_LEFT_MOTOR_FORWARD: Int = 11
+private let kPIN_LEFT_MOTOR_BACKWARD: Int = 10
+private let kPIN_LEFT_MOTOR_FORWARD: Int = 11
 
-private let PIN_RIGHT_MOTOR_FORWARD: Int = 12
-private let PIN_RIGHT_MOTOR_BACKWARD: Int = 13
+private let kPIN_RIGHT_MOTOR_FORWARD: Int = 12
+private let kPIN_RIGHT_MOTOR_BACKWARD: Int = 13
 
-private let MIN_PWM_PIN: Int = 3
-private let MAX_PWM_PIN: Int = 13
+private let kMIN_PWM_PIN: Int = 3
+private let kMAX_PWM_PIN: Int = 13
 
-public let PIN_SENSOR_SIDE_RIGHT: Int = 0
-public let PIN_SENSOR_FRONT_RIGHT: Int = 1
-public let PIN_SENSOR_BOTTOM_RIGHT: Int = 2
-public let PIN_SENSOR_BOTTOM_LEFT: Int = 3
-public let PIN_SENSOR_FRONT_LEFT: Int = 4
-public let PIN_SENSOR_SIDE_LEFT: Int = 5
+public let kPIN_SENSOR_SIDE_RIGHT: Int = 0
+public let kPIN_SENSOR_FRONT_RIGHT: Int = 1
+public let kPIN_SENSOR_BOTTOM_RIGHT: Int = 2
+public let kPIN_SENSOR_BOTTOM_LEFT: Int = 3
+public let kPIN_SENSOR_FRONT_LEFT: Int = 4
+public let kPIN_SENSOR_SIDE_LEFT: Int = 5
 
-private let MIN_SENSOR_PIN: Int = 0
-private let MAX_SENSOR_PIN: Int = 5
+private let kMIN_SENSOR_PIN: Int = 0
+private let kMAX_SENSOR_PIN: Int = 5
 
 @objc
 class Phiro: FirmataDevice, PhiroProtocol {
-    private let PHIRO_UUID: CBUUID = CBUUID.init(string: "00001101-0000-1000-8000-00805F9B34FB")
+    private let PHIRO_UUID = CBUUID.init(string: "00001101-0000-1000-8000-00805F9B34FB")
     private static let tag: String = "Phiro"
 
     override var rxUUID: CBUUID { return CBUUID.init(string: "00001101-0000-1000-8000-00805F9B34FB") }
     override var txUUID: CBUUID { return CBUUID.init(string: "00001101-0000-1000-8000-00805F9B34FB") }
 
-    internal let phiroHelper: PhiroHelper = PhiroHelper()
-    internal var toneTimer: Timer = Timer()
+    internal let phiroHelper = PhiroHelper()
+    internal var toneTimer = Timer()
     private var isReportingSensorData = false
 
     // MARK: override
@@ -77,7 +77,7 @@ class Phiro: FirmataDevice, PhiroProtocol {
     // MARK: Phiro Protocol
 
     func playTone(_ toneFrequency: NSInteger, duration: Double) {
-        self.sendAnalogFirmataMessage(PIN_SPEAKER_OUT, value: toneFrequency)
+        self.sendAnalogFirmataMessage(kPIN_SPEAKER_OUT, value: toneFrequency)
         if toneTimer.isValid {
             toneTimer.invalidate()
         }
@@ -85,19 +85,19 @@ class Phiro: FirmataDevice, PhiroProtocol {
     }
 
     func moveLeftMotorForward(_ speed: Int) {
-        self.sendAnalogFirmataMessage(PIN_LEFT_MOTOR_FORWARD, value: self.percentToSpeed(speed))
+        self.sendAnalogFirmataMessage(kPIN_LEFT_MOTOR_FORWARD, value: self.percentToSpeed(speed))
     }
 
     func moveLeftMotorBackward(_ speed: Int) {
-        self.sendAnalogFirmataMessage(PIN_LEFT_MOTOR_BACKWARD, value: self.percentToSpeed(speed))
+        self.sendAnalogFirmataMessage(kPIN_LEFT_MOTOR_BACKWARD, value: self.percentToSpeed(speed))
     }
 
     func moveRightMotorForward(_ speed: Int) {
-        self.sendAnalogFirmataMessage(PIN_RIGHT_MOTOR_FORWARD, value: self.percentToSpeed(speed))
+        self.sendAnalogFirmataMessage(kPIN_RIGHT_MOTOR_FORWARD, value: self.percentToSpeed(speed))
     }
 
     func moveRightMotorBackward(_ speed: Int) {
-        self.sendAnalogFirmataMessage(PIN_RIGHT_MOTOR_BACKWARD, value: self.percentToSpeed(speed))
+        self.sendAnalogFirmataMessage(kPIN_RIGHT_MOTOR_BACKWARD, value: self.percentToSpeed(speed))
     }
 
     func stopLeftMotor() {
@@ -120,9 +120,9 @@ class Phiro: FirmataDevice, PhiroProtocol {
         let greenChecked = checkValue(green)
         let blueChecked = checkValue(blue)
 
-        self.sendAnalogFirmataMessage(PIN_RGB_RED_LEFT, value: redChecked)
-        self.sendAnalogFirmataMessage(PIN_RGB_GREEN_LEFT, value: greenChecked)
-        self.sendAnalogFirmataMessage(PIN_RGB_BLUE_LEFT, value: blueChecked)
+        self.sendAnalogFirmataMessage(kPIN_RGB_RED_LEFT, value: redChecked)
+        self.sendAnalogFirmataMessage(kPIN_RGB_GREEN_LEFT, value: greenChecked)
+        self.sendAnalogFirmataMessage(kPIN_RGB_BLUE_LEFT, value: blueChecked)
     }
 
     func setRightRGBLightColor(_ red: Int, green: Int, blue: Int) {
@@ -130,14 +130,14 @@ class Phiro: FirmataDevice, PhiroProtocol {
         let greenChecked = checkValue(green)
         let blueChecked = checkValue(blue)
 
-        self.sendAnalogFirmataMessage(PIN_RGB_RED_RIGHT, value: redChecked)
-        self.sendAnalogFirmataMessage(PIN_RGB_GREEN_RIGHT, value: greenChecked)
-        self.sendAnalogFirmataMessage(PIN_RGB_BLUE_RIGHT, value: blueChecked)
+        self.sendAnalogFirmataMessage(kPIN_RGB_RED_RIGHT, value: redChecked)
+        self.sendAnalogFirmataMessage(kPIN_RGB_GREEN_RIGHT, value: greenChecked)
+        self.sendAnalogFirmataMessage(kPIN_RGB_BLUE_RIGHT, value: blueChecked)
     }
 
     // MARK: Helper
     @objc private func cancelTone() {
-        self.sendAnalogFirmataMessage(PIN_SPEAKER_OUT, value: 0)
+        self.sendAnalogFirmataMessage(kPIN_SPEAKER_OUT, value: 0)
         self.toneTimer.invalidate()
         self.toneTimer = Timer()
     }
@@ -154,8 +154,8 @@ class Phiro: FirmataDevice, PhiroProtocol {
     }
 
     private func sendAnalogFirmataMessage(_ pin: Int, value: Int) {
-        let analogPin: UInt8 = UInt8(checkValue(pin))
-        let checkedValue: UInt8 = UInt8(checkValue(value))
+        let analogPin = UInt8(checkValue(pin))
+        let checkedValue = UInt8(checkValue(value))
         firmata.writePinMode(.pwm, pin: analogPin)
         firmata.writePWMValue(checkedValue, pin: analogPin)
     }
@@ -176,12 +176,12 @@ class Phiro: FirmataDevice, PhiroProtocol {
 
         isReportingSensorData = report
 
-        for i in MIN_SENSOR_PIN ... MAX_SENSOR_PIN {
+        for i in kMIN_SENSOR_PIN ... kMAX_SENSOR_PIN {
             reportAnalogArduinoPin(i, report: report)
         }
     }
     private func reportAnalogArduinoPin(_ analogPinNumber: Int, report: Bool) {
-        let pin: UInt8 = UInt8(checkValue(analogPinNumber))
+        let pin = UInt8(checkValue(analogPinNumber))
         self.firmata.writePinMode(.input, pin: pin)
         self.firmata.setAnalogValueReportingforPin(pin, enabled: report)
     }
@@ -193,22 +193,22 @@ class Phiro: FirmataDevice, PhiroProtocol {
     }
 
     private func getAnalogPin(_ pinNumber: Int) -> Double {
-        if pinNumber == PIN_SENSOR_FRONT_LEFT {
+        if pinNumber == kPIN_SENSOR_FRONT_LEFT {
             return Double(getFrontLeftSensor())
         }
-        if pinNumber == PIN_SENSOR_FRONT_RIGHT {
+        if pinNumber == kPIN_SENSOR_FRONT_RIGHT {
             return Double(getFrontRightSensor())
         }
-        if pinNumber == PIN_SENSOR_SIDE_LEFT {
+        if pinNumber == kPIN_SENSOR_SIDE_LEFT {
             return Double(getSideLeftSensor())
         }
-        if pinNumber == PIN_SENSOR_SIDE_RIGHT {
+        if pinNumber == kPIN_SENSOR_SIDE_RIGHT {
             return Double(getSideRightSensor())
         }
-        if pinNumber == PIN_SENSOR_BOTTOM_LEFT {
+        if pinNumber == kPIN_SENSOR_BOTTOM_LEFT {
             return Double(getBottomLeftSensor())
         }
-        if pinNumber == PIN_SENSOR_BOTTOM_RIGHT {
+        if pinNumber == kPIN_SENSOR_BOTTOM_RIGHT {
             return Double(getBottomRightSensor())
         }
         return 0

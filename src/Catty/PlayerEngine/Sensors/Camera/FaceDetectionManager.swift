@@ -25,7 +25,7 @@ class FaceDetectionManager: NSObject, FaceDetectionManagerProtocol, AVCaptureVid
     // TODO remove Singleton
     public static let shared = FaceDetectionManager()
 
-    var isFaceDetected: Bool?
+    var isFaceDetected: Bool! = false
     var facePositionX: Double?
     var facePositionY: Double?
     var faceSize: CGRect?
@@ -41,9 +41,9 @@ class FaceDetectionManager: NSObject, FaceDetectionManagerProtocol, AVCaptureVid
         self.session = CameraPreviewHandler.shared().getSession()
 
         guard let session = self.session,
-              let device = camera(for: cameraPosition()),
-              let deviceInput = try? AVCaptureDeviceInput(device: device)
-        else { return }
+            let device = camera(for: cameraPosition()),
+            let deviceInput = try? AVCaptureDeviceInput(device: device)
+            else { return }
 
         if session.isRunning {
             session.stopRunning()
@@ -144,19 +144,19 @@ class FaceDetectionManager: NSObject, FaceDetectionManagerProtocol, AVCaptureVid
          The intended display orientation of the image. If present, this key is a CFNumber value with the same value as defined
          by the TIFF and EXIF specifications -- see enumeration of integer constants.
          The value specified where the origin (0,0) of the image is located. If not present, a value of 1 is assumed.
-         
+
          used when calling featuresInImage: options: The value for this key is an integer NSNumber from 1..8 as found in kCGImagePropertyOrientation.
          If present, the detection will be done based on that orientation but the coordinates in the returned features will still be based on those of the image. */
 
         enum ExifOrientation: Int {
-            case topLeft          = 1 //   1  =  0th row is at the top, and 0th column is on the left (THE DEFAULT).
-            case topRight         = 2 //   2  =  0th row is at the top, and 0th column is on the right.
-            case bottomRight      = 3 //   3  =  0th row is at the bottom, and 0th column is on the right.
-            case bottomLeft       = 4 //   4  =  0th row is at the bottom, and 0th column is on the left.
-            case leftTop          = 5 //   5  =  0th row is on the left, and 0th column is the top.
-            case rightTop         = 6 //   6  =  0th row is on the right, and 0th column is the top.
-            case rightBottom      = 7 //   7  =  0th row is on the right, and 0th column is the bottom.
-            case leftBottom       = 8  //   8  =  0th row is on the left, and 0th column is the bottom.
+            case topLeft = 1 //   1  =  0th row is at the top, and 0th column is on the left (THE DEFAULT).
+            case topRight = 2 //   2  =  0th row is at the top, and 0th column is on the right.
+            case bottomRight = 3 //   3  =  0th row is at the bottom, and 0th column is on the right.
+            case bottomLeft = 4 //   4  =  0th row is at the bottom, and 0th column is on the left.
+            case leftTop = 5 //   5  =  0th row is on the left, and 0th column is the top.
+            case rightTop = 6 //   6  =  0th row is on the right, and 0th column is the top.
+            case rightBottom = 7 //   7  =  0th row is on the right, and 0th column is the bottom.
+            case leftBottom = 8  //   8  =  0th row is on the left, and 0th column is the bottom.
         }
 
         switch currentDeviceOrientation {

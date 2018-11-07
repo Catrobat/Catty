@@ -25,7 +25,7 @@ import XCTest
 @testable import Pocket_Code
 
 final class DateDaySensorMock: DateDaySensor {
-    var mockDate: Date = Date()
+    var mockDate = Date()
 
     override func date() -> Date {
         return mockDate
@@ -54,15 +54,15 @@ final class DateDaySensorTest: XCTestCase {
 
     func testRawValue() {
         /* test one digit */
-        self.sensor.mockDate = Calendar.current.date(from: DateComponents(year: 2018, month: 4, day: 6, hour: 5))!
+        self.sensor.mockDate = Calendar.current.date(from: DateComponents(year: 2_018, month: 4, day: 6, hour: 5))!
         XCTAssertEqual(6, Int(sensor.rawValue()))
 
         /* test two digits */
-        self.sensor.mockDate = Calendar.current.date(from: DateComponents(year: 2018, month: 8, day: 22, hour: 7))!
+        self.sensor.mockDate = Calendar.current.date(from: DateComponents(year: 2_018, month: 8, day: 22, hour: 7))!
         XCTAssertEqual(22, Int(sensor.rawValue()))
 
         /* test edge case - almost the beginning of the next day */
-        self.sensor.mockDate = Calendar.current.date(from: DateComponents(year: 2018, month: 6, day: 18, hour: 23))!
+        self.sensor.mockDate = Calendar.current.date(from: DateComponents(year: 2_018, month: 6, day: 18, hour: 23))!
         XCTAssertEqual(18, Int(sensor.rawValue()))
     }
 

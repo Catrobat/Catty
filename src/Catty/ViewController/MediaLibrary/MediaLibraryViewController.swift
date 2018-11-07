@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-protocol MediaLibraryViewControllerImportDelegate: class {
+protocol MediaLibraryViewControllerImportDelegate: AnyObject {
     func mediaLibraryViewController(_ mediaLibraryViewController: MediaLibraryViewController, didPickItemsForImport items: [MediaItem])
 }
 

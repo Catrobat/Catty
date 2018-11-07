@@ -37,24 +37,24 @@ class LengthFunctionTest: XCTestCase {
     }
 
     func testDefaultValue() {
-        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: nil), accuracy: 0.0001)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: nil), accuracy: Double.epsilon)
     }
 
     func testValue() {
         var text = "Live not on evil deed, live not on evil."
-        XCTAssertEqual(Double(text.count), function.value(parameter: text as AnyObject), accuracy: 0.0001)
+        XCTAssertEqual(Double(text.count), function.value(parameter: text as AnyObject), accuracy: Double.epsilon)
 
         text = "palindrome"
-        XCTAssertEqual(Double(text.count), function.value(parameter: text as AnyObject), accuracy: 0.0001)
+        XCTAssertEqual(Double(text.count), function.value(parameter: text as AnyObject), accuracy: Double.epsilon)
 
         text = ""
-        XCTAssertEqual(Double(text.count), function.value(parameter: text as AnyObject), accuracy: 0.0001)
+        XCTAssertEqual(Double(text.count), function.value(parameter: text as AnyObject), accuracy: Double.epsilon)
 
         let number = 100
-        XCTAssertEqual(Double(String(number).count), function.value(parameter: number as AnyObject), accuracy: 0.0001)
+        XCTAssertEqual(Double(String(number).count), function.value(parameter: number as AnyObject), accuracy: Double.epsilon)
 
         text = "inf"
-        XCTAssertEqual(Double(text.count), function.value(parameter: Double.infinity as AnyObject), accuracy: 0.0001)
+        XCTAssertEqual(Double(text.count), function.value(parameter: Double.infinity as AnyObject), accuracy: Double.epsilon)
     }
 
     func testParameter() {

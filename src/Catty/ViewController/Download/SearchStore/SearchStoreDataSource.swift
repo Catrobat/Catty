@@ -20,11 +20,11 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-protocol SearchStoreDataSourceDelegate: class {
+protocol SearchStoreDataSourceDelegate: AnyObject {
     func searchStoreTableDataSource(_ dataSource: SearchStoreDataSource, didSelectCellWith item: StoreProgram)
 }
 
-protocol SelectedSearchStoreDataSource: class {
+protocol SelectedSearchStoreDataSource: AnyObject {
     func selectedCell(dataSource: SearchStoreDataSource, didSelectCellWith cell: SearchStoreCell)
     func showNoResultsAlert()
     func hideNoResultsAlert()
@@ -49,7 +49,7 @@ class SearchStoreDataSource: NSObject, UITableViewDataSource, UITableViewDelegat
 
     // MARK: - Initializer
 
-    fileprivate init(with downloader: StoreProgramDownloaderProtocol) {
+    init(with downloader: StoreProgramDownloaderProtocol) {
         self.downloader = downloader
     }
 

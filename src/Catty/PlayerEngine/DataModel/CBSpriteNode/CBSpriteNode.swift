@@ -29,8 +29,8 @@ class CBSpriteNode: SKSpriteNode {
     @objc var currentUIImageLook: UIImage?
 
     @objc var filterDict = ["brightness": false, "color": false]
-    @objc var ciBrightness: CGFloat = CGFloat(BrightnessSensor.defaultRawValue) // CoreImage specific brightness
-    @objc var ciHueAdjust: CGFloat = CGFloat(ColorSensor.defaultRawValue) // CoreImage specific hue adjust
+    @objc var ciBrightness = CGFloat(BrightnessSensor.defaultRawValue) // CoreImage specific brightness
+    @objc var ciHueAdjust = CGFloat(ColorSensor.defaultRawValue) // CoreImage specific hue adjust
 
     // MARK: Custom getters and setters
     @objc func setPositionForCropping(_ position: CGPoint) {
@@ -43,8 +43,8 @@ class CBSpriteNode: SKSpriteNode {
         self.spriteObject = spriteObject
 
         if let firstLook = spriteObject.lookList.firstObject as? Look,
-           let filePathForLook = spriteObject.path(for: firstLook),
-           let image = UIImage(contentsOfFile: filePathForLook) {
+            let filePathForLook = spriteObject.path(for: firstLook),
+            let image = UIImage(contentsOfFile: filePathForLook) {
             let texture = SKTexture(image: image)
             let textureSize = texture.size()
             super.init(texture: texture, color: color, size: textureSize)
@@ -158,21 +158,21 @@ class CBSpriteNode: SKSpriteNode {
         //    self.currentUIImageLook = image
         //    self.size = texture.size()
         //} else {
-            // We do not need cropping if touch through transparent pixel is possible!!!!
-            //        CGRect newRect = [image cropRectForImage:image];
-            //        if ((newRect.size.height <= image.size.height - 50 && newRect.size.height <= image.size.height - 50)) {
-            //            CGImageRef imageRef = CGImageCreateWithImageInRect(image.CGImage, newRect);
-            //            UIImage *newImage = [UIImage imageWithCGImage:imageRef];
-            ////            NSLog(@"%f,%f,%f,%f",newRect.origin.x,newRect.origin.y,newRect.size.width,newRect.size.height);
-            //            [self setPositionForCropping:CGPointMake(newRect.origin.x+newRect.size.width/2,self.scene.size.height-newRect.origin.y-newRect.size.height/2)];
-            //            CGImageRelease(imageRef);
-            //            texture = [SKTexture textureWithImage:newImage];
-            //            self.currentUIImageLook = newImage;
-            //        }
-            //        else{
-            //          self.currentUIImageLook = image
-            //        }
-            //        self.size = texture.size()
+        // We do not need cropping if touch through transparent pixel is possible!!!!
+        //        CGRect newRect = [image cropRectForImage:image];
+        //        if ((newRect.size.height <= image.size.height - 50 && newRect.size.height <= image.size.height - 50)) {
+        //            CGImageRef imageRef = CGImageCreateWithImageInRect(image.CGImage, newRect);
+        //            UIImage *newImage = [UIImage imageWithCGImage:imageRef];
+        ////            NSLog(@"%f,%f,%f,%f",newRect.origin.x,newRect.origin.y,newRect.size.width,newRect.size.height);
+        //            [self setPositionForCropping:CGPointMake(newRect.origin.x+newRect.size.width/2,self.scene.size.height-newRect.origin.y-newRect.size.height/2)];
+        //            CGImageRelease(imageRef);
+        //            texture = [SKTexture textureWithImage:newImage];
+        //            self.currentUIImageLook = newImage;
+        //        }
+        //        else{
+        //          self.currentUIImageLook = image
+        //        }
+        //        self.size = texture.size()
         //}
 
         let xScale = self.xScale
@@ -195,6 +195,7 @@ class CBSpriteNode: SKSpriteNode {
     }
 
     @objc func setLook() {
+        // swiftlint:disable:next empty_count
         if spriteObject.lookList.count > 0, let look = spriteObject.lookList[0] as? Look {
             changeLook(look)
         }
@@ -225,7 +226,7 @@ class CBSpriteNode: SKSpriteNode {
         guard let imageLook = currentUIImageLook, scheduler.running else { return false }
 
         guard let spriteName = spriteObject.name
-        else { preconditionFailure("Invalid SpriteObject!") }
+            else { preconditionFailure("Invalid SpriteObject!") }
         let touchedPoint = touch.location(in: self)
 
         if imageLook.isTransparentPixel(atScenePoint: touchedPoint) {

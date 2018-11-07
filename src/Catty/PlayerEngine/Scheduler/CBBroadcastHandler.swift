@@ -86,10 +86,10 @@ final class CBBroadcastHandler: CBBroadcastHandlerProtocol {
                                      broadcastType: CBBroadcastType) {
         logger.info("Performing \(broadcastType.rawValue) with message '\(message)'")
         let enqueuedWaitingScripts = _broadcastWaitingContextsQueue[senderContext.id]
-        assert(enqueuedWaitingScripts == nil || enqueuedWaitingScripts?.count == 0)
+        assert(enqueuedWaitingScripts == nil || enqueuedWaitingScripts!.isEmpty)
 
         var isSelfBroadcast = false
-        guard let registeredContexts = _registeredBroadcastContexts[message], registeredContexts.count != 0 else {
+        guard let registeredContexts = _registeredBroadcastContexts[message], !registeredContexts.isEmpty else {
             logger.info("No listeners for message '\(message)' found")
             scheduler?.runNextInstructionOfContext(senderContext)
             return

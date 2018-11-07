@@ -78,8 +78,8 @@ class PocketCodeMainScreenTVCTests: XCTestCase, UITestProtocol {
     func testNewInvalidNames() {
         let progNamesErrorMsgMap = ["": "No input. Please enter at least 1 character.",
                                     "i am tooooooo looooogi am tooooooo looooogi am tooooooo looooogi am tooooooo looooogi am tooooooo looooogi am "
-                                    + "tooooooo looooogi am tooooooo looooogi am tooooooo looooogi am tooooooo "
-                                    + "looooogi am tooooooo looooogi am tooooooo looooogi am tooooooo looooog": "The input is too long. Please enter maximal 250 character(s).",
+                                        + "tooooooo looooogi am tooooooo looooogi am tooooooo looooogi am tooooooo "
+                                        + "looooogi am tooooooo looooogi am tooooooo looooogi am tooooooo looooog": "The input is too long. Please enter maximal 250 character(s).",
                                     ".": "Only special characters are not allowed. Please enter at least 1 other character.",
                                     "/": "Only special characters are not allowed. Please enter at least 1 other character.",
                                     "./": "Only special characters are not allowed. Please enter at least 1 other character.",
@@ -105,7 +105,7 @@ class PocketCodeMainScreenTVCTests: XCTestCase, UITestProtocol {
     }
 
     func testNewCanceled() {
-       let app = XCUIApplication()
+        let app = XCUIApplication()
         app.tables.staticTexts["New"].tap()
 
         let alertQuery = app.alerts["New Program"]

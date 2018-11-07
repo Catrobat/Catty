@@ -20,8 +20,8 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import CoreBluetooth
 import BluetoothHelper
+import CoreBluetooth
 
 @objc extension ScenePresenterViewController {
 
@@ -62,7 +62,7 @@ import BluetoothHelper
             }
         }
 
-        if unconnectedBluetoothDevices.count > 0 {
+        if !unconnectedBluetoothDevices.isEmpty {
             bluetoothDevicesUnconnected(navigationController: navigationController, bluetoothDevices: unconnectedBluetoothDevices)
             return false
         }
@@ -99,7 +99,7 @@ import BluetoothHelper
             unavailableResourceNames.append(kLocalizedSensorLED)
         }
 
-        if unavailableResourceNames.count > 0 {
+        if !unavailableResourceNames.isEmpty {
             AlertControllerBuilder.alert(title: kLocalizedPocketCode, message: unavailableResourceNames.joined(separator: ", ") + " " + kLocalizedNotAvailable)
                 .addCancelAction(title: kLocalizedCancel, handler: nil)
                 .addDefaultAction(title: kLocalizedYes) {

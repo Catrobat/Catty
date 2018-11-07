@@ -37,14 +37,14 @@ class CeilFunctionTest: XCTestCase {
     }
 
     func testDefaultValue() {
-        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: "invalidParameter" as AnyObject), accuracy: 0.0001)
-        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: nil), accuracy: 0.0001)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: "invalidParameter" as AnyObject), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: nil), accuracy: Double.epsilon)
     }
 
     func testValue() {
-        XCTAssertEqual(ceil(77.89), function.value(parameter: 77.89 as AnyObject), accuracy: 0.0001)
+        XCTAssertEqual(ceil(77.89), function.value(parameter: 77.89 as AnyObject), accuracy: Double.epsilon)
 
-        XCTAssertEqual(ceil(-2.47), function.value(parameter: -2.47 as AnyObject), accuracy: 0.0001)
+        XCTAssertEqual(ceil(-2.47), function.value(parameter: -2.47 as AnyObject), accuracy: Double.epsilon)
     }
 
     func testParameter() {

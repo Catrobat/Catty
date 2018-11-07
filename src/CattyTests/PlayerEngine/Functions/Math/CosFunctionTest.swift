@@ -37,14 +37,14 @@ class CosFunctionTest: XCTestCase {
     }
 
     func testDefaultValue() {
-        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: "invalidParameter" as AnyObject), accuracy: 0.0001)
-        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: nil), accuracy: 0.0001)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: "invalidParameter" as AnyObject), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: nil), accuracy: Double.epsilon)
     }
 
     func testValue() {
-        XCTAssertEqual(cos(Util.degree(toRadians: 15)), function.value(parameter: 15 as AnyObject), accuracy: 0.0001)
+        XCTAssertEqual(cos(Util.degree(toRadians: 15)), function.value(parameter: 15 as AnyObject), accuracy: Double.epsilon)
 
-        XCTAssertEqual(cos(Util.degree(toRadians: -90)), function.value(parameter: -90 as AnyObject), accuracy: 0.0001)
+        XCTAssertEqual(cos(Util.degree(toRadians: -90)), function.value(parameter: -90 as AnyObject), accuracy: Double.epsilon)
     }
 
     func testParameter() {

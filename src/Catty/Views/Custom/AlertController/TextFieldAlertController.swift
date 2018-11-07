@@ -117,7 +117,7 @@ final class TextFieldAlertController: BaseAlertController, TextFieldAlertDefinin
     }
 
     @objc func addCancelActionWithTitle(_ title: String, handler: (() -> Void)?) -> TextFieldAlertControllerBuilding {
-        alertController.addAction(UIAlertAction(title: title, style: .cancel) {_ in handler?() })
+        alertController.addAction(UIAlertAction(title: title, style: .cancel) { _ in handler?() })
         return self
     }
 

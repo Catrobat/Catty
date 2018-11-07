@@ -47,9 +47,9 @@ final class CBFrontendTests: XCTestCase {
         let flashBrick = FlashBrick()
         let vibrationBrick = VibrationBrick()
         whenScript.brickList = [waitBrick, noteBrick, broadcastBrick, broadcastWaitBrick,
-            playSoundBrick, speakBrick, stopAllSoundsBrick, speakBrick, changeVolumeByNBrick,
-            setVolumeToBrick, setVariableBrick, changeVariableBrick, flashBrick,
-            vibrationBrick]
+                                playSoundBrick, speakBrick, stopAllSoundsBrick, speakBrick, changeVolumeByNBrick,
+                                setVolumeToBrick, setVariableBrick, changeVariableBrick, flashBrick,
+                                vibrationBrick]
 
         let scriptSequenceList = frontend.computeSequenceListForScript(whenScript)
         XCTAssertTrue(scriptSequenceList.script === whenScript)
@@ -108,10 +108,10 @@ final class CBFrontendTests: XCTestCase {
         ifLogicEndBrick.ifElseBrick = ifLogicElseBrick
 
         let preIfElseOperationSequenceBricks = [waitBrick, noteBrick, broadcastBrick,
-            broadcastWaitBrick]
+                                                broadcastWaitBrick]
         let ifOperationSequenceBricks = [playSoundBrick, speakBrick, stopAllSoundsBrick, speakBrick]
         let elseOperationSequenceBricks = [changeVolumeByNBrick, setVolumeToBrick,
-            setVariableBrick, changeVariableBrick]
+                                           setVariableBrick, changeVariableBrick]
         let postIfElseOperationSequenceBricks = [flashBrick, vibrationBrick]
 
         var scriptBrickList = preIfElseOperationSequenceBricks

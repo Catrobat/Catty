@@ -25,15 +25,15 @@
     @nonobjc func instruction() -> CBInstruction {
 
         guard let spriteObject = self.script?.object,
-              let _ = spriteObject.program?.variables
-        else { fatalError("This should never happen!") }
+            let _ = spriteObject.program?.variables
+            else { fatalError("This should never happen!") }
 
         let userVariable = self.userVariable
 
-        return CBInstruction.execClosure { (context, _) in
-//            self.logger.debug("Performing: HideTextBrick")
+        return CBInstruction.execClosure { context, _ in
+            //            self.logger.debug("Performing: HideTextBrick")
             if let userVariable = userVariable {
-               userVariable.textLabel.isHidden = true
+                userVariable.textLabel.isHidden = true
             }
             context.state = .runnable
         }

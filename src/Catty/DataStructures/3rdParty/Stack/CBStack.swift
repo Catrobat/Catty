@@ -1,3 +1,4 @@
+// swiftlint:disable file_header
 //    <b>The MIT License (MIT)</b>
 //
 //    Copyright (c) 2015, Wayne Bishop & Arbutus Software Inc.
@@ -19,6 +20,7 @@
 //    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //    SOFTWARE.
+// swiftlint:enable file_header
 
 //
 //  Stack.swift
@@ -110,7 +112,7 @@ class CBStack<T> {
         let topitem: T? = self.top?.key
 
         if topitem == nil {
-             return 0
+            return 0
         }
 
         var current: LLNode = top

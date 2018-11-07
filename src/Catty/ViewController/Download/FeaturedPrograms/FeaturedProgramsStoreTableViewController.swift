@@ -157,9 +157,9 @@ extension FeaturedProgramsStoreTableViewController: FeaturedProgramsCellProtocol
 
     func selectedCell(dataSource datasource: FeaturedProgramsStoreTableDataSource, didSelectCellWith cell: FeaturedProgramsCell) {
         if let program = cell.program {
-           self.showLoadingView()
-           programForSegue = program
-           performSegue(withIdentifier: kSegueToProgramDetail, sender: self)
+            self.showLoadingView()
+            programForSegue = program
+            performSegue(withIdentifier: kSegueToProgramDetail, sender: self)
         }
     }
 }

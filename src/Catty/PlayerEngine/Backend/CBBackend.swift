@@ -57,7 +57,7 @@ final class CBBackend: CBBackendProtocol {
         }
         if (brick.getRequiredResources() & ResourceType.bluetoothArduino.rawValue) > 0 {
             guard let formulaBufferBrick = brick as? BrickFormulaProtocol else {
-                 fatalError("All Bricks with formulas should implement the BrickFormulaProtocol")
+                fatalError("All Bricks with formulas should implement the BrickFormulaProtocol")
             }
             return [.formulaBuffer(brick: formulaBufferBrick), instructionBrick.instruction()]
         }
@@ -73,7 +73,7 @@ final class CBBackend: CBBackendProtocol {
         if ifSequence.hasBluetoothFormula() {
             instructionList += CBInstruction.conditionalFormulaBuffer(conditionalBrick: ifSequence)
         }
-        instructionList += CBInstruction.execClosure { (context, _) in
+        instructionList += CBInstruction.execClosure { context, _ in
             if ifSequence.checkCondition(context: context) == false {
                 var numberOfInstructionsToJump = numberOfIfInstructions
                 if ifSequence.elseSequenceList != nil {
@@ -93,7 +93,7 @@ final class CBBackend: CBBackendProtocol {
             numberOfElseInstructions = elseInstructions.count
             // add jump instruction to be the last if-instruction
             // (needed to avoid execution of else sequence)
-            instructionList += CBInstruction.execClosure { (context, _) in
+            instructionList += CBInstruction.execClosure { context, _ in
                 context.jump(numberOfInstructions: numberOfElseInstructions)
                 context.state = .runnable
             }
@@ -106,13 +106,13 @@ final class CBBackend: CBBackendProtocol {
         let bodyInstructions = instructionsForSequence(loopSequence.sequenceList)
         let numOfBodyInstructions = bodyInstructions.count
 
-        let loopEndInstruction = CBInstruction.highPriorityExecClosure { (context, scheduler, _) in
+        let loopEndInstruction = CBInstruction.highPriorityExecClosure { context, scheduler, _ in
             var numOfInstructionsToJump = 0
             if loopSequence.checkCondition(context: context) {
                 if loopSequence.hasBluetoothFormula() {
-                   numOfInstructionsToJump -= numOfBodyInstructions + 2 // omits loop begin instruction
+                    numOfInstructionsToJump -= numOfBodyInstructions + 2 // omits loop begin instruction
                 } else {
-                   numOfInstructionsToJump -= numOfBodyInstructions + 1 // omits loop begin instruction
+                    numOfInstructionsToJump -= numOfBodyInstructions + 1 // omits loop begin instruction
                 }
 
                 loopSequence.lastLoopIterationStartTime = Date()
@@ -122,7 +122,7 @@ final class CBBackend: CBBackendProtocol {
 
             // minimum duration (CatrobatLanguage specification!)
             let duration = Date().timeIntervalSince(loopSequence.lastLoopIterationStartTime)
-            self.logger.debug("  Duration for Sequence: \(duration*1_000)ms")
+            self.logger.debug("  Duration for Sequence: \(duration * 1_000)ms")
             if duration < PlayerConfig.LoopMinDurationTime {
                 DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async(execute: {
                     // high priority queue only needed for blocking purposes...
@@ -144,13 +144,13 @@ final class CBBackend: CBBackendProtocol {
             }
         }
 
-        let loopBeginInstruction = CBInstruction.execClosure { (context, _) in
+        let loopBeginInstruction = CBInstruction.execClosure { context, _ in
             if loopSequence.checkCondition(context: context) {
                 loopSequence.lastLoopIterationStartTime = Date()
             } else {
                 loopSequence.resetCondition() // IMPORTANT: reset loop counter right now
                 if loopSequence.hasBluetoothFormula() {
-                   context.jump(numberOfInstructions: numOfBodyInstructions + 2) // includes loop end instr.!
+                    context.jump(numberOfInstructions: numOfBodyInstructions + 2) // includes loop end instr.!
                 } else {
                     context.jump(numberOfInstructions: numOfBodyInstructions + 1) // includes loop end instr.!
                 }

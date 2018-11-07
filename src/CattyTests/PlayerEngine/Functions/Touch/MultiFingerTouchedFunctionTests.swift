@@ -51,13 +51,13 @@ class MultiFingerTouchedFunctionTests: XCTestCase {
     }
 
     func testDefaultValue() {
-        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: "invalidParameter" as AnyObject), accuracy: 0.0001)
-        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: nil), accuracy: 0.0001)
-        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: 0 as AnyObject), accuracy: 0.0001)
-        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: 1 as AnyObject), accuracy: 0.0001)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: "invalidParameter" as AnyObject), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: nil), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: 0 as AnyObject), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: 1 as AnyObject), accuracy: Double.epsilon)
 
         function = MultiFingerTouchedFunction { nil }
-        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: 1 as AnyObject), accuracy: 0.0001)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: 1 as AnyObject), accuracy: Double.epsilon)
     }
 
     func testValue() {
@@ -65,20 +65,20 @@ class MultiFingerTouchedFunctionTests: XCTestCase {
         let secondTouch = CGPoint(x: 30, y: 45)
         touchManager.touches = [firstTouch]
 
-        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: 0 as AnyObject), accuracy: 0.0001)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: 0 as AnyObject), accuracy: Double.epsilon)
 
         touchManager.isScreenTouched = false
-        XCTAssertEqual(0.0, function.value(parameter: 1 as AnyObject), accuracy: 0.0001)
+        XCTAssertEqual(0.0, function.value(parameter: 1 as AnyObject), accuracy: Double.epsilon)
 
         touchManager.isScreenTouched = true
-        XCTAssertEqual(1.0, function.value(parameter: 1 as AnyObject), accuracy: 0.0001)
+        XCTAssertEqual(1.0, function.value(parameter: 1 as AnyObject), accuracy: Double.epsilon)
 
         touchManager.touches = [firstTouch, secondTouch]
-        XCTAssertEqual(0.0, function.value(parameter: 1 as AnyObject), accuracy: 0.0001)
-        XCTAssertEqual(1.0, function.value(parameter: 2 as AnyObject), accuracy: 0.0001)
+        XCTAssertEqual(0.0, function.value(parameter: 1 as AnyObject), accuracy: Double.epsilon)
+        XCTAssertEqual(1.0, function.value(parameter: 2 as AnyObject), accuracy: Double.epsilon)
 
         touchManager.isScreenTouched = false
-        XCTAssertEqual(0.0, function.value(parameter: 2 as AnyObject), accuracy: 0.0001)
+        XCTAssertEqual(0.0, function.value(parameter: 2 as AnyObject), accuracy: Double.epsilon)
     }
 
     func testParameter() {

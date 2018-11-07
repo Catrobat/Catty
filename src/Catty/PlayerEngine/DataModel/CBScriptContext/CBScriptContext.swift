@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-protocol CBScriptContextProtocol: class {
+protocol CBScriptContextProtocol: AnyObject {
     var id: String { get }
     var spriteNode: CBSpriteNode { get }
     var script: Script { get }
@@ -49,10 +49,10 @@ class CBScriptContext: CBScriptContextProtocol {
     final let formulaInterpreter: FormulaInterpreterProtocol
     final var state: CBScriptContextState
     final var count: Int { return _instructionList.count }
-    final var index: Int  = 0
+    final var index: Int = 0
 
-    final private var _instructionPointer: Int = 0
-    final private lazy var _instructionList = [CBInstruction]()
+    private final var _instructionPointer: Int = 0
+    private final lazy var _instructionList = [CBInstruction]()
 
     // MARK: - Initializers
     convenience init?(script: Script, spriteNode: CBSpriteNode, formulaInterpreter: FormulaInterpreterProtocol) {
@@ -82,7 +82,7 @@ class CBScriptContext: CBScriptContextProtocol {
     final func nextInstruction() -> CBInstruction? {
         if state == .dead { return nil } // must be an old deprecated enqueued dispatch closure
         assert(state == .running)
-        if (_instructionPointer == _instructionList.count) || (_instructionList.count == 0) {
+        if _instructionPointer == _instructionList.count || _instructionList.isEmpty {
             return nil
         }
         let instruction = _instructionList[_instructionPointer]
@@ -91,8 +91,12 @@ class CBScriptContext: CBScriptContextProtocol {
     }
 
     final func jump(numberOfInstructions: Int) {
-        if state == .dead || state == .runnable { return } // must be an old deprecated enqueued dispatch closure
-        if numberOfInstructions == 0 { return }
+        if state == .dead || state == .runnable {
+            return // must be an old deprecated enqueued dispatch closure
+        }
+        if numberOfInstructions == 0 {
+            return
+        }
         assert(state == .running)
         let newInstructionPointerPosition = _instructionPointer + numberOfInstructions
         if newInstructionPointerPosition < 0 || newInstructionPointerPosition > _instructionList.count {
@@ -120,9 +124,12 @@ final class CBWhenScriptContext: CBScriptContext {
     }
 
     init?(whenScript: WhenScript, spriteNode: CBSpriteNode, formulaInterpreter: FormulaInterpreterProtocol, state: CBScriptContextState, instructionList: [CBInstruction]
-    ) {
-        super.init(script: whenScript, spriteNode: spriteNode, formulaInterpreter: formulaInterpreter, state: state,
-            instructionList: instructionList)
+        ) {
+        super.init(script: whenScript,
+                   spriteNode: spriteNode,
+                   formulaInterpreter: formulaInterpreter,
+                   state: state,
+                   instructionList: instructionList)
     }
 
 }
@@ -136,7 +143,10 @@ final class CBWhenTouchDownScriptContext: CBScriptContext {
 
     init?(whenTouchDownScript: WhenTouchDownScript, spriteNode: CBSpriteNode, formulaInterpreter: FormulaInterpreterProtocol, state: CBScriptContextState, instructionList: [CBInstruction]
         ) {
-        super.init(script: whenTouchDownScript, spriteNode: spriteNode, formulaInterpreter: formulaInterpreter, state: state,
+        super.init(script: whenTouchDownScript,
+                   spriteNode: spriteNode,
+                   formulaInterpreter: formulaInterpreter,
+                   state: state,
                    instructionList: instructionList)
     }
 
@@ -153,11 +163,14 @@ final class CBBroadcastScriptContext: CBScriptContext, CBBroadcastScriptContextP
     }
 
     init?(broadcastScript: BroadcastScript, spriteNode: CBSpriteNode, formulaInterpreter: FormulaInterpreterProtocol, state: CBScriptContextState, instructionList: [CBInstruction]
-    ) {
+        ) {
         broadcastMessage = broadcastScript.receivedMessage
         waitingContext = nil
-        super.init(script: broadcastScript, spriteNode: spriteNode, formulaInterpreter: formulaInterpreter, state: state,
-            instructionList: instructionList)
+        super.init(script: broadcastScript,
+                   spriteNode: spriteNode,
+                   formulaInterpreter: formulaInterpreter,
+                   state: state,
+                   instructionList: instructionList)
     }
 
 }
@@ -170,9 +183,12 @@ final class CBStartScriptContext: CBScriptContext {
     }
 
     init?(startScript: StartScript, spriteNode: CBSpriteNode, formulaInterpreter: FormulaInterpreterProtocol, state: CBScriptContextState, instructionList: [CBInstruction]
-    ) {
-        super.init(script: startScript, spriteNode: spriteNode, formulaInterpreter: formulaInterpreter, state: state,
-            instructionList: instructionList)
+        ) {
+        super.init(script: startScript,
+                   spriteNode: spriteNode,
+                   formulaInterpreter: formulaInterpreter,
+                   state: state,
+                   instructionList: instructionList)
     }
 
 }

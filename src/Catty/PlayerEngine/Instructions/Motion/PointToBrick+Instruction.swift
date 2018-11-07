@@ -23,7 +23,7 @@
 @objc extension PointToBrick: CBInstructionProtocol {
 
     @nonobjc func instruction() -> CBInstruction {
-        return .action { (_) in SKAction.run(self.actionBlock()) }
+        return .action { _ in SKAction.run(self.actionBlock()) }
     }
 
     @objc func actionBlock() -> () -> Void {
@@ -53,7 +53,7 @@
             } else {
                 let base = fabs(objectPosition.y - pointedObjectPosition.y)
                 let height = fabs(objectPosition.x - pointedObjectPosition.x)
-                let value = Double(atan(base/height)) * 180.0 / Double.pi
+                let value = Double(atan(base / height)) * 180.0 / Double.pi
 
                 if objectPosition.x < pointedObjectPosition.x {
                     if objectPosition.y > pointedObjectPosition.y {

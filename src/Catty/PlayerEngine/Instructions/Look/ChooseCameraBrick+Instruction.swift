@@ -23,7 +23,7 @@
 extension ChooseCameraBrick: CBInstructionProtocol {
 
     func instruction() -> CBInstruction {
-        return CBInstruction.execClosure { (context, _) in
+        return CBInstruction.execClosure { context, _ in
             let cameraPosition: AVCaptureDevice.Position = (self.cameraPosition == 0) ? .back : .front
             CameraPreviewHandler.shared().switchCameraPosition(to: cameraPosition)
             context.state = .runnable

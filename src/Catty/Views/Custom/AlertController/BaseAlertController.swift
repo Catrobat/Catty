@@ -35,13 +35,13 @@ import UIKit
     func build() -> AlertControllerProtocol
 }
 
-protocol CustomAlertControllerDelegate: class {
+protocol CustomAlertControllerDelegate: AnyObject {
     var viewDidAppear: ((UIView) -> Void)? { get set }
     var viewWillDisappear: (() -> Void)? { get set }
 }
 
 final class CustomAlertController: UIAlertController {
-    fileprivate weak var delegate: CustomAlertControllerDelegate?
+    weak var delegate: CustomAlertControllerDelegate?
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -93,7 +93,7 @@ class BaseAlertController: NSObject, AlertControllerProtocol, BuilderProtocol, C
             return
         }
         let presentingController = !controller.isViewLoaded || controller.view.window == nil ?
-                Util.topViewController(in: controller) : controller
+            Util.topViewController(in: controller) : controller
         presentingController?.present(alertController, animated: true, completion: completion)
     }
 }

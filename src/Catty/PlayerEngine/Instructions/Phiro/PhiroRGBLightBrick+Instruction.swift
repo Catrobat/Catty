@@ -26,7 +26,7 @@ import Foundation
 
     @nonobjc func instruction() -> CBInstruction {
 
-        return CBInstruction.execClosure { (context, _) in
+        return CBInstruction.execClosure { context, _ in
             let redValue = self.getFormulaValue(self.redFormula, formulaInterpreter: context.formulaInterpreter)
             let greenValue = self.getFormulaValue(self.greenFormula, formulaInterpreter: context.formulaInterpreter)
             let blueValue = self.getFormulaValue(self.blueFormula, formulaInterpreter: context.formulaInterpreter)

@@ -25,7 +25,7 @@ class CBConditionalSequence: CBSequenceProtocol, CBSequenceVisitProtocol {
     // MARK: - Properties
     final weak var rootSequenceList: CBScriptSequenceList?
     final let sequenceList: CBSequenceList
-    final var lastLoopIterationStartTime: Date = Date()
+    final var lastLoopIterationStartTime = Date()
     final let condition: CBConditionProtocol
 
     // MARK: - Initializers
@@ -37,7 +37,7 @@ class CBConditionalSequence: CBSequenceProtocol, CBSequenceVisitProtocol {
 
     // MARK: - Operations
     func isEmpty() -> Bool {
-        return (sequenceList.count == 0)
+        return sequenceList.isEmpty()
     }
 
     final func checkCondition(context: CBScriptContextProtocol) -> Bool {

@@ -37,14 +37,14 @@ class SqrtFunctionTest: XCTestCase {
     }
 
     func testDefaultValue() {
-        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: "invalidParameter" as AnyObject), accuracy: 0.0001)
-        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: nil), accuracy: 0.0001)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: "invalidParameter" as AnyObject), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: nil), accuracy: Double.epsilon)
     }
 
     func testValue() {
-        XCTAssertEqual(sqrt(100), function.value(parameter: 100 as AnyObject), accuracy: 0.0001)
+        XCTAssertEqual(sqrt(100), function.value(parameter: 100 as AnyObject), accuracy: Double.epsilon)
 
-        XCTAssertEqual(sqrt(81), function.value(parameter: 81 as AnyObject), accuracy: 0.0001)
+        XCTAssertEqual(sqrt(81), function.value(parameter: 81 as AnyObject), accuracy: Double.epsilon)
     }
 
     func testParameter() {

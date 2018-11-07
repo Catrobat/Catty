@@ -24,7 +24,7 @@ import XCTest
 
 class SoundsTVCTests: XCTestCase, UITestProtocol {
 
-    struct Constants {
+    enum Constants {
         static let numSounds: UInt = 5
     }
 
@@ -78,12 +78,12 @@ class SoundsTVCTests: XCTestCase, UITestProtocol {
         for i: UInt in 1...Constants.numSounds {
             var name = "Recording"
             if i != 1 {
-                name += " (" + String(i-1) + ")"
+                name += " (" + String(i - 1) + ")"
             }
             tablesQuery.staticTexts[name].swipeLeft()
             tablesQuery.buttons["Delete"].tap()
             app.alerts["Delete this sound"].collectionViews.buttons["Yes"].tap()
-            XCTAssertEqual(app.tables.staticTexts.count, (Constants.numSounds-i))
+            XCTAssertEqual(app.tables.staticTexts.count, (Constants.numSounds - i))
         }
     }
 
@@ -101,7 +101,7 @@ class SoundsTVCTests: XCTestCase, UITestProtocol {
             var oldName = "Recording"
             var newName = "Renamed"
             if i != 1 {
-                let suffix = " (" + String(i-1) + ")"
+                let suffix = " (" + String(i - 1) + ")"
                 oldName += suffix
                 newName += suffix
             }
@@ -147,7 +147,7 @@ class SoundsTVCTests: XCTestCase, UITestProtocol {
         for i: UInt in 1...Constants.numSounds {
             var name = "Recording"
             if i != 1 {
-                name += " (" + String(i-1) + ")"
+                name += " (" + String(i - 1) + ")"
             }
             let cell = tablesQuery.containingType(.StaticText, identifier: name)
             XCTAssertTrue(cell.staticTexts["Length:"].exists)
@@ -162,7 +162,7 @@ class SoundsTVCTests: XCTestCase, UITestProtocol {
         for i: UInt in 1...Constants.numSounds {
             var name = "Recording"
             if i != 1 {
-                name += " (" + String(i-1) + ")"
+                name += " (" + String(i - 1) + ")"
             }
             let cell = tablesQuery.containingType(.StaticText, identifier: name)
             XCTAssertFalse(cell.staticTexts["Length:"].exists)

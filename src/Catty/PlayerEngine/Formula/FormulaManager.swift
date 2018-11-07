@@ -20,8 +20,8 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import CoreMotion
 import CoreLocation
+import CoreMotion
 
 @objc class FormulaManager: NSObject, FormulaManagerProtocol, FormulaInterpreterProtocol {
 
@@ -203,7 +203,7 @@ import CoreLocation
             MultiFingerTouchedFunction(touchManagerGetter: { touchManager }),
             ArduinoAnalogPinFunction(bluetoothServiceGetter: { bluetoothService }),
             ArduinoDigitalPinFunction(bluetoothServiceGetter: { bluetoothService })
-            ])
+        ])
 
         return functionManager
     }

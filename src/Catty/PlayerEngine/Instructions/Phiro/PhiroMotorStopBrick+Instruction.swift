@@ -20,25 +20,30 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc extension ChangeColorByNBrick: CBInstructionProtocol {
+import Foundation
+
+@objc extension PhiroMotorStopBrick: CBInstructionProtocol {
 
     @nonobjc func instruction() -> CBInstruction {
-        return .action { (context) in SKAction.run(self.actionBlock(context.formulaInterpreter)) }
-    }
 
-    @objc func actionBlock(_ formulaInterpreter: FormulaInterpreterProtocol) -> () -> Void {
-        guard let object = self.script?.object,
-            let spriteNode = object.spriteNode,
-            let colorFormula = self.changeColor
-            else { fatalError("This should never happen!") }
+        return CBInstruction.execClosure { context, _ in
 
-        return {
-            guard let look = object.spriteNode?.currentLook else { return }
-            let colorIncrease = formulaInterpreter.interpretDouble(colorFormula, for: object)
-            spriteNode.catrobatColor += colorIncrease
-
-            let lookImage = UIImage(contentsOfFile: self.path(for: look))
-            spriteNode.executeFilter(lookImage)
+            guard let phiro: Phiro = BluetoothService.swiftSharedInstance.phiro else {
+                //ERROR
+                return
+            }
+            switch self.phiroMotor() {
+            case .Left:
+                phiro.stopLeftMotor()
+            case .Right:
+                phiro.stopRightMotor()
+            case .Both:
+                phiro.stopRightMotor()
+                phiro.stopLeftMotor()
+            }
+            context.state = .runnable
         }
+
     }
+
 }

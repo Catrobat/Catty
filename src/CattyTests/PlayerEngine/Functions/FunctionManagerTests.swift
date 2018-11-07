@@ -151,16 +151,33 @@ final class FunctionManagerTests: XCTestCase {
         let functionD = SingleParameterStringFunctionMock(tag: "tagD", value: "test", parameter: FunctionParameter.number(defaultValue: 2))
 
         var manager = FunctionManager(functions: [])
-        XCTAssertEqual(type(of: manager).defaultValueForUndefinedFunction, manager.value(tag: functionA.tag(), firstParameter: nil, secondParameter: nil, spriteObject: spriteObject) as! Double)
+        XCTAssertEqual(type(of: manager).defaultValueForUndefinedFunction,
+                       manager.value(tag: functionA.tag(),
+                                     firstParameter: nil,
+                                     secondParameter: nil,
+                                     spriteObject: spriteObject) as! Double)
 
         manager = FunctionManager(functions: [functionA, functionB, functionC, functionD])
-        XCTAssertEqual(functionA.value(), manager.value(tag: functionA.tag(), firstParameter: nil, secondParameter: nil, spriteObject: spriteObject) as! Double)
-        XCTAssertEqual(functionB.value(parameter: nil), manager.value(tag: functionB.tag(), firstParameter: nil, secondParameter: nil, spriteObject: spriteObject) as! Double)
+        XCTAssertEqual(functionA.value(),
+                       manager.value(tag: functionA.tag(),
+                                     firstParameter: nil,
+                                     secondParameter: nil,
+                                     spriteObject: spriteObject) as! Double)
+        XCTAssertEqual(functionB.value(parameter: nil),
+                       manager.value(tag: functionB.tag(),
+                                     firstParameter: nil,
+                                     secondParameter: nil,
+                                     spriteObject: spriteObject) as! Double)
         XCTAssertEqual(functionC.value(firstParameter: nil, secondParameter: nil),
                        manager.value(tag: functionC.tag(),
                                      firstParameter: nil,
-                                     secondParameter: nil, spriteObject: spriteObject) as! Double)
-        XCTAssertEqual(functionD.value(parameter: nil), manager.value(tag: functionD.tag(), firstParameter: nil, secondParameter: nil, spriteObject: spriteObject) as! String)
+                                     secondParameter: nil,
+                                     spriteObject: spriteObject) as! Double)
+        XCTAssertEqual(functionD.value(parameter: nil),
+                       manager.value(tag: functionD.tag(),
+                                     firstParameter: nil,
+                                     secondParameter: nil,
+                                     spriteObject: spriteObject) as! String)
     }
 
     func testFormulaEditorItems() {

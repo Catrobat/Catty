@@ -22,7 +22,7 @@
 
 import Foundation
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 // Optional
 extension Optional {
 
@@ -116,7 +116,7 @@ public func forcomp<T, U>(_ f: T?, g: U?, filter: (T, U) -> Bool, apply: (T, U) 
         g.filter {gvalue in
             filter(fvalue, gvalue)
         }.foreach {gvalue in
-            apply(fvalue, gvalue)
+                apply(fvalue, gvalue)
         }
     }
 }
@@ -127,7 +127,7 @@ public func forcomp<T, U, V>(_ f: T?, g: U?, h: V?, filter: (T, U, V) -> Bool, a
             h.filter {hvalue in
                 filter(fvalue, gvalue, hvalue)
             }.foreach {hvalue in
-                apply(fvalue, gvalue, hvalue)
+                    apply(fvalue, gvalue, hvalue)
             }
         }
     }
@@ -138,7 +138,7 @@ public func forcomp<T, U, V>(_ f: T?, g: U?, filter: (T, U) -> Bool, yield: (T, 
         g.filter {gvalue in
             filter(fvalue, gvalue)
         }.map {gvalue in
-            yield(fvalue, gvalue)
+                yield(fvalue, gvalue)
         }
     }
 }
@@ -149,15 +149,15 @@ public func forcomp<T, U, V, W>(_ f: T?, g: U?, h: V?, filter: (T, U, V) -> Bool
             h.filter {hvalue in
                 filter(fvalue, gvalue, hvalue)
             }.map {hvalue in
-                yield(fvalue, gvalue, hvalue)
+                    yield(fvalue, gvalue, hvalue)
             }
         }
     }
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 // Try
-public struct TryError {
+public enum TryError {
     public static let domain = "Wrappers"
     public static let filterFailed = NSError(domain: domain, code: 1, userInfo: [NSLocalizedDescriptionKey: "Filter failed"])
 }
@@ -330,7 +330,7 @@ public func forcomp<T, U>(_ f: Try<T>, g: Try<U>, filter: (T, U) -> Bool, apply:
         g.filter {gvalue in
             filter(fvalue, gvalue)
         }.foreach {gvalue in
-            apply(fvalue, gvalue)
+                apply(fvalue, gvalue)
         }
     }
 }
@@ -341,7 +341,7 @@ public func forcomp<T, U, V>(_ f: Try<T>, g: Try<U>, h: Try<V>, filter: (T, U, V
             h.filter {hvalue in
                 filter(fvalue, gvalue, hvalue)
             }.foreach {hvalue in
-                apply(fvalue, gvalue, hvalue)
+                    apply(fvalue, gvalue, hvalue)
             }
         }
     }
@@ -352,7 +352,7 @@ public func forcomp<T, U, V>(_ f: Try<T>, g: Try<U>, filter: (T, U) -> Bool, yie
         g.filter {gvalue in
             filter(fvalue, gvalue)
         }.map {gvalue in
-            yield(fvalue, gvalue)
+                yield(fvalue, gvalue)
         }
     }
 }
@@ -363,25 +363,25 @@ public func forcomp<T, U, V, W>(_ f: Try<T>, g: Try<U>, h: Try<V>, filter: (T, U
             h.filter {hvalue in
                 filter(fvalue, gvalue, hvalue)
             }.map {hvalue in
-                yield(fvalue, gvalue, hvalue)
+                    yield(fvalue, gvalue, hvalue)
             }
         }
     }
 
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 // ExecutionContext
 public protocol ExecutionContext {
 
     func execute(_ task:@escaping () -> Void)
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 // QueueContext
 public struct QueueContext: ExecutionContext {
 
-    public static let main =  QueueContext(queue: Queue.main)
+    public static let main = QueueContext(queue: Queue.main)
 
     public static let global = QueueContext(queue: Queue.global)
 
@@ -396,14 +396,14 @@ public struct QueueContext: ExecutionContext {
     }
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 // Queue
 public struct Queue {
 
-    public static let main              = Queue(DispatchQueue.main)
-    public static let global            = Queue(DispatchQueue.global(qos: DispatchQoS.QoSClass.default))
+    public static let main = Queue(DispatchQueue.main)
+    public static let global = Queue(DispatchQueue.global(qos: DispatchQoS.QoSClass.default))
 
-    internal static let simpleFutures       = Queue("us.gnos.simpleFutures")
+    internal static let simpleFutures = Queue("us.gnos.simpleFutures")
     internal static let simpleFutureStreams = Queue("us.gnos.simpleFutureStreams")
 
     var queue: DispatchQueue
@@ -422,7 +422,7 @@ public struct Queue {
 
     public func sync<T>(_ block:() -> T) -> T {
         return self.queue.sync {
-            return block()
+            block()
         }
     }
 
@@ -432,18 +432,18 @@ public struct Queue {
 
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-public struct SimpleFuturesError {
+//////////////////////////////////////////////////////////////////////////////
+public enum SimpleFuturesError {
     static let domain = "SimpleFutures"
-    static let futureCompleted      = NSError(domain: domain, code: 1, userInfo: [NSLocalizedDescriptionKey: "Future has been completed"])
-    static let futureNotCompleted   = NSError(domain: domain, code: 2, userInfo: [NSLocalizedDescriptionKey: "Future has not been completed"])
+    static let futureCompleted = NSError(domain: domain, code: 1, userInfo: [NSLocalizedDescriptionKey: "Future has been completed"])
+    static let futureNotCompleted = NSError(domain: domain, code: 2, userInfo: [NSLocalizedDescriptionKey: "Future has not been completed"])
 }
 
-public struct SimpleFuturesException {
+public enum SimpleFuturesException {
     static let futureCompleted = NSException(name: NSExceptionName(rawValue: "Future complete error"), reason: "Future previously completed.", userInfo: nil)
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 // Promise
 open class Promise<T> {
 
@@ -478,15 +478,17 @@ open class Promise<T> {
 
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 // Future
 open class Future<T> {
 
     private var result: Try<T>?
 
-    internal let defaultExecutionContext: ExecutionContext  = QueueContext.main
-    typealias OnComplete                                    = (Try<T>) -> Void
-    private var saveCompletes                               = [OnComplete]()
+    internal let defaultExecutionContext: ExecutionContext = QueueContext.main
+
+    typealias OnComplete = (Try<T>) -> Void
+
+    private var saveCompletes = [OnComplete]()
 
     open var completed: Bool {
         return self.result != nil
@@ -657,7 +659,7 @@ open class Future<T> {
 
     internal func completeWith(_ executionContext: ExecutionContext, future: Future<T>) {
         let isCompleted = Queue.simpleFutures.sync {
-            return self.result != nil
+            self.result != nil
         }
         if isCompleted == false {
             future.onComplete(executionContext) {result in
@@ -745,7 +747,7 @@ open class Future<T> {
 
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 // create futures
 public func future<T>(_ computeResult:@escaping () -> Try<T>) -> Future<T> {
     return future(QueueContext.global, calculateResult: computeResult)
@@ -771,7 +773,7 @@ public func forcomp<T, U>(_ executionContext: ExecutionContext, f: Future<T>, g:
     }
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 // for comprehensions
 public func forcomp<T, U>(_ f: Future<T>, g: Future<U>, filter:@escaping (T, U) -> Bool, apply:@escaping (T, U) -> Void) {
     return forcomp(f.defaultExecutionContext, f: f, g: g, filter: filter, apply: apply)
@@ -782,7 +784,7 @@ public func forcomp<T, U>(_ executionContext: ExecutionContext, f: Future<T>, g:
         g.withFilter(executionContext) {gvalue in
             filter(fvalue, gvalue)
         }.foreach(executionContext) {gvalue in
-            apply(fvalue, gvalue)
+                apply(fvalue, gvalue)
         }
     }
 }
@@ -811,7 +813,7 @@ public func forcomp<T, U, V>(_ executionContext: ExecutionContext, f: Future<T>,
             h.withFilter(executionContext) {hvalue in
                 filter(fvalue, gvalue, hvalue)
             }.foreach(executionContext) {hvalue in
-                apply(fvalue, gvalue, hvalue)
+                    apply(fvalue, gvalue, hvalue)
             }
         }
     }
@@ -838,7 +840,7 @@ public func forcomp<T, U, V>(_ executionContext: ExecutionContext, f: Future<T>,
         g.withFilter(executionContext) {gvalue in
             filter(fvalue, gvalue)
         }.map(executionContext) {gvalue in
-            yield(fvalue, gvalue)
+                yield(fvalue, gvalue)
         }
     }
 }
@@ -867,13 +869,13 @@ public func forcomp<T, U, V, W>(_ executionContext: ExecutionContext, f: Future<
             h.withFilter(executionContext) {hvalue in
                 filter(fvalue, gvalue, hvalue)
             }.map(executionContext) {hvalue in
-                yield(fvalue, gvalue, hvalue)
+                    yield(fvalue, gvalue, hvalue)
             }
         }
     }
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 // StreamPromise
 open class StreamPromise<T> {
 
@@ -913,16 +915,16 @@ open class StreamPromise<T> {
 
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 // FutureStream
 open class FutureStream<T> {
 
     private var futures         = [Future<T>]()
-    private typealias InFuture  = (Future<T>) -> Void
+    private typealias InFuture = (Future<T>) -> Void
     private var saveCompletes   = [InFuture]()
     private var capacity: Int?
 
-    internal let defaultExecutionContext: ExecutionContext  = QueueContext.main
+    internal let defaultExecutionContext: ExecutionContext = QueueContext.main
 
     open var count: Int {
         return futures.count
@@ -1154,5 +1156,4 @@ open class FutureStream<T> {
         }
         self.futures.append(future)
     }
-
 }

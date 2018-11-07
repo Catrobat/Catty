@@ -25,7 +25,7 @@ import XCTest
 @testable import Pocket_Code
 
 final class TimeMinuteSensorMock: TimeMinuteSensor {
-    var mockDate: Date = Date()
+    var mockDate = Date()
 
     override func date() -> Date {
         return mockDate
@@ -54,11 +54,11 @@ final class TimeMinuteSensorTest: XCTestCase {
 
     func testRawValue() {
         /* test one digit */
-        self.sensor.mockDate = Date.init(timeIntervalSince1970: 1529345340)
+        self.sensor.mockDate = Date.init(timeIntervalSince1970: 1_529_345_340)
         XCTAssertEqual(9, Int(sensor.rawValue()))
 
         /* test two digits */
-        self.sensor.mockDate = Date.init(timeIntervalSince1970: 1529326620)
+        self.sensor.mockDate = Date.init(timeIntervalSince1970: 1_529_326_620)
         XCTAssertEqual(57, Int(sensor.rawValue()))
     }
 

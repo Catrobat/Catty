@@ -20,30 +20,31 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import UIKit
 import CoreBluetooth
+import UIKit
+
 // FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
 // Consider refactoring the code to use the non-optional operators.
 private func < <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l < r
-  case (nil, _?):
-    return true
-  default:
-    return false
-  }
+    switch (lhs, rhs) {
+    case let (l?, r?):
+        return l < r
+    case (nil, _?):
+        return true
+    default:
+        return false
+    }
 }
 
 // FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
 // Consider refactoring the code to use the non-optional operators.
 private func > <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l > r
-  default:
-    return rhs < lhs
-  }
+    switch (lhs, rhs) {
+    case let (l?, r?):
+        return l > r
+    default:
+        return rhs < lhs
+    }
 }
 
 // MARK: Peripheral
@@ -134,7 +135,7 @@ private func > <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
 
     // characteristic delegates
     open func peripheral(_ peri: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
-       self.discoveredCharacteristics(peri, service: service, error: error as NSError?)
+        self.discoveredCharacteristics(peri, service: service, error: error as NSError?)
     }
 
     open func discoveredCharacteristics(_ peri: CBPeripheral, service: CBService, error: NSError?) {
@@ -257,19 +258,19 @@ private func > <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
 
 // MARK: Peripheral Helper
 open class PeripheralHelper<P> where P: PeripheralWrapper,
-                          P.ServiceWrap: ServiceWrapper {
+P.ServiceWrap: ServiceWrapper {
 
     private var connectionPromise: StreamPromise<(P, ConnectionEvent)>?
-    private var servicesDiscoveredPromise   = Promise<P>()
-    private var readRSSIPromise             = Promise<Int>()
+    private var servicesDiscoveredPromise = Promise<P>()
+    private var readRSSIPromise = Promise<Int>()
 
     internal var timeoutRetries: Int?
     internal var disconnectRetries: Int?
-    internal var connectionTimeout      = 5.0
+    internal var connectionTimeout = 5.0
 
-    private var connectionSequence      = 0
-    private var currentError            = PeripheralConnectionError.none
-    private var forcedDisconnect        = false
+    private var connectionSequence = 0
+    private var currentError = PeripheralConnectionError.none
+    private var forcedDisconnect = false
 
     public init() {
     }
@@ -337,11 +338,11 @@ open class PeripheralHelper<P> where P: PeripheralWrapper,
         servicesDiscoveredFuture.onSuccess {_ in
             if peripheral.services.count > 1 {
                 self.discoverService(peripheral,
-                    head: peripheral.services[0],
-                    tail: Array(peripheral.services[1..<peripheral.services.count]),
-                    promise: peripheralDiscoveredPromise)
+                                     head: peripheral.services[0],
+                                     tail: Array(peripheral.services[1..<peripheral.services.count]),
+                                     promise: peripheralDiscoveredPromise)
             } else {
-                if peripheral.services.count > 0 {
+                if !peripheral.services.isEmpty {
                     let discoveryFuture = peripheral.services[0].discoverAllCharacteristics()
                     discoveryFuture.onSuccess {_ in
                         peripheralDiscoveredPromise.success(peripheral)
@@ -354,7 +355,7 @@ open class PeripheralHelper<P> where P: PeripheralWrapper,
                 }
             }
         }
-        servicesDiscoveredFuture.onFailure {(error) in
+        servicesDiscoveredFuture.onFailure {error in
             peripheralDiscoveredPromise.failure(error)
         }
         return peripheralDiscoveredPromise.future
@@ -362,7 +363,7 @@ open class PeripheralHelper<P> where P: PeripheralWrapper,
     internal func discoverService(_ peripheral: P, head: P.ServiceWrap, tail: [P.ServiceWrap], promise: Promise<P>) {
         let discoveryFuture = head.discoverAllCharacteristics()
         NSLog("service name \(head.name) count \(tail.count + 1)")
-        if tail.count > 0 {
+        if !tail.isEmpty {
             discoveryFuture.onSuccess {_ in
                 self.discoverService(peripheral, head: tail[0], tail: Array(tail[1..<tail.count]), promise: promise)
             }

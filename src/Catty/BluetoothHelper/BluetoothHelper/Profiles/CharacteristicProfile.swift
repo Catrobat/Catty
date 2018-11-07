@@ -20,8 +20,8 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import Foundation
 import CoreBluetooth
+import Foundation
 
 // CharacteristicProfile
 open class CharacteristicProfile {
@@ -76,47 +76,13 @@ open class CharacteristicProfile {
     }
 
     open func dataFromStringValue(_ data: [String: String]) -> Data? {
-        return data[self.name].map {($0.dataFromHexString() as Data)}
+        return data[self.name].map { ($0.dataFromHexString() as Data) }
     }
-
 }
 
 // RawCharacteristicProfile
 public final class RawCharacteristicProfile<DeserializedType> : CharacteristicProfile where
-                                              DeserializedType: RawDeserialize,
-                                              DeserializedType: StringDeserialize,
-                                              DeserializedType: CharacteristicConfigurable,
-                                              DeserializedType.RawType: Deserialize {
-
-    public init() {
-        super.init(uuid: DeserializedType.uuid,
-            name: DeserializedType.name,
-            permissions: DeserializedType.permissions,
-            properties: DeserializedType.properties,
-            initialValue: DeserializedType.initialValue)
-    }
-
-    public override var stringValues: [String] {
-        return DeserializedType.stringValues
-    }
-
-    public override func stringValue(_ data: Data) -> [String: String]? {
-        let value: DeserializedType? = Deserializer.deserialize(data)
-        return value.map {$0.stringValue}
-    }
-
-    public override func dataFromStringValue(_ data: [String: String]) -> Data? {
-        return DeserializedType(stringValue: data).flatmap {Serializer.serialize($0)}
-    }
-
-}
-
-// RawArrayCharacteristicProfile
-public final class RawArrayCharacteristicProfile<DeserializedType> : CharacteristicProfile where
-                                                   DeserializedType: RawArrayDeserialize,
-                                                   DeserializedType: StringDeserialize,
-                                                   DeserializedType: CharacteristicConfigurable,
-                                                   DeserializedType.RawType: Deserialize {
+    DeserializedType: RawDeserialize, DeserializedType: StringDeserialize, DeserializedType: CharacteristicConfigurable, DeserializedType.RawType: Deserialize {
 
     public init() {
         super.init(uuid: DeserializedType.uuid,
@@ -126,81 +92,104 @@ public final class RawArrayCharacteristicProfile<DeserializedType> : Characteris
                    initialValue: DeserializedType.initialValue)
     }
 
-    public override var stringValues: [String] {
+    override public var stringValues: [String] {
         return DeserializedType.stringValues
     }
 
-    public override func stringValue(_ data: Data) -> [String: String]? {
+    override public func stringValue(_ data: Data) -> [String: String]? {
         let value: DeserializedType? = Deserializer.deserialize(data)
-        return value.map {$0.stringValue}
+        return value.map { $0.stringValue }
     }
 
-    public override func dataFromStringValue(_ data: [String: String]) -> Data? {
-        return DeserializedType(stringValue: data).flatmap {Serializer.serialize($0)}
+    override public func dataFromStringValue(_ data: [String: String]) -> Data? {
+        return DeserializedType(stringValue: data).flatmap { Serializer.serialize($0) }
+    }
+}
+
+// RawArrayCharacteristicProfile
+public final class RawArrayCharacteristicProfile<DeserializedType> : CharacteristicProfile where
+    DeserializedType: RawArrayDeserialize, DeserializedType: StringDeserialize, DeserializedType: CharacteristicConfigurable, DeserializedType.RawType: Deserialize {
+
+    public init() {
+        super.init(uuid: DeserializedType.uuid,
+                   name: DeserializedType.name,
+                   permissions: DeserializedType.permissions,
+                   properties: DeserializedType.properties,
+                   initialValue: DeserializedType.initialValue)
     }
 
+    override public var stringValues: [String] {
+        return DeserializedType.stringValues
+    }
+
+    override public func stringValue(_ data: Data) -> [String: String]? {
+        let value: DeserializedType? = Deserializer.deserialize(data)
+        return value.map { $0.stringValue }
+    }
+
+    override public func dataFromStringValue(_ data: [String: String]) -> Data? {
+        return DeserializedType(stringValue: data).flatmap { Serializer.serialize($0) }
+    }
 }
 
 // RawPairCharacteristicProfile
 public final class RawPairCharacteristicProfile<DeserializedType> : CharacteristicProfile where
-                                                  DeserializedType: RawPairDeserialize,
-                                                  DeserializedType: StringDeserialize,
-                                                  DeserializedType: CharacteristicConfigurable,
-                                                  DeserializedType.RawType1: Deserialize,
-                                                  DeserializedType.RawType2: Deserialize {
+    DeserializedType: RawPairDeserialize,
+    DeserializedType: StringDeserialize,
+    DeserializedType: CharacteristicConfigurable,
+    DeserializedType.RawType1: Deserialize,
+    DeserializedType.RawType2: Deserialize {
 
     public init() {
         super.init(uuid: DeserializedType.uuid,
-            name: DeserializedType.name,
-            permissions: DeserializedType.permissions,
-            properties: DeserializedType.properties,
-            initialValue: DeserializedType.initialValue)
+                   name: DeserializedType.name,
+                   permissions: DeserializedType.permissions,
+                   properties: DeserializedType.properties,
+                   initialValue: DeserializedType.initialValue)
     }
 
-    public override var stringValues: [String] {
+    override public var stringValues: [String] {
         return DeserializedType.stringValues
     }
 
-    public override func stringValue(_ data: Data) -> [String: String]? {
+    override public func stringValue(_ data: Data) -> [String: String]? {
         let value: DeserializedType? = Deserializer.deserialize(data)
-        return value.map {$0.stringValue}
+        return value.map { $0.stringValue }
     }
 
-    public override func dataFromStringValue(_ data: [String: String]) -> Data? {
-        return DeserializedType(stringValue: data).flatmap {Serializer.serialize($0)}
+    override public func dataFromStringValue(_ data: [String: String]) -> Data? {
+        return DeserializedType(stringValue: data).flatmap { Serializer.serialize($0) }
     }
-
 }
 
 // RawArrayPairCharacteristicProfile
 public final class RawArrayPairCharacteristicProfile<DeserializedType> : CharacteristicProfile where
-                                                       DeserializedType: RawArrayPairDeserialize,
-                                                       DeserializedType: StringDeserialize,
-                                                       DeserializedType: CharacteristicConfigurable,
-                                                       DeserializedType.RawType1: Deserialize,
-                                                       DeserializedType.RawType2: Deserialize {
+    DeserializedType: RawArrayPairDeserialize,
+    DeserializedType: StringDeserialize,
+    DeserializedType: CharacteristicConfigurable,
+    DeserializedType.RawType1: Deserialize,
+    DeserializedType.RawType2: Deserialize {
 
     public init() {
         super.init(uuid: DeserializedType.uuid,
-            name: DeserializedType.name,
-            permissions: DeserializedType.permissions,
-            properties: DeserializedType.properties,
-            initialValue: DeserializedType.initialValue)
+                   name: DeserializedType.name,
+                   permissions: DeserializedType.permissions,
+                   properties: DeserializedType.properties,
+                   initialValue: DeserializedType.initialValue)
     }
 
-    public override var stringValues: [String] {
+    override public var stringValues: [String] {
         return DeserializedType.stringValues
     }
 
-    public override func stringValue(_ data: Data) -> [String: String]? {
+    override public func stringValue(_ data: Data) -> [String: String]? {
         let value: DeserializedType? = Deserializer.deserialize(data)
-        return value.map {$0.stringValue}
+        return value.map { $0.stringValue }
     }
 
-    public override func dataFromStringValue(_ data: [String: String]) -> Data? {
-        return DeserializedType(stringValue: data).flatmap {Serializer.serialize($0)}
+    override public func dataFromStringValue(_ data: [String: String]) -> Data? {
+        return DeserializedType(stringValue: data).flatmap { Serializer.serialize($0) }
     }
-
 }
 
 // StringCharacteristicProfile
@@ -222,13 +211,12 @@ public final class StringCharacteristicProfile<T: CharacteristicConfigurable> : 
         super.init(uuid: uuid, name: name, permissions: permissions, properties: properties)
     }
 
-    public override func stringValue(_ data: Data) -> [String: String]? {
+    override public func stringValue(_ data: Data) -> [String: String]? {
         let value: String? = Deserializer.deserialize(data, encoding: self.encoding)
-        return value.map {[self.name: $0]}
+        return value.map { [self.name: $0] }
     }
 
-    public override func dataFromStringValue(_ data: [String: String]) -> Data? {
-        return data[self.name].flatmap {Serializer.serialize($0, encoding: self.encoding)}
+    override public func dataFromStringValue(_ data: [String: String]) -> Data? {
+        return data[self.name].flatmap { Serializer.serialize($0, encoding: self.encoding) }
     }
-
 }

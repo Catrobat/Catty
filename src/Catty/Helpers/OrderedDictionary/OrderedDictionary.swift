@@ -264,9 +264,9 @@ public struct OrderedDictionary<Key: Hashable, Value>: MutableCollection, Expres
     // ======================================================= //
 
     /// The backing store for the ordered keys.
-    fileprivate var _orderedKeys = [Key]()
+    var _orderedKeys = [Key]()
 
     /// The backing store for the mapping of keys to values.
-    fileprivate var _keysToValues = [Key: Value]()
+    var _keysToValues = [Key: Value]()
 
 }

@@ -41,52 +41,52 @@ final class InclinationXSensorTest: XCTestCase {
 
     func testDefaultRawValue() {
         let sensor = InclinationXSensor { nil }
-        XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(), accuracy: 0.0001)
+        XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(), accuracy: Double.epsilon)
     }
 
     func testRawValue() {
         // test maximum value
         motionManager.attitude = (roll: Double.pi, pitch: 0)
-        XCTAssertEqual(sensor.rawValue(), Double.pi, accuracy: 0.0001)
+        XCTAssertEqual(sensor.rawValue(), Double.pi, accuracy: Double.epsilon)
 
         // test minimum value
         motionManager.attitude = (roll: -Double.pi, pitch: 0)
-        XCTAssertEqual(sensor.rawValue(), -Double.pi, accuracy: 0.0001)
+        XCTAssertEqual(sensor.rawValue(), -Double.pi, accuracy: Double.epsilon)
 
         // test no inclination
         motionManager.attitude = (roll: 0, pitch: 0)
-        XCTAssertEqual(sensor.rawValue(), 0, accuracy: 0.0001)
+        XCTAssertEqual(sensor.rawValue(), 0, accuracy: Double.epsilon)
 
         // tests inside the range
-        motionManager.attitude = (roll: Double.pi/2, pitch: 0)
-        XCTAssertEqual(sensor.rawValue(), Double.pi/2, accuracy: 0.0001)
+        motionManager.attitude = (roll: Double.pi / 2, pitch: 0)
+        XCTAssertEqual(sensor.rawValue(), Double.pi / 2, accuracy: Double.epsilon)
 
-        motionManager.attitude = (roll: -Double.pi/3, pitch: 0)
-        XCTAssertEqual(sensor.rawValue(), -Double.pi/3, accuracy: 0.0001)
+        motionManager.attitude = (roll: -Double.pi / 3, pitch: 0)
+        XCTAssertEqual(sensor.rawValue(), -Double.pi / 3, accuracy: Double.epsilon)
     }
 
     // does not depend on the orientation of the screen (left/right, up/down)
     func testConvertToStandardized() {
         // test no inclination
-        XCTAssertEqual(sensor.convertToStandardized(rawValue: 0), 0, accuracy: 0.0001)
+        XCTAssertEqual(sensor.convertToStandardized(rawValue: 0), 0, accuracy: Double.epsilon)
 
         // test screen half left
-        XCTAssertEqual(sensor.convertToStandardized(rawValue: -Double.pi/4), 45, accuracy: 0.0001)
+        XCTAssertEqual(sensor.convertToStandardized(rawValue: -Double.pi / 4), 45, accuracy: Double.epsilon)
 
         // test screen half right
-        XCTAssertEqual(sensor.convertToStandardized(rawValue: Double.pi/4), -45, accuracy: 0.0001)
+        XCTAssertEqual(sensor.convertToStandardized(rawValue: Double.pi / 4), -45, accuracy: Double.epsilon)
 
         // test screen left
-        XCTAssertEqual(sensor.convertToStandardized(rawValue: -Double.pi/2), 90, accuracy: 0.0001)
+        XCTAssertEqual(sensor.convertToStandardized(rawValue: -Double.pi / 2), 90, accuracy: Double.epsilon)
 
         // test screen right
-        XCTAssertEqual(sensor.convertToStandardized(rawValue: Double.pi/2), -90, accuracy: 0.0001)
+        XCTAssertEqual(sensor.convertToStandardized(rawValue: Double.pi / 2), -90, accuracy: Double.epsilon)
 
         // test screen left, then down
-        XCTAssertEqual(sensor.convertToStandardized(rawValue: -Double.pi), 180, accuracy: 0.0001)
+        XCTAssertEqual(sensor.convertToStandardized(rawValue: -Double.pi), 180, accuracy: Double.epsilon)
 
         // test screen right, then down
-        XCTAssertEqual(sensor.convertToStandardized(rawValue: Double.pi), -180, accuracy: 0.0001)
+        XCTAssertEqual(sensor.convertToStandardized(rawValue: Double.pi), -180, accuracy: Double.epsilon)
     }
 
     func testTag() {

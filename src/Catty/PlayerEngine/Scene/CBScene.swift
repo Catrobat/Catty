@@ -79,8 +79,10 @@ final class CBScene: SKScene {
         scheduler.startWhenTouchDownContexts()
 
         // Get sprite nodes only (ShowTextBrick creates a SKLabelNode)
-        let nodes = self.nodes(at: location).filter({$0 is CBSpriteNode})
-        if nodes.count == 0 { return false } // needed if scene has no background image!
+        let nodes = self.nodes(at: location).filter({ $0 is CBSpriteNode })
+        if nodes.isEmpty {
+            return false // needed if scene has no background image!
+        }
 
         logger.debug("Number of touched nodes: \(nodes.count)")
 
@@ -118,7 +120,7 @@ final class CBScene: SKScene {
         }
 
         guard let spriteObjectList = program.objectList as NSArray? as? [SpriteObject],
-              let variableList = frontend.program?.variables.allVariables() as NSArray? as? [UserVariable] else {
+            let variableList = frontend.program?.variables.allVariables() as NSArray? as? [UserVariable] else {
                 fatalError("!! Invalid sprite object list given !! This should never happen!")
         }
         assert(Thread.current.isMainThread)
@@ -131,12 +133,12 @@ final class CBScene: SKScene {
             spriteNode.name = spriteObject.name
             spriteNode.isHidden = false
             guard let scriptList = spriteObject.scriptList as NSArray? as? [Script]
-            else { fatalError("!! No script list given in object: \(spriteObject) !!") }
+                else { fatalError("!! No script list given in object: \(spriteObject) !!") }
 
             for script in scriptList {
                 guard let startScript = script as? StartScript,
-                                    let _ = startScript.brickList.firstObject as? HideBrick
-                else { continue }
+                    let _ = startScript.brickList.firstObject as? HideBrick
+                    else { continue }
                 spriteNode.isHidden = true
                 break
             }

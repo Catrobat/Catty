@@ -37,14 +37,14 @@ class FloorFunctionTest: XCTestCase {
     }
 
     func testDefaultValue() {
-        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: "invalidParameter" as AnyObject), accuracy: 0.0001)
-        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: nil), accuracy: 0.0001)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: "invalidParameter" as AnyObject), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: nil), accuracy: Double.epsilon)
     }
 
     func testValue() {
-        XCTAssertEqual(floor(13.45), function.value(parameter: 13.45 as AnyObject), accuracy: 0.0001)
+        XCTAssertEqual(floor(13.45), function.value(parameter: 13.45 as AnyObject), accuracy: Double.epsilon)
 
-        XCTAssertEqual(floor(-4.66), function.value(parameter: -4.66 as AnyObject), accuracy: 0.0001)
+        XCTAssertEqual(floor(-4.66), function.value(parameter: -4.66 as AnyObject), accuracy: Double.epsilon)
     }
 
     func testParameter() {

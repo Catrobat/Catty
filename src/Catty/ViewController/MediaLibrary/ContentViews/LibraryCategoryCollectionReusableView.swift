@@ -22,13 +22,22 @@
 
 class LibraryCategoryCollectionReusableView: UICollectionReusableView {
 
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var borderView: UIView!
-    @IBOutlet weak var borderThicknessConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var borderView: UIView!
+    @IBOutlet private weak var borderThicknessConstraint: NSLayoutConstraint!
 
     override func awakeFromNib() {
         super.awakeFromNib()
         self.borderView.backgroundColor = UIColor.utilityTint()
         self.borderThicknessConstraint.constant = CGFloat(kDefaultImageCellBorderWidth)
+    }
+
+    var title: String {
+        get {
+            return titleLabel.text!
+        }
+        set {
+            titleLabel.text = newValue
+        }
     }
 }

@@ -25,7 +25,7 @@
     @nonobjc func instruction() -> CBInstruction {
 
         let choice = self.flashChoice
-        return CBInstruction.execClosure { (context, _) in
+        return CBInstruction.execClosure { context, _ in
             //            self.logger.debug("Performing: FlashLightOffBrick/LEDOffBrick")
             if choice == 0 {
                 FlashHelper.sharedFlashHandler().turnOff()

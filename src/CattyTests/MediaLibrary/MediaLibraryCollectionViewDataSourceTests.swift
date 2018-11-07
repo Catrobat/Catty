@@ -20,16 +20,16 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import XCTest
-@testable import Pocket_Code
 import Kingfisher
+@testable import Pocket_Code
+import XCTest
 
-private let exampleData = Data(base64Encoded: "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAEElEQVR42gEFAPr/AP////8J+wP9vTv7fQAAAABJRU5ErkJggg==")! // 1x1 png image
+private let kExampleData = Data(base64Encoded: "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAEElEQVR42gEFAPr/AP////8J+wP9vTv7fQAAAABJRU5ErkJggg==")! // 1x1 png image
 
 class MediaLibraryCollectionViewDataSourceTests: XCTestCase {
 
     let exampleCategories = [
-        [MediaItem(name: "a", category: "A", cachedData: exampleData)],
+        [MediaItem(name: "a", category: "A", cachedData: kExampleData)],
         [MediaItem(category: "B"), MediaItem(category: "B")],
         [MediaItem(category: "C"), MediaItem(category: "C"), MediaItem(category: "C")]
     ]
@@ -103,13 +103,13 @@ class MediaLibraryCollectionViewDataSourceTests: XCTestCase {
 
             let headerKind = UICollectionElementKindSectionHeader
             var view = dataSource.collectionView(self.collectionView, viewForSupplementaryElementOfKind: headerKind, at: IndexPath(item: 0, section: 0)) as! LibraryCategoryCollectionReusableView
-            XCTAssertEqual(view.titleLabel.text, "A")
+            XCTAssertEqual(view.title, "A")
 
             view = dataSource.collectionView(self.collectionView, viewForSupplementaryElementOfKind: headerKind, at: IndexPath(item: 0, section: 1)) as! LibraryCategoryCollectionReusableView
-            XCTAssertEqual(view.titleLabel.text, "B")
+            XCTAssertEqual(view.title, "B")
 
             view = dataSource.collectionView(self.collectionView, viewForSupplementaryElementOfKind: headerKind, at: IndexPath(item: 0, section: 2)) as! LibraryCategoryCollectionReusableView
-            XCTAssertEqual(view.titleLabel.text, "C")
+            XCTAssertEqual(view.title, "C")
 
             expectation.fulfill()
         }
@@ -141,7 +141,7 @@ class MediaLibraryCollectionViewDataSourceTests: XCTestCase {
     func testImageCellContentFromMediaLibrary() {
         clearKingfisherCache()
         self.downloaderMock.categories = self.exampleCategories
-        self.downloaderMock.data = exampleData
+        self.downloaderMock.data = kExampleData
         let dataSource = MediaLibraryCollectionViewDataSource.dataSource(for: .looks, with: self.downloaderMock)
         self.collectionView.dataSource = dataSource
         dataSource.registerContentViewClasses(self.collectionView)
@@ -173,7 +173,7 @@ class MediaLibraryCollectionViewDataSourceTests: XCTestCase {
         // store image in cache
         let indexPath = IndexPath(item: 0, section: 1)
         let resource = ImageResource(downloadURL: self.exampleCategories[indexPath].downloadURL)
-        ImageCache.default.store(UIImage(data: exampleData)!, forKey: resource.cacheKey)
+        ImageCache.default.store(UIImage(data: kExampleData)!, forKey: resource.cacheKey)
 
         let expectation = XCTestExpectation(description: "Fetch looks")
 
@@ -197,7 +197,7 @@ class MediaLibraryCollectionViewDataSourceTests: XCTestCase {
     func testSelectingImageCellProvidesCachedData() {
         clearKingfisherCache()
         self.downloaderMock.categories = self.exampleCategories
-        self.downloaderMock.data = exampleData
+        self.downloaderMock.data = kExampleData
         let dataSource = MediaLibraryCollectionViewDataSource.dataSource(for: .looks, with: self.downloaderMock) as! ImagesLibraryCollectionViewDataSource
         self.collectionView.dataSource = dataSource
         dataSource.registerContentViewClasses(self.collectionView)
@@ -286,9 +286,9 @@ class MediaLibraryCollectionViewDataSourceTests: XCTestCase {
         dataSource.delegate = delegateMock
 
         XCTAssertEqual(cell.state, .stopped)
-        cell.playOrStop()
+        cell.testPlayOrStop()
         XCTAssertEqual(cell.state, .playing)
-        cell.playOrStop()
+        cell.testPlayOrStop()
         XCTAssertEqual(cell.state, .stopped)
     }
 
@@ -306,7 +306,7 @@ class MediaLibraryCollectionViewDataSourceTests: XCTestCase {
         dataSource.delegate = delegateMock
 
         XCTAssertEqual(cell.state, .stopped)
-        cell.playOrStop() // will immediately finish
+        cell.testPlayOrStop() // will immediately finish
         XCTAssertEqual(cell.state, .stopped)
     }
 
@@ -325,7 +325,7 @@ class MediaLibraryCollectionViewDataSourceTests: XCTestCase {
 
         let cell = dataSource.collectionView(self.collectionView, cellForItemAt: IndexPath(item: 0, section: 1)) as! LibrarySoundCollectionViewCell
         XCTAssertEqual(cell.state, .stopped)
-        cell.playOrStop()
+        cell.testPlayOrStop()
         XCTAssertEqual(cell.state, .preparing)
         wait(for: [expectation], timeout: 1.0)
         XCTAssertEqual(cell.state, .stopped)
@@ -333,7 +333,7 @@ class MediaLibraryCollectionViewDataSourceTests: XCTestCase {
 
     func testSoundCellFetchAndPlaySound() {
         self.downloaderMock.categories = self.exampleCategories
-        self.downloaderMock.data = exampleData
+        self.downloaderMock.data = kExampleData
         let dataSource = MediaLibraryCollectionViewDataSource.dataSource(for: .sounds, with: self.downloaderMock)
         self.collectionView.dataSource = dataSource
         dataSource.registerContentViewClasses(self.collectionView)
@@ -352,7 +352,7 @@ class MediaLibraryCollectionViewDataSourceTests: XCTestCase {
 
         let cell = dataSource.collectionView(self.collectionView, cellForItemAt: IndexPath(item: 0, section: 1)) as! LibrarySoundCollectionViewCell
         XCTAssertEqual(cell.state, .stopped)
-        cell.playOrStop()
+        cell.testPlayOrStop()
         XCTAssertEqual(cell.state, .preparing)
         wait(for: [expectation0], timeout: 1.0)
         XCTAssertEqual(cell.state, .playing)
@@ -362,7 +362,7 @@ class MediaLibraryCollectionViewDataSourceTests: XCTestCase {
 
     func testSelectingSoundCellProvidesCachedData() {
         self.downloaderMock.categories = self.exampleCategories
-        self.downloaderMock.data = exampleData
+        self.downloaderMock.data = kExampleData
         let dataSource = MediaLibraryCollectionViewDataSource.dataSource(for: .sounds, with: self.downloaderMock) as! SoundsLibraryCollectionViewDataSource
         self.collectionView.dataSource = dataSource
         dataSource.registerContentViewClasses(self.collectionView)

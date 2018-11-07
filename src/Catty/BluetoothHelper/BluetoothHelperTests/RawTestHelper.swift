@@ -20,9 +20,9 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import Foundation
-import CoreBluetooth
 import BluetoothHelper
+import CoreBluetooth
+import Foundation
 
 struct RawPairTest: RawPairDeserialize {
 
@@ -95,8 +95,8 @@ struct RawArrayPairTest: RawArrayPairDeserialize {
     init?(rawValue1: [Int8], rawValue2: [UInt8]) {
         if rawValue1.count == RawArrayPairTest.size1 &&
             rawValue2.count == RawArrayPairTest.size2 {
-                self.value1 = rawValue1
-                self.value2 = rawValue2
+            self.value1 = rawValue1
+            self.value2 = rawValue2
         } else {
             return nil
         }

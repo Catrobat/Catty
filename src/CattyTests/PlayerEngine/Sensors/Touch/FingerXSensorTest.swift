@@ -52,7 +52,7 @@ final class FingerXSensorTest: XCTestCase {
 
     func testDefaultRawValue() {
         let sensor = FingerXSensor { nil }
-        XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(), accuracy: 0.0001)
+        XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(), accuracy: Double.epsilon)
     }
 
     func testRawValue() {

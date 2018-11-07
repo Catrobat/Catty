@@ -23,7 +23,7 @@
 @objc extension ComeToFrontBrick: CBInstructionProtocol {
 
     @nonobjc func instruction() -> CBInstruction {
-        return .action { (_) in SKAction.run(self.actionBlock()) }
+        return .action { _ in SKAction.run(self.actionBlock()) }
     }
 
     @objc func actionBlock() -> () -> Void {

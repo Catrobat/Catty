@@ -22,7 +22,7 @@
 
 protocol FaceDetectionManagerProtocol {
 
-    var isFaceDetected: Bool? { get }
+    var isFaceDetected: Bool! { get }
     var facePositionX: Double? { get }
     var facePositionY: Double? { get }
     var faceSize: CGRect? { get }

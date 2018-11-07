@@ -20,26 +20,26 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import Foundation
 import CoreBluetooth
+import Foundation
 
 // MARK: QUEUE
-public struct CentralQueue {
+public enum CentralQueue {
 
-  public static let queue = DispatchQueue(label: "org.Catrobat.Bluetooth.main", attributes: [])
+    public static let queue = DispatchQueue(label: "org.Catrobat.Bluetooth.main", attributes: [])
 
-  public static func sync(_ request:() -> Void) {
-    self.queue.sync(execute: request)
-  }
+    public static func sync(_ request:() -> Void) {
+        self.queue.sync(execute: request)
+    }
 
-  public static func async(_ request:@escaping () -> Void) {
-    self.queue.async(execute: request)
-  }
+    public static func async(_ request:@escaping () -> Void) {
+        self.queue.async(execute: request)
+    }
 
-  public static func delay(_ delay: Double, request:@escaping () -> Void) {
-    let popTime = DispatchTime.now() + delay
-    self.queue.asyncAfter(deadline: popTime, execute: request)
-  }
+    public static func delay(_ delay: Double, request:@escaping () -> Void) {
+        let popTime = DispatchTime.now() + delay
+        self.queue.asyncAfter(deadline: popTime, execute: request)
+    }
 
 }
 
@@ -48,10 +48,10 @@ public protocol CMWrapper {
 
     associatedtype PeripheralWrap
 
-    var isOn: Bool {get}
-    var isOff: Bool {get}
-    var peripherals: [PeripheralWrap] {get}
-    var state: ManagerState {get}
+    var isOn: Bool { get }
+    var isOff: Bool { get }
+    var peripherals: [PeripheralWrap] { get }
+    var state: ManagerState { get }
 
     func scanForPeripheralsWithServices(_ uuids: [CBUUID]?)
     func retrievePeripheralsWithIdentifiers(_ uuids: [UUID]) -> [CBPeripheral]
@@ -63,9 +63,9 @@ public protocol PeripheralWrapper {
 
     associatedtype ServiceWrap
     //
-    var name: String {get}
-    var state: CBPeripheralState {get}
-    var services: [ServiceWrap] {get}
+    var name: String { get }
+    var state: CBPeripheralState { get }
+    var services: [ServiceWrap] { get }
 
     func connect()
     func reconnect()
@@ -77,9 +77,9 @@ public protocol PeripheralWrapper {
 
 public protocol ServiceWrapper {
 
-    var uuid: CBUUID {get}
-    var name: String {get}
-    var state: CBPeripheralState {get}
+    var uuid: CBUUID { get }
+    var name: String { get }
+    var state: CBPeripheralState { get }
 
     func discoverAllCharacteristics() -> Future<Self>
     func discoverCharacteristics(_ characteristics: [CBUUID]?)
@@ -89,11 +89,11 @@ public protocol ServiceWrapper {
 
 public protocol CharacteristicWrapper {
 
-    var uuid: CBUUID {get}
-    var name: String {get}
-    var isNotifying: Bool {get}
-    var stringValues: [String] {get}
-    var afterDiscoveredPromise: StreamPromise<Self>? {get}
+    var uuid: CBUUID { get }
+    var name: String { get }
+    var isNotifying: Bool { get }
+    var stringValues: [String] { get }
+    var afterDiscoveredPromise: StreamPromise<Self>? { get }
 
     func stringValue(_ data: Data?) -> [String: String]?
     func dataFromStringValue(_ stringValue: [String: String]) -> Data?
@@ -116,27 +116,27 @@ public enum ConnectionEvent {
 }
 
 public enum CharacteristicError: Int {
-    case readTimeout        = 1
-    case writeTimeout       = 2
-    case notSerializable    = 3
-    case readNotSupported   = 4
-    case writeNotSupported  = 5
+    case readTimeout = 1
+    case writeTimeout = 2
+    case notSerializable = 3
+    case readNotSupported = 4
+    case writeNotSupported = 5
 }
 
 public enum PeripheralError: Int {
-    case discoveryTimeout   = 20
-    case disconnected       = 21
-    case noServices         = 22
+    case discoveryTimeout = 20
+    case disconnected = 21
+    case noServices = 22
 }
 
 public enum PeripheralManagerError: Int {
-    case isAdvertising      = 40
-    case isNotAdvertising   = 41
-    case addServiceFailed   = 42
+    case isAdvertising = 40
+    case isNotAdvertising = 41
+    case addServiceFailed = 42
 }
 
 public enum CentralError: Int {
-    case isScanning         = 50
+    case isScanning = 50
 }
 
 @objc public enum ManagerState: Int {
@@ -148,7 +148,7 @@ public enum CentralError: Int {
     case poweredOn
 }
 
-public struct BluetoothError {
+public enum BluetoothError {
     public static let domain = "BluetoothManager"
 
     public static let characteristicReadTimeout = NSError(domain: domain,

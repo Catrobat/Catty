@@ -22,20 +22,6 @@
 
 import Foundation
 
-public extension String {
-
-//    public var floatValue : Float {
-//        return (self as NSString).floatValue
-//    }
-
-    public func dataFromHexString() -> Data {
-        var bytes = [UInt8]()
-        for i in 0..<(self.count/2) {
-            let string = self[self.index(self.startIndex, offsetBy: 2*i) ..< self.index(self.startIndex, offsetBy: 2*i+2)]
-            let byte = strtol((string as NSString).utf8String, nil, 16)
-            bytes.append(UInt8(byte))
-        }
-        return Data(bytes: UnsafePointer<UInt8>(bytes), count: bytes.count)
-    }
-
+extension Double {
+    static let epsilon = 0.000_1
 }

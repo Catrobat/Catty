@@ -35,17 +35,17 @@ import Foundation
 
     func didReceiveAnalogMessage(_ pin: Int, value: Int) {
         switch pin {
-        case PIN_SENSOR_SIDE_RIGHT:
+        case kPIN_SENSOR_SIDE_RIGHT:
             sideRightSensor = value
-        case PIN_SENSOR_FRONT_RIGHT:
+        case kPIN_SENSOR_FRONT_RIGHT:
             frontRightSensor = value
-        case PIN_SENSOR_BOTTOM_RIGHT:
+        case kPIN_SENSOR_BOTTOM_RIGHT:
             bottomRightSensor = value
-        case PIN_SENSOR_BOTTOM_LEFT:
+        case kPIN_SENSOR_BOTTOM_LEFT:
             bottomLeftSensor = value
-        case PIN_SENSOR_FRONT_LEFT:
+        case kPIN_SENSOR_FRONT_LEFT:
             frontLeftSensor = value
-        case PIN_SENSOR_SIDE_LEFT:
+        case kPIN_SENSOR_SIDE_LEFT:
             sideLeftSensor = value
         default:
             break //NOT USED SENSOR

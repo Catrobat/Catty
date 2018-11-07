@@ -23,14 +23,14 @@
 extension ChangeYByNBrick: CBInstructionProtocol {
 
     func instruction() -> CBInstruction {
-        return .action { (context) in SKAction.run(self.actionBlock(context.formulaInterpreter)) }
+        return .action { context in SKAction.run(self.actionBlock(context.formulaInterpreter)) }
     }
 
     func actionBlock(_ formulaInterpreter: FormulaInterpreterProtocol) -> () -> Void {
         guard let object = self.script?.object,
             let spriteNode = object.spriteNode,
             let yMovement = self.yMovement
-        else { fatalError("This should never happen!") }
+            else { fatalError("This should never happen!") }
 
         return {
             let yMov = formulaInterpreter.interpretDouble(yMovement, for: object)

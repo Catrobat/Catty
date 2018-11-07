@@ -37,11 +37,11 @@ class FalseFunctionTest: XCTestCase {
     }
 
     func testDefaultValue() {
-        XCTAssertEqual(type(of: function).defaultValue, function.value(), accuracy: 0.0001)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(), accuracy: Double.epsilon)
     }
 
     func testValue() {
-        XCTAssertEqual(0.0, function.value(), accuracy: 0.0001)
+        XCTAssertEqual(0.0, function.value(), accuracy: Double.epsilon)
     }
 
     func testTag() {

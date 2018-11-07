@@ -77,7 +77,7 @@ class CreateProgramTVCTests: XCTestCase, UITestProtocol {
         app.tables.staticTexts["Background"].tap()
         app.tables.staticTexts["Backgrounds"].tap()
         app.toolbars.buttons["Add"].tap()
-        app.buttons["Draw new image"].tap()
+        waitForElementToAppear(app.buttons["Draw new image"]).tap()
 
         XCTAssertNotNil(waitForElementToAppear(app.navigationBars["Pocket Paint"]))
 

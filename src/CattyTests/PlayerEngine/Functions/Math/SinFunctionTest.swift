@@ -37,14 +37,14 @@ class SinFunctionTest: XCTestCase {
     }
 
     func testDefaultValue() {
-        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: "invalidParameter" as AnyObject), accuracy: 0.0001)
-        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: nil), accuracy: 0.0001)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: "invalidParameter" as AnyObject), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: nil), accuracy: Double.epsilon)
     }
 
     func testValue() {
-        XCTAssertEqual(sin(Util.degree(toRadians: 45)), function.value(parameter: 45 as AnyObject), accuracy: 0.0001)
+        XCTAssertEqual(sin(Util.degree(toRadians: 45)), function.value(parameter: 45 as AnyObject), accuracy: Double.epsilon)
 
-        XCTAssertEqual(sin(Util.degree(toRadians: -15)), function.value(parameter: -15 as AnyObject), accuracy: 0.0001)
+        XCTAssertEqual(sin(Util.degree(toRadians: -15)), function.value(parameter: -15 as AnyObject), accuracy: Double.epsilon)
     }
 
     func testParameter() {

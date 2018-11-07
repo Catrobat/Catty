@@ -71,11 +71,13 @@ final class ChangeVariableBrickTests: XCTestCase {
         let instruction = brick.instruction()
 
         switch instruction {
-        case let .execClosure(closure): closure(context, scheduler)
-        default: break
+        case let .execClosure(closure):
+            closure(context, scheduler)
+        default:
+            break
         }
 
         XCTAssertTrue(true); // The purpose of this test is to show that the program does not crash
-                             // when no UserVariable is selected in the IDE and the brick is executed
+        // when no UserVariable is selected in the IDE and the brick is executed
     }
 }

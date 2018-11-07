@@ -20,8 +20,8 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import UIKit
 import CoreBluetooth
+import UIKit
 
 // MARK: Central Manager
 @objc open class CentralManager: NSObject, CBCentralManagerDelegate, CMWrapper {
@@ -49,7 +49,8 @@ import CoreBluetooth
     }
 
     // MARK: init
-    private override init() {
+
+    override private init() {
         self.cbCentralManager = CBCentralManager(delegate: nil, queue: CentralQueue.queue)
         super.init()
 
@@ -253,15 +254,15 @@ import CoreBluetooth
 
 // MARK: Helper
 open class CentralManagerHelper<CM> where CM: CMWrapper,
-                                           CM.PeripheralWrap: PeripheralWrapper {
+CM.PeripheralWrap: PeripheralWrapper {
 
-    private var afterStartingPromise                 = Promise<Void>()
-    private var afterStoppingPromise                = Promise<Void>()
-    internal var afterPeripheralDiscoveredPromise   = StreamPromise<CM.PeripheralWrap>()
-    internal var afterKnownPeripheralDiscoveredPromise   = StreamPromise<[CM.PeripheralWrap]>()
-    internal var afterConnectedPeripheralDiscoveredPromise   = StreamPromise<[CM.PeripheralWrap]>()
+    private var afterStartingPromise = Promise<Void>()
+    private var afterStoppingPromise = Promise<Void>()
+    internal var afterPeripheralDiscoveredPromise = StreamPromise<CM.PeripheralWrap>()
+    internal var afterKnownPeripheralDiscoveredPromise = StreamPromise<[CM.PeripheralWrap]>()
+    internal var afterConnectedPeripheralDiscoveredPromise = StreamPromise<[CM.PeripheralWrap]>()
 
-    private var _isScanning      = false
+    private var _isScanning = false
 
     open var isScanning: Bool {
         return self._isScanning

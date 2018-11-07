@@ -53,12 +53,12 @@ import CoreMotion
     // going forward, it is positive on both iOS and Android
     // going backwards, it is negative on both iOS and Android
     func convertToStandardized(rawValue: Double) -> Double {
-        let faceDown = (getMotionManager()?.accelerometerData?.acceleration.z ?? 0) >  0
+        let faceDown = (getMotionManager()?.accelerometerData?.acceleration.z ?? 0) > 0
         if faceDown == false {
             // screen up
             return Util.radians(toDegree: rawValue)
         } else {
-            if rawValue > 0.0001 {
+            if rawValue > Double.epsilon {
                 return Util.radians(toDegree: Double.pi - rawValue)
             } else {
                 return Util.radians(toDegree: -Double.pi - rawValue)

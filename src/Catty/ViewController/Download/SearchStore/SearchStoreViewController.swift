@@ -22,8 +22,8 @@
 
 class SearchStoreViewController: UIViewController, SelectedSearchStoreDataSource, UISearchBarDelegate {
 
-    @IBOutlet weak var searchStoreTableView: UITableView!
-    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet private weak var searchStoreTableView: UITableView!
+    @IBOutlet private weak var searchBar: UISearchBar!
 
     // MARK: - Properties
 
@@ -129,7 +129,7 @@ class SearchStoreViewController: UIViewController, SelectedSearchStoreDataSource
         self.searchStoreTableView.separatorColor = UIColor.globalTint()
         self.searchStoreTableView.dataSource = self.dataSource
         self.searchStoreTableView.delegate = self.dataSource
-        self.searchBar.delegate  = self
+        self.searchBar.delegate = self
     }
 
     func loadingViewHandlerAfterFetchData() {

@@ -51,13 +51,13 @@ class MultiFingerXFunctionTests: XCTestCase {
     }
 
     func testDefaultValue() {
-        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: "invalidParameter" as AnyObject, spriteObject: spriteObject), accuracy: 0.0001)
-        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: nil, spriteObject: spriteObject), accuracy: 0.0001)
-        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: 0 as AnyObject, spriteObject: spriteObject), accuracy: 0.0001)
-        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: 1 as AnyObject, spriteObject: spriteObject), accuracy: 0.0001)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: "invalidParameter" as AnyObject, spriteObject: spriteObject), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: nil, spriteObject: spriteObject), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: 0 as AnyObject, spriteObject: spriteObject), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: 1 as AnyObject, spriteObject: spriteObject), accuracy: Double.epsilon)
 
         function = MultiFingerXFunction { nil }
-        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: 1 as AnyObject, spriteObject: spriteObject), accuracy: 0.0001)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: 1 as AnyObject, spriteObject: spriteObject), accuracy: Double.epsilon)
     }
 
     func testValue() {
@@ -65,11 +65,11 @@ class MultiFingerXFunctionTests: XCTestCase {
         let secondTouch = CGPoint(x: 30, y: 45)
         touchManager.touches = [firstTouch, secondTouch]
 
-        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: 0 as AnyObject, spriteObject: spriteObject), accuracy: 0.0001)
-        XCTAssertEqual(standardizedValue(firstTouch), function.value(parameter: 1 as AnyObject, spriteObject: spriteObject), accuracy: 0.0001)
-        XCTAssertEqual(standardizedValue(firstTouch), function.value(parameter: 1.4 as AnyObject, spriteObject: spriteObject), accuracy: 0.0001)
-        XCTAssertEqual(standardizedValue(secondTouch), function.value(parameter: 2 as AnyObject, spriteObject: spriteObject), accuracy: 0.0001)
-        XCTAssertEqual(standardizedValue(secondTouch), function.value(parameter: 2.9 as AnyObject, spriteObject: spriteObject), accuracy: 0.0001)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: 0 as AnyObject, spriteObject: spriteObject), accuracy: Double.epsilon)
+        XCTAssertEqual(standardizedValue(firstTouch), function.value(parameter: 1 as AnyObject, spriteObject: spriteObject), accuracy: Double.epsilon)
+        XCTAssertEqual(standardizedValue(firstTouch), function.value(parameter: 1.4 as AnyObject, spriteObject: spriteObject), accuracy: Double.epsilon)
+        XCTAssertEqual(standardizedValue(secondTouch), function.value(parameter: 2 as AnyObject, spriteObject: spriteObject), accuracy: Double.epsilon)
+        XCTAssertEqual(standardizedValue(secondTouch), function.value(parameter: 2.9 as AnyObject, spriteObject: spriteObject), accuracy: Double.epsilon)
     }
 
     func testParameter() {

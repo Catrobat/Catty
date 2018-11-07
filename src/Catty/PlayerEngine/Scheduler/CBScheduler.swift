@@ -146,7 +146,7 @@ final class CBScheduler: CBSchedulerProtocol {
             }
 
             // execute actions (node dependend!)
-            if nextActionElements.count > 0 {
+            if !nextActionElements.isEmpty {
                 let groupAction = nextActionElements.count > 1
                     ? SKAction.group(nextActionElements.map { $0.closure($0.context) })
                     : nextActionElements[0].closure(nextActionElements[0].context)
@@ -257,7 +257,7 @@ final class CBScheduler: CBSchedulerProtocol {
             }
         }
 
-        if nextClosures.count > 0 && nextHighPriorityClosures.count == 0 {
+        if !nextClosures.isEmpty && nextHighPriorityClosures.isEmpty {
             runNextInstructionsGroup()
             return
         }
@@ -356,7 +356,7 @@ final class CBScheduler: CBSchedulerProtocol {
             spriteScheduledContexts.remove(at: index)
         }
 
-        if spriteScheduledContexts.count > 0 {
+        if !spriteScheduledContexts.isEmpty {
             _scheduledContexts[spriteName] = spriteScheduledContexts
         } else {
             _scheduledContexts[spriteName] = [CBScriptContext]()
@@ -370,9 +370,11 @@ final class CBScheduler: CBSchedulerProtocol {
         CBScheduler.vibrateSerialQueue.cancelAllOperations()
         CBScheduler.vibrateSerialQueue.isSuspended = false
 
-        _scheduledContexts.orderedValues.forEach { $0.forEach {
-            stopContext($0, continueWaitingBroadcastSenders: false)
-            } }
+        _scheduledContexts.orderedValues.forEach {
+            $0.forEach {
+                stopContext($0, continueWaitingBroadcastSenders: false)
+            }
+        }
         _scheduledContexts.removeAll()
         _whenContexts.removeAll()
         _contexts.removeAll()

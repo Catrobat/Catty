@@ -20,12 +20,12 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-protocol FeaturedProgramsStoreTableDataSourceDelegate: class {
+protocol FeaturedProgramsStoreTableDataSourceDelegate: AnyObject {
     func featuredProgramsStoreTableDataSource(_ dataSource: FeaturedProgramsStoreTableDataSource, didSelectCellWith item: StoreProgram)
 }
 
-protocol SelectedFeaturedProgramsDataSource: class {
-     func selectedCell(dataSource: FeaturedProgramsStoreTableDataSource, didSelectCellWith cell: FeaturedProgramsCell)
+protocol SelectedFeaturedProgramsDataSource: AnyObject {
+    func selectedCell(dataSource: FeaturedProgramsStoreTableDataSource, didSelectCellWith cell: FeaturedProgramsCell)
 }
 
 class FeaturedProgramsStoreTableDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
@@ -34,13 +34,13 @@ class FeaturedProgramsStoreTableDataSource: NSObject, UITableViewDataSource, UIT
 
     weak var delegate: SelectedFeaturedProgramsDataSource?
 
-    fileprivate let downloader: StoreProgramDownloaderProtocol
-    fileprivate var programs = [StoreProgram]()
-    fileprivate var baseUrl = ""
+    let downloader: StoreProgramDownloaderProtocol
+    var programs = [StoreProgram]()
+    var baseUrl = ""
 
     // MARK: - Initializer
 
-    fileprivate init(with downloader: StoreProgramDownloaderProtocol) {
+    init(with downloader: StoreProgramDownloaderProtocol) {
         self.downloader = downloader
     }
 

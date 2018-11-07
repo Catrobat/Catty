@@ -37,14 +37,14 @@ class RoundFunctionTest: XCTestCase {
     }
 
     func testDefaultValue() {
-        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: "invalidParameter" as AnyObject), accuracy: 0.0001)
-        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: nil), accuracy: 0.0001)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: "invalidParameter" as AnyObject), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: nil), accuracy: Double.epsilon)
     }
 
     func testValue() {
-        XCTAssertEqual(round(4.55), function.value(parameter: 4.55 as AnyObject), accuracy: 0.0001)
+        XCTAssertEqual(round(4.55), function.value(parameter: 4.55 as AnyObject), accuracy: Double.epsilon)
 
-        XCTAssertEqual(round(-3.77), function.value(parameter: -3.77 as AnyObject), accuracy: 0.0001)
+        XCTAssertEqual(round(-3.77), function.value(parameter: -3.77 as AnyObject), accuracy: Double.epsilon)
     }
 
     func testParameter() {

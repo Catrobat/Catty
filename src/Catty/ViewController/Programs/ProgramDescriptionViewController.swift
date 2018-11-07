@@ -95,8 +95,8 @@ import UIKit
         let cancelBarButton = UIBarButtonItem(title: kLocalizedCancel, style: .plain, target: self, action: #selector(cancelAction(sender:)))
         doneBarButton.tintColor = UIColor.white
         cancelBarButton.tintColor = UIColor.white
-        self.navigationItem.leftBarButtonItem  = cancelBarButton
-        self.navigationItem.rightBarButtonItem  = doneBarButton
+        self.navigationItem.leftBarButtonItem = cancelBarButton
+        self.navigationItem.rightBarButtonItem = doneBarButton
     }
 
     func initTextView() {

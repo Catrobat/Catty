@@ -31,7 +31,7 @@ final class FaceDetectionSensorTest: XCTestCase {
 
     func testDefaultRawValue() {
         let sensor = FaceDetectedSensor { nil }
-        XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(), accuracy: 0.0001)
+        XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(), accuracy: Double.epsilon)
     }
 
     override func setUp() {

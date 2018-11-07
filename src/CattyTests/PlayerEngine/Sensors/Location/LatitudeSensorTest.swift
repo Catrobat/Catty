@@ -41,7 +41,7 @@ final class LatitudeSensorTest: XCTestCase {
 
     func testDefaultRawValue() {
         let sensor = LatitudeSensor { nil }
-        XCTAssertEqual(LatitudeSensor.defaultRawValue, sensor.rawValue(), accuracy: 0.0001)
+        XCTAssertEqual(LatitudeSensor.defaultRawValue, sensor.rawValue(), accuracy: Double.epsilon)
     }
 
     func testRawValue() {

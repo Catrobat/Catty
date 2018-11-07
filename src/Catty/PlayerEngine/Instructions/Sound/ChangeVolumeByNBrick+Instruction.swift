@@ -30,7 +30,7 @@
         let audioManager = AudioManager.shared()
         let spriteObjectName = spriteObject.name
 
-        return CBInstruction.execClosure { (context, _) in
+        return CBInstruction.execClosure { context, _ in
             guard let volumeFormula = volumeFormula else { return }
 
             let volume = context.formulaInterpreter.interpretDouble(volumeFormula, for: spriteObject)

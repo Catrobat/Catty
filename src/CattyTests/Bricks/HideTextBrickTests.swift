@@ -65,10 +65,11 @@ final class HideTextBrickTests: XCTestCase {
         switch instruction {
         case let .execClosure(closure):
             closure(context, scheduler)
-        default: break
+        default:
+            break
         }
 
-        XCTAssertTrue(true); // The purpose of this test is to show that the program does not crash 
-                             // when no UserVariable is selected in the IDE and the brick is executed
+        XCTAssertTrue(true); // The purpose of this test is to show that the program does not crash
+        // when no UserVariable is selected in the IDE and the brick is executed
     }
 }

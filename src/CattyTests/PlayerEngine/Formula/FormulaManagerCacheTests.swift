@@ -24,7 +24,7 @@ import XCTest
 
 @testable import Pocket_Code
 
-final class FormulaManagerCacheTest: XCTestCase {
+final class FormulaManagerCacheTests: XCTestCase {
 
     var manager: FormulaManager!
     var object: SpriteObject!

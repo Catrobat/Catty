@@ -24,7 +24,7 @@ import XCTest
 
 @testable import Pocket_Code
 
-final class FormulaManagerInterpreterTest: XCTestCase {
+final class FormulaManagerInterpreterTests: XCTestCase {
 
     var interpreter: FormulaInterpreterProtocol!
     var object: SpriteObject!
@@ -194,7 +194,7 @@ final class FormulaManagerInterpreterTest: XCTestCase {
                                      parent: nil)
         let formula = Formula(formulaElement: element)!
 
-        XCTAssertEqual(10/5, interpreter.interpretDouble(formula, for: object))
+        XCTAssertEqual(10 / 5, interpreter.interpretDouble(formula, for: object))
     }
 
     func testDivisionWithString() {
@@ -207,7 +207,7 @@ final class FormulaManagerInterpreterTest: XCTestCase {
                                      parent: nil)
         let formula = Formula(formulaElement: element)!
 
-        XCTAssertEqual(10/5, interpreter.interpretDouble(formula, for: object))
+        XCTAssertEqual(10 / 5, interpreter.interpretDouble(formula, for: object))
     }
 
     func testDivisionNested() {
@@ -223,7 +223,7 @@ final class FormulaManagerInterpreterTest: XCTestCase {
                                      parent: nil)
         var formula = Formula(formulaElement: element)!
 
-        XCTAssertEqual((6+2)/5, interpreter.interpretDouble(formula, for: object))
+        XCTAssertEqual((6 + 2) / 5, interpreter.interpretDouble(formula, for: object))
 
         let rightChild = FormulaElement(elementType: ElementType.OPERATOR,
                                         value: Operators.getName(Operator.DIVIDE),
@@ -233,10 +233,11 @@ final class FormulaManagerInterpreterTest: XCTestCase {
         element = FormulaElement(elementType: ElementType.OPERATOR,
                                  value: Operators.getName(Operator.PLUS),
                                  leftChild: FormulaElement(integer: 6),
-                                 rightChild: rightChild, parent: nil)
+                                 rightChild: rightChild,
+                                 parent: nil)
         formula = Formula(formulaElement: element)!
 
-        XCTAssertEqual(6+(2/5), interpreter.interpretDouble(formula, for: object))
+        XCTAssertEqual(6 + (2 / 5), interpreter.interpretDouble(formula, for: object))
     }
 
     func testAddition() {
@@ -249,7 +250,7 @@ final class FormulaManagerInterpreterTest: XCTestCase {
                                      parent: nil)
         let formula = Formula(formulaElement: element)!
 
-        XCTAssertEqual(3+5, interpreter.interpretDouble(formula, for: object))
+        XCTAssertEqual(3 + 5, interpreter.interpretDouble(formula, for: object))
     }
 
     func testAdditionWithString() {
@@ -262,7 +263,7 @@ final class FormulaManagerInterpreterTest: XCTestCase {
                                      parent: nil)
         let formula = Formula(formulaElement: element)!
 
-        XCTAssertEqual(-3+5, interpreter.interpretDouble(formula, for: object))
+        XCTAssertEqual(-3 + 5, interpreter.interpretDouble(formula, for: object))
     }
 
     func testAdditionNested() {
@@ -278,7 +279,7 @@ final class FormulaManagerInterpreterTest: XCTestCase {
                                      parent: nil)
         var formula = Formula(formulaElement: element)!
 
-        XCTAssertEqual((6-2)+5, interpreter.interpretDouble(formula, for: object))
+        XCTAssertEqual((6 - 2) + 5, interpreter.interpretDouble(formula, for: object))
 
         let rightChild = FormulaElement(elementType: ElementType.OPERATOR,
                                         value: Operators.getName(Operator.MINUS),
@@ -292,7 +293,7 @@ final class FormulaManagerInterpreterTest: XCTestCase {
                                  parent: nil)
         formula = Formula(formulaElement: element)!
 
-        XCTAssertEqual(6+(2-5), interpreter.interpretDouble(formula, for: object))
+        XCTAssertEqual(6 + (2 - 5), interpreter.interpretDouble(formula, for: object))
     }
 
     func testSubstraction() {
@@ -305,7 +306,7 @@ final class FormulaManagerInterpreterTest: XCTestCase {
                                      parent: nil)
         let formula = Formula(formulaElement: element)!
 
-        XCTAssertEqual(-3-5, interpreter.interpretDouble(formula, for: object))
+        XCTAssertEqual(-3 - 5, interpreter.interpretDouble(formula, for: object))
     }
 
     func testMultiplication() {

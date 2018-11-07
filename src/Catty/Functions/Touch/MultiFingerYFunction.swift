@@ -51,7 +51,7 @@ class MultiFingerYFunction: SingleParameterDoubleObjectFunction {
 
     func convertToStandardized(rawValue: Double, for spriteObject: SpriteObject) -> Double {
         guard let scene = spriteObject.spriteNode.scene else { return type(of: self).defaultValue }
-        return Double(scene.size.height)/2.0 - rawValue
+        return Double(scene.size.height) / 2.0 - rawValue
     }
 
     func formulaEditorSection() -> FormulaEditorSection {

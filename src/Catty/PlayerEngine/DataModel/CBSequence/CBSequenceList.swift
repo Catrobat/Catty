@@ -52,7 +52,7 @@ final class CBSequenceList: CBSequenceProtocol, CBSequenceVisitProtocol, Sequenc
     }
 
     func isEmpty() -> Bool {
-        return count == 0
+        return sequenceList.isEmpty
     }
 
     func accept(_ visitor: CBOptimizeSequenceVisitorProtocol) {

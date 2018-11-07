@@ -42,8 +42,6 @@
 
 @implementation SceneTests
 
-#define EPSILON 0.001
-
 - (void)setUp
 {
     [super setUp];

@@ -1,3 +1,4 @@
+// swiftlint:disable all
 #!/usr/bin/env xcrun swift -I .
 /**
  *  Copyright (C) 2010-2018 The Catrobat Team
@@ -263,3 +264,4 @@ func getFileNameOfScript() -> String {
 
 // main
 checkLicenses()
+// swiftlint:enable all

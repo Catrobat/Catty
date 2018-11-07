@@ -37,14 +37,14 @@ class AsinFunctionTest: XCTestCase {
     }
 
     func testDefaultValue() {
-        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: "invalidParameter" as AnyObject), accuracy: 0.0001)
-        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: nil), accuracy: 0.0001)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: "invalidParameter" as AnyObject), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: nil), accuracy: Double.epsilon)
     }
 
     func testValue() {
-        XCTAssertEqual(Util.radians(toDegree: asin(1)), function.value(parameter: 1 as AnyObject), accuracy: 0.0001)
+        XCTAssertEqual(Util.radians(toDegree: asin(1)), function.value(parameter: 1 as AnyObject), accuracy: Double.epsilon)
 
-        XCTAssertEqual(Util.radians(toDegree: asin(-0.2)), function.value(parameter: -0.2 as AnyObject), accuracy: 0.0001)
+        XCTAssertEqual(Util.radians(toDegree: asin(-0.2)), function.value(parameter: -0.2 as AnyObject), accuracy: Double.epsilon)
     }
 
     func testParameter() {

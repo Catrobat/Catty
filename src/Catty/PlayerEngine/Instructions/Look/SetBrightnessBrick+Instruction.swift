@@ -23,7 +23,7 @@
 @objc extension SetBrightnessBrick: CBInstructionProtocol {
 
     @nonobjc func instruction() -> CBInstruction {
-        return .action { (context) in SKAction.run(self.actionBlock(context.formulaInterpreter)) }
+        return .action { context in SKAction.run(self.actionBlock(context.formulaInterpreter)) }
     }
 
     @objc func actionBlock(_ formulaInterpreter: FormulaInterpreterProtocol) -> () -> Void {

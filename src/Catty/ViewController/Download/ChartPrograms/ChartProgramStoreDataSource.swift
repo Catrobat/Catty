@@ -20,11 +20,11 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-protocol ChartProgramStoreDataSourceDelegate: class {
+protocol ChartProgramStoreDataSourceDelegate: AnyObject {
     func chartProgramsStoreTableDataSource(_ dataSource: ChartProgramStoreDataSource, didSelectCellWith item: StoreProgram)
 }
 
-protocol SelectedChartProgramsDataSource: class {
+protocol SelectedChartProgramsDataSource: AnyObject {
     func selectedCell(dataSource: ChartProgramStoreDataSource, didSelectCellWith cell: ChartProgramCell)
     func scrollViewHandler()
     func errorAlertHandler(error: StoreProgramDownloaderError)
@@ -98,7 +98,7 @@ class ChartProgramStoreDataSource: NSObject, UITableViewDataSource, UITableViewD
 
     // MARK: - Initializer
 
-    fileprivate init(with downloader: StoreProgramDownloaderProtocol) {
+    init(with downloader: StoreProgramDownloaderProtocol) {
         self.downloader = downloader
         self.programType = .mostDownloaded
     }
@@ -114,7 +114,7 @@ class ChartProgramStoreDataSource: NSObject, UITableViewDataSource, UITableViewD
         programType = type
         scrollView.setContentOffset(scrollViewOffset, animated: false)
 
-        if (self.programOffset == programs.count) || (programs.count == 0) {
+        if self.programOffset == programs.count || programs.isEmpty {
             self.downloader.fetchPrograms(forType: type, offset: self.programOffset) {items, error in
 
                 guard let collection = items, error == nil else { completion(error); return }

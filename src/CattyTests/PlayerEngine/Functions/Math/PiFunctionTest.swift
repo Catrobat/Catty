@@ -37,11 +37,11 @@ class PiFunctionTest: XCTestCase {
     }
 
     func testDefaultValue() {
-        XCTAssertEqual(type(of: function).defaultValue, function.value(), accuracy: 0.0001)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(), accuracy: Double.epsilon)
     }
 
     func testValue() {
-        XCTAssertEqual(Double.pi, function.value(), accuracy: 0.0001)
+        XCTAssertEqual(Double.pi, function.value(), accuracy: Double.epsilon)
     }
 
     func testTag() {

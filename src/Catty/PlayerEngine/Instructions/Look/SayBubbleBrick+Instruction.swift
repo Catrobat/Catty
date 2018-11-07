@@ -23,13 +23,13 @@
 extension SayBubbleBrick: CBInstructionProtocol {
 
     func instruction() -> CBInstruction {
-        return .action { (context) in SKAction.run(self.actionBlock(context: context)) }
+        return .action { context in SKAction.run(self.actionBlock(context: context)) }
     }
 
     func actionBlock(context: CBScriptContextProtocol) -> () -> Void {
         guard let object = self.script?.object,
-        let spriteNode = object.spriteNode
-        else { fatalError("This should never happen!") }
+            let spriteNode = object.spriteNode
+            else { fatalError("This should never happen!") }
 
         return {
             var speakText = context.formulaInterpreter.interpretString(self.formula, for: object)

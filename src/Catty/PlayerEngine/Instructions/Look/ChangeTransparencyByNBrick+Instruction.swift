@@ -23,14 +23,14 @@
 @objc extension ChangeTransparencyByNBrick: CBInstructionProtocol {
 
     @nonobjc func instruction() -> CBInstruction {
-        return .action { (context) in SKAction.run(self.actionBlock(context.formulaInterpreter)) }
+        return .action { context in SKAction.run(self.actionBlock(context.formulaInterpreter)) }
     }
 
     @objc func actionBlock(_ formulaInterpreter: FormulaInterpreterProtocol) -> () -> Void {
         guard let object = self.script?.object,
-              let spriteNode = object.spriteNode,
-              let transparency = self.changeTransparency
-        else { fatalError("This should never happen!") }
+            let spriteNode = object.spriteNode,
+            let transparency = self.changeTransparency
+            else { fatalError("This should never happen!") }
 
         return {
             let transparencyIncrease = formulaInterpreter.interpretDouble(transparency, for: object)

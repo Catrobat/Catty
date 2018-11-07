@@ -23,7 +23,7 @@
 extension CameraBrick: CBInstructionProtocol {
     func instruction() -> CBInstruction {
 
-        return .execClosure { (context, _) in
+        return .execClosure { context, _ in
             if let scene = self.script.object.spriteNode.scene as? CBScene {
                 scene.view?.allowsTransparency = self.isEnabled()
                 scene.backgroundColor = self.isEnabled() ? UIColor.clear : UIColor.white

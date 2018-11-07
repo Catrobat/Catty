@@ -22,7 +22,7 @@
 
 import UIKit
 
-protocol SearchStoreCellProtocol: class {
+protocol SearchStoreCellProtocol: AnyObject {
     func selectedCell(dataSource datasource: SearchStoreDataSource, didSelectCellWith cell: SearchStoreCell)
 }
 
@@ -31,8 +31,8 @@ class SearchStoreCell: UITableViewCell {
     weak var delegete: SearchStoreCellProtocol?
     var program: StoreProgram?
 
-    @IBOutlet weak var searchProgramImage: UIImageView!
-    @IBOutlet weak var searchProgramTitle: UILabel!
+    @IBOutlet private weak var searchProgramImage: UIImageView!
+    @IBOutlet private weak var searchProgramTitle: UILabel!
 
     var searchImage: UIImage? {
         didSet {

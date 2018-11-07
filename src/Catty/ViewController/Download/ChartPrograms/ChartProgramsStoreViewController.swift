@@ -22,8 +22,8 @@
 
 class ChartProgramsStoreViewController: UIViewController, SelectedChartProgramsDataSource {
 
-    @IBOutlet weak var chartProgramsTableView: UITableView!
-    @IBOutlet weak var chartProgramsSegmentedControl: UISegmentedControl!
+    @IBOutlet private weak var chartProgramsTableView: UITableView!
+    @IBOutlet private weak var chartProgramsSegmentedControl: UISegmentedControl!
 
     // MARK: - Properties
 
@@ -66,7 +66,7 @@ class ChartProgramsStoreViewController: UIViewController, SelectedChartProgramsD
         }
     }
 
-    @IBAction func segmentTapped(_ sender: UISegmentedControl) {
+    @IBAction private func segmentTapped(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
             fetchData(type: .mostDownloaded)

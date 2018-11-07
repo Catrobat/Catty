@@ -20,9 +20,9 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import XCTest
-import CoreMotion
 import CoreLocation
+import CoreMotion
+import XCTest
 
 @testable import Pocket_Code
 

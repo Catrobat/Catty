@@ -37,15 +37,15 @@ class ContainsFunctionTest: XCTestCase {
     }
 
     func testDefaultValue() {
-        XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: "list name" as AnyObject, secondParameter: "invalidParameter" as AnyObject), accuracy: 0.0001)
-        XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: 100 as AnyObject, secondParameter: 2 as AnyObject), accuracy: 0.0001)
-        XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: nil, secondParameter: nil), accuracy: 0.0001)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: "list name" as AnyObject, secondParameter: "invalidParameter" as AnyObject), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: 100 as AnyObject, secondParameter: 2 as AnyObject), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: nil, secondParameter: nil), accuracy: Double.epsilon)
 
         let userVariable = UserVariable()
         userVariable.isList = true
         userVariable.value = nil
 
-        XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: userVariable as AnyObject, secondParameter: 1 as AnyObject), accuracy: 0.0001)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: userVariable as AnyObject, secondParameter: 1 as AnyObject), accuracy: Double.epsilon)
     }
 
     func testValue() {
@@ -55,9 +55,9 @@ class ContainsFunctionTest: XCTestCase {
         userVariableNumber.isList = true
         userVariableNumber.value = [1, 5, -7]
 
-        XCTAssertEqual(1.0, function.value(firstParameter: userVariableNumber as AnyObject, secondParameter: 1 as AnyObject), accuracy: 0.0001)
-        XCTAssertEqual(1.0, function.value(firstParameter: userVariableNumber as AnyObject, secondParameter: -7 as AnyObject), accuracy: 0.0001)
-        XCTAssertEqual(0.0, function.value(firstParameter: userVariableNumber as AnyObject, secondParameter: 10 as AnyObject), accuracy: 0.0001)
+        XCTAssertEqual(1.0, function.value(firstParameter: userVariableNumber as AnyObject, secondParameter: 1 as AnyObject), accuracy: Double.epsilon)
+        XCTAssertEqual(1.0, function.value(firstParameter: userVariableNumber as AnyObject, secondParameter: -7 as AnyObject), accuracy: Double.epsilon)
+        XCTAssertEqual(0.0, function.value(firstParameter: userVariableNumber as AnyObject, secondParameter: 10 as AnyObject), accuracy: Double.epsilon)
 
         // string list
         let userVariableString = UserVariable()
@@ -65,9 +65,9 @@ class ContainsFunctionTest: XCTestCase {
         userVariableString.isList = true
         userVariableString.value = ["a", "b", "c"]
 
-        XCTAssertEqual(1.0, function.value(firstParameter: userVariableString as AnyObject, secondParameter: "a" as AnyObject), accuracy: 0.0001)
-        XCTAssertEqual(1.0, function.value(firstParameter: userVariableString as AnyObject, secondParameter: "b" as AnyObject), accuracy: 0.0001)
-        XCTAssertEqual(0.0, function.value(firstParameter: userVariableString as AnyObject, secondParameter: "x" as AnyObject), accuracy: 0.0001)
+        XCTAssertEqual(1.0, function.value(firstParameter: userVariableString as AnyObject, secondParameter: "a" as AnyObject), accuracy: Double.epsilon)
+        XCTAssertEqual(1.0, function.value(firstParameter: userVariableString as AnyObject, secondParameter: "b" as AnyObject), accuracy: Double.epsilon)
+        XCTAssertEqual(0.0, function.value(firstParameter: userVariableString as AnyObject, secondParameter: "x" as AnyObject), accuracy: Double.epsilon)
     }
 
     func testFirstParameter() {

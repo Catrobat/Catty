@@ -20,14 +20,14 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import UIKit
-import MXSegmentedPager
 import BluetoothHelper
+import MXSegmentedPager
+import UIKit
 
 @objc class BluetoothPopupVC: MXSegmentedPagerController {
 
     @objc var deviceArray: [Int]?
-    @objc var rightButton: UIBarButtonItem = UIBarButtonItem()
+    @objc var rightButton = UIBarButtonItem()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,7 +80,7 @@ import BluetoothHelper
     }
 
     func setHeader() {
-        if deviceArray!.count > 0 {
+        if !deviceArray!.isEmpty {
             if deviceArray![0] == BluetoothDeviceID.phiro.rawValue {
                 self.navigationController!.title = klocalizedBluetoothSelectPhiro
                 self.title = klocalizedBluetoothSelectPhiro

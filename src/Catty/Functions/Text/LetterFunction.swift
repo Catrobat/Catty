@@ -42,7 +42,7 @@ class LetterFunction: DoubleParameterStringFunction {
 
     func value(firstParameter: AnyObject?, secondParameter: AnyObject?) -> String {
         guard let number = firstParameter as? Int else {
-                return type(of: self).defaultValue
+            return type(of: self).defaultValue
         }
 
         let text = type(of: self).interpretParameter(parameter: secondParameter)

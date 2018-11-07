@@ -20,11 +20,11 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import Foundation
-import CoreBluetooth
 import BluetoothHelper
+import CoreBluetooth
+import Foundation
 
-struct TestFailure {
+enum TestFailure {
     static let error = NSError(domain: "BluetoothTests Tests", code: 100, userInfo: [NSLocalizedDescriptionKey: "Testing"])
 }
 
@@ -80,9 +80,9 @@ class TestPeripheral: PeripheralWrapper {
          services: [TestService]=[TestService(uuid: CBUUID(string: "2f0a0017-69aa-f316-3e78-4194989a6ccc"),
                                               name: "Service Mock-1"),
                                   TestService(uuid: CBUUID(string: "2f0a0017-69aa-f316-3e78-4194989a6aaa"), name: "Service Mock-2")]) {
-                self.state = state
-                self.name = name
-                self.services = services
+        self.state = state
+        self.name = name
+        self.services = services
     }
 
     func connect() {
@@ -110,7 +110,7 @@ class TestPeripheral: PeripheralWrapper {
 
 }
 
-struct TestServiceValues {
+enum TestServiceValues {
     static var error: NSError?
 }
 
@@ -123,9 +123,9 @@ struct TestService: ServiceWrapper {
     let helper = ServiceHelper<TestService>()
 
     init(uuid: CBUUID = CBUUID(string: "2f0a0017-69aa-f316-3e78-4194989a6ccc"), name: String = "Mock", state: CBPeripheralState = .connected) {
-            self.uuid = uuid
-            self.name = name
-            self.state = state
+        self.uuid = uuid
+        self.name = name
+        self.state = state
     }
 
     func discoverCharacteristics(_ characteristics: [CBUUID]?) {
@@ -150,12 +150,12 @@ struct TestService: ServiceWrapper {
 
 final class TestCharacteristic: CharacteristicWrapper {
 
-    var _isNotifying             = false
+    var _isNotifying = false
     var _stringValues            = [String]()
-    var _propertyEnabled         = true
+    var _propertyEnabled = true
     var _stringValue             = ["Mock": "1"]
     var _dataFromStringValue     = "01".dataFromHexString()
-    var _afterDiscoveredPromise  = StreamPromise<TestCharacteristic>()
+    var _afterDiscoveredPromise = StreamPromise<TestCharacteristic>()
 
     let helper = CharacteristicImplementation<TestCharacteristic>()
 

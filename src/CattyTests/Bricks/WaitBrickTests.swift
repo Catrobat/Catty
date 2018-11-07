@@ -58,13 +58,13 @@ final class WaitBrickTests: XCTestCase {
     }
 
     /*func testSpeakAndWaitDuration() {
-        let speakAndWaitBrick = SpeakAndWaitBrick()
-        speakAndWaitBrick.formula = Formula(double: 1010101.0)
-        speakAndWaitBrick.script = self.script;
-        
-        let executionTime = self.measureExecutionTime(speakAndWaitBrick.instruction())
-        XCTAssertEqualWithAccuracy(executionTime, 5.0, accuracy: 1.0, "Wrong execution time")
-    }*/
+     let speakAndWaitBrick = SpeakAndWaitBrick()
+     speakAndWaitBrick.formula = Formula(double: 1010101.0)
+     speakAndWaitBrick.script = self.script;
+
+     let executionTime = self.measureExecutionTime(speakAndWaitBrick.instruction())
+     XCTAssertEqualWithAccuracy(executionTime, 5.0, accuracy: 1.0, "Wrong execution time")
+     }*/
 
     func testTitleSingular() {
         let waitBrick = WaitBrick()
@@ -87,11 +87,12 @@ final class WaitBrickTests: XCTestCase {
 
         switch instruction {
         case let .waitExecClosure(closure):
-                closure(CBScriptContext(script: self.script,
-                                        spriteNode: self.spriteNode,
-                                        formulaInterpreter: formulaInterpreter)!,
-                        scheduler)
-        default: break
+            closure(CBScriptContext(script: self.script,
+                                    spriteNode: self.spriteNode,
+                                    formulaInterpreter: formulaInterpreter)!,
+                    scheduler)
+        default:
+            break
         }
 
         let end = NSDate()

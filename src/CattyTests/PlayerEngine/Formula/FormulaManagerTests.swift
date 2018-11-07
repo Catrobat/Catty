@@ -24,7 +24,7 @@ import XCTest
 
 @testable import Pocket_Code
 
-final class FormulaManagerTest: XCTestCase {
+final class FormulaManagerTests: XCTestCase {
 
     var spriteObject: SpriteObject!
 
@@ -50,7 +50,8 @@ final class FormulaManagerTest: XCTestCase {
                                                         value: 1.0,
                                                         formulaEditorSection: .device(position: 2))
         let functionC = DoubleParameterDoubleFunctionMock(tag: "functionTagC",
-                                                          value: 3.0, firstParameter: .number(defaultValue: 1),
+                                                          value: 3.0,
+                                                          firstParameter: .number(defaultValue: 1),
                                                           secondParameter: .number(defaultValue: 1),
                                                           formulaEditorSection: .hidden)
 

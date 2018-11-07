@@ -20,11 +20,11 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import UIKit
-import XCTest
+import BluetoothHelper
 import CoreBluetooth
 import CoreLocation
-import BluetoothHelper
+import UIKit
+import XCTest
 
 class ServiceTests: XCTestCase {
 

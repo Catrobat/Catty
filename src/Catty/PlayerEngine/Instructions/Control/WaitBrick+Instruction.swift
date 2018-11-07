@@ -25,9 +25,9 @@
     @nonobjc func instruction() -> CBInstruction {
 
         guard let object = self.script?.object
-        else { fatalError("This should never happen!") } // (pre)fetch only once (micro-optimization)
+            else { fatalError("This should never happen!") } // (pre)fetch only once (micro-optimization)
 
-        return CBInstruction.waitExecClosure { (context, _) in
+        return CBInstruction.waitExecClosure { context, _ in
             let durationInSeconds = context.formulaInterpreter.interpretDouble(self.timeToWaitInSeconds, for: object)
 
             // check if an invalid duration is given! => prevents UInt32 underflow

@@ -25,7 +25,7 @@ extension PhiroIfLogicBeginBrick {
     override func checkCondition(formulaInterpreter: FormulaInterpreterProtocol) -> Bool {
         let formulaElement = FormulaElement(elementType: ElementType.SENSOR, value: self.sensor, leftChild: nil, rightChild: nil, parent: nil)
         guard let formula = Formula(formulaElement: formulaElement),
-              let object = self.script.object else { return false }
+            let object = self.script.object else { return false }
 
         return formulaInterpreter.interpretBool(formula, for: object)
     }

@@ -22,7 +22,7 @@
 
 import UIKit
 
-protocol ChartProgramCellProtocol: class {
+protocol ChartProgramCellProtocol: AnyObject {
     func selectedCell(dataSource datasource: ChartProgramStoreDataSource, didSelectCellWith cell: ChartProgramCell)
 }
 
@@ -31,8 +31,8 @@ class ChartProgramCell: UITableViewCell {
     weak var delegete: ChartProgramCellProtocol?
     var program: StoreProgram?
 
-    @IBOutlet weak var chartProgramImage: UIImageView!
-    @IBOutlet weak var chartProgramTitle: UILabel!
+    @IBOutlet private weak var chartProgramImage: UIImageView!
+    @IBOutlet private weak var chartProgramTitle: UILabel!
 
     var chartImage: UIImage? {
         didSet {

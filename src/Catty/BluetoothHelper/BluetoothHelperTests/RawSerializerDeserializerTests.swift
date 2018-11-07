@@ -20,16 +20,17 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import XCTest
-import CoreBluetooth
 import BluetoothHelper
+import CoreBluetooth
+import XCTest
 
 class RawDeserializerTests: XCTestCase {
 
     enum RawTest: UInt8, RawDeserialize {
-        case no     = 0
-        case yes    = 1
-        case maybe  = 2
+        case no = 0
+        case yes = 1
+        case maybe = 2
+
         static let uuid = "TEST"
     }
 

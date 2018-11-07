@@ -26,12 +26,12 @@ extension InternFormula {
 
     @objc func createInternTokenListByResourceId(resource: Int, name: String) -> [InternToken] {
         // USER VARIABLES
-        if (resource == 0) && (name.count != 0) {
+        if resource == 0 && !name.isEmpty {
             return buildUserVariable(name: name)
         }
 
         // USER LISTS
-        if (resource == 11) && (name.count != 0) {
+        if resource == 11 && !name.isEmpty {
             return buildUserList(name: name)
         }
 
@@ -165,7 +165,7 @@ extension InternFormula {
         var count = 0
 
         tokenList.append(InternToken.init(type: TOKEN_TYPE_FUNCTION_NAME, andValue: function.tag()))
-        if parameters.count == 0 {
+        if parameters.isEmpty {
             return tokenList    // no parameter
         }
 

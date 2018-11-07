@@ -41,7 +41,7 @@ final class CompassDirectionSensorTest: XCTestCase {
 
     func testDefaultRawValue() {
         let sensor = CompassDirectionSensor { nil }
-        XCTAssertEqual(CompassDirectionSensor.defaultRawValue, sensor.rawValue(), accuracy: 0.0001)
+        XCTAssertEqual(CompassDirectionSensor.defaultRawValue, sensor.rawValue(), accuracy: Double.epsilon)
     }
 
     func testRawValue() {

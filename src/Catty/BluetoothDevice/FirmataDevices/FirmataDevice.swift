@@ -20,12 +20,12 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import Foundation
-import CoreBluetooth
 import BluetoothHelper
+import CoreBluetooth
+import Foundation
 
 class FirmataDevice: BluetoothDevice, FirmataDelegate {
-    var firmata: Firmata = Firmata()
+    var firmata = Firmata()
 
     var rxUUID: CBUUID { return CBUUID.init(string: "713D0002-503E-4C75-BA94-3148F18D941E") }
     var txUUID: CBUUID { return CBUUID.init(string: "00001101-0000-1000-8000-00805F9B34FB") }
@@ -43,7 +43,7 @@ class FirmataDevice: BluetoothDevice, FirmataDelegate {
     }
 
     // MARK: override BluetoothDevice
-    internal override func getName() -> String {
+    override internal func getName() -> String {
         return "FirmataDevice"
     }
 
@@ -66,7 +66,7 @@ class FirmataDevice: BluetoothDevice, FirmataDelegate {
                 print(self, "didDiscoverCharacteristicsForService", "\(service.description) : TX")
                 txCharacteristic = c
             default:
-//                printLog(self, "didDiscoverCharacteristicsForService", "Found Characteristic: Unknown")
+                //printLog(self, "didDiscoverCharacteristicsForService", "Found Characteristic: Unknown")
                 break
             }
 
@@ -112,7 +112,7 @@ class FirmataDevice: BluetoothDevice, FirmataDelegate {
     }
 
     internal func convertAnalogPin(_ analogPinNumber: Int) -> Int {
-        let pin: UInt8 = UInt8(checkValue(analogPinNumber))
+        let pin = UInt8(checkValue(analogPinNumber))
         switch pin {
         case 14:
             return 0
@@ -181,8 +181,8 @@ class FirmataDevice: BluetoothDevice, FirmataDelegate {
                     len = rmdr
                 }
 
-                let newData = data.subdata(in: loc..<loc+len)
-//                println("\(self.classForCoder.description()) writeRawData : packet_\(idx) : \(newData.hexRepresentationWithSpaces(true))")
+                let newData = data.subdata(in: loc..<loc + len)
+                //println("\(self.classForCoder.description()) writeRawData : packet_\(idx) : \(newData.hexRepresentationWithSpaces(true))")
                 cbPeripheral.writeValue(newData, for: txCharacteristic, type: writeType)
 
                 loc += len

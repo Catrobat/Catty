@@ -20,8 +20,8 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@testable import Pocket_Code
 import CoreMotion
+@testable import Pocket_Code
 
 final class MotionManagerMock: MotionManager {
     var isDeviceMotionAvailable = true

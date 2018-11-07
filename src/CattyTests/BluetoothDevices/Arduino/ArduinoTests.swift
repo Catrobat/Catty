@@ -20,10 +20,10 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import XCTest
-import CoreBluetooth
 import BluetoothHelper
+import CoreBluetooth
 @testable import Pocket_Code
+import XCTest
 
 class ArduinoTests: XCTestCase {
 

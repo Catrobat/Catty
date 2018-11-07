@@ -28,7 +28,7 @@ import Foundation
         guard let object = self.script?.object
             else { fatalError("This should never happen!") }
 
-        return CBInstruction.execClosure { (context, _) in
+        return CBInstruction.execClosure { context, _ in
             let pinValue = context.formulaInterpreter.interpretInteger(self.pin, for: object)
             let settingValue = context.formulaInterpreter.interpretInteger(self.value, for: object)
 

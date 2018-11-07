@@ -48,7 +48,7 @@ class LetterFunctionTest: XCTestCase {
         var number = 3
         var index = text.index(text.startIndex, offsetBy: number - 1)
         XCTAssertEqual(String(text[index]), function.value(firstParameter: number as AnyObject, secondParameter: text as AnyObject))
-        XCTAssertEqual(String(text[index]), function.value(firstParameter: 2+1 as AnyObject, secondParameter: text as AnyObject))
+        XCTAssertEqual(String(text[index]), function.value(firstParameter: 2 + 1 as AnyObject, secondParameter: text as AnyObject))
 
         text = "great!"
         number = 6

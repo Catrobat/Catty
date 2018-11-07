@@ -37,19 +37,19 @@ class PowFunctionTest: XCTestCase {
     }
 
     func testDefaultValue() {
-        XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: "invalidParameter" as AnyObject, secondParameter: "invalidParameter" as AnyObject), accuracy: 0.0001)
-        XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: nil, secondParameter: nil), accuracy: 0.0001)
-        XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: nil, secondParameter: "invalidParameter" as AnyObject), accuracy: 0.0001)
-        XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: 3 as AnyObject, secondParameter: "invalidParameter" as AnyObject), accuracy: 0.0001)
-        XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: "invalidParameter" as AnyObject, secondParameter: 10 as AnyObject), accuracy: 0.0001)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: "invalidParameter" as AnyObject, secondParameter: "invalidParameter" as AnyObject), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: nil, secondParameter: nil), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: nil, secondParameter: "invalidParameter" as AnyObject), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: 3 as AnyObject, secondParameter: "invalidParameter" as AnyObject), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: "invalidParameter" as AnyObject, secondParameter: 10 as AnyObject), accuracy: Double.epsilon)
     }
 
     func testValue() {
-        XCTAssertEqual(pow(10, 7), function.value(firstParameter: 10 as AnyObject, secondParameter: 7 as AnyObject), accuracy: 0.0001)
+        XCTAssertEqual(pow(10, 7), function.value(firstParameter: 10 as AnyObject, secondParameter: 7 as AnyObject), accuracy: Double.epsilon)
 
-        XCTAssertEqual(pow(-3, 5), function.value(firstParameter: -3 as AnyObject, secondParameter: 5 as AnyObject), accuracy: 0.0001)
+        XCTAssertEqual(pow(-3, 5), function.value(firstParameter: -3 as AnyObject, secondParameter: 5 as AnyObject), accuracy: Double.epsilon)
 
-        XCTAssertEqual(pow(13, -2), function.value(firstParameter: 13 as AnyObject, secondParameter: -2 as AnyObject), accuracy: 0.0001)
+        XCTAssertEqual(pow(13, -2), function.value(firstParameter: 13 as AnyObject, secondParameter: -2 as AnyObject), accuracy: Double.epsilon)
     }
 
     func testFirstParameter() {

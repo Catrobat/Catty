@@ -37,14 +37,14 @@ class AbsFunctionTest: XCTestCase {
     }
 
     func testDefaultValue() {
-        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: "invalidParameter" as AnyObject), accuracy: 0.0001)
-        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: nil), accuracy: 0.0001)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: "invalidParameter" as AnyObject), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: nil), accuracy: Double.epsilon)
     }
 
     func testValue() {
-        XCTAssertEqual(abs(-15), function.value(parameter: -15 as AnyObject), accuracy: 0.0001)
+        XCTAssertEqual(abs(-15), function.value(parameter: -15 as AnyObject), accuracy: Double.epsilon)
 
-        XCTAssertEqual(abs(99), function.value(parameter: 99 as AnyObject), accuracy: 0.0001)
+        XCTAssertEqual(abs(99), function.value(parameter: 99 as AnyObject), accuracy: Double.epsilon)
     }
 
     func testParameter() {

@@ -22,28 +22,20 @@
 
 import Foundation
 
-@objc extension PhiroMotorStopBrick: CBInstructionProtocol {
+public extension String {
 
-    @nonobjc func instruction() -> CBInstruction {
+    //public var floatValue : Float {
+    //  return (self as NSString).floatValue
+    //}
 
-        return CBInstruction.execClosure { (context, _) in
-
-            guard let phiro: Phiro = BluetoothService.swiftSharedInstance.phiro else {
-                //ERROR
-                return
-            }
-            switch self.phiroMotor() {
-            case .Left:
-                phiro.stopLeftMotor()
-            case .Right:
-                phiro.stopRightMotor()
-            case .Both:
-                phiro.stopRightMotor()
-                phiro.stopLeftMotor()
-            }
-            context.state = .runnable
+    public func dataFromHexString() -> Data {
+        var bytes = [UInt8]()
+        for i in 0..<(self.count / 2) {
+            let string = self[self.index(self.startIndex, offsetBy: 2 * i) ..< self.index(self.startIndex, offsetBy: 2 * i + 2)]
+            let byte = strtol((string as NSString).utf8String, nil, 16)
+            bytes.append(UInt8(byte))
         }
-
+        return Data(bytes: UnsafePointer<UInt8>(bytes), count: bytes.count)
     }
 
 }

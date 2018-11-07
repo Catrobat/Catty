@@ -27,7 +27,7 @@ import Foundation
     @nonobjc func instruction() -> CBInstruction {
         guard let object = self.script?.object
             else { fatalError("This should never happen!") }
-        return CBInstruction.execClosure { (context, _) in
+        return CBInstruction.execClosure { context, _ in
             let durationInterpretation = context.formulaInterpreter.interpretDouble(self.durationFormula, for: object)
 
             guard let phiro: Phiro = BluetoothService.swiftSharedInstance.phiro else { return }

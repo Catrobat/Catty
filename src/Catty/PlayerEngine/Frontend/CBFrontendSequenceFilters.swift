@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-protocol CBFrontendSequenceFilterProtocol: class {
+protocol CBFrontendSequenceFilterProtocol: AnyObject {
     func filterScriptSequenceList(_ scriptSequenceList: CBScriptSequenceList) -> CBScriptSequenceList
 }
 

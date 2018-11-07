@@ -20,33 +20,34 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import Foundation
-import CoreBluetooth
 import BluetoothHelper
+import CoreBluetooth
+import Foundation
 
-private let PIN_ANALOG_0: Int = 0
-private let PIN_ANALOG_1: Int = 1
-private let PIN_ANALOG_2: Int = 2
-private let PIN_ANALOG_3: Int = 3
-private let PIN_ANALOG_4: Int = 4
-private let PIN_ANALOG_5: Int = 5
+/* unused
+private let kPIN_ANALOG_0: Int = 0
+private let kPIN_ANALOG_1: Int = 1
+private let kPIN_ANALOG_2: Int = 2
+private let kPIN_ANALOG_3: Int = 3
+private let kPIN_ANALOG_4: Int = 4
+private let kPIN_ANALOG_5: Int = 5
 
-private let PORT_DIGITAL_0: Int = 0
-private let PORT_DIGITAL_1: Int = 1
+private let kPORT_DIGITAL_0: Int = 0
+private let kPORT_DIGITAL_1: Int = 1
 
-private let MIN_PWM_PIN_GROUP_1: Int = 3
-private let MAX_PWM_PIN_GROUP_1: Int = 3
-private let MIN_PWM_PIN_GROUP_2: Int = 5
-private let MAX_PWM_PIN_GROUP_2: Int = 6
-private let MIN_PWM_PIN_GROUP_3: Int = 9
-private let MAX_PWM_PIN_GROUP_3: Int = 11
+private let kMIN_PWM_PIN_GROUP_1: Int = 3
+private let kMAX_PWM_PIN_GROUP_1: Int = 3
+private let kMIN_PWM_PIN_GROUP_2: Int = 5
+private let kMAX_PWM_PIN_GROUP_2: Int = 6
+private let kMIN_PWM_PIN_GROUP_3: Int = 9
+private let kMAX_PWM_PIN_GROUP_3: Int = 11*/
 
-private let MIN_ANALOG_SENSOR_PIN: Int = 0
-private let MAX_ANALOG_SENSOR_PIN: Int = 5
+private let kMIN_ANALOG_SENSOR_PIN: Int = 0
+private let kMAX_ANALOG_SENSOR_PIN: Int = 5
 
 class ArduinoDevice: FirmataDevice, ArduinoProtocol, ArduinoPropertyProtocol {
 
-    let Arduino_UUID: CBUUID = CBUUID.init(string: "00001101-0000-1000-8000-00805F9B34FB")
+    let Arduino_UUID = CBUUID.init(string: "00001101-0000-1000-8000-00805F9B34FB")
     static let tag: String = "Arduino"
 
     override var rxUUID: CBUUID { return CBUUID.init(string: "713D0002-503E-4C75-BA94-3148F18D941E") }
@@ -59,7 +60,7 @@ class ArduinoDevice: FirmataDevice, ArduinoProtocol, ArduinoPropertyProtocol {
     internal var analogMapping = NSMutableDictionary()
     internal var pinsArray = [[String: Any]]()
 
-    internal let arduinoHelper: ArduinoHelper = ArduinoHelper()
+    internal let arduinoHelper = ArduinoHelper()
 
     // MARK: override
 
@@ -73,7 +74,7 @@ class ArduinoDevice: FirmataDevice, ArduinoProtocol, ArduinoPropertyProtocol {
 
     // MARK: Arduino Protocol
     func setDigitalArduinoPin(_ digitalPinNumber: Int, pinValue: Int) {
-        let pin: UInt8 = UInt8(checkValue(digitalPinNumber))
+        let pin = UInt8(checkValue(digitalPinNumber))
         if checkDigitalPinCapability(pin, neededMode: .output) {
             if pinValue > 0 {
                 firmata.writePinMode(.output, pin: pin)
@@ -89,7 +90,7 @@ class ArduinoDevice: FirmataDevice, ArduinoProtocol, ArduinoPropertyProtocol {
 
     @objc
     func getDigitalArduinoPin(_ digitalPinNumber: Int) -> Double {
-        let pin: UInt8 = UInt8(checkValue(digitalPinNumber))
+        let pin = UInt8(checkValue(digitalPinNumber))
         if checkDigitalPinCapability(pin, neededMode: .input) {
             reportSensorData(false)
             self.firmata.writePinMode(.input, pin: pin)
@@ -110,23 +111,23 @@ class ArduinoDevice: FirmataDevice, ArduinoProtocol, ArduinoPropertyProtocol {
     }
 
     func getAnalogArduinoPin(_ analogPinNumber: Int) -> Double {
-        let pin: UInt8 = UInt8(checkValue(analogPinNumber))
+        let pin = UInt8(checkValue(analogPinNumber))
         if checkAnalogPinCapability(pin, neededMode: .unknown) {
-                self.firmata.setAnalogValueReportingforPin(pin, enabled: true)
-                let semaphore = BluetoothService.swiftSharedInstance.getSemaphore()
-                BluetoothService.swiftSharedInstance.setAnalogSemaphore(semaphore)
-                _ = semaphore.wait(timeout: DispatchTime.now() + 0.1)
-                self.firmata.setAnalogValueReportingforPin(pin, enabled: false)
-                self.analogValue = self.getAnalogPin(analogPinNumber)
-                print(self.analogValue)
+            self.firmata.setAnalogValueReportingforPin(pin, enabled: true)
+            let semaphore = BluetoothService.swiftSharedInstance.getSemaphore()
+            BluetoothService.swiftSharedInstance.setAnalogSemaphore(semaphore)
+            _ = semaphore.wait(timeout: DispatchTime.now() + 0.1)
+            self.firmata.setAnalogValueReportingforPin(pin, enabled: false)
+            self.analogValue = self.getAnalogPin(analogPinNumber)
+            print(self.analogValue)
             return Double(self.analogValue)
         }
         return Double(0)
     }
 
     func setPWMArduinoPin(_ PWMpin: Int, value: Int) {
-        let pin: UInt8 = UInt8(checkValue(PWMpin))
-        let checkedValue: UInt8 = UInt8(checkValue(value))
+        let pin = UInt8(checkValue(PWMpin))
+        let checkedValue = UInt8(checkValue(value))
         if checkDigitalPinCapability(pin, neededMode: .pwm) {
             firmata.writePinMode(.pwm, pin: pin)
             firmata.writePWMValue(checkedValue, pin: pin)
@@ -143,13 +144,13 @@ class ArduinoDevice: FirmataDevice, ArduinoProtocol, ArduinoPropertyProtocol {
 
         isReportingSensorData = report
 
-        for i in MIN_ANALOG_SENSOR_PIN ... MAX_ANALOG_SENSOR_PIN {
+        for i in kMIN_ANALOG_SENSOR_PIN ... kMAX_ANALOG_SENSOR_PIN {
             reportAnalogArduinoPin(i, report: report)
         }
     }
 
     private func reportAnalogArduinoPin(_ analogPinNumber: Int, report: Bool) {
-        let pin: UInt8 = UInt8(checkValue(analogPinNumber))
+        let pin = UInt8(checkValue(analogPinNumber))
         if checkAnalogPinCapability(pin, neededMode: .unknown) {
             self.firmata.setAnalogValueReportingforPin(pin, enabled: report)
         }
@@ -158,7 +159,7 @@ class ArduinoDevice: FirmataDevice, ArduinoProtocol, ArduinoPropertyProtocol {
     // MARK: Reset
     func resetArduino() {
         reportSensorData(false)
-        if pinsArray.count > 0 {
+        if !pinsArray.isEmpty {
             var i: Int = 0
             for _:[String: Any] in pinsArray {
                 let pin = checkValue(i)
@@ -175,22 +176,22 @@ class ArduinoDevice: FirmataDevice, ArduinoProtocol, ArduinoPropertyProtocol {
             }
         }
         let totalAnalog = analogMapping.count
-        var totalDigital = totalPins-totalAnalog
+        var totalDigital = totalPins - totalAnalog
         if totalDigital < 0 {
             totalDigital = 21
         }
         arduinoHelper.digitalValues = [Int](repeating: 0, count: totalDigital)
-        var ports = totalPins/8 + 1
+        var ports = totalPins / 8 + 1
         if ports < 1 {
             ports = 3
         }
-        arduinoHelper.portValues =  Array(repeating: Array(repeating: 0, count: 8), count: ports)
+        arduinoHelper.portValues = Array(repeating: Array(repeating: 0, count: 8), count: ports)
     }
 
     // MARK: Helper
 
     private func checkDigitalPinCapability(_ pinNumber: UInt8, neededMode: PinMode) -> Bool {
-        if pinsArray.count > 0 {
+        if !pinsArray.isEmpty {
             let pinCheck = "D\(pinNumber)"
             for pin in pinsArray {
                 if let pinName = pin["name"] as? String, pinName == pinCheck {
@@ -212,7 +213,7 @@ class ArduinoDevice: FirmataDevice, ArduinoProtocol, ArduinoPropertyProtocol {
     }
 
     private func checkAnalogPinCapability(_ pinNumber: UInt8, neededMode: PinMode) -> Bool {
-        if pinsArray.count > 0 {
+        if !pinsArray.isEmpty {
             let pinCheck = "A\(pinNumber)"
             for pin in pinsArray {
                 if let pinName = pin["name"] as? String, pinName == pinCheck {
@@ -234,7 +235,7 @@ class ArduinoDevice: FirmataDevice, ArduinoProtocol, ArduinoPropertyProtocol {
 
     @objc
     func getAnalogPin(_ analogPinNumber: Int) -> Double {
-        let pin: UInt8 = UInt8(checkValue(analogPinNumber))
+        let pin = UInt8(checkValue(analogPinNumber))
         switch pin {
         case 0:
             return Double(getAnalogPin0())
@@ -264,11 +265,11 @@ class ArduinoDevice: FirmataDevice, ArduinoProtocol, ArduinoPropertyProtocol {
         BluetoothService.swiftSharedInstance.signalDigitalSemaphore(true)
     }
     override func didReceiveAnalogMessage(_ pin: Int, value: Int) {
-//        print("ANALOG::\(pin):::\(value)")
+        //print("ANALOG::\(pin):::\(value)")
         var analogPin = 100
-        if pinsArray.count > 0 {
+        if !pinsArray.isEmpty {
             let totalAnalog = analogMapping.count
-            let totalDigital = totalPins-totalAnalog
+            let totalDigital = totalPins - totalAnalog
             analogPin = pin - totalDigital
         } else {
             analogPin = convertAnalogPin(pin)
@@ -285,7 +286,7 @@ class ArduinoDevice: FirmataDevice, ArduinoProtocol, ArduinoPropertyProtocol {
     override func didUpdateCapability(_ pins: [[Int: Int]]) {
         totalPins = pins.count
         let totalAnalog = analogMapping.count
-        let totalDigital = totalPins-totalAnalog
+        let totalDigital = totalPins - totalAnalog
 
         var k = 0
         var pinArray = [[String: Any]]()
@@ -307,8 +308,8 @@ class ArduinoDevice: FirmataDevice, ArduinoProtocol, ArduinoPropertyProtocol {
         pinsArray = pinArray
 
         arduinoHelper.digitalValues = [Int](repeating: 0, count: totalDigital)
-        let ports = totalPins/8 + 1
-        arduinoHelper.portValues =  Array(repeating: Array(repeating: 0, count: 8), count: ports)
+        let ports = totalPins / 8 + 1
+        arduinoHelper.portValues = Array(repeating: Array(repeating: 0, count: 8), count: ports)
     }
 
     // MARK: setter/getter

@@ -20,11 +20,11 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import UIKit
-import XCTest
+import BluetoothHelper
 import CoreBluetooth
 import CoreLocation
-import BluetoothHelper
+import UIKit
+import XCTest
 
 class PeripheralTests: XCTestCase {
 
@@ -153,7 +153,7 @@ class PeripheralTests: XCTestCase {
         let testPeripheral = TestPeripheral()
         let onConnectionExpectation = expectation(description: "onSuccess fulfilled for future")
         let future = testPeripheral.helper.connect(testPeripheral, connectionTimeout: 100.0)
-        future.onSuccess {(_, connectionEvent) in
+        future.onSuccess {_, connectionEvent in
             switch connectionEvent {
             case .connected:
                 onConnectionExpectation.fulfill()
@@ -184,7 +184,7 @@ class PeripheralTests: XCTestCase {
         let testPeripheral = TestPeripheral()
         let onFailureExpectation = expectation(description: "onFailure fulfilled for future")
         let future = testPeripheral.helper.connect(testPeripheral, connectionTimeout: 100.0)
-        future.onSuccess {(_, connectionEvent) in
+        future.onSuccess {_, connectionEvent in
             switch connectionEvent {
             case .connected:
                 XCTAssert(false, "onSuccess Connect invalid")
@@ -215,7 +215,7 @@ class PeripheralTests: XCTestCase {
         let testPeripheral = TestPeripheral(state: .connected)
         let onFailureExpectation = expectation(description: "onFailure fulfilled for future")
         let future = testPeripheral.helper.connect(testPeripheral)
-        future.onSuccess {(_, connectionEvent) in
+        future.onSuccess {_, connectionEvent in
             switch connectionEvent {
             case .connected:
                 XCTAssert(false, "onSuccess Connect invalid")
@@ -246,7 +246,7 @@ class PeripheralTests: XCTestCase {
         let testPeripheral = TestPeripheral(state: .disconnected)
         let onFailureExpectation = expectation(description: "onFailure fulfilled for future")
         let future = testPeripheral.helper.connect(testPeripheral, connectionTimeout: 100.0)
-        future.onSuccess {(_, connectionEvent) in
+        future.onSuccess {_, connectionEvent in
             switch connectionEvent {
             case .connected:
                 XCTAssert(false, "onSuccess Connect invalid")
@@ -275,7 +275,7 @@ class PeripheralTests: XCTestCase {
         let testPeripheral = TestPeripheral(state: .connected)
         let onFailureExpectation = expectation(description: "onFailure fulfilled for future")
         let future = testPeripheral.helper.connect(testPeripheral)
-        future.onSuccess {(_, connectionEvent) in
+        future.onSuccess {_, connectionEvent in
             switch connectionEvent {
             case .connected:
                 XCTAssert(false, "onSuccess Connect invalid")
@@ -307,7 +307,7 @@ class PeripheralTests: XCTestCase {
         let testPeripheral = TestPeripheral()
         let onFailureExpectation = expectation(description: "onFailure fulfilled for future")
         let future = testPeripheral.helper.connect(testPeripheral, connectionTimeout: 100.0)
-        future.onSuccess {(_, connectionEvent) in
+        future.onSuccess {_, connectionEvent in
             switch connectionEvent {
             case .connected:
                 XCTAssert(false, "onSuccess Connect invalid")
@@ -338,7 +338,7 @@ class PeripheralTests: XCTestCase {
         let testPeripheral = TestPeripheral(state: .disconnected)
         let onFailureExpectation = expectation(description: "onFailure fulfilled for future")
         let future = testPeripheral.helper.connect(testPeripheral, connectionTimeout: 1.0)
-        future.onSuccess {(_, connectionEvent) in
+        future.onSuccess {_, connectionEvent in
             switch connectionEvent {
             case .connected:
                 XCTAssert(false, "onSuccess Connect invalid")
@@ -367,7 +367,7 @@ class PeripheralTests: XCTestCase {
         let timeoutExpectation = expectation(description: "onFailure fulfilled for Timeout")
         let giveUpExpectation = expectation(description: "onFailure fulfilled for GiveUp")
         let future = testPeripheral.helper.connect(testPeripheral, timeoutRetries: 1, connectionTimeout: 1.0)
-        future.onSuccess {(_, connectionEvent) in
+        future.onSuccess {_, connectionEvent in
             switch connectionEvent {
             case .connected:
                 XCTAssert(false, "onSuccess Connect invalid")
@@ -397,13 +397,13 @@ class PeripheralTests: XCTestCase {
         let timeoutExpectation = expectation(description: "onFailure fulfilled for Timeout")
         let onConnectionExpectation = expectation(description: "onSuccess fulfilled for future")
         let future = testPeripheral.helper.connect(testPeripheral, timeoutRetries: 2, connectionTimeout: 5.0)
-        future.onSuccess {(_, connectionEvent) in
+        future.onSuccess {_, connectionEvent in
             switch connectionEvent {
             case .connected:
                 onConnectionExpectation.fulfill()
             case .timeout:
                 timeoutExpectation.fulfill()
-//                testPeripheral.helper.connectPeripheral(testPeripheral)
+                //                testPeripheral.helper.connectPeripheral(testPeripheral)
                 testPeripheral.helper.didConnectPeripheral(testPeripheral)
             case .disconnected:
                 XCTAssert(false, "onSuccess Disconnect invalid")
@@ -428,7 +428,7 @@ class PeripheralTests: XCTestCase {
         let disconnectExpectation = expectation(description: "onFailure fulfilled for Disconnect")
         let onConnectionExpectation = expectation(description: "onSuccess fulfilled for future")
         let future = testPeripheral.helper.connect(testPeripheral, connectionTimeout: 100.0)
-        future.onSuccess {(_, connectionEvent) in
+        future.onSuccess {_, connectionEvent in
             switch connectionEvent {
             case .connected:
                 onConnectionExpectation.fulfill()

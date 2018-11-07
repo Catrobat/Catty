@@ -32,7 +32,7 @@
 
         let userVariable = self.userVariable
 
-        return CBInstruction.execClosure { (context, _) in
+        return CBInstruction.execClosure { context, _ in
             let xResult = context.formulaInterpreter.interpretDouble(xFormula, for: spriteObject)
             let yResult = context.formulaInterpreter.interpretDouble(yFormula, for: spriteObject)
             var value = ""

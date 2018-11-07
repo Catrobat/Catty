@@ -71,10 +71,10 @@ extension AudioManager: AudioManagerProtocol {
 
         let settings = [
             AVFormatIDKey: Int(kAudioFormatAppleLossless),
-            AVSampleRateKey: 44100.0,
+            AVSampleRateKey: 44_100.0,
             AVNumberOfChannelsKey: 0,
             AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
-            ] as [String: Any]
+        ] as [String: Any]
 
         let audioSession = AVAudioSession.sharedInstance()
         try? audioSession.setActive(true)

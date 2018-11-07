@@ -37,14 +37,14 @@ class ExpFunctionTest: XCTestCase {
     }
 
     func testDefaultValue() {
-        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: "invalidParameter" as AnyObject), accuracy: 0.0001)
-        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: nil), accuracy: 0.0001)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: "invalidParameter" as AnyObject), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: nil), accuracy: Double.epsilon)
     }
 
     func testValue() {
-        XCTAssertEqual(exp(2), function.value(parameter: 2 as AnyObject), accuracy: 0.0001)
+        XCTAssertEqual(exp(2), function.value(parameter: 2 as AnyObject), accuracy: Double.epsilon)
 
-        XCTAssertEqual(exp(-5), function.value(parameter: -5 as AnyObject), accuracy: 0.0001)
+        XCTAssertEqual(exp(-5), function.value(parameter: -5 as AnyObject), accuracy: Double.epsilon)
     }
 
     func testParameter() {

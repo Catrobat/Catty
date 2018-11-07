@@ -22,7 +22,7 @@
 
 import XCTest
 
-class MyFirstProgramVCTests: XCTestCase, UITestProtocol {
+class MyFirstProgramTVCTests: XCTestCase, UITestProtocol {
 
     override func setUp() {
         super.setUp()

@@ -41,26 +41,26 @@ final class AccelerationYSensorTest: XCTestCase {
 
     func testDefaultRawValue() {
         let sensor = AccelerationYSensor { nil }
-        XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(), accuracy: 0.0001)
+        XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(), accuracy: Double.epsilon)
     }
 
     func testRawValue() {
         motionManager.yUserAcceleration = 0
-        XCTAssertEqual(0, sensor.rawValue(), accuracy: 0.0001)
+        XCTAssertEqual(0, sensor.rawValue(), accuracy: Double.epsilon)
 
         motionManager.yUserAcceleration = 9.8
-        XCTAssertEqual(9.8, sensor.rawValue(), accuracy: 0.0001)
+        XCTAssertEqual(9.8, sensor.rawValue(), accuracy: Double.epsilon)
 
         motionManager.yUserAcceleration = -9.8
-        XCTAssertEqual(-9.8, sensor.rawValue(), accuracy: 0.0001)
+        XCTAssertEqual(-9.8, sensor.rawValue(), accuracy: Double.epsilon)
     }
 
     func testConvertToStandardized() {
-        XCTAssertEqual(0, sensor.convertToStandardized(rawValue: 0), accuracy: 0.0001)
-        XCTAssertEqual(9.8, sensor.convertToStandardized(rawValue: 1), accuracy: 0.0001)
-        XCTAssertEqual(-9.8, sensor.convertToStandardized(rawValue: -1), accuracy: 0.0001)
-        XCTAssertEqual(98, sensor.convertToStandardized(rawValue: 10), accuracy: 0.0001)
-        XCTAssertEqual(-98, sensor.convertToStandardized(rawValue: -10), accuracy: 0.0001)
+        XCTAssertEqual(0, sensor.convertToStandardized(rawValue: 0), accuracy: Double.epsilon)
+        XCTAssertEqual(9.8, sensor.convertToStandardized(rawValue: 1), accuracy: Double.epsilon)
+        XCTAssertEqual(-9.8, sensor.convertToStandardized(rawValue: -1), accuracy: Double.epsilon)
+        XCTAssertEqual(98, sensor.convertToStandardized(rawValue: 10), accuracy: Double.epsilon)
+        XCTAssertEqual(-98, sensor.convertToStandardized(rawValue: -10), accuracy: Double.epsilon)
     }
 
     func testTag() {

@@ -20,8 +20,8 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import Foundation
 import CoreBluetooth
+import Foundation
 
 func toHostByteOrder<T>(_ value: T) -> T {
     return value
@@ -48,7 +48,8 @@ func reverseBytes<T>(_ value: T) -> T {
 }
 
 public protocol Deserialize {
-    static var size: Int {get}
+    static var size: Int { get }
+
     static func deserialize(_ data: Data) -> Self?
     static func deserialize(_ data: Data, start: Int) -> Self?
     static func deserialize(_ data: Data) -> [Self]
@@ -63,61 +64,70 @@ public protocol Serialize {
 }
 
 public protocol CharacteristicConfigurable {
-    static var name: String {get}
-    static var uuid: String {get}
-    static var permissions: CBAttributePermissions {get}
-    static var properties: CBCharacteristicProperties {get}
-    static var initialValue: Data? {get}
+    static var name: String { get }
+    static var uuid: String { get }
+    static var permissions: CBAttributePermissions { get }
+    static var properties: CBCharacteristicProperties { get }
+    static var initialValue: Data? { get }
 }
 
 public protocol ServiceConfigurable {
-    static var name: String {get}
-    static var uuid: String {get}
-    static var tag: String {get}
+    static var name: String { get }
+    static var uuid: String { get }
+    static var tag: String { get }
 }
 
 public protocol StringDeserialize {
-    static var stringValues: [String] {get}
-    var stringValue: [String: String] {get}
+    static var stringValues: [String] { get }
+    var stringValue: [String: String] { get }
+
     init?(stringValue: [String: String])
 }
 
 public protocol RawDeserialize {
     associatedtype RawType
-    static var uuid: String {get}
-    var rawValue: RawType {get}
+
+    static var uuid: String { get }
+    var rawValue: RawType { get }
+
     init?(rawValue: RawType)
 }
 
 public protocol RawArrayDeserialize {
     associatedtype RawType
-    static var uuid: String {get}
-    static var size: Int {get}
-    var rawValue: [RawType] {get}
+
+    static var uuid: String { get }
+    static var size: Int { get }
+    var rawValue: [RawType] { get }
+
     init?(rawValue: [RawType])
 }
 
 public protocol RawPairDeserialize {
     associatedtype RawType1
     associatedtype RawType2
-    static var uuid: String {get}
-    var rawValue1: RawType1 {get}
-    var rawValue2: RawType2 {get}
+
+    static var uuid: String { get }
+    var rawValue1: RawType1 { get }
+    var rawValue2: RawType2 { get }
+
     init?(rawValue1: RawType1, rawValue2: RawType2)
 }
 
 public protocol RawArrayPairDeserialize {
     associatedtype RawType1
     associatedtype RawType2
-    static var uuid: String {get}
-    static var size1: Int {get}
-    static var size2: Int {get}
-    var rawValue1: [RawType1] {get}
-    var rawValue2: [RawType2] {get}
+
+    static var uuid: String { get }
+    static var size1: Int { get }
+    static var size2: Int { get }
+    var rawValue1: [RawType1] { get }
+    var rawValue2: [RawType2] { get }
+
     init?(rawValue1: [RawType1], rawValue2: [RawType2])
 }
 
-public struct Serializer {
+public enum Serializer {
 
     public static func serialize(_ value: String, encoding: String.Encoding = String.Encoding.utf8) -> Data? {
         return Data.fromString(value, encoding: encoding)
@@ -148,27 +158,27 @@ public struct Serializer {
     }
 }
 
-public struct Deserializer {
+public enum Deserializer {
 
-  public static func deserialize(_ data: Data, encoding: String.Encoding = String.Encoding.utf8) -> String? {
-    return (NSString(data: data, encoding: encoding.rawValue) as String?)
-  }
-
-  public static func deserialize<T: Deserialize>(_ data: Data) -> T? {
-    return T.deserialize(data)
-  }
-
-  public static func deserialize<T: RawDeserialize>(_ data: Data) -> T? where T.RawType: Deserialize {
-    return T.RawType.deserialize(data).flatmap {T(rawValue: $0)}
-  }
-
-  public static func deserialize<T: RawArrayDeserialize>(_ data: Data) -> T? where T.RawType: Deserialize {
-    if data.count >= T.size {
-      return T(rawValue: T.RawType.deserialize(data))
-    } else {
-      return nil
+    public static func deserialize(_ data: Data, encoding: String.Encoding = String.Encoding.utf8) -> String? {
+        return (NSString(data: data, encoding: encoding.rawValue) as String?)
     }
-  }
+
+    public static func deserialize<T: Deserialize>(_ data: Data) -> T? {
+        return T.deserialize(data)
+    }
+
+    public static func deserialize<T: RawDeserialize>(_ data: Data) -> T? where T.RawType: Deserialize {
+        return T.RawType.deserialize(data).flatmap { T(rawValue: $0) }
+    }
+
+    public static func deserialize<T: RawArrayDeserialize>(_ data: Data) -> T? where T.RawType: Deserialize {
+        if data.count >= T.size {
+            return T(rawValue: T.RawType.deserialize(data))
+        } else {
+            return nil
+        }
+    }
 
     public static func deserialize<T: RawPairDeserialize>(_ data: Data) -> T? where T.RawType1: Deserialize, T.RawType2: Deserialize {
         guard data.count >= T.RawType1.size + T.RawType2.size else { return nil }

@@ -22,7 +22,7 @@
 
 import Kingfisher // there is not much point in using Kingfisher unless the Media Library offers thumbnail preview images
 
-protocol MediaLibraryCollectionViewDataSourceDelegate: class {
+protocol MediaLibraryCollectionViewDataSourceDelegate: AnyObject {
     func mediaLibraryCollectionViewDataSource(_ dataSource: MediaLibraryCollectionViewDataSource, didSelectCellWith item: MediaItem)
 }
 
@@ -38,15 +38,15 @@ class MediaLibraryCollectionViewDataSource: NSObject, UICollectionViewDataSource
 
     weak var delegate: MediaLibraryCollectionViewDataSourceDelegate?
 
-    fileprivate let downloader: MediaLibraryDownloaderProtocol
-    fileprivate let mediaType: MediaType
+    let downloader: MediaLibraryDownloaderProtocol
+    let mediaType: MediaType
 
     /// A two dimensional list of categories and library items
-    fileprivate var items = [[MediaItem]]()
+    var items = [[MediaItem]]()
 
     // MARK: - Initializer
 
-    fileprivate init(for mediaType: MediaType, with downloader: MediaLibraryDownloaderProtocol) {
+    init(for mediaType: MediaType, with downloader: MediaLibraryDownloaderProtocol) {
         self.downloader = downloader
         self.mediaType = mediaType
     }
@@ -85,7 +85,7 @@ class MediaLibraryCollectionViewDataSource: NSObject, UICollectionViewDataSource
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: self.headerViewReuseIdentifier, for: indexPath)
         if let headerView = headerView as? LibraryCategoryCollectionReusableView {
-            headerView.titleLabel.text = self.items[indexPath.section].first?.category
+            headerView.title = (self.items[indexPath.section].first?.category)!
         }
         return headerView
     }
@@ -95,7 +95,7 @@ class MediaLibraryCollectionViewDataSource: NSObject, UICollectionViewDataSource
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        fatalError("collectionView(_:cellForItemAt:) must be overriden by subclasses")
+        fatalError("collectionView(_:cellForItemAt:) must be overridden by subclass")
     }
 
     func reduceMemoryPressure() { // the method might not be required with thumbnail previews from the API

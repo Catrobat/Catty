@@ -27,18 +27,18 @@
         guard let object = self.script?.object else { fatalError("This should never happen!") }
         let audioManager = AudioManager.shared()
 
-        return CBInstruction.waitExecClosure { (context, _) in
+        return CBInstruction.waitExecClosure { context, _ in
             let condition = NSCondition()
             condition.accessibilityHint = "0"
 
             var speakText = context.formulaInterpreter.interpretString(self.formula, for: object)
-            if Double(speakText) !=  nil {
+            if Double(speakText) != nil {
                 let num = (speakText as NSString).doubleValue
                 speakText = (num as NSNumber).stringValue
             }
 
             let utterance = AVSpeechUtterance(string: speakText)
-            utterance.rate = (floor(NSFoundationVersionNumber) < 1200 ? 0.15 : 0.5)
+            utterance.rate = (floor(NSFoundationVersionNumber) < 1_200 ? 0.15 : 0.5)
 
             if let synthesizer = audioManager?.getSpeechSynth() {
                 synthesizer.delegate = self

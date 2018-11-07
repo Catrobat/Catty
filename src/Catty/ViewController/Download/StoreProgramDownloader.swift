@@ -48,9 +48,9 @@ final class StoreProgramDownloader: StoreProgramDownloaderProtocol {
                                                 Util.catrobatLanguageVersion()))
             else { return }
 
-        self.session.dataTask(with: indexURL) { (data, response, error) in
+        self.session.dataTask(with: indexURL) { data, response, error in
             let handleDataTaskCompletion: (Data?, URLResponse?, Error?) -> (items: StoreProgramCollection.StoreProgramCollectionNumber?, error: StoreProgramDownloaderError?)
-            handleDataTaskCompletion = { (data, response, error) in
+            handleDataTaskCompletion = { data, response, error in
                 if let error = error as NSError?, error.domain == NSURLErrorDomain && error.code == NSURLErrorTimedOut {
                     return (nil, .timeout)
                 }
@@ -96,9 +96,9 @@ final class StoreProgramDownloader: StoreProgramDownloaderProtocol {
             indexURL = url
         }
 
-        self.session.dataTask(with: indexURL) { (data, response, error) in
+        self.session.dataTask(with: indexURL) { data, response, error in
             let handleDataTaskCompletion: (Data?, URLResponse?, Error?) -> (items: StoreProgramCollection.StoreProgramCollectionText?, error: StoreProgramDownloaderError?)
-            handleDataTaskCompletion = { (data, response, error) in
+            handleDataTaskCompletion = { data, response, error in
                 if let error = error as NSError?, error.domain == NSURLErrorDomain && error.code == NSURLErrorTimedOut {
                     return (nil, .timeout)
                 }
@@ -120,15 +120,15 @@ final class StoreProgramDownloader: StoreProgramDownloaderProtocol {
                 completion(result.items, result.error)
             }
 
-            }.resume()
+        }.resume()
     }
 
     func downloadProgram(for program: StoreProgram, completion: @escaping (StoreProgram?, StoreProgramDownloaderError?) -> Void) {
         guard let indexURL = URL(string: "\(kConnectionHost)/\(kConnectionIDQuery)?id=\(program.projectId)") else { return }
 
-        self.session.dataTask(with: indexURL) { (data, response, error) in
+        self.session.dataTask(with: indexURL) { data, response, error in
             let handleDataTaskCompletion: (Data?, URLResponse?, Error?) -> (program: StoreProgram?, error: StoreProgramDownloaderError?)
-            handleDataTaskCompletion = { (data, response, error) in
+            handleDataTaskCompletion = { data, response, error in
                 guard let response = response as? HTTPURLResponse else { return (nil, .unexpectedError) }
                 guard let data = data, response.statusCode == 200, error == nil else { return (nil, .request(error: error, statusCode: response.statusCode)) }
 
@@ -144,7 +144,7 @@ final class StoreProgramDownloader: StoreProgramDownloaderProtocol {
             DispatchQueue.main.async {
                 completion(result.program, result.error)
             }
-            }.resume()
+        }.resume()
     }
 
     static func defaultSession() -> URLSession {

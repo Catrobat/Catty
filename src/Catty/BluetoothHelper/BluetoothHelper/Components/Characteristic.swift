@@ -20,8 +20,8 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import UIKit
 import CoreBluetooth
+import UIKit
 
 // MARK: Characteristic
 
@@ -48,7 +48,7 @@ public final class Characteristic: CharacteristicWrapper {
         self.profile = characteristicProfile
     }
 
-        // MARK: getter
+    // MARK: getter
 
     public var service: Service {
         return self._service
@@ -216,16 +216,16 @@ public final class Characteristic: CharacteristicWrapper {
 public final class CharacteristicImplementation<C: CharacteristicWrapper> {
 
     public var notificationUpdatePromise: StreamPromise<C>?
-    private var notificationStateChangedPromise    = Promise<C>()
-    private var readPromise                        = Promise<C>()
-    private var writePromise                       = Promise<C>()
+    private var notificationStateChangedPromise = Promise<C>()
+    private var readPromise = Promise<C>()
+    private var writePromise = Promise<C>()
 
     private var reading = false
     private var writing = false
 
-    private var readSequence    = 0
-    private var writeSequence   = 0
-    private let defaultTimeout  = 10.0
+    private var readSequence = 0
+    private var writeSequence = 0
+    private let defaultTimeout = 10.0
 
     public init() {
     }
@@ -268,7 +268,7 @@ public final class CharacteristicImplementation<C: CharacteristicWrapper> {
 
     // MARK: String values
     public func stringValue(_ characteristic: C, data: Data?) -> [String: String]? {
-        return characteristic.stringValue(data).map {$0}
+        return characteristic.stringValue(data).map { $0 }
     }
 
     public func stringValues(_ characteristic: C) -> [String] {

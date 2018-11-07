@@ -42,18 +42,18 @@ final class ColorSensorTest: XCTestCase {
 
     func testDefaultRawValue() {
         spriteObject.spriteNode = nil
-        XCTAssertEqual(type(of: sensor).defaultRawValue, type(of: sensor).rawValue(for: spriteObject), accuracy: 0.0001)
+        XCTAssertEqual(type(of: sensor).defaultRawValue, type(of: sensor).rawValue(for: spriteObject), accuracy: Double.epsilon)
     }
 
     func testRawValue() {
         spriteNode.ciHueAdjust = 0.0
-        XCTAssertEqual(0, type(of: sensor).rawValue(for: spriteObject), accuracy: 0.0001)
+        XCTAssertEqual(0, type(of: sensor).rawValue(for: spriteObject), accuracy: Double.epsilon)
 
         spriteNode.ciHueAdjust = -60
-        XCTAssertEqual(-60, type(of: sensor).rawValue(for: spriteObject), accuracy: 0.0001)
+        XCTAssertEqual(-60, type(of: sensor).rawValue(for: spriteObject), accuracy: Double.epsilon)
 
         spriteNode.ciHueAdjust = 210
-        XCTAssertEqual(210, type(of: sensor).rawValue(for: spriteObject), accuracy: 0.0001)
+        XCTAssertEqual(210, type(of: sensor).rawValue(for: spriteObject), accuracy: Double.epsilon)
     }
 
     func testSetRawValue() {
@@ -63,22 +63,22 @@ final class ColorSensorTest: XCTestCase {
     }
 
     func testConvertToStandarized() {
-        XCTAssertEqual(0, type(of: sensor).convertToStandardized(rawValue: 0, for: spriteObject), accuracy: 0.0001)
-        XCTAssertEqual(100, type(of: sensor).convertToStandardized(rawValue: Double.pi, for: spriteObject), accuracy: 0.0001)
-        XCTAssertEqual(199.99, type(of: sensor).convertToStandardized(rawValue: 1.9999 * Double.pi, for: spriteObject), accuracy: 0.0001)
+        XCTAssertEqual(0, type(of: sensor).convertToStandardized(rawValue: 0, for: spriteObject), accuracy: Double.epsilon)
+        XCTAssertEqual(100, type(of: sensor).convertToStandardized(rawValue: Double.pi, for: spriteObject), accuracy: Double.epsilon)
+        XCTAssertEqual(199.99, type(of: sensor).convertToStandardized(rawValue: 1.999_9 * Double.pi, for: spriteObject), accuracy: Double.epsilon)
     }
 
     func testConvertToRaw() {
-        XCTAssertEqual(0, type(of: sensor).convertToRaw(userInput: 0, for: spriteObject), accuracy: 0.0001)
-        XCTAssertEqual(Double.pi, type(of: sensor).convertToRaw(userInput: 100, for: spriteObject), accuracy: 0.0001)
-        XCTAssertEqual(Double.pi / 4, type(of: sensor).convertToRaw(userInput: 25, for: spriteObject), accuracy: 0.0001)
+        XCTAssertEqual(0, type(of: sensor).convertToRaw(userInput: 0, for: spriteObject), accuracy: Double.epsilon)
+        XCTAssertEqual(Double.pi, type(of: sensor).convertToRaw(userInput: 100, for: spriteObject), accuracy: Double.epsilon)
+        XCTAssertEqual(Double.pi / 4, type(of: sensor).convertToRaw(userInput: 25, for: spriteObject), accuracy: Double.epsilon)
 
         // outside the range
-        XCTAssertEqual(0, type(of: sensor).convertToRaw(userInput: 200, for: spriteObject), accuracy: 0.0001)
-        XCTAssertEqual(Double.pi / 2, type(of: sensor).convertToRaw(userInput: 250, for: spriteObject), accuracy: 0.0001)
-        XCTAssertEqual(0, type(of: sensor).convertToRaw(userInput: 400, for: spriteObject), accuracy: 0.0001)
-        XCTAssertEqual(Double.pi, type(of: sensor).convertToRaw(userInput: -100, for: spriteObject), accuracy: 0.0001)
-        XCTAssertEqual(Double.pi, type(of: sensor).convertToRaw(userInput: -300, for: spriteObject), accuracy: 0.0001)
+        XCTAssertEqual(0, type(of: sensor).convertToRaw(userInput: 200, for: spriteObject), accuracy: Double.epsilon)
+        XCTAssertEqual(Double.pi / 2, type(of: sensor).convertToRaw(userInput: 250, for: spriteObject), accuracy: Double.epsilon)
+        XCTAssertEqual(0, type(of: sensor).convertToRaw(userInput: 400, for: spriteObject), accuracy: Double.epsilon)
+        XCTAssertEqual(Double.pi, type(of: sensor).convertToRaw(userInput: -100, for: spriteObject), accuracy: Double.epsilon)
+        XCTAssertEqual(Double.pi, type(of: sensor).convertToRaw(userInput: -300, for: spriteObject), accuracy: Double.epsilon)
 
     }
 

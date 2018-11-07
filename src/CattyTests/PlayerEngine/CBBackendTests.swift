@@ -56,7 +56,7 @@ final class CBBackendTests: XCTestCase {
         startScript.brickList = [showBrick, noteBrick, hideBrick]
 
         let sequenceList = frontend.computeSequenceListForScript(startScript).sequenceList
-            let instructionList = backend.instructionsForSequence(sequenceList)
+        let instructionList = backend.instructionsForSequence(sequenceList)
         XCTAssertEqual(instructionList.count, 2, "Instruction list should contain two instructions")
 
         switch instructionList[0] {
