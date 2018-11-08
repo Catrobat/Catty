@@ -22,7 +22,7 @@
 
 import XCTest
 
-class PocketCodeMainScreenTVCTests: XCTestCase, UITestProtocol {
+class PocketCodeMainScreenTests: XCTestCase, UITestProtocol {
 
     override func setUp() {
         super.setUp()

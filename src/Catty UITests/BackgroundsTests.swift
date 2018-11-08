@@ -22,7 +22,7 @@
 
 import XCTest
 
-class BackgroundsTVCTests: XCTestCase, UITestProtocol {
+class BackgroundsTests: XCTestCase, UITestProtocol {
 
     override func setUp() {
         super.setUp()

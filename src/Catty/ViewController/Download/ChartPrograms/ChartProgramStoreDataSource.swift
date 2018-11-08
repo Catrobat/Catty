@@ -98,7 +98,7 @@ class ChartProgramStoreDataSource: NSObject, UITableViewDataSource, UITableViewD
 
     // MARK: - Initializer
 
-    init(with downloader: StoreProgramDownloaderProtocol) {
+    fileprivate init(with downloader: StoreProgramDownloaderProtocol) {
         self.downloader = downloader
         self.programType = .mostDownloaded
     }

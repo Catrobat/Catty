@@ -49,7 +49,7 @@ class SearchStoreDataSource: NSObject, UITableViewDataSource, UITableViewDelegat
 
     // MARK: - Initializer
 
-    init(with downloader: StoreProgramDownloaderProtocol) {
+    fileprivate init(with downloader: StoreProgramDownloaderProtocol) {
         self.downloader = downloader
     }
 

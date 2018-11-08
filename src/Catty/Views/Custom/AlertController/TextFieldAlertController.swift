@@ -32,7 +32,7 @@ import Foundation
     func addCancelActionWithTitle(_ title: String, handler: (() -> Void)?) -> TextFieldAlertControllerBuilding
 }
 
-@objc public protocol TextFieldAlertDefining: TextFieldInitialStateDefiner, TextFieldAlertActionAdding {}
+@objc public protocol TextFieldAlertDefining: TextFieldInitialStateDefiner, TextFieldAlertActionAdding { }
 
 @objc
 public final class InputValidationResult: NSObject {

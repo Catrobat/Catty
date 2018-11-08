@@ -38,15 +38,15 @@ class MediaLibraryCollectionViewDataSource: NSObject, UICollectionViewDataSource
 
     weak var delegate: MediaLibraryCollectionViewDataSourceDelegate?
 
-    let downloader: MediaLibraryDownloaderProtocol
-    let mediaType: MediaType
+    fileprivate let downloader: MediaLibraryDownloaderProtocol
+    fileprivate let mediaType: MediaType
 
     /// A two dimensional list of categories and library items
-    var items = [[MediaItem]]()
+    fileprivate var items = [[MediaItem]]()
 
     // MARK: - Initializer
 
-    init(for mediaType: MediaType, with downloader: MediaLibraryDownloaderProtocol) {
+    fileprivate init(for mediaType: MediaType, with downloader: MediaLibraryDownloaderProtocol) {
         self.downloader = downloader
         self.mediaType = mediaType
     }

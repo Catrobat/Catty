@@ -41,7 +41,10 @@ protocol CustomAlertControllerDelegate: AnyObject {
 }
 
 final class CustomAlertController: UIAlertController {
-    weak var delegate: CustomAlertControllerDelegate?
+
+    // remove the following linter disable after delegate is weak
+    // swiftlint:disable:next weak_delegate
+    fileprivate var delegate: CustomAlertControllerDelegate?
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)

@@ -34,13 +34,13 @@ class FeaturedProgramsStoreTableDataSource: NSObject, UITableViewDataSource, UIT
 
     weak var delegate: SelectedFeaturedProgramsDataSource?
 
-    let downloader: StoreProgramDownloaderProtocol
-    var programs = [StoreProgram]()
-    var baseUrl = ""
+    fileprivate let downloader: StoreProgramDownloaderProtocol
+    fileprivate var programs = [StoreProgram]()
+    fileprivate var baseUrl = ""
 
     // MARK: - Initializer
 
-    init(with downloader: StoreProgramDownloaderProtocol) {
+    fileprivate init(with downloader: StoreProgramDownloaderProtocol) {
         self.downloader = downloader
     }
 

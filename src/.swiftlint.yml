@@ -92,7 +92,7 @@ whitelist_rules:
  - prefixed_toplevel_constant
  - private_action
  - private_outlet
- - private_over_fileprivate
+ #- private_over_fileprivate
  - private_unit_test
  - prohibited_super_call
  - protocol_property_accessors_order
@@ -113,7 +113,7 @@ whitelist_rules:
  - sorted_first_last
  - sorted_imports
  - statement_position
- - strict_fileprivate
+ #- strict_fileprivate
  - superfluous_disable_command
  - switch_case_alignment
  - switch_case_on_newline
