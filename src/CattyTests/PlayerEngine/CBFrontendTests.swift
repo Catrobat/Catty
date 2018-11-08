@@ -58,7 +58,7 @@ final class CBFrontendTests: XCTestCase {
         XCTAssertNotNil(sequenceList.rootSequenceList)
         XCTAssertTrue(sequenceList.rootSequenceList! === scriptSequenceList)
         XCTAssertEqual(sequenceList.count, 1, "Sequence list should contain only one (operation) sequence")
-        XCTAssertFalse(sequenceList.isEmpty(), "WTH!!! Sequence list is empty!")
+        XCTAssertFalse(sequenceList.isEmpty(), "Sequence list is empty!")
         let sequence = sequenceList.sequenceList.first
         XCTAssertTrue(sequence is CBOperationSequence)
         let operationSequence = sequence as! CBOperationSequence
@@ -130,7 +130,7 @@ final class CBFrontendTests: XCTestCase {
         XCTAssertNotNil(sequenceList.rootSequenceList)
         XCTAssertTrue(sequenceList.rootSequenceList! === scriptSequenceList)
         XCTAssertEqual(sequenceList.count, 3, "Sequence list should look like this: [CBOperationSequence, CBIfConditionalSequence, CBOperationSequence]")
-        XCTAssertFalse(sequenceList.isEmpty(), "WTH!!! Sequence list is empty!")
+        XCTAssertFalse(sequenceList.isEmpty(), "Sequence list is empty!")
 
         let firstSequence = sequenceList.sequenceList[0]
         XCTAssertTrue(firstSequence is CBOperationSequence)
@@ -238,7 +238,7 @@ final class CBFrontendTests: XCTestCase {
         XCTAssertNotNil(sequenceList.rootSequenceList)
         XCTAssertTrue(sequenceList.rootSequenceList! === scriptSequenceList)
         XCTAssertEqual(sequenceList.count, 3, "Sequence list should look like this: [CBOperationSequence, CBIfConditionalSequence, CBOperationSequence]")
-        XCTAssertFalse(sequenceList.isEmpty(), "WTH!!! Sequence list is empty!")
+        XCTAssertFalse(sequenceList.isEmpty(), "Sequence list is empty!")
 
         let firstSequence = sequenceList.sequenceList[0]
         XCTAssertTrue(firstSequence is CBOperationSequence)

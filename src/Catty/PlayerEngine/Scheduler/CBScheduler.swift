@@ -110,7 +110,7 @@ final class CBScheduler: CBSchedulerProtocol {
         var nextConditionalBufferElements = [CBConditionalFormulaBufferElement]()
         for (spriteName, contexts) in _scheduledContexts {
             guard let spriteNode = _spriteNodes[spriteName]
-                else { fatalError("WTH?? Sprite node not available (any more)...") }
+                else { fatalError("Sprite node is not available (any more)...") }
 
             // collect
             var nextLongActionElements = [CBScheduleLongActionElement]()

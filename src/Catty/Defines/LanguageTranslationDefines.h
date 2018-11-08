@@ -653,7 +653,7 @@
 #define kUIFEUnknownElementType NSLocalizedString(@"Unknown Element", nil)
 
 //************************************************************************************************************
-//************************************       BrickCategoryTitles        ********************************************
+//************************************       BrickCategoryTitles        **************************************
 //************************************************************************************************************
 
 #define kUIFENewText NSLocalizedString(@"New Text", nil)
@@ -661,28 +661,28 @@
 #define kUIFavouritesTitle NSLocalizedString(@"Frequently Used", @"Title of View where the user can see the frequently used bricks.")
 #define kUIScriptTitle NSLocalizedString(@"Script", nil)
 #define kUIControlTitle NSLocalizedString(@"Control", nil)
-#define kUIMotionTitle  NSLocalizedString(@"Motion", nil)
-#define kUISoundTitle  NSLocalizedString(@"Sound", nil)
-#define kUILookTitle  NSLocalizedString(@"Look", nil)
-#define kUIVariableTitle  NSLocalizedString(@"Variable", nil)
-#define kUIArduinoTitle  NSLocalizedString(@"Arduino", nil)
-#define kUIPhiroTitle  NSLocalizedString(@"Phiro", nil)
+#define kUIMotionTitle NSLocalizedString(@"Motion", nil)
+#define kUISoundTitle NSLocalizedString(@"Sound", nil)
+#define kUILookTitle NSLocalizedString(@"Look", nil)
+#define kUIVariableTitle NSLocalizedString(@"Variable", nil)
+#define kUIArduinoTitle NSLocalizedString(@"Arduino", nil)
+#define kUIPhiroTitle NSLocalizedString(@"Phiro", nil)
 
 //************************************************************************************************************
 //************************************       PhiroDefines         ********************************************
 //************************************************************************************************************
 
-#define kLocalizedPhiroBoth  NSLocalizedString(@"Both", nil)
-#define kLocalizedPhiroLeft  NSLocalizedString(@"Left", nil)
-#define kLocalizedPhiroRight  NSLocalizedString(@"Right", nil)
+#define kLocalizedPhiroBoth NSLocalizedString(@"Both", nil)
+#define kLocalizedPhiroLeft NSLocalizedString(@"Left", nil)
+#define kLocalizedPhiroRight NSLocalizedString(@"Right", nil)
 
-#define kLocalizedPhiroDO  NSLocalizedString(@"DO", nil)
-#define kLocalizedPhiroRE  NSLocalizedString(@"RE", nil)
-#define kLocalizedPhiroMI  NSLocalizedString(@"MI", nil)
-#define kLocalizedPhiroFA  NSLocalizedString(@"FA", nil)
-#define kLocalizedPhiroSO  NSLocalizedString(@"SO", nil)
-#define kLocalizedPhiroLA  NSLocalizedString(@"LA", nil)
-#define kLocalizedPhiroTI  NSLocalizedString(@"TI", nil)
+#define kLocalizedPhiroDO NSLocalizedString(@"DO", nil)
+#define kLocalizedPhiroRE NSLocalizedString(@"RE", nil)
+#define kLocalizedPhiroMI NSLocalizedString(@"MI", nil)
+#define kLocalizedPhiroFA NSLocalizedString(@"FA", nil)
+#define kLocalizedPhiroSO NSLocalizedString(@"SO", nil)
+#define kLocalizedPhiroLA NSLocalizedString(@"LA", nil)
+#define kLocalizedPhiroTI NSLocalizedString(@"TI", nil)
 
 #define klocalizedBluetoothSearch NSLocalizedString(@"Search", @"bluetooth")
 #define klocalizedBluetoothKnown NSLocalizedString(@"Known devices", @"bluetooth")
