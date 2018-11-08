@@ -105,6 +105,7 @@
 #import "DeleteItemOfUserListBrick.h"
 #import "InsertItemIntoUserListBrick.h"
 #import "ReplaceItemInUserListBrick.h"
+#import "WaitUntilBrick.h"
 #import "RepeatBrick.h"
 #import "RepeatUntilBrick.h"
 #import "CameraBrick.h"
