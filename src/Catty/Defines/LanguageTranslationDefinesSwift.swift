@@ -34,8 +34,6 @@
                    |___/             |___/
  */
 
-// swiftlint:disable line_length
-
 //************************************************************************************************************
 //************************************       TERMS/BUZZWORDS      ********************************************
 //************************************************************************************************************
@@ -663,28 +661,28 @@ let kUIFETextMessage = NSLocalizedString("Text message:", comment: "")
 let kUIFavouritesTitle = NSLocalizedString("Frequently Used", comment: "Title of View where the user can see the frequently used bricks.")
 let kUIScriptTitle = NSLocalizedString("Script", comment: "")
 let kUIControlTitle = NSLocalizedString("Control", comment: "")
-let kUIMotionTitle = NSLocalizedString("Motion", comment: "")
-let kUISoundTitle = NSLocalizedString("Sound", comment: "")
-let kUILookTitle = NSLocalizedString("Look", comment: "")
-let kUIVariableTitle = NSLocalizedString("Variable", comment: "")
-let kUIArduinoTitle = NSLocalizedString("Arduino", comment: "")
-let kUIPhiroTitle = NSLocalizedString("Phiro", comment: "")
+let kUIMotionTitle  = NSLocalizedString("Motion", comment: "")
+let kUISoundTitle  = NSLocalizedString("Sound", comment: "")
+let kUILookTitle  = NSLocalizedString("Look", comment: "")
+let kUIVariableTitle  = NSLocalizedString("Variable", comment: "")
+let kUIArduinoTitle  = NSLocalizedString("Arduino", comment: "")
+let kUIPhiroTitle  = NSLocalizedString("Phiro", comment: "")
 
 //************************************************************************************************************
 //************************************       PhiroDefines         ********************************************
 //************************************************************************************************************
 
-let kLocalizedPhiroBoth = NSLocalizedString("Both", comment: "")
-let kLocalizedPhiroLeft = NSLocalizedString("Left", comment: "")
-let kLocalizedPhiroRight = NSLocalizedString("Right", comment: "")
+let kLocalizedPhiroBoth  = NSLocalizedString("Both", comment: "")
+let kLocalizedPhiroLeft  = NSLocalizedString("Left", comment: "")
+let kLocalizedPhiroRight  = NSLocalizedString("Right", comment: "")
 
-let kLocalizedPhiroDO = NSLocalizedString("DO", comment: "")
-let kLocalizedPhiroRE = NSLocalizedString("RE", comment: "")
-let kLocalizedPhiroMI = NSLocalizedString("MI", comment: "")
-let kLocalizedPhiroFA = NSLocalizedString("FA", comment: "")
-let kLocalizedPhiroSO = NSLocalizedString("SO", comment: "")
-let kLocalizedPhiroLA = NSLocalizedString("LA", comment: "")
-let kLocalizedPhiroTI = NSLocalizedString("TI", comment: "")
+let kLocalizedPhiroDO  = NSLocalizedString("DO", comment: "")
+let kLocalizedPhiroRE  = NSLocalizedString("RE", comment: "")
+let kLocalizedPhiroMI  = NSLocalizedString("MI", comment: "")
+let kLocalizedPhiroFA  = NSLocalizedString("FA", comment: "")
+let kLocalizedPhiroSO  = NSLocalizedString("SO", comment: "")
+let kLocalizedPhiroLA  = NSLocalizedString("LA", comment: "")
+let kLocalizedPhiroTI  = NSLocalizedString("TI", comment: "")
 
 let klocalizedBluetoothSearch = NSLocalizedString("Search", comment: "bluetooth")
 let klocalizedBluetoothKnown = NSLocalizedString("Known devices", comment: "bluetooth")
@@ -740,8 +738,6 @@ let kLocalizedUnexpectedErrorMessage = NSLocalizedString("Unexpected Error, plea
 //************************************************************************************************************
 let kLocalizedDebugModeTitle = NSLocalizedString("Debug mode", comment: "")
 let kLocalizedStartedInDebugMode = NSLocalizedString("Pocket Code has been started in debug mode.", comment: "")
-
-// swiftlint:enable line_length
 
 /*
      _       _     _                       _              _         _
