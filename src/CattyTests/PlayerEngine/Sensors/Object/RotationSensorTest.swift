@@ -117,7 +117,7 @@ final class RotationSensorTest: XCTestCase {
         XCTAssertEqual(0, type(of: sensor).convertSceneToDegrees(450), accuracy: Double.epsilon)
         XCTAssertEqual(-90, type(of: sensor).convertSceneToDegrees(900), accuracy: Double.epsilon)
         XCTAssertEqual(-130, type(of: sensor).convertSceneToDegrees(-500), accuracy: Double.epsilon)
-        XCTAssertEqual(90, type(of: sensor).convertSceneToDegrees(-1_080), accuracy: Double.epsilon)
+        XCTAssertEqual(90, type(of: sensor).convertSceneToDegrees(-1080), accuracy: Double.epsilon)
 
         // Note: the values returned are always between (-179, 180) - a single circle rotated
     }

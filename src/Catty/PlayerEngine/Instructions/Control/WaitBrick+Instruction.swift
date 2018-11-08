@@ -40,7 +40,7 @@
                 //logger.debug("Sleeping now until \(wakeUpTime)...")
                 Thread.sleep(until: wakeUpTime)
             } else {
-                let durationInMicroSeconds = durationInSeconds * 1_000_000
+                let durationInMicroSeconds = durationInSeconds * 1000000
                 let uduration = UInt32(durationInMicroSeconds) // in microseconds (10^-6)
                 if uduration > 100 { // check if it makes sense at all to pause the thread...
                     usleep(uduration)

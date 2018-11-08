@@ -55,15 +55,15 @@ final class TimeHourSensorTest: XCTestCase {
 
     func testRawValue() {
         /* test one digit */
-        sensor.mockDate = Calendar.current.date(from: DateComponents(year: 2_018, month: 6, day: 6, hour: 7))!
+        sensor.mockDate = Calendar.current.date(from: DateComponents(year: 2018, month: 6, day: 6, hour: 7))!
         XCTAssertEqual(7, Int(sensor.rawValue()))
 
         /* test two digits */
-        sensor.mockDate = Calendar.current.date(from: DateComponents(year: 2_017, month: 8, day: 10, hour: 16))!
+        sensor.mockDate = Calendar.current.date(from: DateComponents(year: 2017, month: 8, day: 10, hour: 16))!
         XCTAssertEqual(16, Int(sensor.rawValue()))
 
         /* test edge case - almost the beginning of the next day */
-        sensor.mockDate = Calendar.current.date(from: DateComponents(year: 2_018, month: 8, day: 22, hour: 23))!
+        sensor.mockDate = Calendar.current.date(from: DateComponents(year: 2018, month: 8, day: 22, hour: 23))!
         XCTAssertEqual(23, Int(sensor.rawValue()))
 
     }

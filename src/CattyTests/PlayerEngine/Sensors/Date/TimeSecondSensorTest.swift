@@ -55,11 +55,11 @@ final class TimeSecondSensorTest: XCTestCase {
 
     func testRawValue() {
         /* test one digit */
-        self.sensor.mockDate = Date.init(timeIntervalSince1970: 1_529_301_965)
+        self.sensor.mockDate = Date.init(timeIntervalSince1970: 1529301965)
         XCTAssertEqual(5, Int(sensor.rawValue()))
 
         /* test two digits */
-        self.sensor.mockDate = Date.init(timeIntervalSince1970: 1_528_265_185)
+        self.sensor.mockDate = Date.init(timeIntervalSince1970: 1528265185)
         XCTAssertEqual(25, Int(sensor.rawValue()))
     }
 

@@ -23,5 +23,5 @@
 import Foundation
 
 extension Double {
-    static let epsilon = 0.000_1
+    static let epsilon = 0.0001
 }

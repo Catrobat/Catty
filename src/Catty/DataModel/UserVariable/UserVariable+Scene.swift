@@ -24,7 +24,7 @@ extension UserVariable {
 
     func sizeForSKLabel(sceneSize: CGSize) -> CGFloat {
         let iPhone8PlusLabelSize = CGFloat(42.0)
-        let iPhone8PlusScreenHeightInPixel = CGFloat(1_920.0)
+        let iPhone8PlusScreenHeightInPixel = CGFloat(1920.0)
 
         let sizeForSKLabel = iPhone8PlusLabelSize / iPhone8PlusScreenHeightInPixel * sceneSize.height
         return sizeForSKLabel

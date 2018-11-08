@@ -66,7 +66,7 @@ final class ColorSensorTest: XCTestCase {
     func testConvertToStandarized() {
         XCTAssertEqual(0, type(of: sensor).convertToStandardized(rawValue: 0, for: spriteObject), accuracy: Double.epsilon)
         XCTAssertEqual(100, type(of: sensor).convertToStandardized(rawValue: Double.pi, for: spriteObject), accuracy: Double.epsilon)
-        XCTAssertEqual(199.99, type(of: sensor).convertToStandardized(rawValue: 1.999_9 * Double.pi, for: spriteObject), accuracy: Double.epsilon)
+        XCTAssertEqual(199.99, type(of: sensor).convertToStandardized(rawValue: 1.9999 * Double.pi, for: spriteObject), accuracy: Double.epsilon)
     }
 
     func testConvertToRaw() {

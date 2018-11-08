@@ -49,7 +49,7 @@ class ModFunctionTest: XCTestCase {
     func testValue() {
         XCTAssertEqual(Double(100 % 6), function.value(firstParameter: 100 as AnyObject, secondParameter: 6 as AnyObject), accuracy: Double.epsilon)
 
-        XCTAssertEqual(Double(1_356 % 76), function.value(firstParameter: 1_356 as AnyObject, secondParameter: 76 as AnyObject), accuracy: Double.epsilon)
+        XCTAssertEqual(Double(1356 % 76), function.value(firstParameter: 1356 as AnyObject, secondParameter: 76 as AnyObject), accuracy: Double.epsilon)
 
         XCTAssertEqual(Double(56 % 76), function.value(firstParameter: 56 as AnyObject, secondParameter: 76 as AnyObject), accuracy: Double.epsilon)
 

@@ -75,8 +75,8 @@ final class PositionXSensorTest: XCTestCase {
         XCTAssertEqual(type(of: sensor).rawValue(for: spriteObject), -187, accuracy: Double.epsilon)
 
         // test outside of the screen
-        spriteNode.mockedPosition = CGPoint(x: 10_000, y: 30)
-        XCTAssertEqual(type(of: sensor).rawValue(for: spriteObject), 10_000, accuracy: Double.epsilon)
+        spriteNode.mockedPosition = CGPoint(x: 10000, y: 30)
+        XCTAssertEqual(type(of: sensor).rawValue(for: spriteObject), 10000, accuracy: Double.epsilon)
 
         // test float value
         spriteNode.mockedPosition = CGPoint(x: 20.22, y: 44)

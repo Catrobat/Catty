@@ -61,13 +61,13 @@ final class LoudnessSensorTest: XCTestCase {
         XCTAssertEqual(1, sensor.convertToStandardized(rawValue: -40), accuracy: Double.epsilon)
 
         let whisper = sensor.convertToStandardized(rawValue: -24)
-        XCTAssertEqual(6.309_5, whisper, accuracy: Double.epsilon)
+        XCTAssertEqual(6.3095, whisper, accuracy: Double.epsilon)
 
         let normalVoice = sensor.convertToStandardized(rawValue: -15)
-        XCTAssertEqual(17.782_7, normalVoice, accuracy: Double.epsilon)
+        XCTAssertEqual(17.7827, normalVoice, accuracy: Double.epsilon)
 
         let shouting = sensor.convertToStandardized(rawValue: -0.99)
-        XCTAssertEqual(89.227_7, shouting, accuracy: Double.epsilon)
+        XCTAssertEqual(89.2277, shouting, accuracy: Double.epsilon)
     }
 
     func testTag() {

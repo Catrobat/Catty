@@ -92,7 +92,7 @@ extension Int16: Deserialize {
     }
 
     public init?(doubleValue: Double) {
-        if doubleValue >= 32_767.0 || doubleValue <= -32_768.0 {
+        if doubleValue >= 32767.0 || doubleValue <= -32768.0 {
             return nil
         } else {
             self = Int16(doubleValue)
@@ -203,7 +203,7 @@ extension UInt16: Deserialize {
     }
 
     public init?(doubleValue: Double) {
-        if doubleValue >= 65_535.0 || doubleValue <= 0.0 {
+        if doubleValue >= 65535.0 || doubleValue <= 0.0 {
             return nil
         } else {
             self = UInt16(doubleValue)

@@ -59,16 +59,16 @@ final class AltitudeSensorTest: XCTestCase {
         XCTAssertEqual(600, sensor.rawValue())
 
         // mountain
-        locationManager.altitude = 1_500
-        XCTAssertEqual(1_500, sensor.rawValue())
+        locationManager.altitude = 1500
+        XCTAssertEqual(1500, sensor.rawValue())
 
         // Mt. Everest
-        locationManager.altitude = 8_848
-        XCTAssertEqual(8_848, sensor.rawValue())
+        locationManager.altitude = 8848
+        XCTAssertEqual(8848, sensor.rawValue())
 
         // float attitude
-        locationManager.altitude = 2_555.875
-        XCTAssertEqual(2_555.875, sensor.rawValue())
+        locationManager.altitude = 2555.875
+        XCTAssertEqual(2555.875, sensor.rawValue())
     }
 
     func testConvertToStandardized() {

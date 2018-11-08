@@ -34,7 +34,7 @@
             }
 
             let utterance = AVSpeechUtterance(string: speakText)
-            utterance.rate = (floor(NSFoundationVersionNumber) < 1_200 ? 0.15 : 0.5)
+            utterance.rate = (floor(NSFoundationVersionNumber) < 1200 ? 0.15 : 0.5)
 
             let synthesizer = AVSpeechSynthesizer()
             synthesizer.speak(utterance)
