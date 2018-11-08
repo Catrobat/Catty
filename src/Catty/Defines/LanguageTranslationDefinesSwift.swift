@@ -653,7 +653,7 @@ let kUIFESensorFaceY = NSLocalizedString("faceposition_y", comment: "")
 let kUIFEUnknownElementType = NSLocalizedString("Unknown Element", comment: "")
 
 //************************************************************************************************************
-//************************************       BrickCategoryTitles        ********************************************
+//************************************       BrickCategoryTitles        **************************************
 //************************************************************************************************************
 
 let kUIFENewText = NSLocalizedString("New Text", comment: "")
