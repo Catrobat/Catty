@@ -40,6 +40,7 @@ final class DateMonthSensorTest: XCTestCase {
         sensor = DateMonthSensorMock()
     }
 
+    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         sensor = nil
     }

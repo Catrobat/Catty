@@ -32,6 +32,7 @@ class NumberOfElementsFunctionTest: XCTestCase {
         function = NumberOfItemsFunction()
     }
 
+    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         function = nil
     }

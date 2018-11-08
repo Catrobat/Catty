@@ -32,6 +32,7 @@ class AcosFunctionTest: XCTestCase {
         function = AcosFunction()
     }
 
+    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         function = nil
     }

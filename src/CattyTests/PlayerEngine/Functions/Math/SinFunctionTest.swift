@@ -32,6 +32,7 @@ class SinFunctionTest: XCTestCase {
         function = SinFunction()
     }
 
+    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         function = nil
     }

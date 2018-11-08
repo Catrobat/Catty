@@ -34,6 +34,7 @@ final class LoudnessSensorTest: XCTestCase {
         sensor = LoudnessSensor { [weak self] in self?.audioManager }
     }
 
+    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         sensor = nil
         audioManager = nil

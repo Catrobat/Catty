@@ -40,6 +40,7 @@ final class TimeHourSensorTest: XCTestCase {
         sensor = TimeHourSensorMock()
     }
 
+    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         sensor = nil
     }

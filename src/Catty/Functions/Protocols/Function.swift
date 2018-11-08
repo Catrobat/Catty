@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-protocol Function { // TODO remove CB prefix
+protocol Function {
 
     // Display name (e.g. for formula editor)
     static var name: String { get }

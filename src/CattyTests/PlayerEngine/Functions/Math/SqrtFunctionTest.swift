@@ -32,6 +32,7 @@ class SqrtFunctionTest: XCTestCase {
         function = SqrtFunction()
     }
 
+    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         function = nil
     }

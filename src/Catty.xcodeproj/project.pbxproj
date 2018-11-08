@@ -7733,8 +7733,8 @@
 				92C6319D1BC5180B00486958 /* CopyFiles */,
 				BCE07DCC213D427900154E4C /* Display TODO and FIXME comments */,
 				4C807B931CF7488C0066CE92 /* Remove git hooks */,
-				59A0599E1F75130D00EB696D /* Carthage Copy Frameworks Run Script */,
 				5E43D71421919F6A006FDF2A /* SwiftLint Run Script */,
+				59A0599E1F75130D00EB696D /* Carthage Copy Frameworks Run Script */,
 			);
 			buildRules = (
 			);
@@ -7818,7 +7818,7 @@
 				uk,
 				vi,
 				zh,
-				BASE
+				BASE,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			productRefGroup = 19C28FACFE9D520D11CA2CBB /* Products */;
@@ -8212,7 +8212,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\nswiftlint autocorrect && swiftlint\nelse\necho \"error: SwiftLint not installed, please run 'brew install swiftlint'\"\nexit 1\nfi\n";
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint autocorrect && swiftlint\nelse\n    echo \"warning: SwiftLint not installed, please run 'brew install swiftlint'\"\n    exit 1\nfi\n";
 		};
 		929DC44A1BCB9C5000421443 /* License Validator */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -8226,7 +8226,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/bin/env xcrun swift -sdk $(/usr/bin/env xcrun --show-sdk-path --sdk macosx) license-validator.swift\nOUT=$?\nif [ $OUT -ne 0 ];then\nexit $OUT\nfi";
+			shellScript = "/usr/bin/env xcrun swift -sdk $(/usr/bin/env xcrun --show-sdk-path --sdk macosx) license-validator.swift\nOUT=$?\nif [ $OUT -ne 0 ];then\nexit $OUT\nfi\n";
 		};
 		AACFFF611B7FE5F50002F899 /* Automatic Version Tracking */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -8254,7 +8254,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "// TODO check\nif [ \"${CONFIGURATION}\" = \"Debug\" ]; then\n  TAGS=\"TODO:|FIXME:\"\n  echo \"searching ${SRCROOT} for ${TAGS}\"\n\n  find \"${SRCROOT}\" -not -path \"${SRCROOT}/Pods/*\" \\( -name \"*.swift\" -or -name \"*.h\" -or -name \"*.m\" \\) -print0 | xargs -0 egrep --with-filename --line-number --only-matching \"($TAGS).*\\$\" | perl -p -e \"s/($TAGS)/ warning: \\$1/\"\nfi";
+			shellScript = "// TODO check\nif [ \"${CONFIGURATION}\" = \"Debug\" ]; then\n  TAGS=\"TODO:|FIXME:\"\n  echo \"searching ${SRCROOT} for ${TAGS}\"\n\n  find \"${SRCROOT}\" -not -path \"${SRCROOT}/Pods/*\" \\( -name \"*.h\" -or -name \"*.m\" \\) -print0 | xargs -0 egrep --with-filename --line-number --only-matching \"($TAGS).*\\$\" | perl -p -e \"s/($TAGS)/ warning: \\$1/\"\nfi\n";
 		};
 		CA0BB4151AA7709900E5A88D /* Add version number to Root.plist */ = {
 			isa = PBXShellScriptBuildPhase;

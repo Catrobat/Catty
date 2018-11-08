@@ -32,6 +32,7 @@ class FloorFunctionTest: XCTestCase {
         function = FloorFunction()
     }
 
+    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         function = nil
     }

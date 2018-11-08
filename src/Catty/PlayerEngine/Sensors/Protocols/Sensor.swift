@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-protocol Sensor { // TODO remove CB prefix
+protocol Sensor {
 
     // Name for formula editor
     static var name: String { get }

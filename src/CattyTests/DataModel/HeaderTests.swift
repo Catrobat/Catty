@@ -26,6 +26,7 @@ import XCTest
 
 final class HeaderTests: XCTestCase {
 
+    // swiftlint:disable:next empty_xctest_method
     override func setUp() {
     }
 

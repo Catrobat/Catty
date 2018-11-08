@@ -32,6 +32,7 @@ class TrueFunctionTest: XCTestCase {
         function = TrueFunction()
     }
 
+    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         function = nil
     }

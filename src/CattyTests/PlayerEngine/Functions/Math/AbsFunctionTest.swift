@@ -32,6 +32,7 @@ class AbsFunctionTest: XCTestCase {
         function = AbsFunction()
     }
 
+    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         function = nil
     }

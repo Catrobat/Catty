@@ -32,6 +32,7 @@ class LetterFunctionTest: XCTestCase {
         function = LetterFunction()
     }
 
+    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         function = nil
     }

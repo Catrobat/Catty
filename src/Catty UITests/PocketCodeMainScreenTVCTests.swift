@@ -34,10 +34,6 @@ class PocketCodeMainScreenTVCTests: XCTestCase, UITestProtocol {
         restoreDefaultProgram()
     }
 
-    override func tearDown() {
-        super.tearDown()
-    }
-
     func testContinue() {
         restoreDefaultProgram()
 

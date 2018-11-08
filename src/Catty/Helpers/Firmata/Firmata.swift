@@ -197,7 +197,7 @@ class Firmata: FirmataProtocol {
      */
     func servoConfig(_ pin: UInt8, minPulse: UInt8, maxPulse: UInt8) {
         let data0: UInt8 = kSTART_SYSEX
-        let data1: UInt8 = kSERVO_CONFIG //TODO check with PIN
+        let data1: UInt8 = kSERVO_CONFIG //TODO: check with PIN
         let data2: UInt8 = pin
         let data3: UInt8 = minPulse & 0x7F
         let data4: UInt8 = minPulse >> 7
@@ -740,7 +740,7 @@ class Firmata: FirmataProtocol {
         //        [ports insertObject:[NSNumber numberWithUnsignedChar:value<<(pin % 8)] atIndex:port];
         //    }
 
-        //   TODO
+        //   TODO:
         //    [peripheralDelegate didUpdatePin:pin currentMode:(PINMODE)currentMode value:value];
     }
 

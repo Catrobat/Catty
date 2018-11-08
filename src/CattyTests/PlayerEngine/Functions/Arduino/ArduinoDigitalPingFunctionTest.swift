@@ -34,6 +34,7 @@ class ArduinoDigitalPingFunctionTest: XCTestCase {
         function = ArduinoDigitalPinFunction { [ weak self ] in self?.bluetoothService }
     }
 
+    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         bluetoothService = nil
         function = nil

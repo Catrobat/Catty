@@ -32,6 +32,7 @@ class CosFunctionTest: XCTestCase {
         function = CosFunction()
     }
 
+    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         function = nil
     }

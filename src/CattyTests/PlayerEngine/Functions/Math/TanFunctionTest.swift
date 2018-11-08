@@ -32,6 +32,7 @@ class TanFunctionTest: XCTestCase {
         function = TanFunction()
     }
 
+    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         function = nil
     }

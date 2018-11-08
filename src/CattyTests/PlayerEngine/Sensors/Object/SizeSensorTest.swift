@@ -36,6 +36,7 @@ final class SizeSensorTest: XCTestCase {
         sensor = SizeSensor()
     }
 
+    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         spriteObject = nil
     }

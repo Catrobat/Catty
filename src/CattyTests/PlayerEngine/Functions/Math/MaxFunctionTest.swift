@@ -32,6 +32,7 @@ class MaxFunctionTest: XCTestCase {
         function = MaxFunction()
     }
 
+    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         function = nil
     }

@@ -36,7 +36,7 @@ class CBStack<T> {
 
     private var top: LLNode<T>! = LLNode<T>()
 
-    //TODO: Add count computed property
+    // TODO: Add count computed property
 
     //push an item onto the stack
     func push(_ key: T) {

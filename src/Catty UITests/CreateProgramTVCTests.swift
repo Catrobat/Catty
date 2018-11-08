@@ -34,10 +34,6 @@ class CreateProgramTVCTests: XCTestCase, UITestProtocol {
         restoreDefaultProgram()
     }
 
-    override func tearDown() {
-        super.tearDown()
-    }
-
     func testCanCreateProgramWithDrawNewImage() {
         let app = XCUIApplication()
         let programName = "testProgram"

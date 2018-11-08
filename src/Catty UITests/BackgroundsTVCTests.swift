@@ -34,10 +34,6 @@ class BackgroundsTVCTests: XCTestCase, UITestProtocol {
         restoreDefaultProgram()
     }
 
-    override func tearDown() {
-        super.tearDown()
-    }
-
     func testScriptsCanEnterScripts() {
         let app = XCUIApplication()
 

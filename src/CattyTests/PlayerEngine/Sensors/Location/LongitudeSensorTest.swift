@@ -34,6 +34,7 @@ final class LongitudeSensorTest: XCTestCase {
         sensor = LongitudeSensor { [weak self] in self?.locationManager }
     }
 
+    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         sensor = nil
         locationManager = nil

@@ -32,6 +32,7 @@ class AsinFunctionTest: XCTestCase {
         function = AsinFunction()
     }
 
+    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         function = nil
     }

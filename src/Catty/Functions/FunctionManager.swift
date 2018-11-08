@@ -25,7 +25,7 @@ import BluetoothHelper
 @objc class FunctionManager: NSObject, FunctionManagerProtocol {
 
     public static var defaultValueForUndefinedFunction: Double = 0
-    private static var functionMap = [String: Function]() // TODO make instance let
+    private static var functionMap = [String: Function]() // TODO: make instance let
 
     init(functions: [Function]) {
         super.init()

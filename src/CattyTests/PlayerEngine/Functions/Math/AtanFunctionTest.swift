@@ -32,6 +32,7 @@ class AtanFunctionTest: XCTestCase {
         function = AtanFunction()
     }
 
+    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         function = nil
     }

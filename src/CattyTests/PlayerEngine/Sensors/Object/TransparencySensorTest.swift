@@ -36,6 +36,7 @@ final class TransparencySensorTest: XCTestCase {
         sensor = TransparencySensor()
     }
 
+    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         spriteObject = nil
     }

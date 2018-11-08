@@ -32,6 +32,7 @@ class RoundFunctionTest: XCTestCase {
         function = RoundFunction()
     }
 
+    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         function = nil
     }

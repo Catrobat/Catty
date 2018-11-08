@@ -28,6 +28,7 @@ import XCTest
 
 final class SensorManagerTests: XCTestCase {
 
+    // swiftlint:disable:next empty_xctest_method
     override func setUp() {
     }
 

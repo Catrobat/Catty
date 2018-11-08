@@ -34,6 +34,7 @@ final class InclinationXSensorTest: XCTestCase {
         sensor = InclinationXSensor { [weak self] in self?.motionManager }
     }
 
+    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         sensor = nil
         motionManager = nil

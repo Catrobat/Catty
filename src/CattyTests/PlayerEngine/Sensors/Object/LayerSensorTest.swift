@@ -36,6 +36,7 @@ final class LayerSensorTest: XCTestCase {
         sensor = LayerSensor()
     }
 
+    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         spriteObject = nil
     }

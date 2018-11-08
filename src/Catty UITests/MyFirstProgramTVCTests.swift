@@ -34,10 +34,6 @@ class MyFirstProgramVCTests: XCTestCase, UITestProtocol {
         restoreDefaultProgram()
     }
 
-    override func tearDown() {
-        super.tearDown()
-    }
-
     func testCanDeleteMultipleObjectsViaEditMode() {
         let app = XCUIApplication()
         app.tables.staticTexts["Programs"].tap()

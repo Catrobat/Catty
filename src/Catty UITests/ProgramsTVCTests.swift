@@ -34,16 +34,12 @@ class ProgramsTVCTests: XCTestCase, UITestProtocol {
         restoreDefaultProgram()
     }
 
-    override func tearDown() {
-        super.tearDown()
-    }
-
     func testCanAddNewProgram() {
         let app = XCUIApplication()
         app.tables.staticTexts["Programs"].tap()
         app.toolbars.buttons["Add"].tap()
 
-        let alertQuery = app.alerts["New Program"]
+        let alertQuery = waitForElementToAppear(app.alerts["New Program"])
         alertQuery.textFields["Enter your program name here..."].typeText("testProgram")
 
         app.alerts["New Program"].buttons["OK"].tap()
@@ -103,7 +99,7 @@ class ProgramsTVCTests: XCTestCase, UITestProtocol {
         XCTAssert(app.buttons["Copy"].exists)
         app.buttons["Copy"].tap()
 
-        XCTAssert(app.alerts["Copy program"].exists)
+        XCTAssert(waitForElementToAppear(app.alerts["Copy program"]).exists)
         let alertQuery = app.alerts["Copy program"]
         XCTAssert(alertQuery.buttons["Clear text"].exists)
         alertQuery.buttons["Clear text"].tap()
@@ -135,7 +131,7 @@ class ProgramsTVCTests: XCTestCase, UITestProtocol {
         XCTAssert(app.buttons["Copy"].exists)
         app.buttons["Copy"].tap()
 
-        XCTAssert(app.alerts["Copy program"].exists)
+        XCTAssert(waitForElementToAppear(app.alerts["Copy program"]).exists)
         let alertQuery = app.alerts["Copy program"]
         XCTAssert(alertQuery.buttons["Clear text"].exists)
         alertQuery.buttons["Clear text"].tap()
@@ -167,7 +163,7 @@ class ProgramsTVCTests: XCTestCase, UITestProtocol {
         XCTAssert(app.buttons["Rename"].exists)
         app.buttons["Rename"].tap()
 
-        XCTAssert(app.alerts["Rename Program"].exists)
+        XCTAssert(waitForElementToAppear(app.alerts["Rename Program"]).exists)
         let alertQuery = app.alerts["Rename Program"]
         XCTAssert(alertQuery.buttons["Clear text"].exists)
         alertQuery.buttons["Clear text"].tap()
@@ -200,7 +196,7 @@ class ProgramsTVCTests: XCTestCase, UITestProtocol {
         XCTAssert(app.buttons["Rename"].exists)
         app.buttons["Rename"].tap()
 
-        XCTAssert(app.alerts["Rename Program"].exists)
+        XCTAssert(waitForElementToAppear(app.alerts["Rename Program"]).exists)
         let alertQuery = app.alerts["Rename Program"]
         XCTAssert(alertQuery.buttons["Clear text"].exists)
         alertQuery.buttons["Clear text"].tap()

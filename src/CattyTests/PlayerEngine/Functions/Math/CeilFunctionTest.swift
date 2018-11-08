@@ -32,6 +32,7 @@ class CeilFunctionTest: XCTestCase {
         function = CeilFunction()
     }
 
+    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         function = nil
     }

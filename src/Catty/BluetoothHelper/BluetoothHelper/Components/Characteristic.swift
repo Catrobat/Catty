@@ -268,7 +268,7 @@ public final class CharacteristicImplementation<C: CharacteristicWrapper> {
 
     // MARK: String values
     public func stringValue(_ characteristic: C, data: Data?) -> [String: String]? {
-        return characteristic.stringValue(data).map { $0 }
+        return characteristic.stringValue(data)
     }
 
     public func stringValues(_ characteristic: C) -> [String] {

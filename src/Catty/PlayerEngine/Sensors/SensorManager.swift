@@ -26,7 +26,7 @@ import CoreMotion
 @objc class SensorManager: NSObject, SensorManagerProtocol {
 
     public static var defaultValueForUndefinedSensor: Double = 0
-    private static var sensorMap = [String: Sensor]() // TODO make instance let
+    private static var sensorMap = [String: Sensor]() // TODO: make instance let
 
     public required init(sensors: [Sensor]) {
         super.init()

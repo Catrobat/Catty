@@ -34,10 +34,6 @@ class ObjectTVCTests: XCTestCase, UITestProtocol {
         restoreDefaultProgram()
     }
 
-    override func tearDown() {
-        super.tearDown()
-    }
-
     func testScriptsCanEnterScriptsOfAllMoles() {
         let app = XCUIApplication()
         let appTables = app.tables

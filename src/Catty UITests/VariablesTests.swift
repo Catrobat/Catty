@@ -34,10 +34,6 @@ class VariablesTests: XCTestCase, UITestProtocol {
         restoreDefaultProgram()
     }
 
-    override func tearDown() {
-        super.tearDown()
-    }
-
     func testDontShowVariablePickerWhenNoVariablesDefinedForObject() {
         let app = XCUIApplication()
         app.tables.staticTexts["New"].tap()

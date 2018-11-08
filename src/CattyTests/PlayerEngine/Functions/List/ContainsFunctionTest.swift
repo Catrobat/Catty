@@ -32,6 +32,7 @@ class ContainsFunctionTest: XCTestCase {
         function = ContainsFunction()
     }
 
+    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         function = nil
     }

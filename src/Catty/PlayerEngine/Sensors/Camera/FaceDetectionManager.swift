@@ -22,7 +22,7 @@
 
 class FaceDetectionManager: NSObject, FaceDetectionManagerProtocol, AVCaptureVideoDataOutputSampleBufferDelegate {
 
-    // TODO remove Singleton
+    // TODO: remove Singleton
     public static let shared = FaceDetectionManager()
 
     var isFaceDetected: Bool! = false

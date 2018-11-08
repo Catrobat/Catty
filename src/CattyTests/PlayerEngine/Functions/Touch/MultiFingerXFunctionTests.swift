@@ -44,6 +44,7 @@ class MultiFingerXFunctionTests: XCTestCase {
         spriteNode.mockedScene = SceneBuilder(program: ProgramMock(width: CGFloat(screenWidth), andHeight: CGFloat(screenHeight))).build()
     }
 
+    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         touchManager = nil
         function = nil

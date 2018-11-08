@@ -36,9 +36,9 @@ protocol FunctionManagerProtocol {
 
     func exists(tag: String) -> Bool
 
-    // TODO make instance method
+    // TODO: make instance method
     static func requiredResource(tag: String) -> ResourceType
 
-    // TODO make instance method
+    // TODO: make instance method
     static func name(tag: String) -> String?
 }

@@ -34,6 +34,7 @@ final class LastFingerIndexSensorTest: XCTestCase {
         sensor = LastFingerIndexSensor { [weak self] in self?.touchManager }
     }
 
+    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         sensor = nil
         touchManager = nil

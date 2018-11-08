@@ -39,6 +39,7 @@ final class PositionYSensorTest: XCTestCase {
         sensor = PositionYSensor()
     }
 
+    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         spriteObject = nil
     }

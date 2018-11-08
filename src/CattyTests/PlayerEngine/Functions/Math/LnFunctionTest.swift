@@ -32,6 +32,7 @@ class LnFunctionTest: XCTestCase {
         function = LnFunction()
     }
 
+    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         function = nil
     }

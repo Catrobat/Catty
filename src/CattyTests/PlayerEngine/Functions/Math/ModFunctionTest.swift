@@ -32,6 +32,7 @@ class ModFunctionTest: XCTestCase {
         function = ModFunction()
     }
 
+    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         function = nil
     }

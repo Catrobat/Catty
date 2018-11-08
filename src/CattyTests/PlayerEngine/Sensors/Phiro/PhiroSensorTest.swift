@@ -46,6 +46,7 @@ final class PhiroSensorTest: XCTestCase {
         phiroBottomRight = PhiroBottomRightSensor { [ weak self ] in self?.bluetoothService }
     }
 
+    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         bluetoothService = nil
         phiroSideLeft = nil

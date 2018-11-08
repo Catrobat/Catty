@@ -36,6 +36,7 @@ final class ColorSensorTest: XCTestCase {
         sensor = ColorSensor()
     }
 
+    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         spriteObject = nil
     }

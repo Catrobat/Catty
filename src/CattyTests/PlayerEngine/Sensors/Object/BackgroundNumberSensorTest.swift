@@ -36,6 +36,7 @@ final class BackgroundNumberSensorTest: XCTestCase {
         sensor = BackgroundNumberSensor()
     }
 
+    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         spriteObject = nil
     }

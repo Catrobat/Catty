@@ -32,6 +32,7 @@ class LengthFunctionTest: XCTestCase {
         function = LengthFunction()
     }
 
+    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         function = nil
     }

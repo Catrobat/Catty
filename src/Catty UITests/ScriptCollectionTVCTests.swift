@@ -34,10 +34,6 @@ class ScriptCollectionTVCTests: XCTestCase, UITestProtocol {
         restoreDefaultProgram()
     }
 
-    override func tearDown() {
-        super.tearDown()
-    }
-
     func testCopyIfLogicBeginBrick() {
         let app = XCUIApplication()
         let programName = "testProgram"

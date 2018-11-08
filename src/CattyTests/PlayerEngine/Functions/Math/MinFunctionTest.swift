@@ -32,6 +32,7 @@ class MinFunctionTest: XCTestCase {
         function = MinFunction()
     }
 
+    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         function = nil
     }

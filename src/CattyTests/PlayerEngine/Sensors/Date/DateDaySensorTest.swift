@@ -40,6 +40,7 @@ final class DateDaySensorTest: XCTestCase {
         sensor = DateDaySensorMock()
     }
 
+    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         sensor = nil
     }

@@ -34,6 +34,7 @@ final class CompassDirectionSensorTest: XCTestCase {
         sensor = CompassDirectionSensor { [weak self] in self?.locationManager }
     }
 
+    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         sensor = nil
         locationManager = nil

@@ -32,6 +32,7 @@ class LogFunctionTest: XCTestCase {
         function = LogFunction()
     }
 
+    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         function = nil
     }
