@@ -63,6 +63,6 @@ extension FormulaManager {
                 break
             }
         }
-        return Array(items.sorted(by: { $0.section.position() < $1.section.position() }))
+        return items.sorted(by: { $0.section.position() < $1.section.position() }).map { $0 }
     }
 }
