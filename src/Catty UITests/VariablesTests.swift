@@ -79,7 +79,7 @@ class VariablesTests: XCTestCase, UITestProtocol {
         XCTAssert(app.sheets["List type"].exists)
     }
 
-    func testCreateVariableWithMaxLenght() {
+    func testCreateVariableWithMaxLength() {
 
         let app = XCUIApplication()
         app.tables.staticTexts["New"].tap()
@@ -108,7 +108,7 @@ class VariablesTests: XCTestCase, UITestProtocol {
         XCTAssert(app.staticTexts["When program started"].exists)
     }
 
-    func testCreateVariableWithMaxLenghtPlusOne() {
+    func testCreateVariableWithMaxLengthPlusOne() {
 
         let app = XCUIApplication()
         app.tables.staticTexts["New"].tap()
