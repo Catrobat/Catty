@@ -255,7 +255,7 @@
 		4C6FE16F212D2D2E0067B7D5 /* SinFunctionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6FE14F212D2D2E0067B7D5 /* SinFunctionTest.swift */; };
 		4C6FE170212D2D2E0067B7D5 /* AbsFunctionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6FE150212D2D2E0067B7D5 /* AbsFunctionTest.swift */; };
 		4C6FE171212D2D2E0067B7D5 /* CosFunctionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6FE151212D2D2E0067B7D5 /* CosFunctionTest.swift */; };
-		4C6FE173212D2D2E0067B7D5 /* NumberOfElementsFunctionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6FE154212D2D2E0067B7D5 /* NumberOfElementsFunctionTest.swift */; };
+		4C6FE173212D2D2E0067B7D5 /* NumberOfItemsFunctionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6FE154212D2D2E0067B7D5 /* NumberOfItemsFunctionTest.swift */; };
 		4C6FE174212D2D2E0067B7D5 /* ElementFunctionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6FE155212D2D2E0067B7D5 /* ElementFunctionTest.swift */; };
 		4C6FE175212D2D2E0067B7D5 /* ContainsFunctionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6FE156212D2D2E0067B7D5 /* ContainsFunctionTest.swift */; };
 		4C6FE176212D2D2E0067B7D5 /* LetterFunctionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6FE158212D2D2E0067B7D5 /* LetterFunctionTest.swift */; };
@@ -1589,7 +1589,7 @@
 		4C6FE14F212D2D2E0067B7D5 /* SinFunctionTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SinFunctionTest.swift; sourceTree = "<group>"; };
 		4C6FE150212D2D2E0067B7D5 /* AbsFunctionTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbsFunctionTest.swift; sourceTree = "<group>"; };
 		4C6FE151212D2D2E0067B7D5 /* CosFunctionTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CosFunctionTest.swift; sourceTree = "<group>"; };
-		4C6FE154212D2D2E0067B7D5 /* NumberOfElementsFunctionTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberOfElementsFunctionTest.swift; sourceTree = "<group>"; };
+		4C6FE154212D2D2E0067B7D5 /* NumberOfItemsFunctionTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberOfItemsFunctionTest.swift; sourceTree = "<group>"; };
 		4C6FE155212D2D2E0067B7D5 /* ElementFunctionTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElementFunctionTest.swift; sourceTree = "<group>"; };
 		4C6FE156212D2D2E0067B7D5 /* ContainsFunctionTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainsFunctionTest.swift; sourceTree = "<group>"; };
 		4C6FE158212D2D2E0067B7D5 /* LetterFunctionTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LetterFunctionTest.swift; sourceTree = "<group>"; };
@@ -3679,7 +3679,7 @@
 		4C6FE153212D2D2E0067B7D5 /* List */ = {
 			isa = PBXGroup;
 			children = (
-				4C6FE154212D2D2E0067B7D5 /* NumberOfElementsFunctionTest.swift */,
+				4C6FE154212D2D2E0067B7D5 /* NumberOfItemsFunctionTest.swift */,
 				4C6FE155212D2D2E0067B7D5 /* ElementFunctionTest.swift */,
 				4C6FE156212D2D2E0067B7D5 /* ContainsFunctionTest.swift */,
 			);
@@ -8532,7 +8532,7 @@
 				4C6FE16D212D2D2E0067B7D5 /* PowFunctionTest.swift in Sources */,
 				4C68FC911B25A00B00AB3EE8 /* InternFormulaParserStringFunctionsTest.m in Sources */,
 				4C6FE160212D2D2E0067B7D5 /* RandFunctionTest.swift in Sources */,
-				4C6FE173212D2D2E0067B7D5 /* NumberOfElementsFunctionTest.swift in Sources */,
+				4C6FE173212D2D2E0067B7D5 /* NumberOfItemsFunctionTest.swift in Sources */,
 				4CEB22671B95E47500B3BE2F /* SetYBrickTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -24,7 +24,7 @@ import XCTest
 
 @testable import Pocket_Code
 
-class NumberOfElementsFunctionTest: XCTestCase {
+class NumberOfItemsFunctionTest: XCTestCase {
 
     var function: NumberOfItemsFunction!
 
