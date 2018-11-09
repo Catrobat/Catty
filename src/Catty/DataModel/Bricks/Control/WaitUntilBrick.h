@@ -20,13 +20,12 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "ForeverBrick.h"
-#import "LoopBeginBrick.h"
+#import "Brick.h"
 #import "BrickFormulaProtocol.h"
 
 @class Formula;
 
-@interface WaitUntilBrick : LoopBeginBrick<BrickFormulaProtocol>
+@interface WaitUntilBrick : Brick<BrickFormulaProtocol>
 
 @property (nonatomic, strong) Formula *waitCondition;
 

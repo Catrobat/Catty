@@ -23,51 +23,17 @@
 @objc extension WaitUntilBrick: CBInstructionProtocol {
     
     @nonobjc func instruction() -> CBInstruction {
+        let waitingTimeUntilNextCheck = 0.02
         
         guard let object = self.script?.object else { fatalError("This should never happen!") }
         
         return CBInstruction.waitExecClosure { (context, _) in
             let condition = NSCondition()
-            condition.accessibilityHint = "0"
-            
-//            var speakText = context.formulaInterpreter.interpretString(self.formula, for: object)
-//            if(Double(speakText) !=  nil)
-//            {
-//                let num = (speakText as NSString).doubleValue
-//                speakText = (num as NSNumber).stringValue
-//            }
-//
-//            let utterance = AVSpeechUtterance(string: speakText)
-//            utterance.rate = (floor(NSFoundationVersionNumber) < 1200 ? 0.15 : 0.5)
-//
-//            if let synthesizer = audioManager?.getSpeechSynth() {
-//                synthesizer.delegate = self
-//                if synthesizer.accessibilityElements != nil {
-//                    synthesizer.accessibilityElements?.append((condition, utterance))
-//                } else {
-//                    synthesizer.accessibilityElements = [(condition, utterance)]
-//                }
-//                synthesizer.speak(utterance)
-//
-//                condition.lock()
-//                while(condition.accessibilityHint == "0") {     //accessibilityHint used because synthesizer.speaking not yet true.
-//                    condition.wait()
-//                }
-//                condition.unlock()
-//            }
-//        }
-//    }
-//
-//    open func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
-//        for (index, object) in synthesizer.accessibilityElements!.enumerated() {
-//            if let tuple = object as? (NSCondition, AVSpeechUtterance) {
-//                if tuple.1 === utterance {
-//                    synthesizer.accessibilityElements?.remove(at: index)
-//                    tuple.0.accessibilityHint = "1"
-//                    tuple.0.signal()
-//                    break
-//                }
-//            }
+            condition.lock()
+            while(self.script?.object != nil && self.checkCondition(formulaInterpreter: context.formulaInterpreter)) {
+                condition.wait(until: Date().addingTimeInterval(waitingTimeUntilNextCheck))
+            }
+            condition.unlock()
         }
     }
 }

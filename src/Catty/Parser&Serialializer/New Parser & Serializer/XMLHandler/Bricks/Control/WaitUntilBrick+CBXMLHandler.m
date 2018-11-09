@@ -38,8 +38,6 @@
     Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"IF_CONDITION" withContext:context];
     waitBrick.waitCondition = formula;
     
-    // add opening nesting brick on stack
-    [context.openedNestingBricksStack pushAndOpenNestingBrick:waitBrick];
     return waitBrick;
 }
 
@@ -50,12 +48,10 @@
     [brick addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:@"WaitUntilBrick"]];
     GDataXMLElement *formulaList = [GDataXMLElement elementWithName:@"formulaList" context:context];
     GDataXMLElement *formula = [self.waitCondition xmlElementWithContext:context];
-    [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"IFL_CONDITION"]];
+    [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"IF_CONDITION"]];
     [formulaList addChild:formula context:context];
     [brick addChild:formulaList context:context];
     
-    // add opening nesting brick on stack
-    [context.openedNestingBricksStack pushAndOpenNestingBrick:self];
     return brick;
 }
 
