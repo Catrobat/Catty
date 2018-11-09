@@ -24,7 +24,7 @@ import XCTest
 
 @testable import Pocket_Code
 
-class ArduinoDigitalPingFunctionTest: XCTestCase {
+class ArduinoDigitalPinFunctionTest: XCTestCase {
 
     var function: ArduinoDigitalPinFunction!
     var bluetoothService: BluetoothService!
