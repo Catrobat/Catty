@@ -286,9 +286,9 @@ class MediaLibraryCollectionViewDataSourceTests: XCTestCase {
         dataSource.delegate = delegateMock
 
         XCTAssertEqual(cell.state, .stopped)
-        cell.testPlayOrStop()
+        cell.playOrStop()
         XCTAssertEqual(cell.state, .playing)
-        cell.testPlayOrStop()
+        cell.playOrStop()
         XCTAssertEqual(cell.state, .stopped)
     }
 
@@ -306,7 +306,7 @@ class MediaLibraryCollectionViewDataSourceTests: XCTestCase {
         dataSource.delegate = delegateMock
 
         XCTAssertEqual(cell.state, .stopped)
-        cell.testPlayOrStop() // will immediately finish
+        cell.playOrStop() // will immediately finish
         XCTAssertEqual(cell.state, .stopped)
     }
 
@@ -325,7 +325,7 @@ class MediaLibraryCollectionViewDataSourceTests: XCTestCase {
 
         let cell = dataSource.collectionView(self.collectionView, cellForItemAt: IndexPath(item: 0, section: 1)) as! LibrarySoundCollectionViewCell
         XCTAssertEqual(cell.state, .stopped)
-        cell.testPlayOrStop()
+        cell.playOrStop()
         XCTAssertEqual(cell.state, .preparing)
         wait(for: [expectation], timeout: 1.0)
         XCTAssertEqual(cell.state, .stopped)
@@ -352,7 +352,7 @@ class MediaLibraryCollectionViewDataSourceTests: XCTestCase {
 
         let cell = dataSource.collectionView(self.collectionView, cellForItemAt: IndexPath(item: 0, section: 1)) as! LibrarySoundCollectionViewCell
         XCTAssertEqual(cell.state, .stopped)
-        cell.testPlayOrStop()
+        cell.playOrStop()
         XCTAssertEqual(cell.state, .preparing)
         wait(for: [expectation0], timeout: 1.0)
         XCTAssertEqual(cell.state, .playing)

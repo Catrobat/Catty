@@ -37,12 +37,12 @@ class LibrarySoundCollectionViewCell: UICollectionViewCell {
         self.titleLabel.textColor = .utilityTint()
     }
 
-    @IBAction private func playOrStop() {
-        self.delegate?.soundLibraryItemCollectionViewCellDidTapPlayOrStop(self)
+    @IBAction private func playOrStopButtonPressed() {
+        playOrStop()
     }
 
-    func testPlayOrStop() {
-        playOrStop()
+    func playOrStop() {
+        self.delegate?.soundLibraryItemCollectionViewCellDidTapPlayOrStop(self)
     }
 }
 
