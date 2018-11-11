@@ -46,8 +46,8 @@ class ArduinoDevice: FirmataDevice, ArduinoProtocol, ArduinoPropertyProtocol {
 
     let Arduino_UUID = CBUUID.init(string: "00001101-0000-1000-8000-00805F9B34FB")
     static let tag: String = "Arduino"
-    static let minAnalogSensorPin: Int = 0
-    static let maxAnalogSensorPin: Int = 5
+    let minAnalogSensorPin: Int = 0
+    let maxAnalogSensorPin: Int = 5
 
     override var rxUUID: CBUUID { return CBUUID.init(string: "713D0002-503E-4C75-BA94-3148F18D941E") }
     override var txUUID: CBUUID { return CBUUID.init(string: "00001101-0000-1000-8000-00805F9B34FB") }
@@ -143,7 +143,7 @@ class ArduinoDevice: FirmataDevice, ArduinoProtocol, ArduinoPropertyProtocol {
 
         isReportingSensorData = report
 
-        for i in type(of: self).minAnalogSensorPin ... type(of: self).maxAnalogSensorPin {
+        for i in minAnalogSensorPin ... maxAnalogSensorPin {
             reportAnalogArduinoPin(i, report: report)
         }
     }

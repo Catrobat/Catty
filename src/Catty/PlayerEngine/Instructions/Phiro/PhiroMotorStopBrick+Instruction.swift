@@ -28,8 +28,7 @@ import Foundation
 
         return CBInstruction.execClosure { context, _ in
 
-            guard let phiro: Phiro = BluetoothService.swiftSharedInstance.phiro else {
-                //ERROR
+            guard let phiro = BluetoothService.swiftSharedInstance.phiro else {
                 return
             }
             switch self.phiroMotor() {

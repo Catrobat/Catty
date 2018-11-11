@@ -30,7 +30,7 @@ import Foundation
         return CBInstruction.execClosure { context, _ in
             let durationInterpretation = context.formulaInterpreter.interpretDouble(self.durationFormula, for: object)
 
-            guard let phiro: Phiro = BluetoothService.swiftSharedInstance.phiro else { return }
+            guard let phiro = BluetoothService.swiftSharedInstance.phiro else { return }
 
             switch self.phiroTone() {
             case .DO:

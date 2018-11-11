@@ -30,7 +30,7 @@ import Foundation
         return CBInstruction.execClosure { context, _ in
             let speedValue = context.formulaInterpreter.interpretInteger(self.formula, for: object)
 
-            guard let phiro: Phiro = BluetoothService.swiftSharedInstance.phiro else {
+            guard let phiro = BluetoothService.swiftSharedInstance.phiro else {
                 return
             }
 

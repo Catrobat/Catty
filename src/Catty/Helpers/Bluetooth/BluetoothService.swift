@@ -42,7 +42,7 @@ open class BluetoothService: NSObject {
     var digitalSemaphoreArray: [DispatchSemaphore] = []
     var analogSemaphoreArray: [DispatchSemaphore] = []
 
-    @objc var phiro: Phiro?
+    @objc var phiro: PhiroDevice?
     @objc var arduino: ArduinoDevice?
     @objc weak var selectionManager: BluetoothDevicesTableViewController?
     @objc weak var scenePresenter: ScenePresenterViewController?
@@ -83,7 +83,7 @@ open class BluetoothService: NSObject {
         return DispatchSemaphore(value: 0)
     }
 
-    @objc func getSensorPhiro() -> Phiro? {
+    @objc func getSensorPhiro() -> PhiroDevice? {
         guard let senorPhiro = phiro else {
             return nil
         }
@@ -186,7 +186,7 @@ open class BluetoothService: NSObject {
         case .arduino:
             bluetoothDevice = ArduinoDevice(peripheral: peripheral)
         case .phiro:
-            bluetoothDevice = Phiro(peripheral: peripheral)
+            bluetoothDevice = PhiroDevice(peripheral: peripheral)
         }
 
         //        let arduino:ArduinoDevice = ArduinoDevice(peripheral:peripheral)
@@ -235,7 +235,7 @@ open class BluetoothService: NSObject {
                             case .arduino:
                                 BluetoothService.swiftSharedInstance.arduino = bluetoothDevice as? ArduinoDevice
                             case .phiro:
-                                BluetoothService.swiftSharedInstance.phiro = bluetoothDevice as? Phiro
+                                BluetoothService.swiftSharedInstance.phiro = bluetoothDevice as? PhiroDevice
                             }
 
                             manager.checkStart()

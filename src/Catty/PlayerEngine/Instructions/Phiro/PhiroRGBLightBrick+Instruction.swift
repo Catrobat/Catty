@@ -31,8 +31,7 @@ import Foundation
             let greenValue = self.getFormulaValue(self.greenFormula, formulaInterpreter: context.formulaInterpreter)
             let blueValue = self.getFormulaValue(self.blueFormula, formulaInterpreter: context.formulaInterpreter)
 
-            guard let phiro: Phiro = BluetoothService.swiftSharedInstance.phiro else {
-                //ERROR
+            guard let phiro = BluetoothService.swiftSharedInstance.phiro else {
                 return
             }
 

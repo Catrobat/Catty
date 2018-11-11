@@ -742,7 +742,7 @@
 		92D56C321BF202E700A54750 /* ArduinoHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D56C2B1BF202E700A54750 /* ArduinoHelper.swift */; };
 		92D56C331BF202E700A54750 /* ArduinoProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D56C2C1BF202E700A54750 /* ArduinoProtocol.swift */; };
 		92D56C341BF202E700A54750 /* FirmataDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D56C2D1BF202E700A54750 /* FirmataDevice.swift */; };
-		92D56C371BF2059F00A54750 /* Phiro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D56C361BF2059F00A54750 /* Phiro.swift */; };
+		92D56C371BF2059F00A54750 /* PhiroDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D56C361BF2059F00A54750 /* PhiroDevice.swift */; };
 		92D56C391BF2098700A54750 /* PhiroProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D56C381BF2098700A54750 /* PhiroProtocol.swift */; };
 		92D56C3B1BF20B4700A54750 /* PhiroHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D56C3A1BF20B4700A54750 /* PhiroHelper.swift */; };
 		92DFAFE61A38943D00FA9B0F /* FormulaEditor.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92DFAFE51A38943D00FA9B0F /* FormulaEditor.xib */; };
@@ -2226,7 +2226,7 @@
 		92D56C2B1BF202E700A54750 /* ArduinoHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArduinoHelper.swift; sourceTree = "<group>"; };
 		92D56C2C1BF202E700A54750 /* ArduinoProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArduinoProtocol.swift; sourceTree = "<group>"; };
 		92D56C2D1BF202E700A54750 /* FirmataDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirmataDevice.swift; sourceTree = "<group>"; };
-		92D56C361BF2059F00A54750 /* Phiro.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Phiro.swift; sourceTree = "<group>"; };
+		92D56C361BF2059F00A54750 /* PhiroDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhiroDevice.swift; sourceTree = "<group>"; };
 		92D56C381BF2098700A54750 /* PhiroProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhiroProtocol.swift; sourceTree = "<group>"; };
 		92D56C3A1BF20B4700A54750 /* PhiroHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhiroHelper.swift; sourceTree = "<group>"; };
 		92DFAFE51A38943D00FA9B0F /* FormulaEditor.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FormulaEditor.xib; sourceTree = "<group>"; };
@@ -5333,7 +5333,7 @@
 		92D56C2E1BF202E700A54750 /* Phiro */ = {
 			isa = PBXGroup;
 			children = (
-				92D56C361BF2059F00A54750 /* Phiro.swift */,
+				92D56C361BF2059F00A54750 /* PhiroDevice.swift */,
 				92D56C381BF2098700A54750 /* PhiroProtocol.swift */,
 				92D56C3A1BF20B4700A54750 /* PhiroHelper.swift */,
 			);
@@ -8808,7 +8808,7 @@
 				4CE67899210C6EEE00D90B5D /* SinFunction.swift in Sources */,
 				929CC0F81BC3A2420027DEC0 /* PhiroMotorMoveBackwardBrick+Instruction.swift in Sources */,
 				AA74F0AC1BC05FCE00D1E954 /* ChangeTransparencyByNBrickCell.m in Sources */,
-				92D56C371BF2059F00A54750 /* Phiro.swift in Sources */,
+				92D56C371BF2059F00A54750 /* PhiroDevice.swift in Sources */,
 				925819881C0208E8003247A9 /* CALayer+XibConfiguration.m in Sources */,
 				F4664F9220DD7A1700E1519A /* FormulaEditorViewController+Section.swift in Sources */,
 				4C0F9F65204BD18600E71B2D /* PreviousLookBrick+CBXMLHandler.m in Sources */,
