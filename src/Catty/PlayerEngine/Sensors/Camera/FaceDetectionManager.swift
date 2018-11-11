@@ -25,7 +25,7 @@ class FaceDetectionManager: NSObject, FaceDetectionManagerProtocol, AVCaptureVid
     // TODO: remove Singleton
     public static let shared = FaceDetectionManager()
 
-    var isFaceDetected: Bool! = false
+    var isFaceDetected: Bool = false
     var facePositionX: Double?
     var facePositionY: Double?
     var faceSize: CGRect?
