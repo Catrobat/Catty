@@ -24,31 +24,30 @@ import BluetoothHelper
 import CoreBluetooth
 import Foundation
 
-/* unused
-private let kPIN_ANALOG_0: Int = 0
-private let kPIN_ANALOG_1: Int = 1
-private let kPIN_ANALOG_2: Int = 2
-private let kPIN_ANALOG_3: Int = 3
-private let kPIN_ANALOG_4: Int = 4
-private let kPIN_ANALOG_5: Int = 5
-
-private let kPORT_DIGITAL_0: Int = 0
-private let kPORT_DIGITAL_1: Int = 1
-
-private let kMIN_PWM_PIN_GROUP_1: Int = 3
-private let kMAX_PWM_PIN_GROUP_1: Int = 3
-private let kMIN_PWM_PIN_GROUP_2: Int = 5
-private let kMAX_PWM_PIN_GROUP_2: Int = 6
-private let kMIN_PWM_PIN_GROUP_3: Int = 9
-private let kMAX_PWM_PIN_GROUP_3: Int = 11*/
-
-private let kMIN_ANALOG_SENSOR_PIN: Int = 0
-private let kMAX_ANALOG_SENSOR_PIN: Int = 5
-
 class ArduinoDevice: FirmataDevice, ArduinoProtocol, ArduinoPropertyProtocol {
+
+    /* unused
+     private let pinAnalog0: Int = 0
+     private let pinAnalog1: Int = 1
+     private let pinAnalog2: Int = 2
+     private let pinAnalog3: Int = 3
+     private let pinAnalog4: Int = 4
+     private let pinAnalog5: Int = 5
+     
+     private let portDigital0: Int = 0
+     private let portDigital1: Int = 1
+     
+     private let minPWMPinGroup1: Int = 3
+     private let maxPWMPinGroup1: Int = 3
+     private let minPWMPinGroup2: Int = 5
+     private let maxPWMPinGroup2: Int = 6
+     private let minPWMPinGroup3: Int = 9
+     private let maxPWMPinGroup3: Int = 11*/
 
     let Arduino_UUID = CBUUID.init(string: "00001101-0000-1000-8000-00805F9B34FB")
     static let tag: String = "Arduino"
+    static let minAnalogSensorPin: Int = 0
+    static let maxAnalogSensorPin: Int = 5
 
     override var rxUUID: CBUUID { return CBUUID.init(string: "713D0002-503E-4C75-BA94-3148F18D941E") }
     override var txUUID: CBUUID { return CBUUID.init(string: "00001101-0000-1000-8000-00805F9B34FB") }
@@ -144,7 +143,7 @@ class ArduinoDevice: FirmataDevice, ArduinoProtocol, ArduinoPropertyProtocol {
 
         isReportingSensorData = report
 
-        for i in kMIN_ANALOG_SENSOR_PIN ... kMAX_ANALOG_SENSOR_PIN {
+        for i in type(of: self).minAnalogSensorPin ... type(of: self).maxAnalogSensorPin {
             reportAnalogArduinoPin(i, report: report)
         }
     }
