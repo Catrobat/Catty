@@ -391,7 +391,10 @@
     CBMutableCopyContext *context = [CBMutableCopyContext new];
     SpriteObject *copiedObject = [sourceObject mutableCopyWithContext:context];
     copiedObject.name = [Util uniqueName:nameOfCopiedObject existingNames:[self allObjectNames]];
+    
     [self.objectList addObject:copiedObject];
+    [self.variables copyDataFromObject:sourceObject toObject:copiedObject];
+    
     [self saveToDiskWithNotification:YES];
     return copiedObject;
 }

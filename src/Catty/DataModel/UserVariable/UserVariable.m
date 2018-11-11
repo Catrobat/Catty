@@ -26,6 +26,16 @@
 
 @implementation UserVariable
 
+- (id)initWithVariable:(UserVariable*)userVariable
+{
+    self = [self init];
+    if (self) {
+        self.name = [[NSString alloc] initWithString:userVariable.name];
+        self.isList = userVariable.isList;
+    }
+    return self;
+}
+
 - (NSString*)description
 {
     return [NSString stringWithFormat:@"UserVariable: Name: %@, Value: %@", self.name, self.value ];

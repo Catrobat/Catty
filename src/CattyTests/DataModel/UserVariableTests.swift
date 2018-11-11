@@ -29,6 +29,18 @@ final class UserVariableTests: XCTestCase {
     override func setUp() {
     }
     
+    func testInit() {
+        let userVariable = UserVariable()
+        userVariable.name = "userVar"
+        userVariable.isList = true
+        
+        let userVariableCopy = UserVariable(variable: userVariable)!
+        
+        XCTAssertEqual(userVariable.name, userVariableCopy.name)
+        XCTAssertTrue(userVariable.name == userVariableCopy.name)
+        XCTAssertEqual(userVariable.isList, userVariableCopy.isList)
+    }
+    
     func testSizeForSKLabel() {
         let userVariable = UserVariable()
         let defaultSize = CGFloat(42)

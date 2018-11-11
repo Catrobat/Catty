@@ -832,7 +832,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     // ------------------
     // Object Variables
     // ------------------
-    NSArray *array = [variables.objectVariableList objectForKey:self.object];
+    NSArray *array = [variables allVariablesForObject:self.object];
     if (array) {
         if([array count] > 0)
             [self.variableSource addObject:[[VariablePickerData alloc] initWithTitle:kUIFEObjectVars]];
@@ -849,7 +849,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     // ------------------
     // Object Lists
     // ------------------
-    array = [variables.objectListOfLists objectForKey:self.object];
+    array = [variables allListsForObject:self.object];
     if (array) {
         if([array count] > 0)
             [self.listSource addObject:[[VariablePickerData alloc] initWithTitle:kUIFEObjectLists]];
