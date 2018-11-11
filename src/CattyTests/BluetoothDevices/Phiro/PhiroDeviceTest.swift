@@ -25,37 +25,37 @@ import CoreBluetooth
 @testable import Pocket_Code
 import XCTest
 
-class PhiroTests: XCTestCase {
+class PhiroDeviceTest: XCTestCase {
 
-    var phiroTest = PhiroDevice(peripheral: Peripheral(cbPeripheral: PeripheralMock(test: true), advertisements: [String: String](), rssi: 0))
+    var device = PhiroDevice(peripheral: Peripheral(cbPeripheral: PeripheralMock(test: true), advertisements: [String: String](), rssi: 0))
 
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        phiroTest.firmata = FirmataMock()
+        device.firmata = FirmataMock()
     }
 
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
-        phiroTest.toneTimer.invalidate()
+        device.toneTimer.invalidate()
         super.tearDown()
     }
 
     func fakePhiroHelper() {
-        phiroTest.phiroHelper.didReceiveAnalogMessage(0, value: 0)
-        phiroTest.phiroHelper.didReceiveAnalogMessage(1, value: 10)
-        phiroTest.phiroHelper.didReceiveAnalogMessage(2, value: 20)
-        phiroTest.phiroHelper.didReceiveAnalogMessage(3, value: 30)
-        phiroTest.phiroHelper.didReceiveAnalogMessage(4, value: 50)
-        phiroTest.phiroHelper.didReceiveAnalogMessage(5, value: 200)
+        device.phiroHelper.didReceiveAnalogMessage(0, value: 0)
+        device.phiroHelper.didReceiveAnalogMessage(1, value: 10)
+        device.phiroHelper.didReceiveAnalogMessage(2, value: 20)
+        device.phiroHelper.didReceiveAnalogMessage(3, value: 30)
+        device.phiroHelper.didReceiveAnalogMessage(4, value: 50)
+        device.phiroHelper.didReceiveAnalogMessage(5, value: 200)
     }
 
     // MARK: Motor tests
     func testMoveMotorLeftForward10() {
         //When
-        phiroTest.moveLeftMotorForward(10)
+        device.moveLeftMotorForward(10)
         //Then
-        guard let firmataMock = phiroTest.firmata as? FirmataMock else {
+        guard let firmataMock = device.firmata as? FirmataMock else {
             XCTAssert(true)
             return
         }
@@ -66,9 +66,9 @@ class PhiroTests: XCTestCase {
     }
     func testMoveMotorLeftForward260() {
         //When
-        phiroTest.moveLeftMotorForward(260)
+        device.moveLeftMotorForward(260)
         //Then
-        guard let firmataMock = phiroTest.firmata as? FirmataMock else {
+        guard let firmataMock = device.firmata as? FirmataMock else {
             XCTAssert(true)
             return
         }
@@ -79,9 +79,9 @@ class PhiroTests: XCTestCase {
     }
     func testMoveMotorLeftForwardMinus10() {
         //When
-        phiroTest.moveLeftMotorForward(-10)
+        device.moveLeftMotorForward(-10)
         //Then
-        guard let firmataMock = phiroTest.firmata as? FirmataMock else {
+        guard let firmataMock = device.firmata as? FirmataMock else {
             XCTAssert(true)
             return
         }
@@ -93,9 +93,9 @@ class PhiroTests: XCTestCase {
 
     func testMoveMotorLeftBackward10() {
         //When
-        phiroTest.moveLeftMotorBackward(10)
+        device.moveLeftMotorBackward(10)
         //Then
-        guard let firmataMock = phiroTest.firmata as? FirmataMock else {
+        guard let firmataMock = device.firmata as? FirmataMock else {
             XCTAssert(true)
             return
         }
@@ -106,9 +106,9 @@ class PhiroTests: XCTestCase {
     }
     func testMoveMotorLeftBackward260() {
         //When
-        phiroTest.moveLeftMotorBackward(260)
+        device.moveLeftMotorBackward(260)
         //Then
-        guard let firmataMock = phiroTest.firmata as? FirmataMock else {
+        guard let firmataMock = device.firmata as? FirmataMock else {
             XCTAssert(true)
             return
         }
@@ -119,9 +119,9 @@ class PhiroTests: XCTestCase {
     }
     func testMoveMotorLeftBackwardMinus10() {
         //When
-        phiroTest.moveLeftMotorBackward(-10)
+        device.moveLeftMotorBackward(-10)
         //Then
-        guard let firmataMock = phiroTest.firmata as? FirmataMock else {
+        guard let firmataMock = device.firmata as? FirmataMock else {
             XCTAssert(true)
             return
         }
@@ -133,9 +133,9 @@ class PhiroTests: XCTestCase {
 
     func testMoveMotorRightForward10() {
         //When
-        phiroTest.moveRightMotorForward(10)
+        device.moveRightMotorForward(10)
         //Then
-        guard let firmataMock = phiroTest.firmata as? FirmataMock else {
+        guard let firmataMock = device.firmata as? FirmataMock else {
             XCTAssert(true)
             return
         }
@@ -146,9 +146,9 @@ class PhiroTests: XCTestCase {
     }
     func testMoveMotorRightForward260() {
         //When
-        phiroTest.moveRightMotorForward(260)
+        device.moveRightMotorForward(260)
         //Then
-        guard let firmataMock = phiroTest.firmata as? FirmataMock else {
+        guard let firmataMock = device.firmata as? FirmataMock else {
             XCTAssert(true)
             return
         }
@@ -159,9 +159,9 @@ class PhiroTests: XCTestCase {
     }
     func testMoveMotorRightForwardMinus10() {
         //When
-        phiroTest.moveRightMotorForward(-10)
+        device.moveRightMotorForward(-10)
         //Then
-        guard let firmataMock = phiroTest.firmata as? FirmataMock else {
+        guard let firmataMock = device.firmata as? FirmataMock else {
             XCTAssert(true)
             return
         }
@@ -173,9 +173,9 @@ class PhiroTests: XCTestCase {
 
     func testMoveMotorRightBackward10() {
         //When
-        phiroTest.moveRightMotorBackward(10)
+        device.moveRightMotorBackward(10)
         //Then
-        guard let firmataMock = phiroTest.firmata as? FirmataMock else {
+        guard let firmataMock = device.firmata as? FirmataMock else {
             XCTAssert(true)
             return
         }
@@ -186,9 +186,9 @@ class PhiroTests: XCTestCase {
     }
     func testMoveMotorRightBackward260() {
         //When
-        phiroTest.moveRightMotorBackward(260)
+        device.moveRightMotorBackward(260)
         //Then
-        guard let firmataMock = phiroTest.firmata as? FirmataMock else {
+        guard let firmataMock = device.firmata as? FirmataMock else {
             XCTAssert(true)
             return
         }
@@ -199,9 +199,9 @@ class PhiroTests: XCTestCase {
     }
     func testMoveMotorRightBackwardMinus10() {
         //When
-        phiroTest.moveRightMotorBackward(-10)
+        device.moveRightMotorBackward(-10)
         //Then
-        guard let firmataMock = phiroTest.firmata as? FirmataMock else {
+        guard let firmataMock = device.firmata as? FirmataMock else {
             XCTAssert(true)
             return
         }
@@ -213,9 +213,9 @@ class PhiroTests: XCTestCase {
 
     func testStopLeftMotor () {
         //When
-        phiroTest.stopLeftMotor()
+        device.stopLeftMotor()
         //Then
-        guard let firmataMock = phiroTest.firmata as? FirmataMock else {
+        guard let firmataMock = device.firmata as? FirmataMock else {
             XCTAssert(true)
             return
         }
@@ -226,9 +226,9 @@ class PhiroTests: XCTestCase {
 
     func testStopRightMotor () {
         //When
-        phiroTest.stopRightMotor()
+        device.stopRightMotor()
         //Then
-        guard let firmataMock = phiroTest.firmata as? FirmataMock else {
+        guard let firmataMock = device.firmata as? FirmataMock else {
             XCTAssert(true)
             return
         }
@@ -239,9 +239,9 @@ class PhiroTests: XCTestCase {
 
     func testStopMotors () {
         //When
-        phiroTest.stopAllMotors()
+        device.stopAllMotors()
         //Then
-        guard let firmataMock = phiroTest.firmata as? FirmataMock else {
+        guard let firmataMock = device.firmata as? FirmataMock else {
             XCTAssert(true)
             return
         }
@@ -254,9 +254,9 @@ class PhiroTests: XCTestCase {
 
     func testLightLeftOFF () {
         //When
-        phiroTest.setLeftRGBLightColor(0, green: 0, blue: 0)
+        device.setLeftRGBLightColor(0, green: 0, blue: 0)
         //Then
-        guard let firmataMock = phiroTest.firmata as? FirmataMock else {
+        guard let firmataMock = device.firmata as? FirmataMock else {
             XCTAssert(true)
             return
         }
@@ -267,9 +267,9 @@ class PhiroTests: XCTestCase {
 
     func testLightRightOFF () {
         //When
-        phiroTest.setRightRGBLightColor(0, green: 0, blue: 0)
+        device.setRightRGBLightColor(0, green: 0, blue: 0)
         //Then
-        guard let firmataMock = phiroTest.firmata as? FirmataMock else {
+        guard let firmataMock = device.firmata as? FirmataMock else {
             XCTAssert(true)
             return
         }
@@ -279,9 +279,9 @@ class PhiroTests: XCTestCase {
     }
     func testLightLeft () {
         //When
-        phiroTest.setLeftRGBLightColor(50, green: 50, blue: 50)
+        device.setLeftRGBLightColor(50, green: 50, blue: 50)
         //Then
-        guard let firmataMock = phiroTest.firmata as? FirmataMock else {
+        guard let firmataMock = device.firmata as? FirmataMock else {
             XCTAssert(true)
             return
         }
@@ -292,9 +292,9 @@ class PhiroTests: XCTestCase {
 
     func testLightRight () {
         //When
-        phiroTest.setRightRGBLightColor(50, green: 50, blue: 50)
+        device.setRightRGBLightColor(50, green: 50, blue: 50)
         //Then
-        guard let firmataMock = phiroTest.firmata as? FirmataMock else {
+        guard let firmataMock = device.firmata as? FirmataMock else {
             XCTAssert(true)
             return
         }
@@ -304,9 +304,9 @@ class PhiroTests: XCTestCase {
     }
     func testLightLeftWrongInput () {
         //When
-        phiroTest.setLeftRGBLightColor(350, green: 350, blue: 350)
+        device.setLeftRGBLightColor(350, green: 350, blue: 350)
         //Then
-        guard let firmataMock = phiroTest.firmata as? FirmataMock else {
+        guard let firmataMock = device.firmata as? FirmataMock else {
             XCTAssert(true)
             return
         }
@@ -317,9 +317,9 @@ class PhiroTests: XCTestCase {
 
     func testLightRightWrongInput () {
         //When
-        phiroTest.setRightRGBLightColor(350, green: 350, blue: 350)
+        device.setRightRGBLightColor(350, green: 350, blue: 350)
         //Then
-        guard let firmataMock = phiroTest.firmata as? FirmataMock else {
+        guard let firmataMock = device.firmata as? FirmataMock else {
             XCTAssert(true)
             return
         }
@@ -330,10 +330,10 @@ class PhiroTests: XCTestCase {
     // MARK: TONE tests
     func testPlayTone () {
         //When
-        phiroTest.playTone(450, duration: 2.0)
-        phiroTest.toneTimer.invalidate()
+        device.playTone(450, duration: 2.0)
+        device.toneTimer.invalidate()
         //Then
-        guard let firmataMock = phiroTest.firmata as? FirmataMock else {
+        guard let firmataMock = device.firmata as? FirmataMock else {
             XCTAssert(true)
             return
         }
@@ -345,9 +345,9 @@ class PhiroTests: XCTestCase {
     // MARK: Reset test
     func testPhiroReset () {
         //When
-        phiroTest.resetPins()
+        device.resetPins()
         //Then
-        guard let firmataMock = phiroTest.firmata as? FirmataMock else {
+        guard let firmataMock = device.firmata as? FirmataMock else {
             XCTAssert(true)
             return
         }
@@ -359,9 +359,9 @@ class PhiroTests: XCTestCase {
     // MARK: Sensor reporting
     func testReportSensors() {
         //When
-        phiroTest.reportSensorData(true)
+        device.reportSensorData(true)
         //Then
-        guard let firmataMock = phiroTest.firmata as? FirmataMock else {
+        guard let firmataMock = device.firmata as? FirmataMock else {
             XCTAssert(true)
             return
         }
@@ -372,11 +372,11 @@ class PhiroTests: XCTestCase {
 
     func testStopReportSensors() {
         //Given
-        phiroTest.reportSensorData(true)
+        device.reportSensorData(true)
         //When
-        phiroTest.reportSensorData(false)
+        device.reportSensorData(false)
         //Then
-        guard let firmataMock = phiroTest.firmata as? FirmataMock else {
+        guard let firmataMock = device.firmata as? FirmataMock else {
             XCTAssert(true)
             return
         }
@@ -391,7 +391,7 @@ class PhiroTests: XCTestCase {
         //Given
         fakePhiroHelper()
         //When
-        let sensorValue = phiroTest.getSensorValue(0)
+        let sensorValue = device.getSensorValue(0)
         //Then
         XCTAssertEqual(sensorValue, 0, "SensorValue is wrong")
     }
@@ -399,7 +399,7 @@ class PhiroTests: XCTestCase {
         //Given
         fakePhiroHelper()
         //When
-        let sensorValue = phiroTest.getSensorValue(1)
+        let sensorValue = device.getSensorValue(1)
         //Then
         XCTAssertEqual(sensorValue, 10, "SensorValue is wrong")
     }
@@ -407,7 +407,7 @@ class PhiroTests: XCTestCase {
         //Given
         fakePhiroHelper()
         //When
-        let sensorValue = phiroTest.getSensorValue(2)
+        let sensorValue = device.getSensorValue(2)
         //Then
         XCTAssertEqual(sensorValue, 20, "SensorValue is wrong")
     }
@@ -415,7 +415,7 @@ class PhiroTests: XCTestCase {
         //Given
         fakePhiroHelper()
         //When
-        let sensorValue = phiroTest.getSensorValue(3)
+        let sensorValue = device.getSensorValue(3)
         //Then
         XCTAssertEqual(sensorValue, 30, "SensorValue is wrong")
     }
@@ -423,7 +423,7 @@ class PhiroTests: XCTestCase {
         //Given
         fakePhiroHelper()
         //When
-        let sensorValue = phiroTest.getSensorValue(4)
+        let sensorValue = device.getSensorValue(4)
         //Then
         XCTAssertEqual(sensorValue, 50, "SensorValue is wrong")
     }
@@ -431,7 +431,7 @@ class PhiroTests: XCTestCase {
         //Given
         fakePhiroHelper()
         //When
-        let sensorValue = phiroTest.getSensorValue(5)
+        let sensorValue = device.getSensorValue(5)
         //Then
         XCTAssertEqual(sensorValue, 200, "SensorValue is wrong")
     }

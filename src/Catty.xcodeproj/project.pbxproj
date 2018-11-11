@@ -684,7 +684,7 @@
 		925819841C0206AA003247A9 /* SceneMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 925819831C0206AA003247A9 /* SceneMenuView.xib */; };
 		925819881C0208E8003247A9 /* CALayer+XibConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 925819871C0208E8003247A9 /* CALayer+XibConfiguration.m */; };
 		926197F01BF3249E006D1A61 /* ArduinoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926197EF1BF3249E006D1A61 /* ArduinoTests.swift */; };
-		926197F41BF32500006D1A61 /* PhiroTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926197F31BF32500006D1A61 /* PhiroTests.swift */; };
+		926197F41BF32500006D1A61 /* PhiroDeviceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926197F31BF32500006D1A61 /* PhiroDeviceTest.swift */; };
 		926198021BF48384006D1A61 /* BluetoothMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926198011BF48384006D1A61 /* BluetoothMocks.swift */; };
 		9276B7051C9E8F6C008BC594 /* SoundCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 9276B7041C9E8F6C008BC594 /* SoundCache.m */; };
 		9276B70B1C9EA68A008BC594 /* CatrobatPlayerItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9276B70A1C9EA68A008BC594 /* CatrobatPlayerItem.m */; };
@@ -2127,7 +2127,7 @@
 		925819861C0208E8003247A9 /* CALayer+XibConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+XibConfiguration.h"; sourceTree = "<group>"; };
 		925819871C0208E8003247A9 /* CALayer+XibConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+XibConfiguration.m"; sourceTree = "<group>"; };
 		926197EF1BF3249E006D1A61 /* ArduinoTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArduinoTests.swift; sourceTree = "<group>"; };
-		926197F31BF32500006D1A61 /* PhiroTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhiroTests.swift; sourceTree = "<group>"; };
+		926197F31BF32500006D1A61 /* PhiroDeviceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhiroDeviceTest.swift; sourceTree = "<group>"; };
 		926198011BF48384006D1A61 /* BluetoothMocks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothMocks.swift; sourceTree = "<group>"; };
 		9276B7031C9E8F6C008BC594 /* SoundCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundCache.h; sourceTree = "<group>"; };
 		9276B7041C9E8F6C008BC594 /* SoundCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundCache.m; sourceTree = "<group>"; };
@@ -5275,7 +5275,7 @@
 		92BCDC841BF1DE2A00F9CB23 /* Phiro */ = {
 			isa = PBXGroup;
 			children = (
-				926197F31BF32500006D1A61 /* PhiroTests.swift */,
+				926197F31BF32500006D1A61 /* PhiroDeviceTest.swift */,
 			);
 			path = Phiro;
 			sourceTree = "<group>";
@@ -8368,7 +8368,7 @@
 				4C822661213FA7A400F3D750 /* FaceSizeSensorTest.swift in Sources */,
 				4C6FE16E212D2D2E0067B7D5 /* AsinFunctionTest.swift in Sources */,
 				926197F01BF3249E006D1A61 /* ArduinoTests.swift in Sources */,
-				926197F41BF32500006D1A61 /* PhiroTests.swift in Sources */,
+				926197F41BF32500006D1A61 /* PhiroDeviceTest.swift in Sources */,
 				4C0F9FD0204BD37300E71B2D /* XMLParserTests0991.m in Sources */,
 				599E649E202D9F95009494B5 /* URLSessionMock.swift in Sources */,
 				4CE1D433213E5C6E0014DAF9 /* SpriteObjectMock.swift in Sources */,
