@@ -29,12 +29,13 @@ class NumberOfItemsFunctionTest: XCTestCase {
     var function: NumberOfItemsFunction!
 
     override func setUp() {
+        super.setUp()
         function = NumberOfItemsFunction()
     }
 
-    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         function = nil
+        super.tearDown()
     }
 
     func testDefaultValue() {

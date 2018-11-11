@@ -29,12 +29,13 @@ class PiFunctionTest: XCTestCase {
     var function: PiFunction!
 
     override func setUp() {
+        super.setUp()
         self.function = PiFunction()
     }
 
-    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         self.function = nil
+        super.tearDown()
     }
 
     func testDefaultValue() {

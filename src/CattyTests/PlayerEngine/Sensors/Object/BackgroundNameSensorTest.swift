@@ -31,14 +31,15 @@ final class BackgroundNameSensorTest: XCTestCase {
     var sensor: BackgroundNameSensor!
 
     override func setUp() {
+        super.setUp()
         spriteObject = SpriteObjectMock()
         spriteNode = CBSpriteNodeMock(spriteObject: spriteObject)
         sensor = BackgroundNameSensor()
     }
 
-    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         spriteObject = nil
+        super.tearDown()
     }
 
     func testDefaultRawValue() {

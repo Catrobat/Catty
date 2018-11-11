@@ -36,6 +36,7 @@ final class FingerXSensorTest: XCTestCase {
     var spriteNode: CBSpriteNodeMock!
 
     override func setUp() {
+        super.setUp()
         touchManager = TouchManagerMock()
         sensor = FingerXSensor { [weak self] in self?.touchManager }
 
@@ -44,11 +45,11 @@ final class FingerXSensorTest: XCTestCase {
         spriteNode.mockedScene = SceneBuilder(program: ProgramMock(width: CGFloat(screenWidth), andHeight: CGFloat(screenHeight))).build()
     }
 
-    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         sensor = nil
         touchManager = nil
         spriteNode = nil
+        super.tearDown()
     }
 
     func testDefaultRawValue() {

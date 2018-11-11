@@ -37,12 +37,13 @@ final class DateWeekdaySensorTest: XCTestCase {
     var sensor: DateWeekdaySensorMock!
 
     override func setUp() {
+        super.setUp()
         sensor = DateWeekdaySensorMock()
     }
 
-    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         sensor = nil
+        super.tearDown()
     }
 
     func testTag() {

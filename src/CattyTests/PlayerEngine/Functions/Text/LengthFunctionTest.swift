@@ -29,12 +29,13 @@ class LengthFunctionTest: XCTestCase {
     var function: LengthFunction!
 
     override func setUp() {
+        super.setUp()
         function = LengthFunction()
     }
 
-    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         function = nil
+        super.tearDown()
     }
 
     func testDefaultValue() {

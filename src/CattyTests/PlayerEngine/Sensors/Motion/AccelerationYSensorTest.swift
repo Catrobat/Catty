@@ -30,14 +30,15 @@ final class AccelerationYSensorTest: XCTestCase {
     var sensor: AccelerationYSensor!
 
     override func setUp() {
+        super.setUp()
         motionManager = MotionManagerMock()
         sensor = AccelerationYSensor { [weak self] in self?.motionManager }
     }
 
-    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         sensor = nil
         motionManager = nil
+        super.tearDown()
     }
 
     func testDefaultRawValue() {

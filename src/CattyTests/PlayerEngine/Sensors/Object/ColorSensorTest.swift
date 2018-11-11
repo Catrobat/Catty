@@ -31,14 +31,15 @@ final class ColorSensorTest: XCTestCase {
     var sensor: ColorSensor!
 
     override func setUp() {
+        super.setUp()
         spriteObject = SpriteObject()
         spriteNode = CBSpriteNodeMock(spriteObject: spriteObject)
         sensor = ColorSensor()
     }
 
-    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         spriteObject = nil
+        super.tearDown()
     }
 
     func testDefaultRawValue() {

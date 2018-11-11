@@ -30,14 +30,15 @@ final class AltitudeSensorTest: XCTestCase {
     var sensor: AltitudeSensor!
 
     override func setUp() {
+        super.setUp()
         locationManager = LocationManagerMock()
         sensor = AltitudeSensor { [weak self] in self?.locationManager }
     }
 
-    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         sensor = nil
         locationManager = nil
+        super.tearDown()
     }
 
     func testDefaultRawValue() {

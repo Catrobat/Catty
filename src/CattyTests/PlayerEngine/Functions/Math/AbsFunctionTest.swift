@@ -29,12 +29,13 @@ class AbsFunctionTest: XCTestCase {
     var function: AbsFunction!
 
     override func setUp() {
+        super.setUp()
         function = AbsFunction()
     }
 
-    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         function = nil
+        super.tearDown()
     }
 
     func testDefaultValue() {

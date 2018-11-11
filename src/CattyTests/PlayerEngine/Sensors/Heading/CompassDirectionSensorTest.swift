@@ -30,14 +30,15 @@ final class CompassDirectionSensorTest: XCTestCase {
     var sensor: CompassDirectionSensor!
 
     override func setUp() {
+        super.setUp()
         locationManager = LocationManagerMock()
         sensor = CompassDirectionSensor { [weak self] in self?.locationManager }
     }
 
-    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         sensor = nil
         locationManager = nil
+        super.tearDown()
     }
 
     func testDefaultRawValue() {

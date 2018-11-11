@@ -26,8 +26,8 @@ import XCTest
 
 final class UtilTests: XCTestCase {
 
-    // swiftlint:disable:next empty_xctest_method
     override func setUp() {
+        super.setUp()
     }
 
     func testScreenSize() {

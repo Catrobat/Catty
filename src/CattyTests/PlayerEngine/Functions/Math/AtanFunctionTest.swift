@@ -29,12 +29,13 @@ class AtanFunctionTest: XCTestCase {
     var function: AtanFunction!
 
     override func setUp() {
+        super.setUp()
         function = AtanFunction()
     }
 
-    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         function = nil
+        super.tearDown()
     }
 
     func testDefaultValue() {

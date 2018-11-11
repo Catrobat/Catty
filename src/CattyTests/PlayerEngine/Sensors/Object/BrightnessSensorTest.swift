@@ -36,9 +36,9 @@ final class BrightnessSensorTest: XCTestCase {
         sensor = BrightnessSensor()
     }
 
-    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         spriteObject = nil
+        super.tearDown()
     }
 
     func testDefaultRawValue() {

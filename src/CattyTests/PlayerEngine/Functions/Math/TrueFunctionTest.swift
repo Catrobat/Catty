@@ -29,12 +29,13 @@ class TrueFunctionTest: XCTestCase {
     var function: TrueFunction!
 
     override func setUp() {
+        super.setUp()
         function = TrueFunction()
     }
 
-    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         function = nil
+        super.tearDown()
     }
 
     func testDefaultValue() {

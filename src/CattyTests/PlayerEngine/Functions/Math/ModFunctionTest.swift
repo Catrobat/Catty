@@ -29,12 +29,13 @@ class ModFunctionTest: XCTestCase {
     var function: ModFunction!
 
     override func setUp() {
+        super.setUp()
         function = ModFunction()
     }
 
-    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         function = nil
+        super.tearDown()
     }
 
     func testDefaultValue() {

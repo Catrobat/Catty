@@ -29,12 +29,13 @@ class JoinFunctionTest: XCTestCase {
     var function: JoinFunction!
 
     override func setUp() {
+        super.setUp()
         function = JoinFunction()
     }
 
-    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         function = nil
+        super.tearDown()
     }
 
     func testDefaultValue() {

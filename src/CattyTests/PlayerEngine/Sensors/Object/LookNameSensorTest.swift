@@ -31,14 +31,15 @@ final class LookNameSensorTest: XCTestCase {
     var sensor: LookNameSensor!
 
     override func setUp() {
+        super.setUp()
         spriteObject = SpriteObjectMock()
         spriteNode = CBSpriteNodeMock(spriteObject: spriteObject)
         sensor = LookNameSensor()
     }
 
-    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         spriteObject = nil
+        super.tearDown()
     }
 
     func testDefaultRawValue() {

@@ -29,20 +29,21 @@ final class FacePositionXSensorTest: XCTestCase {
     var sensor: FacePositionXSensor!
     var cameraManagerMock: FaceDetectionManagerMock!
 
-    func testDefaultRawValue() {
-        let sensor = FacePositionXSensor { nil }
-        XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(), accuracy: Double.epsilon)
-    }
-
     override func setUp() {
+        super.setUp()
         self.cameraManagerMock = FaceDetectionManagerMock()
         self.sensor = FacePositionXSensor { [ weak self ] in self?.cameraManagerMock }
     }
 
-    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         self.cameraManagerMock = nil
         self.sensor = nil
+        super.tearDown()
+    }
+
+    func testDefaultRawValue() {
+        let sensor = FacePositionXSensor { nil }
+        XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(), accuracy: Double.epsilon)
     }
 
     func testRawValue() {

@@ -37,12 +37,13 @@ final class TimeSecondSensorTest: XCTestCase {
     var sensor: TimeSecondSensorMock!
 
     override func setUp() {
+        super.setUp()
         sensor = TimeSecondSensorMock()
     }
 
-    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         sensor = nil
+        super.tearDown()
     }
 
     func testTag() {

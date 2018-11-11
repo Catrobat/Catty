@@ -29,12 +29,13 @@ class FloorFunctionTest: XCTestCase {
     var function: FloorFunction!
 
     override func setUp() {
+        super.setUp()
         function = FloorFunction()
     }
 
-    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         function = nil
+        super.tearDown()
     }
 
     func testDefaultValue() {

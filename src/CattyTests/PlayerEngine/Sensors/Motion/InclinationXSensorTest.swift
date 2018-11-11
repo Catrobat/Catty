@@ -30,14 +30,15 @@ final class InclinationXSensorTest: XCTestCase {
     var sensor: InclinationXSensor!
 
     override func setUp() {
+        super.setUp()
         motionManager = MotionManagerMock()
         sensor = InclinationXSensor { [weak self] in self?.motionManager }
     }
 
-    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         sensor = nil
         motionManager = nil
+        super.tearDown()
     }
 
     func testDefaultRawValue() {

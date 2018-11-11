@@ -29,12 +29,13 @@ class LogFunctionTest: XCTestCase {
     var function: LogFunction!
 
     override func setUp() {
+        super.setUp()
         function = LogFunction()
     }
 
-    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         function = nil
+        super.tearDown()
     }
 
     func testDefaultValue() {

@@ -37,6 +37,7 @@ final class PhiroSensorTest: XCTestCase {
     // TO DO: other tests - raw value and conversions
 
     override func setUp() {
+        super.setUp()
         bluetoothService = BluetoothService.sharedInstance()
         phiroSideLeft = PhiroSideLeftSensor { [ weak self ] in self?.bluetoothService }
         phiroSideRight = PhiroSideRightSensor { [ weak self ] in self?.bluetoothService }
@@ -46,7 +47,6 @@ final class PhiroSensorTest: XCTestCase {
         phiroBottomRight = PhiroBottomRightSensor { [ weak self ] in self?.bluetoothService }
     }
 
-    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         bluetoothService = nil
         phiroSideLeft = nil
@@ -55,6 +55,7 @@ final class PhiroSensorTest: XCTestCase {
         phiroFrontRight = nil
         phiroBottomLeft = nil
         phiroBottomRight = nil
+        super.tearDown()
     }
 
     func testFormulaEditorSectionFrontLeft() {

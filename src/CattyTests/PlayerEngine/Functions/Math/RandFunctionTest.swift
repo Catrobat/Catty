@@ -29,12 +29,13 @@ class RandFunctionTest: XCTestCase {
     var function: RandFunction!
 
     override func setUp() {
+        super.setUp()
         function = RandFunction()
     }
 
-    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         function = nil
+        super.tearDown()
     }
 
     func testDefaultValue() {

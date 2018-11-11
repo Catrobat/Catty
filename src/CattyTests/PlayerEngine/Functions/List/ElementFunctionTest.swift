@@ -29,12 +29,13 @@ class ElementFunctionTest: XCTestCase {
     var function: ElementFunction!
 
     override func setUp() {
+        super.setUp()
         function = ElementFunction()
     }
 
-    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         function = nil
+        super.tearDown()
     }
 
     func testDefaultValue() {

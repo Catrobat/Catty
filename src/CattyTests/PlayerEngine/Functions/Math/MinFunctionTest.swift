@@ -29,12 +29,13 @@ class MinFunctionTest: XCTestCase {
     var function: MinFunction!
 
     override func setUp() {
+        super.setUp()
         function = MinFunction()
     }
 
-    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         function = nil
+        super.tearDown()
     }
 
     func testDefaultValue() {

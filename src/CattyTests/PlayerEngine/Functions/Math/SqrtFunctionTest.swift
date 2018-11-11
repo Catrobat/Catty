@@ -29,12 +29,13 @@ class SqrtFunctionTest: XCTestCase {
     var function: SqrtFunction!
 
     override func setUp() {
+        super.setUp()
         function = SqrtFunction()
     }
 
-    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         function = nil
+        super.tearDown()
     }
 
     func testDefaultValue() {

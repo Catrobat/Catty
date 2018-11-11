@@ -31,14 +31,15 @@ final class TransparencySensorTest: XCTestCase {
     var sensor: TransparencySensor!
 
     override func setUp() {
+        super.setUp()
         spriteObject = SpriteObject()
         spriteNode = CBSpriteNodeMock(spriteObject: spriteObject)
         sensor = TransparencySensor()
     }
 
-    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         spriteObject = nil
+        super.tearDown()
     }
 
     func testDefaultRawValue() {

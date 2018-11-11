@@ -30,14 +30,15 @@ class ArduinoAnalogPinFunctionTest: XCTestCase {
     var bluetoothService: BluetoothService!
 
     override func setUp() {
+        super.setUp()
         bluetoothService = BluetoothService.sharedInstance()
         function = ArduinoAnalogPinFunction { [ weak self ] in self?.bluetoothService }
     }
 
-    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         bluetoothService = nil
         function = nil
+        super.tearDown()
     }
 
     func testDefaultValue() {

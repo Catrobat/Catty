@@ -35,14 +35,15 @@ final class FaceDetectionSensorTest: XCTestCase {
     }
 
     override func setUp() {
+        super.setUp()
         self.cameraManagerMock = FaceDetectionManagerMock()
         self.sensor = FaceDetectedSensor { [ weak self ] in self?.cameraManagerMock }
     }
 
-    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         self.cameraManagerMock = nil
         self.sensor = nil
+        super.tearDown()
     }
 
     func testRawValue() {

@@ -37,12 +37,13 @@ final class DateYearSensorTest: XCTestCase {
     var sensor: DateYearSensorMock!
 
     override func setUp() {
+        super.setUp()
         sensor = DateYearSensorMock()
     }
 
-    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         sensor = nil
+        super.tearDown()
     }
 
     func testTag() {

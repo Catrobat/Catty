@@ -24,7 +24,7 @@
 
 final class FaceDetectionManagerMock: FaceDetectionManagerProtocol {
 
-    var isFaceDetected: Bool! = false
+    var isFaceDetected: Bool = false
     var facePositionX: Double? = 0
     var facePositionY: Double? = 0
     var faceSize: CGRect? = CGRect.zero

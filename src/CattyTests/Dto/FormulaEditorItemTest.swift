@@ -26,12 +26,12 @@ import XCTest
 
 class FormulaEditorItemTest: XCTestCase {
 
-    // swiftlint:disable:next empty_xctest_method
     override func setUp() {
+        super.setUp()
     }
 
-    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
+        super.tearDown()
     }
 
     func testInitWithFunction() {

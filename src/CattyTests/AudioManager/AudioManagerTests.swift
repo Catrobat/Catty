@@ -33,8 +33,8 @@ class AudioManagerTests: XCTestCase {
     }
 
     override func tearDown() {
-        super.tearDown()
         audioManager?.stopAllSounds()
+        super.tearDown()
     }
 
     func testPlaySound() {

@@ -31,14 +31,15 @@ final class RotationSensorTest: XCTestCase {
     var sensor: RotationSensor!
 
     override func setUp() {
+        super.setUp()
         spriteObject = SpriteObject()
         spriteNode = CBSpriteNodeMock(spriteObject: spriteObject)
         sensor = RotationSensor()
     }
 
-    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         spriteObject = nil
+        super.tearDown()
     }
 
     func testDefaultRawValue() {

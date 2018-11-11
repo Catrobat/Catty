@@ -29,12 +29,13 @@ class LetterFunctionTest: XCTestCase {
     var function: LetterFunction!
 
     override func setUp() {
+        super.setUp()
         function = LetterFunction()
     }
 
-    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         function = nil
+        super.tearDown()
     }
 
     func testDefaultValue() {

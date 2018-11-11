@@ -29,12 +29,13 @@ class PowFunctionTest: XCTestCase {
     var function: PowFunction!
 
     override func setUp() {
+        super.setUp()
         function = PowFunction()
     }
 
-    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         function = nil
+        super.tearDown()
     }
 
     func testDefaultValue() {

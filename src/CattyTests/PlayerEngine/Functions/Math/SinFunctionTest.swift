@@ -29,12 +29,13 @@ class SinFunctionTest: XCTestCase {
     var function: SinFunction!
 
     override func setUp() {
+        super.setUp()
         function = SinFunction()
     }
 
-    // swiftlint:disable:next empty_xctest_method
     override func tearDown() {
         function = nil
+        super.tearDown()
     }
 
     func testDefaultValue() {
