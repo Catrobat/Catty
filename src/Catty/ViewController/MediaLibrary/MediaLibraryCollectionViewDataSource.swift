@@ -84,8 +84,8 @@ class MediaLibraryCollectionViewDataSource: NSObject, UICollectionViewDataSource
 
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: self.headerViewReuseIdentifier, for: indexPath)
-        if let headerView = headerView as? LibraryCategoryCollectionReusableView {
-            headerView.title = (self.items[indexPath.section].first?.category)!
+        if let headerView = headerView as? LibraryCategoryCollectionReusableView, let categoryTitle = self.items[indexPath.section].first?.category {
+            headerView.title = categoryTitle
         }
         return headerView
     }
