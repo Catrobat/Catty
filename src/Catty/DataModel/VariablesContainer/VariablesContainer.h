@@ -74,7 +74,6 @@
 
 - (BOOL)addObjectVariable:(UserVariable*)userVariable forObject:(SpriteObject*)spriteObject;
 - (BOOL)addObjectList:(UserVariable*)userList forObject:(SpriteObject*)spriteObject;
-- (void)copyDataFromObject:(SpriteObject*)source toObject:(SpriteObject*)target;
 
 - (SpriteObject*)spriteObjectForObjectVariable:(UserVariable*)userVariable;
 

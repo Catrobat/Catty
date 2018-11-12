@@ -928,19 +928,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
     } else if (self.isProgramVariable && isList){
         [self.object.program.variables.programListOfLists addObject:var];
     } else if (!self.isProgramVariable && !isList) {
-        NSMutableArray *array = [self.object.program.variables.objectVariableList objectForKey:self.object];
-        if (!array) {
-            array = [NSMutableArray new];
-        }
-        [array addObject:var];
-        [self.object.program.variables.objectVariableList setObject:array forKey:self.object];
+        [self.object.program.variables addObjectVariable:var forObject:self.object];
     } else if (!self.isProgramVariable && isList) {
-        NSMutableArray *array = [self.object.program.variables.objectListOfLists objectForKey:self.object];
-        if (!array) {
-            array = [NSMutableArray new];
-        }
-        [array addObject:var];
-        [self.object.program.variables.objectListOfLists setObject:array forKey:self.object];
+        [self.object.program.variables addObjectList:var forObject:self.object];
     }
     
     [self.object.program saveToDiskWithNotification:YES];

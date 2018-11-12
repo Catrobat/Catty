@@ -52,6 +52,10 @@
 #pragma mark - Copy
 - (id)mutableCopyWithContext:(CBMutableCopyContext*)context
 {
+    id updatedReference = [context updatedReferenceForReference:self];
+    if (updatedReference) {
+        return updatedReference;
+    }
     return self;
 }
 

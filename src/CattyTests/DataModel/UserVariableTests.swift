@@ -55,9 +55,28 @@ final class UserVariableTests: XCTestCase {
         let userVariable = UserVariable()
         userVariable.name = "userVar"
         
-        let userVariableCopy = userVariable.mutableCopy(with: CBMutableCopyContext()) as! UserVariable
+        let context = CBMutableCopyContext()
+        XCTAssertEqual(0, context.updatedReferences.count)
         
-        XCTAssertEqual(userVariable.name, userVariableCopy.name, "mutableCopyWithContext not working")
-        XCTAssertTrue(userVariable === userVariableCopy, "mutableCopyWithContext not working")
+        let userVariableCopy = userVariable.mutableCopy(with: context) as! UserVariable
+        XCTAssertEqual(userVariable.name, userVariableCopy.name)
+        XCTAssertTrue(userVariable === userVariableCopy)
+    }
+    
+    func testMutableCopyAndUpdateReference() {
+        let userVariableA = UserVariable()
+        userVariableA.name = "userVar"
+        
+        let userVariableB = UserVariable()
+        userVariableB.name = "userVar"
+        
+        let context = CBMutableCopyContext()
+        context.updateReference(userVariableA, withReference: userVariableB)
+        XCTAssertEqual(1, context.updatedReferences.count)
+        
+        let userVariableCopy = userVariableA.mutableCopy(with: context) as! UserVariable
+        XCTAssertEqual(userVariableA.name, userVariableCopy.name)
+        XCTAssertFalse(userVariableA === userVariableCopy)
+        XCTAssertTrue(userVariableB === userVariableCopy)
     }
 }

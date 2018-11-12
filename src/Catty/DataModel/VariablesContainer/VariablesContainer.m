@@ -488,22 +488,6 @@ static pthread_mutex_t variablesLock;
     return NO;
 }
 
-- (void)copyDataFromObject:(SpriteObject*)source toObject:(SpriteObject*)target;
-{
-    NSMutableArray *variablesAndLists = [[NSMutableArray alloc] initWithArray:[self objectVariablesForObject:source]];
-    [variablesAndLists addObjectsFromArray: [self objectListsForObject:source]];
-    
-    for (UserVariable *variable in variablesAndLists) {
-        UserVariable *copiedVariable = [[UserVariable alloc] initWithVariable:variable];
-        
-        if (copiedVariable.isList) {
-            [self addObjectList:copiedVariable forObject:target];
-        } else {
-            [self addObjectVariable:copiedVariable forObject:target];
-        }
-    }
-}
-
 - (BOOL)addObjectVariable:(UserVariable*)userVariable forObject:(SpriteObject*)spriteObject
 {
     NSMutableArray *array = [self.objectVariableList objectForKey:spriteObject];

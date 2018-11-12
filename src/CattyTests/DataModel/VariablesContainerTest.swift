@@ -96,34 +96,4 @@ final class VariablesContainerTest: XCTestCase {
         XCTAssertEqual(1, container.allLists(for: objectA)?.count)
         XCTAssertEqual(1, container.allLists(for: objectB)?.count)
     }
-    
-    func testCopyData() {
-        let objectA = SpriteObject()
-        objectA.name = "testObjectA"
-        
-        let objectB = SpriteObject()
-        objectB.name = "testObjectB"
-        
-        let userVariable = UserVariable()
-        userVariable.name = "testName"
-        
-        let container = VariablesContainer()
-        XCTAssertEqual(0, container.allVariables()?.count)
-        XCTAssertEqual(0, container.allVariables(for: objectA)?.count)
-        XCTAssertEqual(0, container.allVariables(for: objectB)?.count)
-        
-        let result = container.addObjectVariable(userVariable, for: objectA)
-        XCTAssertTrue(result)
-        
-        XCTAssertEqual(1, container.allVariables()?.count)
-        XCTAssertEqual(1, container.allVariables(for: objectA)?.count)
-        XCTAssertEqual(0, container.allVariables(for: objectB)?.count)
-        
-        container.copyData(from: objectA, to: objectB)
-        XCTAssertEqual(2, container.allVariables()?.count)
-        XCTAssertEqual(1, container.allVariables(for: objectA)?.count)
-        XCTAssertEqual(1, container.allVariables(for: objectB)?.count)
-        
-        XCTAssertFalse(container.allVariables(for: objectA)[0] == container.allVariables(for: objectB)[0])
-    }
 }
