@@ -416,6 +416,30 @@
     XCTAssertEqualObjects(@"hallo", stringValue, @"Invalid list value");
 }
 
+- (void)testWaitUntilBrick
+{
+    Program *program = [self getProgramForXML:@"AddItemToUserListBrick0991"];
+    XCTAssertEqual(1, [program.objectList count], "Invalid object list");
+    
+    SpriteObject *object = [program.objectList objectAtIndex:0];
+    XCTAssertEqual(1, [object.scriptList count], "Invalid script list");
+    
+    Script *script = [object.scriptList objectAtIndex:0];
+    XCTAssertEqual(2, [script.brickList count], "Invalid brick list");
+    
+    AddItemToUserListBrick *addItemToUserListBrick = (AddItemToUserListBrick*)[script.brickList objectAtIndex:0];
+    XCTAssertEqualObjects(@"programList", addItemToUserListBrick.userList.name, @"Invalid list name");
+    
+    NSNumber* numberValue = (NSNumber*)[self.formulaManager interpret:addItemToUserListBrick.listFormula forSpriteObject:object];
+    XCTAssertEqualObjects([NSNumber numberWithFloat:66], numberValue, @"Invalid list value");
+    
+    addItemToUserListBrick = (AddItemToUserListBrick*)[script.brickList objectAtIndex:1];
+    XCTAssertEqualObjects(@"objectList", addItemToUserListBrick.userList.name, @"Invalid list name");
+    
+    NSString* stringValue = (NSString*)[self.formulaManager interpret:addItemToUserListBrick.listFormula forSpriteObject:object];
+    XCTAssertEqualObjects(@"hallo", stringValue, @"Invalid list value");
+}
+
 - (void)testNumberOfItemsFunction
 {
     Program *program = [self getProgramForXML:@"NumberOfItemsInListFunction0991"];

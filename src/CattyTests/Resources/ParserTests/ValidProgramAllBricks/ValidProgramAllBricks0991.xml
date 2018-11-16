@@ -503,6 +503,14 @@
                 <userVariable reference="../../brick[13]/userVariable"/>
                 <userVariableName>global</userVariableName>
             </brick>
+            <brick type="WaitUntilBrick">
+                <formulaList>
+                    <formula category="IF_CONDITION">
+                        <type>NUMBER</type>
+                        <value>1.0</value>
+                    </formula>
+                </formulaList>
+            </brick>
           </brickList>
           <isUserScript>false</isUserScript>
         </script>
