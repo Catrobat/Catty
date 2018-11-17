@@ -166,6 +166,9 @@ extension MediaLibraryViewController: SoundsLibraryCollectionViewDataSourceDeleg
         guard let data = item.cachedData else { return }
 
         self.audioPlayer?.stop()
+        self.audioPlayerFinishPlayingCompletionBlock?.completion?()
+        self.audioPlayerFinishPlayingCompletionBlock = nil
+
         do {
             audioPlayerFinishPlayingCompletionBlock = AudioPlayerFinishPlayingCompletionBlock(completion)
             let audioPlayer = try AVAudioPlayer(data: data)
