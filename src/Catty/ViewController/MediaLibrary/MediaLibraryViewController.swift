@@ -42,7 +42,7 @@ final class MediaLibraryViewController: UICollectionViewController {
     private var originalAudioSessionCategoryOptions: AVAudioSessionCategoryOptions?
 
     private var audioPlayer: AVAudioPlayer?
-    private weak var audioPlayerDelegate: AudioPlayerFinishPlayingCompletionCaller?
+    private var audioPlayerFinishPlayingCompletionBlock: AudioPlayerFinishPlayingCompletionBlock?
 
     // MARK: - Initializers
 
@@ -156,7 +156,7 @@ extension MediaLibraryViewController: MediaLibraryCollectionViewDataSourceDelega
     }
 }
 
-extension MediaLibraryViewController: SoundsLibraryCollectionViewDataSourceDelegate {
+extension MediaLibraryViewController: SoundsLibraryCollectionViewDataSourceDelegate, AVAudioPlayerDelegate {
 
     func soundsLibraryCollectionViewDataSource(_ dataSource: SoundsLibraryCollectionViewDataSource, didFailToLoadSoundOf item: MediaItem) {
         self.showSoundLoadingIssueAlert()
@@ -167,13 +167,12 @@ extension MediaLibraryViewController: SoundsLibraryCollectionViewDataSourceDeleg
 
         self.audioPlayer?.stop()
         do {
-            let audioPlayerDelegate = AudioPlayerFinishPlayingCompletionCaller(completion)
+            audioPlayerFinishPlayingCompletionBlock = AudioPlayerFinishPlayingCompletionBlock(completion)
             let audioPlayer = try AVAudioPlayer(data: data)
-            audioPlayer.delegate = audioPlayerDelegate
+            audioPlayer.delegate = self
             audioPlayer.prepareToPlay()
             audioPlayer.play()
             self.audioPlayer = audioPlayer
-            self.audioPlayerDelegate = audioPlayerDelegate
         } catch {
             self.showSoundPlayingIssueAlert(error: error)
         }
@@ -184,15 +183,15 @@ extension MediaLibraryViewController: SoundsLibraryCollectionViewDataSourceDeleg
         self.audioPlayer = nil
     }
 
-    class AudioPlayerFinishPlayingCompletionCaller: NSObject, AVAudioPlayerDelegate {
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        self.audioPlayerFinishPlayingCompletionBlock?.completion?()
+    }
+
+    class AudioPlayerFinishPlayingCompletionBlock {
         let completion: (() -> Void)?
 
         init(_ completion: (() -> Void)?) {
             self.completion = completion
-        }
-
-        func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
-            self.completion?()
         }
     }
 
