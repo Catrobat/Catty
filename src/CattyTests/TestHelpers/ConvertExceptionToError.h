@@ -20,18 +20,10 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc extension WaitUntilBrick: CBInstructionProtocol {
-    
-    @nonobjc func instruction() -> CBInstruction {
-        let waitingTimeUntilNextCheck = 0.02
-                
-        return CBInstruction.waitExecClosure { (context, _) in
-            let condition = NSCondition()
-            condition.lock()
-            while(self.script?.object != nil && self.checkCondition(formulaInterpreter: context.formulaInterpreter)) {
-                condition.wait(until: Date().addingTimeInterval(waitingTimeUntilNextCheck))
-            }
-            condition.unlock()
-        }
-    }
-}
+#import <Foundation/Foundation.h>
+
+@interface ConvertExceptionToError : NSObject
+
++ (BOOL)catchException:(void(^)())tryBlock error:(__autoreleasing NSError **)error;
+
+@end
