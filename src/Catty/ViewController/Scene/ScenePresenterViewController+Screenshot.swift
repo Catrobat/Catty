@@ -38,27 +38,30 @@
     }
     
     @objc(takeAutomaticScreenshotForSKView: andProgram:)
-    func takeAutomaticScreenshot(for skView: SKView, and program: Program) -> Void {
+    func takeAutomaticScreenshot(for skView: SKView, and program: Program) -> String? {
         let path = program.projectPath() + kScreenshotAutoFilename
         
         if !FileManager.default.fileExists(atPath: path) {
-            guard let snapshot = self.screenshot(for: skView) else { return }
-            saveScreenshot(snapshot, for: program, manualScreenshot: false)
+            guard let snapshot = self.screenshot(for: skView) else { return nil }
+            return saveScreenshot(snapshot, for: program, manualScreenshot: false)
         }
+        
+        return nil
     }
     
     @objc(takeManualScreenshotForSKView: andProgram:)
-    func takeManualScreenshot(for skView: SKView, and program: Program) -> Void {
-        guard let snapshot = self.screenshot(for: skView) else { return }
-        saveScreenshot(snapshot, for: program, manualScreenshot: true)
+    func takeManualScreenshot(for skView: SKView, and program: Program) -> String? {
+        guard let snapshot = self.screenshot(for: skView) else { return nil }
+        let path = saveScreenshot(snapshot, for: program, manualScreenshot: true)
         
         Util.showNotification(withMessage: "Preview saved")
+        return path
     }
     
-    func saveScreenshot(_ screenshot: UIImage, for program: Program, manualScreenshot: Bool) {
+    private func saveScreenshot(_ screenshot: UIImage, for program: Program, manualScreenshot: Bool) -> String? {
         let filePath = program.projectPath() + (manualScreenshot ? kScreenshotManualFilename : kScreenshotAutoFilename)
         let thumbnailPath = program.projectPath() + kScreenshotThumbnailPrefix + kScreenshotAutoFilename
-        guard let data = UIImagePNGRepresentation(screenshot) else { return }
+        guard let data = UIImagePNGRepresentation(screenshot) else { return nil }
         
         DispatchQueue.main.async {
             do {
@@ -66,5 +69,6 @@
                 RuntimeImageCache.shared()?.overwriteThumbnailImageFromDisk(withThumbnailPath: thumbnailPath, image: screenshot, thumbnailFrameSize: CGSize(width: CGFloat(kPreviewImageWidth), height: CGFloat(kPreviewImageHeight)))
             } catch { }
         }
+        return filePath
     }
 }

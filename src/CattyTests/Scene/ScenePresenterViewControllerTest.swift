@@ -27,17 +27,46 @@ import XCTest
 final class ScenePresenterViewControllerTest: XCTestCase {
     
     var vc: ScenePresenterViewController!
+    var skView: SKView!
+    var program: Program!
     
     override func setUp() {
         super.setUp()
         vc = ScenePresenterViewController()
+        skView = SKView(frame: CGRect(origin: CGPoint.zero, size: CGSize(width: 1000, height: 2500)))
+        
+        program = Program.defaultProgram(withName: "testProgram", programID: "")
     }
     
     func testScreenshot() {
-        let skView = SKView(frame: CGRect(origin: CGPoint.zero, size: CGSize(width: 1000, height: 2500)))
         let screenshot = vc.screenshot(for: skView)
         
         XCTAssertEqual(CGFloat(kPreviewImageWidth), screenshot?.size.width)
         XCTAssertEqual(CGFloat(kPreviewImageHeight), screenshot?.size.height)
+    }
+    
+    func testAutomaticScreenshot() {
+        let expectedPath = program.projectPath() + kScreenshotAutoFilename
+        XCTAssertFalse(FileManager.default.fileExists(atPath: expectedPath))
+        
+        let path = vc.takeAutomaticScreenshot(for: skView, and: program)
+        XCTAssertEqual(expectedPath, path!)
+    }
+    
+    func testDoNotRetakeAutomaticScreenshot() {
+        let expectedPath = program.projectPath() + kScreenshotAutoFilename
+        
+        try! Data().write(to: URL(fileURLWithPath: expectedPath), options: .atomic)
+        XCTAssertTrue(FileManager.default.fileExists(atPath: expectedPath))
+        
+        let path = vc.takeAutomaticScreenshot(for: skView, and: program)
+        XCTAssertNil(path)
+    }
+    
+    func testManualScreenshot() {
+        let expectedPath = program.projectPath() + kScreenshotManualFilename
+        
+        let path = vc.takeManualScreenshot(for: skView, and: program)
+        XCTAssertEqual(expectedPath, path!)
     }
 }
