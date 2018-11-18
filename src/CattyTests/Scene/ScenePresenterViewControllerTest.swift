@@ -20,13 +20,24 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
-#import "Program.h"
+import XCTest
 
-@interface SaveToProjectActivity : UIActivity
+@testable import Pocket_Code
 
-@property (nonatomic,strong)NSString *path;
-@property (nonatomic,strong)UIImage *image;
-
-- (id)initWithImagePath:(NSString *)path;
-@end
+final class ScenePresenterViewControllerTest: XCTestCase {
+    
+    var vc: ScenePresenterViewController!
+    
+    override func setUp() {
+        super.setUp()
+        vc = ScenePresenterViewController()
+    }
+    
+    func testScreenshot() {
+        let skView = SKView(frame: CGRect(origin: CGPoint.zero, size: CGSize(width: 1000, height: 2500)))
+        let screenshot = vc.screenshot(for: skView)
+        
+        XCTAssertEqual(CGFloat(kPreviewImageWidth), screenshot?.size.width)
+        XCTAssertEqual(CGFloat(kPreviewImageHeight), screenshot?.size.height)
+    }
+}

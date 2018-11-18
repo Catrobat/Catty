@@ -472,9 +472,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
     
     // check if one of these screenshot files is available in memory
     CBFileManager *fileManager = [CBFileManager sharedManager];
-    NSArray *fallbackPaths = @[[[NSString alloc] initWithFormat:@"%@screenshot.png", info.basePath],
-                               [[NSString alloc] initWithFormat:@"%@manual_screenshot.png", info.basePath],
-                               [[NSString alloc] initWithFormat:@"%@automatic_screenshot.png", info.basePath]];
+    NSArray *fallbackPaths = @[[[NSString alloc] initWithFormat:@"%@%@", info.basePath, kScreenshotFilename],
+                               [[NSString alloc] initWithFormat:@"%@%@", info.basePath, kScreenshotManualFilename],
+                               [[NSString alloc] initWithFormat:@"%@%@", info.basePath, kScreenshotAutoFilename]];
     RuntimeImageCache *imageCache = [RuntimeImageCache sharedImageCache];
     for (NSString *fallbackPath in fallbackPaths) {
         NSString *fileName = [fallbackPath lastPathComponent];
