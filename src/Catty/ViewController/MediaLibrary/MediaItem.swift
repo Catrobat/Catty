@@ -47,6 +47,12 @@ extension MediaItem {
 }
 
 extension Sequence where Iterator.Element == MediaItem {
+    
+    // The following categories should be shown on top of the list (IOS-677).
+    // TODO fetch ordering information from API
+    var prioritizedCategories: [String] { return
+        ["Pocket Family"]
+    }
 
     var groupedByCategories: [[MediaItem]] {
 
@@ -55,7 +61,11 @@ extension Sequence where Iterator.Element == MediaItem {
 
         // a dictionary of categories mapped to their order of appearance
         var categories = [String: Int]()
-
+        prioritizedCategories.forEach { category in
+            categories[category] = categories.count
+            groupedItems.append([])
+        }
+        
         for item in self {
             if let categoryIndex = categories[item.category] {
                 // category exists, add the item to the list
@@ -67,6 +77,6 @@ extension Sequence where Iterator.Element == MediaItem {
                 groupedItems.append([item])
             }
         }
-        return groupedItems
+        return groupedItems.filter{ $0.count > 0 } // do not show empty categories
     }
 }
