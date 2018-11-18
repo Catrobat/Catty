@@ -259,7 +259,6 @@ let kLocalizedCameraFront = NSLocalizedString("front", comment: "")
 //************************************************************************************************************
 
 let kLocalizedCantRestartProgram = NSLocalizedString("Can't restart program!", comment: "")
-let kLocalizedPreviewImageSaved = NSLocalizedString("Preview image saved", comment: "")
 let kLocalizedThisFeatureIsComingSoon = NSLocalizedString("This feature is coming soon!", comment: "")
 let kLocalizedNoDescriptionAvailable = NSLocalizedString("No Description available", comment: "")
 let kLocalizedNoSearchResults = NSLocalizedString("No search results", comment: "")

@@ -259,7 +259,6 @@
 //************************************************************************************************************
 
 #define kLocalizedCantRestartProgram NSLocalizedString(@"Can't restart program!", nil)
-#define kLocalizedPreviewImageSaved NSLocalizedString(@"Preview image saved", nil)
 #define kLocalizedThisFeatureIsComingSoon NSLocalizedString(@"This feature is coming soon!", nil)
 #define kLocalizedNoDescriptionAvailable NSLocalizedString(@"No Description available", nil)
 #define kLocalizedNoSearchResults NSLocalizedString(@"No search results", nil)

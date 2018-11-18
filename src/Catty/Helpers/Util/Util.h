@@ -168,6 +168,8 @@ if (__functor) __functor(__VA_ARGS__);  \
 
 + (void)showNotificationWithMessage:(NSString*)message;
 
++ (void)showNotificationForSaveAction;
+
 + (CGFloat)detectCBLanguageVersionFromXMLWithPath:(NSString*)xmlPath;
 
 + (double)radiansToDegree:(double)rad;

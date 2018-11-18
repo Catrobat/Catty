@@ -809,6 +809,21 @@
                                completion:^{ [notficicationHud removeFromSuperview]; }];
 }
 
++ (void)showNotificationForSaveAction {
+    BDKNotifyHUD *hud = [BDKNotifyHUD notifyHUDWithImage:[UIImage imageNamed:kBDKNotifyHUDCheckmarkImageName] text:kLocalizedSaved];
+    UIViewController *vc = [Util topmostViewController];
+    
+    hud.destinationOpacity = kBDKNotifyHUDDestinationOpacity;
+    hud.center = CGPointMake(vc.view.center.x, vc.view.center.y + kBDKNotifyHUDCenterOffsetY);
+    hud.tag = kSavedViewTag;
+    
+    [vc.view addSubview:hud];
+    [hud presentWithDuration:kBDKNotifyHUDPresentationDuration
+                       speed:kBDKNotifyHUDPresentationSpeed
+                      inView:vc.view
+                  completion:^{ [hud removeFromSuperview]; }];
+}
+
 + (BOOL)isPhiroActivated
 {
     return kPhiroActivated == 1;

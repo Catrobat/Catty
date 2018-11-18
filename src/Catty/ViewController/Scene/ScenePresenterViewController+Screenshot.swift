@@ -54,7 +54,7 @@
         guard let snapshot = self.screenshot(for: skView) else { return nil }
         let path = saveScreenshot(snapshot, for: program, manualScreenshot: true)
         
-        Util.showNotification(withMessage: kLocalizedPreviewImageSaved)
+        Util.showNotificationForSaveAction()
         return path
     }
     
