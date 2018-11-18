@@ -222,7 +222,7 @@ let kLocalizedSounds = NSLocalizedString("Sounds", comment: "")
 let kLocalizedLastAccess = NSLocalizedString("Last access", comment: "")
 let kLocalizedLength = NSLocalizedString("Length", comment: "")
 let kLocalizedRestart = NSLocalizedString("Restart", comment: "")
-let kLocalizedScreenshot = NSLocalizedString("Screenshot", comment: "")
+let kLocalizedPreview = NSLocalizedString("Preview", comment: "")
 let kLocalizedAxes = NSLocalizedString("Axes", comment: "Title of icon shown in the side bar to enable or disable an overlayed view to show the origin of the coordinate system and implicitly the display size.")
 let kLocalizedMostDownloaded = NSLocalizedString("Most Downloaded", comment: "")
 let kLocalizedMostViewed = NSLocalizedString("Most Viewed", comment: "")
@@ -253,15 +253,13 @@ let kLocalizedOff = NSLocalizedString("off", comment: "")
 let kLocalizedOn = NSLocalizedString("on", comment: "")
 let kLocalizedCameraBack = NSLocalizedString("back", comment: "")
 let kLocalizedCameraFront = NSLocalizedString("front", comment: "")
-let kLocalizedSetAsPreviewImage = NSLocalizedString("Set as Preview Image", comment: "")
 
 //************************************************************************************************************
 //**********************************       SHORT DESCRIPTIONS      *******************************************
 //************************************************************************************************************
 
 let kLocalizedCantRestartProgram = NSLocalizedString("Can't restart program!", comment: "")
-let kLocalizedScreenshotSavedToCameraRoll = NSLocalizedString("Screenshot saved to Camera Roll", comment: "")
-let kLocalizedScreenshotSavedToProject = NSLocalizedString("Screenshot saved to project", comment: "")
+let kLocalizedPreviewImageSaved = NSLocalizedString("Preview image saved", comment: "")
 let kLocalizedThisFeatureIsComingSoon = NSLocalizedString("This feature is coming soon!", comment: "")
 let kLocalizedNoDescriptionAvailable = NSLocalizedString("No Description available", comment: "")
 let kLocalizedNoSearchResults = NSLocalizedString("No search results", comment: "")

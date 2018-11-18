@@ -54,13 +54,14 @@
         guard let snapshot = self.screenshot(for: skView) else { return nil }
         let path = saveScreenshot(snapshot, for: program, manualScreenshot: true)
         
-        Util.showNotification(withMessage: "Preview saved")
+        Util.showNotification(withMessage: kLocalizedPreviewImageSaved)
         return path
     }
     
     private func saveScreenshot(_ screenshot: UIImage, for program: Program, manualScreenshot: Bool) -> String? {
-        let filePath = program.projectPath() + (manualScreenshot ? kScreenshotManualFilename : kScreenshotAutoFilename)
-        let thumbnailPath = program.projectPath() + kScreenshotThumbnailPrefix + kScreenshotAutoFilename
+        let fileName = manualScreenshot ? kScreenshotManualFilename : kScreenshotAutoFilename
+        let filePath = program.projectPath() + fileName
+        let thumbnailPath = program.projectPath() + kScreenshotThumbnailPrefix + fileName
         guard let data = UIImagePNGRepresentation(screenshot) else { return nil }
         
         DispatchQueue.main.async {

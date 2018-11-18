@@ -149,7 +149,7 @@
     NSArray *labelTextArray = [[NSArray alloc] initWithObjects:kLocalizedBack,
                                kLocalizedRestart,
                                kLocalizedContinue,
-                               kLocalizedScreenshot,
+                               kLocalizedPreview,
                                kLocalizedAxes, nil];
     NSArray* labelArray = [[NSArray alloc] initWithObjects:self.menuBackLabel, self.menuRestartLabel, self.menuContinueLabel, self.menuScreenshotLabel, self.menuAxisLabel, nil];
     for (int i = 0; i < [labelTextArray count]; ++i) {

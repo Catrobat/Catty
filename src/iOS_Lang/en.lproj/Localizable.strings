@@ -1172,6 +1172,12 @@
 "position_y" = "position_y";
 
 /* No comment provided by engineer. */
+"Preview" = "Preview";
+
+/* No comment provided by engineer. */
+"Preview image saved" = "Preview image saved";
+
+/* No comment provided by engineer. */
 "Previous background" = "Previous background";
 
 /* No comment provided by engineer. */
@@ -1304,15 +1310,6 @@
 "screen_touch_y" = "screen_touch_y";
 
 /* No comment provided by engineer. */
-"Screenshot" = "Screenshot";
-
-/* No comment provided by engineer. */
-"Screenshot saved to Camera Roll" = "Screenshot saved to Camera Roll";
-
-/* No comment provided by engineer. */
-"Screenshot saved to project" = "Screenshot saved to project";
-
-/* No comment provided by engineer. */
 "Script" = "Script";
 
 /* No comment provided by engineer. */
@@ -1371,9 +1368,6 @@
 
 /* No comment provided by engineer. */
 "Set Arduino PWM~ pin" = "Set Arduino PWM~ pin";
-
-/* No comment provided by engineer. */
-"Set as Preview Image" = "Set as Preview Image";
 
 /* No comment provided by engineer. */
 "Set background" = "Set background";
