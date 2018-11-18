@@ -41,10 +41,29 @@ final class LayerSensorTest: XCTestCase {
     }
     
     func testDefaultRawValue() {
-        spriteObject.spriteNode = nil
-        XCTAssertEqual(type(of: sensor).defaultRawValue, type(of: sensor).rawValue(for: spriteObject))
+        let program = Program()
+        
+        let spriteObjectA = SpriteObjectMock()
+        spriteObjectA.program = program
+        program.objectList.add(spriteObjectA)
+        
+        let spriteObjectB = SpriteObjectMock()
+        spriteObjectB.program = program
+        program.objectList.add(spriteObjectB)
+        
+        let spriteObjectC = SpriteObjectMock()
+        spriteObjectC.program = program
+        program.objectList.add(spriteObjectC)
+        
+        XCTAssertEqual(type(of: sensor).defaultRawValue, type(of: sensor).defaultRawValue(for: spriteObjectA), accuracy: 0.0001)
+        XCTAssertEqual(type(of: sensor).defaultRawValue, type(of: sensor).rawValue(for: spriteObjectA), accuracy: 0.0001)
+        
+        XCTAssertEqual(type(of: sensor).defaultRawValue + 1, type(of: sensor).defaultRawValue(for: spriteObjectB), accuracy: 0.0001)
+        XCTAssertEqual(type(of: sensor).defaultRawValue + 1, type(of: sensor).rawValue(for: spriteObjectB), accuracy: 0.0001)
+        
+        XCTAssertEqual(type(of: sensor).defaultRawValue + 2, type(of: sensor).defaultRawValue(for: spriteObjectC), accuracy: 0.0001)
+        XCTAssertEqual(type(of: sensor).defaultRawValue + 2, type(of: sensor).rawValue(for: spriteObjectC), accuracy: 0.0001)
     }
-    
     
     func testRawValue() {
         // background like on Android

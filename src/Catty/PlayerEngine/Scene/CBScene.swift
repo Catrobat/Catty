@@ -120,7 +120,7 @@ final class CBScene: SKScene {
 
         removeAllChildren() // just to ensure
         
-        var zPosition = 1
+        var zPosition = LayerSensor.defaultRawValue
         for spriteObject in spriteObjectList {
             let spriteNode = CBSpriteNode(spriteObject: spriteObject)
             spriteNode.name = spriteObject.name
@@ -137,13 +137,11 @@ final class CBScene: SKScene {
             }
 
             addChild(spriteNode) // now add the brick with correct visability-state to the Scene
-            logger.debug("\(zPosition)")
+            
+            zPosition = LayerSensor.defaultRawValue(for: spriteObject)
             spriteNode.start(CGFloat(zPosition))
             spriteNode.setLook()
             spriteNode.isUserInteractionEnabled = true
-            if spriteNode.spriteObject.isBackground() == false {
-                zPosition += 1
-            }
             scheduler.registerSpriteNode(spriteNode)
 
             for script in scriptList {

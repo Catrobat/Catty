@@ -201,7 +201,7 @@
 }
 
 #pragma mark - Custom getter and setter
-- (NSMutableArray*)objectList
+- (NSMutableArray<SpriteObject*>*)objectList
 {
     if (! _objectList) {
          _objectList = [NSMutableArray array];
@@ -209,7 +209,7 @@
     return _objectList;
 }
 
-- (void)setObjectList:(NSMutableArray*)objectList
+- (void)setObjectList:(NSMutableArray<SpriteObject*>*)objectList
 {
     for (id object in objectList) {
         if ([object isKindOfClass:[SpriteObject class]]) {

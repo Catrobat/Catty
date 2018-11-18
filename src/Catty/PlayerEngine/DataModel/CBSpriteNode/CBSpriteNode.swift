@@ -213,7 +213,7 @@ class CBSpriteNode: SKSpriteNode {
         self.ciBrightness = CGFloat(BrightnessSensor.defaultRawValue)
         
         if self.spriteObject.isBackground() == true {
-            self.zPosition = 0
+            self.zPosition = CGFloat(LayerSensor.defaultRawValue)
         } else {
             self.zPosition = zPosition
         }
