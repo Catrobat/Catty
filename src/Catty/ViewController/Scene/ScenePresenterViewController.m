@@ -360,7 +360,7 @@
                          self.menuOpen = NO;
                          self.menuView.userInteractionEnabled = YES;
                          if (animateDuration == duration) {
-                             [self takeAutomaticScreenshotForSKView:self.skView andProgram:self.program];
+                             (void)[self takeAutomaticScreenshotForSKView:self.skView andProgram:self.program];
                          }
                      }];
     self.skView.paused = NO;
@@ -449,7 +449,7 @@
 
 - (void)takeScreenshotAction:(UIButton*)sender
 {
-    [self takeManualScreenshotForSKView:self.skView andProgram:self.program];
+    (void)[self takeManualScreenshotForSKView:self.skView andProgram:self.program];
 }
 
 #pragma mark - Pan Gesture Handler
