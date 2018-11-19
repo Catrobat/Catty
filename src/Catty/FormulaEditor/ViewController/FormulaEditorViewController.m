@@ -1121,7 +1121,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 - (BOOL)isVarOrListBeingUsed:(UserVariable*)variable
 {
-    //TODO: Make it work for lists
+    // TODO: Make it work for lists
     if([self.object.program.variables isProgramVariableOrList:variable]) {
         for(SpriteObject *spriteObject in self.object.program.objectList) {
             for(Script *script in spriteObject.scriptList) {

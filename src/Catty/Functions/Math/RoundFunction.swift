@@ -21,27 +21,27 @@
  */
 
 class RoundFunction: SingleParameterDoubleFunction {
-    
+
     static var tag = "ROUND"
     static var name = "round"
     static var defaultValue = 0.0
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = true
     static let position = 100
-    
+
     func tag() -> String {
         return type(of: self).tag
     }
-    
+
     func firstParameter() -> FunctionParameter {
         return .number(defaultValue: 0)
     }
-    
+
     func value(parameter: AnyObject?) -> Double {
         guard let value = parameter as? Double else { return type(of: self).defaultValue }
         return round(value)
     }
-    
+
     func formulaEditorSection() -> FormulaEditorSection {
         return .math(position: type(of: self).position)
     }

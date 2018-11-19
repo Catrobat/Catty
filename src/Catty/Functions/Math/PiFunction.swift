@@ -27,15 +27,15 @@ class PiFunction: ZeroParameterDoubleFunction {
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = true
     static let position = 60
-    
+
     func tag() -> String {
         return type(of: self).tag
     }
-    
+
     func value() -> Double {
         return Double.pi
     }
-    
+
     func formulaEditorSection() -> FormulaEditorSection {
         return .math(position: type(of: self).position)
     }

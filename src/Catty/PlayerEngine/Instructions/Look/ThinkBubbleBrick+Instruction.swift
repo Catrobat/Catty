@@ -21,20 +21,19 @@
  */
 
 extension ThinkBubbleBrick: CBInstructionProtocol {
-    
+
     func instruction() -> CBInstruction {
-        return .action { (context) in SKAction.run(self.actionBlock(context.formulaInterpreter)) }
+        return .action { context in SKAction.run(self.actionBlock(context.formulaInterpreter)) }
     }
-    
-    func actionBlock(_ formulaInterpreter: FormulaInterpreterProtocol) -> ()->() {
+
+    func actionBlock(_ formulaInterpreter: FormulaInterpreterProtocol) -> () -> Void {
         guard let object = self.script?.object,
             let spriteNode = object.spriteNode
             else { fatalError("This should never happen!") }
-        
+
         return {
             var speakText = formulaInterpreter.interpretString(self.formula, for: object)
-            if(Double(speakText) !=  nil)
-            {
+            if Double(speakText) != nil {
                 let num = (speakText as NSString).doubleValue
                 speakText = (num as NSNumber).stringValue
             }

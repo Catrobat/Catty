@@ -31,41 +31,41 @@
     func tag() -> String {
         return type(of: self).tag
     }
-    
+
     static func rawValue(for spriteObject: SpriteObject) -> Double {
         guard let spriteNode = spriteObject.spriteNode else { return BrightnessSensor.defaultRawValue }
         return Double(spriteNode.ciBrightness)
     }
-    
+
     static func setRawValue(userInput: Double, for spriteObject: SpriteObject) {
         let rawValue = self.convertToRaw(userInput: userInput, for: spriteObject)
         spriteObject.spriteNode.ciBrightness = CGFloat(rawValue)
     }
-    
+
     // f:[-1, 1] -> [0, 200]
     static func convertToStandardized(rawValue: Double, for spriteObject: SpriteObject) -> Double {
-        
+
         if rawValue >= 1 {
             return 200.0
         } else if rawValue <= -1 {
             return 0.0
         }
-        
+
         return 100 * rawValue + 100
     }
-    
+
     // f:[0, 200] -> [-1, 1]
     static func convertToRaw(userInput: Double, for spriteObject: SpriteObject) -> Double {
-        
+
         if userInput >= 200 {
             return 1.0
         } else if userInput <= 0 {
             return -1.0
         }
-        
+
         return (userInput - 100) / 100
     }
-    
+
     func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
         return .object(position: type(of: self).position)
     }

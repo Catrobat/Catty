@@ -25,39 +25,39 @@
 @objc extension VibrationBrick: CBInstructionProtocol {
 
     @nonobjc func instruction() -> CBInstruction {
-        
+
         guard let spriteObject = self.script?.object else { fatalError("This should never happen!") }
 
         let durationFormula = self.durationInSeconds
-        
-        return CBInstruction.execClosure { (context, scheduler) in
-//            self.logger.debug("Performing: VibrationBrick")
-            
+
+        return CBInstruction.execClosure { context, _ in
+            //            self.logger.debug("Performing: VibrationBrick")
+
             guard let duration = durationFormula else { return }
-            
+
             let durationInSeconds = context.formulaInterpreter.interpretDouble(duration, for: spriteObject)
-            var numberOfVibrations = durationInSeconds*2;
-            if ((numberOfVibrations < 1) && (numberOfVibrations > 0)){
+            var numberOfVibrations = durationInSeconds * 2
+            if (numberOfVibrations < 1) && (numberOfVibrations > 0) {
                 numberOfVibrations = ceil(numberOfVibrations)
-            }else{
+            } else {
                 numberOfVibrations = floor(numberOfVibrations)
             }
-            var previousOperation : BlockOperation? = nil;
+            var previousOperation: BlockOperation?
             let delayTime = UInt32(0.5 * Double(USEC_PER_SEC))
-            
+
             let max = Int(numberOfVibrations)
             for _ in 0 ..< max {
-                let operation : BlockOperation = BlockOperation (block: {
-                AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
-                usleep(delayTime)})
-                
+                let operation = BlockOperation (block: {
+                    AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+                    usleep(delayTime)})
+
                 if let previous = previousOperation {
                     operation.addDependency(previous)
                 }
-            CBScheduler.vibrateSerialQueue.addOperation(operation)
-            previousOperation = operation
+                CBScheduler.vibrateSerialQueue.addOperation(operation)
+                previousOperation = operation
             }
-            
+
             context.state = .runnable
         }
 

@@ -21,22 +21,22 @@
  */
 
 protocol SensorManagerProtocol {
-    
+
     static var defaultValueForUndefinedSensor: Double { get set }
-    
+
     init(sensors: [Sensor])
-    
+
     func exists(tag: String) -> Bool
-    
+
     func sensor(tag: String) -> Sensor?
-    
+
     func value(tag: String, spriteObject: SpriteObject?) -> AnyObject
-    
+
     func formulaEditorItems(for spriteObject: SpriteObject) -> [FormulaEditorItem]
-    
-    // TODO make instance method
+
+    // TODO: make instance method
     static func requiredResource(tag: String) -> ResourceType
-    
-    // TODO make instance method
+
+    // TODO: make instance method
     static func name(tag: String) -> String?
 }

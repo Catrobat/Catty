@@ -27,25 +27,25 @@ class JoinFunction: DoubleParameterStringFunction {
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = true
     static let position = 230
-    
+
     func tag() -> String {
         return type(of: self).tag
     }
-    
+
     func firstParameter() -> FunctionParameter {
         return .string(defaultValue: "hello ")
     }
-    
+
     func secondParameter() -> FunctionParameter {
         return .string(defaultValue: "world")
     }
-    
-    func value(firstParameter: AnyObject?, secondParameter: AnyObject?) -> String {        
+
+    func value(firstParameter: AnyObject?, secondParameter: AnyObject?) -> String {
         let firstText = type(of: self).interpretParameter(parameter: firstParameter)
         let secondText = type(of: self).interpretParameter(parameter: secondParameter)
         return firstText + secondText
     }
-    
+
     func formulaEditorSection() -> FormulaEditorSection {
         return .math(position: type(of: self).position)
     }

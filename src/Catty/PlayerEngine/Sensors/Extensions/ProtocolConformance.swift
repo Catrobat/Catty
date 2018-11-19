@@ -20,8 +20,8 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import CoreMotion
 import CoreLocation
+import CoreMotion
 
 // MARK: - CoreMotion protocol conformance
 
@@ -57,7 +57,7 @@ extension CLLocationManager: LocationManager {
     var heading: Heading? {
         return self.value(forKey: "heading") as? CLHeading
     }
-    
+
     var location: Location? {
         return self.value(forKey: "location") as? CLLocation
     }

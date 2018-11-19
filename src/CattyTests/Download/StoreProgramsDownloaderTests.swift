@@ -20,14 +20,14 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import XCTest
-@testable import Pocket_Code
 import DVR
+@testable import Pocket_Code
+import XCTest
 
-class StoreProgramsDowloaderTests: XCTestCase {
-    
+class StoreProgramsDownloaderTests: XCTestCase {
+
     // MARK: - Fetch Programs
-    
+
     func testfetchFeaturedProgramsSucceeds() {
         let dvrSession = Session(cassetteName: "StoreProgramDownloader.fetchFeaturedPrograms.success")
         let downloader = StoreProgramDownloader(session: dvrSession)
@@ -48,27 +48,27 @@ class StoreProgramsDowloaderTests: XCTestCase {
 
         wait(for: [expectation], timeout: 1.0)
     }
-    
+
     func testfetchFeaturedProgramsFailsWithUnexpectedError() {
         let mockSession = URLSessionMock()
         let downloader = StoreProgramDownloader(session: mockSession)
         let expectation = XCTestExpectation(description: "Fetch Featured Programs")
-        
-        downloader.fetchPrograms(forType: .featured, offset: 0) { programs, error in
+
+        downloader.fetchPrograms(forType: .featured, offset: 0) { _, error in
             guard let error = error else { XCTFail("no error returned"); return }
             XCTAssertEqual(error, .unexpectedError)
             expectation.fulfill()
         }
-        
+
         wait(for: [expectation], timeout: 1.0)
     }
-    
+
     func testfetchFeaturedProgramsFailsWithRequestError() {
         let dvrSession = Session(cassetteName: "StoreProgramDownloader.fetchFeaturedPrograms.fail.request")
         let downloader = StoreProgramDownloader(session: dvrSession)
         let expectation = XCTestExpectation(description: "Fetch Featured Programs")
-        
-        downloader.fetchPrograms(forType: .featured, offset: 0) { programs, error in
+
+        downloader.fetchPrograms(forType: .featured, offset: 0) { _, error in
             guard let error = error else { XCTFail("no error received"); return }
             switch error {
             case let .request(error: _, statusCode: statusCode):
@@ -78,16 +78,16 @@ class StoreProgramsDowloaderTests: XCTestCase {
             }
             expectation.fulfill()
         }
-        
+
         wait(for: [expectation], timeout: 1.0)
     }
-    
+
     func testfetchFeaturedProgramsFailsWithParseError() {
         let dvrSession = Session(cassetteName: "StoreProgramDownloader.fetchFeaturedPrograms.fail.parse")
         let downloader = StoreProgramDownloader(session: dvrSession)
         let expectation = XCTestExpectation(description: "Fetch Featured Programs")
-        
-        downloader.fetchPrograms(forType: .featured, offset: 0) { programs, error in
+
+        downloader.fetchPrograms(forType: .featured, offset: 0) { _, error in
             guard let error = error else { XCTFail("no error received"); return }
             switch error {
             case .parse(error: _):
@@ -97,44 +97,44 @@ class StoreProgramsDowloaderTests: XCTestCase {
             }
             expectation.fulfill()
         }
-        
+
         wait(for: [expectation], timeout: 1.0)
     }
 
     // MARK: - Most Downloaded Programs
-    
+
     func testfetchMostDownloadedProgramsSucceeds() {
         let dvrSession = Session(cassetteName: "StoreProgramDownloader.fetchMostDownloadedPrograms.success")
         let downloader = StoreProgramDownloader(session: dvrSession)
         let expectation = XCTestExpectation(description: "Fetch Most Downloaded Programs")
-        
+
         downloader.fetchPrograms(forType: .mostDownloaded, offset: 0) { programs, error in
             XCTAssertNil(error, "request failed")
             guard let programs = programs else { XCTFail("no most downloaded programs found"); return }
             guard let item = programs.projects.first else { XCTFail("no most downloaded programs in array"); return }
-            
+
             // check that the first item in the first category has no empty properties (except cachedData)
             XCTAssertNotEqual(item.projectId, 0)
             XCTAssertNotEqual(item.projectName, "")
             XCTAssertNotEqual(item.author, "")
-            
+
             expectation.fulfill()
         }
-        
+
         wait(for: [expectation], timeout: 1.0)
     }
-    
+
     func testfetchMostDownloadedProgramsFailsWithUnexpectedError() {
         let mockSession = URLSessionMock()
         let downloader = StoreProgramDownloader(session: mockSession)
         let expectation = XCTestExpectation(description: "Fetch Most Downloaded Programs")
-        
-        downloader.fetchPrograms(forType: .mostDownloaded, offset: 0) { programs, error in
+
+        downloader.fetchPrograms(forType: .mostDownloaded, offset: 0) { _, error in
             guard let error = error else { XCTFail("no error returned"); return }
             XCTAssertEqual(error, .unexpectedError)
             expectation.fulfill()
         }
-        
+
         wait(for: [expectation], timeout: 1.0)
     }
 
@@ -142,8 +142,8 @@ class StoreProgramsDowloaderTests: XCTestCase {
         let dvrSession = Session(cassetteName: "StoreProgramDownloader.fetchMostDownloadedPrograms.fail.request")
         let downloader = StoreProgramDownloader(session: dvrSession)
         let expectation = XCTestExpectation(description: "Fetch Most Downloaded Programs")
-        
-        downloader.fetchPrograms(forType: .mostDownloaded, offset: 0) { programs, error in
+
+        downloader.fetchPrograms(forType: .mostDownloaded, offset: 0) { _, error in
             guard let error = error else { XCTFail("no error received"); return }
             switch error {
             case let .request(error: _, statusCode: statusCode):
@@ -153,16 +153,16 @@ class StoreProgramsDowloaderTests: XCTestCase {
             }
             expectation.fulfill()
         }
-        
+
         wait(for: [expectation], timeout: 1.0)
     }
-    
+
     func testfetchMostDownloadedProgramsFailsWithParseError() {
         let dvrSession = Session(cassetteName: "StoreProgramDownloader.fetchMostDownloadedPrograms.fail.parse")
         let downloader = StoreProgramDownloader(session: dvrSession)
         let expectation = XCTestExpectation(description: "Fetch Most Downloaded Programs")
-        
-        downloader.fetchPrograms(forType: .mostDownloaded, offset: 0) { programs, error in
+
+        downloader.fetchPrograms(forType: .mostDownloaded, offset: 0) { _, error in
             guard let error = error else { XCTFail("no error received"); return }
             switch error {
             case .parse(error: _):
@@ -172,53 +172,53 @@ class StoreProgramsDowloaderTests: XCTestCase {
             }
             expectation.fulfill()
         }
-        
+
         wait(for: [expectation], timeout: 1.0)
     }
-    
-    //MARK: - Most Viewed Programs
-    
+
+    // MARK: - Most Viewed Programs
+
     func testfetchMostViewedProgramsSucceeds() {
         let dvrSession = Session(cassetteName: "StoreProgramDownloader.fetchMostViewedPrograms.success")
         let downloader = StoreProgramDownloader(session: dvrSession)
         let expectation = XCTestExpectation(description: "Fetch Most Viewed Programs")
-        
+
         downloader.fetchPrograms(forType: .mostViewed, offset: 0) { programs, error in
             XCTAssertNil(error, "request failed")
             guard let programs = programs else { XCTFail("no most viewed programs found"); return }
             guard let item = programs.projects.first else { XCTFail("no most viewed programs in array"); return }
-            
+
             // check that the first item in the first category has no empty properties (except cachedData)
             XCTAssertNotEqual(item.projectId, 0)
             XCTAssertNotEqual(item.projectName, "")
             XCTAssertNotEqual(item.author, "")
-            
+
             expectation.fulfill()
         }
-        
+
         wait(for: [expectation], timeout: 1.0)
     }
-    
+
     func testfetchMostViewedProgramsFailsWithUnexpectedError() {
         let mockSession = URLSessionMock()
         let downloader = StoreProgramDownloader(session: mockSession)
         let expectation = XCTestExpectation(description: "Fetch Most Viewed Programs")
-        
-        downloader.fetchPrograms(forType: .mostViewed, offset: 0) { programs, error in
+
+        downloader.fetchPrograms(forType: .mostViewed, offset: 0) { _, error in
             guard let error = error else { XCTFail("no error returned"); return }
             XCTAssertEqual(error, .unexpectedError)
             expectation.fulfill()
         }
-        
+
         wait(for: [expectation], timeout: 1.0)
     }
-    
+
     func testfetchMostViewedProgramsFailsWithRequestError() {
         let dvrSession = Session(cassetteName: "StoreProgramDownloader.fetchMostViewedPrograms.fail.request")
         let downloader = StoreProgramDownloader(session: dvrSession)
         let expectation = XCTestExpectation(description: "Fetch Most Viewed Programs")
-        
-        downloader.fetchPrograms(forType: .mostViewed, offset: 0) { programs, error in
+
+        downloader.fetchPrograms(forType: .mostViewed, offset: 0) { _, error in
             guard let error = error else { XCTFail("no error received"); return }
             switch error {
             case let .request(error: _, statusCode: statusCode):
@@ -228,16 +228,16 @@ class StoreProgramsDowloaderTests: XCTestCase {
             }
             expectation.fulfill()
         }
-        
+
         wait(for: [expectation], timeout: 1.0)
     }
-    
+
     func testfetchMostViewedProgramsFailsWithParseError() {
         let dvrSession = Session(cassetteName: "StoreProgramDownloader.fetchMostViewedPrograms.fail.parse")
         let downloader = StoreProgramDownloader(session: dvrSession)
         let expectation = XCTestExpectation(description: "Fetch Most Viewed Programs")
-        
-        downloader.fetchPrograms(forType: .mostViewed, offset: 0) { programs, error in
+
+        downloader.fetchPrograms(forType: .mostViewed, offset: 0) { _, error in
             guard let error = error else { XCTFail("no error received"); return }
             switch error {
             case .parse(error: _):
@@ -247,53 +247,53 @@ class StoreProgramsDowloaderTests: XCTestCase {
             }
             expectation.fulfill()
         }
-        
+
         wait(for: [expectation], timeout: 1.0)
     }
 
-    //MARK: - Most Recent Programs
-    
+    // MARK: - Most Recent Programs
+
     func testfetchMostRecentProgramsSucceeds() {
         let dvrSession = Session(cassetteName: "StoreProgramDownloader.fetchMostRecentPrograms.success")
         let downloader = StoreProgramDownloader(session: dvrSession)
         let expectation = XCTestExpectation(description: "Fetch Most Recent Programs")
-        
+
         downloader.fetchPrograms(forType: .mostRecent, offset: 0) { programs, error in
             XCTAssertNil(error, "request failed")
             guard let programs = programs else { XCTFail("no most recent programs found"); return }
             guard let item = programs.projects.first else { XCTFail("no most recent programs in array"); return }
-            
+
             // check that the first item in the first category has no empty properties (except cachedData)
             XCTAssertNotEqual(item.projectId, 0)
             XCTAssertNotEqual(item.projectName, "")
             XCTAssertNotEqual(item.author, "")
-            
+
             expectation.fulfill()
         }
-        
+
         wait(for: [expectation], timeout: 1.0)
     }
-    
+
     func testfetchMostRecentProgramsFailsWithUnexpectedError() {
         let mockSession = URLSessionMock()
         let downloader = StoreProgramDownloader(session: mockSession)
         let expectation = XCTestExpectation(description: "Fetch Most Recent Programs")
-        
-        downloader.fetchPrograms(forType: .mostRecent, offset: 0) { programs, error in
+
+        downloader.fetchPrograms(forType: .mostRecent, offset: 0) { _, error in
             guard let error = error else { XCTFail("no error returned"); return }
             XCTAssertEqual(error, .unexpectedError)
             expectation.fulfill()
         }
-        
+
         wait(for: [expectation], timeout: 1.0)
     }
-    
+
     func testfetchMostRecentProgramsFailsWithRequestError() {
         let dvrSession = Session(cassetteName: "StoreProgramDownloader.fetchMostRecentPrograms.fail.request")
         let downloader = StoreProgramDownloader(session: dvrSession)
         let expectation = XCTestExpectation(description: "Fetch Most Recent Programs")
-        
-        downloader.fetchPrograms(forType: .mostRecent, offset: 0) { programs, error in
+
+        downloader.fetchPrograms(forType: .mostRecent, offset: 0) { _, error in
             guard let error = error else { XCTFail("no error received"); return }
             switch error {
             case let .request(error: _, statusCode: statusCode):
@@ -303,16 +303,16 @@ class StoreProgramsDowloaderTests: XCTestCase {
             }
             expectation.fulfill()
         }
-        
+
         wait(for: [expectation], timeout: 1.0)
     }
-    
+
     func testfetchMostRecentProgramsFailsWithParseError() {
         let dvrSession = Session(cassetteName: "StoreProgramDownloader.fetchMostRecentPrograms.fail.parse")
         let downloader = StoreProgramDownloader(session: dvrSession)
         let expectation = XCTestExpectation(description: "Fetch Most Recent Programs")
-        
-        downloader.fetchPrograms(forType: .mostRecent, offset: 0) { programs, error in
+
+        downloader.fetchPrograms(forType: .mostRecent, offset: 0) { _, error in
             guard let error = error else { XCTFail("no error received"); return }
             switch error {
             case .parse(error: _):
@@ -322,56 +322,56 @@ class StoreProgramsDowloaderTests: XCTestCase {
             }
             expectation.fulfill()
         }
-        
+
         wait(for: [expectation], timeout: 1.0)
     }
-    
-    //MARK: - Search Store
-    
+
+    // MARK: - Search Store
+
     func testSearchProgramsSucceeds() {
         let dvrSession = Session(cassetteName: "StoreProgramDownloader.searchPrograms.success")
         let downloader = StoreProgramDownloader(session: dvrSession)
         let expectation = XCTestExpectation(description: "Fetch Search Programs")
         let searchTerm = "Galaxy"
-        
+
         downloader.fetchSearchQuery(searchTerm: searchTerm) { programs, error in
             XCTAssertNil(error, "request failed")
             guard let programs = programs else { XCTFail("no programs found"); return }
             guard let item = programs.projects.first else { XCTFail("no programs in array"); return }
-            
+
             // check that the first item in the first category has no empty properties (except cachedData)
             XCTAssertNotEqual(item.projectId, 0)
             XCTAssertNotEqual(item.projectName, "")
             XCTAssertNotEqual(item.author, "")
-            
+
             expectation.fulfill()
         }
-        
+
         wait(for: [expectation], timeout: 1.0)
     }
-    
+
     func testfetchSearchProgramsFailsWithUnexpectedError() {
         let mockSession = URLSessionMock()
         let downloader = StoreProgramDownloader(session: mockSession)
         let expectation = XCTestExpectation(description: "Fetch Search Programs")
         let searchTerm = "Galaxy"
-        
-        downloader.fetchSearchQuery(searchTerm: searchTerm) { programs, error in
+
+        downloader.fetchSearchQuery(searchTerm: searchTerm) { _, error in
             guard let error = error else { XCTFail("no error returned"); return }
             XCTAssertEqual(error, .unexpectedError)
             expectation.fulfill()
         }
-        
+
         wait(for: [expectation], timeout: 1.0)
     }
-    
+
     func testSearchProgramsFailsWithRequestError() {
         let dvrSession = Session(cassetteName: "StoreProgramDownloader.searchPrograms.fail.request")
         let downloader = StoreProgramDownloader(session: dvrSession)
         let expectation = XCTestExpectation(description: "Fetch Search Programs")
         let searchTerm = "Galaxy"
-        
-        downloader.fetchSearchQuery(searchTerm: searchTerm) { programs, error in
+
+        downloader.fetchSearchQuery(searchTerm: searchTerm) { _, error in
             guard let error = error else { XCTFail("no error received"); return }
             switch error {
             case let .request(error: _, statusCode: statusCode):
@@ -381,17 +381,17 @@ class StoreProgramsDowloaderTests: XCTestCase {
             }
             expectation.fulfill()
         }
-        
+
         wait(for: [expectation], timeout: 1.0)
     }
-    
+
     func testSearchProgramsFailsWithParseError() {
         let dvrSession = Session(cassetteName: "StoreProgramDownloader.fetchSearchPrograms.fail.parse")
         let downloader = StoreProgramDownloader(session: dvrSession)
         let expectation = XCTestExpectation(description: "Fetch Search Programs")
         let searchTerm = "Galaxy"
-        
-        downloader.fetchSearchQuery(searchTerm: searchTerm) { programs, error in
+
+        downloader.fetchSearchQuery(searchTerm: searchTerm) { _, error in
             guard let error = error else { XCTFail("no error received"); return }
             switch error {
             case .parse(error: _):
@@ -401,7 +401,7 @@ class StoreProgramsDowloaderTests: XCTestCase {
             }
             expectation.fulfill()
         }
-        
+
         wait(for: [expectation], timeout: 1.0)
     }
 
@@ -411,10 +411,25 @@ class StoreProgramsDowloaderTests: XCTestCase {
         let dvrSession = Session(cassetteName: "StoreProgramDownloader.downloadData.success")
         let downloader = StoreProgramDownloader(session: dvrSession)
 
-        let program = StoreProgram(projectId: 821, projectName: "Whack A Mole", projectNameShort: "", author: "VesnaK", description: "", version: "", views: 0, downloads: 0, isPrivate: false, uploaded: 0, uploadedString: "", screenshotBig: "", screenshotSmall: "", projectUrl: "", downloadUrl: "", fileSize: 1.0, featuredImage: "")
+        let program = StoreProgram(projectId: 821,
+                                   projectName: "Whack A Mole",
+                                   projectNameShort: "",
+                                   author: "VesnaK",
+                                   description: "",
+                                   version: "",
+                                   views: 0,
+                                   downloads: 0,
+                                   uploaded: 0,
+                                   uploadedString: "",
+                                   screenshotBig: "",
+                                   screenshotSmall: "",
+                                   projectUrl: "",
+                                   downloadUrl: "",
+                                   fileSize: 1.0,
+                                   featuredImage: "")
         let expectation = XCTestExpectation(description: "Download Featured Program")
 
-        downloader.downloadProgram(for: program){ data, error in
+        downloader.downloadProgram(for: program) { data, error in
             XCTAssertNil(error, "request failed")
             guard data != nil else { XCTFail("no data received"); return }
             expectation.fulfill()
@@ -422,29 +437,59 @@ class StoreProgramsDowloaderTests: XCTestCase {
 
         wait(for: [expectation], timeout: 1.0)
     }
-    
+
     func testDownloadDataFailsWithUnexpectedError() {
         let mockSession = URLSessionMock()
         let downloader = StoreProgramDownloader(session: mockSession)
         let expectation = XCTestExpectation(description: "Fetch Featured Programs")
-        let program = StoreProgram(projectId: 821, projectName: "Whack A Mole", projectNameShort: "", author: "VesnaK", description: "", version: "", views: 0, downloads: 0, isPrivate: false, uploaded: 0, uploadedString: "", screenshotBig: "", screenshotSmall: "", projectUrl: "", downloadUrl: "", fileSize: 1.0, featuredImage: "")
-        
-        downloader.downloadProgram(for: program) { programs, error in
+        let program = StoreProgram(projectId: 821,
+                                   projectName: "Whack A Mole",
+                                   projectNameShort: "",
+                                   author: "VesnaK",
+                                   description: "",
+                                   version: "",
+                                   views: 0,
+                                   downloads: 0,
+                                   uploaded: 0,
+                                   uploadedString: "",
+                                   screenshotBig: "",
+                                   screenshotSmall: "",
+                                   projectUrl: "",
+                                   downloadUrl: "",
+                                   fileSize: 1.0,
+                                   featuredImage: "")
+
+        downloader.downloadProgram(for: program) { _, error in
             guard let error = error else { XCTFail("no error returned"); return }
             XCTAssertEqual(error, .unexpectedError)
             expectation.fulfill()
         }
-        
+
         wait(for: [expectation], timeout: 1.0)
     }
-    
+
     func testDownloadDataFailsWithRequestError() {
         let dvrSession = Session(cassetteName: "StoreProgramDownloader.downloadData.fail.request")
         let downloader = StoreProgramDownloader(session: dvrSession)
         let expectation = XCTestExpectation(description: "Fetch Featured Programs")
-        let program = StoreProgram(projectId: 821, projectName: "Whack A Mole", projectNameShort: "", author: "VesnaK", description: "", version: "", views: 0, downloads: 0, isPrivate: false, uploaded: 0, uploadedString: "", screenshotBig: "", screenshotSmall: "", projectUrl: "", downloadUrl: "", fileSize: 1.0, featuredImage: "")
-        
-        downloader.downloadProgram(for: program) { programs, error in
+        let program = StoreProgram(projectId: 821,
+                                   projectName: "Whack A Mole",
+                                   projectNameShort: "",
+                                   author: "VesnaK",
+                                   description: "",
+                                   version: "",
+                                   views: 0,
+                                   downloads: 0,
+                                   uploaded: 0,
+                                   uploadedString: "",
+                                   screenshotBig: "",
+                                   screenshotSmall: "",
+                                   projectUrl: "",
+                                   downloadUrl: "",
+                                   fileSize: 1.0,
+                                   featuredImage: "")
+
+        downloader.downloadProgram(for: program) { _, error in
             guard let error = error else { XCTFail("no error received"); return }
             switch error {
             case let .request(error: _, statusCode: statusCode):
@@ -461,7 +506,7 @@ class StoreProgramsDowloaderTests: XCTestCase {
 // Equatable conformance is added here in order to be able to compare a download operation's error code.
 // Wrapped error values won't be compared.
 extension StoreProgramDownloaderError: Equatable {
-    public static func ==(lhs: StoreProgramDownloaderError, rhs: StoreProgramDownloaderError) -> Bool {
+    public static func == (lhs: StoreProgramDownloaderError, rhs: StoreProgramDownloaderError) -> Bool {
         switch (lhs, rhs) {
         case (.request, .request), (.parse, .parse), (.unexpectedError, .unexpectedError):
             return true

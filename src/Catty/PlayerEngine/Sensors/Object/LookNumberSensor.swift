@@ -21,7 +21,7 @@
  */
 
 @objc class LookNumberSensor: NSObject, ObjectDoubleSensor {
-    
+
     @objc static let tag = "OBJECT_LOOK_NUMBER"
     static let name = kUIFEObjectLookNumber
     static let defaultRawValue = 0.0
@@ -31,26 +31,26 @@
     func tag() -> String {
         return type(of: self).tag
     }
-    
+
     static func rawValue(for spriteObject: SpriteObject) -> Double {
         guard let spriteNode = spriteObject.spriteNode else { return LookNumberSensor.defaultRawValue }
         guard let currentLook = spriteNode.currentLook else { return LookNumberSensor.defaultRawValue }
         let index = spriteObject.lookList.index(of: currentLook)
         return Double(index)
     }
-    
+
     static func convertToStandardized(rawValue: Double, for spriteObject: SpriteObject) -> Double {
         return rawValue + 1
     }
-    
+
     static func setRawValue(userInput: Double, for spriteObject: SpriteObject) {
         fatalError("This sensor is read-only")
     }
-    
+
     static func convertToRaw(userInput: Double, for spriteObject: SpriteObject) -> Double {
         fatalError("This sensor is read-only")
     }
-    
+
     func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
         if spriteObject.isBackground() == true {
             return .hidden

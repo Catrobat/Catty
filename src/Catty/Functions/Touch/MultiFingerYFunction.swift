@@ -21,39 +21,39 @@
  */
 
 class MultiFingerYFunction: SingleParameterDoubleObjectFunction {
-    
+
     static var tag = "MULTI_FINGER_Y"
     static var name = kUIFESensorFingerY
     static var defaultValue = 0.0
     static var requiredResource = ResourceType.touchHandler
     static var isIdempotent = false
     static let position = 170
-    
+
     let getTouchManager: () -> TouchManagerProtocol?
-    
+
     init(touchManagerGetter: @escaping () -> TouchManagerProtocol?) {
         self.getTouchManager = touchManagerGetter
     }
-    
+
     func tag() -> String {
         return type(of: self).tag
     }
-    
+
     func firstParameter() -> FunctionParameter {
         return .number(defaultValue: 1)
     }
-    
+
     func value(parameter: AnyObject?, spriteObject: SpriteObject) -> Double {
         guard let touchNumber = parameter as? Double else { return type(of: self).defaultValue }
         guard let position = getTouchManager()?.getPositionInScene(for: Int(touchNumber)) else { return type(of: self).defaultValue }
         return convertToStandardized(rawValue: Double(position.y), for: spriteObject)
     }
-    
+
     func convertToStandardized(rawValue: Double, for spriteObject: SpriteObject) -> Double {
         guard let scene = spriteObject.spriteNode.scene else { return type(of: self).defaultValue }
-        return Double(scene.size.height)/2.0 - rawValue
+        return Double(scene.size.height) / 2.0 - rawValue
     }
-    
+
     func formulaEditorSection() -> FormulaEditorSection {
         return .device(position: type(of: self).position)
     }

@@ -23,18 +23,18 @@
 extension ChangeXByNBrick: CBInstructionProtocol {
 
     func instruction() -> CBInstruction {
-        return .action { (context) in SKAction.run(self.actionBlock(context.formulaInterpreter)) }
+        return .action { context in SKAction.run(self.actionBlock(context.formulaInterpreter)) }
     }
-    
-    func actionBlock(_ formulaInterpreter: FormulaInterpreterProtocol) -> ()->() {
+
+    func actionBlock(_ formulaInterpreter: FormulaInterpreterProtocol) -> () -> Void {
         guard let object = self.script?.object,
             let spriteNode = object.spriteNode,
             let xMovement = self.xMovement
             else { fatalError("This should never happen!") }
-        
+
         return {
             let xMov = formulaInterpreter.interpretDouble(xMovement, for: object)
-            spriteNode.catrobatPositionX = spriteNode.catrobatPositionX + xMov
+            spriteNode.catrobatPositionX += xMov
         }
     }
 }

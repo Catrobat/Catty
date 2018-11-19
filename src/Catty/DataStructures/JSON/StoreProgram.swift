@@ -29,7 +29,6 @@ struct StoreProgram: Codable {
     let version: String?
     let views: Int?
     let downloads: Int?
-    let isPrivate: Bool?
     let uploaded: Int?
     let uploadedString: String?
     let screenshotBig: String?
@@ -38,7 +37,8 @@ struct StoreProgram: Codable {
     let downloadUrl: String?
     let fileSize: Float?
     let featuredImage: String?
-    
+    let isPrivate: Bool! = false
+
     private enum CodingKeys: String, CodingKey {
         case projectId = "ProjectId"
         case projectName = "ProjectName"
@@ -48,7 +48,6 @@ struct StoreProgram: Codable {
         case version = "Version"
         case views = "Views"
         case downloads = "Downloads"
-        case isPrivate = "Private"
         case uploaded = "Uploaded"
         case uploadedString = "UploadedString"
         case screenshotBig = "ScreenshotBig"
@@ -57,5 +56,6 @@ struct StoreProgram: Codable {
         case downloadUrl = "DownloadUrl"
         case fileSize = "FileSize"
         case featuredImage = "FeaturedImage"
+        case isPrivate = "Private"
     }
 }

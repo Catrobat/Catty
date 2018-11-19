@@ -23,23 +23,23 @@
 @objc extension MoveNStepsBrick: CBInstructionProtocol {
 
     @nonobjc func instruction() -> CBInstruction {
-        return .action { (context) in SKAction.run(self.actionBlock(context.formulaInterpreter)) }
+        return .action { context in SKAction.run(self.actionBlock(context.formulaInterpreter)) }
     }
-    
-    @objc func actionBlock(_ formulaInterpreter: FormulaInterpreterProtocol) -> ()->() {
+
+    @objc func actionBlock(_ formulaInterpreter: FormulaInterpreterProtocol) -> () -> Void {
         guard let object = self.script?.object,
             let spriteNode = object.spriteNode,
             let stepsFormula = self.steps
-        else { fatalError("This should never happen!") }
+            else { fatalError("This should never happen!") }
 
         return {
             let steps = formulaInterpreter.interpretDouble(stepsFormula, for: object)
             let standardizedRotation = spriteNode.catrobatRotation
             let rotationRadians = Util.degree(toRadians: Double(standardizedRotation))
-            
+
             let xPosition = spriteNode.catrobatPositionX + (steps * sin(rotationRadians))
             let yPosition = spriteNode.catrobatPositionY + (steps * cos(rotationRadians))
-            
+
             spriteNode.catrobatPositionX = xPosition
             spriteNode.catrobatPositionY = yPosition
         }

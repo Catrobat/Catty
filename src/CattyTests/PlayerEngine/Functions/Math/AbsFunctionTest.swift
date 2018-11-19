@@ -25,48 +25,50 @@ import XCTest
 @testable import Pocket_Code
 
 class AbsFunctionTest: XCTestCase {
-    
+
     var function: AbsFunction!
-    
+
     override func setUp() {
+        super.setUp()
         function = AbsFunction()
     }
-    
+
     override func tearDown() {
         function = nil
+        super.tearDown()
     }
-    
+
     func testDefaultValue() {
-        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: "invalidParameter" as AnyObject), accuracy: 0.0001)
-        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: nil), accuracy: 0.0001)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: "invalidParameter" as AnyObject), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: nil), accuracy: Double.epsilon)
     }
-    
+
     func testValue() {
-        XCTAssertEqual(abs(-15), function.value(parameter: -15 as AnyObject), accuracy: 0.0001)
-        
-        XCTAssertEqual(abs(99), function.value(parameter: 99 as AnyObject), accuracy: 0.0001)
+        XCTAssertEqual(abs(-15), function.value(parameter: -15 as AnyObject), accuracy: Double.epsilon)
+
+        XCTAssertEqual(abs(99), function.value(parameter: 99 as AnyObject), accuracy: Double.epsilon)
     }
-    
+
     func testParameter() {
         XCTAssertEqual(.number(defaultValue: 0), function.firstParameter())
     }
-    
+
     func testTag() {
         XCTAssertEqual("ABS", type(of: function).tag)
     }
-    
+
     func testName() {
         XCTAssertEqual("abs", type(of: function).name)
     }
-    
+
     func testRequiredResources() {
         XCTAssertEqual(ResourceType.noResources, type(of: function).requiredResource)
     }
-    
+
     func testIsIdempotent() {
         XCTAssertTrue(type(of: function).isIdempotent)
     }
-    
+
     func testFormulaEditorSection() {
         XCTAssertEqual(.math(position: type(of: function).position), function.formulaEditorSection())
     }

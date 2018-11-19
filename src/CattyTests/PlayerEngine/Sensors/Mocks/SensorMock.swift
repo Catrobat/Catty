@@ -23,27 +23,27 @@
 @testable import Pocket_Code
 
 class SensorMock: Sensor {
-    
+
     static var tag = "sensorTag"
     static var name = "name"
     static var defaultRawValue: Double = 0
     static var requiredResource = ResourceType.noResources
     private let mockedSection: FormulaEditorSection
     private let mockedTag: String
-    
+
     init(tag: String, formulaEditorSection: FormulaEditorSection) {
         self.mockedSection = formulaEditorSection
         self.mockedTag = tag
     }
-    
+
     convenience init(tag: String) {
         self.init(tag: tag, formulaEditorSection: .hidden)
     }
-    
+
     func tag() -> String {
         return mockedTag
     }
-    
+
     func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
         return mockedSection
     }

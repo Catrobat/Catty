@@ -27,15 +27,15 @@ class FalseFunction: ZeroParameterDoubleFunction {
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = true
     static let position = 310
-    
+
     func tag() -> String {
         return type(of: self).tag
     }
-    
+
     func value() -> Double {
         return 0.0
     }
-    
+
     func formulaEditorSection() -> FormulaEditorSection {
         return .math(position: type(of: self).position)
     }

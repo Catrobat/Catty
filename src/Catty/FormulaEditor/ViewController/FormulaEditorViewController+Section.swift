@@ -21,7 +21,7 @@
  */
 
 extension FormulaEditorViewController {
-    
+
     @objc func initMathSection(scrollView: UIScrollView, buttonHeight: CGFloat) -> [UIButton] {
         let items = formulaManager.formulaEditorItemsForMathSection(spriteObject: object)
         return initWithItems(formulaEditorItems: items, scrollView: scrollView, buttonHeight: buttonHeight)
@@ -31,26 +31,26 @@ extension FormulaEditorViewController {
         let items = formulaManager.formulaEditorItemsForObjectSection(spriteObject: object)
         return initWithItems(formulaEditorItems: items, scrollView: scrollView, buttonHeight: buttonHeight)
     }
-    
+
     @objc func initSensorSection(scrollView: UIScrollView, buttonHeight: CGFloat) -> [UIButton] {
         let items = formulaManager.formulaEditorItemsForDeviceSection(spriteObject: object)
         return initWithItems(formulaEditorItems: items, scrollView: scrollView, buttonHeight: buttonHeight)
     }
-    
+
     private func initWithItems(formulaEditorItems: [FormulaEditorItem], scrollView: UIScrollView, buttonHeight: CGFloat) -> [UIButton] {
         var topAnchorView: UIView?
         var buttons = [UIButton]()
-        
+
         for item in formulaEditorItems {
             let button = FormulaEditorButton(formulaEditorItem: item)
             topAnchorView = addButtonToScrollView(button: button, scrollView: scrollView, topAnchorView: topAnchorView, buttonHeight: buttonHeight)
             buttons.append(topAnchorView as! UIButton)
         }
-        
+
         resizeSection(scrollView: scrollView, for: buttons, with: buttonHeight)
         return buttons
     }
-    
+
     @objc func buttonPressed(sender: UIButton) {
         if let button = sender as? FormulaEditorButton {
             if let sensor = button.sensor {
@@ -60,34 +60,34 @@ extension FormulaEditorViewController {
             }
         }
     }
-    
+
     private func addButtonToScrollView(button: FormulaEditorButton, scrollView: UIScrollView, topAnchorView: UIView?, buttonHeight: CGFloat) -> UIButton {
         button.addTarget(self, action: #selector(buttonPressed(sender:)), for: .touchUpInside)
-        
+
         scrollView.addSubview(button)
-        if (topAnchorView == nil) {
+        if topAnchorView == nil {
             button.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 0).isActive = true
         } else {
             button.topAnchor.constraint(equalTo: (topAnchorView?.bottomAnchor)!, constant: 0).isActive = true
         }
-        
+
         button.heightAnchor.constraint(equalToConstant: buttonHeight).isActive = true
         button.widthAnchor.constraint(equalTo: scrollView.widthAnchor, constant: 0).isActive = true
         button.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 0).isActive = true
-        
-        return button;
+
+        return button
     }
-    
+
     private func resizeSection(scrollView: UIScrollView, for buttons: [UIButton], with buttonHeight: CGFloat) {
         scrollView.frame = CGRect(x: scrollView.frame.origin.x, y: scrollView.frame.origin.y, width: scrollView.frame.size.width, height: CGFloat(buttons.count) * buttonHeight)
         scrollView.contentSize = CGSize(width: scrollView.frame.size.width, height: CGFloat(buttons.count) * buttonHeight)
     }
-    
+
     private func handleInput(for sensor: Sensor) {
         self.internFormula.handleKeyInput(for: sensor)
         self.handleInput()
     }
-    
+
     private func handleInput(for function: Function) {
         self.internFormula.handleKeyInput(for: function)
         self.handleInput()

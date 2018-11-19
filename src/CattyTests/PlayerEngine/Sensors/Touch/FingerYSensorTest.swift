@@ -25,61 +25,63 @@ import XCTest
 @testable import Pocket_Code
 
 final class FingerYSensorTest: XCTestCase {
-    
+
     var touchManager: TouchManagerMock!
     var sensor: FingerYSensor!
-    
+
     let screenWidth = 500.0
     let screenHeight = 500.0
-    
+
     var spriteObject: SpriteObject!
     var spriteNode: CBSpriteNodeMock!
-    
+
     override func setUp() {
+        super.setUp()
         touchManager = TouchManagerMock()
         sensor = FingerYSensor { [weak self] in self?.touchManager }
-        
+
         spriteObject = SpriteObject()
         spriteNode = CBSpriteNodeMock(spriteObject: spriteObject)
-        spriteNode.mockedScene = SceneBuilder(program: ProgramMock(width:CGFloat(screenWidth), andHeight: CGFloat(screenHeight))).build()
+        spriteNode.mockedScene = SceneBuilder(program: ProgramMock(width: CGFloat(screenWidth), andHeight: CGFloat(screenHeight))).build()
     }
-    
+
     override func tearDown() {
         sensor = nil
         touchManager = nil
         spriteNode = nil
+        super.tearDown()
     }
-    
+
     func testDefaultRawValue() {
         let sensor = FingerYSensor { nil }
-        XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(), accuracy: 0.0001)
+        XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(), accuracy: Double.epsilon)
     }
-    
+
     func testRawValue() {
         touchManager.lastTouch = CGPoint(x: 105, y: 201)
         XCTAssertEqual(201, sensor.rawValue())
-        
+
         touchManager.lastTouch = CGPoint(x: 45, y: -13)
         XCTAssertEqual(-13, sensor.rawValue())
     }
-    
+
     func testConvertToStandardized() {
         touchManager.lastTouch = CGPoint(x: 200, y: 200) // a random point to mock the screen touching
-        
-        XCTAssertEqual(Double(screenHeight/2), sensor.convertToStandardized(rawValue: 0, for: spriteObject))
-        XCTAssertEqual(Double(screenHeight/2) - 100, sensor.convertToStandardized(rawValue: 100, for: spriteObject))
-        XCTAssertEqual(Double(screenHeight/2) - 333, sensor.convertToStandardized(rawValue: 333, for: spriteObject))
-        XCTAssertEqual(Double(screenHeight/2) + 333, sensor.convertToStandardized(rawValue: -333, for: spriteObject))
+
+        XCTAssertEqual(Double(screenHeight / 2), sensor.convertToStandardized(rawValue: 0, for: spriteObject))
+        XCTAssertEqual(Double(screenHeight / 2) - 100, sensor.convertToStandardized(rawValue: 100, for: spriteObject))
+        XCTAssertEqual(Double(screenHeight / 2) - 333, sensor.convertToStandardized(rawValue: 333, for: spriteObject))
+        XCTAssertEqual(Double(screenHeight / 2) + 333, sensor.convertToStandardized(rawValue: -333, for: spriteObject))
     }
-    
+
     func testTag() {
         XCTAssertEqual("FINGER_Y", sensor.tag())
     }
-    
+
     func testRequiredResources() {
         XCTAssertEqual(ResourceType.touchHandler, type(of: sensor).requiredResource)
     }
-    
+
     func testFormulaEditorSection() {
         XCTAssertEqual(.device(position: type(of: sensor).position), sensor.formulaEditorSection(for: SpriteObject()))
     }

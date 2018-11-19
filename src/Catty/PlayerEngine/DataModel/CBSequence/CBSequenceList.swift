@@ -20,20 +20,20 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-final class CBSequenceList : CBSequenceProtocol, CBSequenceVisitProtocol, Sequence {
+final class CBSequenceList: CBSequenceProtocol, CBSequenceVisitProtocol, Sequence {
 
     // MARK: - Properties
     final weak var rootSequenceList: CBScriptSequenceList?
     lazy var sequenceList = [CBSequenceProtocol]()
-    var count : Int { return sequenceList.count }
+    var count: Int { return sequenceList.count }
 
     // MARK: - Initializers
-    init(rootSequenceList : CBScriptSequenceList?) {
+    init(rootSequenceList: CBScriptSequenceList?) {
         self.rootSequenceList = rootSequenceList
     }
 
     // MARK: - Operations
-    func append(_ sequence : CBSequenceProtocol) {
+    func append(_ sequence: CBSequenceProtocol) {
         sequenceList.append(sequence)
     }
 
@@ -52,7 +52,7 @@ final class CBSequenceList : CBSequenceProtocol, CBSequenceVisitProtocol, Sequen
     }
 
     func isEmpty() -> Bool {
-        return count == 0
+        return sequenceList.isEmpty
     }
 
     func accept(_ visitor: CBOptimizeSequenceVisitorProtocol) {
@@ -62,6 +62,6 @@ final class CBSequenceList : CBSequenceProtocol, CBSequenceVisitProtocol, Sequen
 }
 
 // MARK: - Custom operators
-func +=(left: CBSequenceList, right: CBSequenceProtocol) {
+func += (left: CBSequenceList, right: CBSequenceProtocol) {
     left.append(right)
 }

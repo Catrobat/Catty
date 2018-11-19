@@ -20,29 +20,29 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import XCTest
-@testable import Pocket_Code
 import Kingfisher
+@testable import Pocket_Code
+import XCTest
 
-private let exampleData = Data(base64Encoded: "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAEElEQVR42gEFAPr/AP////8J+wP9vTv7fQAAAABJRU5ErkJggg==")! // 1x1 png image
+private let kExampleData = Data(base64Encoded: "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAEElEQVR42gEFAPr/AP////8J+wP9vTv7fQAAAABJRU5ErkJggg==")! // 1x1 png image
 
 class MediaLibraryCollectionViewDataSourceTests: XCTestCase {
 
     let exampleCategories = [
-        [MediaItem(name: "a", category: "A", cachedData: exampleData)],
+        [MediaItem(name: "a", category: "A", cachedData: kExampleData)],
         [MediaItem(category: "B"), MediaItem(category: "B")],
         [MediaItem(category: "C"), MediaItem(category: "C"), MediaItem(category: "C")]
     ]
 
     var downloaderMock: MediaLibraryDownloaderMock!
     var collectionView: UICollectionView!
-    
+
     override func setUp() {
         super.setUp()
         self.downloaderMock = MediaLibraryDownloaderMock()
         self.collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     }
-    
+
     override func tearDown() {
         self.downloaderMock = nil
         self.collectionView = nil
@@ -103,13 +103,13 @@ class MediaLibraryCollectionViewDataSourceTests: XCTestCase {
 
             let headerKind = UICollectionElementKindSectionHeader
             var view = dataSource.collectionView(self.collectionView, viewForSupplementaryElementOfKind: headerKind, at: IndexPath(item: 0, section: 0)) as! LibraryCategoryCollectionReusableView
-            XCTAssertEqual(view.titleLabel.text, "A")
+            XCTAssertEqual(view.title, "A")
 
             view = dataSource.collectionView(self.collectionView, viewForSupplementaryElementOfKind: headerKind, at: IndexPath(item: 0, section: 1)) as! LibraryCategoryCollectionReusableView
-            XCTAssertEqual(view.titleLabel.text, "B")
+            XCTAssertEqual(view.title, "B")
 
             view = dataSource.collectionView(self.collectionView, viewForSupplementaryElementOfKind: headerKind, at: IndexPath(item: 0, section: 2)) as! LibraryCategoryCollectionReusableView
-            XCTAssertEqual(view.titleLabel.text, "C")
+            XCTAssertEqual(view.title, "C")
 
             expectation.fulfill()
         }
@@ -141,7 +141,7 @@ class MediaLibraryCollectionViewDataSourceTests: XCTestCase {
     func testImageCellContentFromMediaLibrary() {
         clearKingfisherCache()
         self.downloaderMock.categories = self.exampleCategories
-        self.downloaderMock.data = exampleData
+        self.downloaderMock.data = kExampleData
         let dataSource = MediaLibraryCollectionViewDataSource.dataSource(for: .looks, with: self.downloaderMock)
         self.collectionView.dataSource = dataSource
         dataSource.registerContentViewClasses(self.collectionView)
@@ -173,7 +173,7 @@ class MediaLibraryCollectionViewDataSourceTests: XCTestCase {
         // store image in cache
         let indexPath = IndexPath(item: 0, section: 1)
         let resource = ImageResource(downloadURL: self.exampleCategories[indexPath].downloadURL)
-        ImageCache.default.store(UIImage(data: exampleData)!, forKey: resource.cacheKey)
+        ImageCache.default.store(UIImage(data: kExampleData)!, forKey: resource.cacheKey)
 
         let expectation = XCTestExpectation(description: "Fetch looks")
 
@@ -197,7 +197,7 @@ class MediaLibraryCollectionViewDataSourceTests: XCTestCase {
     func testSelectingImageCellProvidesCachedData() {
         clearKingfisherCache()
         self.downloaderMock.categories = self.exampleCategories
-        self.downloaderMock.data = exampleData
+        self.downloaderMock.data = kExampleData
         let dataSource = MediaLibraryCollectionViewDataSource.dataSource(for: .looks, with: self.downloaderMock) as! ImagesLibraryCollectionViewDataSource
         self.collectionView.dataSource = dataSource
         dataSource.registerContentViewClasses(self.collectionView)
@@ -333,7 +333,7 @@ class MediaLibraryCollectionViewDataSourceTests: XCTestCase {
 
     func testSoundCellFetchAndPlaySound() {
         self.downloaderMock.categories = self.exampleCategories
-        self.downloaderMock.data = exampleData
+        self.downloaderMock.data = kExampleData
         let dataSource = MediaLibraryCollectionViewDataSource.dataSource(for: .sounds, with: self.downloaderMock)
         self.collectionView.dataSource = dataSource
         dataSource.registerContentViewClasses(self.collectionView)
@@ -362,7 +362,7 @@ class MediaLibraryCollectionViewDataSourceTests: XCTestCase {
 
     func testSelectingSoundCellProvidesCachedData() {
         self.downloaderMock.categories = self.exampleCategories
-        self.downloaderMock.data = exampleData
+        self.downloaderMock.data = kExampleData
         let dataSource = MediaLibraryCollectionViewDataSource.dataSource(for: .sounds, with: self.downloaderMock) as! SoundsLibraryCollectionViewDataSource
         self.collectionView.dataSource = dataSource
         dataSource.registerContentViewClasses(self.collectionView)
@@ -456,7 +456,7 @@ private extension MediaItem {
 // Equatable conformance is added here in order to be able to check a cell's state easily. The image of the
 // state .loaded is not taken into conisderation.
 extension LibraryImageCollectionViewCell.State: Equatable {
-    public static func ==(lhs: LibraryImageCollectionViewCell.State, rhs: LibraryImageCollectionViewCell.State) -> Bool {
+    public static func == (lhs: LibraryImageCollectionViewCell.State, rhs: LibraryImageCollectionViewCell.State) -> Bool {
         switch (lhs, rhs) {
         case (.noImage, .noImage), (.loading, .loading), (.loaded, .loaded):
             return true

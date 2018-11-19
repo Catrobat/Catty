@@ -42,22 +42,22 @@ extension UITestProtocol {
         // finally go back to main menu, because this method is used by other tests
         app.navigationBars["Programs"].buttons["Pocket Code"].tap()
     }
-    
-    func dismissWelcomeScreenIfShown(){
-        
+
+    func dismissWelcomeScreenIfShown() {
+
         let app = XCUIApplication()
-        
-        if(app.buttons["Dismiss"].exists) {
+
+        if app.buttons["Dismiss"].exists {
             app.buttons["Dismiss"].tap()
         }
     }
-    
+
     func waitForElementToAppear(_ element: XCUIElement) -> XCUIElement {
         let expectation = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == true"), object: element)
-        
+
         let result = XCTWaiter().wait(for: [expectation], timeout: 5)
         XCTAssert(result == .completed)
-        
+
         return element
     }
 }

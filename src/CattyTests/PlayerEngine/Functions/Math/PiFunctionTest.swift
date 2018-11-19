@@ -25,41 +25,43 @@ import XCTest
 @testable import Pocket_Code
 
 class PiFunctionTest: XCTestCase {
-    
+
     var function: PiFunction!
-    
+
     override func setUp() {
+        super.setUp()
         self.function = PiFunction()
     }
-    
+
     override func tearDown() {
         self.function = nil
+        super.tearDown()
     }
-    
+
     func testDefaultValue() {
-        XCTAssertEqual(type(of: function).defaultValue, function.value(), accuracy: 0.0001)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(), accuracy: Double.epsilon)
     }
-    
+
     func testValue() {
-        XCTAssertEqual(Double.pi, function.value(), accuracy: 0.0001)
+        XCTAssertEqual(Double.pi, function.value(), accuracy: Double.epsilon)
     }
-    
+
     func testTag() {
         XCTAssertEqual("PI", type(of: function).tag)
     }
-    
+
     func testName() {
         XCTAssertEqual("pi", type(of: function).name)
     }
-    
+
     func testRequiredResources() {
         XCTAssertEqual(ResourceType.noResources, type(of: function).requiredResource)
     }
-    
+
     func testIsIdempotent() {
         XCTAssertTrue(type(of: function).isIdempotent)
     }
-    
+
     func testFormulaEditorSection() {
         XCTAssertEqual(.math(position: type(of: function).position), function.formulaEditorSection())
     }
