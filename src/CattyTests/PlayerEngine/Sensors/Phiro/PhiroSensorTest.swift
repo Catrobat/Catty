@@ -34,7 +34,7 @@ final class PhiroSensorTest: XCTestCase {
     var phiroBottomLeft: PhiroBottomLeftSensor!
     var phiroBottomRight: PhiroBottomRightSensor!
 
-    // TO DO: other tests - raw value and conversions
+    // TODO: other tests - raw value and conversions
 
     override func setUp() {
         super.setUp()
