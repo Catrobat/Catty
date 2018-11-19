@@ -72,7 +72,7 @@ class MediaItemTest: XCTestCase {
     
     func testGroupedByCategoriesPrioritized() {
         var categories = [MediaItem]()
-        XCTAssertTrue(categories.prioritizedCategories.count > 0)
+        XCTAssertTrue(!categories.prioritizedCategories.isEmpty)
         
         let mediaItemA = MediaItem(name: "nameA", fileExtension: "", category: "categoryA", relativePath: "", cachedData: nil)
         let mediaItemB = MediaItem(name: "nameB", fileExtension: "", category: categories.prioritizedCategories[0], relativePath: "", cachedData: nil)

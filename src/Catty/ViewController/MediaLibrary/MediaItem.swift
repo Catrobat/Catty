@@ -25,12 +25,12 @@ struct MediaItem: Codable {
     let fileExtension: String
     let category: String
     let relativePath: String
-
+    
     /// Since the API doesn't offer previews of items it would
     /// be a waste to not keep the already downloaded data
     /// in case the user decides to import the item.
-    var cachedData: Data? = nil
-
+    var cachedData: Data?
+    
     private enum CodingKeys: String, CodingKey {
         case name
         case fileExtension = "extension"
@@ -50,15 +50,15 @@ extension Sequence where Iterator.Element == MediaItem {
     
     // The following categories should be shown on top of the list (IOS-677).
     // TODO fetch ordering information from API
-    var prioritizedCategories: [String] { return
-        ["Pocket Family"]
+    var prioritizedCategories: [String] {
+        return ["Pocket Family"]
     }
-
+    
     var groupedByCategories: [[MediaItem]] {
-
+        
         // a two dimensional list of categories and their items
         var groupedItems = [[MediaItem]]()
-
+        
         // a dictionary of categories mapped to their order of appearance
         var categories = [String: Int]()
         prioritizedCategories.forEach { category in
@@ -77,6 +77,6 @@ extension Sequence where Iterator.Element == MediaItem {
                 groupedItems.append([item])
             }
         }
-        return groupedItems.filter{ $0.count > 0 } // do not show empty categories
+        return groupedItems.filter { !$0.isEmpty } // do not show empty categories
     }
 }
