@@ -29,9 +29,9 @@ class IntroductionPageViewController: UIPageViewController {
 
     /// Content of the pages
     private let content = [
-        IntroductionViewController.Content(title: kLocalizedWelcomeToPocketCode, description: kLocalizedWelcomeDescription, image: #imageLiteral(resourceName: "page1_logo")),
-        IntroductionViewController.Content(title: kLocalizedExploreApps, description: kLocalizedExploreDescription, image: #imageLiteral(resourceName: "page2_explore")),
-        IntroductionViewController.Content(title: kLocalizedCreateAndEdit, description: kLocalizedCreateAndEditDescription, image: #imageLiteral(resourceName: "page3_info"))
+        IntroductionViewController.Content(title: kLocalizedWelcomeToPocketCode, description: kLocalizedWelcomeDescription, image: UIImage(imageLiteralResourceName: "page1_logo")),
+        IntroductionViewController.Content(title: kLocalizedExploreApps, description: kLocalizedExploreDescription, image: UIImage(imageLiteralResourceName: "page2_explore")),
+        IntroductionViewController.Content(title: kLocalizedCreateAndEdit, description: kLocalizedCreateAndEditDescription, image: UIImage(imageLiteralResourceName: "page3_info"))
     ]
 
     /// A flag that is set when scrolling to the extra page without content
@@ -65,8 +65,8 @@ class IntroductionPageViewController: UIPageViewController {
     }
 }
 
-extension IntroductionPageViewController {
-    fileprivate func setupBackground() {
+fileprivate extension IntroductionPageViewController {
+    func setupBackground() {
         guard UIAccessibilityIsReduceTransparencyEnabled() else {
             self.view.backgroundColor = .darkGray
             self.view.alpha = 0.95
@@ -112,7 +112,7 @@ extension IntroductionPageViewController: UIPageViewControllerDataSource {
         if current + 1 < self.content.count {
             viewController.content = self.content[current + 1]
         }
-        self.pages = self.pages + [viewController]
+        self.pages += [viewController]
         return viewController
     }
 

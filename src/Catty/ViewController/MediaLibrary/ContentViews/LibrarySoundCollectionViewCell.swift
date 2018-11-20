@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-protocol LibrarySoundCollectionViewCellDelegate: class {
+protocol LibrarySoundCollectionViewCellDelegate: AnyObject {
     func soundLibraryItemCollectionViewCellDidTapPlayOrStop(_ cell: LibrarySoundCollectionViewCell)
 }
 
@@ -37,7 +37,11 @@ class LibrarySoundCollectionViewCell: UICollectionViewCell {
         self.titleLabel.textColor = .utilityTint()
     }
 
-    @IBAction func playOrStop() {
+    @IBAction private func playOrStopButtonPressed() {
+        playOrStop()
+    }
+
+    func playOrStop() {
         self.delegate?.soundLibraryItemCollectionViewCellDidTapPlayOrStop(self)
     }
 }

@@ -25,7 +25,7 @@ import XCTest
 @testable import Pocket_Code
 
 final class PhiroSensorTest: XCTestCase {
-    
+
     var bluetoothService: BluetoothService!
     var phiroSideLeft: PhiroSideLeftSensor!
     var phiroSideRight: PhiroSideRightSensor!
@@ -33,10 +33,11 @@ final class PhiroSensorTest: XCTestCase {
     var phiroFrontRight: PhiroFrontRightSensor!
     var phiroBottomLeft: PhiroBottomLeftSensor!
     var phiroBottomRight: PhiroBottomRightSensor!
-    
-    // TO DO: other tests - raw value and conversions
-    
+
+    // TODO: other tests - raw value and conversions
+
     override func setUp() {
+        super.setUp()
         bluetoothService = BluetoothService.sharedInstance()
         phiroSideLeft = PhiroSideLeftSensor { [ weak self ] in self?.bluetoothService }
         phiroSideRight = PhiroSideRightSensor { [ weak self ] in self?.bluetoothService }
@@ -45,7 +46,7 @@ final class PhiroSensorTest: XCTestCase {
         phiroBottomLeft = PhiroBottomLeftSensor { [ weak self ] in self?.bluetoothService }
         phiroBottomRight = PhiroBottomRightSensor { [ weak self ] in self?.bluetoothService }
     }
-    
+
     override func tearDown() {
         bluetoothService = nil
         phiroSideLeft = nil
@@ -54,52 +55,53 @@ final class PhiroSensorTest: XCTestCase {
         phiroFrontRight = nil
         phiroBottomLeft = nil
         phiroBottomRight = nil
+        super.tearDown()
     }
-    
+
     func testFormulaEditorSectionFrontLeft() {
         UserDefaults.standard.set(true, forKey: kUsePhiroBricks)
         XCTAssertEqual(.device(position: type(of: phiroFrontLeft).position), phiroFrontLeft.formulaEditorSection(for: SpriteObject()))
-        
+
         UserDefaults.standard.set(false, forKey: kUsePhiroBricks)
         XCTAssertEqual(.hidden, phiroFrontLeft.formulaEditorSection(for: SpriteObject()))
     }
-    
+
     func testFormulaEditorSectionFrontLRight() {
         UserDefaults.standard.set(true, forKey: kUsePhiroBricks)
         XCTAssertEqual(.device(position: type(of: phiroFrontRight).position), phiroFrontRight.formulaEditorSection(for: SpriteObject()))
-        
+
         UserDefaults.standard.set(false, forKey: kUsePhiroBricks)
         XCTAssertEqual(.hidden, phiroFrontRight.formulaEditorSection(for: SpriteObject()))
     }
-    
+
     func testFormulaEditorSectionSideLeft() {
         UserDefaults.standard.set(true, forKey: kUsePhiroBricks)
         XCTAssertEqual(.device(position: type(of: phiroSideLeft).position), phiroSideLeft.formulaEditorSection(for: SpriteObject()))
-        
+
         UserDefaults.standard.set(false, forKey: kUsePhiroBricks)
         XCTAssertEqual(.hidden, phiroSideLeft.formulaEditorSection(for: SpriteObject()))
     }
-    
+
     func testFormulaEditorSectionSideRight() {
         UserDefaults.standard.set(true, forKey: kUsePhiroBricks)
         XCTAssertEqual(.device(position: type(of: phiroSideRight).position), phiroSideRight.formulaEditorSection(for: SpriteObject()))
-        
+
         UserDefaults.standard.set(false, forKey: kUsePhiroBricks)
         XCTAssertEqual(.hidden, phiroSideRight.formulaEditorSection(for: SpriteObject()))
     }
-    
+
     func testFormulaEditorSectionBottomLeft() {
         UserDefaults.standard.set(true, forKey: kUsePhiroBricks)
         XCTAssertEqual(.device(position: type(of: phiroBottomLeft).position), phiroBottomLeft.formulaEditorSection(for: SpriteObject()))
-        
+
         UserDefaults.standard.set(false, forKey: kUsePhiroBricks)
         XCTAssertEqual(.hidden, phiroBottomLeft.formulaEditorSection(for: SpriteObject()))
     }
-    
+
     func testFormulaEditorSectionBottomRight() {
         UserDefaults.standard.set(true, forKey: kUsePhiroBricks)
         XCTAssertEqual(.device(position: type(of: phiroBottomRight).position), phiroBottomRight.formulaEditorSection(for: SpriteObject()))
-        
+
         UserDefaults.standard.set(false, forKey: kUsePhiroBricks)
         XCTAssertEqual(.hidden, phiroBottomRight.formulaEditorSection(for: SpriteObject()))
     }

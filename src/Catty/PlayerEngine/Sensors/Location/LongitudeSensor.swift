@@ -20,32 +20,32 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class LongitudeSensor : NSObject, DeviceSensor {
-    
+class LongitudeSensor: NSObject, DeviceSensor {
+
     @objc static let tag = "LONGITUDE"
     static let name = kUIFESensorLongitude
     static let defaultRawValue = 0.0
     static let position = 90
     static let requiredResource = ResourceType.location
-    
+
     let getLocationManager: () -> LocationManager?
-    
+
     init(locationManagerGetter: @escaping () -> LocationManager?) {
         self.getLocationManager = locationManagerGetter
     }
-    
+
     func tag() -> String {
         return type(of: self).tag
     }
-    
+
     func rawValue() -> Double {
         return self.getLocationManager()?.location?.coordinate.longitude ?? type(of: self).defaultRawValue
     }
-    
+
     func convertToStandardized(rawValue: Double) -> Double {
         return rawValue
     }
-    
+
     func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
         return .device(position: type(of: self).position)
     }

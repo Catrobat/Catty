@@ -21,7 +21,7 @@
  */
 
 @objc class BackgroundNameSensor: NSObject, ObjectStringSensor {
-    
+
     @objc static let tag = "OBJECT_BACKGROUND_NAME"
     static let name = kUIFEObjectBackgroundName
     static let defaultRawValue = 0.0
@@ -32,7 +32,7 @@
     func tag() -> String {
         return type(of: self).tag
     }
-    
+
     static func rawValue(for spriteObject: SpriteObject) -> String {
         guard let spriteNode = spriteObject.spriteNode else { return BackgroundNameSensor.defaultStringValue }
         guard let currentLook = spriteNode.currentLook else { return BackgroundNameSensor.defaultStringValue }
@@ -42,7 +42,7 @@
     static func convertToStandardized(rawValue: String, for spriteObject: SpriteObject) -> String {
         return rawValue
     }
-    
+
     func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
         if spriteObject.isBackground() == false {
             return .hidden

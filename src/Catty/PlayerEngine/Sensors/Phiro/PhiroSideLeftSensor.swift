@@ -20,33 +20,33 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc class PhiroSideLeftSensor : NSObject, PhiroSensor {
-    
+@objc class PhiroSideLeftSensor: NSObject, PhiroSensor {
+
     @objc static let tag = "side_left"
     static let name = kUIFESensorPhiroSideLeft
     static let defaultRawValue = 0.0
     static let requiredResource = ResourceType.bluetoothPhiro
     static let pinNumber = 4
     static let position = 320
-    
+
     let getBluetoothService: () -> BluetoothService?
-    
+
     init(bluetoothServiceGetter: @escaping () -> BluetoothService?) {
         self.getBluetoothService = bluetoothServiceGetter
     }
-    
+
     func tag() -> String {
         return type(of: self).tag
     }
-    
+
     func rawValue() -> Double {
         return self.getBluetoothService()?.getSensorPhiro()?.getSensorValue(type(of: self).pinNumber) ?? type(of: self).defaultRawValue
     }
-    
+
     func convertToStandardized(rawValue: Double) -> Double {
         return rawValue
     }
-    
+
     func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
         if UserDefaults.standard.bool(forKey: kUsePhiroBricks) == false {
             return .hidden

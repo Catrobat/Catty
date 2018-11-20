@@ -25,48 +25,50 @@ import XCTest
 @testable import Pocket_Code
 
 class TanFunctionTest: XCTestCase {
-    
+
     var function: TanFunction!
-    
+
     override func setUp() {
+        super.setUp()
         function = TanFunction()
     }
-    
+
     override func tearDown() {
         function = nil
+        super.tearDown()
     }
-    
+
     func testDefaultValue() {
-        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: "invalidParameter" as AnyObject), accuracy: 0.0001)
-        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: nil), accuracy: 0.0001)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: "invalidParameter" as AnyObject), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: nil), accuracy: Double.epsilon)
     }
-    
+
     func testValue() {
-        XCTAssertEqual(tan(Util.degree(toRadians: -10)), function.value(parameter: -10 as AnyObject), accuracy: 0.0001)
-        
-        XCTAssertEqual(tan(Util.degree(toRadians: 135)), function.value(parameter: 135 as AnyObject), accuracy: 0.0001)
+        XCTAssertEqual(tan(Util.degree(toRadians: -10)), function.value(parameter: -10 as AnyObject), accuracy: Double.epsilon)
+
+        XCTAssertEqual(tan(Util.degree(toRadians: 135)), function.value(parameter: 135 as AnyObject), accuracy: Double.epsilon)
     }
-    
+
     func testParameter() {
         XCTAssertEqual(.number(defaultValue: 0), function.firstParameter())
     }
-    
+
     func testTag() {
         XCTAssertEqual("TAN", type(of: function).tag)
     }
-    
+
     func testName() {
         XCTAssertEqual("tan", type(of: function).name)
     }
-    
+
     func testRequiredResources() {
         XCTAssertEqual(ResourceType.noResources, type(of: function).requiredResource)
     }
-    
+
     func testIsIdempotent() {
         XCTAssertTrue(type(of: function).isIdempotent)
     }
-    
+
     func testFormulaEditorSection() {
         XCTAssertEqual(.math(position: type(of: function).position), function.formulaEditorSection())
     }

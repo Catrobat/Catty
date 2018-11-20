@@ -21,18 +21,18 @@
  */
 
 class FormulaEditorItem {
-    
-    var sensor: Sensor? = nil
-    var function: Function? = nil
+
+    var sensor: Sensor?
+    var function: Function?
     var title: String
     var section: FormulaEditorSection
-    
+
     public init(sensor: Sensor, spriteObject: SpriteObject) {
         self.title = type(of: sensor).name
         self.sensor = sensor
         self.section = sensor.formulaEditorSection(for: spriteObject)
     }
-    
+
     public init(function: Function) {
         self.title = function.nameWithParameters()
         self.function = function

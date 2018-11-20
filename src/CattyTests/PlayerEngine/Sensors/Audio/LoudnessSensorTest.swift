@@ -25,58 +25,60 @@ import XCTest
 @testable import Pocket_Code
 
 final class LoudnessSensorTest: XCTestCase {
-    
+
     var audioManager: AudioManagerMock!
     var sensor: LoudnessSensor!
-    
+
     override func setUp() {
+        super.setUp()
         audioManager = AudioManagerMock()
         sensor = LoudnessSensor { [weak self] in self?.audioManager }
     }
-    
+
     override func tearDown() {
         sensor = nil
         audioManager = nil
+        super.tearDown()
     }
-    
+
     func testDefaultRawValue() {
         let sensor = LoudnessSensor { nil }
-        XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(), accuracy: 0.0001)
+        XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(), accuracy: Double.epsilon)
     }
-    
+
     func testRawValue() {
         audioManager.mockedLoudnessInDecibels = 3
-        XCTAssertEqual(3, sensor.rawValue(), accuracy: 0.0001)
-        
+        XCTAssertEqual(3, sensor.rawValue(), accuracy: Double.epsilon)
+
         audioManager.mockedLoudnessInDecibels = -50
-        XCTAssertEqual(-50, sensor.rawValue(), accuracy: 0.0001)
-        
+        XCTAssertEqual(-50, sensor.rawValue(), accuracy: Double.epsilon)
+
         audioManager.mockedLoudnessInDecibels = 10.786
-        XCTAssertEqual(10.786, sensor.rawValue(), accuracy: 0.0001)
+        XCTAssertEqual(10.786, sensor.rawValue(), accuracy: Double.epsilon)
     }
-    
+
     func testConvertToStandardized() {
         // background noise
-        XCTAssertEqual(1, sensor.convertToStandardized(rawValue: -40), accuracy: 0.0001)
-        
-        // whisper
-        XCTAssertEqual(6.3095, sensor.convertToStandardized(rawValue: -24), accuracy: 0.0001)
-        
-        // normal voice
-        XCTAssertEqual(17.7827, sensor.convertToStandardized(rawValue: -15), accuracy: 0.0001)
-        
-        // shouting
-        XCTAssertEqual(89.2277, sensor.convertToStandardized(rawValue: -0.99), accuracy: 0.0001)
+        XCTAssertEqual(1, sensor.convertToStandardized(rawValue: -40), accuracy: Double.epsilon)
+
+        let whisper = sensor.convertToStandardized(rawValue: -24)
+        XCTAssertEqual(6.3095, whisper, accuracy: Double.epsilon)
+
+        let normalVoice = sensor.convertToStandardized(rawValue: -15)
+        XCTAssertEqual(17.7827, normalVoice, accuracy: Double.epsilon)
+
+        let shouting = sensor.convertToStandardized(rawValue: -0.99)
+        XCTAssertEqual(89.2277, shouting, accuracy: Double.epsilon)
     }
-    
+
     func testTag() {
         XCTAssertEqual("LOUDNESS", sensor.tag())
     }
-    
+
     func testRequiredResources() {
         XCTAssertEqual(ResourceType.loudness, type(of: sensor).requiredResource)
     }
-    
+
     func testFormulaEditorSection() {
         XCTAssertEqual(.device(position: type(of: sensor).position), sensor.formulaEditorSection(for: SpriteObject()))
     }

@@ -21,27 +21,27 @@
  */
 
 class LnFunction: SingleParameterDoubleFunction {
-    
+
     static var tag = "LN"
     static var name = "ln"
     static var defaultValue = 0.0
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = true
     static let position = 40
-    
+
     func tag() -> String {
         return type(of: self).tag
     }
-    
+
     func firstParameter() -> FunctionParameter {
         return .number(defaultValue: 0)
     }
-    
+
     func value(parameter: AnyObject?) -> Double {
         guard let value = parameter as? Double else { return type(of: self).defaultValue }
         return log(value)
     }
-    
+
     func formulaEditorSection() -> FormulaEditorSection {
         return .math(position: type(of: self).position)
     }

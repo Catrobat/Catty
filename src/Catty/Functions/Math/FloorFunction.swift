@@ -27,20 +27,20 @@ class FloorFunction: SingleParameterDoubleFunction {
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = true
     static let position = 170
-    
+
     func tag() -> String {
         return type(of: self).tag
     }
-    
+
     func firstParameter() -> FunctionParameter {
         return .number(defaultValue: 0.7)
     }
-    
+
     func value(parameter: AnyObject?) -> Double {
         guard let value = parameter as? Double else { return type(of: self).defaultValue }
         return floor(value)
     }
-    
+
     func formulaEditorSection() -> FormulaEditorSection {
         return .math(position: type(of: self).position)
     }

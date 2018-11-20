@@ -21,19 +21,19 @@
  */
 
 @objc class FingerXSensor: NSObject, TouchSensor {
-    
+
     @objc static let tag = "FINGER_X"
     static let name = kUIFESensorFingerX
     static let defaultRawValue = 0.0
     static let requiredResource = ResourceType.touchHandler
-    static let position = 130 
-    
+    static let position = 130
+
     let getTouchManager: () -> TouchManagerProtocol?
-    
+
     init(touchManagerGetter: @escaping () -> TouchManagerProtocol?) {
         self.getTouchManager = touchManagerGetter
     }
-    
+
     func tag() -> String {
         return type(of: self).tag
     }
@@ -47,7 +47,7 @@
         guard let _ = getTouchManager()?.lastPositionInScene() else { return type(of: self).defaultRawValue }
         return PositionXSensor.convertToStandardized(rawValue: rawValue, for: spriteObject)
     }
-    
+
     func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
         return .device(position: type(of: self).position)
     }

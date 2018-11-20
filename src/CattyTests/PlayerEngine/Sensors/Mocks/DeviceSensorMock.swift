@@ -23,31 +23,31 @@
 @testable import Pocket_Code
 
 final class DeviceSensorMock: SensorMock, DeviceSensor {
-    
+
     private let mockedValue: Double
-    
+
     init(tag: String, value: Double, formulaEditorSection: FormulaEditorSection) {
         self.mockedValue = value
-        
+
         super.init(tag: tag, formulaEditorSection: formulaEditorSection)
     }
-    
+
     override convenience init(tag: String, formulaEditorSection: FormulaEditorSection) {
         self.init(tag: tag, value: 0, formulaEditorSection: formulaEditorSection)
     }
-    
+
     convenience init(tag: String, value: Double) {
         self.init(tag: tag, value: value, formulaEditorSection: .hidden)
     }
-    
+
     convenience init(tag: String) {
         self.init(tag: tag, formulaEditorSection: .hidden)
     }
-    
+
     func rawValue() -> Double {
         return mockedValue
     }
-    
+
     func convertToStandardized(rawValue: Double) -> Double {
         return rawValue
     }

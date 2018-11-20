@@ -21,7 +21,7 @@
  */
 
 extension UIView {
-    
+
     func setAnchors(
         top: NSLayoutYAxisAnchor?,
         left: NSLayoutXAxisAnchor?,
@@ -33,19 +33,19 @@ extension UIView {
         bottomPadding: CGFloat = 0,
         width: CGFloat = 0,
         height: CGFloat = 0) {
-        
+
         self.translatesAutoresizingMaskIntoConstraints = false
-        
-        if (top != nil) {
+
+        if top != nil {
             self.topAnchor.constraint(equalTo: top!, constant: topPadding).isActive = true
         }
-        if (left != nil) {
+        if left != nil {
             self.leftAnchor.constraint(equalTo: left!, constant: leftPadding).isActive = true
         }
-        if (right != nil) {
+        if right != nil {
             self.rightAnchor.constraint(equalTo: right!, constant: -rightPadding).isActive = true
         }
-        if (bottom != nil) {
+        if bottom != nil {
             self.bottomAnchor.constraint(equalTo: bottom!, constant: -bottomPadding).isActive = true
         }
         if width != 0 {
@@ -55,28 +55,28 @@ extension UIView {
             self.heightAnchor.constraint(equalToConstant: height).isActive = true
         }
     }
-    
+
     var safeTopAnchor: NSLayoutYAxisAnchor {
         if #available(iOS 11.0, *) {
             return safeAreaLayoutGuide.topAnchor
         }
         return topAnchor
     }
-    
+
     var safeLeftAnchor: NSLayoutXAxisAnchor {
         if #available(iOS 11.0, *) {
             return safeAreaLayoutGuide.leftAnchor
         }
         return leftAnchor
     }
-    
+
     var safeRightAnchor: NSLayoutXAxisAnchor {
         if #available(iOS 11.0, *) {
             return safeAreaLayoutGuide.rightAnchor
         }
         return rightAnchor
     }
-    
+
     var safeBottomAnchor: NSLayoutYAxisAnchor {
         if #available(iOS 11.0, *) {
             return safeAreaLayoutGuide.bottomAnchor

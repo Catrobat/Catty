@@ -21,27 +21,27 @@
  */
 
 class LengthFunction: SingleParameterDoubleFunction {
-    
+
     static var tag = "LENGTH"
     static var name = "length"
     static var defaultValue = 0.0
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = true
     static let position = 210
-    
+
     func tag() -> String {
         return type(of: self).tag
     }
-    
+
     func firstParameter() -> FunctionParameter {
         return .string(defaultValue: "hello world")
     }
-    
+
     func value(parameter: AnyObject?) -> Double {
         let text = type(of: self).interpretParameter(parameter: parameter)
         return Double(text.count)
     }
-    
+
     func formulaEditorSection() -> FormulaEditorSection {
         return .math(position: type(of: self).position)
     }

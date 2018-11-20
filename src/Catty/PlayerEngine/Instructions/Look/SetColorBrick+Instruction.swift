@@ -20,25 +20,25 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc extension SetColorBrick: CBInstructionProtocol{
-    
+@objc extension SetColorBrick: CBInstructionProtocol {
+
     @nonobjc func instruction() -> CBInstruction {
-        return .action { (context) in SKAction.run(self.actionBlock(context.formulaInterpreter)) }
+        return .action { context in SKAction.run(self.actionBlock(context.formulaInterpreter)) }
     }
-    
-    @objc func actionBlock(_ formulaInterpreter: FormulaInterpreterProtocol) -> ()->() {
+
+    @objc func actionBlock(_ formulaInterpreter: FormulaInterpreterProtocol) -> () -> Void {
         guard let object = self.script?.object,
             let spriteNode = object.spriteNode,
             let colorFormula = self.color
             else { fatalError("This should never happen!") }
-        
+
         return {
             guard let look = object.spriteNode?.currentLook else { return }
-            
+
             let color = formulaInterpreter.interpretDouble(colorFormula, for: object)
             spriteNode.catrobatColor = color
-            
-            let lookImage = UIImage(contentsOfFile:self.path(for: look))
+
+            let lookImage = UIImage(contentsOfFile: self.path(for: look))
             spriteNode.executeFilter(lookImage)
         }
     }

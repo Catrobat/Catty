@@ -253,9 +253,9 @@
     script.brickList = brickList;
     
     // TODO: Fix exception raised.
-//    NSMutableArray *newScriptList = [NSMutableArray arrayWithArray:self.scriptList];
-//    [newScriptList replaceObjectAtIndex:section withObject:script];
-//    self.scriptList = newScriptList;
+    //NSMutableArray *newScriptList = [NSMutableArray arrayWithArray:self.scriptList];
+    //[newScriptList replaceObjectAtIndex:section withObject:script];
+    //self.scriptList = newScriptList;
     
     NSMutableArray *insertedIndexPaths = [[NSMutableArray alloc] initWithCapacity:indexes.count];
     [indexes enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop) {

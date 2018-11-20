@@ -31,14 +31,14 @@ class SizeSensor: ObjectDoubleSensor {
     func tag() -> String {
         return type(of: self).tag
     }
-    
+
     static func rawValue(for spriteObject: SpriteObject) -> Double {
         guard let spriteNode = spriteObject.spriteNode else {
             return self.defaultRawValue
         }
         return Double(spriteNode.xScale)
     }
-    
+
     static func setRawValue(userInput: Double, for spriteObject: SpriteObject) {
         let rawValue = self.convertToRaw(userInput: userInput, for: spriteObject)
         spriteObject.spriteNode.xScale = CGFloat(rawValue)
@@ -48,14 +48,14 @@ class SizeSensor: ObjectDoubleSensor {
     static func convertToStandardized(rawValue: Double, for spriteObject: SpriteObject) -> Double {
         return rawValue * 100
     }
-    
+
     static func convertToRaw(userInput: Double, for spriteObject: SpriteObject) -> Double {
         if userInput <= 0 {
             return 0.0     //Android doesn't have negative values for size
         }
         return userInput / 100
     }
-    
+
     func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
         return .object(position: type(of: self).position)
     }

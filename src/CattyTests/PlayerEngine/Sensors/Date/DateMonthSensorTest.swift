@@ -25,52 +25,54 @@ import XCTest
 @testable import Pocket_Code
 
 final class DateMonthSensorMock: DateMonthSensor {
-    var mockDate: Date = Date()
-    
+    var mockDate = Date()
+
     override func date() -> Date {
         return mockDate
     }
 }
 
 final class DateMonthSensorTest: XCTestCase {
-    
+
     var sensor: DateMonthSensorMock!
-    
+
     override func setUp() {
+        super.setUp()
         sensor = DateMonthSensorMock()
     }
-    
+
     override func tearDown() {
         sensor = nil
+        super.tearDown()
     }
-    
+
     func testTag() {
         XCTAssertEqual("DATE_MONTH", sensor.tag())
     }
-    
+
     func testRequiredResources() {
         XCTAssertEqual(ResourceType.noResources, type(of: sensor).requiredResource)
     }
-    
+
     func testRawValue() {
         /* test one digit */
         self.sensor.mockDate = Calendar.current.date(from: DateComponents(year: 2018, month: 5, day: 3, hour: 10))!
         XCTAssertEqual(5, Int(sensor.rawValue()))
-        
+
         /* test two digits */
         self.sensor.mockDate = Calendar.current.date(from: DateComponents(year: 2017, month: 12, day: 16, hour: 17))!
         XCTAssertEqual(12, Int(sensor.rawValue()))
-        
+
         /* test edge case - almost the beginning of the next month */
         self.sensor.mockDate = Calendar.current.date(from: DateComponents(year: 2018, month: 10, day: 31, hour: 23))!
         XCTAssertEqual(10, Int(sensor.rawValue()))
     }
-    
+
     func testConvertToStandardized() {
         XCTAssertEqual(1, sensor.convertToStandardized(rawValue: 1))
         XCTAssertEqual(10, sensor.convertToStandardized(rawValue: 10))
     }
-    
+
     func testFormulaEditorSection() {
         XCTAssertEqual(.device(position: type(of: sensor).position), sensor.formulaEditorSection(for: SpriteObject()))
     }

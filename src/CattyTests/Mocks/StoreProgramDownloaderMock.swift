@@ -26,19 +26,19 @@ final class StoreProgramDownloaderMock: StoreProgramDownloaderProtocol {
     var program: StoreProgram?
     var collectionText: StoreProgramCollection.StoreProgramCollectionText?
     var collectionNumber: StoreProgramCollection.StoreProgramCollectionNumber?
-    
+
     func fetchSearchQuery(searchTerm: String, completion: @escaping (StoreProgramCollection.StoreProgramCollectionNumber?, StoreProgramDownloaderError?) -> Void) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
             completion(self.collectionNumber, nil)
         }
     }
-    
+
     func fetchPrograms(forType: ProgramType, offset: Int, completion: @escaping (StoreProgramCollection.StoreProgramCollectionText?, StoreProgramDownloaderError?) -> Void) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
             completion(self.collectionText, nil)
         }
     }
-    
+
     func downloadProgram(for program: StoreProgram, completion: @escaping (StoreProgram?, StoreProgramDownloaderError?) -> Void) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
             completion(self.program, nil)

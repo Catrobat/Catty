@@ -20,8 +20,8 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc class CompassDirectionSensor : NSObject, DeviceSensor {
-    
+@objc class CompassDirectionSensor: NSObject, DeviceSensor {
+
     @objc static let tag = "COMPASS_DIRECTION"
     static let name = kUIFESensorCompass
     static let defaultRawValue = 0.0
@@ -29,7 +29,7 @@
     static let requiredResource = ResourceType.compass
 
     let getLocationManager: () -> LocationManager?
-    
+
     init(locationManagerGetter: @escaping () -> LocationManager?) {
         self.getLocationManager = locationManagerGetter
     }
@@ -37,7 +37,7 @@
     func tag() -> String {
         return type(of: self).tag
     }
-    
+
     func rawValue() -> Double {
         return self.getLocationManager()?.heading?.magneticHeading ?? type(of: self).defaultRawValue
     }
@@ -48,7 +48,7 @@
         }
         return 360 - rawValue
     }
-    
+
     func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
         return .device(position: type(of: self).position)
     }

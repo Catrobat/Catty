@@ -29,11 +29,11 @@ final class CBScheduler: CBSchedulerProtocol {
     private let _broadcastHandler: CBBroadcastHandlerProtocol
     private let _formulaInterpreter: FormulaInterpreterProtocol
 
-    private var _spriteNodes = [String:CBSpriteNode]()
+    private var _spriteNodes = [String: CBSpriteNode]()
     private var _contexts = [CBScriptContextProtocol]()
-    private var _whenContexts = [String:[CBWhenScriptContext]]()
+    private var _whenContexts = [String: [CBWhenScriptContext]]()
     private var _whenTouchDownContexts = [CBWhenTouchDownScriptContext]()
-    private var _scheduledContexts = OrderedDictionary<String,[CBScriptContextProtocol]>()
+    private var _scheduledContexts = OrderedDictionary<String, [CBScriptContextProtocol]>()
 
     private var _availableWaitQueues = [DispatchQueue]()
     private var _availableBufferQueues = [DispatchQueue]()
@@ -73,7 +73,7 @@ final class CBScheduler: CBSchedulerProtocol {
         precondition(_spriteNodes[spriteName] == context.spriteNode)
 
         if context is CBWhenScriptContext {
-            _contexts.insert(context, at: 0);
+            _contexts.insert(context, at: 0)
         } else {
             _contexts += context
         }
@@ -110,7 +110,7 @@ final class CBScheduler: CBSchedulerProtocol {
         var nextConditionalBufferElements = [CBConditionalFormulaBufferElement]()
         for (spriteName, contexts) in _scheduledContexts {
             guard let spriteNode = _spriteNodes[spriteName]
-                else { fatalError("WTH?? Sprite node not available (any more)...") }
+                else { fatalError("Sprite node is not available (any more)...") }
 
             // collect
             var nextLongActionElements = [CBScheduleLongActionElement]()
@@ -146,11 +146,11 @@ final class CBScheduler: CBSchedulerProtocol {
             }
 
             // execute actions (node dependend!)
-            if nextActionElements.count > 0 {
+            if !nextActionElements.isEmpty {
                 let groupAction = nextActionElements.count > 1
                     ? SKAction.group(nextActionElements.map { $0.closure($0.context) })
                     : nextActionElements[0].closure(nextActionElements[0].context)
-                
+
                 spriteNode.run(groupAction) { [weak self] in
                     nextActionElements.forEach { $0.context.state = .runnable }
                     self?.runNextInstructionsGroup()
@@ -217,7 +217,7 @@ final class CBScheduler: CBSchedulerProtocol {
                     let index = context.index
                     if let formulaArray = brick.getFormulas() {
                         for formula in formulaArray {
-                            let _ = context.formulaInterpreter.interpretAndCache(formula, for: context.spriteNode.spriteObject)
+                            _ = context.formulaInterpreter.interpretAndCache(formula, for: context.spriteNode.spriteObject)
                         }
                     }
                     print("preCalculate")
@@ -257,7 +257,7 @@ final class CBScheduler: CBSchedulerProtocol {
             }
         }
 
-        if nextClosures.count > 0 && nextHighPriorityClosures.count == 0 {
+        if !nextClosures.isEmpty && nextHighPriorityClosures.isEmpty {
             runNextInstructionsGroup()
             return
         }
@@ -315,7 +315,7 @@ final class CBScheduler: CBSchedulerProtocol {
 
         runNextInstructionsGroup()
     }
-    
+
     func startWhenTouchDownContexts() {
         for context in _whenTouchDownContexts {
             scheduleContext(context)
@@ -356,7 +356,7 @@ final class CBScheduler: CBSchedulerProtocol {
             spriteScheduledContexts.remove(at: index)
         }
 
-        if spriteScheduledContexts.count > 0 {
+        if !spriteScheduledContexts.isEmpty {
             _scheduledContexts[spriteName] = spriteScheduledContexts
         } else {
             _scheduledContexts[spriteName] = [CBScriptContext]()
@@ -370,9 +370,11 @@ final class CBScheduler: CBSchedulerProtocol {
         CBScheduler.vibrateSerialQueue.cancelAllOperations()
         CBScheduler.vibrateSerialQueue.isSuspended = false
 
-        _scheduledContexts.orderedValues.forEach { $0.forEach {
-            stopContext($0, continueWaitingBroadcastSenders: false)
-            } }
+        _scheduledContexts.orderedValues.forEach {
+            $0.forEach {
+                stopContext($0, continueWaitingBroadcastSenders: false)
+            }
+        }
         _scheduledContexts.removeAll()
         _whenContexts.removeAll()
         _contexts.removeAll()
@@ -386,7 +388,7 @@ final class CBScheduler: CBSchedulerProtocol {
     }
 
     func resume() {
-        if(running == false){
+        if running == false {
             running = true
             runNextInstructionsGroup()
             CBScheduler.vibrateSerialQueue.isSuspended = false

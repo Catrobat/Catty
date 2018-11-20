@@ -22,17 +22,17 @@
 
 class IntroductionViewController: UIViewController {
 
-    @IBOutlet weak var headline: UILabel!
-    @IBOutlet weak var paragraph: UILabel!
-    @IBOutlet weak var image: UIImageView!
-    
-    @IBOutlet var dismissButton: UIButton!
-    
-    @IBAction func touchDismiss(_ sender: UIButton) {
+    @IBOutlet private weak var headline: UILabel!
+    @IBOutlet private weak var paragraph: UILabel!
+    @IBOutlet private weak var image: UIImageView!
+
+    @IBOutlet private var dismissButton: UIButton!
+
+    @IBAction private func touchDismiss(_ sender: UIButton) {
         self.presentingViewController?.dismiss(animated: true, completion: nil)
         IntroductionPageViewController.hasBeenShown = true
     }
-    
+
     var content: Content?
 
     override func viewDidLoad() {

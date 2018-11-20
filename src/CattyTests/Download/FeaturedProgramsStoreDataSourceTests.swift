@@ -20,45 +20,61 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import XCTest
 @testable import Pocket_Code
+import XCTest
 
 class FeaturedProgramsStoreDataSourceTests: XCTestCase {
-    
+
     var downloaderMock: StoreProgramDownloaderMock!
     var tableView: UITableView!
-    
+
     override func setUp() {
         super.setUp()
         self.downloaderMock = StoreProgramDownloaderMock()
         self.tableView = UITableView(frame: .zero)
     }
-    
+
     override func tearDown() {
         self.downloaderMock = nil
         self.tableView = nil
         super.tearDown()
     }
-    
+
     // MARK: - FeaturedProgramsStoreDataSource Tests
-    
+
     func testProgramsNotFetched() {
         let dataSource = FeaturedProgramsStoreTableDataSource.dataSource(with: self.downloaderMock)
         XCTAssertEqual(dataSource.numberOfRows(in: self.tableView), 0)
     }
-    
+
     func testProgramEmpty() {
-        self.downloaderMock.program = StoreProgram(projectId: 0, projectName: "", projectNameShort: "", author: "", description: "", version: "", views: 0, downloads: 0, isPrivate: false, uploaded: 0, uploadedString: "", screenshotBig: "", screenshotSmall: "", projectUrl: "", downloadUrl: "", fileSize: 1.0, featuredImage: "")
+        self.downloaderMock.program =
+            StoreProgram(projectId: 0,
+                         projectName: "",
+                         projectNameShort: "",
+                         author: "",
+                         description: "",
+                         version: "",
+                         views: 0,
+                         downloads: 0,
+                         uploaded: 0,
+                         uploadedString: "",
+                         screenshotBig: "",
+                         screenshotSmall: "",
+                         projectUrl: "",
+                         downloadUrl: "",
+                         fileSize: 1.0,
+                         featuredImage: "")
 
         let dataSource = FeaturedProgramsStoreTableDataSource.dataSource(with: self.downloaderMock)
         let expectation = XCTestExpectation(description: "Fetch items from data source")
-        
+
         dataSource.fetchItems { [unowned self] error in
             XCTAssertNil(error)
             XCTAssertEqual(dataSource.numberOfRows(in: self.tableView), 0)
             expectation.fulfill()
         }
-        
+
         wait(for: [expectation], timeout: 1.0)
     }
 }

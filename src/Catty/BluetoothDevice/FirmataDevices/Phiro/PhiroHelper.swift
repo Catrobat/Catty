@@ -23,84 +23,73 @@
 import Foundation
 
 @objc class PhiroHelper: NSObject {
-    
+
     static var defaultSensor = PhiroFrontLeftSensor.self
-    
-    var frontLeftSensor:Int = 0;
-    var frontRightSensor:Int = 0;
-    var sideLeftSensor:Int = 0;
-    var sideRightSensor:Int = 0;
-    var bottomLeftSensor:Int = 0;
-    var bottomRightSensor:Int = 0;
-    
-    func didReceiveAnalogMessage(_ pin:Int,value:Int){
-        switch (pin) {
-        case PIN_SENSOR_SIDE_RIGHT:
+
+    var frontLeftSensor: Int = 0
+    var frontRightSensor: Int = 0
+    var sideLeftSensor: Int = 0
+    var sideRightSensor: Int = 0
+    var bottomLeftSensor: Int = 0
+    var bottomRightSensor: Int = 0
+
+    func didReceiveAnalogMessage(_ pin: Int, value: Int) {
+        switch pin {
+        case PhiroDevice.pinSensorSideRight:
             sideRightSensor = value
-            break
-        case PIN_SENSOR_FRONT_RIGHT:
+        case PhiroDevice.pinSensorFrontRight:
             frontRightSensor = value
-            break
-        case PIN_SENSOR_BOTTOM_RIGHT:
+        case PhiroDevice.pinSensorBottomRight:
             bottomRightSensor = value
-            break
-        case PIN_SENSOR_BOTTOM_LEFT:
+        case PhiroDevice.pinSensorBottomLeft:
             bottomLeftSensor = value
-            break
-        case PIN_SENSOR_FRONT_LEFT:
+        case PhiroDevice.pinSensorFrontLeft:
             frontLeftSensor = value
-            break
-        case PIN_SENSOR_SIDE_LEFT:
+        case PhiroDevice.pinSensorSideLeft:
             sideLeftSensor = value
-            break
-            
-        default: break
-            //NOT USED SENSOR
+        default:
+            break //NOT USED SENSOR
         }
     }
-    
+
     @objc static func sensorTags() -> [String] {
         var tags = [String]()
-        
+
         for sensor in sensors() {
             tags.append(sensor.tag)
         }
-        
+
         return tags
     }
-    
+
     @objc static func defaultTag() -> String {
         return defaultSensor.tag
     }
-    
+
     @objc static func pinNumber(tag: String) -> Int {
         guard let sensor = sensor(tag: tag) else { return defaultSensor.pinNumber }
         return sensor.pinNumber
     }
-    
+
     @objc static func tag(pinNumber: Int) -> String {
         guard let sensor = sensor(pinNumber: pinNumber) else { return defaultSensor.tag }
         return sensor.tag
     }
-    
+
     static func sensor(tag: String) -> PhiroSensor.Type? {
-        for sensor in sensors() {
-            if sensor.tag == tag {
-                return sensor
-            }
+        for sensor in sensors() where (sensor.tag == tag) {
+            return sensor
         }
         return nil
     }
-    
+
     static func sensor(pinNumber: Int) -> PhiroSensor.Type? {
-        for sensor in sensors() {
-            if sensor.pinNumber == pinNumber {
-                return sensor
-            }
+        for sensor in sensors() where (sensor.pinNumber == pinNumber) {
+            return sensor
         }
         return nil
     }
-    
+
     static func sensors() -> [PhiroSensor.Type] {
         return [PhiroSideLeftSensor.self,
                 PhiroSideRightSensor.self,

@@ -22,33 +22,6 @@
 
 import Foundation
 
-
-@objc extension PhiroMotorStopBrick :CBInstructionProtocol {
-    
-    @nonobjc func instruction() -> CBInstruction {
-        
-        return CBInstruction.execClosure { (context, _) in
-            
-            guard let phiro:Phiro = BluetoothService.swiftSharedInstance.phiro else {
-                //ERROR
-                return;
-            }
-            switch (self.phiroMotor()) {
-            case .Left:
-                phiro.stopLeftMotor();
-                break;
-            case .Right:
-                phiro.stopRightMotor();
-                break;
-            case .Both:
-                phiro.stopRightMotor();
-                phiro.stopLeftMotor();
-                break;
-            }
-            context.state = .runnable
-        }
-        
-    }
-
-    
+extension Double {
+    static let epsilon = 0.0001
 }
