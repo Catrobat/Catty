@@ -77,16 +77,7 @@ class LoadingView: UIView {
         isHidden = false
         superview?.bringSubview(toFront: self)
 
-        // TODO: move the following block to UIView+Extensions after IOS-533 merge
-        if #available(iOS 11.0, *) {
-            let safeAreaGuide = self.superview?.safeAreaLayoutGuide
-            NSLayoutConstraint.activate([self.centerXAnchor.constraint(equalTo: (safeAreaGuide?.centerXAnchor)!)])
-            NSLayoutConstraint.activate([self.centerYAnchor.constraint(equalTo: (safeAreaGuide?.centerYAnchor)!)])
-        } else {
-            self.centerXAnchor.constraint(equalTo: (self.superview?.centerXAnchor)!).isActive = true
-            self.centerYAnchor.constraint(equalTo: (self.superview?.centerYAnchor)!).isActive = true
-        }
-
+        self.centerView()
         self.widthAnchor.constraint(equalToConstant: CGFloat(kLoadingBackgroundWidth)).isActive = true
         self.heightAnchor.constraint(equalToConstant: CGFloat(kLoadingBackgroundHeight)).isActive = true
     }

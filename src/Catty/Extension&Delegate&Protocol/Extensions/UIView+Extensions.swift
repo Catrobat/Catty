@@ -56,6 +56,17 @@ extension UIView {
         }
     }
 
+    func centerView() {
+        if #available(iOS 11.0, *) {
+            let safeAreaGuide = self.superview?.safeAreaLayoutGuide
+            self.centerXAnchor.constraint(equalTo: (safeAreaGuide?.centerXAnchor)!).isActive = true
+            self.centerYAnchor.constraint(equalTo: (safeAreaGuide?.centerYAnchor)!).isActive = true
+        } else {
+            self.centerXAnchor.constraint(equalTo: (self.superview?.centerXAnchor)!).isActive = true
+            self.centerYAnchor.constraint(equalTo: (self.superview?.centerYAnchor)!).isActive = true
+        }
+    }
+
     var safeTopAnchor: NSLayoutYAxisAnchor {
         if #available(iOS 11.0, *) {
             return safeAreaLayoutGuide.topAnchor
