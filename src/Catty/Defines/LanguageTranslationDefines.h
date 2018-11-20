@@ -136,7 +136,6 @@
 #define kLocalizedEditPrograms NSLocalizedString(@"Edit Programs", nil)
 #define kLocalizedEditObject NSLocalizedString(@"Edit Object", nil)
 #define kLocalizedAddSound NSLocalizedString(@"Add sound", @"Action sheet menu title")
-#define kLocalizedSaveScreenshotTo NSLocalizedString(@"Save Screenshot to", @"Action sheet menu title")
 #define kLocalizedSelectBrickCategory NSLocalizedString(@"Select Brick Category", nil)
 #define kLocalizedClose NSLocalizedString(@"Close", nil)
 #define kLocalizedDeleteBrick NSLocalizedString(@"Delete Brick", nil)
