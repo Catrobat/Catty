@@ -204,6 +204,7 @@
 #define kLocalizedDeleteProgram NSLocalizedString(@"Delete Program", nil)
 #define kLocalizedLoading NSLocalizedString(@"Loading", nil)
 #define kLocalizedSaved NSLocalizedString(@"Saved", nil)
+#define kLocalizedSaveError NSLocalizedString(@"Error saving file", nil)
 #define kLocalizedAuthor NSLocalizedString(@"Author", nil)
 #define kLocalizedDownloads NSLocalizedString(@"Downloads", nil)
 #define kLocalizedUploaded NSLocalizedString(@"Uploaded", nil)

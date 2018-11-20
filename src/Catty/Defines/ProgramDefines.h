@@ -38,8 +38,6 @@
 #define kResourceFileNameSeparator @"_" // [md5]_[fileName] e.g. D32285BE8042D8D8071FAF0A33054DD0_music.mp3                                      //         or for images: 34A109A82231694B6FE09C216B390570_normalCat
 #define kPreviewImageNamePrefix @"small_" // [md5]_small_[fileName] e.g. 34A109A82231694B6FE09C216B390570_small_normalCat
 #define kLocalizedMyImageExtension @"png"
-#define kPreviewImageWidth 320
-#define kPreviewImageHeight kPreviewImageWidth
 #define kMinNumOfObjects 0
 #define kDefaultNumOfObjects 0
 #define kBackgroundObjects 1

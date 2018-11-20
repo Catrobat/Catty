@@ -524,6 +524,9 @@
 "Error" = "Error";
 
 /* No comment provided by engineer. */
+"Error saving file" = "Error saving file";
+
+/* No comment provided by engineer. */
 "Explore" = "Explore";
 
 /* No comment provided by engineer. */
@@ -1275,9 +1278,6 @@
 
 /* No comment provided by engineer. */
 "Saturday" = "Saturday";
-
-/* Action sheet menu title */
-"Save Screenshot to" = "Save Screenshot to";
 
 /* paint */
 "Save to CameraRoll" = "Save to CameraRoll";

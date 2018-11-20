@@ -449,7 +449,7 @@
 
 - (void)takeScreenshotAction:(UIButton*)sender
 {
-    (void)[self takeManualScreenshotForSKView:self.skView andProgram:self.program];
+    [self takeManualScreenshotForSKView:self.skView andProgram:self.program];
 }
 
 #pragma mark - Pan Gesture Handler

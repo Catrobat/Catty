@@ -498,7 +498,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                            info.basePath, kScreenshotThumbnailPrefix, fileName];
                 [imageCache loadThumbnailImageFromDiskWithThumbnailPath:thumbnailPath
                                                               imagePath:fallbackPath
-                                                     thumbnailFrameSize:CGSizeMake(kPreviewImageWidth, kPreviewImageHeight)
+                                                     thumbnailFrameSize:CGSizeMake(ProgramConstants.previewImageWidth, ProgramConstants.previewImageHeight)
                                                            onCompletion:^(UIImage *image, NSString* path){
                                                                // check if cell still needed
                                                                if ([cell.indexPath isEqual:indexPath]) {

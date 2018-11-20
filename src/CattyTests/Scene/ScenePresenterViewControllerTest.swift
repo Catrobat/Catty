@@ -41,16 +41,21 @@ final class ScenePresenterViewControllerTest: XCTestCase {
     func testScreenshot() {
         let screenshot = vc.screenshot(for: skView)
 
-        XCTAssertEqual(CGFloat(kPreviewImageWidth), screenshot?.size.width)
-        XCTAssertEqual(CGFloat(kPreviewImageHeight), screenshot?.size.height)
+        XCTAssertEqual(CGFloat(ProgramConstants.previewImageWidth), screenshot?.size.width)
+        XCTAssertEqual(CGFloat(ProgramConstants.previewImageHeight), screenshot?.size.height)
     }
 
     func testAutomaticScreenshot() {
         let expectedPath = program.projectPath() + kScreenshotAutoFilename
-        XCTAssertFalse(FileManager.default.fileExists(atPath: expectedPath))
+        let exp = expectation(description: "screenshot saved")
 
-        let path = vc.takeAutomaticScreenshot(for: skView, and: program)
-        XCTAssertEqual(expectedPath, path!)
+        XCTAssertFalse(FileManager.default.fileExists(atPath: expectedPath))
+        XCTAssertTrue(vc.takeAutomaticScreenshot(for: skView, and: program))
+        DispatchQueue.main.async {
+            XCTAssertTrue(FileManager.default.fileExists(atPath: expectedPath))
+            exp.fulfill()
+        }
+        waitForExpectations(timeout: 5, handler: nil)
     }
 
     func testDoNotRetakeAutomaticScreenshot() {
@@ -62,15 +67,17 @@ final class ScenePresenterViewControllerTest: XCTestCase {
             XCTFail("Error writing screenshot to file")
         }
         XCTAssertTrue(FileManager.default.fileExists(atPath: expectedPath))
-
-        let path = vc.takeAutomaticScreenshot(for: skView, and: program)
-        XCTAssertNil(path)
+        XCTAssertFalse(vc.takeAutomaticScreenshot(for: skView, and: program))
     }
 
     func testManualScreenshot() {
         let expectedPath = program.projectPath() + kScreenshotManualFilename
-
-        let path = vc.takeManualScreenshot(for: skView, and: program)
-        XCTAssertEqual(expectedPath, path!)
+        let exp = expectation(description: "screenshot saved")
+        vc.takeManualScreenshot(for: skView, and: program)
+        DispatchQueue.main.async {
+            XCTAssertTrue(FileManager.default.fileExists(atPath: expectedPath))
+            exp.fulfill()
+        }
+        waitForExpectations(timeout: 5, handler: nil)
     }
 }

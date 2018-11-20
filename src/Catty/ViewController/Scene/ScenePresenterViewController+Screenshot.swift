@@ -24,7 +24,8 @@
 
     @objc(screenshotForSKView:)
     func screenshot(for skView: SKView) -> UIImage? {
-        let size = CGSize(width: CGFloat(kPreviewImageWidth), height: CGFloat(kPreviewImageHeight))
+        let size = CGSize(width: CGFloat(ProgramConstants.previewImageWidth),
+                          height: CGFloat(ProgramConstants.previewImageHeight))
         let center = CGPoint(x: skView.bounds.size.width / 2 - size.width / 2, y: skView.bounds.size.height / 2 - size.height / 2)
 
         let snapshot = skView.resizableSnapshotView(from: CGRect(origin: center, size: size), afterScreenUpdates: false, withCapInsets: UIEdgeInsets.zero)
@@ -32,37 +33,35 @@
         UIGraphicsBeginImageContextWithOptions(size, false, UIScreen.main.scale)
         snapshot?.drawHierarchy(in: CGRect(origin: CGPoint.zero, size: size), afterScreenUpdates: true)
         let image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext();
+        UIGraphicsEndImageContext()
 
         return image
     }
 
     @objc(takeAutomaticScreenshotForSKView: andProgram:)
-    func takeAutomaticScreenshot(for skView: SKView, and program: Program) -> String? {
+    func takeAutomaticScreenshot(for skView: SKView, and program: Program) -> Bool {
         let path = program.projectPath() + kScreenshotAutoFilename
 
         if !FileManager.default.fileExists(atPath: path) {
-            guard let snapshot = self.screenshot(for: skView) else { return nil }
-            return saveScreenshot(snapshot, for: program, manualScreenshot: false)
+            guard let snapshot = self.screenshot(for: skView) else { return false }
+            saveScreenshot(snapshot, for: program, manualScreenshot: false)
+            return true
+        } else {
+            return false
         }
-
-        return nil
     }
 
     @objc(takeManualScreenshotForSKView: andProgram:)
-    func takeManualScreenshot(for skView: SKView, and program: Program) -> String? {
-        guard let snapshot = self.screenshot(for: skView) else { return nil }
-        let path = saveScreenshot(snapshot, for: program, manualScreenshot: true)
-
-        Util.showNotificationForSaveAction()
-        return path
+    func takeManualScreenshot(for skView: SKView, and program: Program) {
+        guard let snapshot = self.screenshot(for: skView) else { return }
+        return saveScreenshot(snapshot, for: program, manualScreenshot: true)
     }
 
-    private func saveScreenshot(_ screenshot: UIImage, for program: Program, manualScreenshot: Bool) -> String? {
+    private func saveScreenshot(_ screenshot: UIImage, for program: Program, manualScreenshot: Bool) {
         let fileName = manualScreenshot ? kScreenshotManualFilename : kScreenshotAutoFilename
         let filePath = program.projectPath() + fileName
         let thumbnailPath = program.projectPath() + kScreenshotThumbnailPrefix + fileName
-        guard let data = UIImagePNGRepresentation(screenshot) else { return nil }
+        guard let data = UIImagePNGRepresentation(screenshot) else { return }
 
         DispatchQueue.main.async {
             do {
@@ -70,10 +69,17 @@
                 RuntimeImageCache.shared()?
                     .overwriteThumbnailImageFromDisk(withThumbnailPath: thumbnailPath,
                                                      image: screenshot,
-                                                     thumbnailFrameSize: CGSize(width: CGFloat(kPreviewImageWidth),
-                                                                                height: CGFloat(kPreviewImageHeight)))
-            } catch { }
+                                                     thumbnailFrameSize: CGSize(width: CGFloat(ProgramConstants.previewImageWidth),
+                                                                                height: CGFloat(ProgramConstants.previewImageHeight)))
+                if manualScreenshot {
+                    Util.showNotificationForSaveAction()
+                }
+            } catch {
+                AlertControllerBuilder.alert(title: kLocalizedError, message: kLocalizedSaveError)
+                    .addDefaultAction(title: kLocalizedOK) { }
+                    .build()
+                    .showWithController(self)
+            }
         }
-        return filePath
     }
 }
