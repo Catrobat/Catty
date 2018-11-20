@@ -25,7 +25,6 @@
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "AppDelegate.h"
 #import "Util.h"
-#import "LoadingView.h"
 #import "NetworkDefines.h"
 #import "BDKNotifyHUD.h"
 #import "Pocket_Code-Swift.h"

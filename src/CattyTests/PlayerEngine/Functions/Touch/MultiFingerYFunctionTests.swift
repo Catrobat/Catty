@@ -58,7 +58,9 @@ class MultiFingerYFunctionTests: XCTestCase {
         XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: 1 as AnyObject, spriteObject: spriteObject), accuracy: Double.epsilon)
 
         function = MultiFingerYFunction { nil }
+        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: 0 as AnyObject, spriteObject: spriteObject), accuracy: Double.epsilon)
         XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: 1 as AnyObject, spriteObject: spriteObject), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: -1 as AnyObject, spriteObject: spriteObject), accuracy: Double.epsilon)
     }
 
     func testValue() {
@@ -71,6 +73,7 @@ class MultiFingerYFunctionTests: XCTestCase {
         XCTAssertEqual(standardizedValue(firstTouch), function.value(parameter: 1.4 as AnyObject, spriteObject: spriteObject), accuracy: Double.epsilon)
         XCTAssertEqual(standardizedValue(secondTouch), function.value(parameter: 2 as AnyObject, spriteObject: spriteObject), accuracy: Double.epsilon)
         XCTAssertEqual(standardizedValue(secondTouch), function.value(parameter: 2.9 as AnyObject, spriteObject: spriteObject), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: 3 as AnyObject, spriteObject: spriteObject), accuracy: Double.epsilon)
     }
 
     func testParameter() {
