@@ -335,7 +335,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     if (! image) {
         [imageCache loadThumbnailImageFromDiskWithThumbnailPath:previewImagePath
                                                       imagePath:imagePath
-                                                  thumbnailFrameSize:CGSizeMake(ProgramConstants.previewImageWidth, ProgramConstants.previewImageHeight)
+                                                  thumbnailFrameSize:CGSizeMake(kPreviewThumbnailWidth, kPreviewThumbnailHeight)
                                                    onCompletion:^(UIImage *img, NSString* path){
                                                        // check if cell still needed
                                                        if ([imageCell.indexPath isEqual:indexPath]) {
@@ -860,7 +860,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
         
         
         NSString *filePath = [NSString stringWithFormat:@"%@/%@", imageDirPath, previewImageName];
-        [cache overwriteThumbnailImageFromDiskWithThumbnailPath:filePath image:image thumbnailFrameSize:CGSizeMake(ProgramConstants.previewImageWidth, ProgramConstants.previewImageHeight)];
+        [cache overwriteThumbnailImageFromDiskWithThumbnailPath:filePath image:image thumbnailFrameSize:CGSizeMake(kPreviewThumbnailWidth, kPreviewThumbnailHeight)];
         
         
         [cache replaceImage:image withName:filePath];

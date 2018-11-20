@@ -38,34 +38,35 @@ final class ScenePresenterViewControllerTest: XCTestCase {
         program = Program.defaultProgram(withName: "testProgram", programID: "")
     }
 
-    func testScreenshot() {
-        let screenshot = vc.screenshot(for: skView)
-
-        XCTAssertEqual(CGFloat(ProgramConstants.previewImageWidth), screenshot?.size.width)
-        XCTAssertEqual(CGFloat(ProgramConstants.previewImageHeight), screenshot?.size.height)
-    }
-
     func testAutomaticScreenshot() {
         let expectedPath = program.projectPath() + kScreenshotAutoFilename
         let exp = expectation(description: "screenshot saved")
 
         XCTAssertFalse(FileManager.default.fileExists(atPath: expectedPath))
         vc.takeAutomaticScreenshot(for: skView, and: program)
-        DispatchQueue.main.async {
-            XCTAssertTrue(FileManager.default.fileExists(atPath: expectedPath))
-            exp.fulfill()
-        }
+
+        DispatchQueue.main.async { exp.fulfill() }
         waitForExpectations(timeout: 5, handler: nil)
+
+        XCTAssertTrue(FileManager.default.fileExists(atPath: expectedPath))
+
+        let image = UIImage(contentsOfFile: expectedPath)
+        XCTAssertEqual(CGFloat(type(of: vc).previewImageWidth), image?.size.width)
+        XCTAssertEqual(CGFloat(type(of: vc).previewImageHeight), image?.size.height)
     }
 
     func testManualScreenshot() {
         let expectedPath = program.projectPath() + kScreenshotManualFilename
         let exp = expectation(description: "screenshot saved")
         vc.takeManualScreenshot(for: skView, and: program)
-        DispatchQueue.main.async {
-            XCTAssertTrue(FileManager.default.fileExists(atPath: expectedPath))
-            exp.fulfill()
-        }
+
+        DispatchQueue.main.async { exp.fulfill() }
         waitForExpectations(timeout: 5, handler: nil)
+
+        XCTAssertTrue(FileManager.default.fileExists(atPath: expectedPath))
+
+        let image = UIImage(contentsOfFile: expectedPath)
+        XCTAssertEqual(CGFloat(type(of: vc).previewImageWidth), image?.size.width)
+        XCTAssertEqual(CGFloat(type(of: vc).previewImageHeight), image?.size.height)
     }
 }

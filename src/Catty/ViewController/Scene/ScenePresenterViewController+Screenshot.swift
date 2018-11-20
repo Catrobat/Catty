@@ -22,19 +22,8 @@
 
 @objc extension ScenePresenterViewController {
 
-    @objc(screenshotForSKView:)
-    func screenshot(for skView: SKView) -> UIImage? {
-        UIGraphicsBeginImageContextWithOptions(skView.frame.size, false, 0)
-        skView.drawHierarchy(in: skView.frame, afterScreenUpdates: true)
-        let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
-
-        let size = CGSize(width: CGFloat(ProgramConstants.previewImageWidth),
-                          height: CGFloat(ProgramConstants.previewImageHeight))
-        let center = CGPoint(x: 0, y: (skView.bounds.size.height) / 2 - (size.height / 2))
-
-        return image.crop(rect: CGRect(origin: center, size: size))!
-    }
+    public static var previewImageWidth: CGFloat { return UIScreen.main.bounds.width }
+    public static var previewImageHeight: CGFloat { return previewImageWidth }
 
     @objc(takeAutomaticScreenshotForSKView: andProgram:)
     func takeAutomaticScreenshot(for skView: SKView, and program: Program) {
@@ -46,6 +35,18 @@
     func takeManualScreenshot(for skView: SKView, and program: Program) {
         guard let snapshot = self.screenshot(for: skView) else { return }
         saveScreenshot(snapshot, for: program, manualScreenshot: true)
+    }
+
+    private func screenshot(for skView: SKView) -> UIImage? {
+        UIGraphicsBeginImageContextWithOptions(skView.frame.size, false, 1)
+        skView.drawHierarchy(in: skView.frame, afterScreenUpdates: true)
+        let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+
+        let size = CGSize(width: type(of: self).previewImageWidth, height: type(of: self).previewImageHeight)
+        let center = CGPoint(x: 0, y: (skView.bounds.size.height) / 2 - (size.height / 2))
+
+        return image.crop(rect: CGRect(origin: center, size: size))!
     }
 
     private func saveScreenshot(_ screenshot: UIImage, for program: Program, manualScreenshot: Bool) {
@@ -60,8 +61,8 @@
                 RuntimeImageCache.shared()?
                     .overwriteThumbnailImageFromDisk(withThumbnailPath: thumbnailPath,
                                                      image: screenshot,
-                                                     thumbnailFrameSize: CGSize(width: CGFloat(ProgramConstants.previewImageWidth),
-                                                                                height: CGFloat(ProgramConstants.previewImageHeight)))
+                                                     thumbnailFrameSize: CGSize(width: CGFloat(kPreviewThumbnailWidth),
+                                                                                height: CGFloat(kPreviewThumbnailHeight)))
                 if manualScreenshot {
                     Util.showNotificationForSaveAction()
                 }

@@ -196,7 +196,7 @@
                                            info.basePath, kScreenshotThumbnailPrefix, fileName];
                 [imageCache loadThumbnailImageFromDiskWithThumbnailPath:thumbnailPath
                                                               imagePath:fallbackPath
-                                                     thumbnailFrameSize:CGSizeMake(ProgramConstants.previewImageWidth, ProgramConstants.previewImageHeight)
+                                                     thumbnailFrameSize:CGSizeMake(kPreviewThumbnailWidth, kPreviewThumbnailHeight)
                                                            onCompletion:^(UIImage *image, NSString* path){
                                                                // check if cell still needed
                                                                if ([cell.indexPath isEqual:indexPath]) {
