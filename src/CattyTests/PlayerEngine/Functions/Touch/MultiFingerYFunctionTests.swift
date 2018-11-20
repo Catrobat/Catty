@@ -67,7 +67,7 @@ class MultiFingerYFunctionTests: XCTestCase {
         let firstTouch = CGPoint(x: 15, y: 20)
         let secondTouch = CGPoint(x: 30, y: 45)
         touchManager.touches = [firstTouch, secondTouch]
-        
+
         XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: 0 as AnyObject, spriteObject: spriteObject), accuracy: Double.epsilon)
         XCTAssertEqual(standardizedValue(firstTouch), function.value(parameter: 1 as AnyObject, spriteObject: spriteObject), accuracy: Double.epsilon)
         XCTAssertEqual(standardizedValue(firstTouch), function.value(parameter: 1.4 as AnyObject, spriteObject: spriteObject), accuracy: Double.epsilon)
