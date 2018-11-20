@@ -360,7 +360,7 @@
                          self.menuOpen = NO;
                          self.menuView.userInteractionEnabled = YES;
                          if (animateDuration == duration) {
-                             (void)[self takeAutomaticScreenshotForSKView:self.skView andProgram:self.program];
+                             [self takeAutomaticScreenshotForSKView:self.skView andProgram:self.program];
                          }
                      }];
     self.skView.paused = NO;

@@ -50,24 +50,12 @@ final class ScenePresenterViewControllerTest: XCTestCase {
         let exp = expectation(description: "screenshot saved")
 
         XCTAssertFalse(FileManager.default.fileExists(atPath: expectedPath))
-        XCTAssertTrue(vc.takeAutomaticScreenshot(for: skView, and: program))
+        vc.takeAutomaticScreenshot(for: skView, and: program)
         DispatchQueue.main.async {
             XCTAssertTrue(FileManager.default.fileExists(atPath: expectedPath))
             exp.fulfill()
         }
         waitForExpectations(timeout: 5, handler: nil)
-    }
-
-    func testDoNotRetakeAutomaticScreenshot() {
-        let expectedPath = program.projectPath() + kScreenshotAutoFilename
-
-        do {
-            try Data().write(to: URL(fileURLWithPath: expectedPath), options: .atomic)
-        } catch {
-            XCTFail("Error writing screenshot to file")
-        }
-        XCTAssertTrue(FileManager.default.fileExists(atPath: expectedPath))
-        XCTAssertFalse(vc.takeAutomaticScreenshot(for: skView, and: program))
     }
 
     func testManualScreenshot() {

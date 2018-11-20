@@ -24,37 +24,28 @@
 
     @objc(screenshotForSKView:)
     func screenshot(for skView: SKView) -> UIImage? {
-        let size = CGSize(width: CGFloat(ProgramConstants.previewImageWidth),
-                          height: CGFloat(ProgramConstants.previewImageHeight))
-        let center = CGPoint(x: skView.bounds.size.width / 2 - size.width / 2, y: skView.bounds.size.height / 2 - size.height / 2)
-
-        let snapshot = skView.resizableSnapshotView(from: CGRect(origin: center, size: size), afterScreenUpdates: false, withCapInsets: UIEdgeInsets.zero)
-
-        UIGraphicsBeginImageContextWithOptions(size, false, UIScreen.main.scale)
-        snapshot?.drawHierarchy(in: CGRect(origin: CGPoint.zero, size: size), afterScreenUpdates: true)
-        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsBeginImageContextWithOptions(skView.frame.size, false, 0)
+        skView.drawHierarchy(in: skView.frame, afterScreenUpdates: true)
+        let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
 
-        return image
+        let size = CGSize(width: CGFloat(ProgramConstants.previewImageWidth),
+                          height: CGFloat(ProgramConstants.previewImageHeight))
+        let center = CGPoint(x: 0, y: (skView.bounds.size.height) / 2 - (size.height / 2))
+
+        return image.crop(rect: CGRect(origin: center, size: size))!
     }
 
     @objc(takeAutomaticScreenshotForSKView: andProgram:)
-    func takeAutomaticScreenshot(for skView: SKView, and program: Program) -> Bool {
-        let path = program.projectPath() + kScreenshotAutoFilename
-
-        if !FileManager.default.fileExists(atPath: path) {
-            guard let snapshot = self.screenshot(for: skView) else { return false }
-            saveScreenshot(snapshot, for: program, manualScreenshot: false)
-            return true
-        } else {
-            return false
-        }
+    func takeAutomaticScreenshot(for skView: SKView, and program: Program) {
+        guard let snapshot = self.screenshot(for: skView) else { return }
+        saveScreenshot(snapshot, for: program, manualScreenshot: false)
     }
 
     @objc(takeManualScreenshotForSKView: andProgram:)
     func takeManualScreenshot(for skView: SKView, and program: Program) {
         guard let snapshot = self.screenshot(for: skView) else { return }
-        return saveScreenshot(snapshot, for: program, manualScreenshot: true)
+        saveScreenshot(snapshot, for: program, manualScreenshot: true)
     }
 
     private func saveScreenshot(_ screenshot: UIImage, for program: Program, manualScreenshot: Bool) {
