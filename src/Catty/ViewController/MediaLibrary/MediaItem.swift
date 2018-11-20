@@ -29,7 +29,7 @@ struct MediaItem: Codable {
     /// Since the API doesn't offer previews of items it would
     /// be a waste to not keep the already downloaded data
     /// in case the user decides to import the item.
-    var cachedData: Data? = nil
+    var cachedData: Data?
 
     private enum CodingKeys: String, CodingKey {
         case name

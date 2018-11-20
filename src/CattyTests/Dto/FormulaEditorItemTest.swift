@@ -25,28 +25,30 @@ import XCTest
 @testable import Pocket_Code
 
 class FormulaEditorItemTest: XCTestCase {
-    
+
     override func setUp() {
+        super.setUp()
     }
-    
+
     override func tearDown() {
+        super.tearDown()
     }
-    
+
     func testInitWithFunction() {
         let expectedSection = FormulaEditorSection.math(position: 10)
         let function = ZeroParameterDoubleFunctionMock(tag: "tag", value: 1.0, formulaEditorSection: expectedSection)
-        
+
         let item = FormulaEditorItem(function: function)
         XCTAssertEqual(function.nameWithParameters(), item.title)
         XCTAssertEqual(expectedSection, item.section)
         XCTAssertNotNil(item.function)
         XCTAssertNil(item.sensor)
     }
-    
+
     func testInitWithSensor() {
         let expectedSection = FormulaEditorSection.object(position: 10)
         let sensor = SensorMock(tag: "tagA", formulaEditorSection: expectedSection)
-        
+
         let item = FormulaEditorItem(sensor: sensor, spriteObject: SpriteObjectMock())
         XCTAssertEqual(type(of: sensor).name, item.title)
         XCTAssertEqual(expectedSection, item.section)

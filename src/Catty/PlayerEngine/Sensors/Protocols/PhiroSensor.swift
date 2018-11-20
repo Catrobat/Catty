@@ -21,7 +21,7 @@
  */
 
 protocol PhiroSensor: DeviceSensor {
-    
+
     static var tag: String { get }
     static var pinNumber: Int { get }
 }

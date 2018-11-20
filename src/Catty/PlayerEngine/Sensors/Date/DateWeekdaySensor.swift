@@ -20,26 +20,26 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class DateWeekdaySensor : DateSensor {
-    
+class DateWeekdaySensor: DateSensor {
+
     static let tag = "DATE_WEEKDAY"
     static let name = kUIFESensorDateWeekday
     static let defaultRawValue = 0.0
     static let position = 260
     static let requiredResource = ResourceType.noResources
-    
+
     func date() -> Date {
         return Date()
     }
-    
+
     func tag() -> String {
         return type(of: self).tag
     }
-    
+
     func rawValue() -> Double {
         return Double(Calendar.current.component(.weekday, from: self.date()))
     }
-    
+
     func convertToStandardized(rawValue: Double) -> Double {
         var weekday = rawValue
         if weekday == 1.0 { //Sunday
@@ -49,9 +49,8 @@ class DateWeekdaySensor : DateSensor {
         }
         return Double(weekday)
     }
-    
+
     func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
         return .device(position: type(of: self).position)
     }
 }
-

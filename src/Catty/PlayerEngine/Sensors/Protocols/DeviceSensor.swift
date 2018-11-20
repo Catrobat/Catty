@@ -24,7 +24,7 @@ protocol DeviceSensor: Sensor {
 
     // The iOS device specific value of the sensor
     func rawValue() -> Double
-    
+
     // Convert the iOS specific value (rawValue) to the Pocket Code standardized sensor value
     func convertToStandardized(rawValue: Double) -> Double
 }

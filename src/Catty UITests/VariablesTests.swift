@@ -23,21 +23,17 @@
 import XCTest
 
 class VariablesTests: XCTestCase, UITestProtocol {
-    
+
     override func setUp() {
         super.setUp()
-        
+
         continueAfterFailure = false
         XCUIApplication().launch()
-        
+
         dismissWelcomeScreenIfShown()
         restoreDefaultProgram()
     }
-    
-    override func tearDown() {
-        super.tearDown()
-    }
-    
+
     func testDontShowVariablePickerWhenNoVariablesDefinedForObject() {
         let app = XCUIApplication()
         app.tables.staticTexts["New"].tap()
@@ -46,17 +42,17 @@ class VariablesTests: XCTestCase, UITestProtocol {
         XCUIApplication().tables.staticTexts["Background"].tap()
         app.tables.staticTexts["Scripts"].tap()
         app.toolbars.buttons["Add"].tap()
-        
-        if(app.navigationBars["Frequently Used"].exists) {
+
+        if app.navigationBars["Frequently Used"].exists {
             app.swipeLeft()
         }
         app.swipeLeft()
         app.swipeLeft()
         app.swipeLeft()
         app.swipeLeft()
-        
+
         app.collectionViews.staticTexts["Set variable"].tap()
-        app.collectionViews.cells.otherElements.containing(.staticText, identifier:"Set variable").children(matching: .other).element.tap()
+        app.collectionViews.cells.otherElements.containing(.staticText, identifier: "Set variable").children(matching: .other).element.tap()
         XCTAssert(app.sheets["Variable type"].exists)
     }
 
@@ -68,8 +64,8 @@ class VariablesTests: XCTestCase, UITestProtocol {
         XCUIApplication().tables.staticTexts["Background"].tap()
         app.tables.staticTexts["Scripts"].tap()
         app.toolbars.buttons["Add"].tap()
-        
-        if(app.navigationBars["Frequently Used"].exists) {
+
+        if app.navigationBars["Frequently Used"].exists {
             app.swipeLeft()
         }
         app.swipeLeft()
@@ -77,14 +73,14 @@ class VariablesTests: XCTestCase, UITestProtocol {
         app.swipeLeft()
         app.swipeLeft()
         app.swipeDown()
-        
-        app.collectionViews.cells.otherElements.containing(.staticText, identifier:"Add ").children(matching: .other).element.tap()
-        app.collectionViews.cells.otherElements.containing(.staticText, identifier:"Add ").children(matching: .other).element.tap()
+
+        app.collectionViews.cells.otherElements.containing(.staticText, identifier: "Add ").children(matching: .other).element.tap()
+        app.collectionViews.cells.otherElements.containing(.staticText, identifier: "Add ").children(matching: .other).element.tap()
         XCTAssert(app.sheets["List type"].exists)
     }
-    
-    func testCreateVariableWithMaxLenght(){
-        
+
+    func testCreateVariableWithMaxLength() {
+
         let app = XCUIApplication()
         app.tables.staticTexts["New"].tap()
         app.alerts["New Program"].textFields["Enter your program name here..."].typeText("Test Program")
@@ -92,27 +88,28 @@ class VariablesTests: XCTestCase, UITestProtocol {
         XCUIApplication().tables.staticTexts["Background"].tap()
         app.tables.staticTexts["Scripts"].tap()
         app.toolbars.buttons["Add"].tap()
-        
-        if(app.navigationBars["Frequently Used"].exists) {
+
+        if app.navigationBars["Frequently Used"].exists {
             app.swipeLeft()
         }
         app.swipeLeft()
         app.swipeLeft()
         app.swipeLeft()
         app.swipeLeft()
-        
+
         app.collectionViews.staticTexts["Set variable"].tap()
-        app.collectionViews.cells.otherElements.containing(.staticText, identifier:"Set variable").children(matching: .other).element.tap()
+        app.collectionViews.cells.otherElements.containing(.staticText, identifier: "Set variable").children(matching: .other).element.tap()
         XCTAssert(app.sheets["Variable type"].exists)
-        
+
         app.buttons["for all objects"].tap()
-        app.alerts["New Variable"].textFields["Enter your variable name here..."].typeText("iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii")
+        app.alerts["New Variable"].textFields["Enter your variable name here..."].typeText("iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii"
+            + "iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii")
         app.alerts["New Variable"].buttons["OK"].tap()
         XCTAssert(app.staticTexts["When program started"].exists)
     }
-    
-    func testCreateVariableWithMaxLenghtPlusOne(){
-        
+
+    func testCreateVariableWithMaxLengthPlusOne() {
+
         let app = XCUIApplication()
         app.tables.staticTexts["New"].tap()
         app.alerts["New Program"].textFields["Enter your program name here..."].typeText("Test Program")
@@ -120,21 +117,23 @@ class VariablesTests: XCTestCase, UITestProtocol {
         XCUIApplication().tables.staticTexts["Background"].tap()
         app.tables.staticTexts["Scripts"].tap()
         app.toolbars.buttons["Add"].tap()
-        
-        if(app.navigationBars["Frequently Used"].exists) {
+
+        if app.navigationBars["Frequently Used"].exists {
             app.swipeLeft()
         }
         app.swipeLeft()
         app.swipeLeft()
         app.swipeLeft()
         app.swipeLeft()
-        
+
         app.collectionViews.staticTexts["Set variable"].tap()
-        app.collectionViews.cells.otherElements.containing(.staticText, identifier:"Set variable").children(matching: .other).element.tap()
+        app.collectionViews.cells.otherElements.containing(.staticText, identifier: "Set variable").children(matching: .other).element.tap()
         XCTAssert(app.sheets["Variable type"].exists)
-        
+
         app.buttons["for all objects"].tap()
-        app.alerts["New Variable"].textFields["Enter your variable name here..."].typeText("iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii")
+        app.alerts["New Variable"].textFields["Enter your variable name here..."].typeText("iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii"
+            + "iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii"
+            + "iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii")
         app.alerts["New Variable"].buttons["OK"].tap()
         XCTAssert(app.alerts["Pocket Code"].exists)
     }

@@ -20,25 +20,45 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc extension ChangeBrightnessByNBrick: CBInstructionProtocol {
+@testable import Pocket_Code
 
-    @nonobjc func instruction() -> CBInstruction {
-        return .action { (context) in SKAction.run(self.actionBlock(context.formulaInterpreter)) }
+final class TouchManagerMock: TouchManagerProtocol {
+
+    var touchRecognizer: UILongPressGestureRecognizer?
+    var scene: CBScene?
+    var isScreenTouched: Bool = false
+    var touches: [CGPoint] = []
+    var lastTouch: CGPoint?
+
+    var isStarted = false
+
+    func startTrackingTouches(for scene: CBScene) {
+        isStarted = true
     }
-    
-    @objc func actionBlock(_ formulaInterpreter: FormulaInterpreterProtocol) -> ()->() {
-        guard let object = self.script?.object,
-            let spriteNode = object.spriteNode,
-            let bright = self.changeBrightness
-            else { fatalError("This should never happen!") }
-        
-        return {
-            guard let look = object.spriteNode?.currentLook else { return }
-            let brightnessIncrease = formulaInterpreter.interpretDouble(bright, for: object)
-            spriteNode.catrobatBrightness = spriteNode.catrobatBrightness + brightnessIncrease
-            
-            let lookImage = UIImage(contentsOfFile:self.path(for: look))
-            spriteNode.executeFilter(lookImage)
+
+    func stopTrackingTouches() {
+        isStarted = false
+    }
+
+    func reset() {
+    }
+
+    func screenTouched() -> Bool {
+        return isScreenTouched
+    }
+
+    func numberOfTouches() -> Int {
+        return touches.count
+    }
+
+    func lastPositionInScene() -> CGPoint? {
+        return lastTouch
+    }
+
+    func getPositionInScene(for touchNumber: Int) -> CGPoint? {
+        if touchNumber <= 0 || touches.count < touchNumber {
+            return nil
         }
+        return touches[touchNumber - 1]
     }
 }

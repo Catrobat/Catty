@@ -21,22 +21,22 @@
  */
 
 class LoadingView: UIView {
-    
+
     private let kLoadingBackgroundHeight = 100
     private let kLoadingBackgroundWidth = 200
-    
+
     private var activityIndicator: UIActivityIndicatorView?
     private var loadingLabel: UILabel?
-    
+
     // MARK: - init
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    
+
     init() {
         super.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-        
+
         backgroundColor = UIColor.globalTint()
         alpha = 0.70
         layer.cornerRadius = 5
@@ -45,7 +45,7 @@ class LoadingView: UIView {
         initLoadingLabel()
         initActivityIndicator()
     }
-    
+
     func initLoadingLabel() {
         loadingLabel = UILabel(frame: CGRect(x: 15, y: 65, width: 170, height: 20))
         loadingLabel?.backgroundColor = UIColor.clear
@@ -61,7 +61,7 @@ class LoadingView: UIView {
             addSubview(aLabel)
         }
     }
-    
+
     func initActivityIndicator() {
         activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
         activityIndicator?.frame = CGRect(x: 80, y: 15, width: 40, height: 40)
@@ -69,14 +69,14 @@ class LoadingView: UIView {
             addSubview(anIndicator)
         }
     }
-    
+
     // MARK: - show and hide
-    
+
     @objc func show() {
         activityIndicator?.startAnimating()
         isHidden = false
         superview?.bringSubview(toFront: self)
-        
+
         // TODO: move the following block to UIView+Extensions after IOS-533 merge
         if #available(iOS 11.0, *) {
             let safeAreaGuide = self.superview?.safeAreaLayoutGuide
@@ -86,11 +86,11 @@ class LoadingView: UIView {
             self.centerXAnchor.constraint(equalTo: (self.superview?.centerXAnchor)!).isActive = true
             self.centerYAnchor.constraint(equalTo: (self.superview?.centerYAnchor)!).isActive = true
         }
-        
+
         self.widthAnchor.constraint(equalToConstant: CGFloat(kLoadingBackgroundWidth)).isActive = true
         self.heightAnchor.constraint(equalToConstant: CGFloat(kLoadingBackgroundHeight)).isActive = true
     }
-    
+
     @objc func hide() {
         activityIndicator?.stopAnimating()
         isHidden = true

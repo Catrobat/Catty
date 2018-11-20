@@ -29,27 +29,27 @@
     static let position = 140
 
     let getTouchManager: () -> TouchManagerProtocol?
-    
+
     init(touchManagerGetter: @escaping () -> TouchManagerProtocol?) {
         self.getTouchManager = touchManagerGetter
     }
-    
+
     func tag() -> String {
         return type(of: self).tag
     }
-    
+
     func rawValue() -> Double {
         guard let lastPosition = getTouchManager()?.lastPositionInScene() else { return type(of: self).defaultRawValue }
         return Double(lastPosition.y)
     }
-    
+
     // We have to move (0, 0) from top left to the center
     func convertToStandardized(rawValue: Double, for spriteObject: SpriteObject) -> Double {
         guard let _ = getTouchManager()?.lastPositionInScene() else { return type(of: self).defaultRawValue }
         guard let scene = spriteObject.spriteNode.scene else { return type(of: self).defaultRawValue }
-        return Double(scene.size.height)/2.0 - rawValue
+        return Double(scene.size.height) / 2.0 - rawValue
     }
-    
+
     func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
         return .device(position: type(of: self).position)
     }

@@ -23,21 +23,21 @@
 @objc extension ComeToFrontBrick: CBInstructionProtocol {
 
     @nonobjc func instruction() -> CBInstruction {
-        return .action { (_) in SKAction.run(self.actionBlock()) }
+        return .action { _ in SKAction.run(self.actionBlock()) }
     }
 
-    @objc func actionBlock() -> ()->() {
+    @objc func actionBlock() -> () -> Void {
         guard let currentObject = self.script?.object,
             let currentSpriteNode = currentObject.spriteNode,
             let program = self.script?.object?.program,
             let objectList = self.script?.object?.program?.objectList
             else { fatalError("This should never happen!") }
-        
+
         return {
             let currentLayer = currentSpriteNode.catrobatLayer
             let frontValue = Double(program.numberOfNormalObjects())
             currentSpriteNode.catrobatLayer = frontValue
-            
+
             for obj in objectList {
                 guard let spriteObject = obj as? SpriteObject, let spriteNode = spriteObject.spriteNode else {
                     continue

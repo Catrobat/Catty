@@ -25,44 +25,44 @@ extension FormulaManager {
     @nonobjc func formulaEditorItems(spriteObject: SpriteObject) -> [FormulaEditorItem] {
         return formulaEditorItems(for: spriteObject, mathSection: true, objectSection: true, deviceSection: true)
     }
-    
+
     @nonobjc func formulaEditorItemsForMathSection(spriteObject: SpriteObject) -> [FormulaEditorItem] {
         return formulaEditorItems(for: spriteObject, mathSection: true, objectSection: false, deviceSection: false)
     }
-    
+
     @nonobjc func formulaEditorItemsForObjectSection(spriteObject: SpriteObject) -> [FormulaEditorItem] {
         return formulaEditorItems(for: spriteObject, mathSection: false, objectSection: true, deviceSection: false)
     }
-    
+
     @nonobjc func formulaEditorItemsForDeviceSection(spriteObject: SpriteObject) -> [FormulaEditorItem] {
         return formulaEditorItems(for: spriteObject, mathSection: false, objectSection: false, deviceSection: true)
     }
-    
+
     private func formulaEditorItems(for spriteObject: SpriteObject, mathSection: Bool, objectSection: Bool, deviceSection: Bool) -> [FormulaEditorItem] {
         var items = [FormulaEditorItem]()
         let allItems = sensorManager.formulaEditorItems(for: spriteObject) + functionManager.formulaEditorItems()
-        
+
         for item in allItems {
-            switch (item.section) {
-            case .math(_):
-                if (mathSection) {
+            switch item.section {
+            case .math:
+                if mathSection {
                     items += item
                 }
-                
-            case .object(_):
-                if (objectSection) {
+
+            case .object:
+                if objectSection {
                     items += item
                 }
-                
-            case .device(_):
-                if (deviceSection) {
+
+            case .device:
+                if deviceSection {
                     items += item
                 }
-                
+
             default:
-                break;
+                break
             }
         }
-        return items.sorted(by: { $0.section.position() < $1.section.position() }).map{ $0 }
+        return items.sorted(by: { $0.section.position() < $1.section.position() }).map { $0 }
     }
 }

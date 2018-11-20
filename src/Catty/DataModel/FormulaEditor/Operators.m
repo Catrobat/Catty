@@ -243,7 +243,6 @@
     return name;
 }
 
-
 + (Operator)getOperatorByValue:(NSString*)name
 {
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc]init];
@@ -290,7 +289,7 @@
         return DECIMAL_MARK;
     }
     
-//    NSError(@"Unknown Operator: %@", name);
+    //NSError(@"Unknown Operator: %@", name);
     return NO_OPERATOR;
 }
 

@@ -166,9 +166,7 @@
 #import "KeychainUserDefaultsDefines.h"
 #import "CatrobatLanguageDefines.h"
 
-//#import "LanguageTranslationDefines.h"
 #import "BrickFormulaProtocol.h"
-
 
 //-----------------------------------------------------------------------------------------------------------
 // Headers to sort

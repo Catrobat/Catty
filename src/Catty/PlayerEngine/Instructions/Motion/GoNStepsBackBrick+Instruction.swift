@@ -23,21 +23,21 @@
 @objc extension GoNStepsBackBrick: CBInstructionProtocol {
 
     @nonobjc func instruction() -> CBInstruction {
-        return .action { (context) in SKAction.run(self.actionBlock(context.formulaInterpreter)) }
+        return .action { context in SKAction.run(self.actionBlock(context.formulaInterpreter)) }
     }
-    
-    @objc func actionBlock(_ formulaInterpreter: FormulaInterpreterProtocol) -> ()->() {
+
+    @objc func actionBlock(_ formulaInterpreter: FormulaInterpreterProtocol) -> () -> Void {
         guard let currentObject = self.script?.object,
             let currentSpriteNode = currentObject.spriteNode,
             let stepsFormula = self.steps,
             let objectList = self.script?.object?.program?.objectList
-        else { fatalError("This should never happen!") }
+            else { fatalError("This should never happen!") }
 
         return {
             let currentLayer = currentSpriteNode.catrobatLayer
             let steps = formulaInterpreter.interpretDouble(stepsFormula, for: currentObject)
-            currentSpriteNode.catrobatLayer = currentSpriteNode.catrobatLayer - steps
-            
+            currentSpriteNode.catrobatLayer -= steps
+
             for obj in objectList {
                 guard let spriteObject = obj as? SpriteObject, let spriteNode = spriteObject.spriteNode else {
                     continue

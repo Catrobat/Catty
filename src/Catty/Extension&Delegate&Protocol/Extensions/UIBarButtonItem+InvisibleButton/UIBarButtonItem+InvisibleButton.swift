@@ -27,7 +27,7 @@ extension UIBarButtonItem {
     /// Creates an instance of UIBarButtonItem with a custom image view showing a transparent image.
     @objc(invisibleItem)
     static func invisibleItem() -> UIBarButtonItem {
-        let imageView = UIImageView(image: #imageLiteral(resourceName: "transparent1x1"))
+        let imageView = UIImageView(image: UIImage(imageLiteralResourceName: "transparent1x1"))
         return UIBarButtonItem(customView: imageView)
     }
 

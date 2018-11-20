@@ -22,7 +22,7 @@
 
 import Kingfisher // there is not much point in using Kingfisher unless the Media Library offers thumbnail preview images
 
-protocol MediaLibraryCollectionViewDataSourceDelegate: class {
+protocol MediaLibraryCollectionViewDataSourceDelegate: AnyObject {
     func mediaLibraryCollectionViewDataSource(_ dataSource: MediaLibraryCollectionViewDataSource, didSelectCellWith item: MediaItem)
 }
 
@@ -84,8 +84,8 @@ class MediaLibraryCollectionViewDataSource: NSObject, UICollectionViewDataSource
 
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: self.headerViewReuseIdentifier, for: indexPath)
-        if let headerView = headerView as? LibraryCategoryCollectionReusableView {
-            headerView.titleLabel.text = self.items[indexPath.section].first?.category
+        if let headerView = headerView as? LibraryCategoryCollectionReusableView, let categoryTitle = self.items[indexPath.section].first?.category {
+            headerView.title = categoryTitle
         }
         return headerView
     }
@@ -95,7 +95,7 @@ class MediaLibraryCollectionViewDataSource: NSObject, UICollectionViewDataSource
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        fatalError("collectionView(_:cellForItemAt:) must be overriden by subclasses")
+        fatalError("collectionView(_:cellForItemAt:) must be overridden by subclass")
     }
 
     func reduceMemoryPressure() { // the method might not be required with thumbnail previews from the API

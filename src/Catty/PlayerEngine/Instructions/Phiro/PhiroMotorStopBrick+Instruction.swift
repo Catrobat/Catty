@@ -20,16 +20,29 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@testable import Pocket_Code
+import Foundation
 
-final class CBSceneMock: CBScene {
-    
-    init(size: CGSize) {
-        let logger = CBLogger(name: "CBSceneMockLogger")
-        let broadcastHandler = CBBroadcastHandler(logger: logger)
-        let formulaManager = FormulaManager()
-        let scheduler = CBScheduler(logger: logger, broadcastHandler: broadcastHandler, formulaInterpreter: formulaManager)
-        scheduler.running = true
-        super(size: size, logger: logger, scheduler: scheduler, frontend: CBFrontend(logger: logger, program: nil), backend: CBBackend(logger: logger), broadcastHandler: broadcastHandler, formulaManager: formulaManager)
+@objc extension PhiroMotorStopBrick: CBInstructionProtocol {
+
+    @nonobjc func instruction() -> CBInstruction {
+
+        return CBInstruction.execClosure { context, _ in
+
+            guard let phiro = BluetoothService.swiftSharedInstance.phiro else {
+                return
+            }
+            switch self.phiroMotor() {
+            case .Left:
+                phiro.stopLeftMotor()
+            case .Right:
+                phiro.stopRightMotor()
+            case .Both:
+                phiro.stopRightMotor()
+                phiro.stopLeftMotor()
+            }
+            context.state = .runnable
+        }
+
     }
+
 }

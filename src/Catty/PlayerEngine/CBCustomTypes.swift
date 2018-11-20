@@ -53,7 +53,6 @@ enum CBDuration {
     case fixedTime(duration: Double)
 }
 
-
 //##################################################################################################
 //                _____ __        __          ____  _
 //               / ___// /_____ _/ /____     / __ \(_)___ _____ __________ _____ ___
@@ -96,24 +95,21 @@ enum CBScriptContextState {
 }
 
 enum CBBroadcastType: String {
-    case Broadcast = "Broadcast"
-    case BroadcastWait = "BroadcastWait"
+    case Broadcast
+    case BroadcastWait
 }
-
 
 // MARK: - Protocol extensions
 // TODO: simplify and remove duplicate...
 extension Collection where Iterator.Element == CBScriptContextProtocol {
-    
+
     func contains(_ e: Iterator.Element) -> Bool {
-        for element in self {
-            if element == e {
-                return true
-            }
+        for element in self where (element == e) {
+            return true
         }
         return false
     }
-    
+
     func indexOfElement(_ e: Iterator.Element) -> Int? {
         var index = 0
         for element in self {
@@ -124,20 +120,18 @@ extension Collection where Iterator.Element == CBScriptContextProtocol {
         }
         return nil
     }
-    
+
 }
 
 extension Collection where Iterator.Element == CBBroadcastScriptContextProtocol {
-    
+
     func contains(_ e: Iterator.Element) -> Bool {
-        for element in self {
-            if element == e {
-                return true
-            }
+        for element in self where (element == e) {
+            return true
         }
         return false
     }
-    
+
     func indexOfElement(_ e: Iterator.Element) -> Int? {
         var index = 0
         for element in self {
@@ -148,7 +142,7 @@ extension Collection where Iterator.Element == CBBroadcastScriptContextProtocol 
         }
         return nil
     }
-    
+
 }
 
 // MARK: - Extensions
@@ -166,34 +160,34 @@ extension Array {
             self.remove(at: index)
         }
     }
-    
+
     mutating func prepend(_ newElement: Element) {
         self.insert(newElement, at: 0)
     }
 }
 
 // MARK: - Custom operators
-func ==(lhs: CBScriptContextProtocol, rhs: CBScriptContextProtocol) -> Bool {
+func == (lhs: CBScriptContextProtocol, rhs: CBScriptContextProtocol) -> Bool {
     return lhs.id == rhs.id
 }
 
-func +=(left: inout CBScriptContext, right: CBInstruction) {
+func += (left: inout CBScriptContext, right: CBInstruction) {
     left.appendInstructions([right])
 }
 
-func +=(left: inout CBScriptContext, right: [CBInstruction]) {
+func += (left: inout CBScriptContext, right: [CBInstruction]) {
     left.appendInstructions(right)
 }
 
-func +=<T>(left: inout [T], right: T) {
+func += <T>(left: inout [T], right: T) {
     left.append(right)
 }
 
-func ==(lhs: Date, rhs: Date) -> Bool {
+func == (lhs: Date, rhs: Date) -> Bool {
     return lhs.timeIntervalSince1970 == rhs.timeIntervalSince1970
 }
 
-func <(lhs: Date, rhs: Date) -> Bool {
+func < (lhs: Date, rhs: Date) -> Bool {
     if lhs.compare(rhs) == .orderedAscending {
         return true
     }

@@ -23,24 +23,24 @@
 import UIKit
 
 class FormulaEditorButton: UIButton {
-    
-    var sensor: Sensor? = nil
-    var function: Function? = nil
-    
+
+    var sensor: Sensor?
+    var function: Function?
+
     public convenience init(formulaEditorItem: FormulaEditorItem) {
         self.init()
-        
+
         self.setTitle(formulaEditorItem.title, for: .normal)
         self.sensor = formulaEditorItem.sensor
         self.function = formulaEditorItem.function
     }
-    
+
     private init() {
         super.init(frame: .zero)
         self.titleLabel?.font = .systemFont(ofSize: 18.0)
         self.translatesAutoresizingMaskIntoConstraints = false
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
