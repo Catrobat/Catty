@@ -25,7 +25,6 @@
 #import "Script.h"
 #import "AudioManager.h"
 #import "SaveToProjectActivity.h"
-#import "LoadingView.h"
 #import "FlashHelper.h"
 #import "CameraPreviewHandler.h"
 #import "CatrobatLanguageDefines.h"
