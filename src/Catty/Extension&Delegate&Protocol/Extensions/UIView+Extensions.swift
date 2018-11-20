@@ -22,6 +22,52 @@
 
 extension UIView {
 
+    // MARK: Safe Area wrapper
+
+    var safeTopAnchor: NSLayoutYAxisAnchor {
+        if #available(iOS 11.0, *) {
+            return safeAreaLayoutGuide.topAnchor
+        }
+        return topAnchor
+    }
+
+    var safeLeftAnchor: NSLayoutXAxisAnchor {
+        if #available(iOS 11.0, *) {
+            return safeAreaLayoutGuide.leftAnchor
+        }
+        return leftAnchor
+    }
+
+    var safeRightAnchor: NSLayoutXAxisAnchor {
+        if #available(iOS 11.0, *) {
+            return safeAreaLayoutGuide.rightAnchor
+        }
+        return rightAnchor
+    }
+
+    var safeBottomAnchor: NSLayoutYAxisAnchor {
+        if #available(iOS 11.0, *) {
+            return safeAreaLayoutGuide.bottomAnchor
+        }
+        return bottomAnchor
+    }
+
+    var safeSuperViewCenterXAnchor: NSLayoutXAxisAnchor {
+        if #available(iOS 11.0, *) {
+            return (self.superview?.safeAreaLayoutGuide.centerXAnchor)!
+        }
+        return (self.superview?.centerXAnchor)!
+    }
+
+    var safeSuperViewCenterYAnchor: NSLayoutYAxisAnchor {
+        if #available(iOS 11.0, *) {
+            return (self.superview?.safeAreaLayoutGuide.centerYAnchor)!
+        }
+        return (self.superview?.centerYAnchor)!
+    }
+
+    // MARK: View helper functions
+
     func setAnchors(
         top: NSLayoutYAxisAnchor?,
         left: NSLayoutXAxisAnchor?,
@@ -57,41 +103,7 @@ extension UIView {
     }
 
     func centerView() {
-        if #available(iOS 11.0, *) {
-            let safeAreaGuide = self.superview?.safeAreaLayoutGuide
-            self.centerXAnchor.constraint(equalTo: (safeAreaGuide?.centerXAnchor)!).isActive = true
-            self.centerYAnchor.constraint(equalTo: (safeAreaGuide?.centerYAnchor)!).isActive = true
-        } else {
-            self.centerXAnchor.constraint(equalTo: (self.superview?.centerXAnchor)!).isActive = true
-            self.centerYAnchor.constraint(equalTo: (self.superview?.centerYAnchor)!).isActive = true
-        }
-    }
-
-    var safeTopAnchor: NSLayoutYAxisAnchor {
-        if #available(iOS 11.0, *) {
-            return safeAreaLayoutGuide.topAnchor
-        }
-        return topAnchor
-    }
-
-    var safeLeftAnchor: NSLayoutXAxisAnchor {
-        if #available(iOS 11.0, *) {
-            return safeAreaLayoutGuide.leftAnchor
-        }
-        return leftAnchor
-    }
-
-    var safeRightAnchor: NSLayoutXAxisAnchor {
-        if #available(iOS 11.0, *) {
-            return safeAreaLayoutGuide.rightAnchor
-        }
-        return rightAnchor
-    }
-
-    var safeBottomAnchor: NSLayoutYAxisAnchor {
-        if #available(iOS 11.0, *) {
-            return safeAreaLayoutGuide.bottomAnchor
-        }
-        return bottomAnchor
+        self.centerXAnchor.constraint(equalTo: self.safeSuperViewCenterXAnchor).isActive = true
+        self.centerYAnchor.constraint(equalTo: self.safeSuperViewCenterYAnchor).isActive = true
     }
 }
