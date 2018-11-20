@@ -27,15 +27,15 @@ class ElementFunction: DoubleParameterFunction {
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = true
     static let position = 240
-    
+
     static func firstParameter() -> FunctionParameter {
         return .number(defaultValue: 0)
     }
-    
+
     static func secondParameter() -> FunctionParameter {
         return .number(defaultValue: 1)
     }
-    
+
     func value(firstParameter: AnyObject?, secondParameter: AnyObject?) -> Double {
         guard let firstValue = firstParameter,
             let secondValue = secondParameter else {
@@ -43,7 +43,7 @@ class ElementFunction: DoubleParameterFunction {
         }
         return 0.0
     }
-    
+
     static func formulaEditorSection() -> FormulaEditorSection {
         return .math(position: position)
     }

@@ -21,23 +21,23 @@
  */
 
 @objc extension PlaySoundBrick: CBInstructionProtocol {
-    
+
     @nonobjc func instruction() -> CBInstruction {
-        
+
         guard let objectName = self.script?.object?.name,
             let projectPath = self.script?.object?.projectPath()
             else { fatalError("This should never happen!") }
 
         guard let sound = self.sound,
-              let fileName = sound.fileName
-        else { return .invalidInstruction() }
+            let fileName = sound.fileName
+            else { return .invalidInstruction() }
 
         let filePath = projectPath + kProgramSoundsDirName
         let audioManager = AudioManager.shared()
 
-        return CBInstruction.execClosure { (context, _) in
+        return CBInstruction.execClosure { context, _ in
             //            self.logger.debug("Performing: PlaySoundBrick")
-            DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async{
+            DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async {
                 audioManager?.playSound(withFileName: fileName, andKey: objectName, atFilePath: filePath)
             }
             context.state = .runnable

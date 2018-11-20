@@ -47,8 +47,7 @@
     self.object = [SpriteObject new];
 }
 
-- (void) testNumbers
-{
+- (void) testNumbers {
     NSMutableArray *internTokenList = [[NSMutableArray alloc] init];
     [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER AndValue:@"1.0"]];
     

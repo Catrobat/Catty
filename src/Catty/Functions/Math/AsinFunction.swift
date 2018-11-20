@@ -21,27 +21,27 @@
  */
 
 class AsinFunction: SingleParameterDoubleFunction {
-    
+
     static var tag = "ASIN"
     static var name = "arcsin"
     static var defaultValue = 0.0
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = true
     static let position = 120
-    
+
     func tag() -> String {
         return type(of: self).tag
     }
-    
+
     func firstParameter() -> FunctionParameter {
         return .number(defaultValue: 0)
     }
-    
+
     func value(parameter: AnyObject?) -> Double {
         guard let degree = parameter as? Double else { return type(of: self).defaultValue }
         return Util.radians(toDegree: asin(degree))
     }
-    
+
     func formulaEditorSection() -> FormulaEditorSection {
         return .math(position: (type(of: self).position))
     }

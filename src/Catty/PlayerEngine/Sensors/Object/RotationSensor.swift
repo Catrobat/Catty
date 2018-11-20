@@ -29,7 +29,7 @@
     static let rotationDegreeOffset = 90.0
     static let circleMaxDegrees = 360.0
     static let position = 90
-    
+
     func tag() -> String {
         return type(of: self).tag
     }
@@ -40,37 +40,37 @@
         }
         return Double(spriteNode.zRotation)
     }
-    
+
     static func setRawValue(userInput: Double, for spriteObject: SpriteObject) {
         let rawValue = self.convertToRaw(userInput: userInput, for: spriteObject)
         spriteObject.spriteNode.zRotation = CGFloat(rawValue)
     }
-    
+
     // raw value is in radians, standardized value is in degrees
     @objc static func convertToStandardized(rawValue: Double, for spriteObject: SpriteObject) -> Double {
         let rawValueDegrees = Util.radians(toDegree: rawValue)
         return self.convertSceneToDegrees(rawValueDegrees)
     }
-    
+
     @objc static func convertToRaw(userInput: Double, for spriteObject: SpriteObject) -> Double {
         let standardizedValueOnScreen = convertMathDegreesToSceneDegrees(userInput)
         return Util.degree(toRadians: standardizedValueOnScreen)
     }
-    
+
     static func convertMathDegreesToSceneDegrees(_ mathDegrees: Double) -> Double {
         // converts a given value to make it belong to the interval [0, 360) - moves to the first trigonometric circle due to periodicity
         let circleDegrees = circleMaxDegrees
         if mathDegrees < 0.0 {
             return (-1 * (circleDegrees - rotationDegreeOffset) - (mathDegrees.truncatingRemainder(dividingBy: -circleDegrees))).truncatingRemainder(dividingBy: -circleDegrees)
         }
-        
+
         return (circleDegrees - (mathDegrees.truncatingRemainder(dividingBy: circleDegrees) - rotationDegreeOffset)).truncatingRemainder(dividingBy: circleDegrees)
     }
-    
+
     static func convertSceneToDegrees(_ mathDegrees: Double) -> Double {
         //  ensures that the value is reduced to the first trigonometric circle, meaning [0, 360)
         let sceneDegrees = self.convertMathDegreesToSceneDegrees(mathDegrees)
-        
+
         // ensures that the scene degree (direction of the object) is between (-179, 180]
         if sceneDegrees > 180.0 {
             return sceneDegrees - 360.0
@@ -80,7 +80,7 @@
         }
         return sceneDegrees // it was already in that interval
     }
-    
+
     func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
         return .object(position: type(of: self).position)
     }

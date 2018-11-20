@@ -23,35 +23,35 @@
 @testable import Pocket_Code
 
 final class AudioManagerMock: AudioManagerProtocol {
-    
+
     var mockedLoudnessInDecibels: Double?
-    
+
     var isAvailable = true
     var isStarted = false
     var isPaused = false
-    
+
     func startLoudnessRecorder() {
         isStarted = true
         isPaused = false
     }
-    
+
     func stopLoudnessRecorder() {
         isStarted = false
         isPaused = false
     }
-    
+
     func pauseLoudnessRecorder() {
         isPaused = true
     }
-    
+
     func resumeLoudnessRecorder() {
         isPaused = false
     }
-    
+
     func loudness() -> Double? {
         return mockedLoudnessInDecibels
     }
-    
+
     func loudnessAvailable() -> Bool {
         return isAvailable
     }

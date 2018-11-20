@@ -20,23 +20,23 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import CoreMotion
 import CoreLocation
+import CoreMotion
 
 @objc class FormulaManager: NSObject, FormulaManagerProtocol, FormulaInterpreterProtocol {
-    
+
     let sensorManager: SensorManagerProtocol
     let functionManager: FunctionManagerProtocol
-    
+
     let motionManager: MotionManager
     let locationManager: LocationManager
     let faceDetectionManager: FaceDetectionManagerProtocol
     let audioManager: AudioManagerProtocol
     let touchManager: TouchManagerProtocol
     let bluetoothService: BluetoothService
-    
+
     var cachedResults = [FormulaElement: AnyObject]()
-    
+
     override convenience init() {
         let motionManager = CMMotionManager()
         let locationManager = CLLocationManager()
@@ -44,23 +44,52 @@ import CoreLocation
         let audioManager = AudioManager.shared()!
         let touchManager = TouchManager()
         let bluetoothService = BluetoothService.sharedInstance()
-        
-        let sensorManager = FormulaManager.buildSensorManager(motionManager: motionManager, locationManager: locationManager, faceDetectionManager: faceDetectionManager, audioManager: audioManager, touchManager: touchManager, bluetoothService: bluetoothService)
-        
-        let functionManager = FormulaManager.buildFunctionManager(touchManager: touchManager, bluetoothService: bluetoothService)
-        
-        self.init(sensorManager: sensorManager, functionManager: functionManager, motionManager: motionManager, locationManager: locationManager, faceDetectionManager: faceDetectionManager, audioManager: audioManager, touchManager: touchManager, bluetoothService: bluetoothService)
+
+        let sensorManager =
+            FormulaManager.buildSensorManager(motionManager: motionManager,
+                                              locationManager: locationManager,
+                                              faceDetectionManager: faceDetectionManager,
+                                              audioManager: audioManager,
+                                              touchManager: touchManager,
+                                              bluetoothService: bluetoothService)
+
+        let functionManager =
+            FormulaManager.buildFunctionManager(touchManager: touchManager,
+                                                bluetoothService: bluetoothService)
+
+        self.init(sensorManager: sensorManager,
+                  functionManager: functionManager,
+                  motionManager: motionManager,
+                  locationManager: locationManager,
+                  faceDetectionManager: faceDetectionManager,
+                  audioManager: audioManager,
+                  touchManager: touchManager,
+                  bluetoothService: bluetoothService)
     }
-    
+
     convenience init(sensorManager: SensorManagerProtocol, functionManager: FunctionManagerProtocol) {
-        self.init(sensorManager: sensorManager, functionManager: functionManager, motionManager: CMMotionManager(), locationManager: CLLocationManager(), faceDetectionManager: FaceDetectionManager.shared, audioManager: AudioManager(), touchManager: TouchManager(), bluetoothService: BluetoothService.sharedInstance())
+        self.init(sensorManager: sensorManager,
+                  functionManager: functionManager,
+                  motionManager: CMMotionManager(),
+                  locationManager: CLLocationManager(),
+                  faceDetectionManager: FaceDetectionManager.shared,
+                  audioManager: AudioManager(),
+                  touchManager: TouchManager(),
+                  bluetoothService: BluetoothService.sharedInstance())
     }
-    
-    init(sensorManager: SensorManagerProtocol, functionManager: FunctionManagerProtocol, motionManager: MotionManager, locationManager: LocationManager, faceDetectionManager: FaceDetectionManagerProtocol, audioManager: AudioManagerProtocol, touchManager: TouchManagerProtocol, bluetoothService: BluetoothService) {
-        
+
+    init(sensorManager: SensorManagerProtocol,
+         functionManager: FunctionManagerProtocol,
+         motionManager: MotionManager,
+         locationManager: LocationManager,
+         faceDetectionManager: FaceDetectionManagerProtocol,
+         audioManager: AudioManagerProtocol,
+         touchManager: TouchManagerProtocol,
+         bluetoothService: BluetoothService) {
+
         self.sensorManager = sensorManager
         self.functionManager = functionManager
-        
+
         self.motionManager = motionManager
         self.locationManager = locationManager
         self.faceDetectionManager = faceDetectionManager
@@ -68,17 +97,22 @@ import CoreLocation
         self.touchManager = touchManager
         self.bluetoothService = bluetoothService
     }
-    
+
     @objc func functionExists(tag: String) -> Bool {
         return self.functionManager.exists(tag: tag)
     }
-    
+
     @objc func sensorExists(tag: String) -> Bool {
         return self.sensorManager.exists(tag: tag)
     }
-    
-    private static func buildSensorManager(motionManager: MotionManager, locationManager: LocationManager, faceDetectionManager: FaceDetectionManager, audioManager: AudioManagerProtocol, touchManager: TouchManagerProtocol, bluetoothService: BluetoothService) -> SensorManager {
-    
+
+    private static func buildSensorManager(motionManager: MotionManager,
+                                           locationManager: LocationManager,
+                                           faceDetectionManager: FaceDetectionManager,
+                                           audioManager: AudioManagerProtocol,
+                                           touchManager: TouchManagerProtocol,
+                                           bluetoothService: BluetoothService) -> SensorManager {
+
         let sensorList: [Sensor] = [
             LoudnessSensor(audioManagerGetter: { audioManager }),
             InclinationXSensor(motionManagerGetter: { motionManager }),
@@ -95,7 +129,7 @@ import CoreLocation
             FingerXSensor(touchManagerGetter: { touchManager }),
             FingerYSensor(touchManagerGetter: { touchManager }),
             LastFingerIndexSensor(touchManagerGetter: { touchManager }),
-            
+
             DateYearSensor(),
             DateMonthSensor(),
             DateDaySensor(),
@@ -103,19 +137,19 @@ import CoreLocation
             TimeHourSensor(),
             TimeMinuteSensor(),
             TimeSecondSensor(),
-            
+
             FaceDetectedSensor(faceDetectionManagerGetter: { faceDetectionManager }),
             FaceSizeSensor(faceDetectionManagerGetter: { faceDetectionManager }),
             FacePositionXSensor(faceDetectionManagerGetter: { faceDetectionManager }),
             FacePositionYSensor(faceDetectionManagerGetter: { faceDetectionManager }),
-            
+
             PhiroFrontLeftSensor(bluetoothServiceGetter: { bluetoothService }),
             PhiroFrontRightSensor(bluetoothServiceGetter: { bluetoothService }),
             PhiroBottomLeftSensor(bluetoothServiceGetter: { bluetoothService }),
             PhiroBottomRightSensor(bluetoothServiceGetter: { bluetoothService }),
             PhiroSideLeftSensor(bluetoothServiceGetter: { bluetoothService }),
             PhiroSideRightSensor(bluetoothServiceGetter: { bluetoothService }),
-            
+
             PositionXSensor(),
             PositionYSensor(),
             TransparencySensor(),
@@ -129,12 +163,12 @@ import CoreLocation
             LookNumberSensor(),
             LookNameSensor()
         ]
-        
+
         return SensorManager(sensors: sensorList)
     }
-    
+
     private static func buildFunctionManager(touchManager: TouchManagerProtocol, bluetoothService: BluetoothService) -> FunctionManager {
-        
+
         let functionManager = FunctionManager(functions: [
             SinFunction(),
             CosFunction(),
@@ -169,8 +203,8 @@ import CoreLocation
             MultiFingerTouchedFunction(touchManagerGetter: { touchManager }),
             ArduinoAnalogPinFunction(bluetoothServiceGetter: { bluetoothService }),
             ArduinoDigitalPinFunction(bluetoothServiceGetter: { bluetoothService })
-            ])
-        
+        ])
+
         return functionManager
     }
 }

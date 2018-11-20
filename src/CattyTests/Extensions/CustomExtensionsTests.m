@@ -41,7 +41,6 @@
     [super tearDown];
 }
 
-
 - (void) testEscapingHTMLEntities
 {
     NSMutableString* testString = [[NSMutableString alloc]initWithFormat:@"entities: &amp; , &quot; , &#x27; , &#x39; , &#x92; , &#x96; , &gt; and &lt; "];
@@ -57,7 +56,6 @@
     NSArray *stringsReplaceBy = [[NSArray alloc] initWithObjects:   @"&"       ,@"\""      ,@"'"      ,@"'"
                                  ,@"'"       ,@"'"       ,@">"      ,@"<"       ,nil];
     
-    
     for (int i =0; i< [stringsReplaceBy count]; i++)
     {
         [testString replaceOccurrencesOfString:[stringsToReplace objectAtIndex:i]
@@ -67,10 +65,6 @@
         range = NSMakeRange(0, testString.length);
     }
     
-//    [testString stringByEscapingHTMLEntities];
-
-
-    
     BOOL check = NO;
     if ([testString isEqualToString:compareString]) {
         
@@ -78,8 +72,6 @@
     else{
         check = YES;
     }
-//    NSDebug(@"STring1 : %@",testString);
-//    NSDebug(@"STring2 : %@",compareString);
     
     XCTAssertFalse(check,@"stringByEscapingHTMLEntities is not correctly replaced");
     

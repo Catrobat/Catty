@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-struct PlayerConfig {
+enum PlayerConfig {
     static let LoopMinDurationTime = 0.005 //5ms //0.02 // 20ms
     static let MaxRecursionLimitOfSelfBroadcasts = 40
     static let NumberOfWaitQueuesInitialValue = 3
@@ -28,12 +28,12 @@ struct PlayerConfig {
 
 // Logger names for release and debug mode configured in Swell.plist
 //--------------------------------------------------------------------------------------------------
+
 #if DEBUG
 //==================================================================================================
 //                                      DEVELOPER MODE
 //==================================================================================================
-
-struct LoggerConfig {
+enum LoggerConfig {
     static let PlayerSceneID = "CBSceneLogger.Debug"
     static let PlayerSchedulerID = "CBSchedulerLogger.Debug"
     static let PlayerFrontendID = "CBFrontendLogger.Debug"
@@ -41,12 +41,11 @@ struct LoggerConfig {
     static let PlayerBroadcastHandlerID = "CBBroadcastHandlerLogger.Debug"
 }
 
-#else // DEBUG == 1
+#else
 //==================================================================================================
 //                                       RELEASE MODE
 //==================================================================================================
-
-struct LoggerConfig {
+enum LoggerConfig {
     static let PlayerSceneID = "CBSceneLogger.Release"
     static let PlayerSchedulerID = "CBSchedulerLogger.Release"
     static let PlayerFrontendID = "CBFrontendLogger.Release"
@@ -54,15 +53,14 @@ struct LoggerConfig {
     static let PlayerBroadcastHandlerID = "CBBroadcastHandlerLogger.Release"
 }
 
-////------------------------------------------------------------------------------------------------
-#endif // DEBUG
+#endif
 
 //==================================================================================================
 //                                        TEST MODE
 //==================================================================================================
 
 // Test logger names configured in Swell.plist
-struct LoggerTestConfig {
+enum LoggerTestConfig {
     static let PlayerSceneID = "CBSceneLogger.Test"
     static let PlayerSchedulerID = "CBSchedulerLogger.Test"
     static let PlayerFrontendID = "CBFrontendLogger.Test"

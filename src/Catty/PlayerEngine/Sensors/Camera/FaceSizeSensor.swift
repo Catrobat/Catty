@@ -21,29 +21,29 @@
  */
 
 class FaceSizeSensor: DeviceSensor {
-    
+
     static let tag = "FACE_SIZE"
     static let name = kUIFESensorFaceSize
     static let defaultRawValue = 0.0
     static let position = 200
     static let requiredResource = ResourceType.faceDetection
-    
+
     let getFaceDetectionManager: () -> FaceDetectionManagerProtocol?
-    
+
     init(faceDetectionManagerGetter: @escaping () -> FaceDetectionManagerProtocol?) {
         self.getFaceDetectionManager = faceDetectionManagerGetter
     }
-    
+
     func tag() -> String {
         return type(of: self).tag
     }
-    
+
     func rawValue() -> Double {
         guard let faceImage = self.getFaceDetectionManager()?.faceSize?.size else { return type(of: self).defaultRawValue }
         let faceSize = faceImage.width * faceImage.height
         return Double(faceSize)
     }
-    
+
     func convertToStandardized(rawValue: Double) -> Double {
         let screenSize = Util.screenHeight() * Util.screenWidth() / 100
         let faceSize = rawValue / Double(screenSize)
@@ -52,7 +52,7 @@ class FaceSizeSensor: DeviceSensor {
         }
         return faceSize
     }
-    
+
     func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
         return .device(position: type(of: self).position)
     }

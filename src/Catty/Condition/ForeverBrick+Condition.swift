@@ -21,15 +21,15 @@
  */
 
 extension ForeverBrick: CBConditionProtocol {
-    
+
     func checkCondition(formulaInterpreter: FormulaInterpreterProtocol) -> Bool {
         return true
     }
-    
+
     func resetCondition() {
         // nothing to do
     }
-    
+
     func conditionFormulas() -> [Formula] {
         return []
     }

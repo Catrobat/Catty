@@ -23,37 +23,37 @@
 @objc extension ClearGraphicEffectBrick: CBInstructionProtocol {
 
     @nonobjc func instruction() -> CBInstruction {
-        return .action { (_) in SKAction.run(self.actionBlock()) }
+        return .action { _ in SKAction.run(self.actionBlock()) }
     }
 
-    @objc func actionBlock() -> ()->() {
+    @objc func actionBlock() -> () -> Void {
         guard let object = self.script?.object,
-              let spriteNode = object.spriteNode
-        else { fatalError("This should never happen!") }
+            let spriteNode = object.spriteNode
+            else { fatalError("This should never happen!") }
 
         return {
             guard let look = spriteNode.currentLook,
-                  let image = UIImage(contentsOfFile: self.path(for: look)) else {return}
+                let image = UIImage(contentsOfFile: self.path(for: look)) else { return }
 
             spriteNode.currentUIImageLook = image
-            
+
             spriteNode.ciBrightness = CGFloat(BrightnessSensor.defaultRawValue)
             spriteNode.ciHueAdjust = CGFloat(ColorSensor.defaultRawValue)
-            
+
             for (paramName, _) in spriteNode.filterDict {
                 spriteNode.filterDict[paramName] = false
             }
-            
+
             let currentsize = spriteNode.catrobatSize
             let texture = SKTexture(image: image)
-            
+
             spriteNode.xScale = CGFloat(SizeSensor.defaultRawValue)
             spriteNode.yScale = CGFloat(SizeSensor.defaultRawValue)
             spriteNode.alpha = CGFloat(TransparencySensor.defaultRawValue)
-            
+
             spriteNode.size = texture.size()
             spriteNode.texture = texture
-            
+
             spriteNode.currentLook = look
             spriteNode.catrobatSize = currentsize
         }

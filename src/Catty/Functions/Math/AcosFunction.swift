@@ -21,27 +21,27 @@
  */
 
 class AcosFunction: SingleParameterDoubleFunction {
-    
+
     static var tag = "ACOS"
     static var name = "arccos"
-    static var defaultValue = Double.pi/2
+    static var defaultValue = Double.pi / 2
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = true
     static let position = 130
-    
+
     func tag() -> String {
         return type(of: self).tag
     }
-    
+
     func firstParameter() -> FunctionParameter {
         return .number(defaultValue: 0)
     }
-    
+
     func value(parameter: AnyObject?) -> Double {
         guard let degree = parameter as? Double else { return type(of: self).defaultValue }
         return Util.radians(toDegree: acos(degree))
     }
-    
+
     func formulaEditorSection() -> FormulaEditorSection {
         return .math(position: (type(of: self).position))
     }

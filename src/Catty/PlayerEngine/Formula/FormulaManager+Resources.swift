@@ -20,14 +20,14 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import CoreMotion
 import CoreLocation
+import CoreMotion
 
 extension FormulaManager {
-    
+
     func unavailableResources(for requiredResources: NSInteger) -> NSInteger {
         var unavailableResource: NSInteger = ResourceType.noResources.rawValue
-        
+
         if requiredResources & ResourceType.accelerometer.rawValue > 0 && !motionManager.isAccelerometerAvailable {
             unavailableResource |= ResourceType.accelerometer.rawValue
         }
@@ -55,42 +55,42 @@ extension FormulaManager {
         if requiredResources & ResourceType.loudness.rawValue > 0 && !audioManager.loudnessAvailable() {
             unavailableResource |= ResourceType.loudness.rawValue
         }
-        
+
         return unavailableResource
     }
-    
+
     @objc(setupForProgram: andScene:)
     func setup(for program: Program, and scene: CBScene) {
         let requiredResources = program.getRequiredResources()
         setup(for: requiredResources, and: scene)
     }
-    
+
     @objc(setupForFormula:)
     func setup(for formula: Formula) {
         let requiredResources = formula.getRequiredResources()
         setup(for: requiredResources, and: nil)
     }
-    
-    private func setup(for requiredResources: Int, and scene:CBScene?) {
+
+    private func setup(for requiredResources: Int, and scene: CBScene?) {
         let unavailableResource = unavailableResources(for: requiredResources)
-        
-        if (requiredResources & ResourceType.accelerometer.rawValue > 0) && (unavailableResource & ResourceType.accelerometer.rawValue) == 0  {
+
+        if (requiredResources & ResourceType.accelerometer.rawValue > 0) && (unavailableResource & ResourceType.accelerometer.rawValue) == 0 {
             motionManager.startAccelerometerUpdates()
         }
-        if (requiredResources & ResourceType.deviceMotion.rawValue > 0) && (unavailableResource & ResourceType.deviceMotion.rawValue) == 0  {
+        if (requiredResources & ResourceType.deviceMotion.rawValue > 0) && (unavailableResource & ResourceType.deviceMotion.rawValue) == 0 {
             motionManager.startDeviceMotionUpdates()
         }
-        if (requiredResources & ResourceType.magnetometer.rawValue > 0) && (unavailableResource & ResourceType.magnetometer.rawValue) == 0  {
+        if (requiredResources & ResourceType.magnetometer.rawValue > 0) && (unavailableResource & ResourceType.magnetometer.rawValue) == 0 {
             motionManager.startMagnetometerUpdates()
         }
-        if (requiredResources & ResourceType.gyro.rawValue > 0) && (unavailableResource & ResourceType.gyro.rawValue) == 0  {
+        if (requiredResources & ResourceType.gyro.rawValue > 0) && (unavailableResource & ResourceType.gyro.rawValue) == 0 {
             motionManager.startGyroUpdates()
         }
-        if (requiredResources & ResourceType.compass.rawValue > 0) && (unavailableResource & ResourceType.compass.rawValue) == 0  {
+        if (requiredResources & ResourceType.compass.rawValue > 0) && (unavailableResource & ResourceType.compass.rawValue) == 0 {
             locationManager.requestWhenInUseAuthorization()
             locationManager.startUpdatingHeading()
         }
-        if (requiredResources & ResourceType.location.rawValue > 0) && (unavailableResource & ResourceType.location.rawValue) == 0  {
+        if (requiredResources & ResourceType.location.rawValue > 0) && (unavailableResource & ResourceType.location.rawValue) == 0 {
             locationManager.requestWhenInUseAuthorization()
             locationManager.startUpdatingLocation()
         }
@@ -105,7 +105,7 @@ extension FormulaManager {
             touchManager.startTrackingTouches(for: sc)
         }
     }
-    
+
     @objc func stop() {
         motionManager.stopAccelerometerUpdates()
         motionManager.stopDeviceMotionUpdates()
@@ -116,14 +116,14 @@ extension FormulaManager {
         faceDetectionManager.stop()
         audioManager.stopLoudnessRecorder()
         touchManager.stopTrackingTouches()
-        
+
         invalidateCache()
     }
-    
+
     func pause() {
         audioManager.pauseLoudnessRecorder()
     }
-    
+
     func resume() {
         audioManager.resumeLoudnessRecorder()
     }

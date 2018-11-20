@@ -21,7 +21,7 @@
  */
 
 @objc class InclinationXSensor: NSObject, DeviceSensor {
-    
+
     @objc static let tag = "X_INCLINATION"
     static let name = kUIFESensorInclinationX
     static let defaultRawValue = 0.0
@@ -29,7 +29,7 @@
     static let requiredResource = ResourceType.deviceMotion
 
     let getMotionManager: () -> MotionManager?
-    
+
     init(motionManagerGetter: @escaping () -> MotionManager?) {
         self.getMotionManager = motionManagerGetter
     }
@@ -37,13 +37,13 @@
     func tag() -> String {
         return type(of: self).tag
     }
-    
+
     func rawValue() -> Double {
         guard let inclinationSensor = self.getMotionManager() else { return type(of: self).defaultRawValue }
         guard let deviceMotion = inclinationSensor.deviceMotion else {
             return type(of: self).defaultRawValue
         }
-        
+
         return deviceMotion.attitude.roll
     }
 
@@ -53,7 +53,7 @@
     func convertToStandardized(rawValue: Double) -> Double {
         return Util.radians(toDegree: -rawValue)
     }
-    
+
     func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
         return .device(position: type(of: self).position)
     }

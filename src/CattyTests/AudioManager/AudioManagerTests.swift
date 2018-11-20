@@ -20,32 +20,32 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import XCTest
 @testable import Pocket_Code
+import XCTest
 
 class AudioManagerTests: XCTestCase {
-    
+
     var audioManager = AudioManager.shared()
-    
+
     override func setUp( ) {
         super.setUp()
         audioManager = AudioManager.shared()
     }
-    
+
     override func tearDown() {
-        super.tearDown()
         audioManager?.stopAllSounds()
+        super.tearDown()
     }
-    
+
     func testPlaySound() {
         let testBundle = Bundle(for: type(of: self))
         let fileURL = testBundle.url(forResource: "silence", withExtension: "mp3")
         XCTAssertNotNil(fileURL)
-        
+
         let result = audioManager?.playSound(withFileName: fileURL!.lastPathComponent, andKey: "key", atFilePath: fileURL!.deletingLastPathComponent().path)
         XCTAssertTrue(result!)
     }
-    
+
     func testPlaySoundAndFail() {
         let result = audioManager?.playSound(withFileName: "invalidFile", andKey: "key", atFilePath: "invalidPath")
         XCTAssertFalse(result!)

@@ -20,20 +20,20 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import Foundation
-import CoreBluetooth
 import BluetoothHelper
+import CoreBluetooth
+import Foundation
 
 @objc protocol ArduinoProtocol {
-    func setDigitalArduinoPin(_ digitalPinNumber:Int, pinValue:Int)
-    func getDigitalArduinoPin(_ digitalPinNumber:Int)-> Double
-    func setPWMArduinoPin(_ PWMpin:Int, value:Int)
-    func getAnalogArduinoPin(_ analogPinNumber:Int) -> Double
+    func setDigitalArduinoPin(_ digitalPinNumber: Int, pinValue: Int)
+    func getDigitalArduinoPin(_ digitalPinNumber: Int) -> Double
+    func setPWMArduinoPin(_ PWMpin: Int, value: Int)
+    func getAnalogArduinoPin(_ analogPinNumber: Int) -> Double
 }
 
 protocol ArduinoPropertyProtocol {
-    var arduinoHelper: ArduinoHelper  { get }
-    var totalPins:Int { get set }
-    var analogMapping: NSMutableDictionary  { get set }
-    var pinsArray: [[String:Any]]  { get set }
+    var arduinoHelper: ArduinoHelper { get }
+    var totalPins: Int { get set }
+    var analogMapping: NSMutableDictionary { get set }
+    var pinsArray: [[String: Any]] { get set }
 }

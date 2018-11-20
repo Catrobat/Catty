@@ -25,7 +25,7 @@ import XCTest
 @testable import Pocket_Code
 
 final class FormulaManagerResourceTests: XCTestCase {
-    
+
     var manager: FormulaManager!
     var motionManager: MotionManagerMock!
     var locationManager: LocationManagerMock!
@@ -33,7 +33,7 @@ final class FormulaManagerResourceTests: XCTestCase {
     var audioManager: AudioManagerMock!
     var touchManager: TouchManagerMock!
     var bluetoothService: BluetoothService!
-    
+
     override func setUp() {
         motionManager = MotionManagerMock()
         locationManager = LocationManagerMock()
@@ -41,7 +41,7 @@ final class FormulaManagerResourceTests: XCTestCase {
         audioManager = AudioManagerMock()
         touchManager = TouchManagerMock()
         bluetoothService = BluetoothService.sharedInstance()
-        
+
         manager = FormulaManager(sensorManager: SensorManager(sensors: []),
                                  functionManager: FunctionManager(functions: []),
                                  motionManager: motionManager,
@@ -51,10 +51,10 @@ final class FormulaManagerResourceTests: XCTestCase {
                                  touchManager: touchManager,
                                  bluetoothService: bluetoothService)
     }
-    
+
     func testSetupForFormulaNoResources() {
         manager.setup(for: FormulaMock(requiredResource: .noResources))
-        
+
         XCTAssertFalse(motionManager.isAccelerometerUpdateStarted)
         XCTAssertFalse(motionManager.isGyroUpdateStarted)
         XCTAssertFalse(motionManager.isDeviceMotionUpdateStarted)
@@ -64,10 +64,10 @@ final class FormulaManagerResourceTests: XCTestCase {
         XCTAssertFalse(audioManager.isStarted)
         XCTAssertFalse(touchManager.isStarted)
     }
-    
+
     func testSetupForFormulaLocation() {
         manager.setup(for: FormulaMock(requiredResource: .location))
-        
+
         XCTAssertTrue(locationManager.isLocationUpdateStarted)
         XCTAssertFalse(locationManager.isHeadingUpdateStarted)
         XCTAssertFalse(motionManager.isAccelerometerUpdateStarted)
@@ -77,10 +77,10 @@ final class FormulaManagerResourceTests: XCTestCase {
         XCTAssertFalse(audioManager.isStarted)
         XCTAssertFalse(touchManager.isStarted)
     }
-    
+
     func testSetupForFormulaCompass() {
         manager.setup(for: FormulaMock(requiredResource: .compass))
-        
+
         XCTAssertTrue(locationManager.isHeadingUpdateStarted)
         XCTAssertFalse(locationManager.isLocationUpdateStarted)
         XCTAssertFalse(motionManager.isAccelerometerUpdateStarted)
@@ -90,10 +90,10 @@ final class FormulaManagerResourceTests: XCTestCase {
         XCTAssertFalse(audioManager.isStarted)
         XCTAssertFalse(touchManager.isStarted)
     }
-    
+
     func testSetupForFormulaGyro() {
         manager.setup(for: FormulaMock(requiredResource: .gyro))
-        
+
         XCTAssertTrue(motionManager.isGyroUpdateStarted)
         XCTAssertFalse(locationManager.isHeadingUpdateStarted)
         XCTAssertFalse(locationManager.isLocationUpdateStarted)
@@ -103,10 +103,10 @@ final class FormulaManagerResourceTests: XCTestCase {
         XCTAssertFalse(audioManager.isStarted)
         XCTAssertFalse(touchManager.isStarted)
     }
-    
+
     func testSetupForFormulaDeviceMotion() {
         manager.setup(for: FormulaMock(requiredResource: .deviceMotion))
-        
+
         XCTAssertTrue(motionManager.isDeviceMotionUpdateStarted)
         XCTAssertFalse(motionManager.isGyroUpdateStarted)
         XCTAssertFalse(locationManager.isHeadingUpdateStarted)
@@ -116,10 +116,10 @@ final class FormulaManagerResourceTests: XCTestCase {
         XCTAssertFalse(audioManager.isStarted)
         XCTAssertFalse(touchManager.isStarted)
     }
-    
+
     func testSetupForFormulaMagnetometer() {
         manager.setup(for: FormulaMock(requiredResource: .magnetometer))
-        
+
         XCTAssertTrue(motionManager.isMagnetometerUpdateStarted)
         XCTAssertFalse(motionManager.isDeviceMotionUpdateStarted)
         XCTAssertFalse(motionManager.isGyroUpdateStarted)
@@ -130,10 +130,10 @@ final class FormulaManagerResourceTests: XCTestCase {
         XCTAssertFalse(audioManager.isStarted)
         XCTAssertFalse(touchManager.isStarted)
     }
-    
+
     func testSetupForFormulaFaceDetection() {
         manager.setup(for: FormulaMock(requiredResource: .faceDetection))
-        
+
         XCTAssertTrue(faceDetectionManager.isStarted)
         XCTAssertFalse(motionManager.isDeviceMotionUpdateStarted)
         XCTAssertFalse(motionManager.isGyroUpdateStarted)
@@ -143,10 +143,10 @@ final class FormulaManagerResourceTests: XCTestCase {
         XCTAssertFalse(audioManager.isStarted)
         XCTAssertFalse(touchManager.isStarted)
     }
-    
+
     func testSetupForFormulaLoudness() {
         manager.setup(for: FormulaMock(requiredResource: .loudness))
-        
+
         XCTAssertTrue(audioManager.isStarted)
         XCTAssertFalse(audioManager.isPaused)
         XCTAssertFalse(faceDetectionManager.isStarted)
@@ -157,10 +157,10 @@ final class FormulaManagerResourceTests: XCTestCase {
         XCTAssertFalse(motionManager.isAccelerometerUpdateStarted)
         XCTAssertFalse(touchManager.isStarted)
     }
-    
+
     func testSetupForFormulaAccelerometer() {
         manager.setup(for: FormulaMock(requiredResource: .accelerometer))
-        
+
         XCTAssertTrue(motionManager.isAccelerometerUpdateStarted)
         XCTAssertFalse(motionManager.isDeviceMotionUpdateStarted)
         XCTAssertFalse(touchManager.isStarted)
@@ -170,10 +170,10 @@ final class FormulaManagerResourceTests: XCTestCase {
         XCTAssertFalse(locationManager.isHeadingUpdateStarted)
         XCTAssertFalse(locationManager.isLocationUpdateStarted)
     }
-    
+
     func testSetupForFormulaAccelerometerAndDeviceMotion() {
         manager.setup(for: FormulaMock(requiredResource: .accelerometerAndDeviceMotion))
-        
+
         XCTAssertTrue(motionManager.isAccelerometerUpdateStarted)
         XCTAssertTrue(motionManager.isDeviceMotionUpdateStarted)
         XCTAssertFalse(touchManager.isStarted)
@@ -183,10 +183,10 @@ final class FormulaManagerResourceTests: XCTestCase {
         XCTAssertFalse(locationManager.isHeadingUpdateStarted)
         XCTAssertFalse(locationManager.isLocationUpdateStarted)
     }
-    
+
     func testSetupForFormulaTouchNotAvailableWithoutScene() {
         manager.setup(for: FormulaMock(requiredResource: .touchHandler))
-        
+
         XCTAssertFalse(touchManager.isStarted)
         XCTAssertFalse(audioManager.isStarted)
         XCTAssertFalse(faceDetectionManager.isStarted)
@@ -196,10 +196,10 @@ final class FormulaManagerResourceTests: XCTestCase {
         XCTAssertFalse(locationManager.isLocationUpdateStarted)
         XCTAssertFalse(motionManager.isAccelerometerUpdateStarted)
     }
-    
+
     func testSetupForFormulaMultipleResources() {
         manager.setup(for: FormulaMock(requiredResources: ResourceType.compass.rawValue | ResourceType.faceDetection.rawValue | ResourceType.deviceMotion.rawValue))
-        
+
         XCTAssertTrue(motionManager.isDeviceMotionUpdateStarted)
         XCTAssertTrue(locationManager.isHeadingUpdateStarted)
         XCTAssertTrue(faceDetectionManager.isStarted)
@@ -209,12 +209,12 @@ final class FormulaManagerResourceTests: XCTestCase {
         XCTAssertFalse(locationManager.isLocationUpdateStarted)
         XCTAssertFalse(motionManager.isAccelerometerUpdateStarted)
     }
-    
+
     func testSetupForProgram() {
         let program = ProgramMock(requiredResources: ResourceType.compass.rawValue | ResourceType.accelerometer.rawValue | ResourceType.deviceMotion.rawValue)!
         let scene = SceneBuilder.init(program: program).build()
         manager.setup(for: program, and: scene)
-        
+
         XCTAssertTrue(motionManager.isDeviceMotionUpdateStarted)
         XCTAssertTrue(locationManager.isHeadingUpdateStarted)
         XCTAssertTrue(motionManager.isAccelerometerUpdateStarted)
@@ -224,64 +224,64 @@ final class FormulaManagerResourceTests: XCTestCase {
         XCTAssertFalse(motionManager.isGyroUpdateStarted)
         XCTAssertFalse(locationManager.isLocationUpdateStarted)
     }
-    
+
     func testUnavailableResourcesAcceleromater() {
         XCTAssertEqual(ResourceType.noResources.rawValue, manager.unavailableResources(for: ResourceType.accelerometer.rawValue))
-        
+
         motionManager.isAccelerometerAvailable = false
         XCTAssertEqual(ResourceType.accelerometer.rawValue, manager.unavailableResources(for: ResourceType.accelerometer.rawValue))
     }
-    
+
     func testUnavailableResourcesAcceleromaterAndDeviceMotion() {
         XCTAssertEqual(ResourceType.noResources.rawValue, manager.unavailableResources(for: ResourceType.accelerometerAndDeviceMotion.rawValue))
-        
+
         motionManager.isAccelerometerAvailable = false
         motionManager.isDeviceMotionAvailable = false
         XCTAssertEqual(ResourceType.accelerometer.rawValue | ResourceType.deviceMotion.rawValue, manager.unavailableResources(for: ResourceType.accelerometerAndDeviceMotion.rawValue))
     }
-    
+
     func testUnavailableResourcesDeviceMotion() {
         XCTAssertEqual(ResourceType.noResources.rawValue, manager.unavailableResources(for: ResourceType.deviceMotion.rawValue))
-        
+
         motionManager.isDeviceMotionAvailable = false
         XCTAssertEqual(ResourceType.deviceMotion.rawValue, manager.unavailableResources(for: ResourceType.deviceMotion.rawValue))
     }
-    
+
     func testUnavailableResourcesLocation() {
         XCTAssertEqual(ResourceType.noResources.rawValue, manager.unavailableResources(for: ResourceType.location.rawValue))
-        
+
         type(of: locationManager).isLocationServicesEnabled = false
         XCTAssertEqual(ResourceType.location.rawValue, manager.unavailableResources(for: ResourceType.location.rawValue))
     }
-    
+
     func testUnavailableResourcesCompass() {
         XCTAssertEqual(ResourceType.noResources.rawValue, manager.unavailableResources(for: ResourceType.compass.rawValue))
-        
+
         type(of: locationManager).isHeadingAvailable = false
         XCTAssertEqual(ResourceType.compass.rawValue, manager.unavailableResources(for: ResourceType.compass.rawValue))
     }
-    
+
     func testUnavailableResourcesGyro() {
         XCTAssertEqual(ResourceType.noResources.rawValue, manager.unavailableResources(for: ResourceType.gyro.rawValue))
-        
+
         motionManager.isGyroAvailable = false
         XCTAssertEqual(ResourceType.gyro.rawValue, manager.unavailableResources(for: ResourceType.gyro.rawValue))
     }
-    
+
     func testUnavailableResourcesMagnetometer() {
         XCTAssertEqual(ResourceType.noResources.rawValue, manager.unavailableResources(for: ResourceType.magnetometer.rawValue))
-        
+
         motionManager.isMagnetometerAvailable = false
         XCTAssertEqual(ResourceType.magnetometer.rawValue, manager.unavailableResources(for: ResourceType.magnetometer.rawValue))
     }
-    
+
     func testUnavailableResourcesFaceDetection() {
         XCTAssertEqual(ResourceType.noResources.rawValue, manager.unavailableResources(for: ResourceType.faceDetection.rawValue))
-        
+
         faceDetectionManager.isAvailable = false
         XCTAssertEqual(ResourceType.faceDetection.rawValue, manager.unavailableResources(for: ResourceType.faceDetection.rawValue))
     }
-    
+
     func testStop() {
         motionManager.isAccelerometerUpdateStarted = true
         motionManager.isDeviceMotionUpdateStarted = true
@@ -291,9 +291,9 @@ final class FormulaManagerResourceTests: XCTestCase {
         faceDetectionManager.isStarted = true
         audioManager.isStarted = true
         touchManager.isStarted = true
-        
+
         manager.stop()
-        
+
         XCTAssertFalse(motionManager.isAccelerometerUpdateStarted)
         XCTAssertFalse(motionManager.isDeviceMotionUpdateStarted)
         XCTAssertFalse(motionManager.isMagnetometerUpdateStarted)
@@ -304,13 +304,13 @@ final class FormulaManagerResourceTests: XCTestCase {
         XCTAssertFalse(audioManager.isPaused)
         XCTAssertFalse(touchManager.isStarted)
     }
-    
+
     func testPause() {
         audioManager.isPaused = false
         manager.pause()
         XCTAssertTrue(audioManager.isPaused)
     }
-    
+
     func testResume() {
         audioManager.isPaused = true
         manager.resume()

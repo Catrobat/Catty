@@ -25,75 +25,76 @@ import XCTest
 @testable import Pocket_Code
 
 class ModFunctionTest: XCTestCase {
-    
+
     var function: ModFunction!
-    
+
     override func setUp() {
+        super.setUp()
         function = ModFunction()
     }
-    
+
     override func tearDown() {
         function = nil
+        super.tearDown()
     }
-    
+
     func testDefaultValue() {
-        XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: "invalidParameter" as AnyObject, secondParameter: "invalidParameter" as AnyObject), accuracy: 0.0001)
-        XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: nil, secondParameter: nil), accuracy: 0.0001)
-        XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: "invalidParameter" as AnyObject, secondParameter: nil), accuracy: 0.0001)
-        XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: 3 as AnyObject, secondParameter: "invalidParameter" as AnyObject), accuracy: 0.0001)
-        XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: "invalidParameter" as AnyObject, secondParameter: 10 as AnyObject), accuracy: 0.0001)
-        XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: 3 as AnyObject, secondParameter: 0 as AnyObject), accuracy: 0.0001)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: "invalidParameter" as AnyObject, secondParameter: "invalidParameter" as AnyObject), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: nil, secondParameter: nil), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: "invalidParameter" as AnyObject, secondParameter: nil), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: 3 as AnyObject, secondParameter: "invalidParameter" as AnyObject), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: "invalidParameter" as AnyObject, secondParameter: 10 as AnyObject), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: 3 as AnyObject, secondParameter: 0 as AnyObject), accuracy: Double.epsilon)
     }
-    
+
     func testValue() {
-        XCTAssertEqual(Double(100 % 6), function.value(firstParameter: 100 as AnyObject, secondParameter: 6 as AnyObject), accuracy: 0.0001)
-        
-        XCTAssertEqual(Double(1356 % 76), function.value(firstParameter: 1356 as AnyObject, secondParameter: 76 as AnyObject), accuracy: 0.0001)
-        
-        XCTAssertEqual(Double(56 % 76), function.value(firstParameter: 56 as AnyObject, secondParameter: 76 as AnyObject), accuracy: 0.0001)
-        
-        XCTAssertEqual(Double(0 % 10), function.value(firstParameter: 0 as AnyObject, secondParameter: 10 as AnyObject), accuracy: 0.0001)
-        
+        XCTAssertEqual(Double(100 % 6), function.value(firstParameter: 100 as AnyObject, secondParameter: 6 as AnyObject), accuracy: Double.epsilon)
+
+        XCTAssertEqual(Double(1356 % 76), function.value(firstParameter: 1356 as AnyObject, secondParameter: 76 as AnyObject), accuracy: Double.epsilon)
+
+        XCTAssertEqual(Double(56 % 76), function.value(firstParameter: 56 as AnyObject, secondParameter: 76 as AnyObject), accuracy: Double.epsilon)
+
+        XCTAssertEqual(Double(0 % 10), function.value(firstParameter: 0 as AnyObject, secondParameter: 10 as AnyObject), accuracy: Double.epsilon)
+
         // infinity test
-        XCTAssertEqual(Double(5), function.value(firstParameter: 5 as AnyObject, secondParameter: Double.infinity as AnyObject), accuracy: 0.0001)
-        
+        XCTAssertEqual(Double(5), function.value(firstParameter: 5 as AnyObject, secondParameter: Double.infinity as AnyObject), accuracy: Double.epsilon)
+
         // sign test
-        XCTAssertEqual(Double(1), function.value(firstParameter: 10 as AnyObject, secondParameter: 3 as AnyObject), accuracy: 0.0001)
-        
-        XCTAssertEqual(Double(-2), function.value(firstParameter: 10 as AnyObject, secondParameter: -3 as AnyObject), accuracy: 0.0001)
-        
-        XCTAssertEqual(Double(2), function.value(firstParameter: -10 as AnyObject, secondParameter: 3 as AnyObject), accuracy: 0.0001)
-        
-        XCTAssertEqual(Double(-1), function.value(firstParameter: -10 as AnyObject, secondParameter: -3 as AnyObject), accuracy: 0.0001)
-        
+        XCTAssertEqual(Double(1), function.value(firstParameter: 10 as AnyObject, secondParameter: 3 as AnyObject), accuracy: Double.epsilon)
+
+        XCTAssertEqual(Double(-2), function.value(firstParameter: 10 as AnyObject, secondParameter: -3 as AnyObject), accuracy: Double.epsilon)
+
+        XCTAssertEqual(Double(2), function.value(firstParameter: -10 as AnyObject, secondParameter: 3 as AnyObject), accuracy: Double.epsilon)
+
+        XCTAssertEqual(Double(-1), function.value(firstParameter: -10 as AnyObject, secondParameter: -3 as AnyObject), accuracy: Double.epsilon)
+
     }
-    
+
     func testFirstParameter() {
         XCTAssertEqual(.number(defaultValue: 1), function.firstParameter())
     }
-    
+
     func testSecondParameter() {
         XCTAssertEqual(.number(defaultValue: 1), function.secondParameter())
     }
-    
+
     func testTag() {
         XCTAssertEqual("MOD", type(of: function).tag)
     }
-    
+
     func testName() {
         XCTAssertEqual("mod", type(of: function).name)
     }
-    
+
     func testRequiredResources() {
         XCTAssertEqual(ResourceType.noResources, type(of: function).requiredResource)
     }
-    
+
     func testIsIdempotent() {
         XCTAssertTrue(type(of: function).isIdempotent)
     }
-    
+
     func testFormulaEditorSection() {
         XCTAssertEqual(.math(position: type(of: function).position), function.formulaEditorSection())
     }
 }
-

@@ -21,18 +21,18 @@
  */
 
 @objc extension ChangeVolumeByNBrick: CBInstructionProtocol {
-    
+
     @nonobjc func instruction() -> CBInstruction {
-        
+
         guard let spriteObject = self.script?.object else { fatalError("This should never happen!") }
-        
+
         let volumeFormula = self.volume
         let audioManager = AudioManager.shared()
         let spriteObjectName = spriteObject.name
-        
-        return CBInstruction.execClosure { (context, _) in
+
+        return CBInstruction.execClosure { context, _ in
             guard let volumeFormula = volumeFormula else { return }
-            
+
             let volume = context.formulaInterpreter.interpretDouble(volumeFormula, for: spriteObject)
             audioManager?.changeVolume(byPercent: CGFloat(volume), forKey: spriteObjectName)
             context.state = .runnable

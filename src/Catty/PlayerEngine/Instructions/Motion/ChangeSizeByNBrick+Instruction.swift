@@ -23,17 +23,17 @@
 @objc extension ChangeSizeByNBrick: CBInstructionProtocol {
 
     @nonobjc func instruction() -> CBInstruction {
-        return .action { (context) in SKAction.run(self.actionBlock(context.formulaInterpreter)) }
+        return .action { context in SKAction.run(self.actionBlock(context.formulaInterpreter)) }
     }
-    
-    @objc func actionBlock(_ formulaInterpreter: FormulaInterpreterProtocol) -> ()->() {
+
+    @objc func actionBlock(_ formulaInterpreter: FormulaInterpreterProtocol) -> () -> Void {
         guard let object = self.script?.object,
             let spriteNode = object.spriteNode
-        else { fatalError("This should never happen!") }
+            else { fatalError("This should never happen!") }
 
         return {
             let sizeIncrease = formulaInterpreter.interpretDouble(self.size, for: object)
-            spriteNode.catrobatSize = spriteNode.catrobatSize + sizeIncrease
+            spriteNode.catrobatSize += sizeIncrease
         }
     }
 }
