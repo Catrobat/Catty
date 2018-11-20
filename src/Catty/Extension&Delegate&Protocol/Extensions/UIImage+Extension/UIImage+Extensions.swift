@@ -22,15 +22,10 @@
 
 extension UIImage {
     func crop(rect: CGRect) -> UIImage? {
-        var croppedRec = rect
-        croppedRec.origin.x *= self.scale
-        croppedRec.origin.y *= self.scale
-        croppedRec.size.width *= self.scale
-        croppedRec.size.height *= self.scale
-
-        if let croppedCGImage = self.cgImage?.cropping(to: croppedRec) as CGImage? {
-            return UIImage(cgImage: croppedCGImage, scale: self.scale, orientation: self.imageOrientation)
-        }
-        return nil
+        UIGraphicsBeginImageContextWithOptions(rect.size, false, self.scale)
+        self.draw(at: CGPoint(x: rect.origin.x * -1, y: rect.origin.y * -1))
+        let croppedImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return croppedImage
     }
 }
