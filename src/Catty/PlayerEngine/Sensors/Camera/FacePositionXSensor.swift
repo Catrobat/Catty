@@ -29,9 +29,11 @@ class FacePositionXSensor: DeviceSensor {
     static let requiredResource = ResourceType.faceDetection
 
     let getFaceDetectionManager: () -> FaceDetectionManagerProtocol?
+    let sceneWidth: Double?
 
     init(faceDetectionManagerGetter: @escaping () -> FaceDetectionManagerProtocol?) {
         self.getFaceDetectionManager = faceDetectionManagerGetter
+        self.sceneWidth = Double(Util.screenWidth(true))
     }
 
     func tag() -> String {
@@ -39,7 +41,7 @@ class FacePositionXSensor: DeviceSensor {
     }
 
     func rawValue() -> Double {
-        guard let positionX = self.getFaceDetectionManager()?.facePositionY else { return type(of: self).defaultRawValue }
+        guard let positionX = self.getFaceDetectionManager()?.facePositionRatioFromLeft else { return type(of: self).defaultRawValue }
         return positionX
     }
 
@@ -47,7 +49,8 @@ class FacePositionXSensor: DeviceSensor {
         if rawValue == type(of: self).defaultRawValue {
             return rawValue
         }
-        return rawValue - Double(Util.screenWidth()) / 3.8
+        guard let sceneWidth = self.sceneWidth else { return type(of: self).defaultRawValue }
+        return sceneWidth * rawValue - sceneWidth / 2.0
     }
 
     func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {

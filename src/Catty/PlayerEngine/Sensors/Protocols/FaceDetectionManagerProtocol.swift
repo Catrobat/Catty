@@ -23,8 +23,8 @@
 protocol FaceDetectionManagerProtocol {
 
     var isFaceDetected: Bool { get }
-    var facePositionX: Double? { get }
-    var facePositionY: Double? { get }
+    var facePositionRatioFromLeft: Double? { get }
+    var facePositionRatioFromBottom: Double? { get }
     var faceSize: CGRect? { get }
 
     func start()

@@ -21,13 +21,17 @@
  */
 
 class FaceDetectionManager: NSObject, FaceDetectionManagerProtocol, AVCaptureVideoDataOutputSampleBufferDelegate {
+    var facePositionX: Double?
+
+    var facePositionY: Double?
+
 
     // TODO: remove Singleton
     public static let shared = FaceDetectionManager()
 
     var isFaceDetected: Bool = false
-    var facePositionX: Double?
-    var facePositionY: Double?
+    var facePositionRatioFromLeft: Double?
+    var facePositionRatioFromBottom: Double?
     var faceSize: CGRect?
 
     private var session: AVCaptureSession?
@@ -67,7 +71,8 @@ class FaceDetectionManager: NSObject, FaceDetectionManagerProtocol, AVCaptureVid
             self.session?.addOutput(videoDataOuput)
         }
 
-        videoDataOuput.connection(with: .video)?.isEnabled = true
+        let videoDataOutputConnection = videoDataOuput.connection(with: .video)
+        videoDataOutputConnection?.isEnabled = true
         self.videoDataOuput = videoDataOuput
 
         let previewLayer = AVCaptureVideoPreviewLayer(session: session)
@@ -103,18 +108,23 @@ class FaceDetectionManager: NSObject, FaceDetectionManagerProtocol, AVCaptureVid
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
 
+        if connection.isVideoOrientationSupported {
+            connection.videoOrientation = .portrait
+        }
+
         let attachments = CMCopyDictionaryOfAttachments(kCFAllocatorDefault, sampleBuffer, kCMAttachmentMode_ShouldPropagate)
         let ciImage = CIImage(cvImageBuffer: pixelBuffer, options: attachments as? [String: Any])
-        let imageOptions = [ CIDetectorImageOrientation: exifOrientation(currentDeviceOrientation: UIDevice.current.orientation)]
-
-        guard let features = self.faceDetector?.features(in: ciImage, options: imageOptions) else { return }
+        guard let features = self.faceDetector?.features(in: ciImage) else { return }
 
         var isFaceDetected = false
 
         for feature in features where (feature.type == CIFeatureTypeFace) {
             isFaceDetected = true
-            self.facePositionX = Double(feature.bounds.origin.x)
-            self.facePositionY = Double(feature.bounds.origin.y)
+
+            let featureCenterX = feature.bounds.origin.x + feature.bounds.width / 2
+            let featureCenterY = feature.bounds.origin.y + feature.bounds.height / 2
+            self.facePositionRatioFromLeft = Double(featureCenterX / ciImage.extent.width)
+            self.facePositionRatioFromBottom = Double(featureCenterY / ciImage.extent.height)
             self.faceSize = feature.bounds
         }
 
@@ -139,35 +149,24 @@ class FaceDetectionManager: NSObject, FaceDetectionManagerProtocol, AVCaptureVid
         return CameraPreviewHandler.shared().cameraPosition
     }
 
-    private func exifOrientation(currentDeviceOrientation: UIDeviceOrientation) -> Int {
-        /* kCGImagePropertyOrientation values
-         The intended display orientation of the image. If present, this key is a CFNumber value with the same value as defined
-         by the TIFF and EXIF specifications -- see enumeration of integer constants.
-         The value specified where the origin (0,0) of the image is located. If not present, a value of 1 is assumed.
-
-         used when calling featuresInImage: options: The value for this key is an integer NSNumber from 1..8 as found in kCGImagePropertyOrientation.
-         If present, the detection will be done based on that orientation but the coordinates in the returned features will still be based on those of the image. */
-
-        enum ExifOrientation: Int {
-            case topLeft = 1 //   1  =  0th row is at the top, and 0th column is on the left (THE DEFAULT).
-            case topRight = 2 //   2  =  0th row is at the top, and 0th column is on the right.
-            case bottomRight = 3 //   3  =  0th row is at the bottom, and 0th column is on the right.
-            case bottomLeft = 4 //   4  =  0th row is at the bottom, and 0th column is on the left.
-            case leftTop = 5 //   5  =  0th row is on the left, and 0th column is the top.
-            case rightTop = 6 //   6  =  0th row is on the right, and 0th column is the top.
-            case rightBottom = 7 //   7  =  0th row is on the right, and 0th column is the bottom.
-            case leftBottom = 8  //   8  =  0th row is on the left, and 0th column is the bottom.
-        }
-
-        switch currentDeviceOrientation {
-        case .portraitUpsideDown:
-            return ExifOrientation.leftBottom.rawValue
-        case .landscapeLeft:
-            return cameraPosition() == .front ? ExifOrientation.bottomRight.rawValue: ExifOrientation.topLeft.rawValue
-        case .landscapeRight:
-            return cameraPosition() == .front ? ExifOrientation.topLeft.rawValue: ExifOrientation.bottomRight.rawValue
-        default:
-            return ExifOrientation.rightTop.rawValue
+    private func orientation(image: UIImage) -> CGImagePropertyOrientation {
+        switch image.imageOrientation {
+        case .up:
+            return CGImagePropertyOrientation.up
+        case .upMirrored:
+            return CGImagePropertyOrientation.upMirrored
+        case .down:
+            return CGImagePropertyOrientation.down
+        case .downMirrored:
+            return CGImagePropertyOrientation.downMirrored
+        case .left:
+            return CGImagePropertyOrientation.left
+        case .leftMirrored:
+            return CGImagePropertyOrientation.leftMirrored
+        case .right:
+            return CGImagePropertyOrientation.right
+        case .rightMirrored:
+            return CGImagePropertyOrientation.rightMirrored
         }
     }
 }
