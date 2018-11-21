@@ -18,13 +18,13 @@
                 <outlet property="computeButton" destination="oQN-vf-ZdE" id="dbs-ff-alX"/>
                 <outlet property="deleteButton" destination="uCt-gq-t2x" id="WlE-m3-Uhd"/>
                 <outlet property="deleteVar" destination="8uE-Bt-F7y" id="fst-xh-iTK"/>
-                <outlet property="divisionButton" destination="Rkk-tV-mbQ" id="0AJ-qO-Hmv"/>
+                <outlet property="divisionButton" destination="huL-az-i7Z" id="5lL-3N-W9Y"/>
                 <outlet property="doneButton" destination="SUT-4U-uAA" id="FDR-kY-DVd"/>
                 <outlet property="logicButton" destination="BjT-SP-YH6" id="Z1f-rU-mai"/>
                 <outlet property="logicScrollView" destination="mHs-Sk-VFV" id="pMq-h3-sZB"/>
                 <outlet property="mathScrollView" destination="Khh-zr-aoA" id="Mup-2Q-DoH"/>
                 <outlet property="mathbutton" destination="U9K-ue-3bh" id="wJq-tv-kH8"/>
-                <outlet property="multiplicationButton" destination="huL-az-i7Z" id="G1R-jS-RWu"/>
+                <outlet property="multiplicationButton" destination="Rkk-tV-mbQ" id="MCT-S3-Z0c"/>
                 <outlet property="objectButton" destination="Lon-kh-Yxw" id="YPK-oR-a9o"/>
                 <outlet property="objectScrollView" destination="NiC-Qd-lpd" id="Z8t-m1-iFs"/>
                 <outlet property="redoButton" destination="Wxl-Bw-XuK" id="TtX-Jm-zHa"/>
@@ -145,11 +145,11 @@
                         <action selector="redo:" destination="-1" eventType="touchUpInside" id="fM6-6I-i0i"/>
                     </connections>
                 </button>
-                <button opaque="NO" tag="411" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rkk-tV-mbQ">
+                <button opaque="NO" tag="410" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rkk-tV-mbQ">
                     <rect key="frame" x="327" y="86.5" width="82" height="43.5"/>
                     <color key="backgroundColor" red="0.88002991676330566" green="0.49964213371276855" blue="0.044042214751243591" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                    <state key="normal" title="/">
+                    <state key="normal" title="×">
                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
@@ -157,11 +157,11 @@
                         <action selector="buttonPressed:" destination="-1" eventType="touchUpInside" id="XeC-c6-H9V"/>
                     </connections>
                 </button>
-                <button opaque="NO" tag="410" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="huL-az-i7Z">
+                <button opaque="NO" tag="411" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="huL-az-i7Z">
                     <rect key="frame" x="327" y="43.5" width="82" height="43"/>
                     <color key="backgroundColor" red="0.88002991676330566" green="0.49964213371276855" blue="0.044042214751243591" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                    <state key="normal" title="x">
+                    <state key="normal" title="÷">
                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="titleShadowColor" red="0.17647058823529413" green="0.17254901960784313" blue="0.21176470588235294" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
