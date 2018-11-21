@@ -20,10 +20,14 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "XMLAbstractTest.h"
+import XCTest
 
-@interface XMLParserObjectTests093 : XMLAbstractTest
+@testable import Pocket_Code
 
-@property (nonatomic, strong) CBXMLParserContext *parserContext;
-
-@end
+final class XMLParserObjectTests095: XMLParserObjectTests093 {
+    
+    override func setUp( ) {
+        super.setUp()
+        parserContext = CBXMLParserContext(languageVersion: CGFloat(Float32(0.95)))
+    }
+}

@@ -20,17 +20,13 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "XMLParserFormulaTests093.h"
+import XCTest
 
-@interface XMLParserFormulaTests095 : XMLParserFormulaTests093
-@end
+@testable import Pocket_Code
 
-@implementation XMLParserFormulaTests095
-
-- (void)setUp
-{
-    [super setUp];
-    self.parserContext = [[CBXMLParserContext alloc] initWithLanguageVersion:0.95f];
+final class XMLFormulaTests095: XMLParserFormulaTests093 {    
+    override func setUp( ) {
+        super.setUp()
+        self.parserContext = CBXMLParserContext(languageVersion: CGFloat(Float32(0.95)))
+    }
 }
-
-@end

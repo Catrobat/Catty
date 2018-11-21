@@ -198,7 +198,11 @@
 #import "PointToBrick+CBXMLHandler.h"
 #import "Program+CBXMLHandler.h"
 #import "Header+CBXMLHandler.h"
+#import "SpriteObject+CBXMLHandler.h"
 #import "VariablesContainer.h"
 #import "OrderedMapTable.h"
+#import "UIDefines.h"
+#import "SpriteObject.h"
+#import "CBXMLOpenedNestingBricksStack.h"
 
 

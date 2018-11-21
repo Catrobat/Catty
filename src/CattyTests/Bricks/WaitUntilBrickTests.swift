@@ -24,7 +24,7 @@ import XCTest
 
 @testable import Pocket_Code
 
-final class WaitUntilBrickTests : XCTestCase {
+final class WaitUntilBrickTests : XMLAbstractTestSwift {
     
     override func setUp() {
         super.setUp()
