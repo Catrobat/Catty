@@ -34,7 +34,6 @@
 #import "RuntimeImageCache.h"
 #import "AppDelegate.h"
 #import "Util.h"
-#import "UploadInfoPopupViewController.h"
 #import "BDKNotifyHUD.h"
 #import "Pocket_Code-Swift.h"
 

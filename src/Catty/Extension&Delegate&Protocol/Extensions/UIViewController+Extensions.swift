@@ -20,21 +20,15 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
-#import "UIViewController+CWPopup.h"
-#import "Program.h"
+extension UIViewController {
+    func hideKeyboardWhenTapInViewController() {
+        let tapGesture = UITapGestureRecognizer(target: self,
+                                                action: #selector(UIViewController.dismissKeyboard))
+        tapGesture.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapGesture)
+    }
 
-@interface UploadInfoViewController : UIViewController
-
-@property (nonatomic, weak) id<DismissPopupDelegate> delegate;
-@property (nonatomic, strong) Program *program;
-
-@property (weak, nonatomic) IBOutlet UITextView *descriptionTextView;
-@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
-@property (weak, nonatomic) IBOutlet UILabel *sizeLabel;
-@property (weak, nonatomic) IBOutlet UILabel *sizeValueLabel;
-@property (weak, nonatomic) IBOutlet UILabel *programNamelabel;
-@property (weak, nonatomic) IBOutlet UITextField *programNameTextField;
-@property (weak, nonatomic) IBOutlet UIButton *uploadButton;
-
-@end
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+}
