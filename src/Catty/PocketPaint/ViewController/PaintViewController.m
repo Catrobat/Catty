@@ -895,15 +895,7 @@
 
 - (void)showSavedView
 {
-    BDKNotifyHUD *hud = [BDKNotifyHUD notifyHUDWithImage:[UIImage imageNamed:kBDKNotifyHUDCheckmarkImageName]
-                                                    text:kLocalizedSaved];
-    hud.destinationOpacity = kBDKNotifyHUDDestinationOpacity;
-    hud.center = CGPointMake(self.view.center.x, self.view.center.y + kBDKNotifyHUDCenterOffsetY);
-    [self.view addSubview:hud];
-    [hud presentWithDuration:kBDKNotifyHUDPresentationDuration
-                       speed:kBDKNotifyHUDPresentationSpeed
-                      inView:self.view
-                  completion:^{ [hud removeFromSuperview]; }];
+    [Util showNotificationForSaveAction];
 }
 
 

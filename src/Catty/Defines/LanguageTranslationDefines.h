@@ -136,7 +136,6 @@
 #define kLocalizedEditPrograms NSLocalizedString(@"Edit Programs", nil)
 #define kLocalizedEditObject NSLocalizedString(@"Edit Object", nil)
 #define kLocalizedAddSound NSLocalizedString(@"Add sound", @"Action sheet menu title")
-#define kLocalizedSaveScreenshotTo NSLocalizedString(@"Save Screenshot to", @"Action sheet menu title")
 #define kLocalizedSelectBrickCategory NSLocalizedString(@"Select Brick Category", nil)
 #define kLocalizedClose NSLocalizedString(@"Close", nil)
 #define kLocalizedDeleteBrick NSLocalizedString(@"Delete Brick", nil)
@@ -205,6 +204,7 @@
 #define kLocalizedDeleteProgram NSLocalizedString(@"Delete Program", nil)
 #define kLocalizedLoading NSLocalizedString(@"Loading", nil)
 #define kLocalizedSaved NSLocalizedString(@"Saved", nil)
+#define kLocalizedSaveError NSLocalizedString(@"Error saving file", nil)
 #define kLocalizedAuthor NSLocalizedString(@"Author", nil)
 #define kLocalizedDownloads NSLocalizedString(@"Downloads", nil)
 #define kLocalizedUploaded NSLocalizedString(@"Uploaded", nil)
@@ -220,7 +220,7 @@
 #define kLocalizedLastAccess NSLocalizedString(@"Last access", nil)
 #define kLocalizedLength NSLocalizedString(@"Length", nil)
 #define kLocalizedRestart NSLocalizedString(@"Restart", nil)
-#define kLocalizedScreenshot NSLocalizedString(@"Screenshot", nil)
+#define kLocalizedPreview NSLocalizedString(@"Preview", nil)
 #define kLocalizedAxes NSLocalizedString(@"Axes", @"Title of icon shown in the side bar to enable or disable an overlayed view to show the origin of the coordinate system and implicitly the display size.")
 #define kLocalizedMostDownloaded NSLocalizedString(@"Most Downloaded", nil)
 #define kLocalizedMostViewed NSLocalizedString(@"Most Viewed", nil)
@@ -251,15 +251,12 @@
 #define kLocalizedOn NSLocalizedString(@"on", nil)
 #define kLocalizedCameraBack NSLocalizedString(@"back", nil)
 #define kLocalizedCameraFront NSLocalizedString(@"front", nil)
-#define kLocalizedSetAsPreviewImage NSLocalizedString(@"Set as Preview Image", nil)
 
 //************************************************************************************************************
 //**********************************       SHORT DESCRIPTIONS      *******************************************
 //************************************************************************************************************
 
 #define kLocalizedCantRestartProgram NSLocalizedString(@"Can't restart program!", nil)
-#define kLocalizedScreenshotSavedToCameraRoll NSLocalizedString(@"Screenshot saved to Camera Roll", nil)
-#define kLocalizedScreenshotSavedToProject NSLocalizedString(@"Screenshot saved to project", nil)
 #define kLocalizedThisFeatureIsComingSoon NSLocalizedString(@"This feature is coming soon!", nil)
 #define kLocalizedNoDescriptionAvailable NSLocalizedString(@"No Description available", nil)
 #define kLocalizedNoSearchResults NSLocalizedString(@"No search results", nil)

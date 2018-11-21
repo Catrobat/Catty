@@ -30,6 +30,10 @@
 
 @implementation RuntimeImageCache
 
++ (instancetype)sharedImageCache {
+    return [super sharedImageCache];
+}
+
 - (UIImage*)cachedImageForName:(NSString*)imageName
 {
     return [super getImageWithName:imageName];

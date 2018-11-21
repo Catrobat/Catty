@@ -170,7 +170,7 @@
 
     RuntimeImageCache *cache = [RuntimeImageCache sharedImageCache];
     NSString *filePath = [NSString stringWithFormat:@"%@%@", imageDirPath, previewImageName];
-    [cache overwriteThumbnailImageFromDiskWithThumbnailPath:filePath image:image thumbnailFrameSize:CGSizeMake(kPreviewImageWidth, kPreviewImageHeight)];
+    [cache overwriteThumbnailImageFromDiskWithThumbnailPath:filePath image:image thumbnailFrameSize:CGSizeMake(kPreviewThumbnailWidth, kPreviewThumbnailHeight)];
     
     
     [cache replaceImage:image withName:filePath];
