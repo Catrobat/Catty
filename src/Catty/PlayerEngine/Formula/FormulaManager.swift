@@ -27,7 +27,6 @@ import CoreMotion
 
     let sensorManager: SensorManagerProtocol
     let functionManager: FunctionManagerProtocol
-
     let motionManager: MotionManager
     let locationManager: LocationManager
     let faceDetectionManager: FaceDetectionManagerProtocol
@@ -37,7 +36,8 @@ import CoreMotion
 
     var cachedResults = [FormulaElement: AnyObject]()
 
-    override convenience init() {
+    @objc(initWithSceneSize:)
+    convenience init(sceneSize: CGSize) {
         let motionManager = CMMotionManager()
         let locationManager = CLLocationManager()
         let faceDetectionManager = FaceDetectionManager.shared
@@ -46,7 +46,8 @@ import CoreMotion
         let bluetoothService = BluetoothService.sharedInstance()
 
         let sensorManager =
-            FormulaManager.buildSensorManager(motionManager: motionManager,
+            FormulaManager.buildSensorManager(sceneSize: sceneSize,
+                                              motionManager: motionManager,
                                               locationManager: locationManager,
                                               faceDetectionManager: faceDetectionManager,
                                               audioManager: audioManager,
@@ -106,7 +107,8 @@ import CoreMotion
         return self.sensorManager.exists(tag: tag)
     }
 
-    private static func buildSensorManager(motionManager: MotionManager,
+    private static func buildSensorManager(sceneSize: CGSize,
+                                           motionManager: MotionManager,
                                            locationManager: LocationManager,
                                            faceDetectionManager: FaceDetectionManager,
                                            audioManager: AudioManagerProtocol,
@@ -140,8 +142,8 @@ import CoreMotion
 
             FaceDetectedSensor(faceDetectionManagerGetter: { faceDetectionManager }),
             FaceSizeSensor(faceDetectionManagerGetter: { faceDetectionManager }),
-            FacePositionXSensor(faceDetectionManagerGetter: { faceDetectionManager }),
-            FacePositionYSensor(faceDetectionManagerGetter: { faceDetectionManager }),
+            FacePositionXSensor(sceneSize: sceneSize, faceDetectionManagerGetter: { faceDetectionManager }),
+            FacePositionYSensor(sceneSize: sceneSize, faceDetectionManagerGetter: { faceDetectionManager }),
 
             PhiroFrontLeftSensor(bluetoothServiceGetter: { bluetoothService }),
             PhiroFrontRightSensor(bluetoothServiceGetter: { bluetoothService }),

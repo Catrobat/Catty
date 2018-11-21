@@ -37,7 +37,7 @@ const double EPSILON = 0.001;
 
 - (void)setUp
 {
-    self.formulaManager = [FormulaManager new];
+    self.formulaManager = [[FormulaManager alloc] initWithSceneSize:[Util screenSize:true]];
     self.spriteObject = [SpriteObject new];
 }
 

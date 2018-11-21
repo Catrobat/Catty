@@ -26,7 +26,7 @@
 
 - (void)setUp
 {
-    self.formulaManager = [FormulaManager new];
+    self.formulaManager = [[FormulaManager alloc] initWithSceneSize:[Util screenSize:true]];
     self.parserContext = [[CBXMLParserContext alloc] initWithLanguageVersion:0.93f];
 }
 

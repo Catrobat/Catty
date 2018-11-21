@@ -37,7 +37,7 @@
 
 - (void)setUp
 {
-    self.formulaManager = (id<FormulaManagerProtocol>)[FormulaManager new];
+    self.formulaManager = (id<FormulaManagerProtocol>)[[FormulaManager alloc] initWithSceneSize:[Util screenSize:true]];
     self.interpreter = (id<FormulaInterpreterProtocol>)self.formulaManager;
 }
 

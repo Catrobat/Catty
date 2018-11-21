@@ -31,9 +31,9 @@ class FacePositionYSensor: DeviceSensor {
     let getFaceDetectionManager: () -> FaceDetectionManagerProtocol?
     let sceneHeight: Double?
 
-    init(faceDetectionManagerGetter: @escaping () -> FaceDetectionManagerProtocol?) {
+    init(sceneSize: CGSize, faceDetectionManagerGetter: @escaping () -> FaceDetectionManagerProtocol?) {
         self.getFaceDetectionManager = faceDetectionManagerGetter
-        self.sceneHeight = Double(Util.screenHeight(true))
+        self.sceneHeight = Double(sceneSize.height)
     }
 
     func tag() -> String {

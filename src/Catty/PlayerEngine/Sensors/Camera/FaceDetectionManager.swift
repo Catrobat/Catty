@@ -148,25 +148,4 @@ class FaceDetectionManager: NSObject, FaceDetectionManagerProtocol, AVCaptureVid
     private func cameraPosition() -> AVCaptureDevice.Position {
         return CameraPreviewHandler.shared().cameraPosition
     }
-
-    private func orientation(image: UIImage) -> CGImagePropertyOrientation {
-        switch image.imageOrientation {
-        case .up:
-            return CGImagePropertyOrientation.up
-        case .upMirrored:
-            return CGImagePropertyOrientation.upMirrored
-        case .down:
-            return CGImagePropertyOrientation.down
-        case .downMirrored:
-            return CGImagePropertyOrientation.downMirrored
-        case .left:
-            return CGImagePropertyOrientation.left
-        case .leftMirrored:
-            return CGImagePropertyOrientation.leftMirrored
-        case .right:
-            return CGImagePropertyOrientation.right
-        case .rightMirrored:
-            return CGImagePropertyOrientation.rightMirrored
-        }
-    }
 }

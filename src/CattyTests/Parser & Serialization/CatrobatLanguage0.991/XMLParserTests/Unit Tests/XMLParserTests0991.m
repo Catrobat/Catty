@@ -56,7 +56,7 @@
 
 - (void)setUp
 {
-    self.formulaManager = [FormulaManager new];
+    self.formulaManager = [[FormulaManager alloc] initWithSceneSize:[Util screenSize:true]];
 }
 
 - (void)testFlashBrick

@@ -25,8 +25,8 @@
 final class FaceDetectionManagerMock: FaceDetectionManagerProtocol {
 
     var isFaceDetected: Bool = false
-    var facePositionX: Double? = 0
-    var facePositionY: Double? = 0
+    var facePositionRatioFromLeft: Double? = 0
+    var facePositionRatioFromBottom: Double? = 0
     var faceSize: CGRect? = CGRect.zero
 
     var isAvailable = true
@@ -42,8 +42,8 @@ final class FaceDetectionManagerMock: FaceDetectionManagerProtocol {
 
     func reset() {
         isFaceDetected = false
-        facePositionX = 0
-        facePositionY = 0
+        facePositionRatioFromLeft = 0
+        facePositionRatioFromBottom = 0
         faceSize = CGRect.zero
     }
 
