@@ -40,7 +40,7 @@ import CoreMotion
     convenience init(sceneSize: CGSize) {
         let motionManager = CMMotionManager()
         let locationManager = CLLocationManager()
-        let faceDetectionManager = FaceDetectionManager.shared
+        let faceDetectionManager = FaceDetectionManager()
         let audioManager = AudioManager.shared()!
         let touchManager = TouchManager()
         let bluetoothService = BluetoothService.sharedInstance()
@@ -73,7 +73,7 @@ import CoreMotion
                   functionManager: functionManager,
                   motionManager: CMMotionManager(),
                   locationManager: CLLocationManager(),
-                  faceDetectionManager: FaceDetectionManager.shared,
+                  faceDetectionManager: FaceDetectionManager(),
                   audioManager: AudioManager(),
                   touchManager: TouchManager(),
                   bluetoothService: BluetoothService.sharedInstance())

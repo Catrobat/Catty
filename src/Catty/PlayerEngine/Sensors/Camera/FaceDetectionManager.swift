@@ -21,13 +21,6 @@
  */
 
 class FaceDetectionManager: NSObject, FaceDetectionManagerProtocol, AVCaptureVideoDataOutputSampleBufferDelegate {
-    var facePositionX: Double?
-
-    var facePositionY: Double?
-
-
-    // TODO: remove Singleton
-    public static let shared = FaceDetectionManager()
 
     var isFaceDetected: Bool = false
     var facePositionRatioFromLeft: Double?
@@ -133,8 +126,8 @@ class FaceDetectionManager: NSObject, FaceDetectionManagerProtocol, AVCaptureVid
 
     func reset() {
         self.isFaceDetected = false
-        self.facePositionX = nil
-        self.facePositionY = nil
+        self.facePositionRatioFromLeft = nil
+        self.facePositionRatioFromBottom = nil
         self.faceSize = nil
     }
 
