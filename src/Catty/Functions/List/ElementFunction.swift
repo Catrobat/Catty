@@ -27,34 +27,34 @@ class ElementFunction: DoubleParameterFunction {
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = false
     static let position = 250
-    
+
     func tag() -> String {
         return type(of: self).tag
     }
-    
+
     func firstParameter() -> FunctionParameter {
         return .number(defaultValue: 1)
     }
-    
+
     func secondParameter() -> FunctionParameter {
         return .list(defaultValue: "list name")
     }
-    
+
     func value(firstParameter: AnyObject?, secondParameter: AnyObject?) -> AnyObject {
         guard let elementNumber = firstParameter as? Int,
             let list = secondParameter as? UserVariable,
             let elements = list.value as? [AnyObject] else {
                 return type(of: self).defaultValue
         }
-        
-        if elements.count == 0 || elementNumber <= 0 || elementNumber > elements.count {
+
+        if elements.isEmpty || elementNumber <= 0 || elementNumber > elements.count {
             return type(of: self).defaultValue
         }
-        
+
         let index = elements.index(elements.startIndex, offsetBy: elementNumber - 1)
         return elements[index]
     }
-    
+
     func formulaEditorSection() -> FormulaEditorSection {
         return .math(position: (type(of: self).position))
     }

@@ -27,7 +27,7 @@
     @objc static let defaultRawValue = 0.0
     static let position = 30
     static let requiredResource = ResourceType.noResources
-    
+
     func tag() -> String {
         return type(of: self).tag
     }
@@ -38,7 +38,7 @@
         }
         return Double(spriteNode.ciHueAdjust)
     }
-    
+
     static func setRawValue(userInput: Double, for spriteObject: SpriteObject) {
         let rawValue = self.convertToRaw(userInput: userInput, for: spriteObject)
         spriteObject.spriteNode.ciHueAdjust = CGFloat(rawValue)
@@ -47,12 +47,12 @@
     static func convertToStandardized(rawValue: Double, for spriteObject: SpriteObject) -> Double {
         return rawValue * 100 / Double.pi
     }
-    
+
     static func convertToRaw(userInput: Double, for spriteObject: SpriteObject) -> Double {
         var valueToConvert = userInput
         let whole = Int(valueToConvert)
         let fraction = valueToConvert.truncatingRemainder(dividingBy: 1)
-        
+
         if valueToConvert >= 200 {
             valueToConvert = Double(whole % 200) + fraction
         } else if valueToConvert < 0 {
@@ -63,7 +63,7 @@
         }
         return valueToConvert / 100 * Double.pi
     }
-    
+
     func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
         return .object(position: type(of: self).position)
     }

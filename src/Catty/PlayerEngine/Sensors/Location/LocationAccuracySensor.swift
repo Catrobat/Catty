@@ -20,35 +20,35 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc class LocationAccuracySensor : NSObject, DeviceSensor {
-    
+@objc class LocationAccuracySensor: NSObject, DeviceSensor {
+
     @objc static let tag = "LOCATION_ACCURACY"
     static let name = kUIFESensorLocationAccuracy
     static let defaultRawValue = 0.0
     static let position = 100
     static let requiredResource = ResourceType.location
-    
+
     let getLocationManager: () -> LocationManager?
-    
+
     init(locationManagerGetter: @escaping () -> LocationManager?) {
         self.getLocationManager = locationManagerGetter
     }
-    
+
     func tag() -> String {
         return type(of: self).tag
     }
-    
+
     func rawValue() -> Double {
         return self.getLocationManager()?.location?.horizontalAccuracy ?? type(of: self).defaultRawValue
     }
-    
+
     func convertToStandardized(rawValue: Double) -> Double {
         if rawValue < 0 {
             return 0
         }
         return rawValue
     }
-    
+
     func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
         return .device(position: type(of: self).position)
     }

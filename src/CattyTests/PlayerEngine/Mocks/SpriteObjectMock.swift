@@ -25,11 +25,11 @@
 final class SpriteObjectMock: SpriteObject {
 
     var background: Bool
-    
+
     override init() {
         background = false
     }
-    
+
     override func isBackground() -> Bool {
         return self.background
     }

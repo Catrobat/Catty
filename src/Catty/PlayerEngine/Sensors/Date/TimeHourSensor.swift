@@ -20,30 +20,30 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class TimeHourSensor : DateSensor {
-    
+class TimeHourSensor: DateSensor {
+
     static let tag = "TIME_HOUR"
     static let name = kUIFESensorTimeHour
     static let defaultRawValue = 0.0
     static let position = 270
     static let requiredResource = ResourceType.noResources
-    
+
     func date() -> Date {
         return Date()
     }
-    
+
     func tag() -> String {
         return type(of: self).tag
     }
-    
+
     func rawValue() -> Double {
         return Double(Calendar.current.component(.hour, from: self.date()))
     }
-    
+
     func convertToStandardized(rawValue: Double) -> Double {
         return rawValue
     }
-    
+
     func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
         return .device(position: type(of: self).position)
     }

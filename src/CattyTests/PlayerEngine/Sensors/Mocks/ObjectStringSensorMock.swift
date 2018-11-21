@@ -23,30 +23,30 @@
 @testable import Pocket_Code
 
 final class ObjectStringSensorMock: SensorMock, ObjectStringSensor {
-    
+
     private static var mockedValue: String = ""
-    
+
     init(tag: String, value: String, formulaEditorSection: FormulaEditorSection) {
         super.init(tag: tag, formulaEditorSection: formulaEditorSection)
         type(of: self).mockedValue = value
     }
-    
+
     override convenience init(tag: String, formulaEditorSection: FormulaEditorSection) {
         self.init(tag: tag, value: "", formulaEditorSection: formulaEditorSection)
     }
-    
+
     convenience init(tag: String, value: String) {
         self.init(tag: tag, value: value, formulaEditorSection: .hidden)
     }
-    
+
     convenience init(tag: String) {
         self.init(tag: tag, formulaEditorSection: .hidden)
     }
-    
+
     static func rawValue(for spriteObject: SpriteObject) -> String {
         return mockedValue
     }
-    
+
     static func convertToStandardized(rawValue: String, for spriteObject: SpriteObject) -> String {
         return rawValue
     }

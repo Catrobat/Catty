@@ -24,8 +24,6 @@
 #import "Util.h"
 #import "Script.h"
 #import "AudioManager.h"
-#import "SaveToProjectActivity.h"
-#import "LoadingView.h"
 #import "FlashHelper.h"
 #import "CameraPreviewHandler.h"
 #import "CatrobatLanguageDefines.h"
@@ -150,7 +148,7 @@
     NSArray *labelTextArray = [[NSArray alloc] initWithObjects:kLocalizedBack,
                                kLocalizedRestart,
                                kLocalizedContinue,
-                               kLocalizedScreenshot,
+                               kLocalizedPreview,
                                kLocalizedAxes, nil];
     NSArray* labelArray = [[NSArray alloc] initWithObjects:self.menuBackLabel, self.menuRestartLabel, self.menuContinueLabel, self.menuScreenshotLabel, self.menuAxisLabel, nil];
     for (int i = 0; i < [labelTextArray count]; ++i) {
@@ -361,7 +359,7 @@
                          self.menuOpen = NO;
                          self.menuView.userInteractionEnabled = YES;
                          if (animateDuration == duration) {
-                             [self takeAutomaticScreenshot];
+                             [self takeAutomaticScreenshotForSKView:self.skView andProgram:self.program];
                          }
                      }];
     self.skView.paused = NO;
@@ -450,76 +448,8 @@
 
 - (void)takeScreenshotAction:(UIButton*)sender
 {
-    // Screenshot function
-    UIGraphicsBeginImageContextWithOptions(self.skView.bounds.size, NO, [UIScreen mainScreen].scale);
-    [self.skView drawViewHierarchyInRect:self.skView.bounds afterScreenUpdates:NO];
-    self.snapshotImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    [self showSaveScreenshotActionSheet];
-    
+    [self takeManualScreenshotForSKView:self.skView andProgram:self.program];
 }
-
--(void)takeAutomaticScreenshot
-{
-    NSArray *fallbackPaths = @[[[NSString alloc] initWithFormat:@"%@screenshot.png",[self.program projectPath]],
-                               [[NSString alloc] initWithFormat:@"%@manual_screenshot.png", [self.program projectPath]],
-                               [[NSString alloc] initWithFormat:@"%@automatic_screenshot.png", [self.program projectPath]]];
-    BOOL fileExists = NO;
-    for (NSString *fallbackPath in fallbackPaths) {
-        NSString *fileName = [fallbackPath lastPathComponent];
-        fileExists= [[NSFileManager defaultManager] fileExistsAtPath:fileName];
-        if(fileExists){
-            break;
-        }
-    }
-    if (!fileExists) {
-        NSLog(@"AutoScreenshot");
-        UIGraphicsBeginImageContextWithOptions(self.skView.bounds.size, NO, [UIScreen mainScreen].scale);
-        [self.skView drawViewHierarchyInRect:self.skView.bounds afterScreenUpdates:NO];
-        UIImage* image = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            NSString *fileName = @"automatic_screenshot.png";
-            NSString *pngFilePath = [NSString stringWithFormat:@"%@%@",[self.program projectPath], fileName];
-            NSData *data = [NSData dataWithData:UIImagePNGRepresentation(image)];
-            [data writeToFile:pngFilePath atomically:YES];
-            [[RuntimeImageCache sharedImageCache] overwriteThumbnailImageFromDiskWithThumbnailPath:[NSString stringWithFormat:@"%@%@%@",[self.program projectPath], kScreenshotThumbnailPrefix, fileName] image:image thumbnailFrameSize:CGSizeMake(kPreviewImageWidth, kPreviewImageHeight)];
-        });
-    }
-}
-
-#pragma mark - Action Sheet & Alert View Handling
-- (void)showSaveScreenshotActionSheet
-{
-    UIImage *imageToShare = self.snapshotImage;
-    NSString *path = [self.program projectPath];
-    NSArray *itemsToShare = @[imageToShare];
-
-    SaveToProjectActivity *saveToProjectActivity = [[SaveToProjectActivity alloc] initWithImagePath:path];
-    NSArray *activities = @[saveToProjectActivity];
-
-    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:itemsToShare applicationActivities:activities];
-    activityVC.excludedActivityTypes = @[UIActivityTypeAssignToContact,
-                                         UIActivityTypePostToFlickr,
-                                         UIActivityTypePostToFacebook,
-                                         UIActivityTypePostToVimeo,
-                                         UIActivityTypePostToWeibo,
-                                         UIActivityTypePostToTwitter,
-                                         UIActivityTypeMail,
-                                         UIActivityTypePrint,
-                                         UIActivityTypeCopyToPasteboard]; //or whichever you don't need
-    __weak ScenePresenterViewController *weakself = self;
-    [activityVC setCompletionWithItemsHandler:^(NSString *activityType, BOOL completed, NSArray *returnedItems, NSError *activityError) {
-        SKView *view = weakself.skView;
-        view.paused=YES;
-    }];
-    [self presentViewController:activityVC animated:YES completion:^(){
-        SKView *view = weakself.skView;
-        view.paused=YES;
-    }];
-}
-
 
 #pragma mark - Pan Gesture Handler
 - (void)handlePan:(UIPanGestureRecognizer*)gesture

@@ -21,7 +21,7 @@
  */
 
 @objc class AccelerationZSensor: NSObject, DeviceSensor {
-    
+
     @objc static let tag = "Z_ACCELERATION"
     static let name = kUIFESensorAccelerationZ
     static let defaultRawValue = 0.0
@@ -29,11 +29,11 @@
     static let requiredResource = ResourceType.deviceMotion
 
     let getMotionManager: () -> MotionManager?
-    
+
     init(motionManagerGetter: @escaping () -> MotionManager?) {
         self.getMotionManager = motionManagerGetter
     }
-    
+
     func tag() -> String {
         return type(of: self).tag
     }
@@ -45,7 +45,7 @@
     func convertToStandardized(rawValue: Double) -> Double {
         return rawValue * 9.8
     }
-    
+
     func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
         return .device(position: type(of: self).position)
     }

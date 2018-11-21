@@ -20,46 +20,46 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import CoreMotion
 import CoreLocation
+import CoreMotion
 
 @objc class SensorManager: NSObject, SensorManagerProtocol {
-    
+
     public static var defaultValueForUndefinedSensor: Double = 0
-    private static var sensorMap = [String: Sensor]() // TODO make instance let
-    
+    private static var sensorMap = [String: Sensor]() // TODO: make instance let
+
     public required init(sensors: [Sensor]) {
         super.init()
         registerSensors(sensorList: sensors)
     }
-    
+
     private func registerSensors(sensorList: [Sensor]) {
         type(of: self).sensorMap.removeAll()
         sensorList.forEach { type(of: self).sensorMap[$0.tag()] = $0 }
     }
-    
+
     func formulaEditorItems(for spriteObject: SpriteObject) -> [FormulaEditorItem] {
         var items = [FormulaEditorItem]()
-        
+
         for sensor in self.sensors() {
             items.append(FormulaEditorItem(sensor: sensor, spriteObject: spriteObject))
         }
-        
+
         return items
     }
-    
+
     func sensors() -> [Sensor] {
         return Array(type(of: self).sensorMap.values)
     }
-    
+
     func sensor(tag: String) -> Sensor? {
         return type(of: self).sensorMap[tag]
     }
-    
+
     func tag(sensor: Sensor) -> String {
         return sensor.tag()
     }
-    
+
     @objc func exists(tag: String) -> Bool {
         return self.sensor(tag: tag) != nil
     }
@@ -67,7 +67,7 @@ import CoreLocation
     @objc func value(tag: String, spriteObject: SpriteObject? = nil) -> AnyObject {
         guard let sensor = sensor(tag: tag) else { return type(of: self).defaultValueForUndefinedSensor as AnyObject }
         var rawValue: AnyObject = type(of: sensor).defaultRawValue as AnyObject
-        
+
         if let sensor = sensor as? ObjectSensor, let spriteObject = spriteObject {
             if let sensor = sensor as? ObjectDoubleSensor {
                 rawValue = type(of: sensor).standardizedValue(for: spriteObject) as AnyObject
@@ -79,15 +79,15 @@ import CoreLocation
         } else if let sensor = sensor as? DeviceSensor {
             rawValue = sensor.standardizedValue() as AnyObject
         }
-        
+
         return rawValue
     }
-    
+
     @objc static func requiredResource(tag: String) -> ResourceType {
         guard let sensor = sensorMap[tag] else { return .noResources }
         return type(of: sensor).requiredResource
     }
-    
+
     @objc static func name(tag: String) -> String? {
         guard let sensor = sensorMap[tag] else { return nil }
         return type(of: sensor).name

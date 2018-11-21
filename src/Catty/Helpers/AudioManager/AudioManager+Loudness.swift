@@ -21,79 +21,79 @@
  */
 
 extension AudioManager: AudioManagerProtocol {
-    private var noiseRecogniserTimeIntervalInSeconds: Double { get { return 0.05 } }
-    private var noiseRecorderChannel: Int { get { return 0 } }
-    
-    func startLoudnessRecorder() -> Void {
+    private var noiseRecogniserTimeIntervalInSeconds: Double { return 0.05 }
+    private var noiseRecorderChannel: Int { return 0 }
+
+    func startLoudnessRecorder() {
         if self.recorder == nil {
             self.initRecorder()
         }
-        
+
         self.loudnessTimer = Timer.scheduledTimer(timeInterval: noiseRecogniserTimeIntervalInSeconds,
                                                   target: self,
                                                   selector: #selector(self.programTimerCallback),
                                                   userInfo: nil,
                                                   repeats: true)
-        
+
         self.recorder.isMeteringEnabled = true
         self.recorder.record()
     }
-    
-    func stopLoudnessRecorder() -> Void {
+
+    func stopLoudnessRecorder() {
         if self.recorder != nil {
             self.recorder.stop()
             self.recorder = nil
         }
-        
+
         if self.loudnessTimer != nil {
             self.loudnessTimer.invalidate()
             self.loudnessTimer = nil
         }
     }
-    
-    func pauseLoudnessRecorder() -> Void {
+
+    func pauseLoudnessRecorder() {
         self.recorder?.pause()
     }
-    
-    func resumeLoudnessRecorder() -> Void {
+
+    func resumeLoudnessRecorder() {
         self.recorder?.record()
     }
-    
+
     func loudness() -> Double? {
         if self.loudnessInDecibels == nil || self.recorder == nil {
             return nil // no sound
         }
         return self.loudnessInDecibels as? Double
     }
-    
+
     func initRecorder() {
         let url = URL(fileURLWithPath: "/dev/null")
-        
+
         let settings = [
             AVFormatIDKey: Int(kAudioFormatAppleLossless),
             AVSampleRateKey: 44100.0,
             AVNumberOfChannelsKey: 0,
             AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
-            ] as [String : Any]
-        
+        ] as [String: Any]
+
         let audioSession = AVAudioSession.sharedInstance()
-        try! audioSession.setActive(true)
-        try! audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
-        try! audioSession.overrideOutputAudioPort(AVAudioSessionPortOverride.speaker)
-        try! self.recorder = AVAudioRecorder(url: url, settings: settings)
+        try? audioSession.setActive(true)
+        try? audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
+        try? audioSession.overrideOutputAudioPort(AVAudioSessionPortOverride.speaker)
+        try? self.recorder = AVAudioRecorder(url: url, settings: settings)
     }
-    
+
     @objc func programTimerCallback() {
         guard let recorder = self.recorder else { return }
         recorder.updateMeters()
-        
+
         self.loudnessInDecibels = recorder.averagePower(forChannel: noiseRecorderChannel) as NSNumber
     }
-    
+
     func loudnessAvailable() -> Bool {
         var isGranted = false
         let dispatchGroup = DispatchGroup()
-        
+
         switch AVAudioSession.sharedInstance().recordPermission() {
         case AVAudioSessionRecordPermission.denied:
             isGranted = false
@@ -107,13 +107,13 @@ extension AudioManager: AudioManagerProtocol {
         case AVAudioSessionRecordPermission.granted:
             isGranted = true
         }
-        
+
         if isGranted && self.recorder == nil {
             self.initRecorder()
             return self.recorder.prepareToRecord()
         }
-        
+
         return isGranted
     }
-    
+
 }

@@ -31,14 +31,14 @@
     func tag() -> String {
         return type(of: self).tag
     }
-    
+
     static func rawValue(for spriteObject: SpriteObject) -> Double {
         guard let spriteNode = spriteObject.spriteNode else { return BackgroundNumberSensor.defaultRawValue }
         guard let currentLook = spriteNode.currentLook else { return BackgroundNumberSensor.defaultRawValue }
         let index = spriteObject.lookList.index(of: currentLook)
         return Double(index)
     }
-    
+
     static func convertToStandardized(rawValue: Double, for spriteObject: SpriteObject) -> Double {
         return rawValue + 1
     }
@@ -46,11 +46,11 @@
     static func setRawValue(userInput: Double, for spriteObject: SpriteObject) {
         fatalError("This sensor is read-only")
     }
-    
+
     static func convertToRaw(userInput: Double, for spriteObject: SpriteObject) -> Double {
         fatalError("This sensor is read-only")
     }
-    
+
     func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
         if spriteObject.isBackground() == false {
             return .hidden

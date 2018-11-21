@@ -25,52 +25,53 @@ import XCTest
 @testable import Pocket_Code
 
 final class AccelerationZSensorTest: XCTestCase {
-    
+
     var motionManager: MotionManagerMock!
     var sensor: AccelerationZSensor!
-    
+
     override func setUp() {
         motionManager = MotionManagerMock()
         sensor = AccelerationZSensor { [weak self] in self?.motionManager }
     }
-    
+
     override func tearDown() {
         sensor = nil
         motionManager = nil
+        super.tearDown()
     }
-    
+
     func testDefaultRawValue() {
         let sensor = AccelerationZSensor { nil }
-        XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(), accuracy: 0.0001)
+        XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(), accuracy: Double.epsilon)
     }
-    
+
     func testRawValue() {
         motionManager.zUserAcceleration = 0
-        XCTAssertEqual(0, sensor.rawValue(), accuracy: 0.0001)
-        
+        XCTAssertEqual(0, sensor.rawValue(), accuracy: Double.epsilon)
+
         motionManager.zUserAcceleration = 9.8
-        XCTAssertEqual(9.8, sensor.rawValue(), accuracy: 0.0001)
-        
+        XCTAssertEqual(9.8, sensor.rawValue(), accuracy: Double.epsilon)
+
         motionManager.zUserAcceleration = -9.8
-        XCTAssertEqual(-9.8, sensor.rawValue(), accuracy: 0.0001)
+        XCTAssertEqual(-9.8, sensor.rawValue(), accuracy: Double.epsilon)
     }
-    
+
     func testConvertToStandardized() {
-        XCTAssertEqual(0, sensor.convertToStandardized(rawValue: 0), accuracy: 0.0001)
-        XCTAssertEqual(9.8, sensor.convertToStandardized(rawValue: 1), accuracy: 0.0001)
-        XCTAssertEqual(-9.8, sensor.convertToStandardized(rawValue: -1), accuracy: 0.0001)
-        XCTAssertEqual(98, sensor.convertToStandardized(rawValue: 10), accuracy: 0.0001)
-        XCTAssertEqual(-98, sensor.convertToStandardized(rawValue: -10), accuracy: 0.0001)
+        XCTAssertEqual(0, sensor.convertToStandardized(rawValue: 0), accuracy: Double.epsilon)
+        XCTAssertEqual(9.8, sensor.convertToStandardized(rawValue: 1), accuracy: Double.epsilon)
+        XCTAssertEqual(-9.8, sensor.convertToStandardized(rawValue: -1), accuracy: Double.epsilon)
+        XCTAssertEqual(98, sensor.convertToStandardized(rawValue: 10), accuracy: Double.epsilon)
+        XCTAssertEqual(-98, sensor.convertToStandardized(rawValue: -10), accuracy: Double.epsilon)
     }
-    
+
     func testTag() {
         XCTAssertEqual("Z_ACCELERATION", sensor.tag())
     }
-    
+
     func testRequiredResources() {
         XCTAssertEqual(ResourceType.deviceMotion, type(of: sensor).requiredResource)
     }
-   
+
     func testFormulaEditorSection() {
         XCTAssertEqual(.device(position: type(of: sensor).position), sensor.formulaEditorSection(for: SpriteObject()))
     }

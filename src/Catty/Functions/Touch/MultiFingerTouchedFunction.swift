@@ -21,38 +21,38 @@
  */
 
 class MultiFingerTouchedFunction: SingleParameterDoubleFunction {
-    
+
     static var tag = "MULTI_FINGER_TOUCHED"
     static var name = kUIFESensorFingerTouched
     static var defaultValue = 0.0
     static var requiredResource = ResourceType.touchHandler
     static var isIdempotent = false
     static let position = 180
-    
+
     let getTouchManager: () -> TouchManagerProtocol?
-    
+
     init(touchManagerGetter: @escaping () -> TouchManagerProtocol?) {
         self.getTouchManager = touchManagerGetter
     }
-    
+
     func tag() -> String {
         return type(of: self).tag
     }
-    
+
     func firstParameter() -> FunctionParameter {
         return .number(defaultValue: 1)
     }
-    
+
     func value(parameter: AnyObject?) -> Double {
         guard let touchNumber = parameter as? Double, let touchManager = getTouchManager() else { return type(of: self).defaultValue }
         let numberOfTouches = touchManager.numberOfTouches()
         return touchManager.screenTouched() && numberOfTouches == Int(touchNumber) ? 1.0 : 0.0
     }
-    
+
     func convertToStandardized(rawValue: Double, for spriteObject: SpriteObject) -> Double {
         return PositionXSensor.convertToStandardized(rawValue: rawValue, for: spriteObject)
     }
-    
+
     func formulaEditorSection() -> FormulaEditorSection {
         return .device(position: type(of: self).position)
     }

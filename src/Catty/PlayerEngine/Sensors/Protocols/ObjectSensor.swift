@@ -21,5 +21,5 @@
  */
 
 protocol ObjectSensor: Sensor {
-    
+
 }

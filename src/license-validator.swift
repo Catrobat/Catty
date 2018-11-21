@@ -29,7 +29,6 @@ import Foundation
 //
 //============================================================================================================
 
-
 //------------------------------------------------------------------------------------------------------------
 //                                 CHECKS
 //------------------------------------------------------------------------------------------------------------
@@ -54,7 +53,7 @@ let licenseSearchStringTemplate = "/**\n *  Copyright (C) 2010-%d The Catrobat T
     + " *  along with this program.  If not, see http://www.gnu.org/licenses/.\n */"
 
 let year = Calendar.current.component(.year, from: Date())
-let licenseSearchStringCurrentYear = String(format:licenseSearchStringTemplate, year)
+let licenseSearchStringCurrentYear = String(format: licenseSearchStringTemplate, year)
 
 let kErrorSuccess: Int32 = 0
 let kErrorFailed: Int32 = 1
@@ -70,64 +69,64 @@ enum License: String {
     case Unknown
 }
 
-let license3rdPartyDict : [String : License] = [
-    "LLNode"  : .MIT,
-    "CBStack"   : .MIT,
-    "OrderedDictionary" : .zlib,
-    "NSString+FastImageSize" : .MIT,
-    "UIViewController+CWPopup" : .MIT,
-    "GDataXMLNode" : .Apache2,
-    "JNKeychain" : .MIT,
-    "SwellAll" : .Apache2,
-    "minizip" : .zlib,
-    "crypt" : .BSD,
-    "ioapi" : .zlib,
-    "mztools" : .zlib,
-    "unzip" : .zlib,
-    "zip" : .zlib,
-    "ImageHelper" : .MIT,
-    "Reachability" : .Apple,
-    "SharkfoodMuteSwitchDetector" : .MIT,
-    "Siren" : .MIT,
-    "SSZipArchive" : .MIT,
-    "LCTableViewPickerControl" : .MIT,
-    "LinkedListStack" : .MIT,
-    "NKOColorPickerView" : .MIT,
-    "SPUserResizableView" : .MIT,
-    "UIImage+FloodFill" : .MIT,
-    "UIViewController+KNSemiModal" : .MIT,
-    "YKImageCropperOverlayView" : .MIT,
-    "YKImageCropperView" : .MIT,
-    "AHKActionSheet" : .MIT,
-    "AHKActionSheetViewController" : .MIT,
-    "UIImage+AHKAdditions" : .MIT,
-    "UIWindow+AHKAdditions" : .MIT,
-    "BDKNotifyHUD" : .MIT,
-    "EVCircularProgressView" : .MIT,
-    "FXBlurView" : .zlib,
-    "IBActionSheet" : .MIT,
-    "LXReorderableCollectionViewFlowLayout" : .MIT,
-    "MYIntroductionPanel" : .MIT,
-    "TTTAttributedLabel" : .MIT,
-    "MXPagerView" : .MIT,
-    "MXPagerViewController" : .MIT,
-    "MXParallaxHeader" : .MIT,
-    "MXScrollView" : .MIT,
-    "MXScrollViewController" : .MIT
+let license3rdPartyDict: [String: License] = [
+    "LLNode": .MIT,
+    "CBStack": .MIT,
+    "OrderedDictionary": .zlib,
+    "NSString+FastImageSize": .MIT,
+    "UIViewController+CWPopup": .MIT,
+    "GDataXMLNode": .Apache2,
+    "JNKeychain": .MIT,
+    "SwellAll": .Apache2,
+    "minizip": .zlib,
+    "crypt": .BSD,
+    "ioapi": .zlib,
+    "mztools": .zlib,
+    "unzip": .zlib,
+    "zip": .zlib,
+    "ImageHelper": .MIT,
+    "Reachability": .Apple,
+    "SharkfoodMuteSwitchDetector": .MIT,
+    "Siren": .MIT,
+    "SSZipArchive": .MIT,
+    "LCTableViewPickerControl": .MIT,
+    "LinkedListStack": .MIT,
+    "NKOColorPickerView": .MIT,
+    "SPUserResizableView": .MIT,
+    "UIImage+FloodFill": .MIT,
+    "UIViewController+KNSemiModal": .MIT,
+    "YKImageCropperOverlayView": .MIT,
+    "YKImageCropperView": .MIT,
+    "AHKActionSheet": .MIT,
+    "AHKActionSheetViewController": .MIT,
+    "UIImage+AHKAdditions": .MIT,
+    "UIWindow+AHKAdditions": .MIT,
+    "BDKNotifyHUD": .MIT,
+    "EVCircularProgressView": .MIT,
+    "FXBlurView": .zlib,
+    "IBActionSheet": .MIT,
+    "LXReorderableCollectionViewFlowLayout": .MIT,
+    "MYIntroductionPanel": .MIT,
+    "TTTAttributedLabel": .MIT,
+    "MXPagerView": .MIT,
+    "MXPagerViewController": .MIT,
+    "MXParallaxHeader": .MIT,
+    "MXScrollView": .MIT,
+    "MXScrollViewController": .MIT
 ]
 
-let licenseCheckDirs : [String : License] = [
+let licenseCheckDirs: [String: License] = [
     "Bohr": .MIT,
-    "HMSegmentedControl" : .MIT,
-    "PureLayout" : .MIT,
-    "M13ProgressSuite" : .MIT,
-    "MXSegmentedPager" : .MIT,
-    "Target Support Files" : .MIT,
-    "VGParallaxHeader" : .MIT,
-    "TOCropViewController" : .MIT
+    "HMSegmentedControl": .MIT,
+    "PureLayout": .MIT,
+    "M13ProgressSuite": .MIT,
+    "MXSegmentedPager": .MIT,
+    "Target Support Files": .MIT,
+    "VGParallaxHeader": .MIT,
+    "TOCropViewController": .MIT
 ]
 
-let checkDirs : [String] = [
+let checkDirs: [String] = [
     "Bohr",
     "HMSegmentedControl",
     "PureLayout",
@@ -138,12 +137,11 @@ let checkDirs : [String] = [
     "TOCropViewController"
 ]
 
-let compatibleLicenses : [License] = [
+let compatibleLicenses: [License] = [
     .MIT, .zlib, .Apache2, .Apple, .BSD
 ]
 
-func printErrorAndExitIfFailed(_ errorMessage: String)
-{
+func printErrorAndExitIfFailed(_ errorMessage: String) {
     print("\(errorMessage)")
     exit(kErrorFailed)
 }
@@ -259,7 +257,7 @@ func getFileNameOfScript() -> String {
     if fileNameOfThisScript.hasSuffix(".swift") == false {
         fileNameOfThisScript += ".swift"
     }
-    
+
     return fileNameOfThisScript
 }
 

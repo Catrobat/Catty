@@ -31,7 +31,7 @@ final class RepeatBrickTests: XCTestCase {
         repeatBrick.timesToRepeat = Formula(double: 1)
         XCTAssertEqual(kLocalizedRepeat + "%@ " + kLocalizedTime, repeatBrick.brickTitle, "Wrong brick title")
     }
-    
+
     func testTitlePlural() {
         let repeatBrick = RepeatBrick()
         repeatBrick.timesToRepeat = Formula(double: 2)

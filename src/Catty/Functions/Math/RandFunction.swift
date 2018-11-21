@@ -27,19 +27,19 @@ class RandFunction: DoubleParameterDoubleFunction {
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = false
     static let position = 80
-    
+
     func tag() -> String {
         return type(of: self).tag
     }
-    
+
     func firstParameter() -> FunctionParameter {
         return .number(defaultValue: 0)
     }
-    
+
     func secondParameter() -> FunctionParameter {
         return .number(defaultValue: 1)
     }
-    
+
     func value(firstParameter: AnyObject?, secondParameter: AnyObject?) -> Double {
         guard let firstValue = firstParameter as? Double,
             let secondValue = secondParameter as? Double else {
@@ -52,22 +52,22 @@ class RandFunction: DoubleParameterDoubleFunction {
             minimum = maximum
             maximum = aux
         }
-        
+
         let intParams = floor(maximum) == maximum && floor(minimum) == minimum
         if intParams {
             maximum += 1
         }
-        
+
         let random = Double(arc4random()) / Double(UInt32.max)
         var result = (random * (maximum - minimum)) + minimum
-        
+
         if intParams {
             result = Double(Int(result))
         }
-        
+
         return result
     }
-    
+
     func formulaEditorSection() -> FormulaEditorSection {
         return .math(position: type(of: self).position)
     }

@@ -41,7 +41,7 @@
 
 @implementation FormulaParserFunctionsTest
 
-#define DELTA 0.01
+#define EPSILON 0.01
 
 - (void)setUp
 {
@@ -68,14 +68,14 @@
 {
     Formula *formula = [self getFormula:@"TAN" value:@"180"]; // TODO use Function property
     XCTAssertNotNil(formula, @"Formula is not parsed correctly: tan(180)");
-    XCTAssertEqualWithAccuracy(0, [self.interpreter interpretDouble:formula forSpriteObject:self.spriteObject], DELTA, @"Formula interpretation is not as expected");
+    XCTAssertEqualWithAccuracy(0, [self.interpreter interpretDouble:formula forSpriteObject:self.spriteObject], EPSILON, @"Formula interpretation is not as expected");
 }
 
 - (void) testLn
 {
     Formula *formula = [self getFormula:@"LN" value:@"2.7182818"]; // TODO use Function property
     XCTAssertNotNil(formula, @"Formula is not parsed correctly: ln(e)");
-    XCTAssertEqualWithAccuracy(1, [self.interpreter interpretDouble:formula forSpriteObject:self.spriteObject], DELTA, @"Formula interpretation is not as expected");
+    XCTAssertEqualWithAccuracy(1, [self.interpreter interpretDouble:formula forSpriteObject:self.spriteObject], EPSILON, @"Formula interpretation is not as expected");
 }
 
 - (void) testLog
@@ -160,7 +160,7 @@
         XCTAssertNotNil(parseTree, "Formula is not parsed correctly: mod(%i, %i)", dividend, divisor);
         
         Formula *formula = [[Formula alloc] initWithFormulaElement:parseTree];
-        XCTAssertEqualWithAccuracy(0, [self.interpreter interpretDouble:formula forSpriteObject:self.spriteObject], DELTA, @"Formula interpretation is not as expected");
+        XCTAssertEqualWithAccuracy(0, [self.interpreter interpretDouble:formula forSpriteObject:self.spriteObject], EPSILON, @"Formula interpretation is not as expected");
     }
     
     for (int offset = 0; offset < 100; offset += 2) {
@@ -181,7 +181,7 @@
         XCTAssertNotNil(parseTree, "Formula is not parsed correctly: mod(%i, %i)", dividend, divisor);
         
         Formula *formula = [[Formula alloc] initWithFormulaElement:parseTree];
-        XCTAssertEqualWithAccuracy(1, [self.interpreter interpretDouble:formula forSpriteObject:self.spriteObject], DELTA, @"Formula interpretation is not as expected");
+        XCTAssertEqualWithAccuracy(1, [self.interpreter interpretDouble:formula forSpriteObject:self.spriteObject], EPSILON, @"Formula interpretation is not as expected");
     }
     
     for (int offset = 0; offset < 10; offset += 1) {
@@ -202,7 +202,7 @@
         XCTAssertNotNil(parseTree, "Formula is not parsed correctly: mod(%i, %i)", dividend, divisor);
         
         Formula *formula = [[Formula alloc] initWithFormulaElement:parseTree];
-        XCTAssertEqualWithAccuracy(dividend, [self.interpreter interpretDouble:formula forSpriteObject:self.spriteObject], DELTA, "Formula interpretation is not as expected");
+        XCTAssertEqualWithAccuracy(dividend, [self.interpreter interpretDouble:formula forSpriteObject:self.spriteObject], EPSILON, "Formula interpretation is not as expected");
     }
     
     for (int offset = 0; offset < 10; offset += 1) {
@@ -224,7 +224,7 @@
         XCTAssertNotNil(parseTree, @"Formula is not parsed correctly: mod(%i, %i)", dividend, divisor);
         
         Formula *formula = [[Formula alloc] initWithFormulaElement:parseTree];
-        XCTAssertEqualWithAccuracy(1 + offset, [self.interpreter interpretDouble:formula forSpriteObject:self.spriteObject], DELTA, @"Formula interpretation is not as expected");
+        XCTAssertEqualWithAccuracy(1 + offset, [self.interpreter interpretDouble:formula forSpriteObject:self.spriteObject], EPSILON, @"Formula interpretation is not as expected");
     }
 }
 
@@ -293,21 +293,21 @@
 {
     Formula *formula = [self getFormula:@"ASIN" value:@"1"]; // TODO use Function property
     XCTAssertNotNil(formula, @"Formula is not parsed correctly: arcsin(1)");
-    XCTAssertEqualWithAccuracy(90, [self.interpreter interpretDouble:formula forSpriteObject:self.spriteObject], DELTA, @"Formula interpretation is not as expected");
+    XCTAssertEqualWithAccuracy(90, [self.interpreter interpretDouble:formula forSpriteObject:self.spriteObject], EPSILON, @"Formula interpretation is not as expected");
 }
 
 - (void) testArccos
 {
     Formula *formula = [self getFormula:@"ACOS" value:@"0"]; // TODO use Function property
     XCTAssertNotNil(formula, @"Formula is not parsed correctly: arccos(0)");
-    XCTAssertEqualWithAccuracy(90, [self.interpreter interpretDouble:formula forSpriteObject:self.spriteObject], DELTA, @"Formula interpretation is not as expected");
+    XCTAssertEqualWithAccuracy(90, [self.interpreter interpretDouble:formula forSpriteObject:self.spriteObject], EPSILON, @"Formula interpretation is not as expected");
 }
 
 - (void) testArctan
 {
     Formula *formula = [self getFormula:@"ATAN" value:@"1"]; // TODO use Function property
     XCTAssertNotNil(formula, @"Formula is not parsed correctly: arctan(1)");
-    XCTAssertEqualWithAccuracy(45, [self.interpreter interpretDouble:formula forSpriteObject:self.spriteObject], DELTA, @"Formula interpretation is not as expected");
+    XCTAssertEqualWithAccuracy(45, [self.interpreter interpretDouble:formula forSpriteObject:self.spriteObject], EPSILON, @"Formula interpretation is not as expected");
 }
 
 - (void) testMax

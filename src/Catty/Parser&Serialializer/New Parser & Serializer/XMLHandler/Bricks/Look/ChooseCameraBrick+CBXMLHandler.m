@@ -22,6 +22,7 @@
 
 #import "ChooseCameraBrick+CBXMLHandler.h"
 #import "GDataXMLElement+CustomExtensions.h"
+#import "GDataXMLNode+CustomExtensions.h"
 #import "CBXMLValidator.h"
 #import "CBXMLParserHelper.h"
 #import "CBXMLParserContext.h"
@@ -36,7 +37,12 @@
     ChooseCameraBrick *brick = [self new];
     
     if([brickType rangeOfString:@"ChooseCameraBrick"].location != NSNotFound){
-        [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1];
+        
+        NSUInteger childrenCount = [[xmlElement childrenWithoutComments] count];
+        if (childrenCount != 1 && childrenCount != 2) {
+            [XMLError exceptionWithMessage:@"Wrong number of child elements for ChooseCameraBrick"];
+        }
+        
         GDataXMLElement *cameraChoiceElement = [xmlElement childWithElementName:@"spinnerSelectionID"];
         [XMLError exceptionIfNil:cameraChoiceElement
                          message:@"ChooseCameraBrick element does not contain a spinnerSelectionID child element!"];
@@ -64,9 +70,15 @@
     NSUInteger indexOfBrick = [CBXMLSerializerHelper indexOfElement:self inArray:context.brickList];
     GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" xPathIndex:(indexOfBrick+1) context:context];
     GDataXMLElement *spinnerID = [GDataXMLElement elementWithName:@"spinnerSelectionID" stringValue:numberString context:context];
+    GDataXMLElement *backString = [GDataXMLElement elementWithName:@"string" stringValue:@"back" context:context];
+    GDataXMLElement *frontString = [GDataXMLElement elementWithName:@"string" stringValue:@"front" context:context];
+    GDataXMLElement *spinnerValues = [GDataXMLElement elementWithName:@"spinnerValues" context:context];
     
+    [spinnerValues addChild:backString context:context];
+    [spinnerValues addChild:frontString context:context];
     [brick addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:@"ChooseCameraBrick"]];
     [brick addChild:spinnerID context:context];
+    [brick addChild:spinnerValues context:context];
     return brick;
 }
 
