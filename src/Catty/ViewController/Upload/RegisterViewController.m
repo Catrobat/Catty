@@ -26,7 +26,7 @@
 #import "NetworkDefines.h"
 #import "Util.h"
 #import "JNKeychain.h"
-#import "LoadingView.h"
+#import "Pocket_Code-Swift.h"
 
 #import "KeychainUserDefaultsDefines.h"
 

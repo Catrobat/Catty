@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-final class CBScriptSequenceList : CBSequenceVisitProtocol {
+final class CBScriptSequenceList: CBSequenceVisitProtocol {
 
     // MARK: - Properties
     final let script: Script
@@ -28,7 +28,7 @@ final class CBScriptSequenceList : CBSequenceVisitProtocol {
     final var count: Int { return sequenceList.count }
 
     // MARK: - Initializers
-    init(script : Script, sequenceList : CBSequenceList) {
+    init(script: Script, sequenceList: CBSequenceList) {
         self.script = script
         self.sequenceList = sequenceList
         sequenceList.rootSequenceList = self

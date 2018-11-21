@@ -23,18 +23,18 @@
 @testable import Pocket_Code
 
 class CBSpriteNodeMock: CBSpriteNode {
-    
-    var mockedPosition : CGPoint?
-    var mockedScene : SKScene?
-    
+
+    var mockedPosition: CGPoint?
+    var mockedScene: SKScene?
+
     required init(spriteObject: SpriteObject) {
         super.init(spriteObject: spriteObject)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    
+
     override var position: CGPoint {
         get {
             return mockedPosition ?? super.position
@@ -43,7 +43,7 @@ class CBSpriteNodeMock: CBSpriteNode {
             self.mockedPosition = newValue
         }
     }
-    
+
     override var scene: SKScene {
         get {
             return mockedScene ?? super.scene!

@@ -30,7 +30,7 @@
 #import "HideTextBrick.h"
 #import "AddItemToUserListBrick.h"
 
-//TODO: uncomment as soon as classes exist
+// TODO: uncomment as soon as classes exist
 /*
 #import "ReplaceItemInUserListBrick.h"
 #import "DeleteItemOfUserListBrick.h"

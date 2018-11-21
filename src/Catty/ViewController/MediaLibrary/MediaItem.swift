@@ -29,7 +29,7 @@ struct MediaItem: Codable {
     /// Since the API doesn't offer previews of items it would
     /// be a waste to not keep the already downloaded data
     /// in case the user decides to import the item.
-    var cachedData: Data? = nil
+    var cachedData: Data?
 
     private enum CodingKeys: String, CodingKey {
         case name
@@ -48,6 +48,12 @@ extension MediaItem {
 
 extension Sequence where Iterator.Element == MediaItem {
 
+    // The following categories should be shown on top of the list (IOS-677).
+    // TODO fetch ordering information from API
+    var prioritizedCategories: [String] {
+        return ["Pocket Family"]
+    }
+
     var groupedByCategories: [[MediaItem]] {
 
         // a two dimensional list of categories and their items
@@ -55,6 +61,10 @@ extension Sequence where Iterator.Element == MediaItem {
 
         // a dictionary of categories mapped to their order of appearance
         var categories = [String: Int]()
+        prioritizedCategories.forEach { category in
+            categories[category] = categories.count
+            groupedItems.append([])
+        }
 
         for item in self {
             if let categoryIndex = categories[item.category] {
@@ -67,6 +77,6 @@ extension Sequence where Iterator.Element == MediaItem {
                 groupedItems.append([item])
             }
         }
-        return groupedItems
+        return groupedItems.filter { !$0.isEmpty } // do not show empty categories
     }
 }

@@ -21,7 +21,7 @@
  */
 
 @objc class LayerSensor: NSObject, ObjectDoubleSensor {
-    
+
     static let tag = "OBJECT_LAYER"
     static let name = kUIFEObjectLayer
     static let defaultRawValue = 0.0
@@ -31,14 +31,14 @@
     func tag() -> String {
         return type(of: self).tag
     }
-    
+
     static func rawValue(for spriteObject: SpriteObject) -> Double {
         guard let spriteNode = spriteObject.spriteNode else {
             return defaultRawValue(for: spriteObject)
         }
         return Double(spriteNode.zPosition)
     }
-    
+
     static func setRawValue(userInput: Double, for spriteObject: SpriteObject) {
         let rawValue = convertToRaw(userInput: userInput, for: spriteObject)
         spriteObject.spriteNode.zPosition = CGFloat(rawValue)
@@ -51,7 +51,7 @@
         }
         return rawValue
     }
-    
+
     static func convertToRaw(userInput: Double, for spriteObject: SpriteObject) -> Double {
         if userInput < 1 {
             // can not be set for background
@@ -59,12 +59,12 @@
         }
         return userInput
     }
-    
+
     static func defaultRawValue(for spriteObject: SpriteObject) -> Double {
         guard let objectList = spriteObject.program?.objectList as? [SpriteObject] else {
             return defaultRawValue
         }
-        
+
         var zPosition = defaultRawValue
         for object in objectList {
             if object == spriteObject {
@@ -72,10 +72,10 @@
             }
             zPosition += 1
         }
-        
+
         return defaultRawValue
     }
-    
+
     func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
         return .object(position: type(of: self).position)
     }

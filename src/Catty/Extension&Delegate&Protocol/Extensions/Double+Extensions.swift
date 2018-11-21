@@ -20,16 +20,8 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@testable import Pocket_Code
+import Foundation
 
-final class CBSceneMock: CBScene {
-    
-    init(size: CGSize) {
-        let logger = CBLogger(name: "CBSceneMockLogger")
-        let broadcastHandler = CBBroadcastHandler(logger: logger)
-        let formulaManager = FormulaManager()
-        let scheduler = CBScheduler(logger: logger, broadcastHandler: broadcastHandler, formulaInterpreter: formulaManager)
-        scheduler.running = true
-        super(size: size, logger: logger, scheduler: scheduler, frontend: CBFrontend(logger: logger, program: nil), backend: CBBackend(logger: logger), broadcastHandler: broadcastHandler, formulaManager: formulaManager)
-    }
+extension Double {
+    static let epsilon = 0.0001
 }

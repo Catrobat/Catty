@@ -24,7 +24,7 @@ protocol ObjectStringSensor: ObjectSensor {
 
     // The iOS device specific value of the sensor
     static func rawValue(for spriteObject: SpriteObject) -> String
-    
+
     // Convert the iOS specific value (rawValue) to the Pocket Code standardized sensor value
     static func convertToStandardized(rawValue: String, for spriteObject: SpriteObject) -> String
 }

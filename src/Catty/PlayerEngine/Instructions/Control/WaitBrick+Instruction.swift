@@ -25,9 +25,9 @@
     @nonobjc func instruction() -> CBInstruction {
 
         guard let object = self.script?.object
-        else { fatalError("This should never happen!") } // (pre)fetch only once (micro-optimization)
+            else { fatalError("This should never happen!") } // (pre)fetch only once (micro-optimization)
 
-        return CBInstruction.waitExecClosure { (context, _) in
+        return CBInstruction.waitExecClosure { context, _ in
             let durationInSeconds = context.formulaInterpreter.interpretDouble(self.timeToWaitInSeconds, for: object)
 
             // check if an invalid duration is given! => prevents UInt32 underflow
@@ -40,7 +40,7 @@
                 //logger.debug("Sleeping now until \(wakeUpTime)...")
                 Thread.sleep(until: wakeUpTime)
             } else {
-                let durationInMicroSeconds = durationInSeconds * 1_000_000
+                let durationInMicroSeconds = durationInSeconds * 1000000
                 let uduration = UInt32(durationInMicroSeconds) // in microseconds (10^-6)
                 if uduration > 100 { // check if it makes sense at all to pause the thread...
                     usleep(uduration)

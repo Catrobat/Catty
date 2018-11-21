@@ -31,7 +31,7 @@ final class VibrationBrickTests: XCTestCase {
         vibrationBrick.durationInSeconds = Formula(double: 1)
         XCTAssertEqual(kLocalizedVibrateFor + "%@ " + kLocalizedSecond, vibrationBrick.brickTitle, "Wrong brick title")
     }
-    
+
     func testTitlePlural() {
         let vibrationBrick = VibrationBrick()
         vibrationBrick.durationInSeconds = Formula(double: 2)

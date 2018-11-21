@@ -21,27 +21,27 @@
  */
 
 class CeilFunction: SingleParameterDoubleFunction {
-    
+
     static var tag = "CEIL"
     static var name = "ceil"
     static var defaultValue = 1.0
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = true
     static let position = 180
-    
+
     func tag() -> String {
         return type(of: self).tag
     }
-    
+
     func firstParameter() -> FunctionParameter {
         return .number(defaultValue: 0.3)
     }
-    
+
     func value(parameter: AnyObject?) -> Double {
         guard let value = parameter as? Double else { return type(of: self).defaultValue }
         return ceil(value)
     }
-    
+
     func formulaEditorSection() -> FormulaEditorSection {
         return .math(position: type(of: self).position)
     }

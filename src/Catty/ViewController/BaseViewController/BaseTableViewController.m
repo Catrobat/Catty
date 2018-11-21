@@ -25,11 +25,10 @@
 #import "TableUtil.h"
 #import "UIDefines.h"
 #import "Util.h"
-#import "LoadingView.h"
 #import "BDKNotifyHUD.h"
 #import "PlaceHolderView.h"
-#import "Pocket_Code-Swift.h"
 #import "AppDelegate.h"
+#import "Pocket_Code-Swift.h"
 
 // identifiers
 #define kTableHeaderIdentifier @"Header"
@@ -413,16 +412,7 @@
 
 - (void)showSavedView
 {
-    BDKNotifyHUD *hud = [BDKNotifyHUD notifyHUDWithImage:[UIImage imageNamed:kBDKNotifyHUDCheckmarkImageName]
-                                                    text:kLocalizedSaved];
-    hud.destinationOpacity = kBDKNotifyHUDDestinationOpacity;
-    hud.center = CGPointMake(self.view.center.x, self.view.center.y + kBDKNotifyHUDCenterOffsetY);
-    hud.tag = kSavedViewTag;
-    [self.view addSubview:hud];
-    [hud presentWithDuration:kBDKNotifyHUDPresentationDuration
-                       speed:kBDKNotifyHUDPresentationSpeed
-                      inView:self.view
-                  completion:^{ [hud removeFromSuperview]; }];
+    [Util showNotificationForSaveAction];
 }
 
 - (void)showPlaceHolder:(BOOL)show

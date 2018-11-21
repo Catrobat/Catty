@@ -23,7 +23,6 @@
 import Foundation
 import UIKit
 
-
 @objc public protocol AlertControllerProtocol {
     func showWithController(_ controller: UIViewController)
     func showWithController(_ controller: UIViewController, completion: @escaping () -> Void)
@@ -32,19 +31,19 @@ import UIKit
     func viewWillDisappear(_ handler: @escaping () -> Void) -> AlertControllerProtocol
 }
 
-
 @objc public protocol BuilderProtocol {
     func build() -> AlertControllerProtocol
 }
 
-
-protocol CustomAlertControllerDelegate {
+protocol CustomAlertControllerDelegate: AnyObject {
     var viewDidAppear: ((UIView) -> Void)? { get set }
     var viewWillDisappear: (() -> Void)? { get set }
 }
 
-
 final class CustomAlertController: UIAlertController {
+
+    // remove the following linter disable after delegate is weak
+    // swiftlint:disable:next weak_delegate
     fileprivate var delegate: CustomAlertControllerDelegate?
 
     override func viewDidAppear(_ animated: Bool) {
@@ -60,12 +59,10 @@ final class CustomAlertController: UIAlertController {
     }
 }
 
-
 class BaseAlertController: NSObject, AlertControllerProtocol, BuilderProtocol, CustomAlertControllerDelegate {
     let alertController: CustomAlertController
     var viewDidAppear: ((UIView) -> Void)?
     var viewWillDisappear: (() -> Void)?
-
 
     init(title: String?, message: String?, style: UIAlertControllerStyle) {
         alertController = CustomAlertController(title: title, message: message, preferredStyle: style)
@@ -89,7 +86,7 @@ class BaseAlertController: NSObject, AlertControllerProtocol, BuilderProtocol, C
         self.viewWillDisappear = handler
         return self
     }
-    
+
     @objc func showWithController(_ controller: UIViewController) {
         showWithController(controller, completion: {})
     }
@@ -99,7 +96,7 @@ class BaseAlertController: NSObject, AlertControllerProtocol, BuilderProtocol, C
             return
         }
         let presentingController = !controller.isViewLoaded || controller.view.window == nil ?
-                Util.topViewController(in: controller) : controller
+            Util.topViewController(in: controller) : controller
         presentingController?.present(alertController, animated: true, completion: completion)
     }
 }

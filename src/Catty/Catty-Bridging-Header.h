@@ -141,7 +141,6 @@
 #import "AudioManager.h"
 #import "FlashHelper.h"
 #import "LanguageTranslationDefines.h"
-#import "LoadingView.h"
 #import "RuntimeImageCache.h"
 #import "CBMutableCopyContext.h"
 #import "CameraPreviewHandler.h"
@@ -167,9 +166,7 @@
 #import "KeychainUserDefaultsDefines.h"
 #import "CatrobatLanguageDefines.h"
 
-//#import "LanguageTranslationDefines.h"
 #import "BrickFormulaProtocol.h"
-
 
 //-----------------------------------------------------------------------------------------------------------
 // Headers to sort
@@ -182,4 +179,3 @@
 #import "SegueDefines.h"
 #import "ProgramDetailStoreViewController.h"
 #import "DarkBlueGradientFeaturedCell.h"
-#import "LoadingView.h"

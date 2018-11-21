@@ -171,8 +171,8 @@
     [xmlElement addChild:[self xmlElementForBrickList:self.brickList withContext:context] context:context];
     if ([self isKindOfClass:[StartScript class]]) {
         //  Unused at the moment => TODO: implement this after Catroid has decided to officially use this feature!
-//        GDataXMLElement *isUserScriptXmlElement = [GDataXMLElement elementWithName:@"isUserScript" stringValue:@"false" context:context];
-//        [xmlElement addChild:isUserScriptXmlElement context:context];
+        //GDataXMLElement *isUserScriptXmlElement = [GDataXMLElement elementWithName:@"isUserScript" stringValue:@"false" context:context];
+        //[xmlElement addChild:isUserScriptXmlElement context:context];
     } else if ([self isKindOfClass:[BroadcastScript class]]) {
         BroadcastScript *broadcastScript = (BroadcastScript*)self;
         [XMLError exceptionIfNil:broadcastScript.receivedMessage

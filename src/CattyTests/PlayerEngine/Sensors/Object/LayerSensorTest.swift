@@ -25,93 +25,95 @@ import XCTest
 @testable import Pocket_Code
 
 final class LayerSensorTest: XCTestCase {
-    
+
     var spriteObject: SpriteObject!
     var spriteNode: CBSpriteNodeMock!
     var sensor: LayerSensor!
-    
+
     override func setUp() {
+        super.setUp()
         spriteObject = SpriteObject()
         spriteNode = CBSpriteNodeMock(spriteObject: spriteObject)
         sensor = LayerSensor()
     }
-    
+
     override func tearDown() {
         spriteObject = nil
+        super.tearDown()
     }
-    
+
     func testDefaultRawValue() {
         let program = Program()
-        
+
         let spriteObjectA = SpriteObjectMock()
         spriteObjectA.program = program
         program.objectList.add(spriteObjectA)
-        
+
         let spriteObjectB = SpriteObjectMock()
         spriteObjectB.program = program
         program.objectList.add(spriteObjectB)
-        
+
         let spriteObjectC = SpriteObjectMock()
         spriteObjectC.program = program
         program.objectList.add(spriteObjectC)
-        
-        XCTAssertEqual(type(of: sensor).defaultRawValue, type(of: sensor).defaultRawValue(for: spriteObjectA), accuracy: 0.0001)
-        XCTAssertEqual(type(of: sensor).defaultRawValue, type(of: sensor).rawValue(for: spriteObjectA), accuracy: 0.0001)
-        
-        XCTAssertEqual(type(of: sensor).defaultRawValue + 1, type(of: sensor).defaultRawValue(for: spriteObjectB), accuracy: 0.0001)
-        XCTAssertEqual(type(of: sensor).defaultRawValue + 1, type(of: sensor).rawValue(for: spriteObjectB), accuracy: 0.0001)
-        
-        XCTAssertEqual(type(of: sensor).defaultRawValue + 2, type(of: sensor).defaultRawValue(for: spriteObjectC), accuracy: 0.0001)
-        XCTAssertEqual(type(of: sensor).defaultRawValue + 2, type(of: sensor).rawValue(for: spriteObjectC), accuracy: 0.0001)
+
+        XCTAssertEqual(type(of: sensor).defaultRawValue, type(of: sensor).defaultRawValue(for: spriteObjectA), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: sensor).defaultRawValue, type(of: sensor).rawValue(for: spriteObjectA), accuracy: Double.epsilon)
+
+        XCTAssertEqual(type(of: sensor).defaultRawValue + 1, type(of: sensor).defaultRawValue(for: spriteObjectB), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: sensor).defaultRawValue + 1, type(of: sensor).rawValue(for: spriteObjectB), accuracy: Double.epsilon)
+
+        XCTAssertEqual(type(of: sensor).defaultRawValue + 2, type(of: sensor).defaultRawValue(for: spriteObjectC), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: sensor).defaultRawValue + 2, type(of: sensor).rawValue(for: spriteObjectC), accuracy: Double.epsilon)
     }
-    
+
     func testRawValue() {
         // background like on Android
         spriteNode.zPosition = -1
-        XCTAssertEqual(-1, type(of: sensor).rawValue(for: spriteObject), accuracy: 0.0001)
-        
+        XCTAssertEqual(-1, type(of: sensor).rawValue(for: spriteObject), accuracy: Double.epsilon)
+
         // background raw on iOS
         spriteNode.zPosition = 0
-        XCTAssertEqual(0, type(of: sensor).rawValue(for: spriteObject), accuracy: 0.0001)
-        
+        XCTAssertEqual(0, type(of: sensor).rawValue(for: spriteObject), accuracy: Double.epsilon)
+
         // third layer
         spriteNode.zPosition = 3
-        XCTAssertEqual(3, type(of: sensor).rawValue(for: spriteObject), accuracy: 0.0001)
+        XCTAssertEqual(3, type(of: sensor).rawValue(for: spriteObject), accuracy: Double.epsilon)
     }
-    
+
     func testSetRawValue() {
         let expectedRawValue = type(of: sensor).convertToRaw(userInput: 2, for: spriteObject)
         type(of: sensor).setRawValue(userInput: 2, for: spriteObject)
-        XCTAssertEqual(expectedRawValue, Double(spriteNode.zPosition), accuracy: 0.001)
+        XCTAssertEqual(expectedRawValue, Double(spriteNode.zPosition), accuracy: Double.epsilon)
     }
-    
+
     func testConvertToStandarized() {
         // background
-        XCTAssertEqual(-1, type(of: sensor).convertToStandardized(rawValue: 0, for: spriteObject), accuracy: 0.001)
-        
+        XCTAssertEqual(-1, type(of: sensor).convertToStandardized(rawValue: 0, for: spriteObject), accuracy: Double.epsilon)
+
         // objects
-        XCTAssertEqual(1, type(of: sensor).convertToStandardized(rawValue: 1, for: spriteObject), accuracy: 0.001)
-        XCTAssertEqual(2, type(of: sensor).convertToStandardized(rawValue: 2, for: spriteObject), accuracy: 0.001)
+        XCTAssertEqual(1, type(of: sensor).convertToStandardized(rawValue: 1, for: spriteObject), accuracy: Double.epsilon)
+        XCTAssertEqual(2, type(of: sensor).convertToStandardized(rawValue: 2, for: spriteObject), accuracy: Double.epsilon)
     }
-    
+
     func testConvertToRaw() {
         // can not be set for background
-        XCTAssertEqual(1, type(of: sensor).convertToRaw(userInput: -1, for: spriteObject), accuracy: 0.001)
-        XCTAssertEqual(1, type(of: sensor).convertToRaw(userInput: 0, for: spriteObject), accuracy: 0.001)
-        
+        XCTAssertEqual(1, type(of: sensor).convertToRaw(userInput: -1, for: spriteObject), accuracy: Double.epsilon)
+        XCTAssertEqual(1, type(of: sensor).convertToRaw(userInput: 0, for: spriteObject), accuracy: Double.epsilon)
+
         // objects
-        XCTAssertEqual(3, type(of: sensor).convertToRaw(userInput: 3, for: spriteObject), accuracy: 0.001)
-        XCTAssertEqual(4, type(of: sensor).convertToRaw(userInput: 4, for: spriteObject), accuracy: 0.001)
+        XCTAssertEqual(3, type(of: sensor).convertToRaw(userInput: 3, for: spriteObject), accuracy: Double.epsilon)
+        XCTAssertEqual(4, type(of: sensor).convertToRaw(userInput: 4, for: spriteObject), accuracy: Double.epsilon)
     }
-    
+
     func testTag() {
         XCTAssertEqual("OBJECT_LAYER", sensor.tag())
     }
-    
+
     func testRequiredResources() {
         XCTAssertEqual(ResourceType.noResources, type(of: sensor).requiredResource)
     }
-    
+
     func testFormulaEditorSection() {
         XCTAssertEqual(.object(position: type(of: sensor).position), sensor.formulaEditorSection(for: spriteObject))
     }

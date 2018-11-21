@@ -25,44 +25,46 @@ import XCTest
 @testable import Pocket_Code
 
 final class BrickTests: XCTestCase {
-    
+
     var formulaManager: FormulaManager!
-    
+
     override func setUp() {
         formulaManager = FormulaManager()
     }
-    
+
     func testRemoveWaitBrick() {
         let script = Script()
         let brick = WaitBrick()
-        
+
         script.add(brick, at: 0)
-        
+
         XCTAssertEqual(1, script.brickList.count, "Invalid number of Bricks")
-        
+
         brick.removeFromScript()
-        
+
         XCTAssertEqual(0, script.brickList.count, "Invalid number of Bricks")
     }
-    
+
     func testRemoveSetVariableBrick() {
         let script = Script()
         let brickA = SetVariableBrick()
         brickA.variableFormula = Formula.init(float: 1.0)
-        
+
         let brickB = SetVariableBrick()
         brickB.variableFormula = Formula.init(float: 2.0)
-        
+
         script.add(brickA, at: 0)
         script.add(brickB, at: 1)
-        
+
         XCTAssertEqual(2, script.brickList.count, "Invalid number of Bricks")
-        
+
         brickB.removeFromScript()
-        
+
         XCTAssertEqual(1, script.brickList.count, "Invalid number of Bricks")
-        
+
         let brick = script.brickList[0] as! SetVariableBrick
-        XCTAssertEqual(1.0, formulaManager.interpretDouble(brick.variableFormula, for: SpriteObject()), "Invalid formula");
+        XCTAssertEqual(1.0,
+                       formulaManager.interpretDouble(brick.variableFormula, for: SpriteObject()),
+                       "Invalid formula")
     }
 }

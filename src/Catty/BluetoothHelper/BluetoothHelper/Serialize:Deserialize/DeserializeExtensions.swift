@@ -22,14 +22,13 @@
 
 import Foundation
 
-extension Int8 : Deserialize {
-    
-    public static var size : Int {
+extension Int8: Deserialize {
+
+    public static var size: Int {
         return MemoryLayout<Int8>.size
     }
-  
 
-    public init?(doubleValue:Double) {
+    public init?(doubleValue: Double) {
         if doubleValue >= 127.0 || doubleValue <= -128.0 {
             return nil
         } else {
@@ -37,15 +36,15 @@ extension Int8 : Deserialize {
         }
     }
 
-    public init?(uintValue:UInt16) {
+    public init?(uintValue: UInt16) {
         if uintValue > 255 {
             return nil
         } else {
             self = Int8(uintValue)
         }
     }
-    
-    public init?(intValue:Int16) {
+
+    public init?(intValue: Int16) {
         if intValue > 255 || intValue < 0 {
             return nil
         } else {
@@ -53,195 +52,193 @@ extension Int8 : Deserialize {
         }
     }
 
-    public static func deserialize(_ data:Data) -> Int8? {
+    public static func deserialize(_ data: Data) -> Int8? {
         if data.count >= MemoryLayout<Int8>.size {
-            var value : Int8 = 0
-            (data as NSData).getBytes(&value, length:MemoryLayout<Int8>.size)
+            var value: Int8 = 0
+            (data as NSData).getBytes(&value, length: MemoryLayout<Int8>.size)
             return toHostByteOrder(value)
         } else {
             return nil
         }
     }
 
-    public static func deserialize(_ data:Data, start:Int) -> Int8? {
+    public static func deserialize(_ data: Data, start: Int) -> Int8? {
         if data.count >= start + MemoryLayout<Int8>.size {
-            var value : Int8 = 0
-            (data as NSData).getBytes(&value, range: NSMakeRange(start, MemoryLayout<Int8>.size))
+            var value: Int8 = 0
+            (data as NSData).getBytes(&value, range: NSRange(location: start, length: MemoryLayout<Int8>.size))
             return toHostByteOrder(value)
         } else {
             return nil
         }
     }
 
-    public static func deserialize(_ data:Data) -> [Int8] {
+    public static func deserialize(_ data: Data) -> [Int8] {
         let count = data.count / MemoryLayout<Int8>.size
-        return [Int](0..<count).reduce([]) {(result, start) in
-            if let value = self.deserialize(data, start:start) {
+        return [Int](0..<count).reduce([]) {result, start in
+            if let value = self.deserialize(data, start: start) {
                 return result + [value]
             } else {
                 return result
             }
         }
     }
-    
+
 }
 
-extension Int16 : Deserialize {
-  
-  public static var size : Int {
-    return MemoryLayout<Int16>.size
-  }
-  
-  public init?(doubleValue:Double) {
-    if doubleValue >= 32767.0 || doubleValue <= -32768.0 {
-      return nil
-    } else {
-      self = Int16(doubleValue)
+extension Int16: Deserialize {
+
+    public static var size: Int {
+        return MemoryLayout<Int16>.size
     }
-  }
-  
-  public static func deserialize(_ data:Data) -> Int16? {
-    if data.count >= MemoryLayout<Int16>.size {
-      var value : Int16 = 0
-      (data as NSData).getBytes(&value , length:MemoryLayout<Int16>.size)
-      return toHostByteOrder(value)
-    } else {
-      return nil
+
+    public init?(doubleValue: Double) {
+        if doubleValue >= 32767.0 || doubleValue <= -32768.0 {
+            return nil
+        } else {
+            self = Int16(doubleValue)
+        }
     }
-  }
-  
-  public static func deserialize(_ data:Data, start:Int) -> Int16? {
-    if data.count >= (MemoryLayout<Int16>.size + start)  {
-      var value : Int16 = 0
-      (data as NSData).getBytes(&value, range:NSMakeRange(start, MemoryLayout<Int16>.size))
-      return toHostByteOrder(value)
-    } else {
-      return nil
+
+    public static func deserialize(_ data: Data) -> Int16? {
+        if data.count >= MemoryLayout<Int16>.size {
+            var value: Int16 = 0
+            (data as NSData).getBytes(&value, length: MemoryLayout<Int16>.size)
+            return toHostByteOrder(value)
+        } else {
+            return nil
+        }
     }
-  }
-  
-  public static func deserialize(_ data:Data) -> [Int16] {
-    let size = MemoryLayout<Int16>.size
-    let count = data.count / size
-    return [Int](0..<count).reduce([]) {(result, idx) in
-      if let value = self.deserialize(data, start:idx*size) {
-        return result + [value]
-      } else {
-        return result
-      }
+
+    public static func deserialize(_ data: Data, start: Int) -> Int16? {
+        if data.count >= (MemoryLayout<Int16>.size + start) {
+            var value: Int16 = 0
+            (data as NSData).getBytes(&value, range: NSRange(location: start, length: MemoryLayout<Int16>.size))
+            return toHostByteOrder(value)
+        } else {
+            return nil
+        }
     }
-  }
-  
+
+    public static func deserialize(_ data: Data) -> [Int16] {
+        let size = MemoryLayout<Int16>.size
+        let count = data.count / size
+        return [Int](0..<count).reduce([]) {result, idx in
+            if let value = self.deserialize(data, start: idx * size) {
+                return result + [value]
+            } else {
+                return result
+            }
+        }
+    }
+
 }
 
-extension UInt8 : Deserialize {
-  
-  public static var size : Int {
-    return MemoryLayout<UInt8>.size
-  }
-  
-  public init?(doubleValue:Double) {
-    if doubleValue > 255.0 || doubleValue < 0.0 {
-      return nil
-    } else {
-      self = UInt8(doubleValue)
+extension UInt8: Deserialize {
+
+    public static var size: Int {
+        return MemoryLayout<UInt8>.size
     }
-  }
-  
-  public init?(uintValue:UInt16) {
-    if uintValue > 255 {
-      return nil
-    } else {
-      self = UInt8(uintValue)
+
+    public init?(doubleValue: Double) {
+        if doubleValue > 255.0 || doubleValue < 0.0 {
+            return nil
+        } else {
+            self = UInt8(doubleValue)
+        }
     }
-  }
-  
-  public init?(intValue:Int16) {
-    if intValue > 255 || intValue < 0 {
-      return nil
-    } else {
-      self = UInt8(intValue)
+
+    public init?(uintValue: UInt16) {
+        if uintValue > 255 {
+            return nil
+        } else {
+            self = UInt8(uintValue)
+        }
     }
-  }
-  
-  public static func deserialize(_ data:Data) -> UInt8? {
-    if data.count >= MemoryLayout<UInt8>.size {
-      var value : UInt8 = 0
-      (data as NSData).getBytes(&value, length:MemoryLayout<UInt8>.size)
-      return toHostByteOrder(value)
-    } else {
-      return nil
+
+    public init?(intValue: Int16) {
+        if intValue > 255 || intValue < 0 {
+            return nil
+        } else {
+            self = UInt8(intValue)
+        }
     }
-  }
-  
-  public static func deserialize(_ data:Data, start:Int) -> UInt8? {
-    if data.count >= start + MemoryLayout<UInt8>.size {
-      var value : UInt8 = 0
-      (data as NSData).getBytes(&value, range: NSMakeRange(start, MemoryLayout<UInt8>.size))
-      return toHostByteOrder(value)
-    } else {
-      return nil
+
+    public static func deserialize(_ data: Data) -> UInt8? {
+        if data.count >= MemoryLayout<UInt8>.size {
+            var value: UInt8 = 0
+            (data as NSData).getBytes(&value, length: MemoryLayout<UInt8>.size)
+            return toHostByteOrder(value)
+        } else {
+            return nil
+        }
     }
-  }
-  
-  public static func deserialize(_ data:Data) -> [UInt8] {
-    let count = data.count / MemoryLayout<UInt8>.size
-    return [Int](0..<count).reduce([]) {(result, start) in
-      if let value = self.deserialize(data, start:start) {
-        return result + [value]
-      } else {
-        return result
-      }
+
+    public static func deserialize(_ data: Data, start: Int) -> UInt8? {
+        if data.count >= start + MemoryLayout<UInt8>.size {
+            var value: UInt8 = 0
+            (data as NSData).getBytes(&value, range: NSRange(location: start, length: MemoryLayout<UInt8>.size))
+            return toHostByteOrder(value)
+        } else {
+            return nil
+        }
     }
-  }
-  
+
+    public static func deserialize(_ data: Data) -> [UInt8] {
+        let count = data.count / MemoryLayout<UInt8>.size
+        return [Int](0..<count).reduce([]) {result, start in
+            if let value = self.deserialize(data, start: start) {
+                return result + [value]
+            } else {
+                return result
+            }
+        }
+    }
+
 }
 
+extension UInt16: Deserialize {
 
-extension UInt16 : Deserialize {
-  
-  public static var size : Int {
-    return MemoryLayout<UInt16>.size
-  }
-  
-  public init?(doubleValue:Double) {
-    if doubleValue >= 65535.0 || doubleValue <= 0.0 {
-      return nil
-    } else {
-      self = UInt16(doubleValue)
+    public static var size: Int {
+        return MemoryLayout<UInt16>.size
     }
-  }
-  
-  public static func deserialize(_ data:Data) -> UInt16? {
-    if data.count >= MemoryLayout<UInt16>.size {
-      var value : UInt16 = 0
-      (data as NSData).getBytes(&value, length:MemoryLayout<UInt16>.size)
-      return toHostByteOrder(value)
-    } else {
-      return nil
+
+    public init?(doubleValue: Double) {
+        if doubleValue >= 65535.0 || doubleValue <= 0.0 {
+            return nil
+        } else {
+            self = UInt16(doubleValue)
+        }
     }
-  }
-  
-  public static func deserialize(_ data:Data, start:Int) -> UInt16? {
-    if data.count >= start + MemoryLayout<UInt16>.size {
-      var value : UInt16 = 0
-      (data as NSData).getBytes(&value, range:NSMakeRange(start, MemoryLayout<UInt16>.size))
-      return toHostByteOrder(value)
-    } else {
-      return nil
+
+    public static func deserialize(_ data: Data) -> UInt16? {
+        if data.count >= MemoryLayout<UInt16>.size {
+            var value: UInt16 = 0
+            (data as NSData).getBytes(&value, length: MemoryLayout<UInt16>.size)
+            return toHostByteOrder(value)
+        } else {
+            return nil
+        }
     }
-  }
-  
-  public static func deserialize(_ data:Data) -> [UInt16] {
-    let size = MemoryLayout<UInt16>.size
-    let count = data.count / size
-    return [Int](0..<count).reduce([]) {(result, idx) in
-      if let value = self.deserialize(data, start:size*idx) {
-        return result + [value]
-      } else {
-        return result
-      }
+
+    public static func deserialize(_ data: Data, start: Int) -> UInt16? {
+        if data.count >= start + MemoryLayout<UInt16>.size {
+            var value: UInt16 = 0
+            (data as NSData).getBytes(&value, range: NSRange(location: start, length: MemoryLayout<UInt16>.size))
+            return toHostByteOrder(value)
+        } else {
+            return nil
+        }
     }
-  }
+
+    public static func deserialize(_ data: Data) -> [UInt16] {
+        let size = MemoryLayout<UInt16>.size
+        let count = data.count / size
+        return [Int](0..<count).reduce([]) {result, idx in
+            if let value = self.deserialize(data, start: size * idx) {
+                return result + [value]
+            } else {
+                return result
+            }
+        }
+    }
 }
-

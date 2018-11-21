@@ -24,55 +24,57 @@ import XCTest
 
 @testable import Pocket_Code
 
-class ArduinoDigitalPingFunctionTest: XCTestCase {
-    
+class ArduinoDigitalPinFunctionTest: XCTestCase {
+
     var function: ArduinoDigitalPinFunction!
     var bluetoothService: BluetoothService!
-    
+
     override func setUp() {
+        super.setUp()
         bluetoothService = BluetoothService.sharedInstance()
         function = ArduinoDigitalPinFunction { [ weak self ] in self?.bluetoothService }
     }
-    
+
     override func tearDown() {
         bluetoothService = nil
         function = nil
+        super.tearDown()
     }
-    
+
     func testDefaultValue() {
-        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: "invalidParameter" as AnyObject), accuracy: 0.0001)
-        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: 120 as AnyObject), accuracy: 0.0001)
-        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: 1.5 as AnyObject), accuracy: 0.0001)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: "invalidParameter" as AnyObject), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: 120 as AnyObject), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: 1.5 as AnyObject), accuracy: Double.epsilon)
     }
-    
+
     func testValue() {
         // TODO: add tests
     }
-    
+
     func testParameter() {
         XCTAssertEqual(.number(defaultValue: 0), function.firstParameter())
     }
-    
+
     func testTag() {
         XCTAssertEqual("digitalPin", type(of: function).tag)
     }
-    
+
     func testName() {
         XCTAssertEqual(kUIFESensorArduinoDigital, type(of: function).name)
     }
-    
+
     func testRequiredResources() {
         XCTAssertEqual(ResourceType.bluetoothArduino, type(of: function).requiredResource)
     }
-    
+
     func testIsIdempotent() {
         XCTAssertFalse(type(of: function).isIdempotent)
     }
-    
+
     func testFormulaEditorSection() {
         UserDefaults.standard.set(true, forKey: kUseArduinoBricks)
         XCTAssertEqual(.device(position: type(of: function).position), function.formulaEditorSection())
-        
+
         UserDefaults.standard.set(false, forKey: kUseArduinoBricks)
         XCTAssertEqual(.hidden, function.formulaEditorSection())
     }

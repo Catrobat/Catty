@@ -24,17 +24,17 @@
 
 final class FormulaMock: Formula {
     let requiredResources: Int
-    
+
     init(requiredResource: ResourceType) {
         self.requiredResources = requiredResource.rawValue
         super.init()
     }
-    
+
     init(requiredResources: Int) {
         self.requiredResources = requiredResources
         super.init()
     }
-    
+
     override func getRequiredResources() -> Int {
         return requiredResources
     }

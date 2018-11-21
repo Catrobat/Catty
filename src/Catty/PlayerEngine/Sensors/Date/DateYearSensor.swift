@@ -20,30 +20,30 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class DateYearSensor : DateSensor {
-    
+class DateYearSensor: DateSensor {
+
     static let tag = "DATE_YEAR"
     static let name = kUIFESensorDateYear
     static let defaultRawValue = 0.0
     static let position = 230
     static let requiredResource = ResourceType.noResources
-    
+
     func date() -> Date {
         return Date()
     }
-    
+
     func tag() -> String {
         return type(of: self).tag
     }
-    
+
     func rawValue() -> Double {
         return Double(Calendar.current.component(.year, from: self.date()))
     }
-    
+
     func convertToStandardized(rawValue: Double) -> Double {
         return rawValue
     }
-    
+
     func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
         return .device(position: type(of: self).position)
     }

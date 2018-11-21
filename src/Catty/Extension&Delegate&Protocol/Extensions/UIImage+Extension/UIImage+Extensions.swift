@@ -20,35 +20,12 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import Foundation
-
-
-@objc extension PhiroMotorStopBrick :CBInstructionProtocol {
-    
-    @nonobjc func instruction() -> CBInstruction {
-        
-        return CBInstruction.execClosure { (context, _) in
-            
-            guard let phiro:Phiro = BluetoothService.swiftSharedInstance.phiro else {
-                //ERROR
-                return;
-            }
-            switch (self.phiroMotor()) {
-            case .Left:
-                phiro.stopLeftMotor();
-                break;
-            case .Right:
-                phiro.stopRightMotor();
-                break;
-            case .Both:
-                phiro.stopRightMotor();
-                phiro.stopLeftMotor();
-                break;
-            }
-            context.state = .runnable
-        }
-        
+extension UIImage {
+    func crop(rect: CGRect) -> UIImage? {
+        UIGraphicsBeginImageContextWithOptions(rect.size, false, self.scale)
+        self.draw(at: CGPoint(x: rect.origin.x * -1, y: rect.origin.y * -1))
+        let croppedImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return croppedImage
     }
-
-    
 }
