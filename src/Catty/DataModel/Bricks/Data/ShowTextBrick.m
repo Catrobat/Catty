@@ -60,8 +60,8 @@
 
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
-    self.xFormula = [[Formula alloc] initWithZero];
-    self.yFormula = [[Formula alloc] initWithZero];
+    self.xFormula = [[Formula alloc] initWithInteger:100];
+    self.yFormula = [[Formula alloc] initWithInteger:200];
     if(spriteObject) {
         NSArray *variables = [spriteObject.program.variables allVariablesForObject:spriteObject];
         if([variables count] > 0)

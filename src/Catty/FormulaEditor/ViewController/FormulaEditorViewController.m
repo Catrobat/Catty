@@ -492,6 +492,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     if ([result isKindOfClass:[NSNumber class]]) {
         NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
         [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+        formatter.usesGroupingSeparator = NO;
         return [formatter stringFromNumber:result];
     }
     
@@ -1225,3 +1226,4 @@ static NSCharacterSet *blockedCharacterSet = nil;
 }
 
 @end
+

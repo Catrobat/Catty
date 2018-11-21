@@ -226,10 +226,10 @@
             name = @"-";
             break;
         case MULT:
-            name = @"*";
+            name = @"×";
             break;
         case DIVIDE:
-            name = @"/";
+            name = @"÷";
             break;
         case DECIMAL_MARK:
             name = [formatter decimalSeparator];
