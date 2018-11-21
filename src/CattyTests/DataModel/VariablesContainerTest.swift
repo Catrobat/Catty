@@ -25,73 +25,73 @@ import XCTest
 @testable import Pocket_Code
 
 final class VariablesContainerTest: XCTestCase {
-    
+
     override func setUp() {
         super.setUp()
     }
-    
+
     func testAddObjectVariable() {
         let objectA = SpriteObject()
         objectA.name = "testObjectA"
-        
+
         let objectB = SpriteObject()
         objectB.name = "testObjectB"
-        
+
         let userVariable = UserVariable()
         userVariable.name = "testName"
-        
+
         let container = VariablesContainer()
         XCTAssertEqual(0, container.allVariables()?.count)
         XCTAssertEqual(0, container.allVariables(for: objectA)?.count)
         XCTAssertEqual(0, container.allVariables(for: objectB)?.count)
-        
+
         var result = container.addObjectVariable(userVariable, for: objectA)
         XCTAssertTrue(result)
-        
+
         XCTAssertEqual(1, container.allVariables()?.count)
         XCTAssertEqual(1, container.allVariables(for: objectA)?.count)
         XCTAssertEqual(0, container.allVariables(for: objectB)?.count)
-        
+
         result = container.addObjectVariable(userVariable, for: objectA)
         XCTAssertFalse(result)
-        
+
         result = container.addObjectVariable(userVariable, for: objectB)
         XCTAssertTrue(result)
-        
+
         XCTAssertEqual(2, container.allVariables()?.count)
         XCTAssertEqual(1, container.allVariables(for: objectA)?.count)
         XCTAssertEqual(1, container.allVariables(for: objectB)?.count)
     }
-    
+
     func testAddObjectList() {
         let objectA = SpriteObject()
         objectA.name = "testObjectA"
-        
+
         let objectB = SpriteObject()
         objectB.name = "testObjectB"
-        
+
         let list = UserVariable()
         list.name = "testName"
         list.isList = true
-        
+
         let container = VariablesContainer()
         XCTAssertEqual(0, container.allLists().count)
         XCTAssertEqual(0, container.allLists(for: objectA)?.count)
         XCTAssertEqual(0, container.allLists(for: objectB)?.count)
-        
+
         var result = container.addObjectList(list, for: objectA)
         XCTAssertTrue(result)
-        
+
         XCTAssertEqual(1, container.allLists()?.count)
         XCTAssertEqual(1, container.allLists(for: objectA)?.count)
         XCTAssertEqual(0, container.allLists(for: objectB)?.count)
-        
+
         result = container.addObjectList(list, for: objectA)
         XCTAssertFalse(result)
-        
+
         result = container.addObjectList(list, for: objectB)
         XCTAssertTrue(result)
-        
+
         XCTAssertEqual(2, container.allLists()?.count)
         XCTAssertEqual(1, container.allLists(for: objectA)?.count)
         XCTAssertEqual(1, container.allLists(for: objectB)?.count)
