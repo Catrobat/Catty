@@ -1365,7 +1365,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="12" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F3H-t7-Eut">
-                                                    <rect key="frame" x="99" y="28.5" width="180" height="22"/>
+                                                    <rect key="frame" x="99" y="28.5" width="235" height="22"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1612,7 +1612,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="12" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8c6-q5-WBJ">
-                                                    <rect key="frame" x="99" y="28.5" width="180" height="22"/>
+                                                    <rect key="frame" x="99" y="28.5" width="235" height="22"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2192,6 +2192,7 @@
                                             <constraint firstItem="7N5-oV-GKQ" firstAttribute="top" secondItem="98z-rG-78H" secondAttribute="bottom" constant="10" id="Dhr-RN-O8e"/>
                                             <constraint firstItem="SBB-2H-Mkv" firstAttribute="top" secondItem="98z-rG-78H" secondAttribute="top" id="GPp-NT-TPB"/>
                                             <constraint firstItem="zj8-dt-dyc" firstAttribute="leading" secondItem="LG0-kt-gW0" secondAttribute="leading" constant="10" id="JQ9-G2-d2d"/>
+                                            <constraint firstAttribute="width" secondItem="LG0-kt-gW0" secondAttribute="height" multiplier="375:647" id="Kdg-PT-tIz"/>
                                             <constraint firstItem="b2n-K8-vsP" firstAttribute="top" secondItem="7N5-oV-GKQ" secondAttribute="bottom" constant="10" id="PYk-7R-EKI"/>
                                             <constraint firstItem="zj8-dt-dyc" firstAttribute="top" secondItem="b2n-K8-vsP" secondAttribute="bottom" constant="10" id="TWw-Z1-Hwr"/>
                                             <constraint firstAttribute="trailing" secondItem="zj8-dt-dyc" secondAttribute="trailing" constant="10" id="V3U-2c-24n"/>
@@ -2208,11 +2209,11 @@
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="LG0-kt-gW0" firstAttribute="leading" secondItem="eSI-3l-Cmc" secondAttribute="leading" id="A3E-jK-LGn"/>
-                                    <constraint firstAttribute="trailing" secondItem="LG0-kt-gW0" secondAttribute="trailing" id="ELX-1C-ODh"/>
-                                    <constraint firstAttribute="bottom" secondItem="LG0-kt-gW0" secondAttribute="bottom" id="O7B-Kd-Hlo"/>
-                                    <constraint firstItem="LG0-kt-gW0" firstAttribute="top" secondItem="eSI-3l-Cmc" secondAttribute="top" id="kD3-oK-FNY"/>
-                                    <constraint firstItem="LG0-kt-gW0" firstAttribute="centerY" secondItem="eSI-3l-Cmc" secondAttribute="centerY" id="xYO-gT-5BB"/>
+                                    <constraint firstAttribute="trailing" secondItem="LG0-kt-gW0" secondAttribute="trailing" id="Emc-Ua-hZI"/>
+                                    <constraint firstItem="LG0-kt-gW0" firstAttribute="leading" secondItem="eSI-3l-Cmc" secondAttribute="leading" id="Sdi-0N-x8N"/>
+                                    <constraint firstItem="LG0-kt-gW0" firstAttribute="top" secondItem="eSI-3l-Cmc" secondAttribute="top" id="f0t-bz-M1x"/>
+                                    <constraint firstItem="LG0-kt-gW0" firstAttribute="height" secondItem="eSI-3l-Cmc" secondAttribute="height" id="hoq-mq-V0b"/>
+                                    <constraint firstAttribute="bottom" secondItem="LG0-kt-gW0" secondAttribute="bottom" id="l7c-zy-c7y"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
@@ -2237,6 +2238,7 @@
                         <outlet property="sizeLabel" destination="98z-rG-78H" id="yQi-YO-wyh"/>
                         <outlet property="sizeValueLabel" destination="SBB-2H-Mkv" id="s5O-CG-cUS"/>
                         <outlet property="uploadButton" destination="zj8-dt-dyc" id="djy-Ii-fOC"/>
+                        <outlet property="uploadScrollView" destination="eSI-3l-Cmc" id="MmN-a9-QMP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HGk-3D-JT8" userLabel="First Responder" sceneMemberID="firstResponder"/>

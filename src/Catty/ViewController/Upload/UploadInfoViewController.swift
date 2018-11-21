@@ -20,10 +20,6 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-//Warning: TestServer Uploads are restricted in size (about 1MB)!!!
-
-import UIKit
-
 @objc class UploadInfoViewController: UIViewController {
 
     let uploadParameterTag = "upload"
@@ -47,10 +43,7 @@ import UIKit
     let uploadFontSize: CGFloat = 16.0
 
     private var activeRequest: Bool = false
-
-    weak var delegate: DismissPopupDelegate?
     @objc public var program: Program?
-
     @IBOutlet private weak var programNameLabel: UILabel!
     @IBOutlet private weak var programNameTextField: UITextField!
     @IBOutlet private weak var sizeLabel: UILabel!
@@ -58,6 +51,7 @@ import UIKit
     @IBOutlet private weak var descriptionLabel: UILabel!
     @IBOutlet private weak var descriptionTextView: UITextView!
     @IBOutlet private weak var uploadButton: UIButton!
+    @IBOutlet private weak var uploadScrollView: UIScrollView!
 
     private var _session: URLSession?
     private var session: URLSession? {
@@ -86,24 +80,18 @@ import UIKit
         initDescriptionViewElements()
         initActionButtons()
         title = kLocalizedUpload
-        navigationController?.isToolbarHidden = true
-        navigationController?.title = title
-        let rightButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(UploadInfoViewController.dismissView))
-        navigationItem.rightBarButtonItem = rightButton
-        navigationController?.navigationBar.tintColor = UIColor.navTint()
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.navTint()]
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(UploadInfoViewController.uploadAction),
                                                name: NSNotification.Name(rawValue: kReadyToUpload),
                                                object: nil)
 
+        if #available(iOS 11, *) {
+            uploadScrollView.contentInsetAdjustmentBehavior = .never
+        } else {
+            self.automaticallyAdjustsScrollViewInsets = false
+        }
         programNameTextField.becomeFirstResponder()
         self.hideKeyboardWhenTapInViewController()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     // MARK: - Initialization
@@ -138,7 +126,7 @@ import UIKit
 
         if zipFileData == nil {
             debugPrint("ZIPing program files failed")
-            delegate?.dismissPopup(withCode: false)
+            self.dismissView()
         } else {
             zipFileSizeString = adaptSizeRepresentationString(zipFileData?.count ?? 0) ?? ""
         }
@@ -176,7 +164,7 @@ import UIKit
     }
 
     @objc func dismissView() {
-        navigationController?.dismiss(animated: true)
+        navigationController?.popViewController(animated: true)
     }
 
     func enableUploadView() {
@@ -187,7 +175,6 @@ import UIKit
             }
             self.uploadButton.isEnabled = true
             self.view.isUserInteractionEnabled = true
-            self.navigationItem.rightBarButtonItem?.isEnabled = true
         })
     }
 
@@ -244,10 +231,6 @@ import UIKit
 
     // MARK: - Actions
 
-    func cancel() {
-        delegate?.dismissPopup(withCode: false)
-    }
-
     @objc func checkProgramAction() {
         if programNameTextField.text!.isEmpty {
             Util.alert(withText: kLocalizedUploadProgramNecessary)
@@ -270,7 +253,6 @@ import UIKit
             view.alpha = 0.3
         }
         view.isUserInteractionEnabled = false
-        navigationItem.rightBarButtonItem?.isEnabled = false
 
         activeRequest = true
     }
@@ -298,6 +280,8 @@ import UIKit
 
             //Upload example URL: https://pocketcode.org/api/upload/upload.json?upload=ZIPFile&fileChecksum=MD5&token=loginToken
             //For testing use: https://catroid-test.catrob.at/api/upload/upload.json?upload=ZIPFile&fileChecksum=MD5&token=loginToken
+
+            //Warning: TestServer Uploads are restricted in size (about 1MB)!!!
 
             let uploadUrl = Util.isProductionServerActivated() ? kUploadUrl : kTestUploadUrl
             let urlString = "\(uploadUrl)/\(kConnectionUpload)"
@@ -397,7 +381,6 @@ import UIKit
                         debugPrint("Error: "+serverResponse!)
                         DispatchQueue.main.async(execute: {
                             Util.alert(withText: serverResponse)
-                            self.delegate?.dismissPopup(withCode: false)
                         })
 
                         if statusCode == self.statusCodeTokenWrong {

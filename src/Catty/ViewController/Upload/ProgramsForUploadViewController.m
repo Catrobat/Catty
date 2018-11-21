@@ -274,28 +274,16 @@
 
 - (void)showUploadInfoView
 {
-
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle: nil];
-        UploadInfoViewController * vc = [storyboard instantiateViewControllerWithIdentifier:@"UploadController"];
-        if (self.uploadingProgramInfos.count) {
-            Program * prog = [Program programWithLoadingInfo:self.uploadingProgramInfos[0]];
-            vc.program = prog;
-            UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:vc];
-            self.tableView.scrollEnabled = NO;
-
-            [self.navigationController presentViewController:navController animated:YES completion:^{
-                self.tableView.scrollEnabled = YES;
-                self.uploadButton.enabled = YES;
-                self.navigationItem.leftBarButtonItem.enabled = YES;
-                //[self showUploadSuccessfulView];
-            }];
-            self.navigationItem.leftBarButtonItem.enabled = NO;
-            self.uploadButton.enabled = NO;
-        } else {
-            NSDebug(@"Please select a program to upload");
-            [Util alertWithText:kLocalizedUploadSelectProgram];
-        }
-
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle: nil];
+    UploadInfoViewController * vc = [storyboard instantiateViewControllerWithIdentifier:@"UploadController"];
+    if (self.uploadingProgramInfos.count) {
+        Program * prog = [Program programWithLoadingInfo:self.uploadingProgramInfos[0]];
+        vc.program = prog;
+        [self.navigationController pushViewController:vc animated:YES];
+    } else {
+        NSDebug(@"Please select a program to upload");
+        [Util alertWithText:kLocalizedUploadSelectProgram];
+    }
 }
 
 - (void)showLoggedInView
