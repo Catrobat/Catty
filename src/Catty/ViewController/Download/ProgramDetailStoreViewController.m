@@ -263,11 +263,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 - (NSCharacterSet*)blockedCharacterSet
 {
-    if (! blockedCharacterSet) {
-        blockedCharacterSet = [[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters]
-                               invertedSet];
-    }
-    return blockedCharacterSet;
+    return nil;
 }
 
 

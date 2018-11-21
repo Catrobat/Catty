@@ -780,18 +780,11 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 static NSCharacterSet *blockedCharacterSet = nil;
 
-- (NSCharacterSet*)blockedCharacterSet
-
-{
-    if (! blockedCharacterSet) {
-        blockedCharacterSet = [[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters]
-                               invertedSet];
-    }
-    return blockedCharacterSet;
+- (NSCharacterSet*)blockedCharacterSet {
+    return nil;
 }
 
-- (void)updateVariablePickerData
-{
+- (void)updateVariablePickerData {
     VariablesContainer *variables = self.object.program.variables;
     [self.variableSource removeAllObjects];
     [self.variableSourceProgram  removeAllObjects];

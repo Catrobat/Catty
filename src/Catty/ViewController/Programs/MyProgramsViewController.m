@@ -53,11 +53,7 @@
 static NSCharacterSet *blockedCharacterSet = nil;
 - (NSCharacterSet*)blockedCharacterSet
 {
-    if (! blockedCharacterSet) {
-        blockedCharacterSet = [[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters]
-                               invertedSet];
-    }
-    return blockedCharacterSet;
+    return nil;
 }
 
 #pragma mark - initialization
@@ -738,7 +734,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                                                      style:UIBarButtonItemStylePlain
                                                                     target:self
                                                                     action:@selector(confirmDeleteSelectedProgramsAction:)];
-    // XXX: workaround for tap area problem:
+    // FIXME: workaround for tap area problem:
     // http://stackoverflow.com/questions/5113258/uitoolbar-unexpectedly-registers-taps-on-uibarbuttonitem-instances-even-when-tap
     UIBarButtonItem *(^invisibleItem)(void) = ^UIBarButtonItem *() { return [UIBarButtonItem invisibleItem]; };
     UIBarButtonItem *(^flexItem)(void) = ^UIBarButtonItem *() { return [UIBarButtonItem flexItem]; };

@@ -52,11 +52,7 @@
 static NSCharacterSet *blockedCharacterSet = nil;
 - (NSCharacterSet*)blockedCharacterSet
 {
-    if (! blockedCharacterSet) {
-        blockedCharacterSet = [[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters]
-                               invertedSet];
-    }
-    return blockedCharacterSet;
+    return nil;
 }
 
 #pragma mark - getter and setters
@@ -119,7 +115,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
          [self addObjectActionWithName:name];
      }]
      characterValidator:^BOOL(NSString *character) {
-         return [kTextFieldAllowedCharacters containsString:character];
+         return ![[self blockedCharacterSet] characterIsMember:[character characterAtIndex:0]];
      }]
      valueValidator:^InputValidationResult *(NSString *name) {
          InputValidationResult *result = [Util validationResultWithName:name
@@ -621,7 +617,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     UIBarButtonItem *play = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
                                                                           target:self
                                                                           action:@selector(playSceneAction:)];
-    // XXX: workaround for tap area problem:
+    // FIXME: workaround for tap area problem:
     // http://stackoverflow.com/questions/5113258/uitoolbar-unexpectedly-registers-taps-on-uibarbuttonitem-instances-even-when-tap
     UIBarButtonItem *(^invisibleItem)(void) = ^UIBarButtonItem *() { return [UIBarButtonItem invisibleItem]; };
     UIBarButtonItem *(^flexItem)(void) = ^UIBarButtonItem *() { return [UIBarButtonItem flexItem]; };
@@ -637,7 +633,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                                                      style:UIBarButtonItemStylePlain
                                                                     target:self
                                                                     action:@selector(confirmDeleteSelectedObjectsAction:)];
-    // XXX: workaround for tap area problem:
+    // FIXME: workaround for tap area problem:
     // http://stackoverflow.com/questions/5113258/uitoolbar-unexpectedly-registers-taps-on-uibarbuttonitem-instances-even-when-tap
     UIBarButtonItem *(^invisibleItem)(void) = ^UIBarButtonItem *() { return [UIBarButtonItem invisibleItem]; };
     UIBarButtonItem *(^flexItem)(void) = ^UIBarButtonItem *() { return [UIBarButtonItem flexItem]; };

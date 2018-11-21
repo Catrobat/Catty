@@ -64,11 +64,7 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
 static NSCharacterSet *blockedCharacterSet = nil;
 - (NSCharacterSet*)blockedCharacterSet
 {
-    if (! blockedCharacterSet) {
-        blockedCharacterSet = [[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters]
-                               invertedSet];
-    }
-    return blockedCharacterSet;
+    return nil;
 }
 
 #pragma mark - getters and setters
@@ -428,9 +424,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 -(void)addProgramFromInbox
 {
-    NSCharacterSet* blockedCharacterSet = [[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters]
-                                           invertedSet];
-    
     [Util askUserForUniqueNameAndPerformAction:@selector(addProgramFromInboxWithName:)
                                         target:self
                                    promptTitle:kLocalizedEnterNameForImportedProgramTitle
@@ -439,7 +432,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                              promptPlaceholder:kLocalizedEnterYourProgramNameHere
                                 minInputLength:kMinNumOfProgramNameCharacters
                                 maxInputLength:kMaxNumOfProgramNameCharacters
-                           blockedCharacterSet:blockedCharacterSet
+                           blockedCharacterSet:nil
                       invalidInputAlertMessage:kLocalizedProgramNameAlreadyExistsDescription
                                  existingNames:[Program allProgramNames]];
 }
