@@ -31,8 +31,8 @@ final class WaitUntilBrickTests : XMLAbstractTest {
     }()
     
     func testWaitUntilBrick_conditionTrue_proceedsToNextBrick() {
-        var testVar = program.variables.getUserVariableNamed("testVar", for: program.objectList[0] as! SpriteObject)
-        var hasFinishedWaiting = program.variables.getUserVariableNamed("hasFinishedWaiting", for: program.objectList[0] as! SpriteObject)
+        let testVar = program.variables.getUserVariableNamed("testVar", for: program.objectList[0] as? SpriteObject)
+        let hasFinishedWaiting = program.variables.getUserVariableNamed("hasFinishedWaiting", for: program.objectList[0] as? SpriteObject)
 
         let scene = createScene()
         scene.startProgram()
@@ -43,17 +43,16 @@ final class WaitUntilBrickTests : XMLAbstractTest {
             return NSNumber.init(integerLiteral: 1).isEqual(to: hasFinishedWaiting)
         })
 
-        expectation(for: conditionMetPredicate, evaluatedWith: hasFinishedWaiting, handler: nil)
+        expectation(for: conditionMetPredicate, evaluatedWith: hasFinishedWaiting!, handler: nil)
         waitForExpectations(timeout: 5, handler: nil)
     }
 
     func testWaitUntilBrick_conditionFalse_getsStuckInWaitUntilBrick() {
-        var testVar = program.variables.getUserVariableNamed("testVar", for: program.objectList[0] as! SpriteObject)
-        var hasFinishedWaiting = program.variables.getUserVariableNamed("hasFinishedWaiting", for: program.objectList[0] as! SpriteObject)
+        let hasFinishedWaiting = program.variables.getUserVariableNamed("hasFinishedWaiting", for: program.objectList[0] as? SpriteObject)
 
         let scene = createScene()
         scene.startProgram()
-        var testPredicate = createPredicate(variable: hasFinishedWaiting!, shouldNotBeEqual: NSNumber(integerLiteral: 1), forSeconds: 2)
+        let testPredicate = createPredicate(variable: hasFinishedWaiting!, shouldNotBeEqual: NSNumber(integerLiteral: 1), forSeconds: 2)
 
         expectation(for: testPredicate, evaluatedWith: self, handler: nil)
         waitForExpectations(timeout: 4, handler: nil)
