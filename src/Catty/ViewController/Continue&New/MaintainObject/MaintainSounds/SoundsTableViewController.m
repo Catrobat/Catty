@@ -53,13 +53,6 @@
 
 @implementation SoundsTableViewController
 
-#pragma mark - data helpers
-static NSCharacterSet *blockedCharacterSet = nil;
-- (NSCharacterSet*)blockedCharacterSet
-{
-    return nil;
-}
-
 #pragma mark - initialization
 - (void)initNavigationBar
 {
@@ -469,7 +462,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                 promptPlaceholder:kLocalizedEnterYourSoundNameHere
                                    minInputLength:kMinNumOfSoundNameCharacters
                                    maxInputLength:kMaxNumOfSoundNameCharacters
-                              blockedCharacterSet:[self blockedCharacterSet]
                          invalidInputAlertMessage:kLocalizedInvalidSoundNameDescription];
          }] build]
          viewWillDisappear:^{

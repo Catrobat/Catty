@@ -230,14 +230,11 @@
     NSDebug(@"report");
     BOOL isLoggedIn = [[NSUserDefaults standardUserDefaults] boolForKey:kUserIsLoggedIn];
     if (isLoggedIn) {
-        [[[[[[[AlertControllerBuilder textFieldAlertWithTitle:kLocalizedReportProgram message:kLocalizedEnterReason]
+        [[[[[[AlertControllerBuilder textFieldAlertWithTitle:kLocalizedReportProgram message:kLocalizedEnterReason]
               addCancelActionWithTitle:kLocalizedCancel handler:nil]
              addDefaultActionWithTitle:kLocalizedOK handler:^(NSString *report) {
                  [self sendReportWithMessage:report];
              }]
-            characterValidator:^BOOL(NSString *character) {
-                return ![[self blockedCharacterSet] characterIsMember:[character characterAtIndex:0]];
-            }]
            valueValidator:^InputValidationResult *(NSString *report) {
                int minInputLength = 1;
                int maxInputLength = 10;
@@ -256,16 +253,6 @@
         [Util alertWithText:kLocalizedLoginToReport];
     }
 }
-
-
-
-static NSCharacterSet *blockedCharacterSet = nil;
-
-- (NSCharacterSet*)blockedCharacterSet
-{
-    return nil;
-}
-
 
 - (void)sendReportWithMessage:(NSString*)message
 {

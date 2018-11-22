@@ -48,13 +48,6 @@
 
 @implementation ProgramTableViewController
 
-#pragma mark - data helpers
-static NSCharacterSet *blockedCharacterSet = nil;
-- (NSCharacterSet*)blockedCharacterSet
-{
-    return nil;
-}
-
 #pragma mark - getter and setters
 - (void)setProgram:(Program *)program
 {
@@ -106,16 +99,13 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     [self.tableView setEditing:false animated:YES];
     
-    [[[[[[[[AlertControllerBuilder textFieldAlertWithTitle:kLocalizedAddObject message:[NSString stringWithFormat:@"%@:", kLocalizedObjectName]]
+    [[[[[[[AlertControllerBuilder textFieldAlertWithTitle:kLocalizedAddObject message:[NSString stringWithFormat:@"%@:", kLocalizedObjectName]]
      placeholder:kLocalizedEnterYourObjectNameHere]
      addCancelActionWithTitle:kLocalizedCancel handler:^{
          [self cancelAddingObjectFromScriptEditor];
      }]
      addDefaultActionWithTitle:kLocalizedOK handler:^(NSString *name) {
          [self addObjectActionWithName:name];
-     }]
-     characterValidator:^BOOL(NSString *character) {
-         return ![[self blockedCharacterSet] characterIsMember:[character characterAtIndex:0]];
      }]
      valueValidator:^InputValidationResult *(NSString *name) {
          InputValidationResult *result = [Util validationResultWithName:name
@@ -258,7 +248,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                   promptPlaceholder:kLocalizedEnterYourProgramNameHere
                                      minInputLength:kMinNumOfProgramNameCharacters
                                      maxInputLength:kMaxNumOfProgramNameCharacters
-                                blockedCharacterSet:[self blockedCharacterSet]
                            invalidInputAlertMessage:kLocalizedProgramNameAlreadyExistsDescription
                                       existingNames:unavailableNames];
     }]
@@ -513,7 +502,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                       promptPlaceholder:kLocalizedEnterYourObjectNameHere
                                          minInputLength:kMinNumOfObjectNameCharacters
                                          maxInputLength:kMaxNumOfObjectNameCharacters
-                                    blockedCharacterSet:[self blockedCharacterSet]
                                invalidInputAlertMessage:kLocalizedObjectNameAlreadyExistsDescription
                                           existingNames:unavailableNames];
          }] build]

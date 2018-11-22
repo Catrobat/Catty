@@ -985,7 +985,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                              promptPlaceholder:kLocalizedEnterYourVariableNameHere
                                 minInputLength:kMinNumOfVariableNameCharacters
                                 maxInputLength:kMaxNumOfVariableNameCharacters
-                           blockedCharacterSet:nil
                       invalidInputAlertMessage:kUIFENewVarExists
                                  existingNames:allVariableNames];
 }
@@ -1041,7 +1040,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                              promptPlaceholder:kLocalizedEnterYourListNameHere
                                 minInputLength:kMinNumOfVariableNameCharacters
                                 maxInputLength:kMaxNumOfVariableNameCharacters
-                           blockedCharacterSet:nil
                       invalidInputAlertMessage:kUIFENewVarExists
                                  existingNames:allListNames];
 }
@@ -1174,7 +1172,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                                      promptPlaceholder:kLocalizedEnterYourMessageHere
                                         minInputLength:kMinNumOfMessageNameCharacters
                                         maxInputLength:kMaxNumOfMessageNameCharacters
-                                   blockedCharacterSet:nil
                               invalidInputAlertMessage:kLocalizedMessageAlreadyExistsDescription
                                          existingNames:[Util allMessagesForProgram:self.object.program]];
             [self enableUserInteractionAndResetHighlight];

@@ -58,6 +58,9 @@
 #define kDontResumeSounds 4
 #define kfirstSwipeDuration 0.8f
 
+// Blocked characters for program names, object names, images names, sounds names and variable/list names
+#define kTextFieldBlockedCharacters @""
+
 #define kMenuImageNameContinue @"continue"
 #define kMenuImageNameNew @"new"
 #define kMenuImageNamePrograms @"programs"

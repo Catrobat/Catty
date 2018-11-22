@@ -60,13 +60,6 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
 
 @implementation CatrobatTableViewController
 
-#pragma mark - data helpers
-static NSCharacterSet *blockedCharacterSet = nil;
-- (NSCharacterSet*)blockedCharacterSet
-{
-    return nil;
-}
-
 #pragma mark - getters and setters
 - (Program*)lastUsedProgram
 {
@@ -254,7 +247,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                      promptPlaceholder:kLocalizedEnterYourProgramNameHere
                                         minInputLength:kMinNumOfProgramNameCharacters
                                         maxInputLength:kMaxNumOfProgramNameCharacters
-                                   blockedCharacterSet:[self blockedCharacterSet]
                               invalidInputAlertMessage:kLocalizedProgramNameAlreadyExistsDescription
                                          existingNames:[Program allProgramNames]];
             break;
@@ -432,7 +424,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
                              promptPlaceholder:kLocalizedEnterYourProgramNameHere
                                 minInputLength:kMinNumOfProgramNameCharacters
                                 maxInputLength:kMaxNumOfProgramNameCharacters
-                           blockedCharacterSet:nil
                       invalidInputAlertMessage:kLocalizedProgramNameAlreadyExistsDescription
                                  existingNames:[Program allProgramNames]];
 }

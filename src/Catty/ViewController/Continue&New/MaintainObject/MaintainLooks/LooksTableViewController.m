@@ -55,13 +55,6 @@
 
 @implementation LooksTableViewController
 
-#pragma mark - data helpers
-static NSCharacterSet *blockedCharacterSet = nil;
-- (NSCharacterSet*)blockedCharacterSet
-{
-    return nil;
-}
-
 #pragma mark initialization
 - (void)initNavigationBar
 {
@@ -431,7 +424,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                 promptPlaceholder:kLocalizedEnterYourImageNameHere
                                    minInputLength:kMinNumOfLookNameCharacters
                                    maxInputLength:kMaxNumOfLookNameCharacters
-                              blockedCharacterSet:[self blockedCharacterSet]
                          invalidInputAlertMessage:kLocalizedInvalidImageNameDescription];
          }] build]
          viewWillDisappear:^{
@@ -606,7 +598,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
                            promptPlaceholder:kLocalizedEnterYourImageNameHere
                               minInputLength:kMinNumOfLookNameCharacters
                               maxInputLength:kMaxNumOfLookNameCharacters
-                         blockedCharacterSet:[self blockedCharacterSet]
                     invalidInputAlertMessage:kLocalizedInvalidImageNameDescription];
     }
 }
@@ -614,10 +605,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 #pragma mark - text field delegates
 - (BOOL)textField:(UITextField*)field shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString*)characters
 {
-    if ([characters length] > kMaxNumOfLookNameCharacters) {
-        return false;
-    }
-    return ([characters rangeOfCharacterFromSet:self.blockedCharacterSet].location == NSNotFound);
+    return [characters length] <= kMaxNumOfLookNameCharacters;
 }
 
 #pragma mark - action sheet
@@ -897,7 +885,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                promptPlaceholder:kLocalizedEnterYourImageNameHere
                                   minInputLength:kMinNumOfLookNameCharacters
                                   maxInputLength:kMaxNumOfLookNameCharacters
-                             blockedCharacterSet:[self blockedCharacterSet]
                         invalidInputAlertMessage:kLocalizedInvalidImageNameDescription];
         }
     }

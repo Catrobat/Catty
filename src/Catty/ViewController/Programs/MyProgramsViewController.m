@@ -49,13 +49,6 @@
 
 @implementation MyProgramsViewController
 
-#pragma mark - data helpers
-static NSCharacterSet *blockedCharacterSet = nil;
-- (NSCharacterSet*)blockedCharacterSet
-{
-    return nil;
-}
-
 #pragma mark - initialization
 - (void)initNavigationBar
 {
@@ -157,7 +150,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
                              promptPlaceholder:kLocalizedEnterYourProgramNameHere
                                 minInputLength:kMinNumOfProgramNameCharacters
                                 maxInputLength:kMaxNumOfProgramNameCharacters
-                           blockedCharacterSet:[self blockedCharacterSet]
                       invalidInputAlertMessage:kLocalizedProgramNameAlreadyExistsDescription
                                  existingNames:[Program allProgramNames]];
 }
@@ -393,7 +385,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                       promptPlaceholder:kLocalizedEnterYourProgramNameHere
                                          minInputLength:kMinNumOfProgramNameCharacters
                                          maxInputLength:kMaxNumOfProgramNameCharacters
-                                    blockedCharacterSet:[self blockedCharacterSet]
                                invalidInputAlertMessage:kLocalizedProgramNameAlreadyExistsDescription
                                           existingNames:[Program allProgramNames]];
          }]
@@ -410,7 +401,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                       promptPlaceholder:kLocalizedEnterYourProgramNameHere
                                          minInputLength:kMinNumOfProgramNameCharacters
                                          maxInputLength:kMaxNumOfProgramNameCharacters
-                                    blockedCharacterSet:[self blockedCharacterSet]
                                invalidInputAlertMessage:kLocalizedProgramNameAlreadyExistsDescription
                                           existingNames:unavailableNames];
          }]

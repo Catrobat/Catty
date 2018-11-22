@@ -743,7 +743,6 @@ NS_ENUM(NSInteger, ButtonIndex) {
                                   minInputLength:kMinNumOfVariableNameCharacters
                                   maxInputLength:kMaxNumOfVariableNameCharacters
                                           isList:isList
-                             blockedCharacterSet:[self blockedCharacterSet]
                                     andTextField:self.formulaEditorTextView];
 }
 
@@ -776,12 +775,6 @@ NS_ENUM(NSInteger, ButtonIndex) {
            [self askObjectOrProgram: YES];
        }] build]
      showWithController:self];
-}
-
-static NSCharacterSet *blockedCharacterSet = nil;
-
-- (NSCharacterSet*)blockedCharacterSet {
-    return nil;
 }
 
 - (void)updateVariablePickerData {
@@ -870,7 +863,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                   minInputLength:kMinNumOfVariableNameCharacters
                                   maxInputLength:kMaxNumOfVariableNameCharacters
                                           isList:isList
-                             blockedCharacterSet:[self blockedCharacterSet]
                                     andTextField:self.formulaEditorTextView];
 }
 
@@ -956,7 +948,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                   minInputLength:kMinNumOfProgramNameCharacters
                                   maxInputLength:kMaxNumOfProgramNameCharacters
 										  isList:NO
-                             blockedCharacterSet:[self blockedCharacterSet]
                                     andTextField:self.formulaEditorTextView];
 }
 
