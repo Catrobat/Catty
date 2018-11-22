@@ -72,6 +72,11 @@
         GDataXMLElement *receivedMessageElement = [receivedMessageElements firstObject];
         broadcastScript.receivedMessage = [receivedMessageElement stringValue];
         script = broadcastScript;
+    } else if ([scriptType hasSuffix:@"Script"]) {
+        BroadcastScript *broadcastScript = [BroadcastScript new];
+        broadcastScript.receivedMessage = [NSString stringWithFormat:@"Unsupported Script: %@", scriptType];
+        script = broadcastScript;
+        NSWarn(@"Unsupported Script: %@", scriptType);
     } else {
         [XMLError exceptionWithMessage:@"Unsupported script type: %@!", scriptType];
     }

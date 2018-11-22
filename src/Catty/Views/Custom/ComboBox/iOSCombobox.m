@@ -24,7 +24,7 @@
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "RuntimeImageCache.h"
 #import "Look.h"
-
+#import "Util.h"
 
 #define BORDER_WIDTH 1.0f
 #define BORDER_OFFSET (BORDER_WIDTH / 2)
@@ -204,17 +204,14 @@
         // of the overall rectangle, based on the Safari dropdown
         CGFloat centerX = rect.size.width - (ARROW_BOX_WIDTH)- 20 - BORDER_OFFSET;
         CGFloat centerY = rect.size.height / 2 + BORDER_OFFSET;
-        CGFloat width = 0;
-        CGFloat height = 20;
-        if (self.currentImage.size.width > self.currentImage.size.height) {
-            width = 30;
-        } else if (self.currentImage.size.width < self.currentImage.size.height) {
-            width = 15;
-        } else{
-            width = 20;
-        }
-        [self.currentImage drawInRect:CGRectMake(centerX - 10,centerY - 10.0f, width, height)];
-//        CGContextDrawImage(ctx, CGRectMake(centerX-10,centerY-7.5f, 30, 15), self.currentImage.CGImage);
+
+        float newHeight = 20;
+        float newWidth = 20;
+        if (self.currentImage.size.height > self.currentImage.size.width)
+            newWidth = ((self.currentImage.size.width / self.currentImage.size.height) * 20);
+        else
+            newHeight = ((self.currentImage.size.height / self.currentImage.size.width) * 20);
+        [self.currentImage drawInRect:CGRectMake(centerX - (newWidth/2),centerY - (newHeight/2), newWidth, newHeight)];
         
         CGContextAddPath(ctx, path);
         CGContextFillPath(ctx);
@@ -295,26 +292,18 @@
 
 - (UIView*) pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
 {
-    UIView *tmpView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 110, 60)];
+    UIView *tmpView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [Util screenWidth], 60)];
     if (self.images.count >= row) {
         if (row != 0) {
-            CGFloat width = 0;
-            CGFloat height = 30;
             UIImage *img = [self.images objectAtIndex:row-1];
-            if (img.size.width > img.size.height) {
-                width = 50;
-            } else if (img.size.width < img.size.height) {
-                width = 20;
-            } else{
-                width = 30;
-            }
             UIImageView *temp = [[UIImageView alloc] initWithImage:img];
-            temp.frame = CGRectMake(-100, 15, width, height);
+            temp.contentMode = UIViewContentModeScaleAspectFit;
+            temp.frame = CGRectMake(2.5, 15, 30, 30);
             [tmpView insertSubview:temp atIndex:0];
         }
     }
     
-    UILabel *channelLabel = [[UILabel alloc] initWithFrame:CGRectMake(-20, 0, 200, 60)];
+    UILabel *channelLabel = [[UILabel alloc] initWithFrame:CGRectMake(35, 0, [Util screenWidth]-40, 60)];
     channelLabel.text = [self.values objectAtIndex:row];
     channelLabel.textAlignment = NSTextAlignmentLeft;
     channelLabel.backgroundColor = [UIColor clearColor];
