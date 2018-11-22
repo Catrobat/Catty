@@ -25,7 +25,8 @@ class FaceDetectionManager: NSObject, FaceDetectionManagerProtocol, AVCaptureVid
     var isFaceDetected: Bool = false
     var facePositionRatioFromLeft: Double?
     var facePositionRatioFromBottom: Double?
-    var faceSize: CGRect?
+    var faceSizeRatio: Double?
+    var faceDetectionFrameSize: CGSize?
 
     private var session: AVCaptureSession?
     private var videoDataOuput: AVCaptureVideoDataOutput?
@@ -74,7 +75,7 @@ class FaceDetectionManager: NSObject, FaceDetectionManagerProtocol, AVCaptureVid
         previewLayer.isHidden = true
         self.previewLayer = previewLayer
 
-        let detectorOptions = [ CIDetectorAccuracy: CIDetectorAccuracyLow]
+        let detectorOptions = [ CIDetectorAccuracy: CIDetectorAccuracyLow ]
         self.faceDetector = CIDetector(ofType: CIDetectorTypeFace, context: nil, options: detectorOptions)
 
         session.startRunning()
@@ -82,12 +83,33 @@ class FaceDetectionManager: NSObject, FaceDetectionManagerProtocol, AVCaptureVid
 
     func stop() {
         self.reset()
+
+        if let inputs = self.session?.inputs as? [AVCaptureDeviceInput] {
+            for input in inputs {
+                self.session?.removeInput(input)
+            }
+        }
+        if let outputs = self.session?.outputs as? [AVCaptureVideoDataOutput] {
+            for output in outputs {
+                self.session?.removeOutput(output)
+            }
+        }
+
         self.session?.stopRunning()
         self.session = nil
         self.faceDetector = nil
+        self.videoDataOuput?.connection(with: .video)?.isEnabled = false
         self.videoDataOuput = nil
         self.previewLayer?.removeFromSuperlayer()
         self.previewLayer = nil
+    }
+
+    func reset() {
+        self.isFaceDetected = false
+        self.facePositionRatioFromLeft = nil
+        self.facePositionRatioFromBottom = nil
+        self.faceSizeRatio = nil
+        self.faceDetectionFrameSize = nil
     }
 
     func available() -> Bool {
@@ -118,17 +140,11 @@ class FaceDetectionManager: NSObject, FaceDetectionManagerProtocol, AVCaptureVid
             let featureCenterY = feature.bounds.origin.y + feature.bounds.height / 2
             self.facePositionRatioFromLeft = Double(featureCenterX / ciImage.extent.width)
             self.facePositionRatioFromBottom = Double(featureCenterY / ciImage.extent.height)
-            self.faceSize = feature.bounds
+            self.faceDetectionFrameSize = ciImage.extent.size
+            self.faceSizeRatio = Double(feature.bounds.width) / Double(ciImage.extent.width)
         }
 
         self.isFaceDetected = isFaceDetected
-    }
-
-    func reset() {
-        self.isFaceDetected = false
-        self.facePositionRatioFromLeft = nil
-        self.facePositionRatioFromBottom = nil
-        self.faceSize = nil
     }
 
     private func camera(for cameraPosition: AVCaptureDevice.Position) -> AVCaptureDevice? {

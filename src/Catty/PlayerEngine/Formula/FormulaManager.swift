@@ -141,7 +141,7 @@ import CoreMotion
             TimeSecondSensor(),
 
             FaceDetectedSensor(faceDetectionManagerGetter: { faceDetectionManager }),
-            FaceSizeSensor(faceDetectionManagerGetter: { faceDetectionManager }),
+            FaceSizeSensor(sceneSize: sceneSize, faceDetectionManagerGetter: { faceDetectionManager }),
             FacePositionXSensor(sceneSize: sceneSize, faceDetectionManagerGetter: { faceDetectionManager }),
             FacePositionYSensor(sceneSize: sceneSize, faceDetectionManagerGetter: { faceDetectionManager }),
 

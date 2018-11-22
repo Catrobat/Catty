@@ -27,7 +27,8 @@ final class FaceDetectionManagerMock: FaceDetectionManagerProtocol {
     var isFaceDetected: Bool = false
     var facePositionRatioFromLeft: Double? = 0
     var facePositionRatioFromBottom: Double? = 0
-    var faceSize: CGRect? = CGRect.zero
+    var faceSizeRatio: Double? = 0
+    var faceDetectionFrameSize: CGSize?
 
     var isAvailable = true
     var isStarted = false
@@ -44,7 +45,8 @@ final class FaceDetectionManagerMock: FaceDetectionManagerProtocol {
         isFaceDetected = false
         facePositionRatioFromLeft = 0
         facePositionRatioFromBottom = 0
-        faceSize = CGRect.zero
+        faceSizeRatio = 0
+        faceDetectionFrameSize = CGSize.zero
     }
 
     func available() -> Bool {
