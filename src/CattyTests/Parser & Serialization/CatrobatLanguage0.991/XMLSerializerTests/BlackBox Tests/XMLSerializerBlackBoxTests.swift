@@ -24,16 +24,16 @@ import XCTest
 
 @testable import Pocket_Code
 
-final class XMLSerializerBlackBoxTests: XMLAbstractTestSwift {
+final class XMLSerializerBlackBoxTests: XMLAbstractTest {
     func testAirFight() {
         self.testParseXMLAndSerializeProgramAndCompareXML(xmlFile: "Air_fight_0.5_0991")
     }
     
     func testInvalidAirFight() {
         let program095 = self.getProgramForXML(xmlFile: "Air_fight_0.5_095")
-        let background = program095!.objectList.object(at: 0) as! SpriteObject
+        let background = program095.objectList.object(at: 0) as! SpriteObject
         background.name = "Invalid"
-        let equal = self.isProgram(firstProgram: program095!, equalToXML: "Air_fight_0.5_0991")
+        let equal = self.isProgram(firstProgram: program095, equalToXML: "Air_fight_0.5_0991")
         XCTAssertFalse(equal, "Serialized program and XML are not equal")
     }
     

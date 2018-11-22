@@ -24,13 +24,13 @@ import XCTest
 
 @testable import Pocket_Code
 
-class XMLParserBrickTests093: XMLAbstractTestSwift {
+class XMLParserBrickTests093: XMLAbstractTest {
     var parserContext: CBXMLParserContext = CBXMLParserContext(languageVersion: CGFloat(Float32(0.93)))
     var formulaManager: FormulaManager = FormulaManager()
     
     func testValidSetLookBrick() {
         let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgram"))
-        let xmlElement = document!.rootElement()
+        let xmlElement = document.rootElement()
     
         var brickElement = Array<Any>()
         var objectArray = Array<Any>()
@@ -64,7 +64,7 @@ class XMLParserBrickTests093: XMLAbstractTestSwift {
     
     func testValidSetVariableBrick() {
         let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgram"))
-        let xmlElement = document!.rootElement()
+        let xmlElement = document.rootElement()
         
         var brickElement = Array<Any>()
         do {
@@ -92,7 +92,7 @@ class XMLParserBrickTests093: XMLAbstractTestSwift {
     
     func testValidSetSizeToBrick() {
         let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgram"))
-        let xmlElement = document!.rootElement()
+        let xmlElement = document.rootElement()
 
         var brickElement = Array<Any>()
         var objectArray = Array<Any>()
@@ -134,7 +134,7 @@ class XMLParserBrickTests093: XMLAbstractTestSwift {
     func testValidForeverBrickAndLoopEndlessBrick() {
         let context = CBXMLParserContext()
         let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgram"))
-        let xmlElement = document!.rootElement()
+        let xmlElement = document.rootElement()
     
         var brickElement1 = Array<Any>()
         var brickElement2 = Array<Any>()
@@ -166,7 +166,7 @@ class XMLParserBrickTests093: XMLAbstractTestSwift {
     
     func testValidPlaceAtBrick() {
         let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgram"))
-        let xmlElement = document!.rootElement()
+        let xmlElement = document.rootElement()
         
         var brickElement = Array<Any>()
         do {
@@ -195,7 +195,7 @@ class XMLParserBrickTests093: XMLAbstractTestSwift {
     
     func testValidWaitBrick() {
         let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgram"))
-        let xmlElement = document!.rootElement()
+        let xmlElement = document.rootElement()
     
         var brickElement = Array<Any>()
         do {
@@ -222,7 +222,7 @@ class XMLParserBrickTests093: XMLAbstractTestSwift {
     
     func testValidShowBrick() {
         let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgram"))
-        let xmlElement = document!.rootElement()
+        let xmlElement = document.rootElement()
         
         var brickElement = Array<Any>()
         do {
@@ -242,7 +242,7 @@ class XMLParserBrickTests093: XMLAbstractTestSwift {
     
     func testValidGlideToBrick() {
         let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgram"))
-        let xmlElement = document!.rootElement()
+        let xmlElement = document.rootElement()
         
         var brickElement = Array<Any>()
         do {
@@ -276,7 +276,7 @@ class XMLParserBrickTests093: XMLAbstractTestSwift {
     
     func testValidHideBrick() {
         let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgram"))
-        let xmlElement = document!.rootElement()
+        let xmlElement = document.rootElement()
         
         var brickElement = Array<Any>()
         do {
@@ -296,7 +296,7 @@ class XMLParserBrickTests093: XMLAbstractTestSwift {
     
     func testValidPlaySoundBrick() {
         let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgram"))
-        let xmlElement = document!.rootElement()
+        let xmlElement = document.rootElement()
         
         var brickElement = Array<Any>()
         var objectArray = Array<Any>()
@@ -332,7 +332,7 @@ class XMLParserBrickTests093: XMLAbstractTestSwift {
     
     func testValidSetXBrick() {
         let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgramAllBricks093"))
-        let xmlElement = document!.rootElement()
+        let xmlElement = document.rootElement()
     
         var brickElement = Array<Any>()
         do {
@@ -358,7 +358,7 @@ class XMLParserBrickTests093: XMLAbstractTestSwift {
     
     func testValidSetXBrickEqual() {
         let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgramAllBricks093"))
-        let xmlElement = document!.rootElement()
+        let xmlElement = document.rootElement()
         
         var brickElement = Array<Any>()
         do {
@@ -396,7 +396,7 @@ class XMLParserBrickTests093: XMLAbstractTestSwift {
     
     func testValidSetYBrick() {
         let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgramAllBricks093"))
-        let xmlElement = document!.rootElement()
+        let xmlElement = document.rootElement()
         
         var brickElement = Array<Any>()
         do {
@@ -422,7 +422,7 @@ class XMLParserBrickTests093: XMLAbstractTestSwift {
     
     func testValidChangeXByNBrick() {
         let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgramAllBricks093"))
-        let xmlElement = document!.rootElement()
+        let xmlElement = document.rootElement()
         
         var brickElement = Array<Any>()
         do {
@@ -448,7 +448,7 @@ class XMLParserBrickTests093: XMLAbstractTestSwift {
     
     func testValidChangeYByNBrick() {
         let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgramAllBricks093"))
-        let xmlElement = document!.rootElement()
+        let xmlElement = document.rootElement()
         
         var brickElement = Array<Any>()
         do {
@@ -473,7 +473,7 @@ class XMLParserBrickTests093: XMLAbstractTestSwift {
     
     func testValidMoveNStepsBrick() {
         let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgramAllBricks093"))
-        let xmlElement = document!.rootElement()
+        let xmlElement = document.rootElement()
         
         var brickElement = Array<Any>()
         do {
@@ -498,7 +498,7 @@ class XMLParserBrickTests093: XMLAbstractTestSwift {
     
     func testValidTurnLeftBrick() {
         let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgramAllBricks093"))
-        let xmlElement = document!.rootElement()
+        let xmlElement = document.rootElement()
         
         var brickElement = Array<Any>()
         do {
@@ -523,7 +523,7 @@ class XMLParserBrickTests093: XMLAbstractTestSwift {
     
     func testValidTurnRightBrick() {
         let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgramAllBricks093"))
-        let xmlElement = document!.rootElement()
+        let xmlElement = document.rootElement()
         
         var brickElement = Array<Any>()
         do {
@@ -548,7 +548,7 @@ class XMLParserBrickTests093: XMLAbstractTestSwift {
     
     func testValidPointInDirectionBrick() {
         let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgramAllBricks093"))
-        let xmlElement = document!.rootElement()
+        let xmlElement = document.rootElement()
         
         var brickElement = Array<Any>()
         do {
@@ -573,7 +573,7 @@ class XMLParserBrickTests093: XMLAbstractTestSwift {
     
     func testValidStopAllSoundBrick() {
         let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgramAllBricks093"))
-        let xmlElement = document!.rootElement()
+        let xmlElement = document.rootElement()
     
         var brickElement = Array<Any>()
         do {
@@ -593,7 +593,7 @@ class XMLParserBrickTests093: XMLAbstractTestSwift {
     
     func testValidPointToBrick() {
         let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgramAllBricks093"))
-        let xmlElement = document!.rootElement()
+        let xmlElement = document.rootElement()
         
         var brickElement = Array<Any>()
         do {
@@ -621,7 +621,7 @@ class XMLParserBrickTests093: XMLAbstractTestSwift {
         let program = self.getProgramForXML(xmlFile: "PointToBrickWithoutSpriteObject")
         XCTAssertNotNil(program, "Program must not be nil!")
     
-        let moleTwo = program!.objectList.object(at: 1) as! SpriteObject
+        let moleTwo = program.objectList.object(at: 1) as! SpriteObject
         XCTAssertNotNil(moleTwo, "SpriteObject must not be nil!")
         XCTAssertTrue(moleTwo.name == "Mole 2", "Invalid object name!")
     
@@ -638,7 +638,7 @@ class XMLParserBrickTests093: XMLAbstractTestSwift {
     
     func testValidSetColorBrick() {
         let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgramAllBricks093"))
-        let xmlElement = document!.rootElement()
+        let xmlElement = document.rootElement()
         
         var brickElement = Array<Any>()
         do {
@@ -661,7 +661,7 @@ class XMLParserBrickTests093: XMLAbstractTestSwift {
     
     func testValidChangeColorByNBrick() {
         let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgramAllBricks093"))
-        let xmlElement = document!.rootElement()
+        let xmlElement = document.rootElement()
         
         var brickElement = Array<Any>()
         do {

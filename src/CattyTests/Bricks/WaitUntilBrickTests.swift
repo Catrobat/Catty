@@ -24,21 +24,19 @@ import XCTest
 
 @testable import Pocket_Code
 
-final class WaitUntilBrickTests : XMLAbstractTestSwift {
+final class WaitUntilBrickTests : XMLAbstractTest {
     
-    override func setUp() {
-        super.setUp()
-    }
+    lazy var program: Program = {
+        return getProgramForXML(xmlFile: "WaitUntilBrick0991")
+    }()
     
     func testWaitUntilBrick_conditionTrue_proceedsToNextBrick() {
-        let program = self.getProgramForXML(xmlFile: "WaitUntilBrick0991")
-        var testVar = program?.variables.getUserVariableNamed("testVar", for: program?.objectList[0] as! SpriteObject)
-        var hasFinishedWaiting = program?.variables.getUserVariableNamed("hasFinishedWaiting", for: program?.objectList[0] as! SpriteObject)
+        var testVar = program.variables.getUserVariableNamed("testVar", for: program.objectList[0] as! SpriteObject)
+        var hasFinishedWaiting = program.variables.getUserVariableNamed("hasFinishedWaiting", for: program.objectList[0] as! SpriteObject)
 
-        let sceneBuilder = SceneBuilder(program: program!).withFormulaManager(formulaManager: FormulaManager())
-        let scene = sceneBuilder.build()
+        let scene = createScene()
         scene.startProgram()
-        program!.variables.setUserVariable(testVar, toValue: NSNumber(integerLiteral: 1))
+        program.variables.setUserVariable(testVar, toValue: NSNumber(integerLiteral: 1))
 
         let conditionMetPredicate = NSPredicate(block: { variable , _ in
             let hasFinishedWaiting = (variable as? UserVariable)!.value as! NSNumber
@@ -47,34 +45,24 @@ final class WaitUntilBrickTests : XMLAbstractTestSwift {
 
         expectation(for: conditionMetPredicate, evaluatedWith: hasFinishedWaiting, handler: nil)
         waitForExpectations(timeout: 5, handler: nil)
-
-
-//        expectation(for: predicate(variable: hasFinishedWaiting!, shouldNotBe: NSNumber(integerLiteral: 1), forSeconds: 10), evaluatedWith: self, handler: nil)
-        //waitForExpectations(timeout:20, handler: nil)
     }
 
     func testWaitUntilBrick_conditionFalse_getsStuckInWaitUntilBrick() {
-        let program = self.getProgramForXML(xmlFile: "WaitUntilBrick0991")
-        var testVar = program?.variables.getUserVariableNamed("testVar", for: program?.objectList[0] as! SpriteObject)
-        var hasFinishedWaiting = program?.variables.getUserVariableNamed("hasFinishedWaiting", for: program?.objectList[0] as! SpriteObject)
+        var testVar = program.variables.getUserVariableNamed("testVar", for: program.objectList[0] as! SpriteObject)
+        var hasFinishedWaiting = program.variables.getUserVariableNamed("hasFinishedWaiting", for: program.objectList[0] as! SpriteObject)
 
-        let sceneBuilder = SceneBuilder(program: program!).withFormulaManager(formulaManager: FormulaManager())
-        let scene = sceneBuilder.build()
+        let scene = createScene()
         scene.startProgram()
         var testPredicate = createPredicate(variable: hasFinishedWaiting!, shouldNotBeEqual: NSNumber(integerLiteral: 1), forSeconds: 2)
 
         expectation(for: testPredicate, evaluatedWith: self, handler: nil)
         waitForExpectations(timeout: 4, handler: nil)
-
-
-        //        expectation(for: predicate(variable: hasFinishedWaiting!, shouldNotBe: NSNumber(integerLiteral: 1), forSeconds: 10), evaluatedWith: self, handler: nil)
-        //waitForExpectations(timeout:20, handler: nil)
     }
 
     func testWaitUntilBrickCondition_returnsTrue() {
-        var brick = WaitUntilBrick()
-        var script = Script()
-        var object = SpriteObjectMock()
+        let brick = WaitUntilBrick()
+        let script = Script()
+        let object = SpriteObjectMock()
         script.object = object
         brick.script = script
         brick.waitCondition = Formula(float: 0)
@@ -83,9 +71,9 @@ final class WaitUntilBrickTests : XMLAbstractTestSwift {
     }
 
     func testWaitUntilBrickCondition_returnsFalse() {
-        var brick = WaitUntilBrick()
-        var script = Script()
-        var object = SpriteObjectMock()
+        let brick = WaitUntilBrick()
+        let script = Script()
+        let object = SpriteObjectMock()
         script.object = object
         brick.script = script
         brick.waitCondition = Formula(float: 1)
@@ -106,7 +94,9 @@ final class WaitUntilBrickTests : XMLAbstractTestSwift {
             return Date().timeIntervalSince1970 > stopTime.timeIntervalSince1970
         })
     }
-
-
     
+    private func createScene() -> CBScene {
+        let sceneBuilder = SceneBuilder(program: program).withFormulaManager(formulaManager: FormulaManager())
+        return sceneBuilder.build()
+    }
 }

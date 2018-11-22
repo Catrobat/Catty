@@ -24,14 +24,14 @@ import XCTest
 
 @testable import Pocket_Code
 
-final class XMLParserTests098: XMLAbstractTestSwift {
+final class XMLParserTests098: XMLAbstractTest {
     let formulaManager = FormulaManager()
     
     func testFlashBrick() {
         let program = self.getProgramForXML(xmlFile: "LedFlashBrick098")
     
-        XCTAssertEqual(1, program!.objectList.count, "Invalid object list")
-        let object = program!.objectList.object(at: 0) as! SpriteObject
+        XCTAssertEqual(1, program.objectList.count, "Invalid object list")
+        let object = program.objectList.object(at: 0) as! SpriteObject
     
         XCTAssertEqual(1, object.scriptList.count, "Invalid script list")
         let script = object.scriptList.object(at: 0) as! Script
@@ -48,8 +48,8 @@ final class XMLParserTests098: XMLAbstractTestSwift {
     func testLedBrick() {
         let program = self.getProgramForXML(xmlFile: "LedFlashBrick098")
     
-        XCTAssertEqual(1, program!.objectList.count, "Invalid object list")
-        let object = program!.objectList.object(at: 0) as! SpriteObject
+        XCTAssertEqual(1, program.objectList.count, "Invalid object list")
+        let object = program.objectList.object(at: 0) as! SpriteObject
 
         XCTAssertEqual(1, object.scriptList.count, "Invalid script list")
         let script = object.scriptList.object(at: 0) as! Script
@@ -65,9 +65,9 @@ final class XMLParserTests098: XMLAbstractTestSwift {
     
     func testAddItemToUserListBrick() {
         let program = self.getProgramForXML(xmlFile: "AddItemToUserListBrick098")
-        XCTAssertEqual(1, program!.objectList.count, "Invalid object list")
+        XCTAssertEqual(1, program.objectList.count, "Invalid object list")
     
-        let object = program!.objectList.object(at: 0) as! SpriteObject
+        let object = program.objectList.object(at: 0) as! SpriteObject
         XCTAssertEqual(1, object.scriptList.count, "Invalid script list")
     
         let script = object.scriptList.object(at: 0) as! Script
@@ -89,9 +89,9 @@ final class XMLParserTests098: XMLAbstractTestSwift {
     
     func testDeleteItemOfUserListBrick() {
         let program = self.getProgramForXML(xmlFile: "DeleteItemOfUserListBrick098")
-        XCTAssertEqual(1, program!.objectList.count, "Invalid object list")
+        XCTAssertEqual(1, program.objectList.count, "Invalid object list")
     
-        let object = program!.objectList.object(at: 0) as! SpriteObject
+        let object = program.objectList.object(at: 0) as! SpriteObject
         XCTAssertEqual(1, object.scriptList.count, "Invalid script list")
     
         let script = object.scriptList.object(at: 0) as! Script
@@ -112,9 +112,9 @@ final class XMLParserTests098: XMLAbstractTestSwift {
     
     func testInsertItemIntoUserListBrick() {
         let program = self.getProgramForXML(xmlFile: "InsertItemIntoUserListBrick098")
-        XCTAssertEqual(1, program!.objectList.count, "Invalid object list")
+        XCTAssertEqual(1, program.objectList.count, "Invalid object list")
     
-        let object = program!.objectList.object(at: 0) as! SpriteObject
+        let object = program.objectList.object(at: 0) as! SpriteObject
         XCTAssertEqual(1, object.scriptList.count, "Invalid script list")
     
         let script = object.scriptList.object(at: 0) as! Script
@@ -141,9 +141,9 @@ final class XMLParserTests098: XMLAbstractTestSwift {
     
     func testReplaceItemInUserListBrick() {
         let program = self.getProgramForXML(xmlFile: "ReplaceItemInUserListBrick098")
-            XCTAssertEqual(1, program!.objectList.count, "Invalid object list")
+            XCTAssertEqual(1, program.objectList.count, "Invalid object list")
         
-        let object = program!.objectList.object(at: 0) as! SpriteObject
+        let object = program.objectList.object(at: 0) as! SpriteObject
         XCTAssertEqual(1, object.scriptList.count, "Invalid script list")
         
         let script = object.scriptList.object(at: 0) as! Script

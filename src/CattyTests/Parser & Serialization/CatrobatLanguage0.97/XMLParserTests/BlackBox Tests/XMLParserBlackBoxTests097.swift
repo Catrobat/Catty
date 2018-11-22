@@ -24,7 +24,7 @@ import XCTest
 
 @testable import Pocket_Code
 
-final class XMLParserBlackBoxTests097: XMLAbstractTestSwift {
+final class XMLParserBlackBoxTests097: XMLAbstractTest {
     
     func testAirFight() {
         self.compareProgram(firstProgramName: "Air_fight_0.5_095", withProgram: "Air_fight_0.5_097")

@@ -24,7 +24,7 @@ import XCTest
 
 @testable import Pocket_Code
 
-class XMLParserFormulaTests093: XMLAbstractTestSwift {
+class XMLParserFormulaTests093: XMLAbstractTest {
     var parserContext: CBXMLParserContext = CBXMLParserContext(languageVersion: CGFloat(Float32(0.93)))
     var formulaManager: FormulaManager = FormulaManager()
     
@@ -34,7 +34,7 @@ class XMLParserFormulaTests093: XMLAbstractTestSwift {
     
     func testValidFormulaList() {
         let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidFormulaList"))
-        let xmlElement = document!.rootElement()
+        let xmlElement = document.rootElement()
         var brickElement = Array<Any>()
         do {
             try brickElement = (xmlElement?.nodes(forXPath: "//program/objectList/object[1]/scriptList/script[1]/brickList/brick[2]"))!

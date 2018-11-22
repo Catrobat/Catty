@@ -24,14 +24,14 @@ import XCTest
 
 @testable import Pocket_Code
 
-final class XMLParserUserVariableTests095: XMLAbstractTestSwift {
+final class XMLParserUserVariableTests095: XMLAbstractTest {
     var parserContext = CBXMLParserContext(languageVersion: 0.95)
     
     func testValidVariables() {
         let xmlRoot = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "Airplane_with_shadow_095"))
-        XCTAssertNotNil(xmlRoot!.rootElement, "rootElement is nil")
+        XCTAssertNotNil(xmlRoot.rootElement, "rootElement is nil")
         
-        let variablesContainer = self.parserContext?.parse(from: xmlRoot!.rootElement(), withClass: VariablesContainer.self as? CBXMLNodeProtocol.Type) as! VariablesContainer
+        let variablesContainer = self.parserContext?.parse(from: xmlRoot.rootElement(), withClass: VariablesContainer.self as? CBXMLNodeProtocol.Type) as! VariablesContainer
         XCTAssertNotNil(variablesContainer, "VariablesContainer is nil");
         XCTAssertEqual(8, variablesContainer.objectVariableList.count(), "Invalid number of object variables")
 

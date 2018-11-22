@@ -24,13 +24,13 @@ import XCTest
 
 @testable import Pocket_Code
 
-final class XMLParserHeaderTests093: XMLAbstractTestSwift {
+final class XMLParserHeaderTests093: XMLAbstractTest {
     
      let parserContext = CBXMLParserContext(languageVersion: CGFloat(Float32(0.93)))
     
     func testValidHeader() {
         let xmlRoot = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgram"))
-        let firstElement = xmlRoot?.rootElement()?.elements(forName: "header")?.first as! GDataXMLElement
+        let firstElement = xmlRoot.rootElement()?.elements(forName: "header")?.first as! GDataXMLElement
         let header = self.parserContext?.parse(from: firstElement, withClass: Header.self) as! Header
    
         XCTAssertNotNil(header, "Header is nil")

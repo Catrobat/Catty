@@ -24,7 +24,7 @@ import XCTest
 
 @testable import Pocket_Code
 
-final class XMLParserBrickTests095: XMLAbstractTestSwift {
+final class XMLParserBrickTests095: XMLAbstractTest {
     var serializerContext = CBXMLSerializerContext()
     var parserContext = CBXMLParserContext(languageVersion: 0.95)
     

@@ -24,7 +24,7 @@ import XCTest
 
 @testable import Pocket_Code
 
-final class SpriteObjectMutableCopyTests: XMLAbstractTestSwift {
+final class SpriteObjectMutableCopyTests: XMLAbstractTest {
     
     func testIfCopiedSpriteObjectsAreEqualToOriginalForValidProgramAllBricks() {
         self.compareSpriteObjectsWithIsEqualMethodForProgramWithXML(xml: "ValidProgramAllBricks093")
@@ -128,9 +128,9 @@ final class SpriteObjectMutableCopyTests: XMLAbstractTestSwift {
     
     func compareSpriteObjectsWithIsEqualMethodForProgramWithXML(xml: String) {
         let program = self.getProgramForXML(xmlFile: xml)
-        XCTAssertTrue(program!.objectList.count > 0, "Invalid objectList")
+        XCTAssertTrue(program.objectList.count > 0, "Invalid objectList")
     
-        for object in program!.objectList {
+        for object in program.objectList {
             let spriteObject = object as! SpriteObject
             let context = CBMutableCopyContext()
             let copiedSpriteObject = spriteObject.mutableCopy(with: context) as! SpriteObject

@@ -24,7 +24,7 @@ import XCTest
 
 @testable import Pocket_Code
 
-class XMLParserObjectTests093: XMLAbstractTestSwift {
+class XMLParserObjectTests093: XMLAbstractTest {
     
     var parserContext = CBXMLParserContext(languageVersion: CGFloat(Float32(0.93)))
     
@@ -34,7 +34,7 @@ class XMLParserObjectTests093: XMLAbstractTestSwift {
     
     func testValidObjectList() {
         let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgram"))
-        let xmlElement = document?.rootElement()
+        let xmlElement = document.rootElement()
         
         let objectListElements = xmlElement?.elements(forName: "objectList")
         XCTAssertEqual(objectListElements!.count, 1)
@@ -85,7 +85,7 @@ class XMLParserObjectTests093: XMLAbstractTestSwift {
         let parserContext = CBXMLParserContext(languageVersion: CGFloat(Float32(0.93)))
         let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgramAllBricks093"))
         
-        let xmlElement = document?.rootElement()
+        let xmlElement = document.rootElement()
         
         let objectListElements = xmlElement?.elements(forName: "objectList")
         XCTAssertEqual(objectListElements!.count, 1)
