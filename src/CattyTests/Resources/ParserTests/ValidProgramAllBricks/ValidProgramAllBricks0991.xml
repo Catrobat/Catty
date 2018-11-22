@@ -495,9 +495,17 @@
             </brick>
             <brick type="ChooseCameraBrick">
                 <spinnerSelectionID>0</spinnerSelectionID>
+                <spinnerValues>
+                    <string>back</string>
+                    <string>front</string>
+                </spinnerValues>
             </brick>
             <brick type="ChooseCameraBrick">
                 <spinnerSelectionID>1</spinnerSelectionID>
+                <spinnerValues>
+                    <string>back</string>
+                    <string>front</string>
+                </spinnerValues>
             </brick>
             <brick type="HideTextBrick">
                 <userVariable reference="../../brick[13]/userVariable"/>

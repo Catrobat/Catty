@@ -524,6 +524,9 @@
 "Error" = "Error";
 
 /* No comment provided by engineer. */
+"Error saving file" = "Error saving file";
+
+/* No comment provided by engineer. */
 "Explore" = "Explore";
 
 /* No comment provided by engineer. */
@@ -1166,6 +1169,9 @@
 "position_y" = "position_y";
 
 /* No comment provided by engineer. */
+"Preview" = "Preview";
+
+/* No comment provided by engineer. */
 "Previous background" = "Previous background";
 
 /* No comment provided by engineer. */
@@ -1273,9 +1279,6 @@
 /* No comment provided by engineer. */
 "Saturday" = "Saturday";
 
-/* Action sheet menu title */
-"Save Screenshot to" = "Save Screenshot to";
-
 /* paint */
 "Save to CameraRoll" = "Save to CameraRoll";
 
@@ -1296,15 +1299,6 @@
 
 /* No comment provided by engineer. */
 "screen_touch_y" = "screen_touch_y";
-
-/* No comment provided by engineer. */
-"Screenshot" = "Screenshot";
-
-/* No comment provided by engineer. */
-"Screenshot saved to Camera Roll" = "Screenshot saved to Camera Roll";
-
-/* No comment provided by engineer. */
-"Screenshot saved to project" = "Screenshot saved to project";
 
 /* No comment provided by engineer. */
 "Script" = "Script";
@@ -1365,9 +1359,6 @@
 
 /* No comment provided by engineer. */
 "Set Arduino PWM~ pin" = "Set Arduino PWM~ pin";
-
-/* No comment provided by engineer. */
-"Set as Preview Image" = "Set as Preview Image";
 
 /* No comment provided by engineer. */
 "Set background" = "Set background";

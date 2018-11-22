@@ -56,7 +56,7 @@
 
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
-    self.listFormula = [[Formula alloc] initWithZero];
+    self.listFormula = [[Formula alloc] initWithInteger:1];
     if(spriteObject) {
         NSArray *lists = [spriteObject.program.variables allListsForObject:spriteObject];
         if([lists count] > 0)

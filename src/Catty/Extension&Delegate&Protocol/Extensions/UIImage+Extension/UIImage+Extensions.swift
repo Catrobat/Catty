@@ -20,13 +20,12 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
-#import "Program.h"
-
-@interface SaveToProjectActivity : UIActivity
-
-@property (nonatomic,strong)NSString *path;
-@property (nonatomic,strong)UIImage *image;
-
-- (id)initWithImagePath:(NSString *)path;
-@end
+extension UIImage {
+    func crop(rect: CGRect) -> UIImage? {
+        UIGraphicsBeginImageContextWithOptions(rect.size, false, self.scale)
+        self.draw(at: CGPoint(x: rect.origin.x * -1, y: rect.origin.y * -1))
+        let croppedImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return croppedImage
+    }
+}
