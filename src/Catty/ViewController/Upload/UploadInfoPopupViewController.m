@@ -33,7 +33,7 @@
 #import "KeychainUserDefaultsDefines.h"
 #import "JNKeychain.h"
 #import "BDKNotifyHUD.h"
-#import "LoadingView.h"
+#import "Pocket_Code-Swift.h"
 
 #define uploadParameterTag @"upload"                 //zip file with program
 #define fileChecksumParameterTag @"fileChecksum"     //md5 hash

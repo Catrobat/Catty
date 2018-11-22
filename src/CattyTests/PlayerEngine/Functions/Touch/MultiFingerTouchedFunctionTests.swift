@@ -25,82 +25,83 @@ import XCTest
 @testable import Pocket_Code
 
 class MultiFingerTouchedFunctionTests: XCTestCase {
-    
+
     var touchManager: TouchManagerMock!
     var function: MultiFingerTouchedFunction!
-    
+
     let screenWidth = 500
     let screenHeight = 500
-    
+
     var spriteObject: SpriteObject!
     var spriteNode: CBSpriteNodeMock!
-    
+
     override func setUp() {
         touchManager = TouchManagerMock()
         function = MultiFingerTouchedFunction { [weak self] in self?.touchManager }
-        
+
         spriteObject = SpriteObject()
         spriteNode = CBSpriteNodeMock(spriteObject: spriteObject)
-        spriteNode.mockedScene = SceneBuilder(program: ProgramMock(width:CGFloat(screenWidth), andHeight: CGFloat(screenHeight))).build()
+        spriteNode.mockedScene = SceneBuilder(program: ProgramMock(width: CGFloat(screenWidth), andHeight: CGFloat(screenHeight))).build()
     }
-    
+
     override func tearDown() {
         touchManager = nil
         function = nil
         spriteNode = nil
+        super.tearDown()
     }
-    
+
     func testDefaultValue() {
-        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: "invalidParameter" as AnyObject), accuracy: 0.0001)
-        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: nil), accuracy: 0.0001)
-        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: 0 as AnyObject), accuracy: 0.0001)
-        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: 1 as AnyObject), accuracy: 0.0001)
-        
+        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: "invalidParameter" as AnyObject), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: nil), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: 0 as AnyObject), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: 1 as AnyObject), accuracy: Double.epsilon)
+
         function = MultiFingerTouchedFunction { nil }
-        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: 1 as AnyObject), accuracy: 0.0001)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: 1 as AnyObject), accuracy: Double.epsilon)
     }
-    
+
     func testValue() {
         let firstTouch = CGPoint(x: 15, y: 20)
         let secondTouch = CGPoint(x: 30, y: 45)
         touchManager.touches = [firstTouch]
-        
-        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: 0 as AnyObject), accuracy: 0.0001)
-        
+
+        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: 0 as AnyObject), accuracy: Double.epsilon)
+
         touchManager.isScreenTouched = false
-        XCTAssertEqual(0.0, function.value(parameter: 1 as AnyObject), accuracy: 0.0001)
-        
+        XCTAssertEqual(0.0, function.value(parameter: 1 as AnyObject), accuracy: Double.epsilon)
+
         touchManager.isScreenTouched = true
-        XCTAssertEqual(1.0, function.value(parameter: 1 as AnyObject), accuracy: 0.0001)
-        
+        XCTAssertEqual(1.0, function.value(parameter: 1 as AnyObject), accuracy: Double.epsilon)
+
         touchManager.touches = [firstTouch, secondTouch]
-        XCTAssertEqual(0.0, function.value(parameter: 1 as AnyObject), accuracy: 0.0001)
-        XCTAssertEqual(1.0, function.value(parameter: 2 as AnyObject), accuracy: 0.0001)
-        
+        XCTAssertEqual(0.0, function.value(parameter: 1 as AnyObject), accuracy: Double.epsilon)
+        XCTAssertEqual(1.0, function.value(parameter: 2 as AnyObject), accuracy: Double.epsilon)
+
         touchManager.isScreenTouched = false
-        XCTAssertEqual(0.0, function.value(parameter: 2 as AnyObject), accuracy: 0.0001)
+        XCTAssertEqual(0.0, function.value(parameter: 2 as AnyObject), accuracy: Double.epsilon)
     }
-    
+
     func testParameter() {
         XCTAssertEqual(.number(defaultValue: 1), function.firstParameter())
     }
-    
+
     func testTag() {
         XCTAssertEqual("MULTI_FINGER_TOUCHED", type(of: function).tag)
     }
-    
+
     func testName() {
         XCTAssertEqual(kUIFESensorFingerTouched, type(of: function).name)
     }
-    
+
     func testRequiredResources() {
         XCTAssertEqual(ResourceType.touchHandler, type(of: function).requiredResource)
     }
-    
+
     func testIsIdempotent() {
         XCTAssertFalse(type(of: function).isIdempotent)
     }
-    
+
     func testFormulaEditorSection() {
         XCTAssertEqual(.device(position: type(of: function).position), function.formulaEditorSection())
     }

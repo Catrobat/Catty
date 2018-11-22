@@ -25,7 +25,7 @@ import XCTest
 @testable import Pocket_Code
 
 final class InternFormulaKeyboardAdapterTests: XCTestCase {
-    
+
     func testReplaceFunctionButKeepParameters() {
         let internTokenList = NSMutableArray(array: [InternToken(type: TOKEN_TYPE_FUNCTION_NAME, andValue: CosFunction.tag),
                                                      InternToken(type: TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_OPEN),
@@ -37,25 +37,25 @@ final class InternFormulaKeyboardAdapterTests: XCTestCase {
                                                      InternToken(type: TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_CLOSE),
                                                      InternToken(type: TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_CLOSE),
                                                      InternToken(type: TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_CLOSE)])
-        
+
         let internFormula = InternFormula(internTokenList: internTokenList)!
         internFormula.generateExternFormulaStringAndInternExternMapping()
-        
+
         setCursorAtEndAndAssertSelection(internFormula, expectedStartIndex: 0, expectedEndIndex: 9)
-        
+
         internFormula.handleKeyInput(for: RandFunction())
-        
+
         assertSelection(internFormula, expectedStartIndex: 2, expectedEndIndex: 8)
         setCursorAtEndAndAssertSelection(internFormula, expectedStartIndex: 0, expectedEndIndex: 11)
-        
+
         internFormula.handleKeyInput(for: SqrtFunction())
-        
+
         let doubleClickIndex = internFormula.getExternFormulaString().count
-        
+
         assertSelection(internFormula, expectedStartIndex: 2, expectedEndIndex: 8)
         setCursorAndAssertSelection(internFormula, cursorIndex: doubleClickIndex, expectedStartIndex: 0, expectedEndIndex: 9)
     }
-    
+
     func testReplaceFunctionByToken() {
         let internTokenList = NSMutableArray(array: [InternToken(type: TOKEN_TYPE_FUNCTION_NAME, andValue: CosFunction.tag),
                                                      InternToken(type: TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_OPEN),
@@ -67,30 +67,30 @@ final class InternFormulaKeyboardAdapterTests: XCTestCase {
                                                      InternToken(type: TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_CLOSE),
                                                      InternToken(type: TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_CLOSE),
                                                      InternToken(type: TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_CLOSE)])
-        
+
         let internFormula = InternFormula(internTokenList: internTokenList)!
         internFormula.generateExternFormulaStringAndInternExternMapping()
-        
+
         setCursorAtEndAndAssertSelection(internFormula, expectedStartIndex: 0, expectedEndIndex: 9)
-        
+
         internFormula.handleKeyInput(withName: "4", butttonType: 5)
         internFormula.handleKeyInput(withName: "2", butttonType: 3)
-        
+
         XCTAssertNil(internFormula.getSelection())
         setCursorAtEndAndAssertSelection(internFormula, expectedStartIndex: 0, expectedEndIndex: 0)
     }
-    
+
     private func setCursorAtEndAndAssertSelection(_ internFormula: InternFormula, expectedStartIndex: Int, expectedEndIndex: Int) {
         let cursorIndex = internFormula.getExternFormulaString().count
         setCursorAndAssertSelection(internFormula, cursorIndex: cursorIndex, expectedStartIndex: expectedStartIndex, expectedEndIndex: expectedEndIndex)
     }
-        
+
     private func setCursorAndAssertSelection(_ internFormula: InternFormula, cursorIndex: Int, expectedStartIndex: Int, expectedEndIndex: Int) {
         internFormula.setCursorAndSelection(Int32(truncatingIfNeeded: cursorIndex), selected: true)
-        
+
         assertSelection(internFormula, expectedStartIndex: expectedStartIndex, expectedEndIndex: expectedEndIndex)
     }
-    
+
     private func assertSelection(_ internFormula: InternFormula, expectedStartIndex: Int, expectedEndIndex: Int) {
         XCTAssertEqual(expectedStartIndex, internFormula.getSelection().getStartIndex())
         XCTAssertEqual(expectedEndIndex, internFormula.getSelection().getEndIndex())

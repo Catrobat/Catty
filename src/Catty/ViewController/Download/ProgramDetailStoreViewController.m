@@ -28,7 +28,6 @@
 #import "ProgramTableViewController.h"
 #import "Util.h"
 #import "NetworkDefines.h"
-#import "LoadingView.h"
 #import "EVCircularProgressView.h"
 #import "CreateView.h"
 #import "ProgramUpdateDelegate.h"

@@ -21,28 +21,28 @@
  */
 
 @objc class FingerTouchedSensor: NSObject, TouchSensor {
-    
+
     @objc static let tag = "FINGER_TOUCHED"
     static let name = kUIFESensorFingerTouched
     static let defaultRawValue = 0.0
     static let requiredResource = ResourceType.touchHandler
-    static let position = 120 
+    static let position = 120
 
     let getTouchManager: () -> TouchManagerProtocol?
-    
+
     init(touchManagerGetter: @escaping () -> TouchManagerProtocol?) {
         self.getTouchManager = touchManagerGetter
     }
-    
+
     func tag() -> String {
         return type(of: self).tag
     }
-    
+
     func rawValue() -> Double {
         guard let isTouched = getTouchManager()?.screenTouched() else { return type(of: self).defaultRawValue }
         return isTouched ? 1.0 : 0.0
     }
-    
+
     func convertToStandardized(rawValue: Double, for spriteObject: SpriteObject) -> Double {
         return rawValue
     }

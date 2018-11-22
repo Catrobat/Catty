@@ -21,39 +21,39 @@
  */
 
 class PositionYSensor: ObjectDoubleSensor {
-    
+
     static let tag = "OBJECT_Y"
     static let name = kUIFEObjectPositionY
     static let defaultRawValue = 0.0
     static let position = 70
     static let requiredResource = ResourceType.noResources
-    
+
     func tag() -> String {
         return type(of: self).tag
     }
-    
+
     static func rawValue(for spriteObject: SpriteObject) -> Double {
         guard let spriteNode = spriteObject.spriteNode else { return PositionYSensor.defaultRawValue }
-        
+
         return Double(spriteNode.position.y)
     }
-    
+
     static func setRawValue(userInput: Double, for spriteObject: SpriteObject) {
         let rawValue = convertToRaw(userInput: userInput, for: spriteObject)
         spriteObject.spriteNode.position.y = CGFloat(rawValue)
     }
-    
+
     static func convertToRaw(userInput: Double, for spriteObject: SpriteObject) -> Double {
         guard let scene = spriteObject.spriteNode.scene else { return defaultRawValue }
-        return Double(scene.size.height)/2.0 + userInput
+        return Double(scene.size.height) / 2.0 + userInput
     }
-    
+
     // We have to move (0, 0) from bottom left to the center
     static func convertToStandardized(rawValue: Double, for spriteObject: SpriteObject) -> Double {
         guard let spriteNode = spriteObject.spriteNode, let scene = spriteNode.scene else { return defaultRawValue }
-        return rawValue - Double(scene.size.height)/2.0
+        return rawValue - Double(scene.size.height) / 2.0
     }
-    
+
     func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
         return .object(position: type(of: self).position)
     }

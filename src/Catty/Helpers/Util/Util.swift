@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-func synchronized(lock: AnyObject, closure: () -> ()) {
+func synchronized(lock: AnyObject, closure: () -> Void) {
     objc_sync_enter(lock)
     closure()
     objc_sync_exit(lock)

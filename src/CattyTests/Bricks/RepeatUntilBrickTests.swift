@@ -30,22 +30,22 @@ final class RepeatUntilBrickTests: XCTestCase {
     var object: SpriteObjectMock!
     var script: Script!
     var brick: RepeatUntilBrick!
-    
+
     override func setUp() {
         formulaInterpreter = FormulaManager()
         brick = RepeatUntilBrick()
-        
+
         object = SpriteObjectMock()
         script = Script()
         script.object = object
-        
+
         brick.script = script
     }
-    
+
     func testRepeatUntil() {
         brick.repeatCondition = Formula(double: 0)
         XCTAssertTrue(brick.checkCondition(formulaInterpreter: formulaInterpreter))
-        
+
         brick.repeatCondition = Formula(double: 1)
         XCTAssertFalse(brick.checkCondition(formulaInterpreter: formulaInterpreter))
     }

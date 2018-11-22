@@ -24,13 +24,13 @@ protocol ObjectDoubleSensor: ObjectSensor {
 
     // The iOS device specific value of the sensor
     static func rawValue(for spriteObject: SpriteObject) -> Double
-    
+
     // Convert the Pocket Code standardized sensor value to the iOS specific value (rawValue)
     static func convertToRaw(userInput: Double, for spriteObject: SpriteObject) -> Double
-    
+
     // Set the iOS specific value of the sensor by converting the user input to a standardized raw value
-    static func setRawValue(userInput: Double, for spriteObject: SpriteObject) -> Void
-    
+    static func setRawValue(userInput: Double, for spriteObject: SpriteObject)
+
     // Convert the iOS specific value (rawValue) to the Pocket Code standardized sensor value
     static func convertToStandardized(rawValue: Double, for spriteObject: SpriteObject) -> Double
 }
@@ -41,7 +41,7 @@ extension ObjectDoubleSensor {
         let rawValue = self.rawValue(for: spriteObject)
         return convertToStandardized(rawValue: rawValue, for: spriteObject)
     }
-    
+
     static func standardizedRawValue(for spriteObject: SpriteObject) -> Double {
         return convertToStandardized(rawValue: defaultRawValue, for: spriteObject)
     }

@@ -25,65 +25,66 @@ import XCTest
 @testable import Pocket_Code
 
 final class AltitudeSensorTest: XCTestCase {
-    
+
     var locationManager: LocationManagerMock!
     var sensor: AltitudeSensor!
-    
+
     override func setUp() {
+        super.setUp()
         locationManager = LocationManagerMock()
         sensor = AltitudeSensor { [weak self] in self?.locationManager }
     }
-    
+
     override func tearDown() {
         sensor = nil
         locationManager = nil
+        super.tearDown()
     }
-    
+
     func testDefaultRawValue() {
         let sensor = AltitudeSensor { nil }
-        XCTAssertEqual(AltitudeSensor.defaultRawValue, sensor.rawValue(), accuracy: 0.0001)
+        XCTAssertEqual(AltitudeSensor.defaultRawValue, sensor.rawValue(), accuracy: Double.epsilon)
     }
-    
+
     func testRawValue() {
         // sea level
         locationManager.altitude = 0
         XCTAssertEqual(0, sensor.rawValue())
-        
+
         // below sea level
         locationManager.altitude = -250
         XCTAssertEqual(-250, sensor.rawValue())
-        
+
         // field
         locationManager.altitude = 600
         XCTAssertEqual(600, sensor.rawValue())
-        
+
         // mountain
         locationManager.altitude = 1500
         XCTAssertEqual(1500, sensor.rawValue())
-        
+
         // Mt. Everest
         locationManager.altitude = 8848
         XCTAssertEqual(8848, sensor.rawValue())
-        
+
         // float attitude
         locationManager.altitude = 2555.875
         XCTAssertEqual(2555.875, sensor.rawValue())
     }
-    
+
     func testConvertToStandardized() {
         XCTAssertEqual(100, sensor.convertToStandardized(rawValue: 100))
     }
-    
+
     func testTag() {
         XCTAssertEqual("ALTITUDE", sensor.tag())
     }
-    
+
     func testRequiredResources() {
         XCTAssertEqual(ResourceType.location, type(of: sensor).requiredResource)
     }
-    
+
     func testFormulaEditorSection() {
         XCTAssertEqual(.device(position: type(of: sensor).position), sensor.formulaEditorSection(for: SpriteObject()))
     }
 }
-

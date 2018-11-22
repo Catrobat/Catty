@@ -32,6 +32,7 @@
 #import "BroadcastBrick.h"
 #import "BroadcastScript.h"
 #import "KeychainUserDefaultsDefines.h"
+#import "BDKNotifyHUD.h"
 #import <objc/runtime.h>
 #import "OrderedDictionary.h"
 #import "Pocket_Code-Swift.h"
@@ -791,6 +792,36 @@
     string = [string stringByReplacingOccurrencesOfString:@"%3C" withString:@"<"];
     string = [string stringByReplacingOccurrencesOfString:@"%3E" withString:@">"];
     return string;
+}
+
++ (void)showNotificationWithMessage:(NSString *)message
+{
+    BDKNotifyHUD *notficicationHud = [BDKNotifyHUD notifyHUDWithImage:nil text:message];
+    UIViewController *vc = [Util topmostViewController];
+    
+    notficicationHud.destinationOpacity = kBDKNotifyHUDDestinationOpacity;
+    notficicationHud.center = CGPointMake(vc.view.center.x, vc.view.center.y);
+    
+    [vc.view addSubview:notficicationHud];
+    [notficicationHud presentWithDuration:kBDKNotifyHUDPresentationDuration
+                                    speed:kBDKNotifyHUDPresentationSpeed
+                                   inView:vc.view
+                               completion:^{ [notficicationHud removeFromSuperview]; }];
+}
+
++ (void)showNotificationForSaveAction {
+    BDKNotifyHUD *hud = [BDKNotifyHUD notifyHUDWithImage:[UIImage imageNamed:kBDKNotifyHUDCheckmarkImageName] text:kLocalizedSaved];
+    UIViewController *vc = [Util topmostViewController];
+    
+    hud.destinationOpacity = kBDKNotifyHUDDestinationOpacity;
+    hud.center = CGPointMake(vc.view.center.x, vc.view.center.y + kBDKNotifyHUDCenterOffsetY);
+    hud.tag = kSavedViewTag;
+    
+    [vc.view addSubview:hud];
+    [hud presentWithDuration:kBDKNotifyHUDPresentationDuration
+                       speed:kBDKNotifyHUDPresentationSpeed
+                      inView:vc.view
+                  completion:^{ [hud removeFromSuperview]; }];
 }
 
 + (BOOL)isPhiroActivated

@@ -21,20 +21,19 @@
  */
 
 extension SayBubbleBrick: CBInstructionProtocol {
-    
+
     func instruction() -> CBInstruction {
-        return .action { (context) in SKAction.run(self.actionBlock(context: context)) }
+        return .action { context in SKAction.run(self.actionBlock(context: context)) }
     }
-    
-    func actionBlock(context: CBScriptContextProtocol) -> ()->() {
+
+    func actionBlock(context: CBScriptContextProtocol) -> () -> Void {
         guard let object = self.script?.object,
-        let spriteNode = object.spriteNode
-        else { fatalError("This should never happen!") }
+            let spriteNode = object.spriteNode
+            else { fatalError("This should never happen!") }
 
         return {
             var speakText = context.formulaInterpreter.interpretString(self.formula, for: object)
-            if(Double(speakText) !=  nil)
-            {
+            if Double(speakText) != nil {
                 let num = (speakText as NSString).doubleValue
                 speakText = (num as NSNumber).stringValue
             }

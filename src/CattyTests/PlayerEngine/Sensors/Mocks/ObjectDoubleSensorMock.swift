@@ -23,38 +23,38 @@
 @testable import Pocket_Code
 
 final class ObjectDoubleSensorMock: SensorMock, ObjectDoubleSensor {
-    
+
     private static var mockedValue: Double = 0
-    
+
     init(tag: String, value: Double, formulaEditorSection: FormulaEditorSection) {
         super.init(tag: tag, formulaEditorSection: formulaEditorSection)
         type(of: self).mockedValue = value
     }
-    
+
     override convenience init(tag: String, formulaEditorSection: FormulaEditorSection) {
         self.init(tag: tag, value: 0, formulaEditorSection: formulaEditorSection)
     }
-    
+
     convenience init(tag: String, value: Double) {
         self.init(tag: tag, value: value, formulaEditorSection: .hidden)
     }
-    
+
     convenience init(tag: String) {
         self.init(tag: tag, formulaEditorSection: .hidden)
     }
-    
+
     static func rawValue(for spriteObject: SpriteObject) -> Double {
         return mockedValue
     }
-    
+
     static func convertToStandardized(rawValue: Double, for spriteObject: SpriteObject) -> Double {
         return rawValue
     }
-    
+
     static func convertToRaw(userInput: Double, for spriteObject: SpriteObject) -> Double {
         return userInput
     }
-    
-    static func setRawValue(userInput: Double, for spriteObject: SpriteObject) -> Void {
+
+    static func setRawValue(userInput: Double, for spriteObject: SpriteObject) {
     }
 }

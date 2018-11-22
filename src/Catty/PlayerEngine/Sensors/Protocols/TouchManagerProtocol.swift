@@ -21,21 +21,21 @@
  */
 
 protocol TouchManagerProtocol {
-    
-    func startTrackingTouches(for scene: CBScene) -> Void
-    
-    func stopTrackingTouches() -> Void
-    
+
+    func startTrackingTouches(for scene: CBScene)
+
+    func stopTrackingTouches()
+
     func reset()
-    
+
     // Returns true if screen is currently touched
     func screenTouched() -> Bool
-    
+
     func numberOfTouches() -> Int
-    
+
     // Returns a SpriteKit speficic position which needs to be converted
     func lastPositionInScene() -> CGPoint?
-    
+
     // Returns a SpriteKit speficic position which needs to be converted
     func getPositionInScene(for touchNumber: Int) -> CGPoint?
 }

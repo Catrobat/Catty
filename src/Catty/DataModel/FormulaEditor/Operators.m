@@ -226,10 +226,10 @@
             name = @"-";
             break;
         case MULT:
-            name = @"*";
+            name = @"×";
             break;
         case DIVIDE:
-            name = @"/";
+            name = @"÷";
             break;
         case DECIMAL_MARK:
             name = [formatter decimalSeparator];
@@ -242,7 +242,6 @@
     
     return name;
 }
-
 
 + (Operator)getOperatorByValue:(NSString*)name
 {
@@ -290,7 +289,7 @@
         return DECIMAL_MARK;
     }
     
-//    NSError(@"Unknown Operator: %@", name);
+    //NSError(@"Unknown Operator: %@", name);
     return NO_OPERATOR;
 }
 

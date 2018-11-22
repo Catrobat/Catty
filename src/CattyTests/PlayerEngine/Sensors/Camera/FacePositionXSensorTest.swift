@@ -25,54 +25,55 @@ import XCTest
 @testable import Pocket_Code
 
 final class FacePositionXSensorTest: XCTestCase {
-    
+
     var sensor: FacePositionXSensor!
     var cameraManagerMock: FaceDetectionManagerMock!
-    
-    func testDefaultRawValue() {
-        let sensor = FacePositionXSensor { nil }
-        XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(), accuracy: 0.0001)
-    }
-    
+
     override func setUp() {
+        super.setUp()
         self.cameraManagerMock = FaceDetectionManagerMock()
         self.sensor = FacePositionXSensor { [ weak self ] in self?.cameraManagerMock }
     }
-    
+
     override func tearDown() {
         self.cameraManagerMock = nil
         self.sensor = nil
+        super.tearDown()
     }
-    
+
+    func testDefaultRawValue() {
+        let sensor = FacePositionXSensor { nil }
+        XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(), accuracy: Double.epsilon)
+    }
+
     func testRawValue() {
         // only positive values - (0, 0) is at the bottom left
         self.cameraManagerMock.facePositionY = 0
         XCTAssertEqual(0, self.sensor.rawValue())
-        
+
         self.cameraManagerMock.facePositionY = 56
         XCTAssertEqual(56, self.sensor.rawValue())
     }
-    
-    
+
     func testConvertToStandardized() {
         // middle
         XCTAssertEqual(180 - Double(Util.screenWidth()) / 3.8, sensor.convertToStandardized(rawValue: 180))
-        
+
         // half right
         XCTAssertEqual(80 - Double(Util.screenWidth()) / 3.8, sensor.convertToStandardized(rawValue: 80))
-        
+
         // half left
         XCTAssertEqual(280 - Double(Util.screenWidth()) / 3.8, sensor.convertToStandardized(rawValue: 280))
     }
-    
+
     func testTag() {
         XCTAssertEqual("FACE_X_POSITION", sensor.tag())
     }
-    
+
     func testRequiredResources() {
         XCTAssertEqual(ResourceType.faceDetection, type(of: sensor).requiredResource)
     }
-    
+
     func testFormulaEditorSection() {
         XCTAssertEqual(.device(position: type(of: sensor).position), sensor.formulaEditorSection(for: SpriteObject()))
     }

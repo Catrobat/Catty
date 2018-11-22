@@ -20,12 +20,29 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
+import Foundation
 
-@interface LoadingView : UIView
+@objc extension PhiroMotorStopBrick: CBInstructionProtocol {
 
-- (void)show;
+    @nonobjc func instruction() -> CBInstruction {
 
-- (void)hide;
+        return CBInstruction.execClosure { context, _ in
 
-@end
+            guard let phiro = BluetoothService.swiftSharedInstance.phiro else {
+                return
+            }
+            switch self.phiroMotor() {
+            case .Left:
+                phiro.stopLeftMotor()
+            case .Right:
+                phiro.stopRightMotor()
+            case .Both:
+                phiro.stopRightMotor()
+                phiro.stopLeftMotor()
+            }
+            context.state = .runnable
+        }
+
+    }
+
+}

@@ -21,28 +21,28 @@
  */
 
 protocol FormulaManagerProtocol: FormulaInterpreterProtocol {
-    
+
     func setup(for program: Program, and scene: CBScene)
-    
+
     func setup(for formula: Formula)
-    
+
     func stop()
-    
+
     func pause()
-    
+
     func resume()
-    
+
     func unavailableResources(for requiredResources: NSInteger) -> NSInteger
-    
+
     func functionExists(tag: String) -> Bool
-    
+
     func sensorExists(tag: String) -> Bool
-    
+
     func formulaEditorItems(spriteObject: SpriteObject) -> [FormulaEditorItem]
-    
+
     func formulaEditorItemsForMathSection(spriteObject: SpriteObject) -> [FormulaEditorItem]
-    
+
     func formulaEditorItemsForObjectSection(spriteObject: SpriteObject) -> [FormulaEditorItem]
-    
+
     func formulaEditorItemsForDeviceSection(spriteObject: SpriteObject) -> [FormulaEditorItem]
 }

@@ -24,6 +24,8 @@
 
 @interface RuntimeImageCache : ImageCache
 
++ (instancetype)sharedImageCache;
+
 - (UIImage*)cachedImageForName:(NSString*)imageName;
 
 - (UIImage*)cachedImageForPath:(NSString*)path;

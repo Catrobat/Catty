@@ -21,38 +21,37 @@
  */
 
 @objc extension SayForBubbleBrick: CBInstructionProtocol {
-    
+
     @nonobjc func instruction() -> CBInstruction {
         guard let object = self.script?.object,
             let _ = object.spriteNode
             else { fatalError("This should never happen!") }
-        
+
         return .longDurationAction(duration: CBDuration.varTime(formula: self.intFormula), closure: {
-            (duration, context) -> SKAction in
-            return SKAction.sequence([SKAction.run(self.actionBlock(object, context.formulaInterpreter)), SKAction.wait(forDuration: duration), SKAction.run(self.removeActionBlock(object))])
+            duration, context -> SKAction in
+            SKAction.sequence([SKAction.run(self.actionBlock(object, context.formulaInterpreter)), SKAction.wait(forDuration: duration), SKAction.run(self.removeActionBlock(object))])
         })
     }
-    
-    @objc func actionBlock(_ object: SpriteObject, _ formulaInterpreter: FormulaInterpreterProtocol) -> ()->() {
+
+    @objc func actionBlock(_ object: SpriteObject, _ formulaInterpreter: FormulaInterpreterProtocol) -> () -> Void {
         return {
             var speakText = formulaInterpreter.interpretString(self.stringFormula, for: object)
-            
-            if(Double(speakText) !=  nil) {
+
+            if Double(speakText) != nil {
                 let num = (speakText as NSString).doubleValue
                 speakText = (num as NSNumber).stringValue
             }
             BubbleBrickHelper.addBubble(to: object.spriteNode, withText: speakText, andType: CBBubbleType.speech)
         }
     }
-    
-    @nonobjc func removeActionBlock(_ object: SpriteObject) -> ()->() {
+
+    @nonobjc func removeActionBlock(_ object: SpriteObject) -> () -> Void {
         return {
-            let oldBubble = object.spriteNode.childNode(withName: kBubbleBrickNodeName);
-            
-            if (oldBubble != nil)
-            {
-                oldBubble!.run(SKAction.removeFromParent());
-                object.spriteNode.removeChildren(in: [oldBubble!]);
+            let oldBubble = object.spriteNode.childNode(withName: kBubbleBrickNodeName)
+
+            if oldBubble != nil {
+                oldBubble!.run(SKAction.removeFromParent())
+                object.spriteNode.removeChildren(in: [oldBubble!])
             }
         }
     }

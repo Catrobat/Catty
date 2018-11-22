@@ -21,17 +21,17 @@
  */
 
 @objc extension ChangeVariableBrick: CBInstructionProtocol {
-    
+
     @nonobjc func instruction() -> CBInstruction {
 
         guard let spriteObject = self.script?.object,
-              let variables = spriteObject.program?.variables
-        else { fatalError("This should never happen!") }
+            let variables = spriteObject.program?.variables
+            else { fatalError("This should never happen!") }
 
         let userVariable = self.userVariable
         let variableFormula = self.variableFormula
 
-        return CBInstruction.execClosure { (context, _) in
+        return CBInstruction.execClosure { context, _ in
             if let userVariable = userVariable, let variableFormula = variableFormula {
                 let result = context.formulaInterpreter.interpret(variableFormula, for: spriteObject)
                 if userVariable.value == nil {

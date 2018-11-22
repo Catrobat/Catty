@@ -21,7 +21,7 @@
  */
 
 @objc extension CBSpriteNode {
-    
+
     // Computed properties to get and set values within the standardized range
     var catrobatPosition: CGPoint {
         set {
@@ -32,42 +32,42 @@
             return CGPoint(x: PositionXSensor.standardizedValue(for: self.spriteObject), y: PositionYSensor.standardizedValue(for: self.spriteObject))
         }
     }
-    
+
     var catrobatPositionX: Double {
         set { PositionXSensor.setRawValue(userInput: newValue, for: self.spriteObject) }
         get { return PositionXSensor.standardizedValue(for: self.spriteObject) }
     }
-    
+
     var catrobatPositionY: Double {
         set { PositionYSensor.setRawValue(userInput: newValue, for: self.spriteObject) }
         get { return PositionYSensor.standardizedValue(for: self.spriteObject) }
     }
-    
+
     var catrobatSize: Double {
         set { SizeSensor.setRawValue(userInput: newValue, for: self.spriteObject) }
         get { return SizeSensor.standardizedValue(for: self.spriteObject) }
     }
-    
+
     var catrobatRotation: Double {
         set { RotationSensor.setRawValue(userInput: newValue, for: self.spriteObject) }
         get { return RotationSensor.standardizedValue(for: self.spriteObject) }
     }
-    
+
     var catrobatLayer: Double {
         set { LayerSensor.setRawValue(userInput: newValue, for: self.spriteObject) }
         get { return LayerSensor.standardizedValue(for: self.spriteObject) }
     }
-    
+
     var catrobatTransparency: Double {
         set { TransparencySensor.setRawValue(userInput: newValue, for: self.spriteObject) }
         get { return TransparencySensor.standardizedValue(for: self.spriteObject) }
     }
-    
+
     var catrobatBrightness: Double {
         set { BrightnessSensor.setRawValue(userInput: newValue, for: self.spriteObject) }
         get { return BrightnessSensor.standardizedValue(for: self.spriteObject) }
     }
-    
+
     var catrobatColor: Double {
         set { ColorSensor.setRawValue(userInput: newValue, for: self.spriteObject) }
         get { return ColorSensor.standardizedValue(for: self.spriteObject) }

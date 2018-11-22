@@ -23,37 +23,37 @@
 import BluetoothHelper
 
 @objc class FunctionManager: NSObject, FunctionManagerProtocol {
-    
+
     public static var defaultValueForUndefinedFunction: Double = 0
-    private static var functionMap = [String: Function]() // TODO make instance let
-    
+    private static var functionMap = [String: Function]() // TODO: make instance let
+
     init(functions: [Function]) {
         super.init()
         registerFunctions(functionList: functions)
     }
-    
+
     private func registerFunctions(functionList: [Function]) {
         type(of: self).functionMap.removeAll()
         functionList.forEach { type(of: self).functionMap[$0.tag()] = $0 }
     }
-    
+
     func function(tag: String) -> Function? {
         return type(of: self).functionMap[tag]
     }
-    
+
     func functions() -> [Function] {
         return Array(type(of: self).functionMap.values)
     }
-    
+
     func isIdempotent(tag: String) -> Bool {
         guard let function = self.function(tag: tag) else { return false }
         return type(of: function).isIdempotent
     }
-    
+
     @objc func value(tag: String, firstParameter: AnyObject?, secondParameter: AnyObject?, spriteObject: SpriteObject) -> AnyObject {
         guard let function = self.function(tag: tag) else { return type(of: self).defaultValueForUndefinedFunction as AnyObject }
         var value: AnyObject = type(of: self).defaultValueForUndefinedFunction as AnyObject
-        
+
         if let function = function as? ZeroParameterDoubleFunction {
             value = function.value() as AnyObject
         } else if let function = function as? SingleParameterDoubleFunction {
@@ -79,29 +79,29 @@ import BluetoothHelper
         } else if let function = function as? DoubleParameterDoubleObjectFunction {
             value = function.value(firstParameter: firstParameter, secondParameter: secondParameter, spriteObject: spriteObject) as AnyObject
         }
-        
+
         return value
     }
-    
+
     func formulaEditorItems() -> [FormulaEditorItem] {
         var items = [FormulaEditorItem]()
-        
+
         for function in self.functions() {
             items.append(FormulaEditorItem(function: function))
         }
-        
+
         return items
     }
-    
+
     func exists(tag: String) -> Bool {
         return self.function(tag: tag) != nil
     }
-    
+
     @objc static func requiredResource(tag: String) -> ResourceType {
         guard let function = functionMap[tag] else { return ResourceType.noResources }
         return type(of: function).requiredResource
     }
-    
+
     @objc static func name(tag: String) -> String? {
         guard let function = functionMap[tag] else { return nil }
         return type(of: function).name

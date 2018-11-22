@@ -20,22 +20,22 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import CoreBluetooth
 import BluetoothHelper
+import CoreBluetooth
 
 @objc extension ScenePresenterViewController {
-    
+
     @objc(checkResourcesAndPushViewControllerTo:)
-    func checkResourcesAndPushViewControllerTo(navigationController: UINavigationController) -> Void {
+    func checkResourcesAndPushViewControllerTo(navigationController: UINavigationController) {
         self.formulaManager = FormulaManager()
-        
+
         navigationController.view.addSubview(self.loadingView)
         self.showLoadingView()
-        
+
         DispatchQueue.global(qos: .userInitiated).async {
             self.program = Program.init(loadingInfo: Util.lastUsedProgramLoadingInfo())!
             let readyToStart = self.notifyUserAboutUnavailableResources(navigationController: navigationController)
-            
+
             DispatchQueue.main.async {
                 if readyToStart {
                     navigationController.pushViewController(self, animated: true)
@@ -45,10 +45,10 @@ import BluetoothHelper
             }
         }
     }
-    
+
     @nonobjc private func notifyUserAboutUnavailableResources(navigationController: UINavigationController) -> Bool {
         let requiredResources = program.getRequiredResources()
-        
+
         // Bluetooth
         var unconnectedBluetoothDevices = [BluetoothDeviceID]()
         if (requiredResources & ResourceType.bluetoothPhiro.rawValue) > 0 && Util.isPhiroActivated() {
@@ -61,16 +61,16 @@ import BluetoothHelper
                 unconnectedBluetoothDevices.append(.arduino)
             }
         }
-        
-        if unconnectedBluetoothDevices.count > 0 {
+
+        if !unconnectedBluetoothDevices.isEmpty {
             bluetoothDevicesUnconnected(navigationController: navigationController, bluetoothDevices: unconnectedBluetoothDevices)
             return false
         }
-        
+
         // All other resources
         let unavailableSensorResources = formulaManager.unavailableResources(for: requiredResources)
         var unavailableResourceNames = [String]()
-        
+
         if (unavailableSensorResources & ResourceType.vibration.rawValue) > 0 {
             unavailableResourceNames.append(kLocalizedVibration)
         }
@@ -98,8 +98,8 @@ import BluetoothHelper
         if ((requiredResources & ResourceType.LED.rawValue) > 0) && !FlashHelper.sharedFlashHandler().isAvailable() {
             unavailableResourceNames.append(kLocalizedSensorLED)
         }
-        
-        if unavailableResourceNames.count > 0 {
+
+        if !unavailableResourceNames.isEmpty {
             AlertControllerBuilder.alert(title: kLocalizedPocketCode, message: unavailableResourceNames.joined(separator: ", ") + " " + kLocalizedNotAvailable)
                 .addCancelAction(title: kLocalizedCancel, handler: nil)
                 .addDefaultAction(title: kLocalizedYes) {
@@ -107,31 +107,31 @@ import BluetoothHelper
                 }
                 .build()
                 .showWithController(navigationController)
-            
+
             return false
         }
-        
+
         return true
     }
-    
-    @nonobjc private func bluetoothDevicesUnconnected(navigationController: UINavigationController, bluetoothDevices: [BluetoothDeviceID]) -> Void {
+
+    @nonobjc private func bluetoothDevicesUnconnected(navigationController: UINavigationController, bluetoothDevices: [BluetoothDeviceID]) {
         let intDevices = bluetoothDevices.map { $0.rawValue }
-        
+
         if CentralManager.sharedInstance.state == ManagerState.poweredOn || CentralManager.sharedInstance.state == ManagerState.unknown {
             let storyboard = UIStoryboard(name: "iPhone", bundle: nil)
             let bvc: BluetoothPopupVC = storyboard.instantiateViewController(withIdentifier: "bluetoothPopupVC") as! BluetoothPopupVC
             bvc.deviceArray = intDevices
-            
+
             let navController = UINavigationController(rootViewController: bvc)
             self.present(navController, animated: true)
-            
+
         } else if CentralManager.sharedInstance.state == ManagerState.poweredOff {
             Util.alert(withText: kLocalizedBluetoothPoweredOff)
         } else {
             Util.alert(withText: kLocalizedBluetoothNotAvailable)
         }
     }
-    
+
     @nonobjc private func continueWithoutRequiredResources(navigationController: UINavigationController) {
         navigationController.pushViewController(self, animated: true)
     }

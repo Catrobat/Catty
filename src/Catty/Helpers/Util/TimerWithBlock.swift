@@ -23,13 +23,13 @@
 import Foundation
 
 final class TimerWithBlock {
-    var timer: Timer? = nil
+    var timer: Timer?
     let block: ((TimerWithBlock) -> Void)?
-    
+
     var isValid: Bool {
         return self.timer?.isValid ?? false
     }
-    
+
     init(timeInterval: TimeInterval, repeats: Bool, block: @escaping (TimerWithBlock) -> Void) {
         if #available(iOS 10.0, *) {
             self.block = nil
@@ -42,11 +42,11 @@ final class TimerWithBlock {
             self.timer = Timer.scheduledTimer(timeInterval: timeInterval, target: self, selector: #selector(fire(timer:)), userInfo: nil, repeats: repeats)
         }
     }
-    
+
     @objc func fire(timer: Timer) {
         self.block?(self)
     }
-    
+
     func invalidate() {
         self.timer?.invalidate()
         self.timer = nil

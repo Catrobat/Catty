@@ -24,8 +24,8 @@
 #import "AppDelegate.h"
 #import "UIDefines.h"
 #import "Util.h"
-#import "LoadingView.h"
 #import "PlaceHolderView.h"
+#import "Pocket_Code-Swift.h"
 
 // tags
 #define kSelectAllItemsTag 0

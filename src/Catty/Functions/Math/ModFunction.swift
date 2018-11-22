@@ -27,29 +27,29 @@ class ModFunction: DoubleParameterDoubleFunction {
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = true
     static let position = 110
-    
+
     func tag() -> String {
         return type(of: self).tag
     }
-    
+
     func firstParameter() -> FunctionParameter {
         return .number(defaultValue: 1)
     }
-    
+
     func secondParameter() -> FunctionParameter {
         return .number(defaultValue: 1)
     }
-    
+
     func value(firstParameter: AnyObject?, secondParameter: AnyObject?) -> Double {
         guard let firstValue = firstParameter as? Double,
             let secondValue = secondParameter as? Double else {
                 return type(of: self).defaultValue
         }
-        
+
         if secondValue == 0.0 || firstValue == 0 {
             return type(of: self).defaultValue
         }
-        
+
         if firstValue * secondValue > 0 {
             // they have the same sign
             return firstValue.truncatingRemainder(dividingBy: secondValue)
@@ -57,16 +57,16 @@ class ModFunction: DoubleParameterDoubleFunction {
             // they have different signs
             let div = Int(abs(firstValue / secondValue))
             let newNumerator = abs(secondValue) * Double((div + 1))
-            
+
             if firstValue < 0 {
                 return firstValue + newNumerator
             } else {
                 return firstValue - newNumerator
             }
         }
-        
+
     }
-    
+
     func formulaEditorSection() -> FormulaEditorSection {
         return .math(position: type(of: self).position)
     }

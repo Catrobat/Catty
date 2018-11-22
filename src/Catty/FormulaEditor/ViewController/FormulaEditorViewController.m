@@ -492,6 +492,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     if ([result isKindOfClass:[NSNumber class]]) {
         NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
         [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+        formatter.usesGroupingSeparator = NO;
         return [formatter stringFromNumber:result];
     }
     
@@ -1121,7 +1122,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 - (BOOL)isVarOrListBeingUsed:(UserVariable*)variable
 {
-    //TODO: Make it work for lists
+    // TODO: Make it work for lists
     if([self.object.program.variables isProgramVariableOrList:variable]) {
         for(SpriteObject *spriteObject in self.object.program.objectList) {
             for(Script *script in spriteObject.scriptList) {
@@ -1225,3 +1226,4 @@ static NSCharacterSet *blockedCharacterSet = nil;
 }
 
 @end
+

@@ -20,21 +20,25 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc extension ChangeTransparencyByNBrick: CBInstructionProtocol {
+@objc extension ChangeColorByNBrick: CBInstructionProtocol {
 
     @nonobjc func instruction() -> CBInstruction {
-        return .action { (context) in SKAction.run(self.actionBlock(context.formulaInterpreter)) }
+        return .action { context in SKAction.run(self.actionBlock(context.formulaInterpreter)) }
     }
-    
-    @objc func actionBlock(_ formulaInterpreter: FormulaInterpreterProtocol) -> ()->() {
+
+    @objc func actionBlock(_ formulaInterpreter: FormulaInterpreterProtocol) -> () -> Void {
         guard let object = self.script?.object,
-              let spriteNode = object.spriteNode,
-              let transparency = self.changeTransparency
-        else { fatalError("This should never happen!") }
+            let spriteNode = object.spriteNode,
+            let colorFormula = self.changeColor
+            else { fatalError("This should never happen!") }
 
         return {
-            let transparencyIncrease = formulaInterpreter.interpretDouble(transparency, for: object)
-            spriteNode.catrobatTransparency = spriteNode.catrobatTransparency + transparencyIncrease
+            guard let look = object.spriteNode?.currentLook else { return }
+            let colorIncrease = formulaInterpreter.interpretDouble(colorFormula, for: object)
+            spriteNode.catrobatColor += colorIncrease
+
+            let lookImage = UIImage(contentsOfFile: self.path(for: look))
+            spriteNode.executeFilter(lookImage)
         }
     }
 }

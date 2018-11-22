@@ -33,7 +33,7 @@ class SoundsLibraryCollectionViewDataSourceDelegateMock: MediaLibraryCollectionV
         didFailToLoadSound: ((MediaItem) -> Void)? = nil,
         didPlaySound: ((MediaItem, (() -> Void)?) -> Void)? = nil,
         didStopSound: ((MediaItem) -> Void)? = nil
-    ) {
+        ) {
         self.didFailToLoadSound = didFailToLoadSound
         self.didPlaySound = didPlaySound
         self.didStopSound = didStopSound

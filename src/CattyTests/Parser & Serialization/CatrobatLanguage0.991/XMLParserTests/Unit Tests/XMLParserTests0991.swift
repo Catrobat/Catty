@@ -277,6 +277,30 @@ class XMLParserTests0991: XMLAbstractTest {
         XCTAssertFalse((cameraBrick as! CameraBrick).isEnabled(), "Invalid brick option")
     }
     
+    func testChooseCameraBrick() {
+        let program = self.getProgramForXML(xmlFile: "CameraBricks_0991")
+        let background = program.objectList.object(at: 0) as! SpriteObject
+    
+        let backgroundScript = background.scriptList.object(at: 0) as! Script
+        XCTAssertEqual(backgroundScript.brickList.count, 4, "Invalid brick list")
+    
+        var backCamera = backgroundScript.brickList.object(at: 0) as! Brick
+        XCTAssertTrue(backCamera.isKind(of: ChooseCameraBrick.self), "Invalid brick type")
+        XCTAssertEqual(0, (backCamera as! ChooseCameraBrick).cameraPosition, "Invalid cameraPosition")
+        
+        backCamera = backgroundScript.brickList.object(at: 1) as! Brick
+        XCTAssertTrue(backCamera.isKind(of: ChooseCameraBrick.self), "Invalid brick type")
+        XCTAssertEqual(1, (backCamera as! ChooseCameraBrick).cameraPosition, "Invalid cameraPosition")
+        
+        backCamera = backgroundScript.brickList.object(at: 2) as! Brick
+        XCTAssertTrue(backCamera.isKind(of: ChooseCameraBrick.self), "Invalid brick type")
+        XCTAssertEqual(0, (backCamera as! ChooseCameraBrick).cameraPosition, "Invalid cameraPosition")
+        
+        backCamera = backgroundScript.brickList.object(at: 3) as! Brick
+        XCTAssertTrue(backCamera.isKind(of: ChooseCameraBrick.self), "Invalid brick type")
+        XCTAssertEqual(1, (backCamera as! ChooseCameraBrick).cameraPosition, "Invalid cameraPosition")
+    }
+    
     func testSayBubbleBrick() {
         let program = self.getProgramForXML(xmlFile: "ValidProgramAllBricks0991")
         let background = program.objectList.object(at: 0) as! SpriteObject
@@ -325,22 +349,6 @@ class XMLParserTests0991: XMLAbstractTest {
         XCTAssertTrue(thinkForBubbleBrick.isKind(of: ThinkForBubbleBrick.self), "Invalid brick type")
         XCTAssertNotNil((thinkForBubbleBrick as! ThinkForBubbleBrick).stringFormula, "Invalid formula")
         XCTAssertNotNil((thinkForBubbleBrick as! ThinkForBubbleBrick).intFormula, "Invalid formula")
-    }
-    
-    func testChooseCameraBrick() {
-        let program = self.getProgramForXML(xmlFile: "ValidProgramAllBricks0991")
-        let background = program.objectList.object(at: 0) as! SpriteObject
-        
-        let backgroundScript = background.scriptList.object(at: 0) as! Script
-        XCTAssertTrue(backgroundScript.brickList.count >= 39, "Invalid brick list")
-        
-        var backCamera = backgroundScript.brickList.object(at: 37) as! Brick
-        XCTAssertTrue(backCamera.isKind(of: ChooseCameraBrick.self), "Invalid brick type")
-        XCTAssertEqual(0, (backCamera as! ChooseCameraBrick).cameraPosition, "Invalid cameraPosition")
-     
-        backCamera = backgroundScript.brickList.object(at: 38) as! Brick
-        XCTAssertTrue(backCamera.isKind(of: ChooseCameraBrick.self), "Invalid brick type")
-        XCTAssertEqual(1, (backCamera as! ChooseCameraBrick).cameraPosition, "Invalid cameraPosition")
     }
     
     func testAddItemToUserListBrick() {
