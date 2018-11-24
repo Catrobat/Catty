@@ -58,8 +58,8 @@
 #define kDontResumeSounds 4
 #define kfirstSwipeDuration 0.8f
 
-// XXX: which characters in program, object, image names do we have to support?
-#define kTextFieldAllowedCharacters @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzäöü#?!()[]{}^*|<>£¥=+-.,:;\"'&@%$€ 1234567890"
+// Blocked characters for program names, object names, images names, sounds names and variable/list names
+#define kTextFieldBlockedCharacters @""
 
 #define kMenuImageNameContinue @"continue"
 #define kMenuImageNameNew @"new"

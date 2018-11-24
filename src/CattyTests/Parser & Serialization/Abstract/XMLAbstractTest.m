@@ -77,9 +77,9 @@
     Program *secondProgram = [self getProgramForXML:secondProgramName];
     
     {
-        // XXX: HACK => assign same header to both versions => this forces to ignore header
+        // FIXME: HACK => assign same header to both versions => this forces to ignore header
         firstProgram.header = secondProgram.header;
-        // XXX: HACK => for background objects always replace german name "Hintergrund" with "Background"
+        // FIXME: HACK => for background objects always replace german name "Hintergrund" with "Background"
         SpriteObject *firstBgObject = firstProgram.objectList[0];
         SpriteObject *secondBgObject = secondProgram.objectList[0];
         firstBgObject.name = [firstBgObject.name stringByReplacingOccurrencesOfString:@"Hintergrund"

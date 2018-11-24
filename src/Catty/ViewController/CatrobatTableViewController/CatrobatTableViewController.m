@@ -60,17 +60,6 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
 
 @implementation CatrobatTableViewController
 
-#pragma mark - data helpers
-static NSCharacterSet *blockedCharacterSet = nil;
-- (NSCharacterSet*)blockedCharacterSet
-{
-    if (! blockedCharacterSet) {
-        blockedCharacterSet = [[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters]
-                               invertedSet];
-    }
-    return blockedCharacterSet;
-}
-
 #pragma mark - getters and setters
 - (Program*)lastUsedProgram
 {
@@ -258,7 +247,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                      promptPlaceholder:kLocalizedEnterYourProgramNameHere
                                         minInputLength:kMinNumOfProgramNameCharacters
                                         maxInputLength:kMaxNumOfProgramNameCharacters
-                                   blockedCharacterSet:[self blockedCharacterSet]
                               invalidInputAlertMessage:kLocalizedProgramNameAlreadyExistsDescription
                                          existingNames:[Program allProgramNames]];
             break;
@@ -428,9 +416,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 -(void)addProgramFromInbox
 {
-    NSCharacterSet* blockedCharacterSet = [[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters]
-                                           invertedSet];
-    
     [Util askUserForUniqueNameAndPerformAction:@selector(addProgramFromInboxWithName:)
                                         target:self
                                    promptTitle:kLocalizedEnterNameForImportedProgramTitle
@@ -439,7 +424,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
                              promptPlaceholder:kLocalizedEnterYourProgramNameHere
                                 minInputLength:kMinNumOfProgramNameCharacters
                                 maxInputLength:kMaxNumOfProgramNameCharacters
-                           blockedCharacterSet:blockedCharacterSet
                       invalidInputAlertMessage:kLocalizedProgramNameAlreadyExistsDescription
                                  existingNames:[Program allProgramNames]];
 }

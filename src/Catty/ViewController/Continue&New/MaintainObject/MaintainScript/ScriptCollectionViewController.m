@@ -985,8 +985,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                              promptPlaceholder:kLocalizedEnterYourVariableNameHere
                                 minInputLength:kMinNumOfVariableNameCharacters
                                 maxInputLength:kMaxNumOfVariableNameCharacters
-                           blockedCharacterSet:[[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters]
-                                                invertedSet]
                       invalidInputAlertMessage:kUIFENewVarExists
                                  existingNames:allVariableNames];
 }
@@ -1042,8 +1040,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                              promptPlaceholder:kLocalizedEnterYourListNameHere
                                 minInputLength:kMinNumOfVariableNameCharacters
                                 maxInputLength:kMaxNumOfVariableNameCharacters
-                           blockedCharacterSet:[[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters]
-                                                invertedSet]
                       invalidInputAlertMessage:kUIFENewVarExists
                                  existingNames:allListNames];
 }
@@ -1176,8 +1172,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                                      promptPlaceholder:kLocalizedEnterYourMessageHere
                                         minInputLength:kMinNumOfMessageNameCharacters
                                         maxInputLength:kMaxNumOfMessageNameCharacters
-                                   blockedCharacterSet:[[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters]
-                                                        invertedSet]
                               invalidInputAlertMessage:kLocalizedMessageAlreadyExistsDescription
                                          existingNames:[Util allMessagesForProgram:self.object.program]];
             [self enableUserInteractionAndResetHighlight];
