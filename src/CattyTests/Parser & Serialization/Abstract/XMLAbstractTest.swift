@@ -35,7 +35,7 @@ class XMLAbstractTest: XCTestCase {
         super.tearDown()
     }
 
-    func isXMLElement(xmlElement: GDataXMLElement, equalToXMLElementForXPath xPath: String, inProgramForXML program:String) -> Bool {
+    func isXMLElement(xmlElement: GDataXMLElement, equalToXMLElementForXPath xPath: String, inProgramForXML program: String) -> Bool {
         let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: program))
         let xml = document.rootElement()
         var array: [Any]

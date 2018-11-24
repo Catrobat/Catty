@@ -37,8 +37,7 @@ final class XMLParserHeaderTests095: XMLAbstractTest {
         XCTAssertEqual(header.applicationBuildNumber, "123", "applicationBuildNumber not correctly parsed")
         XCTAssertEqual(header.applicationVersion, "applicationVersion", "applicationVersion not correctly parsed")
         XCTAssertEqual(header.catrobatLanguageVersion, "0.95", "catrobatLanguageVersion not correctly parsed")
-        XCTAssertEqual(Header.headerDateFormatter()?.string(from: header.dateTimeUpload), "2014-11-0211:00:00",
-                      "dateTimeUpload not correctly parsed")
+        XCTAssertEqual(Header.headerDateFormatter()?.string(from: header.dateTimeUpload), "2014-11-0211:00:00", "dateTimeUpload not correctly parsed")
         XCTAssertEqual(header.programDescription, "description", "description not correctly parsed")
         XCTAssertEqual(header.deviceName, "Android SDK built for x86", "deviceName not correctly parsed")
         XCTAssertEqual(header.mediaLicense, "mediaLicense", "mediaLicense not correctly parsed")

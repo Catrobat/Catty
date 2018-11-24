@@ -602,8 +602,8 @@
 		59D9EC65206117000019EC10 /* DVR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59D9EC62206117000019EC10 /* DVR.framework */; };
 		59D9EC672061171F0019EC10 /* DVR.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 59D9EC62206117000019EC10 /* DVR.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5E21DA6821A3E4AF00017D2C /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E21DA6721A3E4AF00017D2C /* UIImage+Extensions.swift */; };
-		5EDBA043219549AE000EFFEF /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EDBA042219549AE000EFFEF /* LoadingView.swift */; };
 		5E43D71821928053006FDF2A /* SwellAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E43D71721928052006FDF2A /* SwellAll.swift */; };
+		5EDBA043219549AE000EFFEF /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EDBA042219549AE000EFFEF /* LoadingView.swift */; };
 		5EF590BA2192D81F00C19F12 /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF590B92192D81F00C19F12 /* Double+Extensions.swift */; };
 		5EFBD5F92145533B003B3CDC /* ProgramDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFBD5F82145533B003B3CDC /* ProgramDescriptionViewController.swift */; };
 		5EFBD5FC2145AADC003B3CDC /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFBD5FB2145AADC003B3CDC /* UIView+Extensions.swift */; };
@@ -1080,7 +1080,7 @@
 		BAA2B9B021A5B30400FEE300 /* XMLParserTests0991.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA2B9AF21A5B30400FEE300 /* XMLParserTests0991.swift */; };
 		BAAA6BEB21A4BB6E00A46563 /* XMLParserHeaderTests093.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAA6BEA21A4BB6E00A46563 /* XMLParserHeaderTests093.swift */; };
 		BAAA6BED21A4C02100A46563 /* XMLParserHeaderTests095.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAA6BEC21A4C02100A46563 /* XMLParserHeaderTests095.swift */; };
-		BAAA6BF321A4C92F00A46563 /* XMLFormulaTests095.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAA6BF221A4C92F00A46563 /* XMLFormulaTests095.swift */; };
+		BAAA6BF321A4C92F00A46563 /* XMLParserFormulaTests095.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAA6BF221A4C92F00A46563 /* XMLParserFormulaTests095.swift */; };
 		BACD947C219E1F250061D81C /* WaitUntilBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA584CB9219C8803002CC082 /* WaitUntilBrickTests.swift */; };
 		BACD947D219E1F2F0061D81C /* XMLAbstractTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BACD9479219E19AD0061D81C /* XMLAbstractTest.swift */; };
 		BACD9480219E22FF0061D81C /* WaitUntilBrick0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = BACD947F219E22FF0061D81C /* WaitUntilBrick0991.xml */; };
@@ -1971,8 +1971,8 @@
 		59D008EC208E4249000539E7 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		59D9EC62206117000019EC10 /* DVR.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVR.framework; path = Carthage/Build/iOS/DVR.framework; sourceTree = "<group>"; };
 		5E21DA6721A3E4AF00017D2C /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
-		5EDBA042219549AE000EFFEF /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		5E43D71721928052006FDF2A /* SwellAll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwellAll.swift; sourceTree = "<group>"; };
+		5EDBA042219549AE000EFFEF /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		5EF590B92192D81F00C19F12 /* Double+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extensions.swift"; sourceTree = "<group>"; };
 		5EFBD5F82145533B003B3CDC /* ProgramDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramDescriptionViewController.swift; sourceTree = "<group>"; };
 		5EFBD5FB2145AADC003B3CDC /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
@@ -2859,7 +2859,7 @@
 		BAA2B9AF21A5B30400FEE300 /* XMLParserTests0991.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLParserTests0991.swift; sourceTree = "<group>"; };
 		BAAA6BEA21A4BB6E00A46563 /* XMLParserHeaderTests093.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLParserHeaderTests093.swift; sourceTree = "<group>"; };
 		BAAA6BEC21A4C02100A46563 /* XMLParserHeaderTests095.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLParserHeaderTests095.swift; sourceTree = "<group>"; };
-		BAAA6BF221A4C92F00A46563 /* XMLFormulaTests095.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLFormulaTests095.swift; sourceTree = "<group>"; };
+		BAAA6BF221A4C92F00A46563 /* XMLParserFormulaTests095.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLParserFormulaTests095.swift; sourceTree = "<group>"; };
 		BACD9479219E19AD0061D81C /* XMLAbstractTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLAbstractTest.swift; sourceTree = "<group>"; };
 		BACD947F219E22FF0061D81C /* WaitUntilBrick0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = WaitUntilBrick0991.xml; path = CattyTests/Resources/ParserTests/ControlBricks/WaitUntilBrick0991.xml; sourceTree = SOURCE_ROOT; };
 		BACDF3501F1F9B7E00346167 /* DeleteItemOfUserListBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeleteItemOfUserListBrick.h; sourceTree = "<group>"; };
@@ -3444,7 +3444,7 @@
 			isa = PBXGroup;
 			children = (
 				BA38080821A1CBB70075B831 /* XMLParserBrickTests095.swift */,
-				BAAA6BF221A4C92F00A46563 /* XMLFormulaTests095.swift */,
+				BAAA6BF221A4C92F00A46563 /* XMLParserFormulaTests095.swift */,
 				BAAA6BEC21A4C02100A46563 /* XMLParserHeaderTests095.swift */,
 				BA94561B21A6063E00C5DE36 /* XMLParserObjectTests095.swift */,
 				BA38080E21A1E7680075B831 /* XMLParserUserVariableTests095.swift */,
@@ -8425,10 +8425,9 @@
 				926197F01BF3249E006D1A61 /* ArduinoTests.swift in Sources */,
 				BA38081521A211130075B831 /* XMLSerializerBlackBoxTests.swift in Sources */,
 				BA651EED21A319BF00A94D67 /* SpriteObjectMutableCopyTests.swift in Sources */,
-				926197F41BF32500006D1A61 /* PhiroTests.swift in Sources */,
+				926197F41BF32500006D1A61 /* PhiroDeviceTest.swift in Sources */,
 				BA38080721A1CA260075B831 /* XMLParserBlackBoxTests0991.swift in Sources */,
 				926197F41BF32500006D1A61 /* PhiroDeviceTest.swift in Sources */,
-				4C0F9FD0204BD37300E71B2D /* XMLParserTests0991.m in Sources */,
 				599E649E202D9F95009494B5 /* URLSessionMock.swift in Sources */,
 				BACD947C219E1F250061D81C /* WaitUntilBrickTests.swift in Sources */,
 				4CE1D433213E5C6E0014DAF9 /* SpriteObjectMock.swift in Sources */,
@@ -8464,7 +8463,7 @@
 				4C0F9FDB204BD3E100E71B2D /* SetBackgroundBrickTests.m in Sources */,
 				4C822691213FBB8300F3D750 /* MultiFingerTouchedFunctionTests.swift in Sources */,
 				4C37A0A3212DBF510074F417 /* ArduinoAnalogPinFunctionTest.swift in Sources */,
-				BAAA6BF321A4C92F00A46563 /* XMLFormulaTests095.swift in Sources */,
+				BAAA6BF321A4C92F00A46563 /* XMLParserFormulaTests095.swift in Sources */,
 				4C6FE175212D2D2E0067B7D5 /* ContainsFunctionTest.swift in Sources */,
 				4C822663213FA7A400F3D750 /* FacePositionXSensorTest.swift in Sources */,
 				4CEB22651B95E47500B3BE2F /* SetTransparencyBrickTests.m in Sources */,
