@@ -263,7 +263,6 @@
                            promptPlaceholder:(NSString*)placeholder
                               minInputLength:(NSUInteger)minInputLength
                               maxInputLength:(NSUInteger)maxInputLength
-                         blockedCharacterSet:(NSCharacterSet*)blockedCharacterSet
                     invalidInputAlertMessage:(NSString*)invalidInputAlertMessage
                                existingNames:(NSArray*)existingNames
 {
@@ -277,7 +276,6 @@
                              promptPlaceholder:placeholder
                                 minInputLength:minInputLength
                                 maxInputLength:maxInputLength
-                           blockedCharacterSet:blockedCharacterSet
                       invalidInputAlertMessage:invalidInputAlertMessage
                                  existingNames:existingNames];
 }
@@ -297,10 +295,9 @@
                            promptPlaceholder:(NSString*)placeholder
                               minInputLength:(NSUInteger)minInputLength
                               maxInputLength:(NSUInteger)maxInputLength
-                         blockedCharacterSet:(NSCharacterSet*)blockedCharacterSet
                     invalidInputAlertMessage:(NSString*)invalidInputAlertMessage
                                existingNames:(NSArray*)existingNames {
-    [[[[[[[[[AlertControllerBuilder textFieldAlertWithTitle:title message:message]
+    [[[[[[[[AlertControllerBuilder textFieldAlertWithTitle:title message:message]
      placeholder:placeholder]
      initialText:value]
      addCancelActionWithTitle:kLocalizedCancel handler:^{
@@ -321,9 +318,6 @@
                  func(target, action, name);
              }
          }
-     }]
-     characterValidator:^BOOL(NSString *symbol) {
-         return ![blockedCharacterSet characterIsMember:[symbol characterAtIndex:0]];
      }]
      valueValidator:^InputValidationResult *(NSString *name) {
          InputValidationResult *result = [self validationResultWithName:name minLength:minInputLength maxlength:maxInputLength];
@@ -352,7 +346,6 @@
                      promptPlaceholder:(NSString*)placeholder
                         minInputLength:(NSUInteger)minInputLength
                         maxInputLength:(NSUInteger)maxInputLength
-                   blockedCharacterSet:(NSCharacterSet*)blockedCharacterSet
               invalidInputAlertMessage:(NSString*)invalidInputAlertMessage
 {
     [self askUserForUniqueNameAndPerformAction:action
@@ -365,7 +358,6 @@
                              promptPlaceholder:placeholder
                                 minInputLength:minInputLength
                                 maxInputLength:maxInputLength
-                           blockedCharacterSet:blockedCharacterSet
                       invalidInputAlertMessage:invalidInputAlertMessage
                                  existingNames:nil];
 }
@@ -377,10 +369,9 @@
                                  minInputLength:(NSUInteger)minInputLength
                                  maxInputLength:(NSUInteger)maxInputLength
 									     isList:(BOOL)isList
-                            blockedCharacterSet:(NSCharacterSet*)blockedCharacterSet
                                 andTextField:(FormulaEditorTextView *)textView
 {
-    [[[[[[[AlertControllerBuilder textFieldAlertWithTitle:title message:message]
+    [[[[[[AlertControllerBuilder textFieldAlertWithTitle:title message:message]
      addCancelActionWithTitle:kLocalizedCancel handler:^{
          [textView becomeFirstResponder];
      }]
@@ -390,9 +381,6 @@
              void (*func)(id, SEL, id, BOOL) = (void *)imp;
              func(target, action, name, isList);
          }
-     }]
-     characterValidator:^BOOL(NSString *symbol) {
-         return ![blockedCharacterSet characterIsMember:[symbol characterAtIndex:0]];
      }]
      valueValidator:^InputValidationResult *(NSString *name) {
          NSString *invalidNameMessage = nil;

@@ -75,7 +75,6 @@ if (__functor) __functor(__VA_ARGS__);  \
                                 minInputLength:(NSUInteger)minInputLength
                                 maxInputLength:(NSUInteger)maxInputLength
                                         isList:(BOOL)isList
-                           blockedCharacterSet:(NSCharacterSet*)blockedCharacterSet
                                   andTextField:(FormulaEditorTextView *)textView;
 
 + (NSString*)appName;
@@ -133,7 +132,6 @@ if (__functor) __functor(__VA_ARGS__);  \
                            promptPlaceholder:(NSString*)placeholder
                               minInputLength:(NSUInteger)minInputLength
                               maxInputLength:(NSUInteger)maxInputLength
-                         blockedCharacterSet:(NSCharacterSet*)blockedCharacterSet
                     invalidInputAlertMessage:(NSString*)invalidInputAlertMessage
                                existingNames:(NSArray*)existingNames;
 
@@ -147,7 +145,6 @@ if (__functor) __functor(__VA_ARGS__);  \
                            promptPlaceholder:(NSString*)placeholder
                               minInputLength:(NSUInteger)minInputLength
                               maxInputLength:(NSUInteger)maxInputLength
-                         blockedCharacterSet:(NSCharacterSet*)blockedCharacterSet
                     invalidInputAlertMessage:(NSString*)invalidInputAlertMessage
                                existingNames:(NSArray*)existingNames;
 
@@ -161,7 +158,6 @@ if (__functor) __functor(__VA_ARGS__);  \
                      promptPlaceholder:(NSString*)placeholder
                         minInputLength:(NSUInteger)minInputLength
                         maxInputLength:(NSUInteger)maxInputLength
-                   blockedCharacterSet:(NSCharacterSet*)blockedCharacterSet
               invalidInputAlertMessage:(NSString*)invalidInputAlertMessage;
 
 + (NSString*)uniqueName:(NSString*)nameToCheck existingNames:(NSArray*)existingNames;

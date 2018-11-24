@@ -54,9 +54,9 @@ class XMLAbstractTest: XCTestCase {
         let firstProgram = self.getProgramForXML(xmlFile: firstProgramName)
         let secondProgram = self.getProgramForXML(xmlFile: secondProgramName)
         
-        // XXX: HACK => assign same header to both versions => this forces to ignore header
+        // FIXME: HACK => assign same header to both versions => this forces to ignore header
         firstProgram.header = secondProgram.header;
-        // XXX: HACK => for background objects always replace german name "Hintergrund" with "Background"
+        // FICME: HACK => for background objects always replace german name "Hintergrund" with "Background"
         let firstBgObject = firstProgram.objectList[0] as! SpriteObject;
         let secondBgObject = secondProgram.objectList[0] as! SpriteObject;
         firstBgObject.name = firstBgObject.name.replacingOccurrences(of: "Hintergrund", with: "Background")
