@@ -24,23 +24,24 @@ import XCTest
 
 @testable import Pocket_Code
 
-final class WaitUntilBrickTests : XMLAbstractTest {
-    
+final class WaitUntilBrickTests: XMLAbstractTest {
+
     lazy var program: Program = {
-        return getProgramForXML(xmlFile: "WaitUntilBrick0991")
+        let program = getProgramForXML(xmlFile: "WaitUntilBrick0991")
+        return program
     }()
-    
+
     func testWaitUntilBrick_conditionTrue_proceedsToNextBrick() {
         let testVar = program.variables.getUserVariableNamed("testVar", for: program.objectList[0] as? SpriteObject)
         let hasFinishedWaiting = program.variables.getUserVariableNamed("hasFinishedWaiting", for: program.objectList[0] as? SpriteObject)
 
         let scene = createScene()
         scene.startProgram()
-        program.variables.setUserVariable(testVar, toValue: NSNumber(integerLiteral: 1))
+        program.variables.setUserVariable(testVar, toValue: NSNumber(value: 1))
 
-        let conditionMetPredicate = NSPredicate(block: { variable , _ in
+        let conditionMetPredicate = NSPredicate(block: { variable, _ in
             let hasFinishedWaiting = (variable as? UserVariable)!.value as! NSNumber
-            return NSNumber.init(integerLiteral: 1).isEqual(to: hasFinishedWaiting)
+            return NSNumber(value: 1).isEqual(to: hasFinishedWaiting)
         })
 
         expectation(for: conditionMetPredicate, evaluatedWith: hasFinishedWaiting!, handler: nil)
@@ -52,7 +53,7 @@ final class WaitUntilBrickTests : XMLAbstractTest {
 
         let scene = createScene()
         scene.startProgram()
-        let testPredicate = createPredicate(variable: hasFinishedWaiting!, shouldNotBeEqual: NSNumber(integerLiteral: 1), forSeconds: 2)
+        let testPredicate = createPredicate(variable: hasFinishedWaiting!, shouldNotBeEqual: NSNumber(value: 1), forSeconds: 2)
 
         expectation(for: testPredicate, evaluatedWith: self, handler: nil)
         waitForExpectations(timeout: 4, handler: nil)
@@ -80,12 +81,12 @@ final class WaitUntilBrickTests : XMLAbstractTest {
         XCTAssertFalse(conditionResult, "Condition should have returned false.")
     }
 
-    private func createPredicate(variable: UserVariable, shouldNotBeEqual: NSNumber, forSeconds:Double) -> NSPredicate {
+    private func createPredicate(variable: UserVariable, shouldNotBeEqual: NSNumber, forSeconds: Double) -> NSPredicate {
         let stopTime = Date().addingTimeInterval(TimeInterval(forSeconds))
-        return NSPredicate(block: { _ , _ in
+        return NSPredicate(block: { _, _ in
             let variableNumber = variable.value as! NSNumber
 
-            if (shouldNotBeEqual.isEqual(to: variableNumber)) {
+            if shouldNotBeEqual.isEqual(to: variableNumber) {
                 XCTFail("Script has continued although condition should not have been met.")
                 return true
             }
@@ -93,7 +94,7 @@ final class WaitUntilBrickTests : XMLAbstractTest {
             return Date().timeIntervalSince1970 > stopTime.timeIntervalSince1970
         })
     }
-    
+
     private func createScene() -> CBScene {
         let sceneBuilder = SceneBuilder(program: program).withFormulaManager(formulaManager: FormulaManager())
         return sceneBuilder.build()

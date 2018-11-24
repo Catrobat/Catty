@@ -25,7 +25,7 @@ import XCTest
 @testable import Pocket_Code
 
 final class XMLParserObjectTests095: XMLParserObjectTests093 {
-    
+
     override func setUp( ) {
         super.setUp()
         parserContext = CBXMLParserContext(languageVersion: CGFloat(Float32(0.95)))

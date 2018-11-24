@@ -26,28 +26,28 @@ import XCTest
 
 final class XMLParserTests098: XMLAbstractTest {
     let formulaManager = FormulaManager()
-    
+
     func testFlashBrick() {
         let program = self.getProgramForXML(xmlFile: "LedFlashBrick098")
-    
+
         XCTAssertEqual(1, program.objectList.count, "Invalid object list")
         let object = program.objectList.object(at: 0) as! SpriteObject
-    
+
         XCTAssertEqual(1, object.scriptList.count, "Invalid script list")
         let script = object.scriptList.object(at: 0) as! Script
-    
+
         XCTAssertEqual(4, script.brickList.count, "Invalid brick list")
-    
+
         var flashBrick = script.brickList.object(at: 0) as! FlashBrick
         XCTAssertEqual(1, flashBrick.flashChoice, "Invalid flash choice")
-    
+
         flashBrick = script.brickList.object(at: 1) as! FlashBrick
         XCTAssertEqual(0, flashBrick.flashChoice, "Invalid flash choice")
     }
-    
+
     func testLedBrick() {
         let program = self.getProgramForXML(xmlFile: "LedFlashBrick098")
-    
+
         XCTAssertEqual(1, program.objectList.count, "Invalid object list")
         let object = program.objectList.object(at: 0) as! SpriteObject
 
@@ -62,109 +62,109 @@ final class XMLParserTests098: XMLAbstractTest {
         flashBrick = script.brickList.object(at: 3) as! FlashBrick
         XCTAssertEqual(0, flashBrick.flashChoice, "Invalid flash choice")
     }
-    
+
     func testAddItemToUserListBrick() {
         let program = self.getProgramForXML(xmlFile: "AddItemToUserListBrick098")
         XCTAssertEqual(1, program.objectList.count, "Invalid object list")
-    
+
         let object = program.objectList.object(at: 0) as! SpriteObject
         XCTAssertEqual(1, object.scriptList.count, "Invalid script list")
-    
+
         let script = object.scriptList.object(at: 0) as! Script
         XCTAssertEqual(2, script.brickList.count, "Invalid brick list")
-    
+
         var addItemToUserListBrick = script.brickList.object(at: 0) as! AddItemToUserListBrick
         XCTAssertEqual("programList", addItemToUserListBrick.userList.name, "Invalid list name")
-    
+
         let numberValue = self.formulaManager.interpret(addItemToUserListBrick.listFormula, for: object) as! NSNumber
-            
-        XCTAssertEqual(NSNumber(floatLiteral: 66), numberValue, "Invalid list value")
-    
+
+        XCTAssertEqual(NSNumber(value: 66), numberValue, "Invalid list value")
+
         addItemToUserListBrick = script.brickList.object(at: 1) as! AddItemToUserListBrick
         XCTAssertEqual("objectList", addItemToUserListBrick.userList.name, "Invalid list name")
-    
+
         let stringValue = self.formulaManager.interpret(addItemToUserListBrick.listFormula, for: object) as! String
-        XCTAssertEqual("hallo", stringValue, "Invalid list value");
+        XCTAssertEqual("hallo", stringValue, "Invalid list value")
     }
-    
+
     func testDeleteItemOfUserListBrick() {
         let program = self.getProgramForXML(xmlFile: "DeleteItemOfUserListBrick098")
         XCTAssertEqual(1, program.objectList.count, "Invalid object list")
-    
+
         let object = program.objectList.object(at: 0) as! SpriteObject
         XCTAssertEqual(1, object.scriptList.count, "Invalid script list")
-    
+
         let script = object.scriptList.object(at: 0) as! Script
         XCTAssertEqual(4, script.brickList.count, "Invalid brick list")
-    
+
         var deleteItemOfUserListBrick = script.brickList.object(at: 2) as! DeleteItemOfUserListBrick
         XCTAssertEqual("testlist", deleteItemOfUserListBrick.userList.name, "Invalid list name")
-    
-        var numberValue = self.formulaManager.interpret(deleteItemOfUserListBrick.listFormula, for:object) as! NSNumber
-        XCTAssertEqual(NSNumber(floatLiteral: 2), numberValue, "Invalid list value")
-    
+
+        var numberValue = self.formulaManager.interpret(deleteItemOfUserListBrick.listFormula, for: object) as! NSNumber
+        XCTAssertEqual(NSNumber(value: 2), numberValue, "Invalid list value")
+
         deleteItemOfUserListBrick = script.brickList.object(at: 3) as! DeleteItemOfUserListBrick
         XCTAssertEqual("testlist", deleteItemOfUserListBrick.userList.name, "Invalid list name")
-    
-        numberValue = self.formulaManager.interpret(deleteItemOfUserListBrick.listFormula, for:object) as! NSNumber
-        XCTAssertEqual(NSNumber(floatLiteral: 1), numberValue, "Invalid list value");
+
+        numberValue = self.formulaManager.interpret(deleteItemOfUserListBrick.listFormula, for: object) as! NSNumber
+        XCTAssertEqual(NSNumber(value: 1), numberValue, "Invalid list value")
     }
-    
+
     func testInsertItemIntoUserListBrick() {
         let program = self.getProgramForXML(xmlFile: "InsertItemIntoUserListBrick098")
         XCTAssertEqual(1, program.objectList.count, "Invalid object list")
-    
+
         let object = program.objectList.object(at: 0) as! SpriteObject
         XCTAssertEqual(1, object.scriptList.count, "Invalid script list")
-    
+
         let script = object.scriptList.object(at: 0) as! Script
         XCTAssertEqual(2, script.brickList.count, "Invalid brick list")
-    
+
         var insertItemIntoUserListBrick = script.brickList.object(at: 0) as! InsertItemIntoUserListBrick
         XCTAssertEqual("hallo", insertItemIntoUserListBrick.userList.name, "Invalid list name")
-    
+
         let numberValue = self.formulaManager.interpret(insertItemIntoUserListBrick.elementFormula, for: object) as! NSNumber
-        XCTAssertEqual(NSNumber(floatLiteral: 55), numberValue, "Invalid list value")
-    
-        var indexValue = self.formulaManager.interpret(insertItemIntoUserListBrick.index, for:object) as! NSNumber
-        XCTAssertEqual(NSNumber(integerLiteral: 1), indexValue, "Invalid index value");
-    
+        XCTAssertEqual(NSNumber(value: 55), numberValue, "Invalid list value")
+
+        var indexValue = self.formulaManager.interpret(insertItemIntoUserListBrick.index, for: object) as! NSNumber
+        XCTAssertEqual(NSNumber(value: 1), indexValue, "Invalid index value")
+
         insertItemIntoUserListBrick = script.brickList.object(at: 1) as! InsertItemIntoUserListBrick
         XCTAssertEqual("hallo", insertItemIntoUserListBrick.userList.name, "Invalid list name")
-    
-        let stringValue = self.formulaManager.interpret(insertItemIntoUserListBrick.elementFormula, for:object) as! String
+
+        let stringValue = self.formulaManager.interpret(insertItemIntoUserListBrick.elementFormula, for: object) as! String
         XCTAssertEqual("test", stringValue, "Invalid list value")
-    
-        indexValue = self.formulaManager.interpret(insertItemIntoUserListBrick.index, for:object) as! NSNumber
-        XCTAssertEqual(NSNumber(integerLiteral: 2), indexValue, "Invalid index value")
+
+        indexValue = self.formulaManager.interpret(insertItemIntoUserListBrick.index, for: object) as! NSNumber
+        XCTAssertEqual(NSNumber(value: 2), indexValue, "Invalid index value")
     }
-    
+
     func testReplaceItemInUserListBrick() {
         let program = self.getProgramForXML(xmlFile: "ReplaceItemInUserListBrick098")
             XCTAssertEqual(1, program.objectList.count, "Invalid object list")
-        
+
         let object = program.objectList.object(at: 0) as! SpriteObject
         XCTAssertEqual(1, object.scriptList.count, "Invalid script list")
-        
+
         let script = object.scriptList.object(at: 0) as! Script
         XCTAssertEqual(4, script.brickList.count, "Invalid brick list")
-        
+
         var replaceItemInUserListBrick = script.brickList.object(at: 2) as! ReplaceItemInUserListBrick
         XCTAssertEqual("testlist", replaceItemInUserListBrick.userList.name, "Invalid list name")
-        
-        let stringValue = self.formulaManager.interpret(replaceItemInUserListBrick.elementFormula, for:object) as! String
+
+        let stringValue = self.formulaManager.interpret(replaceItemInUserListBrick.elementFormula, for: object) as! String
         XCTAssertEqual("hello", stringValue, "Invalid list value")
-        
-        var indexValue = self.formulaManager.interpret(replaceItemInUserListBrick.index, for:object) as! NSNumber
-        XCTAssertEqual(NSNumber(integerLiteral: 1), indexValue, "Invalid index value")
-        
+
+        var indexValue = self.formulaManager.interpret(replaceItemInUserListBrick.index, for: object) as! NSNumber
+        XCTAssertEqual(NSNumber(value: 1), indexValue, "Invalid index value")
+
         replaceItemInUserListBrick = script.brickList.object(at: 3) as! ReplaceItemInUserListBrick
         XCTAssertEqual("testlist", replaceItemInUserListBrick.userList.name, "Invalid list name")
-        
-        let numberValue = self.formulaManager.interpret(replaceItemInUserListBrick.elementFormula, for:object) as! NSNumber
-        XCTAssertEqual(NSNumber(floatLiteral: 33), numberValue, "Invalid list value")
-        
-        indexValue = self.formulaManager.interpret(replaceItemInUserListBrick.index, for:object) as! NSNumber
-        XCTAssertEqual(NSNumber(integerLiteral: 2), indexValue, "Invalid index value")
+
+        let numberValue = self.formulaManager.interpret(replaceItemInUserListBrick.elementFormula, for: object) as! NSNumber
+        XCTAssertEqual(NSNumber(value: 33), numberValue, "Invalid list value")
+
+        indexValue = self.formulaManager.interpret(replaceItemInUserListBrick.index, for: object) as! NSNumber
+        XCTAssertEqual(NSNumber(value: 2), indexValue, "Invalid index value")
     }
 }

@@ -21,14 +21,14 @@
  */
 
 @objc extension WaitUntilBrick: CBInstructionProtocol {
-    
+
     @nonobjc func instruction() -> CBInstruction {
         let waitingTimeUntilNextCheck = 0.02
-                
-        return CBInstruction.waitExecClosure { (context, _) in
+
+        return CBInstruction.waitExecClosure { context, _ in
             let condition = NSCondition()
             condition.lock()
-            while(self.script?.object != nil && self.checkCondition(formulaInterpreter: context.formulaInterpreter)) {
+            while self.script?.object != nil && self.checkCondition(formulaInterpreter: context.formulaInterpreter) {
                 condition.wait(until: Date().addingTimeInterval(waitingTimeUntilNextCheck))
             }
             condition.unlock()

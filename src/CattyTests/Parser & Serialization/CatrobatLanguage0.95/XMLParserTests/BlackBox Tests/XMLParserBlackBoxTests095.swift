@@ -25,99 +25,81 @@ import XCTest
 @testable import Pocket_Code
 
 final class XMLParserBlackBoxTests095: XMLAbstractTest {
-    
+
     func testAirFight() {
         self.compareProgram(firstProgramName: "Air_fight_0.5_093", withProgram: "Air_fight_0.5_095")
     }
-    
-    func testAirplaneWithShadow()
-    {
+
+    func testAirplaneWithShadow() {
         self.compareProgram(firstProgramName: "Airplane_with_shadow_093", withProgram: "Airplane_with_shadow_095")
     }
-    
-    func testCompass()
-    {
+
+    func testCompass() {
         self.compareProgram(firstProgramName: "Compass_0.1_093", withProgram: "Compass_0.1_095")
     }
-    
-    func testDemonstration()
-    {
-        self.compareProgram(firstProgramName: "Demonstration_093", withProgram:"Demonstration_095")
+
+    func testDemonstration() {
+        self.compareProgram(firstProgramName: "Demonstration_093", withProgram: "Demonstration_095")
     }
-    
-    func testDrinkMoreWater()
-    {
-        self.compareProgram(firstProgramName: "Drink_more_water_093", withProgram:"Drink_more_water_095")
+
+    func testDrinkMoreWater() {
+        self.compareProgram(firstProgramName: "Drink_more_water_093", withProgram: "Drink_more_water_095")
     }
-    
-    func testFlapPacMan()
-    {
-        self.compareProgram(firstProgramName: "Flap_Pac_Man_093", withProgram:"Flap_Pac_Man_095")
+
+    func testFlapPacMan() {
+        self.compareProgram(firstProgramName: "Flap_Pac_Man_093", withProgram: "Flap_Pac_Man_095")
     }
-    
-    func testFlappy()
-    {
-        self.compareProgram(firstProgramName: "Flappy_v3.0_093", withProgram:"Flappy_v3.0_095")
+
+    func testFlappy() {
+        self.compareProgram(firstProgramName: "Flappy_v3.0_093", withProgram: "Flappy_v3.0_095")
     }
-    
-    func testGalaxyWar()
-    {
-        self.compareProgram(firstProgramName: "Galaxy_War_093", withProgram:"Galaxy_War_095")
+
+    func testGalaxyWar() {
+        self.compareProgram(firstProgramName: "Galaxy_War_093", withProgram: "Galaxy_War_095")
     }
-    
-    func testGossipGirl()
-    {
-        self.compareProgram(firstProgramName: "Gossip_Girl_091", withProgram:"Gossip_Girl_095")
+
+    func testGossipGirl() {
+        self.compareProgram(firstProgramName: "Gossip_Girl_091", withProgram: "Gossip_Girl_095")
     }
-    
-    func testMemory()
-    {
-        self.compareProgram(firstProgramName: "Memory_093", withProgram:"Memory_095")
+
+    func testMemory() {
+        self.compareProgram(firstProgramName: "Memory_093", withProgram: "Memory_095")
     }
-    
-    func testMinecraftWorkInProgress()
-    {
-        self.compareProgram(firstProgramName: "Minecraft_Work_In_Progress_093", withProgram:"Minecraft_Work_In_Progress_095")
+
+    func testMinecraftWorkInProgress() {
+        self.compareProgram(firstProgramName: "Minecraft_Work_In_Progress_093", withProgram: "Minecraft_Work_In_Progress_095")
     }
-    
-    func testMinions()
-    {
-        self.compareProgram(firstProgramName: "Minions__093", withProgram:"Minions__095")
+
+    func testMinions() {
+        self.compareProgram(firstProgramName: "Minions__093", withProgram: "Minions__095")
     }
-    
-    func testPongStarter()
-    {
-        self.compareProgram(firstProgramName: "Pong_Starter_093", withProgram:"Pong_Starter_095")
+
+    func testPongStarter() {
+        self.compareProgram(firstProgramName: "Pong_Starter_093", withProgram: "Pong_Starter_095")
     }
-    
-    func testPythagoreanTheorem()
-    {
-        self.compareProgram(firstProgramName: "Pythagorean_Theorem_093", withProgram:"Pythagorean_Theorem_095")
+
+    func testPythagoreanTheorem() {
+        self.compareProgram(firstProgramName: "Pythagorean_Theorem_093", withProgram: "Pythagorean_Theorem_095")
     }
-    
-    func testRockPaperScissors()
-    {
-        self.compareProgram(firstProgramName: "Rock_paper_scissors_093", withProgram:"Rock_paper_scissors_095")
+
+    func testRockPaperScissors() {
+        self.compareProgram(firstProgramName: "Rock_paper_scissors_093", withProgram: "Rock_paper_scissors_095")
     }
-    
-    func testSkydivingSteve()
-    {
-        self.compareProgram(firstProgramName: "Skydiving_Steve_093", withProgram:"Skydiving_Steve_095")
+
+    func testSkydivingSteve() {
+        self.compareProgram(firstProgramName: "Skydiving_Steve_093", withProgram: "Skydiving_Steve_095")
     }
-    
-    func testTicTacToeMaster()
-    {
-        self.compareProgram(firstProgramName: "Tic_Tac_Toe_Master_093", withProgram:"Tic_Tac_Toe_Master_095")
+
+    func testTicTacToeMaster() {
+        self.compareProgram(firstProgramName: "Tic_Tac_Toe_Master_093", withProgram: "Tic_Tac_Toe_Master_095")
     }
-    
-    func testWordBalloonDemo()
-    {
-        self.compareProgram(firstProgramName: "Word_balloon_demo_093", withProgram:"Word_balloon_demo_095")
+
+    func testWordBalloonDemo() {
+        self.compareProgram(firstProgramName: "Word_balloon_demo_093", withProgram: "Word_balloon_demo_095")
     }
-    
-    func testXRayPhone()
-    {
-        self.compareProgram(firstProgramName: "X_Ray_phone_093", withProgram:"X_Ray_phone_095")
+
+    func testXRayPhone() {
+        self.compareProgram(firstProgramName: "X_Ray_phone_093", withProgram: "X_Ray_phone_095")
     }
-    
+
 }

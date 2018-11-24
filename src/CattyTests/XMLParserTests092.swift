@@ -24,12 +24,12 @@ import XCTest
 
 @testable import Pocket_Code
 
-class XMLParserTests092 : XMLAbstractTest {
-    
+class XMLParserTests092: XMLAbstractTest {
+
     func testConvertUnsupportedBrickToNoteBrick() {
         let program = getProgramForXML(xmlFile: "LegoNxtMotorActionBrick")
         XCTAssertNotNil(program, "Program should not be nil")
-    
+
         for spriteObject in program.objectList {
             XCTAssertNotNil(spriteObject, "SpriteObject should not be nil")
             for script in (spriteObject as! SpriteObject).scriptList {
@@ -38,7 +38,7 @@ class XMLParserTests092 : XMLAbstractTest {
                 }
             }
         }
-    
+
         XCTAssertEqual(6, program.objectList.count, "Invalid number of SpriteObjects")
         let spriteObject = program.objectList.object(at: 1) as! SpriteObject
         XCTAssertEqual(1, spriteObject.scriptList.count, "Invalid number of Scripts")
