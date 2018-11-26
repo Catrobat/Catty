@@ -34,17 +34,11 @@ class XMLParserFormulaTests093: XMLAbstractTest {
 
     func testValidFormulaList() {
         let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidFormulaList"))
-        let xmlElement = document.rootElement()
-        var brickElement = [Any]()
-        do {
-            try brickElement = (xmlElement?.nodes(forXPath: "//program/objectList/object[1]/scriptList/script[1]/brickList/brick[2]"))!
-        } catch let error as NSError {
-            print("Error: \(error.domain)")
-            XCTFail("Could not retrieve XMLElement")
-        }
-        XCTAssertEqual(brickElement.count, 1)
 
-        let brickXMLElement = brickElement.first as! GDataXMLElement
+        let brickElement = self.getXMLElementsForXPath(document, xPath: "//program/objectList/object[1]/scriptList/script[1]/brickList/brick[2]")
+        XCTAssertEqual(brickElement!.count, 1)
+
+        let brickXMLElement = brickElement!.first
         let brick = self.parserContext!.parse(from: brickXMLElement, withClass: SetVariableBrick.self) as! Brick
 
         XCTAssertEqual(brick.brickType, kBrickType.setVariableBrick, "Invalid brick type")
