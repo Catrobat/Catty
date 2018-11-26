@@ -30,24 +30,15 @@ class XMLParserBrickTests093: XMLAbstractTest {
 
     func testValidSetLookBrick() {
         let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgram"))
-        let xmlElement = document.rootElement()
+        let brickElement = self.getXMLElementsForXPath(document, xPath: "//program/objectList/object[1]/scriptList/script[1]/brickList/brick[1]")
+        let objectArray = self.getXMLElementsForXPath(document, xPath: "//program/objectList/object[1]")
 
-        var brickElement = [Any]()
-        var objectArray = [Any]()
-        do {
-            try brickElement = (xmlElement!.nodes(forXPath: "//program/objectList/object[1]/scriptList/script[1]/brickList/brick[1]"))
-            try objectArray = xmlElement!.nodes(forXPath: "//program/objectList/object[1]")
-        } catch let error as NSError {
-            print("Error: \(error.domain)")
-            XCTFail("Could not retrieve XML Element")
-        }
-
-        XCTAssertEqual(brickElement.count, 1)
-        XCTAssertEqual(objectArray.count, 1)
-        let objectElement = objectArray.first as! GDataXMLElement
+        XCTAssertEqual(brickElement!.count, 1)
+        XCTAssertEqual(objectArray!.count, 1)
+        let objectElement = objectArray!.first
 
         let lookList = SpriteObject.parseAndCreateLooks(objectElement, with: self.parserContext)
-        let brickXMLElement = brickElement.first as! GDataXMLElement
+        let brickXMLElement = brickElement!.first
 
         self.parserContext!.spriteObject = SpriteObject()
         self.parserContext!.spriteObject.lookList = lookList
@@ -64,18 +55,10 @@ class XMLParserBrickTests093: XMLAbstractTest {
 
     func testValidSetVariableBrick() {
         let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgram"))
-        let xmlElement = document.rootElement()
+        let brickElement = self.getXMLElementsForXPath(document, xPath: "//program/objectList/object[1]/scriptList/script[1]/brickList/brick[2]")
 
-        var brickElement = [Any]()
-        do {
-            try brickElement = (xmlElement!.nodes(forXPath: "//program/objectList/object[1]/scriptList/script[1]/brickList/brick[2]"))
-        } catch let error as NSError {
-            print("Error: \(error.domain)")
-            XCTFail("Could not retrieve XML Element")
-        }
-
-        XCTAssertEqual(brickElement.count, 1)
-        let brickXMLElement = brickElement.first as! GDataXMLElement
+        XCTAssertEqual(brickElement!.count, 1)
+        let brickXMLElement = brickElement!.first
 
         let brick = self.parserContext!.parse(from: brickXMLElement, withClass: SetVariableBrick.self) as! Brick
         XCTAssertEqual(brick.brickType, kBrickType.setVariableBrick, "Invalid brick type")
@@ -92,25 +75,16 @@ class XMLParserBrickTests093: XMLAbstractTest {
 
     func testValidSetSizeToBrick() {
         let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgram"))
-        let xmlElement = document.rootElement()
+        let brickElement = self.getXMLElementsForXPath(document, xPath: "//program/objectList/object[2]/scriptList/script[1]/brickList/brick[1]")
+        let objectArray = self.getXMLElementsForXPath(document, xPath: "//program/objectList/object[1]")
 
-        var brickElement = [Any]()
-        var objectArray = [Any]()
-        do {
-            try brickElement = (xmlElement!.nodes(forXPath: "//program/objectList/object[2]/scriptList/script[1]/brickList/brick[1]"))
-            try objectArray = xmlElement!.nodes(forXPath: "//program/objectList/object[1]")
-        } catch let error as NSError {
-            print("Error: \(error.domain)")
-            XCTFail("Could not retrieve XML Element")
-        }
+        XCTAssertEqual(brickElement!.count, 1)
+        XCTAssertEqual(objectArray!.count, 1)
 
-        XCTAssertEqual(brickElement.count, 1)
-        XCTAssertEqual(objectArray.count, 1)
-
-        let objectElement = objectArray.first as! GDataXMLElement
+        let objectElement = objectArray!.first
 
         let lookList = SpriteObject.parseAndCreateLooks(objectElement, with: self.parserContext)
-        let brickXMLElement = brickElement.first as! GDataXMLElement
+        let brickXMLElement = brickElement!.first
 
         let context = CBXMLParserContext()
         context.spriteObject = SpriteObject()
@@ -134,23 +108,14 @@ class XMLParserBrickTests093: XMLAbstractTest {
     func testValidForeverBrickAndLoopEndlessBrick() {
         let context = CBXMLParserContext()
         let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgram"))
-        let xmlElement = document.rootElement()
+        let brickElement1 = self.getXMLElementsForXPath(document, xPath: "//program/objectList/object[2]/scriptList/script[1]/brickList/brick[2]")
+        let brickElement2 = self.getXMLElementsForXPath(document, xPath: "//program/objectList/object[2]/scriptList/script[1]/brickList/brick[12]")
 
-        var brickElement1 = [Any]()
-        var brickElement2 = [Any]()
-        do {
-            try brickElement1 = (xmlElement!.nodes(forXPath: "//program/objectList/object[2]/scriptList/script[1]/brickList/brick[2]"))
-            try brickElement2 = (xmlElement!.nodes(forXPath: "//program/objectList/object[2]/scriptList/script[1]/brickList/brick[12]"))
-        } catch let error as NSError {
-            print("Error: \(error.domain)")
-            XCTFail("Could not retrieve XML Element")
-        }
+        XCTAssertEqual(brickElement1!.count, 1)
+        XCTAssertEqual(brickElement2!.count, 1)
 
-        XCTAssertEqual(brickElement1.count, 1)
-        XCTAssertEqual(brickElement2.count, 1)
-
-        let brickXMLElement1 = brickElement1.first as! GDataXMLElement
-        let brickXMLElement2 = brickElement2.first as! GDataXMLElement
+        let brickXMLElement1 = brickElement1!.first
+        let brickXMLElement2 = brickElement2!.first
 
         let brick1 = self.parserContext!.parse(from: brickXMLElement1, withClass: ForeverBrick.self as? CBXMLNodeProtocol.Type) as! Brick
         let brick2 = self.parserContext!.parse(from: brickXMLElement2, withClass: LoopEndBrick.self as? CBXMLNodeProtocol.Type) as! Brick
@@ -165,18 +130,10 @@ class XMLParserBrickTests093: XMLAbstractTest {
 
     func testValidPlaceAtBrick() {
         let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgram"))
-        let xmlElement = document.rootElement()
+        let brickElement = self.getXMLElementsForXPath(document, xPath: "//program/objectList/object[2]/scriptList/script[1]/brickList/brick[3]")
+        XCTAssertEqual(brickElement!.count, 1)
 
-        var brickElement = [Any]()
-        do {
-            try brickElement = (xmlElement!.nodes(forXPath: "//program/objectList/object[2]/scriptList/script[1]/brickList/brick[3]"))
-        } catch let error as NSError {
-            print("Error: \(error.domain)")
-            XCTFail("Could not retrieve XML Element")
-        }
-        XCTAssertEqual(brickElement.count, 1)
-
-        let brickXMLElement = brickElement.first as! GDataXMLElement
+        let brickXMLElement = brickElement!.first
         let brick = self.parserContext!.parse(from: brickXMLElement, withClass: PlaceAtBrick.self as? CBXMLNodeProtocol.Type) as! Brick
 
         XCTAssertEqual(brick.brickType, kBrickType.placeAtBrick, "Invalid brick type")
@@ -194,18 +151,10 @@ class XMLParserBrickTests093: XMLAbstractTest {
 
     func testValidWaitBrick() {
         let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgram"))
-        let xmlElement = document.rootElement()
+        let brickElement = self.getXMLElementsForXPath(document, xPath: "//program/objectList/object[2]/scriptList/script[1]/brickList/brick[4]")
+        XCTAssertEqual(brickElement!.count, 1)
 
-        var brickElement = [Any]()
-        do {
-            try brickElement = (xmlElement!.nodes(forXPath: "//program/objectList/object[2]/scriptList/script[1]/brickList/brick[4]"))
-        } catch let error as NSError {
-            print("Error: \(error.domain)")
-            XCTFail("Could not retrieve XML Element")
-        }
-        XCTAssertEqual(brickElement.count, 1)
-
-        let brickXMLElement = brickElement.first as! GDataXMLElement
+        let brickXMLElement = brickElement!.first
         let brick = self.parserContext!.parse(from: brickXMLElement, withClass: WaitBrick.self as? CBXMLNodeProtocol.Type) as! Brick
 
         XCTAssertEqual(brick.brickType, kBrickType.waitBrick, "Invalid brick type")
@@ -221,18 +170,10 @@ class XMLParserBrickTests093: XMLAbstractTest {
 
     func testValidShowBrick() {
         let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgram"))
-        let xmlElement = document.rootElement()
+        let brickElement = self.getXMLElementsForXPath(document, xPath: "//program/objectList/object[2]/scriptList/script[1]/brickList/brick[5]")
+        XCTAssertEqual(brickElement!.count, 1)
 
-        var brickElement = [Any]()
-        do {
-            try brickElement = (xmlElement!.nodes(forXPath: "//program/objectList/object[2]/scriptList/script[1]/brickList/brick[5]"))
-        } catch let error as NSError {
-            print("Error: \(error.domain)")
-            XCTFail("Could not retrieve XML Element")
-        }
-        XCTAssertEqual(brickElement.count, 1)
-
-        let brickXMLElement = brickElement.first as! GDataXMLElement
+        let brickXMLElement = brickElement!.first
         let brick = self.parserContext!.parse(from: brickXMLElement, withClass: ShowBrick.self as? CBXMLNodeProtocol.Type) as! Brick
 
         XCTAssertEqual(brick.brickType, kBrickType.showBrick, "Invalid brick type")
@@ -241,18 +182,10 @@ class XMLParserBrickTests093: XMLAbstractTest {
 
     func testValidGlideToBrick() {
         let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgram"))
-        let xmlElement = document.rootElement()
+        let brickElement = self.getXMLElementsForXPath(document, xPath: "//program/objectList/object[2]/scriptList/script[1]/brickList/brick[7]")
+        XCTAssertEqual(brickElement!.count, 1)
 
-        var brickElement = [Any]()
-        do {
-            try brickElement = (xmlElement!.nodes(forXPath: "//program/objectList/object[2]/scriptList/script[1]/brickList/brick[7]"))
-        } catch let error as NSError {
-            print("Error: \(error.domain)")
-            XCTFail("Could not retrieve XML Element")
-        }
-        XCTAssertEqual(brickElement.count, 1)
-
-        let brickXMLElement = brickElement.first as! GDataXMLElement
+        let brickXMLElement = brickElement!.first
         let brick = self.parserContext!.parse(from: brickXMLElement, withClass: GlideToBrick.self as? CBXMLNodeProtocol.Type) as! Brick
 
         XCTAssertEqual(brick.brickType, kBrickType.glideToBrick, "Invalid brick type")
@@ -275,18 +208,10 @@ class XMLParserBrickTests093: XMLAbstractTest {
 
     func testValidHideBrick() {
         let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgram"))
-        let xmlElement = document.rootElement()
+        let brickElement = self.getXMLElementsForXPath(document, xPath: "//program/objectList/object[2]/scriptList/script[1]/brickList/brick[10]")
+        XCTAssertEqual(brickElement!.count, 1)
 
-        var brickElement = [Any]()
-        do {
-            try brickElement = (xmlElement!.nodes(forXPath: "//program/objectList/object[2]/scriptList/script[1]/brickList/brick[10]"))
-        } catch let error as NSError {
-            print("Error: \(error.domain)")
-            XCTFail("Could not retrieve XML Element")
-        }
-        XCTAssertEqual(brickElement.count, 1)
-
-        let brickXMLElement = brickElement.first as! GDataXMLElement
+        let brickXMLElement = brickElement!.first
         let brick = self.parserContext!.parse(from: brickXMLElement, withClass: HideBrick.self as? CBXMLNodeProtocol.Type) as! Brick
 
         XCTAssertEqual(brick.brickType, kBrickType.hideBrick, "Invalid brick type")
@@ -295,24 +220,14 @@ class XMLParserBrickTests093: XMLAbstractTest {
 
     func testValidPlaySoundBrick() {
         let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgram"))
-        let xmlElement = document.rootElement()
+        let brickElement = self.getXMLElementsForXPath(document, xPath: "//program/objectList/object[2]/scriptList/script[2]/brickList/brick[1]")
+        let objectArray = self.getXMLElementsForXPath(document, xPath: "//program/objectList/object[2]")
+        XCTAssertEqual(brickElement!.count, 1)
+        XCTAssertEqual(objectArray!.count, 1)
 
-        var brickElement = [Any]()
-        var objectArray = [Any]()
-        do {
-            try brickElement = (xmlElement!.nodes(forXPath: "//program/objectList/object[2]/scriptList/script[2]/brickList/brick[1]"))
-            try objectArray = (xmlElement!.nodes(forXPath: "//program/objectList/object[2]"))
-
-        } catch let error as NSError {
-            print("Error: \(error.domain)")
-            XCTFail("Could not retrieve XML Element")
-        }
-        XCTAssertEqual(brickElement.count, 1)
-        XCTAssertEqual(objectArray.count, 1)
-
-        let objectElement = objectArray.first as! GDataXMLElement
+        let objectElement = objectArray!.first
         let soundList = SpriteObject.parseAndCreateSounds(objectElement, with: self.parserContext)
-        let brickXMLElement = brickElement.first as! GDataXMLElement
+        let brickXMLElement = brickElement!.first
 
         self.parserContext!.spriteObject = SpriteObject()
         self.parserContext!.spriteObject.soundList = soundList
@@ -330,17 +245,10 @@ class XMLParserBrickTests093: XMLAbstractTest {
 
     func testValidSetXBrick() {
         let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgramAllBricks093"))
-        let xmlElement = document.rootElement()
+        let brickElement = self.getXMLElementsForXPath(document, xPath: "//program/objectList/object[1]/scriptList/script[1]/brickList/brick[2]")
+        XCTAssertEqual(brickElement!.count, 1)
 
-        var brickElement = [Any]()
-        do {
-            try brickElement = (xmlElement!.nodes(forXPath: "//program/objectList/object[1]/scriptList/script[1]/brickList/brick[2]"))
-        } catch let error as NSError {
-            print("Error: \(error.domain)")
-            XCTFail("Could not retrieve XML Element")
-        }
-        XCTAssertEqual(brickElement.count, 1)
-        let brickXMLElement = brickElement.first as! GDataXMLElement
+        let brickXMLElement = brickElement!.first
         let brick = self.parserContext!.parse(from: brickXMLElement, withClass: SetXBrick.self as? CBXMLNodeProtocol.Type) as! Brick
 
         XCTAssertEqual(brick.brickType, kBrickType.setXBrick, "Invalid brick type")
@@ -356,18 +264,11 @@ class XMLParserBrickTests093: XMLAbstractTest {
 
     func testValidSetXBrickEqual() {
         let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgramAllBricks093"))
-        let xmlElement = document.rootElement()
 
-        var brickElement = [Any]()
-        do {
-            try brickElement = (xmlElement!.nodes(forXPath: "//program/objectList/object[1]/scriptList/script[1]/brickList/brick[2]"))
-        } catch let error as NSError {
-            print("Error: \(error.domain)")
-            XCTFail("Could not retrieve XML Element")
-        }
-        XCTAssertEqual(brickElement.count, 1)
+        let brickElement = self.getXMLElementsForXPath(document, xPath: "//program/objectList/object[1]/scriptList/script[1]/brickList/brick[2]")
+        XCTAssertEqual(brickElement!.count, 1)
 
-        let brickXMLElement = brickElement.first as! GDataXMLElement
+        let brickXMLElement = brickElement!.first
         let brick = self.parserContext!.parse(from: brickXMLElement, withClass: SetXBrick.self as? CBXMLNodeProtocol.Type) as! Brick
 
         XCTAssertEqual(brick.brickType, kBrickType.setXBrick, "Invalid brick type")
@@ -394,17 +295,10 @@ class XMLParserBrickTests093: XMLAbstractTest {
 
     func testValidSetYBrick() {
         let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgramAllBricks093"))
-        let xmlElement = document.rootElement()
+        let brickElement = self.getXMLElementsForXPath(document, xPath: "//program/objectList/object[1]/scriptList/script[1]/brickList/brick[3]")
+        XCTAssertEqual(brickElement!.count, 1)
 
-        var brickElement = [Any]()
-        do {
-            try brickElement = (xmlElement!.nodes(forXPath: "//program/objectList/object[1]/scriptList/script[1]/brickList/brick[3]"))
-        } catch let error as NSError {
-            print("Error: \(error.domain)")
-            XCTFail("Could not retrieve XML Element")
-        }
-        XCTAssertEqual(brickElement.count, 1)
-        let brickXMLElement = brickElement.first as! GDataXMLElement
+        let brickXMLElement = brickElement!.first
         let brick = self.parserContext!.parse(from: brickXMLElement, withClass: SetYBrick.self as? CBXMLNodeProtocol.Type) as! Brick
 
         XCTAssertEqual(brick.brickType, kBrickType.setYBrick, "Invalid brick type")
@@ -420,17 +314,10 @@ class XMLParserBrickTests093: XMLAbstractTest {
 
     func testValidChangeXByNBrick() {
         let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgramAllBricks093"))
-        let xmlElement = document.rootElement()
+        let brickElement = self.getXMLElementsForXPath(document, xPath: "//program/objectList/object[1]/scriptList/script[1]/brickList/brick[4]")
+        XCTAssertEqual(brickElement!.count, 1)
 
-        var brickElement = [Any]()
-        do {
-            try brickElement = (xmlElement!.nodes(forXPath: "//program/objectList/object[1]/scriptList/script[1]/brickList/brick[4]"))
-        } catch let error as NSError {
-            print("Error: \(error.domain)")
-            XCTFail("Could not retrieve XML Element")
-        }
-        XCTAssertEqual(brickElement.count, 1)
-        let brickXMLElement = brickElement.first as! GDataXMLElement
+        let brickXMLElement = brickElement!.first
         let brick = self.parserContext!.parse(from: brickXMLElement, withClass: ChangeXByNBrick.self as? CBXMLNodeProtocol.Type) as! Brick
 
         XCTAssertEqual(brick.brickType, kBrickType.changeXByNBrick, "Invalid brick type")
@@ -446,17 +333,10 @@ class XMLParserBrickTests093: XMLAbstractTest {
 
     func testValidChangeYByNBrick() {
         let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgramAllBricks093"))
-        let xmlElement = document.rootElement()
+        let brickElement = self.getXMLElementsForXPath(document, xPath: "//program/objectList/object[1]/scriptList/script[1]/brickList/brick[5]")
+        XCTAssertEqual(brickElement!.count, 1)
 
-        var brickElement = [Any]()
-        do {
-            try brickElement = (xmlElement!.nodes(forXPath: "//program/objectList/object[1]/scriptList/script[1]/brickList/brick[5]"))
-        } catch let error as NSError {
-            print("Error: \(error.domain)")
-            XCTFail("Could not retrieve XML Element")
-        }
-        XCTAssertEqual(brickElement.count, 1)
-        let brickXMLElement = brickElement.first as! GDataXMLElement
+        let brickXMLElement = brickElement!.first
         let brick = self.parserContext!.parse(from: brickXMLElement, withClass: ChangeYByNBrick.self as? CBXMLNodeProtocol.Type) as! Brick
 
         XCTAssertEqual(brick.brickType, kBrickType.changeYByNBrick, "Invalid brick type")
@@ -471,17 +351,10 @@ class XMLParserBrickTests093: XMLAbstractTest {
 
     func testValidMoveNStepsBrick() {
         let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgramAllBricks093"))
-        let xmlElement = document.rootElement()
+        let brickElement = self.getXMLElementsForXPath(document, xPath: "//program/objectList/object[1]/scriptList/script[1]/brickList/brick[6]")
+        XCTAssertEqual(brickElement!.count, 1)
 
-        var brickElement = [Any]()
-        do {
-            try brickElement = (xmlElement!.nodes(forXPath: "//program/objectList/object[1]/scriptList/script[1]/brickList/brick[6]"))
-        } catch let error as NSError {
-            print("Error: \(error.domain)")
-            XCTFail("Could not retrieve XML Element")
-        }
-        XCTAssertEqual(brickElement.count, 1)
-        let brickXMLElement = brickElement.first as! GDataXMLElement
+        let brickXMLElement = brickElement!.first
         let brick = self.parserContext!.parse(from: brickXMLElement, withClass: MoveNStepsBrick.self) as! Brick
 
         XCTAssertEqual(brick.brickType, kBrickType.moveNStepsBrick, "Invalid brick type")
@@ -496,17 +369,10 @@ class XMLParserBrickTests093: XMLAbstractTest {
 
     func testValidTurnLeftBrick() {
         let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgramAllBricks093"))
-        let xmlElement = document.rootElement()
+        let brickElement = self.getXMLElementsForXPath(document, xPath: "//program/objectList/object[1]/scriptList/script[1]/brickList/brick[7]")
+        XCTAssertEqual(brickElement!.count, 1)
 
-        var brickElement = [Any]()
-        do {
-            try brickElement = (xmlElement!.nodes(forXPath: "//program/objectList/object[1]/scriptList/script[1]/brickList/brick[7]"))
-        } catch let error as NSError {
-            print("Error: \(error.domain)")
-            XCTFail("Could not retrieve XML Element")
-        }
-        XCTAssertEqual(brickElement.count, 1)
-        let brickXMLElement = brickElement.first as! GDataXMLElement
+        let brickXMLElement = brickElement!.first
         let brick = self.parserContext!.parse(from: brickXMLElement, withClass: TurnLeftBrick.self as? CBXMLNodeProtocol.Type) as! Brick
 
         XCTAssertEqual(brick.brickType, kBrickType.turnLeftBrick, "Invalid brick type")
@@ -521,17 +387,10 @@ class XMLParserBrickTests093: XMLAbstractTest {
 
     func testValidTurnRightBrick() {
         let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgramAllBricks093"))
-        let xmlElement = document.rootElement()
+        let brickElement = self.getXMLElementsForXPath(document, xPath: "//program/objectList/object[1]/scriptList/script[1]/brickList/brick[8]")
+        XCTAssertEqual(brickElement!.count, 1)
 
-        var brickElement = [Any]()
-        do {
-            try brickElement = (xmlElement!.nodes(forXPath: "//program/objectList/object[1]/scriptList/script[1]/brickList/brick[8]"))
-        } catch let error as NSError {
-            print("Error: \(error.domain)")
-            XCTFail("Could not retrieve XML Element")
-        }
-        XCTAssertEqual(brickElement.count, 1)
-        let brickXMLElement = brickElement.first as! GDataXMLElement
+        let brickXMLElement = brickElement!.first
         let brick = self.parserContext!.parse(from: brickXMLElement, withClass: TurnRightBrick.self as? CBXMLNodeProtocol.Type) as! Brick
 
         XCTAssertEqual(brick.brickType, kBrickType.turnRightBrick, "Invalid brick type")
@@ -546,17 +405,10 @@ class XMLParserBrickTests093: XMLAbstractTest {
 
     func testValidPointInDirectionBrick() {
         let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgramAllBricks093"))
-        let xmlElement = document.rootElement()
+        let brickElement = self.getXMLElementsForXPath(document, xPath: "//program/objectList/object[1]/scriptList/script[1]/brickList/brick[9]")
+        XCTAssertEqual(brickElement!.count, 1)
 
-        var brickElement = [Any]()
-        do {
-            try brickElement = (xmlElement!.nodes(forXPath: "//program/objectList/object[1]/scriptList/script[1]/brickList/brick[9]"))
-        } catch let error as NSError {
-            print("Error: \(error.domain)")
-            XCTFail("Could not retrieve XML Element")
-        }
-        XCTAssertEqual(brickElement.count, 1)
-        let brickXMLElement = brickElement.first as! GDataXMLElement
+        let brickXMLElement = brickElement!.first
         let brick = self.parserContext!.parse(from: brickXMLElement, withClass: PointInDirectionBrick.self as? CBXMLNodeProtocol.Type) as! Brick
 
         XCTAssertEqual(brick.brickType, kBrickType.pointInDirectionBrick, "Invalid brick type")
@@ -571,17 +423,10 @@ class XMLParserBrickTests093: XMLAbstractTest {
 
     func testValidStopAllSoundBrick() {
         let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgramAllBricks093"))
-        let xmlElement = document.rootElement()
-
-        var brickElement = [Any]()
-        do {
-            try brickElement = (xmlElement!.nodes(forXPath: "//program/objectList/object[1]/scriptList/script[1]/brickList/brick[10]/pointedObject[1]/scriptList/script[1]/brickList/brick[2]"))
-        } catch let error as NSError {
-            print("Error: \(error.domain)")
-            XCTFail("Could not retrieve XML Element")
-        }
-        XCTAssertEqual(brickElement.count, 1)
-        let brickXMLElement = brickElement.first as! GDataXMLElement
+        let brickElement = self.getXMLElementsForXPath(document,
+                                                       xPath: "//program/objectList/object[1]/scriptList/script[1]/brickList/brick[10]/pointedObject[1]/scriptList/script[1]/brickList/brick[2]")
+        XCTAssertEqual(brickElement!.count, 1)
+        let brickXMLElement = brickElement!.first
 
         let brick = self.parserContext!.parse(from: brickXMLElement, withClass: StopAllSoundsBrick.self as? CBXMLNodeProtocol.Type) as! Brick
 
@@ -591,17 +436,10 @@ class XMLParserBrickTests093: XMLAbstractTest {
 
     func testValidPointToBrick() {
         let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgramAllBricks093"))
-        let xmlElement = document.rootElement()
+        let brickElement = self.getXMLElementsForXPath(document, xPath: "//program/objectList/object[1]/scriptList/script[1]/brickList/brick[10]")
+        XCTAssertEqual(brickElement!.count, 1)
 
-        var brickElement = [Any]()
-        do {
-            try brickElement = (xmlElement!.nodes(forXPath: "//program/objectList/object[1]/scriptList/script[1]/brickList/brick[10]"))
-        } catch let error as NSError {
-            print("Error: \(error.domain)")
-            XCTFail("Could not retrieve XML Element")
-        }
-        XCTAssertEqual(brickElement.count, 1)
-        let brickXMLElement = brickElement.first as! GDataXMLElement
+        let brickXMLElement = brickElement!.first
         let brick = self.parserContext!.parse(from: brickXMLElement, withClass: PointToBrick.self) as! Brick
 
         XCTAssertEqual(brick.brickType, kBrickType.pointToBrick, "Invalid brick type")
@@ -615,7 +453,6 @@ class XMLParserBrickTests093: XMLAbstractTest {
     }
 
     func testValidPointToBrickWithoutSpriteObject() {
-
         let program = self.getProgramForXML(xmlFile: "PointToBrickWithoutSpriteObject")
         XCTAssertNotNil(program, "Program must not be nil!")
 
@@ -636,17 +473,10 @@ class XMLParserBrickTests093: XMLAbstractTest {
 
     func testValidSetColorBrick() {
         let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgramAllBricks093"))
-        let xmlElement = document.rootElement()
+        let brickElement = self.getXMLElementsForXPath(document, xPath: "//program/objectList/object[1]/scriptList/script[1]/brickList/brick[15]")
+        XCTAssertEqual(brickElement!.count, 1)
 
-        var brickElement = [Any]()
-        do {
-            try brickElement = (xmlElement!.nodes(forXPath: "//program/objectList/object[1]/scriptList/script[1]/brickList/brick[15]"))
-        } catch let error as NSError {
-            print("Error: \(error.domain)")
-            XCTFail("Could not retrieve XML Element")
-        }
-        XCTAssertEqual(brickElement.count, 1)
-        let brickXMLElement = brickElement.first as! GDataXMLElement
+        let brickXMLElement = brickElement!.first
         let brick = self.parserContext!.parse(from: brickXMLElement, withClass: SetColorBrick.self as? CBXMLNodeProtocol.Type) as! Brick
 
         XCTAssertEqual(brick.brickType, kBrickType.setColorBrick, "Invalid brick type")
@@ -659,17 +489,10 @@ class XMLParserBrickTests093: XMLAbstractTest {
 
     func testValidChangeColorByNBrick() {
         let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgramAllBricks093"))
-        let xmlElement = document.rootElement()
+        let brickElement = self.getXMLElementsForXPath(document, xPath: "//program/objectList/object[1]/scriptList/script[1]/brickList/brick[16]")
+        XCTAssertEqual(brickElement!.count, 1)
 
-        var brickElement = [Any]()
-        do {
-            try brickElement = (xmlElement!.nodes(forXPath: "//program/objectList/object[1]/scriptList/script[1]/brickList/brick[16]"))
-        } catch let error as NSError {
-            print("Error: \(error.domain)")
-            XCTFail("An error occured when accessing an XMLElement")
-        }
-        XCTAssertEqual(brickElement.count, 1)
-        let brickXMLElement = brickElement.first as! GDataXMLElement
+        let brickXMLElement = brickElement!.first
         let brick = self.parserContext!.parse(from: brickXMLElement, withClass: ChangeColorByNBrick.self as? CBXMLNodeProtocol.Type) as! Brick
 
         XCTAssertEqual(brick.brickType, kBrickType.changeColorByNBrick, "Invalid brick type")
