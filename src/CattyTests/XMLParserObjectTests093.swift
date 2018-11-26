@@ -50,7 +50,7 @@ class XMLParserObjectTests093: XMLAbstractTest {
         userVariable.name = "random to"
         context.programVariableList.add(userVariable)
         for objectElement in objectElements {
-            let spriteObject = self.parserContext?.parse(from: objectElement, withClass: SpriteObject.self as? CBXMLNodeProtocol.Type) as! SpriteObject
+            let spriteObject = self.parserContext?.parse(from: objectElement, withClass: SpriteObject.self) as! SpriteObject
             objectList.add(spriteObject)
 
         }
