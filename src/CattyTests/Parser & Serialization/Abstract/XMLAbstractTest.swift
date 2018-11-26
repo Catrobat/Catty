@@ -37,17 +37,10 @@ class XMLAbstractTest: XCTestCase {
 
     func isXMLElement(xmlElement: GDataXMLElement, equalToXMLElementForXPath xPath: String, inProgramForXML program: String) -> Bool {
         let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: program))
-        let xml = document.rootElement()
-        var array: [Any]
-        do {
-            try array = (xml?.nodes(forXPath: xPath))!
-        } catch let error as NSError {
-            print("Error: \(error.domain)")
-            return false
-        }
-        XCTAssertEqual(array.count, 1)
-        let xmlElementFromFile = array.first
-        return xmlElement.isEqual(to: xmlElementFromFile as? GDataXMLElement)
+        let array = self.getXMLElementsForXPath(document, xPath: xPath)
+        XCTAssertEqual(array!.count, 1)
+        let xmlElementFromFile = array!.first
+        return xmlElement.isEqual(to: xmlElementFromFile)
     }
 
     func getXMLElementsForXPath(_ document: GDataXMLDocument, xPath: String) -> [GDataXMLElement]? {
