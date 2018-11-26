@@ -81,24 +81,24 @@ class XMLAbstractTest: XCTestCase {
         let languageVersion = Util.detectCBLanguageVersionFromXML(withPath: xmlPath)
         // detect right parser for correct catrobat language version
 
-        guard let catrobatParser = CBXMLParser.init(path: xmlPath) else {
+        let catrobatParser = CBXMLParser.init(path: xmlPath)
+        if catrobatParser == nil {
             XCTFail("Could not retrieve parser for xml file \(xmlFile)")
-            return Program()
         }
 
-        if !catrobatParser.isSupportedLanguageVersion(languageVersion) {
+        if !catrobatParser!.isSupportedLanguageVersion(languageVersion) {
             let parser = Parser()
-            guard let program = parser.generateObjectForProgram(withPath: xmlPath) else {
+            let program = parser.generateObjectForProgram(withPath: xmlPath)
+            if program == nil {
                 XCTFail("Could not parse program from file \(xmlFile)")
-                return Program()
             }
-            return program
+            return program!
         } else {
-            guard let program = catrobatParser.parseAndCreateProgram() else {
+            let program = catrobatParser!.parseAndCreateProgram()
+            if program == nil {
                 XCTFail("Could not parse program from file \(xmlFile)")
-                return Program()
             }
-            return program
+            return program!
         }
     }
 
@@ -119,11 +119,11 @@ class XMLAbstractTest: XCTestCase {
         var document = GDataXMLDocument()
         do {
             try xmlFile = String(contentsOfFile: xmlPath, encoding: String.Encoding.utf8)
-            guard let xmlData = xmlFile.data(using: String.Encoding.utf8) else {
+            let xmlData = xmlFile.data(using: String.Encoding.utf8)
+            if xmlData == nil {
                 XCTFail("Could not retrieve XML Document for path \(xmlPath)")
-                return document
             }
-            try document = GDataXMLDocument(data: xmlData, options: 0)
+            try document = GDataXMLDocument(data: xmlData!, options: 0)
         } catch let error as NSError {
             print("Error: \(error.domain)")
             XCTFail("Could not retrieve XML Document for path \(xmlPath)")
