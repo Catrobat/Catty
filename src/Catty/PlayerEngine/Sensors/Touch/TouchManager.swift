@@ -76,7 +76,7 @@ class TouchManager: NSObject, TouchManagerProtocol, UIGestureRecognizerDelegate 
     }
 
     func getPositionInScene(for touchNumber: Int) -> CGPoint? {
-        if touches.count <= touchNumber || touchNumber <= 0 {
+        if touches.count < touchNumber || touchNumber <= 0 {
             return nil
         }
         return touches[touchNumber - 1]

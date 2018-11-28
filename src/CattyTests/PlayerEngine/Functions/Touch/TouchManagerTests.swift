@@ -24,7 +24,7 @@ import XCTest
 
 @testable import Pocket_Code
 
-class TouchedManagerTests: XCTestCase {
+class TouchManagerTests: XCTestCase {
 
     var touchManager: TouchManager!
     var scene: CBScene!
