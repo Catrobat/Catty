@@ -126,7 +126,7 @@
             [formulaElement addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"NOTE"]];
             [formulaElement addChild:[GDataXMLElement elementWithName:@"type" stringValue:@"STRING"]];
             [formulaElement addChild:[GDataXMLElement elementWithName:@"value"
-                                                          stringValue:[NSString stringWithFormat:@"Unsupported brick: %@. Replaced by NoteBrick", brickTypeName]]];
+                                                          stringValue:[NSString stringWithFormat:@"Unsupported Brick: %@. Replaced by NoteBrick", brickTypeName]]];
             [formulaList addChild:formulaElement];
             [brickXmlElement addChild:formulaList];
         } else {
