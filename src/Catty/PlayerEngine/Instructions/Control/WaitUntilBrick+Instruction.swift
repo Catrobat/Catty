@@ -20,12 +20,18 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-//
-//  Use this file to import your target's public headers that you would like to expose to Swift.
-//
+@objc extension WaitUntilBrick: CBInstructionProtocol {
 
-#import "Catty-Bridging-Header.h"
+    @nonobjc func instruction() -> CBInstruction {
+        let waitingTimeUntilNextCheck = 0.02
 
-#import "ProgramMock.h"
-#import "ConvertExceptionToError.h"
-
+        return CBInstruction.waitExecClosure { context, _ in
+            let condition = NSCondition()
+            condition.lock()
+            while self.script?.object != nil && self.checkCondition(formulaInterpreter: context.formulaInterpreter) {
+                condition.wait(until: Date().addingTimeInterval(waitingTimeUntilNextCheck))
+            }
+            condition.unlock()
+        }
+    }
+}

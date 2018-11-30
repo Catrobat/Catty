@@ -136,4 +136,33 @@ class CreateProgramTests: XCTestCase, UITestProtocol {
         app.collectionViews.cells.element(boundBy: 1).tap()
         XCTAssert(app.collectionViews.cells.element(boundBy: 1).staticTexts["Next background"].exists)
     }
+
+    func testCanCreateProgramWithEmojiAndSpecialCharacters() {
+        let app = XCUIApplication()
+        let programName = "🙀"
+
+        //Create new Program
+        app.tables.staticTexts["New"].tap()
+        let alertQuery = app.alerts["New Program"]
+        alertQuery.textFields["Enter your program name here..."].typeText(programName)
+        app.alerts["New Program"].buttons["OK"].tap()
+        XCTAssertNotNil(waitForElementToAppear(app.navigationBars[programName]))
+
+        //Add new Object
+        app.toolbars.buttons["Add"].tap()
+        app.alerts["Add object"].textFields["Enter your object name here..."].typeText("你好")
+        app.alerts["Add object"].buttons["OK"].tap()
+        waitForElementToAppear(app.buttons["Draw new image"]).tap()
+
+        XCTAssertNotNil(waitForElementToAppear(app.navigationBars["Pocket Paint"]))
+
+        //Draw image
+        app.tap()
+
+        waitForElementToAppear(app.navigationBars.buttons["Looks"]).tap()
+        XCTAssert(app.alerts["Save to PocketCode"].exists)
+        app.alerts["Save to PocketCode"].buttons["Yes"].tap()
+
+        XCTAssert(app.staticTexts["你好"].exists)
+    }
 }

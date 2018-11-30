@@ -65,6 +65,7 @@ public final class InputValidationResult: NSObject {
 @objc public protocol TextFieldAlertControllerBuilding: TextFieldAlertActionAdding, TextFieldInputValidating { }
 
 final class TextFieldAlertController: BaseAlertController, TextFieldAlertDefining, TextFieldAlertControllerBuilding, UITextFieldDelegate {
+
     private var characterValidator: ((String) -> Bool)?
     private var valueValidator: ((String) -> InputValidationResult)?
     private let initialMessage: String?
@@ -80,6 +81,8 @@ final class TextFieldAlertController: BaseAlertController, TextFieldAlertDefinin
             $0.keyboardType = .default
             $0.delegate = self
         }
+
+        _ = defaultCharacterValidator()
     }
 
     func initialText(_ text: String) -> TextFieldAlertDefining {
@@ -121,8 +124,18 @@ final class TextFieldAlertController: BaseAlertController, TextFieldAlertDefinin
         return self
     }
 
-    @objc func characterValidator(_ validator: @escaping (String) -> Bool) -> TextFieldInputValidating {
+    func characterValidator(_ validator: @escaping (String) -> Bool) -> TextFieldInputValidating {
         characterValidator = validator
+        return self
+    }
+
+    func defaultCharacterValidator() -> TextFieldInputValidating {
+        characterValidator = { (input: String) -> Bool in
+            guard let _ = input.rangeOfCharacter(from: CharacterSet.init(charactersIn: kTextFieldBlockedCharacters)) else {
+                return true
+            }
+            return false
+        }
         return self
     }
 

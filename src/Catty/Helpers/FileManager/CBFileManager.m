@@ -587,7 +587,7 @@
 - (void)URLSession:(NSURLSession*)session task:(NSURLSessionTask*)task didCompleteWithError:(NSError*)error
 {
     if (error) {
-        // XXX: hack: workaround for app crash issue...
+        // FIXME: hack: workaround for app crash issue...
         if (error.code != kCFURLErrorNotConnectedToInternet) {
             [task suspend];
             UIApplication* app = [UIApplication sharedApplication];

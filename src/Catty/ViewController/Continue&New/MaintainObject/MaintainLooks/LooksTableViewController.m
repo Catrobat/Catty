@@ -55,17 +55,6 @@
 
 @implementation LooksTableViewController
 
-#pragma mark - data helpers
-static NSCharacterSet *blockedCharacterSet = nil;
-- (NSCharacterSet*)blockedCharacterSet
-{
-    if (! blockedCharacterSet) {
-        blockedCharacterSet = [[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters]
-                               invertedSet];
-    }
-    return blockedCharacterSet;
-}
-
 #pragma mark initialization
 - (void)initNavigationBar
 {
@@ -435,7 +424,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                 promptPlaceholder:kLocalizedEnterYourImageNameHere
                                    minInputLength:kMinNumOfLookNameCharacters
                                    maxInputLength:kMaxNumOfLookNameCharacters
-                              blockedCharacterSet:[self blockedCharacterSet]
                          invalidInputAlertMessage:kLocalizedInvalidImageNameDescription];
          }] build]
          viewWillDisappear:^{
@@ -610,7 +598,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
                            promptPlaceholder:kLocalizedEnterYourImageNameHere
                               minInputLength:kMinNumOfLookNameCharacters
                               maxInputLength:kMaxNumOfLookNameCharacters
-                         blockedCharacterSet:[self blockedCharacterSet]
                     invalidInputAlertMessage:kLocalizedInvalidImageNameDescription];
     }
 }
@@ -618,10 +605,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 #pragma mark - text field delegates
 - (BOOL)textField:(UITextField*)field shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString*)characters
 {
-    if ([characters length] > kMaxNumOfLookNameCharacters) {
-        return false;
-    }
-    return ([characters rangeOfCharacterFromSet:self.blockedCharacterSet].location == NSNotFound);
+    return [characters length] <= kMaxNumOfLookNameCharacters;
 }
 
 #pragma mark - action sheet
@@ -722,7 +706,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     UIBarButtonItem *play = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
                                                                           target:self
                                                                           action:@selector(playSceneAction:)];
-    // XXX: workaround for tap area problem:
+    // FIXME: workaround for tap area problem:
     // http://stackoverflow.com/questions/5113258/uitoolbar-unexpectedly-registers-taps-on-uibarbuttonitem-instances-even-when-tap
     UIBarButtonItem *(^invisibleItem)(void) = ^UIBarButtonItem *() { return [UIBarButtonItem invisibleItem]; };
     UIBarButtonItem *(^flexItem)(void) = ^UIBarButtonItem *() { return [UIBarButtonItem flexItem]; };
@@ -746,7 +730,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                                                          target:self
                                                                          action:@selector(copySelectedLooksAction:)];
     }
-    // XXX: workaround for tap area problem:
+    // FIXME: workaround for tap area problem:
     // http://stackoverflow.com/questions/5113258/uitoolbar-unexpectedly-registers-taps-on-uibarbuttonitem-instances-even-when-tap
     UIBarButtonItem *(^invisibleItem)(void) = ^UIBarButtonItem *() { return [UIBarButtonItem invisibleItem]; };
     UIBarButtonItem *(^flexItem)(void) = ^UIBarButtonItem *() { return [UIBarButtonItem flexItem]; };
@@ -901,7 +885,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                promptPlaceholder:kLocalizedEnterYourImageNameHere
                                   minInputLength:kMinNumOfLookNameCharacters
                                   maxInputLength:kMaxNumOfLookNameCharacters
-                             blockedCharacterSet:[self blockedCharacterSet]
                         invalidInputAlertMessage:kLocalizedInvalidImageNameDescription];
         }
     }

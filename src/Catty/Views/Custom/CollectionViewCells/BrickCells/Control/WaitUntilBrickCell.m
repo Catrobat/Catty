@@ -20,12 +20,25 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-//
-//  Use this file to import your target's public headers that you would like to expose to Swift.
-//
+#import "WaitUntilBrickCell.h"
 
-#import "Catty-Bridging-Header.h"
+@interface WaitUntilBrickCell ()
+@property (nonatomic, strong) UILabel *leftTextLabel;
+@property (nonatomic, strong) UILabel *rightTextLabel;
+@end
 
-#import "ProgramMock.h"
-#import "ConvertExceptionToError.h"
+@implementation WaitUntilBrickCell
 
+- (void)drawRect:(CGRect)rect
+{
+    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.controlBrickOrangeColor strokeColor:UIColor.controlBrickStrokeColor height:smallBrick width:[Util screenWidth]];
+}
+
+- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
+{
+    self.leftTextLabel = inlineViewSubViews[0];
+    self.waitConditionTextField = inlineViewSubViews[1];
+    self.rightTextLabel = inlineViewSubViews[2];
+}
+
+@end

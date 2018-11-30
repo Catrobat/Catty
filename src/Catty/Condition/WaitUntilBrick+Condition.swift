@@ -20,12 +20,19 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-//
-//  Use this file to import your target's public headers that you would like to expose to Swift.
-//
+extension WaitUntilBrick: CBConditionProtocol {
 
-#import "Catty-Bridging-Header.h"
+    func checkCondition(formulaInterpreter: FormulaInterpreterProtocol) -> Bool {
+        guard let object = self.script.object else { return false }
+        let condition = formulaInterpreter.interpretBool(self.waitCondition, for: object)
+        return !condition
+    }
 
-#import "ProgramMock.h"
-#import "ConvertExceptionToError.h"
+    func resetCondition() {
+        // nothing to do
+    }
 
+    func conditionFormulas() -> [Formula] {
+        return self.getFormulas()
+    }
+}

@@ -49,17 +49,6 @@
 
 @implementation MyProgramsViewController
 
-#pragma mark - data helpers
-static NSCharacterSet *blockedCharacterSet = nil;
-- (NSCharacterSet*)blockedCharacterSet
-{
-    if (! blockedCharacterSet) {
-        blockedCharacterSet = [[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters]
-                               invertedSet];
-    }
-    return blockedCharacterSet;
-}
-
 #pragma mark - initialization
 - (void)initNavigationBar
 {
@@ -161,7 +150,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
                              promptPlaceholder:kLocalizedEnterYourProgramNameHere
                                 minInputLength:kMinNumOfProgramNameCharacters
                                 maxInputLength:kMaxNumOfProgramNameCharacters
-                           blockedCharacterSet:[self blockedCharacterSet]
                       invalidInputAlertMessage:kLocalizedProgramNameAlreadyExistsDescription
                                  existingNames:[Program allProgramNames]];
 }
@@ -397,7 +385,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                       promptPlaceholder:kLocalizedEnterYourProgramNameHere
                                          minInputLength:kMinNumOfProgramNameCharacters
                                          maxInputLength:kMaxNumOfProgramNameCharacters
-                                    blockedCharacterSet:[self blockedCharacterSet]
                                invalidInputAlertMessage:kLocalizedProgramNameAlreadyExistsDescription
                                           existingNames:[Program allProgramNames]];
          }]
@@ -414,7 +401,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                       promptPlaceholder:kLocalizedEnterYourProgramNameHere
                                          minInputLength:kMinNumOfProgramNameCharacters
                                          maxInputLength:kMaxNumOfProgramNameCharacters
-                                    blockedCharacterSet:[self blockedCharacterSet]
                                invalidInputAlertMessage:kLocalizedProgramNameAlreadyExistsDescription
                                           existingNames:unavailableNames];
          }]
@@ -738,7 +724,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                                                      style:UIBarButtonItemStylePlain
                                                                     target:self
                                                                     action:@selector(confirmDeleteSelectedProgramsAction:)];
-    // XXX: workaround for tap area problem:
+    // FIXME: workaround for tap area problem:
     // http://stackoverflow.com/questions/5113258/uitoolbar-unexpectedly-registers-taps-on-uibarbuttonitem-instances-even-when-tap
     UIBarButtonItem *(^invisibleItem)(void) = ^UIBarButtonItem *() { return [UIBarButtonItem invisibleItem]; };
     UIBarButtonItem *(^flexItem)(void) = ^UIBarButtonItem *() { return [UIBarButtonItem flexItem]; };

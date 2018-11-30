@@ -119,8 +119,8 @@
     back.enabled = self.webView.canGoBack;
     UIBarButtonItem *share = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(openInSafari)];
 
-        // XXX: workaround for tap area problem:
-        // http://stackoverflow.com/questions/5113258/uitoolbar-unexpectedly-registers-taps-on-uibarbuttonitem-instances-even-when-tap
+    // FIXME: workaround for tap area problem:
+    // http://stackoverflow.com/questions/5113258/uitoolbar-unexpectedly-registers-taps-on-uibarbuttonitem-instances-even-when-tap
     UIBarButtonItem *(^invisibleItem)(void) = ^UIBarButtonItem *() { return [UIBarButtonItem invisibleItem]; };
     UIBarButtonItem *(^flexItem)(void) = ^UIBarButtonItem *() { return [UIBarButtonItem flexItem]; };
     self.toolbarItems = [NSArray arrayWithObjects:invisibleItem(), back, invisibleItem(), flexItem(),
