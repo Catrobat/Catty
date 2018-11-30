@@ -20,12 +20,19 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-//
-//  Use this file to import your target's public headers that you would like to expose to Swift.
-//
-
-#import "Catty-Bridging-Header.h"
-
-#import "ProgramMock.h"
 #import "ConvertExceptionToError.h"
 
+@implementation ConvertExceptionToError
+
++ (BOOL)catchException:(void(^)(void))tryBlock error:(__autoreleasing NSError **)error {
+    @try {
+        tryBlock();
+        return YES;
+    }
+    @catch (NSException *exception) {
+        *error = [[NSError alloc] initWithDomain:exception.name code:0 userInfo:exception.userInfo];
+        return NO;
+    }
+}
+
+@end

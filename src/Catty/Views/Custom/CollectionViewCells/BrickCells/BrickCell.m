@@ -62,6 +62,7 @@
     @[],                            /* else            */\
     @[],                            /* if end          */\
     @[],                            /* if then end     */\
+    @"{FLOAT;range=(-inf,inf)}",    /* wait until      */\
     @"{INT;range=[0,inf)}",         /* repeat          */\
     @"{FLOAT;range=(-inf,inf)}",    /* repeat until    */\
     @[]                             /* loop end        */\

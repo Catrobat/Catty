@@ -20,12 +20,13 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-//
-//  Use this file to import your target's public headers that you would like to expose to Swift.
-//
+#import "Brick.h"
+#import "BrickFormulaProtocol.h"
 
-#import "Catty-Bridging-Header.h"
+@class Formula;
 
-#import "ProgramMock.h"
-#import "ConvertExceptionToError.h"
+@interface WaitUntilBrick : Brick<BrickFormulaProtocol>
 
+@property (nonatomic, strong) Formula *waitCondition;
+
+@end
