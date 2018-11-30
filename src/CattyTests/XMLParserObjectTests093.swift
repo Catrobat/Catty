@@ -30,7 +30,7 @@ class XMLParserObjectTests093: XMLAbstractTest {
 
     override func setUp( ) {
         super.setUp()
-        var parserContext = CBXMLParserContext(languageVersion: CGFloat(Float32(0.93)))
+        parserContext = CBXMLParserContext(languageVersion: CGFloat(Float32(0.93)))
     }
 
     func testValidObjectList() {
