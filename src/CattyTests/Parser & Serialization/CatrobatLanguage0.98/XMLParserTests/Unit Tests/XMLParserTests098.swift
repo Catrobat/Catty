@@ -25,7 +25,12 @@ import XCTest
 @testable import Pocket_Code
 
 final class XMLParserTests098: XMLAbstractTest {
-    let formulaManager = FormulaManager()
+    var formulaManager: FormulaManager!
+
+    override func setUp( ) {
+        super.setUp()
+        formulaManager = FormulaManager()
+    }
 
     func testFlashBrick() {
         let program = self.getProgramForXML(xmlFile: "LedFlashBrick098")

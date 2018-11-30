@@ -25,9 +25,14 @@ import XCTest
 @testable import Pocket_Code
 
 class XMLParserTests0991: XMLAbstractTest {
-    var formulaManager = FormulaManager()
+    var formulaManager: FormulaManager!
 
-     func testFlashBrick() {
+    override func setUp() {
+        super.setUp()
+        formulaManager = FormulaManager()
+    }
+
+    func testFlashBrick() {
         let program = self.getProgramForXML(xmlFile: "LedFlashBrick0991")
 
         XCTAssertEqual(1, program.objectList.count, "Invalid object list")

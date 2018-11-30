@@ -25,8 +25,14 @@ import XCTest
 @testable import Pocket_Code
 
 final class XMLParserBrickTests095: XMLAbstractTest {
-    var serializerContext = CBXMLSerializerContext()
-    var parserContext = CBXMLParserContext(languageVersion: 0.95)
+    var serializerContext: CBXMLSerializerContext!
+    var parserContext: CBXMLParserContext!
+
+    override func setUp( ) {
+        super.setUp()
+        serializerContext = CBXMLSerializerContext()
+        parserContext = CBXMLParserContext(languageVersion: CGFloat(Float32(0.95)))
+    }
 
     func testInvalidSetVariableBrickWithoutFormula() {
         let setVariableBrick = SetVariableBrick()

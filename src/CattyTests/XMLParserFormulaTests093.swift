@@ -25,11 +25,13 @@ import XCTest
 @testable import Pocket_Code
 
 class XMLParserFormulaTests093: XMLAbstractTest {
-    var parserContext = CBXMLParserContext(languageVersion: CGFloat(Float32(0.93)))
-    var formulaManager = FormulaManager()
+    var parserContext: CBXMLParserContext!
+    var formulaManager: FormulaManager!
 
-    override func setUp( ) {
-        Util.activateTestMode(true)
+    override func setUp() {
+        super.setUp()
+        parserContext = CBXMLParserContext(languageVersion: CGFloat(Float32(0.93)))
+        formulaManager = FormulaManager()
     }
 
     func testValidFormulaList() {

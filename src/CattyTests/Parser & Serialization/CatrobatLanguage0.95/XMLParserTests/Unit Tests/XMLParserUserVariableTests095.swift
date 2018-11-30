@@ -25,7 +25,13 @@ import XCTest
 @testable import Pocket_Code
 
 final class XMLParserUserVariableTests095: XMLAbstractTest {
-    var parserContext = CBXMLParserContext(languageVersion: 0.95)
+
+    var parserContext: CBXMLParserContext!
+
+    override func setUp( ) {
+        super.setUp()
+        parserContext = CBXMLParserContext(languageVersion: CGFloat(Float32(0.95)))
+    }
 
     func testValidVariables() {
         let xmlRoot = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "Airplane_with_shadow_095"))

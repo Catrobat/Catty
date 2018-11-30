@@ -25,8 +25,14 @@ import XCTest
 @testable import Pocket_Code
 
 class XMLParserBrickTests093: XMLAbstractTest {
-    var parserContext = CBXMLParserContext(languageVersion: CGFloat(Float32(0.93)))
-    var formulaManager = FormulaManager()
+    var parserContext: CBXMLParserContext!
+    var formulaManager: FormulaManager!
+
+    override func setUp() {
+        super.setUp()
+        parserContext = CBXMLParserContext(languageVersion: CGFloat(Float32(0.93)))
+        formulaManager = FormulaManager()
+    }
 
     func testValidSetLookBrick() {
         let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgram"))

@@ -26,10 +26,11 @@ import XCTest
 
 class XMLParserObjectTests093: XMLAbstractTest {
 
-    var parserContext = CBXMLParserContext(languageVersion: CGFloat(Float32(0.93)))
+    var parserContext: CBXMLParserContext!
 
     override func setUp( ) {
         super.setUp()
+        var parserContext = CBXMLParserContext(languageVersion: CGFloat(Float32(0.93)))
     }
 
     func testValidObjectList() {

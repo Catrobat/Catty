@@ -26,7 +26,12 @@ import XCTest
 
 final class XMLParserHeaderTests095: XMLAbstractTest {
 
-    let parserContext = CBXMLParserContext(languageVersion: CGFloat(Float32(0.95)))
+    var parserContext: CBXMLParserContext!
+
+    override func setUp( ) {
+        super.setUp()
+        parserContext = CBXMLParserContext(languageVersion: CGFloat(Float32(0.95)))
+    }
 
     func testValidHeader() {
         let xmlRoot = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidHeader095"))
