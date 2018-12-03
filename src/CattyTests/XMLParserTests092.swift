@@ -27,24 +27,42 @@ import XCTest
 class XMLParserTests092: XMLAbstractTest {
 
     func testConvertUnsupportedBrickToNoteBrick() {
-        let program = getProgramForXML(xmlFile: "LegoNxtMotorActionBrick")
+        let program = getProgramForXML(xmlFile: "InvalidBricksAndScripts")
         XCTAssertNotNil(program, "Program should not be nil")
+        XCTAssertEqual(1, program.objectList.count)
 
-        for spriteObject in program.objectList {
-            XCTAssertNotNil(spriteObject, "SpriteObject should not be nil")
-            for script in (spriteObject as! SpriteObject).scriptList {
-                for brick in (script as! Script).brickList {
-                    XCTAssertNotNil(brick, "Brick should not be nil")
-                }
-            }
-        }
+        let object = program.objectList[0] as! SpriteObject
+        XCTAssertEqual(2, object.scriptList.count)
 
-        XCTAssertEqual(6, program.objectList.count, "Invalid number of SpriteObjects")
-        let spriteObject = program.objectList.object(at: 1) as! SpriteObject
-        XCTAssertEqual(1, spriteObject.scriptList.count, "Invalid number of Scripts")
-        let script = spriteObject.scriptList.object(at: 0) as! Script
-        XCTAssertEqual(1, script.brickList.count, "Invalid number of Bricks")
-        let brick = script.brickList.object(at: 0) as! Brick
-        XCTAssertTrue(brick.isKind(of: NoteBrick.self), "Invalid Brick type: Brick should be of type NoteBrick")
+        let startScript = object.scriptList[0] as! StartScript
+        XCTAssertEqual(2, startScript.brickList.count)
+
+        let waitBrick = startScript.brickList[0] as AnyObject
+        XCTAssertTrue(waitBrick.isKind(of: WaitBrick.self))
+
+        let unknownBrick = startScript.brickList[1] as AnyObject
+        XCTAssertTrue(unknownBrick.isKind(of: NoteBrick.self))
+
+        let noteBrick = unknownBrick as! NoteBrick
+        XCTAssertTrue(noteBrick.note.starts(with: kLocalizedUnsupportedBrick))
+    }
+
+    func testConvertUnsupportedScriptToBroadcastBrick() {
+        let program = getProgramForXML(xmlFile: "InvalidBricksAndScripts")
+        XCTAssertNotNil(program, "Program should not be nil")
+        XCTAssertEqual(1, program.objectList.count)
+
+        let object = program.objectList[0] as! SpriteObject
+        XCTAssertEqual(2, object.scriptList.count)
+
+        let unknownScript = object.scriptList[1] as AnyObject
+        XCTAssertTrue(unknownScript.isKind(of: BroadcastScript.self))
+
+        let broadcastScript = unknownScript as! BroadcastScript
+        XCTAssertEqual(1, broadcastScript.brickList.count)
+        XCTAssertTrue(broadcastScript.receivedMessage.starts(with: kLocalizedUnsupportedScript))
+
+        let secondWaitBrick = broadcastScript.brickList[0] as AnyObject
+        XCTAssertTrue(secondWaitBrick.isKind(of: WaitBrick.self))
     }
 }

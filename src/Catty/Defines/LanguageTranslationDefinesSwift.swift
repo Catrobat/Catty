@@ -439,6 +439,10 @@ let kLocalizedArduinoSetDigitalValue = NSLocalizedString("Set Arduino digital pi
 let kLocalizedArduinoSetPinValueTo = NSLocalizedString("to", comment: "")
 let kLocalizedArduinoSendPWMValue = NSLocalizedString("Set Arduino PWM~ pin", comment: "")
 
+//Unsupported bricks
+let kLocalizedUnsupportedBrick = NSLocalizedString("Unsupported Brick:", comment: "")
+let kLocalizedUnsupportedScript = NSLocalizedString("Unsupported Script:", comment: "")
+
 //************************************************************************************************************
 //**********************************       Login/Upload            *******************************************
 //************************************************************************************************************
