@@ -20,22 +20,22 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@testable import Pocket_Code
+class FeatureMock: CIFeature {
 
-final class FaceDetectionManagerMock: FaceDetectionManager {
+    private let mockedType: String
+    private let mockedBounds: CGRect
 
-    var isAvailable = true
-    var isStarted = false
-
-    override func start() {
-        isStarted = true
+    init(type: String, bounds: CGRect) {
+        self.mockedType = type
+        self.mockedBounds = bounds
+        super.init()
     }
 
-    override func stop() {
-        isStarted = false
+    override var type: String {
+        return mockedType
     }
 
-    override func available() -> Bool {
-        return isAvailable
+    override var bounds: CGRect {
+        return mockedBounds
     }
 }

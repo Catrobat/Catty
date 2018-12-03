@@ -131,6 +131,10 @@ class FaceDetectionManager: NSObject, FaceDetectionManagerProtocol, AVCaptureVid
         let ciImage = CIImage(cvImageBuffer: pixelBuffer, options: attachments as? [String: Any])
         guard let features = self.faceDetector?.features(in: ciImage) else { return }
 
+        captureFace(for: features, in: ciImage.extent)
+    }
+
+    func captureFace(for features: [CIFeature], in imageDimensions: CGRect) {
         var isFaceDetected = false
 
         for feature in features where (feature.type == CIFeatureTypeFace) {
@@ -139,11 +143,11 @@ class FaceDetectionManager: NSObject, FaceDetectionManagerProtocol, AVCaptureVid
             let featureCenterX = feature.bounds.origin.x + feature.bounds.width / 2
             let featureCenterY = feature.bounds.origin.y + feature.bounds.height / 2
 
-            self.faceDetectionFrameSize = ciImage.extent.size
-            self.faceSizeRatio = Double(feature.bounds.width) / Double(ciImage.extent.width)
-            self.facePositionRatioFromBottom = Double(featureCenterY / ciImage.extent.height)
+            self.faceDetectionFrameSize = imageDimensions.size
+            self.faceSizeRatio = Double(feature.bounds.width) / Double(imageDimensions.width)
+            self.facePositionRatioFromBottom = Double(featureCenterY / imageDimensions.height)
 
-            var ratioFromLeft = Double(featureCenterX / ciImage.extent.width)
+            var ratioFromLeft = Double(featureCenterX / imageDimensions.width)
             if cameraPosition() == .front {
                 ratioFromLeft = 1 - ratioFromLeft
             }
@@ -152,15 +156,15 @@ class FaceDetectionManager: NSObject, FaceDetectionManagerProtocol, AVCaptureVid
 
         self.isFaceDetected = isFaceDetected
     }
+    
+    func cameraPosition() -> AVCaptureDevice.Position {
+        return CameraPreviewHandler.shared().cameraPosition
+    }
 
     private func camera(for cameraPosition: AVCaptureDevice.Position) -> AVCaptureDevice? {
         for device in AVCaptureDevice.devices(for: .video) where (device.position == cameraPosition) {
             return device
         }
         return nil
-    }
-
-    private func cameraPosition() -> AVCaptureDevice.Position {
-        return CameraPreviewHandler.shared().cameraPosition
     }
 }
