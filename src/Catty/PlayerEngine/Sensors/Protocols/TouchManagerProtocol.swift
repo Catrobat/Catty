@@ -31,11 +31,14 @@ protocol TouchManagerProtocol {
     // Returns true if screen is currently touched
     func screenTouched() -> Bool
 
+    // Returns true if screen is still touched for given touch
+    func screenTouched(for toucNumber: Int) -> Bool
+
     func numberOfTouches() -> Int
 
-    // Returns a SpriteKit speficic position which needs to be converted
+    // Returns a SpriteKit specific position which needs to be converted. (0, 0) is at the bottom left corner
     func lastPositionInScene() -> CGPoint?
 
-    // Returns a SpriteKit speficic position which needs to be converted
+    // Returns a SpriteKit specific position which needs to be converted. (0, 0) is at the bottom left corner
     func getPositionInScene(for touchNumber: Int) -> CGPoint?
 }

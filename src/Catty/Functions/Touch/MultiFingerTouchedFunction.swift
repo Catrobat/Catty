@@ -45,12 +45,7 @@ class MultiFingerTouchedFunction: SingleParameterDoubleFunction {
 
     func value(parameter: AnyObject?) -> Double {
         guard let touchNumber = parameter as? Double, let touchManager = getTouchManager() else { return type(of: self).defaultValue }
-        let numberOfTouches = touchManager.numberOfTouches()
-        return touchManager.screenTouched() && numberOfTouches == Int(touchNumber) ? 1.0 : 0.0
-    }
-
-    func convertToStandardized(rawValue: Double, for spriteObject: SpriteObject) -> Double {
-        return PositionXSensor.convertToStandardized(rawValue: rawValue, for: spriteObject)
+        return touchManager.screenTouched(for: Int(touchNumber)) ? 1.0 : 0.0
     }
 
     func formulaEditorSection() -> FormulaEditorSection {
