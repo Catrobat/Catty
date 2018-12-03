@@ -31,7 +31,6 @@
 		4C03A4BE2133FD05007BFFD2 /* FormulaManager+Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C03A4BD2133FD05007BFFD2 /* FormulaManager+Resources.swift */; };
 		4C03A4C22133FDE7007BFFD2 /* FormulaManager+Editor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C03A4C12133FDE7007BFFD2 /* FormulaManager+Editor.swift */; };
 		4C03A4C42133FF4B007BFFD2 /* FormulaManager+Interpreter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C03A4C32133FF4B007BFFD2 /* FormulaManager+Interpreter.swift */; };
-		4C06A2A71C3D5F0100E9234C /* XMLParserBlackBoxTests097.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C06A2A61C3D5F0100E9234C /* XMLParserBlackBoxTests097.m */; };
 		4C099F6E1C282B3C00E190CA /* CBBackendTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C099F6D1C282B3C00E190CA /* CBBackendTests.swift */; };
 		4C0C164921439B2F005ADE86 /* ChartProgramsStoreDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0C164821439B2F005ADE86 /* ChartProgramsStoreDataSourceTests.swift */; };
 		4C0E25E920D39E5000A80273 /* ScenePresenterViewController+Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0E25E820D39E5000A80273 /* ScenePresenterViewController+Resources.swift */; };
@@ -40,7 +39,6 @@
 		4C0F9F22204ADBAF00E71B2D /* IfThenLogicEndBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F9F20204ADBAE00E71B2D /* IfThenLogicEndBrick+CBXMLHandler.m */; };
 		4C0F9F25204ADBC800E71B2D /* IfThenLogicEndBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F9F23204ADBC800E71B2D /* IfThenLogicEndBrick.m */; };
 		4C0F9F28204ADBE000E71B2D /* RepeatUntilBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F9F26204ADBDF00E71B2D /* RepeatUntilBrick.m */; };
-		4C0F9F2B204ADBFD00E71B2D /* RepeatUntilBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F9F29204ADBFD00E71B2D /* RepeatUntilBrick+CBXMLHandler.m */; };
 		4C0F9F2E204ADC2300E71B2D /* CameraBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F9F2D204ADC2300E71B2D /* CameraBrick.m */; };
 		4C0F9F31204ADC2E00E71B2D /* ChooseCameraBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F9F30204ADC2E00E71B2D /* ChooseCameraBrick.m */; };
 		4C0F9F34204ADC4000E71B2D /* PreviousLookBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F9F33204ADC4000E71B2D /* PreviousLookBrick.m */; };
@@ -83,10 +81,6 @@
 		4C0F9FA5204BD2C200E71B2D /* ThinkForBubbleBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F9FA1204BD2C100E71B2D /* ThinkForBubbleBrickCell.m */; };
 		4C0F9FA6204BD2C200E71B2D /* ThinkBubbleBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F9FA2204BD2C200E71B2D /* ThinkBubbleBrickCell.m */; };
 		4C0F9FA9204BD2D600E71B2D /* SpeakAndWaitBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F9FA7204BD2D600E71B2D /* SpeakAndWaitBrickCell.m */; };
-		4C0F9FCE204BD37300E71B2D /* XMLSerializerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F9FC6204BD37200E71B2D /* XMLSerializerTests.m */; };
-		4C0F9FCF204BD37300E71B2D /* XMLSerializerBlackBoxTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F9FC8204BD37200E71B2D /* XMLSerializerBlackBoxTests.m */; };
-		4C0F9FD0204BD37300E71B2D /* XMLParserTests0991.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F9FCB204BD37200E71B2D /* XMLParserTests0991.m */; };
-		4C0F9FD1204BD37300E71B2D /* XMLParserBlackBoxTests0991.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F9FCD204BD37200E71B2D /* XMLParserBlackBoxTests0991.m */; };
 		4C0F9FD3204BD3B400E71B2D /* BubbleBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F9FD2204BD3B400E71B2D /* BubbleBrickTests.swift */; };
 		4C0F9FD5204BD3C200E71B2D /* ChooseCameraBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F9FD4204BD3C200E71B2D /* ChooseCameraBrickTests.swift */; };
 		4C0F9FD7204BD3CC00E71B2D /* PreviousLookBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F9FD6204BD3CC00E71B2D /* PreviousLookBrickTests.m */; };
@@ -141,18 +135,6 @@
 		4C28D78B2132A83D00870CE2 /* FormulaMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C28D78A2132A83D00870CE2 /* FormulaMock.swift */; };
 		4C28D7912133BC0B00870CE2 /* FormulaManagerResourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C28D7902133BC0B00870CE2 /* FormulaManagerResourceTests.swift */; };
 		4C28D7952133BC1D00870CE2 /* FormulaManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C28D7942133BC1D00870CE2 /* FormulaManagerTests.swift */; };
-		4C2A00C01B5546DF00CD4492 /* XMLParserBrickTests093.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2A00B91B5546DF00CD4492 /* XMLParserBrickTests093.m */; };
-		4C2A00C11B5546DF00CD4492 /* XMLParserFormulaTests093.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2A00BB1B5546DF00CD4492 /* XMLParserFormulaTests093.m */; };
-		4C2A00C21B5546DF00CD4492 /* XMLParserHeaderTests093.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2A00BD1B5546DF00CD4492 /* XMLParserHeaderTests093.m */; };
-		4C2A00C31B5546DF00CD4492 /* XMLParserObjectTests093.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2A00BF1B5546DF00CD4492 /* XMLParserObjectTests093.m */; };
-		4C2A00C71B5547EB00CD4492 /* XMLAbstractTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2A00C61B5547EB00CD4492 /* XMLAbstractTest.m */; };
-		4C2A00C91B554CBF00CD4492 /* XMLParserTests092.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2A00C81B554CBF00CD4492 /* XMLParserTests092.m */; };
-		4C2A00CB1B554CE900CD4492 /* XMLParserBlackBoxTests092.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2A00CA1B554CE900CD4492 /* XMLParserBlackBoxTests092.m */; };
-		4C2EE3E31B5554D7006DE9B8 /* XMLParserBlackBoxTests095.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2EE3DD1B5554D7006DE9B8 /* XMLParserBlackBoxTests095.m */; };
-		4C2EE3E41B5554D7006DE9B8 /* XMLParserBrickTests095.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2EE3DF1B5554D7006DE9B8 /* XMLParserBrickTests095.m */; };
-		4C2EE3E51B5554D7006DE9B8 /* XMLParserFormulaTests095.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2EE3E01B5554D7006DE9B8 /* XMLParserFormulaTests095.m */; };
-		4C2EE3E61B5554D7006DE9B8 /* XMLParserHeaderTests095.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2EE3E11B5554D7006DE9B8 /* XMLParserHeaderTests095.m */; };
-		4C2EE3E71B5554D7006DE9B8 /* XMLParserObjectTests095.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2EE3E21B5554D7006DE9B8 /* XMLParserObjectTests095.m */; };
 		4C2EE3E91B5556FC006DE9B8 /* Air_fight_0.5_095.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C2EE3E81B5556FC006DE9B8 /* Air_fight_0.5_095.xml */; };
 		4C2EE3EB1B55570C006DE9B8 /* Airplane_with_shadow_095.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C2EE3EA1B55570C006DE9B8 /* Airplane_with_shadow_095.xml */; };
 		4C2EE3ED1B55571D006DE9B8 /* Compass_0.1_095.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C2EE3EC1B55571D006DE9B8 /* Compass_0.1_095.xml */; };
@@ -175,7 +157,6 @@
 		4C2EE41E1B555B55006DE9B8 /* CBXMLOpenedNestingBricksStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2EE4171B555B55006DE9B8 /* CBXMLOpenedNestingBricksStack.m */; };
 		4C2EE41F1B555B55006DE9B8 /* CBXMLPositionStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2EE41A1B555B55006DE9B8 /* CBXMLPositionStack.m */; };
 		4C2EE4201B555B55006DE9B8 /* CBXMLPropertyMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2EE41D1B555B55006DE9B8 /* CBXMLPropertyMapping.m */; };
-		4C2EE4221B555E99006DE9B8 /* XMLParserUserVariableTests095.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2EE4211B555E99006DE9B8 /* XMLParserUserVariableTests095.m */; };
 		4C33F210214BC0200014044C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F20F214BC01F0014044C /* Default-568h@2x.png */; };
 		4C33F212214BC0390014044C /* My first program.catrobat in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F211214BC0390014044C /* My first program.catrobat */; };
 		4C33F214214BC0680014044C /* Document-Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F213214BC0680014044C /* Document-Icon.png */; };
@@ -192,7 +173,6 @@
 		4C5EF63521A0677E0063D2F0 /* CameraBricks_0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C5EF63421A0677E0063D2F0 /* CameraBricks_0991.xml */; };
 		4C60663A1A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6066391A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m */; };
 		4C647C7E1D48E19C0060E70D /* Air_fight_0.5_098.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C647C7D1D48E19C0060E70D /* Air_fight_0.5_098.xml */; };
-		4C647C8A1D48E1F70060E70D /* XMLParserBlackBoxTests098.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C647C841D48E1F70060E70D /* XMLParserBlackBoxTests098.m */; };
 		4C68FC8A1B25A00B00AB3EE8 /* FormulaElementTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68FC7C1B25A00B00AB3EE8 /* FormulaElementTest.m */; };
 		4C68FC8B1B25A00B00AB3EE8 /* FormulaFunctionsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68FC7D1B25A00B00AB3EE8 /* FormulaFunctionsTest.m */; };
 		4C68FC8C1B25A00B00AB3EE8 /* FormulaParserErrorDetectionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68FC7E1B25A00B00AB3EE8 /* FormulaParserErrorDetectionTest.m */; };
@@ -285,7 +265,6 @@
 		4C724E661B4D3EC500E27479 /* CBXMLSerializerContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C724E651B4D3EC500E27479 /* CBXMLSerializerContext.m */; };
 		4C72EA3B2108EC3600E7407F /* TouchManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C72EA3A2108EC3600E7407F /* TouchManagerProtocol.swift */; };
 		4C72EA3D2108ED0800E7407F /* TouchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C72EA3C2108ED0800E7407F /* TouchManager.swift */; };
-		4C7A84831DCCE1F9000F366B /* XMLParserTests098.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7A84821DCCE1F9000F366B /* XMLParserTests098.m */; };
 		4C7A84861DCCE270000F366B /* LedFlashBrick098.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C7A84851DCCE270000F366B /* LedFlashBrick098.xml */; };
 		4C822652213FA7A400F3D750 /* LocationManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C822617213FA7A300F3D750 /* LocationManagerMock.swift */; };
 		4C822653213FA7A400F3D750 /* ObjectDoubleSensorMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C822618213FA7A300F3D750 /* ObjectDoubleSensorMock.swift */; };
@@ -532,7 +511,6 @@
 		4CEF0CDE1B9C6434003C9B20 /* Pythagorean_Theorem_096.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CEF0CDD1B9C6434003C9B20 /* Pythagorean_Theorem_096.xml */; };
 		4CEF0CE01B9C643E003C9B20 /* Rock_paper_scissors_096.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CEF0CDF1B9C643E003C9B20 /* Rock_paper_scissors_096.xml */; };
 		4CEF0CE21B9C6445003C9B20 /* Skydiving_Steve_096.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CEF0CE11B9C6445003C9B20 /* Skydiving_Steve_096.xml */; };
-		4CEF0CF01B9C655B003C9B20 /* XMLParserBlackBoxTests096.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEF0CEA1B9C655B003C9B20 /* XMLParserBlackBoxTests096.m */; };
 		4CEFFAD32105DE4800DC5CFE /* ObjectSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEFFAD02105DE4800DC5CFE /* ObjectSensor.swift */; };
 		4CEFFADA2105E46500DC5CFE /* ObjectStringSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEFFAD82105E46400DC5CFE /* ObjectStringSensor.swift */; };
 		4CEFFADB2105E46500DC5CFE /* ObjectDoubleSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEFFAD92105E46400DC5CFE /* ObjectDoubleSensor.swift */; };
@@ -557,6 +535,8 @@
 		4CF072A820D6710F00F93AB5 /* FingerXSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF072A420D6710F00F93AB5 /* FingerXSensor.swift */; };
 		4CF072A920D6710F00F93AB5 /* FingerTouchedSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF072A520D6710F00F93AB5 /* FingerTouchedSensor.swift */; };
 		4CF072AE20D6753D00F93AB5 /* DateYearSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF072AD20D6753D00F93AB5 /* DateYearSensor.swift */; };
+		4CF3BD6C21B1B72D006DB806 /* InvalidBricksAndScripts.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CF3BD6A21B1B72D006DB806 /* InvalidBricksAndScripts.xml */; };
+		4CF3BD6D21B1B72D006DB806 /* ValidFormulaList.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CF3BD6B21B1B72D006DB806 /* ValidFormulaList.xml */; };
 		4CF429EA213A64B600B78897 /* InternFormulaKeyboardAdapterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF429E9213A64B600B78897 /* InternFormulaKeyboardAdapterTests.swift */; };
 		4CF429ED213A82EB00B78897 /* IfThenLogicBeginBrick+Condition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF429EC213A82EB00B78897 /* IfThenLogicBeginBrick+Condition.swift */; };
 		4CF429EF213A858D00B78897 /* CBConditionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF429EE213A858D00B78897 /* CBConditionProtocol.swift */; };
@@ -692,7 +672,6 @@
 		925819841C0206AA003247A9 /* SceneMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 925819831C0206AA003247A9 /* SceneMenuView.xib */; };
 		925819881C0208E8003247A9 /* CALayer+XibConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 925819871C0208E8003247A9 /* CALayer+XibConfiguration.m */; };
 		926197F01BF3249E006D1A61 /* ArduinoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926197EF1BF3249E006D1A61 /* ArduinoTests.swift */; };
-		926197F41BF32500006D1A61 /* PhiroDeviceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926197F31BF32500006D1A61 /* PhiroDeviceTest.swift */; };
 		926198021BF48384006D1A61 /* BluetoothMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926198011BF48384006D1A61 /* BluetoothMocks.swift */; };
 		9276B7051C9E8F6C008BC594 /* SoundCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 9276B7041C9E8F6C008BC594 /* SoundCache.m */; };
 		9276B70B1C9EA68A008BC594 /* CatrobatPlayerItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9276B70A1C9EA68A008BC594 /* CatrobatPlayerItem.m */; };
@@ -1066,17 +1045,48 @@
 		AAF6D9DE1BC0C1F300686849 /* PlaceAtBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF6D9DD1BC0C1F300686849 /* PlaceAtBrick+Instruction.swift */; };
 		AAF6D9E01BC0C2AA00686849 /* PointInDirectionBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF6D9DF1BC0C2AA00686849 /* PointInDirectionBrick+Instruction.swift */; };
 		AAF6D9E21BC0C48300686849 /* PointToBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF6D9E11BC0C48300686849 /* PointToBrick+Instruction.swift */; };
+		BA08DB4021A320D100AB1ACB /* XMLParserFormulaTests093.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA08DB3F21A320D100AB1ACB /* XMLParserFormulaTests093.swift */; };
 		BA1FA9941F02A1150084184D /* UserListFunctionsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = BA1FA9901F02A10C0084184D /* UserListFunctionsTest.m */; };
 		BA1FA9981F02AD770084184D /* InsertItemIntoUserListBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = BA1FA9971F02AD770084184D /* InsertItemIntoUserListBrick+CBXMLHandler.m */; };
 		BA1FA99D1F02AEDC0084184D /* InsertItemIntoUserListBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = BA1FA99C1F02AEDC0084184D /* InsertItemIntoUserListBrick.m */; };
 		BA1FA9A01F02B0020084184D /* InsertItemIntoUserListBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA1FA99F1F02B0020084184D /* InsertItemIntoUserListBrickCell.m */; };
 		BA1FA9A21F02B0C80084184D /* InsertItemIntoUserListBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1FA9A11F02B0C80084184D /* InsertItemIntoUserListBrick+Instruction.swift */; };
+		BA3337372195BC6D00DA3505 /* RepeatUntilBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = BA3337362195BC6D00DA3505 /* RepeatUntilBrick+CBXMLHandler.m */; };
+		BA3807FD21A1BBBD0075B831 /* XMLParserBlackBoxTests093.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3807FC21A1BBBD0075B831 /* XMLParserBlackBoxTests093.swift */; };
+		BA3807FF21A1C1250075B831 /* XMLParserBlackBoxTests095.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3807FE21A1C1250075B831 /* XMLParserBlackBoxTests095.swift */; };
+		BA38080121A1C3A30075B831 /* XMLParserBlackBoxTests096.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA38080021A1C3A30075B831 /* XMLParserBlackBoxTests096.swift */; };
+		BA38080321A1C5C90075B831 /* XMLParserBlackBoxTests097.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA38080221A1C5C90075B831 /* XMLParserBlackBoxTests097.swift */; };
+		BA38080521A1C8DA0075B831 /* XMLParserBlackBoxTests098.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA38080421A1C8DA0075B831 /* XMLParserBlackBoxTests098.swift */; };
+		BA38080721A1CA260075B831 /* XMLParserBlackBoxTests0991.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA38080621A1CA260075B831 /* XMLParserBlackBoxTests0991.swift */; };
+		BA38080921A1CBB70075B831 /* XMLParserBrickTests095.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA38080821A1CBB70075B831 /* XMLParserBrickTests095.swift */; };
+		BA38080C21A1D8920075B831 /* ConvertExceptionToError.m in Sources */ = {isa = PBXBuildFile; fileRef = BA38080B21A1D8920075B831 /* ConvertExceptionToError.m */; };
+		BA38080F21A1E7680075B831 /* XMLParserUserVariableTests095.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA38080E21A1E7680075B831 /* XMLParserUserVariableTests095.swift */; };
+		BA38081121A1FE750075B831 /* XMLParserTests098.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA38081021A1FE750075B831 /* XMLParserTests098.swift */; };
+		BA38081321A208730075B831 /* XMLSerializerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA38081221A208730075B831 /* XMLSerializerTests.swift */; };
+		BA38081521A211130075B831 /* XMLSerializerBlackBoxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA38081421A211130075B831 /* XMLSerializerBlackBoxTests.swift */; };
+		BA651EED21A319BF00A94D67 /* SpriteObjectMutableCopyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA651EEC21A319BF00A94D67 /* SpriteObjectMutableCopyTests.swift */; };
 		BA6805AE21303B48004F004F /* VariablesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6805AD21303B48004F004F /* VariablesTests.swift */; };
+		BA94561821A5FBE800C5DE36 /* XMLParserObjectTests093.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA94561721A5FBE800C5DE36 /* XMLParserObjectTests093.swift */; };
+		BA94561C21A6063E00C5DE36 /* XMLParserObjectTests095.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA94561B21A6063E00C5DE36 /* XMLParserObjectTests095.swift */; };
+		BA94561E21A6075F00C5DE36 /* XMLParserBrickTests093.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA94561D21A6075F00C5DE36 /* XMLParserBrickTests093.swift */; };
+		BA987D052194DDCF002DAA05 /* WaitUntilBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = BA987D032194DDCF002DAA05 /* WaitUntilBrick+CBXMLHandler.m */; };
+		BA987D082194E158002DAA05 /* WaitUntilBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = BA987D062194E157002DAA05 /* WaitUntilBrick.m */; };
+		BA987D0B2194E25A002DAA05 /* WaitUntilBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA987D092194E25A002DAA05 /* WaitUntilBrickCell.m */; };
+		BA987D0D2194E647002DAA05 /* WaitUntilBrick+Condition.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA987D0C2194E647002DAA05 /* WaitUntilBrick+Condition.swift */; };
+		BA987D0F2194EA1F002DAA05 /* WaitUntilBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA987D0E2194EA1F002DAA05 /* WaitUntilBrick+Instruction.swift */; };
 		BA9CAB541EC380CA00796056 /* AddItemToUserListBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9CAB531EC380CA00796056 /* AddItemToUserListBrick.m */; };
 		BA9CAB5A1EC382DB00796056 /* BrickCellListData.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9CAB591EC382DB00796056 /* BrickCellListData.m */; };
 		BA9CAB5D1EC3839B00796056 /* AddItemToUserListBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9CAB5C1EC3839B00796056 /* AddItemToUserListBrick+CBXMLHandler.m */; };
 		BA9CAB601EC383E800796056 /* AddItemToUserListBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9CAB5F1EC383E800796056 /* AddItemToUserListBrickCell.m */; };
 		BA9CAB621EC3853600796056 /* AddItemToUserListBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9CAB611EC3853600796056 /* AddItemToUserListBrick+Instruction.swift */; };
+		BAA0EDE521A6F4FA002F5A80 /* XMLParserTests092.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA0EDE421A6F4FA002F5A80 /* XMLParserTests092.swift */; };
+		BAA2B9B021A5B30400FEE300 /* XMLParserTests0991.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA2B9AF21A5B30400FEE300 /* XMLParserTests0991.swift */; };
+		BAAA6BEB21A4BB6E00A46563 /* XMLParserHeaderTests093.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAA6BEA21A4BB6E00A46563 /* XMLParserHeaderTests093.swift */; };
+		BAAA6BED21A4C02100A46563 /* XMLParserHeaderTests095.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAA6BEC21A4C02100A46563 /* XMLParserHeaderTests095.swift */; };
+		BAAA6BF321A4C92F00A46563 /* XMLParserFormulaTests095.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAA6BF221A4C92F00A46563 /* XMLParserFormulaTests095.swift */; };
+		BACD947C219E1F250061D81C /* WaitUntilBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA584CB9219C8803002CC082 /* WaitUntilBrickTests.swift */; };
+		BACD947D219E1F2F0061D81C /* XMLAbstractTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BACD9479219E19AD0061D81C /* XMLAbstractTest.swift */; };
+		BACD9480219E22FF0061D81C /* WaitUntilBrick0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = BACD947F219E22FF0061D81C /* WaitUntilBrick0991.xml */; };
 		BACDF3521F1F9B7E00346167 /* DeleteItemOfUserListBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = BACDF3511F1F9B7E00346167 /* DeleteItemOfUserListBrick.m */; };
 		BACDF3571F1F9BB000346167 /* DeleteItemOfUserListBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = BACDF3561F1F9BB000346167 /* DeleteItemOfUserListBrick+CBXMLHandler.m */; };
 		BACDF35A1F1F9BD000346167 /* DeleteItemOfUserListBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BACDF3591F1F9BD000346167 /* DeleteItemOfUserListBrickCell.m */; };
@@ -1105,7 +1115,6 @@
 		CA3E72E81B0C00A500D6B184 /* CBStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3E72E71B0C00A500D6B184 /* CBStack.swift */; };
 		CA43C4BA1B165C0B009B604F /* CBBroadcastHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA43C4B91B165C0B009B604F /* CBBroadcastHandler.swift */; };
 		CA7698C21B0E4B3F000D0340 /* CBStackTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD740E71AF2D42B00C32937 /* CBStackTests.m */; };
-		CA7698DE1B0E4B3F000D0340 /* SpriteObjectMutableCopyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C26506E1A6566F50050775B /* SpriteObjectMutableCopyTests.m */; };
 		CA7699191B0E4BFF000D0340 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B405BAC7175DD3F600B1A0FC /* libxml2.dylib */; };
 		CABF43B61B115E6400419A55 /* CBConditionalSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABF43AF1B115E6400419A55 /* CBConditionalSequence.swift */; };
 		CABF43B91B115E6400419A55 /* CBOperationSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABF43B21B115E6400419A55 /* CBOperationSequence.swift */; };
@@ -1167,8 +1176,6 @@
 		CAE3E5611B4C50B300CC88BD /* Word_balloon_demo_093.xml in Resources */ = {isa = PBXBuildFile; fileRef = CAE3E52D1B4C50B300CC88BD /* Word_balloon_demo_093.xml */; };
 		CAE3E5631B4C50B300CC88BD /* X_Ray_phone_091.xml in Resources */ = {isa = PBXBuildFile; fileRef = CAE3E5301B4C50B300CC88BD /* X_Ray_phone_091.xml */; };
 		CAE3E5641B4C50B300CC88BD /* X_Ray_phone_093.xml in Resources */ = {isa = PBXBuildFile; fileRef = CAE3E5311B4C50B300CC88BD /* X_Ray_phone_093.xml */; };
-		CAE3E5661B4C50B300CC88BD /* LegoNxtMotorActionBrick.xml in Resources */ = {isa = PBXBuildFile; fileRef = CAE3E5331B4C50B300CC88BD /* LegoNxtMotorActionBrick.xml */; };
-		CAE3E5671B4C50B300CC88BD /* ValidFormulaList.xml in Resources */ = {isa = PBXBuildFile; fileRef = CAE3E5341B4C50B300CC88BD /* ValidFormulaList.xml */; };
 		D63864651AE632FE008569E6 /* ProgramsForUploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D63864641AE632FE008569E6 /* ProgramsForUploadViewController.m */; };
 		D63864681AE6334E008569E6 /* UploadInfoPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D63864671AE6334E008569E6 /* UploadInfoPopupViewController.m */; };
 		E405EABB212D4E420074ADDB /* SearchStoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E405EABA212D4E420074ADDB /* SearchStoreCell.swift */; };
@@ -1306,7 +1313,6 @@
 		4C03A4BD2133FD05007BFFD2 /* FormulaManager+Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FormulaManager+Resources.swift"; sourceTree = "<group>"; };
 		4C03A4C12133FDE7007BFFD2 /* FormulaManager+Editor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FormulaManager+Editor.swift"; sourceTree = "<group>"; };
 		4C03A4C32133FF4B007BFFD2 /* FormulaManager+Interpreter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FormulaManager+Interpreter.swift"; sourceTree = "<group>"; };
-		4C06A2A61C3D5F0100E9234C /* XMLParserBlackBoxTests097.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParserBlackBoxTests097.m; sourceTree = "<group>"; };
 		4C099F6D1C282B3C00E190CA /* CBBackendTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBBackendTests.swift; path = PlayerEngine/CBBackendTests.swift; sourceTree = "<group>"; };
 		4C0C164821439B2F005ADE86 /* ChartProgramsStoreDataSourceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartProgramsStoreDataSourceTests.swift; sourceTree = "<group>"; };
 		4C0E25E820D39E5000A80273 /* ScenePresenterViewController+Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScenePresenterViewController+Resources.swift"; sourceTree = "<group>"; };
@@ -1319,8 +1325,6 @@
 		4C0F9F24204ADBC800E71B2D /* IfThenLogicEndBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IfThenLogicEndBrick.h; sourceTree = "<group>"; };
 		4C0F9F26204ADBDF00E71B2D /* RepeatUntilBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepeatUntilBrick.m; sourceTree = "<group>"; };
 		4C0F9F27204ADBDF00E71B2D /* RepeatUntilBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepeatUntilBrick.h; sourceTree = "<group>"; };
-		4C0F9F29204ADBFD00E71B2D /* RepeatUntilBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "RepeatUntilBrick+CBXMLHandler.m"; path = "Catty/PlayerEngine/Instructions/Control/RepeatUntilBrick+CBXMLHandler.m"; sourceTree = SOURCE_ROOT; };
-		4C0F9F2A204ADBFD00E71B2D /* RepeatUntilBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "RepeatUntilBrick+CBXMLHandler.h"; path = "Catty/PlayerEngine/Instructions/Control/RepeatUntilBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
 		4C0F9F2C204ADC2300E71B2D /* CameraBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraBrick.h; sourceTree = "<group>"; };
 		4C0F9F2D204ADC2300E71B2D /* CameraBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraBrick.m; sourceTree = "<group>"; };
 		4C0F9F2F204ADC2E00E71B2D /* ChooseCameraBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseCameraBrick.h; sourceTree = "<group>"; };
@@ -1396,10 +1400,6 @@
 		4C0F9FA4204BD2C200E71B2D /* ThinkForBubbleBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThinkForBubbleBrickCell.h; sourceTree = "<group>"; };
 		4C0F9FA7204BD2D600E71B2D /* SpeakAndWaitBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeakAndWaitBrickCell.m; sourceTree = "<group>"; };
 		4C0F9FA8204BD2D600E71B2D /* SpeakAndWaitBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeakAndWaitBrickCell.h; sourceTree = "<group>"; };
-		4C0F9FC6204BD37200E71B2D /* XMLSerializerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLSerializerTests.m; sourceTree = "<group>"; };
-		4C0F9FC8204BD37200E71B2D /* XMLSerializerBlackBoxTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLSerializerBlackBoxTests.m; sourceTree = "<group>"; };
-		4C0F9FCB204BD37200E71B2D /* XMLParserTests0991.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParserTests0991.m; sourceTree = "<group>"; };
-		4C0F9FCD204BD37200E71B2D /* XMLParserBlackBoxTests0991.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParserBlackBoxTests0991.m; sourceTree = "<group>"; };
 		4C0F9FD2204BD3B400E71B2D /* BubbleBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubbleBrickTests.swift; sourceTree = "<group>"; };
 		4C0F9FD4204BD3C200E71B2D /* ChooseCameraBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseCameraBrickTests.swift; sourceTree = "<group>"; };
 		4C0F9FD6204BD3CC00E71B2D /* PreviousLookBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviousLookBrickTests.m; sourceTree = "<group>"; };
@@ -1454,28 +1454,10 @@
 		4C2650681A6538710050775B /* CBMutableCopyContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBMutableCopyContext.h; path = CBCopyContext/CBMutableCopyContext.h; sourceTree = "<group>"; };
 		4C2650691A6538710050775B /* CBMutableCopyContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CBMutableCopyContext.m; path = CBCopyContext/CBMutableCopyContext.m; sourceTree = "<group>"; };
 		4C26506C1A653A5A0050775B /* CBMutableCopying.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBMutableCopying.h; path = Copying/CBMutableCopying.h; sourceTree = "<group>"; };
-		4C26506E1A6566F50050775B /* SpriteObjectMutableCopyTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SpriteObjectMutableCopyTests.m; path = SpriteObject/SpriteObjectMutableCopyTests.m; sourceTree = "<group>"; };
 		4C2732A81CE4F30F00CA61AC /* CBSpriteNodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBSpriteNodeTests.swift; path = PlayerEngine/CBSpriteNodeTests.swift; sourceTree = "<group>"; };
 		4C28D78A2132A83D00870CE2 /* FormulaMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaMock.swift; sourceTree = "<group>"; };
 		4C28D7902133BC0B00870CE2 /* FormulaManagerResourceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaManagerResourceTests.swift; sourceTree = "<group>"; };
 		4C28D7942133BC1D00870CE2 /* FormulaManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormulaManagerTests.swift; sourceTree = "<group>"; };
-		4C2A00B81B5546DF00CD4492 /* XMLParserBrickTests093.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLParserBrickTests093.h; path = "Parser & Serialization/CatrobatLanguage0.93/XMLParserTests/Unit Tests/XMLParserBrickTests093.h"; sourceTree = "<group>"; };
-		4C2A00B91B5546DF00CD4492 /* XMLParserBrickTests093.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLParserBrickTests093.m; path = "Parser & Serialization/CatrobatLanguage0.93/XMLParserTests/Unit Tests/XMLParserBrickTests093.m"; sourceTree = "<group>"; };
-		4C2A00BA1B5546DF00CD4492 /* XMLParserFormulaTests093.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLParserFormulaTests093.h; path = "Parser & Serialization/CatrobatLanguage0.93/XMLParserTests/Unit Tests/XMLParserFormulaTests093.h"; sourceTree = "<group>"; };
-		4C2A00BB1B5546DF00CD4492 /* XMLParserFormulaTests093.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLParserFormulaTests093.m; path = "Parser & Serialization/CatrobatLanguage0.93/XMLParserTests/Unit Tests/XMLParserFormulaTests093.m"; sourceTree = "<group>"; };
-		4C2A00BC1B5546DF00CD4492 /* XMLParserHeaderTests093.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLParserHeaderTests093.h; path = "Parser & Serialization/CatrobatLanguage0.93/XMLParserTests/Unit Tests/XMLParserHeaderTests093.h"; sourceTree = "<group>"; };
-		4C2A00BD1B5546DF00CD4492 /* XMLParserHeaderTests093.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLParserHeaderTests093.m; path = "Parser & Serialization/CatrobatLanguage0.93/XMLParserTests/Unit Tests/XMLParserHeaderTests093.m"; sourceTree = "<group>"; };
-		4C2A00BE1B5546DF00CD4492 /* XMLParserObjectTests093.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLParserObjectTests093.h; path = "Parser & Serialization/CatrobatLanguage0.93/XMLParserTests/Unit Tests/XMLParserObjectTests093.h"; sourceTree = "<group>"; };
-		4C2A00BF1B5546DF00CD4492 /* XMLParserObjectTests093.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLParserObjectTests093.m; path = "Parser & Serialization/CatrobatLanguage0.93/XMLParserTests/Unit Tests/XMLParserObjectTests093.m"; sourceTree = "<group>"; };
-		4C2A00C51B5547EB00CD4492 /* XMLAbstractTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLAbstractTest.h; sourceTree = "<group>"; };
-		4C2A00C61B5547EB00CD4492 /* XMLAbstractTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLAbstractTest.m; sourceTree = "<group>"; };
-		4C2A00C81B554CBF00CD4492 /* XMLParserTests092.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLParserTests092.m; path = "Parser & Serialization/CatrobatLanguage0.92/XMLParserTests092.m"; sourceTree = "<group>"; };
-		4C2A00CA1B554CE900CD4492 /* XMLParserBlackBoxTests092.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLParserBlackBoxTests092.m; path = "Parser & Serialization/CatrobatLanguage0.93/XMLParserTests/BlackBox Tests/XMLParserBlackBoxTests092.m"; sourceTree = "<group>"; };
-		4C2EE3DD1B5554D7006DE9B8 /* XMLParserBlackBoxTests095.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParserBlackBoxTests095.m; sourceTree = "<group>"; };
-		4C2EE3DF1B5554D7006DE9B8 /* XMLParserBrickTests095.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParserBrickTests095.m; sourceTree = "<group>"; };
-		4C2EE3E01B5554D7006DE9B8 /* XMLParserFormulaTests095.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParserFormulaTests095.m; sourceTree = "<group>"; };
-		4C2EE3E11B5554D7006DE9B8 /* XMLParserHeaderTests095.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParserHeaderTests095.m; sourceTree = "<group>"; };
-		4C2EE3E21B5554D7006DE9B8 /* XMLParserObjectTests095.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParserObjectTests095.m; sourceTree = "<group>"; };
 		4C2EE3E81B5556FC006DE9B8 /* Air_fight_0.5_095.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Air_fight_0.5_095.xml; sourceTree = "<group>"; };
 		4C2EE3EA1B55570C006DE9B8 /* Airplane_with_shadow_095.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Airplane_with_shadow_095.xml; sourceTree = "<group>"; };
 		4C2EE3EC1B55571D006DE9B8 /* Compass_0.1_095.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Compass_0.1_095.xml; sourceTree = "<group>"; };
@@ -1501,7 +1483,6 @@
 		4C2EE41A1B555B55006DE9B8 /* CBXMLPositionStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBXMLPositionStack.m; sourceTree = "<group>"; };
 		4C2EE41C1B555B55006DE9B8 /* CBXMLPropertyMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBXMLPropertyMapping.h; sourceTree = "<group>"; };
 		4C2EE41D1B555B55006DE9B8 /* CBXMLPropertyMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBXMLPropertyMapping.m; sourceTree = "<group>"; };
-		4C2EE4211B555E99006DE9B8 /* XMLParserUserVariableTests095.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParserUserVariableTests095.m; sourceTree = "<group>"; };
 		4C33F20F214BC01F0014044C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "Resources/Default-568h@2x.png"; sourceTree = "<group>"; };
 		4C33F211214BC0390014044C /* My first program.catrobat */ = {isa = PBXFileReference; lastKnownFileType = file; name = "My first program.catrobat"; path = "Resources/My first program.catrobat"; sourceTree = "<group>"; };
 		4C33F213214BC0680014044C /* Document-Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Document-Icon.png"; path = "Resources/Document-Icon.png"; sourceTree = "<group>"; };
@@ -1532,7 +1513,6 @@
 		4C6066381A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GDataXMLNode+CustomExtensions.h"; sourceTree = "<group>"; };
 		4C6066391A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GDataXMLNode+CustomExtensions.m"; sourceTree = "<group>"; };
 		4C647C7D1D48E19C0060E70D /* Air_fight_0.5_098.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = Air_fight_0.5_098.xml; path = CattyTests/Resources/ParserTests/Air_fight_0.5/Air_fight_0.5_098.xml; sourceTree = SOURCE_ROOT; };
-		4C647C841D48E1F70060E70D /* XMLParserBlackBoxTests098.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParserBlackBoxTests098.m; sourceTree = "<group>"; };
 		4C68FC7C1B25A00B00AB3EE8 /* FormulaElementTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FormulaElementTest.m; path = Formula/FormulaElementTest.m; sourceTree = "<group>"; };
 		4C68FC7D1B25A00B00AB3EE8 /* FormulaFunctionsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FormulaFunctionsTest.m; path = Formula/FormulaFunctionsTest.m; sourceTree = "<group>"; };
 		4C68FC7E1B25A00B00AB3EE8 /* FormulaParserErrorDetectionTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FormulaParserErrorDetectionTest.m; path = Formula/FormulaParserErrorDetectionTest.m; sourceTree = "<group>"; };
@@ -1647,7 +1627,6 @@
 		4C72EA3C2108ED0800E7407F /* TouchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchManager.swift; sourceTree = "<group>"; };
 		4C73A5A220ECB4450073DB52 /* ElementOfListFunction0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ElementOfListFunction0991.xml; path = CattyTests/Resources/ParserTests/ListBricks/ElementOfListFunction0991.xml; sourceTree = SOURCE_ROOT; };
 		4C74BD081DA6476A0079336C /* Pocket Code.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Pocket Code.entitlements"; sourceTree = "<group>"; };
-		4C7A84821DCCE1F9000F366B /* XMLParserTests098.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParserTests098.m; sourceTree = "<group>"; };
 		4C7A84851DCCE270000F366B /* LedFlashBrick098.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = LedFlashBrick098.xml; sourceTree = "<group>"; };
 		4C822617213FA7A300F3D750 /* LocationManagerMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManagerMock.swift; sourceTree = "<group>"; };
 		4C822618213FA7A300F3D750 /* ObjectDoubleSensorMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectDoubleSensorMock.swift; sourceTree = "<group>"; };
@@ -1906,7 +1885,6 @@
 		4CEF0CDD1B9C6434003C9B20 /* Pythagorean_Theorem_096.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Pythagorean_Theorem_096.xml; sourceTree = "<group>"; };
 		4CEF0CDF1B9C643E003C9B20 /* Rock_paper_scissors_096.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Rock_paper_scissors_096.xml; sourceTree = "<group>"; };
 		4CEF0CE11B9C6445003C9B20 /* Skydiving_Steve_096.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Skydiving_Steve_096.xml; sourceTree = "<group>"; };
-		4CEF0CEA1B9C655B003C9B20 /* XMLParserBlackBoxTests096.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParserBlackBoxTests096.m; sourceTree = "<group>"; };
 		4CEFFAD02105DE4800DC5CFE /* ObjectSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectSensor.swift; sourceTree = "<group>"; };
 		4CEFFAD82105E46400DC5CFE /* ObjectStringSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectStringSensor.swift; sourceTree = "<group>"; };
 		4CEFFAD92105E46400DC5CFE /* ObjectDoubleSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectDoubleSensor.swift; sourceTree = "<group>"; };
@@ -1931,6 +1909,8 @@
 		4CF072A420D6710F00F93AB5 /* FingerXSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FingerXSensor.swift; sourceTree = "<group>"; };
 		4CF072A520D6710F00F93AB5 /* FingerTouchedSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FingerTouchedSensor.swift; sourceTree = "<group>"; };
 		4CF072AD20D6753D00F93AB5 /* DateYearSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateYearSensor.swift; sourceTree = "<group>"; };
+		4CF3BD6A21B1B72D006DB806 /* InvalidBricksAndScripts.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = InvalidBricksAndScripts.xml; sourceTree = "<group>"; };
+		4CF3BD6B21B1B72D006DB806 /* ValidFormulaList.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ValidFormulaList.xml; sourceTree = "<group>"; };
 		4CF429E9213A64B600B78897 /* InternFormulaKeyboardAdapterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InternFormulaKeyboardAdapterTests.swift; path = Formula/InternFormulaKeyboardAdapterTests.swift; sourceTree = "<group>"; };
 		4CF429EC213A82EB00B78897 /* IfThenLogicBeginBrick+Condition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IfThenLogicBeginBrick+Condition.swift"; sourceTree = "<group>"; };
 		4CF429EE213A858D00B78897 /* CBConditionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CBConditionProtocol.swift; path = PlayerEngine/Protocols/CBConditionProtocol.swift; sourceTree = "<group>"; };
@@ -2832,6 +2812,7 @@
 		B46B270B17703F9400172837 /* CattyTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CattyTests-Prefix.pch"; sourceTree = "<group>"; };
 		B4F243CB170EBEF7007A071D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B4F243CC170EBEF7007A071D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		BA08DB3F21A320D100AB1ACB /* XMLParserFormulaTests093.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLParserFormulaTests093.swift; sourceTree = "<group>"; };
 		BA1FA9901F02A10C0084184D /* UserListFunctionsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserListFunctionsTest.m; path = Formula/UserListFunctionsTest.m; sourceTree = "<group>"; };
 		BA1FA9961F02AD770084184D /* InsertItemIntoUserListBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "InsertItemIntoUserListBrick+CBXMLHandler.h"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Data/InsertItemIntoUserListBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
 		BA1FA9971F02AD770084184D /* InsertItemIntoUserListBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "InsertItemIntoUserListBrick+CBXMLHandler.m"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Data/InsertItemIntoUserListBrick+CBXMLHandler.m"; sourceTree = SOURCE_ROOT; };
@@ -2840,7 +2821,35 @@
 		BA1FA99E1F02B0020084184D /* InsertItemIntoUserListBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InsertItemIntoUserListBrickCell.h; sourceTree = "<group>"; };
 		BA1FA99F1F02B0020084184D /* InsertItemIntoUserListBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InsertItemIntoUserListBrickCell.m; sourceTree = "<group>"; };
 		BA1FA9A11F02B0C80084184D /* InsertItemIntoUserListBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "InsertItemIntoUserListBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Data/InsertItemIntoUserListBrick+Instruction.swift"; sourceTree = "<group>"; };
+		BA3337332195BC6C00DA3505 /* RepeatUntilBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "RepeatUntilBrick+CBXMLHandler.h"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Control/RepeatUntilBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
+		BA3337362195BC6D00DA3505 /* RepeatUntilBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "RepeatUntilBrick+CBXMLHandler.m"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Control/RepeatUntilBrick+CBXMLHandler.m"; sourceTree = SOURCE_ROOT; };
+		BA3807FC21A1BBBD0075B831 /* XMLParserBlackBoxTests093.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLParserBlackBoxTests093.swift; sourceTree = "<group>"; };
+		BA3807FE21A1C1250075B831 /* XMLParserBlackBoxTests095.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLParserBlackBoxTests095.swift; sourceTree = "<group>"; };
+		BA38080021A1C3A30075B831 /* XMLParserBlackBoxTests096.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLParserBlackBoxTests096.swift; sourceTree = "<group>"; };
+		BA38080221A1C5C90075B831 /* XMLParserBlackBoxTests097.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLParserBlackBoxTests097.swift; sourceTree = "<group>"; };
+		BA38080421A1C8DA0075B831 /* XMLParserBlackBoxTests098.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLParserBlackBoxTests098.swift; sourceTree = "<group>"; };
+		BA38080621A1CA260075B831 /* XMLParserBlackBoxTests0991.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLParserBlackBoxTests0991.swift; sourceTree = "<group>"; };
+		BA38080821A1CBB70075B831 /* XMLParserBrickTests095.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLParserBrickTests095.swift; sourceTree = "<group>"; };
+		BA38080B21A1D8920075B831 /* ConvertExceptionToError.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConvertExceptionToError.m; sourceTree = "<group>"; };
+		BA38080D21A1D8CD0075B831 /* ConvertExceptionToError.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConvertExceptionToError.h; sourceTree = "<group>"; };
+		BA38080E21A1E7680075B831 /* XMLParserUserVariableTests095.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLParserUserVariableTests095.swift; sourceTree = "<group>"; };
+		BA38081021A1FE750075B831 /* XMLParserTests098.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLParserTests098.swift; sourceTree = "<group>"; };
+		BA38081221A208730075B831 /* XMLSerializerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLSerializerTests.swift; sourceTree = "<group>"; };
+		BA38081421A211130075B831 /* XMLSerializerBlackBoxTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLSerializerBlackBoxTests.swift; sourceTree = "<group>"; };
+		BA584CB9219C8803002CC082 /* WaitUntilBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitUntilBrickTests.swift; sourceTree = "<group>"; };
+		BA651EEC21A319BF00A94D67 /* SpriteObjectMutableCopyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteObjectMutableCopyTests.swift; sourceTree = "<group>"; };
 		BA6805AD21303B48004F004F /* VariablesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VariablesTests.swift; sourceTree = "<group>"; };
+		BA94561721A5FBE800C5DE36 /* XMLParserObjectTests093.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLParserObjectTests093.swift; sourceTree = "<group>"; };
+		BA94561B21A6063E00C5DE36 /* XMLParserObjectTests095.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLParserObjectTests095.swift; sourceTree = "<group>"; };
+		BA94561D21A6075F00C5DE36 /* XMLParserBrickTests093.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLParserBrickTests093.swift; sourceTree = "<group>"; };
+		BA987D032194DDCF002DAA05 /* WaitUntilBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "WaitUntilBrick+CBXMLHandler.m"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Control/WaitUntilBrick+CBXMLHandler.m"; sourceTree = SOURCE_ROOT; };
+		BA987D042194DDCF002DAA05 /* WaitUntilBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "WaitUntilBrick+CBXMLHandler.h"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Control/WaitUntilBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
+		BA987D062194E157002DAA05 /* WaitUntilBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaitUntilBrick.m; sourceTree = "<group>"; };
+		BA987D072194E158002DAA05 /* WaitUntilBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaitUntilBrick.h; sourceTree = "<group>"; };
+		BA987D092194E25A002DAA05 /* WaitUntilBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaitUntilBrickCell.m; sourceTree = "<group>"; };
+		BA987D0A2194E25A002DAA05 /* WaitUntilBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaitUntilBrickCell.h; sourceTree = "<group>"; };
+		BA987D0C2194E647002DAA05 /* WaitUntilBrick+Condition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WaitUntilBrick+Condition.swift"; sourceTree = "<group>"; };
+		BA987D0E2194EA1F002DAA05 /* WaitUntilBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "WaitUntilBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Control/WaitUntilBrick+Instruction.swift"; sourceTree = "<group>"; };
 		BA9CAB521EC380CA00796056 /* AddItemToUserListBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddItemToUserListBrick.h; sourceTree = "<group>"; };
 		BA9CAB531EC380CA00796056 /* AddItemToUserListBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddItemToUserListBrick.m; sourceTree = "<group>"; };
 		BA9CAB571EC3811400796056 /* BrickListProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickListProtocol.h; sourceTree = "<group>"; };
@@ -2851,6 +2860,13 @@
 		BA9CAB5E1EC383E800796056 /* AddItemToUserListBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddItemToUserListBrickCell.h; sourceTree = "<group>"; };
 		BA9CAB5F1EC383E800796056 /* AddItemToUserListBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddItemToUserListBrickCell.m; sourceTree = "<group>"; };
 		BA9CAB611EC3853600796056 /* AddItemToUserListBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "AddItemToUserListBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Data/AddItemToUserListBrick+Instruction.swift"; sourceTree = "<group>"; };
+		BAA0EDE421A6F4FA002F5A80 /* XMLParserTests092.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLParserTests092.swift; sourceTree = "<group>"; };
+		BAA2B9AF21A5B30400FEE300 /* XMLParserTests0991.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLParserTests0991.swift; sourceTree = "<group>"; };
+		BAAA6BEA21A4BB6E00A46563 /* XMLParserHeaderTests093.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLParserHeaderTests093.swift; sourceTree = "<group>"; };
+		BAAA6BEC21A4C02100A46563 /* XMLParserHeaderTests095.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLParserHeaderTests095.swift; sourceTree = "<group>"; };
+		BAAA6BF221A4C92F00A46563 /* XMLParserFormulaTests095.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLParserFormulaTests095.swift; sourceTree = "<group>"; };
+		BACD9479219E19AD0061D81C /* XMLAbstractTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLAbstractTest.swift; sourceTree = "<group>"; };
+		BACD947F219E22FF0061D81C /* WaitUntilBrick0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = WaitUntilBrick0991.xml; path = CattyTests/Resources/ParserTests/ControlBricks/WaitUntilBrick0991.xml; sourceTree = SOURCE_ROOT; };
 		BACDF3501F1F9B7E00346167 /* DeleteItemOfUserListBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeleteItemOfUserListBrick.h; sourceTree = "<group>"; };
 		BACDF3511F1F9B7E00346167 /* DeleteItemOfUserListBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeleteItemOfUserListBrick.m; sourceTree = "<group>"; };
 		BACDF3551F1F9BB000346167 /* DeleteItemOfUserListBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "DeleteItemOfUserListBrick+CBXMLHandler.h"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Data/DeleteItemOfUserListBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
@@ -2948,8 +2964,6 @@
 		CAE3E52D1B4C50B300CC88BD /* Word_balloon_demo_093.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Word_balloon_demo_093.xml; sourceTree = "<group>"; };
 		CAE3E5301B4C50B300CC88BD /* X_Ray_phone_091.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = X_Ray_phone_091.xml; sourceTree = "<group>"; };
 		CAE3E5311B4C50B300CC88BD /* X_Ray_phone_093.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = X_Ray_phone_093.xml; sourceTree = "<group>"; };
-		CAE3E5331B4C50B300CC88BD /* LegoNxtMotorActionBrick.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = LegoNxtMotorActionBrick.xml; path = CattyTests/Resources/ParserTests/LegoNxtMotorActionBrick.xml; sourceTree = SOURCE_ROOT; };
-		CAE3E5341B4C50B300CC88BD /* ValidFormulaList.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ValidFormulaList.xml; path = CattyTests/Resources/ParserTests/ValidFormulaList.xml; sourceTree = SOURCE_ROOT; };
 		D63864631AE632FE008569E6 /* ProgramsForUploadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramsForUploadViewController.h; sourceTree = "<group>"; };
 		D63864641AE632FE008569E6 /* ProgramsForUploadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramsForUploadViewController.m; sourceTree = "<group>"; };
 		D63864661AE6334E008569E6 /* UploadInfoPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadInfoPopupViewController.h; sourceTree = "<group>"; };
@@ -3159,7 +3173,7 @@
 		4C0DC6671C3D5CE5006D6691 /* BlackBox Tests */ = {
 			isa = PBXGroup;
 			children = (
-				4C06A2A61C3D5F0100E9234C /* XMLParserBlackBoxTests097.m */,
+				BA38080221A1C5C90075B831 /* XMLParserBlackBoxTests097.swift */,
 			);
 			path = "BlackBox Tests";
 			sourceTree = "<group>";
@@ -3205,7 +3219,7 @@
 		4C0F9FC5204BD37200E71B2D /* Unit Tests */ = {
 			isa = PBXGroup;
 			children = (
-				4C0F9FC6204BD37200E71B2D /* XMLSerializerTests.m */,
+				BA38081221A208730075B831 /* XMLSerializerTests.swift */,
 			);
 			path = "Unit Tests";
 			sourceTree = "<group>";
@@ -3213,7 +3227,7 @@
 		4C0F9FC7204BD37200E71B2D /* BlackBox Tests */ = {
 			isa = PBXGroup;
 			children = (
-				4C0F9FC8204BD37200E71B2D /* XMLSerializerBlackBoxTests.m */,
+				BA38081421A211130075B831 /* XMLSerializerBlackBoxTests.swift */,
 			);
 			path = "BlackBox Tests";
 			sourceTree = "<group>";
@@ -3230,7 +3244,7 @@
 		4C0F9FCA204BD37200E71B2D /* Unit Tests */ = {
 			isa = PBXGroup;
 			children = (
-				4C0F9FCB204BD37200E71B2D /* XMLParserTests0991.m */,
+				BAA2B9AF21A5B30400FEE300 /* XMLParserTests0991.swift */,
 			);
 			path = "Unit Tests";
 			sourceTree = "<group>";
@@ -3238,7 +3252,7 @@
 		4C0F9FCC204BD37200E71B2D /* BlackBox Tests */ = {
 			isa = PBXGroup;
 			children = (
-				4C0F9FCD204BD37200E71B2D /* XMLParserBlackBoxTests0991.m */,
+				BA38080621A1CA260075B831 /* XMLParserBlackBoxTests0991.swift */,
 			);
 			path = "BlackBox Tests";
 			sourceTree = "<group>";
@@ -3323,6 +3337,7 @@
 			children = (
 				CAE3E4ED1B4C50B300CC88BD /* Air_fight_0.5 */,
 				CAE3E4F01B4C50B300CC88BD /* Airplane_with_shadow */,
+				BACD947E219E22B00061D81C /* ControlBricks */,
 				4C5EF63121A0674D0063D2F0 /* CameraBricks */,
 				CAE3E4F31B4C50B300CC88BD /* Compass_0.1 */,
 				CAE3E4F61B4C50B300CC88BD /* Demonstration */,
@@ -3333,10 +3348,10 @@
 				CAE3E5021B4C50B300CC88BD /* Galaxy_War */,
 				CAE3E5051B4C50B300CC88BD /* Gossip_Girl */,
 				4C7A84841DCCE270000F366B /* LedFlashBrick */,
-				CAE3E5331B4C50B300CC88BD /* LegoNxtMotorActionBrick.xml */,
 				BAD47DC01F12935F001C38BC /* ListBricks */,
 				4C0F9FF2204BD4A000E71B2D /* LogicBricks */,
 				CAE3E5081B4C50B300CC88BD /* Memory */,
+				4CF3BD6921B1B72D006DB806 /* Misc */,
 				CAE3E50B1B4C50B300CC88BD /* Minecraft_Work_In_Progress */,
 				CAE3E50E1B4C50B300CC88BD /* Minions_ */,
 				CAE3E5111B4C50B300CC88BD /* Nyancat_1.0 */,
@@ -3350,7 +3365,6 @@
 				CAE3E5251B4C50B300CC88BD /* SKYPASCAL */,
 				4C8B79531CB141AA001231F1 /* Solar_System_v1.0 */,
 				CAE3E5281B4C50B300CC88BD /* Tic_Tac_Toe_Master */,
-				CAE3E5341B4C50B300CC88BD /* ValidFormulaList.xml */,
 				4CC85CD91B9C717C0097E470 /* ValidHeader */,
 				4CC85CDC1B9C717C0097E470 /* ValidProgram */,
 				4CC85CE01B9C717C0097E470 /* ValidProgramAllBricks */,
@@ -3380,7 +3394,7 @@
 		4C26506D1A6566C60050775B /* SpriteObject */ = {
 			isa = PBXGroup;
 			children = (
-				4C26506E1A6566F50050775B /* SpriteObjectMutableCopyTests.m */,
+				BA651EEC21A319BF00A94D67 /* SpriteObjectMutableCopyTests.swift */,
 			);
 			name = SpriteObject;
 			sourceTree = "<group>";
@@ -3396,8 +3410,7 @@
 		4C2A00C41B5547EB00CD4492 /* Abstract */ = {
 			isa = PBXGroup;
 			children = (
-				4C2A00C51B5547EB00CD4492 /* XMLAbstractTest.h */,
-				4C2A00C61B5547EB00CD4492 /* XMLAbstractTest.m */,
+				BACD9479219E19AD0061D81C /* XMLAbstractTest.swift */,
 			);
 			name = Abstract;
 			path = "Parser & Serialization/Abstract";
@@ -3424,7 +3437,7 @@
 		4C2EE3DC1B5554D7006DE9B8 /* BlackBox Tests */ = {
 			isa = PBXGroup;
 			children = (
-				4C2EE3DD1B5554D7006DE9B8 /* XMLParserBlackBoxTests095.m */,
+				BA3807FE21A1C1250075B831 /* XMLParserBlackBoxTests095.swift */,
 			);
 			path = "BlackBox Tests";
 			sourceTree = "<group>";
@@ -3432,11 +3445,11 @@
 		4C2EE3DE1B5554D7006DE9B8 /* Unit Tests */ = {
 			isa = PBXGroup;
 			children = (
-				4C2EE3DF1B5554D7006DE9B8 /* XMLParserBrickTests095.m */,
-				4C2EE3E01B5554D7006DE9B8 /* XMLParserFormulaTests095.m */,
-				4C2EE3E11B5554D7006DE9B8 /* XMLParserHeaderTests095.m */,
-				4C2EE3E21B5554D7006DE9B8 /* XMLParserObjectTests095.m */,
-				4C2EE4211B555E99006DE9B8 /* XMLParserUserVariableTests095.m */,
+				BA38080821A1CBB70075B831 /* XMLParserBrickTests095.swift */,
+				BAAA6BF221A4C92F00A46563 /* XMLParserFormulaTests095.swift */,
+				BAAA6BEC21A4C02100A46563 /* XMLParserHeaderTests095.swift */,
+				BA94561B21A6063E00C5DE36 /* XMLParserObjectTests095.swift */,
+				BA38080E21A1E7680075B831 /* XMLParserUserVariableTests095.swift */,
 			);
 			path = "Unit Tests";
 			sourceTree = "<group>";
@@ -3633,7 +3646,7 @@
 		4C647C831D48E1F70060E70D /* BlackBox Tests */ = {
 			isa = PBXGroup;
 			children = (
-				4C647C841D48E1F70060E70D /* XMLParserBlackBoxTests098.m */,
+				BA38080421A1C8DA0075B831 /* XMLParserBlackBoxTests098.swift */,
 			);
 			path = "BlackBox Tests";
 			sourceTree = "<group>";
@@ -3835,10 +3848,12 @@
 				AA74EED61BC057B900D1E954 /* NoteBrick+CBXMLHandler.m */,
 				AA74EED71BC057B900D1E954 /* RepeatBrick+CBXMLHandler.h */,
 				AA74EED81BC057B900D1E954 /* RepeatBrick+CBXMLHandler.m */,
-				4C0F9F2A204ADBFD00E71B2D /* RepeatUntilBrick+CBXMLHandler.h */,
-				4C0F9F29204ADBFD00E71B2D /* RepeatUntilBrick+CBXMLHandler.m */,
+				BA3337332195BC6C00DA3505 /* RepeatUntilBrick+CBXMLHandler.h */,
+				BA3337362195BC6D00DA3505 /* RepeatUntilBrick+CBXMLHandler.m */,
 				AA74EED91BC057B900D1E954 /* WaitBrick+CBXMLHandler.h */,
 				AA74EEDA1BC057B900D1E954 /* WaitBrick+CBXMLHandler.m */,
+				BA987D042194DDCF002DAA05 /* WaitUntilBrick+CBXMLHandler.h */,
+				BA987D032194DDCF002DAA05 /* WaitUntilBrick+CBXMLHandler.m */,
 			);
 			name = Control;
 			path = ControlBricks;
@@ -4095,7 +4110,7 @@
 		4C7A84811DCCE1F9000F366B /* Unit Tests */ = {
 			isa = PBXGroup;
 			children = (
-				4C7A84821DCCE1F9000F366B /* XMLParserTests098.m */,
+				BA38081021A1FE750075B831 /* XMLParserTests098.swift */,
 			);
 			path = "Unit Tests";
 			sourceTree = "<group>";
@@ -4516,7 +4531,7 @@
 		4CD669711B272AB60008602D /* CatrobatLanguage0.92 */ = {
 			isa = PBXGroup;
 			children = (
-				4C2A00C81B554CBF00CD4492 /* XMLParserTests092.m */,
+				BAA0EDE421A6F4FA002F5A80 /* XMLParserTests092.swift */,
 			);
 			name = CatrobatLanguage0.92;
 			sourceTree = "<group>";
@@ -4689,6 +4704,7 @@
 				4CEB224D1B95E47500B3BE2F /* TurnRightBrickTests.m */,
 				4C1D26641E84F12700BAA2D2 /* VibrationBrickTests.swift */,
 				AA3BD9081BBF4BFB002B34A0 /* WaitBrickTests.swift */,
+				BA584CB9219C8803002CC082 /* WaitUntilBrickTests.swift */,
 			);
 			path = Bricks;
 			sourceTree = "<group>";
@@ -4755,7 +4771,7 @@
 		4CEF0CE91B9C655B003C9B20 /* BlackBox Tests */ = {
 			isa = PBXGroup;
 			children = (
-				4CEF0CEA1B9C655B003C9B20 /* XMLParserBlackBoxTests096.m */,
+				BA38080021A1C3A30075B831 /* XMLParserBlackBoxTests096.swift */,
 			);
 			path = "BlackBox Tests";
 			sourceTree = "<group>";
@@ -4799,6 +4815,16 @@
 			path = Date;
 			sourceTree = "<group>";
 		};
+		4CF3BD6921B1B72D006DB806 /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				4CF3BD6A21B1B72D006DB806 /* InvalidBricksAndScripts.xml */,
+				4CF3BD6B21B1B72D006DB806 /* ValidFormulaList.xml */,
+			);
+			name = Misc;
+			path = CattyTests/Resources/ParserTests/Misc;
+			sourceTree = SOURCE_ROOT;
+		};
 		4CF429EB213A82D300B78897 /* Condition */ = {
 			isa = PBXGroup;
 			children = (
@@ -4808,6 +4834,7 @@
 				4C8C3615213AA2BD00279BC7 /* PhiroIfLogicBeginBrick+Condition.swift */,
 				4CF429F0213A876000B78897 /* RepeatBrick+Condition.swift */,
 				4CF429F2213A88A600B78897 /* RepeatUntilBrick+Condition.swift */,
+				BA987D0C2194E647002DAA05 /* WaitUntilBrick+Condition.swift */,
 			);
 			path = Condition;
 			sourceTree = "<group>";
@@ -6450,6 +6477,7 @@
 				AA74EE1E1BC053FD00D1E954 /* BroadcastBrick+Instruction.swift */,
 				AA74EE1F1BC053FD00D1E954 /* BroadcastWaitBrick+Instruction.swift */,
 				AA74EE201BC053FD00D1E954 /* WaitBrick+Instruction.swift */,
+				BA987D0E2194EA1F002DAA05 /* WaitUntilBrick+Instruction.swift */,
 			);
 			name = Control;
 			sourceTree = "<group>";
@@ -6571,6 +6599,8 @@
 				4C0F9F26204ADBDF00E71B2D /* RepeatUntilBrick.m */,
 				AA74EF941BC05B5F00D1E954 /* WaitBrick.h */,
 				AA74EF951BC05B5F00D1E954 /* WaitBrick.m */,
+				BA987D072194E158002DAA05 /* WaitUntilBrick.h */,
+				BA987D062194E157002DAA05 /* WaitUntilBrick.m */,
 			);
 			path = Control;
 			sourceTree = "<group>";
@@ -6804,6 +6834,8 @@
 				4C0F9F8D204BD27200E71B2D /* RepeatUntilBrickCell.m */,
 				AA74F03B1BC05FCE00D1E954 /* WaitBrickCell.h */,
 				AA74F03C1BC05FCE00D1E954 /* WaitBrickCell.m */,
+				BA987D0A2194E25A002DAA05 /* WaitUntilBrickCell.h */,
+				BA987D092194E25A002DAA05 /* WaitUntilBrickCell.m */,
 			);
 			path = Control;
 			sourceTree = "<group>";
@@ -7030,6 +7062,7 @@
 		B46B270317703F9400172837 /* CattyTests */ = {
 			isa = PBXGroup;
 			children = (
+				BA38080A21A1D85B0075B831 /* TestHelpers */,
 				4C1329021CD9259900F16E48 /* AudioManager */,
 				92BCDC801BF1DE2A00F9CB23 /* BluetoothDevices */,
 				4CEB222C1B95E47500B3BE2F /* Bricks */,
@@ -7083,6 +7116,23 @@
 				92FF2E081A24C5A700093DA7 /* Extensions */,
 			);
 			name = "Extensions & Delegates & Protocols";
+			sourceTree = "<group>";
+		};
+		BA38080A21A1D85B0075B831 /* TestHelpers */ = {
+			isa = PBXGroup;
+			children = (
+				BA38080B21A1D8920075B831 /* ConvertExceptionToError.m */,
+				BA38080D21A1D8CD0075B831 /* ConvertExceptionToError.h */,
+			);
+			path = TestHelpers;
+			sourceTree = "<group>";
+		};
+		BACD947E219E22B00061D81C /* ControlBricks */ = {
+			isa = PBXGroup;
+			children = (
+				BACD947F219E22FF0061D81C /* WaitUntilBrick0991.xml */,
+			);
+			path = ControlBricks;
 			sourceTree = "<group>";
 		};
 		BAD47DC01F12935F001C38BC /* ListBricks */ = {
@@ -7185,14 +7235,10 @@
 		CAA4A5371A43BD9E002A69A0 /* Unit Tests */ = {
 			isa = PBXGroup;
 			children = (
-				4C2A00B81B5546DF00CD4492 /* XMLParserBrickTests093.h */,
-				4C2A00B91B5546DF00CD4492 /* XMLParserBrickTests093.m */,
-				4C2A00BA1B5546DF00CD4492 /* XMLParserFormulaTests093.h */,
-				4C2A00BB1B5546DF00CD4492 /* XMLParserFormulaTests093.m */,
-				4C2A00BC1B5546DF00CD4492 /* XMLParserHeaderTests093.h */,
-				4C2A00BD1B5546DF00CD4492 /* XMLParserHeaderTests093.m */,
-				4C2A00BE1B5546DF00CD4492 /* XMLParserObjectTests093.h */,
-				4C2A00BF1B5546DF00CD4492 /* XMLParserObjectTests093.m */,
+				BA94561D21A6075F00C5DE36 /* XMLParserBrickTests093.swift */,
+				BA08DB3F21A320D100AB1ACB /* XMLParserFormulaTests093.swift */,
+				BAAA6BEA21A4BB6E00A46563 /* XMLParserHeaderTests093.swift */,
+				BA94561721A5FBE800C5DE36 /* XMLParserObjectTests093.swift */,
 			);
 			name = "Unit Tests";
 			sourceTree = "<group>";
@@ -7200,7 +7246,7 @@
 		CAA4A5381A43BDA9002A69A0 /* BlackBox Tests */ = {
 			isa = PBXGroup;
 			children = (
-				4C2A00CA1B554CE900CD4492 /* XMLParserBlackBoxTests092.m */,
+				BA3807FC21A1BBBD0075B831 /* XMLParserBlackBoxTests093.swift */,
 			);
 			name = "BlackBox Tests";
 			sourceTree = "<group>";
@@ -7943,7 +7989,6 @@
 				2D7BE52021441FAE00F78A10 /* StoreProgramDownloader.searchPrograms.fail.request.json in Resources */,
 				4CEF0CC41B9C6373003C9B20 /* Compass_0.1_096.xml in Resources */,
 				4C6D15F81D7AC62E00CE53CD /* X_Ray_phone_098.xml in Resources */,
-				CAE3E5661B4C50B300CC88BD /* LegoNxtMotorActionBrick.xml in Resources */,
 				4C6D15FC1D7AC63A00CE53CD /* ValidProgram098.xml in Resources */,
 				4CEF0CE21B9C6445003C9B20 /* Skydiving_Steve_096.xml in Resources */,
 				CAE3E5411B4C50B300CC88BD /* Flap_Pac_Man_091.xml in Resources */,
@@ -7994,7 +8039,6 @@
 				4C9F37A91D167630002C3B45 /* transparency-gray-alpha.png in Resources */,
 				4C6D15EA1D7AC60500CE53CD /* Pong_Starter_098.xml in Resources */,
 				4C2EE40F1B555871006DE9B8 /* Word_balloon_demo_095.xml in Resources */,
-				CAE3E5671B4C50B300CC88BD /* ValidFormulaList.xml in Resources */,
 				4C6D15E61D7AC5F900CE53CD /* Nyancat_1.0_098.xml in Resources */,
 				4C6D15E81D7AC5FE00CE53CD /* Piano_098.xml in Resources */,
 				4CEF0CCA1B9C63AD003C9B20 /* Flap_Pac_Man_096.xml in Resources */,
@@ -8015,6 +8059,7 @@
 				4CE2D4091C29503B00938B5E /* Nyancat_1.0_097.xml in Resources */,
 				4C0FA015204BD56800E71B2D /* Word_balloon_demo_0991.xml in Resources */,
 				4C6D16001D7AC65400CE53CD /* ValidProgramAllBricks093.xml in Resources */,
+				4CF3BD6D21B1B72D006DB806 /* ValidFormulaList.xml in Resources */,
 				2DCB4924212EA31B005E8E3D /* StoreProgramDownloader.fetchMostDownloadedPrograms.fail.request.json in Resources */,
 				2DCB4916212E9B56005E8E3D /* StoreProgramDownloader.fetchFeaturedPrograms.success.json in Resources */,
 				4C0FA011204BD54E00E71B2D /* ValidProgram0991.xml in Resources */,
@@ -8089,6 +8134,7 @@
 				4CE2D40F1C29505A00938B5E /* Pythagorean_Theorem_097.xml in Resources */,
 				4CEF0CD61B9C6406003C9B20 /* Minions__096.xml in Resources */,
 				4C0F9FF1204BD48C00E71B2D /* LedFlashBrick0991.xml in Resources */,
+				4CF3BD6C21B1B72D006DB806 /* InvalidBricksAndScripts.xml in Resources */,
 				4C0FA000204BD4E900E71B2D /* Pong_Starter_0991.xml in Resources */,
 				4C0F9FE1204BD42700E71B2D /* Compass_0.1_0991.xml in Resources */,
 				4C13290B1CD92D5500F16E48 /* silence.mp3 in Resources */,
@@ -8106,6 +8152,7 @@
 				CAE3E5521B4C50B300CC88BD /* Piano_093.xml in Resources */,
 				4CC85CE51B9C717C0097E470 /* ValidHeader096.xml in Resources */,
 				BAD47DC81F12938D001C38BC /* InsertItemIntoUserListBrick098.xml in Resources */,
+				BACD9480219E22FF0061D81C /* WaitUntilBrick0991.xml in Resources */,
 				4CEF0CC21B9C636A003C9B20 /* Airplane_with_shadow_096.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -8348,20 +8395,22 @@
 				4C6FE165212D2D2E0067B7D5 /* PiFunctionTest.swift in Sources */,
 				AA70F7F11B866E9B003057C6 /* CBFrontendTests.swift in Sources */,
 				4CEB22551B95E47500B3BE2F /* ChangeBrightnessByNBrickTests.m in Sources */,
+				BA38080C21A1D8920075B831 /* ConvertExceptionToError.m in Sources */,
 				4C68FC8E1B25A00B00AB3EE8 /* FormulaParserOperatorsTest.m in Sources */,
 				4C6FE15C212D2D2E0067B7D5 /* FloorFunctionTest.swift in Sources */,
 				4CBF5F9C21AF1D200079C834 /* TouchManagerTests.swift in Sources */,
+				BACD947D219E1F2F0061D81C /* XMLAbstractTest.swift in Sources */,
 				4CEB22561B95E47500B3BE2F /* ChangeSizeByNBrickTests.m in Sources */,
 				4C2732A91CE4F30F00CA61AC /* CBSpriteNodeTests.swift in Sources */,
 				4C6FE169212D2D2E0067B7D5 /* ExpFunctionTest.swift in Sources */,
+				BA38080F21A1E7680075B831 /* XMLParserUserVariableTests095.swift in Sources */,
 				4C82265C213FA7A400F3D750 /* FingerXSensorTest.swift in Sources */,
 				4C822662213FA7A400F3D750 /* FacePositionYSensorTest.swift in Sources */,
 				4C28D78B2132A83D00870CE2 /* FormulaMock.swift in Sources */,
 				4C6FE163212D2D2E0067B7D5 /* ModFunctionTest.swift in Sources */,
 				4C82265A213FA7A400F3D750 /* TouchManagerMock.swift in Sources */,
 				5973F245202EF3A000A4CED9 /* SoundsLibraryCollectionViewDataSourceDelegateMock.swift in Sources */,
-				4C0F9FCE204BD37300E71B2D /* XMLSerializerTests.m in Sources */,
-				4C2EE3E41B5554D7006DE9B8 /* XMLParserBrickTests095.m in Sources */,
+				BA38080921A1CBB70075B831 /* XMLParserBrickTests095.swift in Sources */,
 				4C0F9FD3204BD3B400E71B2D /* BubbleBrickTests.swift in Sources */,
 				4C822672213FA7A400F3D750 /* InclinationYSensorTest.swift in Sources */,
 				4C822657213FA7A400F3D750 /* MotionManagerMock.swift in Sources */,
@@ -8369,22 +8418,19 @@
 				4C1F6FA5213CF6BE00C20BEB /* SingleParameterStringFunctionMock.swift in Sources */,
 				4CEB22591B95E47500B3BE2F /* ComeToFrontBrickTests.m in Sources */,
 				4CE5C5701E0AD71800FD021C /* RequiredResources.m in Sources */,
-				4C2A00C01B5546DF00CD4492 /* XMLParserBrickTests093.m in Sources */,
+				BA94561C21A6063E00C5DE36 /* XMLParserObjectTests095.swift in Sources */,
 				4C822675213FA7A400F3D750 /* LoudnessSensorTest.swift in Sources */,
 				4CEB225E1B95E47500B3BE2F /* NextLookBrickTests.m in Sources */,
 				4CD0BA962146791D00BF17A4 /* UtilTests.swift in Sources */,
 				4CE1D431213E5C130014DAF9 /* CBSpriteNodeMock.swift in Sources */,
 				4C6FE178212D2D2E0067B7D5 /* JoinFunctionTest.swift in Sources */,
-				4C0F9FD1204BD37300E71B2D /* XMLParserBlackBoxTests0991.m in Sources */,
 				4C6FE174212D2D2E0067B7D5 /* ElementFunctionTest.swift in Sources */,
 				4C0F9FD5204BD3C200E71B2D /* ChooseCameraBrickTests.swift in Sources */,
 				4C1604301F0025F6004525A5 /* AbstractBrickTests.m in Sources */,
-				4C2A00C11B5546DF00CD4492 /* XMLParserFormulaTests093.m in Sources */,
 				CA7698C21B0E4B3F000D0340 /* CBStackTests.m in Sources */,
 				4C822679213FA7A400F3D750 /* SizeSensorTest.swift in Sources */,
 				4CFAD35E1CFAB3EC0019C636 /* CustomExtensionsTests.m in Sources */,
 				4CC50A5E213BE036004BC914 /* ZeroParameterDoubleFunctionMock.swift in Sources */,
-				4C7A84831DCCE1F9000F366B /* XMLParserTests098.m in Sources */,
 				4CEB22521B95E47500B3BE2F /* BrickMoveManagerTests.m in Sources */,
 				4CF429EA213A64B600B78897 /* InternFormulaKeyboardAdapterTests.swift in Sources */,
 				4C68FC901B25A00B00AB3EE8 /* FormulaTest.m in Sources */,
@@ -8392,24 +8438,25 @@
 				4C822661213FA7A400F3D750 /* FaceSizeSensorTest.swift in Sources */,
 				4C6FE16E212D2D2E0067B7D5 /* AsinFunctionTest.swift in Sources */,
 				926197F01BF3249E006D1A61 /* ArduinoTests.swift in Sources */,
-				926197F41BF32500006D1A61 /* PhiroDeviceTest.swift in Sources */,
-				4C0F9FD0204BD37300E71B2D /* XMLParserTests0991.m in Sources */,
+				BA38081521A211130075B831 /* XMLSerializerBlackBoxTests.swift in Sources */,
+				BA651EED21A319BF00A94D67 /* SpriteObjectMutableCopyTests.swift in Sources */,
+				BA38080721A1CA260075B831 /* XMLParserBlackBoxTests0991.swift in Sources */,
 				599E649E202D9F95009494B5 /* URLSessionMock.swift in Sources */,
+				BACD947C219E1F250061D81C /* WaitUntilBrickTests.swift in Sources */,
 				4CE1D433213E5C6E0014DAF9 /* SpriteObjectMock.swift in Sources */,
 				4C6FE15D212D2D2E0067B7D5 /* LogFunctionTest.swift in Sources */,
 				4CEB224E1B95E47500B3BE2F /* BrickMoveManagerAbstractTest.m in Sources */,
-				4C2A00C31B5546DF00CD4492 /* XMLParserObjectTests093.m in Sources */,
+				BA08DB4021A320D100AB1ACB /* XMLParserFormulaTests093.swift in Sources */,
 				4CAA66C221469C0400CCDD6E /* UserVariableTests.swift in Sources */,
+				BA38080321A1C5C90075B831 /* XMLParserBlackBoxTests097.swift in Sources */,
 				4C37A0A7212E76C90074F417 /* ArduinoDigitalPinFunctionTest.swift in Sources */,
 				4C82265F213FA7A400F3D750 /* FingerTouchedSensorTest.swift in Sources */,
 				4CAC7DA21DCF444A00EC7D6F /* CBSceneTouchTests.swift in Sources */,
-				4C06A2A71C3D5F0100E9234C /* XMLParserBlackBoxTests097.m in Sources */,
 				4CEB22621B95E47500B3BE2F /* SetBrightnessBrickTests.m in Sources */,
 				4C68FC961B25A00B00AB3EE8 /* InternFormulaUtilsTest.m in Sources */,
 				4C6FE15B212D2D2E0067B7D5 /* CeilFunctionTest.swift in Sources */,
 				AA3BD9091BBF4BFB002B34A0 /* WaitBrickTests.swift in Sources */,
 				4C68FC8B1B25A00B00AB3EE8 /* FormulaFunctionsTest.m in Sources */,
-				4C2EE4221B555E99006DE9B8 /* XMLParserUserVariableTests095.m in Sources */,
 				4C822660213FA7A400F3D750 /* FaceDetectionSensorTest.swift in Sources */,
 				4C6FE176212D2D2E0067B7D5 /* LetterFunctionTest.swift in Sources */,
 				4CEB22511B95E47500B3BE2F /* BrickMoveManagerRepeatTests.m in Sources */,
@@ -8418,6 +8465,7 @@
 				4C822667213FA7A400F3D750 /* LocationAccuracySensorTest.swift in Sources */,
 				4C822677213FA7A400F3D750 /* RotationSensorTest.swift in Sources */,
 				4C82265B213FA7A400F3D750 /* ObjectStringSensorMock.swift in Sources */,
+				BA3807FD21A1BBBD0075B831 /* XMLParserBlackBoxTests093.swift in Sources */,
 				4CEB22751B95E4BC00B3BE2F /* BrickInsertManagerLogicTests.m in Sources */,
 				4C82265D213FA7A400F3D750 /* FingerYSensorTest.swift in Sources */,
 				4CEB225D1B95E47500B3BE2F /* MoveNStepsBrickTests.m in Sources */,
@@ -8425,10 +8473,10 @@
 				4C1F6FA7213CFB5800C20BEB /* FunctionTests.swift in Sources */,
 				4C822653213FA7A400F3D750 /* ObjectDoubleSensorMock.swift in Sources */,
 				4CEB22661B95E47500B3BE2F /* SetXBrickTests.m in Sources */,
-				4C2A00C71B5547EB00CD4492 /* XMLAbstractTest.m in Sources */,
 				4C0F9FDB204BD3E100E71B2D /* SetBackgroundBrickTests.m in Sources */,
 				4C822691213FBB8300F3D750 /* MultiFingerTouchedFunctionTests.swift in Sources */,
 				4C37A0A3212DBF510074F417 /* ArduinoAnalogPinFunctionTest.swift in Sources */,
+				BAAA6BF321A4C92F00A46563 /* XMLParserFormulaTests095.swift in Sources */,
 				4C6FE175212D2D2E0067B7D5 /* ContainsFunctionTest.swift in Sources */,
 				4C822663213FA7A400F3D750 /* FacePositionXSensorTest.swift in Sources */,
 				4CEB22651B95E47500B3BE2F /* SetTransparencyBrickTests.m in Sources */,
@@ -8445,6 +8493,7 @@
 				4CD487761ED2C2A3001BB80A /* ChangeVariableBrickTests.swift in Sources */,
 				4C82267B213FA7A400F3D750 /* BackgroundNumberSensorTest.swift in Sources */,
 				59A58D83202C714A008B1A8F /* MediaLibraryDownloaderTests.swift in Sources */,
+				BA3807FF21A1C1250075B831 /* XMLParserBlackBoxTests095.swift in Sources */,
 				4C1D26671E84F1BF00BAA2D2 /* GlideToBrickTests.swift in Sources */,
 				4C822659213FA7A400F3D750 /* AudioManagerMock.swift in Sources */,
 				4CEB22501B95E47500B3BE2F /* BrickMoveManagerLogicTests.m in Sources */,
@@ -8452,9 +8501,11 @@
 				4CDF7BBE213875A900FFF7F4 /* ProgramMock.m in Sources */,
 				4C0F9FD9204BD3D500E71B2D /* RepeatUntilBrickTests.swift in Sources */,
 				4C82266B213FA7A400F3D750 /* DateYearSensorTest.swift in Sources */,
+				BA38081121A1FE750075B831 /* XMLParserTests098.swift in Sources */,
 				4CEB22761B95E4BC00B3BE2F /* BrickInsertManagerRepeatTests.m in Sources */,
 				4CAB10091ECF1A9A0019A67B /* HideTextBrickTests.swift in Sources */,
 				4CE1D436213E5D700014DAF9 /* FormulaManagerCacheTests.swift in Sources */,
+				BA38080521A1C8DA0075B831 /* XMLParserBlackBoxTests098.swift in Sources */,
 				4CEB225F1B95E47500B3BE2F /* PlaceAtBrickTests.m in Sources */,
 				4C6FE171212D2D2E0067B7D5 /* CosFunctionTest.swift in Sources */,
 				4CEB22631B95E47500B3BE2F /* SetLookBrickTests.m in Sources */,
@@ -8466,6 +8517,7 @@
 				4C28D7952133BC1D00870CE2 /* FormulaManagerTests.swift in Sources */,
 				4CAB100D1ECF1AB20019A67B /* SetVariableBrickTests.swift in Sources */,
 				4C82266E213FA7A400F3D750 /* DateWeekdaySensorTest.swift in Sources */,
+				BA94561821A5FBE800C5DE36 /* XMLParserObjectTests093.swift in Sources */,
 				4CFAD35F1CFAB3EC0019C636 /* UIImageExtensionTests.swift in Sources */,
 				4CEB22771B95E4BC00B3BE2F /* BrickInsertManagerTests.m in Sources */,
 				4C82266A213FA7A400F3D750 /* TimeSecondSensorTest.swift in Sources */,
@@ -8473,6 +8525,7 @@
 				4C822671213FA7A400F3D750 /* AccelerationXSensorTest.swift in Sources */,
 				4C1D26651E84F12700BAA2D2 /* VibrationBrickTests.swift in Sources */,
 				4C6FE164212D2D2E0067B7D5 /* TrueFunctionTest.swift in Sources */,
+				BAA0EDE521A6F4FA002F5A80 /* XMLParserTests092.swift in Sources */,
 				4C822664213FA7A400F3D750 /* LatitudeSensorTest.swift in Sources */,
 				4CB2CFAD1D7AD8A5009F3034 /* SetColorBrickTests.m in Sources */,
 				4CDE807621A1B112009EFD31 /* ScenePresenterViewControllerTest.swift in Sources */,
@@ -8480,10 +8533,10 @@
 				4C82266F213FA7A400F3D750 /* DateMonthSensorTest.swift in Sources */,
 				4C822670213FA7A400F3D750 /* AccelerationYSensorTest.swift in Sources */,
 				4C6FE16A212D2D2E0067B7D5 /* AtanFunctionTest.swift in Sources */,
-				4C647C8A1D48E1F70060E70D /* XMLParserBlackBoxTests098.m in Sources */,
 				4CEB225B1B95E47500B3BE2F /* HideBrickTests.m in Sources */,
 				4CEB224F1B95E47500B3BE2F /* BrickMoveManagerForeverTests.m in Sources */,
 				4C68FC951B25A00B00AB3EE8 /* InternFormulaTokenSelectionTest.m in Sources */,
+				BAAA6BEB21A4BB6E00A46563 /* XMLParserHeaderTests093.swift in Sources */,
 				4C68FC8C1B25A00B00AB3EE8 /* FormulaParserErrorDetectionTest.m in Sources */,
 				4C82267D213FA7A400F3D750 /* PositionYSensorTest.swift in Sources */,
 				4CEB22681B95E47500B3BE2F /* ShowBrickTests.m in Sources */,
@@ -8491,21 +8544,18 @@
 				E4AEC8A0210852030081A980 /* FeaturedProgramsStoreDataSourceTests.swift in Sources */,
 				4C822680213FA7A400F3D750 /* BrightnessSensorTest.swift in Sources */,
 				4C68FC8A1B25A00B00AB3EE8 /* FormulaElementTest.m in Sources */,
-				4C2EE3E71B5554D7006DE9B8 /* XMLParserObjectTests095.m in Sources */,
+				BAAA6BED21A4C02100A46563 /* XMLParserHeaderTests095.swift in Sources */,
 				4CEB225C1B95E47500B3BE2F /* IfOnEdgeBounceBrickTests.m in Sources */,
-				4C2A00C91B554CBF00CD4492 /* XMLParserTests092.m in Sources */,
 				4C6FE16C212D2D2E0067B7D5 /* AcosFunctionTest.swift in Sources */,
 				4C822688213FAC3C00F3D750 /* MultiFingerXFunctionTests.swift in Sources */,
-				4CEF0CF01B9C655B003C9B20 /* XMLParserBlackBoxTests096.m in Sources */,
 				4C68FC921B25A00B00AB3EE8 /* InternFormulaStateTest.m in Sources */,
 				5973F239202EF34700A4CED9 /* MediaLibraryCollectionViewDataSourceDelegateMock.swift in Sources */,
-				4C2EE3E51B5554D7006DE9B8 /* XMLParserFormulaTests095.m in Sources */,
 				4CC614B7212EA84E006E4720 /* FormulaEditorItemTest.swift in Sources */,
 				4C822676213FA7A400F3D750 /* LookNameSensorTest.swift in Sources */,
+				BA38080121A1C3A30075B831 /* XMLParserBlackBoxTests096.swift in Sources */,
 				4CD085DE1CD9EE59009A6428 /* SceneTests.m in Sources */,
 				E4AEC89F210852030081A980 /* StoreProgramsDownloaderTests.swift in Sources */,
 				4C0F9FD7204BD3CC00E71B2D /* PreviousLookBrickTests.m in Sources */,
-				4C2EE3E61B5554D7006DE9B8 /* XMLParserHeaderTests095.m in Sources */,
 				4CC50A60213BE18F004BC914 /* SingleParameterDoubleFunctionMock.swift in Sources */,
 				4CEB22691B95E47500B3BE2F /* TurnLeftBrickTests.m in Sources */,
 				4C822682213FA7A400F3D750 /* PhiroSensorTest.swift in Sources */,
@@ -8513,28 +8563,27 @@
 				4CEB22731B95E4BC00B3BE2F /* BrickInsertManagerAbstractTest.m in Sources */,
 				4C822673213FA7A400F3D750 /* AccelerationZSensorTest.swift in Sources */,
 				4C6FE15E212D2D2E0067B7D5 /* MaxFunctionTest.swift in Sources */,
-				4C2A00CB1B554CE900CD4492 /* XMLParserBlackBoxTests092.m in Sources */,
 				4C822674213FA7A400F3D750 /* InclinationXSensorTest.swift in Sources */,
 				4C68FC8F1B25A00B00AB3EE8 /* FormulaParserTest.m in Sources */,
 				4C6FE16B212D2D2E0067B7D5 /* SqrtFunctionTest.swift in Sources */,
 				4CBF5F9E21AF1D390079C834 /* UIGestureRecognizerMock.swift in Sources */,
 				4C6FE170212D2D2E0067B7D5 /* AbsFunctionTest.swift in Sources */,
+				BA38081321A208730075B831 /* XMLSerializerTests.swift in Sources */,
 				4C68FC931B25A00B00AB3EE8 /* InternFormulaTest.m in Sources */,
 				E4C5C1122143A3150054F236 /* SearchStoreDataSourceTests.swift in Sources */,
-				4C2EE3E31B5554D7006DE9B8 /* XMLParserBlackBoxTests095.m in Sources */,
 				4C6FE177212D2D2E0067B7D5 /* LengthFunctionTest.swift in Sources */,
 				4C6FE161212D2D2E0067B7D5 /* RoundFunctionTest.swift in Sources */,
-				4C2A00C21B5546DF00CD4492 /* XMLParserHeaderTests093.m in Sources */,
+				BAA2B9B021A5B30400FEE300 /* XMLParserTests0991.swift in Sources */,
 				4C822678213FA7A400F3D750 /* ColorSensorTest.swift in Sources */,
 				4C82267F213FA7A400F3D750 /* PositionXSensorTest.swift in Sources */,
 				4C0C164921439B2F005ADE86 /* ChartProgramsStoreDataSourceTests.swift in Sources */,
 				4CC50A62213BE4D3004BC914 /* DoubleParameterDoubleFunctionMock.swift in Sources */,
-				4C0F9FCF204BD37300E71B2D /* XMLSerializerBlackBoxTests.m in Sources */,
 				BA1FA9941F02A1150084184D /* UserListFunctionsTest.m in Sources */,
 				4C822656213FA7A400F3D750 /* DeviceSensorMock.swift in Sources */,
 				4C822655213FA7A400F3D750 /* SensorMock.swift in Sources */,
 				4C28D7912133BC0B00870CE2 /* FormulaManagerResourceTests.swift in Sources */,
 				4CEB22571B95E47500B3BE2F /* ChangeTransparencyByNBrickTests.m in Sources */,
+				BA94561E21A6075F00C5DE36 /* XMLParserBrickTests093.swift in Sources */,
 				599E64AA202DB3E8009494B5 /* MediaLibraryCollectionViewDataSourceTests.swift in Sources */,
 				4CEB22641B95E47500B3BE2F /* SetSizeToBrickTests.m in Sources */,
 				4C82266C213FA7A400F3D750 /* TimeHourSensorTest.swift in Sources */,
@@ -8544,7 +8593,6 @@
 				4C82267E213FA7A400F3D750 /* LayerSensorTest.swift in Sources */,
 				4C1AA4AE21A1572700DAC589 /* MediaItemTest.swift in Sources */,
 				4C68FC8D1B25A00B00AB3EE8 /* FormulaParserFunctionsTest.m in Sources */,
-				CA7698DE1B0E4B3F000D0340 /* SpriteObjectMutableCopyTests.m in Sources */,
 				4CEB226A1B95E47500B3BE2F /* TurnRightBrickTests.m in Sources */,
 				4CC50A53213AE386004BC914 /* FormulaManagerIdempotenceTests.swift in Sources */,
 				4C822666213FA7A400F3D750 /* LongitudeSensorTest.swift in Sources */,
@@ -8635,6 +8683,7 @@
 				92B46FA31BC7BDF7004980C1 /* ArduinoSendPWMValueBrickCell.m in Sources */,
 				4CB2CFA11D7AD762009F3034 /* SetColorBrick.m in Sources */,
 				4C0F9F94204BD29600E71B2D /* ChooseCameraBrickCell.m in Sources */,
+				BA987D0B2194E25A002DAA05 /* WaitUntilBrickCell.m in Sources */,
 				CABF43B91B115E6400419A55 /* CBOperationSequence.swift in Sources */,
 				81D46EA41CC29E3000653EAB /* ShapeButton.m in Sources */,
 				AA74F0B41BC05FCE00D1E954 /* ShowBrickCell.m in Sources */,
@@ -8739,6 +8788,7 @@
 				92B46F841BC79585004980C1 /* SettingsTableViewController.m in Sources */,
 				92FF2E401A24C5A700093DA7 /* UIViewController+CWPopup.m in Sources */,
 				92FF31491A24DEB300093DA7 /* BaseCollectionViewController.m in Sources */,
+				BA987D0D2194E647002DAA05 /* WaitUntilBrick+Condition.swift in Sources */,
 				92D56C321BF202E700A54750 /* ArduinoHelper.swift in Sources */,
 				AAAF22881BC0CFC00076F11E /* TurnLeftBrick+Instruction.swift in Sources */,
 				4C0F9F80204BD1F800E71B2D /* ThinkBubbleBrick+Instruction.swift in Sources */,
@@ -8750,6 +8800,7 @@
 				92DFB0171A38949E00FA9B0F /* InternFormulaTokenSelection.m in Sources */,
 				92FF2E3A1A24C5A700093DA7 /* NSString+FastImageSize.m in Sources */,
 				4C03A4C22133FDE7007BFFD2 /* FormulaManager+Editor.swift in Sources */,
+				BA987D082194E158002DAA05 /* WaitUntilBrick.m in Sources */,
 				E4B7DC5620F6857B001351E3 /* StoreProgramDownloader.swift in Sources */,
 				4C0F9F1F204ADB9200E71B2D /* IfThenLogicBeginBrick.m in Sources */,
 				92C95FDB1BD8DBEB00742F7E /* BluetoothService.swift in Sources */,
@@ -8932,7 +8983,6 @@
 				AA74F0981BC05FCE00D1E954 /* BrickCellTextData.m in Sources */,
 				4CF429EF213A858D00B78897 /* CBConditionProtocol.swift in Sources */,
 				92FF2E3D1A24C5A700093DA7 /* UIImage+CatrobatUIImageExtensions.m in Sources */,
-				4C0F9F2B204ADBFD00E71B2D /* RepeatUntilBrick+CBXMLHandler.m in Sources */,
 				AA74EF7E1BC05A3400D1E954 /* IfOnEdgeBounceBrick+CBXMLHandler.m in Sources */,
 				4CF429F8213A8DA600B78897 /* LoopBeginBrick.m in Sources */,
 				AA74F00B1BC05B5F00D1E954 /* PlaySoundBrick.m in Sources */,
@@ -8976,6 +9026,7 @@
 				F470A2E32129DAFB005EC9A3 /* ElementFunction.swift in Sources */,
 				92FF30FF1A24DCAA00093DA7 /* Program.m in Sources */,
 				4C82268D213FB29A00F3D750 /* MultiFingerYFunction.swift in Sources */,
+				BA987D0F2194EA1F002DAA05 /* WaitUntilBrick+Instruction.swift in Sources */,
 				BA9CAB541EC380CA00796056 /* AddItemToUserListBrick.m in Sources */,
 				929CC0CF1BC39B0A0027DEC0 /* PhiroPlayToneBrick.m in Sources */,
 				BA1FA9A01F02B0020084184D /* InsertItemIntoUserListBrickCell.m in Sources */,
@@ -9050,6 +9101,7 @@
 				929CC0D41BC39B280027DEC0 /* PhiroHelper.m in Sources */,
 				4C6D14E6210B1273006147BD /* InclinationXSensor.swift in Sources */,
 				4C0F9F3A204ADC4E00E71B2D /* SayForBubbleBrick.m in Sources */,
+				BA987D052194DDCF002DAA05 /* WaitUntilBrick+CBXMLHandler.m in Sources */,
 				F48E946320D6F221007E782E /* DateMonthSensor.swift in Sources */,
 				AA74F0C81BC05FCE00D1E954 /* StopAllSoundsBrickCell.m in Sources */,
 				4CF0728A20D659F700F93AB5 /* PhiroFrontRightSensor.swift in Sources */,
@@ -9251,6 +9303,7 @@
 				4C724E561B4D3E8C00E27479 /* Formula+CBXMLHandler.m in Sources */,
 				F4E6E5C2210E23D500D86FE6 /* CeilFunction.swift in Sources */,
 				92C6318B1BC502CB00486958 /* SearchDevicesTableViewController.swift in Sources */,
+				BA3337372195BC6D00DA3505 /* RepeatUntilBrick+CBXMLHandler.m in Sources */,
 				AA74F0031BC05B5F00D1E954 /* PlaceAtBrick.m in Sources */,
 				AA74F0001BC05B5F00D1E954 /* GoNStepsBackBrick.m in Sources */,
 				92B46F851BC79585004980C1 /* TermsOfUseOptionTableViewController.m in Sources */,

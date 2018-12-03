@@ -20,12 +20,9 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-//
-//  Use this file to import your target's public headers that you would like to expose to Swift.
-//
+#import "WaitUntilBrick.h"
+#import "CBXMLNodeProtocol.h"
 
-#import "Catty-Bridging-Header.h"
+@interface WaitUntilBrick (CBXMLHandler) <CBXMLNodeProtocol>
 
-#import "ProgramMock.h"
-#import "ConvertExceptionToError.h"
-
+@end

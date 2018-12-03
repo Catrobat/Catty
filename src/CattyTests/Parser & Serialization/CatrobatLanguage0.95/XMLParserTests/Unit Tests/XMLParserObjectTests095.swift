@@ -20,12 +20,14 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-//
-//  Use this file to import your target's public headers that you would like to expose to Swift.
-//
+import XCTest
 
-#import "Catty-Bridging-Header.h"
+@testable import Pocket_Code
 
-#import "ProgramMock.h"
-#import "ConvertExceptionToError.h"
+final class XMLParserObjectTests095: XMLParserObjectTests093 {
 
+    override func setUp( ) {
+        super.setUp()
+        parserContext = CBXMLParserContext(languageVersion: CGFloat(Float32(0.95)))
+    }
+}

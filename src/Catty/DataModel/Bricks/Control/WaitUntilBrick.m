@@ -20,13 +20,13 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "RepeatUntilBrick.h"
+#import "WaitUntilBrick.h"
 #import "Script.h"
 
-@interface RepeatUntilBrick()
+@interface WaitUntilBrick()
 @end
 
-@implementation RepeatUntilBrick
+@implementation WaitUntilBrick
 
 - (BOOL)isAnimateable
 {
@@ -35,12 +35,12 @@
 
 - (Formula*)formulaForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
-    return self.repeatCondition;
+    return self.waitCondition;
 }
 
 - (void)setFormula:(Formula*)formula forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
-    self.repeatCondition = formula;
+    self.waitCondition = formula;
 }
 
 - (BOOL)allowsStringFormula
@@ -50,36 +50,36 @@
 
 - (NSArray*)getFormulas
 {
-    return @[self.repeatCondition];
+    return @[self.waitCondition];
 }
 
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
-    self.repeatCondition = [[Formula alloc] initWithInteger:1];
+    self.waitCondition = [[Formula alloc] initWithInteger:1];
 }
 
 - (NSString*)brickTitle
 {
-    return [kLocalizedRepeatUntil stringByAppendingString:[@"%@ " stringByAppendingString:kLocalizedUntilIsTrue]];
+    return [kLocalizedWaitUntil stringByAppendingString:[@"%@ " stringByAppendingString:kLocalizedUntilIsTrue]];
 }
 
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"RepeatLoop"];
+    return [NSString stringWithFormat:@"WaitForCondition"];
 }
 
 #pragma mark - Copy
 - (id)mutableCopyWithContext:(CBMutableCopyContext*)context
 {
-    RepeatUntilBrick *brick = [self mutableCopyWithContext:context AndErrorReporting:NO];
+    WaitUntilBrick *brick = [self mutableCopyWithContext:context AndErrorReporting:NO];
     return brick;
 }
 
 #pragma mark - Resources
 - (NSInteger)getRequiredResources
 {
-    return [self.repeatCondition getRequiredResources];
+    return [self.waitCondition getRequiredResources];
 }
 
 @end

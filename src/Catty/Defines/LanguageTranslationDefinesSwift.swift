@@ -334,9 +334,10 @@ let kLocalizedIfBegin = NSLocalizedString("If", comment: "")
 let kLocalizedIfBeginSecondPart = NSLocalizedString("is true then", comment: "")
 let kLocalizedElse = NSLocalizedString("Else", comment: "")
 let kLocalizedEndIf = NSLocalizedString("End If", comment: "")
+let kLocalizedWaitUntil = NSLocalizedString("Wait until", comment: "")
 let kLocalizedRepeat = NSLocalizedString("Repeat", comment: "")
 let kLocalizedRepeatUntil = NSLocalizedString("Repeat until", comment: "")
-let kLocalizedRepeatUntilIsTrue = NSLocalizedString("is true", comment: "")
+let kLocalizedUntilIsTrue = NSLocalizedString("is true", comment: "")
 let kLocalizedTime = NSLocalizedString("time", comment: "")
 let kLocalizedTimes = NSLocalizedString("times", comment: "")
 let kLocalizedEndOfLoop = NSLocalizedString("End of Loop", comment: "")
@@ -437,6 +438,10 @@ let kLocalizedPhiroThenLogic = NSLocalizedString("is true then", comment: "")
 let kLocalizedArduinoSetDigitalValue = NSLocalizedString("Set Arduino digital pin", comment: "")
 let kLocalizedArduinoSetPinValueTo = NSLocalizedString("to", comment: "")
 let kLocalizedArduinoSendPWMValue = NSLocalizedString("Set Arduino PWM~ pin", comment: "")
+
+//Unsupported bricks
+let kLocalizedUnsupportedBrick = NSLocalizedString("Unsupported Brick:", comment: "")
+let kLocalizedUnsupportedScript = NSLocalizedString("Unsupported Script:", comment: "")
 
 //************************************************************************************************************
 //**********************************       Login/Upload            *******************************************
