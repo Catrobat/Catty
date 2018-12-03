@@ -74,7 +74,7 @@
         script = broadcastScript;
     } else if ([scriptType hasSuffix:@"Script"]) {
         BroadcastScript *broadcastScript = [BroadcastScript new];
-        broadcastScript.receivedMessage = [NSString stringWithFormat:@"Unsupported Script: %@", scriptType];
+        broadcastScript.receivedMessage = [NSString stringWithFormat:@"%@ %@", kLocalizedUnsupportedScript, scriptType];
         script = broadcastScript;
         NSWarn(@"Unsupported Script: %@", scriptType);
     } else {
@@ -126,7 +126,7 @@
             [formulaElement addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"NOTE"]];
             [formulaElement addChild:[GDataXMLElement elementWithName:@"type" stringValue:@"STRING"]];
             [formulaElement addChild:[GDataXMLElement elementWithName:@"value"
-                                                          stringValue:[NSString stringWithFormat:@"Unsupported Brick: %@. Replaced by NoteBrick", brickTypeName]]];
+                                                          stringValue:[NSString stringWithFormat:@"%@ %@", kLocalizedUnsupportedBrick, brickTypeName]]];
             [formulaList addChild:formulaElement];
             [brickXmlElement addChild:formulaList];
         } else {

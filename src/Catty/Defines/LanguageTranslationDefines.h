@@ -439,6 +439,10 @@
 #define kLocalizedArduinoSetPinValueTo NSLocalizedString(@"to", nil)
 #define kLocalizedArduinoSendPWMValue NSLocalizedString(@"Set Arduino PWM~ pin", nil)
 
+//Unsupported bricks
+#define kLocalizedUnsupportedBrick NSLocalizedString(@"Unsupported Brick:", nil)
+#define kLocalizedUnsupportedScript NSLocalizedString(@"Unsupported Script:", nil)
+
 //************************************************************************************************************
 //**********************************       Login/Upload            *******************************************
 //************************************************************************************************************

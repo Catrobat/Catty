@@ -136,7 +136,7 @@
         if ([className hasSuffix:@"Brick"]) {
             NSWarn(@"Unsupported brick type: %@ => to be replaced by a NoteBrick", className);
             object = [NoteBrick new];
-            [(NoteBrick*)object setNote:[NSString stringWithFormat:@"Unsupported brick: %@. Replaced by NoteBrick", className]];
+            [(NoteBrick*)object setNote:[NSString stringWithFormat:@"%@ %@", kLocalizedUnsupportedBrick, className]];
             return object;
         } else {
             [NSException raise:@"ClassNotFoundException" format:@"Implementation of <%@> NOT FOUND!", className];

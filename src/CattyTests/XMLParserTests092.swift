@@ -44,7 +44,7 @@ class XMLParserTests092: XMLAbstractTest {
         XCTAssertTrue(unknownBrick.isKind(of: NoteBrick.self))
 
         let noteBrick = unknownBrick as! NoteBrick
-        XCTAssertTrue(noteBrick.note.starts(with: "Unsupported Brick"))
+        XCTAssertTrue(noteBrick.note.starts(with: kLocalizedUnsupportedBrick))
     }
 
     func testConvertUnsupportedScriptToBroadcastBrick() {
@@ -60,7 +60,7 @@ class XMLParserTests092: XMLAbstractTest {
 
         let broadcastScript = unknownScript as! BroadcastScript
         XCTAssertEqual(1, broadcastScript.brickList.count)
-        XCTAssertTrue(broadcastScript.receivedMessage.starts(with: "Unsupported Script"))
+        XCTAssertTrue(broadcastScript.receivedMessage.starts(with: kLocalizedUnsupportedScript))
 
         let secondWaitBrick = broadcastScript.brickList[0] as AnyObject
         XCTAssertTrue(secondWaitBrick.isKind(of: WaitBrick.self))
