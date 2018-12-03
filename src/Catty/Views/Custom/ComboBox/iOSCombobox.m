@@ -293,17 +293,23 @@
 - (UIView*) pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
 {
     UIView *tmpView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [Util screenWidth], 60)];
+    CGFloat imageOffset = 0.0;
+    CGFloat rowOffset = 10.0;
+
+    if (self.images.count > 0) {
+        imageOffset = 30.0;
+    }
     if (self.images.count >= row) {
         if (row != 0) {
             UIImage *img = [self.images objectAtIndex:row-1];
             UIImageView *temp = [[UIImageView alloc] initWithImage:img];
             temp.contentMode = UIViewContentModeScaleAspectFit;
-            temp.frame = CGRectMake(2.5, 15, 30, 30);
+            temp.frame = CGRectMake(rowOffset/2, 15, imageOffset, imageOffset);
             [tmpView insertSubview:temp atIndex:0];
         }
     }
     
-    UILabel *channelLabel = [[UILabel alloc] initWithFrame:CGRectMake(35, 0, [Util screenWidth]-40, 60)];
+    UILabel *channelLabel = [[UILabel alloc] initWithFrame:CGRectMake(imageOffset+rowOffset, 0, [Util screenWidth]-imageOffset - (2*rowOffset), 60)];
     channelLabel.text = [self.values objectAtIndex:row];
     channelLabel.textAlignment = NSTextAlignmentLeft;
     channelLabel.backgroundColor = [UIColor clearColor];
