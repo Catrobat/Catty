@@ -24,16 +24,14 @@
 #import <SpriteKit/SpriteKit.h>
 #import "CBMutableCopying.h"
 
-@class GDataXMLElement;
-@class SpriteObject;
-@class Program;
-
 @interface UserVariable : NSObject<CBMutableCopying>
 
 @property (nonatomic, strong) NSString* name;
 @property (nonatomic, strong) id value;
 @property (nonatomic, strong) SKLabelNode *textLabel;
 @property (nonatomic) BOOL isList;
+
+- (id)initWithVariable:(UserVariable*)userVariable;
 
 - (id)mutableCopyWithContext:(CBMutableCopyContext*)context;
 

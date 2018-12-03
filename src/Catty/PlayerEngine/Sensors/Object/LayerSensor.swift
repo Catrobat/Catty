@@ -34,7 +34,7 @@
 
     static func rawValue(for spriteObject: SpriteObject) -> Double {
         guard let spriteNode = spriteObject.spriteNode else {
-            return defaultRawValue
+            return defaultRawValue(for: spriteObject)
         }
         return Double(spriteNode.zPosition)
     }
@@ -58,6 +58,22 @@
             return 1
         }
         return userInput
+    }
+
+    static func defaultRawValue(for spriteObject: SpriteObject) -> Double {
+        guard let objectList = spriteObject.program?.objectList as? [SpriteObject] else {
+            return defaultRawValue
+        }
+
+        var zPosition = defaultRawValue
+        for object in objectList {
+            if object == spriteObject {
+                return zPosition
+            }
+            zPosition += 1
+        }
+
+        return defaultRawValue
     }
 
     func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {

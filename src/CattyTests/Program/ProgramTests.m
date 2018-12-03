@@ -28,6 +28,8 @@
 #import "IfLogicBeginBrick.h"
 #import "IfLogicElseBrick.h"
 #import "IfLogicEndBrick.h"
+#import "OrderedMapTable.h"
+#import "SetVariableBrick.h"
 #import "CBFileManager.h"
 #import "AppDelegate.h"
 #import "Util.h"
@@ -92,7 +94,7 @@
     
     [self setupForNewProgram];
     
-    SpriteObject* object = [SpriteObject new];
+    SpriteObject *object = [SpriteObject new];
     object.name = objectName;
     
     IfThenLogicBeginBrick *ifThenLogicBeginBrick = [IfThenLogicBeginBrick new];
@@ -136,7 +138,7 @@
     
     [self setupForNewProgram];
     
-    SpriteObject* object = [SpriteObject new];
+    SpriteObject *object = [SpriteObject new];
     object.name = objectName;
     
     IfLogicBeginBrick *ifLogicBeginBrick = [IfLogicBeginBrick new];
@@ -187,6 +189,85 @@
     XCTAssertNotEqual(ifLogicBeginBrick, elseBrick.ifBeginBrick);
     XCTAssertNotEqual(ifLogicEndBrick, elseBrick.ifEndBrick);
     XCTAssertNotEqual(ifLogicBeginBrick, endBrick.ifBeginBrick);
+}
+
+- (void)testCopyObjectWithObjectVariable
+{
+    [self setupForNewProgram];
+    
+    SpriteObject *object = [SpriteObject new];
+    object.name = @"newObject";
+    [self.program.objectList addObject:object];
+    
+    UserVariable *variable = [UserVariable new];
+    variable.name = @"userVariable";
+    [self.program.variables addObjectVariable:variable forObject:object];
+    
+    SetVariableBrick *setVariableBrick = [SetVariableBrick new];
+    setVariableBrick.userVariable = variable;
+    
+    StartScript *script = [StartScript new];
+    [script.brickList addObjectsFromArray:@[setVariableBrick]];
+    [object.scriptList addObject:script];
+    
+    NSUInteger initialObjectSize = self.program.objectList.count;
+    NSUInteger initialVariableSize = self.program.variables.allVariables.count;
+    
+    SpriteObject *copiedObject = [self.program copyObject:object withNameForCopiedObject:@"copiedObject"];
+    XCTAssertEqual(1, copiedObject.scriptList.count);
+    
+    NSArray<SpriteObject*> *objectList = self.program.objectList;
+    XCTAssertEqual(initialObjectSize + 1, objectList.count);
+    XCTAssertEqual(initialVariableSize + 1, self.program.variables.allVariables.count);
+    XCTAssertTrue([objectList[initialObjectSize].name isEqualToString:copiedObject.name]);
+    
+    XCTAssertEqual(1, copiedObject.scriptList[0].brickList.count);
+    XCTAssertTrue([copiedObject.scriptList[0].brickList[0] isKindOfClass:[SetVariableBrick class]]);
+    
+    SetVariableBrick *copiedSetVariableBrick = (SetVariableBrick*) copiedObject.scriptList[0].brickList[0];
+    XCTAssertNotNil(copiedSetVariableBrick.userVariable);
+    XCTAssertNotEqual(variable, copiedSetVariableBrick.userVariable);
+    XCTAssertTrue([variable.name isEqualToString:copiedSetVariableBrick.userVariable.name]);
+}
+
+- (void)testCopyObjectWithObjectList
+{
+    [self setupForNewProgram];
+    
+    SpriteObject *object = [SpriteObject new];
+    object.name = @"newObject";
+    [self.program.objectList addObject:object];
+    
+    UserVariable *list = [UserVariable new];
+    list.name = @"userList";
+    list.isList = YES;
+    [self.program.variables addObjectList:list forObject:object];
+    
+    SetVariableBrick *setVariableBrick = [SetVariableBrick new];
+    setVariableBrick.userVariable = list;
+    
+    StartScript *script = [StartScript new];
+    [script.brickList addObjectsFromArray:@[setVariableBrick]];
+    [object.scriptList addObject:script];
+    
+    NSUInteger initialObjectSize = self.program.objectList.count;
+    NSUInteger initialListSize = self.program.variables.allLists.count;
+    
+    SpriteObject *copiedObject = [self.program copyObject:object withNameForCopiedObject:@"copiedObject"];
+    XCTAssertEqual(1, copiedObject.scriptList.count);
+    
+    NSArray<SpriteObject*> *objectList = self.program.objectList;
+    XCTAssertEqual(initialObjectSize + 1, objectList.count);
+    XCTAssertEqual(initialListSize + 1, self.program.variables.allLists.count);
+    XCTAssertTrue([objectList[initialObjectSize].name isEqualToString:copiedObject.name]);
+    
+    XCTAssertEqual(1, copiedObject.scriptList[0].brickList.count);
+    XCTAssertTrue([copiedObject.scriptList[0].brickList[0] isKindOfClass:[SetVariableBrick class]]);
+    
+    SetVariableBrick *copiedSetVariableBrick = (SetVariableBrick*) copiedObject.scriptList[0].brickList[0];
+    XCTAssertNotNil(copiedSetVariableBrick.userVariable);
+    XCTAssertNotEqual(list, copiedSetVariableBrick.userVariable);
+    XCTAssertTrue([list.name isEqualToString:copiedSetVariableBrick.userVariable.name]);
 }
 
 #pragma mark - getters and setters
