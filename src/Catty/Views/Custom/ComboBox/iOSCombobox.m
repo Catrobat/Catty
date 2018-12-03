@@ -294,7 +294,7 @@
 {
     UIView *tmpView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [Util screenWidth], 60)];
     CGFloat imageOffset = 0.0;
-    CGFloat rowOffset = 10.0;
+    CGFloat rowOffset = 30.0;
 
     if (self.images.count > 0) {
         imageOffset = 30.0;
@@ -309,7 +309,7 @@
         }
     }
     
-    UILabel *channelLabel = [[UILabel alloc] initWithFrame:CGRectMake(imageOffset+rowOffset, 0, [Util screenWidth]-imageOffset - (2*rowOffset), 60)];
+    UILabel *channelLabel = [[UILabel alloc] initWithFrame:CGRectMake(imageOffset+rowOffset, 0, [Util screenWidth]-imageOffset - rowOffset - 10, 60)];
     channelLabel.text = [self.values objectAtIndex:row];
     channelLabel.textAlignment = NSTextAlignmentLeft;
     channelLabel.backgroundColor = [UIColor clearColor];
