@@ -389,9 +389,30 @@
         return nil;
     }
     CBMutableCopyContext *context = [CBMutableCopyContext new];
+    NSMutableArray<UserVariable*> *copiedVariablesAndLists = [NSMutableArray new];
+    
+    NSMutableArray<UserVariable*> *variablesAndLists = [[NSMutableArray alloc] initWithArray:[self.variables objectVariablesForObject:sourceObject]];
+    [variablesAndLists addObjectsFromArray: [self.variables objectListsForObject:sourceObject]];
+    
+    for (UserVariable *variableOrList in variablesAndLists) {
+        UserVariable *copiedVariableOrList = [[UserVariable alloc] initWithVariable:variableOrList];
+        
+        [copiedVariablesAndLists addObject:copiedVariableOrList];
+        [context updateReference:variableOrList WithReference:copiedVariableOrList];
+    }
+    
     SpriteObject *copiedObject = [sourceObject mutableCopyWithContext:context];
     copiedObject.name = [Util uniqueName:nameOfCopiedObject existingNames:[self allObjectNames]];
     [self.objectList addObject:copiedObject];
+    
+    for (UserVariable *variableOrList in copiedVariablesAndLists) {
+        if (variableOrList.isList) {
+            [self.variables addObjectList:variableOrList forObject:copiedObject];
+        } else {
+            [self.variables addObjectVariable:variableOrList forObject:copiedObject];
+        }
+    }
+    
     [self saveToDiskWithNotification:YES];
     return copiedObject;
 }

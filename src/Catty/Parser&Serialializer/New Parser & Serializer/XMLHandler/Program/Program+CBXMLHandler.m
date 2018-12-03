@@ -124,15 +124,11 @@
         
         for(NSString *variableName in variableList) {
             if(![varAndListContainer getUserVariableNamed:variableName forSpriteObject:object]) {
-                NSMutableArray *objectVariableList = [varAndListContainer.objectVariableList
-                                                      objectForKey:object];
-                if(!objectVariableList)
-                    objectVariableList = [NSMutableArray new];
                 UserVariable *userVariable = [UserVariable new];
                 userVariable.name = variableName;
                 userVariable.isList = false;
-                [objectVariableList addObject:userVariable];
-                [varAndListContainer.objectVariableList setObject:objectVariableList forKey:object];
+                
+                [varAndListContainer addObjectVariable:userVariable forObject:object];
                 NSDebug(@"Added UserVariable with name %@ to global object "\
                         "variable list with object %@", variableName, object.name);
             }
@@ -150,15 +146,11 @@
         
         for(NSString *listName in listOfLists) {
             if(![varAndListContainer getUserListNamed:listName forSpriteObject:object]) {
-                NSMutableArray *objectListOfLists = [varAndListContainer.objectListOfLists
-                                                     objectForKey:object];
-                if(!objectListOfLists)
-                    objectListOfLists = [NSMutableArray new];
                 UserVariable *userList = [UserVariable new];
                 userList.name = listName;
                 userList.isList = true;
-                [objectListOfLists addObject:userList];
-                [varAndListContainer.objectListOfLists setObject:objectListOfLists forKey:object];
+                
+                [varAndListContainer addObjectList:userList forObject:object];
                 NSDebug(@"Added a user list with name %@ to global object "\
                         "list of lists with object %@", listName, object.name);
             }
