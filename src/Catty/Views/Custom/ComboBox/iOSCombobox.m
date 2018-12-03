@@ -226,17 +226,14 @@
                                 [UIColor whiteColor], NSForegroundColorAttributeName, nil];
     CGSize size = [self.currentValue sizeWithAttributes:@{NSFontAttributeName : [UIFont fontWithName:FONT_NAME size:rect.size.height/2]}];
     NSString* drawString = self.currentValue;
-    NSLog(@"%f - %f",size.width, rect.size.width - ARROW_BOX_WIDTH - TEXT_LEFT-30);
     if(size.width > rect.size.width - ARROW_BOX_WIDTH - TEXT_LEFT-30){
         const int clipLength = 28;
         if([drawString length]>clipLength)
         {
             drawString = [NSString stringWithFormat:@"%@...",[drawString substringToIndex:clipLength]];
-            NSLog(@"DRAW1 %@", drawString);
         }
         
     }
-    NSLog(@"DRAW2 %@", drawString);
     [drawString drawInRect:CGRectMake(TEXT_LEFT, rect.size.height/2 - rect.size.height/3,
                                       rect.size.width - ARROW_BOX_WIDTH - TEXT_LEFT-30,
                                       rect.size.height - BORDER_WIDTH)
