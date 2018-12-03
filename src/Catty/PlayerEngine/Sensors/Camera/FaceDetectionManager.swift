@@ -138,10 +138,16 @@ class FaceDetectionManager: NSObject, FaceDetectionManagerProtocol, AVCaptureVid
 
             let featureCenterX = feature.bounds.origin.x + feature.bounds.width / 2
             let featureCenterY = feature.bounds.origin.y + feature.bounds.height / 2
-            self.facePositionRatioFromLeft = Double(featureCenterX / ciImage.extent.width)
-            self.facePositionRatioFromBottom = Double(featureCenterY / ciImage.extent.height)
+
             self.faceDetectionFrameSize = ciImage.extent.size
             self.faceSizeRatio = Double(feature.bounds.width) / Double(ciImage.extent.width)
+            self.facePositionRatioFromBottom = Double(featureCenterY / ciImage.extent.height)
+
+            var ratioFromLeft = Double(featureCenterX / ciImage.extent.width)
+            if cameraPosition() == .front {
+                ratioFromLeft = 1 - ratioFromLeft
+            }
+            self.facePositionRatioFromLeft = ratioFromLeft
         }
 
         self.isFaceDetected = isFaceDetected
