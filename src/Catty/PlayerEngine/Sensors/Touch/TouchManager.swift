@@ -20,15 +20,18 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class TouchManager: TouchManagerProtocol {
+class TouchManager: TouchManagerProtocol, CBMultiTouchRecognizerDelegate {
 
     private var touchRecognizer: CBMultiTouchRecognizer?
     private var scene: CBScene?
+    private var allTouches = [UITouch]()
+    private var activeTouches = [UITouch]()
+    private var inactiveTouches = [UITouch]()
 
     func startTrackingTouches(for scene: CBScene) {
         self.scene = scene
 
-        let touchRecognizer = CBMultiTouchRecognizer(scene: scene)
+        let touchRecognizer = CBMultiTouchRecognizer(delegate: self)
         self.touchRecognizer = touchRecognizer
         self.scene?.view?.addGestureRecognizer(touchRecognizer)
         self.scene?.view?.isMultipleTouchEnabled = true
@@ -45,65 +48,9 @@ class TouchManager: TouchManagerProtocol {
     }
 
     func reset() {
-        self.touchRecognizer?.resetTouches()
-    }
-
-    func screenTouched() -> Bool {
-        return touchRecognizer?.screenTouched() ?? false
-    }
-
-    func screenTouched(for touchNumber: Int) -> Bool {
-        return touchRecognizer?.screenTouched(for: touchNumber - 1) ?? false
-    }
-
-    func numberOfTouches() -> Int {
-        return touchRecognizer?.numberOfTouches() ?? 0
-    }
-
-    func lastPositionInScene() -> CGPoint? {
-        let touchesCount = numberOfTouches()
-        if touchesCount == 0 {
-            return nil
-        }
-        return touchRecognizer?.location(for: touchesCount - 1)
-    }
-
-    func getPositionInScene(for touchNumber: Int) -> CGPoint? {
-        return touchRecognizer?.location(for: touchNumber - 1)
-    }
-
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        // Without this, other required gestures (like the left slide out control strip) are blocked.
-        return true
-    }
-
-    @objc func handleTouch(gestureRecognizer: UIGestureRecognizer) {
-    }
-}
-
-class CBMultiTouchRecognizer: UIGestureRecognizer {
-
-    private let scene: CBScene
-    private var allTouches = [UITouch]()
-    private var activeTouches = [UITouch]()
-    private var inactiveTouches = [UITouch]()
-
-    init(scene: CBScene) {
-        self.scene = scene
-
-        super.init(target: nil, action: nil)
-        super.cancelsTouchesInView = false
-        super.isEnabled = true
-    }
-
-    func resetTouches() {
         allTouches.removeAll()
         activeTouches.removeAll()
         inactiveTouches.removeAll()
-    }
-
-    func numberOfTouches() -> Int {
-        return allTouches.count
     }
 
     func screenTouched() -> Bool {
@@ -111,40 +58,46 @@ class CBMultiTouchRecognizer: UIGestureRecognizer {
     }
 
     func screenTouched(for touchNumber: Int) -> Bool {
-        guard let touch = touch(for: touchNumber) else { return false }
-        return activeTouches.contains(touch)
+        guard let touch = self.touch(for: touchNumber) else { return false }
+        return activeTouches.contains(touch) && touch.phase != .ended && touch.phase != .cancelled
     }
 
-    func location(for touchNumber: Int) -> CGPoint? {
-        if allTouches.count <= touchNumber || touchNumber < 0 {
+    func numberOfTouches() -> Int {
+        return allTouches.count
+    }
+
+    func lastPositionInScene() -> CGPoint? {
+        let touchesCount = numberOfTouches()
+        if touchesCount == 0 {
             return nil
         }
-        return locationInScene(for: allTouches[touchNumber])
+        return getPositionInScene(for: touchesCount)
     }
 
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent) {
-        if  self.isEnabled {
-            guard let touch = touches.first else { return }
-            allTouches.append(touch)
+    func getPositionInScene(for touchNumber: Int) -> CGPoint? {
+        guard let scene = self.scene, let touch = self.touch(for: touchNumber) else { return nil }
+        return touch.location(in: scene)
+    }
+
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        // Without this, other required gestures (like the left slide out control strip) are blocked.
+        return true
+    }
+
+    func handle(touch: UITouch, for state: UIGestureRecognizerState) {
+        if state == .began {
             activeTouches.append(touch)
+            allTouches.append(touch)
+        } else if state == .ended || state == .cancelled {
+            activeTouches.removeObject(touch)
+            inactiveTouches.append(touch)
         }
-    }
-
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent) {
-        guard let touch = touches.first else { return }
-        activeTouches.removeObject(touch)
-        inactiveTouches.append(touch)
-    }
-
-    override func ignore(_ touch: UITouch, for event: UIEvent) {
-        return // do nothing
     }
 
     private func touch(for touchNumber: Int) -> UITouch? {
-        return allTouches.count <= touchNumber || touchNumber < 0 ? nil : allTouches[touchNumber]
-    }
-
-    private func locationInScene(for touch: UITouch) -> CGPoint {
-        return touch.location(in: scene)
+        if allTouches.count < touchNumber || touchNumber <= 0 {
+            return nil
+        }
+        return allTouches[touchNumber - 1]
     }
 }
