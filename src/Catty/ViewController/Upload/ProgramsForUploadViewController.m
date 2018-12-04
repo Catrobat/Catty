@@ -266,7 +266,7 @@
                                                         target:self
                                                         action:@selector(uploadProgramAction:)];
     
-    [self.uploadButton setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"HelveticaNeue-Bold" size:18.0f], NSFontAttributeName, nil] forState:UIControlStateNormal];
+    [self.uploadButton setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont boldSystemFontOfSize:18.0f], NSFontAttributeName, nil] forState:UIControlStateNormal];
 
     UIBarButtonItem *(^flexItem)(void) = ^UIBarButtonItem *() { return [UIBarButtonItem flexItem]; };
     self.toolbarItems = @[flexItem(), self.uploadButton, flexItem()];

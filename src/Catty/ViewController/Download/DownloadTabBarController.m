@@ -45,10 +45,10 @@
     self.tabBar.barTintColor = [UIColor tabBarColor];
     self.tabBar.barStyle = UIBarStyleDefault;
     self.tabBar.tintColor = [UIColor tabTintColor];
-    [[UITabBarItem appearance] setTitleTextAttributes:@{NSFontAttributeName : [UIFont fontWithName:@"HelveticaNeue-Bold" size:10.0f],
+    [[UITabBarItem appearance] setTitleTextAttributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:10.0f],
                                                       NSForegroundColorAttributeName : [UIColor tabTintColor]
                                                       } forState:UIControlStateSelected];
-    [[UITabBarItem appearance] setTitleTextAttributes:@{NSFontAttributeName : [UIFont fontWithName:@"HelveticaNeue-Bold" size:10.0f],
+    [[UITabBarItem appearance] setTitleTextAttributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:10.0f],
                                                         NSForegroundColorAttributeName : [UIColor backgroundColor]
                                                         } forState:UIControlStateNormal];
   

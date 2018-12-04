@@ -103,7 +103,7 @@
     func initProgramNameViewElements() {
         programNameLabel.textColor = UIColor.globalTint()
         programNameLabel.text = kLocalizedName
-        programNameLabel.font = UIFont(name: "HelveticaNeue-Bold", size: uploadFontSize)!
+        programNameLabel.font = UIFont.boldSystemFont(ofSize: uploadFontSize)
 
         programNameTextField.textColor = UIColor.textTint()
         programNameTextField.backgroundColor = UIColor.white
@@ -117,14 +117,14 @@
     func initSizeViewElements() {
         sizeLabel.textColor = UIColor.globalTint()
         sizeLabel.text = kLocalizedSize
-        sizeLabel.font = UIFont(name: "HelveticaNeue-Bold", size: uploadFontSize)!
+        sizeLabel.font = UIFont.boldSystemFont(ofSize: uploadFontSize)
 
         let fileManager = CBFileManager.shared()
         zipFileData = nil
         zipFileData = fileManager?.zip(program)
 
         sizeValueLabel.textColor = UIColor.textTint()
-        sizeValueLabel.font = UIFont(name: "HelveticaNeue-Bold", size: uploadFontSize)!
+        sizeValueLabel.font = UIFont.boldSystemFont(ofSize: uploadFontSize)
 
         guard let data = zipFileData else {
             debugPrint("ZIPing program files failed")
@@ -137,7 +137,7 @@
     func initDescriptionViewElements() {
         descriptionLabel.textColor = UIColor.globalTint()
         descriptionLabel.text = kLocalizedDescription
-        descriptionLabel.font = UIFont(name: "HelveticaNeue-Bold", size: uploadFontSize)!
+        descriptionLabel.font = UIFont.boldSystemFont(ofSize: uploadFontSize)
 
         descriptionTextView.textColor = UIColor.textTint()
         descriptionTextView.keyboardAppearance = .default
@@ -154,7 +154,7 @@
 
     func initActionButtons() {
         uploadButton.setTitle(kLocalizedUpload, for: .normal)
-        uploadButton.titleLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: uploadFontSize + 4)!
+        uploadButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: uploadFontSize)
         uploadButton.backgroundColor = UIColor.globalTint()
         uploadButton.titleLabel?.textAlignment = .center
         uploadButton.addTarget(self, action: #selector(UploadInfoViewController.checkProgramAction), for: .touchUpInside)
