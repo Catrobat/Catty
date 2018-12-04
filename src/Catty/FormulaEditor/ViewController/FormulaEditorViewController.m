@@ -819,7 +819,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     // ------------------
     // Object Variables
     // ------------------
-    NSArray *array = [variables.objectVariableList objectForKey:self.object];
+    NSArray *array = [variables allVariablesForObject:self.object];
     if (array) {
         if([array count] > 0)
             [self.variableSource addObject:[[VariablePickerData alloc] initWithTitle:kUIFEObjectVars]];
@@ -836,7 +836,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     // ------------------
     // Object Lists
     // ------------------
-    array = [variables.objectListOfLists objectForKey:self.object];
+    array = [variables allListsForObject:self.object];
     if (array) {
         if([array count] > 0)
             [self.listSource addObject:[[VariablePickerData alloc] initWithTitle:kUIFEObjectLists]];
@@ -914,19 +914,9 @@ NS_ENUM(NSInteger, ButtonIndex) {
     } else if (self.isProgramVariable && isList){
         [self.object.program.variables.programListOfLists addObject:var];
     } else if (!self.isProgramVariable && !isList) {
-        NSMutableArray *array = [self.object.program.variables.objectVariableList objectForKey:self.object];
-        if (!array) {
-            array = [NSMutableArray new];
-        }
-        [array addObject:var];
-        [self.object.program.variables.objectVariableList setObject:array forKey:self.object];
+        [self.object.program.variables addObjectVariable:var forObject:self.object];
     } else if (!self.isProgramVariable && isList) {
-        NSMutableArray *array = [self.object.program.variables.objectListOfLists objectForKey:self.object];
-        if (!array) {
-            array = [NSMutableArray new];
-        }
-        [array addObject:var];
-        [self.object.program.variables.objectListOfLists setObject:array forKey:self.object];
+        [self.object.program.variables addObjectList:var forObject:self.object];
     }
     
     [self.object.program saveToDiskWithNotification:YES];

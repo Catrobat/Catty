@@ -30,7 +30,7 @@
 @interface Program : NSObject
 
 @property (nonatomic, strong, nonnull) Header *header;
-@property (nonatomic, strong, nonnull) NSMutableArray *objectList;
+@property (nonatomic, strong, nonnull) NSMutableArray<SpriteObject*> *objectList;
 @property (nonatomic, strong, nonnull) VariablesContainer *variables;
 @property (nonatomic) BOOL requiresBluetooth;
 
