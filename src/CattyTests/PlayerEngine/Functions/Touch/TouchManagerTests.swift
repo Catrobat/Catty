@@ -42,61 +42,116 @@ class TouchManagerTests: XCTestCase {
     }
 
     func testScreenTouched() {
+        let touchA = MockTouch(point: CGPoint.zero)
+        let touchB = MockTouch(point: CGPoint.zero)
+
         XCTAssertFalse(touchManager.screenTouched())
 
-        touchManager.handleTouch(gestureRecognizer: UIGestureRecognizerMock(location: CGPoint.zero, state: .began))
+        touchManager.handle(touch: touchA, for: .began)
         XCTAssertTrue(touchManager.screenTouched())
 
-        touchManager.handleTouch(gestureRecognizer: UIGestureRecognizerMock(location: CGPoint.zero, state: .ended))
+        touchManager.handle(touch: touchB, for: .began)
+        XCTAssertTrue(touchManager.screenTouched())
+
+        touchManager.handle(touch: touchA, for: .ended)
+        XCTAssertTrue(touchManager.screenTouched())
+
+        touchManager.handle(touch: touchB, for: .cancelled)
         XCTAssertFalse(touchManager.screenTouched())
+    }
+
+    func testScreenTouchedForTouchNumber() {
+        let touchA = MockTouch(point: CGPoint.zero)
+        let touchB = MockTouch(point: CGPoint.zero)
+
+        XCTAssertFalse(touchManager.screenTouched(for: -1))
+        XCTAssertFalse(touchManager.screenTouched(for: 0))
+        XCTAssertFalse(touchManager.screenTouched(for: 1))
+
+        touchManager.handle(touch: touchA, for: .began)
+        XCTAssertTrue(touchManager.screenTouched(for: 1))
+        XCTAssertFalse(touchManager.screenTouched(for: 0))
+        XCTAssertFalse(touchManager.screenTouched(for: 2))
+
+        touchManager.handle(touch: touchB, for: .began)
+        XCTAssertTrue(touchManager.screenTouched(for: 1))
+        XCTAssertTrue(touchManager.screenTouched(for: 2))
+        XCTAssertFalse(touchManager.screenTouched(for: 0))
+        XCTAssertFalse(touchManager.screenTouched(for: 3))
+
+        touchManager.handle(touch: touchA, for: .ended)
+        XCTAssertFalse(touchManager.screenTouched(for: 1))
+        XCTAssertTrue(touchManager.screenTouched(for: 2))
+
+        touchManager.handle(touch: touchB, for: .cancelled)
+        XCTAssertFalse(touchManager.screenTouched(for: 1))
+        XCTAssertFalse(touchManager.screenTouched(for: 2))
     }
 
     func testLastPosition() {
-        let positionA = CGPoint(x: 10, y: 20)
-        let positionB = CGPoint(x: 20, y: 30)
+        let touchA = MockTouch(point: CGPoint(x: 10, y: 20))
+        let touchB = MockTouch(point: CGPoint(x: 20, y: 30))
 
         XCTAssertNil(touchManager.lastPositionInScene())
 
-        touchManager.handleTouch(gestureRecognizer: UIGestureRecognizerMock(location: positionA, state: .began))
-        XCTAssertEqual(positionA, touchManager.lastPositionInScene())
+        touchManager.handle(touch: touchA, for: .began)
+        XCTAssertEqual(touchA.point, touchManager.lastPositionInScene())
 
-        touchManager.handleTouch(gestureRecognizer: UIGestureRecognizerMock(location: positionB, state: .began))
-        XCTAssertEqual(positionB, touchManager.lastPositionInScene())
+        touchManager.handle(touch: touchB, for: .ended)
+        XCTAssertEqual(touchA.point, touchManager.lastPositionInScene())
+
+        touchManager.handle(touch: touchB, for: .began)
+        XCTAssertEqual(touchB.point, touchManager.lastPositionInScene())
     }
 
     func testNumberOfTouches() {
+        let touchA = MockTouch(point: CGPoint.zero)
+        let touchB = MockTouch(point: CGPoint.zero)
+
         XCTAssertEqual(0, touchManager.numberOfTouches())
 
-        touchManager.handleTouch(gestureRecognizer: UIGestureRecognizerMock(location: CGPoint.zero, state: .began))
+        touchManager.handle(touch: touchA, for: .began)
         XCTAssertEqual(1, touchManager.numberOfTouches())
 
-        touchManager.handleTouch(gestureRecognizer: UIGestureRecognizerMock(location: CGPoint.zero, state: .began))
+        touchManager.handle(touch: touchA, for: .changed)
+        XCTAssertEqual(1, touchManager.numberOfTouches())
+
+        touchManager.handle(touch: touchB, for: .ended)
+        XCTAssertEqual(1, touchManager.numberOfTouches())
+
+        touchManager.handle(touch: touchB, for: .began)
         XCTAssertEqual(2, touchManager.numberOfTouches())
     }
 
     func testPositionInScene() {
-        let positionA = CGPoint(x: 10, y: 20)
-        let positionB = CGPoint(x: 20, y: 30)
+        let touchA = MockTouch(point: CGPoint(x: 15, y: 25))
+        let touchB = MockTouch(point: CGPoint(x: 35, y: 45))
+        let newPositionA = CGPoint(x: 100, y: 200)
 
         XCTAssertNil(touchManager.getPositionInScene(for: 0))
         XCTAssertNil(touchManager.getPositionInScene(for: 1))
         XCTAssertNil(touchManager.getPositionInScene(for: -1))
 
-        touchManager.handleTouch(gestureRecognizer: UIGestureRecognizerMock(location: positionA, state: .began))
-        XCTAssertEqual(positionA, touchManager.getPositionInScene(for: 1))
+        touchManager.handle(touch: touchA, for: .began)
+        XCTAssertEqual(touchA.point, touchManager.getPositionInScene(for: 1))
 
-        touchManager.handleTouch(gestureRecognizer: UIGestureRecognizerMock(location: positionB, state: .began))
-        XCTAssertEqual(positionA, touchManager.getPositionInScene(for: 1))
-        XCTAssertEqual(positionB, touchManager.getPositionInScene(for: 2))
+        touchA.point = newPositionA
+
+        touchManager.handle(touch: touchA, for: .changed)
+        XCTAssertEqual(newPositionA, touchManager.getPositionInScene(for: 1))
+
+        touchManager.handle(touch: touchB, for: .began)
+        XCTAssertEqual(touchB.point, touchManager.getPositionInScene(for: 2))
+        XCTAssertEqual(newPositionA, touchManager.getPositionInScene(for: 1))
     }
 
     func testReset() {
-        let position = CGPoint(x: 10, y: 20)
+        let touch = MockTouch(point: CGPoint(x: 15, y: 25))
 
-        touchManager.handleTouch(gestureRecognizer: UIGestureRecognizerMock(location: position, state: .began))
+        touchManager.handle(touch: touch, for: .began)
         XCTAssertTrue(touchManager.screenTouched())
         XCTAssertEqual(1, touchManager.numberOfTouches())
-        XCTAssertEqual(position, touchManager.lastPositionInScene())
+        XCTAssertEqual(touch.point, touchManager.lastPositionInScene())
 
         touchManager.reset()
 
