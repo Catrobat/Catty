@@ -310,9 +310,9 @@
         return NO;
     if((self.parent != nil && formulaElement.parent == nil) || (self.parent == nil && formulaElement.parent != nil))
         return NO;
-// XXX: this leads to an endless recursion bug!!!
-//    if(self.parent != nil && ![self.parent isEqualToFormulaElement:formulaElement.parent])
-//        return NO;
+    // FIXME: this leads to an endless recursion bug!!!
+    //    if(self.parent != nil && ![self.parent isEqualToFormulaElement:formulaElement.parent])
+    //        return NO;
     if ((self.parent && (! formulaElement.parent)) || ((! self.parent) && formulaElement.parent))
         return NO;
 

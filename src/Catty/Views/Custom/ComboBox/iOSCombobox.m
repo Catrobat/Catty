@@ -24,7 +24,7 @@
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "RuntimeImageCache.h"
 #import "Look.h"
-
+#import "Util.h"
 
 #define BORDER_WIDTH 1.0f
 #define BORDER_OFFSET (BORDER_WIDTH / 2)
@@ -44,8 +44,7 @@
 /***********************************************************
  **  INITIALIZATION
  **********************************************************/
-- (void)initialize
-{
+- (void)initialize {
     active = NO;
     self.backgroundColor = [UIColor clearColor];
     CGFloat pickerY = [[UIScreen mainScreen] bounds].size.height - PICKER_VIEW_HEIGHT;
@@ -60,8 +59,8 @@
     
     self.inputView = self.pickerView;
 }
-- (id)initWithFrame:(CGRect)frame
-{
+
+- (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         [self initialize];
@@ -69,8 +68,7 @@
     return self;
 }
 
-- (id)initWithCoder:(NSCoder *)aDecoder
-{
+- (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
         [self initialize];
@@ -78,8 +76,7 @@
     return self;
 }
 
-- (id)init
-{
+- (id)init {
     self = [super init];
     if (self) {
         [self initialize];
@@ -90,12 +87,11 @@
 /***********************************************************
  **  DRAWING
  **********************************************************/
-- (void)drawRect:(CGRect)rect
-{
+- (void)drawRect:(CGRect)rect {
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     CGContextClearRect(ctx, rect);
     CGColorSpaceRef baseSpace = CGColorSpaceCreateDeviceRGB();
-  
+
     CGColorSpaceRelease(baseSpace); baseSpace = NULL;
     
 
@@ -181,12 +177,12 @@
     CGPathAddLineToPoint(path, NULL, centerX, arrowY + ARROW_HEIGHT);
     CGPathCloseSubpath(path);
     
-  if (active) {
+    if (active) {
         CGContextSetFillColorWithColor(ctx, [[UIColor globalTintColor] CGColor]);
-  }
-  else {
-       CGContextSetFillColorWithColor(ctx, [[UIColor whiteColor] CGColor]);
-  }
+    }
+    else {
+        CGContextSetFillColorWithColor(ctx, [[UIColor whiteColor] CGColor]);
+    }
 
     CGContextAddPath(ctx, path);
     CGContextFillPath(ctx);
@@ -204,24 +200,20 @@
         // of the overall rectangle, based on the Safari dropdown
         CGFloat centerX = rect.size.width - (ARROW_BOX_WIDTH)- 20 - BORDER_OFFSET;
         CGFloat centerY = rect.size.height / 2 + BORDER_OFFSET;
-        CGFloat width = 0;
-        CGFloat height = 20;
-        if (self.currentImage.size.width > self.currentImage.size.height) {
-            width = 30;
-        } else if (self.currentImage.size.width < self.currentImage.size.height) {
-            width = 15;
-        } else{
-            width = 20;
-        }
-        [self.currentImage drawInRect:CGRectMake(centerX - 10,centerY - 10.0f, width, height)];
-//        CGContextDrawImage(ctx, CGRectMake(centerX-10,centerY-7.5f, 30, 15), self.currentImage.CGImage);
+
+        float newHeight = 20;
+        float newWidth = 20;
+        if (self.currentImage.size.height > self.currentImage.size.width)
+        newWidth = ((self.currentImage.size.width / self.currentImage.size.height) * 20);
+        else
+        newHeight = ((self.currentImage.size.height / self.currentImage.size.width) * 20);
+        [self.currentImage drawInRect:CGRectMake(centerX - (newWidth/2),centerY - (newHeight/2), newWidth, newHeight)];
         
         CGContextAddPath(ctx, path);
         CGContextFillPath(ctx);
         CGPathRelease(path);
         CGContextRestoreGState(ctx);
     }
-    
     
     // ==============================
     // Draw the text
@@ -234,8 +226,8 @@
                                 [UIColor whiteColor], NSForegroundColorAttributeName, nil];
     CGSize size = [self.currentValue sizeWithAttributes:@{NSFontAttributeName : [UIFont fontWithName:FONT_NAME size:rect.size.height/2]}];
     NSString* drawString = self.currentValue;
-    if(size.width > rect.size.width - ARROW_BOX_WIDTH - TEXT_LEFT-30 && self.currentImage){
-        const int clipLength = 14;
+    if(size.width > rect.size.width - ARROW_BOX_WIDTH - TEXT_LEFT-30){
+        const int clipLength = 28;
         if([drawString length]>clipLength)
         {
             drawString = [NSString stringWithFormat:@"%@...",[drawString substringToIndex:clipLength]];
@@ -243,17 +235,15 @@
         
     }
     [drawString drawInRect:CGRectMake(TEXT_LEFT, rect.size.height/2 - rect.size.height/3,
-                                             rect.size.width - ARROW_BOX_WIDTH - TEXT_LEFT-30,
-                                             rect.size.height - BORDER_WIDTH)
-                         withAttributes:attributes];
-    
+                                      rect.size.width - ARROW_BOX_WIDTH - TEXT_LEFT-30,
+                                      rect.size.height - BORDER_WIDTH)
+            withAttributes:attributes];
 }
 
 /***********************************************************
  **  DATA SOURCE FOR UIPICKERVIEW
  **********************************************************/
-- (void)setValues:(NSArray *)values
-{
+- (void)setValues:(NSArray *)values {
     _values = values;
     [_pickerView reloadAllComponents];
     if ([_values indexOfObject:_currentValue] != NSNotFound)
@@ -262,8 +252,7 @@
     }
 }
 
-- (void)setCurrentValue:(NSString *)currentValue
-{
+- (void)setCurrentValue:(NSString *)currentValue {
     _currentValue = currentValue;
     [self setNeedsDisplay];
     if ([_values indexOfObject:currentValue] != NSNotFound)
@@ -272,53 +261,46 @@
     }
 }
 
-- (void)setCurrentImagee:(UIImage *)image
-{
+- (void)setCurrentImagee:(UIImage *)image {
     self.currentImage = image;
     [self setNeedsDisplay];
 }
 
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
-{
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
     return 1;
 }
 
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
-{
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
     return [self.values count];
 }
 
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
-{
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     return [self.values objectAtIndex:row];
 }
 
-- (UIView*) pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
-{
-    UIView *tmpView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 110, 60)];
+- (UIView*) pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view {
+    UIView *tmpView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [Util screenWidth], 60)];
+    CGFloat imageOffset = 0.0;
+    CGFloat rowOffset = 30.0;
+
+    if (self.images.count > 0) {
+        imageOffset = 30.0;
+    }
     if (self.images.count >= row) {
         if (row != 0) {
-            CGFloat width = 0;
-            CGFloat height = 30;
             UIImage *img = [self.images objectAtIndex:row-1];
-            if (img.size.width > img.size.height) {
-                width = 50;
-            } else if (img.size.width < img.size.height) {
-                width = 20;
-            } else{
-                width = 30;
-            }
             UIImageView *temp = [[UIImageView alloc] initWithImage:img];
-            temp.frame = CGRectMake(-100, 15, width, height);
+            temp.contentMode = UIViewContentModeScaleAspectFit;
+            temp.frame = CGRectMake(rowOffset/2, 15, imageOffset, imageOffset);
             [tmpView insertSubview:temp atIndex:0];
         }
     }
     
-    UILabel *channelLabel = [[UILabel alloc] initWithFrame:CGRectMake(-20, 0, 200, 60)];
+    UILabel *channelLabel = [[UILabel alloc] initWithFrame:CGRectMake(imageOffset+rowOffset, 0, [Util screenWidth]-imageOffset - (2*rowOffset), 60)];
     channelLabel.text = [self.values objectAtIndex:row];
     channelLabel.textAlignment = NSTextAlignmentLeft;
     channelLabel.backgroundColor = [UIColor clearColor];
-   
+
     [tmpView insertSubview:channelLabel atIndex:1];
     
     return tmpView;
@@ -327,8 +309,7 @@
 /***********************************************************
  **  UIPICKERVIEW DELEGATE COMMANDS
  **********************************************************/
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
-{
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     [self setCurrentValue:[self.values objectAtIndex:row]];
     if (row > 0) {
         [self setCurrentImage:[self.images objectAtIndex:row-1]];
@@ -344,8 +325,7 @@
     }
 }
 
-- (void)pickerViewClosed:(UIPickerView *)pickerView
-{
+- (void)pickerViewClosed:(UIPickerView *)pickerView {
     if ([[self delegate] respondsToSelector:@selector(comboboxClosed:withValue:)])
     {
         [[self delegate] comboboxClosed:self withValue:[self currentValue]];
@@ -355,8 +335,7 @@
 /***********************************************************
  **  FIRST RESPONDER AND USER INTERFACE
  **********************************************************/
-- (BOOL)beginTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
-{
+- (BOOL)beginTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event {
     [super beginTrackingWithTouch:touch withEvent:event];
     if (self.currentImage) {
         [self addLookData];
@@ -366,18 +345,15 @@
     return NO;
 }
 
-- (BOOL)canBecomeFirstResponder
-{
+- (BOOL)canBecomeFirstResponder {
     return YES;
 }
 
-- (BOOL)canResignFirstResponder
-{
+- (BOOL)canResignFirstResponder {
     return YES;
 }
 
-- (BOOL)becomeFirstResponder
-{
+- (BOOL)becomeFirstResponder {
     [super becomeFirstResponder];
     active = YES;
     [self.keyboard setActiveField:self];
@@ -391,8 +367,7 @@
     return YES;
 }
 
-- (BOOL)resignFirstResponder
-{
+- (BOOL)resignFirstResponder {
     [super resignFirstResponder];
     self.images = nil;
     active = NO;
@@ -401,8 +376,7 @@
     return YES;
 }
 
-- (void)keyboardControlsDonePressed:(BSKeyboardControls *)keyboardControls
-{
+- (void)keyboardControlsDonePressed:(BSKeyboardControls *)keyboardControls {
     if ([[self delegate] respondsToSelector:@selector(comboboxDonePressed:withValue:)])
     {
         [[self delegate] comboboxDonePressed:self withValue:[self currentValue]];
@@ -411,8 +385,7 @@
     [self resignFirstResponder];
 }
 
--(void)addLookData
-{
+-(void)addLookData {
     self.images = [[NSMutableArray alloc] initWithCapacity:self.object.lookList.count];
     NSInteger count = 0;
     for(Look *look in self.object.lookList) {
@@ -436,9 +409,7 @@
             [self.images addObject:[UIImage new]];
         }
         count++;
-        
     }
-
 }
 
 @end

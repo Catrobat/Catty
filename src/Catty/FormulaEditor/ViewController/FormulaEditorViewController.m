@@ -743,7 +743,6 @@ NS_ENUM(NSInteger, ButtonIndex) {
                                   minInputLength:kMinNumOfVariableNameCharacters
                                   maxInputLength:kMaxNumOfVariableNameCharacters
                                           isList:isList
-                             blockedCharacterSet:[self blockedCharacterSet]
                                     andTextField:self.formulaEditorTextView];
 }
 
@@ -778,20 +777,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
      showWithController:self];
 }
 
-static NSCharacterSet *blockedCharacterSet = nil;
-
-- (NSCharacterSet*)blockedCharacterSet
-
-{
-    if (! blockedCharacterSet) {
-        blockedCharacterSet = [[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters]
-                               invertedSet];
-    }
-    return blockedCharacterSet;
-}
-
-- (void)updateVariablePickerData
-{
+- (void)updateVariablePickerData {
     VariablesContainer *variables = self.object.program.variables;
     [self.variableSource removeAllObjects];
     [self.variableSourceProgram  removeAllObjects];
@@ -833,7 +819,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     // ------------------
     // Object Variables
     // ------------------
-    NSArray *array = [variables.objectVariableList objectForKey:self.object];
+    NSArray *array = [variables allVariablesForObject:self.object];
     if (array) {
         if([array count] > 0)
             [self.variableSource addObject:[[VariablePickerData alloc] initWithTitle:kUIFEObjectVars]];
@@ -850,7 +836,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     // ------------------
     // Object Lists
     // ------------------
-    array = [variables.objectListOfLists objectForKey:self.object];
+    array = [variables allListsForObject:self.object];
     if (array) {
         if([array count] > 0)
             [self.listSource addObject:[[VariablePickerData alloc] initWithTitle:kUIFEObjectLists]];
@@ -877,7 +863,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                   minInputLength:kMinNumOfVariableNameCharacters
                                   maxInputLength:kMaxNumOfVariableNameCharacters
                                           isList:isList
-                             blockedCharacterSet:[self blockedCharacterSet]
                                     andTextField:self.formulaEditorTextView];
 }
 
@@ -929,19 +914,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
     } else if (self.isProgramVariable && isList){
         [self.object.program.variables.programListOfLists addObject:var];
     } else if (!self.isProgramVariable && !isList) {
-        NSMutableArray *array = [self.object.program.variables.objectVariableList objectForKey:self.object];
-        if (!array) {
-            array = [NSMutableArray new];
-        }
-        [array addObject:var];
-        [self.object.program.variables.objectVariableList setObject:array forKey:self.object];
+        [self.object.program.variables addObjectVariable:var forObject:self.object];
     } else if (!self.isProgramVariable && isList) {
-        NSMutableArray *array = [self.object.program.variables.objectListOfLists objectForKey:self.object];
-        if (!array) {
-            array = [NSMutableArray new];
-        }
-        [array addObject:var];
-        [self.object.program.variables.objectListOfLists setObject:array forKey:self.object];
+        [self.object.program.variables addObjectList:var forObject:self.object];
     }
     
     [self.object.program saveToDiskWithNotification:YES];
@@ -963,7 +938,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                   minInputLength:kMinNumOfProgramNameCharacters
                                   maxInputLength:kMaxNumOfProgramNameCharacters
 										  isList:NO
-                             blockedCharacterSet:[self blockedCharacterSet]
                                     andTextField:self.formulaEditorTextView];
 }
 

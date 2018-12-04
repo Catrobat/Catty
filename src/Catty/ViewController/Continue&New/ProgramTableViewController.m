@@ -48,17 +48,6 @@
 
 @implementation ProgramTableViewController
 
-#pragma mark - data helpers
-static NSCharacterSet *blockedCharacterSet = nil;
-- (NSCharacterSet*)blockedCharacterSet
-{
-    if (! blockedCharacterSet) {
-        blockedCharacterSet = [[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters]
-                               invertedSet];
-    }
-    return blockedCharacterSet;
-}
-
 #pragma mark - getter and setters
 - (void)setProgram:(Program *)program
 {
@@ -110,16 +99,13 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     [self.tableView setEditing:false animated:YES];
     
-    [[[[[[[[AlertControllerBuilder textFieldAlertWithTitle:kLocalizedAddObject message:[NSString stringWithFormat:@"%@:", kLocalizedObjectName]]
+    [[[[[[[AlertControllerBuilder textFieldAlertWithTitle:kLocalizedAddObject message:[NSString stringWithFormat:@"%@:", kLocalizedObjectName]]
      placeholder:kLocalizedEnterYourObjectNameHere]
      addCancelActionWithTitle:kLocalizedCancel handler:^{
          [self cancelAddingObjectFromScriptEditor];
      }]
      addDefaultActionWithTitle:kLocalizedOK handler:^(NSString *name) {
          [self addObjectActionWithName:name];
-     }]
-     characterValidator:^BOOL(NSString *character) {
-         return [kTextFieldAllowedCharacters containsString:character];
      }]
      valueValidator:^InputValidationResult *(NSString *name) {
          InputValidationResult *result = [Util validationResultWithName:name
@@ -262,7 +248,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                   promptPlaceholder:kLocalizedEnterYourProgramNameHere
                                      minInputLength:kMinNumOfProgramNameCharacters
                                      maxInputLength:kMaxNumOfProgramNameCharacters
-                                blockedCharacterSet:[self blockedCharacterSet]
                            invalidInputAlertMessage:kLocalizedProgramNameAlreadyExistsDescription
                                       existingNames:unavailableNames];
     }]
@@ -517,7 +502,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                       promptPlaceholder:kLocalizedEnterYourObjectNameHere
                                          minInputLength:kMinNumOfObjectNameCharacters
                                          maxInputLength:kMaxNumOfObjectNameCharacters
-                                    blockedCharacterSet:[self blockedCharacterSet]
                                invalidInputAlertMessage:kLocalizedObjectNameAlreadyExistsDescription
                                           existingNames:unavailableNames];
          }] build]
@@ -621,7 +605,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     UIBarButtonItem *play = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
                                                                           target:self
                                                                           action:@selector(playSceneAction:)];
-    // XXX: workaround for tap area problem:
+    // FIXME: workaround for tap area problem:
     // http://stackoverflow.com/questions/5113258/uitoolbar-unexpectedly-registers-taps-on-uibarbuttonitem-instances-even-when-tap
     UIBarButtonItem *(^invisibleItem)(void) = ^UIBarButtonItem *() { return [UIBarButtonItem invisibleItem]; };
     UIBarButtonItem *(^flexItem)(void) = ^UIBarButtonItem *() { return [UIBarButtonItem flexItem]; };
@@ -637,7 +621,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                                                      style:UIBarButtonItemStylePlain
                                                                     target:self
                                                                     action:@selector(confirmDeleteSelectedObjectsAction:)];
-    // XXX: workaround for tap area problem:
+    // FIXME: workaround for tap area problem:
     // http://stackoverflow.com/questions/5113258/uitoolbar-unexpectedly-registers-taps-on-uibarbuttonitem-instances-even-when-tap
     UIBarButtonItem *(^invisibleItem)(void) = ^UIBarButtonItem *() { return [UIBarButtonItem invisibleItem]; };
     UIBarButtonItem *(^flexItem)(void) = ^UIBarButtonItem *() { return [UIBarButtonItem flexItem]; };

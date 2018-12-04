@@ -334,9 +334,10 @@
 #define kLocalizedIfBeginSecondPart NSLocalizedString(@"is true then", nil)
 #define kLocalizedElse NSLocalizedString(@"Else", nil)
 #define kLocalizedEndIf NSLocalizedString(@"End If", nil)
+#define kLocalizedWaitUntil NSLocalizedString(@"Wait until", nil)
 #define kLocalizedRepeat NSLocalizedString(@"Repeat", nil)
 #define kLocalizedRepeatUntil NSLocalizedString(@"Repeat until", nil)
-#define kLocalizedRepeatUntilIsTrue NSLocalizedString(@"is true", nil)
+#define kLocalizedUntilIsTrue NSLocalizedString(@"is true", nil)
 #define kLocalizedTime NSLocalizedString(@"time", nil)
 #define kLocalizedTimes NSLocalizedString(@"times", nil)
 #define kLocalizedEndOfLoop NSLocalizedString(@"End of Loop", nil)
@@ -437,6 +438,10 @@
 #define kLocalizedArduinoSetDigitalValue NSLocalizedString(@"Set Arduino digital pin", nil)
 #define kLocalizedArduinoSetPinValueTo NSLocalizedString(@"to", nil)
 #define kLocalizedArduinoSendPWMValue NSLocalizedString(@"Set Arduino PWM~ pin", nil)
+
+//Unsupported bricks
+#define kLocalizedUnsupportedBrick NSLocalizedString(@"Unsupported Brick:", nil)
+#define kLocalizedUnsupportedScript NSLocalizedString(@"Unsupported Script:", nil)
 
 //************************************************************************************************************
 //**********************************       Login/Upload            *******************************************

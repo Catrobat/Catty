@@ -962,11 +962,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                                         if (isProgramVar) {
                                             [self.object.program.variables.programVariableList addObject:variable];
                                         } else { // object variable
-                                            NSMutableArray *array = [self.object.program.variables.objectVariableList objectForKey:self.object];
-                                            if (!array)
-                                                array = [NSMutableArray new];
-                                            [array addObject:variable];
-                                            [self.object.program.variables.objectVariableList setObject:array forKey:self.object];
+                                            [self.object.program.variables addObjectVariable:variable forObject:self.object];
                                         }
                                         UserVariable *var = [self.object.program.variables getUserVariableNamed:(NSString*)variableName forSpriteObject:self.object];
                                         BrickCell *brickCell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:self.variableIndexPath];
@@ -985,8 +981,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                              promptPlaceholder:kLocalizedEnterYourVariableNameHere
                                 minInputLength:kMinNumOfVariableNameCharacters
                                 maxInputLength:kMaxNumOfVariableNameCharacters
-                           blockedCharacterSet:[[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters]
-                                                invertedSet]
                       invalidInputAlertMessage:kUIFENewVarExists
                                  existingNames:allVariableNames];
 }
@@ -1019,11 +1013,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                                         if (isProgramList) {
                                             [self.object.program.variables.programListOfLists addObject:list];
                                         } else { // object list
-                                            NSMutableArray *array = [self.object.program.variables.objectListOfLists objectForKey:self.object];
-                                            if (!array)
-                                                array = [NSMutableArray new];
-                                            [array addObject:list];
-                                            [self.object.program.variables.objectListOfLists setObject:array forKey:self.object];
+                                            [self.object.program.variables addObjectList:list forObject:self.object];
                                         }
                                         UserVariable *listToSet = [self.object.program.variables getUserListNamed:(NSString*)listName forSpriteObject:self.object];
                                         BrickCell *brickCell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:self.variableIndexPath];
@@ -1042,8 +1032,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                              promptPlaceholder:kLocalizedEnterYourListNameHere
                                 minInputLength:kMinNumOfVariableNameCharacters
                                 maxInputLength:kMaxNumOfVariableNameCharacters
-                           blockedCharacterSet:[[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters]
-                                                invertedSet]
                       invalidInputAlertMessage:kUIFENewVarExists
                                  existingNames:allListNames];
 }
@@ -1176,8 +1164,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                                      promptPlaceholder:kLocalizedEnterYourMessageHere
                                         minInputLength:kMinNumOfMessageNameCharacters
                                         maxInputLength:kMaxNumOfMessageNameCharacters
-                                   blockedCharacterSet:[[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters]
-                                                        invertedSet]
                               invalidInputAlertMessage:kLocalizedMessageAlreadyExistsDescription
                                          existingNames:[Util allMessagesForProgram:self.object.program]];
             [self enableUserInteractionAndResetHighlight];

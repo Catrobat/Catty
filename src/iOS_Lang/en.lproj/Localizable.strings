@@ -1610,6 +1610,12 @@
 "Unselect All" = "Unselect All";
 
 /* No comment provided by engineer. */
+"Unsupported Brick:" = "Unsupported Brick:";
+
+/* No comment provided by engineer. */
+"Unsupported Script:" = "Unsupported Script:";
+
+/* No comment provided by engineer. */
 "Upload" = "Upload";
 
 /* No comment provided by engineer. */
@@ -1671,6 +1677,9 @@
 
 /* No comment provided by engineer. */
 "Wait" = "Wait";
+
+/* No comment provided by engineer. */
+"Wait until" = "Wait until";
 
 /* No comment provided by engineer. */
 "We" = "We";
