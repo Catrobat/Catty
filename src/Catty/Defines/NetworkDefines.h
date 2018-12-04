@@ -31,7 +31,6 @@
 #define kLoginUrlExtension @"api/login"
 #define kRegisterUrlExtension @"api/register"
 #define kReportProgramExtension @"api/reportProgram/reportProgram.json"
-#define kUploadUrlExtension @"api/upload"
 #define kLoginOrRegisterUrl kBaseUrl kLoginOrRegisterUrlExtension
 #define kTestLoginOrRegisterUrl kTestUrl kLoginOrRegisterUrlExtension
 #define kLoginUrl kBaseUrl kLoginUrlExtension
@@ -40,8 +39,6 @@
 #define kTestRegisterUrl kTestUrl kRegisterUrlExtension
 #define kTestReportProgramUrl kTestUrl kReportProgramExtension
 #define kReportProgramUrl kBaseUrl kReportProgramExtension
-#define kUploadUrl kBaseUrl kUploadUrlExtension
-#define kTestUploadUrl kTestUrl kUploadUrlExtension
 #define kForumURL kBaseUrl @"help"
 #define kDownloadUrl kBaseUrl @"download"
 #define kSourceCodeLicenseURL @"http://developer.catrobat.org/licenses"

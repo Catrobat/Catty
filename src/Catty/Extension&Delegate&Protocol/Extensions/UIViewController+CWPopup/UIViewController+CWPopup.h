@@ -15,10 +15,6 @@
 
 @end
 
-
-
-
-
 @interface UIViewController (CWPopup)
 
 @property (nonatomic, readwrite) UIViewController *popupViewController;

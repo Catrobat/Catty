@@ -38,3 +38,10 @@ let kFeaturedImageBaseUrl = kBaseUrl.replacingOccurrences(of: "/pocketcode/", wi
 let kChartProgramsMaxResults = 10
 let kRecentProgramsMaxResults = 20
 let kSearchStoreMaxResults = 50
+
+//************************************************************************************************************
+//***********************************      UploadInfoViewController       ************************************
+//************************************************************************************************************
+
+let kUploadUrl = kBaseUrl.appending("api/upload")
+let kTestUploadUrl = kTestUrl.appending("api/upload")
