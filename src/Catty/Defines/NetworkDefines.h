@@ -39,8 +39,6 @@
 #define kTestRegisterUrl kTestUrl kRegisterUrlExtension
 #define kTestReportProgramUrl kTestUrl kReportProgramExtension
 #define kReportProgramUrl kBaseUrl kReportProgramExtension
-#define kUploadUrl @"https://share.catrob.at/pocketcode/api/upload"
-#define kTestUploadUrl @"https://catroid-test.catrob.at/pocketcode/api/upload"
 #define kForumURL kBaseUrl @"help"
 #define kDownloadUrl kBaseUrl @"download"
 #define kSourceCodeLicenseURL @"http://developer.catrobat.org/licenses"
