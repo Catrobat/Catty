@@ -122,18 +122,16 @@
         let fileManager = CBFileManager.shared()
         zipFileData = nil
         zipFileData = fileManager?.zip(program)
-        var zipFileSizeString = ""
-
-        if zipFileData == nil {
-            debugPrint("ZIPing program files failed")
-            self.dismissView()
-        } else {
-            zipFileSizeString = adaptSizeRepresentationString(zipFileData?.count ?? 0) ?? ""
-        }
 
         sizeValueLabel.textColor = UIColor.textTint()
-        sizeValueLabel.text = zipFileSizeString
         sizeValueLabel.font = UIFont(name: "HelveticaNeue-Bold", size: uploadFontSize)!
+
+        guard let data = zipFileData else {
+            debugPrint("ZIPing program files failed")
+            self.dismissView()
+            return
+        }
+        sizeValueLabel.text = ByteCountFormatter.string(fromByteCount: Int64(data.count), countStyle: .file)
     }
 
     func initDescriptionViewElements() {
@@ -213,20 +211,6 @@
         if let anEncoding = "\r\n".data(using: .utf8) {
             body.append(anEncoding)
         }
-    }
-
-    func adaptSizeRepresentationString(_ size: Int) -> String? {
-        var sizeFloat = CGFloat(size)
-
-        var divisionAmount: Int = 0
-        let tokens = ["bytes", "KB", "MB", "GB", "TB"]
-
-        while sizeFloat > 1024 {
-            sizeFloat /= 1024
-            divisionAmount += 1
-        }
-
-        return String(format: "%.2f %@", sizeFloat, tokens[divisionAmount])
     }
 
     // MARK: - Actions
