@@ -26,7 +26,6 @@ class TouchManager: TouchManagerProtocol, CBMultiTouchRecognizerDelegate {
     private var scene: CBScene?
     private var allTouches = [UITouch]()
     private var activeTouches = [UITouch]()
-    private var inactiveTouches = [UITouch]()
 
     func startTrackingTouches(for scene: CBScene) {
         self.scene = scene
@@ -50,7 +49,6 @@ class TouchManager: TouchManagerProtocol, CBMultiTouchRecognizerDelegate {
     func reset() {
         allTouches.removeAll()
         activeTouches.removeAll()
-        inactiveTouches.removeAll()
     }
 
     func screenTouched() -> Bool {
@@ -92,7 +90,6 @@ class TouchManager: TouchManagerProtocol, CBMultiTouchRecognizerDelegate {
             scene?.touchedWithTouch(touch)
         } else if state == .ended || state == .cancelled {
             activeTouches.removeObject(touch)
-            inactiveTouches.append(touch)
         }
     }
 
