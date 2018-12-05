@@ -37,7 +37,7 @@ import CoreBluetooth
             let readyToStart = self.notifyUserAboutUnavailableResources(navigationController: navigationController)
 
             DispatchQueue.main.async {
-                if readyToStart && !(Util.topmostViewController() is ScenePresenterViewController) {
+                if readyToStart && !(self.navigationController?.topViewController is ScenePresenterViewController) {
                     navigationController.pushViewController(self, animated: true)
                 } else {
                     self.hideLoadingView()

@@ -30,15 +30,13 @@
 
 @interface ScenePresenterViewController : UIViewController
 
+@property (nonatomic, strong) UIView *menuView;
+@property (nonatomic, strong) NSLayoutConstraint *menuViewLeadingConstraint;
+
 @property (nonatomic, strong) Program *program;
 @property (nonatomic, strong) FormulaManager *formulaManager;
-
-@property (strong,nonatomic) UIButton* menuBtn;
-@property (nonatomic, weak) UIButton* backButton;
-
 @property (nonatomic, strong) LoadingView* loadingView;
 
-@property (nonatomic, strong) UIView *menuView;
 @property (weak,nonatomic) IBOutlet UIButton *menuBackButton;
 @property (weak,nonatomic) IBOutlet UIButton *menuContinueButton;
 @property (weak,nonatomic) IBOutlet UIButton *menuScreenshotButton;
