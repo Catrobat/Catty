@@ -47,6 +47,10 @@ final class TouchManagerMock: TouchManagerProtocol {
         return isScreenTouched
     }
 
+    func screenTouched(for toucNumber: Int) -> Bool {
+        return isScreenTouched
+    }
+
     func numberOfTouches() -> Int {
         return touches.count
     }

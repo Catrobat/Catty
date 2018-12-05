@@ -20,25 +20,20 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-protocol TouchManagerProtocol {
+import UIKit.UIGestureRecognizerSubclass
 
-    func startTrackingTouches(for scene: CBScene)
+class UIGestureRecognizerMock: UIGestureRecognizer {
 
-    func stopTrackingTouches()
+    let mockedLocation: CGPoint
 
-    func reset()
+    init(location: CGPoint, state: UIGestureRecognizerState) {
+        self.mockedLocation = location
 
-    // Returns true if screen is currently touched
-    func screenTouched() -> Bool
+        super.init(target: nil, action: nil)
+        self.state = state
+    }
 
-    // Returns true if screen is still touched for given touch
-    func screenTouched(for toucNumber: Int) -> Bool
-
-    func numberOfTouches() -> Int
-
-    // Returns a SpriteKit specific position which needs to be converted. (0, 0) is at the bottom left corner
-    func lastPositionInScene() -> CGPoint?
-
-    // Returns a SpriteKit specific position which needs to be converted. (0, 0) is at the bottom left corner
-    func getPositionInScene(for touchNumber: Int) -> CGPoint?
+    override func location(in view: UIView?) -> CGPoint {
+        return mockedLocation
+    }
 }

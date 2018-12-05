@@ -70,7 +70,10 @@ final class CBScene: SKScene {
     @objc
     @discardableResult
     func touchedWithTouch(_ touch: UITouch) -> Bool {
-        assert(scheduler.running == true)
+        if !scheduler.running {
+            return false
+        }
+
         logger.debug("StartTouchOfScene (x:\(position.x), y:\(position.y))")
 
         let location = touch.location(in: self)
