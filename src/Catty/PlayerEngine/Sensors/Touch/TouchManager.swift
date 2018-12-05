@@ -88,6 +88,8 @@ class TouchManager: TouchManagerProtocol, CBMultiTouchRecognizerDelegate {
         if state == .began {
             activeTouches.append(touch)
             allTouches.append(touch)
+
+            scene?.touchedWithTouch(touch)
         } else if state == .ended || state == .cancelled {
             activeTouches.removeObject(touch)
             inactiveTouches.append(touch)
