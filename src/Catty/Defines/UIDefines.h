@@ -40,8 +40,6 @@
 #define kIconDownsizeFactorIphone4 0.85f
 
 // ScenePresenterViewController
-#define kWidthSlideMenu 150
-#define kBounceEffect 5
 #define kPlaceOfButtons 17
 #define kSlidingStartArea 40
 #define kContinueButtonSize 85
@@ -56,7 +54,7 @@
 #define kPlaceofLabels (kPlaceOfButtons-29)
 #define kPlaceofContinueLabel (kPlaceOfButtons)
 #define kDontResumeSounds 4
-#define kfirstSwipeDuration 0.8f
+#define kfirstSwipeDuration 0.45f
 
 // Blocked characters for program names, object names, images names, sounds names and variable/list names
 #define kTextFieldBlockedCharacters @""

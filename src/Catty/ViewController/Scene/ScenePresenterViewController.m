@@ -84,8 +84,13 @@
     
     NSArray *subviewArray = [[NSBundle mainBundle] loadNibNamed:@"SceneMenuView" owner:self options:nil];
     self.menuView = [subviewArray objectAtIndex:0];
-    self.menuView.frame = CGRectMake(self.menuView.frame.origin.x, self.menuView.frame.origin.y, self.menuView.frame.size.width, [Util screenHeight]);
     [self.view insertSubview:self.menuView aboveSubview:self.skView];
+    self.menuView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.menuView.heightAnchor constraintEqualToAnchor:self.view.heightAnchor].active = YES;
+    self.menuViewLeadingConstraint = [self.menuView.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor];
+    self.menuViewLeadingConstraint.active = YES;
+    [self.view layoutIfNeeded];
+
     [self setUpMenuButtons];
     [self setUpLabels];
     [self setUpGridView];
@@ -144,7 +149,6 @@
 #pragma mark View Setup
 - (void)setUpLabels
 {
-
     NSArray *labelTextArray = [[NSArray alloc] initWithObjects:kLocalizedBack,
                                kLocalizedRestart,
                                kLocalizedContinue,
@@ -252,7 +256,7 @@
 
 - (void)checkAspectRatio
 {
-    if (self.program.header.screenWidth.floatValue == [Util screenWidth] && self.program.header.screenHeight.floatValue == [Util screenHeight]) {
+    if (self.program.header.screenWidth.floatValue == [Util screenWidth:true] && self.program.header.screenHeight.floatValue == [Util screenHeight:true]) {
         self.menuAspectRatioButton.hidden = YES;
     }
 }
@@ -350,11 +354,11 @@
     
     CGFloat animateDuration = 0.0f;
     animateDuration = (duration > 0.0001f && duration < 1.0f)? duration : 0.35f;
-    
+
     [UIView animateWithDuration:animateDuration
                           delay:0.0f
                         options: UIViewAnimationOptionTransitionFlipFromRight
-                     animations:^{[self continueAnimation];}
+                     animations:^{[self hideMenuView];}
                      completion:^(BOOL finished){
                          self.menuOpen = NO;
                          self.menuView.userInteractionEnabled = YES;
@@ -420,10 +424,6 @@
 }
 
 #pragma mark - User Event Handling
-- (void)backButtonAction:(UIButton*)sender
-{
-    [self.navigationController popViewControllerAnimated:YES];
-}
 
 - (void)showHideAxisAction:(UIButton*)sender
 {
@@ -452,24 +452,24 @@
 }
 
 #pragma mark - Pan Gesture Handler
+
 - (void)handlePan:(UIPanGestureRecognizer*)gesture
 {
     CGPoint translate = [gesture translationInView:gesture.view];
     translate.y = 0.0;
-    CGFloat velocityX = [gesture velocityInView:gesture.view].x;
     
     if (gesture.state == UIGestureRecognizerStateBegan) {
         self.firstGestureTouchPoint = [gesture locationInView:gesture.view];
     }
     
     if (gesture.state == UIGestureRecognizerStateChanged) {
-        if (translate.x > 0.0 && translate.x < kWidthSlideMenu && self.menuOpen == NO && self.firstGestureTouchPoint.x < kSlidingStartArea) {
+        if (translate.x > 0.0 && translate.x < self.menuView.frame.size.width && self.menuOpen == NO && self.firstGestureTouchPoint.x < kSlidingStartArea) {
             [UIView animateWithDuration:0.25
                                   delay:0.0
                                 options:UIViewAnimationOptionCurveEaseOut
                              animations:^{[self handlePositvePan:translate];}
                              completion:nil];
-        } else if (translate.x < 0.0 && translate.x > -kWidthSlideMenu && self.menuOpen == YES) {
+        } else if (translate.x < 0.0 && translate.x > -self.menuView.frame.size.width && self.menuOpen == YES) {
             [UIView animateWithDuration:0.25
                                   delay:0.0
                                 options:UIViewAnimationOptionCurveEaseOut
@@ -481,58 +481,51 @@
     if (gesture.state == UIGestureRecognizerStateCancelled ||
         gesture.state == UIGestureRecognizerStateEnded ||
         gesture.state == UIGestureRecognizerStateFailed) {
-        if (translate.x > (kWidthSlideMenu/4) && self.menuOpen == NO && self.firstGestureTouchPoint.x < kSlidingStartArea) {
+        if (translate.x > (self.menuView.frame.size.width/4) && self.menuOpen == NO && self.firstGestureTouchPoint.x < kSlidingStartArea) {
             [UIView animateWithDuration:0.25
                                   delay:0.0
                                 options:UIViewAnimationOptionCurveEaseOut
-                             animations:^{[self handleCancelledPositive:translate];}
+                             animations:^{[self showMenuView];}
                              completion:^(BOOL finished) {
                                  self.menuOpen = YES;
                                  // pause Scene
                                  SKView * view= self.skView;
                                  view.paused=YES;
                                  [self pauseAction];
-                                 if (translate.x < (kWidthSlideMenu) && velocityX > 300) {
-//                                     [self bounceAnimation];
-                                 }
-                                 
                              }];
-        } else if(translate.x > 0.0 && translate.x <(kWidthSlideMenu/4) && self.menuOpen == NO && self.firstGestureTouchPoint.x < kSlidingStartArea) {
+        } else if(translate.x > 0.0 && translate.x <(self.menuView.frame.size.width/4) && self.menuOpen == NO && self.firstGestureTouchPoint.x < kSlidingStartArea) {
             [UIView animateWithDuration:0.25
                                   delay:0.0
                                 options:UIViewAnimationOptionCurveEaseOut
-                             animations:^{[self handleCancelledNegative:translate];}
+                             animations:^{[self hideMenuView];}
                              completion:^(BOOL finished) {
                                  SKView * view = self.skView;
                                  view.paused = NO;
                                  self.menuOpen = NO;
                                  [self resumeAction];
                              }];
-        } else if (translate.x < (-kWidthSlideMenu/4)  && self.menuOpen == YES) {
+        } else if (translate.x < (-self.menuView.frame.size.width/4)  && self.menuOpen == YES) {
             [UIView animateWithDuration:0.25
                                   delay:0.0
                                 options:UIViewAnimationOptionCurveEaseOut
-                             animations:^{[self handleCancelledNegative:translate];}
+                             animations:^{[self hideMenuView];}
                              completion:^(BOOL finished) {
                                  SKView * view = self.skView;
                                  view.paused = NO;
                                  self.menuOpen = NO;
                                  [self resumeAction];
                              }];
-        } else if (translate.x > (-kWidthSlideMenu/4) && translate.x < 0.0   && self.menuOpen == YES) {
+        } else if (translate.x > (-self.menuView.frame.size.width/4) && translate.x < 0.0   && self.menuOpen == YES) {
             [UIView animateWithDuration:0.25
                                   delay:0.0
                                 options:UIViewAnimationOptionCurveEaseOut
-                             animations:^{[self handleCancelledPositive:translate];}
+                             animations:^{[self showMenuView];}
                              completion:^(BOOL finished) {
                                  self.menuOpen = YES;
                                  // pause Scene
                                  SKView * view= self.skView;
                                  view.paused=YES;
                                  [self pauseAction];
-                                 if (translate.x > -(kWidthSlideMenu) && velocityX < -100) {
-//                                     [self bounceAnimation];
-                                 }
                              }];
         }
     }
@@ -541,50 +534,27 @@
 - (void)handlePositvePan:(CGPoint)translate
 {
     [self.view bringSubviewToFront:self.menuView];
-    self.menuView.frame = CGRectMake(-kWidthSlideMenu+translate.x-kBounceEffect, 0, self.menuView.frame.size.width, self.menuView.frame.size.height);
-    self.menuBtn.hidden=YES;
+    self.menuViewLeadingConstraint.constant = -self.menuView.frame.size.width + translate.x;
+    [self.view layoutIfNeeded];
 }
 
 - (void)handleNegativePan:(CGPoint)translate
 {
-    self.menuView.frame = CGRectMake(translate.x-kBounceEffect, 0, self.menuView.frame.size.width, self.menuView.frame.size.height);
-    self.menuBtn.hidden=NO;
+    self.menuViewLeadingConstraint.constant = translate.x;
+    [self.view layoutIfNeeded];
 }
 
-- (void)handleCancelledPositive:(CGPoint)translate
+- (void)showMenuView
 {
     [self.view bringSubviewToFront:self.menuView];
-    self.menuView.frame = CGRectMake(-kBounceEffect, 0, self.menuView.frame.size.width, self.menuView.frame.size.height);
-    self.menuBtn.hidden=YES;
+    self.menuViewLeadingConstraint.constant = 0;
+    [self.view layoutIfNeeded];
 }
 
-- (void)handleCancelledNegative:(CGPoint)translate
+- (void)hideMenuView
 {
-    self.menuView.frame = CGRectMake(-kWidthSlideMenu-kBounceEffect, 0, self.menuView.frame.size.width, self.menuView.frame.size.height);
-    self.menuBtn.hidden=NO;
-}
-
-#pragma mark - Animation Handling
-- (void)bounceAnimation
-{
-    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"position.x"];
-    [animation setFromValue:[NSNumber numberWithFloat:kWidthSlideMenu/2]];
-    [animation setToValue:[NSNumber numberWithFloat:(kWidthSlideMenu/2)+(kBounceEffect/2)]];
-    [animation setDuration:.3];
-    [animation setTimingFunction:[CAMediaTimingFunction functionWithControlPoints:.5f :1.8f :1 :1]];
-    [self.menuView.layer addAnimation:animation forKey:@"somekey"];
-}
-
-- (void)revealAnimation
-{
-    [self.view bringSubviewToFront:self.menuView];
-    self.menuView.frame = CGRectMake(-kBounceEffect, 0, self.menuView.frame.size.width, self.menuView.frame.size.height);
-    self.menuBtn.hidden=YES;
-}
-
-- (void)continueAnimation
-{
-    self.menuView.frame = CGRectMake(-kWidthSlideMenu-kBounceEffect, 0, self.menuView.frame.size.width, self.menuView.frame.size.height);
+    self.menuViewLeadingConstraint.constant = -self.menuView.frame.size.width;
+    [self.view layoutIfNeeded];
 }
 
 #pragma mark - Getters & Setters
