@@ -40,7 +40,6 @@
 #define kIconDownsizeFactorIphone4 0.85f
 
 // ScenePresenterViewController
-#define kWidthSlideMenu 90
 #define kPlaceOfButtons 17
 #define kSlidingStartArea 40
 #define kContinueButtonSize 85

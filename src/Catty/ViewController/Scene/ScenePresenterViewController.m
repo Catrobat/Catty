@@ -463,13 +463,13 @@
     }
     
     if (gesture.state == UIGestureRecognizerStateChanged) {
-        if (translate.x > 0.0 && translate.x < kWidthSlideMenu && self.menuOpen == NO && self.firstGestureTouchPoint.x < kSlidingStartArea) {
+        if (translate.x > 0.0 && translate.x < self.menuView.frame.size.width && self.menuOpen == NO && self.firstGestureTouchPoint.x < kSlidingStartArea) {
             [UIView animateWithDuration:0.25
                                   delay:0.0
                                 options:UIViewAnimationOptionCurveEaseOut
                              animations:^{[self handlePositvePan:translate];}
                              completion:nil];
-        } else if (translate.x < 0.0 && translate.x > -kWidthSlideMenu && self.menuOpen == YES) {
+        } else if (translate.x < 0.0 && translate.x > -self.menuView.frame.size.width && self.menuOpen == YES) {
             [UIView animateWithDuration:0.25
                                   delay:0.0
                                 options:UIViewAnimationOptionCurveEaseOut
@@ -481,7 +481,7 @@
     if (gesture.state == UIGestureRecognizerStateCancelled ||
         gesture.state == UIGestureRecognizerStateEnded ||
         gesture.state == UIGestureRecognizerStateFailed) {
-        if (translate.x > (kWidthSlideMenu/4) && self.menuOpen == NO && self.firstGestureTouchPoint.x < kSlidingStartArea) {
+        if (translate.x > (self.menuView.frame.size.width/4) && self.menuOpen == NO && self.firstGestureTouchPoint.x < kSlidingStartArea) {
             [UIView animateWithDuration:0.25
                                   delay:0.0
                                 options:UIViewAnimationOptionCurveEaseOut
@@ -493,7 +493,7 @@
                                  view.paused=YES;
                                  [self pauseAction];
                              }];
-        } else if(translate.x > 0.0 && translate.x <(kWidthSlideMenu/4) && self.menuOpen == NO && self.firstGestureTouchPoint.x < kSlidingStartArea) {
+        } else if(translate.x > 0.0 && translate.x <(self.menuView.frame.size.width/4) && self.menuOpen == NO && self.firstGestureTouchPoint.x < kSlidingStartArea) {
             [UIView animateWithDuration:0.25
                                   delay:0.0
                                 options:UIViewAnimationOptionCurveEaseOut
@@ -504,7 +504,7 @@
                                  self.menuOpen = NO;
                                  [self resumeAction];
                              }];
-        } else if (translate.x < (-kWidthSlideMenu/4)  && self.menuOpen == YES) {
+        } else if (translate.x < (-self.menuView.frame.size.width/4)  && self.menuOpen == YES) {
             [UIView animateWithDuration:0.25
                                   delay:0.0
                                 options:UIViewAnimationOptionCurveEaseOut
@@ -515,7 +515,7 @@
                                  self.menuOpen = NO;
                                  [self resumeAction];
                              }];
-        } else if (translate.x > (-kWidthSlideMenu/4) && translate.x < 0.0   && self.menuOpen == YES) {
+        } else if (translate.x > (-self.menuView.frame.size.width/4) && translate.x < 0.0   && self.menuOpen == YES) {
             [UIView animateWithDuration:0.25
                                   delay:0.0
                                 options:UIViewAnimationOptionCurveEaseOut
@@ -534,7 +534,7 @@
 - (void)handlePositvePan:(CGPoint)translate
 {
     [self.view bringSubviewToFront:self.menuView];
-    self.menuViewLeadingConstraint.constant = -kWidthSlideMenu + translate.x;
+    self.menuViewLeadingConstraint.constant = -self.menuView.frame.size.width + translate.x;
     [self.view layoutIfNeeded];
 }
 
@@ -553,7 +553,7 @@
 
 - (void)hideMenuView
 {
-    self.menuViewLeadingConstraint.constant = -kWidthSlideMenu;
+    self.menuViewLeadingConstraint.constant = -self.menuView.frame.size.width;
     [self.view layoutIfNeeded];
 }
 
