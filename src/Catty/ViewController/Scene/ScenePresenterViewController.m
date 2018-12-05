@@ -256,7 +256,7 @@
 
 - (void)checkAspectRatio
 {
-    if (self.program.header.screenWidth.floatValue == [Util screenWidth] && self.program.header.screenHeight.floatValue == [Util screenHeight]) {
+    if (self.program.header.screenWidth.floatValue == [Util screenWidth:true] && self.program.header.screenHeight.floatValue == [Util screenHeight:true]) {
         self.menuAspectRatioButton.hidden = YES;
     }
 }
