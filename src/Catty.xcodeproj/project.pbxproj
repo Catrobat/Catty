@@ -266,6 +266,7 @@
 		4C72EA3B2108EC3600E7407F /* TouchManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C72EA3A2108EC3600E7407F /* TouchManagerProtocol.swift */; };
 		4C72EA3D2108ED0800E7407F /* TouchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C72EA3C2108ED0800E7407F /* TouchManager.swift */; };
 		4C7A84861DCCE270000F366B /* LedFlashBrick098.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C7A84851DCCE270000F366B /* LedFlashBrick098.xml */; };
+		4C7B931F21B6DAC6001C3BA1 /* CBMultiTouchRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7B931E21B6DAC6001C3BA1 /* CBMultiTouchRecognizer.swift */; };
 		4C822652213FA7A400F3D750 /* LocationManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C822617213FA7A300F3D750 /* LocationManagerMock.swift */; };
 		4C822653213FA7A400F3D750 /* ObjectDoubleSensorMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C822618213FA7A300F3D750 /* ObjectDoubleSensorMock.swift */; };
 		4C822655213FA7A400F3D750 /* SensorMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C82261A213FA7A300F3D750 /* SensorMock.swift */; };
@@ -369,6 +370,8 @@
 		4CB412202198635900FC4594 /* VariablesContainerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB4121D2198635900FC4594 /* VariablesContainerTest.swift */; };
 		4CB4FE061B95DF2900431757 /* BrickInsertManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB4FE031B95DF2900431757 /* BrickInsertManager.m */; };
 		4CB4FE071B95DF2900431757 /* BrickMoveManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB4FE051B95DF2900431757 /* BrickMoveManager.m */; };
+		4CBF5F9C21AF1D200079C834 /* TouchManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBF5F9B21AF1D200079C834 /* TouchManagerTests.swift */; };
+		4CBF5F9E21AF1D390079C834 /* UIGestureRecognizerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBF5F9D21AF1D390079C834 /* UIGestureRecognizerMock.swift */; };
 		4CC50A53213AE386004BC914 /* FormulaManagerIdempotenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC50A52213AE385004BC914 /* FormulaManagerIdempotenceTests.swift */; };
 		4CC50A5C213BBD7D004BC914 /* FormulaManagerInterpreterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC50A5B213BBD7D004BC914 /* FormulaManagerInterpreterTests.swift */; };
 		4CC50A5E213BE036004BC914 /* ZeroParameterDoubleFunctionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC50A5D213BE036004BC914 /* ZeroParameterDoubleFunctionMock.swift */; };
@@ -1629,6 +1632,7 @@
 		4C73A5A220ECB4450073DB52 /* ElementOfListFunction0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ElementOfListFunction0991.xml; path = CattyTests/Resources/ParserTests/ListBricks/ElementOfListFunction0991.xml; sourceTree = SOURCE_ROOT; };
 		4C74BD081DA6476A0079336C /* Pocket Code.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Pocket Code.entitlements"; sourceTree = "<group>"; };
 		4C7A84851DCCE270000F366B /* LedFlashBrick098.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = LedFlashBrick098.xml; sourceTree = "<group>"; };
+		4C7B931E21B6DAC6001C3BA1 /* CBMultiTouchRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBMultiTouchRecognizer.swift; sourceTree = "<group>"; };
 		4C822617213FA7A300F3D750 /* LocationManagerMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManagerMock.swift; sourceTree = "<group>"; };
 		4C822618213FA7A300F3D750 /* ObjectDoubleSensorMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectDoubleSensorMock.swift; sourceTree = "<group>"; };
 		4C82261A213FA7A300F3D750 /* SensorMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorMock.swift; sourceTree = "<group>"; };
@@ -1739,6 +1743,8 @@
 		4CB4FE031B95DF2900431757 /* BrickInsertManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BrickInsertManager.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		4CB4FE041B95DF2900431757 /* BrickMoveManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickMoveManager.h; sourceTree = "<group>"; };
 		4CB4FE051B95DF2900431757 /* BrickMoveManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickMoveManager.m; sourceTree = "<group>"; };
+		4CBF5F9B21AF1D200079C834 /* TouchManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouchManagerTests.swift; sourceTree = "<group>"; };
+		4CBF5F9D21AF1D390079C834 /* UIGestureRecognizerMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIGestureRecognizerMock.swift; sourceTree = "<group>"; };
 		4CC0D51F1B01FB73006193C4 /* BrickVariableProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickVariableProtocol.h; sourceTree = "<group>"; };
 		4CC50A52213AE385004BC914 /* FormulaManagerIdempotenceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormulaManagerIdempotenceTests.swift; sourceTree = "<group>"; };
 		4CC50A5B213BBD7D004BC914 /* FormulaManagerInterpreterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaManagerInterpreterTests.swift; sourceTree = "<group>"; };
@@ -4126,6 +4132,14 @@
 			path = CattyTests/Resources/ParserTests/LedFlashBrick;
 			sourceTree = SOURCE_ROOT;
 		};
+		4C7B932221B6DAD3001C3BA1 /* Gesture */ = {
+			isa = PBXGroup;
+			children = (
+				4C7B931E21B6DAC6001C3BA1 /* CBMultiTouchRecognizer.swift */,
+			);
+			path = Gesture;
+			sourceTree = "<group>";
+		};
 		4C822615213FA7A300F3D750 /* Sensors */ = {
 			isa = PBXGroup;
 			children = (
@@ -4269,6 +4283,7 @@
 				4C822687213FAC3C00F3D750 /* MultiFingerXFunctionTests.swift */,
 				4C82268E213FB2C600F3D750 /* MultiFingerYFunctionTests.swift */,
 				4C822690213FBB8300F3D750 /* MultiFingerTouchedFunctionTests.swift */,
+				4CBF5F9B21AF1D200079C834 /* TouchManagerTests.swift */,
 			);
 			path = Touch;
 			sourceTree = "<group>";
@@ -4793,6 +4808,7 @@
 		4CF072A120D670CF00F93AB5 /* Touch */ = {
 			isa = PBXGroup;
 			children = (
+				4C7B932221B6DAD3001C3BA1 /* Gesture */,
 				4CF072A520D6710F00F93AB5 /* FingerTouchedSensor.swift */,
 				4CF072A420D6710F00F93AB5 /* FingerXSensor.swift */,
 				4CF072A320D6710F00F93AB5 /* FingerYSensor.swift */,
@@ -4941,6 +4957,7 @@
 				599E64A5202DB2FB009494B5 /* MediaLibraryDownloaderMock.swift */,
 				5973F243202EF37600A4CED9 /* SoundsLibraryCollectionViewDataSourceDelegateMock.swift */,
 				599E649D202D9F95009494B5 /* URLSessionMock.swift */,
+				4CBF5F9D21AF1D390079C834 /* UIGestureRecognizerMock.swift */,
 				4C1C8B15213FE7F1003B3AA4 /* StoreProgramDownloaderMock.swift */,
 			);
 			path = Mocks;
@@ -8399,6 +8416,7 @@
 				BA38080C21A1D8920075B831 /* ConvertExceptionToError.m in Sources */,
 				4C68FC8E1B25A00B00AB3EE8 /* FormulaParserOperatorsTest.m in Sources */,
 				4C6FE15C212D2D2E0067B7D5 /* FloorFunctionTest.swift in Sources */,
+				4CBF5F9C21AF1D200079C834 /* TouchManagerTests.swift in Sources */,
 				BACD947D219E1F2F0061D81C /* XMLAbstractTest.swift in Sources */,
 				4CEB22561B95E47500B3BE2F /* ChangeSizeByNBrickTests.m in Sources */,
 				4C2732A91CE4F30F00CA61AC /* CBSpriteNodeTests.swift in Sources */,
@@ -8567,6 +8585,7 @@
 				4C822674213FA7A400F3D750 /* InclinationXSensorTest.swift in Sources */,
 				4C68FC8F1B25A00B00AB3EE8 /* FormulaParserTest.m in Sources */,
 				4C6FE16B212D2D2E0067B7D5 /* SqrtFunctionTest.swift in Sources */,
+				4CBF5F9E21AF1D390079C834 /* UIGestureRecognizerMock.swift in Sources */,
 				4C6FE170212D2D2E0067B7D5 /* AbsFunctionTest.swift in Sources */,
 				BA38081321A208730075B831 /* XMLSerializerTests.swift in Sources */,
 				4C68FC931B25A00B00AB3EE8 /* InternFormulaTest.m in Sources */,
@@ -8737,6 +8756,7 @@
 				E405EABB212D4E420074ADDB /* SearchStoreCell.swift in Sources */,
 				9218B2121CC4AB75007B4C60 /* ResizeViewManager.m in Sources */,
 				AA74F0AA1BC05FCE00D1E954 /* VibrationBrickCell.m in Sources */,
+				4C7B931F21B6DAC6001C3BA1 /* CBMultiTouchRecognizer.swift in Sources */,
 				CADBD71A19B0E8C200C62836 /* main.m in Sources */,
 				92DFB0101A38949E00FA9B0F /* FormulaEditorHistory.m in Sources */,
 				927F79DC1BEE39B0008D1635 /* PhiroIfLogicBeginBrickCell.m in Sources */,

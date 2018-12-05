@@ -62,16 +62,16 @@ extension FormulaManager {
     @objc(setupForProgram: andScene:)
     func setup(for program: Program, and scene: CBScene) {
         let requiredResources = program.getRequiredResources()
-        setup(for: requiredResources, and: scene)
+        setup(for: requiredResources, and: scene, startTrackingTouches: true)
     }
 
     @objc(setupForFormula:)
     func setup(for formula: Formula) {
         let requiredResources = formula.getRequiredResources()
-        setup(for: requiredResources, and: nil)
+        setup(for: requiredResources, and: nil, startTrackingTouches: false)
     }
 
-    private func setup(for requiredResources: Int, and scene: CBScene?) {
+    private func setup(for requiredResources: Int, and scene: CBScene?, startTrackingTouches: Bool) {
         let unavailableResource = unavailableResources(for: requiredResources)
 
         if (requiredResources & ResourceType.accelerometer.rawValue > 0) && (unavailableResource & ResourceType.accelerometer.rawValue) == 0 {
@@ -100,7 +100,8 @@ extension FormulaManager {
         if ((requiredResources & ResourceType.loudness.rawValue) > 0) && (unavailableResource & ResourceType.loudness.rawValue) == 0 {
             audioManager.startLoudnessRecorder()
         }
-        if ((requiredResources & ResourceType.touchHandler.rawValue) > 0) && (unavailableResource & ResourceType.touchHandler.rawValue) == 0 {
+
+        if startTrackingTouches {
             guard let sc = scene else { return }
             touchManager.startTrackingTouches(for: sc)
         }

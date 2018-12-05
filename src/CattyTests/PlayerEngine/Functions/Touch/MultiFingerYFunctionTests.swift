@@ -101,6 +101,6 @@ class MultiFingerYFunctionTests: XCTestCase {
     }
 
     private func standardizedValue(_ point: CGPoint) -> Double {
-        return Double(screenHeight / 2) - Double(point.y)
+        return PositionYSensor.convertToStandardized(rawValue: Double(point.y), for: spriteObject)
     }
 }

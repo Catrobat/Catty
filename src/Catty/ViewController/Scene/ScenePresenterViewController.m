@@ -305,20 +305,6 @@
     return YES;
 }
 
-#pragma mark - Touch Event Handling
-- (void) touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
-{
-    if (self.menuOpen) {
-        NSDebug(@"touch on scene not allowed, because menu is open");
-        return;
-    }
-    NSDebug(@"touch on scene allowed");
-    for (UITouch *touch in touches) {
-        NSDebug(@"StartTouchinScenePresenter");
-        [self.scene touchedWithTouch:touch];
-    }
-}
-
 #pragma mark - Game Event Handling
 - (void)pauseAction
 {

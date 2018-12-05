@@ -43,11 +43,10 @@
         return Double(lastPosition.y)
     }
 
-    // We have to move (0, 0) from top left to the center
+    // We have to move (0, 0) from bottom left to the center
     func convertToStandardized(rawValue: Double, for spriteObject: SpriteObject) -> Double {
         guard let _ = getTouchManager()?.lastPositionInScene() else { return type(of: self).defaultRawValue }
-        guard let scene = spriteObject.spriteNode.scene else { return type(of: self).defaultRawValue }
-        return Double(scene.size.height) / 2.0 - rawValue
+        return PositionYSensor.convertToStandardized(rawValue: rawValue, for: spriteObject)
     }
 
     func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
