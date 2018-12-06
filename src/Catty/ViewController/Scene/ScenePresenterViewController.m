@@ -276,7 +276,6 @@
     } else {
         scene.scaleMode = SKSceneScaleModeFill;
     }
-    self.skView.paused = NO;
     self.scene = scene;
     
     [[BluetoothService sharedInstance] setScenePresenter:self];
@@ -311,8 +310,10 @@
 }
 
 #pragma mark - Game Event Handling
-- (void)pauseAction
+
+- (void)pausePlayer
 {
+    self.skView.paused = YES;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void) {
         [[AudioManager sharedAudioManager] pauseAllSounds];
         [[AudioManager sharedAudioManager] pauseSpeechSynth];
@@ -323,8 +324,9 @@
     [self.scene pauseScheduler];
 }
 
-- (void)resumeAction
+- (void)continuePlayer
 {
+    self.skView.paused = NO;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void) {
         [[AudioManager sharedAudioManager] resumeAllSounds];
         [[AudioManager sharedAudioManager] resumeSpeechSynth];
@@ -339,7 +341,7 @@
 
 - (void)continueAction:(UIButton*)sender
 {
-    [self resumeAction];
+    [self continuePlayer];
     [self hideMenuView];
 }
 
@@ -511,8 +513,7 @@
                      }
                      completion:^(BOOL finished) {
                          self.menuOpen = YES;
-                         self.skView.paused=YES;
-                         [self pauseAction];
+                         [self pausePlayer];
                      }];
 }
 
@@ -528,8 +529,7 @@
                      completion:^(BOOL finished) {
                          self.menuOpen = NO;
                          if (self.skView.paused) {
-                             self.skView.paused = NO;
-                             [self resumeAction];
+                             [self continuePlayer];
                          } else {
                              [self takeAutomaticScreenshotForSKView:self.skView andProgram:self.program];
                          }

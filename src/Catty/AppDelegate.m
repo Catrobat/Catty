@@ -69,7 +69,7 @@ void uncaughtExceptionHandler(NSException *exception)
     
     if ([vc.topViewController isKindOfClass:[ScenePresenterViewController class]]){
         ScenePresenterViewController* spvc = (ScenePresenterViewController*)vc.topViewController;
-        [spvc resumeAction];
+        [spvc continuePlayer];
     }
     
     [SwiftBridge sirenApplicationDidBecomeActive];
@@ -81,7 +81,7 @@ void uncaughtExceptionHandler(NSException *exception)
     
     if ([vc.topViewController isKindOfClass:[ScenePresenterViewController class]]){
         ScenePresenterViewController* spvc = (ScenePresenterViewController*)vc.topViewController;
-        [spvc pauseAction];
+        [spvc pausePlayer];
     }
 }
 
@@ -98,7 +98,7 @@ void uncaughtExceptionHandler(NSException *exception)
     
     if ([vc.topViewController isKindOfClass:[ScenePresenterViewController class]]){
         ScenePresenterViewController* spvc = (ScenePresenterViewController*)vc.topViewController;
-        [spvc resumeAction];
+        [spvc continuePlayer];
     }
     
     [SwiftBridge sirenApplicationWillEnterForeground];

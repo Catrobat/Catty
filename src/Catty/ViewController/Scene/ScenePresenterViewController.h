@@ -49,11 +49,8 @@
 @property (weak,nonatomic) IBOutlet UIButton *menuRestartLabel;
 @property (weak,nonatomic) IBOutlet UIButton *menuAxisLabel;
 
-- (void)pauseAction;
-- (void)resumeAction;
+- (void)pausePlayer;
+- (void)continuePlayer;
 - (void)connectionLost;
-
-- (void)showLoadingView;
-- (void)hideLoadingView;
 
 @end
