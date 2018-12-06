@@ -35,7 +35,7 @@
 - (void)setUp
 {
     [super setUp];
-    self.formulaInterpreter = [FormulaManager new];
+    self.formulaInterpreter = [[FormulaManager alloc] initWithSceneSize:[Util screenSize:true]];
     self.scene = [[[SceneBuilder alloc] initWithProgram:[ProgramMock new]] build];
 }
 

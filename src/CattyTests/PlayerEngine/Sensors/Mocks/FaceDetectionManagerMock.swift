@@ -22,32 +22,20 @@
 
 @testable import Pocket_Code
 
-final class FaceDetectionManagerMock: FaceDetectionManagerProtocol {
-
-    var isFaceDetected: Bool = false
-    var facePositionX: Double? = 0
-    var facePositionY: Double? = 0
-    var faceSize: CGRect? = CGRect.zero
+final class FaceDetectionManagerMock: FaceDetectionManager {
 
     var isAvailable = true
     var isStarted = false
 
-    func start() {
+    override func start() {
         isStarted = true
     }
 
-    func stop() {
+    override func stop() {
         isStarted = false
     }
 
-    func reset() {
-        isFaceDetected = false
-        facePositionX = 0
-        facePositionY = 0
-        faceSize = CGRect.zero
-    }
-
-    func available() -> Bool {
+    override func available() -> Bool {
         return isAvailable
     }
 }

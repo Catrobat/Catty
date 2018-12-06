@@ -28,16 +28,13 @@ final class FaceSizeSensorTest: XCTestCase {
 
     var sensor: FaceSizeSensor!
     var cameraManagerMock: FaceDetectionManagerMock!
-
-    func testDefaultRawValue() {
-        let sensor = FaceSizeSensor { nil }
-        XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(), accuracy: Double.epsilon)
-    }
+    var sceneSize: CGSize!
 
     override func setUp() {
         super.setUp()
         self.cameraManagerMock = FaceDetectionManagerMock()
-        self.sensor = FaceSizeSensor { [ weak self ] in self?.cameraManagerMock }
+        self.sceneSize = CGSize(width: 640, height: 1136)
+        self.sensor = FaceSizeSensor(sceneSize: sceneSize, faceDetectionManagerGetter: { [ weak self ] in self?.cameraManagerMock })
     }
 
     override func tearDown() {
@@ -46,28 +43,36 @@ final class FaceSizeSensorTest: XCTestCase {
         super.tearDown()
     }
 
-    func testRawValue() {
-        self.cameraManagerMock.faceSize = CGRect(x: 0, y: 0, width: 10, height: 10)
-        XCTAssertEqual(Double((self.cameraManagerMock.faceSize?.width)!) * Double((self.cameraManagerMock.faceSize?.height)!), sensor.rawValue(), accuracy: Double.epsilon)
+    func testDefaultRawValue() {
+        let sensor = FaceSizeSensor(sceneSize: sceneSize, faceDetectionManagerGetter: { nil })
 
-        self.cameraManagerMock.faceSize = CGRect(x: 0, y: 0, width: 50, height: 70)
-        XCTAssertEqual(Double((self.cameraManagerMock.faceSize?.width)!) * Double((self.cameraManagerMock.faceSize?.height)!), sensor.rawValue(), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(), accuracy: Double.epsilon)
+    }
+
+    func testRawValue() {
+        self.cameraManagerMock.faceSizeRatio = 0.2
+        XCTAssertEqual(0.2, sensor.rawValue(), accuracy: Double.epsilon)
+
+        self.cameraManagerMock.faceSizeRatio = 0.5
+        XCTAssertEqual(0.5, sensor.rawValue(), accuracy: Double.epsilon)
+
+        self.cameraManagerMock.faceSizeRatio = 1.0
+        XCTAssertEqual(1.0, sensor.rawValue(), accuracy: Double.epsilon)
     }
 
     func testConvertToStandardized() {
-        let screenSize = Util.screenHeight() * Util.screenWidth() / 100
+        let frameWidth = 400
+        let scaleFactor = Double(self.sceneSize.width) / Double(frameWidth)
+        self.cameraManagerMock.faceDetectionFrameSize = CGSize(width: frameWidth, height: 700)
 
-        // arm-length from the face
-        XCTAssertEqual(28, sensor.convertToStandardized(rawValue: Double(28 * screenSize)), accuracy: Double.epsilon)
+        XCTAssertEqual(0, sensor.convertToStandardized(rawValue: 0), accuracy: Double.epsilon)
+        XCTAssertEqual(0.5 * scaleFactor * 100, sensor.convertToStandardized(rawValue: 0.5), accuracy: Double.epsilon)
+        XCTAssertEqual(100, sensor.convertToStandardized(rawValue: 1), accuracy: Double.epsilon)
+        XCTAssertEqual(0, sensor.convertToStandardized(rawValue: -20), accuracy: Double.epsilon)
+        XCTAssertEqual(100, sensor.convertToStandardized(rawValue: 150), accuracy: Double.epsilon)
 
-        // good-looking selfie length
-        XCTAssertEqual(48, sensor.convertToStandardized(rawValue: Double(48 * screenSize)), accuracy: Double.epsilon)
-
-        // awkward selfie level -  too close
-        XCTAssertEqual(80, sensor.convertToStandardized(rawValue: Double(80 * screenSize)), accuracy: Double.epsilon)
-
-        // too big
-        XCTAssertEqual(100, sensor.convertToStandardized(rawValue: Double(120 * screenSize)), accuracy: Double.epsilon)
+        self.cameraManagerMock.faceDetectionFrameSize = nil
+        XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.convertToStandardized(rawValue: 20), accuracy: Double.epsilon)
     }
 
     func testTag() {

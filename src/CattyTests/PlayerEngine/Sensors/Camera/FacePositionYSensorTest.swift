@@ -28,16 +28,13 @@ final class FacePositionYSensorTest: XCTestCase {
 
     var sensor: FacePositionYSensor!
     var cameraManagerMock: FaceDetectionManagerMock!
-
-    func testDefaultRawValue() {
-        let sensor = FaceDetectedSensor { nil }
-        XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(), accuracy: Double.epsilon)
-    }
+    var sceneSize: CGSize!
 
     override func setUp() {
         super.setUp()
         self.cameraManagerMock = FaceDetectionManagerMock()
-        self.sensor = FacePositionYSensor { [ weak self ] in self?.cameraManagerMock }
+        self.sceneSize = CGSize(width: 640, height: 1136)
+        self.sensor = FacePositionYSensor(sceneSize: sceneSize, faceDetectionManagerGetter: { [ weak self ] in self?.cameraManagerMock })
     }
 
     override func tearDown() {
@@ -46,25 +43,27 @@ final class FacePositionYSensorTest: XCTestCase {
         super.tearDown()
     }
 
+    func testDefaultRawValue() {
+        let sensor = FacePositionYSensor(sceneSize: self.sceneSize, faceDetectionManagerGetter: { nil })
+        XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(), accuracy: Double.epsilon)
+    }
+
     func testRawValue() {
         // only positive values - (0, 0) is at the bottom left
-        self.cameraManagerMock.facePositionX = 0
+        self.cameraManagerMock.facePositionRatioFromBottom = 0
         XCTAssertEqual(0, self.sensor.rawValue())
 
-        self.cameraManagerMock.facePositionX = 256
+        self.cameraManagerMock.facePositionRatioFromBottom = 256
         XCTAssertEqual(256, self.sensor.rawValue())
     }
 
     func testConvertToStandardized() {
+        XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.convertToStandardized(rawValue: 0))
 
-        // middle
-        XCTAssertEqual(330 - Double(Util.screenHeight()) / 1.05, sensor.convertToStandardized(rawValue: 330))
-
-        // half up
-        XCTAssertEqual(480 - Double(Util.screenHeight()) / 1.05, sensor.convertToStandardized(rawValue: 480))
-
-        // half down
-        XCTAssertEqual(180 - Double(Util.screenHeight()) / 1.05, sensor.convertToStandardized(rawValue: 180))
+        XCTAssertEqual(Double(sceneSize.height * 0.01) - Double(sceneSize.height / 2), sensor.convertToStandardized(rawValue: 0.01))
+        XCTAssertEqual(Double(sceneSize.height * 0.4) - Double(sceneSize.height / 2), sensor.convertToStandardized(rawValue: 0.4))
+        XCTAssertEqual(Double(sceneSize.height * 0.95) - Double(sceneSize.height / 2), sensor.convertToStandardized(rawValue: 0.95))
+        XCTAssertEqual(Double(sceneSize.height / 2), sensor.convertToStandardized(rawValue: 1.0))
     }
 
     func testTag() {
