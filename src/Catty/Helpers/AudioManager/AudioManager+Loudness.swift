@@ -78,8 +78,8 @@ extension AudioManager: AudioManagerProtocol {
 
         let audioSession = AVAudioSession.sharedInstance()
         try? audioSession.setActive(true)
-        try? audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
-        try? audioSession.overrideOutputAudioPort(AVAudioSessionPortOverride.speaker)
+        try? audioSession.setCategoryWrapper(.playAndRecord, mode: .default)
+        try? audioSession.overrideOutputAudioPort(AVAudioSession.PortOverride.speaker)
         try? self.recorder = AVAudioRecorder(url: url, settings: settings)
     }
 
@@ -94,17 +94,17 @@ extension AudioManager: AudioManagerProtocol {
         var isGranted = false
         let dispatchGroup = DispatchGroup()
 
-        switch AVAudioSession.sharedInstance().recordPermission() {
-        case AVAudioSessionRecordPermission.denied:
+        switch AVAudioSession.sharedInstance().recordPermission {
+        case AVAudioSession.RecordPermission.denied:
             isGranted = false
-        case AVAudioSessionRecordPermission.undetermined:
+        case AVAudioSession.RecordPermission.undetermined:
             dispatchGroup.enter()
             AVAudioSession.sharedInstance().requestRecordPermission({ (granted: Bool) in
                 isGranted = granted
                 dispatchGroup.leave()
             })
             dispatchGroup.wait()
-        case AVAudioSessionRecordPermission.granted:
+        case AVAudioSession.RecordPermission.granted:
             isGranted = true
         }
 

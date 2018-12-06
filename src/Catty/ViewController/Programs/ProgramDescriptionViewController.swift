@@ -46,8 +46,8 @@ import UIKit
         super.viewDidLoad()
         view.backgroundColor = UIColor.whiteGray()
 
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: .UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: .UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIWindow.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIWindow.keyboardWillHideNotification, object: nil)
 
         initNavBar()
         initControls()
@@ -119,7 +119,7 @@ import UIKit
 
     // MARK: keyboard
     @objc func keyboardWillShow(notification: Notification) {
-        if let userInfo = notification.userInfo, let keyboardFrameValue = userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue {
+        if let userInfo = notification.userInfo, let keyboardFrameValue = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             let keyboardFrame = keyboardFrameValue.cgRectValue
             UIView.animate(withDuration: 0.5, animations: {
                 self.descriptionTextViewBottomConstraint.constant = -keyboardFrame.size.height - 20

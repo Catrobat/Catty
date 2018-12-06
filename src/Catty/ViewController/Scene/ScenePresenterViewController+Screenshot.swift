@@ -53,7 +53,7 @@
         let fileName = manualScreenshot ? kScreenshotManualFilename : kScreenshotAutoFilename
         let filePath = program.projectPath() + fileName
         let thumbnailPath = program.projectPath() + kScreenshotThumbnailPrefix + fileName
-        guard let data = UIImagePNGRepresentation(screenshot) else { return }
+        guard let data = screenshot.pngData() else { return }
 
         DispatchQueue.main.async {
             do {

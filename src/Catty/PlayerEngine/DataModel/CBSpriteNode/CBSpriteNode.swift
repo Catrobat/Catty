@@ -68,10 +68,10 @@ class CBSpriteNode: SKSpriteNode {
     func returnFilterInstance(_ filterName: String, image: CIImage) -> CIFilter? {
         var filter: CIFilter?
         if filterName == "brightness" {
-            filter = CIFilter(name: "CIColorControls", withInputParameters: [kCIInputImageKey: image, "inputBrightness": self.ciBrightness])
+            filter = CIFilter(name: "CIColorControls", parameters: [kCIInputImageKey: image, "inputBrightness": self.ciBrightness])
         }
         if filterName == "color" {
-            filter = CIFilter(name: "CIHueAdjust", withInputParameters: [kCIInputImageKey: image, "inputAngle": self.ciHueAdjust])
+            filter = CIFilter(name: "CIHueAdjust", parameters: [kCIInputImageKey: image, "inputAngle": self.ciHueAdjust])
         }
         return filter
     }
