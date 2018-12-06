@@ -393,9 +393,7 @@ class ScenePresenterViewController: UIViewController, UIActionSheetDelegate {
 
         AlertControllerBuilder.alert(title: "Lost Bluetooth Connection", message: kLocalizedPocketCode)
             .addCancelAction(title: kLocalizedOK, handler: {
-                self.parent?.navigationController?.isToolbarHidden = false
-                self.parent?.navigationController?.isNavigationBarHidden = false
-                self.navigationController?.popViewController(animated: true)})
+                self.stopAction(nil)})
             .build()
             .showWithController(self)
     }
