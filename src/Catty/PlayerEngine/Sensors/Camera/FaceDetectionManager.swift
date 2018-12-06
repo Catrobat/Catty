@@ -58,13 +58,8 @@ class FaceDetectionManager: NSObject, FaceDetectionManagerProtocol, AVCaptureVid
         // create a serial dispatch queue used for the sample buffer delegate
         // a serial dispatch queue must be used to guarantee that video frames will be delivered in order
         // see the header doc for setSampleBufferDelegate:queue: for more information
-
-        // Dispatching the buffer queue helps preventing a slow program start with the current code,
-        // this should be refactored with IOS-695
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            let serialQueue = DispatchQueue(label: "VideoDataOutputQueue")
-            videoDataOuput.setSampleBufferDelegate(self, queue: serialQueue)
-        }
+        let serialQueue = DispatchQueue(label: "VideoDataOutputQueue")
+        videoDataOuput.setSampleBufferDelegate(self, queue: serialQueue)
 
         if session.canAddOutput(videoDataOuput) {
             self.session?.addOutput(videoDataOuput)
