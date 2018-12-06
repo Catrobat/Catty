@@ -612,6 +612,7 @@
 		5E21DA6F21A5255600017D2C /* UploadInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E21DA6C21A5255500017D2C /* UploadInfoViewController.swift */; };
 		5E21DA7121A5289F00017D2C /* Data+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E21DA7021A5289F00017D2C /* Data+Extensions.swift */; };
 		5E43D71821928053006FDF2A /* SwellAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E43D71721928052006FDF2A /* SwellAll.swift */; };
+		5EA1089B21B9387700B837B9 /* ScenePresenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA1089A21B9387700B837B9 /* ScenePresenterViewController.swift */; };
 		5EDBA043219549AE000EFFEF /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EDBA042219549AE000EFFEF /* LoadingView.swift */; };
 		5EF590BA2192D81F00C19F12 /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF590B92192D81F00C19F12 /* Double+Extensions.swift */; };
 		5EFBD5F92145533B003B3CDC /* ProgramDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFBD5F82145533B003B3CDC /* ProgramDescriptionViewController.swift */; };
@@ -827,7 +828,6 @@
 		92FF315B1A24DEB300093DA7 /* ProgramDetailStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31381A24DEB300093DA7 /* ProgramDetailStoreViewController.m */; };
 		92FF315E1A24DEB300093DA7 /* HelpWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF313F1A24DEB300093DA7 /* HelpWebViewController.m */; };
 		92FF315F1A24DEB300093DA7 /* MyProgramsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31421A24DEB300093DA7 /* MyProgramsViewController.m */; };
-		92FF31611A24DEB300093DA7 /* ScenePresenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31471A24DEB300093DA7 /* ScenePresenterViewController.m */; };
 		92FF325B1A24E2F400093DA7 /* BDKNotifyHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31701A24E2F400093DA7 /* BDKNotifyHUD.m */; };
 		92FF325C1A24E2F400093DA7 /* LICENSE_BDKNotifyHUD in Resources */ = {isa = PBXBuildFile; fileRef = 92FF31711A24E2F400093DA7 /* LICENSE_BDKNotifyHUD */; };
 		92FF325D1A24E2F400093DA7 /* EVCircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31741A24E2F400093DA7 /* EVCircularProgressView.m */; };
@@ -1986,6 +1986,7 @@
 		5E21DA6C21A5255500017D2C /* UploadInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadInfoViewController.swift; sourceTree = "<group>"; };
 		5E21DA7021A5289F00017D2C /* Data+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extensions.swift"; sourceTree = "<group>"; };
 		5E43D71721928052006FDF2A /* SwellAll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwellAll.swift; sourceTree = "<group>"; };
+		5EA1089A21B9387700B837B9 /* ScenePresenterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScenePresenterViewController.swift; sourceTree = "<group>"; };
 		5EDBA042219549AE000EFFEF /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		5EF590B92192D81F00C19F12 /* Double+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extensions.swift"; sourceTree = "<group>"; };
 		5EFBD5F82145533B003B3CDC /* ProgramDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramDescriptionViewController.swift; sourceTree = "<group>"; };
@@ -2423,8 +2424,6 @@
 		92FF313F1A24DEB300093DA7 /* HelpWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpWebViewController.m; sourceTree = "<group>"; };
 		92FF31411A24DEB300093DA7 /* MyProgramsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyProgramsViewController.h; sourceTree = "<group>"; };
 		92FF31421A24DEB300093DA7 /* MyProgramsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyProgramsViewController.m; sourceTree = "<group>"; };
-		92FF31461A24DEB300093DA7 /* ScenePresenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScenePresenterViewController.h; sourceTree = "<group>"; };
-		92FF31471A24DEB300093DA7 /* ScenePresenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScenePresenterViewController.m; sourceTree = "<group>"; };
 		92FF316F1A24E2F400093DA7 /* BDKNotifyHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKNotifyHUD.h; sourceTree = "<group>"; };
 		92FF31701A24E2F400093DA7 /* BDKNotifyHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKNotifyHUD.m; sourceTree = "<group>"; };
 		92FF31711A24E2F400093DA7 /* LICENSE_BDKNotifyHUD */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE_BDKNotifyHUD; sourceTree = "<group>"; };
@@ -6239,8 +6238,7 @@
 		92FF31431A24DEB300093DA7 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
-				92FF31461A24DEB300093DA7 /* ScenePresenterViewController.h */,
-				92FF31471A24DEB300093DA7 /* ScenePresenterViewController.m */,
+				5EA1089A21B9387700B837B9 /* ScenePresenterViewController.swift */,
 				4C0E25E820D39E5000A80273 /* ScenePresenterViewController+Resources.swift */,
 				4CDE807121A1A0AE009EFD31 /* ScenePresenterViewController+Screenshot.swift */,
 			);
@@ -8743,6 +8741,7 @@
 				92FF314E1A24DEB300093DA7 /* LookImageViewController.m in Sources */,
 				AA74F0A41BC05FCE00D1E954 /* LoopEndBrickCell.m in Sources */,
 				921E84E81CC9F3E400F7EE9F /* TextInputViewController.m in Sources */,
+				5EA1089B21B9387700B837B9 /* ScenePresenterViewController.swift in Sources */,
 				921D467D1BDF61350086AD20 /* ComeToFrontBrick+Instruction.swift in Sources */,
 				9218B20F1CC4AB75007B4C60 /* MirrorRotationZoomTool.m in Sources */,
 				AA74EEF91BC057C900D1E954 /* ChangeTransparencyByNBrick+CBXMLHandler.m in Sources */,
@@ -9310,7 +9309,6 @@
 				4CF773E51AEE3B5100DBBB2B /* VariablePickerData.m in Sources */,
 				AA74F0071BC05B5F00D1E954 /* SetYBrick.m in Sources */,
 				9200C2D01C808206002F5CA4 /* ShowTextBrick+Instruction.swift in Sources */,
-				92FF31611A24DEB300093DA7 /* ScenePresenterViewController.m in Sources */,
 				92B46FA21BC7BDF7004980C1 /* ArduinoSendDigitalValueBrickCell.m in Sources */,
 				929CC0ED1BC39B8C0027DEC0 /* PhiroMotorMoveBackwardBrickCell.m in Sources */,
 				BA9CAB621EC3853600796056 /* AddItemToUserListBrick+Instruction.swift in Sources */,

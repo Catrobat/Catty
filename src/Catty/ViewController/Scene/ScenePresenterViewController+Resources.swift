@@ -29,7 +29,7 @@ import CoreBluetooth
     func checkResourcesAndPushViewControllerTo(navigationController: UINavigationController) {
         self.formulaManager = FormulaManager()
 
-        navigationController.view.addSubview(self.loadingView)
+        navigationController.view.addSubview(self.loadingView!)
         self.showLoadingView()
 
         DispatchQueue.global(qos: .userInitiated).async {
@@ -47,7 +47,7 @@ import CoreBluetooth
     }
 
     @nonobjc private func notifyUserAboutUnavailableResources(navigationController: UINavigationController) -> Bool {
-        let requiredResources = program.getRequiredResources()
+        let requiredResources = program!.getRequiredResources()
 
         // Bluetooth
         var unconnectedBluetoothDevices = [BluetoothDeviceID]()
@@ -68,7 +68,7 @@ import CoreBluetooth
         }
 
         // All other resources
-        let unavailableSensorResources = formulaManager.unavailableResources(for: requiredResources)
+        let unavailableSensorResources = formulaManager!.unavailableResources(for: requiredResources)
         var unavailableResourceNames = [String]()
 
         if (unavailableSensorResources & ResourceType.vibration.rawValue) > 0 {

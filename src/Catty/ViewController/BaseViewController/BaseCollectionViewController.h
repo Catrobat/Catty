@@ -22,7 +22,6 @@
 
 #import <UIKit/UIKit.h>
 #import "Pocket_Code-Swift.h"
-#import "ScenePresenterViewController.h"
 
 @class PlaceHolderView;
 @interface BaseCollectionViewController : UICollectionViewController
