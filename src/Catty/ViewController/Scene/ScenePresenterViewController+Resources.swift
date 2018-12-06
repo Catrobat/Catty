@@ -30,7 +30,7 @@ import CoreBluetooth
         self.formulaManager = FormulaManager()
 
         navigationController.view.addSubview(self.loadingView!)
-        self.showLoadingView()
+        self.loadingView?.show()
 
         DispatchQueue.global(qos: .userInitiated).async {
             self.program = Program.init(loadingInfo: Util.lastUsedProgramLoadingInfo())!
@@ -40,7 +40,7 @@ import CoreBluetooth
                 if readyToStart && !(self.navigationController?.topViewController is ScenePresenterViewController) {
                     navigationController.pushViewController(self, animated: true)
                 } else {
-                    self.hideLoadingView()
+                    self.loadingView?.hide()
                 }
             }
         }

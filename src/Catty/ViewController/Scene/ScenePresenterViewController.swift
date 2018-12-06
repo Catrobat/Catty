@@ -338,8 +338,8 @@ class ScenePresenterViewController: UIViewController, UIActionSheetDelegate {
         negativeHeight.sizeToFit()
         gridView?.addSubview(negativeHeight)
 
-        if let aView = gridView, let aView1 = skView {
-            view.insertSubview(aView, aboveSubview: aView1)
+        if let gView = gridView, let sView = skView {
+            view.insertSubview(gView, aboveSubview: sView)
         }
     }
 
@@ -376,20 +376,20 @@ class ScenePresenterViewController: UIViewController, UIActionSheetDelegate {
 
         menuView?.isUserInteractionEnabled = true
 
-        hideLoadingView()
+        loadingView?.hide()
         hideMenuView()
     }
 
     // MARK: - Bluetooth Event Handling
 
     func connectionLost() {
-        showLoadingView()
+        loadingView?.show()
         menuView?.isUserInteractionEnabled = false
         let previousScene: CBScene? = scene
         previousScene?.isUserInteractionEnabled = false
         stopProgram()
         previousScene?.isUserInteractionEnabled = true
-        hideLoadingView()
+        loadingView?.hide()
 
         AlertControllerBuilder.alert(title: "Lost Bluetooth Connection", message: kLocalizedPocketCode)
             .addCancelAction(title: kLocalizedOK, handler: {
@@ -423,7 +423,7 @@ class ScenePresenterViewController: UIViewController, UIActionSheetDelegate {
     }
 
     @objc func restartAction(_ sender: UIButton?) {
-        showLoadingView()
+        loadingView?.show()
 
         menuView?.isUserInteractionEnabled = false
         scene?.isUserInteractionEnabled = false
@@ -559,15 +559,5 @@ class ScenePresenterViewController: UIViewController, UIActionSheetDelegate {
                 self.takeAutomaticScreenshot(for: self.skView!, and: self.program!)
             }
         })
-    }
-
-    // MARK: - Getters & Setters
-
-    func showLoadingView() {
-        loadingView?.show()
-    }
-
-    func hideLoadingView() {
-        loadingView?.hide()
     }
 }
