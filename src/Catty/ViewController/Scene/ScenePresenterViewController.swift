@@ -40,7 +40,7 @@ class ScenePresenterViewController: UIViewController, UIActionSheetDelegate {
         if _loadingView == nil {
             _loadingView = LoadingView()
             view.addSubview(_loadingView!)
-            view.bringSubview(toFront: _loadingView!)
+            view.bringSubviewToFront(_loadingView!)
         }
         return _loadingView
     }
@@ -113,7 +113,7 @@ class ScenePresenterViewController: UIViewController, UIActionSheetDelegate {
     func stopProgram() {
         scene?.stopProgram()
 
-        // TODO remove Singletons
+        // TODO: remove Singletons
         AudioManager.shared().stopAllSounds()
         AudioManager.shared().stopSpeechSynth()
         CameraPreviewHandler.shared().stopCamera()
@@ -511,7 +511,7 @@ class ScenePresenterViewController: UIViewController, UIActionSheetDelegate {
                        delay: 0.0,
                        options: .curveEaseOut,
                        animations: {
-                        self.view.bringSubview(toFront: self.menuView!)
+                        self.view.bringSubviewToFront(self.menuView!)
                         self.menuViewLeadingConstraint?.constant = -(self.menuView?.frame.size.width)! + translate.x
                         self.view.layoutIfNeeded()
         })
@@ -532,7 +532,7 @@ class ScenePresenterViewController: UIViewController, UIActionSheetDelegate {
                        delay: 0.0,
                        options: .curveEaseOut,
                        animations: {
-                        self.view.bringSubview(toFront: self.menuView!)
+                        self.view.bringSubviewToFront(self.menuView!)
                         self.menuViewLeadingConstraint?.constant = 0
                         self.view.layoutIfNeeded()
         }, completion: { _ in
