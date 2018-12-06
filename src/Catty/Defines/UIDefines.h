@@ -39,23 +39,6 @@
 // CatrobatTableViewController
 #define kIconDownsizeFactorIphone4 0.85f
 
-// ScenePresenterViewController
-#define kPlaceOfButtons 17
-#define kSlidingStartArea 40
-#define kContinueButtonSize 85
-#define kContinueOffset 15
-#define kMenuButtonSize 44
-#define kMenuIPhone4GapSize 30
-#define kMenuIPhone5GapSize 35
-#define kMenuIPhone4ContinueGapSize 40
-#define kMenuIPhone5ContinueGapSize 45
-#define kMenuLabelWidth 50
-#define kMenuLabelHeight 20
-#define kPlaceofLabels (kPlaceOfButtons-29)
-#define kPlaceofContinueLabel (kPlaceOfButtons)
-#define kDontResumeSounds 4
-#define kfirstSwipeDuration 0.45f
-
 // Blocked characters for program names, object names, images names, sounds names and variable/list names
 #define kTextFieldBlockedCharacters @""
 

@@ -30,6 +30,9 @@
 #import "Pocket_Code-Swift.h"
 #import "RuntimeImageCache.h"
 
+#define kSlidingStartArea 40
+#define kMenuAnimationDuration 0.25
+
 @interface ScenePresenterViewController() <UIActionSheetDelegate>
 @property (nonatomic, strong) CBScene *scene;
 @property (nonatomic, strong) SKView *skView;
@@ -160,7 +163,7 @@
                  andView:labelArray[i]];
     }
     [self.menuBackLabel addTarget:self action:@selector(stopAction:) forControlEvents:UIControlEventTouchUpInside];
-    [self.menuContinueLabel addTarget:self action:@selector(continueAction:withDuration:) forControlEvents:UIControlEventTouchUpInside];
+    [self.menuContinueLabel addTarget:self action:@selector(continueAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.menuScreenshotLabel addTarget:self action:@selector(takeScreenshotAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.menuRestartLabel addTarget:self action:@selector(restartAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.menuAxisLabel addTarget:self action:@selector(showHideAxisAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -183,7 +186,7 @@
     [self setupButtonWithButton:self.menuContinueButton
                 ImageNameNormal:[UIImage imageNamed:@"stage_dialog_button_continue"]
         andImageNameHighlighted:[UIImage imageNamed:@"stage_dialog_button_continue_pressed"]
-                    andSelector:@selector(continueAction:withDuration:)];
+                    andSelector:@selector(continueAction:)];
     [self setupButtonWithButton:self.menuScreenshotButton
                 ImageNameNormal:[UIImage imageNamed:@"stage_dialog_button_screenshot"]
         andImageNameHighlighted:[UIImage imageNamed:@"stage_dialog_button_screenshot_pressed"]
@@ -285,8 +288,10 @@
     [self.skView presentScene:self.scene];
     [self.scene startProgram];
     
+    self.menuView.userInteractionEnabled = YES;
+
     [self hideLoadingView];
-    [self continueAction:nil withDuration:kfirstSwipeDuration];
+    [self hideMenuView];
 }
 
 -(void)resaveLooks
@@ -332,27 +337,10 @@
     [self.scene resumeScheduler];
 }
 
-- (void)continueAction:(UIButton*)sender withDuration:(CGFloat)duration
+- (void)continueAction:(UIButton*)sender
 {
-    if (duration != kfirstSwipeDuration) {
-        [self resumeAction];
-    }
-    
-    CGFloat animateDuration = 0.0f;
-    animateDuration = (duration > 0.0001f && duration < 1.0f)? duration : 0.35f;
-
-    [UIView animateWithDuration:animateDuration
-                          delay:0.0f
-                        options: UIViewAnimationOptionTransitionFlipFromRight
-                     animations:^{[self hideMenuView];}
-                     completion:^(BOOL finished){
-                         self.menuOpen = NO;
-                         self.menuView.userInteractionEnabled = YES;
-                         if (animateDuration == duration) {
-                             [self takeAutomaticScreenshotForSKView:self.skView andProgram:self.program];
-                         }
-                     }];
-    self.skView.paused = NO;
+    [self resumeAction];
+    [self hideMenuView];
 }
 
 - (void)stopAction:(UIButton*)sender
@@ -425,11 +413,6 @@
     self.scene.scaleMode = self.scene.scaleMode == SKSceneScaleModeAspectFit ? SKSceneScaleModeFill : SKSceneScaleModeAspectFit;
     self.program.header.screenMode = [self.program.header.screenMode isEqualToString:kCatrobatHeaderScreenModeStretch] ? kCatrobatHeaderScreenModeMaximize :kCatrobatHeaderScreenModeStretch;
     [self.skView setNeedsLayout];
-    self.menuOpen = YES;
-    // pause Scene
-    SKView *view = self.skView;
-    view.paused = YES;
-    [[AudioManager sharedAudioManager] pauseAllSounds];
 }
 
 - (void)takeScreenshotAction:(UIButton*)sender
@@ -449,98 +432,108 @@
     }
     
     if (gesture.state == UIGestureRecognizerStateChanged) {
-        if (translate.x > 0.0 && translate.x < self.menuView.frame.size.width && self.menuOpen == NO && self.firstGestureTouchPoint.x < kSlidingStartArea) {
-            [UIView animateWithDuration:0.25
-                                  delay:0.0
-                                options:UIViewAnimationOptionCurveEaseOut
-                             animations:^{[self handlePositvePan:translate];}
-                             completion:nil];
-        } else if (translate.x < 0.0 && translate.x > -self.menuView.frame.size.width && self.menuOpen == YES) {
-            [UIView animateWithDuration:0.25
-                                  delay:0.0
-                                options:UIViewAnimationOptionCurveEaseOut
-                             animations:^{[self handleNegativePan:translate];}
-                             completion:nil];
+        if (translate.x > 0.0 &&
+            translate.x < self.menuView.frame.size.width &&
+            self.firstGestureTouchPoint.x < kSlidingStartArea &&
+            self.menuOpen == NO) {
+            [self handlePositvePan:translate];
+        } else if (translate.x < 0.0 &&
+                   translate.x > -self.menuView.frame.size.width &&
+                   self.menuOpen == YES) {
+            [self handleNegativePan:translate];
         }
     }
     
     if (gesture.state == UIGestureRecognizerStateCancelled ||
         gesture.state == UIGestureRecognizerStateEnded ||
         gesture.state == UIGestureRecognizerStateFailed) {
-        if (translate.x > (self.menuView.frame.size.width/4) && self.menuOpen == NO && self.firstGestureTouchPoint.x < kSlidingStartArea) {
-            [UIView animateWithDuration:0.25
-                                  delay:0.0
-                                options:UIViewAnimationOptionCurveEaseOut
-                             animations:^{[self showMenuView];}
-                             completion:^(BOOL finished) {
-                                 self.menuOpen = YES;
-                                 // pause Scene
-                                 SKView * view= self.skView;
-                                 view.paused=YES;
-                                 [self pauseAction];
-                             }];
-        } else if(translate.x > 0.0 && translate.x <(self.menuView.frame.size.width/4) && self.menuOpen == NO && self.firstGestureTouchPoint.x < kSlidingStartArea) {
-            [UIView animateWithDuration:0.25
-                                  delay:0.0
-                                options:UIViewAnimationOptionCurveEaseOut
-                             animations:^{[self hideMenuView];}
-                             completion:^(BOOL finished) {
-                                 SKView * view = self.skView;
-                                 view.paused = NO;
-                                 self.menuOpen = NO;
-                                 [self resumeAction];
-                             }];
-        } else if (translate.x < (-self.menuView.frame.size.width/4)  && self.menuOpen == YES) {
-            [UIView animateWithDuration:0.25
-                                  delay:0.0
-                                options:UIViewAnimationOptionCurveEaseOut
-                             animations:^{[self hideMenuView];}
-                             completion:^(BOOL finished) {
-                                 SKView * view = self.skView;
-                                 view.paused = NO;
-                                 self.menuOpen = NO;
-                                 [self resumeAction];
-                             }];
-        } else if (translate.x > (-self.menuView.frame.size.width/4) && translate.x < 0.0   && self.menuOpen == YES) {
-            [UIView animateWithDuration:0.25
-                                  delay:0.0
-                                options:UIViewAnimationOptionCurveEaseOut
-                             animations:^{[self showMenuView];}
-                             completion:^(BOOL finished) {
-                                 self.menuOpen = YES;
-                                 // pause Scene
-                                 SKView * view= self.skView;
-                                 view.paused=YES;
-                                 [self pauseAction];
-                             }];
+        if (translate.x > (self.menuView.frame.size.width/4) &&
+            self.firstGestureTouchPoint.x < kSlidingStartArea &&
+            self.menuOpen == NO) {
+            //user opened at least 1/4 of the menu -> show
+            [self showMenuView];
+        } else if(translate.x > 0.0 &&
+                  translate.x < (self.menuView.frame.size.width/4) &&
+                  self.firstGestureTouchPoint.x < kSlidingStartArea &&
+                  self.menuOpen == NO) {
+            //user did not open at least 1/4 of the menu -> abort/hide
+            [self hideMenuView];
+        } else if (translate.x < (-self.menuView.frame.size.width/4) &&
+                   self.menuOpen == YES) {
+            //user closed at least 1/4 of the opened menu -> hide
+            [self hideMenuView];
+        } else if (translate.x < 0.0 &&
+                   translate.x > (-self.menuView.frame.size.width/4) &&
+                   self.menuOpen == YES) {
+            //user did not close at least 1/4 of the menu -> abort/show
+            [self showMenuView];
+        } else {
+            //if anything goes wrong, hide the menu view
+            [self hideMenuView];
         }
     }
 }
 
 - (void)handlePositvePan:(CGPoint)translate
 {
-    [self.view bringSubviewToFront:self.menuView];
-    self.menuViewLeadingConstraint.constant = -self.menuView.frame.size.width + translate.x;
-    [self.view layoutIfNeeded];
+    [UIView animateWithDuration:kMenuAnimationDuration
+                          delay:0.0
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         [self.view bringSubviewToFront:self.menuView];
+                         self.menuViewLeadingConstraint.constant = -self.menuView.frame.size.width + translate.x;
+                         [self.view layoutIfNeeded];
+                     }
+                     completion:nil];
 }
 
 - (void)handleNegativePan:(CGPoint)translate
 {
-    self.menuViewLeadingConstraint.constant = translate.x;
-    [self.view layoutIfNeeded];
+    [UIView animateWithDuration:kMenuAnimationDuration
+                          delay:0.0
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         self.menuViewLeadingConstraint.constant = translate.x;
+                         [self.view layoutIfNeeded];
+                     }
+                     completion:nil];
 }
 
 - (void)showMenuView
 {
-    [self.view bringSubviewToFront:self.menuView];
-    self.menuViewLeadingConstraint.constant = 0;
-    [self.view layoutIfNeeded];
+    [UIView animateWithDuration:kMenuAnimationDuration
+                          delay:0.0
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         [self.view bringSubviewToFront:self.menuView];
+                         self.menuViewLeadingConstraint.constant = 0;
+                         [self.view layoutIfNeeded];
+                     }
+                     completion:^(BOOL finished) {
+                         self.menuOpen = YES;
+                         self.skView.paused=YES;
+                         [self pauseAction];
+                     }];
 }
 
 - (void)hideMenuView
 {
-    self.menuViewLeadingConstraint.constant = -self.menuView.frame.size.width;
-    [self.view layoutIfNeeded];
+    [UIView animateWithDuration:kMenuAnimationDuration
+                          delay:0.0
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         self.menuViewLeadingConstraint.constant = -self.menuView.frame.size.width;
+                         [self.view layoutIfNeeded];
+                     }
+                     completion:^(BOOL finished) {
+                         self.menuOpen = NO;
+                         if (self.skView.paused) {
+                             self.skView.paused = NO;
+                             [self resumeAction];
+                         } else {
+                             [self takeAutomaticScreenshotForSKView:self.skView andProgram:self.program];
+                         }
+                     }];
 }
 
 #pragma mark - Getters & Setters
@@ -585,7 +578,6 @@
         _skView.showsDrawCount = YES;
 #endif
     }
-    _skView.paused = NO;
     return _skView;
 }
 
