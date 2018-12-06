@@ -26,7 +26,7 @@ class UIGestureRecognizerMock: UIGestureRecognizer {
 
     let mockedLocation: CGPoint
 
-    init(location: CGPoint, state: UIGestureRecognizerState) {
+    init(location: CGPoint, state: UIGestureRecognizer.State) {
         self.mockedLocation = location
 
         super.init(target: nil, action: nil)

@@ -101,7 +101,7 @@ class MediaLibraryCollectionViewDataSourceTests: XCTestCase {
             self.collectionView.layoutSubviews()
             self.collectionView.reloadData()
 
-            let headerKind = UICollectionElementKindSectionHeader
+            let headerKind = UICollectionView.elementKindSectionHeader
             var view = dataSource.collectionView(self.collectionView, viewForSupplementaryElementOfKind: headerKind, at: IndexPath(item: 0, section: 0)) as! LibraryCategoryCollectionReusableView
             XCTAssertEqual(view.title, "A")
 
