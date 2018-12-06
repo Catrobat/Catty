@@ -59,7 +59,7 @@
 
 - (void)openAboutURL
 {
-    if (IS_OS_10_OR_LATER) {
+    if (@available(iOS 10, *)) {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:kAboutCatrobatURL] options:[NSDictionary dictionary] completionHandler:nil];
     } else {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:kAboutCatrobatURL]];
@@ -67,7 +67,7 @@
 }
 - (void)openSourceCodeLicenseURL
 {
-    if (IS_OS_10_OR_LATER) {
+    if (@available(iOS 10, *)) {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:kSourceCodeLicenseURL] options:[NSDictionary dictionary] completionHandler:nil];
     } else {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:kSourceCodeLicenseURL]];

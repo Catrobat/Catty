@@ -132,8 +132,7 @@ class FaceDetectionManager: NSObject, FaceDetectionManagerProtocol, AVCaptureVid
             connection.videoOrientation = .portrait
         }
 
-        let attachments = CMCopyDictionaryOfAttachments(kCFAllocatorDefault, sampleBuffer, kCMAttachmentMode_ShouldPropagate)
-        let ciImage = CIImage(cvImageBuffer: pixelBuffer, options: attachments as? [String: Any])
+        let ciImage = CIImage(cvImageBuffer: pixelBuffer)
         guard let features = self.faceDetector?.features(in: ciImage) else { return }
 
         captureFace(for: features, in: ciImage.extent)
