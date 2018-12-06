@@ -20,9 +20,15 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension UIAlertController {
-    func addAction(title: String?, style: UIAlertAction.Style, handler: ((UIAlertAction) -> Void)?) {
-        let action = UIAlertAction(title: title, style: style, handler: handler)
-        self.addAction(action)
+extension AVAudioSession {
+
+    //setCategory Wrapper for Swift 4.2, also available for iOS 9
+    func setCategoryWrapper(_ category: AVAudioSession.Category, mode: AVAudioSession.Mode, options: AVAudioSession.CategoryOptions = []) throws {
+        if #available(iOS 10.0, *) {
+            try self.setCategory(category, mode: mode, options: options)
+        } else {
+            self.perform(NSSelectorFromString("setCategory:withOptions:error:"), with: category, with: options)
+        }
     }
+
 }

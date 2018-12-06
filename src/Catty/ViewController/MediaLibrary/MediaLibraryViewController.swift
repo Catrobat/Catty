@@ -39,7 +39,7 @@ final class MediaLibraryViewController: UICollectionViewController {
     private let dataSource: MediaLibraryCollectionViewDataSource
     private weak var loadingView: LoadingView!
     private var originalAudioSessionCategory: String?
-    private var originalAudioSessionCategoryOptions: AVAudioSessionCategoryOptions?
+    private var originalAudioSessionCategoryOptions: AVAudioSession.CategoryOptions?
 
     private var audioPlayer: AVAudioPlayer?
     private var audioPlayerFinishPlayingCompletionBlock: AudioPlayerFinishPlayingCompletionBlock?
@@ -226,15 +226,15 @@ extension MediaLibraryViewController: SoundsLibraryCollectionViewDataSourceDeleg
 extension MediaLibraryViewController {
     private func enableSoundInSilentMode() {
         let sharedAudioSession = AVAudioSession.sharedInstance()
-        self.originalAudioSessionCategory = sharedAudioSession.category
+        self.originalAudioSessionCategory = sharedAudioSession.category.rawValue
         self.originalAudioSessionCategoryOptions = sharedAudioSession.categoryOptions
-        try? sharedAudioSession.setCategory(AVAudioSessionCategoryPlayback, with: .mixWithOthers)
+        try? sharedAudioSession.setCategoryWrapper(AVAudioSession.Category.playback, mode: .default, options: .mixWithOthers)
     }
 
     private func undoEnableSoundInSilentMode() {
         if let category = self.originalAudioSessionCategory, let options = self.originalAudioSessionCategoryOptions {
             let sharedAudioSession = AVAudioSession.sharedInstance()
-            try? sharedAudioSession.setCategory(category, with: options)
+            try? sharedAudioSession.setCategoryWrapper(AVAudioSession.Category(rawValue: category), mode: .default, options: options)
         }
     }
 }

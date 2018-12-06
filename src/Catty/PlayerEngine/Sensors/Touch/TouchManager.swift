@@ -82,7 +82,7 @@ class TouchManager: TouchManagerProtocol, CBMultiTouchRecognizerDelegate {
         return true
     }
 
-    func handle(touch: UITouch, for state: UIGestureRecognizerState) {
+    func handle(touch: UITouch, for state: UIGestureRecognizer.State) {
         if state == .began {
             activeTouches.append(touch)
             allTouches.append(touch)

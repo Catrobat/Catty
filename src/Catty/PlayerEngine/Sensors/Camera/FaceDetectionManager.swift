@@ -103,8 +103,7 @@ class FaceDetectionManager: NSObject, FaceDetectionManagerProtocol, AVCaptureVid
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
 
-        let attachments = CMCopyDictionaryOfAttachments(kCFAllocatorDefault, sampleBuffer, kCMAttachmentMode_ShouldPropagate)
-        let ciImage = CIImage(cvImageBuffer: pixelBuffer, options: attachments as? [String: Any])
+        let ciImage = CIImage(cvImageBuffer: pixelBuffer)
         let imageOptions = [ CIDetectorImageOrientation: exifOrientation(currentDeviceOrientation: UIDevice.current.orientation)]
 
         guard let features = self.faceDetector?.features(in: ciImage, options: imageOptions) else { return }

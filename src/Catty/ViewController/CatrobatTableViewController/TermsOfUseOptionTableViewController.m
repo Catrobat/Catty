@@ -52,7 +52,7 @@
 
 - (void)openTermsOfUse
 {
-    if (IS_OS_10_OR_LATER) {
+    if (@available(iOS 10, *)) {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:kTermsOfUseURL] options:[NSDictionary dictionary] completionHandler:nil];
     } else {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:kTermsOfUseURL]];

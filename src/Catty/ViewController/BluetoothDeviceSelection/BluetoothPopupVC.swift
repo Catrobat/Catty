@@ -33,19 +33,19 @@ import UIKit
         super.viewDidLoad()
         self.segmentedPager.backgroundColor = UIColor.navBar()
         self.navigationController?.navigationBar.tintColor = UIColor.navTint()
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.navText()]
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.navText()]
         // Segmented Control customization
         self.segmentedPager.segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocation.down
         self.segmentedPager.segmentedControl.backgroundColor = UIColor.globalTint()
-        self.segmentedPager.segmentedControl.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.background(), NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12)]
-        self.segmentedPager.segmentedControl.selectedTitleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.navTint()]
+        self.segmentedPager.segmentedControl.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.background(), NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12)]
+        self.segmentedPager.segmentedControl.selectedTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.navTint()]
         self.segmentedPager.segmentedControl.selectionStyle = HMSegmentedControlSelectionStyle.box
         self.segmentedPager.segmentedControl.selectionIndicatorColor = UIColor.globalTint()
         self.segmentedPager.segmentedControl.segmentWidthStyle = HMSegmentedControlSegmentWidthStyle.fixed
 
         setHeader()
 
-        rightButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.cancel, target: self, action: #selector(BluetoothPopupVC.dismissAndDisconnect))
+        rightButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel, target: self, action: #selector(BluetoothPopupVC.dismissAndDisconnect))
         self.navigationItem.rightBarButtonItem = rightButton
     }
 

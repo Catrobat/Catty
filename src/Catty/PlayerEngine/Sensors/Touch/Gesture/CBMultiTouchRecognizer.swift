@@ -68,5 +68,5 @@ class CBMultiTouchRecognizer: UIGestureRecognizer {
 }
 
 protocol CBMultiTouchRecognizerDelegate: AnyObject {
-    func handle(touch: UITouch, for state: UIGestureRecognizerState)
+    func handle(touch: UITouch, for state: UIGestureRecognizer.State)
 }

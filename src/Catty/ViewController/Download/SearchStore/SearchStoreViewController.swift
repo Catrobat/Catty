@@ -124,7 +124,7 @@ class SearchStoreViewController: UIViewController, SelectedSearchStoreDataSource
     }
 
     private func setupTableView() {
-        self.searchStoreTableView.separatorStyle = UITableViewCellSeparatorStyle.none
+        self.searchStoreTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         self.searchStoreTableView.backgroundColor = UIColor.background()
         self.searchStoreTableView.separatorColor = UIColor.globalTint()
         self.searchStoreTableView.dataSource = self.dataSource
@@ -212,11 +212,11 @@ extension SearchStoreViewController {
 
     func updateTableView() {
         self.searchStoreTableView.reloadData()
-        self.searchStoreTableView.separatorStyle = UITableViewCellSeparatorStyle.none
+        self.searchStoreTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
     }
 
     func showNoResultsAlert() {
-        self.searchStoreTableView.separatorStyle = UITableViewCellSeparatorStyle.none
+        self.searchStoreTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         noSearchResultsLabel.isHidden = false
     }
 

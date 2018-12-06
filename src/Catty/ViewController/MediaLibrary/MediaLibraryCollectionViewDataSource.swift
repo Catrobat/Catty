@@ -65,7 +65,7 @@ class MediaLibraryCollectionViewDataSource: NSObject, UICollectionViewDataSource
 
     func registerContentViewClasses(_ collectionView: UICollectionView) {
         let headerViewNib = UINib(nibName: self.headerViewNibName, bundle: nil)
-        let headerKind = UICollectionElementKindSectionHeader
+        let headerKind = UICollectionView.elementKindSectionHeader
         let reuseIdentifier = self.headerViewReuseIdentifier
         collectionView.register(headerViewNib, forSupplementaryViewOfKind: headerKind, withReuseIdentifier: reuseIdentifier)
     }
@@ -83,7 +83,7 @@ class MediaLibraryCollectionViewDataSource: NSObject, UICollectionViewDataSource
     }
 
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: self.headerViewReuseIdentifier, for: indexPath)
+        let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: self.headerViewReuseIdentifier, for: indexPath)
         if let headerView = headerView as? LibraryCategoryCollectionReusableView, let categoryTitle = self.items[indexPath.section].first?.category {
             headerView.title = categoryTitle
         }
@@ -184,7 +184,7 @@ final class ImagesLibraryCollectionViewDataSource: MediaLibraryCollectionViewDat
             ImageCache.default.retrieveImage(forKey: resource.cacheKey, options: options) { image, _ in
                 guard let image = image else { completion(nil); return }
                 DispatchQueue.global().async {
-                    let data = UIImagePNGRepresentation(image)
+                    let data = image.pngData()
                     DispatchQueue.main.async {
                         completion(data)
                     }
