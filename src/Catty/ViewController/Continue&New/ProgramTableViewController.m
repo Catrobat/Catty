@@ -66,11 +66,6 @@
 }
 
 #pragma mark - view events
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:YES];
-    [self.tableView reloadData];
-}
 
 - (void)viewDidLoad
 {
@@ -92,7 +87,24 @@
     if(self.showAddObjectActionSheetAtStart) {
         [self addObjectAction:nil];
     }
+
+    //a)
+    /*[[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(unsupportedElementsAlert)
+                                                 name:@"unsupportedElementsNotification"
+                                               object:nil];*/
 }
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    [self.tableView reloadData];
+}
+
+/*a)
+ - (void)unsupportedElementsAlert {
+    [[[[AlertControllerBuilder alertWithTitle:...
+}*/
 
 #pragma mark - actions
 - (void)addObjectAction:(id)sender
@@ -100,26 +112,26 @@
     [self.tableView setEditing:false animated:YES];
     
     [[[[[[[AlertControllerBuilder textFieldAlertWithTitle:kLocalizedAddObject message:[NSString stringWithFormat:@"%@:", kLocalizedObjectName]]
-     placeholder:kLocalizedEnterYourObjectNameHere]
-     addCancelActionWithTitle:kLocalizedCancel handler:^{
-         [self cancelAddingObjectFromScriptEditor];
-     }]
-     addDefaultActionWithTitle:kLocalizedOK handler:^(NSString *name) {
-         [self addObjectActionWithName:name];
-     }]
-     valueValidator:^InputValidationResult *(NSString *name) {
-         InputValidationResult *result = [Util validationResultWithName:name
-                                                              minLength:kMinNumOfObjectNameCharacters
-                                                              maxlength:kMaxNumOfObjectNameCharacters];
-         if (!result.valid) {
-             return result;
-         }
-         // Alert for Objects with same name
-         if ([[self.program allObjectNames] containsObject:name]) {
-             return [InputValidationResult invalidInputWithLocalizedMessage:kLocalizedObjectNameAlreadyExistsDescription];
-         }
-         return [InputValidationResult validInput];
-     }] build]
+          placeholder:kLocalizedEnterYourObjectNameHere]
+         addCancelActionWithTitle:kLocalizedCancel handler:^{
+             [self cancelAddingObjectFromScriptEditor];
+         }]
+        addDefaultActionWithTitle:kLocalizedOK handler:^(NSString *name) {
+            [self addObjectActionWithName:name];
+        }]
+       valueValidator:^InputValidationResult *(NSString *name) {
+           InputValidationResult *result = [Util validationResultWithName:name
+                                                                minLength:kMinNumOfObjectNameCharacters
+                                                                maxlength:kMaxNumOfObjectNameCharacters];
+           if (!result.valid) {
+               return result;
+           }
+           // Alert for Objects with same name
+           if ([[self.program allObjectNames] containsObject:name]) {
+               return [InputValidationResult invalidInputWithLocalizedMessage:kLocalizedObjectNameAlreadyExistsDescription];
+           }
+           return [InputValidationResult validInput];
+       }] build]
      showWithController:self];
 }
 
@@ -236,32 +248,32 @@
     NSString *detailActionTitle = self.useDetailCells ? kLocalizedHideDetails : kLocalizedShowDetails;
     
     [[[[[actionSheet
-     addDefaultActionWithTitle:kLocalizedRenameProgram handler:^{
-         NSMutableArray *unavailableNames = [[Program allProgramNames] mutableCopy];
-         [unavailableNames removeString:self.program.header.programName];
-         [Util askUserForUniqueNameAndPerformAction:@selector(renameProgramActionForProgramWithName:)
-                                             target:self
-                                        promptTitle:kLocalizedRenameProgram
-                                      promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedProgramName]
-                                        promptValue:((! [self.program.header.programName isEqualToString:kLocalizedNewProgram])
-                                                     ? self.program.header.programName : nil)
-                                  promptPlaceholder:kLocalizedEnterYourProgramNameHere
-                                     minInputLength:kMinNumOfProgramNameCharacters
-                                     maxInputLength:kMaxNumOfProgramNameCharacters
-                           invalidInputAlertMessage:kLocalizedProgramNameAlreadyExistsDescription
-                                      existingNames:unavailableNames];
-    }]
-    addDefaultActionWithTitle:detailActionTitle handler:^{
-        [self toggleDetailCellsMode];
-    }]
-    addDefaultActionWithTitle:kLocalizedDescription handler:^{
-        ProgramDescriptionViewController *dViewController = [[ProgramDescriptionViewController alloc] init];
-        dViewController.delegate = self;
-        
-        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:dViewController];
-        [self.navigationController presentViewController:navigationController animated:YES completion:nil];
-    }] build]
-    showWithController:self];
+         addDefaultActionWithTitle:kLocalizedRenameProgram handler:^{
+             NSMutableArray *unavailableNames = [[Program allProgramNames] mutableCopy];
+             [unavailableNames removeString:self.program.header.programName];
+             [Util askUserForUniqueNameAndPerformAction:@selector(renameProgramActionForProgramWithName:)
+                                                 target:self
+                                            promptTitle:kLocalizedRenameProgram
+                                          promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedProgramName]
+                                            promptValue:((! [self.program.header.programName isEqualToString:kLocalizedNewProgram])
+                                                         ? self.program.header.programName : nil)
+                                      promptPlaceholder:kLocalizedEnterYourProgramNameHere
+                                         minInputLength:kMinNumOfProgramNameCharacters
+                                         maxInputLength:kMaxNumOfProgramNameCharacters
+                               invalidInputAlertMessage:kLocalizedProgramNameAlreadyExistsDescription
+                                          existingNames:unavailableNames];
+         }]
+        addDefaultActionWithTitle:detailActionTitle handler:^{
+            [self toggleDetailCellsMode];
+        }]
+       addDefaultActionWithTitle:kLocalizedDescription handler:^{
+           ProgramDescriptionViewController *dViewController = [[ProgramDescriptionViewController alloc] init];
+           dViewController.delegate = self;
+
+           UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:dViewController];
+           [self.navigationController presentViewController:navigationController animated:YES completion:nil];
+       }] build]
+     showWithController:self];
 }
 
 - (void)toggleDetailCellsMode {
@@ -485,29 +497,29 @@
         SpriteObject *spriteObject = [self.program.objectList objectAtIndex:spriteObjectIndex];
         
         [[[[[[[AlertControllerBuilder actionSheetWithTitle:kLocalizedEditObject]
-         addCancelActionWithTitle:kLocalizedCancel handler:nil]
-         addDefaultActionWithTitle:kLocalizedCopy handler:^{
-             [self copyObjectActionWithSourceObject:spriteObject];
-         }]
-         addDefaultActionWithTitle:kLocalizedRename handler:^{
-             NSMutableArray *unavailableNames = [[self.program allObjectNames] mutableCopy];
-             [unavailableNames removeString:spriteObject.name];
-             [Util askUserForUniqueNameAndPerformAction:@selector(renameObjectActionToName:spriteObject:)
-                                                 target:self
-                                           cancelAction:nil
-                                             withObject:spriteObject
-                                            promptTitle:kLocalizedRenameObject
-                                          promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedObjectName]
-                                            promptValue:spriteObject.name
-                                      promptPlaceholder:kLocalizedEnterYourObjectNameHere
-                                         minInputLength:kMinNumOfObjectNameCharacters
-                                         maxInputLength:kMaxNumOfObjectNameCharacters
-                               invalidInputAlertMessage:kLocalizedObjectNameAlreadyExistsDescription
-                                          existingNames:unavailableNames];
-         }] build]
-         viewWillDisappear:^{
-             [self.tableView setEditing:false animated:YES];
-         }]
+              addCancelActionWithTitle:kLocalizedCancel handler:nil]
+             addDefaultActionWithTitle:kLocalizedCopy handler:^{
+                 [self copyObjectActionWithSourceObject:spriteObject];
+             }]
+            addDefaultActionWithTitle:kLocalizedRename handler:^{
+                NSMutableArray *unavailableNames = [[self.program allObjectNames] mutableCopy];
+                [unavailableNames removeString:spriteObject.name];
+                [Util askUserForUniqueNameAndPerformAction:@selector(renameObjectActionToName:spriteObject:)
+                                                    target:self
+                                              cancelAction:nil
+                                                withObject:spriteObject
+                                               promptTitle:kLocalizedRenameObject
+                                             promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedObjectName]
+                                               promptValue:spriteObject.name
+                                         promptPlaceholder:kLocalizedEnterYourObjectNameHere
+                                            minInputLength:kMinNumOfObjectNameCharacters
+                                            maxInputLength:kMaxNumOfObjectNameCharacters
+                                  invalidInputAlertMessage:kLocalizedObjectNameAlreadyExistsDescription
+                                             existingNames:unavailableNames];
+            }] build]
+          viewWillDisappear:^{
+              [self.tableView setEditing:false animated:YES];
+          }]
          showWithController:self];
     }];
     moreAction.backgroundColor = [UIColor globalTintColor];
@@ -518,10 +530,10 @@
             return;
         }
         [[[[[AlertControllerBuilder alertWithTitle:kLocalizedDeleteThisObject message:kLocalizedThisActionCannotBeUndone]
-         addCancelActionWithTitle:kLocalizedCancel handler:nil]
-         addDefaultActionWithTitle:kLocalizedYes handler:^{
-             [self deleteObjectForIndexPath:indexPath];
-         }] build]
+            addCancelActionWithTitle:kLocalizedCancel handler:nil]
+           addDefaultActionWithTitle:kLocalizedYes handler:^{
+               [self deleteObjectForIndexPath:indexPath];
+           }] build]
          showWithController:self];
     }];
     return @[deleteAction, moreAction];
@@ -548,8 +560,8 @@
         headerView.textLabel.text = [kLocalizedBackground uppercaseString];
     } else {
         headerView.textLabel.text = (([self.program numberOfNormalObjects] != 1)
-                                                    ? [kLocalizedObjects uppercaseString]
-                                                    : [kLocalizedObject uppercaseString]);
+                                     ? [kLocalizedObjects uppercaseString]
+                                     : [kLocalizedObject uppercaseString]);
     }
     return headerView;
 }

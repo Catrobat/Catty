@@ -20,12 +20,14 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+#import "AppDelegate.h"
 #import "CBXMLParser.h"
 #import "GDataXMLNode.h"
 #import "Program+CBXMLHandler.h"
 #import "Program+CustomExtensions.h"
 #import "CBXMLParserContext.h"
 #import "Util.h"
+#import "Pocket_Code-Swift.h"
 
 // NEVER MOVE THESE DEFINE CONSTANTS TO ANOTHER (HEADER) FILE
 #define kCatrobatXMLParserMinSupportedLanguageVersion 0.93f
@@ -112,12 +114,39 @@
                                              initWithLanguageVersion:languageVersion];
         program = [parserContext parseFromElement:xmlDocument.rootElement withClass:[Program class]];
         NSInfo(@"Parsing finished...");
+
+        [self checkUnsupportedList:parserContext.unsupportedList program:program];
     } @catch(NSException *exception) {
         NSError(@"Program could not be loaded! %@", [exception description]);
         return nil;
     }
     [program updateReferences];
     return program;
+}
+
+- (void)checkUnsupportedList:(NSMutableArray*)unsupportedList program:(Program*)program {
+    if (unsupportedList.count > 0) {
+        //a)
+        /*[[NSNotificationCenter defaultCenter] postNotificationName:@"unsupportedElementsNotification"
+                                                            object:self];*/
+
+        //b)
+        [[[[[[AlertControllerBuilder alertWithTitle:@"Unsupported Elements" message:@"huhu"] addDefaultActionWithTitle:kLocalizedCancel handler:^{
+            //do nothing
+        }] addDefaultActionWithTitle:@"Mehr Infos" handler:^{
+            if (IS_OS_10_OR_LATER) {
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://catrob.at/ibuf"] options:[NSDictionary dictionary] completionHandler:nil];
+            } else {
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:kSourceCodeLicenseURL]];
+            }
+        }] addDefaultActionWithTitle:kLocalizedOK handler:^{
+            /* dirty test
+             ProgramTableViewController *programTableViewController = [[ProgramTableViewController alloc] init];
+             programTableViewController.program = program;
+             AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+             [((UINavigationController*)appDelegate.window.rootViewController) pushViewController:programTableViewController animated:YES];*/
+        }] build] showWithController:[Util topmostViewController]];
+    }
 }
 
 @end

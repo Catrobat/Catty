@@ -96,6 +96,15 @@
     }
     return _formulaListNameList;
 }
+
+- (NSMutableArray*)unsupportedList
+{
+    if (! _unsupportedList) {
+        _unsupportedList = [[NSMutableArray alloc] init];
+    }
+    return _unsupportedList;
+}
+
 - (void)setLanguageVersion:(CGFloat)languageVersion
 {
     _languageVersion = languageVersion;

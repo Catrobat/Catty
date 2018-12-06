@@ -76,6 +76,7 @@
         BroadcastScript *broadcastScript = [BroadcastScript new];
         broadcastScript.receivedMessage = [NSString stringWithFormat:@"%@ %@", kLocalizedUnsupportedScript, scriptType];
         script = broadcastScript;
+        [context.unsupportedList addObject:script];
         NSWarn(@"Unsupported Script: %@", scriptType);
     } else {
         [XMLError exceptionWithMessage:@"Unsupported script type: %@!", scriptType];
@@ -128,6 +129,7 @@
             [formulaElement addChild:[GDataXMLElement elementWithName:@"value"
                                                           stringValue:[NSString stringWithFormat:@"%@ %@", kLocalizedUnsupportedBrick, brickTypeName]]];
             [formulaList addChild:formulaElement];
+            [context.unsupportedList addObject:formulaElement];
             [brickXmlElement addChild:formulaList];
         } else {
             brickXmlElement = brickElement;
