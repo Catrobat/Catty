@@ -50,14 +50,14 @@ final class FaceSizeSensorTest: XCTestCase {
     }
 
     func testRawValue() {
-        self.cameraManagerMock.faceSizeRatio = 50
-        XCTAssertEqual(50, sensor.rawValue(), accuracy: Double.epsilon)
+        self.cameraManagerMock.faceSizeRatio = 0.2
+        XCTAssertEqual(0.2, sensor.rawValue(), accuracy: Double.epsilon)
 
-        self.cameraManagerMock.faceSizeRatio = 100
-        XCTAssertEqual(100, sensor.rawValue(), accuracy: Double.epsilon)
+        self.cameraManagerMock.faceSizeRatio = 0.5
+        XCTAssertEqual(0.5, sensor.rawValue(), accuracy: Double.epsilon)
 
-        self.cameraManagerMock.faceSizeRatio = 120
-        XCTAssertEqual(120, sensor.rawValue(), accuracy: Double.epsilon)
+        self.cameraManagerMock.faceSizeRatio = 1.0
+        XCTAssertEqual(1.0, sensor.rawValue(), accuracy: Double.epsilon)
     }
 
     func testConvertToStandardized() {
