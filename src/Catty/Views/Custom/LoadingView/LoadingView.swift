@@ -63,7 +63,7 @@ class LoadingView: UIView {
     }
 
     func initActivityIndicator() {
-        activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+        activityIndicator = UIActivityIndicatorView(style: .whiteLarge)
         activityIndicator?.frame = CGRect(x: 80, y: 15, width: 40, height: 40)
         if let anIndicator = activityIndicator {
             addSubview(anIndicator)
@@ -75,7 +75,7 @@ class LoadingView: UIView {
     @objc func show() {
         activityIndicator?.startAnimating()
         isHidden = false
-        superview?.bringSubview(toFront: self)
+        superview?.bringSubviewToFront(self)
 
         self.centerView()
         self.widthAnchor.constraint(equalToConstant: CGFloat(kLoadingBackgroundWidth)).isActive = true

@@ -20,20 +20,15 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import UIKit.UIGestureRecognizerSubclass
+extension AVAudioSession {
 
-class UIGestureRecognizerMock: UIGestureRecognizer {
-
-    let mockedLocation: CGPoint
-
-    init(location: CGPoint, state: UIGestureRecognizer.State) {
-        self.mockedLocation = location
-
-        super.init(target: nil, action: nil)
-        self.state = state
+    //setCategory Wrapper for Swift 4.2, also available for iOS 9
+    func setCategoryWrapper(_ category: AVAudioSession.Category, mode: AVAudioSession.Mode, options: AVAudioSession.CategoryOptions = []) throws {
+        if #available(iOS 10.0, *) {
+            try self.setCategory(category, mode: mode, options: options)
+        } else {
+            self.perform(NSSelectorFromString("setCategory:withOptions:error:"), with: category, with: options)
+        }
     }
 
-    override func location(in view: UIView?) -> CGPoint {
-        return mockedLocation
-    }
 }

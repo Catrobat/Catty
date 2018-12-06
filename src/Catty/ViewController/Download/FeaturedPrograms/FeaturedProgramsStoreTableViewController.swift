@@ -85,7 +85,7 @@ class FeaturedProgramsStoreTableViewController: UITableViewController, SelectedF
     }
 
     private func setupTableView() {
-        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
+        self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         self.tableView.dataSource = self.dataSource
         self.tableView.delegate = self.dataSource
     }

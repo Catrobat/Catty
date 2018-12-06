@@ -67,7 +67,7 @@ class IntroductionPageViewController: UIPageViewController {
 
 fileprivate extension IntroductionPageViewController {
     func setupBackground() {
-        guard UIAccessibilityIsReduceTransparencyEnabled() else {
+        guard UIAccessibility.isReduceTransparencyEnabled else {
             self.view.backgroundColor = .darkGray
             self.view.alpha = 0.95
             return

@@ -24,20 +24,9 @@
 
 // Screen Sizes in Points
 #define kIphone4ScreenHeight 480.0f
-#define kIphone4ScreenWidth 320.0f
 #define kIphone5ScreenHeight 568.0f
-#define kIphone5ScreenWidth 320.0f
-#define kIphone6ScreenHeight 667.0f
-#define kIphone6ScreenWidth 375.0f
 #define kIphone6PScreenHeight 736.0f
-#define kIphone6PScreenWidth 414.0f
 #define kIpadScreenHeight 1028.0f
-#define kIpadScreenWidth 768.0f
-#define kIpadRetinaScreenHeight 2048.0f
-#define kIpadRetinaScreenWidth 1536.0f
-
-// CatrobatTableViewController
-#define kIconDownsizeFactorIphone4 0.85f
 
 // Blocked characters for program names, object names, images names, sounds names and variable/list names
 #define kTextFieldBlockedCharacters @""
