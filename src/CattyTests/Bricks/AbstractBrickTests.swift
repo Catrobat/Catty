@@ -20,16 +20,33 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-//
-//  Use this file to import your target's public headers that you would like to expose to Swift.
-//
+import SpriteKit
+import XCTest
 
-#import "Catty-Bridging-Header.h"
+@testable import Pocket_Code
 
-#import "ProgramMock.h"
+//BrickImports
+class AbstractBrickTests: XCTestCase {
+    private var _programs: [AnyHashable] = []
+    var programs: [AnyHashable] {
+        #if false
+        if !_programs {
+            _programs = [AnyHashable]()
+        }
+        #endif
+        return _programs
+    }
+    var skView: SKView? = nil
+    var scene: CBScene? = nil
+    var formulaInterpreter: FormulaManager?
 
-#import "ScriptCollectionViewController.h"
-#import "BrickManager.h"
-#import "BrickInsertManager.h"
-#import "BrickMoveManager.h"
-#import "FormulaElement.h"
+    override func setUp() {
+        super.setUp()
+        formulaInterpreter = FormulaManager()
+        scene = SceneBuilder(program: ProgramMock()).build()
+    }
+
+    override class func tearDown() {
+        super.tearDown()
+    }
+}

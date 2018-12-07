@@ -26,7 +26,10 @@
 
 @interface BrickMoveManager : NSObject
 
-+(id)sharedInstance;
+@property (nonatomic, strong) NSIndexPath *upperBorder;
+@property (nonatomic, strong) NSIndexPath *lowerBorder;
+
++(BrickMoveManager*)sharedInstance;
 
 - (BOOL)collectionView:(UICollectionView*)collectionView itemAtIndexPath:(NSIndexPath*)fromIndexPath
     canMoveToIndexPath:(NSIndexPath*)toIndexPath andObject:(SpriteObject*)object;
@@ -34,6 +37,4 @@
 -(void)reset;
 -(void)getReadyForNewBrickMovement;
 
-@property (nonatomic, strong) NSIndexPath *upperBorder;
-@property (nonatomic, strong) NSIndexPath *lowerBorder;
 @end

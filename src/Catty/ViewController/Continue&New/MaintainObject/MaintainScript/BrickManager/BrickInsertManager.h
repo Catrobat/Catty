@@ -36,7 +36,7 @@
 
 - (void)setBrickMoveMode:(BOOL)isMoving;
 
-+(id)sharedInstance;
++(BrickInsertManager*)sharedInstance;
 
 - (BOOL)collectionView:(UICollectionView*)collectionView itemAtIndexPath:(NSIndexPath*)fromIndexPath
     canInsertToIndexPath:(NSIndexPath*)toIndexPath andObject:(SpriteObject*)object;

@@ -20,16 +20,28 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-//
-//  Use this file to import your target's public headers that you would like to expose to Swift.
-//
+import XCTest
 
-#import "Catty-Bridging-Header.h"
+@testable import Pocket_Code
 
-#import "ProgramMock.h"
+final class HideBrickTests: AbstractBrickTests {
 
-#import "ScriptCollectionViewController.h"
-#import "BrickManager.h"
-#import "BrickInsertManager.h"
-#import "BrickMoveManager.h"
-#import "FormulaElement.h"
+    func testHideBrick() {
+        let object = SpriteObject()
+        let spriteNode = CBSpriteNode(spriteObject: object)
+        object.spriteNode = spriteNode
+
+        scene!.addChild(spriteNode)
+        spriteNode.catrobatPosition = CGPoint(x: 0, y: 0)
+
+        let script = WhenScript()
+        script.object = object
+
+        let brick = HideBrick()
+        brick.script = script
+
+        let action: () -> Void = brick.actionBlock()
+        action()
+        XCTAssertEqual(spriteNode.isHidden, true, "HideBrick is not correctly calculated")
+    }
+}

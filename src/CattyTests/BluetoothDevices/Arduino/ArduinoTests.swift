@@ -127,11 +127,6 @@ class ArduinoTests: XCTestCase {
         arduinoTest.arduinoHelper.didReceiveDigitalMessage(15, value: 0)
     }
 
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-
     // MARK: ArduinoProtocolTests
     //digitalPin
     func testSetDigitalPin4To1() {

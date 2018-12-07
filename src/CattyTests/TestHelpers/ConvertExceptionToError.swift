@@ -20,16 +20,16 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-//
-//  Use this file to import your target's public headers that you would like to expose to Swift.
-//
+import Foundation
 
-#import "Catty-Bridging-Header.h"
-
-#import "ProgramMock.h"
-
-#import "ScriptCollectionViewController.h"
-#import "BrickManager.h"
-#import "BrickInsertManager.h"
-#import "BrickMoveManager.h"
-#import "FormulaElement.h"
+class ConvertExceptionToError: NSObject {
+    class func catchException(_ tryBlock: @escaping () -> Void) throws {
+        /*TODO EXCEPTION defer {
+        }
+        do {
+            tryBlock()
+        } catch let exception {
+            error = NSError(domain: exception.name, code: 0, userInfo: exception.userInfo)
+        }*/
+    }
+}

@@ -22,7 +22,6 @@
 
 import SpriteKit
 
-@objc
 final class CBScene: SKScene {
 
     // MARK: - Properties
@@ -50,15 +49,15 @@ final class CBScene: SKScene {
         backgroundColor = UIColor.white
     }
 
-    @objc required init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
     // MARK: - Deinitializer
-    @objc deinit { logger.info("Dealloc Scene") }
+    deinit { logger.info("Dealloc Scene") }
 
     // MARK: - Scene events
-    @objc override func willMove(from view: SKView) {
+    override func willMove(from view: SKView) {
         removeAllChildren()
         removeAllActions()
     }
@@ -67,7 +66,6 @@ final class CBScene: SKScene {
         view.isMultipleTouchEnabled = true
     }
 
-    @objc
     @discardableResult
     func touchedWithTouch(_ touch: UITouch) -> Bool {
         if !scheduler.running {
@@ -117,12 +115,20 @@ final class CBScene: SKScene {
     }
 
     // MARK: - Start program
-    @objc func startProgram() {
-        guard let program = frontend.program else {
-            fatalError("Invalid program. This should never happen!")
+
+    func validProgram() -> Bool {
+        guard let _ = frontend.program else {
+            return false
+        }
+        return true
+    }
+
+    func startProgram() {
+        if !validProgram() {
+            fatalError("Starting invalid program. This should never happen!")
         }
 
-        guard let spriteObjectList = program.objectList as NSArray? as? [SpriteObject],
+        guard let spriteObjectList = frontend.program!.objectList as NSArray? as? [SpriteObject],
             let variableList = frontend.program?.variables.allVariables() as NSArray? as? [UserVariable] else {
                 fatalError("!! Invalid sprite object list given !! This should never happen!")
         }
@@ -195,7 +201,7 @@ final class CBScene: SKScene {
             addChild(variable.textLabel)
         }
 
-        formulaManager.setup(for: program, and: self)
+        formulaManager.setup(for: frontend.program!, and: self)
         scheduler.run()
     }
 
@@ -218,5 +224,4 @@ final class CBScene: SKScene {
         formulaManager.stop()
         logger.info("All SpriteObjects and Scripts have been removed from Scene!")
     }
-
 }

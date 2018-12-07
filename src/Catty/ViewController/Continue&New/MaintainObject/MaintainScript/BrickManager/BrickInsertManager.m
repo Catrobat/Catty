@@ -41,7 +41,7 @@
 
 @implementation BrickInsertManager
 
-+ (id)sharedInstance {
++ (BrickInsertManager*)sharedInstance {
     static BrickInsertManager *sharedBrickInsertManager = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{

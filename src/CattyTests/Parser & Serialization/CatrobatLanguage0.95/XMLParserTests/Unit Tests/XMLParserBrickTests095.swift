@@ -38,12 +38,12 @@ final class XMLParserBrickTests095: XMLAbstractTest {
         let setVariableBrick = SetVariableBrick()
         let xmlElement = setVariableBrick.xmlElement(with: self.serializerContext)
 
-        XCTAssertThrowsError(
+        /*TODO EXCEPTION XCTAssertThrowsError(
             try ConvertExceptionToError.catchException {
                 SetVariableBrick.parse(from: xmlElement, with: self.parserContext)
             }) { error in
             XCTAssertTrue(error.localizedDescription.contains(NSStringFromClass(CBXMLParserHelper.self)))
-        }
+        }*/
     }
 
     func testSetVariableBrickWithoutUserVariableAndWithoutInUserBrickElement() {
@@ -81,14 +81,14 @@ final class XMLParserBrickTests095: XMLAbstractTest {
         let changeVariableBrick = ChangeVariableBrick()
         let xmlElement = changeVariableBrick.xmlElement(with: self.serializerContext)
 
-        XCTAssertThrowsError(
+        /*TODO EXCEPTION XCTAssertThrowsError(
             try ConvertExceptionToError.catchException {
             ChangeVariableBrick.parse(from: xmlElement, with: self.parserContext)
 
             }
             ) { error in
             XCTAssertTrue(error.localizedDescription.contains(NSStringFromClass(CBXMLParserHelper.self)))
-        }
+        }*/
     }
 
     func testChangeVariableBrickWithoutUserVariableAndWithoutInUserBrickElement() {

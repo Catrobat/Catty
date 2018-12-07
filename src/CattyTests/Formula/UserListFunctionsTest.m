@@ -21,7 +21,6 @@
  */
 
 #import <XCTest/XCTest.h>
-#import "AbstractBrickTests.h"
 #import "WhenScript.h"
 #import "Pocket_Code-Swift.h"
 

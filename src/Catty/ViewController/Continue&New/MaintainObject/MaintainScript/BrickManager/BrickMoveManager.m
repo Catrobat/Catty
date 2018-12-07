@@ -40,7 +40,7 @@
 
 @implementation BrickMoveManager
 
-+ (id)sharedInstance {
++ (BrickMoveManager*)sharedInstance {
     static BrickMoveManager *sharedBrickMoveManager = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -49,8 +49,6 @@
     });
     return sharedBrickMoveManager;
 }
-
-
 
 - (BOOL)collectionView:(UICollectionView*)collectionView itemAtIndexPath:(NSIndexPath*)fromIndexPath
     canMoveToIndexPath:(NSIndexPath*)toIndexPath andObject:(SpriteObject*)object

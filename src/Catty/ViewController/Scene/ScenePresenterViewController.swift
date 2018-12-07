@@ -218,19 +218,19 @@ class ScenePresenterViewController: UIViewController, UIActionSheetDelegate {
             setupLabel(labelTextArray[i], andView: labelArray[i])
         }
         menuBackLabel.addTarget(self,
-                                action: #selector(ScenePresenterViewController.stopAction(_:)),
+                                action: #selector(ScenePresenterViewController.stopAction),
                                 for: .touchUpInside)
         menuContinueLabel.addTarget(self,
-                                    action: #selector(ScenePresenterViewController.continueAction(_:)),
+                                    action: #selector(ScenePresenterViewController.continueAction),
                                     for: .touchUpInside)
         menuScreenshotLabel.addTarget(self,
-                                      action: #selector(ScenePresenterViewController.takeScreenshotAction(_:)),
+                                      action: #selector(ScenePresenterViewController.takeScreenshotAction),
                                       for: .touchUpInside)
         menuRestartLabel.addTarget(self,
-                                   action: #selector(ScenePresenterViewController.restartAction(_:)),
+                                   action: #selector(ScenePresenterViewController.restartAction),
                                    for: .touchUpInside)
         menuAxisLabel.addTarget(self,
-                                action: #selector(ScenePresenterViewController.showHideAxisAction(_:)),
+                                action: #selector(ScenePresenterViewController.showHideAxisAction),
                                 for: .touchUpInside)
     }
 
@@ -245,27 +245,27 @@ class ScenePresenterViewController: UIViewController, UIActionSheetDelegate {
         setupButton(with: menuBackButton,
                     imageNameNormal: UIImage(named: "stage_dialog_button_back"),
                     andImageNameHighlighted: UIImage(named: "stage_dialog_button_back_pressed"),
-                    andSelector: #selector(ScenePresenterViewController.stopAction(_:)))
+                    andSelector: #selector(ScenePresenterViewController.stopAction))
         setupButton(with: menuContinueButton,
                     imageNameNormal: UIImage(named: "stage_dialog_button_continue"),
                     andImageNameHighlighted: UIImage(named: "stage_dialog_button_continue_pressed"),
-                    andSelector: #selector(ScenePresenterViewController.continueAction(_:)))
+                    andSelector: #selector(ScenePresenterViewController.continueAction))
         setupButton(with: menuScreenshotButton,
                     imageNameNormal: UIImage(named: "stage_dialog_button_screenshot"),
                     andImageNameHighlighted: UIImage(named: "stage_dialog_button_screenshot_pressed"),
-                    andSelector: #selector(ScenePresenterViewController.takeScreenshotAction(_:)))
+                    andSelector: #selector(ScenePresenterViewController.takeScreenshotAction))
         setupButton(with: menuRestartButton,
                     imageNameNormal: UIImage(named: "stage_dialog_button_restart"),
                     andImageNameHighlighted: UIImage(named: "stage_dialog_button_restart_pressed"),
-                    andSelector: #selector(ScenePresenterViewController.restartAction(_:)))
+                    andSelector: #selector(ScenePresenterViewController.restartAction))
         setupButton(with: menuAxisButton,
                     imageNameNormal: UIImage(named: "stage_dialog_button_toggle_axis"),
                     andImageNameHighlighted: UIImage(named: "stage_dialog_button_toggle_axis_pressed"),
-                    andSelector: #selector(ScenePresenterViewController.showHideAxisAction(_:)))
+                    andSelector: #selector(ScenePresenterViewController.showHideAxisAction))
         setupButton(with: menuAspectRatioButton,
                     imageNameNormal: UIImage(named: "stage_dialog_button_aspect_ratio"),
                     andImageNameHighlighted: UIImage(named: "stage_dialog_button_aspect_ratio_pressed"),
-                    andSelector: #selector(ScenePresenterViewController.manageAspectRatioAction(_:)))
+                    andSelector: #selector(ScenePresenterViewController.manageAspectRatioAction))
     }
 
     func setupButton(with button: UIButton?, imageNameNormal stateNormal: UIImage?, andImageNameHighlighted stateHighlighted: UIImage?, andSelector myAction: Selector) {
@@ -371,11 +371,13 @@ class ScenePresenterViewController: UIViewController, UIActionSheetDelegate {
         let value = UIInterfaceOrientation.portrait.rawValue
         UIDevice.current.setValue(value, forKey: "orientation")
 
-        skView?.presentScene(self.scene)
-        self.scene?.startProgram()
-
-        menuView?.isUserInteractionEnabled = true
-
+        if self.scene?.validProgram() ?? false {
+            skView?.presentScene(self.scene)
+            self.scene?.startProgram()
+            menuView?.isUserInteractionEnabled = true
+        } else {
+            self.stopAction()
+        }
         loadingView?.hide()
         hideMenuView()
     }
@@ -393,21 +395,22 @@ class ScenePresenterViewController: UIViewController, UIActionSheetDelegate {
 
         AlertControllerBuilder.alert(title: "Lost Bluetooth Connection", message: kLocalizedPocketCode)
             .addCancelAction(title: kLocalizedOK, handler: {
-                self.stopAction(nil)})
+                self.stopAction()})
             .build()
             .showWithController(self)
     }
 
     // MARK: - User Event Handling
 
-    @objc func continueAction(_ sender: UIButton?) {
+    @objc func continueAction() {
         continuePlayer()
         hideMenuView()
     }
 
-    @objc func stopAction(_ sender: UIButton?) {
+    @objc func stopAction() {
         let previousScene: CBScene? = scene
 
+        loadingView?.hide()
         DispatchQueue.global(qos: .default).async(execute: {
             self.menuView?.isUserInteractionEnabled = false
             previousScene?.isUserInteractionEnabled = false
@@ -420,7 +423,7 @@ class ScenePresenterViewController: UIViewController, UIActionSheetDelegate {
         navigationController?.popViewController(animated: true)
     }
 
-    @objc func restartAction(_ sender: UIButton?) {
+    @objc func restartAction() {
         loadingView?.show()
 
         menuView?.isUserInteractionEnabled = false
@@ -436,7 +439,7 @@ class ScenePresenterViewController: UIViewController, UIActionSheetDelegate {
         })
     }
 
-    @objc func showHideAxisAction(_ sender: UIButton?) {
+    @objc func showHideAxisAction() {
         if gridView?.isHidden == false {
             gridView?.isHidden = true
         } else {
@@ -444,13 +447,13 @@ class ScenePresenterViewController: UIViewController, UIActionSheetDelegate {
         }
     }
 
-    @objc func manageAspectRatioAction(_ sender: UIButton?) {
+    @objc func manageAspectRatioAction() {
         scene?.scaleMode = scene?.scaleMode == .aspectFit ? .fill : .aspectFit
         program?.header.screenMode = (program?.header.screenMode == kCatrobatHeaderScreenModeStretch) ? kCatrobatHeaderScreenModeMaximize : kCatrobatHeaderScreenModeStretch
         skView?.setNeedsLayout()
     }
 
-    @objc func takeScreenshotAction(_ sender: UIButton?) {
+    @objc func takeScreenshotAction() {
         takeManualScreenshot(for: skView!, and: program!)
     }
 
