@@ -56,5 +56,9 @@ final class TurnLeftBrickTests: AbstractBrickTests {
         brick.degrees = Formula(float: Float(rotation))
 
         let action: () -> Void = brick.actionBlock(formulaInterpreter!)
+        action()
+
+        let expectedRawRotation = RotationSensor.convertToRaw(userInput: Double(initialRotation - rotation), for: object)
+        XCTAssertEqual(expectedRawRotation, Double(spriteNode.zRotation), accuracy: 0.0001, "TurnLeftBrick not correct")
     }
 }

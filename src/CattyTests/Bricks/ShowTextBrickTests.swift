@@ -73,7 +73,8 @@ final class ShowTextBrickTests: XCTestCase {
             XCTFail("Fatal Error")
         }
 
-        XCTAssertTrue(true); // The purpose of this test is to show that the program does not crash
+        // The purpose of this test is to show that the program does not crash
         // when no UserVariable is selected in the IDE and the brick is executed
+        XCTAssertTrue(true);
     }
 }

@@ -27,8 +27,8 @@ import XCTest
 final class TurnRightBrickTests: AbstractBrickTests {
 
     func testTurnRightBrick() {
-        //[self turnRightWithInitialRotation:0 andRotation:20.0f];
-        //[self turnRightWithInitialRotation:40 andRotation:60.0f];
+        //turnRight(withInitialRotation: 0.0, andRotation: 20.0)
+        //turnRight(withInitialRotation: 40.0, andRotation: 60.0)
         turnRight(withInitialRotation: 200, andRotation: 80.0)
     }
 
@@ -50,11 +50,11 @@ final class TurnRightBrickTests: AbstractBrickTests {
     }
 
     func testTurnRightBrickWithoutRotation() {
-        //[self turnRightWithInitialRotation:0 andRotation:0.0f];
-        //[self turnRightWithInitialRotation:-80 andRotation:0.0f];
-        //[self turnRightWithInitialRotation:-180 andRotation:0.0f];
+        //turnRight(withInitialRotation: 0.0, andRotation: 0.0)
+        //turnRight(withInitialRotation: -80, andRotation: 0.0)
+        //turnRight(withInitialRotation: -180, andRotation: 0.0)
         turnRight(withInitialRotation: -190, andRotation: 0.0)
-        //[self turnRightWithInitialRotation:290 andRotation:0.0f];
+        //turnRight(withInitialRotation: 290, andRotation: 0.0)
     }
 
     func testTurnRightBrickWrongInput() {
@@ -78,7 +78,7 @@ final class TurnRightBrickTests: AbstractBrickTests {
     }
 
     func turnRight(withInitialRotation initialRotation: CGFloat, andRotation rotation: CGFloat) {
-        let initialRotation = initialRotation
+        var initialRotation = initialRotation
         let object = SpriteObject()
         let spriteNode = CBSpriteNode(spriteObject: object)
         object.spriteNode = spriteNode
@@ -95,5 +95,14 @@ final class TurnRightBrickTests: AbstractBrickTests {
 
         let action: () -> Void = brick.actionBlock(formulaInterpreter!)
         action()
+
+        if initialRotation > 180.0 {
+            initialRotation -= 360.0
+        } else if initialRotation < -180.0 {
+            initialRotation += 360.0
+        }
+
+        let expectedRawRotation = RotationSensor.convertToRaw(userInput: Double(initialRotation - rotation), for: object)
+        XCTAssertEqual(expectedRawRotation, Double(spriteNode.zRotation), accuracy: 0.0001, "TurnRightBrick not correct")
     }
 }

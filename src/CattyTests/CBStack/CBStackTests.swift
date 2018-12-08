@@ -26,7 +26,6 @@ import XCTest
 
 final class CBStackTests: XCTestCase {
 
-    /*TODO
     let kNumberOfRoundsToTest = 100
     let kMinNumberOfStackElements = 1000
     let kMaxNumberOfStackElements = 100000
@@ -63,5 +62,5 @@ final class CBStackTests: XCTestCase {
                            String(format: "Number of remaining elements on CBStack is %lu but should be %lu", UInt(stack.count()), UInt(kMaxNumberOfStackElements - numberOfElementsToPop)))
             stack.pop() //TODO allelements
         }
-    }*/
+    }
 }

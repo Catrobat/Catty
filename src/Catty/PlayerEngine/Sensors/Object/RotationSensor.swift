@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc class RotationSensor: NSObject, ObjectDoubleSensor {
+class RotationSensor: NSObject, ObjectDoubleSensor {
 
     static let tag = "OBJECT_ROTATION"
     static let name = kUIFEObjectDirection
@@ -47,12 +47,12 @@
     }
 
     // raw value is in radians, standardized value is in degrees
-    @objc static func convertToStandardized(rawValue: Double, for spriteObject: SpriteObject) -> Double {
+    static func convertToStandardized(rawValue: Double, for spriteObject: SpriteObject) -> Double {
         let rawValueDegrees = Util.radians(toDegree: rawValue)
         return self.convertSceneToDegrees(rawValueDegrees)
     }
 
-    @objc static func convertToRaw(userInput: Double, for spriteObject: SpriteObject) -> Double {
+    static func convertToRaw(userInput: Double, for spriteObject: SpriteObject) -> Double {
         let standardizedValueOnScreen = convertMathDegreesToSceneDegrees(userInput)
         return Util.degree(toRadians: standardizedValueOnScreen)
     }
