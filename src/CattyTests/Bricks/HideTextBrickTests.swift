@@ -49,8 +49,12 @@ final class HideTextBrickTests: XCTestCase {
         let logger = CBLogger(name: "Logger")
         let broadcastHandler = CBBroadcastHandler(logger: logger)
         let formulaInterpreter = FormulaManager(sceneSize: Util.screenSize(true))
-        scheduler = CBScheduler(logger: logger, broadcastHandler: broadcastHandler, formulaInterpreter: formulaInterpreter)
-        context = CBScriptContext(script: script, spriteNode: spriteNode, formulaInterpreter: formulaInterpreter)
+        scheduler = CBScheduler(logger: logger,
+                                broadcastHandler: broadcastHandler,
+                                formulaInterpreter: formulaInterpreter)
+        context = CBScriptContext(script: script,
+                                  spriteNode: spriteNode,
+                                  formulaInterpreter: formulaInterpreter)
     }
 
     func testHideTextBrickUserVariablesNil() {
@@ -69,7 +73,8 @@ final class HideTextBrickTests: XCTestCase {
             break
         }
 
-        XCTAssertTrue(true); // The purpose of this test is to show that the program does not crash
+        // The purpose of this test is to show that the program does not crash
         // when no UserVariable is selected in the IDE and the brick is executed
+        XCTAssertTrue(true);
     }
 }

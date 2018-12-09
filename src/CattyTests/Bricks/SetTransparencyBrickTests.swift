@@ -44,7 +44,10 @@ final class SetTransparencyBrickTests: AbstractBrickTests {
         let action: () -> Void = brick.actionBlock(formulaInterpreter!)
         action()
 
-        XCTAssertEqual(20.0, spriteNode.catrobatTransparency, accuracy: 0.01, "ChangeTransparencyBrick is not correctly calculated")
+        XCTAssertEqual(20.0,
+                       spriteNode.catrobatTransparency,
+                       accuracy: Double.epsilon,
+                       "ChangeTransparencyBrick is not correctly calculated")
     }
 
     func testSetTransparencyBrickNegative() {
@@ -65,7 +68,10 @@ final class SetTransparencyBrickTests: AbstractBrickTests {
         let action: () -> Void = brick.actionBlock(formulaInterpreter!)
         action()
 
-        XCTAssertEqual(0.0, spriteNode.catrobatTransparency, accuracy: 0.01, "ChangeTransparencyBrick is not correctly calculated")
+        XCTAssertEqual(0.0,
+                       spriteNode.catrobatTransparency,
+                       accuracy: Double.epsilon,
+                       "ChangeTransparencyBrick is not correctly calculated")
     }
 
     func testSetTransparencyBrickWronginput() {
@@ -86,6 +92,9 @@ final class SetTransparencyBrickTests: AbstractBrickTests {
         let action: () -> Void = brick.actionBlock(formulaInterpreter!)
         action()
 
-        XCTAssertEqual(0.0, spriteNode.catrobatTransparency, accuracy: 0.01, "ChangeTransparencyBrick is not correctly calculated")
+        XCTAssertEqual(0.0,
+                       spriteNode.catrobatTransparency,
+                       accuracy: Double.epsilon,
+                       "ChangeTransparencyBrick is not correctly calculated")
     }
 }

@@ -54,7 +54,11 @@ final class BrickMoveManagerTests: BrickMoveManagerAbstractTest {
         let indexPathFrom = IndexPath(row: 1, section: 0)
         let indexPathTo = IndexPath(row: 2, section: 0)
 
-        let canMove = BrickMoveManager.sharedInstance().collectionView(viewController!.collectionView, itemAt: indexPathFrom, canMoveTo: indexPathTo, andObject: spriteObject)
+        let canMove = BrickMoveManager.sharedInstance()
+            .collectionView(viewController!.collectionView,
+                            itemAt: indexPathFrom,
+                            canMoveTo: indexPathTo,
+                            andObject: spriteObject)
 
         XCTAssertTrue(canMove, "Should be allowed to move WaitBrick behind SetVariableBrick")
     }
@@ -136,7 +140,11 @@ final class BrickMoveManagerTests: BrickMoveManagerAbstractTest {
         let indexPathFrom = IndexPath(row: 1, section: 0)
         let indexPathTo = IndexPath(row: 3, section: 0)
 
-        let canMoveWaitBrickBehindRepeatBrick = BrickMoveManager.sharedInstance().collectionView(viewController!.collectionView, itemAt: indexPathFrom, canMoveTo: indexPathTo, andObject: spriteObject)
+        let canMoveWaitBrickBehindRepeatBrick = BrickMoveManager.sharedInstance()
+            .collectionView(viewController!.collectionView,
+                            itemAt: indexPathFrom,
+                            canMoveTo: indexPathTo,
+                            andObject: spriteObject)
         XCTAssertTrue(canMoveWaitBrickBehindRepeatBrick, "Should be allowed to move WaitBrick behind RepeatBrick")
     }
 
@@ -174,8 +182,13 @@ final class BrickMoveManagerTests: BrickMoveManagerAbstractTest {
         let indexPathFrom = IndexPath(row: 1, section: 0)
         let indexPathTo = IndexPath(row: 0, section: 1)
 
-        let canMoveWaitInOtherScript = BrickMoveManager.sharedInstance().collectionView(viewController!.collectionView, itemAt: indexPathFrom, canMoveTo: indexPathTo, andObject: spriteObject)
-        XCTAssertTrue(canMoveWaitInOtherScript, "Should be allowed to move WaitBrick into other Script")
+        let canMoveWaitInOtherScript = BrickMoveManager.sharedInstance()
+            .collectionView(viewController!.collectionView,
+                            itemAt: indexPathFrom,
+                            canMoveTo: indexPathTo,
+                            andObject: spriteObject)
+        XCTAssertTrue(canMoveWaitInOtherScript,
+                      "Should be allowed to move WaitBrick into other Script")
     }
 
     func testMoveForeverBeginBrickWithMultipleScripts() {
@@ -223,14 +236,28 @@ final class BrickMoveManagerTests: BrickMoveManagerAbstractTest {
 
                 if !(indexPathTo == validTarget) && destinationIDX != indexPathFrom.item {
                     BrickMoveManager.sharedInstance().reset()
-                    let canMoveToDestination = BrickMoveManager.sharedInstance().collectionView(viewController!.collectionView, itemAt: indexPathFrom, canMoveTo: indexPathTo, andObject: spriteObject)
-                    XCTAssertFalse(canMoveToDestination, String(format: "Should not be allowed to move to idx %lu in section %lu", UInt(destinationIDX), UInt(section)))
+                    let canMoveToDestination = BrickMoveManager.sharedInstance()
+                        .collectionView(viewController!.collectionView,
+                                        itemAt: indexPathFrom,
+                                        canMoveTo: indexPathTo,
+                                        andObject: spriteObject)
+                    XCTAssertFalse(canMoveToDestination,
+                                   String(format: "Should not be allowed to move to idx %lu in section %lu",
+                                          UInt(destinationIDX),
+                                          UInt(section)))
                 }
             }
         }
         BrickMoveManager.sharedInstance().reset()
-        let canMoveToDestination = BrickMoveManager.sharedInstance().collectionView(viewController!.collectionView, itemAt: indexPathFrom, canMoveTo: validTarget, andObject: spriteObject)
-        XCTAssertTrue(canMoveToDestination, String(format: "Should be allowed to move to idx %lu in section %lu", UInt(validRow), UInt(validSection)))
+        let canMoveToDestination = BrickMoveManager.sharedInstance()
+            .collectionView(viewController!.collectionView,
+                            itemAt: indexPathFrom,
+                            canMoveTo: validTarget,
+                            andObject: spriteObject)
+        XCTAssertTrue(canMoveToDestination,
+                      String(format: "Should be allowed to move to idx %lu in section %lu",
+                             UInt(validRow),
+                             UInt(validSection)))
     }
 
     func testMoveForeverEndBrickWithMultipleScripts() {
@@ -273,8 +300,15 @@ final class BrickMoveManagerTests: BrickMoveManagerAbstractTest {
             for destinationIDX in 1..<addedBricksStart {
                 let indexPathTo = IndexPath(row: destinationIDX, section: section)
 
-                let canMoveToDestination = BrickMoveManager.sharedInstance().collectionView(viewController!.collectionView, itemAt: indexPathFrom, canMoveTo: indexPathTo, andObject: spriteObject)
-                XCTAssertFalse(canMoveToDestination, String(format: "Should not be allowed to move to idx %lu in section %lu", UInt(destinationIDX), UInt(section)))
+                let canMoveToDestination = BrickMoveManager.sharedInstance()
+                    .collectionView(viewController!.collectionView,
+                                    itemAt: indexPathFrom,
+                                    canMoveTo: indexPathTo,
+                                    andObject: spriteObject)
+                XCTAssertFalse(canMoveToDestination,
+                               String(format: "Should not be allowed to move to idx %lu in section %lu",
+                                      UInt(destinationIDX),
+                                      UInt(section)))
             }
         }
     }
@@ -325,14 +359,28 @@ final class BrickMoveManagerTests: BrickMoveManagerAbstractTest {
 
                 if !(indexPathTo == validTarget) && destinationIDX != indexPathFrom.item {
                     BrickMoveManager.sharedInstance().reset()
-                    let canMoveToDestination = BrickMoveManager.sharedInstance().collectionView(viewController!.collectionView, itemAt: indexPathFrom, canMoveTo: indexPathTo, andObject: spriteObject)
-                    XCTAssertFalse(canMoveToDestination, String(format: "Should not be allowed to move to idx %lu in section %lu", UInt(destinationIDX), UInt(section)))
+                    let canMoveToDestination = BrickMoveManager.sharedInstance()
+                        .collectionView(viewController!.collectionView,
+                                        itemAt: indexPathFrom,
+                                        canMoveTo: indexPathTo,
+                                        andObject: spriteObject)
+                    XCTAssertFalse(canMoveToDestination,
+                                   String(format: "Should not be allowed to move to idx %lu in section %lu",
+                                          UInt(destinationIDX),
+                                          UInt(section)))
                 }
             }
         }
         BrickMoveManager.sharedInstance().reset()
-        let canMoveToDestination = BrickMoveManager.sharedInstance().collectionView(viewController!.collectionView, itemAt: indexPathFrom, canMoveTo: validTarget, andObject: spriteObject)
-        XCTAssertTrue(canMoveToDestination, String(format: "Should be allowed to move to idx %lu in section %lu", UInt(validRow), UInt(validSection)))
+        let canMoveToDestination = BrickMoveManager.sharedInstance()
+            .collectionView(viewController!.collectionView,
+                            itemAt: indexPathFrom,
+                            canMoveTo: validTarget,
+                            andObject: spriteObject)
+        XCTAssertTrue(canMoveToDestination,
+                      String(format: "Should be allowed to move to idx %lu in section %lu",
+                             UInt(validRow),
+                             UInt(validSection)))
 
     }
 
@@ -381,14 +429,28 @@ final class BrickMoveManagerTests: BrickMoveManagerAbstractTest {
                 let indexPathTo = IndexPath(row: destinationIDX, section: section)
 
                 if !(indexPathTo == validTarget) && destinationIDX != indexPathFrom.item {
-                    let canMoveToDestination = BrickMoveManager.sharedInstance().collectionView(viewController!.collectionView, itemAt: indexPathFrom, canMoveTo: indexPathTo, andObject: spriteObject)
-                    XCTAssertFalse(canMoveToDestination, String(format: "Should not be allowed to move to idx %lu in section %lu", UInt(destinationIDX), UInt(section)))
+                    let canMoveToDestination = BrickMoveManager.sharedInstance()
+                        .collectionView(viewController!.collectionView,
+                                        itemAt: indexPathFrom,
+                                        canMoveTo: indexPathTo,
+                                        andObject: spriteObject)
+                    XCTAssertFalse(canMoveToDestination,
+                                   String(format: "Should not be allowed to move to idx %lu in section %lu",
+                                          UInt(destinationIDX),
+                                          UInt(section)))
                 }
             }
         }
 
-        let canMoveToDestination = BrickMoveManager.sharedInstance().collectionView(viewController!.collectionView, itemAt: indexPathFrom, canMoveTo: validTarget, andObject: spriteObject)
-        XCTAssertTrue(canMoveToDestination, String(format: "Should be allowed to move to idx %lu in section %lu", UInt(validRow), UInt(validSection)))
+        let canMoveToDestination = BrickMoveManager.sharedInstance()
+            .collectionView(viewController!.collectionView,
+                            itemAt: indexPathFrom,
+                            canMoveTo: validTarget,
+                            andObject: spriteObject)
+        XCTAssertTrue(canMoveToDestination,
+                      String(format: "Should be allowed to move to idx %lu in section %lu",
+                             UInt(validRow),
+                             UInt(validSection)))
 
     }
 

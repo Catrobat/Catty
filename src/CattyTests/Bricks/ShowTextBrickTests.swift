@@ -49,8 +49,12 @@ final class ShowTextBrickTests: XCTestCase {
         let logger = CBLogger(name: "Logger")
         let broadcastHandler = CBBroadcastHandler(logger: logger)
         let formulaInterpreter = FormulaManager(sceneSize: Util.screenSize(true))
-        scheduler = CBScheduler(logger: logger, broadcastHandler: broadcastHandler, formulaInterpreter: formulaInterpreter)
-        context = CBScriptContext(script: script, spriteNode: spriteNode, formulaInterpreter: formulaInterpreter)
+        scheduler = CBScheduler(logger: logger,
+                                broadcastHandler: broadcastHandler,
+                                formulaInterpreter: formulaInterpreter)
+        context = CBScriptContext(script: script,
+                                  spriteNode: spriteNode,
+                                  formulaInterpreter: formulaInterpreter)
     }
 
     func testShowTextBrickUserVariablesNil() {

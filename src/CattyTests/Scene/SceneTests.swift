@@ -25,7 +25,8 @@ import XCTest
 @testable import Pocket_Code
 
 class SceneTests: XCTestCase {
-    var screenSize = CGSize.zero
+
+    private var screenSize = CGSize.zero
     private var pocketCodeCenter = CGPoint.zero
     private var pocketCodeBottomLeft = CGPoint.zero
     private var pocketCodeBottomRight = CGPoint.zero
@@ -54,57 +55,82 @@ class SceneTests: XCTestCase {
         sceneTopRight = CGPoint(x: 480, y: 800)
     }
 
-    override class func tearDown() {
-        super.tearDown()
-    }
-
     // MARK: Touch to Pocked Code
 
     func testTouchConversionCenter() {
-        let scaledScene: CBScene? = (SceneBuilder(program: ProgramMock(width: screenSize.width * 2, andHeight: screenSize.height * 2))).build()
-        let scaledSceneCenter = CGPoint(x: screenSize.width / 2, y: screenSize.height / 2)
-        let convertedCenter: CGPoint = CBSceneHelper.convertTouchCoordinateToPoint(coordinate: scaledSceneCenter, sceneSize: (scaledScene?.size)!)
+        let scaledScene: CBScene? = (SceneBuilder(program: ProgramMock(width: screenSize.width * 2,
+                                                                       andHeight: screenSize.height * 2))).build()
+        let scaledSceneCenter = CGPoint(x: screenSize.width / 2,
+                                        y: screenSize.height / 2)
+        let convertedCenter: CGPoint = CBSceneHelper.convertTouchCoordinateToPoint(coordinate: scaledSceneCenter,
+                                                                                   sceneSize: (scaledScene?.size)!)
 
-        XCTAssertTrue(convertedCenter.equalTo(pocketCodeCenter), "The Scene Center is not correctly calculated")
+        XCTAssertTrue(convertedCenter.equalTo(pocketCodeCenter),
+                      "The Scene Center is not correctly calculated")
     }
 
     func testTouchConversionCenterNoScale() {
-        let scaledScene: CBScene? = SceneBuilder(program: ProgramMock(width: screenSize.width, andHeight: screenSize.height)).build()
-        let scaledSceneCenter = CGPoint(x: screenSize.width / 2, y: screenSize.height / 2)
-        let convertedCenter: CGPoint = CBSceneHelper.convertTouchCoordinateToPoint(coordinate: scaledSceneCenter, sceneSize: (scaledScene?.size)!)
+        let scaledScene: CBScene? = SceneBuilder(program: ProgramMock(width: screenSize.width,
+                                                                      andHeight: screenSize.height)).build()
+        let scaledSceneCenter = CGPoint(x: screenSize.width / 2,
+                                        y: screenSize.height / 2)
+        let convertedCenter: CGPoint = CBSceneHelper.convertTouchCoordinateToPoint(coordinate: scaledSceneCenter,
+                                                                                   sceneSize: (scaledScene?.size)!)
 
-        XCTAssertTrue(convertedCenter.equalTo(pocketCodeCenter), "The Scene Center is not correctly calculated")
+        XCTAssertTrue(convertedCenter.equalTo(pocketCodeCenter),
+                      "The Scene Center is not correctly calculated")
     }
 
     func testTouchConversionBottomLeft() {
-        let scaledScene: CBScene? = (SceneBuilder(program: ProgramMock(width: screenSize.width * 2, andHeight: screenSize.height * 2))).build()
+        let scaledScene: CBScene? = (SceneBuilder(program: ProgramMock(width: screenSize.width * 2,
+                                                                       andHeight: screenSize.height * 2))).build()
         let scaledSceneBottomLeft = CGPoint(x: 0, y: screenSize.height)
-        let pocketCodeBottomLeft = CGPoint(x: (scaledScene?.size.width)! / 2 * -1, y: (scaledScene?.size.height)! / 2 * -1)
-        let convertedBottomLeft: CGPoint = CBSceneHelper.convertTouchCoordinateToPoint(coordinate: scaledSceneBottomLeft, sceneSize: (scaledScene?.size)!)
-        XCTAssertEqual(convertedBottomLeft, pocketCodeBottomLeft, "The Bottom Left is not correctly calculated")
+        let pocketCodeBottomLeft = CGPoint(x: (scaledScene?.size.width)! / 2 * -1,
+                                           y: (scaledScene?.size.height)! / 2 * -1)
+        let convertedBottomLeft: CGPoint = CBSceneHelper.convertTouchCoordinateToPoint(coordinate: scaledSceneBottomLeft,
+                                                                                       sceneSize: (scaledScene?.size)!)
+        XCTAssertEqual(convertedBottomLeft,
+                       pocketCodeBottomLeft,
+                       "The Bottom Left is not correctly calculated")
     }
 
     func testTouchConversionBottomRight() {
-        let scaledScene: CBScene? = (SceneBuilder(program: ProgramMock(width: screenSize.width * 2, andHeight: screenSize.height * 2))).build()
-        let scaledSceneBottomRight = CGPoint(x: screenSize.width, y: screenSize.height)
-        let pocketCodeBottomRight = CGPoint(x: (scaledScene?.size.width)! / 2, y: (scaledScene?.size.height)! / 2 * -1)
-        let convertedBottomRight: CGPoint = CBSceneHelper.convertTouchCoordinateToPoint(coordinate: scaledSceneBottomRight, sceneSize: (scaledScene?.size)!)
-        XCTAssertEqual(convertedBottomRight, pocketCodeBottomRight, "The Bottom Right is not correctly calculated")
+        let scaledScene: CBScene? = (SceneBuilder(program: ProgramMock(width: screenSize.width * 2,
+                                                                       andHeight: screenSize.height * 2))).build()
+        let scaledSceneBottomRight = CGPoint(x: screenSize.width,
+                                             y: screenSize.height)
+        let pocketCodeBottomRight = CGPoint(x: (scaledScene?.size.width)! / 2,
+                                            y: (scaledScene?.size.height)! / 2 * -1)
+        let convertedBottomRight: CGPoint = CBSceneHelper.convertTouchCoordinateToPoint(coordinate: scaledSceneBottomRight,
+                                                                                        sceneSize: (scaledScene?.size)!)
+        XCTAssertEqual(convertedBottomRight,
+                       pocketCodeBottomRight,
+                       "The Bottom Right is not correctly calculated")
     }
 
     func testTouchConversionTopLeft() {
-        let scaledScene: CBScene? = (SceneBuilder(program: ProgramMock(width: screenSize.width * 2, andHeight: screenSize.height * 2))).build()
+        let scaledScene: CBScene? = (SceneBuilder(program: ProgramMock(width: screenSize.width * 2,
+                                                                       andHeight: screenSize.height * 2))).build()
         let scaledSceneTopLeft = CGPoint(x: 0, y: 0)
-        let pocketCodeTopLeft = CGPoint(x: (scaledScene?.size.width)! / 2 * -1, y: (scaledScene?.size.height)! / 2)
-        let convertedTopLeft: CGPoint = CBSceneHelper.convertTouchCoordinateToPoint(coordinate: scaledSceneTopLeft, sceneSize: (scaledScene?.size)!)
-        XCTAssertEqual(convertedTopLeft, pocketCodeTopLeft, "The Top Left is not correctly calculated")
+        let pocketCodeTopLeft = CGPoint(x: (scaledScene?.size.width)! / 2 * -1,
+                                        y: (scaledScene?.size.height)! / 2)
+        let convertedTopLeft: CGPoint = CBSceneHelper.convertTouchCoordinateToPoint(coordinate: scaledSceneTopLeft,
+                                                                                    sceneSize: (scaledScene?.size)!)
+        XCTAssertEqual(convertedTopLeft,
+                       pocketCodeTopLeft,
+                       "The Top Left is not correctly calculated")
     }
 
     func testTouchConversionTopRight() {
-        let scaledScene: CBScene? = (SceneBuilder(program: ProgramMock(width: screenSize.width * 2, andHeight: screenSize.height * 2))).build()
+        let scaledScene: CBScene? = (SceneBuilder(program: ProgramMock(width: screenSize.width * 2,
+                                                                       andHeight: screenSize.height * 2))).build()
         let scaledSceneTopRight = CGPoint(x: screenSize.width, y: 0)
-        let pocketCodeTopRight = CGPoint(x: (scaledScene?.size.width)! / 2, y: (scaledScene?.size.height)! / 2)
-        let convertedTopRight: CGPoint = CBSceneHelper.convertTouchCoordinateToPoint(coordinate: scaledSceneTopRight, sceneSize: (scaledScene?.size)!)
-        XCTAssertEqual(convertedTopRight, pocketCodeTopRight, "The Top Right is not correctly calculated")
+        let pocketCodeTopRight = CGPoint(x: (scaledScene?.size.width)! / 2,
+                                         y: (scaledScene?.size.height)! / 2)
+        let convertedTopRight: CGPoint = CBSceneHelper.convertTouchCoordinateToPoint(coordinate: scaledSceneTopRight,
+                                                                                     sceneSize: (scaledScene?.size)!)
+        XCTAssertEqual(convertedTopRight,
+                       pocketCodeTopRight,
+                       "The Top Right is not correctly calculated")
     }
 }

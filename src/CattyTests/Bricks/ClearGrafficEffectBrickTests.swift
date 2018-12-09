@@ -67,8 +67,14 @@ final class ClearGrafficEffectBrickTests: AbstractBrickTests {
         action = clearBrick.actionBlock()
         action()
 
-        XCTAssertEqual(Double(spriteNode.alpha), TransparencySensor.defaultRawValue, accuracy: 0.0001, "ClearGraphic alpha is not correctly calculated")
-        XCTAssertEqual(Double(spriteNode.ciBrightness), BrightnessSensor.defaultRawValue, accuracy: 0.0001, "ClearGraphic brightness is not correctly calculated")
+        XCTAssertEqual(Double(spriteNode.alpha),
+                       TransparencySensor.defaultRawValue,
+                       accuracy: 0.0001,
+                       "ClearGraphic alpha is not correctly calculated")
+        XCTAssertEqual(Double(spriteNode.ciBrightness),
+                       BrightnessSensor.defaultRawValue,
+                       accuracy: 0.0001,
+                       "ClearGraphic brightness is not correctly calculated")
         //TODO: Program.removeProgramFromDisk(withProgramName: program.header.programName, programID: program.header.programID)
     }
 
@@ -108,8 +114,12 @@ final class ClearGrafficEffectBrickTests: AbstractBrickTests {
         brick.script = script
         brick.transparency = transparency
 
-        XCTAssertNotEqual(Double(spriteNode.alpha), TransparencySensor.defaultRawValue, accuracy: 0.001)
-        XCTAssertNotEqual(Double(spriteNode.ciBrightness), BrightnessSensor.defaultRawValue, accuracy: 0.001)
+        XCTAssertNotEqual(Double(spriteNode.alpha),
+                          TransparencySensor.defaultRawValue,
+                          accuracy: 0.001)
+        XCTAssertNotEqual(Double(spriteNode.ciBrightness),
+                          BrightnessSensor.defaultRawValue,
+                          accuracy: 0.001)
 
         var action: () -> Void = brick.actionBlock(formulaInterpreter!)
         action()
@@ -120,8 +130,14 @@ final class ClearGrafficEffectBrickTests: AbstractBrickTests {
         action = clearBrick.actionBlock()
         action()
 
-        XCTAssertEqual(Double(spriteNode.alpha), TransparencySensor.defaultRawValue, accuracy: 0.0001, "ClearGraphic is not correctly calculated")
-        XCTAssertEqual(Double(spriteNode.ciBrightness), BrightnessSensor.defaultRawValue, accuracy: 0.0001, "ClearGraphic brightness is not correctly calculated")
+        XCTAssertEqual(Double(spriteNode.alpha),
+                       TransparencySensor.defaultRawValue,
+                       accuracy: 0.0001,
+                       "ClearGraphic is not correctly calculated")
+        XCTAssertEqual(Double(spriteNode.ciBrightness),
+                       BrightnessSensor.defaultRawValue,
+                       accuracy: 0.0001,
+                       "ClearGraphic brightness is not correctly calculated")
         //TODO: Program.removeProgramFromDisk(withProgramName: program.header.programName, programID: program.header.programID)
     }
 }

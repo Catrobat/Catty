@@ -27,11 +27,11 @@ import XCTest
 
 //BrickImports
 class AbstractBrickTests: XCTestCase {
-    private var _programs: [AnyHashable] = []
-    var programs: [AnyHashable] {
+    private var _programs = NSMutableArray()
+    var programs: NSMutableArray {
         #if false
         if !_programs {
-            _programs = [AnyHashable]()
+            _programs = NSMutableArray()
         }
         #endif
         return _programs

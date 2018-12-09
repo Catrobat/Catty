@@ -32,12 +32,16 @@ final class WaitUntilBrickTests: XMLAbstractTest {
     }()
 
     func testWaitUntilBrick_conditionTrue_proceedsToNextBrick() {
-        let testVar = program.variables.getUserVariableNamed("testVar", for: program.objectList[0] as? SpriteObject)
-        let hasFinishedWaiting = program.variables.getUserVariableNamed("hasFinishedWaiting", for: program.objectList[0] as? SpriteObject)
+        let testVar = program.variables.getUserVariableNamed("testVar",
+                                                             for: program.objectList[0] as? SpriteObject)
+        let hasFinishedWaiting = program.variables
+            .getUserVariableNamed("hasFinishedWaiting",
+                                  for: program.objectList[0] as? SpriteObject)
 
         let scene = createScene()
         scene.startProgram()
-        program.variables.setUserVariable(testVar, toValue: NSNumber(value: 1))
+        program.variables.setUserVariable(testVar,
+                                          toValue: NSNumber(value: 1))
 
         let conditionMetPredicate = NSPredicate(block: { variable, _ in
             let hasFinishedWaiting = (variable as? UserVariable)!.value as! NSNumber
@@ -49,11 +53,15 @@ final class WaitUntilBrickTests: XMLAbstractTest {
     }
 
     func testWaitUntilBrick_conditionFalse_getsStuckInWaitUntilBrick() {
-        let hasFinishedWaiting = program.variables.getUserVariableNamed("hasFinishedWaiting", for: program.objectList[0] as? SpriteObject)
+        let hasFinishedWaiting = program.variables
+            .getUserVariableNamed("hasFinishedWaiting",
+                                  for: program.objectList[0] as? SpriteObject)
 
         let scene = createScene()
         scene.startProgram()
-        let testPredicate = createPredicate(variable: hasFinishedWaiting!, shouldNotBeEqual: NSNumber(value: 1), forSeconds: 2)
+        let testPredicate = createPredicate(variable: hasFinishedWaiting!,
+                                            shouldNotBeEqual: NSNumber(value: 1),
+                                            forSeconds: 2)
 
         expectation(for: testPredicate, evaluatedWith: self, handler: nil)
         waitForExpectations(timeout: 4, handler: nil)
@@ -66,7 +74,8 @@ final class WaitUntilBrickTests: XMLAbstractTest {
         script.object = object
         brick.script = script
         brick.waitCondition = Formula(float: 0)
-        let conditionResult = brick.checkCondition(formulaInterpreter: FormulaManager(sceneSize: Util.screenSize(true)))
+        let conditionResult = brick
+            .checkCondition(formulaInterpreter: FormulaManager(sceneSize: Util.screenSize(true)))
         XCTAssertTrue(conditionResult, "Condition should have returned true.")
     }
 
@@ -77,11 +86,14 @@ final class WaitUntilBrickTests: XMLAbstractTest {
         script.object = object
         brick.script = script
         brick.waitCondition = Formula(float: 1)
-        let conditionResult = brick.checkCondition(formulaInterpreter: FormulaManager(sceneSize: Util.screenSize(true)))
+        let conditionResult = brick
+            .checkCondition(formulaInterpreter: FormulaManager(sceneSize: Util.screenSize(true)))
         XCTAssertFalse(conditionResult, "Condition should have returned false.")
     }
 
-    private func createPredicate(variable: UserVariable, shouldNotBeEqual: NSNumber, forSeconds: Double) -> NSPredicate {
+    private func createPredicate(variable: UserVariable,
+                                 shouldNotBeEqual: NSNumber,
+                                 forSeconds: Double) -> NSPredicate {
         let stopTime = Date().addingTimeInterval(TimeInterval(forSeconds))
         return NSPredicate(block: { _, _ in
             let variableNumber = variable.value as! NSNumber
@@ -96,7 +108,8 @@ final class WaitUntilBrickTests: XMLAbstractTest {
     }
 
     private func createScene() -> CBScene {
-        let sceneBuilder = SceneBuilder(program: program).withFormulaManager(formulaManager: FormulaManager(sceneSize: Util.screenSize(true)))
+        let sceneBuilder = SceneBuilder(program: program)
+            .withFormulaManager(formulaManager: FormulaManager(sceneSize: Util.screenSize(true)))
         return sceneBuilder.build()
     }
 }

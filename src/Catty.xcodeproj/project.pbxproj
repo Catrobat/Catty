@@ -562,7 +562,6 @@
 		5E2CBCDC21BA2F8A00EC90F4 /* RepeatBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2CBCB421BA2F8400EC90F4 /* RepeatBrickTests.swift */; };
 		5E2CBCDD21BA2F8A00EC90F4 /* GoNStepsBackBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2CBCB521BA2F8500EC90F4 /* GoNStepsBackBrickTests.swift */; };
 		5E2CBCDE21BA2F8A00EC90F4 /* ChangeColorByNBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2CBCB621BA2F8500EC90F4 /* ChangeColorByNBrickTests.swift */; };
-		5E2CBCDF21BA2F8A00EC90F4 /* SetLookBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2CBCB721BA2F8500EC90F4 /* SetLookBrickTests.swift */; };
 		5E2CBCE021BA2F8A00EC90F4 /* MoveNStepsBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2CBCB821BA2F8500EC90F4 /* MoveNStepsBrickTests.swift */; };
 		5E2CBCE121BA2F8A00EC90F4 /* SetTransparencyBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2CBCB921BA2F8500EC90F4 /* SetTransparencyBrickTests.swift */; };
 		5E2CBCE221BA2F8A00EC90F4 /* HideBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2CBCBA21BA2F8500EC90F4 /* HideBrickTests.swift */; };
@@ -1934,7 +1933,6 @@
 		5E2CBCB421BA2F8400EC90F4 /* RepeatBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepeatBrickTests.swift; sourceTree = "<group>"; };
 		5E2CBCB521BA2F8500EC90F4 /* GoNStepsBackBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoNStepsBackBrickTests.swift; sourceTree = "<group>"; };
 		5E2CBCB621BA2F8500EC90F4 /* ChangeColorByNBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeColorByNBrickTests.swift; sourceTree = "<group>"; };
-		5E2CBCB721BA2F8500EC90F4 /* SetLookBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetLookBrickTests.swift; sourceTree = "<group>"; };
 		5E2CBCB821BA2F8500EC90F4 /* MoveNStepsBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoveNStepsBrickTests.swift; sourceTree = "<group>"; };
 		5E2CBCB921BA2F8500EC90F4 /* SetTransparencyBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetTransparencyBrickTests.swift; sourceTree = "<group>"; };
 		5E2CBCBA21BA2F8500EC90F4 /* HideBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HideBrickTests.swift; sourceTree = "<group>"; };
@@ -4680,7 +4678,6 @@
 				5EAF464B21BA838B003914EC /* SetBackgroundBrickTests.swift */,
 				5E2CBCC021BA2F8700EC90F4 /* SetBrightnessBrickTests.swift */,
 				5E2CBCC721BA2F8800EC90F4 /* SetColorBrickTests.swift */,
-				5E2CBCB721BA2F8500EC90F4 /* SetLookBrickTests.swift */,
 				5E2CBCC921BA2F8800EC90F4 /* SetSizeToBrickTests.swift */,
 				5E2CBCB921BA2F8500EC90F4 /* SetTransparencyBrickTests.swift */,
 				5E2CBCA821BA2F8300EC90F4 /* SetVariableBrickTests.swift */,
@@ -8520,7 +8517,6 @@
 				4C822680213FA7A400F3D750 /* BrightnessSensorTest.swift in Sources */,
 				5E2CBCD721BA2F8A00EC90F4 /* BrickMutableCopyTests.swift in Sources */,
 				BAAA6BED21A4C02100A46563 /* XMLParserHeaderTests095.swift in Sources */,
-				5E2CBCDF21BA2F8A00EC90F4 /* SetLookBrickTests.swift in Sources */,
 				5E2CBCFC21BA3E4900EC90F4 /* ConvertExceptionToError.swift in Sources */,
 				4C6FE16C212D2D2E0067B7D5 /* AcosFunctionTest.swift in Sources */,
 				4C822688213FAC3C00F3D750 /* MultiFingerXFunctionTests.swift in Sources */,

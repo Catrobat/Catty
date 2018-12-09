@@ -58,12 +58,14 @@ final class IfOnEdgeBounceBrickTests: AbstractBrickTests {
         bounceRightPosition = rightBorderPosition! - CGFloat(objectWidth! / 2)
         bounceLeftPosition = -1 * bounceRightPosition!
 
-        scene = SceneBuilder(program: ProgramMock(width: screenWidth!, andHeight: screenHeight!)).build()
+        scene = SceneBuilder(program: ProgramMock(width: screenWidth!,
+                                                  andHeight: screenHeight!)).build()
         spriteObject = SpriteObject()
         let spriteNode = CBSpriteNode(spriteObject: spriteObject!)
         scene!.addChild(spriteNode)
         spriteNode.color = UIColor.black
-        spriteNode.size = CGSize(width: CGFloat(objectWidth!), height: objectHeight!)
+        spriteNode.size = CGSize(width: CGFloat(objectWidth!),
+                                 height: objectHeight!)
         spriteObject?.spriteNode = spriteNode
         spriteNode.catrobatPosition = CGPoint(x: 0, y: 0)
         spriteObject?.name = "Test"
@@ -81,7 +83,9 @@ final class IfOnEdgeBounceBrickTests: AbstractBrickTests {
     }
 
     func testTopBounce() {
-        let rotations = [[90, 90], [120, 120], [150, 150], [180, 180], [-150, -150], [-120, -120], [-90, -90], [-60, -120], [-30, -150], [0, 180], [30, 150], [60, 120]]
+        let rotations = [[90, 90], [120, 120], [150, 150], [180, 180],
+                         [-150, -150], [-120, -120], [-90, -90], [-60, -120],
+                         [-30, -150], [0, 180], [30, 150], [60, 120]]
 
         for rotation: [Int] in rotations {
             let rotationBefore = CGFloat(Float(rotation[0]))
@@ -92,7 +96,9 @@ final class IfOnEdgeBounceBrickTests: AbstractBrickTests {
     }
 
     func testBottomBounce() {
-        let rotations = [[90, 90], [120, 60], [150, 30], [180, 0], [-150, -30], [-120, -60], [-90, -90], [-60, -60], [-30, -30], [0, 0], [30, 30], [60, 60]]
+        let rotations = [[90, 90], [120, 60], [150, 30], [180, 0],
+                         [-150, -30], [-120, -60], [-90, -90], [-60, -60],
+                         [-30, -30], [0, 0], [30, 30], [60, 60]]
 
         for rotation: [Int] in rotations {
             let rotationBefore = CGFloat(Float(rotation[0]))
@@ -103,7 +109,9 @@ final class IfOnEdgeBounceBrickTests: AbstractBrickTests {
     }
 
     func testLeftBounce() {
-        let rotations = [[90, 90], [120, 120], [150, 150], [180, 180], [-150, 150], [-120, 120], [-90, 90], [-60, 60], [-30, 30], [0, 0], [30, 30], [60, 60]]
+        let rotations = [[90, 90], [120, 120], [150, 150], [180, 180],
+                         [-150, 150], [-120, 120], [-90, 90], [-60, 60],
+                         [-30, 30], [0, 0], [30, 30], [60, 60]]
 
         for rotation: [Int] in rotations {
             let rotationBefore = CGFloat(Float(rotation[0]))
@@ -114,7 +122,9 @@ final class IfOnEdgeBounceBrickTests: AbstractBrickTests {
     }
 
     func testRightBounce() {
-        let rotations = [[90, -90], [120, -120], [150, -150], [180, 180], [-150, -150], [-120, -120], [-90, -90], [-60, -60], [-30, -30], [0, 0], [30, -30], [60, -60]]
+        let rotations = [[90, -90], [120, -120], [150, -150], [180, 180],
+                         [-150, -150], [-120, -120], [-90, -90], [-60, -60],
+                         [-30, -30], [0, 0], [30, -30], [60, -60]]
 
         for rotation: [Int] in rotations {
             let rotationBefore = CGFloat(Float(rotation[0]))

@@ -49,8 +49,13 @@ final class BrickMoveManagerForeverTests: BrickMoveManagerAbstractTest {
         let indexPathFrom = IndexPath(row: 1, section: 0)
         let indexPathTo = IndexPath(row: 3, section: 0)
 
-        let canMoveToDestination = BrickMoveManager.sharedInstance().collectionView(viewController!.collectionView, itemAt: indexPathFrom, canMoveTo: indexPathTo, andObject: spriteObject)
-        XCTAssertFalse(canMoveToDestination, "Should not be allowed to move ForeverBrick inside other ForeverBrick")
+        let canMoveToDestination = BrickMoveManager.sharedInstance()
+            .collectionView(viewController!.collectionView,
+                            itemAt: indexPathFrom,
+                            canMoveTo: indexPathTo,
+                            andObject: spriteObject)
+        XCTAssertFalse(canMoveToDestination,
+                       "Should not be allowed to move ForeverBrick inside other ForeverBrick")
     }
 
     func testMoveForeverEndToCreateInvalidNestedLoops() {
@@ -77,8 +82,13 @@ final class BrickMoveManagerForeverTests: BrickMoveManagerAbstractTest {
         let indexPathFrom = IndexPath(row: 2, section: 0)
         let indexPathTo = IndexPath(row: 3, section: 0)
         BrickMoveManager.sharedInstance().getReadyForNewBrickMovement()
-        let canMoveToDestination = BrickMoveManager.sharedInstance().collectionView(viewController!.collectionView, itemAt: indexPathFrom, canMoveTo: indexPathTo, andObject: spriteObject)
-        XCTAssertFalse(canMoveToDestination, "Should not be allowed to move ForeverEnd-Brick inside other ForeverBrick")
+        let canMoveToDestination = BrickMoveManager
+            .sharedInstance().collectionView(viewController!.collectionView,
+                                             itemAt: indexPathFrom,
+                                             canMoveTo: indexPathTo,
+                                             andObject: spriteObject)
+        XCTAssertFalse(canMoveToDestination,
+                       "Should not be allowed to move ForeverEnd-Brick inside other ForeverBrick")
     }
 
     func testMoveForeverEndToCreateValidNestedLoops() {
@@ -105,8 +115,13 @@ final class BrickMoveManagerForeverTests: BrickMoveManagerAbstractTest {
         let indexPathFrom = IndexPath(row: 2, section: 0)
         let indexPathTo = IndexPath(row: 4, section: 0)
 
-        let canMoveToDestination = BrickMoveManager.sharedInstance().collectionView(viewController!.collectionView, itemAt: indexPathFrom, canMoveTo: indexPathTo, andObject: spriteObject)
-        XCTAssertFalse(canMoveToDestination, "Should not be allowed to move ForeverEnd-Brick below other ForeverEnd-Brick")
+        let canMoveToDestination = BrickMoveManager.sharedInstance()
+            .collectionView(viewController!.collectionView,
+                            itemAt: indexPathFrom,
+                            canMoveTo: indexPathTo,
+                            andObject: spriteObject)
+        XCTAssertFalse(canMoveToDestination,
+                       "Should not be allowed to move ForeverEnd-Brick below other ForeverEnd-Brick")
     }
 
     func testMoveForeverBeginToCreateValidNestedLoops() {
@@ -133,8 +148,13 @@ final class BrickMoveManagerForeverTests: BrickMoveManagerAbstractTest {
         let indexPathFrom = IndexPath(row: 3, section: 0)
         let indexPathTo = IndexPath(row: 1, section: 0)
 
-        let canMoveToDestination = BrickMoveManager.sharedInstance().collectionView(viewController!.collectionView, itemAt: indexPathFrom, canMoveTo: indexPathTo, andObject: spriteObject)
-        XCTAssertFalse(canMoveToDestination, "Should not be allowed to move ForeverBegin-Brick away to leave something below foreverEnd.")
+        let canMoveToDestination = BrickMoveManager.sharedInstance()
+            .collectionView(viewController!.collectionView,
+                            itemAt: indexPathFrom,
+                            canMoveTo: indexPathTo,
+                            andObject: spriteObject)
+        XCTAssertFalse(canMoveToDestination,
+                       "Should not be allowed to move ForeverBegin-Brick away to leave something below foreverEnd.")
     }
 
     func testMoveIfBrickBeginInsideForeverBrickToOutside() {
@@ -174,8 +194,13 @@ final class BrickMoveManagerForeverTests: BrickMoveManagerAbstractTest {
         let indexPathFrom = IndexPath(row: 2, section: 0)
         let indexPathTo = IndexPath(row: 1, section: 0)
 
-        let canMoveToDestination = BrickMoveManager.sharedInstance().collectionView(viewController!.collectionView, itemAt: indexPathFrom, canMoveTo: indexPathTo, andObject: spriteObject)
-        XCTAssertFalse(canMoveToDestination, "Should not be allowed to move IfBrick inside forever-loop above ForeverBrick")
+        let canMoveToDestination = BrickMoveManager.sharedInstance()
+            .collectionView(viewController!.collectionView,
+                            itemAt: indexPathFrom,
+                            canMoveTo: indexPathTo,
+                            andObject: spriteObject)
+        XCTAssertFalse(canMoveToDestination,
+                       "Should not be allowed to move IfBrick inside forever-loop above ForeverBrick")
     }
 
     func testMoveWaitBrickBelowForeverBrickInsideIfBrick() {
@@ -230,8 +255,13 @@ final class BrickMoveManagerForeverTests: BrickMoveManagerAbstractTest {
         let indexPathFrom = IndexPath(row: 3, section: 0)
         let indexPathTo = IndexPath(row: 4, section: 0)
 
-        let canMoveToDestination = BrickMoveManager.sharedInstance().collectionView(viewController!.collectionView, itemAt: indexPathFrom, canMoveTo: indexPathTo, andObject: spriteObject)
-        XCTAssertFalse(canMoveToDestination, "Should not be allowed to move WaitBrick below forever-loop of if-branch")
+        let canMoveToDestination = BrickMoveManager.sharedInstance()
+            .collectionView(viewController!.collectionView,
+                            itemAt: indexPathFrom,
+                            canMoveTo: indexPathTo,
+                            andObject: spriteObject)
+        XCTAssertFalse(canMoveToDestination,
+                       "Should not be allowed to move WaitBrick below forever-loop of if-branch")
     }
 
     func testMoveWaitBrickBelowForeverBrickInsideElse() {
@@ -286,8 +316,13 @@ final class BrickMoveManagerForeverTests: BrickMoveManagerAbstractTest {
         let indexPathFrom = IndexPath(row: 6, section: 0)
         let indexPathTo = IndexPath(row: 7, section: 0)
 
-        let canMoveToDestination = BrickMoveManager.sharedInstance().collectionView(viewController!.collectionView, itemAt: indexPathFrom, canMoveTo: indexPathTo, andObject: spriteObject)
-        XCTAssertFalse(canMoveToDestination, "Should not be allowed to move WaitBrick below forever-loop of else-branch")
+        let canMoveToDestination = BrickMoveManager.sharedInstance()
+            .collectionView(viewController!.collectionView,
+                            itemAt: indexPathFrom,
+                            canMoveTo: indexPathTo,
+                            andObject: spriteObject)
+        XCTAssertFalse(canMoveToDestination,
+                       "Should not be allowed to move WaitBrick below forever-loop of else-branch")
     }
 
     func testMoveWaitBrickBeforeForeverBrickInsideIfBrick() {
@@ -342,8 +377,13 @@ final class BrickMoveManagerForeverTests: BrickMoveManagerAbstractTest {
         let indexPathFrom = IndexPath(row: 3, section: 0)
         let indexPathTo = IndexPath(row: 2, section: 0)
 
-        let canMoveToDestination = BrickMoveManager.sharedInstance().collectionView(viewController!.collectionView, itemAt: indexPathFrom, canMoveTo: indexPathTo, andObject: spriteObject)
-        XCTAssertTrue(canMoveToDestination, "Should be allowed to move WaitBrick before forever-loop of if-branch")
+        let canMoveToDestination = BrickMoveManager.sharedInstance()
+            .collectionView(viewController!.collectionView,
+                            itemAt: indexPathFrom,
+                            canMoveTo: indexPathTo,
+                            andObject: spriteObject)
+        XCTAssertTrue(canMoveToDestination,
+                      "Should be allowed to move WaitBrick before forever-loop of if-branch")
     }
 
     func testMoveWaitBrickBeforeForeverBrickInsideElse() {
@@ -398,8 +438,13 @@ final class BrickMoveManagerForeverTests: BrickMoveManagerAbstractTest {
         let indexPathFrom = IndexPath(row: 6, section: 0)
         let indexPathTo = IndexPath(row: 5, section: 0)
 
-        let canMoveToDestination = BrickMoveManager.sharedInstance().collectionView(viewController!.collectionView, itemAt: indexPathFrom, canMoveTo: indexPathTo, andObject: spriteObject)
-        XCTAssertTrue(canMoveToDestination, "Should be allowed to move WaitBrick before forever-loop of else-branch")
+        let canMoveToDestination = BrickMoveManager.sharedInstance()
+            .collectionView(viewController!.collectionView,
+                            itemAt: indexPathFrom,
+                            canMoveTo: indexPathTo,
+                            andObject: spriteObject)
+        XCTAssertTrue(canMoveToDestination,
+                      "Should be allowed to move WaitBrick before forever-loop of else-branch")
     }
 
     func testMoveWaitBrickFromOneForeverLoopInIfBranchToAnotherInElseBranch() {
@@ -454,8 +499,13 @@ final class BrickMoveManagerForeverTests: BrickMoveManagerAbstractTest {
         let indexPathFrom = IndexPath(row: 3, section: 0)
         let indexPathTo = IndexPath(row: 6, section: 0)
 
-        let canMoveToDestination = BrickMoveManager.sharedInstance().collectionView(viewController!.collectionView, itemAt: indexPathFrom, canMoveTo: indexPathTo, andObject: spriteObject)
-        XCTAssertTrue(canMoveToDestination, "Should be allowed to move WaitBrick from one ForeverLoop to another")
+        let canMoveToDestination = BrickMoveManager.sharedInstance()
+            .collectionView(viewController!.collectionView,
+                            itemAt: indexPathFrom,
+                            canMoveTo: indexPathTo,
+                            andObject: spriteObject)
+        XCTAssertTrue(canMoveToDestination,
+                      "Should be allowed to move WaitBrick from one ForeverLoop to another")
     }
 
     func testMoveWaitBrickFromOneForeverLoopInElseBranchToAnotherInIfBranch() {
@@ -510,8 +560,13 @@ final class BrickMoveManagerForeverTests: BrickMoveManagerAbstractTest {
         let indexPathFrom = IndexPath(row: 6, section: 0)
         let indexPathTo = IndexPath(row: 3, section: 0)
 
-        let canMoveToDestination = BrickMoveManager.sharedInstance().collectionView(viewController!.collectionView, itemAt: indexPathFrom, canMoveTo: indexPathTo, andObject: spriteObject)
-        XCTAssertTrue(canMoveToDestination, "Should be allowed to move WaitBrick from one ForeverLoop to another")
+        let canMoveToDestination = BrickMoveManager.sharedInstance()
+            .collectionView(viewController!.collectionView,
+                            itemAt: indexPathFrom,
+                            canMoveTo: indexPathTo,
+                            andObject: spriteObject)
+        XCTAssertTrue(canMoveToDestination,
+                      "Should be allowed to move WaitBrick from one ForeverLoop to another")
     }
 
     func testMoveWaitBrickFromOneForeverLoopInElseBranchToAnotherInIfBranchAllTogetherInForeverLoop() {
@@ -580,8 +635,13 @@ final class BrickMoveManagerForeverTests: BrickMoveManagerAbstractTest {
         let indexPathFrom = IndexPath(row: 7, section: 0)
         let indexPathTo = IndexPath(row: 4, section: 0)
 
-        let canMoveToDestination = BrickMoveManager.sharedInstance().collectionView(viewController!.collectionView, itemAt: indexPathFrom, canMoveTo: indexPathTo, andObject: spriteObject)
-        XCTAssertTrue(canMoveToDestination, "Should be allowed to move WaitBrick from one ForeverLoop to another all together in ForeverLoop.")
+        let canMoveToDestination = BrickMoveManager.sharedInstance()
+            .collectionView(viewController!.collectionView,
+                            itemAt: indexPathFrom,
+                            canMoveTo: indexPathTo,
+                            andObject: spriteObject)
+        XCTAssertTrue(canMoveToDestination,
+                      "Should be allowed to move WaitBrick from one ForeverLoop to another all together in ForeverLoop.")
     }
 
     func testMoveForeverEndBrickInNestedIfElseStructureToAllPossibleDestinations() {
@@ -654,15 +714,25 @@ final class BrickMoveManagerForeverTests: BrickMoveManagerAbstractTest {
             if testedDestination != validTarget1 && testedDestination != sourceIDX {
                 let indexPathTo = IndexPath(row: testedDestination, section: 0)
                 BrickMoveManager.sharedInstance().reset()
-                let canMoveToDestination = BrickMoveManager.sharedInstance().collectionView(viewController!.collectionView, itemAt: indexPathFrom, canMoveTo: indexPathTo, andObject: spriteObject)
-                XCTAssertFalse(canMoveToDestination, String(format: "Should not be allowed to move to line %lu.", UInt(testedDestination)))
+                let canMoveToDestination = BrickMoveManager.sharedInstance()
+                    .collectionView(viewController!.collectionView,
+                                    itemAt: indexPathFrom,
+                                    canMoveTo: indexPathTo,
+                                    andObject: spriteObject)
+                XCTAssertFalse(canMoveToDestination,
+                               String(format: "Should not be allowed to move to line %lu.", UInt(testedDestination)))
             }
         }
 
         let indexPathTo = IndexPath(row: validTarget1, section: 0)
         BrickMoveManager.sharedInstance().reset()
-        let canMoveToDestination = BrickMoveManager.sharedInstance().collectionView(viewController!.collectionView, itemAt: indexPathFrom, canMoveTo: indexPathTo, andObject: spriteObject)
-        XCTAssertFalse(canMoveToDestination, String(format: "Should not be allowed to move to line %lu.", UInt(validTarget1)))
+        let canMoveToDestination = BrickMoveManager.sharedInstance()
+            .collectionView(viewController!.collectionView,
+                            itemAt: indexPathFrom,
+                            canMoveTo: indexPathTo,
+                            andObject: spriteObject)
+        XCTAssertFalse(canMoveToDestination,
+                       String(format: "Should not be allowed to move to line %lu.", UInt(validTarget1)))
 
     }
 
@@ -736,14 +806,22 @@ final class BrickMoveManagerForeverTests: BrickMoveManagerAbstractTest {
             if testedDestination != validTarget1 && testedDestination != sourceIDX {
                 let indexPathTo = IndexPath(row: testedDestination, section: 0)
                 BrickMoveManager.sharedInstance().reset()
-                let canMoveToDestination = BrickMoveManager.sharedInstance().collectionView(viewController!.collectionView, itemAt: indexPathFrom, canMoveTo: indexPathTo, andObject: spriteObject)
+                let canMoveToDestination = BrickMoveManager.sharedInstance()
+                    .collectionView(viewController!.collectionView,
+                                    itemAt: indexPathFrom,
+                                    canMoveTo: indexPathTo,
+                                    andObject: spriteObject)
                 XCTAssertFalse(canMoveToDestination, String(format: "Should not be allowed to move to line %lu.", UInt(testedDestination)))
             }
         }
 
         let indexPathTo = IndexPath(row: validTarget1, section: 0)
         BrickMoveManager.sharedInstance().reset()
-        let canMoveToDestination = BrickMoveManager.sharedInstance().collectionView(viewController!.collectionView, itemAt: indexPathFrom, canMoveTo: indexPathTo, andObject: spriteObject)
+        let canMoveToDestination = BrickMoveManager.sharedInstance()
+            .collectionView(viewController!.collectionView,
+                            itemAt: indexPathFrom,
+                            canMoveTo: indexPathTo,
+                            andObject: spriteObject)
         XCTAssertTrue(canMoveToDestination, String(format: "Should be allowed to move to line %lu.", UInt(validTarget1)))
 
     }
@@ -758,12 +836,20 @@ final class BrickMoveManagerForeverTests: BrickMoveManagerAbstractTest {
 
         var indexPathFrom = IndexPath(row: 1, section: 0)
         var indexPathTo = IndexPath(row: 1, section: 1)
-        var canMoveToDestination = BrickMoveManager.sharedInstance().collectionView(viewController!.collectionView, itemAt: indexPathFrom, canMoveTo: indexPathTo, andObject: spriteObject)
+        var canMoveToDestination = BrickMoveManager.sharedInstance()
+            .collectionView(viewController!.collectionView,
+                            itemAt: indexPathFrom,
+                            canMoveTo: indexPathTo,
+                            andObject: spriteObject)
         XCTAssertFalse(canMoveToDestination, "Should not be allowed to move ForeverBeginBrick to another script")
 
         indexPathFrom = IndexPath(row: 2, section: 0)
         indexPathTo = IndexPath(row: 1, section: 1)
-        canMoveToDestination = BrickMoveManager.sharedInstance().collectionView(viewController!.collectionView, itemAt: indexPathFrom, canMoveTo: indexPathTo, andObject: spriteObject)
+        canMoveToDestination = BrickMoveManager.sharedInstance()
+            .collectionView(viewController!.collectionView,
+                            itemAt: indexPathFrom,
+                            canMoveTo: indexPathTo,
+                            andObject: spriteObject)
         XCTAssertFalse(canMoveToDestination, "Should not be allowed to move LoopEndBrick to another script")
     }
 }

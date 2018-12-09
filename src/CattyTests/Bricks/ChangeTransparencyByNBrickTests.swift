@@ -49,7 +49,10 @@ final class ChangeTransparencyByNBrickTests: AbstractBrickTests {
         let action: () -> Void = brick.actionBlock(formulaInterpreter!)
         action()
 
-        XCTAssertEqual(20.0, spriteNode.catrobatTransparency, accuracy: 0.01, "ChangeTransparencyBrick is not correctly calculated")
+        XCTAssertEqual(20.0,
+                       spriteNode.catrobatTransparency,
+                       accuracy: Double.epsilon,
+                       "ChangeTransparencyBrick is not correctly calculated")
     }
 
     func testChangeTransparencyByNBrickNegative() {
@@ -76,7 +79,10 @@ final class ChangeTransparencyByNBrickTests: AbstractBrickTests {
         let action: () -> Void = brick.actionBlock(formulaInterpreter!)
         action()
 
-        XCTAssertEqual(10.0, spriteNode.catrobatTransparency, accuracy: 0.01, "ChangeTransparencyBrick is not correctly calculated")
+        XCTAssertEqual(10.0,
+                       spriteNode.catrobatTransparency,
+                       accuracy: Double.epsilon,
+                       "ChangeTransparencyBrick is not correctly calculated")
     }
 
     func testChangeTransparencyByNBrickOutOfRange() {
@@ -103,7 +109,10 @@ final class ChangeTransparencyByNBrickTests: AbstractBrickTests {
         let action: () -> Void = brick.actionBlock(formulaInterpreter!)
         action()
 
-        XCTAssertEqual(100.0, spriteNode.catrobatTransparency, accuracy: 0.01, "ChangeTransparencyBrick is not correctly calculated")
+        XCTAssertEqual(100.0,
+                       spriteNode.catrobatTransparency,
+                       accuracy: Double.epsilon,
+                       "ChangeTransparencyBrick is not correctly calculated")
     }
 
     func testChangeTransparencyByNBrickWrongInput() {
@@ -130,6 +139,9 @@ final class ChangeTransparencyByNBrickTests: AbstractBrickTests {
         let action: () -> Void = brick.actionBlock(formulaInterpreter!)
         action()
 
-        XCTAssertEqual(0.0, spriteNode.catrobatTransparency, accuracy: 0.01, "ChangeTransparencyBrick is not correctly calculated")
+        XCTAssertEqual(0.0,
+                       spriteNode.catrobatTransparency,
+                       accuracy: Double.epsilon,
+                       "ChangeTransparencyBrick is not correctly calculated")
     }
 }

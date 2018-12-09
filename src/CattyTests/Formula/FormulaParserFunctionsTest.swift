@@ -193,14 +193,14 @@ final class FormulaParserFunctionsTest: XCTestCase {
             let dividend: Int = -3 - offset
             let divisor: Int = 2 + offset
 
-            var internTokenList: [AnyHashable] = []
-            internTokenList.append(InternToken(type: TOKEN_TYPE_FUNCTION_NAME, andValue: "MOD"))
-            internTokenList.append(InternToken(type: TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_OPEN))
-            internTokenList.append(InternToken(type: TOKEN_TYPE_OPERATOR, andValue: Operators.getName(Operator.MINUS)))
-            internTokenList.append(InternToken(type: TOKEN_TYPE_NUMBER, andValue: String(format: "%i", abs(dividend))))
-            internTokenList.append(InternToken(type: TOKEN_TYPE_FUNCTION_PARAMETER_DELIMITER))
-            internTokenList.append(InternToken(type: TOKEN_TYPE_NUMBER, andValue: String(format: "%i", divisor)))
-            internTokenList.append(InternToken(type: TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_CLOSE))
+            let internTokenList = NSMutableArray()
+            internTokenList.add(InternToken(type: TOKEN_TYPE_FUNCTION_NAME, andValue: "MOD"))
+            internTokenList.add(InternToken(type: TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_OPEN))
+            internTokenList.add(InternToken(type: TOKEN_TYPE_OPERATOR, andValue: Operators.getName(Operator.MINUS)))
+            internTokenList.add(InternToken(type: TOKEN_TYPE_NUMBER, andValue: String(format: "%i", abs(dividend))))
+            internTokenList.add(InternToken(type: TOKEN_TYPE_FUNCTION_PARAMETER_DELIMITER))
+            internTokenList.add(InternToken(type: TOKEN_TYPE_NUMBER, andValue: String(format: "%i", divisor)))
+            internTokenList.add(InternToken(type: TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_CLOSE))
 
             let internParser = InternFormulaParser(tokens: (internTokenList as! [InternToken]), andFormulaManager: formulaManager)
             let parseTree: FormulaElement? = internParser!.parseFormula(for: nil)
