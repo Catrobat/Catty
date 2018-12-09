@@ -20,13 +20,22 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "Program.h"
+class FeatureMock: CIFeature {
 
-@interface ProgramMock : Program
+    private let mockedType: String
+    private let mockedBounds: CGRect
 
-- (instancetype)init;
-- (instancetype)initWithWidth:(CGFloat)width andHeight:(CGFloat)height;
-- (instancetype)initWithRequiredResources:(NSInteger)requiredResources;
-- (instancetype)initWithWidth:(CGFloat)width andHeight:(CGFloat)height andRequiredResources:(NSInteger)requiredResources;
+    init(type: String, bounds: CGRect) {
+        self.mockedType = type
+        self.mockedBounds = bounds
+        super.init()
+    }
 
-@end
+    override var type: String {
+        return mockedType
+    }
+
+    override var bounds: CGRect {
+        return mockedBounds
+    }
+}

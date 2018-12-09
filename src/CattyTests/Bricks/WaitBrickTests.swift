@@ -63,7 +63,7 @@ final class WaitBrickTests: XCTestCase {
      speakAndWaitBrick.script = self.script;
 
      let executionTime = self.measureExecutionTime(speakAndWaitBrick.instruction())
-     XCTAssertEqualWithAccuracy(executionTime, 5.0, accuracy: 1.0, "Wrong execution time")
+     XCTAssertEqual(executionTime, 5.0, accuracy: 1.0, "Wrong execution time")
      }*/
 
     func testTitleSingular() {
@@ -80,7 +80,7 @@ final class WaitBrickTests: XCTestCase {
 
     func measureExecutionTime(instruction: CBInstruction) -> Double {
         let start = NSDate()
-        let formulaInterpreter = FormulaManager()
+        let formulaInterpreter = FormulaManager(sceneSize: Util.screenSize(true))
         let scheduler = CBScheduler(logger: self.logger,
                                     broadcastHandler: CBBroadcastHandler(logger: self.logger),
                                     formulaInterpreter: formulaInterpreter)

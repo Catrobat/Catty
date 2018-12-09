@@ -196,7 +196,7 @@ final class FormulaManagerResourceTests: XCTestCase {
     }
 
     func testSetupForProgram() {
-        let program = ProgramMock(requiredResources: ResourceType.compass.rawValue | ResourceType.accelerometer.rawValue | ResourceType.deviceMotion.rawValue)!
+        let program = ProgramMock(requiredResources: ResourceType.compass.rawValue | ResourceType.accelerometer.rawValue | ResourceType.deviceMotion.rawValue)
         let scene = SceneBuilder.init(program: program).build()
         manager.setup(for: program, and: scene)
 
@@ -211,7 +211,7 @@ final class FormulaManagerResourceTests: XCTestCase {
     }
 
     func testSetupForProgramAlwaysStartTouchManager() {
-        let program = ProgramMock(requiredResources: ResourceType.noResources.rawValue)!
+        let program = ProgramMock(requiredResources: ResourceType.noResources.rawValue)
         let scene = SceneBuilder.init(program: program).build()
         manager.setup(for: program, and: scene)
 

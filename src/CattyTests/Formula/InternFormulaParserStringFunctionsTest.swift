@@ -20,33 +20,31 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import SpriteKit
 import XCTest
 
 @testable import Pocket_Code
 
-//BrickImports
-class AbstractBrickTests: XCTestCase {
-    private var _programs: [AnyHashable] = []
-    var programs: [AnyHashable] {
-        #if false
-        if !_programs {
-            _programs = [AnyHashable]()
-        }
-        #endif
-        return _programs
-    }
-    var skView: SKView?
-    var scene: CBScene?
-    var formulaInterpreter: FormulaManager?
-
-    override func setUp() {
+final class InternFormulaParserStringFunctionsTest: XCTestCase {
+    override class func setUp() {
         super.setUp()
-        formulaInterpreter = FormulaManager(sceneSize: Util.screenSize(true))
-        scene = SceneBuilder(program: ProgramMock()).build()
     }
 
-    override class func tearDown() {
-        super.tearDown()
+    func getFormulaElement(forFunction tag: String?, withLeftValue leftValue: String?, andRightValue rightValue: String?) -> FormulaElement? {
+        let leftElement = FormulaElement(type: "STRING", value: leftValue, leftChild: nil, rightChild: nil, parent: nil)
+        var rightElement: FormulaElement?
+
+        if rightValue != nil {
+            rightElement = FormulaElement(type: "STRING", value: rightValue, leftChild: nil, rightChild: nil, parent: nil)
+        }
+
+        let formula = FormulaElement(type: "FUNCTION", value: tag, leftChild: leftElement, rightChild: rightElement, parent: nil)
+
+        return formula
+    }
+
+    func testLength() {
+        let firstParameter = "testString"
+        let formula = getFormulaElement(forFunction: "LENGTH", withLeftValue: firstParameter, andRightValue: nil)
+        XCTAssertNotNil(formula, "Formula is not parsed correctly!")
     }
 }

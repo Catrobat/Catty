@@ -27,7 +27,7 @@ import CoreBluetooth
 
     @objc(checkResourcesAndPushViewControllerTo:)
     func checkResourcesAndPushViewControllerTo(navigationController: UINavigationController) {
-        self.formulaManager = FormulaManager()
+        self.formulaManager = FormulaManager(sceneSize: Util.screenSize(true))
 
         navigationController.view.addSubview(self.loadingView!)
         self.loadingView?.show()

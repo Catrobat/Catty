@@ -48,7 +48,7 @@ final class ShowTextBrickTests: XCTestCase {
 
         let logger = CBLogger(name: "Logger")
         let broadcastHandler = CBBroadcastHandler(logger: logger)
-        let formulaInterpreter = FormulaManager()
+        let formulaInterpreter = FormulaManager(sceneSize: Util.screenSize(true))
         scheduler = CBScheduler(logger: logger, broadcastHandler: broadcastHandler, formulaInterpreter: formulaInterpreter)
         context = CBScriptContext(script: script, spriteNode: spriteNode, formulaInterpreter: formulaInterpreter)
     }
@@ -75,6 +75,6 @@ final class ShowTextBrickTests: XCTestCase {
 
         // The purpose of this test is to show that the program does not crash
         // when no UserVariable is selected in the IDE and the brick is executed
-        XCTAssertTrue(true);
+        XCTAssertTrue(true)
     }
 }

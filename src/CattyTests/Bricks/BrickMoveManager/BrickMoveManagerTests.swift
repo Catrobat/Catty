@@ -478,12 +478,12 @@ final class BrickMoveManagerTests: BrickMoveManagerAbstractTest {
                                             itemAt: indexPathFrom,
                                             canMoveTo: indexPathTo,
                                             andObject: spriteObject)
-                        XCTAssertTrue(canMoveToDestination,
-                                      String(format: "Should be allowed to move from section %lu, row %lu to section %lu, row %lu",
-                                      UInt(sourceSection),
-                                      UInt(sourceIDX),
-                                      UInt(destinationSection),
-                                      UInt(destinationIDX)))
+                        let errorMsg = String(format: "Should be allowed to move from section %lu, row %lu to section %lu, row %lu",
+                                              UInt(sourceSection),
+                                              UInt(sourceIDX),
+                                              UInt(destinationSection),
+                                              UInt(destinationIDX))
+                        XCTAssertTrue(canMoveToDestination, errorMsg)
                     }
                 }
             }

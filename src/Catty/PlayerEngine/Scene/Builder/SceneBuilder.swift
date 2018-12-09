@@ -88,7 +88,7 @@
 
     private func getFormulaManager() -> FormulaManagerProtocol {
         guard let formulaManager = self.formulaManager else {
-            return FormulaManager()
+            return FormulaManager(sceneSize: self.size)
         }
         return formulaManager
     }

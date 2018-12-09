@@ -50,7 +50,7 @@ final class SetSizeToBrickTests: AbstractBrickTests {
         let spriteNode = CBSpriteNode(spriteObject: object)
         object.spriteNode = spriteNode
         script.object = object
-        var brick = SetSizeToBrick()
+        let brick = SetSizeToBrick()
         brick.script = script
 
         brick.size = Formula(integer: -130)
@@ -68,7 +68,7 @@ final class SetSizeToBrickTests: AbstractBrickTests {
         object.spriteNode = spriteNode
         script.object = object
 
-        var brick = SetSizeToBrick()
+        let brick = SetSizeToBrick()
         brick.script = script
 
         brick.size = Formula(string: "a")

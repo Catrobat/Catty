@@ -103,6 +103,6 @@ final class TurnRightBrickTests: AbstractBrickTests {
         }
 
         let expectedRawRotation = RotationSensor.convertToRaw(userInput: Double(initialRotation - rotation), for: object)
-        XCTAssertEqual(expectedRawRotation, Double(spriteNode.zRotation), accuracy: 0.0001, "TurnRightBrick not correct")
+        XCTAssertEqual(expectedRawRotation, Double(spriteNode.zRotation), accuracy: Double.epsilon, "TurnRightBrick not correct")
     }
 }

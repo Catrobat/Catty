@@ -41,7 +41,6 @@ final class IfOnEdgeBounceBrickTests: AbstractBrickTests {
     var bounceBottomPosition: CGFloat?
     var bounceRightPosition: CGFloat?
     var bounceLeftPosition: CGFloat?
-    var epsilon: CGFloat?
 
     override func setUp() {
         super.setUp()
@@ -58,7 +57,6 @@ final class IfOnEdgeBounceBrickTests: AbstractBrickTests {
         bounceBottomPosition = -1 * bounceTopPosition!
         bounceRightPosition = rightBorderPosition! - CGFloat(objectWidth! / 2)
         bounceLeftPosition = -1 * bounceRightPosition!
-        epsilon = 0.001
 
         scene = SceneBuilder(program: ProgramMock(width: screenWidth!, andHeight: screenHeight!)).build()
         spriteObject = SpriteObject()
@@ -226,12 +224,11 @@ final class IfOnEdgeBounceBrickTests: AbstractBrickTests {
     }
 
     func checkPosition(_ position: CGPoint, andRotation expectedStandardizedRotation: CGFloat) {
-
         let spriteNode: CBSpriteNode = spriteObject!.spriteNode
 
-        XCTAssertEqual(position.x, spriteNode.catrobatPosition.x, accuracy: epsilon!, "Wrong x after bounce")
-        XCTAssertEqual(position.y, spriteNode.catrobatPosition.y, accuracy: epsilon!, "Wrong y after bounce")
+        XCTAssertEqual(Double(position.x), Double(spriteNode.catrobatPosition.x), accuracy: Double.epsilon, "Wrong x after bounce")
+        XCTAssertEqual(Double(position.y), Double(spriteNode.catrobatPosition.y), accuracy: Double.epsilon, "Wrong y after bounce")
 
-        XCTAssertEqual(expectedStandardizedRotation, CGFloat(spriteNode.catrobatRotation), accuracy: epsilon!, "Wrong rotation after bounce")
+        XCTAssertEqual(Double(expectedStandardizedRotation), Double(spriteNode.catrobatRotation), accuracy: Double.epsilon, "Wrong rotation after bounce")
     }
 }

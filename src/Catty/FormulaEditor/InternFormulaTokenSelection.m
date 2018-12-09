@@ -23,14 +23,6 @@
 #import "InternFormulaTokenSelection.h"
 #import "InternFormula.h"
 
-@interface InternFormulaTokenSelection ()
-
-@property (nonatomic)NSInteger internTokenSelectionStart;
-@property (nonatomic)NSInteger internTokenSelectionEnd;
-@property (nonatomic)TokenSelectionType tokenSelectionType;
-
-@end
-
 @implementation InternFormulaTokenSelection
 
 - (InternFormulaTokenSelection *)initWithTokenSelectionType:(TokenSelectionType)tokenSelectionType

@@ -28,7 +28,7 @@ final class ChangeTransparencyByNBrickTests: AbstractBrickTests {
 
     func testChangeTransparencyByNBrickPositive() {
         let object = SpriteObject()
-        var spriteNode = CBSpriteNode(spriteObject: object)
+        let spriteNode = CBSpriteNode(spriteObject: object)
 
         scene!.addChild(spriteNode)
         spriteNode.catrobatTransparency = 0.0

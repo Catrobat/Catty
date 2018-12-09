@@ -23,21 +23,6 @@
 #import "InternFormula.h"
 #import "Pocket_Code-Swift.h"
 
-@interface InternFormula()
-
-@property (nonatomic, strong)ExternInternRepresentationMapping *externInternRepresentationMapping;
-@property (nonatomic, strong)NSMutableArray<InternToken*> *internTokenFormulaList;
-@property (nonatomic, strong)NSString *externFormulaString;
-@property (nonatomic, strong)InternFormulaTokenSelection *internFormulaTokenSelection;
-@property (nonatomic, strong)InternToken *cursorPositionInternToken;
-@property (nonatomic, strong)InternFormulaParser *internTokenFormulaParser;
-
-@property (nonatomic)CursorTokenPosition cursorTokenPosition;
-@property (nonatomic)int externCursorPosition;
-@property (nonatomic)int cursorPositionInternTokenIndex;
-
-@end
-
 static int MAPPING_NOT_FOUND = INT_MIN;
 
 @implementation InternFormula

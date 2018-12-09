@@ -52,7 +52,7 @@ class CBScriptContext: CBScriptContextProtocol {
     final var index: Int = 0
 
     private final var _instructionPointer: Int = 0
-    private final lazy var _instructionList = [CBInstruction]()
+    private lazy final var _instructionList = [CBInstruction]()
 
     // MARK: - Initializers
     convenience init?(script: Script, spriteNode: CBSpriteNode, formulaInterpreter: FormulaInterpreterProtocol) {
@@ -131,7 +131,6 @@ final class CBWhenScriptContext: CBScriptContext {
                    state: state,
                    instructionList: instructionList)
     }
-
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -149,7 +148,6 @@ final class CBWhenTouchDownScriptContext: CBScriptContext {
                    state: state,
                    instructionList: instructionList)
     }
-
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -172,7 +170,6 @@ final class CBBroadcastScriptContext: CBScriptContext, CBBroadcastScriptContextP
                    state: state,
                    instructionList: instructionList)
     }
-
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -190,5 +187,4 @@ final class CBStartScriptContext: CBScriptContext {
                    state: state,
                    instructionList: instructionList)
     }
-
 }

@@ -33,4 +33,8 @@
                                  internTokenSelectionStart:(NSInteger)internTokenSelectionStart
                                    internTokenSelectionEnd:(NSInteger)internTokenSelectionEnd;
 
+@property (nonatomic)NSInteger internTokenSelectionStart;
+@property (nonatomic)NSInteger internTokenSelectionEnd;
+@property (nonatomic)enum TokenSelectionType tokenSelectionType;
+
 @end

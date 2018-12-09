@@ -29,9 +29,11 @@ class FaceSizeSensor: DeviceSensor {
     static let requiredResource = ResourceType.faceDetection
 
     let getFaceDetectionManager: () -> FaceDetectionManagerProtocol?
+    let sceneWidth: Double?
 
-    init(faceDetectionManagerGetter: @escaping () -> FaceDetectionManagerProtocol?) {
+    init(sceneSize: CGSize, faceDetectionManagerGetter: @escaping () -> FaceDetectionManagerProtocol?) {
         self.getFaceDetectionManager = faceDetectionManagerGetter
+        self.sceneWidth = Double(sceneSize.width)
     }
 
     func tag() -> String {
@@ -39,16 +41,21 @@ class FaceSizeSensor: DeviceSensor {
     }
 
     func rawValue() -> Double {
-        guard let faceImage = self.getFaceDetectionManager()?.faceSize?.size else { return type(of: self).defaultRawValue }
-        let faceSize = faceImage.width * faceImage.height
+        guard let faceSize = self.getFaceDetectionManager()?.faceSizeRatio else { return type(of: self).defaultRawValue }
         return Double(faceSize)
     }
 
     func convertToStandardized(rawValue: Double) -> Double {
-        let screenSize = Util.screenHeight() * Util.screenWidth() / 100
-        let faceSize = rawValue / Double(screenSize)
+        guard let frameSize = self.getFaceDetectionManager()?.faceDetectionFrameSize,
+            let sceneWidth = self.sceneWidth
+            else { return type(of: self).defaultRawValue }
+
+        let faceSize = rawValue * sceneWidth / Double(frameSize.width) * 100
         if faceSize > 100 {
             return 100
+        }
+        if faceSize < 0 {
+            return 0
         }
         return faceSize
     }

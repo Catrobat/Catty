@@ -62,6 +62,8 @@ typedef enum TokenSelectionType{
 - (void)setCursorAndSelection:(int)externCursorPosition
                     selected:(BOOL)isSelected;
 - (InternFormulaState*)getInternFormulaState;
+- (void)selectCursorPositionInternToken:(TokenSelectionType)internTokenSelectionType;
+- (void)setExternCursorPositionLeftTo:(int)internTokenIndex;
 - (void)setExternCursorPositionRightTo:(int)internTokenIndex;
 - (void)updateInternCursorPosition;
 - (void)selectWholeFormula;
@@ -73,5 +75,19 @@ typedef enum TokenSelectionType{
 - (TokenSelectionType)getExternSelectionType;
 - (InternFormulaTokenSelection *)getSelection;
 - (void)selectParseErrorTokenAndSetCursor;
+- (CursorTokenPropertiesAfterModification)replaceCursorPositionInternTokenByTokenList:(NSArray *)internTokensToReplaceWith;
+
+//TODO
+@property (nonatomic, strong)ExternInternRepresentationMapping *externInternRepresentationMapping;
+@property (nonatomic, strong)NSMutableArray<InternToken*> *internTokenFormulaList;
+@property (nonatomic, strong)NSString *externFormulaString;
+@property (nonatomic, strong)InternFormulaTokenSelection *internFormulaTokenSelection;
+@property (nonatomic, strong)InternToken *cursorPositionInternToken;
+@property (nonatomic, strong)InternFormulaParser *internTokenFormulaParser;
+
+@property (nonatomic)CursorTokenPosition cursorTokenPosition;
+@property (nonatomic)int externCursorPosition;
+@property (nonatomic)int cursorPositionInternTokenIndex;
+//TODOEND
 
 @end

@@ -33,7 +33,6 @@ final class MoveNStepsBrickTests: AbstractBrickTests {
     let SCREEN_HEIGHT = 800.0
     let OBJECT_WIDTH = 100.0
     let OBJECT_HEIGHT = 100.0
-    let EPSILON = 0.001
 
     override func setUp() {
         super.setUp()
@@ -154,8 +153,8 @@ final class MoveNStepsBrickTests: AbstractBrickTests {
     }
 
     func checkPosition(_ position: CGPoint) {
-        XCTAssertEqual(Double(position.x), Double((spriteNode?.catrobatPosition.x)!), accuracy: EPSILON, "Wrong x after MoveNStepsBrick")
-        XCTAssertEqual(Double(position.y), Double((spriteNode?.catrobatPosition.y)!), accuracy: EPSILON, "Wrong y after MoveNStepsBrick")
+        XCTAssertEqual(Double(position.x), Double((spriteNode?.catrobatPosition.x)!), accuracy: Double.epsilon, "Wrong x after MoveNStepsBrick")
+        XCTAssertEqual(Double(position.y), Double((spriteNode?.catrobatPosition.y)!), accuracy: Double.epsilon, "Wrong y after MoveNStepsBrick")
     }
 
     func testTitleSingular() {

@@ -20,28 +20,34 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <XCTest/XCTest.h>
-#import "InternFormula.h"
-#import "InternToken.h"
-#import "Operators.h"
+@testable import Pocket_Code
 
-@interface InternFormulaTests : XCTestCase
+final class ProgramMock: Program {
 
-@end
+    private var mockedRequiredResources: Int = 0
 
-@implementation InternFormulaTests
+    override convenience init() {
+        self.init(width: 300, andHeight: 400)
+    }
 
-//-(void)testInsertRightToCurrentToken
-//{
-//    NSMutableArray *internTokens = [[NSMutableArray alloc]init];
-//    [internTokens addObject:[[InternToken alloc]initWithType:TOKEN_TYPE_OPERATOR AndValue:[Operators getName:PLUS]]];
-//    InternFormula *internFormula = [[InternFormula alloc]initWithInternTokenList:internTokens];
-//    [internFormula generateExternFormulaStringAndInternExternMapping];
-//    [internFormula setCursorAndSelection:0 selected:NO];
-//    [internFormula handleKeyInputWithName:nil butttonType:DECIMAL_MARK];
-//    
-//    XCTAssertTrue([[[internTokens objectAtIndex:0]getTokenStringValue]isEqualToString:@"0."]
-//                  , @"Enter decimal mark error");
-//}
+    convenience init(width: CGFloat, andHeight height: CGFloat) {
+        self.init(width: width, andHeight: height, andRequiredResources: ResourceType.noResources.rawValue)
+    }
 
-@end
+    convenience init(requiredResources: Int) {
+        self.init(width: 300, andHeight: 400, andRequiredResources: requiredResources)
+    }
+
+    init(width: CGFloat, andHeight height: CGFloat, andRequiredResources requiredResources: Int) {
+        super.init()
+
+        header = Header()
+        header.screenWidth = NSNumber(value: Float(width))
+        header.screenHeight = NSNumber(value: Float(height))
+        mockedRequiredResources = requiredResources
+    }
+
+    override func getRequiredResources() -> Int {
+        return mockedRequiredResources
+    }
+}

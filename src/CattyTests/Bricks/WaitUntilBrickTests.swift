@@ -66,7 +66,7 @@ final class WaitUntilBrickTests: XMLAbstractTest {
         script.object = object
         brick.script = script
         brick.waitCondition = Formula(float: 0)
-        let conditionResult = brick.checkCondition(formulaInterpreter: FormulaManager())
+        let conditionResult = brick.checkCondition(formulaInterpreter: FormulaManager(sceneSize: Util.screenSize(true)))
         XCTAssertTrue(conditionResult, "Condition should have returned true.")
     }
 
@@ -77,7 +77,7 @@ final class WaitUntilBrickTests: XMLAbstractTest {
         script.object = object
         brick.script = script
         brick.waitCondition = Formula(float: 1)
-        let conditionResult = brick.checkCondition(formulaInterpreter: FormulaManager())
+        let conditionResult = brick.checkCondition(formulaInterpreter: FormulaManager(sceneSize: Util.screenSize(true)))
         XCTAssertFalse(conditionResult, "Condition should have returned false.")
     }
 
@@ -96,7 +96,7 @@ final class WaitUntilBrickTests: XMLAbstractTest {
     }
 
     private func createScene() -> CBScene {
-        let sceneBuilder = SceneBuilder(program: program).withFormulaManager(formulaManager: FormulaManager())
+        let sceneBuilder = SceneBuilder(program: program).withFormulaManager(formulaManager: FormulaManager(sceneSize: Util.screenSize(true)))
         return sceneBuilder.build()
     }
 }

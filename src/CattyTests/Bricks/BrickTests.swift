@@ -29,7 +29,7 @@ final class BrickTests: XCTestCase {
     var formulaManager: FormulaManager!
 
     override func setUp() {
-        formulaManager = FormulaManager()
+        formulaManager = FormulaManager(sceneSize: Util.screenSize(true))
     }
 
     func testRemoveWaitBrick() {

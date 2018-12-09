@@ -30,7 +30,7 @@ final class FormulaManagerInterpreterTests: XCTestCase {
     var object: SpriteObject!
 
     override func setUp() {
-        interpreter = FormulaManager()
+        interpreter = FormulaManager(sceneSize: Util.screenSize(true))
         object = SpriteObject()
     }
 
@@ -704,7 +704,7 @@ final class FormulaManagerInterpreterTests: XCTestCase {
     }
 
     func testUserVariable() {
-        let program = ProgramMock()!
+        let program = ProgramMock()
         let variables = VariablesContainer()
         program.variables = variables
         object.program = program
@@ -735,7 +735,7 @@ final class FormulaManagerInterpreterTests: XCTestCase {
     }
 
     func testUserList() {
-        let program = ProgramMock()!
+        let program = ProgramMock()
         let variables = VariablesContainer()
         program.variables = variables
         object.program = program
