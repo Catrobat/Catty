@@ -87,12 +87,7 @@
     if(self.showAddObjectActionSheetAtStart) {
         [self addObjectAction:nil];
     }
-
-    //a)
-    /*[[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(unsupportedElementsAlert)
-                                                 name:@"unsupportedElementsNotification"
-                                               object:nil];*/
+    [self checkUnsupportedElements];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -100,11 +95,6 @@
     [super viewWillAppear:YES];
     [self.tableView reloadData];
 }
-
-/*a)
- - (void)unsupportedElementsAlert {
-    [[[[AlertControllerBuilder alertWithTitle:...
-}*/
 
 #pragma mark - actions
 - (void)addObjectAction:(id)sender
@@ -607,6 +597,19 @@
 }
 
 #pragma mark - helpers
+
+- (void)checkUnsupportedElements
+{
+    if (self.unsupportedElements && self.unsupportedElements.length > 0) {
+        [[[[[[AlertControllerBuilder alertWithTitle:kLocalizedUnsupportedElements message:[NSString stringWithFormat:@"%@\n\n%@", kLocalizedUnsupportedElementsDescription, self.unsupportedElements]] addDefaultActionWithTitle:kLocalizedCancel handler:^{
+            [self.navigationController popViewControllerAnimated:YES];
+        }] addDefaultActionWithTitle:kLocalizedMoreInformation handler:^{
+            [Util openUrlWithString:kUnsupportedElementsUrl];
+        }] addDefaultActionWithTitle:kLocalizedOK handler:nil] build]
+         showWithController:self];
+    }
+}
+
 - (void)setupToolBar
 {
     [super setupToolBar];

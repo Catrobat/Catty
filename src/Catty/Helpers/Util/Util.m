@@ -812,6 +812,15 @@
                   completion:^{ [hud removeFromSuperview]; }];
 }
 
++ (void)openUrlWithString:(NSString*)rawUrl
+{
+    if (@available(iOS 10, *)) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:rawUrl] options:[NSDictionary dictionary] completionHandler:nil];
+    } else {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:rawUrl]];
+    }
+}
+
 + (BOOL)isPhiroActivated
 {
     return kPhiroActivated == 1;

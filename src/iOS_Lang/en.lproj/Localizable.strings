@@ -587,6 +587,9 @@
 "floor" = "floor";
 
 /* No comment provided by engineer. */
+"Following features used in this project are not compatible with this version of Pocket Code:" = "Following features used in this project are not compatible with this version of Pocket Code:";
+
+/* No comment provided by engineer. */
 "for" = "for";
 
 /* No comment provided by engineer. */
@@ -882,6 +885,9 @@
 
 /* No comment provided by engineer. */
 "More" = "More";
+
+/* No comment provided by engineer. */
+"More information" = "More information";
 
 /* No comment provided by engineer. */
 "Most Downloaded" = "Most Downloaded";
@@ -1611,6 +1617,9 @@
 
 /* No comment provided by engineer. */
 "Unsupported Brick:" = "Unsupported Brick:";
+
+/* No comment provided by engineer. */
+"Unsupported Elements" = "Unsupported Elements";
 
 /* No comment provided by engineer. */
 "Unsupported Script:" = "Unsupported Script:";

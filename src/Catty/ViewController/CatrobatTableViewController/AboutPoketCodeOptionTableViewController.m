@@ -59,18 +59,11 @@
 
 - (void)openAboutURL
 {
-    if (IS_OS_10_OR_LATER) {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:kAboutCatrobatURL] options:[NSDictionary dictionary] completionHandler:nil];
-    } else {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:kAboutCatrobatURL]];
-    }
+    [Util openUrlWithString:kAboutCatrobatURL];
 }
+
 - (void)openSourceCodeLicenseURL
 {
-    if (IS_OS_10_OR_LATER) {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:kSourceCodeLicenseURL] options:[NSDictionary dictionary] completionHandler:nil];
-    } else {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:kSourceCodeLicenseURL]];
-    }
+    [Util openUrlWithString:kSourceCodeLicenseURL];
 }
 @end

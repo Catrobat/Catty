@@ -30,8 +30,10 @@
 
 @interface ProgramTableViewController : BaseTableViewController
 
-@property (weak, nonatomic) id<ProgramUpdateDelegate> delegate;
-@property (strong, nonatomic) Program *program;
+@property (nonatomic, weak) id<ProgramUpdateDelegate> delegate;
+@property (nonatomic, strong) Program *program;
+@property (nonatomic, strong) NSString *unsupportedElements;
+
 @property (nonatomic,assign) BOOL showAddObjectActionSheetAtStart;
 @property (copy) void (^afterSafeBlock)(SpriteObject* object);
 

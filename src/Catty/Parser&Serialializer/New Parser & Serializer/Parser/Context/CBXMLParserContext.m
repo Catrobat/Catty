@@ -97,10 +97,10 @@
     return _formulaListNameList;
 }
 
-- (NSMutableArray*)unsupportedList
+- (NSMutableDictionary*)unsupportedList
 {
     if (! _unsupportedList) {
-        _unsupportedList = [[NSMutableArray alloc] init];
+        _unsupportedList = [[NSMutableDictionary alloc] init];
     }
     return _unsupportedList;
 }

@@ -40,6 +40,7 @@
 @property (nonatomic, strong) UIView *projectView;
 @property (nonatomic, strong) LoadingView *loadingView;
 @property (nonatomic, strong) Program *loadedProgram;
+@property (nonatomic, strong) NSString *unsupportedElements;
 @property (strong, nonatomic) NSURLSession *session;
 @property (strong, nonatomic) NSURLSessionDataTask *dataTask;
 @property (nonatomic, strong) NSString *duplicateName;
@@ -94,6 +95,8 @@
     CBFileManager *fileManager = [CBFileManager sharedManager];
     fileManager.delegate = self;
     fileManager.projectURL = [NSURL URLWithString:self.project.downloadUrl];
+
+    [self setupObservers];
 }
 
 -(void)loadProject:(CatrobatProgram*)project {
@@ -178,6 +181,7 @@
         NSString *localProgramName = [Program programNameForProgramID:self.project.projectID];
         
         // check if program loaded successfully -> not nil
+        self.unsupportedElements = nil;
         self.loadedProgram = [Program programWithLoadingInfo:[ProgramLoadingInfo programLoadingInfoForProgramWithName:localProgramName programID:self.project.projectID]];
         
         if (self.loadedProgram) {
@@ -197,6 +201,7 @@
         if ([segue.destinationViewController isKindOfClass:[ProgramTableViewController class]]) {
             self.hidesBottomBarWhenPushed = YES;
             ProgramTableViewController *programTableViewController = (ProgramTableViewController*)segue.destinationViewController;
+            programTableViewController.unsupportedElements = self.unsupportedElements;
             programTableViewController.program = self.loadedProgram;
             programTableViewController.delegate = self;
         }
@@ -471,6 +476,21 @@
     app.networkActivityIndicatorVisible = value;
 }
 
+#pragma mark - Notifications
+
+- (void)setupObservers
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(unsupportedElementsNotification:)
+                                                 name:kUnsupportedElementsNotification
+                                               object:nil];
+}
+
+- (void)unsupportedElementsNotification:(NSNotification*)notification {
+    if (notification && notification.object) {
+        self.unsupportedElements = notification.object;
+    }
+}
 
 #pragma mark - popup delegate
 - (BOOL)dismissPopupWithCode:(BOOL)successLogin

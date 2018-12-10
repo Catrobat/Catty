@@ -43,6 +43,7 @@
 @property (nonatomic) BOOL useDetailCells;
 @property (nonatomic) NSInteger programsCounter;
 @property (nonatomic, strong) NSArray *sectionTitles;
+@property (nonatomic, strong) NSString *unsupportedElements;
 @property (nonatomic, strong) NSMutableDictionary *programLoadingInfoDict;
 @property (nonatomic, strong) Program *defaultProgram;
 @end
@@ -74,12 +75,9 @@
     self.tableView.separatorInset = UIEdgeInsetsZero;
     self.tableView.sectionIndexBackgroundColor = [UIColor backgroundColor];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(downloadFinished:)
-                                                 name:kProgramDownloadedNotification
-                                               object:nil];
-}
 
+    [self setupObservers];
+}
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -549,8 +547,10 @@
             // check if program loaded successfully -> not nil
             NSString *sectionTitle = [self.sectionTitles objectAtIndex:path.section];
             NSArray *sectionInfos = [self.programLoadingInfoDict objectForKey:[[sectionTitle substringToIndex:1] uppercaseString]];
+
+            self.unsupportedElements = nil;
             ProgramLoadingInfo *info = [sectionInfos objectAtIndex:path.row];
-            self.selectedProgram =[Program programWithLoadingInfo:info];
+            self.selectedProgram = [Program programWithLoadingInfo:info];
             if (![self.selectedProgram.header.programName isEqualToString:info.visibleName]) {
                 self.selectedProgram.header.programName = info.visibleName;
                 [self.selectedProgram saveToDiskWithNotification:YES];
@@ -582,6 +582,7 @@
                 [self.dataCache removeObjectForKey:self.selectedProgram.header.programName];
                 ProgramTableViewController *programTableViewController = (ProgramTableViewController*)segue.destinationViewController;
                 programTableViewController.delegate = self;
+                programTableViewController.unsupportedElements = self.unsupportedElements;
                 programTableViewController.program = self.selectedProgram;
             }
         }
@@ -705,6 +706,7 @@
 }
 
 #pragma mark - helpers
+
 - (void)setupToolBar
 {
     [super setupToolBar];
@@ -750,7 +752,26 @@
     self.sectionTitles = [[self.programLoadingInfoDict allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
 }
 
-#pragma mark Filemanager notification
+#pragma mark - Notifications
+
+- (void)setupObservers
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(downloadFinished:)
+                                                 name:kProgramDownloadedNotification
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(unsupportedElementsNotification:)
+                                                 name:kUnsupportedElementsNotification
+                                               object:nil];
+}
+
+- (void)unsupportedElementsNotification:(NSNotification*)notification {
+    if (notification && notification.object) {
+        self.unsupportedElements = notification.object;
+    }
+}
+
 - (void)downloadFinished:(NSNotification*)notification
 {
     if ([[notification name] isEqualToString:kProgramDownloadedNotification]){
@@ -773,7 +794,5 @@
 {
     [self updateProgramDescriptionActionWithText:description sourceProgram:self.selectedProgram];
 }
-
-
 
 @end
