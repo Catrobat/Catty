@@ -20,19 +20,15 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-protocol FaceDetectionManagerProtocol {
+extension AVAudioSession {
 
-    var isFaceDetected: Bool { get }
-    var facePositionRatioFromLeft: Double? { get }
-    var facePositionRatioFromBottom: Double? { get }
-    var faceSizeRatio: Double? { get }
-    var faceDetectionFrameSize: CGSize? { get }
+    //setCategory Wrapper for Swift 4.2, also available for iOS 9
+    func setCategoryWrapper(_ category: AVAudioSession.Category, mode: AVAudioSession.Mode, options: AVAudioSession.CategoryOptions = []) throws {
+        if #available(iOS 10.0, *) {
+            try self.setCategory(category, mode: mode, options: options)
+        } else {
+            self.perform(NSSelectorFromString("setCategory:withOptions:error:"), with: category, with: options)
+        }
+    }
 
-    func start()
-
-    func stop()
-
-    func reset()
-
-    func available() -> Bool
 }

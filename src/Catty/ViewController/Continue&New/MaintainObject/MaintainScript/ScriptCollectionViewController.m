@@ -114,7 +114,7 @@
     self.placeHolderView.hidden = (self.object.scriptList.count != 0);
     [[BrickInsertManager sharedInstance] reset];
     self.isEditingBrickMode = NO;
-    self.formulaManager = [FormulaManager new];
+    self.formulaManager = [[FormulaManager alloc] initWithSceneSize: CGSizeMake([self.object.program.header.screenWidth floatValue], [self.object.program.header.screenHeight floatValue])];
 }
 
 - (void)viewWillAppear:(BOOL)animated

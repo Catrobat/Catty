@@ -51,8 +51,8 @@
                     rotationDegrees = 90.0
                 }
             } else {
-                let base = fabs(objectPosition.y - pointedObjectPosition.y)
-                let height = fabs(objectPosition.x - pointedObjectPosition.x)
+                let base = abs(objectPosition.y - pointedObjectPosition.y)
+                let height = abs(objectPosition.x - pointedObjectPosition.x)
                 let value = Double(atan(base / height)) * 180.0 / Double.pi
 
                 if objectPosition.x < pointedObjectPosition.x {

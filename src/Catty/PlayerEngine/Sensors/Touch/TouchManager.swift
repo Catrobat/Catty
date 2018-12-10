@@ -20,66 +20,61 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class TouchManager: NSObject, TouchManagerProtocol, UIGestureRecognizerDelegate {
+class TouchManager: TouchManagerProtocol, CBMultiTouchRecognizerDelegate {
 
-    private var touchRecognizer: UILongPressGestureRecognizer?
+    private var touchRecognizer: CBMultiTouchRecognizer?
     private var scene: CBScene?
-    private var isScreenTouched: Bool
-    private var touches: [CGPoint]
-    private var lastTouch: CGPoint? // When finger is tapped and dragged around on the screen, this is updated.
-
-    override init() {
-        isScreenTouched = false
-        touches = [CGPoint]()
-    }
+    private var allTouches = [UITouch]()
+    private var activeTouches = [UITouch]()
 
     func startTrackingTouches(for scene: CBScene) {
         self.scene = scene
 
-        let touchRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(handleTouch(gestureRecognizer:)))
-        touchRecognizer.minimumPressDuration = 0
-        touchRecognizer.cancelsTouchesInView = false
-        touchRecognizer.delegate = self
-        touchRecognizer.isEnabled = true
-
+        let touchRecognizer = CBMultiTouchRecognizer(delegate: self)
         self.touchRecognizer = touchRecognizer
-        UIApplication.shared.keyWindow?.addGestureRecognizer(touchRecognizer)
-        reset()
+        self.scene?.view?.addGestureRecognizer(touchRecognizer)
+        self.scene?.view?.isMultipleTouchEnabled = true
     }
 
     func stopTrackingTouches() {
-        scene = nil
         reset()
+        scene = nil
 
         guard let touchRecognizer = self.touchRecognizer else { return }
         touchRecognizer.isEnabled = false
-        UIApplication.shared.keyWindow?.removeGestureRecognizer(touchRecognizer)
+        self.scene?.view?.removeGestureRecognizer(touchRecognizer)
         self.touchRecognizer = nil
     }
 
     func reset() {
-        touches.removeAll()
-        isScreenTouched = false
-        lastTouch = nil
+        allTouches.removeAll()
+        activeTouches.removeAll()
     }
 
     func screenTouched() -> Bool {
-        return isScreenTouched
+        return !activeTouches.isEmpty
+    }
+
+    func screenTouched(for touchNumber: Int) -> Bool {
+        guard let touch = self.touch(for: touchNumber) else { return false }
+        return activeTouches.contains(touch) && touch.phase != .ended && touch.phase != .cancelled
     }
 
     func numberOfTouches() -> Int {
-        return touches.count
+        return allTouches.count
     }
 
     func lastPositionInScene() -> CGPoint? {
-        return lastTouch
+        let touchesCount = numberOfTouches()
+        if touchesCount == 0 {
+            return nil
+        }
+        return getPositionInScene(for: touchesCount)
     }
 
     func getPositionInScene(for touchNumber: Int) -> CGPoint? {
-        if touches.count <= touchNumber || touchNumber <= 0 {
-            return nil
-        }
-        return touches[touchNumber - 1]
+        guard let scene = self.scene, let touch = self.touch(for: touchNumber) else { return nil }
+        return touch.location(in: scene)
     }
 
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
@@ -87,18 +82,21 @@ class TouchManager: NSObject, TouchManagerProtocol, UIGestureRecognizerDelegate 
         return true
     }
 
-    @objc func handleTouch(gestureRecognizer: UIGestureRecognizer) {
-        guard let scene = self.scene else { return }
+    func handle(touch: UITouch, for state: UIGestureRecognizer.State) {
+        if state == .began {
+            activeTouches.append(touch)
+            allTouches.append(touch)
 
-        let position = gestureRecognizer.location(in: scene.view)
-        lastTouch = position
+            scene?.touchedWithTouch(touch)
+        } else if state == .ended || state == .cancelled {
+            activeTouches.removeObject(touch)
+        }
+    }
 
-        if gestureRecognizer.state == UIGestureRecognizerState.began {
-            isScreenTouched = true
-            touches.append(position)
+    private func touch(for touchNumber: Int) -> UITouch? {
+        if allTouches.count < touchNumber || touchNumber <= 0 {
+            return nil
         }
-        if gestureRecognizer.state == UIGestureRecognizerState.ended {
-            isScreenTouched = false
-        }
+        return allTouches[touchNumber - 1]
     }
 }

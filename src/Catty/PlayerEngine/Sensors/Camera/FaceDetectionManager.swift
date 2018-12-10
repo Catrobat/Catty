@@ -22,13 +22,11 @@
 
 class FaceDetectionManager: NSObject, FaceDetectionManagerProtocol, AVCaptureVideoDataOutputSampleBufferDelegate {
 
-    // TODO: remove Singleton
-    public static let shared = FaceDetectionManager()
-
     var isFaceDetected: Bool = false
-    var facePositionX: Double?
-    var facePositionY: Double?
-    var faceSize: CGRect?
+    var facePositionRatioFromLeft: Double?
+    var facePositionRatioFromBottom: Double?
+    var faceSizeRatio: Double?
+    var faceDetectionFrameSize: CGSize?
 
     private var session: AVCaptureSession?
     private var videoDataOuput: AVCaptureVideoDataOutput?
@@ -67,7 +65,8 @@ class FaceDetectionManager: NSObject, FaceDetectionManagerProtocol, AVCaptureVid
             self.session?.addOutput(videoDataOuput)
         }
 
-        videoDataOuput.connection(with: .video)?.isEnabled = true
+        let videoDataOutputConnection = videoDataOuput.connection(with: .video)
+        videoDataOutputConnection?.isEnabled = true
         self.videoDataOuput = videoDataOuput
 
         let previewLayer = AVCaptureVideoPreviewLayer(session: session)
@@ -76,7 +75,7 @@ class FaceDetectionManager: NSObject, FaceDetectionManagerProtocol, AVCaptureVid
         previewLayer.isHidden = true
         self.previewLayer = previewLayer
 
-        let detectorOptions = [ CIDetectorAccuracy: CIDetectorAccuracyLow]
+        let detectorOptions = [ CIDetectorAccuracy: CIDetectorAccuracyLow ]
         self.faceDetector = CIDetector(ofType: CIDetectorTypeFace, context: nil, options: detectorOptions)
 
         session.startRunning()
@@ -84,12 +83,33 @@ class FaceDetectionManager: NSObject, FaceDetectionManagerProtocol, AVCaptureVid
 
     func stop() {
         self.reset()
+
+        if let inputs = self.session?.inputs as? [AVCaptureDeviceInput] {
+            for input in inputs {
+                self.session?.removeInput(input)
+            }
+        }
+        if let outputs = self.session?.outputs as? [AVCaptureVideoDataOutput] {
+            for output in outputs {
+                self.session?.removeOutput(output)
+            }
+        }
+
         self.session?.stopRunning()
         self.session = nil
         self.faceDetector = nil
+        self.videoDataOuput?.connection(with: .video)?.isEnabled = false
         self.videoDataOuput = nil
         self.previewLayer?.removeFromSuperlayer()
         self.previewLayer = nil
+    }
+
+    func reset() {
+        self.isFaceDetected = false
+        self.facePositionRatioFromLeft = nil
+        self.facePositionRatioFromBottom = nil
+        self.faceSizeRatio = nil
+        self.faceDetectionFrameSize = nil
     }
 
     func available() -> Bool {
@@ -103,29 +123,41 @@ class FaceDetectionManager: NSObject, FaceDetectionManagerProtocol, AVCaptureVid
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
 
-        let attachments = CMCopyDictionaryOfAttachments(kCFAllocatorDefault, sampleBuffer, kCMAttachmentMode_ShouldPropagate)
-        let ciImage = CIImage(cvImageBuffer: pixelBuffer, options: attachments as? [String: Any])
-        let imageOptions = [ CIDetectorImageOrientation: exifOrientation(currentDeviceOrientation: UIDevice.current.orientation)]
+        if connection.isVideoOrientationSupported {
+            connection.videoOrientation = .portrait
+        }
 
-        guard let features = self.faceDetector?.features(in: ciImage, options: imageOptions) else { return }
+        let ciImage = CIImage(cvImageBuffer: pixelBuffer)
+        guard let features = self.faceDetector?.features(in: ciImage) else { return }
 
+        captureFace(for: features, in: ciImage.extent)
+    }
+
+    func captureFace(for features: [CIFeature], in imageDimensions: CGRect) {
         var isFaceDetected = false
 
         for feature in features where (feature.type == CIFeatureTypeFace) {
             isFaceDetected = true
-            self.facePositionX = Double(feature.bounds.origin.x)
-            self.facePositionY = Double(feature.bounds.origin.y)
-            self.faceSize = feature.bounds
+
+            let featureCenterX = feature.bounds.origin.x + feature.bounds.width / 2
+            let featureCenterY = feature.bounds.origin.y + feature.bounds.height / 2
+
+            self.faceDetectionFrameSize = imageDimensions.size
+            self.faceSizeRatio = Double(feature.bounds.width) / Double(imageDimensions.width)
+            self.facePositionRatioFromBottom = Double(featureCenterY / imageDimensions.height)
+
+            var ratioFromLeft = Double(featureCenterX / imageDimensions.width)
+            if cameraPosition() == .front {
+                ratioFromLeft = 1 - ratioFromLeft
+            }
+            self.facePositionRatioFromLeft = ratioFromLeft
         }
 
         self.isFaceDetected = isFaceDetected
     }
 
-    func reset() {
-        self.isFaceDetected = false
-        self.facePositionX = nil
-        self.facePositionY = nil
-        self.faceSize = nil
+    func cameraPosition() -> AVCaptureDevice.Position {
+        return CameraPreviewHandler.shared().cameraPosition
     }
 
     private func camera(for cameraPosition: AVCaptureDevice.Position) -> AVCaptureDevice? {
@@ -133,41 +165,5 @@ class FaceDetectionManager: NSObject, FaceDetectionManagerProtocol, AVCaptureVid
             return device
         }
         return nil
-    }
-
-    private func cameraPosition() -> AVCaptureDevice.Position {
-        return CameraPreviewHandler.shared().cameraPosition
-    }
-
-    private func exifOrientation(currentDeviceOrientation: UIDeviceOrientation) -> Int {
-        /* kCGImagePropertyOrientation values
-         The intended display orientation of the image. If present, this key is a CFNumber value with the same value as defined
-         by the TIFF and EXIF specifications -- see enumeration of integer constants.
-         The value specified where the origin (0,0) of the image is located. If not present, a value of 1 is assumed.
-
-         used when calling featuresInImage: options: The value for this key is an integer NSNumber from 1..8 as found in kCGImagePropertyOrientation.
-         If present, the detection will be done based on that orientation but the coordinates in the returned features will still be based on those of the image. */
-
-        enum ExifOrientation: Int {
-            case topLeft = 1 //   1  =  0th row is at the top, and 0th column is on the left (THE DEFAULT).
-            case topRight = 2 //   2  =  0th row is at the top, and 0th column is on the right.
-            case bottomRight = 3 //   3  =  0th row is at the bottom, and 0th column is on the right.
-            case bottomLeft = 4 //   4  =  0th row is at the bottom, and 0th column is on the left.
-            case leftTop = 5 //   5  =  0th row is on the left, and 0th column is the top.
-            case rightTop = 6 //   6  =  0th row is on the right, and 0th column is the top.
-            case rightBottom = 7 //   7  =  0th row is on the right, and 0th column is the bottom.
-            case leftBottom = 8  //   8  =  0th row is on the left, and 0th column is the bottom.
-        }
-
-        switch currentDeviceOrientation {
-        case .portraitUpsideDown:
-            return ExifOrientation.leftBottom.rawValue
-        case .landscapeLeft:
-            return cameraPosition() == .front ? ExifOrientation.bottomRight.rawValue: ExifOrientation.topLeft.rawValue
-        case .landscapeRight:
-            return cameraPosition() == .front ? ExifOrientation.topLeft.rawValue: ExifOrientation.bottomRight.rawValue
-        default:
-            return ExifOrientation.rightTop.rawValue
-        }
     }
 }

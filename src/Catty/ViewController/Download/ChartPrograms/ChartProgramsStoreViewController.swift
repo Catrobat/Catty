@@ -110,7 +110,7 @@ class ChartProgramsStoreViewController: UIViewController, SelectedChartProgramsD
 
         if checkIphoneScreenSize() {
             let font = UIFont.systemFont(ofSize: 10)
-            chartProgramsSegmentedControl.setTitleTextAttributes([NSAttributedStringKey.font: font], for: .normal)
+            chartProgramsSegmentedControl.setTitleTextAttributes([NSAttributedString.Key.font: font], for: .normal)
         }
     }
 
@@ -121,7 +121,7 @@ class ChartProgramsStoreViewController: UIViewController, SelectedChartProgramsD
     }
 
     private func setupTableView() {
-        self.chartProgramsTableView.separatorStyle = UITableViewCellSeparatorStyle.none
+        self.chartProgramsTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         self.chartProgramsTableView.backgroundColor = UIColor.background()
         self.chartProgramsTableView.separatorColor = UIColor.globalTint()
         self.chartProgramsTableView.dataSource = self.dataSource
@@ -231,7 +231,7 @@ extension ChartProgramsStoreViewController {
     func showLoadingIndicator(_ inTableFooter: Bool = false) {
         DispatchQueue.main.async {
             if inTableFooter {
-                let spinner = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+                let spinner = UIActivityIndicatorView(style: .gray)
                 spinner.startAnimating()
                 spinner.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: self.chartProgramsTableView.bounds.width, height: CGFloat(44))
 

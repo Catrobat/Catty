@@ -20,19 +20,20 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-protocol FaceDetectionManagerProtocol {
+import UIKit.UIGestureRecognizerSubclass
 
-    var isFaceDetected: Bool { get }
-    var facePositionRatioFromLeft: Double? { get }
-    var facePositionRatioFromBottom: Double? { get }
-    var faceSizeRatio: Double? { get }
-    var faceDetectionFrameSize: CGSize? { get }
+class UIGestureRecognizerMock: UIGestureRecognizer {
 
-    func start()
+    let mockedLocation: CGPoint
 
-    func stop()
+    init(location: CGPoint, state: UIGestureRecognizer.State) {
+        self.mockedLocation = location
 
-    func reset()
+        super.init(target: nil, action: nil)
+        self.state = state
+    }
 
-    func available() -> Bool
+    override func location(in view: UIView?) -> CGPoint {
+        return mockedLocation
+    }
 }

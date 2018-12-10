@@ -20,19 +20,22 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-protocol FaceDetectionManagerProtocol {
+class FeatureMock: CIFeature {
 
-    var isFaceDetected: Bool { get }
-    var facePositionRatioFromLeft: Double? { get }
-    var facePositionRatioFromBottom: Double? { get }
-    var faceSizeRatio: Double? { get }
-    var faceDetectionFrameSize: CGSize? { get }
+    private let mockedType: String
+    private let mockedBounds: CGRect
 
-    func start()
+    init(type: String, bounds: CGRect) {
+        self.mockedType = type
+        self.mockedBounds = bounds
+        super.init()
+    }
 
-    func stop()
+    override var type: String {
+        return mockedType
+    }
 
-    func reset()
-
-    func available() -> Bool
+    override var bounds: CGRect {
+        return mockedBounds
+    }
 }

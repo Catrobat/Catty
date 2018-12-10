@@ -64,7 +64,7 @@ class BaseAlertController: NSObject, AlertControllerProtocol, BuilderProtocol, C
     var viewDidAppear: ((UIView) -> Void)?
     var viewWillDisappear: (() -> Void)?
 
-    init(title: String?, message: String?, style: UIAlertControllerStyle) {
+    init(title: String?, message: String?, style: UIAlertController.Style) {
         alertController = CustomAlertController(title: title, message: message, preferredStyle: style)
 
         super.init()

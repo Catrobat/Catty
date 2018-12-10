@@ -24,39 +24,13 @@
 
 // Screen Sizes in Points
 #define kIphone4ScreenHeight 480.0f
-#define kIphone4ScreenWidth 320.0f
 #define kIphone5ScreenHeight 568.0f
-#define kIphone5ScreenWidth 320.0f
-#define kIphone6ScreenHeight 667.0f
-#define kIphone6ScreenWidth 375.0f
 #define kIphone6PScreenHeight 736.0f
-#define kIphone6PScreenWidth 414.0f
 #define kIpadScreenHeight 1028.0f
-#define kIpadScreenWidth 768.0f
-#define kIpadRetinaScreenHeight 2048.0f
-#define kIpadRetinaScreenWidth 1536.0f
-
-// CatrobatTableViewController
-#define kIconDownsizeFactorIphone4 0.85f
 
 // ScenePresenterViewController
-#define kWidthSlideMenu 150
-#define kBounceEffect 5
-#define kPlaceOfButtons 17
 #define kSlidingStartArea 40
-#define kContinueButtonSize 85
-#define kContinueOffset 15
-#define kMenuButtonSize 44
-#define kMenuIPhone4GapSize 30
-#define kMenuIPhone5GapSize 35
-#define kMenuIPhone4ContinueGapSize 40
-#define kMenuIPhone5ContinueGapSize 45
-#define kMenuLabelWidth 50
-#define kMenuLabelHeight 20
-#define kPlaceofLabels (kPlaceOfButtons-29)
-#define kPlaceofContinueLabel (kPlaceOfButtons)
-#define kDontResumeSounds 4
-#define kfirstSwipeDuration 0.8f
+#define kfirstSwipeDuration 0.45f
 
 // Blocked characters for program names, object names, images names, sounds names and variable/list names
 #define kTextFieldBlockedCharacters @""

@@ -164,14 +164,7 @@
 + (CGSize)screenSize:(BOOL)inPixel
 {
     CGSize screenSize = inPixel ? [[UIScreen mainScreen] nativeBounds].size : [[UIScreen mainScreen] bounds].size;
-    float iOSVersion = [[[UIDevice currentDevice] systemVersion] floatValue];
-    UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
-    if (iOSVersion < 8 && UIInterfaceOrientationIsLandscape(orientation))
-    {
-        screenSize.height = screenSize.width;
-        screenSize.width = screenSize.height;
-    }
-    
+
     if (inPixel && IS_IPHONEPLUS) {
         CGFloat iPhonePlusDownsamplingFactor = 1.15;
         screenSize.height = screenSize.height / iPhonePlusDownsamplingFactor;

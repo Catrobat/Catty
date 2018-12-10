@@ -28,17 +28,7 @@
 
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad)
 #define IS_IPHONE (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPhone)
-#define IS_IPHONE4 (([Util screenHeight] - kIphone4ScreenHeight) ? NO : YES)
-#define IS_IPHONE5 (([Util screenHeight] - kIphone5ScreenHeight) ? NO : YES)
-#define IS_IPHONE6 (([Util screenHeight] - kIphone6ScreenHeight) ? NO : YES)
 #define IS_IPHONEPLUS (([Util screenHeight] - kIphone6PScreenHeight) ? NO : YES)
-
-#define IS_OS_5_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 5.0)
-#define IS_OS_6_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 6.0)
-#define IS_OS_7_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
-#define IS_OS_8_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
-#define IS_OS_9_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 9.0)
-#define IS_OS_10_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 10.0)
 
 #define SAFE_BLOCK_CALL(__functor, ...)   \
 do {    \

@@ -80,7 +80,7 @@ final class WaitBrickTests: XCTestCase {
 
     func measureExecutionTime(instruction: CBInstruction) -> Double {
         let start = NSDate()
-        let formulaInterpreter = FormulaManager()
+        let formulaInterpreter = FormulaManager(sceneSize: Util.screenSize(true))
         let scheduler = CBScheduler(logger: self.logger,
                                     broadcastHandler: CBBroadcastHandler(logger: self.logger),
                                     formulaInterpreter: formulaInterpreter)
