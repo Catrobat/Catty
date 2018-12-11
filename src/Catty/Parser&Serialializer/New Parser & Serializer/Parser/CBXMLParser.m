@@ -112,30 +112,14 @@
         CBXMLParserContext *parserContext = [[CBXMLParserContext alloc]
                                              initWithLanguageVersion:languageVersion];
         program = [parserContext parseFromElement:xmlDocument.rootElement withClass:[Program class]];
+        program.unsupportedElements = parserContext.unsupportedElements;
         NSInfo(@"Parsing finished...");
-
-        [self checkUnsupportedList:parserContext.unsupportedList program:program];
     } @catch(NSException *exception) {
         NSError(@"Program could not be loaded! %@", [exception description]);
         return nil;
     }
     [program updateReferences];
     return program;
-}
-
-- (void)checkUnsupportedList:(NSMutableDictionary*)unsupportedList program:(Program*)program {
-    program.unsupportedElements = @"";
-    if (unsupportedList.count > 0) {
-        for(id key in unsupportedList) {
-            if (program.unsupportedElements.length == 0) {
-                program.unsupportedElements = [NSString stringWithFormat:@"%@", key];
-            } else {
-                program.unsupportedElements = [program.unsupportedElements
-                                               stringByAppendingString:
-                                               [NSString stringWithFormat:@", %@", key]];
-            }
-        }
-    }
 }
 
 @end

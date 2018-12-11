@@ -97,12 +97,12 @@
     return _formulaListNameList;
 }
 
-- (NSMutableDictionary*)unsupportedList
+- (NSMutableDictionary*)unsupportedElements
 {
-    if (! _unsupportedList) {
-        _unsupportedList = [[NSMutableDictionary alloc] init];
+    if (! _unsupportedElements) {
+        _unsupportedElements = [[NSMutableDictionary alloc] init];
     }
-    return _unsupportedList;
+    return _unsupportedElements;
 }
 
 - (void)setLanguageVersion:(CGFloat)languageVersion

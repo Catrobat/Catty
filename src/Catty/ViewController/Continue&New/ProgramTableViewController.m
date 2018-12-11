@@ -600,8 +600,21 @@
 
 - (void)checkUnsupportedElements
 {
-    if (self.program.unsupportedElements && self.program.unsupportedElements.length > 0) {
-        [[[[[[AlertControllerBuilder alertWithTitle:kLocalizedUnsupportedElements message:[NSString stringWithFormat:@"%@\n\n%@", kLocalizedUnsupportedElementsDescription, self.program.unsupportedElements]] addDefaultActionWithTitle:kLocalizedCancel handler:^{
+    if (self.program.unsupportedElements && self.program.unsupportedElements.count > 0) {
+        NSString *unsupportedElementsString = @"";
+        if (self.program.unsupportedElements.count > 0) {
+            for(id key in self.program.unsupportedElements) {
+                if (unsupportedElementsString.length == 0) {
+                    unsupportedElementsString = [NSString stringWithFormat:@"%@", key];
+                } else {
+                    unsupportedElementsString = [unsupportedElementsString
+                                                 stringByAppendingString:
+                                                 [NSString stringWithFormat:@", %@", key]];
+                }
+            }
+        }
+
+        [[[[[[AlertControllerBuilder alertWithTitle:kLocalizedUnsupportedElements message:[NSString stringWithFormat:@"%@\n\n%@", kLocalizedUnsupportedElementsDescription, unsupportedElementsString]] addDefaultActionWithTitle:kLocalizedCancel handler:^{
             [self.navigationController popViewControllerAnimated:YES];
         }] addDefaultActionWithTitle:kLocalizedMoreInformation handler:^{
             [Util openUrlWithString:kUnsupportedElementsUrl];
@@ -620,12 +633,10 @@
     UIBarButtonItem *play = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
                                                                           target:self
                                                                           action:@selector(playSceneAction:)];
-    // FIXME: workaround for tap area problem:
-    // http://stackoverflow.com/questions/5113258/uitoolbar-unexpectedly-registers-taps-on-uibarbuttonitem-instances-even-when-tap
-    UIBarButtonItem *(^invisibleItem)(void) = ^UIBarButtonItem *() { return [UIBarButtonItem invisibleItem]; };
-    UIBarButtonItem *(^flexItem)(void) = ^UIBarButtonItem *() { return [UIBarButtonItem flexItem]; };
-    self.toolbarItems = [NSArray arrayWithObjects:flexItem(), invisibleItem(), add, invisibleItem(), flexItem(),
-                         flexItem(), flexItem(), invisibleItem(), play, invisibleItem(), flexItem(), nil];
+    UIBarButtonItem *flex = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                                                          target:self
+                                                                          action:nil];
+    self.toolbarItems = [NSArray arrayWithObjects: flex, add, flex, flex, play, flex, nil];
 }
 
 - (void)setupEditingToolBar
@@ -636,12 +647,10 @@
                                                                      style:UIBarButtonItemStylePlain
                                                                     target:self
                                                                     action:@selector(confirmDeleteSelectedObjectsAction:)];
-    // FIXME: workaround for tap area problem:
-    // http://stackoverflow.com/questions/5113258/uitoolbar-unexpectedly-registers-taps-on-uibarbuttonitem-instances-even-when-tap
-    UIBarButtonItem *(^invisibleItem)(void) = ^UIBarButtonItem *() { return [UIBarButtonItem invisibleItem]; };
-    UIBarButtonItem *(^flexItem)(void) = ^UIBarButtonItem *() { return [UIBarButtonItem flexItem]; };
-    self.toolbarItems = [NSArray arrayWithObjects:self.selectAllRowsButtonItem, invisibleItem(), flexItem(),
-                         invisibleItem(), deleteButton, nil];
+    UIBarButtonItem *flex = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                                                          target:self
+                                                                          action:nil];
+    self.toolbarItems = [NSArray arrayWithObjects:self.selectAllRowsButtonItem, flex, deleteButton, nil];
 }
 
 

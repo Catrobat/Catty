@@ -125,8 +125,9 @@
 #pragma mark - Setup Toolbar
 - (void)setupToolBar
 {
-    UIBarButtonItem *(^invisibleItem)(void) = ^UIBarButtonItem *() { return [UIBarButtonItem invisibleItem]; };
-    UIBarButtonItem *(^flexItem)(void) = ^UIBarButtonItem *() { return [UIBarButtonItem flexItem]; };
+    UIBarButtonItem *flex = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                                                          target:self
+                                                                          action:nil];
 
     UIBarButtonItem *delete = [[UIBarButtonItem alloc] initWithTitle:kLocalizedDelete
                                                                style:UIBarButtonItemStylePlain
@@ -155,10 +156,9 @@
                                                                           action:@selector(playSceneAction:)];
     play.enabled = (! self.editing);
     if (self.editing) {
-        self.toolbarItems = @[selectAllRowsButtonItem,flexItem(),delete];
+        self.toolbarItems = @[selectAllRowsButtonItem,flex,delete];
     } else {
-        self.toolbarItems = @[flexItem(), invisibleItem(), add, invisibleItem(), flexItem(),
-                              flexItem(), flexItem(), invisibleItem(), play, invisibleItem(), flexItem()];
+        self.toolbarItems = @[flex, add, flex, flex, play, flex];
     }
 }
 

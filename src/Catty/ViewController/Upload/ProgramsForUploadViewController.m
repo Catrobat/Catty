@@ -268,8 +268,10 @@
     
     [self.uploadButton setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont boldSystemFontOfSize:18.0f], NSFontAttributeName, nil] forState:UIControlStateNormal];
 
-    UIBarButtonItem *(^flexItem)(void) = ^UIBarButtonItem *() { return [UIBarButtonItem flexItem]; };
-    self.toolbarItems = @[flexItem(), self.uploadButton, flexItem()];
+    UIBarButtonItem *flex = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                                                          target:self
+                                                                          action:nil];
+    self.toolbarItems = @[flex, self.uploadButton, flex];
 }
 
 - (void)showUploadInfoView
