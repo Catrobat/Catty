@@ -600,8 +600,8 @@
 
 - (void)checkUnsupportedElements
 {
-    if (self.unsupportedElements && self.unsupportedElements.length > 0) {
-        [[[[[[AlertControllerBuilder alertWithTitle:kLocalizedUnsupportedElements message:[NSString stringWithFormat:@"%@\n\n%@", kLocalizedUnsupportedElementsDescription, self.unsupportedElements]] addDefaultActionWithTitle:kLocalizedCancel handler:^{
+    if (self.program.unsupportedElements && self.program.unsupportedElements.length > 0) {
+        [[[[[[AlertControllerBuilder alertWithTitle:kLocalizedUnsupportedElements message:[NSString stringWithFormat:@"%@\n\n%@", kLocalizedUnsupportedElementsDescription, self.program.unsupportedElements]] addDefaultActionWithTitle:kLocalizedCancel handler:^{
             [self.navigationController popViewControllerAnimated:YES];
         }] addDefaultActionWithTitle:kLocalizedMoreInformation handler:^{
             [Util openUrlWithString:kUnsupportedElementsUrl];

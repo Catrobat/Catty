@@ -20,22 +20,17 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
-#import "BaseTableViewController.h"
-#import "SpriteObject.h"
+@objc
+extension Program {
+    private static var _unsupportedElements: String = ""
 
-@class ProgramLoadingInfo;
-@class Program;
-@protocol ProgramUpdateDelegate;
-
-@interface ProgramTableViewController : BaseTableViewController
-
-@property (nonatomic, weak) id<ProgramUpdateDelegate> delegate;
-@property (nonatomic, strong) Program *program;
-
-@property (nonatomic,assign) BOOL showAddObjectActionSheetAtStart;
-@property (copy) void (^afterSafeBlock)(SpriteObject* object);
-
-- (void)addObjectAction:(id)sender;
-
-@end
+    @objc
+    var unsupportedElements:String {
+        get {
+            return Program._unsupportedElements
+        }
+        set(newValue) {
+            Program._unsupportedElements = newValue
+        }
+    }
+}

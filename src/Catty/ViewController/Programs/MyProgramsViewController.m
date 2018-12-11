@@ -43,7 +43,6 @@
 @property (nonatomic) BOOL useDetailCells;
 @property (nonatomic) NSInteger programsCounter;
 @property (nonatomic, strong) NSArray *sectionTitles;
-@property (nonatomic, strong) NSString *unsupportedElements;
 @property (nonatomic, strong) NSMutableDictionary *programLoadingInfoDict;
 @property (nonatomic, strong) Program *defaultProgram;
 @end
@@ -548,7 +547,6 @@
             NSString *sectionTitle = [self.sectionTitles objectAtIndex:path.section];
             NSArray *sectionInfos = [self.programLoadingInfoDict objectForKey:[[sectionTitle substringToIndex:1] uppercaseString]];
 
-            self.unsupportedElements = nil;
             ProgramLoadingInfo *info = [sectionInfos objectAtIndex:path.row];
             self.selectedProgram = [Program programWithLoadingInfo:info];
             if (![self.selectedProgram.header.programName isEqualToString:info.visibleName]) {
@@ -582,7 +580,6 @@
                 [self.dataCache removeObjectForKey:self.selectedProgram.header.programName];
                 ProgramTableViewController *programTableViewController = (ProgramTableViewController*)segue.destinationViewController;
                 programTableViewController.delegate = self;
-                programTableViewController.unsupportedElements = self.unsupportedElements;
                 programTableViewController.program = self.selectedProgram;
             }
         }
@@ -760,16 +757,6 @@
                                              selector:@selector(downloadFinished:)
                                                  name:kProgramDownloadedNotification
                                                object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(unsupportedElementsNotification:)
-                                                 name:kUnsupportedElementsNotification
-                                               object:nil];
-}
-
-- (void)unsupportedElementsNotification:(NSNotification*)notification {
-    if (notification && notification.object) {
-        self.unsupportedElements = notification.object;
-    }
 }
 
 - (void)downloadFinished:(NSNotification*)notification

@@ -26,6 +26,7 @@
 #import "Program+CustomExtensions.h"
 #import "CBXMLParserContext.h"
 #import "Util.h"
+#import "Pocket_Code-Swift.h"
 
 // NEVER MOVE THESE DEFINE CONSTANTS TO ANOTHER (HEADER) FILE
 #define kCatrobatXMLParserMinSupportedLanguageVersion 0.93f
@@ -123,18 +124,17 @@
 }
 
 - (void)checkUnsupportedList:(NSMutableDictionary*)unsupportedList program:(Program*)program {
+    program.unsupportedElements = @"";
     if (unsupportedList.count > 0) {
-        NSString *unsupportedString = @"";
         for(id key in unsupportedList) {
-            if (unsupportedString.length == 0) {
-                unsupportedString = [NSString stringWithFormat:@"%@", key];
+            if (program.unsupportedElements.length == 0) {
+                program.unsupportedElements = [NSString stringWithFormat:@"%@", key];
             } else {
-                unsupportedString = [unsupportedString stringByAppendingString:
-                                     [NSString stringWithFormat:@", %@", key]];
+                program.unsupportedElements = [program.unsupportedElements
+                                               stringByAppendingString:
+                                               [NSString stringWithFormat:@", %@", key]];
             }
         }
-        [[NSNotificationCenter defaultCenter] postNotificationName:kUnsupportedElementsNotification
-                                                            object:unsupportedString];
     }
 }
 

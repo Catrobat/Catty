@@ -385,7 +385,6 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
 
 -(void)addProgramFromInboxWithName:(NSString*)newProgramName
 {
-    
     NSFileManager* filemgr = [NSFileManager defaultManager];
     NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString* documentsDirectory = [paths objectAtIndex:0];
