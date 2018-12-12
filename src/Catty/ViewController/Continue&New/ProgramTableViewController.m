@@ -30,7 +30,6 @@
 #import "DarkBlueGradientImageDetailCell.h"
 #import "Util.h"
 #import "UIUtil.h"
-#import "UIImageView+CatrobatUIImageViewExtensions.h"
 #import "ProgramUpdateDelegate.h"
 #import "CellTagDefines.h"
 #import "ProgramTableHeaderView.h"
@@ -370,7 +369,6 @@
     NSInteger index = (kBackgroundSectionIndex + indexPath.section + indexPath.row);
     SpriteObject *object = [self.program.objectList objectAtIndex:index];
     imageCell.iconImageView.image = nil;
-    [imageCell.iconImageView setBorder:[UIColor utilityTintColor] Width:kDefaultImageCellBorderWidth];
 
     if (self.useDetailCells && [cell isKindOfClass:[DarkBlueGradientImageDetailCell class]]) {
         DarkBlueGradientImageDetailCell *detailCell = (DarkBlueGradientImageDetailCell*)imageCell;
@@ -601,19 +599,7 @@
 - (void)checkUnsupportedElements
 {
     if (self.program.unsupportedElements && self.program.unsupportedElements.count > 0) {
-        NSString *unsupportedElementsString = @"";
-        if (self.program.unsupportedElements.count > 0) {
-            for(id key in self.program.unsupportedElements) {
-                if (unsupportedElementsString.length == 0) {
-                    unsupportedElementsString = [NSString stringWithFormat:@"%@", key];
-                } else {
-                    unsupportedElementsString = [unsupportedElementsString
-                                                 stringByAppendingString:
-                                                 [NSString stringWithFormat:@", %@", key]];
-                }
-            }
-        }
-
+        NSString *unsupportedElementsString = [self.program.unsupportedElements.allObjects componentsJoinedByString:@", "];
         [[[[[[AlertControllerBuilder alertWithTitle:kLocalizedUnsupportedElements message:[NSString stringWithFormat:@"%@\n\n%@", kLocalizedUnsupportedElementsDescription, unsupportedElementsString]] addDefaultActionWithTitle:kLocalizedCancel handler:^{
             [self.navigationController popViewControllerAnimated:YES];
         }] addDefaultActionWithTitle:kLocalizedMoreInformation handler:^{

@@ -52,7 +52,7 @@ class CBScriptContext: CBScriptContextProtocol {
     final var index: Int = 0
 
     private final var _instructionPointer: Int = 0
-    private final lazy var _instructionList = [CBInstruction]()
+    private lazy final var _instructionList = [CBInstruction]()
 
     // MARK: - Initializers
     convenience init?(script: Script, spriteNode: CBSpriteNode, formulaInterpreter: FormulaInterpreterProtocol) {

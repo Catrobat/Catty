@@ -32,7 +32,7 @@
 @property (nonatomic, strong, nonnull) Header *header;
 @property (nonatomic, strong, nonnull) NSMutableArray<SpriteObject*> *objectList;
 @property (nonatomic, strong, nonnull) VariablesContainer *variables;
-@property (nonatomic, strong, nonnull) NSMutableDictionary *unsupportedElements;
+@property (nonatomic, strong, nonnull) NSMutableSet<NSString*> *unsupportedElements;
 @property (nonatomic) BOOL requiresBluetooth;
 
 - (NSInteger)numberOfTotalObjects;

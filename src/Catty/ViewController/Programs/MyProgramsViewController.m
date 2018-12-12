@@ -27,7 +27,6 @@
 #import "AppDelegate.h"
 #import "TableUtil.h"
 #import "CellTagDefines.h"
-#import "UIImageView+CatrobatUIImageViewExtensions.h"
 #import "CatrobatImageCell.h"
 #import "SegueDefines.h"
 #import "ProgramUpdateDelegate.h"
@@ -451,7 +450,6 @@
     cell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
     cell.iconImageView.image = nil;
     cell.indexPath = indexPath;
-    [cell.iconImageView setBorder:[UIColor utilityTintColor] Width:kDefaultImageCellBorderWidth];
     
     // check if one of these screenshot files is available in memory
     CBFileManager *fileManager = [CBFileManager sharedManager];

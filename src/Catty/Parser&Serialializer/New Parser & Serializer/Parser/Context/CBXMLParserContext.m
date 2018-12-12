@@ -97,10 +97,10 @@
     return _formulaListNameList;
 }
 
-- (NSMutableDictionary*)unsupportedElements
+- (NSMutableSet<NSString*>*)unsupportedElements
 {
     if (! _unsupportedElements) {
-        _unsupportedElements = [[NSMutableDictionary alloc] init];
+        _unsupportedElements = [[NSMutableSet alloc] init];
     }
     return _unsupportedElements;
 }

@@ -770,7 +770,6 @@
 		92FF2E3B1A24C5A700093DA7 /* Program+CustomExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E231A24C5A700093DA7 /* Program+CustomExtensions.m */; };
 		92FF2E3C1A24C5A700093DA7 /* UIColor+CatrobatUIColorExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E281A24C5A700093DA7 /* UIColor+CatrobatUIColorExtensions.m */; };
 		92FF2E3D1A24C5A700093DA7 /* UIImage+CatrobatUIImageExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E2B1A24C5A700093DA7 /* UIImage+CatrobatUIImageExtensions.m */; };
-		92FF2E3E1A24C5A700093DA7 /* UIImageView+CatrobatUIImageViewExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E2E1A24C5A700093DA7 /* UIImageView+CatrobatUIImageViewExtensions.m */; };
 		92FF2E3F1A24C5A700093DA7 /* LICENSE_UIViewController+Popup in Resources */ = {isa = PBXBuildFile; fileRef = 92FF2E301A24C5A700093DA7 /* LICENSE_UIViewController+Popup */; };
 		92FF2E401A24C5A700093DA7 /* UIViewController+CWPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E321A24C5A700093DA7 /* UIViewController+CWPopup.m */; };
 		92FF2E8C1A24C7D800093DA7 /* AudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E4F1A24C7D800093DA7 /* AudioManager.m */; };
@@ -2303,13 +2302,10 @@
 		92FF2E201A24C5A700093DA7 /* NSString+FastImageSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+FastImageSize.m"; sourceTree = "<group>"; };
 		92FF2E221A24C5A700093DA7 /* Program+CustomExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Program+CustomExtensions.h"; sourceTree = "<group>"; };
 		92FF2E231A24C5A700093DA7 /* Program+CustomExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Program+CustomExtensions.m"; sourceTree = "<group>"; };
-		92FF2E251A24C5A700093DA7 /* ProgramTableViewController+UnitTestingExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ProgramTableViewController+UnitTestingExtensions.h"; sourceTree = "<group>"; };
 		92FF2E271A24C5A700093DA7 /* UIColor+CatrobatUIColorExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+CatrobatUIColorExtensions.h"; sourceTree = "<group>"; };
 		92FF2E281A24C5A700093DA7 /* UIColor+CatrobatUIColorExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CatrobatUIColorExtensions.m"; sourceTree = "<group>"; };
 		92FF2E2A1A24C5A700093DA7 /* UIImage+CatrobatUIImageExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+CatrobatUIImageExtensions.h"; sourceTree = "<group>"; };
 		92FF2E2B1A24C5A700093DA7 /* UIImage+CatrobatUIImageExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+CatrobatUIImageExtensions.m"; sourceTree = "<group>"; };
-		92FF2E2D1A24C5A700093DA7 /* UIImageView+CatrobatUIImageViewExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+CatrobatUIImageViewExtensions.h"; sourceTree = "<group>"; };
-		92FF2E2E1A24C5A700093DA7 /* UIImageView+CatrobatUIImageViewExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+CatrobatUIImageViewExtensions.m"; sourceTree = "<group>"; };
 		92FF2E301A24C5A700093DA7 /* LICENSE_UIViewController+Popup */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "LICENSE_UIViewController+Popup"; sourceTree = "<group>"; };
 		92FF2E311A24C5A700093DA7 /* UIViewController+CWPopup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+CWPopup.h"; sourceTree = "<group>"; };
 		92FF2E321A24C5A700093DA7 /* UIViewController+CWPopup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+CWPopup.m"; sourceTree = "<group>"; };
@@ -5557,7 +5553,7 @@
 			isa = PBXGroup;
 			children = (
 				5EA1089021B8FBB800B837B9 /* Audio */,
-				92FF2E0B1A24C5A700093DA7 /* CAgradient+Extension */,
+				92FF2E0B1A24C5A700093DA7 /* CAGradient+Extension */,
 				925819851C0208E8003247A9 /* CALayer+XibConfiguration */,
 				92FF2E0E1A24C5A700093DA7 /* GDataXMLElement+CustomExtensions */,
 				4C6066371A5ACC3100F486CE /* GDataXMLNode+CustomExtensions */,
@@ -5567,10 +5563,8 @@
 				92FF2E1A1A24C5A700093DA7 /* NSString+Extension */,
 				92FF2E1D1A24C5A700093DA7 /* NSString+FastImageSize */,
 				92FF2E211A24C5A700093DA7 /* Program+Extension */,
-				92FF2E241A24C5A700093DA7 /* ProgramTableViewController+UnitTestingExtensions */,
 				92FF2E261A24C5A700093DA7 /* UIColor+Extension */,
 				92FF2E291A24C5A700093DA7 /* UIImage+Extension */,
-				92FF2E2C1A24C5A700093DA7 /* UIImageView+Extension */,
 				92FF2E2F1A24C5A700093DA7 /* UIViewController+CWPopup */,
 				5E21DA7021A5289F00017D2C /* Data+Extensions.swift */,
 				5EF590B92192D81F00C19F12 /* Double+Extensions.swift */,
@@ -5581,13 +5575,13 @@
 			path = "Extension&Delegate&Protocol/Extensions";
 			sourceTree = "<group>";
 		};
-		92FF2E0B1A24C5A700093DA7 /* CAgradient+Extension */ = {
+		92FF2E0B1A24C5A700093DA7 /* CAGradient+Extension */ = {
 			isa = PBXGroup;
 			children = (
 				92FF2E0C1A24C5A700093DA7 /* CAGradientLayer+CatrobatCAGradientExtensions.h */,
 				92FF2E0D1A24C5A700093DA7 /* CAGradientLayer+CatrobatCAGradientExtensions.m */,
 			);
-			path = "CAgradient+Extension";
+			path = "CAGradient+Extension";
 			sourceTree = "<group>";
 		};
 		92FF2E0E1A24C5A700093DA7 /* GDataXMLElement+CustomExtensions */ = {
@@ -5655,14 +5649,6 @@
 			path = "Program+Extension";
 			sourceTree = "<group>";
 		};
-		92FF2E241A24C5A700093DA7 /* ProgramTableViewController+UnitTestingExtensions */ = {
-			isa = PBXGroup;
-			children = (
-				92FF2E251A24C5A700093DA7 /* ProgramTableViewController+UnitTestingExtensions.h */,
-			);
-			path = "ProgramTableViewController+UnitTestingExtensions";
-			sourceTree = "<group>";
-		};
 		92FF2E261A24C5A700093DA7 /* UIColor+Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -5680,15 +5666,6 @@
 				5E21DA6721A3E4AF00017D2C /* UIImage+Extensions.swift */,
 			);
 			path = "UIImage+Extension";
-			sourceTree = "<group>";
-		};
-		92FF2E2C1A24C5A700093DA7 /* UIImageView+Extension */ = {
-			isa = PBXGroup;
-			children = (
-				92FF2E2D1A24C5A700093DA7 /* UIImageView+CatrobatUIImageViewExtensions.h */,
-				92FF2E2E1A24C5A700093DA7 /* UIImageView+CatrobatUIImageViewExtensions.m */,
-			);
-			path = "UIImageView+Extension";
 			sourceTree = "<group>";
 		};
 		92FF2E2F1A24C5A700093DA7 /* UIViewController+CWPopup */ = {
@@ -8880,7 +8857,6 @@
 				AA74F0BA1BC05FCE00D1E954 /* GoNStepsBackBrickCell.m in Sources */,
 				92FF2EA01A24C7D800093DA7 /* SSZipArchive.m in Sources */,
 				92FF2E381A24C5A700093DA7 /* NSString+CatrobatNSStringExtensions.m in Sources */,
-				92FF2E3E1A24C5A700093DA7 /* UIImageView+CatrobatUIImageViewExtensions.m in Sources */,
 				4CF0729120D6697300F93AB5 /* LatitudeSensor.swift in Sources */,
 				AA74EE231BC053FD00D1E954 /* WaitBrick+Instruction.swift in Sources */,
 				927F79E01BEE39CB008D1635 /* PhiroIfLogicBeginBrick.m in Sources */,

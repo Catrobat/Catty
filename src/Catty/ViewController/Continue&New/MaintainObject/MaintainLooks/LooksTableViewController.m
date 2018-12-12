@@ -40,7 +40,6 @@
 #import "UIImage+Rotate.h"
 #import "ViewControllerDefines.h"
 #import "UIUtil.h"
-#import "UIImageView+CatrobatUIImageViewExtensions.h"
 #import "Pocket_Code-Swift.h"
 
 @interface LooksTableViewController () <UIImagePickerControllerDelegate,
@@ -311,7 +310,6 @@
     CatrobatBaseCell<CatrobatImageCell>* imageCell = (CatrobatBaseCell<CatrobatImageCell>*)cell;
     Look *look = [self.object.lookList objectAtIndex:indexPath.row];
     imageCell.iconImageView.image = nil;
-    [imageCell.iconImageView setBorder:[UIColor utilityTintColor] Width:kDefaultImageCellBorderWidth];
 
     imageCell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
     RuntimeImageCache *imageCache = [RuntimeImageCache sharedImageCache];
