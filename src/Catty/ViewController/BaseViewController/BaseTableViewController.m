@@ -387,10 +387,7 @@
 
 - (void)showLoadingView
 {
-    //    self.loadingView.backgroundColor = [UIColor whiteColor];
     self.loadingView.alpha = 1.0;
-    CGPoint top = CGPointMake(0, -self.navigationController.navigationBar.frame.size.height);
-    [self.tableView setContentOffset:top animated:NO];
     self.tableView.scrollEnabled = NO;
     self.tableView.userInteractionEnabled = NO;
     self.navigationController.navigationBar.userInteractionEnabled = NO;
