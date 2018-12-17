@@ -102,8 +102,11 @@ class VariablesTests: XCTestCase, UITestProtocol {
         XCTAssert(app.sheets["Variable type"].exists)
 
         app.buttons["for all objects"].tap()
-        app.alerts["New Variable"].textFields["Enter your variable name here..."].typeText("iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii"
-            + "iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii")
+        app.alerts["New Variable"].textFields["Enter your variable name here..."].typeText("iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii"
+            + "iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii"
+            + "iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii"
+            + "iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii"
+            + "iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii")
         app.alerts["New Variable"].buttons["OK"].tap()
         XCTAssert(app.staticTexts["When program started"].exists)
     }
@@ -131,9 +134,11 @@ class VariablesTests: XCTestCase, UITestProtocol {
         XCTAssert(app.sheets["Variable type"].exists)
 
         app.buttons["for all objects"].tap()
-        app.alerts["New Variable"].textFields["Enter your variable name here..."].typeText("iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii"
-            + "iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii"
-            + "iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii")
+        app.alerts["New Variable"].textFields["Enter your variable name here..."].typeText("iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii"
+            + "iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii"
+            + "iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii"
+            + "iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii"
+            + "iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii")
         app.alerts["New Variable"].buttons["OK"].tap()
         XCTAssert(app.alerts["Pocket Code"].exists)
     }
