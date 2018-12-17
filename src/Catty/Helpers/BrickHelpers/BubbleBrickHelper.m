@@ -30,6 +30,8 @@
 + (void)addBubbleToSpriteNode:(CBSpriteNode*)spriteNode withText: (NSString*)text andType:(CBBubbleType)type
 {
     SKLabelNode* label = [SKLabelNode labelNodeWithText:text];
+    label.fontName = kSceneDefaultFont;
+    label.fontSize = kSceneLabelFontSize;
     label.name = @"bubbleText";
     [label setVerticalAlignmentMode:SKLabelVerticalAlignmentModeCenter];
     [label setHorizontalAlignmentMode:SKLabelHorizontalAlignmentModeCenter];

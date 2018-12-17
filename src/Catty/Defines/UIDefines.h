@@ -32,6 +32,11 @@
 #define kSlidingStartArea 40
 #define kfirstSwipeDuration 0.45f
 
+// Scene
+
+#define kSceneDefaultFont @"Helvetica"
+#define kSceneLabelFontSize 45.0f
+
 // Blocked characters for program names, object names, images names, sounds names and variable/list names
 #define kTextFieldBlockedCharacters @""
 
@@ -469,7 +474,7 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 }
 
 // brick heights
-#define kBrickHeight1h 48.9f
+#define kBrickHeight1h 55.9f
 #define kBrickHeight2h 75.9f
 #define kBrickHeight3h 98.9f
 #define kBrickHeightControl1h 72.4f
