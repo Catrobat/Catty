@@ -474,7 +474,7 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 }
 
 // brick heights
-#define kBrickHeight1h 55.9f
+#define kBrickHeight1h 48.9f
 #define kBrickHeight2h 75.9f
 #define kBrickHeight3h 98.9f
 #define kBrickHeightControl1h 72.4f
