@@ -610,6 +610,7 @@
 		59D9EC65206117000019EC10 /* DVR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59D9EC62206117000019EC10 /* DVR.framework */; };
 		59D9EC672061171F0019EC10 /* DVR.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 59D9EC62206117000019EC10 /* DVR.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5E18A81221A547AA00541536 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E18A81121A547AA00541536 /* UIViewController+Extensions.swift */; };
+		5E219F2621C8B46A000439BA /* SelectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E219F2521C8B46A000439BA /* SelectButton.swift */; };
 		5E21DA6821A3E4AF00017D2C /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E21DA6721A3E4AF00017D2C /* UIImage+Extensions.swift */; };
 		5E21DA6F21A5255600017D2C /* UploadInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E21DA6C21A5255500017D2C /* UploadInfoViewController.swift */; };
 		5E21DA7121A5289F00017D2C /* Data+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E21DA7021A5289F00017D2C /* Data+Extensions.swift */; };
@@ -1019,8 +1020,6 @@
 		AA74F0C71BC05FCE00D1E954 /* SpeakBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74F0811BC05FCE00D1E954 /* SpeakBrickCell.m */; };
 		AA74F0C81BC05FCE00D1E954 /* StopAllSoundsBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74F0831BC05FCE00D1E954 /* StopAllSoundsBrickCell.m */; };
 		AA74F0C91BC05FCE00D1E954 /* BrickShapeFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74F0861BC05FCE00D1E954 /* BrickShapeFactory.m */; };
-		AA74F0CA1BC05FCE00D1E954 /* ScriptDeleteButton.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74F0891BC05FCE00D1E954 /* ScriptDeleteButton.m */; };
-		AA74F0CB1BC05FCE00D1E954 /* SelectButton.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74F08B1BC05FCE00D1E954 /* SelectButton.m */; };
 		AA74F0CC1BC05FCE00D1E954 /* BroadcastScriptCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74F08E1BC05FCE00D1E954 /* BroadcastScriptCell.m */; };
 		AA74F0CD1BC05FCE00D1E954 /* StartScriptCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74F0901BC05FCE00D1E954 /* StartScriptCell.m */; };
 		AA74F0CE1BC05FCE00D1E954 /* WhenScriptCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74F0921BC05FCE00D1E954 /* WhenScriptCell.m */; };
@@ -1987,6 +1986,7 @@
 		59D008EC208E4249000539E7 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		59D9EC62206117000019EC10 /* DVR.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVR.framework; path = Carthage/Build/iOS/DVR.framework; sourceTree = "<group>"; };
 		5E18A81121A547AA00541536 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
+		5E219F2521C8B46A000439BA /* SelectButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectButton.swift; sourceTree = "<group>"; };
 		5E21DA6721A3E4AF00017D2C /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		5E21DA6C21A5255500017D2C /* UploadInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadInfoViewController.swift; sourceTree = "<group>"; };
 		5E21DA7021A5289F00017D2C /* Data+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extensions.swift"; sourceTree = "<group>"; };
@@ -2788,10 +2788,6 @@
 		AA74F0831BC05FCE00D1E954 /* StopAllSoundsBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopAllSoundsBrickCell.m; sourceTree = "<group>"; };
 		AA74F0851BC05FCE00D1E954 /* BrickShapeFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickShapeFactory.h; sourceTree = "<group>"; };
 		AA74F0861BC05FCE00D1E954 /* BrickShapeFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickShapeFactory.m; sourceTree = "<group>"; };
-		AA74F0881BC05FCE00D1E954 /* ScriptDeleteButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScriptDeleteButton.h; sourceTree = "<group>"; };
-		AA74F0891BC05FCE00D1E954 /* ScriptDeleteButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScriptDeleteButton.m; sourceTree = "<group>"; };
-		AA74F08A1BC05FCE00D1E954 /* SelectButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectButton.h; sourceTree = "<group>"; };
-		AA74F08B1BC05FCE00D1E954 /* SelectButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectButton.m; sourceTree = "<group>"; };
 		AA74F08D1BC05FCE00D1E954 /* BroadcastScriptCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BroadcastScriptCell.h; sourceTree = "<group>"; };
 		AA74F08E1BC05FCE00D1E954 /* BroadcastScriptCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BroadcastScriptCell.m; sourceTree = "<group>"; };
 		AA74F08F1BC05FCE00D1E954 /* StartScriptCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartScriptCell.h; sourceTree = "<group>"; };
@@ -7024,10 +7020,7 @@
 		AA74F0871BC05FCE00D1E954 /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
-				AA74F0881BC05FCE00D1E954 /* ScriptDeleteButton.h */,
-				AA74F0891BC05FCE00D1E954 /* ScriptDeleteButton.m */,
-				AA74F08A1BC05FCE00D1E954 /* SelectButton.h */,
-				AA74F08B1BC05FCE00D1E954 /* SelectButton.m */,
+				5E219F2521C8B46A000439BA /* SelectButton.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -8991,7 +8984,6 @@
 				4C4A71A11B527E2F00BBE32B /* CBXMLParserContext.m in Sources */,
 				92FF2E9A1A24C7D800093DA7 /* NavigationController.m in Sources */,
 				92FF31091A24DCAA00093DA7 /* VariablesContainer.m in Sources */,
-				AA74F0CB1BC05FCE00D1E954 /* SelectButton.m in Sources */,
 				AA74F0A51BC05FCE00D1E954 /* NoteBrickCell.m in Sources */,
 				AA74EF521BC0586F00D1E954 /* MoveNStepsBrick+CBXMLHandler.m in Sources */,
 				921D467E1BDF61350086AD20 /* GoNStepsBackBrick+Instruction.swift in Sources */,
@@ -9108,6 +9100,7 @@
 				4CB4FE061B95DF2900431757 /* BrickInsertManager.m in Sources */,
 				4CAB933B2132753A00AEB86D /* FormulaManager.swift in Sources */,
 				92FF2E331A24C5A700093DA7 /* CAGradientLayer+CatrobatCAGradientExtensions.m in Sources */,
+				5E219F2621C8B46A000439BA /* SelectButton.swift in Sources */,
 				927F79D71BEE39A3008D1635 /* BrickCellPhiroIfSensorData.m in Sources */,
 				4C48ED2920EF9AEC00784CD5 /* AudioManager+Loudness.swift in Sources */,
 				92FF2EA31A24C7D800093DA7 /* UIUtil.m in Sources */,
@@ -9271,7 +9264,6 @@
 				AA74EF4C1BC0586F00D1E954 /* ChangeSizeByNBrick+CBXMLHandler.m in Sources */,
 				5EDBA043219549AE000EFFEF /* LoadingView.swift in Sources */,
 				AA74EF6E1BC0588A00D1E954 /* ChangeVolumeByNBrick+CBXMLHandler.m in Sources */,
-				AA74F0CA1BC05FCE00D1E954 /* ScriptDeleteButton.m in Sources */,
 				AA74F0C21BC05FCE00D1E954 /* TurnLeftBrickCell.m in Sources */,
 				92C6318A1BC502CB00486958 /* KnownDevicesTableViewController.swift in Sources */,
 				4C0F9F43204ADC6600E71B2D /* ThinkBubbleBrick.m in Sources */,

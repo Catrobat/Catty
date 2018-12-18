@@ -26,7 +26,6 @@
 #import "BrickCellProtocol.h"
 #import "BrickShapeFactory.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
-#import "SelectButton.h"
 #import "Util.h"
 
 #define smallBrick 44.0f
@@ -35,9 +34,8 @@
 #define roundedLargeBrick 102.0f
 #define roundedSmallBrick 75.0f
 
-@class Brick, BrickCellInlineView, BrickCell;
+@class Brick, BrickCellInlineView, BrickCell, SelectButton;
 @protocol ScriptProtocol, BrickCellDataDelegate, BrickCellDataProtocol;
-
 
 @protocol BrickCellDelegate<NSObject>
 @optional

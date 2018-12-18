@@ -53,11 +53,10 @@
 #define kAddScriptCategoryTableViewBottomMargin 15.0f
 
 // delete button bricks
-#define kBrickCellDeleteButtonWidthHeight 22.0f
-#define kSelectButtonnOffset 30.0f
+#define kBrickCellDeleteButtonWidthHeight 50.0f
+#define kSelectButtonOffset 30.0f
 #define kSelectButtonTranslationOffsetX 60.0f
-#define kScriptCollectionViewTopInsets 10.0f
-#define kScriptCollectionViewBottomInsets 5.0f
+#define kScriptCollectionViewInset 5.0f
 
 // Notifications
 static NSString *const kBrickCellAddedNotification = @"BrickCellAddedNotification";

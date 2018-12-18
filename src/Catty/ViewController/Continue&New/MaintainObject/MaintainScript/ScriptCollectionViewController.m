@@ -90,6 +90,7 @@
 //@property (nonatomic, strong) NSMutableArray *selectedIndexPositions;  // refactor
 @property (nonatomic, strong) NSIndexPath *variableIndexPath;
 @property (nonatomic, assign) BOOL isEditingBrickMode;
+@property (nonatomic, assign) BOOL batchUpdateMutex;
 @property (nonatomic) PageIndexCategoryType lastSelectedBrickCategoryType;
 @property (nonatomic, strong) FormulaManager *formulaManager;
 @end
@@ -114,6 +115,7 @@
     self.placeHolderView.hidden = (self.object.scriptList.count != 0);
     [[BrickInsertManager sharedInstance] reset];
     self.isEditingBrickMode = NO;
+    self.batchUpdateMutex = NO;
     self.formulaManager = [[FormulaManager alloc] initWithSceneSize: CGSizeMake([self.object.program.header.screenWidth floatValue], [self.object.program.header.screenHeight floatValue])];
 }
 
@@ -219,7 +221,7 @@
                         layout:(UICollectionViewLayout*)collectionViewLayout
         insetForSectionAtIndex:(NSInteger)section
 {
-    return UIEdgeInsetsMake(kScriptCollectionViewTopInsets, 0.0f, kScriptCollectionViewBottomInsets, 0.0f);
+    return UIEdgeInsetsMake(kScriptCollectionViewInset, 0.0f, kScriptCollectionViewInset, 0.0f);
 }
 
 - (CGFloat)collectionView:(UICollectionView*)collectionView
@@ -240,23 +242,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     id scriptOrBrick = brickCell.scriptOrBrick;
     
     if (self.isEditing) {
-        if ([scriptOrBrick isKindOfClass:[Script class]]) {
-            return;
-        }
-        Brick *brick = scriptOrBrick;
-        if ([brick isKindOfClass:[LoopBeginBrick class]]) {
-            [[BrickSelectionManager sharedInstance] selectLoopBeginWithBrick:brick Script:brick.script IndexPath:indexPath andSelectButton:nil];
-        } else if ([brick isKindOfClass:[LoopEndBrick class]]) {
-            [[BrickSelectionManager sharedInstance] selectLoopEndWithBrick:brick Script:brick.script IndexPath:indexPath andSelectButton:nil];
-        } else if ([brick isKindOfClass:[IfLogicBeginBrick class]] || [brick isKindOfClass:[IfThenLogicBeginBrick class]]) {
-            [[BrickSelectionManager sharedInstance] selectLogicBeginWithBrick:brick Script:brick.script IndexPath:indexPath andSelectButton:nil];
-        } else if ([brick isKindOfClass:[IfLogicEndBrick class]]) {
-            [[BrickSelectionManager sharedInstance] selectLogicEndWithBrick:brick Script:brick.script IndexPath:indexPath andSelectButton:nil];
-        } else if ([brick isKindOfClass:[IfLogicElseBrick class]]) {
-            [[BrickSelectionManager sharedInstance] selectLogicElseWithBrick:brick Script:brick.script IndexPath:indexPath andSelectButton:nil];
-        } else {
-            [[BrickSelectionManager sharedInstance] addToSelectedIndexPaths:indexPath];
-        }
+        [brickCell.selectButton sendActionsForControlEvents:UIControlEventTouchUpInside];
         [collectionView deselectItemAtIndexPath:indexPath animated:NO];
         return;
     }
@@ -781,6 +767,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     NSArray *sortedIndexPaths = [indexPaths sortedArrayUsingSelector:@selector(compare:)];
     sortedIndexPaths = [[sortedIndexPaths reverseObjectEnumerator] allObjects];
     [self.collectionView performBatchUpdates:^{
+        self.batchUpdateMutex = YES;
         for (NSIndexPath *indexPath in sortedIndexPaths) {
             Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
             if (indexPath.item == 0) {
@@ -794,6 +781,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             }
         }
     } completion:^(BOOL finished) {
+        self.batchUpdateMutex = NO;
         [[BrickSelectionManager sharedInstance] reset];
         [self reloadData];
         self.placeHolderView.hidden = (self.object.scriptList.count != 0);
@@ -910,6 +898,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                 atIndexPath:(NSIndexPath*)indexPath
 {
     [self.collectionView performBatchUpdates:^{
+        self.batchUpdateMutex = YES;
         if ([scriptOrBrick isKindOfClass:[Script class]]) {
             [(Script*)scriptOrBrick removeFromObject];
             [self.collectionView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section]];
@@ -922,6 +911,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             }
         }
     } completion:^(BOOL finished) {
+        self.batchUpdateMutex = NO;
         self.placeHolderView.hidden = (self.object.scriptList.count != 0);
         [self reloadData];
         [self.object.program saveToDiskWithNotification:YES];
@@ -1307,19 +1297,24 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 
 -(void)reloadData
 {
+    if (self.batchUpdateMutex)
+        return;
+
     dispatch_async(dispatch_get_main_queue(),^{
-            //do something
         [self.collectionView reloadData];
         [self changeDeleteBarButtonState];
         [self.collectionView setNeedsDisplay];
     });
+
 }
 
 -(void)reloadDataSynchronous
 {
+    if (self.batchUpdateMutex)
+        return;
+
     [self.collectionView reloadData];
     dispatch_async(dispatch_get_main_queue(),^{
-        //do something
         [self changeDeleteBarButtonState];
         [self.collectionView setNeedsDisplay];
     });

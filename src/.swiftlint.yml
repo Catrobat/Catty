@@ -82,7 +82,7 @@ whitelist_rules:
  ##- no_grouping_extension
  - notification_center_detachment
  #- number_separator
- - object_literal
+ #- object_literal
  - opening_brace
  - operator_usage_whitespace
  - operator_whitespace
