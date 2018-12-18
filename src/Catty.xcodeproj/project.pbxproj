@@ -347,7 +347,6 @@
 		4C9E076B1CD9D47E00B14B2F /* CBSceneHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E076A1CD9D47E00B14B2F /* CBSceneHelper.swift */; };
 		4C9F37A91D167630002C3B45 /* transparency-gray-alpha.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C9F37A81D167630002C3B45 /* transparency-gray-alpha.png */; };
 		4CA1574D1C4695E50019D319 /* Encapsulated_097.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CA1574C1C4695E50019D319 /* Encapsulated_097.xml */; };
-		4CAA66BE21469AB900CCDD6E /* UserVariable+Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAA66BD21469AB900CCDD6E /* UserVariable+Scene.swift */; };
 		4CAA66C221469C0400CCDD6E /* UserVariableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAA66C121469C0400CCDD6E /* UserVariableTests.swift */; };
 		4CAB10091ECF1A9A0019A67B /* HideTextBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAB10081ECF1A9A0019A67B /* HideTextBrickTests.swift */; };
 		4CAB100D1ECF1AB20019A67B /* SetVariableBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAB100C1ECF1AB20019A67B /* SetVariableBrickTests.swift */; };
@@ -1718,7 +1717,6 @@
 		4C9E07731CD9DB0A00B14B2F /* CattyTests-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CattyTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		4C9F37A81D167630002C3B45 /* transparency-gray-alpha.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "transparency-gray-alpha.png"; path = "CattyTests/Resources/Images/transparency-gray-alpha.png"; sourceTree = SOURCE_ROOT; };
 		4CA1574C1C4695E50019D319 /* Encapsulated_097.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Encapsulated_097.xml; sourceTree = "<group>"; };
-		4CAA66BD21469AB900CCDD6E /* UserVariable+Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserVariable+Scene.swift"; sourceTree = "<group>"; };
 		4CAA66C121469C0400CCDD6E /* UserVariableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserVariableTests.swift; sourceTree = "<group>"; };
 		4CAB10081ECF1A9A0019A67B /* HideTextBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HideTextBrickTests.swift; sourceTree = "<group>"; };
 		4CAB100C1ECF1AB20019A67B /* SetVariableBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetVariableBrickTests.swift; sourceTree = "<group>"; };
@@ -6105,7 +6103,6 @@
 			children = (
 				92FF30C21A24DCAA00093DA7 /* UserVariable.h */,
 				92FF30C31A24DCAA00093DA7 /* UserVariable.m */,
-				4CAA66BD21469AB900CCDD6E /* UserVariable+Scene.swift */,
 			);
 			path = UserVariable;
 			sourceTree = "<group>";
@@ -8806,7 +8803,6 @@
 				59D008E9208E3FDC000539E7 /* MotionManager.swift in Sources */,
 				AA74EFF11BC05B5F00D1E954 /* ChangeBrightnessByNBrick.m in Sources */,
 				4C48ED2520EF9A1D00784CD5 /* AudioManagerProtocol.swift in Sources */,
-				4CAA66BE21469AB900CCDD6E /* UserVariable+Scene.swift in Sources */,
 				AA74F0B71BC05FCE00D1E954 /* ChangeYByNBrickCell.m in Sources */,
 				92FF2E351A24C5A700093DA7 /* NSData+Hashes.m in Sources */,
 				921EE9B61BA8045A00834711 /* JNKeychain.m in Sources */,
