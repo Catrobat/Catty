@@ -42,6 +42,7 @@
 #import "BrickCellPhiroToneData.h"
 #import "BrickCellPhiroIfSensorData.h"
 #import "LoopEndBrickCell.h"
+#import "Pocket_Code-Swift.h"
 
 // uncomment this to get special log outputs, etc...
 //#define LAYOUT_DEBUG 0
@@ -178,7 +179,8 @@
 {
     [super layoutSubviews];
     self.contentView.frame = CGRectIntegral(self.bounds);
-    self.selectButton.center = CGPointMake(self.bounds.origin.x - kSelectButtonnOffset, CGRectGetMidY(self.bounds));
+    self.selectButton.center = CGPointMake(self.bounds.origin.x - kSelectButtonOffset,
+                                           CGRectGetMidY(self.bounds));
 }
 
 - (void)setHighlighted:(BOOL)highlighted

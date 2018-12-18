@@ -24,7 +24,8 @@
 #import "Brick.h"
 #import "SpriteObject.h"
 #import "BrickCell.h"
-#import "SelectButton.h"
+
+@class SelectButton;
 
 @interface BrickSelectionManager : NSObject
 
