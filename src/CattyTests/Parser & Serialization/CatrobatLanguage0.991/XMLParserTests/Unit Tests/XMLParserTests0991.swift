@@ -532,6 +532,8 @@ class XMLParserTests0991: XMLAbstractTest {
         let program = self.getProgramForXML(xmlFile: "ValidProgramAllBricks0991")
         let object = program.objectList.object(at: 1) as! SpriteObject
         let whenTouchDownScript = object.scriptList.object(at: 2) as! Script
+
+        XCTAssertEqual(0, program.unsupportedElements.count)
         XCTAssertTrue(whenTouchDownScript.isKind(of: WhenTouchDownScript.self), "Invalid script type")
     }
 }

@@ -111,6 +111,7 @@
         CBXMLParserContext *parserContext = [[CBXMLParserContext alloc]
                                              initWithLanguageVersion:languageVersion];
         program = [parserContext parseFromElement:xmlDocument.rootElement withClass:[Program class]];
+        program.unsupportedElements = parserContext.unsupportedElements;
         NSInfo(@"Parsing finished...");
     } @catch(NSException *exception) {
         NSError(@"Program could not be loaded! %@", [exception description]);

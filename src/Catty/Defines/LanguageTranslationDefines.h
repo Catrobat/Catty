@@ -251,6 +251,7 @@
 #define kLocalizedOn NSLocalizedString(@"on", nil)
 #define kLocalizedCameraBack NSLocalizedString(@"back", nil)
 #define kLocalizedCameraFront NSLocalizedString(@"front", nil)
+#define kLocalizedMoreInformation NSLocalizedString(@"More information", nil)
 
 //************************************************************************************************************
 //**********************************       SHORT DESCRIPTIONS      *******************************************
@@ -312,6 +313,7 @@
 #define kLocalizedNoAccesToImagesCheckSettingsDescription NSLocalizedString(@"Pocket Code has no access to your images. To permit access, tap settings and activate images. Your drawing will automatically be saved to PocketCode for you.", nil)
 #define kLocalizedNoAccesToCameraCheckSettingsDescription NSLocalizedString(@"Pocket Code has no access to your camera. To permit access, tap settings and activate camera. Your drawing will automatically be saved to PocketCode for you.", nil)
 #define kLocalizedNoAccesToMicrophoneCheckSettingsDescription NSLocalizedString(@"Pocket Code has no access to your microphone. To permit access, tap settings and activate microphone.", nil)
+#define kLocalizedUnsupportedElementsDescription NSLocalizedString(@"Following features used in this project are not compatible with this version of Pocket Code:", nil)
 
 //************************************************************************************************************
 //*******************************       BRICK TITLE TRANSLATIONS      ****************************************
@@ -439,7 +441,8 @@
 #define kLocalizedArduinoSetPinValueTo NSLocalizedString(@"to", nil)
 #define kLocalizedArduinoSendPWMValue NSLocalizedString(@"Set Arduino PWM~ pin", nil)
 
-//Unsupported bricks
+//Unsupported elements
+#define kLocalizedUnsupportedElements NSLocalizedString(@"Unsupported Elements", nil)
 #define kLocalizedUnsupportedBrick NSLocalizedString(@"Unsupported Brick:", nil)
 #define kLocalizedUnsupportedScript NSLocalizedString(@"Unsupported Script:", nil)
 

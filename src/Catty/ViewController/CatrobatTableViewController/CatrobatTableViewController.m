@@ -258,15 +258,7 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
                 [self performSegueWithIdentifier:identifier sender:self];
             }
             break;
-//        case kHelpVC:
-//            if ([self shouldPerformSegueWithIdentifier:identifier sender:self]) {
-////                HelpWebViewController *webVC = [[HelpWebViewController alloc] initWithURL:[NSURL URLWithString:kForumURL]];
-////                [self.navigationController pushViewController:webVC animated:YES];
-//                
-//            }
-//            break;
         case kUploadVC:
-            //[[NSUserDefaults standardUserDefaults] setValue:false forKey:kUserIsLoggedIn];    //Just for testing purpose
             if ([[[NSUserDefaults standardUserDefaults] valueForKey:kUserIsLoggedIn] boolValue]) {
                 if ([self shouldPerformSegueWithIdentifier:identifier sender:self]) {
                     [self performSegueWithIdentifier:@"segueToUpload" sender:self];
@@ -393,7 +385,6 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
 
 -(void)addProgramFromInboxWithName:(NSString*)newProgramName
 {
-    
     NSFileManager* filemgr = [NSFileManager defaultManager];
     NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString* documentsDirectory = [paths objectAtIndex:0];

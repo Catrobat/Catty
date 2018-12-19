@@ -112,19 +112,22 @@
     self.navigationController.toolbar.barTintColor = [UIColor toolBarColor];
     self.navigationController.toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
 
-    UIBarButtonItem *forward = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"webview_arrow_right"] style:UIBarButtonItemStylePlain target:self action:@selector(goForward:)];
+    UIBarButtonItem *forward = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"webview_arrow_right"] style:UIBarButtonItemStylePlain
+                                                               target:self
+                                                               action:@selector(goForward:)];
     forward.enabled = self.webView.canGoForward;
 
-    UIBarButtonItem *back = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"webview_arrow_left"] style:UIBarButtonItemStylePlain target:self action:@selector(goBack:)];
+    UIBarButtonItem *back = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"webview_arrow_left"] style:UIBarButtonItemStylePlain
+                                                            target:self
+                                                            action:@selector(goBack:)];
     back.enabled = self.webView.canGoBack;
-    UIBarButtonItem *share = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(openInSafari)];
-
-    // FIXME: workaround for tap area problem:
-    // http://stackoverflow.com/questions/5113258/uitoolbar-unexpectedly-registers-taps-on-uibarbuttonitem-instances-even-when-tap
-    UIBarButtonItem *(^invisibleItem)(void) = ^UIBarButtonItem *() { return [UIBarButtonItem invisibleItem]; };
-    UIBarButtonItem *(^flexItem)(void) = ^UIBarButtonItem *() { return [UIBarButtonItem flexItem]; };
-    self.toolbarItems = [NSArray arrayWithObjects:invisibleItem(), back, invisibleItem(), flexItem(),
-                          invisibleItem(), forward, invisibleItem(), flexItem(), flexItem(), share, flexItem(), nil];
+    UIBarButtonItem *share = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction
+                                                                           target:self
+                                                                           action:@selector(openInSafari)];
+    UIBarButtonItem *flex = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                                                          target:self
+                                                                          action:nil];
+    self.toolbarItems = [NSArray arrayWithObjects: flex, back, flex, forward, flex, flex, share, flex, nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated

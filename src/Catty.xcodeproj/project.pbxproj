@@ -554,7 +554,6 @@
 		4CFAD35E1CFAB3EC0019C636 /* CustomExtensionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFAD35C1CFAB3EC0019C636 /* CustomExtensionsTests.m */; };
 		4CFAD35F1CFAB3EC0019C636 /* UIImageExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFAD35D1CFAB3EC0019C636 /* UIImageExtensionTests.swift */; };
 		4CFAD3611CFAB9AA0019C636 /* transparency-rgba.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CFAD3601CFAB9AA0019C636 /* transparency-rgba.png */; };
-		591596D6203563850015F74A /* UIBarButtonItem+InvisibleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591596D5203563850015F74A /* UIBarButtonItem+InvisibleButton.swift */; };
 		592EF6E62094B3D700BD6000 /* SpriteObjectProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592EF6E52094B3D700BD6000 /* SpriteObjectProtocol.swift */; };
 		592EF6EA2094B84900BD6000 /* DeviceSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592EF6E92094B84900BD6000 /* DeviceSensor.swift */; };
 		593624C21F76F36F008A588D /* TTTAttributedLabel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59473A601F76F04B00BD634F /* TTTAttributedLabel.framework */; };
@@ -772,7 +771,6 @@
 		92FF2E3B1A24C5A700093DA7 /* Program+CustomExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E231A24C5A700093DA7 /* Program+CustomExtensions.m */; };
 		92FF2E3C1A24C5A700093DA7 /* UIColor+CatrobatUIColorExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E281A24C5A700093DA7 /* UIColor+CatrobatUIColorExtensions.m */; };
 		92FF2E3D1A24C5A700093DA7 /* UIImage+CatrobatUIImageExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E2B1A24C5A700093DA7 /* UIImage+CatrobatUIImageExtensions.m */; };
-		92FF2E3E1A24C5A700093DA7 /* UIImageView+CatrobatUIImageViewExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E2E1A24C5A700093DA7 /* UIImageView+CatrobatUIImageViewExtensions.m */; };
 		92FF2E3F1A24C5A700093DA7 /* LICENSE_UIViewController+Popup in Resources */ = {isa = PBXBuildFile; fileRef = 92FF2E301A24C5A700093DA7 /* LICENSE_UIViewController+Popup */; };
 		92FF2E401A24C5A700093DA7 /* UIViewController+CWPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E321A24C5A700093DA7 /* UIViewController+CWPopup.m */; };
 		92FF2E8C1A24C7D800093DA7 /* AudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E4F1A24C7D800093DA7 /* AudioManager.m */; };
@@ -1938,7 +1936,6 @@
 		4CFAD35C1CFAB3EC0019C636 /* CustomExtensionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomExtensionsTests.m; path = Extensions/CustomExtensionsTests.m; sourceTree = "<group>"; };
 		4CFAD35D1CFAB3EC0019C636 /* UIImageExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIImageExtensionTests.swift; path = Extensions/UIImageExtensionTests.swift; sourceTree = "<group>"; };
 		4CFAD3601CFAB9AA0019C636 /* transparency-rgba.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "transparency-rgba.png"; path = "CattyTests/Resources/Images/transparency-rgba.png"; sourceTree = SOURCE_ROOT; };
-		591596D5203563850015F74A /* UIBarButtonItem+InvisibleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+InvisibleButton.swift"; sourceTree = "<group>"; };
 		592EF6E52094B3D700BD6000 /* SpriteObjectProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteObjectProtocol.swift; sourceTree = "<group>"; };
 		592EF6E92094B84900BD6000 /* DeviceSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceSensor.swift; sourceTree = "<group>"; };
 		5936893B2021979A00FC3115 /* SoundsTableViewController+MediaLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SoundsTableViewController+MediaLibrary.swift"; sourceTree = "<group>"; };
@@ -2305,13 +2302,10 @@
 		92FF2E201A24C5A700093DA7 /* NSString+FastImageSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+FastImageSize.m"; sourceTree = "<group>"; };
 		92FF2E221A24C5A700093DA7 /* Program+CustomExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Program+CustomExtensions.h"; sourceTree = "<group>"; };
 		92FF2E231A24C5A700093DA7 /* Program+CustomExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Program+CustomExtensions.m"; sourceTree = "<group>"; };
-		92FF2E251A24C5A700093DA7 /* ProgramTableViewController+UnitTestingExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ProgramTableViewController+UnitTestingExtensions.h"; sourceTree = "<group>"; };
 		92FF2E271A24C5A700093DA7 /* UIColor+CatrobatUIColorExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+CatrobatUIColorExtensions.h"; sourceTree = "<group>"; };
 		92FF2E281A24C5A700093DA7 /* UIColor+CatrobatUIColorExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CatrobatUIColorExtensions.m"; sourceTree = "<group>"; };
 		92FF2E2A1A24C5A700093DA7 /* UIImage+CatrobatUIImageExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+CatrobatUIImageExtensions.h"; sourceTree = "<group>"; };
 		92FF2E2B1A24C5A700093DA7 /* UIImage+CatrobatUIImageExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+CatrobatUIImageExtensions.m"; sourceTree = "<group>"; };
-		92FF2E2D1A24C5A700093DA7 /* UIImageView+CatrobatUIImageViewExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+CatrobatUIImageViewExtensions.h"; sourceTree = "<group>"; };
-		92FF2E2E1A24C5A700093DA7 /* UIImageView+CatrobatUIImageViewExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+CatrobatUIImageViewExtensions.m"; sourceTree = "<group>"; };
 		92FF2E301A24C5A700093DA7 /* LICENSE_UIViewController+Popup */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "LICENSE_UIViewController+Popup"; sourceTree = "<group>"; };
 		92FF2E311A24C5A700093DA7 /* UIViewController+CWPopup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+CWPopup.h"; sourceTree = "<group>"; };
 		92FF2E321A24C5A700093DA7 /* UIViewController+CWPopup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+CWPopup.m"; sourceTree = "<group>"; };
@@ -4859,14 +4853,6 @@
 			path = Condition;
 			sourceTree = "<group>";
 		};
-		591596D22035635F0015F74A /* UIBarButtonItem+InvisibleButton */ = {
-			isa = PBXGroup;
-			children = (
-				591596D5203563850015F74A /* UIBarButtonItem+InvisibleButton.swift */,
-			);
-			path = "UIBarButtonItem+InvisibleButton";
-			sourceTree = "<group>";
-		};
 		592EF6DF2094B0B600BD6000 /* Object */ = {
 			isa = PBXGroup;
 			children = (
@@ -5563,7 +5549,7 @@
 			isa = PBXGroup;
 			children = (
 				5EA1089021B8FBB800B837B9 /* Audio */,
-				92FF2E0B1A24C5A700093DA7 /* CAgradient+Extension */,
+				92FF2E0B1A24C5A700093DA7 /* CAGradient+Extension */,
 				925819851C0208E8003247A9 /* CALayer+XibConfiguration */,
 				92FF2E0E1A24C5A700093DA7 /* GDataXMLElement+CustomExtensions */,
 				4C6066371A5ACC3100F486CE /* GDataXMLNode+CustomExtensions */,
@@ -5573,11 +5559,8 @@
 				92FF2E1A1A24C5A700093DA7 /* NSString+Extension */,
 				92FF2E1D1A24C5A700093DA7 /* NSString+FastImageSize */,
 				92FF2E211A24C5A700093DA7 /* Program+Extension */,
-				92FF2E241A24C5A700093DA7 /* ProgramTableViewController+UnitTestingExtensions */,
-				591596D22035635F0015F74A /* UIBarButtonItem+InvisibleButton */,
 				92FF2E261A24C5A700093DA7 /* UIColor+Extension */,
 				92FF2E291A24C5A700093DA7 /* UIImage+Extension */,
-				92FF2E2C1A24C5A700093DA7 /* UIImageView+Extension */,
 				92FF2E2F1A24C5A700093DA7 /* UIViewController+CWPopup */,
 				5E21DA7021A5289F00017D2C /* Data+Extensions.swift */,
 				5EF590B92192D81F00C19F12 /* Double+Extensions.swift */,
@@ -5588,13 +5571,13 @@
 			path = "Extension&Delegate&Protocol/Extensions";
 			sourceTree = "<group>";
 		};
-		92FF2E0B1A24C5A700093DA7 /* CAgradient+Extension */ = {
+		92FF2E0B1A24C5A700093DA7 /* CAGradient+Extension */ = {
 			isa = PBXGroup;
 			children = (
 				92FF2E0C1A24C5A700093DA7 /* CAGradientLayer+CatrobatCAGradientExtensions.h */,
 				92FF2E0D1A24C5A700093DA7 /* CAGradientLayer+CatrobatCAGradientExtensions.m */,
 			);
-			path = "CAgradient+Extension";
+			path = "CAGradient+Extension";
 			sourceTree = "<group>";
 		};
 		92FF2E0E1A24C5A700093DA7 /* GDataXMLElement+CustomExtensions */ = {
@@ -5662,14 +5645,6 @@
 			path = "Program+Extension";
 			sourceTree = "<group>";
 		};
-		92FF2E241A24C5A700093DA7 /* ProgramTableViewController+UnitTestingExtensions */ = {
-			isa = PBXGroup;
-			children = (
-				92FF2E251A24C5A700093DA7 /* ProgramTableViewController+UnitTestingExtensions.h */,
-			);
-			path = "ProgramTableViewController+UnitTestingExtensions";
-			sourceTree = "<group>";
-		};
 		92FF2E261A24C5A700093DA7 /* UIColor+Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -5687,15 +5662,6 @@
 				5E21DA6721A3E4AF00017D2C /* UIImage+Extensions.swift */,
 			);
 			path = "UIImage+Extension";
-			sourceTree = "<group>";
-		};
-		92FF2E2C1A24C5A700093DA7 /* UIImageView+Extension */ = {
-			isa = PBXGroup;
-			children = (
-				92FF2E2D1A24C5A700093DA7 /* UIImageView+CatrobatUIImageViewExtensions.h */,
-				92FF2E2E1A24C5A700093DA7 /* UIImageView+CatrobatUIImageViewExtensions.m */,
-			);
-			path = "UIImageView+Extension";
 			sourceTree = "<group>";
 		};
 		92FF2E2F1A24C5A700093DA7 /* UIViewController+CWPopup */ = {
@@ -8884,7 +8850,6 @@
 				AA74F0BA1BC05FCE00D1E954 /* GoNStepsBackBrickCell.m in Sources */,
 				92FF2EA01A24C7D800093DA7 /* SSZipArchive.m in Sources */,
 				92FF2E381A24C5A700093DA7 /* NSString+CatrobatNSStringExtensions.m in Sources */,
-				92FF2E3E1A24C5A700093DA7 /* UIImageView+CatrobatUIImageViewExtensions.m in Sources */,
 				4CF0729120D6697300F93AB5 /* LatitudeSensor.swift in Sources */,
 				AA74EE231BC053FD00D1E954 /* WaitBrick+Instruction.swift in Sources */,
 				927F79E01BEE39CB008D1635 /* PhiroIfLogicBeginBrick.m in Sources */,
@@ -8954,7 +8919,6 @@
 				4C994E11207A3D4100C415FD /* SensorManagerProtocol.swift in Sources */,
 				59697DA8201F4D0400A0071A /* MediaItem.swift in Sources */,
 				4C724E621B4D3E8C00E27479 /* TestParser.m in Sources */,
-				591596D6203563850015F74A /* UIBarButtonItem+InvisibleButton.swift in Sources */,
 				4CF072AE20D6753D00F93AB5 /* DateYearSensor.swift in Sources */,
 				4C994E1C207A55E500C415FD /* CompassDirectionSensor.swift in Sources */,
 				9200C2D51C8082EF002F5CA4 /* HideTextBrickCell.m in Sources */,

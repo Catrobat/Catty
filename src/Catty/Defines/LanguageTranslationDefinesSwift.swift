@@ -251,6 +251,7 @@ let kLocalizedOff = NSLocalizedString("off", comment: "")
 let kLocalizedOn = NSLocalizedString("on", comment: "")
 let kLocalizedCameraBack = NSLocalizedString("back", comment: "")
 let kLocalizedCameraFront = NSLocalizedString("front", comment: "")
+let kLocalizedMoreInformation = NSLocalizedString("More information", comment: "")
 
 //************************************************************************************************************
 //**********************************       SHORT DESCRIPTIONS      *******************************************
@@ -312,6 +313,7 @@ let kLocalizedProgramAlreadyDownloadedDescription = NSLocalizedString("You have 
 let kLocalizedNoAccesToImagesCheckSettingsDescription = NSLocalizedString("Pocket Code has no access to your images. To permit access, tap settings and activate images. Your drawing will automatically be saved to PocketCode for you.", comment: "")
 let kLocalizedNoAccesToCameraCheckSettingsDescription = NSLocalizedString("Pocket Code has no access to your camera. To permit access, tap settings and activate camera. Your drawing will automatically be saved to PocketCode for you.", comment: "")
 let kLocalizedNoAccesToMicrophoneCheckSettingsDescription = NSLocalizedString("Pocket Code has no access to your microphone. To permit access, tap settings and activate microphone.", comment: "")
+let kLocalizedUnsupportedElementsDescription = NSLocalizedString("Following features used in this project are not compatible with this version of Pocket Code:", comment: "")
 
 //************************************************************************************************************
 //*******************************       BRICK TITLE TRANSLATIONS      ****************************************
@@ -439,7 +441,8 @@ let kLocalizedArduinoSetDigitalValue = NSLocalizedString("Set Arduino digital pi
 let kLocalizedArduinoSetPinValueTo = NSLocalizedString("to", comment: "")
 let kLocalizedArduinoSendPWMValue = NSLocalizedString("Set Arduino PWM~ pin", comment: "")
 
-//Unsupported bricks
+//Unsupported elements
+let kLocalizedUnsupportedElements = NSLocalizedString("Unsupported Elements", comment: "")
 let kLocalizedUnsupportedBrick = NSLocalizedString("Unsupported Brick:", comment: "")
 let kLocalizedUnsupportedScript = NSLocalizedString("Unsupported Script:", comment: "")
 

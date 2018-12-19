@@ -202,6 +202,8 @@ if (__functor) __functor(__VA_ARGS__);  \
 
 + (NSString*)enableBlockedCharactersForString:(NSString*)string;
 
++ (void)openUrlWithString:(NSString*)rawUrl;
+
 + (BOOL)isArduinoActivated;
 
 + (BOOL)isPhiroActivated;
