@@ -415,7 +415,7 @@ final class FormulaManagerInterpreterTests: XCTestCase {
 
     func testSmallerThan() {
         var element = FormulaElement(elementType: ElementType.OPERATOR,
-                                     value: Operators.getName(Operator.SMALLER_THAN),
+                                     value: SmallerThanOperator.tag,
                                      leftChild: FormulaElement(double: -1.4),
                                      rightChild: FormulaElement(double: -1.3),
                                      parent: nil)
@@ -425,7 +425,7 @@ final class FormulaManagerInterpreterTests: XCTestCase {
         XCTAssertTrue(interpreter.interpretBool(formula, for: object))
 
         element = FormulaElement(elementType: ElementType.OPERATOR,
-                                 value: Operators.getName(Operator.SMALLER_THAN),
+                                 value: SmallerThanOperator.tag,
                                  leftChild: FormulaElement(double: -10),
                                  rightChild: FormulaElement(double: -10),
                                  parent: nil)
@@ -437,7 +437,7 @@ final class FormulaManagerInterpreterTests: XCTestCase {
 
     func testGreaterThan() {
         var element = FormulaElement(elementType: ElementType.OPERATOR,
-                                     value: Operators.getName(Operator.GREATER_THAN),
+                                     value: GreaterThanOperator.tag,
                                      leftChild: FormulaElement(double: -1.4),
                                      rightChild: FormulaElement(double: -1.6),
                                      parent: nil)
@@ -447,7 +447,7 @@ final class FormulaManagerInterpreterTests: XCTestCase {
         XCTAssertTrue(interpreter.interpretBool(formula, for: object))
 
         element = FormulaElement(elementType: ElementType.OPERATOR,
-                                 value: Operators.getName(Operator.GREATER_THAN),
+                                 value: GreaterThanOperator.tag,
                                  leftChild: FormulaElement(double: -10),
                                  rightChild: FormulaElement(double: -10),
                                  parent: nil)
@@ -459,7 +459,7 @@ final class FormulaManagerInterpreterTests: XCTestCase {
 
     func testEqual() {
         var element = FormulaElement(elementType: ElementType.OPERATOR,
-                                     value: Operators.getName(Operator.EQUAL),
+                                     value: EqualOperator.tag,
                                      leftChild: FormulaElement(double: -1.4),
                                      rightChild: FormulaElement(double: -1.4),
                                      parent: nil)
@@ -469,7 +469,7 @@ final class FormulaManagerInterpreterTests: XCTestCase {
         XCTAssertTrue(interpreter.interpretBool(formula, for: object))
 
         element = FormulaElement(elementType: ElementType.OPERATOR,
-                                 value: Operators.getName(Operator.EQUAL),
+                                 value: EqualOperator.tag,
                                  leftChild: FormulaElement(string: "-10"),
                                  rightChild: FormulaElement(double: -10),
                                  parent: nil)
@@ -478,7 +478,7 @@ final class FormulaManagerInterpreterTests: XCTestCase {
         XCTAssertTrue(interpreter.interpretBool(formula, for: object))
 
         element = FormulaElement(elementType: ElementType.OPERATOR,
-                                 value: Operators.getName(Operator.EQUAL),
+                                 value: EqualOperator.tag,
                                  leftChild: FormulaElement(integer: -10),
                                  rightChild: FormulaElement(double: -10),
                                  parent: nil)
@@ -487,7 +487,7 @@ final class FormulaManagerInterpreterTests: XCTestCase {
         XCTAssertTrue(interpreter.interpretBool(formula, for: object))
 
         element = FormulaElement(elementType: ElementType.OPERATOR,
-                                 value: Operators.getName(Operator.EQUAL),
+                                 value: EqualOperator.tag,
                                  leftChild: FormulaElement(string: "abc"),
                                  rightChild: FormulaElement(string: "abc"),
                                  parent: nil)
@@ -496,7 +496,7 @@ final class FormulaManagerInterpreterTests: XCTestCase {
         XCTAssertTrue(interpreter.interpretBool(formula, for: object))
 
         element = FormulaElement(elementType: ElementType.OPERATOR,
-                                 value: Operators.getName(Operator.EQUAL),
+                                 value: EqualOperator.tag,
                                  leftChild: FormulaElement(string: "1.4"),
                                  rightChild: FormulaElement(double: 1.4),
                                  parent: nil)
@@ -505,7 +505,7 @@ final class FormulaManagerInterpreterTests: XCTestCase {
         XCTAssertTrue(interpreter.interpretBool(formula, for: object))
 
         element = FormulaElement(elementType: ElementType.OPERATOR,
-                                 value: Operators.getName(Operator.EQUAL),
+                                 value: EqualOperator.tag,
                                  leftChild: FormulaElement(string: "1.4"),
                                  rightChild: FormulaElement(double: 1.5),
                                  parent: nil)
@@ -517,7 +517,7 @@ final class FormulaManagerInterpreterTests: XCTestCase {
 
     func testNotEqual() {
         var element = FormulaElement(elementType: ElementType.OPERATOR,
-                                     value: Operators.getName(Operator.NOT_EQUAL),
+                                     value: NotEqualOperator.tag,
                                      leftChild: FormulaElement(double: -1.3),
                                      rightChild: FormulaElement(double: -1.4),
                                      parent: nil)
@@ -527,7 +527,7 @@ final class FormulaManagerInterpreterTests: XCTestCase {
         XCTAssertTrue(interpreter.interpretBool(formula, for: object))
 
         element = FormulaElement(elementType: ElementType.OPERATOR,
-                                 value: Operators.getName(Operator.NOT_EQUAL),
+                                 value: NotEqualOperator.tag,
                                  leftChild: FormulaElement(string: "-10.1"),
                                  rightChild: FormulaElement(double: -10),
                                  parent: nil)
@@ -536,7 +536,7 @@ final class FormulaManagerInterpreterTests: XCTestCase {
         XCTAssertTrue(interpreter.interpretBool(formula, for: object))
 
         element = FormulaElement(elementType: ElementType.OPERATOR,
-                                 value: Operators.getName(Operator.NOT_EQUAL),
+                                 value: NotEqualOperator.tag,
                                  leftChild: FormulaElement(integer: -11),
                                  rightChild: FormulaElement(double: -10),
                                  parent: nil)
@@ -545,7 +545,7 @@ final class FormulaManagerInterpreterTests: XCTestCase {
         XCTAssertTrue(interpreter.interpretBool(formula, for: object))
 
         element = FormulaElement(elementType: ElementType.OPERATOR,
-                                 value: Operators.getName(Operator.NOT_EQUAL),
+                                 value: NotEqualOperator.tag,
                                  leftChild: FormulaElement(string: "abc"),
                                  rightChild: FormulaElement(string: "abcd"),
                                  parent: nil)
@@ -554,7 +554,7 @@ final class FormulaManagerInterpreterTests: XCTestCase {
         XCTAssertTrue(interpreter.interpretBool(formula, for: object))
 
         element = FormulaElement(elementType: ElementType.OPERATOR,
-                                 value: Operators.getName(Operator.NOT_EQUAL),
+                                 value: NotEqualOperator.tag,
                                  leftChild: FormulaElement(string: "1.41"),
                                  rightChild: FormulaElement(double: 1.4),
                                  parent: nil)
@@ -563,7 +563,7 @@ final class FormulaManagerInterpreterTests: XCTestCase {
         XCTAssertTrue(interpreter.interpretBool(formula, for: object))
 
         element = FormulaElement(elementType: ElementType.OPERATOR,
-                                 value: Operators.getName(Operator.NOT_EQUAL),
+                                 value: NotEqualOperator.tag,
                                  leftChild: FormulaElement(string: "1.4"),
                                  rightChild: FormulaElement(double: 1.4),
                                  parent: nil)
@@ -575,7 +575,7 @@ final class FormulaManagerInterpreterTests: XCTestCase {
 
     func testInvalidBinaryOperator() {
         let element = FormulaElement(elementType: ElementType.OPERATOR,
-                                     value: Operators.getName(Operator.LOGICAL_NOT),
+                                     value: NotOperator.tag,
                                      leftChild: FormulaElement(double: 1.3),
                                      rightChild: nil,
                                      parent: nil)
@@ -586,7 +586,7 @@ final class FormulaManagerInterpreterTests: XCTestCase {
 
     func testMinus() {
         var element = FormulaElement(elementType: ElementType.OPERATOR,
-                                     value: Operators.getName(Operator.MINUS),
+                                     value: MinusOperator.tag,
                                      leftChild: nil,
                                      rightChild: FormulaElement(double: 1.3),
                                      parent: nil)
@@ -595,7 +595,7 @@ final class FormulaManagerInterpreterTests: XCTestCase {
         XCTAssertEqual(-1.3, interpreter.interpretDouble(formula, for: object))
 
         element = FormulaElement(elementType: ElementType.OPERATOR,
-                                 value: Operators.getName(Operator.MINUS),
+                                 value: MinusOperator.tag,
                                  leftChild: nil,
                                  rightChild: FormulaElement(double: -2),
                                  parent: nil)
@@ -606,7 +606,7 @@ final class FormulaManagerInterpreterTests: XCTestCase {
 
     func testLogicalNot() {
         var element = FormulaElement(elementType: ElementType.OPERATOR,
-                                     value: Operators.getName(Operator.LOGICAL_NOT),
+                                     value: NotOperator.tag,
                                      leftChild: nil,
                                      rightChild: FormulaElement(double: 1.3),
                                      parent: nil)
@@ -616,7 +616,7 @@ final class FormulaManagerInterpreterTests: XCTestCase {
         XCTAssertFalse(interpreter.interpretBool(formula, for: object))
 
         element = FormulaElement(elementType: ElementType.OPERATOR,
-                                 value: Operators.getName(Operator.LOGICAL_NOT),
+                                 value: NotOperator.tag,
                                  leftChild: nil,
                                  rightChild: FormulaElement(double: 0.0),
                                  parent: nil)
@@ -628,7 +628,7 @@ final class FormulaManagerInterpreterTests: XCTestCase {
 
     func testInvalidUnaryOperator() {
         let element = FormulaElement(elementType: ElementType.OPERATOR,
-                                     value: Operators.getName(Operator.PLUS),
+                                     value: PlusOperator.tag,
                                      leftChild: nil,
                                      rightChild: FormulaElement(double: 1.3),
                                      parent: nil)

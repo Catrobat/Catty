@@ -69,6 +69,7 @@ typedef enum KeyboardNumbers
     TOKEN_TYPE_NUMBER_7,
     TOKEN_TYPE_NUMBER_8,
     TOKEN_TYPE_NUMBER_9,
+    DECIMAL_MARK,
 }KeyboardNumbers;
 
 @interface InternToken : NSObject<NSMutableCopying>

@@ -60,7 +60,7 @@ final class FormulaManagerIdempotenceTests: XCTestCase {
     func testAddition() {
         let leftChild = FormulaElement(integer: 1)
         let rightChild = FormulaElement(integer: 3)
-        let formulaElement = FormulaElement(elementType: ElementType.OPERATOR, value: Operators.getName(Operator.PLUS), leftChild: leftChild, rightChild: rightChild, parent: nil)
+        let formulaElement = FormulaElement(elementType: ElementType.OPERATOR, value: PlusOperator.tag, leftChild: leftChild, rightChild: rightChild, parent: nil)
 
         let formula = Formula(formulaElement: formulaElement)!
         XCTAssertTrue(interpreter.isIdempotent(formula))
@@ -68,7 +68,7 @@ final class FormulaManagerIdempotenceTests: XCTestCase {
 
     func testMultiplication() {
         let subElement = FormulaElement(elementType: ElementType.OPERATOR,
-                                        value: Operators.getName(Operator.MINUS),
+                                        value: MinusOperator.tag,
                                         leftChild: FormulaElement(integer: 3),
                                         rightChild: FormulaElement(integer: 5),
                                         parent: nil)
@@ -76,7 +76,7 @@ final class FormulaManagerIdempotenceTests: XCTestCase {
         let leftChild = FormulaElement(integer: 1)
         let rightChild = FormulaElement(elementType: ElementType.BRACKET, value: nil, leftChild: nil, rightChild: subElement, parent: nil)
 
-        let formulaElement = FormulaElement(elementType: ElementType.OPERATOR, value: Operators.getName(Operator.MINUS), leftChild: leftChild, rightChild: rightChild, parent: nil)
+        let formulaElement = FormulaElement(elementType: ElementType.OPERATOR, value: MinusOperator.tag, leftChild: leftChild, rightChild: rightChild, parent: nil)
 
         let formula = Formula(formulaElement: formulaElement)!
         XCTAssertTrue(interpreter.isIdempotent(formula))
@@ -90,7 +90,7 @@ final class FormulaManagerIdempotenceTests: XCTestCase {
     func testTwoSensor() {
         let leftChild = FormulaElement(elementType: ElementType.SENSOR, value: AccelerationXSensor.tag)
         let rightChild = FormulaElement(elementType: ElementType.SENSOR, value: InclinationXSensor.tag)
-        let formulaElement = FormulaElement(elementType: ElementType.OPERATOR, value: Operators.getName(Operator.PLUS), leftChild: leftChild, rightChild: rightChild, parent: nil)
+        let formulaElement = FormulaElement(elementType: ElementType.OPERATOR, value: PlusOperator.tag, leftChild: leftChild, rightChild: rightChild, parent: nil)
 
         let formula = Formula(formulaElement: formulaElement)!
         XCTAssertFalse(interpreter.isIdempotent(formula))
@@ -99,7 +99,7 @@ final class FormulaManagerIdempotenceTests: XCTestCase {
     func testSensorLeftChild() {
         let leftChild = FormulaElement(elementType: ElementType.SENSOR, value: AccelerationXSensor.tag)
         let rightChild = FormulaElement(integer: 3)
-        let formulaElement = FormulaElement(elementType: ElementType.OPERATOR, value: Operators.getName(Operator.PLUS), leftChild: leftChild, rightChild: rightChild, parent: nil)
+        let formulaElement = FormulaElement(elementType: ElementType.OPERATOR, value: PlusOperator.tag, leftChild: leftChild, rightChild: rightChild, parent: nil)
 
         let formula = Formula(formulaElement: formulaElement)!
         XCTAssertFalse(interpreter.isIdempotent(formula))
@@ -109,7 +109,7 @@ final class FormulaManagerIdempotenceTests: XCTestCase {
         let leftChild = FormulaElement(integer: 3)
         let rightChild = FormulaElement(elementType: ElementType.SENSOR, value: AccelerationXSensor.tag)
         let formulaElement = FormulaElement(elementType: ElementType.OPERATOR,
-                                            value: Operators.getName(Operator.PLUS),
+                                            value: PlusOperator.tag,
                                             leftChild: leftChild,
                                             rightChild: rightChild,
                                             parent: nil)
@@ -123,13 +123,13 @@ final class FormulaManagerIdempotenceTests: XCTestCase {
 
         let leftChild = FormulaElement(integer: 3)
         let rightChild = FormulaElement(elementType: ElementType.OPERATOR,
-                                        value: Operators.getName(Operator.MINUS),
+                                        value: MinusOperator.tag,
                                         leftChild: FormulaElement(integer: 3),
                                         rightChild: sensorElement,
                                         parent: nil)
 
         let formulaElement = FormulaElement(elementType: ElementType.OPERATOR,
-                                            value: Operators.getName(Operator.PLUS),
+                                            value: PlusOperator.tag,
                                             leftChild: leftChild,
                                             rightChild: rightChild,
                                             parent: nil)
@@ -163,7 +163,7 @@ final class FormulaManagerIdempotenceTests: XCTestCase {
         let leftChild = FormulaElement(integer: 2)
         let rightChild = FormulaElement(elementType: ElementType.USER_VARIABLE, value: "test")
         let formulaElement = FormulaElement(elementType: ElementType.OPERATOR,
-                                            value: Operators.getName(Operator.MULT),
+                                            value: MultOperator.tag,
                                             leftChild: leftChild,
                                             rightChild: rightChild,
                                             parent: nil)

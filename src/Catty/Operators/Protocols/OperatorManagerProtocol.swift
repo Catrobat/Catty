@@ -20,31 +20,19 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-protocol FormulaManagerProtocol: FormulaInterpreterProtocol {
+protocol OperatorManagerProtocol {
 
-    func setup(for program: Program, and scene: CBScene)
+    static var defaultValueForUndefinedOperator: Double { get set }
 
-    func setup(for formula: Formula)
+    init(operators: [CBOperator])
 
-    func stop()
+    func exists(tag: String) -> Bool
 
-    func pause()
+    func getOperator(tag: String) -> CBOperator?
 
-    func resume()
+    func value(tag: String, leftParameter: AnyObject?, rightParameter: AnyObject?) -> AnyObject
 
-    func unavailableResources(for requiredResources: NSInteger) -> NSInteger
+    func name(tag: String) -> String?
 
-    func functionExists(tag: String) -> Bool
-
-    func sensorExists(tag: String) -> Bool
-
-    func operatorExists(tag: String) -> Bool
-
-    func formulaEditorItems(spriteObject: SpriteObject) -> [FormulaEditorItem]
-
-    func formulaEditorItemsForMathSection(spriteObject: SpriteObject) -> [FormulaEditorItem]
-
-    func formulaEditorItemsForObjectSection(spriteObject: SpriteObject) -> [FormulaEditorItem]
-
-    func formulaEditorItemsForDeviceSection(spriteObject: SpriteObject) -> [FormulaEditorItem]
+    static func comparePriority(of leftTag: String, with rightTag: String) -> Int
 }

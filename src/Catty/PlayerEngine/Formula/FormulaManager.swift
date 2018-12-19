@@ -27,6 +27,7 @@ import CoreMotion
 
     let sensorManager: SensorManagerProtocol
     let functionManager: FunctionManagerProtocol
+    let operatorManager: OperatorManagerProtocol
     let motionManager: MotionManager
     let locationManager: LocationManager
     let faceDetectionManager: FaceDetectionManagerProtocol
@@ -58,8 +59,11 @@ import CoreMotion
             FormulaManager.buildFunctionManager(touchManager: touchManager,
                                                 bluetoothService: bluetoothService)
 
+        let operatorManager = FormulaManager.buildOperatorManager()
+
         self.init(sensorManager: sensorManager,
                   functionManager: functionManager,
+                  operatorManager: operatorManager,
                   motionManager: motionManager,
                   locationManager: locationManager,
                   faceDetectionManager: faceDetectionManager,
@@ -68,9 +72,10 @@ import CoreMotion
                   bluetoothService: bluetoothService)
     }
 
-    convenience init(sensorManager: SensorManagerProtocol, functionManager: FunctionManagerProtocol) {
+    convenience init(sensorManager: SensorManagerProtocol, functionManager: FunctionManagerProtocol, operatorManager: OperatorManagerProtocol) {
         self.init(sensorManager: sensorManager,
                   functionManager: functionManager,
+                  operatorManager: operatorManager,
                   motionManager: CMMotionManager(),
                   locationManager: CLLocationManager(),
                   faceDetectionManager: FaceDetectionManager(),
@@ -81,6 +86,7 @@ import CoreMotion
 
     init(sensorManager: SensorManagerProtocol,
          functionManager: FunctionManagerProtocol,
+         operatorManager: OperatorManagerProtocol,
          motionManager: MotionManager,
          locationManager: LocationManager,
          faceDetectionManager: FaceDetectionManagerProtocol,
@@ -90,6 +96,7 @@ import CoreMotion
 
         self.sensorManager = sensorManager
         self.functionManager = functionManager
+        self.operatorManager = operatorManager
 
         self.motionManager = motionManager
         self.locationManager = locationManager
@@ -105,6 +112,10 @@ import CoreMotion
 
     @objc func sensorExists(tag: String) -> Bool {
         return self.sensorManager.exists(tag: tag)
+    }
+
+    @objc func operatorExists(tag: String) -> Bool {
+        return self.operatorManager.exists(tag: tag)
     }
 
     private static func buildSensorManager(sceneSize: CGSize,
@@ -208,5 +219,13 @@ import CoreMotion
         ])
 
         return functionManager
+    }
+
+    private static func buildOperatorManager() -> OperatorManagerProtocol {
+        let operatorManager = OperatorManager(operators: [
+            NotOperator()
+        ])
+
+        return operatorManager
     }
 }

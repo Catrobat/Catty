@@ -20,33 +20,16 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
+@objc class SmallerOrEqualOperator: NSObject, BinaryLogicalOperator {
 
-typedef NS_ENUM(NSInteger, Operator) {
-    LOGICAL_AND = 400,
-    LOGICAL_OR,
-    EQUAL,
-    NOT_EQUAL,
-    SMALLER_OR_EQUAL,
-    GREATER_OR_EQUAL,
-    SMALLER_THAN,
-    GREATER_THAN,
-    PLUS,
-    MINUS,
-    MULT,
-    DIVIDE,
-    LOGICAL_NOT,
-    DECIMAL_MARK,
-    NO_OPERATOR = -1
-};
+    static var name = "≤"
+    @objc static var tag = "SMALLER_OR_EQUAL"
+    static var priority = 4
 
-@interface Operators : NSObject
+    func value(left: AnyObject, right: AnyObject) -> Bool {
+        let leftDouble = doubleParameter(object: left)
+        let rightDouble = doubleParameter(object: right)
 
-+ (NSString*)getName:(Operator)operator;
-+ (NSString*)getExternName:(NSString *)value;
-+ (Operator)getOperatorByValue:(NSString*)name;
-+ (int)getPriority:(Operator)operator;
-+ (BOOL)isLogicalOperator:(Operator)operator;
-+ (int)compareOperator:(Operator)firstOperator WithOperator:(Operator)secondOperator;
-
-@end
+        return leftDouble <= rightDouble
+    }
+}

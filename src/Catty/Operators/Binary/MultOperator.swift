@@ -20,28 +20,16 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <XCTest/XCTest.h>
-#import "InternFormula.h"
-#import "InternToken.h"
-#import "Operators.h"
+@objc class MultOperator: NSObject, BinaryOperator {
 
-@interface InternFormulaTests : XCTestCase
+    static var name = "×"
+    @objc static var tag = "MULT"
+    static var priority = 6
 
-@end
+    func value(left: AnyObject, right: AnyObject) -> Double {
+        let leftDouble = self.doubleParameter(object: left)
+        let rightDouble = self.doubleParameter(object: right)
 
-@implementation InternFormulaTests
-
-//-(void)testInsertRightToCurrentToken
-//{
-//    NSMutableArray *internTokens = [[NSMutableArray alloc]init];
-//    [internTokens addObject:[[InternToken alloc]initWithType:TOKEN_TYPE_OPERATOR AndValue:[Operators getName:PLUS]]];
-//    InternFormula *internFormula = [[InternFormula alloc]initWithInternTokenList:internTokens];
-//    [internFormula generateExternFormulaStringAndInternExternMapping];
-//    [internFormula setCursorAndSelection:0 selected:NO];
-//    [internFormula handleKeyInputWithName:nil butttonType:DECIMAL_MARK];
-//    
-//    XCTAssertTrue([[[internTokens objectAtIndex:0]getTokenStringValue]isEqualToString:@"0."]
-//                  , @"Enter decimal mark error");
-//}
-
-@end
+        return leftDouble * rightDouble
+    }
+}

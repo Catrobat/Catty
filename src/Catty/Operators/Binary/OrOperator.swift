@@ -20,31 +20,16 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-protocol FormulaManagerProtocol: FormulaInterpreterProtocol {
+@objc class OrOperator: NSObject, BinaryLogicalOperator {
 
-    func setup(for program: Program, and scene: CBScene)
+    static var name = kUIFEOperatorOr
+    @objc static var tag = "LOGICAL_OR"
+    static var priority = 1
 
-    func setup(for formula: Formula)
+    func value(left: AnyObject, right: AnyObject) -> Bool {
+        let leftDouble = doubleParameter(object: left)
+        let rightDouble = doubleParameter(object: right)
 
-    func stop()
-
-    func pause()
-
-    func resume()
-
-    func unavailableResources(for requiredResources: NSInteger) -> NSInteger
-
-    func functionExists(tag: String) -> Bool
-
-    func sensorExists(tag: String) -> Bool
-
-    func operatorExists(tag: String) -> Bool
-
-    func formulaEditorItems(spriteObject: SpriteObject) -> [FormulaEditorItem]
-
-    func formulaEditorItemsForMathSection(spriteObject: SpriteObject) -> [FormulaEditorItem]
-
-    func formulaEditorItemsForObjectSection(spriteObject: SpriteObject) -> [FormulaEditorItem]
-
-    func formulaEditorItemsForDeviceSection(spriteObject: SpriteObject) -> [FormulaEditorItem]
+        return leftDouble != 0.0 || rightDouble != 0.0
+    }
 }

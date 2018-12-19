@@ -20,31 +20,16 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-protocol FormulaManagerProtocol: FormulaInterpreterProtocol {
+class PlusOperator: BinaryOperator {
 
-    func setup(for program: Program, and scene: CBScene)
+    static var name = "+"
+    static var tag = "PLUS"
+    static var priority = 5
 
-    func setup(for formula: Formula)
+    func value(left: AnyObject, right: AnyObject) -> Double {
+        let leftDouble = self.doubleParameter(object: left)
+        let rightDouble = self.doubleParameter(object: right)
 
-    func stop()
-
-    func pause()
-
-    func resume()
-
-    func unavailableResources(for requiredResources: NSInteger) -> NSInteger
-
-    func functionExists(tag: String) -> Bool
-
-    func sensorExists(tag: String) -> Bool
-
-    func operatorExists(tag: String) -> Bool
-
-    func formulaEditorItems(spriteObject: SpriteObject) -> [FormulaEditorItem]
-
-    func formulaEditorItemsForMathSection(spriteObject: SpriteObject) -> [FormulaEditorItem]
-
-    func formulaEditorItemsForObjectSection(spriteObject: SpriteObject) -> [FormulaEditorItem]
-
-    func formulaEditorItemsForDeviceSection(spriteObject: SpriteObject) -> [FormulaEditorItem]
+        return leftDouble + rightDouble
+    }
 }

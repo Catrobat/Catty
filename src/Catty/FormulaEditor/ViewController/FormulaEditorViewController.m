@@ -319,13 +319,6 @@ NS_ENUM(NSInteger, ButtonIndex) {
 #pragma mark - localizeView
 - (void)localizeView
 {
-    for (UIButton *button in self.normalTypeButton) {
-        NSString *name = [Operators getExternName:[Operators getName:(Operator)[button tag]]];
-        if([name length] != 0) {
-            [button setTitle:name forState:UIControlStateNormal];
-        }
-    }
-    
     [self.calcButton setTitle:kUIFENumbers forState:UIControlStateNormal];
     [self.mathbutton setTitle:kUIFEMath forState:UIControlStateNormal];
     [self.logicButton setTitle:kUIFELogic forState:UIControlStateNormal];

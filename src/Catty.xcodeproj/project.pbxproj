@@ -170,6 +170,22 @@
 		4C4A71921B52733C00BBE32B /* CBXMLAbstractContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4A71911B52733C00BBE32B /* CBXMLAbstractContext.m */; };
 		4C4A71A11B527E2F00BBE32B /* CBXMLParserContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4A71A01B527E2F00BBE32B /* CBXMLParserContext.m */; };
 		4C4EE29D210901E70045F890 /* FormulaEditorSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4EE29A210901E70045F890 /* FormulaEditorSection.swift */; };
+		4C595F3E21CAE5170097D850 /* CBOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C595F3D21CAE5170097D850 /* CBOperator.swift */; };
+		4C595F4121CAE7BE0097D850 /* PlusOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C595F4021CAE7BE0097D850 /* PlusOperator.swift */; };
+		4C595F4321CAEAFE0097D850 /* MinusOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C595F4221CAEAFE0097D850 /* MinusOperator.swift */; };
+		4C595F4521CAEB230097D850 /* DivideOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C595F4421CAEB230097D850 /* DivideOperator.swift */; };
+		4C595F4721CAEB4F0097D850 /* MultOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C595F4621CAEB4F0097D850 /* MultOperator.swift */; };
+		4C595F4921CAEB7E0097D850 /* NotEqualOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C595F4821CAEB7E0097D850 /* NotEqualOperator.swift */; };
+		4C595F4B21CAEBA50097D850 /* EqualOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C595F4A21CAEBA50097D850 /* EqualOperator.swift */; };
+		4C595F4D21CAEBC50097D850 /* SmallerThanOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C595F4C21CAEBC50097D850 /* SmallerThanOperator.swift */; };
+		4C595F4F21CAEBEE0097D850 /* GreaterThanOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C595F4E21CAEBEE0097D850 /* GreaterThanOperator.swift */; };
+		4C595F5121CAEC060097D850 /* GreaterOrEqualOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C595F5021CAEC060097D850 /* GreaterOrEqualOperator.swift */; };
+		4C595F5321CAEC2B0097D850 /* SmallerOrEqualOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C595F5221CAEC2B0097D850 /* SmallerOrEqualOperator.swift */; };
+		4C595F5521CAF3E60097D850 /* NotOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C595F5421CAF3E60097D850 /* NotOperator.swift */; };
+		4C595F5721CAF6590097D850 /* AndOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C595F5621CAF6590097D850 /* AndOperator.swift */; };
+		4C595F5921CAF6B30097D850 /* OrOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C595F5821CAF6B30097D850 /* OrOperator.swift */; };
+		4C595F5E21CAF8CC0097D850 /* OperatorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C595F5D21CAF8CC0097D850 /* OperatorManager.swift */; };
+		4C595F6021CAF9050097D850 /* OperatorManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C595F5F21CAF9050097D850 /* OperatorManagerProtocol.swift */; };
 		4C5EF63521A0677E0063D2F0 /* CameraBricks_0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C5EF63421A0677E0063D2F0 /* CameraBricks_0991.xml */; };
 		4C60663A1A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6066391A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m */; };
 		4C647C7E1D48E19C0060E70D /* Air_fight_0.5_098.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C647C7D1D48E19C0060E70D /* Air_fight_0.5_098.xml */; };
@@ -183,7 +199,6 @@
 		4C68FC911B25A00B00AB3EE8 /* InternFormulaParserStringFunctionsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68FC831B25A00B00AB3EE8 /* InternFormulaParserStringFunctionsTest.m */; };
 		4C68FC921B25A00B00AB3EE8 /* InternFormulaStateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68FC841B25A00B00AB3EE8 /* InternFormulaStateTest.m */; };
 		4C68FC931B25A00B00AB3EE8 /* InternFormulaTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68FC851B25A00B00AB3EE8 /* InternFormulaTest.m */; };
-		4C68FC941B25A00B00AB3EE8 /* InternFormulaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68FC861B25A00B00AB3EE8 /* InternFormulaTests.m */; };
 		4C68FC951B25A00B00AB3EE8 /* InternFormulaTokenSelectionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68FC871B25A00B00AB3EE8 /* InternFormulaTokenSelectionTest.m */; };
 		4C68FC961B25A00B00AB3EE8 /* InternFormulaUtilsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68FC881B25A00B00AB3EE8 /* InternFormulaUtilsTest.m */; };
 		4C6D14E6210B1273006147BD /* InclinationXSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6D14E5210B1273006147BD /* InclinationXSensor.swift */; };
@@ -804,7 +819,6 @@
 		92FF30F81A24DCAA00093DA7 /* Formula.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30991A24DCAA00093DA7 /* Formula.m */; };
 		92FF30F91A24DCAA00093DA7 /* FormulaElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF309B1A24DCAA00093DA7 /* FormulaElement.m */; };
 		92FF30FB1A24DCAA00093DA7 /* InternFormulaParserException.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30A01A24DCAA00093DA7 /* InternFormulaParserException.m */; };
-		92FF30FC1A24DCAA00093DA7 /* Operators.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30A21A24DCAA00093DA7 /* Operators.m */; };
 		92FF30FD1A24DCAA00093DA7 /* Header.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30A51A24DCAA00093DA7 /* Header.m */; };
 		92FF30FE1A24DCAA00093DA7 /* Look.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30A81A24DCAA00093DA7 /* Look.m */; };
 		92FF30FF1A24DCAA00093DA7 /* Program.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30AB1A24DCAA00093DA7 /* Program.m */; };
@@ -1513,6 +1527,22 @@
 		4C5517D51ABC6AA500A52FF4 /* BrickLookProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickLookProtocol.h; sourceTree = "<group>"; };
 		4C5517D61ABC6AB800A52FF4 /* BrickSoundProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickSoundProtocol.h; sourceTree = "<group>"; };
 		4C5517D71ABC737C00A52FF4 /* BrickObjectProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickObjectProtocol.h; sourceTree = "<group>"; };
+		4C595F3D21CAE5170097D850 /* CBOperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBOperator.swift; sourceTree = "<group>"; };
+		4C595F4021CAE7BE0097D850 /* PlusOperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusOperator.swift; sourceTree = "<group>"; };
+		4C595F4221CAEAFE0097D850 /* MinusOperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinusOperator.swift; sourceTree = "<group>"; };
+		4C595F4421CAEB230097D850 /* DivideOperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DivideOperator.swift; sourceTree = "<group>"; };
+		4C595F4621CAEB4F0097D850 /* MultOperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultOperator.swift; sourceTree = "<group>"; };
+		4C595F4821CAEB7E0097D850 /* NotEqualOperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotEqualOperator.swift; sourceTree = "<group>"; };
+		4C595F4A21CAEBA50097D850 /* EqualOperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EqualOperator.swift; sourceTree = "<group>"; };
+		4C595F4C21CAEBC50097D850 /* SmallerThanOperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallerThanOperator.swift; sourceTree = "<group>"; };
+		4C595F4E21CAEBEE0097D850 /* GreaterThanOperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreaterThanOperator.swift; sourceTree = "<group>"; };
+		4C595F5021CAEC060097D850 /* GreaterOrEqualOperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreaterOrEqualOperator.swift; sourceTree = "<group>"; };
+		4C595F5221CAEC2B0097D850 /* SmallerOrEqualOperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallerOrEqualOperator.swift; sourceTree = "<group>"; };
+		4C595F5421CAF3E60097D850 /* NotOperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotOperator.swift; sourceTree = "<group>"; };
+		4C595F5621CAF6590097D850 /* AndOperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AndOperator.swift; sourceTree = "<group>"; };
+		4C595F5821CAF6B30097D850 /* OrOperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrOperator.swift; sourceTree = "<group>"; };
+		4C595F5D21CAF8CC0097D850 /* OperatorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperatorManager.swift; sourceTree = "<group>"; };
+		4C595F5F21CAF9050097D850 /* OperatorManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperatorManagerProtocol.swift; sourceTree = "<group>"; };
 		4C5EF63421A0677E0063D2F0 /* CameraBricks_0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CameraBricks_0991.xml; sourceTree = "<group>"; };
 		4C6066381A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GDataXMLNode+CustomExtensions.h"; sourceTree = "<group>"; };
 		4C6066391A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GDataXMLNode+CustomExtensions.m"; sourceTree = "<group>"; };
@@ -1527,7 +1557,6 @@
 		4C68FC831B25A00B00AB3EE8 /* InternFormulaParserStringFunctionsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InternFormulaParserStringFunctionsTest.m; path = Formula/InternFormulaParserStringFunctionsTest.m; sourceTree = "<group>"; };
 		4C68FC841B25A00B00AB3EE8 /* InternFormulaStateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InternFormulaStateTest.m; path = Formula/InternFormulaStateTest.m; sourceTree = "<group>"; };
 		4C68FC851B25A00B00AB3EE8 /* InternFormulaTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InternFormulaTest.m; path = Formula/InternFormulaTest.m; sourceTree = "<group>"; };
-		4C68FC861B25A00B00AB3EE8 /* InternFormulaTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InternFormulaTests.m; path = Formula/InternFormulaTests.m; sourceTree = "<group>"; };
 		4C68FC871B25A00B00AB3EE8 /* InternFormulaTokenSelectionTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InternFormulaTokenSelectionTest.m; path = Formula/InternFormulaTokenSelectionTest.m; sourceTree = "<group>"; };
 		4C68FC881B25A00B00AB3EE8 /* InternFormulaUtilsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InternFormulaUtilsTest.m; path = Formula/InternFormulaUtilsTest.m; sourceTree = "<group>"; };
 		4C6D14E5210B1273006147BD /* InclinationXSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InclinationXSensor.swift; sourceTree = "<group>"; };
@@ -2373,8 +2402,6 @@
 		92FF309B1A24DCAA00093DA7 /* FormulaElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormulaElement.m; sourceTree = "<group>"; };
 		92FF309F1A24DCAA00093DA7 /* InternFormulaParserException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InternFormulaParserException.h; sourceTree = "<group>"; };
 		92FF30A01A24DCAA00093DA7 /* InternFormulaParserException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InternFormulaParserException.m; sourceTree = "<group>"; };
-		92FF30A11A24DCAA00093DA7 /* Operators.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Operators.h; sourceTree = "<group>"; };
-		92FF30A21A24DCAA00093DA7 /* Operators.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Operators.m; sourceTree = "<group>"; };
 		92FF30A41A24DCAA00093DA7 /* Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		92FF30A51A24DCAA00093DA7 /* Header.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Header.m; sourceTree = "<group>"; };
 		92FF30A71A24DCAA00093DA7 /* Look.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Look.h; sourceTree = "<group>"; };
@@ -3536,7 +3563,6 @@
 				4C68FC831B25A00B00AB3EE8 /* InternFormulaParserStringFunctionsTest.m */,
 				4C68FC841B25A00B00AB3EE8 /* InternFormulaStateTest.m */,
 				4C68FC851B25A00B00AB3EE8 /* InternFormulaTest.m */,
-				4C68FC861B25A00B00AB3EE8 /* InternFormulaTests.m */,
 				4C68FC871B25A00B00AB3EE8 /* InternFormulaTokenSelectionTest.m */,
 				4C68FC881B25A00B00AB3EE8 /* InternFormulaUtilsTest.m */,
 				BA1FA9901F02A10C0084184D /* UserListFunctionsTest.m */,
@@ -3608,6 +3634,61 @@
 				4CC0D51F1B01FB73006193C4 /* BrickVariableProtocol.h */,
 			);
 			path = BrickData;
+			sourceTree = "<group>";
+		};
+		4C595F3A21CAE4FC0097D850 /* Operators */ = {
+			isa = PBXGroup;
+			children = (
+				4C595F5C21CAF8A40097D850 /* Unary */,
+				4C595F5A21CAF82F0097D850 /* Binary */,
+				4C595F5B21CAF8840097D850 /* BinaryAndUnary */,
+				4C595F3F21CAE5220097D850 /* Protocols */,
+				4C595F5D21CAF8CC0097D850 /* OperatorManager.swift */,
+			);
+			path = Operators;
+			sourceTree = "<group>";
+		};
+		4C595F3F21CAE5220097D850 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				4C595F3D21CAE5170097D850 /* CBOperator.swift */,
+				4C595F5F21CAF9050097D850 /* OperatorManagerProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		4C595F5A21CAF82F0097D850 /* Binary */ = {
+			isa = PBXGroup;
+			children = (
+				4C595F4421CAEB230097D850 /* DivideOperator.swift */,
+				4C595F4A21CAEBA50097D850 /* EqualOperator.swift */,
+				4C595F5021CAEC060097D850 /* GreaterOrEqualOperator.swift */,
+				4C595F4E21CAEBEE0097D850 /* GreaterThanOperator.swift */,
+				4C595F4621CAEB4F0097D850 /* MultOperator.swift */,
+				4C595F4821CAEB7E0097D850 /* NotEqualOperator.swift */,
+				4C595F4021CAE7BE0097D850 /* PlusOperator.swift */,
+				4C595F5221CAEC2B0097D850 /* SmallerOrEqualOperator.swift */,
+				4C595F4C21CAEBC50097D850 /* SmallerThanOperator.swift */,
+				4C595F5621CAF6590097D850 /* AndOperator.swift */,
+				4C595F5821CAF6B30097D850 /* OrOperator.swift */,
+			);
+			path = Binary;
+			sourceTree = "<group>";
+		};
+		4C595F5B21CAF8840097D850 /* BinaryAndUnary */ = {
+			isa = PBXGroup;
+			children = (
+				4C595F4221CAEAFE0097D850 /* MinusOperator.swift */,
+			);
+			path = BinaryAndUnary;
+			sourceTree = "<group>";
+		};
+		4C595F5C21CAF8A40097D850 /* Unary */ = {
+			isa = PBXGroup;
+			children = (
+				4C595F5421CAF3E60097D850 /* NotOperator.swift */,
+			);
+			path = Unary;
 			sourceTree = "<group>";
 		};
 		4C5EF63121A0674D0063D2F0 /* CameraBricks */ = {
@@ -5984,8 +6065,6 @@
 			children = (
 				92FF309F1A24DCAA00093DA7 /* InternFormulaParserException.h */,
 				92FF30A01A24DCAA00093DA7 /* InternFormulaParserException.m */,
-				92FF30A11A24DCAA00093DA7 /* Operators.h */,
-				92FF30A21A24DCAA00093DA7 /* Operators.m */,
 			);
 			path = FormulaEditor;
 			sourceTree = "<group>";
@@ -7185,6 +7264,7 @@
 				4C9E07691CD9D47E00B14B2F /* Helper */,
 				4CF429EB213A82D300B78897 /* Condition */,
 				AA401FE51BBEF5F5001BC49F /* Instructions */,
+				4C595F3A21CAE4FC0097D850 /* Operators */,
 				AAD498B51B8D2431005894C4 /* Protocols */,
 				92FF30AF1A24DCAA00093DA7 /* Scene */,
 				CA2D44471B1249C400A3B53D /* Scheduler */,
@@ -8596,7 +8676,6 @@
 				4C822665213FA7A400F3D750 /* AltitudeSensorTest.swift in Sources */,
 				4CC50A5C213BBD7D004BC914 /* FormulaManagerInterpreterTests.swift in Sources */,
 				4C82265E213FA7A400F3D750 /* LastFingerIndexSensorTest.swift in Sources */,
-				4C68FC941B25A00B00AB3EE8 /* InternFormulaTests.m in Sources */,
 				4C6FE168212D2D2E0067B7D5 /* TanFunctionTest.swift in Sources */,
 				4CD0BA9921467C5A00BF17A4 /* HeaderTests.swift in Sources */,
 				4CEB22601B95E47500B3BE2F /* PointInDirectionBrickTests.m in Sources */,
@@ -8622,6 +8701,7 @@
 				AA74F00E1BC05B5F00D1E954 /* StopAllSoundsBrick.m in Sources */,
 				AA74EEDF1BC057B900D1E954 /* IfLogicElseBrick+CBXMLHandler.m in Sources */,
 				AAA2979B1BB3711B006F8793 /* BrickCategoryViewController.m in Sources */,
+				4C595F5921CAF6B30097D850 /* OrOperator.swift in Sources */,
 				AA74F0941BC05FCE00D1E954 /* BrickCellLookData.m in Sources */,
 				F45AF6FD212960A3000F88A6 /* FacePositionXSensor.swift in Sources */,
 				99EBDBFA1D562088008D6860 /* ChangeColorByNBrick+CBXMLHandler.m in Sources */,
@@ -8634,6 +8714,7 @@
 				AABCB3EC1BB368C2009F67D2 /* CBFrontendSequenceFilters.swift in Sources */,
 				AABCB3EA1BB3687D009F67D2 /* CBScene.swift in Sources */,
 				AA74F0B61BC05FCE00D1E954 /* ChangeXByNBrickCell.m in Sources */,
+				4C595F5121CAEC060097D850 /* GreaterOrEqualOperator.swift in Sources */,
 				AABCB3E71BB3671F009F67D2 /* LLNode.swift in Sources */,
 				AA74EE3C1BC0543700D1E954 /* SpeakBrick+Instruction.swift in Sources */,
 				AA401FE91BBEF6F9001BC49F /* CBInstructionProtocol.swift in Sources */,
@@ -8695,6 +8776,7 @@
 				CA3E72E81B0C00A500D6B184 /* CBStack.swift in Sources */,
 				AA74EFFE1BC05B5F00D1E954 /* ComeToFrontBrick.m in Sources */,
 				92FF31051A24DCAA00093DA7 /* WhenScript.m in Sources */,
+				4C595F5721CAF6590097D850 /* AndOperator.swift in Sources */,
 				4C724E251B4D3E8C00E27479 /* CBXMLParser.m in Sources */,
 				F45AF701212960B4000F88A6 /* FaceSizeSensor.swift in Sources */,
 				9200C2D61C8082EF002F5CA4 /* ShowTextBrickCell.m in Sources */,
@@ -8763,6 +8845,7 @@
 				BAEAB29A214BCE8D000B2E4B /* WhenTouchDownScriptCell.m in Sources */,
 				92FF314C1A24DEB300093DA7 /* CatrobatTableViewController.m in Sources */,
 				59D008E9208E3FDC000539E7 /* MotionManager.swift in Sources */,
+				4C595F4321CAEAFE0097D850 /* MinusOperator.swift in Sources */,
 				AA74EFF11BC05B5F00D1E954 /* ChangeBrightnessByNBrick.m in Sources */,
 				4C48ED2520EF9A1D00784CD5 /* AudioManagerProtocol.swift in Sources */,
 				4CAA66BE21469AB900CCDD6E /* UserVariable+Scene.swift in Sources */,
@@ -8795,6 +8878,7 @@
 				928D4D791A7BD19A00E6DFA8 /* CatrobatUISlider.m in Sources */,
 				AA74EE3A1BC0543700D1E954 /* PlaySoundBrick+Instruction.swift in Sources */,
 				5947F6D5200CF3C70079DBCE /* MediaLibraryViewController.swift in Sources */,
+				4C595F4721CAEB4F0097D850 /* MultOperator.swift in Sources */,
 				AA74EEFC1BC057C900D1E954 /* NextLookBrick+CBXMLHandler.m in Sources */,
 				92DFB0171A38949E00FA9B0F /* InternFormulaTokenSelection.m in Sources */,
 				92FF2E3A1A24C5A700093DA7 /* NSString+FastImageSize.m in Sources */,
@@ -8829,6 +8913,7 @@
 				AAF6D9E21BC0C48300686849 /* PointToBrick+Instruction.swift in Sources */,
 				AA74F09C1BC05FCE00D1E954 /* BroadcastBrickCell.m in Sources */,
 				AA74F0961BC05FCE00D1E954 /* BrickCellObjectData.m in Sources */,
+				4C595F6021CAF9050097D850 /* OperatorManagerProtocol.swift in Sources */,
 				929CC0CC1BC39B0A0027DEC0 /* PhiroMotorMoveBackwardBrick.m in Sources */,
 				92FF32B61A24E2F400093DA7 /* CatrobatBaseCell.m in Sources */,
 				AA74F0051BC05B5F00D1E954 /* PointToBrick.m in Sources */,
@@ -9005,6 +9090,7 @@
 				9218B2101CC4AB75007B4C60 /* PipetteTool.m in Sources */,
 				4C0F9F66204BD18600E71B2D /* SayBubbleBrick+CBXMLHandler.m in Sources */,
 				923503901BA707DE00021F6A /* BaseLoginViewController.m in Sources */,
+				4C595F4921CAEB7E0097D850 /* NotEqualOperator.swift in Sources */,
 				4C11795120AEBE38006C6E32 /* LongitudeSensor.swift in Sources */,
 				F4201D0120D7A3B60030181B /* TimeSecondSensor.swift in Sources */,
 				92FF2EA11A24C7D800093DA7 /* TimerLabel.m in Sources */,
@@ -9031,6 +9117,7 @@
 				9218B20C1CC4AB75007B4C60 /* FillTool.m in Sources */,
 				4C0F9F85204BD24600E71B2D /* IfThenLogicBeginBrick+CBXMLHandler.m in Sources */,
 				929CC0FB1BC3A2420027DEC0 /* PhiroRGBLightBrick+Instruction.swift in Sources */,
+				4C595F4F21CAEBEE0097D850 /* GreaterThanOperator.swift in Sources */,
 				D63864651AE632FE008569E6 /* ProgramsForUploadViewController.m in Sources */,
 				92B46F921BC7B3E5004980C1 /* ArduinoSendDigitalValueBrick.m in Sources */,
 				4CF0728120D6577500F93AB5 /* PhiroSensor.swift in Sources */,
@@ -9106,6 +9193,7 @@
 				92FF31581A24DEB300093DA7 /* ProgramTableViewController.m in Sources */,
 				4C72EA3B2108EC3600E7407F /* TouchManagerProtocol.swift in Sources */,
 				9200C2CF1C808206002F5CA4 /* HideTextBrick+Instruction.swift in Sources */,
+				4C595F4B21CAEBA50097D850 /* EqualOperator.swift in Sources */,
 				AA74F0AB1BC05FCE00D1E954 /* ChangeBrightnessByNBrickCell.m in Sources */,
 				929CC0E01BC39B690027DEC0 /* BrickCellPhiroToneData.m in Sources */,
 				5E21DA6821A3E4AF00017D2C /* UIImage+Extensions.swift in Sources */,
@@ -9113,6 +9201,7 @@
 				4C0F9F6E204BD1A300E71B2D /* ThinkBubbleBrick+CBXMLHandler.m in Sources */,
 				AA74F0041BC05B5F00D1E954 /* PointInDirectionBrick.m in Sources */,
 				921D467C1BDF61350086AD20 /* ChangeYByNBrick+Instruction.swift in Sources */,
+				4C595F4D21CAEBC50097D850 /* SmallerThanOperator.swift in Sources */,
 				929CC0EE1BC39B8C0027DEC0 /* PhiroMotorMoveForwardBrickCell.m in Sources */,
 				AAF6D9DE1BC0C1F300686849 /* PlaceAtBrick+Instruction.swift in Sources */,
 				92FF315E1A24DEB300093DA7 /* HelpWebViewController.m in Sources */,
@@ -9138,6 +9227,7 @@
 				AAF6D9C91BC0914100686849 /* CBPlayerConfig.swift in Sources */,
 				AA74EFF51BC05B5F00D1E954 /* NextLookBrick.m in Sources */,
 				92DFB0121A38949E00FA9B0F /* InternFormula.m in Sources */,
+				4C595F5521CAF3E60097D850 /* NotOperator.swift in Sources */,
 				BAEE49C01F165D1300F06741 /* ReplaceItemInUserListBrick+Instruction.swift in Sources */,
 				4CEFFADA2105E46500DC5CFE /* ObjectStringSensor.swift in Sources */,
 				AA74F0C41BC05FCE00D1E954 /* ChangeVolumeByNBrickCell.m in Sources */,
@@ -9172,8 +9262,8 @@
 				92FF30F91A24DCAA00093DA7 /* FormulaElement.m in Sources */,
 				AA74EE211BC053FD00D1E954 /* BroadcastBrick+Instruction.swift in Sources */,
 				9218B2161CC4AB75007B4C60 /* PaintViewController.m in Sources */,
+				4C595F4521CAEB230097D850 /* DivideOperator.swift in Sources */,
 				9218B2031CC4AB75007B4C60 /* ImagePicker.m in Sources */,
-				92FF30FC1A24DCAA00093DA7 /* Operators.m in Sources */,
 				AA74EF711BC0588A00D1E954 /* SpeakBrick+CBXMLHandler.m in Sources */,
 				92FF32BE1A24E2F400093DA7 /* BaseTransition.m in Sources */,
 				BA1FA99D1F02AEDC0084184D /* InsertItemIntoUserListBrick.m in Sources */,
@@ -9182,12 +9272,14 @@
 				AA74F0BE1BC05FCE00D1E954 /* PointInDirectionBrickCell.m in Sources */,
 				4C0F9F5D204BD16F00E71B2D /* ChooseCameraBrick+CBXMLHandler.m in Sources */,
 				AA74EEFA1BC057C900D1E954 /* ClearGraphicEffectBrick+CBXMLHandler.m in Sources */,
+				4C595F5E21CAF8CC0097D850 /* OperatorManager.swift in Sources */,
 				99B2C36B1D884C1300736769 /* FlashBrick+CBXMLHandler.m in Sources */,
 				AA74F0011BC05B5F00D1E954 /* IfOnEdgeBounceBrick.m in Sources */,
 				81C0A67F1A4EE8CF003A77C5 /* BrickSelectionViewController.m in Sources */,
 				AAF6D9E01BC0C2AA00686849 /* PointInDirectionBrick+Instruction.swift in Sources */,
 				AA74EF541BC0586F00D1E954 /* PointInDirectionBrick+CBXMLHandler.m in Sources */,
 				92FF2E361A24C5A700093DA7 /* NSDate+CustomExtensions.m in Sources */,
+				4C595F4121CAE7BE0097D850 /* PlusOperator.swift in Sources */,
 				92289A491A42F2A3008C771A /* BSKeyboardControls.m in Sources */,
 				4C724E231B4D3E8C00E27479 /* CBXMLSerializerHelper.m in Sources */,
 				92FF2EC11A24C8A700093DA7 /* OrderedMapTable.m in Sources */,
@@ -9312,7 +9404,9 @@
 				4C0F9FA6204BD2C200E71B2D /* ThinkBubbleBrickCell.m in Sources */,
 				AA74EFFB1BC05B5F00D1E954 /* ChangeSizeByNBrick.m in Sources */,
 				92ED4D7D1BA9C1380052C852 /* RegisterViewController.m in Sources */,
+				4C595F5321CAEC2B0097D850 /* SmallerOrEqualOperator.swift in Sources */,
 				E4668B3C20FDCA6D0021FA0B /* FeaturedProgramsStoreTableDataSource.swift in Sources */,
+				4C595F3E21CAE5170097D850 /* CBOperator.swift in Sources */,
 				92FF31061A24DCAA00093DA7 /* Sound.m in Sources */,
 				91FC87CEFA4B1008B213EA31 /* AlertControllerBuilder.swift in Sources */,
 				91FC8B6AB3345BC25B02DF81 /* BaseAlertController.swift in Sources */,

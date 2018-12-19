@@ -180,73 +180,6 @@ extension FormulaManager {
         return Double(formulaElement.value) as AnyObject
     }
 
-    private func interpretOperator(_ formulaElement: FormulaElement, for spriteObject: SpriteObject) -> AnyObject {
-        if formulaElement.leftChild != nil {
-            return interpretBinaryOperator(formulaElement: formulaElement, spriteObject: spriteObject) as AnyObject
-        }
-        return interpretUnaryOperator(formulaElement: formulaElement, spriteObject: spriteObject) as AnyObject
-    }
-
-    private func interpretUnaryOperator(formulaElement: FormulaElement, spriteObject: SpriteObject) -> Double {
-        let op = Operators.getOperatorByValue(formulaElement.value)
-
-        let right = interpretRecursive(formulaElement: formulaElement.rightChild, for: spriteObject)
-        let rightDouble = doubleParameter(object: right)
-
-        switch op {
-        case .MINUS:
-            return rightDouble * -1
-        case .LOGICAL_NOT:
-            return boolResult(value: rightDouble == 0.0)
-        default:
-            return Double(0)
-        }
-    }
-
-    private func interpretBinaryOperator(formulaElement: FormulaElement, spriteObject: SpriteObject) -> Double {
-        let op = Operators.getOperatorByValue(formulaElement.value)
-
-        let left = interpretRecursive(formulaElement: formulaElement.leftChild, for: spriteObject)
-        let right = interpretRecursive(formulaElement: formulaElement.rightChild, for: spriteObject)
-        let leftDouble = doubleParameter(object: left)
-        let rightDouble = doubleParameter(object: right)
-
-        switch op {
-        case .LOGICAL_AND:
-            return boolResult(value: leftDouble * rightDouble != 0.0)
-        case .LOGICAL_OR:
-            return boolResult(value: leftDouble != 0.0 || rightDouble != 0.0)
-        case .SMALLER_OR_EQUAL:
-            return boolResult(value: leftDouble <= rightDouble)
-        case .GREATER_OR_EQUAL:
-            return boolResult(value: leftDouble >= rightDouble)
-        case .SMALLER_THAN:
-            return boolResult(value: leftDouble < rightDouble)
-        case .GREATER_THAN:
-            return boolResult(value: leftDouble > rightDouble)
-        case .PLUS:
-            return leftDouble + rightDouble
-        case .MINUS:
-            return leftDouble - rightDouble
-        case .MULT:
-            return leftDouble * rightDouble
-        case .DIVIDE:
-            return leftDouble / rightDouble
-        case .EQUAL:
-            if let leftString = left as? String, let rightString = right as? String {
-                return boolResult(value: leftString == rightString)
-            }
-            return boolResult(value: leftDouble == rightDouble)
-        case .NOT_EQUAL:
-            if let leftString = left as? String, let rightString = right as? String {
-                return boolResult(value: leftString != rightString)
-            }
-            return boolResult(value: leftDouble != rightDouble)
-        default:
-            return Double(0)
-        }
-    }
-
     private func boolResult(value: Bool) -> Double {
         return Double(value ? 1.0 : 0.0)
     }
@@ -289,6 +222,13 @@ extension FormulaManager {
         let rightParam = functionParameter(formulaElement: formulaElement.rightChild, spriteObject: spriteObject)
 
         return functionManager.value(tag: formulaElement.value, firstParameter: leftParam, secondParameter: rightParam, spriteObject: spriteObject)
+    }
+
+    private func interpretOperator(_ formulaElement: FormulaElement, for spriteObject: SpriteObject) -> AnyObject {
+        let leftParam = functionParameter(formulaElement: formulaElement.leftChild, spriteObject: spriteObject)
+        let rightParam = functionParameter(formulaElement: formulaElement.rightChild, spriteObject: spriteObject)
+
+        return operatorManager.value(tag: formulaElement.value, leftParameter: leftParam, rightParameter: rightParam)
     }
 
     private func functionParameter(formulaElement: FormulaElement?, spriteObject: SpriteObject) -> AnyObject? {

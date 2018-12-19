@@ -53,10 +53,10 @@ const int MAXIMUM_TOKENS_TO_PARSE = 1000;
         return;
     }
     
-    Operator parentOperator = [Operators getOperatorByValue:currentElement.parent.value];
-    Operator currentOperator = [Operators getOperatorByValue:operator];
+    NSString *parentOperator = currentElement.parent.value;
+    NSString *currentOperator = operator;
     
-    int compareOperator = [Operators compareOperator:parentOperator WithOperator:currentOperator];
+    NSInteger compareOperator = [OperatorManager comparePriorityOf:parentOperator with:currentOperator];
     
     if (compareOperator >= 0) {
         FormulaElement *newLeftChild = [self findLowerOrEqualPriorityFormulaElement:currentOperator element:currentElement];
@@ -113,7 +113,7 @@ const int MAXIMUM_TOKENS_TO_PARSE = 1000;
     return formulaParseTree;
 }
 
-- (FormulaElement*)findLowerOrEqualPriorityFormulaElement:(Operator)currentOperator element:(FormulaElement*)currentElement
+- (FormulaElement*)findLowerOrEqualPriorityFormulaElement:(NSString*)currentOperator element:(FormulaElement*)currentElement
 {
     FormulaElement *returnElement = currentElement.parent;
     FormulaElement *notNullElement = currentElement;
@@ -124,8 +124,9 @@ const int MAXIMUM_TOKENS_TO_PARSE = 1000;
             condition = false;
             returnElement = notNullElement;
         } else {
-            Operator parentOperator = [Operators getOperatorByValue:returnElement.value];
-            int compareOperator = [Operators compareOperator:parentOperator WithOperator:currentOperator];
+            NSString *parentOperator = returnElement.value;
+            NSInteger compareOperator = [OperatorManager comparePriorityOf:parentOperator with:currentOperator];
+            
             if (compareOperator < 0) {
                 condition = false;
                 returnElement = notNullElement;
@@ -166,16 +167,15 @@ const int MAXIMUM_TOKENS_TO_PARSE = 1000;
     FormulaElement *currentElement = [self termForSpriteObject:object];
     FormulaElement *loopTermTree;
     NSString *operatorStringValue;
-    if ([self.currentToken isOperator] && ([self.currentToken.tokenStringValue isEqualToString:[Operators getName:LOGICAL_AND]]||[self.currentToken.tokenStringValue isEqualToString:[Operators getName:LOGICAL_OR]])){
+    if ([self.currentToken isOperator] && ([self.currentToken.tokenStringValue isEqualToString:AndOperator.tag]||[self.currentToken.tokenStringValue isEqualToString:OrOperator.tag])){
         self.isBool = YES;
     }
-//    if ([self.currentToken isFunctionName] && ([self.currentToken.tokenStringValue isEqualToString:[Functions getName:TRUE_F]] || [self.currentToken.tokenStringValue isEqualToString:[Functions getName:FALSE_F]])) {
-//        self.isBool = YES;
-//    }
-    while ([self.currentToken isOperator] && ![self.currentToken.tokenStringValue isEqualToString:[Operators getName:LOGICAL_NOT]]) {
+
+    while ([self.currentToken isOperator] && ![self.currentToken.tokenStringValue isEqualToString:NotOperator.tag]) {
         operatorStringValue = self.currentToken.tokenStringValue;
         [self getNextToken];
         loopTermTree = [self termForSpriteObject:object];
+        
         [self handleOperator:operatorStringValue WithCurrentElement:currentElement AndNewElement:loopTermTree];
         currentElement = loopTermTree;
     }
@@ -187,14 +187,14 @@ const int MAXIMUM_TOKENS_TO_PARSE = 1000;
     FormulaElement *termTree = [[FormulaElement alloc] initWithElementType:NUMBER value:nil leftChild:nil rightChild:nil parent:nil];
     FormulaElement *currentElement = termTree;
          
-    if ([self.currentToken isOperator] && [self.currentToken.tokenStringValue isEqualToString:[Operators getName:MINUS]]) {
+    if ([self.currentToken isOperator] && [self.currentToken.tokenStringValue isEqualToString:MinusOperator.tag]) {
         currentElement = [[FormulaElement alloc]initWithElementType:NUMBER value:nil leftChild:nil rightChild:nil parent:termTree];
-        FormulaElement *newFormulaElement = [[FormulaElement alloc] initWithElementType:OPERATOR value:[Operators getName:MINUS] leftChild:nil rightChild:currentElement parent:nil];
+        FormulaElement *newFormulaElement = [[FormulaElement alloc] initWithElementType:OPERATOR value:MinusOperator.tag leftChild:nil rightChild:currentElement parent:nil];
         [termTree replaceElement:newFormulaElement];
         [self getNextToken];
-    } else if ([self.currentToken isOperator] && [self.currentToken.tokenStringValue isEqualToString:[Operators getName:LOGICAL_NOT]]) {
+    } else if ([self.currentToken isOperator] && [self.currentToken.tokenStringValue isEqualToString:NotOperator.tag]) {
         currentElement = [[FormulaElement alloc]initWithElementType:NUMBER value:nil leftChild:nil rightChild:nil parent:termTree];
-        FormulaElement *newFormulaElement = [[FormulaElement alloc] initWithElementType:OPERATOR value:[Operators getName:LOGICAL_NOT] leftChild:nil rightChild:currentElement parent:nil];
+        FormulaElement *newFormulaElement = [[FormulaElement alloc] initWithElementType:OPERATOR value:NotOperator.tag leftChild:nil rightChild:currentElement parent:nil];
         [termTree replaceElement:newFormulaElement];
         [self getNextToken];
     }
@@ -313,7 +313,7 @@ const int MAXIMUM_TOKENS_TO_PARSE = 1000;
 
 - (FormulaElement*)sensor
 {
-    if (! [self.formulaManager sensorExistsWithTag:self.currentToken.tokenStringValue]) {
+    if (! [self.formulaManager operatorExistsWithTag:self.currentToken.tokenStringValue]) {
         [InternFormulaParserException raise:@"Parse Error" format:@""];
     }
          

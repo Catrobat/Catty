@@ -272,8 +272,7 @@
 - (BOOL)isSingleNumberFormula
 {
     if (self.type == OPERATOR) {
-        Operator operator = [Operators getOperatorByValue:self.value];
-        if (operator == MINUS && self.leftChild == nil) {
+        if (self.value == MinusOperator.tag && self.leftChild == nil) {
             return [self.rightChild isSingleNumberFormula];
         }
         return false;

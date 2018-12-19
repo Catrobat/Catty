@@ -20,31 +20,21 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-protocol FormulaManagerProtocol: FormulaInterpreterProtocol {
+@objc class MinusOperator: NSObject, UnaryAndBinaryOperator {
 
-    func setup(for program: Program, and scene: CBScene)
+    static var name = "-"
+    @objc static var tag = "MINUS"
+    static var priority = 5
 
-    func setup(for formula: Formula)
+    func value(parameter: AnyObject) -> Double {
+        let double = doubleParameter(object: parameter)
+        return double * -1
+    }
 
-    func stop()
+    func value(left: AnyObject, right: AnyObject) -> Double {
+        let leftDouble = self.doubleParameter(object: left)
+        let rightDouble = self.doubleParameter(object: right)
 
-    func pause()
-
-    func resume()
-
-    func unavailableResources(for requiredResources: NSInteger) -> NSInteger
-
-    func functionExists(tag: String) -> Bool
-
-    func sensorExists(tag: String) -> Bool
-
-    func operatorExists(tag: String) -> Bool
-
-    func formulaEditorItems(spriteObject: SpriteObject) -> [FormulaEditorItem]
-
-    func formulaEditorItemsForMathSection(spriteObject: SpriteObject) -> [FormulaEditorItem]
-
-    func formulaEditorItemsForObjectSection(spriteObject: SpriteObject) -> [FormulaEditorItem]
-
-    func formulaEditorItemsForDeviceSection(spriteObject: SpriteObject) -> [FormulaEditorItem]
+        return leftDouble - rightDouble
+    }
 }
