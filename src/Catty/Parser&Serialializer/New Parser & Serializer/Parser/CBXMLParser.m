@@ -26,7 +26,6 @@
 #import "Program+CustomExtensions.h"
 #import "CBXMLParserContext.h"
 #import "Util.h"
-#import "Pocket_Code-Swift.h"
 
 // NEVER MOVE THESE DEFINE CONSTANTS TO ANOTHER (HEADER) FILE
 #define kCatrobatXMLParserMinSupportedLanguageVersion 0.93f
