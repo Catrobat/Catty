@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc class MinusOperator: NSObject, UnaryAndBinaryOperator {
+@objc class MinusOperator: NSObject, UnaryOperator, BinaryOperator {
 
     static var name = "-"
     @objc static var tag = "MINUS"

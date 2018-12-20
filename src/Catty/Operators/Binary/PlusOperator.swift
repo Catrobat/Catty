@@ -20,10 +20,10 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class PlusOperator: BinaryOperator {
+@objc class PlusOperator: NSObject, BinaryOperator {
 
     static var name = "+"
-    static var tag = "PLUS"
+    @objc static var tag = "PLUS"
     static var priority = 5
 
     func value(left: AnyObject, right: AnyObject) -> Double {

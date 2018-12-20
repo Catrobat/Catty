@@ -55,12 +55,6 @@ protocol BinaryOperator: CBOperator {
     func value(left: AnyObject, right: AnyObject) -> Double
 }
 
-protocol UnaryAndBinaryOperator: UnaryOperator {
-    func value(parameter: AnyObject) -> Double
-
-    func value(left: AnyObject, right: AnyObject) -> Double
-}
-
 protocol UnaryLogicalOperator: CBOperator {
     func value(parameter: AnyObject) -> Bool
 }

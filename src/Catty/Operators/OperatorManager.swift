@@ -51,8 +51,6 @@ import CoreMotion
 
         if let op = op as? BinaryOperator, let leftParameter = leftParameter, let rightParameter = rightParameter {
             return op.value(left: leftParameter, right: rightParameter) as AnyObject
-        } else if let op = op as? UnaryAndBinaryOperator, let leftParameter = leftParameter, let rightParameter = rightParameter {
-            return op.value(left: leftParameter, right: rightParameter) as AnyObject
         } else if let op = op as? UnaryOperator, let rightParameter = rightParameter {
             return op.value(parameter: rightParameter) as AnyObject
         } else if let op = op as? BinaryLogicalOperator, let leftParameter = leftParameter, let rightParameter = rightParameter {

@@ -23,7 +23,6 @@
 #import "UIKit/UIKit.h"
 #import "XCTest/XCTest.h"
 #import "InternToken.h"
-#import "Operators.h"
 #import "InternFormula.h"
 #import "Pocket_Code-Swift.h"
 
@@ -53,7 +52,7 @@
 - (void)testInsertRightToCurrentToken
 {
     NSMutableArray *internTokens = [[NSMutableArray alloc]init];
-    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_OPERATOR AndValue:[Operators getName:PLUS]]];
+    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_OPERATOR AndValue:PlusOperator.tag]];
     InternFormula *internFormula = [[InternFormula alloc] initWithInternTokenList:internTokens];
     [internFormula generateExternFormulaStringAndInternExternMapping];
     [internFormula setCursorAndSelection:0 selected:NO];
@@ -63,7 +62,7 @@
     
     internTokens = [[NSMutableArray alloc]init];
     
-    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_OPERATOR AndValue:[Operators getName:PLUS]]];
+    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_OPERATOR AndValue:PlusOperator.tag]];
     internFormula = [[InternFormula alloc] initWithInternTokenList:internTokens];
     [internFormula generateExternFormulaStringAndInternExternMapping];
     [internFormula setCursorAndSelection:1 selected:NO];
@@ -96,7 +95,7 @@
     
     internTokens = [[NSMutableArray alloc] init];
     [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER AndValue:@"42.42"]];
-    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_OPERATOR AndValue:[Operators getName:PLUS]]];
+    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_OPERATOR AndValue:PlusOperator.tag]];
     internFormula = [[InternFormula alloc] initWithInternTokenList:internTokens];
     [internFormula generateExternFormulaStringAndInternExternMapping];
     [internFormula setCursorAndSelection:6 selected:NO];
@@ -106,7 +105,7 @@
     
     internTokens = [[NSMutableArray alloc] init];
     [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER AndValue:@"42.42"]];
-    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_OPERATOR AndValue:[Operators getName:PLUS]]];
+    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_OPERATOR AndValue:PlusOperator.tag]];
     internFormula = [[InternFormula alloc] initWithInternTokenList:internTokens];
     [internFormula generateExternFormulaStringAndInternExternMapping];
     [internFormula setCursorAndSelection:6 selected:NO];
@@ -116,7 +115,7 @@
     
     internTokens = [[NSMutableArray alloc] init];
     [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER AndValue:@"4242"]];
-    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_OPERATOR AndValue:[Operators getName:PLUS]]];
+    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_OPERATOR AndValue:PlusOperator.tag]];
     internFormula = [[InternFormula alloc] initWithInternTokenList:internTokens];
     [internFormula generateExternFormulaStringAndInternExternMapping];
     [internFormula setCursorAndSelection:5 selected:NO];
@@ -125,7 +124,7 @@
     XCTAssertTrue([[[internTokens objectAtIndex:0] getTokenStringValue] isEqualToString:@"4242."] ,@"Append decimal mark error");
     
     internTokens = [[NSMutableArray alloc] init];
-    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_OPERATOR AndValue:[Operators getName:PLUS]]];
+    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_OPERATOR AndValue:PlusOperator.tag]];
     internFormula = [[InternFormula alloc] initWithInternTokenList:internTokens];
     [internFormula generateExternFormulaStringAndInternExternMapping];
     [internFormula setCursorAndSelection:0 selected:NO];
@@ -323,7 +322,7 @@
 {
     NSMutableArray *internTokens = [[NSMutableArray alloc]init];
     [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER AndValue:@"42.42"]];
-    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_OPERATOR AndValue:[Operators getName:PLUS]]];
+    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_OPERATOR AndValue:PlusOperator.tag]];
     [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER AndValue:@"42.42"]];
     
     InternFormula *internFormula = [[InternFormula alloc]initWithInternTokenList:internTokens];
@@ -341,7 +340,7 @@
     [internTokens removeAllObjects];
     
     [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_NAME AndValue:@"SIN"]]; // TODO use Function property
-    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_OPEN AndValue:[Operators getName:PLUS]]];
+    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_OPEN AndValue:PlusOperator.tag]];
     [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER AndValue:@"42.42"]];
     
     internFormula = [[InternFormula alloc]initWithInternTokenList:internTokens];
@@ -414,7 +413,7 @@
 {
     NSMutableArray *internTokens = [[NSMutableArray alloc]init];
     [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER AndValue:@"42.42"]];
-    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_OPERATOR AndValue:[Operators getName:PLUS]]];
+    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_OPERATOR AndValue:PlusOperator.tag]];
     [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER AndValue:@"42.42"]];
     
     InternFormula *internFormula = [[InternFormula alloc]initWithInternTokenList:internTokens];
@@ -447,7 +446,7 @@
     [internTokens removeAllObjects];
     
     [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER AndValue:@"42.42"]];
-    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_OPERATOR AndValue:[Operators getName:PLUS]]];
+    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_OPERATOR AndValue:PlusOperator.tag]];
     [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER AndValue:@"42.42"]];
     
     internFormula = [[InternFormula alloc]initWithInternTokenList:internTokens];

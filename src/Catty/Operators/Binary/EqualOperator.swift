@@ -20,10 +20,10 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class EqualOperator: BinaryLogicalOperator {
+@objc class EqualOperator: NSObject, BinaryLogicalOperator {
 
     static var name = "="
-    static var tag = "EQUAL"
+    @objc static var tag = "EQUAL"
     static var priority = 3
 
     func value(left: AnyObject, right: AnyObject) -> Bool {

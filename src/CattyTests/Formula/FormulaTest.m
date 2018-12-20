@@ -24,7 +24,6 @@
 #import "Formula.h"
 #import "FormulaElement.h"
 #import "InternToken.h"
-#import "Operators.h"
 #import "InternFormulaParser.h"
 #import "Pocket_Code-Swift.h"
 
@@ -64,7 +63,7 @@
     
     NSMutableArray *internTokenList = [[NSMutableArray alloc] init];
     
-    InternToken *token = [[InternToken alloc] initWithType:TOKEN_TYPE_OPERATOR AndValue:[Operators getName:MINUS]];
+    InternToken *token = [[InternToken alloc] initWithType:TOKEN_TYPE_OPERATOR AndValue:MinusOperator.tag];
     InternToken *tokenNumber = [[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER AndValue:@"1"];
     [internTokenList addObject:token];
     [internTokenList addObject:tokenNumber];
@@ -80,7 +79,7 @@
     formula = [[Formula alloc] initWithFormulaElement:parseTree];
     XCTAssertFalse([formula isSingularNumber], @"Formula should be single number formula");
     
-    token = [[InternToken alloc] initWithType:TOKEN_TYPE_OPERATOR AndValue:[Operators getName:MINUS]];
+    token = [[InternToken alloc] initWithType:TOKEN_TYPE_OPERATOR AndValue:MinusOperator.tag];
     tokenNumber = [[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER AndValue:@"1.0"];
     [internTokenList addObject:token];
     [internTokenList addObject:tokenNumber];
@@ -95,9 +94,9 @@
     formula = [[Formula alloc] initWithFormulaElement:parseTree];
     XCTAssertFalse([formula isSingularNumber], @"Formula should be single number formula");
 
-    token = [[InternToken alloc] initWithType:TOKEN_TYPE_OPERATOR AndValue:[Operators getName:MINUS]];
+    token = [[InternToken alloc] initWithType:TOKEN_TYPE_OPERATOR AndValue:MinusOperator.tag];
     tokenNumber = [[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER AndValue:@"1.0"];
-    InternToken *secondToken = [[InternToken alloc] initWithType:TOKEN_TYPE_OPERATOR AndValue:[Operators getName:MINUS]];
+    InternToken *secondToken = [[InternToken alloc] initWithType:TOKEN_TYPE_OPERATOR AndValue:MinusOperator.tag];
     InternToken *secondNumber = [[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER AndValue:@"1.0"];
     [internTokenList addObject:token];
     [internTokenList addObject:tokenNumber];

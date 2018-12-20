@@ -20,10 +20,10 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class DivideOperator: BinaryOperator {
+@objc class DivideOperator: NSObject, BinaryOperator {
 
     static var name = "÷"
-    static var tag = "DIVIDE"
+    @objc static var tag = "DIVIDE"
     static var priority = 6
 
     func value(left: AnyObject, right: AnyObject) -> Double {

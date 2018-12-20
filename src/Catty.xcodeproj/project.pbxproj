@@ -3641,7 +3641,6 @@
 			children = (
 				4C595F5C21CAF8A40097D850 /* Unary */,
 				4C595F5A21CAF82F0097D850 /* Binary */,
-				4C595F5B21CAF8840097D850 /* BinaryAndUnary */,
 				4C595F3F21CAE5220097D850 /* Protocols */,
 				4C595F5D21CAF8CC0097D850 /* OperatorManager.swift */,
 			);
@@ -3665,6 +3664,7 @@
 				4C595F5021CAEC060097D850 /* GreaterOrEqualOperator.swift */,
 				4C595F4E21CAEBEE0097D850 /* GreaterThanOperator.swift */,
 				4C595F4621CAEB4F0097D850 /* MultOperator.swift */,
+				4C595F4221CAEAFE0097D850 /* MinusOperator.swift */,
 				4C595F4821CAEB7E0097D850 /* NotEqualOperator.swift */,
 				4C595F4021CAE7BE0097D850 /* PlusOperator.swift */,
 				4C595F5221CAEC2B0097D850 /* SmallerOrEqualOperator.swift */,
@@ -3673,14 +3673,6 @@
 				4C595F5821CAF6B30097D850 /* OrOperator.swift */,
 			);
 			path = Binary;
-			sourceTree = "<group>";
-		};
-		4C595F5B21CAF8840097D850 /* BinaryAndUnary */ = {
-			isa = PBXGroup;
-			children = (
-				4C595F4221CAEAFE0097D850 /* MinusOperator.swift */,
-			);
-			path = BinaryAndUnary;
 			sourceTree = "<group>";
 		};
 		4C595F5C21CAF8A40097D850 /* Unary */ = {
