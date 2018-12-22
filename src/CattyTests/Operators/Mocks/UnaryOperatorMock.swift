@@ -20,20 +20,25 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc class DivideOperator: NSObject, BinaryOperator {
+class UnaryOperatorMock: UnaryOperator {
 
-    @objc static var tag = "DIVIDE"
-    static var name = "÷"
-    static var priority = 6
+    static var tag = "unaryOperatorTag"
+    static var name = "unaryName"
+    static var priority = 10
 
-    func value(left: AnyObject, right: AnyObject) -> Double {
-        let leftDouble = self.doubleParameter(object: left)
-        let rightDouble = self.doubleParameter(object: right)
+    let mockedValue: Double
+    let mockedSection: FormulaEditorSection
 
-        return leftDouble / rightDouble
+    init(value: Double, formulaEditorSection: FormulaEditorSection) {
+        self.mockedValue = value
+        self.mockedSection = formulaEditorSection
+    }
+
+    func value(parameter: AnyObject) -> Double {
+        return mockedValue
     }
 
     func formulaEditorSection() -> FormulaEditorSection {
-        return .hidden
+        return mockedSection
     }
 }

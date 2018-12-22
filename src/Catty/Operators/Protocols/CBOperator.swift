@@ -26,10 +26,14 @@ protocol CBOperator {
     static var name: String { get }
 
     // Tag for serialization
-    static var tag: String { get }
+    static var tag: String { get } // TODO instance
 
     // Priority for interpretation (higher priority gets interpreted first)
-    static var priority: Int { get }
+    static var priority: Int { get }  // TODO instance
+
+    // Return the section to show sensor in formula editor (FormulaEditorSection) and the position within that section (Int)
+    // Use .hidden to not show the sensor at all
+    func formulaEditorSection() -> FormulaEditorSection  // TODO array
 }
 
 extension CBOperator {

@@ -63,6 +63,16 @@
         return getOperator(tag: tag) != nil
     }
 
+    func formulaEditorItems() -> [FormulaEditorItem] {
+        var items = [FormulaEditorItem]()
+
+        for op in self.operators() {
+            items.append(FormulaEditorItem(op: op))
+        }
+
+        return items
+    }
+
     @objc(nameWithTag:)
     static func name(tag: String) -> String? {
         guard let sensor = self.operatorMap[tag] else { return nil }

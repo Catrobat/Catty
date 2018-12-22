@@ -241,18 +241,6 @@ extension FormulaManager {
         return interpretRecursive(formulaElement: formulaElement, for: spriteObject)
     }
 
-    private func doubleParameter(object: AnyObject) -> Double {
-        if let double = object as? Double {
-            return double
-        } else if let int = object as? Int {
-            return Double(int)
-        } else if let string = object as? String {
-            guard let double = Double(string) else { return 0 }
-            return double
-        }
-        return 0
-    }
-
     private func cacheResult(_ formulaElement: FormulaElement, result: AnyObject) {
         cachedResults[formulaElement] = result
     }

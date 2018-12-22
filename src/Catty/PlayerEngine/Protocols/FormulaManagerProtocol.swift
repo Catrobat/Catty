@@ -44,6 +44,8 @@ protocol FormulaManagerProtocol: FormulaInterpreterProtocol {
 
     func formulaEditorItemsForMathSection(spriteObject: SpriteObject) -> [FormulaEditorItem]
 
+    func formulaEditorItemsForLogicSection(spriteObject: SpriteObject) -> [FormulaEditorItem]
+
     func formulaEditorItemsForObjectSection(spriteObject: SpriteObject) -> [FormulaEditorItem]
 
     func formulaEditorItemsForDeviceSection(spriteObject: SpriteObject) -> [FormulaEditorItem]

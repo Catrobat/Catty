@@ -24,6 +24,7 @@ class FormulaEditorItem {
 
     var sensor: Sensor?
     var function: Function?
+    var op: CBOperator?
     var title: String
     var section: FormulaEditorSection
 
@@ -37,5 +38,11 @@ class FormulaEditorItem {
         self.title = function.nameWithParameters()
         self.function = function
         self.section = function.formulaEditorSection()
+    }
+
+    public init(op: CBOperator) {
+        self.title = type(of: op).name
+        self.op = op
+        self.section = op.formulaEditorSection()
     }
 }

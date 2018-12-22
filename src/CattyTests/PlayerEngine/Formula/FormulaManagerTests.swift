@@ -38,6 +38,7 @@ final class FormulaManagerTests: XCTestCase {
                                      operatorManager: OperatorManager(operators: []))
 
         XCTAssertEqual(0, manager.formulaEditorItems(spriteObject: spriteObject).count)
+        XCTAssertEqual(0, manager.formulaEditorItemsForLogicSection(spriteObject: spriteObject).count)
         XCTAssertEqual(0, manager.formulaEditorItemsForMathSection(spriteObject: spriteObject).count)
         XCTAssertEqual(0, manager.formulaEditorItemsForDeviceSection(spriteObject: spriteObject).count)
         XCTAssertEqual(0, manager.formulaEditorItemsForObjectSection(spriteObject: spriteObject).count)
@@ -59,16 +60,20 @@ final class FormulaManagerTests: XCTestCase {
         let sensorA = SensorMock(tag: "sensorTagA", formulaEditorSection: .object(position: 3))
         let sensorB = SensorMock(tag: "sensorTagB", formulaEditorSection: .hidden)
 
+        let operatorA = UnaryOperatorMock(value: 0, formulaEditorSection: .object(position: 4))
+        let operatorB = BinaryOperatorMock(value: 0, formulaEditorSection: .hidden)
+
         let manager = FormulaManager(sensorManager: SensorManager(sensors: [sensorA, sensorB]),
                                      functionManager: FunctionManager(functions: [functionA, functionB, functionC]),
-                                     operatorManager: OperatorManager(operators: []))
+                                     operatorManager: OperatorManager(operators: [operatorA, operatorB]))
 
         let items = manager.formulaEditorItems(spriteObject: spriteObject)
-        XCTAssertEqual(3, items.count)
+        XCTAssertEqual(4, items.count)
         XCTAssertEqual(functionA.formulaEditorSection(), items[0].function?.formulaEditorSection())
         XCTAssertEqual(functionB.formulaEditorSection(), items[1].function?.formulaEditorSection())
         XCTAssertEqual(sensorA.formulaEditorSection(for: spriteObject),
                        items[2].sensor?.formulaEditorSection(for: spriteObject))
+        XCTAssertEqual(operatorA.formulaEditorSection(), items[3].op?.formulaEditorSection())
     }
 
     func testFormulaEditorItemsSamePosition() {
@@ -82,11 +87,13 @@ final class FormulaManagerTests: XCTestCase {
 
         let sensorA = SensorMock(tag: "sensorTagA", formulaEditorSection: .object(position: 1))
 
+        let operatorA = UnaryOperatorMock(value: 0, formulaEditorSection: .object(position: 1))
+
         let manager = FormulaManager(sensorManager: SensorManager(sensors: [sensorA]),
                                      functionManager: FunctionManager(functions: [functionA, functionB]),
-                                     operatorManager: OperatorManager(operators: []))
+                                     operatorManager: OperatorManager(operators: [operatorA]))
 
-        XCTAssertEqual(3, manager.formulaEditorItems(spriteObject: spriteObject).count)
+        XCTAssertEqual(4, manager.formulaEditorItems(spriteObject: spriteObject).count)
     }
 
     func testFormulaEditorItemsForMathSection() {
@@ -101,15 +108,18 @@ final class FormulaManagerTests: XCTestCase {
         let sensorA = SensorMock(tag: "sensorTagA", formulaEditorSection: .math(position: 20))
         let sensorB = SensorMock(tag: "sensorTagB", formulaEditorSection: .hidden)
 
+        let operatorA = UnaryOperatorMock(value: 0, formulaEditorSection: .math(position: 30))
+        let operatorB = UnaryOperatorMock(value: 0, formulaEditorSection: .hidden)
+
         let manager = FormulaManager(sensorManager: SensorManager(sensors: [sensorA, sensorB]),
                                      functionManager: FunctionManager(functions: [functionA, functionB]),
-                                     operatorManager: OperatorManager(operators: []))
+                                     operatorManager: OperatorManager(operators: [operatorA, operatorB]))
 
         let items = manager.formulaEditorItemsForMathSection(spriteObject: spriteObject)
-        XCTAssertEqual(2, items.count)
+        XCTAssertEqual(3, items.count)
         XCTAssertEqual(functionA.formulaEditorSection(), items[0].function?.formulaEditorSection())
-        XCTAssertEqual(sensorA.formulaEditorSection(for: spriteObject),
-                       items[1].sensor?.formulaEditorSection(for: spriteObject))
+        XCTAssertEqual(sensorA.formulaEditorSection(for: spriteObject), items[1].sensor?.formulaEditorSection(for: spriteObject))
+        XCTAssertEqual(operatorA.formulaEditorSection(), items[2].op?.formulaEditorSection())
     }
 
     func testFormulaEditorItemsForDeviceSection() {
@@ -130,8 +140,7 @@ final class FormulaManagerTests: XCTestCase {
 
         let items = manager.formulaEditorItemsForDeviceSection(spriteObject: spriteObject)
         XCTAssertEqual(2, items.count)
-        XCTAssertEqual(sensorA.formulaEditorSection(for: spriteObject),
-                       items[0].sensor?.formulaEditorSection(for: spriteObject))
+        XCTAssertEqual(sensorA.formulaEditorSection(for: spriteObject), items[0].sensor?.formulaEditorSection(for: spriteObject))
         XCTAssertEqual(functionB.formulaEditorSection(), items[1].function?.formulaEditorSection())
     }
 
@@ -146,14 +155,17 @@ final class FormulaManagerTests: XCTestCase {
         let sensorA = SensorMock(tag: "sensorTagA", formulaEditorSection: .object(position: 30))
         let sensorB = SensorMock(tag: "sensorTagB", formulaEditorSection: .hidden)
 
+        let operatorA = UnaryOperatorMock(value: 0, formulaEditorSection: .object(position: 40))
+        let operatorB = UnaryOperatorMock(value: 0, formulaEditorSection: .hidden)
+
         let manager = FormulaManager(sensorManager: SensorManager(sensors: [sensorA, sensorB]),
                                      functionManager: FunctionManager(functions: [functionA, functionB]),
-                                     operatorManager: OperatorManager(operators: []))
+                                     operatorManager: OperatorManager(operators: [operatorA, operatorB]))
 
         let items = manager.formulaEditorItemsForObjectSection(spriteObject: spriteObject)
-        XCTAssertEqual(1, items.count)
-        XCTAssertEqual(sensorA.formulaEditorSection(for: spriteObject),
-                       items[0].sensor?.formulaEditorSection(for: spriteObject))
+        XCTAssertEqual(2, items.count)
+        XCTAssertEqual(sensorA.formulaEditorSection(for: spriteObject), items[0].sensor?.formulaEditorSection(for: spriteObject))
+        XCTAssertEqual(operatorA.formulaEditorSection(), items[1].op?.formulaEditorSection())
     }
 
     func testFunctionExists() {
@@ -185,5 +197,18 @@ final class FormulaManagerTests: XCTestCase {
         XCTAssertFalse(manager.sensorExists(tag: "unavailableSensorTag"))
         XCTAssertTrue(manager.sensorExists(tag: sensorA.tag()))
         XCTAssertTrue(manager.sensorExists(tag: sensorB.tag()))
+    }
+
+    func testOperatorExists() {
+        let operatorA = UnaryOperatorMock(value: 0, formulaEditorSection: .object(position: 40))
+        let operatorB = BinaryOperatorMock(value: 0, formulaEditorSection: .hidden)
+
+        let manager = FormulaManager(sensorManager: SensorManager(sensors: []),
+                                     functionManager: FunctionManager(functions: []),
+                                     operatorManager: OperatorManager(operators: [operatorA, operatorB]))
+
+        XCTAssertFalse(manager.sensorExists(tag: "unavailableOperatorTag"))
+        XCTAssertTrue(manager.operatorExists(tag: type(of: operatorA).tag))
+        XCTAssertTrue(manager.operatorExists(tag: type(of: operatorB).tag))
     }
 }

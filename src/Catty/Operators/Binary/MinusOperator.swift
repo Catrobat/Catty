@@ -37,4 +37,8 @@
 
         return leftDouble - rightDouble
     }
+
+    func formulaEditorSection() -> FormulaEditorSection {
+        return .hidden
+    }
 }

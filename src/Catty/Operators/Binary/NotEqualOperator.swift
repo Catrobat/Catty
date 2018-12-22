@@ -25,6 +25,7 @@
     @objc static var tag = "NOT_EQUAL"
     static var name = "≠"
     static var priority = 4
+    static var position = 1
 
     func value(left: AnyObject, right: AnyObject) -> Bool {
         if let leftString = left as? String, let rightString = right as? String {
@@ -35,5 +36,9 @@
         let rightDouble = doubleParameter(object: right)
 
         return leftDouble != rightDouble
+    }
+
+    func formulaEditorSection() -> FormulaEditorSection {
+        return .logic(position: type(of: self).position)
     }
 }

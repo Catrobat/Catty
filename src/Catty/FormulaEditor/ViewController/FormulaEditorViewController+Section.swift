@@ -27,6 +27,11 @@ extension FormulaEditorViewController {
         return initWithItems(formulaEditorItems: items, scrollView: scrollView, buttonHeight: buttonHeight)
     }
 
+    @objc func initLogicSection(scrollView: UIScrollView, buttonHeight: CGFloat) -> [UIButton] {
+        let items = formulaManager.formulaEditorItemsForLogicSection(spriteObject: object)
+        return initWithItems(formulaEditorItems: items, scrollView: scrollView, buttonHeight: buttonHeight)
+    }
+
     @objc func initObjectSection(scrollView: UIScrollView, buttonHeight: CGFloat) -> [UIButton] {
         let items = formulaManager.formulaEditorItemsForObjectSection(spriteObject: object)
         return initWithItems(formulaEditorItems: items, scrollView: scrollView, buttonHeight: buttonHeight)
@@ -90,6 +95,11 @@ extension FormulaEditorViewController {
 
     private func handleInput(for function: Function) {
         self.internFormula.handleKeyInput(for: function)
+        self.handleInput()
+    }
+
+    private func handleInput(for op: CBOperator) {
+        self.internFormula.handleKeyInput(for: op)
         self.handleInput()
     }
 }

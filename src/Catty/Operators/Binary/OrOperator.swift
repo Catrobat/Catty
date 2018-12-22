@@ -25,11 +25,16 @@
     @objc static var tag = "LOGICAL_OR"
     static var name = kUIFEOperatorOr
     static var priority = 1
+    static var position = 8
 
     func value(left: AnyObject, right: AnyObject) -> Bool {
         let leftDouble = doubleParameter(object: left)
         let rightDouble = doubleParameter(object: right)
 
         return leftDouble != 0.0 || rightDouble != 0.0
+    }
+
+    func formulaEditorSection() -> FormulaEditorSection {
+        return .logic(position: type(of: self).position)
     }
 }

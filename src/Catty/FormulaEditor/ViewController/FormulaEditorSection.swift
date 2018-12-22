@@ -22,6 +22,7 @@
 
 enum FormulaEditorSection {
     case math(position: Int)
+    case logic(position: Int)
     case device(position: Int)
     case object(position: Int)
     case hidden
@@ -36,10 +37,13 @@ extension FormulaEditorSection: Equatable {
         case (let .math(positionLeft), let .math(positionRight)):
             return positionLeft == positionRight
 
+        case (let .logic(positionLeft), let .logic(positionRight)):
+            return positionLeft == positionRight
+
         case (let .object(positionLeft), let .object(positionRight)):
             return positionLeft == positionRight
 
-        case (.hidden, .hidden):
+        case (.hidden, .hidden): // TODO remove
             return true
 
         default:

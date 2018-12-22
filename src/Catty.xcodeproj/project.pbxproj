@@ -189,6 +189,8 @@
 		4C5EF63521A0677E0063D2F0 /* CameraBricks_0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C5EF63421A0677E0063D2F0 /* CameraBricks_0991.xml */; };
 		4C60663A1A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6066391A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m */; };
 		4C647C7E1D48E19C0060E70D /* Air_fight_0.5_098.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C647C7D1D48E19C0060E70D /* Air_fight_0.5_098.xml */; };
+		4C669E4521CE9B7600563EAD /* UnaryOperatorMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C669E4421CE9B7600563EAD /* UnaryOperatorMock.swift */; };
+		4C669E4721CE9DBA00563EAD /* BinaryOperatorMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C669E4621CE9DBA00563EAD /* BinaryOperatorMock.swift */; };
 		4C68FC8A1B25A00B00AB3EE8 /* FormulaElementTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68FC7C1B25A00B00AB3EE8 /* FormulaElementTest.m */; };
 		4C68FC8B1B25A00B00AB3EE8 /* FormulaFunctionsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68FC7D1B25A00B00AB3EE8 /* FormulaFunctionsTest.m */; };
 		4C68FC8C1B25A00B00AB3EE8 /* FormulaParserErrorDetectionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68FC7E1B25A00B00AB3EE8 /* FormulaParserErrorDetectionTest.m */; };
@@ -1547,6 +1549,8 @@
 		4C6066381A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GDataXMLNode+CustomExtensions.h"; sourceTree = "<group>"; };
 		4C6066391A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GDataXMLNode+CustomExtensions.m"; sourceTree = "<group>"; };
 		4C647C7D1D48E19C0060E70D /* Air_fight_0.5_098.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = Air_fight_0.5_098.xml; path = CattyTests/Resources/ParserTests/Air_fight_0.5/Air_fight_0.5_098.xml; sourceTree = SOURCE_ROOT; };
+		4C669E4421CE9B7600563EAD /* UnaryOperatorMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnaryOperatorMock.swift; sourceTree = "<group>"; };
+		4C669E4621CE9DBA00563EAD /* BinaryOperatorMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryOperatorMock.swift; sourceTree = "<group>"; };
 		4C68FC7C1B25A00B00AB3EE8 /* FormulaElementTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FormulaElementTest.m; path = Formula/FormulaElementTest.m; sourceTree = "<group>"; };
 		4C68FC7D1B25A00B00AB3EE8 /* FormulaFunctionsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FormulaFunctionsTest.m; path = Formula/FormulaFunctionsTest.m; sourceTree = "<group>"; };
 		4C68FC7E1B25A00B00AB3EE8 /* FormulaParserErrorDetectionTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FormulaParserErrorDetectionTest.m; path = Formula/FormulaParserErrorDetectionTest.m; sourceTree = "<group>"; };
@@ -3725,6 +3729,23 @@
 				BA38080421A1C8DA0075B831 /* XMLParserBlackBoxTests098.swift */,
 			);
 			path = "BlackBox Tests";
+			sourceTree = "<group>";
+		};
+		4C669E4221CE9B4C00563EAD /* Operators */ = {
+			isa = PBXGroup;
+			children = (
+				4C669E4321CE9B6400563EAD /* Mocks */,
+			);
+			path = Operators;
+			sourceTree = "<group>";
+		};
+		4C669E4321CE9B6400563EAD /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				4C669E4621CE9DBA00563EAD /* BinaryOperatorMock.swift */,
+				4C669E4421CE9B7600563EAD /* UnaryOperatorMock.swift */,
+			);
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 		4C6A64B31AF7CC5A00D04559 /* Images */ = {
@@ -6534,6 +6555,7 @@
 				4CE1D434213E5D110014DAF9 /* Formula */,
 				4C6FE139212D2D2E0067B7D5 /* Functions */,
 				4CE1D42F213E5C130014DAF9 /* Mocks */,
+				4C669E4221CE9B4C00563EAD /* Operators */,
 				4C822615213FA7A300F3D750 /* Sensors */,
 			);
 			name = PlayerEngine;
@@ -8698,6 +8720,7 @@
 				F45AF6FD212960A3000F88A6 /* FacePositionXSensor.swift in Sources */,
 				99EBDBFA1D562088008D6860 /* ChangeColorByNBrick+CBXMLHandler.m in Sources */,
 				99C8D1BB1D8AE339003FBC42 /* BrickCellStaticChoiceData.m in Sources */,
+				4C669E4721CE9DBA00563EAD /* BinaryOperatorMock.swift in Sources */,
 				E4668B4220FE02F40021FA0B /* FeaturedProgramsCell.swift in Sources */,
 				4CDF7BB62138735700FFF7F4 /* SceneBuilder.swift in Sources */,
 				AA74F0C91BC05FCE00D1E954 /* BrickShapeFactory.m in Sources */,
@@ -9067,6 +9090,7 @@
 				AAF6D9DA1BC0BB1F00686849 /* SetLookBrick+Instruction.swift in Sources */,
 				4C0F9F8B204BD26100E71B2D /* IfThenLogicBeginBrickCell.m in Sources */,
 				BAEE49BB1F165C6E00F06741 /* ReplaceItemInUserListBrick.m in Sources */,
+				4C669E4521CE9B7600563EAD /* UnaryOperatorMock.swift in Sources */,
 				99EBDC041D5624D2008D6860 /* ChangeColorByNBrick+Instruction.swift in Sources */,
 				92DFB01A1A38949E00FA9B0F /* InternToken.m in Sources */,
 				4C994E27207A56D500C415FD /* AccelerationXSensor.swift in Sources */,

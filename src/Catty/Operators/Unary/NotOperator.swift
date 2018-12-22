@@ -25,9 +25,14 @@
     @objc static var tag = "LOGICAL_NOT"
     static var name = "<"
     static var priority = 4
+    static var position = 9
 
     func value(parameter: AnyObject) -> Bool {
         let double = doubleParameter(object: parameter)
         return double == 0.0
+    }
+
+    func formulaEditorSection() -> FormulaEditorSection {
+        return .logic(position: type(of: self).position)
     }
 }

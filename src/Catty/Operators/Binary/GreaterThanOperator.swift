@@ -25,11 +25,16 @@
     @objc static var tag = "GREATER_THAN"
     static var name = ">"
     static var priority = 4
+    static var position = 5
 
     func value(left: AnyObject, right: AnyObject) -> Bool {
         let leftDouble = doubleParameter(object: left)
         let rightDouble = doubleParameter(object: right)
 
         return leftDouble > rightDouble
+    }
+
+    func formulaEditorSection() -> FormulaEditorSection {
+        return .logic(position: type(of: self).position)
     }
 }

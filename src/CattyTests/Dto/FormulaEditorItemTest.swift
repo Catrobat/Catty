@@ -43,16 +43,36 @@ class FormulaEditorItemTest: XCTestCase {
         XCTAssertEqual(expectedSection, item.section)
         XCTAssertNotNil(item.function)
         XCTAssertNil(item.sensor)
+        XCTAssertNil(item.op)
     }
 
     func testInitWithSensor() {
         let expectedSection = FormulaEditorSection.object(position: 10)
-        let sensor = SensorMock(tag: "tagA", formulaEditorSection: expectedSection)
+        let sensor = SensorMock(tag: "tag", formulaEditorSection: expectedSection)
 
         let item = FormulaEditorItem(sensor: sensor, spriteObject: SpriteObjectMock())
         XCTAssertEqual(type(of: sensor).name, item.title)
         XCTAssertEqual(expectedSection, item.section)
         XCTAssertNotNil(item.sensor)
         XCTAssertNil(item.function)
+        XCTAssertNil(item.op)
+    }
+
+    func testInitWithOperator() {
+        let expectedSection = FormulaEditorSection.logic(position: 10)
+        let op = BinaryOperatorMock(value: 0, formulaEditorSection: expectedSection)
+
+        let item = FormulaEditorItem(op: op)
+        XCTAssertEqual(type(of: op).name, item.title)
+        XCTAssertEqual(expectedSection, item.section)
+        XCTAssertNotNil(item.op)
+        XCTAssertNil(item.sensor)
+        XCTAssertNil(item.function)
+    }
+
+    func testSection() {
+        XCTAssertEqual(FormulaEditorSection.logic(position: 10), FormulaEditorSection.logic(position: 10))
+        XCTAssertNotEqual(FormulaEditorSection.math(position: 1), FormulaEditorSection.math(position: 10))
+        XCTAssertEqual(FormulaEditorSection.math(position: 2), FormulaEditorSection.math(position: 2))
     }
 }

@@ -25,11 +25,16 @@
     @objc static var tag = "LOGICAL_AND"
     static var name = kUIFEOperatorAnd
     static var priority = 2
+    static var position = 7
 
     func value(left: AnyObject, right: AnyObject) -> Bool {
         let leftDouble = doubleParameter(object: left)
         let rightDouble = doubleParameter(object: right)
 
         return leftDouble * rightDouble != 0.0
+    }
+
+    func formulaEditorSection() -> FormulaEditorSection {
+        return .logic(position: type(of: self).position)
     }
 }

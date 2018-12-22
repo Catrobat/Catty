@@ -30,6 +30,8 @@ protocol OperatorManagerProtocol {
 
     func value(tag: String, leftParameter: AnyObject?, rightParameter: AnyObject?) -> AnyObject
 
+    func formulaEditorItems() -> [FormulaEditorItem]
+
     func exists(tag: String) -> Bool
 
     static func name(tag: String) -> String?
