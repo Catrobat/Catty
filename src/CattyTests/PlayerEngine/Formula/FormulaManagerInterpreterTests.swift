@@ -371,7 +371,7 @@ final class FormulaManagerInterpreterTests: XCTestCase {
 
     func testSmallerOrEqual() {
         var element = FormulaElement(elementType: ElementType.OPERATOR,
-                                     value: SmallerThanOperator.tag,
+                                     value: SmallerOrEqualOperator.tag,
                                      leftChild: FormulaElement(double: -1.4),
                                      rightChild: FormulaElement(double: -1.4),
                                      parent: nil)
@@ -381,7 +381,7 @@ final class FormulaManagerInterpreterTests: XCTestCase {
         XCTAssertTrue(interpreter.interpretBool(formula, for: object))
 
         element = FormulaElement(elementType: ElementType.OPERATOR,
-                                 value: SmallerThanOperator.tag,
+                                 value: SmallerOrEqualOperator.tag,
                                  leftChild: FormulaElement(double: -10),
                                  rightChild: FormulaElement(double: -28.30),
                                  parent: nil)
@@ -393,7 +393,7 @@ final class FormulaManagerInterpreterTests: XCTestCase {
 
     func testGreaterOrEqual() {
         var element = FormulaElement(elementType: ElementType.OPERATOR,
-                                     value: GreaterThanOperator.tag,
+                                     value: GreaterOrEqualOperator.tag,
                                      leftChild: FormulaElement(double: -1.4),
                                      rightChild: FormulaElement(double: -1.4),
                                      parent: nil)
@@ -403,7 +403,7 @@ final class FormulaManagerInterpreterTests: XCTestCase {
         XCTAssertTrue(interpreter.interpretBool(formula, for: object))
 
         element = FormulaElement(elementType: ElementType.OPERATOR,
-                                 value: GreaterThanOperator.tag,
+                                 value: GreaterOrEqualOperator.tag,
                                  leftChild: FormulaElement(double: -1),
                                  rightChild: FormulaElement(double: -0.9),
                                  parent: nil)

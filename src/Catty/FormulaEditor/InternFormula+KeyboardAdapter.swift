@@ -63,7 +63,7 @@ extension InternFormula {
             return buildNumber(numberValue: "9")
 
         // PERIOD
-        case Int(DECIMAL_MARK.rawValue):
+        case Int(TOKEN_TYPE_DECIMAL_MARK.rawValue):
             return buildPeriod()
 
         // BRACKETS

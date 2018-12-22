@@ -22,8 +22,8 @@
 
 @objc class NotEqualOperator: NSObject, BinaryLogicalOperator {
 
-    static var name = "≠"
     @objc static var tag = "NOT_EQUAL"
+    static var name = "≠"
     static var priority = 4
 
     func value(left: AnyObject, right: AnyObject) -> Bool {

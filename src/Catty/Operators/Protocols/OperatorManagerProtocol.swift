@@ -26,13 +26,13 @@ protocol OperatorManagerProtocol {
 
     init(operators: [CBOperator])
 
-    func exists(tag: String) -> Bool
-
     func getOperator(tag: String) -> CBOperator?
 
     func value(tag: String, leftParameter: AnyObject?, rightParameter: AnyObject?) -> AnyObject
 
-    func name(tag: String) -> String?
+    func exists(tag: String) -> Bool
+
+    static func name(tag: String) -> String?
 
     static func comparePriority(of leftTag: String, with rightTag: String) -> Int
 }

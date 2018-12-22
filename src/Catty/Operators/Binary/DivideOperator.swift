@@ -22,8 +22,8 @@
 
 @objc class DivideOperator: NSObject, BinaryOperator {
 
-    static var name = "÷"
     @objc static var tag = "DIVIDE"
+    static var name = "÷"
     static var priority = 6
 
     func value(left: AnyObject, right: AnyObject) -> Double {

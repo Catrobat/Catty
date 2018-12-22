@@ -3659,18 +3659,18 @@
 		4C595F5A21CAF82F0097D850 /* Binary */ = {
 			isa = PBXGroup;
 			children = (
+				4C595F5621CAF6590097D850 /* AndOperator.swift */,
 				4C595F4421CAEB230097D850 /* DivideOperator.swift */,
 				4C595F4A21CAEBA50097D850 /* EqualOperator.swift */,
 				4C595F5021CAEC060097D850 /* GreaterOrEqualOperator.swift */,
 				4C595F4E21CAEBEE0097D850 /* GreaterThanOperator.swift */,
-				4C595F4621CAEB4F0097D850 /* MultOperator.swift */,
 				4C595F4221CAEAFE0097D850 /* MinusOperator.swift */,
+				4C595F4621CAEB4F0097D850 /* MultOperator.swift */,
 				4C595F4821CAEB7E0097D850 /* NotEqualOperator.swift */,
+				4C595F5821CAF6B30097D850 /* OrOperator.swift */,
 				4C595F4021CAE7BE0097D850 /* PlusOperator.swift */,
 				4C595F5221CAEC2B0097D850 /* SmallerOrEqualOperator.swift */,
 				4C595F4C21CAEBC50097D850 /* SmallerThanOperator.swift */,
-				4C595F5621CAF6590097D850 /* AndOperator.swift */,
-				4C595F5821CAF6B30097D850 /* OrOperator.swift */,
 			);
 			path = Binary;
 			sourceTree = "<group>";

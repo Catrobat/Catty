@@ -22,8 +22,8 @@
 
 @objc class AndOperator: NSObject, BinaryLogicalOperator {
 
-    static var name = kUIFEOperatorAnd
     @objc static var tag = "LOGICAL_AND"
+    static var name = kUIFEOperatorAnd
     static var priority = 2
 
     func value(left: AnyObject, right: AnyObject) -> Bool {

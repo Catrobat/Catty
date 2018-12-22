@@ -22,8 +22,8 @@
 
 @objc class MinusOperator: NSObject, UnaryOperator, BinaryOperator {
 
-    static var name = "-"
     @objc static var tag = "MINUS"
+    static var name = "-"
     static var priority = 5
 
     func value(parameter: AnyObject) -> Double {

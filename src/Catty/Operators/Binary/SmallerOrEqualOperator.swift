@@ -22,8 +22,8 @@
 
 @objc class SmallerOrEqualOperator: NSObject, BinaryLogicalOperator {
 
-    static var name = "≤"
     @objc static var tag = "SMALLER_OR_EQUAL"
+    static var name = "≤"
     static var priority = 4
 
     func value(left: AnyObject, right: AnyObject) -> Bool {

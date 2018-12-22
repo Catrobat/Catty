@@ -22,8 +22,8 @@
 
 @objc class NotOperator: NSObject, UnaryLogicalOperator {
 
+    @objc static var tag = "LOGICAL_NOT"
     static var name = "<"
-    @objc static var tag = "SMALLER_THAN"
     static var priority = 4
 
     func value(parameter: AnyObject) -> Bool {

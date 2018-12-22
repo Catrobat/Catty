@@ -22,13 +22,13 @@
 
 @objc class EqualOperator: NSObject, BinaryLogicalOperator {
 
-    static var name = "="
     @objc static var tag = "EQUAL"
+    static var name = "="
     static var priority = 3
 
     func value(left: AnyObject, right: AnyObject) -> Bool {
         if let leftString = left as? String, let rightString = right as? String {
-            return leftString != rightString
+            return leftString == rightString
         }
 
         let leftDouble = doubleParameter(object: left)

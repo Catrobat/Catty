@@ -22,8 +22,8 @@
 
 @objc class MultOperator: NSObject, BinaryOperator {
 
-    static var name = "×"
     @objc static var tag = "MULT"
+    static var name = "×"
     static var priority = 6
 
     func value(left: AnyObject, right: AnyObject) -> Double {

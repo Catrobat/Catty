@@ -223,6 +223,18 @@ import CoreMotion
 
     private static func buildOperatorManager() -> OperatorManagerProtocol {
         let operatorManager = OperatorManager(operators: [
+            AndOperator(),
+            DivideOperator(),
+            EqualOperator(),
+            GreaterOrEqualOperator(),
+            GreaterThanOperator(),
+            MinusOperator(),
+            MultOperator(),
+            NotEqualOperator(),
+            OrOperator(),
+            PlusOperator(),
+            SmallerOrEqualOperator(),
+            SmallerThanOperator(),
             NotOperator()
         ])
 

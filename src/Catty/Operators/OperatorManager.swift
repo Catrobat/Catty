@@ -20,9 +20,6 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import CoreLocation
-import CoreMotion
-
 @objc class OperatorManager: NSObject, OperatorManagerProtocol {
 
     public static var defaultValueForUndefinedOperator: Double = 0
@@ -62,13 +59,14 @@ import CoreMotion
         return type(of: self).defaultValueForUndefinedOperator as AnyObject
     }
 
-    func name(tag: String) -> String? {
-        guard let sensor = type(of: self).operatorMap[tag] else { return nil }
-        return type(of: sensor).name
+    func exists(tag: String) -> Bool {
+        return getOperator(tag: tag) != nil
     }
 
-    @objc func exists(tag: String) -> Bool {
-        return getOperator(tag: tag) != nil
+    @objc(nameWithTag:)
+    static func name(tag: String) -> String? {
+        guard let sensor = self.operatorMap[tag] else { return nil }
+        return type(of: sensor).name
     }
 
     @objc static func comparePriority(of leftTag: String, with rightTag: String) -> Int {

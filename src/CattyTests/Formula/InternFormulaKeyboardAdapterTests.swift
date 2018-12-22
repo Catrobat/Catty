@@ -80,6 +80,21 @@ final class InternFormulaKeyboardAdapterTests: XCTestCase {
         setCursorAtEndAndAssertSelection(internFormula, expectedStartIndex: 0, expectedEndIndex: 0)
     }
 
+    func testInsertOperatorInNumberToken() {
+        let internTokenList = NSMutableArray(array: [InternToken(type: TOKEN_TYPE_NUMBER, andValue: "1234")])
+
+        let internFormula = InternFormula(internTokenList: internTokenList)!
+        internFormula.generateExternFormulaStringAndInternExternMapping()
+        setCursor(internFormula, cursorIndex: 2)
+
+        internFormula.handleKeyInput(for: MultOperator())
+
+        XCTAssertEqual(3, internTokenList.count)
+        XCTAssertEqual("12", (internTokenList[0] as! InternToken).getStringValue())
+        XCTAssertEqual(MultOperator.tag, (internTokenList[1] as! InternToken).getStringValue())
+        XCTAssertEqual("34", (internTokenList[2] as! InternToken).getStringValue())
+    }
+
     private func setCursorAtEndAndAssertSelection(_ internFormula: InternFormula, expectedStartIndex: Int, expectedEndIndex: Int) {
         let cursorIndex = internFormula.getExternFormulaString().count
         setCursorAndAssertSelection(internFormula, cursorIndex: cursorIndex, expectedStartIndex: expectedStartIndex, expectedEndIndex: expectedEndIndex)
@@ -89,6 +104,10 @@ final class InternFormulaKeyboardAdapterTests: XCTestCase {
         internFormula.setCursorAndSelection(Int32(truncatingIfNeeded: cursorIndex), selected: true)
 
         assertSelection(internFormula, expectedStartIndex: expectedStartIndex, expectedEndIndex: expectedEndIndex)
+    }
+
+    private func setCursor(_ internFormula: InternFormula, cursorIndex: Int) {
+        internFormula.setCursorAndSelection(Int32(truncatingIfNeeded: cursorIndex), selected: false)
     }
 
     private func assertSelection(_ internFormula: InternFormula, expectedStartIndex: Int, expectedEndIndex: Int) {

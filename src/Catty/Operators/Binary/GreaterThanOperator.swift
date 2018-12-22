@@ -22,8 +22,8 @@
 
 @objc class GreaterThanOperator: NSObject, BinaryLogicalOperator {
 
-    static var name = ">"
     @objc static var tag = "GREATER_THAN"
+    static var name = ">"
     static var priority = 4
 
     func value(left: AnyObject, right: AnyObject) -> Bool {

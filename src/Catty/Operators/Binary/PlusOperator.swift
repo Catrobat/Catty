@@ -22,8 +22,8 @@
 
 @objc class PlusOperator: NSObject, BinaryOperator {
 
-    static var name = "+"
     @objc static var tag = "PLUS"
+    static var name = "+"
     static var priority = 5
 
     func value(left: AnyObject, right: AnyObject) -> Double {

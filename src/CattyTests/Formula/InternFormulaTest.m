@@ -27,7 +27,7 @@
 #import "Pocket_Code-Swift.h"
 
 @interface InternFormulaTest : XCTestCase
-
+@property (nonatomic, strong) FormulaManager *formulaManager;
 @end
 
 @interface InternFormula (Testing)
@@ -47,6 +47,7 @@
 
 - (void)setUp {
     [super setUp];
+    _formulaManager = [[FormulaManager alloc] initWithSceneSize:CGSizeZero];
 }
 
 - (void)testInsertRightToCurrentToken
@@ -56,7 +57,7 @@
     InternFormula *internFormula = [[InternFormula alloc] initWithInternTokenList:internTokens];
     [internFormula generateExternFormulaStringAndInternExternMapping];
     [internFormula setCursorAndSelection:0 selected:NO];
-    [internFormula handleKeyInputWithName:@"DECIMAL_MARK" butttonType:413];
+    [internFormula handleKeyInputWithName:@"DECIMAL_MARK" butttonType:TOKEN_TYPE_DECIMAL_MARK];
     
     XCTAssertTrue([[[internTokens objectAtIndex:0] getTokenStringValue] isEqualToString:@"0."], @"Enter decimal mark error");
     
@@ -66,7 +67,7 @@
     internFormula = [[InternFormula alloc] initWithInternTokenList:internTokens];
     [internFormula generateExternFormulaStringAndInternExternMapping];
     [internFormula setCursorAndSelection:1 selected:NO];
-    [internFormula handleKeyInputWithName:@"DECIMAL_MARK" butttonType:413];
+    [internFormula handleKeyInputWithName:@"DECIMAL_MARK" butttonType:TOKEN_TYPE_DECIMAL_MARK];
     
     XCTAssertTrue([[[internTokens objectAtIndex:1] getTokenStringValue] isEqualToString:@"0."], @"Enter decimal mark error");
     
@@ -75,10 +76,9 @@
     internFormula = [[InternFormula alloc] initWithInternTokenList:internTokens];
     [internFormula generateExternFormulaStringAndInternExternMapping];
     [internFormula setCursorAndSelection:0 selected:NO];
-    [internFormula handleKeyInputWithName:@"DECIMAL_MARK" butttonType:413];
+    [internFormula handleKeyInputWithName:@"DECIMAL_MARK" butttonType:TOKEN_TYPE_DECIMAL_MARK];
     
     XCTAssertTrue([[[internTokens objectAtIndex:0] getTokenStringValue] isEqualToString:@"0."], @"Enter decimal mark error");
-
 }
 
 - (void)testInsertLeftToCurrentToken
@@ -89,7 +89,7 @@
     [internFormula generateExternFormulaStringAndInternExternMapping];
     [internFormula setCursorAndSelection:0 selected:NO];
     NSString *externFormulaStringBeforeInput = [internFormula getExternFormulaString];
-    [internFormula handleKeyInputWithName:@"DECIMAL_MARK" butttonType:413];
+    [internFormula handleKeyInputWithName:@"DECIMAL_MARK" butttonType:TOKEN_TYPE_DECIMAL_MARK];
     
     XCTAssertTrue([externFormulaStringBeforeInput isEqualToString:[internFormula getExternFormulaString]] ,@"Number changed!");
     
@@ -109,7 +109,7 @@
     internFormula = [[InternFormula alloc] initWithInternTokenList:internTokens];
     [internFormula generateExternFormulaStringAndInternExternMapping];
     [internFormula setCursorAndSelection:6 selected:NO];
-    [internFormula handleKeyInputWithName:@"DECIMAL_MARK" butttonType:413];
+    [internFormula handleKeyInputWithName:@"DECIMAL_MARK" butttonType:TOKEN_TYPE_DECIMAL_MARK];
     
     XCTAssertTrue([[[internTokens objectAtIndex:0] getTokenStringValue] isEqualToString:@"42.42"] ,@"Append number error");
     
@@ -119,7 +119,7 @@
     internFormula = [[InternFormula alloc] initWithInternTokenList:internTokens];
     [internFormula generateExternFormulaStringAndInternExternMapping];
     [internFormula setCursorAndSelection:5 selected:NO];
-    [internFormula handleKeyInputWithName:@"DECIMAL_MARK" butttonType:413];
+    [internFormula handleKeyInputWithName:@"DECIMAL_MARK" butttonType:TOKEN_TYPE_DECIMAL_MARK];
     
     XCTAssertTrue([[[internTokens objectAtIndex:0] getTokenStringValue] isEqualToString:@"4242."] ,@"Append decimal mark error");
     
@@ -128,27 +128,9 @@
     internFormula = [[InternFormula alloc] initWithInternTokenList:internTokens];
     [internFormula generateExternFormulaStringAndInternExternMapping];
     [internFormula setCursorAndSelection:0 selected:NO];
-    [internFormula handleKeyInputWithName:@"DECIMAL_MARK" butttonType:413];
+    [internFormula handleKeyInputWithName:@"DECIMAL_MARK" butttonType:TOKEN_TYPE_DECIMAL_MARK];
     
     XCTAssertTrue([[[internTokens objectAtIndex:0] getTokenStringValue] isEqualToString:@"0."] ,@"Prepend decimal mark error");
-    
-    
-}
-
-- (void)testInsertOperaorInNumberToken
-{
-    NSMutableArray *internTokens = [[NSMutableArray alloc] init];
-    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER AndValue:@"1234"]];
-    InternFormula *internFormula = [[InternFormula alloc]initWithInternTokenList:internTokens];
-    [internFormula generateExternFormulaStringAndInternExternMapping];
-    [internFormula setCursorAndSelection:2 selected:NO];
-    [internFormula handleKeyInputWithName:@"MULT" butttonType:410];
-    
-    XCTAssertTrue([[[internTokens objectAtIndex:0] getTokenStringValue] isEqualToString:@"12"], @"Insert operator in number token error");
-    XCTAssertTrue([[[internTokens objectAtIndex:1] getTokenStringValue] isEqualToString:@"MULT"], @"Insert operator in number token error");
-    XCTAssertTrue([[[internTokens objectAtIndex:2] getTokenStringValue] isEqualToString:@"34"], @"Insert operator in number token error");
-
-    
 }
 
 - (void)testSelectBrackets
@@ -194,7 +176,6 @@
     
     XCTAssertEqual(1, [[internFormula getSelection] getStartIndex], @"Selection start index not as expected");
     XCTAssertEqual(4, [[internFormula getSelection] getEndIndex], @"Selection end index not as expected");
-    
 }
 
 - (void)testSelectFunctionAndSingleTab
@@ -271,7 +252,6 @@
     [internFormula setCursorAndSelection:doubleClickIndex selected:YES];
     XCTAssertEqual(4, [[internFormula getSelection] getStartIndex], @"Selection start index not as expected");
     XCTAssertEqual(4, [[internFormula getSelection] getEndIndex], @"Selection end index not as expected");
-    
 }
 
 - (void)testReplaceSelection
@@ -315,7 +295,6 @@
     [internFormula generateExternFormulaStringAndInternExternMapping];
     
     XCTAssertTrue([[internFormula getExternFormulaString] isEqualToString:externFormulaString], @"ExternFormulaString changed on buggy input!");
-
 }
 
 - (void)testDeleteInternTokenByIndex
@@ -406,7 +385,6 @@
     XCTAssertTrue([[internFormula getExternFormulaString] isEqualToString:externFormulaString], @"ExternFormulaString changed on buggy input!");
     
     [internTokens removeAllObjects];
-
 }
 
 - (void)testSetExternCursorPositionLeftTo
@@ -427,7 +405,6 @@
     [internFormula setExternCursorPositionLeftTo:1];
     
     XCTAssertEqual(externCursorPositionBeforeMethodCall, [internFormula getExternCursorPosition], @"Extern cursor position changed!");
-    
 }
 
 - (void)testSetExternCursorPositionRightTo
@@ -476,7 +453,6 @@
     [internFormula selectCursorPositionInternToken:USER_SELECTION];
     
     XCTAssertNil(internFormula.internFormulaTokenSelection, @"Selection changed!");
-    
 }
 
 - (void)testSelectCursorPositionInternToken

@@ -22,8 +22,8 @@
 
 @objc class OrOperator: NSObject, BinaryLogicalOperator {
 
-    static var name = kUIFEOperatorOr
     @objc static var tag = "LOGICAL_OR"
+    static var name = kUIFEOperatorOr
     static var priority = 1
 
     func value(left: AnyObject, right: AnyObject) -> Bool {
