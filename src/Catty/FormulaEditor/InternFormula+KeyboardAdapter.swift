@@ -87,7 +87,7 @@ extension InternFormula {
         self.handleKeyInput(withInternTokenList: keyInputInternTokenList, andResourceId: Int32(TOKEN_TYPE_FUNCTION_NAME.rawValue))
     }
 
-    func handleKeyInput(for op: CBOperator) {
+    func handleKeyInput(for op: Operator) {
         let keyInputInternTokenList = NSMutableArray(array: self.createInternTokenListForOperator(op: op))
         self.handleKeyInput(withInternTokenList: keyInputInternTokenList, andResourceId: Int32(TOKEN_TYPE_OPERATOR.rawValue))
     }
@@ -100,7 +100,7 @@ extension InternFormula {
         return buildFunction(function: function)
     }
 
-    private func createInternTokenListForOperator(op: CBOperator) -> [InternToken] {
+    private func createInternTokenListForOperator(op: Operator) -> [InternToken] {
         return buildOperator(op: op)
     }
 
@@ -132,7 +132,7 @@ extension InternFormula {
         return [InternToken.init(type: TOKEN_TYPE_BRACKET_CLOSE)]
     }
 
-    private func buildOperator(op: CBOperator) -> [InternToken] {
+    private func buildOperator(op: Operator) -> [InternToken] {
         return [InternToken.init(type: TOKEN_TYPE_OPERATOR, andValue: type(of: op).tag)]
     }
 

@@ -34,7 +34,7 @@
         return leftDouble >= rightDouble
     }
 
-    func formulaEditorSection() -> FormulaEditorSection {
-        return .logic(position: type(of: self).position)
+    func formulaEditorSections() -> [FormulaEditorSection] {
+        return [.logic(position: type(of: self).position)]
     }
 }

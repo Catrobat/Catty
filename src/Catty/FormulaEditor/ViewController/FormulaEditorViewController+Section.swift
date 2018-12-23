@@ -98,7 +98,7 @@ extension FormulaEditorViewController {
         self.handleInput()
     }
 
-    private func handleInput(for op: CBOperator) {
+    private func handleInput(for op: Operator) {
         self.internFormula.handleKeyInput(for: op)
         self.handleInput()
     }

@@ -20,23 +20,22 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-protocol CBOperator {
+protocol Operator {
 
     // Name for formula editor
     static var name: String { get }
 
     // Tag for serialization
-    static var tag: String { get } // TODO instance
+    static var tag: String { get }
 
     // Priority for interpretation (higher priority gets interpreted first)
-    static var priority: Int { get }  // TODO instance
+    static var priority: Int { get }
 
     // Return the section to show sensor in formula editor (FormulaEditorSection) and the position within that section (Int)
-    // Use .hidden to not show the sensor at all
-    func formulaEditorSection() -> FormulaEditorSection  // TODO array
+    func formulaEditorSections() -> [FormulaEditorSection]
 }
 
-extension CBOperator {
+extension Operator {
 
     func doubleParameter(object: AnyObject) -> Double {
         if let double = object as? Double {
@@ -51,18 +50,18 @@ extension CBOperator {
     }
 }
 
-protocol UnaryOperator: CBOperator {
+protocol UnaryOperator: Operator {
     func value(parameter: AnyObject) -> Double
 }
 
-protocol BinaryOperator: CBOperator {
+protocol BinaryOperator: Operator {
     func value(left: AnyObject, right: AnyObject) -> Double
 }
 
-protocol UnaryLogicalOperator: CBOperator {
+protocol UnaryLogicalOperator: Operator {
     func value(parameter: AnyObject) -> Bool
 }
 
-protocol BinaryLogicalOperator: CBOperator {
+protocol BinaryLogicalOperator: Operator {
     func value(left: AnyObject, right: AnyObject) -> Bool
 }

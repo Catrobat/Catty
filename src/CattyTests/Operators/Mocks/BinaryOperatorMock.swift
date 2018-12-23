@@ -20,6 +20,8 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+@testable import Pocket_Code
+
 class BinaryOperatorMock: BinaryOperator {
 
     static var tag = "binaryOperatorTag"
@@ -38,7 +40,7 @@ class BinaryOperatorMock: BinaryOperator {
         return mockedValue
     }
 
-    func formulaEditorSection() -> FormulaEditorSection {
-        return mockedSection
+    func formulaEditorSections() -> [FormulaEditorSection] {
+        return [mockedSection]
     }
 }

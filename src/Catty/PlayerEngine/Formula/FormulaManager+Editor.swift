@@ -43,35 +43,33 @@ extension FormulaManager {
     }
 
     private func formulaEditorItems(for spriteObject: SpriteObject, mathSection: Bool, logicSection: Bool, objectSection: Bool, deviceSection: Bool) -> [FormulaEditorItem] {
-        var items = [FormulaEditorItem]()
+        var items = [(pos: Int, item: FormulaEditorItem)]()
         let allItems = sensorManager.formulaEditorItems(for: spriteObject) + functionManager.formulaEditorItems() + operatorManager.formulaEditorItems()
 
         for item in allItems {
-            switch item.section {
-            case .math:
-                if mathSection {
-                    items += item
+            for section in item.sections {
+                switch section {
+                case let .math(position):
+                    if mathSection {
+                        items += (position, item)
+                    }
+                case let .logic(position):
+                    if logicSection {
+                        items += (position, item)
+                    }
+                case let .object(position):
+                    if objectSection {
+                        items += (position, item)
+                    }
+                case let .device(position):
+                    if deviceSection {
+                        items += (position, item)
+                    }
+                default:
+                    break
                 }
-
-            case .logic:
-                if logicSection {
-                    items += item
-                }
-
-            case .object:
-                if objectSection {
-                    items += item
-                }
-
-            case .device:
-                if deviceSection {
-                    items += item
-                }
-
-            default:
-                break
             }
         }
-        return items.sorted(by: { $0.section.position() < $1.section.position() }).map { $0 }
+        return items.sorted { $0.0 < $1.0 }.map { $0.1 }
     }
 }

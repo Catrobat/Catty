@@ -24,9 +24,9 @@ protocol OperatorManagerProtocol {
 
     static var defaultValueForUndefinedOperator: Double { get set }
 
-    init(operators: [CBOperator])
+    init(operators: [Operator])
 
-    func getOperator(tag: String) -> CBOperator?
+    func getOperator(tag: String) -> Operator?
 
     func value(tag: String, leftParameter: AnyObject?, rightParameter: AnyObject?) -> AnyObject
 

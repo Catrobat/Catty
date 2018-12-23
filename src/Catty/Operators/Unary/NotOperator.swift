@@ -32,7 +32,7 @@
         return double == 0.0
     }
 
-    func formulaEditorSection() -> FormulaEditorSection {
-        return .logic(position: type(of: self).position)
+    func formulaEditorSections() -> [FormulaEditorSection] {
+        return [.logic(position: type(of: self).position)]
     }
 }

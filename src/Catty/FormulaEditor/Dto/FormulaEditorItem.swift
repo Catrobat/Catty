@@ -24,25 +24,49 @@ class FormulaEditorItem {
 
     var sensor: Sensor?
     var function: Function?
-    var op: CBOperator?
+    var op: Operator?
     var title: String
-    var section: FormulaEditorSection
+    var sections: [FormulaEditorSection]
 
     public init(sensor: Sensor, spriteObject: SpriteObject) {
         self.title = type(of: sensor).name
         self.sensor = sensor
-        self.section = sensor.formulaEditorSection(for: spriteObject)
+        self.sections = [sensor.formulaEditorSection(for: spriteObject)]
     }
 
     public init(function: Function) {
         self.title = function.nameWithParameters()
         self.function = function
-        self.section = function.formulaEditorSection()
+        self.sections = [function.formulaEditorSection()]
     }
 
-    public init(op: CBOperator) {
+    public init(op: Operator) {
         self.title = type(of: op).name
         self.op = op
-        self.section = op.formulaEditorSection()
+        self.sections = op.formulaEditorSections()
+    }
+
+    public func positionForMathSection() -> Int {
+        for section in sections {
+            switch section {
+            case let .math(position):
+                return position
+            default:
+                return 0
+            }
+        }
+        return 0
+    }
+
+    public func positionForLogicSection() -> Int {
+        for section in sections {
+            switch section {
+            case let .math(position):
+                return position
+            default:
+                return 0
+            }
+        }
+        return 0
     }
 }

@@ -59,6 +59,9 @@ extension FormulaEditorSection: Equatable {
         case let .math(position):
             return position
 
+        case let .logic(position):
+            return position
+
         case let .object(position):
             return position
 

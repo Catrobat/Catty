@@ -20,6 +20,8 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+@testable import Pocket_Code
+
 class UnaryOperatorMock: UnaryOperator {
 
     static var tag = "unaryOperatorTag"
@@ -38,7 +40,7 @@ class UnaryOperatorMock: UnaryOperator {
         return mockedValue
     }
 
-    func formulaEditorSection() -> FormulaEditorSection {
-        return mockedSection
+    func formulaEditorSections() -> [FormulaEditorSection] {
+        return [mockedSection]
     }
 }

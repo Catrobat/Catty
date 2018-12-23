@@ -23,23 +23,23 @@
 @objc class OperatorManager: NSObject, OperatorManagerProtocol {
 
     public static var defaultValueForUndefinedOperator: Double = 0
-    private static var operatorMap = [String: CBOperator]()
+    private static var operatorMap = [String: Operator]()
 
-    public required init(operators: [CBOperator]) {
+    public required init(operators: [Operator]) {
         super.init()
         registerOperators(operatorList: operators)
     }
 
-    private func registerOperators(operatorList: [CBOperator]) {
+    private func registerOperators(operatorList: [Operator]) {
         type(of: self).operatorMap.removeAll()
         operatorList.forEach { type(of: self).operatorMap[type(of: $0).tag] = $0 }
     }
 
-    func operators() -> [CBOperator] {
+    func operators() -> [Operator] {
         return Array(type(of: self).operatorMap.values)
     }
 
-    func getOperator(tag: String) -> CBOperator? {
+    func getOperator(tag: String) -> Operator? {
         return type(of: self).operatorMap[tag]
     }
 

@@ -31,11 +31,11 @@
 #import <math.h>
 #import "Pocket_Code-Swift.h"
 
-@interface FormulaEditorTest : XCTestCase
+@interface FormulaElementTest : XCTestCase
 @property(nonatomic, strong) id<FormulaManagerProtocol> formulaManager;
 @end
 
-@implementation FormulaEditorTest
+@implementation FormulaElementTest
 
 - (void)setUp
 {
