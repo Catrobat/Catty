@@ -31,18 +31,22 @@ final class SingleParameterStringFunctionMock: SingleParameterStringFunction {
 
     private let mockedTag: String
     private let mockedValue: String
-    private let mockedSection: FormulaEditorSection
+    private let mockedSections: [FormulaEditorSection]
     private let mockedParameter: FunctionParameter
 
     convenience init(tag: String, value: String, parameter: FunctionParameter) {
-        self.init(tag: tag, value: value, parameter: parameter, formulaEditorSection: .hidden)
+        self.init(tag: tag, value: value, parameter: parameter, formulaEditorSections: [])
     }
 
-    init(tag: String, value: String, parameter: FunctionParameter, formulaEditorSection: FormulaEditorSection) {
+    convenience init(tag: String, value: String, parameter: FunctionParameter, formulaEditorSection: FormulaEditorSection) {
+        self.init(tag: tag, value: value, parameter: parameter, formulaEditorSections: [formulaEditorSection])
+    }
+
+    init(tag: String, value: String, parameter: FunctionParameter, formulaEditorSections: [FormulaEditorSection]) {
         self.mockedTag = tag
         self.mockedValue = value
         self.mockedParameter = parameter
-        self.mockedSection = formulaEditorSection
+        self.mockedSections = formulaEditorSections
     }
 
     func tag() -> String {
@@ -53,8 +57,8 @@ final class SingleParameterStringFunctionMock: SingleParameterStringFunction {
         return self.mockedParameter
     }
 
-    func formulaEditorSection() -> FormulaEditorSection {
-        return self.mockedSection
+    func formulaEditorSections() -> [FormulaEditorSection] {
+        return self.mockedSections
     }
 
     func value(parameter: AnyObject?) -> String {

@@ -34,9 +34,8 @@ protocol Function {
     // Tag for serialization
     func tag() -> String
 
-    // Return the section to show sensor in formula editor (FormulaEditorSection) and the position within that section (Int)
-    // Use .hidden to not show the sensor at all
-    func formulaEditorSection() -> FormulaEditorSection
+    // Return the sections to show sensor in formula editor and the position within each section
+    func formulaEditorSections() -> [FormulaEditorSection]
 }
 
 extension Function {

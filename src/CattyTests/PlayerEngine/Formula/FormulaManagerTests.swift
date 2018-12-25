@@ -69,10 +69,9 @@ final class FormulaManagerTests: XCTestCase {
 
         let items = manager.formulaEditorItems(spriteObject: spriteObject)
         XCTAssertEqual(4, items.count)
-        XCTAssertEqual(functionA.formulaEditorSection(), items[0].function?.formulaEditorSection())
-        XCTAssertEqual(functionB.formulaEditorSection(), items[1].function?.formulaEditorSection())
-        XCTAssertEqual(sensorA.formulaEditorSection(for: spriteObject),
-                       items[2].sensor?.formulaEditorSection(for: spriteObject))
+        XCTAssertTrue(functionA.formulaEditorSections().elementsEqual(items[0].function!.formulaEditorSections()))
+        XCTAssertTrue(functionB.formulaEditorSections().elementsEqual(items[1].function!.formulaEditorSections()))
+        XCTAssertEqual(sensorA.formulaEditorSection(for: spriteObject), items[2].sensor?.formulaEditorSection(for: spriteObject))
         XCTAssertTrue(operatorA.formulaEditorSections().elementsEqual(items[3].op!.formulaEditorSections()))
     }
 
@@ -117,7 +116,7 @@ final class FormulaManagerTests: XCTestCase {
 
         let items = manager.formulaEditorItemsForMathSection(spriteObject: spriteObject)
         XCTAssertEqual(3, items.count)
-        XCTAssertEqual(functionA.formulaEditorSection(), items[0].function?.formulaEditorSection())
+        XCTAssertTrue(functionA.formulaEditorSections().elementsEqual(items[0].function!.formulaEditorSections()))
         XCTAssertEqual(sensorA.formulaEditorSection(for: spriteObject), items[1].sensor?.formulaEditorSection(for: spriteObject))
         XCTAssertTrue(operatorA.formulaEditorSections().elementsEqual(items[2].op!.formulaEditorSections()))
     }
@@ -143,7 +142,7 @@ final class FormulaManagerTests: XCTestCase {
 
         let items = manager.formulaEditorItemsForLogicSection(spriteObject: spriteObject)
         XCTAssertEqual(3, items.count)
-        XCTAssertEqual(functionA.formulaEditorSection(), items[0].function?.formulaEditorSection())
+        XCTAssertTrue(functionA.formulaEditorSections().elementsEqual(items[0].function!.formulaEditorSections()))
         XCTAssertEqual(sensorA.formulaEditorSection(for: spriteObject), items[1].sensor?.formulaEditorSection(for: spriteObject))
         XCTAssertTrue(operatorA.formulaEditorSections().elementsEqual(items[2].op!.formulaEditorSections()))
     }
@@ -167,7 +166,7 @@ final class FormulaManagerTests: XCTestCase {
         let items = manager.formulaEditorItemsForDeviceSection(spriteObject: spriteObject)
         XCTAssertEqual(2, items.count)
         XCTAssertEqual(sensorA.formulaEditorSection(for: spriteObject), items[0].sensor?.formulaEditorSection(for: spriteObject))
-        XCTAssertEqual(functionB.formulaEditorSection(), items[1].function?.formulaEditorSection())
+        XCTAssertTrue(functionB.formulaEditorSections().elementsEqual(items[1].function!.formulaEditorSections()))
     }
 
     func testFormulaEditorItemsForObjectSection() {

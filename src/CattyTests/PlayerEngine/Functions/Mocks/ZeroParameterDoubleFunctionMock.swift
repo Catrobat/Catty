@@ -31,24 +31,28 @@ final class ZeroParameterDoubleFunctionMock: ZeroParameterDoubleFunction {
 
     private let mockedTag: String
     private let mockedValue: Double
-    private let mockedSection: FormulaEditorSection
+    private let mockedSections: [FormulaEditorSection]
 
     convenience init(tag: String, value: Double) {
-        self.init(tag: tag, value: value, formulaEditorSection: .hidden)
+        self.init(tag: tag, value: value, formulaEditorSections: [])
     }
 
-    init(tag: String, value: Double, formulaEditorSection: FormulaEditorSection) {
+    convenience init(tag: String, value: Double, formulaEditorSection: FormulaEditorSection) {
+        self.init(tag: tag, value: value, formulaEditorSections: [formulaEditorSection])
+    }
+
+    init(tag: String, value: Double, formulaEditorSections: [FormulaEditorSection]) {
         self.mockedTag = tag
         self.mockedValue = value
-        self.mockedSection = formulaEditorSection
+        self.mockedSections = formulaEditorSections
     }
 
     func tag() -> String {
         return self.mockedTag
     }
 
-    func formulaEditorSection() -> FormulaEditorSection {
-        return self.mockedSection
+    func formulaEditorSections() -> [FormulaEditorSection] {
+        return self.mockedSections
     }
 
     func value() -> Double {

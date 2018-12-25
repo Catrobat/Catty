@@ -31,20 +31,24 @@ final class DoubleParameterDoubleFunctionMock: DoubleParameterDoubleFunction {
 
     private let mockedTag: String
     private let mockedValue: Double
-    private let mockedSection: FormulaEditorSection
+    private let mockedSections: [FormulaEditorSection]
     private let mockedFirstParameter: FunctionParameter
     private let mockedSecondParameter: FunctionParameter
 
     convenience init(tag: String, value: Double, firstParameter: FunctionParameter, secondParameter: FunctionParameter) {
-        self.init(tag: tag, value: value, firstParameter: firstParameter, secondParameter: secondParameter, formulaEditorSection: .hidden)
+        self.init(tag: tag, value: value, firstParameter: firstParameter, secondParameter: secondParameter, formulaEditorSections: [])
     }
 
-    init(tag: String, value: Double, firstParameter: FunctionParameter, secondParameter: FunctionParameter, formulaEditorSection: FormulaEditorSection) {
+    convenience init(tag: String, value: Double, firstParameter: FunctionParameter, secondParameter: FunctionParameter, formulaEditorSection: FormulaEditorSection) {
+        self.init(tag: tag, value: value, firstParameter: firstParameter, secondParameter: secondParameter, formulaEditorSections: [formulaEditorSection])
+    }
+
+    init(tag: String, value: Double, firstParameter: FunctionParameter, secondParameter: FunctionParameter, formulaEditorSections: [FormulaEditorSection]) {
         self.mockedTag = tag
         self.mockedValue = value
         self.mockedFirstParameter = firstParameter
         self.mockedSecondParameter = secondParameter
-        self.mockedSection = formulaEditorSection
+        self.mockedSections = formulaEditorSections
     }
 
     func tag() -> String {
@@ -59,8 +63,8 @@ final class DoubleParameterDoubleFunctionMock: DoubleParameterDoubleFunction {
         return self.mockedSecondParameter
     }
 
-    func formulaEditorSection() -> FormulaEditorSection {
-        return self.mockedSection
+    func formulaEditorSections() -> [FormulaEditorSection] {
+        return self.mockedSections
     }
 
     func value(firstParameter: AnyObject?, secondParameter: AnyObject?) -> Double {

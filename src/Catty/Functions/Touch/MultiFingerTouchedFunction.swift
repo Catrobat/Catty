@@ -48,7 +48,7 @@ class MultiFingerTouchedFunction: SingleParameterDoubleFunction {
         return touchManager.screenTouched(for: Int(touchNumber)) ? 1.0 : 0.0
     }
 
-    func formulaEditorSection() -> FormulaEditorSection {
-        return .device(position: type(of: self).position)
+    func formulaEditorSections() -> [FormulaEditorSection] {
+        return [.device(position: type(of: self).position)]
     }
 }

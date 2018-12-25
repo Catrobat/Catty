@@ -53,7 +53,7 @@ class MultiFingerYFunction: SingleParameterDoubleObjectFunction {
         return PositionYSensor.convertToStandardized(rawValue: rawValue, for: spriteObject)
     }
 
-    func formulaEditorSection() -> FormulaEditorSection {
-        return .device(position: type(of: self).position)
+    func formulaEditorSections() -> [FormulaEditorSection] {
+        return [.device(position: type(of: self).position)]
     }
 }

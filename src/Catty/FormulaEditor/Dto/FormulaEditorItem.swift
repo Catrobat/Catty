@@ -37,36 +37,12 @@ class FormulaEditorItem {
     public init(function: Function) {
         self.title = function.nameWithParameters()
         self.function = function
-        self.sections = [function.formulaEditorSection()]
+        self.sections = function.formulaEditorSections()
     }
 
     public init(op: Operator) {
         self.title = type(of: op).name
         self.op = op
         self.sections = op.formulaEditorSections()
-    }
-
-    public func positionForMathSection() -> Int {
-        for section in sections {
-            switch section {
-            case let .math(position):
-                return position
-            default:
-                return 0
-            }
-        }
-        return 0
-    }
-
-    public func positionForLogicSection() -> Int {
-        for section in sections {
-            switch section {
-            case let .math(position):
-                return position
-            default:
-                return 0
-            }
-        }
-        return 0
     }
 }

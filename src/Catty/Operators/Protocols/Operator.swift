@@ -31,7 +31,7 @@ protocol Operator {
     // Priority for interpretation (higher priority gets interpreted first)
     static var priority: Int { get }
 
-    // Return the section to show sensor in formula editor (FormulaEditorSection) and the position within that section (Int)
+    // Return the sections to show operator in formula editor and the position within each section
     func formulaEditorSections() -> [FormulaEditorSection]
 }
 

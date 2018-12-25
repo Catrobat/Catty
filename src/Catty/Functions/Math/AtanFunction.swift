@@ -42,7 +42,7 @@ class AtanFunction: SingleParameterDoubleFunction {
         return Util.radians(toDegree: atan(degree))
     }
 
-    func formulaEditorSection() -> FormulaEditorSection {
-        return .math(position: (type(of: self).position))
+    func formulaEditorSections() -> [FormulaEditorSection] {
+        return [.math(position: (type(of: self).position))]
     }
 }

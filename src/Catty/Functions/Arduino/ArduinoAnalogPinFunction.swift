@@ -49,10 +49,10 @@
         return self.getBluetoothService()?.getSensorArduino()?.getAnalogPin(pin) ?? type(of: self).defaultValue
     }
 
-    func formulaEditorSection() -> FormulaEditorSection {
+    func formulaEditorSections() -> [FormulaEditorSection] {
         if UserDefaults.standard.bool(forKey: kUseArduinoBricks) == false {
-            return .hidden
+            return []
         }
-        return .device(position: type(of: self).position)
+        return [.device(position: type(of: self).position)]
     }
 }

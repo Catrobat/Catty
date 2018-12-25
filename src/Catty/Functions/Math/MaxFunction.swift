@@ -48,7 +48,7 @@ class MaxFunction: DoubleParameterDoubleFunction {
         return max(firstValue, secondValue)
     }
 
-    func formulaEditorSection() -> FormulaEditorSection {
-        return .math(position: type(of: self).position)
+    func formulaEditorSections() -> [FormulaEditorSection] {
+        return [.math(position: type(of: self).position)]
     }
 }

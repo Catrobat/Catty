@@ -36,7 +36,7 @@ class TrueFunction: ZeroParameterDoubleFunction {
         return 1.0
     }
 
-    func formulaEditorSection() -> FormulaEditorSection {
-        return .math(position: type(of: self).position)
+    func formulaEditorSections() -> [FormulaEditorSection] {
+        return [.math(position: type(of: self).position)]
     }
 }
