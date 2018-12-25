@@ -65,8 +65,6 @@ extension FormulaManager {
                     if deviceSection {
                         items += (position, item)
                     }
-                default:
-                    break
                 }
             }
         }

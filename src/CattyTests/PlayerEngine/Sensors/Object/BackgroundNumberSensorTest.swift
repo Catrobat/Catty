@@ -81,9 +81,11 @@ final class BackgroundNumberSensorTest: XCTestCase {
 
     func testFormulaEditorSection() {
         spriteObject.background = false
-        XCTAssertEqual(.hidden, sensor.formulaEditorSection(for: spriteObject))
+        XCTAssertEqual(0, sensor.formulaEditorSections(for: spriteObject).count)
 
         spriteObject.background = true
-        XCTAssertEqual(.object(position: type(of: sensor).position), sensor.formulaEditorSection(for: spriteObject))
+        let sections = sensor.formulaEditorSections(for: spriteObject)
+        XCTAssertEqual(1, sections.count)
+        XCTAssertEqual(.object(position: type(of: sensor).position), sections.first)
     }
 }

@@ -56,7 +56,7 @@ class SizeSensor: ObjectDoubleSensor {
         return userInput / 100
     }
 
-    func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
-        return .object(position: type(of: self).position)
+    func formulaEditorSections(for spriteObject: SpriteObject) -> [FormulaEditorSection] {
+        return [.object(position: type(of: self).position)]
     }
 }

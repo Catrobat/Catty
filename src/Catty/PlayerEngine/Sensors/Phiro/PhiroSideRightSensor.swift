@@ -47,10 +47,10 @@
         return rawValue
     }
 
-    func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
+    func formulaEditorSections(for spriteObject: SpriteObject) -> [FormulaEditorSection] {
         if UserDefaults.standard.bool(forKey: kUsePhiroBricks) == false {
-            return .hidden
+            return []
         }
-        return .device(position: type(of: self).position)
+        return [.device(position: type(of: self).position)]
     }
 }

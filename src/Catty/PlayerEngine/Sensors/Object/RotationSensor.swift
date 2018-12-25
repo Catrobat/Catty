@@ -81,7 +81,7 @@
         return sceneDegrees // it was already in that interval
     }
 
-    func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
-        return .object(position: type(of: self).position)
+    func formulaEditorSections(for spriteObject: SpriteObject) -> [FormulaEditorSection] {
+        return [.object(position: type(of: self).position)]
     }
 }

@@ -40,6 +40,7 @@ class FormulaEditorItemTest: XCTestCase {
 
         let item = FormulaEditorItem(function: function)
         XCTAssertEqual(function.nameWithParameters(), item.title)
+        XCTAssertEqual(function.tag(), item.tag)
         XCTAssertEqual(1, item.sections.count)
         XCTAssertEqual(expectedSection, item.sections[0])
         XCTAssertNotNil(item.function)
@@ -53,6 +54,7 @@ class FormulaEditorItemTest: XCTestCase {
 
         let item = FormulaEditorItem(sensor: sensor, spriteObject: SpriteObjectMock())
         XCTAssertEqual(type(of: sensor).name, item.title)
+        XCTAssertEqual(sensor.tag(), item.tag)
         XCTAssertEqual(1, item.sections.count)
         XCTAssertEqual(expectedSection, item.sections[0])
         XCTAssertNotNil(item.sensor)
@@ -66,6 +68,7 @@ class FormulaEditorItemTest: XCTestCase {
 
         let item = FormulaEditorItem(op: op)
         XCTAssertEqual(type(of: op).name, item.title)
+        XCTAssertEqual(type(of: op).tag, item.tag)
         XCTAssertEqual(1, item.sections.count)
         XCTAssertEqual(expectedSection, item.sections[0])
         XCTAssertNotNil(item.op)

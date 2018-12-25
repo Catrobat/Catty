@@ -67,7 +67,9 @@ final class FingerTouchedSensorTest: XCTestCase {
         XCTAssertEqual(ResourceType.touchHandler, type(of: sensor).requiredResource)
     }
 
-    func testFormulaEditorSection() {
-        XCTAssertEqual(.device(position: type(of: sensor).position), sensor.formulaEditorSection(for: SpriteObject()))
+    func testFormulaEditorSections() {
+        let sections = sensor.formulaEditorSections(for: SpriteObject())
+        XCTAssertEqual(1, sections.count)
+        XCTAssertEqual(.device(position: type(of: sensor).position), sections.first)
     }
 }

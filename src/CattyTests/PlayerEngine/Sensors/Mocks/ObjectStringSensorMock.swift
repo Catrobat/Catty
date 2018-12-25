@@ -26,21 +26,25 @@ final class ObjectStringSensorMock: SensorMock, ObjectStringSensor {
 
     private static var mockedValue: String = ""
 
-    init(tag: String, value: String, formulaEditorSection: FormulaEditorSection) {
-        super.init(tag: tag, formulaEditorSection: formulaEditorSection)
+    init(tag: String, value: String, formulaEditorSections: [FormulaEditorSection]) {
+        super.init(tag: tag, formulaEditorSections: formulaEditorSections)
         type(of: self).mockedValue = value
     }
 
-    override convenience init(tag: String, formulaEditorSection: FormulaEditorSection) {
-        self.init(tag: tag, value: "", formulaEditorSection: formulaEditorSection)
+    convenience init(tag: String, formulaEditorSection: FormulaEditorSection) {
+        self.init(tag: tag, formulaEditorSections: [formulaEditorSection])
+    }
+
+    override convenience init(tag: String, formulaEditorSections: [FormulaEditorSection]) {
+        self.init(tag: tag, value: "", formulaEditorSections: formulaEditorSections)
     }
 
     convenience init(tag: String, value: String) {
-        self.init(tag: tag, value: value, formulaEditorSection: .hidden)
+        self.init(tag: tag, value: value, formulaEditorSections: [])
     }
 
     convenience init(tag: String) {
-        self.init(tag: tag, formulaEditorSection: .hidden)
+        self.init(tag: tag, formulaEditorSections: [])
     }
 
     static func rawValue(for spriteObject: SpriteObject) -> String {

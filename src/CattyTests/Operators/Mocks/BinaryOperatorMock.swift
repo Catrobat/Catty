@@ -29,11 +29,19 @@ class BinaryOperatorMock: BinaryOperator {
     static var priority = 20
 
     let mockedValue: Double
-    let mockedSection: FormulaEditorSection
+    let mockedSections: [FormulaEditorSection]
 
-    init(value: Double, formulaEditorSection: FormulaEditorSection) {
+    init(value: Double, formulaEditorSections: [FormulaEditorSection]) {
         self.mockedValue = value
-        self.mockedSection = formulaEditorSection
+        self.mockedSections = formulaEditorSections
+    }
+
+    convenience init(value: Double, formulaEditorSection: FormulaEditorSection) {
+        self.init(value: value, formulaEditorSections: [formulaEditorSection])
+    }
+
+    convenience init(value: Double) {
+        self.init(value: value, formulaEditorSections: [])
     }
 
     func value(left: AnyObject, right: AnyObject) -> Double {
@@ -41,6 +49,6 @@ class BinaryOperatorMock: BinaryOperator {
     }
 
     func formulaEditorSections() -> [FormulaEditorSection] {
-        return [mockedSection]
+        return mockedSections
     }
 }

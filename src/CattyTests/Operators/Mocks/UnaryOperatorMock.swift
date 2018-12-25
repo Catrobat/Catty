@@ -29,11 +29,15 @@ class UnaryOperatorMock: UnaryOperator {
     static var priority = 10
 
     let mockedValue: Double
-    let mockedSection: FormulaEditorSection
+    let mockedSections: [FormulaEditorSection]
 
-    init(value: Double, formulaEditorSection: FormulaEditorSection) {
+    init(value: Double, formulaEditorSections: [FormulaEditorSection]) {
         self.mockedValue = value
-        self.mockedSection = formulaEditorSection
+        self.mockedSections = formulaEditorSections
+    }
+
+    convenience init(value: Double, formulaEditorSection: FormulaEditorSection) {
+        self.init(value: value, formulaEditorSections: [formulaEditorSection])
     }
 
     func value(parameter: AnyObject) -> Double {
@@ -41,6 +45,6 @@ class UnaryOperatorMock: UnaryOperator {
     }
 
     func formulaEditorSections() -> [FormulaEditorSection] {
-        return [mockedSection]
+        return mockedSections
     }
 }
