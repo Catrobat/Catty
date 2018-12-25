@@ -26,6 +26,7 @@ class FormulaEditorButton: UIButton {
 
     var sensor: Sensor?
     var function: Function?
+    var op: Operator?
 
     public convenience init(formulaEditorItem: FormulaEditorItem) {
         self.init()
@@ -33,6 +34,7 @@ class FormulaEditorButton: UIButton {
         self.setTitle(formulaEditorItem.title, for: .normal)
         self.sensor = formulaEditorItem.sensor
         self.function = formulaEditorItem.function
+        self.op = formulaEditorItem.op
     }
 
     private init() {

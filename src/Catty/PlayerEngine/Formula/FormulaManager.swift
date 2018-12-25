@@ -118,6 +118,18 @@ import CoreMotion
         return self.operatorManager.exists(tag: tag)
     }
 
+    func getFunction(tag: String) -> Function? {
+        return self.functionManager.function(tag: tag)
+    }
+
+    func getSensor(tag: String) -> Sensor? {
+        return self.sensorManager.sensor(tag: tag)
+    }
+
+    func getOperator(tag: String) -> Operator? {
+        return self.operatorManager.getOperator(tag: tag)
+    }
+
     private static func buildSensorManager(sceneSize: CGSize,
                                            motionManager: MotionManager,
                                            locationManager: LocationManager,

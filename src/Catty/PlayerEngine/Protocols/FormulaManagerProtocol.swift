@@ -40,6 +40,12 @@ protocol FormulaManagerProtocol: FormulaInterpreterProtocol {
 
     func operatorExists(tag: String) -> Bool
 
+    func getFunction(tag: String) -> Function?
+
+    func getSensor(tag: String) -> Sensor?
+
+    func getOperator(tag: String) -> Operator?
+
     func formulaEditorItems(spriteObject: SpriteObject) -> [FormulaEditorItem]
 
     func formulaEditorItemsForMathSection(spriteObject: SpriteObject) -> [FormulaEditorItem]

@@ -62,8 +62,22 @@ extension FormulaEditorViewController {
                 self.handleInput(for: sensor)
             } else if let function = button.function {
                 self.handleInput(for: function)
+            } else if let op = button.op {
+                self.handleInput(for: op)
             }
         }
+    }
+
+    @objc func divisionButtonPressed() {
+    }
+
+    @objc func multiplicationButtonPressed() {
+    }
+
+    @objc func substractionButtonPressed() {
+    }
+
+    @objc func additionButtonPressed() {
     }
 
     private func addButtonToScrollView(button: FormulaEditorButton, scrollView: UIScrollView, topAnchorView: UIView?, buttonHeight: CGFloat) -> UIButton {

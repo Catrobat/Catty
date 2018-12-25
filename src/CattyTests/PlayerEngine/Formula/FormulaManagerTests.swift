@@ -206,14 +206,14 @@ final class FormulaManagerTests: XCTestCase {
 
         let mathItems = manager.formulaEditorItemsForMathSection(spriteObject: spriteObject)
         XCTAssertEqual(3, mathItems.count)
-        XCTAssertTrue(mathItems.contains { $0.tag == function.tag() })
-        XCTAssertTrue(mathItems.contains { $0.tag == sensorA.tag() })
-        XCTAssertTrue(mathItems.contains { $0.tag == type(of: op).tag })
+        XCTAssertTrue(mathItems.contains { $0.function?.tag() == function.tag() })
+        XCTAssertTrue(mathItems.contains { $0.sensor?.tag() == sensorA.tag() })
+        XCTAssertTrue(mathItems.contains { $0.title == type(of: op).name })
 
         let logicItems = manager.formulaEditorItemsForLogicSection(spriteObject: spriteObject)
         XCTAssertEqual(2, logicItems.count)
-        XCTAssertTrue(logicItems.contains { $0.tag == sensorB.tag() })
-        XCTAssertTrue(logicItems.contains { $0.tag == type(of: op).tag })
+        XCTAssertTrue(logicItems.contains { $0.sensor?.tag() == sensorB.tag() })
+        XCTAssertTrue(logicItems.contains { $0.title == type(of: op).name })
     }
 
     func testFunctionExists() {
@@ -232,11 +232,15 @@ final class FormulaManagerTests: XCTestCase {
         XCTAssertFalse(manager.functionExists(tag: "unavailableFunctionTag"))
         XCTAssertTrue(manager.functionExists(tag: functionA.tag()))
         XCTAssertTrue(manager.functionExists(tag: functionB.tag()))
+
+        XCTAssertNil(manager.functionExists(tag: "unavailableFunctionTag"))
+        XCTAssertNotNil(manager.getFunction(tag: functionA.tag()))
+        XCTAssertNotNil(manager.getFunction(tag: functionB.tag()))
     }
 
     func testSensorExists() {
         let sensorA = AccelerationXSensor(motionManagerGetter: { nil })
-        let sensorB = AccelerationXSensor(motionManagerGetter: { nil })
+        let sensorB = AccelerationYSensor(motionManagerGetter: { nil })
 
         let manager = FormulaManager(sensorManager: SensorManager(sensors: [sensorA, sensorB]),
                                      functionManager: FunctionManager(functions: []),
@@ -245,6 +249,10 @@ final class FormulaManagerTests: XCTestCase {
         XCTAssertFalse(manager.sensorExists(tag: "unavailableSensorTag"))
         XCTAssertTrue(manager.sensorExists(tag: sensorA.tag()))
         XCTAssertTrue(manager.sensorExists(tag: sensorB.tag()))
+
+        XCTAssertNil(manager.getSensor(tag: sensorA.tag()))
+        XCTAssertNotNil(manager.getSensor(tag: sensorA.tag()))
+        XCTAssertNotNil(manager.getSensor(tag: sensorB.tag()))
     }
 
     func testOperatorExists() {
@@ -258,5 +266,9 @@ final class FormulaManagerTests: XCTestCase {
         XCTAssertFalse(manager.sensorExists(tag: "unavailableOperatorTag"))
         XCTAssertTrue(manager.operatorExists(tag: type(of: operatorA).tag))
         XCTAssertTrue(manager.operatorExists(tag: type(of: operatorB).tag))
+
+        XCTAssertNil(manager.getSensor(tag: type(of: operatorA).tag))
+        XCTAssertNotNil(manager.getSensor(tag: type(of: operatorA).tag))
+        XCTAssertNotNil(manager.getSensor(tag: type(of: operatorB).tag))
     }
 }

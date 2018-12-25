@@ -237,6 +237,8 @@ NS_ENUM(NSInteger, ButtonIndex) {
     myNav.items = [NSArray arrayWithObjects: navigItem,nil];
     self.deleteButton.shapeStrokeColor = [UIColor navTintColor];
     
+    [self setupButtons];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(formulaTextViewTextDidChangeNotification:) name:UITextViewTextDidChangeNotification object:self.formulaEditorTextView];
 }
 
@@ -272,6 +274,12 @@ NS_ENUM(NSInteger, ButtonIndex) {
     }
 }
 
+- (void)setupButtons {
+    [self.divisionButton addTarget:self action:@selector(divisionButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+    [self.multiplicationButton addTarget:self action:@selector(multiplicationButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+    [self.substractionButton addTarget:self action:@selector(substractionButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+    [self.additionButton addTarget:self action:@selector(additionButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+}
 
 - (BOOL)canBecomeFirstResponder {
     return YES;
