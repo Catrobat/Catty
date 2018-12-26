@@ -64,7 +64,8 @@ class TrueFunctionTest: XCTestCase {
 
     func testFormulaEditorSections() {
         let sections = function.formulaEditorSections()
-        XCTAssertEqual(1, sections.count)
-        XCTAssertEqual(.math(position: type(of: function).position), sections.first)
+        XCTAssertEqual(2, sections.count)
+        XCTAssertTrue(sections.contains(.logic(position: type(of: function).position)))
+        XCTAssertTrue(sections.contains(.math(position: type(of: function).position)))
     }
 }
