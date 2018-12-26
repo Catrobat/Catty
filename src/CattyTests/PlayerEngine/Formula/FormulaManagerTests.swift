@@ -233,7 +233,7 @@ final class FormulaManagerTests: XCTestCase {
         XCTAssertTrue(manager.functionExists(tag: functionA.tag()))
         XCTAssertTrue(manager.functionExists(tag: functionB.tag()))
 
-        XCTAssertNil(manager.functionExists(tag: "unavailableFunctionTag"))
+        XCTAssertNil(manager.getFunction(tag: "unavailableFunctionTag"))
         XCTAssertNotNil(manager.getFunction(tag: functionA.tag()))
         XCTAssertNotNil(manager.getFunction(tag: functionB.tag()))
     }
@@ -250,7 +250,7 @@ final class FormulaManagerTests: XCTestCase {
         XCTAssertTrue(manager.sensorExists(tag: sensorA.tag()))
         XCTAssertTrue(manager.sensorExists(tag: sensorB.tag()))
 
-        XCTAssertNil(manager.getSensor(tag: sensorA.tag()))
+        XCTAssertNil(manager.getSensor(tag: "unavailableSensorTag"))
         XCTAssertNotNil(manager.getSensor(tag: sensorA.tag()))
         XCTAssertNotNil(manager.getSensor(tag: sensorB.tag()))
     }
@@ -263,12 +263,12 @@ final class FormulaManagerTests: XCTestCase {
                                      functionManager: FunctionManager(functions: []),
                                      operatorManager: OperatorManager(operators: [operatorA, operatorB]))
 
-        XCTAssertFalse(manager.sensorExists(tag: "unavailableOperatorTag"))
+        XCTAssertFalse(manager.operatorExists(tag: "unavailableOperatorTag"))
         XCTAssertTrue(manager.operatorExists(tag: type(of: operatorA).tag))
         XCTAssertTrue(manager.operatorExists(tag: type(of: operatorB).tag))
 
-        XCTAssertNil(manager.getSensor(tag: type(of: operatorA).tag))
-        XCTAssertNotNil(manager.getSensor(tag: type(of: operatorA).tag))
-        XCTAssertNotNil(manager.getSensor(tag: type(of: operatorB).tag))
+        XCTAssertNil(manager.getOperator(tag: "unavailableOperatorTag"))
+        XCTAssertNotNil(manager.getOperator(tag: type(of: operatorA).tag))
+        XCTAssertNotNil(manager.getOperator(tag: type(of: operatorB).tag))
     }
 }

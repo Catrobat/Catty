@@ -28,12 +28,16 @@
     static var position = 2
 
     func value(left: AnyObject, right: AnyObject) -> Bool {
+        let leftDouble = doubleParameter(object: left)
+        let rightDouble = doubleParameter(object: right)
+
+        if leftDouble > 0 && rightDouble > 0 {
+            return leftDouble == rightDouble
+        }
+
         if let leftString = left as? String, let rightString = right as? String {
             return leftString == rightString
         }
-
-        let leftDouble = doubleParameter(object: left)
-        let rightDouble = doubleParameter(object: right)
 
         return leftDouble == rightDouble
     }

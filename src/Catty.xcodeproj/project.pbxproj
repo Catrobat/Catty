@@ -165,6 +165,16 @@
 		4C37A0A5212E767C0074F417 /* ArduinoDigitalPinFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C37A0A4212E767C0074F417 /* ArduinoDigitalPinFunction.swift */; };
 		4C37A0A7212E76C90074F417 /* ArduinoDigitalPinFunctionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C37A0A6212E76C90074F417 /* ArduinoDigitalPinFunctionTest.swift */; };
 		4C37A0AA212E7E540074F417 /* FormulaEditorItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C37A0A9212E7E540074F417 /* FormulaEditorItem.swift */; };
+		4C3A5C9921D3B23E008FD83F /* PlusOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A5C9821D3B23E008FD83F /* PlusOperatorTest.swift */; };
+		4C3A5C9D21D3B38A008FD83F /* MinusOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A5C9C21D3B38A008FD83F /* MinusOperatorTest.swift */; };
+		4C3A5C9F21D3B3F9008FD83F /* AndOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A5C9E21D3B3F9008FD83F /* AndOperatorTest.swift */; };
+		4C3A5CA121D3B4DF008FD83F /* OrOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A5CA021D3B4DF008FD83F /* OrOperatorTest.swift */; };
+		4C3A5CA321D3B542008FD83F /* MultOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A5CA221D3B542008FD83F /* MultOperator.swift */; };
+		4C3A5CA521D3B5D1008FD83F /* DivideOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A5CA421D3B5D1008FD83F /* DivideOperatorTest.swift */; };
+		4C3A5CA721D3B687008FD83F /* EqualOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A5CA621D3B687008FD83F /* EqualOperatorTest.swift */; };
+		4C3A5CA921D3B7EF008FD83F /* NotEqualOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A5CA821D3B7EF008FD83F /* NotEqualOperatorTest.swift */; };
+		4C3A5CAB21D3B967008FD83F /* SmallerThanOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A5CAA21D3B967008FD83F /* SmallerThanOperatorTest.swift */; };
+		4C3A5CAD21D3BAB9008FD83F /* GreaterThanOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A5CAC21D3BAB9008FD83F /* GreaterThanOperatorTest.swift */; };
 		4C48ED2520EF9A1D00784CD5 /* AudioManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C48ED2420EF9A1D00784CD5 /* AudioManagerProtocol.swift */; };
 		4C48ED2920EF9AEC00784CD5 /* AudioManager+Loudness.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C48ED2820EF9AEC00784CD5 /* AudioManager+Loudness.swift */; };
 		4C4A71921B52733C00BBE32B /* CBXMLAbstractContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4A71911B52733C00BBE32B /* CBXMLAbstractContext.m */; };
@@ -1511,6 +1521,16 @@
 		4C37A0A4212E767C0074F417 /* ArduinoDigitalPinFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArduinoDigitalPinFunction.swift; sourceTree = "<group>"; };
 		4C37A0A6212E76C90074F417 /* ArduinoDigitalPinFunctionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArduinoDigitalPinFunctionTest.swift; sourceTree = "<group>"; };
 		4C37A0A9212E7E540074F417 /* FormulaEditorItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaEditorItem.swift; sourceTree = "<group>"; };
+		4C3A5C9821D3B23E008FD83F /* PlusOperatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusOperatorTest.swift; sourceTree = "<group>"; };
+		4C3A5C9C21D3B38A008FD83F /* MinusOperatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinusOperatorTest.swift; sourceTree = "<group>"; };
+		4C3A5C9E21D3B3F9008FD83F /* AndOperatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AndOperatorTest.swift; sourceTree = "<group>"; };
+		4C3A5CA021D3B4DF008FD83F /* OrOperatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrOperatorTest.swift; sourceTree = "<group>"; };
+		4C3A5CA221D3B542008FD83F /* MultOperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultOperator.swift; sourceTree = "<group>"; };
+		4C3A5CA421D3B5D1008FD83F /* DivideOperatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DivideOperatorTest.swift; sourceTree = "<group>"; };
+		4C3A5CA621D3B687008FD83F /* EqualOperatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EqualOperatorTest.swift; sourceTree = "<group>"; };
+		4C3A5CA821D3B7EF008FD83F /* NotEqualOperatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotEqualOperatorTest.swift; sourceTree = "<group>"; };
+		4C3A5CAA21D3B967008FD83F /* SmallerThanOperatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallerThanOperatorTest.swift; sourceTree = "<group>"; };
+		4C3A5CAC21D3BAB9008FD83F /* GreaterThanOperatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreaterThanOperatorTest.swift; sourceTree = "<group>"; };
 		4C3AE2991B03526C005E1F57 /* BrickCellDataProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BrickCellDataProtocol.h; sourceTree = "<group>"; };
 		4C3AEF2E198E7EDD00604ABF /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		4C4867BF1AC2CA6D009D679D /* BrickMessageProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickMessageProtocol.h; sourceTree = "<group>"; };
@@ -3735,6 +3755,16 @@
 			isa = PBXGroup;
 			children = (
 				4C669E4321CE9B6400563EAD /* Mocks */,
+				4C3A5C9821D3B23E008FD83F /* PlusOperatorTest.swift */,
+				4C3A5C9C21D3B38A008FD83F /* MinusOperatorTest.swift */,
+				4C3A5C9E21D3B3F9008FD83F /* AndOperatorTest.swift */,
+				4C3A5CA021D3B4DF008FD83F /* OrOperatorTest.swift */,
+				4C3A5CA221D3B542008FD83F /* MultOperator.swift */,
+				4C3A5CA421D3B5D1008FD83F /* DivideOperatorTest.swift */,
+				4C3A5CA621D3B687008FD83F /* EqualOperatorTest.swift */,
+				4C3A5CA821D3B7EF008FD83F /* NotEqualOperatorTest.swift */,
+				4C3A5CAA21D3B967008FD83F /* SmallerThanOperatorTest.swift */,
+				4C3A5CAC21D3BAB9008FD83F /* GreaterThanOperatorTest.swift */,
 			);
 			path = Operators;
 			sourceTree = "<group>";
@@ -8480,6 +8510,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C099F6E1C282B3C00E190CA /* CBBackendTests.swift in Sources */,
+				4C3A5CAD21D3BAB9008FD83F /* GreaterThanOperatorTest.swift in Sources */,
 				4C6FE165212D2D2E0067B7D5 /* PiFunctionTest.swift in Sources */,
 				AA70F7F11B866E9B003057C6 /* CBFrontendTests.swift in Sources */,
 				4CEB22551B95E47500B3BE2F /* ChangeBrightnessByNBrickTests.m in Sources */,
@@ -8499,6 +8530,7 @@
 				4C82265A213FA7A400F3D750 /* TouchManagerMock.swift in Sources */,
 				5973F245202EF3A000A4CED9 /* SoundsLibraryCollectionViewDataSourceDelegateMock.swift in Sources */,
 				BA38080921A1CBB70075B831 /* XMLParserBrickTests095.swift in Sources */,
+				4C3A5CA921D3B7EF008FD83F /* NotEqualOperatorTest.swift in Sources */,
 				4C0F9FD3204BD3B400E71B2D /* BubbleBrickTests.swift in Sources */,
 				4C822672213FA7A400F3D750 /* InclinationYSensorTest.swift in Sources */,
 				4C822657213FA7A400F3D750 /* MotionManagerMock.swift in Sources */,
@@ -8513,6 +8545,7 @@
 				4CBDF1A921CF830E00325338 /* UnaryOperatorMock.swift in Sources */,
 				4CE1D431213E5C130014DAF9 /* CBSpriteNodeMock.swift in Sources */,
 				4CB412202198635900FC4594 /* VariablesContainerTest.swift in Sources */,
+				4C3A5CA121D3B4DF008FD83F /* OrOperatorTest.swift in Sources */,
 				4C6FE178212D2D2E0067B7D5 /* JoinFunctionTest.swift in Sources */,
 				4C6FE174212D2D2E0067B7D5 /* ElementFunctionTest.swift in Sources */,
 				4C0F9FD5204BD3C200E71B2D /* ChooseCameraBrickTests.swift in Sources */,
@@ -8542,6 +8575,7 @@
 				4C37A0A7212E76C90074F417 /* ArduinoDigitalPinFunctionTest.swift in Sources */,
 				4C82265F213FA7A400F3D750 /* FingerTouchedSensorTest.swift in Sources */,
 				4CAC7DA21DCF444A00EC7D6F /* CBSceneTouchTests.swift in Sources */,
+				4C3A5CA521D3B5D1008FD83F /* DivideOperatorTest.swift in Sources */,
 				4CEB22621B95E47500B3BE2F /* SetBrightnessBrickTests.m in Sources */,
 				4C68FC961B25A00B00AB3EE8 /* InternFormulaUtilsTest.m in Sources */,
 				4C6FE15B212D2D2E0067B7D5 /* CeilFunctionTest.swift in Sources */,
@@ -8561,6 +8595,7 @@
 				4CEB225D1B95E47500B3BE2F /* MoveNStepsBrickTests.m in Sources */,
 				4CEB22531B95E47500B3BE2F /* BrickMutableCopyTests.m in Sources */,
 				4C1F6FA7213CFB5800C20BEB /* FunctionTests.swift in Sources */,
+				4C3A5CAB21D3B967008FD83F /* SmallerThanOperatorTest.swift in Sources */,
 				4C822653213FA7A400F3D750 /* ObjectDoubleSensorMock.swift in Sources */,
 				4CEB22661B95E47500B3BE2F /* SetXBrickTests.m in Sources */,
 				4C0F9FDB204BD3E100E71B2D /* SetBackgroundBrickTests.m in Sources */,
@@ -8593,6 +8628,7 @@
 				4CDF7BBE213875A900FFF7F4 /* ProgramMock.m in Sources */,
 				4C0F9FD9204BD3D500E71B2D /* RepeatUntilBrickTests.swift in Sources */,
 				4C82266B213FA7A400F3D750 /* DateYearSensorTest.swift in Sources */,
+				4C3A5C9921D3B23E008FD83F /* PlusOperatorTest.swift in Sources */,
 				BA38081121A1FE750075B831 /* XMLParserTests098.swift in Sources */,
 				4CEB22761B95E4BC00B3BE2F /* BrickInsertManagerRepeatTests.m in Sources */,
 				4CAB10091ECF1A9A0019A67B /* HideTextBrickTests.swift in Sources */,
@@ -8606,6 +8642,7 @@
 				92BCDC851BF1DE2A00F9CB23 /* FirmataTests.swift in Sources */,
 				4C822652213FA7A400F3D750 /* LocationManagerMock.swift in Sources */,
 				599E64A6202DB2FB009494B5 /* MediaLibraryDownloaderMock.swift in Sources */,
+				4C3A5C9F21D3B3F9008FD83F /* AndOperatorTest.swift in Sources */,
 				4C28D7952133BC1D00870CE2 /* FormulaManagerTests.swift in Sources */,
 				4CAB100D1ECF1AB20019A67B /* SetVariableBrickTests.swift in Sources */,
 				4C82266E213FA7A400F3D750 /* DateWeekdaySensorTest.swift in Sources */,
@@ -8680,6 +8717,7 @@
 				599E64AA202DB3E8009494B5 /* MediaLibraryCollectionViewDataSourceTests.swift in Sources */,
 				4CEB22641B95E47500B3BE2F /* SetSizeToBrickTests.m in Sources */,
 				4C82266C213FA7A400F3D750 /* TimeHourSensorTest.swift in Sources */,
+				4C3A5C9D21D3B38A008FD83F /* MinusOperatorTest.swift in Sources */,
 				4C6FE162212D2D2E0067B7D5 /* LnFunctionTest.swift in Sources */,
 				4CEB225A1B95E47500B3BE2F /* GoNStepsBackBrickTests.m in Sources */,
 				4CAB100F1ECF1AC60019A67B /* ShowTextBrickTests.swift in Sources */,
@@ -8695,6 +8733,8 @@
 				4C6FE168212D2D2E0067B7D5 /* TanFunctionTest.swift in Sources */,
 				4CD0BA9921467C5A00BF17A4 /* HeaderTests.swift in Sources */,
 				4CEB22601B95E47500B3BE2F /* PointInDirectionBrickTests.m in Sources */,
+				4C3A5CA721D3B687008FD83F /* EqualOperatorTest.swift in Sources */,
+				4C3A5CA321D3B542008FD83F /* MultOperator.swift in Sources */,
 				4C82268F213FB2C600F3D750 /* MultiFingerYFunctionTests.swift in Sources */,
 				4C6FE16D212D2D2E0067B7D5 /* PowFunctionTest.swift in Sources */,
 				4C68FC911B25A00B00AB3EE8 /* InternFormulaParserStringFunctionsTest.m in Sources */,

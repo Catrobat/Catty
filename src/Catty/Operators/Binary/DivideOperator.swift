@@ -27,8 +27,8 @@
     static var priority = 6
 
     func value(left: AnyObject, right: AnyObject) -> Double {
-        let leftDouble = self.doubleParameter(object: left)
-        let rightDouble = self.doubleParameter(object: right)
+        let leftDouble = doubleParameter(object: left)
+        let rightDouble = doubleParameter(object: right)
 
         return leftDouble / rightDouble
     }
