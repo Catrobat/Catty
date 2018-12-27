@@ -48,13 +48,13 @@ final class RepeatBrickTests: XCTestCase {
         repeatBrick.script = script
 
         repeatBrick.timesToRepeat = Formula(double: 2)
-        XCTAssertEqual(0, repeatBrick.loopCount)
+        XCTAssertEqual(0, repeatBrick.repetitions)
 
         XCTAssertTrue(repeatBrick.checkCondition(formulaInterpreter: interpreter))
-        XCTAssertEqual(1, repeatBrick.loopCount)
+        XCTAssertEqual(1, repeatBrick.repetitions)
 
         XCTAssertTrue(repeatBrick.checkCondition(formulaInterpreter: interpreter))
-        XCTAssertEqual(2, repeatBrick.loopCount)
+        XCTAssertEqual(2, repeatBrick.repetitions)
 
         XCTAssertFalse(repeatBrick.checkCondition(formulaInterpreter: interpreter))
     }
@@ -70,7 +70,7 @@ final class RepeatBrickTests: XCTestCase {
 
         repeatBrick.timesToRepeat = Formula(double: 1)
         XCTAssertTrue(repeatBrick.checkCondition(formulaInterpreter: interpreter))
-        XCTAssertEqual(1, repeatBrick.loopCount)
+        XCTAssertEqual(1, repeatBrick.repetitions)
 
         repeatBrick.timesToRepeat = Formula(double: 10)
         XCTAssertFalse(repeatBrick.checkCondition(formulaInterpreter: interpreter))
@@ -78,9 +78,11 @@ final class RepeatBrickTests: XCTestCase {
 
     func testResetCondition() {
         let repeatBrick = RepeatBrick()
-        repeatBrick.loopCount = 2
+        repeatBrick.repetitions = 2
+        repeatBrick.maxRepetitions = 10
 
         repeatBrick.resetCondition()
-        XCTAssertEqual(0, repeatBrick.loopCount)
+        XCTAssertEqual(0, repeatBrick.repetitions)
+        XCTAssertNil(repeatBrick.maxRepetitions)
     }
 }
