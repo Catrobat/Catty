@@ -58,7 +58,7 @@
 #define kAddScriptCategoryTableViewBottomMargin 15.0f
 
 // delete button bricks
-#define kBrickCellDeleteButtonWidthHeight 50.0f
+#define kBrickCellDeleteButtonWidthHeight 55.0f
 #define kSelectButtonOffset 30.0f
 #define kSelectButtonTranslationOffsetX 60.0f
 #define kScriptCollectionViewInset 5.0f
