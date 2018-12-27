@@ -58,7 +58,7 @@
 #define kAddScriptCategoryTableViewBottomMargin 15.0f
 
 // delete button bricks
-#define kBrickCellDeleteButtonWidthHeight 50.0f
+#define kBrickCellDeleteButtonWidthHeight 55.0f
 #define kSelectButtonOffset 30.0f
 #define kSelectButtonTranslationOffsetX 60.0f
 #define kScriptCollectionViewInset 5.0f
@@ -473,7 +473,7 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 }
 
 // brick heights
-#define kBrickHeight1h 48.9f
+#define kBrickHeight1h 55.9f
 #define kBrickHeight2h 75.9f
 #define kBrickHeight3h 98.9f
 #define kBrickHeightControl1h 72.4f

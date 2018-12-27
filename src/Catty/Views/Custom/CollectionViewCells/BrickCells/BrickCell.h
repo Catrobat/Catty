@@ -28,7 +28,7 @@
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "Util.h"
 
-#define smallBrick 44.0f
+#define smallBrick 51.0f
 #define mediumBrick 71.0f
 #define largeBrick  94.0f
 #define roundedLargeBrick 102.0f
