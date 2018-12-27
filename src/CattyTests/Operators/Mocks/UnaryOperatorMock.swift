@@ -36,6 +36,10 @@ class UnaryOperatorMock: UnaryOperator {
         self.mockedSections = formulaEditorSections
     }
 
+    convenience init(value: Double) {
+        self.init(value: value, formulaEditorSections: [])
+    }
+
     convenience init(value: Double, formulaEditorSection: FormulaEditorSection) {
         self.init(value: value, formulaEditorSections: [formulaEditorSection])
     }

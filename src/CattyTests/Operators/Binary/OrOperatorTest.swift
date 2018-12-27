@@ -24,13 +24,13 @@ import XCTest
 
 @testable import Pocket_Code
 
-class EqualOperatorTest: XCTestCase {
+class OrOperatorTest: XCTestCase {
 
-    var op: EqualOperator!
+    var op: OrOperator!
 
     override func setUp() {
         super.setUp()
-        op = EqualOperator()
+        op = OrOperator()
     }
 
     override func tearDown() {
@@ -39,17 +39,22 @@ class EqualOperatorTest: XCTestCase {
     }
 
     func testValue() {
-        XCTAssertTrue(op.value(left: 0 as AnyObject, right: 0 as AnyObject))
+        XCTAssertFalse(op.value(left: 0 as AnyObject, right: 0 as AnyObject))
         XCTAssertFalse(op.value(left: "a" as AnyObject, right: "b" as AnyObject))
-        XCTAssertTrue(op.value(left: "a" as AnyObject, right: "a" as AnyObject))
         XCTAssertTrue(op.value(left: "1" as AnyObject, right: "1" as AnyObject))
-        XCTAssertTrue(op.value(left: "1.0" as AnyObject, right: "1" as AnyObject))
-        XCTAssertFalse(op.value(left: "1" as AnyObject, right: "abc" as AnyObject))
+        XCTAssertTrue(op.value(left: "1" as AnyObject, right: "abc" as AnyObject))
         XCTAssertTrue(op.value(left: "1" as AnyObject, right: 1 as AnyObject))
-        XCTAssertFalse(op.value(left: "0" as AnyObject, right: 1 as AnyObject))
-        XCTAssertTrue(op.value(left: 2 as AnyObject, right: 2 as AnyObject))
-        XCTAssertTrue(op.value(left: "abc" as AnyObject, right: "abc" as AnyObject))
+        XCTAssertTrue(op.value(left: "0" as AnyObject, right: 1 as AnyObject))
+        XCTAssertTrue(op.value(left: 2 as AnyObject, right: "1" as AnyObject))
+        XCTAssertTrue(op.value(left: -0.1 as AnyObject, right: "-1" as AnyObject))
+        XCTAssertTrue(op.value(left: 0 as AnyObject, right: 0.1 as AnyObject))
         XCTAssertTrue(op.value(left: 0.001 as AnyObject, right: 0.001 as AnyObject))
+    }
+
+    func testPriority() {
+        XCTAssertLessThan(type(of: op).priority, MultOperator.priority)
+        XCTAssertLessThan(type(of: op).priority, DivideOperator.priority)
+        XCTAssertLessThan(type(of: op).priority, AndOperator.priority)
     }
 
     func testFormulaEditorSections() {

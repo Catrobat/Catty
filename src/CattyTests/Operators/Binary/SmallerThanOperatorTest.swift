@@ -50,6 +50,12 @@ class SmallerThanOperatorTest: XCTestCase {
         XCTAssertTrue(op.value(left: -1.5 as AnyObject, right: -1.4 as AnyObject))
     }
 
+    func testPriority() {
+        XCTAssertEqual(type(of: op).priority, SmallerOrEqualOperator.priority)
+        XCTAssertGreaterThan(type(of: op).priority, OrOperator.priority)
+        XCTAssertLessThan(type(of: op).priority, PlusOperator.priority)
+    }
+
     func testFormulaEditorSections() {
         let sections = op.formulaEditorSections()
         XCTAssertEqual(1, sections.count)

@@ -23,7 +23,7 @@
 @objc class NotOperator: NSObject, UnaryLogicalOperator {
 
     @objc static var tag = "LOGICAL_NOT"
-    static var name = "<"
+    static var name = kUIFEOperatorNot
     static var priority = 4
     static var position = 9
 

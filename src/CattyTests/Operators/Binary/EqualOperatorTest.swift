@@ -24,13 +24,13 @@ import XCTest
 
 @testable import Pocket_Code
 
-class NotEqualOperatorTest: XCTestCase {
+class EqualOperatorTest: XCTestCase {
 
-    var op: NotEqualOperator!
+    var op: EqualOperator!
 
     override func setUp() {
         super.setUp()
-        op = NotEqualOperator()
+        op = EqualOperator()
     }
 
     override func tearDown() {
@@ -39,17 +39,23 @@ class NotEqualOperatorTest: XCTestCase {
     }
 
     func testValue() {
-        XCTAssertFalse(op.value(left: 0 as AnyObject, right: 0 as AnyObject))
-        XCTAssertTrue(op.value(left: "a" as AnyObject, right: "b" as AnyObject))
-        XCTAssertFalse(op.value(left: "a" as AnyObject, right: "a" as AnyObject))
-        XCTAssertFalse(op.value(left: "1" as AnyObject, right: "1" as AnyObject))
-        XCTAssertFalse(op.value(left: "1.0" as AnyObject, right: "1" as AnyObject))
-        XCTAssertTrue(op.value(left: "1" as AnyObject, right: "abc" as AnyObject))
-        XCTAssertFalse(op.value(left: "1" as AnyObject, right: 1 as AnyObject))
-        XCTAssertTrue(op.value(left: "0" as AnyObject, right: 1 as AnyObject))
-        XCTAssertFalse(op.value(left: 2 as AnyObject, right: 2 as AnyObject))
-        XCTAssertFalse(op.value(left: "abc" as AnyObject, right: "abc" as AnyObject))
-        XCTAssertFalse(op.value(left: 0.001 as AnyObject, right: 0.001 as AnyObject))
+        XCTAssertTrue(op.value(left: 0 as AnyObject, right: 0 as AnyObject))
+        XCTAssertFalse(op.value(left: "a" as AnyObject, right: "b" as AnyObject))
+        XCTAssertTrue(op.value(left: "a" as AnyObject, right: "a" as AnyObject))
+        XCTAssertTrue(op.value(left: "1" as AnyObject, right: "1" as AnyObject))
+        XCTAssertTrue(op.value(left: "1.0" as AnyObject, right: "1" as AnyObject))
+        XCTAssertFalse(op.value(left: "1" as AnyObject, right: "abc" as AnyObject))
+        XCTAssertTrue(op.value(left: "1" as AnyObject, right: 1 as AnyObject))
+        XCTAssertFalse(op.value(left: "0" as AnyObject, right: 1 as AnyObject))
+        XCTAssertTrue(op.value(left: 2 as AnyObject, right: 2 as AnyObject))
+        XCTAssertTrue(op.value(left: "abc" as AnyObject, right: "abc" as AnyObject))
+        XCTAssertTrue(op.value(left: 0.001 as AnyObject, right: 0.001 as AnyObject))
+    }
+
+    func testPriority() {
+        XCTAssertGreaterThan(type(of: op).priority, AndOperator.priority)
+        XCTAssertGreaterThan(type(of: op).priority, OrOperator.priority)
+        XCTAssertLessThan(type(of: op).priority, PlusOperator.priority)
     }
 
     func testFormulaEditorSections() {

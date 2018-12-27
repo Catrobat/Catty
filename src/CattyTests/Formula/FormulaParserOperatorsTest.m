@@ -244,7 +244,7 @@
     [self binaryOperatorTest:secondTerm withExpectedResult:@"1"];
     
     secondTerm = [self buildBinaryOperator:TOKEN_TYPE_STRING firstValue:@"1" withOperator:EqualOperator.tag secondTokenType:TOKEN_TYPE_STRING secondValue:@"1.0"];
-    [self binaryOperatorTest:secondTerm withExpectedResult:@"0"];
+    [self binaryOperatorTest:secondTerm withExpectedResult:@"1"];
     
     secondTerm = [self buildBinaryOperator:TOKEN_TYPE_STRING firstValue:@"1" withOperator:EqualOperator.tag secondTokenType:TOKEN_TYPE_NUMBER secondValue:@"1.0"];
     [self binaryOperatorTest:secondTerm withExpectedResult:@"1"];
@@ -277,7 +277,7 @@
     [self binaryOperatorTest:secondTerm withExpectedResult:@"0"];
     
     secondTerm = [self buildBinaryOperator:TOKEN_TYPE_STRING firstValue:@"1" withOperator:NotEqualOperator.tag secondTokenType:TOKEN_TYPE_STRING secondValue:@"1.0"];
-    [self binaryOperatorTest:secondTerm withExpectedResult:@"1"];
+    [self binaryOperatorTest:secondTerm withExpectedResult:@"0"];
     
     secondTerm = [self buildBinaryOperator:TOKEN_TYPE_STRING firstValue:@"!`\"§$%&/()=?" withOperator:NotEqualOperator.tag secondTokenType:TOKEN_TYPE_STRING secondValue:@"!`\"§$%&/()=????"];
     [self binaryOperatorTest:secondTerm withExpectedResult:@"1"];
@@ -286,7 +286,7 @@
     [self binaryOperatorTest:secondTerm withExpectedResult:@"1"];
     
     secondTerm = [self buildBinaryOperator:TOKEN_TYPE_STRING firstValue:@"1,555.555" withOperator:EqualOperator.tag secondTokenType:TOKEN_TYPE_STRING secondValue:@"1555.555"];
-    [self binaryOperatorTest:secondTerm withExpectedResult:@","];
+    [self binaryOperatorTest:secondTerm withExpectedResult:@"0"];
 }
 
 - (void)testNot
