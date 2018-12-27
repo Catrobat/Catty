@@ -32,10 +32,10 @@ class XMLParserTests092: XMLAbstractTest {
         XCTAssertEqual(1, program.objectList.count)
 
         let object = program.objectList[0] as! SpriteObject
-        XCTAssertEqual(2, object.scriptList.count)
+        XCTAssertEqual(3, object.scriptList.count)
 
         let startScript = object.scriptList[0] as! StartScript
-        XCTAssertEqual(2, startScript.brickList.count)
+        XCTAssertEqual(3, startScript.brickList.count)
 
         let waitBrick = startScript.brickList[0] as AnyObject
         XCTAssertTrue(waitBrick.isKind(of: WaitBrick.self))
@@ -53,7 +53,7 @@ class XMLParserTests092: XMLAbstractTest {
         XCTAssertEqual(1, program.objectList.count)
 
         let object = program.objectList[0] as! SpriteObject
-        XCTAssertEqual(2, object.scriptList.count)
+        XCTAssertEqual(3, object.scriptList.count)
 
         let unknownScript = object.scriptList[1] as AnyObject
         XCTAssertTrue(unknownScript.isKind(of: BroadcastScript.self))
@@ -64,5 +64,13 @@ class XMLParserTests092: XMLAbstractTest {
 
         let secondWaitBrick = broadcastScript.brickList[0] as AnyObject
         XCTAssertTrue(secondWaitBrick.isKind(of: WaitBrick.self))
+    }
+
+    func testUnsupportedElements() {
+        let program = self.getProgramForXML(xmlFile: "InvalidBricksAndScripts")
+
+        XCTAssertEqual(2, program.unsupportedElements.count)
+        XCTAssertTrue(program.unsupportedElements.contains("InvalidScript"))
+        XCTAssertTrue(program.unsupportedElements.contains("InvalidBrick"))
     }
 }

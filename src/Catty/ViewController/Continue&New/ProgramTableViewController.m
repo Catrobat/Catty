@@ -30,7 +30,6 @@
 #import "DarkBlueGradientImageDetailCell.h"
 #import "Util.h"
 #import "UIUtil.h"
-#import "UIImageView+CatrobatUIImageViewExtensions.h"
 #import "ProgramUpdateDelegate.h"
 #import "CellTagDefines.h"
 #import "ProgramTableHeaderView.h"
@@ -66,11 +65,6 @@
 }
 
 #pragma mark - view events
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:YES];
-    [self.tableView reloadData];
-}
 
 - (void)viewDidLoad
 {
@@ -92,6 +86,13 @@
     if(self.showAddObjectActionSheetAtStart) {
         [self addObjectAction:nil];
     }
+    [self checkUnsupportedElements];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    [self.tableView reloadData];
 }
 
 #pragma mark - actions
@@ -100,26 +101,26 @@
     [self.tableView setEditing:false animated:YES];
     
     [[[[[[[AlertControllerBuilder textFieldAlertWithTitle:kLocalizedAddObject message:[NSString stringWithFormat:@"%@:", kLocalizedObjectName]]
-     placeholder:kLocalizedEnterYourObjectNameHere]
-     addCancelActionWithTitle:kLocalizedCancel handler:^{
-         [self cancelAddingObjectFromScriptEditor];
-     }]
-     addDefaultActionWithTitle:kLocalizedOK handler:^(NSString *name) {
-         [self addObjectActionWithName:name];
-     }]
-     valueValidator:^InputValidationResult *(NSString *name) {
-         InputValidationResult *result = [Util validationResultWithName:name
-                                                              minLength:kMinNumOfObjectNameCharacters
-                                                              maxlength:kMaxNumOfObjectNameCharacters];
-         if (!result.valid) {
-             return result;
-         }
-         // Alert for Objects with same name
-         if ([[self.program allObjectNames] containsObject:name]) {
-             return [InputValidationResult invalidInputWithLocalizedMessage:kLocalizedObjectNameAlreadyExistsDescription];
-         }
-         return [InputValidationResult validInput];
-     }] build]
+          placeholder:kLocalizedEnterYourObjectNameHere]
+         addCancelActionWithTitle:kLocalizedCancel handler:^{
+             [self cancelAddingObjectFromScriptEditor];
+         }]
+        addDefaultActionWithTitle:kLocalizedOK handler:^(NSString *name) {
+            [self addObjectActionWithName:name];
+        }]
+       valueValidator:^InputValidationResult *(NSString *name) {
+           InputValidationResult *result = [Util validationResultWithName:name
+                                                                minLength:kMinNumOfObjectNameCharacters
+                                                                maxlength:kMaxNumOfObjectNameCharacters];
+           if (!result.valid) {
+               return result;
+           }
+           // Alert for Objects with same name
+           if ([[self.program allObjectNames] containsObject:name]) {
+               return [InputValidationResult invalidInputWithLocalizedMessage:kLocalizedObjectNameAlreadyExistsDescription];
+           }
+           return [InputValidationResult validInput];
+       }] build]
      showWithController:self];
 }
 
@@ -236,32 +237,32 @@
     NSString *detailActionTitle = self.useDetailCells ? kLocalizedHideDetails : kLocalizedShowDetails;
     
     [[[[[actionSheet
-     addDefaultActionWithTitle:kLocalizedRenameProgram handler:^{
-         NSMutableArray *unavailableNames = [[Program allProgramNames] mutableCopy];
-         [unavailableNames removeString:self.program.header.programName];
-         [Util askUserForUniqueNameAndPerformAction:@selector(renameProgramActionForProgramWithName:)
-                                             target:self
-                                        promptTitle:kLocalizedRenameProgram
-                                      promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedProgramName]
-                                        promptValue:((! [self.program.header.programName isEqualToString:kLocalizedNewProgram])
-                                                     ? self.program.header.programName : nil)
-                                  promptPlaceholder:kLocalizedEnterYourProgramNameHere
-                                     minInputLength:kMinNumOfProgramNameCharacters
-                                     maxInputLength:kMaxNumOfProgramNameCharacters
-                           invalidInputAlertMessage:kLocalizedProgramNameAlreadyExistsDescription
-                                      existingNames:unavailableNames];
-    }]
-    addDefaultActionWithTitle:detailActionTitle handler:^{
-        [self toggleDetailCellsMode];
-    }]
-    addDefaultActionWithTitle:kLocalizedDescription handler:^{
-        ProgramDescriptionViewController *dViewController = [[ProgramDescriptionViewController alloc] init];
-        dViewController.delegate = self;
-        
-        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:dViewController];
-        [self.navigationController presentViewController:navigationController animated:YES completion:nil];
-    }] build]
-    showWithController:self];
+         addDefaultActionWithTitle:kLocalizedRenameProgram handler:^{
+             NSMutableArray *unavailableNames = [[Program allProgramNames] mutableCopy];
+             [unavailableNames removeString:self.program.header.programName];
+             [Util askUserForUniqueNameAndPerformAction:@selector(renameProgramActionForProgramWithName:)
+                                                 target:self
+                                            promptTitle:kLocalizedRenameProgram
+                                          promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedProgramName]
+                                            promptValue:((! [self.program.header.programName isEqualToString:kLocalizedNewProgram])
+                                                         ? self.program.header.programName : nil)
+                                      promptPlaceholder:kLocalizedEnterYourProgramNameHere
+                                         minInputLength:kMinNumOfProgramNameCharacters
+                                         maxInputLength:kMaxNumOfProgramNameCharacters
+                               invalidInputAlertMessage:kLocalizedProgramNameAlreadyExistsDescription
+                                          existingNames:unavailableNames];
+         }]
+        addDefaultActionWithTitle:detailActionTitle handler:^{
+            [self toggleDetailCellsMode];
+        }]
+       addDefaultActionWithTitle:kLocalizedDescription handler:^{
+           ProgramDescriptionViewController *dViewController = [[ProgramDescriptionViewController alloc] init];
+           dViewController.delegate = self;
+
+           UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:dViewController];
+           [self.navigationController presentViewController:navigationController animated:YES completion:nil];
+       }] build]
+     showWithController:self];
 }
 
 - (void)toggleDetailCellsMode {
@@ -368,7 +369,6 @@
     NSInteger index = (kBackgroundSectionIndex + indexPath.section + indexPath.row);
     SpriteObject *object = [self.program.objectList objectAtIndex:index];
     imageCell.iconImageView.image = nil;
-    [imageCell.iconImageView setBorder:[UIColor utilityTintColor] Width:kDefaultImageCellBorderWidth];
 
     if (self.useDetailCells && [cell isKindOfClass:[DarkBlueGradientImageDetailCell class]]) {
         DarkBlueGradientImageDetailCell *detailCell = (DarkBlueGradientImageDetailCell*)imageCell;
@@ -485,29 +485,29 @@
         SpriteObject *spriteObject = [self.program.objectList objectAtIndex:spriteObjectIndex];
         
         [[[[[[[AlertControllerBuilder actionSheetWithTitle:kLocalizedEditObject]
-         addCancelActionWithTitle:kLocalizedCancel handler:nil]
-         addDefaultActionWithTitle:kLocalizedCopy handler:^{
-             [self copyObjectActionWithSourceObject:spriteObject];
-         }]
-         addDefaultActionWithTitle:kLocalizedRename handler:^{
-             NSMutableArray *unavailableNames = [[self.program allObjectNames] mutableCopy];
-             [unavailableNames removeString:spriteObject.name];
-             [Util askUserForUniqueNameAndPerformAction:@selector(renameObjectActionToName:spriteObject:)
-                                                 target:self
-                                           cancelAction:nil
-                                             withObject:spriteObject
-                                            promptTitle:kLocalizedRenameObject
-                                          promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedObjectName]
-                                            promptValue:spriteObject.name
-                                      promptPlaceholder:kLocalizedEnterYourObjectNameHere
-                                         minInputLength:kMinNumOfObjectNameCharacters
-                                         maxInputLength:kMaxNumOfObjectNameCharacters
-                               invalidInputAlertMessage:kLocalizedObjectNameAlreadyExistsDescription
-                                          existingNames:unavailableNames];
-         }] build]
-         viewWillDisappear:^{
-             [self.tableView setEditing:false animated:YES];
-         }]
+              addCancelActionWithTitle:kLocalizedCancel handler:nil]
+             addDefaultActionWithTitle:kLocalizedCopy handler:^{
+                 [self copyObjectActionWithSourceObject:spriteObject];
+             }]
+            addDefaultActionWithTitle:kLocalizedRename handler:^{
+                NSMutableArray *unavailableNames = [[self.program allObjectNames] mutableCopy];
+                [unavailableNames removeString:spriteObject.name];
+                [Util askUserForUniqueNameAndPerformAction:@selector(renameObjectActionToName:spriteObject:)
+                                                    target:self
+                                              cancelAction:nil
+                                                withObject:spriteObject
+                                               promptTitle:kLocalizedRenameObject
+                                             promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedObjectName]
+                                               promptValue:spriteObject.name
+                                         promptPlaceholder:kLocalizedEnterYourObjectNameHere
+                                            minInputLength:kMinNumOfObjectNameCharacters
+                                            maxInputLength:kMaxNumOfObjectNameCharacters
+                                  invalidInputAlertMessage:kLocalizedObjectNameAlreadyExistsDescription
+                                             existingNames:unavailableNames];
+            }] build]
+          viewWillDisappear:^{
+              [self.tableView setEditing:false animated:YES];
+          }]
          showWithController:self];
     }];
     moreAction.backgroundColor = [UIColor globalTintColor];
@@ -518,10 +518,10 @@
             return;
         }
         [[[[[AlertControllerBuilder alertWithTitle:kLocalizedDeleteThisObject message:kLocalizedThisActionCannotBeUndone]
-         addCancelActionWithTitle:kLocalizedCancel handler:nil]
-         addDefaultActionWithTitle:kLocalizedYes handler:^{
-             [self deleteObjectForIndexPath:indexPath];
-         }] build]
+            addCancelActionWithTitle:kLocalizedCancel handler:nil]
+           addDefaultActionWithTitle:kLocalizedYes handler:^{
+               [self deleteObjectForIndexPath:indexPath];
+           }] build]
          showWithController:self];
     }];
     return @[deleteAction, moreAction];
@@ -548,8 +548,8 @@
         headerView.textLabel.text = [kLocalizedBackground uppercaseString];
     } else {
         headerView.textLabel.text = (([self.program numberOfNormalObjects] != 1)
-                                                    ? [kLocalizedObjects uppercaseString]
-                                                    : [kLocalizedObject uppercaseString]);
+                                     ? [kLocalizedObjects uppercaseString]
+                                     : [kLocalizedObject uppercaseString]);
     }
     return headerView;
 }
@@ -595,6 +595,20 @@
 }
 
 #pragma mark - helpers
+
+- (void)checkUnsupportedElements
+{
+    if (self.program.unsupportedElements && self.program.unsupportedElements.count > 0) {
+        NSString *unsupportedElementsString = [self.program.unsupportedElements.allObjects componentsJoinedByString:@", "];
+        [[[[[[AlertControllerBuilder alertWithTitle:kLocalizedUnsupportedElements message:[NSString stringWithFormat:@"%@\n\n%@", kLocalizedUnsupportedElementsDescription, unsupportedElementsString]] addDefaultActionWithTitle:kLocalizedCancel handler:^{
+            [self.navigationController popViewControllerAnimated:YES];
+        }] addDefaultActionWithTitle:kLocalizedMoreInformation handler:^{
+            [Util openUrlWithString:kUnsupportedElementsUrl];
+        }] addDefaultActionWithTitle:kLocalizedOK handler:nil] build]
+         showWithController:self];
+    }
+}
+
 - (void)setupToolBar
 {
     [super setupToolBar];
@@ -605,12 +619,10 @@
     UIBarButtonItem *play = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
                                                                           target:self
                                                                           action:@selector(playSceneAction:)];
-    // FIXME: workaround for tap area problem:
-    // http://stackoverflow.com/questions/5113258/uitoolbar-unexpectedly-registers-taps-on-uibarbuttonitem-instances-even-when-tap
-    UIBarButtonItem *(^invisibleItem)(void) = ^UIBarButtonItem *() { return [UIBarButtonItem invisibleItem]; };
-    UIBarButtonItem *(^flexItem)(void) = ^UIBarButtonItem *() { return [UIBarButtonItem flexItem]; };
-    self.toolbarItems = [NSArray arrayWithObjects:flexItem(), invisibleItem(), add, invisibleItem(), flexItem(),
-                         flexItem(), flexItem(), invisibleItem(), play, invisibleItem(), flexItem(), nil];
+    UIBarButtonItem *flex = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                                                          target:self
+                                                                          action:nil];
+    self.toolbarItems = [NSArray arrayWithObjects: flex, add, flex, flex, play, flex, nil];
 }
 
 - (void)setupEditingToolBar
@@ -621,12 +633,10 @@
                                                                      style:UIBarButtonItemStylePlain
                                                                     target:self
                                                                     action:@selector(confirmDeleteSelectedObjectsAction:)];
-    // FIXME: workaround for tap area problem:
-    // http://stackoverflow.com/questions/5113258/uitoolbar-unexpectedly-registers-taps-on-uibarbuttonitem-instances-even-when-tap
-    UIBarButtonItem *(^invisibleItem)(void) = ^UIBarButtonItem *() { return [UIBarButtonItem invisibleItem]; };
-    UIBarButtonItem *(^flexItem)(void) = ^UIBarButtonItem *() { return [UIBarButtonItem flexItem]; };
-    self.toolbarItems = [NSArray arrayWithObjects:self.selectAllRowsButtonItem, invisibleItem(), flexItem(),
-                         invisibleItem(), deleteButton, nil];
+    UIBarButtonItem *flex = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                                                          target:self
+                                                                          action:nil];
+    self.toolbarItems = [NSArray arrayWithObjects:self.selectAllRowsButtonItem, flex, deleteButton, nil];
 }
 
 

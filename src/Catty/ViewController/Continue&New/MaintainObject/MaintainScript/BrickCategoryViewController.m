@@ -166,7 +166,7 @@ didSelectItemAtIndexPath:(NSIndexPath*)indexPath
 {
     return UIEdgeInsetsMake(CGRectGetHeight(self.navigationController.navigationBar.bounds) +
                             CGRectGetHeight([UIApplication sharedApplication].statusBarFrame) +
-                            kScriptCollectionViewTopInsets, 0.0f, kScriptCollectionViewBottomInsets, 0.0f);
+                            kScriptCollectionViewInset, 0.0f, kScriptCollectionViewInset, 0.0f);
 }
 
 - (CGFloat)collectionView:(UICollectionView*)collectionView

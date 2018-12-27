@@ -20,8 +20,6 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import Foundation
-
 @objc extension ArduinoSendPWMValueBrick: CBInstructionProtocol {
 
     @nonobjc func instruction() -> CBInstruction {

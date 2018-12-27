@@ -52,11 +52,7 @@
 
 - (void)openTermsOfUse
 {
-    if (@available(iOS 10, *)) {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:kTermsOfUseURL] options:[NSDictionary dictionary] completionHandler:nil];
-    } else {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:kTermsOfUseURL]];
-    }
+    [Util openUrlWithString:kTermsOfUseURL];
 }
 
 

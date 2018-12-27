@@ -28,6 +28,7 @@
 #import "IfThenLogicEndBrick.h"
 #import "IfLogicElseBrick.h"
 #import "IfLogicEndBrick.h"
+#import "Pocket_Code-Swift.h"
 
 @interface BrickSelectionManager()
 
@@ -65,7 +66,6 @@
 
 - (void)brickCell:(BrickCell*)brickCell didSelectBrickCellButton:(SelectButton*)selectButton IndexPath:(NSIndexPath*)indexPath andObject:(SpriteObject*)object
 {
-
     Script *script = [object.scriptList objectAtIndex:indexPath.section];
     if (! script.brickList.count) {
         if (!selectButton.selected) {
@@ -109,9 +109,9 @@
                 [self selectLogicEndWithBrick:brick Script:script IndexPath:indexPath andSelectButton:selectButton];
             } else if ([brick isKindOfClass:[IfLogicElseBrick class]]) {
                 [self selectLogicElseWithBrick:brick Script:script IndexPath:indexPath andSelectButton:selectButton];
-            } else if (! selectButton.selected) {
-                selectButton.selected = selectButton.touchInside;
-                brick.isSelected = selectButton.touchInside;
+            } else if (!selectButton.selected) {
+                selectButton.selected = YES;
+                brick.isSelected = YES;
                 [self.selectedIndexPaths addObject:indexPath];
             } else {
                 selectButton.selected = NO;

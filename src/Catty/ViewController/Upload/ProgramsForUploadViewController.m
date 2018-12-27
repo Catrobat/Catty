@@ -29,7 +29,6 @@
 #import "TableUtil.h"
 #import "ProgramLoadingInfo.h"
 #import "UIDefines.h"
-#import "UIImageView+CatrobatUIImageViewExtensions.h"
 #import "CBFileManager.h"
 #import "RuntimeImageCache.h"
 #import "AppDelegate.h"
@@ -165,7 +164,6 @@
     cell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
     cell.iconImageView.image = nil;
     cell.indexPath = indexPath;
-    [cell.iconImageView setBorder:[UIColor globalTintColor] Width:kDefaultImageCellBorderWidth];
     
     // check if one of these screenshot files is available in memory
     CBFileManager *fileManager = [CBFileManager sharedManager];
@@ -268,8 +266,10 @@
     
     [self.uploadButton setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont boldSystemFontOfSize:18.0f], NSFontAttributeName, nil] forState:UIControlStateNormal];
 
-    UIBarButtonItem *(^flexItem)(void) = ^UIBarButtonItem *() { return [UIBarButtonItem flexItem]; };
-    self.toolbarItems = @[flexItem(), self.uploadButton, flexItem()];
+    UIBarButtonItem *flex = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                                                          target:self
+                                                                          action:nil];
+    self.toolbarItems = @[flex, self.uploadButton, flex];
 }
 
 - (void)showUploadInfoView

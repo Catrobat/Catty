@@ -471,7 +471,6 @@
     app.networkActivityIndicatorVisible = value;
 }
 
-
 #pragma mark - popup delegate
 - (BOOL)dismissPopupWithCode:(BOOL)successLogin
 {

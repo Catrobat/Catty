@@ -45,6 +45,7 @@
 #define kAboutCatrobatURL @"http://www.catrobat.org"
 #define kTermsOfUseURL kBaseUrl @"termsOfUse"
 #define kRecoverPassword kBaseUrl @"resetting/request"
+#define kUnsupportedElementsUrl @"https://catrob.at/ibuf"
 
 #define kConnectionSearch @"search.json"
 #define kConnectionRecent @"recent.json"

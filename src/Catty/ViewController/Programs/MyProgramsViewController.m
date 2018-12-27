@@ -27,7 +27,6 @@
 #import "AppDelegate.h"
 #import "TableUtil.h"
 #import "CellTagDefines.h"
-#import "UIImageView+CatrobatUIImageViewExtensions.h"
 #import "CatrobatImageCell.h"
 #import "SegueDefines.h"
 #import "ProgramUpdateDelegate.h"
@@ -74,12 +73,9 @@
     self.tableView.separatorInset = UIEdgeInsetsZero;
     self.tableView.sectionIndexBackgroundColor = [UIColor backgroundColor];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(downloadFinished:)
-                                                 name:kProgramDownloadedNotification
-                                               object:nil];
-}
 
+    [self setupObservers];
+}
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -454,7 +450,6 @@
     cell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
     cell.iconImageView.image = nil;
     cell.indexPath = indexPath;
-    [cell.iconImageView setBorder:[UIColor utilityTintColor] Width:kDefaultImageCellBorderWidth];
     
     // check if one of these screenshot files is available in memory
     CBFileManager *fileManager = [CBFileManager sharedManager];
@@ -549,8 +544,9 @@
             // check if program loaded successfully -> not nil
             NSString *sectionTitle = [self.sectionTitles objectAtIndex:path.section];
             NSArray *sectionInfos = [self.programLoadingInfoDict objectForKey:[[sectionTitle substringToIndex:1] uppercaseString]];
+
             ProgramLoadingInfo *info = [sectionInfos objectAtIndex:path.row];
-            self.selectedProgram =[Program programWithLoadingInfo:info];
+            self.selectedProgram = [Program programWithLoadingInfo:info];
             if (![self.selectedProgram.header.programName isEqualToString:info.visibleName]) {
                 self.selectedProgram.header.programName = info.visibleName;
                 [self.selectedProgram saveToDiskWithNotification:YES];
@@ -705,6 +701,7 @@
 }
 
 #pragma mark - helpers
+
 - (void)setupToolBar
 {
     [super setupToolBar];
@@ -712,8 +709,10 @@
     UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                          target:self
                                                                          action:@selector(addProgramAction:)];
-    UIBarButtonItem *(^flexItem)(void) = ^UIBarButtonItem *() { return [UIBarButtonItem flexItem]; };
-    self.toolbarItems = @[flexItem(), add, flexItem()];
+    UIBarButtonItem *flex = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                                                          target:self
+                                                                          action:nil];
+    self.toolbarItems = @[flex, add, flex];
 }
 
 - (void)setupEditingToolBar
@@ -724,12 +723,10 @@
                                                                      style:UIBarButtonItemStylePlain
                                                                     target:self
                                                                     action:@selector(confirmDeleteSelectedProgramsAction:)];
-    // FIXME: workaround for tap area problem:
-    // http://stackoverflow.com/questions/5113258/uitoolbar-unexpectedly-registers-taps-on-uibarbuttonitem-instances-even-when-tap
-    UIBarButtonItem *(^invisibleItem)(void) = ^UIBarButtonItem *() { return [UIBarButtonItem invisibleItem]; };
-    UIBarButtonItem *(^flexItem)(void) = ^UIBarButtonItem *() { return [UIBarButtonItem flexItem]; };
-    self.toolbarItems = [NSArray arrayWithObjects:self.selectAllRowsButtonItem, invisibleItem(), flexItem(),
-                         invisibleItem(), deleteButton, nil];
+    UIBarButtonItem *flex = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                                                          target:self
+                                                                          action:nil];
+    self.toolbarItems = [NSArray arrayWithObjects: self.selectAllRowsButtonItem, flex, deleteButton, nil];
 }
 
 - (void)setSectionHeaders
@@ -750,7 +747,16 @@
     self.sectionTitles = [[self.programLoadingInfoDict allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
 }
 
-#pragma mark Filemanager notification
+#pragma mark - Notifications
+
+- (void)setupObservers
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(downloadFinished:)
+                                                 name:kProgramDownloadedNotification
+                                               object:nil];
+}
+
 - (void)downloadFinished:(NSNotification*)notification
 {
     if ([[notification name] isEqualToString:kProgramDownloadedNotification]){
@@ -773,7 +779,5 @@
 {
     [self updateProgramDescriptionActionWithText:description sourceProgram:self.selectedProgram];
 }
-
-
 
 @end

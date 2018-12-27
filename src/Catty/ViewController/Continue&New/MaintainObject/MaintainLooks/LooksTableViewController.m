@@ -40,7 +40,6 @@
 #import "UIImage+Rotate.h"
 #import "ViewControllerDefines.h"
 #import "UIUtil.h"
-#import "UIImageView+CatrobatUIImageViewExtensions.h"
 #import "Pocket_Code-Swift.h"
 
 @interface LooksTableViewController () <UIImagePickerControllerDelegate,
@@ -311,7 +310,6 @@
     CatrobatBaseCell<CatrobatImageCell>* imageCell = (CatrobatBaseCell<CatrobatImageCell>*)cell;
     Look *look = [self.object.lookList objectAtIndex:indexPath.row];
     imageCell.iconImageView.image = nil;
-    [imageCell.iconImageView setBorder:[UIColor utilityTintColor] Width:kDefaultImageCellBorderWidth];
 
     imageCell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
     RuntimeImageCache *imageCache = [RuntimeImageCache sharedImageCache];
@@ -706,12 +704,10 @@
     UIBarButtonItem *play = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
                                                                           target:self
                                                                           action:@selector(playSceneAction:)];
-    // FIXME: workaround for tap area problem:
-    // http://stackoverflow.com/questions/5113258/uitoolbar-unexpectedly-registers-taps-on-uibarbuttonitem-instances-even-when-tap
-    UIBarButtonItem *(^invisibleItem)(void) = ^UIBarButtonItem *() { return [UIBarButtonItem invisibleItem]; };
-    UIBarButtonItem *(^flexItem)(void) = ^UIBarButtonItem *() { return [UIBarButtonItem flexItem]; };
-    self.toolbarItems = [NSArray arrayWithObjects:flexItem(), invisibleItem(), add, invisibleItem(), flexItem(),
-                         flexItem(), flexItem(), invisibleItem(), play, invisibleItem(), flexItem(), nil];
+    UIBarButtonItem *flex = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                                                          target:self
+                                                                          action:nil];
+    self.toolbarItems = [NSArray arrayWithObjects: flex, add, flex, flex, play, flex, nil];
 }
 
 - (void)setupEditingToolBar
@@ -730,12 +726,10 @@
                                                                          target:self
                                                                          action:@selector(copySelectedLooksAction:)];
     }
-    // FIXME: workaround for tap area problem:
-    // http://stackoverflow.com/questions/5113258/uitoolbar-unexpectedly-registers-taps-on-uibarbuttonitem-instances-even-when-tap
-    UIBarButtonItem *(^invisibleItem)(void) = ^UIBarButtonItem *() { return [UIBarButtonItem invisibleItem]; };
-    UIBarButtonItem *(^flexItem)(void) = ^UIBarButtonItem *() { return [UIBarButtonItem flexItem]; };
-    self.toolbarItems = [NSArray arrayWithObjects:self.selectAllRowsButtonItem, invisibleItem(), flexItem(),
-                         invisibleItem(), editActionButton, nil];
+    UIBarButtonItem *flex = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                                                          target:self
+                                                                          action:nil];
+    self.toolbarItems = [NSArray arrayWithObjects:self.selectAllRowsButtonItem, flex, editActionButton, nil];
 }
 
 #pragma mark paintDelegate
@@ -945,7 +939,6 @@
 -(void)reloadData
 {
     dispatch_async(dispatch_get_main_queue(),^{
-        //do something
         [self.tableView reloadData];
         [self changeEditingBarButtonState];
     });
