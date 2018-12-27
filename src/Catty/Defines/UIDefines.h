@@ -32,6 +32,11 @@
 #define kSlidingStartArea 40
 #define kfirstSwipeDuration 0.45f
 
+// Scene
+
+#define kSceneDefaultFont @"Helvetica"
+#define kSceneLabelFontSize 45.0f
+
 // Blocked characters for program names, object names, images names, sounds names and variable/list names
 #define kTextFieldBlockedCharacters @""
 

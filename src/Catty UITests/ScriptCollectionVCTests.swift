@@ -82,4 +82,41 @@ class ScriptCollectionVCTests: XCTestCase, UITestProtocol {
         XCTAssert(app.collectionViews.cells.element(boundBy: 3).staticTexts[" is true then"].exists)
         XCTAssert(app.collectionViews.cells.element(boundBy: 4).staticTexts["End If"].exists)
     }
+
+    func testLengthOfBroadcastMessage() {
+        let app = XCUIApplication()
+        let programName = "testProgram"
+        let message = String(repeating: "a", count: 250)
+
+        app.tables.staticTexts["New"].tap()
+        app.alerts["New Program"].textFields["Enter your program name here..."].typeText(programName)
+        XCUIApplication().alerts["New Program"].buttons["OK"].tap()
+        XCUIApplication().tables.staticTexts["Background"].tap()
+        app.tables.staticTexts["Scripts"].tap()
+
+        // Add BroadcastBrick
+        app.toolbars.buttons["Add"].tap()
+        if app.navigationBars["Frequently Used"].exists {
+            app.swipeLeft()
+        }
+
+        app.collectionViews.staticTexts["Broadcast"].tap()
+        app.collectionViews.cells.otherElements.containing(.staticText, identifier: "Broadcast").children(matching: .other).element.tap()
+
+        app.pickerWheels.firstMatch.swipeDown()
+        app.buttons["Done"].tap()
+
+        let alert = app.alerts["New Message"]
+        alert.textFields["Enter your message here..."].typeText(message)
+        alert.buttons["OK"].tap()
+
+        app.collectionViews.cells.otherElements.containing(.staticText, identifier: "Broadcast").children(matching: .other).element.tap()
+
+        app.pickerWheels.firstMatch.swipeDown()
+        app.buttons["Done"].tap()
+
+        alert.textFields["Enter your message here..."].typeText(message + "b")
+        alert.buttons["OK"].tap()
+        XCTAssert(app.alerts["Pocket Code"].exists)
+    }
 }
