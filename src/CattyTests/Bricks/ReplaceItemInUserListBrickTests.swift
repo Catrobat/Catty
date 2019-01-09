@@ -24,7 +24,7 @@ import XCTest
 
 @testable import Pocket_Code
 
-final class InsertItemIntoUserListBrickTests: XCTestCase {
+final class ReplaceItemInUserListBrickTests: XCTestCase {
 
     var program: Program!
     var spriteObject: SpriteObject!
@@ -33,7 +33,7 @@ final class InsertItemIntoUserListBrickTests: XCTestCase {
     var scheduler: CBScheduler!
     var context: CBScriptContextProtocol!
     var userList: UserVariable!
-    var brick: InsertItemIntoUserListBrick!
+    var brick: ReplaceItemInUserListBrick!
 
     override func setUp() {
         program = Program()
@@ -53,7 +53,7 @@ final class InsertItemIntoUserListBrickTests: XCTestCase {
         userList.isList = true
         spriteObject.program.variables.addObjectList(userList, for: spriteObject)
 
-        brick = InsertItemIntoUserListBrick()
+        brick = ReplaceItemInUserListBrick()
         brick.userList = userList
         brick.script = script
 
@@ -64,11 +64,12 @@ final class InsertItemIntoUserListBrickTests: XCTestCase {
         context = CBScriptContext(script: script, spriteNode: spriteNode, formulaInterpreter: formulaInterpreter)
     }
 
-    func testInsertItem() {
-        XCTAssertNil(userList.value)
+    func testReplaceItem() {
+        let newValue: Int32 = 2
 
+        userList.value = NSMutableArray(array: [1])
         brick.index = Formula(integer: 1)
-        brick.elementFormula = Formula(integer: 1)
+        brick.elementFormula = Formula(integer: newValue)
 
         switch brick.instruction() {
         case let .execClosure(closure):
@@ -77,10 +78,12 @@ final class InsertItemIntoUserListBrickTests: XCTestCase {
             XCTFail("Fatal Error")
         }
 
-        XCTAssertNotNil(userList.value)
+        let valueArr = userList.value as! [AnyObject]
+        XCTAssertEqual(1, valueArr.count)
+        XCTAssertEqual(newValue, valueArr[0] as! Int32)
     }
 
-    func testInsertItemAtInvalidPosition() {
+    func testReplaceItemAtInvalidPosition() {
         XCTAssertNil(userList.value)
 
         brick.index = Formula(string: "abc")
@@ -96,7 +99,7 @@ final class InsertItemIntoUserListBrickTests: XCTestCase {
         XCTAssertNil(userList.value)
     }
 
-    func testInsertItemAtNegativePosition() {
+    func testReplaceItemAtNegativePosition() {
         XCTAssertNil(userList.value)
 
         brick.index = Formula(integer: -1)
