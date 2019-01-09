@@ -33,7 +33,7 @@
 
         return CBInstruction.execClosure { context, _ in
             if userList != nil {
-                let result = context.formulaInterpreter.interpret(listFormula, for: spriteObject)
+                let result = context.formulaInterpreter.interpretInteger(listFormula, for: spriteObject)
                 variablesContainer.delete(fromUserList: userList, atIndex: result)
             }
             context.state = .runnable
