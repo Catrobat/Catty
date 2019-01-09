@@ -362,6 +362,7 @@
 		4CB0F9F420A173B700D1BE2F /* RotationSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB0F9F320A173B600D1BE2F /* RotationSensor.swift */; };
 		4CB0F9F620A1741400D1BE2F /* LayerSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB0F9F520A1741400D1BE2F /* LayerSensor.swift */; };
 		4CB1FB741BC2D74F0000A2FE /* UITestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB1FB731BC2D74F0000A2FE /* UITestProtocol.swift */; };
+		4CB23D7221E6613D00A0FEA7 /* DeleteItemOfUserListBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB23D6F21E6613D00A0FEA7 /* DeleteItemOfUserListBrickTests.swift */; };
 		4CB2CFA11D7AD762009F3034 /* SetColorBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB2CFA01D7AD762009F3034 /* SetColorBrick.m */; };
 		4CB2CFA61D7AD7E7009F3034 /* SetColorBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB2CFA51D7AD7E7009F3034 /* SetColorBrick+CBXMLHandler.m */; };
 		4CB2CFAB1D7AD86D009F3034 /* SetColorBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB2CFAA1D7AD86D009F3034 /* SetColorBrickCell.m */; };
@@ -1733,6 +1734,7 @@
 		4CB0F9F320A173B600D1BE2F /* RotationSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RotationSensor.swift; sourceTree = "<group>"; };
 		4CB0F9F520A1741400D1BE2F /* LayerSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayerSensor.swift; sourceTree = "<group>"; };
 		4CB1FB731BC2D74F0000A2FE /* UITestProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITestProtocol.swift; sourceTree = "<group>"; };
+		4CB23D6F21E6613D00A0FEA7 /* DeleteItemOfUserListBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteItemOfUserListBrickTests.swift; sourceTree = "<group>"; };
 		4CB2CF9F1D7AD762009F3034 /* SetColorBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetColorBrick.h; sourceTree = "<group>"; };
 		4CB2CFA01D7AD762009F3034 /* SetColorBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetColorBrick.m; sourceTree = "<group>"; };
 		4CB2CFA41D7AD7E7009F3034 /* SetColorBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SetColorBrick+CBXMLHandler.h"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Look/SetColorBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
@@ -4695,6 +4697,7 @@
 				4C0F9FD4204BD3C200E71B2D /* ChooseCameraBrickTests.swift */,
 				4CEB223B1B95E47500B3BE2F /* ClearGrafficEffectBrickTests.m */,
 				4CEB223C1B95E47500B3BE2F /* ComeToFrontBrickTests.m */,
+				4CB23D6F21E6613D00A0FEA7 /* DeleteItemOfUserListBrickTests.swift */,
 				4CEB223D1B95E47500B3BE2F /* GoNStepsBackBrickTests.m */,
 				4C1D26661E84F1BF00BAA2D2 /* GlideToBrickTests.swift */,
 				4CEB223E1B95E47500B3BE2F /* HideBrickTests.m */,
@@ -8587,6 +8590,7 @@
 				4C82267F213FA7A400F3D750 /* PositionXSensorTest.swift in Sources */,
 				4C0C164921439B2F005ADE86 /* ChartProgramsStoreDataSourceTests.swift in Sources */,
 				4CC50A62213BE4D3004BC914 /* DoubleParameterDoubleFunctionMock.swift in Sources */,
+				4CB23D7221E6613D00A0FEA7 /* DeleteItemOfUserListBrickTests.swift in Sources */,
 				BA1FA9941F02A1150084184D /* UserListFunctionsTest.m in Sources */,
 				4CD27AA821B55DBC00DDADB5 /* FaceDetectionManagerTest.swift in Sources */,
 				4C822656213FA7A400F3D750 /* DeviceSensorMock.swift in Sources */,
