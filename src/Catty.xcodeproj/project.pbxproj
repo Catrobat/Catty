@@ -548,6 +548,7 @@
 		4CF429F3213A88A600B78897 /* RepeatUntilBrick+Condition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF429F2213A88A600B78897 /* RepeatUntilBrick+Condition.swift */; };
 		4CF429F5213A8A0400B78897 /* IfLogicBeginBrick+Condition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF429F4213A8A0400B78897 /* IfLogicBeginBrick+Condition.swift */; };
 		4CF429F8213A8DA600B78897 /* LoopBeginBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF429F7213A8DA500B78897 /* LoopBeginBrick.m */; };
+		4CF4CB7521E64BEE009D6DD9 /* InsertItemIntoUserListBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF4CB7221E64BEE009D6DD9 /* InsertItemIntoUserListBrickTests.swift */; };
 		4CF773E51AEE3B5100DBBB2B /* VariablePickerData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF773E41AEE3B5100DBBB2B /* VariablePickerData.m */; };
 		4CF773EE1AEE786600DBBB2B /* FormulaElement+UserVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF773ED1AEE786600DBBB2B /* FormulaElement+UserVariable.m */; };
 		4CF773F41AEE79A800DBBB2B /* Brick+UserVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF773F31AEE79A800DBBB2B /* Brick+UserVariable.m */; };
@@ -1928,6 +1929,7 @@
 		4CF429F4213A8A0400B78897 /* IfLogicBeginBrick+Condition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IfLogicBeginBrick+Condition.swift"; sourceTree = "<group>"; };
 		4CF429F7213A8DA500B78897 /* LoopBeginBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoopBeginBrick.m; sourceTree = "<group>"; };
 		4CF429F9213A8DBF00B78897 /* LoopBeginBrick.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoopBeginBrick.h; sourceTree = "<group>"; };
+		4CF4CB7221E64BEE009D6DD9 /* InsertItemIntoUserListBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsertItemIntoUserListBrickTests.swift; sourceTree = "<group>"; };
 		4CF773E31AEE3B5100DBBB2B /* VariablePickerData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VariablePickerData.h; sourceTree = "<group>"; };
 		4CF773E41AEE3B5100DBBB2B /* VariablePickerData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VariablePickerData.m; sourceTree = "<group>"; };
 		4CF773EC1AEE786600DBBB2B /* FormulaElement+UserVariable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FormulaElement+UserVariable.h"; sourceTree = "<group>"; };
@@ -4696,6 +4698,7 @@
 				4CEB223E1B95E47500B3BE2F /* HideBrickTests.m */,
 				4CAB10081ECF1A9A0019A67B /* HideTextBrickTests.swift */,
 				4CEB223F1B95E47500B3BE2F /* IfOnEdgeBounceBrickTests.m */,
+				4CF4CB7221E64BEE009D6DD9 /* InsertItemIntoUserListBrickTests.swift */,
 				4CEB22401B95E47500B3BE2F /* MoveNStepsBrickTests.m */,
 				4CEB22411B95E47500B3BE2F /* NextLookBrickTests.m */,
 				4CEB22421B95E47500B3BE2F /* PlaceAtBrickTests.m */,
@@ -8546,6 +8549,7 @@
 				4C822680213FA7A400F3D750 /* BrightnessSensorTest.swift in Sources */,
 				4C68FC8A1B25A00B00AB3EE8 /* FormulaElementTest.m in Sources */,
 				BAAA6BED21A4C02100A46563 /* XMLParserHeaderTests095.swift in Sources */,
+				4CF4CB7521E64BEE009D6DD9 /* InsertItemIntoUserListBrickTests.swift in Sources */,
 				4CEB225C1B95E47500B3BE2F /* IfOnEdgeBounceBrickTests.m in Sources */,
 				4C6FE16C212D2D2E0067B7D5 /* AcosFunctionTest.swift in Sources */,
 				4C822688213FAC3C00F3D750 /* MultiFingerXFunctionTests.swift in Sources */,
