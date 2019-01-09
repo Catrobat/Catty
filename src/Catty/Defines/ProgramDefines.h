@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2018 The Catrobat Team
+ *  Copyright (C) 2010-2019 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -45,18 +45,16 @@
 #define kBackgroundObjects 1
 #define kMinNumOfProgramNameCharacters 1
 #define kMaxNumOfProgramNameCharacters 250
-#define kMinNumOfProgramDescriptionCharacters 1
-#define kMaxNumOfProgramDescriptionCharacters 400
 #define kMinNumOfObjectNameCharacters 1
-#define kMaxNumOfObjectNameCharacters 150
+#define kMaxNumOfObjectNameCharacters 250
 #define kMinNumOfLookNameCharacters 1
-#define kMaxNumOfLookNameCharacters 150
+#define kMaxNumOfLookNameCharacters 250
 #define kMinNumOfSoundNameCharacters 1
-#define kMaxNumOfSoundNameCharacters 150
+#define kMaxNumOfSoundNameCharacters 250
 #define kMinNumOfMessageNameCharacters 1
-#define kMaxNumOfMessageNameCharacters 20
+#define kMaxNumOfMessageNameCharacters 250
 #define kMinNumOfVariableNameCharacters 1
-#define kMaxNumOfVariableNameCharacters 150
+#define kMaxNumOfVariableNameCharacters 250
 
 #define kNoProgramIDYetPlaceholder @"x"
 #define kProgramIDSeparator @"_"

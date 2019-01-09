@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2018 The Catrobat Team
+ *  Copyright (C) 2010-2019 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -186,11 +186,11 @@ final class CBScene: SKScene {
             }
         }
         for variable: UserVariable in variableList {
-            variable.textLabel = SKLabelNode()
+            variable.textLabel = SKLabelNode(fontNamed: kSceneDefaultFont)
             variable.textLabel.text = ""
             variable.textLabel.zPosition = CGFloat(zPosition + 1)
             variable.textLabel.fontColor = UIColor.black
-            variable.textLabel.fontSize = variable.sizeForSKLabel(sceneSize: self.size)
+            variable.textLabel.fontSize = CGFloat(kSceneLabelFontSize)
             variable.textLabel.isHidden = true
             addChild(variable.textLabel)
         }

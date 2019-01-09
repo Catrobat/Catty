@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2018 The Catrobat Team
+ *  Copyright (C) 2010-2019 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -32,6 +32,11 @@
 #define kSlidingStartArea 40
 #define kfirstSwipeDuration 0.45f
 
+// Scene
+
+#define kSceneDefaultFont @"Helvetica"
+#define kSceneLabelFontSize 45.0f
+
 // Blocked characters for program names, object names, images names, sounds names and variable/list names
 #define kTextFieldBlockedCharacters @""
 
@@ -53,7 +58,7 @@
 #define kAddScriptCategoryTableViewBottomMargin 15.0f
 
 // delete button bricks
-#define kBrickCellDeleteButtonWidthHeight 50.0f
+#define kBrickCellDeleteButtonWidthHeight 55.0f
 #define kSelectButtonOffset 30.0f
 #define kSelectButtonTranslationOffsetX 60.0f
 #define kScriptCollectionViewInset 5.0f
@@ -468,7 +473,7 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 }
 
 // brick heights
-#define kBrickHeight1h 48.9f
+#define kBrickHeight1h 55.9f
 #define kBrickHeight2h 75.9f
 #define kBrickHeight3h 98.9f
 #define kBrickHeightControl1h 72.4f
