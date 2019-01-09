@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2018 The Catrobat Team
+ *  Copyright (C) 2010-2019 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -30,6 +30,8 @@
 + (void)addBubbleToSpriteNode:(CBSpriteNode*)spriteNode withText: (NSString*)text andType:(CBBubbleType)type
 {
     SKLabelNode* label = [SKLabelNode labelNodeWithText:text];
+    label.fontName = kSceneDefaultFont;
+    label.fontSize = kSceneLabelFontSize;
     label.name = @"bubbleText";
     [label setVerticalAlignmentMode:SKLabelVerticalAlignmentModeCenter];
     [label setHorizontalAlignmentMode:SKLabelHorizontalAlignmentModeCenter];

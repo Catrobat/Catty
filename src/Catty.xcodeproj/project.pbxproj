@@ -347,7 +347,7 @@
 		4C9E076B1CD9D47E00B14B2F /* CBSceneHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E076A1CD9D47E00B14B2F /* CBSceneHelper.swift */; };
 		4C9F37A91D167630002C3B45 /* transparency-gray-alpha.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C9F37A81D167630002C3B45 /* transparency-gray-alpha.png */; };
 		4CA1574D1C4695E50019D319 /* Encapsulated_097.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CA1574C1C4695E50019D319 /* Encapsulated_097.xml */; };
-		4CAA66BE21469AB900CCDD6E /* UserVariable+Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAA66BD21469AB900CCDD6E /* UserVariable+Scene.swift */; };
+		4CA98E8821C8F1D400B2D9CA /* LooksTVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA98E8521C8F1D400B2D9CA /* LooksTVCTests.swift */; };
 		4CAA66C221469C0400CCDD6E /* UserVariableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAA66C121469C0400CCDD6E /* UserVariableTests.swift */; };
 		4CAB10091ECF1A9A0019A67B /* HideTextBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAB10081ECF1A9A0019A67B /* HideTextBrickTests.swift */; };
 		4CAB100D1ECF1AB20019A67B /* SetVariableBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAB100C1ECF1AB20019A67B /* SetVariableBrickTests.swift */; };
@@ -551,6 +551,7 @@
 		4CF773E51AEE3B5100DBBB2B /* VariablePickerData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF773E41AEE3B5100DBBB2B /* VariablePickerData.m */; };
 		4CF773EE1AEE786600DBBB2B /* FormulaElement+UserVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF773ED1AEE786600DBBB2B /* FormulaElement+UserVariable.m */; };
 		4CF773F41AEE79A800DBBB2B /* Brick+UserVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF773F31AEE79A800DBBB2B /* Brick+UserVariable.m */; };
+		4CF8747521C8E7AB00C8143F /* SoundsTVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF8747221C8E7AB00C8143F /* SoundsTVCTests.swift */; };
 		4CFAD35E1CFAB3EC0019C636 /* CustomExtensionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFAD35C1CFAB3EC0019C636 /* CustomExtensionsTests.m */; };
 		4CFAD35F1CFAB3EC0019C636 /* UIImageExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFAD35D1CFAB3EC0019C636 /* UIImageExtensionTests.swift */; };
 		4CFAD3611CFAB9AA0019C636 /* transparency-rgba.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CFAD3601CFAB9AA0019C636 /* transparency-rgba.png */; };
@@ -1715,7 +1716,7 @@
 		4C9E07731CD9DB0A00B14B2F /* CattyTests-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CattyTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		4C9F37A81D167630002C3B45 /* transparency-gray-alpha.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "transparency-gray-alpha.png"; path = "CattyTests/Resources/Images/transparency-gray-alpha.png"; sourceTree = SOURCE_ROOT; };
 		4CA1574C1C4695E50019D319 /* Encapsulated_097.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Encapsulated_097.xml; sourceTree = "<group>"; };
-		4CAA66BD21469AB900CCDD6E /* UserVariable+Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserVariable+Scene.swift"; sourceTree = "<group>"; };
+		4CA98E8521C8F1D400B2D9CA /* LooksTVCTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LooksTVCTests.swift; sourceTree = "<group>"; };
 		4CAA66C121469C0400CCDD6E /* UserVariableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserVariableTests.swift; sourceTree = "<group>"; };
 		4CAB10081ECF1A9A0019A67B /* HideTextBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HideTextBrickTests.swift; sourceTree = "<group>"; };
 		4CAB100C1ECF1AB20019A67B /* SetVariableBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetVariableBrickTests.swift; sourceTree = "<group>"; };
@@ -1933,6 +1934,7 @@
 		4CF773ED1AEE786600DBBB2B /* FormulaElement+UserVariable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FormulaElement+UserVariable.m"; sourceTree = "<group>"; };
 		4CF773F21AEE79A800DBBB2B /* Brick+UserVariable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Brick+UserVariable.h"; sourceTree = "<group>"; };
 		4CF773F31AEE79A800DBBB2B /* Brick+UserVariable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Brick+UserVariable.m"; sourceTree = "<group>"; };
+		4CF8747221C8E7AB00C8143F /* SoundsTVCTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundsTVCTests.swift; sourceTree = "<group>"; };
 		4CFAD35C1CFAB3EC0019C636 /* CustomExtensionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomExtensionsTests.m; path = Extensions/CustomExtensionsTests.m; sourceTree = "<group>"; };
 		4CFAD35D1CFAB3EC0019C636 /* UIImageExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIImageExtensionTests.swift; path = Extensions/UIImageExtensionTests.swift; sourceTree = "<group>"; };
 		4CFAD3601CFAB9AA0019C636 /* transparency-rgba.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "transparency-rgba.png"; path = "CattyTests/Resources/Images/transparency-rgba.png"; sourceTree = SOURCE_ROOT; };
@@ -6067,7 +6069,6 @@
 			children = (
 				92FF30C21A24DCAA00093DA7 /* UserVariable.h */,
 				92FF30C31A24DCAA00093DA7 /* UserVariable.m */,
-				4CAA66BD21469AB900CCDD6E /* UserVariable+Scene.swift */,
 			);
 			path = UserVariable;
 			sourceTree = "<group>";
@@ -7013,11 +7014,13 @@
 				AAADA0081B9B29D500E0CA9A /* Info.plist */,
 				BCFED6EC2111C04000BE57BF /* BackgroundsTests.swift */,
 				BC19327E21186504009DE43A /* CreateProgramTests.swift */,
+				4CA98E8521C8F1D400B2D9CA /* LooksTVCTests.swift */,
 				BCFED6F52113188700BE57BF /* MyFirstProgramTests.swift */,
 				A988832B1BCA86FF005029E8 /* ObjectTVCTests.swift */,
 				BCFED6EE2111C54100BE57BF /* PocketCodeMainScreenTests.swift */,
 				BCFED6F7211318A100BE57BF /* ProgramTVCTests.swift */,
 				4C1EDCA9218A080200B60464 /* ScriptCollectionVCTests.swift */,
+				4CF8747221C8E7AB00C8143F /* SoundsTVCTests.swift */,
 				BA6805AD21303B48004F004F /* VariablesTests.swift */,
 			);
 			path = "Catty UITests";
@@ -8373,7 +8376,9 @@
 				4C1EDCAC218A080200B60464 /* ScriptCollectionVCTests.swift in Sources */,
 				BC1EB70F2111905800D95C53 /* ObjectTVCTests.swift in Sources */,
 				BCFED6F62113188700BE57BF /* MyFirstProgramTests.swift in Sources */,
+				4CA98E8821C8F1D400B2D9CA /* LooksTVCTests.swift in Sources */,
 				BA6805AE21303B48004F004F /* VariablesTests.swift in Sources */,
+				4CF8747521C8E7AB00C8143F /* SoundsTVCTests.swift in Sources */,
 				BCFED6F8211318A100BE57BF /* ProgramTVCTests.swift in Sources */,
 				4CB1FB741BC2D74F0000A2FE /* UITestProtocol.swift in Sources */,
 				BC19327F21186504009DE43A /* CreateProgramTests.swift in Sources */,
@@ -8765,7 +8770,6 @@
 				59D008E9208E3FDC000539E7 /* MotionManager.swift in Sources */,
 				AA74EFF11BC05B5F00D1E954 /* ChangeBrightnessByNBrick.m in Sources */,
 				4C48ED2520EF9A1D00784CD5 /* AudioManagerProtocol.swift in Sources */,
-				4CAA66BE21469AB900CCDD6E /* UserVariable+Scene.swift in Sources */,
 				AA74F0B71BC05FCE00D1E954 /* ChangeYByNBrickCell.m in Sources */,
 				92FF2E351A24C5A700093DA7 /* NSData+Hashes.m in Sources */,
 				921EE9B61BA8045A00834711 /* JNKeychain.m in Sources */,

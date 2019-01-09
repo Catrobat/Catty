@@ -16,7 +16,7 @@
                 <outlet property="menuAxisButton" destination="nLo-Oa-NMT" id="Zn4-CZ-XDz"/>
                 <outlet property="menuAxisLabel" destination="ENa-kr-PS6" id="EOg-WQ-k2Y"/>
                 <outlet property="menuBackButton" destination="Mj0-sa-z3d" id="AVS-1Z-3Yu"/>
-                <outlet property="menuBackLabel" destination="Hdn-Xp-GRX" id="QUO-sL-Vzg"/>
+                <outlet property="menuBackLabel" destination="Hdn-Xp-GRX" id="aNs-it-Vfk"/>
                 <outlet property="menuContinueButton" destination="wtc-93-gtF" id="HLM-Em-8G7"/>
                 <outlet property="menuContinueLabel" destination="iAP-Vg-EGc" id="mDu-94-xH4"/>
                 <outlet property="menuRestartButton" destination="c75-sd-NgK" id="r2F-L6-Gtq"/>
@@ -38,9 +38,12 @@
                     </constraints>
                     <state key="normal" backgroundImage="back"/>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hdn-Xp-GRX" userLabel="BackLabel">
-                    <rect key="frame" x="25" y="8.5" width="86" height="58"/>
-                    <inset key="contentEdgeInsets" minX="0.0" minY="20" maxX="40" maxY="20"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hdn-Xp-GRX" userLabel="BackLabel">
+                    <rect key="frame" x="5" y="8.5" width="100" height="58"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="100" id="lKm-tO-cwj"/>
+                    </constraints>
+                    <inset key="contentEdgeInsets" minX="20" minY="20" maxX="0.0" maxY="20"/>
                     <state key="normal" title="Button"/>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uJb-gF-5Jq">
@@ -114,7 +117,7 @@
             <color key="backgroundColor" red="0.094117647060000004" green="0.64705882349999999" blue="0.72156862749999995" alpha="0.94999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="ENa-kr-PS6" firstAttribute="top" secondItem="nLo-Oa-NMT" secondAttribute="bottom" id="12X-CQ-mD7"/>
-                <constraint firstItem="Hdn-Xp-GRX" firstAttribute="leading" secondItem="Mj0-sa-z3d" secondAttribute="trailing" id="2c2-Ih-yep"/>
+                <constraint firstItem="Hdn-Xp-GRX" firstAttribute="leading" secondItem="Mj0-sa-z3d" secondAttribute="leading" id="2c2-Ih-yep"/>
                 <constraint firstItem="8o1-uS-vGJ" firstAttribute="centerX" secondItem="QxZ-SX-2rN" secondAttribute="centerX" id="5fy-bu-iKq"/>
                 <constraint firstItem="QxZ-SX-2rN" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="6FE-TE-i0M"/>
                 <constraint firstItem="Mj0-sa-z3d" firstAttribute="leading" secondItem="djA-ya-O5Z" secondAttribute="leading" constant="5" id="6cf-O4-aj3"/>

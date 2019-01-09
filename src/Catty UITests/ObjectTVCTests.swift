@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2018 The Catrobat Team
+ *  Copyright (C) 2010-2019 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -144,49 +144,6 @@ class ObjectTVCTests: XCTestCase, UITestProtocol {
         app.tables.staticTexts["Looks"].tap()
 
         XCTAssert(app.navigationBars["Looks"].exists)
-    }
-
-    func testLooksCanEnterLooksOfAllMoles() {
-        let app = XCUIApplication()
-        let appTables = app.tables
-
-        let testElement = "Looks"
-
-        let programObjects = ["Mole 1", "Mole 2", "Mole 3", "Mole 4"]
-
-        appTables.staticTexts["Continue"].tap()
-
-        for object in programObjects {
-            appTables.staticTexts[object].tap()
-            appTables.staticTexts[testElement].tap()
-            XCTAssert(app.navigationBars[testElement].buttons[object].exists)
-            app.navigationBars[testElement].buttons[object].tap()
-            app.navigationBars[object].buttons["My first program"].tap()
-
-            let programVC = waitForElementToAppear(app.navigationBars["My first program"])
-            XCTAssert(programVC.buttons["Pocket Code"].exists)
-        }
-    }
-
-    func testSoundsCanEnterSoundsOfAllMoles() {
-        let app = XCUIApplication()
-        let appTables = app.tables
-
-        let testElement = "Sounds"
-
-        let programObjects = ["Mole 1", "Mole 2", "Mole 3", "Mole 4"]
-
-        appTables.staticTexts["Continue"].tap()
-        for object in programObjects {
-            appTables.staticTexts[object].tap()
-            appTables.staticTexts[testElement].tap()
-            XCTAssert(app.navigationBars[testElement].buttons[object].exists)
-            app.navigationBars[testElement].buttons[object].tap()
-            app.navigationBars[object].buttons["My first program"].tap()
-
-            let programVC = waitForElementToAppear(app.navigationBars["My first program"])
-            XCTAssert(programVC.buttons["Pocket Code"].exists)
-        }
     }
 
     func testCopyObjectWithIfBricks() {

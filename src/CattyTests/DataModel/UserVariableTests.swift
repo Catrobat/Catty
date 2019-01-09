@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2018 The Catrobat Team
+ *  Copyright (C) 2010-2019 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -40,16 +40,6 @@ final class UserVariableTests: XCTestCase {
         XCTAssertEqual(userVariable.name, userVariableCopy.name)
         XCTAssertTrue(userVariable.name == userVariableCopy.name)
         XCTAssertEqual(userVariable.isList, userVariableCopy.isList)
-    }
-
-    func testSizeForSKLabel() {
-        let userVariable = UserVariable()
-        let defaultSize = CGFloat(42)
-
-        XCTAssertEqual(defaultSize, userVariable.sizeForSKLabel(sceneSize: CGSize(width: 1080, height: 1920))) // iPhone 6/6s/7/8 Plus
-        XCTAssertEqual(defaultSize / 1920 * 2436, userVariable.sizeForSKLabel(sceneSize: CGSize(width: 1125, height: 2436))) // iPhone X
-        XCTAssertEqual(defaultSize / 1920 * 1334, userVariable.sizeForSKLabel(sceneSize: CGSize(width: 750, height: 1334))) // iPhone 6, 6s, 7, 8
-        XCTAssertEqual(defaultSize / 1920 * 1136, userVariable.sizeForSKLabel(sceneSize: CGSize(width: 640, height: 1136))) // iPhone 5, 5s, 5c, SE
     }
 
     func testMutableCopyWithContext() {
