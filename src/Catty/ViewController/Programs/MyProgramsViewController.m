@@ -230,6 +230,7 @@
 - (void)deleteSelectedProgramsAction
 {
     [self showLoadingView];
+    
     NSArray *selectedRowsIndexPaths = [self.tableView indexPathsForSelectedRows];
     NSMutableArray *programLoadingInfosToRemove = [NSMutableArray arrayWithCapacity:[selectedRowsIndexPaths count]];
     for (NSIndexPath *selectedRowIndexPath in selectedRowsIndexPaths) {
@@ -242,6 +243,8 @@
         [self removeProgramWithName:programLoadingInfoToRemove.visibleName
                           programID:programLoadingInfoToRemove.programID];
     }
+    
+    [self reloadTableView];
     [self hideLoadingView];
     [super exitEditingMode];
 }
@@ -249,10 +252,12 @@
 - (void)deleteProgramForIndexPath:(NSIndexPath*)indexPath
 {
     [self showLoadingView];
+    
     NSString *sectionTitle = [self.sectionTitles objectAtIndex:indexPath.section];
     NSArray *sectionInfos = [self.programLoadingInfoDict objectForKey:[[sectionTitle substringToIndex:1] uppercaseString]];
     ProgramLoadingInfo *info = [sectionInfos objectAtIndex:indexPath.row];
     [self removeProgramWithName:info.visibleName programID:info.programID];
+    
     [self reloadTableView];
     [self hideLoadingView];
 }
@@ -324,7 +329,12 @@
             
             NSString *sectionTitle = [self.sectionTitles objectAtIndex:indexPath.section];
             NSArray *sectionInfos = [self.programLoadingInfoDict objectForKey:[[sectionTitle substringToIndex:1] uppercaseString]];
+            
             ProgramLoadingInfo *info = [sectionInfos objectAtIndex:indexPath.row];
+            if (!info) {
+                return;
+            }
+            
             NSNumber *programSize = [self.dataCache objectForKey:info.visibleName];
             if (! programSize) {
                 NSUInteger resultSize = [fileManager sizeOfDirectoryAtPath:info.basePath];
@@ -643,12 +653,10 @@
             self.dataCache = nil;
             // needed to avoid unexpected behaviour when programs are renamed
             [[RuntimeImageCache sharedImageCache] clearImageCache];
-            [self reloadTableView];
             return;
         }
         ++rowIndex;
     }
-    [self reloadTableView];
 }
 
 - (NSIndexPath*)getPathForProgramLoadingInfo:(ProgramLoadingInfo*)info
