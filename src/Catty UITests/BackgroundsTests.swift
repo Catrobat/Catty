@@ -144,7 +144,7 @@ class BackgroundsTests: XCTestCase, UITestProtocol {
         toolbarsQuery.buttons["Select All"].tap()
         toolbarsQuery.buttons["Delete"].tap()
 
-        XCTAssertEqual(app.tables.staticTexts.count, 0)
+        XCTAssertEqual(app.tables.cells.count, 0)
     }
 
     func testBackgroundsCanAbortDeleteAllBackgroundsViaEditMode() {

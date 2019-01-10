@@ -92,7 +92,7 @@ class ProgramsTVCTests: XCTestCase, UITestProtocol {
 
         copyProgram(name: "My first program", newName: "My second program")
 
-        XCTAssert(app.tables.staticTexts.count == 2)
+        XCTAssert(app.tables.cells.count == 2)
         XCTAssert(app.tables.staticTexts["My second program"].exists)
 
         // go back and forth to force reload table view!!
@@ -100,7 +100,7 @@ class ProgramsTVCTests: XCTestCase, UITestProtocol {
         app.tables.staticTexts["Programs"].tap()
         XCTAssert(waitForElementToAppear(app.navigationBars["Programs"]).exists)
 
-        XCTAssert(app.tables.staticTexts.count == 2)
+        XCTAssert(app.tables.cells.count == 2)
         XCTAssert(app.tables.staticTexts["My second program"].exists)
     }
 
@@ -123,7 +123,7 @@ class ProgramsTVCTests: XCTestCase, UITestProtocol {
         XCTAssert(alertQuery.buttons["Cancel"].exists)
         alertQuery.buttons["Cancel"].tap()
 
-        XCTAssert(app.tables.staticTexts.count == 1)
+        XCTAssert(app.tables.cells.count == 1)
         XCTAssert(app.tables.staticTexts["My first program"].exists)
 
         // go back and forth to force reload table view!!
@@ -131,7 +131,7 @@ class ProgramsTVCTests: XCTestCase, UITestProtocol {
         app.tables.staticTexts["Programs"].tap()
         XCTAssert(waitForElementToAppear(app.navigationBars["Programs"]).exists)
 
-        XCTAssert(app.tables.staticTexts.count == 1)
+        XCTAssert(app.tables.cells.count == 1)
         XCTAssert(app.tables.staticTexts["My first program"].exists)
     }
 
@@ -154,7 +154,7 @@ class ProgramsTVCTests: XCTestCase, UITestProtocol {
         XCTAssert(alertQuery.buttons["OK"].exists)
         alertQuery.buttons["OK"].tap()
 
-        XCTAssert(app.tables.staticTexts.count == 1)
+        XCTAssert(app.tables.cells.count == 1)
         XCTAssert(app.tables.staticTexts["My renamed program"].exists)
 
         // go back and forth to force reload table view!!
@@ -163,7 +163,7 @@ class ProgramsTVCTests: XCTestCase, UITestProtocol {
         XCTAssert(waitForElementToAppear(app.navigationBars["Programs"]).exists)
 
         // check again
-        XCTAssert(app.tables.staticTexts.count == 1)
+        XCTAssert(app.tables.cells.count == 1)
         XCTAssert(app.tables.staticTexts["My renamed program"].exists)
     }
 
@@ -186,7 +186,7 @@ class ProgramsTVCTests: XCTestCase, UITestProtocol {
         XCTAssert(alertQuery.buttons["Cancel"].exists)
         alertQuery.buttons["Cancel"].tap()
 
-        XCTAssert(app.tables.staticTexts.count == 1)
+        XCTAssert(app.tables.cells.count == 1)
         XCTAssert(app.tables.staticTexts["My first program"].exists)
 
         // go back and forth to force reload table view!!
@@ -195,7 +195,7 @@ class ProgramsTVCTests: XCTestCase, UITestProtocol {
         XCTAssert(waitForElementToAppear(app.navigationBars["Programs"]).exists)
 
         // check again
-        XCTAssert(app.tables.staticTexts.count == 1)
+        XCTAssert(app.tables.cells.count == 1)
         XCTAssert(app.tables.staticTexts["My first program"].exists)
     }
 
