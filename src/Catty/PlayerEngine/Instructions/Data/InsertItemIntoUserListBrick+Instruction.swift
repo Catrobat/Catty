@@ -35,7 +35,7 @@
         return CBInstruction.execClosure { context, _ in
             if userList != nil {
                 let valueResult = context.formulaInterpreter.interpret(elementFormula, for: spriteObject)
-                let positionResult = context.formulaInterpreter.interpret(position, for: spriteObject)
+                let positionResult = context.formulaInterpreter.interpretInteger(position, for: spriteObject)
                 variablesContainer.insert(toUserList: userList, value: valueResult, atIndex: positionResult)
             }
             context.state = .runnable
