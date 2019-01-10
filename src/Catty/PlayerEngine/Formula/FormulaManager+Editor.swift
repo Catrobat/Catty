@@ -23,46 +23,51 @@
 extension FormulaManager {
 
     @nonobjc func formulaEditorItems(spriteObject: SpriteObject) -> [FormulaEditorItem] {
-        return formulaEditorItems(for: spriteObject, mathSection: true, objectSection: true, deviceSection: true)
+        return formulaEditorItems(for: spriteObject, mathSection: true, logicSection: true, objectSection: true, deviceSection: true)
     }
 
     @nonobjc func formulaEditorItemsForMathSection(spriteObject: SpriteObject) -> [FormulaEditorItem] {
-        return formulaEditorItems(for: spriteObject, mathSection: true, objectSection: false, deviceSection: false)
+        return formulaEditorItems(for: spriteObject, mathSection: true, logicSection: false, objectSection: false, deviceSection: false)
+    }
+
+    @nonobjc func formulaEditorItemsForLogicSection(spriteObject: SpriteObject) -> [FormulaEditorItem] {
+        return formulaEditorItems(for: spriteObject, mathSection: false, logicSection: true, objectSection: false, deviceSection: false)
     }
 
     @nonobjc func formulaEditorItemsForObjectSection(spriteObject: SpriteObject) -> [FormulaEditorItem] {
-        return formulaEditorItems(for: spriteObject, mathSection: false, objectSection: true, deviceSection: false)
+        return formulaEditorItems(for: spriteObject, mathSection: false, logicSection: false, objectSection: true, deviceSection: false)
     }
 
     @nonobjc func formulaEditorItemsForDeviceSection(spriteObject: SpriteObject) -> [FormulaEditorItem] {
-        return formulaEditorItems(for: spriteObject, mathSection: false, objectSection: false, deviceSection: true)
+        return formulaEditorItems(for: spriteObject, mathSection: false, logicSection: false, objectSection: false, deviceSection: true)
     }
 
-    private func formulaEditorItems(for spriteObject: SpriteObject, mathSection: Bool, objectSection: Bool, deviceSection: Bool) -> [FormulaEditorItem] {
-        var items = [FormulaEditorItem]()
-        let allItems = sensorManager.formulaEditorItems(for: spriteObject) + functionManager.formulaEditorItems()
+    private func formulaEditorItems(for spriteObject: SpriteObject, mathSection: Bool, logicSection: Bool, objectSection: Bool, deviceSection: Bool) -> [FormulaEditorItem] {
+        var items = [(pos: Int, item: FormulaEditorItem)]()
+        let allItems = sensorManager.formulaEditorItems(for: spriteObject) + functionManager.formulaEditorItems() + operatorManager.formulaEditorItems()
 
         for item in allItems {
-            switch item.section {
-            case .math:
-                if mathSection {
-                    items += item
+            for section in item.sections {
+                switch section {
+                case let .math(position):
+                    if mathSection {
+                        items += (position, item)
+                    }
+                case let .logic(position):
+                    if logicSection {
+                        items += (position, item)
+                    }
+                case let .object(position):
+                    if objectSection {
+                        items += (position, item)
+                    }
+                case let .device(position):
+                    if deviceSection {
+                        items += (position, item)
+                    }
                 }
-
-            case .object:
-                if objectSection {
-                    items += item
-                }
-
-            case .device:
-                if deviceSection {
-                    items += item
-                }
-
-            default:
-                break
             }
         }
-        return items.sorted(by: { $0.section.position() < $1.section.position() }).map { $0 }
+        return items.sorted { $0.0 < $1.0 }.map { $0.1 }
     }
 }

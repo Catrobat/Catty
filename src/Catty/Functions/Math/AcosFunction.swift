@@ -42,7 +42,7 @@ class AcosFunction: SingleParameterDoubleFunction {
         return Util.radians(toDegree: acos(degree))
     }
 
-    func formulaEditorSection() -> FormulaEditorSection {
-        return .math(position: (type(of: self).position))
+    func formulaEditorSections() -> [FormulaEditorSection] {
+        return [.math(position: (type(of: self).position))]
     }
 }

@@ -44,6 +44,7 @@ final class FormulaManagerResourceTests: XCTestCase {
 
         manager = FormulaManager(sensorManager: SensorManager(sensors: []),
                                  functionManager: FunctionManager(functions: []),
+                                 operatorManager: OperatorManager(operators: []),
                                  motionManager: motionManager,
                                  locationManager: locationManager,
                                  faceDetectionManager: faceDetectionManager,

@@ -111,7 +111,9 @@ class ElementFunctionTest: XCTestCase {
         XCTAssertFalse(type(of: function).isIdempotent)
     }
 
-    func testFormulaEditorSection() {
-        XCTAssertEqual(.math(position: type(of: function).position), function.formulaEditorSection())
+    func testFormulaEditorSections() {
+        let sections = function.formulaEditorSections()
+        XCTAssertEqual(1, sections.count)
+        XCTAssertEqual(.math(position: type(of: function).position), sections.first)
     }
 }

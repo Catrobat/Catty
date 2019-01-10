@@ -46,7 +46,6 @@ typedef enum {
 @property (nonatomic) BOOL isBool;
 
 - (id)initWithTokens:(NSArray<InternToken*>*)tokens andFormulaManager:(id<FormulaManagerProtocol>)formulaManager;
-- (void)handleOperator:(NSString*) operator WithCurrentElement:(FormulaElement*) currentElement AndNewElement: (FormulaElement*) newElement;
 - (FormulaElement*)parseFormulaForSpriteObject:(SpriteObject*)object;
 - (int)getErrorTokenIndex;
 

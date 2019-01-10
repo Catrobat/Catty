@@ -63,36 +63,8 @@ extension InternFormula {
             return buildNumber(numberValue: "9")
 
         // PERIOD
-        case Int(Operator.DECIMAL_MARK.rawValue):
+        case Int(TOKEN_TYPE_DECIMAL_MARK.rawValue):
             return buildPeriod()
-
-        // OPERATOR
-        case Operator.PLUS.rawValue:
-            return buildOperator(mathOperator: Operator.PLUS)
-        case Operator.MINUS.rawValue:
-            return buildOperator(mathOperator: Operator.MINUS)
-        case Operator.MULT.rawValue:
-            return buildOperator(mathOperator: Operator.MULT)
-        case Operator.DIVIDE.rawValue:
-            return buildOperator(mathOperator: Operator.DIVIDE)
-        case Operator.EQUAL.rawValue:
-            return buildOperator(mathOperator: Operator.EQUAL)
-        case Operator.NOT_EQUAL.rawValue:
-            return buildOperator(mathOperator: Operator.NOT_EQUAL)
-        case Operator.SMALLER_THAN.rawValue:
-            return buildOperator(mathOperator: Operator.SMALLER_THAN)
-        case Operator.SMALLER_OR_EQUAL.rawValue:
-            return buildOperator(mathOperator: Operator.SMALLER_OR_EQUAL)
-        case Operator.GREATER_THAN.rawValue:
-            return buildOperator(mathOperator: Operator.GREATER_THAN)
-        case Operator.GREATER_OR_EQUAL.rawValue:
-            return buildOperator(mathOperator: Operator.GREATER_OR_EQUAL)
-        case Operator.LOGICAL_AND.rawValue:
-            return buildOperator(mathOperator: Operator.LOGICAL_AND)
-        case Operator.LOGICAL_OR.rawValue:
-            return buildOperator(mathOperator: Operator.LOGICAL_OR)
-        case Operator.LOGICAL_NOT.rawValue:
-            return buildOperator(mathOperator: Operator.LOGICAL_NOT)
 
         // BRACKETS
         case Int(BRACKET_OPEN.rawValue):
@@ -115,12 +87,21 @@ extension InternFormula {
         self.handleKeyInput(withInternTokenList: keyInputInternTokenList, andResourceId: Int32(TOKEN_TYPE_FUNCTION_NAME.rawValue))
     }
 
+    func handleKeyInput(for op: Operator) {
+        let keyInputInternTokenList = NSMutableArray(array: self.createInternTokenListForOperator(op: op))
+        self.handleKeyInput(withInternTokenList: keyInputInternTokenList, andResourceId: Int32(TOKEN_TYPE_OPERATOR.rawValue))
+    }
+
     private func createInternTokenListForSensor(sensor: Sensor) -> [InternToken] {
         return buildSensor(sensor: sensor)
     }
 
     private func createInternTokenListForFunction(function: Function) -> [InternToken] {
         return buildFunction(function: function)
+    }
+
+    private func createInternTokenListForOperator(op: Operator) -> [InternToken] {
+        return buildOperator(op: op)
     }
 
     private func buildUserVariable(name: String) -> [InternToken] {
@@ -151,8 +132,8 @@ extension InternFormula {
         return [InternToken.init(type: TOKEN_TYPE_BRACKET_CLOSE)]
     }
 
-    private func buildOperator(mathOperator: Operator) -> [InternToken] {
-        return [InternToken.init(type: TOKEN_TYPE_OPERATOR, andValue: Operators.getName(mathOperator))]
+    private func buildOperator(op: Operator) -> [InternToken] {
+        return [InternToken.init(type: TOKEN_TYPE_OPERATOR, andValue: type(of: op).tag)]
     }
 
     private func buildSensor(sensor: Sensor) -> [InternToken] {

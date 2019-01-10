@@ -48,7 +48,7 @@
         return PositionXSensor.convertToStandardized(rawValue: rawValue, for: spriteObject)
     }
 
-    func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
-        return .device(position: type(of: self).position)
+    func formulaEditorSections(for spriteObject: SpriteObject) -> [FormulaEditorSection] {
+        return [.device(position: type(of: self).position)]
     }
 }

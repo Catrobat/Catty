@@ -38,9 +38,19 @@ protocol FormulaManagerProtocol: FormulaInterpreterProtocol {
 
     func sensorExists(tag: String) -> Bool
 
+    func operatorExists(tag: String) -> Bool
+
+    func getFunction(tag: String) -> Function?
+
+    func getSensor(tag: String) -> Sensor?
+
+    func getOperator(tag: String) -> Operator?
+
     func formulaEditorItems(spriteObject: SpriteObject) -> [FormulaEditorItem]
 
     func formulaEditorItemsForMathSection(spriteObject: SpriteObject) -> [FormulaEditorItem]
+
+    func formulaEditorItemsForLogicSection(spriteObject: SpriteObject) -> [FormulaEditorItem]
 
     func formulaEditorItemsForObjectSection(spriteObject: SpriteObject) -> [FormulaEditorItem]
 

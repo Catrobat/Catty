@@ -21,7 +21,6 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "Operators.h"
 #import "CBMutableCopying.h"
 
 @class SpriteObject;

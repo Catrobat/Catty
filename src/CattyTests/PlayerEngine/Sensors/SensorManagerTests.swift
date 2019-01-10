@@ -94,9 +94,9 @@ final class SensorManagerTests: XCTestCase {
     }
 
     func testFormulaEditorItems() {
-        let sensorA = SensorMock(tag: "tagA", formulaEditorSection: .hidden)
-        let sensorB = SensorMock(tag: "tagB", formulaEditorSection: .device(position: 1))
-        let sensorC = SensorMock(tag: "tagC", formulaEditorSection: .object(position: 2))
+        let sensorA = SensorMock(tag: "tagA", formulaEditorSections: [])
+        let sensorB = SensorMock(tag: "tagB", formulaEditorSections: [.device(position: 1), .math(position: 10)])
+        let sensorC = SensorMock(tag: "tagC", formulaEditorSections: [.object(position: 2), .math(position: 10)])
 
         let manager = SensorManager(sensors: [sensorA, sensorB, sensorC])
         let items = manager.formulaEditorItems(for: SpriteObject())

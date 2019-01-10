@@ -64,7 +64,7 @@
         return valueToConvert / 100 * Double.pi
     }
 
-    func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
-        return .object(position: type(of: self).position)
+    func formulaEditorSections(for spriteObject: SpriteObject) -> [FormulaEditorSection] {
+        return [.object(position: type(of: self).position)]
     }
 }

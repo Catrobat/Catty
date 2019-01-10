@@ -181,7 +181,7 @@ final class FunctionManagerTests: XCTestCase {
     }
 
     func testFormulaEditorItems() {
-        let functionA = ZeroParameterDoubleFunctionMock(tag: "tagA", value: 12.3, formulaEditorSection: .hidden)
+        let functionA = ZeroParameterDoubleFunctionMock(tag: "tagA", value: 12.3, formulaEditorSections: [])
         let functionB = SingleParameterDoubleFunctionMock(tag: "tagB", value: 45.6, parameter: FunctionParameter.list(defaultValue: "list"), formulaEditorSection: .device(position: 1))
         let functionC = DoubleParameterDoubleFunctionMock(tag: "tagC",
                                                           value: 12.3,

@@ -196,6 +196,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     [self showFormulaEditor];
     
     [self.normalTypeButton addObjectsFromArray:[self initMathSectionWithScrollView:self.mathScrollView buttonHeight:self.calcButton.frame.size.height]];
+    [self.normalTypeButton addObjectsFromArray:[self initLogicSectionWithScrollView:self.logicScrollView buttonHeight:self.calcButton.frame.size.height]];
     [self.normalTypeButton addObjectsFromArray:[self initObjectSectionWithScrollView:self.objectScrollView buttonHeight:self.calcButton.frame.size.height]];
     [self.normalTypeButton addObjectsFromArray:[self initSensorSectionWithScrollView:self.sensorScrollView buttonHeight:self.calcButton.frame.size.height]];
     
@@ -236,6 +237,8 @@ NS_ENUM(NSInteger, ButtonIndex) {
     myNav.items = [NSArray arrayWithObjects: navigItem,nil];
     self.deleteButton.shapeStrokeColor = [UIColor navTintColor];
     
+    [self setupButtons];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(formulaTextViewTextDidChangeNotification:) name:UITextViewTextDidChangeNotification object:self.formulaEditorTextView];
 }
 
@@ -271,6 +274,12 @@ NS_ENUM(NSInteger, ButtonIndex) {
     }
 }
 
+- (void)setupButtons {
+    [self.divisionButton addTarget:self action:@selector(divisionButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+    [self.multiplicationButton addTarget:self action:@selector(multiplicationButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+    [self.substractionButton addTarget:self action:@selector(substractionButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+    [self.additionButton addTarget:self action:@selector(additionButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+}
 
 - (BOOL)canBecomeFirstResponder {
     return YES;
@@ -319,13 +328,6 @@ NS_ENUM(NSInteger, ButtonIndex) {
 #pragma mark - localizeView
 - (void)localizeView
 {
-    for (UIButton *button in self.normalTypeButton) {
-        NSString *name = [Operators getExternName:[Operators getName:(Operator)[button tag]]];
-        if([name length] != 0) {
-            [button setTitle:name forState:UIControlStateNormal];
-        }
-    }
-    
     [self.calcButton setTitle:kUIFENumbers forState:UIControlStateNormal];
     [self.mathbutton setTitle:kUIFEMath forState:UIControlStateNormal];
     [self.logicButton setTitle:kUIFELogic forState:UIControlStateNormal];
@@ -369,7 +371,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 - (void)handleInputWithTitle:(NSString*)title AndButtonType:(int)buttonType
 {
-    [self.internFormula handleKeyInputWithName:title butttonType:buttonType];
+    [self.internFormula handleKeyInputWithName:title buttonType:buttonType];
     [self handleInput];
 }
 

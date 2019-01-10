@@ -26,21 +26,29 @@ final class ObjectDoubleSensorMock: SensorMock, ObjectDoubleSensor {
 
     private static var mockedValue: Double = 0
 
-    init(tag: String, value: Double, formulaEditorSection: FormulaEditorSection) {
-        super.init(tag: tag, formulaEditorSection: formulaEditorSection)
+    init(tag: String, value: Double, formulaEditorSections: [FormulaEditorSection]) {
+        super.init(tag: tag, formulaEditorSections: formulaEditorSections)
         type(of: self).mockedValue = value
     }
 
-    override convenience init(tag: String, formulaEditorSection: FormulaEditorSection) {
-        self.init(tag: tag, value: 0, formulaEditorSection: formulaEditorSection)
+    convenience init(tag: String, value: Double, formulaEditorSection: FormulaEditorSection) {
+        self.init(tag: tag, value: value, formulaEditorSections: [formulaEditorSection])
+    }
+
+    override convenience init(tag: String, formulaEditorSections: [FormulaEditorSection]) {
+        self.init(tag: tag, value: 0, formulaEditorSections: formulaEditorSections)
+    }
+
+    convenience init(tag: String, formulaEditorSection: FormulaEditorSection) {
+        self.init(tag: tag, formulaEditorSections: [formulaEditorSection])
     }
 
     convenience init(tag: String, value: Double) {
-        self.init(tag: tag, value: value, formulaEditorSection: .hidden)
+        self.init(tag: tag, value: value, formulaEditorSections: [])
     }
 
     convenience init(tag: String) {
-        self.init(tag: tag, formulaEditorSection: .hidden)
+        self.init(tag: tag, formulaEditorSections: [])
     }
 
     static func rawValue(for spriteObject: SpriteObject) -> Double {

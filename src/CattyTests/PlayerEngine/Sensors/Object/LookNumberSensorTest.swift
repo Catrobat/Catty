@@ -82,9 +82,12 @@ final class LookNumberSensorTest: XCTestCase {
 
     func testFormulaEditorSection() {
         spriteObject.background = true
-        XCTAssertEqual(.hidden, sensor.formulaEditorSection(for: spriteObject))
+        XCTAssertEqual(0, sensor.formulaEditorSections(for: spriteObject).count)
 
         spriteObject.background = false
-        XCTAssertEqual(.object(position: type(of: sensor).position), sensor.formulaEditorSection(for: spriteObject))
+
+        let sections = sensor.formulaEditorSections(for: spriteObject)
+        XCTAssertEqual(1, sections.count)
+        XCTAssertEqual(.object(position: type(of: sensor).position), sections.first)
     }
 }

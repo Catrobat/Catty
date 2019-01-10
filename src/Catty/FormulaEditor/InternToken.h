@@ -49,7 +49,8 @@ typedef enum {
     TOKEN_TYPE_USER_VARIABLE,
     TOKEN_TYPE_USER_LIST,
     TOKEN_TYPE_STRING,
-    TOKEN_TYPE_PARSER_END_OF_FILE
+    TOKEN_TYPE_PARSER_END_OF_FILE,
+    TOKEN_TYPE_DECIMAL_MARK
 } InternTokenType;
 
 typedef enum KeyboardButtonTypes
@@ -68,7 +69,7 @@ typedef enum KeyboardNumbers
     TOKEN_TYPE_NUMBER_6,
     TOKEN_TYPE_NUMBER_7,
     TOKEN_TYPE_NUMBER_8,
-    TOKEN_TYPE_NUMBER_9,
+    TOKEN_TYPE_NUMBER_9
 }KeyboardNumbers;
 
 @interface InternToken : NSObject<NSMutableCopying>

@@ -51,10 +51,10 @@
         fatalError("This sensor is read-only")
     }
 
-    func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
+    func formulaEditorSections(for spriteObject: SpriteObject) -> [FormulaEditorSection] {
         if spriteObject.isBackground() == true {
-            return .hidden
+            return []
         }
-        return .object(position: type(of: self).position)
+        return [.object(position: type(of: self).position)]
     }
 }

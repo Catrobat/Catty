@@ -164,11 +164,7 @@
             
             break;
         }
-        case TOKEN_TYPE_OPERATOR:
-            return [Operators getExternName:[internToken getTokenStringValue]];
-            
-            break;
-            
+        
         case TOKEN_TYPE_BRACKET_OPEN:
         case TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_OPEN:
             return @"(";
@@ -207,6 +203,10 @@
             return returnValue;
             break;
             
+        case TOKEN_TYPE_OPERATOR:
+            return [[OperatorManager class] nameWithTag:[internToken getTokenStringValue]];
+            break;
+            
         case TOKEN_TYPE_FUNCTION_NAME:
             return [[FunctionManager class] nameWithTag:[internToken getTokenStringValue]];
             break;
@@ -220,7 +220,6 @@
             break;
     }
 }
-
 
 - (BOOL)appendWithWhitespace:(InternToken *)currenToken andNextToken:(InternToken *)nextToken
 {

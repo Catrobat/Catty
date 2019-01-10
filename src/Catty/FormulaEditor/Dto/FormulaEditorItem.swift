@@ -22,20 +22,28 @@
 
 class FormulaEditorItem {
 
+    var title: String
+    var sections: [FormulaEditorSection]
+
     var sensor: Sensor?
     var function: Function?
-    var title: String
-    var section: FormulaEditorSection
+    var op: Operator?
 
     public init(sensor: Sensor, spriteObject: SpriteObject) {
         self.title = type(of: sensor).name
         self.sensor = sensor
-        self.section = sensor.formulaEditorSection(for: spriteObject)
+        self.sections = sensor.formulaEditorSections(for: spriteObject)
     }
 
     public init(function: Function) {
         self.title = function.nameWithParameters()
         self.function = function
-        self.section = function.formulaEditorSection()
+        self.sections = function.formulaEditorSections()
+    }
+
+    public init(op: Operator) {
+        self.title = type(of: op).name
+        self.op = op
+        self.sections = op.formulaEditorSections()
     }
 }

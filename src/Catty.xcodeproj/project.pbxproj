@@ -165,11 +165,40 @@
 		4C37A0A5212E767C0074F417 /* ArduinoDigitalPinFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C37A0A4212E767C0074F417 /* ArduinoDigitalPinFunction.swift */; };
 		4C37A0A7212E76C90074F417 /* ArduinoDigitalPinFunctionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C37A0A6212E76C90074F417 /* ArduinoDigitalPinFunctionTest.swift */; };
 		4C37A0AA212E7E540074F417 /* FormulaEditorItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C37A0A9212E7E540074F417 /* FormulaEditorItem.swift */; };
+		4C3A5C9921D3B23E008FD83F /* PlusOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A5C9821D3B23E008FD83F /* PlusOperatorTest.swift */; };
+		4C3A5C9D21D3B38A008FD83F /* MinusOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A5C9C21D3B38A008FD83F /* MinusOperatorTest.swift */; };
+		4C3A5C9F21D3B3F9008FD83F /* AndOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A5C9E21D3B3F9008FD83F /* AndOperatorTest.swift */; };
+		4C3A5CA121D3B4DF008FD83F /* OrOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A5CA021D3B4DF008FD83F /* OrOperatorTest.swift */; };
+		4C3A5CA321D3B542008FD83F /* MultOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A5CA221D3B542008FD83F /* MultOperator.swift */; };
+		4C3A5CA521D3B5D1008FD83F /* DivideOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A5CA421D3B5D1008FD83F /* DivideOperatorTest.swift */; };
+		4C3A5CA721D3B687008FD83F /* EqualOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A5CA621D3B687008FD83F /* EqualOperatorTest.swift */; };
+		4C3A5CA921D3B7EF008FD83F /* NotEqualOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A5CA821D3B7EF008FD83F /* NotEqualOperatorTest.swift */; };
+		4C3A5CAB21D3B967008FD83F /* SmallerThanOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A5CAA21D3B967008FD83F /* SmallerThanOperatorTest.swift */; };
+		4C3A5CAD21D3BAB9008FD83F /* GreaterThanOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A5CAC21D3BAB9008FD83F /* GreaterThanOperatorTest.swift */; };
 		4C48ED2520EF9A1D00784CD5 /* AudioManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C48ED2420EF9A1D00784CD5 /* AudioManagerProtocol.swift */; };
 		4C48ED2920EF9AEC00784CD5 /* AudioManager+Loudness.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C48ED2820EF9AEC00784CD5 /* AudioManager+Loudness.swift */; };
 		4C4A71921B52733C00BBE32B /* CBXMLAbstractContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4A71911B52733C00BBE32B /* CBXMLAbstractContext.m */; };
 		4C4A71A11B527E2F00BBE32B /* CBXMLParserContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4A71A01B527E2F00BBE32B /* CBXMLParserContext.m */; };
 		4C4EE29D210901E70045F890 /* FormulaEditorSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4EE29A210901E70045F890 /* FormulaEditorSection.swift */; };
+		4C53E38821D5238900F2EC76 /* GreaterOrEqualOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C53E38721D5238900F2EC76 /* GreaterOrEqualOperatorTest.swift */; };
+		4C53E38D21D5241300F2EC76 /* SmallerOrEqualOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C53E38C21D5241300F2EC76 /* SmallerOrEqualOperatorTest.swift */; };
+		4C53E39021D5247C00F2EC76 /* NotOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C53E38F21D5247C00F2EC76 /* NotOperatorTest.swift */; };
+		4C53E39221D525F800F2EC76 /* OperatorManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C53E39121D525F800F2EC76 /* OperatorManagerTest.swift */; };
+		4C595F4121CAE7BE0097D850 /* PlusOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C595F4021CAE7BE0097D850 /* PlusOperator.swift */; };
+		4C595F4321CAEAFE0097D850 /* MinusOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C595F4221CAEAFE0097D850 /* MinusOperator.swift */; };
+		4C595F4521CAEB230097D850 /* DivideOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C595F4421CAEB230097D850 /* DivideOperator.swift */; };
+		4C595F4721CAEB4F0097D850 /* MultOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C595F4621CAEB4F0097D850 /* MultOperator.swift */; };
+		4C595F4921CAEB7E0097D850 /* NotEqualOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C595F4821CAEB7E0097D850 /* NotEqualOperator.swift */; };
+		4C595F4B21CAEBA50097D850 /* EqualOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C595F4A21CAEBA50097D850 /* EqualOperator.swift */; };
+		4C595F4D21CAEBC50097D850 /* SmallerThanOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C595F4C21CAEBC50097D850 /* SmallerThanOperator.swift */; };
+		4C595F4F21CAEBEE0097D850 /* GreaterThanOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C595F4E21CAEBEE0097D850 /* GreaterThanOperator.swift */; };
+		4C595F5121CAEC060097D850 /* GreaterOrEqualOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C595F5021CAEC060097D850 /* GreaterOrEqualOperator.swift */; };
+		4C595F5321CAEC2B0097D850 /* SmallerOrEqualOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C595F5221CAEC2B0097D850 /* SmallerOrEqualOperator.swift */; };
+		4C595F5521CAF3E60097D850 /* NotOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C595F5421CAF3E60097D850 /* NotOperator.swift */; };
+		4C595F5721CAF6590097D850 /* AndOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C595F5621CAF6590097D850 /* AndOperator.swift */; };
+		4C595F5921CAF6B30097D850 /* OrOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C595F5821CAF6B30097D850 /* OrOperator.swift */; };
+		4C595F5E21CAF8CC0097D850 /* OperatorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C595F5D21CAF8CC0097D850 /* OperatorManager.swift */; };
+		4C595F6021CAF9050097D850 /* OperatorManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C595F5F21CAF9050097D850 /* OperatorManagerProtocol.swift */; };
 		4C5EF63521A0677E0063D2F0 /* CameraBricks_0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C5EF63421A0677E0063D2F0 /* CameraBricks_0991.xml */; };
 		4C60663A1A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6066391A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m */; };
 		4C647C7E1D48E19C0060E70D /* Air_fight_0.5_098.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C647C7D1D48E19C0060E70D /* Air_fight_0.5_098.xml */; };
@@ -183,7 +212,6 @@
 		4C68FC911B25A00B00AB3EE8 /* InternFormulaParserStringFunctionsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68FC831B25A00B00AB3EE8 /* InternFormulaParserStringFunctionsTest.m */; };
 		4C68FC921B25A00B00AB3EE8 /* InternFormulaStateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68FC841B25A00B00AB3EE8 /* InternFormulaStateTest.m */; };
 		4C68FC931B25A00B00AB3EE8 /* InternFormulaTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68FC851B25A00B00AB3EE8 /* InternFormulaTest.m */; };
-		4C68FC941B25A00B00AB3EE8 /* InternFormulaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68FC861B25A00B00AB3EE8 /* InternFormulaTests.m */; };
 		4C68FC951B25A00B00AB3EE8 /* InternFormulaTokenSelectionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68FC871B25A00B00AB3EE8 /* InternFormulaTokenSelectionTest.m */; };
 		4C68FC961B25A00B00AB3EE8 /* InternFormulaUtilsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68FC881B25A00B00AB3EE8 /* InternFormulaUtilsTest.m */; };
 		4C6D14E6210B1273006147BD /* InclinationXSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6D14E5210B1273006147BD /* InclinationXSensor.swift */; };
@@ -371,6 +399,9 @@
 		4CB412202198635900FC4594 /* VariablesContainerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB4121D2198635900FC4594 /* VariablesContainerTest.swift */; };
 		4CB4FE061B95DF2900431757 /* BrickInsertManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB4FE031B95DF2900431757 /* BrickInsertManager.m */; };
 		4CB4FE071B95DF2900431757 /* BrickMoveManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB4FE051B95DF2900431757 /* BrickMoveManager.m */; };
+		4CBDF1A621CF82F100325338 /* Operator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBDF1A521CF82F000325338 /* Operator.swift */; };
+		4CBDF1A921CF830E00325338 /* UnaryOperatorMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBDF1A721CF830E00325338 /* UnaryOperatorMock.swift */; };
+		4CBDF1AA21CF830E00325338 /* BinaryOperatorMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBDF1A821CF830E00325338 /* BinaryOperatorMock.swift */; };
 		4CBF5F9C21AF1D200079C834 /* TouchManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBF5F9B21AF1D200079C834 /* TouchManagerTests.swift */; };
 		4CBF5F9E21AF1D390079C834 /* UIGestureRecognizerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBF5F9D21AF1D390079C834 /* UIGestureRecognizerMock.swift */; };
 		4CC50A53213AE386004BC914 /* FormulaManagerIdempotenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC50A52213AE385004BC914 /* FormulaManagerIdempotenceTests.swift */; };
@@ -808,7 +839,6 @@
 		92FF30F81A24DCAA00093DA7 /* Formula.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30991A24DCAA00093DA7 /* Formula.m */; };
 		92FF30F91A24DCAA00093DA7 /* FormulaElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF309B1A24DCAA00093DA7 /* FormulaElement.m */; };
 		92FF30FB1A24DCAA00093DA7 /* InternFormulaParserException.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30A01A24DCAA00093DA7 /* InternFormulaParserException.m */; };
-		92FF30FC1A24DCAA00093DA7 /* Operators.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30A21A24DCAA00093DA7 /* Operators.m */; };
 		92FF30FD1A24DCAA00093DA7 /* Header.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30A51A24DCAA00093DA7 /* Header.m */; };
 		92FF30FE1A24DCAA00093DA7 /* Look.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30A81A24DCAA00093DA7 /* Look.m */; };
 		92FF30FF1A24DCAA00093DA7 /* Program.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30AB1A24DCAA00093DA7 /* Program.m */; };
@@ -1499,6 +1529,16 @@
 		4C37A0A4212E767C0074F417 /* ArduinoDigitalPinFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArduinoDigitalPinFunction.swift; sourceTree = "<group>"; };
 		4C37A0A6212E76C90074F417 /* ArduinoDigitalPinFunctionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArduinoDigitalPinFunctionTest.swift; sourceTree = "<group>"; };
 		4C37A0A9212E7E540074F417 /* FormulaEditorItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaEditorItem.swift; sourceTree = "<group>"; };
+		4C3A5C9821D3B23E008FD83F /* PlusOperatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusOperatorTest.swift; sourceTree = "<group>"; };
+		4C3A5C9C21D3B38A008FD83F /* MinusOperatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinusOperatorTest.swift; sourceTree = "<group>"; };
+		4C3A5C9E21D3B3F9008FD83F /* AndOperatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AndOperatorTest.swift; sourceTree = "<group>"; };
+		4C3A5CA021D3B4DF008FD83F /* OrOperatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrOperatorTest.swift; sourceTree = "<group>"; };
+		4C3A5CA221D3B542008FD83F /* MultOperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultOperator.swift; sourceTree = "<group>"; };
+		4C3A5CA421D3B5D1008FD83F /* DivideOperatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DivideOperatorTest.swift; sourceTree = "<group>"; };
+		4C3A5CA621D3B687008FD83F /* EqualOperatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EqualOperatorTest.swift; sourceTree = "<group>"; };
+		4C3A5CA821D3B7EF008FD83F /* NotEqualOperatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotEqualOperatorTest.swift; sourceTree = "<group>"; };
+		4C3A5CAA21D3B967008FD83F /* SmallerThanOperatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallerThanOperatorTest.swift; sourceTree = "<group>"; };
+		4C3A5CAC21D3BAB9008FD83F /* GreaterThanOperatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreaterThanOperatorTest.swift; sourceTree = "<group>"; };
 		4C3AE2991B03526C005E1F57 /* BrickCellDataProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BrickCellDataProtocol.h; sourceTree = "<group>"; };
 		4C3AEF2E198E7EDD00604ABF /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		4C4867BF1AC2CA6D009D679D /* BrickMessageProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickMessageProtocol.h; sourceTree = "<group>"; };
@@ -1509,6 +1549,10 @@
 		4C4A719F1B527E2F00BBE32B /* CBXMLParserContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBXMLParserContext.h; sourceTree = "<group>"; };
 		4C4A71A01B527E2F00BBE32B /* CBXMLParserContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBXMLParserContext.m; sourceTree = "<group>"; };
 		4C4EE29A210901E70045F890 /* FormulaEditorSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormulaEditorSection.swift; sourceTree = "<group>"; };
+		4C53E38721D5238900F2EC76 /* GreaterOrEqualOperatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreaterOrEqualOperatorTest.swift; sourceTree = "<group>"; };
+		4C53E38C21D5241300F2EC76 /* SmallerOrEqualOperatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallerOrEqualOperatorTest.swift; sourceTree = "<group>"; };
+		4C53E38F21D5247C00F2EC76 /* NotOperatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotOperatorTest.swift; sourceTree = "<group>"; };
+		4C53E39121D525F800F2EC76 /* OperatorManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperatorManagerTest.swift; sourceTree = "<group>"; };
 		4C5517BC1ABC16B600A52FF4 /* ViewControllerDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerDefines.h; sourceTree = "<group>"; };
 		4C5517C41ABC300800A52FF4 /* BrickCellProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickCellProtocol.h; sourceTree = "<group>"; };
 		4C5517C61ABC300800A52FF4 /* BrickProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickProtocol.h; sourceTree = "<group>"; };
@@ -1517,6 +1561,21 @@
 		4C5517D51ABC6AA500A52FF4 /* BrickLookProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickLookProtocol.h; sourceTree = "<group>"; };
 		4C5517D61ABC6AB800A52FF4 /* BrickSoundProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickSoundProtocol.h; sourceTree = "<group>"; };
 		4C5517D71ABC737C00A52FF4 /* BrickObjectProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickObjectProtocol.h; sourceTree = "<group>"; };
+		4C595F4021CAE7BE0097D850 /* PlusOperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusOperator.swift; sourceTree = "<group>"; };
+		4C595F4221CAEAFE0097D850 /* MinusOperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinusOperator.swift; sourceTree = "<group>"; };
+		4C595F4421CAEB230097D850 /* DivideOperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DivideOperator.swift; sourceTree = "<group>"; };
+		4C595F4621CAEB4F0097D850 /* MultOperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultOperator.swift; sourceTree = "<group>"; };
+		4C595F4821CAEB7E0097D850 /* NotEqualOperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotEqualOperator.swift; sourceTree = "<group>"; };
+		4C595F4A21CAEBA50097D850 /* EqualOperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EqualOperator.swift; sourceTree = "<group>"; };
+		4C595F4C21CAEBC50097D850 /* SmallerThanOperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallerThanOperator.swift; sourceTree = "<group>"; };
+		4C595F4E21CAEBEE0097D850 /* GreaterThanOperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreaterThanOperator.swift; sourceTree = "<group>"; };
+		4C595F5021CAEC060097D850 /* GreaterOrEqualOperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreaterOrEqualOperator.swift; sourceTree = "<group>"; };
+		4C595F5221CAEC2B0097D850 /* SmallerOrEqualOperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallerOrEqualOperator.swift; sourceTree = "<group>"; };
+		4C595F5421CAF3E60097D850 /* NotOperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotOperator.swift; sourceTree = "<group>"; };
+		4C595F5621CAF6590097D850 /* AndOperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AndOperator.swift; sourceTree = "<group>"; };
+		4C595F5821CAF6B30097D850 /* OrOperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrOperator.swift; sourceTree = "<group>"; };
+		4C595F5D21CAF8CC0097D850 /* OperatorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperatorManager.swift; sourceTree = "<group>"; };
+		4C595F5F21CAF9050097D850 /* OperatorManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperatorManagerProtocol.swift; sourceTree = "<group>"; };
 		4C5EF63421A0677E0063D2F0 /* CameraBricks_0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CameraBricks_0991.xml; sourceTree = "<group>"; };
 		4C6066381A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GDataXMLNode+CustomExtensions.h"; sourceTree = "<group>"; };
 		4C6066391A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GDataXMLNode+CustomExtensions.m"; sourceTree = "<group>"; };
@@ -1531,7 +1590,6 @@
 		4C68FC831B25A00B00AB3EE8 /* InternFormulaParserStringFunctionsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InternFormulaParserStringFunctionsTest.m; path = Formula/InternFormulaParserStringFunctionsTest.m; sourceTree = "<group>"; };
 		4C68FC841B25A00B00AB3EE8 /* InternFormulaStateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InternFormulaStateTest.m; path = Formula/InternFormulaStateTest.m; sourceTree = "<group>"; };
 		4C68FC851B25A00B00AB3EE8 /* InternFormulaTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InternFormulaTest.m; path = Formula/InternFormulaTest.m; sourceTree = "<group>"; };
-		4C68FC861B25A00B00AB3EE8 /* InternFormulaTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InternFormulaTests.m; path = Formula/InternFormulaTests.m; sourceTree = "<group>"; };
 		4C68FC871B25A00B00AB3EE8 /* InternFormulaTokenSelectionTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InternFormulaTokenSelectionTest.m; path = Formula/InternFormulaTokenSelectionTest.m; sourceTree = "<group>"; };
 		4C68FC881B25A00B00AB3EE8 /* InternFormulaUtilsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InternFormulaUtilsTest.m; path = Formula/InternFormulaUtilsTest.m; sourceTree = "<group>"; };
 		4C6D14E5210B1273006147BD /* InclinationXSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InclinationXSensor.swift; sourceTree = "<group>"; };
@@ -1748,6 +1806,9 @@
 		4CB4FE031B95DF2900431757 /* BrickInsertManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BrickInsertManager.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		4CB4FE041B95DF2900431757 /* BrickMoveManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickMoveManager.h; sourceTree = "<group>"; };
 		4CB4FE051B95DF2900431757 /* BrickMoveManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickMoveManager.m; sourceTree = "<group>"; };
+		4CBDF1A521CF82F000325338 /* Operator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Operator.swift; sourceTree = "<group>"; };
+		4CBDF1A721CF830E00325338 /* UnaryOperatorMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnaryOperatorMock.swift; sourceTree = "<group>"; };
+		4CBDF1A821CF830E00325338 /* BinaryOperatorMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BinaryOperatorMock.swift; sourceTree = "<group>"; };
 		4CBF5F9B21AF1D200079C834 /* TouchManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouchManagerTests.swift; sourceTree = "<group>"; };
 		4CBF5F9D21AF1D390079C834 /* UIGestureRecognizerMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIGestureRecognizerMock.swift; sourceTree = "<group>"; };
 		4CC0D51F1B01FB73006193C4 /* BrickVariableProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickVariableProtocol.h; sourceTree = "<group>"; };
@@ -2381,8 +2442,6 @@
 		92FF309B1A24DCAA00093DA7 /* FormulaElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormulaElement.m; sourceTree = "<group>"; };
 		92FF309F1A24DCAA00093DA7 /* InternFormulaParserException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InternFormulaParserException.h; sourceTree = "<group>"; };
 		92FF30A01A24DCAA00093DA7 /* InternFormulaParserException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InternFormulaParserException.m; sourceTree = "<group>"; };
-		92FF30A11A24DCAA00093DA7 /* Operators.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Operators.h; sourceTree = "<group>"; };
-		92FF30A21A24DCAA00093DA7 /* Operators.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Operators.m; sourceTree = "<group>"; };
 		92FF30A41A24DCAA00093DA7 /* Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		92FF30A51A24DCAA00093DA7 /* Header.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Header.m; sourceTree = "<group>"; };
 		92FF30A71A24DCAA00093DA7 /* Look.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Look.h; sourceTree = "<group>"; };
@@ -3544,7 +3603,6 @@
 				4C68FC831B25A00B00AB3EE8 /* InternFormulaParserStringFunctionsTest.m */,
 				4C68FC841B25A00B00AB3EE8 /* InternFormulaStateTest.m */,
 				4C68FC851B25A00B00AB3EE8 /* InternFormulaTest.m */,
-				4C68FC861B25A00B00AB3EE8 /* InternFormulaTests.m */,
 				4C68FC871B25A00B00AB3EE8 /* InternFormulaTokenSelectionTest.m */,
 				4C68FC881B25A00B00AB3EE8 /* InternFormulaUtilsTest.m */,
 				BA1FA9901F02A10C0084184D /* UserListFunctionsTest.m */,
@@ -3577,6 +3635,33 @@
 				4C4A71A01B527E2F00BBE32B /* CBXMLParserContext.m */,
 			);
 			path = Context;
+			sourceTree = "<group>";
+		};
+		4C53E38B21D523ED00F2EC76 /* Binary */ = {
+			isa = PBXGroup;
+			children = (
+				4C3A5C9E21D3B3F9008FD83F /* AndOperatorTest.swift */,
+				4C3A5CA421D3B5D1008FD83F /* DivideOperatorTest.swift */,
+				4C3A5CA621D3B687008FD83F /* EqualOperatorTest.swift */,
+				4C53E38721D5238900F2EC76 /* GreaterOrEqualOperatorTest.swift */,
+				4C3A5CAC21D3BAB9008FD83F /* GreaterThanOperatorTest.swift */,
+				4C3A5C9C21D3B38A008FD83F /* MinusOperatorTest.swift */,
+				4C3A5CA221D3B542008FD83F /* MultOperator.swift */,
+				4C3A5CA821D3B7EF008FD83F /* NotEqualOperatorTest.swift */,
+				4C3A5CA021D3B4DF008FD83F /* OrOperatorTest.swift */,
+				4C3A5C9821D3B23E008FD83F /* PlusOperatorTest.swift */,
+				4C53E38C21D5241300F2EC76 /* SmallerOrEqualOperatorTest.swift */,
+				4C3A5CAA21D3B967008FD83F /* SmallerThanOperatorTest.swift */,
+			);
+			path = Binary;
+			sourceTree = "<group>";
+		};
+		4C53E38E21D5246A00F2EC76 /* Unary */ = {
+			isa = PBXGroup;
+			children = (
+				4C53E38F21D5247C00F2EC76 /* NotOperatorTest.swift */,
+			);
+			path = Unary;
 			sourceTree = "<group>";
 		};
 		4C5517BE1ABC2F5F00A52FF4 /* Bricks */ = {
@@ -3616,6 +3701,53 @@
 				4CC0D51F1B01FB73006193C4 /* BrickVariableProtocol.h */,
 			);
 			path = BrickData;
+			sourceTree = "<group>";
+		};
+		4C595F3A21CAE4FC0097D850 /* Operators */ = {
+			isa = PBXGroup;
+			children = (
+				4C595F5C21CAF8A40097D850 /* Unary */,
+				4C595F5A21CAF82F0097D850 /* Binary */,
+				4C595F3F21CAE5220097D850 /* Protocols */,
+				4C595F5D21CAF8CC0097D850 /* OperatorManager.swift */,
+			);
+			path = Operators;
+			sourceTree = "<group>";
+		};
+		4C595F3F21CAE5220097D850 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				4CBDF1A521CF82F000325338 /* Operator.swift */,
+				4C595F5F21CAF9050097D850 /* OperatorManagerProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		4C595F5A21CAF82F0097D850 /* Binary */ = {
+			isa = PBXGroup;
+			children = (
+				4C595F5621CAF6590097D850 /* AndOperator.swift */,
+				4C595F4421CAEB230097D850 /* DivideOperator.swift */,
+				4C595F4A21CAEBA50097D850 /* EqualOperator.swift */,
+				4C595F5021CAEC060097D850 /* GreaterOrEqualOperator.swift */,
+				4C595F4E21CAEBEE0097D850 /* GreaterThanOperator.swift */,
+				4C595F4221CAEAFE0097D850 /* MinusOperator.swift */,
+				4C595F4621CAEB4F0097D850 /* MultOperator.swift */,
+				4C595F4821CAEB7E0097D850 /* NotEqualOperator.swift */,
+				4C595F5821CAF6B30097D850 /* OrOperator.swift */,
+				4C595F4021CAE7BE0097D850 /* PlusOperator.swift */,
+				4C595F5221CAEC2B0097D850 /* SmallerOrEqualOperator.swift */,
+				4C595F4C21CAEBC50097D850 /* SmallerThanOperator.swift */,
+			);
+			path = Binary;
+			sourceTree = "<group>";
+		};
+		4C595F5C21CAF8A40097D850 /* Unary */ = {
+			isa = PBXGroup;
+			children = (
+				4C595F5421CAF3E60097D850 /* NotOperator.swift */,
+			);
+			path = Unary;
 			sourceTree = "<group>";
 		};
 		4C5EF63121A0674D0063D2F0 /* CameraBricks */ = {
@@ -3660,6 +3792,26 @@
 				BA38080421A1C8DA0075B831 /* XMLParserBlackBoxTests098.swift */,
 			);
 			path = "BlackBox Tests";
+			sourceTree = "<group>";
+		};
+		4C669E4221CE9B4C00563EAD /* Operators */ = {
+			isa = PBXGroup;
+			children = (
+				4C53E38E21D5246A00F2EC76 /* Unary */,
+				4C53E38B21D523ED00F2EC76 /* Binary */,
+				4C669E4321CE9B6400563EAD /* Mocks */,
+				4C53E39121D525F800F2EC76 /* OperatorManagerTest.swift */,
+			);
+			path = Operators;
+			sourceTree = "<group>";
+		};
+		4C669E4321CE9B6400563EAD /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				4CBDF1A821CF830E00325338 /* BinaryOperatorMock.swift */,
+				4CBDF1A721CF830E00325338 /* UnaryOperatorMock.swift */,
+			);
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 		4C6A64B31AF7CC5A00D04559 /* Images */ = {
@@ -5995,8 +6147,6 @@
 			children = (
 				92FF309F1A24DCAA00093DA7 /* InternFormulaParserException.h */,
 				92FF30A01A24DCAA00093DA7 /* InternFormulaParserException.m */,
-				92FF30A11A24DCAA00093DA7 /* Operators.h */,
-				92FF30A21A24DCAA00093DA7 /* Operators.m */,
 			);
 			path = FormulaEditor;
 			sourceTree = "<group>";
@@ -6473,6 +6623,7 @@
 				4CE1D434213E5D110014DAF9 /* Formula */,
 				4C6FE139212D2D2E0067B7D5 /* Functions */,
 				4CE1D42F213E5C130014DAF9 /* Mocks */,
+				4C669E4221CE9B4C00563EAD /* Operators */,
 				4C822615213FA7A300F3D750 /* Sensors */,
 			);
 			name = PlayerEngine;
@@ -7197,6 +7348,7 @@
 				4C9E07691CD9D47E00B14B2F /* Helper */,
 				4CF429EB213A82D300B78897 /* Condition */,
 				AA401FE51BBEF5F5001BC49F /* Instructions */,
+				4C595F3A21CAE4FC0097D850 /* Operators */,
 				AAD498B51B8D2431005894C4 /* Protocols */,
 				92FF30AF1A24DCAA00093DA7 /* Scene */,
 				CA2D44471B1249C400A3B53D /* Scheduler */,
@@ -8400,6 +8552,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C099F6E1C282B3C00E190CA /* CBBackendTests.swift in Sources */,
+				4C3A5CAD21D3BAB9008FD83F /* GreaterThanOperatorTest.swift in Sources */,
 				4C6FE165212D2D2E0067B7D5 /* PiFunctionTest.swift in Sources */,
 				AA70F7F11B866E9B003057C6 /* CBFrontendTests.swift in Sources */,
 				4CEB22551B95E47500B3BE2F /* ChangeBrightnessByNBrickTests.m in Sources */,
@@ -8419,6 +8572,7 @@
 				4C82265A213FA7A400F3D750 /* TouchManagerMock.swift in Sources */,
 				5973F245202EF3A000A4CED9 /* SoundsLibraryCollectionViewDataSourceDelegateMock.swift in Sources */,
 				BA38080921A1CBB70075B831 /* XMLParserBrickTests095.swift in Sources */,
+				4C3A5CA921D3B7EF008FD83F /* NotEqualOperatorTest.swift in Sources */,
 				4C0F9FD3204BD3B400E71B2D /* BubbleBrickTests.swift in Sources */,
 				4C822672213FA7A400F3D750 /* InclinationYSensorTest.swift in Sources */,
 				4C822657213FA7A400F3D750 /* MotionManagerMock.swift in Sources */,
@@ -8430,8 +8584,10 @@
 				4C822675213FA7A400F3D750 /* LoudnessSensorTest.swift in Sources */,
 				4CEB225E1B95E47500B3BE2F /* NextLookBrickTests.m in Sources */,
 				4CD0BA962146791D00BF17A4 /* UtilTests.swift in Sources */,
+				4CBDF1A921CF830E00325338 /* UnaryOperatorMock.swift in Sources */,
 				4CE1D431213E5C130014DAF9 /* CBSpriteNodeMock.swift in Sources */,
 				4CB412202198635900FC4594 /* VariablesContainerTest.swift in Sources */,
+				4C3A5CA121D3B4DF008FD83F /* OrOperatorTest.swift in Sources */,
 				4C6FE178212D2D2E0067B7D5 /* JoinFunctionTest.swift in Sources */,
 				4C6FE174212D2D2E0067B7D5 /* ElementFunctionTest.swift in Sources */,
 				4C0F9FD5204BD3C200E71B2D /* ChooseCameraBrickTests.swift in Sources */,
@@ -8461,6 +8617,7 @@
 				4C37A0A7212E76C90074F417 /* ArduinoDigitalPinFunctionTest.swift in Sources */,
 				4C82265F213FA7A400F3D750 /* FingerTouchedSensorTest.swift in Sources */,
 				4CAC7DA21DCF444A00EC7D6F /* CBSceneTouchTests.swift in Sources */,
+				4C3A5CA521D3B5D1008FD83F /* DivideOperatorTest.swift in Sources */,
 				4CEB22621B95E47500B3BE2F /* SetBrightnessBrickTests.m in Sources */,
 				4C68FC961B25A00B00AB3EE8 /* InternFormulaUtilsTest.m in Sources */,
 				4C6FE15B212D2D2E0067B7D5 /* CeilFunctionTest.swift in Sources */,
@@ -8480,6 +8637,7 @@
 				4CEB225D1B95E47500B3BE2F /* MoveNStepsBrickTests.m in Sources */,
 				4CEB22531B95E47500B3BE2F /* BrickMutableCopyTests.m in Sources */,
 				4C1F6FA7213CFB5800C20BEB /* FunctionTests.swift in Sources */,
+				4C3A5CAB21D3B967008FD83F /* SmallerThanOperatorTest.swift in Sources */,
 				4C822653213FA7A400F3D750 /* ObjectDoubleSensorMock.swift in Sources */,
 				4CEB22661B95E47500B3BE2F /* SetXBrickTests.m in Sources */,
 				4C0F9FDB204BD3E100E71B2D /* SetBackgroundBrickTests.m in Sources */,
@@ -8490,6 +8648,7 @@
 				4C822663213FA7A400F3D750 /* FacePositionXSensorTest.swift in Sources */,
 				4CEB22651B95E47500B3BE2F /* SetTransparencyBrickTests.m in Sources */,
 				4CEB22611B95E47500B3BE2F /* PointToBrickTests.m in Sources */,
+				4CBDF1AA21CF830E00325338 /* BinaryOperatorMock.swift in Sources */,
 				4C822668213FA7A400F3D750 /* CompassDirectionSensorTest.swift in Sources */,
 				4CE5C56F1E0AD71800FD021C /* ProgramTests.m in Sources */,
 				4C1D26611E84EFBD00BAA2D2 /* RepeatBrickTests.swift in Sources */,
@@ -8511,6 +8670,7 @@
 				4CDF7BBE213875A900FFF7F4 /* ProgramMock.m in Sources */,
 				4C0F9FD9204BD3D500E71B2D /* RepeatUntilBrickTests.swift in Sources */,
 				4C82266B213FA7A400F3D750 /* DateYearSensorTest.swift in Sources */,
+				4C3A5C9921D3B23E008FD83F /* PlusOperatorTest.swift in Sources */,
 				BA38081121A1FE750075B831 /* XMLParserTests098.swift in Sources */,
 				4CEB22761B95E4BC00B3BE2F /* BrickInsertManagerRepeatTests.m in Sources */,
 				4CAB10091ECF1A9A0019A67B /* HideTextBrickTests.swift in Sources */,
@@ -8518,12 +8678,14 @@
 				BA38080521A1C8DA0075B831 /* XMLParserBlackBoxTests098.swift in Sources */,
 				4CEB225F1B95E47500B3BE2F /* PlaceAtBrickTests.m in Sources */,
 				4C6FE171212D2D2E0067B7D5 /* CosFunctionTest.swift in Sources */,
+				4C53E38821D5238900F2EC76 /* GreaterOrEqualOperatorTest.swift in Sources */,
 				4CEB22631B95E47500B3BE2F /* SetLookBrickTests.m in Sources */,
 				4C6FE15F212D2D2E0067B7D5 /* FalseFunctionTest.swift in Sources */,
 				4C82266D213FA7A400F3D750 /* DateDaySensorTest.swift in Sources */,
 				92BCDC851BF1DE2A00F9CB23 /* FirmataTests.swift in Sources */,
 				4C822652213FA7A400F3D750 /* LocationManagerMock.swift in Sources */,
 				599E64A6202DB2FB009494B5 /* MediaLibraryDownloaderMock.swift in Sources */,
+				4C3A5C9F21D3B3F9008FD83F /* AndOperatorTest.swift in Sources */,
 				4C28D7952133BC1D00870CE2 /* FormulaManagerTests.swift in Sources */,
 				4CAB100D1ECF1AB20019A67B /* SetVariableBrickTests.swift in Sources */,
 				4C82266E213FA7A400F3D750 /* DateWeekdaySensorTest.swift in Sources */,
@@ -8532,6 +8694,7 @@
 				4CEB22771B95E4BC00B3BE2F /* BrickInsertManagerTests.m in Sources */,
 				4C82266A213FA7A400F3D750 /* TimeSecondSensorTest.swift in Sources */,
 				4CEB22741B95E4BC00B3BE2F /* BrickInsertManagerForeverTests.m in Sources */,
+				4C53E39021D5247C00F2EC76 /* NotOperatorTest.swift in Sources */,
 				4C822671213FA7A400F3D750 /* AccelerationXSensorTest.swift in Sources */,
 				4CF4CB7721E65A9B009D6DD9 /* ReplaceItemInUserListBrickTests.swift in Sources */,
 				4C1D26651E84F12700BAA2D2 /* VibrationBrickTests.swift in Sources */,
@@ -8559,7 +8722,9 @@
 				4CF4CB7521E64BEE009D6DD9 /* InsertItemIntoUserListBrickTests.swift in Sources */,
 				4CEB225C1B95E47500B3BE2F /* IfOnEdgeBounceBrickTests.m in Sources */,
 				4C6FE16C212D2D2E0067B7D5 /* AcosFunctionTest.swift in Sources */,
+				4C53E38D21D5241300F2EC76 /* SmallerOrEqualOperatorTest.swift in Sources */,
 				4C822688213FAC3C00F3D750 /* MultiFingerXFunctionTests.swift in Sources */,
+				4C53E39221D525F800F2EC76 /* OperatorManagerTest.swift in Sources */,
 				4C68FC921B25A00B00AB3EE8 /* InternFormulaStateTest.m in Sources */,
 				5973F239202EF34700A4CED9 /* MediaLibraryCollectionViewDataSourceDelegateMock.swift in Sources */,
 				4CC614B7212EA84E006E4720 /* FormulaEditorItemTest.swift in Sources */,
@@ -8601,6 +8766,7 @@
 				599E64AA202DB3E8009494B5 /* MediaLibraryCollectionViewDataSourceTests.swift in Sources */,
 				4CEB22641B95E47500B3BE2F /* SetSizeToBrickTests.m in Sources */,
 				4C82266C213FA7A400F3D750 /* TimeHourSensorTest.swift in Sources */,
+				4C3A5C9D21D3B38A008FD83F /* MinusOperatorTest.swift in Sources */,
 				4C6FE162212D2D2E0067B7D5 /* LnFunctionTest.swift in Sources */,
 				4CEB225A1B95E47500B3BE2F /* GoNStepsBackBrickTests.m in Sources */,
 				4CAB100F1ECF1AC60019A67B /* ShowTextBrickTests.swift in Sources */,
@@ -8613,10 +8779,11 @@
 				4C822665213FA7A400F3D750 /* AltitudeSensorTest.swift in Sources */,
 				4CC50A5C213BBD7D004BC914 /* FormulaManagerInterpreterTests.swift in Sources */,
 				4C82265E213FA7A400F3D750 /* LastFingerIndexSensorTest.swift in Sources */,
-				4C68FC941B25A00B00AB3EE8 /* InternFormulaTests.m in Sources */,
 				4C6FE168212D2D2E0067B7D5 /* TanFunctionTest.swift in Sources */,
 				4CD0BA9921467C5A00BF17A4 /* HeaderTests.swift in Sources */,
 				4CEB22601B95E47500B3BE2F /* PointInDirectionBrickTests.m in Sources */,
+				4C3A5CA721D3B687008FD83F /* EqualOperatorTest.swift in Sources */,
+				4C3A5CA321D3B542008FD83F /* MultOperator.swift in Sources */,
 				4C82268F213FB2C600F3D750 /* MultiFingerYFunctionTests.swift in Sources */,
 				4C6FE16D212D2D2E0067B7D5 /* PowFunctionTest.swift in Sources */,
 				4C68FC911B25A00B00AB3EE8 /* InternFormulaParserStringFunctionsTest.m in Sources */,
@@ -8639,6 +8806,7 @@
 				AA74F00E1BC05B5F00D1E954 /* StopAllSoundsBrick.m in Sources */,
 				AA74EEDF1BC057B900D1E954 /* IfLogicElseBrick+CBXMLHandler.m in Sources */,
 				AAA2979B1BB3711B006F8793 /* BrickCategoryViewController.m in Sources */,
+				4C595F5921CAF6B30097D850 /* OrOperator.swift in Sources */,
 				AA74F0941BC05FCE00D1E954 /* BrickCellLookData.m in Sources */,
 				F45AF6FD212960A3000F88A6 /* FacePositionXSensor.swift in Sources */,
 				99EBDBFA1D562088008D6860 /* ChangeColorByNBrick+CBXMLHandler.m in Sources */,
@@ -8651,6 +8819,7 @@
 				AABCB3EC1BB368C2009F67D2 /* CBFrontendSequenceFilters.swift in Sources */,
 				AABCB3EA1BB3687D009F67D2 /* CBScene.swift in Sources */,
 				AA74F0B61BC05FCE00D1E954 /* ChangeXByNBrickCell.m in Sources */,
+				4C595F5121CAEC060097D850 /* GreaterOrEqualOperator.swift in Sources */,
 				AABCB3E71BB3671F009F67D2 /* LLNode.swift in Sources */,
 				AA74EE3C1BC0543700D1E954 /* SpeakBrick+Instruction.swift in Sources */,
 				AA401FE91BBEF6F9001BC49F /* CBInstructionProtocol.swift in Sources */,
@@ -8712,6 +8881,7 @@
 				CA3E72E81B0C00A500D6B184 /* CBStack.swift in Sources */,
 				AA74EFFE1BC05B5F00D1E954 /* ComeToFrontBrick.m in Sources */,
 				92FF31051A24DCAA00093DA7 /* WhenScript.m in Sources */,
+				4C595F5721CAF6590097D850 /* AndOperator.swift in Sources */,
 				4C724E251B4D3E8C00E27479 /* CBXMLParser.m in Sources */,
 				F45AF701212960B4000F88A6 /* FaceSizeSensor.swift in Sources */,
 				9200C2D61C8082EF002F5CA4 /* ShowTextBrickCell.m in Sources */,
@@ -8780,6 +8950,7 @@
 				BAEAB29A214BCE8D000B2E4B /* WhenTouchDownScriptCell.m in Sources */,
 				92FF314C1A24DEB300093DA7 /* CatrobatTableViewController.m in Sources */,
 				59D008E9208E3FDC000539E7 /* MotionManager.swift in Sources */,
+				4C595F4321CAEAFE0097D850 /* MinusOperator.swift in Sources */,
 				AA74EFF11BC05B5F00D1E954 /* ChangeBrightnessByNBrick.m in Sources */,
 				4C48ED2520EF9A1D00784CD5 /* AudioManagerProtocol.swift in Sources */,
 				AA74F0B71BC05FCE00D1E954 /* ChangeYByNBrickCell.m in Sources */,
@@ -8811,6 +8982,7 @@
 				928D4D791A7BD19A00E6DFA8 /* CatrobatUISlider.m in Sources */,
 				AA74EE3A1BC0543700D1E954 /* PlaySoundBrick+Instruction.swift in Sources */,
 				5947F6D5200CF3C70079DBCE /* MediaLibraryViewController.swift in Sources */,
+				4C595F4721CAEB4F0097D850 /* MultOperator.swift in Sources */,
 				AA74EEFC1BC057C900D1E954 /* NextLookBrick+CBXMLHandler.m in Sources */,
 				92DFB0171A38949E00FA9B0F /* InternFormulaTokenSelection.m in Sources */,
 				92FF2E3A1A24C5A700093DA7 /* NSString+FastImageSize.m in Sources */,
@@ -8845,6 +9017,7 @@
 				AAF6D9E21BC0C48300686849 /* PointToBrick+Instruction.swift in Sources */,
 				AA74F09C1BC05FCE00D1E954 /* BroadcastBrickCell.m in Sources */,
 				AA74F0961BC05FCE00D1E954 /* BrickCellObjectData.m in Sources */,
+				4C595F6021CAF9050097D850 /* OperatorManagerProtocol.swift in Sources */,
 				929CC0CC1BC39B0A0027DEC0 /* PhiroMotorMoveBackwardBrick.m in Sources */,
 				92FF32B61A24E2F400093DA7 /* CatrobatBaseCell.m in Sources */,
 				AA74F0051BC05B5F00D1E954 /* PointToBrick.m in Sources */,
@@ -8899,6 +9072,7 @@
 				4CE67899210C6EEE00D90B5D /* SinFunction.swift in Sources */,
 				929CC0F81BC3A2420027DEC0 /* PhiroMotorMoveBackwardBrick+Instruction.swift in Sources */,
 				AA74F0AC1BC05FCE00D1E954 /* ChangeTransparencyByNBrickCell.m in Sources */,
+				4CBDF1A621CF82F100325338 /* Operator.swift in Sources */,
 				92D56C371BF2059F00A54750 /* PhiroDevice.swift in Sources */,
 				925819881C0208E8003247A9 /* CALayer+XibConfiguration.m in Sources */,
 				F4664F9220DD7A1700E1519A /* FormulaEditorViewController+Section.swift in Sources */,
@@ -9021,6 +9195,7 @@
 				9218B2101CC4AB75007B4C60 /* PipetteTool.m in Sources */,
 				4C0F9F66204BD18600E71B2D /* SayBubbleBrick+CBXMLHandler.m in Sources */,
 				923503901BA707DE00021F6A /* BaseLoginViewController.m in Sources */,
+				4C595F4921CAEB7E0097D850 /* NotEqualOperator.swift in Sources */,
 				4C11795120AEBE38006C6E32 /* LongitudeSensor.swift in Sources */,
 				F4201D0120D7A3B60030181B /* TimeSecondSensor.swift in Sources */,
 				92FF2EA11A24C7D800093DA7 /* TimerLabel.m in Sources */,
@@ -9047,6 +9222,7 @@
 				9218B20C1CC4AB75007B4C60 /* FillTool.m in Sources */,
 				4C0F9F85204BD24600E71B2D /* IfThenLogicBeginBrick+CBXMLHandler.m in Sources */,
 				929CC0FB1BC3A2420027DEC0 /* PhiroRGBLightBrick+Instruction.swift in Sources */,
+				4C595F4F21CAEBEE0097D850 /* GreaterThanOperator.swift in Sources */,
 				D63864651AE632FE008569E6 /* ProgramsForUploadViewController.m in Sources */,
 				92B46F921BC7B3E5004980C1 /* ArduinoSendDigitalValueBrick.m in Sources */,
 				4CF0728120D6577500F93AB5 /* PhiroSensor.swift in Sources */,
@@ -9122,6 +9298,7 @@
 				92FF31581A24DEB300093DA7 /* ProgramTableViewController.m in Sources */,
 				4C72EA3B2108EC3600E7407F /* TouchManagerProtocol.swift in Sources */,
 				9200C2CF1C808206002F5CA4 /* HideTextBrick+Instruction.swift in Sources */,
+				4C595F4B21CAEBA50097D850 /* EqualOperator.swift in Sources */,
 				AA74F0AB1BC05FCE00D1E954 /* ChangeBrightnessByNBrickCell.m in Sources */,
 				929CC0E01BC39B690027DEC0 /* BrickCellPhiroToneData.m in Sources */,
 				5E21DA6821A3E4AF00017D2C /* UIImage+Extensions.swift in Sources */,
@@ -9129,6 +9306,7 @@
 				4C0F9F6E204BD1A300E71B2D /* ThinkBubbleBrick+CBXMLHandler.m in Sources */,
 				AA74F0041BC05B5F00D1E954 /* PointInDirectionBrick.m in Sources */,
 				921D467C1BDF61350086AD20 /* ChangeYByNBrick+Instruction.swift in Sources */,
+				4C595F4D21CAEBC50097D850 /* SmallerThanOperator.swift in Sources */,
 				929CC0EE1BC39B8C0027DEC0 /* PhiroMotorMoveForwardBrickCell.m in Sources */,
 				AAF6D9DE1BC0C1F300686849 /* PlaceAtBrick+Instruction.swift in Sources */,
 				92FF315E1A24DEB300093DA7 /* HelpWebViewController.m in Sources */,
@@ -9154,6 +9332,7 @@
 				AAF6D9C91BC0914100686849 /* CBPlayerConfig.swift in Sources */,
 				AA74EFF51BC05B5F00D1E954 /* NextLookBrick.m in Sources */,
 				92DFB0121A38949E00FA9B0F /* InternFormula.m in Sources */,
+				4C595F5521CAF3E60097D850 /* NotOperator.swift in Sources */,
 				BAEE49C01F165D1300F06741 /* ReplaceItemInUserListBrick+Instruction.swift in Sources */,
 				4CEFFADA2105E46500DC5CFE /* ObjectStringSensor.swift in Sources */,
 				AA74F0C41BC05FCE00D1E954 /* ChangeVolumeByNBrickCell.m in Sources */,
@@ -9188,8 +9367,8 @@
 				92FF30F91A24DCAA00093DA7 /* FormulaElement.m in Sources */,
 				AA74EE211BC053FD00D1E954 /* BroadcastBrick+Instruction.swift in Sources */,
 				9218B2161CC4AB75007B4C60 /* PaintViewController.m in Sources */,
+				4C595F4521CAEB230097D850 /* DivideOperator.swift in Sources */,
 				9218B2031CC4AB75007B4C60 /* ImagePicker.m in Sources */,
-				92FF30FC1A24DCAA00093DA7 /* Operators.m in Sources */,
 				AA74EF711BC0588A00D1E954 /* SpeakBrick+CBXMLHandler.m in Sources */,
 				92FF32BE1A24E2F400093DA7 /* BaseTransition.m in Sources */,
 				BA1FA99D1F02AEDC0084184D /* InsertItemIntoUserListBrick.m in Sources */,
@@ -9198,12 +9377,14 @@
 				AA74F0BE1BC05FCE00D1E954 /* PointInDirectionBrickCell.m in Sources */,
 				4C0F9F5D204BD16F00E71B2D /* ChooseCameraBrick+CBXMLHandler.m in Sources */,
 				AA74EEFA1BC057C900D1E954 /* ClearGraphicEffectBrick+CBXMLHandler.m in Sources */,
+				4C595F5E21CAF8CC0097D850 /* OperatorManager.swift in Sources */,
 				99B2C36B1D884C1300736769 /* FlashBrick+CBXMLHandler.m in Sources */,
 				AA74F0011BC05B5F00D1E954 /* IfOnEdgeBounceBrick.m in Sources */,
 				81C0A67F1A4EE8CF003A77C5 /* BrickSelectionViewController.m in Sources */,
 				AAF6D9E01BC0C2AA00686849 /* PointInDirectionBrick+Instruction.swift in Sources */,
 				AA74EF541BC0586F00D1E954 /* PointInDirectionBrick+CBXMLHandler.m in Sources */,
 				92FF2E361A24C5A700093DA7 /* NSDate+CustomExtensions.m in Sources */,
+				4C595F4121CAE7BE0097D850 /* PlusOperator.swift in Sources */,
 				92289A491A42F2A3008C771A /* BSKeyboardControls.m in Sources */,
 				4C724E231B4D3E8C00E27479 /* CBXMLSerializerHelper.m in Sources */,
 				92FF2EC11A24C8A700093DA7 /* OrderedMapTable.m in Sources */,
@@ -9328,6 +9509,7 @@
 				4C0F9FA6204BD2C200E71B2D /* ThinkBubbleBrickCell.m in Sources */,
 				AA74EFFB1BC05B5F00D1E954 /* ChangeSizeByNBrick.m in Sources */,
 				92ED4D7D1BA9C1380052C852 /* RegisterViewController.m in Sources */,
+				4C595F5321CAEC2B0097D850 /* SmallerOrEqualOperator.swift in Sources */,
 				E4668B3C20FDCA6D0021FA0B /* FeaturedProgramsStoreTableDataSource.swift in Sources */,
 				92FF31061A24DCAA00093DA7 /* Sound.m in Sources */,
 				91FC87CEFA4B1008B213EA31 /* AlertControllerBuilder.swift in Sources */,

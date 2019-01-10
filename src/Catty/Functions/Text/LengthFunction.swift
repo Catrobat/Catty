@@ -42,7 +42,7 @@ class LengthFunction: SingleParameterDoubleFunction {
         return Double(text.count)
     }
 
-    func formulaEditorSection() -> FormulaEditorSection {
-        return .math(position: type(of: self).position)
+    func formulaEditorSections() -> [FormulaEditorSection] {
+        return [.math(position: type(of: self).position)]
     }
 }

@@ -33,7 +33,6 @@ protocol Sensor {
     // Tag for serialization
     func tag() -> String
 
-    // Return the section to show sensor in formula editor (FormulaEditorSection) and the position within that section (Int)
-    // Use .hidden to not show the sensor at all
-    func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection
+    // Sections to show in formula editor and the position within each section
+    func formulaEditorSections(for spriteObject: SpriteObject) -> [FormulaEditorSection]
 }

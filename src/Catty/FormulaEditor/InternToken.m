@@ -21,7 +21,6 @@
  */
 
 #import "InternToken.h"
-#import "Operators.h"
 
 @implementation InternToken
 
@@ -50,7 +49,7 @@
 
 - (BOOL)isOperator
 {
-    return self.internTokenType == TOKEN_TYPE_OPERATOR && (int)[Operators getOperatorByValue:self.tokenStringValue] != -1;
+    return self.internTokenType == TOKEN_TYPE_OPERATOR;
 }
 
 - (BOOL)isBracketOpen

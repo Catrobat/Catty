@@ -53,7 +53,7 @@ final class FormulaManagerCacheTests: XCTestCase {
     func testInvalidateCacheForFormula() {
         let leftChild = FormulaElement(integer: 1)!
         let rightChild = FormulaElement(elementType: ElementType.SENSOR, value: DateDaySensor.tag)!
-        let formulaA = Formula(formulaElement: FormulaElement(elementType: ElementType.OPERATOR, value: Operators.getName(Operator.PLUS), leftChild: leftChild, rightChild: rightChild, parent: nil))!
+        let formulaA = Formula(formulaElement: FormulaElement(elementType: ElementType.OPERATOR, value: PlusOperator.tag, leftChild: leftChild, rightChild: rightChild, parent: nil))!
 
         let formulaB = Formula(integer: 2)!
 
@@ -109,7 +109,7 @@ final class FormulaManagerCacheTests: XCTestCase {
     func testCacheNumberAndSensor() {
         let leftChild = FormulaElement(integer: 1)!
         let rightChild = FormulaElement(elementType: ElementType.SENSOR, value: DateDaySensor.tag)!
-        let formula = Formula(formulaElement: FormulaElement(elementType: ElementType.OPERATOR, value: Operators.getName(Operator.PLUS), leftChild: leftChild, rightChild: rightChild, parent: nil))!
+        let formula = Formula(formulaElement: FormulaElement(elementType: ElementType.OPERATOR, value: PlusOperator.tag, leftChild: leftChild, rightChild: rightChild, parent: nil))!
 
         XCTAssertFalse(manager.isIdempotent(formula))
         XCTAssertEqual(0, manager.cachedResults.count)
@@ -149,7 +149,7 @@ final class FormulaManagerCacheTests: XCTestCase {
         let expectedResult = Calendar.current.component(.day, from: Date()) + 1
         let leftChild = FormulaElement(integer: 1)!
         let rightChild = FormulaElement(elementType: ElementType.SENSOR, value: DateDaySensor.tag)!
-        let formula = Formula(formulaElement: FormulaElement(elementType: ElementType.OPERATOR, value: Operators.getName(Operator.PLUS), leftChild: leftChild, rightChild: rightChild, parent: nil))!
+        let formula = Formula(formulaElement: FormulaElement(elementType: ElementType.OPERATOR, value: PlusOperator.tag, leftChild: leftChild, rightChild: rightChild, parent: nil))!
 
         XCTAssertFalse(manager.isIdempotent(formula))
 

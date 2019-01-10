@@ -62,7 +62,10 @@ class FalseFunctionTest: XCTestCase {
         XCTAssertTrue(type(of: function).isIdempotent)
     }
 
-    func testFormulaEditorSection() {
-        XCTAssertEqual(.math(position: type(of: function).position), function.formulaEditorSection())
+    func testFormulaEditorSections() {
+        let sections = function.formulaEditorSections()
+        XCTAssertEqual(2, sections.count)
+        XCTAssertTrue(sections.contains(.logic(position: type(of: function).position)))
+        XCTAssertTrue(sections.contains(.math(position: type(of: function).position)))
     }
 }

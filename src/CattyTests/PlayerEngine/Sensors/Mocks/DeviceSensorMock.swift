@@ -26,22 +26,30 @@ final class DeviceSensorMock: SensorMock, DeviceSensor {
 
     private let mockedValue: Double
 
-    init(tag: String, value: Double, formulaEditorSection: FormulaEditorSection) {
+    init(tag: String, value: Double, formulaEditorSections: [FormulaEditorSection]) {
         self.mockedValue = value
 
-        super.init(tag: tag, formulaEditorSection: formulaEditorSection)
+        super.init(tag: tag, formulaEditorSections: formulaEditorSections)
     }
 
-    override convenience init(tag: String, formulaEditorSection: FormulaEditorSection) {
-        self.init(tag: tag, value: 0, formulaEditorSection: formulaEditorSection)
+    convenience init(tag: String, value: Double, formulaEditorSection: FormulaEditorSection) {
+        self.init(tag: tag, value: value, formulaEditorSections: [formulaEditorSection])
+    }
+
+    convenience init(tag: String, formulaEditorSection: FormulaEditorSection) {
+        self.init(tag: tag, value: 0, formulaEditorSections: [formulaEditorSection])
+    }
+
+    override convenience init(tag: String, formulaEditorSections: [FormulaEditorSection]) {
+        self.init(tag: tag, value: 0, formulaEditorSections: formulaEditorSections)
     }
 
     convenience init(tag: String, value: Double) {
-        self.init(tag: tag, value: value, formulaEditorSection: .hidden)
+        self.init(tag: tag, value: value, formulaEditorSections: [])
     }
 
     convenience init(tag: String) {
-        self.init(tag: tag, formulaEditorSection: .hidden)
+        self.init(tag: tag, formulaEditorSections: [])
     }
 
     func rawValue() -> Double {
