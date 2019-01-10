@@ -119,7 +119,7 @@ static int MAPPING_NOT_FOUND = INT_MIN;
     }
 }
 
-- (void)handleKeyInputWithName:(NSString *)name butttonType:(int)resourceId
+- (void)handleKeyInputWithName:(NSString *)name buttonType:(int)resourceId
 {
     NSMutableArray<InternToken*> *keyInputInternTokenList = [[NSMutableArray alloc] initWithArray:[self createInternTokenListByResourceIdWithResource:resourceId name:name]];
     [self handleKeyInputWithInternTokenList:keyInputInternTokenList andResourceId:resourceId];

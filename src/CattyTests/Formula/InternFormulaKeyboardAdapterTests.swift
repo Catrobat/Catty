@@ -73,8 +73,8 @@ final class InternFormulaKeyboardAdapterTests: XCTestCase {
 
         setCursorAtEndAndAssertSelection(internFormula, expectedStartIndex: 0, expectedEndIndex: 9)
 
-        internFormula.handleKeyInput(withName: "4", butttonType: 5)
-        internFormula.handleKeyInput(withName: "2", butttonType: 3)
+        internFormula.handleKeyInput(withName: "4", buttonType: 5)
+        internFormula.handleKeyInput(withName: "2", buttonType: 3)
 
         XCTAssertNil(internFormula.getSelection())
         setCursorAtEndAndAssertSelection(internFormula, expectedStartIndex: 0, expectedEndIndex: 0)

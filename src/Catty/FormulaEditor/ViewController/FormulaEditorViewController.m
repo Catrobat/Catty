@@ -371,7 +371,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 - (void)handleInputWithTitle:(NSString*)title AndButtonType:(int)buttonType
 {
-    [self.internFormula handleKeyInputWithName:title butttonType:buttonType];
+    [self.internFormula handleKeyInputWithName:title buttonType:buttonType];
     [self handleInput];
 }
 
