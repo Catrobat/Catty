@@ -29,6 +29,7 @@
 @interface RepeatBrick : LoopBeginBrick<BrickFormulaProtocol>
 
 @property (nonatomic, strong) Formula *timesToRepeat;
-@property (nonatomic, assign) int loopCount;
+@property (nonatomic, assign) int repetitions;
+@property (nonatomic, strong) NSNumber *maxRepetitions;
 
 @end

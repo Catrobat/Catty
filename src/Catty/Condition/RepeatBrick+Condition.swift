@@ -23,14 +23,18 @@
 extension RepeatBrick: CBConditionProtocol {
 
     func checkCondition(formulaInterpreter: FormulaInterpreterProtocol) -> Bool {
-        let timesToRepeat = formulaInterpreter.interpretInteger(self.timesToRepeat, for: self.script.object)
-        let condition = self.loopCount < timesToRepeat
-        self.loopCount += 1
+        if self.maxRepetitions == nil {
+            self.maxRepetitions = NSNumber(value: formulaInterpreter.interpretInteger(self.timesToRepeat, for: self.script.object))
+        }
+
+        let condition = self.repetitions < self.maxRepetitions.intValue
+        self.repetitions += 1
         return condition
     }
 
     func resetCondition() {
-        self.loopCount = 0
+        self.repetitions = 0
+        self.maxRepetitions = nil
     }
 
     func conditionFormulas() -> [Formula] {

@@ -77,7 +77,8 @@
 - (id)mutableCopyWithContext:(CBMutableCopyContext*)context
 {
     RepeatBrick *brick = [self mutableCopyWithContext:context AndErrorReporting:NO];
-    brick.loopCount = self.loopCount;
+    brick.repetitions = self.repetitions;
+    brick.maxRepetitions = self.maxRepetitions;
     return brick;
 }
 

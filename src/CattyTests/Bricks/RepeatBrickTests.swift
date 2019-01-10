@@ -37,4 +37,52 @@ final class RepeatBrickTests: XCTestCase {
         repeatBrick.timesToRepeat = Formula(double: 2)
         XCTAssertEqual(kLocalizedRepeat + "%@ " + kLocalizedTimes, repeatBrick.brickTitle, "Wrong brick title")
     }
+
+    func testCondition() {
+        let interpreter = FormulaManager(sceneSize: CGSize.zero)
+        let repeatBrick = RepeatBrick()
+        let script = Script()
+        let object = SpriteObject()
+
+        script.object = object
+        repeatBrick.script = script
+
+        repeatBrick.timesToRepeat = Formula(double: 2)
+        XCTAssertEqual(0, repeatBrick.repetitions)
+
+        XCTAssertTrue(repeatBrick.checkCondition(formulaInterpreter: interpreter))
+        XCTAssertEqual(1, repeatBrick.repetitions)
+
+        XCTAssertTrue(repeatBrick.checkCondition(formulaInterpreter: interpreter))
+        XCTAssertEqual(2, repeatBrick.repetitions)
+
+        XCTAssertFalse(repeatBrick.checkCondition(formulaInterpreter: interpreter))
+    }
+
+    func testConditionInterpretOnce() {
+        let interpreter = FormulaManager(sceneSize: CGSize.zero)
+        let repeatBrick = RepeatBrick()
+        let script = Script()
+        let object = SpriteObject()
+
+        script.object = object
+        repeatBrick.script = script
+
+        repeatBrick.timesToRepeat = Formula(double: 1)
+        XCTAssertTrue(repeatBrick.checkCondition(formulaInterpreter: interpreter))
+        XCTAssertEqual(1, repeatBrick.repetitions)
+
+        repeatBrick.timesToRepeat = Formula(double: 10)
+        XCTAssertFalse(repeatBrick.checkCondition(formulaInterpreter: interpreter))
+    }
+
+    func testResetCondition() {
+        let repeatBrick = RepeatBrick()
+        repeatBrick.repetitions = 2
+        repeatBrick.maxRepetitions = 10
+
+        repeatBrick.resetCondition()
+        XCTAssertEqual(0, repeatBrick.repetitions)
+        XCTAssertNil(repeatBrick.maxRepetitions)
+    }
 }
