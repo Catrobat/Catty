@@ -44,11 +44,11 @@
 
 - (void)testGoNStepsBackBrickSingle
 {
-    Program* program = [[Program alloc] init];
+    Project* project = [[Project alloc] init];
     SpriteObject* object1 = [[SpriteObject alloc] init];
     CBSpriteNode *spriteNode1 = [[CBSpriteNode alloc] initWithSpriteObject:object1];
     object1.spriteNode = spriteNode1;
-    object1.program = program;
+    object1.project = project;
     spriteNode1.zPosition = 5;
 
     SpriteObject* object2 = [[SpriteObject alloc] init];
@@ -56,8 +56,8 @@
     object2.spriteNode = spriteNode2;
     spriteNode2.zPosition = 3;
 
-    [program.objectList addObject:object1];
-    [program.objectList addObject:object2];
+    [project.objectList addObject:object1];
+    [project.objectList addObject:object2];
 
     Script *script = [[WhenScript alloc] init];
     script.object = object1;
@@ -75,11 +75,11 @@
 
 - (void)testGoNStepsBackBrickTwice
 {
-    Program *program = [[Program alloc] init];
+    Project *project = [[Project alloc] init];
     SpriteObject *object1 = [[SpriteObject alloc] init];
     CBSpriteNode *spriteNode1 = [[CBSpriteNode alloc] initWithSpriteObject:object1];
     object1.spriteNode = spriteNode1;
-    object1.program = program;
+    object1.project = project;
     spriteNode1.zPosition = 6;
 
     SpriteObject *object2 = [[SpriteObject alloc] init];
@@ -87,8 +87,8 @@
     object2.spriteNode = spriteNode2;
     spriteNode2.zPosition = 3;
 
-    [program.objectList addObject:object1];
-    [program.objectList addObject:object2];
+    [project.objectList addObject:object1];
+    [project.objectList addObject:object2];
 
     Script *script = [[WhenScript alloc] init];
     script.object = object1;
@@ -106,9 +106,9 @@
 
 - (void)testGoNStepsBackBrickComeToSameLayer
 {
-    Program *program = [[Program alloc] init];
+    Project *project = [[Project alloc] init];
     SpriteObject *object1 = [[SpriteObject alloc] init];
-    object1.program = program;
+    object1.project = project;
     CBSpriteNode *spriteNode1 = [[CBSpriteNode alloc] initWithSpriteObject:object1];
     object1.spriteNode = spriteNode1;
     spriteNode1.zPosition = 5;
@@ -118,8 +118,8 @@
     object2.spriteNode = spriteNode2;
     spriteNode2.zPosition = 3;
 
-    [program.objectList addObject:object1];
-    [program.objectList addObject:object2];
+    [project.objectList addObject:object1];
+    [project.objectList addObject:object2];
 
     Script *script = [[WhenScript alloc] init];
     script.object = object1;
@@ -137,11 +137,11 @@
 
 - (void)testGoNStepsBackBrickOutOfRange
 {
-    Program *program = [[Program alloc] init];
+    Project *project = [[Project alloc] init];
     SpriteObject *object1 = [[SpriteObject alloc] init];
     CBSpriteNode *spriteNode1 = [[CBSpriteNode alloc] initWithSpriteObject:object1];
     object1.spriteNode = spriteNode1;
-    object1.program = program;
+    object1.project = project;
     spriteNode1.zPosition = 5;
 
     SpriteObject *object2 = [[SpriteObject alloc] init];
@@ -149,8 +149,8 @@
     object2.spriteNode = spriteNode2;
     spriteNode2.zPosition = 3;
 
-    [program.objectList addObject:object1];
-    [program.objectList addObject:object2];
+    [project.objectList addObject:object1];
+    [project.objectList addObject:object2];
 
     Script *script = [[WhenScript alloc] init];
     script.object = object1;
@@ -168,9 +168,9 @@
 
 - (void)testGoNStepsBackBrickWronginput
 {
-    Program *program = [[Program alloc] init];
+    Project *project = [[Project alloc] init];
     SpriteObject *object1 = [[SpriteObject alloc] init];
-    object1.program = program;
+    object1.project = project;
     CBSpriteNode *spriteNode1 = [[CBSpriteNode alloc] initWithSpriteObject:object1];
     object1.spriteNode = spriteNode1;
     spriteNode1.zPosition = 5;
@@ -180,8 +180,8 @@
     object2.spriteNode = spriteNode2;
     spriteNode2.zPosition = 3;
 
-    [program.objectList addObject:object1];
-    [program.objectList addObject:object2];
+    [project.objectList addObject:object1];
+    [project.objectList addObject:object2];
 
     Script *script = [[WhenScript alloc] init];
     script.object = object1;

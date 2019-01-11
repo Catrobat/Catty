@@ -153,7 +153,7 @@
 
     [imageData writeToFile:self.imagePath atomically:YES];
     
-    NSString *imageDirPath = [[self.spriteObject projectPath] stringByAppendingString:kProgramImagesDirName];
+    NSString *imageDirPath = [[self.spriteObject projectPath] stringByAppendingString:kProjectImagesDirName];
     NSString * fileName = [self.imagePath stringByReplacingOccurrencesOfString:imageDirPath withString:@""];
     NSRange result = [fileName rangeOfString:kResourceFileNameSeparator];
 

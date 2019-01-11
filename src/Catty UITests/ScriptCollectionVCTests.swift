@@ -31,18 +31,18 @@ class ScriptCollectionVCTests: XCTestCase, UITestProtocol {
         XCUIApplication().launch()
 
         dismissWelcomeScreenIfShown()
-        restoreDefaultProgram()
+        restoreDefaultProject()
     }
 
     func testCopyIfLogicBeginBrick() {
         let app = XCUIApplication()
-        let programName = "testProgram"
+        let projectName = "testProject"
 
         app.tables.staticTexts["New"].tap()
-        let alertQuery = app.alerts["New Program"]
-        alertQuery.textFields["Enter your program name here..."].typeText(programName)
-        app.alerts["New Program"].buttons["OK"].tap()
-        XCTAssertNotNil(waitForElementToAppear(app.navigationBars[programName]))
+        let alertQuery = app.alerts["New Project"]
+        alertQuery.textFields["Enter your project name here..."].typeText(projectName)
+        app.alerts["New Project"].buttons["OK"].tap()
+        XCTAssertNotNil(waitForElementToAppear(app.navigationBars[projectName]))
 
         waitForElementToAppear(app.staticTexts["Background"]).tap()
         waitForElementToAppear(app.staticTexts["Scripts"]).tap()
@@ -85,12 +85,12 @@ class ScriptCollectionVCTests: XCTestCase, UITestProtocol {
 
     func testLengthOfBroadcastMessage() {
         let app = XCUIApplication()
-        let programName = "testProgram"
+        let projectName = "testProject"
         let message = String(repeating: "a", count: 250)
 
         app.tables.staticTexts["New"].tap()
-        app.alerts["New Program"].textFields["Enter your program name here..."].typeText(programName)
-        XCUIApplication().alerts["New Program"].buttons["OK"].tap()
+        app.alerts["New Project"].textFields["Enter your project name here..."].typeText(projectName)
+        XCUIApplication().alerts["New Project"].buttons["OK"].tap()
         XCUIApplication().tables.staticTexts["Background"].tap()
         app.tables.staticTexts["Scripts"].tap()
 

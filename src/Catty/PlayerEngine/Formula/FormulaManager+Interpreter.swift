@@ -185,16 +185,16 @@ extension FormulaManager {
     }
 
     private func interpretVariable(_ formulaElement: FormulaElement, for spriteObject: SpriteObject) -> AnyObject {
-        guard let program = spriteObject.program,
-            let variable = program.variables.getUserVariableNamed(formulaElement.value, for: spriteObject),
+        guard let project = spriteObject.project,
+            let variable = project.variables.getUserVariableNamed(formulaElement.value, for: spriteObject),
             let value = variable.value else { return 0 as AnyObject }
 
         return value as AnyObject
     }
 
     private func interpretList(_ formulaElement: FormulaElement, for spriteObject: SpriteObject) -> AnyObject {
-        guard let program = spriteObject.program,
-            let list = program.variables.getUserListNamed(formulaElement.value, for: spriteObject),
+        guard let project = spriteObject.project,
+            let list = project.variables.getUserListNamed(formulaElement.value, for: spriteObject),
             let value = list.value,
             let listElements = value as? [Any] else { return 0 as AnyObject }
 
@@ -235,7 +235,7 @@ extension FormulaManager {
         guard let formulaElement = formulaElement else { return nil }
 
         if formulaElement.type == .USER_LIST {
-            return spriteObject.program.variables.getUserListNamed(formulaElement.value, for: spriteObject)
+            return spriteObject.project.variables.getUserListNamed(formulaElement.value, for: spriteObject)
         }
 
         return interpretRecursive(formulaElement: formulaElement, for: spriteObject)

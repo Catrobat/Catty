@@ -55,28 +55,28 @@
     
     
     //------------------
-    // Program Variables
+    // Project Variables
     //------------------
-    NSArray *programVarListElements = [variablesElement elementsForName:@"programVariableList"];
-    if ([programVarListElements count]) {
-        [XMLError exceptionIf:[programVarListElements count] notEquals:1
+    NSArray *projectVarListElements = [variablesElement elementsForName:@"programVariableList"];
+    if ([projectVarListElements count]) {
+        [XMLError exceptionIf:[projectVarListElements count] notEquals:1
                       message:@"Too many programVariableList-elements!"];
-        GDataXMLElement *programVarListElement = [programVarListElements firstObject];
-        varContainer.programVariableList = [[self class] parseAndCreateProgramVariables:programVarListElement withContext:context];
+        GDataXMLElement *projectVarListElement = [projectVarListElements firstObject];
+        varContainer.programVariableList = [[self class] parseAndCreateProjectVariables:projectVarListElement withContext:context];
         context.programVariableList = varContainer.programVariableList;
     }
     
     
     
     //------------------
-    // Program Lists
+    // Project Lists
     //------------------
     NSArray *programListOfListsElements = [variablesElement elementsForName:@"programListOfLists"];
     if ([programListOfListsElements count]) {
         [XMLError exceptionIf:[programListOfListsElements count] notEquals:1
                       message:@"Too many programListOfLists-elements!"];
         GDataXMLElement *programListOfListsElement = [programListOfListsElements firstObject];
-        varContainer.programListOfLists = [[self class] parseAndCreateProgramLists:programListOfListsElement withContext:context];
+        varContainer.programListOfLists = [[self class] parseAndCreateProjectLists:programListOfListsElement withContext:context];
         context.programListOfLists = varContainer.programListOfLists;
     }
     
@@ -157,7 +157,7 @@
         NSArray *objectElements = [entry elementsForName:@"object"];
         
         if ([objectElements count] != 1) {
-            // Work-around for broken XML (e.g. for program 4705)
+            // Work-around for broken XML (e.g. for project 4705)
             continue;
         }
         
@@ -205,7 +205,7 @@
         NSArray *objectElements = [entry elementsForName:@"object"];
         
         if ([objectElements count] != 1) {
-            // Work-around for broken XML (e.g. for program 4705)
+            // Work-around for broken XML (e.g. for project 4705)
             continue;
         }
         
@@ -243,12 +243,12 @@
     return objectListMap;
 }
 
-+ (NSMutableArray*)parseAndCreateProgramVariables:(GDataXMLElement*)programVarListElement withContext:(CBXMLParserContext*)context
++ (NSMutableArray*)parseAndCreateProjectVariables:(GDataXMLElement*)projectVarListElement withContext:(CBXMLParserContext*)context
 {
-    return [[self class] parseUserVariablesList:[programVarListElement children] withContext:context];
+    return [[self class] parseUserVariablesList:[projectVarListElement children] withContext:context];
 }
 
-+ (NSMutableArray*)parseAndCreateProgramLists:(GDataXMLElement*)programListOfListsElement withContext:(CBXMLParserContext*)context
++ (NSMutableArray*)parseAndCreateProjectLists:(GDataXMLElement*)programListOfListsElement withContext:(CBXMLParserContext*)context
 {
     return [[self class] parseUserListOfLists:[programListOfListsElement children] withContext:context];
 }
@@ -394,7 +394,7 @@
     
     
     //------------------
-    // Program Lists
+    // Project Lists
     //------------------
     GDataXMLElement *programListOfListsXmlElement = [GDataXMLElement elementWithName:@"programListOfLists"
                                                                               context:context];
@@ -410,7 +410,7 @@
     
     
     //------------------
-    // Program Variables
+    // Project Variables
     //------------------
     GDataXMLElement *programVariableListXmlElement = [GDataXMLElement elementWithName:@"programVariableList"
                                                                               context:context];

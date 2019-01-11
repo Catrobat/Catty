@@ -196,10 +196,10 @@ final class FormulaManagerResourceTests: XCTestCase {
         XCTAssertFalse(motionManager.isAccelerometerUpdateStarted)
     }
 
-    func testSetupForProgram() {
-        let program = ProgramMock(requiredResources: ResourceType.compass.rawValue | ResourceType.accelerometer.rawValue | ResourceType.deviceMotion.rawValue)!
-        let scene = SceneBuilder.init(program: program).build()
-        manager.setup(for: program, and: scene)
+    func testSetupForProject() {
+        let project = ProjectMock(requiredResources: ResourceType.compass.rawValue | ResourceType.accelerometer.rawValue | ResourceType.deviceMotion.rawValue)!
+        let scene = SceneBuilder.init(project: project).build()
+        manager.setup(for: project, and: scene)
 
         XCTAssertTrue(touchManager.isStarted)
         XCTAssertTrue(motionManager.isDeviceMotionUpdateStarted)
@@ -211,10 +211,10 @@ final class FormulaManagerResourceTests: XCTestCase {
         XCTAssertFalse(locationManager.isLocationUpdateStarted)
     }
 
-    func testSetupForProgramAlwaysStartTouchManager() {
-        let program = ProgramMock(requiredResources: ResourceType.noResources.rawValue)!
-        let scene = SceneBuilder.init(program: program).build()
-        manager.setup(for: program, and: scene)
+    func testSetupForProjectAlwaysStartTouchManager() {
+        let project = ProjectMock(requiredResources: ResourceType.noResources.rawValue)!
+        let scene = SceneBuilder.init(project: project).build()
+        manager.setup(for: project, and: scene)
 
         XCTAssertTrue(touchManager.isStarted)
         XCTAssertFalse(motionManager.isDeviceMotionUpdateStarted)

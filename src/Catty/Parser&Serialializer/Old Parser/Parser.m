@@ -24,11 +24,11 @@
 #import "ProjectParser.h"
 #import "SpriteObject.h"
 #import "Script.h"
-#import "Program+CustomExtensions.h"
+#import "Project+CustomExtensions.h"
 
 @implementation Parser
 
-- (Program*)generateObjectForProgramWithPath:(NSString*)path
+- (Project*)generateObjectForProjectWithPath:(NSString*)path
 {
     // sanity check
     if (! path || [path isEqualToString:@""]) {
@@ -49,9 +49,9 @@
     ProjectParser *parser = [[ProjectParser alloc] init];
     
     // return Project object
-    Program *program = [parser loadProject:xmlData];
-    [program updateReferences];
-    return program;
+    Project *project = [parser loadProject:xmlData];
+    [project updateReferences];
+    return project;
 }
 
 @end

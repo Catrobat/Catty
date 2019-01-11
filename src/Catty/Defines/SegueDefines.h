@@ -21,15 +21,15 @@
  */
 
 #define kSegueToContinue @"segueToContinue"
-#define kSegueToNewProgram @"segueToNewProgram"
-#define kSegueToPrograms @"segueToPrograms"
+#define kSegueToNewProject @"segueToNewProject"
+#define kSegueToProjects @"segueToProjects"
 #define kSegueToHelp @"segueToHelp"
 #define kSegueToExplore @"segueToExplore"
 #define kSegueToUpload @"segueToUpload"
 #define kSegueToLogin @"segueToLogin"
-#define kSegueToAddNewProgram @"segueToAddProgram"
+#define kSegueToAddNewProject @"segueToAddProject"
 
-#define kSegueToProgramDetail @"segueToProgramDetail"
+#define kSegueToProjectDetail @"segueToProjectDetail"
 #define kSegueToScene @"segueToScene"
 #define kSegueToObject @"segueToObject"
 #define kSegueToScripts @"segueToScripts"

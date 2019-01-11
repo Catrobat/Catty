@@ -29,12 +29,12 @@
 #define kSirenAlertTypeNone 4
 
 #define kLengthOfShortCommitHash 7
-#define kLastUsedProgram @"lastUsedProgram"
+#define kLastUsedProject @"lastUsedProject"
 #define kMinLoopDurationTime (20 * 1000 * 1000) // in nanoseconds!
-#define kProgramCodeFileName @"code.xml"
-#define kProgramSoundsDirName @"sounds"
-#define kProgramImagesDirName @"images"
-#define kProgramsFolder @".programs"
+#define kProjectCodeFileName @"code.xml"
+#define kProjectSoundsDirName @"sounds"
+#define kProjectImagesDirName @"images"
+#define kProjectsFolder @".programs"
 #define kResourceFileNameSeparator @"_" // [md5]_[fileName] e.g. D32285BE8042D8D8071FAF0A33054DD0_music.mp3                                      //         or for images: 34A109A82231694B6FE09C216B390570_normalCat
 #define kPreviewImageNamePrefix @"small_" // [md5]_small_[fileName] e.g. 34A109A82231694B6FE09C216B390570_small_normalCat
 #define kLocalizedMyImageExtension @"png"
@@ -43,8 +43,8 @@
 #define kMinNumOfObjects 0
 #define kDefaultNumOfObjects 0
 #define kBackgroundObjects 1
-#define kMinNumOfProgramNameCharacters 1
-#define kMaxNumOfProgramNameCharacters 250
+#define kMinNumOfProjectNameCharacters 1
+#define kMaxNumOfProjectNameCharacters 250
 #define kMinNumOfObjectNameCharacters 1
 #define kMaxNumOfObjectNameCharacters 250
 #define kMinNumOfLookNameCharacters 1
@@ -56,14 +56,14 @@
 #define kMinNumOfVariableNameCharacters 1
 #define kMaxNumOfVariableNameCharacters 250
 
-#define kNoProgramIDYetPlaceholder @"x"
-#define kProgramIDSeparator @"_"
+#define kNoProjectIDYetPlaceholder @"x"
+#define kProjectIDSeparator @"_"
 
-#define kDefaultProgramBundleName @"My first program"
-#define kDefaultProgramBundleOtherObjectsNamePrefix @"Mole"
+#define kDefaultProjectBundleName @"My first project"
+#define kDefaultProjectBundleOtherObjectsNamePrefix @"Mole"
 
 // indexes
-#define kNumberOfSectionsInProgramTableViewController 2
+#define kNumberOfSectionsInProjectTableViewController 2
 #define kBackgroundSectionIndex 0
 #define kBackgroundObjectIndex 0
 #define kObjectSectionIndex 1
@@ -96,7 +96,7 @@ typedef NS_ENUM(NSInteger, ResourceType) {
 #define kUserDetailsShowDetailsObjectsKey @"detailsForObjects"
 #define kUserDetailsShowDetailsLooksKey @"detailsForLooks"
 #define kUserDetailsShowDetailsSoundsKey @"detailsForSounds"
-#define kUserDetailsShowDetailsProgramsKey @"detailsForPrograms"
+#define kUserDetailsShowDetailsProjectsKey @"detailsForProjects"
 #define kScreenshotThumbnailPrefix @".thumb_"
 #define kScreenshotFilename @"screenshot.png"
 #define kScreenshotManualFilename @"manual_screenshot.png"

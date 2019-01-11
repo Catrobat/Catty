@@ -22,7 +22,7 @@
 
 import XCTest
 
-class CreateProgramTests: XCTestCase, UITestProtocol {
+class CreateProjectTests: XCTestCase, UITestProtocol {
 
     override func setUp() {
         super.setUp()
@@ -31,19 +31,19 @@ class CreateProgramTests: XCTestCase, UITestProtocol {
         XCUIApplication().launch()
 
         dismissWelcomeScreenIfShown()
-        restoreDefaultProgram()
+        restoreDefaultProject()
     }
 
-    func testCanCreateProgramWithDrawNewImage() {
+    func testCanCreateProjectWithDrawNewImage() {
         let app = XCUIApplication()
-        let programName = "testProgram"
+        let projectName = "testProject"
 
-        //Create new Program
+        //Create new Project
         app.tables.staticTexts["New"].tap()
-        let alertQuery = app.alerts["New Program"]
-        alertQuery.textFields["Enter your program name here..."].typeText(programName)
-        app.alerts["New Program"].buttons["OK"].tap()
-        XCTAssertNotNil(waitForElementToAppear(app.navigationBars[programName]))
+        let alertQuery = app.alerts["New Project"]
+        alertQuery.textFields["Enter your project name here..."].typeText(projectName)
+        app.alerts["New Project"].buttons["OK"].tap()
+        XCTAssertNotNil(waitForElementToAppear(app.navigationBars[projectName]))
 
         //Add new Object
         app.toolbars.buttons["Add"].tap()
@@ -61,13 +61,13 @@ class CreateProgramTests: XCTestCase, UITestProtocol {
         let alert = waitForElementToAppear(app.alerts["Save to PocketCode"])
         alert.buttons["Yes"].tap()
 
-        XCTAssertNotNil(waitForElementToAppear(app.navigationBars[programName]))
+        XCTAssertNotNil(waitForElementToAppear(app.navigationBars[projectName]))
 
         app.staticTexts["testObject1"].tap()
         app.staticTexts["Looks"].tap()
         XCTAssert(app.staticTexts["look"].exists)
         app.navigationBars.buttons["testObject1"].tap()
-        app.navigationBars.buttons[programName].tap()
+        app.navigationBars.buttons[projectName].tap()
 
         //Add Background
         app.tables.staticTexts["Background"].tap()
@@ -89,7 +89,7 @@ class CreateProgramTests: XCTestCase, UITestProtocol {
 
         XCTAssert(app.staticTexts["look"].exists)
         app.navigationBars.buttons["Background"].tap()
-        app.navigationBars.buttons["testProgram"].tap()
+        app.navigationBars.buttons["testProject"].tap()
 
         //Add Scripts to Object
         app.tables.staticTexts["testObject1"].tap()
@@ -99,7 +99,7 @@ class CreateProgramTests: XCTestCase, UITestProtocol {
             app.swipeLeft()
         }
         app.collectionViews.cells.element(boundBy: 0).tap()
-        XCTAssert(app.collectionViews.cells.element(boundBy: 0).staticTexts["When program started"].exists)
+        XCTAssert(app.collectionViews.cells.element(boundBy: 0).staticTexts["When project started"].exists)
         app.toolbars.buttons["Add"].tap()
 
         if app.navigationBars["Frequently Used"].exists {
@@ -116,7 +116,7 @@ class CreateProgramTests: XCTestCase, UITestProtocol {
 
         //Add Script to Background
         app.navigationBars.buttons["testObject1"].tap()
-        app.navigationBars.buttons["testProgram"].tap()
+        app.navigationBars.buttons["testProject"].tap()
         app.tables.staticTexts["Background"].tap()
         app.tables.staticTexts["Scripts"].tap()
         app.toolbars.buttons["Add"].tap()
@@ -124,7 +124,7 @@ class CreateProgramTests: XCTestCase, UITestProtocol {
             app.swipeLeft()
         }
         app.collectionViews.cells.element(boundBy: 0).tap()
-        XCTAssert(app.collectionViews.cells.element(boundBy: 0).staticTexts["When program started"].exists)
+        XCTAssert(app.collectionViews.cells.element(boundBy: 0).staticTexts["When project started"].exists)
         app.toolbars.buttons["Add"].tap()
         if app.navigationBars["Frequently Used"].exists {
             app.swipeLeft()
@@ -137,16 +137,16 @@ class CreateProgramTests: XCTestCase, UITestProtocol {
         XCTAssert(app.collectionViews.cells.element(boundBy: 1).staticTexts["Next background"].exists)
     }
 
-    func testCanCreateProgramWithEmojiAndSpecialCharacters() {
+    func testCanCreateProjectWithEmojiAndSpecialCharacters() {
         let app = XCUIApplication()
-        let programName = "🙀"
+        let projectName = "🙀"
 
-        //Create new Program
+        //Create new Project
         app.tables.staticTexts["New"].tap()
-        let alertQuery = app.alerts["New Program"]
-        alertQuery.textFields["Enter your program name here..."].typeText(programName)
-        app.alerts["New Program"].buttons["OK"].tap()
-        XCTAssertNotNil(waitForElementToAppear(app.navigationBars[programName]))
+        let alertQuery = app.alerts["New Project"]
+        alertQuery.textFields["Enter your project name here..."].typeText(projectName)
+        app.alerts["New Project"].buttons["OK"].tap()
+        XCTAssertNotNil(waitForElementToAppear(app.navigationBars[projectName]))
 
         //Add new Object
         app.toolbars.buttons["Add"].tap()

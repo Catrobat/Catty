@@ -23,24 +23,23 @@
 import XCTest
 
 protocol UITestProtocol {
-    func restoreDefaultProgram()
+    func restoreDefaultProject()
     func dismissWelcomeScreenIfShown()
 }
 
 extension UITestProtocol {
 
-    func restoreDefaultProgram() {
-        // Restore default program
+    func restoreDefaultProject() {
         let app = XCUIApplication()
-        app.tables.staticTexts["Programs"].tap()
-        waitForElementToAppear(app.navigationBars["Programs"]).buttons["Edit"].tap()
-        waitForElementToAppear(app.buttons["Delete Programs"]).tap()
+        app.tables.staticTexts["Projects"].tap()
+        waitForElementToAppear(app.navigationBars["Projects"]).buttons["Edit"].tap()
+        waitForElementToAppear(app.buttons["Delete Projects"]).tap()
         let toolbarsQuery = app.toolbars
         waitForElementToAppear(toolbarsQuery.buttons["Select All"]).tap()
         waitForElementToAppear(toolbarsQuery.buttons["Delete"]).tap()
         XCTAssert(app.tables.cells.count == 1)
         // finally go back to main menu, because this method is used by other tests
-        app.navigationBars["Programs"].buttons["Pocket Code"].tap()
+        app.navigationBars["Projects"].buttons["Pocket Code"].tap()
     }
 
     func dismissWelcomeScreenIfShown() {

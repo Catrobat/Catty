@@ -21,7 +21,7 @@
  */
 
 #import "Util.h"
-#import "ProgramLoadingInfo.h"
+#import "ProjectLoadingInfo.h"
 #import "UIImage+CatrobatUIImageExtensions.h"
 #import "CatrobatLanguageDefines.h"
 #import "NSString+CatrobatNSStringExtensions.h"
@@ -204,28 +204,28 @@
     return transition;
 }
 
-+ (ProgramLoadingInfo*)lastUsedProgramLoadingInfo
++ (ProjectLoadingInfo*)lastUsedProjectLoadingInfo
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *lastUsedProgramDirectoryName = [userDefaults objectForKey:kLastUsedProgram];
-    if (! lastUsedProgramDirectoryName) {
-        lastUsedProgramDirectoryName = [Program programDirectoryNameForProgramName:kLocalizedMyFirstProgram
-                                                                         programID:nil];
-        [userDefaults setObject:lastUsedProgramDirectoryName forKey:kLastUsedProgram];
+    NSString *lastUsedProjectDirectoryName = [userDefaults objectForKey:kLastUsedProject];
+    if (! lastUsedProjectDirectoryName) {
+        lastUsedProjectDirectoryName = [Project projectDirectoryNameForProjectName:kLocalizedMyFirstProject
+                                                                         projectID:nil];
+        [userDefaults setObject:lastUsedProjectDirectoryName forKey:kLastUsedProject];
         [userDefaults synchronize];
     }
-    return [Program programLoadingInfoForProgramDirectoryName:lastUsedProgramDirectoryName];
+    return [Project projectLoadingInfoForProjectDirectoryName:lastUsedProjectDirectoryName];
 }
 
-+ (void)setLastProgramWithName:(NSString*)programName programID:(NSString*)programID
++ (void)setLastProjectWithName:(NSString*)projectName projectID:(NSString*)projectID
 {
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    if (programName) {
-        programName = [programName stringByReplacingOccurrencesOfString:@"/" withString:@"%2F"];
-        [userDefaults setObject:[Program programDirectoryNameForProgramName:programName programID:programID]
-                         forKey:kLastUsedProgram];
+    if (projectName) {
+        projectName = [projectName stringByReplacingOccurrencesOfString:@"/" withString:@"%2F"];
+        [userDefaults setObject:[Project projectDirectoryNameForProjectName:projectName projectID:projectID]
+                         forKey:kLastUsedProject];
     } else {
-        [userDefaults setObject:nil forKey:kLastUsedProgram];
+        [userDefaults setObject:nil forKey:kLastUsedProject];
     }
     [userDefaults synchronize];
 }
@@ -586,9 +586,9 @@
     return NO;
 }
 
-+ (SpriteObject*)objectWithName:(NSString*)objectName forProgram:(Program*)program
++ (SpriteObject*)objectWithName:(NSString*)objectName forProject:(Project*)project
 {
-    for(SpriteObject *object in program.objectList) {
+    for(SpriteObject *object in project.objectList) {
         if([object.name isEqualToString:objectName]) {
             return object;
         }
@@ -616,10 +616,10 @@
     return nil;
 }
 
-+ (NSArray*)allMessagesForProgram:(Program*)program
++ (NSArray*)allMessagesForProject:(Project*)project
 {
     NSMutableArray *messages = [[NSMutableArray alloc] init];
-    for(SpriteObject *object in program.objectList) {
+    for(SpriteObject *object in project.objectList) {
         for(Script *script in object.scriptList) {
             if([script isKindOfClass:[BroadcastScript class]]) {
                 BroadcastScript *broadcastScript = (BroadcastScript*)script;

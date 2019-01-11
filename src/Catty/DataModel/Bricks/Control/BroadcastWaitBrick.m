@@ -45,7 +45,7 @@
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     if(spriteObject) {
-        NSArray *messages = [Util allMessagesForProgram:spriteObject.program];
+        NSArray *messages = [Util allMessagesForProject:spriteObject.project];
         if([messages count] > 0)
             self.broadcastMessage = [messages objectAtIndex:0];
         else

@@ -21,7 +21,7 @@
  */
 
 #import "CreateView.h"
-#import "CatrobatProgram.h"
+#import "CatrobatProject.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "ImageCache.h"
 #import "NSString+CatrobatNSStringExtensions.h"
@@ -44,7 +44,7 @@
     return [Util screenHeight];
 }
 
-+ (UIView*)createProgramDetailView:(CatrobatProgram*)project target:(id)target
++ (UIView*)createProjectDetailView:(CatrobatProject*)project target:(id)target
 {
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [Util screenWidth], 0)];
     view.backgroundColor = [UIColor clearColor];
@@ -55,12 +55,12 @@
     //[self addBigImageWithImageUrlString:project.screenshotBig toView:view];
     [self addDownloadButtonToView:view withTarget:target];
     [self addLoadingButtonToView:view withTarget:target];
-    [self addPlayButtonToView:view withTarget:target];
+    [self addOpenButtonToView:view withTarget:target];
     [self addDownloadAgainButtonToView:view withTarget:target];
-    [self addProgramDescriptionLabelWithDescription:project.projectDescription toView:view target:target];
+    [self addProjectDescriptionLabelWithDescription:project.projectDescription toView:view target:target];
 
     NSDate *projectDate = [NSDate dateWithTimeIntervalSince1970:[project.uploaded doubleValue]];
-    NSString *uploaded = [[CatrobatProgram uploadDateFormatter] stringFromDate:projectDate];
+    NSString *uploaded = [[CatrobatProject uploadDateFormatter] stringFromDate:projectDate];
     
     [self addInformationLabelToView:view withAuthor:project.author downloads:project.downloads uploaded:uploaded version:project.size views:project.views];
     
@@ -102,7 +102,7 @@
 }
 
 
-+ (CGFloat)addProgramDescriptionLabelWithDescription:(NSString*)description toView:(UIView*)view target:(id)target
++ (CGFloat)addProjectDescriptionLabelWithDescription:(NSString*)description toView:(UIView*)view target:(id)target
 {
     CGFloat height = [self height];
     [self addHorizontalLineToView:view andHeight:height*0.35-15];
@@ -250,20 +250,20 @@
     [view addSubview:downloadButton];
 }
 
-+ (void)addPlayButtonToView:(UIView*)view withTarget:(id)target
++ (void)addOpenButtonToView:(UIView*)view withTarget:(id)target
 {
-    UIButton *playButton = [[RoundBorderedButton alloc] initWithFrame:CGRectMake(view.frame.size.width-75,view.frame.size.height*0.1+[Util screenHeight]/4.5f-25, 70, 25) andBorder:YES];
-    playButton.tag = kPlayButtonTag;
-    playButton.hidden = YES;
-    playButton.titleLabel.font = [UIFont boldSystemFontOfSize:14];
-    playButton.titleLabel.adjustsFontSizeToFitWidth = YES;
-    playButton.titleLabel.minimumScaleFactor = 0.4;
-    [playButton setTitle:kLocalizedOpen forState:UIControlStateNormal];
-    [playButton addTarget:target action:@selector(playButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-    [playButton setTintColor:[UIColor buttonTintColor]];
+    UIButton *openButton = [[RoundBorderedButton alloc] initWithFrame:CGRectMake(view.frame.size.width-75,view.frame.size.height*0.1+[Util screenHeight]/4.5f-25, 70, 25) andBorder:YES];
+    openButton.tag = kOpenButtonTag;
+    openButton.hidden = YES;
+    openButton.titleLabel.font = [UIFont boldSystemFontOfSize:14];
+    openButton.titleLabel.adjustsFontSizeToFitWidth = YES;
+    openButton.titleLabel.minimumScaleFactor = 0.4;
+    [openButton setTitle:kLocalizedOpen forState:UIControlStateNormal];
+    [openButton addTarget:target action:@selector(openButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [openButton setTintColor:[UIColor buttonTintColor]];
     
     
-    [view addSubview:playButton];
+    [view addSubview:openButton];
 }
 
 + (void)addDownloadAgainButtonToView:(UIView*)view withTarget:(id)target
@@ -335,8 +335,8 @@
     RoundBorderedButton *reportButton = [[RoundBorderedButton alloc] initWithFrame:CGRectMake(view.frame.size.width/15,view.frame.size.height + height*0.01f, 130, 25) andBorder:NO];
     reportButton.titleLabel.font = [UIFont boldSystemFontOfSize:13];
     [reportButton.titleLabel setTintColor:[UIColor globalTintColor]];
-    [reportButton setTitle:kLocalizedReportProgram forState:UIControlStateNormal];
-    [reportButton addTarget:target action:@selector(reportProgram) forControlEvents:UIControlEventTouchUpInside];
+    [reportButton setTitle:kLocalizedReportProject forState:UIControlStateNormal];
+    [reportButton addTarget:target action:@selector(reportProject) forControlEvents:UIControlEventTouchUpInside];
     [reportButton sizeToFit];
     [reportButton setTintColor:[UIColor buttonTintColor]];
     [reportButton setTitleColor:[UIColor buttonTintColor] forState:UIControlStateNormal];

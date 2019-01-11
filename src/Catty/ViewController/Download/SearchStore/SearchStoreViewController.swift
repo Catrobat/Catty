@@ -31,8 +31,8 @@ class SearchStoreViewController: UIViewController, SelectedSearchStoreDataSource
 
     var loadingView: LoadingView?
     var shouldHideLoadingView = false
-    var programForSegue: StoreProgram?
-    var catrobatProject: StoreProgram?
+    var projectForSegue: StoreProject?
+    var catrobatProject: StoreProject?
     var loadingViewFlag = false
     var noSearchResultsLabel: UILabel!
 
@@ -61,35 +61,35 @@ class SearchStoreViewController: UIViewController, SelectedSearchStoreDataSource
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == kSegueToProgramDetail {
-            if let programDetailStoreViewController = segue.destination as? ProgramDetailStoreViewController,
-                let catrobatProject = programForSegue {
-                programDetailStoreViewController.project = mapStoreProgramToCatrobatProgram(program: catrobatProject)
+        if segue.identifier == kSegueToProjectDetail {
+            if let projectDetailStoreViewController = segue.destination as? ProjectDetailStoreViewController,
+                let catrobatProject = projectForSegue {
+                projectDetailStoreViewController.project = mapStoreProjectToCatrobatProject(project: catrobatProject)
             }
         }
     }
 
     // MARK: - Helper Methods
 
-    private func mapStoreProgramToCatrobatProgram(program: StoreProgram) -> CatrobatProgram {
-        var programDictionary = [String: Any]()
-        programDictionary["ProjectName"] = program.projectName
-        programDictionary["Author"] =  program.author
-        programDictionary["Description"] = program.description ?? ""
-        programDictionary["DownloadUrl"] = program.downloadUrl ?? ""
-        programDictionary["Downloads"] = program.downloads ?? 0
-        programDictionary["ProjectId"] = program.projectId
-        programDictionary["ProjectName"] = program.projectName
-        programDictionary["ProjectUrl"] = program.projectUrl ?? ""
-        programDictionary["ScreenshotBig"] = program.screenshotBig ?? ""
-        programDictionary["ScreenshotSmall"] = program.screenshotSmall ?? ""
-        programDictionary["FeaturedImage"] = program.featuredImage ?? ""
-        programDictionary["Uploaded"] = program.uploaded ?? 0
-        programDictionary["Version"] = program.version ?? ""
-        programDictionary["Views"] = program.views ?? 0
-        programDictionary["FileSize"] = program.fileSize ?? 0.0
+    private func mapStoreProjectToCatrobatProject(project: StoreProject) -> CatrobatProject {
+        var projectDictionary = [String: Any]()
+        projectDictionary["ProjectName"] = project.projectName
+        projectDictionary["Author"] =  project.author
+        projectDictionary["Description"] = project.description ?? ""
+        projectDictionary["DownloadUrl"] = project.downloadUrl ?? ""
+        projectDictionary["Downloads"] = project.downloads ?? 0
+        projectDictionary["ProjectId"] = project.projectId
+        projectDictionary["ProjectName"] = project.projectName
+        projectDictionary["ProjectUrl"] = project.projectUrl ?? ""
+        projectDictionary["ScreenshotBig"] = project.screenshotBig ?? ""
+        projectDictionary["ScreenshotSmall"] = project.screenshotSmall ?? ""
+        projectDictionary["FeaturedImage"] = project.featuredImage ?? ""
+        projectDictionary["Uploaded"] = project.uploaded ?? 0
+        projectDictionary["Version"] = project.version ?? ""
+        projectDictionary["Views"] = project.views ?? 0
+        projectDictionary["FileSize"] = project.fileSize ?? 0.0
 
-        return CatrobatProgram(dict: programDictionary, andBaseUrl: kFeaturedImageBaseUrl)
+        return CatrobatProject(dict: projectDictionary, andBaseUrl: kFeaturedImageBaseUrl)
     }
 
     func initNoSearchResultsLabel() {
@@ -104,7 +104,7 @@ class SearchStoreViewController: UIViewController, SelectedSearchStoreDataSource
         }
     }
 
-    private func showConnectionIssueAlertAndDismiss(error: StoreProgramDownloaderError) {
+    private func showConnectionIssueAlertAndDismiss(error: StoreProjectDownloaderError) {
         var title = ""
         var message = ""
         let buttonTitle = kLocalizedOK
@@ -184,7 +184,7 @@ class SearchStoreViewController: UIViewController, SelectedSearchStoreDataSource
                 self.searchStoreTableView.separatorStyle = .singleLine
             }
         } else {
-            self.dataSource.programs.removeAll()
+            self.dataSource.projects.removeAll()
             self.updateTableView()
         }
     }
@@ -200,10 +200,10 @@ class SearchStoreViewController: UIViewController, SelectedSearchStoreDataSource
 
 extension SearchStoreViewController: SearchStoreCellProtocol {
     func selectedCell(dataSource: SearchStoreDataSource, didSelectCellWith cell: SearchStoreCell) {
-        if let program = cell.program {
+        if let project = cell.project {
             self.showLoadingView()
-            programForSegue = program
-            performSegue(withIdentifier: kSegueToProgramDetail, sender: self)
+            projectForSegue = project
+            performSegue(withIdentifier: kSegueToProjectDetail, sender: self)
         }
     }
 }
@@ -224,7 +224,7 @@ extension SearchStoreViewController {
         noSearchResultsLabel.isHidden = true
     }
 
-    func errorAlertHandler(error: StoreProgramDownloaderError) {
+    func errorAlertHandler(error: StoreProjectDownloaderError) {
         self.shouldHideLoadingView = true
         self.hideLoadingView()
         self.showConnectionIssueAlertAndDismiss(error: error)

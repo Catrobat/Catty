@@ -31,14 +31,14 @@ class VariablesTests: XCTestCase, UITestProtocol {
         XCUIApplication().launch()
 
         dismissWelcomeScreenIfShown()
-        restoreDefaultProgram()
+        restoreDefaultProject()
     }
 
     func testDontShowVariablePickerWhenNoVariablesDefinedForObject() {
         let app = XCUIApplication()
         app.tables.staticTexts["New"].tap()
-        app.alerts["New Program"].textFields["Enter your program name here..."].typeText("Test Program")
-        XCUIApplication().alerts["New Program"].buttons["OK"].tap()
+        app.alerts["New Project"].textFields["Enter your project name here..."].typeText("Test Project")
+        XCUIApplication().alerts["New Project"].buttons["OK"].tap()
         XCUIApplication().tables.staticTexts["Background"].tap()
         app.tables.staticTexts["Scripts"].tap()
         app.toolbars.buttons["Add"].tap()
@@ -59,8 +59,8 @@ class VariablesTests: XCTestCase, UITestProtocol {
     func testDontShowVListPickerWhenNoListsDefinedForObject() {
         let app = XCUIApplication()
         app.tables.staticTexts["New"].tap()
-        app.alerts["New Program"].textFields["Enter your program name here..."].typeText("Test Program")
-        XCUIApplication().alerts["New Program"].buttons["OK"].tap()
+        app.alerts["New Project"].textFields["Enter your project name here..."].typeText("Test Project")
+        XCUIApplication().alerts["New Project"].buttons["OK"].tap()
         XCUIApplication().tables.staticTexts["Background"].tap()
         app.tables.staticTexts["Scripts"].tap()
         app.toolbars.buttons["Add"].tap()
@@ -83,8 +83,8 @@ class VariablesTests: XCTestCase, UITestProtocol {
 
         let app = XCUIApplication()
         app.tables.staticTexts["New"].tap()
-        app.alerts["New Program"].textFields["Enter your program name here..."].typeText("Test Program")
-        XCUIApplication().alerts["New Program"].buttons["OK"].tap()
+        app.alerts["New Project"].textFields["Enter your project name here..."].typeText("Test Project")
+        XCUIApplication().alerts["New Project"].buttons["OK"].tap()
         XCUIApplication().tables.staticTexts["Background"].tap()
         app.tables.staticTexts["Scripts"].tap()
         app.toolbars.buttons["Add"].tap()
@@ -104,15 +104,15 @@ class VariablesTests: XCTestCase, UITestProtocol {
         app.buttons["for all objects"].tap()
         app.alerts["New Variable"].textFields["Enter your variable name here..."].typeText(String(repeating: "i", count: 250))
         app.alerts["New Variable"].buttons["OK"].tap()
-        XCTAssert(app.staticTexts["When program started"].exists)
+        XCTAssert(app.staticTexts["When project started"].exists)
     }
 
     func testCreateVariableWithMaxLengthPlusOne() {
 
         let app = XCUIApplication()
         app.tables.staticTexts["New"].tap()
-        app.alerts["New Program"].textFields["Enter your program name here..."].typeText("Test Program")
-        XCUIApplication().alerts["New Program"].buttons["OK"].tap()
+        app.alerts["New Project"].textFields["Enter your project name here..."].typeText("Test Project")
+        XCUIApplication().alerts["New Project"].buttons["OK"].tap()
         XCUIApplication().tables.staticTexts["Background"].tap()
         app.tables.staticTexts["Scripts"].tap()
         app.toolbars.buttons["Add"].tap()

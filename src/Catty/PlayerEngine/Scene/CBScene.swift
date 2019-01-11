@@ -116,14 +116,14 @@ final class CBScene: SKScene {
         return true
     }
 
-    // MARK: - Start program
-    @objc func startProgram() {
-        guard let program = frontend.program else {
-            fatalError("Invalid program. This should never happen!")
+    // MARK: - Start project
+    @objc func startProject() {
+        guard let project = frontend.project else {
+            fatalError("Invalid project. This should never happen!")
         }
 
-        guard let spriteObjectList = program.objectList as NSArray? as? [SpriteObject],
-            let variableList = frontend.program?.variables.allVariables() as NSArray? as? [UserVariable] else {
+        guard let spriteObjectList = project.objectList as NSArray? as? [SpriteObject],
+            let variableList = frontend.project?.variables.allVariables() as NSArray? as? [UserVariable] else {
                 fatalError("!! Invalid sprite object list given !! This should never happen!")
         }
         assert(Thread.current.isMainThread)
@@ -195,7 +195,7 @@ final class CBScene: SKScene {
             addChild(variable.textLabel)
         }
 
-        formulaManager.setup(for: program, and: self)
+        formulaManager.setup(for: project, and: self)
         scheduler.run()
     }
 
@@ -209,12 +209,12 @@ final class CBScene: SKScene {
         formulaManager.resume()
     }
 
-    // MARK: - Stop program
-    @objc func stopProgram() {
+    // MARK: - Stop project
+    @objc func stopProject() {
         view?.isPaused = true
         scheduler.shutdown() // stops all script contexts of all objects and removes all ressources
         removeAllChildren() // remove all CBSpriteNodes from Scene
-        frontend.program?.removeReferences() // remove all references in program hierarchy
+        frontend.project?.removeReferences() // remove all references in project hierarchy
         formulaManager.stop()
         logger.info("All SpriteObjects and Scripts have been removed from Scene!")
     }

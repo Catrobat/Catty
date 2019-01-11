@@ -27,87 +27,87 @@ import XCTest
 final class XMLParserBlackBoxTests096: XMLAbstractTest {
 
     func testAirFight() {
-        self.compareProgram(firstProgramName: "Air_fight_0.5_095", withProgram: "Air_fight_0.5_096")
+        self.compareProject(firstProjectName: "Air_fight_0.5_095", withProject: "Air_fight_0.5_096")
     }
 
     func testAirplaneWithShadow() {
-        self.compareProgram(firstProgramName: "Airplane_with_shadow_095", withProgram: "Airplane_with_shadow_096")
+        self.compareProject(firstProjectName: "Airplane_with_shadow_095", withProject: "Airplane_with_shadow_096")
     }
 
     func testCompass() {
-        self.compareProgram(firstProgramName: "Compass_0.1_095", withProgram: "Compass_0.1_096")
+        self.compareProject(firstProjectName: "Compass_0.1_095", withProject: "Compass_0.1_096")
     }
 
     func testDemonstration() {
-        self.compareProgram(firstProgramName: "Demonstration_095", withProgram: "Demonstration_096")
+        self.compareProject(firstProjectName: "Demonstration_095", withProject: "Demonstration_096")
     }
 
     func testDrinkMoreWater() {
-        self.compareProgram(firstProgramName: "Drink_more_water_095", withProgram: "Drink_more_water_096")
+        self.compareProject(firstProjectName: "Drink_more_water_095", withProject: "Drink_more_water_096")
     }
 
     func testFlapPacMan() {
-        self.compareProgram(firstProgramName: "Flap_Pac_Man_095", withProgram: "Flap_Pac_Man_096")
+        self.compareProject(firstProjectName: "Flap_Pac_Man_095", withProject: "Flap_Pac_Man_096")
     }
 
     func testFlappy() {
-        self.compareProgram(firstProgramName: "Flappy_v3.0_095", withProgram: "Flappy_v3.0_096")
+        self.compareProject(firstProjectName: "Flappy_v3.0_095", withProject: "Flappy_v3.0_096")
     }
 
     func testGalaxyWar() {
-        self.compareProgram(firstProgramName: "Galaxy_War_095", withProgram: "Galaxy_War_096")
+        self.compareProject(firstProjectName: "Galaxy_War_095", withProject: "Galaxy_War_096")
     }
 
     func testGossipGirl() {
-        self.compareProgram(firstProgramName: "Gossip_Girl_095", withProgram: "Gossip_Girl_096")
+        self.compareProject(firstProjectName: "Gossip_Girl_095", withProject: "Gossip_Girl_096")
     }
 
     func testMemory() {
-        self.compareProgram(firstProgramName: "Memory_095", withProgram: "Memory_096")
+        self.compareProject(firstProjectName: "Memory_095", withProject: "Memory_096")
     }
 
     func testMinecraftWorkInProgress() {
-        self.compareProgram(firstProgramName: "Minecraft_Work_In_Progress_095", withProgram: "Minecraft_Work_In_Progress_096")
+        self.compareProject(firstProjectName: "Minecraft_Work_In_Progress_095", withProject: "Minecraft_Work_In_Progress_096")
     }
 
     func testMinions() {
-        self.compareProgram(firstProgramName: "Minions__095", withProgram: "Minions__096")
+        self.compareProject(firstProjectName: "Minions__095", withProject: "Minions__096")
     }
 
     func testNyancat() {
-        self.compareProgram(firstProgramName: "Nyancat_1.0_093", withProgram: "Nyancat_1.0_096")
+        self.compareProject(firstProjectName: "Nyancat_1.0_093", withProject: "Nyancat_1.0_096")
     }
 
     func testPiano() {
-        self.compareProgram(firstProgramName: "Piano_093", withProgram: "Piano_096")
+        self.compareProject(firstProjectName: "Piano_093", withProject: "Piano_096")
     }
 
     func testPongStarter() {
-        self.compareProgram(firstProgramName: "Pong_Starter_095", withProgram: "Pong_Starter_096")
+        self.compareProject(firstProjectName: "Pong_Starter_095", withProject: "Pong_Starter_096")
     }
 
     func testPythagoreanTheorem() {
-        self.compareProgram(firstProgramName: "Pythagorean_Theorem_095", withProgram: "Pythagorean_Theorem_096")
+        self.compareProject(firstProjectName: "Pythagorean_Theorem_095", withProject: "Pythagorean_Theorem_096")
     }
 
     func testRockPaperScissors() {
-        self.compareProgram(firstProgramName: "Rock_paper_scissors_095", withProgram: "Rock_paper_scissors_096")
+        self.compareProject(firstProjectName: "Rock_paper_scissors_095", withProject: "Rock_paper_scissors_096")
     }
 
     func testSkydivingSteve() {
-        self.compareProgram(firstProgramName: "Skydiving_Steve_095", withProgram: "Skydiving_Steve_096")
+        self.compareProject(firstProjectName: "Skydiving_Steve_095", withProject: "Skydiving_Steve_096")
     }
 
     func testTicTacToeMaster() {
-        self.compareProgram(firstProgramName: "Tic_Tac_Toe_Master_095", withProgram: "Tic_Tac_Toe_Master_096")
+        self.compareProject(firstProjectName: "Tic_Tac_Toe_Master_095", withProject: "Tic_Tac_Toe_Master_096")
     }
 
     func testWordBalloonDemo() {
-        self.compareProgram(firstProgramName: "Word_balloon_demo_095", withProgram: "Word_balloon_demo_096")
+        self.compareProject(firstProjectName: "Word_balloon_demo_095", withProject: "Word_balloon_demo_096")
     }
 
     func testXRayPhone() {
-        self.compareProgram(firstProgramName: "X_Ray_phone_095", withProgram: "X_Ray_phone_096")
+        self.compareProject(firstProjectName: "X_Ray_phone_095", withProject: "X_Ray_phone_096")
     }
 
 }

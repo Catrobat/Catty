@@ -39,7 +39,6 @@
 + (BOOL)validateXMLElement:(GDataXMLElement*)xmlElement forFormulaListWithTotalNumberOfFormulas:(NSUInteger)numberOfFormulas;
 + (Formula*)formulaInXMLElement:(GDataXMLElement*)xmlElement forCategoryName:(NSString*)categoryName withContext:(CBXMLParserContext*)context;
 
-+ (id)valueForHeaderPropertyNode:(GDataXMLNode*)propertyNode;
 + (id)valueForHeaderProperty:(NSString*)headerPropertyName andXMLNode:(GDataXMLNode*)propertyNode;
 + (BOOL)isReferenceElement:(GDataXMLElement*)xmlElement;
 + (SpriteObject*)findSpriteObjectInArray:(NSArray*)spriteObjectList withName:(NSString*)spriteObjectName;

@@ -30,7 +30,7 @@ class TouchManagerTests: XCTestCase {
     var scene: CBScene!
 
     override func setUp() {
-        scene = SceneBuilder(program: ProgramMock(width: 500, andHeight: 500)).build()
+        scene = SceneBuilder(project: ProjectMock(width: 500, andHeight: 500)).build()
         touchManager = TouchManager()
         touchManager.startTrackingTouches(for: scene)
     }

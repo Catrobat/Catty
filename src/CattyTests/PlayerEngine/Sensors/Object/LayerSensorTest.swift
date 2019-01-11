@@ -43,19 +43,19 @@ final class LayerSensorTest: XCTestCase {
     }
 
     func testDefaultRawValue() {
-        let program = Program()
+        let project = Project()
 
         let spriteObjectA = SpriteObjectMock()
-        spriteObjectA.program = program
-        program.objectList.add(spriteObjectA)
+        spriteObjectA.project = project
+        project.objectList.add(spriteObjectA)
 
         let spriteObjectB = SpriteObjectMock()
-        spriteObjectB.program = program
-        program.objectList.add(spriteObjectB)
+        spriteObjectB.project = project
+        project.objectList.add(spriteObjectB)
 
         let spriteObjectC = SpriteObjectMock()
-        spriteObjectC.program = program
-        program.objectList.add(spriteObjectC)
+        spriteObjectC.project = project
+        project.objectList.add(spriteObjectC)
 
         XCTAssertEqual(type(of: sensor).defaultRawValue, type(of: sensor).defaultRawValue(for: spriteObjectA), accuracy: Double.epsilon)
         XCTAssertEqual(type(of: sensor).defaultRawValue, type(of: sensor).rawValue(for: spriteObjectA), accuracy: Double.epsilon)

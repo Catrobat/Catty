@@ -35,8 +35,8 @@ class XMLAbstractTest: XCTestCase {
         super.tearDown()
     }
 
-    func isXMLElement(xmlElement: GDataXMLElement, equalToXMLElementForXPath xPath: String, inProgramForXML program: String) -> Bool {
-        let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: program))
+    func isXMLElement(xmlElement: GDataXMLElement, equalToXMLElementForXPath xPath: String, inProjectForXML project: String) -> Bool {
+        let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: project))
         let array = self.getXMLElementsForXPath(document, xPath: xPath)
         XCTAssertEqual(array!.count, 1)
         let xmlElementFromFile = array!.first
@@ -54,22 +54,22 @@ class XMLAbstractTest: XCTestCase {
         return nil
     }
 
-    func compareProgram(firstProgramName: String, withProgram secondProgramName: String) {
-        let firstProgram = self.getProgramForXML(xmlFile: firstProgramName)
-        let secondProgram = self.getProgramForXML(xmlFile: secondProgramName)
+    func compareProject(firstProjectName: String, withProject secondProjectName: String) {
+        let firstProject = self.getProjectForXML(xmlFile: firstProjectName)
+        let secondProject = self.getProjectForXML(xmlFile: secondProjectName)
 
         // FIXME: HACK => assign same header to both versions => this forces to ignore header
-        firstProgram.header = secondProgram.header
+        firstProject.header = secondProject.header
         // FIXME: HACK => for background objects always replace german name "Hintergrund" with "Background"
-        let firstBgObject = firstProgram.objectList[0] as! SpriteObject
-        let secondBgObject = secondProgram.objectList[0] as! SpriteObject
+        let firstBgObject = firstProject.objectList[0] as! SpriteObject
+        let secondBgObject = secondProject.objectList[0] as! SpriteObject
         firstBgObject.name = firstBgObject.name.replacingOccurrences(of: "Hintergrund", with: "Background")
         secondBgObject.name = secondBgObject.name.replacingOccurrences(of: "Hintergrund", with: "Background")
 
-        XCTAssertTrue((firstProgram.isEqual(to: secondProgram)), "Programs are not equal")
+        XCTAssertTrue((firstProject.isEqual(to: secondProject)), "Projects are not equal")
     }
 
-    func getProgramForXML(xmlFile: String) -> Program {
+    func getProjectForXML(xmlFile: String) -> Project {
         let xmlPath = getPathForXML(xmlFile: xmlFile)
         let languageVersion = Util.detectCBLanguageVersionFromXML(withPath: xmlPath)
         // detect right parser for correct catrobat language version
@@ -81,26 +81,26 @@ class XMLAbstractTest: XCTestCase {
 
         if !catrobatParser!.isSupportedLanguageVersion(languageVersion) {
             let parser = Parser()
-            let program = parser.generateObjectForProgram(withPath: xmlPath)
-            if program == nil {
-                XCTFail("Could not parse program from file \(xmlFile)")
+            let project = parser.generateObjectForProject(withPath: xmlPath)
+            if project == nil {
+                XCTFail("Could not parse project from file \(xmlFile)")
             }
-            return program!
+            return project!
         } else {
-            let program = catrobatParser!.parseAndCreateProgram()
-            if program == nil {
-                XCTFail("Could not parse program from file \(xmlFile)")
+            let project = catrobatParser!.parseAndCreateProject()
+            if project == nil {
+                XCTFail("Could not parse project from file \(xmlFile)")
             }
-            return program!
+            return project!
         }
     }
 
-    func isProgram(firstProgram: Program, equalToXML secondProgram: String) -> Bool {
-        guard let firstDocument = CBXMLSerializer.xmlDocument(for: firstProgram) else {
-            XCTFail("Could not serialize xml document for program ")
+    func isProject(firstProject: Project, equalToXML secondProject: String) -> Bool {
+        guard let firstDocument = CBXMLSerializer.xmlDocument(for: firstProject) else {
+            XCTFail("Could not serialize xml document for project ")
             return false
         }
-        let secondDocument = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: secondProgram))
+        let secondDocument = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: secondProject))
         guard let firstRoot = firstDocument.rootElement(), let secondRoot = secondDocument.rootElement() else {
             return false
         }
@@ -124,20 +124,20 @@ class XMLAbstractTest: XCTestCase {
         return document
     }
 
-    func saveProgram(program: Program) {
+    func saveProject(project: Project) {
         guard let fileManager = CBFileManager.shared() else {
             XCTFail("Could not retrieve file manager")
             return
         }
-        let xmlPath = String.init(format: "%@%@", program.projectPath(), kProgramCodeFileName)
+        let xmlPath = String.init(format: "%@%@", project.projectPath(), kProjectCodeFileName)
         let serializer = CBXMLSerializer(path: xmlPath, fileManager: fileManager)
-        serializer?.serializeProgram(program)
+        serializer?.serializeProject(project)
     }
 
-    func testParseXMLAndSerializeProgramAndCompareXML(xmlFile: String) {
-        let program = self.getProgramForXML(xmlFile: xmlFile)
-        let equal = self.isProgram(firstProgram: program, equalToXML: xmlFile)
-        XCTAssertTrue(equal, "Serialized program and XML are not equal (\(xmlFile))")
+    func testParseXMLAndSerializeProjectAndCompareXML(xmlFile: String) {
+        let project = self.getProjectForXML(xmlFile: xmlFile)
+        let equal = self.isProject(firstProject: project, equalToXML: xmlFile)
+        XCTAssertTrue(equal, "Serialized project and XML are not equal (\(xmlFile))")
     }
 
     func getPathForXML(xmlFile: String) -> String {

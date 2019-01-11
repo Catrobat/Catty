@@ -31,24 +31,24 @@ class ObjectTVCTests: XCTestCase, UITestProtocol {
         XCUIApplication().launch()
 
         dismissWelcomeScreenIfShown()
-        restoreDefaultProgram()
+        restoreDefaultProject()
     }
 
     func testScriptsCanEnterScriptsOfAllMoles() {
         let app = XCUIApplication()
         let appTables = app.tables
-        let programObjects = ["Mole 1", "Mole 2", "Mole 3", "Mole 4"]
+        let projectObjects = ["Mole 1", "Mole 2", "Mole 3", "Mole 4"]
 
         appTables.staticTexts["Continue"].tap()
 
         //check every mole for script
-        for object in programObjects {
+        for object in projectObjects {
             appTables.staticTexts[object].tap()
             appTables.staticTexts["Scripts"].tap()
             XCTAssert(app.navigationBars["Scripts"].buttons[object].exists)
             app.navigationBars["Scripts"].buttons[object].tap()
-            app.navigationBars[object].buttons["My first program"].tap()
-            XCTAssert(app.navigationBars["My first program"].exists)
+            app.navigationBars[object].buttons["My first project"].tap()
+            XCTAssert(app.navigationBars["My first project"].exists)
         }
     }
 
@@ -103,14 +103,14 @@ class ObjectTVCTests: XCTestCase, UITestProtocol {
         XCTAssert(app.collectionViews.cells.element(boundBy: 3).staticTexts["End of Loop"].exists)
     }
 
-    func testScriptsCanDeleteWhenProgramStartedBrick() {
+    func testScriptsCanDeleteWhenProjectStartedBrick() {
         let app = XCUIApplication()
 
         app.tables.staticTexts["Continue"].tap()
         app.tables.staticTexts["Mole 1"].tap()
         app.tables.staticTexts["Scripts"].tap()
 
-        //delete the WhenProgramStartedBrick
+        //delete the WhenProjectStartedBrick
         app.collectionViews.cells.element(boundBy: 0).tap()
         app.buttons["Delete Script"].tap()
 
@@ -148,15 +148,15 @@ class ObjectTVCTests: XCTestCase, UITestProtocol {
 
     func testCopyObjectWithIfBricks() {
         let app = XCUIApplication()
-        let programName = "testProgram"
+        let projectName = "testProject"
         let objectName = "testObject"
         let copiedObjectName = objectName + " (1)"
 
         app.tables.staticTexts["New"].tap()
-        let alertQuery = app.alerts["New Program"]
-        alertQuery.textFields["Enter your program name here..."].typeText(programName)
-        app.alerts["New Program"].buttons["OK"].tap()
-        XCTAssertNotNil(waitForElementToAppear(app.navigationBars[programName]))
+        let alertQuery = app.alerts["New Project"]
+        alertQuery.textFields["Enter your project name here..."].typeText(projectName)
+        app.alerts["New Project"].buttons["OK"].tap()
+        XCTAssertNotNil(waitForElementToAppear(app.navigationBars[projectName]))
 
         // Add new Object
         app.toolbars.buttons["Add"].tap()
@@ -171,7 +171,7 @@ class ObjectTVCTests: XCTestCase, UITestProtocol {
         app.navigationBars.buttons["Looks"].tap()
 
         waitForElementToAppear(app.alerts["Save to PocketCode"]).buttons["Yes"].tap()
-        XCTAssertNotNil(waitForElementToAppear(app.navigationBars[programName]))
+        XCTAssertNotNil(waitForElementToAppear(app.navigationBars[projectName]))
 
         waitForElementToAppear(app.tables.staticTexts[objectName]).tap()
         waitForElementToAppear(app.staticTexts["Scripts"]).tap()
@@ -199,7 +199,7 @@ class ObjectTVCTests: XCTestCase, UITestProtocol {
         XCTAssert(app.collectionViews.cells.element(boundBy: 2).staticTexts["End If"].exists)
 
         app.navigationBars.buttons[objectName].tap()
-        app.navigationBars.buttons[programName].tap()
+        app.navigationBars.buttons[projectName].tap()
 
         // Copy object
         app.tables.staticTexts[objectName].swipeLeft()

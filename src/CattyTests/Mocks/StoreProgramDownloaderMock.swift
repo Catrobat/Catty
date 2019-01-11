@@ -22,26 +22,26 @@
 
 @testable import Pocket_Code
 
-final class StoreProgramDownloaderMock: StoreProgramDownloaderProtocol {
-    var program: StoreProgram?
-    var collectionText: StoreProgramCollection.StoreProgramCollectionText?
-    var collectionNumber: StoreProgramCollection.StoreProgramCollectionNumber?
+final class StoreProjectDownloaderMock: StoreProjectDownloaderProtocol {
+    var project: StoreProject?
+    var collectionText: StoreProjectCollection.StoreProjectCollectionText?
+    var collectionNumber: StoreProjectCollection.StoreProjectCollectionNumber?
 
-    func fetchSearchQuery(searchTerm: String, completion: @escaping (StoreProgramCollection.StoreProgramCollectionNumber?, StoreProgramDownloaderError?) -> Void) {
+    func fetchSearchQuery(searchTerm: String, completion: @escaping (StoreProjectCollection.StoreProjectCollectionNumber?, StoreProjectDownloaderError?) -> Void) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
             completion(self.collectionNumber, nil)
         }
     }
 
-    func fetchPrograms(forType: ProgramType, offset: Int, completion: @escaping (StoreProgramCollection.StoreProgramCollectionText?, StoreProgramDownloaderError?) -> Void) {
+    func fetchProjects(forType: ProjectType, offset: Int, completion: @escaping (StoreProjectCollection.StoreProjectCollectionText?, StoreProjectDownloaderError?) -> Void) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
             completion(self.collectionText, nil)
         }
     }
 
-    func downloadProgram(for program: StoreProgram, completion: @escaping (StoreProgram?, StoreProgramDownloaderError?) -> Void) {
+    func downloadProject(for project: StoreProject, completion: @escaping (StoreProject?, StoreProjectDownloaderError?) -> Void) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
-            completion(self.program, nil)
+            completion(self.project, nil)
         }
     }
 }

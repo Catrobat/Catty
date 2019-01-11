@@ -149,7 +149,7 @@
     // check if userVariable has been already serialized (e.g. within a SetVariableBrick)
     CBXMLPositionStack *positionStackOfUserVariable = nil;
 
-    // check whether object variable/list or program variable/list
+    // check whether object variable/list or project variable/list
     SpriteObject *spriteObject = [context.variables spriteObjectForObjectVariable:self];
     if (spriteObject) {
         // it is an object variable/list!
@@ -186,13 +186,13 @@
         return xmlElement;
     }
 
-    // it must be a program variable!
-    if (! [context.variables isProgramVariableOrList:self]) {
-        [XMLError exceptionWithMessage:@"UserVariable is neither objectVariable nor programVariable"];
+    // it must be a project variable!
+    if (! [context.variables isProjectVariableOrList:self]) {
+        [XMLError exceptionWithMessage:@"UserVariable is neither objectVariable nor projectVariable"];
     }
 
-    positionStackOfUserVariable = self.isList ? [context.programUserListNamePositions objectForKey:self.name] :
-                                                [context.programUserVariableNamePositions objectForKey:self.name];
+    positionStackOfUserVariable = self.isList ? [context.projectUserListNamePositions objectForKey:self.name] :
+                                                [context.projectUserVariableNamePositions objectForKey:self.name];
     if (positionStackOfUserVariable) {
         // already serialized
         [context.currentPositionStack popXmlElementName]; // remove already added userVariable that contains stringValue!
@@ -209,9 +209,9 @@
     }
     // save current stack position in context
     if (!self.isList) {
-        [context.programUserVariableNamePositions setObject:currentPositionStack forKey:self.name];
+        [context.projectUserVariableNamePositions setObject:currentPositionStack forKey:self.name];
     } else {
-        [context.programUserListNamePositions setObject:currentPositionStack forKey:self.name];
+        [context.projectUserListNamePositions setObject:currentPositionStack forKey:self.name];
     }
     return xmlElement;
 }

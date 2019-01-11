@@ -21,7 +21,6 @@
  */
 
 #import "FormulaElement.h"
-#import "Program.h"
 #import "VariablesContainer.h"
 #import "UserVariable.h"
 #import "SpriteObject.h"

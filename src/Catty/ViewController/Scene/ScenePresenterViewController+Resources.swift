@@ -33,7 +33,7 @@ import CoreBluetooth
         self.showLoadingView()
 
         DispatchQueue.global(qos: .userInitiated).async {
-            self.program = Program.init(loadingInfo: Util.lastUsedProgramLoadingInfo())!
+            self.project = Project.init(loadingInfo: Util.lastUsedProjectLoadingInfo())!
             let readyToStart = self.notifyUserAboutUnavailableResources(navigationController: navigationController)
 
             DispatchQueue.main.async {
@@ -47,7 +47,7 @@ import CoreBluetooth
     }
 
     @nonobjc private func notifyUserAboutUnavailableResources(navigationController: UINavigationController) -> Bool {
-        let requiredResources = program.getRequiredResources()
+        let requiredResources = project.getRequiredResources()
 
         // Bluetooth
         var unconnectedBluetoothDevices = [BluetoothDeviceID]()
