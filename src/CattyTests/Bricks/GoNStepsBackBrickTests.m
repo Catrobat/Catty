@@ -201,14 +201,14 @@
 {
     GoNStepsBackBrick* brick = [[GoNStepsBackBrick alloc] init];
     brick.steps = [[Formula alloc] initWithDouble:1];
-    XCTAssertTrue([[kLocalizedGoBack stringByAppendingString:[@"%@ " stringByAppendingString:kLocalizedLayer]] isEqualToString:[brick brickTitle]], @"Wrong brick title");
+    XCTAssertTrue([[kLocalizedGoBack stringByAppendingString:[@" %@ " stringByAppendingString:kLocalizedLayer]] isEqualToString:[brick brickTitle]], @"Wrong brick title");
 }
 
 - (void)testTitlePlural
 {
     GoNStepsBackBrick* brick = [[GoNStepsBackBrick alloc] init];
     brick.steps = [[Formula alloc] initWithDouble:2];
-    XCTAssertTrue([[kLocalizedGoBack stringByAppendingString:[@"%@ " stringByAppendingString:kLocalizedLayers]] isEqualToString:[brick brickTitle]], @"Wrong brick title");
+    XCTAssertTrue([[kLocalizedGoBack stringByAppendingString:[@" %@ " stringByAppendingString:kLocalizedLayers]] isEqualToString:[brick brickTitle]], @"Wrong brick title");
 }
 
 @end

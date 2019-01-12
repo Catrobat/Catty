@@ -30,7 +30,7 @@
 
 - (NSString*)brickTitleForBrickinSelection:(BOOL)inSelection inBackground:(BOOL)inBackground
 {
-        return inBackground ? kLocalizedPreviousBackground : kLocalizedPreviousLook;
+    return inBackground ? kLocalizedPreviousBackground : kLocalizedPreviousLook;
 }
 
 - (NSString*)pathForLook:(Look*)look

@@ -52,7 +52,7 @@
 
 - (NSString*)brickTitle
 {
-    return [kLocalizedTurnRight stringByAppendingString:[@"%@ " stringByAppendingString:kLocalizedDegrees]];
+    return [kLocalizedTurnRight stringByAppendingString:[@" %@ " stringByAppendingString:kLocalizedDegrees]];
 }
 
 #pragma mark - Description

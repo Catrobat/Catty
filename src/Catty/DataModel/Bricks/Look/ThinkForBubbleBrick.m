@@ -37,7 +37,7 @@
 - (NSString*)brickTitle
 {
     NSString* localizedSecond = [self.intFormula isSingularNumber] ? kLocalizedSecond : kLocalizedSeconds;
-    return [[[[kLocalizedThink stringByAppendingString:@"%@\n"] stringByAppendingString:kLocalizedFor] stringByAppendingString:@"%@"] stringByAppendingString:localizedSecond];
+    return [[[[kLocalizedThink stringByAppendingString:@" %@\n"] stringByAppendingString:kLocalizedFor] stringByAppendingString:@" %@ "] stringByAppendingString:localizedSecond];
 }
 
 - (BOOL)allowsStringFormula

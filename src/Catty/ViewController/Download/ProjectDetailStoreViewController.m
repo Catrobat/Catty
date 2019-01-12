@@ -294,8 +294,8 @@
 
 - (void)openButtonPressed:(id)sender
 {
+    NSDebug(@"Open Button");
     static NSString* segueToContinue = kSegueToContinue;
-    NSDebug(@"Play Button");
     if ([self shouldPerformSegueWithIdentifier:segueToContinue sender:self]) {
         [self performSegueWithIdentifier:segueToContinue sender:self];
     }
@@ -399,7 +399,7 @@
     [self.loadingView hide];
 }
 
-#pragma mark - play button
+#pragma mark - open button
 - (void)showOpenButton
 {
     [self.projectView viewWithTag:kDownloadButtonTag].hidden = NO;

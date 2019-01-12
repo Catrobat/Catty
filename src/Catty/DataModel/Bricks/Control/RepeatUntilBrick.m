@@ -60,7 +60,7 @@
 
 - (NSString*)brickTitle
 {
-    return [kLocalizedRepeatUntil stringByAppendingString:[@"%@ " stringByAppendingString:kLocalizedUntilIsTrue]];
+    return [kLocalizedRepeatUntil stringByAppendingString:[@" %@ " stringByAppendingString:kLocalizedUntilIsTrue]];
 }
 
 #pragma mark - Description

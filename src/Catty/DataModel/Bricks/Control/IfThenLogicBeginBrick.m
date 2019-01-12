@@ -64,7 +64,7 @@
 
 - (NSString*)brickTitle
 {
-    return [kLocalizedIfBegin stringByAppendingString:[@"%@ " stringByAppendingString:kLocalizedIfBeginSecondPart]];
+    return [kLocalizedIfBegin stringByAppendingString:[@" %@ " stringByAppendingString:kLocalizedIfBeginSecondPart]];
 }
 
 #pragma mark - Description

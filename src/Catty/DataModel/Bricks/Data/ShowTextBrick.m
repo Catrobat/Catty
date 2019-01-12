@@ -80,10 +80,11 @@
     return [kLocalizedShowVariable
         stringByAppendingString:[@"\n%@\n"
         stringByAppendingString:[kLocalizedAt
+        stringByAppendingString:[@" "
         stringByAppendingString:[kLocalizedXLabel
-        stringByAppendingString:[@"%@ "
+        stringByAppendingString:[@" %@ "
         stringByAppendingString:[kLocalizedYLabel
-        stringByAppendingString:@"%@"]]]]]];
+        stringByAppendingString:@" %@"]]]]]]];
 }
 
 #pragma mark - Description

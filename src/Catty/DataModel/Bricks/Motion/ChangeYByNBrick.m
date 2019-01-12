@@ -53,7 +53,7 @@
 
 - (NSString*)brickTitle
 {
-    return [kLocalizedChangeY stringByAppendingString:@"%@"];
+    return [kLocalizedChangeY stringByAppendingString:[@" " stringByAppendingString:[kLocalizedBy stringByAppendingString:@" %@"]]];
 }
 
 #pragma mark - Description

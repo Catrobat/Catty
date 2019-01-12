@@ -53,7 +53,7 @@
 - (NSString*)brickTitle
 {
     NSString* localizedStep = [self.steps isSingularNumber] ? kLocalizedStep : kLocalizedSteps;
-    return [kLocalizedMove stringByAppendingString:[@"%@ " stringByAppendingString:localizedStep]];
+    return [kLocalizedMove stringByAppendingString:[@" %@ " stringByAppendingString:localizedStep]];
 }
 
 - (void)performFromScript:(Script *)script

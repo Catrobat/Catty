@@ -1,7 +1,4 @@
 /* No comment provided by engineer. */
-" and wait" = " and wait";
-
-/* No comment provided by engineer. */
 "A message with the same name already exists, try again." = "A message with the same name already exists, try again.";
 
 /* No comment provided by engineer. */
@@ -71,6 +68,9 @@
 "and" = "and";
 
 /* No comment provided by engineer. */
+"and wait" = "and wait";
+
+/* No comment provided by engineer. */
 "Animate Brick-Parts" = "Animate Brick-Parts";
 
 /* No comment provided by engineer. */
@@ -89,7 +89,7 @@
 "arduino_digital" = "arduino_digital";
 
 /* No comment provided by engineer. */
-"at " = "at ";
+"at" = "at";
 
 /* paint */
 "Attributes:" = "Attributes:";
@@ -191,16 +191,16 @@
 "ceil" = "ceil";
 
 /* No comment provided by engineer. */
-"Change brightness " = "Change brightness ";
+"Change brightness" = "Change brightness";
 
 /* No comment provided by engineer. */
-"Change color " = "Change color ";
+"Change color" = "Change color";
 
 /* No comment provided by engineer. */
 "Change size by" = "Change size by";
 
 /* No comment provided by engineer. */
-"Change transparency " = "Change transparency ";
+"Change transparency" = "Change transparency";
 
 /* No comment provided by engineer. */
 "Change variable" = "Change variable";
@@ -209,10 +209,10 @@
 "Change volume by" = "Change volume by";
 
 /* No comment provided by engineer. */
-"Change X by " = "Change X by ";
+"Change X" = "Change X";
 
 /* No comment provided by engineer. */
-"Change Y by " = "Change Y by ";
+"Change Y" = "Change Y";
 
 /* No comment provided by engineer. */
 "Changes discarded!" = "Changes discarded!";
@@ -320,7 +320,7 @@
 "Delete Condition" = "Delete Condition";
 
 /* No comment provided by engineer. */
-"Delete item from list\n%@\n at position%@" = "Delete item from list\n%@\n at position%@";
+"Delete item from list\n%@\n at position %@" = "Delete item from list\n%@\n at position %@";
 
 /* No comment provided by engineer. */
 "Delete Looks" = "Delete Looks";
@@ -692,7 +692,7 @@
 "Information" = "Information";
 
 /* No comment provided by engineer. */
-"Insert%@into list\n%@\n at position%@" = "Insert%@into list\n%@\n at position%@";
+"Insert %@ into list\n%@\n at position %@" = "Insert %@ into list\n%@\n at position %@";
 
 /* paint */
 "Inserted" = "Inserted";
@@ -1100,7 +1100,7 @@
 "Pipette" = "Pipette";
 
 /* No comment provided by engineer. */
-"Place at " = "Place at ";
+"Place at" = "Place at";
 
 /* No comment provided by engineer. */
 "Play Phiro music\n" = "Play Phiro music\n";
@@ -1313,13 +1313,7 @@
 "second" = "second";
 
 /* No comment provided by engineer. */
-"second " = "second ";
-
-/* No comment provided by engineer. */
 "seconds" = "seconds";
-
-/* No comment provided by engineer. */
-"seconds " = "seconds ";
 
 /* No comment provided by engineer. */
 "Select All" = "Select All";
@@ -1361,7 +1355,13 @@
 "Set Arduino PWM~ pin" = "Set Arduino PWM~ pin";
 
 /* No comment provided by engineer. */
-"Set color " = "Set color ";
+"Set background" = "Set background";
+
+/* No comment provided by engineer. */
+"Set brightness" = "Set brightness";
+
+/* No comment provided by engineer. */
+"Set color" = "Set color";
 
 /* No comment provided by engineer. */
 "Set description" = "Set description";
@@ -1373,7 +1373,7 @@
 "Set size to" = "Set size to";
 
 /* No comment provided by engineer. */
-"Set transparency " = "Set transparency ";
+"Set transparency" = "Set transparency";
 
 /* No comment provided by engineer. */
 "Set variable" = "Set variable";
@@ -1382,10 +1382,10 @@
 "Set volume to" = "Set volume to";
 
 /* No comment provided by engineer. */
-"Set X to " = "Set X to ";
+"Set X" = "Set X";
 
 /* No comment provided by engineer. */
-"Set Y to " = "Set Y to ";
+"Set Y" = "Set Y";
 
 /* No comment provided by engineer. */
 "Settings" = "Settings";
@@ -1706,10 +1706,10 @@
 "Width selection" = "Width selection";
 
 /* No comment provided by engineer. */
-"X: " = "X: ";
+"X:" = "X:";
 
 /* No comment provided by engineer. */
-"Y: " = "Y: ";
+"Y:" = "Y:";
 
 /* No comment provided by engineer. */
 "year" = "year";

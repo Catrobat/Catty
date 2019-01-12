@@ -64,7 +64,7 @@
 
 - (NSString*)brickTitle
 {
-    return [kLocalizedChangeVariable stringByAppendingString:[@"\n%@\n" stringByAppendingString:[kLocalizedBy stringByAppendingString:@"%@"]]];
+    return [kLocalizedChangeVariable stringByAppendingString:[@"\n%@\n" stringByAppendingString:[kLocalizedBy stringByAppendingString:@" %@"]]];
 }
 
 - (BOOL)allowsStringFormula

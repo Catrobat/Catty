@@ -27,7 +27,7 @@
 @implementation PhiroMotorMoveBackwardBrick
 - (NSString*)brickTitle
 {
-    return [[[kLocalizedPhiroMoveBackward stringByAppendingString:@"\n%@\n"] stringByAppendingString:kLocalizedPhiroSpeed] stringByAppendingString:@"%@\%"];
+    return [[[kLocalizedPhiroMoveBackward stringByAppendingString:@"\n%@\n"] stringByAppendingString:kLocalizedPhiroSpeed] stringByAppendingString:@" %@\%"];
 }
 
 
