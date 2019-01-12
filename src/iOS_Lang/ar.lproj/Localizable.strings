@@ -628,9 +628,6 @@
 /* No comment provided by engineer. */
 "Go to front" = "الذهاب إلى الامام";
 
-/* No comment provided by engineer. */
-"GOOD TO SEE YOU" = "سعيد لرؤيتك";
-
 /* paint */
 "Green" = "أخضر";
 
@@ -1178,7 +1175,7 @@
 "Privacy Settings" = "اعدادات الخصوصية";
 
 /* No comment provided by engineer. */
-"Problems occured while Uploading your program" = "حدثت مشاكل أثناء تحميل البرنامج الخاص بك";
+"Problems occured while uploading your program" = "حدثت مشاكل أثناء تحميل البرنامج الخاص بك";
 
 /* No comment provided by engineer. */
 "Program" = "Program";
@@ -1278,9 +1275,6 @@
 
 /* No comment provided by engineer. */
 "Saturday" = "السبت";
-
-/* Action sheet menu title */
-"Save Screenshot to" = "حفظ لقطة الشاشة إلى";
 
 /* paint */
 "Save to CameraRoll" = "حفظ الى مجلد الكاميرا";
@@ -1613,15 +1607,6 @@
 "Undo Typing?" = "هل تريد التراجع عن الكتابة؟";
 
 /* No comment provided by engineer. */
-"Unexpected Error" = "Unexpected Error";
-
-/* No comment provided by engineer. */
-"Unexpected Error, please try again later." = "Unexpected Error, please try again later.";
-
-/* No comment provided by engineer. */
-"Unknown Element" = "Unknown Element";
-
-/* No comment provided by engineer. */
 "Unselect All" = "إلغاء اختيار الكل";
 
 /* No comment provided by engineer. */
@@ -1631,7 +1616,7 @@
 "Upload Program" = "تحميل البرنامج";
 
 /* No comment provided by engineer. */
-"Upload Selected Program" = "تحميل البرنامج المحدد";
+"Upload selected program" = "تحميل البرنامج المحدد";
 
 /* No comment provided by engineer. */
 "Upload successful" = "تم التحميل بنجاح";

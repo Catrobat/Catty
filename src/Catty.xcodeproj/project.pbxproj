@@ -123,7 +123,7 @@
 		4C1604301F0025F6004525A5 /* AbstractBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C16042F1F0025F6004525A5 /* AbstractBrickTests.m */; };
 		4C1AA4AE21A1572700DAC589 /* MediaItemTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1AA4AD21A1572700DAC589 /* MediaItemTest.swift */; };
 		4C1C8B14213FE76B003B3AA4 /* ChartProjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1C8B13213FE76B003B3AA4 /* ChartProjectCell.swift */; };
-		4C1C8B16213FE7F1003B3AA4 /* StoreProgramDownloaderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1C8B15213FE7F1003B3AA4 /* StoreProgramDownloaderMock.swift */; };
+		4C1C8B16213FE7F1003B3AA4 /* StoreProjectDownloaderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1C8B15213FE7F1003B3AA4 /* StoreProjectDownloaderMock.swift */; };
 		4C1D26611E84EFBD00BAA2D2 /* RepeatBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1D26601E84EFBD00BAA2D2 /* RepeatBrickTests.swift */; };
 		4C1D26651E84F12700BAA2D2 /* VibrationBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1D26641E84F12700BAA2D2 /* VibrationBrickTests.swift */; };
 		4C1D26671E84F1BF00BAA2D2 /* GlideToBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1D26661E84F1BF00BAA2D2 /* GlideToBrickTests.swift */; };
@@ -516,7 +516,6 @@
 		4CEB22601B95E47500B3BE2F /* PointInDirectionBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB22431B95E47500B3BE2F /* PointInDirectionBrickTests.m */; };
 		4CEB22611B95E47500B3BE2F /* PointToBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB22441B95E47500B3BE2F /* PointToBrickTests.m */; };
 		4CEB22621B95E47500B3BE2F /* SetBrightnessBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB22451B95E47500B3BE2F /* SetBrightnessBrickTests.m */; };
-		4CEB22631B95E47500B3BE2F /* SetLookBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB22461B95E47500B3BE2F /* SetLookBrickTests.m */; };
 		4CEB22641B95E47500B3BE2F /* SetSizeToBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB22471B95E47500B3BE2F /* SetSizeToBrickTests.m */; };
 		4CEB22651B95E47500B3BE2F /* SetTransparencyBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB22481B95E47500B3BE2F /* SetTransparencyBrickTests.m */; };
 		4CEB22661B95E47500B3BE2F /* SetXBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB22491B95E47500B3BE2F /* SetXBrickTests.m */; };
@@ -803,7 +802,7 @@
 		92FF2E381A24C5A700093DA7 /* NSString+CatrobatNSStringExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E1C1A24C5A700093DA7 /* NSString+CatrobatNSStringExtensions.m */; };
 		92FF2E391A24C5A700093DA7 /* LICENSE_NSString+FastImageSize in Resources */ = {isa = PBXBuildFile; fileRef = 92FF2E1E1A24C5A700093DA7 /* LICENSE_NSString+FastImageSize */; };
 		92FF2E3A1A24C5A700093DA7 /* NSString+FastImageSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E201A24C5A700093DA7 /* NSString+FastImageSize.m */; };
-		92FF2E3B1A24C5A700093DA7 /* Program+CustomExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E231A24C5A700093DA7 /* Program+CustomExtensions.m */; };
+		92FF2E3B1A24C5A700093DA7 /* Project+CustomExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E231A24C5A700093DA7 /* Project+CustomExtensions.m */; };
 		92FF2E3C1A24C5A700093DA7 /* UIColor+CatrobatUIColorExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E281A24C5A700093DA7 /* UIColor+CatrobatUIColorExtensions.m */; };
 		92FF2E3D1A24C5A700093DA7 /* UIImage+CatrobatUIImageExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E2B1A24C5A700093DA7 /* UIImage+CatrobatUIImageExtensions.m */; };
 		92FF2E3F1A24C5A700093DA7 /* LICENSE_UIViewController+Popup in Resources */ = {isa = PBXBuildFile; fileRef = 92FF2E301A24C5A700093DA7 /* LICENSE_UIViewController+Popup */; };
@@ -1140,7 +1139,7 @@
 		BAEE49BB1F165C6E00F06741 /* ReplaceItemInUserListBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = BAEE49BA1F165C6E00F06741 /* ReplaceItemInUserListBrick.m */; };
 		BAEE49BE1F165CBA00F06741 /* ReplaceItemInUserListBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = BAEE49BD1F165CBA00F06741 /* ReplaceItemInUserListBrick+CBXMLHandler.m */; };
 		BAEE49C01F165D1300F06741 /* ReplaceItemInUserListBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEE49BF1F165D1300F06741 /* ReplaceItemInUserListBrick+Instruction.swift */; };
-		BC19327F21186504009DE43A /* CreateProgramTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC19327E21186504009DE43A /* CreateProgramTests.swift */; };
+		BC19327F21186504009DE43A /* CreateProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC19327E21186504009DE43A /* CreateProjectTests.swift */; };
 		BC1EB70F2111905800D95C53 /* ObjectTVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A988832B1BCA86FF005029E8 /* ObjectTVCTests.swift */; };
 		BCFED6ED2111C04000BE57BF /* BackgroundsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFED6EC2111C04000BE57BF /* BackgroundsTests.swift */; };
 		BCFED6F12111CA5D00BE57BF /* PocketCodeMainScreenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFED6EE2111C54100BE57BF /* PocketCodeMainScreenTests.swift */; };
@@ -1481,7 +1480,7 @@
 		4C16042F1F0025F6004525A5 /* AbstractBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractBrickTests.m; sourceTree = "<group>"; };
 		4C1AA4AD21A1572700DAC589 /* MediaItemTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaItemTest.swift; sourceTree = "<group>"; };
 		4C1C8B13213FE76B003B3AA4 /* ChartProjectCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartProjectCell.swift; sourceTree = "<group>"; };
-		4C1C8B15213FE7F1003B3AA4 /* StoreProgramDownloaderMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreProgramDownloaderMock.swift; sourceTree = "<group>"; };
+		4C1C8B15213FE7F1003B3AA4 /* StoreProjectDownloaderMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreProjectDownloaderMock.swift; sourceTree = "<group>"; };
 		4C1D26601E84EFBD00BAA2D2 /* RepeatBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepeatBrickTests.swift; sourceTree = "<group>"; };
 		4C1D26641E84F12700BAA2D2 /* VibrationBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VibrationBrickTests.swift; sourceTree = "<group>"; };
 		4C1D26661E84F1BF00BAA2D2 /* GlideToBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlideToBrickTests.swift; sourceTree = "<group>"; };
@@ -1926,7 +1925,6 @@
 		4CEB22431B95E47500B3BE2F /* PointInDirectionBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointInDirectionBrickTests.m; sourceTree = "<group>"; };
 		4CEB22441B95E47500B3BE2F /* PointToBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointToBrickTests.m; sourceTree = "<group>"; };
 		4CEB22451B95E47500B3BE2F /* SetBrightnessBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetBrightnessBrickTests.m; sourceTree = "<group>"; };
-		4CEB22461B95E47500B3BE2F /* SetLookBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetLookBrickTests.m; sourceTree = "<group>"; };
 		4CEB22471B95E47500B3BE2F /* SetSizeToBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetSizeToBrickTests.m; sourceTree = "<group>"; };
 		4CEB22481B95E47500B3BE2F /* SetTransparencyBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetTransparencyBrickTests.m; sourceTree = "<group>"; };
 		4CEB22491B95E47500B3BE2F /* SetXBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetXBrickTests.m; sourceTree = "<group>"; };
@@ -2369,7 +2367,7 @@
 		92FF2E1F1A24C5A700093DA7 /* NSString+FastImageSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+FastImageSize.h"; sourceTree = "<group>"; };
 		92FF2E201A24C5A700093DA7 /* NSString+FastImageSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+FastImageSize.m"; sourceTree = "<group>"; };
 		92FF2E221A24C5A700093DA7 /* Project+CustomExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Project+CustomExtensions.h"; sourceTree = "<group>"; };
-		92FF2E231A24C5A700093DA7 /* Program+CustomExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Program+CustomExtensions.m"; sourceTree = "<group>"; };
+		92FF2E231A24C5A700093DA7 /* Project+CustomExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Project+CustomExtensions.m"; sourceTree = "<group>"; };
 		92FF2E271A24C5A700093DA7 /* UIColor+CatrobatUIColorExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+CatrobatUIColorExtensions.h"; sourceTree = "<group>"; };
 		92FF2E281A24C5A700093DA7 /* UIColor+CatrobatUIColorExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CatrobatUIColorExtensions.m"; sourceTree = "<group>"; };
 		92FF2E2A1A24C5A700093DA7 /* UIImage+CatrobatUIImageExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+CatrobatUIImageExtensions.h"; sourceTree = "<group>"; };
@@ -2958,7 +2956,7 @@
 		BAEE49BC1F165CBA00F06741 /* ReplaceItemInUserListBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ReplaceItemInUserListBrick+CBXMLHandler.h"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Data/ReplaceItemInUserListBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
 		BAEE49BD1F165CBA00F06741 /* ReplaceItemInUserListBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "ReplaceItemInUserListBrick+CBXMLHandler.m"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Data/ReplaceItemInUserListBrick+CBXMLHandler.m"; sourceTree = SOURCE_ROOT; };
 		BAEE49BF1F165D1300F06741 /* ReplaceItemInUserListBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ReplaceItemInUserListBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Data/ReplaceItemInUserListBrick+Instruction.swift"; sourceTree = "<group>"; };
-		BC19327E21186504009DE43A /* CreateProgramTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProgramTests.swift; sourceTree = "<group>"; };
+		BC19327E21186504009DE43A /* CreateProjectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProjectTests.swift; sourceTree = "<group>"; };
 		BCFED6EC2111C04000BE57BF /* BackgroundsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundsTests.swift; sourceTree = "<group>"; };
 		BCFED6EE2111C54100BE57BF /* PocketCodeMainScreenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PocketCodeMainScreenTests.swift; sourceTree = "<group>"; };
 		BCFED6F52113188700BE57BF /* MyFirstProjectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFirstProjectTests.swift; sourceTree = "<group>"; };
@@ -4865,7 +4863,6 @@
 				4C0F9FDA204BD3E000E71B2D /* SetBackgroundBrickTests.m */,
 				4CEB22451B95E47500B3BE2F /* SetBrightnessBrickTests.m */,
 				4CB2CFAC1D7AD8A5009F3034 /* SetColorBrickTests.m */,
-				4CEB22461B95E47500B3BE2F /* SetLookBrickTests.m */,
 				4CEB22471B95E47500B3BE2F /* SetSizeToBrickTests.m */,
 				4CEB22481B95E47500B3BE2F /* SetTransparencyBrickTests.m */,
 				4CAB100C1ECF1AB20019A67B /* SetVariableBrickTests.swift */,
@@ -5108,7 +5105,7 @@
 				5973F243202EF37600A4CED9 /* SoundsLibraryCollectionViewDataSourceDelegateMock.swift */,
 				599E649D202D9F95009494B5 /* URLSessionMock.swift */,
 				4CBF5F9D21AF1D390079C834 /* UIGestureRecognizerMock.swift */,
-				4C1C8B15213FE7F1003B3AA4 /* StoreProgramDownloaderMock.swift */,
+				4C1C8B15213FE7F1003B3AA4 /* StoreProjectDownloaderMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -5800,7 +5797,7 @@
 			isa = PBXGroup;
 			children = (
 				92FF2E221A24C5A700093DA7 /* Project+CustomExtensions.h */,
-				92FF2E231A24C5A700093DA7 /* Program+CustomExtensions.m */,
+				92FF2E231A24C5A700093DA7 /* Project+CustomExtensions.m */,
 			);
 			path = "Project+Extension";
 			sourceTree = "<group>";
@@ -7170,7 +7167,7 @@
 				4CB1FB721BC2D74F0000A2FE /* Protocol */,
 				AAADA0081B9B29D500E0CA9A /* Info.plist */,
 				BCFED6EC2111C04000BE57BF /* BackgroundsTests.swift */,
-				BC19327E21186504009DE43A /* CreateProgramTests.swift */,
+				BC19327E21186504009DE43A /* CreateProjectTests.swift */,
 				4CA98E8521C8F1D400B2D9CA /* LooksTVCTests.swift */,
 				BCFED6F52113188700BE57BF /* MyFirstProjectTests.swift */,
 				A988832B1BCA86FF005029E8 /* ObjectTVCTests.swift */,
@@ -8542,7 +8539,7 @@
 				4CF8747521C8E7AB00C8143F /* SoundsTVCTests.swift in Sources */,
 				BCFED6F8211318A100BE57BF /* ProjectTVCTests.swift in Sources */,
 				4CB1FB741BC2D74F0000A2FE /* UITestProtocol.swift in Sources */,
-				BC19327F21186504009DE43A /* CreateProgramTests.swift in Sources */,
+				BC19327F21186504009DE43A /* CreateProjectTests.swift in Sources */,
 				BCFED6ED2111C04000BE57BF /* BackgroundsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -8679,7 +8676,6 @@
 				4CEB225F1B95E47500B3BE2F /* PlaceAtBrickTests.m in Sources */,
 				4C6FE171212D2D2E0067B7D5 /* CosFunctionTest.swift in Sources */,
 				4C53E38821D5238900F2EC76 /* GreaterOrEqualOperatorTest.swift in Sources */,
-				4CEB22631B95E47500B3BE2F /* SetLookBrickTests.m in Sources */,
 				4C6FE15F212D2D2E0067B7D5 /* FalseFunctionTest.swift in Sources */,
 				4C82266D213FA7A400F3D750 /* DateDaySensorTest.swift in Sources */,
 				92BCDC851BF1DE2A00F9CB23 /* FirmataTests.swift in Sources */,
@@ -8714,7 +8710,7 @@
 				4C68FC8C1B25A00B00AB3EE8 /* FormulaParserErrorDetectionTest.m in Sources */,
 				4C82267D213FA7A400F3D750 /* PositionYSensorTest.swift in Sources */,
 				4CEB22681B95E47500B3BE2F /* ShowBrickTests.m in Sources */,
-				4C1C8B16213FE7F1003B3AA4 /* StoreProgramDownloaderMock.swift in Sources */,
+				4C1C8B16213FE7F1003B3AA4 /* StoreProjectDownloaderMock.swift in Sources */,
 				E4AEC8A0210852030081A980 /* FeaturedProjectsStoreDataSourceTests.swift in Sources */,
 				4C822680213FA7A400F3D750 /* BrightnessSensorTest.swift in Sources */,
 				4C68FC8A1B25A00B00AB3EE8 /* FormulaElementTest.m in Sources */,
@@ -9465,7 +9461,7 @@
 				AA74F0B91BC05FCE00D1E954 /* GlideToBrickCell.m in Sources */,
 				9218B2071CC4AB75007B4C60 /* SPUserResizableView.m in Sources */,
 				F4E6E579210DDD5C00D86FE6 /* CosFunction.swift in Sources */,
-				92FF2E3B1A24C5A700093DA7 /* Program+CustomExtensions.m in Sources */,
+				92FF2E3B1A24C5A700093DA7 /* Project+CustomExtensions.m in Sources */,
 				AA74EFE11BC05B5F00D1E954 /* BroadcastBrick.m in Sources */,
 				4CB0F9F620A1741400D1BE2F /* LayerSensor.swift in Sources */,
 				4C2EE4201B555B55006DE9B8 /* CBXMLPropertyMapping.m in Sources */,

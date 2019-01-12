@@ -424,9 +424,6 @@
 /* No comment provided by engineer. */
 "Go to front" = "Ir hacia adelante";
 
-/* No comment provided by engineer. */
-"GOOD TO SEE YOU" = "GOOD TO SEE YOU";
-
 /* paint */
 "Green" = "Verde";
 
@@ -596,7 +593,7 @@
 "Move Brick" = "Mover el Bloque";
 
 /* Name of the default catrobat program (used as filename!!) */
-"My first program" = "Mi primer programa";
+"My first project" = "Mi primer programa";
 
 /* Default title of imported photo from camera (taken by camera) */
 "My Image" = "Mi imagen";
@@ -797,7 +794,7 @@
 "pos_y" = "pos_y";
 
 /* No comment provided by engineer. */
-"Problems occured while Uploading your program" = "Problems occured while Uploading your program";
+"Problems occured while uploading your project" = "Problems occured while uploading your project";
 
 /* No comment provided by engineer. */
 "Program name" = "Nombre del programa";
@@ -877,9 +874,6 @@
 /* No comment provided by engineer. */
 "Saturday" = "Sábado";
 
-/* Action sheet menu title */
-"Save Screenshot to" = "Guardar la captura de pantalla para";
-
 /* paint */
 "Save to CameraRoll" = "Guardar en el rollo de cámara";
 
@@ -926,25 +920,10 @@
 "September" = "Septiembre";
 
 /* No comment provided by engineer. */
-"Set background\n%@" = "Establecer el fondo en %@";
-
-/* No comment provided by engineer. */
-"Set brightness to %@\%" = "Set brightness to %@\\%";
+"Set background" = "Establecer el fondo en";
 
 /* No comment provided by engineer. */
 "Set description" = "Descripción del set";
-
-/* No comment provided by engineer. */
-"Set size to %@\%" = "Set size to %@\\%";
-
-/* No comment provided by engineer. */
-"Set transparency\nto %@\%" = "Set transparency\nto %@\\%";
-
-/* No comment provided by engineer. */
-"Set variable\n%@\nto %@" = "Set variable\n%@\nto %@";
-
-/* No comment provided by engineer. */
-"Set volume to %@\%" = "Set volume to %@\\%";
 
 /* No comment provided by engineer. */
 "Set X to %@" = "Inicialice X en %@";
@@ -1100,7 +1079,7 @@
 "Upload Program" = "Upload Program";
 
 /* No comment provided by engineer. */
-"Upload Selected Program" = "Upload Selected Program";
+"Upload selected project" = "Upload selected project";
 
 /* No comment provided by engineer. */
 "Upload successful" = "Carga exitosa";
@@ -1113,9 +1092,6 @@
 
 /* No comment provided by engineer. */
 "Username is necessary!" = "Username is necessary!";
-
-/* No comment provided by engineer. */
-"v" = "v";
 
 /* No comment provided by engineer. */
 "Variable name:" = "Nombre de la variable:";
@@ -1172,7 +1148,7 @@
 "You are also able to build your own apps, edit existing ones and share them with your friends and other exciting people." = "También eres capaz de construir tus propias aplicaciones, edite las ya existentes y compártelas con sus amigos y otras personas interesantes.";
 
 /* No comment provided by engineer. */
-"You have already downloaded this program!" = "Ya ha descargado este programa!";
+"You have already downloaded this project!" = "Ya ha descargado este programa!";
 
 /* paint */
 "zoom" = "zoom";

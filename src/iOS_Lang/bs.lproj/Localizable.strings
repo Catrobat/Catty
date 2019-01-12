@@ -2,7 +2,7 @@
 "A message with the same name already exists, try again." = "A message with the same name already exists, try again.";
 
 /* No comment provided by engineer. */
-"A program with the same name already exists, try again." = "Program istog naziva već postoji, pokušaj ponovo.";
+"A project with the same name already exists, try again." = "Projekat istog naziva već postoji, pokušaj ponovo.";
 
 /* No comment provided by engineer. */
 "About Catrobat" = "O Catrobat-u";
@@ -111,18 +111,6 @@
 
 /* No comment provided by engineer. */
 "Categories" = "Kategorije";
-
-/* No comment provided by engineer. */
-"Change brightness\nby %@\%" = "Change brightness\nby %@\\%";
-
-/* No comment provided by engineer. */
-"Change size by %@\%" = "Change size by %@\\%";
-
-/* No comment provided by engineer. */
-"Change transparency\nby %@\%" = "Change transparency\nby %@\\%";
-
-/* No comment provided by engineer. */
-"Change variable\n%@\nby %@" = "Change variable\n%@\nby %@";
 
 /* No comment provided by engineer. */
 "Change volume by %@" = "Promjeni jačinu zvuka za %@";
@@ -251,7 +239,7 @@
 "Delete this object" = "Obriši ovaj objekat";
 
 /* No comment provided by engineer. */
-"Delete this program" = "Obriši ovaj program";
+"Delete this project" = "Obriši ovaj projekt";
 
 /* No comment provided by engineer. */
 "Delete this Script?" = "Delete this Script?";
@@ -424,9 +412,6 @@
 /* No comment provided by engineer. */
 "Go to front" = "Idi naprijed";
 
-/* No comment provided by engineer. */
-"GOOD TO SEE YOU" = "GOOD TO SEE YOU";
-
 /* paint */
 "Green" = "Zelena";
 
@@ -455,12 +440,6 @@
 "Image name" = "Naziv slike";
 
 /* No comment provided by engineer. */
-"Image source not available" = "Image source not available";
-
-/* No comment provided by engineer. */
-"In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation." = "In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation.";
-
-/* No comment provided by engineer. */
 "inclination_x" = "inclination_x";
 
 /* No comment provided by engineer. */
@@ -468,9 +447,6 @@
 
 /* No comment provided by engineer. */
 "Information" = "Informacija";
-
-/* paint */
-"Inserted" = "Inserted";
 
 /* No comment provided by engineer. */
 "Invalid input entered, try again." = "Invalid input entered, try again.";
@@ -596,7 +572,7 @@
 "Move Brick" = "Pomjeri blok";
 
 /* Name of the default catrobat program (used as filename!!) */
-"My first program" = "Moj prvi program";
+"My first project" = "Moj prvi projekat";
 
 /* Default title of imported photo from camera (taken by camera) */
 "My Image" = "My Image";
@@ -797,7 +773,7 @@
 "pos_y" = "pos_y";
 
 /* No comment provided by engineer. */
-"Problems occured while Uploading your program" = "Problems occured while Uploading your program";
+"Problems occured while uploading your project" = "Problems occured while uploading your project";
 
 /* No comment provided by engineer. */
 "Program name" = "Naziv programa";
@@ -877,9 +853,6 @@
 /* No comment provided by engineer. */
 "Saturday" = "Subota";
 
-/* Action sheet menu title */
-"Save Screenshot to" = "Save Screenshot to";
-
 /* paint */
 "Save to CameraRoll" = "Save to CameraRoll";
 
@@ -926,25 +899,13 @@
 "September" = "Septembar";
 
 /* No comment provided by engineer. */
-"Set background\n%@" = "Postavi pozadinu\n%@";
-
-/* No comment provided by engineer. */
-"Set brightness to %@\%" = "Set brightness to %@\\%";
+"Set background" = "Postavi pozadinu";
 
 /* No comment provided by engineer. */
 "Set description" = "Postavi opis";
 
 /* No comment provided by engineer. */
 "Set size to %@\%" = "Set size to %@\\%";
-
-/* No comment provided by engineer. */
-"Set transparency\nto %@\%" = "Set transparency\nto %@\\%";
-
-/* No comment provided by engineer. */
-"Set variable\n%@\nto %@" = "Set variable\n%@\nto %@";
-
-/* No comment provided by engineer. */
-"Set volume to %@\%" = "Set volume to %@\\%";
 
 /* No comment provided by engineer. */
 "Set X to %@" = "Postavi X na %@";
@@ -1100,7 +1061,7 @@
 "Upload Program" = "Upload Program";
 
 /* No comment provided by engineer. */
-"Upload Selected Program" = "Upload Selected Program";
+"Upload selected project" = "Upload selected project";
 
 /* No comment provided by engineer. */
 "Upload successful" = "Upload successful";
@@ -1113,9 +1074,6 @@
 
 /* No comment provided by engineer. */
 "Username is necessary!" = "Username is necessary!";
-
-/* No comment provided by engineer. */
-"v" = "v";
 
 /* No comment provided by engineer. */
 "Variable name:" = "Variable name:";
@@ -1172,7 +1130,7 @@
 "You are also able to build your own apps, edit existing ones and share them with your friends and other exciting people." = "You are also able to build your own apps, edit existing ones and share them with your friends and other exciting people.";
 
 /* No comment provided by engineer. */
-"You have already downloaded this program!" = "You have already downloaded this program!";
+"You have already downloaded this project!" = "You have already downloaded this project!";
 
 /* paint */
 "zoom" = "zoom";

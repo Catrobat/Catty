@@ -2,7 +2,7 @@
 "A message with the same name already exists, try again." = "Eine Nachricht mit demselben Namen bereits vorhanden ist, versuchen Sie es erneut.";
 
 /* No comment provided by engineer. */
-"A program with the same name already exists, try again." = "Ein Programm mit dem selben Namen existiert bereits. Bitte wählen Sie einen anderen Programmnamen.";
+"A project with the same name already exists, try again." = "Ein Projekt mit dem selben Namen existiert bereits. Bitte wählen Sie einen anderen Projektnamen.";
 
 /* No comment provided by engineer. */
 "About Catrobat" = "Über Catrobat";
@@ -104,7 +104,7 @@
 "Camera Roll" = "Fotoalbum";
 
 /* No comment provided by engineer. */
-"Can't restart program!" = "Program kann nicht neugestartet werden!";
+"Can't restart project!" = "Projekt kann nicht neugestartet werden!";
 
 /* No comment provided by engineer. */
 "Cancel" = "Abbrechen";
@@ -182,7 +182,7 @@
 "Copy Brick" = "Kopiere Baustein";
 
 /* No comment provided by engineer. */
-"Copy program" = "Programm kopieren";
+"Copy project" = "Projekt kopieren";
 
 /* No comment provided by engineer. */
 "Debug mode" = "Debug-Modus";
@@ -212,10 +212,10 @@
 "Delete Objects" = "Objekte löschen";
 
 /* No comment provided by engineer. */
-"Delete Program" = "Programm löschen";
+"Delete Project" = "Projekt löschen";
 
 /* No comment provided by engineer. */
-"Delete Programs" = "Programme löschen";
+"Delete Projects" = "Projekte löschen";
 
 /* No comment provided by engineer. */
 "Delete Script" = "Lösche Skript";
@@ -251,7 +251,7 @@
 "Delete this object" = "Soll dieses Objekt wirklich gelöscht werden?";
 
 /* No comment provided by engineer. */
-"Delete this program" = "Soll dieses Programm wirklich gelöscht werden?";
+"Delete this project" = "Soll dieses Projekt wirklich gelöscht werden?";
 
 /* No comment provided by engineer. */
 "Delete this Script?" = "Dieses Skript löschen?";
@@ -308,10 +308,10 @@
 "Edit Object" = "Objekt bearbeiten";
 
 /* No comment provided by engineer. */
-"Edit Program" = "Programm bearbeiten";
+"Edit Project" = "Projekt bearbeiten";
 
 /* No comment provided by engineer. */
-"Edit Programs" = "Programme bearbeiten";
+"Edit Projects" = "Projekte bearbeiten";
 
 /* Action sheet menu title */
 "Edit Sound" = "Sounds bearbeiten";
@@ -346,11 +346,11 @@
 /* Placeholder for add object-name input field */
 "Enter your object name here..." = "Geben Sie hier den Namen für das Objekt ein...";
 
-/* Placeholder for program-description input field */
-"Enter your program description here..." = "Geben Sie hier die Beschreibung für das Programm ein...";
+/* Placeholder for project-description input field */
+"Enter your project description here..." = "Geben Sie hier die Beschreibung für das Projekt ein...";
 
-/* Placeholder for program-name input field */
-"Enter your program name here..." = "Geben Sie hier den Namen für das Programm ein...";
+/* Placeholder for project-name input field */
+"Enter your project name here..." = "Geben Sie hier den Namen für das Projekt ein...";
 
 /* Placeholder for add sound-name input field */
 "Enter your sound name here..." = "Geben Sie hier den Namen für den Sound ein...";
@@ -368,13 +368,13 @@
 "Explore" = "Erkunden";
 
 /* No comment provided by engineer. */
-"Explore apps" = "Neue Programme entdecken";
+"Explore apps" = "Neue Projekte entdecken";
 
 /* No comment provided by engineer. */
 "false" = "falsch";
 
 /* No comment provided by engineer. */
-"Featured Programs" = "Empfohlene Programme";
+"Featured Projects" = "Empfohlene Projekte";
 
 /* No comment provided by engineer. */
 "Feb" = "Feb";
@@ -424,9 +424,6 @@
 /* No comment provided by engineer. */
 "Go to front" = "Komme nach vorn";
 
-/* No comment provided by engineer. */
-"GOOD TO SEE YOU" = "GOOD TO SEE YOU";
-
 /* paint */
 "Green" = "Grün";
 
@@ -458,7 +455,7 @@
 "Image source not available" = "Bild-Quelle nicht verfügbar";
 
 /* No comment provided by engineer. */
-"In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation." = "Um Pocket Code und andere vom Catrobat Projekt zur Verfügung gestellte ausführbare Programme verwenden zu dürfen, müssen Sie den Nutzungsbedingungen zustimmen und diese strikt während der Benutzung befolgen. Bitte rufen Sie den unten angeführten Link auf um eine ausführliche Beschreibung der Nutzungsbedingungen zu erhalten.";
+"In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation." = "Um Pocket Code und andere vom Catrobat Projekt zur Verfügung gestellte ausführbare Projekte verwenden zu dürfen, müssen Sie den Nutzungsbedingungen zustimmen und diese strikt während der Benutzung befolgen. Bitte rufen Sie den unten angeführten Link auf um eine ausführliche Beschreibung der Nutzungsbedingungen zu erhalten.";
 
 /* No comment provided by engineer. */
 "inclination_x" = "Neigung_x";
@@ -571,7 +568,7 @@
 /* No comment provided by engineer. */
 "Mo" = "Mo";
 
-/* Prefix of default catrobat program object names (except background object) */
+/* Prefix of default catrobat project object names (except background object) */
 "Mole" = "Maulwurf";
 
 /* No comment provided by engineer. */
@@ -595,8 +592,8 @@
 /* No comment provided by engineer. */
 "Move Brick" = "Baustein verschieben";
 
-/* Name of the default catrobat program (used as filename!!) */
-"My first program" = "Mein erstes Programm";
+/* Name of the default catrobat project (used as filename!!) */
+"My first project" = "Mein erstes Projekt";
 
 /* Default title of imported photo from camera (taken by camera) */
 "My Image" = "Mein Foto";
@@ -620,7 +617,7 @@
 "New Message" = "Neue Nachricht";
 
 /* No comment provided by engineer. */
-"New Program" = "Neues Programm";
+"New Project" = "Neues Projekt";
 
 /* No comment provided by engineer. */
 "New Text" = "Neuer Text";
@@ -674,7 +671,7 @@
 "not" = "nicht";
 
 /* No comment provided by engineer. */
-"Not enough free memory to download this program. Please delete some of your programs" = "Es ist nicht genug freier Speicher auf Ihrem Gerät verfügbar um das Programm herunterladen zu können. Bitte geben Sie Speicher frei und versuchen Sie es erneut.";
+"Not enough free memory to download this project. Please delete some of your projects" = "Es ist nicht genug freier Speicher auf Ihrem Gerät verfügbar um das Projekt herunterladen zu können. Bitte geben Sie Speicher frei und versuchen Sie es erneut.";
 
 /* No comment provided by engineer. */
 "Not enough Memory" = "Nicht genügend Speicher";
@@ -749,7 +746,7 @@
 "Please register below" = "Registrieren Sie sich bitte unterhalb";
 
 /* No comment provided by engineer. */
-"Please select a program to upload" = "Bitte wählen Sie ein Programm zum Hochladen";
+"Please select a project to upload" = "Bitte wählen Sie ein Projekt zum Hochladen";
 
 /* No comment provided by engineer. */
 "Pocket Code" = "Pocket Code";
@@ -797,19 +794,19 @@
 "pos_y" = "pos_y";
 
 /* No comment provided by engineer. */
-"Problems occured while Uploading your program" = "Es gab Probleme beim Hochladen Ihres Programms";
+"Problems occured while uploading your project" = "Es gab Probleme beim Hochladen Ihres Projekts";
 
 /* No comment provided by engineer. */
-"Program name" = "Programmname";
+"Project name" = "Projektname";
 
 /* No comment provided by engineer. */
-"Program Name is necessary!" = "Name des Programms ist erforderlich!";
+"Project Name is necessary!" = "Name des Projekts ist erforderlich!";
 
 /* No comment provided by engineer. */
-"Program variables:" = "Programmvariablen:";
+"Project variables:" = "Projektvariablen:";
 
 /* No comment provided by engineer. */
-"Programs" = "Programme";
+"Projects" = "Projekte";
 
 /* No comment provided by engineer. */
 "Project" = "Projekt";
@@ -845,7 +842,7 @@
 "Rename object" = "Objekt umbenennen";
 
 /* No comment provided by engineer. */
-"Rename Program" = "Programm umbenennen";
+"Rename Project" = "Projekt umbenennen";
 
 /* No comment provided by engineer. */
 "Rename sound" = "Sound umbenennen";
@@ -877,9 +874,6 @@
 /* No comment provided by engineer. */
 "Saturday" = "Samstag";
 
-/* Action sheet menu title */
-"Save Screenshot to" = "Screenshot abspeichern in";
-
 /* paint */
 "Save to CameraRoll" = "In der Fotos App speichern";
 
@@ -896,7 +890,7 @@
 "Screenshot saved to Camera Roll" = "Screenshot wurde in der Bilderbibliothek abgelegt";
 
 /* No comment provided by engineer. */
-"Screenshot saved to project" = "Screenshot wurde im Programm abgelegt";
+"Screenshot saved to project" = "Screenshot wurde im Projekt abgelegt";
 
 /* No comment provided by engineer. */
 "Scripts" = "Skripte";
@@ -926,25 +920,13 @@
 "September" = "September";
 
 /* No comment provided by engineer. */
-"Set background\n%@" = "Setze Hintergrund \n%@";
-
-/* No comment provided by engineer. */
-"Set brightness to %@\%" = "Setze Helligkeit auf %@\%";
+"Set background" = "Setze Hintergrund";
 
 /* No comment provided by engineer. */
 "Set description" = "Beschreibung";
 
 /* No comment provided by engineer. */
-"Set size to %@\%" = "Setze Größe auf %@\%";
-
-/* No comment provided by engineer. */
-"Set transparency\nto %@\%" = "Setze Transparenz\nauf %@\%";
-
-/* No comment provided by engineer. */
-"Set variable\n%@\nto %@" = "Setze Variable\n%@\nauf %@";
-
-/* No comment provided by engineer. */
-"Set volume to %@\%" = "Setze Lautstärke auf %@\%";
+"Set volume to" = "Setze Lautstärke auf";
 
 /* No comment provided by engineer. */
 "Set X to %@" = "Setze X auf %@";
@@ -1067,7 +1049,7 @@
 "Turn right %@°" = "Drehe rechts %@°";
 
 /* No comment provided by engineer. */
-"Unable to load program!" = "Fehler: Programm kann nicht geladen werden!";
+"Unable to load project!" = "Fehler: Projekt kann nicht geladen werden!";
 
 /* No comment provided by engineer. */
 "Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt." = "Sound kann nicht wiedergegeben werden!\nDie Sounddatei ist entweder ungültig oder korrupt.";
@@ -1097,10 +1079,10 @@
 "Upload" = "Hochladen";
 
 /* No comment provided by engineer. */
-"Upload Program" = "Programm hochladen";
+"Upload Project" = "Projekt hochladen";
 
 /* No comment provided by engineer. */
-"Upload Selected Program" = "Ausgewähltes Programm hochladen";
+"Upload selected project" = "Ausgewähltes Projekt hochladen";
 
 /* No comment provided by engineer. */
 "Upload successful" = "Upload erfolgreich";
@@ -1113,9 +1095,6 @@
 
 /* No comment provided by engineer. */
 "Username is necessary!" = "Benutzername ist notwendig!";
-
-/* No comment provided by engineer. */
-"v" = "v";
 
 /* No comment provided by engineer. */
 "Variable name:" = "Variablennamen:";
@@ -1154,7 +1133,7 @@
 "When I receive\n%@" = "Wenn ich empfange \n%@";
 
 /* No comment provided by engineer. */
-"When program started" = "Wenn Programm gestartet";
+"When project started" = "Wenn Projekt gestartet";
 
 /* No comment provided by engineer. */
 "When tapped" = "Wenn angetippt";
@@ -1172,7 +1151,7 @@
 "You are also able to build your own apps, edit existing ones and share them with your friends and other exciting people." = "Du kannst auch deine eigenen Anwendungen erstellen, bestehende bearbeiten und teile diese mit deinen Freunden und anderen interessanten Menschen.";
 
 /* No comment provided by engineer. */
-"You have already downloaded this program!" = "Das Programm wurde bereits heruntergeladen!";
+"You have already downloaded this project!" = "Das Projekt wurde bereits heruntergeladen!";
 
 /* paint */
 "zoom" = "Zoom";

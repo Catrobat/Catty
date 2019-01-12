@@ -2,7 +2,7 @@
 "A message with the same name already exists, try again." = "A message with the same name already exists, try again.";
 
 /* No comment provided by engineer. */
-"A program with the same name already exists, try again." = "در حال حاضر برنامه ای با همین نام وجود دارد، دوباره سعی کن.";
+"A project with the same name already exists, try again." = "در حال حاضر برنامه ای با همین نام وجود دارد، دوباره سعی کن.";
 
 /* No comment provided by engineer. */
 "About Catrobat" = "درباره \"کت ربات\"";
@@ -104,7 +104,7 @@
 "Camera Roll" = "چرخش دوربین";
 
 /* No comment provided by engineer. */
-"Can't restart program!" = "قادر به راه اندازی مجدد برنامه نیستم!";
+"Can't restart project!" = "قادر به راه اندازی مجدد برنامه نیستم!";
 
 /* No comment provided by engineer. */
 "Cancel" = "انصراف";
@@ -182,7 +182,7 @@
 "Copy Brick" = "کپی آجر";
 
 /* No comment provided by engineer. */
-"Copy program" = "رونوشت کردن برنامه";
+"Copy project" = "رونوشت کردن برنامه";
 
 /* No comment provided by engineer. */
 "Debug mode" = "Debug mode";
@@ -212,10 +212,10 @@
 "Delete Objects" = "حذف اشیاء";
 
 /* No comment provided by engineer. */
-"Delete Program" = "Delete Program";
+"Delete Project" = "Delete Project";
 
 /* No comment provided by engineer. */
-"Delete Programs" = "حذف برنامه ها";
+"Delete Projects" = "حذف برنامه ها";
 
 /* No comment provided by engineer. */
 "Delete Script" = "حذف فیلمنامه";
@@ -251,7 +251,7 @@
 "Delete this object" = "حذف این شئ";
 
 /* No comment provided by engineer. */
-"Delete this program" = "این برنامه را حذف کن";
+"Delete this project" = "این برنامه را حذف کن";
 
 /* No comment provided by engineer. */
 "Delete this Script?" = "Delete this Script?";
@@ -308,10 +308,10 @@
 "Edit Object" = "ویرایش شئ";
 
 /* No comment provided by engineer. */
-"Edit Program" = "ویرایش برنامه";
+"Edit Project" = "ویرایش برنامه";
 
 /* No comment provided by engineer. */
-"Edit Programs" = "ویرایش برنامه ها";
+"Edit Projects" = "ویرایش برنامه ها";
 
 /* Action sheet menu title */
 "Edit Sound" = "ویرایش صدا";
@@ -346,11 +346,11 @@
 /* Placeholder for add object-name input field */
 "Enter your object name here..." = "نام شیء خود را اینجا وارد کن...";
 
-/* Placeholder for program-description input field */
-"Enter your program description here..." = "شرح برنامه خود را در اینجا وارد کن...";
+/* Placeholder for project-description input field */
+"Enter your project description here..." = "شرح برنامه خود را در اینجا وارد کن...";
 
-/* Placeholder for program-name input field */
-"Enter your program name here..." = "نام برنامه خود را اینجا وارد کن...";
+/* Placeholder for project-name input field */
+"Enter your project name here..." = "نام برنامه خود را اینجا وارد کن...";
 
 /* Placeholder for add sound-name input field */
 "Enter your sound name here..." = "نام صدا را در اینجا وارد کن...";
@@ -374,7 +374,7 @@
 "false" = "false";
 
 /* No comment provided by engineer. */
-"Featured Programs" = "برنامه های ویژه";
+"Featured Projects" = "برنامه های ویژه";
 
 /* No comment provided by engineer. */
 "Feb" = "فوریه";
@@ -423,9 +423,6 @@
 
 /* No comment provided by engineer. */
 "Go to front" = "برو به جلو";
-
-/* No comment provided by engineer. */
-"GOOD TO SEE YOU" = "GOOD TO SEE YOU";
 
 /* paint */
 "Green" = "سبز";
@@ -571,7 +568,7 @@
 /* No comment provided by engineer. */
 "Mo" = "دوشنبه";
 
-/* Prefix of default catrobat program object names (except background object) */
+/* Prefix of default catrobat project object names (except background object) */
 "Mole" = "خط و خال";
 
 /* No comment provided by engineer. */
@@ -595,8 +592,8 @@
 /* No comment provided by engineer. */
 "Move Brick" = "حرکت آجر";
 
-/* Name of the default catrobat program (used as filename!!) */
-"My first program" = "اولین برنامه من";
+/* Name of the default catrobat project (used as filename!!) */
+"My first project" = "اولین برنامه من";
 
 /* Default title of imported photo from camera (taken by camera) */
 "My Image" = "تصویر من";
@@ -620,7 +617,7 @@
 "New Message" = "New Message";
 
 /* No comment provided by engineer. */
-"New Program" = "برنامه جدید";
+"New Project" = "برنامه جدید";
 
 /* No comment provided by engineer. */
 "New Text" = "New Text";
@@ -674,7 +671,7 @@
 "not" = "not";
 
 /* No comment provided by engineer. */
-"Not enough free memory to download this program. Please delete some of your programs" = "حافظه به اندازه کافی موجود نیست تا برنامه دانلود شود. لطفا چند تا از برنامه هایت را پاک کن.";
+"Not enough free memory to download this project. Please delete some of your projects" = "حافظه به اندازه کافی موجود نیست تا برنامه دانلود شود. لطفا چند تا از برنامه هایت را پاک کن.";
 
 /* No comment provided by engineer. */
 "Not enough Memory" = "حافظه کافی نیست";
@@ -749,7 +746,7 @@
 "Please register below" = "Please register below";
 
 /* No comment provided by engineer. */
-"Please select a program to upload" = "Please select a program to upload";
+"Please select a project to upload" = "Please select a project to upload";
 
 /* No comment provided by engineer. */
 "Pocket Code" = "\"پاکت کد\"";
@@ -797,19 +794,19 @@
 "pos_y" = "pos_y";
 
 /* No comment provided by engineer. */
-"Problems occured while Uploading your program" = "Problems occured while Uploading your program";
+"Problems occured while uploading your project" = "Problems occured while uploading your project";
 
 /* No comment provided by engineer. */
-"Program name" = "نام برنامه";
+"Project name" = "نام برنامه";
 
 /* No comment provided by engineer. */
-"Program Name is necessary!" = "Program Name is necessary!";
+"Project Name is necessary!" = "Project Name is necessary!";
 
 /* No comment provided by engineer. */
-"Program variables:" = "Program variables:";
+"Project variables:" = "Project variables:";
 
 /* No comment provided by engineer. */
-"Programs" = "برنامه ها";
+"Projects" = "برنامه ها";
 
 /* No comment provided by engineer. */
 "Project" = "پروژه";
@@ -845,7 +842,7 @@
 "Rename object" = "تغییر نام شی";
 
 /* No comment provided by engineer. */
-"Rename Program" = "تغییر نام برنامه";
+"Rename Project" = "تغییر نام برنامه";
 
 /* No comment provided by engineer. */
 "Rename sound" = "تغییر نام صدا";
@@ -876,9 +873,6 @@
 
 /* No comment provided by engineer. */
 "Saturday" = "شنبه";
-
-/* Action sheet menu title */
-"Save Screenshot to" = "ذخیره تصویر در";
 
 /* paint */
 "Save to CameraRoll" = "در CameraRoll ذخیره کن";
@@ -926,25 +920,10 @@
 "September" = "سپتامبر";
 
 /* No comment provided by engineer. */
-"Set background\n%@" = "تنظیم پس زمینه %@";
-
-/* No comment provided by engineer. */
-"Set brightness to %@\%" = "Set brightness to %@\\%";
+"Set background" = "تنظیم پس زمینه";
 
 /* No comment provided by engineer. */
 "Set description" = "قرار دادن توضیحات";
-
-/* No comment provided by engineer. */
-"Set size to %@\%" = "Set size to %@\\%";
-
-/* No comment provided by engineer. */
-"Set transparency\nto %@\%" = "Set transparency\nto %@\\%";
-
-/* No comment provided by engineer. */
-"Set variable\n%@\nto %@" = "Set variable\n%@\nto %@";
-
-/* No comment provided by engineer. */
-"Set volume to %@\%" = "Set volume to %@\\%";
 
 /* No comment provided by engineer. */
 "Set X to %@" = "قرار دادن X به %@";
@@ -1067,7 +1046,7 @@
 "Turn right %@°" = "%@° بگرد به راست";
 
 /* No comment provided by engineer. */
-"Unable to load program!" = "قادر به بارگذاری برنامه نیستم!";
+"Unable to load project!" = "قادر به بارگذاری برنامه نیستم!";
 
 /* No comment provided by engineer. */
 "Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt." = "قادر به پخش صدا نیستم!\nشاید این صدا معتبر نیست یا فایل خراب است.";
@@ -1097,10 +1076,10 @@
 "Upload" = "آپلود";
 
 /* No comment provided by engineer. */
-"Upload Program" = "Upload Program";
+"Upload Project" = "Upload Project";
 
 /* No comment provided by engineer. */
-"Upload Selected Program" = "Upload Selected Program";
+"Upload selected project" = "Upload selected project";
 
 /* No comment provided by engineer. */
 "Upload successful" = "آپلود با موفقیت انجام شد";
@@ -1113,9 +1092,6 @@
 
 /* No comment provided by engineer. */
 "Username is necessary!" = "Username is necessary!";
-
-/* No comment provided by engineer. */
-"v" = "v";
 
 /* No comment provided by engineer. */
 "Variable name:" = "نام متغیر:";
@@ -1154,7 +1130,7 @@
 "When I receive\n%@" = "وقتی که دریافت کنم %@";
 
 /* No comment provided by engineer. */
-"When program started" = "وقتی که برنامه شروع شد";
+"When project started" = "وقتی که برنامه شروع شد";
 
 /* No comment provided by engineer. */
 "When tapped" = "وقتی که ضربه زده شد";
@@ -1172,7 +1148,7 @@
 "You are also able to build your own apps, edit existing ones and share them with your friends and other exciting people." = "توهمچنین قادر به ساختن برنامه های خود، ویرایش واشتراک گذاری آنها با دوستان خود و افراد دیگر هستی.";
 
 /* No comment provided by engineer. */
-"You have already downloaded this program!" = "تو در حال حاضر این برنامه را دانلود کرده ای!";
+"You have already downloaded this project!" = "تو در حال حاضر این برنامه را دانلود کرده ای!";
 
 /* paint */
 "zoom" = "زوم کن";
