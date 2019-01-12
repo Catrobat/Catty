@@ -60,7 +60,7 @@ class ScriptCollectionVCTests: XCTestCase, UITestProtocol {
 
         for cellIndex in 0...app.collectionViews.cells.count {
             let cell = app.collectionViews.cells.element(boundBy: cellIndex)
-            if cell.staticTexts.count == 2 && cell.staticTexts["If"].exists && cell.staticTexts[" is true then"].exists {
+            if cell.staticTexts.count == 2 && cell.staticTexts["If "].exists && cell.staticTexts[" is true then"].exists {
                 cell.tap()
             }
         }
