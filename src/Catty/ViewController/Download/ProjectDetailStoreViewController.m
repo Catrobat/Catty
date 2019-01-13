@@ -253,7 +253,7 @@
     
     NSString *reportUrl = [Util isProductionServerActivated] ? kReportProjectUrl : kTestReportProjectUrl;
     
-    NSString *post = [NSString stringWithFormat:@"%@=%@&%@=%@",@"project",self.project.projectID,@"note",message];
+    NSString *post = [NSString stringWithFormat:@"%@=%@&%@=%@",@"program",self.project.projectID,@"note",message];
     NSData *postData = [post dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
     NSString *postLength = [NSString stringWithFormat:@"%lu",(unsigned long)[postData length]];
     
