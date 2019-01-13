@@ -88,9 +88,29 @@ class VariablesTests: XCTestCase, UITestProtocol {
         XCTAssert(app.alerts["Pocket Code"].exists)
     }
 
+    func testCreateAndSelectVariable() {
+        let variableName = "testVariable"
+
+        createNewProgramAndAddSetVariableBrick(name: "Test Program")
+        app.collectionViews.cells.otherElements.containing(.staticText, identifier: "Set variable").children(matching: .button).element.tap()
+        XCTAssert(waitForElementToAppear(app.buttons["Cancel"]).exists)
+
+        app.buttons["Var/List"].tap()
+        app.buttons["New"].tap()
+        waitForElementToAppear(app.buttons["New Variable"]).tap()
+        waitForElementToAppear(app.buttons["for all objects"]).tap()
+
+        let alert = waitForElementToAppear(app.alerts["New Variable"])
+        alert.textFields.firstMatch.typeText(variableName)
+        alert.buttons["OK"].tap()
+        app.buttons["Done"].tap()
+
+        XCTAssertTrue(waitForElementToAppear(app.buttons[" \"" + variableName + "\" "]).exists)
+    }
+
     private func createNewProgramAndAddSetVariableBrick(name: String) {
         createProgram(name: name, in: app)
-        
+
         app.tables.staticTexts["Background"].tap()
         app.tables.staticTexts["Scripts"].tap()
         app.toolbars.buttons["Add"].tap()
