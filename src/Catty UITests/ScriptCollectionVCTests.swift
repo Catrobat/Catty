@@ -48,9 +48,7 @@ class ScriptCollectionVCTests: XCTestCase, UITestProtocol {
         waitForElementToAppear(app.staticTexts["Scripts"]).tap()
 
         waitForElementToAppear(app.toolbars.buttons["Add"]).tap()
-        if app.navigationBars["Frequently Used"].exists {
-            app.swipeLeft()
-        }
+        skipFrequentlyUsedBricks(app)
 
         XCTAssertTrue(app.navigationBars["Control"].exists)
 
@@ -94,11 +92,8 @@ class ScriptCollectionVCTests: XCTestCase, UITestProtocol {
         XCUIApplication().tables.staticTexts["Background"].tap()
         app.tables.staticTexts["Scripts"].tap()
 
-        // Add BroadcastBrick
         app.toolbars.buttons["Add"].tap()
-        if app.navigationBars["Frequently Used"].exists {
-            app.swipeLeft()
-        }
+        skipFrequentlyUsedBricks(app)
 
         app.collectionViews.staticTexts["Broadcast"].tap()
         app.collectionViews.cells.otherElements.containing(.staticText, identifier: "Broadcast").children(matching: .other).element.tap()
@@ -118,5 +113,30 @@ class ScriptCollectionVCTests: XCTestCase, UITestProtocol {
         alert.textFields["Enter your message here..."].typeText(message + "b")
         alert.buttons["OK"].tap()
         XCTAssert(app.alerts["Pocket Code"].exists)
+    }
+
+    func testWaitBrick() {
+        let app = XCUIApplication()
+        let programName = "testProgram"
+
+        app.tables.staticTexts["New"].tap()
+        app.alerts["New Program"].textFields["Enter your program name here..."].typeText(programName)
+        XCUIApplication().alerts["New Program"].buttons["OK"].tap()
+        XCUIApplication().tables.staticTexts["Background"].tap()
+        app.tables.staticTexts["Scripts"].tap()
+
+        app.toolbars.buttons["Add"].tap()
+        skipFrequentlyUsedBricks(app)
+
+        app.collectionViews.staticTexts["Wait"].tap()
+        app.collectionViews.cells.otherElements.containing(.staticText, identifier: "Wait").children(matching: .button).element.tap()
+
+        XCTAssertTrue(waitForElementToAppear(app.buttons["Cancel"]).exists)
+
+        app.buttons["Sensors"].tap()
+        app.buttons["loudness"].tap()
+        app.buttons["Done"].tap()
+
+        XCTAssertTrue(waitForElementToAppear(app.navigationBars["Scripts"]).exists)
     }
 }
