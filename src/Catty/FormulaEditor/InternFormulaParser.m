@@ -313,7 +313,7 @@ const int MAXIMUM_TOKENS_TO_PARSE = 1000;
 
 - (FormulaElement*)sensor
 {
-    if (! [self.formulaManager operatorExistsWithTag:self.currentToken.tokenStringValue]) {
+    if (! [self.formulaManager sensorExistsWithTag:self.currentToken.tokenStringValue]) {
         [InternFormulaParserException raise:@"Parse Error" format:@""];
     }
          

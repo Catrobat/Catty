@@ -856,7 +856,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
         [self.variablePicker selectRow:0 inComponent:0 animated:NO];
 }
 
-- (void) askForVariableName:(BOOL)isList
+- (void)askForVariableName:(BOOL)isList
 {
     [Util askUserForVariableNameAndPerformAction:@selector(saveVariable:isList:)
                                           target:self
@@ -941,8 +941,8 @@ NS_ENUM(NSInteger, ButtonIndex) {
                                           target:self
                                      promptTitle:kUIFENewText
                                    promptMessage:kUIFETextMessage
-                                  minInputLength:kMinNumOfProgramNameCharacters
-                                  maxInputLength:kMaxNumOfProgramNameCharacters
+                                  minInputLength:0
+                                  maxInputLength:0
 										  isList:NO
                                     andTextField:self.formulaEditorTextView];
 }

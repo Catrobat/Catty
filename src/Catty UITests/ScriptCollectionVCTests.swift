@@ -24,6 +24,8 @@ import XCTest
 
 class ScriptCollectionVCTests: XCTestCase, UITestProtocol {
 
+    var app: XCUIApplication!
+
     override func setUp() {
         super.setUp()
 
@@ -32,25 +34,16 @@ class ScriptCollectionVCTests: XCTestCase, UITestProtocol {
 
         dismissWelcomeScreenIfShown()
         restoreDefaultProgram()
+        app = XCUIApplication()
     }
 
     func testCopyIfLogicBeginBrick() {
-        let app = XCUIApplication()
-        let programName = "testProgram"
-
-        app.tables.staticTexts["New"].tap()
-        let alertQuery = app.alerts["New Program"]
-        alertQuery.textFields["Enter your program name here..."].typeText(programName)
-        app.alerts["New Program"].buttons["OK"].tap()
-        XCTAssertNotNil(waitForElementToAppear(app.navigationBars[programName]))
-
+        createProgram(name: "testProgram", in: app)
         waitForElementToAppear(app.staticTexts["Background"]).tap()
         waitForElementToAppear(app.staticTexts["Scripts"]).tap()
 
         waitForElementToAppear(app.toolbars.buttons["Add"]).tap()
-        if app.navigationBars["Frequently Used"].exists {
-            app.swipeLeft()
-        }
+        skipFrequentlyUsedBricks(app)
 
         XCTAssertTrue(app.navigationBars["Control"].exists)
 
@@ -84,21 +77,14 @@ class ScriptCollectionVCTests: XCTestCase, UITestProtocol {
     }
 
     func testLengthOfBroadcastMessage() {
-        let app = XCUIApplication()
-        let programName = "testProgram"
         let message = String(repeating: "a", count: 250)
 
-        app.tables.staticTexts["New"].tap()
-        app.alerts["New Program"].textFields["Enter your program name here..."].typeText(programName)
-        XCUIApplication().alerts["New Program"].buttons["OK"].tap()
+        createProgram(name: "testProgram", in: app)
         XCUIApplication().tables.staticTexts["Background"].tap()
         app.tables.staticTexts["Scripts"].tap()
 
-        // Add BroadcastBrick
         app.toolbars.buttons["Add"].tap()
-        if app.navigationBars["Frequently Used"].exists {
-            app.swipeLeft()
-        }
+        skipFrequentlyUsedBricks(app)
 
         app.collectionViews.staticTexts["Broadcast"].tap()
         app.collectionViews.cells.otherElements.containing(.staticText, identifier: "Broadcast").children(matching: .other).element.tap()
@@ -118,5 +104,47 @@ class ScriptCollectionVCTests: XCTestCase, UITestProtocol {
         alert.textFields["Enter your message here..."].typeText(message + "b")
         alert.buttons["OK"].tap()
         XCTAssert(app.alerts["Pocket Code"].exists)
+    }
+
+    func testWaitBrick() {
+        createProgram(name: "testProgram", in: app)
+        XCUIApplication().tables.staticTexts["Background"].tap()
+        app.tables.staticTexts["Scripts"].tap()
+
+        app.toolbars.buttons["Add"].tap()
+        skipFrequentlyUsedBricks(app)
+
+        app.collectionViews.staticTexts["Wait"].tap()
+        app.collectionViews.cells.otherElements.containing(.staticText, identifier: "Wait").children(matching: .button).element.tap()
+
+        XCTAssertTrue(waitForElementToAppear(app.buttons["Cancel"]).exists)
+
+        app.buttons["Sensors"].tap()
+        app.buttons["loudness"].tap()
+        app.buttons["Done"].tap()
+
+        XCTAssertTrue(waitForElementToAppear(app.navigationBars["Scripts"]).exists)
+    }
+
+    func testEmptyStringInFormulaEditor() {
+        createProgram(name: "testProgram", in: app)
+        XCUIApplication().tables.staticTexts["Background"].tap()
+        app.tables.staticTexts["Scripts"].tap()
+
+        app.toolbars.buttons["Add"].tap()
+        skipFrequentlyUsedBricks(app)
+        app.swipeLeft()
+        app.swipeLeft()
+        app.swipeLeft()
+        app.swipeLeft()
+
+        app.collectionViews.staticTexts["Set variable"].tap()
+        app.collectionViews.cells.otherElements.containing(.staticText, identifier: "Set variable").children(matching: .button).element.tap()
+
+        app.buttons["ABC"].tap()
+        app.alerts["New Text"].buttons["OK"].tap()
+
+        app.buttons["Done"].tap()
+        XCTAssertTrue(waitForElementToAppear(app.navigationBars["Scripts"]).exists)
     }
 }
