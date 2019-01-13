@@ -67,10 +67,10 @@ extension UITestProtocol {
         }
     }
 
-    func createProgram(name: String, in app: XCUIApplication) {
+    func createProject(name: String, in app: XCUIApplication) {
         app.tables.staticTexts["New"].tap()
-        app.alerts["New Program"].textFields["Enter your program name here..."].typeText(name)
-        app.alerts["New Program"].buttons["OK"].tap()
+        app.alerts["New Project"].textFields["Enter your project name here..."].typeText(name)
+        app.alerts["New Project"].buttons["OK"].tap()
         XCTAssertNotNil(waitForElementToAppear(app.navigationBars[name]))
     }
 }
