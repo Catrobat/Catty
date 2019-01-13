@@ -117,19 +117,19 @@ class ScriptCollectionVCTests: XCTestCase, UITestProtocol {
 
     func testWaitBrick() {
         let app = XCUIApplication()
-        let programName = "testProgram"
+        let projectName = "testProject"
 
         app.tables.staticTexts["New"].tap()
-        app.alerts["New Program"].textFields["Enter your program name here..."].typeText(programName)
-        XCUIApplication().alerts["New Program"].buttons["OK"].tap()
+        app.alerts["New Project"].textFields["Enter your project name here..."].typeText(projectName)
+        XCUIApplication().alerts["New Project"].buttons["OK"].tap()
         XCUIApplication().tables.staticTexts["Background"].tap()
         app.tables.staticTexts["Scripts"].tap()
 
         app.toolbars.buttons["Add"].tap()
         skipFrequentlyUsedBricks(app)
 
-        app.collectionViews.staticTexts["Wait"].tap()
-        app.collectionViews.cells.otherElements.containing(.staticText, identifier: "Wait").children(matching: .button).element.tap()
+        app.collectionViews.staticTexts["Wait "].tap()
+        app.collectionViews.cells.otherElements.containing(.staticText, identifier: "Wait ").children(matching: .button).element.tap()
 
         XCTAssertTrue(waitForElementToAppear(app.buttons["Cancel"]).exists)
 
