@@ -95,6 +95,36 @@ final class InternFormulaKeyboardAdapterTests: XCTestCase {
         XCTAssertEqual("34", (internTokenList[2] as! InternToken).getStringValue())
     }
 
+    func testReplaceNumberByTrue() {
+        let internTokenList = NSMutableArray(array: [InternToken(type: TOKEN_TYPE_NUMBER, andValue: "1234")])
+        let internFormula = InternFormula(internTokenList: internTokenList)!
+
+        internFormula.generateExternFormulaStringAndInternExternMapping()
+        XCTAssertNil(internFormula.getSelection())
+
+        internFormula.selectWholeFormula()
+        XCTAssertNotNil(internFormula.getSelection())
+
+        internFormula.handleKeyInput(for: TrueFunction())
+
+        XCTAssertEqual(1, internTokenList.count)
+        XCTAssertEqual(TrueFunction.tag, (internTokenList[0] as! InternToken).getStringValue())
+        assertSelection(internFormula, expectedStartIndex: 0, expectedEndIndex: 0)
+    }
+
+    func testLoudnessSensor() {
+        let sensor = LoudnessSensor { AudioManagerMock() }
+        let internFormula = InternFormula()
+        internFormula.generateExternFormulaStringAndInternExternMapping()
+
+        internFormula.handleKeyInput(for: sensor)
+
+        let tokenList = internFormula.getInternTokenList()
+
+        XCTAssertEqual(1, tokenList?.count)
+        XCTAssertEqual(sensor.tag(), (tokenList![0]).getStringValue())
+    }
+
     private func setCursorAtEndAndAssertSelection(_ internFormula: InternFormula, expectedStartIndex: Int, expectedEndIndex: Int) {
         let cursorIndex = internFormula.getExternFormulaString().count
         setCursorAndAssertSelection(internFormula, cursorIndex: cursorIndex, expectedStartIndex: expectedStartIndex, expectedEndIndex: expectedEndIndex)
