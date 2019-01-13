@@ -910,19 +910,23 @@ NS_ENUM(NSInteger, ButtonIndex) {
         var.value = [NSNumber numberWithInt:0];
     }
     var.isList = isList;
-    
+
+    int buttonType = 0;
     if (self.isProgramVariable && !isList) {
         [self.object.program.variables.programVariableList addObject:var];
     } else if (self.isProgramVariable && isList){
         [self.object.program.variables.programListOfLists addObject:var];
+        buttonType = 11;
     } else if (!self.isProgramVariable && !isList) {
         [self.object.program.variables addObjectVariable:var forObject:self.object];
     } else if (!self.isProgramVariable && isList) {
         [self.object.program.variables addObjectList:var forObject:self.object];
+        buttonType = 11;
     }
     
     [self.object.program saveToDiskWithNotification:YES];
     [self updateVariablePickerData];
+    [self handleInputWithTitle:var.name AndButtonType:buttonType];
 }
 
 - (void)closeMenu
@@ -975,8 +979,6 @@ NS_ENUM(NSInteger, ButtonIndex) {
 {
     BOOL forObjectOnly = self.variableSegmentedControl.selectedSegmentIndex;
     BOOL isList = self.varOrListSegmentedControl.selectedSegmentIndex;
-    
-    
 
     if (component == 0 && !forObjectOnly && !isList) {
         if (row < self.variableSourceProgram.count) {
@@ -1015,7 +1017,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 - (IBAction)choseVariableOrList:(UIButton *)sender {
 
- NSInteger row = [self.variablePicker selectedRowInComponent:0];
+    NSInteger row = [self.variablePicker selectedRowInComponent:0];
     if (row >= 0) {
         int buttonType = 0;
         VariablePickerData *pickerData;
