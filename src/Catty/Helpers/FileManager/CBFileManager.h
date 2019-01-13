@@ -33,6 +33,7 @@
 - (void) timeoutReached;
 - (void) maximumFilesizeReached;
 - (void) fileNotFound;
+- (void) invalidZip;
 
 @end
 
@@ -67,7 +68,7 @@
 - (void)changeModificationDate:(NSDate*)date forFileAtPath:(NSString*)path;
 - (uint64_t)freeDiskspace;
 - (NSData*)zipProgram:(Program*)program;
-- (void)unzipAndStore:(NSData*)programData
+- (BOOL)unzipAndStore:(NSData*)programData
         withProgramID:(NSString*)programID
              withName:(NSString*)name;
 

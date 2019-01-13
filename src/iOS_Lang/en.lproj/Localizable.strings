@@ -1517,6 +1517,9 @@
 "The requested program can not be found. Please choose a different one." = "The requested program can not be found. Please choose a different one.";
 
 /* No comment provided by engineer. */
+"The requested project can not be loaded. Please try again later." = "The requested project can not be loaded. Please try again later.";
+
+/* No comment provided by engineer. */
 "The sound item cannot be loaded" = "The sound item cannot be loaded";
 
 /* No comment provided by engineer. */

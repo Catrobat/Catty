@@ -284,6 +284,7 @@ let kLocalizedAboutPocketCodeDescription = NSLocalizedString("Pocket Code is a p
 let kLocalizedTermsOfUseDescription = NSLocalizedString("In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation.", comment: "")
 let kLocalizedNotEnoughFreeMemoryDescription = NSLocalizedString("Not enough free memory to download this program. Please delete some of your programs", comment: "")
 let kLocalizedProgramNotFound = NSLocalizedString("The requested program can not be found. Please choose a different one.", comment: "")
+let kLocalizedInvalidZip = NSLocalizedString("The requested project can not be loaded. Please try again later.", comment: "")
 let kLocalizedEnterYourProgramNameHere = NSLocalizedString("Enter your program name here...", comment: "Placeholder for program-name input field")
 let kLocalizedEnterNameForImportedProgramTitle = NSLocalizedString("Import File", comment: "Title of prompt shown when a *.catrobat file is imported from a third-party app.")
 let kLocalizedEnterYourProgramDescriptionHere = NSLocalizedString("Enter your program description here...", comment: "Placeholder for program-description input field")
