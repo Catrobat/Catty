@@ -377,9 +377,9 @@
      }]
      valueValidator:^InputValidationResult *(NSString *name) {
          NSString *invalidNameMessage = nil;
-         if (name.length < minInputLength) {
+         if (minInputLength > 0 && name.length < minInputLength) {
              invalidNameMessage = [self normalizedDescriptionWithFormat:kLocalizedNoOrTooShortInputDescription formatParameter:minInputLength];
-         } else if (name.length > maxInputLength) {
+         } else if (maxInputLength > 0 && name.length > maxInputLength) {
              invalidNameMessage = [self normalizedDescriptionWithFormat:kLocalizedTooLongInputDescription formatParameter:maxInputLength];
          } else {
              return [InputValidationResult validInput];
