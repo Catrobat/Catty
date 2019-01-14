@@ -117,12 +117,20 @@ final class CBScene: SKScene {
     }
 
     // MARK: - Start project
+
+    @objc func validProject() -> Bool {
+        guard let _ = frontend.project else {
+            return false
+        }
+        return true
+    }
+
     @objc func startProject() {
-        guard let project = frontend.project else {
-            fatalError("Invalid project. This should never happen!")
+        if !validProject() {
+            fatalError("Starting invalid project. This should never happen!")
         }
 
-        guard let spriteObjectList = project.objectList as NSArray? as? [SpriteObject],
+        guard let spriteObjectList = frontend.project!.objectList as NSArray? as? [SpriteObject],
             let variableList = frontend.project?.variables.allVariables() as NSArray? as? [UserVariable] else {
                 fatalError("!! Invalid sprite object list given !! This should never happen!")
         }
@@ -195,7 +203,7 @@ final class CBScene: SKScene {
             addChild(variable.textLabel)
         }
 
-        formulaManager.setup(for: project, and: self)
+        formulaManager.setup(for: frontend.project!, and: self)
         scheduler.run()
     }
 
