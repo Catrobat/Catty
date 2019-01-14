@@ -183,10 +183,10 @@ class HelpWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
             Util.alert(withText: kLocalizedInvalidURLGiven)
             return false
         }
-        // check if programID is valid number
-        let programID = urlParts?.first
-        if programID == nil ||
-            !(programID == String(Int(programID!)!)) {
+        // check if projectID is valid number
+        let projectID = urlParts?.first
+        if projectID == nil ||
+            !(projectID == String(Int(projectID!)!)) {
             Util.alert(withText: kLocalizedInvalidURLGiven)
             return false
         }
@@ -203,17 +203,17 @@ class HelpWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
             Util.alert(withText: kLocalizedInvalidURLGiven)
             return false
         }
-        // check if program exists
-        if projectName != nil && Program.programExists(withProgramName: projectName!,
-                                                       programID: programID!) {
-            Util.alert(withText: kLocalizedProgramAlreadyDownloadedDescription)
+        // check if project exists
+        if projectName != nil && Project.projectExists(withProjectName: projectName!,
+                                                       projectID: projectID!) {
+            Util.alert(withText: kLocalizedProjectAlreadyDownloadedDescription)
             return false
         }
 
         let url = URL(string: urlWithoutParams ?? "")
         if let fileManager = CBFileManager.shared() {
             fileManager.delegate = self
-            fileManager.downloadProgram(from: url, withProgramID: programID, andName: projectName)
+            fileManager.downloadProject(from: url, withProjectID: projectID, andName: projectName)
             loadingView?.show()
         }
         return false
@@ -344,7 +344,7 @@ class HelpWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
 
     // MARK: - FileManagerDelegate
 
-    func downloadFinished(with url: URL?, andProgramLoadingInfo info: ProgramLoadingInfo?) {
+    func downloadFinished(with url: URL?, andProjectLoadingInfo info: ProjectLoadingInfo?) {
         DispatchQueue.main.async(execute: {
             self.loadingView?.hide()
             self.showDownloadedView()
@@ -372,7 +372,7 @@ class HelpWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
 
     func fileNotFound() {
         setBackDownloadStatus()
-        Util.alert(withText: kLocalizedProgramNotFound)
+        Util.alert(withText: kLocalizedProjectNotFound)
     }
 
     func invalidZip() {
