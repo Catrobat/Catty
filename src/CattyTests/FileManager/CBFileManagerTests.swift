@@ -35,30 +35,30 @@ final class CBFileManagerTests: XCTestCase {
     }
 
     func testUnzipAndStore() {
-        let programId = "1234"
-        let programName = "testProgram"
+        let projectId = "1234"
+        let projectName = "testProject"
 
-        Program.removeProgramFromDisk(withProgramName: programName, programID: programId)
-        XCTAssertFalse(Program.programExists(withProgramName: programName, programID: programId))
+        Project.removeProjectFromDisk(withProjectName: projectName, projectID: projectId)
+        XCTAssertFalse(Project.projectExists(withProjectName: projectName, projectID: projectId))
 
-        let programData = NSData(contentsOf: Bundle.main.url(forResource: "My first program", withExtension: "catrobat")!)! as Data
-        let result = fileManager.unzipAndStore(programData, withProgramID: programId, withName: programName)
+        let projectData = NSData(contentsOf: Bundle.main.url(forResource: "My first project", withExtension: "catrobat")!)! as Data
+        let result = fileManager.unzipAndStore(projectData, withProjectID: projectId, withName: projectName)
 
         XCTAssertTrue(result)
-        XCTAssertTrue(Program.programExists(withProgramName: programName, programID: programId))
+        XCTAssertTrue(Project.projectExists(withProjectName: projectName, projectID: projectId))
     }
 
     func testUnzipAndStoreWithInvalidData() {
-        let programId = "1234"
-        let programName = "testProgram"
+        let projectId = "1234"
+        let projectName = "testProject"
 
-        Program.removeProgramFromDisk(withProgramName: programName, programID: programId)
-        XCTAssertFalse(Program.programExists(withProgramName: programName, programID: programId))
+        Project.removeProjectFromDisk(withProjectName: projectName, projectID: projectId)
+        XCTAssertFalse(Project.projectExists(withProjectName: projectName, projectID: projectId))
 
         let programData = NSData(contentsOf: Bundle.main.url(forResource: "Document-Icon", withExtension: "png")!)! as Data
-        let result = fileManager.unzipAndStore(programData, withProgramID: programId, withName: programName)
+        let result = fileManager.unzipAndStore(programData, withProjectID: projectId, withName: projectName)
 
         XCTAssertFalse(result)
-        XCTAssertFalse(Program.programExists(withProgramName: programName, programID: programId))
+        XCTAssertFalse(Project.projectExists(withProjectName: projectName, projectID: projectId))
     }
 }

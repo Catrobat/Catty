@@ -29,9 +29,9 @@ let kMediaLibraryLooksIndex = kBaseUrl.appending("/api/media/package/Looks/json"
 let kMediaLibrarySoundsIndex = kBaseUrl.appending("/api/media/package/Sounds/json")
 let kMediaLibraryDownloadBaseURL = kBaseUrl.replacingOccurrences(of: "/pocketcode/", with: "")
 
-//************************************************************************************************************
-//******************************      FeaturedProjectStoreViewController       *******************************
-//************************************************************************************************************
+//*************************************************************************************
+//*******************      FeaturedProjectStoreViewController       *******************
+//*************************************************************************************
 
 let kConnectionHost = kBaseUrl.appending("api/projects")
 let kFeaturedImageBaseUrl = kBaseUrl.replacingOccurrences(of: "/pocketcode/", with: "/")
