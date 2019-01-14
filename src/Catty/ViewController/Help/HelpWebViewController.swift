@@ -29,7 +29,6 @@ class HelpWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
     private var topViewController: UIViewController?
     private var url: URL?
     private var touchHelperView: UIView?
-    private var tapGesture: UITapGestureRecognizer?
     private var loadingView: LoadingView?
 
     @IBOutlet private weak var urlTitleLabel: UILabel!
@@ -56,10 +55,23 @@ class HelpWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
 
         setupToolBar()
 
-        refreshButton = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(HelpWebViewController.refresh(_:)))
-        stopButton = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(HelpWebViewController.stop(_:)))
+        refreshButton = UIBarButtonItem(barButtonSystemItem: .refresh,
+                                        target: self,
+                                        action: #selector(HelpWebViewController.refresh(_:)))
+        stopButton = UIBarButtonItem(barButtonSystemItem: .stop,
+                                     target: self,
+                                     action: #selector(HelpWebViewController.stop(_:)))
 
-        tapGesture = UITapGestureRecognizer(target: self, action: #selector(HelpWebViewController.handleTap(_:)))
+        let swipeLeftRecognizer = UISwipeGestureRecognizer(target: self,
+                                                           action: #selector(handleSwipe(recognizer:)))
+        let swipeRightRecognizer = UISwipeGestureRecognizer(target: self,
+                                                            action: #selector(handleSwipe(recognizer:)))
+        swipeLeftRecognizer.direction = .left
+        swipeRightRecognizer.direction = .right
+
+        webView.addGestureRecognizer(swipeLeftRecognizer)
+        webView.addGestureRecognizer(swipeRightRecognizer)
+
         url = URL(string: kForumURL)
         webView.scrollView.delegate = self
         webView.delegate = self
@@ -88,40 +100,21 @@ class HelpWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
             view.insertSubview(touchHelperView, aboveSubview: webView)
         }
 
-        if let tapGesture = tapGesture {
-            touchHelperView?.addGestureRecognizer(tapGesture)
-        }
-
         if loadingView == nil {
             loadingView = LoadingView()
             if let loadingView = loadingView {
                 view.addSubview(loadingView)
             }
+            loadingView?.show()
         }
-        loadingView?.show()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         webView.stopLoading()
 
-        if let tapGesture = tapGesture {
-            if view.window?.gestureRecognizers?.contains(tapGesture) ?? false {
-                view.window?.removeGestureRecognizer(tapGesture)
-            }
-        }
-
         topViewController = navigationController?.topViewController
         navigationController?.hidesBarsOnSwipe = false
-    }
-
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        topViewController?.navigationController?.navigationBar.titleTextAttributes = [
-            NSAttributedString.Key.foregroundColor: UIColor.navTint()
-        ]
-        topViewController?.navigationController?.navigationBar.tintColor = UIColor.navTint()
-        topViewController?.navigationController?.navigationBar.transform = .identity
     }
 
     override func viewWillLayoutSubviews() {
@@ -144,8 +137,7 @@ class HelpWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
         DispatchQueue.main.async(execute: {
             self.loadingView?.hide()
         })
-        let networkError: NSError? = nil
-        if Util.isNetworkError(networkError) {
+        if Util.isNetworkError(error) {
             Util.defaultAlertForNetworkError()
         }
     }
@@ -177,7 +169,8 @@ class HelpWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
         if !((request.url?.absoluteString ?? "").contains(kDownloadUrl)) {
             return true
         }
-        let urlWithoutParams: String? = request.url?.absoluteString.components(separatedBy: CharacterSet(charactersIn: "?"))[0]
+        let urlWithoutParams: String? = request.url?.absoluteString
+            .components(separatedBy: CharacterSet(charactersIn: "?"))[0]
         // extract project ID from URL => example: https://pocketcode.org/download/959.catrobat
         var urlParts = urlWithoutParams?.components(separatedBy: "/")
         if urlParts?.count == nil {
@@ -204,7 +197,8 @@ class HelpWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
         }
         // parse project name
         let projectName: String? = urlComp.queryItems?
-            .first(where: { $0.name == "fname" })?.value?.replacingOccurrences(of: "+", with: " ")
+            .first(where: { $0.name == "fname" })?.value?
+            .replacingOccurrences(of: "+", with: " ")
         if projectName == nil || projectName!.isEmpty {
             Util.alert(withText: kLocalizedInvalidURLGiven)
             return false
@@ -314,31 +308,6 @@ class HelpWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
         })
     }
 
-    private func showControls() {
-        UIView.animate(withDuration: 0.2,
-                       animations: {
-            self.navigationController?.navigationBar.transform = .identity
-            self.navigationController?.toolbar.transform = .identity
-            if let color = self.navigationController?.navigationBar.tintColor.withAlphaComponent(1.0) {
-                self.navigationController?.navigationBar.tintColor = color
-            }
-            self.navigationController?.navigationBar.titleTextAttributes =
-                [NSAttributedString.Key.foregroundColor: UIColor.navTint().withAlphaComponent(1.0)]
-            self.urlTitleLabel.alpha = 0.6
-        }, completion: { finished in
-            if finished {
-                UIView.animate(withDuration: 0.2,
-                               delay: 0.0,
-                               usingSpringWithDamping: 1.0,
-                               initialSpringVelocity: 0.0,
-                               options: .curveEaseIn,
-                               animations: {
-                                self.urlTitleLabel.transform = .identity
-                })
-            }
-        })
-    }
-
     private func showDownloadedView() {
         let hud = BDKNotifyHUD(image: UIImage(named: "checkmark.png"),
                                text: kLocalizedDownloaded)
@@ -356,15 +325,20 @@ class HelpWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
 
     // MARK: - Handler
 
-    @objc private func handleTap(_ sender: UITapGestureRecognizer?) {
-        if sender?.state == .ended {
-            showControls()
-        }
-    }
-
     @objc func openInSafari() {
         if let url = url {
             Util.openUrlExternal(url)
+        }
+    }
+
+    @objc private func handleSwipe(recognizer: UISwipeGestureRecognizer) {
+        switch recognizer.direction {
+        case .left:
+            goForward(recognizer)
+        case .right:
+            goBack(recognizer)
+        default:
+            break
         }
     }
 
