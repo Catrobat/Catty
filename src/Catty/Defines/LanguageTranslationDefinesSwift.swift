@@ -345,8 +345,8 @@ let kLocalizedEndOfLoop = NSLocalizedString("End of Loop", comment: "")
 
 // motion bricks
 let kLocalizedPlaceAt = NSLocalizedString("Place at ", comment: "")
-let kLocalizedXLabel = NSLocalizedString("X:", comment: "")
-let kLocalizedYLabel = NSLocalizedString("Y:", comment: "")
+let kLocalizedXLabel = NSLocalizedString("X: ", comment: "")
+let kLocalizedYLabel = NSLocalizedString("Y: ", comment: "")
 let kLocalizedSetX = NSLocalizedString("Set X to ", comment: "")
 let kLocalizedSetY = NSLocalizedString("Set Y to ", comment: "")
 let kLocalizedChangeXBy = NSLocalizedString("Change X by ", comment: "")

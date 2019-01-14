@@ -345,8 +345,8 @@
 
 // motion bricks
 #define kLocalizedPlaceAt NSLocalizedString(@"Place at ", nil)
-#define kLocalizedXLabel NSLocalizedString(@"X:", nil)
-#define kLocalizedYLabel NSLocalizedString(@"Y:", nil)
+#define kLocalizedXLabel NSLocalizedString(@"X: ", nil)
+#define kLocalizedYLabel NSLocalizedString(@"Y: ", nil)
 #define kLocalizedSetX NSLocalizedString(@"Set X to ", nil)
 #define kLocalizedSetY NSLocalizedString(@"Set Y to ", nil)
 #define kLocalizedChangeXBy NSLocalizedString(@"Change X by ", nil)
