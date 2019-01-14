@@ -73,7 +73,7 @@ class VariablesTests: XCTestCase, UITestProtocol {
         app.buttons["for all objects"].tap()
         app.alerts["New Variable"].textFields["Enter your variable name here..."].typeText(String(repeating: "i", count: 250))
         app.alerts["New Variable"].buttons["OK"].tap()
-        XCTAssert(app.staticTexts["When project started"].exists)
+        XCTAssert(waitForElementToAppear(app.staticTexts["When project started"]).exists)
     }
 
     func testCreateVariableWithMaxLengthPlusOne() {
