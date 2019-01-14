@@ -35,6 +35,7 @@
 @property (nonatomic, strong) SKView *skView;
 
 @property (nonatomic) BOOL menuOpen;
+@property (nonatomic, assign) CGFloat fadeOutDuration;
 @property (nonatomic) CGPoint firstGestureTouchPoint;
 @property (nonatomic) UIImage *snapshotImage;
 @property (nonatomic, strong) UIView *gridView;
@@ -64,6 +65,7 @@
     [super viewDidLoad];
     [self.view addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)]];
     self.skView.backgroundColor = UIColor.backgroundColor;
+    self.fadeOutDuration = kFirstSwipeDuration;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -285,11 +287,10 @@
     [self.skView presentScene:self.scene];
     if (![self.scene startProject]) {
         [self stopAction];
-        return;
     }
     
     [self hideLoadingView];
-    [self continueAction:nil withDuration:kfirstSwipeDuration];
+    [self continueAction:nil withDuration:self.fadeOutDuration];
 }
 
 -(void)resaveLooks
@@ -337,12 +338,15 @@
 
 - (void)continueAction:(UIButton*)sender withDuration:(CGFloat)duration
 {
-    if (duration != kfirstSwipeDuration) {
+    if (duration != kFirstSwipeDuration) {
         [self resumeAction];
+    }
+    else {
+        self.fadeOutDuration = kNormalSwipeDuration;
     }
     
     CGFloat animateDuration = 0.0f;
-    animateDuration = (duration > 0.0001f && duration < 1.0f)? duration : 0.35f;
+    animateDuration = (duration > 0.0001f && duration < 1.0f)? duration : kNormalSwipeDuration;
 
     [UIView animateWithDuration:animateDuration
                           delay:0.0f
