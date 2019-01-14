@@ -159,7 +159,7 @@
         [self setupLabel:labelTextArray[i]
                  andView:labelArray[i]];
     }
-    [self.menuBackLabel addTarget:self action:@selector(stopAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.menuBackLabel addTarget:self action:@selector(stopAction) forControlEvents:UIControlEventTouchUpInside];
     [self.menuContinueLabel addTarget:self action:@selector(continueAction:withDuration:) forControlEvents:UIControlEventTouchUpInside];
     [self.menuScreenshotLabel addTarget:self action:@selector(takeScreenshotAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.menuRestartLabel addTarget:self action:@selector(restartAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -179,7 +179,7 @@
     [self setupButtonWithButton:self.menuBackButton
                 ImageNameNormal:[UIImage imageNamed:@"stage_dialog_button_back"]
         andImageNameHighlighted:[UIImage imageNamed:@"stage_dialog_button_back_pressed"]
-                    andSelector:@selector(stopAction:)];
+                    andSelector:@selector(stopAction)];
     [self setupButtonWithButton:self.menuContinueButton
                 ImageNameNormal:[UIImage imageNamed:@"stage_dialog_button_continue"]
         andImageNameHighlighted:[UIImage imageNamed:@"stage_dialog_button_continue_pressed"]
@@ -281,12 +281,14 @@
     
     NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
     [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
-    
+
     [self.skView presentScene:self.scene];
-    [self.scene startProject];
+    if (![self.scene startProject]) {
+        [self stopAction];
+    }
     
     [self hideLoadingView];
-    [self continueAction:nil withDuration:kfirstSwipeDuration];
+    [self continueAction:nil withDuration:kFirstSwipeDuration];
 }
 
 -(void)resaveLooks
@@ -334,7 +336,7 @@
 
 - (void)continueAction:(UIButton*)sender withDuration:(CGFloat)duration
 {
-    if (duration != kfirstSwipeDuration) {
+    if (duration != kFirstSwipeDuration) {
         [self resumeAction];
     }
     
@@ -355,7 +357,7 @@
     self.skView.paused = NO;
 }
 
-- (void)stopAction:(UIButton*)sender
+- (void)stopAction
 {
     CBScene *previousScene = self.scene;
     

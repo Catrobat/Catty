@@ -117,14 +117,19 @@ final class CBScene: SKScene {
     }
 
     // MARK: - Start project
-    @objc func startProject() {
+
+    @objc func startProject() -> Bool {
         guard let project = frontend.project else {
-            fatalError("Invalid project. This should never happen!")
+            //fatalError
+            debugPrint("Invalid project. This should never happen!")
+            return false
         }
 
         guard let spriteObjectList = project.objectList as NSArray? as? [SpriteObject],
             let variableList = frontend.project?.variables.allVariables() as NSArray? as? [UserVariable] else {
-                fatalError("!! Invalid sprite object list given !! This should never happen!")
+                //fatalError
+                debugPrint("!! Invalid sprite object list given !! This should never happen!")
+                return false
         }
         assert(Thread.current.isMainThread)
 
@@ -135,8 +140,11 @@ final class CBScene: SKScene {
             let spriteNode = CBSpriteNode(spriteObject: spriteObject)
             spriteNode.name = spriteObject.name
             spriteNode.isHidden = false
-            guard let scriptList = spriteObject.scriptList as NSArray? as? [Script]
-                else { fatalError("!! No script list given in object: \(spriteObject) !!") }
+            guard let scriptList = spriteObject.scriptList as NSArray? as? [Script] else {
+                //fatalError
+                debugPrint("!! No script list given in object: \(spriteObject) !!")
+                return false
+            }
 
             for script in scriptList {
                 guard let startScript = script as? StartScript,
@@ -179,7 +187,9 @@ final class CBScene: SKScene {
                     break
                 }
                 guard var scriptContext = context else {
-                    fatalError("Unknown script! THIS SHOULD NEVER HAPPEN!")
+                    //fatalError
+                    debugPrint("Unknown script! THIS SHOULD NEVER HAPPEN!")
+                    return false
                 }
                 scriptContext += instructions // generate instructions and add them to script context
                 scheduler.registerContext(scriptContext)
@@ -197,6 +207,7 @@ final class CBScene: SKScene {
 
         formulaManager.setup(for: project, and: self)
         scheduler.run()
+        return true
     }
 
     @objc func pauseScheduler() {
