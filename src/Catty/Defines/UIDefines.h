@@ -31,7 +31,6 @@
 // ScenePresenterViewController
 #define kSlidingStartArea 40
 #define kFirstSwipeDuration 0.65f
-#define kNormalSwipeDuration 0.35f
 
 // Scene
 
