@@ -22,7 +22,7 @@
 
 @objc final class SceneBuilder: NSObject {
 
-    private var program: Program
+    private var project: Project
     private var logger: CBLogger
     private var size: CGSize
     private var scheduler: CBSchedulerProtocol?
@@ -31,16 +31,16 @@
     private var broadcastHandler: CBBroadcastHandler?
     private var formulaManager: FormulaManagerProtocol?
 
-    @objc init(program: Program) {
-        self.program = program
+    @objc init(project: Project) {
+        self.project = project
 
         guard let sceneLogger = Swell.getLogger(LoggerConfig.PlayerSceneID) else { preconditionFailure() }
 
         self.logger = sceneLogger
 
         self.size = CGSize(
-            width: CGFloat(program.header.screenWidth.floatValue),
-            height: CGFloat(program.header.screenHeight.floatValue)
+            width: CGFloat(project.header.screenWidth.floatValue),
+            height: CGFloat(project.header.screenHeight.floatValue)
         )
     }
 
@@ -104,7 +104,7 @@
     private func getFrontend() -> CBFrontendProtocol {
         guard let frontend = self.frontend else {
             guard let frontendLogger = Swell.getLogger(LoggerConfig.PlayerFrontendID) else { preconditionFailure() }
-            let frontend = CBFrontend(logger: frontendLogger, program: program)
+            let frontend = CBFrontend(logger: frontendLogger, project: project)
             frontend.addSequenceFilter(CBFilterRedundantBroadcastWaits())
             return frontend
         }

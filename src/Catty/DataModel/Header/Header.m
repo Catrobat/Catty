@@ -48,7 +48,7 @@
     header.screenMode = kCatrobatHeaderScreenModeStretch;
     header.url = nil;
     header.userHandle = nil;
-    header.programScreenshotManuallyTaken = kCatrobatHeaderProgramScreenshotDefaultValue;
+    header.programScreenshotManuallyTaken = kCatrobatHeaderProjectScreenshotDefaultValue;
     header.tags = nil;
     header.programID = nil;
     header.isArduinoProject = false;
@@ -58,7 +58,7 @@
 
 - (void)updateRelevantHeaderInfosBeforeSerialization
 {
-    // needed to update headers in catrobat programs that have not been
+    // needed to update headers in catrobat program that have not been
     // created on this device (e.g. downloaded programs...)
     self.applicationBuildName = [Util appBuildName];
     self.applicationBuildNumber = [Util appBuildVersion];

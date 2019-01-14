@@ -22,7 +22,7 @@
 
 #import "ProjectParser.h"
 #import "GDataXMLNode.h"
-#import "Program.h"
+#import "Project.h"
 #import "VariablesContainer.h"
 #import <objc/runtime.h>
 #import "Sound.h"
@@ -64,7 +64,7 @@
 - (id)parseNode:(GDataXMLElement*)node withParent:(XMLObjectReference*)parent;
 
 @property (nonatomic, strong) id currentActiveSprite;
-@property (nonatomic, strong) Program *program;
+@property (nonatomic, strong) Project *project;
 @property (nonatomic, strong) NSMutableArray *weakPropertyRetainer;
 
 @end
@@ -97,15 +97,15 @@
     if (error || !doc) { return nil; }
 
     // parse and return Project object
-    Program* program = nil;
+    Project* project = nil;
     @try {
         NSInfo(@"Loading Project...");
-        program = [self parseNode:doc.rootElement withParent:nil];
+        project = [self parseNode:doc.rootElement withParent:nil];
         NSInfo(@"Loading done...");
     } @catch(NSException* ex) {
-        NSError(@"Program could not be loaded! %@", [ex description]);
+        NSError(@"Project could not be loaded! %@", [ex description]);
     }
-    return program;
+    return project;
 }
 
 
@@ -128,7 +128,9 @@
     NSString *className = [[node.name componentsSeparatedByString:@"."] lastObject]; // this is just because of org.catrobat.catroid.bla...
     if (! className)                                                                  // Maybe we can remove this when the XML is finished?
         className = node.name;
-    
+
+    if ([className isEqualToString:@"program"])
+        className = @"project";
     className = [self classNameForString:className];
     
     id object = [[NSClassFromString(className) alloc] init];
@@ -143,13 +145,13 @@
         }
     }
     
-    if([object isKindOfClass:[Program class]])
-        self.program = object;
+    if([object isKindOfClass:[Project class]])
+        self.project = object;
     
     // just an educated guess...
     if ([object isKindOfClass:[SpriteObject class]]) {
         SpriteObject* spriteObject = (SpriteObject*)object;
-        spriteObject.program = self.program;
+        spriteObject.project = self.project;
         self.currentActiveSprite = spriteObject;
     }
     
@@ -349,7 +351,7 @@
     
     VariablesContainer* variables = nil;
     
-    if (self.program) {
+    if (self.project) {
         
         variables = [[VariablesContainer alloc] init];
         
@@ -515,14 +517,14 @@
 - (NSMutableArray*)parseProgramVariableList:(GDataXMLElement*)progList andParent:(XMLObjectReference*)parent
 {
     NSMutableArray* programVariableList = [[NSMutableArray alloc] initWithCapacity:progList.childCount];
-    XMLObjectReference* programVariableRef = [[XMLObjectReference alloc] initWithParent:parent andObject:programVariableList];
+    XMLObjectReference* projectVariableRef = [[XMLObjectReference alloc] initWithParent:parent andObject:programVariableList];
     for (GDataXMLElement *entry in progList.children) {
         UserVariable* var = nil;
         if([self isReferenceElement:entry]) {
-            var = [self parseReferenceElement:entry withParent:programVariableRef];
+            var = [self parseReferenceElement:entry withParent:projectVariableRef];
         }
         else {
-            var = [self parseNode:entry withParent:programVariableRef];
+            var = [self parseNode:entry withParent:projectVariableRef];
         }
         [programVariableList addObject:var];
         

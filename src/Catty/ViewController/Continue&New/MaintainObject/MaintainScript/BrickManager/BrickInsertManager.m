@@ -284,7 +284,7 @@
         [targetScript.brickList insertObject:loopEndBrick atIndex:insertionIndex==0?1:insertionIndex];
     }
     brick.animateInsertBrick = NO;
-    [object.program saveToDiskWithNotification:YES];
+    [object.project saveToDiskWithNotification:YES];
 }
 
 -(Brick*)checkForeverBrickInsideLogicBricks:(Script*)targetScript andIndexPath:(NSIndexPath*)path

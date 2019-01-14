@@ -25,16 +25,16 @@
     public static var previewImageWidth: CGFloat { return UIScreen.main.bounds.width }
     public static var previewImageHeight: CGFloat { return previewImageWidth }
 
-    @objc(takeAutomaticScreenshotForSKView: andProgram:)
-    func takeAutomaticScreenshot(for skView: SKView, and program: Program) {
+    @objc(takeAutomaticScreenshotForSKView: andProject:)
+    func takeAutomaticScreenshot(for skView: SKView, and project: Project) {
         guard let snapshot = self.screenshot(for: skView) else { return }
-        saveScreenshot(snapshot, for: program, manualScreenshot: false)
+        saveScreenshot(snapshot, for: project, manualScreenshot: false)
     }
 
-    @objc(takeManualScreenshotForSKView: andProgram:)
-    func takeManualScreenshot(for skView: SKView, and program: Program) {
+    @objc(takeManualScreenshotForSKView: andProject:)
+    func takeManualScreenshot(for skView: SKView, and project: Project) {
         guard let snapshot = self.screenshot(for: skView) else { return }
-        saveScreenshot(snapshot, for: program, manualScreenshot: true)
+        saveScreenshot(snapshot, for: project, manualScreenshot: true)
     }
 
     private func screenshot(for skView: SKView) -> UIImage? {
@@ -49,10 +49,10 @@
         return image.crop(rect: CGRect(origin: center, size: size))!
     }
 
-    private func saveScreenshot(_ screenshot: UIImage, for program: Program, manualScreenshot: Bool) {
+    private func saveScreenshot(_ screenshot: UIImage, for project: Project, manualScreenshot: Bool) {
         let fileName = manualScreenshot ? kScreenshotManualFilename : kScreenshotAutoFilename
-        let filePath = program.projectPath() + fileName
-        let thumbnailPath = program.projectPath() + kScreenshotThumbnailPrefix + fileName
+        let filePath = project.projectPath() + fileName
+        let thumbnailPath = project.projectPath() + kScreenshotThumbnailPrefix + fileName
         guard let data = screenshot.pngData() else { return }
 
         DispatchQueue.main.async {

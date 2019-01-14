@@ -26,7 +26,7 @@
 
 - (NSString*)brickTitle
 {
-    return kLocalizedWhenProgramStarted;
+    return kLocalizedWhenProjectStarted;
 }
 
 @end

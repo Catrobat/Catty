@@ -33,12 +33,12 @@ class ScriptCollectionVCTests: XCTestCase, UITestProtocol {
         XCUIApplication().launch()
 
         dismissWelcomeScreenIfShown()
-        restoreDefaultProgram()
+        restoreDefaultProject()
         app = XCUIApplication()
     }
 
     func testCopyIfLogicBeginBrick() {
-        createProgram(name: "testProgram", in: app)
+        createProject(name: "testProject", in: app)
         waitForElementToAppear(app.staticTexts["Background"]).tap()
         waitForElementToAppear(app.staticTexts["Scripts"]).tap()
 
@@ -53,7 +53,7 @@ class ScriptCollectionVCTests: XCTestCase, UITestProtocol {
 
         for cellIndex in 0...app.collectionViews.cells.count {
             let cell = app.collectionViews.cells.element(boundBy: cellIndex)
-            if cell.staticTexts.count == 2 && cell.staticTexts["If"].exists && cell.staticTexts[" is true then"].exists {
+            if cell.staticTexts.count == 2 && cell.staticTexts["If "].exists && cell.staticTexts[" is true then"].exists {
                 cell.tap()
             }
         }
@@ -79,7 +79,7 @@ class ScriptCollectionVCTests: XCTestCase, UITestProtocol {
     func testLengthOfBroadcastMessage() {
         let message = String(repeating: "a", count: 250)
 
-        createProgram(name: "testProgram", in: app)
+        createProject(name: "testProject", in: app)
         XCUIApplication().tables.staticTexts["Background"].tap()
         app.tables.staticTexts["Scripts"].tap()
 
@@ -107,15 +107,15 @@ class ScriptCollectionVCTests: XCTestCase, UITestProtocol {
     }
 
     func testWaitBrick() {
-        createProgram(name: "testProgram", in: app)
+        createProject(name: "testProject", in: app)
         XCUIApplication().tables.staticTexts["Background"].tap()
         app.tables.staticTexts["Scripts"].tap()
 
         app.toolbars.buttons["Add"].tap()
         skipFrequentlyUsedBricks(app)
 
-        app.collectionViews.staticTexts["Wait"].tap()
-        app.collectionViews.cells.otherElements.containing(.staticText, identifier: "Wait").children(matching: .button).element.tap()
+        app.collectionViews.staticTexts["Wait "].tap()
+        app.collectionViews.cells.otherElements.containing(.staticText, identifier: "Wait ").children(matching: .button).element.tap()
 
         XCTAssertTrue(waitForElementToAppear(app.buttons["Cancel"]).exists)
 
@@ -127,7 +127,7 @@ class ScriptCollectionVCTests: XCTestCase, UITestProtocol {
     }
 
     func testEmptyStringInFormulaEditor() {
-        createProgram(name: "testProgram", in: app)
+        createProject(name: "testProject", in: app)
         XCUIApplication().tables.staticTexts["Background"].tap()
         app.tables.staticTexts["Scripts"].tap()
 

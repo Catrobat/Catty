@@ -52,7 +52,7 @@
 
 - (NSString*)brickTitle
 {
-    return [kLocalizedSetVolumeTo stringByAppendingString:@"%@\%"];
+    return [kLocalizedSetVolumeTo stringByAppendingString:@" %@\%"];
 }
 
 #pragma mark - Description

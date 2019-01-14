@@ -24,7 +24,7 @@
 #import "AbstractBrickTests.h"
 #import "PointToBrick.h"
 #import "WhenScript.h"
-#import "ProgramMock.h"
+#import "ProjectMock.h"
 #import "Pocket_Code-Swift.h"
 
 @interface PointToBrickTests : XCTestCase
@@ -36,7 +36,7 @@
 - (void)setUp
 {
     [super setUp];
-    self.scene = [[[SceneBuilder alloc] initWithProgram:[ProgramMock new]] build];
+    self.scene = [[[SceneBuilder alloc] initWithProject:[ProjectMock new]] build];
 }
 
 - (void)tearDown

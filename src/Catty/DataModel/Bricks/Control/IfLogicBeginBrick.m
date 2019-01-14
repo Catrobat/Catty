@@ -65,13 +65,13 @@
 
 - (NSString*)brickTitle
 {
-    return [kLocalizedIfBegin stringByAppendingString:[@"%@ " stringByAppendingString:kLocalizedIfBeginSecondPart]];
+    return [kLocalizedIfBegin stringByAppendingString:[@" %@ " stringByAppendingString:kLocalizedIfBeginSecondPart]];
 }
 
 - (NSString*)brickTitleForBrickinSelection:(BOOL)inSelection inBackground:(BOOL)inBackground
 {
     if (inSelection) {
-        return [kLocalizedIfBegin stringByAppendingString:[[@"%@ " stringByAppendingString:kLocalizedIfBeginSecondPart] stringByAppendingString:[[@" ... " stringByAppendingString:kLocalizedElse] stringByAppendingString:@" ..."]]];
+        return [kLocalizedIfBegin stringByAppendingString:[[@" %@ " stringByAppendingString:kLocalizedIfBeginSecondPart] stringByAppendingString:[[@" ... " stringByAppendingString:kLocalizedElse] stringByAppendingString:@" ..."]]];
     } else {
         return self.brickTitle;
     }

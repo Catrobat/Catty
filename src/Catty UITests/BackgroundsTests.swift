@@ -31,14 +31,14 @@ class BackgroundsTests: XCTestCase, UITestProtocol {
         XCUIApplication().launch()
 
         dismissWelcomeScreenIfShown()
-        restoreDefaultProgram()
+        restoreDefaultProject()
     }
 
     func testScriptsCanEnterScripts() {
         let app = XCUIApplication()
 
-        app.tables.staticTexts["Programs"].tap()
-        app.tables.staticTexts["My first program"].tap()
+        app.tables.staticTexts["Projects"].tap()
+        app.tables.staticTexts["My first project"].tap()
         app.tables.staticTexts["Background"].tap()
         app.tables.staticTexts["Scripts"].tap()
 
@@ -62,7 +62,7 @@ class BackgroundsTests: XCTestCase, UITestProtocol {
         XCTAssert(app.staticTexts["Tap \"+\" to add Script"].exists)
     }
 
-    func testScriptsCanDeleteWhenProgramStartsViaTap() {
+    func testScriptsCanDeleteWhenProjectStartsViaTap() {
         let app = XCUIApplication()
 
         testScriptsCanEnterScripts()
@@ -86,7 +86,6 @@ class BackgroundsTests: XCTestCase, UITestProtocol {
         app.tables.staticTexts["Backgrounds"].tap()
 
         XCTAssert(app.navigationBars["Backgrounds"].exists)
-
     }
 
     func testBackgroundsCanCopyAndDeleteSingleBackgroundViaEditMode() {
@@ -243,8 +242,8 @@ class BackgroundsTests: XCTestCase, UITestProtocol {
     func testSoundsCanEnterSounds() {
         let app = XCUIApplication()
 
-        app.tables.staticTexts["Programs"].tap()
-        app.tables.staticTexts["My first program"].tap()
+        app.tables.staticTexts["Projects"].tap()
+        app.tables.staticTexts["My first project"].tap()
         app.tables.staticTexts["Background"].tap()
         app.tables.staticTexts["Sounds"].tap()
 

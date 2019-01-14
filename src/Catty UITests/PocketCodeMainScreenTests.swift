@@ -31,41 +31,41 @@ class PocketCodeMainScreenTests: XCTestCase, UITestProtocol {
         XCUIApplication().launch()
 
         dismissWelcomeScreenIfShown()
-        restoreDefaultProgram()
+        restoreDefaultProject()
     }
 
     func testContinue() {
-        restoreDefaultProgram()
+        restoreDefaultProject()
 
         let app = XCUIApplication()
         app.tables.staticTexts["Continue"].tap()
 
-        XCTAssert(app.navigationBars["My first program"].exists)
+        XCTAssert(app.navigationBars["My first project"].exists)
     }
 
     func testNew() {
         let app = XCUIApplication()
 
         app.tables.staticTexts["New"].tap()
-        app.textFields["Enter your program name here..."].tap()
-        app.textFields["Enter your program name here..."].typeText("testProgram")
-        app.alerts["New Program"].buttons["OK"].tap()
+        app.textFields["Enter your project name here..."].tap()
+        app.textFields["Enter your project name here..."].typeText("testProject")
+        app.alerts["New Project"].buttons["OK"].tap()
 
-        // check if worked to create new Program
-        //XCTAssert(app.navigationBars["testProgram"].exists)
+        // check if worked to create new Project
+        //XCTAssert(app.navigationBars["testProject"].exists)
 
-        // go back and try to add program with same name
-        app.navigationBars["testProgram"].buttons["Pocket Code"].tap()
+        // go back and try to add project with same name
+        app.navigationBars["testProject"].buttons["Pocket Code"].tap()
 
         app.tables.staticTexts["New"].tap()
-        app.textFields["Enter your program name here..."].tap()
-        app.textFields["Enter your program name here..."].typeText("testProgram")
-        app.alerts["New Program"].buttons["OK"].tap()
+        app.textFields["Enter your project name here..."].tap()
+        app.textFields["Enter your project name here..."].typeText("testProject")
+        app.alerts["New Project"].buttons["OK"].tap()
 
         // check if error message is displayed
-        XCTAssert(waitForElementToAppear(app.alerts["Pocket Code"]).staticTexts["A program with the same name already exists, try again."].exists)
+        XCTAssert(waitForElementToAppear(app.alerts["Pocket Code"]).staticTexts["A project with the same name already exists, try again."].exists)
         app.alerts["Pocket Code"].buttons["OK"].tap()
-        app.alerts["New Program"].buttons["Cancel"].tap()
+        app.alerts["New Project"].buttons["Cancel"].tap()
 
         // check if gone back to initial screen after pressing cancel button
         XCTAssert(app.tables.staticTexts["New"].exists)
@@ -85,11 +85,11 @@ class PocketCodeMainScreenTests: XCTestCase, UITestProtocol {
 
         let app = XCUIApplication()
 
-        for (programName, _) in progNamesErrorMsgMap {
+        for (projectName, _) in progNamesErrorMsgMap {
             app.tables.staticTexts["New"].tap()
-            let alertQuery = app.alerts["New Program"]
-            alertQuery.textFields["Enter your program name here..."].tap()
-            alertQuery.textFields["Enter your program name here..."].typeText(programName)
+            let alertQuery = app.alerts["New Project"]
+            alertQuery.textFields["Enter your project name here..."].tap()
+            alertQuery.textFields["Enter your project name here..."].typeText(projectName)
             alertQuery.buttons["OK"].tap()
 
             let alert = waitForElementToAppear(app.alerts["Pocket Code"])
@@ -104,40 +104,40 @@ class PocketCodeMainScreenTests: XCTestCase, UITestProtocol {
         let app = XCUIApplication()
         app.tables.staticTexts["New"].tap()
 
-        let alertQuery = app.alerts["New Program"]
-        alertQuery.textFields["Enter your program name here..."].typeText("testprogramToCancel")
+        let alertQuery = app.alerts["New Project"]
+        alertQuery.textFields["Enter your project name here..."].typeText("testprojectToCancel")
         alertQuery.buttons["Cancel"].tap()
 
         XCTAssertTrue(app.navigationBars["Pocket Code"].exists)
     }
 
-    func testPrograms() {
-        let programNames = ["testProgram1", "testProgram2", "testProgram3"]
+    func testProjects() {
+        let projectNames = ["testProject1", "testProject2", "testProject3"]
 
         let app = XCUIApplication()
-        app.tables.staticTexts["Programs"].tap()
+        app.tables.staticTexts["Projects"].tap()
 
-        XCTAssert(app.navigationBars["Programs"].exists)
+        XCTAssert(app.navigationBars["Projects"].exists)
 
-        app.navigationBars["Programs"].buttons["Pocket Code"].tap()
+        app.navigationBars["Projects"].buttons["Pocket Code"].tap()
 
         let tablesQuery = app.tables
         let newStaticText = tablesQuery.staticTexts["New"]
-        let alertQuery = app.alerts["New Program"]
-        let enterYourProgramNameHereTextField = alertQuery.textFields["Enter your program name here..."]
+        let alertQuery = app.alerts["New Project"]
+        let enterYourProjectNameHereTextField = alertQuery.textFields["Enter your project name here..."]
         let okButton = alertQuery.buttons["OK"]
 
         for i in 0...2 {
             newStaticText.tap()
-            enterYourProgramNameHereTextField.typeText(programNames[i])
+            enterYourProjectNameHereTextField.typeText(projectNames[i])
             okButton.tap()
-            app.navigationBars[programNames[i]].buttons["Pocket Code"].tap()
+            app.navigationBars[projectNames[i]].buttons["Pocket Code"].tap()
         }
 
-        tablesQuery.staticTexts["Programs"].tap()
+        tablesQuery.staticTexts["Projects"].tap()
 
-        for programName in programNames {
-            XCTAssert(app.tables.staticTexts[programName].exists)
+        for projectName in projectNames {
+            XCTAssert(app.tables.staticTexts[projectName].exists)
         }
     }
 
@@ -178,8 +178,8 @@ class PocketCodeMainScreenTests: XCTestCase, UITestProtocol {
 
         app.switches["Use Arduino bricks"].tap()
         app.navigationBars.buttons["Pocket Code"].tap()
-        app.tables.staticTexts["Programs"].tap()
-        app.tables.staticTexts["My first program"].tap()
+        app.tables.staticTexts["Projects"].tap()
+        app.tables.staticTexts["My first project"].tap()
         app.tables.staticTexts["Mole 1"].tap()
         app.tables.staticTexts["Scripts"].tap()
         app.toolbars.buttons["Add"].tap()
@@ -189,11 +189,11 @@ class PocketCodeMainScreenTests: XCTestCase, UITestProtocol {
         app.swipeLeft()
         app.swipeLeft()
         app.swipeLeft()
-        XCTAssert(app.collectionViews.cells.element(boundBy: 0).staticTexts["Set Arduino digital pin"].exists)
+        XCTAssert(app.collectionViews.cells.element(boundBy: 0).staticTexts["Set Arduino digital pin "].exists)
         app.navigationBars.buttons["Cancel"].tap()
         app.navigationBars.buttons["Mole 1"].tap()
-        app.navigationBars.buttons["My first program"].tap()
-        app.navigationBars.buttons["Programs"].tap()
+        app.navigationBars.buttons["My first project"].tap()
+        app.navigationBars.buttons["Projects"].tap()
         app.navigationBars.buttons["Pocket Code"].tap()
         app.navigationBars.buttons["Item"].tap()
         app.switches["Use Arduino bricks"].tap()

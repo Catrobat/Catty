@@ -37,12 +37,12 @@
 #define kSceneDefaultFont @"Helvetica"
 #define kSceneLabelFontSize 45.0f
 
-// Blocked characters for program names, object names, images names, sounds names and variable/list names
+// Blocked characters for project names, object names, images names, sounds names and variable/list names
 #define kTextFieldBlockedCharacters @""
 
 #define kMenuImageNameContinue @"continue"
 #define kMenuImageNameNew @"new"
-#define kMenuImageNamePrograms @"programs"
+#define kMenuImageNameProjects @"projects"
 #define kMenuImageNameHelp @"help"
 #define kMenuImageNameExplore @"explore"
 #define kMenuImageNameUpload @"upload"
@@ -68,10 +68,10 @@ static NSString *const kBrickCellAddedNotification = @"BrickCellAddedNotificatio
 static NSString *const kSoundAddedNotification = @"SoundAddedNotification";
 static NSString *const kRecordAddedNotification = @"RecordAddedNotification";
 static NSString *const kBrickDetailViewDismissed = @"BrickDetailViewDismissed";
-static NSString *const kProgramDownloadedNotification = @"ProgramDownloadedNotification";
+static NSString *const kProjectDownloadedNotification = @"ProjectDownloadedNotification";
 static NSString *const kHideLoadingViewNotification = @"HideLoadingViewNotification";
 static NSString *const kShowSavedViewNotification = @"ShowSavedViewNotification";
-static NSString *const kReadyToUpload = @"ReadyToUploadProgram";
+static NSString *const kReadyToUpload = @"ReadyToUploadProject";
 static NSString *const kLoggedInNotification = @"LoggedInNotification";
 
 // Notification keys
@@ -127,7 +127,7 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
     kInvalidBrick              = NSUIntegerMax,
 
     // 0xx control bricks
-    kProgramStartedBrick       =   0,
+    kProjectStartedBrick       =   0,
     kTappedBrick               =   1,
     kTouchDownBrick            =   2,
     kWaitBrick                 =   3,
@@ -278,7 +278,7 @@ WRAP_BRICK_TYPE_IN_NSSTRING(kChangeVariableBrick)\
 #define kClassNameBrickTypeMap @{\
 \
     /* control bricks */\
-    @"StartScript"               : @(kProgramStartedBrick),\
+    @"StartScript"               : @(kProjectStartedBrick),\
     @"WhenScript"                : @(kTappedBrick),\
     @"WhenTouchDownScript"       : @(kTouchDownBrick),\
     @"WaitBrick"                 : @(kWaitBrick),\

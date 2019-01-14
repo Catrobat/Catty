@@ -35,7 +35,7 @@
 
 - (NSString*)brickTitle
 {
-    return [kLocalizedSay stringByAppendingString:@"%@"];
+    return [kLocalizedSay stringByAppendingString:@" %@"];
 }
 
 - (BOOL)allowsStringFormula

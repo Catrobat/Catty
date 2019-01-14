@@ -79,7 +79,7 @@
 
 - (BOOL)isVariableOfSpriteObject:(SpriteObject*)spriteObject userVariable:(UserVariable*)userVariable;
 
-- (BOOL)isProgramVariableOrList:(UserVariable*)userVariable;
+- (BOOL)isProjectVariableOrList:(UserVariable*)userVariable;
 
 - (void)removeObjectVariablesForSpriteObject:(SpriteObject*)object;
 - (void)removeObjectListsForSpriteObject:(SpriteObject*)object;

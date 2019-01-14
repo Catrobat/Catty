@@ -245,10 +245,10 @@
         [Util alertWithText:kLocalizedInvalidURLGiven];
         return NO;
     }
-    NSString *programID = [urlParts firstObject];
-    NSString *compareProgramIDString = [NSString stringWithFormat:@"%lu",
-                                        (unsigned long)[programID integerValue]];
-    if (! programID || ! [programID integerValue] || ! [programID isEqualToString:compareProgramIDString]) {
+    NSString *projectID = [urlParts firstObject];
+    NSString *compareProjectIDString = [NSString stringWithFormat:@"%lu",
+                                        (unsigned long)[projectID integerValue]];
+    if (! projectID || ! [projectID integerValue] || ! [projectID isEqualToString:compareProjectIDString]) {
         [Util alertWithText:kLocalizedInvalidURLGiven];
         return NO;
     }
@@ -261,11 +261,11 @@
         param = [request.URL.absoluteString substringFromIndex:start.location + start.length];
         param = [param stringByReplacingOccurrencesOfString:@"+" withString:@" "];
     }
-    if (param && [Program programExistsWithProgramName:param programID:programID]) {
-        [Util alertWithText:kLocalizedProgramAlreadyDownloadedDescription];
+    if (param && [Project projectExistsWithProjectName:param projectID:projectID]) {
+        [Util alertWithText:kLocalizedProjectAlreadyDownloadedDescription];
         return NO;
     }
-    [fileManager downloadProgramFromURL:url withProgramID:programID andName:param];
+    [fileManager downloadProjectFromURL:url withProjectID:projectID andName:param];
     param = nil;
     start = [request.URL.absoluteString rangeOfString:@"download/"];
     if (start.location != NSNotFound) {
@@ -379,7 +379,7 @@
 }
 
 
-- (void)downloadFinishedWithURL:(NSURL *)url andProgramLoadingInfo:(ProgramLoadingInfo *)info
+- (void)downloadFinishedWithURL:(NSURL *)url andProjectLoadingInfo:(ProjectLoadingInfo *)info
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.loadingView hide];
@@ -416,7 +416,7 @@
 - (void)fileNotFound
 {
     [self setBackDownloadStatus];
-    [Util alertWithText:kLocalizedProgramNotFound];
+    [Util alertWithText:kLocalizedProjectNotFound];
 }
 
 - (void)setBackDownloadStatus

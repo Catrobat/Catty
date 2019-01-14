@@ -30,12 +30,12 @@
 
 - (NSString*)brickTitleForBrickinSelection:(BOOL)inSelection inBackground:(BOOL)inBackground
 {
-        return inBackground ? kLocalizedPreviousBackground : kLocalizedPreviousLook;
+    return inBackground ? kLocalizedPreviousBackground : kLocalizedPreviousLook;
 }
 
 - (NSString*)pathForLook:(Look*)look
 {
-    return [NSString stringWithFormat:@"%@%@/%@", [self.script.object projectPath], kProgramImagesDirName, look.fileName];
+    return [NSString stringWithFormat:@"%@%@/%@", [self.script.object projectPath], kProjectImagesDirName, look.fileName];
 }
 
 #pragma mark - Description

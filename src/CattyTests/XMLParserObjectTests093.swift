@@ -34,7 +34,7 @@ class XMLParserObjectTests093: XMLAbstractTest {
     }
 
     func testValidObjectList() {
-        let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgram"))
+        let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProject"))
         let xmlElement = document.rootElement()
 
         let objectListElements = xmlElement?.elements(forName: "objectList")
@@ -83,7 +83,7 @@ class XMLParserObjectTests093: XMLAbstractTest {
     }
 
     func testValidObjectListForAllBricks() {
-        let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgramAllBricks093"))
+        let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProjectAllBricks093"))
 
         let xmlElement = document.rootElement()
 

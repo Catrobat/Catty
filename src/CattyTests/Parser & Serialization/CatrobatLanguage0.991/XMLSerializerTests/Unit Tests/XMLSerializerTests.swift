@@ -27,50 +27,50 @@ import XCTest
 final class XMLSerializerTests: XMLAbstractTest {
 
     func testHeader() {
-        let program = self.getProgramForXML(xmlFile: "ValidHeader0991")
-        let header = program.header
-        let equal = self.isXMLElement(xmlElement: header.xmlElement(with: nil), equalToXMLElementForXPath: "//program/header", inProgramForXML: "ValidHeader0991")
+        let project = self.getProjectForXML(xmlFile: "ValidHeader0991")
+        let header = project.header
+        let equal = self.isXMLElement(xmlElement: header.xmlElement(with: nil), equalToXMLElementForXPath: "//program/header", inProjectForXML: "ValidHeader0991")
         XCTAssertTrue(equal, "XMLElement invalid!")
     }
 
     func testInvalidHeader() {
-        let program = self.getProgramForXML(xmlFile: "ValidHeader0991")
-        let header = program.header
+        let project = self.getProjectForXML(xmlFile: "ValidHeader0991")
+        let header = project.header
         header.programDescription = "Invalid"
-        let equal = self.isXMLElement(xmlElement: header.xmlElement(with: nil), equalToXMLElementForXPath: "//program/header", inProgramForXML: "ValidHeader0991")
+        let equal = self.isXMLElement(xmlElement: header.xmlElement(with: nil), equalToXMLElementForXPath: "//program/header", inProjectForXML: "ValidHeader0991")
         XCTAssertFalse(equal, "GDataXMLElement::isEqualToElement not working correctly!")
     }
 
     func testFormulaAndMoveNStepsBrick() {
-        let program = self.getProgramForXML(xmlFile: "ValidProgramAllBricks0991")
-        let brick = ((program.objectList.object(at: 0) as! SpriteObject).scriptList.object(at: 0) as! Script).brickList.object(at: 5) as! MoveNStepsBrick
+        let project = self.getProjectForXML(xmlFile: "ValidProjectAllBricks0991")
+        let brick = ((project.objectList.object(at: 0) as! SpriteObject).scriptList.object(at: 0) as! Script).brickList.object(at: 5) as! MoveNStepsBrick
         let xmlElementPath = "//program/objectList/object[1]/scriptList/script[1]/brickList/brick[6]"
-        let equal = self.isXMLElement(xmlElement: brick.xmlElement(with: nil), equalToXMLElementForXPath: xmlElementPath, inProgramForXML: "ValidProgramAllBricks0991")
+        let equal = self.isXMLElement(xmlElement: brick.xmlElement(with: nil), equalToXMLElementForXPath: xmlElementPath, inProjectForXML: "ValidProjectAllBricks0991")
         XCTAssertTrue(equal, "XMLElement invalid!")
     }
 
-    func testRemoveObjectAndSerializeProgram() {
+    func testRemoveObjectAndSerializeProject() {
         let parserContext = CBXMLParserContext(languageVersion: 0.98)
 
-        let referenceProgram = self.getProgramForXML(xmlFile: "ValidProgram0991")
-        let program = self.getProgramForXML(xmlFile: "ValidProgram0991")
-        let moleOne = program.objectList.object(at: 1) as! SpriteObject
-        program.remove(moleOne)
+        let referenceProject = self.getProjectForXML(xmlFile: "ValidProject0991")
+        let project = self.getProjectForXML(xmlFile: "ValidProject0991")
+        let moleOne = project.objectList.object(at: 1) as! SpriteObject
+        project.remove(moleOne)
 
-        let xmlElement = program.xmlElement(with: CBXMLSerializerContext())
+        let xmlElement = project.xmlElement(with: CBXMLSerializerContext())
         XCTAssertNotNil(xmlElement, "Error during serialization of removed object")
-        XCTAssertEqual(program.objectList.count + 1, referenceProgram.objectList.count, "Object not properly removed")
-        XCTAssertFalse((referenceProgram.xmlElement(with: CBXMLSerializerContext()).isEqual(to: xmlElement)), "Object not properly removed")
+        XCTAssertEqual(project.objectList.count + 1, referenceProject.objectList.count, "Object not properly removed")
+        XCTAssertFalse((referenceProject.xmlElement(with: CBXMLSerializerContext()).isEqual(to: xmlElement)), "Object not properly removed")
 
-        let parsedProgram = parserContext?.parse(from: xmlElement, withClass: Program.self) as! Program
-        XCTAssertTrue(parsedProgram.isEqual(to: program), "Programs are not equal")
+        let parsedProject = parserContext?.parse(from: xmlElement, withClass: Project.self) as! Project
+        XCTAssertTrue(parsedProject.isEqual(to: project), "Projects are not equal")
     }
 
     func testPointedToBrickWithoutSpriteObject() {
-        let program = self.getProgramForXML(xmlFile: "PointToBrickWithoutSpriteObject")
-        XCTAssertNotNil(program, "Program must not be nil!")
+        let project = self.getProjectForXML(xmlFile: "PointToBrickWithoutSpriteObject")
+        XCTAssertNotNil(project, "Project must not be nil!")
 
-        let moleTwo = program.objectList.object(at: 1) as! SpriteObject
+        let moleTwo = project.objectList.object(at: 1) as! SpriteObject
         XCTAssertNotNil(moleTwo, "SpriteObject must not be nil!")
         XCTAssertEqual(moleTwo.name, "Mole 2", "Invalid object name!")
 
@@ -81,10 +81,10 @@ final class XMLSerializerTests: XMLAbstractTest {
         XCTAssertNotNil(pointToBrick, "PointToBrick must not be nil!")
 
         let context = CBXMLSerializerContext()
-        context.spriteObjectList = program.objectList
+        context.spriteObjectList = project.objectList
 
         let xmlElementPath = "//program/objectList/object[2]/scriptList/script[1]/brickList/brick[8]"
-        let equal = self.isXMLElement(xmlElement: pointToBrick.xmlElement(with: context), equalToXMLElementForXPath: xmlElementPath, inProgramForXML: "PointToBrickWithoutSpriteObject")
+        let equal = self.isXMLElement(xmlElement: pointToBrick.xmlElement(with: context), equalToXMLElementForXPath: xmlElementPath, inProjectForXML: "PointToBrickWithoutSpriteObject")
 
         XCTAssertTrue(equal, "XMLElement invalid!")
     }

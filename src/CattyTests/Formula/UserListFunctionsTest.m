@@ -39,10 +39,10 @@
 
 - (void)testNumberOfItems
 {
-    Program *program = [Program new];
+    Project *project = [Project new];
     
     SpriteObject *object = [[SpriteObject alloc] init];
-    object.program = program;
+    object.project = project;
     
     UserVariable* var = [UserVariable new];
     var.name = @"TestList";
@@ -51,7 +51,7 @@
     [var.value addObject:[NSNumber numberWithInt:0]];
     [var.value addObject:[NSNumber numberWithInt:0]];
     [var.value addObject:[NSNumber numberWithInt:0]];
-    [program.variables.programListOfLists addObject:var];
+    [project.variables.programListOfLists addObject:var];
     
     FormulaElement *leftChild = [[FormulaElement alloc] initWithType:@"USER_LIST" value:@"TestList" leftChild:nil rightChild:nil parent:nil];
     FormulaElement *formulaTree = [[FormulaElement alloc] initWithType:@"FUNCTION" value:@"NUMBER_OF_ITEMS" leftChild:leftChild rightChild:nil parent:nil];
@@ -65,10 +65,10 @@
 
 - (void)testElement
 {
-    Program *program = [Program new];
+    Project *project = [Project new];
     
     SpriteObject *object = [[SpriteObject alloc] init];
-    object.program = program;
+    object.project = project;
     
     UserVariable* var = [UserVariable new];
     var.name = @"TestList";
@@ -77,7 +77,7 @@
     [var.value addObject:[NSNumber numberWithInt:1]];
     [var.value addObject:[NSNumber numberWithInt:4]];
     [var.value addObject:[NSNumber numberWithInt:8]];
-    [program.variables.programListOfLists addObject:var];
+    [project.variables.programListOfLists addObject:var];
     
     FormulaElement *leftChild = [[FormulaElement alloc] initWithType:@"NUMBER" value:@"2" leftChild:nil rightChild:nil parent:nil];
     FormulaElement *rightChild = [[FormulaElement alloc] initWithType:@"USER_LIST" value:@"TestList" leftChild:nil rightChild:nil parent:nil];
@@ -104,10 +104,10 @@
 
 - (void)testContains
 {
-    Program *program = [Program new];
+    Project *project = [Project new];
     
     SpriteObject *object = [[SpriteObject alloc] init];
-    object.program = program;
+    object.project = project;
     
     UserVariable* var = [UserVariable new];
     var.name = @"TestList";
@@ -116,7 +116,7 @@
     [var.value addObject:[NSNumber numberWithInt:0]];
     [var.value addObject:[NSNumber numberWithInt:4]];
     [var.value addObject:[NSNumber numberWithInt:8]];
-    [program.variables.programListOfLists addObject:var];
+    [project.variables.programListOfLists addObject:var];
     
     FormulaElement *rightChild = [[FormulaElement alloc] initWithType:@"NUMBER" value:@"4" leftChild:nil rightChild:nil parent:nil];
     FormulaElement *leftChild = [[FormulaElement alloc] initWithType:@"USER_LIST" value:@"TestList" leftChild:nil rightChild:nil parent:nil];

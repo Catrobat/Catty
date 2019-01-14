@@ -704,10 +704,10 @@ final class FormulaManagerInterpreterTests: XCTestCase {
     }
 
     func testUserVariable() {
-        let program = ProgramMock()!
+        let project = ProjectMock()!
         let variables = VariablesContainer()
-        program.variables = variables
-        object.program = program
+        project.variables = variables
+        object.project = project
 
         let userVariable = UserVariable()
         userVariable.name = "test"
@@ -735,10 +735,10 @@ final class FormulaManagerInterpreterTests: XCTestCase {
     }
 
     func testUserList() {
-        let program = ProgramMock()!
+        let project = ProjectMock()!
         let variables = VariablesContainer()
-        program.variables = variables
-        object.program = program
+        project.variables = variables
+        object.project = project
 
         let userList = UserVariable()
         userList.name = "test"

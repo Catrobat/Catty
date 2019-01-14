@@ -44,16 +44,16 @@
 
 - (void)testComeToFrontBrick
 {
-    Program *program = [[Program alloc] init];
+    Project *project = [[Project alloc] init];
     SpriteObject *background = [[SpriteObject alloc] init];
     CBSpriteNode *spriteNodeBG = [[CBSpriteNode alloc] initWithSpriteObject:background];
     background.spriteNode = spriteNodeBG;
-    background.program = program;
+    background.project = project;
 
     SpriteObject* object1 = [[SpriteObject alloc] init];
     CBSpriteNode *spriteNode1 = [[CBSpriteNode alloc] initWithSpriteObject:object1];
     object1.spriteNode = spriteNode1;
-    object1.program = program;
+    object1.project = project;
     spriteNode1.zPosition = 1;
 
     SpriteObject* object2 = [[SpriteObject alloc] init];
@@ -61,9 +61,9 @@
     object2.spriteNode = spriteNode2;
     spriteNode2.zPosition = 2;
 
-    [program.objectList addObject:background];
-    [program.objectList addObject:object1];
-    [program.objectList addObject:object2];
+    [project.objectList addObject:background];
+    [project.objectList addObject:object1];
+    [project.objectList addObject:object2];
 
     Script *script = [[WhenScript alloc] init];
     script.object = object1;

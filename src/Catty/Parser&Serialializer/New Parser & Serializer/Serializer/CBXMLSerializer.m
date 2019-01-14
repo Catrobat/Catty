@@ -21,7 +21,7 @@
  */
 
 #import "CBXMLSerializer.h"
-#import "Program+CBXMLHandler.h"
+#import "Project+CBXMLHandler.h"
 #import "GDataXMLElement+CustomExtensions.h"
 #import "CBXMLSerializerContext.h"
 #import "CatrobatLanguageDefines.h"
@@ -52,22 +52,22 @@
     return self;
 }
 
-#pragma mark - Program serialization
-+ (GDataXMLDocument*)xmlDocumentForProgram:(Program*)program
+#pragma mark - Project serialization
++ (GDataXMLDocument*)xmlDocumentForProject:(Project*)project
 {
     CBXMLSerializerContext *context = [CBXMLSerializerContext new];
-    GDataXMLElement *programElement = [program xmlElementWithContext:context];
+    GDataXMLElement *programElement = [project xmlElementWithContext:context];
     
     // sanity check => stack must contain only one element!!
     // only <program> root-element must remain on the stack!!
     if (context.currentPositionStack.numberOfXmlElements != 1) {
-        NSError(@"FATAL! Unable to serialize program. Current position stack contains no or more \
+        NSError(@"FATAL! Unable to serialize project. Current position stack contains no or more \
                 than 1 element but should contain only one element named 'program'");
         abort();
     }
     NSString *remainingXmlElementName = [context.currentPositionStack popXmlElementName];
     if (! [remainingXmlElementName isEqualToString:@"program"]) {
-        NSError(@"FATAL! Unable to serialize program. Current position stack contains an element \
+        NSError(@"FATAL! Unable to serialize project. Current position stack contains an element \
                 'named %@' but should contain an element with name 'program'",
                 remainingXmlElementName);
         abort();
@@ -77,11 +77,11 @@
     return document;
 }
 
-- (void)serializeProgram:(Program*)program
+- (void)serializeProject:(Project*)project
 {
     @try {
-        NSInfo(@"Saving Program...");
-        GDataXMLDocument *document = [[self class] xmlDocumentForProgram:program];
+        NSInfo(@"Saving Project...");
+        GDataXMLDocument *document = [[self class] xmlDocumentForProject:project];
         NSString *xmlString = [NSString stringWithFormat:@"%@\n%@", kCatrobatHeaderXMLDeclaration,
                                [document.rootElement XMLStringPrettyPrinted:YES]];
 
@@ -89,15 +89,15 @@
         NSError *error = nil;
 
         if (! [xmlString writeToFile:self.xmlPath atomically:YES encoding:NSUTF8StringEncoding error:&error]) {
-            NSError(@"Program could not saved to disk! %@", error);
+            NSError(@"Project could not saved to disk! %@", error);
         }
 
         // update last access time
-        [Program updateLastModificationTimeForProgramWithName:program.header.programName
-                                                    programID:program.header.programID];
+        [Project updateLastModificationTimeForProjectWithName:project.header.programName
+                                                    projectID:project.header.programID];
         NSInfo(@"Saving finished...");
     } @catch(NSException *exception) {
-        NSError(@"Program could not be serialized! %@", [exception description]);
+        NSError(@"Project could not be serialized! %@", [exception description]);
     }
 }
 

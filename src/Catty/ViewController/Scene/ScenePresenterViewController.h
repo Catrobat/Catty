@@ -24,7 +24,7 @@
 #import <SpriteKit/SpriteKit.h>
 
 @protocol SpriteManagerDelegate;
-@class Program;
+@class Project;
 @class FormulaManager;
 @class LoadingView;
 
@@ -33,7 +33,7 @@
 @property (nonatomic, strong) UIView *menuView;
 @property (nonatomic, strong) NSLayoutConstraint *menuViewLeadingConstraint;
 
-@property (nonatomic, strong) Program *program;
+@property (nonatomic, strong) Project *project;
 @property (nonatomic, strong) FormulaManager *formulaManager;
 @property (nonatomic, strong) LoadingView* loadingView;
 

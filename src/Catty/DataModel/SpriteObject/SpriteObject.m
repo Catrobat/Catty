@@ -89,7 +89,7 @@
 
 - (NSString*)projectPath
 {
-  return [self.program projectPath];
+  return [self.project projectPath];
 }
 
 - (NSString*)previewImagePathForLookAtIndex:(NSUInteger)index
@@ -101,7 +101,7 @@
     if (! look)
         return nil;
 
-    NSString *imageDirPath = [[self projectPath] stringByAppendingString:kProgramImagesDirName];
+    NSString *imageDirPath = [[self projectPath] stringByAppendingString:kProjectImagesDirName];
     return [NSString stringWithFormat:@"%@/%@", imageDirPath, [look previewImageFileName]];
 }
 
@@ -112,19 +112,19 @@
 
 - (BOOL)isBackground
 {
-    if (self.program && [self.program.objectList count])
-        return ([self.program.objectList objectAtIndex:0] == self);
+    if (self.project && [self.project.objectList count])
+        return ([self.project.objectList objectAtIndex:0] == self);
     return NO;
 }
 
 - (NSString*)pathForLook:(Look*)look
 {
-  return [NSString stringWithFormat:@"%@%@/%@", [self projectPath], kProgramImagesDirName, look.fileName];
+  return [NSString stringWithFormat:@"%@%@/%@", [self projectPath], kProjectImagesDirName, look.fileName];
 }
 
 - (NSString*)pathForSound:(Sound*)sound
 {
-  return [NSString stringWithFormat:@"%@%@/%@", [self projectPath], kProgramSoundsDirName, sound.fileName];
+  return [NSString stringWithFormat:@"%@%@/%@", [self projectPath], kProjectSoundsDirName, sound.fileName];
 }
 
 - (NSUInteger)fileSizeOfLook:(Look*)look
@@ -184,19 +184,19 @@
     look.name = [Util uniqueName:look.name existingNames:[self allLookNames]];
     [self.lookList addObject:look];
     if(save) {
-        [self.program saveToDiskWithNotification:YES];
+        [self.project saveToDiskWithNotification:YES];
     }
     return;
 }
 
-- (void)removeFromProgram
+- (void)removeFromProject
 {
-    CBAssert(self.program);
+    CBAssert(self.project);
     NSUInteger index = 0;
-    for (SpriteObject *spriteObject in self.program.objectList) {
+    for (SpriteObject *spriteObject in self.project.objectList) {
         if (spriteObject == self) {
-            [self.program.objectList removeObjectAtIndex:index];
-            self.program = nil;
+            [self.project.objectList removeObjectAtIndex:index];
+            self.project = nil;
             break;
         }
         ++index;
@@ -238,7 +238,7 @@
         }
     }
     if(save) {
-        [self.program saveToDiskWithNotification:YES];
+        [self.project saveToDiskWithNotification:YES];
     }
 }
 
@@ -246,7 +246,7 @@
 {
     [self removeLookFromList:look];
     if(save) {
-        [self.program saveToDiskWithNotification:YES];
+        [self.project saveToDiskWithNotification:YES];
     }
 }
 
@@ -284,7 +284,7 @@
         }
     }
     if(save) {
-        [self.program saveToDiskWithNotification:YES];
+        [self.project saveToDiskWithNotification:YES];
     }
 }
 
@@ -292,7 +292,7 @@
 {
     [self removeSoundFromList:sound];
     if(save) {
-        [self.program saveToDiskWithNotification:YES];
+        [self.project saveToDiskWithNotification:YES];
     }
 }
 
@@ -315,7 +315,7 @@
     copiedLook.name = [Util uniqueName:nameOfCopiedLook existingNames:[self allLookNames]];
     [self.lookList addObject:copiedLook];
     if(save) {
-        [self.program saveToDiskWithNotification:YES];
+        [self.project saveToDiskWithNotification:YES];
     }
     return copiedLook;
 }
@@ -329,7 +329,7 @@
     copiedSound.name = [Util uniqueName:nameOfCopiedSound existingNames:[self allSoundNames]];
     [self.soundList addObject:copiedSound];
     if(save) {
-        [self.program saveToDiskWithNotification:YES];
+        [self.project saveToDiskWithNotification:YES];
     }
     return copiedSound;
 }
@@ -341,7 +341,7 @@
     }
     look.name = [Util uniqueName:newLookName existingNames:[self allLookNames]];
     if(save) {
-        [self.program saveToDiskWithNotification:YES];
+        [self.project saveToDiskWithNotification:YES];
     }
 }
 
@@ -352,13 +352,13 @@
     }
     sound.name = [Util uniqueName:newSoundName existingNames:[self allSoundNames]];
     if(save) {
-        [self.program saveToDiskWithNotification:YES];
+        [self.project saveToDiskWithNotification:YES];
     }
 }
 
 - (void)removeReferences
 {
-    self.program = nil;
+    self.project = nil;
     [self.scriptList makeObjectsPerformSelector:@selector(removeReferences)];
 }
 
@@ -425,7 +425,7 @@
 
     SpriteObject *newObject = [[SpriteObject alloc] init];
     newObject.name = [NSString stringWithString:self.name];
-    newObject.program = self.program;
+    newObject.project = self.project;
     [context updateReference:self WithReference:newObject];
 
     // deep copy
@@ -466,7 +466,7 @@
 - (NSUInteger)referenceCountForLook:(NSString*)fileName
 {
     NSUInteger referenceCount = 0;
-    for (SpriteObject *object in self.program.objectList) {
+    for (SpriteObject *object in self.project.objectList) {
         for (Look *look in object.lookList) {
             if ([look.fileName isEqualToString:fileName]) {
                 ++referenceCount;
@@ -479,7 +479,7 @@
 - (NSUInteger)referenceCountForSound:(NSString*)fileName
 {
     NSUInteger referenceCount = 0;
-    for (SpriteObject *object in self.program.objectList) {
+    for (SpriteObject *object in self.project.objectList) {
         for (Sound *sound in object.soundList) {
             if ([sound.fileName isEqualToString:fileName]) {
                 ++referenceCount;

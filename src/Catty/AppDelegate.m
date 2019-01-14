@@ -118,7 +118,7 @@ void uncaughtExceptionHandler(NSException *exception)
     
     if ([vc.topViewController isKindOfClass:[CatrobatTableViewController class]]){
         CatrobatTableViewController* ctvc = (CatrobatTableViewController*)vc.topViewController;
-        [ctvc addProgramFromInbox];
+        [ctvc addProjectFromInbox];
         return YES;
     }
     return NO;

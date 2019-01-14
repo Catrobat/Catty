@@ -29,13 +29,13 @@
     @objc func actionBlock() -> () -> Void {
         guard let currentObject = self.script?.object,
             let currentSpriteNode = currentObject.spriteNode,
-            let program = self.script?.object?.program,
-            let objectList = self.script?.object?.program?.objectList
+            let project = self.script?.object?.project,
+            let objectList = self.script?.object?.project?.objectList
             else { fatalError("This should never happen!") }
 
         return {
             let currentLayer = currentSpriteNode.catrobatLayer
-            let frontValue = Double(program.numberOfNormalObjects())
+            let frontValue = Double(project.numberOfNormalObjects())
             currentSpriteNode.catrobatLayer = frontValue
 
             for obj in objectList {

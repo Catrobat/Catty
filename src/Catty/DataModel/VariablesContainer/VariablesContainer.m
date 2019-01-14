@@ -120,7 +120,7 @@ static pthread_mutex_t variablesLock;
     } else {
         variable = [self findUserVariableNamed:name inArray:self.programVariableList];
         if (variable) {
-                [self removeProgramUserVariableNamed:name];
+                [self removeProjectUserVariableNamed:name];
             return YES;
         }
     }
@@ -137,7 +137,7 @@ static pthread_mutex_t variablesLock;
     } else {
         list = [self findUserVariableNamed:name inArray:self.programListOfLists];
         if (list) {
-            [self removeProgramUserListNamed:name];
+            [self removeProjectUserListNamed:name];
             return YES;
         }
     }
@@ -187,7 +187,7 @@ static pthread_mutex_t variablesLock;
     pthread_mutex_unlock(&variablesLock);
 }
 
-- (void)removeProgramUserVariableNamed:(NSString*)name
+- (void)removeProjectUserVariableNamed:(NSString*)name
 {
     pthread_mutex_lock(&variablesLock);
     for (int i = 0; i < [self.programVariableList count]; ++i) {
@@ -200,7 +200,7 @@ static pthread_mutex_t variablesLock;
     pthread_mutex_unlock(&variablesLock);
 }
 
-- (void)removeProgramUserListNamed:(NSString*)name
+- (void)removeProjectUserListNamed:(NSString*)name
 {
     pthread_mutex_lock(&variablesLock);
     for (int i = 0; i < [self.programListOfLists count]; ++i) {
@@ -470,7 +470,7 @@ static pthread_mutex_t variablesLock;
     return NO;
 }
 
-- (BOOL)isProgramVariableOrList:(UserVariable*)userVarOrList
+- (BOOL)isProjectVariableOrList:(UserVariable*)userVarOrList
 {
     if (!userVarOrList.isList) {
         for (UserVariable *userVariableToCompare in self.programVariableList) {

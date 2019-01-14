@@ -53,7 +53,7 @@
 #import "BrickCellListData.h"
 #import "LooksTableViewController.h"
 #import "SoundsTableViewController.h"
-#import "ProgramTableViewController.h"
+#import "ProjectTableViewController.h"
 #import "ViewControllerDefines.h"
 #import "Look.h"
 #import "Sound.h"
@@ -116,7 +116,7 @@
     [[BrickInsertManager sharedInstance] reset];
     self.isEditingBrickMode = NO;
     self.batchUpdateMutex = NO;
-    self.formulaManager = [[FormulaManager alloc] initWithSceneSize: CGSizeMake([self.object.program.header.screenWidth floatValue], [self.object.program.header.screenHeight floatValue])];
+    self.formulaManager = [[FormulaManager alloc] initWithSceneSize: CGSizeMake([self.object.project.header.screenWidth floatValue], [self.object.project.header.screenHeight floatValue])];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -472,7 +472,7 @@ didEndDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         [self turnOffInsertingBrickMode];
     } else {
         [[BrickMoveManager sharedInstance] getReadyForNewBrickMovement];
-        [self.object.program saveToDiskWithNotification:YES];
+        [self.object.project saveToDiskWithNotification:YES];
     }
     [self reloadData];
 }
@@ -616,7 +616,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
        
         manager.isInsertingScript = YES;
         if (self.object.scriptList.count == 1) {
-            [self.object.program saveToDiskWithNotification:YES];
+            [self.object.project saveToDiskWithNotification:YES];
             return;
         }
         script.animateInsertBrick = YES;
@@ -691,7 +691,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         [self reloadData];
     }
     [self turnOnInsertingBrickMode];
-//    [self.object.program saveToDisk];
+//    [self.object.project saveToDisk];
 }
 
 
@@ -785,7 +785,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         [[BrickSelectionManager sharedInstance] reset];
         [self reloadData];
         self.placeHolderView.hidden = (self.object.scriptList.count != 0);
-        [self.object.program saveToDiskWithNotification:YES];
+        [self.object.project saveToDiskWithNotification:YES];
     }];
 }
 
@@ -882,7 +882,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     NSArray* indexArray = [[BrickManager sharedBrickManager] scriptCollectionCopyBrickWithIndexPath:indexPath andBrick:brick];
     [self.collectionView insertItemsAtIndexPaths:indexArray];
     self.placeHolderView.hidden = YES;
-    [self.object.program saveToDiskWithNotification:YES];
+    [self.object.project saveToDiskWithNotification:YES];
     
     NSIndexPath *lastIndexPath = [self findLastIndexPath];
     if(lastIndexPath == indexArray[0])
@@ -914,14 +914,14 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         self.batchUpdateMutex = NO;
         self.placeHolderView.hidden = (self.object.scriptList.count != 0);
         [self reloadData];
-        [self.object.program saveToDiskWithNotification:YES];
+        [self.object.project saveToDiskWithNotification:YES];
         [self setEditing:NO animated:NO];
     }];
 
 }
 
 #pragma mark - Add new Variable
-- (void)addVariableForBrick:(Brick*)brick atIndexPath:(NSIndexPath*)indexPath andIsProgramVariable:(BOOL)isProgramVar
+- (void)addVariableForBrick:(Brick*)brick atIndexPath:(NSIndexPath*)indexPath andIsProjectVariable:(BOOL)isProjectVar
 {
 //    Brick<BrickVariableProtocol> *variableBrick;
 //    if ([brick conformsToProtocol:@protocol(BrickVariableProtocol)]) {
@@ -929,12 +929,12 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 //    }
 
     NSMutableArray *allVariableNames = [NSMutableArray new];
-    if (isProgramVar) {
-        for(UserVariable *var in [self.object.program.variables allVariables]) {
+    if (isProjectVar) {
+        for(UserVariable *var in [self.object.project.variables allVariables]) {
             [allVariableNames addObject:var.name];
         }
     } else {
-        for(UserVariable *var in [self.object.program.variables allVariablesForObject:self.object]) {
+        for(UserVariable *var in [self.object.project.variables allVariablesForObject:self.object]) {
             [allVariableNames addObject:var.name];
         }
     }
@@ -949,12 +949,12 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                                         variable.name = variableName;
                                         variable.value = [NSNumber numberWithInt:0];
                                         variable.isList = NO;
-                                        if (isProgramVar) {
-                                            [self.object.program.variables.programVariableList addObject:variable];
+                                        if (isProjectVar) {
+                                            [self.object.project.variables.programVariableList addObject:variable];
                                         } else { // object variable
-                                            [self.object.program.variables addObjectVariable:variable forObject:self.object];
+                                            [self.object.project.variables addObjectVariable:variable forObject:self.object];
                                         }
-                                        UserVariable *var = [self.object.program.variables getUserVariableNamed:(NSString*)variableName forSpriteObject:self.object];
+                                        UserVariable *var = [self.object.project.variables getUserVariableNamed:(NSString*)variableName forSpriteObject:self.object];
                                         BrickCell *brickCell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:self.variableIndexPath];
                                         Brick * brick = (Brick*)brickCell.scriptOrBrick;
                                         Brick<BrickVariableProtocol> *variableBrick;
@@ -976,16 +976,16 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 }
 
 #pragma mark - Add new List
-- (void)addListForBrick:(Brick*)brick atIndexPath:(NSIndexPath*)indexPath andIsProgramList:(BOOL)isProgramList
+- (void)addListForBrick:(Brick*)brick atIndexPath:(NSIndexPath*)indexPath andIsProjectList:(BOOL)isProjectList
 {
 
     NSMutableArray *allListNames = [NSMutableArray new];
-    if (isProgramList) {
-        for(UserVariable *list in [self.object.program.variables allLists]) {
+    if (isProjectList) {
+        for(UserVariable *list in [self.object.project.variables allLists]) {
             [allListNames addObject:list.name];
         }
     } else {
-        for(UserVariable *list in [self.object.program.variables allListsForObject:self.object]) {
+        for(UserVariable *list in [self.object.project.variables allListsForObject:self.object]) {
             [allListNames addObject:list.name];
         }
     }
@@ -1000,12 +1000,12 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                                         list.name = listName;
                                         list.value = [[NSMutableArray alloc] init];
                                         list.isList = YES;
-                                        if (isProgramList) {
-                                            [self.object.program.variables.programListOfLists addObject:list];
+                                        if (isProjectList) {
+                                            [self.object.project.variables.programListOfLists addObject:list];
                                         } else { // object list
-                                            [self.object.program.variables addObjectList:list forObject:self.object];
+                                            [self.object.project.variables addObjectList:list forObject:self.object];
                                         }
-                                        UserVariable *listToSet = [self.object.program.variables getUserListNamed:(NSString*)listName forSpriteObject:self.object];
+                                        UserVariable *listToSet = [self.object.project.variables getUserListNamed:(NSString*)listName forSpriteObject:self.object];
                                         BrickCell *brickCell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:self.variableIndexPath];
                                         Brick * brick = (Brick*)brickCell.scriptOrBrick;
                                         Brick<BrickListProtocol> *listBrick;
@@ -1056,7 +1056,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         void (^block)(NSString*) = (void (^)(NSString*))completion;
         block(messageName);
     }
-    [self.object.program saveToDiskWithNotification:YES];
+    [self.object.project saveToDiskWithNotification:YES];
     [self enableUserInteractionAndResetHighlight];
 }
 
@@ -1066,7 +1066,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         void (^block)(NSString*) = (void (^)(NSString*))completion;
         block(variableName);
     }
-    [self.object.program saveToDiskWithNotification:YES];
+    [self.object.project saveToDiskWithNotification:YES];
     [self enableUserInteractionAndResetHighlight];
 }
 
@@ -1114,8 +1114,8 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     if ([brickCellData isKindOfClass:[BrickCellObjectData class]] && [brick conformsToProtocol:@protocol(BrickObjectProtocol)]) {
         Brick<BrickObjectProtocol> *objectBrick = (Brick<BrickObjectProtocol>*)brick;
         if([(NSString*)value isEqualToString:kLocalizedNewElement]) {
-            ProgramTableViewController *ptvc = [self.storyboard instantiateViewControllerWithIdentifier:kProgramTableViewControllerIdentifier];
-            [ptvc setProgram:self.object.program];
+            ProjectTableViewController *ptvc = [self.storyboard instantiateViewControllerWithIdentifier:kProjectTableViewControllerIdentifier];
+            [ptvc setProject:self.object.project];
             ptvc.showAddObjectActionSheetAtStart = YES;
             ptvc.afterSafeBlock =  ^(SpriteObject* object) {
                 [objectBrick setObject:object forLineNumber:line andParameterNumber:parameter];
@@ -1125,12 +1125,12 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             [self.navigationController pushViewController:ptvc animated:YES];
             return;
         } else {
-            [objectBrick setObject:[Util objectWithName:(NSString*)value forProgram:self.object.program] forLineNumber:line andParameterNumber:parameter];
+            [objectBrick setObject:[Util objectWithName:(NSString*)value forProject:self.object.project] forLineNumber:line andParameterNumber:parameter];
         }
     } else
     if ([brickCellData isKindOfClass:[BrickCellFormulaData class]] && [brick conformsToProtocol:@protocol(BrickFormulaProtocol)]) {
         [(Brick<BrickFormulaProtocol>*)brick setFormula:(Formula*)value forLineNumber:line andParameterNumber:parameter];
-        [self.object.program saveToDiskWithNotification:YES];
+        [self.object.project saveToDiskWithNotification:YES];
         return;
     } else
     if ([brickCellData isKindOfClass:[BrickCellTextData class]] && [brick conformsToProtocol:@protocol(BrickTextProtocol)]) {
@@ -1155,7 +1155,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                                         minInputLength:kMinNumOfMessageNameCharacters
                                         maxInputLength:kMaxNumOfMessageNameCharacters
                               invalidInputAlertMessage:kLocalizedMessageAlreadyExistsDescription
-                                         existingNames:[Util allMessagesForProgram:self.object.program]];
+                                         existingNames:[Util allMessagesForProject:self.object.project]];
             [self enableUserInteractionAndResetHighlight];
             return;
         } else {
@@ -1171,10 +1171,10 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             [[[[[[AlertControllerBuilder actionSheetWithTitle:kUIFEActionVar]
              addCancelActionWithTitle:kLocalizedCancel handler:nil]
              addDefaultActionWithTitle:kUIFEActionVarPro handler:^{
-                 [self addVariableForBrick:brick atIndexPath:path andIsProgramVariable:YES];
+                 [self addVariableForBrick:brick atIndexPath:path andIsProjectVariable:YES];
              }]
              addDefaultActionWithTitle:kUIFEActionVarObj handler:^{
-                 [self addVariableForBrick:brick atIndexPath:path andIsProgramVariable:NO];
+                 [self addVariableForBrick:brick atIndexPath:path andIsProjectVariable:NO];
              }]
              build]
              showWithController:[Util topmostViewController]];
@@ -1183,7 +1183,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             return;
         } else {
             Brick<BrickVariableProtocol> *variableBrick = (Brick<BrickVariableProtocol>*)brick;
-            UserVariable *variable = [self.object.program.variables getUserVariableNamed:(NSString*)value forSpriteObject:self.object];
+            UserVariable *variable = [self.object.project.variables getUserVariableNamed:(NSString*)value forSpriteObject:self.object];
             if(variable)
                 [variableBrick setVariable:variable forLineNumber:line andParameterNumber:parameter];
         }
@@ -1197,10 +1197,10 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             [[[[[[AlertControllerBuilder actionSheetWithTitle:kUIFEActionList]
              addCancelActionWithTitle:kLocalizedCancel handler:nil]
              addDefaultActionWithTitle:kUIFEActionVarPro handler:^{
-                 [self addListForBrick:brick atIndexPath:path andIsProgramList:YES];
+                 [self addListForBrick:brick atIndexPath:path andIsProjectList:YES];
              }]
              addDefaultActionWithTitle:kUIFEActionVarObj handler:^{
-                 [self addListForBrick:brick atIndexPath:path andIsProgramList:NO];
+                 [self addListForBrick:brick atIndexPath:path andIsProjectList:NO];
              }]
              build]
              showWithController:[Util topmostViewController]];
@@ -1209,7 +1209,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             return;
         } else {
             Brick<BrickListProtocol> *listBrick = (Brick<BrickListProtocol>*)brick;
-            UserVariable *list = [self.object.program.variables getUserListNamed:(NSString*)value forSpriteObject:self.object];
+            UserVariable *list = [self.object.project.variables getUserListNamed:(NSString*)value forSpriteObject:self.object];
             if(list)
                 [listBrick setList:list forLineNumber:line andParameterNumber:parameter];
         }
@@ -1231,7 +1231,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         [phiroIfBrick setSensor:(NSString*)value forLineNumber:line andParameterNumber:parameter];
     }
     
-    [self.object.program saveToDiskWithNotification:NO];
+    [self.object.project saveToDiskWithNotification:NO];
     [self enableUserInteractionAndResetHighlight];
 }
 

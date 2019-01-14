@@ -102,7 +102,7 @@
             GDataXMLElement *pointedObjectXmlElement = [self.pointedObject xmlElementWithContext:newContext asPointedObject:YES];
             context.spriteObjectNamePositions = newContext.spriteObjectNamePositions;
             context.spriteObjectNameUserVariableListPositions = newContext.spriteObjectNameUserVariableListPositions;
-            context.programUserVariableNamePositions = newContext.programUserVariableNamePositions;
+            context.projectUserVariableNamePositions = newContext.projectUserVariableNamePositions;
             context.pointedSpriteObjectList = newContext.pointedSpriteObjectList;
             [brick addChild:pointedObjectXmlElement context:context];
             [context.pointedSpriteObjectList addObject:self.pointedObject];

@@ -26,12 +26,12 @@
 
 - (NSString*)brickTitle
 {
-    return [kLocalizedNote stringByAppendingString:@"%@"];
+    return [kLocalizedNote stringByAppendingString:@" %@"];
 }
 
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
-    self.note = [NSString stringWithString:kLocalizedAddCommentHere];
+    self.note = [NSString stringWithString:kLocalizedNoteAddCommentHere];
 }
 
 - (NSString*)description

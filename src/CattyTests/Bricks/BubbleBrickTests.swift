@@ -29,28 +29,28 @@ final class BubbleBrickTests: XCTestCase {
     func testSayForTitleSingular() {
         let sayForBrick = SayForBubbleBrick()
         sayForBrick.intFormula = Formula(double: 1)
-        let translation = kLocalizedSay + "%@\n" + kLocalizedFor + "%@" + kLocalizedSecond
+        let translation = kLocalizedSay + " %@\n" + kLocalizedFor + " %@ " + kLocalizedSecond
         XCTAssertEqual(translation, sayForBrick.brickTitle, "Wrong brick title")
     }
 
     func testSayForTitlePlural() {
         let sayForBrick = SayForBubbleBrick()
         sayForBrick.intFormula = Formula(double: 2)
-        let translation = kLocalizedSay + "%@\n" + kLocalizedFor + "%@" + kLocalizedSeconds
+        let translation = kLocalizedSay + " %@\n" + kLocalizedFor + " %@ " + kLocalizedSeconds
         XCTAssertEqual(translation, sayForBrick.brickTitle, "Wrong brick title")
     }
 
     func testThinkForTitleSingular() {
         let thinkForBrick = ThinkForBubbleBrick()
         thinkForBrick.intFormula = Formula(double: 1)
-        let translation = kLocalizedThink + "%@\n" + kLocalizedFor + "%@" + kLocalizedSecond
+        let translation = kLocalizedThink + " %@\n" + kLocalizedFor + " %@ " + kLocalizedSecond
         XCTAssertEqual(translation, thinkForBrick.brickTitle, "Wrong brick title")
     }
 
     func testThinkForTitlePlural() {
         let thinkForBrick = ThinkForBubbleBrick()
         thinkForBrick.intFormula = Formula(double: 2)
-        let translation = kLocalizedThink + "%@\n" + kLocalizedFor + "%@" + kLocalizedSeconds
+        let translation = kLocalizedThink + " %@\n" + kLocalizedFor + " %@ " + kLocalizedSeconds
         XCTAssertEqual(translation, thinkForBrick.brickTitle, "Wrong brick title")
     }
 }

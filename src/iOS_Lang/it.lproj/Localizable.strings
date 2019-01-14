@@ -113,25 +113,13 @@
 "Categories" = "Categorie";
 
 /* No comment provided by engineer. */
-"Change brightness\nby %@\%" = "Change brightness\nby %@\\%";
+"Change volume by" = "Cambia il volume di";
 
 /* No comment provided by engineer. */
-"Change size by %@\%" = "Change size by %@\\%";
+"Change X by " = "Cambia X di ";
 
 /* No comment provided by engineer. */
-"Change transparency\nby %@\%" = "Change transparency\nby %@\\%";
-
-/* No comment provided by engineer. */
-"Change variable\n%@\nby %@" = "Change variable\n%@\nby %@";
-
-/* No comment provided by engineer. */
-"Change volume by %@" = "Cambia il volume di %@";
-
-/* No comment provided by engineer. */
-"Change X by %@" = "Cambia X di %@";
-
-/* No comment provided by engineer. */
-"Change Y by %@" = "Cambia Y di %@";
+"Change Y by " = "Cambia Y di ";
 
 /* No comment provided by engineer. */
 "Changes discarded!" = "Modifiche annullate!";
@@ -251,7 +239,7 @@
 "Delete this object" = "Elimina questo oggetto";
 
 /* No comment provided by engineer. */
-"Delete this program" = "Elimina questo programma";
+"Delete this project" = "Elimina questo programma";
 
 /* No comment provided by engineer. */
 "Delete this Script?" = "Delete this Script?";
@@ -424,9 +412,6 @@
 /* No comment provided by engineer. */
 "Go to front" = "Sposta avanti";
 
-/* No comment provided by engineer. */
-"GOOD TO SEE YOU" = "GOOD TO SEE YOU";
-
 /* paint */
 "Green" = "Verde";
 
@@ -596,7 +581,7 @@
 "Move Brick" = "Sposta mattoncino";
 
 /* Name of the default catrobat program (used as filename!!) */
-"My first program" = "Il mio primo programma";
+"My first project" = "Il mio primo programma";
 
 /* Default title of imported photo from camera (taken by camera) */
 "My Image" = "La mia immagine";
@@ -674,7 +659,7 @@
 "not" = "not";
 
 /* No comment provided by engineer. */
-"Not enough free memory to download this program. Please delete some of your programs" = "Non c'è abbastanza memoria libera per scaricare questo programma. Si consiglia di eliminare alcuni programmi";
+"Not enough free memory to download this project. Please delete some of your projects" = "Non c'è abbastanza memoria libera per scaricare questo programma. Si consiglia di eliminare alcuni programmi";
 
 /* No comment provided by engineer. */
 "Not enough Memory" = "Memoria insufficiente";
@@ -732,9 +717,6 @@
 
 /* paint */
 "pipette" = "pipetta";
-
-/* No comment provided by engineer. */
-"Place at\nX: %@ Y: %@" = "Place at\nX: %@ Y: %@";
 
 /* No comment provided by engineer. */
 "Play" = "Gioca";
@@ -797,7 +779,7 @@
 "pos_y" = "pos_y";
 
 /* No comment provided by engineer. */
-"Problems occured while Uploading your program" = "Problems occured while Uploading your program";
+"Problems occured while uploading your project" = "Problems occured while uploading your project";
 
 /* No comment provided by engineer. */
 "Program name" = "Nome del programma";
@@ -877,9 +859,6 @@
 /* No comment provided by engineer. */
 "Saturday" = "Sabato";
 
-/* Action sheet menu title */
-"Save Screenshot to" = "Salva la schermata in";
-
 /* paint */
 "Save to CameraRoll" = "Salvare in CameraRoll";
 
@@ -926,25 +905,10 @@
 "September" = "Settembre";
 
 /* No comment provided by engineer. */
-"Set background\n%@" = "Imposta sfondo\n%@";
-
-/* No comment provided by engineer. */
-"Set brightness to %@\%" = "Set brightness to %@\\%";
+"Set background" = "Imposta sfondo";
 
 /* No comment provided by engineer. */
 "Set description" = "Imposta descrizione";
-
-/* No comment provided by engineer. */
-"Set size to %@\%" = "Set size to %@\\%";
-
-/* No comment provided by engineer. */
-"Set transparency\nto %@\%" = "Set transparency\nto %@\\%";
-
-/* No comment provided by engineer. */
-"Set variable\n%@\nto %@" = "Set variable\n%@\nto %@";
-
-/* No comment provided by engineer. */
-"Set volume to %@\%" = "Set volume to %@\\%";
 
 /* No comment provided by engineer. */
 "Set X to %@" = "Valorizza X a %@";
@@ -1100,7 +1064,7 @@
 "Upload Program" = "Upload Program";
 
 /* No comment provided by engineer. */
-"Upload Selected Program" = "Upload Selected Program";
+"Upload selected project" = "Upload selected project";
 
 /* No comment provided by engineer. */
 "Upload successful" = "Caricamento terminato con successo";
@@ -1113,9 +1077,6 @@
 
 /* No comment provided by engineer. */
 "Username is necessary!" = "Username is necessary!";
-
-/* No comment provided by engineer. */
-"v" = "v";
 
 /* No comment provided by engineer. */
 "Variable name:" = "Nome variabile:";
@@ -1172,7 +1133,7 @@
 "You are also able to build your own apps, edit existing ones and share them with your friends and other exciting people." = "Siete anche in grado di costruire le vostre applicazioni, modificare quelle esistenti e condividerle con amici e altre persone interessanti.";
 
 /* No comment provided by engineer. */
-"You have already downloaded this program!" = "Avete già scaricato questo programma!";
+"You have already downloaded this project!" = "Avete già scaricato questo programma!";
 
 /* paint */
 "zoom" = "zoom";

@@ -67,8 +67,8 @@
 {
     [super viewDidLoad];
     NSDictionary *showDetails = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDetailsShowDetailsKey];
-    NSNumber *showDetailsProgramsValue = (NSNumber*)[showDetails objectForKey:kUserDetailsShowDetailsLooksKey];
-    self.useDetailCells = [showDetailsProgramsValue boolValue];
+    NSNumber *showDetailsProjectsValue = (NSNumber*)[showDetails objectForKey:kUserDetailsShowDetailsLooksKey];
+    self.useDetailCells = [showDetailsProjectsValue boolValue];
     self.title = self.navigationItem.title = (self.object.isBackground
                                               ? kLocalizedBackgrounds
                                               : kLocalizedLooks);
@@ -395,7 +395,7 @@
     Look* itemToMove = self.object.lookList[sourceIndexPath.row];
     [self.object.lookList removeObjectAtIndex:sourceIndexPath.row];
     [self.object.lookList insertObject:itemToMove atIndex:destinationIndexPath.row];
-    [self.object.program saveToDiskWithNotification:NO];
+    [self.object.project saveToDiskWithNotification:NO];
 }
 
 - (NSArray<UITableViewRowAction*>*)tableView:(UITableView*)tableView
@@ -575,7 +575,7 @@
                                     andPath:newImageFileName];
     
     NSString *newImagePath = [NSString stringWithFormat:@"%@%@/%@",
-                              [self.object projectPath], kProgramImagesDirName, newImageFileName];
+                              [self.object projectPath], kProjectImagesDirName, newImageFileName];
     self.filePath = newImagePath;
     // leaving the main queue here!
     [imageData writeToFile:newImagePath atomically:YES];
@@ -656,8 +656,8 @@
              PaintViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:kPaintViewControllerIdentifier];
              vc.delegate = self;
              vc.editingPath = nil;
-             vc.programHeight = self.object.program.header.screenHeight.floatValue;
-             vc.programWidth = self.object.program.header.screenWidth.floatValue;
+             vc.projectHeight = self.object.project.header.screenHeight.floatValue;
+             vc.projectWidth = self.object.project.header.screenWidth.floatValue;
              NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
              [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
              [self.navigationController pushViewController:vc animated:YES];
@@ -782,7 +782,7 @@
                                                existingNames:[self.object allLookNames]]
                                     andPath:newImageFileName];
     NSString *newImagePath = [NSString stringWithFormat:@"%@%@/%@",
-                              [self.object projectPath], kProgramImagesDirName, newImageFileName];
+                              [self.object projectPath], kProjectImagesDirName, newImageFileName];
     self.filePath = newImagePath;
     NSDebug(@"Writing file to disk");
     
@@ -802,7 +802,7 @@
     if (checkImage) {
 //        NSDebug(@"Updating");
         NSData *imageData = UIImagePNGRepresentation(image);
-        NSString *imageDirPath = [[self.object projectPath] stringByAppendingString:kProgramImagesDirName];
+        NSString *imageDirPath = [[self.object projectPath] stringByAppendingString:kProjectImagesDirName];
         NSString *fileName = [path stringByReplacingOccurrencesOfString:imageDirPath withString:@""];
         
         NSRange result = [fileName rangeOfString:kResourceFileNameSeparator];
@@ -826,7 +826,7 @@
         
         NSDebug(@"Writing file to disk");
         [imageData writeToFile:path atomically:YES];
-        [self.object.program saveToDiskWithNotification:YES];
+        [self.object.project saveToDiskWithNotification:YES];
         
         RuntimeImageCache *cache = [RuntimeImageCache sharedImageCache];
         
@@ -856,7 +856,7 @@
                                                    existingNames:[self.object allLookNames]]
                                         andPath:newImageFileName];
         NSString *newImagePath = [NSString stringWithFormat:@"%@%@/%@",
-                                  [self.object projectPath], kProgramImagesDirName, newImageFileName];
+                                  [self.object projectPath], kProjectImagesDirName, newImageFileName];
         self.filePath = newImagePath;
         NSDebug(@"Writing file to disk");
         [imageData writeToFile:newImagePath atomically:YES];

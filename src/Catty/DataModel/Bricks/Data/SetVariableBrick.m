@@ -54,7 +54,7 @@
 {
     self.variableFormula = [[Formula alloc] initWithInteger:1];
     if(spriteObject) {
-        NSArray *variables = [spriteObject.program.variables allVariablesForObject:spriteObject];
+        NSArray *variables = [spriteObject.project.variables allVariablesForObject:spriteObject];
         if([variables count] > 0)
             self.userVariable = [variables objectAtIndex:0];
         else
@@ -64,7 +64,7 @@
 
 - (NSString*)brickTitle
 {
-    return [kLocalizedSetVariable stringByAppendingString:[@"\n%@\n" stringByAppendingString:[kLocalizedTo stringByAppendingString:@"%@"]]];
+    return [kLocalizedSetVariable stringByAppendingString:[@"\n%@\n" stringByAppendingString:[kLocalizedTo stringByAppendingString:@" %@"]]];
 }
 
 - (BOOL)allowsStringFormula

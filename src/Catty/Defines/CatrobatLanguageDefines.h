@@ -34,7 +34,7 @@
 #define kCatrobatHeaderXMLDeclaration @"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\" ?>"
 #define kCatrobatHeaderScreenModeMaximize @"MAXIMIZE"
 #define kCatrobatHeaderScreenModeStretch @"STRETCH"
-#define kCatrobatHeaderProgramScreenshotDefaultValue @"false"
+#define kCatrobatHeaderProjectScreenshotDefaultValue @"false"
 #define kCatrobatHeaderDateTimeFormat @"yyyy-MM-ddHH:mm:ss"
 
 

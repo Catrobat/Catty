@@ -61,7 +61,7 @@
     }
 
     static func defaultRawValue(for spriteObject: SpriteObject) -> Double {
-        guard let objectList = spriteObject.program?.objectList as? [SpriteObject] else {
+        guard let objectList = spriteObject.project?.objectList as? [SpriteObject] else {
             return defaultRawValue
         }
 

@@ -26,9 +26,6 @@
 "acceleration_z" = "تسارع z";
 
 /* No comment provided by engineer. */
-"Add %@ to list\n%@" = "إضافة%@ للقائمة\n%@";
-
-/* No comment provided by engineer. */
 "add comment here..." = "أضف تعليق هنا...";
 
 /* No comment provided by engineer. */
@@ -321,9 +318,6 @@
 
 /* No comment provided by engineer. */
 "Delete Condition" = "حذف شرط";
-
-/* No comment provided by engineer. */
-"Delete item from list\n%@\n at position%@" = "حذف عنصر من قائمة\n%@\n في الموضع%@";
 
 /* No comment provided by engineer. */
 "Delete Looks" = "حذف مشهد";
@@ -628,9 +622,6 @@
 /* No comment provided by engineer. */
 "Go to front" = "الذهاب إلى الامام";
 
-/* No comment provided by engineer. */
-"GOOD TO SEE YOU" = "سعيد لرؤيتك";
-
 /* paint */
 "Green" = "أخضر";
 
@@ -687,9 +678,6 @@
 
 /* No comment provided by engineer. */
 "Information" = "معلومات";
-
-/* No comment provided by engineer. */
-"Insert%@into list\n%@\n at position%@" = "ادرج%@ في القائمة\n%@\n عند الموضع%@";
 
 /* paint */
 "Inserted" = "تم الإدخال";
@@ -1178,7 +1166,7 @@
 "Privacy Settings" = "اعدادات الخصوصية";
 
 /* No comment provided by engineer. */
-"Problems occured while Uploading your program" = "حدثت مشاكل أثناء تحميل البرنامج الخاص بك";
+"Problems occured while uploading your program" = "حدثت مشاكل أثناء تحميل البرنامج الخاص بك";
 
 /* No comment provided by engineer. */
 "Program" = "Program";
@@ -1250,9 +1238,6 @@
 "Repeat until" = "تكرار حتى";
 
 /* No comment provided by engineer. */
-"Replace item in list\n%@\nat position %@ with %@" = "استبدال العنصر في القائمة\n%@\nفي موضع %@ بـ %@";
-
-/* No comment provided by engineer. */
 "Report as inappropriate" = "تبليغ كـ محتوى غير مناسب";
 
 /* paint */
@@ -1278,9 +1263,6 @@
 
 /* No comment provided by engineer. */
 "Saturday" = "السبت";
-
-/* Action sheet menu title */
-"Save Screenshot to" = "حفظ لقطة الشاشة إلى";
 
 /* paint */
 "Save to CameraRoll" = "حفظ الى مجلد الكاميرا";
@@ -1613,15 +1595,6 @@
 "Undo Typing?" = "هل تريد التراجع عن الكتابة؟";
 
 /* No comment provided by engineer. */
-"Unexpected Error" = "Unexpected Error";
-
-/* No comment provided by engineer. */
-"Unexpected Error, please try again later." = "Unexpected Error, please try again later.";
-
-/* No comment provided by engineer. */
-"Unknown Element" = "Unknown Element";
-
-/* No comment provided by engineer. */
 "Unselect All" = "إلغاء اختيار الكل";
 
 /* No comment provided by engineer. */
@@ -1631,7 +1604,7 @@
 "Upload Program" = "تحميل البرنامج";
 
 /* No comment provided by engineer. */
-"Upload Selected Program" = "تحميل البرنامج المحدد";
+"Upload selected program" = "تحميل البرنامج المحدد";
 
 /* No comment provided by engineer. */
 "Upload successful" = "تم التحميل بنجاح";

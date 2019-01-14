@@ -25,8 +25,8 @@
     let uploadParameterTag = "upload"
     let fileChecksumParameterTag = "fileChecksum"
     let tokenParameterTag = "token"
-    let programNameTag = "projectTitle"
-    let programDescriptionTag = "projectDescription"
+    let projectNameTag = "projectTitle"
+    let projectDescriptionTag = "projectDescription"
     let userEmailTag = "userEmail"
     let userNameTag = "username"
     let deviceLanguageTag = "deviceLanguage"
@@ -43,9 +43,9 @@
     let uploadFontSize: CGFloat = 16.0
 
     private var activeRequest: Bool = false
-    @objc public var program: Program?
-    @IBOutlet private weak var programNameLabel: UILabel!
-    @IBOutlet private weak var programNameTextField: UITextField!
+    @objc public var project: Project?
+    @IBOutlet private weak var projectNameLabel: UILabel!
+    @IBOutlet private weak var projectNameTextField: UITextField!
     @IBOutlet private weak var sizeLabel: UILabel!
     @IBOutlet private weak var sizeValueLabel: UILabel!
     @IBOutlet private weak var descriptionLabel: UILabel!
@@ -75,7 +75,7 @@
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.background()
-        initProgramNameViewElements()
+        initProjectNameViewElements()
         initSizeViewElements()
         initDescriptionViewElements()
         initActionButtons()
@@ -90,7 +90,7 @@
         } else {
             self.automaticallyAdjustsScrollViewInsets = false
         }
-        programNameTextField.becomeFirstResponder()
+        projectNameTextField.becomeFirstResponder()
         self.hideKeyboardWhenTapInViewController()
     }
 
@@ -100,18 +100,18 @@
         super.init(coder: aDecoder)
     }
 
-    func initProgramNameViewElements() {
-        programNameLabel.textColor = UIColor.globalTint()
-        programNameLabel.text = kLocalizedName
-        programNameLabel.font = UIFont.boldSystemFont(ofSize: uploadFontSize)
+    func initProjectNameViewElements() {
+        projectNameLabel.textColor = UIColor.globalTint()
+        projectNameLabel.text = kLocalizedName
+        projectNameLabel.font = UIFont.boldSystemFont(ofSize: uploadFontSize)
 
-        programNameTextField.textColor = UIColor.textTint()
-        programNameTextField.backgroundColor = UIColor.white
-        programNameTextField.borderStyle = .roundedRect
-        programNameTextField.autocorrectionType = .no
-        programNameTextField.autocapitalizationType = .none
-        programNameTextField.keyboardType = .default
-        programNameTextField.text = program?.header.programName!
+        projectNameTextField.textColor = UIColor.textTint()
+        projectNameTextField.backgroundColor = UIColor.white
+        projectNameTextField.borderStyle = .roundedRect
+        projectNameTextField.autocorrectionType = .no
+        projectNameTextField.autocapitalizationType = .none
+        projectNameTextField.keyboardType = .default
+        projectNameTextField.text = project?.header.programName!
     }
 
     func initSizeViewElements() {
@@ -121,13 +121,13 @@
 
         let fileManager = CBFileManager.shared()
         zipFileData = nil
-        zipFileData = fileManager?.zip(program)
+        zipFileData = fileManager?.zip(project)
 
         sizeValueLabel.textColor = UIColor.textTint()
         sizeValueLabel.font = UIFont.boldSystemFont(ofSize: uploadFontSize)
 
         guard let data = zipFileData else {
-            debugPrint("ZIPing program files failed")
+            debugPrint("ZIPing project files failed")
             self.dismissView()
             return
         }
@@ -145,7 +145,7 @@
         descriptionTextView.autocorrectionType = .no
         descriptionTextView.autocapitalizationType = .none
         descriptionTextView.keyboardType = .default
-        descriptionTextView.text = program?.header.programDescription ?? ""
+        descriptionTextView.text = project?.header.programDescription ?? ""
 
         descriptionTextView.layer.borderWidth = 1.0
         descriptionTextView.layer.borderColor = UIColor.textViewBorderGray().cgColor
@@ -157,7 +157,7 @@
         uploadButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: uploadFontSize)
         uploadButton.backgroundColor = UIColor.globalTint()
         uploadButton.titleLabel?.textAlignment = .center
-        uploadButton.addTarget(self, action: #selector(UploadInfoViewController.checkProgramAction), for: .touchUpInside)
+        uploadButton.addTarget(self, action: #selector(UploadInfoViewController.checkProjectAction), for: .touchUpInside)
         uploadButton.setTitleColor(UIColor.buttonHighlightedTint(), for: .normal)
     }
 
@@ -215,19 +215,19 @@
 
     // MARK: - Actions
 
-    @objc func checkProgramAction() {
-        if programNameTextField.text!.isEmpty {
-            Util.alert(withText: kLocalizedUploadProgramNecessary)
+    @objc func checkProjectAction() {
+        if projectNameTextField.text!.isEmpty {
+            Util.alert(withText: kLocalizedUploadProjectNecessary)
             return
         }
         //RemixOF
-        if program?.header.url != nil && program?.header.userHandle != nil {
-            program?.header.remixOf = program?.header.url
-            program?.header.url = nil
-            program?.header.userHandle = nil
+        if project?.header.url != nil && project?.header.userHandle != nil {
+            project?.header.remixOf = project?.header.url
+            project?.header.url = nil
+            project?.header.userHandle = nil
         }
-        program?.rename(toProgramName: programNameTextField.text!)
-        program?.updateDescription(withText: descriptionTextView.text)
+        project?.rename(toProjectName: projectNameTextField.text!)
+        project?.updateDescription(withText: descriptionTextView.text)
         if loadingView == nil {
             loadingView = LoadingView()
             view.addSubview(loadingView!)
@@ -244,15 +244,15 @@
     // MARK: - Upload
 
     @objc func uploadAction() {
-        //This is to prevent uploading the program twice, since the notification for uploading is received twice
+        //This is to prevent uploading the project twice, since the notification for uploading is received twice
         if !activeRequest {
             return
         }
         activeRequest = false
 
-        //Program might have changed, update zip file accordingly
+        //Project might have changed, update zip file accordingly
         let fileManager = CBFileManager.shared()
-        zipFileData = fileManager?.zip(program)
+        zipFileData = fileManager?.zip(project)
 
         var checksum: String?
         if zipFileData != nil {
@@ -260,7 +260,7 @@
         }
 
         if checksum != nil {
-            debugPrint("Upload started for file: "+(program?.header.programName)!+" with checksum:"+checksum!)
+            debugPrint("Upload started for file: "+(project?.header.programName)!+" with checksum:"+checksum!)
 
             //Upload example URL: https://pocketcode.org/api/upload/upload.json?upload=ZIPFile&fileChecksum=MD5&token=loginToken
             //For testing use: https://catroid-test.catrob.at/api/upload/upload.json?upload=ZIPFile&fileChecksum=MD5&token=loginToken
@@ -279,11 +279,11 @@
 
             var body = Data()
 
-            //Program Name
-            setFormDataParameter(programNameTag, with: program?.header.programName.data(using: .utf8), forHTTPBody: &body)
+            //Project Name
+            setFormDataParameter(projectNameTag, with: project?.header.programName.data(using: .utf8), forHTTPBody: &body)
 
-            //Program Description
-            setFormDataParameter(programDescriptionTag, with: program?.header.programDescription.data(using: .utf8), forHTTPBody: &body)
+            //Project Description
+            setFormDataParameter(projectDescriptionTag, with: project?.header.programDescription.data(using: .utf8), forHTTPBody: &body)
 
             //User Email
             if UserDefaults.standard.value(forKey: kcEmail) != nil {
@@ -344,12 +344,12 @@
                     if statusCode == self.statusCodeOK {
                         debugPrint("Upload successful")
 
-                        //Set unique Program-ID received from server
+                        //Set unique Project-ID received from server
                         var projectId: String?
                         if let aTag = dictionary?[self.projectIDTag] {
                             projectId = "\(aTag)"
-                            self.program?.header.programID = projectId
-                            self.program?.saveToDisk(withNotification: true)
+                            self.project?.header.programID = projectId
+                            self.project?.saveToDisk(withNotification: true)
                         }
 
                         //Set new token but when? everytime is wrong

@@ -27,7 +27,6 @@ typedef void (^row_action_block_t)(UITableViewRowAction *_Nonnull action, NSInde
 @class iOSCombobox;
 @class FormulaEditorTextField;
 @class BrickCell;
-@class Program;
 
 @interface UIUtil : NSObject
 

@@ -33,12 +33,12 @@ class VariablesTests: XCTestCase, UITestProtocol {
         XCUIApplication().launch()
 
         dismissWelcomeScreenIfShown()
-        restoreDefaultProgram()
+        restoreDefaultProject()
         app = XCUIApplication()
     }
 
     func testDontShowVariablePickerWhenNoVariablesDefinedForObject() {
-        createNewProgramAndAddSetVariableBrick(name: "Test Program")
+        createNewProjectAndAddSetVariableBrick(name: "Test Project")
 
         app.collectionViews.cells.otherElements.containing(.staticText, identifier: "Set variable").children(matching: .other).element.tap()
         XCTAssert(app.sheets["Variable type"].exists)
@@ -46,8 +46,8 @@ class VariablesTests: XCTestCase, UITestProtocol {
 
     func testDontShowVListPickerWhenNoListsDefinedForObject() {
         app.tables.staticTexts["New"].tap()
-        app.alerts["New Program"].textFields["Enter your program name here..."].typeText("Test Program")
-        XCUIApplication().alerts["New Program"].buttons["OK"].tap()
+        app.alerts["New Project"].textFields["Enter your project name here..."].typeText("Test Project")
+        XCUIApplication().alerts["New Project"].buttons["OK"].tap()
         XCUIApplication().tables.staticTexts["Background"].tap()
         app.tables.staticTexts["Scripts"].tap()
         app.toolbars.buttons["Add"].tap()
@@ -65,7 +65,7 @@ class VariablesTests: XCTestCase, UITestProtocol {
     }
 
     func testCreateVariableWithMaxLength() {
-        createNewProgramAndAddSetVariableBrick(name: "Test Program")
+        createNewProjectAndAddSetVariableBrick(name: "Test Project")
 
         app.collectionViews.cells.otherElements.containing(.staticText, identifier: "Set variable").children(matching: .other).element.tap()
         XCTAssert(app.sheets["Variable type"].exists)
@@ -73,11 +73,11 @@ class VariablesTests: XCTestCase, UITestProtocol {
         app.buttons["for all objects"].tap()
         app.alerts["New Variable"].textFields["Enter your variable name here..."].typeText(String(repeating: "i", count: 250))
         app.alerts["New Variable"].buttons["OK"].tap()
-        XCTAssert(app.staticTexts["When program started"].exists)
+        XCTAssert(app.staticTexts["When project started"].exists)
     }
 
     func testCreateVariableWithMaxLengthPlusOne() {
-        createNewProgramAndAddSetVariableBrick(name: "Test Program")
+        createNewProjectAndAddSetVariableBrick(name: "Test Project")
 
         app.collectionViews.cells.otherElements.containing(.staticText, identifier: "Set variable").children(matching: .other).element.tap()
         XCTAssert(app.sheets["Variable type"].exists)
@@ -91,7 +91,7 @@ class VariablesTests: XCTestCase, UITestProtocol {
     func testCreateAndSelectVariable() {
         let variableName = "testVariable"
 
-        createNewProgramAndAddSetVariableBrick(name: "Test Program")
+        createNewProjectAndAddSetVariableBrick(name: "Test Project")
         app.collectionViews.cells.otherElements.containing(.staticText, identifier: "Set variable").children(matching: .button).element.tap()
         XCTAssert(waitForElementToAppear(app.buttons["Cancel"]).exists)
 
@@ -108,8 +108,8 @@ class VariablesTests: XCTestCase, UITestProtocol {
         XCTAssertTrue(waitForElementToAppear(app.buttons[" \"" + variableName + "\" "]).exists)
     }
 
-    private func createNewProgramAndAddSetVariableBrick(name: String) {
-        createProgram(name: name, in: app)
+    private func createNewProjectAndAddSetVariableBrick(name: String) {
+        createProject(name: name, in: app)
 
         app.tables.staticTexts["Background"].tap()
         app.tables.staticTexts["Scripts"].tap()

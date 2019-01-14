@@ -64,9 +64,9 @@
     return [kLocalizedPlaceAt
             stringByAppendingString:[@"\n"
             stringByAppendingString:[kLocalizedXLabel
-            stringByAppendingString:[@"%@ "
+            stringByAppendingString:[@" %@ "
             stringByAppendingString:[kLocalizedYLabel
-            stringByAppendingString:@"%@"]]]]];
+            stringByAppendingString:@" %@"]]]]];
 }
 
 #pragma mark - Description

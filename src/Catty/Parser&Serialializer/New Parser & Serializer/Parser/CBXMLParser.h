@@ -27,6 +27,6 @@
 - (id)initWithPath:(NSString*)path;
 - (id)initWithXMLContent:(NSString*)xmlContent;
 - (BOOL)isSupportedLanguageVersion:(CGFloat)languageVersion;
-- (Program*)parseAndCreateProgram;
+- (Project*)parseAndCreateProject;
 
 @end

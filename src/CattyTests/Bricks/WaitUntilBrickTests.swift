@@ -26,18 +26,18 @@ import XCTest
 
 final class WaitUntilBrickTests: XMLAbstractTest {
 
-    lazy var program: Program = {
-        let program = getProgramForXML(xmlFile: "WaitUntilBrick0991")
-        return program
+    lazy var project: Project = {
+        let project = getProjectForXML(xmlFile: "WaitUntilBrick0991")
+        return project
     }()
 
     func testWaitUntilBrick_conditionTrue_proceedsToNextBrick() {
-        let testVar = program.variables.getUserVariableNamed("testVar", for: program.objectList[0] as? SpriteObject)
-        let hasFinishedWaiting = program.variables.getUserVariableNamed("hasFinishedWaiting", for: program.objectList[0] as? SpriteObject)
+        let testVar = project.variables.getUserVariableNamed("testVar", for: project.objectList[0] as? SpriteObject)
+        let hasFinishedWaiting = project.variables.getUserVariableNamed("hasFinishedWaiting", for: project.objectList[0] as? SpriteObject)
 
         let scene = createScene()
-        scene.startProgram()
-        program.variables.setUserVariable(testVar, toValue: NSNumber(value: 1))
+        scene.startProject()
+        project.variables.setUserVariable(testVar, toValue: NSNumber(value: 1))
 
         let conditionMetPredicate = NSPredicate(block: { variable, _ in
             let hasFinishedWaiting = (variable as? UserVariable)!.value as! NSNumber
@@ -49,10 +49,10 @@ final class WaitUntilBrickTests: XMLAbstractTest {
     }
 
     func testWaitUntilBrick_conditionFalse_getsStuckInWaitUntilBrick() {
-        let hasFinishedWaiting = program.variables.getUserVariableNamed("hasFinishedWaiting", for: program.objectList[0] as? SpriteObject)
+        let hasFinishedWaiting = project.variables.getUserVariableNamed("hasFinishedWaiting", for: project.objectList[0] as? SpriteObject)
 
         let scene = createScene()
-        scene.startProgram()
+        scene.startProject()
         let testPredicate = createPredicate(variable: hasFinishedWaiting!, shouldNotBeEqual: NSNumber(value: 1), forSeconds: 2)
 
         expectation(for: testPredicate, evaluatedWith: self, handler: nil)
@@ -96,7 +96,7 @@ final class WaitUntilBrickTests: XMLAbstractTest {
     }
 
     private func createScene() -> CBScene {
-        let sceneBuilder = SceneBuilder(program: program).withFormulaManager(formulaManager: FormulaManager(sceneSize: Util.screenSize(true)))
+        let sceneBuilder = SceneBuilder(project: project).withFormulaManager(formulaManager: FormulaManager(sceneSize: Util.screenSize(true)))
         return sceneBuilder.build()
     }
 }

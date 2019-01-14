@@ -23,8 +23,8 @@
 #import "TableUtil.h"
 #import "Util.h"
 
-#define kFeaturedProgramsBannerHeight  400.0f
-#define kFeaturedProgramsBannerWidth   1024.0f
+#define kFeaturedProjectsBannerHeight  400.0f
+#define kFeaturedProjectsBannerWidth   1024.0f
 
 @implementation TableUtil
 
@@ -49,7 +49,7 @@
 }
 + (CGFloat)heightForFeaturedCell
 {
-    return kFeaturedProgramsBannerHeight/(kFeaturedProgramsBannerWidth/[Util screenWidth]);
+    return kFeaturedProjectsBannerHeight/(kFeaturedProjectsBannerWidth/[Util screenWidth]);
 }
 
 + (UIBarButtonItem*)editButtonItemWithTarget:(id)target action:(SEL)action

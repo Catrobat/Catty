@@ -31,7 +31,7 @@ extension AudioManager: AudioManagerProtocol {
 
         self.loudnessTimer = Timer.scheduledTimer(timeInterval: noiseRecogniserTimeIntervalInSeconds,
                                                   target: self,
-                                                  selector: #selector(self.programTimerCallback),
+                                                  selector: #selector(self.projectTimerCallback),
                                                   userInfo: nil,
                                                   repeats: true)
 
@@ -83,7 +83,7 @@ extension AudioManager: AudioManagerProtocol {
         try? self.recorder = AVAudioRecorder(url: url, settings: settings)
     }
 
-    @objc func programTimerCallback() {
+    @objc func projectTimerCallback() {
         guard let recorder = self.recorder else { return }
         recorder.updateMeters()
 

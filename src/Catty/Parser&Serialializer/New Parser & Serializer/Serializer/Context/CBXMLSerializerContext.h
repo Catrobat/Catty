@@ -46,7 +46,7 @@
 
 // contains UserVariable names as the dictionary's keys and their current position on the stack (pointer to
 // a CBXMLPositionStack instance) as the dictionary's values (used for serialization only)
-@property (nonatomic, strong) NSMutableDictionary *programUserVariableNamePositions;
+@property (nonatomic, strong) NSMutableDictionary *projectUserVariableNamePositions;
 
 // contains SpriteObject names as the dictionary's keys and NSMutableArrays containing their current position
 // on the stack (pointer to a CBXMLPositionStack instance) as the dictionary's values (used for
@@ -55,7 +55,7 @@
 
 // contains User List names as the dictionary's keys and their current position on the stack (pointer to
 // a CBXMLPositionStack instance) as the dictionary's values (used for serialization only)
-@property (nonatomic, strong) NSMutableDictionary *programUserListNamePositions;
+@property (nonatomic, strong) NSMutableDictionary *projectUserListNamePositions;
 
 //------------------------------------------------------------------------------------------------------------
 // ressources data used while traversing the tree

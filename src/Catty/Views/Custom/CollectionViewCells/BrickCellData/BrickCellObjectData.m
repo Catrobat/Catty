@@ -20,7 +20,6 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-
 #import "BrickCellObjectData.h"
 #import "BrickCell.h"
 #import "Script.h"
@@ -43,7 +42,7 @@
             if([self.brickCell.scriptOrBrick conformsToProtocol:@protocol(BrickObjectProtocol)]) {
                 Brick<BrickObjectProtocol> *objectBrick = (Brick<BrickObjectProtocol>*)self.brickCell.scriptOrBrick;
                 SpriteObject *currentObject = [objectBrick objectForLineNumber:self.lineNumber andParameterNumber:self.parameterNumber];
-                for(SpriteObject *object in objectBrick.script.object.program.objectList) {
+                for(SpriteObject *object in objectBrick.script.object.project.objectList) {
                     [options addObject:object.name];
                     if([currentObject.name isEqualToString:object.name])
                         currentOptionIndex = optionIndex;

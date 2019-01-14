@@ -32,7 +32,7 @@
             let fileName = sound.fileName
             else { return .invalidInstruction() }
 
-        let filePath = projectPath + kProgramSoundsDirName
+        let filePath = projectPath + kProjectSoundsDirName
         let audioManager = AudioManager.shared()
 
         return CBInstruction.execClosure { context, _ in

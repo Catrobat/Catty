@@ -26,7 +26,7 @@ import XCTest
 
 final class ReplaceItemInUserListBrickTests: XCTestCase {
 
-    var program: Program!
+    var project: Project!
     var spriteObject: SpriteObject!
     var spriteNode: CBSpriteNode!
     var script: Script!
@@ -36,22 +36,22 @@ final class ReplaceItemInUserListBrickTests: XCTestCase {
     var brick: ReplaceItemInUserListBrick!
 
     override func setUp() {
-        program = Program()
+        project = Project()
         spriteObject = SpriteObject()
         spriteObject.name = "SpriteObjectName"
 
         spriteNode = CBSpriteNode(spriteObject: spriteObject)
         spriteObject.spriteNode = spriteNode
-        spriteObject.program = program
+        spriteObject.project = project
 
         script = Script()
         script.object = spriteObject
 
-        spriteObject.program.variables = VariablesContainer()
+        spriteObject.project.variables = VariablesContainer()
 
         userList = UserVariable()
         userList.isList = true
-        spriteObject.program.variables.addObjectList(userList, for: spriteObject)
+        spriteObject.project.variables.addObjectList(userList, for: spriteObject)
 
         brick = ReplaceItemInUserListBrick()
         brick.userList = userList

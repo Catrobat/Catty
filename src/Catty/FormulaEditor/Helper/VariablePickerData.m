@@ -29,7 +29,7 @@
     self = [super init];
     if(self) {
         self.title = title;
-        self.isProgramVariable = NO;
+        self.isProjectVariable = NO;
         self.userVariable = nil;
     }
     return self;

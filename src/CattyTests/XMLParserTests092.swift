@@ -27,11 +27,11 @@ import XCTest
 class XMLParserTests092: XMLAbstractTest {
 
     func testConvertUnsupportedBrickToNoteBrick() {
-        let program = getProgramForXML(xmlFile: "InvalidBricksAndScripts")
-        XCTAssertNotNil(program, "Program should not be nil")
-        XCTAssertEqual(1, program.objectList.count)
+        let project = getProjectForXML(xmlFile: "InvalidBricksAndScripts")
+        XCTAssertNotNil(project, "Project should not be nil")
+        XCTAssertEqual(1, project.objectList.count)
 
-        let object = program.objectList[0] as! SpriteObject
+        let object = project.objectList[0] as! SpriteObject
         XCTAssertEqual(3, object.scriptList.count)
 
         let startScript = object.scriptList[0] as! StartScript
@@ -48,11 +48,11 @@ class XMLParserTests092: XMLAbstractTest {
     }
 
     func testConvertUnsupportedScriptToBroadcastBrick() {
-        let program = getProgramForXML(xmlFile: "InvalidBricksAndScripts")
-        XCTAssertNotNil(program, "Program should not be nil")
-        XCTAssertEqual(1, program.objectList.count)
+        let project = getProjectForXML(xmlFile: "InvalidBricksAndScripts")
+        XCTAssertNotNil(project, "Project should not be nil")
+        XCTAssertEqual(1, project.objectList.count)
 
-        let object = program.objectList[0] as! SpriteObject
+        let object = project.objectList[0] as! SpriteObject
         XCTAssertEqual(3, object.scriptList.count)
 
         let unknownScript = object.scriptList[1] as AnyObject
@@ -67,10 +67,10 @@ class XMLParserTests092: XMLAbstractTest {
     }
 
     func testUnsupportedElements() {
-        let program = self.getProgramForXML(xmlFile: "InvalidBricksAndScripts")
+        let project = self.getProjectForXML(xmlFile: "InvalidBricksAndScripts")
 
-        XCTAssertEqual(2, program.unsupportedElements.count)
-        XCTAssertTrue(program.unsupportedElements.contains("InvalidScript"))
-        XCTAssertTrue(program.unsupportedElements.contains("InvalidBrick"))
+        XCTAssertEqual(2, project.unsupportedElements.count)
+        XCTAssertTrue(project.unsupportedElements.contains("InvalidScript"))
+        XCTAssertTrue(project.unsupportedElements.contains("InvalidBrick"))
     }
 }
