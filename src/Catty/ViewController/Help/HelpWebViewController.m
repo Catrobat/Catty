@@ -419,6 +419,12 @@
     [Util alertWithText:kLocalizedProgramNotFound];
 }
 
+- (void)invalidZip
+{
+    [self setBackDownloadStatus];
+    [Util alertWithText:kLocalizedInvalidZip];
+}
+
 - (void)setBackDownloadStatus
 {
     
