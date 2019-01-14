@@ -282,10 +282,10 @@
     NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
     [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
 
-    if ([self.scene startProject]) {
-        [self.skView presentScene:self.scene];
-    } else {
+    [self.skView presentScene:self.scene];
+    if (![self.scene startProject]) {
         [self stopAction];
+        return;
     }
     
     [self hideLoadingView];
