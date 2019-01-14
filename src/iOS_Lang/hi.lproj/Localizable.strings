@@ -101,13 +101,13 @@
 "Categories" = "श्रेणियाँ :";
 
 /* No comment provided by engineer. */
-"Change volume by %@" = "ध्वनी को %@ मूल्य से बदले";
+"Change volume by" = "ध्वनी को मूल्य से बदले";
 
 /* No comment provided by engineer. */
-"Change X by %@" = "X को %@ मूल्य से बदले";
+"Change X by " = "X को मूल्य से बदले";
 
 /* No comment provided by engineer. */
-"Change Y by %@" = "Y को %@ मूल्य से बदले";
+"Change Y by " = "Y को मूल्य से बदले";
 
 /* No comment provided by engineer. */
 "Changes discarded!" = "परिवर्तन छोड़ दिए!";

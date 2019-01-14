@@ -113,15 +113,6 @@
 "Categories" = "Категории";
 
 /* No comment provided by engineer. */
-"Change volume by %@" = "Change volume by %@";
-
-/* No comment provided by engineer. */
-"Change X by %@" = "Change X by %@";
-
-/* No comment provided by engineer. */
-"Change Y by %@" = "Change Y by %@";
-
-/* No comment provided by engineer. */
 "Changes discarded!" = "Changes discarded!";
 
 /* No comment provided by engineer. */
@@ -717,9 +708,6 @@
 
 /* paint */
 "pipette" = "pipette";
-
-/* No comment provided by engineer. */
-"Place at\nX: %@ Y: %@" = "Place at\nX: %@ Y: %@";
 
 /* No comment provided by engineer. */
 "Play" = "Play";

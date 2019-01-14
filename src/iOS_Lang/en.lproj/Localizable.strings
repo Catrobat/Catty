@@ -23,7 +23,7 @@
 "acceleration_z" = "acceleration_z";
 
 /* No comment provided by engineer. */
-"Add %@ to list\n%@" = "Add %@ to list\n%@";
+"Add" = "Add";
 
 /* No comment provided by engineer. */
 "add comment here..." = "add comment here...";
@@ -89,7 +89,10 @@
 "arduino_digital" = "arduino_digital";
 
 /* No comment provided by engineer. */
-"at" = "at";
+"at " = "at ";
+
+/* No comment provided by engineer. */
+"at position" = "at position";
 
 /* paint */
 "Attributes:" = "Attributes:";
@@ -191,16 +194,16 @@
 "ceil" = "ceil";
 
 /* No comment provided by engineer. */
-"Change brightness" = "Change brightness";
+"Change brightness " = "Change brightness ";
 
 /* No comment provided by engineer. */
-"Change color" = "Change color";
+"Change color " = "Change color ";
 
 /* No comment provided by engineer. */
 "Change size by" = "Change size by";
 
 /* No comment provided by engineer. */
-"Change transparency" = "Change transparency";
+"Change transparency " = "Change transparency ";
 
 /* No comment provided by engineer. */
 "Change variable" = "Change variable";
@@ -209,10 +212,10 @@
 "Change volume by" = "Change volume by";
 
 /* No comment provided by engineer. */
-"Change X" = "Change X";
+"Change X by " = "Change X by ";
 
 /* No comment provided by engineer. */
-"Change Y" = "Change Y";
+"Change Y by " = "Change Y by ";
 
 /* No comment provided by engineer. */
 "Changes discarded!" = "Changes discarded!";
@@ -320,7 +323,7 @@
 "Delete Condition" = "Delete Condition";
 
 /* No comment provided by engineer. */
-"Delete item from list\n%@\n at position %@" = "Delete item from list\n%@\n at position %@";
+"Delete item from list" = "Delete item from list";
 
 /* No comment provided by engineer. */
 "Delete Looks" = "Delete Looks";
@@ -692,10 +695,13 @@
 "Information" = "Information";
 
 /* No comment provided by engineer. */
-"Insert %@ into list\n%@\n at position %@" = "Insert %@ into list\n%@\n at position %@";
+"Insert" = "Insert";
 
 /* paint */
 "Inserted" = "Inserted";
+
+/* No comment provided by engineer. */
+"into list" = "into list";
 
 /* No comment provided by engineer. */
 "Invalid input entered, try again." = "Invalid input entered, try again.";
@@ -1100,7 +1106,7 @@
 "Pipette" = "Pipette";
 
 /* No comment provided by engineer. */
-"Place at" = "Place at";
+"Place at " = "Place at ";
 
 /* No comment provided by engineer. */
 "Play Phiro music\n" = "Play Phiro music\n";
@@ -1250,7 +1256,7 @@
 "Repeat until" = "Repeat until";
 
 /* No comment provided by engineer. */
-"Replace item in list\n%@\nat position %@ with %@" = "Replace item in list\n%@\nat position %@ with %@";
+"Replace item in list" = "Replace item in list";
 
 /* No comment provided by engineer. */
 "Report as inappropriate" = "Report as inappropriate";
@@ -1313,7 +1319,13 @@
 "second" = "second";
 
 /* No comment provided by engineer. */
+"second " = "second ";
+
+/* No comment provided by engineer. */
 "seconds" = "seconds";
+
+/* No comment provided by engineer. */
+"seconds " = "seconds ";
 
 /* No comment provided by engineer. */
 "Select All" = "Select All";
@@ -1358,10 +1370,10 @@
 "Set background" = "Set background";
 
 /* No comment provided by engineer. */
-"Set brightness" = "Set brightness";
+"Set brightness " = "Set brightness ";
 
 /* No comment provided by engineer. */
-"Set color" = "Set color";
+"Set color " = "Set color ";
 
 /* No comment provided by engineer. */
 "Set description" = "Set description";
@@ -1373,7 +1385,7 @@
 "Set size to" = "Set size to";
 
 /* No comment provided by engineer. */
-"Set transparency" = "Set transparency";
+"Set transparency " = "Set transparency ";
 
 /* No comment provided by engineer. */
 "Set variable" = "Set variable";
@@ -1382,10 +1394,10 @@
 "Set volume to" = "Set volume to";
 
 /* No comment provided by engineer. */
-"Set X" = "Set X";
+"Set X to " = "Set X to ";
 
 /* No comment provided by engineer. */
-"Set Y" = "Set Y";
+"Set Y to " = "Set Y to ";
 
 /* No comment provided by engineer. */
 "Settings" = "Settings";
@@ -1536,6 +1548,9 @@
 
 /* No comment provided by engineer. */
 "to" = "to";
+
+/* No comment provided by engineer. */
+"to list" = "to list";
 
 /* No comment provided by engineer. */
 "to X:" = "to X:";
@@ -1704,6 +1719,9 @@
 
 /* paint */
 "Width selection" = "Width selection";
+
+/* No comment provided by engineer. */
+"with" = "with";
 
 /* No comment provided by engineer. */
 "X:" = "X:";

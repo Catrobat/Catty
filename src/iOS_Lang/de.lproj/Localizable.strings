@@ -116,22 +116,22 @@
 "Change brightness\nby %@\%" = "Ändere Helligkeit\num %@\%";
 
 /* No comment provided by engineer. */
-"Change size by %@\%" = "Ändere Größe um %@\%";
+"Change size by" = "Ändere Größe um";
 
 /* No comment provided by engineer. */
-"Change transparency\nby %@\%" = "Ändere Transparenz\num %@\%";
+"Change transparency " = "Ändere Transparenz ";
 
 /* No comment provided by engineer. */
-"Change variable\n%@\nby %@" = "Ändere Variable\n%@\num %@";
+"Change variable" = "Ändere Variable";
 
 /* No comment provided by engineer. */
-"Change volume by %@" = "Ändere Lautstärke um %@";
+"Change volume by" = "Ändere Lautstärke um";
 
 /* No comment provided by engineer. */
-"Change X by %@" = "Ändere X um %@";
+"Change X by " = "Ändere X um ";
 
 /* No comment provided by engineer. */
-"Change Y by %@" = "Ändere Y um %@";
+"Change Y by " = "Ändere Y um ";
 
 /* No comment provided by engineer. */
 "Changes discarded!" = "Änderungen verworfen!";
@@ -729,9 +729,6 @@
 
 /* paint */
 "pipette" = "Pipette";
-
-/* No comment provided by engineer. */
-"Place at\nX: %@ Y: %@" = "Setze Position\nX:%@ Y:%@";
 
 /* No comment provided by engineer. */
 "Play" = "Spielen";

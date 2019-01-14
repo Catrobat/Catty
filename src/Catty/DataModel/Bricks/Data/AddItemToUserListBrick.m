@@ -68,7 +68,10 @@
 
 - (NSString*)brickTitle
 {
-    return kLocalizedAddItemToUserList;
+    return [[[kLocalizedUserListAdd
+            stringByAppendingString:@" %@ "]
+            stringByAppendingString:kLocalizedUserListTo]
+            stringByAppendingString:@"\n%@"];
 }
 
 - (BOOL)allowsStringFormula

@@ -50,7 +50,7 @@
             self.broadcastMessage = @"";
     }
     if(![self.broadcastMessage length])
-        self.broadcastMessage = [NSString stringWithString:kLocalizedMessage1];
+        self.broadcastMessage = [NSString stringWithString:kLocalizedBroadcastMessage1];
 }
 
 - (void)setMessage:(NSString*)message forLineNumber:(NSInteger)lineNumber

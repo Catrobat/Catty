@@ -113,13 +113,13 @@
 "Categories" = "Kategorier";
 
 /* No comment provided by engineer. */
-"Change volume by %@" = "Ändra volymen till %@";
+"Change volume by" = "Ändra volymen till";
 
 /* No comment provided by engineer. */
-"Change X by %@" = "Ändra X med%@";
+"Change X by " = "Ändra X med ";
 
 /* No comment provided by engineer. */
-"Change Y by %@" = "Ändra Y med%@";
+"Change Y by " = "Ändra Y med ";
 
 /* No comment provided by engineer. */
 "Changes discarded!" = "Ändringar togs bort!";
@@ -717,9 +717,6 @@
 
 /* paint */
 "pipette" = "pipett";
-
-/* No comment provided by engineer. */
-"Place at\nX: %@ Y: %@" = "Place at\nX: %@ Y: %@";
 
 /* No comment provided by engineer. */
 "Play" = "Spela";

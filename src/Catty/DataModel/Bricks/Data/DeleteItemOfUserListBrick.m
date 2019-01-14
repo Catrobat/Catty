@@ -68,7 +68,10 @@
 
 - (NSString*)brickTitle
 {
-    return kLocalizedDeleteItemOfUserList;
+    return [[[kLocalizedUserListDeleteItemFrom
+            stringByAppendingString:@"\n%@\n"]
+            stringByAppendingString:kLocalizedUserListAtPosition]
+            stringByAppendingString:@" %@"];
 }
 
 - (BOOL)allowsStringFormula

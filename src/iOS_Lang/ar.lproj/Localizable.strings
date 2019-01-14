@@ -26,9 +26,6 @@
 "acceleration_z" = "تسارع z";
 
 /* No comment provided by engineer. */
-"Add %@ to list\n%@" = "إضافة%@ للقائمة\n%@";
-
-/* No comment provided by engineer. */
 "add comment here..." = "أضف تعليق هنا...";
 
 /* No comment provided by engineer. */
@@ -321,9 +318,6 @@
 
 /* No comment provided by engineer. */
 "Delete Condition" = "حذف شرط";
-
-/* No comment provided by engineer. */
-"Delete item from list\n%@\n at position%@" = "حذف عنصر من قائمة\n%@\n في الموضع%@";
 
 /* No comment provided by engineer. */
 "Delete Looks" = "حذف مشهد";
@@ -684,9 +678,6 @@
 
 /* No comment provided by engineer. */
 "Information" = "معلومات";
-
-/* No comment provided by engineer. */
-"Insert%@into list\n%@\n at position%@" = "ادرج%@ في القائمة\n%@\n عند الموضع%@";
 
 /* paint */
 "Inserted" = "تم الإدخال";
@@ -1245,9 +1236,6 @@
 
 /* No comment provided by engineer. */
 "Repeat until" = "تكرار حتى";
-
-/* No comment provided by engineer. */
-"Replace item in list\n%@\nat position %@ with %@" = "استبدال العنصر في القائمة\n%@\nفي موضع %@ بـ %@";
 
 /* No comment provided by engineer. */
 "Report as inappropriate" = "تبليغ كـ محتوى غير مناسب";

@@ -113,13 +113,13 @@
 "Categories" = "Categorie";
 
 /* No comment provided by engineer. */
-"Change volume by %@" = "Cambia il volume di %@";
+"Change volume by" = "Cambia il volume di";
 
 /* No comment provided by engineer. */
-"Change X by %@" = "Cambia X di %@";
+"Change X by " = "Cambia X di ";
 
 /* No comment provided by engineer. */
-"Change Y by %@" = "Cambia Y di %@";
+"Change Y by " = "Cambia Y di ";
 
 /* No comment provided by engineer. */
 "Changes discarded!" = "Modifiche annullate!";
@@ -719,9 +719,6 @@
 "pipette" = "pipetta";
 
 /* No comment provided by engineer. */
-"Place at\nX: %@ Y: %@" = "Place at\nX: %@ Y: %@";
-
-/* No comment provided by engineer. */
 "Play" = "Gioca";
 
 /* Description of AlertView if the user tries to import a sound but no sound has been imported using iTunes. */
@@ -909,9 +906,6 @@
 
 /* No comment provided by engineer. */
 "Set background" = "Imposta sfondo";
-
-/* No comment provided by engineer. */
-"Set brightness to %@\%" = "Set brightness to %@\\%";
 
 /* No comment provided by engineer. */
 "Set description" = "Imposta descrizione";

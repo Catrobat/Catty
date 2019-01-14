@@ -41,7 +41,7 @@
             self.receivedMessage = nil;
     }
     if(!self.receivedMessage)
-        self.receivedMessage = [NSString stringWithString:kLocalizedMessage1];
+        self.receivedMessage = [NSString stringWithString:kLocalizedBroadcastMessage1];
 }
 
 - (void)setMessage:(NSString*)message forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber

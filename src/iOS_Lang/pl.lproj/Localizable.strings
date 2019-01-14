@@ -113,13 +113,13 @@
 "Categories" = "Kategorie";
 
 /* No comment provided by engineer. */
-"Change volume by %@" = "Zmień głośność o %@";
+"Change volume by" = "Zmień głośność o";
 
 /* No comment provided by engineer. */
-"Change X by %@" = "Zmień X o %@";
+"Change X by " = "Zmień X o ";
 
 /* No comment provided by engineer. */
-"Change Y by %@" = "Zmień Y o %@";
+"Change Y by " = "Zmień Y o ";
 
 /* No comment provided by engineer. */
 "Changes discarded!" = "Zmiany odrzucone!";
@@ -717,9 +717,6 @@
 
 /* paint */
 "pipette" = "pipeta";
-
-/* No comment provided by engineer. */
-"Place at\nX: %@ Y: %@" = "Place at\nX: %@ Y: %@";
 
 /* No comment provided by engineer. */
 "Play" = "Graj";

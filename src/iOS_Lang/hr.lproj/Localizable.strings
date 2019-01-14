@@ -113,13 +113,13 @@
 "Categories" = "Kategorije";
 
 /* No comment provided by engineer. */
-"Change volume by %@" = "Promjeni glasnoću za %@";
+"Change volume by" = "Promjeni glasnoću za";
 
 /* No comment provided by engineer. */
-"Change X by %@" = "Promjeni X za %@";
+"Change X by " = "Promjeni X za ";
 
 /* No comment provided by engineer. */
-"Change Y by %@" = "Promjeni Y za %@";
+"Change Y by " = "Promjeni Y za ";
 
 /* No comment provided by engineer. */
 "Changes discarded!" = "Promjene odbačene!";
@@ -717,9 +717,6 @@
 
 /* paint */
 "pipette" = "pipette";
-
-/* No comment provided by engineer. */
-"Place at\nX: %@ Y: %@" = "Place at\nX: %@ Y: %@";
 
 /* No comment provided by engineer. */
 "Play" = "Pokreni";

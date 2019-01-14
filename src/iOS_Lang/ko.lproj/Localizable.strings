@@ -89,13 +89,13 @@
 "Categories" = "카테고리";
 
 /* No comment provided by engineer. */
-"Change volume by %@" = "%@만큼 볼륨 변경하기";
+"Change volume by" = "만큼 볼륨 변경하기";
 
 /* No comment provided by engineer. */
-"Change X by %@" = "X 좌표를 %@만큼 변경하기";
+"Change X by " = "X 좌표를 만큼 변경하기";
 
 /* No comment provided by engineer. */
-"Change Y by %@" = "Y 좌표를 %@만큼 변경하기";
+"Change Y by " = "Y 좌표를 만큼 변경하기";
 
 /* No comment provided by engineer. */
 "Changes discarded!" = "변경 내용이 취소되었습니다.";

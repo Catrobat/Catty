@@ -77,7 +77,12 @@
 
 - (NSString*)brickTitle
 {
-    return kLocalizedReplaceItemInUserList;
+    return [[[[[kLocalizedUserListReplaceItemInList
+               stringByAppendingString:@"\n%@\n"]
+               stringByAppendingString:kLocalizedUserListAtPosition]
+               stringByAppendingString:@" %@ "]
+               stringByAppendingString:kLocalizedUserListWith]
+               stringByAppendingString:@" %@"];
 }
 
 - (BOOL)allowsStringFormula
