@@ -39,8 +39,6 @@
 #define kTestRegisterUrl kTestUrl kRegisterUrlExtension
 #define kTestReportProgramUrl kTestUrl kReportProgramExtension
 #define kReportProgramUrl kBaseUrl kReportProgramExtension
-#define kForumURL kBaseUrl @"help"
-#define kDownloadUrl kBaseUrl @"download"
 #define kSourceCodeLicenseURL @"http://developer.catrobat.org/licenses"
 #define kAboutCatrobatURL @"http://www.catrobat.org"
 #define kTermsOfUseURL kBaseUrl @"termsOfUse"

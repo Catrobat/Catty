@@ -202,7 +202,9 @@ if (__functor) __functor(__VA_ARGS__);  \
 
 + (NSString*)enableBlockedCharactersForString:(NSString*)string;
 
-+ (void)openUrlWithString:(NSString*)rawUrl;
++ (void)openUrlExternal:(NSURL*)url;
+
++ (void)setNetworkActivityIndicator:(BOOL)enabled;
 
 + (BOOL)isArduinoActivated;
 

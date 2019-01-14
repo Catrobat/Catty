@@ -1434,7 +1434,7 @@
         <!--Help Web View Controller-->
         <scene sceneID="7zO-Ww-9xa">
             <objects>
-                <viewController id="IZh-b2-DYW" customClass="HelpWebViewController" sceneMemberID="viewController">
+                <viewController id="IZh-b2-DYW" customClass="HelpWebViewController" customModule="Pocket_Code" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="LYJ-C4-dCk"/>
                         <viewControllerLayoutGuide type="bottom" id="aRr-mg-UEb"/>

@@ -26,7 +26,7 @@
 #import "Sound.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "NetworkDefines.h"
-#import "HelpWebViewController.h"
+#import "Pocket_Code-Swift.h"
 
 @interface CBFileManager ()
 
@@ -360,15 +360,7 @@
     NSDebug(@"Starting downloading program '%@' with id %@ from url: %@", name, programID, [url absoluteString]);
     
     if (! self.downloadSession) {
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000
-        // iOS8 specific stuff
         NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
-//        sessionConfig.identifier = @"at.tugraz";
-#else
-        // iOS7 specific stuff
-        NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration backgroundSessionConfiguration:@"at.tugraz"];
-#endif
-        
         sessionConfig.timeoutIntervalForRequest = kConnectionTimeout;
         self.downloadSession = [NSURLSession sessionWithConfiguration:sessionConfig
                                                              delegate:self
@@ -516,10 +508,7 @@
         [self.programNameDict removeObjectForKey:task];
         [self.programIDDict removeObjectForKey:task];
     }
-    UIApplication* app = [UIApplication sharedApplication];
-    app.networkActivityIndicatorVisible = NO;
-
-    
+    [Util setNetworkActivityIndicator:NO];
 }
 
 - (uint64_t)freeDiskspace
@@ -551,9 +540,7 @@
         // Notification for reloading MyProgramViewController
         [[NSNotificationCenter defaultCenter] postNotificationName:kProgramDownloadedNotification object:self];
     }
-    
-    UIApplication* app = [UIApplication sharedApplication];
-    app.networkActivityIndicatorVisible = NO;
+    [Util setNetworkActivityIndicator:NO];
 }
 
 - (void)URLSession:(NSURLSession*)session downloadTask:(NSURLSessionDownloadTask*)downloadTask didResumeAtOffset:(int64_t)fileOffset expectedTotalBytes:(int64_t)expectedTotalBytes
@@ -575,8 +562,7 @@
                 [self.delegate maximumFilesizeReached];
             });
         }
-        UIApplication* app = [UIApplication sharedApplication];
-        app.networkActivityIndicatorVisible = NO;
+        [Util setNetworkActivityIndicator:NO];
         return;
     } else {
         double progress = (double)totalBytesWritten/(double)totalBytesExpectedToWrite;
@@ -591,8 +577,7 @@
 
         }
         dispatch_async(dispatch_get_main_queue(), ^{
-            UIApplication* app = [UIApplication sharedApplication];
-            app.networkActivityIndicatorVisible = YES;
+            [Util setNetworkActivityIndicator:YES];
         });
     }
 }
@@ -603,8 +588,7 @@
         // FIXME: hack: workaround for app crash issue...
         if (error.code != kCFURLErrorNotConnectedToInternet) {
             [task suspend];
-            UIApplication* app = [UIApplication sharedApplication];
-            app.networkActivityIndicatorVisible = NO;
+            [Util setNetworkActivityIndicator:NO];
         }
         if (error.code == kCFURLErrorCannotFindHost) {
             if ([self.delegate respondsToSelector:@selector(setBackDownloadStatus)]) {
@@ -642,8 +626,7 @@
                 [self.delegate setBackDownloadStatus];
             });
         }
-        UIApplication* app = [UIApplication sharedApplication];
-        app.networkActivityIndicatorVisible = NO;
+        [Util setNetworkActivityIndicator:NO];
     }
 }
 
@@ -654,8 +637,7 @@
             [self.delegate setBackDownloadStatus];
         });
     }
-    UIApplication* app = [UIApplication sharedApplication];
-    app.networkActivityIndicatorVisible = NO;
+    [Util setNetworkActivityIndicator:NO];
 }
 
 

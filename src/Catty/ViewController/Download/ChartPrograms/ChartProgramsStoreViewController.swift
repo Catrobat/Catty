@@ -187,20 +187,15 @@ class ChartProgramsStoreViewController: UIViewController, SelectedChartProgramsD
             view.addSubview(loadingView!)
         }
         loadingView?.show()
-        loadingIndicator(true)
+        Util.setNetworkActivityIndicator(true)
     }
 
     func hideLoadingView() {
         if shouldHideLoadingView {
             loadingView?.hide()
-            loadingIndicator(false)
+            Util.setNetworkActivityIndicator(false)
             self.shouldHideLoadingView = false
         }
-    }
-
-    func loadingIndicator(_ value: Bool) {
-        let app = UIApplication.shared
-        app.isNetworkActivityIndicatorVisible = value
     }
 }
 
