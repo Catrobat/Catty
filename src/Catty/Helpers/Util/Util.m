@@ -805,13 +805,17 @@
                   completion:^{ [hud removeFromSuperview]; }];
 }
 
-+ (void)openUrlWithString:(NSString*)rawUrl
++ (void)openUrlExternal:(NSURL*)url
 {
     if (@available(iOS 10, *)) {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:rawUrl] options:[NSDictionary dictionary] completionHandler:nil];
+        [[UIApplication sharedApplication] openURL:url options:[NSDictionary dictionary] completionHandler:nil];
     } else {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:rawUrl]];
+        [[UIApplication sharedApplication] openURL:url];
     }
+}
+
++ (void)setNetworkActivityIndicator:(BOOL)enabled {
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:enabled];
 }
 
 + (BOOL)isPhiroActivated

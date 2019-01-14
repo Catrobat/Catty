@@ -485,19 +485,13 @@
         [self.view addSubview:self.loadingView];
     }
     [self.loadingView show];
-    [self loadingIndicator:YES];
+    [Util setNetworkActivityIndicator:YES];
 }
 
 - (void) hideLoadingView
 {
     [self.loadingView hide];
-    [self loadingIndicator:NO];
-}
-
-- (void)loadingIndicator:(BOOL)value
-{
-    UIApplication* app = [UIApplication sharedApplication];
-    app.networkActivityIndicatorVisible = value;
+    [Util setNetworkActivityIndicator:NO];
 }
 
 @end

@@ -20,18 +20,18 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-//************************************************************************************************************
-//************************************       MediaLibrary        *********************************************
-//************************************************************************************************************
+//*************************************************************************************
+//***********************       MediaLibrary        ***********************************
+//*************************************************************************************
 
 let kMediaLibraryBackgroundsIndex = kBaseUrl.appending("/api/media/package/Backgrounds/json")
 let kMediaLibraryLooksIndex = kBaseUrl.appending("/api/media/package/Looks/json")
 let kMediaLibrarySoundsIndex = kBaseUrl.appending("/api/media/package/Sounds/json")
 let kMediaLibraryDownloadBaseURL = kBaseUrl.replacingOccurrences(of: "/pocketcode/", with: "")
 
-//************************************************************************************************************
-//******************************      FeaturedProjectStoreViewController       *****************************
-//************************************************************************************************************
+//*************************************************************************************
+//*******************      FeaturedProjectStoreViewController       *******************
+//*************************************************************************************
 
 let kConnectionHost = kBaseUrl.appending("api/projects")
 let kFeaturedImageBaseUrl = kBaseUrl.replacingOccurrences(of: "/pocketcode/", with: "/")
@@ -39,9 +39,16 @@ let kChartProjectsMaxResults = 10
 let kRecentProjectsMaxResults = 20
 let kSearchStoreMaxResults = 50
 
-//************************************************************************************************************
-//***********************************      UploadInfoViewController       ************************************
-//************************************************************************************************************
+//*************************************************************************************
+//*******************      UploadInfoViewController       *****************************
+//*************************************************************************************
 
 let kUploadUrl = kBaseUrl.appending("api/upload")
 let kTestUploadUrl = kTestUrl.appending("api/upload")
+
+//*************************************************************************************
+//*********************      HelpWebViewController       ******************************
+//*************************************************************************************
+
+let kDownloadUrl = kBaseUrl.appending("download")
+let kForumURL = kBaseUrl.appending("help")

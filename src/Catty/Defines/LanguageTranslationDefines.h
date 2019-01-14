@@ -283,6 +283,7 @@
 #define kLocalizedTermsOfUseDescription NSLocalizedString(@"In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation.", nil)
 #define kLocalizedNotEnoughFreeMemoryDescription NSLocalizedString(@"Not enough free memory to download this project. Please delete some of your projects", nil)
 #define kLocalizedProjectNotFound NSLocalizedString(@"The requested project can not be found. Please choose a different one.", nil)
+#define kLocalizedInvalidZip NSLocalizedString(@"The requested project can not be loaded. Please try again later.", nil)
 #define kLocalizedEnterYourProjectNameHere NSLocalizedString(@"Enter your project name here...", @"Placeholder for project-name input field")
 #define kLocalizedEnterNameForImportedProjectTitle NSLocalizedString(@"Import File", @"Title of prompt shown when a *.catrobat file is imported from a third-party app.")
 #define kLocalizedEnterYourProjectDescriptionHere NSLocalizedString(@"Enter your project description here...", @"Placeholder for project-description input field")

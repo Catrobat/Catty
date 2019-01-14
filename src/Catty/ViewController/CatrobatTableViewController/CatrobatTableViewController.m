@@ -32,7 +32,6 @@
 #import "SegueDefines.h"
 #import "Script.h"
 #import "ProjectTableViewController.h"
-#import "HelpWebViewController.h"
 #import "ProjectsForUploadViewController.h"
 #import "LoginViewController.h"
 #import "SettingsTableViewController.h"

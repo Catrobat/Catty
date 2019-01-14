@@ -52,7 +52,7 @@
 
 - (void)openTermsOfUse
 {
-    [Util openUrlWithString:kTermsOfUseURL];
+    [Util openUrlExternal:[NSURL URLWithString:kTermsOfUseURL]];
 }
 
 

@@ -453,6 +453,12 @@
     [Util alertWithText:kLocalizedProjectNotFound];
 }
 
+- (void)invalidZip
+{
+    [self setBackDownloadStatus];
+    [Util alertWithText:kLocalizedInvalidZip];
+}
+
 - (void)setBackDownloadStatus
 {
     [self.view viewWithTag:kDownloadButtonTag].hidden = NO;

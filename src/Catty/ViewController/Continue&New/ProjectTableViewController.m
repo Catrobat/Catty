@@ -603,7 +603,7 @@
         [[[[[[AlertControllerBuilder alertWithTitle:kLocalizedUnsupportedElements message:[NSString stringWithFormat:@"%@\n\n%@", kLocalizedUnsupportedElementsDescription, unsupportedElementsString]] addDefaultActionWithTitle:kLocalizedCancel handler:^{
             [self.navigationController popViewControllerAnimated:YES];
         }] addDefaultActionWithTitle:kLocalizedMoreInformation handler:^{
-            [Util openUrlWithString:kUnsupportedElementsUrl];
+            [Util openUrlExternal:[NSURL URLWithString:kUnsupportedElementsUrl]];
         }] addDefaultActionWithTitle:kLocalizedOK handler:nil] build]
          showWithController:self];
     }

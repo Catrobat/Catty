@@ -59,11 +59,11 @@
 
 - (void)openAboutURL
 {
-    [Util openUrlWithString:kAboutCatrobatURL];
+    [Util openUrlExternal:[NSURL URLWithString:kAboutCatrobatURL]];
 }
 
 - (void)openSourceCodeLicenseURL
 {
-    [Util openUrlWithString:kSourceCodeLicenseURL];
+    [Util openUrlExternal:[NSURL URLWithString:kSourceCodeLicenseURL]];
 }
 @end
