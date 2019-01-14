@@ -203,7 +203,8 @@ class HelpWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
             return false
         }
         // parse project name
-        let projectName: String? = urlComp.queryItems?.first(where: { $0.name == "fname" })?.value
+        let projectName: String? = urlComp.queryItems?
+            .first(where: { $0.name == "fname" })?.value?.replacingOccurrences(of: "+", with: " ")
         if projectName == nil || projectName!.isEmpty {
             Util.alert(withText: kLocalizedInvalidURLGiven)
             return false
