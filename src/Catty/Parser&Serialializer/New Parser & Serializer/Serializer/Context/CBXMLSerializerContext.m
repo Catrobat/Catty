@@ -50,12 +50,12 @@
     return _spriteObjectNameUserVariableListPositions;
 }
 
-- (NSMutableDictionary*)programUserVariableNamePositions
+- (NSMutableDictionary*)projectUserVariableNamePositions
 {
-    if(! _programUserVariableNamePositions)
-        _programUserVariableNamePositions = [NSMutableDictionary dictionary];
+    if(! _projectUserVariableNamePositions)
+        _projectUserVariableNamePositions = [NSMutableDictionary dictionary];
 
-    return _programUserVariableNamePositions;
+    return _projectUserVariableNamePositions;
 }
 
 - (NSMutableDictionary*)spriteObjectNameUserListOfListsPositions
@@ -66,12 +66,12 @@
     return _spriteObjectNameUserListOfListsPositions;
 }
 
-- (NSMutableDictionary*)programUserListNamePositions
+- (NSMutableDictionary*)projectUserListNamePositions
 {
-    if(! _programUserListNamePositions)
-        _programUserListNamePositions = [NSMutableDictionary dictionary];
+    if(! _projectUserListNamePositions)
+        _projectUserListNamePositions = [NSMutableDictionary dictionary];
     
-    return _programUserListNamePositions;
+    return _projectUserListNamePositions;
 }
 
 - (NSMutableArray*)brickList
@@ -87,8 +87,8 @@
     CBXMLSerializerContext *copiedContext = [super mutableCopy];
     copiedContext.currentPositionStack = [self.currentPositionStack mutableCopy];
     copiedContext.spriteObjectNamePositions = [self.spriteObjectNamePositions mutableCopy];
-    copiedContext.programUserVariableNamePositions = [self.programUserVariableNamePositions mutableCopy];
-    copiedContext.programUserListNamePositions = [self.programUserListNamePositions mutableCopy];
+    copiedContext.projectUserVariableNamePositions = [self.projectUserVariableNamePositions mutableCopy];
+    copiedContext.projectUserListNamePositions = [self.projectUserListNamePositions mutableCopy];
     copiedContext.spriteObjectNameUserVariableListPositions = [self.spriteObjectNameUserVariableListPositions mutableCopy];
     copiedContext.spriteObjectNameUserListOfListsPositions = [self.spriteObjectNameUserListOfListsPositions mutableCopy];
     copiedContext.brickList = [self.brickList mutableCopy];

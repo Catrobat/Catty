@@ -26,7 +26,7 @@ import XCTest
 
 final class ShowTextBrickTests: XCTestCase {
 
-    var program: Program!
+    var project: Project!
     var spriteObject: SpriteObject!
     var spriteNode: CBSpriteNode!
     var script: Script!
@@ -34,14 +34,14 @@ final class ShowTextBrickTests: XCTestCase {
     var context: CBScriptContextProtocol!
 
     override func setUp() {
-        program = Program()
+        project = Project()
 
         spriteObject = SpriteObject()
         spriteObject.name = "SpriteObjectName"
 
         spriteNode = CBSpriteNode(spriteObject: spriteObject)
         spriteObject.spriteNode = spriteNode
-        spriteObject.program = program
+        spriteObject.project = project
 
         script = Script()
         script.object = spriteObject
@@ -57,7 +57,7 @@ final class ShowTextBrickTests: XCTestCase {
         spriteNode.position = CGPoint(x: 0, y: 0)
 
         let varContainer = VariablesContainer()
-        spriteObject.program.variables = varContainer
+        spriteObject.project.variables = varContainer
 
         let brick = ShowTextBrick()
         brick.script = script

@@ -99,26 +99,6 @@
     return buffer;
 }
 
-+ (id)valueForHeaderPropertyNode:(GDataXMLNode*)propertyNode
-{
-    objc_property_t property = class_getProperty([Header class], [propertyNode.name UTF8String]);
-    [XMLError exceptionIfNull:property message:@"Invalid header property %@ given", propertyNode.name];
-    NSString *propertyType = [NSString stringWithUTF8String:[[self class] typeStringForProperty:property]];
-    id value = nil;
-    if ([propertyType isEqualToString:kParserObjectTypeString]) {
-        value = [propertyNode stringValue];
-    } else if ([propertyType isEqualToString:kParserObjectTypeNumber]) {
-        value = [NSNumber numberWithFloat:[[propertyNode stringValue]floatValue]];
-    } else if ([propertyType isEqualToString:kParserObjectTypeDate]) {
-        value = [[Header headerDateFormatter] dateFromString:propertyNode.stringValue];
-    } else if ([propertyType isEqualToString:kParserObjectTypeBOOL]) {
-        value = [NSNumber numberWithBool:[[propertyNode stringValue] boolValue]];
-    } else {
-        [XMLError exceptionWithMessage:@"Unsupported type for property %@ (of type: %@) in header", propertyNode.name, propertyType];
-    }
-    return value;
-}
-
 + (id)valueForHeaderProperty:(NSString*)headerPropertyName andXMLNode:(GDataXMLNode*)propertyNode
 {
     objc_property_t property = class_getProperty([Header class], [headerPropertyName UTF8String]);

@@ -49,7 +49,7 @@
 
 // ----------------- REFACTOR BEGIN -------------------
 #define kControlBrickNameParams @[\
-    @[],                            /* program started */\
+    @[],                            /* project started */\
     @[],                            /* tapped object   */\
     @[],                            /* touched screen  */\
     @"{FLOAT;range=(0.0f,inf)}",    /* wait            */\

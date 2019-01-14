@@ -44,8 +44,8 @@
 - (void)testClearGraphicEffectBrick
 {
     SpriteObject *object = [[SpriteObject alloc] init];
-    Program *program = [Program defaultProgramWithName:@"a" programID:nil];
-    object.program = program;
+    Project *project = [Project defaultProjectWithName:@"a" projectID:nil];
+    object.project = project;
     CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
     object.spriteNode = spriteNode;
     
@@ -85,14 +85,14 @@
 
     XCTAssertEqualWithAccuracy(spriteNode.alpha, TransparencySensor.defaultRawValue, 0.0001f, @"ClearGraphic alpha is not correctly calculated");
     XCTAssertEqualWithAccuracy(spriteNode.ciBrightness, BrightnessSensor.defaultRawValue, 0.0001f, @"ClearGraphic brightness is not correctly calculated");
-    [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
+    [Project removeProjectFromDiskWithProjectName:project.header.programName projectID:project.header.programID];
 }
 
 - (void)testClearGraphicEffectBrick2
 {
     SpriteObject *object = [[SpriteObject alloc] init];
-    Program *program = [Program defaultProgramWithName:@"a" programID:nil];
-    object.program = program;
+    Project *project = [Project defaultProjectWithName:@"a" projectID:nil];
+    object.project = project;
     CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
     object.spriteNode = spriteNode;
     
@@ -139,7 +139,7 @@
 
     XCTAssertEqualWithAccuracy(spriteNode.alpha, TransparencySensor.defaultRawValue, 0.0001f, @"ClearGraphic is not correctly calculated");
     XCTAssertEqualWithAccuracy(spriteNode.ciBrightness, BrightnessSensor.defaultRawValue, 0.0001f, @"ClearGraphic brightness is not correctly calculated");
-    [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
+    [Project removeProjectFromDiskWithProjectName:project.header.programName projectID:project.header.programID];
 }
 
 @end

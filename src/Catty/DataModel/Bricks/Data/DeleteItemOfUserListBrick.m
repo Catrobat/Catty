@@ -23,7 +23,7 @@
 #import "DeleteItemOfUserListBrick.h"
 #import "Formula.h"
 #import "UserVariable.h"
-#import "Program.h"
+#import "Project.h"
 #import "VariablesContainer.h"
 #import "Script.h"
 
@@ -58,7 +58,7 @@
 {
     self.listFormula = [[Formula alloc] initWithInteger:1];
     if(spriteObject) {
-        NSArray *lists = [spriteObject.program.variables allListsForObject:spriteObject];
+        NSArray *lists = [spriteObject.project.variables allListsForObject:spriteObject];
         if([lists count] > 0)
             self.userList = [lists objectAtIndex:0];
         else
@@ -68,7 +68,10 @@
 
 - (NSString*)brickTitle
 {
-    return kLocalizedDeleteItemOfUserList;
+    return [[[kLocalizedUserListDeleteItemFrom
+            stringByAppendingString:@"\n%@\n"]
+            stringByAppendingString:kLocalizedUserListAtPosition]
+            stringByAppendingString:@" %@"];
 }
 
 - (BOOL)allowsStringFormula

@@ -157,8 +157,8 @@
 #import "BaseTableViewController.h"
 #import "LooksTableViewController.h"
 #import "FormulaEditorViewController.h"
-#import "MyProgramsViewController.h"
-#import "ProgramTableViewController.h"
+#import "MyProjectsViewController.h"
+#import "ProjectTableViewController.h"
 
 //------------------------------------------------------------------------------------------------------------
 
@@ -176,12 +176,12 @@
 // Headers to sort
 //-----------------------------------------------------------------------------------------------------------
 #import "CatrobatInformation.h"
-#import "CatrobatProgram.h"
+#import "CatrobatProject.h"
 #import "AppDelegate.h"
 #import "TableUtil.h"
 #import "CellTagDefines.h"
 #import "SegueDefines.h"
-#import "ProgramDetailStoreViewController.h"
+#import "ProjectDetailStoreViewController.h"
 #import "DarkBlueGradientFeaturedCell.h"
 #import "CBXMLParser.h"
 #import "Parser.h"
@@ -195,7 +195,7 @@
 #import "ChangeVariableBrick+CBXMLHandler.h"
 #import "MoveNStepsBrick+CBXMLHandler.h"
 #import "PointToBrick+CBXMLHandler.h"
-#import "Program+CBXMLHandler.h"
+#import "Project+CBXMLHandler.h"
 #import "Header+CBXMLHandler.h"
 #import "SpriteObject+CBXMLHandler.h"
 #import "VariablesContainer.h"

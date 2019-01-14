@@ -54,7 +54,7 @@
 - (NSString*)brickTitle
 {
     NSString* timeToWaitStr = [self.timeToWaitInSeconds isSingularNumber] ? kLocalizedSecond : kLocalizedSeconds;
-    return [kLocalizedWait stringByAppendingString:[@"%@ " stringByAppendingString:timeToWaitStr]];
+    return [kLocalizedWait stringByAppendingString:[@" %@ " stringByAppendingString:timeToWaitStr]];
 }
 
 #pragma mark - Description

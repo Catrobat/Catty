@@ -45,14 +45,14 @@
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     if(spriteObject) {
-        NSArray *messages = [Util allMessagesForProgram:spriteObject.program];
+        NSArray *messages = [Util allMessagesForProject:spriteObject.project];
         if([messages count] > 0)
             self.broadcastMessage = [messages objectAtIndex:0];
         else
             self.broadcastMessage = @"";
     }
     if(![self.broadcastMessage length])
-        self.broadcastMessage = [NSString stringWithString:kLocalizedMessage1];
+        self.broadcastMessage = [NSString stringWithString:kLocalizedBroadcastMessage1];
 }
 
 - (void)setMessage:(NSString*)message forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber

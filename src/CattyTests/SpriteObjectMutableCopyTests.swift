@@ -26,111 +26,111 @@ import XCTest
 
 final class SpriteObjectMutableCopyTests: XMLAbstractTest {
 
-    func testIfCopiedSpriteObjectsAreEqualToOriginalForValidProgramAllBricks() {
-        self.compareSpriteObjectsWithIsEqualMethodForProgramWithXML(xml: "ValidProgramAllBricks093")
+    func testIfCopiedSpriteObjectsAreEqualToOriginalForValidProjectAllBricks() {
+        self.compareSpriteObjectsWithIsEqualMethodForProjectWithXML(xml: "ValidProjectAllBricks093")
     }
 
     func testIfCopiedSpriteObjectsAreEqualToOriginalForAirFight() {
-        self.compareSpriteObjectsWithIsEqualMethodForProgramWithXML(xml: "Air_fight_0.5_093")
+        self.compareSpriteObjectsWithIsEqualMethodForProjectWithXML(xml: "Air_fight_0.5_093")
     }
 
     func testIfCopiedSpriteObjectsAreEqualToOriginalForAirplaneWithShadow() {
-        self.compareSpriteObjectsWithIsEqualMethodForProgramWithXML(xml: "Airplane_with_shadow_093")
+        self.compareSpriteObjectsWithIsEqualMethodForProjectWithXML(xml: "Airplane_with_shadow_093")
     }
 
     func testIfCopiedSpriteObjectsAreEqualToOriginalForCompass() {
-        self.compareSpriteObjectsWithIsEqualMethodForProgramWithXML(xml: "Compass_0.1_093")
+        self.compareSpriteObjectsWithIsEqualMethodForProjectWithXML(xml: "Compass_0.1_093")
     }
 
     func testIfCopiedSpriteObjectsAreEqualToOriginalForDemonstration() {
-        self.compareSpriteObjectsWithIsEqualMethodForProgramWithXML(xml: "Demonstration_093")
+        self.compareSpriteObjectsWithIsEqualMethodForProjectWithXML(xml: "Demonstration_093")
     }
 
     func testIfCopiedSpriteObjectsAreEqualToOriginalForDrinkMoreWater() {
-        self.compareSpriteObjectsWithIsEqualMethodForProgramWithXML(xml: "Drink_more_water_093")
+        self.compareSpriteObjectsWithIsEqualMethodForProjectWithXML(xml: "Drink_more_water_093")
     }
 
     func testIfCopiedSpriteObjectsAreEqualToOriginalForFlappy() {
-        self.compareSpriteObjectsWithIsEqualMethodForProgramWithXML(xml: "Flappy_v3.0_093")
+        self.compareSpriteObjectsWithIsEqualMethodForProjectWithXML(xml: "Flappy_v3.0_093")
     }
 
     func testIfCopiedSpriteObjectsAreEqualToOriginalForGalaxyWar() {
-        self.compareSpriteObjectsWithIsEqualMethodForProgramWithXML(xml: "Galaxy_War_093")
+        self.compareSpriteObjectsWithIsEqualMethodForProjectWithXML(xml: "Galaxy_War_093")
     }
 
     func testIfCopiedSpriteObjectsAreEqualToOriginalForGossipGirl() {
-        self.compareSpriteObjectsWithIsEqualMethodForProgramWithXML(xml: "Gossip_Girl_093")
+        self.compareSpriteObjectsWithIsEqualMethodForProjectWithXML(xml: "Gossip_Girl_093")
     }
 
     func testIfCopiedSpriteObjectsAreEqualToOriginalForMemory() {
-        self.compareSpriteObjectsWithIsEqualMethodForProgramWithXML(xml: "Memory_093")
+        self.compareSpriteObjectsWithIsEqualMethodForProjectWithXML(xml: "Memory_093")
     }
 
     func testIfCopiedSpriteObjectsAreEqualToOriginalForMinecraftWorkInProgress() {
-        self.compareSpriteObjectsWithIsEqualMethodForProgramWithXML(xml: "Minecraft_Work_In_Progress_093")
+        self.compareSpriteObjectsWithIsEqualMethodForProjectWithXML(xml: "Minecraft_Work_In_Progress_093")
     }
 
     func testIfCopiedSpriteObjectsAreEqualToOriginalForMinions() {
-        self.compareSpriteObjectsWithIsEqualMethodForProgramWithXML(xml: "Minions__093")
+        self.compareSpriteObjectsWithIsEqualMethodForProjectWithXML(xml: "Minions__093")
     }
 
     func testIfCopiedSpriteObjectsAreEqualToOriginalForNyancat() {
-        self.compareSpriteObjectsWithIsEqualMethodForProgramWithXML(xml: "Nyancat_1.0_093")
+        self.compareSpriteObjectsWithIsEqualMethodForProjectWithXML(xml: "Nyancat_1.0_093")
     }
 
     func testIfCopiedSpriteObjectsAreEqualToOriginalForPiano() {
-        self.compareSpriteObjectsWithIsEqualMethodForProgramWithXML(xml: "Piano_093")
+        self.compareSpriteObjectsWithIsEqualMethodForProjectWithXML(xml: "Piano_093")
     }
 
     func testIfCopiedSpriteObjectsAreEqualToOriginalForPongStarter() {
-        self.compareSpriteObjectsWithIsEqualMethodForProgramWithXML(xml: "Pong_Starter_093")
+        self.compareSpriteObjectsWithIsEqualMethodForProjectWithXML(xml: "Pong_Starter_093")
     }
 
     func testIfCopiedSpriteObjectsAreEqualToOriginalForPythagoreanTheorem() {
-        self.compareSpriteObjectsWithIsEqualMethodForProgramWithXML(xml: "Pythagorean_Theorem_093")
+        self.compareSpriteObjectsWithIsEqualMethodForProjectWithXML(xml: "Pythagorean_Theorem_093")
     }
 
     func testIfCopiedSpriteObjectsAreEqualToOriginalForRockPaperScissors() {
-        self.compareSpriteObjectsWithIsEqualMethodForProgramWithXML(xml: "Rock_paper_scissors_093")
+        self.compareSpriteObjectsWithIsEqualMethodForProjectWithXML(xml: "Rock_paper_scissors_093")
     }
 
     func testIfCopiedSpriteObjectsAreEqualToOriginalForSkyPascal() {
-        self.compareSpriteObjectsWithIsEqualMethodForProgramWithXML(xml: "SKYPASCAL_093")
+        self.compareSpriteObjectsWithIsEqualMethodForProjectWithXML(xml: "SKYPASCAL_093")
     }
 
     func testIfCopiedSpriteObjectsAreEqualToOriginalForSkydivingSteve() {
-        self.compareSpriteObjectsWithIsEqualMethodForProgramWithXML(xml: "Skydiving_Steve_093")
+        self.compareSpriteObjectsWithIsEqualMethodForProjectWithXML(xml: "Skydiving_Steve_093")
     }
 
     func testIfCopiedSpriteObjectsAreEqualToOriginalForTicTacToeMaster() {
-        self.compareSpriteObjectsWithIsEqualMethodForProgramWithXML(xml: "Tic_Tac_Toe_Master_093")
+        self.compareSpriteObjectsWithIsEqualMethodForProjectWithXML(xml: "Tic_Tac_Toe_Master_093")
     }
 
     func testIfCopiedSpriteObjectsAreEqualToOriginalForWordBalloonDemo() {
-        self.compareSpriteObjectsWithIsEqualMethodForProgramWithXML(xml: "Word_balloon_demo_093")
+        self.compareSpriteObjectsWithIsEqualMethodForProjectWithXML(xml: "Word_balloon_demo_093")
     }
 
     func testIfCopiedSpriteObjectsAreEqualToOriginalForXRayPhone() {
-        self.compareSpriteObjectsWithIsEqualMethodForProgramWithXML(xml: "X_Ray_phone_093")
+        self.compareSpriteObjectsWithIsEqualMethodForProjectWithXML(xml: "X_Ray_phone_093")
     }
 
     func testIfCopiedSpriteObjectsAreEqualToOriginalForValidFormulaList() {
-        self.compareSpriteObjectsWithIsEqualMethodForProgramWithXML(xml: "ValidFormulaList")
+        self.compareSpriteObjectsWithIsEqualMethodForProjectWithXML(xml: "ValidFormulaList")
     }
 
-    func testIfCopiedSpriteObjectsAreEqualToOriginalForValidProgram() {
-        self.compareSpriteObjectsWithIsEqualMethodForProgramWithXML(xml: "ValidProgram")
+    func testIfCopiedSpriteObjectsAreEqualToOriginalForValidProject() {
+        self.compareSpriteObjectsWithIsEqualMethodForProjectWithXML(xml: "ValidProject")
     }
 
     func testIfCopiedSpriteObjectsAreEqualToOriginalForFlapPacMan() {
-        self.compareSpriteObjectsWithIsEqualMethodForProgramWithXML(xml: "Flap_Pac_Man_093")
+        self.compareSpriteObjectsWithIsEqualMethodForProjectWithXML(xml: "Flap_Pac_Man_093")
     }
 
-    func compareSpriteObjectsWithIsEqualMethodForProgramWithXML(xml: String) {
-        let program = self.getProgramForXML(xmlFile: xml)
-        XCTAssertTrue(!(program.objectList as! [SpriteObject]).isEmpty, "Invalid objectList")
+    func compareSpriteObjectsWithIsEqualMethodForProjectWithXML(xml: String) {
+        let project = self.getProjectForXML(xmlFile: xml)
+        XCTAssertTrue(!(project.objectList as! [SpriteObject]).isEmpty, "Invalid objectList")
 
-        for object in program.objectList {
+        for object in project.objectList {
             let spriteObject = object as! SpriteObject
             let context = CBMutableCopyContext()
             let copiedSpriteObject = spriteObject.mutableCopy(with: context) as! SpriteObject

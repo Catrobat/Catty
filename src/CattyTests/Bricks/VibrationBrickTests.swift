@@ -29,12 +29,12 @@ final class VibrationBrickTests: XCTestCase {
     func testTitleSingular() {
         let vibrationBrick = VibrationBrick()
         vibrationBrick.durationInSeconds = Formula(double: 1)
-        XCTAssertEqual(kLocalizedVibrateFor + "%@ " + kLocalizedSecond, vibrationBrick.brickTitle, "Wrong brick title")
+        XCTAssertEqual(kLocalizedVibrateFor + " %@ " + kLocalizedSecond, vibrationBrick.brickTitle, "Wrong brick title")
     }
 
     func testTitlePlural() {
         let vibrationBrick = VibrationBrick()
         vibrationBrick.durationInSeconds = Formula(double: 2)
-        XCTAssertEqual(kLocalizedVibrateFor + "%@ " + kLocalizedSeconds, vibrationBrick.brickTitle, "Wrong brick title")
+        XCTAssertEqual(kLocalizedVibrateFor + " %@ " + kLocalizedSeconds, vibrationBrick.brickTitle, "Wrong brick title")
     }
 }

@@ -30,15 +30,17 @@
 #define kLoginOrRegisterUrlExtension @"api/loginOrRegister"
 #define kLoginUrlExtension @"api/login"
 #define kRegisterUrlExtension @"api/register"
-#define kReportProgramExtension @"api/reportProgram/reportProgram.json"
+#define kReportProjectExtension @"api/reportProgram/reportProgram.json"
 #define kLoginOrRegisterUrl kBaseUrl kLoginOrRegisterUrlExtension
 #define kTestLoginOrRegisterUrl kTestUrl kLoginOrRegisterUrlExtension
 #define kLoginUrl kBaseUrl kLoginUrlExtension
 #define kTestLoginUrl kTestUrl kLoginUrlExtension
 #define kRegisterUrl kBaseUrl kRegisterUrlExtension
 #define kTestRegisterUrl kTestUrl kRegisterUrlExtension
-#define kTestReportProgramUrl kTestUrl kReportProgramExtension
-#define kReportProgramUrl kBaseUrl kReportProgramExtension
+#define kTestReportProjectUrl kTestUrl kReportProjectExtension
+#define kReportProjectUrl kBaseUrl kReportProjectExtension
+#define kForumURL kBaseUrl @"help"
+#define kDownloadUrl kBaseUrl @"download"
 #define kSourceCodeLicenseURL @"http://developer.catrobat.org/licenses"
 #define kAboutCatrobatURL @"http://www.catrobat.org"
 #define kTermsOfUseURL kBaseUrl @"termsOfUse"
@@ -56,6 +58,6 @@
 #define kConnectionRegister @"Register.json"
 #define kConnectionUpload @ "upload.json"
 
-#define kProgramsOffset @"offset="
-#define kProgramsLimit @"limit="
+#define kProjectsOffset @"offset="
+#define kProjectsLimit @"limit="
 #define kMaxVersion @"max_version="

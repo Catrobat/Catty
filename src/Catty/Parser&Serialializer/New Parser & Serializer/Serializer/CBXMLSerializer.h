@@ -30,7 +30,7 @@
 @interface CBXMLSerializer : NSObject <CBSerializerProtocol>
 
 - (id)initWithPath:(NSString*)path fileManager:(CBFileManager *)fileManager;
-- (void)serializeProgram:(Program*)program;
-+ (GDataXMLDocument*)xmlDocumentForProgram:(Program*)program;
+- (void)serializeProject:(Project*)project;
++ (GDataXMLDocument*)xmlDocumentForProject:(Project*)project;
 
 @end

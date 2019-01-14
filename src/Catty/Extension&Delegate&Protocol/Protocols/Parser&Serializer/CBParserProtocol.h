@@ -22,7 +22,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class Program;
+@class Project;
 @class GDataXMLElement;
 @class CBXMLParserContext;
 @protocol CBXMLNodeProtocol;
@@ -32,6 +32,6 @@
 @required
 - (id)initWithPath:(NSString*)path;
 - (BOOL)isSupportedLanguageVersion:(CGFloat)languageVersion;
-- (Program*)parseAndCreateProgram;
+- (Project*)parseAndCreateProject;
 
 @end

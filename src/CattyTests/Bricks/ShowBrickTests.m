@@ -23,7 +23,6 @@
 #import <XCTest/XCTest.h>
 #import "AbstractBrickTests.h"
 #import "WhenScript.h"
-#import "ProgramMock.h"
 #import "Pocket_Code-Swift.h"
 
 @interface ShowBrickTests : AbstractBrickTests

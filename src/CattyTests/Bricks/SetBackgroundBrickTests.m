@@ -45,12 +45,12 @@
 - (void)testSetBackgroundBrick
 {
     SpriteObject *object = [[SpriteObject alloc] init];
-    Program *program = [Program defaultProgramWithName:@"a" programID:nil];
+    Project *project = [Project defaultProjectWithName:@"a" projectID:nil];
     CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
     object.spriteNode = spriteNode;
-    object.program = program;
+    object.project = project;
     
-    SpriteObject *backgroundObject = (SpriteObject*)program.objectList.firstObject;
+    SpriteObject *backgroundObject = (SpriteObject*)project.objectList.firstObject;
     XCTAssertNotNil(backgroundObject);
     
     CBSpriteNode *bgSpriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
@@ -78,7 +78,7 @@
     action();
     
     XCTAssertEqual(backgroundObject.spriteNode.currentLook, look1, @"SetBackgroundBrick not correct");
-    [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
+    [Project removeProjectFromDiskWithProjectName:project.header.programName projectID:project.header.programID];
 }
 
 @end

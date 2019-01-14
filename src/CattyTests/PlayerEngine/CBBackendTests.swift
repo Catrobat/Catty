@@ -39,7 +39,7 @@ final class CBBackendTests: XCTestCase {
         spriteNode = CBSpriteNode(spriteObject: spriteObject)
         spriteObject.spriteNode = spriteNode
 
-        frontend = CBFrontend(logger: logger, program: nil)
+        frontend = CBFrontend(logger: logger, project: nil)
         backend = CBBackend(logger: logger)
     }
 
@@ -337,11 +337,11 @@ final class CBBackendTests: XCTestCase {
     }
 
     func testIfElseConditionalInstruction() {
-        let program = Program.defaultProgram(withName: "ProgramName", programID: "123")
+        let project = Project.defaultProject(withName: "ProjectName", projectID: "123")
 
         let whenScript = WhenScript()
         whenScript.action = kWhenScriptDefaultAction
-        spriteObject.program = program
+        spriteObject.project = project
         whenScript.object = spriteObject
 
         let waitBrick = WaitBrick()

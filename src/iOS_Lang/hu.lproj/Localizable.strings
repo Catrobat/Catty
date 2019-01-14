@@ -2,7 +2,7 @@
 "A message with the same name already exists, try again." = "A message with the same name already exists, try again.";
 
 /* No comment provided by engineer. */
-"A program with the same name already exists, try again." = "Már létezik egy azonos nevű program, próbáld meg újra.";
+"A project with the same name already exists, try again." = "Már létezik egy azonos nevű projekt, próbáld meg újra.";
 
 /* No comment provided by engineer. */
 "About Catrobat" = "A Catrobatról";
@@ -104,7 +104,7 @@
 "Camera Roll" = "Fotóalbum";
 
 /* No comment provided by engineer. */
-"Can't restart program!" = "Program újraindítása nem lehetséges!";
+"Can't restart project!" = "Projekt újraindítása nem lehetséges!";
 
 /* No comment provided by engineer. */
 "Cancel" = "Mégse";
@@ -113,25 +113,13 @@
 "Categories" = "Kategóriák";
 
 /* No comment provided by engineer. */
-"Change brightness\nby %@\%" = "Change brightness\nby %@\\%";
+"Change volume by" = "Hangerő változzon";
 
 /* No comment provided by engineer. */
-"Change size by %@\%" = "Change size by %@\\%";
+"Change X by " = "X változzon ";
 
 /* No comment provided by engineer. */
-"Change transparency\nby %@\%" = "Change transparency\nby %@\\%";
-
-/* No comment provided by engineer. */
-"Change variable\n%@\nby %@" = "Change variable\n%@\nby %@";
-
-/* No comment provided by engineer. */
-"Change volume by %@" = "Hangerő változzon: %@";
-
-/* No comment provided by engineer. */
-"Change X by %@" = "X változzon: %@";
-
-/* No comment provided by engineer. */
-"Change Y by %@" = "Y változzon: %@";
+"Change Y by " = "Y változzon ";
 
 /* No comment provided by engineer. */
 "Changes discarded!" = "Módosítások elvetve!";
@@ -182,7 +170,7 @@
 "Copy Brick" = "Elem másolása";
 
 /* No comment provided by engineer. */
-"Copy program" = "Program másolása";
+"Copy project" = "Projekt másolása";
 
 /* No comment provided by engineer. */
 "Debug mode" = "Debug mode";
@@ -212,10 +200,10 @@
 "Delete Objects" = "Objektumok törlése";
 
 /* No comment provided by engineer. */
-"Delete Program" = "Delete Program";
+"Delete Project" = "Delete Project";
 
 /* No comment provided by engineer. */
-"Delete Programs" = "Programok törlése";
+"Delete Projects" = "Projektek törlése";
 
 /* No comment provided by engineer. */
 "Delete Script" = "Szkript törlése";
@@ -249,9 +237,6 @@
 
 /* No comment provided by engineer. */
 "Delete this object" = "Ezen objektum törlése";
-
-/* No comment provided by engineer. */
-"Delete this program" = "Ezen program törlése";
 
 /* No comment provided by engineer. */
 "Delete this Script?" = "Delete this Script?";
@@ -424,9 +409,6 @@
 /* No comment provided by engineer. */
 "Go to front" = "Menj a legfelső rétegre";
 
-/* No comment provided by engineer. */
-"GOOD TO SEE YOU" = "GOOD TO SEE YOU";
-
 /* paint */
 "Green" = "Zöld";
 
@@ -596,7 +578,7 @@
 "Move Brick" = "Elem mozgatása";
 
 /* Name of the default catrobat program (used as filename!!) */
-"My first program" = "Első programom";
+"My first project" = "Első projekt";
 
 /* Default title of imported photo from camera (taken by camera) */
 "My Image" = "Saját kép";
@@ -674,9 +656,6 @@
 "not" = "not";
 
 /* No comment provided by engineer. */
-"Not enough free memory to download this program. Please delete some of your programs" = "Nincs elég szabad memória a program letöltéséhez. Kérlek, törölj néhány programot";
-
-/* No comment provided by engineer. */
 "Not enough Memory" = "Nincs elég memória";
 
 /* No comment provided by engineer. */
@@ -732,9 +711,6 @@
 
 /* paint */
 "pipette" = "pipetta";
-
-/* No comment provided by engineer. */
-"Place at\nX: %@ Y: %@" = "Place at\nX: %@ Y: %@";
 
 /* No comment provided by engineer. */
 "Play" = "Indítás";
@@ -797,7 +773,7 @@
 "pos_y" = "pos_y";
 
 /* No comment provided by engineer. */
-"Problems occured while Uploading your program" = "Problems occured while Uploading your program";
+"Problems occured while uploading your project" = "Problems occured while uploading your project";
 
 /* No comment provided by engineer. */
 "Program name" = "Program neve";
@@ -877,9 +853,6 @@
 /* No comment provided by engineer. */
 "Saturday" = "szombat";
 
-/* Action sheet menu title */
-"Save Screenshot to" = "Képernyőkép mentése ide:";
-
 /* paint */
 "Save to CameraRoll" = "Mentés a Filmtekercsbe";
 
@@ -926,25 +899,10 @@
 "September" = "szeptember";
 
 /* No comment provided by engineer. */
-"Set background\n%@" = "Háttér legyen: %@";
-
-/* No comment provided by engineer. */
-"Set brightness to %@\%" = "Set brightness to %@\\%";
+"Set background" = "Háttér legyen";
 
 /* No comment provided by engineer. */
 "Set description" = "Leírás megadása";
-
-/* No comment provided by engineer. */
-"Set size to %@\%" = "Set size to %@\\%";
-
-/* No comment provided by engineer. */
-"Set transparency\nto %@\%" = "Set transparency\nto %@\\%";
-
-/* No comment provided by engineer. */
-"Set variable\n%@\nto %@" = "Set variable\n%@\nto %@";
-
-/* No comment provided by engineer. */
-"Set volume to %@\%" = "Set volume to %@\\%";
 
 /* No comment provided by engineer. */
 "Set X to %@" = "X legyen: %@";
@@ -1100,7 +1058,7 @@
 "Upload Program" = "Upload Program";
 
 /* No comment provided by engineer. */
-"Upload Selected Program" = "Upload Selected Program";
+"Upload selected project" = "Upload selected project";
 
 /* No comment provided by engineer. */
 "Upload successful" = "Sikeres feltöltés";
@@ -1113,9 +1071,6 @@
 
 /* No comment provided by engineer. */
 "Username is necessary!" = "Username is necessary!";
-
-/* No comment provided by engineer. */
-"v" = "v";
 
 /* No comment provided by engineer. */
 "Variable name:" = "Változó neve:";
@@ -1170,9 +1125,6 @@
 
 /* No comment provided by engineer. */
 "You are also able to build your own apps, edit existing ones and share them with your friends and other exciting people." = "Készíthetsz saját alkalmazásokat, szerkeszthetsz már létezőket, és megoszthatod ezeket a barátaiddal és más érdekldő emberekkel.";
-
-/* No comment provided by engineer. */
-"You have already downloaded this program!" = "Már letöltötted ezt a programot!";
 
 /* paint */
 "zoom" = "nagyítás";

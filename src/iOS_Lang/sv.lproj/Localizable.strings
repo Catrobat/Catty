@@ -113,25 +113,13 @@
 "Categories" = "Kategorier";
 
 /* No comment provided by engineer. */
-"Change brightness\nby %@\%" = "Change brightness\nby %@\\%";
+"Change volume by" = "Ändra volymen till";
 
 /* No comment provided by engineer. */
-"Change size by %@\%" = "Change size by %@\\%";
+"Change X by " = "Ändra X med ";
 
 /* No comment provided by engineer. */
-"Change transparency\nby %@\%" = "Change transparency\nby %@\\%";
-
-/* No comment provided by engineer. */
-"Change variable\n%@\nby %@" = "Change variable\n%@\nby %@";
-
-/* No comment provided by engineer. */
-"Change volume by %@" = "Ändra volymen till %@";
-
-/* No comment provided by engineer. */
-"Change X by %@" = "Ändra X med%@";
-
-/* No comment provided by engineer. */
-"Change Y by %@" = "Ändra Y med%@";
+"Change Y by " = "Ändra Y med ";
 
 /* No comment provided by engineer. */
 "Changes discarded!" = "Ändringar togs bort!";
@@ -251,7 +239,7 @@
 "Delete this object" = "Ta bort detta objekt";
 
 /* No comment provided by engineer. */
-"Delete this program" = "Ta bort detta program";
+"Delete this project" = "Ta bort detta program";
 
 /* No comment provided by engineer. */
 "Delete this Script?" = "Delete this Script?";
@@ -424,9 +412,6 @@
 /* No comment provided by engineer. */
 "Go to front" = "Gå till framsidan";
 
-/* No comment provided by engineer. */
-"GOOD TO SEE YOU" = "GOOD TO SEE YOU";
-
 /* paint */
 "Green" = "Grön";
 
@@ -596,7 +581,7 @@
 "Move Brick" = "Flytta kloss";
 
 /* Name of the default catrobat program (used as filename!!) */
-"My first program" = "Mitt första program";
+"My first project" = "Mitt första program";
 
 /* Default title of imported photo from camera (taken by camera) */
 "My Image" = "Min bild";
@@ -674,7 +659,7 @@
 "not" = "not";
 
 /* No comment provided by engineer. */
-"Not enough free memory to download this program. Please delete some of your programs" = "Inte tillräckligt med ledigt minne för att ladda ner detta program. Ta bort vissa program";
+"Not enough free memory to download this project. Please delete some of your projects" = "Inte tillräckligt med ledigt minne för att ladda ner detta program. Ta bort vissa program";
 
 /* No comment provided by engineer. */
 "Not enough Memory" = "Not enough Memory";
@@ -732,9 +717,6 @@
 
 /* paint */
 "pipette" = "pipett";
-
-/* No comment provided by engineer. */
-"Place at\nX: %@ Y: %@" = "Place at\nX: %@ Y: %@";
 
 /* No comment provided by engineer. */
 "Play" = "Spela";
@@ -797,7 +779,7 @@
 "pos_y" = "pos_y";
 
 /* No comment provided by engineer. */
-"Problems occured while Uploading your program" = "Problems occured while Uploading your program";
+"Problems occured while uploading your project" = "Problems occured while uploading your project";
 
 /* No comment provided by engineer. */
 "Program name" = "Programnamn";
@@ -877,9 +859,6 @@
 /* No comment provided by engineer. */
 "Saturday" = "Lördag";
 
-/* Action sheet menu title */
-"Save Screenshot to" = "Spara skärmdumpen till";
-
 /* paint */
 "Save to CameraRoll" = "Spara i kamerarulle";
 
@@ -926,25 +905,10 @@
 "September" = "September";
 
 /* No comment provided by engineer. */
-"Set background\n%@" = "sätt bakgrunden%@";
-
-/* No comment provided by engineer. */
-"Set brightness to %@\%" = "Set brightness to %@\\%";
+"Set background" = "sätt bakgrunden";
 
 /* No comment provided by engineer. */
 "Set description" = "Ange beskrivning";
-
-/* No comment provided by engineer. */
-"Set size to %@\%" = "Set size to %@\\%";
-
-/* No comment provided by engineer. */
-"Set transparency\nto %@\%" = "Set transparency\nto %@\\%";
-
-/* No comment provided by engineer. */
-"Set variable\n%@\nto %@" = "Set variable\n%@\nto %@";
-
-/* No comment provided by engineer. */
-"Set volume to %@\%" = "Set volume to %@\\%";
 
 /* No comment provided by engineer. */
 "Set X to %@" = "sätt X till %@";
@@ -1100,7 +1064,7 @@
 "Upload Program" = "Upload Program";
 
 /* No comment provided by engineer. */
-"Upload Selected Program" = "Upload Selected Program";
+"Upload selected project" = "Upload selected project";
 
 /* No comment provided by engineer. */
 "Upload successful" = "Uppladdningen lyckades";
@@ -1113,9 +1077,6 @@
 
 /* No comment provided by engineer. */
 "Username is necessary!" = "Username is necessary!";
-
-/* No comment provided by engineer. */
-"v" = "v";
 
 /* No comment provided by engineer. */
 "Variable name:" = "Variabelnamn:";
@@ -1172,7 +1133,7 @@
 "You are also able to build your own apps, edit existing ones and share them with your friends and other exciting people." = "You are also able to build your own apps, edit existing ones and share them with your friends and other exciting people.";
 
 /* No comment provided by engineer. */
-"You have already downloaded this program!" = "Du har redan laddat ner detta program!";
+"You have already downloaded this project!" = "Du har redan laddat ner detta program!";
 
 /* paint */
 "zoom" = "zoom";

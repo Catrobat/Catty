@@ -21,7 +21,7 @@
  */
 
 #define kDownloadButtonTag 501
-#define kPlayButtonTag 502
+#define kOpenButtonTag 502
 #define kStopLoadingTag 503
 #define kDownloadAgainButtonTag 504
 

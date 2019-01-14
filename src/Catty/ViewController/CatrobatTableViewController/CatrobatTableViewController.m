@@ -28,19 +28,19 @@
 #import "Util.h"
 #import "CatrobatImageCell.h"
 #import "DownloadTabBarController.h"
-#import "ProgramDetailStoreViewController.h"
+#import "ProjectDetailStoreViewController.h"
 #import "SegueDefines.h"
 #import "Script.h"
-#import "ProgramTableViewController.h"
-#import "ProgramsForUploadViewController.h"
+#import "ProjectTableViewController.h"
+#import "ProjectsForUploadViewController.h"
 #import "LoginViewController.h"
 #import "SettingsTableViewController.h"
 #import "Pocket_Code-Swift.h"
 
 NS_ENUM(NSInteger, ViewControllerIndex) {
-    kContinueProgramVC = 0,
-    kNewProgramVC,
-    kLocalProgramsVC,
+    kContinueProjectVC = 0,
+    kNewProjectVC,
+    kLocalProjectsVC,
     kHelpVC,
     kExploreVC,
     kUploadVC
@@ -51,8 +51,8 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
 @property (nonatomic, strong) NSArray *cells;
 @property (nonatomic, strong) NSArray *imageNames;
 @property (nonatomic, strong) NSMutableArray *identifiers;
-@property (nonatomic, strong) Program *lastUsedProgram;
-@property (nonatomic, strong) Program *defaultProgram;
+@property (nonatomic, strong) Project *lastUsedProject;
+@property (nonatomic, strong) Project *defaultProject;
 @property (nonatomic, assign) BOOL freshLogin;
 
 @end
@@ -60,12 +60,12 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
 @implementation CatrobatTableViewController
 
 #pragma mark - getters and setters
-- (Program*)lastUsedProgram
+- (Project*)lastUsedProject
 {
-    if (! _lastUsedProgram) {
-        _lastUsedProgram = [Program lastUsedProgram];
+    if (! _lastUsedProject) {
+        _lastUsedProject = [Project lastUsedProject];
     }
-    return _lastUsedProgram;
+    return _lastUsedProject;
 }
 
 #pragma mark - view events
@@ -75,13 +75,13 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
     [self initTableView];
 
     self.freshLogin = false;
-    self.lastUsedProgram = nil;
-    self.defaultProgram = nil;
+    self.lastUsedProject = nil;
+    self.defaultProject = nil;
     CBFileManager *fileManager = [CBFileManager sharedManager];
-    if (! [fileManager directoryExists:[Program basePath]]) {
-        [fileManager createDirectory:[Program basePath]];
+    if (! [fileManager directoryExists:[Project basePath]]) {
+        [fileManager createDirectory:[Project basePath]];
     }
-    [fileManager addDefaultProgramToProgramsRootDirectoryIfNoProgramsExist];
+    [fileManager addDefaultProjectToProjectsRootDirectoryIfNoProjectsExist];
 
     self.tableView.delaysContentTouches = NO;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
@@ -96,8 +96,8 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
-    self.lastUsedProgram = nil;
-    self.defaultProgram = nil;
+    self.lastUsedProject = nil;
+    self.defaultProject = nil;
     self.navigationController.toolbarHidden = YES;
     [self.navigationController.navigationBar setHidden:NO];
      NSIndexPath* indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
@@ -133,13 +133,13 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
     self.cells = [[NSArray alloc] initWithObjects:
                   kLocalizedContinue,
                   kLocalizedNew,
-                  kLocalizedPrograms,
+                  kLocalizedProjects,
                   kLocalizedHelp,
                   kLocalizedExplore,
                   kLocalizedUpload, nil];
 
-    self.imageNames = [[NSArray alloc] initWithObjects:kMenuImageNameContinue, kMenuImageNameNew, kMenuImageNamePrograms, kMenuImageNameHelp, kMenuImageNameExplore, kMenuImageNameUpload, nil];
-    self.identifiers = [[NSMutableArray alloc] initWithObjects:kSegueToContinue, kSegueToNewProgram, kSegueToPrograms, kSegueToHelp, kSegueToExplore, kSegueToUpload, nil];
+    self.imageNames = [[NSArray alloc] initWithObjects:kMenuImageNameContinue, kMenuImageNameNew, kMenuImageNameProjects, kMenuImageNameHelp, kMenuImageNameExplore, kMenuImageNameUpload, nil];
+    self.identifiers = [[NSMutableArray alloc] initWithObjects:kSegueToContinue, kSegueToNewProject, kSegueToProjects, kSegueToHelp, kSegueToExplore, kSegueToUpload, nil];
 }
 
 - (void)initNavigationBar
@@ -187,14 +187,14 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
     [self.navigationController pushViewController:sTVC animated:YES];
 }
 
-- (void)addProgramAndSegueToItActionForProgramWithName:(NSString*)programName
+- (void)addProjectAndSegueToItActionForProjectWithName:(NSString*)projectName
 {
-    static NSString *segueToNewProgramIdentifier = kSegueToNewProgram;
+    static NSString *segueToNewProjectIdentifier = kSegueToNewProject;
     [self showLoadingView];
-    self.defaultProgram = [Program defaultProgramWithName:programName programID:nil];
-    if ([self shouldPerformSegueWithIdentifier:segueToNewProgramIdentifier sender:self]) {
+    self.defaultProject = [Project defaultProjectWithName:projectName projectID:nil];
+    if ([self shouldPerformSegueWithIdentifier:segueToNewProjectIdentifier sender:self]) {
         [self hideLoadingView];
-        [self performSegueWithIdentifier:segueToNewProgramIdentifier sender:self];
+        [self performSegueWithIdentifier:segueToNewProjectIdentifier sender:self];
     }
 }
 
@@ -237,20 +237,20 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
 {
     NSString* identifier = [self.identifiers objectAtIndex:indexPath.row];
     switch (indexPath.row) {
-        case kNewProgramVC:
-            [Util askUserForUniqueNameAndPerformAction:@selector(addProgramAndSegueToItActionForProgramWithName:)
+        case kNewProjectVC:
+            [Util askUserForUniqueNameAndPerformAction:@selector(addProjectAndSegueToItActionForProjectWithName:)
                                                 target:self
-                                           promptTitle:kLocalizedNewProgram
-                                         promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedProgramName]
+                                           promptTitle:kLocalizedNewProject
+                                         promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedProjectName]
                                            promptValue:nil
-                                     promptPlaceholder:kLocalizedEnterYourProgramNameHere
-                                        minInputLength:kMinNumOfProgramNameCharacters
-                                        maxInputLength:kMaxNumOfProgramNameCharacters
-                              invalidInputAlertMessage:kLocalizedProgramNameAlreadyExistsDescription
-                                         existingNames:[Program allProgramNames]];
+                                     promptPlaceholder:kLocalizedEnterYourProjectNameHere
+                                        minInputLength:kMinNumOfProjectNameCharacters
+                                        maxInputLength:kMaxNumOfProjectNameCharacters
+                              invalidInputAlertMessage:kLocalizedProjectNameAlreadyExistsDescription
+                                         existingNames:[Project allProjectNames]];
             break;
-        case kContinueProgramVC:
-        case kLocalProgramsVC:
+        case kContinueProjectVC:
+        case kLocalProjectsVC:
         case kExploreVC:
         case kHelpVC:
             if ([self shouldPerformSegueWithIdentifier:identifier sender:self]) {
@@ -309,8 +309,8 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
 {
     UILabel *subtitleLabel = (UILabel*)[cell viewWithTag:kSubtitleLabelTag];
     subtitleLabel.textColor = [UIColor textTintColor];
-    Program *lastProgram = self.lastUsedProgram;
-    subtitleLabel.text = (lastProgram) ? lastProgram.header.programName :  @"";
+    Project *lastProject = self.lastUsedProject;
+    subtitleLabel.text = (lastProject) ? lastProject.header.programName :  @"";
 }
 
 - (CGFloat)getHeightForCellAtIndexPath:(NSIndexPath*)indexPath
@@ -329,22 +329,22 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString*)identifier sender:(id)sender
 {
     if ([identifier isEqualToString:kSegueToContinue]) {
-        // check if program loaded successfully -> not nil
-        if (self.lastUsedProgram) {
+        // check if project loaded successfully -> not nil
+        if (self.lastUsedProject) {
             return YES;
         }
 
-        // program failed loading...
+        // project failed loading...
         // update continue cell
-        [Util setLastProgramWithName:nil programID:nil];
+        [Util setLastProjectWithName:nil projectID:nil];
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
         [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-        [Util alertWithText:kLocalizedUnableToLoadProgram];
+        [Util alertWithText:kLocalizedUnableToLoadProject];
         return NO;
-    } else if ([identifier isEqualToString:kSegueToNewProgram]) {
-        // if there is no program name, abort performing this segue and ask user for program name
-        // after user entered a valid program name this segue will be called again and accepted
-        if (! self.defaultProgram) {
+    } else if ([identifier isEqualToString:kSegueToNewProject]) {
+        // if there is no project name, abort performing this segue and ask user for project name
+        // after user entered a valid project name this segue will be called again and accepted
+        if (! self.defaultProject) {
             return NO;
         }
         return YES;
@@ -357,19 +357,19 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:kSegueToContinue]) {
-        if ([segue.destinationViewController isKindOfClass:[ProgramTableViewController class]]) {
-            ProgramTableViewController *programTableViewController = (ProgramTableViewController*)segue.destinationViewController;
-            programTableViewController.program = self.lastUsedProgram;
-            self.lastUsedProgram = nil;
+        if ([segue.destinationViewController isKindOfClass:[ProjectTableViewController class]]) {
+            ProjectTableViewController *projectTableViewController = (ProjectTableViewController*)segue.destinationViewController;
+            projectTableViewController.project = self.lastUsedProject;
+            self.lastUsedProject = nil;
         }
-    } else if ([segue.identifier isEqualToString:kSegueToNewProgram]) {
-        if ([segue.destinationViewController isKindOfClass:[ProgramTableViewController class]]) {
-            ProgramTableViewController *programTableViewController = (ProgramTableViewController*)segue.destinationViewController;
-            programTableViewController.program = self.defaultProgram;
-            self.defaultProgram = nil;
+    } else if ([segue.identifier isEqualToString:kSegueToNewProject]) {
+        if ([segue.destinationViewController isKindOfClass:[ProjectTableViewController class]]) {
+            ProjectTableViewController *projectTableViewController = (ProjectTableViewController*)segue.destinationViewController;
+            projectTableViewController.project = self.defaultProject;
+            self.defaultProject = nil;
         }
     } else if ([segue.identifier isEqualToString:kSegueToUpload] && _freshLogin) {
-        ProgramsForUploadViewController *destinationVC = [segue destinationViewController];
+        ProjectsForUploadViewController *destinationVC = [segue destinationViewController];
         self.freshLogin = false;
         destinationVC .showLoginFeedback = true;
     }
@@ -382,7 +382,7 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
     [self.identifiers removeAllObjects];
 }
 
--(void)addProgramFromInboxWithName:(NSString*)newProgramName
+-(void)addProjectFromInboxWithName:(NSString*)newProjectName
 {
     NSFileManager* filemgr = [NSFileManager defaultManager];
     NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -394,28 +394,28 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
     {
         return;
     }
-    NSString* newProgramPath = [NSString stringWithFormat:@"%@/%@", inboxPath, [dirFiles firstObject]];
+    NSString* newProjectPath = [NSString stringWithFormat:@"%@/%@", inboxPath, [dirFiles firstObject]];
     
-    NSData* newProgram = [NSData dataWithContentsOfFile:newProgramPath];
+    NSData* newProject = [NSData dataWithContentsOfFile:newProjectPath];
     
     CBFileManager *fileManager = [CBFileManager sharedManager];
-    [fileManager unzipAndStore:newProgram withProgramID:nil withName:newProgramName];
+    [fileManager unzipAndStore:newProject withProjectID:nil withName:newProjectName];
     
-    [[NSFileManager defaultManager] removeItemAtPath:newProgramPath error:nil];
+    [[NSFileManager defaultManager] removeItemAtPath:newProjectPath error:nil];
 }
 
--(void)addProgramFromInbox
+-(void)addProjectFromInbox
 {
-    [Util askUserForUniqueNameAndPerformAction:@selector(addProgramFromInboxWithName:)
+    [Util askUserForUniqueNameAndPerformAction:@selector(addProjectFromInboxWithName:)
                                         target:self
-                                   promptTitle:kLocalizedEnterNameForImportedProgramTitle
-                                 promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedProgramName]
+                                   promptTitle:kLocalizedEnterNameForImportedProjectTitle
+                                 promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedProjectName]
                                    promptValue:nil
-                             promptPlaceholder:kLocalizedEnterYourProgramNameHere
-                                minInputLength:kMinNumOfProgramNameCharacters
-                                maxInputLength:kMaxNumOfProgramNameCharacters
-                      invalidInputAlertMessage:kLocalizedProgramNameAlreadyExistsDescription
-                                 existingNames:[Program allProgramNames]];
+                             promptPlaceholder:kLocalizedEnterYourProjectNameHere
+                                minInputLength:kMinNumOfProjectNameCharacters
+                                maxInputLength:kMaxNumOfProjectNameCharacters
+                      invalidInputAlertMessage:kLocalizedProjectNameAlreadyExistsDescription
+                                 existingNames:[Project allProjectNames]];
 }
 
 @end

@@ -35,7 +35,7 @@ class XMLParserBrickTests093: XMLAbstractTest {
     }
 
     func testValidSetLookBrick() {
-        let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgram"))
+        let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProject"))
         let brickElement = self.getXMLElementsForXPath(document, xPath: "//program/objectList/object[1]/scriptList/script[1]/brickList/brick[1]")
         let objectArray = self.getXMLElementsForXPath(document, xPath: "//program/objectList/object[1]")
 
@@ -60,7 +60,7 @@ class XMLParserBrickTests093: XMLAbstractTest {
     }
 
     func testValidSetVariableBrick() {
-        let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgram"))
+        let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProject"))
         let brickElement = self.getXMLElementsForXPath(document, xPath: "//program/objectList/object[1]/scriptList/script[1]/brickList/brick[2]")
 
         XCTAssertEqual(brickElement!.count, 1)
@@ -80,7 +80,7 @@ class XMLParserBrickTests093: XMLAbstractTest {
     }
 
     func testValidSetSizeToBrick() {
-        let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgram"))
+        let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProject"))
         let brickElement = self.getXMLElementsForXPath(document, xPath: "//program/objectList/object[2]/scriptList/script[1]/brickList/brick[1]")
         let objectArray = self.getXMLElementsForXPath(document, xPath: "//program/objectList/object[1]")
 
@@ -113,7 +113,7 @@ class XMLParserBrickTests093: XMLAbstractTest {
 
     func testValidForeverBrickAndLoopEndlessBrick() {
         let context = CBXMLParserContext()
-        let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgram"))
+        let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProject"))
         let brickElement1 = self.getXMLElementsForXPath(document, xPath: "//program/objectList/object[2]/scriptList/script[1]/brickList/brick[2]")
         let brickElement2 = self.getXMLElementsForXPath(document, xPath: "//program/objectList/object[2]/scriptList/script[1]/brickList/brick[12]")
 
@@ -135,7 +135,7 @@ class XMLParserBrickTests093: XMLAbstractTest {
     }
 
     func testValidPlaceAtBrick() {
-        let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgram"))
+        let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProject"))
         let brickElement = self.getXMLElementsForXPath(document, xPath: "//program/objectList/object[2]/scriptList/script[1]/brickList/brick[3]")
         XCTAssertEqual(brickElement!.count, 1)
 
@@ -156,7 +156,7 @@ class XMLParserBrickTests093: XMLAbstractTest {
     }
 
     func testValidWaitBrick() {
-        let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgram"))
+        let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProject"))
         let brickElement = self.getXMLElementsForXPath(document, xPath: "//program/objectList/object[2]/scriptList/script[1]/brickList/brick[4]")
         XCTAssertEqual(brickElement!.count, 1)
 
@@ -175,7 +175,7 @@ class XMLParserBrickTests093: XMLAbstractTest {
     }
 
     func testValidShowBrick() {
-        let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgram"))
+        let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProject"))
         let brickElement = self.getXMLElementsForXPath(document, xPath: "//program/objectList/object[2]/scriptList/script[1]/brickList/brick[5]")
         XCTAssertEqual(brickElement!.count, 1)
 
@@ -187,7 +187,7 @@ class XMLParserBrickTests093: XMLAbstractTest {
     }
 
     func testValidGlideToBrick() {
-        let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgram"))
+        let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProject"))
         let brickElement = self.getXMLElementsForXPath(document, xPath: "//program/objectList/object[2]/scriptList/script[1]/brickList/brick[7]")
         XCTAssertEqual(brickElement!.count, 1)
 
@@ -213,7 +213,7 @@ class XMLParserBrickTests093: XMLAbstractTest {
     }
 
     func testValidHideBrick() {
-        let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgram"))
+        let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProject"))
         let brickElement = self.getXMLElementsForXPath(document, xPath: "//program/objectList/object[2]/scriptList/script[1]/brickList/brick[10]")
         XCTAssertEqual(brickElement!.count, 1)
 
@@ -225,7 +225,7 @@ class XMLParserBrickTests093: XMLAbstractTest {
     }
 
     func testValidPlaySoundBrick() {
-        let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgram"))
+        let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProject"))
         let brickElement = self.getXMLElementsForXPath(document, xPath: "//program/objectList/object[2]/scriptList/script[2]/brickList/brick[1]")
         let objectArray = self.getXMLElementsForXPath(document, xPath: "//program/objectList/object[2]")
         XCTAssertEqual(brickElement!.count, 1)
@@ -250,7 +250,7 @@ class XMLParserBrickTests093: XMLAbstractTest {
     }
 
     func testValidSetXBrick() {
-        let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgramAllBricks093"))
+        let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProjectAllBricks093"))
         let brickElement = self.getXMLElementsForXPath(document, xPath: "//program/objectList/object[1]/scriptList/script[1]/brickList/brick[2]")
         XCTAssertEqual(brickElement!.count, 1)
 
@@ -269,7 +269,7 @@ class XMLParserBrickTests093: XMLAbstractTest {
     }
 
     func testValidSetXBrickEqual() {
-        let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgramAllBricks093"))
+        let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProjectAllBricks093"))
 
         let brickElement = self.getXMLElementsForXPath(document, xPath: "//program/objectList/object[1]/scriptList/script[1]/brickList/brick[2]")
         XCTAssertEqual(brickElement!.count, 1)
@@ -300,7 +300,7 @@ class XMLParserBrickTests093: XMLAbstractTest {
     }
 
     func testValidSetYBrick() {
-        let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgramAllBricks093"))
+        let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProjectAllBricks093"))
         let brickElement = self.getXMLElementsForXPath(document, xPath: "//program/objectList/object[1]/scriptList/script[1]/brickList/brick[3]")
         XCTAssertEqual(brickElement!.count, 1)
 
@@ -319,7 +319,7 @@ class XMLParserBrickTests093: XMLAbstractTest {
     }
 
     func testValidChangeXByNBrick() {
-        let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgramAllBricks093"))
+        let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProjectAllBricks093"))
         let brickElement = self.getXMLElementsForXPath(document, xPath: "//program/objectList/object[1]/scriptList/script[1]/brickList/brick[4]")
         XCTAssertEqual(brickElement!.count, 1)
 
@@ -338,7 +338,7 @@ class XMLParserBrickTests093: XMLAbstractTest {
     }
 
     func testValidChangeYByNBrick() {
-        let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgramAllBricks093"))
+        let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProjectAllBricks093"))
         let brickElement = self.getXMLElementsForXPath(document, xPath: "//program/objectList/object[1]/scriptList/script[1]/brickList/brick[5]")
         XCTAssertEqual(brickElement!.count, 1)
 
@@ -356,7 +356,7 @@ class XMLParserBrickTests093: XMLAbstractTest {
     }
 
     func testValidMoveNStepsBrick() {
-        let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgramAllBricks093"))
+        let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProjectAllBricks093"))
         let brickElement = self.getXMLElementsForXPath(document, xPath: "//program/objectList/object[1]/scriptList/script[1]/brickList/brick[6]")
         XCTAssertEqual(brickElement!.count, 1)
 
@@ -374,7 +374,7 @@ class XMLParserBrickTests093: XMLAbstractTest {
     }
 
     func testValidTurnLeftBrick() {
-        let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgramAllBricks093"))
+        let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProjectAllBricks093"))
         let brickElement = self.getXMLElementsForXPath(document, xPath: "//program/objectList/object[1]/scriptList/script[1]/brickList/brick[7]")
         XCTAssertEqual(brickElement!.count, 1)
 
@@ -392,7 +392,7 @@ class XMLParserBrickTests093: XMLAbstractTest {
     }
 
     func testValidTurnRightBrick() {
-        let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgramAllBricks093"))
+        let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProjectAllBricks093"))
         let brickElement = self.getXMLElementsForXPath(document, xPath: "//program/objectList/object[1]/scriptList/script[1]/brickList/brick[8]")
         XCTAssertEqual(brickElement!.count, 1)
 
@@ -410,7 +410,7 @@ class XMLParserBrickTests093: XMLAbstractTest {
     }
 
     func testValidPointInDirectionBrick() {
-        let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgramAllBricks093"))
+        let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProjectAllBricks093"))
         let brickElement = self.getXMLElementsForXPath(document, xPath: "//program/objectList/object[1]/scriptList/script[1]/brickList/brick[9]")
         XCTAssertEqual(brickElement!.count, 1)
 
@@ -428,7 +428,7 @@ class XMLParserBrickTests093: XMLAbstractTest {
     }
 
     func testValidStopAllSoundBrick() {
-        let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgramAllBricks093"))
+        let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProjectAllBricks093"))
         let brickElement = self.getXMLElementsForXPath(document,
                                                        xPath: "//program/objectList/object[1]/scriptList/script[1]/brickList/brick[10]/pointedObject[1]/scriptList/script[1]/brickList/brick[2]")
         XCTAssertEqual(brickElement!.count, 1)
@@ -441,7 +441,7 @@ class XMLParserBrickTests093: XMLAbstractTest {
     }
 
     func testValidPointToBrick() {
-        let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgramAllBricks093"))
+        let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProjectAllBricks093"))
         let brickElement = self.getXMLElementsForXPath(document, xPath: "//program/objectList/object[1]/scriptList/script[1]/brickList/brick[10]")
         XCTAssertEqual(brickElement!.count, 1)
 
@@ -459,10 +459,10 @@ class XMLParserBrickTests093: XMLAbstractTest {
     }
 
     func testValidPointToBrickWithoutSpriteObject() {
-        let program = self.getProgramForXML(xmlFile: "PointToBrickWithoutSpriteObject")
-        XCTAssertNotNil(program, "Program must not be nil!")
+        let project = self.getProjectForXML(xmlFile: "PointToBrickWithoutSpriteObject")
+        XCTAssertNotNil(project, "Project must not be nil!")
 
-        let moleTwo = program.objectList.object(at: 1) as! SpriteObject
+        let moleTwo = project.objectList.object(at: 1) as! SpriteObject
         XCTAssertNotNil(moleTwo, "SpriteObject must not be nil!")
         XCTAssertEqual(moleTwo.name, "Mole 2", "Invalid object name!")
 
@@ -478,7 +478,7 @@ class XMLParserBrickTests093: XMLAbstractTest {
     }
 
     func testValidSetColorBrick() {
-        let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgramAllBricks093"))
+        let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProjectAllBricks093"))
         let brickElement = self.getXMLElementsForXPath(document, xPath: "//program/objectList/object[1]/scriptList/script[1]/brickList/brick[15]")
         XCTAssertEqual(brickElement!.count, 1)
 
@@ -494,7 +494,7 @@ class XMLParserBrickTests093: XMLAbstractTest {
     }
 
     func testValidChangeColorByNBrick() {
-        let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgramAllBricks093"))
+        let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProjectAllBricks093"))
         let brickElement = self.getXMLElementsForXPath(document, xPath: "//program/objectList/object[1]/scriptList/script[1]/brickList/brick[16]")
         XCTAssertEqual(brickElement!.count, 1)
 

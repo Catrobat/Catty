@@ -113,27 +113,6 @@
 "Categories" = "Категории";
 
 /* No comment provided by engineer. */
-"Change brightness\nby %@\%" = "Change brightness\nby %@\\%";
-
-/* No comment provided by engineer. */
-"Change size by %@\%" = "Change size by %@\\%";
-
-/* No comment provided by engineer. */
-"Change transparency\nby %@\%" = "Change transparency\nby %@\\%";
-
-/* No comment provided by engineer. */
-"Change variable\n%@\nby %@" = "Change variable\n%@\nby %@";
-
-/* No comment provided by engineer. */
-"Change volume by %@" = "Change volume by %@";
-
-/* No comment provided by engineer. */
-"Change X by %@" = "Change X by %@";
-
-/* No comment provided by engineer. */
-"Change Y by %@" = "Change Y by %@";
-
-/* No comment provided by engineer. */
 "Changes discarded!" = "Changes discarded!";
 
 /* No comment provided by engineer. */
@@ -251,7 +230,7 @@
 "Delete this object" = "Delete this object";
 
 /* No comment provided by engineer. */
-"Delete this program" = "Delete this program";
+"Delete this project" = "Delete this project";
 
 /* No comment provided by engineer. */
 "Delete this Script?" = "Delete this Script?";
@@ -424,9 +403,6 @@
 /* No comment provided by engineer. */
 "Go to front" = "Прийти на перед";
 
-/* No comment provided by engineer. */
-"GOOD TO SEE YOU" = "GOOD TO SEE YOU";
-
 /* paint */
 "Green" = "Green";
 
@@ -596,7 +572,7 @@
 "Move Brick" = "Переместить";
 
 /* Name of the default catrobat program (used as filename!!) */
-"My first program" = "проектПоУмолчанию";
+"My first project" = "проектПоУмолчанию";
 
 /* Default title of imported photo from camera (taken by camera) */
 "My Image" = "My Image";
@@ -674,7 +650,7 @@
 "not" = "not";
 
 /* No comment provided by engineer. */
-"Not enough free memory to download this program. Please delete some of your programs" = "Not enough free memory to download this program. Please delete some of your programs";
+"Not enough free memory to download this project. Please delete some of your projects" = "Not enough free memory to download this project. Please delete some of your projects";
 
 /* No comment provided by engineer. */
 "Not enough Memory" = "Not enough Memory";
@@ -732,9 +708,6 @@
 
 /* paint */
 "pipette" = "pipette";
-
-/* No comment provided by engineer. */
-"Place at\nX: %@ Y: %@" = "Place at\nX: %@ Y: %@";
 
 /* No comment provided by engineer. */
 "Play" = "Play";
@@ -797,7 +770,7 @@
 "pos_y" = "pos_y";
 
 /* No comment provided by engineer. */
-"Problems occured while Uploading your program" = "Problems occured while Uploading your program";
+"Problems occured while uploading your project" = "Problems occured while uploading your project";
 
 /* No comment provided by engineer. */
 "Program name" = "Название:";
@@ -877,9 +850,6 @@
 /* No comment provided by engineer. */
 "Saturday" = "Saturday";
 
-/* Action sheet menu title */
-"Save Screenshot to" = "Save Screenshot to";
-
 /* paint */
 "Save to CameraRoll" = "Save to CameraRoll";
 
@@ -926,25 +896,7 @@
 "September" = "&#x421;&#x435;&#x43D;&#x442;&#x44F;&#x431;&#x440;&#x44C;";
 
 /* No comment provided by engineer. */
-"Set background\n%@" = "Set background\n%@";
-
-/* No comment provided by engineer. */
-"Set brightness to %@\%" = "Set brightness to %@\\%";
-
-/* No comment provided by engineer. */
 "Set description" = "Добавить описание";
-
-/* No comment provided by engineer. */
-"Set size to %@\%" = "Set size to %@\\%";
-
-/* No comment provided by engineer. */
-"Set transparency\nto %@\%" = "Set transparency\nto %@\\%";
-
-/* No comment provided by engineer. */
-"Set variable\n%@\nto %@" = "Set variable\n%@\nto %@";
-
-/* No comment provided by engineer. */
-"Set volume to %@\%" = "Set volume to %@\\%";
 
 /* No comment provided by engineer. */
 "Set X to %@" = "Set X to %@";
@@ -1100,7 +1052,7 @@
 "Upload Program" = "Upload Program";
 
 /* No comment provided by engineer. */
-"Upload Selected Program" = "Upload Selected Program";
+"Upload selected project" = "Upload selected project";
 
 /* No comment provided by engineer. */
 "Upload successful" = "Добавлено успешно";
@@ -1113,9 +1065,6 @@
 
 /* No comment provided by engineer. */
 "Username is necessary!" = "Username is necessary!";
-
-/* No comment provided by engineer. */
-"v" = "v";
 
 /* No comment provided by engineer. */
 "Variable name:" = "Variable name:";
@@ -1172,7 +1121,7 @@
 "You are also able to build your own apps, edit existing ones and share them with your friends and other exciting people." = "You are also able to build your own apps, edit existing ones and share them with your friends and other exciting people.";
 
 /* No comment provided by engineer. */
-"You have already downloaded this program!" = "You have already downloaded this program!";
+"You have already downloaded this project!" = "You have already downloaded this project!";
 
 /* paint */
 "zoom" = "zoom";

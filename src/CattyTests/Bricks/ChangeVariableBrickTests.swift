@@ -26,7 +26,7 @@ import XCTest
 
 final class ChangeVariableBrickTests: XCTestCase {
 
-    var program: Program!
+    var project: Project!
     var spriteObject: SpriteObject!
     var spriteNode: CBSpriteNode!
     var script: Script!
@@ -34,13 +34,13 @@ final class ChangeVariableBrickTests: XCTestCase {
     var context: CBScriptContextProtocol!
 
     override func setUp() {
-        program = Program()
+        project = Project()
         spriteObject = SpriteObject()
         spriteObject.name = "SpriteObjectName"
 
         spriteNode = CBSpriteNode(spriteObject: spriteObject)
         spriteObject.spriteNode = spriteNode
-        spriteObject.program = program
+        spriteObject.project = project
 
         script = Script()
         script.object = spriteObject
@@ -62,7 +62,7 @@ final class ChangeVariableBrickTests: XCTestCase {
         formula.formulaTree = formulaTree
 
         let varContainer = VariablesContainer()
-        spriteObject.program.variables = varContainer
+        spriteObject.project.variables = varContainer
 
         let brick = ChangeVariableBrick()
         brick.variableFormula = formula

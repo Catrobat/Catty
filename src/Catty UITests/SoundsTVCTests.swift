@@ -31,7 +31,7 @@ class SoundsTVCTests: XCTestCase, UITestProtocol {
         XCUIApplication().launch()
 
         dismissWelcomeScreenIfShown()
-        restoreDefaultProgram()
+        restoreDefaultProject()
     }
 
     func testLengthOfSounds() {
@@ -70,18 +70,18 @@ class SoundsTVCTests: XCTestCase, UITestProtocol {
         let appTables = app.tables
 
         let testElement = "Sounds"
-        let programObjects = ["Mole 1", "Mole 2", "Mole 3", "Mole 4"]
+        let projectObjects = ["Mole 1", "Mole 2", "Mole 3", "Mole 4"]
 
         appTables.staticTexts["Continue"].tap()
-        for object in programObjects {
+        for object in projectObjects {
             appTables.staticTexts[object].tap()
             appTables.staticTexts[testElement].tap()
             XCTAssert(app.navigationBars[testElement].buttons[object].exists)
             app.navigationBars[testElement].buttons[object].tap()
-            app.navigationBars[object].buttons["My first program"].tap()
+            app.navigationBars[object].buttons["My first project"].tap()
 
-            let programVC = waitForElementToAppear(app.navigationBars["My first program"])
-            XCTAssert(programVC.buttons["Pocket Code"].exists)
+            let projectVC = waitForElementToAppear(app.navigationBars["My first project"])
+            XCTAssert(projectVC.buttons["Pocket Code"].exists)
         }
     }
 }

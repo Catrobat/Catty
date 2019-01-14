@@ -25,12 +25,12 @@ import XCTest
 
 class SearchStoreDataSourceTests: XCTestCase {
 
-    var downloaderMock: StoreProgramDownloaderMock!
+    var downloaderMock: StoreProjectDownloaderMock!
     var tableView: UITableView!
 
     override func setUp() {
         super.setUp()
-        self.downloaderMock = StoreProgramDownloaderMock()
+        self.downloaderMock = StoreProjectDownloaderMock()
         self.tableView = UITableView(frame: .zero)
     }
 
@@ -42,9 +42,9 @@ class SearchStoreDataSourceTests: XCTestCase {
 
     // MARK: - SearchStoreDataSource Tests
 
-    func testFetchSearchProgram() {
+    func testFetchSearchProject() {
         let dataSource = SearchStoreDataSource.dataSource(with: self.downloaderMock)
-        let expectation = XCTestExpectation(description: "Fetch program from data source")
+        let expectation = XCTestExpectation(description: "Fetch project from data source")
 
         dataSource.fetchItems(searchTerm: "Galaxy") { [unowned self] error in
             XCTAssertNil(error)

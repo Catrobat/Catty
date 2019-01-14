@@ -36,7 +36,7 @@ final class PositionYSensorTest: XCTestCase {
         super.setUp()
         spriteObject = SpriteObject()
         spriteNode = CBSpriteNodeMock(spriteObject: spriteObject)
-        spriteNode.mockedScene = SceneBuilder(program: ProgramMock(width: CGFloat(screenWidth), andHeight: CGFloat(screenHeight))).build()
+        spriteNode.mockedScene = SceneBuilder(project: ProjectMock(width: CGFloat(screenWidth), andHeight: CGFloat(screenHeight))).build()
         sensor = PositionYSensor()
     }
 

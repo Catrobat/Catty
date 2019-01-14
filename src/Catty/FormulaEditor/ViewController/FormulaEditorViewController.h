@@ -36,10 +36,10 @@
 @interface FormulaEditorViewController : UIViewController<UIPickerViewDataSource,UIPickerViewDelegate,UIGestureRecognizerDelegate>
 @property (strong, nonatomic) InternFormula *internFormula;
 @property (strong, nonatomic) FormulaEditorHistory *history;
-@property (strong, nonatomic) NSMutableArray *variableSourceProgram;
+@property (strong, nonatomic) NSMutableArray *variableSourceProject;
 @property (strong, nonatomic) NSMutableArray *variableSourceObject;
 @property (strong, nonatomic) NSMutableArray *variableSource;
-@property (strong, nonatomic) NSMutableArray *listSourceProgram;
+@property (strong, nonatomic) NSMutableArray *listSourceProject;
 @property (strong, nonatomic) NSMutableArray *listSourceObject;
 @property (strong, nonatomic) NSMutableArray *listSource;
 @property (weak, nonatomic) SpriteObject *object;

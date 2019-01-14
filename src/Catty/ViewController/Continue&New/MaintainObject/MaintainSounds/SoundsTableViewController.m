@@ -209,7 +209,7 @@
                       sound.name, fileExtension];
     NSString *newPath = [self.object pathForSound:sound];
     if (![self checkIfSoundFolderExists]) {
-        [fileManager createDirectory:[NSString stringWithFormat:@"%@%@", [self.object projectPath], kProgramSoundsDirName]];
+        [fileManager createDirectory:[NSString stringWithFormat:@"%@%@", [self.object projectPath], kProjectSoundsDirName]];
     }
     [fileManager copyExistingFileAtPath:oldPath toPath:newPath overwrite:YES];
     [self.object.soundList addObject:sound];
@@ -218,7 +218,7 @@
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:0];
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
     //Error on save?
-    [self.object.program saveToDiskWithNotification:YES];
+    [self.object.project saveToDiskWithNotification:YES];
     
     if(self.afterSafeBlock) {
         self.afterSafeBlock(sound);
@@ -228,7 +228,7 @@
 
 -(BOOL)checkIfSoundFolderExists{
     CBFileManager* manager = [CBFileManager sharedManager];
-    NSString * path = [NSString stringWithFormat:@"%@%@", [self.object projectPath], kProgramSoundsDirName];
+    NSString * path = [NSString stringWithFormat:@"%@%@", [self.object projectPath], kProjectSoundsDirName];
     if ([manager directoryExists:path]) {
         return YES;
     }
@@ -437,7 +437,7 @@
     Sound* itemToMove = self.object.soundList[sourceIndexPath.row];
     [self.object.soundList removeObjectAtIndex:sourceIndexPath.row];
     [self.object.soundList insertObject:itemToMove atIndex:destinationIndexPath.row];
-    [self.object.program saveToDiskWithNotification:NO];
+    [self.object.project saveToDiskWithNotification:NO];
 }
 
 - (NSArray<UITableViewRowAction*>*)tableView:(UITableView*)tableView
@@ -542,7 +542,7 @@
                 BOOL isPlayable = [am playSoundWithFileName:sound.fileName
                                                      andKey:self.object.name
                                                  atFilePath:[NSString stringWithFormat:@"%@%@",
-                                                             [self.object projectPath], kProgramSoundsDirName]
+                                                             [self.object projectPath], kProjectSoundsDirName]
                                                    delegate:self];
                 if (isPlayable) {
                     return;

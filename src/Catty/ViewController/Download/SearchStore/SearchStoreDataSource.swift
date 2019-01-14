@@ -21,7 +21,7 @@
  */
 
 protocol SearchStoreDataSourceDelegate: AnyObject {
-    func searchStoreTableDataSource(_ dataSource: SearchStoreDataSource, didSelectCellWith item: StoreProgram)
+    func searchStoreTableDataSource(_ dataSource: SearchStoreDataSource, didSelectCellWith item: StoreProject)
 }
 
 protocol SelectedSearchStoreDataSource: AnyObject {
@@ -29,7 +29,7 @@ protocol SelectedSearchStoreDataSource: AnyObject {
     func showNoResultsAlert()
     func hideNoResultsAlert()
     func updateTableView()
-    func errorAlertHandler(error: StoreProgramDownloaderError)
+    func errorAlertHandler(error: StoreProjectDownloaderError)
     func showLoadingIndicator()
     func hideLoadingIndicator()
 }
@@ -40,8 +40,8 @@ class SearchStoreDataSource: NSObject, UITableViewDataSource, UITableViewDelegat
 
     weak var delegate: SelectedSearchStoreDataSource?
 
-    let downloader: StoreProgramDownloaderProtocol
-    var programs = [StoreProgram]()
+    let downloader: StoreProjectDownloaderProtocol
+    var projects = [StoreProject]()
     var baseUrl = ""
     var lastSearchTerm = ""
 
@@ -49,13 +49,13 @@ class SearchStoreDataSource: NSObject, UITableViewDataSource, UITableViewDelegat
 
     // MARK: - Initializer
 
-    fileprivate init(with downloader: StoreProgramDownloaderProtocol) {
+    fileprivate init(with downloader: StoreProjectDownloaderProtocol) {
         self.downloader = downloader
     }
 
     // MARK: - DataSource
 
-    func fetchItems(searchTerm: String?, completion: @escaping (StoreProgramDownloaderError?) -> Void) {
+    func fetchItems(searchTerm: String?, completion: @escaping (StoreProjectDownloaderError?) -> Void) {
         if let searchTerm: String = searchTerm {
             lastSearchTerm = searchTerm
 
@@ -63,11 +63,11 @@ class SearchStoreDataSource: NSObject, UITableViewDataSource, UITableViewDelegat
                 guard searchTerm == self.lastSearchTerm else { return }
                 guard let collection = items, error == nil else { completion(error); return }
 
-                self.programs = collection.projects
+                self.projects = collection.projects
                 self.baseUrl = collection.information.baseUrl
                 self.delegate?.updateTableView()
                 completion(nil)
-                if self.programs.isEmpty {
+                if self.projects.isEmpty {
                     self.delegate?.showNoResultsAlert()
                 } else {
                     self.delegate?.hideNoResultsAlert()
@@ -76,17 +76,17 @@ class SearchStoreDataSource: NSObject, UITableViewDataSource, UITableViewDelegat
         }
     }
 
-    static func dataSource(with downloader: StoreProgramDownloaderProtocol = StoreProgramDownloader()) -> SearchStoreDataSource {
+    static func dataSource(with downloader: StoreProjectDownloaderProtocol = StoreProjectDownloader()) -> SearchStoreDataSource {
         return SearchStoreDataSource(with: downloader)
     }
 
     func numberOfRows(in tableView: UITableView) -> Int {
-        return programs.count
+        return projects.count
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        return programs.count
+        return projects.count
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -97,13 +97,13 @@ class SearchStoreDataSource: NSObject, UITableViewDataSource, UITableViewDelegat
         let cell = tableView.dequeueReusableCell(withIdentifier: kSearchCell, for: indexPath)
         if let cell = cell as? SearchStoreCell {
             cell.tag = indexPath.row
-            if programs.isEmpty == false && indexPath.row < self.programs.count {
+            if projects.isEmpty == false && indexPath.row < self.projects.count {
                 cell.searchImage = nil
-                cell.searchTitle = self.programs[indexPath.row].projectName
-                cell.program = self.programs[indexPath.row]
+                cell.searchTitle = self.projects[indexPath.row].projectName
+                cell.project = self.projects[indexPath.row]
 
                 DispatchQueue.global().async {
-                    guard let screenshotSmall = self.programs[indexPath.row].screenshotSmall else { return }
+                    guard let screenshotSmall = self.projects[indexPath.row].screenshotSmall else { return }
                     guard let imageUrl = URL(string: self.baseUrl.appending(screenshotSmall)) else { return }
                     if let data = try? Data(contentsOf: imageUrl) {
                         DispatchQueue.main.async {
@@ -131,12 +131,12 @@ class SearchStoreDataSource: NSObject, UITableViewDataSource, UITableViewDelegat
         }
         self.delegate?.showLoadingIndicator()
 
-        guard let cellProgram = cell?.program else { return }
-        self.downloader.downloadProgram(for: cellProgram) { program, error in
+        guard let cellProject = cell?.project else { return }
+        self.downloader.downloadProject(for: cellProject) { project, error in
             guard timer.isValid else { return }
-            guard let StoreProgram = program, error == nil else { return }
+            guard let StoreProject = project, error == nil else { return }
             guard let cell = cell else { return }
-            cell.program = StoreProgram
+            cell.project = StoreProject
             self.delegate?.selectedCell(dataSource: self, didSelectCellWith: cell)
             timer.invalidate()
             self.delegate?.hideLoadingIndicator()

@@ -54,7 +54,7 @@
 
 - (NSString*)brickTitle
 {
-    return [kLocalizedChangeBrightness stringByAppendingString:[@"\n" stringByAppendingString:[kLocalizedBy stringByAppendingString:@"%@\%"]]];
+    return [kLocalizedChangeBrightness stringByAppendingString:[@"\n" stringByAppendingString:[kLocalizedBy stringByAppendingString:@" %@\%"]]];
 }
 
 #pragma mark - Description

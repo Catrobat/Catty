@@ -229,7 +229,7 @@
 
 - (BOOL)isScript:(kBrickType)type
 {
-    if (type == kProgramStartedBrick || type == kTappedBrick || type == kReceiveBrick) {
+    if (type == kProjectStartedBrick || type == kTappedBrick || type == kReceiveBrick) {
         return YES;
     }
     return NO;

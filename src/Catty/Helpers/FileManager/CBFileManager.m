@@ -31,10 +31,10 @@
 @interface CBFileManager ()
 
 @property (nonatomic, strong, readwrite) NSString *documentsDirectory;
-@property (nonatomic, strong) NSString *programsDirectory;
-@property (nonatomic, strong) NSMutableDictionary *programTaskDict;
-@property (nonatomic, strong) NSMutableDictionary *programNameDict;
-@property (nonatomic, strong) NSMutableDictionary *programIDDict;
+@property (nonatomic, strong) NSString *projectsDirectory;
+@property (nonatomic, strong) NSMutableDictionary *projectTaskDict;
+@property (nonatomic, strong) NSMutableDictionary *projectNameDict;
+@property (nonatomic, strong) NSMutableDictionary *projectIDDict;
 
 @property (nonatomic, strong) NSURLSession *downloadSession;
 
@@ -60,36 +60,36 @@
     return _documentsDirectory;
 }
 
-- (NSString*)programsDirectory
+- (NSString*)projectsDirectory
 {
-    if (_programsDirectory == nil) {
-        _programsDirectory = [[NSString alloc] initWithFormat:@"%@/%@", self.documentsDirectory, kProgramsFolder];
+    if (_projectsDirectory == nil) {
+        _projectsDirectory = [[NSString alloc] initWithFormat:@"%@/%@", self.documentsDirectory, kProjectsFolder];
     }
-    return _programsDirectory;
+    return _projectsDirectory;
 }
 
 
-- (NSMutableDictionary*)programTaskDict {
-    if (_programTaskDict == nil) {
-        _programTaskDict = [[NSMutableDictionary alloc] init];
+- (NSMutableDictionary*)projectTaskDict {
+    if (_projectTaskDict == nil) {
+        _projectTaskDict = [[NSMutableDictionary alloc] init];
     }
-    return _programTaskDict;
+    return _projectTaskDict;
 }
 
-- (NSMutableDictionary*)programNameDict
+- (NSMutableDictionary*)projectNameDict
 {
-    if (!_programNameDict) {
-        _programNameDict = [[NSMutableDictionary alloc] init];
+    if (!_projectNameDict) {
+        _projectNameDict = [[NSMutableDictionary alloc] init];
     }
-    return _programNameDict;
+    return _projectNameDict;
 }
 
-- (NSMutableDictionary*)programIDDict
+- (NSMutableDictionary*)projectIDDict
 {
-    if (! _programIDDict) {
-        _programIDDict = [[NSMutableDictionary alloc] init];
+    if (! _projectIDDict) {
+        _projectIDDict = [[NSMutableDictionary alloc] init];
     }
-    return _programIDDict;
+    return _projectIDDict;
 }
 
 - (NSArray*)playableSoundsInDirectory:(NSString*)directoryPath
@@ -324,40 +324,40 @@
     return contents;
 }
 
-- (void)addDefaultProgramToProgramsRootDirectoryIfNoProgramsExist
+- (void)addDefaultProjectToProjectsRootDirectoryIfNoProjectsExist
 {
-    if ([Program areThereAnyPrograms]) {
+    if ([Project areThereAnyProjects]) {
         return;
     }
-    [self addNewBundleProgramWithName:kDefaultProgramBundleName];
-    ProgramLoadingInfo *loadingInfo = [ProgramLoadingInfo programLoadingInfoForProgramWithName:kDefaultProgramBundleName programID:nil];
-    Program *program = [Program programWithLoadingInfo:loadingInfo];
-    [program translateDefaultProgram];
+    [self addNewBundleProjectWithName:kDefaultProjectBundleName];
+    ProjectLoadingInfo *loadingInfo = [ProjectLoadingInfo projectLoadingInfoForProjectWithName:kDefaultProjectBundleName projectID:nil];
+    Project *project = [Project projectWithLoadingInfo:loadingInfo];
+    [project translateDefaultProject];
 }
 
-- (void)addNewBundleProgramWithName:(NSString*)projectName
+- (void)addNewBundleProjectWithName:(NSString*)projectName
 {
     NSError *error;
-    if (! [self directoryExists:self.programsDirectory]) {
-        [self createDirectory:self.programsDirectory];
+    if (! [self directoryExists:self.projectsDirectory]) {
+        [self createDirectory:self.projectsDirectory];
     }
 
-    NSArray *contents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:self.programsDirectory error:&error];
+    NSArray *contents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:self.projectsDirectory error:&error];
     if(!contents)
         NSLogError(error);
 
     if ([contents indexOfObject:projectName]) {
         NSString *filePath = [[NSBundle mainBundle] pathForResource:projectName ofType:@"catrobat"];
         NSData *defaultProject = [NSData dataWithContentsOfFile:filePath];
-        [self unzipAndStore:defaultProject withProgramID:nil withName:projectName];
+        [self unzipAndStore:defaultProject withProjectID:nil withName:projectName];
     } else {
         NSInfo(@"%@ already exists...", projectName);
     }
 }
 
-- (void)downloadProgramFromURL:(NSURL*)url withProgramID:(NSString*)programID andName:(NSString*)name
+- (void)downloadProjectFromURL:(NSURL*)url withProjectID:(NSString*)projectID andName:(NSString*)name
 {
-    NSDebug(@"Starting downloading program '%@' with id %@ from url: %@", name, programID, [url absoluteString]);
+    NSDebug(@"Starting downloading project '%@' with id %@ from url: %@", name, projectID, [url absoluteString]);
     
     if (! self.downloadSession) {
         NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
@@ -367,12 +367,12 @@
                                                         delegateQueue:nil];
     }
     
-    NSURLSessionDownloadTask *getProgramTask = [self.downloadSession downloadTaskWithURL:url];
-    if (getProgramTask) {
-        [self.programTaskDict setObject:url forKey:getProgramTask];
-        [self.programNameDict setObject:name forKey:getProgramTask];
-        [self.programIDDict setObject:programID forKey:getProgramTask];
-        [getProgramTask resume];
+    NSURLSessionDownloadTask *getProjectTask = [self.downloadSession downloadTaskWithURL:url];
+    if (getProjectTask) {
+        [self.projectTaskDict setObject:url forKey:getProjectTask];
+        [self.projectNameDict setObject:name forKey:getProjectTask];
+        [self.projectIDDict setObject:projectID forKey:getProjectTask];
+        [getProjectTask resume];
     }
 }
 
@@ -394,7 +394,7 @@
 }
 
 #pragma mark - Helper
-- (void)storeDownloadedProgram:(NSData *)data andTask:(NSURLSessionDownloadTask *)task
+- (void)storeDownloadedProject:(NSData *)data andTask:(NSURLSessionDownloadTask *)task
 {
     id jsonObject = [NSJSONSerialization JSONObjectWithData:data
                                                     options:NSJSONReadingMutableContainers
@@ -411,37 +411,37 @@
         return;
     }
 
-    NSString *name = [self.programNameDict objectForKey:task];
-    NSString *programID = [self.programIDDict objectForKey:task];
-    if ([self unzipAndStore:data withProgramID:programID withName:name])
+    NSString *name = [self.projectNameDict objectForKey:task];
+    NSString *projectID = [self.programIDDict objectForKey:task];
+    if ([self unzipAndStore:data withProjectID:projectID withName:name])
     {
-        ProgramLoadingInfo* info = [ProgramLoadingInfo programLoadingInfoForProgramWithName:name
-                                                                                  programID:programID];
-        NSURL* url = [self.programTaskDict objectForKey:task];
-        if ([self.delegate respondsToSelector:@selector(downloadFinishedWithURL:andProgramLoadingInfo:)] && [self.projectURL isEqual:url]) {
+        ProjectLoadingInfo* info = [ProjectLoadingInfo projectLoadingInfoForProjectWithName:name
+                                                                                  projectID:projectID];
+        NSURL* url = [self.projectTaskDict objectForKey:task];
+        if ([self.delegate respondsToSelector:@selector(downloadFinishedWithURL:andProjectLoadingInfo:)] && [self.projectURL isEqual:url]) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self.delegate downloadFinishedWithURL:url andProgramLoadingInfo:info];
+                [self.delegate downloadFinishedWithURL:url andProjectLoadingInfo:info];
             });
-        } else if ([self.delegate respondsToSelector:@selector(downloadFinishedWithURL:andProgramLoadingInfo:)] && [self.delegate isKindOfClass:[HelpWebViewController class]]){
+        } else if ([self.delegate respondsToSelector:@selector(downloadFinishedWithURL:andProjectLoadingInfo:)] && [self.delegate isKindOfClass:[HelpWebViewController class]]){
             [self.delegate downloadFinishedWithURL:url andProgramLoadingInfo:info];
         }
     }
 }
 
-// IMPORTANT: all downloaded programs own a unique programID, but if this program was generated by the user
-//            AND (!) has not been uploaded to the Pocket Code Website yet, a No-Program-ID-Yet placeholder
-//            will be added to the program directory's name. This No-Program-ID-Yet placeholder will be
-//            automatically replaced by a unique programID (retrieved from the Pocket Code website) later
+// IMPORTANT: all downloaded projects own a unique projectID, but if this program was generated by the user
+//            AND (!) has not been uploaded to the Pocket Code Website yet, a No-Project-ID-Yet placeholder
+//            will be added to the project directory's name. This No-Project-ID-Yet placeholder will be
+//            automatically replaced by a unique projectID (retrieved from the Pocket Code website) later
 //            after the user has uploaded this program.
-- (BOOL)unzipAndStore:(NSData*)programData withProgramID:(NSString*)programID withName:(NSString*)name
+- (BOOL)unzipAndStore:(NSData*)projectData withProjectID:(NSString*)projectID withName:(NSString*)name
 {
     NSError *error;
     NSString *tempPath = [NSString stringWithFormat:@"%@temp.zip", NSTemporaryDirectory()];
-    [programData writeToFile:tempPath atomically:YES];
-    if ((! programID) || (! [programID length])) {
-        programID = kNoProgramIDYetPlaceholder;
+    [projectData writeToFile:tempPath atomically:YES];
+    if ((! projectID) || (! [projectID length])) {
+        projectID = kNoProjectIDYetPlaceholder;
     }
-    NSString *storePath = [NSString stringWithFormat:@"%@/%@_%@", self.programsDirectory, name, programID];
+    NSString *storePath = [NSString stringWithFormat:@"%@/%@_%@", self.projectsDirectory, name, projectID];
 
     NSDebug(@"Starting unzip");
     BOOL unzipSuccess = [SSZipArchive unzipFileAtPath:tempPath toDestination:storePath];
@@ -467,12 +467,12 @@
     return YES;
 }
 
--(NSData*)zipProgram:(Program*)program
+-(NSData*)zipProject:(Project*)project
 {
     NSString *targetPath = [NSString stringWithFormat:@"%@temp.zip", NSTemporaryDirectory()];
-    NSDebug(@"ZIPing program:%@ to path:%@", program.header.programName, targetPath);
+    NSDebug(@"ZIPing project:%@ to path:%@", project.header.programName, targetPath);
     
-    bool success = [SSZipArchive createZipFileAtPath:targetPath withContentsOfDirectory:program.projectPath];
+    bool success = [SSZipArchive createZipFileAtPath:targetPath withContentsOfDirectory:project.projectPath];
     
     if(success) {
         NSData *zipData = [[NSData alloc] initWithContentsOfFile:targetPath];
@@ -490,8 +490,8 @@
 
 - (void)stopLoading:(NSURL *)projecturl
 {
-    if (self.programTaskDict.count > 0) {
-        NSArray *temp = [self.programTaskDict allKeysForObject:projecturl];
+    if (self.projectTaskDict.count > 0) {
+        NSArray *temp = [self.projectTaskDict allKeysForObject:projecturl];
         if (temp) {
             NSURLSessionDownloadTask *key = [temp objectAtIndex:0];
             [self stopLoadingTask:key];
@@ -502,11 +502,11 @@
 - (void)stopLoadingTask:(NSURLSessionDownloadTask *)task
 {
     [task cancel];
-    NSURL* url = [self.programTaskDict objectForKey:task];
+    NSURL* url = [self.projectTaskDict objectForKey:task];
     if (url) {
-        [self.programTaskDict removeObjectForKey:task];
-        [self.programNameDict removeObjectForKey:task];
-        [self.programIDDict removeObjectForKey:task];
+        [self.projectTaskDict removeObjectForKey:task];
+        [self.projectNameDict removeObjectForKey:task];
+        [self.projectIDDict removeObjectForKey:task];
     }
     [Util setNetworkActivityIndicator:NO];
 }
@@ -531,14 +531,14 @@
 #pragma mark - NSURLSessionDelegate
 - (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)location
 {
-    NSURL *url = [self.programTaskDict objectForKey:downloadTask];
+    NSURL *url = [self.projectTaskDict objectForKey:downloadTask];
     if (url) {
-        [self storeDownloadedProgram:[NSData dataWithContentsOfURL:location] andTask:downloadTask];
-        [self.programTaskDict removeObjectForKey:downloadTask];
-        [self.programNameDict removeObjectForKey:downloadTask];
-        [self.programIDDict removeObjectForKey:downloadTask];
-        // Notification for reloading MyProgramViewController
-        [[NSNotificationCenter defaultCenter] postNotificationName:kProgramDownloadedNotification object:self];
+        [self storeDownloadedProject:[NSData dataWithContentsOfURL:location] andTask:downloadTask];
+        [self.projectTaskDict removeObjectForKey:downloadTask];
+        [self.projectNameDict removeObjectForKey:downloadTask];
+        [self.projectIDDict removeObjectForKey:downloadTask];
+        // Notification for reloading MyProjectViewController
+        [[NSNotificationCenter defaultCenter] postNotificationName:kProjectDownloadedNotification object:self];
     }
     [Util setNetworkActivityIndicator:NO];
 }
@@ -549,7 +549,7 @@
 
 - (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didWriteData:(int64_t)bytesWritten totalBytesWritten:(int64_t)totalBytesWritten totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite
 {
-    NSURL* url = [self.programTaskDict objectForKey:downloadTask];
+    NSURL* url = [self.projectTaskDict objectForKey:downloadTask];
     if (! url) {
         return;
     }
@@ -615,11 +615,11 @@
             return;
         }
         
-        NSURL *url = [self.programTaskDict objectForKey:task];
+        NSURL *url = [self.projectTaskDict objectForKey:task];
         if (url) {
-            [self.programTaskDict removeObjectForKey:task];
-            [self.programNameDict removeObjectForKey:task];
-            [self.programIDDict removeObjectForKey:task];
+            [self.projectTaskDict removeObjectForKey:task];
+            [self.projectNameDict removeObjectForKey:task];
+            [self.projectIDDict removeObjectForKey:task];
         }
         if ([self.delegate respondsToSelector:@selector(setBackDownloadStatus)]) {
             dispatch_async(dispatch_get_main_queue(), ^{

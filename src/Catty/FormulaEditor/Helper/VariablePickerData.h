@@ -28,7 +28,7 @@
 
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, weak) UserVariable *userVariable;
-@property (nonatomic) BOOL isProgramVariable;
+@property (nonatomic) BOOL isProjectVariable;
 
 - (instancetype)initWithTitle:(NSString*)title;
 - (instancetype)initWithTitle:(NSString*)title andVariable:(UserVariable*)userVariable;

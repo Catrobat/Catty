@@ -59,9 +59,9 @@ extension FormulaManager {
         return unavailableResource
     }
 
-    @objc(setupForProgram: andScene:)
-    func setup(for program: Program, and scene: CBScene) {
-        let requiredResources = program.getRequiredResources()
+    @objc(setupForProject: andScene:)
+    func setup(for project: Project, and scene: CBScene) {
+        let requiredResources = project.getRequiredResources()
         setup(for: requiredResources, and: scene, startTrackingTouches: true)
     }
 

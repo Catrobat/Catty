@@ -22,8 +22,8 @@
 
 #import "CBXMLParser.h"
 #import "GDataXMLNode.h"
-#import "Program+CBXMLHandler.h"
-#import "Program+CustomExtensions.h"
+#import "Project+CBXMLHandler.h"
+#import "Project+CustomExtensions.h"
 #import "CBXMLParserContext.h"
 #import "Util.h"
 
@@ -69,8 +69,8 @@
             && (languageVersion <= kCatrobatXMLParserMaxSupportedLanguageVersion));
 }
 
-#pragma mark - Program parsing
-- (Program*)parseAndCreateProgram
+#pragma mark - Project parsing
+- (Project*)parseAndCreateProject
 {
     NSError *error;
     NSString *xmlFile;
@@ -104,21 +104,21 @@
     // sanity check
     if (error || (! xmlDocument)) { return nil; }
 
-    Program *program = nil;
+    Project *project = nil;
     @try {
         CGFloat languageVersion = [Util detectCBLanguageVersionFromXMLWithPath:self.xmlPath];
-        NSInfo(@"Parsing Program with CatrobatLanguageVersion %g...", languageVersion);
+        NSInfo(@"Parsing Project with CatrobatLanguageVersion %g...", languageVersion);
         CBXMLParserContext *parserContext = [[CBXMLParserContext alloc]
                                              initWithLanguageVersion:languageVersion];
-        program = [parserContext parseFromElement:xmlDocument.rootElement withClass:[Program class]];
-        program.unsupportedElements = parserContext.unsupportedElements;
+        project = [parserContext parseFromElement:xmlDocument.rootElement withClass:[Project class]];
+        project.unsupportedElements = parserContext.unsupportedElements;
         NSInfo(@"Parsing finished...");
     } @catch(NSException *exception) {
-        NSError(@"Program could not be loaded! %@", [exception description]);
+        NSError(@"Project could not be loaded! %@", [exception description]);
         return nil;
     }
-    [program updateReferences];
-    return program;
+    [project updateReferences];
+    return project;
 }
 
 @end

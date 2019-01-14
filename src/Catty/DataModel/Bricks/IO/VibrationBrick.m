@@ -53,7 +53,7 @@
 - (NSString*)brickTitle
 {
     NSString* durationStr = [self.durationInSeconds isSingularNumber] ? kLocalizedSecond : kLocalizedSeconds;
-    return [kLocalizedVibrateFor stringByAppendingString:[@"%@ " stringByAppendingString:durationStr]];
+    return [kLocalizedVibrateFor stringByAppendingString:[@" %@ " stringByAppendingString:durationStr]];
 }
 
 #pragma mark - Description

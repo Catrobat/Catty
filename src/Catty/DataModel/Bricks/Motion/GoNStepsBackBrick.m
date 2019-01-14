@@ -59,7 +59,7 @@
 - (NSString*)brickTitle
 {
     NSString* localizedLayer = [self.steps isSingularNumber] ? kLocalizedLayer : kLocalizedLayers;
-    return [kLocalizedGoBack stringByAppendingString:[@"%@ " stringByAppendingString:localizedLayer]];
+    return [kLocalizedGoBack stringByAppendingString:[@" %@ " stringByAppendingString:localizedLayer]];
 }
 
 #pragma mark - Description

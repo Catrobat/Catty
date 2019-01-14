@@ -81,7 +81,7 @@ final class XMLParserUserVariableTests095: XMLAbstractTest {
         variables = variablesContainer.objectVariables(for: spriteObject)
         XCTAssertEqual(0, variables!.count, "Invalid number of object variables for object 8")
 
-        XCTAssertEqual(5, variablesContainer.programVariableList.count, "Invalid number of program variables")
+        XCTAssertEqual(5, variablesContainer.programVariableList.count, "Invalid number of project variables")
     }
 
 }

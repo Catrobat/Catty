@@ -23,10 +23,10 @@
 #import <Foundation/Foundation.h>
 
 @class GDataXMLDocument;
-@class Program;
+@class Project;
 
 @interface Parser : NSObject
 
-- (Program*)generateObjectForProgramWithPath:(NSString*)path;
+- (Project*)generateObjectForProjectWithPath:(NSString*)path;
 
 @end

@@ -28,22 +28,22 @@ final class ScenePresenterViewControllerTest: XCTestCase {
 
     var vc: ScenePresenterViewController!
     var skView: SKView!
-    var program: Program!
+    var project: Project!
 
     override func setUp() {
         super.setUp()
         vc = ScenePresenterViewController()
         skView = SKView(frame: CGRect(origin: CGPoint.zero, size: CGSize(width: 1000, height: 2500)))
 
-        program = Program.defaultProgram(withName: "testProgram", programID: "")
+        project = Project.defaultProject(withName: "testProject", projectID: "")
     }
 
     func testAutomaticScreenshot() {
-        let expectedPath = program.projectPath() + kScreenshotAutoFilename
+        let expectedPath = project.projectPath() + kScreenshotAutoFilename
         let exp = expectation(description: "screenshot saved")
 
         XCTAssertFalse(FileManager.default.fileExists(atPath: expectedPath))
-        vc.takeAutomaticScreenshot(for: skView, and: program)
+        vc.takeAutomaticScreenshot(for: skView, and: project)
 
         DispatchQueue.main.async { exp.fulfill() }
         waitForExpectations(timeout: 5, handler: nil)
@@ -56,9 +56,9 @@ final class ScenePresenterViewControllerTest: XCTestCase {
     }
 
     func testManualScreenshot() {
-        let expectedPath = program.projectPath() + kScreenshotManualFilename
+        let expectedPath = project.projectPath() + kScreenshotManualFilename
         let exp = expectation(description: "screenshot saved")
-        vc.takeManualScreenshot(for: skView, and: program)
+        vc.takeManualScreenshot(for: skView, and: project)
 
         DispatchQueue.main.async { exp.fulfill() }
         waitForExpectations(timeout: 5, handler: nil)

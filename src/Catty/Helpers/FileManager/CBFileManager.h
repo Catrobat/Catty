@@ -21,13 +21,12 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "ProgramLoadingInfo.h"
-#import "Program.h"
-
+#import "ProjectLoadingInfo.h"
+#import "Project.h"
 
 @protocol FileManagerDelegate <NSObject>
 
-- (void) downloadFinishedWithURL:(NSURL*)url andProgramLoadingInfo:(ProgramLoadingInfo*)info;
+- (void) downloadFinishedWithURL:(NSURL*)url andProjectLoadingInfo:(ProjectLoadingInfo*)info;
 - (void) updateProgress:(double)progress;
 - (void) setBackDownloadStatus;
 - (void) timeoutReached;
@@ -60,16 +59,16 @@
 - (NSUInteger)sizeOfFileAtPath:(NSString*)path;
 - (NSDate*)lastModificationTimeOfFile:(NSString*)path;
 - (NSArray*)getContentsOfDirectory:(NSString*)directory;
-- (void)addDefaultProgramToProgramsRootDirectoryIfNoProgramsExist;
-- (void)downloadProgramFromURL:(NSURL*)url withProgramID:(NSString*)programID andName:(NSString*)name;
+- (void)addDefaultProjectToProjectsRootDirectoryIfNoProjectsExist;
+- (void)downloadProjectFromURL:(NSURL*)url withProjectID:(NSString*)projectID andName:(NSString*)name;
 - (BOOL)existPlayableSoundsInDirectory:(NSString*)directoryPath;
 - (void)stopLoading:(NSURL *)projecturl;
 - (NSArray*)playableSoundsInDirectory:(NSString*)directoryPath;
 - (void)changeModificationDate:(NSDate*)date forFileAtPath:(NSString*)path;
 - (uint64_t)freeDiskspace;
-- (NSData*)zipProgram:(Program*)program;
-- (BOOL)unzipAndStore:(NSData*)programData
-        withProgramID:(NSString*)programID
+- (NSData*)zipProject:(Project*)project;
+- (BOOL)unzipAndStore:(NSData*)projectData
+        withProjectID:(NSString*)projectID
              withName:(NSString*)name;
 
 @end

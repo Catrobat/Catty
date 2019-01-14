@@ -25,7 +25,7 @@
 #import "Script.h"
 #import "WhenScript.h"
 #import "MoveNStepsBrick.h"
-#import "ProgramMock.h"
+#import "ProjectMock.h"
 #import "Pocket_Code-Swift.h"
 
 @interface MoveNStepsBrickTests : AbstractBrickTests
@@ -47,7 +47,7 @@
 - (void)setUp
 {
     [super setUp];
-    self.scene = [[[SceneBuilder alloc] initWithProgram:[[ProgramMock alloc] initWithWidth:SCREEN_WIDTH andHeight:SCREEN_HEIGHT]] build];
+    self.scene = [[[SceneBuilder alloc] initWithProject:[[ProjectMock alloc] initWithWidth:SCREEN_WIDTH andHeight:SCREEN_HEIGHT]] build];
     
     SpriteObject *spriteObject = [[SpriteObject alloc] init];
     
@@ -186,14 +186,14 @@
 {
     MoveNStepsBrick* brick = [[MoveNStepsBrick alloc] init];
     brick.steps = [[Formula alloc] initWithDouble:1];
-    XCTAssertTrue([[kLocalizedMove stringByAppendingString:[@"%@ " stringByAppendingString:kLocalizedStep]] isEqualToString:[brick brickTitle]], @"Wrong brick title");
+    XCTAssertTrue([[kLocalizedMove stringByAppendingString:[@" %@ " stringByAppendingString:kLocalizedStep]] isEqualToString:[brick brickTitle]], @"Wrong brick title");
 }
 
 - (void)testTitlePlural
 {
     MoveNStepsBrick* brick = [[MoveNStepsBrick alloc] init];
     brick.steps = [[Formula alloc] initWithDouble:2];
-    XCTAssertTrue([[kLocalizedMove stringByAppendingString:[@"%@ " stringByAppendingString:kLocalizedSteps]] isEqualToString:[brick brickTitle]], @"Wrong brick title");
+    XCTAssertTrue([[kLocalizedMove stringByAppendingString:[@" %@ " stringByAppendingString:kLocalizedSteps]] isEqualToString:[brick brickTitle]], @"Wrong brick title");
 }
 
 @end

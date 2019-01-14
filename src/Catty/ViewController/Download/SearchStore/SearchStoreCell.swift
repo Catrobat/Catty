@@ -29,10 +29,10 @@ protocol SearchStoreCellProtocol: AnyObject {
 class SearchStoreCell: UITableViewCell {
 
     weak var delegete: SearchStoreCellProtocol?
-    var program: StoreProgram?
+    var project: StoreProject?
 
-    @IBOutlet private weak var searchProgramImage: UIImageView!
-    @IBOutlet private weak var searchProgramTitle: UILabel!
+    @IBOutlet private weak var searchProjectImage: UIImageView!
+    @IBOutlet private weak var searchProjectTitle: UILabel!
 
     var searchImage: UIImage? {
         didSet {
@@ -47,8 +47,8 @@ class SearchStoreCell: UITableViewCell {
     }
 
     func updateTable() {
-        searchProgramImage?.image = searchImage
-        searchProgramTitle?.text = searchTitle
-        searchProgramTitle.textColor = UIColor.globalTint()
+        searchProjectImage?.image = searchImage
+        searchProjectTitle?.text = searchTitle
+        searchProjectTitle.textColor = UIColor.globalTint()
     }
 }

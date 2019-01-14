@@ -21,22 +21,22 @@
  */
 
 #import "AbstractBrickTests.h"
-#import "ProgramMock.h"
+#import "ProjectMock.h"
 
 @implementation AbstractBrickTests
 
-- (NSMutableArray*) programs
+- (NSMutableArray*) projects
 {
-  if (! self.programs)
-    self.programs = [NSMutableArray array];
-  return self.programs;
+  if (! self.projects)
+    self.projects = [NSMutableArray array];
+  return self.projects;
 }
 
 - (void)setUp
 {
     [super setUp];
     self.formulaInterpreter = [[FormulaManager alloc] initWithSceneSize:[Util screenSize:true]];
-    self.scene = [[[SceneBuilder alloc] initWithProgram:[ProgramMock new]] build];
+    self.scene = [[[SceneBuilder alloc] initWithProject:[ProjectMock new]] build];
 }
 
 - (void)tearDown

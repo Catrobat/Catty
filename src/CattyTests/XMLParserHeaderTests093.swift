@@ -34,7 +34,7 @@ final class XMLParserHeaderTests093: XMLAbstractTest {
     }
 
     func testValidHeader() {
-        let xmlRoot = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProgram"))
+        let xmlRoot = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProject"))
         let firstElement = xmlRoot.rootElement()?.elements(forName: "header")?.first as! GDataXMLElement
         let header = self.parserContext?.parse(from: firstElement, withClass: Header.self) as! Header
 

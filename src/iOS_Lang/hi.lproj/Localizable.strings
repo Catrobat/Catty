@@ -2,7 +2,7 @@
 "A message with the same name already exists, try again." = "A message with the same name already exists, try again.";
 
 /* No comment provided by engineer. */
-"A program with the same name already exists, try again." = "इस नाम का प्रोग्राम पहले से बना हुआ है, दोबारा कोशिश करें";
+"A project with the same name already exists, try again." = "इस नाम का प्रोग्राम पहले से ही बनाया गया है, फिर से प्रयास करें";
 
 /* No comment provided by engineer. */
 "About Catrobat" = "कैटरोबैट के बारे में";
@@ -18,9 +18,6 @@
 
 /* No comment provided by engineer. */
 "acceleration_z" = "त्वरण_ज़ेड";
-
-/* No comment provided by engineer. */
-"add comment here..." = "add comment here...";
 
 /* No comment provided by engineer. */
 "Add image" = "चित्र डालें";
@@ -44,9 +41,6 @@
 "An object with the same name already exists, try again." = "इस नाम की वस्तु पहले से मौजूद है, दुबारा कोशिश करें";
 
 /* No comment provided by engineer. */
-"and" = "and";
-
-/* No comment provided by engineer. */
 "Animate Brick" = "ईंट को चलायें";
 
 /* No comment provided by engineer. */
@@ -63,9 +57,6 @@
 
 /* No comment provided by engineer. */
 "Author" = "लेखक";
-
-/* Title of icon shown in the side bar to enable or disable an overlayed view to show the origin of the coordinate system and implicitly the display size. */
-"Axes" = "Axes";
 
 /* No comment provided by engineer. */
 "Back" = "पीछे जाए";
@@ -95,16 +86,13 @@
 "brush" = "ब्रश";
 
 /* No comment provided by engineer. */
-"By registering you agree to our" = "By registering you agree to our";
-
-/* No comment provided by engineer. */
 "By switching to the section \"Explore\" you can discover much more interesting stuff." = "\"समन्वेषण\" अनुभाग में जा कर आप और बहुत सारी मज़ेदार चीज़ें जान सकते हो";
 
 /* No comment provided by engineer. */
 "Camera Roll" = "कैमरा फोटोज";
 
 /* No comment provided by engineer. */
-"Can't restart program!" = "प्रोग्राम दोबारा चालू नही हो सकता!";
+"Can't restart project!" = "परियोजना को फिर से शुरू नहीं किया जा सकता है!";
 
 /* No comment provided by engineer. */
 "Cancel" = "रद्द करें";
@@ -113,25 +101,13 @@
 "Categories" = "श्रेणियाँ :";
 
 /* No comment provided by engineer. */
-"Change brightness\nby %@\%" = "Change brightness\nby %@\\%";
+"Change volume by" = "ध्वनी को मूल्य से बदले";
 
 /* No comment provided by engineer. */
-"Change size by %@\%" = "Change size by %@\\%";
+"Change X by " = "X को मूल्य से बदले";
 
 /* No comment provided by engineer. */
-"Change transparency\nby %@\%" = "Change transparency\nby %@\\%";
-
-/* No comment provided by engineer. */
-"Change variable\n%@\nby %@" = "Change variable\n%@\nby %@";
-
-/* No comment provided by engineer. */
-"Change volume by %@" = "ध्वनी को %@ मूल्य से बदले";
-
-/* No comment provided by engineer. */
-"Change X by %@" = "X को %@ मूल्य से बदले";
-
-/* No comment provided by engineer. */
-"Change Y by %@" = "Y को %@ मूल्य से बदले";
+"Change Y by " = "Y को मूल्य से बदले";
 
 /* No comment provided by engineer. */
 "Changes discarded!" = "परिवर्तन छोड़ दिए!";
@@ -150,12 +126,6 @@
 
 /* No comment provided by engineer. */
 "Close" = "बंद करें";
-
-/* paint */
-"Close Paint" = "Close Paint";
-
-/* No comment provided by engineer. */
-"compass" = "compass";
 
 /* No comment provided by engineer. */
 "Compute" = "गणना करें";
@@ -182,13 +152,7 @@
 "Copy Brick" = "ईंट की प्रतिलिपि बनाएं";
 
 /* No comment provided by engineer. */
-"Copy program" = "प्रोग्राम की प्रतिलिपि बनाए";
-
-/* No comment provided by engineer. */
-"Debug mode" = "Debug mode";
-
-/* No comment provided by engineer. */
-"Dec" = "Dec";
+"Copy project" = "प्रोग्राम की प्रतिलिपि बनाए";
 
 /* No comment provided by engineer. */
 "December" = "दिसम्बर";
@@ -200,67 +164,13 @@
 "Delete Brick" = "ईंट को हटाएं";
 
 /* No comment provided by engineer. */
-"Delete Condition" = "Delete Condition";
-
-/* No comment provided by engineer. */
-"Delete Looks" = "Delete Looks";
-
-/* No comment provided by engineer. */
-"Delete Loop" = "Delete Loop";
-
-/* No comment provided by engineer. */
-"Delete Objects" = "Delete Objects";
-
-/* No comment provided by engineer. */
-"Delete Program" = "Delete Program";
-
-/* No comment provided by engineer. */
-"Delete Programs" = "Delete Programs";
-
-/* No comment provided by engineer. */
 "Delete Script" = "लिपि हटाएँ";
 
 /* No comment provided by engineer. */
 "Delete Sounds" = "ध्वनियाँ हटाये";
 
 /* No comment provided by engineer. */
-"Delete these Bricks?" = "Delete these Bricks?";
-
-/* No comment provided by engineer. */
-"Delete these Conditions?" = "Delete these Conditions?";
-
-/* No comment provided by engineer. */
-"Delete these Loops?" = "Delete these Loops?";
-
-/* No comment provided by engineer. */
-"Delete these Scripts?" = "Delete these Scripts?";
-
-/* No comment provided by engineer. */
-"Delete this Brick?" = "Delete this Brick?";
-
-/* No comment provided by engineer. */
-"Delete this Condition?" = "Delete this Condition?";
-
-/* No comment provided by engineer. */
-"Delete this look" = "Delete this look";
-
-/* No comment provided by engineer. */
-"Delete this Loop?" = "Delete this Loop?";
-
-/* No comment provided by engineer. */
-"Delete this object" = "Delete this object";
-
-/* No comment provided by engineer. */
-"Delete this program" = "Delete this program";
-
-/* No comment provided by engineer. */
-"Delete this Script?" = "Delete this Script?";
-
-/* No comment provided by engineer. */
 "Delete this sound" = "इस ध्वनि को हटाएँ";
-
-/* No comment provided by engineer. */
-"Deletion Mode" = "Deletion Mode";
 
 /* No comment provided by engineer. */
 "Description" = "वर्णन";
@@ -272,9 +182,6 @@
 "direction" = "दिशा";
 
 /* paint */
-"Do you really want to delete the current drawing?" = "Do you really want to delete the current drawing?";
-
-/* paint */
 "Do you want to save the changes" = "क्या आप परिवर्तनों को सहेजना चाहते हैं";
 
 /* No comment provided by engineer. */
@@ -284,79 +191,22 @@
 "Download" = "डाउन्लोड";
 
 /* No comment provided by engineer. */
-"Download sucessful" = "Download sucessful";
-
-/* No comment provided by engineer. */
-"Downloads" = "Downloads";
-
-/* No comment provided by engineer. */
-"Draw new image" = "Draw new image";
-
-/* No comment provided by engineer. */
 "Edit" = "बदलें";
 
 /* No comment provided by engineer. */
 "Edit Formula" = "सूत्र को संपादित करें";
 
 /* Action sheet menu title */
-"Edit Look" = "Edit Look";
-
-/* Action sheet menu title */
-"Edit Looks" = "Edit Looks";
-
-/* No comment provided by engineer. */
-"Edit Object" = "Edit Object";
-
-/* No comment provided by engineer. */
-"Edit Program" = "Edit Program";
-
-/* No comment provided by engineer. */
-"Edit Programs" = "Edit Programs";
-
-/* Action sheet menu title */
-"Edit Sound" = "Edit Sound";
-
-/* Action sheet menu title */
 "Edit Sounds" = "ध्वनियाँ को संपादित करें";
-
-/* paint */
-"ellipse / circle" = "ellipse / circle";
 
 /* No comment provided by engineer. */
 "Else" = "वर्ना";
 
 /* No comment provided by engineer. */
-"Email" = "Email";
-
-/* No comment provided by engineer. */
-"Email is not valid!" = "Email is not valid!";
-
-/* No comment provided by engineer. */
 "End If" = "समाप्त करें जब";
-
-/* No comment provided by engineer. */
-"End of Loop" = "End of Loop";
-
-/* Placeholder for add image-name input field */
-"Enter your image name here..." = "Enter your image name here...";
-
-/* Placeholder for message input field */
-"Enter your message here..." = "Enter your message here...";
-
-/* Placeholder for add object-name input field */
-"Enter your object name here..." = "Enter your object name here...";
-
-/* Placeholder for program-description input field */
-"Enter your program description here..." = "Enter your program description here...";
-
-/* Placeholder for program-name input field */
-"Enter your program name here..." = "Enter your program name here...";
 
 /* Placeholder for add sound-name input field */
 "Enter your sound name here..." = "अपनी आवाज का नाम डालें";
-
-/* Placeholder for variable input field */
-"Enter your variable name here..." = "Enter your variable name here...";
 
 /* paint */
 "eraser" = "मिटाने के लिए";
@@ -369,12 +219,6 @@
 
 /* No comment provided by engineer. */
 "Explore apps" = "Apps का समन्वेषण करें";
-
-/* No comment provided by engineer. */
-"false" = "false";
-
-/* No comment provided by engineer. */
-"Featured Programs" = "feature किये हुए प्रोग्राम";
 
 /* No comment provided by engineer. */
 "Feb" = "फरवरी";
@@ -390,12 +234,6 @@
 
 /* No comment provided by engineer. */
 "Flashlight on" = "फ़्लैशलाइट चालू";
-
-/* No comment provided by engineer. */
-"for all objects" = "for all objects";
-
-/* No comment provided by engineer. */
-"for this object" = "for this object";
 
 /* No comment provided by engineer. */
 "Forever" = "हमेशा के लिए";
@@ -416,22 +254,10 @@
 "From Camera" = "कैमरे से";
 
 /* No comment provided by engineer. */
-"Glide %@ second(s)\nto X: %@ Y: %@" = "Glide %@ second(s)\nto X: %@ Y: %@";
-
-/* No comment provided by engineer. */
-"Go back %@ layer(s)" = "Go back %@ layer(s)";
-
-/* No comment provided by engineer. */
 "Go to front" = "सामने जाएँ";
-
-/* No comment provided by engineer. */
-"GOOD TO SEE YOU" = "GOOD TO SEE YOU";
 
 /* paint */
 "Green" = "हरा";
-
-/* No comment provided by engineer. */
-"Hello !" = "Hello !";
 
 /* No comment provided by engineer. */
 "Help" = "मदद";
@@ -443,43 +269,10 @@
 "Hide Details" = "विवरण छुपाएँ";
 
 /* No comment provided by engineer. */
-"If %@ is true then" = "If %@ is true then";
-
-/* No comment provided by engineer. */
-"If on edge, bounce" = "If on edge, bounce";
-
-/* paint */
-"image" = "image";
-
-/* No comment provided by engineer. */
-"Image name" = "Image name";
-
-/* No comment provided by engineer. */
-"Image source not available" = "Image source not available";
-
-/* No comment provided by engineer. */
-"In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation." = "In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation.";
-
-/* No comment provided by engineer. */
 "inclination_x" = "झुकाव_एक्स";
 
 /* No comment provided by engineer. */
 "inclination_y" = "झुकाव_वाई";
-
-/* No comment provided by engineer. */
-"Information" = "Information";
-
-/* paint */
-"Inserted" = "Inserted";
-
-/* No comment provided by engineer. */
-"Invalid input entered, try again." = "Invalid input entered, try again.";
-
-/* No comment provided by engineer. */
-"Invalid URL given!" = "Invalid URL given!";
-
-/* No comment provided by engineer. */
-"Jan" = "Jan";
 
 /* No comment provided by engineer. */
 "January" = "जनवरी";
@@ -488,25 +281,13 @@
 "join" = "सम्मिलित करें";
 
 /* No comment provided by engineer. */
-"Jul" = "Jul";
-
-/* No comment provided by engineer. */
 "July" = "जुलाई";
-
-/* No comment provided by engineer. */
-"Jun" = "Jun";
 
 /* No comment provided by engineer. */
 "June" = "जून";
 
 /* No comment provided by engineer. */
-"Last access" = "Last access";
-
-/* No comment provided by engineer. */
 "layer" = "परत";
-
-/* No comment provided by engineer. */
-"Length" = "Length";
 
 /* No comment provided by engineer. */
 "length" = "लंबाई";
@@ -514,23 +295,11 @@
 /* No comment provided by engineer. */
 "letter" = "पत्र";
 
-/* paint */
-"line" = "line";
-
-/* No comment provided by engineer. */
-"Loading" = "Loading";
-
 /* No comment provided by engineer. */
 "Logic" = "तर्क";
 
 /* No comment provided by engineer. */
 "Login" = "प्रवेश करे";
-
-/* No comment provided by engineer. */
-"Login successful" = "Login successful";
-
-/* No comment provided by engineer. */
-"Login/Register" = "Login/Register";
 
 /* LOOK */
 "look" = "देखे";
@@ -542,40 +311,19 @@
 "loudness" = "प्रबलता";
 
 /* No comment provided by engineer. */
-"Mar" = "Mar";
-
-/* No comment provided by engineer. */
 "March" = "मार्च";
 
 /* No comment provided by engineer. */
-"Math" = "Math";
-
-/* No comment provided by engineer. */
 "May" = "मई";
-
-/* No comment provided by engineer. */
-"Measure" = "Measure";
 
 /* paint */
 "Menu" = "विषय सूची";
 
 /* No comment provided by engineer. */
-"Message" = "Message";
-
-/* No comment provided by engineer. */
 "message 1" = "सन्देश 1";
 
-/* paint */
-"mirror" = "mirror";
-
-/* No comment provided by engineer. */
-"Mo" = "Mo";
-
-/* Prefix of default catrobat program object names (except background object) */
+/* Prefix of default catrobat project object names (except background object) */
 "Mole" = "तिल";
-
-/* No comment provided by engineer. */
-"Monday" = "Monday";
 
 /* No comment provided by engineer. */
 "More" = "अतिरिक्त";
@@ -587,49 +335,19 @@
 "Most Viewed" = "सबसे ज्यादा देखा गया";
 
 /* No comment provided by engineer. */
-"Motion" = "Motion";
-
-/* No comment provided by engineer. */
-"Move %@ step(s)" = "Move %@ step(s)";
-
-/* No comment provided by engineer. */
 "Move Brick" = "ईंट को स्थानांतरित करें";
 
-/* Name of the default catrobat program (used as filename!!) */
-"My first program" = "मेरा पहला प्रोग्राम";
-
-/* Default title of imported photo from camera (taken by camera) */
-"My Image" = "My Image";
+/* Name of the default catrobat project (used as filename!!) */
+"My first project" = "मेरा पहला प्रोजेक्ट";
 
 /* Title for first (default) object */
 "My Object" = "मेरी वस्तु";
 
 /* No comment provided by engineer. */
-"Name" = "Name";
-
-/* No comment provided by engineer. */
-"Name already exists. Please choose another" = "Name already exists. Please choose another";
-
-/* No comment provided by engineer. */
 "New" = "नवीन";
-
-/* paint */
-"New Canvas" = "New Canvas";
-
-/* No comment provided by engineer. */
-"New Message" = "New Message";
-
-/* No comment provided by engineer. */
-"New Program" = "New Program";
-
-/* No comment provided by engineer. */
-"New Text" = "New Text";
 
 /* No comment provided by engineer. */
 "New Variable" = "नया चर";
-
-/* No comment provided by engineer. */
-"New..." = "New...";
 
 /* No comment provided by engineer. */
 "Newest" = "नवीनतम";
@@ -644,55 +362,7 @@
 "No" = "नहीं";
 
 /* No comment provided by engineer. */
-"No Camera available" = "No Camera available";
-
-/* No comment provided by engineer. */
-"No Description available" = "No Description available";
-
-/* Title of AlertView if the user tries to import a sound but no sound has been imported using iTunes. */
-"No imported sounds found" = "No imported sounds found";
-
-/* No comment provided by engineer. */
-"No input or the input is too short. Please enter at least %lu character(s)." = "No input or the input is too short. Please enter at least %lu character(s).";
-
-/* No comment provided by engineer. */
-"No Internet Connection" = "No Internet Connection";
-
-/* No comment provided by engineer. */
-"No internet connection available." = "No internet connection available.";
-
-/* No comment provided by engineer. */
-"No or invalid image name entered, try again." = "No or invalid image name entered, try again.";
-
-/* No comment provided by engineer. */
-"No or invalid sound name entered, try again." = "No or invalid sound name entered, try again.";
-
-/* No comment provided by engineer. */
-"No search results" = "No search results";
-
-/* No comment provided by engineer. */
-"not" = "not";
-
-/* No comment provided by engineer. */
-"Not enough free memory to download this program. Please delete some of your programs" = "Not enough free memory to download this program. Please delete some of your programs";
-
-/* No comment provided by engineer. */
-"Not enough Memory" = "Not enough Memory";
-
-/* No comment provided by engineer. */
-"Note %@" = "Note %@";
-
-/* paint */
-"Nothing to crop!" = "Nothing to crop!";
-
-/* No comment provided by engineer. */
-"Nov" = "Nov";
-
-/* No comment provided by engineer. */
 "November" = "नवम्बर";
-
-/* No comment provided by engineer. */
-"Numbers" = "Numbers";
 
 /* No comment provided by engineer. */
 "Object" = "वस्तु";
@@ -701,13 +371,7 @@
 "Object name" = "वस्तु का नाम";
 
 /* No comment provided by engineer. */
-"Object variables:" = "Object variables:";
-
-/* No comment provided by engineer. */
 "Objects" = "वस्तुए";
-
-/* No comment provided by engineer. */
-"Oct" = "Oct";
 
 /* No comment provided by engineer. */
 "October" = "अक्टूबर";
@@ -716,61 +380,10 @@
 "OK" = "ठीक है।";
 
 /* No comment provided by engineer. */
-"only 15 characters allowed" = "only 15 characters allowed";
-
-/* No comment provided by engineer. */
-"Only space is not allowed. Please enter at least %lu other character(s)." = "Only space is not allowed. Please enter at least %lu other character(s).";
-
-/* No comment provided by engineer. */
-"or" = "or";
-
-/* No comment provided by engineer. */
 "Password" = "पारण शब्द:";
 
 /* No comment provided by engineer. */
-"Password is not vaild! \n It has to contain at least 6 characters/symbols" = "Password is not vaild! \n It has to contain at least 6 characters/symbols";
-
-/* paint */
-"pipette" = "pipette";
-
-/* No comment provided by engineer. */
-"Place at\nX: %@ Y: %@" = "Place at\nX: %@ Y: %@";
-
-/* No comment provided by engineer. */
-"Play" = "Play";
-
-/* Description of AlertView if the user tries to import a sound but no sound has been imported using iTunes. */
-"Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app." = "Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app.";
-
-/* paint */
-"Please pick an item" = "Please pick an item";
-
-/* No comment provided by engineer. */
-"Please register below" = "Please register below";
-
-/* No comment provided by engineer. */
-"Please select a program to upload" = "Please select a program to upload";
-
-/* No comment provided by engineer. */
 "Pocket Code" = "पॉकेट कोड";
-
-/* No comment provided by engineer. */
-"Pocket Code for iOS" = "Pocket Code for iOS";
-
-/* No comment provided by engineer. */
-"Pocket Code has been started in debug mode." = "Pocket Code has been started in debug mode.";
-
-/* No comment provided by engineer. */
-"Pocket Code has no access to your camera. To permit access, tap settings and activate camera. Your drawing will automatically be saved to PocketCode for you." = "Pocket Code has no access to your camera. To permit access, tap settings and activate camera. Your drawing will automatically be saved to PocketCode for you.";
-
-/* No comment provided by engineer. */
-"Pocket Code has no access to your images. To permit access, tap settings and activate images. Your drawing will automatically be saved to PocketCode for you." = "Pocket Code has no access to your images. To permit access, tap settings and activate images. Your drawing will automatically be saved to PocketCode for you.";
-
-/* No comment provided by engineer. */
-"Pocket Code is a programming environment for iOS for the visual programming language Catrobat. The code of Pocket Code is mostly under GNU AGPL v3 licence. For further information to the licence please visit following links:" = "Pocket Code is a programming environment for iOS for the visual programming language Catrobat. The code of Pocket Code is mostly under GNU AGPL v3 licence. For further information to the licence please visit following links:";
-
-/* No comment provided by engineer. */
-"Pocket Code let's you play great games and run other fantastic apps like for instance presentations, quizzes and so on." = "Pocket Code let's you play great games and run other fantastic apps like for instance presentations, quizzes and so on.";
 
 /* No comment provided by engineer. */
 "Pocket Code Recorder" = "पॉकेट कोड रिकार्डर";
@@ -782,181 +395,46 @@
 "Pocket Paint" = "पॉकेट पेंट";
 
 /* No comment provided by engineer. */
-"Point in direction %@°" = "Point in direction %@°";
+"Project name" = "परियोजना का नाम";
 
 /* No comment provided by engineer. */
-"Point towards\n%@" = "Point towards\n%@";
-
-/* paint */
-"pointer" = "pointer";
+"Projects" = "परियोजनाओं";
 
 /* No comment provided by engineer. */
-"pos_x" = "pos_x";
-
-/* No comment provided by engineer. */
-"pos_y" = "pos_y";
-
-/* No comment provided by engineer. */
-"Problems occured while Uploading your program" = "Problems occured while Uploading your program";
-
-/* No comment provided by engineer. */
-"Program name" = "प्रोग्राम का नाम:";
-
-/* No comment provided by engineer. */
-"Program Name is necessary!" = "Program Name is necessary!";
-
-/* No comment provided by engineer. */
-"Program variables:" = "Program variables:";
-
-/* No comment provided by engineer. */
-"Programs" = "प्रोग्राम्स";
-
-/* No comment provided by engineer. */
-"Project" = "Project";
-
-/* No comment provided by engineer. */
-"Rate Us" = "Rate Us";
-
-/* Title of View where the user can see the recently used bricks. */
-"Recently Used" = "Recently Used";
-
-/* No comment provided by engineer. */
-"Recording" = "Recording";
-
-/* paint */
-"rectangle / square" = "rectangle / square";
+"Project" = "परियोजना";
 
 /* paint */
 "Red" = "लाल";
 
 /* No comment provided by engineer. */
-"Register" = "Register";
-
-/* No comment provided by engineer. */
-"Registration successful" = "Registration successful";
-
-/* No comment provided by engineer. */
 "Rename" = "नाम बदलिए";
 
 /* No comment provided by engineer. */
-"Rename image" = "Rename image";
-
-/* No comment provided by engineer. */
-"Rename object" = "Rename object";
-
-/* No comment provided by engineer. */
-"Rename Program" = "प्रोग्राम का नाम बदले";
-
-/* No comment provided by engineer. */
-"Rename sound" = "Rename sound";
-
-/* No comment provided by engineer. */
-"Repeat %@ times" = "Repeat %@ times";
+"Rename Project" = "प्रोजेक्ट का नाम बदला";
 
 /* No comment provided by engineer. */
 "Report as inappropriate" = "अनुचित विवरण दे";
 
-/* paint */
-"resize" = "resize";
-
 /* No comment provided by engineer. */
 "Restart" = "पुनः आरंभ करें";
-
-/* No comment provided by engineer. */
-"Result" = "Result";
-
-/* paint */
-"rotate" = "rotate";
 
 /* paint */
 "round" = "पूर्णांक करें";
 
 /* No comment provided by engineer. */
-"Sa" = "Sa";
-
-/* No comment provided by engineer. */
-"Saturday" = "Saturday";
-
-/* Action sheet menu title */
-"Save Screenshot to" = "Save Screenshot to";
-
-/* paint */
-"Save to CameraRoll" = "Save to CameraRoll";
-
-/* No comment provided by engineer. */
-"Save to PocketCode" = "Save to PocketCode";
-
-/* No comment provided by engineer. */
-"Saved" = "Saved";
-
-/* No comment provided by engineer. */
-"Screenshot" = "Screenshot";
-
-/* No comment provided by engineer. */
-"Screenshot saved to Camera Roll" = "Screenshot saved to Camera Roll";
-
-/* No comment provided by engineer. */
-"Screenshot saved to project" = "Screenshot saved to project";
-
-/* No comment provided by engineer. */
 "Scripts" = "लिपिया:";
-
-/* No comment provided by engineer. */
-"Select All" = "Select All";
-
-/* No comment provided by engineer. */
-"Select Brick Category" = "Select Brick Category";
-
-/* No comment provided by engineer. */
-"Select logical operator" = "Select logical operator";
-
-/* No comment provided by engineer. */
-"Select mathematical function" = "Select mathematical function";
-
-/* paint */
-"Select option:" = "Select option:";
 
 /* No comment provided by engineer. */
 "Sensors" = "ज्ञानेन्द्रियाँ";
 
 /* No comment provided by engineer. */
-"Sep" = "Sep";
-
-/* No comment provided by engineer. */
 "September" = "सितम्बर";
-
-/* No comment provided by engineer. */
-"Set background\n%@" = "Set background\n%@";
-
-/* No comment provided by engineer. */
-"Set brightness to %@\%" = "Set brightness to %@\\%";
 
 /* No comment provided by engineer. */
 "Set description" = "विवरण ठीक करें";
 
 /* No comment provided by engineer. */
-"Set size to %@\%" = "Set size to %@\\%";
-
-/* No comment provided by engineer. */
-"Set transparency\nto %@\%" = "Set transparency\nto %@\\%";
-
-/* No comment provided by engineer. */
-"Set variable\n%@\nto %@" = "Set variable\n%@\nto %@";
-
-/* No comment provided by engineer. */
-"Set volume to %@\%" = "Set volume to %@\\%";
-
-/* No comment provided by engineer. */
-"Set X to %@" = "Set X to %@";
-
-/* No comment provided by engineer. */
-"Set Y to %@" = "Set Y to %@";
-
-/* No comment provided by engineer. */
 "Settings" = "व्यवस्था";
-
-/* No comment provided by engineer. */
-"Show" = "Show";
 
 /* No comment provided by engineer. */
 "Show Details" = "विवरण दिखाएँ";
@@ -965,214 +443,46 @@
 "size" = "आकार";
 
 /* No comment provided by engineer. */
-"Size" = "Size";
-
-/* No comment provided by engineer. */
-"Skip" = "Skip";
-
-/* No comment provided by engineer. */
-"Slow Internet Connection!" = "Slow Internet Connection!";
-
-/* No comment provided by engineer. */
 "Sound" = "आवाज़";
-
-/* No comment provided by engineer. */
-"Sound name" = "Sound name";
 
 /* No comment provided by engineer. */
 "Sounds" = "ध्वनियाँ";
 
 /* No comment provided by engineer. */
-"Speak %@" = "Speak %@";
-
-/* No comment provided by engineer. */
 "sqrt" = "वर्गमूल";
-
-/* paint */
-"square" = "square";
-
-/* paint */
-"stamp" = "stamp";
-
-/* paint */
-"Stamped" = "Stamped";
-
-/* No comment provided by engineer. */
-"Start sound\n%@" = "Start sound\n%@";
 
 /* No comment provided by engineer. */
 "Stop all sounds" = "सारी ध्वनियाँ बंद करें";
 
 /* No comment provided by engineer. */
-"Su" = "Su";
-
-/* No comment provided by engineer. */
-"Sunday" = "Sunday";
-
-/* No comment provided by engineer. */
-"Switch to look\n%@" = "Switch to look\n%@";
-
-/* No comment provided by engineer. */
 "Syntax Error!" = "वाक्यविनास त्रुटि!";
-
-/* No comment provided by engineer. */
-"Take" = "Take";
-
-/* No comment provided by engineer. */
-"Tap \"+\" to add %@" = "Tap \"+\" to add %@";
 
 /* No comment provided by engineer. */
 "Terms of Use" = "उपयोग की शर्ते";
 
 /* No comment provided by engineer. */
-"Text message:" = "Text message:";
-
-/* No comment provided by engineer. */
-"Th" = "Th";
-
-/* No comment provided by engineer. */
-"The description contains invalid characters, try again." = "The description contains invalid characters, try again.";
-
-/* No comment provided by engineer. */
-"This action can not be undone!" = "This action can not be undone!";
-
-/* No comment provided by engineer. */
-"This feature is coming soon!" = "This feature is coming soon!";
-
-/* No comment provided by engineer. */
-"This variable can not be deleted because it is still in use." = "This variable can not be deleted because it is still in use.";
-
-/* No comment provided by engineer. */
-"Thursday" = "Thursday";
-
-/* No comment provided by engineer. */
 "Today" = "आज";
-
-/* No comment provided by engineer. */
-"transparency" = "transparency";
-
-/* No comment provided by engineer. */
-"true" = "true";
-
-/* No comment provided by engineer. */
-"Tu" = "Tu";
-
-/* No comment provided by engineer. */
-"Tuesday" = "Tuesday";
-
-/* No comment provided by engineer. */
-"Turn left %@°" = "Turn left %@°";
-
-/* No comment provided by engineer. */
-"Turn right %@°" = "Turn right %@°";
-
-/* No comment provided by engineer. */
-"Unable to load program!" = "Unable to load program!";
-
-/* No comment provided by engineer. */
-"Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt." = "Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt.";
-
-/* No comment provided by engineer. */
-"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the left side of your iPhone and tap on play again." = "Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the left side of your iPhone and tap on play again.";
-
-/* No comment provided by engineer. */
-"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again." = "Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again.";
 
 /* Button title of alert view to invoke undo if user shakes device */
 "Undo" = "अकृत करें";
-
-/* Description text in alert view if user shakes the device */
-"Undo Drawing?" = "Undo Drawing?";
-
-/* Description text in alert view if user shakes the device */
-"Undo Typing?" = "Undo Typing?";
-
-/* No comment provided by engineer. */
-"Unselect All" = "Unselect All";
-
-/* No comment provided by engineer. */
-"Upcoming version" = "Upcoming version";
 
 /* No comment provided by engineer. */
 "Upload" = "उद्यतन करे";
 
 /* No comment provided by engineer. */
-"Upload Program" = "Upload Program";
-
-/* No comment provided by engineer. */
-"Upload Selected Program" = "Upload Selected Program";
-
-/* No comment provided by engineer. */
-"Upload successful" = "Upload successful";
-
-/* No comment provided by engineer. */
-"Uploaded" = "Uploaded";
-
-/* No comment provided by engineer. */
 "Username" = "उपयोगकर्ता नाम:";
-
-/* No comment provided by engineer. */
-"Username is necessary!" = "Username is necessary!";
-
-/* No comment provided by engineer. */
-"v" = "v";
-
-/* No comment provided by engineer. */
-"Variable name:" = "Variable name:";
-
-/* No comment provided by engineer. */
-"Variable type" = "Variable type";
 
 /* No comment provided by engineer. */
 "Variables" = "चर";
 
 /* No comment provided by engineer. */
-"Version" = "Version";
-
-/* No comment provided by engineer. */
-"Vibrate %@ second(s)" = "Vibrate %@ second(s)";
-
-/* No comment provided by engineer. */
-"Views" = "Views";
-
-/* No comment provided by engineer. */
-"Wait %@ second(s)" = "Wait %@ second(s)";
-
-/* No comment provided by engineer. */
-"We" = "We";
-
-/* No comment provided by engineer. */
-"Wednesday" = "Wednesday";
-
-/* No comment provided by engineer. */
-"Welcome back, please login below" = "Welcome back, please login below";
-
-/* No comment provided by engineer. */
-"Welcome to Pocket Code" = "Welcome to Pocket Code";
-
-/* No comment provided by engineer. */
-"When I receive\n%@" = "When I receive\n%@";
-
-/* No comment provided by engineer. */
-"When program started" = "जब प्रोग्राम शुरू हुआ था";
+"When project started" = "जब प्रोजेक्ट शुरू हुआ";
 
 /* No comment provided by engineer. */
 "When tapped" = "जब दबाया गया";
-
-/* paint */
-"Width" = "Width";
 
 /* No comment provided by engineer. */
 "Yes" = "हाँ";
 
 /* No comment provided by engineer. */
 "Yesterday" = "बीता कल";
-
-/* No comment provided by engineer. */
-"You are also able to build your own apps, edit existing ones and share them with your friends and other exciting people." = "You are also able to build your own apps, edit existing ones and share them with your friends and other exciting people.";
-
-/* No comment provided by engineer. */
-"You have already downloaded this program!" = "You have already downloaded this program!";
-
-/* paint */
-"zoom" = "zoom";

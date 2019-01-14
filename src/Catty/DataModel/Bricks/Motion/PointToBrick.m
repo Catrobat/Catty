@@ -67,7 +67,7 @@
 {
     if(spriteObject) {
         SpriteObject *firstObject = nil;
-        for(SpriteObject *object in spriteObject.program.objectList) {
+        for(SpriteObject *object in spriteObject.project.objectList) {
             if(![object.name isEqualToString:spriteObject.name] && ![object.name isEqualToString:kLocalizedBackground]) {
                 firstObject = object;
                 break;

@@ -27,8 +27,8 @@
 #import "Script.h"
 #import "Formula.h"
 #import "FormulaElement.h"
-#import "ProgramLoadingInfo.h"
-#import "Program.h"
+#import "ProjectLoadingInfo.h"
+#import "Project.h"
 #import "Parser.h"
 #import "Look.h"
 #import <SpriteKit/SpriteKit.h>
@@ -76,7 +76,7 @@
 
 @interface AbstractBrickTests : XCTestCase
 
-@property (strong, nonatomic) NSMutableArray* programs;
+@property (strong, nonatomic) NSMutableArray* projects;
 @property (strong, nonatomic) SKView *skView;
 @property (strong, nonatomic) CBScene *scene;
 @property (strong, nonatomic) FormulaManager *formulaInterpreter;

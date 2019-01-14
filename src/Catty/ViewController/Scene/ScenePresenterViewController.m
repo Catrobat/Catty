@@ -42,9 +42,9 @@
 
 @implementation ScenePresenterViewController
 
-- (void)stopProgram
+- (void)stopProject
 {
-    [self.scene stopProgram];
+    [self.scene stopProject];
     
     // TODO remove Singletons
     [[AudioManager sharedAudioManager] stopAllSounds];
@@ -134,7 +134,7 @@
 
 - (void)freeRessources
 {
-    self.program = nil;
+    self.project = nil;
     self.scene = nil;
     
     // Delete sound rec for loudness sensor
@@ -227,26 +227,26 @@
     [self.gridView addSubview:nullLabel];
     // positveWidth
     UILabel *positiveWidth = [[UILabel alloc] initWithFrame:CGRectMake([Util screenWidth]- 40, [Util screenHeight]/2 + 5, 30, 15)];
-    positiveWidth.text = [NSString stringWithFormat:@"%d",(int)self.program.header.screenWidth.floatValue/2];
+    positiveWidth.text = [NSString stringWithFormat:@"%d",(int)self.project.header.screenWidth.floatValue/2];
     positiveWidth.textColor = [UIColor redColor];
     [positiveWidth sizeToFit];
     positiveWidth.frame = CGRectMake([Util screenWidth] - positiveWidth.frame.size.width - 5, [Util screenHeight]/2 + 5, positiveWidth.frame.size.width, positiveWidth.frame.size.height);
     [self.gridView addSubview:positiveWidth];
     // negativeWidth
     UILabel *negativeWidth = [[UILabel alloc] initWithFrame:CGRectMake(5, [Util screenHeight]/2 + 5, 40, 15)];
-    negativeWidth.text = [NSString stringWithFormat:@"-%d",(int)self.program.header.screenWidth.floatValue/2];
+    negativeWidth.text = [NSString stringWithFormat:@"-%d",(int)self.project.header.screenWidth.floatValue/2];
     negativeWidth.textColor = [UIColor redColor];
     [negativeWidth sizeToFit];
     [self.gridView addSubview:negativeWidth];
     // positveHeight
     UILabel *positiveHeight = [[UILabel alloc] initWithFrame:CGRectMake([Util screenWidth]/2 + 5, [Util screenHeight] - 20, 40, 15)];
-    positiveHeight.text = [NSString stringWithFormat:@"-%d",(int)self.program.header.screenHeight.floatValue/2];
+    positiveHeight.text = [NSString stringWithFormat:@"-%d",(int)self.project.header.screenHeight.floatValue/2];
     positiveHeight.textColor = [UIColor redColor];
     [positiveHeight sizeToFit];
     [self.gridView addSubview:positiveHeight];
     // negativeHeight
     UILabel *negativeHeight = [[UILabel alloc] initWithFrame:CGRectMake([Util screenWidth]/2 + 5,5, 40, 15)];
-    negativeHeight.text = [NSString stringWithFormat:@"%d",(int)self.program.header.screenHeight.floatValue/2];
+    negativeHeight.text = [NSString stringWithFormat:@"%d",(int)self.project.header.screenHeight.floatValue/2];
     negativeHeight.textColor = [UIColor redColor];
     [negativeHeight sizeToFit];
     [self.gridView addSubview:negativeHeight];
@@ -256,7 +256,7 @@
 
 - (void)checkAspectRatio
 {
-    if (self.program.header.screenWidth.floatValue == [Util screenWidth:true] && self.program.header.screenHeight.floatValue == [Util screenHeight:true]) {
+    if (self.project.header.screenWidth.floatValue == [Util screenWidth:true] && self.project.header.screenHeight.floatValue == [Util screenHeight:true]) {
         self.menuAspectRatioButton.hidden = YES;
     }
 }
@@ -264,11 +264,11 @@
 - (void)setupSceneAndStart
 {
     // Initialize scene
-    CBScene *scene = [[[[SceneBuilder alloc] initWithProgram:self.program] andFormulaManager:self.formulaManager] build];
+    CBScene *scene = [[[[SceneBuilder alloc] initWithProject:self.project] andFormulaManager:self.formulaManager] build];
     
-    if ([self.program.header.screenMode isEqualToString: kCatrobatHeaderScreenModeMaximize]) {
+    if ([self.project.header.screenMode isEqualToString: kCatrobatHeaderScreenModeMaximize]) {
         scene.scaleMode = SKSceneScaleModeFill;
-    } else if ([self.program.header.screenMode isEqualToString: kCatrobatHeaderScreenModeStretch]){
+    } else if ([self.project.header.screenMode isEqualToString: kCatrobatHeaderScreenModeStretch]){
         scene.scaleMode = SKSceneScaleModeAspectFit;
     } else {
         scene.scaleMode = SKSceneScaleModeFill;
@@ -283,7 +283,7 @@
     [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
     
     [self.skView presentScene:self.scene];
-    [self.scene startProgram];
+    [self.scene startProject];
     
     [self hideLoadingView];
     [self continueAction:nil withDuration:kfirstSwipeDuration];
@@ -292,7 +292,7 @@
 -(void)resaveLooks
 {
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
-        for (SpriteObject *object in self.program.objectList) {
+        for (SpriteObject *object in self.project.objectList) {
             for (Look *look in object.lookList) {
                 [[RuntimeImageCache sharedImageCache] loadImageFromDiskWithPath:look.fileName];
             }
@@ -349,7 +349,7 @@
                          self.menuOpen = NO;
                          self.menuView.userInteractionEnabled = YES;
                          if (animateDuration == duration) {
-                             [self takeAutomaticScreenshotForSKView:self.skView andProgram:self.program];
+                             [self takeAutomaticScreenshotForSKView:self.skView andProject:self.project];
                          }
                      }];
     self.skView.paused = NO;
@@ -362,7 +362,7 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void) {
         self.menuView.userInteractionEnabled = NO;
         previousScene.userInteractionEnabled = NO;
-        [self stopProgram];
+        [self stopProject];
         previousScene.userInteractionEnabled = YES;
     });
     
@@ -380,10 +380,10 @@
     self.scene.userInteractionEnabled = NO;
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [self stopProgram];
+        [self stopProject];
     
         dispatch_async(dispatch_get_main_queue(), ^{
-            self.program = [Program programWithLoadingInfo:[Util lastUsedProgramLoadingInfo]];
+            self.project = [Project projectWithLoadingInfo:[Util lastUsedProjectLoadingInfo]];
             [self setupSceneAndStart];
         });
     });
@@ -396,7 +396,7 @@
     self.menuView.userInteractionEnabled = NO;
     CBScene *previousScene = self.scene;
     previousScene.userInteractionEnabled = NO;
-    [self stopProgram];
+    [self stopProject];
     previousScene.userInteractionEnabled = YES;
     [self hideLoadingView];
     
@@ -423,7 +423,7 @@
 - (void)manageAspectRatioAction:(UIButton *)sender
 {
     self.scene.scaleMode = self.scene.scaleMode == SKSceneScaleModeAspectFit ? SKSceneScaleModeFill : SKSceneScaleModeAspectFit;
-    self.program.header.screenMode = [self.program.header.screenMode isEqualToString:kCatrobatHeaderScreenModeStretch] ? kCatrobatHeaderScreenModeMaximize :kCatrobatHeaderScreenModeStretch;
+    self.project.header.screenMode = [self.project.header.screenMode isEqualToString:kCatrobatHeaderScreenModeStretch] ? kCatrobatHeaderScreenModeMaximize :kCatrobatHeaderScreenModeStretch;
     [self.skView setNeedsLayout];
     self.menuOpen = YES;
     // pause Scene
@@ -434,7 +434,7 @@
 
 - (void)takeScreenshotAction:(UIButton*)sender
 {
-    [self takeManualScreenshotForSKView:self.skView andProgram:self.program];
+    [self takeManualScreenshotForSKView:self.skView andProject:self.project];
 }
 
 #pragma mark - Pan Gesture Handler

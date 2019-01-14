@@ -30,7 +30,7 @@
         guard let currentObject = self.script?.object,
             let currentSpriteNode = currentObject.spriteNode,
             let stepsFormula = self.steps,
-            let objectList = self.script?.object?.program?.objectList
+            let objectList = self.script?.object?.project?.objectList
             else { fatalError("This should never happen!") }
 
         return {

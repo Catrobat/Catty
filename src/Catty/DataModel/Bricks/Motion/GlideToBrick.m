@@ -84,11 +84,13 @@
 - (NSString*)brickTitle
 {
     NSString* localizedSecond = [self.durationInSeconds isSingularNumber] ? kLocalizedSecond : kLocalizedSeconds;
-    return [kLocalizedGlide stringByAppendingString:[@"%@ " stringByAppendingString:[localizedSecond stringByAppendingString:[@"\n"
-        stringByAppendingString:[kLocalizedToX
-        stringByAppendingString:[@"%@ "
-        stringByAppendingString:[kLocalizedYLabel
-        stringByAppendingString:@"%@"]]]]]]];
+    return [kLocalizedGlide stringByAppendingString:[@" %@ "
+                            stringByAppendingString:[localizedSecond
+                            stringByAppendingString:[@"\n"
+                            stringByAppendingString:[kLocalizedToX
+                            stringByAppendingString:[@" %@ "
+                            stringByAppendingString:[kLocalizedYLabel
+                            stringByAppendingString:@" %@"]]]]]]];
 }
 
 #pragma mark - Description
