@@ -282,13 +282,6 @@
     NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
     [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
     
-    /*if self.scene?.validProgram() ?? false {
-        skView?.presentScene(self.scene)
-        self.scene?.startProgram()
-        menuView?.isUserInteractionEnabled = true
-    } else {
-        self.stopAction()
-    }*/
     if ([self.scene validProject]) {
         [self.skView presentScene:self.scene];
         [self.scene startProject];
