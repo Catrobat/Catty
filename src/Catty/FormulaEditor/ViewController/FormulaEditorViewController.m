@@ -856,7 +856,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
         [self.variablePicker selectRow:0 inComponent:0 animated:NO];
 }
 
-- (void) askForVariableName:(BOOL)isList
+- (void)askForVariableName:(BOOL)isList
 {
     [Util askUserForVariableNameAndPerformAction:@selector(saveVariable:isList:)
                                           target:self
@@ -911,6 +911,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     }
     var.isList = isList;
     
+    int buttonType = isList ? 11 : 0;
     if (self.isProjectVariable && !isList) {
         [self.object.project.variables.programVariableList addObject:var];
     } else if (self.isProjectVariable && isList){
@@ -923,6 +924,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     
     [self.object.project saveToDiskWithNotification:YES];
     [self updateVariablePickerData];
+    [self handleInputWithTitle:var.name AndButtonType:buttonType];
 }
 
 - (void)closeMenu
@@ -937,8 +939,8 @@ NS_ENUM(NSInteger, ButtonIndex) {
                                           target:self
                                      promptTitle:kUIFENewText
                                    promptMessage:kUIFETextMessage
-                                  minInputLength:kMinNumOfProjectNameCharacters
-                                  maxInputLength:kMaxNumOfProjectNameCharacters
+                                  minInputLength:0
+                                  maxInputLength:0
 										  isList:NO
                                     andTextField:self.formulaEditorTextView];
 }
@@ -975,8 +977,6 @@ NS_ENUM(NSInteger, ButtonIndex) {
 {
     BOOL forObjectOnly = self.variableSegmentedControl.selectedSegmentIndex;
     BOOL isList = self.varOrListSegmentedControl.selectedSegmentIndex;
-    
-    
 
     if (component == 0 && !forObjectOnly && !isList) {
         if (row < self.variableSourceProject.count) {
@@ -1015,7 +1015,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 - (IBAction)choseVariableOrList:(UIButton *)sender {
 
- NSInteger row = [self.variablePicker selectedRowInComponent:0];
+    NSInteger row = [self.variablePicker selectedRowInComponent:0];
     if (row >= 0) {
         int buttonType = 0;
         VariablePickerData *pickerData;

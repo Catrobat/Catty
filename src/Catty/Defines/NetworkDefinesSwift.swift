@@ -30,7 +30,7 @@ let kMediaLibrarySoundsIndex = kBaseUrl.appending("/api/media/package/Sounds/jso
 let kMediaLibraryDownloadBaseURL = kBaseUrl.replacingOccurrences(of: "/pocketcode/", with: "")
 
 //************************************************************************************************************
-//******************************      FeaturedProjectmsStoreViewController       *****************************
+//******************************      FeaturedProjectStoreViewController       *****************************
 //************************************************************************************************************
 
 let kConnectionHost = kBaseUrl.appending("api/projects")
