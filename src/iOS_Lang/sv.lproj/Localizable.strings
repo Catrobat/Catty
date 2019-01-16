@@ -2,13 +2,16 @@
 "A message with the same name already exists, try again." = "A message with the same name already exists, try again.";
 
 /* No comment provided by engineer. */
-"A program with the same name already exists, try again." = "Ett program med samma namn finns redan, försök igen.";
+"A project with the same name already exists, try again." = "A project with the same name already exists, try again.";
 
 /* No comment provided by engineer. */
 "About Catrobat" = "Om Catrobat";
 
 /* No comment provided by engineer. */
 "About Pocket Code" = "Om Pocket Code";
+
+/* No comment provided by engineer. */
+"acceleration-sensor" = "acceleration-sensor";
 
 /* No comment provided by engineer. */
 "acceleration_x" = "acceleration_x";
@@ -20,7 +23,10 @@
 "acceleration_z" = "acceleration_z";
 
 /* No comment provided by engineer. */
-"add comment here..." = "add comment here...";
+"Add" = "Lägg tilll";
+
+/* No comment provided by engineer. */
+"add comment here..." = "lägg till kommentar här...";
 
 /* No comment provided by engineer. */
 "Add image" = "Lägga till bild";
@@ -34,8 +40,17 @@
 /* Action sheet menu title */
 "Add sound" = "Lägg till ljud";
 
+/* No comment provided by engineer. */
+"All Bluetooth devices successfully disconnected" = "All Bluetooth devices successfully disconnected";
+
+/* No comment provided by engineer. */
+"All known Bluetooth devices successfully removed" = "All known Bluetooth devices successfully removed";
+
 /* paint */
 "Alpha" = "Alfa";
+
+/* No comment provided by engineer. */
+"altitude" = "altitud";
 
 /* No comment provided by engineer. */
 "An image with the same name already exists, try again." = "En bild med samma namn finns redan, försök igen.";
@@ -44,10 +59,19 @@
 "An object with the same name already exists, try again." = "Finns redan ett objekt med samma namn, försök igen.";
 
 /* No comment provided by engineer. */
-"and" = "and";
+"An unknown error occurred. Check your Internet connection." = "Ett okänt fel inträffade. Kontrollera din Internetanslutning.";
 
 /* No comment provided by engineer. */
-"Animate Brick" = "Animera klossen";
+"An unknown error occurred. Please try again later." = "An unknown error occurred. Please try again later.";
+
+/* No comment provided by engineer. */
+"and" = "och";
+
+/* No comment provided by engineer. */
+"and wait" = "och vänta";
+
+/* No comment provided by engineer. */
+"Animate Brick-Parts" = "Animera kloss-delar";
 
 /* No comment provided by engineer. */
 "Apr" = "Apr";
@@ -56,16 +80,40 @@
 "April" = "April";
 
 /* No comment provided by engineer. */
+"Arduino" = "Arduino";
+
+/* No comment provided by engineer. */
+"arduino_analog" = "arduino_analog";
+
+/* No comment provided by engineer. */
+"arduino_digital" = "arduino_digital";
+
+/* No comment provided by engineer. */
+"at " = "at ";
+
+/* No comment provided by engineer. */
+"at position" = "vid position";
+
+/* paint */
+"Attributes:" = "Attribut:";
+
+/* No comment provided by engineer. */
 "Aug" = "Aug";
 
 /* No comment provided by engineer. */
 "August" = "Augusti";
 
 /* No comment provided by engineer. */
+"Authentication failed" = "Authentication failed";
+
+/* No comment provided by engineer. */
 "Author" = "Författare";
 
 /* Title of icon shown in the side bar to enable or disable an overlayed view to show the origin of the coordinate system and implicitly the display size. */
-"Axes" = "Axes";
+"Axes" = "Axlar";
+
+/* No comment provided by engineer. */
+"back" = "back";
 
 /* No comment provided by engineer. */
 "Back" = "Tillbaka";
@@ -74,10 +122,28 @@
 "Background" = "Bakgrund";
 
 /* No comment provided by engineer. */
+"background_name" = "background_name";
+
+/* No comment provided by engineer. */
+"background_number" = "background_number";
+
+/* No comment provided by engineer. */
 "Backgrounds" = "Bakgrunder";
 
 /* paint */
 "Blue" = "Blå";
+
+/* No comment provided by engineer. */
+"Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings." = "Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings.";
+
+/* No comment provided by engineer. */
+"Bluetooth is turned off. Please turn it on to connect to a Bluetooth device." = "Bluetooth is turned off. Please turn it on to connect to a Bluetooth device.";
+
+/* paint */
+"bold" = "bold";
+
+/* No comment provided by engineer. */
+"Both" = "Båda";
 
 /* No comment provided by engineer. */
 "Bricks" = "Klossar";
@@ -86,34 +152,64 @@
 "brightness" = "Ljusstyrka";
 
 /* No comment provided by engineer. */
-"Broadcast and wait\n%@" = "sänd och vänta%@";
+"Broadcast" = "Sändning";
 
 /* No comment provided by engineer. */
-"Broadcast\n%@" = "Sänd%@";
+"Broadcast and wait" = "Sänd och vänta";
 
 /* paint */
-"brush" = "borste";
+"Brush" = "Borste";
 
 /* No comment provided by engineer. */
-"By registering you agree to our" = "By registering you agree to our";
+"by" = "med";
 
 /* No comment provided by engineer. */
-"By switching to the section \"Explore\" you can discover much more interesting stuff." = "Genom att byta till sektionen \"Utforska\" kan du upptäcka mycket mer intressanta saker.";
+"By registering you agree to our" = "Genom att registrera samtycker du till vår";
+
+/* No comment provided by engineer. */
+"By switching to the section \"Explore\" you can discover more interesting projects from people all over the world." = "By switching to the section \"Explore\" you can discover more interesting projects from people all over the world.";
 
 /* No comment provided by engineer. */
 "Camera Roll" = "Kamerarulle";
 
 /* No comment provided by engineer. */
-"Can't restart program!" = "Kan inte starta om program!";
+"Can't restart project!" = "Can't restart project!";
 
 /* No comment provided by engineer. */
 "Cancel" = "Avbryt";
+
+/* bluetooth */
+"Cannot connect to device, please try resetting the device and try again." = "Cannot connect to device, please try resetting the device and try again.";
+
+/* bluetooth */
+"Cannot connect to device. The device is not responding." = "Cannot connect to device. The device is not responding.";
+
+/* No comment provided by engineer. */
+"Cannot connect to the Media Library. Please check your Internet connection." = "Cannot connect to the Media Library. Please check your Internet connection.";
 
 /* No comment provided by engineer. */
 "Categories" = "Kategorier";
 
 /* No comment provided by engineer. */
-"Change volume by" = "Ändra volymen till";
+"ceil" = "ceil";
+
+/* No comment provided by engineer. */
+"Change brightness " = "Ändra ljusstyrka ";
+
+/* No comment provided by engineer. */
+"Change color " = "Ändra färg ";
+
+/* No comment provided by engineer. */
+"Change size by" = "Ändra storlek med";
+
+/* No comment provided by engineer. */
+"Change transparency " = "Ändra genomskinlighet ";
+
+/* No comment provided by engineer. */
+"Change variable" = "Ändra variabeln";
+
+/* No comment provided by engineer. */
+"Change volume by" = "Ändra volymen med";
 
 /* No comment provided by engineer. */
 "Change X by " = "Ändra X med ";
@@ -128,10 +224,10 @@
 "Changes saved!" = "Ändringarna sparade!";
 
 /* No comment provided by engineer. */
-"Choose image" = "Välj bild";
+"Choose" = "Välj";
 
 /* No comment provided by engineer. */
-"Choose sound" = "Välj ljud";
+"Choose image" = "Välj bild";
 
 /* No comment provided by engineer. */
 "Clear graphic effects" = "ta bort grafiska effekter";
@@ -143,7 +239,10 @@
 "Close Paint" = "Close Paint";
 
 /* No comment provided by engineer. */
-"compass" = "compass";
+"color" = "färg";
+
+/* No comment provided by engineer. */
+"compass" = "kompass";
 
 /* No comment provided by engineer. */
 "Compute" = "Beräkna";
@@ -158,6 +257,21 @@
 "Computed result is TRUE" = "Computed result is TRUE";
 
 /* No comment provided by engineer. */
+"Confirm Password" = "Bekräfta lösenord";
+
+/* bluetooth */
+"Connection failed" = "Connection failed";
+
+/* bluetooth */
+"Connection Lost" = "Connection Lost";
+
+/* bluetooth */
+"Connection not possible" = "Connection not possible";
+
+/* No comment provided by engineer. */
+"contains" = "innehåller";
+
+/* No comment provided by engineer. */
 "Continue" = "Fortsätt";
 
 /* No comment provided by engineer. */
@@ -170,7 +284,19 @@
 "Copy Brick" = "Kopiera klossen";
 
 /* No comment provided by engineer. */
-"Copy program" = "Kopiera programmet";
+"Copy Looks" = "Copy Looks";
+
+/* No comment provided by engineer. */
+"Copy project" = "Copy project";
+
+/* No comment provided by engineer. */
+"Create & Remix" = "Create & Remix";
+
+/* No comment provided by engineer. */
+"Create account" = "Create account";
+
+/* No comment provided by engineer. */
+"day" = "dag";
 
 /* No comment provided by engineer. */
 "Debug mode" = "Debug mode";
@@ -182,13 +308,22 @@
 "December" = "December";
 
 /* No comment provided by engineer. */
+"degrees" = "grader";
+
+/* No comment provided by engineer. */
 "Delete" = "Radera";
+
+/* No comment provided by engineer. */
+"Delete Backgrounds" = "Delete Backgrounds";
 
 /* No comment provided by engineer. */
 "Delete Brick" = "Ta bort Klossen";
 
 /* No comment provided by engineer. */
 "Delete Condition" = "Delete Condition";
+
+/* No comment provided by engineer. */
+"Delete item from list" = "Delete item from list";
 
 /* No comment provided by engineer. */
 "Delete Looks" = "Ta bort utseenden";
@@ -200,10 +335,10 @@
 "Delete Objects" = "Ta bort objekt";
 
 /* No comment provided by engineer. */
-"Delete Program" = "Delete Program";
+"Delete Project" = "Delete Project";
 
 /* No comment provided by engineer. */
-"Delete Programs" = "Ta bort program";
+"Delete Projects" = "Delete Projects";
 
 /* No comment provided by engineer. */
 "Delete Script" = "Ta bort skriptet";
@@ -212,37 +347,40 @@
 "Delete Sounds" = "Ta bort ljud";
 
 /* No comment provided by engineer. */
-"Delete these Bricks?" = "Delete these Bricks?";
+"Delete these Bricks?" = "Ta bort dessa klossar?";
 
 /* No comment provided by engineer. */
-"Delete these Conditions?" = "Delete these Conditions?";
+"Delete these Conditions?" = "Ta bort dessa villkor?";
 
 /* No comment provided by engineer. */
-"Delete these Loops?" = "Delete these Loops?";
+"Delete these Loops?" = "Ta bort dessa loopar?";
 
 /* No comment provided by engineer. */
-"Delete these Scripts?" = "Delete these Scripts?";
+"Delete these Scripts?" = "Ta bort dessa skript?";
 
 /* No comment provided by engineer. */
-"Delete this Brick?" = "Delete this Brick?";
+"Delete this background" = "Delete this background";
 
 /* No comment provided by engineer. */
-"Delete this Condition?" = "Delete this Condition?";
+"Delete this Brick?" = "Ta bort denna kloss?";
+
+/* No comment provided by engineer. */
+"Delete this Condition?" = "Ta bort detta villkor?";
 
 /* No comment provided by engineer. */
 "Delete this look" = "Ta bort detta utseende";
 
 /* No comment provided by engineer. */
-"Delete this Loop?" = "Delete this Loop?";
+"Delete this Loop?" = "Ta bort denna loop?";
 
 /* No comment provided by engineer. */
 "Delete this object" = "Ta bort detta objekt";
 
 /* No comment provided by engineer. */
-"Delete this project" = "Ta bort detta program";
+"Delete this project" = "Delete this project";
 
 /* No comment provided by engineer. */
-"Delete this Script?" = "Delete this Script?";
+"Delete this Script?" = "Ta bort skriptet?";
 
 /* No comment provided by engineer. */
 "Delete this sound" = "Ta bort detta ljud";
@@ -256,8 +394,20 @@
 /* No comment provided by engineer. */
 "Details" = "Detaljer";
 
+/* bluetooth */
+"Device disconnected." = "Device disconnected.";
+
+/* No comment provided by engineer. */
+"device motion-sensor" = "device motion-sensor";
+
 /* No comment provided by engineer. */
 "direction" = "riktning";
+
+/* No comment provided by engineer. */
+"Disconnect all devices" = "Disconnect all devices";
+
+/* No comment provided by engineer. */
+"DO" = "DO";
 
 /* paint */
 "Do you really want to delete the current drawing?" = "Vill du verkligen ta bort den aktuella ritningen?";
@@ -272,7 +422,7 @@
 "Download" = "Ladda ner";
 
 /* No comment provided by engineer. */
-"Download sucessful" = "Download sucessful";
+"Download sucessful" = "Nedladdning slutförd";
 
 /* No comment provided by engineer. */
 "Downloads" = "Nerladdningar";
@@ -281,7 +431,19 @@
 "Draw new image" = "Rita ny bild";
 
 /* No comment provided by engineer. */
+"Duration" = "Längd";
+
+/* No comment provided by engineer. */
 "Edit" = "Redigera";
+
+/* Action sheet menu title */
+"Edit Background" = "Edit Background";
+
+/* Action sheet menu title */
+"Edit Backgrounds" = "Edit Backgrounds";
+
+/* Action sheet menu title */
+"Edit Brick" = "Redigera tegel";
 
 /* No comment provided by engineer. */
 "Edit Formula" = "Redigera formel";
@@ -296,28 +458,34 @@
 "Edit Object" = "Redigera objekt";
 
 /* No comment provided by engineer. */
-"Edit Program" = "Redigera Program";
+"Edit Project" = "Edit Project";
 
 /* No comment provided by engineer. */
-"Edit Programs" = "Redigera program";
+"Edit Projects" = "Edit Projects";
 
 /* Action sheet menu title */
-"Edit Sound" = "Edit Sound";
+"Edit Script" = "Redigera skript";
+
+/* Action sheet menu title */
+"Edit Sound" = "Redigera ljud";
 
 /* Action sheet menu title */
 "Edit Sounds" = "Redigera ljud";
 
+/* No comment provided by engineer. */
+"element" = "element";
+
 /* paint */
-"ellipse / circle" = "ellips / cirkel";
+"Ellipse / Circle" = "Ellipse / Circle";
 
 /* No comment provided by engineer. */
 "Else" = "Annars";
 
 /* No comment provided by engineer. */
-"Email" = "Email";
+"Email" = "E-post";
 
 /* No comment provided by engineer. */
-"Email is not valid!" = "Email is not valid!";
+"Empty input!" = "Empty input!";
 
 /* No comment provided by engineer. */
 "End If" = "Slut om";
@@ -325,8 +493,14 @@
 /* No comment provided by engineer. */
 "End of Loop" = "Slutet av slingan";
 
+/* No comment provided by engineer. */
+"Enter a reason" = "Ange en orsak";
+
 /* Placeholder for add image-name input field */
 "Enter your image name here..." = "Ange din bilds namn här...";
+
+/* Placeholder for list input field */
+"Enter your list name here..." = "Enter your list name here...";
 
 /* Placeholder for message input field */
 "Enter your message here..." = "Enter your message here...";
@@ -334,11 +508,11 @@
 /* Placeholder for add object-name input field */
 "Enter your object name here..." = "Ange ditt objekts namn här...";
 
-/* Placeholder for program-description input field */
-"Enter your program description here..." = "Ange ditt programs beskrivning här...";
+/* Placeholder for project-description input field */
+"Enter your project description here..." = "Enter your project description here...";
 
-/* Placeholder for program-name input field */
-"Enter your program name here..." = "Skriv programnamnet på ditt här...";
+/* Placeholder for project-name input field */
+"Enter your project name here..." = "Enter your project name here...";
 
 /* Placeholder for add sound-name input field */
 "Enter your sound name here..." = "Ange ditt ljud namn här...";
@@ -347,10 +521,13 @@
 "Enter your variable name here..." = "Enter your variable name here...";
 
 /* paint */
-"eraser" = "suddigummi";
+"Eraser" = "Suddigummi";
 
 /* No comment provided by engineer. */
 "Error" = "Fel";
+
+/* No comment provided by engineer. */
+"Error saving file" = "Error saving file";
 
 /* No comment provided by engineer. */
 "Explore" = "Utforska";
@@ -359,10 +536,40 @@
 "Explore apps" = "Utforska appar";
 
 /* No comment provided by engineer. */
+"FA" = "FA";
+
+/* No comment provided by engineer. */
+"face_detected" = "face_detected";
+
+/* No comment provided by engineer. */
+"faceposition_x" = "faceposition_x";
+
+/* No comment provided by engineer. */
+"faceposition_y" = "faceposition_y";
+
+/* No comment provided by engineer. */
+"facesize" = "facesize";
+
+/* No comment provided by engineer. */
+"Failed to import item" = "Failed to import item";
+
+/* No comment provided by engineer. */
+"Failed to load featured projects" = "Failed to load featured projects";
+
+/* No comment provided by engineer. */
+"Failed to load recent projects" = "Failed to load recent projects";
+
+/* No comment provided by engineer. */
+"Failed to load sound" = "Failed to load sound";
+
+/* No comment provided by engineer. */
+"Failed to play sound" = "Failed to play sound";
+
+/* No comment provided by engineer. */
 "false" = "false";
 
 /* No comment provided by engineer. */
-"Featured Programs" = "Dagens program";
+"Featured Projects" = "Featured Projects";
 
 /* No comment provided by engineer. */
 "Feb" = "Feb";
@@ -371,13 +578,22 @@
 "February" = "Februari";
 
 /* paint */
-"fill" = "fyllning";
+"Fill" = "Fyll i";
 
 /* No comment provided by engineer. */
-"Flashlight off" = "Flashlight off";
+"Flashlight off" = "Flicklampa av";
 
 /* No comment provided by engineer. */
-"Flashlight on" = "Flashlight on";
+"Flashlight on" = "Ficklampa på";
+
+/* No comment provided by engineer. */
+"floor" = "golv";
+
+/* No comment provided by engineer. */
+"Following features used in this project are not compatible with this version of Pocket Code:" = "Following features used in this project are not compatible with this version of Pocket Code:";
+
+/* No comment provided by engineer. */
+"for" = "för";
 
 /* No comment provided by engineer. */
 "for all objects" = "for all objects";
@@ -397,6 +613,9 @@
 /* No comment provided by engineer. */
 "Fr" = "Fre";
 
+/* Title of View where the user can see the frequently used bricks. */
+"Frequently Used" = "Frequently Used";
+
 /* No comment provided by engineer. */
 "Friday" = "Fredag";
 
@@ -404,10 +623,16 @@
 "From Camera" = "Från kamera";
 
 /* No comment provided by engineer. */
-"Glide %@ second(s)\nto X: %@ Y: %@" = "Glide %@ second(s)\nto X: %@ Y: %@";
+"front" = "front";
 
 /* No comment provided by engineer. */
-"Go back %@ layer(s)" = "Gå tillbaka %@ lager";
+"Front camera" = "Front camera";
+
+/* No comment provided by engineer. */
+"Glide" = "Glid";
+
+/* No comment provided by engineer. */
+"Go back" = "Gå tillbaka";
 
 /* No comment provided by engineer. */
 "Go to front" = "Gå till framsidan";
@@ -416,7 +641,10 @@
 "Green" = "Grön";
 
 /* No comment provided by engineer. */
-"Hello !" = "Hello !";
+"gyro-sensor" = "gyro-sensor";
+
+/* No comment provided by engineer. */
+"Hello!" = "Hallå!";
 
 /* No comment provided by engineer. */
 "Help" = "Hjälp";
@@ -428,19 +656,31 @@
 "Hide Details" = "Dölj Detaljer";
 
 /* No comment provided by engineer. */
-"If %@ is true then" = "Om %@ är sant då";
+"Hide variable" = "Hide variable";
+
+/* No comment provided by engineer. */
+"Hmmmm!" = "Hmmmm!";
+
+/* No comment provided by engineer. */
+"hour" = "timme";
+
+/* No comment provided by engineer. */
+"If" = "Om";
 
 /* No comment provided by engineer. */
 "If on edge, bounce" = "Om vid kanten, studsa";
 
 /* paint */
-"image" = "bild";
+"Image" = "Bild";
 
 /* No comment provided by engineer. */
 "Image name" = "Bildnamn";
 
 /* No comment provided by engineer. */
 "Image source not available" = "Image source not available";
+
+/* Title of prompt shown when a *.catrobat file is imported from a third-party app. */
+"Import File" = "Importera fil";
 
 /* No comment provided by engineer. */
 "In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation." = "För att få använda Pocket Paint och andra körbara filer som erbjuds av Catrobat projektet, måste du godkänna våra användarvillkor och Service och strikt följa dem när du använder Pocket Code och våra andra körbara filer. Se länk nedan för deras exakta formulation.\n\n.";
@@ -454,14 +694,32 @@
 /* No comment provided by engineer. */
 "Information" = "information";
 
+/* No comment provided by engineer. */
+"Insert" = "Infoga";
+
 /* paint */
 "Inserted" = "Inserted";
 
 /* No comment provided by engineer. */
-"Invalid input entered, try again." = "Invalid input entered, try again.";
+"into list" = "into list";
+
+/* No comment provided by engineer. */
+"Invalid input entered, try again." = "Ogiltig indata angavs, försök igen.";
 
 /* No comment provided by engineer. */
 "Invalid URL given!" = "Ogiltig URL angiven!";
+
+/* No comment provided by engineer. */
+"iOS." = "iOS.";
+
+/* No comment provided by engineer. */
+"is true" = "is true";
+
+/* No comment provided by engineer. */
+"is true then" = "är sant då";
+
+/* paint */
+"italic" = "kursiv";
 
 /* No comment provided by engineer. */
 "Jan" = "Jan";
@@ -484,11 +742,32 @@
 /* No comment provided by engineer. */
 "June" = "Juni";
 
+/* bluetooth */
+"Known devices" = "Known devices";
+
+/* No comment provided by engineer. */
+"LA" = "LA";
+
 /* No comment provided by engineer. */
 "Last access" = "Sista tillgång";
 
 /* No comment provided by engineer. */
+"last_screen_touch_index" = "last_screen_touch_index";
+
+/* No comment provided by engineer. */
+"latitude" = "latitud";
+
+/* No comment provided by engineer. */
 "layer" = "lager";
+
+/* No comment provided by engineer. */
+"layers" = "lager";
+
+/* No comment provided by engineer. */
+"LED" = "LED";
+
+/* No comment provided by engineer. */
+"Left" = "Vänster";
 
 /* No comment provided by engineer. */
 "Length" = "Längd";
@@ -500,10 +779,25 @@
 "letter" = "brev";
 
 /* paint */
-"line" = "linje";
+"Line" = "Linje";
+
+/* No comment provided by engineer. */
+"List name:" = "List name:";
+
+/* No comment provided by engineer. */
+"List type" = "List type";
+
+/* No comment provided by engineer. */
+"Lists" = "Listor";
 
 /* No comment provided by engineer. */
 "Loading" = "Laddar";
+
+/* No comment provided by engineer. */
+"location" = "location";
+
+/* No comment provided by engineer. */
+"location_accuracy" = "location_accuracy";
 
 /* No comment provided by engineer. */
 "Logic" = "Logik";
@@ -512,19 +806,37 @@
 "Login" = "Logga in";
 
 /* No comment provided by engineer. */
-"Login successful" = "Login successful";
+"Login successful" = "Inloggad";
 
 /* No comment provided by engineer. */
-"Login/Register" = "Login/Register";
+"Login/Register" = "Logga in/registrera";
+
+/* No comment provided by engineer. */
+"Logout" = "Logga ut";
+
+/* No comment provided by engineer. */
+"longitude" = "longitud";
+
+/* No comment provided by engineer. */
+"Look" = "utseende";
 
 /* LOOK */
 "look" = "Utseende";
+
+/* No comment provided by engineer. */
+"look_name" = "look_name";
+
+/* No comment provided by engineer. */
+"look_number" = "look_number";
 
 /* No comment provided by engineer. */
 "Looks" = "Utseenden";
 
 /* No comment provided by engineer. */
 "loudness" = "högljuddhet";
+
+/* No comment provided by engineer. */
+"magnetic-sensor" = "magnetic-sensor";
 
 /* No comment provided by engineer. */
 "Mar" = "Mar";
@@ -541,29 +853,44 @@
 /* No comment provided by engineer. */
 "Measure" = "Mät";
 
+/* No comment provided by engineer. */
+"Media Library" = "Mediabibliotek";
+
 /* paint */
 "Menu" = "Meny";
 
 /* No comment provided by engineer. */
-"Message" = "Message";
+"Message" = "Meddelande";
 
 /* No comment provided by engineer. */
 "message 1" = "meddelande 1";
 
+/* No comment provided by engineer. */
+"MI" = "MI";
+
+/* No comment provided by engineer. */
+"minute" = "minut";
+
 /* paint */
-"mirror" = "spegel";
+"Mirror" = "Spegel";
 
 /* No comment provided by engineer. */
 "Mo" = "Mån";
 
-/* Prefix of default catrobat program object names (except background object) */
+/* Prefix of default catrobat project object names (except background object) */
 "Mole" = "Mullvad";
 
 /* No comment provided by engineer. */
 "Monday" = "Måndag";
 
 /* No comment provided by engineer. */
+"month" = "månad";
+
+/* No comment provided by engineer. */
 "More" = "Mera";
+
+/* No comment provided by engineer. */
+"More information" = "More information";
 
 /* No comment provided by engineer. */
 "Most Downloaded" = "Mest nedladdningar";
@@ -575,13 +902,28 @@
 "Motion" = "Rörelser";
 
 /* No comment provided by engineer. */
-"Move %@ step(s)" = "Flytta %@ steg";
+"Move" = "Flytta";
 
 /* No comment provided by engineer. */
 "Move Brick" = "Flytta kloss";
 
-/* Name of the default catrobat program (used as filename!!) */
-"My first project" = "Mitt första program";
+/* No comment provided by engineer. */
+"Move Looks" = "Move Looks";
+
+/* No comment provided by engineer. */
+"Move Objects" = "Move Objects";
+
+/* No comment provided by engineer. */
+"Move Phiro motor backward" = "Move Phiro motor backward";
+
+/* No comment provided by engineer. */
+"Move Phiro motor forward" = "Move Phiro motor forward";
+
+/* No comment provided by engineer. */
+"Move Sounds" = "Flytta ljud";
+
+/* Name of the default catrobat project (used as filename!!) */
+"My first project" = "My first project";
 
 /* Default title of imported photo from camera (taken by camera) */
 "My Image" = "Min bild";
@@ -590,10 +932,10 @@
 "My Object" = "Mitt objekt";
 
 /* No comment provided by engineer. */
-"Name" = "Name";
+"Name" = "Namn";
 
 /* No comment provided by engineer. */
-"Name already exists. Please choose another" = "Name already exists. Please choose another";
+"Name already exists." = "Name already exists.";
 
 /* No comment provided by engineer. */
 "New" = "Ny";
@@ -602,19 +944,22 @@
 "New Canvas" = "Ny duk";
 
 /* No comment provided by engineer. */
-"New Message" = "New Message";
+"New List" = "Ny lista";
 
 /* No comment provided by engineer. */
-"New Program" = "Nytt Program";
+"New Message" = "Nytt meddelande";
 
 /* No comment provided by engineer. */
-"New Text" = "New Text";
+"New Project" = "New Project";
+
+/* No comment provided by engineer. */
+"New Text" = "Ny text";
 
 /* No comment provided by engineer. */
 "New Variable" = "Ny variabel";
 
 /* No comment provided by engineer. */
-"New..." = "New...";
+"New..." = "Ny...";
 
 /* No comment provided by engineer. */
 "Newest" = "Nyaste";
@@ -629,22 +974,13 @@
 "No" = "Nej";
 
 /* No comment provided by engineer. */
-"No Camera available" = "No Camera available";
+"No Camera available" = "Ingen kamera tillgänglig";
 
 /* No comment provided by engineer. */
 "No Description available" = "Ingen beskrivning tillgänglig";
 
-/* Title of AlertView if the user tries to import a sound but no sound has been imported using iTunes. */
-"No imported sounds found" = "No imported sounds found";
-
 /* No comment provided by engineer. */
-"No input or the input is too short. Please enter at least %lu character(s)." = "No input or the input is too short. Please enter at least %lu character(s).";
-
-/* No comment provided by engineer. */
-"No Internet Connection" = "No Internet Connection";
-
-/* No comment provided by engineer. */
-"No internet connection available." = "Ingen internetanslutning tillgänglig.";
+"No input. Please enter at least %lu character(s)." = "No input. Please enter at least %lu character(s).";
 
 /* No comment provided by engineer. */
 "No or invalid image name entered, try again." = "Ingen eller felaktigt bild namn angavs, försök igen.";
@@ -656,16 +992,25 @@
 "No search results" = "Inga sökresultat";
 
 /* No comment provided by engineer. */
-"not" = "not";
+"No whitespace character allowed" = "No whitespace character allowed";
 
 /* No comment provided by engineer. */
-"Not enough free memory to download this project. Please delete some of your projects" = "Inte tillräckligt med ledigt minne för att ladda ner detta program. Ta bort vissa program";
+"not" = "inte";
 
 /* No comment provided by engineer. */
-"Not enough Memory" = "Not enough Memory";
+"not available. Continue anyway?" = "not available. Continue anyway?";
 
 /* No comment provided by engineer. */
-"Note %@" = "Notera %@";
+"Not Connected to a WiFi network, please connect to one or change the settings to download also with mobile data." = "Not Connected to a WiFi network, please connect to one or change the settings to download also with mobile data.";
+
+/* No comment provided by engineer. */
+"Not enough free memory to download this project. Please delete some of your projects" = "Not enough free memory to download this project. Please delete some of your projects";
+
+/* No comment provided by engineer. */
+"Not enough Memory" = "Inte tillräckligt med minne";
+
+/* No comment provided by engineer. */
+"Note" = "Notis";
 
 /* paint */
 "Nothing to crop!" = "Inget att beskära!";
@@ -677,16 +1022,22 @@
 "November" = "November";
 
 /* No comment provided by engineer. */
+"number_of_items" = "number_of_items";
+
+/* No comment provided by engineer. */
 "Numbers" = "Nummer";
 
 /* No comment provided by engineer. */
 "Object" = "Objekt";
 
 /* No comment provided by engineer. */
+"Object lists:" = "Object lists:";
+
+/* No comment provided by engineer. */
 "Object name" = "Objektnamn";
 
 /* No comment provided by engineer. */
-"Object variables:" = "Object variables:";
+"Object variables:" = "Objektvariabler:";
 
 /* No comment provided by engineer. */
 "Objects" = "Objekt";
@@ -698,7 +1049,13 @@
 "October" = "Oktober";
 
 /* No comment provided by engineer. */
+"off" = "av";
+
+/* No comment provided by engineer. */
 "OK" = "Okej";
+
+/* No comment provided by engineer. */
+"on" = "på";
 
 /* No comment provided by engineer. */
 "only 15 characters allowed" = "endast 15 tecken är tillåtna";
@@ -707,7 +1064,13 @@
 "Only space is not allowed. Please enter at least %lu other character(s)." = "Only space is not allowed. Please enter at least %lu other character(s).";
 
 /* No comment provided by engineer. */
-"or" = "or";
+"Only special characters are not allowed. Please enter at least %lu other character(s)." = "Only special characters are not allowed. Please enter at least %lu other character(s).";
+
+/* No comment provided by engineer. */
+"Open" = "Öppna";
+
+/* No comment provided by engineer. */
+"or" = "eller";
 
 /* No comment provided by engineer. */
 "Password" = "Lösenord";
@@ -715,23 +1078,56 @@
 /* No comment provided by engineer. */
 "Password is not vaild! \n It has to contain at least 6 characters/symbols" = "Password is not vaild! \n It has to contain at least 6 characters/symbols";
 
+/* No comment provided by engineer. */
+"Passwords do not match" = "Lösenorden matchar ej";
+
+/* No comment provided by engineer. */
+"Phiro" = "Phiro";
+
+/* No comment provided by engineer. */
+"phiro_bottom_left" = "phiro_bottom_left";
+
+/* No comment provided by engineer. */
+"phiro_bottom_right" = "phiro_bottom_right";
+
+/* No comment provided by engineer. */
+"phiro_front_left" = "phiro_front_left";
+
+/* No comment provided by engineer. */
+"phiro_front_right" = "phiro_front_right";
+
+/* No comment provided by engineer. */
+"phiro_side_left" = "phiro_side_left";
+
+/* No comment provided by engineer. */
+"phiro_side_right" = "phiro_side_right";
+
 /* paint */
-"pipette" = "pipett";
+"Pipette" = "Pipett";
 
 /* No comment provided by engineer. */
-"Play" = "Spela";
+"Place at " = "Placera vid ";
 
-/* Description of AlertView if the user tries to import a sound but no sound has been imported using iTunes. */
-"Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app." = "Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app.";
+/* No comment provided by engineer. */
+"Play Phiro music\n" = "Play Phiro music\n";
+
+/* No comment provided by engineer. */
+"Please choose another name:" = "Please choose another name:";
 
 /* paint */
-"Please pick an item" = "Vänligen välj en sak";
+"Please enter a text!" = "Please enter a text!";
 
 /* No comment provided by engineer. */
-"Please register below" = "Please register below";
+"Please log in to report this project as inappropriate" = "Please log in to report this project as inappropriate";
+
+/* paint */
+"Please pick a tool" = "Please pick a tool";
 
 /* No comment provided by engineer. */
-"Please select a program to upload" = "Please select a program to upload";
+"Please select a project to upload" = "Please select a project to upload";
+
+/* bluetooth */
+"Please try resetting the device and try again." = "Please try resetting the device and try again.";
 
 /* No comment provided by engineer. */
 "Pocket Code" = "Pocked Code";
@@ -749,6 +1145,9 @@
 "Pocket Code has no access to your images. To permit access, tap settings and activate images. Your drawing will automatically be saved to PocketCode for you." = "Pocket Code has no access to your images. To permit access, tap settings and activate images. Your drawing will automatically be saved to PocketCode for you.";
 
 /* No comment provided by engineer. */
+"Pocket Code has no access to your microphone. To permit access, tap settings and activate microphone." = "Pocket Code has no access to your microphone. To permit access, tap settings and activate microphone.";
+
+/* No comment provided by engineer. */
 "Pocket Code is a programming environment for iOS for the visual programming language Catrobat. The code of Pocket Code is mostly under GNU AGPL v3 licence. For further information to the licence please visit following links:" = "Pocket-Code är en programmeringsmiljö för iOS för programmeringsspråket visual Catrobat. Koden för Pocket Code är mestadels under GNU AGPL v3 licens. För ytterligare information till licensen besök följande länkar:";
 
 /* No comment provided by engineer. */
@@ -764,61 +1163,79 @@
 "Pocket Paint" = "Pocket Paint";
 
 /* No comment provided by engineer. */
-"Point in direction %@°" = "Peka i riktning %@ °";
+"Point in direction" = "Peka i riktning";
 
 /* No comment provided by engineer. */
-"Point towards\n%@" = "Peka mot%@";
+"Point towards" = "Peka mot";
 
 /* paint */
-"pointer" = "pekaren";
+"Pointer" = "Pekare";
 
 /* No comment provided by engineer. */
-"pos_x" = "pos_x";
+"position_x" = "position_x";
 
 /* No comment provided by engineer. */
-"pos_y" = "pos_y";
+"position_y" = "position_y";
+
+/* No comment provided by engineer. */
+"Preview" = "Preview";
+
+/* No comment provided by engineer. */
+"Previous background" = "Föregående bakgrund";
+
+/* No comment provided by engineer. */
+"Previous look" = "Previous look";
+
+/* No comment provided by engineer. */
+"Privacy Settings" = "Privacy Settings";
 
 /* No comment provided by engineer. */
 "Problems occured while uploading your project" = "Problems occured while uploading your project";
 
 /* No comment provided by engineer. */
-"Program name" = "Programnamn";
-
-/* No comment provided by engineer. */
-"Program Name is necessary!" = "Program Name is necessary!";
-
-/* No comment provided by engineer. */
-"Program variables:" = "Program variables:";
-
-/* No comment provided by engineer. */
-"Programs" = "Program";
-
-/* No comment provided by engineer. */
 "Project" = "Projekt";
+
+/* No comment provided by engineer. */
+"Project lists:" = "Project lists:";
+
+/* No comment provided by engineer. */
+"Project name" = "Project name";
+
+/* No comment provided by engineer. */
+"Project Name is necessary!" = "Project Name is necessary!";
+
+/* No comment provided by engineer. */
+"Project variables:" = "Project variables:";
+
+/* No comment provided by engineer. */
+"Projects" = "Projects";
 
 /* No comment provided by engineer. */
 "Rate Us" = "Betygsätt oss";
 
-/* Title of View where the user can see the recently used bricks. */
-"Recently Used" = "Recently Used";
+/* No comment provided by engineer. */
+"RE" = "RE";
 
 /* No comment provided by engineer. */
-"Recording" = "Recording";
+"Recording" = "Spelar in";
 
 /* paint */
-"rectangle / square" = "rektangel / kvadrat";
+"Rectangle / Square" = "Rectangle / Square";
 
 /* paint */
 "Red" = "Röd";
 
 /* No comment provided by engineer. */
-"Register" = "Register";
+"Register" = "Registrera";
 
 /* No comment provided by engineer. */
-"Registration successful" = "Registration successful";
+"Registration successful" = "Registrering lyckades";
 
 /* No comment provided by engineer. */
-"Rename" = "Döp om";
+"Remove known devices" = "Remove known devices";
+
+/* No comment provided by engineer. */
+"Rename" = "Byt namn";
 
 /* No comment provided by engineer. */
 "Rename image" = "Byt namn på bilden";
@@ -827,19 +1244,25 @@
 "Rename object" = "Byt namn på objektet";
 
 /* No comment provided by engineer. */
-"Rename Program" = "Byt namn på programmet";
+"Rename Project" = "Rename Project";
 
 /* No comment provided by engineer. */
 "Rename sound" = "Byt namn på ljudet";
 
 /* No comment provided by engineer. */
-"Repeat %@ times" = "Upprepa %@ gånger";
+"Repeat" = "Upprepa";
+
+/* No comment provided by engineer. */
+"Repeat until" = "Upprepa tills";
+
+/* No comment provided by engineer. */
+"Replace item in list" = "Replace item in list";
 
 /* No comment provided by engineer. */
 "Report as inappropriate" = "Rapportera som olämpligt";
 
 /* paint */
-"resize" = "resize";
+"Resize" = "Ändra storlek";
 
 /* No comment provided by engineer. */
 "Restart" = "Starta om";
@@ -847,8 +1270,11 @@
 /* No comment provided by engineer. */
 "Result" = "Resultat";
 
+/* No comment provided by engineer. */
+"Right" = "Höger";
+
 /* paint */
-"rotate" = "rotera";
+"Rotate" = "Rotera";
 
 /* paint */
 "round" = "runda";
@@ -869,19 +1295,43 @@
 "Saved" = "Sparad";
 
 /* No comment provided by engineer. */
-"Screenshot" = "Skärmdump";
+"Say" = "Säg";
 
 /* No comment provided by engineer. */
-"Screenshot saved to Camera Roll" = "Skärmdumpen sparas i kamerabilder";
+"screen_is_touched" = "screen_is_touched";
 
 /* No comment provided by engineer. */
-"Screenshot saved to project" = "Skärmdumpen sparad i projektet";
+"screen_touch_x" = "screen_touch_x";
+
+/* No comment provided by engineer. */
+"screen_touch_y" = "screen_touch_y";
+
+/* No comment provided by engineer. */
+"Script" = "Skript";
 
 /* No comment provided by engineer. */
 "Scripts" = "Skript";
 
+/* bluetooth */
+"Search" = "Sök";
+
+/* No comment provided by engineer. */
+"second" = "sekund";
+
+/* No comment provided by engineer. */
+"second " = "sekund ";
+
+/* No comment provided by engineer. */
+"seconds" = "sekunder";
+
+/* No comment provided by engineer. */
+"seconds " = "sekunder ";
+
 /* No comment provided by engineer. */
 "Select All" = "Markera alla";
+
+/* bluetooth */
+"Select Arduino" = "Select Arduino";
 
 /* No comment provided by engineer. */
 "Select Brick Category" = "Välj kloss kategori";
@@ -895,6 +1345,9 @@
 /* paint */
 "Select option:" = "Välj alternativ:";
 
+/* bluetooth */
+"Select Phiro" = "Select Phiro";
+
 /* No comment provided by engineer. */
 "Sensors" = "Sensorer";
 
@@ -905,16 +1358,46 @@
 "September" = "September";
 
 /* No comment provided by engineer. */
-"Set background" = "sätt bakgrunden";
+"Server is taking to long to respond, please try again later." = "Server is taking to long to respond, please try again later.";
+
+/* No comment provided by engineer. */
+"Set Arduino digital pin" = "Set Arduino digital pin";
+
+/* No comment provided by engineer. */
+"Set Arduino PWM~ pin" = "Set Arduino PWM~ pin";
+
+/* No comment provided by engineer. */
+"Set background" = "Ange bakgrund";
+
+/* No comment provided by engineer. */
+"Set brightness " = "Ställ in ljusstyrka ";
+
+/* No comment provided by engineer. */
+"Set color " = "Ange färg ";
 
 /* No comment provided by engineer. */
 "Set description" = "Ange beskrivning";
 
 /* No comment provided by engineer. */
-"Set X to %@" = "sätt X till %@";
+"Set Phiro light" = "Set Phiro light";
 
 /* No comment provided by engineer. */
-"Set Y to %@" = "sätt Y till %@";
+"Set size to" = "Ställ in storlek för att";
+
+/* No comment provided by engineer. */
+"Set transparency " = "Ange genomskinlighet ";
+
+/* No comment provided by engineer. */
+"Set variable" = "sätt Variabeln";
+
+/* No comment provided by engineer. */
+"Set volume to" = "Ställ in volymen till";
+
+/* No comment provided by engineer. */
+"Set X to " = "Sätt X till ";
+
+/* No comment provided by engineer. */
+"Set Y to " = "Sätt Y till ";
 
 /* No comment provided by engineer. */
 "Settings" = "inställningar";
@@ -926,6 +1409,9 @@
 "Show Details" = "Visa detaljer";
 
 /* No comment provided by engineer. */
+"Show variable" = "Visa variabel";
+
+/* No comment provided by engineer. */
 "size" = "Storlek";
 
 /* No comment provided by engineer. */
@@ -935,7 +1421,7 @@
 "Skip" = "Hoppa över";
 
 /* No comment provided by engineer. */
-"Slow Internet Connection!" = "Långsam Internet-anslutning!";
+"SO" = "SO";
 
 /* No comment provided by engineer. */
 "Sound" = "Ljud";
@@ -947,7 +1433,10 @@
 "Sounds" = "Ljud";
 
 /* No comment provided by engineer. */
-"Speak %@" = "Tala %@";
+"Speak" = "Tala";
+
+/* No comment provided by engineer. */
+"Speed" = "Hastighet";
 
 /* No comment provided by engineer. */
 "sqrt" = "sqrt";
@@ -956,16 +1445,25 @@
 "square" = "square";
 
 /* paint */
-"stamp" = "stämpel";
+"Stamp" = "Stämpel";
 
 /* paint */
 "Stamped" = "Stamped";
 
 /* No comment provided by engineer. */
-"Start sound\n%@" = "Starta ljud%@";
+"Start sound" = "Starta ljud";
+
+/* No comment provided by engineer. */
+"step" = "steg";
+
+/* No comment provided by engineer. */
+"steps" = "steg";
 
 /* No comment provided by engineer. */
 "Stop all sounds" = "Stoppa alla ljud";
+
+/* No comment provided by engineer. */
+"Stop Phiro motor" = "Stop Phiro motor";
 
 /* No comment provided by engineer. */
 "Su" = "Sön";
@@ -974,28 +1472,61 @@
 "Sunday" = "Söndag";
 
 /* No comment provided by engineer. */
-"Switch to look\n%@" = "byt till utseende%@";
+"Switch to look" = "byt till utseende";
 
 /* No comment provided by engineer. */
 "Syntax Error!" = "Syntax Error!";
 
 /* No comment provided by engineer. */
-"Take" = "Ta";
-
-/* No comment provided by engineer. */
 "Tap \"+\" to add %@" = "Tryck på \"+\" för att lägga till %@";
 
-/* No comment provided by engineer. */
-"Terms of Use" = "Användarvillkor";
+/* Button title at the settings screen to get to the terms of use and services. */
+"Terms of Use and Services" = "Terms of Use and Services";
+
+/* paint */
+"Text" = "Text";
 
 /* No comment provided by engineer. */
-"Text message:" = "Text message:";
+"Text message:" = "Textmeddelande:";
+
+/* paint */
+"Text:" = "Text:";
 
 /* No comment provided by engineer. */
 "Th" = "Tor";
 
 /* No comment provided by engineer. */
-"The description contains invalid characters, try again." = "The description contains invalid characters, try again.";
+"The description contains invalid characters, try again." = "Beskrivningen innehåller ogiltiga tecken, försök igen.";
+
+/* No comment provided by engineer. */
+"The featured projects cannot be loaded" = "The featured projects cannot be loaded";
+
+/* No comment provided by engineer. */
+"The following item could not be imported from the Media Library:" = "The following item could not be imported from the Media Library:";
+
+/* No comment provided by engineer. */
+"The input is too long. Please enter maximal %lu character(s)." = "The input is too long. Please enter maximal %lu character(s).";
+
+/* No comment provided by engineer. */
+"The name contains blocked characters. Please try again!" = "The name contains blocked characters. Please try again!";
+
+/* No comment provided by engineer. */
+"The recent projects cannot be loaded" = "The recent projects cannot be loaded";
+
+/* No comment provided by engineer. */
+"The requested project can not be found. Please choose a different one." = "The requested project can not be found. Please choose a different one.";
+
+/* No comment provided by engineer. */
+"The requested project can not be loaded. Please try again later." = "The requested project can not be loaded. Please try again later.";
+
+/* No comment provided by engineer. */
+"The sound item cannot be loaded" = "The sound item cannot be loaded";
+
+/* No comment provided by engineer. */
+"The sound item cannot be played" = "The sound item cannot be played";
+
+/* No comment provided by engineer. */
+"Think" = "Think";
 
 /* No comment provided by engineer. */
 "This action can not be undone!" = "Åtgärden kan inte ångras!";
@@ -1010,10 +1541,28 @@
 "Thursday" = "Torsdag";
 
 /* No comment provided by engineer. */
+"TI" = "TI";
+
+/* No comment provided by engineer. */
+"time" = "gång";
+
+/* No comment provided by engineer. */
+"times" = "gånger";
+
+/* No comment provided by engineer. */
+"to" = "till";
+
+/* No comment provided by engineer. */
+"to list" = "att lista";
+
+/* No comment provided by engineer. */
+"to X:" = "till X:";
+
+/* No comment provided by engineer. */
 "Today" = "Idag";
 
 /* No comment provided by engineer. */
-"transparency" = "transparency";
+"transparency" = "genomskinlighet";
 
 /* No comment provided by engineer. */
 "true" = "true";
@@ -1025,13 +1574,19 @@
 "Tuesday" = "Tisdag";
 
 /* No comment provided by engineer. */
-"Turn left %@°" = "Sväng vänster %@ °";
+"Turn camera" = "Turn camera";
 
 /* No comment provided by engineer. */
-"Turn right %@°" = "Sväng höger %@ °";
+"Turn flashlight" = "Turn flashlight";
 
 /* No comment provided by engineer. */
-"Unable to load program!" = "Det går inte att ladda program!";
+"Turn left" = "Sväng vänster";
+
+/* No comment provided by engineer. */
+"Turn right" = "Sväng höger";
+
+/* No comment provided by engineer. */
+"Unable to load project!" = "Unable to load project!";
 
 /* No comment provided by engineer. */
 "Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt." = "Det går inte att spela det ljudet! Kanske är detta inget giltigt ljud eller så är filen skadad.";
@@ -1041,6 +1596,9 @@
 
 /* No comment provided by engineer. */
 "Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again." = "Det går inte att spela det valda ljudet. Din enhet är i tyst läge. Stäng av tyst läge genom att växla omkopplaren på vänster sida av din iPad och tryck på play igen.";
+
+/* paint */
+"underline" = "underline";
 
 /* Button title of alert view to invoke undo if user shakes device */
 "Undo" = "Ångra";
@@ -1052,16 +1610,31 @@
 "Undo Typing?" = "Undo Typing?";
 
 /* No comment provided by engineer. */
+"Unexpected Error" = "Unexpected Error";
+
+/* No comment provided by engineer. */
+"Unexpected Error, please try again later." = "Unexpected Error, please try again later.";
+
+/* No comment provided by engineer. */
+"Unknown Element" = "Unknown Element";
+
+/* No comment provided by engineer. */
 "Unselect All" = "Avmarkera alla";
 
 /* No comment provided by engineer. */
-"Upcoming version" = "Kommande version";
+"Unsupported Brick:" = "Unsupported Brick:";
+
+/* No comment provided by engineer. */
+"Unsupported Elements" = "Unsupported Elements";
+
+/* No comment provided by engineer. */
+"Unsupported Script:" = "Unsupported Script:";
 
 /* No comment provided by engineer. */
 "Upload" = "Ladda upp";
 
 /* No comment provided by engineer. */
-"Upload Program" = "Upload Program";
+"Upload Project" = "Upload Project";
 
 /* No comment provided by engineer. */
 "Upload selected project" = "Upload selected project";
@@ -1073,13 +1646,31 @@
 "Uploaded" = "uppladdad";
 
 /* No comment provided by engineer. */
+"Use Arduino bricks" = "Use Arduino bricks";
+
+/* No comment provided by engineer. */
+"Use camera" = "Använd kamera";
+
+/* No comment provided by engineer. */
+"Use Phiro bricks" = "Use Phiro bricks";
+
+/* No comment provided by engineer. */
 "Username" = "Användarnamn";
 
 /* No comment provided by engineer. */
-"Username is necessary!" = "Username is necessary!";
+"Username must not be blank" = "Användarnamn får inte vara tomt";
+
+/* No comment provided by engineer. */
+"Var/List" = "Var/List";
+
+/* No comment provided by engineer. */
+"Variable" = "Variabel";
 
 /* No comment provided by engineer. */
 "Variable name:" = "Variabelnamn:";
+
+/* No comment provided by engineer. */
+"Variable or List" = "Variable or List";
 
 /* No comment provided by engineer. */
 "Variable type" = "Variable type";
@@ -1091,13 +1682,19 @@
 "Version" = "Version";
 
 /* No comment provided by engineer. */
-"Vibrate %@ second(s)" = "Vibrate %@ second(s)";
+"Vibrate for" = "Vibrera för";
 
 /* No comment provided by engineer. */
-"Views" = "Visningar";
+"vibration" = "vibration";
 
 /* No comment provided by engineer. */
-"Wait %@ second(s)" = "Vänta %@ sekund(er)";
+"Views" = "visningar";
+
+/* No comment provided by engineer. */
+"Wait" = "Vänta";
+
+/* No comment provided by engineer. */
+"Wait until" = "Vänta tills";
 
 /* No comment provided by engineer. */
 "We" = "Ons";
@@ -1106,22 +1703,37 @@
 "Wednesday" = "Onsdag";
 
 /* No comment provided by engineer. */
-"Welcome back, please login below" = "Welcome back, please login below";
+"weekday" = "weekday";
 
 /* No comment provided by engineer. */
 "Welcome to Pocket Code" = "Välkommen till Pocket Code";
 
 /* No comment provided by engineer. */
-"When I receive\n%@" = "När jag får%@";
+"When project started" = "When project started";
 
 /* No comment provided by engineer. */
-"When program started" = "När programmet startar";
+"When screen is touched" = "When screen is touched";
 
 /* No comment provided by engineer. */
-"When tapped" = "När du tryckt";
+"When tapped" = "När tryckt";
+
+/* No comment provided by engineer. */
+"When you receive" = "When you receive";
 
 /* paint */
-"Width" = "Width";
+"Width selection" = "Width selection";
+
+/* No comment provided by engineer. */
+"with" = "med";
+
+/* No comment provided by engineer. */
+"X: " = "X: ";
+
+/* No comment provided by engineer. */
+"Y: " = "Y: ";
+
+/* No comment provided by engineer. */
+"year" = "år";
 
 /* No comment provided by engineer. */
 "Yes" = "Ja";
@@ -1130,10 +1742,13 @@
 "Yesterday" = "Igår";
 
 /* No comment provided by engineer. */
-"You are also able to build your own apps, edit existing ones and share them with your friends and other exciting people." = "You are also able to build your own apps, edit existing ones and share them with your friends and other exciting people.";
+"You are also able to build your own apps, remix existing ones and share them with your friends and other exciting people around the world." = "You are also able to build your own apps, remix existing ones and share them with your friends and other exciting people around the world.";
 
 /* No comment provided by engineer. */
-"You have already downloaded this project!" = "Du har redan laddat ner detta program!";
+"You have already downloaded this project!" = "You have already downloaded this project!";
+
+/* No comment provided by engineer. */
+"Your email seems to be invalid" = "Din e-post verkar vara ogiltig";
 
 /* paint */
-"zoom" = "zoom";
+"Zoom" = "Zooma";

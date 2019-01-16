@@ -1,11 +1,8 @@
 /* No comment provided by engineer. */
-" and wait" = " and wait";
-
-/* No comment provided by engineer. */
 "A message with the same name already exists, try again." = "已经存在具有相同名称的消息，请重试。";
 
 /* No comment provided by engineer. */
-"A program with the same name already exists, try again." = "已存在具有相同名称的程序，请重试。";
+"A project with the same name already exists, try again." = "A project with the same name already exists, try again.";
 
 /* No comment provided by engineer. */
 "About Catrobat" = "关于 Catrobat";
@@ -26,7 +23,7 @@
 "acceleration_z" = "z方向加速度";
 
 /* No comment provided by engineer. */
-"Add %@ to list\n%@" = "Add %@ to list\n%@";
+"Add" = "添加";
 
 /* No comment provided by engineer. */
 "add comment here..." = "在这里添加注释...";
@@ -71,6 +68,9 @@
 "and" = "与";
 
 /* No comment provided by engineer. */
+"and wait" = "并等待";
+
+/* No comment provided by engineer. */
 "Animate Brick-Parts" = "动画积木元件";
 
 /* No comment provided by engineer. */
@@ -90,6 +90,9 @@
 
 /* No comment provided by engineer. */
 "at " = "在 ";
+
+/* No comment provided by engineer. */
+"at position" = "位置为";
 
 /* paint */
 "Attributes:" = "属性：";
@@ -164,13 +167,13 @@
 "By registering you agree to our" = "注册代表你同意我们的";
 
 /* No comment provided by engineer. */
-"By switching to the section \"Explore\" you can discover more interesting programs from people all over the world." = "通过切换到\"浏览\"版块中，您可以发现更多由来自世界各地的人们开发的有趣程序。";
+"By switching to the section \"Explore\" you can discover more interesting projects from people all over the world." = "By switching to the section \"Explore\" you can discover more interesting projects from people all over the world.";
 
 /* No comment provided by engineer. */
 "Camera Roll" = "相册";
 
 /* No comment provided by engineer. */
-"Can't restart program!" = "无法重新启动程序 ！";
+"Can't restart project!" = "Can't restart project!";
 
 /* No comment provided by engineer. */
 "Cancel" = "取消";
@@ -225,9 +228,6 @@
 
 /* No comment provided by engineer. */
 "Choose image" = "选择图像";
-
-/* No comment provided by engineer. */
-"Choose sound" = "选择声音";
 
 /* No comment provided by engineer. */
 "Clear graphic effects" = "清除所有图形效果";
@@ -287,7 +287,7 @@
 "Copy Looks" = "复制外观";
 
 /* No comment provided by engineer. */
-"Copy program" = "复制程序";
+"Copy project" = "Copy project";
 
 /* No comment provided by engineer. */
 "Create & Remix" = "创建 & 调制";
@@ -323,7 +323,7 @@
 "Delete Condition" = "删除条件";
 
 /* No comment provided by engineer. */
-"Delete item from list\n%@\n at position%@" = "Delete item from list\n%@\n at position%@";
+"Delete item from list" = "从列表中删除项，在列表";
 
 /* No comment provided by engineer. */
 "Delete Looks" = "删除外观";
@@ -335,10 +335,10 @@
 "Delete Objects" = "删除对象";
 
 /* No comment provided by engineer. */
-"Delete Program" = "删除程序";
+"Delete Project" = "Delete Project";
 
 /* No comment provided by engineer. */
-"Delete Programs" = "删除程序";
+"Delete Projects" = "Delete Projects";
 
 /* No comment provided by engineer. */
 "Delete Script" = "删除脚本";
@@ -377,7 +377,7 @@
 "Delete this object" = "删除这个对象";
 
 /* No comment provided by engineer. */
-"Delete this program" = "删除这个程序";
+"Delete this project" = "Delete this project";
 
 /* No comment provided by engineer. */
 "Delete this Script?" = "删除这段脚本么？";
@@ -458,10 +458,10 @@
 "Edit Object" = "编辑对象";
 
 /* No comment provided by engineer. */
-"Edit Program" = "编辑程序";
+"Edit Project" = "Edit Project";
 
 /* No comment provided by engineer. */
-"Edit Programs" = "编辑程序";
+"Edit Projects" = "Edit Projects";
 
 /* Action sheet menu title */
 "Edit Script" = "编辑脚本";
@@ -485,6 +485,9 @@
 "Email" = "电子邮件";
 
 /* No comment provided by engineer. */
+"Empty input!" = "Empty input!";
+
+/* No comment provided by engineer. */
 "End If" = "如果结束";
 
 /* No comment provided by engineer. */
@@ -505,11 +508,11 @@
 /* Placeholder for add object-name input field */
 "Enter your object name here..." = "在此处输入对象名称......";
 
-/* Placeholder for program-description input field */
-"Enter your program description here..." = "在此处输入程序介绍…";
+/* Placeholder for project-description input field */
+"Enter your project description here..." = "Enter your project description here...";
 
-/* Placeholder for program-name input field */
-"Enter your program name here..." = "在此处输入程序名称......";
+/* Placeholder for project-name input field */
+"Enter your project name here..." = "Enter your project name here...";
 
 /* Placeholder for add sound-name input field */
 "Enter your sound name here..." = "在此处输入声音名称......";
@@ -522,6 +525,9 @@
 
 /* No comment provided by engineer. */
 "Error" = "错误";
+
+/* No comment provided by engineer. */
+"Error saving file" = "Error saving file";
 
 /* No comment provided by engineer. */
 "Explore" = "探索";
@@ -548,10 +554,10 @@
 "Failed to import item" = "Failed to import item";
 
 /* No comment provided by engineer. */
-"Failed to load featured programs" = "Failed to load featured programs";
+"Failed to load featured projects" = "Failed to load featured projects";
 
 /* No comment provided by engineer. */
-"Failed to load recent programs" = "Failed to load recent programs";
+"Failed to load recent projects" = "Failed to load recent projects";
 
 /* No comment provided by engineer. */
 "Failed to load sound" = "Failed to load sound";
@@ -563,7 +569,7 @@
 "false" = "假";
 
 /* No comment provided by engineer. */
-"Featured Programs" = "标志性程序";
+"Featured Projects" = "Featured Projects";
 
 /* No comment provided by engineer. */
 "Feb" = "二月";
@@ -582,6 +588,9 @@
 
 /* No comment provided by engineer. */
 "floor" = "向下取整";
+
+/* No comment provided by engineer. */
+"Following features used in this project are not compatible with this version of Pocket Code:" = "Following features used in this project are not compatible with this version of Pocket Code:";
 
 /* No comment provided by engineer. */
 "for" = "持续";
@@ -627,9 +636,6 @@
 
 /* No comment provided by engineer. */
 "Go to front" = "移至最上层";
-
-/* No comment provided by engineer. */
-"GOOD TO SEE YOU" = "很高兴见到你";
 
 /* paint */
 "Green" = "绿色";
@@ -689,16 +695,22 @@
 "Information" = "信息";
 
 /* No comment provided by engineer. */
-"Insert%@into list\n%@\n at position%@" = "Insert%@into list\n%@\n at position%@";
+"Insert" = "插入";
 
 /* paint */
 "Inserted" = "已插入";
+
+/* No comment provided by engineer. */
+"into list" = "到列表中";
 
 /* No comment provided by engineer. */
 "Invalid input entered, try again." = "无效的输入，请重试。";
 
 /* No comment provided by engineer. */
 "Invalid URL given!" = "给定的 URL 无效 ！";
+
+/* No comment provided by engineer. */
+"iOS." = "iOS.";
 
 /* No comment provided by engineer. */
 "is true" = "为真";
@@ -865,7 +877,7 @@
 /* No comment provided by engineer. */
 "Mo" = "Mo";
 
-/* Prefix of default catrobat program object names (except background object) */
+/* Prefix of default catrobat project object names (except background object) */
 "Mole" = "Mole";
 
 /* No comment provided by engineer. */
@@ -876,6 +888,9 @@
 
 /* No comment provided by engineer. */
 "More" = "更多";
+
+/* No comment provided by engineer. */
+"More information" = "More information";
 
 /* No comment provided by engineer. */
 "Most Downloaded" = "&#x6700;&#x65B0;&#x9879;&#x76EE;";
@@ -907,8 +922,8 @@
 /* No comment provided by engineer. */
 "Move Sounds" = "移动声音";
 
-/* Name of the default catrobat program (used as filename!!) */
-"My first program" = "我的第一个程序";
+/* Name of the default catrobat project (used as filename!!) */
+"My first project" = "My first project";
 
 /* Default title of imported photo from camera (taken by camera) */
 "My Image" = "我的相册";
@@ -935,7 +950,7 @@
 "New Message" = "新消息";
 
 /* No comment provided by engineer. */
-"New Program" = "新建程序";
+"New Project" = "New Project";
 
 /* No comment provided by engineer. */
 "New Text" = "新文本";
@@ -964,9 +979,6 @@
 /* No comment provided by engineer. */
 "No Description available" = "没有可用的说明";
 
-/* Title of AlertView if the user tries to import a sound but no sound has been imported using iTunes. */
-"No imported sounds found" = "未找到导入的声音";
-
 /* No comment provided by engineer. */
 "No input. Please enter at least %lu character(s)." = "输入内容为空。请输入至少 %lu 个字符。";
 
@@ -992,7 +1004,7 @@
 "Not Connected to a WiFi network, please connect to one or change the settings to download also with mobile data." = "Not Connected to a WiFi network, please connect to one or change the settings to download also with mobile data.";
 
 /* No comment provided by engineer. */
-"Not enough free memory to download this program. Please delete some of your programs" = "Not enough free memory to download this program. Please delete some of your programs";
+"Not enough free memory to download this project. Please delete some of your projects" = "Not enough free memory to download this project. Please delete some of your projects";
 
 /* No comment provided by engineer. */
 "Not enough Memory" = "内存不足";
@@ -1055,6 +1067,9 @@
 "Only special characters are not allowed. Please enter at least %lu other character(s)." = "不允许只输入特殊字符，请输入至少 %lu个其他字符。";
 
 /* No comment provided by engineer. */
+"Open" = "打开";
+
+/* No comment provided by engineer. */
 "or" = "或";
 
 /* No comment provided by engineer. */
@@ -1094,28 +1109,22 @@
 "Place at " = "放在 ";
 
 /* No comment provided by engineer. */
-"Play" = "开始";
-
-/* No comment provided by engineer. */
 "Play Phiro music\n" = "播放Phiro音乐\n";
 
 /* No comment provided by engineer. */
 "Please choose another name:" = "Please choose another name:";
 
-/* Description of AlertView if the user tries to import a sound but no sound has been imported using iTunes. */
-"Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app." = "请将您的 iPhone 连接到您的 PC 和 Mac 并使用 iTunes 文件共享将声音文件导入到 口袋编程应用程序。";
-
 /* paint */
 "Please enter a text!" = "请输入文本 ！";
 
 /* No comment provided by engineer. */
-"Please log in to report this program as inappropriate" = "请登录以报告这是个不恰当的程序";
+"Please log in to report this project as inappropriate" = "Please log in to report this project as inappropriate";
 
 /* paint */
 "Please pick a tool" = "请选择工具";
 
 /* No comment provided by engineer. */
-"Please select a program to upload" = "请选择要上传的程序";
+"Please select a project to upload" = "Please select a project to upload";
 
 /* bluetooth */
 "Please try resetting the device and try again." = "请尝试重启设备，然后重试。";
@@ -1169,6 +1178,9 @@
 "position_y" = "y轴坐标";
 
 /* No comment provided by engineer. */
+"Preview" = "预览";
+
+/* No comment provided by engineer. */
 "Previous background" = "上一个背景";
 
 /* No comment provided by engineer. */
@@ -1178,37 +1190,31 @@
 "Privacy Settings" = "Privacy Settings";
 
 /* No comment provided by engineer. */
-"Problems occured while Uploading your program" = "Problems occured while Uploading your program";
-
-/* No comment provided by engineer. */
-"Program" = "Program";
-
-/* No comment provided by engineer. */
-"Program lists:" = "Program lists:";
-
-/* No comment provided by engineer. */
-"Program name" = "程序名称";
-
-/* No comment provided by engineer. */
-"Program Name is necessary!" = "Program Name is necessary!";
-
-/* No comment provided by engineer. */
-"Program variables:" = "Program variables:";
-
-/* No comment provided by engineer. */
-"Programs" = "程序";
+"Problems occured while uploading your project" = "Problems occured while uploading your project";
 
 /* No comment provided by engineer. */
 "Project" = "Project";
+
+/* No comment provided by engineer. */
+"Project lists:" = "Project lists:";
+
+/* No comment provided by engineer. */
+"Project name" = "Project name";
+
+/* No comment provided by engineer. */
+"Project Name is necessary!" = "Project Name is necessary!";
+
+/* No comment provided by engineer. */
+"Project variables:" = "Project variables:";
+
+/* No comment provided by engineer. */
+"Projects" = "Projects";
 
 /* No comment provided by engineer. */
 "Rate Us" = "Rate Us";
 
 /* No comment provided by engineer. */
 "RE" = "RE";
-
-/* No comment provided by engineer. */
-"Record" = "Record";
 
 /* No comment provided by engineer. */
 "Recording" = "Recording";
@@ -1238,7 +1244,7 @@
 "Rename object" = "Rename object";
 
 /* No comment provided by engineer. */
-"Rename Program" = "重命名项目";
+"Rename Project" = "Rename Project";
 
 /* No comment provided by engineer. */
 "Rename sound" = "重命名声音";
@@ -1250,7 +1256,7 @@
 "Repeat until" = "重复执行直到";
 
 /* No comment provided by engineer. */
-"Replace item in list\n%@\nat position %@ with %@" = "Replace item in list\n%@\nat position %@ with %@";
+"Replace item in list" = "替换项目在列表";
 
 /* No comment provided by engineer. */
 "Report as inappropriate" = "举报为不适当";
@@ -1279,9 +1285,6 @@
 /* No comment provided by engineer. */
 "Saturday" = "Saturday";
 
-/* Action sheet menu title */
-"Save Screenshot to" = "Save Screenshot to";
-
 /* paint */
 "Save to CameraRoll" = "Save to CameraRoll";
 
@@ -1302,15 +1305,6 @@
 
 /* No comment provided by engineer. */
 "screen_touch_y" = "屏幕被点击处y坐标";
-
-/* No comment provided by engineer. */
-"Screenshot" = "截屏";
-
-/* No comment provided by engineer. */
-"Screenshot saved to Camera Roll" = "Screenshot saved to Camera Roll";
-
-/* No comment provided by engineer. */
-"Screenshot saved to project" = "Screenshot saved to project";
 
 /* No comment provided by engineer. */
 "Script" = "Script";
@@ -1466,9 +1460,6 @@
 "steps" = "步";
 
 /* No comment provided by engineer. */
-"Stop" = "停止";
-
-/* No comment provided by engineer. */
 "Stop all sounds" = "停止所有声音";
 
 /* No comment provided by engineer. */
@@ -1508,7 +1499,7 @@
 "The description contains invalid characters, try again." = "The description contains invalid characters, try again.";
 
 /* No comment provided by engineer. */
-"The featured programs cannot be loaded" = "The featured programs cannot be loaded";
+"The featured projects cannot be loaded" = "The featured projects cannot be loaded";
 
 /* No comment provided by engineer. */
 "The following item could not be imported from the Media Library:" = "The following item could not be imported from the Media Library:";
@@ -1520,10 +1511,13 @@
 "The name contains blocked characters. Please try again!" = "The name contains blocked characters. Please try again!";
 
 /* No comment provided by engineer. */
-"The recent programs cannot be loaded" = "The recent programs cannot be loaded";
+"The recent projects cannot be loaded" = "The recent projects cannot be loaded";
 
 /* No comment provided by engineer. */
-"The requested program can not be found. Please choose a different one." = "The requested program can not be found. Please choose a different one.";
+"The requested project can not be found. Please choose a different one." = "The requested project can not be found. Please choose a different one.";
+
+/* No comment provided by engineer. */
+"The requested project can not be loaded. Please try again later." = "The requested project can not be loaded. Please try again later.";
 
 /* No comment provided by engineer. */
 "The sound item cannot be loaded" = "The sound item cannot be loaded";
@@ -1559,6 +1553,9 @@
 "to" = "为";
 
 /* No comment provided by engineer. */
+"to list" = "到列表中";
+
+/* No comment provided by engineer. */
 "to X:" = "到 X:";
 
 /* No comment provided by engineer. */
@@ -1589,7 +1586,7 @@
 "Turn right" = "右转";
 
 /* No comment provided by engineer. */
-"Unable to load program!" = "Unable to load program!";
+"Unable to load project!" = "Unable to load project!";
 
 /* No comment provided by engineer. */
 "Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt." = "Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt.";
@@ -1625,13 +1622,22 @@
 "Unselect All" = "Unselect All";
 
 /* No comment provided by engineer. */
+"Unsupported Brick:" = "Unsupported Brick:";
+
+/* No comment provided by engineer. */
+"Unsupported Elements" = "Unsupported Elements";
+
+/* No comment provided by engineer. */
+"Unsupported Script:" = "Unsupported Script:";
+
+/* No comment provided by engineer. */
 "Upload" = "上传";
 
 /* No comment provided by engineer. */
-"Upload Program" = "Upload Program";
+"Upload Project" = "Upload Project";
 
 /* No comment provided by engineer. */
-"Upload Selected Program" = "Upload Selected Program";
+"Upload selected project" = "Upload selected project";
 
 /* No comment provided by engineer. */
 "Upload successful" = "上传成功";
@@ -1653,9 +1659,6 @@
 
 /* No comment provided by engineer. */
 "Username must not be blank" = "用户名不能为空";
-
-/* No comment provided by engineer. */
-"v" = "v";
 
 /* No comment provided by engineer. */
 "Var/List" = "Var/List";
@@ -1691,6 +1694,9 @@
 "Wait" = "等待";
 
 /* No comment provided by engineer. */
+"Wait until" = "保持等待，直到";
+
+/* No comment provided by engineer. */
 "We" = "We";
 
 /* No comment provided by engineer. */
@@ -1703,7 +1709,10 @@
 "Welcome to Pocket Code" = "Welcome to Pocket Code";
 
 /* No comment provided by engineer. */
-"When program started" = "When program started";
+"When project started" = "When project started";
+
+/* No comment provided by engineer. */
+"When screen is touched" = "当屏幕被点击";
 
 /* No comment provided by engineer. */
 "When tapped" = "当被点击";
@@ -1713,6 +1722,9 @@
 
 /* paint */
 "Width selection" = "Width selection";
+
+/* No comment provided by engineer. */
+"with" = "以";
 
 /* No comment provided by engineer. */
 "X: " = "X: ";
@@ -1733,10 +1745,10 @@
 "You are also able to build your own apps, remix existing ones and share them with your friends and other exciting people around the world." = "You are also able to build your own apps, remix existing ones and share them with your friends and other exciting people around the world.";
 
 /* No comment provided by engineer. */
-"You have already downloaded this program!" = "You have already downloaded this program!";
+"You have already downloaded this project!" = "You have already downloaded this project!";
 
 /* No comment provided by engineer. */
-"Your email seems to be invalid" = "Your email seems to be invalid";
+"Your email seems to be invalid" = "您的电子邮件是无效的";
 
 /* paint */
 "Zoom" = "缩放";

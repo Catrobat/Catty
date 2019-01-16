@@ -1,14 +1,17 @@
 /* No comment provided by engineer. */
-"A message with the same name already exists, try again." = "A message with the same name already exists, try again.";
+"A message with the same name already exists, try again." = "Már létezik üzenet ezzel a névvel, próbáld újra.";
 
 /* No comment provided by engineer. */
-"A project with the same name already exists, try again." = "Már létezik egy azonos nevű projekt, próbáld meg újra.";
+"A project with the same name already exists, try again." = "A project with the same name already exists, try again.";
 
 /* No comment provided by engineer. */
 "About Catrobat" = "A Catrobatról";
 
 /* No comment provided by engineer. */
 "About Pocket Code" = "A Pocket Code-ról";
+
+/* No comment provided by engineer. */
+"acceleration-sensor" = "acceleration-sensor";
 
 /* No comment provided by engineer. */
 "acceleration_x" = "gyorsulás_x";
@@ -20,7 +23,10 @@
 "acceleration_z" = "gyorsulás_z";
 
 /* No comment provided by engineer. */
-"add comment here..." = "add comment here...";
+"Add" = "Hozzáadás";
+
+/* No comment provided by engineer. */
+"add comment here..." = "megjegyzés hozzáadása itt...";
 
 /* No comment provided by engineer. */
 "Add image" = "Kép hozzáadása";
@@ -34,8 +40,17 @@
 /* Action sheet menu title */
 "Add sound" = "Hang hozzáadása";
 
+/* No comment provided by engineer. */
+"All Bluetooth devices successfully disconnected" = "All Bluetooth devices successfully disconnected";
+
+/* No comment provided by engineer. */
+"All known Bluetooth devices successfully removed" = "All known Bluetooth devices successfully removed";
+
 /* paint */
 "Alpha" = "Alpha";
+
+/* No comment provided by engineer. */
+"altitude" = "altitude";
 
 /* No comment provided by engineer. */
 "An image with the same name already exists, try again." = "Már létezik egy azonos nevű kép, próbáld újra.";
@@ -44,10 +59,19 @@
 "An object with the same name already exists, try again." = "Már létezik azonos nevű objektum, próbáld újra.";
 
 /* No comment provided by engineer. */
-"and" = "and";
+"An unknown error occurred. Check your Internet connection." = "Ismeretlen hiba történt. Ellenőrizze az internetkapcsolatot.";
 
 /* No comment provided by engineer. */
-"Animate Brick" = "Elem animálása";
+"An unknown error occurred. Please try again later." = "An unknown error occurred. Please try again later.";
+
+/* No comment provided by engineer. */
+"and" = "és";
+
+/* No comment provided by engineer. */
+"and wait" = "and wait";
+
+/* No comment provided by engineer. */
+"Animate Brick-Parts" = "Elem részeinek animálása";
 
 /* No comment provided by engineer. */
 "Apr" = "Ápr";
@@ -56,22 +80,52 @@
 "April" = "április";
 
 /* No comment provided by engineer. */
+"Arduino" = "Arduino";
+
+/* No comment provided by engineer. */
+"arduino_analog" = "arduino_analog";
+
+/* No comment provided by engineer. */
+"arduino_digital" = "arduino_digital";
+
+/* No comment provided by engineer. */
+"at " = "at ";
+
+/* No comment provided by engineer. */
+"at position" = "pozícióba";
+
+/* paint */
+"Attributes:" = "Attributes:";
+
+/* No comment provided by engineer. */
 "Aug" = "Aug";
 
 /* No comment provided by engineer. */
 "August" = "augusztus";
 
 /* No comment provided by engineer. */
+"Authentication failed" = "Authentication failed";
+
+/* No comment provided by engineer. */
 "Author" = "Szerző";
 
 /* Title of icon shown in the side bar to enable or disable an overlayed view to show the origin of the coordinate system and implicitly the display size. */
-"Axes" = "Axes";
+"Axes" = "Tengelyek";
 
 /* No comment provided by engineer. */
-"Back" = "Vissza";
+"back" = "back";
+
+/* No comment provided by engineer. */
+"Back" = "Hátra";
 
 /* No comment provided by engineer. */
 "Background" = "Háttér";
+
+/* No comment provided by engineer. */
+"background_name" = "background_name";
+
+/* No comment provided by engineer. */
+"background_number" = "background_number";
 
 /* No comment provided by engineer. */
 "Backgrounds" = "Hátterek";
@@ -80,46 +134,88 @@
 "Blue" = "Kék";
 
 /* No comment provided by engineer. */
+"Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings." = "Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings.";
+
+/* No comment provided by engineer. */
+"Bluetooth is turned off. Please turn it on to connect to a Bluetooth device." = "Bluetooth is turned off. Please turn it on to connect to a Bluetooth device.";
+
+/* paint */
+"bold" = "bold";
+
+/* No comment provided by engineer. */
+"Both" = "Both";
+
+/* No comment provided by engineer. */
 "Bricks" = "Építőelemek";
 
 /* No comment provided by engineer. */
 "brightness" = "fényerő";
 
 /* No comment provided by engineer. */
-"Broadcast and wait\n%@" = "Küldj üzenetet és várj\n%@";
+"Broadcast" = "Küldd ezt:";
 
 /* No comment provided by engineer. */
-"Broadcast\n%@" = "Küldj üzenetet\n%@";
+"Broadcast and wait" = "Küldd ezt és várj";
 
 /* paint */
-"brush" = "ecset";
+"Brush" = "Ecset";
 
 /* No comment provided by engineer. */
-"By registering you agree to our" = "By registering you agree to our";
+"by" = "ennyivel:";
 
 /* No comment provided by engineer. */
-"By switching to the section \"Explore\" you can discover much more interesting stuff." = "A \"Felfedezés\" részre váltással még több érdekes dolgot fedezhetsz fel.";
+"By registering you agree to our" = "A regisztrációval elfogadod a";
+
+/* No comment provided by engineer. */
+"By switching to the section \"Explore\" you can discover more interesting projects from people all over the world." = "By switching to the section \"Explore\" you can discover more interesting projects from people all over the world.";
 
 /* No comment provided by engineer. */
 "Camera Roll" = "Fotóalbum";
 
 /* No comment provided by engineer. */
-"Can't restart project!" = "Projekt újraindítása nem lehetséges!";
+"Can't restart project!" = "Can't restart project!";
 
 /* No comment provided by engineer. */
 "Cancel" = "Mégse";
+
+/* bluetooth */
+"Cannot connect to device, please try resetting the device and try again." = "Cannot connect to device, please try resetting the device and try again.";
+
+/* bluetooth */
+"Cannot connect to device. The device is not responding." = "Cannot connect to device. The device is not responding.";
+
+/* No comment provided by engineer. */
+"Cannot connect to the Media Library. Please check your Internet connection." = "Cannot connect to the Media Library. Please check your Internet connection.";
 
 /* No comment provided by engineer. */
 "Categories" = "Kategóriák";
 
 /* No comment provided by engineer. */
-"Change volume by" = "Hangerő változzon";
+"ceil" = "emelet";
 
 /* No comment provided by engineer. */
-"Change X by " = "X változzon ";
+"Change brightness " = "Fényerő módosítása ";
 
 /* No comment provided by engineer. */
-"Change Y by " = "Y változzon ";
+"Change color " = "Szín módosítása ";
+
+/* No comment provided by engineer. */
+"Change size by" = "Méret módosítása ennyivel";
+
+/* No comment provided by engineer. */
+"Change transparency " = "Átlátszóság módosítása ";
+
+/* No comment provided by engineer. */
+"Change variable" = "Változó módosítása";
+
+/* No comment provided by engineer. */
+"Change volume by" = "Hangerő módosítása ennyivel:";
+
+/* No comment provided by engineer. */
+"Change X by " = "X változzon: ";
+
+/* No comment provided by engineer. */
+"Change Y by " = "Y változzon: ";
 
 /* No comment provided by engineer. */
 "Changes discarded!" = "Módosítások elvetve!";
@@ -128,10 +224,10 @@
 "Changes saved!" = "Módosítások elmentve!";
 
 /* No comment provided by engineer. */
-"Choose image" = "Kép kiválasztása";
+"Choose" = "Choose";
 
 /* No comment provided by engineer. */
-"Choose sound" = "Hang kiválasztása";
+"Choose image" = "Kép kiválasztása";
 
 /* No comment provided by engineer. */
 "Clear graphic effects" = "Töröld a grafikai hatásokat";
@@ -140,10 +236,13 @@
 "Close" = "Bezárás";
 
 /* paint */
-"Close Paint" = "Close Paint";
+"Close Paint" = "Paint bezárása";
 
 /* No comment provided by engineer. */
-"compass" = "compass";
+"color" = "color";
+
+/* No comment provided by engineer. */
+"compass" = "iránytű";
 
 /* No comment provided by engineer. */
 "Compute" = "Kiszámítás";
@@ -158,6 +257,21 @@
 "Computed result is TRUE" = "A kiszámított eredmény: IGAZ";
 
 /* No comment provided by engineer. */
+"Confirm Password" = "Jelszó megerősítése";
+
+/* bluetooth */
+"Connection failed" = "Connection failed";
+
+/* bluetooth */
+"Connection Lost" = "Connection Lost";
+
+/* bluetooth */
+"Connection not possible" = "Connection not possible";
+
+/* No comment provided by engineer. */
+"contains" = "tartalmazza";
+
+/* No comment provided by engineer. */
 "Continue" = "Folytatás";
 
 /* No comment provided by engineer. */
@@ -170,10 +284,22 @@
 "Copy Brick" = "Elem másolása";
 
 /* No comment provided by engineer. */
-"Copy project" = "Projekt másolása";
+"Copy Looks" = "Copy Looks";
 
 /* No comment provided by engineer. */
-"Debug mode" = "Debug mode";
+"Copy project" = "Copy project";
+
+/* No comment provided by engineer. */
+"Create & Remix" = "Create & Remix";
+
+/* No comment provided by engineer. */
+"Create account" = "Create account";
+
+/* No comment provided by engineer. */
+"day" = "day";
+
+/* No comment provided by engineer. */
+"Debug mode" = "Hibakeresési mód";
 
 /* No comment provided by engineer. */
 "Dec" = "Dec";
@@ -182,19 +308,28 @@
 "December" = "december";
 
 /* No comment provided by engineer. */
+"degrees" = "fok";
+
+/* No comment provided by engineer. */
 "Delete" = "Törlés";
+
+/* No comment provided by engineer. */
+"Delete Backgrounds" = "Delete Backgrounds";
 
 /* No comment provided by engineer. */
 "Delete Brick" = "Elem törlése";
 
 /* No comment provided by engineer. */
-"Delete Condition" = "Delete Condition";
+"Delete Condition" = "Feltétel törlése";
+
+/* No comment provided by engineer. */
+"Delete item from list" = "Elem törlése a listából";
 
 /* No comment provided by engineer. */
 "Delete Looks" = "Kinézetek törlése";
 
 /* No comment provided by engineer. */
-"Delete Loop" = "Delete Loop";
+"Delete Loop" = "Ciklus törlése";
 
 /* No comment provided by engineer. */
 "Delete Objects" = "Objektumok törlése";
@@ -203,7 +338,7 @@
 "Delete Project" = "Delete Project";
 
 /* No comment provided by engineer. */
-"Delete Projects" = "Projektek törlése";
+"Delete Projects" = "Delete Projects";
 
 /* No comment provided by engineer. */
 "Delete Script" = "Szkript törlése";
@@ -212,40 +347,46 @@
 "Delete Sounds" = "Hangok törlése";
 
 /* No comment provided by engineer. */
-"Delete these Bricks?" = "Delete these Bricks?";
+"Delete these Bricks?" = "Törlöd ezeket az elemeket?";
 
 /* No comment provided by engineer. */
-"Delete these Conditions?" = "Delete these Conditions?";
+"Delete these Conditions?" = "Törlöd ezeket a feltételeket?";
 
 /* No comment provided by engineer. */
-"Delete these Loops?" = "Delete these Loops?";
+"Delete these Loops?" = "Törlöd ezeket a ciklusokat?";
 
 /* No comment provided by engineer. */
-"Delete these Scripts?" = "Delete these Scripts?";
+"Delete these Scripts?" = "Törlöd ezeket a szkripteket?";
 
 /* No comment provided by engineer. */
-"Delete this Brick?" = "Delete this Brick?";
+"Delete this background" = "Delete this background";
 
 /* No comment provided by engineer. */
-"Delete this Condition?" = "Delete this Condition?";
+"Delete this Brick?" = "Törlöd ezt az elemet?";
+
+/* No comment provided by engineer. */
+"Delete this Condition?" = "Törlöd ezt a feltételt?";
 
 /* No comment provided by engineer. */
 "Delete this look" = "Ezen kinézet törlése";
 
 /* No comment provided by engineer. */
-"Delete this Loop?" = "Delete this Loop?";
+"Delete this Loop?" = "Törlöd ezt a ciklust?";
 
 /* No comment provided by engineer. */
 "Delete this object" = "Ezen objektum törlése";
 
 /* No comment provided by engineer. */
-"Delete this Script?" = "Delete this Script?";
+"Delete this project" = "Delete this project";
+
+/* No comment provided by engineer. */
+"Delete this Script?" = "Törlöd ezt a szkriptet?";
 
 /* No comment provided by engineer. */
 "Delete this sound" = "Ezen hang törlése";
 
 /* No comment provided by engineer. */
-"Deletion Mode" = "Deletion Mode";
+"Deletion Mode" = "Törlő mód";
 
 /* No comment provided by engineer. */
 "Description" = "Leírás";
@@ -253,8 +394,20 @@
 /* No comment provided by engineer. */
 "Details" = "Részletek";
 
+/* bluetooth */
+"Device disconnected." = "Device disconnected.";
+
+/* No comment provided by engineer. */
+"device motion-sensor" = "device motion-sensor";
+
 /* No comment provided by engineer. */
 "direction" = "irány";
+
+/* No comment provided by engineer. */
+"Disconnect all devices" = "Disconnect all devices";
+
+/* No comment provided by engineer. */
+"DO" = "DO";
 
 /* paint */
 "Do you really want to delete the current drawing?" = "Tényleg törölni szeretnéd az aktuális rajzot?";
@@ -269,7 +422,7 @@
 "Download" = "Letöltés";
 
 /* No comment provided by engineer. */
-"Download sucessful" = "Download sucessful";
+"Download sucessful" = "Letöltés sikeres";
 
 /* No comment provided by engineer. */
 "Downloads" = "Letöltések";
@@ -278,7 +431,19 @@
 "Draw new image" = "Új kép rajzolása";
 
 /* No comment provided by engineer. */
+"Duration" = "Időtartam";
+
+/* No comment provided by engineer. */
 "Edit" = "Szerkesztés";
+
+/* Action sheet menu title */
+"Edit Background" = "Edit Background";
+
+/* Action sheet menu title */
+"Edit Backgrounds" = "Edit Backgrounds";
+
+/* Action sheet menu title */
+"Edit Brick" = "Tégla szerkesztése";
 
 /* No comment provided by engineer. */
 "Edit Formula" = "Képlet szerkesztése";
@@ -293,10 +458,13 @@
 "Edit Object" = "Objektum szerkesztése";
 
 /* No comment provided by engineer. */
-"Edit Program" = "Program szerkesztése";
+"Edit Project" = "Edit Project";
 
 /* No comment provided by engineer. */
-"Edit Programs" = "Programok szerkesztése";
+"Edit Projects" = "Edit Projects";
+
+/* Action sheet menu title */
+"Edit Script" = "Edit Script";
 
 /* Action sheet menu title */
 "Edit Sound" = "Hang szerkesztése";
@@ -304,17 +472,20 @@
 /* Action sheet menu title */
 "Edit Sounds" = "Hangok szerkesztése";
 
+/* No comment provided by engineer. */
+"element" = "elem";
+
 /* paint */
-"ellipse / circle" = "ellipszis / kör";
+"Ellipse / Circle" = "Ellipse / Circle";
 
 /* No comment provided by engineer. */
 "Else" = "Különben";
 
 /* No comment provided by engineer. */
-"Email" = "Email";
+"Email" = "E-mail";
 
 /* No comment provided by engineer. */
-"Email is not valid!" = "Email is not valid!";
+"Empty input!" = "Empty input!";
 
 /* No comment provided by engineer. */
 "End If" = "Feltétel vége";
@@ -322,32 +493,41 @@
 /* No comment provided by engineer. */
 "End of Loop" = "Ciklus vége";
 
+/* No comment provided by engineer. */
+"Enter a reason" = "Add meg az okot";
+
 /* Placeholder for add image-name input field */
 "Enter your image name here..." = "Ide írd a kép nevét...";
 
+/* Placeholder for list input field */
+"Enter your list name here..." = "Enter your list name here...";
+
 /* Placeholder for message input field */
-"Enter your message here..." = "Enter your message here...";
+"Enter your message here..." = "Írd ide az üzeneted...";
 
 /* Placeholder for add object-name input field */
 "Enter your object name here..." = "Ide írd az objektum nevét...";
 
-/* Placeholder for program-description input field */
-"Enter your program description here..." = "Itt add meg a program leírását...";
+/* Placeholder for project-description input field */
+"Enter your project description here..." = "Enter your project description here...";
 
-/* Placeholder for program-name input field */
-"Enter your program name here..." = "Ide írd a program nevét...";
+/* Placeholder for project-name input field */
+"Enter your project name here..." = "Enter your project name here...";
 
 /* Placeholder for add sound-name input field */
 "Enter your sound name here..." = "Itt add meg a hang nevét...";
 
 /* Placeholder for variable input field */
-"Enter your variable name here..." = "Enter your variable name here...";
+"Enter your variable name here..." = "Ide írd a változó nevét...";
 
 /* paint */
-"eraser" = "radír";
+"Eraser" = "Radír";
 
 /* No comment provided by engineer. */
 "Error" = "Hiba";
+
+/* No comment provided by engineer. */
+"Error saving file" = "Error saving file";
 
 /* No comment provided by engineer. */
 "Explore" = "Felfedezés";
@@ -356,10 +536,40 @@
 "Explore apps" = "Alkalmazások felfedezése";
 
 /* No comment provided by engineer. */
-"false" = "false";
+"FA" = "FA";
 
 /* No comment provided by engineer. */
-"Featured Programs" = "Kiemelt programok";
+"face_detected" = "face_detected";
+
+/* No comment provided by engineer. */
+"faceposition_x" = "faceposition_x";
+
+/* No comment provided by engineer. */
+"faceposition_y" = "faceposition_y";
+
+/* No comment provided by engineer. */
+"facesize" = "facesize";
+
+/* No comment provided by engineer. */
+"Failed to import item" = "Failed to import item";
+
+/* No comment provided by engineer. */
+"Failed to load featured projects" = "Failed to load featured projects";
+
+/* No comment provided by engineer. */
+"Failed to load recent projects" = "Failed to load recent projects";
+
+/* No comment provided by engineer. */
+"Failed to load sound" = "Failed to load sound";
+
+/* No comment provided by engineer. */
+"Failed to play sound" = "Failed to play sound";
+
+/* No comment provided by engineer. */
+"false" = "hamis";
+
+/* No comment provided by engineer. */
+"Featured Projects" = "Featured Projects";
 
 /* No comment provided by engineer. */
 "Feb" = "Febr";
@@ -368,7 +578,7 @@
 "February" = "február";
 
 /* paint */
-"fill" = "kitölt";
+"Fill" = "Kitöltés";
 
 /* No comment provided by engineer. */
 "Flashlight off" = "Világítófény ki";
@@ -377,10 +587,19 @@
 "Flashlight on" = "Világítófény be";
 
 /* No comment provided by engineer. */
-"for all objects" = "for all objects";
+"floor" = "padló";
 
 /* No comment provided by engineer. */
-"for this object" = "for this object";
+"Following features used in this project are not compatible with this version of Pocket Code:" = "Following features used in this project are not compatible with this version of Pocket Code:";
+
+/* No comment provided by engineer. */
+"for" = "for";
+
+/* No comment provided by engineer. */
+"for all objects" = "az összes objektumra";
+
+/* No comment provided by engineer. */
+"for this object" = "csak erre az objektumra";
 
 /* No comment provided by engineer. */
 "Forever" = "Mindig";
@@ -394,6 +613,9 @@
 /* No comment provided by engineer. */
 "Fr" = "P";
 
+/* Title of View where the user can see the frequently used bricks. */
+"Frequently Used" = "Frequently Used";
+
 /* No comment provided by engineer. */
 "Friday" = "péntek";
 
@@ -401,10 +623,16 @@
 "From Camera" = "Fényképezőgéppel";
 
 /* No comment provided by engineer. */
-"Glide %@ second(s)\nto X: %@ Y: %@" = "Glide %@ second(s)\nto X: %@ Y: %@";
+"front" = "front";
 
 /* No comment provided by engineer. */
-"Go back %@ layer(s)" = "Kerülj %@ réteggel hátrébb";
+"Front camera" = "Front camera";
+
+/* No comment provided by engineer. */
+"Glide" = "Csússz";
+
+/* No comment provided by engineer. */
+"Go back" = "Menj vissza";
 
 /* No comment provided by engineer. */
 "Go to front" = "Menj a legfelső rétegre";
@@ -413,7 +641,10 @@
 "Green" = "Zöld";
 
 /* No comment provided by engineer. */
-"Hello !" = "Hello !";
+"gyro-sensor" = "gyro-sensor";
+
+/* No comment provided by engineer. */
+"Hello!" = "Helló!";
 
 /* No comment provided by engineer. */
 "Help" = "Súgó";
@@ -425,19 +656,31 @@
 "Hide Details" = "Részletek elrejtése";
 
 /* No comment provided by engineer. */
-"If %@ is true then" = "Ha %@ igaz, akkor";
+"Hide variable" = "Hide variable";
+
+/* No comment provided by engineer. */
+"Hmmmm!" = "Hmmmm!";
+
+/* No comment provided by engineer. */
+"hour" = "hour";
+
+/* No comment provided by engineer. */
+"If" = "Ha";
 
 /* No comment provided by engineer. */
 "If on edge, bounce" = "Ha szélen vagy,  pattanj vissza";
 
 /* paint */
-"image" = "kép";
+"Image" = "Image";
 
 /* No comment provided by engineer. */
 "Image name" = "Kép neve";
 
 /* No comment provided by engineer. */
-"Image source not available" = "Image source not available";
+"Image source not available" = "A kép forrása nem elérhető";
+
+/* Title of prompt shown when a *.catrobat file is imported from a third-party app. */
+"Import File" = "Import File";
 
 /* No comment provided by engineer. */
 "In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation." = "A Pocket Code és a Catrobat projekt más projekteinek használatához el kell fogadnia a felhasználási feltételeket, és be kell tartania a benne foglaltakat a Pocket Code és egyéb programjaink használata során. Lásd az alábbi hivatkozást a pontos szöveg megtekintéséhez.";
@@ -451,14 +694,32 @@
 /* No comment provided by engineer. */
 "Information" = "Információk";
 
+/* No comment provided by engineer. */
+"Insert" = "Beszúr";
+
 /* paint */
-"Inserted" = "Inserted";
+"Inserted" = "Beszúrva";
 
 /* No comment provided by engineer. */
-"Invalid input entered, try again." = "Invalid input entered, try again.";
+"into list" = "listába";
+
+/* No comment provided by engineer. */
+"Invalid input entered, try again." = "Érvénytelen bemenet, próbáld újra.";
 
 /* No comment provided by engineer. */
 "Invalid URL given!" = "Érvénytelen URL!";
+
+/* No comment provided by engineer. */
+"iOS." = "iOS.";
+
+/* No comment provided by engineer. */
+"is true" = "is true";
+
+/* No comment provided by engineer. */
+"is true then" = "igaz, akkor";
+
+/* paint */
+"italic" = "italic";
 
 /* No comment provided by engineer. */
 "Jan" = "Jan";
@@ -481,11 +742,32 @@
 /* No comment provided by engineer. */
 "June" = "június";
 
+/* bluetooth */
+"Known devices" = "Known devices";
+
+/* No comment provided by engineer. */
+"LA" = "LA";
+
 /* No comment provided by engineer. */
 "Last access" = "Utolsó hozzáférés";
 
 /* No comment provided by engineer. */
+"last_screen_touch_index" = "last_screen_touch_index";
+
+/* No comment provided by engineer. */
+"latitude" = "latitude";
+
+/* No comment provided by engineer. */
 "layer" = "réteg";
+
+/* No comment provided by engineer. */
+"layers" = "rétegek";
+
+/* No comment provided by engineer. */
+"LED" = "LED";
+
+/* No comment provided by engineer. */
+"Left" = "Balra";
 
 /* No comment provided by engineer. */
 "Length" = "Hossz";
@@ -497,10 +779,25 @@
 "letter" = "betű";
 
 /* paint */
-"line" = "sor";
+"Line" = "Vonal";
+
+/* No comment provided by engineer. */
+"List name:" = "List name:";
+
+/* No comment provided by engineer. */
+"List type" = "List type";
+
+/* No comment provided by engineer. */
+"Lists" = "Listák";
 
 /* No comment provided by engineer. */
 "Loading" = "Betöltés";
+
+/* No comment provided by engineer. */
+"location" = "location";
+
+/* No comment provided by engineer. */
+"location_accuracy" = "location_accuracy";
 
 /* No comment provided by engineer. */
 "Logic" = "Logika";
@@ -509,19 +806,37 @@
 "Login" = "Bejelentkezés";
 
 /* No comment provided by engineer. */
-"Login successful" = "Login successful";
+"Login successful" = "Sikeres bejelentkezés";
 
 /* No comment provided by engineer. */
-"Login/Register" = "Login/Register";
+"Login/Register" = "Belépés vagy regisztráció";
+
+/* No comment provided by engineer. */
+"Logout" = "Kijelentkezés";
+
+/* No comment provided by engineer. */
+"longitude" = "longitude";
+
+/* No comment provided by engineer. */
+"Look" = "Kinézet";
 
 /* LOOK */
 "look" = "kinézet";
+
+/* No comment provided by engineer. */
+"look_name" = "look_name";
+
+/* No comment provided by engineer. */
+"look_number" = "look_number";
 
 /* No comment provided by engineer. */
 "Looks" = "Kinézetek";
 
 /* No comment provided by engineer. */
 "loudness" = "hangerő";
+
+/* No comment provided by engineer. */
+"magnetic-sensor" = "magnetic-sensor";
 
 /* No comment provided by engineer. */
 "Mar" = "Márc";
@@ -533,34 +848,49 @@
 "Math" = "Math";
 
 /* No comment provided by engineer. */
-"May" = "Máj";
+"May" = "május";
 
 /* No comment provided by engineer. */
 "Measure" = "Méret";
+
+/* No comment provided by engineer. */
+"Media Library" = "Médiatár";
 
 /* paint */
 "Menu" = "Menü";
 
 /* No comment provided by engineer. */
-"Message" = "Message";
+"Message" = "Üzenet";
 
 /* No comment provided by engineer. */
 "message 1" = "üzenet 1";
 
+/* No comment provided by engineer. */
+"MI" = "MI";
+
+/* No comment provided by engineer. */
+"minute" = "minute";
+
 /* paint */
-"mirror" = "tükröz";
+"Mirror" = "Mirror";
 
 /* No comment provided by engineer. */
 "Mo" = "H";
 
-/* Prefix of default catrobat program object names (except background object) */
+/* Prefix of default catrobat project object names (except background object) */
 "Mole" = "Vakond";
 
 /* No comment provided by engineer. */
 "Monday" = "hétfő";
 
 /* No comment provided by engineer. */
+"month" = "month";
+
+/* No comment provided by engineer. */
 "More" = "Bővebben";
+
+/* No comment provided by engineer. */
+"More information" = "More information";
 
 /* No comment provided by engineer. */
 "Most Downloaded" = "Legtöbbször letöltött";
@@ -572,13 +902,28 @@
 "Motion" = "Mozgás";
 
 /* No comment provided by engineer. */
-"Move %@ step(s)" = "Menj %@ lépést";
+"Move" = "Mozgatás";
 
 /* No comment provided by engineer. */
 "Move Brick" = "Elem mozgatása";
 
-/* Name of the default catrobat program (used as filename!!) */
-"My first project" = "Első projekt";
+/* No comment provided by engineer. */
+"Move Looks" = "Move Looks";
+
+/* No comment provided by engineer. */
+"Move Objects" = "Move Objects";
+
+/* No comment provided by engineer. */
+"Move Phiro motor backward" = "Move Phiro motor backward";
+
+/* No comment provided by engineer. */
+"Move Phiro motor forward" = "Move Phiro motor forward";
+
+/* No comment provided by engineer. */
+"Move Sounds" = "Move Sounds";
+
+/* Name of the default catrobat project (used as filename!!) */
+"My first project" = "My first project";
 
 /* Default title of imported photo from camera (taken by camera) */
 "My Image" = "Saját kép";
@@ -587,10 +932,10 @@
 "My Object" = "Saját objektumom";
 
 /* No comment provided by engineer. */
-"Name" = "Name";
+"Name" = "Név";
 
 /* No comment provided by engineer. */
-"Name already exists. Please choose another" = "A név már létezik. Kérjük, válassz másikat";
+"Name already exists." = "Name already exists.";
 
 /* No comment provided by engineer. */
 "New" = "Új";
@@ -599,19 +944,22 @@
 "New Canvas" = "Új vászon";
 
 /* No comment provided by engineer. */
-"New Message" = "New Message";
+"New List" = "Új lista";
 
 /* No comment provided by engineer. */
-"New Program" = "Új program";
+"New Message" = "Új üzenet";
 
 /* No comment provided by engineer. */
-"New Text" = "New Text";
+"New Project" = "New Project";
+
+/* No comment provided by engineer. */
+"New Text" = "Új szöveg";
 
 /* No comment provided by engineer. */
 "New Variable" = "Új változó";
 
 /* No comment provided by engineer. */
-"New..." = "New...";
+"New..." = "Új...";
 
 /* No comment provided by engineer. */
 "Newest" = "Legújabb";
@@ -626,22 +974,13 @@
 "No" = "Nem";
 
 /* No comment provided by engineer. */
-"No Camera available" = "No Camera available";
+"No Camera available" = "Nincs elérhető kamera";
 
 /* No comment provided by engineer. */
 "No Description available" = "Leírás nem található";
 
-/* Title of AlertView if the user tries to import a sound but no sound has been imported using iTunes. */
-"No imported sounds found" = "No imported sounds found";
-
 /* No comment provided by engineer. */
-"No input or the input is too short. Please enter at least %lu character(s)." = "Nincs bemenet vagy a bemenet túl rövid. Legalább %lu karaktert adj meg.";
-
-/* No comment provided by engineer. */
-"No Internet Connection" = "No Internet Connection";
-
-/* No comment provided by engineer. */
-"No internet connection available." = "Nincs elérhető internetkapcsolat.";
+"No input. Please enter at least %lu character(s)." = "No input. Please enter at least %lu character(s).";
 
 /* No comment provided by engineer. */
 "No or invalid image name entered, try again." = "Nincs vagy érvénytelen képnév, próbáld meg újra.";
@@ -653,13 +992,25 @@
 "No search results" = "Nincs találat";
 
 /* No comment provided by engineer. */
-"not" = "not";
+"No whitespace character allowed" = "No whitespace character allowed";
+
+/* No comment provided by engineer. */
+"not" = "nem";
+
+/* No comment provided by engineer. */
+"not available. Continue anyway?" = "not available. Continue anyway?";
+
+/* No comment provided by engineer. */
+"Not Connected to a WiFi network, please connect to one or change the settings to download also with mobile data." = "Not Connected to a WiFi network, please connect to one or change the settings to download also with mobile data.";
+
+/* No comment provided by engineer. */
+"Not enough free memory to download this project. Please delete some of your projects" = "Not enough free memory to download this project. Please delete some of your projects";
 
 /* No comment provided by engineer. */
 "Not enough Memory" = "Nincs elég memória";
 
 /* No comment provided by engineer. */
-"Note %@" = "Megjegyzés %@";
+"Note" = "Megjegyzés:";
 
 /* paint */
 "Nothing to crop!" = "Nincs vágandó!";
@@ -671,16 +1022,22 @@
 "November" = "november";
 
 /* No comment provided by engineer. */
+"number_of_items" = "elemek_száma";
+
+/* No comment provided by engineer. */
 "Numbers" = "Számok";
 
 /* No comment provided by engineer. */
 "Object" = "Objektum";
 
 /* No comment provided by engineer. */
+"Object lists:" = "Object lists:";
+
+/* No comment provided by engineer. */
 "Object name" = "Objektum neve";
 
 /* No comment provided by engineer. */
-"Object variables:" = "Object variables:";
+"Object variables:" = "Objektum változók:";
 
 /* No comment provided by engineer. */
 "Objects" = "Objektumok";
@@ -692,40 +1049,85 @@
 "October" = "október";
 
 /* No comment provided by engineer. */
+"off" = "ki";
+
+/* No comment provided by engineer. */
 "OK" = "OK";
+
+/* No comment provided by engineer. */
+"on" = "be";
 
 /* No comment provided by engineer. */
 "only 15 characters allowed" = "csak 15 karakter engedélyezett";
 
 /* No comment provided by engineer. */
-"Only space is not allowed. Please enter at least %lu other character(s)." = "Only space is not allowed. Please enter at least %lu other character(s).";
+"Only space is not allowed. Please enter at least %lu other character(s)." = "Csak szóköz nem megengedett. Adj meg legalább %lu egyéb karaktert.";
 
 /* No comment provided by engineer. */
-"or" = "or";
+"Only special characters are not allowed. Please enter at least %lu other character(s)." = "Only special characters are not allowed. Please enter at least %lu other character(s).";
+
+/* No comment provided by engineer. */
+"Open" = "Open";
+
+/* No comment provided by engineer. */
+"or" = "vagy";
 
 /* No comment provided by engineer. */
 "Password" = "Jelszó";
 
 /* No comment provided by engineer. */
-"Password is not vaild! \n It has to contain at least 6 characters/symbols" = "Password is not vaild! \n It has to contain at least 6 characters/symbols";
+"Password is not vaild! \n It has to contain at least 6 characters/symbols" = "A jelszó nem érvényes! \n Legalább 6 karaktert/szimbólumot kell tartalmazzon";
+
+/* No comment provided by engineer. */
+"Passwords do not match" = "A jelszavak nem egyeznek";
+
+/* No comment provided by engineer. */
+"Phiro" = "Phiro";
+
+/* No comment provided by engineer. */
+"phiro_bottom_left" = "phiro_bottom_left";
+
+/* No comment provided by engineer. */
+"phiro_bottom_right" = "phiro_bottom_right";
+
+/* No comment provided by engineer. */
+"phiro_front_left" = "phiro_front_left";
+
+/* No comment provided by engineer. */
+"phiro_front_right" = "phiro_front_right";
+
+/* No comment provided by engineer. */
+"phiro_side_left" = "phiro_side_left";
+
+/* No comment provided by engineer. */
+"phiro_side_right" = "phiro_side_right";
 
 /* paint */
-"pipette" = "pipetta";
+"Pipette" = "Pipetta";
 
 /* No comment provided by engineer. */
-"Play" = "Indítás";
+"Place at " = "Ugorj ";
 
-/* Description of AlertView if the user tries to import a sound but no sound has been imported using iTunes. */
-"Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app." = "Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app.";
+/* No comment provided by engineer. */
+"Play Phiro music\n" = "Play Phiro music\n";
+
+/* No comment provided by engineer. */
+"Please choose another name:" = "Please choose another name:";
 
 /* paint */
-"Please pick an item" = "Válassz egy elemet";
+"Please enter a text!" = "Please enter a text!";
 
 /* No comment provided by engineer. */
-"Please register below" = "Please register below";
+"Please log in to report this project as inappropriate" = "Please log in to report this project as inappropriate";
+
+/* paint */
+"Please pick a tool" = "Please pick a tool";
 
 /* No comment provided by engineer. */
-"Please select a program to upload" = "Please select a program to upload";
+"Please select a project to upload" = "Please select a project to upload";
+
+/* bluetooth */
+"Please try resetting the device and try again." = "Please try resetting the device and try again.";
 
 /* No comment provided by engineer. */
 "Pocket Code" = "Pocket Code";
@@ -734,13 +1136,16 @@
 "Pocket Code for iOS" = "Pocket Code iOS-re";
 
 /* No comment provided by engineer. */
-"Pocket Code has been started in debug mode." = "Pocket Code has been started in debug mode.";
+"Pocket Code has been started in debug mode." = "A Pocket Code hibakeresési módban indult el.";
 
 /* No comment provided by engineer. */
-"Pocket Code has no access to your camera. To permit access, tap settings and activate camera. Your drawing will automatically be saved to PocketCode for you." = "Pocket Code has no access to your camera. To permit access, tap settings and activate camera. Your drawing will automatically be saved to PocketCode for you.";
+"Pocket Code has no access to your camera. To permit access, tap settings and activate camera. Your drawing will automatically be saved to PocketCode for you." = "A Pocket Code nem fér hozzá a kamerához. A hozzáférés engedélyezéséhez aktiváld a kamerát a beállításokban. A rajzod automatikusan elmentésre kerül a Pocket Code-ba számodra.";
 
 /* No comment provided by engineer. */
-"Pocket Code has no access to your images. To permit access, tap settings and activate images. Your drawing will automatically be saved to PocketCode for you." = "Pocket Code has no access to your images. To permit access, tap settings and activate images. Your drawing will automatically be saved to PocketCode for you.";
+"Pocket Code has no access to your images. To permit access, tap settings and activate images. Your drawing will automatically be saved to PocketCode for you." = "A Pocket Code nem fér hozzá a képeidhez. A hozzáférés engedélyezéséhez a beállításokban aktiváld a képeket. A rajzod automatikusan elmentésre kerül a Pocket Code-ba számodra.";
+
+/* No comment provided by engineer. */
+"Pocket Code has no access to your microphone. To permit access, tap settings and activate microphone." = "Pocket Code has no access to your microphone. To permit access, tap settings and activate microphone.";
 
 /* No comment provided by engineer. */
 "Pocket Code is a programming environment for iOS for the visual programming language Catrobat. The code of Pocket Code is mostly under GNU AGPL v3 licence. For further information to the licence please visit following links:" = "A Pocket Code a Catrobatvprogramozási nyelv programozási környezete iOS rendszerre. A Pocket Code forráskódja javarészt GNU AGPL v3 licenc alatt van. További információért látogasd meg a következő hivatkozásokat:";
@@ -758,58 +1163,76 @@
 "Pocket Paint" = "Pocket Paint";
 
 /* No comment provided by engineer. */
-"Point in direction %@°" = "Nézz %@ fokos irányba";
+"Point in direction" = "Nézz a következő  irányba:";
 
 /* No comment provided by engineer. */
-"Point towards\n%@" = "Nézz %@ irányába";
+"Point towards" = "Nézz erre:";
 
 /* paint */
-"pointer" = "mutató";
+"Pointer" = "Pointer";
 
 /* No comment provided by engineer. */
-"pos_x" = "pos_x";
+"position_x" = "x pozíció";
 
 /* No comment provided by engineer. */
-"pos_y" = "pos_y";
+"position_y" = "y pozíció";
+
+/* No comment provided by engineer. */
+"Preview" = "Preview";
+
+/* No comment provided by engineer. */
+"Previous background" = "Previous background";
+
+/* No comment provided by engineer. */
+"Previous look" = "Previous look";
+
+/* No comment provided by engineer. */
+"Privacy Settings" = "Privacy Settings";
 
 /* No comment provided by engineer. */
 "Problems occured while uploading your project" = "Problems occured while uploading your project";
 
 /* No comment provided by engineer. */
-"Program name" = "Program neve";
-
-/* No comment provided by engineer. */
-"Program Name is necessary!" = "Program Name is necessary!";
-
-/* No comment provided by engineer. */
-"Program variables:" = "Program variables:";
-
-/* No comment provided by engineer. */
-"Programs" = "Programok";
-
-/* No comment provided by engineer. */
 "Project" = "Projekt";
+
+/* No comment provided by engineer. */
+"Project lists:" = "Project lists:";
+
+/* No comment provided by engineer. */
+"Project name" = "Project name";
+
+/* No comment provided by engineer. */
+"Project Name is necessary!" = "Project Name is necessary!";
+
+/* No comment provided by engineer. */
+"Project variables:" = "Project variables:";
+
+/* No comment provided by engineer. */
+"Projects" = "Projects";
 
 /* No comment provided by engineer. */
 "Rate Us" = "Értékelj minket";
 
-/* Title of View where the user can see the recently used bricks. */
-"Recently Used" = "Recently Used";
+/* No comment provided by engineer. */
+"RE" = "RE";
 
 /* No comment provided by engineer. */
 "Recording" = "Felvétel";
 
 /* paint */
-"rectangle / square" = "négyszög / négyzet";
+"Rectangle / Square" = "Rectangle / Square";
 
 /* paint */
 "Red" = "Vörös";
 
 /* No comment provided by engineer. */
-"Register" = "Register";
+"Register" = "Regisztrálj";
 
 /* No comment provided by engineer. */
-"Registration successful" = "Registration successful";
+"Registration successful" = "Sikeres regisztráció";
+
+/* No comment provided by engineer. */
+"Remove known devices" = "Remove known devices";
 
 /* No comment provided by engineer. */
 "Rename" = "Átnevezés";
@@ -821,19 +1244,25 @@
 "Rename object" = "Objektum átnevezése";
 
 /* No comment provided by engineer. */
-"Rename Program" = "Program átnevezése";
+"Rename Project" = "Rename Project";
 
 /* No comment provided by engineer. */
 "Rename sound" = "Hang átnevezése";
 
 /* No comment provided by engineer. */
-"Repeat %@ times" = "Ismételd %@ alkalommal";
+"Repeat" = "Ismételd ennyiszer:";
+
+/* No comment provided by engineer. */
+"Repeat until" = "Repeat until";
+
+/* No comment provided by engineer. */
+"Replace item in list" = "Elem cseréje a listában";
 
 /* No comment provided by engineer. */
 "Report as inappropriate" = "Jelentés problémásként";
 
 /* paint */
-"resize" = "resize";
+"Resize" = "Resize";
 
 /* No comment provided by engineer. */
 "Restart" = "Újraindítás";
@@ -841,8 +1270,11 @@
 /* No comment provided by engineer. */
 "Result" = "Eredmény";
 
+/* No comment provided by engineer. */
+"Right" = "Jobbra";
+
 /* paint */
-"rotate" = "forgatás";
+"Rotate" = "Forgatás";
 
 /* paint */
 "round" = "kerekít";
@@ -863,19 +1295,43 @@
 "Saved" = "Mentve";
 
 /* No comment provided by engineer. */
-"Screenshot" = "Képernyőkép";
+"Say" = "Say";
 
 /* No comment provided by engineer. */
-"Screenshot saved to Camera Roll" = "Képernyőkép mentve a galériába";
+"screen_is_touched" = "screen_is_touched";
 
 /* No comment provided by engineer. */
-"Screenshot saved to project" = "Képernyőkép mentve a projektbe";
+"screen_touch_x" = "screen_touch_x";
 
 /* No comment provided by engineer. */
-"Scripts" = "Szkriptek";
+"screen_touch_y" = "screen_touch_y";
+
+/* No comment provided by engineer. */
+"Script" = "Szkript";
+
+/* No comment provided by engineer. */
+"Scripts" = "Szkript";
+
+/* bluetooth */
+"Search" = "Keresés";
+
+/* No comment provided by engineer. */
+"second" = "second";
+
+/* No comment provided by engineer. */
+"second " = "másodpercet ";
+
+/* No comment provided by engineer. */
+"seconds" = "másodpercek";
+
+/* No comment provided by engineer. */
+"seconds " = "seconds ";
 
 /* No comment provided by engineer. */
 "Select All" = "Összes kijelölése";
+
+/* bluetooth */
+"Select Arduino" = "Select Arduino";
 
 /* No comment provided by engineer. */
 "Select Brick Category" = "Válassz téglakategóriát";
@@ -889,6 +1345,9 @@
 /* paint */
 "Select option:" = "Válassz egy opciót:";
 
+/* bluetooth */
+"Select Phiro" = "Select Phiro";
+
 /* No comment provided by engineer. */
 "Sensors" = "Érzékelők";
 
@@ -899,16 +1358,46 @@
 "September" = "szeptember";
 
 /* No comment provided by engineer. */
+"Server is taking to long to respond, please try again later." = "Server is taking to long to respond, please try again later.";
+
+/* No comment provided by engineer. */
+"Set Arduino digital pin" = "Arduino digitális pin beállítása";
+
+/* No comment provided by engineer. */
+"Set Arduino PWM~ pin" = "Arduino PWM~ pin beállítása";
+
+/* No comment provided by engineer. */
 "Set background" = "Háttér legyen";
+
+/* No comment provided by engineer. */
+"Set brightness " = "Fényerőt állítsd ";
+
+/* No comment provided by engineer. */
+"Set color " = "Szín beállítása ";
 
 /* No comment provided by engineer. */
 "Set description" = "Leírás megadása";
 
 /* No comment provided by engineer. */
-"Set X to %@" = "X legyen: %@";
+"Set Phiro light" = "Set Phiro light";
 
 /* No comment provided by engineer. */
-"Set Y to %@" = "Y legyen: %@";
+"Set size to" = "Méret legyen";
+
+/* No comment provided by engineer. */
+"Set transparency " = "Átlátszóságot állítsd ";
+
+/* No comment provided by engineer. */
+"Set variable" = "Változó beállítása";
+
+/* No comment provided by engineer. */
+"Set volume to" = "Hangerő legyen";
+
+/* No comment provided by engineer. */
+"Set X to " = "X legyen ";
+
+/* No comment provided by engineer. */
+"Set Y to " = "Y legyen ";
 
 /* No comment provided by engineer. */
 "Settings" = "Beállítások";
@@ -920,6 +1409,9 @@
 "Show Details" = "Részletek megjelenítése";
 
 /* No comment provided by engineer. */
+"Show variable" = "Show variable";
+
+/* No comment provided by engineer. */
 "size" = "méret";
 
 /* No comment provided by engineer. */
@@ -929,7 +1421,7 @@
 "Skip" = "Átugrás";
 
 /* No comment provided by engineer. */
-"Slow Internet Connection!" = "Lassú Internetkapcsolat!";
+"SO" = "SO";
 
 /* No comment provided by engineer. */
 "Sound" = "Hang";
@@ -941,7 +1433,10 @@
 "Sounds" = "Hangok";
 
 /* No comment provided by engineer. */
-"Speak %@" = "Mondd %@";
+"Speak" = "Mondd";
+
+/* No comment provided by engineer. */
+"Speed" = "Sebesség";
 
 /* No comment provided by engineer. */
 "sqrt" = "gyök";
@@ -950,16 +1445,25 @@
 "square" = "négyzet";
 
 /* paint */
-"stamp" = "bélyegző";
+"Stamp" = "Bélyegző";
 
 /* paint */
-"Stamped" = "Stamped";
+"Stamped" = "Lebélyegzett";
 
 /* No comment provided by engineer. */
-"Start sound\n%@" = "Játszd le:\n%@";
+"Start sound" = "Játszd le";
+
+/* No comment provided by engineer. */
+"step" = "lépést";
+
+/* No comment provided by engineer. */
+"steps" = "lépést";
 
 /* No comment provided by engineer. */
 "Stop all sounds" = "Minden hangot állíts le";
+
+/* No comment provided by engineer. */
+"Stop Phiro motor" = "Stop Phiro motor";
 
 /* No comment provided by engineer. */
 "Su" = "V";
@@ -968,22 +1472,25 @@
 "Sunday" = "vasárnap";
 
 /* No comment provided by engineer. */
-"Switch to look\n%@" = "Válts kinézetet: %@";
+"Switch to look" = "Kinézet legyen";
 
 /* No comment provided by engineer. */
 "Syntax Error!" = "Szintaktikai hiba!";
 
 /* No comment provided by engineer. */
-"Take" = "Felvétel";
-
-/* No comment provided by engineer. */
 "Tap \"+\" to add %@" = "Érintse meg a \"+\" jelet %@ hozzáadásához";
 
-/* No comment provided by engineer. */
-"Terms of Use" = "Felhasználási feltételek";
+/* Button title at the settings screen to get to the terms of use and services. */
+"Terms of Use and Services" = "Terms of Use and Services";
+
+/* paint */
+"Text" = "Szöveg";
 
 /* No comment provided by engineer. */
-"Text message:" = "Text message:";
+"Text message:" = "Szöveges üzenet:";
+
+/* paint */
+"Text:" = "Text:";
 
 /* No comment provided by engineer. */
 "Th" = "Cs";
@@ -992,16 +1499,64 @@
 "The description contains invalid characters, try again." = "A leírás érvénytelen karaktereket tartalmaz, próbáld újra.";
 
 /* No comment provided by engineer. */
+"The featured projects cannot be loaded" = "The featured projects cannot be loaded";
+
+/* No comment provided by engineer. */
+"The following item could not be imported from the Media Library:" = "The following item could not be imported from the Media Library:";
+
+/* No comment provided by engineer. */
+"The input is too long. Please enter maximal %lu character(s)." = "The input is too long. Please enter maximal %lu character(s).";
+
+/* No comment provided by engineer. */
+"The name contains blocked characters. Please try again!" = "The name contains blocked characters. Please try again!";
+
+/* No comment provided by engineer. */
+"The recent projects cannot be loaded" = "The recent projects cannot be loaded";
+
+/* No comment provided by engineer. */
+"The requested project can not be found. Please choose a different one." = "The requested project can not be found. Please choose a different one.";
+
+/* No comment provided by engineer. */
+"The requested project can not be loaded. Please try again later." = "The requested project can not be loaded. Please try again later.";
+
+/* No comment provided by engineer. */
+"The sound item cannot be loaded" = "The sound item cannot be loaded";
+
+/* No comment provided by engineer. */
+"The sound item cannot be played" = "The sound item cannot be played";
+
+/* No comment provided by engineer. */
+"Think" = "Think";
+
+/* No comment provided by engineer. */
 "This action can not be undone!" = "Ezt a műveletet nem lehet visszavonni!";
 
 /* No comment provided by engineer. */
 "This feature is coming soon!" = "Ez a funkció hamarosan elérhető lesz!";
 
 /* No comment provided by engineer. */
-"This variable can not be deleted because it is still in use." = "This variable can not be deleted because it is still in use.";
+"This variable can not be deleted because it is still in use." = "A változó nem törölhető, mert még használatban van.";
 
 /* No comment provided by engineer. */
 "Thursday" = "csütörtök";
+
+/* No comment provided by engineer. */
+"TI" = "TI";
+
+/* No comment provided by engineer. */
+"time" = "X";
+
+/* No comment provided by engineer. */
+"times" = "X";
+
+/* No comment provided by engineer. */
+"to" = "ennyire:";
+
+/* No comment provided by engineer. */
+"to list" = "listához";
+
+/* No comment provided by engineer. */
+"to X:" = "X pozícióba:";
 
 /* No comment provided by engineer. */
 "Today" = "Ma";
@@ -1010,7 +1565,7 @@
 "transparency" = "átlátszóság";
 
 /* No comment provided by engineer. */
-"true" = "true";
+"true" = "igaz";
 
 /* No comment provided by engineer. */
 "Tu" = "K";
@@ -1019,13 +1574,19 @@
 "Tuesday" = "kedd";
 
 /* No comment provided by engineer. */
-"Turn left %@°" = "Fordulj balra %@ fokot";
+"Turn camera" = "Turn camera";
 
 /* No comment provided by engineer. */
-"Turn right %@°" = "Fordulj jobbra %@ fokot";
+"Turn flashlight" = "Zseblámpa kapcsolása";
 
 /* No comment provided by engineer. */
-"Unable to load program!" = "Nem sikerült betölteni a programot!";
+"Turn left" = "Fordulj balra";
+
+/* No comment provided by engineer. */
+"Turn right" = "Fordulj jobbra";
+
+/* No comment provided by engineer. */
+"Unable to load project!" = "Unable to load project!";
 
 /* No comment provided by engineer. */
 "Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt." = "Nem sikerült lejátszani ezt a hangot. Lehet, hogy ez nem egy hangfálj, vagy a fájl sérült.";
@@ -1036,26 +1597,44 @@
 /* No comment provided by engineer. */
 "Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again." = "A kiválasztott hang lejátszása sikertelen. A készülék csendes módban van. Kapcsold ki a csendes módot az iPhone jobb oldalán található kapcsoló átváltásával, majd újra érintsd meg a Lejátszás gombot.";
 
+/* paint */
+"underline" = "underline";
+
 /* Button title of alert view to invoke undo if user shakes device */
 "Undo" = "Visszavonás";
 
 /* Description text in alert view if user shakes the device */
-"Undo Drawing?" = "Undo Drawing?";
+"Undo Drawing?" = "Rajz visszavonása?";
 
 /* Description text in alert view if user shakes the device */
-"Undo Typing?" = "Undo Typing?";
+"Undo Typing?" = "Gépelés visszavonása?";
+
+/* No comment provided by engineer. */
+"Unexpected Error" = "Unexpected Error";
+
+/* No comment provided by engineer. */
+"Unexpected Error, please try again later." = "Unexpected Error, please try again later.";
+
+/* No comment provided by engineer. */
+"Unknown Element" = "Unknown Element";
 
 /* No comment provided by engineer. */
 "Unselect All" = "Kijelölés megszüntetése";
 
 /* No comment provided by engineer. */
-"Upcoming version" = "Következő verzió";
+"Unsupported Brick:" = "Unsupported Brick:";
+
+/* No comment provided by engineer. */
+"Unsupported Elements" = "Unsupported Elements";
+
+/* No comment provided by engineer. */
+"Unsupported Script:" = "Unsupported Script:";
 
 /* No comment provided by engineer. */
 "Upload" = "Feltöltés";
 
 /* No comment provided by engineer. */
-"Upload Program" = "Upload Program";
+"Upload Project" = "Upload Project";
 
 /* No comment provided by engineer. */
 "Upload selected project" = "Upload selected project";
@@ -1067,13 +1646,31 @@
 "Uploaded" = "Feltöltve";
 
 /* No comment provided by engineer. */
+"Use Arduino bricks" = "Use Arduino bricks";
+
+/* No comment provided by engineer. */
+"Use camera" = "Use camera";
+
+/* No comment provided by engineer. */
+"Use Phiro bricks" = "Use Phiro bricks";
+
+/* No comment provided by engineer. */
 "Username" = "Felhasználónév";
 
 /* No comment provided by engineer. */
-"Username is necessary!" = "Username is necessary!";
+"Username must not be blank" = "A felhasználónév kitöltése kötelező";
+
+/* No comment provided by engineer. */
+"Var/List" = "Var/List";
+
+/* No comment provided by engineer. */
+"Variable" = "Variable";
 
 /* No comment provided by engineer. */
 "Variable name:" = "Változó neve:";
+
+/* No comment provided by engineer. */
+"Variable or List" = "Variable or List";
 
 /* No comment provided by engineer. */
 "Variable type" = "Változó típusa";
@@ -1085,13 +1682,19 @@
 "Version" = "Változat";
 
 /* No comment provided by engineer. */
-"Vibrate %@ second(s)" = "Rezegj %@ másodpercig";
+"Vibrate for" = "Rezgés ennyi ideig:";
+
+/* No comment provided by engineer. */
+"vibration" = "vibration";
 
 /* No comment provided by engineer. */
 "Views" = "Megtekintések";
 
 /* No comment provided by engineer. */
-"Wait %@ second(s)" = "Várj %@ másodpercet";
+"Wait" = "Várj";
+
+/* No comment provided by engineer. */
+"Wait until" = "Wait until";
 
 /* No comment provided by engineer. */
 "We" = "Sze";
@@ -1100,22 +1703,37 @@
 "Wednesday" = "szerda";
 
 /* No comment provided by engineer. */
-"Welcome back, please login below" = "Welcome back, please login below";
+"weekday" = "weekday";
 
 /* No comment provided by engineer. */
 "Welcome to Pocket Code" = "Üdvözöl a Pocket Code";
 
 /* No comment provided by engineer. */
-"When I receive\n%@" = "%@ üzenet érkezésekor";
+"When project started" = "When project started";
 
 /* No comment provided by engineer. */
-"When program started" = "Program indításakor";
+"When screen is touched" = "When screen is touched";
 
 /* No comment provided by engineer. */
 "When tapped" = "Érintésekor";
 
+/* No comment provided by engineer. */
+"When you receive" = "When you receive";
+
 /* paint */
-"Width" = "Width";
+"Width selection" = "Width selection";
+
+/* No comment provided by engineer. */
+"with" = "ezzel";
+
+/* No comment provided by engineer. */
+"X: " = "X: ";
+
+/* No comment provided by engineer. */
+"Y: " = "Y: ";
+
+/* No comment provided by engineer. */
+"year" = "year";
 
 /* No comment provided by engineer. */
 "Yes" = "Igen";
@@ -1124,7 +1742,13 @@
 "Yesterday" = "Tegnap";
 
 /* No comment provided by engineer. */
-"You are also able to build your own apps, edit existing ones and share them with your friends and other exciting people." = "Készíthetsz saját alkalmazásokat, szerkeszthetsz már létezőket, és megoszthatod ezeket a barátaiddal és más érdekldő emberekkel.";
+"You are also able to build your own apps, remix existing ones and share them with your friends and other exciting people around the world." = "You are also able to build your own apps, remix existing ones and share them with your friends and other exciting people around the world.";
+
+/* No comment provided by engineer. */
+"You have already downloaded this project!" = "You have already downloaded this project!";
+
+/* No comment provided by engineer. */
+"Your email seems to be invalid" = "A megadott e-mail cim érvénytelennek tűnik";
 
 /* paint */
-"zoom" = "nagyítás";
+"Zoom" = "Nagyítás";

@@ -1,11 +1,8 @@
 /* No comment provided by engineer. */
-" and wait" = " and wait";
-
-/* No comment provided by engineer. */
 "A message with the same name already exists, try again." = "رسالة بنفس الاسم موجود بالفعل، حاول مرة أخرى.";
 
 /* No comment provided by engineer. */
-"A program with the same name already exists, try again." = "هناك  برنامج بنفس الاسم موجود بالفعل، وحاول مرة أخرى.";
+"A project with the same name already exists, try again." = "A project with the same name already exists, try again.";
 
 /* No comment provided by engineer. */
 "About Catrobat" = "حول كاتروبات";
@@ -24,6 +21,9 @@
 
 /* No comment provided by engineer. */
 "acceleration_z" = "تسارع z";
+
+/* No comment provided by engineer. */
+"Add" = "إضافة";
 
 /* No comment provided by engineer. */
 "add comment here..." = "أضف تعليق هنا...";
@@ -68,6 +68,9 @@
 "and" = "و";
 
 /* No comment provided by engineer. */
+"and wait" = "والانتظار";
+
+/* No comment provided by engineer. */
 "Animate Brick-Parts" = "تحريك أجزاء اللبّنة البرمجية";
 
 /* No comment provided by engineer. */
@@ -87,6 +90,9 @@
 
 /* No comment provided by engineer. */
 "at " = "في ";
+
+/* No comment provided by engineer. */
+"at position" = "في الموقع";
 
 /* paint */
 "Attributes:" = "خصائص:";
@@ -161,13 +167,13 @@
 "By registering you agree to our" = "بالتسجيل، أنت توافق على";
 
 /* No comment provided by engineer. */
-"By switching to the section \"Explore\" you can discover more interesting programs from people all over the world." = "من خلال التبديل الى قسم \"استكشاف\" يمكنك اكتشاف الكثير من البرامج المثيرة للإهتمام من الناس حول العالم.";
+"By switching to the section \"Explore\" you can discover more interesting projects from people all over the world." = "By switching to the section \"Explore\" you can discover more interesting projects from people all over the world.";
 
 /* No comment provided by engineer. */
 "Camera Roll" = "شريط الكاميرا";
 
 /* No comment provided by engineer. */
-"Can't restart program!" = "لا يمكن إعادة تشغيل البرنامج!";
+"Can't restart project!" = "Can't restart project!";
 
 /* No comment provided by engineer. */
 "Cancel" = "إلغاء";
@@ -222,9 +228,6 @@
 
 /* No comment provided by engineer. */
 "Choose image" = "اختر الصورة";
-
-/* No comment provided by engineer. */
-"Choose sound" = "اختر الصوت";
 
 /* No comment provided by engineer. */
 "Clear graphic effects" = "مسح التأثيرات الرسومية";
@@ -284,7 +287,7 @@
 "Copy Looks" = "نسخ المظاهر";
 
 /* No comment provided by engineer. */
-"Copy program" = "نسخ البرنامج ";
+"Copy project" = "Copy project";
 
 /* No comment provided by engineer. */
 "Create & Remix" = "إنشاء & ريمكس";
@@ -320,6 +323,9 @@
 "Delete Condition" = "حذف شرط";
 
 /* No comment provided by engineer. */
+"Delete item from list" = "حذف عنصر من قائمة";
+
+/* No comment provided by engineer. */
 "Delete Looks" = "حذف مشهد";
 
 /* No comment provided by engineer. */
@@ -329,10 +335,10 @@
 "Delete Objects" = "حذف الكائنات";
 
 /* No comment provided by engineer. */
-"Delete Program" = "حذف برنامج";
+"Delete Project" = "Delete Project";
 
 /* No comment provided by engineer. */
-"Delete Programs" = "حذف البرامج";
+"Delete Projects" = "Delete Projects";
 
 /* No comment provided by engineer. */
 "Delete Script" = "حذف النص البرمجي";
@@ -371,7 +377,7 @@
 "Delete this object" = "حذف هذا الكائن";
 
 /* No comment provided by engineer. */
-"Delete this program" = "حذف هذا البرنامج";
+"Delete this project" = "Delete this project";
 
 /* No comment provided by engineer. */
 "Delete this Script?" = "هل تريد حذف هذا النص البرمجي؟";
@@ -452,10 +458,10 @@
 "Edit Object" = "تحرير كائن";
 
 /* No comment provided by engineer. */
-"Edit Program" = "تحرير البرنامج";
+"Edit Project" = "Edit Project";
 
 /* No comment provided by engineer. */
-"Edit Programs" = "تحرير البرنامج";
+"Edit Projects" = "Edit Projects";
 
 /* Action sheet menu title */
 "Edit Script" = "تعديل النص البرمجي";
@@ -479,6 +485,9 @@
 "Email" = "البريد الألكتروني";
 
 /* No comment provided by engineer. */
+"Empty input!" = "Empty input!";
+
+/* No comment provided by engineer. */
 "End If" = "نهاية إذا";
 
 /* No comment provided by engineer. */
@@ -499,11 +508,11 @@
 /* Placeholder for add object-name input field */
 "Enter your object name here..." = "أدخل اسم الكائن الخاص بك هنا...";
 
-/* Placeholder for program-description input field */
-"Enter your program description here..." = "أدخل وصف البرنامج الخاص بك هنا...";
+/* Placeholder for project-description input field */
+"Enter your project description here..." = "Enter your project description here...";
 
-/* Placeholder for program-name input field */
-"Enter your program name here..." = "أدخل اسم البرنامج الخاص بك هنا...";
+/* Placeholder for project-name input field */
+"Enter your project name here..." = "Enter your project name here...";
 
 /* Placeholder for add sound-name input field */
 "Enter your sound name here..." = "قم بإدخال اسم الصوت الخاص بك هنا...";
@@ -516,6 +525,9 @@
 
 /* No comment provided by engineer. */
 "Error" = "خطأ";
+
+/* No comment provided by engineer. */
+"Error saving file" = "Error saving file";
 
 /* No comment provided by engineer. */
 "Explore" = "إستعراض";
@@ -542,10 +554,10 @@
 "Failed to import item" = "فشلت عملية استيراد العنصر";
 
 /* No comment provided by engineer. */
-"Failed to load featured programs" = "Failed to load featured programs";
+"Failed to load featured projects" = "Failed to load featured projects";
 
 /* No comment provided by engineer. */
-"Failed to load recent programs" = "Failed to load recent programs";
+"Failed to load recent projects" = "Failed to load recent projects";
 
 /* No comment provided by engineer. */
 "Failed to load sound" = "فشل في تحميل الملف الصوتي";
@@ -557,7 +569,7 @@
 "false" = "خطأ";
 
 /* No comment provided by engineer. */
-"Featured Programs" = "برامج بارزة";
+"Featured Projects" = "Featured Projects";
 
 /* No comment provided by engineer. */
 "Feb" = "شباط (فبراير)";
@@ -576,6 +588,9 @@
 
 /* No comment provided by engineer. */
 "floor" = "تقريب للاسفل";
+
+/* No comment provided by engineer. */
+"Following features used in this project are not compatible with this version of Pocket Code:" = "Following features used in this project are not compatible with this version of Pocket Code:";
 
 /* No comment provided by engineer. */
 "for" = "لفترة";
@@ -679,14 +694,23 @@
 /* No comment provided by engineer. */
 "Information" = "معلومات";
 
+/* No comment provided by engineer. */
+"Insert" = "إدراج";
+
 /* paint */
 "Inserted" = "تم الإدخال";
+
+/* No comment provided by engineer. */
+"into list" = "في القائمة";
 
 /* No comment provided by engineer. */
 "Invalid input entered, try again." = "إدخال غير صحيح، حاول مرة أخرى.";
 
 /* No comment provided by engineer. */
 "Invalid URL given!" = "عنوان URL غير صحيح!";
+
+/* No comment provided by engineer. */
+"iOS." = "iOS.";
 
 /* No comment provided by engineer. */
 "is true" = "تحقق الشرط";
@@ -853,7 +877,7 @@
 /* No comment provided by engineer. */
 "Mo" = "الإثنين";
 
-/* Prefix of default catrobat program object names (except background object) */
+/* Prefix of default catrobat project object names (except background object) */
 "Mole" = "الخلد";
 
 /* No comment provided by engineer. */
@@ -864,6 +888,9 @@
 
 /* No comment provided by engineer. */
 "More" = "أكثر";
+
+/* No comment provided by engineer. */
+"More information" = "More information";
 
 /* No comment provided by engineer. */
 "Most Downloaded" = "الأكثر تنزيلا";
@@ -895,8 +922,8 @@
 /* No comment provided by engineer. */
 "Move Sounds" = "نقل ملفات صوتية";
 
-/* Name of the default catrobat program (used as filename!!) */
-"My first program" = "برنامجي الأول";
+/* Name of the default catrobat project (used as filename!!) */
+"My first project" = "My first project";
 
 /* Default title of imported photo from camera (taken by camera) */
 "My Image" = "الصورة الخاصة بي";
@@ -923,7 +950,7 @@
 "New Message" = "رسالة جديدة";
 
 /* No comment provided by engineer. */
-"New Program" = "برنامج جديد";
+"New Project" = "New Project";
 
 /* No comment provided by engineer. */
 "New Text" = "نص جديد";
@@ -952,9 +979,6 @@
 /* No comment provided by engineer. */
 "No Description available" = "لا يوجد أي مواصفات";
 
-/* Title of AlertView if the user tries to import a sound but no sound has been imported using iTunes. */
-"No imported sounds found" = "لا يوجد أصوات تم إستيرادها";
-
 /* No comment provided by engineer. */
 "No input. Please enter at least %lu character(s)." = "لم يتم الإدخال. من فضلك أدخل على الأقل %lu حرف/ أحرف.";
 
@@ -980,7 +1004,7 @@
 "Not Connected to a WiFi network, please connect to one or change the settings to download also with mobile data." = "ليش مُتصل الى شبكة لاسلكية, من فضلك قم بلاتصال بأحد الشبكات أو قم بتغيير الإعدادات ليتم التحميل عبر بيانات الجوال.";
 
 /* No comment provided by engineer. */
-"Not enough free memory to download this program. Please delete some of your programs" = "الذاكرة غير كافية لتحميل هذا البرنامج. الرجاء حذف بعض البرامج الخاصة بك";
+"Not enough free memory to download this project. Please delete some of your projects" = "Not enough free memory to download this project. Please delete some of your projects";
 
 /* No comment provided by engineer. */
 "Not enough Memory" = "لا توجد ذاكرة كافية";
@@ -1043,6 +1067,9 @@
 "Only special characters are not allowed. Please enter at least %lu other character(s)." = "الأحرف الخاصة فقط غير مسموح بها. الرجاء إدخال على الأقل %lu أحرف آخرى.";
 
 /* No comment provided by engineer. */
+"Open" = "فتح";
+
+/* No comment provided by engineer. */
 "or" = "أو";
 
 /* No comment provided by engineer. */
@@ -1082,28 +1109,22 @@
 "Place at " = "تحديد موقع الكائن في ";
 
 /* No comment provided by engineer. */
-"Play" = "تشغيل";
-
-/* No comment provided by engineer. */
 "Play Phiro music\n" = "تشغيل موسيقى روبوت الاطفال\n";
 
 /* No comment provided by engineer. */
 "Please choose another name:" = "من فضلك قم باختيار اسم اخر:";
 
-/* Description of AlertView if the user tries to import a sound but no sound has been imported using iTunes. */
-"Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app." = "الرجاء توصيل أي فون الخاص بك إلى جهاز الكمبيوتر/ماك، واستخدام iTunes FileSharing لاستيراد ملفات الصوت إلى تطبيق بوكيت كوود.";
-
 /* paint */
 "Please enter a text!" = "الرجاء إدخال نص!";
 
 /* No comment provided by engineer. */
-"Please log in to report this program as inappropriate" = "الرجاءتسجيل الدخول للابلاغ عن هذا البرنامج كـ غير لائق";
+"Please log in to report this project as inappropriate" = "Please log in to report this project as inappropriate";
 
 /* paint */
 "Please pick a tool" = "الرجاء إنتقاء أداة";
 
 /* No comment provided by engineer. */
-"Please select a program to upload" = "الرجاء اختيار ملف ليتم تحميله";
+"Please select a project to upload" = "Please select a project to upload";
 
 /* bluetooth */
 "Please try resetting the device and try again." = "الرجاء محاولة إعادة تعيين الجهاز, والمحاولة من جديد.";
@@ -1157,6 +1178,9 @@
 "position_y" = "الموقع y";
 
 /* No comment provided by engineer. */
+"Preview" = "معاينة";
+
+/* No comment provided by engineer. */
 "Previous background" = "خلفية الشاشة السابقة";
 
 /* No comment provided by engineer. */
@@ -1166,37 +1190,31 @@
 "Privacy Settings" = "اعدادات الخصوصية";
 
 /* No comment provided by engineer. */
-"Problems occured while uploading your program" = "حدثت مشاكل أثناء تحميل البرنامج الخاص بك";
-
-/* No comment provided by engineer. */
-"Program" = "Program";
-
-/* No comment provided by engineer. */
-"Program lists:" = "قوائم البرنامج:";
-
-/* No comment provided by engineer. */
-"Program name" = "اسم البرنامج";
-
-/* No comment provided by engineer. */
-"Program Name is necessary!" = "اسم البرنامج ضروري!";
-
-/* No comment provided by engineer. */
-"Program variables:" = "متغيرات البرنامج:";
-
-/* No comment provided by engineer. */
-"Programs" = "البرامج";
+"Problems occured while uploading your project" = "Problems occured while uploading your project";
 
 /* No comment provided by engineer. */
 "Project" = "المشروع";
+
+/* No comment provided by engineer. */
+"Project lists:" = "Project lists:";
+
+/* No comment provided by engineer. */
+"Project name" = "Project name";
+
+/* No comment provided by engineer. */
+"Project Name is necessary!" = "Project Name is necessary!";
+
+/* No comment provided by engineer. */
+"Project variables:" = "Project variables:";
+
+/* No comment provided by engineer. */
+"Projects" = "Projects";
 
 /* No comment provided by engineer. */
 "Rate Us" = "قم بتقييمنا";
 
 /* No comment provided by engineer. */
 "RE" = "ري";
-
-/* No comment provided by engineer. */
-"Record" = "سجل";
 
 /* No comment provided by engineer. */
 "Recording" = "تسجيل";
@@ -1226,7 +1244,7 @@
 "Rename object" = "إعادة تسمية الكائن";
 
 /* No comment provided by engineer. */
-"Rename Program" = "إعادة تسمية البرنامج";
+"Rename Project" = "Rename Project";
 
 /* No comment provided by engineer. */
 "Rename sound" = "إعادة تسمية الصوت";
@@ -1236,6 +1254,9 @@
 
 /* No comment provided by engineer. */
 "Repeat until" = "تكرار حتى";
+
+/* No comment provided by engineer. */
+"Replace item in list" = "استبدال عنصر في القائمة";
 
 /* No comment provided by engineer. */
 "Report as inappropriate" = "تبليغ كـ محتوى غير مناسب";
@@ -1284,15 +1305,6 @@
 
 /* No comment provided by engineer. */
 "screen_touch_y" = "إحداثيات_لمس_الشاشة_ص";
-
-/* No comment provided by engineer. */
-"Screenshot" = "لقطة للشاشة";
-
-/* No comment provided by engineer. */
-"Screenshot saved to Camera Roll" = "تم حفظ لقطة شاشة الى ملف الكاميرا";
-
-/* No comment provided by engineer. */
-"Screenshot saved to project" = "تم حفظ لقطة الشاشة الى المشروع";
 
 /* No comment provided by engineer. */
 "Script" = "النصوص البرمجية";
@@ -1448,9 +1460,6 @@
 "steps" = "خطوات";
 
 /* No comment provided by engineer. */
-"Stop" = "إيقاف البرنامج النصي/ البرامج النصية";
-
-/* No comment provided by engineer. */
 "Stop all sounds" = "إيقاف كافة الأصوات";
 
 /* No comment provided by engineer. */
@@ -1490,7 +1499,7 @@
 "The description contains invalid characters, try again." = "يحتوي الوصف على أحرف غير صحيحة، حاول مرة أخرى.";
 
 /* No comment provided by engineer. */
-"The featured programs cannot be loaded" = "The featured programs cannot be loaded";
+"The featured projects cannot be loaded" = "The featured projects cannot be loaded";
 
 /* No comment provided by engineer. */
 "The following item could not be imported from the Media Library:" = "لم يتم استيراد الملف التالي من مكتبة الوسائط:";
@@ -1502,10 +1511,13 @@
 "The name contains blocked characters. Please try again!" = "الاسم يحتوي على أحرف المحظورة. الرجاء إعادة المحاولة!";
 
 /* No comment provided by engineer. */
-"The recent programs cannot be loaded" = "The recent programs cannot be loaded";
+"The recent projects cannot be loaded" = "The recent projects cannot be loaded";
 
 /* No comment provided by engineer. */
-"The requested program can not be found. Please choose a different one." = "البرنامج المطلوب لم يتم إيجاده. من فضلك اختر واحد اخر.";
+"The requested project can not be found. Please choose a different one." = "The requested project can not be found. Please choose a different one.";
+
+/* No comment provided by engineer. */
+"The requested project can not be loaded. Please try again later." = "The requested project can not be loaded. Please try again later.";
 
 /* No comment provided by engineer. */
 "The sound item cannot be loaded" = "الملف الصوتي لم يتم تحميله";
@@ -1541,6 +1553,9 @@
 "to" = "إلى";
 
 /* No comment provided by engineer. */
+"to list" = "الى القائمة";
+
+/* No comment provided by engineer. */
 "to X:" = "إلى س:";
 
 /* No comment provided by engineer. */
@@ -1571,7 +1586,7 @@
 "Turn right" = "انعطف نحو اليمين";
 
 /* No comment provided by engineer. */
-"Unable to load program!" = "غير قادر على تحميل البرنامج!";
+"Unable to load project!" = "Unable to load project!";
 
 /* No comment provided by engineer. */
 "Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt." = "غير قادر على تشغيل هذا الصوت! ربما الصوت غير صالح أو أن الملف لا يعمل.";
@@ -1595,16 +1610,34 @@
 "Undo Typing?" = "هل تريد التراجع عن الكتابة؟";
 
 /* No comment provided by engineer. */
+"Unexpected Error" = "Unexpected Error";
+
+/* No comment provided by engineer. */
+"Unexpected Error, please try again later." = "Unexpected Error, please try again later.";
+
+/* No comment provided by engineer. */
+"Unknown Element" = "Unknown Element";
+
+/* No comment provided by engineer. */
 "Unselect All" = "إلغاء اختيار الكل";
+
+/* No comment provided by engineer. */
+"Unsupported Brick:" = "Unsupported Brick:";
+
+/* No comment provided by engineer. */
+"Unsupported Elements" = "Unsupported Elements";
+
+/* No comment provided by engineer. */
+"Unsupported Script:" = "Unsupported Script:";
 
 /* No comment provided by engineer. */
 "Upload" = "تحميل";
 
 /* No comment provided by engineer. */
-"Upload Program" = "تحميل البرنامج";
+"Upload Project" = "Upload Project";
 
 /* No comment provided by engineer. */
-"Upload selected program" = "تحميل البرنامج المحدد";
+"Upload selected project" = "Upload selected project";
 
 /* No comment provided by engineer. */
 "Upload successful" = "تم التحميل بنجاح";
@@ -1626,9 +1659,6 @@
 
 /* No comment provided by engineer. */
 "Username must not be blank" = "يجب أن لا يكون اسم المستخدم فارغ";
-
-/* No comment provided by engineer. */
-"v" = "الاصدار";
 
 /* No comment provided by engineer. */
 "Var/List" = "متغير/قائمة";
@@ -1664,6 +1694,9 @@
 "Wait" = "انتظر";
 
 /* No comment provided by engineer. */
+"Wait until" = "انتظر حتى";
+
+/* No comment provided by engineer. */
 "We" = "الأربعاء";
 
 /* No comment provided by engineer. */
@@ -1676,7 +1709,10 @@
 "Welcome to Pocket Code" = "مرحبا بكم في بوكت كوود";
 
 /* No comment provided by engineer. */
-"When program started" = "عند بدء تشغيل البرنامج";
+"When project started" = "When project started";
+
+/* No comment provided by engineer. */
+"When screen is touched" = "عند لمس الشاشة";
 
 /* No comment provided by engineer. */
 "When tapped" = "عند النقر";
@@ -1686,6 +1722,9 @@
 
 /* paint */
 "Width selection" = "إنتقاء العرض";
+
+/* No comment provided by engineer. */
+"with" = "مع";
 
 /* No comment provided by engineer. */
 "X: " = "س: ";
@@ -1706,7 +1745,7 @@
 "You are also able to build your own apps, remix existing ones and share them with your friends and other exciting people around the world." = "أنت أيضا قادر على بناء التطبيقات الخاصة بك وخلط مُعدل للتطبيقات الموجودة ومشاركتها مع أصدقائك والآخرين حول العالم.";
 
 /* No comment provided by engineer. */
-"You have already downloaded this program!" = "لقد قمت بالفعل بتنزيل هذا البرنامج!";
+"You have already downloaded this project!" = "You have already downloaded this project!";
 
 /* No comment provided by engineer. */
 "Your email seems to be invalid" = "البريد الالكتروني الخاص بك غير صحيح";

@@ -1,8 +1,17 @@
 /* No comment provided by engineer. */
+"A message with the same name already exists, try again." = "Thư có cùng tên đã tồn tại, thử lại.";
+
+/* No comment provided by engineer. */
+"A project with the same name already exists, try again." = "A project with the same name already exists, try again.";
+
+/* No comment provided by engineer. */
 "About Catrobat" = "Về Catrobat";
 
 /* No comment provided by engineer. */
 "About Pocket Code" = "Về Pocket Code";
+
+/* No comment provided by engineer. */
+"acceleration-sensor" = "acceleration-sensor";
 
 /* No comment provided by engineer. */
 "acceleration_x" = "gia tốc_x";
@@ -14,7 +23,97 @@
 "acceleration_z" = "gia tốc_z";
 
 /* No comment provided by engineer. */
+"Add" = "Thêm";
+
+/* No comment provided by engineer. */
+"add comment here..." = "thêm bình luận ở đây...";
+
+/* No comment provided by engineer. */
+"Add image" = "Thêm hình ảnh";
+
+/* Action sheet menu title */
+"Add look" = "Thêm giao diện";
+
+/* No comment provided by engineer. */
+"Add object" = "Thêm đối tượng";
+
+/* Action sheet menu title */
+"Add sound" = "Thêm âm thanh";
+
+/* No comment provided by engineer. */
+"All Bluetooth devices successfully disconnected" = "All Bluetooth devices successfully disconnected";
+
+/* No comment provided by engineer. */
+"All known Bluetooth devices successfully removed" = "All known Bluetooth devices successfully removed";
+
+/* paint */
+"Alpha" = "Alpha";
+
+/* No comment provided by engineer. */
+"altitude" = "altitude";
+
+/* No comment provided by engineer. */
+"An image with the same name already exists, try again." = "Hình ảnh có cùng tên đã tồn tại, thử lại.";
+
+/* No comment provided by engineer. */
+"An object with the same name already exists, try again." = "Đối tượng có cùng tên đã tồn tại, thử lại.";
+
+/* No comment provided by engineer. */
+"An unknown error occurred. Check your Internet connection." = "Lỗi đã xảy ra. Kiểm tra kết nối Internet của bạn.";
+
+/* No comment provided by engineer. */
+"An unknown error occurred. Please try again later." = "An unknown error occurred. Please try again later.";
+
+/* No comment provided by engineer. */
 "and" = "và";
+
+/* No comment provided by engineer. */
+"and wait" = "and wait";
+
+/* No comment provided by engineer. */
+"Animate Brick-Parts" = "Mô phỏng các Phần-Gạch";
+
+/* No comment provided by engineer. */
+"Apr" = "Tháng 4";
+
+/* No comment provided by engineer. */
+"April" = "Tháng 4";
+
+/* No comment provided by engineer. */
+"Arduino" = "Arduino";
+
+/* No comment provided by engineer. */
+"arduino_analog" = "arduino_analog";
+
+/* No comment provided by engineer. */
+"arduino_digital" = "arduino_digital";
+
+/* No comment provided by engineer. */
+"at " = "at ";
+
+/* No comment provided by engineer. */
+"at position" = "ở vị trí";
+
+/* paint */
+"Attributes:" = "Attributes:";
+
+/* No comment provided by engineer. */
+"Aug" = "Tháng 8";
+
+/* No comment provided by engineer. */
+"August" = "Tháng tám";
+
+/* No comment provided by engineer. */
+"Authentication failed" = "Authentication failed";
+
+/* No comment provided by engineer. */
+"Author" = "Tác Giả";
+
+/* Title of icon shown in the side bar to enable or disable an overlayed view to show the origin of the coordinate system and implicitly the display size. */
+"Axes" = "Trục";
+
+/* No comment provided by engineer. */
+"back" = "back";
 
 /* No comment provided by engineer. */
 "Back" = "Quay về";
@@ -23,16 +122,100 @@
 "Background" = "Nền";
 
 /* No comment provided by engineer. */
+"background_name" = "background_name";
+
+/* No comment provided by engineer. */
+"background_number" = "background_number";
+
+/* No comment provided by engineer. */
 "Backgrounds" = "Nền";
+
+/* paint */
+"Blue" = "Xanh da trời";
+
+/* No comment provided by engineer. */
+"Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings." = "Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings.";
+
+/* No comment provided by engineer. */
+"Bluetooth is turned off. Please turn it on to connect to a Bluetooth device." = "Bluetooth is turned off. Please turn it on to connect to a Bluetooth device.";
+
+/* paint */
+"bold" = "bold";
+
+/* No comment provided by engineer. */
+"Both" = "Cả hai";
+
+/* No comment provided by engineer. */
+"Bricks" = "Gạch";
 
 /* No comment provided by engineer. */
 "brightness" = "Độ sáng";
 
 /* No comment provided by engineer. */
+"Broadcast" = "Phát sóng";
+
+/* No comment provided by engineer. */
+"Broadcast and wait" = "Phát sóng và đợi";
+
+/* paint */
+"Brush" = "Cọ";
+
+/* No comment provided by engineer. */
+"by" = "bởi";
+
+/* No comment provided by engineer. */
+"By registering you agree to our" = "Bằng cách đăng ký, bạn đồng ý với";
+
+/* No comment provided by engineer. */
+"By switching to the section \"Explore\" you can discover more interesting projects from people all over the world." = "By switching to the section \"Explore\" you can discover more interesting projects from people all over the world.";
+
+/* No comment provided by engineer. */
+"Camera Roll" = "Camera quay";
+
+/* No comment provided by engineer. */
+"Can't restart project!" = "Can't restart project!";
+
+/* No comment provided by engineer. */
 "Cancel" = "Hủy bỏ";
+
+/* bluetooth */
+"Cannot connect to device, please try resetting the device and try again." = "Cannot connect to device, please try resetting the device and try again.";
+
+/* bluetooth */
+"Cannot connect to device. The device is not responding." = "Cannot connect to device. The device is not responding.";
+
+/* No comment provided by engineer. */
+"Cannot connect to the Media Library. Please check your Internet connection." = "Cannot connect to the Media Library. Please check your Internet connection.";
 
 /* No comment provided by engineer. */
 "Categories" = "Danh mục";
+
+/* No comment provided by engineer. */
+"ceil" = "số nguyên nhỏ nhất";
+
+/* No comment provided by engineer. */
+"Change brightness " = "Thay đổi độ sáng ";
+
+/* No comment provided by engineer. */
+"Change color " = "Change color ";
+
+/* No comment provided by engineer. */
+"Change size by" = "Thay đổi kích thước bởi";
+
+/* No comment provided by engineer. */
+"Change transparency " = "Thay đổi độ trong suốt ";
+
+/* No comment provided by engineer. */
+"Change variable" = "Thay đổi biến";
+
+/* No comment provided by engineer. */
+"Change volume by" = "Thay đổi âm lượng bởi";
+
+/* No comment provided by engineer. */
+"Change X by " = "Thay đổi X bởi ";
+
+/* No comment provided by engineer. */
+"Change Y by " = "Thay đổi Y bởi ";
 
 /* No comment provided by engineer. */
 "Changes discarded!" = "Thay đổi loại bỏ!";
@@ -41,13 +224,52 @@
 "Changes saved!" = "Đã lưu thay đổi!";
 
 /* No comment provided by engineer. */
+"Choose" = "Choose";
+
+/* No comment provided by engineer. */
+"Choose image" = "Chọn hình ảnh";
+
+/* No comment provided by engineer. */
 "Clear graphic effects" = "Hiệu ứng đồ họa rõ ràng";
 
 /* No comment provided by engineer. */
 "Close" = "Đóng";
 
+/* paint */
+"Close Paint" = "Đóng Paint";
+
+/* No comment provided by engineer. */
+"color" = "color";
+
+/* No comment provided by engineer. */
+"compass" = "la bàn";
+
 /* No comment provided by engineer. */
 "Compute" = "Tính toán";
+
+/* No comment provided by engineer. */
+"Computed result is %.2f" = "Kết quả tính là %.2f";
+
+/* No comment provided by engineer. */
+"Computed result is FALSE" = "Kết quả tính sai";
+
+/* No comment provided by engineer. */
+"Computed result is TRUE" = "Kết quả tính đúng";
+
+/* No comment provided by engineer. */
+"Confirm Password" = "Confirm Password";
+
+/* bluetooth */
+"Connection failed" = "Connection failed";
+
+/* bluetooth */
+"Connection Lost" = "Connection Lost";
+
+/* bluetooth */
+"Connection not possible" = "Connection not possible";
+
+/* No comment provided by engineer. */
+"contains" = "bao gồm";
 
 /* No comment provided by engineer. */
 "Continue" = "Tiếp tục";
@@ -62,43 +284,367 @@
 "Copy Brick" = "Sao chép gạch";
 
 /* No comment provided by engineer. */
-"Copy project" = "Bản sao dự án";
+"Copy Looks" = "Copy Looks";
+
+/* No comment provided by engineer. */
+"Copy project" = "Copy project";
+
+/* No comment provided by engineer. */
+"Create & Remix" = "Create & Remix";
+
+/* No comment provided by engineer. */
+"Create account" = "Create account";
+
+/* No comment provided by engineer. */
+"day" = "day";
+
+/* No comment provided by engineer. */
+"Debug mode" = "Chế độ gỡ lỗi";
+
+/* No comment provided by engineer. */
+"Dec" = "Tháng 12";
+
+/* No comment provided by engineer. */
+"December" = "Tháng mười hai";
+
+/* No comment provided by engineer. */
+"degrees" = "degrees";
 
 /* No comment provided by engineer. */
 "Delete" = "Xóa";
 
 /* No comment provided by engineer. */
+"Delete Backgrounds" = "Delete Backgrounds";
+
+/* No comment provided by engineer. */
 "Delete Brick" = "Xóa gạch";
+
+/* No comment provided by engineer. */
+"Delete Condition" = "Xóa bỏ tình trạng";
+
+/* No comment provided by engineer. */
+"Delete item from list" = "Xoá khỏi danh sách";
+
+/* No comment provided by engineer. */
+"Delete Looks" = "Xóa giao diện";
+
+/* No comment provided by engineer. */
+"Delete Loop" = "Xóa vòng lặp";
+
+/* No comment provided by engineer. */
+"Delete Objects" = "Xoá đối tượng";
+
+/* No comment provided by engineer. */
+"Delete Project" = "Delete Project";
+
+/* No comment provided by engineer. */
+"Delete Projects" = "Delete Projects";
 
 /* No comment provided by engineer. */
 "Delete Script" = "Xóa kịch bản";
 
 /* No comment provided by engineer. */
+"Delete Sounds" = "Xóa âm thanh";
+
+/* No comment provided by engineer. */
+"Delete these Bricks?" = "Xóa những gạch này?";
+
+/* No comment provided by engineer. */
+"Delete these Conditions?" = "Xoá tình trạng này?";
+
+/* No comment provided by engineer. */
+"Delete these Loops?" = "Xóa các vòng lặp này?";
+
+/* No comment provided by engineer. */
+"Delete these Scripts?" = "Xóa các kịch bản này?";
+
+/* No comment provided by engineer. */
+"Delete this background" = "Delete this background";
+
+/* No comment provided by engineer. */
+"Delete this Brick?" = "Xóa gạch này?";
+
+/* No comment provided by engineer. */
+"Delete this Condition?" = "Xóa bỏ tình trạng này?";
+
+/* No comment provided by engineer. */
+"Delete this look" = "Xoá giao diện này";
+
+/* No comment provided by engineer. */
+"Delete this Loop?" = "Xóa vòng lặp này?";
+
+/* No comment provided by engineer. */
+"Delete this object" = "Xóa bỏ đối tượng này";
+
+/* No comment provided by engineer. */
+"Delete this project" = "Delete this project";
+
+/* No comment provided by engineer. */
+"Delete this Script?" = "Xóa kịch bản này?";
+
+/* No comment provided by engineer. */
+"Delete this sound" = "Xóa âm thanh này";
+
+/* No comment provided by engineer. */
+"Deletion Mode" = "Xoá chế độ";
+
+/* No comment provided by engineer. */
+"Description" = "Mô tả";
+
+/* No comment provided by engineer. */
+"Details" = "Chi tiêt";
+
+/* bluetooth */
+"Device disconnected." = "Device disconnected.";
+
+/* No comment provided by engineer. */
+"device motion-sensor" = "device motion-sensor";
+
+/* No comment provided by engineer. */
 "direction" = "hướng";
 
 /* No comment provided by engineer. */
+"Disconnect all devices" = "Disconnect all devices";
+
+/* No comment provided by engineer. */
+"DO" = "DO";
+
+/* paint */
+"Do you really want to delete the current drawing?" = "Bạn có thực sự muốn xoá các bản vẽ hiện tại?";
+
+/* paint */
+"Do you want to save the changes" = "Bạn có muốn lưu những thay đổi không";
+
+/* No comment provided by engineer. */
+"Done" = "Đã Thực hiện";
+
+/* No comment provided by engineer. */
+"Download" = "Tải về";
+
+/* No comment provided by engineer. */
+"Download sucessful" = "Tải về thành công";
+
+/* No comment provided by engineer. */
+"Downloads" = "Tải về";
+
+/* No comment provided by engineer. */
+"Draw new image" = "Vẽ hình ảnh mới";
+
+/* No comment provided by engineer. */
+"Duration" = "Khoảng thời gian";
+
+/* No comment provided by engineer. */
+"Edit" = "Chỉnh sửa";
+
+/* Action sheet menu title */
+"Edit Background" = "Edit Background";
+
+/* Action sheet menu title */
+"Edit Backgrounds" = "Edit Backgrounds";
+
+/* Action sheet menu title */
+"Edit Brick" = "Chỉnh sửa gạch";
+
+/* No comment provided by engineer. */
 "Edit Formula" = "Chỉnh sửa công thức";
+
+/* Action sheet menu title */
+"Edit Look" = "Chỉnh sửa giao diện";
+
+/* Action sheet menu title */
+"Edit Looks" = "Chỉnh sửa các giao diện";
+
+/* No comment provided by engineer. */
+"Edit Object" = "Chỉnh sửa đối tượng";
+
+/* No comment provided by engineer. */
+"Edit Project" = "Edit Project";
+
+/* No comment provided by engineer. */
+"Edit Projects" = "Edit Projects";
+
+/* Action sheet menu title */
+"Edit Script" = "Edit Script";
+
+/* Action sheet menu title */
+"Edit Sound" = "Chỉnh sửa âm thanh";
+
+/* Action sheet menu title */
+"Edit Sounds" = "Chỉnh sửa các âm thanh";
+
+/* No comment provided by engineer. */
+"element" = "yếu tố";
+
+/* paint */
+"Ellipse / Circle" = "Ellipse / Circle";
 
 /* No comment provided by engineer. */
 "Else" = "Nếu không";
 
 /* No comment provided by engineer. */
+"Email" = "Thư điện tử";
+
+/* No comment provided by engineer. */
+"Empty input!" = "Empty input!";
+
+/* No comment provided by engineer. */
 "End If" = "Kết thúc nếu";
+
+/* No comment provided by engineer. */
+"End of Loop" = "Kết thúc vòng lặp";
+
+/* No comment provided by engineer. */
+"Enter a reason" = "Nhập lý do";
+
+/* Placeholder for add image-name input field */
+"Enter your image name here..." = "Nhập tên hình ảnh của bạn ở đây...";
+
+/* Placeholder for list input field */
+"Enter your list name here..." = "Enter your list name here...";
+
+/* Placeholder for message input field */
+"Enter your message here..." = "Nhập tin nhắn của bạn ở đây...";
+
+/* Placeholder for add object-name input field */
+"Enter your object name here..." = "Nhập tên đối tượng của bạn ở đây...";
+
+/* Placeholder for project-description input field */
+"Enter your project description here..." = "Enter your project description here...";
+
+/* Placeholder for project-name input field */
+"Enter your project name here..." = "Enter your project name here...";
+
+/* Placeholder for add sound-name input field */
+"Enter your sound name here..." = "Nhập tên âm thanh của bạn ở đây...";
+
+/* Placeholder for variable input field */
+"Enter your variable name here..." = "Nhập tên biến của bạn ở đây...";
+
+/* paint */
+"Eraser" = "Tẩy";
 
 /* No comment provided by engineer. */
 "Error" = "Lỗi";
 
 /* No comment provided by engineer. */
+"Error saving file" = "Error saving file";
+
+/* No comment provided by engineer. */
 "Explore" = "Khám phá";
+
+/* No comment provided by engineer. */
+"Explore apps" = "Khám phá ứng dụng";
+
+/* No comment provided by engineer. */
+"FA" = "FA";
+
+/* No comment provided by engineer. */
+"face_detected" = "face_detected";
+
+/* No comment provided by engineer. */
+"faceposition_x" = "faceposition_x";
+
+/* No comment provided by engineer. */
+"faceposition_y" = "faceposition_y";
+
+/* No comment provided by engineer. */
+"facesize" = "facesize";
+
+/* No comment provided by engineer. */
+"Failed to import item" = "Failed to import item";
+
+/* No comment provided by engineer. */
+"Failed to load featured projects" = "Failed to load featured projects";
+
+/* No comment provided by engineer. */
+"Failed to load recent projects" = "Failed to load recent projects";
+
+/* No comment provided by engineer. */
+"Failed to load sound" = "Failed to load sound";
+
+/* No comment provided by engineer. */
+"Failed to play sound" = "Failed to play sound";
+
+/* No comment provided by engineer. */
+"false" = "sai";
+
+/* No comment provided by engineer. */
+"Featured Projects" = "Featured Projects";
+
+/* No comment provided by engineer. */
+"Feb" = "Tháng 2";
+
+/* No comment provided by engineer. */
+"February" = "Tháng hai";
+
+/* paint */
+"Fill" = "Chèn kín";
+
+/* No comment provided by engineer. */
+"Flashlight off" = "Đèn pin tắt";
+
+/* No comment provided by engineer. */
+"Flashlight on" = "Đèn pin mở";
+
+/* No comment provided by engineer. */
+"floor" = "nguyên lớn nhất";
+
+/* No comment provided by engineer. */
+"Following features used in this project are not compatible with this version of Pocket Code:" = "Following features used in this project are not compatible with this version of Pocket Code:";
+
+/* No comment provided by engineer. */
+"for" = "for";
+
+/* No comment provided by engineer. */
+"for all objects" = "cho tất cả các đối tượng";
+
+/* No comment provided by engineer. */
+"for this object" = "cho đối tượng này";
 
 /* No comment provided by engineer. */
 "Forever" = "Vĩnh viễn";
 
 /* No comment provided by engineer. */
+"Forgot password" = "Quên Mật Khẩu";
+
+/* No comment provided by engineer. */
 "Formula too long!" = "Công thức quá dài!";
 
 /* No comment provided by engineer. */
+"Fr" = "T6";
+
+/* Title of View where the user can see the frequently used bricks. */
+"Frequently Used" = "Frequently Used";
+
+/* No comment provided by engineer. */
+"Friday" = "Thứ 6";
+
+/* No comment provided by engineer. */
+"From Camera" = "Từ máy ảnh";
+
+/* No comment provided by engineer. */
+"front" = "front";
+
+/* No comment provided by engineer. */
+"Front camera" = "Front camera";
+
+/* No comment provided by engineer. */
+"Glide" = "Lướt";
+
+/* No comment provided by engineer. */
+"Go back" = "Quay lại";
+
+/* No comment provided by engineer. */
 "Go to front" = "Đi tới trước";
+
+/* paint */
+"Green" = "Xanh lá cây";
+
+/* No comment provided by engineer. */
+"gyro-sensor" = "gyro-sensor";
+
+/* No comment provided by engineer. */
+"Hello!" = "Xin chào!";
 
 /* No comment provided by engineer. */
 "Help" = "Trợ giúp";
@@ -110,7 +656,34 @@
 "Hide Details" = "Ẩn chi tiết";
 
 /* No comment provided by engineer. */
+"Hide variable" = "Ẩn biến";
+
+/* No comment provided by engineer. */
+"Hmmmm!" = "Hmmmm!";
+
+/* No comment provided by engineer. */
+"hour" = "hour";
+
+/* No comment provided by engineer. */
+"If" = "Nếu";
+
+/* No comment provided by engineer. */
 "If on edge, bounce" = "Nếu tới mép, nảy lên";
+
+/* paint */
+"Image" = "Image";
+
+/* No comment provided by engineer. */
+"Image name" = "Tên hình ảnh";
+
+/* No comment provided by engineer. */
+"Image source not available" = "Hình ảnh nguồn không sẵn dùng";
+
+/* Title of prompt shown when a *.catrobat file is imported from a third-party app. */
+"Import File" = "Import File";
+
+/* No comment provided by engineer. */
+"In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation." = "Để \n được phép sử dụng Pocket Code và các chương trình khác được cung cấp bởi dự án Catrobat, bạn phải đồng ý với điều khoản sử dụng của chúng tôi và nghiêm chỉnh thực hiện chúng khi bạn sử dụng Pocket Code và các chương trình khác. Xin vui lòng xem các liên kết dưới đây để biết thêm thông tin \n.";
 
 /* No comment provided by engineer. */
 "inclination_x" = "nghiêng_x";
@@ -119,10 +692,85 @@
 "inclination_y" = "nghiêng_y";
 
 /* No comment provided by engineer. */
+"Information" = "Thông tin";
+
+/* No comment provided by engineer. */
+"Insert" = "Chèn";
+
+/* paint */
+"Inserted" = "Chèn";
+
+/* No comment provided by engineer. */
+"into list" = "vào danh sách";
+
+/* No comment provided by engineer. */
+"Invalid input entered, try again." = "Đầu vào đã nhập không hợp lệ, hãy thử lại một lần nữa.";
+
+/* No comment provided by engineer. */
+"Invalid URL given!" = "URL không hợp lệ!";
+
+/* No comment provided by engineer. */
+"iOS." = "iOS.";
+
+/* No comment provided by engineer. */
+"is true" = "is true";
+
+/* No comment provided by engineer. */
+"is true then" = "đúng thì";
+
+/* paint */
+"italic" = "italic";
+
+/* No comment provided by engineer. */
+"Jan" = "Th. 1";
+
+/* No comment provided by engineer. */
+"January" = "Tháng 1";
+
+/* No comment provided by engineer. */
 "join" = "tham gia";
 
 /* No comment provided by engineer. */
+"Jul" = "Th. 7";
+
+/* No comment provided by engineer. */
+"July" = "Tháng 7";
+
+/* No comment provided by engineer. */
+"Jun" = "Th. 6";
+
+/* No comment provided by engineer. */
+"June" = "Tháng 6";
+
+/* bluetooth */
+"Known devices" = "Known devices";
+
+/* No comment provided by engineer. */
+"LA" = "LA";
+
+/* No comment provided by engineer. */
+"Last access" = "Truy cập cuối cùng";
+
+/* No comment provided by engineer. */
+"last_screen_touch_index" = "last_screen_touch_index";
+
+/* No comment provided by engineer. */
+"latitude" = "latitude";
+
+/* No comment provided by engineer. */
 "layer" = "lớp";
+
+/* No comment provided by engineer. */
+"layers" = "tầng lớp";
+
+/* No comment provided by engineer. */
+"LED" = "LED";
+
+/* No comment provided by engineer. */
+"Left" = "Trái";
+
+/* No comment provided by engineer. */
+"Length" = "Độ dài";
 
 /* No comment provided by engineer. */
 "length" = "chiều dài";
@@ -130,11 +778,56 @@
 /* No comment provided by engineer. */
 "letter" = "thư";
 
+/* paint */
+"Line" = "Đường thẳng";
+
+/* No comment provided by engineer. */
+"List name:" = "List name:";
+
+/* No comment provided by engineer. */
+"List type" = "List type";
+
+/* No comment provided by engineer. */
+"Lists" = "Danh sách";
+
+/* No comment provided by engineer. */
+"Loading" = "Đang tải";
+
+/* No comment provided by engineer. */
+"location" = "location";
+
+/* No comment provided by engineer. */
+"location_accuracy" = "location_accuracy";
+
+/* No comment provided by engineer. */
+"Logic" = "Logic";
+
 /* No comment provided by engineer. */
 "Login" = "Đăng nhập";
 
+/* No comment provided by engineer. */
+"Login successful" = "Đăng nhập thành công";
+
+/* No comment provided by engineer. */
+"Login/Register" = "Đăng nhập/Đăng ký";
+
+/* No comment provided by engineer. */
+"Logout" = "Đăng xuất";
+
+/* No comment provided by engineer. */
+"longitude" = "longitude";
+
+/* No comment provided by engineer. */
+"Look" = "Giao diện";
+
 /* LOOK */
 "look" = "giao diện";
+
+/* No comment provided by engineer. */
+"look_name" = "look_name";
+
+/* No comment provided by engineer. */
+"look_number" = "look_number";
 
 /* No comment provided by engineer. */
 "Looks" = "Các giao diện";
@@ -143,28 +836,133 @@
 "loudness" = "âm sắc";
 
 /* No comment provided by engineer. */
+"magnetic-sensor" = "magnetic-sensor";
+
+/* No comment provided by engineer. */
+"Mar" = "Th. 3";
+
+/* No comment provided by engineer. */
+"March" = "Tháng ba";
+
+/* No comment provided by engineer. */
+"Math" = "Toán học";
+
+/* No comment provided by engineer. */
+"May" = "Th. 5";
+
+/* No comment provided by engineer. */
+"Measure" = "Đo đạt";
+
+/* No comment provided by engineer. */
+"Media Library" = "Thư viện phương tiện";
+
+/* paint */
+"Menu" = "Danh Mục";
+
+/* No comment provided by engineer. */
+"Message" = "Tin nhắn";
+
+/* No comment provided by engineer. */
 "message 1" = "thông báo 1";
+
+/* No comment provided by engineer. */
+"MI" = "MI";
+
+/* No comment provided by engineer. */
+"minute" = "minute";
+
+/* paint */
+"Mirror" = "Mirror";
+
+/* No comment provided by engineer. */
+"Mo" = "T2";
 
 /* Prefix of default catrobat project object names (except background object) */
 "Mole" = "Chuột chũi";
 
 /* No comment provided by engineer. */
+"Monday" = "Thứ Hai";
+
+/* No comment provided by engineer. */
+"month" = "month";
+
+/* No comment provided by engineer. */
+"More" = "Nhiều hơn";
+
+/* No comment provided by engineer. */
+"More information" = "More information";
+
+/* No comment provided by engineer. */
+"Most Downloaded" = "Tải về nhiều nhất";
+
+/* No comment provided by engineer. */
+"Most Viewed" = "Được xem nhiều nhất";
+
+/* No comment provided by engineer. */
 "Motion" = "Chuyển động";
+
+/* No comment provided by engineer. */
+"Move" = "Di chuyển";
 
 /* No comment provided by engineer. */
 "Move Brick" = "Di chuyển gạch";
 
+/* No comment provided by engineer. */
+"Move Looks" = "Move Looks";
+
+/* No comment provided by engineer. */
+"Move Objects" = "Move Objects";
+
+/* No comment provided by engineer. */
+"Move Phiro motor backward" = "Di chuyển động cơ Phiro về phía sau";
+
+/* No comment provided by engineer. */
+"Move Phiro motor forward" = "Di chuyển động cơ Phiro về phía trước";
+
+/* No comment provided by engineer. */
+"Move Sounds" = "Move Sounds";
+
 /* Name of the default catrobat project (used as filename!!) */
-"My first project" = "dự án đầu tiên của tôi";
+"My first project" = "My first project";
+
+/* Default title of imported photo from camera (taken by camera) */
+"My Image" = "Hình ảnh của tôi";
 
 /* Title for first (default) object */
 "My Object" = "Đối tượng của tôi";
 
 /* No comment provided by engineer. */
+"Name" = "Tên";
+
+/* No comment provided by engineer. */
+"Name already exists." = "Name already exists.";
+
+/* No comment provided by engineer. */
 "New" = "Mới";
+
+/* paint */
+"New Canvas" = "Phông mới";
+
+/* No comment provided by engineer. */
+"New List" = "Danh sách mới";
+
+/* No comment provided by engineer. */
+"New Message" = "Tin nhắn mới";
+
+/* No comment provided by engineer. */
+"New Project" = "New Project";
+
+/* No comment provided by engineer. */
+"New Text" = "Văn bản mới";
 
 /* No comment provided by engineer. */
 "New Variable" = "Biến mới";
+
+/* No comment provided by engineer. */
+"New..." = "Mới...";
+
+/* No comment provided by engineer. */
+"Newest" = "Mới nhất";
 
 /* No comment provided by engineer. */
 "Next background" = "Nền tiếp theo";
@@ -176,16 +974,184 @@
 "No" = "Không";
 
 /* No comment provided by engineer. */
+"No Camera available" = "Máy ảnh không có sẵn";
+
+/* No comment provided by engineer. */
+"No Description available" = "Mô tả không có sẵn";
+
+/* No comment provided by engineer. */
+"No input. Please enter at least %lu character(s)." = "No input. Please enter at least %lu character(s).";
+
+/* No comment provided by engineer. */
+"No or invalid image name entered, try again." = "Tên hình ảnh nhập vào không có hoặc không hợp lệ, hãy thử lại một lần nữa.";
+
+/* No comment provided by engineer. */
+"No or invalid sound name entered, try again." = "Tên âm thanh nhập vào không có hoặc không hợp lệ, hãy thử lại một lần nữa.";
+
+/* No comment provided by engineer. */
+"No search results" = "Không có kết quả tìm kiếm";
+
+/* No comment provided by engineer. */
+"No whitespace character allowed" = "No whitespace character allowed";
+
+/* No comment provided by engineer. */
+"not" = "không";
+
+/* No comment provided by engineer. */
+"not available. Continue anyway?" = "not available. Continue anyway?";
+
+/* No comment provided by engineer. */
+"Not Connected to a WiFi network, please connect to one or change the settings to download also with mobile data." = "Not Connected to a WiFi network, please connect to one or change the settings to download also with mobile data.";
+
+/* No comment provided by engineer. */
+"Not enough free memory to download this project. Please delete some of your projects" = "Not enough free memory to download this project. Please delete some of your projects";
+
+/* No comment provided by engineer. */
+"Not enough Memory" = "Không đủ bộ nhớ";
+
+/* No comment provided by engineer. */
+"Note" = "Lưu ý";
+
+/* paint */
+"Nothing to crop!" = "Không có gì để cắt!";
+
+/* No comment provided by engineer. */
+"Nov" = "Th. 11";
+
+/* No comment provided by engineer. */
+"November" = "Tháng 11";
+
+/* No comment provided by engineer. */
+"number_of_items" = "số_các_mục";
+
+/* No comment provided by engineer. */
+"Numbers" = "Số điện thoại";
+
+/* No comment provided by engineer. */
 "Object" = "Đối tượng";
+
+/* No comment provided by engineer. */
+"Object lists:" = "Object lists:";
 
 /* No comment provided by engineer. */
 "Object name" = "Tên đối tượng";
 
 /* No comment provided by engineer. */
+"Object variables:" = "Đối tượng biến:";
+
+/* No comment provided by engineer. */
 "Objects" = "Các đối tượng";
 
 /* No comment provided by engineer. */
+"Oct" = "Th. 10";
+
+/* No comment provided by engineer. */
+"October" = "Tháng 10";
+
+/* No comment provided by engineer. */
+"off" = "off";
+
+/* No comment provided by engineer. */
 "OK" = "Đồng ý";
+
+/* No comment provided by engineer. */
+"on" = "on";
+
+/* No comment provided by engineer. */
+"only 15 characters allowed" = "chỉ có 15 ký tự được cho phép";
+
+/* No comment provided by engineer. */
+"Only space is not allowed. Please enter at least %lu other character(s)." = "Không được phép để trống. Vui lòng nhập tối thiểu %lu kí tự(s).";
+
+/* No comment provided by engineer. */
+"Only special characters are not allowed. Please enter at least %lu other character(s)." = "Only special characters are not allowed. Please enter at least %lu other character(s).";
+
+/* No comment provided by engineer. */
+"Open" = "Open";
+
+/* No comment provided by engineer. */
+"or" = "hoặc";
+
+/* No comment provided by engineer. */
+"Password" = "Mật khẩu";
+
+/* No comment provided by engineer. */
+"Password is not vaild! \n It has to contain at least 6 characters/symbols" = "Mật khẩu không hợp lệ! Phải chứa ít nhất 6 ký tự/biểu tượng";
+
+/* No comment provided by engineer. */
+"Passwords do not match" = "Passwords do not match";
+
+/* No comment provided by engineer. */
+"Phiro" = "Phiro";
+
+/* No comment provided by engineer. */
+"phiro_bottom_left" = "phiro_bottom_left";
+
+/* No comment provided by engineer. */
+"phiro_bottom_right" = "phiro_bottom_right";
+
+/* No comment provided by engineer. */
+"phiro_front_left" = "phiro_front_left";
+
+/* No comment provided by engineer. */
+"phiro_front_right" = "phiro_front_right";
+
+/* No comment provided by engineer. */
+"phiro_side_left" = "phiro_side_left";
+
+/* No comment provided by engineer. */
+"phiro_side_right" = "phiro_side_right";
+
+/* paint */
+"Pipette" = "Pipette";
+
+/* No comment provided by engineer. */
+"Place at " = "Đặt tại ";
+
+/* No comment provided by engineer. */
+"Play Phiro music\n" = "Play Phiro music\n";
+
+/* No comment provided by engineer. */
+"Please choose another name:" = "Please choose another name:";
+
+/* paint */
+"Please enter a text!" = "Please enter a text!";
+
+/* No comment provided by engineer. */
+"Please log in to report this project as inappropriate" = "Please log in to report this project as inappropriate";
+
+/* paint */
+"Please pick a tool" = "Please pick a tool";
+
+/* No comment provided by engineer. */
+"Please select a project to upload" = "Please select a project to upload";
+
+/* bluetooth */
+"Please try resetting the device and try again." = "Please try resetting the device and try again.";
+
+/* No comment provided by engineer. */
+"Pocket Code" = "Pocket Code";
+
+/* No comment provided by engineer. */
+"Pocket Code for iOS" = "Pocket Code cho iOS";
+
+/* No comment provided by engineer. */
+"Pocket Code has been started in debug mode." = "Pocket Code đã bắt đầu chế độ sửa lỗi.";
+
+/* No comment provided by engineer. */
+"Pocket Code has no access to your camera. To permit access, tap settings and activate camera. Your drawing will automatically be saved to PocketCode for you." = "Pocket Code không có quyền truy cập vào máy ảnh của bạn. Để cho phép truy cập, bấm vào cài đặt và kích hoạt máy ảnh. Bản vẽ của bạn sẽ tự động được lưu vào PocketCode cho bạn.";
+
+/* No comment provided by engineer. */
+"Pocket Code has no access to your images. To permit access, tap settings and activate images. Your drawing will automatically be saved to PocketCode for you." = "Pocket Code không có quyền truy cập vào máy ảnh của bạn. Để cho phép truy cập, bấm vào cài đặt và kích hoạt máy ảnh. Bản vẽ của bạn sẽ tự động được lưu vào PocketCode cho bạn.";
+
+/* No comment provided by engineer. */
+"Pocket Code has no access to your microphone. To permit access, tap settings and activate microphone." = "Pocket Code has no access to your microphone. To permit access, tap settings and activate microphone.";
+
+/* No comment provided by engineer. */
+"Pocket Code is a programming environment for iOS for the visual programming language Catrobat. The code of Pocket Code is mostly under GNU AGPL v3 licence. For further information to the licence please visit following links:" = "Pocket Code là một môi trường lập trình cho iOS dùng cho ngôn ngữ lập trình ảo Catrobat. Mã của Pocket Code theo giấy phép GNU AGPL v3. Để biết thêm thông tin để giấy phép xin vui lòng truy cập liên kết sau:";
+
+/* No comment provided by engineer. */
+"Pocket Code let's you play great games and run other fantastic apps like for instance presentations, quizzes and so on." = "Pocket Code giúp bạn chơi những trò chơi thú vị và chạy các ứng dụng tuyệt vời khác ví dụ như các bài thuyết trình, câu đố và vân vân.";
 
 /* No comment provided by engineer. */
 "Pocket Code Recorder" = "Pocket Code ghi âm";
@@ -193,32 +1159,245 @@
 /* No comment provided by engineer. */
 "Pocket Code Source Code License" = "Giấy phép mã nguồn Pocket Code";
 
-/* No comment provided by engineer. */
-"Project name" = "Tên dự án";
+/* paint */
+"Pocket Paint" = "Pocket Paint";
 
 /* No comment provided by engineer. */
-"Projects" = "dự án";
+"Point in direction" = "Điểm theo hướng";
+
+/* No comment provided by engineer. */
+"Point towards" = "Điểm hướng tới";
+
+/* paint */
+"Pointer" = "Pointer";
+
+/* No comment provided by engineer. */
+"position_x" = "vị trí_x";
+
+/* No comment provided by engineer. */
+"position_y" = "vị trí_y";
+
+/* No comment provided by engineer. */
+"Preview" = "Preview";
+
+/* No comment provided by engineer. */
+"Previous background" = "Previous background";
+
+/* No comment provided by engineer. */
+"Previous look" = "Previous look";
+
+/* No comment provided by engineer. */
+"Privacy Settings" = "Privacy Settings";
+
+/* No comment provided by engineer. */
+"Problems occured while uploading your project" = "Problems occured while uploading your project";
+
+/* No comment provided by engineer. */
+"Project" = "Dự án";
+
+/* No comment provided by engineer. */
+"Project lists:" = "Project lists:";
+
+/* No comment provided by engineer. */
+"Project name" = "Project name";
+
+/* No comment provided by engineer. */
+"Project Name is necessary!" = "Project Name is necessary!";
+
+/* No comment provided by engineer. */
+"Project variables:" = "Project variables:";
+
+/* No comment provided by engineer. */
+"Projects" = "Projects";
+
+/* No comment provided by engineer. */
+"Rate Us" = "Đánh giá chúng tôi";
+
+/* No comment provided by engineer. */
+"RE" = "RE";
+
+/* No comment provided by engineer. */
+"Recording" = "Đang ghi";
+
+/* paint */
+"Rectangle / Square" = "Rectangle / Square";
+
+/* paint */
+"Red" = "Đỏ";
+
+/* No comment provided by engineer. */
+"Register" = "Đăng Ký";
+
+/* No comment provided by engineer. */
+"Registration successful" = "Đăng ký thành công";
+
+/* No comment provided by engineer. */
+"Remove known devices" = "Remove known devices";
 
 /* No comment provided by engineer. */
 "Rename" = "Đổi Tên";
 
 /* No comment provided by engineer. */
-"Rename Project" = "Đổi tên dự án";
+"Rename image" = "Đổi tên hình ảnh";
+
+/* No comment provided by engineer. */
+"Rename object" = "Đổi tên đối tượng";
+
+/* No comment provided by engineer. */
+"Rename Project" = "Rename Project";
+
+/* No comment provided by engineer. */
+"Rename sound" = "Đổi tên âm thanh";
+
+/* No comment provided by engineer. */
+"Repeat" = "Lặp lại";
+
+/* No comment provided by engineer. */
+"Repeat until" = "Repeat until";
+
+/* No comment provided by engineer. */
+"Replace item in list" = "Thay thế các khoản mục trong danh sách";
+
+/* No comment provided by engineer. */
+"Report as inappropriate" = "Báo cáo không hợp lệ";
+
+/* paint */
+"Resize" = "Resize";
 
 /* No comment provided by engineer. */
 "Restart" = "Khởi động lại";
+
+/* No comment provided by engineer. */
+"Result" = "Kết quả";
+
+/* No comment provided by engineer. */
+"Right" = "Phải";
+
+/* paint */
+"Rotate" = "Xoay";
 
 /* paint */
 "round" = "vòng";
 
 /* No comment provided by engineer. */
+"Sa" = "T7";
+
+/* No comment provided by engineer. */
+"Saturday" = "Thứ bẩy";
+
+/* paint */
+"Save to CameraRoll" = "Lưu vào CameraRoll";
+
+/* No comment provided by engineer. */
+"Save to PocketCode" = "Lưu vào PocketCode";
+
+/* No comment provided by engineer. */
+"Saved" = "Đã lưu";
+
+/* No comment provided by engineer. */
+"Say" = "Say";
+
+/* No comment provided by engineer. */
+"screen_is_touched" = "screen_is_touched";
+
+/* No comment provided by engineer. */
+"screen_touch_x" = "screen_touch_x";
+
+/* No comment provided by engineer. */
+"screen_touch_y" = "screen_touch_y";
+
+/* No comment provided by engineer. */
+"Script" = "Script";
+
+/* No comment provided by engineer. */
 "Scripts" = "Các kịch bản";
+
+/* bluetooth */
+"Search" = "Tìm kiếm";
+
+/* No comment provided by engineer. */
+"second" = "second";
+
+/* No comment provided by engineer. */
+"second " = "second ";
+
+/* No comment provided by engineer. */
+"seconds" = "giây";
+
+/* No comment provided by engineer. */
+"seconds " = "giây ";
+
+/* No comment provided by engineer. */
+"Select All" = "Chọn tất cả";
+
+/* bluetooth */
+"Select Arduino" = "Select Arduino";
+
+/* No comment provided by engineer. */
+"Select Brick Category" = "Chọn thể loại gạch";
+
+/* No comment provided by engineer. */
+"Select logical operator" = "Chọn toán tử hợp lý";
+
+/* No comment provided by engineer. */
+"Select mathematical function" = "Chọn hàm toán học";
+
+/* paint */
+"Select option:" = "Lựa chọn:";
+
+/* bluetooth */
+"Select Phiro" = "Select Phiro";
 
 /* No comment provided by engineer. */
 "Sensors" = "Cảm biến";
 
 /* No comment provided by engineer. */
+"Sep" = "Th 9";
+
+/* No comment provided by engineer. */
+"September" = "Tháng chín";
+
+/* No comment provided by engineer. */
+"Server is taking to long to respond, please try again later." = "Server is taking to long to respond, please try again later.";
+
+/* No comment provided by engineer. */
+"Set Arduino digital pin" = "Set Arduino digital pin";
+
+/* No comment provided by engineer. */
+"Set Arduino PWM~ pin" = "Set Arduino PWM~ pin";
+
+/* No comment provided by engineer. */
+"Set background" = "Thiết lập nền";
+
+/* No comment provided by engineer. */
+"Set brightness " = "Thiết lập độ sáng ";
+
+/* No comment provided by engineer. */
+"Set color " = "Set color ";
+
+/* No comment provided by engineer. */
 "Set description" = "Thiết lập mô tả";
+
+/* No comment provided by engineer. */
+"Set Phiro light" = "Thiết lập Phiro ánh sáng";
+
+/* No comment provided by engineer. */
+"Set size to" = "Đặt kích cỡ để";
+
+/* No comment provided by engineer. */
+"Set transparency " = "Đặt chế độ trong suốt ";
+
+/* No comment provided by engineer. */
+"Set variable" = "Đặt biến";
+
+/* No comment provided by engineer. */
+"Set volume to" = "Thiết lập âm lượng để";
+
+/* No comment provided by engineer. */
+"Set X to " = "Thiết lập X tới ";
+
+/* No comment provided by engineer. */
+"Set Y to " = "Thiết lập Y tới ";
 
 /* No comment provided by engineer. */
 "Settings" = "Cài đặt";
@@ -230,16 +1409,154 @@
 "Show Details" = "Hiển thị thông tin chi tiết";
 
 /* No comment provided by engineer. */
+"Show variable" = "Hiển thị các biến";
+
+/* No comment provided by engineer. */
 "size" = "kích thước";
+
+/* No comment provided by engineer. */
+"Size" = "Kích cỡ";
+
+/* No comment provided by engineer. */
+"Skip" = "Bỏ qua";
+
+/* No comment provided by engineer. */
+"SO" = "SO";
 
 /* No comment provided by engineer. */
 "Sound" = "Âm thanh";
 
 /* No comment provided by engineer. */
+"Sound name" = "Tên tệp âm thanh";
+
+/* No comment provided by engineer. */
 "Sounds" = "Âm thanh";
 
 /* No comment provided by engineer. */
+"Speak" = "Nói chuyện";
+
+/* No comment provided by engineer. */
+"Speed" = "Tốc độ";
+
+/* No comment provided by engineer. */
+"sqrt" = "sqrt";
+
+/* paint */
+"square" = "bình phương";
+
+/* paint */
+"Stamp" = "Con dấu";
+
+/* paint */
+"Stamped" = "Đóng dấu";
+
+/* No comment provided by engineer. */
+"Start sound" = "Bắt đầu âm thanh";
+
+/* No comment provided by engineer. */
+"step" = "step";
+
+/* No comment provided by engineer. */
+"steps" = "bước";
+
+/* No comment provided by engineer. */
 "Stop all sounds" = "Ngừng tất cả âm thanh";
+
+/* No comment provided by engineer. */
+"Stop Phiro motor" = "Ngừng động cơ Phiro";
+
+/* No comment provided by engineer. */
+"Su" = "Cn";
+
+/* No comment provided by engineer. */
+"Sunday" = "Chủ nhật";
+
+/* No comment provided by engineer. */
+"Switch to look" = "Chuyển sang xem xét";
+
+/* No comment provided by engineer. */
+"Syntax Error!" = "Lỗi cú pháp!";
+
+/* No comment provided by engineer. */
+"Tap \"+\" to add %@" = "Bấm vào \"+\" để thêm %@";
+
+/* Button title at the settings screen to get to the terms of use and services. */
+"Terms of Use and Services" = "Terms of Use and Services";
+
+/* paint */
+"Text" = "Text";
+
+/* No comment provided by engineer. */
+"Text message:" = "Tin nhắn văn bản:";
+
+/* paint */
+"Text:" = "Text:";
+
+/* No comment provided by engineer. */
+"Th" = "T5";
+
+/* No comment provided by engineer. */
+"The description contains invalid characters, try again." = "Mô tả chứa kí tự không hợp lệ, hãy thử lại.";
+
+/* No comment provided by engineer. */
+"The featured projects cannot be loaded" = "The featured projects cannot be loaded";
+
+/* No comment provided by engineer. */
+"The following item could not be imported from the Media Library:" = "The following item could not be imported from the Media Library:";
+
+/* No comment provided by engineer. */
+"The input is too long. Please enter maximal %lu character(s)." = "The input is too long. Please enter maximal %lu character(s).";
+
+/* No comment provided by engineer. */
+"The name contains blocked characters. Please try again!" = "The name contains blocked characters. Please try again!";
+
+/* No comment provided by engineer. */
+"The recent projects cannot be loaded" = "The recent projects cannot be loaded";
+
+/* No comment provided by engineer. */
+"The requested project can not be found. Please choose a different one." = "The requested project can not be found. Please choose a different one.";
+
+/* No comment provided by engineer. */
+"The requested project can not be loaded. Please try again later." = "The requested project can not be loaded. Please try again later.";
+
+/* No comment provided by engineer. */
+"The sound item cannot be loaded" = "The sound item cannot be loaded";
+
+/* No comment provided by engineer. */
+"The sound item cannot be played" = "The sound item cannot be played";
+
+/* No comment provided by engineer. */
+"Think" = "Think";
+
+/* No comment provided by engineer. */
+"This action can not be undone!" = "Hành động này không thể không hoàn thành!";
+
+/* No comment provided by engineer. */
+"This feature is coming soon!" = "Tính năng này sẽ được cập nhật sớm!";
+
+/* No comment provided by engineer. */
+"This variable can not be deleted because it is still in use." = "Không thể xóa biến này bởi vì nó vẫn còn trong sử dụng.";
+
+/* No comment provided by engineer. */
+"Thursday" = "Thứ năm";
+
+/* No comment provided by engineer. */
+"TI" = "TI";
+
+/* No comment provided by engineer. */
+"time" = "time";
+
+/* No comment provided by engineer. */
+"times" = "lần";
+
+/* No comment provided by engineer. */
+"to" = "đến";
+
+/* No comment provided by engineer. */
+"to list" = "vào danh sách";
+
+/* No comment provided by engineer. */
+"to X:" = "để X:";
 
 /* No comment provided by engineer. */
 "Today" = "Hôm nay";
@@ -248,22 +1565,190 @@
 "transparency" = "Độ trong suốt";
 
 /* No comment provided by engineer. */
+"true" = "Đúng";
+
+/* No comment provided by engineer. */
+"Tu" = "T3";
+
+/* No comment provided by engineer. */
+"Tuesday" = "Thứ ba";
+
+/* No comment provided by engineer. */
+"Turn camera" = "Turn camera";
+
+/* No comment provided by engineer. */
+"Turn flashlight" = "Turn flashlight";
+
+/* No comment provided by engineer. */
+"Turn left" = "Rẽ Trái";
+
+/* No comment provided by engineer. */
+"Turn right" = "Rẽ Phải";
+
+/* No comment provided by engineer. */
+"Unable to load project!" = "Unable to load project!";
+
+/* No comment provided by engineer. */
+"Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt." = "Không thể phát âm thanh đó! Có lẽ là vì không có âm thanh hợp lệ hoặc tập tin bị hỏng.";
+
+/* No comment provided by engineer. */
+"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the left side of your iPhone and tap on play again." = "Không thể phát âm thanh đã chọn. Điện thoại đang ở chế độ im lặng. Xin vui lòng tắt chế độ im lặng bằng cách ấn vào các phím bên trái iPhone của bạn và nhấp vào chơi một lần nữa.";
+
+/* No comment provided by engineer. */
+"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again." = "Không thể phát âm thanh đã chọn. Điện thoại đang ở chế độ im lặng. Xin vui lòng tắt chế độ im lặng bằng cách ấn vào các phím bên trái iPhone của bạn và nhấp vào chơi một lần nữa.";
+
+/* paint */
+"underline" = "underline";
+
+/* Button title of alert view to invoke undo if user shakes device */
+"Undo" = "Phục hồi";
+
+/* Description text in alert view if user shakes the device */
+"Undo Drawing?" = "Vẽ lại?";
+
+/* Description text in alert view if user shakes the device */
+"Undo Typing?" = "Nhập lại?";
+
+/* No comment provided by engineer. */
+"Unexpected Error" = "Unexpected Error";
+
+/* No comment provided by engineer. */
+"Unexpected Error, please try again later." = "Unexpected Error, please try again later.";
+
+/* No comment provided by engineer. */
+"Unknown Element" = "Unknown Element";
+
+/* No comment provided by engineer. */
+"Unselect All" = "Bỏ chọn tất cả";
+
+/* No comment provided by engineer. */
+"Unsupported Brick:" = "Unsupported Brick:";
+
+/* No comment provided by engineer. */
+"Unsupported Elements" = "Unsupported Elements";
+
+/* No comment provided by engineer. */
+"Unsupported Script:" = "Unsupported Script:";
+
+/* No comment provided by engineer. */
 "Upload" = "Tải lên";
+
+/* No comment provided by engineer. */
+"Upload Project" = "Upload Project";
+
+/* No comment provided by engineer. */
+"Upload selected project" = "Upload selected project";
 
 /* No comment provided by engineer. */
 "Upload successful" = "Tải lên thành công";
 
 /* No comment provided by engineer. */
+"Uploaded" = "Đã tải lên";
+
+/* No comment provided by engineer. */
+"Use Arduino bricks" = "Use Arduino bricks";
+
+/* No comment provided by engineer. */
+"Use camera" = "Use camera";
+
+/* No comment provided by engineer. */
+"Use Phiro bricks" = "Use Phiro bricks";
+
+/* No comment provided by engineer. */
+"Username" = "Tên đăng nhập";
+
+/* No comment provided by engineer. */
+"Username must not be blank" = "Tên người dùng không được để trống";
+
+/* No comment provided by engineer. */
+"Var/List" = "Var/List";
+
+/* No comment provided by engineer. */
+"Variable" = "Biến";
+
+/* No comment provided by engineer. */
+"Variable name:" = "Tên biến:";
+
+/* No comment provided by engineer. */
+"Variable or List" = "Variable or List";
+
+/* No comment provided by engineer. */
+"Variable type" = "Loại biến";
+
+/* No comment provided by engineer. */
 "Variables" = "Các biến số";
 
 /* No comment provided by engineer. */
-"When project started" = "Khi dự án bắt đầu";
+"Version" = "Phiên bản";
+
+/* No comment provided by engineer. */
+"Vibrate for" = "Rung";
+
+/* No comment provided by engineer. */
+"vibration" = "vibration";
+
+/* No comment provided by engineer. */
+"Views" = "Lượt xem";
+
+/* No comment provided by engineer. */
+"Wait" = "Đợi";
+
+/* No comment provided by engineer. */
+"Wait until" = "Wait until";
+
+/* No comment provided by engineer. */
+"We" = "T4";
+
+/* No comment provided by engineer. */
+"Wednesday" = "Thứ Tư";
+
+/* No comment provided by engineer. */
+"weekday" = "weekday";
+
+/* No comment provided by engineer. */
+"Welcome to Pocket Code" = "Chào mừng đến với Pocket Code";
+
+/* No comment provided by engineer. */
+"When project started" = "When project started";
+
+/* No comment provided by engineer. */
+"When screen is touched" = "When screen is touched";
 
 /* No comment provided by engineer. */
 "When tapped" = "Khi nhấp";
+
+/* No comment provided by engineer. */
+"When you receive" = "When you receive";
+
+/* paint */
+"Width selection" = "Width selection";
+
+/* No comment provided by engineer. */
+"with" = "với";
+
+/* No comment provided by engineer. */
+"X: " = "X: ";
+
+/* No comment provided by engineer. */
+"Y: " = "Y: ";
+
+/* No comment provided by engineer. */
+"year" = "year";
 
 /* No comment provided by engineer. */
 "Yes" = "Có";
 
 /* No comment provided by engineer. */
 "Yesterday" = "Hôm qua";
+
+/* No comment provided by engineer. */
+"You are also able to build your own apps, remix existing ones and share them with your friends and other exciting people around the world." = "You are also able to build your own apps, remix existing ones and share them with your friends and other exciting people around the world.";
+
+/* No comment provided by engineer. */
+"You have already downloaded this project!" = "You have already downloaded this project!";
+
+/* No comment provided by engineer. */
+"Your email seems to be invalid" = "Email của bạn có vẻ là không hợp lệ";
+
+/* paint */
+"Zoom" = "Phóng to";

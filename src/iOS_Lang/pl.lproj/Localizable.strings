@@ -1,14 +1,17 @@
 /* No comment provided by engineer. */
-"A message with the same name already exists, try again." = "A message with the same name already exists, try again.";
+"A message with the same name already exists, try again." = "Wiadomość o tej samej nazwie już istnieje, spróbuj ponownie.";
 
 /* No comment provided by engineer. */
-"A program with the same name already exists, try again." = "Program o tej samej nazwie już istnieje, spróbuj ponownie.";
+"A project with the same name already exists, try again." = "A project with the same name already exists, try again.";
 
 /* No comment provided by engineer. */
 "About Catrobat" = "O Catrobat";
 
 /* No comment provided by engineer. */
 "About Pocket Code" = "O Pocket Code";
+
+/* No comment provided by engineer. */
+"acceleration-sensor" = "czujnik przyspieszenia";
 
 /* No comment provided by engineer. */
 "acceleration_x" = "przyspieszenie_x";
@@ -20,7 +23,10 @@
 "acceleration_z" = "przyspieszenie_z";
 
 /* No comment provided by engineer. */
-"add comment here..." = "add comment here...";
+"Add" = "Dodaj";
+
+/* No comment provided by engineer. */
+"add comment here..." = "tutaj dodaj komentarz...";
 
 /* No comment provided by engineer. */
 "Add image" = "Dodaj obraz";
@@ -34,8 +40,17 @@
 /* Action sheet menu title */
 "Add sound" = "Dodaj dźwięk";
 
+/* No comment provided by engineer. */
+"All Bluetooth devices successfully disconnected" = "Wszystkie urządzenia Bluetooth pomyślnie rozłączono";
+
+/* No comment provided by engineer. */
+"All known Bluetooth devices successfully removed" = "Wszystkie znane urządzenia Bluetooth pomyślnie usunięto";
+
 /* paint */
 "Alpha" = "Alfa";
+
+/* No comment provided by engineer. */
+"altitude" = "wysokość npm";
 
 /* No comment provided by engineer. */
 "An image with the same name already exists, try again." = "Obraz o tej samej nazwie już istnieje, spróbuj ponownie.";
@@ -44,10 +59,19 @@
 "An object with the same name already exists, try again." = "Obiekt o tej samej nazwie już istnieje, spróbuj ponownie.";
 
 /* No comment provided by engineer. */
-"and" = "and";
+"An unknown error occurred. Check your Internet connection." = "Wystąpił nieznany błąd. Sprawdź połączenie z Internetem.";
 
 /* No comment provided by engineer. */
-"Animate Brick" = "Animuj blok";
+"An unknown error occurred. Please try again later." = "Wystąpił nieznany błąd. Spróbuj ponownie później.";
+
+/* No comment provided by engineer. */
+"and" = "i";
+
+/* No comment provided by engineer. */
+"and wait" = "i czekaj";
+
+/* No comment provided by engineer. */
+"Animate Brick-Parts" = "Animuj bloki";
 
 /* No comment provided by engineer. */
 "Apr" = "kwi";
@@ -56,16 +80,40 @@
 "April" = "kwiecień";
 
 /* No comment provided by engineer. */
+"Arduino" = "Arduino";
+
+/* No comment provided by engineer. */
+"arduino_analog" = "arduino_analogowe";
+
+/* No comment provided by engineer. */
+"arduino_digital" = "arduino_cyfrowe";
+
+/* No comment provided by engineer. */
+"at " = "w ";
+
+/* No comment provided by engineer. */
+"at position" = "na pozycji";
+
+/* paint */
+"Attributes:" = "Atrybuty:";
+
+/* No comment provided by engineer. */
 "Aug" = "sie";
 
 /* No comment provided by engineer. */
 "August" = "sierpień";
 
 /* No comment provided by engineer. */
+"Authentication failed" = "Uwierzytelnianie nie powiodło się";
+
+/* No comment provided by engineer. */
 "Author" = "Autor";
 
 /* Title of icon shown in the side bar to enable or disable an overlayed view to show the origin of the coordinate system and implicitly the display size. */
-"Axes" = "Axes";
+"Axes" = "Osie";
+
+/* No comment provided by engineer. */
+"back" = "powrót";
 
 /* No comment provided by engineer. */
 "Back" = "Wstecz";
@@ -74,10 +122,28 @@
 "Background" = "Tło";
 
 /* No comment provided by engineer. */
+"background_name" = "nazwa_tła";
+
+/* No comment provided by engineer. */
+"background_number" = "numer_tła";
+
+/* No comment provided by engineer. */
 "Backgrounds" = "Tła";
 
 /* paint */
-"Blue" = "Niebieski (Blue)";
+"Blue" = "Niebieski";
+
+/* No comment provided by engineer. */
+"Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings." = "Bluetooth jest niedostępny. Urządzenie nie obsługuje Bluetooth 4.0 albo Twój chip Bluetooth jest uszkodzony. Proszę sprawdzić go przez połączenia z innym urządzeniem Bluetooth w Ustawieniach.";
+
+/* No comment provided by engineer. */
+"Bluetooth is turned off. Please turn it on to connect to a Bluetooth device." = "Bluetooth jest wyłączony. Włącz go, aby połączyć się z urządzeniem Bluetooth.";
+
+/* paint */
+"bold" = "pogrubiony";
+
+/* No comment provided by engineer. */
+"Both" = "Obydwa";
 
 /* No comment provided by engineer. */
 "Bricks" = "Bloki";
@@ -86,31 +152,61 @@
 "brightness" = "jasność";
 
 /* No comment provided by engineer. */
-"Broadcast and wait\n%@" = "Nadaj i czekaj\n%@";
+"Broadcast" = "Transmisja";
 
 /* No comment provided by engineer. */
-"Broadcast\n%@" = "Nadaj\n%@";
+"Broadcast and wait" = "Nadaj i czekaj";
 
 /* paint */
-"brush" = "pędzel";
+"Brush" = "Pędzel";
 
 /* No comment provided by engineer. */
-"By registering you agree to our" = "By registering you agree to our";
+"by" = "przez";
 
 /* No comment provided by engineer. */
-"By switching to the section \"Explore\" you can discover much more interesting stuff." = "Po przejściu do sekcji \"Eksploruj\" możesz odkryć o wiele więcej ciekawych rzeczy.";
+"By registering you agree to our" = "Rejestrując się, zgadzasz się na nasze";
+
+/* No comment provided by engineer. */
+"By switching to the section \"Explore\" you can discover more interesting projects from people all over the world." = "By switching to the section \"Explore\" you can discover more interesting projects from people all over the world.";
 
 /* No comment provided by engineer. */
 "Camera Roll" = "Galeria";
 
 /* No comment provided by engineer. */
-"Can't restart program!" = "Nie można ponownie uruchomić programu!";
+"Can't restart project!" = "Can't restart project!";
 
 /* No comment provided by engineer. */
 "Cancel" = "Anuluj";
 
+/* bluetooth */
+"Cannot connect to device, please try resetting the device and try again." = "Nie można połączyć się z urządzeniem, Proszę, zresetuj urządzenie i spróbuj ponownie.";
+
+/* bluetooth */
+"Cannot connect to device. The device is not responding." = "Nie można połączyć się z urządzeniem. Urządzenie nie odpowiada.";
+
+/* No comment provided by engineer. */
+"Cannot connect to the Media Library. Please check your Internet connection." = "Nie można połączyć się z Biblioteką. Sprawdź połączenie z Internetem.";
+
 /* No comment provided by engineer. */
 "Categories" = "Kategorie";
+
+/* No comment provided by engineer. */
+"ceil" = "sufit";
+
+/* No comment provided by engineer. */
+"Change brightness " = "Zmień jasność ";
+
+/* No comment provided by engineer. */
+"Change color " = "Zmień kolor ";
+
+/* No comment provided by engineer. */
+"Change size by" = "Zmień rozmiar o";
+
+/* No comment provided by engineer. */
+"Change transparency " = "Zmień przezroczystość ";
+
+/* No comment provided by engineer. */
+"Change variable" = "Zmień zmienną";
 
 /* No comment provided by engineer. */
 "Change volume by" = "Zmień głośność o";
@@ -128,10 +224,10 @@
 "Changes saved!" = "Zmiany zapisane!";
 
 /* No comment provided by engineer. */
-"Choose image" = "Wybierz obraz";
+"Choose" = "Wybierz";
 
 /* No comment provided by engineer. */
-"Choose sound" = "Wybierz dźwięk";
+"Choose image" = "Wybierz obraz";
 
 /* No comment provided by engineer. */
 "Clear graphic effects" = "Wyczyść efekty graficzne";
@@ -140,10 +236,13 @@
 "Close" = "Zamknij";
 
 /* paint */
-"Close Paint" = "Close Paint";
+"Close Paint" = "Zamknij Paint";
 
 /* No comment provided by engineer. */
-"compass" = "compass";
+"color" = "kolor";
+
+/* No comment provided by engineer. */
+"compass" = "kompas";
 
 /* No comment provided by engineer. */
 "Compute" = "Oblicz";
@@ -158,6 +257,21 @@
 "Computed result is TRUE" = "Wynik obliczenia to PRAWDA";
 
 /* No comment provided by engineer. */
+"Confirm Password" = "Potwierdź hasło";
+
+/* bluetooth */
+"Connection failed" = "Połączenie nie powiodło się";
+
+/* bluetooth */
+"Connection Lost" = "Utracono połączenie";
+
+/* bluetooth */
+"Connection not possible" = "Połączenie nie jest możliwe";
+
+/* No comment provided by engineer. */
+"contains" = "zawiera";
+
+/* No comment provided by engineer. */
 "Continue" = "Kontynuuj";
 
 /* No comment provided by engineer. */
@@ -170,10 +284,22 @@
 "Copy Brick" = "Kopiuj blok";
 
 /* No comment provided by engineer. */
-"Copy program" = "Kopiuj program";
+"Copy Looks" = "Kopiuj wyglądy";
 
 /* No comment provided by engineer. */
-"Debug mode" = "Debug mode";
+"Copy project" = "Copy project";
+
+/* No comment provided by engineer. */
+"Create & Remix" = "Tworzenie & Remiksowanie";
+
+/* No comment provided by engineer. */
+"Create account" = "Utwórz konto";
+
+/* No comment provided by engineer. */
+"day" = "dzień";
+
+/* No comment provided by engineer. */
+"Debug mode" = "Tryb debugowania";
 
 /* No comment provided by engineer. */
 "Dec" = "gru";
@@ -182,28 +308,37 @@
 "December" = "grudzień";
 
 /* No comment provided by engineer. */
+"degrees" = "stopni";
+
+/* No comment provided by engineer. */
 "Delete" = "Usuń";
+
+/* No comment provided by engineer. */
+"Delete Backgrounds" = "Usuń tła";
 
 /* No comment provided by engineer. */
 "Delete Brick" = "Usuń blok";
 
 /* No comment provided by engineer. */
-"Delete Condition" = "Delete Condition";
+"Delete Condition" = "Usuń warunek";
+
+/* No comment provided by engineer. */
+"Delete item from list" = "Usuń element z listy";
 
 /* No comment provided by engineer. */
 "Delete Looks" = "Usuń wyglądy";
 
 /* No comment provided by engineer. */
-"Delete Loop" = "Delete Loop";
+"Delete Loop" = "Usuń pętlę";
 
 /* No comment provided by engineer. */
 "Delete Objects" = "Usuń obiekty";
 
 /* No comment provided by engineer. */
-"Delete Program" = "Delete Program";
+"Delete Project" = "Delete Project";
 
 /* No comment provided by engineer. */
-"Delete Programs" = "Usuń programy";
+"Delete Projects" = "Delete Projects";
 
 /* No comment provided by engineer. */
 "Delete Script" = "Usuń skrypt";
@@ -212,43 +347,46 @@
 "Delete Sounds" = "Usuń dźwięki";
 
 /* No comment provided by engineer. */
-"Delete these Bricks?" = "Delete these Bricks?";
+"Delete these Bricks?" = "Usunąć te bloki?";
 
 /* No comment provided by engineer. */
-"Delete these Conditions?" = "Delete these Conditions?";
+"Delete these Conditions?" = "Usunąć te warunki?";
 
 /* No comment provided by engineer. */
-"Delete these Loops?" = "Delete these Loops?";
+"Delete these Loops?" = "Usunąć te pętle?";
 
 /* No comment provided by engineer. */
-"Delete these Scripts?" = "Delete these Scripts?";
+"Delete these Scripts?" = "Usunąć te skrypty?";
 
 /* No comment provided by engineer. */
-"Delete this Brick?" = "Delete this Brick?";
+"Delete this background" = "Usuń to tło";
 
 /* No comment provided by engineer. */
-"Delete this Condition?" = "Delete this Condition?";
+"Delete this Brick?" = "Usunąć ten blok?";
+
+/* No comment provided by engineer. */
+"Delete this Condition?" = "Usunąć ten warunek?";
 
 /* No comment provided by engineer. */
 "Delete this look" = "Skasować ten kostium";
 
 /* No comment provided by engineer. */
-"Delete this Loop?" = "Delete this Loop?";
+"Delete this Loop?" = "Usunąć tę pętlę?";
 
 /* No comment provided by engineer. */
 "Delete this object" = "Usunąć ten obiekt";
 
 /* No comment provided by engineer. */
-"Delete this project" = "Usunąć ten program";
+"Delete this project" = "Delete this project";
 
 /* No comment provided by engineer. */
-"Delete this Script?" = "Delete this Script?";
+"Delete this Script?" = "Usunąć ten skrypt?";
 
 /* No comment provided by engineer. */
 "Delete this sound" = "Usunąć ten dźwięk";
 
 /* No comment provided by engineer. */
-"Deletion Mode" = "Deletion Mode";
+"Deletion Mode" = "Tryb usuwania";
 
 /* No comment provided by engineer. */
 "Description" = "Opis";
@@ -256,8 +394,20 @@
 /* No comment provided by engineer. */
 "Details" = "Szczegóły";
 
+/* bluetooth */
+"Device disconnected." = "Urządzenie odłączone.";
+
+/* No comment provided by engineer. */
+"device motion-sensor" = "czujnik ruchu urządzenia";
+
 /* No comment provided by engineer. */
 "direction" = "kierunek";
+
+/* No comment provided by engineer. */
+"Disconnect all devices" = "Odłącz wszystkie urządzenia";
+
+/* No comment provided by engineer. */
+"DO" = "DO";
 
 /* paint */
 "Do you really want to delete the current drawing?" = "Czy naprawdę chcesz usunąć bieżący rysunek?";
@@ -272,7 +422,7 @@
 "Download" = "Pobieranie";
 
 /* No comment provided by engineer. */
-"Download sucessful" = "Download sucessful";
+"Download sucessful" = "Pobieranie zakończone powodzeniem";
 
 /* No comment provided by engineer. */
 "Downloads" = "Pobrane";
@@ -281,7 +431,19 @@
 "Draw new image" = "Narysuj nowy obraz";
 
 /* No comment provided by engineer. */
+"Duration" = "Czas trwania";
+
+/* No comment provided by engineer. */
 "Edit" = "Edytuj";
+
+/* Action sheet menu title */
+"Edit Background" = "Edytuj tło";
+
+/* Action sheet menu title */
+"Edit Backgrounds" = "Edytuj tła";
+
+/* Action sheet menu title */
+"Edit Brick" = "Edytuj blok";
 
 /* No comment provided by engineer. */
 "Edit Formula" = "Edytuj formułę";
@@ -296,10 +458,13 @@
 "Edit Object" = "Edycja obiektu";
 
 /* No comment provided by engineer. */
-"Edit Program" = "Edytuj program";
+"Edit Project" = "Edit Project";
 
 /* No comment provided by engineer. */
-"Edit Programs" = "Edytuj programy";
+"Edit Projects" = "Edit Projects";
+
+/* Action sheet menu title */
+"Edit Script" = "Edytuj skrypt";
 
 /* Action sheet menu title */
 "Edit Sound" = "Edycja dźwięku";
@@ -307,17 +472,20 @@
 /* Action sheet menu title */
 "Edit Sounds" = "Edycja dźwięków";
 
+/* No comment provided by engineer. */
+"element" = "element";
+
 /* paint */
-"ellipse / circle" = "elipsa / koło";
+"Ellipse / Circle" = "Elipsa / koło";
 
 /* No comment provided by engineer. */
 "Else" = "W przeciwnym razie";
 
 /* No comment provided by engineer. */
-"Email" = "Email";
+"Email" = "Adres e-mail";
 
 /* No comment provided by engineer. */
-"Email is not valid!" = "Email is not valid!";
+"Empty input!" = "Empty input!";
 
 /* No comment provided by engineer. */
 "End If" = "Koniec Jeżeli";
@@ -325,32 +493,41 @@
 /* No comment provided by engineer. */
 "End of Loop" = "Koniec pętli";
 
+/* No comment provided by engineer. */
+"Enter a reason" = "Podaj powód";
+
 /* Placeholder for add image-name input field */
 "Enter your image name here..." = "Wpisz nazwę obrazu tutaj...";
 
+/* Placeholder for list input field */
+"Enter your list name here..." = "Wprowadź nazwę listy tutaj...";
+
 /* Placeholder for message input field */
-"Enter your message here..." = "Enter your message here...";
+"Enter your message here..." = "Wpisz tutaj swoją wiadomość...";
 
 /* Placeholder for add object-name input field */
 "Enter your object name here..." = "Wprowadź nazwę obiektu tutaj...";
 
-/* Placeholder for program-description input field */
-"Enter your program description here..." = "Wprowadź swój opis programu tutaj...";
+/* Placeholder for project-description input field */
+"Enter your project description here..." = "Enter your project description here...";
 
-/* Placeholder for program-name input field */
-"Enter your program name here..." = "Wprowadź nazwę programu tutaj...";
+/* Placeholder for project-name input field */
+"Enter your project name here..." = "Enter your project name here...";
 
 /* Placeholder for add sound-name input field */
 "Enter your sound name here..." = "Wprowadź nazwę dźwięku tutaj...";
 
 /* Placeholder for variable input field */
-"Enter your variable name here..." = "Enter your variable name here...";
+"Enter your variable name here..." = "Wprowadź nazwę zmiennej tutaj...";
 
 /* paint */
-"eraser" = "gumka";
+"Eraser" = "Gumka";
 
 /* No comment provided by engineer. */
 "Error" = "Błąd";
+
+/* No comment provided by engineer. */
+"Error saving file" = "Error saving file";
 
 /* No comment provided by engineer. */
 "Explore" = "Przeglądaj";
@@ -359,10 +536,40 @@
 "Explore apps" = "Poznaj aplikacje";
 
 /* No comment provided by engineer. */
-"false" = "false";
+"FA" = "FA";
 
 /* No comment provided by engineer. */
-"Featured Programs" = "Polecane programy";
+"face_detected" = "wykrywanie_twarzy";
+
+/* No comment provided by engineer. */
+"faceposition_x" = "twarz_pozycja_x";
+
+/* No comment provided by engineer. */
+"faceposition_y" = "twarz_pozycja_y";
+
+/* No comment provided by engineer. */
+"facesize" = "rozmiar twarzy";
+
+/* No comment provided by engineer. */
+"Failed to import item" = "Nie można zaimportować elementu";
+
+/* No comment provided by engineer. */
+"Failed to load featured projects" = "Failed to load featured projects";
+
+/* No comment provided by engineer. */
+"Failed to load recent projects" = "Failed to load recent projects";
+
+/* No comment provided by engineer. */
+"Failed to load sound" = "Nie można załadować dźwięku";
+
+/* No comment provided by engineer. */
+"Failed to play sound" = "Nie można odtworzyć dźwięku";
+
+/* No comment provided by engineer. */
+"false" = "fałsz";
+
+/* No comment provided by engineer. */
+"Featured Projects" = "Featured Projects";
 
 /* No comment provided by engineer. */
 "Feb" = "lut";
@@ -371,7 +578,7 @@
 "February" = "luty";
 
 /* paint */
-"fill" = "wypełniaj";
+"Fill" = "Zamaluj";
 
 /* No comment provided by engineer. */
 "Flashlight off" = "Wyłączenie latarki";
@@ -380,10 +587,19 @@
 "Flashlight on" = "Włączenie latarki";
 
 /* No comment provided by engineer. */
-"for all objects" = "for all objects";
+"floor" = "podłoga";
 
 /* No comment provided by engineer. */
-"for this object" = "for this object";
+"Following features used in this project are not compatible with this version of Pocket Code:" = "Following features used in this project are not compatible with this version of Pocket Code:";
+
+/* No comment provided by engineer. */
+"for" = "przez";
+
+/* No comment provided by engineer. */
+"for all objects" = "dla wszystkich obiektów";
+
+/* No comment provided by engineer. */
+"for this object" = "dla tego obiektu";
 
 /* No comment provided by engineer. */
 "Forever" = "Zawsze";
@@ -397,6 +613,9 @@
 /* No comment provided by engineer. */
 "Fr" = "Pt";
 
+/* Title of View where the user can see the frequently used bricks. */
+"Frequently Used" = "Często używane";
+
 /* No comment provided by engineer. */
 "Friday" = "Piątek";
 
@@ -404,10 +623,16 @@
 "From Camera" = "Z aparatu";
 
 /* No comment provided by engineer. */
-"Glide %@ second(s)\nto X: %@ Y: %@" = "Glide %@ second(s)\nto X: %@ Y: %@";
+"front" = "z przodu";
 
 /* No comment provided by engineer. */
-"Go back %@ layer(s)" = "Wróć o %@ warstw";
+"Front camera" = "Przedni aparat";
+
+/* No comment provided by engineer. */
+"Glide" = "Leć";
+
+/* No comment provided by engineer. */
+"Go back" = "Wstecz";
 
 /* No comment provided by engineer. */
 "Go to front" = "Na wierzch";
@@ -416,7 +641,10 @@
 "Green" = "Zielony (Green)";
 
 /* No comment provided by engineer. */
-"Hello !" = "Hello !";
+"gyro-sensor" = "czujnik-żyroskop";
+
+/* No comment provided by engineer. */
+"Hello!" = "Cześć!";
 
 /* No comment provided by engineer. */
 "Help" = "Pomoc";
@@ -428,40 +656,70 @@
 "Hide Details" = "Ukryj szczegóły";
 
 /* No comment provided by engineer. */
-"If %@ is true then" = "Jeżeli %@ to";
+"Hide variable" = "Ukryj zmienną";
+
+/* No comment provided by engineer. */
+"Hmmmm!" = "Hmmmm!";
+
+/* No comment provided by engineer. */
+"hour" = "godzina";
+
+/* No comment provided by engineer. */
+"If" = "Jeżeli";
 
 /* No comment provided by engineer. */
 "If on edge, bounce" = "Jeśli na brzegu, odbij się";
 
 /* paint */
-"image" = "obraz";
+"Image" = "Obrazek";
 
 /* No comment provided by engineer. */
 "Image name" = "Nazwa obrazu";
 
 /* No comment provided by engineer. */
-"Image source not available" = "Image source not available";
+"Image source not available" = "Źródło obrazu nie jest dostępny";
+
+/* Title of prompt shown when a *.catrobat file is imported from a third-party app. */
+"Import File" = "Importuj plik";
 
 /* No comment provided by engineer. */
 "In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation." = "Aby można było używać Pocket Code i inne programy wykonywalne oferowane w projekcie Catrobat, trzeba się zgodzić na  nasze Warunki Użytkowania i ściśle przestrzegać ich w trakcie użytkowania Pocket Code i tych innych programów. Proszę przeczytać ich precyzyjne sformułowania w odsyłaczu poniżej.";
 
 /* No comment provided by engineer. */
-"inclination_x" = "inklinacja_x";
+"inclination_x" = "nachylenie_x";
 
 /* No comment provided by engineer. */
-"inclination_y" = "inklinacja_y";
+"inclination_y" = "nachylenie_y";
 
 /* No comment provided by engineer. */
 "Information" = "Informacje";
 
+/* No comment provided by engineer. */
+"Insert" = "Wstaw";
+
 /* paint */
-"Inserted" = "Inserted";
+"Inserted" = "Dodano";
 
 /* No comment provided by engineer. */
-"Invalid input entered, try again." = "Invalid input entered, try again.";
+"into list" = "do listy";
+
+/* No comment provided by engineer. */
+"Invalid input entered, try again." = "Wprowadzane dane są nieprawidłowe, spróbuj ponownie.";
 
 /* No comment provided by engineer. */
 "Invalid URL given!" = "Podano nieprawidłowy adres URL!";
+
+/* No comment provided by engineer. */
+"iOS." = "iOS.";
+
+/* No comment provided by engineer. */
+"is true" = "jest prawdą";
+
+/* No comment provided by engineer. */
+"is true then" = "to";
+
+/* paint */
+"italic" = "kursywa";
 
 /* No comment provided by engineer. */
 "Jan" = "sty";
@@ -484,11 +742,32 @@
 /* No comment provided by engineer. */
 "June" = "czerwiec";
 
+/* bluetooth */
+"Known devices" = "Znane urządzenia";
+
+/* No comment provided by engineer. */
+"LA" = "LA";
+
 /* No comment provided by engineer. */
 "Last access" = "Ostatni dostęp";
 
 /* No comment provided by engineer. */
+"last_screen_touch_index" = "indeks_ostatniego_dotknięcia_ekranu";
+
+/* No comment provided by engineer. */
+"latitude" = "szerokość geograficzna";
+
+/* No comment provided by engineer. */
 "layer" = "warstwa";
+
+/* No comment provided by engineer. */
+"layers" = "warstw";
+
+/* No comment provided by engineer. */
+"LED" = "LED";
+
+/* No comment provided by engineer. */
+"Left" = "Lewe";
 
 /* No comment provided by engineer. */
 "Length" = "Długość";
@@ -500,10 +779,25 @@
 "letter" = "litera";
 
 /* paint */
-"line" = "linia";
+"Line" = "Linia";
+
+/* No comment provided by engineer. */
+"List name:" = "Nazwa listy:";
+
+/* No comment provided by engineer. */
+"List type" = "Rodzaj listy";
+
+/* No comment provided by engineer. */
+"Lists" = "Listy";
 
 /* No comment provided by engineer. */
 "Loading" = "Ładowanie";
+
+/* No comment provided by engineer. */
+"location" = "lokalizacja";
+
+/* No comment provided by engineer. */
+"location_accuracy" = "dokładność_lokalizacji";
 
 /* No comment provided by engineer. */
 "Logic" = "Logika";
@@ -512,19 +806,37 @@
 "Login" = "Logowanie";
 
 /* No comment provided by engineer. */
-"Login successful" = "Login successful";
+"Login successful" = "Logowanie powiodło się";
 
 /* No comment provided by engineer. */
-"Login/Register" = "Login/Register";
+"Login/Register" = "Zaloguj/Zarejestruj się";
+
+/* No comment provided by engineer. */
+"Logout" = "Wyloguj się";
+
+/* No comment provided by engineer. */
+"longitude" = "długość geograficzna";
+
+/* No comment provided by engineer. */
+"Look" = "wygląd";
 
 /* LOOK */
 "look" = "wygląd";
+
+/* No comment provided by engineer. */
+"look_name" = "nazwa_wyglądu";
+
+/* No comment provided by engineer. */
+"look_number" = "numer_wyglądu";
 
 /* No comment provided by engineer. */
 "Looks" = "Wygląd";
 
 /* No comment provided by engineer. */
 "loudness" = "głośność";
+
+/* No comment provided by engineer. */
+"magnetic-sensor" = "czujnik-magnetyczny";
 
 /* No comment provided by engineer. */
 "Mar" = "mar";
@@ -541,29 +853,44 @@
 /* No comment provided by engineer. */
 "Measure" = "Pomiary";
 
+/* No comment provided by engineer. */
+"Media Library" = "Biblioteka";
+
 /* paint */
 "Menu" = "Menu";
 
 /* No comment provided by engineer. */
-"Message" = "Message";
+"Message" = "Wiadomość";
 
 /* No comment provided by engineer. */
 "message 1" = "komunikat 1";
 
+/* No comment provided by engineer. */
+"MI" = "MI";
+
+/* No comment provided by engineer. */
+"minute" = "minuta";
+
 /* paint */
-"mirror" = "lustro";
+"Mirror" = "Lustro";
 
 /* No comment provided by engineer. */
 "Mo" = "Pn";
 
-/* Prefix of default catrobat program object names (except background object) */
+/* Prefix of default catrobat project object names (except background object) */
 "Mole" = "Kret";
 
 /* No comment provided by engineer. */
 "Monday" = "Poniedziałek";
 
 /* No comment provided by engineer. */
+"month" = "miesiąc";
+
+/* No comment provided by engineer. */
 "More" = "Więcej";
+
+/* No comment provided by engineer. */
+"More information" = "More information";
 
 /* No comment provided by engineer. */
 "Most Downloaded" = "Najczęściej pobierane";
@@ -575,13 +902,28 @@
 "Motion" = "Ruch";
 
 /* No comment provided by engineer. */
-"Move %@ step(s)" = "Przesuń o %@ kroków";
+"Move" = "Przesuń o";
 
 /* No comment provided by engineer. */
 "Move Brick" = "Przenieś blok";
 
-/* Name of the default catrobat program (used as filename!!) */
-"My first project" = "Mój pierwszy program";
+/* No comment provided by engineer. */
+"Move Looks" = "Przenieś wyglądy";
+
+/* No comment provided by engineer. */
+"Move Objects" = "Przenieś obiekty";
+
+/* No comment provided by engineer. */
+"Move Phiro motor backward" = "Phiro silnik do tyłu";
+
+/* No comment provided by engineer. */
+"Move Phiro motor forward" = "Phiro silnik do przodu";
+
+/* No comment provided by engineer. */
+"Move Sounds" = "Przenieś dźwięki";
+
+/* Name of the default catrobat project (used as filename!!) */
+"My first project" = "My first project";
 
 /* Default title of imported photo from camera (taken by camera) */
 "My Image" = "Mój obrazek";
@@ -590,10 +932,10 @@
 "My Object" = "Mój obiekt";
 
 /* No comment provided by engineer. */
-"Name" = "Name";
+"Name" = "Nazwa";
 
 /* No comment provided by engineer. */
-"Name already exists. Please choose another" = "Ta nazwa już istnieje. Proszę wybrać inną";
+"Name already exists." = "Podana nazwa jest już zajęta.";
 
 /* No comment provided by engineer. */
 "New" = "Nowy";
@@ -602,19 +944,22 @@
 "New Canvas" = "Nowe tło";
 
 /* No comment provided by engineer. */
-"New Message" = "New Message";
+"New List" = "Nowa lista";
 
 /* No comment provided by engineer. */
-"New Program" = "Nowy program";
+"New Message" = "Nowa wiadomość";
 
 /* No comment provided by engineer. */
-"New Text" = "New Text";
+"New Project" = "New Project";
+
+/* No comment provided by engineer. */
+"New Text" = "Nowy tekst";
 
 /* No comment provided by engineer. */
 "New Variable" = "Nowa zmienna";
 
 /* No comment provided by engineer. */
-"New..." = "New...";
+"New..." = "Nowy...";
 
 /* No comment provided by engineer. */
 "Newest" = "Najnowsze";
@@ -629,22 +974,13 @@
 "No" = "Nie";
 
 /* No comment provided by engineer. */
-"No Camera available" = "No Camera available";
+"No Camera available" = "Aparat niedostępny";
 
 /* No comment provided by engineer. */
 "No Description available" = "Brak opisu";
 
-/* Title of AlertView if the user tries to import a sound but no sound has been imported using iTunes. */
-"No imported sounds found" = "No imported sounds found";
-
 /* No comment provided by engineer. */
-"No input or the input is too short. Please enter at least %lu character(s)." = "Brak danych wejściowych lub są one zbyt krótkie. Podaj co najmniej %lu znaków.";
-
-/* No comment provided by engineer. */
-"No Internet Connection" = "No Internet Connection";
-
-/* No comment provided by engineer. */
-"No internet connection available." = "Brak połączenia z Internetem.";
+"No input. Please enter at least %lu character(s)." = "Brak danych. Podaj co najmniej %lu znaków.";
 
 /* No comment provided by engineer. */
 "No or invalid image name entered, try again." = "Brak lub niepoprawnie wpisana nazwa obrazu, spróbuj ponownie.";
@@ -656,16 +992,25 @@
 "No search results" = "Brak wyników wyszukiwania";
 
 /* No comment provided by engineer. */
-"not" = "not";
+"No whitespace character allowed" = "Znak spacji jest niedozwolony";
 
 /* No comment provided by engineer. */
-"Not enough free memory to download this project. Please delete some of your programs" = "Za mało wolnej pamięci, aby pobrać ten program. Proszę usunąć niektóre programy";
+"not" = "nie";
+
+/* No comment provided by engineer. */
+"not available. Continue anyway?" = "niedostępne. Czy mimo tego kontynuować?";
+
+/* No comment provided by engineer. */
+"Not Connected to a WiFi network, please connect to one or change the settings to download also with mobile data." = "Nie połączono z siecią WiFi, połącz się z jakąś lub zmień ustawienia, aby pobrać dane mobilnie.";
+
+/* No comment provided by engineer. */
+"Not enough free memory to download this project. Please delete some of your projects" = "Not enough free memory to download this project. Please delete some of your projects";
 
 /* No comment provided by engineer. */
 "Not enough Memory" = "Za mało pamięci";
 
 /* No comment provided by engineer. */
-"Note %@" = "Komentarz %@";
+"Note" = "Komentarz";
 
 /* paint */
 "Nothing to crop!" = "Nie ma nic do przycięcia!";
@@ -677,16 +1022,22 @@
 "November" = "listopad";
 
 /* No comment provided by engineer. */
+"number_of_items" = "liczba_elementów";
+
+/* No comment provided by engineer. */
 "Numbers" = "Liczby";
 
 /* No comment provided by engineer. */
 "Object" = "Obiekt";
 
 /* No comment provided by engineer. */
+"Object lists:" = "Lista Obiektów:";
+
+/* No comment provided by engineer. */
 "Object name" = "Nazwa obiektu";
 
 /* No comment provided by engineer. */
-"Object variables:" = "Object variables:";
+"Object variables:" = "Zmienne obiektu:";
 
 /* No comment provided by engineer. */
 "Objects" = "Obiekty";
@@ -698,40 +1049,85 @@
 "October" = "październik";
 
 /* No comment provided by engineer. */
+"off" = "wyłącz";
+
+/* No comment provided by engineer. */
 "OK" = "OK";
+
+/* No comment provided by engineer. */
+"on" = "włącz";
 
 /* No comment provided by engineer. */
 "only 15 characters allowed" = "tylko 15 znaków dozwolonych";
 
 /* No comment provided by engineer. */
-"Only space is not allowed. Please enter at least %lu other character(s)." = "Only space is not allowed. Please enter at least %lu other character(s).";
+"Only space is not allowed. Please enter at least %lu other character(s)." = "Sama spacja nie jest dozwolona. Podaj co najmniej %lu inne znaki.";
 
 /* No comment provided by engineer. */
-"or" = "or";
+"Only special characters are not allowed. Please enter at least %lu other character(s)." = "Same znaki specjalne są niedozwolone. Podaj co najmniej %lu inne znaki.";
+
+/* No comment provided by engineer. */
+"Open" = "Otwórz";
+
+/* No comment provided by engineer. */
+"or" = "lub";
 
 /* No comment provided by engineer. */
 "Password" = "Hasło";
 
 /* No comment provided by engineer. */
-"Password is not vaild! \n It has to contain at least 6 characters/symbols" = "Password is not vaild! \n It has to contain at least 6 characters/symbols";
+"Password is not vaild! \n It has to contain at least 6 characters/symbols" = "Hasło nieprawidłowe! Musi zawierać co najmniej 6 znaków/symboli";
+
+/* No comment provided by engineer. */
+"Passwords do not match" = "Hasła nie pasują";
+
+/* No comment provided by engineer. */
+"Phiro" = "Phiro";
+
+/* No comment provided by engineer. */
+"phiro_bottom_left" = "phiro_dół_lewy";
+
+/* No comment provided by engineer. */
+"phiro_bottom_right" = "phiro_dół_prawy";
+
+/* No comment provided by engineer. */
+"phiro_front_left" = "phiro_przód_lewy";
+
+/* No comment provided by engineer. */
+"phiro_front_right" = "phiro_przód_prawy";
+
+/* No comment provided by engineer. */
+"phiro_side_left" = "phiro_bok_lewy";
+
+/* No comment provided by engineer. */
+"phiro_side_right" = "phiro_bok_prawy";
 
 /* paint */
-"pipette" = "pipeta";
+"Pipette" = "Pipeta";
 
 /* No comment provided by engineer. */
-"Play" = "Graj";
+"Place at " = "Idź do ";
 
-/* Description of AlertView if the user tries to import a sound but no sound has been imported using iTunes. */
-"Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app." = "Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app.";
+/* No comment provided by engineer. */
+"Play Phiro music\n" = "Graj muzykę Phiro\n";
+
+/* No comment provided by engineer. */
+"Please choose another name:" = "Wybierz inną nazwę:";
 
 /* paint */
-"Please pick an item" = "Proszę wybrać element";
+"Please enter a text!" = "Proszę wprowadzić tekst!";
 
 /* No comment provided by engineer. */
-"Please register below" = "Please register below";
+"Please log in to report this project as inappropriate" = "Please log in to report this project as inappropriate";
+
+/* paint */
+"Please pick a tool" = "Proszę wybrać narzędzie";
 
 /* No comment provided by engineer. */
-"Please select a program to upload" = "Please select a program to upload";
+"Please select a project to upload" = "Please select a project to upload";
+
+/* bluetooth */
+"Please try resetting the device and try again." = "Zresetuj, proszę, urządzenie i spróbuj ponownie.";
 
 /* No comment provided by engineer. */
 "Pocket Code" = "Pocket Code";
@@ -740,13 +1136,16 @@
 "Pocket Code for iOS" = "Pocket Code dla iOS";
 
 /* No comment provided by engineer. */
-"Pocket Code has been started in debug mode." = "Pocket Code has been started in debug mode.";
+"Pocket Code has been started in debug mode." = "Pocket Code został uruchomiony w trybie debugowania.";
 
 /* No comment provided by engineer. */
-"Pocket Code has no access to your camera. To permit access, tap settings and activate camera. Your drawing will automatically be saved to PocketCode for you." = "Pocket Code has no access to your camera. To permit access, tap settings and activate camera. Your drawing will automatically be saved to PocketCode for you.";
+"Pocket Code has no access to your camera. To permit access, tap settings and activate camera. Your drawing will automatically be saved to PocketCode for you." = "Pocket Code ma nie ma dostępu do Twojej kamery. Aby zezwolić na dostęp, wybierz Ustawienia i aktywuj aparat. Rysunek zostanie automatycznie zapisany do PocketCode dla Ciebie.";
 
 /* No comment provided by engineer. */
-"Pocket Code has no access to your images. To permit access, tap settings and activate images. Your drawing will automatically be saved to PocketCode for you." = "Pocket Code has no access to your images. To permit access, tap settings and activate images. Your drawing will automatically be saved to PocketCode for you.";
+"Pocket Code has no access to your images. To permit access, tap settings and activate images. Your drawing will automatically be saved to PocketCode for you." = "Pocket Code ma nie ma dostępu do Twoich obrazów. Aby zezwolić na dostęp, wybierz Ustawienia i aktywuj obrazy. Rysunek zostanie automatycznie zapisany do PocketCode dla Ciebie.";
+
+/* No comment provided by engineer. */
+"Pocket Code has no access to your microphone. To permit access, tap settings and activate microphone." = "Pocket Code nie ma dostępu do mikrofonu. Aby zezwolić na dostęp, naciśnij ustawienia i włącz mikrofon.";
 
 /* No comment provided by engineer. */
 "Pocket Code is a programming environment for iOS for the visual programming language Catrobat. The code of Pocket Code is mostly under GNU AGPL v3 licence. For further information to the licence please visit following links:" = "Pocket Code jest środowiskiem programowania iOS dla wizualnego języka programowania Catrobat. Kod Pocket Code jest udostępniany na licencji  GNU AGPL v3. Więcej informacji o licencji znajduje się pod następującymi adresami:";
@@ -764,58 +1163,76 @@
 "Pocket Paint" = "Pocket Paint";
 
 /* No comment provided by engineer. */
-"Point in direction %@°" = "Ustaw kierunek na %@°";
+"Point in direction" = "Ustaw kierunek";
 
 /* No comment provided by engineer. */
-"Point towards\n%@" = "Ustaw w stronę\n%@";
+"Point towards" = "Ustaw w stronę";
 
 /* paint */
-"pointer" = "wskaźnik";
+"Pointer" = "Wskaźnik";
 
 /* No comment provided by engineer. */
-"pos_x" = "pos_x";
+"position_x" = "pozycja_x";
 
 /* No comment provided by engineer. */
-"pos_y" = "pos_y";
+"position_y" = "pozycja_y";
+
+/* No comment provided by engineer. */
+"Preview" = "Podgląd";
+
+/* No comment provided by engineer. */
+"Previous background" = "Poprzednie tło";
+
+/* No comment provided by engineer. */
+"Previous look" = "Poprzedni wygląd";
+
+/* No comment provided by engineer. */
+"Privacy Settings" = "Ustawienia prywatności";
 
 /* No comment provided by engineer. */
 "Problems occured while uploading your project" = "Problems occured while uploading your project";
 
 /* No comment provided by engineer. */
-"Program name" = "Nazwa programu";
-
-/* No comment provided by engineer. */
-"Program Name is necessary!" = "Program Name is necessary!";
-
-/* No comment provided by engineer. */
-"Program variables:" = "Program variables:";
-
-/* No comment provided by engineer. */
-"Programs" = "Programy";
-
-/* No comment provided by engineer. */
 "Project" = "Projekt";
+
+/* No comment provided by engineer. */
+"Project lists:" = "Project lists:";
+
+/* No comment provided by engineer. */
+"Project name" = "Project name";
+
+/* No comment provided by engineer. */
+"Project Name is necessary!" = "Project Name is necessary!";
+
+/* No comment provided by engineer. */
+"Project variables:" = "Project variables:";
+
+/* No comment provided by engineer. */
+"Projects" = "Projects";
 
 /* No comment provided by engineer. */
 "Rate Us" = "Oceń nas";
 
-/* Title of View where the user can see the recently used bricks. */
-"Recently Used" = "Recently Used";
+/* No comment provided by engineer. */
+"RE" = "RE";
 
 /* No comment provided by engineer. */
 "Recording" = "Nagranie";
 
 /* paint */
-"rectangle / square" = "prostokąt / kwadrat";
+"Rectangle / Square" = "Prostokąt / Kwadrat";
 
 /* paint */
 "Red" = "Czerwony (Red)";
 
 /* No comment provided by engineer. */
-"Register" = "Register";
+"Register" = "Zarejestruj się";
 
 /* No comment provided by engineer. */
-"Registration successful" = "Registration successful";
+"Registration successful" = "Rejestracja zakończona";
+
+/* No comment provided by engineer. */
+"Remove known devices" = "Usuń znane urządzenia";
 
 /* No comment provided by engineer. */
 "Rename" = "Zmień nazwę";
@@ -827,19 +1244,25 @@
 "Rename object" = "Zmień nazwę obiektu";
 
 /* No comment provided by engineer. */
-"Rename Program" = "Zmień nazwę programu";
+"Rename Project" = "Rename Project";
 
 /* No comment provided by engineer. */
 "Rename sound" = "Zmień nazwę dźwięku";
 
 /* No comment provided by engineer. */
-"Repeat %@ times" = "Powtórz %@ razy";
+"Repeat" = "Powtórz";
+
+/* No comment provided by engineer. */
+"Repeat until" = "Powtarzaj aż";
+
+/* No comment provided by engineer. */
+"Replace item in list" = "Zastąp element listy";
 
 /* No comment provided by engineer. */
 "Report as inappropriate" = "Zgłoś jako niewłaściwe";
 
 /* paint */
-"resize" = "resize";
+"Resize" = "Rozmiar";
 
 /* No comment provided by engineer. */
 "Restart" = "Uruchom ponownie";
@@ -847,8 +1270,11 @@
 /* No comment provided by engineer. */
 "Result" = "Wynik";
 
+/* No comment provided by engineer. */
+"Right" = "Prawe";
+
 /* paint */
-"rotate" = "obróć";
+"Rotate" = "Obróć";
 
 /* paint */
 "round" = "zaokrąglij";
@@ -869,19 +1295,43 @@
 "Saved" = "Zapisane";
 
 /* No comment provided by engineer. */
-"Screenshot" = "Zrzut ekranu";
+"Say" = "Powiedz";
 
 /* No comment provided by engineer. */
-"Screenshot saved to Camera Roll" = "Zrzut ekranu zapisany do galerii";
+"screen_is_touched" = "dotknięto_ekran";
 
 /* No comment provided by engineer. */
-"Screenshot saved to project" = "Zrzut zapisany w projekcie";
+"screen_touch_x" = "x_dotknięcia_ekranu";
+
+/* No comment provided by engineer. */
+"screen_touch_y" = "y_dotknięcia_ekranu";
+
+/* No comment provided by engineer. */
+"Script" = "Skrypt";
 
 /* No comment provided by engineer. */
 "Scripts" = "Skrypty";
 
+/* bluetooth */
+"Search" = "Szukaj";
+
+/* No comment provided by engineer. */
+"second" = "sekunda";
+
+/* No comment provided by engineer. */
+"second " = "sek. ";
+
+/* No comment provided by engineer. */
+"seconds" = "sek.";
+
+/* No comment provided by engineer. */
+"seconds " = "sek. ";
+
 /* No comment provided by engineer. */
 "Select All" = "Wybierz wszystko";
+
+/* bluetooth */
+"Select Arduino" = "Wybierz Arduino";
 
 /* No comment provided by engineer. */
 "Select Brick Category" = "Wybierz kategorię bloków";
@@ -895,6 +1345,9 @@
 /* paint */
 "Select option:" = "Wybierz opcję:";
 
+/* bluetooth */
+"Select Phiro" = "Wybierz Phiro";
+
 /* No comment provided by engineer. */
 "Sensors" = "Czujniki";
 
@@ -905,16 +1358,46 @@
 "September" = "wrzesień";
 
 /* No comment provided by engineer. */
-"Set background" = "Zmień tło na";
+"Server is taking to long to respond, please try again later." = "Za długo zajmuje odpowiedź od serwera, proszę spróbuj ponownie później.";
+
+/* No comment provided by engineer. */
+"Set Arduino digital pin" = "Ustaw cyfrowe wyjście";
+
+/* No comment provided by engineer. */
+"Set Arduino PWM~ pin" = "Ustaw analogowe wyjście";
+
+/* No comment provided by engineer. */
+"Set background" = "Ustaw tło";
+
+/* No comment provided by engineer. */
+"Set brightness " = "Ustaw jasność ";
+
+/* No comment provided by engineer. */
+"Set color " = "Ustaw kolor ";
 
 /* No comment provided by engineer. */
 "Set description" = "Wprowadź opis";
 
 /* No comment provided by engineer. */
-"Set X to %@" = "Ustaw X na %@";
+"Set Phiro light" = "Ustaw światło Phiro";
 
 /* No comment provided by engineer. */
-"Set Y to %@" = "Ustaw Y na %@";
+"Set size to" = "Ustaw rozmiar na";
+
+/* No comment provided by engineer. */
+"Set transparency " = "Ustaw przezroczystość ";
+
+/* No comment provided by engineer. */
+"Set variable" = "Ustaw zmienną";
+
+/* No comment provided by engineer. */
+"Set volume to" = "Ustaw głośność na";
+
+/* No comment provided by engineer. */
+"Set X to " = "Ustaw X na ";
+
+/* No comment provided by engineer. */
+"Set Y to " = "Ustaw Y na ";
 
 /* No comment provided by engineer. */
 "Settings" = "Ustawienia";
@@ -926,6 +1409,9 @@
 "Show Details" = "Pokaż szczegóły";
 
 /* No comment provided by engineer. */
+"Show variable" = "Pokaż zmienną";
+
+/* No comment provided by engineer. */
 "size" = "rozmiar";
 
 /* No comment provided by engineer. */
@@ -935,7 +1421,7 @@
 "Skip" = "Pomiń";
 
 /* No comment provided by engineer. */
-"Slow Internet Connection!" = "Powolne połączenie z Internetem!";
+"SO" = "SOL";
 
 /* No comment provided by engineer. */
 "Sound" = "Dźwięk";
@@ -947,7 +1433,10 @@
 "Sounds" = "Dźwięki";
 
 /* No comment provided by engineer. */
-"Speak %@" = "Mów %@";
+"Speak" = "Powiedz";
+
+/* No comment provided by engineer. */
+"Speed" = "Szybkość";
 
 /* No comment provided by engineer. */
 "sqrt" = "pierwiastek kwadratowy";
@@ -956,16 +1445,25 @@
 "square" = "kwadrat";
 
 /* paint */
-"stamp" = "stempel";
+"Stamp" = "Stempluj";
 
 /* paint */
-"Stamped" = "Stamped";
+"Stamped" = "Stempluj";
 
 /* No comment provided by engineer. */
-"Start sound\n%@" = "Zagraj dźwięk\n%@";
+"Start sound" = "Zagraj dźwięk";
+
+/* No comment provided by engineer. */
+"step" = "krok";
+
+/* No comment provided by engineer. */
+"steps" = "kroków";
 
 /* No comment provided by engineer. */
 "Stop all sounds" = "Zatrzymaj wszystkie dźwięki";
+
+/* No comment provided by engineer. */
+"Stop Phiro motor" = "Zatrzymaj silnik Phiro";
 
 /* No comment provided by engineer. */
 "Su" = "Nd";
@@ -974,22 +1472,25 @@
 "Sunday" = "Niedziela";
 
 /* No comment provided by engineer. */
-"Switch to look\n%@" = "Zmień kostium na\n%@";
+"Switch to look" = "Zmień wygląd na";
 
 /* No comment provided by engineer. */
 "Syntax Error!" = "Błąd składni!";
 
 /* No comment provided by engineer. */
-"Take" = "Weź";
-
-/* No comment provided by engineer. */
 "Tap \"+\" to add %@" = "Naciśnij \"+\" aby dodać %@";
 
-/* No comment provided by engineer. */
-"Terms of Use" = "Warunki użytkowania";
+/* Button title at the settings screen to get to the terms of use and services. */
+"Terms of Use and Services" = "Warunki użytkowania i korzystania z usługi";
+
+/* paint */
+"Text" = "Tekst";
 
 /* No comment provided by engineer. */
-"Text message:" = "Text message:";
+"Text message:" = "Tekst wiadomości:";
+
+/* paint */
+"Text:" = "Tekst:";
 
 /* No comment provided by engineer. */
 "Th" = "Czw";
@@ -998,16 +1499,64 @@
 "The description contains invalid characters, try again." = "Opis zawiera nieprawidłowe znaki, spróbuj ponownie.";
 
 /* No comment provided by engineer. */
+"The featured projects cannot be loaded" = "The featured projects cannot be loaded";
+
+/* No comment provided by engineer. */
+"The following item could not be imported from the Media Library:" = "Następujący element nie może być pobrany z Biblioteki:";
+
+/* No comment provided by engineer. */
+"The input is too long. Please enter maximal %lu character(s)." = "Tekst jest zbyt długi. Wprowadź maksymalnie %lu znaków.";
+
+/* No comment provided by engineer. */
+"The name contains blocked characters. Please try again!" = "Nazwa zawiera blokowane znaki. Spróbuj ponownie!";
+
+/* No comment provided by engineer. */
+"The recent projects cannot be loaded" = "The recent projects cannot be loaded";
+
+/* No comment provided by engineer. */
+"The requested project can not be found. Please choose a different one." = "The requested project can not be found. Please choose a different one.";
+
+/* No comment provided by engineer. */
+"The requested project can not be loaded. Please try again later." = "The requested project can not be loaded. Please try again later.";
+
+/* No comment provided by engineer. */
+"The sound item cannot be loaded" = "Nie można załadować dźwięku";
+
+/* No comment provided by engineer. */
+"The sound item cannot be played" = "Nie można odtworzyć dźwięku";
+
+/* No comment provided by engineer. */
+"Think" = "Pomyśl";
+
+/* No comment provided by engineer. */
 "This action can not be undone!" = "Tej akcji nie można cofnąć!";
 
 /* No comment provided by engineer. */
 "This feature is coming soon!" = "Ta funkcja będzie dostępna wkrótce!";
 
 /* No comment provided by engineer. */
-"This variable can not be deleted because it is still in use." = "This variable can not be deleted because it is still in use.";
+"This variable can not be deleted because it is still in use." = "Tej zmiennej nie można usunąć, ponieważ jest nadal w użyciu.";
 
 /* No comment provided by engineer. */
 "Thursday" = "Czwartek";
+
+/* No comment provided by engineer. */
+"TI" = "SI";
+
+/* No comment provided by engineer. */
+"time" = "czas";
+
+/* No comment provided by engineer. */
+"times" = "razy";
+
+/* No comment provided by engineer. */
+"to" = "na";
+
+/* No comment provided by engineer. */
+"to list" = "do listy";
+
+/* No comment provided by engineer. */
+"to X:" = "do X:";
 
 /* No comment provided by engineer. */
 "Today" = "Dzisiaj";
@@ -1016,7 +1565,7 @@
 "transparency" = "przezroczystość";
 
 /* No comment provided by engineer. */
-"true" = "true";
+"true" = "prawda";
 
 /* No comment provided by engineer. */
 "Tu" = "Wt";
@@ -1025,13 +1574,19 @@
 "Tuesday" = "Wtorek";
 
 /* No comment provided by engineer. */
-"Turn left %@°" = "Obróć w lewo o %@°";
+"Turn camera" = "Aparat";
 
 /* No comment provided by engineer. */
-"Turn right %@°" = "Obróć w prawo o %@°";
+"Turn flashlight" = "Latarka";
 
 /* No comment provided by engineer. */
-"Unable to load program!" = "Nie można załadować programu!";
+"Turn left" = "Obróć w lewo o";
+
+/* No comment provided by engineer. */
+"Turn right" = "Obróć w prawo o";
+
+/* No comment provided by engineer. */
+"Unable to load project!" = "Unable to load project!";
 
 /* No comment provided by engineer. */
 "Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt." = "Nie można zagrać tego dźwięku! \nMoże jest to nieprawidłowy dźwięk lub plik jest uszkodzony.";
@@ -1042,26 +1597,44 @@
 /* No comment provided by engineer. */
 "Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again." = "Nie można zagrać wybranego dźwięku. Twoje urządzenie jest w trybie wyciszenia. Wyłącz tryb wyciszenia przełącznikiem po prawej stronie iPhone'a i naciśnij ponownie graj.";
 
+/* paint */
+"underline" = "podkreślony";
+
 /* Button title of alert view to invoke undo if user shakes device */
 "Undo" = "Cofnij";
 
 /* Description text in alert view if user shakes the device */
-"Undo Drawing?" = "Undo Drawing?";
+"Undo Drawing?" = "Cofnąć rysowanie?";
 
 /* Description text in alert view if user shakes the device */
-"Undo Typing?" = "Undo Typing?";
+"Undo Typing?" = "Cofnąć wpisywanie?";
+
+/* No comment provided by engineer. */
+"Unexpected Error" = "Nieoczekiwany błąd";
+
+/* No comment provided by engineer. */
+"Unexpected Error, please try again later." = "Nieoczekiwany błąd, spróbuj ponownie później.";
+
+/* No comment provided by engineer. */
+"Unknown Element" = "Nieznany element";
 
 /* No comment provided by engineer. */
 "Unselect All" = "Odznacz wszystko";
 
 /* No comment provided by engineer. */
-"Upcoming version" = "Nadchodząca wersja";
+"Unsupported Brick:" = "Unsupported Brick:";
+
+/* No comment provided by engineer. */
+"Unsupported Elements" = "Unsupported Elements";
+
+/* No comment provided by engineer. */
+"Unsupported Script:" = "Unsupported Script:";
 
 /* No comment provided by engineer. */
 "Upload" = "Wyślij";
 
 /* No comment provided by engineer. */
-"Upload Program" = "Upload Program";
+"Upload Project" = "Upload Project";
 
 /* No comment provided by engineer. */
 "Upload selected project" = "Upload selected project";
@@ -1073,31 +1646,55 @@
 "Uploaded" = "Przesłane";
 
 /* No comment provided by engineer. */
+"Use Arduino bricks" = "Użyj bloków Arduino";
+
+/* No comment provided by engineer. */
+"Use camera" = "Użyj aparatu";
+
+/* No comment provided by engineer. */
+"Use Phiro bricks" = "Użyj bloków Phiro";
+
+/* No comment provided by engineer. */
 "Username" = "Nazwa użytkownika";
 
 /* No comment provided by engineer. */
-"Username is necessary!" = "Username is necessary!";
+"Username must not be blank" = "Nazwa użytkownika nie może być pusta";
+
+/* No comment provided by engineer. */
+"Var/List" = "Zmienna/lista";
+
+/* No comment provided by engineer. */
+"Variable" = "Zmienna";
 
 /* No comment provided by engineer. */
 "Variable name:" = "Nazwa zmiennej:";
 
 /* No comment provided by engineer. */
+"Variable or List" = "Zmienna lub lista";
+
+/* No comment provided by engineer. */
 "Variable type" = "Typ zmiennej";
 
 /* No comment provided by engineer. */
-"Variables" = "Wybrano zmienną";
+"Variables" = "Zmienne";
 
 /* No comment provided by engineer. */
 "Version" = "Wersja";
 
 /* No comment provided by engineer. */
-"Vibrate %@ second(s)" = "Wibruj %@ s";
+"Vibrate for" = "Wibruj przez";
 
 /* No comment provided by engineer. */
-"Views" = "Widoki";
+"vibration" = "wibracje";
 
 /* No comment provided by engineer. */
-"Wait %@ second(s)" = "Czekaj %@ s";
+"Views" = "widoki";
+
+/* No comment provided by engineer. */
+"Wait" = "Czekaj";
+
+/* No comment provided by engineer. */
+"Wait until" = "Poczekaj, aż";
 
 /* No comment provided by engineer. */
 "We" = "Śr";
@@ -1106,22 +1703,37 @@
 "Wednesday" = "Środa";
 
 /* No comment provided by engineer. */
-"Welcome back, please login below" = "Welcome back, please login below";
+"weekday" = "dzień tygodnia";
 
 /* No comment provided by engineer. */
 "Welcome to Pocket Code" = "Witamy w Pocket Code";
 
 /* No comment provided by engineer. */
-"When I receive\n%@" = "Kiedy otrzymam\n%@";
+"When project started" = "When project started";
 
 /* No comment provided by engineer. */
-"When program started" = "Kiedy program startuje";
+"When screen is touched" = "Kiedy dotknięto ekran";
 
 /* No comment provided by engineer. */
 "When tapped" = "Kiedy naciśnięty";
 
+/* No comment provided by engineer. */
+"When you receive" = "Kiedy otrzymasz";
+
 /* paint */
-"Width" = "Width";
+"Width selection" = "Wybór szerokości";
+
+/* No comment provided by engineer. */
+"with" = "na";
+
+/* No comment provided by engineer. */
+"X: " = "X: ";
+
+/* No comment provided by engineer. */
+"Y: " = "Y: ";
+
+/* No comment provided by engineer. */
+"year" = "rok";
 
 /* No comment provided by engineer. */
 "Yes" = "Tak";
@@ -1130,10 +1742,13 @@
 "Yesterday" = "Wczoraj";
 
 /* No comment provided by engineer. */
-"You are also able to build your own apps, edit existing ones and share them with your friends and other exciting people." = "Możesz także budować swoje własne aplikacje, edytować istniejące i dzielić się nimi ze znajomymi i innymi ciekawymi ludźmi.";
+"You are also able to build your own apps, remix existing ones and share them with your friends and other exciting people around the world." = "Możesz także budować swoje własne aplikacje, remiksować istniejące i dzielić się nimi ze znajomymi i innymi ciekawymi ludźmi z całego świata.";
 
 /* No comment provided by engineer. */
-"You have already downloaded this project!" = "Ten program już został pobrany!";
+"You have already downloaded this project!" = "You have already downloaded this project!";
+
+/* No comment provided by engineer. */
+"Your email seems to be invalid" = "Twój e-mail wydaje się być nieprawidłowy";
 
 /* paint */
-"zoom" = "Powiększ";
+"Zoom" = "Powiększ";
