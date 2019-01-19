@@ -22,7 +22,6 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseTableViewController.h"
-#import "UIViewController+CWPopup.h"
 
 @interface ProjectsForUploadViewController : BaseTableViewController
 
