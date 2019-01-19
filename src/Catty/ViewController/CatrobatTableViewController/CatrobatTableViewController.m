@@ -32,7 +32,6 @@
 #import "SegueDefines.h"
 #import "Script.h"
 #import "ProjectTableViewController.h"
-#import "ProjectsForUploadViewController.h"
 #import "LoginViewController.h"
 #import "SettingsTableViewController.h"
 #import "Pocket_Code-Swift.h"
@@ -368,10 +367,6 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
             projectTableViewController.project = self.defaultProject;
             self.defaultProject = nil;
         }
-    } else if ([segue.identifier isEqualToString:kSegueToUpload] && _freshLogin) {
-        ProjectsForUploadViewController *destinationVC = [segue destinationViewController];
-        self.freshLogin = false;
-        destinationVC .showLoginFeedback = true;
     }
 }
 
