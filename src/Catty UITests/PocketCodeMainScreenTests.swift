@@ -155,10 +155,17 @@ class PocketCodeMainScreenTests: XCTestCase, UITestProtocol {
         XCTAssert(app.navigationBars["Explore"].exists)
     }
 
-    func testUpload() {
+    func testUploadRedirectToLogin() {
         let app = XCUIApplication()
-        app.tables.staticTexts["Upload"].tap()
 
+        app.navigationBars.buttons["Item"].tap()
+        if app.tables.staticTexts["Logout"].exists {
+            app.tables.staticTexts["Logout"].tap()
+        } else {
+            app.navigationBars.buttons["Pocket Code"].tap()
+        }
+
+        app.tables.staticTexts["Upload"].tap()
         XCTAssert(app.navigationBars["Login"].exists)
     }
 
