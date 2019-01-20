@@ -25,11 +25,10 @@
 #import "CBFileManager.h"
 #import <TTTAttributedLabel/TTTAttributedLabel.h>
 #import "BaseTableViewController.h"
-#import "UIViewController+CWPopup.h"
 
 @class CatrobatProject;
 
-@interface ProjectDetailStoreViewController : UIViewController<ProjectStoreDelegate, UIScrollViewDelegate, FileManagerDelegate, TTTAttributedLabelDelegate, NSURLConnectionDataDelegate, DismissPopupDelegate,UIGestureRecognizerDelegate>
+@interface ProjectDetailStoreViewController : UIViewController<ProjectStoreDelegate, UIScrollViewDelegate, FileManagerDelegate, TTTAttributedLabelDelegate, NSURLConnectionDataDelegate, UIGestureRecognizerDelegate>
 
 @property (nonatomic, strong) CatrobatProject *project;
 @property (nonatomic, strong) NSMutableDictionary *projects;
