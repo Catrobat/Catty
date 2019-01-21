@@ -474,23 +474,6 @@
     app.networkActivityIndicatorVisible = value;
 }
 
-#pragma mark - popup delegate
-- (BOOL)dismissPopupWithCode:(BOOL)successLogin
-{
-    if (self.popupViewController != nil) {
-        [self dismissPopupViewController];
-        self.navigationItem.leftBarButtonItem.enabled = YES;
-        if (successLogin) {
-            // TODO no trigger because popup is visible
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                [self reportProject];
-            });
-        }
-        return YES;
-    }
-    return NO;
-}
-
 #pragma mark Rotation
 
 -(void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator

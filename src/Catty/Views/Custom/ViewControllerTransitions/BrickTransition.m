@@ -22,12 +22,9 @@
 
 #import "BrickTransition.h"
 #import "ScriptCollectionViewController.h"
-#import "FXBlurView.h"
-
 
 @interface BrickTransition ()
 @property (nonatomic, strong) UIView *animateView;
-@property (nonatomic, strong) FXBlurView *blurView;
 
 @end
 
@@ -65,8 +62,7 @@
                     break;
                 }
             }
-            self.blurView.hidden = NO;
-            
+
             [transitionContext.containerView addSubview:self.animateView];
             [transitionContext.containerView addSubview:toVC.view];
             
@@ -103,13 +99,11 @@
                                 options:UIViewAnimationOptionCurveEaseInOut
                                 animations:^{
                                     animationView.layer.position = posBrickCell;
-                                    weakself.blurView.alpha = 1.0f;
                                     scvc.collectionView.alpha = 0.5f;
                                     scvc.navigationController.toolbar.alpha = 0.01f;
                                     scvc.navigationController.navigationBar.alpha = 0.01f;
                                 } completion:^(BOOL finished) {
                                     [animationView removeFromSuperview];
-                                    weakself.blurView.dynamic = NO;
                                     weakself.animateView.layer.position = posBrickCell;
                                     weakself.animateView.hidden = NO;
                                     [toVC.view addSubview:self.animateView];
@@ -126,7 +120,6 @@
                 }
             }
             
-            self.blurView.dynamic = YES;
             toVC.view.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
             
             CGPoint position = CGPointMake(self.animateView.layer.position.x, _animatedFromPositionY + CGRectGetMidY(self.animateView.bounds));
@@ -140,13 +133,11 @@
                                 options:UIViewAnimationOptionCurveEaseInOut
                              animations:^{
                                  weakself.animateView.layer.position = position;
-                                 weakself.blurView.alpha = 0.0f;
                                  scvc.collectionView.alpha = 1.0f;
                                  scvc.navigationController.toolbar.alpha = 1.0f;
                                  scvc.navigationController.navigationBar.alpha = 1.0f;
                              } completion:^(BOOL finished) {
                                  weakself.animateView.frame = brickCellFrame;
-                                 weakself.blurView.hidden = YES;
                                  [scvc.view addSubview:weakself.animateView];
                                  [scvc.collectionView reloadData];
                                  [transitionContext completeTransition:YES];
@@ -154,18 +145,6 @@
         }
         break;
     }
-}
-
-#pragma mark - Private
-
-- (void)setupBlurViewWithFrame:(CGRect)frame underLayingView:(UIView *)underlayingView
-{
-    self.blurView = [[FXBlurView alloc] initWithFrame:frame];
-    self.blurView.underlyingView = underlayingView;
-    self.blurView.tintColor = [UIColor blackColor];
-    self.blurView.blurRadius = 20.f;
-    self.blurView.updateInterval = 0.2f;
-    self.blurView.layer.opacity = 0.0f;
 }
 
 @end
