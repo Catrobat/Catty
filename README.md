@@ -10,11 +10,12 @@ Catty, also known as **Pocket Code for iOS**, is an on-device visual programming
 Catrobat is a visual programming language and set of creativity tools for smartphones, tablets, and mobile browsers. Catrobat programs can be written by using the Catroid programming system on Android phones and tablets, using Catroid, or Catty for iPhones.
 
 For more information oriented towards developers please visit our [developers page](http://developer.catrobat.org/).
+
+[![Download on the App Store](https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg)](https://catrob.at/PCios)
+
 # Issues #
 
 For reporting issues use our [JIRA Bugtracking System](https://jira.catrob.at/secure/RapidBoard.jspa?rapidView=75). Before, please browse our currently open issues [here](https://jira.catrob.at/secure/IssueNavigator.jspa?reset=true&jqlQuery=project+%3D+IOS+AND+resolution+%3D+Unresolved+ORDER+BY+priority+DESC%2C+key+DESC&mode=hide).
-
-[![Download on the App Store](https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg)](https://catrob.at/PCios)
 
 # Contributing #
 
