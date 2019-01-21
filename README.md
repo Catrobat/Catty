@@ -1,3 +1,7 @@
+![Logo](https://github.com/Catrobat/Catty/raw/master/src/Catty/Images.xcassets/AppIcon.appiconset/Icon-60@2x.png)
+
+![](https://img.shields.io/github/languages/top/catrobat/catty.svg)
+
 Catty
 =====
 
@@ -9,6 +13,8 @@ For more information oriented towards developers please visit our [developers pa
 # Issues #
 
 For reporting issues use our [JIRA Bugtracking System](https://jira.catrob.at/secure/RapidBoard.jspa?rapidView=75). Before, please browse our currently open issues [here](https://jira.catrob.at/secure/IssueNavigator.jspa?reset=true&jqlQuery=project+%3D+IOS+AND+resolution+%3D+Unresolved+ORDER+BY+priority+DESC%2C+key+DESC&mode=hide).
+
+[![Download on the App Store](https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg)](https://catrob.at/PCios)
 
 # Contributing #
 
@@ -41,10 +47,7 @@ We recommend [Developing iOS 11 Apps with Swift](https://itunes.apple.com/us/cou
 
 * Clone this repository, set up the required third-party libraries by executing `make init` within the 'Catty' directory and open [Catty.xcodeproj](src/Catty.xcodeproj)
 
-* If you have any further questions please use our [Google Plus community](http://goo.gl/fOjQi) or [Google Groups](https://groups.google.com/forum/#!forum/catty-ios)
-
-
-
+* If you have any further questions please use our [Google Plus community](https://catrob.at/plus) or [Google Groups](https://groups.google.com/forum/#!forum/catty-ios)
 
 # License
 
