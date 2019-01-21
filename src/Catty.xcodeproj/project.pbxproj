@@ -1688,7 +1688,6 @@
 		4C724E651B4D3EC500E27479 /* CBXMLSerializerContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBXMLSerializerContext.m; sourceTree = "<group>"; };
 		4C72EA3A2108EC3600E7407F /* TouchManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchManagerProtocol.swift; sourceTree = "<group>"; };
 		4C72EA3C2108ED0800E7407F /* TouchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchManager.swift; sourceTree = "<group>"; };
-		4C73A5A220ECB4450073DB52 /* ElementOfListFunction0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ElementOfListFunction0991.xml; path = CattyTests/Resources/ParserTests/ListBricks/ElementOfListFunction0991.xml; sourceTree = SOURCE_ROOT; };
 		4C74BD081DA6476A0079336C /* Pocket Code.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Pocket Code.entitlements"; sourceTree = "<group>"; };
 		4C7A84851DCCE270000F366B /* LedFlashBrick098.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = LedFlashBrick098.xml; sourceTree = "<group>"; };
 		4C7B931E21B6DAC6001C3BA1 /* CBMultiTouchRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBMultiTouchRecognizer.swift; sourceTree = "<group>"; };
@@ -3155,7 +3154,6 @@
 				AAADA0051B9B29D500E0CA9A /* Catty UITests */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				4C72EA302108E9B300E7407F /* Recovered References */,
 			);
 			indentWidth = 4;
 			name = CustomTemplate;
@@ -4253,14 +4251,6 @@
 				4C724E211B4D3E8C00E27479 /* XMLObjectReference.m */,
 			);
 			path = "Old Parser";
-			sourceTree = "<group>";
-		};
-		4C72EA302108E9B300E7407F /* Recovered References */ = {
-			isa = PBXGroup;
-			children = (
-				4C73A5A220ECB4450073DB52 /* ElementOfListFunction0991.xml */,
-			);
-			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		4C7A84811DCCE1F9000F366B /* Unit Tests */ = {

@@ -2056,7 +2056,7 @@
         <!--Upload View Controller-->
         <scene sceneID="7Wf-zA-Ap5">
             <objects>
-                <viewController storyboardIdentifier="UploadController" id="bYj-Ga-eye" customClass="UploadViewController" customModule="Pocket_Code" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UploadController" id="bYj-Ga-eye" customClass="UploadViewController" customModule="Pocket_Code" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="o7B-Ep-T23"/>
                         <viewControllerLayoutGuide type="bottom" id="DdI-Lf-CRN"/>
@@ -2095,8 +2095,11 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b2n-K8-vsP">
-                                <rect key="frame" x="26" y="130" width="323" height="414"/>
+                                <rect key="frame" x="26" y="130" width="323" height="100"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" priority="50" constant="100" id="9rp-UP-moZ"/>
+                                </constraints>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -2104,7 +2107,6 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="DdI-Lf-CRN" firstAttribute="top" secondItem="b2n-K8-vsP" secondAttribute="bottom" constant="10" id="2Yy-ev-xND"/>
                             <constraint firstItem="98z-rG-78H" firstAttribute="leading" secondItem="1yB-9i-wb8" secondAttribute="leadingMargin" constant="10" id="Aek-Zr-O37"/>
                             <constraint firstItem="7N5-oV-GKQ" firstAttribute="leading" secondItem="1yB-9i-wb8" secondAttribute="leadingMargin" constant="10" id="Le0-eg-exx"/>
                             <constraint firstItem="oWZ-Ig-VdA" firstAttribute="top" secondItem="bo1-dY-L01" secondAttribute="bottom" constant="10" id="MOA-06-DyB"/>
