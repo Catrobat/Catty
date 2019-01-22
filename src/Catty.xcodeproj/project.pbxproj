@@ -622,7 +622,6 @@
 		597AB56F202081E8007CD10D /* LibrarySoundCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 597AB56D202081E8007CD10D /* LibrarySoundCollectionViewCell.xib */; };
 		597AB578202089E0007CD10D /* NetworkDefinesSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597AB575202089DF007CD10D /* NetworkDefinesSwift.swift */; };
 		598319931FBB812D00639BBF /* IntroductionPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598319921FBB812D00639BBF /* IntroductionPageViewController.swift */; };
-		598319951FBB813C00639BBF /* Introduction.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 598319941FBB813C00639BBF /* Introduction.storyboard */; };
 		598319991FBB90CB00639BBF /* IntroductionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598319981FBB90CB00639BBF /* IntroductionViewController.swift */; };
 		599E6498202D953F009494B5 /* MediaLibraryDownloader.downloadData.success.json in Resources */ = {isa = PBXBuildFile; fileRef = 599E6497202D953F009494B5 /* MediaLibraryDownloader.downloadData.success.json */; };
 		599E649E202D9F95009494B5 /* URLSessionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599E649D202D9F95009494B5 /* URLSessionMock.swift */; };
@@ -649,6 +648,7 @@
 		5E21DA6821A3E4AF00017D2C /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E21DA6721A3E4AF00017D2C /* UIImage+Extensions.swift */; };
 		5E21DA6F21A5255600017D2C /* UploadInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E21DA6C21A5255500017D2C /* UploadInfoViewController.swift */; };
 		5E21DA7121A5289F00017D2C /* Data+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E21DA7021A5289F00017D2C /* Data+Extensions.swift */; };
+		5E399FE021F6B61400C7E62A /* Introduction.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E399FDF21F6B61400C7E62A /* Introduction.storyboard */; };
 		5E43D71821928053006FDF2A /* SwellAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E43D71721928052006FDF2A /* SwellAll.swift */; };
 		5E7B5B0D21EC0FCF002E4B57 /* HelpWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7B5B0A21EC0FCF002E4B57 /* HelpWebViewController.swift */; };
 		5EA1089421B8FBD200B837B9 /* AVAudioSession+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA1089321B8FBD200B837B9 /* AVAudioSession+Extensions.swift */; };
@@ -1683,7 +1683,6 @@
 		4C724E651B4D3EC500E27479 /* CBXMLSerializerContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBXMLSerializerContext.m; sourceTree = "<group>"; };
 		4C72EA3A2108EC3600E7407F /* TouchManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchManagerProtocol.swift; sourceTree = "<group>"; };
 		4C72EA3C2108ED0800E7407F /* TouchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchManager.swift; sourceTree = "<group>"; };
-		4C73A5A220ECB4450073DB52 /* ElementOfListFunction0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ElementOfListFunction0991.xml; path = CattyTests/Resources/ParserTests/ListBricks/ElementOfListFunction0991.xml; sourceTree = SOURCE_ROOT; };
 		4C74BD081DA6476A0079336C /* Pocket Code.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Pocket Code.entitlements"; sourceTree = "<group>"; };
 		4C7A84851DCCE270000F366B /* LedFlashBrick098.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = LedFlashBrick098.xml; sourceTree = "<group>"; };
 		4C7B931E21B6DAC6001C3BA1 /* CBMultiTouchRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBMultiTouchRecognizer.swift; sourceTree = "<group>"; };
@@ -2025,7 +2024,6 @@
 		597AB56D202081E8007CD10D /* LibrarySoundCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LibrarySoundCollectionViewCell.xib; sourceTree = "<group>"; };
 		597AB575202089DF007CD10D /* NetworkDefinesSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkDefinesSwift.swift; sourceTree = "<group>"; };
 		598319921FBB812D00639BBF /* IntroductionPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroductionPageViewController.swift; sourceTree = "<group>"; };
-		598319941FBB813C00639BBF /* Introduction.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Introduction.storyboard; sourceTree = "<group>"; };
 		598319981FBB90CB00639BBF /* IntroductionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroductionViewController.swift; sourceTree = "<group>"; };
 		599E6497202D953F009494B5 /* MediaLibraryDownloader.downloadData.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MediaLibraryDownloader.downloadData.success.json; sourceTree = "<group>"; };
 		599E649D202D9F95009494B5 /* URLSessionMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionMock.swift; sourceTree = "<group>"; };
@@ -2050,6 +2048,7 @@
 		5E21DA6721A3E4AF00017D2C /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		5E21DA6C21A5255500017D2C /* UploadInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadInfoViewController.swift; sourceTree = "<group>"; };
 		5E21DA7021A5289F00017D2C /* Data+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extensions.swift"; sourceTree = "<group>"; };
+		5E399FDF21F6B61400C7E62A /* Introduction.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Introduction.storyboard; sourceTree = "<group>"; };
 		5E43D71721928052006FDF2A /* SwellAll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwellAll.swift; sourceTree = "<group>"; };
 		5E7B5B0A21EC0FCF002E4B57 /* HelpWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpWebViewController.swift; sourceTree = "<group>"; };
 		5EA1089321B8FBD200B837B9 /* AVAudioSession+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVAudioSession+Extensions.swift"; sourceTree = "<group>"; };
@@ -2063,10 +2062,10 @@
 		811FB6EC1A49812700957E10 /* BrickCategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickCategoryViewController.m; sourceTree = "<group>"; };
 		81C0A67D1A4EE8CF003A77C5 /* BrickSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickSelectionViewController.h; sourceTree = "<group>"; };
 		81C0A67E1A4EE8CF003A77C5 /* BrickSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickSelectionViewController.m; sourceTree = "<group>"; };
-		81C27425189EF94600827A95 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		81C27425189EF94600827A95 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Resources/Images.xcassets; sourceTree = "<group>"; };
 		81D46EA21CC29E3000653EAB /* ShapeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShapeButton.h; sourceTree = "<group>"; };
 		81D46EA31CC29E3000653EAB /* ShapeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShapeButton.m; sourceTree = "<group>"; };
-		8D1107310486CEB800E47090 /* App-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "App-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* App-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "App-Info.plist"; path = "../App-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		91FC8B4C21851D2F18232470 /* AlertControllerBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertControllerBuilder.swift; sourceTree = "<group>"; };
 		91FC8B8C0B21945B560F7272 /* AlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
 		91FC8E53F7F6FEA7225F910E /* BaseAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseAlertController.swift; sourceTree = "<group>"; };
@@ -2950,7 +2949,7 @@
 		CA2D44451B123B7E00A3B53D /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		CA2D44481B1249DD00A3B53D /* CBScheduler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBScheduler.swift; path = PlayerEngine/Scheduler/CBScheduler.swift; sourceTree = "<group>"; };
 		CA2D444E1B1251BF00A3B53D /* CBSchedulingAlgorithms.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBSchedulingAlgorithms.swift; path = PlayerEngine/Scheduler/CBSchedulingAlgorithms.swift; sourceTree = "<group>"; };
-		CA2D8C961AEDDA2100A5BDC2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CA2D8C961AEDDA2100A5BDC2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
 		CA3E72D41B0BA5FF00D6B184 /* Catty-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Catty-Bridging-Header.h"; sourceTree = "<group>"; };
 		CA3E72E71B0C00A500D6B184 /* CBStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBStack.swift; path = 3rdParty/Stack/CBStack.swift; sourceTree = "<group>"; };
 		CA3E72EB1B0C01CD00D6B184 /* LLNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LLNode.swift; path = 3rdParty/LLNode/LLNode.swift; sourceTree = "<group>"; };
@@ -2966,7 +2965,7 @@
 		CAD116E41A46B6B300F560B4 /* GDataXMLElement+CustomExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "GDataXMLElement+CustomExtensions.m"; path = "Catty/Extension&Delegate&Protocol/Extensions/GDataXMLElement/GDataXMLElement+CustomExtensions.m"; sourceTree = SOURCE_ROOT; };
 		CAD740E11AF2D2E800C32937 /* CBStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBStack.h; path = CBStack/CBStack.h; sourceTree = "<group>"; };
 		CAD740E21AF2D2E800C32937 /* CBStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CBStack.m; path = CBStack/CBStack.m; sourceTree = "<group>"; };
-		CAD740E71AF2D42B00C32937 /* CBStackTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBStackTests.m; sourceTree = "<group>"; };
+		CAD740E71AF2D42B00C32937 /* CBStackTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CBStackTests.m; path = CBStack/CBStackTests.m; sourceTree = "<group>"; };
 		CADBD7FB19B0E8C200C62836 /* Pocket Code.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pocket Code.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAE3C79A1B49FABC00AFE9D7 /* CBSequenceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBSequenceProtocol.swift; path = Catty/PlayerEngine/DataModel/CBSequence/CBSequenceProtocol.swift; sourceTree = SOURCE_ROOT; };
 		CAE3C79B1B49FABC00AFE9D7 /* CBSequenceVisitProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBSequenceVisitProtocol.swift; path = Catty/PlayerEngine/DataModel/CBSequence/CBSequenceVisitProtocol.swift; sourceTree = SOURCE_ROOT; };
@@ -3135,32 +3134,32 @@
 			children = (
 				CD0CCE54170CB39600B70036 /* Catty */,
 				92FF32C11A24E33B00093DA7 /* Storyboard+XIB */,
-				29B97315FDCFA39411CA2CEA /* Supporting Files */,
+				29B97315FDCFA39411CA2CEA /* SupportingFiles */,
 				B43498471927A3AB002F9075 /* Resources */,
 				B46B270317703F9400172837 /* CattyTests */,
 				AAADA0051B9B29D500E0CA9A /* Catty UITests */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				4C72EA302108E9B300E7407F /* Recovered References */,
 			);
 			indentWidth = 4;
 			name = CustomTemplate;
 			sourceTree = "<group>";
 			tabWidth = 4;
 		};
-		29B97315FDCFA39411CA2CEA /* Supporting Files */ = {
+		29B97315FDCFA39411CA2CEA /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
 				92300CE818B2196700F2B4DC /* iOS_Lang */,
+				8D1107310486CEB800E47090 /* App-Info.plist */,
 				CA3E72D41B0BA5FF00D6B184 /* Catty-Bridging-Header.h */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 				B4F243CB170EBEF7007A071D /* AppDelegate.h */,
 				B4F243CC170EBEF7007A071D /* AppDelegate.m */,
 				32CA4F630368D1EE00C91783 /* App-Prefix.pch */,
-				8D1107310486CEB800E47090 /* App-Info.plist */,
+				4C74BD081DA6476A0079336C /* Pocket Code.entitlements */,
 			);
-			name = "Supporting Files";
-			path = Catty;
+			name = SupportingFiles;
+			path = Catty/SupportingFiles;
 			sourceTree = "<group>";
 		};
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
@@ -3261,8 +3260,8 @@
 		4C0F9FC4204BD37200E71B2D /* XMLSerializerTests */ = {
 			isa = PBXGroup;
 			children = (
-				4C0F9FC5204BD37200E71B2D /* Unit Tests */,
 				4C0F9FC7204BD37200E71B2D /* BlackBox Tests */,
+				4C0F9FC5204BD37200E71B2D /* Unit Tests */,
 			);
 			path = XMLSerializerTests;
 			sourceTree = "<group>";
@@ -3286,8 +3285,8 @@
 		4C0F9FC9204BD37200E71B2D /* XMLParserTests */ = {
 			isa = PBXGroup;
 			children = (
-				4C0F9FCA204BD37200E71B2D /* Unit Tests */,
 				4C0F9FCC204BD37200E71B2D /* BlackBox Tests */,
+				4C0F9FCA204BD37200E71B2D /* Unit Tests */,
 			);
 			path = XMLParserTests;
 			sourceTree = "<group>";
@@ -3379,8 +3378,7 @@
 				4C6A64B31AF7CC5A00D04559 /* Images */,
 				4C1608A41A09548F002C7032 /* ParserTests */,
 			);
-			name = Resources;
-			path = ../Catty;
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		4C1608A41A09548F002C7032 /* ParserTests */ = {
@@ -3447,7 +3445,7 @@
 			children = (
 				BA651EEC21A319BF00A94D67 /* SpriteObjectMutableCopyTests.swift */,
 			);
-			name = SpriteObject;
+			path = SpriteObject;
 			sourceTree = "<group>";
 		};
 		4C28D7872132A82700870CE2 /* Mock */ = {
@@ -3455,7 +3453,8 @@
 			children = (
 				4C28D78A2132A83D00870CE2 /* FormulaMock.swift */,
 			);
-			path = Mock;
+			name = Mock;
+			path = Formula/Mock;
 			sourceTree = "<group>";
 		};
 		4C2A00C41B5547EB00CD4492 /* Abstract */ = {
@@ -3479,8 +3478,8 @@
 		4C2EE3DB1B5554D7006DE9B8 /* XMLParserTests */ = {
 			isa = PBXGroup;
 			children = (
-				4C2EE3DE1B5554D7006DE9B8 /* Unit Tests */,
 				4C2EE3DC1B5554D7006DE9B8 /* BlackBox Tests */,
+				4C2EE3DE1B5554D7006DE9B8 /* Unit Tests */,
 			);
 			path = XMLParserTests;
 			sourceTree = "<group>";
@@ -3572,8 +3571,8 @@
 		4C3C03F5199BA5250004F594 /* Formula */ = {
 			isa = PBXGroup;
 			children = (
-				4C28D7872132A82700870CE2 /* Mock */,
 				4CC614B3212EA838006E4720 /* Dto */,
+				4C28D7872132A82700870CE2 /* Mock */,
 				4C68FC7C1B25A00B00AB3EE8 /* FormulaElementTest.m */,
 				4C68FC7D1B25A00B00AB3EE8 /* FormulaFunctionsTest.m */,
 				4C68FC7E1B25A00B00AB3EE8 /* FormulaParserErrorDetectionTest.m */,
@@ -3687,12 +3686,13 @@
 		4C595F3A21CAE4FC0097D850 /* Operators */ = {
 			isa = PBXGroup;
 			children = (
-				4C595F5C21CAF8A40097D850 /* Unary */,
 				4C595F5A21CAF82F0097D850 /* Binary */,
 				4C595F3F21CAE5220097D850 /* Protocols */,
+				4C595F5C21CAF8A40097D850 /* Unary */,
 				4C595F5D21CAF8CC0097D850 /* OperatorManager.swift */,
 			);
-			path = Operators;
+			name = Operators;
+			path = PlayerEngine/Operators;
 			sourceTree = "<group>";
 		};
 		4C595F3F21CAE5220097D850 /* Protocols */ = {
@@ -3736,7 +3736,8 @@
 			children = (
 				4C5EF63421A0677E0063D2F0 /* CameraBricks_0991.xml */,
 			);
-			path = CameraBricks;
+			name = CameraBricks;
+			path = ParserTests/CameraBricks;
 			sourceTree = "<group>";
 		};
 		4C6066371A5ACC3100F486CE /* GDataXMLNode+CustomExtensions */ = {
@@ -3783,7 +3784,8 @@
 				4C669E4321CE9B6400563EAD /* Mocks */,
 				4C53E39121D525F800F2EC76 /* OperatorManagerTest.swift */,
 			);
-			path = Operators;
+			name = Operators;
+			path = PlayerEngine/Operators;
 			sourceTree = "<group>";
 		};
 		4C669E4321CE9B6400563EAD /* Mocks */ = {
@@ -4241,14 +4243,6 @@
 			path = "Old Parser";
 			sourceTree = "<group>";
 		};
-		4C72EA302108E9B300E7407F /* Recovered References */ = {
-			isa = PBXGroup;
-			children = (
-				4C73A5A220ECB4450073DB52 /* ElementOfListFunction0991.xml */,
-			);
-			name = "Recovered References";
-			sourceTree = "<group>";
-		};
 		4C7A84811DCCE1F9000F366B /* Unit Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -4581,7 +4575,8 @@
 			children = (
 				4CC614B6212EA84E006E4720 /* FormulaEditorItemTest.swift */,
 			);
-			path = Dto;
+			name = Dto;
+			path = Formula/Dto;
 			sourceTree = "<group>";
 		};
 		4CC614B8212EA8FE006E4720 /* Mocks */ = {
@@ -4672,10 +4667,10 @@
 		4CD194F51A0632AA00484E4F /* XMLParserTests */ = {
 			isa = PBXGroup;
 			children = (
-				CAA4A5371A43BD9E002A69A0 /* Unit Tests */,
 				CAA4A5381A43BDA9002A69A0 /* BlackBox Tests */,
+				CAA4A5371A43BD9E002A69A0 /* Unit Tests */,
 			);
-			name = XMLParserTests;
+			path = XMLParserTests;
 			sourceTree = "<group>";
 		};
 		4CD194F61A0632C600484E4F /* CatrobatLanguage0.93 */ = {
@@ -4684,6 +4679,7 @@
 				4CD194F51A0632AA00484E4F /* XMLParserTests */,
 			);
 			name = CatrobatLanguage0.93;
+			path = "Parser & Serialization/CatrobatLanguage0.93";
 			sourceTree = "<group>";
 		};
 		4CD669711B272AB60008602D /* CatrobatLanguage0.92 */ = {
@@ -4692,6 +4688,7 @@
 				BAA0EDE421A6F4FA002F5A80 /* XMLParserTests092.swift */,
 			);
 			name = CatrobatLanguage0.92;
+			path = "Parser & Serialization/CatrobatLanguage0.92";
 			sourceTree = "<group>";
 		};
 		4CDF7BB42138735700FFF7F4 /* Builder */ = {
@@ -4768,7 +4765,8 @@
 				F4A2AFB12110D47500C53234 /* Text */,
 				4C822689213FADE900F3D750 /* Touch */,
 			);
-			path = Functions;
+			name = Functions;
+			path = PlayerEngine/Functions;
 			sourceTree = "<group>";
 		};
 		4CE67886210C4B0200D90B5D /* Protocols */ = {
@@ -4997,7 +4995,8 @@
 				4CF429F2213A88A600B78897 /* RepeatUntilBrick+Condition.swift */,
 				BA987D0C2194E647002DAA05 /* WaitUntilBrick+Condition.swift */,
 			);
-			path = Condition;
+			name = Condition;
+			path = PlayerEngine/Condition;
 			sourceTree = "<group>";
 		};
 		592EF6DF2094B0B600BD6000 /* Object */ = {
@@ -5079,7 +5078,6 @@
 		5983198F1FBB810400639BBF /* Introduction */ = {
 			isa = PBXGroup;
 			children = (
-				598319941FBB813C00639BBF /* Introduction.storyboard */,
 				598319981FBB90CB00639BBF /* IntroductionViewController.swift */,
 				598319921FBB812D00639BBF /* IntroductionPageViewController.swift */,
 			);
@@ -5269,8 +5267,7 @@
 			children = (
 				92300CE918B2196700F2B4DC /* Localizable.strings */,
 			);
-			name = iOS_Lang;
-			path = ../iOS_Lang;
+			path = iOS_Lang;
 			sourceTree = "<group>";
 		};
 		9238C57C1A3AE9920099F061 /* Upload/Login */ = {
@@ -6539,6 +6536,7 @@
 			isa = PBXGroup;
 			children = (
 				92DFAFE51A38943D00FA9B0F /* FormulaEditor.xib */,
+				5E399FDF21F6B61400C7E62A /* Introduction.storyboard */,
 				92FF32C21A24E33B00093DA7 /* iPhone.storyboard */,
 				92D346BC1B8DDC0A009EB8F7 /* LaunchScreen.storyboard */,
 				925819831C0206AA003247A9 /* SceneMenuView.xib */,
@@ -6576,14 +6574,14 @@
 		AA70F7EF1B866E63003057C6 /* PlayerEngine */ = {
 			isa = PBXGroup;
 			children = (
-				4C099F6D1C282B3C00E190CA /* CBBackendTests.swift */,
-				AA70F7F01B866E9B003057C6 /* CBFrontendTests.swift */,
-				4C2732A81CE4F30F00CA61AC /* CBSpriteNodeTests.swift */,
 				4CE1D434213E5D110014DAF9 /* Formula */,
 				4C6FE139212D2D2E0067B7D5 /* Functions */,
 				4CE1D42F213E5C130014DAF9 /* Mocks */,
 				4C669E4221CE9B4C00563EAD /* Operators */,
 				4C822615213FA7A300F3D750 /* Sensors */,
+				4C099F6D1C282B3C00E190CA /* CBBackendTests.swift */,
+				AA70F7F01B866E9B003057C6 /* CBFrontendTests.swift */,
+				4C2732A81CE4F30F00CA61AC /* CBSpriteNodeTests.swift */,
 			);
 			name = PlayerEngine;
 			sourceTree = "<group>";
@@ -7179,8 +7177,6 @@
 		B46B270317703F9400172837 /* CattyTests */ = {
 			isa = PBXGroup;
 			children = (
-				4CA658EB21EBA5A5000E5797 /* FileManager */,
-				BA38080A21A1D85B0075B831 /* TestHelpers */,
 				4C1329021CD9259900F16E48 /* AudioManager */,
 				92BCDC801BF1DE2A00F9CB23 /* BluetoothDevices */,
 				4CEB222C1B95E47500B3BE2F /* Bricks */,
@@ -7188,6 +7184,7 @@
 				4CD0BA9721467C4500BF17A4 /* DataModel */,
 				E4AEC8732108503D0081A980 /* Download */,
 				C34B44FB17F3403400624730 /* Extensions */,
+				4CA658EB21EBA5A5000E5797 /* FileManager */,
 				4C3C03F5199BA5250004F594 /* Formula */,
 				59A58D81202C712F008B1A8F /* MediaLibrary */,
 				599E649C202D9F85009494B5 /* Mocks */,
@@ -7197,13 +7194,14 @@
 				4C1608A31A095480002C7032 /* Resources */,
 				B496F5131775996D004BF78A /* Scene */,
 				4C26506D1A6566C60050775B /* SpriteObject */,
-				B46B270417703F9400172837 /* Supporting Files */,
+				BA38080A21A1D85B0075B831 /* TestHelpers */,
 				4CD0BA92214678D500BF17A4 /* Utils */,
+				B46B270417703F9400172837 /* SupportingFiles */,
 			);
 			path = CattyTests;
 			sourceTree = "<group>";
 		};
-		B46B270417703F9400172837 /* Supporting Files */ = {
+		B46B270417703F9400172837 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
 				4C9E07731CD9DB0A00B14B2F /* CattyTests-Bridging-Header.h */,
@@ -7212,7 +7210,7 @@
 				CA2D8C961AEDDA2100A5BDC2 /* Info.plist */,
 				B46B270617703F9400172837 /* InfoPlist.strings */,
 			);
-			name = "Supporting Files";
+			path = SupportingFiles;
 			sourceTree = "<group>";
 		};
 		B496F5131775996D004BF78A /* Scene */ = {
@@ -7251,7 +7249,7 @@
 				BACD947F219E22FF0061D81C /* WaitUntilBrick0991.xml */,
 			);
 			name = ControlBricks;
-			path = ../CattyTests/Resources/ParserTests/ControlBricks;
+			path = ParserTests/ControlBricks;
 			sourceTree = "<group>";
 		};
 		BAD47DC01F12935F001C38BC /* ListBricks */ = {
@@ -7360,7 +7358,7 @@
 				BAAA6BEA21A4BB6E00A46563 /* XMLParserHeaderTests093.swift */,
 				BA94561721A5FBE800C5DE36 /* XMLParserObjectTests093.swift */,
 			);
-			name = "Unit Tests";
+			path = "Unit Tests";
 			sourceTree = "<group>";
 		};
 		CAA4A5381A43BDA9002A69A0 /* BlackBox Tests */ = {
@@ -7368,7 +7366,7 @@
 			children = (
 				BA3807FC21A1BBBD0075B831 /* XMLParserBlackBoxTests093.swift */,
 			);
-			name = "BlackBox Tests";
+			path = "BlackBox Tests";
 			sourceTree = "<group>";
 		};
 		CAD232181B10F12600570370 /* DataModel */ = {
@@ -7774,17 +7772,16 @@
 		CD0CCE54170CB39600B70036 /* Catty */ = {
 			isa = PBXGroup;
 			children = (
-				4C74BD081DA6476A0079336C /* Pocket Code.entitlements */,
 				92D56C261BF202E700A54750 /* BluetoothDevice */,
-				92DFB01F1A38960C00FA9B0F /* PocketPaint */,
-				92DFAFE81A38949E00FA9B0F /* FormulaEditor */,
+				92FF30271A24DCAA00093DA7 /* DataModel */,
 				92FF2EA51A24C8A700093DA7 /* DataStructures */,
-				92FF2E4C1A24C7D800093DA7 /* Helpers */,
 				92FF2DFD1A24C3BE00093DA7 /* Defines */,
 				B4BCF409170ECFC3008EDF3A /* Extensions & Delegates & Protocols */,
-				CA3E72D31B0BA46A00D6B184 /* PlayerEngine */,
-				92FF30271A24DCAA00093DA7 /* DataModel */,
+				92DFAFE81A38949E00FA9B0F /* FormulaEditor */,
+				92FF2E4C1A24C7D800093DA7 /* Helpers */,
 				4C724D851B4D3E8C00E27479 /* Parser&Serialializer */,
+				CA3E72D31B0BA46A00D6B184 /* PlayerEngine */,
+				92DFB01F1A38960C00FA9B0F /* PocketPaint */,
 				92FF310A1A24DEB300093DA7 /* ViewController */,
 				92FF31621A24E2F400093DA7 /* Views */,
 			);
@@ -8297,7 +8294,7 @@
 				BAD47DC51F12938D001C38BC /* AddItemToUserListBrick098.xml in Resources */,
 				4CDE4CEE203DBBF500B43034 /* minizip.license in Resources */,
 				92D346BD1B8DDC0A009EB8F7 /* LaunchScreen.storyboard in Resources */,
-				598319951FBB813C00639BBF /* Introduction.storyboard in Resources */,
+				5E399FE021F6B61400C7E62A /* Introduction.storyboard in Resources */,
 				4CDE4CE7203DBBF500B43034 /* LXReorderableCollectionViewFlowLayout.license in Resources */,
 				4CDE4CE6203DBBF500B43034 /* GDataXMLNode.license in Resources */,
 				92FF2E951A24C7D800093DA7 /* LoggerProperties.plist in Resources */,
@@ -9778,6 +9775,7 @@
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Catty/SupportingFiles/App-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"TESTMODE=1",
@@ -9799,7 +9797,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.catrobat.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "CattyTests/CattyTests-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "CattyTests/SupportingFiles/CattyTests-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pocket Code.app/Pocket Code";
@@ -9829,6 +9827,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Catty/SupportingFiles/App-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=0",
 					"TESTMODE=1",
@@ -9849,7 +9848,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.catrobat.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "CattyTests/CattyTests-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "CattyTests/SupportingFiles/CattyTests-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pocket Code.app/Pocket Code";
 			};
@@ -9863,7 +9862,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_RECEIVER_WEAK = NO;
 				CLANG_WARN_OBJC_REPEATED_USE_OF_WEAK = NO;
-				CODE_SIGN_ENTITLEMENTS = "Catty/Pocket Code.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Catty/SupportingFiles/Pocket Code.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
@@ -9873,7 +9872,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				GCC_PREFIX_HEADER = "Catty/App-Prefix.pch";
+				GCC_PREFIX_HEADER = "Catty/SupportingFiles/App-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"TESTMODE=0",
 					"DEBUG=1",
@@ -9893,7 +9892,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.catrobat.pocketcode;
 				PRODUCT_NAME = "Pocket Code";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "Catty/Catty-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Catty/SupportingFiles/Catty-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -9909,7 +9908,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_RECEIVER_WEAK = NO;
 				CLANG_WARN_OBJC_REPEATED_USE_OF_WEAK = NO;
-				CODE_SIGN_ENTITLEMENTS = "Catty/Pocket Code.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Catty/SupportingFiles/Pocket Code.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
@@ -9919,7 +9918,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				GCC_PREFIX_HEADER = "Catty/App-Prefix.pch";
+				GCC_PREFIX_HEADER = "Catty/SupportingFiles/App-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"TESTMODE=0",
 					"DEBUG=0",
@@ -9939,7 +9938,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.catrobat.pocketcode;
 				PRODUCT_NAME = "Pocket Code";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "Catty/Catty-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Catty/SupportingFiles/Catty-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
