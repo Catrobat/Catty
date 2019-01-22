@@ -4,7 +4,7 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
 LANGUAGE_TRANSLATION_DEFINES_FILE="./Catty/Defines/LanguageTranslationDefines.h"
-LOCALIZED_STRINGS_DIR="./iOS_Lang/en.lproj/"
+LOCALIZED_STRINGS_DIR="./Catty/SupportingFiles/iOS_Lang/en.lproj/"
 LOCALIZED_STRINGS_FILENAME="Localizable.strings"
 LOCALIZED_STRINGS_FILE=$LOCALIZED_STRINGS_DIR$LOCALIZED_STRINGS_FILENAME
 
