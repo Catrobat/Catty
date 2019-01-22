@@ -33,9 +33,6 @@
 		4C03A4C42133FF4B007BFFD2 /* FormulaManager+Interpreter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C03A4C32133FF4B007BFFD2 /* FormulaManager+Interpreter.swift */; };
 		4C0C164921439B2F005ADE86 /* ChartProjectsStoreDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0C164821439B2F005ADE86 /* ChartProjectsStoreDataSourceTests.swift */; };
 		4C0E25E920D39E5000A80273 /* ScenePresenterViewController+Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0E25E820D39E5000A80273 /* ScenePresenterViewController+Resources.swift */; };
-		4C0F9F1F204ADB9200E71B2D /* IfThenLogicBeginBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F9F1E204ADB9200E71B2D /* IfThenLogicBeginBrick.m */; };
-		4C0F9F25204ADBC800E71B2D /* IfThenLogicEndBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F9F23204ADBC800E71B2D /* IfThenLogicEndBrick.m */; };
-		4C0F9F28204ADBE000E71B2D /* RepeatUntilBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F9F26204ADBDF00E71B2D /* RepeatUntilBrick.m */; };
 		4C0F9F2E204ADC2300E71B2D /* CameraBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F9F2D204ADC2300E71B2D /* CameraBrick.m */; };
 		4C0F9F31204ADC2E00E71B2D /* ChooseCameraBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F9F30204ADC2E00E71B2D /* ChooseCameraBrick.m */; };
 		4C0F9F34204ADC4000E71B2D /* PreviousLookBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F9F33204ADC4000E71B2D /* PreviousLookBrick.m */; };
@@ -346,7 +343,6 @@
 		4CF429F1213A876000B78897 /* RepeatBrick+Condition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF429F0213A876000B78897 /* RepeatBrick+Condition.swift */; };
 		4CF429F3213A88A600B78897 /* RepeatUntilBrick+Condition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF429F2213A88A600B78897 /* RepeatUntilBrick+Condition.swift */; };
 		4CF429F5213A8A0400B78897 /* IfLogicBeginBrick+Condition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF429F4213A8A0400B78897 /* IfLogicBeginBrick+Condition.swift */; };
-		4CF429F8213A8DA600B78897 /* LoopBeginBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF429F7213A8DA500B78897 /* LoopBeginBrick.m */; };
 		4CF4CB7521E64BEE009D6DD9 /* InsertItemIntoUserListBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF4CB7221E64BEE009D6DD9 /* InsertItemIntoUserListBrickTests.swift */; };
 		4CF4CB7721E65A9B009D6DD9 /* ReplaceItemInUserListBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF4CB7621E65A9B009D6DD9 /* ReplaceItemInUserListBrickTests.swift */; };
 		4CF773E51AEE3B5100DBBB2B /* VariablePickerData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF773E41AEE3B5100DBBB2B /* VariablePickerData.m */; };
@@ -414,19 +410,6 @@
 		5E399FE021F6B61400C7E62A /* Introduction.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E399FDF21F6B61400C7E62A /* Introduction.storyboard */; };
 		5E43D71821928053006FDF2A /* SwellAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E43D71721928052006FDF2A /* SwellAll.swift */; };
 		5E7B5B0D21EC0FCF002E4B57 /* HelpWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7B5B0A21EC0FCF002E4B57 /* HelpWebViewController.swift */; };
-		5E85872721F6D102008EFC9C /* RepeatBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E85871221F6D0FF008EFC9C /* RepeatBrick+CBXMLHandler.m */; };
-		5E85872821F6D102008EFC9C /* WaitBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E85871321F6D0FF008EFC9C /* WaitBrick+CBXMLHandler.m */; };
-		5E85872921F6D102008EFC9C /* LoopEndBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E85871721F6D100008EFC9C /* LoopEndBrick+CBXMLHandler.m */; };
-		5E85872A21F6D102008EFC9C /* NoteBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E85871821F6D100008EFC9C /* NoteBrick+CBXMLHandler.m */; };
-		5E85872B21F6D102008EFC9C /* IfLogicBeginBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E85871921F6D100008EFC9C /* IfLogicBeginBrick+CBXMLHandler.m */; };
-		5E85872C21F6D102008EFC9C /* ForeverBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E85871A21F6D100008EFC9C /* ForeverBrick+CBXMLHandler.m */; };
-		5E85872D21F6D102008EFC9C /* RepeatUntilBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E85871B21F6D100008EFC9C /* RepeatUntilBrick+CBXMLHandler.m */; };
-		5E85872E21F6D102008EFC9C /* IfLogicEndBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E85871C21F6D101008EFC9C /* IfLogicEndBrick+CBXMLHandler.m */; };
-		5E85872F21F6D102008EFC9C /* WaitUntilBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E85871E21F6D101008EFC9C /* WaitUntilBrick+CBXMLHandler.m */; };
-		5E85873021F6D102008EFC9C /* IfThenLogicBeginBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E85872021F6D101008EFC9C /* IfThenLogicBeginBrick+CBXMLHandler.m */; };
-		5E85873121F6D102008EFC9C /* IfLogicElseBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E85872121F6D101008EFC9C /* IfLogicElseBrick+CBXMLHandler.m */; };
-		5E85873221F6D102008EFC9C /* BroadcastWaitBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E85872221F6D102008EFC9C /* BroadcastWaitBrick+CBXMLHandler.m */; };
-		5E85873321F6D102008EFC9C /* BroadcastBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E85872421F6D102008EFC9C /* BroadcastBrick+CBXMLHandler.m */; };
 		5E85875C21F6D12D008EFC9C /* PreviousLookBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E85873521F6D127008EFC9C /* PreviousLookBrick+CBXMLHandler.m */; };
 		5E85875D21F6D12D008EFC9C /* ChangeBrightnessByNBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E85873621F6D127008EFC9C /* ChangeBrightnessByNBrick+CBXMLHandler.m */; };
 		5E85875E21F6D12D008EFC9C /* ThinkForBubbleBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E85873721F6D127008EFC9C /* ThinkForBubbleBrick+CBXMLHandler.m */; };
@@ -821,6 +804,35 @@
 		5EBA30FF21F6CCEF00DE7617 /* MotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA30F021F6CCEF00DE7617 /* MotionManager.swift */; };
 		5EBA310021F6CCEF00DE7617 /* TouchManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA30F121F6CCEF00DE7617 /* TouchManagerProtocol.swift */; };
 		5ED9C6C121F6E3CD000D91B3 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5ED9C6C021F6E3CD000D91B3 /* Settings.bundle */; };
+		5ED9C6E821F6E8C4000D91B3 /* LoopBeginBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED9C6C821F6E8C0000D91B3 /* LoopBeginBrick.m */; };
+		5ED9C6E921F6E8C4000D91B3 /* WaitBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED9C6C921F6E8C1000D91B3 /* WaitBrick.m */; };
+		5ED9C6EA21F6E8C4000D91B3 /* IfLogicElseBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED9C6CA21F6E8C1000D91B3 /* IfLogicElseBrick.m */; };
+		5ED9C6EB21F6E8C4000D91B3 /* RepeatBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED9C6CC21F6E8C1000D91B3 /* RepeatBrick.m */; };
+		5ED9C6EC21F6E8C4000D91B3 /* BroadcastWaitBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED9C6CD21F6E8C1000D91B3 /* BroadcastWaitBrick.m */; };
+		5ED9C6ED21F6E8C4000D91B3 /* IfThenLogicBeginBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED9C6CE21F6E8C1000D91B3 /* IfThenLogicBeginBrick.m */; };
+		5ED9C6EE21F6E8C4000D91B3 /* IfLogicBeginBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED9C6CF21F6E8C1000D91B3 /* IfLogicBeginBrick.m */; };
+		5ED9C6EF21F6E8C4000D91B3 /* IfLogicEndBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED9C6D021F6E8C1000D91B3 /* IfLogicEndBrick.m */; };
+		5ED9C6F021F6E8C4000D91B3 /* LoopEndBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED9C6D121F6E8C1000D91B3 /* LoopEndBrick.m */; };
+		5ED9C6F121F6E8C4000D91B3 /* ForeverBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED9C6D421F6E8C2000D91B3 /* ForeverBrick.m */; };
+		5ED9C6F321F6E8C4000D91B3 /* IfThenLogicEndBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED9C6DA21F6E8C2000D91B3 /* IfThenLogicEndBrick.m */; };
+		5ED9C6F421F6E8C4000D91B3 /* WaitUntilBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED9C6DD21F6E8C3000D91B3 /* WaitUntilBrick.m */; };
+		5ED9C6F521F6E8C4000D91B3 /* NoteBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED9C6E421F6E8C3000D91B3 /* NoteBrick.m */; };
+		5ED9C6F621F6E8C4000D91B3 /* BroadcastBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED9C6E621F6E8C4000D91B3 /* BroadcastBrick.m */; };
+		5ED9C6F721F6E8C4000D91B3 /* RepeatUntilBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED9C6E721F6E8C4000D91B3 /* RepeatUntilBrick.m */; };
+		5ED9C71421F6E942000D91B3 /* IfThenLogicEndBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED9C6F821F6E93F000D91B3 /* IfThenLogicEndBrick+CBXMLHandler.m */; };
+		5ED9C71521F6E942000D91B3 /* IfThenLogicBeginBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED9C6F921F6E93F000D91B3 /* IfThenLogicBeginBrick+CBXMLHandler.m */; };
+		5ED9C71621F6E942000D91B3 /* WaitUntilBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED9C70121F6E940000D91B3 /* WaitUntilBrick+CBXMLHandler.m */; };
+		5ED9C71721F6E942000D91B3 /* IfLogicBeginBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED9C70221F6E940000D91B3 /* IfLogicBeginBrick+CBXMLHandler.m */; };
+		5ED9C71821F6E942000D91B3 /* IfLogicElseBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED9C70321F6E940000D91B3 /* IfLogicElseBrick+CBXMLHandler.m */; };
+		5ED9C71921F6E942000D91B3 /* RepeatBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED9C70521F6E940000D91B3 /* RepeatBrick+CBXMLHandler.m */; };
+		5ED9C71A21F6E942000D91B3 /* BroadcastWaitBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED9C70721F6E940000D91B3 /* BroadcastWaitBrick+CBXMLHandler.m */; };
+		5ED9C71B21F6E942000D91B3 /* LoopEndBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED9C70821F6E941000D91B3 /* LoopEndBrick+CBXMLHandler.m */; };
+		5ED9C71C21F6E942000D91B3 /* NoteBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED9C70921F6E941000D91B3 /* NoteBrick+CBXMLHandler.m */; };
+		5ED9C71D21F6E942000D91B3 /* BroadcastBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED9C70C21F6E941000D91B3 /* BroadcastBrick+CBXMLHandler.m */; };
+		5ED9C71E21F6E942000D91B3 /* RepeatUntilBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED9C70D21F6E941000D91B3 /* RepeatUntilBrick+CBXMLHandler.m */; };
+		5ED9C71F21F6E942000D91B3 /* ForeverBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED9C71021F6E941000D91B3 /* ForeverBrick+CBXMLHandler.m */; };
+		5ED9C72021F6E942000D91B3 /* WaitBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED9C71121F6E942000D91B3 /* WaitBrick+CBXMLHandler.m */; };
+		5ED9C72121F6E942000D91B3 /* IfLogicEndBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED9C71321F6E942000D91B3 /* IfLogicEndBrick+CBXMLHandler.m */; };
 		5EDBA043219549AE000EFFEF /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EDBA042219549AE000EFFEF /* LoadingView.swift */; };
 		5EF590BA2192D81F00C19F12 /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF590B92192D81F00C19F12 /* Double+Extensions.swift */; };
 		5EFBD5F92145533B003B3CDC /* ProjectDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFBD5F82145533B003B3CDC /* ProjectDescriptionViewController.swift */; };
@@ -1040,16 +1052,6 @@
 		99EBDC021D5623B3008D6860 /* ChangeColorByNBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 99EBDC011D5623B3008D6860 /* ChangeColorByNBrickCell.m */; };
 		A9F511831BE6A07A00B59540 /* SwiftBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F511821BE6A07A00B59540 /* SwiftBridge.swift */; };
 		AA3BD9091BBF4BFB002B34A0 /* WaitBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3BD9081BBF4BFB002B34A0 /* WaitBrickTests.swift */; };
-		AA74EFE11BC05B5F00D1E954 /* BroadcastBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74EF811BC05B5F00D1E954 /* BroadcastBrick.m */; };
-		AA74EFE21BC05B5F00D1E954 /* BroadcastWaitBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74EF831BC05B5F00D1E954 /* BroadcastWaitBrick.m */; };
-		AA74EFE31BC05B5F00D1E954 /* ForeverBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74EF851BC05B5F00D1E954 /* ForeverBrick.m */; };
-		AA74EFE41BC05B5F00D1E954 /* IfLogicBeginBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74EF871BC05B5F00D1E954 /* IfLogicBeginBrick.m */; };
-		AA74EFE51BC05B5F00D1E954 /* IfLogicElseBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74EF891BC05B5F00D1E954 /* IfLogicElseBrick.m */; };
-		AA74EFE61BC05B5F00D1E954 /* IfLogicEndBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74EF8B1BC05B5F00D1E954 /* IfLogicEndBrick.m */; };
-		AA74EFE81BC05B5F00D1E954 /* LoopEndBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74EF8F1BC05B5F00D1E954 /* LoopEndBrick.m */; };
-		AA74EFE91BC05B5F00D1E954 /* NoteBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74EF911BC05B5F00D1E954 /* NoteBrick.m */; };
-		AA74EFEA1BC05B5F00D1E954 /* RepeatBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74EF931BC05B5F00D1E954 /* RepeatBrick.m */; };
-		AA74EFEB1BC05B5F00D1E954 /* WaitBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74EF951BC05B5F00D1E954 /* WaitBrick.m */; };
 		AA74EFEC1BC05B5F00D1E954 /* ChangeVariableBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74EF981BC05B5F00D1E954 /* ChangeVariableBrick.m */; };
 		AA74EFED1BC05B5F00D1E954 /* SetVariableBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74EF9A1BC05B5F00D1E954 /* SetVariableBrick.m */; };
 		AA74EFF01BC05B5F00D1E954 /* VibrationBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74EFA11BC05B5F00D1E954 /* VibrationBrick.m */; };
@@ -1151,7 +1153,6 @@
 		BA38080C21A1D8920075B831 /* ConvertExceptionToError.m in Sources */ = {isa = PBXBuildFile; fileRef = BA38080B21A1D8920075B831 /* ConvertExceptionToError.m */; };
 		BA651EED21A319BF00A94D67 /* SpriteObjectMutableCopyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA651EEC21A319BF00A94D67 /* SpriteObjectMutableCopyTests.swift */; };
 		BA6805AE21303B48004F004F /* VariablesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6805AD21303B48004F004F /* VariablesTests.swift */; };
-		BA987D082194E158002DAA05 /* WaitUntilBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = BA987D062194E157002DAA05 /* WaitUntilBrick.m */; };
 		BA987D0B2194E25A002DAA05 /* WaitUntilBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA987D092194E25A002DAA05 /* WaitUntilBrickCell.m */; };
 		BA987D0D2194E647002DAA05 /* WaitUntilBrick+Condition.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA987D0C2194E647002DAA05 /* WaitUntilBrick+Condition.swift */; };
 		BA9CAB541EC380CA00796056 /* AddItemToUserListBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9CAB531EC380CA00796056 /* AddItemToUserListBrick.m */; };
@@ -1346,12 +1347,6 @@
 		4C03A4C32133FF4B007BFFD2 /* FormulaManager+Interpreter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FormulaManager+Interpreter.swift"; sourceTree = "<group>"; };
 		4C0C164821439B2F005ADE86 /* ChartProjectsStoreDataSourceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartProjectsStoreDataSourceTests.swift; sourceTree = "<group>"; };
 		4C0E25E820D39E5000A80273 /* ScenePresenterViewController+Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScenePresenterViewController+Resources.swift"; sourceTree = "<group>"; };
-		4C0F9F1D204ADB9200E71B2D /* IfThenLogicBeginBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IfThenLogicBeginBrick.h; sourceTree = "<group>"; };
-		4C0F9F1E204ADB9200E71B2D /* IfThenLogicBeginBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IfThenLogicBeginBrick.m; sourceTree = "<group>"; };
-		4C0F9F23204ADBC800E71B2D /* IfThenLogicEndBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IfThenLogicEndBrick.m; sourceTree = "<group>"; };
-		4C0F9F24204ADBC800E71B2D /* IfThenLogicEndBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IfThenLogicEndBrick.h; sourceTree = "<group>"; };
-		4C0F9F26204ADBDF00E71B2D /* RepeatUntilBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepeatUntilBrick.m; sourceTree = "<group>"; };
-		4C0F9F27204ADBDF00E71B2D /* RepeatUntilBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepeatUntilBrick.h; sourceTree = "<group>"; };
 		4C0F9F2C204ADC2300E71B2D /* CameraBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraBrick.h; sourceTree = "<group>"; };
 		4C0F9F2D204ADC2300E71B2D /* CameraBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraBrick.m; sourceTree = "<group>"; };
 		4C0F9F2F204ADC2E00E71B2D /* ChooseCameraBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseCameraBrick.h; sourceTree = "<group>"; };
@@ -1735,8 +1730,6 @@
 		4CF429F0213A876000B78897 /* RepeatBrick+Condition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepeatBrick+Condition.swift"; sourceTree = "<group>"; };
 		4CF429F2213A88A600B78897 /* RepeatUntilBrick+Condition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepeatUntilBrick+Condition.swift"; sourceTree = "<group>"; };
 		4CF429F4213A8A0400B78897 /* IfLogicBeginBrick+Condition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IfLogicBeginBrick+Condition.swift"; sourceTree = "<group>"; };
-		4CF429F7213A8DA500B78897 /* LoopBeginBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoopBeginBrick.m; sourceTree = "<group>"; };
-		4CF429F9213A8DBF00B78897 /* LoopBeginBrick.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoopBeginBrick.h; sourceTree = "<group>"; };
 		4CF4CB7221E64BEE009D6DD9 /* InsertItemIntoUserListBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsertItemIntoUserListBrickTests.swift; sourceTree = "<group>"; };
 		4CF4CB7621E65A9B009D6DD9 /* ReplaceItemInUserListBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplaceItemInUserListBrickTests.swift; sourceTree = "<group>"; };
 		4CF773E31AEE3B5100DBBB2B /* VariablePickerData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VariablePickerData.h; sourceTree = "<group>"; };
@@ -1799,32 +1792,6 @@
 		5E399FDF21F6B61400C7E62A /* Introduction.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Introduction.storyboard; sourceTree = "<group>"; };
 		5E43D71721928052006FDF2A /* SwellAll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwellAll.swift; sourceTree = "<group>"; };
 		5E7B5B0A21EC0FCF002E4B57 /* HelpWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpWebViewController.swift; sourceTree = "<group>"; };
-		5E85870D21F6D0FF008EFC9C /* WaitUntilBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WaitUntilBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
-		5E85870E21F6D0FF008EFC9C /* IfLogicElseBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IfLogicElseBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
-		5E85870F21F6D0FF008EFC9C /* IfThenLogicBeginBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IfThenLogicBeginBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
-		5E85871021F6D0FF008EFC9C /* WaitBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WaitBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
-		5E85871121F6D0FF008EFC9C /* BroadcastBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BroadcastBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
-		5E85871221F6D0FF008EFC9C /* RepeatBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RepeatBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
-		5E85871321F6D0FF008EFC9C /* WaitBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WaitBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
-		5E85871421F6D100008EFC9C /* RepeatUntilBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RepeatUntilBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
-		5E85871521F6D100008EFC9C /* RepeatBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RepeatBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
-		5E85871621F6D100008EFC9C /* NoteBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NoteBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
-		5E85871721F6D100008EFC9C /* LoopEndBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LoopEndBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
-		5E85871821F6D100008EFC9C /* NoteBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NoteBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
-		5E85871921F6D100008EFC9C /* IfLogicBeginBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IfLogicBeginBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
-		5E85871A21F6D100008EFC9C /* ForeverBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ForeverBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
-		5E85871B21F6D100008EFC9C /* RepeatUntilBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RepeatUntilBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
-		5E85871C21F6D101008EFC9C /* IfLogicEndBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IfLogicEndBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
-		5E85871D21F6D101008EFC9C /* BroadcastWaitBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BroadcastWaitBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
-		5E85871E21F6D101008EFC9C /* WaitUntilBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WaitUntilBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
-		5E85871F21F6D101008EFC9C /* LoopEndBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LoopEndBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
-		5E85872021F6D101008EFC9C /* IfThenLogicBeginBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IfThenLogicBeginBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
-		5E85872121F6D101008EFC9C /* IfLogicElseBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IfLogicElseBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
-		5E85872221F6D102008EFC9C /* BroadcastWaitBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BroadcastWaitBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
-		5E85872321F6D102008EFC9C /* ForeverBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ForeverBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
-		5E85872421F6D102008EFC9C /* BroadcastBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BroadcastBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
-		5E85872521F6D102008EFC9C /* IfLogicEndBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IfLogicEndBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
-		5E85872621F6D102008EFC9C /* IfLogicBeginBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IfLogicBeginBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
 		5E85873421F6D127008EFC9C /* SayForBubbleBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SayForBubbleBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
 		5E85873521F6D127008EFC9C /* PreviousLookBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PreviousLookBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
 		5E85873621F6D127008EFC9C /* ChangeBrightnessByNBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ChangeBrightnessByNBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
@@ -2272,6 +2239,64 @@
 		5EBA30F021F6CCEF00DE7617 /* MotionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotionManager.swift; sourceTree = "<group>"; };
 		5EBA30F121F6CCEF00DE7617 /* TouchManagerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouchManagerProtocol.swift; sourceTree = "<group>"; };
 		5ED9C6C021F6E3CD000D91B3 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = Resources/Settings.bundle; sourceTree = "<group>"; };
+		5ED9C6C821F6E8C0000D91B3 /* LoopBeginBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoopBeginBrick.m; sourceTree = "<group>"; };
+		5ED9C6C921F6E8C1000D91B3 /* WaitBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaitBrick.m; sourceTree = "<group>"; };
+		5ED9C6CA21F6E8C1000D91B3 /* IfLogicElseBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IfLogicElseBrick.m; sourceTree = "<group>"; };
+		5ED9C6CB21F6E8C1000D91B3 /* WaitUntilBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaitUntilBrick.h; sourceTree = "<group>"; };
+		5ED9C6CC21F6E8C1000D91B3 /* RepeatBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepeatBrick.m; sourceTree = "<group>"; };
+		5ED9C6CD21F6E8C1000D91B3 /* BroadcastWaitBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BroadcastWaitBrick.m; sourceTree = "<group>"; };
+		5ED9C6CE21F6E8C1000D91B3 /* IfThenLogicBeginBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IfThenLogicBeginBrick.m; sourceTree = "<group>"; };
+		5ED9C6CF21F6E8C1000D91B3 /* IfLogicBeginBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IfLogicBeginBrick.m; sourceTree = "<group>"; };
+		5ED9C6D021F6E8C1000D91B3 /* IfLogicEndBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IfLogicEndBrick.m; sourceTree = "<group>"; };
+		5ED9C6D121F6E8C1000D91B3 /* LoopEndBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoopEndBrick.m; sourceTree = "<group>"; };
+		5ED9C6D221F6E8C1000D91B3 /* IfThenLogicEndBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IfThenLogicEndBrick.h; sourceTree = "<group>"; };
+		5ED9C6D321F6E8C2000D91B3 /* BroadcastBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BroadcastBrick.h; sourceTree = "<group>"; };
+		5ED9C6D421F6E8C2000D91B3 /* ForeverBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForeverBrick.m; sourceTree = "<group>"; };
+		5ED9C6D621F6E8C2000D91B3 /* NoteBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteBrick.h; sourceTree = "<group>"; };
+		5ED9C6D721F6E8C2000D91B3 /* RepeatBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepeatBrick.h; sourceTree = "<group>"; };
+		5ED9C6D821F6E8C2000D91B3 /* LoopBeginBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoopBeginBrick.h; sourceTree = "<group>"; };
+		5ED9C6D921F6E8C2000D91B3 /* BroadcastWaitBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BroadcastWaitBrick.h; sourceTree = "<group>"; };
+		5ED9C6DA21F6E8C2000D91B3 /* IfThenLogicEndBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IfThenLogicEndBrick.m; sourceTree = "<group>"; };
+		5ED9C6DB21F6E8C2000D91B3 /* RepeatUntilBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepeatUntilBrick.h; sourceTree = "<group>"; };
+		5ED9C6DC21F6E8C3000D91B3 /* IfLogicEndBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IfLogicEndBrick.h; sourceTree = "<group>"; };
+		5ED9C6DD21F6E8C3000D91B3 /* WaitUntilBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaitUntilBrick.m; sourceTree = "<group>"; };
+		5ED9C6DF21F6E8C3000D91B3 /* IfLogicBeginBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IfLogicBeginBrick.h; sourceTree = "<group>"; };
+		5ED9C6E021F6E8C3000D91B3 /* LoopEndBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoopEndBrick.h; sourceTree = "<group>"; };
+		5ED9C6E121F6E8C3000D91B3 /* IfLogicElseBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IfLogicElseBrick.h; sourceTree = "<group>"; };
+		5ED9C6E221F6E8C3000D91B3 /* WaitBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaitBrick.h; sourceTree = "<group>"; };
+		5ED9C6E321F6E8C3000D91B3 /* IfThenLogicBeginBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IfThenLogicBeginBrick.h; sourceTree = "<group>"; };
+		5ED9C6E421F6E8C3000D91B3 /* NoteBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteBrick.m; sourceTree = "<group>"; };
+		5ED9C6E521F6E8C4000D91B3 /* ForeverBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForeverBrick.h; sourceTree = "<group>"; };
+		5ED9C6E621F6E8C4000D91B3 /* BroadcastBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BroadcastBrick.m; sourceTree = "<group>"; };
+		5ED9C6E721F6E8C4000D91B3 /* RepeatUntilBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepeatUntilBrick.m; sourceTree = "<group>"; };
+		5ED9C6F821F6E93F000D91B3 /* IfThenLogicEndBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IfThenLogicEndBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		5ED9C6F921F6E93F000D91B3 /* IfThenLogicBeginBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IfThenLogicBeginBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		5ED9C6FA21F6E93F000D91B3 /* NoteBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NoteBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		5ED9C6FB21F6E93F000D91B3 /* WaitUntilBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WaitUntilBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		5ED9C6FC21F6E93F000D91B3 /* RepeatBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RepeatBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		5ED9C6FD21F6E93F000D91B3 /* IfLogicBeginBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IfLogicBeginBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		5ED9C6FE21F6E93F000D91B3 /* WaitBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WaitBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		5ED9C6FF21F6E940000D91B3 /* ForeverBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ForeverBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		5ED9C70021F6E940000D91B3 /* IfLogicElseBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IfLogicElseBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		5ED9C70121F6E940000D91B3 /* WaitUntilBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WaitUntilBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		5ED9C70221F6E940000D91B3 /* IfLogicBeginBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IfLogicBeginBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		5ED9C70321F6E940000D91B3 /* IfLogicElseBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IfLogicElseBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		5ED9C70421F6E940000D91B3 /* IfLogicEndBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IfLogicEndBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		5ED9C70521F6E940000D91B3 /* RepeatBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RepeatBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		5ED9C70621F6E940000D91B3 /* IfThenLogicBeginBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IfThenLogicBeginBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		5ED9C70721F6E940000D91B3 /* BroadcastWaitBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BroadcastWaitBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		5ED9C70821F6E941000D91B3 /* LoopEndBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LoopEndBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		5ED9C70921F6E941000D91B3 /* NoteBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NoteBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		5ED9C70A21F6E941000D91B3 /* BroadcastBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BroadcastBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		5ED9C70B21F6E941000D91B3 /* IfThenLogicEndBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IfThenLogicEndBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		5ED9C70C21F6E941000D91B3 /* BroadcastBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BroadcastBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		5ED9C70D21F6E941000D91B3 /* RepeatUntilBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RepeatUntilBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		5ED9C70E21F6E941000D91B3 /* BroadcastWaitBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BroadcastWaitBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		5ED9C70F21F6E941000D91B3 /* RepeatUntilBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RepeatUntilBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		5ED9C71021F6E941000D91B3 /* ForeverBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ForeverBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		5ED9C71121F6E942000D91B3 /* WaitBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WaitBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		5ED9C71221F6E942000D91B3 /* LoopEndBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LoopEndBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		5ED9C71321F6E942000D91B3 /* IfLogicEndBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IfLogicEndBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
 		5EDBA042219549AE000EFFEF /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		5EF590B92192D81F00C19F12 /* Double+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extensions.swift"; sourceTree = "<group>"; };
 		5EFBD5F82145533B003B3CDC /* ProjectDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDescriptionViewController.swift; sourceTree = "<group>"; };
@@ -2727,26 +2752,6 @@
 		A988832B1BCA86FF005029E8 /* ObjectTVCTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectTVCTests.swift; sourceTree = "<group>"; };
 		A9F511821BE6A07A00B59540 /* SwiftBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftBridge.swift; sourceTree = "<group>"; };
 		AA3BD9081BBF4BFB002B34A0 /* WaitBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaitBrickTests.swift; sourceTree = "<group>"; };
-		AA74EF801BC05B5F00D1E954 /* BroadcastBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BroadcastBrick.h; sourceTree = "<group>"; };
-		AA74EF811BC05B5F00D1E954 /* BroadcastBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BroadcastBrick.m; sourceTree = "<group>"; };
-		AA74EF821BC05B5F00D1E954 /* BroadcastWaitBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BroadcastWaitBrick.h; sourceTree = "<group>"; };
-		AA74EF831BC05B5F00D1E954 /* BroadcastWaitBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BroadcastWaitBrick.m; sourceTree = "<group>"; };
-		AA74EF841BC05B5F00D1E954 /* ForeverBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForeverBrick.h; sourceTree = "<group>"; };
-		AA74EF851BC05B5F00D1E954 /* ForeverBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForeverBrick.m; sourceTree = "<group>"; };
-		AA74EF861BC05B5F00D1E954 /* IfLogicBeginBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IfLogicBeginBrick.h; sourceTree = "<group>"; };
-		AA74EF871BC05B5F00D1E954 /* IfLogicBeginBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IfLogicBeginBrick.m; sourceTree = "<group>"; };
-		AA74EF881BC05B5F00D1E954 /* IfLogicElseBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IfLogicElseBrick.h; sourceTree = "<group>"; };
-		AA74EF891BC05B5F00D1E954 /* IfLogicElseBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IfLogicElseBrick.m; sourceTree = "<group>"; };
-		AA74EF8A1BC05B5F00D1E954 /* IfLogicEndBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IfLogicEndBrick.h; sourceTree = "<group>"; };
-		AA74EF8B1BC05B5F00D1E954 /* IfLogicEndBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IfLogicEndBrick.m; sourceTree = "<group>"; };
-		AA74EF8E1BC05B5F00D1E954 /* LoopEndBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoopEndBrick.h; sourceTree = "<group>"; };
-		AA74EF8F1BC05B5F00D1E954 /* LoopEndBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoopEndBrick.m; sourceTree = "<group>"; };
-		AA74EF901BC05B5F00D1E954 /* NoteBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteBrick.h; sourceTree = "<group>"; };
-		AA74EF911BC05B5F00D1E954 /* NoteBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteBrick.m; sourceTree = "<group>"; };
-		AA74EF921BC05B5F00D1E954 /* RepeatBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepeatBrick.h; sourceTree = "<group>"; };
-		AA74EF931BC05B5F00D1E954 /* RepeatBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepeatBrick.m; sourceTree = "<group>"; };
-		AA74EF941BC05B5F00D1E954 /* WaitBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaitBrick.h; sourceTree = "<group>"; };
-		AA74EF951BC05B5F00D1E954 /* WaitBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaitBrick.m; sourceTree = "<group>"; };
 		AA74EF971BC05B5F00D1E954 /* ChangeVariableBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeVariableBrick.h; sourceTree = "<group>"; };
 		AA74EF981BC05B5F00D1E954 /* ChangeVariableBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeVariableBrick.m; sourceTree = "<group>"; };
 		AA74EF991BC05B5F00D1E954 /* SetVariableBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetVariableBrick.h; sourceTree = "<group>"; };
@@ -2942,8 +2947,6 @@
 		BA584CB9219C8803002CC082 /* WaitUntilBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitUntilBrickTests.swift; sourceTree = "<group>"; };
 		BA651EEC21A319BF00A94D67 /* SpriteObjectMutableCopyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteObjectMutableCopyTests.swift; sourceTree = "<group>"; };
 		BA6805AD21303B48004F004F /* VariablesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VariablesTests.swift; sourceTree = "<group>"; };
-		BA987D062194E157002DAA05 /* WaitUntilBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaitUntilBrick.m; sourceTree = "<group>"; };
-		BA987D072194E158002DAA05 /* WaitUntilBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaitUntilBrick.h; sourceTree = "<group>"; };
 		BA987D092194E25A002DAA05 /* WaitUntilBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaitUntilBrickCell.m; sourceTree = "<group>"; };
 		BA987D0A2194E25A002DAA05 /* WaitUntilBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaitUntilBrickCell.h; sourceTree = "<group>"; };
 		BA987D0C2194E647002DAA05 /* WaitUntilBrick+Condition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WaitUntilBrick+Condition.swift"; sourceTree = "<group>"; };
@@ -4328,32 +4331,34 @@
 		5E8586E521F6D0F1008EFC9C /* Control */ = {
 			isa = PBXGroup;
 			children = (
-				5E85871121F6D0FF008EFC9C /* BroadcastBrick+CBXMLHandler.h */,
-				5E85872421F6D102008EFC9C /* BroadcastBrick+CBXMLHandler.m */,
-				5E85871D21F6D101008EFC9C /* BroadcastWaitBrick+CBXMLHandler.h */,
-				5E85872221F6D102008EFC9C /* BroadcastWaitBrick+CBXMLHandler.m */,
-				5E85872321F6D102008EFC9C /* ForeverBrick+CBXMLHandler.h */,
-				5E85871A21F6D100008EFC9C /* ForeverBrick+CBXMLHandler.m */,
-				5E85872621F6D102008EFC9C /* IfLogicBeginBrick+CBXMLHandler.h */,
-				5E85871921F6D100008EFC9C /* IfLogicBeginBrick+CBXMLHandler.m */,
-				5E85870E21F6D0FF008EFC9C /* IfLogicElseBrick+CBXMLHandler.h */,
-				5E85872121F6D101008EFC9C /* IfLogicElseBrick+CBXMLHandler.m */,
-				5E85872521F6D102008EFC9C /* IfLogicEndBrick+CBXMLHandler.h */,
-				5E85871C21F6D101008EFC9C /* IfLogicEndBrick+CBXMLHandler.m */,
-				5E85870F21F6D0FF008EFC9C /* IfThenLogicBeginBrick+CBXMLHandler.h */,
-				5E85872021F6D101008EFC9C /* IfThenLogicBeginBrick+CBXMLHandler.m */,
-				5E85871F21F6D101008EFC9C /* LoopEndBrick+CBXMLHandler.h */,
-				5E85871721F6D100008EFC9C /* LoopEndBrick+CBXMLHandler.m */,
-				5E85871621F6D100008EFC9C /* NoteBrick+CBXMLHandler.h */,
-				5E85871821F6D100008EFC9C /* NoteBrick+CBXMLHandler.m */,
-				5E85871521F6D100008EFC9C /* RepeatBrick+CBXMLHandler.h */,
-				5E85871221F6D0FF008EFC9C /* RepeatBrick+CBXMLHandler.m */,
-				5E85871421F6D100008EFC9C /* RepeatUntilBrick+CBXMLHandler.h */,
-				5E85871B21F6D100008EFC9C /* RepeatUntilBrick+CBXMLHandler.m */,
-				5E85871021F6D0FF008EFC9C /* WaitBrick+CBXMLHandler.h */,
-				5E85871321F6D0FF008EFC9C /* WaitBrick+CBXMLHandler.m */,
-				5E85870D21F6D0FF008EFC9C /* WaitUntilBrick+CBXMLHandler.h */,
-				5E85871E21F6D101008EFC9C /* WaitUntilBrick+CBXMLHandler.m */,
+				5ED9C70A21F6E941000D91B3 /* BroadcastBrick+CBXMLHandler.h */,
+				5ED9C70C21F6E941000D91B3 /* BroadcastBrick+CBXMLHandler.m */,
+				5ED9C70E21F6E941000D91B3 /* BroadcastWaitBrick+CBXMLHandler.h */,
+				5ED9C70721F6E940000D91B3 /* BroadcastWaitBrick+CBXMLHandler.m */,
+				5ED9C6FF21F6E940000D91B3 /* ForeverBrick+CBXMLHandler.h */,
+				5ED9C71021F6E941000D91B3 /* ForeverBrick+CBXMLHandler.m */,
+				5ED9C6FD21F6E93F000D91B3 /* IfLogicBeginBrick+CBXMLHandler.h */,
+				5ED9C70221F6E940000D91B3 /* IfLogicBeginBrick+CBXMLHandler.m */,
+				5ED9C70021F6E940000D91B3 /* IfLogicElseBrick+CBXMLHandler.h */,
+				5ED9C70321F6E940000D91B3 /* IfLogicElseBrick+CBXMLHandler.m */,
+				5ED9C70421F6E940000D91B3 /* IfLogicEndBrick+CBXMLHandler.h */,
+				5ED9C71321F6E942000D91B3 /* IfLogicEndBrick+CBXMLHandler.m */,
+				5ED9C70621F6E940000D91B3 /* IfThenLogicBeginBrick+CBXMLHandler.h */,
+				5ED9C6F921F6E93F000D91B3 /* IfThenLogicBeginBrick+CBXMLHandler.m */,
+				5ED9C70B21F6E941000D91B3 /* IfThenLogicEndBrick+CBXMLHandler.h */,
+				5ED9C6F821F6E93F000D91B3 /* IfThenLogicEndBrick+CBXMLHandler.m */,
+				5ED9C71221F6E942000D91B3 /* LoopEndBrick+CBXMLHandler.h */,
+				5ED9C70821F6E941000D91B3 /* LoopEndBrick+CBXMLHandler.m */,
+				5ED9C6FA21F6E93F000D91B3 /* NoteBrick+CBXMLHandler.h */,
+				5ED9C70921F6E941000D91B3 /* NoteBrick+CBXMLHandler.m */,
+				5ED9C6FC21F6E93F000D91B3 /* RepeatBrick+CBXMLHandler.h */,
+				5ED9C70521F6E940000D91B3 /* RepeatBrick+CBXMLHandler.m */,
+				5ED9C70F21F6E941000D91B3 /* RepeatUntilBrick+CBXMLHandler.h */,
+				5ED9C70D21F6E941000D91B3 /* RepeatUntilBrick+CBXMLHandler.m */,
+				5ED9C6FE21F6E93F000D91B3 /* WaitBrick+CBXMLHandler.h */,
+				5ED9C71121F6E942000D91B3 /* WaitBrick+CBXMLHandler.m */,
+				5ED9C6FB21F6E93F000D91B3 /* WaitUntilBrick+CBXMLHandler.h */,
+				5ED9C70121F6E940000D91B3 /* WaitUntilBrick+CBXMLHandler.m */,
 			);
 			path = Control;
 			sourceTree = "<group>";
@@ -6696,36 +6701,36 @@
 		AA74EF7F1BC05B5F00D1E954 /* Control */ = {
 			isa = PBXGroup;
 			children = (
-				AA74EF801BC05B5F00D1E954 /* BroadcastBrick.h */,
-				AA74EF811BC05B5F00D1E954 /* BroadcastBrick.m */,
-				AA74EF821BC05B5F00D1E954 /* BroadcastWaitBrick.h */,
-				AA74EF831BC05B5F00D1E954 /* BroadcastWaitBrick.m */,
-				AA74EF841BC05B5F00D1E954 /* ForeverBrick.h */,
-				AA74EF851BC05B5F00D1E954 /* ForeverBrick.m */,
-				AA74EF861BC05B5F00D1E954 /* IfLogicBeginBrick.h */,
-				AA74EF871BC05B5F00D1E954 /* IfLogicBeginBrick.m */,
-				AA74EF881BC05B5F00D1E954 /* IfLogicElseBrick.h */,
-				AA74EF891BC05B5F00D1E954 /* IfLogicElseBrick.m */,
-				AA74EF8A1BC05B5F00D1E954 /* IfLogicEndBrick.h */,
-				AA74EF8B1BC05B5F00D1E954 /* IfLogicEndBrick.m */,
-				4C0F9F1D204ADB9200E71B2D /* IfThenLogicBeginBrick.h */,
-				4C0F9F1E204ADB9200E71B2D /* IfThenLogicBeginBrick.m */,
-				4C0F9F24204ADBC800E71B2D /* IfThenLogicEndBrick.h */,
-				4C0F9F23204ADBC800E71B2D /* IfThenLogicEndBrick.m */,
-				4CF429F9213A8DBF00B78897 /* LoopBeginBrick.h */,
-				4CF429F7213A8DA500B78897 /* LoopBeginBrick.m */,
-				AA74EF8E1BC05B5F00D1E954 /* LoopEndBrick.h */,
-				AA74EF8F1BC05B5F00D1E954 /* LoopEndBrick.m */,
-				AA74EF901BC05B5F00D1E954 /* NoteBrick.h */,
-				AA74EF911BC05B5F00D1E954 /* NoteBrick.m */,
-				AA74EF921BC05B5F00D1E954 /* RepeatBrick.h */,
-				AA74EF931BC05B5F00D1E954 /* RepeatBrick.m */,
-				4C0F9F27204ADBDF00E71B2D /* RepeatUntilBrick.h */,
-				4C0F9F26204ADBDF00E71B2D /* RepeatUntilBrick.m */,
-				AA74EF941BC05B5F00D1E954 /* WaitBrick.h */,
-				AA74EF951BC05B5F00D1E954 /* WaitBrick.m */,
-				BA987D072194E158002DAA05 /* WaitUntilBrick.h */,
-				BA987D062194E157002DAA05 /* WaitUntilBrick.m */,
+				5ED9C6D321F6E8C2000D91B3 /* BroadcastBrick.h */,
+				5ED9C6E621F6E8C4000D91B3 /* BroadcastBrick.m */,
+				5ED9C6D921F6E8C2000D91B3 /* BroadcastWaitBrick.h */,
+				5ED9C6CD21F6E8C1000D91B3 /* BroadcastWaitBrick.m */,
+				5ED9C6E521F6E8C4000D91B3 /* ForeverBrick.h */,
+				5ED9C6D421F6E8C2000D91B3 /* ForeverBrick.m */,
+				5ED9C6DF21F6E8C3000D91B3 /* IfLogicBeginBrick.h */,
+				5ED9C6CF21F6E8C1000D91B3 /* IfLogicBeginBrick.m */,
+				5ED9C6E121F6E8C3000D91B3 /* IfLogicElseBrick.h */,
+				5ED9C6CA21F6E8C1000D91B3 /* IfLogicElseBrick.m */,
+				5ED9C6DC21F6E8C3000D91B3 /* IfLogicEndBrick.h */,
+				5ED9C6D021F6E8C1000D91B3 /* IfLogicEndBrick.m */,
+				5ED9C6E321F6E8C3000D91B3 /* IfThenLogicBeginBrick.h */,
+				5ED9C6CE21F6E8C1000D91B3 /* IfThenLogicBeginBrick.m */,
+				5ED9C6D221F6E8C1000D91B3 /* IfThenLogicEndBrick.h */,
+				5ED9C6DA21F6E8C2000D91B3 /* IfThenLogicEndBrick.m */,
+				5ED9C6D821F6E8C2000D91B3 /* LoopBeginBrick.h */,
+				5ED9C6C821F6E8C0000D91B3 /* LoopBeginBrick.m */,
+				5ED9C6E021F6E8C3000D91B3 /* LoopEndBrick.h */,
+				5ED9C6D121F6E8C1000D91B3 /* LoopEndBrick.m */,
+				5ED9C6D621F6E8C2000D91B3 /* NoteBrick.h */,
+				5ED9C6E421F6E8C3000D91B3 /* NoteBrick.m */,
+				5ED9C6D721F6E8C2000D91B3 /* RepeatBrick.h */,
+				5ED9C6CC21F6E8C1000D91B3 /* RepeatBrick.m */,
+				5ED9C6DB21F6E8C2000D91B3 /* RepeatUntilBrick.h */,
+				5ED9C6E721F6E8C4000D91B3 /* RepeatUntilBrick.m */,
+				5ED9C6E221F6E8C3000D91B3 /* WaitBrick.h */,
+				5ED9C6C921F6E8C1000D91B3 /* WaitBrick.m */,
+				5ED9C6CB21F6E8C1000D91B3 /* WaitUntilBrick.h */,
+				5ED9C6DD21F6E8C3000D91B3 /* WaitUntilBrick.m */,
 			);
 			path = Control;
 			sourceTree = "<group>";
@@ -8725,7 +8730,6 @@
 				5EBA2E3321F6C5EB00DE7617 /* TurnLeftBrick+Instruction.swift in Sources */,
 				AA74F0C91BC05FCE00D1E954 /* BrickShapeFactory.m in Sources */,
 				AABCB3F11BB36DCE009F67D2 /* InternFormulaUtils.m in Sources */,
-				5E85872A21F6D102008EFC9C /* NoteBrick+CBXMLHandler.m in Sources */,
 				AA74F0B61BC05FCE00D1E954 /* ChangeXByNBrickCell.m in Sources */,
 				AABCB3E71BB3671F009F67D2 /* LLNode.swift in Sources */,
 				5EBA2E8221F6C62D00DE7617 /* BroadcastBrick+Instruction.swift in Sources */,
@@ -8736,7 +8740,6 @@
 				5EBA304921F6C78B00DE7617 /* LocationAccuracySensor.swift in Sources */,
 				5E85879621F6D14D008EFC9C /* IfOnEdgeBounceBrick+CBXMLHandler.m in Sources */,
 				4C0F9F31204ADC2E00E71B2D /* ChooseCameraBrick.m in Sources */,
-				4C0F9F25204ADBC800E71B2D /* IfThenLogicEndBrick.m in Sources */,
 				AABCB3DD1BB364DD009F67D2 /* CBIfConditionalSequence.swift in Sources */,
 				AA74EFF21BC05B5F00D1E954 /* ChangeTransparencyByNBrick.m in Sources */,
 				929CC0CD1BC39B0A0027DEC0 /* PhiroMotorMoveForwardBrick.m in Sources */,
@@ -8745,15 +8748,15 @@
 				AABCB3D91BB3648E009F67D2 /* CBOperation.swift in Sources */,
 				5EBA2ED121F6C73700DE7617 /* SceneBuilder.swift in Sources */,
 				5EBA2E6B21F6C61400DE7617 /* VibrationBrick+Instruction.swift in Sources */,
-				5E85873021F6D102008EFC9C /* IfThenLogicBeginBrick+CBXMLHandler.m in Sources */,
 				5EBA2EC421F6C72A00DE7617 /* CBBroadcastHandlerProtocol.swift in Sources */,
 				4C03A4C42133FF4B007BFFD2 /* FormulaManager+Interpreter.swift in Sources */,
 				5EBA2EB521F6C6FC00DE7617 /* OperatorManagerProtocol.swift in Sources */,
 				4C8C3612213A9FDF00279BC7 /* ForeverBrick+Condition.swift in Sources */,
+				5ED9C6ED21F6E8C4000D91B3 /* IfThenLogicBeginBrick.m in Sources */,
+				5ED9C71A21F6E942000D91B3 /* BroadcastWaitBrick+CBXMLHandler.m in Sources */,
 				5EBA2E3421F6C5EB00DE7617 /* PointToBrick+Instruction.swift in Sources */,
 				F4A2AFB72110D49900C53234 /* LetterFunction.swift in Sources */,
 				5EBA309D21F6C7C500DE7617 /* ColorSensor.swift in Sources */,
-				5E85872721F6D102008EFC9C /* RepeatBrick+CBXMLHandler.m in Sources */,
 				AABCB3D81BB36469009F67D2 /* CBScriptSequenceList.swift in Sources */,
 				AA74EFF61BC05B5F00D1E954 /* SetBrightnessBrick.m in Sources */,
 				929CC0CB1BC39B0A0027DEC0 /* PhiroBrick.m in Sources */,
@@ -8763,13 +8766,13 @@
 				4C03A4BE2133FD05007BFFD2 /* FormulaManager+Resources.swift in Sources */,
 				9218B2011CC4AB75007B4C60 /* YKImageCropperView.m in Sources */,
 				CABF43BC1B115E6400419A55 /* CBSequenceList.swift in Sources */,
+				5ED9C6EA21F6E8C4000D91B3 /* IfLogicElseBrick.m in Sources */,
 				CABF43B61B115E6400419A55 /* CBConditionalSequence.swift in Sources */,
 				BACDF35A1F1F9BD000346167 /* DeleteItemOfUserListBrickCell.m in Sources */,
 				4C0F9FA9204BD2D600E71B2D /* SpeakAndWaitBrickCell.m in Sources */,
 				4C0F9F34204ADC4000E71B2D /* PreviousLookBrick.m in Sources */,
 				92B46FA31BC7BDF7004980C1 /* ArduinoSendPWMValueBrickCell.m in Sources */,
 				5EBA2E6221F6C60400DE7617 /* ShowBrick+Instruction.swift in Sources */,
-				5E85872821F6D102008EFC9C /* WaitBrick+CBXMLHandler.m in Sources */,
 				5EBA30B921F6CC4E00DE7617 /* PiFunction.swift in Sources */,
 				4CB2CFA11D7AD762009F3034 /* SetColorBrick.m in Sources */,
 				4C0F9F94204BD29600E71B2D /* ChooseCameraBrickCell.m in Sources */,
@@ -8786,6 +8789,7 @@
 				CA3E72E81B0C00A500D6B184 /* CBStack.swift in Sources */,
 				5EBA308521F6C78B00DE7617 /* TouchManager.swift in Sources */,
 				AA74EFFE1BC05B5F00D1E954 /* ComeToFrontBrick.m in Sources */,
+				5ED9C71921F6E942000D91B3 /* RepeatBrick+CBXMLHandler.m in Sources */,
 				5EBA30FA21F6CCEF00DE7617 /* DateSensor.swift in Sources */,
 				92FF31051A24DCAA00093DA7 /* WhenScript.m in Sources */,
 				4C724E251B4D3E8C00E27479 /* CBXMLParser.m in Sources */,
@@ -8803,6 +8807,7 @@
 				4C822693213FBC4400F3D750 /* MultiFingerTouchedFunction.swift in Sources */,
 				4C0F9F9E204BD2B100E71B2D /* SayBubbleBrickCell.m in Sources */,
 				4C2EE41E1B555B55006DE9B8 /* CBXMLOpenedNestingBricksStack.m in Sources */,
+				5ED9C6EB21F6E8C4000D91B3 /* RepeatBrick.m in Sources */,
 				5EFBD5F92145533B003B3CDC /* ProjectDescriptionViewController.swift in Sources */,
 				92FF31571A24DEB300093DA7 /* ObjectTableViewController.m in Sources */,
 				5EBA30C421F6CC4E00DE7617 /* CosFunction.swift in Sources */,
@@ -8816,7 +8821,6 @@
 				5E8587AE21F6D179008EFC9C /* DeleteItemOfUserListBrick+CBXMLHandler.m in Sources */,
 				CADBD71919B0E8C200C62836 /* AppDelegate.m in Sources */,
 				4CE6788B210C4E1C00D90B5D /* FunctionParameter.swift in Sources */,
-				5E85873121F6D102008EFC9C /* IfLogicElseBrick+CBXMLHandler.m in Sources */,
 				92FF32BC1A24E2F400093DA7 /* DarkBlueGradientImageDetailCell.m in Sources */,
 				92FF32B11A24E2F400093DA7 /* CreateView.m in Sources */,
 				4C724E5F1B4D3E8C00E27479 /* VariablesContainer+CBXMLHandler.m in Sources */,
@@ -8840,14 +8844,13 @@
 				5EBA30C221F6CC4E00DE7617 /* RandFunction.swift in Sources */,
 				5E1F6DA521F6951000B4ACEC /* TermsOfUseOptionTableViewController.swift in Sources */,
 				92BCDC871BF1FB1E00F9CB23 /* FirmataProtocol.swift in Sources */,
+				5ED9C6E821F6E8C4000D91B3 /* LoopBeginBrick.m in Sources */,
 				5E8587B421F6D179008EFC9C /* ShowTextBrick+CBXMLHandler.m in Sources */,
-				AA74EFE21BC05B5F00D1E954 /* BroadcastWaitBrick.m in Sources */,
 				5EBA2E8321F6C62D00DE7617 /* BroadcastWaitBrick+Instruction.swift in Sources */,
 				9218B2131CC4AB75007B4C60 /* UndoManager.m in Sources */,
 				AA74F0B31BC05FCE00D1E954 /* SetSizeToBrickCell.m in Sources */,
 				5EBA2E5B21F6C60400DE7617 /* HideBrick+Instruction.swift in Sources */,
 				A9F511831BE6A07A00B59540 /* SwiftBridge.swift in Sources */,
-				4C0F9F28204ADBE000E71B2D /* RepeatUntilBrick.m in Sources */,
 				92FF2EC21A24C8A700093DA7 /* ProjectLoadingInfo.m in Sources */,
 				AA74F09E1BC05FCE00D1E954 /* ForeverBrickCell.m in Sources */,
 				BAEAB29A214BCE8D000B2E4B /* WhenTouchDownScriptCell.m in Sources */,
@@ -8862,6 +8865,7 @@
 				5EBA305A21F6C78B00DE7617 /* LoudnessSensor.swift in Sources */,
 				9218B20A1CC4AB75007B4C60 /* UIViewController+KNSemiModal.m in Sources */,
 				598319931FBB812D00639BBF /* IntroductionPageViewController.swift in Sources */,
+				5ED9C72021F6E942000D91B3 /* WaitBrick+CBXMLHandler.m in Sources */,
 				AA74F0B11BC05FCE00D1E954 /* SetTransparencyBrickCell.m in Sources */,
 				4C724E581B4D3E8C00E27479 /* Header+CBXMLHandler.m in Sources */,
 				5EBA2E5C21F6C60400DE7617 /* SetBackgroundBrick+Instruction.swift in Sources */,
@@ -8876,7 +8880,6 @@
 				4CE67888210C4B1D00D90B5D /* Function.swift in Sources */,
 				5E85879321F6D14D008EFC9C /* GlideToBrick+CBXMLHandler.m in Sources */,
 				5E85876A21F6D12D008EFC9C /* ChangeTransparencyByNBrick+CBXMLHandler.m in Sources */,
-				5E85872B21F6D102008EFC9C /* IfLogicBeginBrick+CBXMLHandler.m in Sources */,
 				92FF2EC01A24C8A700093DA7 /* OrderedDictionary.m in Sources */,
 				AA74F0CD1BC05FCE00D1E954 /* StartScriptCell.m in Sources */,
 				5E21DA7121A5289F00017D2C /* Data+Extensions.swift in Sources */,
@@ -8892,22 +8895,23 @@
 				5EBA2E8A21F6C66D00DE7617 /* CBSpriteNode.swift in Sources */,
 				5EBA2E8C21F6C67900DE7617 /* CBBroadcastHandler.swift in Sources */,
 				4C03A4C22133FDE7007BFFD2 /* FormulaManager+Editor.swift in Sources */,
-				BA987D082194E158002DAA05 /* WaitUntilBrick.m in Sources */,
 				E4B7DC5620F6857B001351E3 /* StoreProjectDownloader.swift in Sources */,
-				4C0F9F1F204ADB9200E71B2D /* IfThenLogicBeginBrick.m in Sources */,
 				5EBA30F221F6CCEF00DE7617 /* Sensor.swift in Sources */,
 				92C95FDB1BD8DBEB00742F7E /* BluetoothService.swift in Sources */,
 				AA74F09D1BC05FCE00D1E954 /* BroadcastWaitBrickCell.m in Sources */,
 				5EBA2E5821F6C60400DE7617 /* ChooseCameraBrick+Instruction.swift in Sources */,
 				929CC0DE1BC39B690027DEC0 /* BrickCellPhiroLightData.m in Sources */,
 				2DA8790C212B443500FE0585 /* SearchStoreViewController.swift in Sources */,
+				5ED9C6E921F6E8C4000D91B3 /* WaitBrick.m in Sources */,
 				92C631A01BC5193B00486958 /* BluetoothDevicesTableViewController.swift in Sources */,
 				92D56C391BF2098700A54750 /* PhiroProtocol.swift in Sources */,
 				5E85879B21F6D14D008EFC9C /* SetXBrick+CBXMLHandler.m in Sources */,
 				5EBA30BA21F6CC4E00DE7617 /* AcosFunction.swift in Sources */,
 				92FF315F1A24DEB300093DA7 /* MyProjectsViewController.m in Sources */,
 				BAEE49B61F165C3100F06741 /* ReplaceItemInUserListBrickCell.m in Sources */,
+				5ED9C6F421F6E8C4000D91B3 /* WaitUntilBrick.m in Sources */,
 				4C724E661B4D3EC500E27479 /* CBXMLSerializerContext.m in Sources */,
+				5ED9C6EF21F6E8C4000D91B3 /* IfLogicEndBrick.m in Sources */,
 				5E1F6DA321F6951000B4ACEC /* AboutPoketCodeOptionTableViewController.swift in Sources */,
 				9218B20B1CC4AB75007B4C60 /* DrawTool.m in Sources */,
 				BAEAB294214BCD75000B2E4B /* WhenTouchDownScript.m in Sources */,
@@ -8951,8 +8955,10 @@
 				927F79E01BEE39CB008D1635 /* PhiroIfLogicBeginBrick.m in Sources */,
 				5EBA309C21F6C7C500DE7617 /* BrightnessSensor.swift in Sources */,
 				5EBA309321F6C7C500DE7617 /* PositionXSensor.swift in Sources */,
+				5ED9C71E21F6E942000D91B3 /* RepeatUntilBrick+CBXMLHandler.m in Sources */,
 				5EBA30BE21F6CC4E00DE7617 /* LogFunction.swift in Sources */,
 				92EC985F1BC3ABB90003A891 /* PhiroPlayToneBrick+CBXMLHandler.m in Sources */,
+				5ED9C71F21F6E942000D91B3 /* ForeverBrick+CBXMLHandler.m in Sources */,
 				92FF2EA21A24C7D800093DA7 /* TableUtil.m in Sources */,
 				929CC0DF1BC39B690027DEC0 /* BrickCellPhiroMotorData.m in Sources */,
 				4C0F9FA0204BD2B100E71B2D /* PreviousLookBrickCell.m in Sources */,
@@ -8964,6 +8970,7 @@
 				5EBA2E4021F6C5EB00DE7617 /* TurnRightBrick+Instruction.swift in Sources */,
 				5EBA30F921F6CCEF00DE7617 /* TouchSensor.swift in Sources */,
 				AA74F09A1BC05FCE00D1E954 /* BrickCellInlineView.m in Sources */,
+				5ED9C6F521F6E8C4000D91B3 /* NoteBrick.m in Sources */,
 				92FF30FE1A24DCAA00093DA7 /* Look.m in Sources */,
 				5EBA306B21F6C78B00DE7617 /* AccelerationZSensor.swift in Sources */,
 				92FF32BA1A24E2F400093DA7 /* DarkBlueGradientFeaturedCell.m in Sources */,
@@ -9006,26 +9013,25 @@
 				AA74F09F1BC05FCE00D1E954 /* IfLogicBeginBrickCell.m in Sources */,
 				5EBA2E5D21F6C60400DE7617 /* ThinkBubbleBrick+Instruction.swift in Sources */,
 				5EBA2E2221F6C5CA00DE7617 /* SpeakAndWaitBrick+Instruction.swift in Sources */,
+				5ED9C6F721F6E8C4000D91B3 /* RepeatUntilBrick.m in Sources */,
 				E4668B3820FDC1B90021FA0B /* FeaturedProjectsStoreTableViewController.swift in Sources */,
 				9218B2091CC4AB75007B4C60 /* UIImage+Rotate.m in Sources */,
 				4CE9ADA51EEB2DAF00F5766B /* TextFieldAlertController.swift in Sources */,
 				5EBA2E3D21F6C5EB00DE7617 /* PlaceAtBrick+Instruction.swift in Sources */,
+				5ED9C71421F6E942000D91B3 /* IfThenLogicEndBrick+CBXMLHandler.m in Sources */,
 				AA74F0CC1BC05FCE00D1E954 /* BroadcastScriptCell.m in Sources */,
 				59697DA8201F4D0400A0071A /* MediaItem.swift in Sources */,
 				9200C2D51C8082EF002F5CA4 /* HideTextBrickCell.m in Sources */,
-				AA74EFE41BC05B5F00D1E954 /* IfLogicBeginBrick.m in Sources */,
 				5E8587C721F6D197008EFC9C /* SpeakBrick+CBXMLHandler.m in Sources */,
 				5EBA30F821F6CCEF00DE7617 /* FaceDetectionManagerProtocol.swift in Sources */,
-				5E85872921F6D102008EFC9C /* LoopEndBrick+CBXMLHandler.m in Sources */,
 				9218B20E1CC4AB75007B4C60 /* LineTool.m in Sources */,
 				AA74EFF91BC05B5F00D1E954 /* SetTransparencyBrick.m in Sources */,
+				5ED9C71821F6E942000D91B3 /* IfLogicElseBrick+CBXMLHandler.m in Sources */,
 				5EBA309B21F6C7C500DE7617 /* TransparencySensor.swift in Sources */,
-				AA74EFE81BC05B5F00D1E954 /* LoopEndBrick.m in Sources */,
 				AA74F0C01BC05FCE00D1E954 /* SetXBrickCell.m in Sources */,
 				4C9E076B1CD9D47E00B14B2F /* CBSceneHelper.swift in Sources */,
 				92FF2E971A24C7D800093DA7 /* mztools.c in Sources */,
 				5EBA306821F6C78B00DE7617 /* DateMonthSensor.swift in Sources */,
-				AA74EFEB1BC05B5F00D1E954 /* WaitBrick.m in Sources */,
 				4C0F9FA5204BD2C200E71B2D /* ThinkForBubbleBrickCell.m in Sources */,
 				AA74F0021BC05B5F00D1E954 /* MoveNStepsBrick.m in Sources */,
 				4C4A71A11B527E2F00BBE32B /* CBXMLParserContext.m in Sources */,
@@ -9035,7 +9041,6 @@
 				AA74F0A51BC05FCE00D1E954 /* NoteBrickCell.m in Sources */,
 				5EBA2E7A21F6C62100DE7617 /* HideTextBrick+Instruction.swift in Sources */,
 				5EBA306621F6C78B00DE7617 /* DateWeekdaySensor.swift in Sources */,
-				5E85872E21F6D102008EFC9C /* IfLogicEndBrick+CBXMLHandler.m in Sources */,
 				4CF773F41AEE79A800DBBB2B /* Brick+UserVariable.m in Sources */,
 				4C2EE41F1B555B55006DE9B8 /* CBXMLPositionStack.m in Sources */,
 				92FF2E371A24C5A700093DA7 /* NSMutableArray+CustomExtensions.m in Sources */,
@@ -9063,12 +9068,12 @@
 				AA74F0981BC05FCE00D1E954 /* BrickCellTextData.m in Sources */,
 				92FF2E3D1A24C5A700093DA7 /* UIImage+CatrobatUIImageExtensions.m in Sources */,
 				5EBA304721F6C78B00DE7617 /* LongitudeSensor.swift in Sources */,
-				4CF429F8213A8DA600B78897 /* LoopBeginBrick.m in Sources */,
 				AA74F00B1BC05B5F00D1E954 /* PlaySoundBrick.m in Sources */,
 				F4A2AFB92110D4A800C53234 /* LengthFunction.swift in Sources */,
 				92FF31551A24DEB300093DA7 /* SoundsTableViewController.m in Sources */,
 				92FF31561A24DEB300093DA7 /* SRViewController.m in Sources */,
 				4C0F9F8B204BD26100E71B2D /* IfThenLogicBeginBrickCell.m in Sources */,
+				5ED9C6EC21F6E8C4000D91B3 /* BroadcastWaitBrick.m in Sources */,
 				5EBA2E6321F6C60400DE7617 /* ThinkForBubbleBrick+Instruction.swift in Sources */,
 				BAEE49BB1F165C6E00F06741 /* ReplaceItemInUserListBrick.m in Sources */,
 				5E85879421F6D14D008EFC9C /* ChangeXByNBrick+CBXMLHandler.m in Sources */,
@@ -9094,7 +9099,6 @@
 				AA74EFF81BC05B5F00D1E954 /* SetSizeToBrick.m in Sources */,
 				5E8587CF21F6D31B008EFC9C /* GDataXMLElement+CustomExtensions.m in Sources */,
 				5EBA2E3921F6C5EB00DE7617 /* GlideToBrick+Instruction.swift in Sources */,
-				5E85872F21F6D102008EFC9C /* WaitUntilBrick+CBXMLHandler.m in Sources */,
 				9218B2101CC4AB75007B4C60 /* PipetteTool.m in Sources */,
 				923503901BA707DE00021F6A /* BaseLoginViewController.m in Sources */,
 				92FF2EA11A24C7D800093DA7 /* TimerLabel.m in Sources */,
@@ -9116,6 +9120,7 @@
 				BA9CAB541EC380CA00796056 /* AddItemToUserListBrick.m in Sources */,
 				929CC0CF1BC39B0A0027DEC0 /* PhiroPlayToneBrick.m in Sources */,
 				BA1FA9A01F02B0020084184D /* InsertItemIntoUserListBrickCell.m in Sources */,
+				5ED9C6F321F6E8C4000D91B3 /* IfThenLogicEndBrick.m in Sources */,
 				9218B20C1CC4AB75007B4C60 /* FillTool.m in Sources */,
 				929CC0FB1BC3A2420027DEC0 /* PhiroRGBLightBrick+Instruction.swift in Sources */,
 				D63864651AE632FE008569E6 /* ProjectsForUploadViewController.m in Sources */,
@@ -9126,9 +9131,7 @@
 				4C82268B213FAE0200F3D750 /* MultiFingerXFunction.swift in Sources */,
 				4CE67896210C668C00D90B5D /* FormulaEditorButton.swift in Sources */,
 				92FF2EBF1A24C8A700093DA7 /* CatrobatProject.m in Sources */,
-				AA74EFE61BC05B5F00D1E954 /* IfLogicEndBrick.m in Sources */,
 				92FF315B1A24DEB300093DA7 /* ProjectDetailStoreViewController.m in Sources */,
-				AA74EFE91BC05B5F00D1E954 /* NoteBrick.m in Sources */,
 				92DFB00F1A38949E00FA9B0F /* ExternToken.m in Sources */,
 				5EBA30BD21F6CC4E00DE7617 /* AtanFunction.swift in Sources */,
 				92DFB0191A38949E00FA9B0F /* InternToExternGenerator.m in Sources */,
@@ -9145,6 +9148,7 @@
 				927F79E31BEE39DA008D1635 /* PhiroIfLogicBeginBrick+CBXMLHandler.m in Sources */,
 				5EBA307E21F6C78B00DE7617 /* FaceDetectedSensor.swift in Sources */,
 				5EBA30CA21F6CC4E00DE7617 /* PowFunction.swift in Sources */,
+				5ED9C71521F6E942000D91B3 /* IfThenLogicBeginBrick+CBXMLHandler.m in Sources */,
 				AA74F0AD1BC05FCE00D1E954 /* ClearGraphicEffectBrickCell.m in Sources */,
 				92D56C331BF202E700A54750 /* ArduinoProtocol.swift in Sources */,
 				4CB4FE071B95DF2900431757 /* BrickMoveManager.m in Sources */,
@@ -9161,17 +9165,18 @@
 				5E85875F21F6D12D008EFC9C /* SayBubbleBrick+CBXMLHandler.m in Sources */,
 				4C0E25E920D39E5000A80273 /* ScenePresenterViewController+Resources.swift in Sources */,
 				5EBA2E6621F6C60400DE7617 /* ChangeColorByNBrick+Instruction.swift in Sources */,
-				5E85872C21F6D102008EFC9C /* ForeverBrick+CBXMLHandler.m in Sources */,
 				92FF32B21A24E2F400093DA7 /* RoundBorderedButton.m in Sources */,
 				5EBA30DD21F6CC9300DE7617 /* DivideOperator.swift in Sources */,
 				5EBA306D21F6C78B00DE7617 /* AccelerationYSensor.swift in Sources */,
 				92EC985C1BC3ABB90003A891 /* PhiroMotorMoveBackwardBrick+CBXMLHandler.m in Sources */,
+				5ED9C6F021F6E8C4000D91B3 /* LoopEndBrick.m in Sources */,
 				4C0F9F4F204BD0B400E71B2D /* CameraPreviewHandler.m in Sources */,
 				5E8587B121F6D179008EFC9C /* HideTextBrick+CBXMLHandler.m in Sources */,
 				4C724E611B4D3E8C00E27479 /* ProjectParser.m in Sources */,
 				AA74F0931BC05FCE00D1E954 /* BrickCellFormulaData.m in Sources */,
 				5EBA30B521F6CC4E00DE7617 /* RoundFunction.swift in Sources */,
 				5E8587CB21F6D197008EFC9C /* SetVolumeToBrick+CBXMLHandler.m in Sources */,
+				5ED9C71721F6E942000D91B3 /* IfLogicBeginBrick+CBXMLHandler.m in Sources */,
 				92FC85CE1B9E1EB5001C728F /* BrickManager.m in Sources */,
 				5EBA30DE21F6CC9300DE7617 /* MinusOperator.swift in Sources */,
 				5E18A81221A547AA00541536 /* UIViewController+Extensions.swift in Sources */,
@@ -9203,6 +9208,7 @@
 				5EBA2EC921F6C72A00DE7617 /* FormulaInterpreterProtocol.swift in Sources */,
 				5EBA306F21F6C78B00DE7617 /* AccelerationXSensor.swift in Sources */,
 				AA74F0041BC05B5F00D1E954 /* PointInDirectionBrick.m in Sources */,
+				5ED9C71B21F6E942000D91B3 /* LoopEndBrick+CBXMLHandler.m in Sources */,
 				5EBA2EC821F6C72A00DE7617 /* CBInstructionProtocol.swift in Sources */,
 				5EBA306921F6C78B00DE7617 /* DateDaySensor.swift in Sources */,
 				929CC0EE1BC39B8C0027DEC0 /* PhiroMotorMoveForwardBrickCell.m in Sources */,
@@ -9239,7 +9245,6 @@
 				5EBA30D921F6CC9300DE7617 /* GreaterOrEqualOperator.swift in Sources */,
 				AA74EFFC1BC05B5F00D1E954 /* ChangeXByNBrick.m in Sources */,
 				5EBA308021F6C78B00DE7617 /* FacePositionXSensor.swift in Sources */,
-				AA74EFE31BC05B5F00D1E954 /* ForeverBrick.m in Sources */,
 				5EBA305C21F6C78B00DE7617 /* ProtocolConformance.swift in Sources */,
 				5EBA30BC21F6CC4E00DE7617 /* SqrtFunction.swift in Sources */,
 				5EBA30F721F6CCEF00DE7617 /* SensorManagerProtocol.swift in Sources */,
@@ -9253,7 +9258,6 @@
 				92DFB0111A38949E00FA9B0F /* NSMutableArray+Reverse.m in Sources */,
 				5EBA2F2521F6C74B00DE7617 /* CBPlayerConfig.swift in Sources */,
 				9200C2CA1C808006002F5CA4 /* ShowTextBrick.m in Sources */,
-				AA74EFEA1BC05B5F00D1E954 /* RepeatBrick.m in Sources */,
 				92B46F9C1BC7BC8C004980C1 /* ArduinoSendPWMValueBrick+CBXMLHandler.m in Sources */,
 				4C724E5C1B4D3E8C00E27479 /* Sound+CBXMLHandler.m in Sources */,
 				92FF2E8C1A24C7D800093DA7 /* AudioManager.m in Sources */,
@@ -9267,10 +9271,10 @@
 				99B2C3701D884D2900736769 /* FlashBrick.m in Sources */,
 				9218B2001CC4AB75007B4C60 /* YKImageCropperOverlayView.m in Sources */,
 				4C724E5E1B4D3E8C00E27479 /* UserVariable+CBXMLHandler.m in Sources */,
+				5ED9C72121F6E942000D91B3 /* IfLogicEndBrick+CBXMLHandler.m in Sources */,
 				4C0F9F2E204ADC2300E71B2D /* CameraBrick.m in Sources */,
 				92C631891BC502CB00486958 /* ConnectedDevicesTableViewController.swift in Sources */,
 				5EBA2E5521F6C60400DE7617 /* ClearGraphicEffectBrick+Instruction.swift in Sources */,
-				5E85873321F6D102008EFC9C /* BroadcastBrick+CBXMLHandler.m in Sources */,
 				92FF30F91A24DCAA00093DA7 /* FormulaElement.m in Sources */,
 				9218B2161CC4AB75007B4C60 /* PaintViewController.m in Sources */,
 				5EBA30DF21F6CC9300DE7617 /* MultOperator.swift in Sources */,
@@ -9285,12 +9289,16 @@
 				5EBA2E3E21F6C5EB00DE7617 /* SetXBrick+Instruction.swift in Sources */,
 				5EBA2E6421F6C60400DE7617 /* ChangeBrightnessByNBrick+Instruction.swift in Sources */,
 				5E8587AF21F6D179008EFC9C /* InsertItemIntoUserListBrick+CBXMLHandler.m in Sources */,
+				5ED9C6F121F6E8C4000D91B3 /* ForeverBrick.m in Sources */,
+				5ED9C71621F6E942000D91B3 /* WaitUntilBrick+CBXMLHandler.m in Sources */,
 				5E85879221F6D14D008EFC9C /* MoveNStepsBrick+CBXMLHandler.m in Sources */,
 				81C0A67F1A4EE8CF003A77C5 /* BrickSelectionViewController.m in Sources */,
+				5ED9C6F621F6E8C4000D91B3 /* BroadcastBrick.m in Sources */,
 				92FF2E361A24C5A700093DA7 /* NSDate+CustomExtensions.m in Sources */,
 				5EBA2E8821F6C66300DE7617 /* CBScriptContext.swift in Sources */,
 				92289A491A42F2A3008C771A /* BSKeyboardControls.m in Sources */,
 				4C724E231B4D3E8C00E27479 /* CBXMLSerializerHelper.m in Sources */,
+				5ED9C6EE21F6E8C4000D91B3 /* IfLogicBeginBrick.m in Sources */,
 				92FF2EC11A24C8A700093DA7 /* OrderedMapTable.m in Sources */,
 				5EBA2E8621F6C64500DE7617 /* CBBackend.swift in Sources */,
 				92FF325D1A24E2F400093DA7 /* EVCircularProgressView.m in Sources */,
@@ -9299,9 +9307,11 @@
 				AA74F0A81BC05FCE00D1E954 /* ChangeVariableBrickCell.m in Sources */,
 				92FF2E8E1A24C7D800093DA7 /* CBFileManager.m in Sources */,
 				F470A2E72129DFD5005EC9A3 /* ContainsFunction.swift in Sources */,
+				5ED9C71D21F6E942000D91B3 /* BroadcastBrick+CBXMLHandler.m in Sources */,
 				9276B7051C9E8F6C008BC594 /* SoundCache.m in Sources */,
 				C6A06BEC1EC8CA4C0000C656 /* AlertController.swift in Sources */,
 				92FF31021A24DCAA00093DA7 /* BroadcastScript.m in Sources */,
+				5ED9C71C21F6E942000D91B3 /* NoteBrick+CBXMLHandler.m in Sources */,
 				5EBA2E7521F6C62100DE7617 /* ChangeVariableBrick+Instruction.swift in Sources */,
 				5EBA30E021F6CC9300DE7617 /* PlusOperator.swift in Sources */,
 				AA74F00D1BC05B5F00D1E954 /* SpeakBrick.m in Sources */,
@@ -9359,7 +9369,6 @@
 				AA74F0B91BC05FCE00D1E954 /* GlideToBrickCell.m in Sources */,
 				9218B2071CC4AB75007B4C60 /* SPUserResizableView.m in Sources */,
 				92FF2E3B1A24C5A700093DA7 /* Project+CustomExtensions.m in Sources */,
-				AA74EFE11BC05B5F00D1E954 /* BroadcastBrick.m in Sources */,
 				5EBA30F521F6CCEF00DE7617 /* ObjectSensor.swift in Sources */,
 				4C2EE4201B555B55006DE9B8 /* CBXMLPropertyMapping.m in Sources */,
 				92C631881BC502CB00486958 /* BluetoothPopupVC.swift in Sources */,
@@ -9394,18 +9403,15 @@
 				92FF32B41A24E2F400093DA7 /* CellMotionEffect.m in Sources */,
 				92FF314F1A24DEB300093DA7 /* LooksTableViewController.m in Sources */,
 				929CC0D01BC39B0A0027DEC0 /* PhiroRGBLightBrick.m in Sources */,
-				5E85873221F6D102008EFC9C /* BroadcastWaitBrick+CBXMLHandler.m in Sources */,
 				92FF32B51A24E2F400093DA7 /* PlaceHolderView.m in Sources */,
 				4C724E561B4D3E8C00E27479 /* Formula+CBXMLHandler.m in Sources */,
 				5EBA2E6521F6C60400DE7617 /* SetSizeToBrick+Instruction.swift in Sources */,
 				92C6318B1BC502CB00486958 /* SearchDevicesTableViewController.swift in Sources */,
 				AA74F0031BC05B5F00D1E954 /* PlaceAtBrick.m in Sources */,
 				AA74F0001BC05B5F00D1E954 /* GoNStepsBackBrick.m in Sources */,
-				5E85872D21F6D102008EFC9C /* RepeatUntilBrick+CBXMLHandler.m in Sources */,
 				5EBA309521F6C7C500DE7617 /* PositionYSensor.swift in Sources */,
 				92FF31071A24DCAA00093DA7 /* SpriteObject.m in Sources */,
 				4C37A0AA212E7E540074F417 /* FormulaEditorItem.swift in Sources */,
-				AA74EFE51BC05B5F00D1E954 /* IfLogicElseBrick.m in Sources */,
 				4C0F9FA6204BD2C200E71B2D /* ThinkBubbleBrickCell.m in Sources */,
 				AA74EFFB1BC05B5F00D1E954 /* ChangeSizeByNBrick.m in Sources */,
 				92ED4D7D1BA9C1380052C852 /* RegisterViewController.m in Sources */,
