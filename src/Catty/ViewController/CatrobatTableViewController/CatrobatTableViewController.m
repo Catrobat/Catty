@@ -34,7 +34,6 @@
 #import "ProjectTableViewController.h"
 #import "ProjectsForUploadViewController.h"
 #import "LoginViewController.h"
-#import "SettingsTableViewController.h"
 #import "Pocket_Code-Swift.h"
 
 NS_ENUM(NSInteger, ViewControllerIndex) {

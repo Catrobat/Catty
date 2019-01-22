@@ -642,6 +642,9 @@
 		59D9EC65206117000019EC10 /* DVR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59D9EC62206117000019EC10 /* DVR.framework */; };
 		59D9EC672061171F0019EC10 /* DVR.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 59D9EC62206117000019EC10 /* DVR.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5E18A81221A547AA00541536 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E18A81121A547AA00541536 /* UIViewController+Extensions.swift */; };
+		5E1F6DA321F6951000B4ACEC /* AboutPoketCodeOptionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1F6DA021F6951000B4ACEC /* AboutPoketCodeOptionTableViewController.swift */; };
+		5E1F6DA421F6951000B4ACEC /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1F6DA121F6951000B4ACEC /* SettingsTableViewController.swift */; };
+		5E1F6DA521F6951000B4ACEC /* TermsOfUseOptionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1F6DA221F6951000B4ACEC /* TermsOfUseOptionTableViewController.swift */; };
 		5E219F2621C8B46A000439BA /* SelectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E219F2521C8B46A000439BA /* SelectButton.swift */; };
 		5E21DA6821A3E4AF00017D2C /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E21DA6721A3E4AF00017D2C /* UIImage+Extensions.swift */; };
 		5E21DA6F21A5255600017D2C /* UploadInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E21DA6C21A5255500017D2C /* UploadInfoViewController.swift */; };
@@ -743,9 +746,6 @@
 		929CC0FA1BC3A2420027DEC0 /* PhiroPlayToneBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929CC0F51BC3A2420027DEC0 /* PhiroPlayToneBrick+Instruction.swift */; };
 		929CC0FB1BC3A2420027DEC0 /* PhiroRGBLightBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929CC0F61BC3A2420027DEC0 /* PhiroRGBLightBrick+Instruction.swift */; };
 		929CC0FC1BC3A2420027DEC0 /* PhiroMotorStopBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929CC0F71BC3A2420027DEC0 /* PhiroMotorStopBrick+Instruction.swift */; };
-		92B46F831BC79585004980C1 /* AboutPoketCodeOptionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B46F7E1BC79585004980C1 /* AboutPoketCodeOptionTableViewController.m */; };
-		92B46F841BC79585004980C1 /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B46F801BC79585004980C1 /* SettingsTableViewController.m */; };
-		92B46F851BC79585004980C1 /* TermsOfUseOptionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B46F821BC79585004980C1 /* TermsOfUseOptionTableViewController.m */; };
 		92B46F911BC7B3E5004980C1 /* ArduinoBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B46F8C1BC7B3E5004980C1 /* ArduinoBrick.m */; };
 		92B46F921BC7B3E5004980C1 /* ArduinoSendDigitalValueBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B46F8E1BC7B3E5004980C1 /* ArduinoSendDigitalValueBrick.m */; };
 		92B46F931BC7B3E5004980C1 /* ArduinoSendPWMValueBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B46F901BC7B3E5004980C1 /* ArduinoSendPWMValueBrick.m */; };
@@ -2043,6 +2043,9 @@
 		59D008EC208E4249000539E7 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		59D9EC62206117000019EC10 /* DVR.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVR.framework; path = Carthage/Build/iOS/DVR.framework; sourceTree = "<group>"; };
 		5E18A81121A547AA00541536 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
+		5E1F6DA021F6951000B4ACEC /* AboutPoketCodeOptionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AboutPoketCodeOptionTableViewController.swift; path = Catty/ViewController/Settings/AboutPoketCodeOptionTableViewController.swift; sourceTree = SOURCE_ROOT; };
+		5E1F6DA121F6951000B4ACEC /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsTableViewController.swift; path = Catty/ViewController/Settings/SettingsTableViewController.swift; sourceTree = SOURCE_ROOT; };
+		5E1F6DA221F6951000B4ACEC /* TermsOfUseOptionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TermsOfUseOptionTableViewController.swift; path = Catty/ViewController/Settings/TermsOfUseOptionTableViewController.swift; sourceTree = SOURCE_ROOT; };
 		5E219F2521C8B46A000439BA /* SelectButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectButton.swift; sourceTree = "<group>"; };
 		5E21DA6721A3E4AF00017D2C /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		5E21DA6C21A5255500017D2C /* UploadInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadInfoViewController.swift; sourceTree = "<group>"; };
@@ -2255,12 +2258,6 @@
 		929CC0F51BC3A2420027DEC0 /* PhiroPlayToneBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PhiroPlayToneBrick+Instruction.swift"; sourceTree = "<group>"; };
 		929CC0F61BC3A2420027DEC0 /* PhiroRGBLightBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PhiroRGBLightBrick+Instruction.swift"; sourceTree = "<group>"; };
 		929CC0F71BC3A2420027DEC0 /* PhiroMotorStopBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PhiroMotorStopBrick+Instruction.swift"; sourceTree = "<group>"; };
-		92B46F7D1BC79585004980C1 /* AboutPoketCodeOptionTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutPoketCodeOptionTableViewController.h; sourceTree = "<group>"; };
-		92B46F7E1BC79585004980C1 /* AboutPoketCodeOptionTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutPoketCodeOptionTableViewController.m; sourceTree = "<group>"; };
-		92B46F7F1BC79585004980C1 /* SettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsTableViewController.h; sourceTree = "<group>"; };
-		92B46F801BC79585004980C1 /* SettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTableViewController.m; sourceTree = "<group>"; };
-		92B46F811BC79585004980C1 /* TermsOfUseOptionTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TermsOfUseOptionTableViewController.h; sourceTree = "<group>"; };
-		92B46F821BC79585004980C1 /* TermsOfUseOptionTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TermsOfUseOptionTableViewController.m; sourceTree = "<group>"; };
 		92B46F8B1BC7B3E5004980C1 /* ArduinoBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArduinoBrick.h; sourceTree = "<group>"; };
 		92B46F8C1BC7B3E5004980C1 /* ArduinoBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArduinoBrick.m; sourceTree = "<group>"; };
 		92B46F8D1BC7B3E5004980C1 /* ArduinoSendDigitalValueBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArduinoSendDigitalValueBrick.h; sourceTree = "<group>"; };
@@ -5400,17 +5397,15 @@
 			path = PlayerEngine/Instructions/Phiro;
 			sourceTree = "<group>";
 		};
-		92B46F881BC7958C004980C1 /* SettingsViewController */ = {
+		92B46F881BC7958C004980C1 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				92B46F7D1BC79585004980C1 /* AboutPoketCodeOptionTableViewController.h */,
-				92B46F7E1BC79585004980C1 /* AboutPoketCodeOptionTableViewController.m */,
-				92B46F7F1BC79585004980C1 /* SettingsTableViewController.h */,
-				92B46F801BC79585004980C1 /* SettingsTableViewController.m */,
-				92B46F811BC79585004980C1 /* TermsOfUseOptionTableViewController.h */,
-				92B46F821BC79585004980C1 /* TermsOfUseOptionTableViewController.m */,
+				5E1F6DA021F6951000B4ACEC /* AboutPoketCodeOptionTableViewController.swift */,
+				5E1F6DA121F6951000B4ACEC /* SettingsTableViewController.swift */,
+				5E1F6DA221F6951000B4ACEC /* TermsOfUseOptionTableViewController.swift */,
 			);
-			name = SettingsViewController;
+			name = Settings;
+			path = CatrobatTableViewController;
 			sourceTree = "<group>";
 		};
 		92B46F8A1BC7B3E5004980C1 /* ArduinoBricks */ = {
@@ -6230,6 +6225,7 @@
 				5947F6D3200CF3A20079DBCE /* MediaLibrary */,
 				92FF31401A24DEB300093DA7 /* Projects */,
 				92FF31431A24DEB300093DA7 /* Scene */,
+				92B46F881BC7958C004980C1 /* Settings */,
 				9238C57C1A3AE9920099F061 /* Upload/Login */,
 			);
 			path = ViewController;
@@ -6249,7 +6245,6 @@
 		92FF31121A24DEB300093DA7 /* CatrobatTableViewController */ = {
 			isa = PBXGroup;
 			children = (
-				92B46F881BC7958C004980C1 /* SettingsViewController */,
 				92FF31131A24DEB300093DA7 /* CatrobatTableViewController.h */,
 				92FF31141A24DEB300093DA7 /* CatrobatTableViewController.m */,
 			);
@@ -8896,6 +8891,7 @@
 				4C724E241B4D3E8C00E27479 /* CBXMLValidator.m in Sources */,
 				929CC0F11BC39B8C0027DEC0 /* PhiroRGBLightBrickCell.m in Sources */,
 				4C0F9F72204BD1B600E71B2D /* SpeakAndWaitBrick+CBXMLHandler.m in Sources */,
+				5E1F6DA521F6951000B4ACEC /* TermsOfUseOptionTableViewController.swift in Sources */,
 				92BCDC871BF1FB1E00F9CB23 /* FirmataProtocol.swift in Sources */,
 				AA74EFE21BC05B5F00D1E954 /* BroadcastWaitBrick.m in Sources */,
 				4CF0729420D66A7F00F93AB5 /* AltitudeSensor.swift in Sources */,
@@ -8934,7 +8930,6 @@
 				92FF2EC01A24C8A700093DA7 /* OrderedDictionary.m in Sources */,
 				AA74F0CD1BC05FCE00D1E954 /* StartScriptCell.m in Sources */,
 				5E21DA7121A5289F00017D2C /* Data+Extensions.swift in Sources */,
-				92B46F841BC79585004980C1 /* SettingsTableViewController.m in Sources */,
 				92FF31491A24DEB300093DA7 /* BaseCollectionViewController.m in Sources */,
 				BA987D0D2194E647002DAA05 /* WaitUntilBrick+Condition.swift in Sources */,
 				92D56C321BF202E700A54750 /* ArduinoHelper.swift in Sources */,
@@ -8963,6 +8958,7 @@
 				92FF315F1A24DEB300093DA7 /* MyProjectsViewController.m in Sources */,
 				BAEE49B61F165C3100F06741 /* ReplaceItemInUserListBrickCell.m in Sources */,
 				4C724E661B4D3EC500E27479 /* CBXMLSerializerContext.m in Sources */,
+				5E1F6DA321F6951000B4ACEC /* AboutPoketCodeOptionTableViewController.swift in Sources */,
 				9218B20B1CC4AB75007B4C60 /* DrawTool.m in Sources */,
 				BAEAB294214BCD75000B2E4B /* WhenTouchDownScript.m in Sources */,
 				4C8BC6641B26C298001C7E32 /* iOSComboboxPickerView.m in Sources */,
@@ -9150,6 +9146,7 @@
 				4CE6788D210C503600D90B5D /* FunctionManager.swift in Sources */,
 				929CC0BD1BC39AD60027DEC0 /* BluetoothBrick.m in Sources */,
 				4C0F9F7A204BD1E300E71B2D /* SayBubbleBrick+Instruction.swift in Sources */,
+				5E1F6DA421F6951000B4ACEC /* SettingsTableViewController.swift in Sources */,
 				5EF590BA2192D81F00C19F12 /* Double+Extensions.swift in Sources */,
 				92FF2E911A24C7D800093DA7 /* DownloadImageCache.m in Sources */,
 				AA74EFF81BC05B5F00D1E954 /* SetSizeToBrick.m in Sources */,
@@ -9163,7 +9160,6 @@
 				92FF30C81A24DCAA00093DA7 /* Brick.m in Sources */,
 				AA74F0971BC05FCE00D1E954 /* BrickCellSoundData.m in Sources */,
 				92B46F911BC7B3E5004980C1 /* ArduinoBrick.m in Sources */,
-				92B46F831BC79585004980C1 /* AboutPoketCodeOptionTableViewController.m in Sources */,
 				4C724E631B4D3E8C00E27479 /* XMLObjectReference.m in Sources */,
 				4C60663A1A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m in Sources */,
 				929CC0CE1BC39B0A0027DEC0 /* PhiroMotorStopBrick.m in Sources */,
@@ -9462,7 +9458,6 @@
 				BA3337372195BC6D00DA3505 /* RepeatUntilBrick+CBXMLHandler.m in Sources */,
 				AA74F0031BC05B5F00D1E954 /* PlaceAtBrick.m in Sources */,
 				AA74F0001BC05B5F00D1E954 /* GoNStepsBackBrick.m in Sources */,
-				92B46F851BC79585004980C1 /* TermsOfUseOptionTableViewController.m in Sources */,
 				92FF31071A24DCAA00093DA7 /* SpriteObject.m in Sources */,
 				4C37A0AA212E7E540074F417 /* FormulaEditorItem.swift in Sources */,
 				AA74EFE51BC05B5F00D1E954 /* IfLogicElseBrick.m in Sources */,

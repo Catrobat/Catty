@@ -52,3 +52,11 @@ let kTestUploadUrl = kTestUrl.appending("api/upload")
 
 let kDownloadUrl = kBaseUrl.appending("download")
 let kForumURL = kBaseUrl.appending("help")
+
+//*************************************************************************************
+//***************************      Settings       *************************************
+//*************************************************************************************
+
+let kAppStoreIdentifier = "1117935892"
+let kAppStoreURL = "itms-apps://itunes.apple.com/app/".appending(kAppStoreIdentifier)
+let kTermsOfUseURL = kBaseUrl.appending("termsOfUse")
