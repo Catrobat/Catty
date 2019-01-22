@@ -437,7 +437,6 @@
 		4CE6788D210C503600D90B5D /* FunctionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE6788C210C503600D90B5D /* FunctionManager.swift */; };
 		4CE6788F210C506B00D90B5D /* FunctionManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE6788E210C506B00D90B5D /* FunctionManagerProtocol.swift */; };
 		4CE67896210C668C00D90B5D /* FormulaEditorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE67895210C668C00D90B5D /* FormulaEditorButton.swift */; };
-		4CE67899210C6EEE00D90B5D /* SinFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE67898210C6EEE00D90B5D /* SinFunction.swift */; };
 		4CE9ADA51EEB2DAF00F5766B /* TextFieldAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE9ADA41EEB2DAF00F5766B /* TextFieldAlertController.swift */; };
 		4CEB224E1B95E47500B3BE2F /* BrickMoveManagerAbstractTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB22301B95E47500B3BE2F /* BrickMoveManagerAbstractTest.m */; };
 		4CEB224F1B95E47500B3BE2F /* BrickMoveManagerForeverTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB22311B95E47500B3BE2F /* BrickMoveManagerForeverTests.m */; };
@@ -628,18 +627,6 @@
 		5EBA2E8C21F6C67900DE7617 /* CBBroadcastHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA2E8B21F6C67900DE7617 /* CBBroadcastHandler.swift */; };
 		5EBA2EA621F6C6FC00DE7617 /* OperatorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA2E9321F6C6FB00DE7617 /* OperatorManager.swift */; };
 		5EBA2EA721F6C6FC00DE7617 /* NotOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA2E9521F6C6FB00DE7617 /* NotOperator.swift */; };
-		5EBA2EA821F6C6FC00DE7617 /* MultOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA2E9721F6C6FB00DE7617 /* MultOperator.swift */; };
-		5EBA2EA921F6C6FC00DE7617 /* GreaterThanOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA2E9821F6C6FB00DE7617 /* GreaterThanOperator.swift */; };
-		5EBA2EAA21F6C6FC00DE7617 /* EqualOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA2E9921F6C6FB00DE7617 /* EqualOperator.swift */; };
-		5EBA2EAB21F6C6FC00DE7617 /* NotEqualOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA2E9A21F6C6FB00DE7617 /* NotEqualOperator.swift */; };
-		5EBA2EAC21F6C6FC00DE7617 /* SmallerOrEqualOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA2E9B21F6C6FB00DE7617 /* SmallerOrEqualOperator.swift */; };
-		5EBA2EAD21F6C6FC00DE7617 /* DivideOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA2E9C21F6C6FB00DE7617 /* DivideOperator.swift */; };
-		5EBA2EAE21F6C6FC00DE7617 /* GreaterOrEqualOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA2E9D21F6C6FB00DE7617 /* GreaterOrEqualOperator.swift */; };
-		5EBA2EAF21F6C6FC00DE7617 /* PlusOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA2E9E21F6C6FB00DE7617 /* PlusOperator.swift */; };
-		5EBA2EB021F6C6FC00DE7617 /* OrOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA2E9F21F6C6FB00DE7617 /* OrOperator.swift */; };
-		5EBA2EB121F6C6FC00DE7617 /* AndOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA2EA021F6C6FB00DE7617 /* AndOperator.swift */; };
-		5EBA2EB221F6C6FC00DE7617 /* SmallerThanOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA2EA121F6C6FB00DE7617 /* SmallerThanOperator.swift */; };
-		5EBA2EB321F6C6FC00DE7617 /* MinusOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA2EA221F6C6FB00DE7617 /* MinusOperator.swift */; };
 		5EBA2EB421F6C6FC00DE7617 /* Operator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA2EA421F6C6FB00DE7617 /* Operator.swift */; };
 		5EBA2EB521F6C6FC00DE7617 /* OperatorManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA2EA521F6C6FB00DE7617 /* OperatorManagerProtocol.swift */; };
 		5EBA2EC221F6C72A00DE7617 /* CBConditionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA2EB721F6C72A00DE7617 /* CBConditionProtocol.swift */; };
@@ -663,21 +650,6 @@
 		5EBA304821F6C78B00DE7617 /* AltitudeSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA2FFC21F6C78900DE7617 /* AltitudeSensor.swift */; };
 		5EBA304921F6C78B00DE7617 /* LocationAccuracySensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA2FFD21F6C78900DE7617 /* LocationAccuracySensor.swift */; };
 		5EBA304A21F6C78B00DE7617 /* LatitudeSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA2FFE21F6C78900DE7617 /* LatitudeSensor.swift */; };
-		5EBA304B21F6C78B00DE7617 /* FaceDetectionManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA300021F6C78900DE7617 /* FaceDetectionManagerProtocol.swift */; };
-		5EBA304C21F6C78B00DE7617 /* PhiroSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA300121F6C78900DE7617 /* PhiroSensor.swift */; };
-		5EBA304D21F6C78B00DE7617 /* ObjectSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA300221F6C78900DE7617 /* ObjectSensor.swift */; };
-		5EBA304E21F6C78B00DE7617 /* Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA300321F6C78900DE7617 /* Sensor.swift */; };
-		5EBA304F21F6C78B00DE7617 /* DateSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA300421F6C78900DE7617 /* DateSensor.swift */; };
-		5EBA305021F6C78B00DE7617 /* ObjectDoubleSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA300521F6C78900DE7617 /* ObjectDoubleSensor.swift */; };
-		5EBA305121F6C78B00DE7617 /* ObjectStringSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA300621F6C78900DE7617 /* ObjectStringSensor.swift */; };
-		5EBA305221F6C78B00DE7617 /* AudioManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA300721F6C78900DE7617 /* AudioManagerProtocol.swift */; };
-		5EBA305321F6C78B00DE7617 /* SpriteObjectProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA300821F6C78900DE7617 /* SpriteObjectProtocol.swift */; };
-		5EBA305421F6C78B00DE7617 /* TouchManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA300921F6C78900DE7617 /* TouchManagerProtocol.swift */; };
-		5EBA305521F6C78B00DE7617 /* MotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA300A21F6C78900DE7617 /* MotionManager.swift */; };
-		5EBA305621F6C78B00DE7617 /* TouchSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA300B21F6C78900DE7617 /* TouchSensor.swift */; };
-		5EBA305721F6C78B00DE7617 /* DeviceSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA300C21F6C78900DE7617 /* DeviceSensor.swift */; };
-		5EBA305821F6C78B00DE7617 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA300D21F6C78900DE7617 /* LocationManager.swift */; };
-		5EBA305921F6C78B00DE7617 /* SensorManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA300E21F6C78900DE7617 /* SensorManagerProtocol.swift */; };
 		5EBA305A21F6C78B00DE7617 /* LoudnessSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA301021F6C78A00DE7617 /* LoudnessSensor.swift */; };
 		5EBA305B21F6C78B00DE7617 /* CBSpriteNode+Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA301221F6C78A00DE7617 /* CBSpriteNode+Sensor.swift */; };
 		5EBA305C21F6C78B00DE7617 /* ProtocolConformance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA301321F6C78A00DE7617 /* ProtocolConformance.swift */; };
@@ -723,6 +695,55 @@
 		5EBA309C21F6C7C500DE7617 /* BrightnessSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA309021F6C7C500DE7617 /* BrightnessSensor.swift */; };
 		5EBA309D21F6C7C500DE7617 /* ColorSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA309121F6C7C500DE7617 /* ColorSensor.swift */; };
 		5EBA309E21F6C7C500DE7617 /* LayerSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA309221F6C7C500DE7617 /* LayerSensor.swift */; };
+		5EBA30B521F6CC4E00DE7617 /* RoundFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA309F21F6CC4900DE7617 /* RoundFunction.swift */; };
+		5EBA30B621F6CC4E00DE7617 /* TanFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA30A021F6CC4900DE7617 /* TanFunction.swift */; };
+		5EBA30B721F6CC4E00DE7617 /* TrueFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA30A121F6CC4900DE7617 /* TrueFunction.swift */; };
+		5EBA30B821F6CC4E00DE7617 /* SinFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA30A221F6CC4900DE7617 /* SinFunction.swift */; };
+		5EBA30B921F6CC4E00DE7617 /* PiFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA30A321F6CC4A00DE7617 /* PiFunction.swift */; };
+		5EBA30BA21F6CC4E00DE7617 /* AcosFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA30A421F6CC4A00DE7617 /* AcosFunction.swift */; };
+		5EBA30BB21F6CC4E00DE7617 /* FloorFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA30A521F6CC4A00DE7617 /* FloorFunction.swift */; };
+		5EBA30BC21F6CC4E00DE7617 /* SqrtFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA30A621F6CC4A00DE7617 /* SqrtFunction.swift */; };
+		5EBA30BD21F6CC4E00DE7617 /* AtanFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA30A721F6CC4A00DE7617 /* AtanFunction.swift */; };
+		5EBA30BE21F6CC4E00DE7617 /* LogFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA30A821F6CC4B00DE7617 /* LogFunction.swift */; };
+		5EBA30BF21F6CC4E00DE7617 /* ExpFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA30A921F6CC4B00DE7617 /* ExpFunction.swift */; };
+		5EBA30C021F6CC4E00DE7617 /* ModFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA30AA21F6CC4B00DE7617 /* ModFunction.swift */; };
+		5EBA30C121F6CC4E00DE7617 /* FalseFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA30AB21F6CC4B00DE7617 /* FalseFunction.swift */; };
+		5EBA30C221F6CC4E00DE7617 /* RandFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA30AC21F6CC4C00DE7617 /* RandFunction.swift */; };
+		5EBA30C321F6CC4E00DE7617 /* AsinFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA30AD21F6CC4C00DE7617 /* AsinFunction.swift */; };
+		5EBA30C421F6CC4E00DE7617 /* CosFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA30AE21F6CC4C00DE7617 /* CosFunction.swift */; };
+		5EBA30C521F6CC4E00DE7617 /* MinFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA30AF21F6CC4C00DE7617 /* MinFunction.swift */; };
+		5EBA30C621F6CC4E00DE7617 /* CeilFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA30B021F6CC4D00DE7617 /* CeilFunction.swift */; };
+		5EBA30C721F6CC4E00DE7617 /* MaxFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA30B121F6CC4D00DE7617 /* MaxFunction.swift */; };
+		5EBA30C821F6CC4E00DE7617 /* AbsFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA30B221F6CC4D00DE7617 /* AbsFunction.swift */; };
+		5EBA30C921F6CC4E00DE7617 /* LnFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA30B321F6CC4D00DE7617 /* LnFunction.swift */; };
+		5EBA30CA21F6CC4E00DE7617 /* PowFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA30B421F6CC4E00DE7617 /* PowFunction.swift */; };
+		5EBA30D721F6CC9300DE7617 /* SmallerOrEqualOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA30CB21F6CC9100DE7617 /* SmallerOrEqualOperator.swift */; };
+		5EBA30D821F6CC9300DE7617 /* OrOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA30CC21F6CC9200DE7617 /* OrOperator.swift */; };
+		5EBA30D921F6CC9300DE7617 /* GreaterOrEqualOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA30CD21F6CC9200DE7617 /* GreaterOrEqualOperator.swift */; };
+		5EBA30DA21F6CC9300DE7617 /* AndOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA30CE21F6CC9200DE7617 /* AndOperator.swift */; };
+		5EBA30DB21F6CC9300DE7617 /* EqualOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA30CF21F6CC9200DE7617 /* EqualOperator.swift */; };
+		5EBA30DC21F6CC9300DE7617 /* GreaterThanOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA30D021F6CC9200DE7617 /* GreaterThanOperator.swift */; };
+		5EBA30DD21F6CC9300DE7617 /* DivideOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA30D121F6CC9200DE7617 /* DivideOperator.swift */; };
+		5EBA30DE21F6CC9300DE7617 /* MinusOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA30D221F6CC9200DE7617 /* MinusOperator.swift */; };
+		5EBA30DF21F6CC9300DE7617 /* MultOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA30D321F6CC9300DE7617 /* MultOperator.swift */; };
+		5EBA30E021F6CC9300DE7617 /* PlusOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA30D421F6CC9300DE7617 /* PlusOperator.swift */; };
+		5EBA30E121F6CC9300DE7617 /* NotEqualOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA30D521F6CC9300DE7617 /* NotEqualOperator.swift */; };
+		5EBA30E221F6CC9300DE7617 /* SmallerThanOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA30D621F6CC9300DE7617 /* SmallerThanOperator.swift */; };
+		5EBA30F221F6CCEF00DE7617 /* Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA30E321F6CCED00DE7617 /* Sensor.swift */; };
+		5EBA30F321F6CCEF00DE7617 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA30E421F6CCEE00DE7617 /* LocationManager.swift */; };
+		5EBA30F421F6CCEF00DE7617 /* DeviceSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA30E521F6CCEE00DE7617 /* DeviceSensor.swift */; };
+		5EBA30F521F6CCEF00DE7617 /* ObjectSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA30E621F6CCEE00DE7617 /* ObjectSensor.swift */; };
+		5EBA30F621F6CCEF00DE7617 /* SpriteObjectProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA30E721F6CCEE00DE7617 /* SpriteObjectProtocol.swift */; };
+		5EBA30F721F6CCEF00DE7617 /* SensorManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA30E821F6CCEE00DE7617 /* SensorManagerProtocol.swift */; };
+		5EBA30F821F6CCEF00DE7617 /* FaceDetectionManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA30E921F6CCEE00DE7617 /* FaceDetectionManagerProtocol.swift */; };
+		5EBA30F921F6CCEF00DE7617 /* TouchSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA30EA21F6CCEE00DE7617 /* TouchSensor.swift */; };
+		5EBA30FA21F6CCEF00DE7617 /* DateSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA30EB21F6CCEE00DE7617 /* DateSensor.swift */; };
+		5EBA30FB21F6CCEF00DE7617 /* AudioManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA30EC21F6CCEF00DE7617 /* AudioManagerProtocol.swift */; };
+		5EBA30FC21F6CCEF00DE7617 /* PhiroSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA30ED21F6CCEF00DE7617 /* PhiroSensor.swift */; };
+		5EBA30FD21F6CCEF00DE7617 /* ObjectStringSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA30EE21F6CCEF00DE7617 /* ObjectStringSensor.swift */; };
+		5EBA30FE21F6CCEF00DE7617 /* ObjectDoubleSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA30EF21F6CCEF00DE7617 /* ObjectDoubleSensor.swift */; };
+		5EBA30FF21F6CCEF00DE7617 /* MotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA30F021F6CCEF00DE7617 /* MotionManager.swift */; };
+		5EBA310021F6CCEF00DE7617 /* TouchManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA30F121F6CCEF00DE7617 /* TouchManagerProtocol.swift */; };
 		5EDBA043219549AE000EFFEF /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EDBA042219549AE000EFFEF /* LoadingView.swift */; };
 		5EF590BA2192D81F00C19F12 /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF590B92192D81F00C19F12 /* Double+Extensions.swift */; };
 		5EFBD5F92145533B003B3CDC /* ProjectDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFBD5F82145533B003B3CDC /* ProjectDescriptionViewController.swift */; };
@@ -1240,27 +1261,6 @@
 		F4A2AFB52110D48C00C53234 /* JoinFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A2AFB42110D48C00C53234 /* JoinFunction.swift */; };
 		F4A2AFB72110D49900C53234 /* LetterFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A2AFB62110D49900C53234 /* LetterFunction.swift */; };
 		F4A2AFB92110D4A800C53234 /* LengthFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A2AFB82110D4A800C53234 /* LengthFunction.swift */; };
-		F4E6E579210DDD5C00D86FE6 /* CosFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E578210DDD5C00D86FE6 /* CosFunction.swift */; };
-		F4E6E580210DE61900D86FE6 /* PowFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E57F210DE61900D86FE6 /* PowFunction.swift */; };
-		F4E6E584210DFD4300D86FE6 /* TanFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E583210DFD4300D86FE6 /* TanFunction.swift */; };
-		F4E6E586210DFE0800D86FE6 /* LnFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E585210DFE0800D86FE6 /* LnFunction.swift */; };
-		F4E6E588210DFE8800D86FE6 /* LogFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E587210DFE8800D86FE6 /* LogFunction.swift */; };
-		F4E6E58A210DFECA00D86FE6 /* SqrtFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E589210DFECA00D86FE6 /* SqrtFunction.swift */; };
-		F4E6E58C210DFEFE00D86FE6 /* PiFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E58B210DFEFE00D86FE6 /* PiFunction.swift */; };
-		F4E6E58E210E00E100D86FE6 /* ModFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E58D210E00E100D86FE6 /* ModFunction.swift */; };
-		F4E6E590210E026500D86FE6 /* AbsFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E58F210E026500D86FE6 /* AbsFunction.swift */; };
-		F4E6E592210E032000D86FE6 /* AsinFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E591210E032000D86FE6 /* AsinFunction.swift */; };
-		F4E6E594210E038700D86FE6 /* AcosFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E593210E038700D86FE6 /* AcosFunction.swift */; };
-		F4E6E596210E03B700D86FE6 /* AtanFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E595210E03B700D86FE6 /* AtanFunction.swift */; };
-		F4E6E598210E03FE00D86FE6 /* ExpFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E597210E03FE00D86FE6 /* ExpFunction.swift */; };
-		F4E6E59A210E048700D86FE6 /* MaxFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E599210E048700D86FE6 /* MaxFunction.swift */; };
-		F4E6E59C210E051200D86FE6 /* MinFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E59B210E051200D86FE6 /* MinFunction.swift */; };
-		F4E6E5BE210E1FA400D86FE6 /* RoundFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E5BD210E1FA400D86FE6 /* RoundFunction.swift */; };
-		F4E6E5C0210E1FE900D86FE6 /* RandFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E5BF210E1FE900D86FE6 /* RandFunction.swift */; };
-		F4E6E5C2210E23D500D86FE6 /* CeilFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E5C1210E23D500D86FE6 /* CeilFunction.swift */; };
-		F4E6E5C4210E242D00D86FE6 /* FloorFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E5C3210E242D00D86FE6 /* FloorFunction.swift */; };
-		F4E6E5C6210E24F900D86FE6 /* TrueFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E5C5210E24F900D86FE6 /* TrueFunction.swift */; };
-		F4E6E5C8210E255D00D86FE6 /* FalseFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E5C7210E255D00D86FE6 /* FalseFunction.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1839,7 +1839,6 @@
 		4CE6788C210C503600D90B5D /* FunctionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionManager.swift; sourceTree = "<group>"; };
 		4CE6788E210C506B00D90B5D /* FunctionManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionManagerProtocol.swift; sourceTree = "<group>"; };
 		4CE67895210C668C00D90B5D /* FormulaEditorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaEditorButton.swift; sourceTree = "<group>"; };
-		4CE67898210C6EEE00D90B5D /* SinFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinFunction.swift; sourceTree = "<group>"; };
 		4CE9ADA41EEB2DAF00F5766B /* TextFieldAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldAlertController.swift; sourceTree = "<group>"; };
 		4CEB222F1B95E47500B3BE2F /* BrickMoveManagerAbstractTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickMoveManagerAbstractTest.h; sourceTree = "<group>"; };
 		4CEB22301B95E47500B3BE2F /* BrickMoveManagerAbstractTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickMoveManagerAbstractTest.m; sourceTree = "<group>"; };
@@ -2028,18 +2027,6 @@
 		5EBA2E8B21F6C67900DE7617 /* CBBroadcastHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBBroadcastHandler.swift; sourceTree = "<group>"; };
 		5EBA2E9321F6C6FB00DE7617 /* OperatorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperatorManager.swift; sourceTree = "<group>"; };
 		5EBA2E9521F6C6FB00DE7617 /* NotOperator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotOperator.swift; sourceTree = "<group>"; };
-		5EBA2E9721F6C6FB00DE7617 /* MultOperator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultOperator.swift; sourceTree = "<group>"; };
-		5EBA2E9821F6C6FB00DE7617 /* GreaterThanOperator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GreaterThanOperator.swift; sourceTree = "<group>"; };
-		5EBA2E9921F6C6FB00DE7617 /* EqualOperator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EqualOperator.swift; sourceTree = "<group>"; };
-		5EBA2E9A21F6C6FB00DE7617 /* NotEqualOperator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotEqualOperator.swift; sourceTree = "<group>"; };
-		5EBA2E9B21F6C6FB00DE7617 /* SmallerOrEqualOperator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmallerOrEqualOperator.swift; sourceTree = "<group>"; };
-		5EBA2E9C21F6C6FB00DE7617 /* DivideOperator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DivideOperator.swift; sourceTree = "<group>"; };
-		5EBA2E9D21F6C6FB00DE7617 /* GreaterOrEqualOperator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GreaterOrEqualOperator.swift; sourceTree = "<group>"; };
-		5EBA2E9E21F6C6FB00DE7617 /* PlusOperator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlusOperator.swift; sourceTree = "<group>"; };
-		5EBA2E9F21F6C6FB00DE7617 /* OrOperator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrOperator.swift; sourceTree = "<group>"; };
-		5EBA2EA021F6C6FB00DE7617 /* AndOperator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AndOperator.swift; sourceTree = "<group>"; };
-		5EBA2EA121F6C6FB00DE7617 /* SmallerThanOperator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmallerThanOperator.swift; sourceTree = "<group>"; };
-		5EBA2EA221F6C6FB00DE7617 /* MinusOperator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinusOperator.swift; sourceTree = "<group>"; };
 		5EBA2EA421F6C6FB00DE7617 /* Operator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Operator.swift; sourceTree = "<group>"; };
 		5EBA2EA521F6C6FB00DE7617 /* OperatorManagerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperatorManagerProtocol.swift; sourceTree = "<group>"; };
 		5EBA2EB721F6C72A00DE7617 /* CBConditionProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBConditionProtocol.swift; sourceTree = "<group>"; };
@@ -2063,21 +2050,6 @@
 		5EBA2FFC21F6C78900DE7617 /* AltitudeSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AltitudeSensor.swift; sourceTree = "<group>"; };
 		5EBA2FFD21F6C78900DE7617 /* LocationAccuracySensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationAccuracySensor.swift; sourceTree = "<group>"; };
 		5EBA2FFE21F6C78900DE7617 /* LatitudeSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LatitudeSensor.swift; sourceTree = "<group>"; };
-		5EBA300021F6C78900DE7617 /* FaceDetectionManagerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaceDetectionManagerProtocol.swift; sourceTree = "<group>"; };
-		5EBA300121F6C78900DE7617 /* PhiroSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhiroSensor.swift; sourceTree = "<group>"; };
-		5EBA300221F6C78900DE7617 /* ObjectSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectSensor.swift; sourceTree = "<group>"; };
-		5EBA300321F6C78900DE7617 /* Sensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sensor.swift; sourceTree = "<group>"; };
-		5EBA300421F6C78900DE7617 /* DateSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateSensor.swift; sourceTree = "<group>"; };
-		5EBA300521F6C78900DE7617 /* ObjectDoubleSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectDoubleSensor.swift; sourceTree = "<group>"; };
-		5EBA300621F6C78900DE7617 /* ObjectStringSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectStringSensor.swift; sourceTree = "<group>"; };
-		5EBA300721F6C78900DE7617 /* AudioManagerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioManagerProtocol.swift; sourceTree = "<group>"; };
-		5EBA300821F6C78900DE7617 /* SpriteObjectProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpriteObjectProtocol.swift; sourceTree = "<group>"; };
-		5EBA300921F6C78900DE7617 /* TouchManagerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouchManagerProtocol.swift; sourceTree = "<group>"; };
-		5EBA300A21F6C78900DE7617 /* MotionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotionManager.swift; sourceTree = "<group>"; };
-		5EBA300B21F6C78900DE7617 /* TouchSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouchSensor.swift; sourceTree = "<group>"; };
-		5EBA300C21F6C78900DE7617 /* DeviceSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceSensor.swift; sourceTree = "<group>"; };
-		5EBA300D21F6C78900DE7617 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
-		5EBA300E21F6C78900DE7617 /* SensorManagerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorManagerProtocol.swift; sourceTree = "<group>"; };
 		5EBA301021F6C78A00DE7617 /* LoudnessSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoudnessSensor.swift; sourceTree = "<group>"; };
 		5EBA301221F6C78A00DE7617 /* CBSpriteNode+Sensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CBSpriteNode+Sensor.swift"; sourceTree = "<group>"; };
 		5EBA301321F6C78A00DE7617 /* ProtocolConformance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProtocolConformance.swift; sourceTree = "<group>"; };
@@ -2123,6 +2095,55 @@
 		5EBA309021F6C7C500DE7617 /* BrightnessSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrightnessSensor.swift; sourceTree = "<group>"; };
 		5EBA309121F6C7C500DE7617 /* ColorSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorSensor.swift; sourceTree = "<group>"; };
 		5EBA309221F6C7C500DE7617 /* LayerSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayerSensor.swift; sourceTree = "<group>"; };
+		5EBA309F21F6CC4900DE7617 /* RoundFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundFunction.swift; sourceTree = "<group>"; };
+		5EBA30A021F6CC4900DE7617 /* TanFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TanFunction.swift; sourceTree = "<group>"; };
+		5EBA30A121F6CC4900DE7617 /* TrueFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrueFunction.swift; sourceTree = "<group>"; };
+		5EBA30A221F6CC4900DE7617 /* SinFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SinFunction.swift; sourceTree = "<group>"; };
+		5EBA30A321F6CC4A00DE7617 /* PiFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PiFunction.swift; sourceTree = "<group>"; };
+		5EBA30A421F6CC4A00DE7617 /* AcosFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcosFunction.swift; sourceTree = "<group>"; };
+		5EBA30A521F6CC4A00DE7617 /* FloorFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloorFunction.swift; sourceTree = "<group>"; };
+		5EBA30A621F6CC4A00DE7617 /* SqrtFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SqrtFunction.swift; sourceTree = "<group>"; };
+		5EBA30A721F6CC4A00DE7617 /* AtanFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AtanFunction.swift; sourceTree = "<group>"; };
+		5EBA30A821F6CC4B00DE7617 /* LogFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogFunction.swift; sourceTree = "<group>"; };
+		5EBA30A921F6CC4B00DE7617 /* ExpFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpFunction.swift; sourceTree = "<group>"; };
+		5EBA30AA21F6CC4B00DE7617 /* ModFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModFunction.swift; sourceTree = "<group>"; };
+		5EBA30AB21F6CC4B00DE7617 /* FalseFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FalseFunction.swift; sourceTree = "<group>"; };
+		5EBA30AC21F6CC4C00DE7617 /* RandFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandFunction.swift; sourceTree = "<group>"; };
+		5EBA30AD21F6CC4C00DE7617 /* AsinFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsinFunction.swift; sourceTree = "<group>"; };
+		5EBA30AE21F6CC4C00DE7617 /* CosFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CosFunction.swift; sourceTree = "<group>"; };
+		5EBA30AF21F6CC4C00DE7617 /* MinFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinFunction.swift; sourceTree = "<group>"; };
+		5EBA30B021F6CC4D00DE7617 /* CeilFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CeilFunction.swift; sourceTree = "<group>"; };
+		5EBA30B121F6CC4D00DE7617 /* MaxFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaxFunction.swift; sourceTree = "<group>"; };
+		5EBA30B221F6CC4D00DE7617 /* AbsFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbsFunction.swift; sourceTree = "<group>"; };
+		5EBA30B321F6CC4D00DE7617 /* LnFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LnFunction.swift; sourceTree = "<group>"; };
+		5EBA30B421F6CC4E00DE7617 /* PowFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PowFunction.swift; sourceTree = "<group>"; };
+		5EBA30CB21F6CC9100DE7617 /* SmallerOrEqualOperator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmallerOrEqualOperator.swift; sourceTree = "<group>"; };
+		5EBA30CC21F6CC9200DE7617 /* OrOperator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrOperator.swift; sourceTree = "<group>"; };
+		5EBA30CD21F6CC9200DE7617 /* GreaterOrEqualOperator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GreaterOrEqualOperator.swift; sourceTree = "<group>"; };
+		5EBA30CE21F6CC9200DE7617 /* AndOperator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AndOperator.swift; sourceTree = "<group>"; };
+		5EBA30CF21F6CC9200DE7617 /* EqualOperator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EqualOperator.swift; sourceTree = "<group>"; };
+		5EBA30D021F6CC9200DE7617 /* GreaterThanOperator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GreaterThanOperator.swift; sourceTree = "<group>"; };
+		5EBA30D121F6CC9200DE7617 /* DivideOperator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DivideOperator.swift; sourceTree = "<group>"; };
+		5EBA30D221F6CC9200DE7617 /* MinusOperator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinusOperator.swift; sourceTree = "<group>"; };
+		5EBA30D321F6CC9300DE7617 /* MultOperator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultOperator.swift; sourceTree = "<group>"; };
+		5EBA30D421F6CC9300DE7617 /* PlusOperator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlusOperator.swift; sourceTree = "<group>"; };
+		5EBA30D521F6CC9300DE7617 /* NotEqualOperator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotEqualOperator.swift; sourceTree = "<group>"; };
+		5EBA30D621F6CC9300DE7617 /* SmallerThanOperator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmallerThanOperator.swift; sourceTree = "<group>"; };
+		5EBA30E321F6CCED00DE7617 /* Sensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sensor.swift; sourceTree = "<group>"; };
+		5EBA30E421F6CCEE00DE7617 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		5EBA30E521F6CCEE00DE7617 /* DeviceSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceSensor.swift; sourceTree = "<group>"; };
+		5EBA30E621F6CCEE00DE7617 /* ObjectSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectSensor.swift; sourceTree = "<group>"; };
+		5EBA30E721F6CCEE00DE7617 /* SpriteObjectProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpriteObjectProtocol.swift; sourceTree = "<group>"; };
+		5EBA30E821F6CCEE00DE7617 /* SensorManagerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorManagerProtocol.swift; sourceTree = "<group>"; };
+		5EBA30E921F6CCEE00DE7617 /* FaceDetectionManagerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaceDetectionManagerProtocol.swift; sourceTree = "<group>"; };
+		5EBA30EA21F6CCEE00DE7617 /* TouchSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouchSensor.swift; sourceTree = "<group>"; };
+		5EBA30EB21F6CCEE00DE7617 /* DateSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateSensor.swift; sourceTree = "<group>"; };
+		5EBA30EC21F6CCEF00DE7617 /* AudioManagerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioManagerProtocol.swift; sourceTree = "<group>"; };
+		5EBA30ED21F6CCEF00DE7617 /* PhiroSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhiroSensor.swift; sourceTree = "<group>"; };
+		5EBA30EE21F6CCEF00DE7617 /* ObjectStringSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectStringSensor.swift; sourceTree = "<group>"; };
+		5EBA30EF21F6CCEF00DE7617 /* ObjectDoubleSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectDoubleSensor.swift; sourceTree = "<group>"; };
+		5EBA30F021F6CCEF00DE7617 /* MotionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotionManager.swift; sourceTree = "<group>"; };
+		5EBA30F121F6CCEF00DE7617 /* TouchManagerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouchManagerProtocol.swift; sourceTree = "<group>"; };
 		5EDBA042219549AE000EFFEF /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		5EF590B92192D81F00C19F12 /* Double+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extensions.swift"; sourceTree = "<group>"; };
 		5EFBD5F82145533B003B3CDC /* ProjectDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDescriptionViewController.swift; sourceTree = "<group>"; };
@@ -3050,27 +3071,6 @@
 		F4A2AFB42110D48C00C53234 /* JoinFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinFunction.swift; sourceTree = "<group>"; };
 		F4A2AFB62110D49900C53234 /* LetterFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterFunction.swift; sourceTree = "<group>"; };
 		F4A2AFB82110D4A800C53234 /* LengthFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LengthFunction.swift; sourceTree = "<group>"; };
-		F4E6E578210DDD5C00D86FE6 /* CosFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CosFunction.swift; sourceTree = "<group>"; };
-		F4E6E57F210DE61900D86FE6 /* PowFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowFunction.swift; sourceTree = "<group>"; };
-		F4E6E583210DFD4300D86FE6 /* TanFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TanFunction.swift; sourceTree = "<group>"; };
-		F4E6E585210DFE0800D86FE6 /* LnFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LnFunction.swift; sourceTree = "<group>"; };
-		F4E6E587210DFE8800D86FE6 /* LogFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogFunction.swift; sourceTree = "<group>"; };
-		F4E6E589210DFECA00D86FE6 /* SqrtFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SqrtFunction.swift; sourceTree = "<group>"; };
-		F4E6E58B210DFEFE00D86FE6 /* PiFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiFunction.swift; sourceTree = "<group>"; };
-		F4E6E58D210E00E100D86FE6 /* ModFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModFunction.swift; sourceTree = "<group>"; };
-		F4E6E58F210E026500D86FE6 /* AbsFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbsFunction.swift; sourceTree = "<group>"; };
-		F4E6E591210E032000D86FE6 /* AsinFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsinFunction.swift; sourceTree = "<group>"; };
-		F4E6E593210E038700D86FE6 /* AcosFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcosFunction.swift; sourceTree = "<group>"; };
-		F4E6E595210E03B700D86FE6 /* AtanFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtanFunction.swift; sourceTree = "<group>"; };
-		F4E6E597210E03FE00D86FE6 /* ExpFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpFunction.swift; sourceTree = "<group>"; };
-		F4E6E599210E048700D86FE6 /* MaxFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaxFunction.swift; sourceTree = "<group>"; };
-		F4E6E59B210E051200D86FE6 /* MinFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinFunction.swift; sourceTree = "<group>"; };
-		F4E6E5BD210E1FA400D86FE6 /* RoundFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundFunction.swift; sourceTree = "<group>"; };
-		F4E6E5BF210E1FE900D86FE6 /* RandFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandFunction.swift; sourceTree = "<group>"; };
-		F4E6E5C1210E23D500D86FE6 /* CeilFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CeilFunction.swift; sourceTree = "<group>"; };
-		F4E6E5C3210E242D00D86FE6 /* FloorFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloorFunction.swift; sourceTree = "<group>"; };
-		F4E6E5C5210E24F900D86FE6 /* TrueFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrueFunction.swift; sourceTree = "<group>"; };
-		F4E6E5C7210E255D00D86FE6 /* FalseFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FalseFunction.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -3196,9 +3196,9 @@
 		2DA87910212BD6C000FE0585 /* SearchStore */ = {
 			isa = PBXGroup;
 			children = (
+				E405EABA212D4E420074ADDB /* SearchStoreCell.swift */,
 				2DA8790D212B444E00FE0585 /* SearchStoreDataSource.swift */,
 				2DA8790B212B443500FE0585 /* SearchStoreViewController.swift */,
-				E405EABA212D4E420074ADDB /* SearchStoreCell.swift */,
 			);
 			path = SearchStore;
 			sourceTree = "<group>";
@@ -4642,28 +4642,28 @@
 		4CE67897210C6EBB00D90B5D /* Math */ = {
 			isa = PBXGroup;
 			children = (
-				4CE67898210C6EEE00D90B5D /* SinFunction.swift */,
-				F4E6E578210DDD5C00D86FE6 /* CosFunction.swift */,
-				F4E6E57F210DE61900D86FE6 /* PowFunction.swift */,
-				F4E6E583210DFD4300D86FE6 /* TanFunction.swift */,
-				F4E6E585210DFE0800D86FE6 /* LnFunction.swift */,
-				F4E6E587210DFE8800D86FE6 /* LogFunction.swift */,
-				F4E6E589210DFECA00D86FE6 /* SqrtFunction.swift */,
-				F4E6E58B210DFEFE00D86FE6 /* PiFunction.swift */,
-				F4E6E58D210E00E100D86FE6 /* ModFunction.swift */,
-				F4E6E58F210E026500D86FE6 /* AbsFunction.swift */,
-				F4E6E591210E032000D86FE6 /* AsinFunction.swift */,
-				F4E6E593210E038700D86FE6 /* AcosFunction.swift */,
-				F4E6E595210E03B700D86FE6 /* AtanFunction.swift */,
-				F4E6E597210E03FE00D86FE6 /* ExpFunction.swift */,
-				F4E6E599210E048700D86FE6 /* MaxFunction.swift */,
-				F4E6E59B210E051200D86FE6 /* MinFunction.swift */,
-				F4E6E5BD210E1FA400D86FE6 /* RoundFunction.swift */,
-				F4E6E5BF210E1FE900D86FE6 /* RandFunction.swift */,
-				F4E6E5C1210E23D500D86FE6 /* CeilFunction.swift */,
-				F4E6E5C3210E242D00D86FE6 /* FloorFunction.swift */,
-				F4E6E5C5210E24F900D86FE6 /* TrueFunction.swift */,
-				F4E6E5C7210E255D00D86FE6 /* FalseFunction.swift */,
+				5EBA30B221F6CC4D00DE7617 /* AbsFunction.swift */,
+				5EBA30A421F6CC4A00DE7617 /* AcosFunction.swift */,
+				5EBA30AD21F6CC4C00DE7617 /* AsinFunction.swift */,
+				5EBA30A721F6CC4A00DE7617 /* AtanFunction.swift */,
+				5EBA30B021F6CC4D00DE7617 /* CeilFunction.swift */,
+				5EBA30AE21F6CC4C00DE7617 /* CosFunction.swift */,
+				5EBA30A921F6CC4B00DE7617 /* ExpFunction.swift */,
+				5EBA30AB21F6CC4B00DE7617 /* FalseFunction.swift */,
+				5EBA30A521F6CC4A00DE7617 /* FloorFunction.swift */,
+				5EBA30B321F6CC4D00DE7617 /* LnFunction.swift */,
+				5EBA30A821F6CC4B00DE7617 /* LogFunction.swift */,
+				5EBA30B121F6CC4D00DE7617 /* MaxFunction.swift */,
+				5EBA30AF21F6CC4C00DE7617 /* MinFunction.swift */,
+				5EBA30AA21F6CC4B00DE7617 /* ModFunction.swift */,
+				5EBA30A321F6CC4A00DE7617 /* PiFunction.swift */,
+				5EBA30B421F6CC4E00DE7617 /* PowFunction.swift */,
+				5EBA30AC21F6CC4C00DE7617 /* RandFunction.swift */,
+				5EBA309F21F6CC4900DE7617 /* RoundFunction.swift */,
+				5EBA30A221F6CC4900DE7617 /* SinFunction.swift */,
+				5EBA30A621F6CC4A00DE7617 /* SqrtFunction.swift */,
+				5EBA30A021F6CC4900DE7617 /* TanFunction.swift */,
+				5EBA30A121F6CC4900DE7617 /* TrueFunction.swift */,
 			);
 			path = Math;
 			sourceTree = "<group>";
@@ -4849,8 +4849,8 @@
 		5983198F1FBB810400639BBF /* Introduction */ = {
 			isa = PBXGroup;
 			children = (
-				598319981FBB90CB00639BBF /* IntroductionViewController.swift */,
 				598319921FBB812D00639BBF /* IntroductionPageViewController.swift */,
+				598319981FBB90CB00639BBF /* IntroductionViewController.swift */,
 			);
 			path = Introduction;
 			sourceTree = "<group>";
@@ -4911,10 +4911,10 @@
 		5EBA2E9221F6C6FB00DE7617 /* Operators */ = {
 			isa = PBXGroup;
 			children = (
-				5EBA2E9321F6C6FB00DE7617 /* OperatorManager.swift */,
-				5EBA2E9421F6C6FB00DE7617 /* Unary */,
 				5EBA2E9621F6C6FB00DE7617 /* Binary */,
 				5EBA2EA321F6C6FB00DE7617 /* Protocols */,
+				5EBA2E9421F6C6FB00DE7617 /* Unary */,
+				5EBA2E9321F6C6FB00DE7617 /* OperatorManager.swift */,
 			);
 			path = Operators;
 			sourceTree = "<group>";
@@ -4930,18 +4930,18 @@
 		5EBA2E9621F6C6FB00DE7617 /* Binary */ = {
 			isa = PBXGroup;
 			children = (
-				5EBA2E9721F6C6FB00DE7617 /* MultOperator.swift */,
-				5EBA2E9821F6C6FB00DE7617 /* GreaterThanOperator.swift */,
-				5EBA2E9921F6C6FB00DE7617 /* EqualOperator.swift */,
-				5EBA2E9A21F6C6FB00DE7617 /* NotEqualOperator.swift */,
-				5EBA2E9B21F6C6FB00DE7617 /* SmallerOrEqualOperator.swift */,
-				5EBA2E9C21F6C6FB00DE7617 /* DivideOperator.swift */,
-				5EBA2E9D21F6C6FB00DE7617 /* GreaterOrEqualOperator.swift */,
-				5EBA2E9E21F6C6FB00DE7617 /* PlusOperator.swift */,
-				5EBA2E9F21F6C6FB00DE7617 /* OrOperator.swift */,
-				5EBA2EA021F6C6FB00DE7617 /* AndOperator.swift */,
-				5EBA2EA121F6C6FB00DE7617 /* SmallerThanOperator.swift */,
-				5EBA2EA221F6C6FB00DE7617 /* MinusOperator.swift */,
+				5EBA30CE21F6CC9200DE7617 /* AndOperator.swift */,
+				5EBA30D121F6CC9200DE7617 /* DivideOperator.swift */,
+				5EBA30CF21F6CC9200DE7617 /* EqualOperator.swift */,
+				5EBA30CD21F6CC9200DE7617 /* GreaterOrEqualOperator.swift */,
+				5EBA30D021F6CC9200DE7617 /* GreaterThanOperator.swift */,
+				5EBA30D221F6CC9200DE7617 /* MinusOperator.swift */,
+				5EBA30D321F6CC9300DE7617 /* MultOperator.swift */,
+				5EBA30D521F6CC9300DE7617 /* NotEqualOperator.swift */,
+				5EBA30CC21F6CC9200DE7617 /* OrOperator.swift */,
+				5EBA30D421F6CC9300DE7617 /* PlusOperator.swift */,
+				5EBA30CB21F6CC9100DE7617 /* SmallerOrEqualOperator.swift */,
+				5EBA30D621F6CC9300DE7617 /* SmallerThanOperator.swift */,
 			);
 			path = Binary;
 			sourceTree = "<group>";
@@ -5040,21 +5040,21 @@
 		5EBA2FFF21F6C78900DE7617 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				5EBA300021F6C78900DE7617 /* FaceDetectionManagerProtocol.swift */,
-				5EBA300121F6C78900DE7617 /* PhiroSensor.swift */,
-				5EBA300221F6C78900DE7617 /* ObjectSensor.swift */,
-				5EBA300321F6C78900DE7617 /* Sensor.swift */,
-				5EBA300421F6C78900DE7617 /* DateSensor.swift */,
-				5EBA300521F6C78900DE7617 /* ObjectDoubleSensor.swift */,
-				5EBA300621F6C78900DE7617 /* ObjectStringSensor.swift */,
-				5EBA300721F6C78900DE7617 /* AudioManagerProtocol.swift */,
-				5EBA300821F6C78900DE7617 /* SpriteObjectProtocol.swift */,
-				5EBA300921F6C78900DE7617 /* TouchManagerProtocol.swift */,
-				5EBA300A21F6C78900DE7617 /* MotionManager.swift */,
-				5EBA300B21F6C78900DE7617 /* TouchSensor.swift */,
-				5EBA300C21F6C78900DE7617 /* DeviceSensor.swift */,
-				5EBA300D21F6C78900DE7617 /* LocationManager.swift */,
-				5EBA300E21F6C78900DE7617 /* SensorManagerProtocol.swift */,
+				5EBA30EC21F6CCEF00DE7617 /* AudioManagerProtocol.swift */,
+				5EBA30EB21F6CCEE00DE7617 /* DateSensor.swift */,
+				5EBA30E521F6CCEE00DE7617 /* DeviceSensor.swift */,
+				5EBA30E921F6CCEE00DE7617 /* FaceDetectionManagerProtocol.swift */,
+				5EBA30E421F6CCEE00DE7617 /* LocationManager.swift */,
+				5EBA30F021F6CCEF00DE7617 /* MotionManager.swift */,
+				5EBA30EF21F6CCEF00DE7617 /* ObjectDoubleSensor.swift */,
+				5EBA30E621F6CCEE00DE7617 /* ObjectSensor.swift */,
+				5EBA30EE21F6CCEF00DE7617 /* ObjectStringSensor.swift */,
+				5EBA30ED21F6CCEF00DE7617 /* PhiroSensor.swift */,
+				5EBA30E321F6CCED00DE7617 /* Sensor.swift */,
+				5EBA30E821F6CCEE00DE7617 /* SensorManagerProtocol.swift */,
+				5EBA30E721F6CCEE00DE7617 /* SpriteObjectProtocol.swift */,
+				5EBA30F121F6CCEF00DE7617 /* TouchManagerProtocol.swift */,
+				5EBA30EA21F6CCEE00DE7617 /* TouchSensor.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -5079,12 +5079,12 @@
 		5EBA301421F6C78A00DE7617 /* Phiro */ = {
 			isa = PBXGroup;
 			children = (
+				5EBA301921F6C78A00DE7617 /* PhiroBottomLeftSensor.swift */,
 				5EBA301521F6C78A00DE7617 /* PhiroBottomRightSensor.swift */,
 				5EBA301621F6C78A00DE7617 /* PhiroFrontLeftSensor.swift */,
 				5EBA301721F6C78A00DE7617 /* PhiroFrontRightSensor.swift */,
-				5EBA301821F6C78A00DE7617 /* PhiroSideRightSensor.swift */,
-				5EBA301921F6C78A00DE7617 /* PhiroBottomLeftSensor.swift */,
 				5EBA301A21F6C78A00DE7617 /* PhiroSideLeftSensor.swift */,
+				5EBA301821F6C78A00DE7617 /* PhiroSideRightSensor.swift */,
 			);
 			path = Phiro;
 			sourceTree = "<group>";
@@ -5158,11 +5158,11 @@
 			isa = PBXGroup;
 			children = (
 				5EBA304021F6C78B00DE7617 /* Gesture */,
-				5EBA303F21F6C78B00DE7617 /* FingerXSensor.swift */,
 				5EBA304221F6C78B00DE7617 /* FingerTouchedSensor.swift */,
+				5EBA303F21F6C78B00DE7617 /* FingerXSensor.swift */,
 				5EBA304321F6C78B00DE7617 /* FingerYSensor.swift */,
-				5EBA304421F6C78B00DE7617 /* TouchManager.swift */,
 				5EBA304521F6C78B00DE7617 /* LastFingerIndexSensor.swift */,
+				5EBA304421F6C78B00DE7617 /* TouchManager.swift */,
 			);
 			path = Touch;
 			sourceTree = "<group>";
@@ -5274,12 +5274,12 @@
 		9218B1F51CC4AB75007B4C60 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				921E84E61CC9F3E400F7EE9F /* TextInputViewController.h */,
-				921E84E71CC9F3E400F7EE9F /* TextInputViewController.m */,
 				9218B1F61CC4AB75007B4C60 /* BrushPickerViewController.h */,
 				9218B1F71CC4AB75007B4C60 /* BrushPickerViewController.m */,
 				9218B1F81CC4AB75007B4C60 /* ColorPickerViewController.h */,
 				9218B1F91CC4AB75007B4C60 /* ColorPickerViewController.m */,
+				921E84E61CC9F3E400F7EE9F /* TextInputViewController.h */,
+				921E84E71CC9F3E400F7EE9F /* TextInputViewController.m */,
 				9218B1FA1CC4AB75007B4C60 /* PaintViewController.h */,
 				9218B1FB1CC4AB75007B4C60 /* PaintViewController.m */,
 			);
@@ -5545,8 +5545,8 @@
 		92D56C261BF202E700A54750 /* BluetoothDevice */ = {
 			isa = PBXGroup;
 			children = (
-				92D56C271BF202E700A54750 /* BluetoothDevice.swift */,
 				92D56C281BF202E700A54750 /* FirmataDevices */,
+				92D56C271BF202E700A54750 /* BluetoothDevice.swift */,
 			);
 			path = BluetoothDevice;
 			sourceTree = "<group>";
@@ -5555,8 +5555,8 @@
 			isa = PBXGroup;
 			children = (
 				92D56C291BF202E700A54750 /* Arduino */,
-				92D56C2D1BF202E700A54750 /* FirmataDevice.swift */,
 				92D56C2E1BF202E700A54750 /* Phiro */,
+				92D56C2D1BF202E700A54750 /* FirmataDevice.swift */,
 			);
 			path = FirmataDevices;
 			sourceTree = "<group>";
@@ -5585,13 +5585,15 @@
 			isa = PBXGroup;
 			children = (
 				4C37A0A8212E7E3D0074F417 /* Dto */,
+				92DFAFEF1A38949E00FA9B0F /* Helper */,
+				92DFB0041A38949E00FA9B0F /* ViewController */,
+				92DFB0071A38949E00FA9B0F /* Views */,
 				92DFAFE91A38949E00FA9B0F /* ExternInternRepresentationMapping.h */,
 				92DFAFEA1A38949E00FA9B0F /* ExternInternRepresentationMapping.m */,
 				92DFAFEB1A38949E00FA9B0F /* ExternToken.h */,
 				92DFAFEC1A38949E00FA9B0F /* ExternToken.m */,
 				92DFAFED1A38949E00FA9B0F /* FormulaEditorHistory.h */,
 				92DFAFEE1A38949E00FA9B0F /* FormulaEditorHistory.m */,
-				92DFAFEF1A38949E00FA9B0F /* Helper */,
 				92DFAFF21A38949E00FA9B0F /* InternFormula.h */,
 				92DFAFF31A38949E00FA9B0F /* InternFormula.m */,
 				F411560220E7732D00E2F254 /* InternFormula+KeyboardAdapter.swift */,
@@ -5609,8 +5611,6 @@
 				92DFB0011A38949E00FA9B0F /* InternToExternGenerator.m */,
 				92DFB0021A38949E00FA9B0F /* InternToken.h */,
 				92DFB0031A38949E00FA9B0F /* InternToken.m */,
-				92DFB0041A38949E00FA9B0F /* ViewController */,
-				92DFB0071A38949E00FA9B0F /* Views */,
 			);
 			path = FormulaEditor;
 			sourceTree = "<group>";
@@ -5618,14 +5618,14 @@
 		92DFAFEF1A38949E00FA9B0F /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				4CF773F21AEE79A800DBBB2B /* Brick+UserVariable.h */,
+				4CF773F31AEE79A800DBBB2B /* Brick+UserVariable.m */,
+				4CF773EC1AEE786600DBBB2B /* FormulaElement+UserVariable.h */,
+				4CF773ED1AEE786600DBBB2B /* FormulaElement+UserVariable.m */,
 				92DFAFF01A38949E00FA9B0F /* NSMutableArray+Reverse.h */,
 				92DFAFF11A38949E00FA9B0F /* NSMutableArray+Reverse.m */,
 				4CF773E31AEE3B5100DBBB2B /* VariablePickerData.h */,
 				4CF773E41AEE3B5100DBBB2B /* VariablePickerData.m */,
-				4CF773EC1AEE786600DBBB2B /* FormulaElement+UserVariable.h */,
-				4CF773ED1AEE786600DBBB2B /* FormulaElement+UserVariable.m */,
-				4CF773F21AEE79A800DBBB2B /* Brick+UserVariable.h */,
-				4CF773F31AEE79A800DBBB2B /* Brick+UserVariable.m */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -5948,11 +5948,11 @@
 		92FF2E621A24C7D800093DA7 /* Logger */ = {
 			isa = PBXGroup;
 			children = (
-				5E43D71721928052006FDF2A /* SwellAll.swift */,
 				92FF2E631A24C7D800093DA7 /* Logger.h */,
 				92FF2E641A24C7D800093DA7 /* Logger.m */,
 				92FF2E651A24C7D800093DA7 /* LoggerProperties.plist */,
 				CA2D44421B12305400A3B53D /* Swell.plist */,
+				5E43D71721928052006FDF2A /* SwellAll.swift */,
 			);
 			path = Logger;
 			sourceTree = "<group>";
@@ -6013,15 +6013,15 @@
 		92FF2E851A24C7D800093DA7 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				A9F511821BE6A07A00B59540 /* SwiftBridge.swift */,
 				92FF2E861A24C7D800093DA7 /* TableUtil.h */,
 				92FF2E871A24C7D800093DA7 /* TableUtil.m */,
+				E4387389210623230062209F /* TimerWithBlock.swift */,
 				92FF2E881A24C7D800093DA7 /* UIUtil.h */,
 				92FF2E891A24C7D800093DA7 /* UIUtil.m */,
 				92FF2E8A1A24C7D800093DA7 /* Util.h */,
 				92FF2E8B1A24C7D800093DA7 /* Util.m */,
 				CA2D44451B123B7E00A3B53D /* Util.swift */,
-				A9F511821BE6A07A00B59540 /* SwiftBridge.swift */,
-				E4387389210623230062209F /* TimerWithBlock.swift */,
 			);
 			name = Utils;
 			path = Util;
@@ -6045,10 +6045,10 @@
 		92FF2EAC1A24C8A700093DA7 /* JSON */ = {
 			isa = PBXGroup;
 			children = (
-				E4AEC86C210843D20081A980 /* ProjectInformation.swift */,
-				E4E5599620FCD6AD004B4A08 /* StoreProject.swift */,
 				92FF2EAD1A24C8A700093DA7 /* CatrobatInformation */,
 				92FF2EB01A24C8A700093DA7 /* CatrobatProject */,
+				E4AEC86C210843D20081A980 /* ProjectInformation.swift */,
+				E4E5599620FCD6AD004B4A08 /* StoreProject.swift */,
 			);
 			path = JSON;
 			sourceTree = "<group>";
@@ -6337,8 +6337,6 @@
 		92FF31321A24DEB300093DA7 /* Download */ = {
 			isa = PBXGroup;
 			children = (
-				E4AEC8702108445D0081A980 /* StoreProjectCollection.swift */,
-				E4B7DC5520F6857A001351E3 /* StoreProjectDownloader.swift */,
 				E4B1BF4D20F719DB00800555 /* FeaturedProjects */,
 				2DA8790F212BD67700FE0585 /* ChartProjects */,
 				2DA87910212BD6C000FE0585 /* SearchStore */,
@@ -6346,6 +6344,8 @@
 				92FF31341A24DEB300093DA7 /* DownloadTabBarController.m */,
 				92FF31371A24DEB300093DA7 /* ProjectDetailStoreViewController.h */,
 				92FF31381A24DEB300093DA7 /* ProjectDetailStoreViewController.m */,
+				E4AEC8702108445D0081A980 /* StoreProjectCollection.swift */,
+				E4B7DC5520F6857A001351E3 /* StoreProjectDownloader.swift */,
 			);
 			path = Download;
 			sourceTree = "<group>";
@@ -7827,9 +7827,9 @@
 		E4B1BF4D20F719DB00800555 /* FeaturedProjects */ = {
 			isa = PBXGroup;
 			children = (
-				E4668B3720FDC1B90021FA0B /* FeaturedProjectsStoreTableViewController.swift */,
-				E4668B3B20FDCA6D0021FA0B /* FeaturedProjectsStoreTableDataSource.swift */,
 				E4668B4120FE02F40021FA0B /* FeaturedProjectsCell.swift */,
+				E4668B3B20FDCA6D0021FA0B /* FeaturedProjectsStoreTableDataSource.swift */,
+				E4668B3720FDC1B90021FA0B /* FeaturedProjectsStoreTableViewController.swift */,
 			);
 			path = FeaturedProjects;
 			sourceTree = "<group>";
@@ -7837,9 +7837,9 @@
 		F470A2DF2129DAE1005EC9A3 /* List */ = {
 			isa = PBXGroup;
 			children = (
+				F470A2E62129DFD5005EC9A3 /* ContainsFunction.swift */,
 				F470A2E22129DAFB005EC9A3 /* ElementFunction.swift */,
 				F470A2E42129DF42005EC9A3 /* NumberOfItemsFunction.swift */,
-				F470A2E62129DFD5005EC9A3 /* ContainsFunction.swift */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -8748,12 +8748,13 @@
 				AA74EF771BC0589700D1E954 /* ChangeVariableBrick+CBXMLHandler.m in Sources */,
 				AAA2979C1BB371EB006F8793 /* ExternInternRepresentationMapping.m in Sources */,
 				AA74EF571BC0586F00D1E954 /* SetXBrick+CBXMLHandler.m in Sources */,
+				5EBA30B821F6CC4E00DE7617 /* SinFunction.swift in Sources */,
 				AA74F00E1BC05B5F00D1E954 /* StopAllSoundsBrick.m in Sources */,
 				5EBA2E7721F6C62100DE7617 /* DeleteItemOfUserListBrick+Instruction.swift in Sources */,
+				5EBA30FF21F6CCEF00DE7617 /* MotionManager.swift in Sources */,
 				AA74EEDF1BC057B900D1E954 /* IfLogicElseBrick+CBXMLHandler.m in Sources */,
 				AAA2979B1BB3711B006F8793 /* BrickCategoryViewController.m in Sources */,
 				AA74F0941BC05FCE00D1E954 /* BrickCellLookData.m in Sources */,
-				5EBA305721F6C78B00DE7617 /* DeviceSensor.swift in Sources */,
 				99EBDBFA1D562088008D6860 /* ChangeColorByNBrick+CBXMLHandler.m in Sources */,
 				5EBA2E2121F6C5CA00DE7617 /* SetVolumeToBrick+Instruction.swift in Sources */,
 				99C8D1BB1D8AE339003FBC42 /* BrickCellStaticChoiceData.m in Sources */,
@@ -8772,7 +8773,6 @@
 				92B46F9B1BC7BC8C004980C1 /* ArduinoSendDigitalValueBrick+CBXMLHandler.m in Sources */,
 				5EBA304921F6C78B00DE7617 /* LocationAccuracySensor.swift in Sources */,
 				4C0F9F31204ADC2E00E71B2D /* ChooseCameraBrick.m in Sources */,
-				F4E6E598210E03FE00D86FE6 /* ExpFunction.swift in Sources */,
 				4C0F9F25204ADBC800E71B2D /* IfThenLogicEndBrick.m in Sources */,
 				AABCB3DD1BB364DD009F67D2 /* CBIfConditionalSequence.swift in Sources */,
 				AA74EFF21BC05B5F00D1E954 /* ChangeTransparencyByNBrick.m in Sources */,
@@ -8794,6 +8794,7 @@
 				929CC0CB1BC39B0A0027DEC0 /* PhiroBrick.m in Sources */,
 				CAE3C79C1B49FABC00AFE9D7 /* CBSequenceProtocol.swift in Sources */,
 				CAE3C79D1B49FABC00AFE9D7 /* CBSequenceVisitProtocol.swift in Sources */,
+				5EBA30FB21F6CCEF00DE7617 /* AudioManagerProtocol.swift in Sources */,
 				4C03A4BE2133FD05007BFFD2 /* FormulaManager+Resources.swift in Sources */,
 				9218B2011CC4AB75007B4C60 /* YKImageCropperView.m in Sources */,
 				CABF43BC1B115E6400419A55 /* CBSequenceList.swift in Sources */,
@@ -8803,6 +8804,7 @@
 				4C0F9F34204ADC4000E71B2D /* PreviousLookBrick.m in Sources */,
 				92B46FA31BC7BDF7004980C1 /* ArduinoSendPWMValueBrickCell.m in Sources */,
 				5EBA2E6221F6C60400DE7617 /* ShowBrick+Instruction.swift in Sources */,
+				5EBA30B921F6CC4E00DE7617 /* PiFunction.swift in Sources */,
 				4CB2CFA11D7AD762009F3034 /* SetColorBrick.m in Sources */,
 				4C0F9F94204BD29600E71B2D /* ChooseCameraBrickCell.m in Sources */,
 				BA987D0B2194E25A002DAA05 /* WaitUntilBrickCell.m in Sources */,
@@ -8819,6 +8821,7 @@
 				CA3E72E81B0C00A500D6B184 /* CBStack.swift in Sources */,
 				5EBA308521F6C78B00DE7617 /* TouchManager.swift in Sources */,
 				AA74EFFE1BC05B5F00D1E954 /* ComeToFrontBrick.m in Sources */,
+				5EBA30FA21F6CCEF00DE7617 /* DateSensor.swift in Sources */,
 				92FF31051A24DCAA00093DA7 /* WhenScript.m in Sources */,
 				4C724E251B4D3E8C00E27479 /* CBXMLParser.m in Sources */,
 				9200C2D61C8082EF002F5CA4 /* ShowTextBrickCell.m in Sources */,
@@ -8827,6 +8830,7 @@
 				AA74F0BB1BC05FCE00D1E954 /* IfOnEdgeBounceBrickCell.m in Sources */,
 				5EBA305E21F6C78B00DE7617 /* PhiroFrontLeftSensor.swift in Sources */,
 				BAEE49BE1F165CBA00F06741 /* ReplaceItemInUserListBrick+CBXMLHandler.m in Sources */,
+				5EBA30C321F6CC4E00DE7617 /* AsinFunction.swift in Sources */,
 				2D6E3F3B210A0AB700FB8139 /* ChartProjectsStoreViewController.swift in Sources */,
 				92FF2EA41A24C7D800093DA7 /* Util.m in Sources */,
 				AA74EFEC1BC05B5F00D1E954 /* ChangeVariableBrick.m in Sources */,
@@ -8837,6 +8841,7 @@
 				4C2EE41E1B555B55006DE9B8 /* CBXMLOpenedNestingBricksStack.m in Sources */,
 				5EFBD5F92145533B003B3CDC /* ProjectDescriptionViewController.swift in Sources */,
 				92FF31571A24DEB300093DA7 /* ObjectTableViewController.m in Sources */,
+				5EBA30C421F6CC4E00DE7617 /* CosFunction.swift in Sources */,
 				929CC0EF1BC39B8C0027DEC0 /* PhiroMotorStopBrickCell.m in Sources */,
 				4C0F9F64204BD18600E71B2D /* SayForBubbleBrick+CBXMLHandler.m in Sources */,
 				92FF32BB1A24E2F400093DA7 /* DarkBlueGradientImageCell.m in Sources */,
@@ -8848,7 +8853,6 @@
 				AA74EEF91BC057C900D1E954 /* ChangeTransparencyByNBrick+CBXMLHandler.m in Sources */,
 				CADBD71919B0E8C200C62836 /* AppDelegate.m in Sources */,
 				4CE6788B210C4E1C00D90B5D /* FunctionParameter.swift in Sources */,
-				5EBA305621F6C78B00DE7617 /* TouchSensor.swift in Sources */,
 				92FF32BC1A24E2F400093DA7 /* DarkBlueGradientImageDetailCell.m in Sources */,
 				92FF32B11A24E2F400093DA7 /* CreateView.m in Sources */,
 				AA74EEE41BC057B900D1E954 /* RepeatBrick+CBXMLHandler.m in Sources */,
@@ -8858,15 +8862,18 @@
 				5EBA308221F6C78B00DE7617 /* CBMultiTouchRecognizer.swift in Sources */,
 				9218B2121CC4AB75007B4C60 /* ResizeViewManager.m in Sources */,
 				AA74F0AA1BC05FCE00D1E954 /* VibrationBrickCell.m in Sources */,
+				5EBA30E221F6CC9300DE7617 /* SmallerThanOperator.swift in Sources */,
 				CADBD71A19B0E8C200C62836 /* main.m in Sources */,
 				5EBA309421F6C7C500DE7617 /* BackgroundNameSensor.swift in Sources */,
 				92DFB0101A38949E00FA9B0F /* FormulaEditorHistory.m in Sources */,
 				927F79DC1BEE39B0008D1635 /* PhiroIfLogicBeginBrickCell.m in Sources */,
+				5EBA30C721F6CC4E00DE7617 /* MaxFunction.swift in Sources */,
 				AA74EF721BC0588A00D1E954 /* StopAllSoundsBrick+CBXMLHandler.m in Sources */,
 				92FF325B1A24E2F400093DA7 /* BDKNotifyHUD.m in Sources */,
 				92FF32BD1A24E2F400093DA7 /* ProjectTableHeaderView.m in Sources */,
 				4C724E241B4D3E8C00E27479 /* CBXMLValidator.m in Sources */,
 				929CC0F11BC39B8C0027DEC0 /* PhiroRGBLightBrickCell.m in Sources */,
+				5EBA30C221F6CC4E00DE7617 /* RandFunction.swift in Sources */,
 				4C0F9F72204BD1B600E71B2D /* SpeakAndWaitBrick+CBXMLHandler.m in Sources */,
 				5E1F6DA521F6951000B4ACEC /* TermsOfUseOptionTableViewController.swift in Sources */,
 				92BCDC871BF1FB1E00F9CB23 /* FirmataProtocol.swift in Sources */,
@@ -8875,12 +8882,12 @@
 				9218B2131CC4AB75007B4C60 /* UndoManager.m in Sources */,
 				AA74F0B31BC05FCE00D1E954 /* SetSizeToBrickCell.m in Sources */,
 				5EBA2E5B21F6C60400DE7617 /* HideBrick+Instruction.swift in Sources */,
-				F4E6E5C6210E24F900D86FE6 /* TrueFunction.swift in Sources */,
 				A9F511831BE6A07A00B59540 /* SwiftBridge.swift in Sources */,
 				4C0F9F28204ADBE000E71B2D /* RepeatUntilBrick.m in Sources */,
 				92FF2EC21A24C8A700093DA7 /* ProjectLoadingInfo.m in Sources */,
 				AA74F09E1BC05FCE00D1E954 /* ForeverBrickCell.m in Sources */,
 				BAEAB29A214BCE8D000B2E4B /* WhenTouchDownScriptCell.m in Sources */,
+				5EBA30C621F6CC4E00DE7617 /* CeilFunction.swift in Sources */,
 				92FF314C1A24DEB300093DA7 /* CatrobatTableViewController.m in Sources */,
 				AA74EFF11BC05B5F00D1E954 /* ChangeBrightnessByNBrick.m in Sources */,
 				AA74F0B71BC05FCE00D1E954 /* ChangeYByNBrickCell.m in Sources */,
@@ -8896,6 +8903,7 @@
 				5EBA2E5C21F6C60400DE7617 /* SetBackgroundBrick+Instruction.swift in Sources */,
 				E4E5599820FCD6AD004B4A08 /* StoreProject.swift in Sources */,
 				AA74F00A1BC05B5F00D1E954 /* ChangeVolumeByNBrick.m in Sources */,
+				5EBA310021F6CCEF00DE7617 /* TouchManagerProtocol.swift in Sources */,
 				9218B2081CC4AB75007B4C60 /* UIImage+FloodFill.m in Sources */,
 				AA74F0A11BC05FCE00D1E954 /* IfLogicEndBrickCell.m in Sources */,
 				5EBA2E2021F6C5CA00DE7617 /* ChangeVolumeByNBrick+Instruction.swift in Sources */,
@@ -8921,6 +8929,7 @@
 				BA987D082194E158002DAA05 /* WaitUntilBrick.m in Sources */,
 				E4B7DC5620F6857B001351E3 /* StoreProjectDownloader.swift in Sources */,
 				4C0F9F1F204ADB9200E71B2D /* IfThenLogicBeginBrick.m in Sources */,
+				5EBA30F221F6CCEF00DE7617 /* Sensor.swift in Sources */,
 				92C95FDB1BD8DBEB00742F7E /* BluetoothService.swift in Sources */,
 				AA74F09D1BC05FCE00D1E954 /* BroadcastWaitBrickCell.m in Sources */,
 				CAD116E51A46B6B300F560B4 /* GDataXMLElement+CustomExtensions.m in Sources */,
@@ -8928,14 +8937,13 @@
 				929CC0DE1BC39B690027DEC0 /* BrickCellPhiroLightData.m in Sources */,
 				2DA8790C212B443500FE0585 /* SearchStoreViewController.swift in Sources */,
 				92C631A01BC5193B00486958 /* BluetoothDevicesTableViewController.swift in Sources */,
-				F4E6E5C0210E1FE900D86FE6 /* RandFunction.swift in Sources */,
 				92D56C391BF2098700A54750 /* PhiroProtocol.swift in Sources */,
+				5EBA30BA21F6CC4E00DE7617 /* AcosFunction.swift in Sources */,
 				92FF315F1A24DEB300093DA7 /* MyProjectsViewController.m in Sources */,
 				BAEE49B61F165C3100F06741 /* ReplaceItemInUserListBrickCell.m in Sources */,
 				4C724E661B4D3EC500E27479 /* CBXMLSerializerContext.m in Sources */,
 				5E1F6DA321F6951000B4ACEC /* AboutPoketCodeOptionTableViewController.swift in Sources */,
 				9218B20B1CC4AB75007B4C60 /* DrawTool.m in Sources */,
-				5EBA304F21F6C78B00DE7617 /* DateSensor.swift in Sources */,
 				BAEAB294214BCD75000B2E4B /* WhenTouchDownScript.m in Sources */,
 				4C8BC6641B26C298001C7E32 /* iOSComboboxPickerView.m in Sources */,
 				4CF429F1213A876000B78897 /* RepeatBrick+Condition.swift in Sources */,
@@ -8952,9 +8960,9 @@
 				AA74F0961BC05FCE00D1E954 /* BrickCellObjectData.m in Sources */,
 				929CC0CC1BC39B0A0027DEC0 /* PhiroMotorMoveBackwardBrick.m in Sources */,
 				92FF32B61A24E2F400093DA7 /* CatrobatBaseCell.m in Sources */,
+				5EBA30E121F6CC9300DE7617 /* NotEqualOperator.swift in Sources */,
 				AA74F0051BC05B5F00D1E954 /* PointToBrick.m in Sources */,
 				4C724E571B4D3E8C00E27479 /* FormulaElement+CBXMLHandler.m in Sources */,
-				5EBA304E21F6C78B00DE7617 /* Sensor.swift in Sources */,
 				4C37A0A0212DBDB40074F417 /* ArduinoAnalogPinFunction.swift in Sources */,
 				5947F6DE200D20040079DBCE /* MediaLibraryCollectionViewDataSource.swift in Sources */,
 				92FF2E991A24C7D800093DA7 /* zip.c in Sources */,
@@ -8968,6 +8976,7 @@
 				5E43D71821928053006FDF2A /* SwellAll.swift in Sources */,
 				AA74F0B01BC05FCE00D1E954 /* SetBrightnessBrickCell.m in Sources */,
 				AA74F0A61BC05FCE00D1E954 /* RepeatBrickCell.m in Sources */,
+				5EBA30FD21F6CCEF00DE7617 /* ObjectStringSensor.swift in Sources */,
 				99B2C3731D884E8A00736769 /* FlashBrickCell.m in Sources */,
 				AA74F0BA1BC05FCE00D1E954 /* GoNStepsBackBrickCell.m in Sources */,
 				92FF2EA01A24C7D800093DA7 /* SSZipArchive.m in Sources */,
@@ -8976,6 +8985,7 @@
 				5EBA309C21F6C7C500DE7617 /* BrightnessSensor.swift in Sources */,
 				AA74EEFF1BC057C900D1E954 /* SetTransparencyBrick+CBXMLHandler.m in Sources */,
 				5EBA309321F6C7C500DE7617 /* PositionXSensor.swift in Sources */,
+				5EBA30BE21F6CC4E00DE7617 /* LogFunction.swift in Sources */,
 				92EC985F1BC3ABB90003A891 /* PhiroPlayToneBrick+CBXMLHandler.m in Sources */,
 				92FF2EA21A24C7D800093DA7 /* TableUtil.m in Sources */,
 				929CC0DF1BC39B690027DEC0 /* BrickCellPhiroMotorData.m in Sources */,
@@ -8990,6 +9000,7 @@
 				5EBA2E3221F6C5EB00DE7617 /* SetYBrick+Instruction.swift in Sources */,
 				9218B2141CC4AB75007B4C60 /* BrushPickerViewController.m in Sources */,
 				5EBA2E4021F6C5EB00DE7617 /* TurnRightBrick+Instruction.swift in Sources */,
+				5EBA30F921F6CCEF00DE7617 /* TouchSensor.swift in Sources */,
 				AA74F09A1BC05FCE00D1E954 /* BrickCellInlineView.m in Sources */,
 				92FF30FE1A24DCAA00093DA7 /* Look.m in Sources */,
 				AA74EF631BC0587B00D1E954 /* VibrationBrick+CBXMLHandler.m in Sources */,
@@ -8998,7 +9009,6 @@
 				5EBA304821F6C78B00DE7617 /* AltitudeSensor.swift in Sources */,
 				92DFB01D1A38949E00FA9B0F /* FormulaEditorTextView.m in Sources */,
 				5EBA2F6921F6C74B00DE7617 /* CBSchedulingAlgorithms.swift in Sources */,
-				4CE67899210C6EEE00D90B5D /* SinFunction.swift in Sources */,
 				929CC0F81BC3A2420027DEC0 /* PhiroMotorMoveBackwardBrick+Instruction.swift in Sources */,
 				AA74F0AC1BC05FCE00D1E954 /* ChangeTransparencyByNBrickCell.m in Sources */,
 				92D56C371BF2059F00A54750 /* PhiroDevice.swift in Sources */,
@@ -9012,8 +9022,10 @@
 				5EBA308621F6C78B00DE7617 /* LastFingerIndexSensor.swift in Sources */,
 				AA74EEE21BC057B900D1E954 /* LoopEndBrick+CBXMLHandler.m in Sources */,
 				4C0F9F50204BD0B400E71B2D /* BubbleBrickHelper.m in Sources */,
+				5EBA30B721F6CC4E00DE7617 /* TrueFunction.swift in Sources */,
 				5EBA2E5A21F6C60400DE7617 /* SayForBubbleBrick+Instruction.swift in Sources */,
 				5EBA2F6721F6C74B00DE7617 /* CBCustomTypes.swift in Sources */,
+				5EBA30F321F6CCEF00DE7617 /* LocationManager.swift in Sources */,
 				5EBA2E5621F6C60400DE7617 /* CameraBrick+Instruction.swift in Sources */,
 				92FF32BF1A24E2F400093DA7 /* BrickTransition.m in Sources */,
 				5EBA2E8421F6C62D00DE7617 /* WaitUntilBrick+Instruction.swift in Sources */,
@@ -9029,10 +9041,8 @@
 				92FF32B81A24E2F400093DA7 /* ContinueImageCell.m in Sources */,
 				AA74EF581BC0586F00D1E954 /* SetYBrick+CBXMLHandler.m in Sources */,
 				4CDE807421A1A0AE009EFD31 /* ScenePresenterViewController+Screenshot.swift in Sources */,
-				F4E6E5C4210E242D00D86FE6 /* FloorFunction.swift in Sources */,
 				AA74F09F1BC05FCE00D1E954 /* IfLogicBeginBrickCell.m in Sources */,
 				5EBA2E5D21F6C60400DE7617 /* ThinkBubbleBrick+Instruction.swift in Sources */,
-				F4E6E592210E032000D86FE6 /* AsinFunction.swift in Sources */,
 				5EBA2E2221F6C5CA00DE7617 /* SpeakAndWaitBrick+Instruction.swift in Sources */,
 				AA74EF7B1BC059E300D1E954 /* SetSizeToBrick+CBXMLHandler.m in Sources */,
 				E4668B3820FDC1B90021FA0B /* FeaturedProjectsStoreTableViewController.swift in Sources */,
@@ -9044,12 +9054,12 @@
 				9200C2D51C8082EF002F5CA4 /* HideTextBrickCell.m in Sources */,
 				AA74EF001BC057C900D1E954 /* ShowBrick+CBXMLHandler.m in Sources */,
 				AA74EFE41BC05B5F00D1E954 /* IfLogicBeginBrick.m in Sources */,
+				5EBA30F821F6CCEF00DE7617 /* FaceDetectionManagerProtocol.swift in Sources */,
 				9218B20E1CC4AB75007B4C60 /* LineTool.m in Sources */,
 				AA74EFF91BC05B5F00D1E954 /* SetTransparencyBrick.m in Sources */,
 				5EBA309B21F6C7C500DE7617 /* TransparencySensor.swift in Sources */,
 				AA74EFE81BC05B5F00D1E954 /* LoopEndBrick.m in Sources */,
 				9200C2DB1C8084AA002F5CA4 /* HideTextBrick+CBXMLHandler.m in Sources */,
-				5EBA305921F6C78B00DE7617 /* SensorManagerProtocol.swift in Sources */,
 				AA74EEDD1BC057B900D1E954 /* ForeverBrick+CBXMLHandler.m in Sources */,
 				4C0F9F22204ADBAF00E71B2D /* IfThenLogicEndBrick+CBXMLHandler.m in Sources */,
 				AA74F0C01BC05FCE00D1E954 /* SetXBrickCell.m in Sources */,
@@ -9067,9 +9077,7 @@
 				5EBA306021F6C78B00DE7617 /* PhiroSideRightSensor.swift in Sources */,
 				92FF31091A24DCAA00093DA7 /* VariablesContainer.m in Sources */,
 				AA74F0A51BC05FCE00D1E954 /* NoteBrickCell.m in Sources */,
-				5EBA2EB121F6C6FC00DE7617 /* AndOperator.swift in Sources */,
 				AA74EF521BC0586F00D1E954 /* MoveNStepsBrick+CBXMLHandler.m in Sources */,
-				5EBA304C21F6C78B00DE7617 /* PhiroSensor.swift in Sources */,
 				5EBA2E7A21F6C62100DE7617 /* HideTextBrick+Instruction.swift in Sources */,
 				5EBA306621F6C78B00DE7617 /* DateWeekdaySensor.swift in Sources */,
 				AA74EF531BC0586F00D1E954 /* PlaceAtBrick+CBXMLHandler.m in Sources */,
@@ -9077,19 +9085,18 @@
 				4C2EE41F1B555B55006DE9B8 /* CBXMLPositionStack.m in Sources */,
 				92FF2E371A24C5A700093DA7 /* NSMutableArray+CustomExtensions.m in Sources */,
 				5EBA2E3C21F6C5EB00DE7617 /* GoNStepsBackBrick+Instruction.swift in Sources */,
-				F4E6E58E210E00E100D86FE6 /* ModFunction.swift in Sources */,
 				92FF30F81A24DCAA00093DA7 /* Formula.m in Sources */,
 				59697DA4201F46AD00A0071A /* LibraryImageCollectionViewCell.swift in Sources */,
 				AA74EFF41BC05B5F00D1E954 /* HideBrick.m in Sources */,
 				92DFB01B1A38949E00FA9B0F /* FormulaEditorViewController.m in Sources */,
 				92EC994A1BC3CA870003A891 /* Firmata.swift in Sources */,
 				5947F6D9200D08430079DBCE /* MediaType.swift in Sources */,
+				5EBA30C021F6CC4E00DE7617 /* ModFunction.swift in Sources */,
 				5E21DA6F21A5255600017D2C /* UploadInfoViewController.swift in Sources */,
 				92EC985D1BC3ABB90003A891 /* PhiroMotorMoveForwardBrick+CBXMLHandler.m in Sources */,
 				AA74EF5A1BC0586F00D1E954 /* TurnRightBrick+CBXMLHandler.m in Sources */,
 				597AB56E202081E8007CD10D /* LibrarySoundCollectionViewCell.swift in Sources */,
 				4C724E5B1B4D3E8C00E27479 /* Script+CBXMLHandler.m in Sources */,
-				5EBA305421F6C78B00DE7617 /* TouchManagerProtocol.swift in Sources */,
 				92EC985E1BC3ABB90003A891 /* PhiroMotorStopBrick+CBXMLHandler.m in Sources */,
 				4C0F9F9F204BD2B100E71B2D /* SayForBubbleBrickCell.m in Sources */,
 				5EBA2E3F21F6C5EB00DE7617 /* ChangeYByNBrick+Instruction.swift in Sources */,
@@ -9104,12 +9111,9 @@
 				AA74F00B1BC05B5F00D1E954 /* PlaySoundBrick.m in Sources */,
 				F4A2AFB92110D4A800C53234 /* LengthFunction.swift in Sources */,
 				92FF31551A24DEB300093DA7 /* SoundsTableViewController.m in Sources */,
-				F4E6E58A210DFECA00D86FE6 /* SqrtFunction.swift in Sources */,
-				F4E6E586210DFE0800D86FE6 /* LnFunction.swift in Sources */,
 				92FF31561A24DEB300093DA7 /* SRViewController.m in Sources */,
 				4C0F9F8B204BD26100E71B2D /* IfThenLogicBeginBrickCell.m in Sources */,
 				5EBA2E6321F6C60400DE7617 /* ThinkForBubbleBrick+Instruction.swift in Sources */,
-				5EBA2EAE21F6C6FC00DE7617 /* GreaterOrEqualOperator.swift in Sources */,
 				BAEE49BB1F165C6E00F06741 /* ReplaceItemInUserListBrick.m in Sources */,
 				92DFB01A1A38949E00FA9B0F /* InternToken.m in Sources */,
 				9218B20D1CC4AB75007B4C60 /* HandTool.m in Sources */,
@@ -9122,6 +9126,7 @@
 				929CC0BD1BC39AD60027DEC0 /* BluetoothBrick.m in Sources */,
 				5E1F6DA421F6951000B4ACEC /* SettingsTableViewController.swift in Sources */,
 				5EBA306A21F6C78B00DE7617 /* CompassDirectionSensor.swift in Sources */,
+				5EBA30B621F6CC4E00DE7617 /* TanFunction.swift in Sources */,
 				5EBA2E5921F6C60400DE7617 /* ChangeTransparencyByNBrick+Instruction.swift in Sources */,
 				5EF590BA2192D81F00C19F12 /* Double+Extensions.swift in Sources */,
 				92FF2E911A24C7D800093DA7 /* DownloadImageCache.m in Sources */,
@@ -9135,6 +9140,7 @@
 				5EBA2E6721F6C60400DE7617 /* SetTransparencyBrick+Instruction.swift in Sources */,
 				92FF30C81A24DCAA00093DA7 /* Brick.m in Sources */,
 				AA74F0971BC05FCE00D1E954 /* BrickCellSoundData.m in Sources */,
+				5EBA30C521F6CC4E00DE7617 /* MinFunction.swift in Sources */,
 				92B46F911BC7B3E5004980C1 /* ArduinoBrick.m in Sources */,
 				4C724E631B4D3E8C00E27479 /* XMLObjectReference.m in Sources */,
 				4C60663A1A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m in Sources */,
@@ -9148,35 +9154,36 @@
 				BA9CAB541EC380CA00796056 /* AddItemToUserListBrick.m in Sources */,
 				929CC0CF1BC39B0A0027DEC0 /* PhiroPlayToneBrick.m in Sources */,
 				BA1FA9A01F02B0020084184D /* InsertItemIntoUserListBrickCell.m in Sources */,
-				F4E6E590210E026500D86FE6 /* AbsFunction.swift in Sources */,
 				AA74EEFD1BC057C900D1E954 /* SetBrightnessBrick+CBXMLHandler.m in Sources */,
 				9218B20C1CC4AB75007B4C60 /* FillTool.m in Sources */,
 				4C0F9F85204BD24600E71B2D /* IfThenLogicBeginBrick+CBXMLHandler.m in Sources */,
-				5EBA305221F6C78B00DE7617 /* AudioManagerProtocol.swift in Sources */,
 				929CC0FB1BC3A2420027DEC0 /* PhiroRGBLightBrick+Instruction.swift in Sources */,
 				D63864651AE632FE008569E6 /* ProjectsForUploadViewController.m in Sources */,
 				5EBA306321F6C78B00DE7617 /* TimeMinuteSensor.swift in Sources */,
+				5EBA30DA21F6CC9300DE7617 /* AndOperator.swift in Sources */,
 				5EBA2EC621F6C72A00DE7617 /* CBFrontendSequenceFilters.swift in Sources */,
 				92B46F921BC7B3E5004980C1 /* ArduinoSendDigitalValueBrick.m in Sources */,
 				4C82268B213FAE0200F3D750 /* MultiFingerXFunction.swift in Sources */,
 				4CE67896210C668C00D90B5D /* FormulaEditorButton.swift in Sources */,
 				92FF2EBF1A24C8A700093DA7 /* CatrobatProject.m in Sources */,
-				F4E6E594210E038700D86FE6 /* AcosFunction.swift in Sources */,
 				AA74EFE61BC05B5F00D1E954 /* IfLogicEndBrick.m in Sources */,
 				92FF315B1A24DEB300093DA7 /* ProjectDetailStoreViewController.m in Sources */,
 				AA74EFE91BC05B5F00D1E954 /* NoteBrick.m in Sources */,
 				92DFB00F1A38949E00FA9B0F /* ExternToken.m in Sources */,
+				5EBA30BD21F6CC4E00DE7617 /* AtanFunction.swift in Sources */,
 				92DFB0191A38949E00FA9B0F /* InternToExternGenerator.m in Sources */,
+				5EBA30BF21F6CC4E00DE7617 /* ExpFunction.swift in Sources */,
 				AA74EEE31BC057B900D1E954 /* NoteBrick+CBXMLHandler.m in Sources */,
 				4C724E5A1B4D3E8C00E27479 /* Project+CBXMLHandler.m in Sources */,
 				92FF30FB1A24DCAA00093DA7 /* InternFormulaParserException.m in Sources */,
 				4C1C8B14213FE76B003B3AA4 /* ChartProjectCell.swift in Sources */,
-				5EBA2EAD21F6C6FC00DE7617 /* DivideOperator.swift in Sources */,
+				5EBA30C821F6CC4E00DE7617 /* AbsFunction.swift in Sources */,
 				AA74EFF71BC05B5F00D1E954 /* SetLookBrick.m in Sources */,
 				4CF429F3213A88A600B78897 /* RepeatUntilBrick+Condition.swift in Sources */,
 				2D6E3F39210A0A9F00FB8139 /* ChartProjectStoreDataSource.swift in Sources */,
 				927F79E31BEE39DA008D1635 /* PhiroIfLogicBeginBrick+CBXMLHandler.m in Sources */,
 				5EBA307E21F6C78B00DE7617 /* FaceDetectedSensor.swift in Sources */,
+				5EBA30CA21F6CC4E00DE7617 /* PowFunction.swift in Sources */,
 				AA74F0AD1BC05FCE00D1E954 /* ClearGraphicEffectBrickCell.m in Sources */,
 				92D56C331BF202E700A54750 /* ArduinoProtocol.swift in Sources */,
 				4CB4FE071B95DF2900431757 /* BrickMoveManager.m in Sources */,
@@ -9195,42 +9202,41 @@
 				AA74EF511BC0586F00D1E954 /* GoNStepsBackBrick+CBXMLHandler.m in Sources */,
 				5EBA2E6621F6C60400DE7617 /* ChangeColorByNBrick+Instruction.swift in Sources */,
 				92FF32B21A24E2F400093DA7 /* RoundBorderedButton.m in Sources */,
+				5EBA30DD21F6CC9300DE7617 /* DivideOperator.swift in Sources */,
 				5EBA306D21F6C78B00DE7617 /* AccelerationYSensor.swift in Sources */,
 				92EC985C1BC3ABB90003A891 /* PhiroMotorMoveBackwardBrick+CBXMLHandler.m in Sources */,
 				4C0F9F4F204BD0B400E71B2D /* CameraPreviewHandler.m in Sources */,
 				4C724E611B4D3E8C00E27479 /* ProjectParser.m in Sources */,
 				AA74F0931BC05FCE00D1E954 /* BrickCellFormulaData.m in Sources */,
 				AA74EF701BC0588A00D1E954 /* SetVolumeToBrick+CBXMLHandler.m in Sources */,
+				5EBA30B521F6CC4E00DE7617 /* RoundFunction.swift in Sources */,
 				92FC85CE1B9E1EB5001C728F /* BrickManager.m in Sources */,
+				5EBA30DE21F6CC9300DE7617 /* MinusOperator.swift in Sources */,
 				5E18A81221A547AA00541536 /* UIViewController+Extensions.swift in Sources */,
 				AA74F0951BC05FCE00D1E954 /* BrickCellMessageData.m in Sources */,
 				597AB578202089E0007CD10D /* NetworkDefinesSwift.swift in Sources */,
-				F4E6E59C210E051200D86FE6 /* MinFunction.swift in Sources */,
 				AA74EF591BC0586F00D1E954 /* TurnLeftBrick+CBXMLHandler.m in Sources */,
 				4C0F9F6F204BD1A300E71B2D /* ThinkForBubbleBrick+CBXMLHandler.m in Sources */,
 				E438738A210623230062209F /* TimerWithBlock.swift in Sources */,
 				5EFBD5FC2145AADC003B3CDC /* UIView+Extensions.swift in Sources */,
 				92FF31591A24DEB300093DA7 /* DownloadTabBarController.m in Sources */,
-				F4E6E59A210E048700D86FE6 /* MaxFunction.swift in Sources */,
 				5936893C2021979A00FC3115 /* SoundsTableViewController+MediaLibrary.swift in Sources */,
 				5EBA307C21F6C78B00DE7617 /* FacePositionYSensor.swift in Sources */,
-				F4E6E5BE210E1FA400D86FE6 /* RoundFunction.swift in Sources */,
 				99EBDBFF1D5621D3008D6860 /* ChangeColorByNBrick.m in Sources */,
 				4C724E5D1B4D3E8C00E27479 /* SpriteObject+CBXMLHandler.m in Sources */,
 				5EBA2E1E21F6C5CA00DE7617 /* PlaySoundBrick+Instruction.swift in Sources */,
 				929CC0D41BC39B280027DEC0 /* PhiroHelper.m in Sources */,
 				4C0F9F3A204ADC4E00E71B2D /* SayForBubbleBrick.m in Sources */,
 				BA987D052194DDCF002DAA05 /* WaitUntilBrick+CBXMLHandler.m in Sources */,
-				5EBA2EB021F6C6FC00DE7617 /* OrOperator.swift in Sources */,
-				5EBA2EA821F6C6FC00DE7617 /* MultOperator.swift in Sources */,
 				AA74F0C81BC05FCE00D1E954 /* StopAllSoundsBrickCell.m in Sources */,
 				5EBA2ED021F6C73700DE7617 /* CBScene.swift in Sources */,
-				5EBA305321F6C78B00DE7617 /* SpriteObjectProtocol.swift in Sources */,
 				5EBA2ECA21F6C72A00DE7617 /* FormulaManagerProtocol.swift in Sources */,
 				92FF31581A24DEB300093DA7 /* ProjectTableViewController.m in Sources */,
 				AA74F0AB1BC05FCE00D1E954 /* ChangeBrightnessByNBrickCell.m in Sources */,
+				5EBA30DC21F6CC9300DE7617 /* GreaterThanOperator.swift in Sources */,
 				929CC0E01BC39B690027DEC0 /* BrickCellPhiroToneData.m in Sources */,
 				5E21DA6821A3E4AF00017D2C /* UIImage+Extensions.swift in Sources */,
+				5EBA30F421F6CCEF00DE7617 /* DeviceSensor.swift in Sources */,
 				4CB2CFAB1D7AD86D009F3034 /* SetColorBrickCell.m in Sources */,
 				4C0F9F6E204BD1A300E71B2D /* ThinkBubbleBrick+CBXMLHandler.m in Sources */,
 				5EBA2EC921F6C72A00DE7617 /* FormulaInterpreterProtocol.swift in Sources */,
@@ -9244,20 +9250,16 @@
 				BA9CAB601EC383E800796056 /* AddItemToUserListBrickCell.m in Sources */,
 				9218B2051CC4AB75007B4C60 /* LinkedListStack.m in Sources */,
 				5EBA304A21F6C78B00DE7617 /* LatitudeSensor.swift in Sources */,
+				5EBA30D721F6CC9300DE7617 /* SmallerOrEqualOperator.swift in Sources */,
 				5EBA2E6121F6C60400DE7617 /* NextLookBrick+Instruction.swift in Sources */,
-				F4E6E584210DFD4300D86FE6 /* TanFunction.swift in Sources */,
 				92B46F931BC7B3E5004980C1 /* ArduinoSendPWMValueBrick.m in Sources */,
-				F4E6E596210E03B700D86FE6 /* AtanFunction.swift in Sources */,
-				F4E6E588210DFE8800D86FE6 /* LogFunction.swift in Sources */,
 				9218B1FF1CC4AB75007B4C60 /* NKOColorPickerView.m in Sources */,
 				92289A4A1A42F2A3008C771A /* iOSCombobox.m in Sources */,
 				5EBA2E3A21F6C5EB00DE7617 /* ComeToFrontBrick+Instruction.swift in Sources */,
-				F4E6E58C210DFEFE00D86FE6 /* PiFunction.swift in Sources */,
 				4C724E601B4D3E8C00E27479 /* Parser.m in Sources */,
 				92DFB0161A38949E00FA9B0F /* InternFormulaState.m in Sources */,
 				AA74F0C51BC05FCE00D1E954 /* PlaySoundBrickCell.m in Sources */,
 				598319991FBB90CB00639BBF /* IntroductionViewController.swift in Sources */,
-				5EBA2EAF21F6C6FC00DE7617 /* PlusOperator.swift in Sources */,
 				5EBA305B21F6C78B00DE7617 /* CBSpriteNode+Sensor.swift in Sources */,
 				4CE6788F210C506B00D90B5D /* FunctionManagerProtocol.swift in Sources */,
 				92DFB0151A38949E00FA9B0F /* InternFormulaParserEmptyStackException.m in Sources */,
@@ -9266,25 +9268,26 @@
 				AA74EFF31BC05B5F00D1E954 /* ClearGraphicEffectBrick.m in Sources */,
 				AA74EFF51BC05B5F00D1E954 /* NextLookBrick.m in Sources */,
 				92DFB0121A38949E00FA9B0F /* InternFormula.m in Sources */,
-				5EBA2EAA21F6C6FC00DE7617 /* EqualOperator.swift in Sources */,
 				AA74F0C41BC05FCE00D1E954 /* ChangeVolumeByNBrickCell.m in Sources */,
 				92FF30FD1A24DCAA00093DA7 /* Header.m in Sources */,
 				92B46FA71BC7C2A5004980C1 /* ArduinoSendDigitalValueBrick+Instruction.swift in Sources */,
 				5EBA304621F6C78B00DE7617 /* SensorManager.swift in Sources */,
 				E4AEC86D210843D20081A980 /* ProjectInformation.swift in Sources */,
+				5EBA30D921F6CC9300DE7617 /* GreaterOrEqualOperator.swift in Sources */,
 				AA74EFFC1BC05B5F00D1E954 /* ChangeXByNBrick.m in Sources */,
 				5EBA308021F6C78B00DE7617 /* FacePositionXSensor.swift in Sources */,
 				AA74EFE31BC05B5F00D1E954 /* ForeverBrick.m in Sources */,
-				5EBA305521F6C78B00DE7617 /* MotionManager.swift in Sources */,
 				5EBA305C21F6C78B00DE7617 /* ProtocolConformance.swift in Sources */,
+				5EBA30BC21F6CC4E00DE7617 /* SqrtFunction.swift in Sources */,
 				AA74EEFB1BC057C900D1E954 /* HideBrick+CBXMLHandler.m in Sources */,
+				5EBA30F721F6CCEF00DE7617 /* SensorManagerProtocol.swift in Sources */,
 				AA74EFFD1BC05B5F00D1E954 /* ChangeYByNBrick.m in Sources */,
 				4C724E271B4D3E8C00E27479 /* CBXMLSerializer.m in Sources */,
 				5EBA2E3821F6C5EB00DE7617 /* ChangeXByNBrick+Instruction.swift in Sources */,
 				9200C2DC1C8084AA002F5CA4 /* ShowTextBrick+CBXMLHandler.m in Sources */,
+				5EBA30F621F6CCEF00DE7617 /* SpriteObjectProtocol.swift in Sources */,
 				9218B2041CC4AB75007B4C60 /* LCTableViewPickerControl.m in Sources */,
 				92DFB0111A38949E00FA9B0F /* NSMutableArray+Reverse.m in Sources */,
-				5EBA2EB321F6C6FC00DE7617 /* MinusOperator.swift in Sources */,
 				AA74EF4F1BC0586F00D1E954 /* ComeToFrontBrick+CBXMLHandler.m in Sources */,
 				5EBA2F2521F6C74B00DE7617 /* CBPlayerConfig.swift in Sources */,
 				9200C2CA1C808006002F5CA4 /* ShowTextBrick.m in Sources */,
@@ -9309,14 +9312,17 @@
 				5EBA2E5521F6C60400DE7617 /* ClearGraphicEffectBrick+Instruction.swift in Sources */,
 				92FF30F91A24DCAA00093DA7 /* FormulaElement.m in Sources */,
 				9218B2161CC4AB75007B4C60 /* PaintViewController.m in Sources */,
+				5EBA30DF21F6CC9300DE7617 /* MultOperator.swift in Sources */,
 				9218B2031CC4AB75007B4C60 /* ImagePicker.m in Sources */,
 				AA74EF711BC0588A00D1E954 /* SpeakBrick+CBXMLHandler.m in Sources */,
 				92FF32BE1A24E2F400093DA7 /* BaseTransition.m in Sources */,
 				BA1FA99D1F02AEDC0084184D /* InsertItemIntoUserListBrick.m in Sources */,
 				9218B2061CC4AB75007B4C60 /* RGBAHelper.m in Sources */,
 				AA74F0BE1BC05FCE00D1E954 /* PointInDirectionBrickCell.m in Sources */,
+				5EBA30C921F6CC4E00DE7617 /* LnFunction.swift in Sources */,
 				4C0F9F5D204BD16F00E71B2D /* ChooseCameraBrick+CBXMLHandler.m in Sources */,
 				AA74EEFA1BC057C900D1E954 /* ClearGraphicEffectBrick+CBXMLHandler.m in Sources */,
+				5EBA30D821F6CC9300DE7617 /* OrOperator.swift in Sources */,
 				99B2C36B1D884C1300736769 /* FlashBrick+CBXMLHandler.m in Sources */,
 				AA74F0011BC05B5F00D1E954 /* IfOnEdgeBounceBrick.m in Sources */,
 				5EBA2E3E21F6C5EB00DE7617 /* SetXBrick+Instruction.swift in Sources */,
@@ -9339,6 +9345,7 @@
 				C6A06BEC1EC8CA4C0000C656 /* AlertController.swift in Sources */,
 				92FF31021A24DCAA00093DA7 /* BroadcastScript.m in Sources */,
 				5EBA2E7521F6C62100DE7617 /* ChangeVariableBrick+Instruction.swift in Sources */,
+				5EBA30E021F6CC9300DE7617 /* PlusOperator.swift in Sources */,
 				AA74F00D1BC05B5F00D1E954 /* SpeakBrick.m in Sources */,
 				AA74EEDE1BC057B900D1E954 /* IfLogicBeginBrick+CBXMLHandler.m in Sources */,
 				92FF2E931A24C7D800093DA7 /* RuntimeImageCache.m in Sources */,
@@ -9363,7 +9370,6 @@
 				AA74F0C21BC05FCE00D1E954 /* TurnLeftBrickCell.m in Sources */,
 				92C6318A1BC502CB00486958 /* KnownDevicesTableViewController.swift in Sources */,
 				4C0F9F43204ADC6600E71B2D /* ThinkBubbleBrick.m in Sources */,
-				5EBA305121F6C78B00DE7617 /* ObjectStringSensor.swift in Sources */,
 				593E4DDE1FE11D410016DCB9 /* CatrobatReorderableCollectionViewFlowLayout.m in Sources */,
 				F4A2AFB52110D48C00C53234 /* JoinFunction.swift in Sources */,
 				5EBA305D21F6C78B00DE7617 /* PhiroBottomRightSensor.swift in Sources */,
@@ -9374,13 +9380,12 @@
 				92FF2E8F1A24C7D800093DA7 /* FlashHelper.m in Sources */,
 				5EBA2E3621F6C5EB00DE7617 /* ChangeSizeByNBrick+Instruction.swift in Sources */,
 				AA74F09B1BC05FCE00D1E954 /* BrickCell.m in Sources */,
+				5EBA30DB21F6CC9300DE7617 /* EqualOperator.swift in Sources */,
 				59ABDC652021D7DA00061403 /* UIAlertController+AddAction.swift in Sources */,
 				922FE8E11B963BDE005A19FA /* BrickSelectionManager.m in Sources */,
 				AA74EEE01BC057B900D1E954 /* IfLogicEndBrick+CBXMLHandler.m in Sources */,
 				92DFB0141A38949E00FA9B0F /* InternFormulaParser.m in Sources */,
-				5EBA305021F6C78B00DE7617 /* ObjectDoubleSensor.swift in Sources */,
 				4CF429F5213A8A0400B78897 /* IfLogicBeginBrick+Condition.swift in Sources */,
-				F4E6E5C8210E255D00D86FE6 /* FalseFunction.swift in Sources */,
 				92FF2E961A24C7D800093DA7 /* ioapi.c in Sources */,
 				4C724E591B4D3E8C00E27479 /* Look+CBXMLHandler.m in Sources */,
 				929CC0FA1BC3A2420027DEC0 /* PhiroPlayToneBrick+Instruction.swift in Sources */,
@@ -9389,7 +9394,6 @@
 				5EBA2E5721F6C60400DE7617 /* SetColorBrick+Instruction.swift in Sources */,
 				AA74F0CE1BC05FCE00D1E954 /* WhenScriptCell.m in Sources */,
 				5EA1089421B8FBD200B837B9 /* AVAudioSession+Extensions.swift in Sources */,
-				F4E6E580210DE61900D86FE6 /* PowFunction.swift in Sources */,
 				5EBA2E7621F6C62100DE7617 /* ShowTextBrick+Instruction.swift in Sources */,
 				AA74F0A71BC05FCE00D1E954 /* WaitBrickCell.m in Sources */,
 				92FF32B91A24E2F400093DA7 /* DarkBlueGradientCell.m in Sources */,
@@ -9397,33 +9401,28 @@
 				F411560320E7732D00E2F254 /* InternFormula+KeyboardAdapter.swift in Sources */,
 				AA74EF781BC0589700D1E954 /* SetVariableBrick+CBXMLHandler.m in Sources */,
 				9218B2151CC4AB75007B4C60 /* ColorPickerViewController.m in Sources */,
+				5EBA30FE21F6CCEF00DE7617 /* ObjectDoubleSensor.swift in Sources */,
 				92FF2E981A24C7D800093DA7 /* unzip.c in Sources */,
 				AA74F0B91BC05FCE00D1E954 /* GlideToBrickCell.m in Sources */,
 				9218B2071CC4AB75007B4C60 /* SPUserResizableView.m in Sources */,
-				F4E6E579210DDD5C00D86FE6 /* CosFunction.swift in Sources */,
-				5EBA2EAB21F6C6FC00DE7617 /* NotEqualOperator.swift in Sources */,
 				92FF2E3B1A24C5A700093DA7 /* Project+CustomExtensions.m in Sources */,
 				AA74EFE11BC05B5F00D1E954 /* BroadcastBrick.m in Sources */,
+				5EBA30F521F6CCEF00DE7617 /* ObjectSensor.swift in Sources */,
 				4C2EE4201B555B55006DE9B8 /* CBXMLPropertyMapping.m in Sources */,
 				92C631881BC502CB00486958 /* BluetoothPopupVC.swift in Sources */,
 				4C26506A1A6538710050775B /* CBMutableCopyContext.m in Sources */,
-				5EBA2EA921F6C6FC00DE7617 /* GreaterThanOperator.swift in Sources */,
 				5EBA2E5F21F6C60400DE7617 /* SetBrightnessBrick+Instruction.swift in Sources */,
 				5EBA308121F6C78B00DE7617 /* FingerXSensor.swift in Sources */,
 				92FF2E8D1A24C7D800093DA7 /* CatrobatAudioPlayer.m in Sources */,
 				92D56C341BF202E700A54750 /* FirmataDevice.swift in Sources */,
-				5EBA2EB221F6C6FC00DE7617 /* SmallerThanOperator.swift in Sources */,
 				2DA8790E212B444E00FE0585 /* SearchStoreDataSource.swift in Sources */,
 				AA74EFFF1BC05B5F00D1E954 /* GlideToBrick.m in Sources */,
 				AA74F0081BC05B5F00D1E954 /* TurnLeftBrick.m in Sources */,
-				5EBA304B21F6C78B00DE7617 /* FaceDetectionManagerProtocol.swift in Sources */,
 				AA74F0C71BC05FCE00D1E954 /* SpeakBrickCell.m in Sources */,
 				AA74F0B21BC05FCE00D1E954 /* SetLookBrickCell.m in Sources */,
 				AA74F0091BC05B5F00D1E954 /* TurnRightBrick.m in Sources */,
-				5EBA2EAC21F6C6FC00DE7617 /* SmallerOrEqualOperator.swift in Sources */,
-				5EBA305821F6C78B00DE7617 /* LocationManager.swift in Sources */,
 				4CF773E51AEE3B5100DBBB2B /* VariablePickerData.m in Sources */,
-				5EBA304D21F6C78B00DE7617 /* ObjectSensor.swift in Sources */,
+				5EBA30BB21F6CC4E00DE7617 /* FloorFunction.swift in Sources */,
 				AA74F0071BC05B5F00D1E954 /* SetYBrick.m in Sources */,
 				92FF31611A24DEB300093DA7 /* ScenePresenterViewController.m in Sources */,
 				92B46FA21BC7BDF7004980C1 /* ArduinoSendDigitalValueBrickCell.m in Sources */,
@@ -9441,7 +9440,6 @@
 				92FF32B51A24E2F400093DA7 /* PlaceHolderView.m in Sources */,
 				4C724E561B4D3E8C00E27479 /* Formula+CBXMLHandler.m in Sources */,
 				5EBA2E6521F6C60400DE7617 /* SetSizeToBrick+Instruction.swift in Sources */,
-				F4E6E5C2210E23D500D86FE6 /* CeilFunction.swift in Sources */,
 				92C6318B1BC502CB00486958 /* SearchDevicesTableViewController.swift in Sources */,
 				BA3337372195BC6D00DA3505 /* RepeatUntilBrick+CBXMLHandler.m in Sources */,
 				AA74F0031BC05B5F00D1E954 /* PlaceAtBrick.m in Sources */,
@@ -9454,9 +9452,11 @@
 				AA74EFFB1BC05B5F00D1E954 /* ChangeSizeByNBrick.m in Sources */,
 				92ED4D7D1BA9C1380052C852 /* RegisterViewController.m in Sources */,
 				E4668B3C20FDCA6D0021FA0B /* FeaturedProjectsStoreTableDataSource.swift in Sources */,
+				5EBA30C121F6CC4E00DE7617 /* FalseFunction.swift in Sources */,
 				5EBA2E6821F6C60400DE7617 /* SayBubbleBrick+Instruction.swift in Sources */,
 				92FF31061A24DCAA00093DA7 /* Sound.m in Sources */,
 				91FC87CEFA4B1008B213EA31 /* AlertControllerBuilder.swift in Sources */,
+				5EBA30FC21F6CCEF00DE7617 /* PhiroSensor.swift in Sources */,
 				91FC8B6AB3345BC25B02DF81 /* BaseAlertController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
