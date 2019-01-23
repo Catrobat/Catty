@@ -1,9 +1,7 @@
-![Logo](https://github.com/Catrobat/Catty/raw/master/src/Catty/Images.xcassets/AppIcon.appiconset/Icon-60@2x.png)
-
-![](https://img.shields.io/github/release/catrobat/catty.svg) ![](https://img.shields.io/github/languages/top/catrobat/catty.svg)
 
 Catty
 =====
+![](https://img.shields.io/github/release/catrobat/catty.svg) ![](https://img.shields.io/github/languages/top/catrobat/catty.svg)
 
 Catty, also known as **Pocket Code for iOS**, is an on-device visual programming system for iPhones.
 
