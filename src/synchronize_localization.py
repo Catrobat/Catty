@@ -1,5 +1,3 @@
-import sys
-
 f = open("Catty/Defines/LanguageTranslationDefines.h",'r')
 filedata = f.read()
 f.close()
