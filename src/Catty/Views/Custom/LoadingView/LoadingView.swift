@@ -78,6 +78,8 @@ class LoadingView: UIView {
         superview?.bringSubviewToFront(self)
 
         self.centerView()
+        self.superview?.layoutIfNeeded()
+
         self.widthAnchor.constraint(equalToConstant: CGFloat(kLoadingBackgroundWidth)).isActive = true
         self.heightAnchor.constraint(equalToConstant: CGFloat(kLoadingBackgroundHeight)).isActive = true
     }
