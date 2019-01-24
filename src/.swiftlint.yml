@@ -153,8 +153,7 @@ type_name:
     error: 50
 
 excluded: # paths to ignore during linting. Takes precedence over `included`.
+ - BuildScripts
  - Carthage
  - Pods
  - Catty/Defines/LanguageTranslationDefinesSwift.swift
- - license-validator.swift
- - precompile-tests.swift

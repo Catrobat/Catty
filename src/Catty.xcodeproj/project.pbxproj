@@ -402,7 +402,7 @@
 		5E1F6DA421F6951000B4ACEC /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1F6DA121F6951000B4ACEC /* SettingsTableViewController.swift */; };
 		5E1F6DA521F6951000B4ACEC /* TermsOfUseOptionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1F6DA221F6951000B4ACEC /* TermsOfUseOptionTableViewController.swift */; };
 		5E219F2621C8B46A000439BA /* SelectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E219F2521C8B46A000439BA /* SelectButton.swift */; };
-		5E21DA6821A3E4AF00017D2C /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E21DA6721A3E4AF00017D2C /* UIImage+Extensions.swift */; };
+		5E21DA6821A3E4AF00017D2C /* UIImage+Crop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E21DA6721A3E4AF00017D2C /* UIImage+Crop.swift */; };
 		5E21DA6F21A5255600017D2C /* UploadInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E21DA6C21A5255500017D2C /* UploadInfoViewController.swift */; };
 		5E21DA7121A5289F00017D2C /* Data+Hashes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E21DA7021A5289F00017D2C /* Data+Hashes.swift */; };
 		5E399FE021F6B61400C7E62A /* Introduction.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E399FDF21F6B61400C7E62A /* Introduction.storyboard */; };
@@ -1779,7 +1779,7 @@
 		5E1F6DA121F6951000B4ACEC /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsTableViewController.swift; path = Catty/ViewController/Settings/SettingsTableViewController.swift; sourceTree = SOURCE_ROOT; };
 		5E1F6DA221F6951000B4ACEC /* TermsOfUseOptionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TermsOfUseOptionTableViewController.swift; path = Catty/ViewController/Settings/TermsOfUseOptionTableViewController.swift; sourceTree = SOURCE_ROOT; };
 		5E219F2521C8B46A000439BA /* SelectButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectButton.swift; sourceTree = "<group>"; };
-		5E21DA6721A3E4AF00017D2C /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
+		5E21DA6721A3E4AF00017D2C /* UIImage+Crop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Crop.swift"; sourceTree = "<group>"; };
 		5E21DA6C21A5255500017D2C /* UploadInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadInfoViewController.swift; sourceTree = "<group>"; };
 		5E21DA7021A5289F00017D2C /* Data+Hashes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Hashes.swift"; sourceTree = "<group>"; };
 		5E399FDF21F6B61400C7E62A /* Introduction.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Introduction.storyboard; sourceTree = "<group>"; };
@@ -2971,7 +2971,7 @@
 		BCFED6F7211318A100BE57BF /* ProjectTVCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectTVCTests.swift; sourceTree = "<group>"; };
 		CA2D44421B12305400A3B53D /* Swell.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Swell.plist; sourceTree = "<group>"; };
 		CA2D44451B123B7E00A3B53D /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
-		CA2D8C961AEDDA2100A5BDC2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
+		CA2D8C961AEDDA2100A5BDC2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CA3E72D41B0BA5FF00D6B184 /* Catty-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Catty-Bridging-Header.h"; sourceTree = "<group>"; };
 		CA3E72E71B0C00A500D6B184 /* CBStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBStack.swift; sourceTree = "<group>"; };
 		CA3E72EB1B0C01CD00D6B184 /* LLNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLNode.swift; sourceTree = "<group>"; };
@@ -5867,7 +5867,7 @@
 			children = (
 				92FF2E2A1A24C5A700093DA7 /* UIImage+CatrobatUIImageExtensions.h */,
 				92FF2E2B1A24C5A700093DA7 /* UIImage+CatrobatUIImageExtensions.m */,
-				5E21DA6721A3E4AF00017D2C /* UIImage+Extensions.swift */,
+				5E21DA6721A3E4AF00017D2C /* UIImage+Crop.swift */,
 			);
 			path = UIImage;
 			sourceTree = "<group>";
@@ -8368,7 +8368,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/bin/env xcrun swift -sdk $(/usr/bin/env xcrun --show-sdk-path --sdk macosx) license-validator.swift\nOUT=$?\nif [ $OUT -ne 0 ];then\nexit $OUT\nfi\n";
+			shellScript = "/usr/bin/env xcrun swift -sdk $(/usr/bin/env xcrun --show-sdk-path --sdk macosx) BuildScripts/license-validator.swift\nOUT=$?\nif [ $OUT -ne 0 ];then\nexit $OUT\nfi\n";
 		};
 		AACFFF611B7FE5F50002F899 /* Automatic Version Tracking */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -8424,7 +8424,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "#/usr/bin/env xcrun swiftc -sdk $(/usr/bin/env xcrun --show-sdk-path --sdk macosx) precompile-tests.swift\n#./precompile-tests\n/usr/bin/env xcrun swift -sdk $(/usr/bin/env xcrun --show-sdk-path --sdk macosx) -swift-version 3 precompile-tests.swift\nOUT=$?\nif [ $OUT -ne 0 ];then\nexit $OUT\nfi\n\npython synchronize_localization.py && ./update-localized-strings.sh&\n";
+			shellScript = "#/usr/bin/env xcrun swiftc -sdk $(/usr/bin/env xcrun --show-sdk-path --sdk macosx) precompile-tests.swift\n#./precompile-tests\n/usr/bin/env xcrun swift -sdk $(/usr/bin/env xcrun --show-sdk-path --sdk macosx) -swift-version 3 BuildScripts/precompile-tests.swift\nOUT=$?\nif [ $OUT -ne 0 ];then\nexit $OUT\nfi\n\npython BuildScripts/synchronize_localization.py && BuildScripts/update-localized-strings.sh&\n";
 		};
 		CADBD6D719B0E8C200C62836 /* Add Licenses To Acknowledgements.plist */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -9203,7 +9203,7 @@
 				5E85879A21F6D14D008EFC9C /* ChangeYByNBrick+CBXMLHandler.m in Sources */,
 				5EBA30DC21F6CC9300DE7617 /* GreaterThanOperator.swift in Sources */,
 				929CC0E01BC39B690027DEC0 /* BrickCellPhiroToneData.m in Sources */,
-				5E21DA6821A3E4AF00017D2C /* UIImage+Extensions.swift in Sources */,
+				5E21DA6821A3E4AF00017D2C /* UIImage+Crop.swift in Sources */,
 				5EBA30F421F6CCEF00DE7617 /* DeviceSensor.swift in Sources */,
 				5E85876021F6D12D008EFC9C /* ThinkBubbleBrick+CBXMLHandler.m in Sources */,
 				4CB2CFAB1D7AD86D009F3034 /* SetColorBrickCell.m in Sources */,
