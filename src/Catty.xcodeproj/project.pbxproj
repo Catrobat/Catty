@@ -4952,7 +4952,8 @@
 			children = (
 				92300CE918B2196700F2B4DC /* Localizable.strings */,
 			);
-			path = Localization;
+			name = Localization;
+			path = Resources/Localization;
 			sourceTree = "<group>";
 		};
 		5EA1089021B8FBB800B837B9 /* Audio */ = {
