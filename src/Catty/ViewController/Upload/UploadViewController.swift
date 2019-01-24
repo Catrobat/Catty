@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc class UploadInfoViewController: UIViewController {
+class UploadViewController: UIViewController {
 
     let uploadParameterTag = "upload"
     let fileChecksumParameterTag = "fileChecksum"
@@ -42,17 +42,20 @@
     let httpBoundary = "---------------------------98598263596598246508247098291---------------------------"
     let uploadFontSize: CGFloat = 16.0
 
+    private var uploadBarButton: UIBarButtonItem?
     private var activeRequest: Bool = false
-    @objc public var project: Project?
+    private var project: Project?
+    private var descriptionTextViewBottomConstraint: NSLayoutConstraint!
+
     @IBOutlet private weak var projectNameLabel: UILabel!
     @IBOutlet private weak var projectNameTextField: UITextField!
     @IBOutlet private weak var sizeLabel: UILabel!
     @IBOutlet private weak var sizeValueLabel: UILabel!
     @IBOutlet private weak var descriptionLabel: UILabel!
     @IBOutlet private weak var descriptionTextView: UITextView!
-    @IBOutlet private weak var uploadButton: UIButton!
-    @IBOutlet private weak var uploadScrollView: UIScrollView!
 
+    private var zipFileData: Data?
+    private var loadingView: LoadingView?
     private var _session: URLSession?
     private var session: URLSession? {
         if _session == nil {
@@ -67,8 +70,6 @@
         }
         return _session
     }
-    private var zipFileData: Data?
-    private var loadingView: LoadingView?
 
     // MARK: - View Lifecycle
 
@@ -78,26 +79,23 @@
         initProjectNameViewElements()
         initSizeViewElements()
         initDescriptionViewElements()
-        initActionButtons()
-        title = kLocalizedUpload
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(UploadInfoViewController.uploadAction),
-                                               name: NSNotification.Name(rawValue: kReadyToUpload),
-                                               object: nil)
+        initObservers()
+        hideKeyboardWhenTapInViewController()
 
-        if #available(iOS 11, *) {
-            uploadScrollView.contentInsetAdjustmentBehavior = .never
-        } else {
-            self.automaticallyAdjustsScrollViewInsets = false
-        }
+        self.uploadBarButton = UIBarButtonItem(title: kLocalizedUpload,
+                                               style: .plain,
+                                               target: self,
+                                               action: #selector(UploadViewController.checkProjectAction))
+        navigationItem.rightBarButtonItem = self.uploadBarButton
+
         projectNameTextField.becomeFirstResponder()
-        self.hideKeyboardWhenTapInViewController()
     }
 
     // MARK: - Initialization
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        self.project = Project.init(loadingInfo: Util.lastUsedProjectLoadingInfo())!
     }
 
     func initProjectNameViewElements() {
@@ -108,8 +106,6 @@
         projectNameTextField.textColor = UIColor.textTint()
         projectNameTextField.backgroundColor = UIColor.white
         projectNameTextField.borderStyle = .roundedRect
-        projectNameTextField.autocorrectionType = .no
-        projectNameTextField.autocapitalizationType = .none
         projectNameTextField.keyboardType = .default
         projectNameTextField.text = project?.header.programName!
     }
@@ -131,7 +127,8 @@
             self.dismissView()
             return
         }
-        sizeValueLabel.text = ByteCountFormatter.string(fromByteCount: Int64(data.count), countStyle: .file)
+        sizeValueLabel.text = ByteCountFormatter.string(fromByteCount: Int64(data.count),
+                                                        countStyle: .file)
     }
 
     func initDescriptionViewElements() {
@@ -142,36 +139,45 @@
         descriptionTextView.textColor = UIColor.textTint()
         descriptionTextView.keyboardAppearance = .default
         descriptionTextView.backgroundColor = UIColor.white
-        descriptionTextView.autocorrectionType = .no
-        descriptionTextView.autocapitalizationType = .none
         descriptionTextView.keyboardType = .default
         descriptionTextView.text = project?.header.programDescription ?? ""
 
         descriptionTextView.layer.borderWidth = 1.0
         descriptionTextView.layer.borderColor = UIColor.textViewBorderGray().cgColor
         descriptionTextView.layer.cornerRadius = 8
+
+        //manual constraint (because we need to store the bottom anchor)
+        descriptionTextViewBottomConstraint = descriptionTextView
+            .bottomAnchor.constraint(equalTo: view.safeBottomAnchor, constant: -20)
+        descriptionTextViewBottomConstraint.isActive = true
     }
 
-    func initActionButtons() {
-        uploadButton.setTitle(kLocalizedUpload, for: .normal)
-        uploadButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: uploadFontSize)
-        uploadButton.backgroundColor = UIColor.globalTint()
-        uploadButton.titleLabel?.textAlignment = .center
-        uploadButton.addTarget(self, action: #selector(UploadInfoViewController.checkProjectAction), for: .touchUpInside)
-        uploadButton.setTitleColor(UIColor.buttonHighlightedTint(), for: .normal)
+    func initObservers() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(UploadViewController.uploadAction),
+                                               name: NSNotification.Name(rawValue: kReadyToUpload),
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.keyboardWillShow),
+                                               name: UIWindow.keyboardWillShowNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.keyboardWillHide),
+                                               name: UIWindow.keyboardWillHideNotification,
+                                               object: nil)
     }
 
-    @objc func dismissView() {
+    func dismissView() {
         navigationController?.popViewController(animated: true)
     }
 
     func enableUploadView() {
         DispatchQueue.main.async(execute: {
             self.loadingView?.hide()
+            self.navigationItem.rightBarButtonItem = self.uploadBarButton
             for view: UIView in self.view.subviews where !(view is LoadingView) {
                 view.alpha = 1.0
             }
-            self.uploadButton.isEnabled = true
             self.view.isUserInteractionEnabled = true
         })
     }
@@ -213,6 +219,18 @@
         }
     }
 
+    func showLoading() {
+        if loadingView == nil {
+            loadingView = LoadingView()
+            view.addSubview(loadingView!)
+        }
+
+        loadingView?.show()
+        let barButtonSpinner = UIActivityIndicatorView(style: .white)
+        barButtonSpinner.startAnimating()
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: barButtonSpinner)
+    }
+
     // MARK: - Actions
 
     @objc func checkProjectAction() {
@@ -228,11 +246,8 @@
         }
         project?.rename(toProjectName: projectNameTextField.text!)
         project?.updateDescription(withText: descriptionTextView.text)
-        if loadingView == nil {
-            loadingView = LoadingView()
-            view.addSubview(loadingView!)
-        }
-        loadingView?.show()
+
+        self.showLoading()
         for view: UIView in view.subviews where !(view is LoadingView) {
             view.alpha = 0.3
         }
@@ -280,31 +295,47 @@
             var body = Data()
 
             //Project Name
-            setFormDataParameter(projectNameTag, with: project?.header.programName.data(using: .utf8), forHTTPBody: &body)
+            setFormDataParameter(projectNameTag,
+                                 with: project?.header.programName.data(using: .utf8),
+                                 forHTTPBody: &body)
 
             //Project Description
-            setFormDataParameter(projectDescriptionTag, with: project?.header.programDescription.data(using: .utf8), forHTTPBody: &body)
+            setFormDataParameter(projectDescriptionTag,
+                                 with: project?.header.programDescription.data(using: .utf8),
+                                 forHTTPBody: &body)
 
             //User Email
             if UserDefaults.standard.value(forKey: kcEmail) != nil {
-                setFormDataParameter(userEmailTag, with: (UserDefaults.standard.value(forKey: kcEmail) as! String).data(using: .utf8), forHTTPBody: &body)
+                setFormDataParameter(userEmailTag,
+                                     with: (UserDefaults.standard.value(forKey: kcEmail) as! String).data(using: .utf8),
+                                     forHTTPBody: &body)
             }
 
             //checksum
-            setFormDataParameter(fileChecksumParameterTag, with: checksum?.data(using: .utf8), forHTTPBody: &body)
+            setFormDataParameter(fileChecksumParameterTag,
+                                 with: checksum?.data(using: .utf8),
+                                 forHTTPBody: &body)
 
             //token
             let token = JNKeychain.loadValue(forKey: kUserLoginToken) as! String
-            setFormDataParameter(tokenParameterTag, with: token.data(using: .utf8), forHTTPBody: &body)
+            setFormDataParameter(tokenParameterTag,
+                                 with: token.data(using: .utf8),
+                                 forHTTPBody: &body)
 
             //Username
-            setFormDataParameter(userNameTag, with: (UserDefaults.standard.value(forKey: kcUsername) as! String).data(using: .utf8), forHTTPBody: &body)
+            setFormDataParameter(userNameTag,
+                                 with: (UserDefaults.standard.value(forKey: kcUsername) as! String).data(using: .utf8),
+                                 forHTTPBody: &body)
 
             //Language
-            setFormDataParameter(deviceLanguageTag, with: NSLocale.preferredLanguages[0].data(using: .utf8), forHTTPBody: &body)
+            setFormDataParameter(deviceLanguageTag,
+                                 with: NSLocale.preferredLanguages[0].data(using: .utf8),
+                                 forHTTPBody: &body)
 
             //zip file
-            setAttachmentParameter(uploadParameterTag, with: zipFileData, forHTTPBody: &body)
+            setAttachmentParameter(uploadParameterTag,
+                                   with: zipFileData,
+                                   forHTTPBody: &body)
 
             // close request form
             if let anEncoding = "--\(httpBoundary)--\r\n".data(using: .utf8) {
@@ -317,7 +348,8 @@
             request.addValue(postLength, forHTTPHeaderField: "Content-Length")
 
             // debug output
-            let string1 = String(data: request.httpBody!, encoding: String.Encoding.utf8) ?? "Data could not be printed"
+            let string1 = String(data: request.httpBody!,
+                                 encoding: String.Encoding.utf8) ?? "Data could not be printed"
             debugPrint(string1)
 
             // start request
@@ -392,6 +424,26 @@
             debugPrint("Could not build checksum")
             enableUploadView()
             Util.alert(withText: kLocalizedUploadProblem)
+        }
+    }
+
+    // MARK: - Keyboard
+
+    @objc func keyboardWillShow(notification: Notification) {
+        if let userInfo = notification.userInfo,
+            let keyboardFrameValue = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardFrame = keyboardFrameValue.cgRectValue
+            UIView.animate(withDuration: 0.5, animations: {
+                self.descriptionTextViewBottomConstraint.constant = -keyboardFrame.size.height - 20
+                self.view.layoutIfNeeded()
+            })
+        }
+    }
+
+    @objc func keyboardWillHide(notification: Notification) {
+        UIView.animate(withDuration: 0.5) {
+            self.descriptionTextViewBottomConstraint.constant = -20
+            self.view.layoutIfNeeded()
         }
     }
 }

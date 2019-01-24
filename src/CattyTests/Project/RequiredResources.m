@@ -79,18 +79,18 @@
 - (void)testHideBrickResources
 {
     HideBrick *brick = [HideBrick new];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(resources, kNoResources, @"Resourses HideBrick not correctly calculated");
 }
 
 - (void)testShowBrickResources
 {
     ShowBrick *brick = [ShowBrick new];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(resources, kNoResources, @"Resourses ShowBrick not correctly calculated");
 }
 
@@ -98,9 +98,9 @@
 {
     SetTransparencyBrick *brick = [SetTransparencyBrick new];
     brick.transparency = [[Formula alloc] initWithInteger:1];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(resources, kNoResources, @"Resourses SetTransparencyBrick not correctly calculated");
 }
 
@@ -109,9 +109,9 @@
     SetTransparencyBrick *brick = [SetTransparencyBrick new];
     FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:AccelerationXSensor.tag leftChild:nil rightChild:nil parent:nil];
     brick.transparency = [[Formula alloc] initWithFormulaElement:element];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(resources, kDeviceMotion, @"Resourses ShowBrick not correctly calculated");
 }
 
@@ -119,9 +119,9 @@
 {
     SetSizeToBrick *brick = [SetSizeToBrick new];
     brick.size = [[Formula alloc] initWithInteger:1];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(resources, kNoResources, @"Resourses SetSizeToBrick not correctly calculated");
 }
 
@@ -130,9 +130,9 @@
     SetSizeToBrick *brick = [SetSizeToBrick new];
     FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:AccelerationYSensor.tag leftChild:nil rightChild:nil parent:nil];
     brick.size = [[Formula alloc] initWithFormulaElement:element];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(resources, kDeviceMotion, @"Resourses SetSizeToBrick not correctly calculated");
 }
 
@@ -140,9 +140,9 @@
 {
     SetBrightnessBrick *brick = [SetBrightnessBrick new];
     brick.brightness = [[Formula alloc] initWithInteger:1];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(resources, kNoResources, @"Resourses SetBrightnessBrick not correctly calculated");
 }
 
@@ -151,18 +151,18 @@
     SetBrightnessBrick *brick = [SetBrightnessBrick new];
     FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:CompassDirectionSensor.tag leftChild:nil rightChild:nil parent:nil];
     brick.brightness = [[Formula alloc] initWithFormulaElement:element];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(resources, kCompass, @"Resourses SetBrightnessBrick not correctly calculated");
 }
 
 - (void)testClearGraphicEffectBrickResources
 {
     ClearGraphicEffectBrick *brick = [ClearGraphicEffectBrick new];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(resources, kNoResources, @"Resourses ClearGraphicEffectBrick not correctly calculated");
 }
 
@@ -170,9 +170,9 @@
 {
     ChangeTransparencyByNBrick *brick = [ChangeTransparencyByNBrick new];
     brick.changeTransparency = [[Formula alloc] initWithInteger:1];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(resources, kNoResources, @"Resourses ChangeTransparencyByNBrick not correctly calculated");
 }
 
@@ -181,18 +181,18 @@
     ChangeTransparencyByNBrick *brick = [ChangeTransparencyByNBrick new];
     FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:InclinationXSensor.tag leftChild:nil rightChild:nil parent:nil];
     brick.changeTransparency = [[Formula alloc] initWithFormulaElement:element];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(resources, kDeviceMotion, @"Resourses ChangeTransparencyByNBrick not correctly calculated");
 }
 - (void)testChangeBrightnessByNBrickResources
 {
     ChangeBrightnessByNBrick *brick = [ChangeBrightnessByNBrick new];
     brick.changeBrightness = [[Formula alloc] initWithInteger:1];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(resources, kNoResources, @"Resourses ChangeBrightnessByNBrick not correctly calculated");
 }
 - (void)testChangeBrightnessByNBrick2Resources
@@ -200,18 +200,18 @@
     ChangeBrightnessByNBrick *brick = [ChangeBrightnessByNBrick new];
     FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:InclinationXSensor.tag leftChild:nil rightChild:nil parent:nil];
     brick.changeBrightness = [[Formula alloc] initWithFormulaElement:element];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(resources, kDeviceMotion, @"Resourses ChangeBrightnessByNBrick not correctly calculated");
 }
 - (void)testChangeColorByNBrickResources
 {
     ChangeColorByNBrick *brick = [ChangeColorByNBrick new];
     brick.changeColor = [[Formula alloc] initWithInteger:1];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(resources, kNoResources, @"Resourses ChangeBrightnessByNBrick not correctly calculated");
 }
 - (void)testChangeColorByNBrick2Resources
@@ -219,18 +219,18 @@
     ChangeColorByNBrick *brick = [ChangeColorByNBrick new];
     FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:InclinationYSensor.tag leftChild:nil rightChild:nil parent:nil];
     brick.changeColor = [[Formula alloc] initWithFormulaElement:element];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(resources, kAccelerometerAndDeviceMotion, @"Resourses ChangeBrightnessByNBrick not correctly calculated");
 }
 - (void)testSetColorBrickResources
 {
     SetColorBrick *brick = [SetColorBrick new];
     brick.color = [[Formula alloc] initWithInteger:1];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(resources, kNoResources, @"Resourses SetColorBrick not correctly calculated");
 }
 - (void)testSetColorBrick2Resources
@@ -238,9 +238,9 @@
     SetColorBrick *brick = [SetColorBrick new];
     FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:InclinationYSensor.tag leftChild:nil rightChild:nil parent:nil];
     brick.color = [[Formula alloc] initWithFormulaElement:element];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(resources, kAccelerometerAndDeviceMotion, @"Resourses SetColorBrick not correctly calculated");
 }
 #pragma mark-Control
@@ -248,9 +248,9 @@
 {
     WaitBrick *brick = [WaitBrick new];
     brick.timeToWaitInSeconds = [[Formula alloc] initWithInteger:1];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(resources, kNoResources, @"Resourses WaitBrick not correctly calculated");
 }
 
@@ -259,18 +259,18 @@
     WaitBrick *brick = [WaitBrick new];
     FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:LoudnessSensor.tag leftChild:nil rightChild:nil parent:nil];
     brick.timeToWaitInSeconds = [[Formula alloc] initWithFormulaElement:element];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(resources, kLoudness, @"Resourses WaitBrick not correctly calculated");
 }
 - (void)testRepeatBrickResources
 {
     RepeatBrick *brick = [RepeatBrick new];
     brick.timesToRepeat = [[Formula alloc] initWithInteger:1];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(resources, kNoResources, @"Resourses RepeatBrick not correctly calculated");
 }
 - (void)testRepeatBrick2Resources
@@ -278,26 +278,26 @@
     RepeatBrick *brick = [RepeatBrick new];
     FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:LoudnessSensor.tag leftChild:nil rightChild:nil parent:nil];
     brick.timesToRepeat = [[Formula alloc] initWithFormulaElement:element];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(resources, kLoudness, @"Resourses RepeatBrick not correctly calculated");
 }
 - (void)testNoteBrickResources
 {
     NoteBrick *brick = [NoteBrick new];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(resources, kNoResources, @"Resourses NoteBrick not correctly calculated");
 }
 - (void)testIfLogicBeginBrickResources
 {
     IfLogicBeginBrick *brick = [IfLogicBeginBrick new];
     brick.ifCondition = [[Formula alloc] initWithInteger:1];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(resources, kNoResources, @"Resourses IfLogicBeginBrick not correctly calculated");
 }
 - (void)testIfLogicBeginBrick2Resources
@@ -305,17 +305,17 @@
     IfLogicBeginBrick *brick = [IfLogicBeginBrick new];
     FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:LoudnessSensor.tag leftChild:nil rightChild:nil parent:nil];
     brick.ifCondition = [[Formula alloc] initWithFormulaElement:element];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(resources, kLoudness, @"Resourses IfLogicBeginBrick not correctly calculated");
 }
 - (void)testBroadcastBrickResources
 {
     BroadcastBrick *brick = [BroadcastBrick new];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(resources, kNoResources, @"Resourses BroadcastBrick not correctly calculated");
 }
 #pragma mark-Data
@@ -323,9 +323,9 @@
 {
     SetVariableBrick *brick = [SetVariableBrick new];
     brick.variableFormula = [[Formula alloc] initWithInteger:1];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(resources, kNoResources, @"Resourses SetVariableBrick not correctly calculated");
 }
 - (void)testSetVariableBrick2Resources
@@ -333,18 +333,18 @@
     SetVariableBrick *brick = [SetVariableBrick new];
     FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:@"FACE_DETECTED" leftChild:nil rightChild:nil parent:nil];
     brick.variableFormula = [[Formula alloc] initWithFormulaElement:element];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(resources, kFaceDetection, @"Resourses SetVariableBrick not correctly calculated");
 }
 - (void)testChangeVariableBrickResources
 {
     ChangeVariableBrick *brick = [ChangeVariableBrick new];
     brick.variableFormula = [[Formula alloc] initWithInteger:1];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(resources, kNoResources, @"Resourses ChangeVariableBrick not correctly calculated");
 }
 - (void)testChangeVariableBrick2Resources
@@ -352,36 +352,36 @@
     ChangeVariableBrick *brick = [ChangeVariableBrick new];
     FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:LoudnessSensor.tag leftChild:nil rightChild:nil parent:nil];
     brick.variableFormula = [[Formula alloc] initWithFormulaElement:element];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(resources, kLoudness, @"Resourses ChangeVariableBrick not correctly calculated");
 }
 #pragma mark-Sound
 - (void)testStopAllSoundsBrickResources
 {
     StopAllSoundsBrick *brick = [StopAllSoundsBrick new];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(resources, kNoResources, @"Resourses StopAllSoundsBrick not correctly calculated");
 }
 - (void)testSpeakBrickResources
 {
     SpeakBrick *brick = [SpeakBrick new];
     brick.text = @"Hallo";
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(resources, kTextToSpeech, @"Resourses SpeakBrick not correctly calculated");
 }
 - (void)testSetVolumeToBrickResources
 {
     SetVolumeToBrick *brick = [SetVolumeToBrick new];
     brick.volume =[[Formula alloc] initWithInteger:1];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(resources, kNoResources, @"Resourses SetVolumeToBrick not correctly calculated");
 }
 - (void)testSetVolumeToBrick2Resources
@@ -389,18 +389,18 @@
     SetVolumeToBrick *brick = [SetVolumeToBrick new];
     FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:PhiroBottomLeftSensor.tag leftChild:nil rightChild:nil parent:nil];
     brick.volume = [[Formula alloc] initWithFormulaElement:element];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(resources, kBluetoothPhiro, @"Resourses SetVolumeToBrick not correctly calculated");
 }
 - (void)testChangeVolumeByNBrickResources
 {
     ChangeVolumeByNBrick *brick = [ChangeVolumeByNBrick new];
     brick.volume =[[Formula alloc] initWithInteger:1];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(resources, kNoResources, @"Resourses SetVolumeToBrick not correctly calculated");
 }
 - (void)testChangeVolumeByNBrick2Resources
@@ -408,9 +408,9 @@
     ChangeVolumeByNBrick *brick = [ChangeVolumeByNBrick new];
     FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:PhiroBottomLeftSensor.tag leftChild:nil rightChild:nil parent:nil];
     brick.volume = [[Formula alloc] initWithFormulaElement:element];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(resources, kBluetoothPhiro, @"Resourses SetVolumeToBrick not correctly calculated");
 }
 #pragma mark-IO
@@ -419,17 +419,17 @@
 {
     VibrationBrick *brick = [VibrationBrick new];
     brick.durationInSeconds =[[Formula alloc] initWithInteger:1];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(resources, kVibration, @"Resourses VibrationBrick not correctly calculated");
 }
 - (void)testLedOnBrickResources
 {
     FlashBrick *brick = [FlashBrick new];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(resources, kNoResources, @"Resourses FlashBrick not correctly calculated");
 }
 #pragma mark-Motion
@@ -438,9 +438,9 @@
 {
     TurnRightBrick *brick = [TurnRightBrick new];
     brick.degrees =[[Formula alloc] initWithInteger:1];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(resources, kNoResources, @"Resourses TurnRightBrick not correctly calculated");
 }
 - (void)testTurnRightBrick2Resources
@@ -448,9 +448,9 @@
     TurnRightBrick *brick = [TurnRightBrick new];
     FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:PhiroBottomLeftSensor.tag leftChild:nil rightChild:nil parent:nil];
     brick.degrees = [[Formula alloc] initWithFormulaElement:element];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(resources, kBluetoothPhiro, @"Resourses TurnRightBrick not correctly calculated");
 }
 
@@ -458,9 +458,9 @@
 {
     TurnLeftBrick *brick = [TurnLeftBrick new];
     brick.degrees =[[Formula alloc] initWithInteger:1];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(resources, kNoResources, @"Resourses TurnLeftBrick not correctly calculated");
 }
 
@@ -469,9 +469,9 @@
     TurnLeftBrick *brick = [TurnLeftBrick new];
     FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:PhiroBottomLeftSensor.tag leftChild:nil rightChild:nil parent:nil];
     brick.degrees = [[Formula alloc] initWithFormulaElement:element];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(resources, kBluetoothPhiro, @"Resourses TurnLeftBrick not correctly calculated");
 }
 
@@ -479,9 +479,9 @@
 {
     SetYBrick *brick = [SetYBrick new];
     brick.yPosition =[[Formula alloc] initWithInteger:1];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(resources, kNoResources, @"Resourses SetYBrick not correctly calculated");
 }
 - (void)testSetYBrick2Resources
@@ -489,18 +489,18 @@
     SetYBrick *brick = [SetYBrick new];
     FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:PhiroBottomLeftSensor.tag leftChild:nil rightChild:nil parent:nil];
     brick.yPosition = [[Formula alloc] initWithFormulaElement:element];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(resources, kBluetoothPhiro, @"Resourses SetYBrick not correctly calculated");
 }
 - (void)testSetXBrickResources
 {
     SetXBrick *brick = [SetXBrick new];
     brick.xPosition =[[Formula alloc] initWithInteger:1];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(resources, kNoResources, @"Resourses SetXBrick not correctly calculated");
 }
 - (void)testSetXBrick2Resources
@@ -508,26 +508,26 @@
     SetXBrick *brick = [SetXBrick new];
     FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:PhiroBottomLeftSensor.tag leftChild:nil rightChild:nil parent:nil];
     brick.xPosition = [[Formula alloc] initWithFormulaElement:element];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(resources, kBluetoothPhiro, @"Resourses SetXBrick not correctly calculated");
 }
 - (void)testPointToBrickResources
 {
     PointToBrick *brick = [PointToBrick new];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(resources, kNoResources, @"Resourses PointToBrick not correctly calculated");
 }
 - (void)testPointInDirectionBrickResources
 {
     PointInDirectionBrick *brick = [PointInDirectionBrick new];
     brick.degrees  =[[Formula alloc] initWithInteger:1];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(resources, kNoResources, @"Resourses PointInDirectionBrick not correctly calculated");
 }
 - (void)testPointInDirectionBrick2Resources
@@ -535,9 +535,9 @@
     PointInDirectionBrick *brick = [PointInDirectionBrick new];
     FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:PhiroBottomLeftSensor.tag leftChild:nil rightChild:nil parent:nil];
     brick.degrees = [[Formula alloc] initWithFormulaElement:element];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(resources, kBluetoothPhiro, @"Resourses PointInDirectionBrick not correctly calculated");
 }
 - (void)testPlaceAtBrickResources
@@ -545,9 +545,9 @@
     PlaceAtBrick *brick = [PlaceAtBrick new];
     brick.xPosition  =[[Formula alloc] initWithInteger:1];
     brick.yPosition  =[[Formula alloc] initWithInteger:1];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(resources, kNoResources, @"Resourses PlaceAtBrick not correctly calculated");
 }
 - (void)testPlaceAtBrick2Resources
@@ -557,18 +557,18 @@
     brick.xPosition = [[Formula alloc] initWithFormulaElement:element];
 
     brick.yPosition = [[Formula alloc] initWithFormulaElement:element];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(resources, kBluetoothPhiro, @"Resourses PlaceAtBrick not correctly calculated");
 }
 - (void)testMoveNStepsBrickResources
 {
     MoveNStepsBrick *brick = [MoveNStepsBrick new];
     brick.steps  =[[Formula alloc] initWithInteger:1];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(resources, kNoResources, @"Resourses MoveNStepsBrick not correctly calculated");
 }
 - (void)testMoveNStepsBrick2Resources
@@ -576,26 +576,26 @@
     MoveNStepsBrick *brick = [MoveNStepsBrick new];
     FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:PhiroBottomLeftSensor.tag leftChild:nil rightChild:nil parent:nil];
     brick.steps = [[Formula alloc] initWithFormulaElement:element];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(resources, kBluetoothPhiro, @"Resourses MoveNStepsBrick not correctly calculated");
 }
 - (void)testIfOnEdgeBounceBrickResources
 {
     IfOnEdgeBounceBrick *brick = [IfOnEdgeBounceBrick new];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(resources, kNoResources, @"Resourses IfOnEdgeBounceBrick not correctly calculated");
 }
 - (void)testGoNStepsBackBrickResources
 {
     GoNStepsBackBrick *brick = [GoNStepsBackBrick new];
      brick.steps  =[[Formula alloc] initWithInteger:1];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(resources, kNoResources, @"Resourses GoNStepsBackBrick not correctly calculated");
 }
 - (void)testGoNStepsBackBrick2Resources
@@ -603,9 +603,9 @@
     GoNStepsBackBrick *brick = [GoNStepsBackBrick new];
     FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:PhiroBottomLeftSensor.tag leftChild:nil rightChild:nil parent:nil];
     brick.steps = [[Formula alloc] initWithFormulaElement:element];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(resources, kBluetoothPhiro, @"Resourses GoNStepsBackBrick not correctly calculated");
 }
 - (void)testGlideToBrickResources
@@ -614,9 +614,9 @@
     brick.durationInSeconds = [[Formula alloc] initWithInteger:1];
     brick.xDestination= [[Formula alloc] initWithInteger:1];
     brick.yDestination= [[Formula alloc] initWithInteger:1];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(resources, kNoResources, @"Resourses GlideToBrick not correctly calculated");
 }
 - (void)testGlideToBrick2Resources
@@ -626,17 +626,17 @@
     brick.durationInSeconds = [[Formula alloc] initWithFormulaElement:element];
     brick.xDestination = [[Formula alloc] initWithFormulaElement:element];
     brick.yDestination = [[Formula alloc] initWithFormulaElement:element];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(resources, kBluetoothPhiro, @"Resourses GlideToBrick not correctly calculated");
 }
 - (void)testComeToFrontBrickResources
 {
     ComeToFrontBrick *brick = [ComeToFrontBrick new];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(resources, kNoResources, @"Resourses ComeToFrontBrick not correctly calculated");
 }
 - (void)testChangeYByNBrickResources
@@ -644,18 +644,18 @@
     ChangeYByNBrick *brick = [ChangeYByNBrick new];
     FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:PhiroBottomLeftSensor.tag leftChild:nil rightChild:nil parent:nil];
     brick.yMovement = [[Formula alloc] initWithFormulaElement:element];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(resources, kBluetoothPhiro, @"Resourses ChangeYByNBrick not correctly calculated");
 }
 - (void)testChangeYByNBrick2Resources
 {
     ChangeYByNBrick *brick = [ChangeYByNBrick new];
     brick.yMovement= [[Formula alloc] initWithInteger:1];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(resources, kNoResources, @"Resourses ChangeYByNBrick not correctly calculated");
 }
 
@@ -663,9 +663,9 @@
 {
     ChangeXByNBrick *brick = [ChangeXByNBrick new];
     brick.xMovement= [[Formula alloc] initWithInteger:1];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(resources, kNoResources, @"Resourses ChangeXByNBrick not correctly calculated");
 }
 - (void)testChangeXByNBrick2Resources
@@ -673,18 +673,18 @@
     ChangeXByNBrick *brick = [ChangeXByNBrick new];
     FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:PhiroBottomLeftSensor.tag leftChild:nil rightChild:nil parent:nil];
     brick.xMovement = [[Formula alloc] initWithFormulaElement:element];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(resources, kBluetoothPhiro, @"Resourses ChangeXByNBrick not correctly calculated");
 }
 - (void)testChangeSizeByNBrickResources
 {
     ChangeSizeByNBrick *brick = [ChangeSizeByNBrick new];
     brick.size= [[Formula alloc] initWithInteger:1];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(resources, kNoResources, @"Resourses ChangeSizeByNBrick not correctly calculated");
 }
 - (void)testChangeSizeByNBrick2Resources
@@ -692,9 +692,9 @@
     ChangeSizeByNBrick *brick = [ChangeSizeByNBrick new];
     FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:PhiroBottomLeftSensor.tag leftChild:nil rightChild:nil parent:nil];
     brick.size = [[Formula alloc] initWithFormulaElement:element];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(resources, kBluetoothPhiro, @"Resourses ChangeSizeByNBrick not correctly calculated");
 }
 
@@ -704,9 +704,9 @@
     ArduinoSendDigitalValueBrick *brick = [ArduinoSendDigitalValueBrick new];
     brick.pin = [[Formula alloc] initWithInteger:1];
     brick.value = [[Formula alloc] initWithInteger:1];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(resources, kBluetoothArduino, @"Resourses ArduinoSendDigitalValueBrick not correctly calculated");
 }
 - (void)testArduinoSendPWMValueBrickResources
@@ -714,9 +714,9 @@
     ArduinoSendPWMValueBrick *brick = [ArduinoSendPWMValueBrick new];
     brick.pin = [[Formula alloc] initWithInteger:1];
     brick.value = [[Formula alloc] initWithInteger:1];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(resources, kBluetoothArduino, @"Resourses ArduinoSendPWMValueBrick not correctly calculated");
 }
 #pragma mark-Phiro
@@ -724,35 +724,35 @@
 {
     PhiroMotorMoveBackwardBrick *brick = [PhiroMotorMoveBackwardBrick new];
     brick.formula = [[Formula alloc] initWithInteger:1];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(resources, kBluetoothPhiro, @"Resourses PhiroMotorMoveBackwardBrick not correctly calculated");
 }
 - (void)testPhiroMotorMoveForwardBrickResources
 {
     PhiroMotorMoveForwardBrick *brick = [PhiroMotorMoveForwardBrick new];
     brick.formula = [[Formula alloc] initWithInteger:1];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(resources, kBluetoothPhiro, @"Resourses PhiroMotorMoveForwardBrick not correctly calculated");
 }
 - (void)testPhiroMotorStopBrickResources
 {
     PhiroMotorStopBrick *brick = [PhiroMotorStopBrick new];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(resources, kBluetoothPhiro, @"Resourses PhiroMotorStopBrick not correctly calculated");
 }
 - (void)testPhiroPlayToneBrickResources
 {
     PhiroPlayToneBrick *brick = [PhiroPlayToneBrick new];
     brick.durationFormula =[[Formula alloc] initWithInteger:1];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(resources, kBluetoothPhiro, @"Resourses PhiroPlayToneBrick not correctly calculated");
 }
 - (void)testPhiroRGBLightBrickResources
@@ -761,9 +761,9 @@
     brick.redFormula =[[Formula alloc] initWithInteger:1];
     brick.greenFormula =[[Formula alloc] initWithInteger:1];
     brick.blueFormula =[[Formula alloc] initWithInteger:1];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(resources, kBluetoothPhiro, @"Resourses PhiroRGBLightBrick not correctly calculated");
 }
 
@@ -778,9 +778,9 @@
     brick.xDestination = [[Formula alloc] initWithFormulaElement:element];
     element = [[FormulaElement alloc] initWithElementType:SENSOR value:CompassDirectionSensor.tag leftChild:nil rightChild:nil parent:nil];
     brick.yDestination = [[Formula alloc] initWithFormulaElement:element];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(kDeviceMotion, resources & kDeviceMotion, @"Resourses nested not correctly calculated");
     XCTAssertEqual(kCompass, resources & kCompass, @"Resourses nested not correctly calculated");
     XCTAssertEqual(kBluetoothArduino, resources & kBluetoothArduino, @"Resourses nested not correctly calculated");
@@ -798,9 +798,9 @@
     brick.xDestination = [[Formula alloc] initWithFormulaElement:element];
     element = [[FormulaElement alloc] initWithElementType:SENSOR value:LoudnessSensor.tag leftChild:nil rightChild:nil parent:nil];
     brick.yDestination = [[Formula alloc] initWithFormulaElement:element];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(kLoudness, resources & kLoudness, @"Resourses nested not correctly calculated");
     XCTAssertEqual(kDeviceMotion, resources & kDeviceMotion, @"Resourses nested not correctly calculated");
     XCTAssertEqual(kFaceDetection, resources & kFaceDetection, @"Resourses nested not correctly calculated");
@@ -815,9 +815,9 @@
     VibrationBrick *brick = [VibrationBrick new];
     FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:LoudnessSensor.tag leftChild:nil rightChild:nil parent:nil];
     brick.durationInSeconds = [[Formula alloc] initWithFormulaElement:element];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(kVibration, resources & kVibration, @"Resourses nested not correctly calculated");
     XCTAssertEqual(kLoudness, resources & kLoudness, @"Resourses nested not correctly calculated");
     XCTAssertEqual(0, resources & kBluetoothPhiro, @"Resourses nested not correctly calculated");
@@ -830,9 +830,9 @@
     brick.pin = [[Formula alloc] initWithFormulaElement:element];
     element = [[FormulaElement alloc] initWithElementType:SENSOR value:AccelerationYSensor.tag leftChild:nil rightChild:nil parent:nil];
     brick.value = [[Formula alloc] initWithFormulaElement:element];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(kBluetoothArduino, resources & kBluetoothArduino, @"Resourses nested not correctly calculated");
     XCTAssertEqual(kDeviceMotion, resources & kDeviceMotion, @"Resourses nested not correctly calculated");
     XCTAssertEqual(kLoudness, resources & kLoudness, @"Resourses nested not correctly calculated");
@@ -847,9 +847,9 @@
     brick.pin = [[Formula alloc] initWithFormulaElement:element];
     element = [[FormulaElement alloc] initWithElementType:SENSOR value:AccelerationYSensor.tag leftChild:nil rightChild:nil parent:nil];
     brick.value = [[Formula alloc] initWithFormulaElement:element];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(kBluetoothArduino, resources & kBluetoothArduino, @"Resourses nested not correctly calculated");
     XCTAssertEqual(kDeviceMotion, resources & kDeviceMotion, @"Resourses nested not correctly calculated");
     XCTAssertEqual(kLoudness, resources & kLoudness, @"Resourses nested not correctly calculated");
@@ -903,9 +903,9 @@
     brick4.value = [[Formula alloc] initWithFormulaElement:element];
     NSArray *brickArray2 = [NSArray arrayWithObjects:brick2,brick3,brick4, nil];
     
-    Project *prog = [self getProjectWithTwoScriptsWithBricks:brickArray andBrickArray2:brickArray2];
+    Project *project = [self getProjectWithTwoScriptsWithBricks:brickArray andBrickArray2:brickArray2];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(kDeviceMotion, resources & kDeviceMotion, @"Resourses nested not correctly calculated");
     XCTAssertEqual(kLoudness, resources & kLoudness, @"Resourses nested not correctly calculated");
     XCTAssertEqual(kBluetoothArduino, resources & kBluetoothArduino, @"Resourses nested not correctly calculated");
@@ -937,9 +937,9 @@
 
     NSArray *brickArray2 = [NSArray arrayWithObjects:brick2,brick3,brick4, nil];
     
-    Project *prog = [self getProjectWithTwoScriptsWithBricks:brickArray andBrickArray2:brickArray2];
+    Project *project = [self getProjectWithTwoScriptsWithBricks:brickArray andBrickArray2:brickArray2];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(kDeviceMotion, resources & kDeviceMotion, @"Resourses nested not correctly calculated");
     XCTAssertEqual(kLoudness, resources & kLoudness, @"Resourses nested not correctly calculated");
     XCTAssertEqual(0, resources & kBluetoothArduino, @"Resourses nested not correctly calculated");
@@ -952,7 +952,7 @@
 #pragma mark-MoreSprites
 -(Project*)getProjectWithTwoSpritesWithBricks:(NSArray*)brickArray andBrickArray2:(NSArray*)brickArray2
 {
-    Project * project = [Project new];
+    Project *project = [Project new];
     SpriteObject* obj = [SpriteObject new];
     SpriteObject* obj1 = [SpriteObject new];
     Script *script = [Script new];
@@ -996,9 +996,9 @@
     brick4.value = [[Formula alloc] initWithFormulaElement:element];
     NSArray *brickArray2 = [NSArray arrayWithObjects:brick2,brick3,brick4, nil];
     
-    Project *prog = [self getProjectWithTwoSpritesWithBricks:brickArray andBrickArray2:brickArray2];
+    Project *project = [self getProjectWithTwoSpritesWithBricks:brickArray andBrickArray2:brickArray2];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(kDeviceMotion, resources & kDeviceMotion, @"Resourses nested not correctly calculated");
     XCTAssertEqual(kLoudness, resources & kLoudness, @"Resourses nested not correctly calculated");
     XCTAssertEqual(kBluetoothArduino, resources & kBluetoothArduino, @"Resourses nested not correctly calculated");
@@ -1031,9 +1031,9 @@
     
     NSArray *brickArray2 = [NSArray arrayWithObjects:brick2,brick3,brick4, nil];
     
-    Project *prog = [self getProjectWithTwoSpritesWithBricks:brickArray andBrickArray2:brickArray2];
+    Project *project = [self getProjectWithTwoSpritesWithBricks:brickArray andBrickArray2:brickArray2];
     
-    NSInteger resources = [prog getRequiredResources];
+    NSInteger resources = [project getRequiredResources];
     XCTAssertEqual(kDeviceMotion, resources & kDeviceMotion, @"Resourses nested not correctly calculated");
     XCTAssertEqual(kLoudness, resources & kLoudness, @"Resourses nested not correctly calculated");
     XCTAssertEqual(0, resources & kBluetoothArduino, @"Resourses nested not correctly calculated");
@@ -1050,21 +1050,21 @@
     
     ChangeSizeByNBrick *brick = [ChangeSizeByNBrick new];
     brick.size = [[Formula alloc] initWithFormulaElement:formulaElement];
-    Project *prog = [self getProjectWithOneSpriteWithBrick:brick];
+    Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    XCTAssertEqual(kLocation, [prog getRequiredResources], @"Resourses for Longitude not correctly calculated");
+    XCTAssertEqual(kLocation, [project getRequiredResources], @"Resourses for Longitude not correctly calculated");
     
     formulaElement.value = LatitudeSensor.tag;
-    XCTAssertEqual(kLocation, [prog getRequiredResources], @"Resourses for Latitude not correctly calculated");
+    XCTAssertEqual(kLocation, [project getRequiredResources], @"Resourses for Latitude not correctly calculated");
     
     formulaElement.value = AltitudeSensor.tag;
-    XCTAssertEqual(kLocation, [prog getRequiredResources], @"Resourses for Altitude not correctly calculated");
+    XCTAssertEqual(kLocation, [project getRequiredResources], @"Resourses for Altitude not correctly calculated");
     
     formulaElement.value = LocationAccuracySensor.tag;
-    XCTAssertEqual(kLocation, [prog getRequiredResources], @"Resourses for Location Accuracy not correctly calculated");
+    XCTAssertEqual(kLocation, [project getRequiredResources], @"Resourses for Location Accuracy not correctly calculated");
     
     brick.size = [[Formula alloc] initWithZero];
-    XCTAssertEqual(kNoResources, [prog getRequiredResources], @"Resourses for Location not correctly calculated");
+    XCTAssertEqual(kNoResources, [project getRequiredResources], @"Resourses for Location not correctly calculated");
 }
 
 @end

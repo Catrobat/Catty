@@ -644,7 +644,7 @@
 		5E18A81221A547AA00541536 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E18A81121A547AA00541536 /* UIViewController+Extensions.swift */; };
 		5E219F2621C8B46A000439BA /* SelectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E219F2521C8B46A000439BA /* SelectButton.swift */; };
 		5E21DA6821A3E4AF00017D2C /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E21DA6721A3E4AF00017D2C /* UIImage+Extensions.swift */; };
-		5E21DA6F21A5255600017D2C /* UploadInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E21DA6C21A5255500017D2C /* UploadInfoViewController.swift */; };
+		5E21DA6F21A5255600017D2C /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E21DA6C21A5255500017D2C /* UploadViewController.swift */; };
 		5E21DA7121A5289F00017D2C /* Data+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E21DA7021A5289F00017D2C /* Data+Extensions.swift */; };
 		5E43D71821928053006FDF2A /* SwellAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E43D71721928052006FDF2A /* SwellAll.swift */; };
 		5E7B5B0D21EC0FCF002E4B57 /* HelpWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7B5B0A21EC0FCF002E4B57 /* HelpWebViewController.swift */; };
@@ -1209,7 +1209,6 @@
 		CAE3E5611B4C50B300CC88BD /* Word_balloon_demo_093.xml in Resources */ = {isa = PBXBuildFile; fileRef = CAE3E52D1B4C50B300CC88BD /* Word_balloon_demo_093.xml */; };
 		CAE3E5631B4C50B300CC88BD /* X_Ray_phone_091.xml in Resources */ = {isa = PBXBuildFile; fileRef = CAE3E5301B4C50B300CC88BD /* X_Ray_phone_091.xml */; };
 		CAE3E5641B4C50B300CC88BD /* X_Ray_phone_093.xml in Resources */ = {isa = PBXBuildFile; fileRef = CAE3E5311B4C50B300CC88BD /* X_Ray_phone_093.xml */; };
-		D63864651AE632FE008569E6 /* ProjectsForUploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D63864641AE632FE008569E6 /* ProjectsForUploadViewController.m */; };
 		E405EABB212D4E420074ADDB /* SearchStoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E405EABA212D4E420074ADDB /* SearchStoreCell.swift */; };
 		E438738A210623230062209F /* TimerWithBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4387389210623230062209F /* TimerWithBlock.swift */; };
 		E4668B3820FDC1B90021FA0B /* FeaturedProjectsStoreTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4668B3720FDC1B90021FA0B /* FeaturedProjectsStoreTableViewController.swift */; };
@@ -1683,7 +1682,6 @@
 		4C724E651B4D3EC500E27479 /* CBXMLSerializerContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBXMLSerializerContext.m; sourceTree = "<group>"; };
 		4C72EA3A2108EC3600E7407F /* TouchManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchManagerProtocol.swift; sourceTree = "<group>"; };
 		4C72EA3C2108ED0800E7407F /* TouchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchManager.swift; sourceTree = "<group>"; };
-		4C73A5A220ECB4450073DB52 /* ElementOfListFunction0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ElementOfListFunction0991.xml; path = CattyTests/Resources/ParserTests/ListBricks/ElementOfListFunction0991.xml; sourceTree = SOURCE_ROOT; };
 		4C74BD081DA6476A0079336C /* Pocket Code.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Pocket Code.entitlements"; sourceTree = "<group>"; };
 		4C7A84851DCCE270000F366B /* LedFlashBrick098.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = LedFlashBrick098.xml; sourceTree = "<group>"; };
 		4C7B931E21B6DAC6001C3BA1 /* CBMultiTouchRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBMultiTouchRecognizer.swift; sourceTree = "<group>"; };
@@ -2045,7 +2043,7 @@
 		5E18A81121A547AA00541536 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		5E219F2521C8B46A000439BA /* SelectButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectButton.swift; sourceTree = "<group>"; };
 		5E21DA6721A3E4AF00017D2C /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
-		5E21DA6C21A5255500017D2C /* UploadInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadInfoViewController.swift; sourceTree = "<group>"; };
+		5E21DA6C21A5255500017D2C /* UploadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadViewController.swift; sourceTree = "<group>"; };
 		5E21DA7021A5289F00017D2C /* Data+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extensions.swift"; sourceTree = "<group>"; };
 		5E43D71721928052006FDF2A /* SwellAll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwellAll.swift; sourceTree = "<group>"; };
 		5E7B5B0A21EC0FCF002E4B57 /* HelpWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpWebViewController.swift; sourceTree = "<group>"; };
@@ -3020,8 +3018,6 @@
 		CAE3E52D1B4C50B300CC88BD /* Word_balloon_demo_093.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Word_balloon_demo_093.xml; sourceTree = "<group>"; };
 		CAE3E5301B4C50B300CC88BD /* X_Ray_phone_091.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = X_Ray_phone_091.xml; sourceTree = "<group>"; };
 		CAE3E5311B4C50B300CC88BD /* X_Ray_phone_093.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = X_Ray_phone_093.xml; sourceTree = "<group>"; };
-		D63864631AE632FE008569E6 /* ProjectsForUploadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectsForUploadViewController.h; sourceTree = "<group>"; };
-		D63864641AE632FE008569E6 /* ProjectsForUploadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectsForUploadViewController.m; sourceTree = "<group>"; };
 		D638646D1AE63F80008569E6 /* KeychainUserDefaultsDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeychainUserDefaultsDefines.h; sourceTree = "<group>"; };
 		DE5C4E6D138ED109004892CA /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		E405EABA212D4E420074ADDB /* SearchStoreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchStoreCell.swift; sourceTree = "<group>"; };
@@ -3144,7 +3140,6 @@
 				AAADA0051B9B29D500E0CA9A /* Catty UITests */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				4C72EA302108E9B300E7407F /* Recovered References */,
 			);
 			indentWidth = 4;
 			name = CustomTemplate;
@@ -4244,14 +4239,6 @@
 			path = "Old Parser";
 			sourceTree = "<group>";
 		};
-		4C72EA302108E9B300E7407F /* Recovered References */ = {
-			isa = PBXGroup;
-			children = (
-				4C73A5A220ECB4450073DB52 /* ElementOfListFunction0991.xml */,
-			);
-			name = "Recovered References";
-			sourceTree = "<group>";
-		};
 		4C7A84811DCCE1F9000F366B /* Unit Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -5285,9 +5272,7 @@
 				9235038D1BA707DE00021F6A /* BaseLoginViewController.m */,
 				9235038E1BA707DE00021F6A /* LoginViewController.h */,
 				9235038F1BA707DE00021F6A /* LoginViewController.m */,
-				D63864631AE632FE008569E6 /* ProjectsForUploadViewController.h */,
-				D63864641AE632FE008569E6 /* ProjectsForUploadViewController.m */,
-				5E21DA6C21A5255500017D2C /* UploadInfoViewController.swift */,
+				5E21DA6C21A5255500017D2C /* UploadViewController.swift */,
 			);
 			name = Upload/Login;
 			path = Upload;
@@ -9115,7 +9100,7 @@
 				92DFB01B1A38949E00FA9B0F /* FormulaEditorViewController.m in Sources */,
 				92EC994A1BC3CA870003A891 /* Firmata.swift in Sources */,
 				5947F6D9200D08430079DBCE /* MediaType.swift in Sources */,
-				5E21DA6F21A5255600017D2C /* UploadInfoViewController.swift in Sources */,
+				5E21DA6F21A5255600017D2C /* UploadViewController.swift in Sources */,
 				92EC985D1BC3ABB90003A891 /* PhiroMotorMoveForwardBrick+CBXMLHandler.m in Sources */,
 				AA74EF5A1BC0586F00D1E954 /* TurnRightBrick+CBXMLHandler.m in Sources */,
 				4CF0729D20D66F8D00F93AB5 /* LookNumberSensor.swift in Sources */,
@@ -9184,7 +9169,6 @@
 				4C0F9F85204BD24600E71B2D /* IfThenLogicBeginBrick+CBXMLHandler.m in Sources */,
 				929CC0FB1BC3A2420027DEC0 /* PhiroRGBLightBrick+Instruction.swift in Sources */,
 				4C595F4F21CAEBEE0097D850 /* GreaterThanOperator.swift in Sources */,
-				D63864651AE632FE008569E6 /* ProjectsForUploadViewController.m in Sources */,
 				92B46F921BC7B3E5004980C1 /* ArduinoSendDigitalValueBrick.m in Sources */,
 				4CF0728120D6577500F93AB5 /* PhiroSensor.swift in Sources */,
 				4C82268B213FAE0200F3D750 /* MultiFingerXFunction.swift in Sources */,

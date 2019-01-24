@@ -40,7 +40,7 @@ let kRecentProjectsMaxResults = 20
 let kSearchStoreMaxResults = 50
 
 //*************************************************************************************
-//*******************      UploadInfoViewController       *****************************
+//********************        UploadViewController       ******************************
 //*************************************************************************************
 
 let kUploadUrl = kBaseUrl.appending("api/upload")

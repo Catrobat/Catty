@@ -46,8 +46,14 @@ import UIKit
         super.viewDidLoad()
         view.backgroundColor = UIColor.whiteGray()
 
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIWindow.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIWindow.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.keyboardWillShow),
+                                               name: UIWindow.keyboardWillShowNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.keyboardWillHide),
+                                               name: UIWindow.keyboardWillHideNotification,
+                                               object: nil)
 
         initNavBar()
         initControls()
@@ -73,7 +79,14 @@ import UIKit
         if self.navigationController != nil {
             navTopAnchor = topLayoutGuide.bottomAnchor
         }
-        header.setAnchors(top: navTopAnchor, left: view.safeLeftAnchor, right: view.safeRightAnchor, bottom: nil, topPadding: 20, leftPadding: 20, rightPadding: 20, bottomPadding: 0)
+        header.setAnchors(top: navTopAnchor,
+                          left: view.safeLeftAnchor,
+                          right: view.safeRightAnchor,
+                          bottom: nil,
+                          topPadding: 20,
+                          leftPadding: 20,
+                          rightPadding: 20,
+                          bottomPadding: 0)
 
         descriptionTextView.isAccessibilityElement = true
         descriptionTextView.accessibilityIdentifier = "descriptionTextView"
@@ -86,13 +99,20 @@ import UIKit
                                        rightPadding: 20,
                                        bottomPadding: 0)
         //manual constraint (because we need to store the bottom anchor)
-        descriptionTextViewBottomConstraint = descriptionTextView.bottomAnchor.constraint(equalTo: view.safeBottomAnchor, constant: -20)
+        descriptionTextViewBottomConstraint = descriptionTextView
+            .bottomAnchor.constraint(equalTo: view.safeBottomAnchor, constant: -20)
         descriptionTextViewBottomConstraint.isActive = true
     }
 
     func initNavBar() {
-        let doneBarButton = UIBarButtonItem(title: kLocalizedDone, style: .plain, target: self, action: #selector(doneAction(sender:)))
-        let cancelBarButton = UIBarButtonItem(title: kLocalizedCancel, style: .plain, target: self, action: #selector(cancelAction(sender:)))
+        let doneBarButton = UIBarButtonItem(title: kLocalizedDone,
+                                            style: .plain,
+                                            target: self,
+                                            action: #selector(doneAction(sender:)))
+        let cancelBarButton = UIBarButtonItem(title: kLocalizedCancel,
+                                              style: .plain,
+                                              target: self,
+                                              action: #selector(cancelAction(sender:)))
         doneBarButton.tintColor = UIColor.white
         cancelBarButton.tintColor = UIColor.white
         self.navigationItem.leftBarButtonItem = cancelBarButton
@@ -104,6 +124,11 @@ import UIKit
         descriptionTextView.backgroundColor = UIColor.white
         descriptionTextView.textColor = UIColor.textTint()
         descriptionTextView.tintColor = UIColor.globalTint()
+        descriptionTextView.font = UIFont.systemFont(ofSize: 16.0)
+
+        descriptionTextView.layer.borderWidth = 1.0
+        descriptionTextView.layer.borderColor = UIColor.textViewBorderGray().cgColor
+        descriptionTextView.layer.cornerRadius = 8
 
         if delegate is MyProjectsViewController {
             var mpvc: MyProjectsViewController?
@@ -119,7 +144,8 @@ import UIKit
 
     // MARK: keyboard
     @objc func keyboardWillShow(notification: Notification) {
-        if let userInfo = notification.userInfo, let keyboardFrameValue = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+        if let userInfo = notification.userInfo,
+            let keyboardFrameValue = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             let keyboardFrame = keyboardFrameValue.cgRectValue
             UIView.animate(withDuration: 0.5, animations: {
                 self.descriptionTextViewBottomConstraint.constant = -keyboardFrame.size.height - 20
