@@ -59,9 +59,7 @@
 		4C0F9FA9204BD2D600E71B2D /* SpeakAndWaitBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F9FA7204BD2D600E71B2D /* SpeakAndWaitBrickCell.m */; };
 		4C0F9FD3204BD3B400E71B2D /* BubbleBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F9FD2204BD3B400E71B2D /* BubbleBrickTests.swift */; };
 		4C0F9FD5204BD3C200E71B2D /* ChooseCameraBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F9FD4204BD3C200E71B2D /* ChooseCameraBrickTests.swift */; };
-		4C0F9FD7204BD3CC00E71B2D /* PreviousLookBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F9FD6204BD3CC00E71B2D /* PreviousLookBrickTests.m */; };
 		4C0F9FD9204BD3D500E71B2D /* RepeatUntilBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F9FD8204BD3D500E71B2D /* RepeatUntilBrickTests.swift */; };
-		4C0F9FDB204BD3E100E71B2D /* SetBackgroundBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F9FDA204BD3E000E71B2D /* SetBackgroundBrickTests.m */; };
 		4C0F9FDD204BD40A00E71B2D /* Air_fight_0.5_0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C0F9FDC204BD40A00E71B2D /* Air_fight_0.5_0991.xml */; };
 		4C0F9FDF204BD41B00E71B2D /* Airplane_with_shadow_0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C0F9FDE204BD41B00E71B2D /* Airplane_with_shadow_0991.xml */; };
 		4C0F9FE1204BD42700E71B2D /* Compass_0.1_0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C0F9FE0204BD42700E71B2D /* Compass_0.1_0991.xml */; };
@@ -93,7 +91,6 @@
 		4C1329041CD9259900F16E48 /* AudioManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1329031CD9259900F16E48 /* AudioManagerTests.swift */; };
 		4C13290B1CD92D5500F16E48 /* silence.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4C13290A1CD92D5500F16E48 /* silence.mp3 */; };
 		4C15FE7F1D168C0D009C1A2B /* transparency-rgb.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C15FE7E1D168C0D009C1A2B /* transparency-rgb.png */; };
-		4C1604301F0025F6004525A5 /* AbstractBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C16042F1F0025F6004525A5 /* AbstractBrickTests.m */; };
 		4C1AA4AE21A1572700DAC589 /* MediaItemTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1AA4AD21A1572700DAC589 /* MediaItemTest.swift */; };
 		4C1C8B14213FE76B003B3AA4 /* ChartProjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1C8B13213FE76B003B3AA4 /* ChartProjectCell.swift */; };
 		4C1C8B16213FE7F1003B3AA4 /* StoreProjectDownloaderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1C8B15213FE7F1003B3AA4 /* StoreProjectDownloaderMock.swift */; };
@@ -214,7 +211,6 @@
 		4CB23D7221E6613D00A0FEA7 /* DeleteItemOfUserListBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB23D6F21E6613D00A0FEA7 /* DeleteItemOfUserListBrickTests.swift */; };
 		4CB2CFA11D7AD762009F3034 /* SetColorBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB2CFA01D7AD762009F3034 /* SetColorBrick.m */; };
 		4CB2CFAB1D7AD86D009F3034 /* SetColorBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB2CFAA1D7AD86D009F3034 /* SetColorBrickCell.m */; };
-		4CB2CFAD1D7AD8A5009F3034 /* SetColorBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB2CFAC1D7AD8A5009F3034 /* SetColorBrickTests.m */; };
 		4CB412202198635900FC4594 /* VariablesContainerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB4121D2198635900FC4594 /* VariablesContainerTest.swift */; };
 		4CBF5F9E21AF1D390079C834 /* UIGestureRecognizerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBF5F9D21AF1D390079C834 /* UIGestureRecognizerMock.swift */; };
 		4CC614B7212EA84E006E4720 /* FormulaEditorItemTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC614B6212EA84E006E4720 /* FormulaEditorItemTest.swift */; };
@@ -290,28 +286,6 @@
 		4CEB22501B95E47500B3BE2F /* BrickMoveManagerLogicTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB22321B95E47500B3BE2F /* BrickMoveManagerLogicTests.m */; };
 		4CEB22511B95E47500B3BE2F /* BrickMoveManagerRepeatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB22331B95E47500B3BE2F /* BrickMoveManagerRepeatTests.m */; };
 		4CEB22521B95E47500B3BE2F /* BrickMoveManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB22341B95E47500B3BE2F /* BrickMoveManagerTests.m */; };
-		4CEB22531B95E47500B3BE2F /* BrickMutableCopyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB22351B95E47500B3BE2F /* BrickMutableCopyTests.m */; };
-		4CEB22551B95E47500B3BE2F /* ChangeBrightnessByNBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB22381B95E47500B3BE2F /* ChangeBrightnessByNBrickTests.m */; };
-		4CEB22561B95E47500B3BE2F /* ChangeSizeByNBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB22391B95E47500B3BE2F /* ChangeSizeByNBrickTests.m */; };
-		4CEB22571B95E47500B3BE2F /* ChangeTransparencyByNBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB223A1B95E47500B3BE2F /* ChangeTransparencyByNBrickTests.m */; };
-		4CEB22581B95E47500B3BE2F /* ClearGrafficEffectBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB223B1B95E47500B3BE2F /* ClearGrafficEffectBrickTests.m */; };
-		4CEB22591B95E47500B3BE2F /* ComeToFrontBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB223C1B95E47500B3BE2F /* ComeToFrontBrickTests.m */; };
-		4CEB225A1B95E47500B3BE2F /* GoNStepsBackBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB223D1B95E47500B3BE2F /* GoNStepsBackBrickTests.m */; };
-		4CEB225B1B95E47500B3BE2F /* HideBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB223E1B95E47500B3BE2F /* HideBrickTests.m */; };
-		4CEB225C1B95E47500B3BE2F /* IfOnEdgeBounceBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB223F1B95E47500B3BE2F /* IfOnEdgeBounceBrickTests.m */; };
-		4CEB225D1B95E47500B3BE2F /* MoveNStepsBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB22401B95E47500B3BE2F /* MoveNStepsBrickTests.m */; };
-		4CEB225E1B95E47500B3BE2F /* NextLookBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB22411B95E47500B3BE2F /* NextLookBrickTests.m */; };
-		4CEB225F1B95E47500B3BE2F /* PlaceAtBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB22421B95E47500B3BE2F /* PlaceAtBrickTests.m */; };
-		4CEB22601B95E47500B3BE2F /* PointInDirectionBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB22431B95E47500B3BE2F /* PointInDirectionBrickTests.m */; };
-		4CEB22611B95E47500B3BE2F /* PointToBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB22441B95E47500B3BE2F /* PointToBrickTests.m */; };
-		4CEB22621B95E47500B3BE2F /* SetBrightnessBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB22451B95E47500B3BE2F /* SetBrightnessBrickTests.m */; };
-		4CEB22641B95E47500B3BE2F /* SetSizeToBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB22471B95E47500B3BE2F /* SetSizeToBrickTests.m */; };
-		4CEB22651B95E47500B3BE2F /* SetTransparencyBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB22481B95E47500B3BE2F /* SetTransparencyBrickTests.m */; };
-		4CEB22661B95E47500B3BE2F /* SetXBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB22491B95E47500B3BE2F /* SetXBrickTests.m */; };
-		4CEB22671B95E47500B3BE2F /* SetYBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB224A1B95E47500B3BE2F /* SetYBrickTests.m */; };
-		4CEB22681B95E47500B3BE2F /* ShowBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB224B1B95E47500B3BE2F /* ShowBrickTests.m */; };
-		4CEB22691B95E47500B3BE2F /* TurnLeftBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB224C1B95E47500B3BE2F /* TurnLeftBrickTests.m */; };
-		4CEB226A1B95E47500B3BE2F /* TurnRightBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB224D1B95E47500B3BE2F /* TurnRightBrickTests.m */; };
 		4CEB22731B95E4BC00B3BE2F /* BrickInsertManagerAbstractTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB226E1B95E4BC00B3BE2F /* BrickInsertManagerAbstractTest.m */; };
 		4CEB22741B95E4BC00B3BE2F /* BrickInsertManagerForeverTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB226F1B95E4BC00B3BE2F /* BrickInsertManagerForeverTests.m */; };
 		4CEB22751B95E4BC00B3BE2F /* BrickInsertManagerLogicTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB22701B95E4BC00B3BE2F /* BrickInsertManagerLogicTests.m */; };
@@ -398,6 +372,12 @@
 		59D9EC65206117000019EC10 /* DVR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59D9EC62206117000019EC10 /* DVR.framework */; };
 		59D9EC672061171F0019EC10 /* DVR.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 59D9EC62206117000019EC10 /* DVR.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5E05162F21F9670C0059D3F5 /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E05162E21F9670C0059D3F5 /* RequestManager.swift */; };
+		5E05163221F96CA30059D3F5 /* TurnLeftBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E05163021F96CA20059D3F5 /* TurnLeftBrickTests.swift */; };
+		5E05163321F96CA30059D3F5 /* TurnRightBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E05163121F96CA30059D3F5 /* TurnRightBrickTests.swift */; };
+		5E05163721F96CE70059D3F5 /* ShowBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E05163421F96CE60059D3F5 /* ShowBrickTests.swift */; };
+		5E05163821F96CE70059D3F5 /* SetYBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E05163521F96CE60059D3F5 /* SetYBrickTests.swift */; };
+		5E05163921F96CE70059D3F5 /* SetXBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E05163621F96CE70059D3F5 /* SetXBrickTests.swift */; };
+		5E05163B21F96D940059D3F5 /* AbstractBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E05163A21F96D940059D3F5 /* AbstractBrickTests.swift */; };
 		5E18A81221A547AA00541536 /* UIViewController+HideOnTap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E18A81121A547AA00541536 /* UIViewController+HideOnTap.swift */; };
 		5E1F6DA321F6951000B4ACEC /* AboutPocketCodeOptionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1F6DA021F6951000B4ACEC /* AboutPocketCodeOptionTableViewController.swift */; };
 		5E1F6DA421F6951000B4ACEC /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1F6DA121F6951000B4ACEC /* SettingsTableViewController.swift */; };
@@ -406,6 +386,27 @@
 		5E21DA6821A3E4AF00017D2C /* UIImage+Crop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E21DA6721A3E4AF00017D2C /* UIImage+Crop.swift */; };
 		5E21DA6F21A5255600017D2C /* UploadInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E21DA6C21A5255500017D2C /* UploadInfoViewController.swift */; };
 		5E21DA7121A5289F00017D2C /* Data+Hashes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E21DA7021A5289F00017D2C /* Data+Hashes.swift */; };
+		5E24C8AD21F97269006B7A39 /* SetTransparencyBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E24C8A621F97268006B7A39 /* SetTransparencyBrickTests.swift */; };
+		5E24C8AE21F97269006B7A39 /* SetColorBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E24C8A921F97268006B7A39 /* SetColorBrickTests.swift */; };
+		5E24C8AF21F97269006B7A39 /* SetSizeToBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E24C8AA21F97268006B7A39 /* SetSizeToBrickTests.swift */; };
+		5E24C8B021F97269006B7A39 /* SetBrightnessBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E24C8AB21F97269006B7A39 /* SetBrightnessBrickTests.swift */; };
+		5E24C8B121F97269006B7A39 /* SetBackgroundBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E24C8AC21F97269006B7A39 /* SetBackgroundBrickTests.swift */; };
+		5E24C8B821F97295006B7A39 /* PointToBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E24C8B221F97294006B7A39 /* PointToBrickTests.swift */; };
+		5E24C8B921F97295006B7A39 /* NextLookBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E24C8B321F97294006B7A39 /* NextLookBrickTests.swift */; };
+		5E24C8BA21F97295006B7A39 /* PointInDirectionBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E24C8B421F97294006B7A39 /* PointInDirectionBrickTests.swift */; };
+		5E24C8BB21F97295006B7A39 /* PreviousLookBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E24C8B521F97294006B7A39 /* PreviousLookBrickTests.swift */; };
+		5E24C8BC21F97295006B7A39 /* MoveNStepsBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E24C8B621F97294006B7A39 /* MoveNStepsBrickTests.swift */; };
+		5E24C8BD21F97295006B7A39 /* PlaceAtBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E24C8B721F97295006B7A39 /* PlaceAtBrickTests.swift */; };
+		5E24C8C121F972B6006B7A39 /* IfOnEdgeBounceBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E24C8BE21F972B6006B7A39 /* IfOnEdgeBounceBrickTests.swift */; };
+		5E24C8C221F972B6006B7A39 /* GoNStepsBackBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E24C8BF21F972B6006B7A39 /* GoNStepsBackBrickTests.swift */; };
+		5E24C8C321F972B6006B7A39 /* HideBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E24C8C021F972B6006B7A39 /* HideBrickTests.swift */; };
+		5E24C8C921F972E1006B7A39 /* ChangeTransparencyByNBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E24C8C421F972E0006B7A39 /* ChangeTransparencyByNBrickTests.swift */; };
+		5E24C8CA21F972E1006B7A39 /* ChangeSizeByNBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E24C8C521F972E0006B7A39 /* ChangeSizeByNBrickTests.swift */; };
+		5E24C8CB21F972E1006B7A39 /* ChangeColorByNBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E24C8C621F972E0006B7A39 /* ChangeColorByNBrickTests.swift */; };
+		5E24C8CC21F972E1006B7A39 /* ChangeBrightnessByNBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E24C8C721F972E1006B7A39 /* ChangeBrightnessByNBrickTests.swift */; };
+		5E24C8CD21F972E1006B7A39 /* BrickMutableCopyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E24C8C821F972E1006B7A39 /* BrickMutableCopyTests.swift */; };
+		5E24C8D021F97303006B7A39 /* ClearGrafficEffectBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E24C8CE21F97303006B7A39 /* ClearGrafficEffectBrickTests.swift */; };
+		5E24C8D121F97303006B7A39 /* ComeToFrontBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E24C8CF21F97303006B7A39 /* ComeToFrontBrickTests.swift */; };
 		5E399FE021F6B61400C7E62A /* Introduction.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E399FDF21F6B61400C7E62A /* Introduction.storyboard */; };
 		5E43D71821928053006FDF2A /* SwellAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E43D71721928052006FDF2A /* SwellAll.swift */; };
 		5E7B5B0D21EC0FCF002E4B57 /* HelpWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7B5B0A21EC0FCF002E4B57 /* HelpWebViewController.swift */; };
@@ -1049,7 +1050,6 @@
 		99B2C3701D884D2900736769 /* FlashBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B2C36F1D884D2900736769 /* FlashBrick.m */; };
 		99B2C3731D884E8A00736769 /* FlashBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B2C3721D884E8A00736769 /* FlashBrickCell.m */; };
 		99C8D1BB1D8AE339003FBC42 /* BrickCellStaticChoiceData.m in Sources */ = {isa = PBXBuildFile; fileRef = 99C8D1BA1D8AE339003FBC42 /* BrickCellStaticChoiceData.m */; };
-		99E770521D7091BC00BEF91F /* ChangeColorByNBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E770511D7091BC00BEF91F /* ChangeColorByNBrickTests.m */; };
 		99EBDBFF1D5621D3008D6860 /* ChangeColorByNBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 99EBDBFE1D5621D3008D6860 /* ChangeColorByNBrick.m */; };
 		99EBDC021D5623B3008D6860 /* ChangeColorByNBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 99EBDC011D5623B3008D6860 /* ChangeColorByNBrickCell.m */; };
 		AA3BD9091BBF4BFB002B34A0 /* WaitBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3BD9081BBF4BFB002B34A0 /* WaitBrickTests.swift */; };
@@ -1393,9 +1393,7 @@
 		4C0F9FA8204BD2D600E71B2D /* SpeakAndWaitBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeakAndWaitBrickCell.h; sourceTree = "<group>"; };
 		4C0F9FD2204BD3B400E71B2D /* BubbleBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubbleBrickTests.swift; sourceTree = "<group>"; };
 		4C0F9FD4204BD3C200E71B2D /* ChooseCameraBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseCameraBrickTests.swift; sourceTree = "<group>"; };
-		4C0F9FD6204BD3CC00E71B2D /* PreviousLookBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviousLookBrickTests.m; sourceTree = "<group>"; };
 		4C0F9FD8204BD3D500E71B2D /* RepeatUntilBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepeatUntilBrickTests.swift; sourceTree = "<group>"; };
-		4C0F9FDA204BD3E000E71B2D /* SetBackgroundBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetBackgroundBrickTests.m; sourceTree = "<group>"; };
 		4C0F9FDC204BD40A00E71B2D /* Air_fight_0.5_0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Air_fight_0.5_0991.xml; sourceTree = "<group>"; };
 		4C0F9FDE204BD41B00E71B2D /* Airplane_with_shadow_0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Airplane_with_shadow_0991.xml; sourceTree = "<group>"; };
 		4C0F9FE0204BD42700E71B2D /* Compass_0.1_0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Compass_0.1_0991.xml; sourceTree = "<group>"; };
@@ -1427,8 +1425,6 @@
 		4C1329031CD9259900F16E48 /* AudioManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioManagerTests.swift; sourceTree = "<group>"; };
 		4C13290A1CD92D5500F16E48 /* silence.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = silence.mp3; sourceTree = "<group>"; };
 		4C15FE7E1D168C0D009C1A2B /* transparency-rgb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "transparency-rgb.png"; path = "CattyTests/Resources/Images/transparency-rgb.png"; sourceTree = SOURCE_ROOT; };
-		4C16042E1F0025F6004525A5 /* AbstractBrickTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractBrickTests.h; sourceTree = "<group>"; };
-		4C16042F1F0025F6004525A5 /* AbstractBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractBrickTests.m; sourceTree = "<group>"; };
 		4C1AA4AD21A1572700DAC589 /* MediaItemTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaItemTest.swift; sourceTree = "<group>"; };
 		4C1C8B13213FE76B003B3AA4 /* ChartProjectCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartProjectCell.swift; sourceTree = "<group>"; };
 		4C1C8B15213FE7F1003B3AA4 /* StoreProjectDownloaderMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreProjectDownloaderMock.swift; sourceTree = "<group>"; };
@@ -1592,7 +1588,6 @@
 		4CB2CFA01D7AD762009F3034 /* SetColorBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetColorBrick.m; sourceTree = "<group>"; };
 		4CB2CFA91D7AD86D009F3034 /* SetColorBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetColorBrickCell.h; sourceTree = "<group>"; };
 		4CB2CFAA1D7AD86D009F3034 /* SetColorBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetColorBrickCell.m; sourceTree = "<group>"; };
-		4CB2CFAC1D7AD8A5009F3034 /* SetColorBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetColorBrickTests.m; sourceTree = "<group>"; };
 		4CB4121D2198635900FC4594 /* VariablesContainerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VariablesContainerTest.swift; sourceTree = "<group>"; };
 		4CBF5F9D21AF1D390079C834 /* UIGestureRecognizerMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIGestureRecognizerMock.swift; sourceTree = "<group>"; };
 		4CC0D51F1B01FB73006193C4 /* BrickVariableProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickVariableProtocol.h; sourceTree = "<group>"; };
@@ -1671,28 +1666,6 @@
 		4CEB22321B95E47500B3BE2F /* BrickMoveManagerLogicTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickMoveManagerLogicTests.m; sourceTree = "<group>"; };
 		4CEB22331B95E47500B3BE2F /* BrickMoveManagerRepeatTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickMoveManagerRepeatTests.m; sourceTree = "<group>"; };
 		4CEB22341B95E47500B3BE2F /* BrickMoveManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickMoveManagerTests.m; sourceTree = "<group>"; };
-		4CEB22351B95E47500B3BE2F /* BrickMutableCopyTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickMutableCopyTests.m; sourceTree = "<group>"; };
-		4CEB22381B95E47500B3BE2F /* ChangeBrightnessByNBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeBrightnessByNBrickTests.m; sourceTree = "<group>"; };
-		4CEB22391B95E47500B3BE2F /* ChangeSizeByNBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeSizeByNBrickTests.m; sourceTree = "<group>"; };
-		4CEB223A1B95E47500B3BE2F /* ChangeTransparencyByNBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeTransparencyByNBrickTests.m; sourceTree = "<group>"; };
-		4CEB223B1B95E47500B3BE2F /* ClearGrafficEffectBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClearGrafficEffectBrickTests.m; sourceTree = "<group>"; };
-		4CEB223C1B95E47500B3BE2F /* ComeToFrontBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComeToFrontBrickTests.m; sourceTree = "<group>"; };
-		4CEB223D1B95E47500B3BE2F /* GoNStepsBackBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoNStepsBackBrickTests.m; sourceTree = "<group>"; };
-		4CEB223E1B95E47500B3BE2F /* HideBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HideBrickTests.m; sourceTree = "<group>"; };
-		4CEB223F1B95E47500B3BE2F /* IfOnEdgeBounceBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IfOnEdgeBounceBrickTests.m; sourceTree = "<group>"; };
-		4CEB22401B95E47500B3BE2F /* MoveNStepsBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoveNStepsBrickTests.m; sourceTree = "<group>"; };
-		4CEB22411B95E47500B3BE2F /* NextLookBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NextLookBrickTests.m; sourceTree = "<group>"; };
-		4CEB22421B95E47500B3BE2F /* PlaceAtBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceAtBrickTests.m; sourceTree = "<group>"; };
-		4CEB22431B95E47500B3BE2F /* PointInDirectionBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointInDirectionBrickTests.m; sourceTree = "<group>"; };
-		4CEB22441B95E47500B3BE2F /* PointToBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointToBrickTests.m; sourceTree = "<group>"; };
-		4CEB22451B95E47500B3BE2F /* SetBrightnessBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetBrightnessBrickTests.m; sourceTree = "<group>"; };
-		4CEB22471B95E47500B3BE2F /* SetSizeToBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetSizeToBrickTests.m; sourceTree = "<group>"; };
-		4CEB22481B95E47500B3BE2F /* SetTransparencyBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetTransparencyBrickTests.m; sourceTree = "<group>"; };
-		4CEB22491B95E47500B3BE2F /* SetXBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetXBrickTests.m; sourceTree = "<group>"; };
-		4CEB224A1B95E47500B3BE2F /* SetYBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetYBrickTests.m; sourceTree = "<group>"; };
-		4CEB224B1B95E47500B3BE2F /* ShowBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowBrickTests.m; sourceTree = "<group>"; };
-		4CEB224C1B95E47500B3BE2F /* TurnLeftBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TurnLeftBrickTests.m; sourceTree = "<group>"; };
-		4CEB224D1B95E47500B3BE2F /* TurnRightBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TurnRightBrickTests.m; sourceTree = "<group>"; };
 		4CEB226D1B95E4BC00B3BE2F /* BrickInsertManagerAbstractTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickInsertManagerAbstractTest.h; sourceTree = "<group>"; };
 		4CEB226E1B95E4BC00B3BE2F /* BrickInsertManagerAbstractTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickInsertManagerAbstractTest.m; sourceTree = "<group>"; };
 		4CEB226F1B95E4BC00B3BE2F /* BrickInsertManagerForeverTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickInsertManagerForeverTests.m; sourceTree = "<group>"; };
@@ -1775,6 +1748,12 @@
 		59B9F631202D8F6200937299 /* MediaLibraryDownloader.downloadIndex.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MediaLibraryDownloader.downloadIndex.success.json; sourceTree = "<group>"; };
 		59D9EC62206117000019EC10 /* DVR.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVR.framework; path = Carthage/Build/iOS/DVR.framework; sourceTree = "<group>"; };
 		5E05162E21F9670C0059D3F5 /* RequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
+		5E05163021F96CA20059D3F5 /* TurnLeftBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TurnLeftBrickTests.swift; sourceTree = "<group>"; };
+		5E05163121F96CA30059D3F5 /* TurnRightBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TurnRightBrickTests.swift; sourceTree = "<group>"; };
+		5E05163421F96CE60059D3F5 /* ShowBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowBrickTests.swift; sourceTree = "<group>"; };
+		5E05163521F96CE60059D3F5 /* SetYBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetYBrickTests.swift; sourceTree = "<group>"; };
+		5E05163621F96CE70059D3F5 /* SetXBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetXBrickTests.swift; sourceTree = "<group>"; };
+		5E05163A21F96D940059D3F5 /* AbstractBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractBrickTests.swift; sourceTree = "<group>"; };
 		5E18A81121A547AA00541536 /* UIViewController+HideOnTap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+HideOnTap.swift"; sourceTree = "<group>"; };
 		5E1F6DA021F6951000B4ACEC /* AboutPocketCodeOptionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AboutPocketCodeOptionTableViewController.swift; path = Catty/ViewController/Settings/AboutPocketCodeOptionTableViewController.swift; sourceTree = SOURCE_ROOT; };
 		5E1F6DA121F6951000B4ACEC /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsTableViewController.swift; path = Catty/ViewController/Settings/SettingsTableViewController.swift; sourceTree = SOURCE_ROOT; };
@@ -1783,6 +1762,27 @@
 		5E21DA6721A3E4AF00017D2C /* UIImage+Crop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Crop.swift"; sourceTree = "<group>"; };
 		5E21DA6C21A5255500017D2C /* UploadInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadInfoViewController.swift; sourceTree = "<group>"; };
 		5E21DA7021A5289F00017D2C /* Data+Hashes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Hashes.swift"; sourceTree = "<group>"; };
+		5E24C8A621F97268006B7A39 /* SetTransparencyBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetTransparencyBrickTests.swift; sourceTree = "<group>"; };
+		5E24C8A921F97268006B7A39 /* SetColorBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetColorBrickTests.swift; sourceTree = "<group>"; };
+		5E24C8AA21F97268006B7A39 /* SetSizeToBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetSizeToBrickTests.swift; sourceTree = "<group>"; };
+		5E24C8AB21F97269006B7A39 /* SetBrightnessBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetBrightnessBrickTests.swift; sourceTree = "<group>"; };
+		5E24C8AC21F97269006B7A39 /* SetBackgroundBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetBackgroundBrickTests.swift; sourceTree = "<group>"; };
+		5E24C8B221F97294006B7A39 /* PointToBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointToBrickTests.swift; sourceTree = "<group>"; };
+		5E24C8B321F97294006B7A39 /* NextLookBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NextLookBrickTests.swift; sourceTree = "<group>"; };
+		5E24C8B421F97294006B7A39 /* PointInDirectionBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointInDirectionBrickTests.swift; sourceTree = "<group>"; };
+		5E24C8B521F97294006B7A39 /* PreviousLookBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviousLookBrickTests.swift; sourceTree = "<group>"; };
+		5E24C8B621F97294006B7A39 /* MoveNStepsBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoveNStepsBrickTests.swift; sourceTree = "<group>"; };
+		5E24C8B721F97295006B7A39 /* PlaceAtBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceAtBrickTests.swift; sourceTree = "<group>"; };
+		5E24C8BE21F972B6006B7A39 /* IfOnEdgeBounceBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IfOnEdgeBounceBrickTests.swift; sourceTree = "<group>"; };
+		5E24C8BF21F972B6006B7A39 /* GoNStepsBackBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoNStepsBackBrickTests.swift; sourceTree = "<group>"; };
+		5E24C8C021F972B6006B7A39 /* HideBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HideBrickTests.swift; sourceTree = "<group>"; };
+		5E24C8C421F972E0006B7A39 /* ChangeTransparencyByNBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeTransparencyByNBrickTests.swift; sourceTree = "<group>"; };
+		5E24C8C521F972E0006B7A39 /* ChangeSizeByNBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeSizeByNBrickTests.swift; sourceTree = "<group>"; };
+		5E24C8C621F972E0006B7A39 /* ChangeColorByNBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeColorByNBrickTests.swift; sourceTree = "<group>"; };
+		5E24C8C721F972E1006B7A39 /* ChangeBrightnessByNBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeBrightnessByNBrickTests.swift; sourceTree = "<group>"; };
+		5E24C8C821F972E1006B7A39 /* BrickMutableCopyTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrickMutableCopyTests.swift; sourceTree = "<group>"; };
+		5E24C8CE21F97303006B7A39 /* ClearGrafficEffectBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClearGrafficEffectBrickTests.swift; sourceTree = "<group>"; };
+		5E24C8CF21F97303006B7A39 /* ComeToFrontBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComeToFrontBrickTests.swift; sourceTree = "<group>"; };
 		5E399FDF21F6B61400C7E62A /* Introduction.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Introduction.storyboard; sourceTree = "<group>"; };
 		5E43D71721928052006FDF2A /* SwellAll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwellAll.swift; sourceTree = "<group>"; };
 		5E7B5B0A21EC0FCF002E4B57 /* HelpWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpWebViewController.swift; sourceTree = "<group>"; };
@@ -2739,7 +2739,6 @@
 		99B2C3721D884E8A00736769 /* FlashBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlashBrickCell.m; sourceTree = "<group>"; };
 		99C8D1B91D8AE339003FBC42 /* BrickCellStaticChoiceData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickCellStaticChoiceData.h; sourceTree = "<group>"; };
 		99C8D1BA1D8AE339003FBC42 /* BrickCellStaticChoiceData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickCellStaticChoiceData.m; sourceTree = "<group>"; };
-		99E770511D7091BC00BEF91F /* ChangeColorByNBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeColorByNBrickTests.m; sourceTree = "<group>"; };
 		99EBDBFD1D5621D3008D6860 /* ChangeColorByNBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeColorByNBrick.h; sourceTree = "<group>"; };
 		99EBDBFE1D5621D3008D6860 /* ChangeColorByNBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeColorByNBrick.m; sourceTree = "<group>"; };
 		99EBDC001D5623B3008D6860 /* ChangeColorByNBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeColorByNBrickCell.h; sourceTree = "<group>"; };
@@ -3239,15 +3238,6 @@
 			name = Sounds;
 			path = CattyTests/Resources/Sounds;
 			sourceTree = SOURCE_ROOT;
-		};
-		4C16042D1F0025F6004525A5 /* Abstract */ = {
-			isa = PBXGroup;
-			children = (
-				4C16042E1F0025F6004525A5 /* AbstractBrickTests.h */,
-				4C16042F1F0025F6004525A5 /* AbstractBrickTests.m */,
-			);
-			path = Abstract;
-			sourceTree = "<group>";
 		};
 		4C1608A31A095480002C7032 /* Resources */ = {
 			isa = PBXGroup;
@@ -4094,48 +4084,48 @@
 		4CEB222C1B95E47500B3BE2F /* Bricks */ = {
 			isa = PBXGroup;
 			children = (
-				4C16042D1F0025F6004525A5 /* Abstract */,
-				4CEB222D1B95E47500B3BE2F /* BrickMoveManager */,
 				4CEB226B1B95E4BC00B3BE2F /* BrickInsertManager */,
-				4CEB22351B95E47500B3BE2F /* BrickMutableCopyTests.m */,
+				4CEB222D1B95E47500B3BE2F /* BrickMoveManager */,
+				5E05163A21F96D940059D3F5 /* AbstractBrickTests.swift */,
+				5E24C8C821F972E1006B7A39 /* BrickMutableCopyTests.swift */,
 				4C968C3F1F00288500355C0D /* BrickTests.swift */,
 				4C0F9FD2204BD3B400E71B2D /* BubbleBrickTests.swift */,
-				4CEB22381B95E47500B3BE2F /* ChangeBrightnessByNBrickTests.m */,
-				99E770511D7091BC00BEF91F /* ChangeColorByNBrickTests.m */,
+				5E24C8C721F972E1006B7A39 /* ChangeBrightnessByNBrickTests.swift */,
+				5E24C8C621F972E0006B7A39 /* ChangeColorByNBrickTests.swift */,
+				5E24C8C521F972E0006B7A39 /* ChangeSizeByNBrickTests.swift */,
+				5E24C8C421F972E0006B7A39 /* ChangeTransparencyByNBrickTests.swift */,
 				4CD487751ED2C2A3001BB80A /* ChangeVariableBrickTests.swift */,
-				4CEB22391B95E47500B3BE2F /* ChangeSizeByNBrickTests.m */,
-				4CEB223A1B95E47500B3BE2F /* ChangeTransparencyByNBrickTests.m */,
 				4C0F9FD4204BD3C200E71B2D /* ChooseCameraBrickTests.swift */,
-				4CEB223B1B95E47500B3BE2F /* ClearGrafficEffectBrickTests.m */,
-				4CEB223C1B95E47500B3BE2F /* ComeToFrontBrickTests.m */,
+				5E24C8CE21F97303006B7A39 /* ClearGrafficEffectBrickTests.swift */,
+				5E24C8CF21F97303006B7A39 /* ComeToFrontBrickTests.swift */,
 				4CB23D6F21E6613D00A0FEA7 /* DeleteItemOfUserListBrickTests.swift */,
-				4CEB223D1B95E47500B3BE2F /* GoNStepsBackBrickTests.m */,
 				4C1D26661E84F1BF00BAA2D2 /* GlideToBrickTests.swift */,
-				4CEB223E1B95E47500B3BE2F /* HideBrickTests.m */,
+				5E24C8BF21F972B6006B7A39 /* GoNStepsBackBrickTests.swift */,
+				5E24C8C021F972B6006B7A39 /* HideBrickTests.swift */,
 				4CAB10081ECF1A9A0019A67B /* HideTextBrickTests.swift */,
-				4CEB223F1B95E47500B3BE2F /* IfOnEdgeBounceBrickTests.m */,
+				5E24C8BE21F972B6006B7A39 /* IfOnEdgeBounceBrickTests.swift */,
 				4CF4CB7221E64BEE009D6DD9 /* InsertItemIntoUserListBrickTests.swift */,
-				4CEB22401B95E47500B3BE2F /* MoveNStepsBrickTests.m */,
-				4CEB22411B95E47500B3BE2F /* NextLookBrickTests.m */,
-				4CEB22421B95E47500B3BE2F /* PlaceAtBrickTests.m */,
-				4CEB22431B95E47500B3BE2F /* PointInDirectionBrickTests.m */,
-				4CEB22441B95E47500B3BE2F /* PointToBrickTests.m */,
-				4C0F9FD6204BD3CC00E71B2D /* PreviousLookBrickTests.m */,
+				5E24C8B621F97294006B7A39 /* MoveNStepsBrickTests.swift */,
+				5E24C8B321F97294006B7A39 /* NextLookBrickTests.swift */,
+				5E24C8B721F97295006B7A39 /* PlaceAtBrickTests.swift */,
+				5E24C8B421F97294006B7A39 /* PointInDirectionBrickTests.swift */,
+				5E24C8B221F97294006B7A39 /* PointToBrickTests.swift */,
+				5E24C8B521F97294006B7A39 /* PreviousLookBrickTests.swift */,
 				4C1D26601E84EFBD00BAA2D2 /* RepeatBrickTests.swift */,
 				4C0F9FD8204BD3D500E71B2D /* RepeatUntilBrickTests.swift */,
 				4CF4CB7621E65A9B009D6DD9 /* ReplaceItemInUserListBrickTests.swift */,
-				4C0F9FDA204BD3E000E71B2D /* SetBackgroundBrickTests.m */,
-				4CEB22451B95E47500B3BE2F /* SetBrightnessBrickTests.m */,
-				4CB2CFAC1D7AD8A5009F3034 /* SetColorBrickTests.m */,
-				4CEB22471B95E47500B3BE2F /* SetSizeToBrickTests.m */,
-				4CEB22481B95E47500B3BE2F /* SetTransparencyBrickTests.m */,
+				5E24C8AC21F97269006B7A39 /* SetBackgroundBrickTests.swift */,
+				5E24C8AB21F97269006B7A39 /* SetBrightnessBrickTests.swift */,
+				5E24C8A921F97268006B7A39 /* SetColorBrickTests.swift */,
+				5E24C8AA21F97268006B7A39 /* SetSizeToBrickTests.swift */,
+				5E24C8A621F97268006B7A39 /* SetTransparencyBrickTests.swift */,
 				4CAB100C1ECF1AB20019A67B /* SetVariableBrickTests.swift */,
-				4CEB22491B95E47500B3BE2F /* SetXBrickTests.m */,
-				4CEB224A1B95E47500B3BE2F /* SetYBrickTests.m */,
+				5E05163621F96CE70059D3F5 /* SetXBrickTests.swift */,
+				5E05163521F96CE60059D3F5 /* SetYBrickTests.swift */,
+				5E05163421F96CE60059D3F5 /* ShowBrickTests.swift */,
 				4CAB100E1ECF1AC60019A67B /* ShowTextBrickTests.swift */,
-				4CEB224B1B95E47500B3BE2F /* ShowBrickTests.m */,
-				4CEB224C1B95E47500B3BE2F /* TurnLeftBrickTests.m */,
-				4CEB224D1B95E47500B3BE2F /* TurnRightBrickTests.m */,
+				5E05163021F96CA20059D3F5 /* TurnLeftBrickTests.swift */,
+				5E05163121F96CA30059D3F5 /* TurnRightBrickTests.swift */,
 				4C1D26641E84F12700BAA2D2 /* VibrationBrickTests.swift */,
 				AA3BD9081BBF4BFB002B34A0 /* WaitBrickTests.swift */,
 				BA584CB9219C8803002CC082 /* WaitUntilBrickTests.swift */,
@@ -8474,11 +8464,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E24C8AF21F97269006B7A39 /* SetSizeToBrickTests.swift in Sources */,
 				5E85880F21F6D51E008EFC9C /* XMLParserHeaderTests093.swift in Sources */,
-				4CEB22551B95E47500B3BE2F /* ChangeBrightnessByNBrickTests.m in Sources */,
 				5E858A2921F6D726008EFC9C /* InternFormulaParserStringFunctionsTest.m in Sources */,
 				BA38080C21A1D8920075B831 /* ConvertExceptionToError.m in Sources */,
-				4CEB22561B95E47500B3BE2F /* ChangeSizeByNBrickTests.m in Sources */,
 				5E85893321F6D5E2008EFC9C /* RandFunctionTest.swift in Sources */,
 				5E85880B21F6D51E008EFC9C /* XMLParserBlackBoxTests0991.swift in Sources */,
 				5E85895621F6D657008EFC9C /* GreaterOrEqualOperatorTest.swift in Sources */,
@@ -8488,22 +8477,23 @@
 				5E85880621F6D51E008EFC9C /* XMLParserTests098.swift in Sources */,
 				5E8589CC21F6D695008EFC9C /* FaceDetectionManagerTest.swift in Sources */,
 				5E8589FF21F6D6D9008EFC9C /* LayerSensorTest.swift in Sources */,
-				4CEB22591B95E47500B3BE2F /* ComeToFrontBrickTests.m in Sources */,
 				5E85895521F6D657008EFC9C /* AndOperatorTest.swift in Sources */,
 				4CE5C5701E0AD71800FD021C /* RequiredResources.m in Sources */,
-				4CEB225E1B95E47500B3BE2F /* NextLookBrickTests.m in Sources */,
+				5E24C8AE21F97269006B7A39 /* SetColorBrickTests.swift in Sources */,
 				4CD0BA962146791D00BF17A4 /* UtilTests.swift in Sources */,
 				5E85893B21F6D5E2008EFC9C /* ModFunctionTest.swift in Sources */,
 				5E85899C21F6D685008EFC9C /* InclinationYSensorTest.swift in Sources */,
 				5E858A0121F6D6D9008EFC9C /* RotationSensorTest.swift in Sources */,
+				5E24C8C921F972E1006B7A39 /* ChangeTransparencyByNBrickTests.swift in Sources */,
+				5E24C8BB21F97295006B7A39 /* PreviousLookBrickTests.swift in Sources */,
 				5E85893621F6D5E2008EFC9C /* PiFunctionTest.swift in Sources */,
+				5E24C8C321F972B6006B7A39 /* HideBrickTests.swift in Sources */,
 				4CB412202198635900FC4594 /* VariablesContainerTest.swift in Sources */,
 				5E85880421F6D51E008EFC9C /* XMLParserUserVariableTests095.swift in Sources */,
 				5E8589DC21F6D69F008EFC9C /* DateDaySensorTest.swift in Sources */,
 				5E8589DB21F6D69F008EFC9C /* DateYearSensorTest.swift in Sources */,
 				5E8588E621F6D583008EFC9C /* FormulaManagerCacheTests.swift in Sources */,
 				4C0F9FD5204BD3C200E71B2D /* ChooseCameraBrickTests.swift in Sources */,
-				4C1604301F0025F6004525A5 /* AbstractBrickTests.m in Sources */,
 				5E85893021F6D5E2008EFC9C /* LnFunctionTest.swift in Sources */,
 				5E8589EF21F6D6BD008EFC9C /* ObjectDoubleSensorMock.swift in Sources */,
 				CA7698C21B0E4B3F000D0340 /* CBStackTests.m in Sources */,
@@ -8522,6 +8512,7 @@
 				5E858A0421F6D6D9008EFC9C /* LookNameSensorTest.swift in Sources */,
 				5E85899B21F6D685008EFC9C /* AccelerationXSensorTest.swift in Sources */,
 				5E85891421F6D583008EFC9C /* JoinFunctionTest.swift in Sources */,
+				5E24C8BD21F97295006B7A39 /* PlaceAtBrickTests.swift in Sources */,
 				5E85891021F6D583008EFC9C /* ElementFunctionTest.swift in Sources */,
 				926197F01BF3249E006D1A61 /* ArduinoTests.swift in Sources */,
 				BA651EED21A319BF00A94D67 /* SpriteObjectMutableCopyTests.swift in Sources */,
@@ -8529,10 +8520,10 @@
 				BACD947C219E1F250061D81C /* WaitUntilBrickTests.swift in Sources */,
 				4CEB224E1B95E47500B3BE2F /* BrickMoveManagerAbstractTest.m in Sources */,
 				5E85899821F6D685008EFC9C /* LastFingerIndexSensorTest.swift in Sources */,
+				5E24C8BA21F97295006B7A39 /* PointInDirectionBrickTests.swift in Sources */,
 				5E85892B21F6D5E2008EFC9C /* CosFunctionTest.swift in Sources */,
 				4CAA66C221469C0400CCDD6E /* UserVariableTests.swift in Sources */,
 				5E8589FD21F6D6D9008EFC9C /* PositionXSensorTest.swift in Sources */,
-				4CEB22621B95E47500B3BE2F /* SetBrightnessBrickTests.m in Sources */,
 				5E8589D921F6D69F008EFC9C /* TimeHourSensorTest.swift in Sources */,
 				5E858A0821F6D6D9008EFC9C /* BrightnessSensorTest.swift in Sources */,
 				AA3BD9091BBF4BFB002B34A0 /* WaitBrickTests.swift in Sources */,
@@ -8541,39 +8532,34 @@
 				4CEB22511B95E47500B3BE2F /* BrickMoveManagerRepeatTests.m in Sources */,
 				5E85880E21F6D51E008EFC9C /* XMLParserBlackBoxTests097.swift in Sources */,
 				4C1329041CD9259900F16E48 /* AudioManagerTests.swift in Sources */,
-				99E770521D7091BC00BEF91F /* ChangeColorByNBrickTests.m in Sources */,
+				5E24C8B021F97269006B7A39 /* SetBrightnessBrickTests.swift in Sources */,
 				5E85881221F6D51E008EFC9C /* XMLParserBrickTests093.swift in Sources */,
 				4CEB22751B95E4BC00B3BE2F /* BrickInsertManagerLogicTests.m in Sources */,
-				4CEB225D1B95E47500B3BE2F /* MoveNStepsBrickTests.m in Sources */,
-				4CEB22531B95E47500B3BE2F /* BrickMutableCopyTests.m in Sources */,
 				5E85880521F6D51E008EFC9C /* XMLParserBlackBoxTests095.swift in Sources */,
 				5E85893F21F6D5E2008EFC9C /* CeilFunctionTest.swift in Sources */,
 				5E8589DD21F6D69F008EFC9C /* DateMonthSensorTest.swift in Sources */,
 				5E8589DA21F6D69F008EFC9C /* TimeMinuteSensorTest.swift in Sources */,
-				4CEB22661B95E47500B3BE2F /* SetXBrickTests.m in Sources */,
 				5E85899521F6D685008EFC9C /* LoudnessSensorTest.swift in Sources */,
 				5E85899A21F6D685008EFC9C /* AccelerationYSensorTest.swift in Sources */,
 				5E85899721F6D685008EFC9C /* FingerYSensorTest.swift in Sources */,
-				4C0F9FDB204BD3E100E71B2D /* SetBackgroundBrickTests.m in Sources */,
 				5E85899E21F6D685008EFC9C /* InclinationXSensorTest.swift in Sources */,
 				5E858A2F21F6D745008EFC9C /* CustomExtensionsTests.m in Sources */,
 				5E858A0021F6D6D9008EFC9C /* PositionYSensorTest.swift in Sources */,
 				5E8589EC21F6D6BD008EFC9C /* SensorMock.swift in Sources */,
-				4CEB22651B95E47500B3BE2F /* SetTransparencyBrickTests.m in Sources */,
 				5E85890E21F6D583008EFC9C /* FunctionManagerTests.swift in Sources */,
+				5E24C8CC21F972E1006B7A39 /* ChangeBrightnessByNBrickTests.swift in Sources */,
 				5E8589B921F6D685008EFC9C /* CompassDirectionSensorTest.swift in Sources */,
 				5E8589C421F6D685008EFC9C /* AltitudeSensorTest.swift in Sources */,
 				5E85892E21F6D5E2008EFC9C /* MaxFunctionTest.swift in Sources */,
 				5E8589EE21F6D6BD008EFC9C /* MotionManagerMock.swift in Sources */,
 				5E8589E921F6D6BD008EFC9C /* TouchManagerMock.swift in Sources */,
 				5E85881121F6D51E008EFC9C /* XMLParserFormulaTests093.swift in Sources */,
-				4CEB22611B95E47500B3BE2F /* PointToBrickTests.m in Sources */,
+				5E05163721F96CE70059D3F5 /* ShowBrickTests.swift in Sources */,
 				4CE5C56F1E0AD71800FD021C /* ProjectTests.m in Sources */,
 				5E858A0321F6D6D9008EFC9C /* TransparencySensorTest.swift in Sources */,
 				4C1D26611E84EFBD00BAA2D2 /* RepeatBrickTests.swift in Sources */,
 				5E8588D721F6D583008EFC9C /* OperatorManagerTest.swift in Sources */,
 				5E85880A21F6D51E008EFC9C /* XMLParserTests0991.swift in Sources */,
-				4CEB22581B95E47500B3BE2F /* ClearGrafficEffectBrickTests.m in Sources */,
 				5E858A2B21F6D726008EFC9C /* UserListFunctionsTest.m in Sources */,
 				4CD487761ED2C2A3001BB80A /* ChangeVariableBrickTests.swift in Sources */,
 				5E8588E921F6D583008EFC9C /* CBBackendTests.swift in Sources */,
@@ -8582,6 +8568,7 @@
 				4C1D26671E84F1BF00BAA2D2 /* GlideToBrickTests.swift in Sources */,
 				5E8589F021F6D6BD008EFC9C /* ObjectStringSensorMock.swift in Sources */,
 				5E85893921F6D5E2008EFC9C /* SqrtFunctionTest.swift in Sources */,
+				5E24C8CA21F972E1006B7A39 /* ChangeSizeByNBrickTests.swift in Sources */,
 				4CD27AAA21B5765C00DDADB5 /* FeatureMock.swift in Sources */,
 				5E858A2321F6D726008EFC9C /* InternFormulaTokenSelectionTest.m in Sources */,
 				4CEB22501B95E47500B3BE2F /* BrickMoveManagerLogicTests.m in Sources */,
@@ -8599,7 +8586,6 @@
 				5E858A0E21F6D705008EFC9C /* ScenePresenterViewControllerTest.swift in Sources */,
 				5E85890F21F6D583008EFC9C /* NumberOfItemsFunctionTest.swift in Sources */,
 				4CAB10091ECF1A9A0019A67B /* HideTextBrickTests.swift in Sources */,
-				4CEB225F1B95E47500B3BE2F /* PlaceAtBrickTests.m in Sources */,
 				92BCDC851BF1DE2A00F9CB23 /* FirmataTests.swift in Sources */,
 				5E8588D621F6D583008EFC9C /* NotOperatorTest.swift in Sources */,
 				5E8588F121F6D583008EFC9C /* MultiFingerXFunctionTests.swift in Sources */,
@@ -8609,42 +8595,46 @@
 				5E858A0721F6D6D9008EFC9C /* BackgroundNameSensorTest.swift in Sources */,
 				4CAB100D1ECF1AB20019A67B /* SetVariableBrickTests.swift in Sources */,
 				5E858A0221F6D6D9008EFC9C /* SizeSensorTest.swift in Sources */,
+				5E05163821F96CE70059D3F5 /* SetYBrickTests.swift in Sources */,
 				5E85880D21F6D51E008EFC9C /* XMLParserBlackBoxTests096.swift in Sources */,
 				5E8589D821F6D69F008EFC9C /* DateWeekdaySensorTest.swift in Sources */,
 				5E85891321F6D583008EFC9C /* LengthFunctionTest.swift in Sources */,
 				4CEB22771B95E4BC00B3BE2F /* BrickInsertManagerTests.m in Sources */,
 				4CEB22741B95E4BC00B3BE2F /* BrickInsertManagerForeverTests.m in Sources */,
 				4CF4CB7721E65A9B009D6DD9 /* ReplaceItemInUserListBrickTests.swift in Sources */,
+				5E24C8B821F97295006B7A39 /* PointToBrickTests.swift in Sources */,
 				4C1D26651E84F12700BAA2D2 /* VibrationBrickTests.swift in Sources */,
 				5E858A2621F6D726008EFC9C /* FormulaParserErrorDetectionTest.m in Sources */,
+				5E24C8B121F97269006B7A39 /* SetBackgroundBrickTests.swift in Sources */,
+				5E24C8B921F97295006B7A39 /* NextLookBrickTests.swift in Sources */,
 				5E8588F321F6D583008EFC9C /* MultiFingerTouchedFunctionTests.swift in Sources */,
 				5E858A2421F6D726008EFC9C /* InternFormulaKeyboardAdapterTests.swift in Sources */,
 				5E8588EC21F6D583008EFC9C /* CBFrontendTests.swift in Sources */,
-				4CB2CFAD1D7AD8A5009F3034 /* SetColorBrickTests.m in Sources */,
 				5E8589CD21F6D695008EFC9C /* FaceSizeSensorTest.swift in Sources */,
 				5E85893121F6D5E2008EFC9C /* AsinFunctionTest.swift in Sources */,
 				5E85880921F6D51E008EFC9C /* XMLSerializerBlackBoxTests.swift in Sources */,
 				5E85895121F6D657008EFC9C /* DivideOperatorTest.swift in Sources */,
 				5E85893221F6D5E2008EFC9C /* MinFunctionTest.swift in Sources */,
-				4CEB225B1B95E47500B3BE2F /* HideBrickTests.m in Sources */,
 				5E85880221F6D51E008EFC9C /* XMLParserFormulaTests095.swift in Sources */,
 				4CEB224F1B95E47500B3BE2F /* BrickMoveManagerForeverTests.m in Sources */,
+				5E05163921F96CE70059D3F5 /* SetXBrickTests.swift in Sources */,
 				5E85893C21F6D5E2008EFC9C /* PowFunctionTest.swift in Sources */,
-				4CEB22681B95E47500B3BE2F /* ShowBrickTests.m in Sources */,
 				4C1C8B16213FE7F1003B3AA4 /* StoreProjectDownloaderMock.swift in Sources */,
 				E4AEC8A0210852030081A980 /* FeaturedProjectsStoreDataSourceTests.swift in Sources */,
 				5E8588EB21F6D583008EFC9C /* SpriteObjectMock.swift in Sources */,
 				5E85892F21F6D5E2008EFC9C /* SinFunctionTest.swift in Sources */,
 				5E8588EE21F6D583008EFC9C /* DoubleParameterDoubleFunctionMock.swift in Sources */,
 				4CF4CB7521E64BEE009D6DD9 /* InsertItemIntoUserListBrickTests.swift in Sources */,
+				5E24C8C121F972B6006B7A39 /* IfOnEdgeBounceBrickTests.swift in Sources */,
 				5E8589D021F6D695008EFC9C /* FacePositionXSensorTest.swift in Sources */,
 				5E858A2E21F6D745008EFC9C /* UIImageExtensionTests.swift in Sources */,
-				4CEB225C1B95E47500B3BE2F /* IfOnEdgeBounceBrickTests.m in Sources */,
+				5E05163221F96CA30059D3F5 /* TurnLeftBrickTests.swift in Sources */,
 				5E8588E821F6D583008EFC9C /* FormulaManagerResourceTests.swift in Sources */,
 				5E85880321F6D51E008EFC9C /* XMLParserBrickTests095.swift in Sources */,
 				5E85895321F6D657008EFC9C /* MinusOperatorTest.swift in Sources */,
 				5E8589EB21F6D6BD008EFC9C /* DeviceSensorMock.swift in Sources */,
 				5973F239202EF34700A4CED9 /* MediaLibraryCollectionViewDataSourceDelegateMock.swift in Sources */,
+				5E24C8CB21F972E1006B7A39 /* ChangeColorByNBrickTests.swift in Sources */,
 				5E858A2021F6D726008EFC9C /* FormulaFunctionsTest.m in Sources */,
 				5E85880121F6D51E008EFC9C /* XMLParserObjectTests095.swift in Sources */,
 				5E8588F021F6D583008EFC9C /* SingleParameterDoubleFunctionMock.swift in Sources */,
@@ -8652,7 +8642,7 @@
 				4CC614B7212EA84E006E4720 /* FormulaEditorItemTest.swift in Sources */,
 				5E85894D21F6D657008EFC9C /* SmallerOrEqualOperatorTest.swift in Sources */,
 				E4AEC89F210852030081A980 /* StoreProjectsDownloaderTests.swift in Sources */,
-				4C0F9FD7204BD3CC00E71B2D /* PreviousLookBrickTests.m in Sources */,
+				5E05163321F96CA30059D3F5 /* TurnRightBrickTests.swift in Sources */,
 				5E85891121F6D583008EFC9C /* ContainsFunctionTest.swift in Sources */,
 				5E8588A121F6D583008EFC9C /* CBSpriteNodeTests.swift in Sources */,
 				5E85890C21F6D583008EFC9C /* ArduinoDigitalPinFunctionTest.swift in Sources */,
@@ -8663,55 +8653,55 @@
 				5E85893821F6D5E2008EFC9C /* RoundFunctionTest.swift in Sources */,
 				4CA658ED21EBA5BD000E5797 /* CBFileManagerTests.swift in Sources */,
 				5E8589C621F6D685008EFC9C /* LocationAccuracySensorTest.swift in Sources */,
-				4CEB22691B95E47500B3BE2F /* TurnLeftBrickTests.m in Sources */,
 				4CEB22731B95E4BC00B3BE2F /* BrickInsertManagerAbstractTest.m in Sources */,
 				4CBF5F9E21AF1D390079C834 /* UIGestureRecognizerMock.swift in Sources */,
 				5E8589DE21F6D69F008EFC9C /* TimeSecondSensorTest.swift in Sources */,
 				5E8588E721F6D583008EFC9C /* FormulaManagerInterpreterTests.swift in Sources */,
 				E4C5C1122143A3150054F236 /* SearchStoreDataSourceTests.swift in Sources */,
+				5E05163B21F96D940059D3F5 /* AbstractBrickTests.swift in Sources */,
 				5E85880721F6D51E008EFC9C /* XMLParserBlackBoxTests098.swift in Sources */,
 				4C0C164921439B2F005ADE86 /* ChartProjectsStoreDataSourceTests.swift in Sources */,
+				5E24C8BC21F97295006B7A39 /* MoveNStepsBrickTests.swift in Sources */,
 				5E858A2821F6D726008EFC9C /* FormulaTest.m in Sources */,
 				4CB23D7221E6613D00A0FEA7 /* DeleteItemOfUserListBrickTests.swift in Sources */,
 				5E8588F421F6D583008EFC9C /* MultiFingerYFunctionTests.swift in Sources */,
 				5E85890D21F6D583008EFC9C /* ArduinoAnalogPinFunctionTest.swift in Sources */,
+				5E24C8C221F972B6006B7A39 /* GoNStepsBackBrickTests.swift in Sources */,
 				5E85880021F6D51E008EFC9C /* XMLParserHeaderTests095.swift in Sources */,
 				5E8589C521F6D685008EFC9C /* LongitudeSensorTest.swift in Sources */,
-				4CEB22571B95E47500B3BE2F /* ChangeTransparencyByNBrickTests.m in Sources */,
 				5E8589E821F6D6BD008EFC9C /* FaceDetectionManagerMock.swift in Sources */,
 				5E85894021F6D5E2008EFC9C /* AbsFunctionTest.swift in Sources */,
 				5E858A0521F6D6D9008EFC9C /* ColorSensorTest.swift in Sources */,
 				5E85899921F6D685008EFC9C /* FingerTouchedSensorTest.swift in Sources */,
 				599E64AA202DB3E8009494B5 /* MediaLibraryCollectionViewDataSourceTests.swift in Sources */,
 				5E8589FE21F6D6D9008EFC9C /* LookNumberSensorTest.swift in Sources */,
-				4CEB22641B95E47500B3BE2F /* SetSizeToBrickTests.m in Sources */,
-				4CEB225A1B95E47500B3BE2F /* GoNStepsBackBrickTests.m in Sources */,
 				5E85893D21F6D5E2008EFC9C /* TanFunctionTest.swift in Sources */,
 				4CAB100F1ECF1AC60019A67B /* ShowTextBrickTests.swift in Sources */,
 				5E8588E421F6D583008EFC9C /* FormulaManagerIdempotenceTests.swift in Sources */,
 				5E85881021F6D51E008EFC9C /* XMLParserObjectTests093.swift in Sources */,
 				5E85893421F6D5E2008EFC9C /* ExpFunctionTest.swift in Sources */,
+				5E24C8D121F97303006B7A39 /* ComeToFrontBrickTests.swift in Sources */,
 				4C1AA4AE21A1572700DAC589 /* MediaItemTest.swift in Sources */,
 				5E8589ED21F6D6BD008EFC9C /* LocationManagerMock.swift in Sources */,
 				5E858A1F21F6D726008EFC9C /* FormulaParserTest.m in Sources */,
 				5E85892C21F6D5E2008EFC9C /* AtanFunctionTest.swift in Sources */,
 				5E858A2121F6D726008EFC9C /* InternFormulaTest.m in Sources */,
 				5E8589CE21F6D695008EFC9C /* FacePositionYSensorTest.swift in Sources */,
-				4CEB226A1B95E47500B3BE2F /* TurnRightBrickTests.m in Sources */,
+				5E24C8CD21F972E1006B7A39 /* BrickMutableCopyTests.swift in Sources */,
 				5E8588D521F6D583008EFC9C /* UnaryOperatorMock.swift in Sources */,
 				5E85893521F6D5E2008EFC9C /* FalseFunctionTest.swift in Sources */,
 				5E85880C21F6D51E008EFC9C /* XMLAbstractTest.swift in Sources */,
 				5E85894E21F6D657008EFC9C /* EqualOperatorTest.swift in Sources */,
+				5E24C8D021F97303006B7A39 /* ClearGrafficEffectBrickTests.swift in Sources */,
 				5E85881321F6D51E008EFC9C /* XMLParserBlackBoxTests093.swift in Sources */,
 				4CD0BA9921467C5A00BF17A4 /* HeaderTests.swift in Sources */,
 				5E85895821F6D657008EFC9C /* SmallerThanOperatorTest.swift in Sources */,
-				4CEB22601B95E47500B3BE2F /* PointInDirectionBrickTests.m in Sources */,
 				5E85893721F6D5E2008EFC9C /* TrueFunctionTest.swift in Sources */,
 				5E858A2721F6D726008EFC9C /* FormulaElementTest.m in Sources */,
 				5E85880821F6D51E008EFC9C /* XMLSerializerTests.swift in Sources */,
 				5E85899D21F6D685008EFC9C /* AccelerationZSensorTest.swift in Sources */,
 				5E858A2521F6D726008EFC9C /* InternFormulaStateTest.m in Sources */,
-				4CEB22671B95E47500B3BE2F /* SetYBrickTests.m in Sources */,
+				5E24C8AD21F97269006B7A39 /* SetTransparencyBrickTests.swift in Sources */,
 				5E8589C221F6D685008EFC9C /* SensorManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
