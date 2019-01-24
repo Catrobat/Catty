@@ -30,14 +30,13 @@ class BaseLoginViewController: UIViewController {
 
     weak var activeField: UITextField?
 
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        // Custom initialization
-    }
+    // MARK: - Init
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
+
+    // MARK: - View Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +47,6 @@ class BaseLoginViewController: UIViewController {
         view.addGestureRecognizer(recognizer)
     }
 
-    //method to move the view up/down whenever the keyboard is shown/dismissed
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // register for keyboard notifications
@@ -58,6 +56,7 @@ class BaseLoginViewController: UIViewController {
     }
 
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         // unregister for keyboard notifications while not visible.
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
 
@@ -65,8 +64,9 @@ class BaseLoginViewController: UIViewController {
         super.viewWillDisappear(animated)
     }
 
-    @objc func keyboardWillShow(_ notification: Notification?) {
+    // MARK: - Keyboard
 
+    @objc func keyboardWillShow(_ notification: Notification?) {
         let keyboardValue = (notification?.userInfo![UIResponder.keyboardFrameEndUserInfoKey]) as? NSValue
         let keyboardRect: CGRect? = keyboardValue?.cgRectValue
 
@@ -98,6 +98,8 @@ class BaseLoginViewController: UIViewController {
         myScrollView?.scrollIndicatorInsets = insets
         view.endEditing(true)
     }
+
+    // MARK: - Textfield
 
     func textFieldDidEndEditing(_ sender: UITextField) {
         activeField = nil

@@ -36,9 +36,6 @@ class RegisterViewController: BaseLoginViewController, UITextFieldDelegate {
     private var dataTask: URLSessionDataTask?
     private var shouldShowAlert = false
 
-    //random boundary string
-    let httpBoundary = "---------------------------98598263596598246508247098291---------------------------"
-
     weak var catTVC: CatrobatTableViewController?
     @IBOutlet private weak var headerImageView: UIImageView!
     @IBOutlet private weak var titleLabel: UILabel!
@@ -69,10 +66,7 @@ class RegisterViewController: BaseLoginViewController, UITextFieldDelegate {
         return _session
     }
 
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        // Custom initialization
-    }
+    // MARK: - Init
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -82,6 +76,8 @@ class RegisterViewController: BaseLoginViewController, UITextFieldDelegate {
         loadingView?.removeFromSuperview()
         loadingView = nil
     }
+
+    // MARK: - View Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -231,24 +227,6 @@ class RegisterViewController: BaseLoginViewController, UITextFieldDelegate {
         }
     }
 
-    func setFormDataParameter(_ parameterID: String?, with data: Data?, forHTTPBody body: Data?) {
-        var body = body
-        if let data = "--\(httpBoundary)\r\n".data(using: .utf8) {
-            body?.append(data)
-        }
-
-        let parameterString = "Content-Disposition: form-data; name=\"\(parameterID ?? "")\"\r\n\r\n"
-        if let data = parameterString.data(using: .utf8) {
-            body?.append(data)
-        }
-        if let data = data {
-            body?.append(data)
-        }
-        if let data = "\r\n".data(using: .utf8) {
-            body?.append(data)
-        }
-    }
-
     // MARK: Actions
 
     @objc func registerAction() {
@@ -283,33 +261,31 @@ class RegisterViewController: BaseLoginViewController, UITextFieldDelegate {
         request.url = URL(string: urlString)
         request.httpMethod = "POST"
 
-        let contentType = "multipart/form-data; boundary=\(httpBoundary)"
+        let contentType = "multipart/form-data; boundary=\(RequestManager.httpBoundary)"
         request.addValue(contentType, forHTTPHeaderField: "Content-Type")
 
         var body = Data()
 
         //username
         userName = username ?? ""
-        setFormDataParameter(usernameTag, with: username?.data(using: .utf8), forHTTPBody: body)
+        RequestManager.setFormDataParameter(usernameTag, with: username?.data(using: .utf8), forHTTPBody: &body)
 
         //password
         self.password = password ?? ""
-        setFormDataParameter(passwordTag, with: password?.data(using: .utf8), forHTTPBody: body)
+        RequestManager.setFormDataParameter(passwordTag, with: password?.data(using: .utf8), forHTTPBody: &body)
 
         //email
         userEmail = email ?? ""
-        setFormDataParameter(registrationEmailTag, with: email?.data(using: .utf8), forHTTPBody: body)
+        RequestManager.setFormDataParameter(registrationEmailTag, with: email?.data(using: .utf8), forHTTPBody: &body)
 
         //Country
         let currentLocale = NSLocale.current as NSLocale
         let countryCode = currentLocale.object(forKey: .countryCode) as? String
         print("Current Country is:\(countryCode ?? "")")
-        setFormDataParameter(registrationCountryTag, with: countryCode?.data(using: .utf8), forHTTPBody: body)
-
-        //Language ?! 
+        RequestManager.setFormDataParameter(registrationCountryTag, with: countryCode?.data(using: .utf8), forHTTPBody: &body)
 
         // close form
-        if let data = "--\(httpBoundary)--\r\n".data(using: .utf8) {
+        if let data = "--\(RequestManager.httpBoundary)--\r\n".data(using: .utf8) {
             body.append(data)
         }
         // set request body
@@ -424,10 +400,7 @@ class RegisterViewController: BaseLoginViewController, UITextFieldDelegate {
     func showLoadingView() {
         if loadingView == nil {
             loadingView = LoadingView()
-            //        [self.loadingView setBackgroundColor:[UIColor globalTintColor]];
-            if let loadingView = loadingView {
-                view.addSubview(loadingView)
-            }
+            view.addSubview(loadingView!)
         }
         loadingView?.show()
         Util.setNetworkActivityIndicator(true)

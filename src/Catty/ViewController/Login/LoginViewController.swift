@@ -20,8 +20,6 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-//web status codes are on: https://github.com/Catrobat/Catroweb/blob/master/statusCodes.php
-
 class LoginViewController: BaseLoginViewController, UITextFieldDelegate {
 
     let usernameTag = "registrationUsername"
@@ -36,8 +34,8 @@ class LoginViewController: BaseLoginViewController, UITextFieldDelegate {
     let statusCodeRegistrationOK = "201"
     let statusAuthenticationFailed = "601"
 
-    //random boundary string
-    let httpBoundary = "---------------------------98598263596598246508247098291---------------------------"
+    private var dataTask: URLSessionDataTask?
+    private var shouldShowAlert = false
 
     @objc weak var catTVC: CatrobatTableViewController?
     @IBOutlet private weak var usernameField: UITextField!
@@ -67,16 +65,21 @@ class LoginViewController: BaseLoginViewController, UITextFieldDelegate {
             // Initialize Session
             _session = URLSession(configuration: sessionConfiguration)
         }
-
         return _session
     }
-    private var dataTask: URLSessionDataTask?
-    private var shouldShowAlert = false
 
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        // Custom initialization
+    // MARK: - Init
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
     }
+
+    deinit {
+        loadingView?.removeFromSuperview()
+        loadingView = nil
+    }
+
+    // MARK: - View Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -89,9 +92,18 @@ class LoginViewController: BaseLoginViewController, UITextFieldDelegate {
         passwordField.delegate = self
     }
 
-    deinit {
-        loadingView?.removeFromSuperview()
-        loadingView = nil
+    override func viewWillDisappear(_ animated: Bool) {
+        DispatchQueue.main.async(execute: {
+            self.dataTask?.cancel()
+        })
+
+        super.viewWillDisappear(animated)
+    }
+
+    override func willMove(toParent parent: UIViewController?) {
+        if parent == nil {
+            catTVC?.afterSuccessfulLogin()
+        }
     }
 
     func initView() {
@@ -154,7 +166,6 @@ class LoginViewController: BaseLoginViewController, UITextFieldDelegate {
         forgotButton.setTitleColor(UIColor.buttonTint(), for: .normal)
         forgotButton.setTitleColor(UIColor(white: 1.0, alpha: 0.5), for: .highlighted)
         forgotButton.addTarget(self, action: #selector(LoginViewController.forgotPassword), for: .touchUpInside)
-        //    self.forgotButton.frame = CGRectMake(0, currentHeight, self.view.frame.size.width, self.forgotButton.frame.size.height);
 
         registerButton.backgroundColor = darkColor
         if let font = UIFont(name: boldFontName, size: 20.0) {
@@ -180,37 +191,10 @@ class LoginViewController: BaseLoginViewController, UITextFieldDelegate {
         passwordField.addTarget(self, action: #selector(LoginViewController.loginAction), for: .editingDidEndOnExit)
     }
 
-    override func viewWillDisappear(_ animated: Bool) {
-        DispatchQueue.main.async(execute: {
-            self.dataTask?.cancel()
-        })
-
-        super.viewWillDisappear(animated)
-    }
-
-    func textFieldDidBeginEditing(_ sender: UITextField) {
-        activeField = sender
-    }
-
-    override func textFieldDidEndEditing(_ sender: UITextField) {
-        activeField = nil
-    }
-
-    override func willMove(toParent parent: UIViewController?) {
-        if parent == nil {
-            catTVC?.afterSuccessfulLogin()
-        }
-    }
-
     func addHorizontalLine(to view: UIView?, andHeight height: CGFloat) {
         let lineView = UIView(frame: CGRect(x: 0, y: height, width: view?.frame.size.width ?? 0.0, height: 1))
         lineView.backgroundColor = UIColor.utilityTint()
         view?.addSubview(lineView)
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     func stringContainsSpace(_ checkString: String?) -> Bool {
@@ -237,25 +221,8 @@ class LoginViewController: BaseLoginViewController, UITextFieldDelegate {
         }
     }
 
-    func setFormDataParameter(_ parameterID: String?, with data: Data?, forHTTPBody body: Data?) {
-        var body = body
-        if let data = "--\(httpBoundary)\r\n".data(using: .utf8) {
-            body?.append(data)
-        }
+    // MARK: - Actions
 
-        let parameterString = "Content-Disposition: form-data; name=\"\(parameterID ?? "")\"\r\n\r\n"
-        if let data = parameterString.data(using: .utf8) {
-            body?.append(data)
-        }
-        if let data = data {
-            body?.append(data)
-        }
-        if let data = "\r\n".data(using: .utf8) {
-            body?.append(data)
-        }
-    }
-
-    // MARK: Actions
     @objc func loginAction() {
         if usernameField.text!.isEmpty {
             Util.alert(withText: kLocalizedLoginUsernameNecessary)
@@ -293,29 +260,21 @@ class LoginViewController: BaseLoginViewController, UITextFieldDelegate {
         request.url = URL(string: urlString)
         request.httpMethod = "POST"
 
-        let contentType = "multipart/form-data; boundary=\(httpBoundary)"
+        let contentType = "multipart/form-data; boundary=\(RequestManager.httpBoundary)"
         request.addValue(contentType, forHTTPHeaderField: "Content-Type")
 
         var body = Data()
 
         //username
         userName = username ?? ""
-        setFormDataParameter(usernameTag, with: username?.data(using: .utf8), forHTTPBody: body)
+        RequestManager.setFormDataParameter(usernameTag, with: username?.data(using: .utf8), forHTTPBody: &body)
 
         //password
         self.password = password ?? ""
-        setFormDataParameter(passwordTag, with: password?.data(using: .utf8), forHTTPBody: body)
-
-        //    //Country
-        //    NSLocale *currentLocale = [NSLocale currentLocale];
-        //    NSString *countryCode = [currentLocale objectForKey:NSLocaleCountryCode];
-        //    NSDebug(@"Current Country is: %@", countryCode);
-        //    [self setFormDataParameter:registrationCountryTag withData:[countryCode dataUsingEncoding:NSUTF8StringEncoding] forHTTPBody:body];
-        //    
-        //    //Language ?! 
+        RequestManager.setFormDataParameter(passwordTag, with: password?.data(using: .utf8), forHTTPBody: &body)
 
         // close form
-        if let data = "--\(httpBoundary)--\r\n".data(using: .utf8) {
+        if let data = "--\(RequestManager.httpBoundary)--\r\n".data(using: .utf8) {
             body.append(data)
         }
         // set request body
@@ -359,7 +318,6 @@ class LoginViewController: BaseLoginViewController, UITextFieldDelegate {
             hideLoadingView()
             Util.defaultAlertForNetworkError()
         }
-
     }
 
     func handleLoginResponse(with data: Data?, andResponse response: URLResponse?) {
@@ -420,25 +378,19 @@ class LoginViewController: BaseLoginViewController, UITextFieldDelegate {
     }
 
     @objc func openTermsOfUse() {
-        let url = kTermsOfUseURL
-        if let url = URL(string: url) {
-            UIApplication.shared.openURL(url)
-        }
+        Util.openUrlExternal(URL(string: kTermsOfUseURL))
     }
 
     @objc func forgotPassword() {
         let url = Util.isProductionServerActivated() ? kRecoverPassword : kTestRecoverPassword
-        if let url = URL(string: url) {
-            UIApplication.shared.openURL(url)
-        }
+        Util.openUrlExternal(URL(string: url))
     }
 
-    // MARK: Helpers
+    // MARK: - Helpers
 
     func showLoadingView() {
         if loadingView == nil {
             loadingView = LoadingView()
-            //        [self.loadingView setBackgroundColor:[UIColor globalTintColor]];
             if let loadingView = loadingView {
                 view.addSubview(loadingView)
             }
@@ -452,7 +404,13 @@ class LoginViewController: BaseLoginViewController, UITextFieldDelegate {
         Util.setNetworkActivityIndicator(false)
     }
 
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+    // MARK: - Textfield
+
+    func textFieldDidBeginEditing(_ sender: UITextField) {
+        activeField = sender
+    }
+
+    override func textFieldDidEndEditing(_ sender: UITextField) {
+        activeField = nil
     }
 }

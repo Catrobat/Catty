@@ -397,6 +397,7 @@
 		59B9F633202D8F8500937299 /* MediaLibraryDownloader.downloadIndex.success.json in Resources */ = {isa = PBXBuildFile; fileRef = 59B9F631202D8F6200937299 /* MediaLibraryDownloader.downloadIndex.success.json */; };
 		59D9EC65206117000019EC10 /* DVR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59D9EC62206117000019EC10 /* DVR.framework */; };
 		59D9EC672061171F0019EC10 /* DVR.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 59D9EC62206117000019EC10 /* DVR.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5E05162F21F9670C0059D3F5 /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E05162E21F9670C0059D3F5 /* RequestManager.swift */; };
 		5E18A81221A547AA00541536 /* UIViewController+HideOnTap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E18A81121A547AA00541536 /* UIViewController+HideOnTap.swift */; };
 		5E1F6DA321F6951000B4ACEC /* AboutPocketCodeOptionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1F6DA021F6951000B4ACEC /* AboutPocketCodeOptionTableViewController.swift */; };
 		5E1F6DA421F6951000B4ACEC /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1F6DA121F6951000B4ACEC /* SettingsTableViewController.swift */; };
@@ -1773,6 +1774,7 @@
 		59ABDC642021D7DA00061403 /* UIAlertController+AddAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+AddAction.swift"; sourceTree = "<group>"; };
 		59B9F631202D8F6200937299 /* MediaLibraryDownloader.downloadIndex.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MediaLibraryDownloader.downloadIndex.success.json; sourceTree = "<group>"; };
 		59D9EC62206117000019EC10 /* DVR.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVR.framework; path = Carthage/Build/iOS/DVR.framework; sourceTree = "<group>"; };
+		5E05162E21F9670C0059D3F5 /* RequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
 		5E18A81121A547AA00541536 /* UIViewController+HideOnTap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+HideOnTap.swift"; sourceTree = "<group>"; };
 		5E1F6DA021F6951000B4ACEC /* AboutPocketCodeOptionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AboutPocketCodeOptionTableViewController.swift; path = Catty/ViewController/Settings/AboutPocketCodeOptionTableViewController.swift; sourceTree = SOURCE_ROOT; };
 		5E1F6DA121F6951000B4ACEC /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsTableViewController.swift; path = Catty/ViewController/Settings/SettingsTableViewController.swift; sourceTree = SOURCE_ROOT; };
@@ -4293,6 +4295,14 @@
 			path = Fixtures;
 			sourceTree = "<group>";
 		};
+		5E05162D21F966EC0059D3F5 /* RequestManager */ = {
+			isa = PBXGroup;
+			children = (
+				5E05162E21F9670C0059D3F5 /* RequestManager.swift */,
+			);
+			path = RequestManager;
+			sourceTree = "<group>";
+		};
 		5E3F56D421F9398700259D65 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
@@ -5906,6 +5916,7 @@
 				5E3F56D621F93CC600259D65 /* Logger */,
 				4C0F9F47204ADD0C00E71B2D /* OrderedDictionary */,
 				929CC0D11BC39B280027DEC0 /* PhiroHelper */,
+				5E05162D21F966EC0059D3F5 /* RequestManager */,
 				9276B7021C9E8F6C008BC594 /* SoundCache */,
 				92FF2E821A24C7D800093DA7 /* TimerLabel */,
 				92FF2E851A24C7D800093DA7 /* Utils */,
@@ -8880,6 +8891,7 @@
 				AA74F0B51BC05FCE00D1E954 /* ChangeSizeByNBrickCell.m in Sources */,
 				4CE67888210C4B1D00D90B5D /* Function.swift in Sources */,
 				5E85879321F6D14D008EFC9C /* GlideToBrick+CBXMLHandler.m in Sources */,
+				5E05162F21F9670C0059D3F5 /* RequestManager.swift in Sources */,
 				5E85876A21F6D12D008EFC9C /* ChangeTransparencyByNBrick+CBXMLHandler.m in Sources */,
 				92FF2EC01A24C8A700093DA7 /* OrderedDictionary.m in Sources */,
 				AA74F0CD1BC05FCE00D1E954 /* StartScriptCell.m in Sources */,

@@ -38,8 +38,7 @@
     let statusCodeTokenWrong = "601"
 
     //random boundary string
-    //web status codes are on: https://github.com/Catrobat/Catroweb/blob/master/statusCodes.php
-    let httpBoundary = "---------------------------98598263596598246508247098291---------------------------"
+
     let uploadFontSize: CGFloat = 16.0
 
     private var activeRequest: Bool = false
@@ -176,43 +175,6 @@
         })
     }
 
-    // MARK: - Helpers
-
-    func setFormDataParameter(_ parameterID: String?, with data: Data?, forHTTPBody body: inout Data) {
-        if let anEncoding = "--\(httpBoundary)\r\n".data(using: .utf8) {
-            body.append(anEncoding)
-        }
-        let parameterString = "Content-Disposition: form-data; name=\"\(parameterID ?? "")\"\r\n\r\n"
-        if let anEncoding = parameterString.data(using: .utf8) {
-            body.append(anEncoding)
-        }
-        if let aData = data {
-            body.append(aData)
-        }
-        if let anEncoding = "\r\n".data(using: .utf8) {
-            body.append(anEncoding)
-        }
-    }
-
-    func setAttachmentParameter(_ parameterID: String?, with data: Data?, forHTTPBody body: inout Data) {
-        if let anEncoding = "--\(httpBoundary)\r\n".data(using: .utf8) {
-            body.append(anEncoding)
-        }
-        let parameterString = "Content-Disposition: attachment; name=\"\(parameterID ?? "")\"; filename=\".zip\" \r\n"
-        if let anEncoding = parameterString.data(using: .utf8) {
-            body.append(anEncoding)
-        }
-        if let anEncoding = "Content-Type: application/octet-stream\r\n\r\n".data(using: .utf8) {
-            body.append(anEncoding)
-        }
-        if let aData = data {
-            body.append(aData)
-        }
-        if let anEncoding = "\r\n".data(using: .utf8) {
-            body.append(anEncoding)
-        }
-    }
-
     // MARK: - Actions
 
     @objc func checkProjectAction() {
@@ -274,40 +236,40 @@
             request.url = URL(string: urlString)
             request.httpMethod = "POST"
 
-            let contentType = "multipart/form-data; boundary=\(httpBoundary)"
+            let contentType = "multipart/form-data; boundary=\(RequestManager.httpBoundary)"
             request.addValue(contentType, forHTTPHeaderField: "Content-Type")
 
             var body = Data()
 
             //Project Name
-            setFormDataParameter(projectNameTag, with: project?.header.programName.data(using: .utf8), forHTTPBody: &body)
+            RequestManager.setFormDataParameter(projectNameTag, with: project?.header.programName.data(using: .utf8), forHTTPBody: &body)
 
             //Project Description
-            setFormDataParameter(projectDescriptionTag, with: project?.header.programDescription.data(using: .utf8), forHTTPBody: &body)
+            RequestManager.setFormDataParameter(projectDescriptionTag, with: project?.header.programDescription.data(using: .utf8), forHTTPBody: &body)
 
             //User Email
             if UserDefaults.standard.value(forKey: kcEmail) != nil {
-                setFormDataParameter(userEmailTag, with: (UserDefaults.standard.value(forKey: kcEmail) as! String).data(using: .utf8), forHTTPBody: &body)
+                RequestManager.setFormDataParameter(userEmailTag, with: (UserDefaults.standard.value(forKey: kcEmail) as! String).data(using: .utf8), forHTTPBody: &body)
             }
 
             //checksum
-            setFormDataParameter(fileChecksumParameterTag, with: checksum?.data(using: .utf8), forHTTPBody: &body)
+            RequestManager.setFormDataParameter(fileChecksumParameterTag, with: checksum?.data(using: .utf8), forHTTPBody: &body)
 
             //token
             let token = JNKeychain.loadValue(forKey: kUserLoginToken) as! String
-            setFormDataParameter(tokenParameterTag, with: token.data(using: .utf8), forHTTPBody: &body)
+            RequestManager.setFormDataParameter(tokenParameterTag, with: token.data(using: .utf8), forHTTPBody: &body)
 
             //Username
-            setFormDataParameter(userNameTag, with: (UserDefaults.standard.value(forKey: kcUsername) as! String).data(using: .utf8), forHTTPBody: &body)
+            RequestManager.setFormDataParameter(userNameTag, with: (UserDefaults.standard.value(forKey: kcUsername) as! String).data(using: .utf8), forHTTPBody: &body)
 
             //Language
-            setFormDataParameter(deviceLanguageTag, with: NSLocale.preferredLanguages[0].data(using: .utf8), forHTTPBody: &body)
+            RequestManager.setFormDataParameter(deviceLanguageTag, with: NSLocale.preferredLanguages[0].data(using: .utf8), forHTTPBody: &body)
 
             //zip file
-            setAttachmentParameter(uploadParameterTag, with: zipFileData, forHTTPBody: &body)
+            RequestManager.setAttachmentParameter(uploadParameterTag, with: zipFileData, forHTTPBody: &body)
 
             // close request form
-            if let anEncoding = "--\(httpBoundary)--\r\n".data(using: .utf8) {
+            if let anEncoding = "--\(RequestManager.httpBoundary)--\r\n".data(using: .utf8) {
                 body.append(anEncoding)
             }
             // set request body
