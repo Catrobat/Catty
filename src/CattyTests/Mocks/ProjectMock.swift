@@ -20,9 +20,32 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+class ProjectMock: Project {
 
-#import <XCTest/XCTest.h>
+    private var mockedRequiredResources: Int = 0
 
-@interface SceneTests : XCTestCase
+    override convenience init() {
+        self.init(width: 300, andHeight: 400)
+    }
 
-@end
+    convenience init(width: CGFloat, andHeight height: CGFloat) {
+        self.init(width: width, andHeight: height, andRequiredResources: ResourceType.noResources.rawValue)
+    }
+
+    convenience init(requiredResources: Int) {
+        self.init(width: 300, andHeight: 400, andRequiredResources: requiredResources)
+    }
+
+    init(width: CGFloat, andHeight height: CGFloat, andRequiredResources requiredResources: Int) {
+        super.init()
+
+        header = Header()
+        header.screenWidth = NSNumber(value: Float(width))
+        header.screenHeight = NSNumber(value: Float(height))
+        mockedRequiredResources = requiredResources
+    }
+
+    override func getRequiredResources() -> Int {
+        return mockedRequiredResources
+    }
+}

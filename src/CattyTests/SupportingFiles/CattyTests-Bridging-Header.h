@@ -26,7 +26,6 @@
 
 #import "Catty-Bridging-Header.h"
 
-#import "ProjectMock.h"
 #import "ConvertExceptionToError.h"
 
 // Bricks
