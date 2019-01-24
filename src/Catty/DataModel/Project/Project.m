@@ -23,7 +23,6 @@
 #import "Project.h"
 #import "VariablesContainer.h"
 #import "Util.h"
-#import "AppDelegate.h"
 #import "Parser.h"
 #import "Script.h"
 #import "Brick.h"

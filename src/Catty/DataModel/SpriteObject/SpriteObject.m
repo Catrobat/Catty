@@ -28,9 +28,9 @@
 #import "Brick.h"
 #import "CBFileManager.h"
 #import "AudioManager.h"
-#import "AppDelegate.h"
 #import "NSString+FastImageSize.h"
 #import "CBMutableCopyContext.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation SpriteObject
 

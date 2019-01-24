@@ -28,10 +28,6 @@
 #define kIphone6PScreenHeight 736.0f
 #define kIpadScreenHeight 1028.0f
 
-// ScenePresenterViewController
-#define kSlidingStartArea 40
-#define kFirstSwipeDuration 0.65f
-
 // Scene
 
 #define kSceneDefaultFont @"Helvetica"

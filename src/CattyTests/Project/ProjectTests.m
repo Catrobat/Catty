@@ -31,9 +31,9 @@
 #import "OrderedMapTable.h"
 #import "SetVariableBrick.h"
 #import "CBFileManager.h"
-#import "AppDelegate.h"
 #import "Util.h"
 #import "LanguageTranslationDefines.h"
+#import "Pocket_Code-Swift.h"
 
 @interface ProjectTests : XCTestCase
 

@@ -111,7 +111,7 @@ class SettingsTableViewController: BOTableViewController {
                                                    key: "choice_1",
                                                    handler: { cell in
                 let sectionCell = cell as! BOChoiceTableViewCell?
-                sectionCell?.destinationViewController = AboutPoketCodeOptionTableViewController()
+                sectionCell?.destinationViewController = AboutPocketCodeOptionTableViewController()
                 sectionCell?.backgroundColor = UIColor.background()
                 sectionCell?.mainColor = UIColor.globalTint()
             }))

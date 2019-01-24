@@ -22,7 +22,7 @@
 
 #import "RuntimeImageCache.h"
 #import "NSString+CatrobatNSStringExtensions.h"
-#import "AppDelegate.h"
+#import "Pocket_Code-Swift.h"
 
 @interface RuntimeImageCache()
 

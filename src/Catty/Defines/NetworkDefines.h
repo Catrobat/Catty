@@ -24,24 +24,13 @@
 #define kBaseUrl @"https://share.catrob.at/pocketcode/"
 #define kTestUrl @"https://catroid-test.catrob.at/pocketcode/"
 #define kConnectionHost kBaseUrl @"api/projects"
-#define kLoginOrRegisterUrlExtension @"api/loginOrRegister"
-#define kLoginUrlExtension @"api/login"
-#define kRegisterUrlExtension @"api/register"
 #define kReportProjectExtension @"api/reportProgram/reportProgram.json"
-#define kLoginOrRegisterUrl kBaseUrl kLoginOrRegisterUrlExtension
-#define kTestLoginOrRegisterUrl kTestUrl kLoginOrRegisterUrlExtension
-#define kLoginUrl kBaseUrl kLoginUrlExtension
-#define kTestLoginUrl kTestUrl kLoginUrlExtension
-#define kRegisterUrl kBaseUrl kRegisterUrlExtension
-#define kTestRegisterUrl kTestUrl kRegisterUrlExtension
 #define kTestReportProjectUrl kTestUrl kReportProjectExtension
 #define kReportProjectUrl kBaseUrl kReportProjectExtension
 #define kForumURL kBaseUrl @"help"
 #define kDownloadUrl kBaseUrl @"download"
 #define kSourceCodeLicenseURL @"http://developer.catrobat.org/licenses"
 #define kAboutCatrobatURL @"http://www.catrobat.org"
-#define kTermsOfUseURL kBaseUrl @"termsOfUse"
-#define kRecoverPassword kBaseUrl @"resetting/request"
 #define kUnsupportedElementsUrl @"https://catrob.at/ibuf"
 
 #define kConnectionSearch @"search.json"
@@ -50,7 +39,6 @@
 #define kConnectionMostDownloaded @"mostDownloaded.json"
 #define kConnectionMostViewed @"mostViewed.json"
 #define kConnectionIDQuery @"getInfoById.json"
-#define kConnectionLoginOrRegister @"loginOrRegister.json"
 #define kConnectionLogin @"Login.json"
 #define kConnectionRegister @"Register.json"
 #define kConnectionUpload @ "upload.json"

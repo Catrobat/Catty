@@ -60,3 +60,17 @@ let kForumURL = kBaseUrl.appending("help")
 let kAppStoreIdentifier = "1117935892"
 let kAppStoreURL = "itms-apps://itunes.apple.com/app/".appending(kAppStoreIdentifier)
 let kTermsOfUseURL = kBaseUrl.appending("termsOfUse")
+
+//*************************************************************************************
+//************************      Login/Register       **********************************
+//*************************************************************************************
+
+let kLoginUrlExtension = "api/login"
+let kRegisterUrlExtension = "api/register"
+let kRecoverUrlExtension = "resetting/request"
+let kLoginUrl = kBaseUrl.appending(kLoginUrlExtension)
+let kTestLoginUrl = kTestUrl.appending(kLoginUrlExtension)
+let kRegisterUrl = kBaseUrl.appending(kRegisterUrlExtension)
+let kTestRegisterUrl = kTestUrl.appending(kRegisterUrlExtension)
+let kRecoverPassword = kBaseUrl.appending(kRecoverUrlExtension)
+let kTestRecoverPassword = kTestUrl.appending(kRecoverUrlExtension)

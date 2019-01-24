@@ -36,7 +36,7 @@ final class WaitUntilBrickTests: XMLAbstractTest {
         let hasFinishedWaiting = project.variables.getUserVariableNamed("hasFinishedWaiting", for: project.objectList[0] as? SpriteObject)
 
         let scene = createScene()
-        scene.startProject()
+        XCTAssertTrue(scene.startProject())
         project.variables.setUserVariable(testVar, toValue: NSNumber(value: 1))
 
         let conditionMetPredicate = NSPredicate(block: { variable, _ in
@@ -52,7 +52,7 @@ final class WaitUntilBrickTests: XMLAbstractTest {
         let hasFinishedWaiting = project.variables.getUserVariableNamed("hasFinishedWaiting", for: project.objectList[0] as? SpriteObject)
 
         let scene = createScene()
-        scene.startProject()
+        XCTAssertTrue(scene.startProject())
         let testPredicate = createPredicate(variable: hasFinishedWaiting!, shouldNotBeEqual: NSNumber(value: 1), forSeconds: 2)
 
         expectation(for: testPredicate, evaluatedWith: self, handler: nil)

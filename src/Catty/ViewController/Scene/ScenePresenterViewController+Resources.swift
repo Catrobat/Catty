@@ -29,8 +29,8 @@ import CoreBluetooth
     func checkResourcesAndPushViewControllerTo(navigationController: UINavigationController) {
         self.formulaManager = FormulaManager(sceneSize: Util.screenSize(true))
 
-        navigationController.view.addSubview(self.loadingView)
-        self.showLoadingView()
+        navigationController.view.addSubview(self.loadingView!)
+        self.loadingView?.show()
 
         DispatchQueue.global(qos: .userInitiated).async {
             self.project = Project.init(loadingInfo: Util.lastUsedProjectLoadingInfo())!
@@ -40,14 +40,14 @@ import CoreBluetooth
                 if readyToStart && !(self.navigationController?.topViewController is ScenePresenterViewController) {
                     navigationController.pushViewController(self, animated: true)
                 } else {
-                    self.hideLoadingView()
+                    self.loadingView?.hide()
                 }
             }
         }
     }
 
     @nonobjc private func notifyUserAboutUnavailableResources(navigationController: UINavigationController) -> Bool {
-        let requiredResources = project.getRequiredResources()
+        let requiredResources = project!.getRequiredResources()
 
         // Bluetooth
         var unconnectedBluetoothDevices = [BluetoothDeviceID]()
@@ -68,7 +68,7 @@ import CoreBluetooth
         }
 
         // All other resources
-        let unavailableSensorResources = formulaManager.unavailableResources(for: requiredResources)
+        let unavailableSensorResources = formulaManager!.unavailableResources(for: requiredResources)
         var unavailableResourceNames = [String]()
 
         if (unavailableSensorResources & ResourceType.vibration.rawValue) > 0 {

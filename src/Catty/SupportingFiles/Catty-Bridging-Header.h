@@ -177,7 +177,6 @@
 //-----------------------------------------------------------------------------------------------------------
 #import "CatrobatInformation.h"
 #import "CatrobatProject.h"
-#import "AppDelegate.h"
 #import "TableUtil.h"
 #import "CellTagDefines.h"
 #import "SegueDefines.h"
@@ -204,4 +203,4 @@
 #import "SpriteObject.h"
 #import "CBXMLOpenedNestingBricksStack.h"
 #import "BDKNotifyHUD.h"
-
+#import "CatrobatTableViewController.h"
