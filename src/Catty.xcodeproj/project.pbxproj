@@ -1051,7 +1051,6 @@
 		99E770521D7091BC00BEF91F /* ChangeColorByNBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E770511D7091BC00BEF91F /* ChangeColorByNBrickTests.m */; };
 		99EBDBFF1D5621D3008D6860 /* ChangeColorByNBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 99EBDBFE1D5621D3008D6860 /* ChangeColorByNBrick.m */; };
 		99EBDC021D5623B3008D6860 /* ChangeColorByNBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 99EBDC011D5623B3008D6860 /* ChangeColorByNBrickCell.m */; };
-		A9F511831BE6A07A00B59540 /* SwiftBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F511821BE6A07A00B59540 /* SwiftBridge.swift */; };
 		AA3BD9091BBF4BFB002B34A0 /* WaitBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3BD9081BBF4BFB002B34A0 /* WaitBrickTests.swift */; };
 		AA74EFEC1BC05B5F00D1E954 /* ChangeVariableBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74EF981BC05B5F00D1E954 /* ChangeVariableBrick.m */; };
 		AA74EFED1BC05B5F00D1E954 /* SetVariableBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74EF9A1BC05B5F00D1E954 /* SetVariableBrick.m */; };
@@ -2744,7 +2743,6 @@
 		99EBDC001D5623B3008D6860 /* ChangeColorByNBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeColorByNBrickCell.h; sourceTree = "<group>"; };
 		99EBDC011D5623B3008D6860 /* ChangeColorByNBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeColorByNBrickCell.m; sourceTree = "<group>"; };
 		A988832B1BCA86FF005029E8 /* ObjectTVCTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectTVCTests.swift; sourceTree = "<group>"; };
-		A9F511821BE6A07A00B59540 /* SwiftBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftBridge.swift; sourceTree = "<group>"; };
 		AA3BD9081BBF4BFB002B34A0 /* WaitBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaitBrickTests.swift; sourceTree = "<group>"; };
 		AA74EF971BC05B5F00D1E954 /* ChangeVariableBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeVariableBrick.h; sourceTree = "<group>"; };
 		AA74EF981BC05B5F00D1E954 /* ChangeVariableBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeVariableBrick.m; sourceTree = "<group>"; };
@@ -6026,7 +6024,6 @@
 		92FF2E851A24C7D800093DA7 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				A9F511821BE6A07A00B59540 /* SwiftBridge.swift */,
 				92FF2E861A24C7D800093DA7 /* TableUtil.h */,
 				92FF2E871A24C7D800093DA7 /* TableUtil.m */,
 				E4387389210623230062209F /* TimerWithBlock.swift */,
@@ -8855,7 +8852,6 @@
 				9218B2131CC4AB75007B4C60 /* UndoManager.m in Sources */,
 				AA74F0B31BC05FCE00D1E954 /* SetSizeToBrickCell.m in Sources */,
 				5EBA2E5B21F6C60400DE7617 /* HideBrick+Instruction.swift in Sources */,
-				A9F511831BE6A07A00B59540 /* SwiftBridge.swift in Sources */,
 				92FF2EC21A24C8A700093DA7 /* ProjectLoadingInfo.m in Sources */,
 				AA74F09E1BC05FCE00D1E954 /* ForeverBrickCell.m in Sources */,
 				BAEAB29A214BCE8D000B2E4B /* WhenTouchDownScriptCell.m in Sources */,

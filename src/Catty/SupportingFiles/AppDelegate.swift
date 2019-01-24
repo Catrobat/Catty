@@ -20,8 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import AVFoundation
-import UIKit
+import Siren
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -30,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         initNavigationBar()
 
-        SwiftBridge.sirenBridgeApplicationDidFinishLaunching()
+        Siren.shared.wail()
 
         UITextField.appearance().keyboardAppearance = UIKeyboardAppearance.default
 
@@ -55,8 +54,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let spvc = vc?.topViewController as? ScenePresenterViewController
             spvc?.continuePlayer()
         }
-
-        SwiftBridge.sirenApplicationDidBecomeActive()
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -80,8 +77,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let spvc = vc?.topViewController as? ScenePresenterViewController
             spvc?.continuePlayer()
         }
-
-        SwiftBridge.sirenApplicationWillEnterForeground()
     }
 
     func initNavigationBar() {
