@@ -202,6 +202,7 @@ final class CBScene: SKScene {
             variable.textLabel.fontColor = UIColor.black
             variable.textLabel.fontSize = CGFloat(kSceneLabelFontSize)
             variable.textLabel.isHidden = true
+            variable.textLabel.horizontalAlignmentMode = .left
             addChild(variable.textLabel)
         }
 

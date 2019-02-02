@@ -32,6 +32,7 @@ final class ShowTextBrickTests: XCTestCase {
     var script: Script!
     var scheduler: CBScheduler!
     var context: CBScriptContextProtocol!
+    var varContainer: VariablesContainer!
 
     override func setUp() {
         project = Project()
@@ -46,6 +47,9 @@ final class ShowTextBrickTests: XCTestCase {
         script = Script()
         script.object = spriteObject
 
+        varContainer = VariablesContainer()
+        spriteObject.project.variables = varContainer
+
         let logger = CBLogger(name: "Logger")
         let broadcastHandler = CBBroadcastHandler(logger: logger)
         let formulaInterpreter = FormulaManager(sceneSize: Util.screenSize(true))
@@ -54,16 +58,41 @@ final class ShowTextBrickTests: XCTestCase {
     }
 
     func testShowTextBrickUserVariablesNil() {
-        spriteNode.position = CGPoint(x: 0, y: 0)
-
-        let varContainer = VariablesContainer()
-        spriteObject.project.variables = varContainer
-
         let brick = ShowTextBrick()
         brick.script = script
         brick.xFormula = Formula(integer: 220)
         brick.yFormula = Formula(integer: 330)
 
+        executeInstruction(for: brick)
+
+        XCTAssertTrue(true); // The purpose of this test is to show that the program does not crash
+        // when no UserVariable is selected in the IDE and the brick is executed
+    }
+
+    func testShowTextBrick() {
+        let pos = CGPoint(x: -10, y: 20)
+        let sceneSize = CGSize(width: 200, height: 300)
+        let expectedPos = CGPoint(x: sceneSize.width / 2 + pos.x, y: sceneSize.height / 2 + pos.y)
+
+        let userVariable = UserVariable()
+        userVariable.textLabel = SKLabelNode()
+
+        let scene = SKScene(size: sceneSize)
+        scene.addChild(userVariable.textLabel)
+
+        let brick = ShowTextBrick()
+        brick.script = script
+        brick.xFormula = Formula(float: Float(pos.x))
+        brick.yFormula = Formula(float: Float(pos.y))
+        brick.userVariable = userVariable
+
+        executeInstruction(for: brick)
+
+        XCTAssertEqual(expectedPos.x, userVariable.textLabel.position.x)
+        XCTAssertEqual(expectedPos.y, userVariable.textLabel.position.y)
+    }
+
+    private func executeInstruction(for brick: CBInstructionProtocol) {
         let instruction = brick.instruction()
 
         switch instruction {
@@ -72,8 +101,5 @@ final class ShowTextBrickTests: XCTestCase {
         default:
             XCTFail("Fatal Error")
         }
-
-        XCTAssertTrue(true); // The purpose of this test is to show that the program does not crash
-        // when no UserVariable is selected in the IDE and the brick is executed
     }
 }

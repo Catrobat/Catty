@@ -120,4 +120,24 @@
     XCTAssertTrue(CGPointEqualToPoint(convertedTopRight, pocketCodeTopRight), @"The Top Right is not correctly calculated");
 }
 
+- (void)testVariableLabel
+{
+    Project *project = [[ProjectMock alloc] initWithWidth:self.screenSize.width andHeight: self.screenSize.height];
+    CBScene *scene = [[[SceneBuilder alloc] initWithProject:project] build];
+    
+    UserVariable *userVariable = [[UserVariable alloc] init];
+    [project.variables.programVariableList addObject:userVariable];
+    
+    XCTAssertNil(userVariable.textLabel);
+    
+    bool isStarted = [scene startProject];
+    
+    XCTAssertTrue(isStarted);
+    XCTAssertNotNil(userVariable.textLabel);
+    XCTAssertTrue(userVariable.textLabel.isHidden);
+    XCTAssertEqual(SKLabelHorizontalAlignmentModeLeft, userVariable.textLabel.horizontalAlignmentMode);
+    XCTAssertEqual(kSceneLabelFontSize, userVariable.textLabel.fontSize);
+    XCTAssertEqual(0, [userVariable.textLabel.text length]);
+}
+
 @end
