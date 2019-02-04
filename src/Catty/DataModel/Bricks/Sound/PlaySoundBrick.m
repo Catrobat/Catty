@@ -36,8 +36,8 @@
 {
     if (! context) NSError(@"%@ must not be nil!", [CBMutableCopyContext class]);
     PlaySoundBrick *brick = [[self class] new];
-    brick.sound = self.sound;
-    [context updateReference:self WithReference:brick];
+    
+    brick.sound = [context updatedReferenceForReference: self.sound];
     
     return brick;
 }
