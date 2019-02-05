@@ -181,7 +181,6 @@
 #import "TableUtil.h"
 #import "CellTagDefines.h"
 #import "SegueDefines.h"
-#import "ProjectDetailStoreViewController.h"
 #import "DarkBlueGradientFeaturedCell.h"
 #import "CBXMLParser.h"
 #import "Parser.h"

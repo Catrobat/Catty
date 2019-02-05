@@ -52,3 +52,9 @@ let kTestUploadUrl = kTestUrl.appending("api/upload")
 
 let kDownloadUrl = kBaseUrl.appending("download")
 let kForumURL = kBaseUrl.appending("help")
+
+//*************************************************************************************
+//*********************      ProjectDetailStoreViewController       ******************************
+//*************************************************************************************
+
+let kDetailUrl = kBaseUrl.appending("program/")
