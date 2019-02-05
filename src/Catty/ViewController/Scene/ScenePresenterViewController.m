@@ -278,9 +278,6 @@
     
     [[BluetoothService sharedInstance] setScenePresenter:self];
     [[CameraPreviewHandler shared] setCamView:self.view];
-    
-    NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
-    [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
 
     [self.skView presentScene:self.scene];
     if (![self.scene startProject]) {
