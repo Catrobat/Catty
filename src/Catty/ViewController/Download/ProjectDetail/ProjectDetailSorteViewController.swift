@@ -23,12 +23,37 @@
 import UIKit
 import WebKit
 
-class ProjectDetailStoreViewController: UIViewController, WKNavigationDelegate {
+class ProjectDetailStoreViewController: UIViewController, WKNavigationDelegate, WKScriptMessageHandler {
 
+    // MARK: - Definitions for the connection
+    let messageKey: String = "catty"
+
+    // MARK: - Properties
     var webView: WKWebView!
     var project: StoreProject?
     var loadingView: LoadingView?
 
+    // MARK: - Initializers
+    func setupWebView() {
+        let configuration = WKWebViewConfiguration()
+        let controller = WKUserContentController()
+
+        controller.add(self, name: messageKey)
+        configuration.userContentController = controller
+
+        let webView = WKWebView(frame: self.view.frame, configuration: configuration)
+
+//        guard let projectId = project?.projectId else { return }
+//        guard let url = URL(string: kDetailUrl + String(projectId)) else { return }
+        guard let url = Bundle.main.url(forResource: "dummy", withExtension: "html") else { return }
+        let request = URLRequest(url: url)
+
+        self.view = webView
+        webView.navigationDelegate = self
+        webView.load(request)
+    }
+
+    // MARK: - Life Cycle
     override func viewWillAppear(_ animated: Bool) {
         self.showLoadingView()
     }
@@ -36,16 +61,7 @@ class ProjectDetailStoreViewController: UIViewController, WKNavigationDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = kLocalizedDetails
-
-        guard let projectId = project?.projectId else { return }
-        guard let url = URL(string: kDetailUrl + String(projectId)) else { return }
-        let request = URLRequest(url: url)
-
-        webView = WKWebView(frame: self.view.frame)
-        webView.navigationDelegate = self
-        webView.load(request)
-        self.view.addSubview(webView)
-        self.view.sendSubviewToBack(webView)
+        setupWebView()
     }
 
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
@@ -56,6 +72,13 @@ class ProjectDetailStoreViewController: UIViewController, WKNavigationDelegate {
         self.hideLoadingView()
     }
 
+    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+        guard let projectName = project?.projectName else { return }
+        guard let projectId = project?.projectId else { return }
+        print("\(message.body): \(projectName) - \(projectId)")
+    }
+
+    // MARK: - Loading View
     func showLoadingView() {
         if loadingView == nil {
             loadingView = LoadingView()
