@@ -138,4 +138,23 @@ final class SpriteObjectMutableCopyTests: XMLAbstractTest {
         }
     }
 
+    func testMutableCopyAndUpdateReference() {
+        let brickA = SetLookBrick()
+        brickA.look = Look(name: "brickA", andPath: "look")
+
+        let brickB = SetLookBrick()
+        brickB.look = Look(name: "brickB", andPath: "look")
+
+        let context = CBMutableCopyContext()
+        context.updateReference(brickA, withReference: brickB)
+        XCTAssertEqual(1, context.updatedReferences.count)
+
+        let brickCopy = brickA.mutableCopy(with: context) as! SetLookBrick
+        
+        // something isn't quite right here
+        XCTAssertNotEqual(brickA.look.name, brickCopy.look.name)
+        XCTAssertEqual(brickB.look.name, brickCopy.look.name)
+        XCTAssertFalse(brickA === brickCopy)
+        XCTAssertTrue(brickB === brickCopy)
+    }
 }
