@@ -130,9 +130,8 @@
     
     XCTAssertNil(userVariable.textLabel);
     
-    bool isStarted = [scene startProject];
+    XCTAssertTrue([scene startProject]);
     
-    XCTAssertTrue(isStarted);
     XCTAssertNotNil(userVariable.textLabel);
     XCTAssertTrue(userVariable.textLabel.isHidden);
     XCTAssertEqual(SKLabelHorizontalAlignmentModeLeft, userVariable.textLabel.horizontalAlignmentMode);
