@@ -27,7 +27,8 @@ class ScenePresenterVCTests: XCTestCase, UITestProtocol {
     override func setUp() {
         super.setUp()
         
-        continueAfterFailure = false
+        XCUIDevice.shared.orientation = .portrait
+        continueAfterFailure = true
         XCUIApplication().launch()
         
         dismissWelcomeScreenIfShown()
@@ -51,6 +52,7 @@ class ScenePresenterVCTests: XCTestCase, UITestProtocol {
         //Start scence and check the orientation
         app.toolbars.buttons["Play"].tap()
         let currentOrientation = UIApplication.shared.statusBarOrientation
-        XCTAssertTrue(currentOrientation == .landscapeRight)
+        XCTAssertTrue(currentOrientation == .portrait)
+        XCUIDevice.shared.orientation = .portrait
     }
 }
