@@ -28,8 +28,6 @@
 		2DCB4934212EA9BF005E8E3D /* StoreProjectDownloader.fetchMostRecentProjects.fail.parse.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DCB4933212EA9BE005E8E3D /* StoreProjectDownloader.fetchMostRecentProjects.fail.parse.json */; };
 		2DCB4936212EAAEF005E8E3D /* StoreProjectDownloader.downloadData.success.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DCB4935212EAAEE005E8E3D /* StoreProjectDownloader.downloadData.success.json */; };
 		2DCB4938212EAB36005E8E3D /* StoreProjectDownloader.downloadData.fail.request.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DCB4937212EAB35005E8E3D /* StoreProjectDownloader.downloadData.fail.request.json */; };
-		2E74F8512209809200038887 /* ProjectDetailSorteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E74F8502209809200038887 /* ProjectDetailSorteViewController.swift */; };
-		2E84E565220AD35C003EEB91 /* dummy.html in Resources */ = {isa = PBXBuildFile; fileRef = 2E84E562220AD35C003EEB91 /* dummy.html */; };
 		4C03A4BE2133FD05007BFFD2 /* FormulaManager+Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C03A4BD2133FD05007BFFD2 /* FormulaManager+Resources.swift */; };
 		4C03A4C22133FDE7007BFFD2 /* FormulaManager+Editor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C03A4C12133FDE7007BFFD2 /* FormulaManager+Editor.swift */; };
 		4C03A4C42133FF4B007BFFD2 /* FormulaManager+Interpreter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C03A4C32133FF4B007BFFD2 /* FormulaManager+Interpreter.swift */; };
@@ -1341,8 +1339,6 @@
 		2DCB4933212EA9BE005E8E3D /* StoreProjectDownloader.fetchMostRecentProjects.fail.parse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectDownloader.fetchMostRecentProjects.fail.parse.json; sourceTree = "<group>"; };
 		2DCB4935212EAAEE005E8E3D /* StoreProjectDownloader.downloadData.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectDownloader.downloadData.success.json; sourceTree = "<group>"; };
 		2DCB4937212EAB35005E8E3D /* StoreProjectDownloader.downloadData.fail.request.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectDownloader.downloadData.fail.request.json; sourceTree = "<group>"; };
-		2E74F8502209809200038887 /* ProjectDetailSorteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDetailSorteViewController.swift; sourceTree = "<group>"; };
-		2E84E562220AD35C003EEB91 /* dummy.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = dummy.html; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* App-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "App-Prefix.pch"; sourceTree = "<group>"; };
 		4C03A4BD2133FD05007BFFD2 /* FormulaManager+Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FormulaManager+Resources.swift"; sourceTree = "<group>"; };
 		4C03A4C12133FDE7007BFFD2 /* FormulaManager+Editor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FormulaManager+Editor.swift"; sourceTree = "<group>"; };
@@ -3201,15 +3197,6 @@
 				E405EABA212D4E420074ADDB /* SearchStoreCell.swift */,
 			);
 			path = SearchStore;
-			sourceTree = "<group>";
-		};
-		2E74F8542209809900038887 /* ProjectDetail */ = {
-			isa = PBXGroup;
-			children = (
-				2E84E562220AD35C003EEB91 /* dummy.html */,
-				2E74F8502209809200038887 /* ProjectDetailSorteViewController.swift */,
-			);
-			path = ProjectDetail;
 			sourceTree = "<group>";
 		};
 		4C0DC6651C3D5CE5006D6691 /* CatrobatLanguage0.97 */ = {
@@ -6319,7 +6306,6 @@
 				E4B1BF4D20F719DB00800555 /* FeaturedProjects */,
 				2DA8790F212BD67700FE0585 /* ChartProjects */,
 				2DA87910212BD6C000FE0585 /* SearchStore */,
-				2E74F8542209809900038887 /* ProjectDetail */,
 				92FF31331A24DEB300093DA7 /* DownloadTabBarController.h */,
 				92FF31341A24DEB300093DA7 /* DownloadTabBarController.m */,
 			);
@@ -8301,7 +8287,6 @@
 				4CDE4CE6203DBBF500B43034 /* GDataXMLNode.license in Resources */,
 				92FF2E951A24C7D800093DA7 /* LoggerProperties.plist in Resources */,
 				4C33F212214BC0390014044C /* My first project.catrobat in Resources */,
-				2E84E565220AD35C003EEB91 /* dummy.html in Resources */,
 				4CDE4CFA203DBBF500B43034 /* MXSegmentedPager.license in Resources */,
 				4C33F210214BC0200014044C /* Default-568h@2x.png in Resources */,
 				9218B1FD1CC4AB75007B4C60 /* nko_brightness_guide@2x.png in Resources */,
@@ -8901,7 +8886,6 @@
 				AA6CC28B1BB4AB9A0007A621 /* CBScriptContext.swift in Sources */,
 				A9F511831BE6A07A00B59540 /* SwiftBridge.swift in Sources */,
 				4C0F9F28204ADBE000E71B2D /* RepeatUntilBrick.m in Sources */,
-				2E74F8512209809200038887 /* ProjectDetailSorteViewController.swift in Sources */,
 				92FF2EC21A24C8A700093DA7 /* ProjectLoadingInfo.m in Sources */,
 				4CF072A020D670C400F93AB5 /* TouchSensor.swift in Sources */,
 				AA74EE2C1BC0541E00D1E954 /* IfOnEdgeBounceBrick+Instruction.swift in Sources */,

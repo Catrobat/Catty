@@ -53,10 +53,10 @@ class FeaturedProjectsStoreTableViewController: UITableViewController, SelectedF
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == kSegueToProjectDetail {
-            if let projectDetailStoreViewController = segue.destination as? ProjectDetailStoreViewController,
+        if segue.identifier == kSegueToHelp {
+            if let helpWebViewController = segue.destination as? HelpWebViewController,
                 let catrobatProject = projectForSegue {
-                projectDetailStoreViewController.project = catrobatProject
+                helpWebViewController.project = catrobatProject
             }
         }
     }
@@ -132,7 +132,7 @@ extension FeaturedProjectsStoreTableViewController: FeaturedProjectsCellProtocol
         if let project = cell.project {
             self.showLoadingView()
             projectForSegue = project
-            performSegue(withIdentifier: kSegueToProjectDetail, sender: self)
+            performSegue(withIdentifier: kSegueToHelp, sender: self)
         }
     }
 }
