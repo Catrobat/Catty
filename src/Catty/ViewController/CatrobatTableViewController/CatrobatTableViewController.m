@@ -137,7 +137,7 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
                   kLocalizedUpload, nil];
 
     self.imageNames = [[NSArray alloc] initWithObjects:kMenuImageNameContinue, kMenuImageNameNew, kMenuImageNameProjects, kMenuImageNameHelp, kMenuImageNameExplore, kMenuImageNameUpload, nil];
-    self.identifiers = [[NSMutableArray alloc] initWithObjects:kSegueToContinue, kSegueToNewProject, kSegueToProjects, kSegueToHelp, kSegueToExplore, kSegueToUpload, nil];
+    self.identifiers = [[NSMutableArray alloc] initWithObjects:kSegueToContinue, kSegueToNewProject, kSegueToProjects, kSegueToAppInBroswer, kSegueToExplore, kSegueToUpload, nil];
 }
 
 - (void)initNavigationBar
@@ -366,7 +366,7 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
             projectTableViewController.project = self.defaultProject;
             self.defaultProject = nil;
         }
-    } else if ([segue.identifier isEqualToString:kSegueToHelp]) {
+    } else if ([segue.identifier isEqualToString:kSegueToAppInBroswer]) {
         if ([segue.destinationViewController isKindOfClass:[InAppBrowserViewController class]]) {
             InAppBrowserViewController *inAppBrowserViewController = (InAppBrowserViewController*)segue.destinationViewController;
             inAppBrowserViewController.navigationUrl = kForumURL;

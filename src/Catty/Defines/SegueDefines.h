@@ -28,6 +28,7 @@
 #define kSegueToUpload @"segueToUpload"
 #define kSegueToLogin @"segueToLogin"
 #define kSegueToAddNewProject @"segueToAddProject"
+#define kSegueToAppInBroswer @"segueToAppInBrowser"
 
 #define kSegueToProjectDetail @"segueToProjectDetail"
 #define kSegueToScene @"segueToScene"

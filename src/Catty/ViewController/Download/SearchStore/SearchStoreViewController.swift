@@ -61,7 +61,7 @@ class SearchStoreViewController: UIViewController, SelectedSearchStoreDataSource
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == kSegueToHelp {
+        if segue.identifier == kSegueToAppInBroswer {
             if let inAppBrowserViewController = segue.destination as? InAppBrowserViewController,
                 let catrobatProject = projectForSegue {
                 inAppBrowserViewController.project = catrobatProject
@@ -179,7 +179,7 @@ extension SearchStoreViewController: SearchStoreCellProtocol {
         if let project = cell.project {
             self.showLoadingView()
             projectForSegue = project
-            performSegue(withIdentifier: kSegueToHelp, sender: self)
+            performSegue(withIdentifier: kSegueToAppInBroswer, sender: self)
         }
     }
 }
