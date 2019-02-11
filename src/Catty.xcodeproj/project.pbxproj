@@ -647,7 +647,7 @@
 		5E21DA6F21A5255600017D2C /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E21DA6C21A5255500017D2C /* UploadViewController.swift */; };
 		5E21DA7121A5289F00017D2C /* Data+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E21DA7021A5289F00017D2C /* Data+Extensions.swift */; };
 		5E43D71821928053006FDF2A /* SwellAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E43D71721928052006FDF2A /* SwellAll.swift */; };
-		5E7B5B0D21EC0FCF002E4B57 /* HelpWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7B5B0A21EC0FCF002E4B57 /* HelpWebViewController.swift */; };
+		5E7B5B0D21EC0FCF002E4B57 /* InAppBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7B5B0A21EC0FCF002E4B57 /* InAppBrowserViewController.swift */; };
 		5EA1089421B8FBD200B837B9 /* AVAudioSession+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA1089321B8FBD200B837B9 /* AVAudioSession+Extensions.swift */; };
 		5EDBA043219549AE000EFFEF /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EDBA042219549AE000EFFEF /* LoadingView.swift */; };
 		5EF590BA2192D81F00C19F12 /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF590B92192D81F00C19F12 /* Double+Extensions.swift */; };
@@ -2045,7 +2045,7 @@
 		5E21DA6C21A5255500017D2C /* UploadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadViewController.swift; sourceTree = "<group>"; };
 		5E21DA7021A5289F00017D2C /* Data+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extensions.swift"; sourceTree = "<group>"; };
 		5E43D71721928052006FDF2A /* SwellAll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwellAll.swift; sourceTree = "<group>"; };
-		5E7B5B0A21EC0FCF002E4B57 /* HelpWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpWebViewController.swift; sourceTree = "<group>"; };
+		5E7B5B0A21EC0FCF002E4B57 /* InAppBrowserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InAppBrowserViewController.swift; sourceTree = "<group>"; };
 		5EA1089321B8FBD200B837B9 /* AVAudioSession+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVAudioSession+Extensions.swift"; sourceTree = "<group>"; };
 		5EDBA042219549AE000EFFEF /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		5EF590B92192D81F00C19F12 /* Double+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extensions.swift"; sourceTree = "<group>"; };
@@ -6207,7 +6207,7 @@
 				92FF31121A24DEB300093DA7 /* CatrobatTableViewController */,
 				92FF31171A24DEB300093DA7 /* Continue&New */,
 				92FF31321A24DEB300093DA7 /* Download */,
-				92FF313D1A24DEB300093DA7 /* Help */,
+				92FF313D1A24DEB300093DA7 /* InAppBrowser */,
 				5983198F1FBB810400639BBF /* Introduction */,
 				5947F6D3200CF3A20079DBCE /* MediaLibrary */,
 				92FF31401A24DEB300093DA7 /* Projects */,
@@ -6312,12 +6312,12 @@
 			path = Download;
 			sourceTree = "<group>";
 		};
-		92FF313D1A24DEB300093DA7 /* Help */ = {
+		92FF313D1A24DEB300093DA7 /* InAppBrowser */ = {
 			isa = PBXGroup;
 			children = (
-				5E7B5B0A21EC0FCF002E4B57 /* HelpWebViewController.swift */,
+				5E7B5B0A21EC0FCF002E4B57 /* InAppBrowserViewController.swift */,
 			);
-			path = Help;
+			path = InAppBrowser;
 			sourceTree = "<group>";
 		};
 		92FF31401A24DEB300093DA7 /* Projects */ = {
@@ -9389,7 +9389,7 @@
 				4C724E591B4D3E8C00E27479 /* Look+CBXMLHandler.m in Sources */,
 				929CC0FA1BC3A2420027DEC0 /* PhiroPlayToneBrick+Instruction.swift in Sources */,
 				99B2C3751D884F2D00736769 /* FlashBrick+Instruction.swift in Sources */,
-				5E7B5B0D21EC0FCF002E4B57 /* HelpWebViewController.swift in Sources */,
+				5E7B5B0D21EC0FCF002E4B57 /* InAppBrowserViewController.swift in Sources */,
 				9218B2111CC4AB75007B4C60 /* PointerTool.m in Sources */,
 				AA74F0CE1BC05FCE00D1E954 /* WhenScriptCell.m in Sources */,
 				5EA1089421B8FBD200B837B9 /* AVAudioSession+Extensions.swift in Sources */,

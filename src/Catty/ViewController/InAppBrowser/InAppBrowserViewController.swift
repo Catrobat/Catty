@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class HelpWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDelegate, FileManagerDelegate {
+class InAppBrowserViewController: UIViewController, UIWebViewDelegate, UIScrollViewDelegate, FileManagerDelegate {
     private var errorLoadingURL = false
     private var doneLoadingURL = false
     private var controlsHidden = false
@@ -30,9 +30,10 @@ class HelpWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
     private var url: URL?
     private var touchHelperView: UIView?
     private var loadingView: LoadingView?
+    
     var project: StoreProject?
     @objc var navigationUrl = ""
-    @objc var setTitle = false
+    @objc var setTitleAndToolbar = false
 
     @IBOutlet private weak var urlTitleLabel: UILabel!
     @IBOutlet private weak var progressView: UIProgressView!
@@ -55,7 +56,7 @@ class HelpWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if setTitle == true {
+        if setTitleAndToolbar == true {
             title = kLocalizedHelp
             setupToolBar()
         }
@@ -63,10 +64,10 @@ class HelpWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
         
         refreshButton = UIBarButtonItem(barButtonSystemItem: .refresh,
                                         target: self,
-                                        action: #selector(HelpWebViewController.refresh(_:)))
+                                        action: #selector(InAppBrowserViewController.refresh(_:)))
         stopButton = UIBarButtonItem(barButtonSystemItem: .stop,
                                      target: self,
-                                     action: #selector(HelpWebViewController.stop(_:)))
+                                     action: #selector(InAppBrowserViewController.stop(_:)))
 
         let swipeLeftRecognizer = UISwipeGestureRecognizer(target: self,
                                                            action: #selector(handleSwipe(recognizer:)))
@@ -277,17 +278,17 @@ class HelpWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
         let forward = UIBarButtonItem(image: UIImage(named: "webview_arrow_right"),
                                       style: .plain,
                                       target: self,
-                                      action: #selector(HelpWebViewController.goForward(_:)))
+                                      action: #selector(InAppBrowserViewController.goForward(_:)))
         forward.isEnabled = webView.canGoForward
 
         let back = UIBarButtonItem(image: UIImage(named: "webview_arrow_left"),
                                    style: .plain,
                                    target: self,
-                                   action: #selector(HelpWebViewController.goBack(_:)))
+                                   action: #selector(InAppBrowserViewController.goBack(_:)))
         back.isEnabled = webView.canGoBack
         let share = UIBarButtonItem(barButtonSystemItem: .action,
                                     target: self,
-                                    action: #selector(HelpWebViewController.openInSafari))
+                                    action: #selector(InAppBrowserViewController.openInSafari))
         let flex = UIBarButtonItem(barButtonSystemItem: .flexibleSpace,
                                    target: self,
                                    action: nil)
@@ -299,7 +300,7 @@ class HelpWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
         urlTitleLabel.text = "\(url?.host ?? "")\(url?.relativePath ?? "")"
         navigationItem.rightBarButtonItems = [refreshOrStopButton] as? [UIBarButtonItem]
 
-        if setTitle == true {
+        if setTitleAndToolbar == true {
             setupToolBar()
         }
     }

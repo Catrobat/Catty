@@ -367,10 +367,10 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
             self.defaultProject = nil;
         }
     } else if ([segue.identifier isEqualToString:kSegueToHelp]) {
-        if ([segue.destinationViewController isKindOfClass:[HelpWebViewController class]]) {
-            HelpWebViewController *helpWebViewController = (HelpWebViewController*)segue.destinationViewController;
-            helpWebViewController.navigationUrl = kForumURL;
-            helpWebViewController.setTitle = true;
+        if ([segue.destinationViewController isKindOfClass:[InAppBrowserViewController class]]) {
+            InAppBrowserViewController *inAppBrowserViewController = (InAppBrowserViewController*)segue.destinationViewController;
+            inAppBrowserViewController.navigationUrl = kForumURL;
+            inAppBrowserViewController.setTitleAndToolbar = true;
             self.defaultProject = nil;
         }
     }

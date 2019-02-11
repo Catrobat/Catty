@@ -54,11 +54,11 @@ class FeaturedProjectsStoreTableViewController: UITableViewController, SelectedF
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == kSegueToHelp {
-            if let helpWebViewController = segue.destination as? HelpWebViewController,
+            if let inAppBrowserViewController = segue.destination as? InAppBrowserViewController,
                 let catrobatProject = projectForSegue {
-                helpWebViewController.project = catrobatProject
-                helpWebViewController.navigationUrl = kBaseUrl + "program/\(String(describing: helpWebViewController.project!.projectId))"
-                helpWebViewController.setTitle = false
+                inAppBrowserViewController.project = catrobatProject
+                inAppBrowserViewController.navigationUrl = kBaseUrl + "program/\(String(describing: inAppBrowserViewController.project!.projectId))"
+                inAppBrowserViewController.setTitleAndToolbar = false
             }
         }
     }

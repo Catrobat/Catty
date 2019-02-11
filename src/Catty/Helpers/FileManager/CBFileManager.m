@@ -422,7 +422,7 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.delegate downloadFinishedWithURL:url andProjectLoadingInfo:info];
             });
-        } else if ([self.delegate respondsToSelector:@selector(downloadFinishedWithURL:andProjectLoadingInfo:)] && [self.delegate isKindOfClass:[HelpWebViewController class]]){
+        } else if ([self.delegate respondsToSelector:@selector(downloadFinishedWithURL:andProjectLoadingInfo:)] && [self.delegate isKindOfClass:[InAppBrowserViewController class]]){
             [self.delegate downloadFinishedWithURL:url andProjectLoadingInfo:info];
         }
     }
@@ -571,7 +571,7 @@
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self.delegate updateProgress:progress];
                 });
-            }else if ([self.delegate respondsToSelector:@selector(updateProgress:)] && [self.delegate isKindOfClass:[HelpWebViewController class]]){
+            } else if ([self.delegate respondsToSelector:@selector(updateProgress:)] && [self.delegate isKindOfClass:[InAppBrowserViewController class]]){
                 [self.delegate updateProgress:progress];
             }
 
