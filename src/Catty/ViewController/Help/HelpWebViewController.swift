@@ -32,6 +32,7 @@ class HelpWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
     private var loadingView: LoadingView?
     var project: StoreProject?
     @objc var navigationUrl = ""
+    @objc var setTitle = false
 
     @IBOutlet private weak var urlTitleLabel: UILabel!
     @IBOutlet private weak var progressView: UIProgressView!
@@ -53,10 +54,13 @@ class HelpWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = kLocalizedHelp
-
-        setupToolBar()
-
+        
+        if setTitle == true {
+            title = kLocalizedHelp
+            setupToolBar()
+        }
+        
+        
         refreshButton = UIBarButtonItem(barButtonSystemItem: .refresh,
                                         target: self,
                                         action: #selector(HelpWebViewController.refresh(_:)))
@@ -295,7 +299,9 @@ class HelpWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
         urlTitleLabel.text = "\(url?.host ?? "")\(url?.relativePath ?? "")"
         navigationItem.rightBarButtonItems = [refreshOrStopButton] as? [UIBarButtonItem]
 
-        setupToolBar()
+        if setTitle == true {
+            setupToolBar()
+        }
     }
 
     private func setProgress(_ progress: CGFloat) {

@@ -66,6 +66,7 @@ class SearchStoreViewController: UIViewController, SelectedSearchStoreDataSource
                 let catrobatProject = projectForSegue {
                 helpWebViewController.project = catrobatProject
                 helpWebViewController.navigationUrl = kBaseUrl + "program/\(String(describing: helpWebViewController.project!.projectId))"
+                helpWebViewController.setTitle = false
             }
         }
     }

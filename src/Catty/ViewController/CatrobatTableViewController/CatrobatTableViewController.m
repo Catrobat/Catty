@@ -370,6 +370,7 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
         if ([segue.destinationViewController isKindOfClass:[HelpWebViewController class]]) {
             HelpWebViewController *helpWebViewController = (HelpWebViewController*)segue.destinationViewController;
             helpWebViewController.navigationUrl = kForumURL;
+            helpWebViewController.setTitle = true;
             self.defaultProject = nil;
         }
     }
