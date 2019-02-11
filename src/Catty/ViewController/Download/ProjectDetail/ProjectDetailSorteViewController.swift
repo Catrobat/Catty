@@ -23,8 +23,8 @@
 import UIKit
 import WebKit
 
-class ProjectDetailStoreViewController: UIViewController, WKNavigationDelegate, WKScriptMessageHandler {
-
+class ProjectDetailStoreViewController: UIViewController, WKNavigationDelegate {
+  
     // MARK: - Definitions for the connection
     let messageKey: String = "catty"
 
@@ -35,22 +35,16 @@ class ProjectDetailStoreViewController: UIViewController, WKNavigationDelegate, 
 
     // MARK: - Initializers
     func setupWebView() {
-        let configuration = WKWebViewConfiguration()
-        let controller = WKUserContentController()
-
-        controller.add(self, name: messageKey)
-        configuration.userContentController = controller
-
-        let webView = WKWebView(frame: self.view.frame, configuration: configuration)
-
-//        guard let projectId = project?.projectId else { return }
-//        guard let url = URL(string: kDetailUrl + String(projectId)) else { return }
-        guard let url = Bundle.main.url(forResource: "dummy", withExtension: "html") else { return }
+        guard let projectId = project?.projectId else { return }
+        guard let url = URL(string: kDetailUrl + String(projectId)) else { return }
         let request = URLRequest(url: url)
 
-        self.view = webView
+        webView = WKWebView(frame: self.view.frame)
         webView.navigationDelegate = self
         webView.load(request)
+        self.view.addSubview(webView)
+        self.view.sendSubviewToBack(webView)
+        
     }
 
     // MARK: - Life Cycle
@@ -70,6 +64,20 @@ class ProjectDetailStoreViewController: UIViewController, WKNavigationDelegate, 
 
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
         self.hideLoadingView()
+    }
+    
+    
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: (WKNavigationActionPolicy) -> Void) {
+        if let url = navigationAction.request.url {
+            //compute url
+            if url.absoluteString == "http://someaction/" {
+                //fetch data and download program
+                print("Action trigure")
+            } else {
+                print("No action trigure")
+            }
+        }
+        decisionHandler(.allow)
     }
 
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
