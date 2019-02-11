@@ -1362,6 +1362,7 @@
                     <connections>
                         <outlet property="SearchStoreTableView" destination="wOw-Ve-PBF" id="UpX-nm-JZa"/>
                         <outlet property="searchBar" destination="2Ht-uC-rkW" id="PZ9-ZW-OxV"/>
+                        <segue destination="IZh-b2-DYW" kind="show" identifier="segueToHelp" id="VYA-dM-Eup"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kRY-CN-4Pq" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1564,11 +1565,12 @@
                     <connections>
                         <outlet property="ChartProjectsSegmentedControl" destination="jxg-mt-dvB" id="bR1-Hf-UdL"/>
                         <outlet property="ChartProjectsTableView" destination="fJr-Rh-VKf" id="9mV-oM-UFt"/>
+                        <segue destination="IZh-b2-DYW" kind="show" identifier="segueToHelp" id="rMo-c9-cnM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Ln-bV-RG1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3450" y="-2255"/>
+            <point key="canvasLocation" x="-3378" y="-2344"/>
         </scene>
         <!--SoundRecorder-->
         <scene sceneID="glL-eY-bAy">
@@ -2270,7 +2272,7 @@
         <image name="top_charts" width="51" height="46"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="BCd-eT-nt5"/>
+        <segue reference="VYA-dM-Eup"/>
         <segue reference="1kj-7D-Va7"/>
     </inferredMetricsTieBreakers>
 </document>
