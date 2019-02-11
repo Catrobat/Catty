@@ -88,8 +88,7 @@
 {
     if (! context) NSError(@"%@ must not be nil!", [CBMutableCopyContext class]);
     SetLookBrick *brick = [[self class] new];
-    brick.look = self.look;
-    [context updateReference:self WithReference:brick];
+    brick.look = [context updatedReferenceForReference: self.look];
     
     return brick;
 }
