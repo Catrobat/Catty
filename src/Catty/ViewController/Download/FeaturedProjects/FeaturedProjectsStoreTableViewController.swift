@@ -57,6 +57,7 @@ class FeaturedProjectsStoreTableViewController: UITableViewController, SelectedF
             if let helpWebViewController = segue.destination as? HelpWebViewController,
                 let catrobatProject = projectForSegue {
                 helpWebViewController.project = catrobatProject
+                helpWebViewController.navigationUrl = kBaseUrl + "program/\(String(describing: helpWebViewController.project!.projectId))"
             }
         }
     }

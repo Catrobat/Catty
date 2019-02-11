@@ -31,6 +31,7 @@ class HelpWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
     private var touchHelperView: UIView?
     private var loadingView: LoadingView?
     var project: StoreProject?
+    @objc var navigationUrl = ""
 
     @IBOutlet private weak var urlTitleLabel: UILabel!
     @IBOutlet private weak var progressView: UIProgressView!
@@ -73,7 +74,7 @@ class HelpWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
         webView.addGestureRecognizer(swipeLeftRecognizer)
         webView.addGestureRecognizer(swipeRightRecognizer)
 
-        url = URL(string: "https://share.catrob.at/pocketcode/ci/download/719?fname=Galaxy+War")
+        url = URL(string: navigationUrl)
         webView.scrollView.delegate = self
         webView.delegate = self
         webView.allowsInlineMediaPlayback = true

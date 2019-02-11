@@ -366,6 +366,12 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
             projectTableViewController.project = self.defaultProject;
             self.defaultProject = nil;
         }
+    } else if ([segue.identifier isEqualToString:kSegueToHelp]) {
+        if ([segue.destinationViewController isKindOfClass:[HelpWebViewController class]]) {
+            HelpWebViewController *helpWebViewController = (HelpWebViewController*)segue.destinationViewController;
+            helpWebViewController.navigationUrl = kForumURL;
+            self.defaultProject = nil;
+        }
     }
 }
 
