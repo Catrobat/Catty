@@ -33,7 +33,7 @@ class InAppBrowserViewController: UIViewController, UIWebViewDelegate, UIScrollV
     
     var project: StoreProject?
     @objc var navigationUrl = ""
-    @objc var setTitleAndToolbar = false
+    @objc var showTitleAndToolbar = false
 
     @IBOutlet private weak var urlTitleLabel: UILabel!
     @IBOutlet private weak var progressView: UIProgressView!
@@ -56,7 +56,7 @@ class InAppBrowserViewController: UIViewController, UIWebViewDelegate, UIScrollV
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if setTitleAndToolbar == true {
+        if showTitleAndToolbar == true {
             title = kLocalizedHelp
             setupToolBar()
         }
@@ -300,7 +300,7 @@ class InAppBrowserViewController: UIViewController, UIWebViewDelegate, UIScrollV
         urlTitleLabel.text = "\(url?.host ?? "")\(url?.relativePath ?? "")"
         navigationItem.rightBarButtonItems = [refreshOrStopButton] as? [UIBarButtonItem]
 
-        if setTitleAndToolbar == true {
+        if showTitleAndToolbar == true {
             setupToolBar()
         }
     }

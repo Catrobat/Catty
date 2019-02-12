@@ -66,7 +66,7 @@ class SearchStoreViewController: UIViewController, SelectedSearchStoreDataSource
                 let catrobatProject = projectForSegue {
                 inAppBrowserViewController.project = catrobatProject
                 inAppBrowserViewController.navigationUrl = kBaseUrl + "program/\(String(describing: inAppBrowserViewController.project!.projectId))"
-                inAppBrowserViewController.setTitleAndToolbar = false
+                inAppBrowserViewController.showTitleAndToolbar = false
             }
         }
     }

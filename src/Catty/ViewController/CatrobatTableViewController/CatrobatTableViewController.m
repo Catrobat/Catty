@@ -370,7 +370,7 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
         if ([segue.destinationViewController isKindOfClass:[InAppBrowserViewController class]]) {
             InAppBrowserViewController *inAppBrowserViewController = (InAppBrowserViewController*)segue.destinationViewController;
             inAppBrowserViewController.navigationUrl = kForumURL;
-            inAppBrowserViewController.setTitleAndToolbar = true;
+            inAppBrowserViewController.showTitleAndToolbar = true;
             self.defaultProject = nil;
         }
     }
