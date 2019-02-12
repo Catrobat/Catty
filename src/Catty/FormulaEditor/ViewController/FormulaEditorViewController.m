@@ -240,6 +240,11 @@ NS_ENUM(NSInteger, ButtonIndex) {
     [self setupButtons];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(formulaTextViewTextDidChangeNotification:) name:UITextViewTextDidChangeNotification object:self.formulaEditorTextView];
+    
+    UITapGestureRecognizer *tapToSelect = [[UITapGestureRecognizer alloc]initWithTarget:self
+                                                                                 action:@selector(tappedToSelectRow:)];
+    tapToSelect.delegate = self;
+    [self.variablePicker addGestureRecognizer:tapToSelect];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -1013,15 +1018,28 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 }
 
-- (IBAction)choseVariableOrList:(UIButton *)sender {
+- (IBAction)tappedToSelectRow:(UITapGestureRecognizer *)tapRecognizer
+{
+    if (tapRecognizer.state == UIGestureRecognizerStateEnded) {
+        CGFloat rowHeight = [self.variablePicker rowSizeForComponent:0].height;
+        CGRect selectedRowFrame = CGRectInset(self.variablePicker.bounds, 0.0, (CGRectGetHeight(self.variablePicker.frame) - rowHeight) / 2.0 );
+        BOOL userTappedOnSelectedRow = (CGRectContainsPoint(selectedRowFrame, [tapRecognizer locationInView:self.variablePicker]));
+        if (userTappedOnSelectedRow) {
+            NSInteger selectedRow = [self.variablePicker selectedRowInComponent:0];
+            [self pickerView:self.variablePicker didSelectRow:selectedRow inComponent:0];
+            [self decideVariableorList];
+        }
+    }
+}
 
+- (void)decideVariableorList {
     NSInteger row = [self.variablePicker selectedRowInComponent:0];
     if (row >= 0) {
         int buttonType = 0;
         VariablePickerData *pickerData;
         if (self.variableSegmentedControl.selectedSegmentIndex == 0 && self.varOrListSegmentedControl.selectedSegmentIndex == 0) {
             if (row < self.variableSourceProject.count) {
-               pickerData = [self.variableSourceProject objectAtIndex:row];
+                pickerData = [self.variableSourceProject objectAtIndex:row];
             }
         } else if (self.variableSegmentedControl.selectedSegmentIndex == 1 && self.varOrListSegmentedControl.selectedSegmentIndex == 0){
             if (row < self.variableSourceObject.count) {
@@ -1039,9 +1057,13 @@ NS_ENUM(NSInteger, ButtonIndex) {
             }
         }
         if (pickerData) {
-             [self handleInputWithTitle:pickerData.userVariable.name AndButtonType:buttonType];
+            [self handleInputWithTitle:pickerData.userVariable.name AndButtonType:buttonType];
         }
     }
+}
+
+- (IBAction)choseVariableOrList:(UIButton *)sender {
+    [self decideVariableorList];
 }
 
 
