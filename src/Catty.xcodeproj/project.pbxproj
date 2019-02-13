@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D227D94220B38E0008A2BC9 /* ScenePresenterVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D227D93220B38E0008A2BC9 /* ScenePresenterVCTests.swift */; };
 		2D6E3F39210A0A9F00FB8139 /* ChartProjectStoreDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6E3F38210A0A9F00FB8139 /* ChartProjectStoreDataSource.swift */; };
 		2D6E3F3B210A0AB700FB8139 /* ChartProjectsStoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6E3F3A210A0AB700FB8139 /* ChartProjectsStoreViewController.swift */; };
 		2D7BE51E21441DE500F78A10 /* StoreProjectDownloader.searchProjects.success.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D7BE51B21441DE500F78A10 /* StoreProjectDownloader.searchProjects.success.json */; };
@@ -1319,6 +1320,7 @@
 
 /* Begin PBXFileReference section */
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		2D227D93220B38E0008A2BC9 /* ScenePresenterVCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScenePresenterVCTests.swift; sourceTree = "<group>"; };
 		2D6E3F38210A0A9F00FB8139 /* ChartProjectStoreDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartProjectStoreDataSource.swift; sourceTree = "<group>"; };
 		2D6E3F3A210A0AB700FB8139 /* ChartProjectsStoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartProjectsStoreViewController.swift; sourceTree = "<group>"; };
 		2D7BE51B21441DE500F78A10 /* StoreProjectDownloader.searchProjects.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectDownloader.searchProjects.success.json; sourceTree = "<group>"; };
@@ -7132,6 +7134,7 @@
 				4C1EDCA9218A080200B60464 /* ScriptCollectionVCTests.swift */,
 				4CF8747221C8E7AB00C8143F /* SoundsTVCTests.swift */,
 				BA6805AD21303B48004F004F /* VariablesTests.swift */,
+				2D227D93220B38E0008A2BC9 /* ScenePresenterVCTests.swift */,
 			);
 			path = "Catty UITests";
 			sourceTree = "<group>";
@@ -8488,6 +8491,7 @@
 				4C7F50FC21E62B0E0010AC36 /* ProjectsTVCTests.swift in Sources */,
 				4CA98E8821C8F1D400B2D9CA /* LooksTVCTests.swift in Sources */,
 				BA6805AE21303B48004F004F /* VariablesTests.swift in Sources */,
+				2D227D94220B38E0008A2BC9 /* ScenePresenterVCTests.swift in Sources */,
 				4CF8747521C8E7AB00C8143F /* SoundsTVCTests.swift in Sources */,
 				BCFED6F8211318A100BE57BF /* ProjectTVCTests.swift in Sources */,
 				4CB1FB741BC2D74F0000A2FE /* UITestProtocol.swift in Sources */,

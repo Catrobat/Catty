@@ -382,6 +382,9 @@
 
 - (void)playSceneAction:(id)sender
 {
+    [[UIDevice currentDevice] setValue:@(UIInterfaceOrientationPortrait) forKey:@"orientation"];
+    [UINavigationController attemptRotationToDeviceOrientation];
+    
     [self.scenePresenterViewController checkResourcesAndPushViewControllerTo:self.navigationController];
 }
 
