@@ -151,8 +151,8 @@ final class SpriteObjectMutableCopyTests: XMLAbstractTest {
 
         let brickCopy = brick.mutableCopy(with: context) as! SetLookBrick
 
-        XCTAssertTrue(brickCopy.look === lookB)
-        XCTAssertFalse(brickCopy.look === lookA)
+        XCTAssertEqual(brickCopy.look, lookB, "Copied look does not equal origin look!")
+        XCTAssertNotEqual(brickCopy.look, lookA)
     }
 
     func testMutableCopyAndUpdateReferenceForBackground() {
@@ -168,8 +168,8 @@ final class SpriteObjectMutableCopyTests: XMLAbstractTest {
 
         let brickCopy = brick.mutableCopy(with: context) as! SetBackgroundBrick
 
-        XCTAssertTrue(brickCopy.look === lookB)
-        XCTAssertFalse(brickCopy.look === lookA)
+        XCTAssertEqual(brickCopy.look, lookB, "Copied background does not equal origin background!")
+        XCTAssertNotEqual(brickCopy.look, lookA)
     }
 
     func testMutableCopyAndUpdateReferenceForSound() {
@@ -185,8 +185,8 @@ final class SpriteObjectMutableCopyTests: XMLAbstractTest {
 
         let brickCopy = brick.mutableCopy(with: context) as! PlaySoundBrick
 
-        XCTAssertTrue(brickCopy.sound === soundB)
-        XCTAssertFalse(brickCopy.sound === soundA)
+        XCTAssertEqual(brickCopy.sound, soundB, "Copied sound does not equal origin sound!")
+        XCTAssertNotEqual(brickCopy.sound, soundA)
     }
 
     func testBrickCopyForLook() {
@@ -199,12 +199,12 @@ final class SpriteObjectMutableCopyTests: XMLAbstractTest {
 
         let brickCopy = brick.mutableCopy(with: context) as! SetLookBrick
 
-        XCTAssertTrue(brickCopy.look === look)
+        XCTAssertEqual(brickCopy.look, look, "Copied set look brick does not equal origin brick!")
     }
 
     func testBrickCopyForBackground() {
         let brick = SetBackgroundBrick()
-        let look = Look(name: "lookToCopy", andPath: "look")
+        let look = Look(name: "backgroundToCopy", andPath: "background")
         brick.look = look
 
         let context = CBMutableCopyContext()
@@ -212,12 +212,12 @@ final class SpriteObjectMutableCopyTests: XMLAbstractTest {
 
         let brickCopy = brick.mutableCopy(with: context) as! SetBackgroundBrick
 
-        XCTAssertTrue(brickCopy.look === look)
+        XCTAssertEqual(brickCopy.look, look, "Copied set background brick does not equal origin brick!")
     }
 
     func testBrickCopyForSound() {
         let brick = PlaySoundBrick()
-        let sound = Sound(name: "lookToCopy", fileName: "soundA")
+        let sound = Sound(name: "soundToCopy", fileName: "sound")
         brick.sound = sound
 
         let context = CBMutableCopyContext()
@@ -225,6 +225,6 @@ final class SpriteObjectMutableCopyTests: XMLAbstractTest {
 
         let brickCopy = brick.mutableCopy(with: context) as! PlaySoundBrick
 
-        XCTAssertTrue(brickCopy.sound === sound)
+        XCTAssertEqual(brickCopy.sound, sound, "Copied sound brick does not equal origin brick!")
     }
 }
