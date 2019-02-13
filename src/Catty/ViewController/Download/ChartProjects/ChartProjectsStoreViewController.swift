@@ -62,7 +62,7 @@ class ChartProjectsStoreViewController: UIViewController, SelectedChartProjectsD
             if let inAppBrowserViewController = segue.destination as? InAppBrowserViewController,
                 let catrobatProject = projectForSegue {
                 inAppBrowserViewController.project = catrobatProject
-                inAppBrowserViewController.navigationUrl = kBaseUrl + "program/\(String(describing: inAppBrowserViewController.project!.projectId))"
+                inAppBrowserViewController.navigationUrl = kDetailUrl + (String(describing: inAppBrowserViewController.project!.projectId))
                 inAppBrowserViewController.showTitleAndToolbar = false
             }
         }

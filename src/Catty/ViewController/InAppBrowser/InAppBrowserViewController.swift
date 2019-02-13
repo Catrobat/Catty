@@ -318,7 +318,7 @@ class InAppBrowserViewController: UIViewController, UIWebViewDelegate, UIScrollV
     }
 
     private func showDownloadedView() {
-        let hud = BDKNotifyHUD(image: UIImage(named: "checkmark.png"),
+        let hud = BDKNotifyHUD(image: UIImage(named: kBDKNotifyHUDCheckmarkImageName),
                                text: kLocalizedDownloaded)
         hud?.destinationOpacity = CGFloat(kBDKNotifyHUDDestinationOpacity)
         hud?.center = CGPoint(x: view.center.x,
@@ -372,6 +372,7 @@ class InAppBrowserViewController: UIViewController, UIWebViewDelegate, UIScrollV
     func timeoutReached() {
         setBackDownloadStatus()
         Util.defaultAlertForNetworkError()
+        self.loadingView?.hide()
     }
 
     func maximumFilesizeReached() {

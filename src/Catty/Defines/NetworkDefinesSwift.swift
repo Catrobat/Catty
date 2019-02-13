@@ -35,6 +35,7 @@ let kMediaLibraryDownloadBaseURL = kBaseUrl.replacingOccurrences(of: "/pocketcod
 
 let kConnectionHost = kBaseUrl.appending("api/projects")
 let kFeaturedImageBaseUrl = kBaseUrl.replacingOccurrences(of: "/pocketcode/", with: "/")
+let kDetailUrl = kBaseUrl.appending("program/")
 let kChartProjectsMaxResults = 10
 let kRecentProjectsMaxResults = 20
 let kSearchStoreMaxResults = 50
@@ -47,14 +48,8 @@ let kUploadUrl = kBaseUrl.appending("api/upload")
 let kTestUploadUrl = kTestUrl.appending("api/upload")
 
 //*************************************************************************************
-//*********************      HelpWebViewController       ******************************
+//*********************    InAppBrowserViewController    ******************************
 //*************************************************************************************
 
 let kDownloadUrl = kBaseUrl.appending("download")
 let kForumURL = kBaseUrl.appending("help")
-
-//*************************************************************************************
-//*********************      ProjectDetailStoreViewController       ******************************
-//*************************************************************************************
-
-let kDetailUrl = kBaseUrl.appending("program/")
