@@ -151,7 +151,7 @@ final class SpriteObjectMutableCopyTests: XMLAbstractTest {
 
         let brickCopy = brick.mutableCopy(with: context) as! SetLookBrick
 
-        XCTAssertEqual(brickCopy.look, lookB, "Copied look does not equal origin look!")
+        XCTAssertEqual(brickCopy.look, lookB)
         XCTAssertNotEqual(brickCopy.look, lookA)
     }
 
@@ -168,7 +168,7 @@ final class SpriteObjectMutableCopyTests: XMLAbstractTest {
 
         let brickCopy = brick.mutableCopy(with: context) as! SetBackgroundBrick
 
-        XCTAssertEqual(brickCopy.look, lookB, "Copied background does not equal origin background!")
+        XCTAssertEqual(brickCopy.look, lookB)
         XCTAssertNotEqual(brickCopy.look, lookA)
     }
 
@@ -185,7 +185,7 @@ final class SpriteObjectMutableCopyTests: XMLAbstractTest {
 
         let brickCopy = brick.mutableCopy(with: context) as! PlaySoundBrick
 
-        XCTAssertEqual(brickCopy.sound, soundB, "Copied sound does not equal origin sound!")
+        XCTAssertEqual(brickCopy.sound, soundB)
         XCTAssertNotEqual(brickCopy.sound, soundA)
     }
 
@@ -199,7 +199,7 @@ final class SpriteObjectMutableCopyTests: XMLAbstractTest {
 
         let brickCopy = brick.mutableCopy(with: context) as! SetLookBrick
 
-        XCTAssertEqual(brickCopy.look, look, "Copied set look brick does not equal origin brick!")
+        XCTAssertEqual(brickCopy.look, look)
     }
 
     func testBrickCopyForBackground() {
@@ -212,7 +212,7 @@ final class SpriteObjectMutableCopyTests: XMLAbstractTest {
 
         let brickCopy = brick.mutableCopy(with: context) as! SetBackgroundBrick
 
-        XCTAssertEqual(brickCopy.look, look, "Copied set background brick does not equal origin brick!")
+        XCTAssertEqual(brickCopy.look, look)
     }
 
     func testBrickCopyForSound() {
@@ -225,6 +225,6 @@ final class SpriteObjectMutableCopyTests: XMLAbstractTest {
 
         let brickCopy = brick.mutableCopy(with: context) as! PlaySoundBrick
 
-        XCTAssertEqual(brickCopy.sound, sound, "Copied sound brick does not equal origin brick!")
+        XCTAssertEqual(brickCopy.sound, sound)
     }
 }
