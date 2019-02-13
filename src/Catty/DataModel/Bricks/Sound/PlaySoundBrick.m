@@ -41,8 +41,7 @@
     
     if (updatedReference != nil) {
         brick.sound = updatedReference;
-    }
-    else {
+    } else {
         brick.sound = self.sound;
     }
     

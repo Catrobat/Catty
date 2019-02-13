@@ -88,8 +88,7 @@
     
     if (updatedReference != nil) {
         brick.look = updatedReference;
-    }
-    else {
+    } else {
         brick.look = self.look;
     }
     
