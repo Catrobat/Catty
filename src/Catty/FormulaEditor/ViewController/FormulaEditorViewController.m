@@ -94,6 +94,9 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 @property (nonatomic) BOOL isProjectVariable;
 @property (nonatomic, strong) BDKNotifyHUD *notficicationHud;
+
+@property (nonatomic) BOOL isScrolling;
+
 @end
 
 @implementation FormulaEditorViewController
@@ -241,10 +244,20 @@ NS_ENUM(NSInteger, ButtonIndex) {
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(formulaTextViewTextDidChangeNotification:) name:UITextViewTextDidChangeNotification object:self.formulaEditorTextView];
     
+    
     UITapGestureRecognizer *tapToSelect = [[UITapGestureRecognizer alloc]initWithTarget:self
                                                                                  action:@selector(tappedToSelectRow:)];
     tapToSelect.delegate = self;
+    
+    UIPanGestureRecognizer *panRecognizer = [[UIPanGestureRecognizer alloc]initWithTarget:self
+                                                                                   action:@selector(pickerViewGotScrolled:)];
+    
+    panRecognizer.delegate = self;
+    
     [self.variablePicker addGestureRecognizer:tapToSelect];
+    [self.variablePicker addGestureRecognizer:panRecognizer];
+    
+
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -1018,9 +1031,8 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 }
 
-- (IBAction)tappedToSelectRow:(UITapGestureRecognizer *)tapRecognizer
-{
-    if (tapRecognizer.state == UIGestureRecognizerStateEnded) {
+- (IBAction)tappedToSelectRow:(UITapGestureRecognizer *)tapRecognizer {
+    if (tapRecognizer.state == UIGestureRecognizerStateEnded && self.isScrolling == FALSE) {
         CGFloat rowHeight = [self.variablePicker rowSizeForComponent:0].height;
         CGRect selectedRowFrame = CGRectInset(self.variablePicker.bounds, 0.0, (CGRectGetHeight(self.variablePicker.frame) - rowHeight) / 2.0 );
         BOOL userTappedOnSelectedRow = (CGRectContainsPoint(selectedRowFrame, [tapRecognizer locationInView:self.variablePicker]));
@@ -1031,6 +1043,16 @@ NS_ENUM(NSInteger, ButtonIndex) {
         }
     }
 }
+
+- (IBAction)pickerViewGotScrolled:(UIPanGestureRecognizer *)panRecognizer {
+    if( panRecognizer.state == UIGestureRecognizerStateBegan) {
+        self.isScrolling = TRUE;
+    } else if ( panRecognizer.state == UIGestureRecognizerStateEnded ) {
+        self.isScrolling = FALSE;
+    }
+}
+
+
 
 - (void)decideVariableorList {
     NSInteger row = [self.variablePicker selectedRowInComponent:0];
