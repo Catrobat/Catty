@@ -1,0 +1,6 @@
+app_identifier(ENV["CATTY_APP_IDENTIFIER"]) 
+apple_id(ENV["CATTY_APPLE_ID"]) 
+
+
+# For more information about the Appfile, see:
+#     https://docs.fastlane.tools/advanced/#appfile
