@@ -37,12 +37,12 @@ class BackgroundsTests: XCTestCase, UITestProtocol {
     func testScriptsCanEnterScripts() {
         let app = XCUIApplication()
 
-        app.tables.staticTexts["Projects"].tap()
-        app.tables.staticTexts["My first project"].tap()
-        app.tables.staticTexts["Background"].tap()
-        app.tables.staticTexts["Scripts"].tap()
+        app.tables.staticTexts[kLocalizedProjects].tap()
+        app.tables.staticTexts[kLocalizedMyFirstProject].tap()
+        app.tables.staticTexts[kLocalizedBackground].tap()
+        app.tables.staticTexts[kLocalizedScripts].tap()
 
-        XCTAssert(app.navigationBars["Scripts"].exists)
+        XCTAssert(app.navigationBars[kLocalizedScripts].exists)
     }
 
     func testScriptsCanDeleteAllScriptsViaDelete() {
@@ -51,14 +51,14 @@ class BackgroundsTests: XCTestCase, UITestProtocol {
 
         testScriptsCanEnterScripts()
 
-        app.navigationBars.buttons["Delete"].tap()
-        toolbarsQuery.buttons["Select All"].tap()
-        toolbarsQuery.buttons["Delete"].tap()
+        app.navigationBars.buttons[kLocalizedDelete].tap()
+        toolbarsQuery.buttons[kLocalizedSelectAllItems].tap()
+        toolbarsQuery.buttons[kLocalizedDelete].tap()
 
-        let yesButton = app.alerts["Delete these Bricks?"].buttons["Yes"]
+        let yesButton = app.alerts[kLocalizedDeleteTheseBricks].buttons[kLocalizedYes]
         yesButton.tap()
-        app.navigationBars.buttons["Background"].tap()
-        app.tables.staticTexts["Scripts"].tap()
+        app.navigationBars.buttons[kLocalizedBackground].tap()
+        app.tables.staticTexts[kLocalizedScripts].tap()
         XCTAssert(app.staticTexts["Tap \"+\" to add Script"].exists)
     }
 
@@ -68,24 +68,24 @@ class BackgroundsTests: XCTestCase, UITestProtocol {
         testScriptsCanEnterScripts()
 
         app.collectionViews.cells.element(boundBy: 0).tap()
-        app.buttons["Delete Script"].tap()
+        app.buttons[kLocalizedDeleteScript].tap()
 
-        let alert = waitForElementToAppear(app.alerts["Delete this Script?"])
-        alert.buttons["Yes"].tap()
+        let alert = waitForElementToAppear(app.alerts[kLocalizedDeleteThisScript])
+        alert.buttons[kLocalizedYes].tap()
 
-        app.navigationBars.buttons["Background"].tap()
-        app.tables.staticTexts["Scripts"].tap()
+        app.navigationBars.buttons[kLocalizedBackground].tap()
+        app.tables.staticTexts[kLocalizedScripts].tap()
         XCTAssert(app.staticTexts["Tap \"+\" to add Script"].exists)
     }
 
     func testBackgroundsCanEnterBackgrounds() {
         let app = XCUIApplication()
 
-        app.tables.staticTexts["Continue"].tap()
-        app.tables.staticTexts["Background"].tap()
-        app.tables.staticTexts["Backgrounds"].tap()
+        app.tables.staticTexts[kLocalizedContinue].tap()
+        app.tables.staticTexts[kLocalizedBackground].tap()
+        app.tables.staticTexts[kLocalizedBackgrounds].tap()
 
-        XCTAssert(app.navigationBars["Backgrounds"].exists)
+        XCTAssert(app.navigationBars[kLocalizedBackgrounds].exists)
     }
 
     func testBackgroundsCanCopyAndDeleteSingleBackgroundViaEditMode() {
@@ -95,19 +95,19 @@ class BackgroundsTests: XCTestCase, UITestProtocol {
         testBackgroundsCanEnterBackgrounds()
 
         //copy background
-        app.navigationBars["Backgrounds"].buttons["Edit"].tap()
-        app.buttons["Copy Looks"].tap()
-        app.tables.staticTexts["Background"].tap()
-        toolbarsQuery.buttons["Copy"].tap()
-        XCTAssert(app.tables.staticTexts["Background"].exists)
+        app.navigationBars[kLocalizedBackgrounds].buttons[kLocalizedEdit].tap()
+        app.buttons[kLocalizedCopyLooks].tap()
+        app.tables.staticTexts[kLocalizedBackground].tap()
+        toolbarsQuery.buttons[kLocalizedCopy].tap()
+        XCTAssert(app.tables.staticTexts[kLocalizedBackground].exists)
         XCTAssert(app.tables.staticTexts["Background (1)"].exists)
 
         //delete background
-        app.navigationBars["Backgrounds"].buttons["Edit"].tap()
-        app.buttons["Delete Backgrounds"].tap()
-        app.tables.staticTexts["Background"].tap()
+        app.navigationBars[kLocalizedBackgrounds].buttons[kLocalizedEdit].tap()
+        app.buttons[kLocalizedDeleteBackgrounds].tap()
+        app.tables.staticTexts[kLocalizedBackground].tap()
 
-        toolbarsQuery.buttons["Delete"].tap()
+        toolbarsQuery.buttons[kLocalizedDelete].tap()
 
         XCTAssert(app.tables.staticTexts["Background (1)"].exists)
     }
@@ -119,29 +119,29 @@ class BackgroundsTests: XCTestCase, UITestProtocol {
         testBackgroundsCanEnterBackgrounds()
 
         //copy background
-        app.navigationBars["Backgrounds"].buttons["Edit"].tap()
-        app.buttons["Copy Looks"].tap()
-        app.tables.staticTexts["Background"].tap()
-        toolbarsQuery.buttons["Copy"].tap()
-        XCTAssert(app.tables.staticTexts["Background"].exists)
+        app.navigationBars[kLocalizedBackgrounds].buttons[kLocalizedEdit].tap()
+        app.buttons[kLocalizedCopyLooks].tap()
+        app.tables.staticTexts[kLocalizedBackground].tap()
+        toolbarsQuery.buttons[kLocalizedCopy].tap()
+        XCTAssert(app.tables.staticTexts[kLocalizedBackground].exists)
         XCTAssert(app.tables.staticTexts["Background (1)"].exists)
 
         //copy all backgrounds
-        app.navigationBars["Backgrounds"].buttons["Edit"].tap()
-        app.buttons["Copy Looks"].tap()
-        toolbarsQuery.buttons["Select All"].tap()
-        toolbarsQuery.buttons["Copy"].tap()
-        XCTAssert(app.tables.staticTexts["Background"].exists)
+        app.navigationBars[kLocalizedBackgrounds].buttons[kLocalizedEdit].tap()
+        app.buttons[kLocalizedCopyLooks].tap()
+        toolbarsQuery.buttons[kLocalizedSelectAllItems].tap()
+        toolbarsQuery.buttons[kLocalizedCopy].tap()
+        XCTAssert(app.tables.staticTexts[kLocalizedBackground].exists)
         XCTAssert(app.tables.staticTexts["Background (1)"].exists)
         XCTAssert(app.tables.staticTexts["Background (2)"].exists)
         XCTAssert(app.tables.staticTexts["Background (3)"].exists)
 
         //delete all backgrounds
-        app.navigationBars["Backgrounds"].buttons["Edit"].tap()
-        app.buttons["Delete Backgrounds"].tap()
+        app.navigationBars[kLocalizedBackgrounds].buttons[kLocalizedEdit].tap()
+        app.buttons[kLocalizedDeleteBackgrounds].tap()
 
-        toolbarsQuery.buttons["Select All"].tap()
-        toolbarsQuery.buttons["Delete"].tap()
+        toolbarsQuery.buttons[kLocalizedSelectAllItems].tap()
+        toolbarsQuery.buttons[kLocalizedDelete].tap()
 
         XCTAssertEqual(app.tables.cells.count, 0)
     }
@@ -153,31 +153,31 @@ class BackgroundsTests: XCTestCase, UITestProtocol {
         testBackgroundsCanEnterBackgrounds()
 
         //copy background
-        app.navigationBars["Backgrounds"].buttons["Edit"].tap()
-        app.buttons["Copy Looks"].tap()
-        app.tables.staticTexts["Background"].tap()
-        toolbarsQuery.buttons["Copy"].tap()
-        XCTAssert(app.tables.staticTexts["Background"].exists)
+        app.navigationBars[kLocalizedBackgrounds].buttons[kLocalizedEdit].tap()
+        app.buttons[kLocalizedCopyLooks].tap()
+        app.tables.staticTexts[kLocalizedBackground].tap()
+        toolbarsQuery.buttons[kLocalizedCopy].tap()
+        XCTAssert(app.tables.staticTexts[kLocalizedBackground].exists)
         XCTAssert(app.tables.staticTexts["Background (1)"].exists)
 
         //copy all backgrounds
-        app.navigationBars["Backgrounds"].buttons["Edit"].tap()
-        app.buttons["Copy Looks"].tap()
-        toolbarsQuery.buttons["Select All"].tap()
-        toolbarsQuery.buttons["Copy"].tap()
-        XCTAssert(app.tables.staticTexts["Background"].exists)
+        app.navigationBars[kLocalizedBackgrounds].buttons[kLocalizedEdit].tap()
+        app.buttons[kLocalizedCopyLooks].tap()
+        toolbarsQuery.buttons[kLocalizedSelectAllItems].tap()
+        toolbarsQuery.buttons[kLocalizedCopy].tap()
+        XCTAssert(app.tables.staticTexts[kLocalizedBackground].exists)
         XCTAssert(app.tables.staticTexts["Background (1)"].exists)
         XCTAssert(app.tables.staticTexts["Background (2)"].exists)
         XCTAssert(app.tables.staticTexts["Background (3)"].exists)
 
         //delete all backgrounds
-        app.navigationBars["Backgrounds"].buttons["Edit"].tap()
-        app.buttons["Delete Backgrounds"].tap()
+        app.navigationBars[kLocalizedBackgrounds].buttons[kLocalizedEdit].tap()
+        app.buttons[kLocalizedDeleteBackgrounds].tap()
 
-        toolbarsQuery.buttons["Select All"].tap()
-        app.navigationBars.buttons["Cancel"].tap()
+        toolbarsQuery.buttons[kLocalizedSelectAllItems].tap()
+        app.navigationBars.buttons[kLocalizedCancel].tap()
 
-        XCTAssert(app.tables.staticTexts["Background"].exists)
+        XCTAssert(app.tables.staticTexts[kLocalizedBackground].exists)
         XCTAssert(app.tables.staticTexts["Background (1)"].exists)
         XCTAssert(app.tables.staticTexts["Background (2)"].exists)
         XCTAssert(app.tables.staticTexts["Background (3)"].exists)
@@ -189,14 +189,14 @@ class BackgroundsTests: XCTestCase, UITestProtocol {
 
         testBackgroundsCanEnterBackgrounds()
 
-        tablesQuery.staticTexts["Background"].swipeLeft()
+        tablesQuery.staticTexts[kLocalizedBackground].swipeLeft()
 
-        XCTAssert(app.buttons["Delete"].exists)
+        XCTAssert(app.buttons[kLocalizedDelete].exists)
 
-        app.buttons["Delete"].tap()
-        let yesButton = app.alerts["Delete this background"].buttons["Yes"]
+        app.buttons[kLocalizedDelete].tap()
+        let yesButton = app.alerts[kLocalizedDeleteThisBackground].buttons[kLocalizedYes]
         yesButton.tap()
-        XCTAssert(app.tables.staticTexts["Background"].exists == false)
+        XCTAssert(app.tables.staticTexts[kLocalizedBackgrounds].exists == false)
     }
 
     func testBackgroundsCanAbortDeleteSingleBackgroundViaSwipe() {
@@ -205,48 +205,49 @@ class BackgroundsTests: XCTestCase, UITestProtocol {
 
         testBackgroundsCanEnterBackgrounds()
 
-        tablesQuery.staticTexts["Background"].swipeLeft()
+        tablesQuery.staticTexts[kLocalizedBackground].swipeLeft()
 
-        XCTAssert(app.buttons["Delete"].exists)
+        XCTAssert(app.buttons[kLocalizedDelete].exists)
 
-        app.buttons["Delete"].tap()
-        let yesButton = app.alerts["Delete this background"].buttons["Cancel"]
+        app.buttons[kLocalizedDelete].tap()
+        let yesButton = app.alerts[kLocalizedDeleteThisBackground].buttons[kLocalizedCancel]
         yesButton.tap()
-        XCTAssert(app.tables.staticTexts["Background"].exists)
+        XCTAssert(app.tables.staticTexts[kLocalizedBackground].exists)
     }
 
     func testBackgroundsCanShowAndHideDetailsForBackgroundViaEditMode() {
         let app = XCUIApplication()
         testBackgroundsCanEnterBackgrounds()
+        
 
-        app.navigationBars["Backgrounds"].buttons["Edit"].tap()
+        app.navigationBars[kLocalizedBackgrounds].buttons[kLocalizedEdit].tap()
 
-        if app.buttons["Hide Details"].exists {
-            app.buttons["Hide Details"].tap()
-            app.navigationBars["Backgrounds"].buttons["Edit"].tap()
+        if app.buttons[kLocalizedHideDetails].exists {
+            app.buttons[kLocalizedHideDetails].tap()
+            app.navigationBars[kLocalizedBackgrounds].buttons[kLocalizedEdit].tap()
         }
 
-        app.buttons["Show Details"].tap()
+        app.buttons[kLocalizedShowDetails].tap()
 
-        app.navigationBars["Backgrounds"].buttons["Edit"].tap()
-        XCTAssert(app.buttons["Hide Details"].exists)
-        app.buttons["Hide Details"].tap()
-        app.navigationBars["Backgrounds"].buttons["Edit"].tap()
+        app.navigationBars[kLocalizedBackgrounds].buttons[kLocalizedEdit].tap()
+        XCTAssert(app.buttons[kLocalizedHideDetails].exists)
+        app.buttons[kLocalizedHideDetails].tap()
+        app.navigationBars[kLocalizedBackgrounds].buttons[kLocalizedEdit].tap()
 
-        XCTAssert(app.buttons["Show Details"].exists)
-        app.buttons["Cancel"].tap()
+        XCTAssert(app.buttons[kLocalizedShowDetails].exists)
+        app.buttons[kLocalizedCancel].tap()
 
-        XCTAssert(app.navigationBars["Backgrounds"].exists)
+        XCTAssert(app.navigationBars[kLocalizedBackgrounds].exists)
     }
 
     func testSoundsCanEnterSounds() {
         let app = XCUIApplication()
 
-        app.tables.staticTexts["Projects"].tap()
-        app.tables.staticTexts["My first project"].tap()
-        app.tables.staticTexts["Background"].tap()
-        app.tables.staticTexts["Sounds"].tap()
+        app.tables.staticTexts[kLocalizedProjects].tap()
+        app.tables.staticTexts[kLocalizedMyFirstProject].tap()
+        app.tables.staticTexts[kLocalizedBackground].tap()
+        app.tables.staticTexts[kLocalizedSounds].tap()
 
-        XCTAssert(app.navigationBars["Sounds"].exists)
+        XCTAssert(app.navigationBars[kLocalizedSounds].exists)
     }
 }

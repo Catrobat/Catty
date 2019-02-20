@@ -40,17 +40,17 @@ class VariablesTests: XCTestCase, UITestProtocol {
     func testDontShowVariablePickerWhenNoVariablesDefinedForObject() {
         createNewProjectAndAddSetVariableBrick(name: "Test Project")
 
-        app.collectionViews.cells.otherElements.containing(.staticText, identifier: "Set variable").children(matching: .other).element.tap()
-        XCTAssert(app.sheets["Variable type"].exists)
+        app.collectionViews.cells.otherElements.containing(.staticText, identifier: kLocalizedSetVariable).children(matching: .other).element.tap()
+        XCTAssert(app.sheets[kUIFEActionVar].exists)
     }
 
     func testDontShowVListPickerWhenNoListsDefinedForObject() {
-        app.tables.staticTexts["New"].tap()
-        app.alerts["New Project"].textFields["Enter your project name here..."].typeText("Test Project")
-        XCUIApplication().alerts["New Project"].buttons["OK"].tap()
-        XCUIApplication().tables.staticTexts["Background"].tap()
-        app.tables.staticTexts["Scripts"].tap()
-        app.toolbars.buttons["Add"].tap()
+        app.tables.staticTexts[kLocalizedNew].tap()
+        app.alerts[kLocalizedNewProject].textFields[kLocalizedEnterYourProjectNameHere].typeText("Test Project")
+        XCUIApplication().alerts[kLocalizedNewProject].buttons[kLocalizedOK].tap()
+        XCUIApplication().tables.staticTexts[kLocalizedBackground].tap()
+        app.tables.staticTexts[kLocalizedScripts].tap()
+        app.toolbars.buttons[kLocalizedUserListAdd].tap()
 
         skipFrequentlyUsedBricks(app)
         app.swipeLeft()
@@ -61,49 +61,49 @@ class VariablesTests: XCTestCase, UITestProtocol {
 
         app.collectionViews.cells.otherElements.containing(.staticText, identifier: "Add ").children(matching: .other).element.tap()
         app.collectionViews.cells.otherElements.containing(.staticText, identifier: "Add ").children(matching: .other).element.tap()
-        XCTAssert(app.sheets["List type"].exists)
+        XCTAssert(app.sheets[kUIFEActionList].exists)
     }
 
     func testCreateVariableWithMaxLength() {
         createNewProjectAndAddSetVariableBrick(name: "Test Project")
 
-        app.collectionViews.cells.otherElements.containing(.staticText, identifier: "Set variable").children(matching: .other).element.tap()
-        XCTAssert(app.sheets["Variable type"].exists)
+        app.collectionViews.cells.otherElements.containing(.staticText, identifier: kLocalizedSetVariable).children(matching: .other).element.tap()
+        XCTAssert(app.sheets[kUIFEActionVar].exists)
 
-        app.buttons["for all objects"].tap()
-        app.alerts["New Variable"].textFields["Enter your variable name here..."].typeText(String(repeating: "i", count: 250))
-        app.alerts["New Variable"].buttons["OK"].tap()
-        XCTAssert(waitForElementToAppear(app.staticTexts["When project started"]).exists)
+        app.buttons[kUIFEActionVarPro].tap()
+        app.alerts[kUIFENewVar].textFields[kLocalizedEnterYourVariableNameHere].typeText(String(repeating: "i", count: 250))
+        app.alerts[kUIFENewVar].buttons[kLocalizedOK].tap()
+        XCTAssert(waitForElementToAppear(app.staticTexts[kLocalizedWhenProjectStarted]).exists)
     }
 
     func testCreateVariableWithMaxLengthPlusOne() {
         createNewProjectAndAddSetVariableBrick(name: "Test Project")
 
-        app.collectionViews.cells.otherElements.containing(.staticText, identifier: "Set variable").children(matching: .other).element.tap()
-        XCTAssert(app.sheets["Variable type"].exists)
+        app.collectionViews.cells.otherElements.containing(.staticText, identifier: kLocalizedSetVariable).children(matching: .other).element.tap()
+        XCTAssert(app.sheets[kUIFEActionVar].exists)
 
-        app.buttons["for all objects"].tap()
-        app.alerts["New Variable"].textFields["Enter your variable name here..."].typeText(String(repeating: "i", count: 250 + 1))
-        app.alerts["New Variable"].buttons["OK"].tap()
-        XCTAssert(app.alerts["Pocket Code"].exists)
+        app.buttons[kUIFEActionVarPro].tap()
+        app.alerts[kUIFENewVar].textFields[kLocalizedEnterYourVariableNameHere].typeText(String(repeating: "i", count: 250 + 1))
+        app.alerts[kUIFENewVar].buttons[kLocalizedOK].tap()
+        XCTAssert(app.alerts[kLocalizedPocketCode].exists)
     }
 
     func testCreateAndSelectVariable() {
         let variableName = "testVariable"
 
         createNewProjectAndAddSetVariableBrick(name: "Test Project")
-        app.collectionViews.cells.otherElements.containing(.staticText, identifier: "Set variable").children(matching: .button).element.tap()
-        XCTAssert(waitForElementToAppear(app.buttons["Cancel"]).exists)
+        app.collectionViews.cells.otherElements.containing(.staticText, identifier: kLocalizedSetVariable).children(matching: .button).element.tap()
+        XCTAssert(waitForElementToAppear(app.buttons[kLocalizedCancel]).exists)
 
-        app.buttons["Var/List"].tap()
-        app.buttons["New"].tap()
-        waitForElementToAppear(app.buttons["New Variable"]).tap()
-        waitForElementToAppear(app.buttons["for all objects"]).tap()
+        app.buttons[kUIFEVariableList].tap()
+        app.buttons[kLocalizedNew].tap()
+        waitForElementToAppear(app.buttons[kUIFENewVar]).tap()
+        waitForElementToAppear(app.buttons[kUIFEActionVarPro]).tap()
 
-        let alert = waitForElementToAppear(app.alerts["New Variable"])
+        let alert = waitForElementToAppear(app.alerts[kUIFENewVar])
         alert.textFields.firstMatch.typeText(variableName)
-        alert.buttons["OK"].tap()
-        app.buttons["Done"].tap()
+        alert.buttons[kLocalizedOK].tap()
+        app.buttons[kLocalizedDone].tap()
 
         XCTAssertTrue(waitForElementToAppear(app.buttons[" \"" + variableName + "\" "]).exists)
     }
@@ -111,9 +111,9 @@ class VariablesTests: XCTestCase, UITestProtocol {
     private func createNewProjectAndAddSetVariableBrick(name: String) {
         createProject(name: name, in: app)
 
-        app.tables.staticTexts["Background"].tap()
-        app.tables.staticTexts["Scripts"].tap()
-        app.toolbars.buttons["Add"].tap()
+        app.tables.staticTexts[kLocalizedBackground].tap()
+        app.tables.staticTexts[kLocalizedScripts].tap()
+        app.toolbars.buttons[kLocalizedUserListAdd].tap()
 
         skipFrequentlyUsedBricks(app)
         app.swipeLeft()
@@ -121,6 +121,6 @@ class VariablesTests: XCTestCase, UITestProtocol {
         app.swipeLeft()
         app.swipeLeft()
 
-        app.collectionViews.staticTexts["Set variable"].tap()
+        app.collectionViews.staticTexts[kLocalizedSetVariable].tap()
     }
 }

@@ -44,10 +44,10 @@ class ScenePresenterVCTests: XCTestCase, UITestProtocol {
         let projectName = "testProject"
         
         //Create new Project
-        app.tables.staticTexts["New"].tap()
-        let alertQuery = app.alerts["New Project"]
-        alertQuery.textFields["Enter your project name here..."].typeText(projectName)
-        app.alerts["New Project"].buttons["OK"].tap()
+        app.tables.staticTexts[kLocalizedNew].tap()
+        let alertQuery = app.alerts[kLocalizedNewProject]
+        alertQuery.textFields[kLocalizedEnterYourProjectNameHere].typeText(projectName)
+        app.alerts[kLocalizedNewProject].buttons[kLocalizedOK].tap()
         XCTAssertNotNil(waitForElementToAppear(app.navigationBars[projectName]))
         
         //Change orientation to landscape
