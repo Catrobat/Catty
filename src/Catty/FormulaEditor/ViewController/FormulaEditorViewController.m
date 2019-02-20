@@ -256,8 +256,6 @@ NS_ENUM(NSInteger, ButtonIndex) {
     
     [self.variablePicker addGestureRecognizer:tapToSelect];
     [self.variablePicker addGestureRecognizer:panRecognizer];
-    
-
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -1039,7 +1037,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
         if (userTappedOnSelectedRow) {
             NSInteger selectedRow = [self.variablePicker selectedRowInComponent:0];
             [self pickerView:self.variablePicker didSelectRow:selectedRow inComponent:0];
-            [self decideVariableorList];
+            [self decideVariableOrList];
         }
     }
 }
@@ -1054,7 +1052,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 
 
-- (void)decideVariableorList {
+- (void)decideVariableOrList {
     NSInteger row = [self.variablePicker selectedRowInComponent:0];
     if (row >= 0) {
         int buttonType = 0;
@@ -1085,7 +1083,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 }
 
 - (IBAction)choseVariableOrList:(UIButton *)sender {
-    [self decideVariableorList];
+    [self decideVariableOrList];
 }
 
 
