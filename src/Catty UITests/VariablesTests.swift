@@ -59,8 +59,8 @@ class VariablesTests: XCTestCase, UITestProtocol {
         app.swipeLeft()
         app.swipeDown()
 
-        app.collectionViews.cells.otherElements.containing(.staticText, identifier: "Add ").children(matching: .other).element.tap()
-        app.collectionViews.cells.otherElements.containing(.staticText, identifier: "Add ").children(matching: .other).element.tap()
+        app.collectionViews.cells.otherElements.containing(.staticText, identifier: kLocalizedUserListAdd + " ").children(matching: .other).element.tap()
+        app.collectionViews.cells.otherElements.containing(.staticText, identifier: kLocalizedUserListAdd + " ").children(matching: .other).element.tap()
         XCTAssert(app.sheets[kUIFEActionList].exists)
     }
 

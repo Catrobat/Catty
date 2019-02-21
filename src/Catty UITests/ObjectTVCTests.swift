@@ -60,7 +60,7 @@ class ObjectTVCTests: XCTestCase, UITestProtocol {
         app.tables.staticTexts[kLocalizedScripts].tap()
 
         //delete the SetSizeTo brick
-        app.collectionViews.cells.element(boundBy: 1).staticTexts["Set size to "].tap()
+        app.collectionViews.cells.element(boundBy: 1).staticTexts[kLocalizedSetSizeTo + " "].tap()
         app.buttons[kLocalizedDeleteBrick].tap()
 
         //Check if Forever brick is now where SetSizeTo was before
@@ -129,7 +129,7 @@ class ObjectTVCTests: XCTestCase, UITestProtocol {
         app.tables.staticTexts["Mole 1"].tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
 
-        app.collectionViews.cells.element(boundBy: 4).staticTexts["Wait "].tap()
+        app.collectionViews.cells.element(boundBy: 4).staticTexts[kLocalizedWait + " "].tap()
         app.buttons[kLocalizedDeleteBrick].tap()
         app.swipeDown()
         XCTAssert(app.staticTexts[kLocalizedShow].exists)
@@ -189,13 +189,13 @@ class ObjectTVCTests: XCTestCase, UITestProtocol {
 
         for cellIndex in 0...app.collectionViews.cells.count {
             let cell = app.collectionViews.cells.element(boundBy: cellIndex)
-            if cell.staticTexts.count == 2 && cell.staticTexts["If "].exists && cell.staticTexts[" is true then"].exists {
+            if cell.staticTexts.count == 2 && cell.staticTexts[kLocalizedIfBegin + " "].exists && cell.staticTexts[" " + kLocalizedIfBeginSecondPart].exists {
                 cell.tap()
             }
         }
 
         XCTAssertEqual(3, app.collectionViews.cells.count)
-        XCTAssert(app.collectionViews.cells.element(boundBy: 1).staticTexts[" is true then"].exists)
+        XCTAssert(app.collectionViews.cells.element(boundBy: 1).staticTexts[" " + kLocalizedIfBeginSecondPart].exists)
         XCTAssert(app.collectionViews.cells.element(boundBy: 2).staticTexts[kLocalizedEndIf].exists)
 
         app.navigationBars.buttons[objectName].tap()
@@ -216,7 +216,7 @@ class ObjectTVCTests: XCTestCase, UITestProtocol {
 
         app.staticTexts[kLocalizedScripts].tap()
         XCTAssertEqual(3, app.collectionViews.cells.count)
-        XCTAssert(app.collectionViews.cells.element(boundBy: 1).staticTexts[" is true then"].exists)
+        XCTAssert(app.collectionViews.cells.element(boundBy: 1).staticTexts[" " + kLocalizedIfBeginSecondPart].exists)
         XCTAssert(app.collectionViews.cells.element(boundBy: 2).staticTexts[kLocalizedEndIf].exists)
     }
 }
