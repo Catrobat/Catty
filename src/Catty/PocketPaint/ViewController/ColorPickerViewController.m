@@ -79,8 +79,8 @@
 - (void)setupViews
 {
   NSArray *itemArray = [NSArray arrayWithObjects:
-                        [UIImage imageNamed:@"sliderColors"],
-                        [UIImage imageNamed:@"standardColors"], nil];
+                        [UIImage imageNamed:@"standardColors"],
+                        [UIImage imageNamed:@"sliderColors"], nil];
   self.viewChanger = [[UISegmentedControl alloc] initWithItems:itemArray];
   self.viewChanger.frame =CGRectMake(0, CGRectGetMaxY(self.toolBar.frame), self.view.frame.size.width, 40);
   self.viewChanger.selectedSegmentIndex = 0;
@@ -100,7 +100,8 @@
   [self.view addSubview:self.rgbaView];
   [self.view addSubview:self.rgbaSliderView];
   [self.view addSubview:self.standardColors];
-  self.standardColors.hidden = YES;
+  self.rgbaView.hidden = YES;
+  self.rgbaSliderView.hidden = YES;
 }
 
 - (void)setupStandardColorsView
@@ -360,14 +361,14 @@
   NSInteger selectedIndex = [paramSender selectedSegmentIndex];
   switch (selectedIndex) {
     case 0:
-      self.rgbaView.hidden = NO;
-      self.rgbaSliderView.hidden = NO;
-      self.standardColors.hidden = YES;
-      break;
-    case 1:
       self.rgbaView.hidden = YES;
       self.rgbaSliderView.hidden = YES;
       self.standardColors.hidden = NO;
+      break;
+    case 1:
+      self.rgbaView.hidden = NO;
+      self.rgbaSliderView.hidden = NO;
+      self.standardColors.hidden = YES;
       break;
     default:
       break;
