@@ -30,7 +30,7 @@ end
 #
 files = Dir.entries("../Catty/Resources/Localization/").sort
 for file in files do
-    if file.end_with? ".lproj" and file != "en.lproj"
+    if file.end_with? ".lproj"
         lang = file.chomp(".lproj")
         lang_file = project.new_file(lang+".lproj/Localizable.strings")
         lang_file.move(localization_group)
