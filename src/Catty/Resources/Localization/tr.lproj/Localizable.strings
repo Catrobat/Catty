@@ -422,7 +422,7 @@
 "Download" = "indir";
 
 /* No comment provided by engineer. */
-"Download sucessful" = "Başarılı indirin";
+"Download successful" = "İndirme başarılı oldu";
 
 /* No comment provided by engineer. */
 "Downloads" = "İndirilenler";
@@ -1001,9 +1001,6 @@
 "not available. Continue anyway?" = "müsait değil. Her halükarda devam et?";
 
 /* No comment provided by engineer. */
-"Not Connected to a WiFi network, please connect to one or change the settings to download also with mobile data." = "Bir WiFi ağına bağlı değilsiniz, lütfen birine bağlanın veya mobil veriyle de indirmek için ayarları değiştirin.";
-
-/* No comment provided by engineer. */
 "Not enough free memory to download this project. Please delete some of your projects" = "Not enough free memory to download this project. Please delete some of your projects";
 
 /* No comment provided by engineer. */
@@ -1067,7 +1064,7 @@
 "Only special characters are not allowed. Please enter at least %lu other character(s)." = "Yalnızca özel karakterlere izin verilmez. Lütfen en az %lu diğer karakter (ler) girin.";
 
 /* No comment provided by engineer. */
-"Open" = "Açık";
+"Open" = "Açık ";
 
 /* No comment provided by engineer. */
 "or" = "veya";

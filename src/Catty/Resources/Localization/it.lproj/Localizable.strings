@@ -2,7 +2,7 @@
 "A message with the same name already exists, try again." = "Esiste già un'immagine con lo stesso nome; riprovare, grazie.";
 
 /* No comment provided by engineer. */
-"A project with the same name already exists, try again." = "A project with the same name already exists, try again.";
+"A project with the same name already exists, try again." = "Esiste già un programma con lo stesso nome, riprova con uno nuovo.";
 
 /* No comment provided by engineer. */
 "About Catrobat" = "Su Catrobat";
@@ -167,13 +167,13 @@
 "By registering you agree to our" = "Registrandoti, accetti i nostri";
 
 /* No comment provided by engineer. */
-"By switching to the section \"Explore\" you can discover more interesting projects from people all over the world." = "By switching to the section \"Explore\" you can discover more interesting projects from people all over the world.";
+"By switching to the section \"Explore\" you can discover more interesting projects from people all over the world." = "Dalla sezione \"Esplora\" si può scoprire nuovi programmi interessanti caricati da persone di tutto il mondo.";
 
 /* No comment provided by engineer. */
 "Camera Roll" = "Rullino fotografico";
 
 /* No comment provided by engineer. */
-"Can't restart project!" = "Can't restart project!";
+"Can't restart project!" = "Impossibile riavviare il progetto!";
 
 /* No comment provided by engineer. */
 "Cancel" = "Annulla";
@@ -287,7 +287,7 @@
 "Copy Looks" = "Copia i costumi";
 
 /* No comment provided by engineer. */
-"Copy project" = "Copy project";
+"Copy project" = "Copia progetto";
 
 /* No comment provided by engineer. */
 "Create & Remix" = "Crea e remixa";
@@ -335,10 +335,10 @@
 "Delete Objects" = "Elimina oggetti";
 
 /* No comment provided by engineer. */
-"Delete Project" = "Delete Project";
+"Delete Project" = "Elimina progetto";
 
 /* No comment provided by engineer. */
-"Delete Projects" = "Delete Projects";
+"Delete Projects" = "Elimina progetti";
 
 /* No comment provided by engineer. */
 "Delete Script" = "Elimina lo script";
@@ -377,7 +377,7 @@
 "Delete this object" = "Elimina questo oggetto";
 
 /* No comment provided by engineer. */
-"Delete this project" = "Delete this project";
+"Delete this project" = "Elimina questo progetto";
 
 /* No comment provided by engineer. */
 "Delete this Script?" = "Eliminare questo script?";
@@ -422,7 +422,7 @@
 "Download" = "Scarica";
 
 /* No comment provided by engineer. */
-"Download sucessful" = "Download completato";
+"Download successful" = "Download completato";
 
 /* No comment provided by engineer. */
 "Downloads" = "Download";
@@ -458,10 +458,10 @@
 "Edit Object" = "Modifica l' oggetto";
 
 /* No comment provided by engineer. */
-"Edit Project" = "Edit Project";
+"Edit Project" = "Modifica Progetto";
 
 /* No comment provided by engineer. */
-"Edit Projects" = "Edit Projects";
+"Edit Projects" = "Modifica Progetti";
 
 /* Action sheet menu title */
 "Edit Script" = "Modifica Script";
@@ -485,7 +485,7 @@
 "Email" = "E-mail";
 
 /* No comment provided by engineer. */
-"Empty input!" = "Empty input!";
+"Empty input!" = "Input vuoto!";
 
 /* No comment provided by engineer. */
 "End If" = "Fine Se";
@@ -509,10 +509,10 @@
 "Enter your object name here..." = "Inserisci qui il nome del tuo oggetto...";
 
 /* Placeholder for project-description input field */
-"Enter your project description here..." = "Enter your project description here...";
+"Enter your project description here..." = "Inserisci la descrizione del progetto...";
 
 /* Placeholder for project-name input field */
-"Enter your project name here..." = "Enter your project name here...";
+"Enter your project name here..." = "Inserisci il nome del tuo progetto...";
 
 /* Placeholder for add sound-name input field */
 "Enter your sound name here..." = "Inserisci il nome del suono...";
@@ -527,7 +527,7 @@
 "Error" = "Errore";
 
 /* No comment provided by engineer. */
-"Error saving file" = "Error saving file";
+"Error saving file" = "Errore durante il salvataggio del file";
 
 /* No comment provided by engineer. */
 "Explore" = "Esplora";
@@ -554,10 +554,10 @@
 "Failed to import item" = "Importazione dell'elemento fallita";
 
 /* No comment provided by engineer. */
-"Failed to load featured projects" = "Failed to load featured projects";
+"Failed to load featured projects" = "Impossibile caricare i progetti in evidenza";
 
 /* No comment provided by engineer. */
-"Failed to load recent projects" = "Failed to load recent projects";
+"Failed to load recent projects" = "Impossibile caricare i progetti recenti";
 
 /* No comment provided by engineer. */
 "Failed to load sound" = "Caricamento del suono fallito";
@@ -569,7 +569,7 @@
 "false" = "falso";
 
 /* No comment provided by engineer. */
-"Featured Projects" = "Featured Projects";
+"Featured Projects" = "Progetti in Evidenza";
 
 /* No comment provided by engineer. */
 "Feb" = "Feb";
@@ -590,7 +590,7 @@
 "floor" = "parteintera";
 
 /* No comment provided by engineer. */
-"Following features used in this project are not compatible with this version of Pocket Code:" = "Following features used in this project are not compatible with this version of Pocket Code:";
+"Following features used in this project are not compatible with this version of Pocket Code:" = "Le seguenti funzionalità, utilizzate in questo progetto, non sono compatibili con la versione in uso di Pocket Code:";
 
 /* No comment provided by engineer. */
 "for" = "per";
@@ -890,7 +890,7 @@
 "More" = "Altro";
 
 /* No comment provided by engineer. */
-"More information" = "More information";
+"More information" = "Ulteriori informazioni";
 
 /* No comment provided by engineer. */
 "Most Downloaded" = "Più scaricati";
@@ -950,7 +950,7 @@
 "New Message" = "Nuovo messaggio";
 
 /* No comment provided by engineer. */
-"New Project" = "New Project";
+"New Project" = "Nuovo Progetto";
 
 /* No comment provided by engineer. */
 "New Text" = "Nuovo testo";
@@ -1001,10 +1001,7 @@
 "not available. Continue anyway?" = "non disponibile. Continuare comunque?";
 
 /* No comment provided by engineer. */
-"Not Connected to a WiFi network, please connect to one or change the settings to download also with mobile data." = "Non connesso ad una rete WiFi; connettiti ad una rete o cambia le impostazioni di sistema per scaricare comunque i dati usando un'altra connessione dati.";
-
-/* No comment provided by engineer. */
-"Not enough free memory to download this project. Please delete some of your projects" = "Not enough free memory to download this project. Please delete some of your projects";
+"Not enough free memory to download this project. Please delete some of your projects" = "Non c'è abbastanza memoria libera per scaricare questo programma. Si consiglia di eliminare alcuni dei tuoi progetti";
 
 /* No comment provided by engineer. */
 "Not enough Memory" = "Memoria insufficiente";
@@ -1067,7 +1064,7 @@
 "Only special characters are not allowed. Please enter at least %lu other character(s)." = "Non è ammesso l'uso di soli caratteri speciali. Si prega di inserire almeno %lu altri caratteri.";
 
 /* No comment provided by engineer. */
-"Open" = "Apri";
+"Open" = "Apri ";
 
 /* No comment provided by engineer. */
 "or" = "oppure";
@@ -1118,13 +1115,13 @@
 "Please enter a text!" = "Inserisci un testo!";
 
 /* No comment provided by engineer. */
-"Please log in to report this project as inappropriate" = "Please log in to report this project as inappropriate";
+"Please log in to report this project as inappropriate" = "Effettua il login per poter segnalare questo programma come inappropriato";
 
 /* paint */
 "Please pick a tool" = "Scegli uno strumento";
 
 /* No comment provided by engineer. */
-"Please select a project to upload" = "Please select a project to upload";
+"Please select a project to upload" = "Seleziona un progetto da caricare";
 
 /* bluetooth */
 "Please try resetting the device and try again." = "Si prega di provare a resettare il dispositivo e riprovare.";
@@ -1190,22 +1187,22 @@
 "Privacy Settings" = "Impostazioni Privacy";
 
 /* No comment provided by engineer. */
-"Problems occured while uploading your project" = "Problems occured while uploading your project";
+"Problems occured while uploading your project" = "Si sono verificati dei problemi durante il caricamento del progetto";
 
 /* No comment provided by engineer. */
 "Project" = "Progetto";
 
 /* No comment provided by engineer. */
-"Project lists:" = "Project lists:";
+"Project lists:" = "Elenco progetti:";
 
 /* No comment provided by engineer. */
 "Project name" = "Nome del programma";
 
 /* No comment provided by engineer. */
-"Project Name is necessary!" = "Project Name is necessary!";
+"Project Name is necessary!" = "Il nome del progetto è necessario!";
 
 /* No comment provided by engineer. */
-"Project variables:" = "Project variables:";
+"Project variables:" = "Variabili del progetto:";
 
 /* No comment provided by engineer. */
 "Projects" = "Programmi";
@@ -1244,7 +1241,7 @@
 "Rename object" = "Rinomina oggetto";
 
 /* No comment provided by engineer. */
-"Rename Project" = "Rename Project";
+"Rename Project" = "Rinomina Progetto";
 
 /* No comment provided by engineer. */
 "Rename sound" = "Rinomina suono";
@@ -1499,7 +1496,7 @@
 "The description contains invalid characters, try again." = "La descrizione contiene caratteri non validi, provare di nuovo.";
 
 /* No comment provided by engineer. */
-"The featured projects cannot be loaded" = "The featured projects cannot be loaded";
+"The featured projects cannot be loaded" = "I progetti in evidenza non possono essere caricati";
 
 /* No comment provided by engineer. */
 "The following item could not be imported from the Media Library:" = "Il seguente elemento non può essere importato dalla libreria multimediale:";
@@ -1511,13 +1508,13 @@
 "The name contains blocked characters. Please try again!" = "Il nome contiene caratteri non ammessi. Si prega di riprovare!";
 
 /* No comment provided by engineer. */
-"The recent projects cannot be loaded" = "The recent projects cannot be loaded";
+"The recent projects cannot be loaded" = "I progetti recenti non possono essere caricati";
 
 /* No comment provided by engineer. */
-"The requested project can not be found. Please choose a different one." = "The requested project can not be found. Please choose a different one.";
+"The requested project can not be found. Please choose a different one." = "Impossibile trovare il programma richiesto. Scegli un altro.";
 
 /* No comment provided by engineer. */
-"The requested project can not be loaded. Please try again later." = "The requested project can not be loaded. Please try again later.";
+"The requested project can not be loaded. Please try again later." = "Il progetto richiesto non può essere caricato. Riprova più tardi.";
 
 /* No comment provided by engineer. */
 "The sound item cannot be loaded" = "Il suono non può essere caricato";
@@ -1586,7 +1583,7 @@
 "Turn right" = "Gira a destra";
 
 /* No comment provided by engineer. */
-"Unable to load project!" = "Unable to load project!";
+"Unable to load project!" = "Impossibile caricare il progetto!";
 
 /* No comment provided by engineer. */
 "Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt." = "Impossibile riprodurre il suono!\nForse il formato non è valido oppure il file è danneggiato.";
@@ -1622,22 +1619,22 @@
 "Unselect All" = "Deseleziona tutto";
 
 /* No comment provided by engineer. */
-"Unsupported Brick:" = "Unsupported Brick:";
+"Unsupported Brick:" = "Mattoncino non supportato:";
 
 /* No comment provided by engineer. */
-"Unsupported Elements" = "Unsupported Elements";
+"Unsupported Elements" = "Elementi non supportati";
 
 /* No comment provided by engineer. */
-"Unsupported Script:" = "Unsupported Script:";
+"Unsupported Script:" = "Script non supportato:";
 
 /* No comment provided by engineer. */
 "Upload" = "Carica";
 
 /* No comment provided by engineer. */
-"Upload Project" = "Upload Project";
+"Upload Project" = "Carica progetto";
 
 /* No comment provided by engineer. */
-"Upload selected project" = "Upload selected project";
+"Upload selected project" = "Carica progetto selezionato";
 
 /* No comment provided by engineer. */
 "Upload successful" = "Caricamento terminato con successo";
@@ -1709,7 +1706,7 @@
 "Welcome to Pocket Code" = "Benvenuto in Pocket Code";
 
 /* No comment provided by engineer. */
-"When project started" = "When project started";
+"When project started" = "Quando il progetto è iniziato";
 
 /* No comment provided by engineer. */
 "When screen is touched" = "Quando lo schermo viene toccato";
@@ -1745,7 +1742,7 @@
 "You are also able to build your own apps, remix existing ones and share them with your friends and other exciting people around the world." = "Sarai in grado di costruire tue app, fare il remix di quelli esistenti e condividerle con i tuoi amici e altre persone nel mondo.";
 
 /* No comment provided by engineer. */
-"You have already downloaded this project!" = "You have already downloaded this project!";
+"You have already downloaded this project!" = "Hai già scaricato questo programma!";
 
 /* No comment provided by engineer. */
 "Your email seems to be invalid" = "La tua e-mail sembra non essere valida";

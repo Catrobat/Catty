@@ -422,7 +422,7 @@
 "Download" = "Descarregar";
 
 /* No comment provided by engineer. */
-"Download sucessful" = "Descarga concluída com sucesso";
+"Download successful" = "Download concluído";
 
 /* No comment provided by engineer. */
 "Downloads" = "Descargas";
@@ -1001,9 +1001,6 @@
 "not available. Continue anyway?" = "indisponível. Continuar mesmo assim?";
 
 /* No comment provided by engineer. */
-"Not Connected to a WiFi network, please connect to one or change the settings to download also with mobile data." = "Não está ligado a uma rede WiFi; por favor ligue a uma rede ou altere as configurações para também poder descarregar usando dados móveis.";
-
-/* No comment provided by engineer. */
 "Not enough free memory to download this project. Please delete some of your projects" = "Not enough free memory to download this project. Please delete some of your projects";
 
 /* No comment provided by engineer. */
@@ -1067,7 +1064,7 @@
 "Only special characters are not allowed. Please enter at least %lu other character(s)." = "Só não são permitidos caracteres especiais. Por favor introduza pelo menos mais %lu caracter(es).";
 
 /* No comment provided by engineer. */
-"Open" = "Abrir";
+"Open" = "Abrir ";
 
 /* No comment provided by engineer. */
 "or" = "ou";

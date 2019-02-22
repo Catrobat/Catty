@@ -422,7 +422,7 @@
 "Download" = "Stáhnout";
 
 /* No comment provided by engineer. */
-"Download sucessful" = "Stahování ůspěšně dokončeno";
+"Download successful" = "Staženo úspěšně";
 
 /* No comment provided by engineer. */
 "Downloads" = "Stahování";
@@ -1001,9 +1001,6 @@
 "not available. Continue anyway?" = "není k dispozici. Chcete přesto pokračovat?";
 
 /* No comment provided by engineer. */
-"Not Connected to a WiFi network, please connect to one or change the settings to download also with mobile data." = "Nejste připojeni k síti WiFi, prosím připojte se k jednomu nebo změnte nastavení aby stahování i s mobilníma datama.";
-
-/* No comment provided by engineer. */
 "Not enough free memory to download this project. Please delete some of your projects" = "Not enough free memory to download this project. Please delete some of your projects";
 
 /* No comment provided by engineer. */
@@ -1067,7 +1064,7 @@
 "Only special characters are not allowed. Please enter at least %lu other character(s)." = "Pouze speciální znaky nejsou povoleny. Zadejte prosím alespoň %lu jiné znaky.";
 
 /* No comment provided by engineer. */
-"Open" = "Otevřít";
+"Open" = "Otevřít ";
 
 /* No comment provided by engineer. */
 "or" = "nebo";

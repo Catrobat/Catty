@@ -422,7 +422,7 @@
 "Download" = "Pakua";
 
 /* No comment provided by engineer. */
-"Download sucessful" = "Kupakua kumefanikiwa";
+"Download successful" = "Kupakua kumefaulu";
 
 /* No comment provided by engineer. */
 "Downloads" = "Vipakuliwa";
@@ -1001,9 +1001,6 @@
 "not available. Continue anyway?" = "haipatikani. Hata hivyo Endelea?";
 
 /* No comment provided by engineer. */
-"Not Connected to a WiFi network, please connect to one or change the settings to download also with mobile data." = "Not Connected to a WiFi network, please connect to one or change the settings to download also with mobile data.";
-
-/* No comment provided by engineer. */
 "Not enough free memory to download this project. Please delete some of your projects" = "Not enough free memory to download this project. Please delete some of your projects";
 
 /* No comment provided by engineer. */
@@ -1067,7 +1064,7 @@
 "Only special characters are not allowed. Please enter at least %lu other character(s)." = "Only special characters are not allowed. Please enter at least %lu other character(s).";
 
 /* No comment provided by engineer. */
-"Open" = "Fungua";
+"Open" = "Fungua ";
 
 /* No comment provided by engineer. */
 "or" = "au";

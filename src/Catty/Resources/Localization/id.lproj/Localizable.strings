@@ -422,7 +422,7 @@
 "Download" = "Unduh";
 
 /* No comment provided by engineer. */
-"Download sucessful" = "Berhasil mengunduh";
+"Download successful" = "Berhasil mengunduh";
 
 /* No comment provided by engineer. */
 "Downloads" = "Unduhan";
@@ -1001,9 +1001,6 @@
 "not available. Continue anyway?" = "tidak tersedia. Terus sin?";
 
 /* No comment provided by engineer. */
-"Not Connected to a WiFi network, please connect to one or change the settings to download also with mobile data." = "Tidak Terhubung ke jaringan WiFi, hubungkan ke satu atau ubah pengaturan untuk mendownload juga dengan data mobile.";
-
-/* No comment provided by engineer. */
 "Not enough free memory to download this project. Please delete some of your projects" = "Not enough free memory to download this project. Please delete some of your projects";
 
 /* No comment provided by engineer. */
@@ -1067,7 +1064,7 @@
 "Only special characters are not allowed. Please enter at least %lu other character(s)." = "Hanya karakter khusus yang tidak diizinkan. Harap masukkan minimal %lu karakter lainnya.";
 
 /* No comment provided by engineer. */
-"Open" = "Buka";
+"Open" = "Buka ";
 
 /* No comment provided by engineer. */
 "or" = "atau";

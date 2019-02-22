@@ -422,7 +422,7 @@
 "Download" = "Shkarkoni";
 
 /* No comment provided by engineer. */
-"Download sucessful" = "Download sucessful";
+"Download successful" = "Shkarkimi i suksesshëm";
 
 /* No comment provided by engineer. */
 "Downloads" = "Downloads";
@@ -1001,9 +1001,6 @@
 "not available. Continue anyway?" = "not available. Continue anyway?";
 
 /* No comment provided by engineer. */
-"Not Connected to a WiFi network, please connect to one or change the settings to download also with mobile data." = "Not Connected to a WiFi network, please connect to one or change the settings to download also with mobile data.";
-
-/* No comment provided by engineer. */
 "Not enough free memory to download this project. Please delete some of your projects" = "Not enough free memory to download this project. Please delete some of your projects";
 
 /* No comment provided by engineer. */
@@ -1067,7 +1064,7 @@
 "Only special characters are not allowed. Please enter at least %lu other character(s)." = "Only special characters are not allowed. Please enter at least %lu other character(s).";
 
 /* No comment provided by engineer. */
-"Open" = "Hape";
+"Open" = "Hape ";
 
 /* No comment provided by engineer. */
 "or" = "or";

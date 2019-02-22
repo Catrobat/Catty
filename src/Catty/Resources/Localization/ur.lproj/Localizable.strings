@@ -422,7 +422,7 @@
 "Download" = "ڈاؤنلوڈ";
 
 /* No comment provided by engineer. */
-"Download sucessful" = "ڈاؤن لوڈ کامیاب";
+"Download successful" = "Download successful";
 
 /* No comment provided by engineer. */
 "Downloads" = "ڈاؤن لوڈز";
@@ -999,9 +999,6 @@
 
 /* No comment provided by engineer. */
 "not available. Continue anyway?" = "not available. Continue anyway?";
-
-/* No comment provided by engineer. */
-"Not Connected to a WiFi network, please connect to one or change the settings to download also with mobile data." = "Not Connected to a WiFi network, please connect to one or change the settings to download also with mobile data.";
 
 /* No comment provided by engineer. */
 "Not enough free memory to download this project. Please delete some of your projects" = "Not enough free memory to download this project. Please delete some of your projects";

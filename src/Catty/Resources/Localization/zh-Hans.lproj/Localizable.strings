@@ -422,7 +422,7 @@
 "Download" = "&#x5448;&#x62A5;&#x4E3A;&#x4E0D;&#x9002;&#x5F53;&#x7684;&#x5185;&#x5BB9;";
 
 /* No comment provided by engineer. */
-"Download sucessful" = "下载完成";
+"Download successful" = "下载完成";
 
 /* No comment provided by engineer. */
 "Downloads" = "下载";
@@ -1001,9 +1001,6 @@
 "not available. Continue anyway?" = "无法访问，是否继续？";
 
 /* No comment provided by engineer. */
-"Not Connected to a WiFi network, please connect to one or change the settings to download also with mobile data." = "Not Connected to a WiFi network, please connect to one or change the settings to download also with mobile data.";
-
-/* No comment provided by engineer. */
 "Not enough free memory to download this project. Please delete some of your projects" = "Not enough free memory to download this project. Please delete some of your projects";
 
 /* No comment provided by engineer. */
@@ -1067,7 +1064,7 @@
 "Only special characters are not allowed. Please enter at least %lu other character(s)." = "不允许只输入特殊字符，请输入至少 %lu个其他字符。";
 
 /* No comment provided by engineer. */
-"Open" = "打开";
+"Open" = "打开 ";
 
 /* No comment provided by engineer. */
 "or" = "或";

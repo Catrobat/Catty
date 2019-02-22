@@ -422,7 +422,7 @@
 "Download" = "다운로드";
 
 /* No comment provided by engineer. */
-"Download sucessful" = "다운로드 성공";
+"Download successful" = "다운로드 성공";
 
 /* No comment provided by engineer. */
 "Downloads" = "다운로드";
@@ -999,9 +999,6 @@
 
 /* No comment provided by engineer. */
 "not available. Continue anyway?" = "사용할 수 없습니다. 계속하시겠습니까?";
-
-/* No comment provided by engineer. */
-"Not Connected to a WiFi network, please connect to one or change the settings to download also with mobile data." = " WiFi 네트워크에 연결되지 않았습니다. 연결하거나 모바일 데이터로 다운로드 설정을 변경 하시기 바랍니다.";
 
 /* No comment provided by engineer. */
 "Not enough free memory to download this project. Please delete some of your projects" = "Not enough free memory to download this project. Please delete some of your projects";

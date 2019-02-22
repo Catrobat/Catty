@@ -422,7 +422,7 @@
 "Download" = "تحميل";
 
 /* No comment provided by engineer. */
-"Download sucessful" = "تم التنزيل بنجاح";
+"Download successful" = "تم التنزيل بنجاح";
 
 /* No comment provided by engineer. */
 "Downloads" = "التنزيلات";
@@ -999,9 +999,6 @@
 
 /* No comment provided by engineer. */
 "not available. Continue anyway?" = "غير متوفر. هل تريد المتابعة على أية حال؟";
-
-/* No comment provided by engineer. */
-"Not Connected to a WiFi network, please connect to one or change the settings to download also with mobile data." = "ليش مُتصل الى شبكة لاسلكية, من فضلك قم بلاتصال بأحد الشبكات أو قم بتغيير الإعدادات ليتم التحميل عبر بيانات الجوال.";
 
 /* No comment provided by engineer. */
 "Not enough free memory to download this project. Please delete some of your projects" = "Not enough free memory to download this project. Please delete some of your projects";
