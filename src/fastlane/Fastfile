@@ -17,22 +17,84 @@ ENV["FASTLANE_SKIP_UPDATE_CHECK"] = "1"
 opt_out_usage
 
 default_platform(:ios)
-
 platform :ios do
-  lane :browserstack_app_live do
+
+  $catty_schemes = {
+    "release" => "Catty (RELEASE)",
+    "debug" => "Catty (DEBUG)"
+  } 
+  $build_dir = "fastlane/builds/"
+
+  desc "Upload Development Build to Browserstack"
+  lane :upload_to_browserstack do
     upload_to_browserstack_app_live(
       browserstack_username: ENV["BROWSERSTACK_USERNAME"],
       browserstack_access_key: ENV["BROWSERSTACK_ACCESS_KEY"],
-      file_path: "fastlane/builds/"+git_branch+".ipa"
+      file_path: $build_dir+git_branch+".ipa"
     )
   end
 
-  lane :create_pr_executable do
-    gym(scheme: "Catty (RELEASE)", export_method: "development", output_directory: "fastlane/builds/", output_name: git_branch)
+  desc "Creating an ipa Build (options: scheme)"
+  lane :create_build do |options|
+    gym(scheme: options[:scheme],
+        export_method: "development",
+        output_directory: $build_dir,
+        output_name: git_branch
+    )
   end
 
+  desc "Preparing for PO Review"
   lane :po_review do
-    create_pr_executable
-    browserstack_app_live
+    create_build scheme:$catty_schemes["release"]
+    upload_to_browserstack
+  end
+
+  desc "Upload Translations to Crowdin"
+  lane :crowdin_upload do
+    sh ("curl \
+          -F \"files[catty/Localizable.strings]=@../Catty/Resources/Localization/en.lproj/Localizable.strings\" \
+          -F \"export_patterns[catty/Localizable.strings]=catty/%osx_code%.lproj/%original_file_name%\" \
+          https://api.crowdin.com/api/project/catrobat/update-file?key="+ENV["CROWDIN_KEY"])
+  end
+
+  desc "Download all Translations from Crowdin"
+  lane :crowdin_download do
+    sh ("wget -O crowdin.zip https://api.crowdin.com/api/project/catrobat/download/all.zip?key="+ENV["CROWDIN_KEY"])
+    sh ("unzip -o crowdin.zip -d crowdin")
+  end
+
+  desc "Update lane for Crowdin translations"
+  lane :update_translations do
+    # Move old translations to backup location
+    rsync(
+      source: "Catty/Resources/Localization/*",
+      destination: "fastlane/crowdin.old/"
+    )
+    sh ("find ../Catty/Resources/Localization/* ! -name 'en.lproj' -type d -exec rm -rf {} +")
+
+    # Upload
+    crowdin_upload
+
+    # Download
+    crowdin_download
+
+    # Sync
+    rsync(
+      source: "fastlane/crowdin/catty/*",
+      destination: "Catty/Resources/Localization/"
+    )
+
+    # Update xcodeproj
+    sh ("ruby rb/update_translations_xcodeproj.rb")
+
+    # Cleanup
+    sh ("rm -r crowdin")
+    sh ("rm crowdin.zip")
+    #sh ("rm -r crowdin.old")
+  end
+
+  desc "Use this lane as playground"
+  lane :playground do
+    sh ("ruby rb/update_translations_xcodeproj.rb")
   end
 end

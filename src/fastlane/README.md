@@ -16,21 +16,41 @@ or alternatively using `brew cask install fastlane`
 
 # Available Actions
 ## iOS
-### ios browserstack_app_live
+### ios upload_to_browserstack
 ```
-fastlane ios browserstack_app_live
+fastlane ios upload_to_browserstack
 ```
-
-### ios create_pr_executable
+Upload Development Build to Browserstack
+### ios create_build
 ```
-fastlane ios create_pr_executable
+fastlane ios create_build
 ```
-
+Creating an ipa Build (options: scheme)
 ### ios po_review
 ```
 fastlane ios po_review
 ```
-
+Preparing for PO Review
+### ios crowdin_upload
+```
+fastlane ios crowdin_upload
+```
+Upload Translations to Crowdin
+### ios crowdin_download
+```
+fastlane ios crowdin_download
+```
+Download all Translations from Crowdin
+### ios update_translations
+```
+fastlane ios update_translations
+```
+Update lane for Crowdin translations
+### ios playground
+```
+fastlane ios playground
+```
+Use this lane as playground
 
 ----
 

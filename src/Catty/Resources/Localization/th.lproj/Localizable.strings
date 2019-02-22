@@ -1,0 +1,1754 @@
+/* No comment provided by engineer. */
+"A message with the same name already exists, try again." = "A message with the same name already exists, try again.";
+
+/* No comment provided by engineer. */
+"A project with the same name already exists, try again." = "A project with the same name already exists, try again.";
+
+/* No comment provided by engineer. */
+"About Catrobat" = "เกี่ยวกับ Catrobat";
+
+/* No comment provided by engineer. */
+"About Pocket Code" = "เกี่ยวกับ Pocket Code";
+
+/* No comment provided by engineer. */
+"acceleration-sensor" = "acceleration-sensor";
+
+/* No comment provided by engineer. */
+"acceleration_x" = "ความเร่ง_x";
+
+/* No comment provided by engineer. */
+"acceleration_y" = "ความเร่ง_y";
+
+/* No comment provided by engineer. */
+"acceleration_z" = "ความเร่ง_z";
+
+/* No comment provided by engineer. */
+"Add" = "เพิ่ม";
+
+/* No comment provided by engineer. */
+"add comment here..." = "add comment here...";
+
+/* No comment provided by engineer. */
+"Add image" = "เพิ่มรูปภาพ";
+
+/* Action sheet menu title */
+"Add look" = "เพิ่มรูปลักษณ์";
+
+/* No comment provided by engineer. */
+"Add object" = "เพิ่มวัตถุ";
+
+/* Action sheet menu title */
+"Add sound" = "เพิ่มเสียง";
+
+/* No comment provided by engineer. */
+"All Bluetooth devices successfully disconnected" = "All Bluetooth devices successfully disconnected";
+
+/* No comment provided by engineer. */
+"All known Bluetooth devices successfully removed" = "All known Bluetooth devices successfully removed";
+
+/* paint */
+"Alpha" = "ความโปร่งใส";
+
+/* No comment provided by engineer. */
+"altitude" = "altitude";
+
+/* No comment provided by engineer. */
+"An image with the same name already exists, try again." = "มีชื่อภาพนี้อยู่แล้ว โปรดลองใหม่อีกครั้ง";
+
+/* No comment provided by engineer. */
+"An object with the same name already exists, try again." = "มีชื่อวัตถุนี้อยู่แล้ว โปรดลองใหม่อีกครั้ง";
+
+/* No comment provided by engineer. */
+"An unknown error occurred. Check your Internet connection." = "เกิดข้อผิดพลาดที่ไม่รู้จักขึ้น กรุณาตรวจสอบการเชื่อมต่ออินเทอร์เน็ต";
+
+/* No comment provided by engineer. */
+"An unknown error occurred. Please try again later." = "An unknown error occurred. Please try again later.";
+
+/* No comment provided by engineer. */
+"and" = "และ";
+
+/* No comment provided by engineer. */
+"and wait" = "and wait";
+
+/* No comment provided by engineer. */
+"Animate Brick-Parts" = "ทำให้ส่วนของก้อนเกิดการเคลื่อไหว";
+
+/* No comment provided by engineer. */
+"Apr" = "เม.ย";
+
+/* No comment provided by engineer. */
+"April" = "เมษายน";
+
+/* No comment provided by engineer. */
+"Arduino" = "Arduino";
+
+/* No comment provided by engineer. */
+"arduino_analog" = "arduino_analog";
+
+/* No comment provided by engineer. */
+"arduino_digital" = "arduino_digital";
+
+/* No comment provided by engineer. */
+"at " = "at ";
+
+/* No comment provided by engineer. */
+"at position" = "ที่ตำแหน่ง";
+
+/* paint */
+"Attributes:" = "Attributes:";
+
+/* No comment provided by engineer. */
+"Aug" = "ส.ค";
+
+/* No comment provided by engineer. */
+"August" = "สิงหาคม";
+
+/* No comment provided by engineer. */
+"Authentication failed" = "Authentication failed";
+
+/* No comment provided by engineer. */
+"Author" = "ผู้เขียน";
+
+/* Title of icon shown in the side bar to enable or disable an overlayed view to show the origin of the coordinate system and implicitly the display size. */
+"Axes" = "Axes";
+
+/* No comment provided by engineer. */
+"back" = "back";
+
+/* No comment provided by engineer. */
+"Back" = "ย้อนกลับ";
+
+/* No comment provided by engineer. */
+"Background" = "พื้นหลัง";
+
+/* No comment provided by engineer. */
+"background_name" = "background_name";
+
+/* No comment provided by engineer. */
+"background_number" = "background_number";
+
+/* No comment provided by engineer. */
+"Backgrounds" = "พื้นหลัง";
+
+/* paint */
+"Blue" = "สีน้ำเงิน";
+
+/* No comment provided by engineer. */
+"Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings." = "Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings.";
+
+/* No comment provided by engineer. */
+"Bluetooth is turned off. Please turn it on to connect to a Bluetooth device." = "Bluetooth is turned off. Please turn it on to connect to a Bluetooth device.";
+
+/* paint */
+"bold" = "bold";
+
+/* No comment provided by engineer. */
+"Both" = "Both";
+
+/* No comment provided by engineer. */
+"Bricks" = "ก้อนคำสั่ง";
+
+/* No comment provided by engineer. */
+"brightness" = "ความสว่าง";
+
+/* No comment provided by engineer. */
+"Broadcast" = "กระจายเสียง";
+
+/* No comment provided by engineer. */
+"Broadcast and wait" = "กระจายเสียงและรอ";
+
+/* paint */
+"Brush" = "แปรง";
+
+/* No comment provided by engineer. */
+"by" = "โดย";
+
+/* No comment provided by engineer. */
+"By registering you agree to our" = "โดยการลงทะเบียน คุณยอมรับ";
+
+/* No comment provided by engineer. */
+"By switching to the section \"Explore\" you can discover more interesting projects from people all over the world." = "By switching to the section \"Explore\" you can discover more interesting projects from people all over the world.";
+
+/* No comment provided by engineer. */
+"Camera Roll" = "ที่เก็บภาพ";
+
+/* No comment provided by engineer. */
+"Can't restart project!" = "Can't restart project!";
+
+/* No comment provided by engineer. */
+"Cancel" = "ยกเลิก";
+
+/* bluetooth */
+"Cannot connect to device, please try resetting the device and try again." = "Cannot connect to device, please try resetting the device and try again.";
+
+/* bluetooth */
+"Cannot connect to device. The device is not responding." = "Cannot connect to device. The device is not responding.";
+
+/* No comment provided by engineer. */
+"Cannot connect to the Media Library. Please check your Internet connection." = "Cannot connect to the Media Library. Please check your Internet connection.";
+
+/* No comment provided by engineer. */
+"Categories" = "หมวดหมู่";
+
+/* No comment provided by engineer. */
+"ceil" = "ceil";
+
+/* No comment provided by engineer. */
+"Change brightness " = "เปลี่ยนแปลงความสว่าง ";
+
+/* No comment provided by engineer. */
+"Change color " = "Change color ";
+
+/* No comment provided by engineer. */
+"Change size by" = "เปลี่ยนขนาดทีละ";
+
+/* No comment provided by engineer. */
+"Change transparency " = "เปลี่ยนความโปร่งใส";
+
+/* No comment provided by engineer. */
+"Change variable" = "เปลี่ยนค่าตัวแปร";
+
+/* No comment provided by engineer. */
+"Change volume by" = "เปลี่ยนระดับเสียงทีละ";
+
+/* No comment provided by engineer. */
+"Change X by " = "เปลี่ยนค่า X ทีละ";
+
+/* No comment provided by engineer. */
+"Change Y by " = "เปลี่ยนค่า Y ทีละ";
+
+/* No comment provided by engineer. */
+"Changes discarded!" = "ละทิ้งการเปลี่ยนแปลงแล้ว!";
+
+/* No comment provided by engineer. */
+"Changes saved!" = "บันทึกการเปลี่ยนแปลงแล้ว!";
+
+/* No comment provided by engineer. */
+"Choose" = "Choose";
+
+/* No comment provided by engineer. */
+"Choose image" = "เลือกภาพ";
+
+/* No comment provided by engineer. */
+"Clear graphic effects" = "ล้างลักษณะพิเศษ";
+
+/* No comment provided by engineer. */
+"Close" = "ปิด";
+
+/* paint */
+"Close Paint" = "Close Paint";
+
+/* No comment provided by engineer. */
+"color" = "color";
+
+/* No comment provided by engineer. */
+"compass" = "compass";
+
+/* No comment provided by engineer. */
+"Compute" = "คำนวณ";
+
+/* No comment provided by engineer. */
+"Computed result is %.2f" = "คำนวณผลได้เป็น %.2f";
+
+/* No comment provided by engineer. */
+"Computed result is FALSE" = "คำนวณผลได้เป็น เท็จ";
+
+/* No comment provided by engineer. */
+"Computed result is TRUE" = "คำนวณผลได้เป็น จริง";
+
+/* No comment provided by engineer. */
+"Confirm Password" = "Confirm Password";
+
+/* bluetooth */
+"Connection failed" = "Connection failed";
+
+/* bluetooth */
+"Connection Lost" = "Connection Lost";
+
+/* bluetooth */
+"Connection not possible" = "Connection not possible";
+
+/* No comment provided by engineer. */
+"contains" = "ประกอบด้วย";
+
+/* No comment provided by engineer. */
+"Continue" = "ทำต่อ";
+
+/* No comment provided by engineer. */
+"Control" = "ควบคุม";
+
+/* No comment provided by engineer. */
+"Copy" = "คัด​ลอก";
+
+/* No comment provided by engineer. */
+"Copy Brick" = "คัดลอกก้อนคำสั่ง";
+
+/* No comment provided by engineer. */
+"Copy Looks" = "Copy Looks";
+
+/* No comment provided by engineer. */
+"Copy project" = "Copy project";
+
+/* No comment provided by engineer. */
+"Create & Remix" = "Create & Remix";
+
+/* No comment provided by engineer. */
+"Create account" = "Create account";
+
+/* No comment provided by engineer. */
+"day" = "day";
+
+/* No comment provided by engineer. */
+"Debug mode" = "Debug mode";
+
+/* No comment provided by engineer. */
+"Dec" = "ธ.ค.";
+
+/* No comment provided by engineer. */
+"December" = "ธันวาคม";
+
+/* No comment provided by engineer. */
+"degrees" = "degrees";
+
+/* No comment provided by engineer. */
+"Delete" = "ลบ";
+
+/* No comment provided by engineer. */
+"Delete Backgrounds" = "Delete Backgrounds";
+
+/* No comment provided by engineer. */
+"Delete Brick" = "ลบก้อนคำสั่ง";
+
+/* No comment provided by engineer. */
+"Delete Condition" = "Delete Condition";
+
+/* No comment provided by engineer. */
+"Delete item from list" = "ลบข้อมูลออกจากรายการ";
+
+/* No comment provided by engineer. */
+"Delete Looks" = "ลบรูปลักษณ์ต่างๆ";
+
+/* No comment provided by engineer. */
+"Delete Loop" = "Delete Loop";
+
+/* No comment provided by engineer. */
+"Delete Objects" = "ลบวัตถุ";
+
+/* No comment provided by engineer. */
+"Delete Project" = "Delete Project";
+
+/* No comment provided by engineer. */
+"Delete Projects" = "Delete Projects";
+
+/* No comment provided by engineer. */
+"Delete Script" = "ลบสคริปต์";
+
+/* No comment provided by engineer. */
+"Delete Sounds" = "ลบเสียงต่างๆ";
+
+/* No comment provided by engineer. */
+"Delete these Bricks?" = "ลบก้อนคำสั่งเหล่านี้หรือไม่?";
+
+/* No comment provided by engineer. */
+"Delete these Conditions?" = "Delete these Conditions?";
+
+/* No comment provided by engineer. */
+"Delete these Loops?" = "Delete these Loops?";
+
+/* No comment provided by engineer. */
+"Delete these Scripts?" = "Delete these Scripts?";
+
+/* No comment provided by engineer. */
+"Delete this background" = "Delete this background";
+
+/* No comment provided by engineer. */
+"Delete this Brick?" = "ลบก้อนคำสั่งนี้หรือไม่?";
+
+/* No comment provided by engineer. */
+"Delete this Condition?" = "Delete this Condition?";
+
+/* No comment provided by engineer. */
+"Delete this look" = "ลบรูปลักษณ์นี้";
+
+/* No comment provided by engineer. */
+"Delete this Loop?" = "Delete this Loop?";
+
+/* No comment provided by engineer. */
+"Delete this object" = "ลบวัตถุนี้";
+
+/* No comment provided by engineer. */
+"Delete this project" = "Delete this project";
+
+/* No comment provided by engineer. */
+"Delete this Script?" = "ลบสคริปต์นี้หรือไม่?";
+
+/* No comment provided by engineer. */
+"Delete this sound" = "ลบเสียงนี้";
+
+/* No comment provided by engineer. */
+"Deletion Mode" = "Deletion Mode";
+
+/* No comment provided by engineer. */
+"Description" = "คำอธิบาย";
+
+/* No comment provided by engineer. */
+"Details" = "รายละเอียด";
+
+/* bluetooth */
+"Device disconnected." = "Device disconnected.";
+
+/* No comment provided by engineer. */
+"device motion-sensor" = "device motion-sensor";
+
+/* No comment provided by engineer. */
+"direction" = "ทิศทาง";
+
+/* No comment provided by engineer. */
+"Disconnect all devices" = "Disconnect all devices";
+
+/* No comment provided by engineer. */
+"DO" = "DO";
+
+/* paint */
+"Do you really want to delete the current drawing?" = "คุณต้องการจะลบภาพที่กำลังวาดนี้จริงหรือ";
+
+/* paint */
+"Do you want to save the changes" = "คุณต้องการจะบันทึกการเปลี่ยนแปลงนี้หรือไม่";
+
+/* No comment provided by engineer. */
+"Done" = "เสร็จสิ้น";
+
+/* No comment provided by engineer. */
+"Download" = "ดาวน์โหลด";
+
+/* No comment provided by engineer. */
+"Download sucessful" = "Download sucessful";
+
+/* No comment provided by engineer. */
+"Downloads" = "ดาวน์โหลด";
+
+/* No comment provided by engineer. */
+"Draw new image" = "วาดรูปใหม่";
+
+/* No comment provided by engineer. */
+"Duration" = "ระยะเวลา";
+
+/* No comment provided by engineer. */
+"Edit" = "แก้ไข";
+
+/* Action sheet menu title */
+"Edit Background" = "Edit Background";
+
+/* Action sheet menu title */
+"Edit Backgrounds" = "Edit Backgrounds";
+
+/* Action sheet menu title */
+"Edit Brick" = "แก้ไขก้อนคำสั่ง";
+
+/* No comment provided by engineer. */
+"Edit Formula" = "แก้ไขสูตร";
+
+/* Action sheet menu title */
+"Edit Look" = "แก้ไขรูปลักษณ์";
+
+/* Action sheet menu title */
+"Edit Looks" = "แก้ไขรูปลักษณ์ต่างๆ";
+
+/* No comment provided by engineer. */
+"Edit Object" = "แก้ไขวัตถุ";
+
+/* No comment provided by engineer. */
+"Edit Project" = "Edit Project";
+
+/* No comment provided by engineer. */
+"Edit Projects" = "Edit Projects";
+
+/* Action sheet menu title */
+"Edit Script" = "Edit Script";
+
+/* Action sheet menu title */
+"Edit Sound" = "แก้ไขเสียง";
+
+/* Action sheet menu title */
+"Edit Sounds" = "แก้ไขเสียง";
+
+/* No comment provided by engineer. */
+"element" = "องค์ประกอบ";
+
+/* paint */
+"Ellipse / Circle" = "Ellipse / Circle";
+
+/* No comment provided by engineer. */
+"Else" = "มิฉนั้น";
+
+/* No comment provided by engineer. */
+"Email" = "Email";
+
+/* No comment provided by engineer. */
+"Empty input!" = "Empty input!";
+
+/* No comment provided by engineer. */
+"End If" = "สิ้นสุดถ้า";
+
+/* No comment provided by engineer. */
+"End of Loop" = "จุดสิ้นสุดของลูป";
+
+/* No comment provided by engineer. */
+"Enter a reason" = "ป้อนเหตุผล";
+
+/* Placeholder for add image-name input field */
+"Enter your image name here..." = "ใส่ชื่อภาพของคุณที่นี่...";
+
+/* Placeholder for list input field */
+"Enter your list name here..." = "Enter your list name here...";
+
+/* Placeholder for message input field */
+"Enter your message here..." = "Enter your message here...";
+
+/* Placeholder for add object-name input field */
+"Enter your object name here..." = "ป้อนชื่อวัตถุที่นี่...";
+
+/* Placeholder for project-description input field */
+"Enter your project description here..." = "Enter your project description here...";
+
+/* Placeholder for project-name input field */
+"Enter your project name here..." = "Enter your project name here...";
+
+/* Placeholder for add sound-name input field */
+"Enter your sound name here..." = "ป้อนชื่อของเสียงที่นี่...";
+
+/* Placeholder for variable input field */
+"Enter your variable name here..." = "Enter your variable name here...";
+
+/* paint */
+"Eraser" = "ยางลบ";
+
+/* No comment provided by engineer. */
+"Error" = "ผิดพลาด";
+
+/* No comment provided by engineer. */
+"Error saving file" = "Error saving file";
+
+/* No comment provided by engineer. */
+"Explore" = "สำรวจ";
+
+/* No comment provided by engineer. */
+"Explore apps" = "สำรวจแอพพลิเคชัน";
+
+/* No comment provided by engineer. */
+"FA" = "FA";
+
+/* No comment provided by engineer. */
+"face_detected" = "face_detected";
+
+/* No comment provided by engineer. */
+"faceposition_x" = "faceposition_x";
+
+/* No comment provided by engineer. */
+"faceposition_y" = "faceposition_y";
+
+/* No comment provided by engineer. */
+"facesize" = "facesize";
+
+/* No comment provided by engineer. */
+"Failed to import item" = "Failed to import item";
+
+/* No comment provided by engineer. */
+"Failed to load featured projects" = "Failed to load featured projects";
+
+/* No comment provided by engineer. */
+"Failed to load recent projects" = "Failed to load recent projects";
+
+/* No comment provided by engineer. */
+"Failed to load sound" = "Failed to load sound";
+
+/* No comment provided by engineer. */
+"Failed to play sound" = "Failed to play sound";
+
+/* No comment provided by engineer. */
+"false" = "เท็จ";
+
+/* No comment provided by engineer. */
+"Featured Projects" = "Featured Projects";
+
+/* No comment provided by engineer. */
+"Feb" = "ก.พ";
+
+/* No comment provided by engineer. */
+"February" = "กุมภาพันธ์";
+
+/* paint */
+"Fill" = "เติม";
+
+/* No comment provided by engineer. */
+"Flashlight off" = "ปิดไฟฉาย";
+
+/* No comment provided by engineer. */
+"Flashlight on" = "เปิดไฟฉาย";
+
+/* No comment provided by engineer. */
+"floor" = "floor";
+
+/* No comment provided by engineer. */
+"Following features used in this project are not compatible with this version of Pocket Code:" = "Following features used in this project are not compatible with this version of Pocket Code:";
+
+/* No comment provided by engineer. */
+"for" = "for";
+
+/* No comment provided by engineer. */
+"for all objects" = "for all objects";
+
+/* No comment provided by engineer. */
+"for this object" = "for this object";
+
+/* No comment provided by engineer. */
+"Forever" = "ตลอดไป";
+
+/* No comment provided by engineer. */
+"Forgot password" = "ลืมรหัสผ่าน";
+
+/* No comment provided by engineer. */
+"Formula too long!" = "สูตรยาวเกินไป!";
+
+/* No comment provided by engineer. */
+"Fr" = "วันศุกร์";
+
+/* Title of View where the user can see the frequently used bricks. */
+"Frequently Used" = "Frequently Used";
+
+/* No comment provided by engineer. */
+"Friday" = "วันศุกร์";
+
+/* No comment provided by engineer. */
+"From Camera" = "จากกล้อง";
+
+/* No comment provided by engineer. */
+"front" = "front";
+
+/* No comment provided by engineer. */
+"Front camera" = "Front camera";
+
+/* No comment provided by engineer. */
+"Glide" = "ไถล";
+
+/* No comment provided by engineer. */
+"Go back" = "ย้อนกลับ";
+
+/* No comment provided by engineer. */
+"Go to front" = "ย้ายขึ้นข้างบน";
+
+/* paint */
+"Green" = "สีเขียว";
+
+/* No comment provided by engineer. */
+"gyro-sensor" = "gyro-sensor";
+
+/* No comment provided by engineer. */
+"Hello!" = "สวัสดี!";
+
+/* No comment provided by engineer. */
+"Help" = "ช่วยเหลือ";
+
+/* No comment provided by engineer. */
+"Hide" = "ซ่อน";
+
+/* No comment provided by engineer. */
+"Hide Details" = "ซ่อนรายละเอียด";
+
+/* No comment provided by engineer. */
+"Hide variable" = "Hide variable";
+
+/* No comment provided by engineer. */
+"Hmmmm!" = "Hmmmm!";
+
+/* No comment provided by engineer. */
+"hour" = "hour";
+
+/* No comment provided by engineer. */
+"If" = "ถ้า";
+
+/* No comment provided by engineer. */
+"If on edge, bounce" = "ถ้าติดขอบให้เด้งกลับ";
+
+/* paint */
+"Image" = "Image";
+
+/* No comment provided by engineer. */
+"Image name" = "ชื่อรูปภาพ";
+
+/* No comment provided by engineer. */
+"Image source not available" = "Image source not available";
+
+/* Title of prompt shown when a *.catrobat file is imported from a third-party app. */
+"Import File" = "Import File";
+
+/* No comment provided by engineer. */
+"In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation." = "ในการเข้าใช้ Pocket Code และโปรแกรมอื่นๆของเรา ที่เสนอด้วยโครงการ Catrobat คุณต้องยอมรับและปฏิบัติตามเงื่อนไขการใช้งานอย่างเคร่งครัดทุกครั้งที่ใช้ Pocket Code และโปรแกรมอื่นๆของเรา โปรดเข้าลิงค์ด้านล่างเพื่อดูกฏเกณฑ์การเข้าใช้แบบลงรายละเอียดของเว็บไซต์";
+
+/* No comment provided by engineer. */
+"inclination_x" = "ความลาดเอียง_x";
+
+/* No comment provided by engineer. */
+"inclination_y" = "ความลาดเอียง_y";
+
+/* No comment provided by engineer. */
+"Information" = "ข้อมูล";
+
+/* No comment provided by engineer. */
+"Insert" = "แทรก";
+
+/* paint */
+"Inserted" = "Inserted";
+
+/* No comment provided by engineer. */
+"into list" = "ลงในรายการ";
+
+/* No comment provided by engineer. */
+"Invalid input entered, try again." = "Invalid input entered, try again.";
+
+/* No comment provided by engineer. */
+"Invalid URL given!" = "URL ไม่ถูกต้อง";
+
+/* No comment provided by engineer. */
+"iOS." = "iOS.";
+
+/* No comment provided by engineer. */
+"is true" = "is true";
+
+/* No comment provided by engineer. */
+"is true then" = "เป็นจริงแล้ว";
+
+/* paint */
+"italic" = "italic";
+
+/* No comment provided by engineer. */
+"Jan" = "ม.ค";
+
+/* No comment provided by engineer. */
+"January" = "มกราคม";
+
+/* No comment provided by engineer. */
+"join" = "รวม";
+
+/* No comment provided by engineer. */
+"Jul" = "ก.ค";
+
+/* No comment provided by engineer. */
+"July" = "กรกฎาคม";
+
+/* No comment provided by engineer. */
+"Jun" = "มิ.ย";
+
+/* No comment provided by engineer. */
+"June" = "มิถุนายน";
+
+/* bluetooth */
+"Known devices" = "Known devices";
+
+/* No comment provided by engineer. */
+"LA" = "LA";
+
+/* No comment provided by engineer. */
+"Last access" = "เข้าถึงครั้งสุดท้าย";
+
+/* No comment provided by engineer. */
+"last_screen_touch_index" = "last_screen_touch_index";
+
+/* No comment provided by engineer. */
+"latitude" = "latitude";
+
+/* No comment provided by engineer. */
+"layer" = "ชั้น";
+
+/* No comment provided by engineer. */
+"layers" = "ลำดับชั้น";
+
+/* No comment provided by engineer. */
+"LED" = "LED";
+
+/* No comment provided by engineer. */
+"Left" = "ซ้าย";
+
+/* No comment provided by engineer. */
+"Length" = "ความยาว";
+
+/* No comment provided by engineer. */
+"length" = "ความยาว";
+
+/* No comment provided by engineer. */
+"letter" = "ตัวอักษร";
+
+/* paint */
+"Line" = "เส้น";
+
+/* No comment provided by engineer. */
+"List name:" = "List name:";
+
+/* No comment provided by engineer. */
+"List type" = "List type";
+
+/* No comment provided by engineer. */
+"Lists" = "รายการ";
+
+/* No comment provided by engineer. */
+"Loading" = "กำลังโหลด…";
+
+/* No comment provided by engineer. */
+"location" = "location";
+
+/* No comment provided by engineer. */
+"location_accuracy" = "location_accuracy";
+
+/* No comment provided by engineer. */
+"Logic" = "ตรรกะ";
+
+/* No comment provided by engineer. */
+"Login" = "เข้าสู่ระบบ";
+
+/* No comment provided by engineer. */
+"Login successful" = "Login successful";
+
+/* No comment provided by engineer. */
+"Login/Register" = "Login/Register";
+
+/* No comment provided by engineer. */
+"Logout" = "ออกจากระบบ";
+
+/* No comment provided by engineer. */
+"longitude" = "longitude";
+
+/* No comment provided by engineer. */
+"Look" = "รูปลักษณ์";
+
+/* LOOK */
+"look" = "ดู";
+
+/* No comment provided by engineer. */
+"look_name" = "look_name";
+
+/* No comment provided by engineer. */
+"look_number" = "look_number";
+
+/* No comment provided by engineer. */
+"Looks" = "รูปลักษณ์";
+
+/* No comment provided by engineer. */
+"loudness" = "ระดับความดัง";
+
+/* No comment provided by engineer. */
+"magnetic-sensor" = "magnetic-sensor";
+
+/* No comment provided by engineer. */
+"Mar" = "มี.ค";
+
+/* No comment provided by engineer. */
+"March" = "มีนาคม";
+
+/* No comment provided by engineer. */
+"Math" = "คณิตศาสตร์";
+
+/* No comment provided by engineer. */
+"May" = "พฤษภาคม";
+
+/* No comment provided by engineer. */
+"Measure" = "วัด";
+
+/* No comment provided by engineer. */
+"Media Library" = "Media Library";
+
+/* paint */
+"Menu" = "เมนู";
+
+/* No comment provided by engineer. */
+"Message" = "Message";
+
+/* No comment provided by engineer. */
+"message 1" = "ข้อความ 1";
+
+/* No comment provided by engineer. */
+"MI" = "MI";
+
+/* No comment provided by engineer. */
+"minute" = "minute";
+
+/* paint */
+"Mirror" = "Mirror";
+
+/* No comment provided by engineer. */
+"Mo" = "วันจันทร์";
+
+/* Prefix of default catrobat project object names (except background object) */
+"Mole" = "ตัวตุ่น";
+
+/* No comment provided by engineer. */
+"Monday" = "วันจันทร์";
+
+/* No comment provided by engineer. */
+"month" = "month";
+
+/* No comment provided by engineer. */
+"More" = "เพิ่มเติม";
+
+/* No comment provided by engineer. */
+"More information" = "More information";
+
+/* No comment provided by engineer. */
+"Most Downloaded" = "ดาวน์โหลดมากที่สุด";
+
+/* No comment provided by engineer. */
+"Most Viewed" = "ดูมากที่สุด";
+
+/* No comment provided by engineer. */
+"Motion" = "เคลื่อนไหว";
+
+/* No comment provided by engineer. */
+"Move" = "เคลื่อน";
+
+/* No comment provided by engineer. */
+"Move Brick" = "ย้ายก้อนคำสั่ง";
+
+/* No comment provided by engineer. */
+"Move Looks" = "Move Looks";
+
+/* No comment provided by engineer. */
+"Move Objects" = "Move Objects";
+
+/* No comment provided by engineer. */
+"Move Phiro motor backward" = "Move Phiro motor backward";
+
+/* No comment provided by engineer. */
+"Move Phiro motor forward" = "Move Phiro motor forward";
+
+/* No comment provided by engineer. */
+"Move Sounds" = "Move Sounds";
+
+/* Name of the default catrobat project (used as filename!!) */
+"My first project" = "โปรแกรมแรกของฉัน";
+
+/* Default title of imported photo from camera (taken by camera) */
+"My Image" = "รูปภาพของฉัน";
+
+/* Title for first (default) object */
+"My Object" = "วัตถุของฉัน";
+
+/* No comment provided by engineer. */
+"Name" = "Name";
+
+/* No comment provided by engineer. */
+"Name already exists." = "Name already exists.";
+
+/* No comment provided by engineer. */
+"New" = "สร้างใหม่";
+
+/* paint */
+"New Canvas" = "ผืนผ้าใบใหม่";
+
+/* No comment provided by engineer. */
+"New List" = "สร้างรายการใหม่";
+
+/* No comment provided by engineer. */
+"New Message" = "New Message";
+
+/* No comment provided by engineer. */
+"New Project" = "New Project";
+
+/* No comment provided by engineer. */
+"New Text" = "ข้อความใหม่";
+
+/* No comment provided by engineer. */
+"New Variable" = "สร้างตัวแปรใหม่";
+
+/* No comment provided by engineer. */
+"New..." = "New...";
+
+/* No comment provided by engineer. */
+"Newest" = "ใหม่ล่าสุด";
+
+/* No comment provided by engineer. */
+"Next background" = "พื้นหลังถัดไป";
+
+/* No comment provided by engineer. */
+"Next look" = "รูปลักษณ์ถัดไป";
+
+/* No comment provided by engineer. */
+"No" = "ไม่ใช่";
+
+/* No comment provided by engineer. */
+"No Camera available" = "No Camera available";
+
+/* No comment provided by engineer. */
+"No Description available" = "ไม่มีคำอธิบาย";
+
+/* No comment provided by engineer. */
+"No input. Please enter at least %lu character(s)." = "No input. Please enter at least %lu character(s).";
+
+/* No comment provided by engineer. */
+"No or invalid image name entered, try again." = "ไ่ม่มี หรือใส่ชื่อภาพไม่ถูกต้อง โปรดลองใหม่อีกครั้ง";
+
+/* No comment provided by engineer. */
+"No or invalid sound name entered, try again." = "ไ่ม่มี หรือใส่ชื่อเสียงไม่ถูกต้อง โปรดลองใหม่อีกครั้ง";
+
+/* No comment provided by engineer. */
+"No search results" = "ไม่มีผลลัพธ์การค้นหา";
+
+/* No comment provided by engineer. */
+"No whitespace character allowed" = "No whitespace character allowed";
+
+/* No comment provided by engineer. */
+"not" = "ไม่";
+
+/* No comment provided by engineer. */
+"not available. Continue anyway?" = "not available. Continue anyway?";
+
+/* No comment provided by engineer. */
+"Not Connected to a WiFi network, please connect to one or change the settings to download also with mobile data." = "Not Connected to a WiFi network, please connect to one or change the settings to download also with mobile data.";
+
+/* No comment provided by engineer. */
+"Not enough free memory to download this project. Please delete some of your projects" = "Not enough free memory to download this project. Please delete some of your projects";
+
+/* No comment provided by engineer. */
+"Not enough Memory" = "หน่วยความจำไม่เพียงพอ";
+
+/* No comment provided by engineer. */
+"Note" = "หมายเหตุ";
+
+/* paint */
+"Nothing to crop!" = "ไม่มีอะไรให้ตัด!";
+
+/* No comment provided by engineer. */
+"Nov" = "พ.ย";
+
+/* No comment provided by engineer. */
+"November" = "พฤศจิกายน";
+
+/* No comment provided by engineer. */
+"number_of_items" = "จำนวนรายการ";
+
+/* No comment provided by engineer. */
+"Numbers" = "ตัวเลข";
+
+/* No comment provided by engineer. */
+"Object" = "วัตถุ";
+
+/* No comment provided by engineer. */
+"Object lists:" = "Object lists:";
+
+/* No comment provided by engineer. */
+"Object name" = "ชื่อวัตถุ";
+
+/* No comment provided by engineer. */
+"Object variables:" = "Object variables:";
+
+/* No comment provided by engineer. */
+"Objects" = "วัตถุ";
+
+/* No comment provided by engineer. */
+"Oct" = "ต.ค";
+
+/* No comment provided by engineer. */
+"October" = "ตุลาคม";
+
+/* No comment provided by engineer. */
+"off" = "off";
+
+/* No comment provided by engineer. */
+"OK" = "ตกลง";
+
+/* No comment provided by engineer. */
+"on" = "on";
+
+/* No comment provided by engineer. */
+"only 15 characters allowed" = "อนุญาตให้ใช้เพียง 15 อักขระ";
+
+/* No comment provided by engineer. */
+"Only space is not allowed. Please enter at least %lu other character(s)." = "Only space is not allowed. Please enter at least %lu other character(s).";
+
+/* No comment provided by engineer. */
+"Only special characters are not allowed. Please enter at least %lu other character(s)." = "Only special characters are not allowed. Please enter at least %lu other character(s).";
+
+/* No comment provided by engineer. */
+"Open" = "Open";
+
+/* No comment provided by engineer. */
+"or" = "หรือ";
+
+/* No comment provided by engineer. */
+"Password" = "รหัสผ่าน";
+
+/* No comment provided by engineer. */
+"Password is not vaild! \n It has to contain at least 6 characters/symbols" = "Password is not vaild! \n It has to contain at least 6 characters/symbols";
+
+/* No comment provided by engineer. */
+"Passwords do not match" = "Passwords do not match";
+
+/* No comment provided by engineer. */
+"Phiro" = "Phiro";
+
+/* No comment provided by engineer. */
+"phiro_bottom_left" = "phiro_bottom_left";
+
+/* No comment provided by engineer. */
+"phiro_bottom_right" = "phiro_bottom_right";
+
+/* No comment provided by engineer. */
+"phiro_front_left" = "phiro_front_left";
+
+/* No comment provided by engineer. */
+"phiro_front_right" = "phiro_front_right";
+
+/* No comment provided by engineer. */
+"phiro_side_left" = "phiro_side_left";
+
+/* No comment provided by engineer. */
+"phiro_side_right" = "phiro_side_right";
+
+/* paint */
+"Pipette" = "ดูดสี";
+
+/* No comment provided by engineer. */
+"Place at " = "วางที่";
+
+/* No comment provided by engineer. */
+"Play Phiro music\n" = "Play Phiro music\n";
+
+/* No comment provided by engineer. */
+"Please choose another name:" = "Please choose another name:";
+
+/* paint */
+"Please enter a text!" = "Please enter a text!";
+
+/* No comment provided by engineer. */
+"Please log in to report this project as inappropriate" = "Please log in to report this project as inappropriate";
+
+/* paint */
+"Please pick a tool" = "Please pick a tool";
+
+/* No comment provided by engineer. */
+"Please select a project to upload" = "Please select a project to upload";
+
+/* bluetooth */
+"Please try resetting the device and try again." = "Please try resetting the device and try again.";
+
+/* No comment provided by engineer. */
+"Pocket Code" = "พอกเก็ต โค้ด";
+
+/* No comment provided by engineer. */
+"Pocket Code for iOS" = "Pocket Code สำหรับ IOS";
+
+/* No comment provided by engineer. */
+"Pocket Code has been started in debug mode." = "Pocket Code has been started in debug mode.";
+
+/* No comment provided by engineer. */
+"Pocket Code has no access to your camera. To permit access, tap settings and activate camera. Your drawing will automatically be saved to PocketCode for you." = "Pocket Code has no access to your camera. To permit access, tap settings and activate camera. Your drawing will automatically be saved to PocketCode for you.";
+
+/* No comment provided by engineer. */
+"Pocket Code has no access to your images. To permit access, tap settings and activate images. Your drawing will automatically be saved to PocketCode for you." = "Pocket Code has no access to your images. To permit access, tap settings and activate images. Your drawing will automatically be saved to PocketCode for you.";
+
+/* No comment provided by engineer. */
+"Pocket Code has no access to your microphone. To permit access, tap settings and activate microphone." = "Pocket Code has no access to your microphone. To permit access, tap settings and activate microphone.";
+
+/* No comment provided by engineer. */
+"Pocket Code is a programming environment for iOS for the visual programming language Catrobat. The code of Pocket Code is mostly under GNU AGPL v3 licence. For further information to the licence please visit following links:" = "Pocket Code is a programming environment for iOS for the visual programming language Catrobat. The code of Pocket Code is mostly under GNU AGPL v3 licence. For further information to the licence please visit following links:";
+
+/* No comment provided by engineer. */
+"Pocket Code let's you play great games and run other fantastic apps like for instance presentations, quizzes and so on." = "Pocket Code มาเล่นเกมส์มันส์ๆ และเล่นแอพเจ๋งๆอื่น เช่นพรีเซนต์เทชั่นแบบรวดเร็ว ควิซ และอื่นๆอีกมากมาย";
+
+/* No comment provided by engineer. */
+"Pocket Code Recorder" = "ตัวบันทึกเสียง Pocket Code";
+
+/* No comment provided by engineer. */
+"Pocket Code Source Code License" = "สัญญาอนุญาตของรหัสต้นฉบับโปรแกรม Pocket Code";
+
+/* paint */
+"Pocket Paint" = "พ็อกเก็ต เพ้นท์";
+
+/* No comment provided by engineer. */
+"Point in direction" = "ชี้ไปยังทิศทาง";
+
+/* No comment provided by engineer. */
+"Point towards" = "ชี้ไปยัง";
+
+/* paint */
+"Pointer" = "Pointer";
+
+/* No comment provided by engineer. */
+"position_x" = "ตำแหน่ง_x";
+
+/* No comment provided by engineer. */
+"position_y" = "ตำแหน่ง_y";
+
+/* No comment provided by engineer. */
+"Preview" = "Preview";
+
+/* No comment provided by engineer. */
+"Previous background" = "Previous background";
+
+/* No comment provided by engineer. */
+"Previous look" = "Previous look";
+
+/* No comment provided by engineer. */
+"Privacy Settings" = "Privacy Settings";
+
+/* No comment provided by engineer. */
+"Problems occured while uploading your project" = "Problems occured while uploading your project";
+
+/* No comment provided by engineer. */
+"Project" = "โครงการ";
+
+/* No comment provided by engineer. */
+"Project lists:" = "Project lists:";
+
+/* No comment provided by engineer. */
+"Project name" = "Project name";
+
+/* No comment provided by engineer. */
+"Project Name is necessary!" = "Project Name is necessary!";
+
+/* No comment provided by engineer. */
+"Project variables:" = "Project variables:";
+
+/* No comment provided by engineer. */
+"Projects" = "โปรแกรม";
+
+/* No comment provided by engineer. */
+"Rate Us" = "ให้คะแนนเรา";
+
+/* No comment provided by engineer. */
+"RE" = "RE";
+
+/* No comment provided by engineer. */
+"Recording" = "กำลังบันทึก";
+
+/* paint */
+"Rectangle / Square" = "Rectangle / Square";
+
+/* paint */
+"Red" = "สีแดง";
+
+/* No comment provided by engineer. */
+"Register" = "Register";
+
+/* No comment provided by engineer. */
+"Registration successful" = "Registration successful";
+
+/* No comment provided by engineer. */
+"Remove known devices" = "Remove known devices";
+
+/* No comment provided by engineer. */
+"Rename" = "เปลี่ยนชื่อ";
+
+/* No comment provided by engineer. */
+"Rename image" = "เปลี่ยนชื่อรูปภาพ";
+
+/* No comment provided by engineer. */
+"Rename object" = "เปลี่ยนชื่อวัตถุ";
+
+/* No comment provided by engineer. */
+"Rename Project" = "Rename Project";
+
+/* No comment provided by engineer. */
+"Rename sound" = "เปลี่ยนชื่อเสียง";
+
+/* No comment provided by engineer. */
+"Repeat" = "ทำซ้ำ";
+
+/* No comment provided by engineer. */
+"Repeat until" = "Repeat until";
+
+/* No comment provided by engineer. */
+"Replace item in list" = "แทนที่ข้อมูลในรายการ";
+
+/* No comment provided by engineer. */
+"Report as inappropriate" = "รายงาน ไม่เหมาะสม";
+
+/* paint */
+"Resize" = "Resize";
+
+/* No comment provided by engineer. */
+"Restart" = "เริ่มต้นใหม่";
+
+/* No comment provided by engineer. */
+"Result" = "ผลลัพธ์";
+
+/* No comment provided by engineer. */
+"Right" = "ขวา";
+
+/* paint */
+"Rotate" = "หมุน";
+
+/* paint */
+"round" = "ปัดเศษ";
+
+/* No comment provided by engineer. */
+"Sa" = "วันเสาร์";
+
+/* No comment provided by engineer. */
+"Saturday" = "วันเสาร์";
+
+/* paint */
+"Save to CameraRoll" = "บันทึกไปยัง CameraRoll";
+
+/* No comment provided by engineer. */
+"Save to PocketCode" = "บันทึกไปยังแฟ้ม PocketCode";
+
+/* No comment provided by engineer. */
+"Saved" = "บันทึกเรียบร้อย";
+
+/* No comment provided by engineer. */
+"Say" = "Say";
+
+/* No comment provided by engineer. */
+"screen_is_touched" = "screen_is_touched";
+
+/* No comment provided by engineer. */
+"screen_touch_x" = "screen_touch_x";
+
+/* No comment provided by engineer. */
+"screen_touch_y" = "screen_touch_y";
+
+/* No comment provided by engineer. */
+"Script" = "Script";
+
+/* No comment provided by engineer. */
+"Scripts" = "สคริปต์";
+
+/* bluetooth */
+"Search" = "ค้นหา";
+
+/* No comment provided by engineer. */
+"second" = "second";
+
+/* No comment provided by engineer. */
+"second " = "second ";
+
+/* No comment provided by engineer. */
+"seconds" = "วินาที";
+
+/* No comment provided by engineer. */
+"seconds " = "วินาที ";
+
+/* No comment provided by engineer. */
+"Select All" = "เลือกทั้งหมด";
+
+/* bluetooth */
+"Select Arduino" = "Select Arduino";
+
+/* No comment provided by engineer. */
+"Select Brick Category" = "เลือกประเภทก้อนคำสั่ง";
+
+/* No comment provided by engineer. */
+"Select logical operator" = "เลือกตัวดำเนินตรรกะ";
+
+/* No comment provided by engineer. */
+"Select mathematical function" = "เลือกฟังก์ชันทางคณิตศาสตร์";
+
+/* paint */
+"Select option:" = "เลือกตัวเลือก:";
+
+/* bluetooth */
+"Select Phiro" = "Select Phiro";
+
+/* No comment provided by engineer. */
+"Sensors" = "เซนเซอร์";
+
+/* No comment provided by engineer. */
+"Sep" = "ก.ย";
+
+/* No comment provided by engineer. */
+"September" = "กันยายน";
+
+/* No comment provided by engineer. */
+"Server is taking to long to respond, please try again later." = "Server is taking to long to respond, please try again later.";
+
+/* No comment provided by engineer. */
+"Set Arduino digital pin" = "Set Arduino digital pin";
+
+/* No comment provided by engineer. */
+"Set Arduino PWM~ pin" = "Set Arduino PWM~ pin";
+
+/* No comment provided by engineer. */
+"Set background" = "ตั้งค่าพื้นหลัง";
+
+/* No comment provided by engineer. */
+"Set brightness " = "ตั้งค่าความสว่าง ";
+
+/* No comment provided by engineer. */
+"Set color " = "Set color ";
+
+/* No comment provided by engineer. */
+"Set description" = "กำหนดคำอธิบาย";
+
+/* No comment provided by engineer. */
+"Set Phiro light" = "Set Phiro light";
+
+/* No comment provided by engineer. */
+"Set size to" = "ตั้งขนาดให้เป็น";
+
+/* No comment provided by engineer. */
+"Set transparency " = "ตั้งค่าความโปร่งใส ";
+
+/* No comment provided by engineer. */
+"Set variable" = "ตั้งค่าตัวแปร";
+
+/* No comment provided by engineer. */
+"Set volume to" = "ตั้งระดับเสียงเป็น";
+
+/* No comment provided by engineer. */
+"Set X to " = "ตั้งค่า X เป็น";
+
+/* No comment provided by engineer. */
+"Set Y to " = "ตั้งค่า Y เป็น";
+
+/* No comment provided by engineer. */
+"Settings" = "การตั้งค่า";
+
+/* No comment provided by engineer. */
+"Show" = "แสดง";
+
+/* No comment provided by engineer. */
+"Show Details" = "แสดงรายละเอียด";
+
+/* No comment provided by engineer. */
+"Show variable" = "Show variable";
+
+/* No comment provided by engineer. */
+"size" = "ขนาด";
+
+/* No comment provided by engineer. */
+"Size" = "ขนาด";
+
+/* No comment provided by engineer. */
+"Skip" = "ข้าม";
+
+/* No comment provided by engineer. */
+"SO" = "SO";
+
+/* No comment provided by engineer. */
+"Sound" = "เสียง";
+
+/* No comment provided by engineer. */
+"Sound name" = "ชื่อของเสียง";
+
+/* No comment provided by engineer. */
+"Sounds" = "เสียง";
+
+/* No comment provided by engineer. */
+"Speak" = "พูด";
+
+/* No comment provided by engineer. */
+"Speed" = "ความเร็ว";
+
+/* No comment provided by engineer. */
+"sqrt" = "sqrt";
+
+/* paint */
+"square" = "สี่เหลี่ยม";
+
+/* paint */
+"Stamp" = "แสตมป์";
+
+/* paint */
+"Stamped" = "Stamped";
+
+/* No comment provided by engineer. */
+"Start sound" = "เริ่มเล่นเสียง";
+
+/* No comment provided by engineer. */
+"step" = "step";
+
+/* No comment provided by engineer. */
+"steps" = "ก้าว";
+
+/* No comment provided by engineer. */
+"Stop all sounds" = "หยุดเสียงทั้งหมด";
+
+/* No comment provided by engineer. */
+"Stop Phiro motor" = "Stop Phiro motor";
+
+/* No comment provided by engineer. */
+"Su" = "วันอาทิตย์";
+
+/* No comment provided by engineer. */
+"Sunday" = "วันอาทิตย์";
+
+/* No comment provided by engineer. */
+"Switch to look" = "เปลี่ยนรูปลักษณ์เป็น";
+
+/* No comment provided by engineer. */
+"Syntax Error!" = "ไวยากรณ์ผิดพลาด!";
+
+/* No comment provided by engineer. */
+"Tap \"+\" to add %@" = "เคาะ \"+\" เพื่อเพิ่ม %@";
+
+/* Button title at the settings screen to get to the terms of use and services. */
+"Terms of Use and Services" = "Terms of Use and Services";
+
+/* paint */
+"Text" = "Text";
+
+/* No comment provided by engineer. */
+"Text message:" = "Text message:";
+
+/* paint */
+"Text:" = "Text:";
+
+/* No comment provided by engineer. */
+"Th" = "วันพฤหัสบดี";
+
+/* No comment provided by engineer. */
+"The description contains invalid characters, try again." = "คำอธิบายมีอักขระที่ไม่ถูกต้อง ลองอีกครั้ง";
+
+/* No comment provided by engineer. */
+"The featured projects cannot be loaded" = "The featured projects cannot be loaded";
+
+/* No comment provided by engineer. */
+"The following item could not be imported from the Media Library:" = "The following item could not be imported from the Media Library:";
+
+/* No comment provided by engineer. */
+"The input is too long. Please enter maximal %lu character(s)." = "The input is too long. Please enter maximal %lu character(s).";
+
+/* No comment provided by engineer. */
+"The name contains blocked characters. Please try again!" = "The name contains blocked characters. Please try again!";
+
+/* No comment provided by engineer. */
+"The recent projects cannot be loaded" = "The recent projects cannot be loaded";
+
+/* No comment provided by engineer. */
+"The requested project can not be found. Please choose a different one." = "The requested project can not be found. Please choose a different one.";
+
+/* No comment provided by engineer. */
+"The requested project can not be loaded. Please try again later." = "The requested project can not be loaded. Please try again later.";
+
+/* No comment provided by engineer. */
+"The sound item cannot be loaded" = "The sound item cannot be loaded";
+
+/* No comment provided by engineer. */
+"The sound item cannot be played" = "The sound item cannot be played";
+
+/* No comment provided by engineer. */
+"Think" = "Think";
+
+/* No comment provided by engineer. */
+"This action can not be undone!" = "การกระทำนี้ไม่สามารถยกเลิกได้";
+
+/* No comment provided by engineer. */
+"This feature is coming soon!" = "ฟีเจอร์นี้กำลังจะมาในเร็วๆ นี้!";
+
+/* No comment provided by engineer. */
+"This variable can not be deleted because it is still in use." = "This variable can not be deleted because it is still in use.";
+
+/* No comment provided by engineer. */
+"Thursday" = "วันพฤหัสบดี";
+
+/* No comment provided by engineer. */
+"TI" = "TI";
+
+/* No comment provided by engineer. */
+"time" = "time";
+
+/* No comment provided by engineer. */
+"times" = "ครั้ง";
+
+/* No comment provided by engineer. */
+"to" = "กำหนดความหมาย";
+
+/* No comment provided by engineer. */
+"to list" = "ไปยังรายการ";
+
+/* No comment provided by engineer. */
+"to X:" = "ไปยังตำแหน่ง X:";
+
+/* No comment provided by engineer. */
+"Today" = "วันนี้";
+
+/* No comment provided by engineer. */
+"transparency" = "ความโปร่งใส";
+
+/* No comment provided by engineer. */
+"true" = "จริง";
+
+/* No comment provided by engineer. */
+"Tu" = "วันอังคาร";
+
+/* No comment provided by engineer. */
+"Tuesday" = "วันอังคาร";
+
+/* No comment provided by engineer. */
+"Turn camera" = "Turn camera";
+
+/* No comment provided by engineer. */
+"Turn flashlight" = "Turn flashlight";
+
+/* No comment provided by engineer. */
+"Turn left" = "เลี้ยวซ้าย";
+
+/* No comment provided by engineer. */
+"Turn right" = "เลี้ยวขวา";
+
+/* No comment provided by engineer. */
+"Unable to load project!" = "Unable to load project!";
+
+/* No comment provided by engineer. */
+"Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt." = "ไม่สามารถเล่นเสียงนั่นได้! อาจเพราะไม่มีไฟล์แล้ว หรือไฟล์เสียหาย";
+
+/* No comment provided by engineer. */
+"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the left side of your iPhone and tap on play again." = "ไม่สามารถเล่นเสียงที่เลือกได้ อุปกรณ์ของคุณอาจอยู่ในโหมดเงียบ กรุณาปิดสวิตช์ด้านซ้ายของเครื่อง iPhoneเพื่อยกเลิกโหมดเงียบ และกดเล่นใหม่อีกครั้งหนึ่ง";
+
+/* No comment provided by engineer. */
+"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again." = "ไม่สามารถเล่นเสียงที่เลือกได้ อุปกรณ์ของคุณอาจอยู่ในโหมดเงียบ กรุณาปิดสวิตช์ด้านขวาของเครื่อง iPad เพื่อยกเลิกโหมดเงียบ และกดเล่นใหม่อีกครั้งหนึ่ง";
+
+/* paint */
+"underline" = "underline";
+
+/* Button title of alert view to invoke undo if user shakes device */
+"Undo" = "เลิกทำ";
+
+/* Description text in alert view if user shakes the device */
+"Undo Drawing?" = "Undo Drawing?";
+
+/* Description text in alert view if user shakes the device */
+"Undo Typing?" = "Undo Typing?";
+
+/* No comment provided by engineer. */
+"Unexpected Error" = "Unexpected Error";
+
+/* No comment provided by engineer. */
+"Unexpected Error, please try again later." = "Unexpected Error, please try again later.";
+
+/* No comment provided by engineer. */
+"Unknown Element" = "Unknown Element";
+
+/* No comment provided by engineer. */
+"Unselect All" = "ยกเลิกการเลือกทั้งหมด";
+
+/* No comment provided by engineer. */
+"Unsupported Brick:" = "Unsupported Brick:";
+
+/* No comment provided by engineer. */
+"Unsupported Elements" = "Unsupported Elements";
+
+/* No comment provided by engineer. */
+"Unsupported Script:" = "Unsupported Script:";
+
+/* No comment provided by engineer. */
+"Upload" = "อัพโหลด";
+
+/* No comment provided by engineer. */
+"Upload Project" = "Upload Project";
+
+/* No comment provided by engineer. */
+"Upload selected project" = "Upload selected project";
+
+/* No comment provided by engineer. */
+"Upload successful" = "อัพโหลดเสร็จสิ้น";
+
+/* No comment provided by engineer. */
+"Uploaded" = "อัพโหลดเรียบร้อยแล้ว";
+
+/* No comment provided by engineer. */
+"Use Arduino bricks" = "Use Arduino bricks";
+
+/* No comment provided by engineer. */
+"Use camera" = "Use camera";
+
+/* No comment provided by engineer. */
+"Use Phiro bricks" = "Use Phiro bricks";
+
+/* No comment provided by engineer. */
+"Username" = "ชื่อผู้ใช้";
+
+/* No comment provided by engineer. */
+"Username must not be blank" = "ชื่อผู้ใช้ต้องไม่ว่างเปล่า";
+
+/* No comment provided by engineer. */
+"Var/List" = "Var/List";
+
+/* No comment provided by engineer. */
+"Variable" = "ตัวแปร";
+
+/* No comment provided by engineer. */
+"Variable name:" = "ชื่อตัวแปร:";
+
+/* No comment provided by engineer. */
+"Variable or List" = "Variable or List";
+
+/* No comment provided by engineer. */
+"Variable type" = "ชนิดของตัวแปร";
+
+/* No comment provided by engineer. */
+"Variables" = "ตัวแปร";
+
+/* No comment provided by engineer. */
+"Version" = "รุ่น";
+
+/* No comment provided by engineer. */
+"Vibrate for" = "สั่นเป็นเวลา";
+
+/* No comment provided by engineer. */
+"vibration" = "vibration";
+
+/* No comment provided by engineer. */
+"Views" = "มุมมอง";
+
+/* No comment provided by engineer. */
+"Wait" = "รอ";
+
+/* No comment provided by engineer. */
+"Wait until" = "Wait until";
+
+/* No comment provided by engineer. */
+"We" = "เรา";
+
+/* No comment provided by engineer. */
+"Wednesday" = "วันพุธ";
+
+/* No comment provided by engineer. */
+"weekday" = "weekday";
+
+/* No comment provided by engineer. */
+"Welcome to Pocket Code" = "ยินดีต้อนรับสู่ Pocket Code";
+
+/* No comment provided by engineer. */
+"When project started" = "When project started";
+
+/* No comment provided by engineer. */
+"When screen is touched" = "When screen is touched";
+
+/* No comment provided by engineer. */
+"When tapped" = "เมื่อเคาะ";
+
+/* No comment provided by engineer. */
+"When you receive" = "When you receive";
+
+/* paint */
+"Width selection" = "Width selection";
+
+/* No comment provided by engineer. */
+"with" = "แทนด้วย";
+
+/* No comment provided by engineer. */
+"X: " = "X: ";
+
+/* No comment provided by engineer. */
+"Y: " = "Y: ";
+
+/* No comment provided by engineer. */
+"year" = "year";
+
+/* No comment provided by engineer. */
+"Yes" = "ใช่";
+
+/* No comment provided by engineer. */
+"Yesterday" = "เมื่อวานนี้";
+
+/* No comment provided by engineer. */
+"You are also able to build your own apps, remix existing ones and share them with your friends and other exciting people around the world." = "You are also able to build your own apps, remix existing ones and share them with your friends and other exciting people around the world.";
+
+/* No comment provided by engineer. */
+"You have already downloaded this project!" = "You have already downloaded this project!";
+
+/* No comment provided by engineer. */
+"Your email seems to be invalid" = "อีเมล์ของคุณดูเหมือนจะไม่ถูกต้อง";
+
+/* paint */
+"Zoom" = "ย่อ/ขยาย";

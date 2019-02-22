@@ -59,6 +59,7 @@ src/fastlane/Preview.html
 src/fastlane/screenshots
 src/fastlane/test_output
 src/fastlane/.env
+src/fastlane/crowdin*
 
 ## Various project specific ignores
 .DS_Store
