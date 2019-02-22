@@ -95,6 +95,6 @@ platform :ios do
 
   desc "Use this lane as playground"
   lane :playground do
-    sh ("ruby rb/update_translations_xcodeproj.rb")
+    
   end
 end
