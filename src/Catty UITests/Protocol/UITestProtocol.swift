@@ -31,15 +31,15 @@ extension UITestProtocol {
 
     func restoreDefaultProject() {
         let app = XCUIApplication()
-        app.tables.staticTexts["Projects"].tap()
-        waitForElementToAppear(app.navigationBars["Projects"]).buttons["Edit"].tap()
-        waitForElementToAppear(app.buttons["Delete Projects"]).tap()
+        app.tables.staticTexts[kLocalizedProjects].tap()
+        waitForElementToAppear(app.navigationBars[kLocalizedProjects]).buttons[kLocalizedEdit].tap()
+        waitForElementToAppear(app.buttons[kLocalizedDeleteProjects]).tap()
         let toolbarsQuery = app.toolbars
-        waitForElementToAppear(toolbarsQuery.buttons["Select All"]).tap()
-        waitForElementToAppear(toolbarsQuery.buttons["Delete"]).tap()
+        waitForElementToAppear(toolbarsQuery.buttons[kLocalizedSelectAllItems]).tap()
+        waitForElementToAppear(toolbarsQuery.buttons[kLocalizedDelete]).tap()
         XCTAssert(app.tables.cells.count == 1)
         // finally go back to main menu, because this method is used by other tests
-        app.navigationBars["Projects"].buttons["Pocket Code"].tap()
+        app.navigationBars[kLocalizedProjects].buttons[kLocalizedPocketCode].tap()
     }
 
     func dismissWelcomeScreenIfShown() {
@@ -62,15 +62,15 @@ extension UITestProtocol {
     }
 
     func skipFrequentlyUsedBricks(_ app: XCUIApplication) {
-        if app.navigationBars["Frequently Used"].exists {
+        if app.navigationBars[kUIFavouritesTitle].exists {
             app.swipeLeft()
         }
     }
 
     func createProject(name: String, in app: XCUIApplication) {
-        app.tables.staticTexts["New"].tap()
-        app.alerts["New Project"].textFields["Enter your project name here..."].typeText(name)
-        app.alerts["New Project"].buttons["OK"].tap()
+        app.tables.staticTexts[kLocalizedNew].tap()
+        app.alerts[kLocalizedNewProject].textFields[kLocalizedEnterYourProjectNameHere].typeText(name)
+        app.alerts[kLocalizedNewProject].buttons[kLocalizedOK].tap()
         XCTAssertNotNil(waitForElementToAppear(app.navigationBars[name]))
     }
 }

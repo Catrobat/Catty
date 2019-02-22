@@ -83,7 +83,14 @@
 {
     if (! context) NSError(@"%@ must not be nil!", [CBMutableCopyContext class]);
     SetBackgroundBrick *brick = [[self class] new];
-    brick.look = [context updatedReferenceForReference: self.look];
+
+    id updatedReference = [context updatedReferenceForReference: self.look];
+    
+    if (updatedReference != nil) {
+        brick.look = updatedReference;
+    } else {
+        brick.look = self.look;
+    }
     
     return brick;
 }

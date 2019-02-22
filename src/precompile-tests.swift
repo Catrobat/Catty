@@ -35,6 +35,7 @@ let pathToReadmeFile = "../README.md"; let pathToReadmeFileLine = #line
 let localizedStringCheckExcludeFiles = [
     "LanguageTranslationDefines.h",
     "LanguageTranslationDefinesSwift.swift",
+    "LanguageTranslationDefinesUI.swift",
     "Functions.[hm]",
     "Operators.m",
     "BSKeyboardControls.m"
