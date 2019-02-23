@@ -386,6 +386,9 @@
   int index = row * 4 + column;
 	
 	if (index < _colorArray.count) {
+        self.opacitySlider.value = 255.0;
+        self.opacityLabel.text = [NSString stringWithFormat:@"%.0f%%",roundf(self.opacitySlider.value)/255.0f*100.0f];
+        [self.opacityLabel sizeToFit];
 		UIColor *color = [_colorArray objectAtIndex:index];
     CGFloat red,green,blue,opacity;
     [color getRed:&red green:&green blue:&blue alpha:&opacity];
