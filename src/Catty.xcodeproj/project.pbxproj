@@ -8461,7 +8461,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint autocorrect --config \".swiftlint.auto.yml\" && swiftlint\nelse\n    echo \"warning: SwiftLint not installed, please run 'brew install swiftlint' or download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint autocorrect --config \"RunScripts/.swiftlint.auto.yml\" && swiftlint --config \"RunScripts/.swiftlint.yml\"\nelse\n    echo \"warning: SwiftLint not installed, please run 'brew install swiftlint' or download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		929DC44A1BCB9C5000421443 /* License Validator */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -8475,7 +8475,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/bin/env xcrun swift -sdk $(/usr/bin/env xcrun --show-sdk-path --sdk macosx) license-validator.swift\nOUT=$?\nif [ $OUT -ne 0 ];then\nexit $OUT\nfi\n";
+			shellScript = "/usr/bin/env xcrun swift -sdk $(/usr/bin/env xcrun --show-sdk-path --sdk macosx) RunScripts/license-validator.swift\nOUT=$?\nif [ $OUT -ne 0 ];then\nexit $OUT\nfi\n";
 		};
 		AACFFF611B7FE5F50002F899 /* Automatic Version Tracking */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -8531,7 +8531,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "#/usr/bin/env xcrun swiftc -sdk $(/usr/bin/env xcrun --show-sdk-path --sdk macosx) precompile-tests.swift\n#./precompile-tests\n/usr/bin/env xcrun swift -sdk $(/usr/bin/env xcrun --show-sdk-path --sdk macosx) -swift-version 3 precompile-tests.swift\nOUT=$?\nif [ $OUT -ne 0 ];then\nexit $OUT\nfi\n\npython synchronize_localization.py && ./update-localized-strings.sh&\n";
+			shellScript = "#/usr/bin/env xcrun swiftc -sdk $(/usr/bin/env xcrun --show-sdk-path --sdk macosx) precompile-tests.swift\n#./precompile-tests\n/usr/bin/env xcrun swift -sdk $(/usr/bin/env xcrun --show-sdk-path --sdk macosx) -swift-version 3 RunScripts/precompile-tests.swift\nOUT=$?\nif [ $OUT -ne 0 ];then\nexit $OUT\nfi\n\npython RunScripts/synchronize-localization.py && ./RunScripts/update-localized-strings.sh\n";
 		};
 		CADBD6D719B0E8C200C62836 /* Add Licenses To Acknowledgements.plist */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -9984,7 +9984,7 @@
 				PRODUCT_NAME = "Pocket Code";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Catty/Catty-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "${SPARROW_SRC}";

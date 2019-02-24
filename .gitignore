@@ -53,19 +53,16 @@ src/Carthage
 # For more information about the recommended setup visit:
 # https://docs.fastlane.tools/best-practices/source-control/#source-control
 
-src/fastlane/builds
-src/fastlane/report.xml
-src/fastlane/Preview.html
-src/fastlane/screenshots
-src/fastlane/test_output
-src/fastlane/.env
-src/fastlane/crowdin*
+src/fastlane/*
+!src/fastlane/Appfile
+!src/fastlane/Fastfile
+!src/fastlane/Pluginfile
+!src/fastlane/README.md
+!src/fastlane/.env.default
+!src/fastlane/rb/
 
 ## Various project specific ignores
 .DS_Store
 profile
 .idea/
-Mockup/*
-*.yaml
-src/precompile-tests
 src/ObjectiveGit

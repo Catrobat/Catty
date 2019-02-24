@@ -157,5 +157,5 @@ excluded: # paths to ignore during linting. Takes precedence over `included`.
  - Pods
  - Catty/Defines/LanguageTranslationDefinesSwift.swift
  - Catty UITests/Defines/LanguageTranslationDefinesUI.swift
- - license-validator.swift
- - precompile-tests.swift
+ - RunScripts/license-validator.swift
+ - RunScripts/precompile-tests.swift

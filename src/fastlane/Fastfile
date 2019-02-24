@@ -34,7 +34,7 @@ platform :ios do
     )
   end
 
-  desc "Creating an ipa Build (options: scheme)"
+  desc "Create an ipa Build (options: scheme)"
   lane :create_build do |options|
     gym(scheme: options[:scheme],
         export_method: "development",
@@ -43,7 +43,7 @@ platform :ios do
     )
   end
 
-  desc "Preparing for PO Review"
+  desc "Prepare for PO Review"
   lane :po_review do
     create_build scheme:$catty_schemes["release"]
     upload_to_browserstack
@@ -91,6 +91,17 @@ platform :ios do
     sh ("rm -r crowdin")
     sh ("rm crowdin.zip")
     #sh ("rm -r crowdin.old")
+  end
+
+  desc "Run tests"
+  lane :tests do
+    run_tests(devices: ["iPhone 7"],
+              scheme: $catty_schemes["debug"])
+  end
+
+  desc "Release Pocket Code"
+  lane :release do
+    build_app(scheme: $catty_schemes["release"])
   end
 
   desc "Use this lane as playground"

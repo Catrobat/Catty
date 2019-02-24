@@ -25,12 +25,12 @@ Upload Development Build to Browserstack
 ```
 fastlane ios create_build
 ```
-Creating an ipa Build (options: scheme)
+Create an ipa Build (options: scheme)
 ### ios po_review
 ```
 fastlane ios po_review
 ```
-Preparing for PO Review
+Prepare for PO Review
 ### ios crowdin_upload
 ```
 fastlane ios crowdin_upload
@@ -46,6 +46,11 @@ Download all Translations from Crowdin
 fastlane ios update_translations
 ```
 Update lane for Crowdin translations
+### ios release
+```
+fastlane ios release
+```
+
 ### ios playground
 ```
 fastlane ios playground
