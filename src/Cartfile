@@ -7,3 +7,4 @@ github "caldrian/LXReorderableCollectionViewFlowLayout" "1a17393441a91f4cbcf92d6
 github "onevcat/Kingfisher" ~> 4.0
 github "venmo/DVR"
 github "audiokit/audiokit" ~> 4.6
+github "krzyzanowskim/CryptoSwift"

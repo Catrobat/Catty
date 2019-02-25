@@ -24,7 +24,10 @@
 
     @nonobjc func instruction() -> CBInstruction {
 
-        guard let object = self.script?.object else { fatalError("This should never happen!") }
+        guard let object = self.script?.object,
+            let objectName = self.script?.object?.name
+            else { fatalError("This should never happen!") }
+
 
         return CBInstruction.execClosure { context, _ in
             var speakText = context.formulaInterpreter.interpretString(self.formula, for: object)
@@ -36,7 +39,16 @@
             let utterance = AVSpeechUtterance(string: speakText)
             utterance.rate = (floor(NSFoundationVersionNumber) < 1200 ? 0.15 : 0.5)
 
-            let synthesizer = AVSpeechSynthesizer()
+            if let volume = AudioEngine.sharedInstance.getOutputVolumeOfChannel(objName: objectName) {
+                utterance.volume = Float(volume)
+            } else {
+                utterance.volume = 1.0
+            }
+
+            let synthesizer = AudioEngine.sharedInstance.getSpeechSynth()
+            if (synthesizer.isSpeaking) {
+                synthesizer.stopSpeaking(at: AVSpeechBoundary.immediate)
+            }
             synthesizer.speak(utterance)
             context.state = .runnable
         }

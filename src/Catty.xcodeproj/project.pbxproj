@@ -893,6 +893,13 @@
 		99EBDC041D5624D2008D6860 /* ChangeColorByNBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EBDC031D5624D2008D6860 /* ChangeColorByNBrick+Instruction.swift */; };
 		9E890896222329C10078B1B4 /* AudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E890893222329C10078B1B4 /* AudioKit.framework */; };
 		9E890897222329F30078B1B4 /* AudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E890893222329C10078B1B4 /* AudioKit.framework */; };
+		9EA512FB22232FB700D57EA9 /* AudioEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA512FA22232FB700D57EA9 /* AudioEngine.swift */; };
+		9EA512FF22232FFB00D57EA9 /* AudioChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA512FE22232FFB00D57EA9 /* AudioChannel.swift */; };
+		9EE4188F222437D900EA58E8 /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE4188E222437D900EA58E8 /* AudioRecorder.swift */; };
+		9EE4189322243AB400EA58E8 /* AudioEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE4189222243AB400EA58E8 /* AudioEngineTests.swift */; };
+		9EE4189522243CA300EA58E8 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EE4189422243CA300EA58E8 /* CryptoSwift.framework */; };
+		9EE4189822243D4700EA58E8 /* explode.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9EE4189622243D4700EA58E8 /* explode.mp3 */; };
+		9EE4189922243D4700EA58E8 /* russianfolk.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9EE4189722243D4700EA58E8 /* russianfolk.wav */; };
 		A9F511831BE6A07A00B59540 /* SwiftBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F511821BE6A07A00B59540 /* SwiftBridge.swift */; };
 		AA3BD9091BBF4BFB002B34A0 /* WaitBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3BD9081BBF4BFB002B34A0 /* WaitBrickTests.swift */; };
 		AA401FE91BBEF6F9001BC49F /* CBInstructionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA401FE81BBEF6F9001BC49F /* CBInstructionProtocol.swift */; };
@@ -2537,6 +2544,13 @@
 		99EBDC011D5623B3008D6860 /* ChangeColorByNBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeColorByNBrickCell.m; sourceTree = "<group>"; };
 		99EBDC031D5624D2008D6860 /* ChangeColorByNBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ChangeColorByNBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Look/ChangeColorByNBrick+Instruction.swift"; sourceTree = "<group>"; };
 		9E890893222329C10078B1B4 /* AudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioKit.framework; path = Carthage/Build/iOS/AudioKit.framework; sourceTree = "<group>"; };
+		9EA512FA22232FB700D57EA9 /* AudioEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioEngine.swift; sourceTree = "<group>"; };
+		9EA512FE22232FFB00D57EA9 /* AudioChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioChannel.swift; sourceTree = "<group>"; };
+		9EE4188E222437D900EA58E8 /* AudioRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
+		9EE4189222243AB400EA58E8 /* AudioEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioEngineTests.swift; sourceTree = "<group>"; };
+		9EE4189422243CA300EA58E8 /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CryptoSwift.framework; path = Carthage/Build/iOS/CryptoSwift.framework; sourceTree = "<group>"; };
+		9EE4189622243D4700EA58E8 /* explode.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = explode.mp3; sourceTree = "<group>"; };
+		9EE4189722243D4700EA58E8 /* russianfolk.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = russianfolk.wav; sourceTree = "<group>"; };
 		A988832B1BCA86FF005029E8 /* ObjectTVCTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectTVCTests.swift; sourceTree = "<group>"; };
 		A9F511821BE6A07A00B59540 /* SwiftBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftBridge.swift; sourceTree = "<group>"; };
 		AA3BD9081BBF4BFB002B34A0 /* WaitBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaitBrickTests.swift; sourceTree = "<group>"; };
@@ -3093,6 +3107,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9EE4189522243CA300EA58E8 /* CryptoSwift.framework in Frameworks */,
 				9E890897222329F30078B1B4 /* AudioKit.framework in Frameworks */,
 				CA7699191B0E4BFF000D0340 /* libxml2.dylib in Frameworks */,
 				593624C51F76F374008A588D /* Bohr.framework in Frameworks */,
@@ -3174,6 +3189,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9EE4189422243CA300EA58E8 /* CryptoSwift.framework */,
 				9E890893222329C10078B1B4 /* AudioKit.framework */,
 				B405BAC7175DD3F600B1A0FC /* libxml2.dylib */,
 				DE5C4E6D138ED109004892CA /* libz.dylib */,
@@ -3359,6 +3375,7 @@
 			isa = PBXGroup;
 			children = (
 				4C1329031CD9259900F16E48 /* AudioManagerTests.swift */,
+				9EE4189222243AB400EA58E8 /* AudioEngineTests.swift */,
 			);
 			path = AudioManager;
 			sourceTree = "<group>";
@@ -3366,6 +3383,8 @@
 		4C1329071CD9278E00F16E48 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				9EE4189622243D4700EA58E8 /* explode.mp3 */,
+				9EE4189722243D4700EA58E8 /* russianfolk.wav */,
 				4C13290A1CD92D5500F16E48 /* silence.mp3 */,
 			);
 			name = Sounds;
@@ -5877,6 +5896,9 @@
 				92FF2E511A24C7D800093DA7 /* CatrobatAudioPlayer.m */,
 				9276B7091C9EA68A008BC594 /* CatrobatPlayerItem.h */,
 				9276B70A1C9EA68A008BC594 /* CatrobatPlayerItem.m */,
+				9EA512FA22232FB700D57EA9 /* AudioEngine.swift */,
+				9EA512FE22232FFB00D57EA9 /* AudioChannel.swift */,
+				9EE4188E222437D900EA58E8 /* AudioRecorder.swift */,
 			);
 			path = AudioManager;
 			sourceTree = "<group>";
@@ -8207,6 +8229,7 @@
 				4CE2D4011C29501800938B5E /* Gossip_Girl_097.xml in Resources */,
 				CAE3E5551B4C50B300CC88BD /* Pong_Starter_093.xml in Resources */,
 				4C6D15D81D7AC5CB00CE53CD /* Flap_Pac_Man_098.xml in Resources */,
+				9EE4189922243D4700EA58E8 /* russianfolk.wav in Resources */,
 				4CE2D4151C29507F00938B5E /* Tic_Tac_Toe_Master_097.xml in Resources */,
 				4CE2D3F71C294F2900938B5E /* Demonstration_097.xml in Resources */,
 				4CC85CE81B9C717C0097E470 /* ValidProject096.xml in Resources */,
@@ -8273,6 +8296,7 @@
 				4C994DDB207A26DC00C415FD /* DeleteItemOfUserListBrick0991.xml in Resources */,
 				4CFAD3611CFAB9AA0019C636 /* transparency-rgba.png in Resources */,
 				599E64A0202DACCB009494B5 /* MediaLibraryDownloader.downloadData.fail.request.json in Resources */,
+				9EE4189822243D4700EA58E8 /* explode.mp3 in Resources */,
 				4C2EE3EB1B55570C006DE9B8 /* Airplane_with_shadow_095.xml in Resources */,
 				CAE3E5531B4C50B300CC88BD /* PointToBrickWithoutSpriteObject.xml in Resources */,
 				4C2EE3F31B555754006DE9B8 /* Flap_Pac_Man_095.xml in Resources */,
@@ -8664,6 +8688,7 @@
 				BA94561821A5FBE800C5DE36 /* XMLParserObjectTests093.swift in Sources */,
 				4CFAD35F1CFAB3EC0019C636 /* UIImageExtensionTests.swift in Sources */,
 				4CEB22771B95E4BC00B3BE2F /* BrickInsertManagerTests.m in Sources */,
+				9EE4189322243AB400EA58E8 /* AudioEngineTests.swift in Sources */,
 				4C82266A213FA7A400F3D750 /* TimeSecondSensorTest.swift in Sources */,
 				4CEB22741B95E4BC00B3BE2F /* BrickInsertManagerForeverTests.m in Sources */,
 				4C53E39021D5247C00F2EC76 /* NotOperatorTest.swift in Sources */,
@@ -8776,6 +8801,7 @@
 				AAA2979C1BB371EB006F8793 /* ExternInternRepresentationMapping.m in Sources */,
 				AA74EF571BC0586F00D1E954 /* SetXBrick+CBXMLHandler.m in Sources */,
 				4C994E10207A3D4100C415FD /* LoudnessSensor.swift in Sources */,
+				9EA512FB22232FB700D57EA9 /* AudioEngine.swift in Sources */,
 				AA74F00E1BC05B5F00D1E954 /* StopAllSoundsBrick.m in Sources */,
 				AA74EEDF1BC057B900D1E954 /* IfLogicElseBrick+CBXMLHandler.m in Sources */,
 				AAA2979B1BB3711B006F8793 /* BrickCategoryViewController.m in Sources */,
@@ -9042,6 +9068,7 @@
 				92DFB01D1A38949E00FA9B0F /* FormulaEditorTextView.m in Sources */,
 				4CE67899210C6EEE00D90B5D /* SinFunction.swift in Sources */,
 				929CC0F81BC3A2420027DEC0 /* PhiroMotorMoveBackwardBrick+Instruction.swift in Sources */,
+				9EA512FF22232FFB00D57EA9 /* AudioChannel.swift in Sources */,
 				AA74F0AC1BC05FCE00D1E954 /* ChangeTransparencyByNBrickCell.m in Sources */,
 				4CBDF1A621CF82F100325338 /* Operator.swift in Sources */,
 				92D56C371BF2059F00A54750 /* PhiroDevice.swift in Sources */,
@@ -9294,6 +9321,7 @@
 				AA74F0C51BC05FCE00D1E954 /* PlaySoundBrickCell.m in Sources */,
 				598319991FBB90CB00639BBF /* IntroductionViewController.swift in Sources */,
 				4CE6788F210C506B00D90B5D /* FunctionManagerProtocol.swift in Sources */,
+				9EE4188F222437D900EA58E8 /* AudioRecorder.swift in Sources */,
 				92DFB0151A38949E00FA9B0F /* InternFormulaParserEmptyStackException.m in Sources */,
 				926198021BF48384006D1A61 /* BluetoothMocks.swift in Sources */,
 				AA74EFF31BC05B5F00D1E954 /* ClearGraphicEffectBrick.m in Sources */,
@@ -9810,6 +9838,11 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(FRAMEWORK_SEARCH_PATHS)";
 				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+					"-lc++",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.catrobat.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "CattyTests/CattyTests-Bridging-Header.h";
@@ -9860,6 +9893,11 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(FRAMEWORK_SEARCH_PATHS)";
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+					"-lc++",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.catrobat.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "CattyTests/CattyTests-Bridging-Header.h";
