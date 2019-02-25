@@ -26,6 +26,7 @@
 @property (nonatomic, weak) FormulaEditorViewController *formulaEditorViewController;
 @property (nonatomic, strong) UIButton *backspaceButton;
 @property (nonatomic, strong) UITapGestureRecognizer *tapRecognizer;
+@property (nonatomic, strong) NSString *highlightedText;
 @end
 
 @implementation FormulaEditorTextView
@@ -171,6 +172,7 @@
     if(startIndex == endIndex)
     {
         self.attributedText = formulaString;
+        self.highlightedText = @"";
         UITextPosition *cursorPosition = [self positionFromPosition:self.beginningOfDocument
                                                                    offset:cursorPostionIndex];
         self.selectedTextRange = [self textRangeFromPosition:cursorPosition toPosition:cursorPosition];
@@ -180,6 +182,8 @@
         UITextPosition *cursorPosition = [self positionFromPosition:self.beginningOfDocument
                                                                    offset:endIndex];
         self.attributedText = formulaString;
+        self.highlightedText = formulaString.string;
+    
         self.selectedTextRange = [self textRangeFromPosition:cursorPosition toPosition:cursorPosition];
         
     }
@@ -192,6 +196,11 @@
 - (void)highlightAll
 {
     
+}
+
+- (NSString*)getHighlightedText
+{
+    return self.highlightedText;
 }
 
 - (void)update

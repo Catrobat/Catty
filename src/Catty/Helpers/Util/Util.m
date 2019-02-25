@@ -364,7 +364,10 @@
 									     isList:(BOOL)isList
                                 andTextField:(FormulaEditorTextView *)textView
 {
-    [[[[[[AlertControllerBuilder textFieldAlertWithTitle:title message:message]
+    NSString* highlightedText = [textView getHighlightedText];
+    
+    [[[[[[[AlertControllerBuilder textFieldAlertWithTitle:title message:message]
+     initialText: highlightedText]
      addCancelActionWithTitle:kLocalizedCancel handler:^{
          [textView becomeFirstResponder];
      }]
