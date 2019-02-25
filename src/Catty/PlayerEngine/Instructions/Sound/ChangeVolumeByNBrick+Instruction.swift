@@ -22,12 +22,11 @@
 
 @objc extension ChangeVolumeByNBrick: CBInstructionProtocol {
 
-    @nonobjc func instruction() -> CBInstruction {
+    @nonobjc func instruction(audioEngine: AudioEngine) -> CBInstruction {
 
         guard let spriteObject = self.script?.object else { fatalError("This should never happen!") }
 
         let volumeFormula = self.volume
-        let audioEngine = AudioEngine.sharedInstance
         let spriteObjectName = spriteObject.name
 
         return CBInstruction.execClosure { context, _ in

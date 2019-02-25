@@ -31,18 +31,18 @@ final class CBBackend: CBBackendProtocol {
     }
 
     // MARK: - Operations
-    func instructionsForSequence(_ sequenceList: CBSequenceList) -> [CBInstruction] {
+    func instructionsForSequence(_ sequenceList: CBSequenceList, soundEngine: AudioEngine) -> [CBInstruction] {
         var instructionList = [CBInstruction]()
         sequenceList.forEach {
             switch $0 {
             case let opSequence as CBOperationSequence:
                 for operation in opSequence.operationList {
-                    instructionList += _instructionForBrick(operation.brick)
+                    instructionList += _instructionForBrick(operation.brick, soundEngine: soundEngine)
                 }
             case let ifSequence as CBIfConditionalSequence:
-                instructionList += self._instructionsForIfSequence(ifSequence)
+                instructionList += self._instructionsForIfSequence(ifSequence, soundEngine: soundEngine)
             case let condSequence as CBConditionalSequence:
-                instructionList += self._instructionsForLoopSequence(condSequence)
+                instructionList += self._instructionsForLoopSequence(condSequence, soundEngine: soundEngine)
             default:
                 fatalError("Unknown sequence type! THIS SHOULD NEVER HAPPEN!")
             }
@@ -50,7 +50,7 @@ final class CBBackend: CBBackendProtocol {
         return instructionList
     }
 
-    private func _instructionForBrick(_ brick: Brick) -> [CBInstruction] {
+    private func _instructionForBrick(_ brick: Brick, soundEngine: AudioEngine) -> [CBInstruction] {
         // check whether conforms to CBInstructionProtocol (i.e. brick extension)
         guard let instructionBrick = brick as? CBInstructionProtocol else {
             fatalError("All Bricks should implement the CBInstructionProtocol")
@@ -59,16 +59,16 @@ final class CBBackend: CBBackendProtocol {
             guard let formulaBufferBrick = brick as? BrickFormulaProtocol else {
                 fatalError("All Bricks with formulas should implement the BrickFormulaProtocol")
             }
-            return [.formulaBuffer(brick: formulaBufferBrick), instructionBrick.instruction()]
+            return [.formulaBuffer(brick: formulaBufferBrick), instructionBrick.instruction(audioEngine: soundEngine)]
         }
-        return [instructionBrick.instruction()] // actions that have been ported to Swift yet
+        return [instructionBrick.instruction(audioEngine: soundEngine)] // actions that have been ported to Swift yet
     }
 
-    private func _instructionsForIfSequence(_ ifSequence: CBIfConditionalSequence) -> [CBInstruction] {
+    private func _instructionsForIfSequence(_ ifSequence: CBIfConditionalSequence, soundEngine: AudioEngine) -> [CBInstruction] {
         var instructionList = [CBInstruction]()
 
         // add if condition evaluation instruction
-        let ifInstructions = instructionsForSequence(ifSequence.sequenceList)
+        let ifInstructions = instructionsForSequence(ifSequence.sequenceList, soundEngine: soundEngine)
         let numberOfIfInstructions = ifInstructions.count
         if ifSequence.hasBluetoothFormula() {
             instructionList += CBInstruction.conditionalFormulaBuffer(conditionalBrick: ifSequence)
@@ -89,7 +89,7 @@ final class CBBackend: CBBackendProtocol {
         var numberOfElseInstructions = 0
         if ifSequence.elseSequenceList != nil {
             // add else instructions
-            let elseInstructions = instructionsForSequence(ifSequence.elseSequenceList!)
+            let elseInstructions = instructionsForSequence(ifSequence.elseSequenceList!, soundEngine: soundEngine)
             numberOfElseInstructions = elseInstructions.count
             // add jump instruction to be the last if-instruction
             // (needed to avoid execution of else sequence)
@@ -102,8 +102,8 @@ final class CBBackend: CBBackendProtocol {
         return instructionList
     }
 
-    private func _instructionsForLoopSequence(_ loopSequence: CBConditionalSequence) -> [CBInstruction] {
-        let bodyInstructions = instructionsForSequence(loopSequence.sequenceList)
+    private func _instructionsForLoopSequence(_ loopSequence: CBConditionalSequence, soundEngine: AudioEngine) -> [CBInstruction] {
+        let bodyInstructions = instructionsForSequence(loopSequence.sequenceList, soundEngine: soundEngine)
         let numOfBodyInstructions = bodyInstructions.count
 
         let loopEndInstruction = CBInstruction.highPriorityExecClosure { context, scheduler, _ in

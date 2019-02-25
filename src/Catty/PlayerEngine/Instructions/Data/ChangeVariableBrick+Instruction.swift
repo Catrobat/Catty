@@ -22,7 +22,7 @@
 
 @objc extension ChangeVariableBrick: CBInstructionProtocol {
 
-    @nonobjc func instruction() -> CBInstruction {
+    @nonobjc func instruction(audioEngine: AudioEngine) -> CBInstruction {
 
         guard let spriteObject = self.script?.object,
             let variables = spriteObject.project?.variables

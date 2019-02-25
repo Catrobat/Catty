@@ -22,7 +22,7 @@
 
 @objc extension WaitUntilBrick: CBInstructionProtocol {
 
-    @nonobjc func instruction() -> CBInstruction {
+    @nonobjc func instruction(audioEngine: AudioEngine) -> CBInstruction {
         let waitingTimeUntilNextCheck = 0.02
 
         return CBInstruction.waitExecClosure { context, _ in

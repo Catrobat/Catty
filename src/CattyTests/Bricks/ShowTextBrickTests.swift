@@ -93,7 +93,7 @@ final class ShowTextBrickTests: XCTestCase {
     }
 
     private func executeInstruction(for brick: CBInstructionProtocol) {
-        let instruction = brick.instruction()
+        let instruction = brick.instruction(audioEngine: AudioEngineMock())
 
         switch instruction {
         case let .execClosure(closure):

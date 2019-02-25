@@ -47,7 +47,7 @@
     [self.scene stopProject];
     
     // TODO remove Singletons
-    [[AudioEngine sharedInstance] stopAllAudioPlayers];
+    [[self.scene getSoundEngine] stopAllAudioPlayers];
     [[AudioManager sharedAudioManager] stopSpeechSynth];
     [[CameraPreviewHandler shared] stopCamera];
     
@@ -308,9 +308,8 @@
 - (void)pauseAction
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void) {
-        [[AudioEngine sharedInstance] pauseAllAudioPlayers];
+        [[self.scene getSoundEngine] pauseAllAudioPlayers];
         [[AudioManager sharedAudioManager] pauseSpeechSynth];
-        [[AudioEngine sharedInstance] stopNodeRecorder];
         [[FlashHelper sharedFlashHandler] pause];
         [[BluetoothService sharedInstance] pauseBluetoothDevice];
     });
@@ -321,7 +320,7 @@
 - (void)resumeAction
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void) {
-        [[AudioEngine sharedInstance] resumeAllAudioPlayers];
+        [[self.scene getSoundEngine] resumeAllAudioPlayers];
         [[AudioManager sharedAudioManager] resumeSpeechSynth];
         [[BluetoothService sharedInstance] continueBluetoothDevice];
         if ([FlashHelper sharedFlashHandler].wasTurnedOn == FlashON) {

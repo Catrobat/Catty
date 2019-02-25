@@ -22,13 +22,11 @@
 
 @objc extension SpeakAndWaitBrick: CBInstructionProtocol, AVSpeechSynthesizerDelegate {
 
-    @nonobjc func instruction() -> CBInstruction {
+    @nonobjc func instruction(audioEngine: AudioEngine) -> CBInstruction {
 
         guard let object = self.script?.object,
             let objectName = self.script?.object?.name
             else { fatalError("This should never happen!") }
-
-        let audioEngine = AudioEngine.sharedInstance
 
         return CBInstruction.waitExecClosure { context, _ in
             let synthesizer = audioEngine.getSpeechSynth()
@@ -59,7 +57,7 @@
             let utterance = AVSpeechUtterance(string: speakText)
             utterance.rate = (floor(NSFoundationVersionNumber) < 1200 ? 0.15 : 0.5)
 
-            if let volume = AudioEngine.sharedInstance.getOutputVolumeOfChannel(objName: objectName) {
+            if let volume = audioEngine.getOutputVolumeOfChannel(objName: objectName) {
                 utterance.volume = Float(volume)
             } else {
                 utterance.volume = 1.0

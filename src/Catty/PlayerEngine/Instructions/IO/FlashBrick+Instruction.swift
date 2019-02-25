@@ -22,7 +22,7 @@
 
 @objc extension FlashBrick: CBInstructionProtocol {
 
-    @nonobjc func instruction() -> CBInstruction {
+    @nonobjc func instruction(audioEngine: AudioEngine) -> CBInstruction {
 
         let choice = self.flashChoice
         return CBInstruction.execClosure { context, _ in

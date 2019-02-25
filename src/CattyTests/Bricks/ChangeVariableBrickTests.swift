@@ -68,7 +68,7 @@ final class ChangeVariableBrickTests: XCTestCase {
         brick.variableFormula = formula
         brick.script = script
 
-        let instruction = brick.instruction()
+        let instruction = brick.instruction(audioEngine: AudioEngineMock())
 
         switch instruction {
         case let .execClosure(closure):

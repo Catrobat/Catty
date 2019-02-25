@@ -1,0 +1,107 @@
+<program>
+    <header>
+        <applicationBuildName>Catty</applicationBuildName>
+        <applicationBuildNumber>15</applicationBuildNumber>
+        <applicationName>Pocket Code</applicationName>
+        <applicationVersion>0.1.0</applicationVersion>
+        <catrobatLanguageVersion>0.991</catrobatLanguageVersion>
+        <dateTimeUpload/>
+        <description/>
+        <deviceName>x86_64</deviceName>
+        <landscapeMode>false</landscapeMode>
+        <mediaLicense>http://developer.catrobat.org/ccbysa_v3</mediaLicense>
+        <platform>iOS</platform>
+        <platformVersion>12.0</platformVersion>
+        <programLicense>http://developer.catrobat.org/agpl_v3</programLicense>
+        <programName>SpeakAndWaitTest</programName>
+        <remixOf/>
+        <screenHeight>1334</screenHeight>
+        <screenMode>STRETCH</screenMode>
+        <screenWidth>750</screenWidth>
+        <tags/>
+        <url/>
+        <userHandle/>
+    </header>
+    <objectList>
+        <object name="Background">
+            <lookList/>
+            <soundList>
+                <sound>
+                    <fileName>russianfolk.wav</fileName>
+                    <name>Explode</name>
+                </sound>
+            </soundList>
+            <scriptList>
+                <script type="StartScript">
+                    <brickList>
+                        <brick type="SpeakAndWaitBrick">
+                            <formulaList>
+                                <formula category="SPEAK">
+                                    <type>STRING</type>
+                                    <value>Hello, my name is Hubertus Huber</value>
+                                </formula>
+                            </formulaList>
+                            <duration>0.0</duration>
+                        </brick>
+                        <brick type="PlaySoundBrick">
+                            <sound reference="../../../../../soundList/sound"/>
+                        </brick>
+                    </brickList>
+                    <isUserScript>false</isUserScript>
+                </script>
+            </scriptList>
+            <userBricks/>
+            <nfcTagList/>
+        </object>
+        <object name="Object1">
+            <lookList>
+                <look name="Ballon-red">
+                    <fileName>C659BC081634A106D1F2D6E8BBD50274_Ballon-red.png</fileName>
+                </look>
+            </lookList>
+            <soundList>
+                <sound>
+                    <fileName>russianfolk.wav</fileName>
+                    <name>Explode</name>
+                </sound>
+            </soundList>
+            <scriptList>
+                <script type="StartScript">
+                    <brickList>
+                        <brick type="WaitBrick">
+                            <formulaList>
+                                <formula category="TIME_TO_WAIT_IN_SECONDS">
+                                    <type>NUMBER</type>
+                                    <value>2</value>
+                                </formula>
+                            </formulaList>
+                        </brick>
+                        <brick type="SpeakAndWaitBrick">
+                            <formulaList>
+                                <formula category="SPEAK">
+                                    <type>STRING</type>
+                                    <value>Because the world is round it turns me on</value>
+                                </formula>
+                            </formulaList>
+                            <duration>0.0</duration>
+                        </brick>
+                        <brick type="PlaySoundBrick">
+                            <sound reference="../../../../../soundList/sound"/>
+                        </brick>
+                    </brickList>
+                    <isUserScript>false</isUserScript>
+                </script>
+            </scriptList>
+            <userBricks/>
+            <nfcTagList/>
+        </object>
+    </objectList>
+    <data>
+        <objectListOfList/>
+        <objectVariableList/>
+        <programListOfLists/>
+        <programVariableList/>
+        <userBrickVariableList/>
+    </data>
+    <settings/>
+</program>

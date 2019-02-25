@@ -21,7 +21,7 @@
  */
 
 extension CameraBrick: CBInstructionProtocol {
-    func instruction() -> CBInstruction {
+    func instruction(audioEngine: AudioEngine) -> CBInstruction {
 
         return .execClosure { context, _ in
             if let scene = self.script.object.spriteNode.scene as? CBScene {

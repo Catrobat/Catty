@@ -68,7 +68,7 @@ final class DeleteItemOfUserListBrickTests: XCTestCase {
         userList.value = NSMutableArray(array: [1])
         brick.listFormula = Formula(integer: 1)
 
-        switch brick.instruction() {
+        switch brick.instruction(audioEngine: AudioEngineMock()) {
         case let .execClosure(closure):
             closure(context, scheduler)
         default:
@@ -82,7 +82,7 @@ final class DeleteItemOfUserListBrickTests: XCTestCase {
         userList.value = NSMutableArray(array: [1])
         brick.listFormula = Formula(string: "abc")
 
-        switch brick.instruction() {
+        switch brick.instruction(audioEngine: AudioEngineMock()) {
         case let .execClosure(closure):
             closure(context, scheduler)
         default:
@@ -96,7 +96,7 @@ final class DeleteItemOfUserListBrickTests: XCTestCase {
         userList.value = NSMutableArray(array: [1])
         brick.listFormula = Formula(integer: -1)
 
-        switch brick.instruction() {
+        switch brick.instruction(audioEngine: AudioEngineMock()) {
         case let .execClosure(closure):
             closure(context, scheduler)
         default:

@@ -25,8 +25,6 @@ import AudioKit
 
 @objc class AudioEngine:NSObject {
 
-    @objc static let sharedInstance = AudioEngine()
-
     var speechSynth: AVSpeechSynthesizer
     var mainOut: AKMixer
     var channels: [String : AudioChannel]
@@ -46,19 +44,19 @@ import AudioKit
         }
 
         do {
-            tape = try AKAudioFile()
-            recorder = try AKNodeRecorder(node: mainOut, file: tape)
-            AKLog((recorder?.audioFile?.directoryPath.absoluteString)!)
-            AKLog((recorder?.audioFile?.fileNamePlusExtension)!)
+//            tape = try AKAudioFile()
+//            recorder = try AKNodeRecorder(node: mainOut, file: tape)
+//            AKLog((recorder?.audioFile?.directoryPath.absoluteString)!)
+//            AKLog((recorder?.audioFile?.fileNamePlusExtension)!)
         } catch {
 
         }
 
-        do {
-            try recorder?.record()
-        } catch {
-            AKLog("Couldn't record")
-        }
+//        do {
+//            try recorder?.record()
+//        } catch {
+//            AKLog("Couldn't record")
+//        }
     }
 
     func playSound(fileName: String, key: String, filePath: String) {
@@ -74,6 +72,21 @@ import AudioKit
     func changeVolumeBy(percent: Double, key: String) {
         let channel = getAudioChannel(key: key)
         channel.changeVolumeBy(percent: percent)
+    }
+
+    func stopTheNodeRecorder() {
+        recorder?.stop()
+        print(" ------- Recorded \(recorder?.recordedDuration) Seconds ------- ")
+    }
+
+    func addNodeRecorderAtMainOut(tape: AKAudioFile) -> AKNodeRecorder {
+        do {
+            recorder = try AKNodeRecorder(node: mainOut, file: tape)
+        } catch {
+            print("Should not happen")
+        }
+
+        return recorder!
     }
 
     @objc func pauseAllAudioPlayers()
@@ -119,16 +132,20 @@ import AudioKit
         if let channel = channels[key] {
             return channel
         } else {
-            let channel = AudioChannel()
-            channel.connectTo(node: mainOut)
-            channels[key] = channel
-            return channel
+            return createNewAudioChannel(key: key)
         }
     }
 
+    internal func createNewAudioChannel(key: String) -> AudioChannel {
+        let channel = AudioChannel()
+        channel.connectTo(node: mainOut)
+        channels[key] = channel
+        return channel
+    }
+
     @objc func stopNodeRecorder(){
-        recorder?.stop()
-        tape?.exportAsynchronously(name: "test", baseDir: .documents, exportFormat: .caf){ [weak self] _, _ in}
-        AKLog(recorder?.recordedDuration)
+//        recorder?.stop()
+//        tape?.exportAsynchronously(name: "test", baseDir: .documents, exportFormat: .caf){ [weak self] _, _ in}
+//        AKLog(recorder?.recordedDuration)
     }
 }

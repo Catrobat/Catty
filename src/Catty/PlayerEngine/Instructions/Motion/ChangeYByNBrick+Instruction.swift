@@ -22,7 +22,7 @@
 
 extension ChangeYByNBrick: CBInstructionProtocol {
 
-    func instruction() -> CBInstruction {
+    func instruction(audioEngine: AudioEngine) -> CBInstruction {
         return .action { context in SKAction.run(self.actionBlock(context.formulaInterpreter)) }
     }
 

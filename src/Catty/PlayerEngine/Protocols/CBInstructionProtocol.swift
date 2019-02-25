@@ -21,5 +21,5 @@
  */
 
 protocol CBInstructionProtocol {
-    func instruction() -> CBInstruction
+    func instruction(audioEngine: AudioEngine) -> CBInstruction
 }

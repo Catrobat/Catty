@@ -22,7 +22,7 @@
 
 @objc extension ChangeTransparencyByNBrick: CBInstructionProtocol {
 
-    @nonobjc func instruction() -> CBInstruction {
+    @nonobjc func instruction(audioEngine: AudioEngine) -> CBInstruction {
         return .action { context in SKAction.run(self.actionBlock(context.formulaInterpreter)) }
     }
 

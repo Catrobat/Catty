@@ -22,7 +22,7 @@
 
 @objc extension NextLookBrick: CBInstructionProtocol {
 
-    @nonobjc func instruction() -> CBInstruction {
+    @nonobjc func instruction(audioEngine: AudioEngine) -> CBInstruction {
         return .action { _ in SKAction.run(self.actionBlock()) }
     }
 

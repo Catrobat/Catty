@@ -30,6 +30,7 @@
     private var backend: CBBackendProtocol?
     private var broadcastHandler: CBBroadcastHandler?
     private var formulaManager: FormulaManagerProtocol?
+    private var soundEngine: AudioEngine?
 
     @objc init(project: Project) {
         self.project = project
@@ -64,6 +65,11 @@
         return self
     }
 
+    func withSoundEngine(soundEngine: AudioEngine) -> Self {
+        self.soundEngine = soundEngine
+        return self
+    }
+
     @objc(andFormulaManager:)
     func withFormulaManager(formulaManager: FormulaManager) -> Self {
         self.formulaManager = formulaManager
@@ -83,7 +89,10 @@
         let broadcastHandler = getBroadcastHandler()
         let scheduler = getScheduler(broadcastHandler: broadcastHandler, formulaInterpreter: formulaManager)
 
-        return CBScene(size: size, logger: logger, scheduler: scheduler, frontend: frontend, backend: backend, broadcastHandler: broadcastHandler, formulaManager: formulaManager)
+        let soundEngine = getSoundEngine()
+
+        return CBScene(size: size, logger: logger, scheduler: scheduler, frontend: frontend, backend: backend,
+                       broadcastHandler: broadcastHandler, formulaManager: formulaManager, soundEngine: soundEngine)
     }
 
     private func getFormulaManager() -> FormulaManagerProtocol {
@@ -91,6 +100,13 @@
             return FormulaManager(sceneSize: self.size)
         }
         return formulaManager
+    }
+
+    private func getSoundEngine() -> AudioEngine {
+        guard let engine = self.soundEngine else {
+            return AudioEngine()
+        }
+        return engine
     }
 
     private func getBroadcastHandler() -> CBBroadcastHandler {

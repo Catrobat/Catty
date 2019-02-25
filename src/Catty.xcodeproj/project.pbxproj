@@ -900,6 +900,13 @@
 		9EE4189522243CA300EA58E8 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EE4189422243CA300EA58E8 /* CryptoSwift.framework */; };
 		9EE4189822243D4700EA58E8 /* explode.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9EE4189622243D4700EA58E8 /* explode.mp3 */; };
 		9EE4189922243D4700EA58E8 /* russianfolk.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9EE4189722243D4700EA58E8 /* russianfolk.wav */; };
+		9EE4189B222451FF00EA58E8 /* AudioFingerprinter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE4189A222451FF00EA58E8 /* AudioFingerprinter.swift */; };
+		9EE418A322246D3800EA58E8 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EE418A222246D3800EA58E8 /* Accelerate.framework */; };
+		9EE418B02224805F00EA58E8 /* libchromaprint.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EE418AF2224805F00EA58E8 /* libchromaprint.a */; };
+		9EE418B12224835F00EA58E8 /* soundtest.xml in Resources */ = {isa = PBXBuildFile; fileRef = 9EE418A822246EBA00EA58E8 /* soundtest.xml */; };
+		9EE418B22224836300EA58E8 /* speakandwaittest.xml in Resources */ = {isa = PBXBuildFile; fileRef = 9EE418A722246EBA00EA58E8 /* speakandwaittest.xml */; };
+		9EE418B32224836600EA58E8 /* StartSoundTest.xml in Resources */ = {isa = PBXBuildFile; fileRef = 9EE418A922246EBB00EA58E8 /* StartSoundTest.xml */; };
+		9EE418B42224836900EA58E8 /* ballon_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EE418AA22246EBB00EA58E8 /* ballon_red.png */; };
 		A9F511831BE6A07A00B59540 /* SwiftBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F511821BE6A07A00B59540 /* SwiftBridge.swift */; };
 		AA3BD9091BBF4BFB002B34A0 /* WaitBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3BD9081BBF4BFB002B34A0 /* WaitBrickTests.swift */; };
 		AA401FE91BBEF6F9001BC49F /* CBInstructionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA401FE81BBEF6F9001BC49F /* CBInstructionProtocol.swift */; };
@@ -2551,6 +2558,13 @@
 		9EE4189422243CA300EA58E8 /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CryptoSwift.framework; path = Carthage/Build/iOS/CryptoSwift.framework; sourceTree = "<group>"; };
 		9EE4189622243D4700EA58E8 /* explode.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = explode.mp3; sourceTree = "<group>"; };
 		9EE4189722243D4700EA58E8 /* russianfolk.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = russianfolk.wav; sourceTree = "<group>"; };
+		9EE4189A222451FF00EA58E8 /* AudioFingerprinter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioFingerprinter.swift; sourceTree = "<group>"; };
+		9EE418A222246D3800EA58E8 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		9EE418A722246EBA00EA58E8 /* speakandwaittest.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = speakandwaittest.xml; path = CattyTests/Resources/AudioEngineTests/speakandwaittest.xml; sourceTree = SOURCE_ROOT; };
+		9EE418A822246EBA00EA58E8 /* soundtest.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = soundtest.xml; path = CattyTests/Resources/AudioEngineTests/soundtest.xml; sourceTree = SOURCE_ROOT; };
+		9EE418A922246EBB00EA58E8 /* StartSoundTest.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = StartSoundTest.xml; path = CattyTests/Resources/AudioEngineTests/StartSoundTest.xml; sourceTree = SOURCE_ROOT; };
+		9EE418AA22246EBB00EA58E8 /* ballon_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ballon_red.png; path = CattyTests/Resources/AudioEngineTests/ballon_red.png; sourceTree = SOURCE_ROOT; };
+		9EE418AF2224805F00EA58E8 /* libchromaprint.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libchromaprint.a; path = ChromaprintLib/libchromaprint.a; sourceTree = "<group>"; };
 		A988832B1BCA86FF005029E8 /* ObjectTVCTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectTVCTests.swift; sourceTree = "<group>"; };
 		A9F511821BE6A07A00B59540 /* SwiftBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftBridge.swift; sourceTree = "<group>"; };
 		AA3BD9081BBF4BFB002B34A0 /* WaitBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaitBrickTests.swift; sourceTree = "<group>"; };
@@ -3107,6 +3121,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9EE418B02224805F00EA58E8 /* libchromaprint.a in Frameworks */,
+				9EE418A322246D3800EA58E8 /* Accelerate.framework in Frameworks */,
 				9EE4189522243CA300EA58E8 /* CryptoSwift.framework in Frameworks */,
 				9E890897222329F30078B1B4 /* AudioKit.framework in Frameworks */,
 				CA7699191B0E4BFF000D0340 /* libxml2.dylib in Frameworks */,
@@ -3189,6 +3205,8 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9EE418AF2224805F00EA58E8 /* libchromaprint.a */,
+				9EE418A222246D3800EA58E8 /* Accelerate.framework */,
 				9EE4189422243CA300EA58E8 /* CryptoSwift.framework */,
 				9E890893222329C10078B1B4 /* AudioKit.framework */,
 				B405BAC7175DD3F600B1A0FC /* libxml2.dylib */,
@@ -3376,6 +3394,7 @@
 			children = (
 				4C1329031CD9259900F16E48 /* AudioManagerTests.swift */,
 				9EE4189222243AB400EA58E8 /* AudioEngineTests.swift */,
+				9EE4189A222451FF00EA58E8 /* AudioFingerprinter.swift */,
 			);
 			path = AudioManager;
 			sourceTree = "<group>";
@@ -3403,6 +3422,7 @@
 		4C1608A31A095480002C7032 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9EE418A622246E4C00EA58E8 /* AudioEngineTests */,
 				4C1329071CD9278E00F16E48 /* Sounds */,
 				4C6A64B31AF7CC5A00D04559 /* Images */,
 				4C1608A41A09548F002C7032 /* ParserTests */,
@@ -6578,6 +6598,17 @@
 			path = "Catty/Storyboard+XIB";
 			sourceTree = "<group>";
 		};
+		9EE418A622246E4C00EA58E8 /* AudioEngineTests */ = {
+			isa = PBXGroup;
+			children = (
+				9EE418AA22246EBB00EA58E8 /* ballon_red.png */,
+				9EE418A822246EBA00EA58E8 /* soundtest.xml */,
+				9EE418A722246EBA00EA58E8 /* speakandwaittest.xml */,
+				9EE418A922246EBB00EA58E8 /* StartSoundTest.xml */,
+			);
+			path = AudioEngineTests;
+			sourceTree = "<group>";
+		};
 		AA101E3F1B8D3A3900797DEF /* Encapsulated */ = {
 			isa = PBXGroup;
 			children = (
@@ -8089,6 +8120,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9EE418B22224836300EA58E8 /* speakandwaittest.xml in Resources */,
 				4CC85CD41B9C6EC80097E470 /* Word_balloon_demo_096.xml in Resources */,
 				CAE3E55E1B4C50B300CC88BD /* Tic_Tac_Toe_Master_091.xml in Resources */,
 				4CE2D3F91C294F3300938B5E /* Drink_more_water_097.xml in Resources */,
@@ -8192,6 +8224,7 @@
 				CA2D44441B1231F900A3B53D /* Swell.plist in Resources */,
 				4C9F37A91D167630002C3B45 /* transparency-gray-alpha.png in Resources */,
 				4C6D15EA1D7AC60500CE53CD /* Pong_Starter_098.xml in Resources */,
+				9EE418B32224836600EA58E8 /* StartSoundTest.xml in Resources */,
 				4C2EE40F1B555871006DE9B8 /* Word_balloon_demo_095.xml in Resources */,
 				4C6D15E61D7AC5F900CE53CD /* Nyancat_1.0_098.xml in Resources */,
 				4C6D15E81D7AC5FE00CE53CD /* Piano_098.xml in Resources */,
@@ -8241,7 +8274,9 @@
 				4CC85CD21B9C6E6F0097E470 /* Tic_Tac_Toe_Master_096.xml in Resources */,
 				4C6D15CE1D7AC59A00CE53CD /* Airplane_with_shadow_098.xml in Resources */,
 				4CC85CD61B9C6F220097E470 /* X_Ray_phone_096.xml in Resources */,
+				9EE418B42224836900EA58E8 /* ballon_red.png in Resources */,
 				4C6D15D41D7AC5BD00CE53CD /* Drink_more_water_098.xml in Resources */,
+				9EE418B12224835F00EA58E8 /* soundtest.xml in Resources */,
 				2DCB4936212EAAEF005E8E3D /* StoreProjectDownloader.downloadData.success.json in Resources */,
 				4CEF0CCC1B9C63BA003C9B20 /* Flappy_v3.0_096.xml in Resources */,
 				4C15FE7F1D168C0D009C1A2B /* transparency-rgb.png in Resources */,
@@ -8700,6 +8735,7 @@
 				4C822664213FA7A400F3D750 /* LatitudeSensorTest.swift in Sources */,
 				4CB2CFAD1D7AD8A5009F3034 /* SetColorBrickTests.m in Sources */,
 				4CDE807621A1B112009EFD31 /* ScenePresenterViewControllerTest.swift in Sources */,
+				9EE4189B222451FF00EA58E8 /* AudioFingerprinter.swift in Sources */,
 				4C822683213FA7A400F3D750 /* SensorManagerTests.swift in Sources */,
 				4C82266F213FA7A400F3D750 /* DateMonthSensorTest.swift in Sources */,
 				4C822670213FA7A400F3D750 /* AccelerationYSensorTest.swift in Sources */,
@@ -9816,6 +9852,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/ChromaprintLib",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -9833,10 +9870,12 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					$SDKROOT/usr/include/libxml2,
 					"\"$(TARGET_TEMP_DIR)/../$(PROJECT_NAME).build/DerivedSources\"",
+					"$(PROJECT_DIR)/ChromaprintLib",
 				);
 				INFOPLIST_FILE = CattyTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(FRAMEWORK_SEARCH_PATHS)";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(FRAMEWORK_SEARCH_PATHS) $(PROJECT_DIR)/ChromaprintLib";
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/ChromaprintLib";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -9845,6 +9884,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.catrobat.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_INCLUDE_PATHS = "$(PROJECT_DIR)/ChromaprintLib";
 				SWIFT_OBJC_BRIDGING_HEADER = "CattyTests/CattyTests-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
@@ -9873,6 +9913,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/ChromaprintLib",
 				);
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -9888,10 +9929,12 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					$SDKROOT/usr/include/libxml2,
 					"\"$(TARGET_TEMP_DIR)/../$(PROJECT_NAME).build/DerivedSources\"",
+					"$(PROJECT_DIR)/ChromaprintLib",
 				);
 				INFOPLIST_FILE = CattyTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(FRAMEWORK_SEARCH_PATHS)";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(FRAMEWORK_SEARCH_PATHS) $(PROJECT_DIR)/ChromaprintLib";
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/ChromaprintLib";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -9900,6 +9943,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.catrobat.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_INCLUDE_PATHS = "$(PROJECT_DIR)/ChromaprintLib";
 				SWIFT_OBJC_BRIDGING_HEADER = "CattyTests/CattyTests-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pocket Code.app/Pocket Code";
@@ -9923,6 +9967,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/ChromaprintLib",
 				);
 				GCC_PREFIX_HEADER = "Catty/App-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -9945,6 +9990,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.catrobat.pocketcode;
 				PRODUCT_NAME = "Pocket Code";
 				PROVISIONING_PROFILE = "";
+				SWIFT_INCLUDE_PATHS = "$(PROJECT_DIR)/ChromaprintLib";
 				SWIFT_OBJC_BRIDGING_HEADER = "Catty/Catty-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
@@ -9970,6 +10016,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/ChromaprintLib",
 				);
 				GCC_PREFIX_HEADER = "Catty/App-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -9992,6 +10039,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.catrobat.pocketcode;
 				PRODUCT_NAME = "Pocket Code";
 				PROVISIONING_PROFILE = "";
+				SWIFT_INCLUDE_PATHS = "$(PROJECT_DIR)/ChromaprintLib";
 				SWIFT_OBJC_BRIDGING_HEADER = "Catty/Catty-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 4.2;

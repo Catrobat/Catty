@@ -71,7 +71,7 @@ final class ReplaceItemInUserListBrickTests: XCTestCase {
         brick.index = Formula(integer: 1)
         brick.elementFormula = Formula(integer: newValue)
 
-        switch brick.instruction() {
+        switch brick.instruction(audioEngine: AudioEngineMock()) {
         case let .execClosure(closure):
             closure(context, scheduler)
         default:
@@ -89,7 +89,7 @@ final class ReplaceItemInUserListBrickTests: XCTestCase {
         brick.index = Formula(string: "abc")
         brick.elementFormula = Formula(integer: 1)
 
-        switch brick.instruction() {
+        switch brick.instruction(audioEngine: AudioEngineMock()) {
         case let .execClosure(closure):
             closure(context, scheduler)
         default:
@@ -105,7 +105,7 @@ final class ReplaceItemInUserListBrickTests: XCTestCase {
         brick.index = Formula(integer: -1)
         brick.elementFormula = Formula(integer: 1)
 
-        switch brick.instruction() {
+        switch brick.instruction(audioEngine: AudioEngineMock()) {
         case let .execClosure(closure):
             closure(context, scheduler)
         default:

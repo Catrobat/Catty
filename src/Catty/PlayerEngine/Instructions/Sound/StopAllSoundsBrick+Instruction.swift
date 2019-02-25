@@ -22,7 +22,7 @@
 
 @objc extension StopAllSoundsBrick: CBInstructionProtocol {
 
-    @nonobjc func instruction() -> CBInstruction {
+    @nonobjc func instruction(audioEngine: AudioEngine) -> CBInstruction {
 
         let audioManager = AudioManager.shared()
 

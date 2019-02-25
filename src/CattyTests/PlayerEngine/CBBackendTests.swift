@@ -56,7 +56,7 @@ final class CBBackendTests: XCTestCase {
         startScript.brickList = [showBrick, noteBrick, hideBrick]
 
         let sequenceList = frontend.computeSequenceListForScript(startScript).sequenceList
-        let instructionList = backend.instructionsForSequence(sequenceList)
+        let instructionList = backend.instructionsForSequence(sequenceList, soundEngine: AudioEngineMock())
         XCTAssertEqual(instructionList.count, 2, "Instruction list should contain two instructions")
 
         switch instructionList[0] {
@@ -87,7 +87,7 @@ final class CBBackendTests: XCTestCase {
         startScript.brickList = [setLookBrick, nextLookBrick, note1Brick]
 
         let sequenceList = frontend.computeSequenceListForScript(startScript).sequenceList
-        let instructionList = backend.instructionsForSequence(sequenceList)
+        let instructionList = backend.instructionsForSequence(sequenceList, soundEngine: AudioEngineMock())
         XCTAssertEqual(instructionList.count, 2, "Instruction list should contain two instructions")
 
         switch instructionList[0] {
@@ -118,7 +118,7 @@ final class CBBackendTests: XCTestCase {
         startScript.brickList = [setYBrick, setXBrick, note1Brick]
 
         let sequenceList = frontend.computeSequenceListForScript(startScript).sequenceList
-        let instructionList = backend.instructionsForSequence(sequenceList)
+        let instructionList = backend.instructionsForSequence(sequenceList, soundEngine: AudioEngineMock())
         XCTAssertEqual(instructionList.count, 2, "Instruction list should contain two instructions")
 
         switch instructionList[0] {
@@ -167,7 +167,7 @@ final class CBBackendTests: XCTestCase {
 
         let sequenceList = frontend.computeSequenceListForScript(startScript).sequenceList
         // [[CBOperationSequence] [CBIfConditionalSequence] [CBOperationSequence]]
-        let instructionList = backend.instructionsForSequence(sequenceList)
+        let instructionList = backend.instructionsForSequence(sequenceList, soundEngine: AudioEngineMock())
 
         XCTAssertEqual(instructionList.count, 6, "Instruction list should contain six instructions")
 
@@ -228,7 +228,7 @@ final class CBBackendTests: XCTestCase {
 
         let sequenceList = frontend.computeSequenceListForScript(startScript).sequenceList
         // [[CBOperationSequence] [CBIfConditionalSequence] [CBOperationSequence]]
-        let instructionList = backend.instructionsForSequence(sequenceList)
+        let instructionList = backend.instructionsForSequence(sequenceList, soundEngine: AudioEngineMock())
 
         XCTAssertEqual(instructionList.count, 5, "Instruction list should contain five instructions")
 
@@ -289,7 +289,7 @@ final class CBBackendTests: XCTestCase {
         startScript.brickList = [loopBeginBrick, broadcastBrick, noteBrick, waitBrick, hideBrick, turnRightBrick, loopEndBrick]
 
         let sequenceList = frontend.computeSequenceListForScript(startScript).sequenceList
-        let instructionList = backend.instructionsForSequence(sequenceList)
+        let instructionList = backend.instructionsForSequence(sequenceList, soundEngine: AudioEngineMock())
 
         XCTAssertEqual(instructionList.count, 6, "Instruction list should contain six instructions")
 
@@ -402,7 +402,7 @@ final class CBBackendTests: XCTestCase {
         whenScript.brickList = NSMutableArray(array: scriptBrickList)
 
         let sequenceList = frontend.computeSequenceListForScript(whenScript).sequenceList
-        let instructionList = backend.instructionsForSequence(sequenceList)
+        let instructionList = backend.instructionsForSequence(sequenceList, soundEngine: AudioEngineMock())
 
         XCTAssertEqual(instructionList.count, 15, "Instruction list should contain fifteen instructions")
 
@@ -478,7 +478,7 @@ final class CBBackendTests: XCTestCase {
         startScript.brickList = [setBrightnessBrick, setSizeToBrick, setTransparencyBrick, clearGraphicEffectBrick, placeAtBrick, pointInDirectionBrick, changeXByNBrick]
 
         let sequenceList = frontend.computeSequenceListForScript(startScript).sequenceList
-        let instructionList = backend.instructionsForSequence(sequenceList)
+        let instructionList = backend.instructionsForSequence(sequenceList, soundEngine: AudioEngineMock())
 
         XCTAssertEqual(instructionList.count, 7, "Instruction list should contain eight instructions")
 

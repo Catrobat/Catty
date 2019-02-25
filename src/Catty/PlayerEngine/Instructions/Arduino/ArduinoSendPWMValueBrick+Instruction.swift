@@ -22,7 +22,7 @@
 
 @objc extension ArduinoSendPWMValueBrick: CBInstructionProtocol {
 
-    @nonobjc func instruction() -> CBInstruction {
+    @nonobjc func instruction(audioEngine: AudioEngine) -> CBInstruction {
         guard let object = self.script?.object
             else { fatalError("This should never happen!") }
 

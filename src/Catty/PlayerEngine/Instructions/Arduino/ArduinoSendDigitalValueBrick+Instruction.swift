@@ -24,7 +24,7 @@ import Foundation
 
 @objc extension ArduinoSendDigitalValueBrick: CBInstructionProtocol {
 
-    @nonobjc func instruction() -> CBInstruction {
+    @nonobjc func instruction(audioEngine: AudioEngine) -> CBInstruction {
         guard let object = self.script?.object
             else { fatalError("This should never happen!") }
 

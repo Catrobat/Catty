@@ -21,7 +21,7 @@
  */
 
 @objc extension ThinkForBubbleBrick: CBInstructionProtocol {
-    @nonobjc func instruction() -> CBInstruction {
+    @nonobjc func instruction(audioEngine: AudioEngine) -> CBInstruction {
         guard let object = self.script?.object,
             let _ = object.spriteNode
             else { fatalError("This should never happen!") }

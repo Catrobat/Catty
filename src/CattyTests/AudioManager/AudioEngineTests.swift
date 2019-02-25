@@ -26,9 +26,9 @@ import XCTest
 
 @testable import Pocket_Code
 
-class AudioEngineTests: XCTestCase {
+final class AudioEngineTests: XMLAbstractTest {
 
-    override func setUp( ) {
+    override func setUp() {
         super.setUp()
     }
 
@@ -37,7 +37,6 @@ class AudioEngineTests: XCTestCase {
     }
 
     func testHash() {
-
         let testBundle = Bundle(for: type(of: self))
         let audioFileURL1 = testBundle.url(forResource: "russianfolk", withExtension: "wav")
         let audioFileURL2 = testBundle.url(forResource: "explode", withExtension: "mp3")
@@ -91,4 +90,142 @@ class AudioEngineTests: XCTestCase {
             print("error")
         }
     }
+
+    func testParseSoundProgram() {
+        let audioEngine = AudioEngineMock()
+        let formulaInterpreter = FormulaManager(sceneSize: Util.screenSize(true))
+        let logger = CBLogger(name: "Logger")
+        let broadcastHandler = CBBroadcastHandler(logger: logger)
+        let scheduler = CBScheduler(logger: logger, broadcastHandler: broadcastHandler, formulaInterpreter: formulaInterpreter)
+
+
+        let program = self.getProjectForXML(xmlFile: "soundtest")
+        let spriteObject = program.objectList[0] as? SpriteObject
+        let script = spriteObject?.scriptList[0] as? WhenScript
+        let soundBrick = script?.brickList[0] as? PlaySoundBrick
+        let file = soundBrick?.sound.fileName
+
+        let context = CBScriptContext(script: script!, spriteNode: CBSpriteNode(spriteObject: spriteObject!), formulaInterpreter: formulaInterpreter)
+
+        let instruction = soundBrick!.instruction(audioEngine: audioEngine)
+
+        switch instruction {
+        case let .execClosure(closure):
+            closure(context!, scheduler)
+        default:
+            XCTFail()
+        }
+
+        // let existsPredicate = NSPredicate(format: "exists == true")
+
+        let existsPredicate = NSPredicate(block: { any, _ in
+            guard let engine = any as? AudioEngine else { return false }
+            let chn = engine.channels["Background"]
+            let player = chn?.audioPlayers[file!]
+            return chn != nil && player != nil
+        })
+        expectation(for: existsPredicate, evaluatedWith: audioEngine, handler: nil)
+        waitForExpectations(timeout: 5, handler: nil)
+    }
+
+    func testSpeakAndWait() {
+        do {
+            var soundEngine = AudioEngineMock()
+            let tape = try AKAudioFile()
+            let recorder = soundEngine.addNodeRecorderAtMainOut(tape: tape)
+            let project = self.getProjectForXML(xmlFile: "speakandwaittest")
+            let scene = self.createScene(project: project, soundEngine: soundEngine)
+            try recorder.record()
+            scene.startProject()
+            RunLoop.current.run(until: Date(timeIntervalSinceNow: 6))
+            recorder.stop()
+            play(tape: tape)
+        } catch {
+            XCTFail("Error occured")
+        }
+    }
+
+    func testStartSound() {
+        do{
+            let soundEngine = AudioEngineMock()
+            let tape = try AKAudioFile()
+            let recorder = soundEngine.addNodeRecorderAtMainOut(tape: tape)
+            let project = self.getProjectForXML(xmlFile: "StartSoundTest")
+            let scene = self.createScene(project: project, soundEngine: soundEngine)
+            try recorder.record()
+
+            scene.startProject()
+
+            RunLoop.current.run(until: Date(timeIntervalSinceNow: 3))
+            recorder.stop()
+            print("Recorded \(recorder.recordedDuration) Seconds")
+            play(tape: tape)
+            //RunLoop.current.run(until: Date(timeIntervalSinceNow: 11))
+            let bla = ""
+        } catch {
+            XCTFail("Error occured")
+        }
+    }
+
+    func play(tape: AKAudioFile) {
+        do{
+            let readTape = try AKAudioFile(forReading: tape.url)
+
+
+
+            guard let (fingerprintString, duration) = generateFingerprint(fromSongAtUrl: readTape.url) else {
+                print("No fingerprint was generated")
+                return
+            }
+
+            print("The song duration is \(duration)")
+            print("The fingerprint is: \(fingerprintString)")
+
+
+
+
+            let data1 = Data(buffer: UnsafeBufferPointer(start: readTape.pcmBuffer.floatChannelData![0], count:Int(readTape.pcmBuffer.frameLength))).bytes
+            let data2 = Data(buffer: UnsafeBufferPointer(start: readTape.pcmBuffer.floatChannelData![1], count:Int(readTape.pcmBuffer.frameLength))).bytes
+
+            do {
+                var digest = MD5()
+                _ = try digest.update(withBytes: data1)
+                _ = try digest.update(withBytes: data2)
+                let result = try digest.finish()
+                print("The Hash is \(result)")
+            } catch {}
+
+            //            let akPlayer = try AKAudioPlayer(file: readTape)
+            //            let mix = AKMixer(akPlayer)
+            //            AudioKit.output = mix
+            //            try AudioKit.start()
+            //            akPlayer.play()
+
+        } catch {
+            print("error")
+        }
+    }
+
+    private func createScene(project: Project, soundEngine: AudioEngine) -> CBScene {
+        let sceneBuilder = SceneBuilder(project: project).withFormulaManager(formulaManager: FormulaManager(sceneSize: Util.screenSize(true))).withSoundEngine(soundEngine: soundEngine)
+        return sceneBuilder.build()
+    }
 }
+
+class AudioEngineMock: AudioEngine {
+    override internal func createNewAudioChannel(key: String) -> AudioChannel {
+        let channel = AudioChannelMock()
+        channel.connectTo(node: mainOut)
+        channels[key] = channel
+        return channel
+    }
+}
+
+class AudioChannelMock: AudioChannel {
+    override internal func createFileUrl(fileName: String, filePath: String) -> URL {
+        let bundle = Bundle.init(for: self.classForCoder)
+        let path = bundle.path(forResource: fileName, ofType: nil)
+        return URL.init(fileURLWithPath: path!)
+    }
+}
+

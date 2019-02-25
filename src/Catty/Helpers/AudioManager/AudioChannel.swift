@@ -33,13 +33,30 @@ import AudioKit
     }
 
     func playSound(fileName: String, filePath: String) {
-        if let audioPlayer = audioPlayers[fileName] {
-            if (audioPlayer.isPlaying) {
-                audioPlayer.stop()
-            }
-            audioPlayer.play()
-        } else {
-            let audioFileURL = URL.init(fileURLWithPath: filePath + "/" + fileName)
+//        if let audioPlayer = audioPlayers[fileName] {
+//            if (audioPlayer.isPlaying) {
+//                audioPlayer.stop()
+//            }
+//            audioPlayer.play()
+//        } else {
+            let audioFileURL = createFileUrl(fileName: fileName, filePath: filePath)
+
+        let inputFormats = AKConverter.inputFormats
+        var options = AKConverter.Options()
+        // any options left nil will assume the value of the input file
+        options.format = "m4a"
+
+        let fileMgr = FileManager.default
+        let dirPaths = fileMgr.urls(for: .documentDirectory,
+                                    in: .userDomainMask)
+
+        let newURL = dirPaths[0].appendingPathComponent("ddffgg.m4a")
+
+        let converter = AKConverter(inputURL: audioFileURL, outputURL: newURL, options: options)
+        converter.start(completionHandler: { error in
+            let a = 1
+        })
+
             do {
                 let file = try AKAudioFile(forReading: audioFileURL)
                 let akPlayer = try AKAudioPlayer(file: file)
@@ -50,7 +67,11 @@ import AudioKit
                 print("oops \(error)")
                 print("could not start audio engine")
             }
-        }
+//        }
+    }
+
+    internal func createFileUrl(fileName: String, filePath: String) -> URL {
+        return URL.init(fileURLWithPath: filePath + "/" + fileName)
     }
 
     func connectTo(node: AKInput) -> AKInput {
