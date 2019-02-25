@@ -88,6 +88,18 @@ class FeaturedProjectsStoreTableViewController: UITableViewController, SelectedF
         self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         self.tableView.dataSource = self.dataSource
         self.tableView.delegate = self.dataSource
+        self.tableView.rowHeight = self.calcCellHeightByAspectRatio(currentFrameWidth: self.view.frame.size.width)
+    }
+
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        DispatchQueue.main.async {
+            self.tableView.rowHeight = self.calcCellHeightByAspectRatio(currentFrameWidth: self.view.frame.size.width)
+            self.tableView.reloadData()
+        }
+    }
+
+    private func calcCellHeightByAspectRatio(currentFrameWidth: CGFloat) -> CGFloat {
+        return ((currentFrameWidth / kAspectRatioWidth) * kAspectRatioHeight) - 2
     }
 
     private func fetchData() {
