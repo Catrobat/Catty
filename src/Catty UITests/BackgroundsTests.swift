@@ -196,7 +196,7 @@ class BackgroundsTests: XCTestCase, UITestProtocol {
         app.buttons[kLocalizedDelete].tap()
         let yesButton = app.alerts[kLocalizedDeleteThisBackground].buttons[kLocalizedYes]
         yesButton.tap()
-        XCTAssert(app.tables.staticTexts[kLocalizedBackgrounds].exists == false)
+        XCTAssertFalse(app.tables.staticTexts[kLocalizedBackground].exists)
     }
 
     func testBackgroundsCanAbortDeleteSingleBackgroundViaSwipe() {
@@ -218,7 +218,6 @@ class BackgroundsTests: XCTestCase, UITestProtocol {
     func testBackgroundsCanShowAndHideDetailsForBackgroundViaEditMode() {
         let app = XCUIApplication()
         testBackgroundsCanEnterBackgrounds()
-        
 
         app.navigationBars[kLocalizedBackgrounds].buttons[kLocalizedEdit].tap()
 

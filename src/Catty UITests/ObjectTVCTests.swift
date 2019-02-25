@@ -177,7 +177,7 @@ class ObjectTVCTests: XCTestCase, UITestProtocol {
         waitForElementToAppear(app.staticTexts[kLocalizedScripts]).tap()
 
         waitForElementToAppear(app.toolbars.buttons[kLocalizedUserListAdd]).tap()
-        if app.navigationBars[kUIFavouritesTitle].exists {
+        if app.navigationBars[kLocalizedFrequentlyUsed].exists {
             app.swipeLeft()
         }
 

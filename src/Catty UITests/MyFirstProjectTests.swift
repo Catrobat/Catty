@@ -238,7 +238,7 @@ class MyFirstProjectTests: XCTestCase, UITestProtocol {
         XCTAssert(app.buttons[kLocalizedMore].exists)
 
         app.buttons[kLocalizedMore].tap()
-        app.buttons["Copy"].tap()
+        app.buttons[kLocalizedCopy].tap()
         app.swipeDown()
         XCTAssert(app.tables.staticTexts["Mole 1 (1)"].exists)
     }

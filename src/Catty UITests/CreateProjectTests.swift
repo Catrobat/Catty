@@ -95,14 +95,14 @@ class CreateProjectTests: XCTestCase, UITestProtocol {
         app.tables.staticTexts[testObject].tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
         app.toolbars.buttons[kLocalizedUserListAdd].tap()
-        if app.navigationBars[kUIFavouritesTitle].exists {
+        if app.navigationBars[kLocalizedFrequentlyUsed].exists {
             app.swipeLeft()
         }
         app.collectionViews.cells.element(boundBy: 0).tap()
         XCTAssert(app.collectionViews.cells.element(boundBy: 0).staticTexts[kLocalizedWhenProjectStarted].exists)
         app.toolbars.buttons[kLocalizedUserListAdd].tap()
 
-        if app.navigationBars[kUIFavouritesTitle].exists {
+        if app.navigationBars[kLocalizedFrequentlyUsed].exists {
             app.swipeLeft()
             app.swipeLeft()
             app.swipeLeft()
@@ -120,13 +120,13 @@ class CreateProjectTests: XCTestCase, UITestProtocol {
         app.tables.staticTexts[kLocalizedBackground].tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
         app.toolbars.buttons[kLocalizedUserListAdd].tap()
-        if app.navigationBars[kUIFavouritesTitle].exists {
+        if app.navigationBars[kLocalizedFrequentlyUsed].exists {
             app.swipeLeft()
         }
         app.collectionViews.cells.element(boundBy: 0).tap()
         XCTAssert(app.collectionViews.cells.element(boundBy: 0).staticTexts[kLocalizedWhenProjectStarted].exists)
         app.toolbars.buttons[kLocalizedUserListAdd].tap()
-        if app.navigationBars[kUIFavouritesTitle].exists {
+        if app.navigationBars[kLocalizedFrequentlyUsed].exists {
             app.swipeLeft()
             app.swipeLeft()
             app.swipeLeft()

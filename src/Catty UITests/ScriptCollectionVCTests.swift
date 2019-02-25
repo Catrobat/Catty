@@ -141,7 +141,7 @@ class ScriptCollectionVCTests: XCTestCase, UITestProtocol {
         app.collectionViews.staticTexts[kLocalizedSetVariable].tap()
         app.collectionViews.cells.otherElements.containing(.staticText, identifier: kLocalizedSetVariable).children(matching: .button).element.tap()
 
-        app.buttons["ABC"].tap()
+        app.buttons[kUIFEAddNewText].tap()
         app.alerts[kUIFENewText].buttons[kLocalizedOK].tap()
 
         app.buttons[kLocalizedDone].tap()
