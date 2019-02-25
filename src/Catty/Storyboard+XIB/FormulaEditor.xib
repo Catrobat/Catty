@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FormulaEditorViewController">
             <connections>
+                <outlet property="addNewTextButton" destination="RON-Lh-Bu0" id="CTT-Iz-nFl"/>
                 <outlet property="additionButton" destination="3DA-2p-zn4" id="CAM-4y-0og"/>
                 <outlet property="calcButton" destination="Tgc-kx-DJP" id="Ui6-qE-9ZX"/>
                 <outlet property="calcScrollView" destination="OK4-Wq-asm" id="mAD-cC-Hlv"/>

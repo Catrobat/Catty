@@ -53,13 +53,13 @@ class ScriptCollectionVCTests: XCTestCase, UITestProtocol {
 
         for cellIndex in 0...app.collectionViews.cells.count {
             let cell = app.collectionViews.cells.element(boundBy: cellIndex)
-            if cell.staticTexts.count == 2 && cell.staticTexts[kLocalizedIfBegin + " "].exists && cell.staticTexts[" " + kLocalizedIfBeginSecondPart].exists {
+            if cell.staticTexts.count == 2 && cell.staticTextBeginsOrEndsWith(kLocalizedIfBegin).exists && cell.staticTextBeginsOrEndsWith(kLocalizedIfBeginSecondPart).exists {
                 cell.tap()
             }
         }
 
         XCTAssertEqual(3, app.collectionViews.cells.count)
-        XCTAssert(app.collectionViews.cells.element(boundBy: 1).staticTexts[" " + kLocalizedIfBeginSecondPart].exists)
+        XCTAssert(app.collectionViews.cells.element(boundBy: 1).staticTextBeginsOrEndsWith(kLocalizedIfBeginSecondPart).exists)
         XCTAssert(app.collectionViews.cells.element(boundBy: 2).staticTexts[kLocalizedEndIf].exists)
 
         app.collectionViews.cells.element(boundBy: 1).tap()
@@ -70,9 +70,9 @@ class ScriptCollectionVCTests: XCTestCase, UITestProtocol {
         copyButton.tap()
 
         XCTAssertEqual(5, app.collectionViews.cells.count)
-        XCTAssert(app.collectionViews.cells.element(boundBy: 1).staticTexts[" " + kLocalizedIfBeginSecondPart].exists)
+        XCTAssert(app.collectionViews.cells.element(boundBy: 1).staticTextBeginsOrEndsWith(kLocalizedIfBeginSecondPart).exists)
         XCTAssert(app.collectionViews.cells.element(boundBy: 2).staticTexts[kLocalizedEndIf].exists)
-        XCTAssert(app.collectionViews.cells.element(boundBy: 3).staticTexts[" " + kLocalizedIfBeginSecondPart].exists)
+        XCTAssert(app.collectionViews.cells.element(boundBy: 3).staticTextBeginsOrEndsWith(kLocalizedIfBeginSecondPart).exists)
         XCTAssert(app.collectionViews.cells.element(boundBy: 4).staticTexts[kLocalizedEndIf].exists)
     }
 
@@ -114,8 +114,8 @@ class ScriptCollectionVCTests: XCTestCase, UITestProtocol {
         app.toolbars.buttons[kLocalizedUserListAdd].tap()
         skipFrequentlyUsedBricks(app)
 
-        app.collectionViews.staticTexts[kLocalizedWait + " "].tap()
-        app.collectionViews.cells.otherElements.containing(.staticText, identifier: kLocalizedWait + " ").children(matching: .button).element.tap()
+        app.collectionViews.staticTextBeginsOrEndsWith(kLocalizedWait).tap()
+        app.collectionViews.cells.otherElements.containing(.staticText, identifier: identifierEndsWithWithespace(kLocalizedWait)).children(matching: .button).element.tap()
 
         XCTAssertTrue(waitForElementToAppear(app.buttons[kLocalizedCancel]).exists)
 
@@ -147,4 +147,5 @@ class ScriptCollectionVCTests: XCTestCase, UITestProtocol {
         app.buttons[kLocalizedDone].tap()
         XCTAssertTrue(waitForElementToAppear(app.navigationBars[kLocalizedScripts]).exists)
     }
+
 }

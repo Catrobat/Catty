@@ -91,6 +91,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 @property (weak, nonatomic) IBOutlet UIButton *variable;
 @property (weak, nonatomic) IBOutlet UIButton *takeVar;
 @property (weak, nonatomic) IBOutlet UIButton *deleteVar;
+@property (weak, nonatomic) IBOutlet UIButton *addNewTextButton;
 
 @property (nonatomic) BOOL isProjectVariable;
 @property (nonatomic, strong) BDKNotifyHUD *notficicationHud;
@@ -339,6 +340,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     [self.variable setTitle:kUIFEVar forState:UIControlStateNormal];
     [self.takeVar setTitle:kUIFETake forState:UIControlStateNormal];
     [self.deleteVar setTitle:kUIFEDelete forState:UIControlStateNormal];
+    [self.addNewTextButton setTitle:kUIFEAddNewText forState:UIControlStateNormal];
 }
 
 
