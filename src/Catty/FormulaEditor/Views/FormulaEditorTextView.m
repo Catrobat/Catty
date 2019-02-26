@@ -172,6 +172,7 @@
     if(startIndex == endIndex)
     {
         self.attributedText = formulaString;
+        self.highlightedText = @"";
         UITextPosition *cursorPosition = [self positionFromPosition:self.beginningOfDocument
                                                                    offset:cursorPostionIndex];
         self.selectedTextRange = [self textRangeFromPosition:cursorPosition toPosition:cursorPosition];
@@ -181,6 +182,7 @@
         UITextPosition *cursorPosition = [self positionFromPosition:self.beginningOfDocument
                                                                    offset:endIndex];
         self.attributedText = formulaString;
+        self.highlightedText = [formulaString.string substringWithRange:NSMakeRange(location, length)];
         self.selectedTextRange = [self textRangeFromPosition:cursorPosition toPosition:cursorPosition];
         
     }
@@ -197,10 +199,10 @@
 
 - (NSString*)getHighlightedText
 {
-    NSString* highlightedText = self.attributedText.string;
-    if( [self hasApostropheAtBeginAndEnd:highlightedText]) {
-        NSRange textRange = NSMakeRange(1, highlightedText.length - 2);
-        NSString* highlightedTextWithoutApostrophe = [highlightedText substringWithRange:textRange];
+    if(self.highlightedText.length > 2 &&
+       [self  hasApostropheAtBeginAndEnd:self.highlightedText]){
+        NSRange textRange = NSMakeRange(1, self.highlightedText.length - 2);
+        NSString* highlightedTextWithoutApostrophe = [self.highlightedText substringWithRange:textRange];
         return highlightedTextWithoutApostrophe;
     } else {
         return @"";
@@ -208,8 +210,10 @@
     
 }
 - (BOOL) hasApostropheAtBeginAndEnd:(NSString *) text {
-    return ([text  rangeOfString:@"'"].location == 0 &&
-            [text  rangeOfString:@"'"].location == text.length - 1);
+    BOOL containsFirstApostrophe = [[text substringWithRange:NSMakeRange(0, 1)]  isEqual: @"'"];
+    BOOL containsSecondApostrophe = [[text substringWithRange:NSMakeRange(text.length-1, 1)]  isEqual: @"'"];
+    
+    return containsFirstApostrophe && containsSecondApostrophe;
 }
 
 - (void)update
