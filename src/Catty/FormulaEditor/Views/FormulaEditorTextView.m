@@ -172,7 +172,6 @@
     if(startIndex == endIndex)
     {
         self.attributedText = formulaString;
-        self.highlightedText = @"";
         UITextPosition *cursorPosition = [self positionFromPosition:self.beginningOfDocument
                                                                    offset:cursorPostionIndex];
         self.selectedTextRange = [self textRangeFromPosition:cursorPosition toPosition:cursorPosition];
@@ -182,8 +181,6 @@
         UITextPosition *cursorPosition = [self positionFromPosition:self.beginningOfDocument
                                                                    offset:endIndex];
         self.attributedText = formulaString;
-        self.highlightedText = formulaString.string;
-    
         self.selectedTextRange = [self textRangeFromPosition:cursorPosition toPosition:cursorPosition];
         
     }
@@ -200,7 +197,10 @@
 
 - (NSString*)getHighlightedText
 {
-    return self.highlightedText;
+    NSString* highlightedText = self.attributedText.string;
+    NSRange textRange = NSMakeRange(1, highlightedText.length - 2);
+    NSString* highlightedTextWithoutApostrophe = [highlightedText substringWithRange:textRange];
+    return highlightedTextWithoutApostrophe;
 }
 
 - (void)update
