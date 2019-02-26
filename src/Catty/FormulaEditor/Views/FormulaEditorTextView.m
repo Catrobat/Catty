@@ -198,9 +198,18 @@
 - (NSString*)getHighlightedText
 {
     NSString* highlightedText = self.attributedText.string;
-    NSRange textRange = NSMakeRange(1, highlightedText.length - 2);
-    NSString* highlightedTextWithoutApostrophe = [highlightedText substringWithRange:textRange];
-    return highlightedTextWithoutApostrophe;
+    if( [self hasApostropheAtBeginAndEnd:highlightedText]) {
+        NSRange textRange = NSMakeRange(1, highlightedText.length - 2);
+        NSString* highlightedTextWithoutApostrophe = [highlightedText substringWithRange:textRange];
+        return highlightedTextWithoutApostrophe;
+    } else {
+        return @"";
+    }
+    
+}
+- (BOOL) hasApostropheAtBeginAndEnd:(NSString *) text {
+    return ([text  rangeOfString:@"'"].location == 0 &&
+            [text  rangeOfString:@"'"].location == text.length - 1);
 }
 
 - (void)update
