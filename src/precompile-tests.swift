@@ -72,7 +72,8 @@ let licenseCheckExcludeDirs = [
     "DerivedData",
     "Siren",
     "Pods",
-    "PodSource"
+    "PodSource",
+    "CryptoSwift"
 ]; let licenseCheckExcludeDirsLine = #line; // CAVE: NEVER separate these two statements by adding a new line
 
 let licenseCheckExcludeFiles = [
@@ -97,7 +98,8 @@ let licenseCheckExcludeFiles = [
     "BOButtonTableViewCell.[mh]",
     "MXPagerView-umbrella.[mh]",
     "SwellAll.swift",
-    "license-validator.swift"
+    "license-validator.swift",
+    "chromaprint.h"
 ]; let licenseCheckExcludeFilesLine = #line; // CAVE: NEVER separate these two statements by adding a new line
 
 let licenseSearchStringTemplate = "/**\n *  Copyright (C) 2010-%d The Catrobat Team\n"

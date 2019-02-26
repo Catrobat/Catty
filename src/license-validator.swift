@@ -112,7 +112,9 @@ let license3rdPartyDict: [String: License] = [
     "MXPagerViewController": .MIT,
     "MXParallaxHeader": .MIT,
     "MXScrollView": .MIT,
-    "MXScrollViewController": .MIT
+    "MXScrollViewController": .MIT,
+    "chromaprint": .GNUAfferoGeneralPublicLicense,
+    "AudioKit": .MIT
 ]
 
 let licenseCheckDirs: [String: License] = [
@@ -138,7 +140,7 @@ let checkDirs: [String] = [
 ]
 
 let compatibleLicenses: [License] = [
-    .MIT, .zlib, .Apache2, .Apple, .BSD
+    .MIT, .zlib, .Apache2, .Apple, .BSD, .GNUAfferoGeneralPublicLicense
 ]
 
 func printErrorAndExitIfFailed(_ errorMessage: String) {
