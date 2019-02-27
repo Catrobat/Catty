@@ -61,6 +61,7 @@ let fileManager = FileManager.default
 
 enum License: String {
     case GNUAfferoGeneralPublicLicense
+    case LGPL
     case MIT
     case zlib
     case Apache2
@@ -113,7 +114,7 @@ let license3rdPartyDict: [String: License] = [
     "MXParallaxHeader": .MIT,
     "MXScrollView": .MIT,
     "MXScrollViewController": .MIT,
-    "chromaprint": .GNUAfferoGeneralPublicLicense,
+    "chromaprint": .LGPL,
     "AudioKit": .MIT
 ]
 
@@ -140,7 +141,7 @@ let checkDirs: [String] = [
 ]
 
 let compatibleLicenses: [License] = [
-    .MIT, .zlib, .Apache2, .Apple, .BSD, .GNUAfferoGeneralPublicLicense
+    .MIT, .zlib, .Apache2, .Apple, .BSD, .GNUAfferoGeneralPublicLicense, .LGPL
 ]
 
 func printErrorAndExitIfFailed(_ errorMessage: String) {
