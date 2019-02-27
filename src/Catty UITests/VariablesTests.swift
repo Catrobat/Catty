@@ -126,7 +126,7 @@ class VariablesTests: XCTestCase, UITestProtocol {
     func testEditMarkedTextVariableInFormularEditor() {
         let projectName = "Test Project"
         let testVariable = "TestVariable"
-        
+
         createNewProjectAndAddSetVariableBrick(name: projectName)
         app.collectionViews.cells.otherElements.containing(.staticText, identifier: kLocalizedSetVariable).children(matching: .button).element.tap()
         XCTAssert(waitForElementToAppear(app.buttons[kLocalizedCancel]).exists)
@@ -138,7 +138,6 @@ class VariablesTests: XCTestCase, UITestProtocol {
         app.buttons[kLocalizedDone].tap()
         app.collectionViews.cells.otherElements.containing(.staticText, identifier: kLocalizedSetVariable).children(matching: .button).element.tap()
         app.buttons["ABC"].tap()
-        let alert2 = waitForElementToAppear(app.alerts[kUIFENewText])
-        XCTAssertEqual(alert2.textFields.firstMatch.value as! String, testVariable)
+        XCTAssertEqual(alert.textFields.firstMatch.value as! String, testVariable)
     }
 }

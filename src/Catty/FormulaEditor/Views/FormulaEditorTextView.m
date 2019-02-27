@@ -200,18 +200,17 @@
 - (NSString*)getHighlightedText
 {
     if(self.highlightedText.length > 2 &&
-       [self  hasApostropheAtBeginAndEnd:self.highlightedText]){
+       [self  hasApostropheAtBeginAndEnd:self.highlightedText]) {
         NSRange textRange = NSMakeRange(1, self.highlightedText.length - 2);
         NSString* highlightedTextWithoutApostrophe = [self.highlightedText substringWithRange:textRange];
         return highlightedTextWithoutApostrophe;
     } else {
         return @"";
     }
-    
 }
 - (BOOL) hasApostropheAtBeginAndEnd:(NSString *) text {
     BOOL containsFirstApostrophe = [[text substringWithRange:NSMakeRange(0, 1)]  isEqual: @"'"];
-    BOOL containsSecondApostrophe = [[text substringWithRange:NSMakeRange(text.length-1, 1)]  isEqual: @"'"];
+    BOOL containsSecondApostrophe = [[text substringWithRange:NSMakeRange(text.length-1, 1)] isEqual: @"'"];
     
     return containsFirstApostrophe && containsSecondApostrophe;
 }
