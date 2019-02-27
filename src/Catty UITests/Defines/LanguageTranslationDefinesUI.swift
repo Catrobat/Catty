@@ -403,6 +403,10 @@ let kLocalizedSay = NSLocalizedString("Say", bundle: Bundle(for: LanguageTransla
 let kLocalizedThink = NSLocalizedString("Think", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedSpeak = NSLocalizedString("Speak", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedAndWait = NSLocalizedString("and wait", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedPlayNote = NSLocalizedString("Play note", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedBeats = NSLocalizedString("beats", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+
+
 
 // variable
 let kLocalizedSetVariable = NSLocalizedString("Set variable", bundle: Bundle(for: LanguageTranslation.self), comment: "")

@@ -195,6 +195,7 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
     kChangeVolumeByNBrick      = 303,
     kSpeakBrick                = 304,
     kSpeakAndWaitBrick         = 305,
+    kPlayNoteBrick             = 306,
 
 
 
@@ -321,6 +322,7 @@ WRAP_BRICK_TYPE_IN_NSSTRING(kChangeVariableBrick)\
     @"ChangeVolumeByNBrick"      : @(kChangeVolumeByNBrick),\
     @"SpeakBrick"                : @(kSpeakBrick),\
     @"SpeakAndWaitBrick"         : @(kSpeakAndWaitBrick),\
+    @"PlayNoteBrick"             : @(kPlayNoteBrick),\
 \
     /* look bricks */\
     @"SetLookBrick"              : @(kSetLookBrick),\
@@ -424,6 +426,7 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 @"ChangeVolumeByNBrick"      : @(kBrickHeight1h),\
 @"SpeakBrick"                : @(kBrickHeight2h),\
 @"SpeakAndWaitBrick"         : @(kBrickHeight2h),\
+@"PlayNoteBrick"             : @(kBrickHeight1h),\
 \
 /* look bricks */\
 @"SetLookBrick"              : @(kBrickHeight2h),\

@@ -403,6 +403,10 @@ let kLocalizedSay = NSLocalizedString("Say", comment: "")
 let kLocalizedThink = NSLocalizedString("Think", comment: "")
 let kLocalizedSpeak = NSLocalizedString("Speak", comment: "")
 let kLocalizedAndWait = NSLocalizedString("and wait", comment: "")
+let kLocalizedPlayNote = NSLocalizedString("Play note", comment: "")
+let kLocalizedBeats = NSLocalizedString("beats", comment: "")
+
+
 
 // variable
 let kLocalizedSetVariable = NSLocalizedString("Set variable", comment: "")

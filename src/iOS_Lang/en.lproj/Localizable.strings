@@ -130,6 +130,9 @@
 /* No comment provided by engineer. */
 "Backgrounds" = "Backgrounds";
 
+/* No comment provided by engineer. */
+"beats" = "beats";
+
 /* paint */
 "Blue" = "Blue";
 
@@ -1104,6 +1107,9 @@
 
 /* No comment provided by engineer. */
 "Place at " = "Place at ";
+
+/* No comment provided by engineer. */
+"Play note" = "Play note";
 
 /* No comment provided by engineer. */
 "Play Phiro music\n" = "Play Phiro music\n";

@@ -403,6 +403,10 @@
 #define kLocalizedThink NSLocalizedString(@"Think", nil)
 #define kLocalizedSpeak NSLocalizedString(@"Speak", nil)
 #define kLocalizedAndWait NSLocalizedString(@"and wait", nil)
+#define kLocalizedPlayNote NSLocalizedString(@"Play note", nil)
+#define kLocalizedBeats NSLocalizedString(@"beats", nil)
+
+
 
 // variable
 #define kLocalizedSetVariable NSLocalizedString(@"Set variable", nil)
