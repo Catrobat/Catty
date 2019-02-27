@@ -1,6 +1,12 @@
 pipeline {
   agent any
 
+  options {
+    timeout(time: 2, unit: 'HOURS')
+    timestamps()
+    buildDiscarder(logRotator(numToKeepStr: '30', artifactNumToKeepStr: '30'))
+  }
+
   stages {
     stage('Carthage') {
       steps {
@@ -12,7 +18,7 @@ pipeline {
         sh 'cd src && fastlane tests'
       }
     }
-    stage('Brockerstack') {
+    stage('Browserstack') {
       steps {
         sh 'cd src && fastlane po_review'
       }
@@ -21,6 +27,12 @@ pipeline {
       steps {
         archiveArtifacts(artifacts: 'src/fastlane/test_output/', allowEmptyArchive: true)
       }
+    }
+  }
+  
+  post {
+    always {
+      junit testResults: 'src/fastlane/test_output/report.junit', allowEmptyResults: true
     }
   }
 }
