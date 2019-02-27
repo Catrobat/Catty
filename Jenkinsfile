@@ -14,7 +14,7 @@ pipeline {
     }
     stage('Brockerstack') {
       steps {
-        sh ' cd src && fastlane po_review'
+        sh 'cd src && fastlane po_review'
       }
     }
     stage('Archive') {
