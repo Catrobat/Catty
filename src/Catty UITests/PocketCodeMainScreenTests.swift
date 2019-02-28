@@ -197,7 +197,7 @@ class PocketCodeMainScreenTests: XCTestCase, UITestProtocol {
         app.swipeLeft()
         app.swipeLeft()
         app.swipeLeft()
-        XCTAssert(app.collectionViews.cells.element(boundBy: 0).staticTextBeginsOrEndsWith(kLocalizedArduinoSetDigitalValue).exists)
+        XCTAssert(app.collectionViews.cells.element(boundBy: 0).staticTextBeginsWith(kLocalizedArduinoSetDigitalValue).exists)
         app.navigationBars.buttons[kLocalizedCancel].tap()
         app.navigationBars.buttons["Mole 1"].tap()
         app.navigationBars.buttons[kLocalizedMyFirstProject].tap()

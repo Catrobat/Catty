@@ -23,7 +23,7 @@
 import XCTest
 
 extension XCUIElement {
-    func staticTextBeginsOrEndsWith(_ queryString: String) -> XCUIElement {
+    func staticTextBeginsWith(_ queryString: String) -> XCUIElement {
         return self.staticTexts
             .element(matching: NSPredicate(format: "label BEGINSWITH '"+queryString+"'"))
     }
@@ -31,7 +31,7 @@ extension XCUIElement {
 }
 
 extension XCUIElementQuery {
-    func staticTextBeginsOrEndsWith(_ queryString: String) -> XCUIElement {
+    func staticTextBeginsWith(_ queryString: String) -> XCUIElement {
         return self.staticTexts.element(matching: NSPredicate(format: "label BEGINSWITH '"+queryString+"'"))
     }
 }
