@@ -895,6 +895,7 @@
 		9E0A1F6E2225D5A3000DEBFA /* CryptoSwift.license in Resources */ = {isa = PBXBuildFile; fileRef = 9E0A1F6D2225D5A2000DEBFA /* CryptoSwift.license */; };
 		9E2C5E942227563D0047C642 /* PlayNoteBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E2C5E922227563D0047C642 /* PlayNoteBrickCell.m */; };
 		9E2C5E96222756BB0047C642 /* PlayNoteBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2C5E95222756BA0047C642 /* PlayNoteBrick+Instruction.swift */; };
+		9E2E3E5322288B6D00E961C9 /* Sample Instruments Compressed in Resources */ = {isa = PBXBuildFile; fileRef = 9E2E3E5222288B6D00E961C9 /* Sample Instruments Compressed */; };
 		9E890896222329C10078B1B4 /* AudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E890893222329C10078B1B4 /* AudioKit.framework */; };
 		9E890897222329F30078B1B4 /* AudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E890893222329C10078B1B4 /* AudioKit.framework */; };
 		9EA512FB22232FB700D57EA9 /* AudioEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA512FA22232FB700D57EA9 /* AudioEngine.swift */; };
@@ -2562,6 +2563,8 @@
 		9E2C5E922227563D0047C642 /* PlayNoteBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayNoteBrickCell.m; sourceTree = "<group>"; };
 		9E2C5E932227563D0047C642 /* PlayNoteBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayNoteBrickCell.h; sourceTree = "<group>"; };
 		9E2C5E95222756BA0047C642 /* PlayNoteBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "PlayNoteBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Sound/PlayNoteBrick+Instruction.swift"; sourceTree = "<group>"; };
+		9E2E3E5222288B6D00E961C9 /* Sample Instruments Compressed */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "Sample Instruments Compressed"; path = "Resources/Sample Instruments Compressed"; sourceTree = "<group>"; };
+		9E40AA012229BBA2006ADB1E /* Sample Instruments Uncompressed */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "Sample Instruments Uncompressed"; path = "Resources/Sample Instruments Uncompressed"; sourceTree = "<group>"; };
 		9E890893222329C10078B1B4 /* AudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioKit.framework; path = Carthage/Build/iOS/AudioKit.framework; sourceTree = "<group>"; };
 		9EA512FA22232FB700D57EA9 /* AudioEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioEngine.swift; sourceTree = "<group>"; };
 		9EA512FE22232FFB00D57EA9 /* AudioChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioChannel.swift; sourceTree = "<group>"; };
@@ -7256,6 +7259,8 @@
 		B43498471927A3AB002F9075 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9E2E3E5222288B6D00E961C9 /* Sample Instruments Compressed */,
+				9E40AA012229BBA2006ADB1E /* Sample Instruments Uncompressed */,
 				4C33F20F214BC01F0014044C /* Default-568h@2x.png */,
 				4C33F213214BC0680014044C /* Document-Icon.png */,
 				81C27425189EF94600827A95 /* Images.xcassets */,
@@ -8389,6 +8394,7 @@
 				9218B1FC1CC4AB75007B4C60 /* nko_brightness_guide.png in Resources */,
 				925819841C0206AA003247A9 /* SceneMenuView.xib in Resources */,
 				4CDE4CF5203DBBF500B43034 /* UIImage+FloodFill.license in Resources */,
+				9E2E3E5322288B6D00E961C9 /* Sample Instruments Compressed in Resources */,
 				4CDE4CF9203DBBF500B43034 /* TTTAttributedLabel.license in Resources */,
 				92FF325E1A24E2F400093DA7 /* LICENSE_EVCircularProgressView in Resources */,
 				4C33F214214BC0680014044C /* Document-Icon.png in Resources */,

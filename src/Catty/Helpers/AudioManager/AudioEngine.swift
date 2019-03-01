@@ -64,6 +64,11 @@ import AudioKit
         channel.playSound(fileName: fileName, filePath: filePath)
     }
 
+    func playNote(pitch: Int, key: String) {
+        let channel = getAudioChannel(key: key)
+        channel.playNote(pitch: pitch)
+    }
+
     func setVolumeTo(percent: Double, key: String) {
         let channel = getAudioChannel(key: key)
         channel.setVolumeTo(percent: percent)
@@ -126,6 +131,15 @@ import AudioKit
 
     func getOutputVolumeOfChannel(objName: String) -> Double? {
         return channels[objName]?.getOutputVolume()
+    }
+
+    @objc func shutdown() {
+        do {
+            try AudioKit.stop()
+            try AudioKit.shutdown()
+        } catch {
+            print("Something went wrong!")
+        }
     }
 
     private func getAudioChannel(key: String) -> AudioChannel {

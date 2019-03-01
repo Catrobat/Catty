@@ -23,22 +23,16 @@
 @objc extension PlayNoteBrick: CBInstructionProtocol {
 
     @nonobjc func instruction(audioEngine: AudioEngine) -> CBInstruction {
-
-        guard let object = self.script?.object else { fatalError("This should never happen!") }
+        guard let spriteObject = self.script?.object else { fatalError("This should never happen") }
+        let spriteObjectName = spriteObject.name
 
         return CBInstruction.execClosure { context, _ in
-            var speakText = "Sorry, this is not a speak brick."
-            if Double(speakText) != nil {
-                let num = (speakText as NSString).doubleValue
-                speakText = (num as NSNumber).stringValue
+            let pitch = context.formulaInterpreter.interpretInteger(self.pitch, for: spriteObject)
+
+            if let name = spriteObjectName {
+                audioEngine.playNote(pitch: pitch, key: name)
+                context.state = .runnable
             }
-
-            let utterance = AVSpeechUtterance(string: speakText)
-            utterance.rate = (floor(NSFoundationVersionNumber) < 1200 ? 0.15 : 0.5)
-
-            let synthesizer = AVSpeechSynthesizer()
-            synthesizer.speak(utterance)
-            context.state = .runnable
         }
     }
 }

@@ -23,51 +23,46 @@
 import Foundation
 import AudioKit
 
-@objc class AudioChannel:NSObject {
-    var channelOut: AKMixer
-    var audioPlayers: [String : AKAudioPlayer]
+@objc class AudioChannel: NSObject {
+    var subtreeOutputMixer: AKMixer
+    var audioPlayerMixer: AKMixer
+    var audioPlayers: [String: AKAudioPlayer]
+    var sampler: AKSampler
 
     override init() {
-        channelOut = AKMixer()
-        audioPlayers = [String : AKAudioPlayer]()
+        subtreeOutputMixer = AKMixer()
+        audioPlayerMixer = AKMixer()
+        audioPlayerMixer.connect(to: subtreeOutputMixer)
+        sampler = AKSampler()
+        sampler.connect(to: subtreeOutputMixer)
+        audioPlayers = [String: AKAudioPlayer]()
+        super.init()
+        setupSampler()
     }
 
     func playSound(fileName: String, filePath: String) {
-//        if let audioPlayer = audioPlayers[fileName] {
-//            if (audioPlayer.isPlaying) {
-//                audioPlayer.stop()
-//            }
-//            audioPlayer.play()
-//        } else {
-            let audioFileURL = createFileUrl(fileName: fileName, filePath: filePath)
-
-        let inputFormats = AKConverter.inputFormats
-        var options = AKConverter.Options()
-        // any options left nil will assume the value of the input file
-        options.format = "m4a"
-
-        let fileMgr = FileManager.default
-        let dirPaths = fileMgr.urls(for: .documentDirectory,
-                                    in: .userDomainMask)
-
-        let newURL = dirPaths[0].appendingPathComponent("ddffgg.m4a")
-
-        let converter = AKConverter(inputURL: audioFileURL, outputURL: newURL, options: options)
-        converter.start(completionHandler: { error in
-            let a = 1
-        })
-
+        if let audioPlayer = audioPlayers[fileName] {
+            if audioPlayer.isPlaying {
+                audioPlayer.stop()
+            }
+            audioPlayer.play()
+        } else {
+        let audioFileURL = createFileUrl(fileName: fileName, filePath: filePath)
             do {
                 let file = try AKAudioFile(forReading: audioFileURL)
                 let akPlayer = try AKAudioPlayer(file: file)
                 audioPlayers[fileName] = akPlayer
-                akPlayer.connect(to: channelOut)
+                akPlayer.connect(to: audioPlayerMixer)
                 akPlayer.play()
             } catch {
                 print("oops \(error)")
                 print("could not start audio engine")
             }
-//        }
+        }
+    }
+
+    func playNote(pitch: Int) {
+        sampler.play(noteNumber: UInt8(pitch), velocity: 127)
     }
 
     internal func createFileUrl(fileName: String, filePath: String) -> URL {
@@ -75,20 +70,20 @@ import AudioKit
     }
 
     func connectTo(node: AKInput) -> AKInput {
-        return channelOut.connect(to: node)
+        return subtreeOutputMixer.connect(to: node)
     }
 
     func setVolumeTo(percent: Double) {
-        channelOut.volume = percent/100
+        subtreeOutputMixer.volume = percent / 100
     }
 
     func changeVolumeBy(percent: Double) {
-        channelOut.volume += percent/100
+        subtreeOutputMixer.volume += percent / 100
     }
 
     func pauseAllAudioPlayers() {
         for (_, audioPlayer) in audioPlayers {
-            if (audioPlayer.isPlaying) {
+            if audioPlayer.isPlaying {
                 audioPlayer.pause()
             }
         }
@@ -108,6 +103,18 @@ import AudioKit
     }
 
     func getOutputVolume() -> Double {
-        return channelOut.volume
+        return subtreeOutputMixer.volume
+    }
+
+    func setupSampler() {
+        sampler.attackDuration = 0.01
+        sampler.decayDuration = 0.1
+        sampler.sustainLevel = 0.5
+        sampler.releaseDuration = 0.5
+
+
+        let instrumentPath = Bundle.main.resourcePath!+"/Sample Instruments Compressed/22-drums"
+        sampler.loadSFZ(path: instrumentPath, fileName: "22-drums.sfz")
+        let bla = "rdgfchvj"
     }
 }

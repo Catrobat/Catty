@@ -48,6 +48,7 @@
     
     // TODO remove Singletons
     [[self.scene getSoundEngine] stopAllAudioPlayers];
+    [[self.scene getSoundEngine] shutdown];
     [[AudioManager sharedAudioManager] stopSpeechSynth];
     [[CameraPreviewHandler shared] stopCamera];
     

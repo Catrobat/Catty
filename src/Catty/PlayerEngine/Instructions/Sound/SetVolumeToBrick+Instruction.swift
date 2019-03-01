@@ -35,7 +35,6 @@
                 audioEngine.setVolumeTo(percent: volume, key: name)
                 context.state = .runnable
             }
-
         }
     }
 }

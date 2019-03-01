@@ -54,8 +54,8 @@
     GDataXMLElement *durationFormula = [self.duration xmlElementWithContext:context];
     GDataXMLElement *pitchFormula = [self.pitch xmlElementWithContext:context];
 
-    [durationFormula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"NOTE_PITCH"]];
-    [pitchFormula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"NOTE_DURATION"]];
+    [pitchFormula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"NOTE_PITCH"]];
+    [durationFormula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"NOTE_DURATION"]];
 
     [formulaList addChild:durationFormula context:context];
     [formulaList addChild:pitchFormula context:context];
