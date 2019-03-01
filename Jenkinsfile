@@ -1,5 +1,7 @@
 pipeline {
-  agent any
+  agent {
+    label 'MAC'
+  }
 
   options {
     timeout(time: 2, unit: 'HOURS')
