@@ -82,7 +82,16 @@
                         [UIImage imageNamed:@"standardColors"],
                         [UIImage imageNamed:@"sliderColors"], nil];
   self.viewChanger = [[UISegmentedControl alloc] initWithItems:itemArray];
-  self.viewChanger.frame =CGRectMake(0, CGRectGetMaxY(self.toolBar.frame), self.view.frame.size.width, 40);
+  self.viewChanger.translatesAutoresizingMaskIntoConstraints = false;
+  [self.view addSubview:self.viewChanger];
+  
+  if (@available(iOS 11.0, *)) {
+      [self.viewChanger.widthAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.widthAnchor].active = YES;
+      [self.viewChanger.topAnchor constraintEqualToAnchor:self.toolBar.bottomAnchor].active = YES;
+  } else {
+        self.viewChanger.frame =CGRectMake(0, CGRectGetMaxY(self.toolBar.frame), self.view.frame.size.width, 40);
+  }
+
   self.viewChanger.selectedSegmentIndex = 0;
   self.viewChanger.layer.cornerRadius = 0.0;
   self.viewChanger.layer.borderColor = [UIColor globalTintColor].CGColor;
@@ -292,18 +301,26 @@
     [self updatePreview];
     [self updateRGBAView];
   };
-  
-  self.colorPicker = [[NKOColorPickerView alloc] initWithFrame:CGRectMake(0,self.view.frame.size.height * 0.05f, self.view.frame.size.width,self.view.frame.size.height * 0.3f) color:[UIColor colorWithRed:self.red green:self.green blue:self.blue alpha:self.opacity] andDidChangeColorBlock:colorDidChangeBlock];
+ 
+  if (@available(iOS 11.0, *)) {
+      self.colorPicker = [[NKOColorPickerView alloc] initWithFrame:CGRectMake(0,self.view.frame.size.height * 0.10f, self.view.frame.size.width,self.view.frame.size.height * 0.3f) color:[UIColor colorWithRed:self.red green:self.green blue:self.blue alpha:self.opacity] andDidChangeColorBlock:colorDidChangeBlock];
+  } else {
+      self.colorPicker = [[NKOColorPickerView alloc] initWithFrame:CGRectMake(0,self.view.frame.size.height * 0.05f, self.view.frame.size.width,self.view.frame.size.height * 0.3f) color:[UIColor colorWithRed:self.red green:self.green blue:self.blue alpha:self.opacity] andDidChangeColorBlock:colorDidChangeBlock];
+  }
   [self.rgbaView addSubview:self.colorPicker];
 }
 
 - (void)setupBrushPreview
 {
-  self.brushView = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.center.x-self.view.frame.size.height * 0.05f, CGRectGetMinY(self.toolBar.frame) + 87.5, self.view.frame.size.height * 0.1f, self.view.frame.size.height * 0.05f)];
+  if (@available(iOS 11.0, *)) {
+      self.brushView = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.center.x-self.view.frame.size.height * 0.05f, self.view.frame.size.height * 0.17f, self.view.frame.size.height * 0.1f, self.view.frame.size.height * 0.05f)];
+      
+  } else {
+      self.brushView = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.center.x-self.view.frame.size.height * 0.05f, CGRectGetMinY(self.toolBar.frame) + 87.5, self.view.frame.size.height * 0.1f, self.view.frame.size.height * 0.05f)];
+  }
   self.brushView.layer.cornerRadius = 10.0f;
   [self updatePreview];
   [self.view addSubview:self.brushView];
-
 }
 
 
