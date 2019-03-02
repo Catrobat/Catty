@@ -24,13 +24,14 @@ platform :ios do
     "debug" => "Catty (DEBUG)"
   } 
   $build_dir = "fastlane/builds/"
+  $branch_name= git_branch.sub("origin/", "").sub("upstream/", "")
 
   desc "Upload Development Build to Browserstack"
   lane :upload_to_browserstack do
     upload_to_browserstack_app_live(
       browserstack_username: ENV["BROWSERSTACK_USERNAME"],
       browserstack_access_key: ENV["BROWSERSTACK_ACCESS_KEY"],
-      file_path: $build_dir+git_branch+".ipa"
+      file_path: $build_dir+$branch_name+".ipa"
     )
   end
 
@@ -39,7 +40,7 @@ platform :ios do
     gym(scheme: options[:scheme],
         export_method: "development",
         output_directory: $build_dir,
-        output_name: git_branch
+        output_name: $branch_name
     )
   end
 
