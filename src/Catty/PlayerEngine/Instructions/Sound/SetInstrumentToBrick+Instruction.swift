@@ -20,15 +20,18 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
-#import "Brick.h"
-#import "Formula.h"
+@objc extension SetInstrumentToBrick: CBInstructionProtocol {
 
-@protocol BrickFormulaProtocol <BrickProtocol>
+    @nonobjc func instruction(audioEngine: AudioEngine) -> CBInstruction {
+        guard let spriteObject = self.script?.object else { fatalError("This should never happen") }
+        let spriteObjectName = spriteObject.name
 
-- (Formula*)formulaForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber;
-- (void)setFormula:(Formula*)formula forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber;
-- (NSArray<Formula*>*) getFormulas;
-- (BOOL)allowsStringFormula;
-
-@end
+        return CBInstruction.execClosure { context, _ in
+            let instrumentNumber = self.instrumentChoice
+            if let name = spriteObjectName {
+                audioEngine.setInstrumentTo(instrumentNumber: instrumentNumber, key: name)
+                context.state = .runnable
+            }
+        }
+    }
+}

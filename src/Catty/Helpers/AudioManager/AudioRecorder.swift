@@ -20,8 +20,8 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import Foundation
 import AudioKit
+import Foundation
 
 class AudioRecorder {
     init() {
@@ -34,10 +34,9 @@ class AudioRecorder {
         let fileURL = URL(fileURLWithPath: filePath)
 
         FileManager.default.createFile(atPath: fileURL.path, contents: nil, attributes: nil)
-
         // Create AKAudioFile
         let format = AVAudioFormat(commonFormat: .pcmFormatFloat32, sampleRate: 48000, channels: 2, interleaved: true)
-        let file : AKAudioFile
+        let file: AKAudioFile
 
         do {
             try file = AKAudioFile(forWriting: fileURL, settings: format!.settings)

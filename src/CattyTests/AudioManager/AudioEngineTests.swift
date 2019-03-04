@@ -74,8 +74,8 @@ final class AudioEngineTests: XMLAbstractTest {
 
             let readTape = try AKAudioFile(forReading: tape.url)
             measure() {
-                let data1 = Data(buffer: UnsafeBufferPointer(start: readTape.pcmBuffer.floatChannelData![0], count:Int(readTape.pcmBuffer.frameLength))).bytes
-                let data2 = Data(buffer: UnsafeBufferPointer(start: readTape.pcmBuffer.floatChannelData![1], count:Int(readTape.pcmBuffer.frameLength))).bytes
+                let data1 = Data(buffer: UnsafeBufferPointer(start: readTape.pcmBuffer.floatChannelData![0], count: Int(readTape.pcmBuffer.frameLength))).bytes
+                let data2 = Data(buffer: UnsafeBufferPointer(start: readTape.pcmBuffer.floatChannelData![1], count: Int(readTape.pcmBuffer.frameLength))).bytes
 
                 do {
                     var digest = MD5()
@@ -98,7 +98,6 @@ final class AudioEngineTests: XMLAbstractTest {
         let broadcastHandler = CBBroadcastHandler(logger: logger)
         let scheduler = CBScheduler(logger: logger, broadcastHandler: broadcastHandler, formulaInterpreter: formulaInterpreter)
 
-
         let program = self.getProjectForXML(xmlFile: "soundtest")
         let spriteObject = program.objectList[0] as? SpriteObject
         let script = spriteObject?.scriptList[0] as? WhenScript
@@ -113,7 +112,7 @@ final class AudioEngineTests: XMLAbstractTest {
         case let .execClosure(closure):
             closure(context!, scheduler)
         default:
-            XCTFail()
+            XCTFail("Undifined error occured")
         }
 
         // let existsPredicate = NSPredicate(format: "exists == true")
@@ -146,7 +145,7 @@ final class AudioEngineTests: XMLAbstractTest {
     }
 
     func testStartSound() {
-        do{
+        do {
             let soundEngine = AudioEngineMock()
             let tape = try AKAudioFile()
             let recorder = soundEngine.addNodeRecorderAtMainOut(tape: tape)
@@ -168,10 +167,8 @@ final class AudioEngineTests: XMLAbstractTest {
     }
 
     func play(tape: AKAudioFile) {
-        do{
+        do {
             let readTape = try AKAudioFile(forReading: tape.url)
-
-
 
             guard let (fingerprintString, duration) = generateFingerprint(fromSongAtUrl: readTape.url) else {
                 print("No fingerprint was generated")
@@ -181,11 +178,8 @@ final class AudioEngineTests: XMLAbstractTest {
             print("The song duration is \(duration)")
             print("The fingerprint is: \(fingerprintString)")
 
-
-
-
-            let data1 = Data(buffer: UnsafeBufferPointer(start: readTape.pcmBuffer.floatChannelData![0], count:Int(readTape.pcmBuffer.frameLength))).bytes
-            let data2 = Data(buffer: UnsafeBufferPointer(start: readTape.pcmBuffer.floatChannelData![1], count:Int(readTape.pcmBuffer.frameLength))).bytes
+            let data1 = Data(buffer: UnsafeBufferPointer(start: readTape.pcmBuffer.floatChannelData![0], count: Int(readTape.pcmBuffer.frameLength))).bytes
+            let data2 = Data(buffer: UnsafeBufferPointer(start: readTape.pcmBuffer.floatChannelData![1], count: Int(readTape.pcmBuffer.frameLength))).bytes
 
             do {
                 var digest = MD5()
@@ -228,4 +222,3 @@ class AudioChannelMock: AudioChannel {
         return URL.init(fileURLWithPath: path!)
     }
 }
-

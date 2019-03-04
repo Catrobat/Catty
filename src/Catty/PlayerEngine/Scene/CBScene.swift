@@ -224,7 +224,7 @@ final class CBScene: SKScene {
         formulaManager.resume()
     }
 
-    @objc func getSoundEngine() -> AudioEngine{
+    @objc func getSoundEngine() -> AudioEngine {
         return self.soundEngine
     }
 

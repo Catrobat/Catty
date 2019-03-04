@@ -33,6 +33,7 @@
 #import "WhenTouchDownScript.h"
 #import "Brick.h"
 #import "CBXMLSerializerHelper.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation Script (CBXMLHandler)
 
@@ -111,7 +112,7 @@
         NSString *brickTypeName = [attribute stringValue];
 
         // get proper brick class via reflection
-        NSString *brickClassName = [[self class] brickClassNameForBrickTypeName:brickTypeName];
+         NSString *brickClassName = [[self class] brickClassNameForBrickTypeName:brickTypeName];
         Class class = NSClassFromString(brickClassName);
         GDataXMLElement *brickXmlElement = nil;
         if (! class) {

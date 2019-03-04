@@ -20,8 +20,8 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "PlayNoteBrick.h"
 #import "CBXMLNodeProtocol.h"
+#import "Pocket_Code-Swift.h"
 
 @interface PlayNoteBrick (CBXMLHandler) <CBXMLNodeProtocol>
 

@@ -20,11 +20,36 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "BrickCell.h"
+import Foundation
 
-@interface PlayNoteBrickCell : BrickCell
+class Note: NSObject {
+    var noteDurationTimer: Timer
+    var pitch: Int
+    var pauseDate: Date?
+    var previousFireDate: Date?
 
-@property (nonatomic, weak) UITextField *pitchTextField;
-@property (nonatomic, weak) UITextField *durationTextField;
+    init(pitch: Int, noteDurationTimer: Timer) {
+        self.noteDurationTimer = noteDurationTimer
+        self.pitch = pitch
+    }
 
-@end
+    func setActive() {
+        let mainRunLoop = RunLoop.main
+        mainRunLoop.add(noteDurationTimer, forMode: RunLoop.Mode.default)
+    }
+
+    func pause() {
+        previousFireDate = noteDurationTimer.fireDate
+        pauseDate = Date()
+        noteDurationTimer.fireDate = Date.distantFuture
+    }
+
+    func resume() {
+        if let pauseDate = pauseDate, let previousFireDate = previousFireDate {
+            let pauseTime = -pauseDate.timeIntervalSinceNow
+            noteDurationTimer.fireDate = Date.init(timeInterval: pauseTime, since: previousFireDate)
+        } else {
+            noteDurationTimer.fire()
+        }
+    }
+}

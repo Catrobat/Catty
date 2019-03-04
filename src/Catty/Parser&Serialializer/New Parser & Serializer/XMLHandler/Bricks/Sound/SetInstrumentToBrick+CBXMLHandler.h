@@ -20,33 +20,9 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "PlaynoteBrickCell.h"
+#import "CBXMLNodeProtocol.h"
+#import "Pocket_Code-Swift.h"
 
-@interface PlayNoteBrickCell ()
-@property (nonatomic, strong) UILabel *firstTextLabel;
-@property (nonatomic, strong) UILabel *secondTextLabel;
-@property (nonatomic, strong) UILabel *thirdTextLabel;
-@end
-
-@implementation PlayNoteBrickCell
-
-- (void)drawRect:(CGRect)rect
-{
-    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.soundBrickVioletColor strokeColor:UIColor.soundBrickStrokeColor height:smallBrick width:[Util screenWidth]];
-}
-
-+ (CGFloat)cellHeight
-{
-    return kBrickHeight1h;
-}
-
-- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
-{
-    self.firstTextLabel = inlineViewSubViews[0];
-    self.pitchTextField = inlineViewSubViews[1];
-    self.secondTextLabel = inlineViewSubViews[2];
-    self.durationTextField = inlineViewSubViews[3];
-    self.thirdTextLabel = inlineViewSubViews[4];
-}
+@interface SetInstrumentToBrick (CBXMLHandler) <CBXMLNodeProtocol>
 
 @end

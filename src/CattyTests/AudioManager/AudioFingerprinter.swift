@@ -22,7 +22,7 @@
 
 import AVFoundation
 
-func generateFingerprint(fromSongAtUrl songUrl : URL) -> (String, Double)? {
+func generateFingerprint(fromSongAtUrl songUrl: URL) -> (String, Double)? {
 
     /// Set the maximum number of seconds we're going to use for fingerprinting
     let maxLength = 120
@@ -34,7 +34,7 @@ func generateFingerprint(fromSongAtUrl songUrl : URL) -> (String, Double)? {
     var fingerprint: UnsafeMutablePointer<Int8>? = UnsafeMutablePointer<Int8>.allocate(capacity: 1)
     var hashInt: UnsafeMutablePointer<UInt32>? = UnsafeMutablePointer<UInt32>.allocate(capacity: 1)
     var rawFingerprint: UnsafeMutableRawPointer? = UnsafeMutableRawPointer.allocate(byteCount: 4, alignment: 1)
-    var fingerprintSize: Int32 = Int32(bigEndian: 18)
+    var fingerprintSize = Int32(bigEndian: 18)
 
     defer {
         fingerprint?.deinitialize()
@@ -106,10 +106,10 @@ private func decodeAudio(
         return 0
     }
 
-    let outputSettings: [String:Int] = [AVFormatIDKey:Int(kAudioFormatLinearPCM), AVLinearPCMIsBigEndianKey:0,/// little endian
-        AVLinearPCMIsFloatKey:0,                       /// signed integer
-        AVLinearPCMBitDepthKey:16,
-        AVLinearPCMIsNonInterleaved:0]                 /// is interleaved
+    let outputSettings: [String: Int] = [AVFormatIDKey: Int(kAudioFormatLinearPCM), AVLinearPCMIsBigEndianKey: 0, /// little endian
+        AVLinearPCMIsFloatKey: 0,                       /// signed integer
+        AVLinearPCMBitDepthKey: 16,
+        AVLinearPCMIsNonInterleaved: 0]                 /// is interleaved
 
     let audioTrack = audioTracks[0]
     let trackOutput = AVAssetReaderTrackOutput(track: audioTrack, outputSettings: outputSettings)

@@ -399,6 +399,7 @@ let kLocalizedPlaySound = NSLocalizedString("Start sound", bundle: Bundle(for: L
 let kLocalizedStopAllSounds = NSLocalizedString("Stop all sounds", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedSetVolumeTo = NSLocalizedString("Set volume to", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedChangeVolumeBy = NSLocalizedString("Change volume by", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedSetInstrumentTo = NSLocalizedString("Set Instrument to", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedSay = NSLocalizedString("Say", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedThink = NSLocalizedString("Think", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedSpeak = NSLocalizedString("Speak", bundle: Bundle(for: LanguageTranslation.self), comment: "")
@@ -749,6 +750,33 @@ let kLocalizedServerTimeoutIssueTitle = NSLocalizedString("Connection failed", b
 let kLocalizedServerTimeoutIssueMessage = NSLocalizedString("Server is taking to long to respond, please try again later.", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedUnexpectedErrorTitle = NSLocalizedString("Unexpected Error", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedUnexpectedErrorMessage = NSLocalizedString("Unexpected Error, please try again later.", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+
+//************************************************************************************************************
+//**************************************       Audio Engine        *********************************************
+//************************************************************************************************************
+
+let kLocalizedPiano = NSLocalizedString("(1) Piano", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedElectricPiano = NSLocalizedString("(2) Electric Piano", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedOrgan = NSLocalizedString("(3) Organ", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedGuitar = NSLocalizedString("(4) Guitar", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedElectricGuitar = NSLocalizedString("(5) Electric Guitar", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedBass = NSLocalizedString("(6) Bass", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedPizzicato = NSLocalizedString("(7) Pizzicato", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedCello = NSLocalizedString("(8) Cello", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedTrombone = NSLocalizedString("(9) Trombone", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedClarinet = NSLocalizedString("(10) Clarinet", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedSaxophone = NSLocalizedString("(11) Saxophone", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedFlute = NSLocalizedString("(12) Flute", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedWoodenFlute = NSLocalizedString("(13) Wooden Flute", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedBassoon = NSLocalizedString("(14) Bassoon", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedChoir = NSLocalizedString("(15) Choir", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedVibraphone = NSLocalizedString("(16) Vibraphone", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedMusicBox = NSLocalizedString("(17) Music Box", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedSteelDrum = NSLocalizedString("(18) Steel Drum", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedMarimba = NSLocalizedString("(19) Marimba", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedSynthLead = NSLocalizedString("(20) Synth Lead", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedSynthPad = NSLocalizedString("(21) Synth Pad", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+
 
 //************************************************************************************************************
 //****************************************       Debug        ************************************************

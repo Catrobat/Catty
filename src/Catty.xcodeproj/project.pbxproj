@@ -60,7 +60,6 @@
 		4C0F9F69204BD19400E71B2D /* SetBackgroundBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F9F67204BD19300E71B2D /* SetBackgroundBrick+CBXMLHandler.m */; };
 		4C0F9F6E204BD1A300E71B2D /* ThinkBubbleBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F9F6C204BD1A300E71B2D /* ThinkBubbleBrick+CBXMLHandler.m */; };
 		4C0F9F6F204BD1A300E71B2D /* ThinkForBubbleBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F9F6D204BD1A300E71B2D /* ThinkForBubbleBrick+CBXMLHandler.m */; };
-		4C0F9F72204BD1B600E71B2D /* SpeakAndWaitBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F9F71204BD1B600E71B2D /* SpeakAndWaitBrick+CBXMLHandler.m */; };
 		4C0F9F74204BD1CE00E71B2D /* CameraBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F9F73204BD1CE00E71B2D /* CameraBrick+Instruction.swift */; };
 		4C0F9F76204BD1D600E71B2D /* PreviousLookBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F9F75204BD1D600E71B2D /* PreviousLookBrick+Instruction.swift */; };
 		4C0F9F79204BD1E300E71B2D /* SayForBubbleBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F9F77204BD1E200E71B2D /* SayForBubbleBrick+Instruction.swift */; };
@@ -893,14 +892,28 @@
 		99EBDC041D5624D2008D6860 /* ChangeColorByNBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EBDC031D5624D2008D6860 /* ChangeColorByNBrick+Instruction.swift */; };
 		9E0A1F6C2225D449000DEBFA /* AudioKit.license in Resources */ = {isa = PBXBuildFile; fileRef = 9E0A1F692225D449000DEBFA /* AudioKit.license */; };
 		9E0A1F6E2225D5A3000DEBFA /* CryptoSwift.license in Resources */ = {isa = PBXBuildFile; fileRef = 9E0A1F6D2225D5A2000DEBFA /* CryptoSwift.license */; };
-		9E2C5E942227563D0047C642 /* PlayNoteBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E2C5E922227563D0047C642 /* PlayNoteBrickCell.m */; };
 		9E2C5E96222756BB0047C642 /* PlayNoteBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2C5E95222756BA0047C642 /* PlayNoteBrick+Instruction.swift */; };
 		9E2E3E5322288B6D00E961C9 /* Sample Instruments Compressed in Resources */ = {isa = PBXBuildFile; fileRef = 9E2E3E5222288B6D00E961C9 /* Sample Instruments Compressed */; };
+		9E40AA032229BC73006ADB1E /* AudioEngineConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E40AA022229BC73006ADB1E /* AudioEngineConfig.swift */; };
+		9E40AA112229E8C2006ADB1E /* SetInstrumentToBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E40AA102229E8C1006ADB1E /* SetInstrumentToBrick+Instruction.swift */; };
 		9E890896222329C10078B1B4 /* AudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E890893222329C10078B1B4 /* AudioKit.framework */; };
 		9E890897222329F30078B1B4 /* AudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E890893222329C10078B1B4 /* AudioKit.framework */; };
+		9EA3CB2F222D757F00BED864 /* SetInstrumentToBrickCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA3CB2E222D757F00BED864 /* SetInstrumentToBrickCell.swift */; };
+		9EA3CB33222D83E100BED864 /* PlayNoteBrickCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA3CB32222D83E100BED864 /* PlayNoteBrickCell.swift */; };
+		9EA3CB35222D864F00BED864 /* PlayNoteBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA3CB34222D864F00BED864 /* PlayNoteBrick.swift */; };
+		9EA3CB49222DAAFD00BED864 /* PlaySoundBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EA3CB3A222DAAFA00BED864 /* PlaySoundBrick+CBXMLHandler.m */; };
+		9EA3CB4A222DAAFD00BED864 /* ChangeVolumeByNBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EA3CB3B222DAAFA00BED864 /* ChangeVolumeByNBrick+CBXMLHandler.m */; };
+		9EA3CB4B222DAAFD00BED864 /* SetInstrumentToBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EA3CB40222DAAFB00BED864 /* SetInstrumentToBrick+CBXMLHandler.m */; };
+		9EA3CB4C222DAAFD00BED864 /* SetVolumeToBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EA3CB41222DAAFB00BED864 /* SetVolumeToBrick+CBXMLHandler.m */; };
+		9EA3CB4D222DAAFD00BED864 /* StopAllSoundsBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EA3CB44222DAAFC00BED864 /* StopAllSoundsBrick+CBXMLHandler.m */; };
+		9EA3CB4E222DAAFD00BED864 /* SpeakAndWaitBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EA3CB45222DAAFC00BED864 /* SpeakAndWaitBrick+CBXMLHandler.m */; };
+		9EA3CB4F222DAAFD00BED864 /* PlayNoteBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EA3CB46222DAAFC00BED864 /* PlayNoteBrick+CBXMLHandler.m */; };
+		9EA3CB50222DAAFD00BED864 /* SpeakBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EA3CB48222DAAFC00BED864 /* SpeakBrick+CBXMLHandler.m */; };
 		9EA512FB22232FB700D57EA9 /* AudioEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA512FA22232FB700D57EA9 /* AudioEngine.swift */; };
 		9EA512FF22232FFB00D57EA9 /* AudioChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA512FE22232FFB00D57EA9 /* AudioChannel.swift */; };
 		9EAF0C6A2225859400D283B0 /* chromaprint.license in Resources */ = {isa = PBXBuildFile; fileRef = 9EAF0C672225859400D283B0 /* chromaprint.license */; };
+		9EDAA2FE222C985E00535908 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDAA2FD222C985E00535908 /* Note.swift */; };
+		9EE14421222AB932009AB2B5 /* SetInstrumentToBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE14420222AB932009AB2B5 /* SetInstrumentToBrick.swift */; };
 		9EE4188F222437D900EA58E8 /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE4188E222437D900EA58E8 /* AudioRecorder.swift */; };
 		9EE4189322243AB400EA58E8 /* AudioEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE4189222243AB400EA58E8 /* AudioEngineTests.swift */; };
 		9EE4189522243CA300EA58E8 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EE4189422243CA300EA58E8 /* CryptoSwift.framework */; };
@@ -913,8 +926,6 @@
 		9EE418B22224836300EA58E8 /* speakandwaittest.xml in Resources */ = {isa = PBXBuildFile; fileRef = 9EE418A722246EBA00EA58E8 /* speakandwaittest.xml */; };
 		9EE418B32224836600EA58E8 /* StartSoundTest.xml in Resources */ = {isa = PBXBuildFile; fileRef = 9EE418A922246EBB00EA58E8 /* StartSoundTest.xml */; };
 		9EE418B42224836900EA58E8 /* ballon_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EE418AA22246EBB00EA58E8 /* ballon_red.png */; };
-		9EE8B6192226D0C200199711 /* PlayNoteBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EE8B6182226D0C100199711 /* PlayNoteBrick+CBXMLHandler.m */; };
-		9EE8B61C2226DDD700199711 /* PlayNoteBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EE8B61B2226DDD700199711 /* PlayNoteBrick.m */; };
 		A9F511831BE6A07A00B59540 /* SwiftBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F511821BE6A07A00B59540 /* SwiftBridge.swift */; };
 		AA3BD9091BBF4BFB002B34A0 /* WaitBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3BD9081BBF4BFB002B34A0 /* WaitBrickTests.swift */; };
 		AA401FE91BBEF6F9001BC49F /* CBInstructionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA401FE81BBEF6F9001BC49F /* CBInstructionProtocol.swift */; };
@@ -968,11 +979,6 @@
 		AA74EF591BC0586F00D1E954 /* TurnLeftBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74EF491BC0586F00D1E954 /* TurnLeftBrick+CBXMLHandler.m */; };
 		AA74EF5A1BC0586F00D1E954 /* TurnRightBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74EF4B1BC0586F00D1E954 /* TurnRightBrick+CBXMLHandler.m */; };
 		AA74EF631BC0587B00D1E954 /* VibrationBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74EF601BC0587B00D1E954 /* VibrationBrick+CBXMLHandler.m */; };
-		AA74EF6E1BC0588A00D1E954 /* ChangeVolumeByNBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74EF651BC0588A00D1E954 /* ChangeVolumeByNBrick+CBXMLHandler.m */; };
-		AA74EF6F1BC0588A00D1E954 /* PlaySoundBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74EF671BC0588A00D1E954 /* PlaySoundBrick+CBXMLHandler.m */; };
-		AA74EF701BC0588A00D1E954 /* SetVolumeToBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74EF691BC0588A00D1E954 /* SetVolumeToBrick+CBXMLHandler.m */; };
-		AA74EF711BC0588A00D1E954 /* SpeakBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74EF6B1BC0588A00D1E954 /* SpeakBrick+CBXMLHandler.m */; };
-		AA74EF721BC0588A00D1E954 /* StopAllSoundsBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74EF6D1BC0588A00D1E954 /* StopAllSoundsBrick+CBXMLHandler.m */; };
 		AA74EF771BC0589700D1E954 /* ChangeVariableBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74EF741BC0589700D1E954 /* ChangeVariableBrick+CBXMLHandler.m */; };
 		AA74EF781BC0589700D1E954 /* SetVariableBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74EF761BC0589700D1E954 /* SetVariableBrick+CBXMLHandler.m */; };
 		AA74EF7B1BC059E300D1E954 /* SetSizeToBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74EF7A1BC059E300D1E954 /* SetSizeToBrick+CBXMLHandler.m */; };
@@ -1423,8 +1429,6 @@
 		4C0F9F6B204BD1A200E71B2D /* ThinkBubbleBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ThinkBubbleBrick+CBXMLHandler.h"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Look/ThinkBubbleBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
 		4C0F9F6C204BD1A300E71B2D /* ThinkBubbleBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "ThinkBubbleBrick+CBXMLHandler.m"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Look/ThinkBubbleBrick+CBXMLHandler.m"; sourceTree = SOURCE_ROOT; };
 		4C0F9F6D204BD1A300E71B2D /* ThinkForBubbleBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "ThinkForBubbleBrick+CBXMLHandler.m"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Look/ThinkForBubbleBrick+CBXMLHandler.m"; sourceTree = SOURCE_ROOT; };
-		4C0F9F70204BD1B600E71B2D /* SpeakAndWaitBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SpeakAndWaitBrick+CBXMLHandler.h"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Sound/SpeakAndWaitBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
-		4C0F9F71204BD1B600E71B2D /* SpeakAndWaitBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "SpeakAndWaitBrick+CBXMLHandler.m"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Sound/SpeakAndWaitBrick+CBXMLHandler.m"; sourceTree = SOURCE_ROOT; };
 		4C0F9F73204BD1CE00E71B2D /* CameraBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CameraBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Look/CameraBrick+Instruction.swift"; sourceTree = "<group>"; };
 		4C0F9F75204BD1D600E71B2D /* PreviousLookBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "PreviousLookBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Look/PreviousLookBrick+Instruction.swift"; sourceTree = "<group>"; };
 		4C0F9F77204BD1E200E71B2D /* SayForBubbleBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SayForBubbleBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Look/SayForBubbleBrick+Instruction.swift"; sourceTree = "<group>"; };
@@ -2560,15 +2564,36 @@
 		99EBDC031D5624D2008D6860 /* ChangeColorByNBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ChangeColorByNBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Look/ChangeColorByNBrick+Instruction.swift"; sourceTree = "<group>"; };
 		9E0A1F692225D449000DEBFA /* AudioKit.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AudioKit.license; sourceTree = "<group>"; };
 		9E0A1F6D2225D5A2000DEBFA /* CryptoSwift.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CryptoSwift.license; sourceTree = "<group>"; };
-		9E2C5E922227563D0047C642 /* PlayNoteBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayNoteBrickCell.m; sourceTree = "<group>"; };
-		9E2C5E932227563D0047C642 /* PlayNoteBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayNoteBrickCell.h; sourceTree = "<group>"; };
 		9E2C5E95222756BA0047C642 /* PlayNoteBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "PlayNoteBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Sound/PlayNoteBrick+Instruction.swift"; sourceTree = "<group>"; };
 		9E2E3E5222288B6D00E961C9 /* Sample Instruments Compressed */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "Sample Instruments Compressed"; path = "Resources/Sample Instruments Compressed"; sourceTree = "<group>"; };
 		9E40AA012229BBA2006ADB1E /* Sample Instruments Uncompressed */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "Sample Instruments Uncompressed"; path = "Resources/Sample Instruments Uncompressed"; sourceTree = "<group>"; };
+		9E40AA022229BC73006ADB1E /* AudioEngineConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioEngineConfig.swift; sourceTree = "<group>"; };
+		9E40AA102229E8C1006ADB1E /* SetInstrumentToBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SetInstrumentToBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Sound/SetInstrumentToBrick+Instruction.swift"; sourceTree = "<group>"; };
 		9E890893222329C10078B1B4 /* AudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioKit.framework; path = Carthage/Build/iOS/AudioKit.framework; sourceTree = "<group>"; };
+		9EA3CB2E222D757F00BED864 /* SetInstrumentToBrickCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetInstrumentToBrickCell.swift; sourceTree = "<group>"; };
+		9EA3CB32222D83E100BED864 /* PlayNoteBrickCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayNoteBrickCell.swift; sourceTree = "<group>"; };
+		9EA3CB34222D864F00BED864 /* PlayNoteBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayNoteBrick.swift; sourceTree = "<group>"; };
+		9EA3CB39222DAAFA00BED864 /* SpeakBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SpeakBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		9EA3CB3A222DAAFA00BED864 /* PlaySoundBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PlaySoundBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		9EA3CB3B222DAAFA00BED864 /* ChangeVolumeByNBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ChangeVolumeByNBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		9EA3CB3C222DAAFA00BED864 /* ChangeVolumeByNBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ChangeVolumeByNBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		9EA3CB3D222DAAFB00BED864 /* PlayNoteBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PlayNoteBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		9EA3CB3E222DAAFB00BED864 /* PlaySoundBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PlaySoundBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		9EA3CB3F222DAAFB00BED864 /* SetInstrumentToBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SetInstrumentToBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		9EA3CB40222DAAFB00BED864 /* SetInstrumentToBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SetInstrumentToBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		9EA3CB41222DAAFB00BED864 /* SetVolumeToBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SetVolumeToBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		9EA3CB42222DAAFB00BED864 /* SetVolumeToBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SetVolumeToBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		9EA3CB43222DAAFC00BED864 /* StopAllSoundsBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "StopAllSoundsBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		9EA3CB44222DAAFC00BED864 /* StopAllSoundsBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "StopAllSoundsBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		9EA3CB45222DAAFC00BED864 /* SpeakAndWaitBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SpeakAndWaitBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		9EA3CB46222DAAFC00BED864 /* PlayNoteBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PlayNoteBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		9EA3CB47222DAAFC00BED864 /* SpeakAndWaitBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SpeakAndWaitBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		9EA3CB48222DAAFC00BED864 /* SpeakBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SpeakBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
 		9EA512FA22232FB700D57EA9 /* AudioEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioEngine.swift; sourceTree = "<group>"; };
 		9EA512FE22232FFB00D57EA9 /* AudioChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioChannel.swift; sourceTree = "<group>"; };
 		9EAF0C672225859400D283B0 /* chromaprint.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = chromaprint.license; sourceTree = "<group>"; };
+		9EDAA2FD222C985E00535908 /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
+		9EE14420222AB932009AB2B5 /* SetInstrumentToBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetInstrumentToBrick.swift; sourceTree = "<group>"; };
 		9EE4188E222437D900EA58E8 /* AudioRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
 		9EE4189222243AB400EA58E8 /* AudioEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioEngineTests.swift; sourceTree = "<group>"; };
 		9EE4189422243CA300EA58E8 /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CryptoSwift.framework; path = Carthage/Build/iOS/CryptoSwift.framework; sourceTree = "<group>"; };
@@ -2581,10 +2606,6 @@
 		9EE418A922246EBB00EA58E8 /* StartSoundTest.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = StartSoundTest.xml; path = CattyTests/Resources/AudioEngineTests/StartSoundTest.xml; sourceTree = SOURCE_ROOT; };
 		9EE418AA22246EBB00EA58E8 /* ballon_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ballon_red.png; path = CattyTests/Resources/AudioEngineTests/ballon_red.png; sourceTree = SOURCE_ROOT; };
 		9EE418AF2224805F00EA58E8 /* libchromaprint.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libchromaprint.a; path = ChromaprintLib/libchromaprint.a; sourceTree = "<group>"; };
-		9EE8B6172226D0C100199711 /* PlayNoteBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "PlayNoteBrick+CBXMLHandler.h"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Sound/PlayNoteBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
-		9EE8B6182226D0C100199711 /* PlayNoteBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "PlayNoteBrick+CBXMLHandler.m"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Sound/PlayNoteBrick+CBXMLHandler.m"; sourceTree = SOURCE_ROOT; };
-		9EE8B61A2226DDD700199711 /* PlayNoteBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayNoteBrick.h; sourceTree = "<group>"; };
-		9EE8B61B2226DDD700199711 /* PlayNoteBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayNoteBrick.m; sourceTree = "<group>"; };
 		A988832B1BCA86FF005029E8 /* ObjectTVCTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectTVCTests.swift; sourceTree = "<group>"; };
 		A9F511821BE6A07A00B59540 /* SwiftBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftBridge.swift; sourceTree = "<group>"; };
 		AA3BD9081BBF4BFB002B34A0 /* WaitBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaitBrickTests.swift; sourceTree = "<group>"; };
@@ -2673,16 +2694,6 @@
 		AA74EF4B1BC0586F00D1E954 /* TurnRightBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "TurnRightBrick+CBXMLHandler.m"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Motion/TurnRightBrick+CBXMLHandler.m"; sourceTree = SOURCE_ROOT; };
 		AA74EF5F1BC0587B00D1E954 /* VibrationBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "VibrationBrick+CBXMLHandler.h"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/IO/VibrationBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
 		AA74EF601BC0587B00D1E954 /* VibrationBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "VibrationBrick+CBXMLHandler.m"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/IO/VibrationBrick+CBXMLHandler.m"; sourceTree = SOURCE_ROOT; };
-		AA74EF641BC0588A00D1E954 /* ChangeVolumeByNBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ChangeVolumeByNBrick+CBXMLHandler.h"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Sound/ChangeVolumeByNBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
-		AA74EF651BC0588A00D1E954 /* ChangeVolumeByNBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "ChangeVolumeByNBrick+CBXMLHandler.m"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Sound/ChangeVolumeByNBrick+CBXMLHandler.m"; sourceTree = SOURCE_ROOT; };
-		AA74EF661BC0588A00D1E954 /* PlaySoundBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "PlaySoundBrick+CBXMLHandler.h"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Sound/PlaySoundBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
-		AA74EF671BC0588A00D1E954 /* PlaySoundBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "PlaySoundBrick+CBXMLHandler.m"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Sound/PlaySoundBrick+CBXMLHandler.m"; sourceTree = SOURCE_ROOT; };
-		AA74EF681BC0588A00D1E954 /* SetVolumeToBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SetVolumeToBrick+CBXMLHandler.h"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Sound/SetVolumeToBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
-		AA74EF691BC0588A00D1E954 /* SetVolumeToBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "SetVolumeToBrick+CBXMLHandler.m"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Sound/SetVolumeToBrick+CBXMLHandler.m"; sourceTree = SOURCE_ROOT; };
-		AA74EF6A1BC0588A00D1E954 /* SpeakBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SpeakBrick+CBXMLHandler.h"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Sound/SpeakBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
-		AA74EF6B1BC0588A00D1E954 /* SpeakBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "SpeakBrick+CBXMLHandler.m"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Sound/SpeakBrick+CBXMLHandler.m"; sourceTree = SOURCE_ROOT; };
-		AA74EF6C1BC0588A00D1E954 /* StopAllSoundsBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "StopAllSoundsBrick+CBXMLHandler.h"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Sound/StopAllSoundsBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
-		AA74EF6D1BC0588A00D1E954 /* StopAllSoundsBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "StopAllSoundsBrick+CBXMLHandler.m"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Sound/StopAllSoundsBrick+CBXMLHandler.m"; sourceTree = SOURCE_ROOT; };
 		AA74EF731BC0589700D1E954 /* ChangeVariableBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ChangeVariableBrick+CBXMLHandler.h"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Data/ChangeVariableBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
 		AA74EF741BC0589700D1E954 /* ChangeVariableBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "ChangeVariableBrick+CBXMLHandler.m"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Data/ChangeVariableBrick+CBXMLHandler.m"; sourceTree = SOURCE_ROOT; };
 		AA74EF751BC0589700D1E954 /* SetVariableBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SetVariableBrick+CBXMLHandler.h"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Data/SetVariableBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
@@ -4023,13 +4034,13 @@
 		4C724D9B1B4D3E8C00E27479 /* Bricks */ = {
 			isa = PBXGroup;
 			children = (
+				9EA3CB38222DAAB500BED864 /* Sound */,
 				92B46F961BC7BC8C004980C1 /* Arduino */,
 				92EC98511BC3ABB90003A891 /* Phiro */,
 				4C724D9C1B4D3E8C00E27479 /* Control */,
 				4C724DB71B4D3E8C00E27479 /* Look */,
 				4C724DCC1B4D3E8C00E27479 /* Motion */,
 				4C724DE51B4D3E8C00E27479 /* IO */,
-				4C724DEC1B4D3E8C00E27479 /* Sound */,
 				4C724DF71B4D3E8C00E27479 /* Data */,
 			);
 			path = Bricks;
@@ -4167,28 +4178,6 @@
 			);
 			name = IO;
 			path = SensorBricks;
-			sourceTree = "<group>";
-		};
-		4C724DEC1B4D3E8C00E27479 /* Sound */ = {
-			isa = PBXGroup;
-			children = (
-				AA74EF641BC0588A00D1E954 /* ChangeVolumeByNBrick+CBXMLHandler.h */,
-				AA74EF651BC0588A00D1E954 /* ChangeVolumeByNBrick+CBXMLHandler.m */,
-				9EE8B6172226D0C100199711 /* PlayNoteBrick+CBXMLHandler.h */,
-				9EE8B6182226D0C100199711 /* PlayNoteBrick+CBXMLHandler.m */,
-				AA74EF661BC0588A00D1E954 /* PlaySoundBrick+CBXMLHandler.h */,
-				AA74EF671BC0588A00D1E954 /* PlaySoundBrick+CBXMLHandler.m */,
-				AA74EF681BC0588A00D1E954 /* SetVolumeToBrick+CBXMLHandler.h */,
-				AA74EF691BC0588A00D1E954 /* SetVolumeToBrick+CBXMLHandler.m */,
-				4C0F9F70204BD1B600E71B2D /* SpeakAndWaitBrick+CBXMLHandler.h */,
-				4C0F9F71204BD1B600E71B2D /* SpeakAndWaitBrick+CBXMLHandler.m */,
-				AA74EF6A1BC0588A00D1E954 /* SpeakBrick+CBXMLHandler.h */,
-				AA74EF6B1BC0588A00D1E954 /* SpeakBrick+CBXMLHandler.m */,
-				AA74EF6C1BC0588A00D1E954 /* StopAllSoundsBrick+CBXMLHandler.h */,
-				AA74EF6D1BC0588A00D1E954 /* StopAllSoundsBrick+CBXMLHandler.m */,
-			);
-			name = Sound;
-			path = SoundBricks;
 			sourceTree = "<group>";
 		};
 		4C724DF71B4D3E8C00E27479 /* Data */ = {
@@ -5944,6 +5933,8 @@
 				9EA512FA22232FB700D57EA9 /* AudioEngine.swift */,
 				9EA512FE22232FFB00D57EA9 /* AudioChannel.swift */,
 				9EE4188E222437D900EA58E8 /* AudioRecorder.swift */,
+				9E40AA022229BC73006ADB1E /* AudioEngineConfig.swift */,
+				9EDAA2FD222C985E00535908 /* Note.swift */,
 			);
 			path = AudioManager;
 			sourceTree = "<group>";
@@ -6623,6 +6614,29 @@
 			path = "Catty/Storyboard+XIB";
 			sourceTree = "<group>";
 		};
+		9EA3CB38222DAAB500BED864 /* Sound */ = {
+			isa = PBXGroup;
+			children = (
+				9EA3CB3C222DAAFA00BED864 /* ChangeVolumeByNBrick+CBXMLHandler.h */,
+				9EA3CB3B222DAAFA00BED864 /* ChangeVolumeByNBrick+CBXMLHandler.m */,
+				9EA3CB3D222DAAFB00BED864 /* PlayNoteBrick+CBXMLHandler.h */,
+				9EA3CB46222DAAFC00BED864 /* PlayNoteBrick+CBXMLHandler.m */,
+				9EA3CB3E222DAAFB00BED864 /* PlaySoundBrick+CBXMLHandler.h */,
+				9EA3CB3A222DAAFA00BED864 /* PlaySoundBrick+CBXMLHandler.m */,
+				9EA3CB3F222DAAFB00BED864 /* SetInstrumentToBrick+CBXMLHandler.h */,
+				9EA3CB40222DAAFB00BED864 /* SetInstrumentToBrick+CBXMLHandler.m */,
+				9EA3CB42222DAAFB00BED864 /* SetVolumeToBrick+CBXMLHandler.h */,
+				9EA3CB41222DAAFB00BED864 /* SetVolumeToBrick+CBXMLHandler.m */,
+				9EA3CB47222DAAFC00BED864 /* SpeakAndWaitBrick+CBXMLHandler.h */,
+				9EA3CB45222DAAFC00BED864 /* SpeakAndWaitBrick+CBXMLHandler.m */,
+				9EA3CB39222DAAFA00BED864 /* SpeakBrick+CBXMLHandler.h */,
+				9EA3CB48222DAAFC00BED864 /* SpeakBrick+CBXMLHandler.m */,
+				9EA3CB43222DAAFC00BED864 /* StopAllSoundsBrick+CBXMLHandler.h */,
+				9EA3CB44222DAAFC00BED864 /* StopAllSoundsBrick+CBXMLHandler.m */,
+			);
+			path = Sound;
+			sourceTree = "<group>";
+		};
 		9EE418A622246E4C00EA58E8 /* AudioEngineTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -6738,6 +6752,7 @@
 				AA74EE341BC0543600D1E954 /* ChangeVolumeByNBrick+Instruction.swift */,
 				9E2C5E95222756BA0047C642 /* PlayNoteBrick+Instruction.swift */,
 				AA74EE351BC0543600D1E954 /* PlaySoundBrick+Instruction.swift */,
+				9E40AA102229E8C1006ADB1E /* SetInstrumentToBrick+Instruction.swift */,
 				AA74EE361BC0543600D1E954 /* SetVolumeToBrick+Instruction.swift */,
 				4C0F9F81204BD20900E71B2D /* SpeakAndWaitBrick+Instruction.swift */,
 				AA74EE371BC0543600D1E954 /* SpeakBrick+Instruction.swift */,
@@ -6937,10 +6952,10 @@
 			children = (
 				AA74EFD71BC05B5F00D1E954 /* ChangeVolumeByNBrick.h */,
 				AA74EFD81BC05B5F00D1E954 /* ChangeVolumeByNBrick.m */,
-				9EE8B61A2226DDD700199711 /* PlayNoteBrick.h */,
-				9EE8B61B2226DDD700199711 /* PlayNoteBrick.m */,
+				9EA3CB34222D864F00BED864 /* PlayNoteBrick.swift */,
 				AA74EFD91BC05B5F00D1E954 /* PlaySoundBrick.h */,
 				AA74EFDA1BC05B5F00D1E954 /* PlaySoundBrick.m */,
+				9EE14420222AB932009AB2B5 /* SetInstrumentToBrick.swift */,
 				AA74EFDB1BC05B5F00D1E954 /* SetVolumeToBrick.h */,
 				AA74EFDC1BC05B5F00D1E954 /* SetVolumeToBrick.m */,
 				4C0F9F45204ADC7900E71B2D /* SpeakAndWaitBrick.h */,
@@ -7170,10 +7185,10 @@
 			children = (
 				AA74F07A1BC05FCE00D1E954 /* ChangeVolumeByNBrickCell.h */,
 				AA74F07B1BC05FCE00D1E954 /* ChangeVolumeByNBrickCell.m */,
-				9E2C5E932227563D0047C642 /* PlayNoteBrickCell.h */,
-				9E2C5E922227563D0047C642 /* PlayNoteBrickCell.m */,
+				9EA3CB32222D83E100BED864 /* PlayNoteBrickCell.swift */,
 				AA74F07C1BC05FCE00D1E954 /* PlaySoundBrickCell.h */,
 				AA74F07D1BC05FCE00D1E954 /* PlaySoundBrickCell.m */,
+				9EA3CB2E222D757F00BED864 /* SetInstrumentToBrickCell.swift */,
 				AA74F07E1BC05FCE00D1E954 /* SetVolumeToBrickCell.h */,
 				AA74F07F1BC05FCE00D1E954 /* SetVolumeToBrickCell.m */,
 				4C0F9FA8204BD2D600E71B2D /* SpeakAndWaitBrickCell.h */,
@@ -8053,6 +8068,9 @@
 						DevelopmentTeam = 8FL5R8726S;
 						LastSwiftMigration = 0900;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 0;
+							};
 							com.apple.Keychain = {
 								enabled = 1;
 							};
@@ -8888,8 +8906,8 @@
 				AABCB3F11BB36DCE009F67D2 /* InternFormulaUtils.m in Sources */,
 				AABCB3ED1BB368CF009F67D2 /* CBFrontend.swift in Sources */,
 				AABCB3EC1BB368C2009F67D2 /* CBFrontendSequenceFilters.swift in Sources */,
-				9EE8B6192226D0C200199711 /* PlayNoteBrick+CBXMLHandler.m in Sources */,
 				AABCB3EA1BB3687D009F67D2 /* CBScene.swift in Sources */,
+				9EA3CB33222D83E100BED864 /* PlayNoteBrickCell.swift in Sources */,
 				AA74F0B61BC05FCE00D1E954 /* ChangeXByNBrickCell.m in Sources */,
 				4C595F5121CAEC060097D850 /* GreaterOrEqualOperator.swift in Sources */,
 				AABCB3E71BB3671F009F67D2 /* LLNode.swift in Sources */,
@@ -8906,6 +8924,7 @@
 				AABCB3E11BB3650B009F67D2 /* CBSchedulerProtocol.swift in Sources */,
 				F4E6E598210E03FE00D86FE6 /* ExpFunction.swift in Sources */,
 				4C0F9F25204ADBC800E71B2D /* IfThenLogicEndBrick.m in Sources */,
+				9EA3CB4F222DAAFD00BED864 /* PlayNoteBrick+CBXMLHandler.m in Sources */,
 				AA74EE221BC053FD00D1E954 /* BroadcastWaitBrick+Instruction.swift in Sources */,
 				4C994E08207A3D4100C415FD /* SensorManager.swift in Sources */,
 				AABCB3DE1BB364F2009F67D2 /* CBBackend.swift in Sources */,
@@ -8997,14 +9016,12 @@
 				CADBD71A19B0E8C200C62836 /* main.m in Sources */,
 				92DFB0101A38949E00FA9B0F /* FormulaEditorHistory.m in Sources */,
 				927F79DC1BEE39B0008D1635 /* PhiroIfLogicBeginBrickCell.m in Sources */,
-				AA74EF721BC0588A00D1E954 /* StopAllSoundsBrick+CBXMLHandler.m in Sources */,
 				4C994E23207A56D500C415FD /* AccelerationZSensor.swift in Sources */,
 				4CB0F9EE20A1731700D1BE2F /* TransparencySensor.swift in Sources */,
 				92FF325B1A24E2F400093DA7 /* BDKNotifyHUD.m in Sources */,
 				92FF32BD1A24E2F400093DA7 /* ProjectTableHeaderView.m in Sources */,
 				4C724E241B4D3E8C00E27479 /* CBXMLValidator.m in Sources */,
 				929CC0F11BC39B8C0027DEC0 /* PhiroRGBLightBrickCell.m in Sources */,
-				4C0F9F72204BD1B600E71B2D /* SpeakAndWaitBrick+CBXMLHandler.m in Sources */,
 				92BCDC871BF1FB1E00F9CB23 /* FirmataProtocol.swift in Sources */,
 				AA74EFE21BC05B5F00D1E954 /* BroadcastWaitBrick.m in Sources */,
 				4CF0729420D66A7F00F93AB5 /* AltitudeSensor.swift in Sources */,
@@ -9055,6 +9072,7 @@
 				5947F6D5200CF3C70079DBCE /* MediaLibraryViewController.swift in Sources */,
 				4C595F4721CAEB4F0097D850 /* MultOperator.swift in Sources */,
 				AA74EEFC1BC057C900D1E954 /* NextLookBrick+CBXMLHandler.m in Sources */,
+				9EA3CB4C222DAAFD00BED864 /* SetVolumeToBrick+CBXMLHandler.m in Sources */,
 				92DFB0171A38949E00FA9B0F /* InternFormulaTokenSelection.m in Sources */,
 				92FF2E3A1A24C5A700093DA7 /* NSString+FastImageSize.m in Sources */,
 				4C03A4C22133FDE7007BFFD2 /* FormulaManager+Editor.swift in Sources */,
@@ -9096,6 +9114,7 @@
 				4C37A0A0212DBDB40074F417 /* ArduinoAnalogPinFunction.swift in Sources */,
 				5947F6DE200D20040079DBCE /* MediaLibraryCollectionViewDataSource.swift in Sources */,
 				92FF2E991A24C7D800093DA7 /* zip.c in Sources */,
+				9E40AA032229BC73006ADB1E /* AudioEngineConfig.swift in Sources */,
 				59697DB0201F855C00A0071A /* LibraryCategoryCollectionReusableView.swift in Sources */,
 				92B46FA81BC7C2A5004980C1 /* ArduinoSendPWMValueBrick+Instruction.swift in Sources */,
 				F4201CF920D79CA80030181B /* TimeHourSensor.swift in Sources */,
@@ -9112,13 +9131,11 @@
 				92FF2E381A24C5A700093DA7 /* NSString+CatrobatNSStringExtensions.m in Sources */,
 				4CF0729120D6697300F93AB5 /* LatitudeSensor.swift in Sources */,
 				AA74EE231BC053FD00D1E954 /* WaitBrick+Instruction.swift in Sources */,
-				9E2C5E942227563D0047C642 /* PlayNoteBrickCell.m in Sources */,
 				927F79E01BEE39CB008D1635 /* PhiroIfLogicBeginBrick.m in Sources */,
 				AA74EEFF1BC057C900D1E954 /* SetTransparencyBrick+CBXMLHandler.m in Sources */,
 				92EC985F1BC3ABB90003A891 /* PhiroPlayToneBrick+CBXMLHandler.m in Sources */,
 				92FF2EA21A24C7D800093DA7 /* TableUtil.m in Sources */,
 				4CDA808121366AD20052FA24 /* FormulaInterpreterProtocol.swift in Sources */,
-				9EE8B61C2226DDD700199711 /* PlayNoteBrick.m in Sources */,
 				929CC0DF1BC39B690027DEC0 /* BrickCellPhiroMotorData.m in Sources */,
 				4C0F9F7F204BD1F800E71B2D /* ThinkForBubbleBrick+Instruction.swift in Sources */,
 				4C0F9FA0204BD2B100E71B2D /* PreviousLookBrickCell.m in Sources */,
@@ -9163,6 +9180,7 @@
 				923503911BA707DE00021F6A /* LoginViewController.m in Sources */,
 				92FF2E941A24C7D800093DA7 /* Logger.m in Sources */,
 				AA74F0C61BC05FCE00D1E954 /* SetVolumeToBrickCell.m in Sources */,
+				9EA3CB4E222DAAFD00BED864 /* SpeakAndWaitBrick+CBXMLHandler.m in Sources */,
 				4C0F9F42204ADC6600E71B2D /* ThinkForBubbleBrick.m in Sources */,
 				92FF32B81A24E2F400093DA7 /* ContinueImageCell.m in Sources */,
 				AA74EF581BC0586F00D1E954 /* SetYBrick+CBXMLHandler.m in Sources */,
@@ -9198,7 +9216,6 @@
 				4CF0728C20D659F700F93AB5 /* PhiroSideLeftSensor.swift in Sources */,
 				AA74F0C01BC05FCE00D1E954 /* SetXBrickCell.m in Sources */,
 				AA74EEF81BC057C900D1E954 /* ChangeBrightnessByNBrick+CBXMLHandler.m in Sources */,
-				AA74EF6F1BC0588A00D1E954 /* PlaySoundBrick+CBXMLHandler.m in Sources */,
 				4C9E076B1CD9D47E00B14B2F /* CBSceneHelper.swift in Sources */,
 				4CB0F9ED20A1731700D1BE2F /* PositionXSensor.swift in Sources */,
 				92FF2E971A24C7D800093DA7 /* mztools.c in Sources */,
@@ -9212,6 +9229,7 @@
 				92FF2E9A1A24C7D800093DA7 /* NavigationController.m in Sources */,
 				92FF31091A24DCAA00093DA7 /* VariablesContainer.m in Sources */,
 				AA74F0A51BC05FCE00D1E954 /* NoteBrickCell.m in Sources */,
+				9EA3CB4D222DAAFD00BED864 /* StopAllSoundsBrick+CBXMLHandler.m in Sources */,
 				AA74EF521BC0586F00D1E954 /* MoveNStepsBrick+CBXMLHandler.m in Sources */,
 				921D467E1BDF61350086AD20 /* GoNStepsBackBrick+Instruction.swift in Sources */,
 				AA74EF531BC0586F00D1E954 /* PlaceAtBrick+CBXMLHandler.m in Sources */,
@@ -9270,6 +9288,7 @@
 				923503901BA707DE00021F6A /* BaseLoginViewController.m in Sources */,
 				4C595F4921CAEB7E0097D850 /* NotEqualOperator.swift in Sources */,
 				4C11795120AEBE38006C6E32 /* LongitudeSensor.swift in Sources */,
+				9EE14421222AB932009AB2B5 /* SetInstrumentToBrick.swift in Sources */,
 				F4201D0120D7A3B60030181B /* TimeSecondSensor.swift in Sources */,
 				92FF2EA11A24C7D800093DA7 /* TimerLabel.m in Sources */,
 				92FF30C81A24DCAA00093DA7 /* Brick.m in Sources */,
@@ -9294,6 +9313,7 @@
 				AA74EEFD1BC057C900D1E954 /* SetBrightnessBrick+CBXMLHandler.m in Sources */,
 				9218B20C1CC4AB75007B4C60 /* FillTool.m in Sources */,
 				4C0F9F85204BD24600E71B2D /* IfThenLogicBeginBrick+CBXMLHandler.m in Sources */,
+				9EA3CB50222DAAFD00BED864 /* SpeakBrick+CBXMLHandler.m in Sources */,
 				929CC0FB1BC3A2420027DEC0 /* PhiroRGBLightBrick+Instruction.swift in Sources */,
 				4C595F4F21CAEBEE0097D850 /* GreaterThanOperator.swift in Sources */,
 				92B46F921BC7B3E5004980C1 /* ArduinoSendDigitalValueBrick.m in Sources */,
@@ -9314,6 +9334,9 @@
 				92FF30FB1A24DCAA00093DA7 /* InternFormulaParserException.m in Sources */,
 				4C1C8B14213FE76B003B3AA4 /* ChartProjectCell.swift in Sources */,
 				4CF072A820D6710F00F93AB5 /* FingerXSensor.swift in Sources */,
+				9EA3CB2F222D757F00BED864 /* SetInstrumentToBrickCell.swift in Sources */,
+				9EA3CB4B222DAAFD00BED864 /* SetInstrumentToBrick+CBXMLHandler.m in Sources */,
+				9EA3CB4A222DAAFD00BED864 /* ChangeVolumeByNBrick+CBXMLHandler.m in Sources */,
 				4CE3D68B2107A89B00005629 /* FaceDetectionManager.swift in Sources */,
 				AA74EFF71BC05B5F00D1E954 /* SetLookBrick.m in Sources */,
 				4CF429F3213A88A600B78897 /* RepeatUntilBrick+Condition.swift in Sources */,
@@ -9343,7 +9366,6 @@
 				4C0F9F4F204BD0B400E71B2D /* CameraPreviewHandler.m in Sources */,
 				4C724E611B4D3E8C00E27479 /* ProjectParser.m in Sources */,
 				AA74F0931BC05FCE00D1E954 /* BrickCellFormulaData.m in Sources */,
-				AA74EF701BC0588A00D1E954 /* SetVolumeToBrick+CBXMLHandler.m in Sources */,
 				92FC85CE1B9E1EB5001C728F /* BrickManager.m in Sources */,
 				5E18A81221A547AA00541536 /* UIViewController+Extensions.swift in Sources */,
 				AA74F0951BC05FCE00D1E954 /* BrickCellMessageData.m in Sources */,
@@ -9382,6 +9404,7 @@
 				929CC0EE1BC39B8C0027DEC0 /* PhiroMotorMoveForwardBrickCell.m in Sources */,
 				AAF6D9DE1BC0C1F300686849 /* PlaceAtBrick+Instruction.swift in Sources */,
 				AA74EFED1BC05B5F00D1E954 /* SetVariableBrick.m in Sources */,
+				9EA3CB49222DAAFD00BED864 /* PlaySoundBrick+CBXMLHandler.m in Sources */,
 				BA9CAB601EC383E800796056 /* AddItemToUserListBrickCell.m in Sources */,
 				9218B2051CC4AB75007B4C60 /* LinkedListStack.m in Sources */,
 				F4E6E584210DFD4300D86FE6 /* TanFunction.swift in Sources */,
@@ -9408,6 +9431,7 @@
 				BAEE49C01F165D1300F06741 /* ReplaceItemInUserListBrick+Instruction.swift in Sources */,
 				4CEFFADA2105E46500DC5CFE /* ObjectStringSensor.swift in Sources */,
 				AA74F0C41BC05FCE00D1E954 /* ChangeVolumeByNBrickCell.m in Sources */,
+				9EDAA2FE222C985E00535908 /* Note.swift in Sources */,
 				92FF30FD1A24DCAA00093DA7 /* Header.m in Sources */,
 				92B46FA71BC7C2A5004980C1 /* ArduinoSendDigitalValueBrick+Instruction.swift in Sources */,
 				E4AEC86D210843D20081A980 /* ProjectInformation.swift in Sources */,
@@ -9426,6 +9450,7 @@
 				4C724E5C1B4D3E8C00E27479 /* Sound+CBXMLHandler.m in Sources */,
 				92FF2E8C1A24C7D800093DA7 /* AudioManager.m in Sources */,
 				92FF2E9F1A24C7D800093DA7 /* SharkfoodMuteSwitchDetector.m in Sources */,
+				9E40AA112229E8C2006ADB1E /* SetInstrumentToBrick+Instruction.swift in Sources */,
 				AAAF228A1BC0D0630076F11E /* TurnRightBrick+Instruction.swift in Sources */,
 				AA74EEDB1BC057B900D1E954 /* BroadcastBrick+CBXMLHandler.m in Sources */,
 				AA74F0C11BC05FCE00D1E954 /* SetYBrickCell.m in Sources */,
@@ -9441,7 +9466,6 @@
 				9218B2161CC4AB75007B4C60 /* PaintViewController.m in Sources */,
 				4C595F4521CAEB230097D850 /* DivideOperator.swift in Sources */,
 				9218B2031CC4AB75007B4C60 /* ImagePicker.m in Sources */,
-				AA74EF711BC0588A00D1E954 /* SpeakBrick+CBXMLHandler.m in Sources */,
 				92FF32BE1A24E2F400093DA7 /* BaseTransition.m in Sources */,
 				BA1FA99D1F02AEDC0084184D /* InsertItemIntoUserListBrick.m in Sources */,
 				59D008ED208E4249000539E7 /* LocationManager.swift in Sources */,
@@ -9496,7 +9520,6 @@
 				92FF314A1A24DEB300093DA7 /* BaseTableViewController.m in Sources */,
 				AA74EF4C1BC0586F00D1E954 /* ChangeSizeByNBrick+CBXMLHandler.m in Sources */,
 				5EDBA043219549AE000EFFEF /* LoadingView.swift in Sources */,
-				AA74EF6E1BC0588A00D1E954 /* ChangeVolumeByNBrick+CBXMLHandler.m in Sources */,
 				AA74F0C21BC05FCE00D1E954 /* TurnLeftBrickCell.m in Sources */,
 				92C6318A1BC502CB00486958 /* KnownDevicesTableViewController.swift in Sources */,
 				4C0F9F43204ADC6600E71B2D /* ThinkBubbleBrick.m in Sources */,
@@ -9549,6 +9572,7 @@
 				92D56C341BF202E700A54750 /* FirmataDevice.swift in Sources */,
 				2DA8790E212B444E00FE0585 /* SearchStoreDataSource.swift in Sources */,
 				AA74EFFF1BC05B5F00D1E954 /* GlideToBrick.m in Sources */,
+				9EA3CB35222D864F00BED864 /* PlayNoteBrick.swift in Sources */,
 				AA74F0081BC05B5F00D1E954 /* TurnLeftBrick.m in Sources */,
 				AA74F0C71BC05FCE00D1E954 /* SpeakBrickCell.m in Sources */,
 				AA74F0B21BC05FCE00D1E954 /* SetLookBrickCell.m in Sources */,

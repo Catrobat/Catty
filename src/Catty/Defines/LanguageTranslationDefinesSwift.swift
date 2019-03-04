@@ -399,6 +399,7 @@ let kLocalizedPlaySound = NSLocalizedString("Start sound", comment: "")
 let kLocalizedStopAllSounds = NSLocalizedString("Stop all sounds", comment: "")
 let kLocalizedSetVolumeTo = NSLocalizedString("Set volume to", comment: "")
 let kLocalizedChangeVolumeBy = NSLocalizedString("Change volume by", comment: "")
+let kLocalizedSetInstrumentTo = NSLocalizedString("Set Instrument to", comment: "")
 let kLocalizedSay = NSLocalizedString("Say", comment: "")
 let kLocalizedThink = NSLocalizedString("Think", comment: "")
 let kLocalizedSpeak = NSLocalizedString("Speak", comment: "")
@@ -749,6 +750,33 @@ let kLocalizedServerTimeoutIssueTitle = NSLocalizedString("Connection failed", c
 let kLocalizedServerTimeoutIssueMessage = NSLocalizedString("Server is taking to long to respond, please try again later.", comment: "")
 let kLocalizedUnexpectedErrorTitle = NSLocalizedString("Unexpected Error", comment: "")
 let kLocalizedUnexpectedErrorMessage = NSLocalizedString("Unexpected Error, please try again later.", comment: "")
+
+//************************************************************************************************************
+//**************************************       Audio Engine        *********************************************
+//************************************************************************************************************
+
+let kLocalizedPiano = NSLocalizedString("(1) Piano", comment: "")
+let kLocalizedElectricPiano = NSLocalizedString("(2) Electric Piano", comment: "")
+let kLocalizedOrgan = NSLocalizedString("(3) Organ", comment: "")
+let kLocalizedGuitar = NSLocalizedString("(4) Guitar", comment: "")
+let kLocalizedElectricGuitar = NSLocalizedString("(5) Electric Guitar", comment: "")
+let kLocalizedBass = NSLocalizedString("(6) Bass", comment: "")
+let kLocalizedPizzicato = NSLocalizedString("(7) Pizzicato", comment: "")
+let kLocalizedCello = NSLocalizedString("(8) Cello", comment: "")
+let kLocalizedTrombone = NSLocalizedString("(9) Trombone", comment: "")
+let kLocalizedClarinet = NSLocalizedString("(10) Clarinet", comment: "")
+let kLocalizedSaxophone = NSLocalizedString("(11) Saxophone", comment: "")
+let kLocalizedFlute = NSLocalizedString("(12) Flute", comment: "")
+let kLocalizedWoodenFlute = NSLocalizedString("(13) Wooden Flute", comment: "")
+let kLocalizedBassoon = NSLocalizedString("(14) Bassoon", comment: "")
+let kLocalizedChoir = NSLocalizedString("(15) Choir", comment: "")
+let kLocalizedVibraphone = NSLocalizedString("(16) Vibraphone", comment: "")
+let kLocalizedMusicBox = NSLocalizedString("(17) Music Box", comment: "")
+let kLocalizedSteelDrum = NSLocalizedString("(18) Steel Drum", comment: "")
+let kLocalizedMarimba = NSLocalizedString("(19) Marimba", comment: "")
+let kLocalizedSynthLead = NSLocalizedString("(20) Synth Lead", comment: "")
+let kLocalizedSynthPad = NSLocalizedString("(21) Synth Pad", comment: "")
+
 
 //************************************************************************************************************
 //****************************************       Debug        ************************************************

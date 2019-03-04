@@ -399,6 +399,7 @@
 #define kLocalizedStopAllSounds NSLocalizedString(@"Stop all sounds", nil)
 #define kLocalizedSetVolumeTo NSLocalizedString(@"Set volume to", nil)
 #define kLocalizedChangeVolumeBy NSLocalizedString(@"Change volume by", nil)
+#define kLocalizedSetInstrumentTo NSLocalizedString(@"Set Instrument to", nil)
 #define kLocalizedSay NSLocalizedString(@"Say", nil)
 #define kLocalizedThink NSLocalizedString(@"Think", nil)
 #define kLocalizedSpeak NSLocalizedString(@"Speak", nil)
@@ -749,6 +750,33 @@
 #define kLocalizedServerTimeoutIssueMessage NSLocalizedString(@"Server is taking to long to respond, please try again later.", nil)
 #define kLocalizedUnexpectedErrorTitle NSLocalizedString(@"Unexpected Error", nil)
 #define kLocalizedUnexpectedErrorMessage NSLocalizedString(@"Unexpected Error, please try again later.", nil)
+
+//************************************************************************************************************
+//**************************************       Audio Engine        *********************************************
+//************************************************************************************************************
+
+#define kLocalizedPiano NSLocalizedString(@"(1) Piano", nil)
+#define kLocalizedElectricPiano NSLocalizedString(@"(2) Electric Piano", nil)
+#define kLocalizedOrgan NSLocalizedString(@"(3) Organ", nil)
+#define kLocalizedGuitar NSLocalizedString(@"(4) Guitar", nil)
+#define kLocalizedElectricGuitar NSLocalizedString(@"(5) Electric Guitar", nil)
+#define kLocalizedBass NSLocalizedString(@"(6) Bass", nil)
+#define kLocalizedPizzicato NSLocalizedString(@"(7) Pizzicato", nil)
+#define kLocalizedCello NSLocalizedString(@"(8) Cello", nil)
+#define kLocalizedTrombone NSLocalizedString(@"(9) Trombone", nil)
+#define kLocalizedClarinet NSLocalizedString(@"(10) Clarinet", nil)
+#define kLocalizedSaxophone NSLocalizedString(@"(11) Saxophone", nil)
+#define kLocalizedFlute NSLocalizedString(@"(12) Flute", nil)
+#define kLocalizedWoodenFlute NSLocalizedString(@"(13) Wooden Flute", nil)
+#define kLocalizedBassoon NSLocalizedString(@"(14) Bassoon", nil)
+#define kLocalizedChoir NSLocalizedString(@"(15) Choir", nil)
+#define kLocalizedVibraphone NSLocalizedString(@"(16) Vibraphone", nil)
+#define kLocalizedMusicBox NSLocalizedString(@"(17) Music Box", nil)
+#define kLocalizedSteelDrum NSLocalizedString(@"(18) Steel Drum", nil)
+#define kLocalizedMarimba NSLocalizedString(@"(19) Marimba", nil)
+#define kLocalizedSynthLead NSLocalizedString(@"(20) Synth Lead", nil)
+#define kLocalizedSynthPad NSLocalizedString(@"(21) Synth Pad", nil)
+
 
 //************************************************************************************************************
 //****************************************       Debug        ************************************************

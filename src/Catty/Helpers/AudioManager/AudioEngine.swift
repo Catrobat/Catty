@@ -20,38 +20,39 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import Foundation
 import AudioKit
+import Foundation
 
-@objc class AudioEngine:NSObject {
-
+@objc class AudioEngine: NSObject {
     var speechSynth: AVSpeechSynthesizer
     var mainOut: AKMixer
-    var channels: [String : AudioChannel]
+    var channels: [String: AudioChannel]
     var recorder: AKNodeRecorder?
     var tape: AKAudioFile?
-
+    var bpm: Double
+    var activeNotes: Set<Note>
 
     override init() {
+        activeNotes = Set<Note>()
+        bpm = 60
         speechSynth = AVSpeechSynthesizer()
         mainOut = AKMixer()
         AudioKit.output = mainOut
-        channels = [String : AudioChannel]()
+        channels = [String: AudioChannel]()
         do {
             try AudioKit.start()
         } catch {
             print("could not start audio engine")
         }
 
-        do {
+//        do {
 //            tape = try AKAudioFile()
 //            recorder = try AKNodeRecorder(node: mainOut, file: tape)
 //            AKLog((recorder?.audioFile?.directoryPath.absoluteString)!)
 //            AKLog((recorder?.audioFile?.fileNamePlusExtension)!)
-        } catch {
-
-        }
-
+//        } catch {
+//
+//        }
 //        do {
 //            try recorder?.record()
 //        } catch {
@@ -59,14 +60,41 @@ import AudioKit
 //        }
     }
 
+    @objc func pauseAudioEngine() {
+        pauseAllAudioPlayers()
+        pauseAllSamplers()
+    }
+
+    @objc func resumeAudioEngine() {
+        resumeAllAudioPlayers()
+        resumeAllSamplers()
+    }
+
+    @objc func stopAudioEngine() {
+        stopAllAudioPlayers()
+        stopAllSamplers()
+    }
+
     func playSound(fileName: String, key: String, filePath: String) {
         let channel = getAudioChannel(key: key)
         channel.playSound(fileName: fileName, filePath: filePath)
     }
 
-    func playNote(pitch: Int, key: String) {
+    func playNote(note: Note, key: String) {
         let channel = getAudioChannel(key: key)
-        channel.playNote(pitch: pitch)
+        activeNotes.insert(note)
+        note.setActive()
+        channel.playNote(note: note)
+    }
+
+    func stopNote(pitch: Int, key: String) {
+        let channel = getAudioChannel(key: key)
+        channel.stopNote(pitch: pitch)
+    }
+
+    func setInstrumentTo(instrumentNumber: Int, key: String) {
+        let channel = getAudioChannel(key: key)
+        channel.setInstrumentTo(instrumentNumber: instrumentNumber)
     }
 
     func setVolumeTo(percent: Double, key: String) {
@@ -94,8 +122,7 @@ import AudioKit
         return recorder!
     }
 
-    @objc func pauseAllAudioPlayers()
-    {
+    @objc func pauseAllAudioPlayers() {
         for (_, channel) in channels {
             channel.pauseAllAudioPlayers()
         }
@@ -106,8 +133,7 @@ import AudioKit
         }
     }
 
-    @objc func resumeAllAudioPlayers()
-    {
+    @objc func resumeAllAudioPlayers() {
         for (_, channel) in channels {
             channel.resumeAllAudioPlayers()
         }
@@ -118,15 +144,14 @@ import AudioKit
         }
     }
 
-    @objc func stopAllAudioPlayers()
-    {
+    @objc func stopAllAudioPlayers() {
         for (_, channel) in channels {
             channel.stopAllAudioPlayers()
         }
     }
 
     func getSpeechSynth() -> AVSpeechSynthesizer {
-        return speechSynth;
+        return speechSynth
     }
 
     func getOutputVolumeOfChannel(objName: String) -> Double? {
@@ -150,6 +175,39 @@ import AudioKit
         }
     }
 
+    private func pauseAllSamplers() {
+        for (_, channel) in channels {
+            channel.stopSampler()
+        }
+        pauseAllNotes()
+    }
+
+    private func resumeAllSamplers() {
+        for (_, channel) in channels {
+            channel.resumeSampler()
+        }
+        resumeAllNotes()
+    }
+
+    private func stopAllSamplers() {
+        for (_, channel) in channels {
+            channel.stopSampler()
+        }
+        activeNotes.removeAll()
+    }
+
+    private func pauseAllNotes() {
+        for note in activeNotes {
+            note.pause()
+        }
+    }
+
+    private func resumeAllNotes() {
+        for note in activeNotes {
+            note.resume()
+        }
+    }
+
     internal func createNewAudioChannel(key: String) -> AudioChannel {
         let channel = AudioChannel()
         channel.connectTo(node: mainOut)
@@ -157,7 +215,7 @@ import AudioKit
         return channel
     }
 
-    @objc func stopNodeRecorder(){
+    @objc func stopNodeRecorder() {
 //        recorder?.stop()
 //        tape?.exportAsynchronously(name: "test", baseDir: .documents, exportFormat: .caf){ [weak self] _, _ in}
 //        AKLog(recorder?.recordedDuration)

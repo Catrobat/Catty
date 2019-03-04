@@ -30,10 +30,9 @@
 
         return CBInstruction.waitExecClosure { context, _ in
             let synthesizer = audioEngine.getSpeechSynth()
-            if (synthesizer.isSpeaking) {
+            if synthesizer.isSpeaking {
                 let waitUntilSpeechStopped = NSCondition()
                 waitUntilSpeechStopped.accessibilityLabel = "waitingUntilSpeechStopped"
-
 
                 if synthesizer.accessibilityElements != nil {
                     synthesizer.accessibilityElements?.append(waitUntilSpeechStopped)
@@ -43,7 +42,7 @@
                 synthesizer.delegate = self
                 synthesizer.stopSpeaking(at: AVSpeechBoundary.immediate)
                 waitUntilSpeechStopped.lock()
-                while(synthesizer.isSpeaking) {
+                while synthesizer.isSpeaking {
                     waitUntilSpeechStopped.wait()
                 }
                 waitUntilSpeechStopped.unlock()
@@ -75,7 +74,7 @@
             synthesizer.delegate = self
             synthesizer.speak(utterance)
             waitUntilTextSpoken.lock()
-            while(waitUntilTextSpoken.accessibilityHint == "0") {     //accessibilityHint used because synthesizer.speaking not yet true.
+            while waitUntilTextSpoken.accessibilityHint == "0" {     //accessibilityHint used because synthesizer.speaking not yet true.
                 waitUntilTextSpoken.wait()
             }
             waitUntilTextSpoken.unlock()
@@ -95,7 +94,7 @@
         //        }
         for (index, object) in synthesizer.accessibilityElements!.enumerated() {
             if let condition = object as? NSCondition {
-                if (condition.accessibilityLabel == "waitingUntilSpeechStopped"){
+                if condition.accessibilityLabel == "waitingUntilSpeechStopped" {
                     synthesizer.accessibilityElements?.remove(at: index)
                     condition.accessibilityHint = "1"
                     condition.signal()
@@ -104,7 +103,7 @@
             }
         }
 
-        while(!synthesizer.accessibilityElements!.isEmpty) {
+        while !synthesizer.accessibilityElements!.isEmpty {
             let object = synthesizer.accessibilityElements!.first
             if let condition = object as? NSCondition {
                 synthesizer.accessibilityElements?.remove(at: 0)
@@ -118,7 +117,7 @@
 
         for (index, object) in synthesizer.accessibilityElements!.enumerated() {
             if let condition = object as? NSCondition {
-                if (condition.accessibilityLabel == "waitingUntilSpeechStopped"){
+                if  condition.accessibilityLabel == "waitingUntilSpeechStopped" {
                     synthesizer.accessibilityElements?.remove(at: index)
                     condition.accessibilityHint = "1"
                     condition.signal()
@@ -127,7 +126,7 @@
             }
         }
 
-        while(!synthesizer.accessibilityElements!.isEmpty) {
+        while !synthesizer.accessibilityElements!.isEmpty {
             let object = synthesizer.accessibilityElements!.first
             if let condition = object as? NSCondition {
                 synthesizer.accessibilityElements?.remove(at: 0)
@@ -135,12 +134,6 @@
                 condition.signal()
             }
         }
-
-
-
-
-
-
 
         //        if let condition = synthesizer.accessibilityElements?.last as? NSCondition {
         //            condition.accessibilityHint = "1"

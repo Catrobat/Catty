@@ -26,13 +26,32 @@
         guard let spriteObject = self.script?.object else { fatalError("This should never happen") }
         let spriteObjectName = spriteObject.name
 
-        return CBInstruction.execClosure { context, _ in
+        return CBInstruction.waitExecClosure { context, _ in
             let pitch = context.formulaInterpreter.interpretInteger(self.pitch, for: spriteObject)
+            let durationInBeats = context.formulaInterpreter.interpretDouble(self.duration, for: spriteObject)
+            let durationInSeconds = durationInBeats * 60 / audioEngine.bpm
 
-            if let name = spriteObjectName {
-                audioEngine.playNote(pitch: pitch, key: name)
-                context.state = .runnable
+            let waitUntilNoteFinished = NSCondition()
+            waitUntilNoteFinished.accessibilityHint = "0"
+
+            let noteDurationTimer = Timer.init(timeInterval: durationInSeconds, target: self, selector: #selector(PlayNoteBrick.noteOff(timer:)), userInfo: waitUntilNoteFinished, repeats: false)
+            let note = Note(pitch: pitch, noteDurationTimer: noteDurationTimer)
+
+            audioEngine.playNote(note: note, key: spriteObjectName!)
+
+            waitUntilNoteFinished.lock()
+            while waitUntilNoteFinished.accessibilityHint == "0" { //accessibilityHint used because synthesizer.speaking not yet true.
+                waitUntilNoteFinished.wait()
             }
+            waitUntilNoteFinished.unlock()
+            audioEngine.stopNote(pitch: pitch, key: spriteObjectName!)
+            audioEngine.activeNotes.remove(note)
         }
+    }
+
+    func noteOff(timer: Timer) {
+        let condition = timer.userInfo as! NSCondition
+        condition.accessibilityHint = "1"
+        condition.signal()
     }
 }

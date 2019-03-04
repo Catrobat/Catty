@@ -95,7 +95,8 @@
     @"{FLOAT;range=(-inf,inf)}",                            /* change volume to   */\
     @"{INT}",                                               /* speak              */\
     @"{INT}",                                               /* speak and wait     */\
-    @[@"{INT;range=(0,130)}", @"{FLOAT;range=(0,inf)}"]     /* play note          */\
+    @[@"{INT;range=(0,130)}", @"{FLOAT;range=(0,inf)}"],    /* play note          */\
+    @"{STATICCHOICE}"                                       /* set instrument to  */\
 ]
 
 // look bricks

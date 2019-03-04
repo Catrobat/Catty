@@ -28,7 +28,6 @@
             let objectName = self.script?.object?.name
             else { fatalError("This should never happen!") }
 
-
         return CBInstruction.execClosure { context, _ in
             var speakText = context.formulaInterpreter.interpretString(self.formula, for: object)
             if Double(speakText) != nil {
@@ -46,7 +45,7 @@
             }
 
             let synthesizer = audioEngine.getSpeechSynth()
-            if (synthesizer.isSpeaking) {
+            if synthesizer.isSpeaking {
                 synthesizer.stopSpeaking(at: AVSpeechBoundary.immediate)
             }
             synthesizer.speak(utterance)

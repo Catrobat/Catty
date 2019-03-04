@@ -1,4 +1,67 @@
 /* No comment provided by engineer. */
+"(1) Piano" = "(1) Piano";
+
+/* No comment provided by engineer. */
+"(10) Clarinet" = "(10) Clarinet";
+
+/* No comment provided by engineer. */
+"(11) Saxophone" = "(11) Saxophone";
+
+/* No comment provided by engineer. */
+"(12) Flute" = "(12) Flute";
+
+/* No comment provided by engineer. */
+"(13) Wooden Flute" = "(13) Wooden Flute";
+
+/* No comment provided by engineer. */
+"(14) Bassoon" = "(14) Bassoon";
+
+/* No comment provided by engineer. */
+"(15) Choir" = "(15) Choir";
+
+/* No comment provided by engineer. */
+"(16) Vibraphone" = "(16) Vibraphone";
+
+/* No comment provided by engineer. */
+"(17) Music Box" = "(17) Music Box";
+
+/* No comment provided by engineer. */
+"(18) Steel Drum" = "(18) Steel Drum";
+
+/* No comment provided by engineer. */
+"(19) Marimba" = "(19) Marimba";
+
+/* No comment provided by engineer. */
+"(2) Electric Piano" = "(2) Electric Piano";
+
+/* No comment provided by engineer. */
+"(20) Synth Lead" = "(20) Synth Lead";
+
+/* No comment provided by engineer. */
+"(21) Synth Pad" = "(21) Synth Pad";
+
+/* No comment provided by engineer. */
+"(3) Organ" = "(3) Organ";
+
+/* No comment provided by engineer. */
+"(4) Guitar" = "(4) Guitar";
+
+/* No comment provided by engineer. */
+"(5) Electric Guitar" = "(5) Electric Guitar";
+
+/* No comment provided by engineer. */
+"(6) Bass" = "(6) Bass";
+
+/* No comment provided by engineer. */
+"(7) Pizzicato" = "(7) Pizzicato";
+
+/* No comment provided by engineer. */
+"(8) Cello" = "(8) Cello";
+
+/* No comment provided by engineer. */
+"(9) Trombone" = "(9) Trombone";
+
+/* No comment provided by engineer. */
 "A message with the same name already exists, try again." = "A message with the same name already exists, try again.";
 
 /* No comment provided by engineer. */
@@ -1380,6 +1443,9 @@
 
 /* No comment provided by engineer. */
 "Set description" = "Set description";
+
+/* No comment provided by engineer. */
+"Set Instrument to" = "Set Instrument to";
 
 /* No comment provided by engineer. */
 "Set Phiro light" = "Set Phiro light";

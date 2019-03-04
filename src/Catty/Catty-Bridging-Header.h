@@ -205,4 +205,7 @@
 #import "SpriteObject.h"
 #import "CBXMLOpenedNestingBricksStack.h"
 #import "BDKNotifyHUD.h"
-
+#import "BrickShapeFactory.h"
+#import "iOSCombobox.h"
+#import "CBXMLValidator.h"
+#import "CBXMLSerializerHelper.h"

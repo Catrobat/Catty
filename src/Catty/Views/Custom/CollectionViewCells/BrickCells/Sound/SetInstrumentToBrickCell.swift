@@ -20,18 +20,31 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+import Foundation
 
-#import "Brick.h"
-#import "BrickFormulaProtocol.h"
+@objc(SetInstrumentToBrickCell) class SetInstrumentToBrickCell: BrickCell {
 
-@class Formula;
+    @objc public var messageComboBoxView: iOSCombobox?
+    @objc public var textLabel: UILabel?
 
-@interface PlayNoteBrick : Brick<BrickFormulaProtocol>
+    @objc override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
 
-@property (nonatomic, strong) Formula *pitch;
-@property (nonatomic, strong) Formula *duration;
-@property (nonatomic, assign) BOOL isInitialized;
+    @objc required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
 
+    @objc override func draw(_ rect: CGRect) {
+        BrickShapeFactory.drawSquareBrickShape(withFill: UIColor.soundBrickViolet(), stroke: UIColor.soundBrickStroke(), height: CGFloat(mediumBrick), width: Util.screenWidth())
+    }
 
-@end
+    @objc override static func cellHeight() -> CGFloat {
+        return CGFloat(kBrickHeight2h)
+    }
 
+    @objc override func hookUpSubViews(_ inlineViewSubViews: [Any]!) {
+        self.textLabel = inlineViewSubViews[0] as? UILabel
+        self.messageComboBoxView = inlineViewSubViews[1] as? iOSCombobox
+    }
+}
