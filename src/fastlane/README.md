@@ -46,11 +46,16 @@ Download all Translations from Crowdin
 fastlane ios update_translations
 ```
 Update lane for Crowdin translations
+### ios tests
+```
+fastlane ios tests
+```
+Run tests
 ### ios release
 ```
 fastlane ios release
 ```
-
+Release Pocket Code
 ### ios playground
 ```
 fastlane ios playground
