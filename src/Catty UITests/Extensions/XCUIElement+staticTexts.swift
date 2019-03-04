@@ -34,4 +34,8 @@ extension XCUIElementQuery {
     func staticTextBeginsWith(_ queryString: String) -> XCUIElement {
         return self.staticTexts.element(matching: NSPredicate(format: "label BEGINSWITH '"+queryString+"'"))
     }
+
+    func identifierTextBeginsWith(_ querString: String) -> XCUIElementQuery {
+        return self.containing(NSPredicate(format: "label BEGINSWITH '"+querString+"'"))
+    }
 }

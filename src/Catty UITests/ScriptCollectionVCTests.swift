@@ -115,8 +115,7 @@ class ScriptCollectionVCTests: XCTestCase, UITestProtocol {
         skipFrequentlyUsedBricks(app)
 
         app.collectionViews.staticTextBeginsWith(kLocalizedWait).tap()
-        app.collectionViews.cells.otherElements.containing(NSPredicate(format: "label CONTAINS %@", kLocalizedWait)).children(matching: .button).element.tap()
-
+        app.collectionViews.cells.otherElements.identifierTextBeginsWith(kLocalizedWait).children(matching: .button).element.tap()
         XCTAssertTrue(waitForElementToAppear(app.buttons[kLocalizedCancel]).exists)
 
         app.buttons[kUIFESensor].tap()
