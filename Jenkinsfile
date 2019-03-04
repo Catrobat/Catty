@@ -27,16 +27,11 @@ pipeline {
         sh 'cd src && fastlane po_review'
       }
     }
-    stage('Archive') {
-      steps {
-        archiveArtifacts(artifacts: 'src/fastlane/test_output/', allowEmptyArchive: true)
-      }
-    }
   }
-  
+
   post {
     always {
-      junit testResults: 'src/fastlane/test_output/report.junit', allowEmptyResults: true
+      junit testResults: 'src/fastlane/test_output/TestSummaries.xml', allowEmptyResults: true
     }
   }
 }
