@@ -2,7 +2,16 @@
 "(1) Piano" = "(1) Piano";
 
 /* No comment provided by engineer. */
+"(1) Snare Drum" = "(1) Snare Drum";
+
+/* No comment provided by engineer. */
 "(10) Clarinet" = "(10) Clarinet";
+
+/* No comment provided by engineer. */
+"(10) Wood Block" = "(10) Wood Block";
+
+/* No comment provided by engineer. */
+"(11) Cowbell" = "(11) Cowbell";
 
 /* No comment provided by engineer. */
 "(11) Saxophone" = "(11) Saxophone";
@@ -11,13 +20,28 @@
 "(12) Flute" = "(12) Flute";
 
 /* No comment provided by engineer. */
+"(12) Triangle" = "(12) Triangle";
+
+/* No comment provided by engineer. */
+"(13) Bongo" = "(13) Bongo";
+
+/* No comment provided by engineer. */
 "(13) Wooden Flute" = "(13) Wooden Flute";
 
 /* No comment provided by engineer. */
 "(14) Bassoon" = "(14) Bassoon";
 
 /* No comment provided by engineer. */
+"(14) Conga" = "(14) Conga";
+
+/* No comment provided by engineer. */
+"(15) Cabasa" = "(15) Cabasa";
+
+/* No comment provided by engineer. */
 "(15) Choir" = "(15) Choir";
+
+/* No comment provided by engineer. */
+"(16) Guiro" = "(16) Guiro";
 
 /* No comment provided by engineer. */
 "(16) Vibraphone" = "(16) Vibraphone";
@@ -26,10 +50,19 @@
 "(17) Music Box" = "(17) Music Box";
 
 /* No comment provided by engineer. */
+"(17) Vibraslap" = "(17) Vibraslap";
+
+/* No comment provided by engineer. */
+"(18) Cuica" = "(18) Cuica";
+
+/* No comment provided by engineer. */
 "(18) Steel Drum" = "(18) Steel Drum";
 
 /* No comment provided by engineer. */
 "(19) Marimba" = "(19) Marimba";
+
+/* No comment provided by engineer. */
+"(2) Bass Drum" = "(2) Bass Drum";
 
 /* No comment provided by engineer. */
 "(2) Electric Piano" = "(2) Electric Piano";
@@ -44,19 +77,40 @@
 "(3) Organ" = "(3) Organ";
 
 /* No comment provided by engineer. */
+"(3) Side Stick" = "(3) Side Stick";
+
+/* No comment provided by engineer. */
+"(4) Crash Cymbal" = "(4) Crash Cymbal";
+
+/* No comment provided by engineer. */
 "(4) Guitar" = "(4) Guitar";
 
 /* No comment provided by engineer. */
 "(5) Electric Guitar" = "(5) Electric Guitar";
 
 /* No comment provided by engineer. */
+"(5) Open Hi-Hat" = "(5) Open Hi-Hat";
+
+/* No comment provided by engineer. */
 "(6) Bass" = "(6) Bass";
+
+/* No comment provided by engineer. */
+"(6) Closed Hi-Hat" = "(6) Closed Hi-Hat";
 
 /* No comment provided by engineer. */
 "(7) Pizzicato" = "(7) Pizzicato";
 
 /* No comment provided by engineer. */
+"(7) Tambourine" = "(7) Tambourine";
+
+/* No comment provided by engineer. */
 "(8) Cello" = "(8) Cello";
+
+/* No comment provided by engineer. */
+"(8) Hand Clap" = "(8) Hand Clap";
+
+/* No comment provided by engineer. */
+"(9) Claves" = "(9) Claves";
 
 /* No comment provided by engineer. */
 "(9) Trombone" = "(9) Trombone";
@@ -1170,6 +1224,9 @@
 
 /* No comment provided by engineer. */
 "Place at " = "Place at ";
+
+/* No comment provided by engineer. */
+"Play drum" = "Play drum";
 
 /* No comment provided by engineer. */
 "Play note" = "Play note";

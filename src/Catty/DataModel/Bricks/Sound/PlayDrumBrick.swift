@@ -22,38 +22,36 @@
 
 import Foundation
 
-@objc(PlayNoteBrick) class PlayNoteBrick: Brick, BrickFormulaProtocol {
+@objc(PlayDrumBrick) class PlayDrumBrick: Brick, BrickStaticChoiceProtocol, BrickFormulaProtocol {
 
-    @objc public var pitch: Formula!
+    @objc public var drumChoice: Int
     @objc public var duration: Formula!
 
-    override init() {
+    required override init() {
+        drumChoice = 0
+        duration = Formula(integer: 1)
         super.init()
     }
 
     override var brickTitle: String! {
-        return kLocalizedPlayNote + " %@ " + kLocalizedFor + " %@" + kLocalizedBeats
+        return kLocalizedPlayDrum + "\n%@\n" + kLocalizedFor + " %@" + kLocalizedBeats
     }
 
     func formula(forLineNumber lineNumber: Int, andParameterNumber paramNumber: Int) -> Formula! {
-        if lineNumber == 0 && paramNumber == 0 {
-            return self.pitch
-        } else if lineNumber == 0 && paramNumber == 1 {
+        if lineNumber == 2 && paramNumber == 0 {
             return self.duration
         }
         return nil
     }
 
     func setFormula(_ formula: Formula!, forLineNumber lineNumber: Int, andParameterNumber paramNumber: Int) {
-        if lineNumber == 0 && paramNumber == 0 {
-            self.pitch = formula
-        } else if lineNumber == 0 && paramNumber == 1 {
+        if lineNumber == 2 && paramNumber == 0 {
             self.duration = formula
         }
     }
 
     func getFormulas() -> [Formula]! {
-        return [self.pitch, self.duration]
+        return [self.duration]
 
     }
 
@@ -61,8 +59,16 @@ import Foundation
         return false
     }
 
-    override func setDefaultValuesFor(_ spriteObject: SpriteObject!) {
-        self.pitch = Formula(integer: 60)
+    override func getRequiredResources() -> Int {
+        return ResourceType.noResources.rawValue
+    }
+
+    override func description() -> String! {
+        return ("instrument choice \(self.drumChoice)")
+    }
+
+    func setDefaultValues(for spriteObject: SpriteObject!) {
+        self.drumChoice = 0
         self.duration = Formula(integer: 1)
     }
 
@@ -71,20 +77,36 @@ import Foundation
     }
 
     override func isEqual(to brick: Brick!) -> Bool {
-        if !self.pitch.isEqual(to: (brick as! PlayNoteBrick).pitch) {
+        if !self.duration.isEqual(to: (brick as! PlayNoteBrick).duration) {
             return false
         }
-        if !self.duration.isEqual(to: (brick as! PlayNoteBrick).duration) {
+        if self.drumChoice != (brick as! PlayDrumBrick).drumChoice {
             return false
         }
         return true
     }
 
-    override func getRequiredResources() -> Int {
-        return self.pitch!.getRequiredResources() | self.duration!.getRequiredResources()
+    init(choice: Int) {
+        self.drumChoice = choice
+        super.init()
     }
 
-    override func description() -> String! {
-        return ("PlayNoteBrick")
+    func choice(forLineNumber lineNumber: Int, andParameterNumber paramNumber: Int) -> String! {
+        let choices = possibleChoices(forLineNumber: 1, andParameterNumber: 0)
+        return choices![self.drumChoice]
+    }
+
+    func setChoice(_ choice: String!, forLineNumber lineNumber: Int, andParameterNumber paramNumber: Int) {
+        let choices = possibleChoices(forLineNumber: 1, andParameterNumber: 0)
+        let index = choices!.firstIndex(of: choice)
+        if (index! < choices!.count) && (index! >= 0) {
+            self.drumChoice = index!
+        } else {
+            self.drumChoice = 0
+        }
+    }
+
+    func possibleChoices(forLineNumber lineNumber: Int, andParameterNumber paramNumber: Int) -> [String]! {
+        return AudioEngineConfig.localizedDrumNames
     }
 }

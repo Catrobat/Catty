@@ -405,6 +405,7 @@ let kLocalizedThink = NSLocalizedString("Think", bundle: Bundle(for: LanguageTra
 let kLocalizedSpeak = NSLocalizedString("Speak", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedAndWait = NSLocalizedString("and wait", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedPlayNote = NSLocalizedString("Play note", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedPlayDrum = NSLocalizedString("Play drum", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedBeats = NSLocalizedString("beats", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
 
@@ -777,6 +778,24 @@ let kLocalizedMarimba = NSLocalizedString("(19) Marimba", bundle: Bundle(for: La
 let kLocalizedSynthLead = NSLocalizedString("(20) Synth Lead", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedSynthPad = NSLocalizedString("(21) Synth Pad", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
+let kLocalizedSnareDrum = NSLocalizedString("(1) Snare Drum", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedBassDrum = NSLocalizedString("(2) Bass Drum", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedSideStick = NSLocalizedString("(3) Side Stick", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedCrashCymbal = NSLocalizedString("(4) Crash Cymbal", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedOpenHiHat = NSLocalizedString("(5) Open Hi-Hat", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedClosedHiHat = NSLocalizedString("(6) Closed Hi-Hat", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedTambourine = NSLocalizedString("(7) Tambourine", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedHandClap = NSLocalizedString("(8) Hand Clap", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedClaves = NSLocalizedString("(9) Claves", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedWoodBlock = NSLocalizedString("(10) Wood Block", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedCowbell = NSLocalizedString("(11) Cowbell", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedTriangle = NSLocalizedString("(12) Triangle", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedWoodenBongo = NSLocalizedString("(13) Bongo", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedConga = NSLocalizedString("(14) Conga", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedCabasa = NSLocalizedString("(15) Cabasa", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedGuiro = NSLocalizedString("(16) Guiro", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedVibraslap = NSLocalizedString("(17) Vibraslap", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedCuica = NSLocalizedString("(18) Cuica", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
 //************************************************************************************************************
 //****************************************       Debug        ************************************************

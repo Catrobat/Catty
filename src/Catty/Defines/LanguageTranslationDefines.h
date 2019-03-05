@@ -405,6 +405,7 @@
 #define kLocalizedSpeak NSLocalizedString(@"Speak", nil)
 #define kLocalizedAndWait NSLocalizedString(@"and wait", nil)
 #define kLocalizedPlayNote NSLocalizedString(@"Play note", nil)
+#define kLocalizedPlayDrum NSLocalizedString(@"Play drum", nil)
 #define kLocalizedBeats NSLocalizedString(@"beats", nil)
 
 
@@ -777,6 +778,24 @@
 #define kLocalizedSynthLead NSLocalizedString(@"(20) Synth Lead", nil)
 #define kLocalizedSynthPad NSLocalizedString(@"(21) Synth Pad", nil)
 
+#define kLocalizedSnareDrum NSLocalizedString(@"(1) Snare Drum", nil)
+#define kLocalizedBassDrum NSLocalizedString(@"(2) Bass Drum", nil)
+#define kLocalizedSideStick NSLocalizedString(@"(3) Side Stick", nil)
+#define kLocalizedCrashCymbal NSLocalizedString(@"(4) Crash Cymbal", nil)
+#define kLocalizedOpenHiHat NSLocalizedString(@"(5) Open Hi-Hat", nil)
+#define kLocalizedClosedHiHat NSLocalizedString(@"(6) Closed Hi-Hat", nil)
+#define kLocalizedTambourine NSLocalizedString(@"(7) Tambourine", nil)
+#define kLocalizedHandClap NSLocalizedString(@"(8) Hand Clap", nil)
+#define kLocalizedClaves NSLocalizedString(@"(9) Claves", nil)
+#define kLocalizedWoodBlock NSLocalizedString(@"(10) Wood Block", nil)
+#define kLocalizedCowbell NSLocalizedString(@"(11) Cowbell", nil)
+#define kLocalizedTriangle NSLocalizedString(@"(12) Triangle", nil)
+#define kLocalizedWoodenBongo NSLocalizedString(@"(13) Bongo", nil)
+#define kLocalizedConga NSLocalizedString(@"(14) Conga", nil)
+#define kLocalizedCabasa NSLocalizedString(@"(15) Cabasa", nil)
+#define kLocalizedGuiro NSLocalizedString(@"(16) Guiro", nil)
+#define kLocalizedVibraslap NSLocalizedString(@"(17) Vibraslap", nil)
+#define kLocalizedCuica NSLocalizedString(@"(18) Cuica", nil)
 
 //************************************************************************************************************
 //****************************************       Debug        ************************************************

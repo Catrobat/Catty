@@ -26,38 +26,38 @@ import Foundation
 
     @objc public var instrumentChoice: Int
 
-    @objc required override init() {
+    required override init() {
         instrumentChoice = 0
         super.init()
     }
 
-    @objc override var brickTitle: String! {
-        return kLocalizedSetInstrumentTo + "\n%@"
-    }
-
-    @objc override func getRequiredResources() -> Int {
-        return ResourceType.noResources.rawValue
-    }
-
-    @objc override func description() -> String! {
-        return ("instrument choice \(self.instrumentChoice)")
-    }
-
-    @objc func setDefaultValues(for spriteObject: SpriteObject!) {
-        self.instrumentChoice = 0
-    }
-
-    @objc init(choice: Int) {
+    init(choice: Int) {
         self.instrumentChoice = choice
         super.init()
     }
 
-    @objc func choice(forLineNumber lineNumber: Int, andParameterNumber paramNumber: Int) -> String! {
+    override var brickTitle: String! {
+        return kLocalizedSetInstrumentTo + "\n%@"
+    }
+
+    override func getRequiredResources() -> Int {
+        return ResourceType.noResources.rawValue
+    }
+
+    override func description() -> String! {
+        return ("instrument choice \(self.instrumentChoice)")
+    }
+
+    func setDefaultValues(for spriteObject: SpriteObject!) {
+        self.instrumentChoice = 0
+    }
+
+    func choice(forLineNumber lineNumber: Int, andParameterNumber paramNumber: Int) -> String! {
         let choices = possibleChoices(forLineNumber: 1, andParameterNumber: 0)
         return choices![self.instrumentChoice]
     }
 
-    @objc func setChoice(_ choice: String!, forLineNumber lineNumber: Int, andParameterNumber paramNumber: Int) {
+    func setChoice(_ choice: String!, forLineNumber lineNumber: Int, andParameterNumber paramNumber: Int) {
         let choices = possibleChoices(forLineNumber: 1, andParameterNumber: 0)
         let index = choices!.firstIndex(of: choice)
         if (index! < choices!.count) && (index! >= 0) {
@@ -67,7 +67,7 @@ import Foundation
         }
     }
 
-    @objc func possibleChoices(forLineNumber lineNumber: Int, andParameterNumber paramNumber: Int) -> [String]! {
+    func possibleChoices(forLineNumber lineNumber: Int, andParameterNumber paramNumber: Int) -> [String]! {
         return AudioEngineConfig.localizedInstrumentNames
     }
 }

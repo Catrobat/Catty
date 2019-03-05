@@ -20,7 +20,8 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "SetInstrumentToBrick+CBXMLHandler.h"
+#import "Formula+CBXMLHandler.h"
+#import "PlayDrumBrick+CBXMLHandler.h"
 #import "GDataXMLElement+CustomExtensions.h"
 #import "GDataXMLNode+CustomExtensions.h"
 #import "CBXMLValidator.h"
@@ -30,36 +31,45 @@
 #import "CBXMLSerializerHelper.h"
 #import "Pocket_Code-Swift.h"
 
-@implementation SetInstrumentToBrick (CBXMLHandler)
+@implementation PlayDrumBrick (CBXMLHandler)
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLParserContext*)context
 {
-    SetInstrumentToBrick *setInstrumentToBrick = [self new];
-    [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1];
-    GDataXMLElement *instrumentChoiceElement = [[xmlElement children] firstObject];
-    [XMLError exceptionIfNil:instrumentChoiceElement
-                     message:@"SetInstrumentToBrick element does not contain a spinnerSelectionID child element!"];
-    NSString *instrumentChoice = [instrumentChoiceElement stringValue];
-    int choiceInt = (int)[instrumentChoice integerValue];
-    if ((choiceInt < 0) || (choiceInt > 20))
+    PlayDrumBrick *playDrumBrick = [self new];
+    [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:2];
+    [CBXMLParserHelper validateXMLElement:xmlElement forFormulaListWithTotalNumberOfFormulas:1];
+    Formula *duration = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"DRUM_DURATION" withContext:context];
+    GDataXMLElement *drumChoiceElement = [xmlElement childWithElementName:@"spinnerSelectionID"];
+    [XMLError exceptionIfNil:drumChoiceElement
+                     message:@"PlayDrumBrick element does not contain a spinnerSelectionID child element!"];
+    NSString *drumChoice = [drumChoiceElement stringValue];
+    int choiceInt = (int)[drumChoice integerValue];
+    if ((choiceInt < 0) || (choiceInt > 17))
     {
-        [XMLError exceptionWithMessage:@"Parameter for spinnerSelectionID is not valid. Must be between 0 and 20"];
+        [XMLError exceptionWithMessage:@"Parameter for spinnerSelectionID is not valid. Must be between 0 and 17"];
     }
-    setInstrumentToBrick.instrumentChoice = choiceInt;
+    playDrumBrick.duration = duration;
+    playDrumBrick.drumChoice = choiceInt;
 
-    return setInstrumentToBrick;
+    return playDrumBrick;
 }
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context
 {
-    NSString *numberString = [NSString stringWithFormat:@"%i", self.instrumentChoice];
+    NSString *numberString = [NSString stringWithFormat:@"%i", self.drumChoice];
     NSUInteger indexOfBrick = [CBXMLSerializerHelper indexOfElement:self inArray:context.brickList];
     GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" xPathIndex:(indexOfBrick+1) context:context];
-    
     GDataXMLElement *spinnerID = [GDataXMLElement elementWithName:@"spinnerSelectionID" stringValue:numberString context:context];
+    GDataXMLElement *formulaList = [GDataXMLElement elementWithName:@"formulaList" context:context];
+    GDataXMLElement *durationFormula = [self.duration xmlElementWithContext:context];
+
+    [durationFormula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"DRUM_DURATION"]];
+    [formulaList addChild:durationFormula context:context];
     
-    [brick addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:@"SetInstrumentToBrick"]];
+    [brick addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:@"PlayDrumBrick"]];
+    [brick addChild:formulaList context:context];
     [brick addChild:spinnerID context:context];
+
     return brick;
 }
 

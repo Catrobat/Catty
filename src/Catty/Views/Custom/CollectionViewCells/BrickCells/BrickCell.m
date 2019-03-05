@@ -96,6 +96,7 @@
     @"{INT}",                                               /* speak              */\
     @"{INT}",                                               /* speak and wait     */\
     @[@"{INT;range=(0,130)}", @"{FLOAT;range=(0,inf)}"],    /* play note          */\
+    @[@"{STATICCHOICE}", @"{FLOAT;range=(0,inf)}"],         /* play drum          */\
     @"{STATICCHOICE}"                                       /* set instrument to  */\
 ]
 

@@ -24,29 +24,29 @@ import Foundation
 
 @objc(PlayNoteBrickCell) class PlayNoteBrickCell: BrickCell {
 
-    @objc public var pitchTextField: UITextField?
-    @objc public var durationTextField: UITextField?
-    @objc public var firstTextLabel: UILabel?
-    @objc public var secondTextLabel: UILabel?
-    @objc public var thirdTextLabel: UILabel?
+    public var pitchTextField: UITextField?
+    public var durationTextField: UITextField?
+    public var firstTextLabel: UILabel?
+    public var secondTextLabel: UILabel?
+    public var thirdTextLabel: UILabel?
 
-    @objc override init(frame: CGRect) {
+    override init(frame: CGRect) {
         super.init(frame: frame)
     }
 
-    @objc required init?(coder: NSCoder) {
+    required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
 
-    @objc override func draw(_ rect: CGRect) {
+    override func draw(_ rect: CGRect) {
         BrickShapeFactory.drawSquareBrickShape(withFill: UIColor.soundBrickViolet(), stroke: UIColor.soundBrickStroke(), height: CGFloat(smallBrick), width: Util.screenWidth())
     }
 
-    @objc override static func cellHeight() -> CGFloat {
+    override static func cellHeight() -> CGFloat {
         return CGFloat(kBrickHeight1h)
     }
 
-    @objc override func hookUpSubViews(_ inlineViewSubViews: [Any]!) {
+    override func hookUpSubViews(_ inlineViewSubViews: [Any]!) {
         self.firstTextLabel = inlineViewSubViews[0] as? UILabel
         self.pitchTextField = inlineViewSubViews[1] as? UITextField
         self.secondTextLabel = inlineViewSubViews[2] as? UILabel

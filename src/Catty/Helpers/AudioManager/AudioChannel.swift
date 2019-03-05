@@ -28,13 +28,16 @@ import Foundation
     var audioPlayerMixer: AKMixer
     var audioPlayers: [String: AKAudioPlayer]
     var sampler: AKSampler
+    var drumSampler: AKSampler
 
     override init() {
         subtreeOutputMixer = AKMixer()
         audioPlayerMixer = AKMixer()
         audioPlayerMixer.connect(to: subtreeOutputMixer)
         sampler = AKSampler()
+        drumSampler = AKSampler()
         sampler.connect(to: subtreeOutputMixer)
+        drumSampler.connect(to: subtreeOutputMixer)
         audioPlayers = [String: AKAudioPlayer]()
         super.init()
         setupSampler()
@@ -69,9 +72,28 @@ import Foundation
         sampler.stop(noteNumber: UInt8(pitch))
     }
 
+    func playDrum(note: Note) {
+//        let instrumentPath = Bundle.main.resourcePath!+"/Sample Instruments Compressed/22-drums/1-snare.wv"
+//        let sd = AKSampleDescriptor(noteNumber: 0, noteFrequency: Float(AKPolyphonicNode.tuningTable.frequency(forNoteNumber: 0)),
+//                                    minimumNoteNumber: 0, maximumNoteNumber: 0, minimumVelocity: 0, maximumVelocity: 127,
+//                                    isLooping: false, loopStartPoint: 0.0, loopEndPoint: 0.0, startPoint: 0.0, endPoint: 0.0)
+//        drumSampler.loadCompressedSampleFile(from: AKSampleFileDescriptor(sampleDescriptor: sd, path: instrumentPath))
+//        drumSampler.buildKeyMap()
+        drumSampler.play(noteNumber: UInt8(note.pitch), velocity: 127)
+    }
+
+    func stopDrum(pitch: Int) {
+        drumSampler.stop(noteNumber: UInt8(pitch))
+    }
+
     func setInstrumentTo(instrumentNumber: Int) {
         let instrumentPath = Bundle.main.resourcePath!+"/Sample Instruments Compressed/" + AudioEngineConfig.instrumentPath[instrumentNumber]
         sampler.loadSFZ(path: instrumentPath, fileName: AudioEngineConfig.instrumentPath[instrumentNumber] + ".sfz")
+    }
+
+    func loadDrums() {
+        let instrumentPath = Bundle.main.resourcePath!+"/Sample Instruments Compressed/" + AudioEngineConfig.instrumentPath[21]
+        drumSampler.loadSFZ(path: instrumentPath, fileName: AudioEngineConfig.instrumentPath[21] + ".sfz")
     }
 
     internal func createFileUrl(fileName: String, filePath: String) -> URL {
@@ -115,10 +137,12 @@ import Foundation
 
     func stopSampler() {
         sampler.stopAllVoices()
+        drumSampler.stopAllVoices()
     }
 
     func resumeSampler() {
         sampler.restartVoices()
+        drumSampler.restartVoices()
     }
 
     func setupSampler() {
@@ -126,7 +150,12 @@ import Foundation
         sampler.decayDuration = 0.1
         sampler.sustainLevel = 0.5
         sampler.releaseDuration = 0.5
+        drumSampler.attackDuration = 0.01
+        drumSampler.decayDuration = 0.1
+        drumSampler.sustainLevel = 0.5
+        drumSampler.releaseDuration = 0.5
         setInstrumentTo(instrumentNumber: 0)
+        loadDrums()
     }
 
     func sequencerCallback(status: MIDIByte, noteNumber: MIDINoteNumber, velocity: MIDIVelocity) {

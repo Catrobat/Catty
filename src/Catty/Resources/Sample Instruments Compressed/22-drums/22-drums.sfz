@@ -1,36 +1,36 @@
-<group>lokey=1 hikey=1 pitch_keycenter=1 pitch_keytrack=1
+<group>lokey=0 hikey=0 pitch_keycenter=0 pitch_keytrack=1
 <region> lovel=000 hivel=127 amp_velcurve_127=1 sample=1-snare.wav
-<group>lokey=2 hikey=2 pitch_keycenter=2 pitch_keytrack=1
+<group>lokey=1 hikey=1 pitch_keycenter=1 pitch_keytrack=1
 <region> lovel=000 hivel=127 amp_velcurve_127=1 sample=2-bass-drum.wav
-<group>lokey=3 hikey=3 pitch_keycenter=3 pitch_keytrack=1
+<group>lokey=2 hikey=2 pitch_keycenter=2 pitch_keytrack=1
 <region> lovel=000 hivel=127 amp_velcurve_127=1 sample=3-side-stick.wav
-<group>lokey=4 hikey=4 pitch_keycenter=4 pitch_keytrack=1
+<group>lokey=3 hikey=3 pitch_keycenter=3 pitch_keytrack=1
 <region> lovel=000 hivel=127 amp_velcurve_127=1 sample=4-crash-cymbal.wav
-<group>lokey=5 hikey=5 pitch_keycenter=5 pitch_keytrack=1
+<group>lokey=4 hikey=4 pitch_keycenter=4 pitch_keytrack=1
 <region> lovel=000 hivel=127 amp_velcurve_127=1 sample=5-open-hi-hat.wav
-<group>lokey=6 hikey=6 pitch_keycenter=6 pitch_keytrack=1
+<group>lokey=5 hikey=5 pitch_keycenter=5 pitch_keytrack=1
 <region> lovel=000 hivel=127 amp_velcurve_127=1 sample=6-closed-hi-hat.wav
-<group>lokey=7 hikey=7 pitch_keycenter=7 pitch_keytrack=1
+<group>lokey=6 hikey=6 pitch_keycenter=6 pitch_keytrack=1
 <region> lovel=000 hivel=127 amp_velcurve_127=1 sample=7-tambourine.wav
-<group>lokey=8 hikey=8 pitch_keycenter=8 pitch_keytrack=1
+<group>lokey=7 hikey=7 pitch_keycenter=7 pitch_keytrack=1
 <region> lovel=000 hivel=127 amp_velcurve_127=1 sample=8-hand-clap.wav
-<group>lokey=9 hikey=9 pitch_keycenter=9 pitch_keytrack=1
+<group>lokey=8 hikey=8 pitch_keycenter=8 pitch_keytrack=1
 <region> lovel=000 hivel=127 amp_velcurve_127=1 sample=9-claves.wav
-<group>lokey=10 hikey=10 pitch_keycenter=10 pitch_keytrack=1
+<group>lokey=9 hikey=9 pitch_keycenter=9 pitch_keytrack=1
 <region> lovel=000 hivel=127 amp_velcurve_127=1 sample=10-wood-block.wav
-<group>lokey=11 hikey=11 pitch_keycenter=11 pitch_keytrack=1
+<group>lokey=10 hikey=10 pitch_keycenter=10 pitch_keytrack=1
 <region> lovel=000 hivel=127 amp_velcurve_127=1 sample=11-cowbell.wav
-<group>lokey=12 hikey=12 pitch_keycenter=12 pitch_keytrack=1
+<group>lokey=11 hikey=11 pitch_keycenter=11 pitch_keytrack=1
 <region> lovel=000 hivel=127 amp_velcurve_127=1 sample=12-triangle.wav
-<group>lokey=13 hikey=13 pitch_keycenter=13 pitch_keytrack=1
+<group>lokey=12 hikey=12 pitch_keycenter=12 pitch_keytrack=1
 <region> lovel=000 hivel=127 amp_velcurve_127=1 sample=13-bongo.wav
-<group>lokey=14 hikey=14 pitch_keycenter=14 pitch_keytrack=1
+<group>lokey=13 hikey=13 pitch_keycenter=13 pitch_keytrack=1
 <region> lovel=000 hivel=127 amp_velcurve_127=1 sample=14-conga.wav
-<group>lokey=15 hikey=15 pitch_keycenter=15 pitch_keytrack=1
+<group>lokey=14 hikey=14 pitch_keycenter=14 pitch_keytrack=1
 <region> lovel=000 hivel=127 amp_velcurve_127=1 sample=15-cabasa.wav
-<group>lokey=16 hikey=16 pitch_keycenter=16 pitch_keytrack=1
+<group>lokey=15 hikey=15 pitch_keycenter=15 pitch_keytrack=1
 <region> lovel=000 hivel=127 amp_velcurve_127=1 sample=16-guiro.wav
-<group>lokey=17 hikey=17 pitch_keycenter=17 pitch_keytrack=1
+<group>lokey=16 hikey=16 pitch_keycenter=16 pitch_keytrack=1
 <region> lovel=000 hivel=127 amp_velcurve_127=1 sample=17-vibraslap.wav
-<group>lokey=18 hikey=18 pitch_keycenter=18 pitch_keytrack=1
+<group>lokey=17 hikey=17 pitch_keycenter=17 pitch_keytrack=1
 <region> lovel=000 hivel=127 amp_velcurve_127=1 sample=18-cuica.wav

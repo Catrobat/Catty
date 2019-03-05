@@ -405,6 +405,7 @@ let kLocalizedThink = NSLocalizedString("Think", comment: "")
 let kLocalizedSpeak = NSLocalizedString("Speak", comment: "")
 let kLocalizedAndWait = NSLocalizedString("and wait", comment: "")
 let kLocalizedPlayNote = NSLocalizedString("Play note", comment: "")
+let kLocalizedPlayDrum = NSLocalizedString("Play drum", comment: "")
 let kLocalizedBeats = NSLocalizedString("beats", comment: "")
 
 
@@ -777,6 +778,24 @@ let kLocalizedMarimba = NSLocalizedString("(19) Marimba", comment: "")
 let kLocalizedSynthLead = NSLocalizedString("(20) Synth Lead", comment: "")
 let kLocalizedSynthPad = NSLocalizedString("(21) Synth Pad", comment: "")
 
+let kLocalizedSnareDrum = NSLocalizedString("(1) Snare Drum", comment: "")
+let kLocalizedBassDrum = NSLocalizedString("(2) Bass Drum", comment: "")
+let kLocalizedSideStick = NSLocalizedString("(3) Side Stick", comment: "")
+let kLocalizedCrashCymbal = NSLocalizedString("(4) Crash Cymbal", comment: "")
+let kLocalizedOpenHiHat = NSLocalizedString("(5) Open Hi-Hat", comment: "")
+let kLocalizedClosedHiHat = NSLocalizedString("(6) Closed Hi-Hat", comment: "")
+let kLocalizedTambourine = NSLocalizedString("(7) Tambourine", comment: "")
+let kLocalizedHandClap = NSLocalizedString("(8) Hand Clap", comment: "")
+let kLocalizedClaves = NSLocalizedString("(9) Claves", comment: "")
+let kLocalizedWoodBlock = NSLocalizedString("(10) Wood Block", comment: "")
+let kLocalizedCowbell = NSLocalizedString("(11) Cowbell", comment: "")
+let kLocalizedTriangle = NSLocalizedString("(12) Triangle", comment: "")
+let kLocalizedWoodenBongo = NSLocalizedString("(13) Bongo", comment: "")
+let kLocalizedConga = NSLocalizedString("(14) Conga", comment: "")
+let kLocalizedCabasa = NSLocalizedString("(15) Cabasa", comment: "")
+let kLocalizedGuiro = NSLocalizedString("(16) Guiro", comment: "")
+let kLocalizedVibraslap = NSLocalizedString("(17) Vibraslap", comment: "")
+let kLocalizedCuica = NSLocalizedString("(18) Cuica", comment: "")
 
 //************************************************************************************************************
 //****************************************       Debug        ************************************************

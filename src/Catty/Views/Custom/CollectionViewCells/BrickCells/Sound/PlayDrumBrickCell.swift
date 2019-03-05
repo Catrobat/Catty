@@ -22,10 +22,13 @@
 
 import Foundation
 
-@objc(SetInstrumentToBrickCell) class SetInstrumentToBrickCell: BrickCell {
+@objc(PlayDrumBrickCell) class PlayDrumBrickCell: BrickCell {
 
-    public var messageComboBoxView: iOSCombobox?
-    public var textLabel: UILabel?
+    public var firstTextLabel: UILabel?
+    public var drumChoiceCombobox: iOSCombobox?
+    public var secondTextLabel: UILabel?
+    public var durationTextField: UITextField?
+    public var thirdTextLabel: UILabel?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -36,15 +39,18 @@ import Foundation
     }
 
     override func draw(_ rect: CGRect) {
-        BrickShapeFactory.drawSquareBrickShape(withFill: UIColor.soundBrickViolet(), stroke: UIColor.soundBrickStroke(), height: CGFloat(mediumBrick), width: Util.screenWidth())
+        BrickShapeFactory.drawSquareBrickShape(withFill: UIColor.soundBrickViolet(), stroke: UIColor.soundBrickStroke(), height: CGFloat(largeBrick), width: Util.screenWidth())
     }
 
     override static func cellHeight() -> CGFloat {
-        return CGFloat(kBrickHeight2h)
+        return CGFloat(kBrickHeight3h)
     }
 
     override func hookUpSubViews(_ inlineViewSubViews: [Any]!) {
-        self.textLabel = inlineViewSubViews[0] as? UILabel
-        self.messageComboBoxView = inlineViewSubViews[1] as? iOSCombobox
+        self.firstTextLabel = inlineViewSubViews[0] as? UILabel
+        self.drumChoiceCombobox = inlineViewSubViews[1] as? iOSCombobox
+        self.secondTextLabel = inlineViewSubViews[2] as? UILabel
+        self.durationTextField = inlineViewSubViews[3] as? UITextField
+        self.thirdTextLabel = inlineViewSubViews[4] as? UILabel
     }
 }

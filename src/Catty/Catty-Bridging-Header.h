@@ -57,7 +57,6 @@
 #import "SpeakAndWaitBrick.h"
 #import "ChangeVolumeByNBrick.h"
 #import "SetVolumeToBrick.h"
-#import "PlayNoteBrick.h"
 #import "SetVariableBrick.h"
 #import "ChangeVariableBrick.h"
 #import "VibrationBrick.h"

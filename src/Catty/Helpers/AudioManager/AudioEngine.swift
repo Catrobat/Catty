@@ -83,13 +83,25 @@ import Foundation
     func playNote(note: Note, key: String) {
         let channel = getAudioChannel(key: key)
         activeNotes.insert(note)
-        note.setActive()
         channel.playNote(note: note)
+        note.setActive()
     }
 
     func stopNote(pitch: Int, key: String) {
         let channel = getAudioChannel(key: key)
         channel.stopNote(pitch: pitch)
+    }
+
+    func playDrum(note: Note, key: String) {
+        let channel = getAudioChannel(key: key)
+        activeNotes.insert(note)
+        note.setActive()
+        channel.playDrum(note: note)
+    }
+
+    func stopDrum(pitch: Int, key: String) {
+        let channel = getAudioChannel(key: key)
+        channel.stopDrum(pitch: pitch)
     }
 
     func setInstrumentTo(instrumentNumber: Int, key: String) {

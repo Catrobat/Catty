@@ -24,6 +24,8 @@ import Foundation
 
 class AudioEngineConfig {
 
+    public static let DEFAULT_INTERVAL = Double(1)
+
     public static let localizedInstrumentNames: [String] = [kLocalizedPiano,
                                                             kLocalizedElectricPiano,
                                                             kLocalizedOrgan,
@@ -46,6 +48,25 @@ class AudioEngineConfig {
                                                             kLocalizedSynthLead,
                                                             kLocalizedSynthPad]
 
+    public static let localizedDrumNames: [String] = [kLocalizedSnareDrum,
+                                                      kLocalizedBassDrum,
+                                                      kLocalizedSideStick,
+                                                      kLocalizedCrashCymbal,
+                                                      kLocalizedOpenHiHat,
+                                                      kLocalizedClosedHiHat,
+                                                      kLocalizedTambourine,
+                                                      kLocalizedHandClap,
+                                                      kLocalizedClaves,
+                                                      kLocalizedWoodBlock,
+                                                      kLocalizedCowbell,
+                                                      kLocalizedTriangle,
+                                                      kLocalizedWoodenBongo,
+                                                      kLocalizedConga,
+                                                      kLocalizedCabasa,
+                                                      kLocalizedGuiro,
+                                                      kLocalizedVibraslap,
+                                                      kLocalizedCuica]
+
     public static let instrumentPath: [String] = ["1-piano",
                                                   "2-electric-piano",
                                                   "3-organ",
@@ -66,5 +87,6 @@ class AudioEngineConfig {
                                                   "18-steel-drum",
                                                   "19-marim",
                                                   "20-synth-lead",
-                                                  "21-synth-pad"]
+                                                  "21-synth-pad",
+                                                  "22-drums"]
 }

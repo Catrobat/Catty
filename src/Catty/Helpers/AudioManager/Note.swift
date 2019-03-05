@@ -25,15 +25,21 @@ import Foundation
 class Note: NSObject {
     var noteDurationTimer: Timer
     var pitch: Int
+    var beats: Double
+    var bpm: Double
     var pauseDate: Date?
     var previousFireDate: Date?
 
-    init(pitch: Int, noteDurationTimer: Timer) {
+    init(pitch: Int, beats: Double, bpm: Double, noteDurationTimer: Timer) {
         self.noteDurationTimer = noteDurationTimer
         self.pitch = pitch
+        self.beats = beats
+        self.bpm = bpm
     }
 
     func setActive() {
+        let durationInSeconds = beats * 60 / bpm
+        noteDurationTimer.fireDate = Date(timeInterval: durationInSeconds, since: Date())
         let mainRunLoop = RunLoop.main
         mainRunLoop.add(noteDurationTimer, forMode: RunLoop.Mode.default)
     }
@@ -47,7 +53,7 @@ class Note: NSObject {
     func resume() {
         if let pauseDate = pauseDate, let previousFireDate = previousFireDate {
             let pauseTime = -pauseDate.timeIntervalSinceNow
-            noteDurationTimer.fireDate = Date.init(timeInterval: pauseTime, since: previousFireDate)
+            noteDurationTimer.fireDate = Date(timeInterval: pauseTime, since: previousFireDate)
         } else {
             noteDurationTimer.fire()
         }

@@ -20,34 +20,29 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc extension PlayNoteBrick: CBInstructionProtocol {
-
-
+@objc extension PlayDrumBrick: CBInstructionProtocol {
 
     @nonobjc func instruction(audioEngine: AudioEngine) -> CBInstruction {
         guard let spriteObject = self.script?.object else { fatalError("This should never happen") }
         let spriteObjectName = spriteObject.name
 
         return CBInstruction.waitExecClosure { context, _ in
-            let pitch = context.formulaInterpreter.interpretInteger(self.pitch, for: spriteObject)
-            let durationInBeats = context.formulaInterpreter.interpretDouble(self.duration, for: spriteObject)
             let waitUntilNoteFinished = NSCondition()
             waitUntilNoteFinished.accessibilityHint = "0"
 
-            // Timer is set with default dummy interval. Real interval/firing date is set immediately before note starts playing to assure accurate timing
+            let durationInBeats = context.formulaInterpreter.interpretDouble(self.duration, for: spriteObject)
             let noteDurationTimer = Timer.init(timeInterval: AudioEngineConfig.DEFAULT_INTERVAL, target: self,
-                                               selector: #selector(PlayNoteBrick.noteOff(timer:)),
+                                               selector: #selector(PlayDrumBrick.noteOff(timer:)),
                                                userInfo: waitUntilNoteFinished, repeats: false)
-            let note = Note(pitch: pitch, beats: durationInBeats, bpm: audioEngine.bpm, noteDurationTimer: noteDurationTimer)
-
-            audioEngine.playNote(note: note, key: spriteObjectName!)
+            let note = Note(pitch: self.drumChoice, beats:durationInBeats, bpm: audioEngine.bpm, noteDurationTimer: noteDurationTimer)
+            audioEngine.playDrum(note: note, key: spriteObjectName!)
 
             waitUntilNoteFinished.lock()
             while waitUntilNoteFinished.accessibilityHint == "0" { //accessibilityHint used because synthesizer.speaking not yet true.
                 waitUntilNoteFinished.wait()
             }
             waitUntilNoteFinished.unlock()
-            audioEngine.stopNote(pitch: pitch, key: spriteObjectName!)
+            audioEngine.stopDrum(pitch: self.drumChoice, key: spriteObjectName!)
             audioEngine.activeNotes.remove(note)
         }
     }
