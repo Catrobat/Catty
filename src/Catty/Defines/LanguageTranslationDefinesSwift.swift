@@ -408,6 +408,7 @@ let kLocalizedPlayNote = NSLocalizedString("Play note", comment: "")
 let kLocalizedPlayDrum = NSLocalizedString("Play drum", comment: "")
 let kLocalizedSetTempoTo = NSLocalizedString("Set tempo to", comment: "")
 let kLocalizedChangeTempoBy = NSLocalizedString("Change tempo by", comment: "")
+let kLocalizedRestFor = NSLocalizedString("Rest for", comment: "")
 let kLocalizedBeats = NSLocalizedString("beats", comment: "")
 
 // variable

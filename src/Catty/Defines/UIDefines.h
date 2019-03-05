@@ -197,9 +197,10 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
     kSpeakAndWaitBrick         = 305,
     kPlayNoteBrick             = 306,
     kPlayDrumBrick             = 307,
-    kSetInstrumentToBrick      = 308,
-    kSetTempoToBrick           = 309,
-    kChangeTempoByBrick        = 310,
+    kRestBrick                 = 308,
+    kSetInstrumentToBrick      = 309,
+    kSetTempoToBrick           = 310,
+    kChangeTempoByBrick        = 311,
 
 
     // 4xx variable and list bricks
@@ -327,6 +328,7 @@ WRAP_BRICK_TYPE_IN_NSSTRING(kChangeVariableBrick)\
     @"SpeakAndWaitBrick"         : @(kSpeakAndWaitBrick),\
     @"PlayNoteBrick"             : @(kPlayNoteBrick),\
     @"PlayDrumBrick"             : @(kPlayDrumBrick),\
+    @"RestBrick"                 : @(kRestBrick),\
     @"SetInstrumentToBrick"      : @(kSetInstrumentToBrick),\
     @"SetTempoToBrick"           : @(kSetTempoToBrick),\
     @"ChangeTempoByBrick"        : @(kChangeTempoByBrick),\
@@ -435,6 +437,7 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 @"SpeakAndWaitBrick"         : @(kBrickHeight2h),\
 @"PlayNoteBrick"             : @(kBrickHeight1h),\
 @"PlayDrumBrick"             : @(kBrickHeight3h),\
+@"RestBrick"                 : @(kBrickHeight1h),\
 @"SetInstrumentToBrick"      : @(kBrickHeight2h),\
 @"SetTempoToBrick"           : @(kBrickHeight1h),\
 @"ChangeTempoByBrick"        : @(kBrickHeight1h),\

@@ -23,39 +23,41 @@
 import Foundation
 
 class Note: NSObject {
-    var noteDurationTimer: Timer
+    var durationTimer: Timer
     var pitch: Int
     var beats: Double
     var bpm: Double
+    var isPause: Bool
     var pauseDate: Date?
     var previousFireDate: Date?
 
-    init(pitch: Int, beats: Double, bpm: Double, noteDurationTimer: Timer) {
-        self.noteDurationTimer = noteDurationTimer
+    init(pitch: Int, beats: Double, bpm: Double, durationTimer: Timer, isPause: Bool) {
+        self.durationTimer = durationTimer
         self.pitch = pitch
         self.beats = beats
         self.bpm = bpm
+        self.isPause = isPause
     }
 
     func setActive() {
         let durationInSeconds = beats * 60 / bpm
-        noteDurationTimer.fireDate = Date(timeInterval: durationInSeconds, since: Date())
+        durationTimer.fireDate = Date(timeInterval: durationInSeconds, since: Date())
         let mainRunLoop = RunLoop.main
-        mainRunLoop.add(noteDurationTimer, forMode: RunLoop.Mode.default)
+        mainRunLoop.add(durationTimer, forMode: RunLoop.Mode.default)
     }
 
     func pause() {
-        previousFireDate = noteDurationTimer.fireDate
+        previousFireDate = durationTimer.fireDate
         pauseDate = Date()
-        noteDurationTimer.fireDate = Date.distantFuture
+        durationTimer.fireDate = Date.distantFuture
     }
 
     func resume() {
         if let pauseDate = pauseDate, let previousFireDate = previousFireDate {
             let pauseTime = -pauseDate.timeIntervalSinceNow
-            noteDurationTimer.fireDate = Date(timeInterval: pauseTime, since: previousFireDate)
+            durationTimer.fireDate = Date(timeInterval: pauseTime, since: previousFireDate)
         } else {
-            noteDurationTimer.fire()
+            durationTimer.fire()
         }
     }
 }

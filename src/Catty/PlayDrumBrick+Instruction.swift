@@ -31,10 +31,16 @@
             waitUntilNoteFinished.accessibilityHint = "0"
 
             let durationInBeats = context.formulaInterpreter.interpretDouble(self.duration, for: spriteObject)
-            let noteDurationTimer = Timer.init(timeInterval: AudioEngineConfig.DEFAULT_INTERVAL, target: self,
-                                               selector: #selector(PlayDrumBrick.noteOff(timer:)),
-                                               userInfo: waitUntilNoteFinished, repeats: false)
-            let note = Note(pitch: self.drumChoice, beats:durationInBeats, bpm: audioEngine.bpm, noteDurationTimer: noteDurationTimer)
+            let durationTimer = Timer.init(timeInterval: AudioEngineConfig.DEFAULT_INTERVAL,
+                                           target: self,
+                                           selector: #selector(PlayDrumBrick.noteOff(timer:)),
+                                           userInfo: waitUntilNoteFinished,
+                                           repeats: false)
+            let note = Note(pitch: self.drumChoice,
+                            beats: durationInBeats,
+                            bpm: audioEngine.bpm,
+                            durationTimer: durationTimer,
+                            isPause: false)
             audioEngine.playDrum(note: note, key: spriteObjectName!)
 
             waitUntilNoteFinished.lock()

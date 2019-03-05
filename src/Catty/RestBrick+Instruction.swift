@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc extension PlayNoteBrick: CBInstructionProtocol {
+@objc extension RestBrick: CBInstructionProtocol {
 
 
 
@@ -29,16 +29,15 @@
         let spriteObjectName = spriteObject.name
 
         return CBInstruction.waitExecClosure { context, _ in
-            let pitch = context.formulaInterpreter.interpretInteger(self.pitch, for: spriteObject)
             let durationInBeats = context.formulaInterpreter.interpretDouble(self.duration, for: spriteObject)
             let waitUntilNoteFinished = NSCondition()
             waitUntilNoteFinished.accessibilityHint = "0"
 
-            // Timer is set with default dummy interval. Real interval/firing date is set immediately before note starts playing to assure accurate timing
+            // Timer is set with default dummy interval. Real interval/firing date is set immediately before pause starts to assure accurate timing
             let durationTimer = Timer.init(timeInterval: AudioEngineConfig.DEFAULT_INTERVAL, target: self,
-                                               selector: #selector(PlayNoteBrick.noteOff(timer:)),
+                                               selector: #selector(RestBrick.noteOff(timer:)),
                                                userInfo: waitUntilNoteFinished, repeats: false)
-            let note = Note(pitch: pitch, beats: durationInBeats, bpm: audioEngine.bpm, durationTimer: durationTimer, isPause: false)
+            let note = Note(pitch: -1, beats: durationInBeats, bpm: audioEngine.bpm, durationTimer: durationTimer, isPause: true)
 
             audioEngine.playNote(note: note, key: spriteObjectName!)
 
@@ -47,7 +46,6 @@
                 waitUntilNoteFinished.wait()
             }
             waitUntilNoteFinished.unlock()
-            audioEngine.stopNote(pitch: pitch, key: spriteObjectName!)
             audioEngine.activeNotes.remove(note)
         }
     }

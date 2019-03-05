@@ -83,7 +83,9 @@ import Foundation
     func playNote(note: Note, key: String) {
         let channel = getAudioChannel(key: key)
         activeNotes.insert(note)
-        channel.playNote(note: note)
+        if (!note.isPause) {
+            channel.playNote(note: note)
+        }
         note.setActive()
     }
 

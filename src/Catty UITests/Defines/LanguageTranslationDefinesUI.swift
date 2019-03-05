@@ -408,6 +408,7 @@ let kLocalizedPlayNote = NSLocalizedString("Play note", bundle: Bundle(for: Lang
 let kLocalizedPlayDrum = NSLocalizedString("Play drum", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedSetTempoTo = NSLocalizedString("Set tempo to", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedChangeTempoBy = NSLocalizedString("Change tempo by", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedRestFor = NSLocalizedString("Rest for", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedBeats = NSLocalizedString("beats", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
 // variable
