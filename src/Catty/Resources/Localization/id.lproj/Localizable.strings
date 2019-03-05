@@ -1,0 +1,1751 @@
+/* No comment provided by engineer. */
+"A message with the same name already exists, try again." = "Pesan dengan nama yang sama sudah ada, coba lagi.";
+
+/* No comment provided by engineer. */
+"A project with the same name already exists, try again." = "A project with the same name already exists, try again.";
+
+/* No comment provided by engineer. */
+"About Catrobat" = "Tentang Catrobat";
+
+/* No comment provided by engineer. */
+"About Pocket Code" = "Tentang Pocket Code";
+
+/* No comment provided by engineer. */
+"acceleration-sensor" = "akselerasi-sensor";
+
+/* No comment provided by engineer. */
+"acceleration_x" = "percepatan_x";
+
+/* No comment provided by engineer. */
+"acceleration_y" = "percepatan_y";
+
+/* No comment provided by engineer. */
+"acceleration_z" = "percepatan_z";
+
+/* No comment provided by engineer. */
+"Add" = "Tambahkan";
+
+/* No comment provided by engineer. */
+"add comment here..." = "tambahkan komentar di sini…";
+
+/* No comment provided by engineer. */
+"Add image" = "Tambahkan citra";
+
+/* Action sheet menu title */
+"Add look" = "Tambahkan penampilan";
+
+/* No comment provided by engineer. */
+"Add object" = "Tambahkan objek";
+
+/* Action sheet menu title */
+"Add sound" = "Tambahkan suara";
+
+/* No comment provided by engineer. */
+"All Bluetooth devices successfully disconnected" = "Semua perangkat Bluetooth berhasil diputuskan";
+
+/* No comment provided by engineer. */
+"All known Bluetooth devices successfully removed" = "Semua perangkat Bluetooth yang dikenal berhasil dihapus";
+
+/* paint */
+"Alpha" = "Alfa";
+
+/* No comment provided by engineer. */
+"altitude" = "ketinggian";
+
+/* No comment provided by engineer. */
+"An image with the same name already exists, try again." = "Citra dengan nama yang sama sudah ada, cobalah lagi.";
+
+/* No comment provided by engineer. */
+"An object with the same name already exists, try again." = "Objek dengan nama yang sama sudah ada, cobalah lagi.";
+
+/* No comment provided by engineer. */
+"An unknown error occurred. Check your Internet connection." = "Terjadi kesalahan yang tidak diketahui. Periksa koneksi Internet Anda.";
+
+/* No comment provided by engineer. */
+"An unknown error occurred. Please try again later." = "Terjadi kesalahan yang tidak diketahui. Silakan coba lagi nanti.";
+
+/* No comment provided by engineer. */
+"and" = "dan";
+
+/* No comment provided by engineer. */
+"and wait" = "dan tunggu";
+
+/* No comment provided by engineer. */
+"Animate Brick-Parts" = "Menghidupkan bagian-bata";
+
+/* No comment provided by engineer. */
+"Apr" = "Apr";
+
+/* No comment provided by engineer. */
+"April" = "April";
+
+/* No comment provided by engineer. */
+"Arduino" = "Arduino";
+
+/* No comment provided by engineer. */
+"arduino_analog" = "arduino_analog";
+
+/* No comment provided by engineer. */
+"arduino_digital" = "arduino_digital";
+
+/* No comment provided by engineer. */
+"at " = "di ";
+
+/* No comment provided by engineer. */
+"at position" = "pada posisi";
+
+/* paint */
+"Attributes:" = "Atribut:";
+
+/* No comment provided by engineer. */
+"Aug" = "Agt";
+
+/* No comment provided by engineer. */
+"August" = "Agustus";
+
+/* No comment provided by engineer. */
+"Authentication failed" = "Otentikasi gagal";
+
+/* No comment provided by engineer. */
+"Author" = "Penulis";
+
+/* Title of icon shown in the side bar to enable or disable an overlayed view to show the origin of the coordinate system and implicitly the display size. */
+"Axes" = "Sumbu";
+
+/* No comment provided by engineer. */
+"back" = "back";
+
+/* No comment provided by engineer. */
+"Back" = "Kembali";
+
+/* No comment provided by engineer. */
+"Background" = "Latar belakang";
+
+/* No comment provided by engineer. */
+"background_name" = "layarbelakang_nama";
+
+/* No comment provided by engineer. */
+"background_number" = "layarbelakang_nomor";
+
+/* No comment provided by engineer. */
+"Backgrounds" = "Latar belakang";
+
+/* paint */
+"Blue" = "Biru";
+
+/* No comment provided by engineer. */
+"Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings." = "Bluetooth tidak tersedia Perangkat Anda tidak mendukung Bluetooth 4.0 atau chip Bluetooth Anda rusak. Harap periksa dengan koneksi ke perangkat Bluetooth lain di Pengaturan.";
+
+/* No comment provided by engineer. */
+"Bluetooth is turned off. Please turn it on to connect to a Bluetooth device." = "Bluetooth dimatikan. Harap aktifkan untuk terhubung ke perangkat Bluetooth.";
+
+/* paint */
+"bold" = "berani";
+
+/* No comment provided by engineer. */
+"Both" = "Keduanya";
+
+/* No comment provided by engineer. */
+"Bricks" = "Bata";
+
+/* No comment provided by engineer. */
+"brightness" = "kecerahan";
+
+/* No comment provided by engineer. */
+"Broadcast" = "Siaran";
+
+/* No comment provided by engineer. */
+"Broadcast and wait" = "Siaran dan tunggu";
+
+/* paint */
+"Brush" = "Kuas";
+
+/* No comment provided by engineer. */
+"by" = "oleh";
+
+/* No comment provided by engineer. */
+"By registering you agree to our" = "Dengan mendaftar, Anda setuju dengan";
+
+/* No comment provided by engineer. */
+"By switching to the section \"Explore\" you can discover more interesting projects from people all over the world." = "By switching to the section \"Explore\" you can discover more interesting projects from people all over the world.";
+
+/* No comment provided by engineer. */
+"Camera Roll" = "Rol Kamera";
+
+/* No comment provided by engineer. */
+"Can't restart project!" = "Can't restart project!";
+
+/* No comment provided by engineer. */
+"Cancel" = "Batalkan";
+
+/* bluetooth */
+"Cannot connect to device, please try resetting the device and try again." = "Tidak dapat terhubung ke perangkat, coba atur ulang perangkat dan coba lagi.";
+
+/* bluetooth */
+"Cannot connect to device. The device is not responding." = "Tidak dapat terhubung ke perangkat. Perangkat tidak merespons.";
+
+/* No comment provided by engineer. */
+"Cannot connect to the Media Library. Please check your Internet connection." = "Cannot connect to the Media Library. Please check your Internet connection.";
+
+/* No comment provided by engineer. */
+"Categories" = "Kategori";
+
+/* No comment provided by engineer. */
+"ceil" = "ceil";
+
+/* No comment provided by engineer. */
+"Change brightness " = "Ubah kecerahan ";
+
+/* No comment provided by engineer. */
+"Change color " = "Ganti warna ";
+
+/* No comment provided by engineer. */
+"Change size by" = "Ubah ukuran menjadi";
+
+/* No comment provided by engineer. */
+"Change transparency " = "Ubah transparasi ";
+
+/* No comment provided by engineer. */
+"Change variable" = "Ubah variabel";
+
+/* No comment provided by engineer. */
+"Change volume by" = "Mengubah volume oleh";
+
+/* No comment provided by engineer. */
+"Change X by " = "Ubah X dengan ";
+
+/* No comment provided by engineer. */
+"Change Y by " = "Ubah Y dengan ";
+
+/* No comment provided by engineer. */
+"Changes discarded!" = "Perubahan dibuang!";
+
+/* No comment provided by engineer. */
+"Changes saved!" = "Perubahan disimpan!";
+
+/* No comment provided by engineer. */
+"Choose" = "Memilih";
+
+/* No comment provided by engineer. */
+"Choose image" = "Pilih citra";
+
+/* No comment provided by engineer. */
+"Clear graphic effects" = "Hapus efek grafik";
+
+/* No comment provided by engineer. */
+"Close" = "Tutup";
+
+/* paint */
+"Close Paint" = "Tutup pewarnaaan";
+
+/* No comment provided by engineer. */
+"color" = "warna";
+
+/* No comment provided by engineer. */
+"compass" = "Kompas";
+
+/* No comment provided by engineer. */
+"Compute" = "Hitung";
+
+/* No comment provided by engineer. */
+"Computed result is %.2f" = "Hasil perhitungan adalah %.2f";
+
+/* No comment provided by engineer. */
+"Computed result is FALSE" = "Hasil perhitungan SALAH";
+
+/* No comment provided by engineer. */
+"Computed result is TRUE" = "Hasil perhitungan BENAR";
+
+/* No comment provided by engineer. */
+"Confirm Password" = "Konfirmasi kata sandi";
+
+/* bluetooth */
+"Connection failed" = "Koneksi gagal";
+
+/* bluetooth */
+"Connection Lost" = "Koneksi terputus";
+
+/* bluetooth */
+"Connection not possible" = "Koneksi tidak memungkinkan";
+
+/* No comment provided by engineer. */
+"contains" = "berisi";
+
+/* No comment provided by engineer. */
+"Continue" = "Lanjutkan";
+
+/* No comment provided by engineer. */
+"Control" = "Kontrol";
+
+/* No comment provided by engineer. */
+"Copy" = "Salin";
+
+/* No comment provided by engineer. */
+"Copy Brick" = "Salin Batu bata";
+
+/* No comment provided by engineer. */
+"Copy Looks" = "Copy Tampak";
+
+/* No comment provided by engineer. */
+"Copy project" = "Copy project";
+
+/* No comment provided by engineer. */
+"Create & Remix" = "Buat & Remix";
+
+/* No comment provided by engineer. */
+"Create account" = "Membuat akun";
+
+/* No comment provided by engineer. */
+"day" = "hari";
+
+/* No comment provided by engineer. */
+"Debug mode" = "Mode debug";
+
+/* No comment provided by engineer. */
+"Dec" = "Des";
+
+/* No comment provided by engineer. */
+"December" = "Desember";
+
+/* No comment provided by engineer. */
+"degrees" = "derajat";
+
+/* No comment provided by engineer. */
+"Delete" = "Hapus";
+
+/* No comment provided by engineer. */
+"Delete Backgrounds" = "Hapus Latar Belakang";
+
+/* No comment provided by engineer. */
+"Delete Brick" = "Hapus Bata";
+
+/* No comment provided by engineer. */
+"Delete Condition" = "Menghapus kondisi";
+
+/* No comment provided by engineer. */
+"Delete item from list" = "Menghapus item dari daftar";
+
+/* No comment provided by engineer. */
+"Delete Looks" = "Hapus Penampilan";
+
+/* No comment provided by engineer. */
+"Delete Loop" = "Hapus putaran";
+
+/* No comment provided by engineer. */
+"Delete Objects" = "Hapus Objek";
+
+/* No comment provided by engineer. */
+"Delete Project" = "Delete Project";
+
+/* No comment provided by engineer. */
+"Delete Projects" = "Delete Projects";
+
+/* No comment provided by engineer. */
+"Delete Script" = "Hapus tulisan";
+
+/* No comment provided by engineer. */
+"Delete Sounds" = "Hapus Suara";
+
+/* No comment provided by engineer. */
+"Delete these Bricks?" = "Hapus brick ini?";
+
+/* No comment provided by engineer. */
+"Delete these Conditions?" = "Hapus kondisi ini?";
+
+/* No comment provided by engineer. */
+"Delete these Loops?" = "Hapus putaran ini?";
+
+/* No comment provided by engineer. */
+"Delete these Scripts?" = "Hapus script ini?";
+
+/* No comment provided by engineer. */
+"Delete this background" = "Hapus latar belakang ini";
+
+/* No comment provided by engineer. */
+"Delete this Brick?" = "Hapus brick ini?";
+
+/* No comment provided by engineer. */
+"Delete this Condition?" = "Hapus kondisi ini?";
+
+/* No comment provided by engineer. */
+"Delete this look" = "Hapus penampilan ini";
+
+/* No comment provided by engineer. */
+"Delete this Loop?" = "Hapus putaran ini?";
+
+/* No comment provided by engineer. */
+"Delete this object" = "Hapus objek ini";
+
+/* No comment provided by engineer. */
+"Delete this project" = "Delete this project";
+
+/* No comment provided by engineer. */
+"Delete this Script?" = "Hapus script ini?";
+
+/* No comment provided by engineer. */
+"Delete this sound" = "Hapus suara ini";
+
+/* No comment provided by engineer. */
+"Deletion Mode" = "Penghapusan Mode";
+
+/* No comment provided by engineer. */
+"Description" = "Keterangan";
+
+/* No comment provided by engineer. */
+"Details" = "Rincian";
+
+/* bluetooth */
+"Device disconnected." = "Perangkat terputus.";
+
+/* No comment provided by engineer. */
+"device motion-sensor" = "device motion-sensor";
+
+/* No comment provided by engineer. */
+"direction" = "arah";
+
+/* No comment provided by engineer. */
+"Disconnect all devices" = "Lepaskan semua perangkat";
+
+/* No comment provided by engineer. */
+"DO" = "MELAKUKAN";
+
+/* paint */
+"Do you really want to delete the current drawing?" = "Anda yakin ingin menghapus gambar saat ini?";
+
+/* paint */
+"Do you want to save the changes" = "Anda yakin ingin menyimpan perubahan?";
+
+/* No comment provided by engineer. */
+"Done" = "Selesai";
+
+/* No comment provided by engineer. */
+"Download" = "Unduh";
+
+/* No comment provided by engineer. */
+"Download successful" = "Berhasil mengunduh";
+
+/* No comment provided by engineer. */
+"Downloads" = "Unduhan";
+
+/* No comment provided by engineer. */
+"Draw new image" = "Gambar citra baru";
+
+/* No comment provided by engineer. */
+"Duration" = "Durasi";
+
+/* No comment provided by engineer. */
+"Edit" = "Edit";
+
+/* Action sheet menu title */
+"Edit Background" = "Edit Latar Belakang";
+
+/* Action sheet menu title */
+"Edit Backgrounds" = "Edit Latar Belakang";
+
+/* Action sheet menu title */
+"Edit Brick" = "Edit Bata";
+
+/* No comment provided by engineer. */
+"Edit Formula" = "Edit Rumus";
+
+/* Action sheet menu title */
+"Edit Look" = "Edit Penampilan";
+
+/* Action sheet menu title */
+"Edit Looks" = "Edit Penampilan";
+
+/* No comment provided by engineer. */
+"Edit Object" = "Edit objek";
+
+/* No comment provided by engineer. */
+"Edit Project" = "Edit Project";
+
+/* No comment provided by engineer. */
+"Edit Projects" = "Edit Projects";
+
+/* Action sheet menu title */
+"Edit Script" = "Edit Script";
+
+/* Action sheet menu title */
+"Edit Sound" = "Edit Suara";
+
+/* Action sheet menu title */
+"Edit Sounds" = "Edit Suara";
+
+/* No comment provided by engineer. */
+"element" = "elemen";
+
+/* paint */
+"Ellipse / Circle" = "Ellipse / Lingkaran";
+
+/* No comment provided by engineer. */
+"Else" = "Else";
+
+/* No comment provided by engineer. */
+"Email" = "Surel";
+
+/* No comment provided by engineer. */
+"Empty input!" = "Empty input!";
+
+/* No comment provided by engineer. */
+"End If" = "End If";
+
+/* No comment provided by engineer. */
+"End of Loop" = "Akhir Ikal";
+
+/* No comment provided by engineer. */
+"Enter a reason" = "Masukkan alasan";
+
+/* Placeholder for add image-name input field */
+"Enter your image name here..." = "Masukkan nama citra di sini...";
+
+/* Placeholder for list input field */
+"Enter your list name here..." = "Enter your list name here...";
+
+/* Placeholder for message input field */
+"Enter your message here..." = "Masukkan pesan anda disini...";
+
+/* Placeholder for add object-name input field */
+"Enter your object name here..." = "Masukkan nama objek di sini...";
+
+/* Placeholder for project-description input field */
+"Enter your project description here..." = "Enter your project description here...";
+
+/* Placeholder for project-name input field */
+"Enter your project name here..." = "Enter your project name here...";
+
+/* Placeholder for add sound-name input field */
+"Enter your sound name here..." = "Masukkan nama suara di sini...";
+
+/* Placeholder for variable input field */
+"Enter your variable name here..." = "Masukkan nama variabel anda disini...";
+
+/* paint */
+"Eraser" = "Setip";
+
+/* No comment provided by engineer. */
+"Error" = "Kesalahan";
+
+/* No comment provided by engineer. */
+"Error saving file" = "Error saving file";
+
+/* No comment provided by engineer. */
+"Explore" = "Jelajahi";
+
+/* No comment provided by engineer. */
+"Explore apps" = "Jelajahi aplikasi";
+
+/* No comment provided by engineer. */
+"FA" = "FA";
+
+/* No comment provided by engineer. */
+"face_detected" = "wajah_terdeteksi";
+
+/* No comment provided by engineer. */
+"faceposition_x" = "posisi wajah_x";
+
+/* No comment provided by engineer. */
+"faceposition_y" = "posisi wajah_y";
+
+/* No comment provided by engineer. */
+"facesize" = "menghadapi";
+
+/* No comment provided by engineer. */
+"Failed to import item" = "Failed to import item";
+
+/* No comment provided by engineer. */
+"Failed to load featured projects" = "Failed to load featured projects";
+
+/* No comment provided by engineer. */
+"Failed to load recent projects" = "Failed to load recent projects";
+
+/* No comment provided by engineer. */
+"Failed to load sound" = "Failed to load sound";
+
+/* No comment provided by engineer. */
+"Failed to play sound" = "Failed to play sound";
+
+/* No comment provided by engineer. */
+"false" = "palsu";
+
+/* No comment provided by engineer. */
+"Featured Projects" = "Featured Projects";
+
+/* No comment provided by engineer. */
+"Feb" = "Feb";
+
+/* No comment provided by engineer. */
+"February" = "Februari";
+
+/* paint */
+"Fill" = "Isi";
+
+/* No comment provided by engineer. */
+"Flashlight off" = "Senter mati";
+
+/* No comment provided by engineer. */
+"Flashlight on" = "Senter nyala";
+
+/* No comment provided by engineer. */
+"floor" = "lantai";
+
+/* No comment provided by engineer. */
+"Following features used in this project are not compatible with this version of Pocket Code:" = "Following features used in this project are not compatible with this version of Pocket Code:";
+
+/* No comment provided by engineer. */
+"for" = "untuk";
+
+/* No comment provided by engineer. */
+"for all objects" = "untuk semua obyek";
+
+/* No comment provided by engineer. */
+"for this object" = "untuk objek ini";
+
+/* No comment provided by engineer. */
+"Forever" = "Selamanya";
+
+/* No comment provided by engineer. */
+"Forgot password" = "Lupa kata sandi";
+
+/* No comment provided by engineer. */
+"Formula too long!" = "Formula terlalu panjang!";
+
+/* No comment provided by engineer. */
+"Fr" = "Jum";
+
+/* Title of View where the user can see the frequently used bricks. */
+"Frequently Used" = "Sering digunakan";
+
+/* No comment provided by engineer. */
+"Friday" = "Jumat";
+
+/* No comment provided by engineer. */
+"From Camera" = "Dari Kamera";
+
+/* No comment provided by engineer. */
+"front" = "depan";
+
+/* No comment provided by engineer. */
+"Front camera" = "Kamera depan";
+
+/* No comment provided by engineer. */
+"Glide" = "Meluncur";
+
+/* No comment provided by engineer. */
+"Go back" = "Kembali";
+
+/* No comment provided by engineer. */
+"Go to front" = "Pergi ke depan";
+
+/* paint */
+"Green" = "Hijau";
+
+/* No comment provided by engineer. */
+"gyro-sensor" = "gyro-sensor";
+
+/* No comment provided by engineer. */
+"Hello!" = "Halo!";
+
+/* No comment provided by engineer. */
+"Help" = "Bantuan";
+
+/* No comment provided by engineer. */
+"Hide" = "Sembunyi";
+
+/* No comment provided by engineer. */
+"Hide Details" = "Sembunyikan detail";
+
+/* No comment provided by engineer. */
+"Hide variable" = "Sembunyikan variabel";
+
+/* No comment provided by engineer. */
+"Hmmmm!" = "Hmmmm!";
+
+/* No comment provided by engineer. */
+"hour" = "jam";
+
+/* No comment provided by engineer. */
+"If" = "If";
+
+/* No comment provided by engineer. */
+"If on edge, bounce" = "Jika pada tepi, lompat";
+
+/* paint */
+"Image" = "Gambar";
+
+/* No comment provided by engineer. */
+"Image name" = "Nama citra";
+
+/* No comment provided by engineer. */
+"Image source not available" = "Sumber gambar tidak tersedia";
+
+/* Title of prompt shown when a *.catrobat file is imported from a third-party app. */
+"Import File" = "Impor File";
+
+/* No comment provided by engineer. */
+"In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation." = "Untuk menggunakan Pocket Code dan aplikasi lainnya yang ditawarkan oleh proyek Catrobat, Anda harus menyetujui Persyaratan Penggunaan kami dan secara ketat mematuhinya ketika Anda menggunakan Pocket Code dan aplikasi kami lainnya. Silakan simak tautan di bawah ini untuk informasi lebih lanjut.\n\n.";
+
+/* No comment provided by engineer. */
+"inclination_x" = "kecenderungan_x";
+
+/* No comment provided by engineer. */
+"inclination_y" = "kecenderungan_y";
+
+/* No comment provided by engineer. */
+"Information" = "Informasi";
+
+/* No comment provided by engineer. */
+"Insert" = "Sisipkan";
+
+/* paint */
+"Inserted" = "Dimasukkan";
+
+/* No comment provided by engineer. */
+"into list" = "ke daftar";
+
+/* No comment provided by engineer. */
+"Invalid input entered, try again." = "Masukan tidak sah, coba lagi.";
+
+/* No comment provided by engineer. */
+"Invalid URL given!" = "URL yang tidak valid diberikan!";
+
+/* No comment provided by engineer. */
+"iOS." = "iOS.";
+
+/* No comment provided by engineer. */
+"is true" = "benar";
+
+/* No comment provided by engineer. */
+"is true then" = "is true then";
+
+/* paint */
+"italic" = "miring";
+
+/* No comment provided by engineer. */
+"Jan" = "Jan";
+
+/* No comment provided by engineer. */
+"January" = "Januari";
+
+/* No comment provided by engineer. */
+"join" = "bergabung";
+
+/* No comment provided by engineer. */
+"Jul" = "Jul";
+
+/* No comment provided by engineer. */
+"July" = "Juli";
+
+/* No comment provided by engineer. */
+"Jun" = "Jun";
+
+/* No comment provided by engineer. */
+"June" = "Juni";
+
+/* bluetooth */
+"Known devices" = "Perangkat yang dikenal";
+
+/* No comment provided by engineer. */
+"LA" = "LA";
+
+/* No comment provided by engineer. */
+"Last access" = "Akses terakhir";
+
+/* No comment provided by engineer. */
+"last_screen_touch_index" = "index_layar_sentuh_terakhir";
+
+/* No comment provided by engineer. */
+"latitude" = "lintang";
+
+/* No comment provided by engineer. */
+"layer" = "lapisan";
+
+/* No comment provided by engineer. */
+"layers" = "lapisan";
+
+/* No comment provided by engineer. */
+"LED" = "LED";
+
+/* No comment provided by engineer. */
+"Left" = "Kiri";
+
+/* No comment provided by engineer. */
+"Length" = "Panjang";
+
+/* No comment provided by engineer. */
+"length" = "panjang";
+
+/* No comment provided by engineer. */
+"letter" = "surat";
+
+/* paint */
+"Line" = "Garis";
+
+/* No comment provided by engineer. */
+"List name:" = "List name:";
+
+/* No comment provided by engineer. */
+"List type" = "List type";
+
+/* No comment provided by engineer. */
+"Lists" = "Daftar";
+
+/* No comment provided by engineer. */
+"Loading" = "Memuat";
+
+/* No comment provided by engineer. */
+"location" = "location";
+
+/* No comment provided by engineer. */
+"location_accuracy" = "akurasi_lokasi";
+
+/* No comment provided by engineer. */
+"Logic" = "Logika";
+
+/* No comment provided by engineer. */
+"Login" = "Masuk";
+
+/* No comment provided by engineer. */
+"Login successful" = "Berhasil masuk";
+
+/* No comment provided by engineer. */
+"Login/Register" = "Masuk/Daftar";
+
+/* No comment provided by engineer. */
+"Logout" = "Keluar";
+
+/* No comment provided by engineer. */
+"longitude" = "garis bujur";
+
+/* No comment provided by engineer. */
+"Look" = "Lihat";
+
+/* LOOK */
+"look" = "Lihat";
+
+/* No comment provided by engineer. */
+"look_name" = "lihat_nama";
+
+/* No comment provided by engineer. */
+"look_number" = "lihat_nomor";
+
+/* No comment provided by engineer. */
+"Looks" = "Tampilan";
+
+/* No comment provided by engineer. */
+"loudness" = "kenyaringan";
+
+/* No comment provided by engineer. */
+"magnetic-sensor" = "sensor magnetik";
+
+/* No comment provided by engineer. */
+"Mar" = "Mar";
+
+/* No comment provided by engineer. */
+"March" = "Maret";
+
+/* No comment provided by engineer. */
+"Math" = "Matematika";
+
+/* No comment provided by engineer. */
+"May" = "Mei";
+
+/* No comment provided by engineer. */
+"Measure" = "Ukur";
+
+/* No comment provided by engineer. */
+"Media Library" = "Perpustakaan media";
+
+/* paint */
+"Menu" = "Menu";
+
+/* No comment provided by engineer. */
+"Message" = "Pesan";
+
+/* No comment provided by engineer. */
+"message 1" = "pesan 1";
+
+/* No comment provided by engineer. */
+"MI" = "MI";
+
+/* No comment provided by engineer. */
+"minute" = "menit";
+
+/* paint */
+"Mirror" = "Cermin";
+
+/* No comment provided by engineer. */
+"Mo" = "Sen";
+
+/* Prefix of default catrobat project object names (except background object) */
+"Mole" = "Mole";
+
+/* No comment provided by engineer. */
+"Monday" = "Senin";
+
+/* No comment provided by engineer. */
+"month" = "bulan";
+
+/* No comment provided by engineer. */
+"More" = "Lebih";
+
+/* No comment provided by engineer. */
+"More information" = "More information";
+
+/* No comment provided by engineer. */
+"Most Downloaded" = "Terbanyak Diunduh";
+
+/* No comment provided by engineer. */
+"Most Viewed" = "Terbanyak Dilihat";
+
+/* No comment provided by engineer. */
+"Motion" = "Gerak";
+
+/* No comment provided by engineer. */
+"Move" = "Pindah";
+
+/* No comment provided by engineer. */
+"Move Brick" = "Pindahkan Brick";
+
+/* No comment provided by engineer. */
+"Move Looks" = "Pindah Tampak";
+
+/* No comment provided by engineer. */
+"Move Objects" = "Pindahkan Objek";
+
+/* No comment provided by engineer. */
+"Move Phiro motor backward" = "Pindahkan motor Phiro ke belakang";
+
+/* No comment provided by engineer. */
+"Move Phiro motor forward" = "Pindahkan motor Phiro ke depan";
+
+/* No comment provided by engineer. */
+"Move Sounds" = "Pindahkan Suara";
+
+/* Name of the default catrobat project (used as filename!!) */
+"My first project" = "Program pertama saya";
+
+/* Default title of imported photo from camera (taken by camera) */
+"My Image" = "Citra Saya";
+
+/* Title for first (default) object */
+"My Object" = "Objek saya";
+
+/* No comment provided by engineer. */
+"Name" = "Nama";
+
+/* No comment provided by engineer. */
+"Name already exists." = "Name already exists.";
+
+/* No comment provided by engineer. */
+"New" = "Baru";
+
+/* paint */
+"New Canvas" = "Kanvas Baru";
+
+/* No comment provided by engineer. */
+"New List" = "Daftar Baru";
+
+/* No comment provided by engineer. */
+"New Message" = "Pesan baru";
+
+/* No comment provided by engineer. */
+"New Project" = "New Project";
+
+/* No comment provided by engineer. */
+"New Text" = "Teks baru";
+
+/* No comment provided by engineer. */
+"New Variable" = "Variabel Baru";
+
+/* No comment provided by engineer. */
+"New..." = "Baru...";
+
+/* No comment provided by engineer. */
+"Newest" = "Terbaru";
+
+/* No comment provided by engineer. */
+"Next background" = "Latar belakang berikutnya";
+
+/* No comment provided by engineer. */
+"Next look" = "Tampilan berikutnya";
+
+/* No comment provided by engineer. */
+"No" = "Tidak";
+
+/* No comment provided by engineer. */
+"No Camera available" = "Tidak ada kamera yang tersedia";
+
+/* No comment provided by engineer. */
+"No Description available" = "Keterangan tidak tersedia";
+
+/* No comment provided by engineer. */
+"No input. Please enter at least %lu character(s)." = "Tidak ada masukan Harap masukkan minimal %lu karakter.";
+
+/* No comment provided by engineer. */
+"No or invalid image name entered, try again." = "Nama citra yang kosong atau tidak valid dimasukkan, cobalah lagi.";
+
+/* No comment provided by engineer. */
+"No or invalid sound name entered, try again." = "Nama suara yang kosong atau tidak valid dimasukkan, cobalah lagi.";
+
+/* No comment provided by engineer. */
+"No search results" = "Tidak ada hasil pencarian";
+
+/* No comment provided by engineer. */
+"No whitespace character allowed" = "Tidak ada karakter spasi yang diperbolehkan";
+
+/* No comment provided by engineer. */
+"not" = "tidak";
+
+/* No comment provided by engineer. */
+"not available. Continue anyway?" = "tidak tersedia. Terus sin?";
+
+/* No comment provided by engineer. */
+"Not enough free memory to download this project. Please delete some of your projects" = "Not enough free memory to download this project. Please delete some of your projects";
+
+/* No comment provided by engineer. */
+"Not enough Memory" = "Memori tidak cukup";
+
+/* No comment provided by engineer. */
+"Note" = "Catatan";
+
+/* paint */
+"Nothing to crop!" = "Tidak ada yang dipangkas!";
+
+/* No comment provided by engineer. */
+"Nov" = "Nov";
+
+/* No comment provided by engineer. */
+"November" = "November";
+
+/* No comment provided by engineer. */
+"number_of_items" = "jumlah_dari_item";
+
+/* No comment provided by engineer. */
+"Numbers" = "Nomor";
+
+/* No comment provided by engineer. */
+"Object" = "Objek";
+
+/* No comment provided by engineer. */
+"Object lists:" = "Object lists:";
+
+/* No comment provided by engineer. */
+"Object name" = "Nama objek";
+
+/* No comment provided by engineer. */
+"Object variables:" = "Variabel objek:";
+
+/* No comment provided by engineer. */
+"Objects" = "Objek";
+
+/* No comment provided by engineer. */
+"Oct" = "Okt";
+
+/* No comment provided by engineer. */
+"October" = "Oktober";
+
+/* No comment provided by engineer. */
+"off" = "mati";
+
+/* No comment provided by engineer. */
+"OK" = "Oke";
+
+/* No comment provided by engineer. */
+"on" = "aktif";
+
+/* No comment provided by engineer. */
+"only 15 characters allowed" = "hanya 15 karakter yang diperbolehkan";
+
+/* No comment provided by engineer. */
+"Only space is not allowed. Please enter at least %lu other character(s)." = "Ruang tidak diizinkan. Masukkan setidaknya %lu karakter lainnya.";
+
+/* No comment provided by engineer. */
+"Only special characters are not allowed. Please enter at least %lu other character(s)." = "Hanya karakter khusus yang tidak diizinkan. Harap masukkan minimal %lu karakter lainnya.";
+
+/* No comment provided by engineer. */
+"Open" = "Buka ";
+
+/* No comment provided by engineer. */
+"or" = "atau";
+
+/* No comment provided by engineer. */
+"Password" = "Kata sandi";
+
+/* No comment provided by engineer. */
+"Password is not vaild! \n It has to contain at least 6 characters/symbols" = "Sandi tidak sah!   \nSandi harus terdiri dari setidaknya 6 karakter/simbol";
+
+/* No comment provided by engineer. */
+"Passwords do not match" = "Sandi tidak cocok";
+
+/* No comment provided by engineer. */
+"Phiro" = "Phiro";
+
+/* No comment provided by engineer. */
+"phiro_bottom_left" = "phiro_tombol_kiri";
+
+/* No comment provided by engineer. */
+"phiro_bottom_right" = "phiro_tombol_kanan";
+
+/* No comment provided by engineer. */
+"phiro_front_left" = "phiro_depan_kiri";
+
+/* No comment provided by engineer. */
+"phiro_front_right" = "phiro_depan_kanan";
+
+/* No comment provided by engineer. */
+"phiro_side_left" = "phiro_sisi_kiri";
+
+/* No comment provided by engineer. */
+"phiro_side_right" = "phiro_sisi_kanan";
+
+/* paint */
+"Pipette" = "Pipet";
+
+/* No comment provided by engineer. */
+"Place at " = "Tempatkan di ";
+
+/* No comment provided by engineer. */
+"Play Phiro music\n" = "Mainkan musik Phiro\n";
+
+/* No comment provided by engineer. */
+"Please choose another name:" = "Please choose another name:";
+
+/* paint */
+"Please enter a text!" = "Silahkan masukkan teks!";
+
+/* No comment provided by engineer. */
+"Please log in to report this project as inappropriate" = "Please log in to report this project as inappropriate";
+
+/* paint */
+"Please pick a tool" = "Silakan pilih sebuah alat";
+
+/* No comment provided by engineer. */
+"Please select a project to upload" = "Please select a project to upload";
+
+/* bluetooth */
+"Please try resetting the device and try again." = "Coba atur ulang perangkat dan coba lagi.";
+
+/* No comment provided by engineer. */
+"Pocket Code" = "Pocket Code";
+
+/* No comment provided by engineer. */
+"Pocket Code for iOS" = "Pocket Code untuk iOS";
+
+/* No comment provided by engineer. */
+"Pocket Code has been started in debug mode." = "Pocket Code telah dimulai dalam mode debug .";
+
+/* No comment provided by engineer. */
+"Pocket Code has no access to your camera. To permit access, tap settings and activate camera. Your drawing will automatically be saved to PocketCode for you." = "Pocket Code tidak memiliki akses ke gambar anda. Untuk mengizinkan akses, buka pengaturan dan aktifkan kamera. Gambar anda akan secara otomatis disimpan ke PocketCode untuk Anda.";
+
+/* No comment provided by engineer. */
+"Pocket Code has no access to your images. To permit access, tap settings and activate images. Your drawing will automatically be saved to PocketCode for you." = "Pocket Code tidak memiliki akses ke gambar anda. Untuk mengizinkan akses, buka pengaturan dan aktifkan kamera. Gambar anda akan secara otomatis disimpan ke PocketCode untuk Anda.";
+
+/* No comment provided by engineer. */
+"Pocket Code has no access to your microphone. To permit access, tap settings and activate microphone." = "Kode Pocket tidak memiliki akses ke mikrofon Anda. Untuk mengizinkan akses, sentuh pengaturan dan aktifkan mikrofon.";
+
+/* No comment provided by engineer. */
+"Pocket Code is a programming environment for iOS for the visual programming language Catrobat. The code of Pocket Code is mostly under GNU AGPL v3 licence. For further information to the licence please visit following links:" = "Pocket Code adalah lingkungan pemrograman untuk iOS yang berfitur bahasa pemrograman visual Catrobat. Kode sumber Pocket Code umumnya berlisensi GNU AGPL v3. Untuk informasi lebih lanjut tentang lisensi ini kunjungi tautan berikut:";
+
+/* No comment provided by engineer. */
+"Pocket Code let's you play great games and run other fantastic apps like for instance presentations, quizzes and so on." = "Pocket Code memungkinkan Anda bermain gim dan menjalankan aplikasi yang luar biasa lainnya seperti presentasi, kuis dan seterusnya.";
+
+/* No comment provided by engineer. */
+"Pocket Code Recorder" = "Perekam Pocket Code";
+
+/* No comment provided by engineer. */
+"Pocket Code Source Code License" = "Lisensi sumber kode Pocket Code";
+
+/* paint */
+"Pocket Paint" = "Pocket Paint";
+
+/* No comment provided by engineer. */
+"Point in direction" = "Menunjukkan arah";
+
+/* No comment provided by engineer. */
+"Point towards" = "Menunjuk ke arah";
+
+/* paint */
+"Pointer" = "Penunjuk";
+
+/* No comment provided by engineer. */
+"position_x" = "posisi_x";
+
+/* No comment provided by engineer. */
+"position_y" = "posisi_y";
+
+/* No comment provided by engineer. */
+"Preview" = "Pratinjau";
+
+/* No comment provided by engineer. */
+"Previous background" = "Latar belakang sebelumnya";
+
+/* No comment provided by engineer. */
+"Previous look" = "Tampilan sebelumnya";
+
+/* No comment provided by engineer. */
+"Privacy Settings" = "Pengaturan Privasi";
+
+/* No comment provided by engineer. */
+"Problems occured while uploading your project" = "Problems occured while uploading your project";
+
+/* No comment provided by engineer. */
+"Project" = "Proyek";
+
+/* No comment provided by engineer. */
+"Project lists:" = "Project lists:";
+
+/* No comment provided by engineer. */
+"Project name" = "Project name";
+
+/* No comment provided by engineer. */
+"Project Name is necessary!" = "Project Name is necessary!";
+
+/* No comment provided by engineer. */
+"Project variables:" = "Project variables:";
+
+/* No comment provided by engineer. */
+"Projects" = "Program";
+
+/* No comment provided by engineer. */
+"Rate Us" = "Beri Peringkat";
+
+/* No comment provided by engineer. */
+"RE" = "KEMBALI";
+
+/* No comment provided by engineer. */
+"Recording" = "Rekam";
+
+/* paint */
+"Rectangle / Square" = "Rectangl/Square";
+
+/* paint */
+"Red" = "Merah";
+
+/* No comment provided by engineer. */
+"Register" = "Daftar";
+
+/* No comment provided by engineer. */
+"Registration successful" = "Pendaftaran berhasil";
+
+/* No comment provided by engineer. */
+"Remove known devices" = "Hapus perangkat yang dikenal";
+
+/* No comment provided by engineer. */
+"Rename" = "Menamai ulang";
+
+/* No comment provided by engineer. */
+"Rename image" = "Ganti nama citra";
+
+/* No comment provided by engineer. */
+"Rename object" = "Ganti nama objek";
+
+/* No comment provided by engineer. */
+"Rename Project" = "Rename Project";
+
+/* No comment provided by engineer. */
+"Rename sound" = "Ganti nama suara";
+
+/* No comment provided by engineer. */
+"Repeat" = "Pengulangan";
+
+/* No comment provided by engineer. */
+"Repeat until" = "Ulangi sampai";
+
+/* No comment provided by engineer. */
+"Replace item in list" = "Ganti item dalam daftar";
+
+/* No comment provided by engineer. */
+"Report as inappropriate" = "Laporkan sebagai tidak pantas";
+
+/* paint */
+"Resize" = "Ubah ukuran";
+
+/* No comment provided by engineer. */
+"Restart" = "Restart";
+
+/* No comment provided by engineer. */
+"Result" = "Hasil";
+
+/* No comment provided by engineer. */
+"Right" = "Kanan";
+
+/* paint */
+"Rotate" = "Putar";
+
+/* paint */
+"round" = "putaran";
+
+/* No comment provided by engineer. */
+"Sa" = "Sab";
+
+/* No comment provided by engineer. */
+"Saturday" = "Sabtu";
+
+/* paint */
+"Save to CameraRoll" = "Simpan ke Rol Kamera";
+
+/* No comment provided by engineer. */
+"Save to PocketCode" = "Simpan ke Pocket Code";
+
+/* No comment provided by engineer. */
+"Saved" = "Tersimpan";
+
+/* No comment provided by engineer. */
+"Say" = "Mengatakan";
+
+/* No comment provided by engineer. */
+"screen_is_touched" = "layar_di_sentuh";
+
+/* No comment provided by engineer. */
+"screen_touch_x" = "screen_touch_x";
+
+/* No comment provided by engineer. */
+"screen_touch_y" = "layar_sentuh_y";
+
+/* No comment provided by engineer. */
+"Script" = "Naskah";
+
+/* No comment provided by engineer. */
+"Scripts" = "Naskah";
+
+/* bluetooth */
+"Search" = "Cari";
+
+/* No comment provided by engineer. */
+"second" = "kedua";
+
+/* No comment provided by engineer. */
+"second " = "kedua ";
+
+/* No comment provided by engineer. */
+"seconds" = "detik";
+
+/* No comment provided by engineer. */
+"seconds " = "detik ";
+
+/* No comment provided by engineer. */
+"Select All" = "Pilih Semua";
+
+/* bluetooth */
+"Select Arduino" = "Pilih Arduino";
+
+/* No comment provided by engineer. */
+"Select Brick Category" = "Pilih Kategori Bata";
+
+/* No comment provided by engineer. */
+"Select logical operator" = "Pilih operator logika";
+
+/* No comment provided by engineer. */
+"Select mathematical function" = "Pilih fungsi matematika";
+
+/* paint */
+"Select option:" = "Pilih opsi:";
+
+/* bluetooth */
+"Select Phiro" = "Pilih Phiro";
+
+/* No comment provided by engineer. */
+"Sensors" = "Sensor";
+
+/* No comment provided by engineer. */
+"Sep" = "Sep";
+
+/* No comment provided by engineer. */
+"September" = "September";
+
+/* No comment provided by engineer. */
+"Server is taking to long to respond, please try again later." = "Server is taking to long to respond, please try again later.";
+
+/* No comment provided by engineer. */
+"Set Arduino digital pin" = "Tetapkan pin digital Arduino";
+
+/* No comment provided by engineer. */
+"Set Arduino PWM~ pin" = "Atur Arduino PWM ~ pin";
+
+/* No comment provided by engineer. */
+"Set background" = "Atur Latarbelakang";
+
+/* No comment provided by engineer. */
+"Set brightness " = "Atur kecerahan ";
+
+/* No comment provided by engineer. */
+"Set color " = "Atur warna ";
+
+/* No comment provided by engineer. */
+"Set description" = "Atur keterangan";
+
+/* No comment provided by engineer. */
+"Set Phiro light" = "Atur lampu Phiro";
+
+/* No comment provided by engineer. */
+"Set size to" = "Atur ukuran ke";
+
+/* No comment provided by engineer. */
+"Set transparency " = "Atur transparansi ";
+
+/* No comment provided by engineer. */
+"Set variable" = "Set variable";
+
+/* No comment provided by engineer. */
+"Set volume to" = "Atur volume";
+
+/* No comment provided by engineer. */
+"Set X to " = "Set X ke ";
+
+/* No comment provided by engineer. */
+"Set Y to " = "Set Y ke ";
+
+/* No comment provided by engineer. */
+"Settings" = "Pengaturan";
+
+/* No comment provided by engineer. */
+"Show" = "Tampilkan";
+
+/* No comment provided by engineer. */
+"Show Details" = "Menampilkan rincian";
+
+/* No comment provided by engineer. */
+"Show variable" = "Tampilkan variabel";
+
+/* No comment provided by engineer. */
+"size" = "ukuran";
+
+/* No comment provided by engineer. */
+"Size" = "Ukuran";
+
+/* No comment provided by engineer. */
+"Skip" = "Lewati";
+
+/* No comment provided by engineer. */
+"SO" = "JADI";
+
+/* No comment provided by engineer. */
+"Sound" = "Suara";
+
+/* No comment provided by engineer. */
+"Sound name" = "Nama suara";
+
+/* No comment provided by engineer. */
+"Sounds" = "Suara";
+
+/* No comment provided by engineer. */
+"Speak" = "Berbicara";
+
+/* No comment provided by engineer. */
+"Speed" = "Kecepatan";
+
+/* No comment provided by engineer. */
+"sqrt" = "sqrt";
+
+/* paint */
+"square" = "persegi";
+
+/* paint */
+"Stamp" = "Stempel";
+
+/* paint */
+"Stamped" = "Stempel";
+
+/* No comment provided by engineer. */
+"Start sound" = "Mulai suara";
+
+/* No comment provided by engineer. */
+"step" = "langkah";
+
+/* No comment provided by engineer. */
+"steps" = "langkah";
+
+/* No comment provided by engineer. */
+"Stop all sounds" = "Hentikan semua suara";
+
+/* No comment provided by engineer. */
+"Stop Phiro motor" = "Hentikan motor Phiro";
+
+/* No comment provided by engineer. */
+"Su" = "Mgg";
+
+/* No comment provided by engineer. */
+"Sunday" = "Minggu";
+
+/* No comment provided by engineer. */
+"Switch to look" = "Beralih ke tampilan";
+
+/* No comment provided by engineer. */
+"Syntax Error!" = "Galat Sintaksis!";
+
+/* No comment provided by engineer. */
+"Tap \"+\" to add %@" = "Ketuk \"+\" untuk menambahkan %@";
+
+/* Button title at the settings screen to get to the terms of use and services. */
+"Terms of Use and Services" = "Syarat Penggunaan dan Layanan";
+
+/* paint */
+"Text" = "Teks";
+
+/* No comment provided by engineer. */
+"Text message:" = "Pesan Teks:";
+
+/* paint */
+"Text:" = "Teks:";
+
+/* No comment provided by engineer. */
+"Th" = "Kam";
+
+/* No comment provided by engineer. */
+"The description contains invalid characters, try again." = "Keterangan berisi karakter yang tidak valid, cobalah lagi.";
+
+/* No comment provided by engineer. */
+"The featured projects cannot be loaded" = "The featured projects cannot be loaded";
+
+/* No comment provided by engineer. */
+"The following item could not be imported from the Media Library:" = "The following item could not be imported from the Media Library:";
+
+/* No comment provided by engineer. */
+"The input is too long. Please enter maximal %lu character(s)." = "Masukannya terlalu panjang. Silahkan masukkan karakter maksimal %lu.";
+
+/* No comment provided by engineer. */
+"The name contains blocked characters. Please try again!" = "Nama berisi karakter yang diblokir. Silahkan coba lagi!";
+
+/* No comment provided by engineer. */
+"The recent projects cannot be loaded" = "The recent projects cannot be loaded";
+
+/* No comment provided by engineer. */
+"The requested project can not be found. Please choose a different one." = "The requested project can not be found. Please choose a different one.";
+
+/* No comment provided by engineer. */
+"The requested project can not be loaded. Please try again later." = "The requested project can not be loaded. Please try again later.";
+
+/* No comment provided by engineer. */
+"The sound item cannot be loaded" = "The sound item cannot be loaded";
+
+/* No comment provided by engineer. */
+"The sound item cannot be played" = "The sound item cannot be played";
+
+/* No comment provided by engineer. */
+"Think" = "Berpikir";
+
+/* No comment provided by engineer. */
+"This action can not be undone!" = "Tindakan ini tidak dapat diurungkan!";
+
+/* No comment provided by engineer. */
+"This feature is coming soon!" = "Fitur ini akan segera hadir!";
+
+/* No comment provided by engineer. */
+"This variable can not be deleted because it is still in use." = "Variabel ini tidak dapat dihapus karena masih dalam penggunaan.";
+
+/* No comment provided by engineer. */
+"Thursday" = "Kamis";
+
+/* No comment provided by engineer. */
+"TI" = "TI";
+
+/* No comment provided by engineer. */
+"time" = "waktu";
+
+/* No comment provided by engineer. */
+"times" = "kali";
+
+/* No comment provided by engineer. */
+"to" = "untuk";
+
+/* No comment provided by engineer. */
+"to list" = "ke daftar";
+
+/* No comment provided by engineer. */
+"to X:" = "ke X:";
+
+/* No comment provided by engineer. */
+"Today" = "Hari ini";
+
+/* No comment provided by engineer. */
+"transparency" = "transparansi";
+
+/* No comment provided by engineer. */
+"true" = "benar";
+
+/* No comment provided by engineer. */
+"Tu" = "Sel";
+
+/* No comment provided by engineer. */
+"Tuesday" = "Selasa";
+
+/* No comment provided by engineer. */
+"Turn camera" = "Belokkan kamera";
+
+/* No comment provided by engineer. */
+"Turn flashlight" = "Putar senter";
+
+/* No comment provided by engineer. */
+"Turn left" = "Belok kiri";
+
+/* No comment provided by engineer. */
+"Turn right" = "Belok kanan";
+
+/* No comment provided by engineer. */
+"Unable to load project!" = "Unable to load project!";
+
+/* No comment provided by engineer. */
+"Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt." = "Tidak dapat memutar suara ini!\nMungkin suara tidak valid atau berkas rusak.";
+
+/* No comment provided by engineer. */
+"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the left side of your iPhone and tap on play again." = "Tidak dapat memutar suara yang dipilih. Perangkat Anda sedang dalam modus hening. Harap matikan modus hening dengan mengalihkannya pada sisi kiri iPhone Anda, kemudian ketuk putar.";
+
+/* No comment provided by engineer. */
+"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again." = "Tidak dapat memutar suara yang dipilih. Perangkat Anda sedang dalam modus hening. Harap matikan modus hening dengan mengalihkannya pada sisi kanan iPad Anda, kemudian ketuk putar.";
+
+/* paint */
+"underline" = "menggarisbawahi";
+
+/* Button title of alert view to invoke undo if user shakes device */
+"Undo" = "Urung";
+
+/* Description text in alert view if user shakes the device */
+"Undo Drawing?" = "Mengulang gambar?";
+
+/* Description text in alert view if user shakes the device */
+"Undo Typing?" = "Batalkan mengetik?";
+
+/* No comment provided by engineer. */
+"Unexpected Error" = "Unexpected Error";
+
+/* No comment provided by engineer. */
+"Unexpected Error, please try again later." = "Unexpected Error, please try again later.";
+
+/* No comment provided by engineer. */
+"Unknown Element" = "Unknown Element";
+
+/* No comment provided by engineer. */
+"Unselect All" = "Batal Pilih Semua";
+
+/* No comment provided by engineer. */
+"Unsupported Brick:" = "Unsupported Brick:";
+
+/* No comment provided by engineer. */
+"Unsupported Elements" = "Unsupported Elements";
+
+/* No comment provided by engineer. */
+"Unsupported Script:" = "Unsupported Script:";
+
+/* No comment provided by engineer. */
+"Upload" = "Meng-unggah";
+
+/* No comment provided by engineer. */
+"Upload Project" = "Upload Project";
+
+/* No comment provided by engineer. */
+"Upload selected project" = "Upload selected project";
+
+/* No comment provided by engineer. */
+"Upload successful" = "Unggahan berhasil";
+
+/* No comment provided by engineer. */
+"Uploaded" = "Terunggah";
+
+/* No comment provided by engineer. */
+"Use Arduino bricks" = "Gunakan batu bata Arduino";
+
+/* No comment provided by engineer. */
+"Use camera" = "Gunakan kamera";
+
+/* No comment provided by engineer. */
+"Use Phiro bricks" = "Gunakan batu bata Phiro";
+
+/* No comment provided by engineer. */
+"Username" = "Nama pengguna";
+
+/* No comment provided by engineer. */
+"Username must not be blank" = "Nama pengguna tidak boleh kosong";
+
+/* No comment provided by engineer. */
+"Var/List" = "Var/List";
+
+/* No comment provided by engineer. */
+"Variable" = "Variabel";
+
+/* No comment provided by engineer. */
+"Variable name:" = "Nama variabel:";
+
+/* No comment provided by engineer. */
+"Variable or List" = "Variable or List";
+
+/* No comment provided by engineer. */
+"Variable type" = "Tipe variabel";
+
+/* No comment provided by engineer. */
+"Variables" = "Variabel";
+
+/* No comment provided by engineer. */
+"Version" = "Versi";
+
+/* No comment provided by engineer. */
+"Vibrate for" = "Bergetar untuk";
+
+/* No comment provided by engineer. */
+"vibration" = "getaran";
+
+/* No comment provided by engineer. */
+"Views" = "Tampilan";
+
+/* No comment provided by engineer. */
+"Wait" = "Tunggu";
+
+/* No comment provided by engineer. */
+"Wait until" = "Tunggu sampai";
+
+/* No comment provided by engineer. */
+"We" = "Rab";
+
+/* No comment provided by engineer. */
+"Wednesday" = "Rabu";
+
+/* No comment provided by engineer. */
+"weekday" = "hari kerja";
+
+/* No comment provided by engineer. */
+"Welcome to Pocket Code" = "Selamat datang di Pocket Code";
+
+/* No comment provided by engineer. */
+"When project started" = "When project started";
+
+/* No comment provided by engineer. */
+"When screen is touched" = "Saat layar tersentuh";
+
+/* No comment provided by engineer. */
+"When tapped" = "Saat diketuk";
+
+/* No comment provided by engineer. */
+"When you receive" = "Bila Anda menerima";
+
+/* paint */
+"Width selection" = "Pemilihan lebar";
+
+/* No comment provided by engineer. */
+"with" = "dengan";
+
+/* No comment provided by engineer. */
+"X: " = "X: ";
+
+/* No comment provided by engineer. */
+"Y: " = "Y: ";
+
+/* No comment provided by engineer. */
+"year" = "tahun";
+
+/* No comment provided by engineer. */
+"Yes" = "Ya";
+
+/* No comment provided by engineer. */
+"Yesterday" = "Kemarin";
+
+/* No comment provided by engineer. */
+"You are also able to build your own apps, remix existing ones and share them with your friends and other exciting people around the world." = "Anda juga dapat membuat aplikasi sendiri, mencampur yang sudah ada dan membaginya dengan teman dan orang menarik lainnya di seluruh dunia.";
+
+/* No comment provided by engineer. */
+"You have already downloaded this project!" = "You have already downloaded this project!";
+
+/* No comment provided by engineer. */
+"Your email seems to be invalid" = "Email Anda tampaknya tidak sah";
+
+/* paint */
+"Zoom" = "Zum";

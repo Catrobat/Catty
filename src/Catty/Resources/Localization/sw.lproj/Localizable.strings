@@ -1,0 +1,1751 @@
+/* No comment provided by engineer. */
+"A message with the same name already exists, try again." = "Ujumbe wenye jina sawa tayari upo, jaribu tena.";
+
+/* No comment provided by engineer. */
+"A project with the same name already exists, try again." = "A project with the same name already exists, try again.";
+
+/* No comment provided by engineer. */
+"About Catrobat" = "Kuhusu Catrobat";
+
+/* No comment provided by engineer. */
+"About Pocket Code" = "Kuhusu Msimbo wa Mfukoni";
+
+/* No comment provided by engineer. */
+"acceleration-sensor" = "acceleration-sensor";
+
+/* No comment provided by engineer. */
+"acceleration_x" = "mchapuko_x";
+
+/* No comment provided by engineer. */
+"acceleration_y" = "mchapuko_y";
+
+/* No comment provided by engineer. */
+"acceleration_z" = "mchapuko_z";
+
+/* No comment provided by engineer. */
+"Add" = "Ongeza";
+
+/* No comment provided by engineer. */
+"add comment here..." = "ongeza maoni yako hapa...";
+
+/* No comment provided by engineer. */
+"Add image" = "Ongeza picha";
+
+/* Action sheet menu title */
+"Add look" = "Ongeza muonekano";
+
+/* No comment provided by engineer. */
+"Add object" = "Ongeza kipengee";
+
+/* Action sheet menu title */
+"Add sound" = "Ongeza sauti";
+
+/* No comment provided by engineer. */
+"All Bluetooth devices successfully disconnected" = "All Bluetooth devices successfully disconnected";
+
+/* No comment provided by engineer. */
+"All known Bluetooth devices successfully removed" = "All known Bluetooth devices successfully removed";
+
+/* paint */
+"Alpha" = "Alpha";
+
+/* No comment provided by engineer. */
+"altitude" = "muinuko";
+
+/* No comment provided by engineer. */
+"An image with the same name already exists, try again." = "Picha yenye jina sawa tayari ipo, jaribu tena.";
+
+/* No comment provided by engineer. */
+"An object with the same name already exists, try again." = "Kipengee kilicho na jina sawa tayari kipo, jaribu tena.";
+
+/* No comment provided by engineer. */
+"An unknown error occurred. Check your Internet connection." = "Kosa lisilojulikana limetokea. Kagua muunganisho wa mtandao wako.";
+
+/* No comment provided by engineer. */
+"An unknown error occurred. Please try again later." = "Kosa lisilojulikana limetokea. Tafadhali jaribu tena baadaye.";
+
+/* No comment provided by engineer. */
+"and" = "na";
+
+/* No comment provided by engineer. */
+"and wait" = "na subiri";
+
+/* No comment provided by engineer. */
+"Animate Brick-Parts" = "Huisha matofali-sehemu";
+
+/* No comment provided by engineer. */
+"Apr" = "Apr";
+
+/* No comment provided by engineer. */
+"April" = "Aprili";
+
+/* No comment provided by engineer. */
+"Arduino" = "Arduino";
+
+/* No comment provided by engineer. */
+"arduino_analog" = "arduino_analogia";
+
+/* No comment provided by engineer. */
+"arduino_digital" = "arduino_digitali";
+
+/* No comment provided by engineer. */
+"at " = "katika ";
+
+/* No comment provided by engineer. */
+"at position" = "katika nafasi ya";
+
+/* paint */
+"Attributes:" = "Sifa:";
+
+/* No comment provided by engineer. */
+"Aug" = "Aug";
+
+/* No comment provided by engineer. */
+"August" = "Agosti";
+
+/* No comment provided by engineer. */
+"Authentication failed" = "Uhalalishaji umeshindikana";
+
+/* No comment provided by engineer. */
+"Author" = "Mwandishi";
+
+/* Title of icon shown in the side bar to enable or disable an overlayed view to show the origin of the coordinate system and implicitly the display size. */
+"Axes" = "Jira";
+
+/* No comment provided by engineer. */
+"back" = "back";
+
+/* No comment provided by engineer. */
+"Back" = "Nyuma";
+
+/* No comment provided by engineer. */
+"Background" = "Mandharinyuma";
+
+/* No comment provided by engineer. */
+"background_name" = "jina_la_mandharinyuma";
+
+/* No comment provided by engineer. */
+"background_number" = "namba_ya_mandharinyuma";
+
+/* No comment provided by engineer. */
+"Backgrounds" = "Mandharinyuma";
+
+/* paint */
+"Blue" = "Bluu";
+
+/* No comment provided by engineer. */
+"Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings." = "Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings.";
+
+/* No comment provided by engineer. */
+"Bluetooth is turned off. Please turn it on to connect to a Bluetooth device." = "Bluetooth is turned off. Please turn it on to connect to a Bluetooth device.";
+
+/* paint */
+"bold" = "herufi nzito";
+
+/* No comment provided by engineer. */
+"Both" = "Wote";
+
+/* No comment provided by engineer. */
+"Bricks" = "Matofali";
+
+/* No comment provided by engineer. */
+"brightness" = "mwangaza";
+
+/* No comment provided by engineer. */
+"Broadcast" = "Tangaza";
+
+/* No comment provided by engineer. */
+"Broadcast and wait" = "Tangaza na subiri";
+
+/* paint */
+"Brush" = "Brashi";
+
+/* No comment provided by engineer. */
+"by" = "na";
+
+/* No comment provided by engineer. */
+"By registering you agree to our" = "Kwa kujisajili unakubaliana nasi katika";
+
+/* No comment provided by engineer. */
+"By switching to the section \"Explore\" you can discover more interesting projects from people all over the world." = "By switching to the section \"Explore\" you can discover more interesting projects from people all over the world.";
+
+/* No comment provided by engineer. */
+"Camera Roll" = "Camera Roll";
+
+/* No comment provided by engineer. */
+"Can't restart project!" = "Can't restart project!";
+
+/* No comment provided by engineer. */
+"Cancel" = "Sitisha";
+
+/* bluetooth */
+"Cannot connect to device, please try resetting the device and try again." = "Haiwezi kuunganisha kwenye kifaa, tafadhali jaribu kuseti upya kifaa na jaribu tena.";
+
+/* bluetooth */
+"Cannot connect to device. The device is not responding." = "Haiwezi kuunganisha kwenye kifaa. Kifaa hakijibu.";
+
+/* No comment provided by engineer. */
+"Cannot connect to the Media Library. Please check your Internet connection." = "Cannot connect to the Media Library. Please check your Internet connection.";
+
+/* No comment provided by engineer. */
+"Categories" = "Jamii";
+
+/* No comment provided by engineer. */
+"ceil" = "ubao wa paa";
+
+/* No comment provided by engineer. */
+"Change brightness " = "Badili mwangaza ";
+
+/* No comment provided by engineer. */
+"Change color " = "Badili rangi ";
+
+/* No comment provided by engineer. */
+"Change size by" = "Badilisha ukubwa kwa";
+
+/* No comment provided by engineer. */
+"Change transparency " = "Badili uwazi ";
+
+/* No comment provided by engineer. */
+"Change variable" = "Badilisha aina";
+
+/* No comment provided by engineer. */
+"Change volume by" = "Badili sauti kwa";
+
+/* No comment provided by engineer. */
+"Change X by " = "Mabadiliko ya X na ";
+
+/* No comment provided by engineer. */
+"Change Y by " = "Mabadiliko ya X na ";
+
+/* No comment provided by engineer. */
+"Changes discarded!" = "Mabadiliko yameondolewa!";
+
+/* No comment provided by engineer. */
+"Changes saved!" = "Mabadiliko yametunzwa!";
+
+/* No comment provided by engineer. */
+"Choose" = "Chagua";
+
+/* No comment provided by engineer. */
+"Choose image" = "Chagua picha";
+
+/* No comment provided by engineer. */
+"Clear graphic effects" = "Athari ya wazi ya kielezo";
+
+/* No comment provided by engineer. */
+"Close" = "Funga";
+
+/* paint */
+"Close Paint" = "Funga rangi";
+
+/* No comment provided by engineer. */
+"color" = "rangi";
+
+/* No comment provided by engineer. */
+"compass" = "dira";
+
+/* No comment provided by engineer. */
+"Compute" = "kokotoa";
+
+/* No comment provided by engineer. */
+"Computed result is %.2f" = "Matokeo yake iliyowekwa ni %.2f";
+
+/* No comment provided by engineer. */
+"Computed result is FALSE" = "Matokeo yaliyowekwa si kweli";
+
+/* No comment provided by engineer. */
+"Computed result is TRUE" = "Matokeo yaliyowekwa ni kweli";
+
+/* No comment provided by engineer. */
+"Confirm Password" = "Thibitisha nenosiri";
+
+/* bluetooth */
+"Connection failed" = "Uunganisho umeshindikana";
+
+/* bluetooth */
+"Connection Lost" = "Uunganisho umepotea";
+
+/* bluetooth */
+"Connection not possible" = "Uunganisho hauwezekani";
+
+/* No comment provided by engineer. */
+"contains" = "ina";
+
+/* No comment provided by engineer. */
+"Continue" = "Endelea";
+
+/* No comment provided by engineer. */
+"Control" = "Dhibiti";
+
+/* No comment provided by engineer. */
+"Copy" = "Nakili";
+
+/* No comment provided by engineer. */
+"Copy Brick" = "Nakili tofali";
+
+/* No comment provided by engineer. */
+"Copy Looks" = "Nakili miionekano";
+
+/* No comment provided by engineer. */
+"Copy project" = "Copy project";
+
+/* No comment provided by engineer. */
+"Create & Remix" = "Unda & Changanya";
+
+/* No comment provided by engineer. */
+"Create account" = "Unda akaunti";
+
+/* No comment provided by engineer. */
+"day" = "siku";
+
+/* No comment provided by engineer. */
+"Debug mode" = "Hali ya Urekebishaji";
+
+/* No comment provided by engineer. */
+"Dec" = "Dec";
+
+/* No comment provided by engineer. */
+"December" = "Desemba";
+
+/* No comment provided by engineer. */
+"degrees" = "nyuzi";
+
+/* No comment provided by engineer. */
+"Delete" = "Futa";
+
+/* No comment provided by engineer. */
+"Delete Backgrounds" = "Futa Mandharinyuma";
+
+/* No comment provided by engineer. */
+"Delete Brick" = "Futa tofali";
+
+/* No comment provided by engineer. */
+"Delete Condition" = "Futa sharti";
+
+/* No comment provided by engineer. */
+"Delete item from list" = "Futa kipengele kutoka kwenye orodha";
+
+/* No comment provided by engineer. */
+"Delete Looks" = "Futa Muuonekano";
+
+/* No comment provided by engineer. */
+"Delete Loop" = "Futa kitanzi";
+
+/* No comment provided by engineer. */
+"Delete Objects" = "Futa Vipengee";
+
+/* No comment provided by engineer. */
+"Delete Project" = "Delete Project";
+
+/* No comment provided by engineer. */
+"Delete Projects" = "Delete Projects";
+
+/* No comment provided by engineer. */
+"Delete Script" = "Futa hati";
+
+/* No comment provided by engineer. */
+"Delete Sounds" = "Futa sauti";
+
+/* No comment provided by engineer. */
+"Delete these Bricks?" = "Futa matofali haya?";
+
+/* No comment provided by engineer. */
+"Delete these Conditions?" = "Futa masharti haya?";
+
+/* No comment provided by engineer. */
+"Delete these Loops?" = "Futa vitanzi hivi?";
+
+/* No comment provided by engineer. */
+"Delete these Scripts?" = "Futa hati hizi?";
+
+/* No comment provided by engineer. */
+"Delete this background" = "Futa mandharinyuma";
+
+/* No comment provided by engineer. */
+"Delete this Brick?" = "Futa Tofali hili?";
+
+/* No comment provided by engineer. */
+"Delete this Condition?" = "Futa sharti hili?";
+
+/* No comment provided by engineer. */
+"Delete this look" = "Futa muonekano huu";
+
+/* No comment provided by engineer. */
+"Delete this Loop?" = "Futa kitanzi hiki?";
+
+/* No comment provided by engineer. */
+"Delete this object" = "Futa kipengee hiki";
+
+/* No comment provided by engineer. */
+"Delete this project" = "Delete this project";
+
+/* No comment provided by engineer. */
+"Delete this Script?" = "Futa Hati hii?";
+
+/* No comment provided by engineer. */
+"Delete this sound" = "Futa sauti hii";
+
+/* No comment provided by engineer. */
+"Deletion Mode" = "Hali ya ufutaji";
+
+/* No comment provided by engineer. */
+"Description" = "Maelezo";
+
+/* No comment provided by engineer. */
+"Details" = "Maelezo";
+
+/* bluetooth */
+"Device disconnected." = "Kifaa hakijaunganishwa.";
+
+/* No comment provided by engineer. */
+"device motion-sensor" = "device motion-sensor";
+
+/* No comment provided by engineer. */
+"direction" = "mwelekeo";
+
+/* No comment provided by engineer. */
+"Disconnect all devices" = "Tenganisha vifaa vyote";
+
+/* No comment provided by engineer. */
+"DO" = "FANYA";
+
+/* paint */
+"Do you really want to delete the current drawing?" = "Kweli unataka kufuta mchoro wa sasa?";
+
+/* paint */
+"Do you want to save the changes" = "Je, unataka kuhifadhi mabadiliko";
+
+/* No comment provided by engineer. */
+"Done" = "Maliza";
+
+/* No comment provided by engineer. */
+"Download" = "Pakua";
+
+/* No comment provided by engineer. */
+"Download successful" = "Kupakua kumefaulu";
+
+/* No comment provided by engineer. */
+"Downloads" = "Vipakuliwa";
+
+/* No comment provided by engineer. */
+"Draw new image" = "Chora picha mpya";
+
+/* No comment provided by engineer. */
+"Duration" = "Muda";
+
+/* No comment provided by engineer. */
+"Edit" = "Hariri";
+
+/* Action sheet menu title */
+"Edit Background" = "Hariri mandhalinyuma";
+
+/* Action sheet menu title */
+"Edit Backgrounds" = "Hariri mandhalinyuma";
+
+/* Action sheet menu title */
+"Edit Brick" = "Hariri Tofali";
+
+/* No comment provided by engineer. */
+"Edit Formula" = "Hariri fomula";
+
+/* Action sheet menu title */
+"Edit Look" = "Hariri Muonekano";
+
+/* Action sheet menu title */
+"Edit Looks" = "Hariri Miionekano";
+
+/* No comment provided by engineer. */
+"Edit Object" = "Hariri kipengee";
+
+/* No comment provided by engineer. */
+"Edit Project" = "Edit Project";
+
+/* No comment provided by engineer. */
+"Edit Projects" = "Edit Projects";
+
+/* Action sheet menu title */
+"Edit Script" = "Hariri Hati";
+
+/* Action sheet menu title */
+"Edit Sound" = "Hariri Sauti";
+
+/* Action sheet menu title */
+"Edit Sounds" = "Hariri Sauti";
+
+/* No comment provided by engineer. */
+"element" = "elementi";
+
+/* paint */
+"Ellipse / Circle" = "Duaradufu/Duara";
+
+/* No comment provided by engineer. */
+"Else" = "Vinginevyo";
+
+/* No comment provided by engineer. */
+"Email" = "Baruapepe";
+
+/* No comment provided by engineer. */
+"Empty input!" = "Empty input!";
+
+/* No comment provided by engineer. */
+"End If" = "Mwisho kama";
+
+/* No comment provided by engineer. */
+"End of Loop" = "Mwisho wa kitanzi";
+
+/* No comment provided by engineer. */
+"Enter a reason" = "Ingiza sababu";
+
+/* Placeholder for add image-name input field */
+"Enter your image name here..." = "Ingiza jina la picha yako hapa...";
+
+/* Placeholder for list input field */
+"Enter your list name here..." = "Enter your list name here...";
+
+/* Placeholder for message input field */
+"Enter your message here..." = "Ingiza ujumbe wako hapa...";
+
+/* Placeholder for add object-name input field */
+"Enter your object name here..." = "Ingiza jina la kipengee chako hapa...";
+
+/* Placeholder for project-description input field */
+"Enter your project description here..." = "Enter your project description here...";
+
+/* Placeholder for project-name input field */
+"Enter your project name here..." = "Enter your project name here...";
+
+/* Placeholder for add sound-name input field */
+"Enter your sound name here..." = "Ingiza jina la sauti yako hapa...";
+
+/* Placeholder for variable input field */
+"Enter your variable name here..." = "Ingiza jina la kitofautishi chako hapa...";
+
+/* paint */
+"Eraser" = "Kifutio";
+
+/* No comment provided by engineer. */
+"Error" = "Dosari";
+
+/* No comment provided by engineer. */
+"Error saving file" = "Error saving file";
+
+/* No comment provided by engineer. */
+"Explore" = "Chunguza";
+
+/* No comment provided by engineer. */
+"Explore apps" = "Chunguza programu";
+
+/* No comment provided by engineer. */
+"FA" = "FA";
+
+/* No comment provided by engineer. */
+"face_detected" = "uso_umegunduliwa";
+
+/* No comment provided by engineer. */
+"faceposition_x" = "usonafasi_x";
+
+/* No comment provided by engineer. */
+"faceposition_y" = "usonafasi_y";
+
+/* No comment provided by engineer. */
+"facesize" = "ukubwa wa sura";
+
+/* No comment provided by engineer. */
+"Failed to import item" = "Failed to import item";
+
+/* No comment provided by engineer. */
+"Failed to load featured projects" = "Failed to load featured projects";
+
+/* No comment provided by engineer. */
+"Failed to load recent projects" = "Failed to load recent projects";
+
+/* No comment provided by engineer. */
+"Failed to load sound" = "Failed to load sound";
+
+/* No comment provided by engineer. */
+"Failed to play sound" = "Failed to play sound";
+
+/* No comment provided by engineer. */
+"false" = "sikweli";
+
+/* No comment provided by engineer. */
+"Featured Projects" = "Featured Projects";
+
+/* No comment provided by engineer. */
+"Feb" = "Feb";
+
+/* No comment provided by engineer. */
+"February" = "Februari";
+
+/* paint */
+"Fill" = "Jaza";
+
+/* No comment provided by engineer. */
+"Flashlight off" = "Tochi imezima";
+
+/* No comment provided by engineer. */
+"Flashlight on" = "Tochi inawaka";
+
+/* No comment provided by engineer. */
+"floor" = "sakafu";
+
+/* No comment provided by engineer. */
+"Following features used in this project are not compatible with this version of Pocket Code:" = "Following features used in this project are not compatible with this version of Pocket Code:";
+
+/* No comment provided by engineer. */
+"for" = "kwa ajili ya";
+
+/* No comment provided by engineer. */
+"for all objects" = "kwaajili ya vipengee vyote";
+
+/* No comment provided by engineer. */
+"for this object" = "kwaajili ya kipengee hiki";
+
+/* No comment provided by engineer. */
+"Forever" = "Milele";
+
+/* No comment provided by engineer. */
+"Forgot password" = "Umesahau nenosiri";
+
+/* No comment provided by engineer. */
+"Formula too long!" = "Fomula ni ndefu sana!";
+
+/* No comment provided by engineer. */
+"Fr" = "Fr";
+
+/* Title of View where the user can see the frequently used bricks. */
+"Frequently Used" = "Kutumiwa mara kwa mara";
+
+/* No comment provided by engineer. */
+"Friday" = "Ijumaa";
+
+/* No comment provided by engineer. */
+"From Camera" = "Kutoka kwenye Kamera";
+
+/* No comment provided by engineer. */
+"front" = "mbele";
+
+/* No comment provided by engineer. */
+"Front camera" = "Kamera ya mbele";
+
+/* No comment provided by engineer. */
+"Glide" = "bimbilika";
+
+/* No comment provided by engineer. */
+"Go back" = "Rudi";
+
+/* No comment provided by engineer. */
+"Go to front" = "Nenda mbele";
+
+/* paint */
+"Green" = "Kijani";
+
+/* No comment provided by engineer. */
+"gyro-sensor" = "gyro-kihisio";
+
+/* No comment provided by engineer. */
+"Hello!" = "Habari!";
+
+/* No comment provided by engineer. */
+"Help" = "Msaada";
+
+/* No comment provided by engineer. */
+"Hide" = "Ficha";
+
+/* No comment provided by engineer. */
+"Hide Details" = "Ficha maelezo";
+
+/* No comment provided by engineer. */
+"Hide variable" = "Ficha kitofautishi";
+
+/* No comment provided by engineer. */
+"Hmmmm!" = "Hmmmm!";
+
+/* No comment provided by engineer. */
+"hour" = "saa";
+
+/* No comment provided by engineer. */
+"If" = "kama";
+
+/* No comment provided by engineer. */
+"If on edge, bounce" = "Kama ukingoni, dunda";
+
+/* paint */
+"Image" = "Picha";
+
+/* No comment provided by engineer. */
+"Image name" = "Jina la Picha";
+
+/* No comment provided by engineer. */
+"Image source not available" = "Chanzo cha picha hakipatikani";
+
+/* Title of prompt shown when a *.catrobat file is imported from a third-party app. */
+"Import File" = "Ingiza faili kutoka nje";
+
+/* No comment provided by engineer. */
+"In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation." = "In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation.";
+
+/* No comment provided by engineer. */
+"inclination_x" = "mwelekeo_x";
+
+/* No comment provided by engineer. */
+"inclination_y" = "mwelekeo_y";
+
+/* No comment provided by engineer. */
+"Information" = "Taarifa";
+
+/* No comment provided by engineer. */
+"Insert" = "Weka";
+
+/* paint */
+"Inserted" = "Kuingizwa";
+
+/* No comment provided by engineer. */
+"into list" = "katika orodha";
+
+/* No comment provided by engineer. */
+"Invalid input entered, try again." = "Ingizo ni batili, jaribu tena.";
+
+/* No comment provided by engineer. */
+"Invalid URL given!" = "Imepewa URL batili!";
+
+/* No comment provided by engineer. */
+"iOS." = "iOS.";
+
+/* No comment provided by engineer. */
+"is true" = "ni kweli";
+
+/* No comment provided by engineer. */
+"is true then" = "ni kweli basi";
+
+/* paint */
+"italic" = "italiki";
+
+/* No comment provided by engineer. */
+"Jan" = "Jan";
+
+/* No comment provided by engineer. */
+"January" = "Januari";
+
+/* No comment provided by engineer. */
+"join" = "jiunga";
+
+/* No comment provided by engineer. */
+"Jul" = "Jul";
+
+/* No comment provided by engineer. */
+"July" = "Julai";
+
+/* No comment provided by engineer. */
+"Jun" = "Jun";
+
+/* No comment provided by engineer. */
+"June" = "Juni";
+
+/* bluetooth */
+"Known devices" = "Vifaa maalumu";
+
+/* No comment provided by engineer. */
+"LA" = "LA";
+
+/* No comment provided by engineer. */
+"Last access" = "Fikio la mwisho";
+
+/* No comment provided by engineer. */
+"last_screen_touch_index" = "mwisha_kioo_gusa_kielezo";
+
+/* No comment provided by engineer. */
+"latitude" = "latitudo";
+
+/* No comment provided by engineer. */
+"layer" = "tabaka";
+
+/* No comment provided by engineer. */
+"layers" = "tabaka";
+
+/* No comment provided by engineer. */
+"LED" = "LED";
+
+/* No comment provided by engineer. */
+"Left" = "Kushoto";
+
+/* No comment provided by engineer. */
+"Length" = "Urefu";
+
+/* No comment provided by engineer. */
+"length" = "urefu";
+
+/* No comment provided by engineer. */
+"letter" = "barua";
+
+/* paint */
+"Line" = "Mstari";
+
+/* No comment provided by engineer. */
+"List name:" = "List name:";
+
+/* No comment provided by engineer. */
+"List type" = "List type";
+
+/* No comment provided by engineer. */
+"Lists" = "Orodha";
+
+/* No comment provided by engineer. */
+"Loading" = "Inapakia";
+
+/* No comment provided by engineer. */
+"location" = "location";
+
+/* No comment provided by engineer. */
+"location_accuracy" = "mahali_linganifu";
+
+/* No comment provided by engineer. */
+"Logic" = "Mantiki";
+
+/* No comment provided by engineer. */
+"Login" = "Ingia";
+
+/* No comment provided by engineer. */
+"Login successful" = "Umefaulu kuingia";
+
+/* No comment provided by engineer. */
+"Login/Register" = "Ingia/Jisajiri";
+
+/* No comment provided by engineer. */
+"Logout" = "Kutoka";
+
+/* No comment provided by engineer. */
+"longitude" = "longitudo";
+
+/* No comment provided by engineer. */
+"Look" = "Angalia";
+
+/* LOOK */
+"look" = "mwonekano";
+
+/* No comment provided by engineer. */
+"look_name" = "tazama_jina";
+
+/* No comment provided by engineer. */
+"look_number" = "tazama_namba";
+
+/* No comment provided by engineer. */
+"Looks" = "Muonekano";
+
+/* No comment provided by engineer. */
+"loudness" = "kisawazishi";
+
+/* No comment provided by engineer. */
+"magnetic-sensor" = "magnetic-sensor";
+
+/* No comment provided by engineer. */
+"Mar" = "Mar";
+
+/* No comment provided by engineer. */
+"March" = "Machi";
+
+/* No comment provided by engineer. */
+"Math" = "Hesabu";
+
+/* No comment provided by engineer. */
+"May" = "Mei";
+
+/* No comment provided by engineer. */
+"Measure" = "Pima";
+
+/* No comment provided by engineer. */
+"Media Library" = "Maktaba ya midia";
+
+/* paint */
+"Menu" = "Menyu";
+
+/* No comment provided by engineer. */
+"Message" = "Ujumbe";
+
+/* No comment provided by engineer. */
+"message 1" = "ujumbe 1";
+
+/* No comment provided by engineer. */
+"MI" = "MI";
+
+/* No comment provided by engineer. */
+"minute" = "dakika";
+
+/* paint */
+"Mirror" = "Kioo";
+
+/* No comment provided by engineer. */
+"Mo" = "Mo";
+
+/* Prefix of default catrobat project object names (except background object) */
+"Mole" = "Mole";
+
+/* No comment provided by engineer. */
+"Monday" = "Jumatatu";
+
+/* No comment provided by engineer. */
+"month" = "mwezi";
+
+/* No comment provided by engineer. */
+"More" = "Zaidi";
+
+/* No comment provided by engineer. */
+"More information" = "More information";
+
+/* No comment provided by engineer. */
+"Most Downloaded" = "Zilizopakuliwa zaidi";
+
+/* No comment provided by engineer. */
+"Most Viewed" = "Zilizoangaliwa zaidi";
+
+/* No comment provided by engineer. */
+"Motion" = "Mwendo";
+
+/* No comment provided by engineer. */
+"Move" = "Hamisha";
+
+/* No comment provided by engineer. */
+"Move Brick" = "Sogeza tofali";
+
+/* No comment provided by engineer. */
+"Move Looks" = "Hamisha muonekano";
+
+/* No comment provided by engineer. */
+"Move Objects" = "Hamisha vipengee";
+
+/* No comment provided by engineer. */
+"Move Phiro motor backward" = "sogeza mota ya phiro nyuma";
+
+/* No comment provided by engineer. */
+"Move Phiro motor forward" = "sogeza mota ya phiro mbele";
+
+/* No comment provided by engineer. */
+"Move Sounds" = "Hamisha sauti";
+
+/* Name of the default catrobat project (used as filename!!) */
+"My first project" = "Programu yangu ya kwanza";
+
+/* Default title of imported photo from camera (taken by camera) */
+"My Image" = "Picha yangu";
+
+/* Title for first (default) object */
+"My Object" = "Kipengee changu";
+
+/* No comment provided by engineer. */
+"Name" = "Jina";
+
+/* No comment provided by engineer. */
+"Name already exists." = "Name already exists.";
+
+/* No comment provided by engineer. */
+"New" = "Mpya";
+
+/* paint */
+"New Canvas" = "Turubai jipya";
+
+/* No comment provided by engineer. */
+"New List" = "Orodha mpya";
+
+/* No comment provided by engineer. */
+"New Message" = "Ujumbe mpya";
+
+/* No comment provided by engineer. */
+"New Project" = "New Project";
+
+/* No comment provided by engineer. */
+"New Text" = "Maandishi mapya";
+
+/* No comment provided by engineer. */
+"New Variable" = "Kitofautishi kipya";
+
+/* No comment provided by engineer. */
+"New..." = "Mpya...";
+
+/* No comment provided by engineer. */
+"Newest" = "Mpya zaidi";
+
+/* No comment provided by engineer. */
+"Next background" = "Mandharinyuma inayofuata";
+
+/* No comment provided by engineer. */
+"Next look" = "Angalia ijayo";
+
+/* No comment provided by engineer. */
+"No" = "Hapana";
+
+/* No comment provided by engineer. */
+"No Camera available" = "Hakuna Kamera ianayopatikana";
+
+/* No comment provided by engineer. */
+"No Description available" = "Hakuna maelezo";
+
+/* No comment provided by engineer. */
+"No input. Please enter at least %lu character(s)." = "No input. Please enter at least %lu character(s).";
+
+/* No comment provided by engineer. */
+"No or invalid image name entered, try again." = "Hakuna au jina la picha ilioingizwa ni batili, jaribu tena.";
+
+/* No comment provided by engineer. */
+"No or invalid sound name entered, try again." = "Hakuna au jina la sauti ilioingizwa ni batili, jaribu tena.";
+
+/* No comment provided by engineer. */
+"No search results" = "Hakuna matokeo yaliyotafutwa";
+
+/* No comment provided by engineer. */
+"No whitespace character allowed" = "No whitespace character allowed";
+
+/* No comment provided by engineer. */
+"not" = "si";
+
+/* No comment provided by engineer. */
+"not available. Continue anyway?" = "haipatikani. Hata hivyo Endelea?";
+
+/* No comment provided by engineer. */
+"Not enough free memory to download this project. Please delete some of your projects" = "Not enough free memory to download this project. Please delete some of your projects";
+
+/* No comment provided by engineer. */
+"Not enough Memory" = "Hakuna kumbukumbu ya kutosha";
+
+/* No comment provided by engineer. */
+"Note" = "Kumbukumbu";
+
+/* paint */
+"Nothing to crop!" = "Hakuna cha kukata!";
+
+/* No comment provided by engineer. */
+"Nov" = "Nov";
+
+/* No comment provided by engineer. */
+"November" = "Novemba";
+
+/* No comment provided by engineer. */
+"number_of_items" = "namba_ya_vipengele";
+
+/* No comment provided by engineer. */
+"Numbers" = "Namba";
+
+/* No comment provided by engineer. */
+"Object" = "Kipengee";
+
+/* No comment provided by engineer. */
+"Object lists:" = "Object lists:";
+
+/* No comment provided by engineer. */
+"Object name" = "Jina la kipengee";
+
+/* No comment provided by engineer. */
+"Object variables:" = "Vitofautishi vya kipengee:";
+
+/* No comment provided by engineer. */
+"Objects" = "Vipengee";
+
+/* No comment provided by engineer. */
+"Oct" = "Oct";
+
+/* No comment provided by engineer. */
+"October" = "Oktoba";
+
+/* No comment provided by engineer. */
+"off" = "zimwa";
+
+/* No comment provided by engineer. */
+"OK" = "Sawa";
+
+/* No comment provided by engineer. */
+"on" = "waka";
+
+/* No comment provided by engineer. */
+"only 15 characters allowed" = "only 15 characters allowed";
+
+/* No comment provided by engineer. */
+"Only space is not allowed. Please enter at least %lu other character(s)." = "Only space is not allowed. Please enter at least %lu other character(s).";
+
+/* No comment provided by engineer. */
+"Only special characters are not allowed. Please enter at least %lu other character(s)." = "Only special characters are not allowed. Please enter at least %lu other character(s).";
+
+/* No comment provided by engineer. */
+"Open" = "Fungua ";
+
+/* No comment provided by engineer. */
+"or" = "au";
+
+/* No comment provided by engineer. */
+"Password" = "Nenosiri";
+
+/* No comment provided by engineer. */
+"Password is not vaild! \n It has to contain at least 6 characters/symbols" = "Nenosiri siyo sahihi! \ninatakiwa kuwa na angalau alama/herufi 6";
+
+/* No comment provided by engineer. */
+"Passwords do not match" = "Manenosiri hayafanani";
+
+/* No comment provided by engineer. */
+"Phiro" = "Phiro";
+
+/* No comment provided by engineer. */
+"phiro_bottom_left" = "phiro_chini_kushoto";
+
+/* No comment provided by engineer. */
+"phiro_bottom_right" = "phiro_chini_kulia";
+
+/* No comment provided by engineer. */
+"phiro_front_left" = "phiro_mbele_kulia";
+
+/* No comment provided by engineer. */
+"phiro_front_right" = "phiro_mbele_kulia";
+
+/* No comment provided by engineer. */
+"phiro_side_left" = "phiro_upande_kushoto";
+
+/* No comment provided by engineer. */
+"phiro_side_right" = "phiro_upande_kulia";
+
+/* paint */
+"Pipette" = "Pipette";
+
+/* No comment provided by engineer. */
+"Place at " = "Weka ";
+
+/* No comment provided by engineer. */
+"Play Phiro music\n" = "Cheza Phiro muziki\n";
+
+/* No comment provided by engineer. */
+"Please choose another name:" = "Please choose another name:";
+
+/* paint */
+"Please enter a text!" = "Tafadhali ingiza maandishi!";
+
+/* No comment provided by engineer. */
+"Please log in to report this project as inappropriate" = "Please log in to report this project as inappropriate";
+
+/* paint */
+"Please pick a tool" = "Tafadhali chukua chombo";
+
+/* No comment provided by engineer. */
+"Please select a project to upload" = "Please select a project to upload";
+
+/* bluetooth */
+"Please try resetting the device and try again." = "Tafadhali jaribu kuseti upya kifaa na jaribu tena.";
+
+/* No comment provided by engineer. */
+"Pocket Code" = "Msimbo Mfuko";
+
+/* No comment provided by engineer. */
+"Pocket Code for iOS" = "Msimbo wa Mfukoni kwaajili ya iOS";
+
+/* No comment provided by engineer. */
+"Pocket Code has been started in debug mode." = "Msimbo Mfuko umeanza hali ya urekebishaji.";
+
+/* No comment provided by engineer. */
+"Pocket Code has no access to your camera. To permit access, tap settings and activate camera. Your drawing will automatically be saved to PocketCode for you." = "Pocket Code has no access to your camera. To permit access, tap settings and activate camera. Your drawing will automatically be saved to PocketCode for you.";
+
+/* No comment provided by engineer. */
+"Pocket Code has no access to your images. To permit access, tap settings and activate images. Your drawing will automatically be saved to PocketCode for you." = "Pocket Code has no access to your images. To permit access, tap settings and activate images. Your drawing will automatically be saved to PocketCode for you.";
+
+/* No comment provided by engineer. */
+"Pocket Code has no access to your microphone. To permit access, tap settings and activate microphone." = "Pocket Code has no access to your microphone. To permit access, tap settings and activate microphone.";
+
+/* No comment provided by engineer. */
+"Pocket Code is a programming environment for iOS for the visual programming language Catrobat. The code of Pocket Code is mostly under GNU AGPL v3 licence. For further information to the licence please visit following links:" = "Pocket Code is a programming environment for iOS for the visual programming language Catrobat. The code of Pocket Code is mostly under GNU AGPL v3 licence. For further information to the licence please visit following links:";
+
+/* No comment provided by engineer. */
+"Pocket Code let's you play great games and run other fantastic apps like for instance presentations, quizzes and so on." = "Mfuko Msimbo inakufanya wewe ucheze michezo mizuri na programu zingine za kuvutia kama vile majaribio, mawasilisho, na mengine mengi.";
+
+/* No comment provided by engineer. */
+"Pocket Code Recorder" = "Rekoda ya Msimbo wa Mfukoni";
+
+/* No comment provided by engineer. */
+"Pocket Code Source Code License" = "Leseni ya chanzo cha msimbo wa Msimbo Mfuko";
+
+/* paint */
+"Pocket Paint" = "Mfuko rangi";
+
+/* No comment provided by engineer. */
+"Point in direction" = "Hatua katika mwelekeo";
+
+/* No comment provided by engineer. */
+"Point towards" = "Hatua kuelekea";
+
+/* paint */
+"Pointer" = "Kielekezi";
+
+/* No comment provided by engineer. */
+"position_x" = "nafasi_x";
+
+/* No comment provided by engineer. */
+"position_y" = "nafasi_y";
+
+/* No comment provided by engineer. */
+"Preview" = "Ona mwoneko awali";
+
+/* No comment provided by engineer. */
+"Previous background" = "Mandharinyuma iliyopita";
+
+/* No comment provided by engineer. */
+"Previous look" = "Muonekano uliopita";
+
+/* No comment provided by engineer. */
+"Privacy Settings" = "Privacy Settings";
+
+/* No comment provided by engineer. */
+"Problems occured while uploading your project" = "Problems occured while uploading your project";
+
+/* No comment provided by engineer. */
+"Project" = "Mradi";
+
+/* No comment provided by engineer. */
+"Project lists:" = "Project lists:";
+
+/* No comment provided by engineer. */
+"Project name" = "Project name";
+
+/* No comment provided by engineer. */
+"Project Name is necessary!" = "Project Name is necessary!";
+
+/* No comment provided by engineer. */
+"Project variables:" = "Project variables:";
+
+/* No comment provided by engineer. */
+"Projects" = "Programu";
+
+/* No comment provided by engineer. */
+"Rate Us" = "Tukadirie";
+
+/* No comment provided by engineer. */
+"RE" = "RE";
+
+/* No comment provided by engineer. */
+"Recording" = "Inarekodi";
+
+/* paint */
+"Rectangle / Square" = "Mstatili/Mraba";
+
+/* paint */
+"Red" = "Nyekunduu";
+
+/* No comment provided by engineer. */
+"Register" = "Jisajili";
+
+/* No comment provided by engineer. */
+"Registration successful" = "Usajili umefanikiwa";
+
+/* No comment provided by engineer. */
+"Remove known devices" = "Ondoa vifaa vinavyojulikana";
+
+/* No comment provided by engineer. */
+"Rename" = "Andika jina upya";
+
+/* No comment provided by engineer. */
+"Rename image" = "Andika upya jina la picha";
+
+/* No comment provided by engineer. */
+"Rename object" = "Andika tena kipengee chako";
+
+/* No comment provided by engineer. */
+"Rename Project" = "Rename Project";
+
+/* No comment provided by engineer. */
+"Rename sound" = "Badili jina la sauti";
+
+/* No comment provided by engineer. */
+"Repeat" = "Rudia";
+
+/* No comment provided by engineer. */
+"Repeat until" = "Rudia hadi";
+
+/* No comment provided by engineer. */
+"Replace item in list" = "Badilisha kipengele katika orodha";
+
+/* No comment provided by engineer. */
+"Report as inappropriate" = "Ripoti kama haifai";
+
+/* paint */
+"Resize" = "Badilisha ukubwa";
+
+/* No comment provided by engineer. */
+"Restart" = "Anzisha tena";
+
+/* No comment provided by engineer. */
+"Result" = "Matokeo";
+
+/* No comment provided by engineer. */
+"Right" = "Kulia";
+
+/* paint */
+"Rotate" = "Zungusha";
+
+/* paint */
+"round" = "pande zote";
+
+/* No comment provided by engineer. */
+"Sa" = "Sa";
+
+/* No comment provided by engineer. */
+"Saturday" = "Jumamosi";
+
+/* paint */
+"Save to CameraRoll" = "Save to CameraRoll";
+
+/* No comment provided by engineer. */
+"Save to PocketCode" = "Hifadhi kwenye Msimbo wa Mfukoni";
+
+/* No comment provided by engineer. */
+"Saved" = "Hifadhiwa";
+
+/* No comment provided by engineer. */
+"Say" = "Sema";
+
+/* No comment provided by engineer. */
+"screen_is_touched" = "skrini_ime_guswa";
+
+/* No comment provided by engineer. */
+"screen_touch_x" = "gusa_skrini_x";
+
+/* No comment provided by engineer. */
+"screen_touch_y" = "gusa_skirini_y";
+
+/* No comment provided by engineer. */
+"Script" = "Hati";
+
+/* No comment provided by engineer. */
+"Scripts" = "Hati";
+
+/* bluetooth */
+"Search" = "Tafuta";
+
+/* No comment provided by engineer. */
+"second" = "sekunde";
+
+/* No comment provided by engineer. */
+"second " = "sekunde ";
+
+/* No comment provided by engineer. */
+"seconds" = "sekunde";
+
+/* No comment provided by engineer. */
+"seconds " = "sekunde ";
+
+/* No comment provided by engineer. */
+"Select All" = "Teua zote";
+
+/* bluetooth */
+"Select Arduino" = "Teua Arduino";
+
+/* No comment provided by engineer. */
+"Select Brick Category" = "Teua kategoria ya matofali";
+
+/* No comment provided by engineer. */
+"Select logical operator" = "Select logical operator";
+
+/* No comment provided by engineer. */
+"Select mathematical function" = "Teua kazi ya hisabati";
+
+/* paint */
+"Select option:" = "Teua chaguo:";
+
+/* bluetooth */
+"Select Phiro" = "Teua Phiro";
+
+/* No comment provided by engineer. */
+"Sensors" = "Vihisio";
+
+/* No comment provided by engineer. */
+"Sep" = "Sep";
+
+/* No comment provided by engineer. */
+"September" = "Septemba";
+
+/* No comment provided by engineer. */
+"Server is taking to long to respond, please try again later." = "Server is taking to long to respond, please try again later.";
+
+/* No comment provided by engineer. */
+"Set Arduino digital pin" = "Kuweka pin ya dijiti ya Arduino";
+
+/* No comment provided by engineer. */
+"Set Arduino PWM~ pin" = "Kuweka Arduino PWM ~ Bana";
+
+/* No comment provided by engineer. */
+"Set background" = "Weka mandharinyuma";
+
+/* No comment provided by engineer. */
+"Set brightness " = "Weka Mwangaza ";
+
+/* No comment provided by engineer. */
+"Set color " = "Seti rangi ";
+
+/* No comment provided by engineer. */
+"Set description" = "Weka maelezo";
+
+/* No comment provided by engineer. */
+"Set Phiro light" = "Seti mwanga wa Phiro";
+
+/* No comment provided by engineer. */
+"Set size to" = "Weka ukubwa kuwa";
+
+/* No comment provided by engineer. */
+"Set transparency " = "Weka uwazi ";
+
+/* No comment provided by engineer. */
+"Set variable" = "Weka aina";
+
+/* No comment provided by engineer. */
+"Set volume to" = "Seti sauti kwa";
+
+/* No comment provided by engineer. */
+"Set X to " = "Weka X iwe";
+
+/* No comment provided by engineer. */
+"Set Y to " = "Weka X iwe";
+
+/* No comment provided by engineer. */
+"Settings" = "Mipangilio";
+
+/* No comment provided by engineer. */
+"Show" = "Onyesha";
+
+/* No comment provided by engineer. */
+"Show Details" = "Onyesha maelezo";
+
+/* No comment provided by engineer. */
+"Show variable" = "Onyesha kitofautishi";
+
+/* No comment provided by engineer. */
+"size" = "ukubwa";
+
+/* No comment provided by engineer. */
+"Size" = "Ukubwa";
+
+/* No comment provided by engineer. */
+"Skip" = "Ruka";
+
+/* No comment provided by engineer. */
+"SO" = "HIVYO";
+
+/* No comment provided by engineer. */
+"Sound" = "Sauti";
+
+/* No comment provided by engineer. */
+"Sound name" = "Jina la sauti";
+
+/* No comment provided by engineer. */
+"Sounds" = "Sauti";
+
+/* No comment provided by engineer. */
+"Speak" = "Ongea";
+
+/* No comment provided by engineer. */
+"Speed" = "Kasi";
+
+/* No comment provided by engineer. */
+"sqrt" = "sqrt";
+
+/* paint */
+"square" = "mraba";
+
+/* paint */
+"Stamp" = "Muhuri";
+
+/* paint */
+"Stamped" = "Muhuri";
+
+/* No comment provided by engineer. */
+"Start sound" = "Anzisha sauti";
+
+/* No comment provided by engineer. */
+"step" = "hatua";
+
+/* No comment provided by engineer. */
+"steps" = "hatua";
+
+/* No comment provided by engineer. */
+"Stop all sounds" = "Komesha sauti zote";
+
+/* No comment provided by engineer. */
+"Stop Phiro motor" = "simamisha mota ya phiro";
+
+/* No comment provided by engineer. */
+"Su" = "Su";
+
+/* No comment provided by engineer. */
+"Sunday" = "Jumapili";
+
+/* No comment provided by engineer. */
+"Switch to look" = "Nenda kwa muonekano";
+
+/* No comment provided by engineer. */
+"Syntax Error!" = "Kosa la kisintaksia!";
+
+/* No comment provided by engineer. */
+"Tap \"+\" to add %@" = "Bofya \"+\" kuongeza %@";
+
+/* Button title at the settings screen to get to the terms of use and services. */
+"Terms of Use and Services" = "Masharti ya matumizi na huduma";
+
+/* paint */
+"Text" = "Maandishi";
+
+/* No comment provided by engineer. */
+"Text message:" = "Ujumbe maandishi:";
+
+/* paint */
+"Text:" = "Maandishi:";
+
+/* No comment provided by engineer. */
+"Th" = "Th";
+
+/* No comment provided by engineer. */
+"The description contains invalid characters, try again." = "The description contains invalid characters, try again.";
+
+/* No comment provided by engineer. */
+"The featured projects cannot be loaded" = "The featured projects cannot be loaded";
+
+/* No comment provided by engineer. */
+"The following item could not be imported from the Media Library:" = "The following item could not be imported from the Media Library:";
+
+/* No comment provided by engineer. */
+"The input is too long. Please enter maximal %lu character(s)." = "The input is too long. Please enter maximal %lu character(s).";
+
+/* No comment provided by engineer. */
+"The name contains blocked characters. Please try again!" = "The name contains blocked characters. Please try again!";
+
+/* No comment provided by engineer. */
+"The recent projects cannot be loaded" = "The recent projects cannot be loaded";
+
+/* No comment provided by engineer. */
+"The requested project can not be found. Please choose a different one." = "The requested project can not be found. Please choose a different one.";
+
+/* No comment provided by engineer. */
+"The requested project can not be loaded. Please try again later." = "The requested project can not be loaded. Please try again later.";
+
+/* No comment provided by engineer. */
+"The sound item cannot be loaded" = "The sound item cannot be loaded";
+
+/* No comment provided by engineer. */
+"The sound item cannot be played" = "The sound item cannot be played";
+
+/* No comment provided by engineer. */
+"Think" = "Fikiria";
+
+/* No comment provided by engineer. */
+"This action can not be undone!" = "Hiki kitendo hakiwezi kutenguliwa!";
+
+/* No comment provided by engineer. */
+"This feature is coming soon!" = "Hiki kipengele kinakuja hivi karibuni!";
+
+/* No comment provided by engineer. */
+"This variable can not be deleted because it is still in use." = "Hiki kitofautishi hakiwezi kufutwa kwasababu kinaendelea kutumika.";
+
+/* No comment provided by engineer. */
+"Thursday" = "Alhamisi";
+
+/* No comment provided by engineer. */
+"TI" = "TI";
+
+/* No comment provided by engineer. */
+"time" = "muda";
+
+/* No comment provided by engineer. */
+"times" = "muda";
+
+/* No comment provided by engineer. */
+"to" = "kwa";
+
+/* No comment provided by engineer. */
+"to list" = "katika orodha";
+
+/* No comment provided by engineer. */
+"to X:" = "kwa x:";
+
+/* No comment provided by engineer. */
+"Today" = "Leo";
+
+/* No comment provided by engineer. */
+"transparency" = "uwazi";
+
+/* No comment provided by engineer. */
+"true" = "kweli";
+
+/* No comment provided by engineer. */
+"Tu" = "Tu";
+
+/* No comment provided by engineer. */
+"Tuesday" = "Jumanne";
+
+/* No comment provided by engineer. */
+"Turn camera" = "Geuza kamera";
+
+/* No comment provided by engineer. */
+"Turn flashlight" = "Washa tochi";
+
+/* No comment provided by engineer. */
+"Turn left" = "Geuka kushoto";
+
+/* No comment provided by engineer. */
+"Turn right" = "Geuka kulia";
+
+/* No comment provided by engineer. */
+"Unable to load project!" = "Unable to load project!";
+
+/* No comment provided by engineer. */
+"Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt." = "Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt.";
+
+/* No comment provided by engineer. */
+"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the left side of your iPhone and tap on play again." = "Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the left side of your iPhone and tap on play again.";
+
+/* No comment provided by engineer. */
+"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again." = "Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again.";
+
+/* paint */
+"underline" = "pigia mstari";
+
+/* Button title of alert view to invoke undo if user shakes device */
+"Undo" = "Tengua";
+
+/* Description text in alert view if user shakes the device */
+"Undo Drawing?" = "Tengua Kuchora?";
+
+/* Description text in alert view if user shakes the device */
+"Undo Typing?" = "Tendua kuandika?";
+
+/* No comment provided by engineer. */
+"Unexpected Error" = "Unexpected Error";
+
+/* No comment provided by engineer. */
+"Unexpected Error, please try again later." = "Unexpected Error, please try again later.";
+
+/* No comment provided by engineer. */
+"Unknown Element" = "Unknown Element";
+
+/* No comment provided by engineer. */
+"Unselect All" = "Usichague zote";
+
+/* No comment provided by engineer. */
+"Unsupported Brick:" = "Unsupported Brick:";
+
+/* No comment provided by engineer. */
+"Unsupported Elements" = "Unsupported Elements";
+
+/* No comment provided by engineer. */
+"Unsupported Script:" = "Unsupported Script:";
+
+/* No comment provided by engineer. */
+"Upload" = "Pakia";
+
+/* No comment provided by engineer. */
+"Upload Project" = "Upload Project";
+
+/* No comment provided by engineer. */
+"Upload selected project" = "Upload selected project";
+
+/* No comment provided by engineer. */
+"Upload successful" = "Kupakia kumefaulu";
+
+/* No comment provided by engineer. */
+"Uploaded" = "Imepakia";
+
+/* No comment provided by engineer. */
+"Use Arduino bricks" = "Tumia matofali ya Arduino";
+
+/* No comment provided by engineer. */
+"Use camera" = "Tumia kamera";
+
+/* No comment provided by engineer. */
+"Use Phiro bricks" = "Tumia matofali ya Phiro";
+
+/* No comment provided by engineer. */
+"Username" = "Jina la mtumiaji";
+
+/* No comment provided by engineer. */
+"Username must not be blank" = "Username must not be blank";
+
+/* No comment provided by engineer. */
+"Var/List" = "Var/List";
+
+/* No comment provided by engineer. */
+"Variable" = "Kitofautishi";
+
+/* No comment provided by engineer. */
+"Variable name:" = "Jina la kitofautishi:";
+
+/* No comment provided by engineer. */
+"Variable or List" = "Variable or List";
+
+/* No comment provided by engineer. */
+"Variable type" = "Aina ya kitofautishi";
+
+/* No comment provided by engineer. */
+"Variables" = "Kitofautishi";
+
+/* No comment provided by engineer. */
+"Version" = "Toleo";
+
+/* No comment provided by engineer. */
+"Vibrate for" = "Tetemesha kwa";
+
+/* No comment provided by engineer. */
+"vibration" = "vibration";
+
+/* No comment provided by engineer. */
+"Views" = "Angalia";
+
+/* No comment provided by engineer. */
+"Wait" = "Subiri";
+
+/* No comment provided by engineer. */
+"Wait until" = "Subiri hadi";
+
+/* No comment provided by engineer. */
+"We" = "We";
+
+/* No comment provided by engineer. */
+"Wednesday" = "Jumatano";
+
+/* No comment provided by engineer. */
+"weekday" = "siku ya wiki";
+
+/* No comment provided by engineer. */
+"Welcome to Pocket Code" = "Karibu kwenye Msimbo wa Mfukoni";
+
+/* No comment provided by engineer. */
+"When project started" = "When project started";
+
+/* No comment provided by engineer. */
+"When screen is touched" = "Wakati skrini imeguswa";
+
+/* No comment provided by engineer. */
+"When tapped" = "Inapokingwa";
+
+/* No comment provided by engineer. */
+"When you receive" = "Wakati unapokea";
+
+/* paint */
+"Width selection" = "Width selection";
+
+/* No comment provided by engineer. */
+"with" = "na";
+
+/* No comment provided by engineer. */
+"X: " = "X: ";
+
+/* No comment provided by engineer. */
+"Y: " = "Y: ";
+
+/* No comment provided by engineer. */
+"year" = "mwaka";
+
+/* No comment provided by engineer. */
+"Yes" = "Ndio";
+
+/* No comment provided by engineer. */
+"Yesterday" = "Jana";
+
+/* No comment provided by engineer. */
+"You are also able to build your own apps, remix existing ones and share them with your friends and other exciting people around the world." = "You are also able to build your own apps, remix existing ones and share them with your friends and other exciting people around the world.";
+
+/* No comment provided by engineer. */
+"You have already downloaded this project!" = "You have already downloaded this project!";
+
+/* No comment provided by engineer. */
+"Your email seems to be invalid" = "Your email seems to be invalid";
+
+/* paint */
+"Zoom" = "Kuza";
