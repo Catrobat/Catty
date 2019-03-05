@@ -123,4 +123,55 @@ class VariablesTests: XCTestCase, UITestProtocol {
 
         app.collectionViews.staticTexts["Set variable"].tap()
     }
+
+    func testCreateVariableAndTapChooseButton() {
+
+        let testVariable = "testVariable"
+
+        createNewProjectAndAddSetVariableBrick(name: "Test Project")
+        app.collectionViews.cells.otherElements.containing(.staticText, identifier: "Set variable").children(matching: .button).element.tap()
+        XCTAssert(waitForElementToAppear(app.buttons["Cancel"]).exists)
+
+        app.buttons["Var/List"].tap()
+        app.buttons["New"].tap()
+        waitForElementToAppear(app.buttons["New Variable"]).tap()
+        waitForElementToAppear(app.buttons["for all objects"]).tap()
+
+        let alert = waitForElementToAppear(app.alerts["New Variable"])
+        alert.textFields.firstMatch.typeText(testVariable)
+        alert.buttons["OK"].tap()
+
+        app.buttons["del active"].tap()
+        app.buttons["Var/List"].tap()
+        app.buttons["Choose"].tap()
+        app.buttons["Done"].tap()
+
+        XCTAssertTrue(waitForElementToAppear(app.buttons[" \"" + testVariable + "\" "]).exists)
+    }
+
+    func testCreateVariableAndTapSelecetedRowInPickerView() {
+        let testVariable = ["testVariable1", "testVariable2", "testVariable3"]
+
+        createNewProjectAndAddSetVariableBrick(name: "Test Project")
+        app.collectionViews.cells.otherElements.containing(.staticText, identifier: "Set variable").children(matching: .button).element.tap()
+        XCTAssert(waitForElementToAppear(app.buttons["Cancel"]).exists)
+
+        for variable in testVariable {
+            app.buttons["Var/List"].tap()
+            app.buttons["New"].tap()
+            waitForElementToAppear(app.buttons["New Variable"]).tap()
+            waitForElementToAppear(app.buttons["for all objects"]).tap()
+
+            let alert = waitForElementToAppear(app.alerts["New Variable"])
+            alert.textFields.firstMatch.typeText(variable)
+            alert.buttons["OK"].tap()
+        }
+
+        app.buttons["del active"].tap()
+        app.buttons["Var/List"].tap()
+        app.pickerWheels.element.adjust(toPickerWheelValue: testVariable[2])
+        app.pickerWheels[testVariable[2]].tap()
+
+        XCTAssertTrue(waitForElementToAppear(app.buttons[" \"" + testVariable[2] + "\" "]).exists)
+    }
 }
