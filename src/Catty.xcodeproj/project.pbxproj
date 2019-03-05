@@ -892,6 +892,14 @@
 		99EBDC041D5624D2008D6860 /* ChangeColorByNBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EBDC031D5624D2008D6860 /* ChangeColorByNBrick+Instruction.swift */; };
 		9E0A1F6C2225D449000DEBFA /* AudioKit.license in Resources */ = {isa = PBXBuildFile; fileRef = 9E0A1F692225D449000DEBFA /* AudioKit.license */; };
 		9E0A1F6E2225D5A3000DEBFA /* CryptoSwift.license in Resources */ = {isa = PBXBuildFile; fileRef = 9E0A1F6D2225D5A2000DEBFA /* CryptoSwift.license */; };
+		9E190C9E222ED7C300B5ECD1 /* SetTempoToBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E190C9D222ED7C200B5ECD1 /* SetTempoToBrick+CBXMLHandler.m */; };
+		9E190CA0222ED90000B5ECD1 /* SetTempoToBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E190C9F222ED90000B5ECD1 /* SetTempoToBrick.swift */; };
+		9E190CA2222EDA3100B5ECD1 /* SetTempoToBrickCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E190CA1222EDA3100B5ECD1 /* SetTempoToBrickCell.swift */; };
+		9E190CA4222EDBAD00B5ECD1 /* SetTempoToBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E190CA3222EDBAD00B5ECD1 /* SetTempoToBrick+Instruction.swift */; };
+		9E190CA6222EF28700B5ECD1 /* ChangeTempoBy+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E190CA5222EF28700B5ECD1 /* ChangeTempoBy+Instruction.swift */; };
+		9E190CA8222EF32800B5ECD1 /* ChangeTempoByBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E190CA7222EF32800B5ECD1 /* ChangeTempoByBrick.swift */; };
+		9E190CAA222EF3D300B5ECD1 /* ChangeTempoByBrickCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E190CA9222EF3D300B5ECD1 /* ChangeTempoByBrickCell.swift */; };
+		9E190CAD222EF4B500B5ECD1 /* ChangeTempoByBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E190CAC222EF4B500B5ECD1 /* ChangeTempoByBrick+CBXMLHandler.m */; };
 		9E2C5E96222756BB0047C642 /* PlayNoteBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2C5E95222756BA0047C642 /* PlayNoteBrick+Instruction.swift */; };
 		9E2E3E5322288B6D00E961C9 /* Sample Instruments Compressed in Resources */ = {isa = PBXBuildFile; fileRef = 9E2E3E5222288B6D00E961C9 /* Sample Instruments Compressed */; };
 		9E40AA032229BC73006ADB1E /* AudioEngineConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E40AA022229BC73006ADB1E /* AudioEngineConfig.swift */; };
@@ -2568,6 +2576,16 @@
 		99EBDC031D5624D2008D6860 /* ChangeColorByNBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ChangeColorByNBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Look/ChangeColorByNBrick+Instruction.swift"; sourceTree = "<group>"; };
 		9E0A1F692225D449000DEBFA /* AudioKit.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AudioKit.license; sourceTree = "<group>"; };
 		9E0A1F6D2225D5A2000DEBFA /* CryptoSwift.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CryptoSwift.license; sourceTree = "<group>"; };
+		9E190C9A222ED7C200B5ECD1 /* SetTempoToBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SetTempoToBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		9E190C9D222ED7C200B5ECD1 /* SetTempoToBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SetTempoToBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		9E190C9F222ED90000B5ECD1 /* SetTempoToBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetTempoToBrick.swift; sourceTree = "<group>"; };
+		9E190CA1222EDA3100B5ECD1 /* SetTempoToBrickCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetTempoToBrickCell.swift; sourceTree = "<group>"; };
+		9E190CA3222EDBAD00B5ECD1 /* SetTempoToBrick+Instruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SetTempoToBrick+Instruction.swift"; sourceTree = "<group>"; };
+		9E190CA5222EF28700B5ECD1 /* ChangeTempoBy+Instruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChangeTempoBy+Instruction.swift"; sourceTree = "<group>"; };
+		9E190CA7222EF32800B5ECD1 /* ChangeTempoByBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeTempoByBrick.swift; sourceTree = "<group>"; };
+		9E190CA9222EF3D300B5ECD1 /* ChangeTempoByBrickCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeTempoByBrickCell.swift; sourceTree = "<group>"; };
+		9E190CAB222EF44300B5ECD1 /* ChangeTempoByBrick+CBXMLHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ChangeTempoByBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		9E190CAC222EF4B500B5ECD1 /* ChangeTempoByBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ChangeTempoByBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
 		9E2C5E95222756BA0047C642 /* PlayNoteBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "PlayNoteBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Sound/PlayNoteBrick+Instruction.swift"; sourceTree = "<group>"; };
 		9E2E3E5222288B6D00E961C9 /* Sample Instruments Compressed */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "Sample Instruments Compressed"; path = "Resources/Sample Instruments Compressed"; sourceTree = "<group>"; };
 		9E40AA012229BBA2006ADB1E /* Sample Instruments Uncompressed */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "Sample Instruments Uncompressed"; path = "Resources/Sample Instruments Uncompressed"; sourceTree = "<group>"; };
@@ -6626,6 +6644,8 @@
 		9EA3CB38222DAAB500BED864 /* Sound */ = {
 			isa = PBXGroup;
 			children = (
+				9E190CAB222EF44300B5ECD1 /* ChangeTempoByBrick+CBXMLHandler.h */,
+				9E190CAC222EF4B500B5ECD1 /* ChangeTempoByBrick+CBXMLHandler.m */,
 				9EA3CB3C222DAAFA00BED864 /* ChangeVolumeByNBrick+CBXMLHandler.h */,
 				9EA3CB3B222DAAFA00BED864 /* ChangeVolumeByNBrick+CBXMLHandler.m */,
 				9EA3CB54222DC55100BED864 /* PlayDrumBrick+CBXMLHandler.h */,
@@ -6636,6 +6656,8 @@
 				9EA3CB3A222DAAFA00BED864 /* PlaySoundBrick+CBXMLHandler.m */,
 				9EA3CB3F222DAAFB00BED864 /* SetInstrumentToBrick+CBXMLHandler.h */,
 				9EA3CB40222DAAFB00BED864 /* SetInstrumentToBrick+CBXMLHandler.m */,
+				9E190C9A222ED7C200B5ECD1 /* SetTempoToBrick+CBXMLHandler.h */,
+				9E190C9D222ED7C200B5ECD1 /* SetTempoToBrick+CBXMLHandler.m */,
 				9EA3CB42222DAAFB00BED864 /* SetVolumeToBrick+CBXMLHandler.h */,
 				9EA3CB41222DAAFB00BED864 /* SetVolumeToBrick+CBXMLHandler.m */,
 				9EA3CB47222DAAFC00BED864 /* SpeakAndWaitBrick+CBXMLHandler.h */,
@@ -6760,11 +6782,13 @@
 		AA74EDDE1BC0521500D1E954 /* Sound */ = {
 			isa = PBXGroup;
 			children = (
+				9E190CA5222EF28700B5ECD1 /* ChangeTempoBy+Instruction.swift */,
 				AA74EE341BC0543600D1E954 /* ChangeVolumeByNBrick+Instruction.swift */,
 				9EA3CB5A222DCABC00BED864 /* PlayDrumBrick+Instruction.swift */,
 				9E2C5E95222756BA0047C642 /* PlayNoteBrick+Instruction.swift */,
 				AA74EE351BC0543600D1E954 /* PlaySoundBrick+Instruction.swift */,
 				9E40AA102229E8C1006ADB1E /* SetInstrumentToBrick+Instruction.swift */,
+				9E190CA3222EDBAD00B5ECD1 /* SetTempoToBrick+Instruction.swift */,
 				AA74EE361BC0543600D1E954 /* SetVolumeToBrick+Instruction.swift */,
 				4C0F9F81204BD20900E71B2D /* SpeakAndWaitBrick+Instruction.swift */,
 				AA74EE371BC0543600D1E954 /* SpeakBrick+Instruction.swift */,
@@ -6962,6 +6986,7 @@
 		AA74EFD61BC05B5F00D1E954 /* Sound */ = {
 			isa = PBXGroup;
 			children = (
+				9E190CA7222EF32800B5ECD1 /* ChangeTempoByBrick.swift */,
 				AA74EFD71BC05B5F00D1E954 /* ChangeVolumeByNBrick.h */,
 				AA74EFD81BC05B5F00D1E954 /* ChangeVolumeByNBrick.m */,
 				9EA3CB56222DC75F00BED864 /* PlayDrumBrick.swift */,
@@ -6969,6 +6994,7 @@
 				AA74EFD91BC05B5F00D1E954 /* PlaySoundBrick.h */,
 				AA74EFDA1BC05B5F00D1E954 /* PlaySoundBrick.m */,
 				9EE14420222AB932009AB2B5 /* SetInstrumentToBrick.swift */,
+				9E190C9F222ED90000B5ECD1 /* SetTempoToBrick.swift */,
 				AA74EFDB1BC05B5F00D1E954 /* SetVolumeToBrick.h */,
 				AA74EFDC1BC05B5F00D1E954 /* SetVolumeToBrick.m */,
 				4C0F9F45204ADC7900E71B2D /* SpeakAndWaitBrick.h */,
@@ -7196,6 +7222,7 @@
 		AA74F0791BC05FCE00D1E954 /* Sound */ = {
 			isa = PBXGroup;
 			children = (
+				9E190CA9222EF3D300B5ECD1 /* ChangeTempoByBrickCell.swift */,
 				AA74F07A1BC05FCE00D1E954 /* ChangeVolumeByNBrickCell.h */,
 				AA74F07B1BC05FCE00D1E954 /* ChangeVolumeByNBrickCell.m */,
 				9EA3CB58222DC86E00BED864 /* PlayDrumBrickCell.swift */,
@@ -7203,6 +7230,7 @@
 				AA74F07C1BC05FCE00D1E954 /* PlaySoundBrickCell.h */,
 				AA74F07D1BC05FCE00D1E954 /* PlaySoundBrickCell.m */,
 				9EA3CB2E222D757F00BED864 /* SetInstrumentToBrickCell.swift */,
+				9E190CA1222EDA3100B5ECD1 /* SetTempoToBrickCell.swift */,
 				AA74F07E1BC05FCE00D1E954 /* SetVolumeToBrickCell.h */,
 				AA74F07F1BC05FCE00D1E954 /* SetVolumeToBrickCell.m */,
 				4C0F9FA8204BD2D600E71B2D /* SpeakAndWaitBrickCell.h */,
@@ -8930,6 +8958,7 @@
 				AABCB3E21BB36529009F67D2 /* CBScheduler.swift in Sources */,
 				BACDF3521F1F9B7E00346167 /* DeleteItemOfUserListBrick.m in Sources */,
 				AABCB3DF1BB3650B009F67D2 /* CBBackendProtocol.swift in Sources */,
+				9E190CAA222EF3D300B5ECD1 /* ChangeTempoByBrickCell.swift in Sources */,
 				92D56C311BF202E700A54750 /* ArduinoDevice.swift in Sources */,
 				F470A2E52129DF42005EC9A3 /* NumberOfItemsFunction.swift in Sources */,
 				92B46F9B1BC7BC8C004980C1 /* ArduinoSendDigitalValueBrick+CBXMLHandler.m in Sources */,
@@ -9093,6 +9122,7 @@
 				4C03A4C22133FDE7007BFFD2 /* FormulaManager+Editor.swift in Sources */,
 				BA987D082194E158002DAA05 /* WaitUntilBrick.m in Sources */,
 				E4B7DC5620F6857B001351E3 /* StoreProjectDownloader.swift in Sources */,
+				9E190CA2222EDA3100B5ECD1 /* SetTempoToBrickCell.swift in Sources */,
 				4C0F9F1F204ADB9200E71B2D /* IfThenLogicBeginBrick.m in Sources */,
 				92C95FDB1BD8DBEB00742F7E /* BluetoothService.swift in Sources */,
 				AA74F09D1BC05FCE00D1E954 /* BroadcastWaitBrickCell.m in Sources */,
@@ -9102,6 +9132,7 @@
 				92C631A01BC5193B00486958 /* BluetoothDevicesTableViewController.swift in Sources */,
 				F4E6E5C0210E1FE900D86FE6 /* RandFunction.swift in Sources */,
 				92D56C391BF2098700A54750 /* PhiroProtocol.swift in Sources */,
+				9E190CA4222EDBAD00B5ECD1 /* SetTempoToBrick+Instruction.swift in Sources */,
 				92FF315F1A24DEB300093DA7 /* MyProjectsViewController.m in Sources */,
 				BAEE49B61F165C3100F06741 /* ReplaceItemInUserListBrickCell.m in Sources */,
 				4C724E661B4D3EC500E27479 /* CBXMLSerializerContext.m in Sources */,
@@ -9122,6 +9153,7 @@
 				AA74F09C1BC05FCE00D1E954 /* BroadcastBrickCell.m in Sources */,
 				AA74F0961BC05FCE00D1E954 /* BrickCellObjectData.m in Sources */,
 				4C595F6021CAF9050097D850 /* OperatorManagerProtocol.swift in Sources */,
+				9E190CA0222ED90000B5ECD1 /* SetTempoToBrick.swift in Sources */,
 				929CC0CC1BC39B0A0027DEC0 /* PhiroMotorMoveBackwardBrick.m in Sources */,
 				92FF32B61A24E2F400093DA7 /* CatrobatBaseCell.m in Sources */,
 				AA74F0051BC05B5F00D1E954 /* PointToBrick.m in Sources */,
@@ -9148,6 +9180,7 @@
 				AA74EE231BC053FD00D1E954 /* WaitBrick+Instruction.swift in Sources */,
 				927F79E01BEE39CB008D1635 /* PhiroIfLogicBeginBrick.m in Sources */,
 				AA74EEFF1BC057C900D1E954 /* SetTransparencyBrick+CBXMLHandler.m in Sources */,
+				9E190C9E222ED7C300B5ECD1 /* SetTempoToBrick+CBXMLHandler.m in Sources */,
 				92EC985F1BC3ABB90003A891 /* PhiroPlayToneBrick+CBXMLHandler.m in Sources */,
 				92FF2EA21A24C7D800093DA7 /* TableUtil.m in Sources */,
 				4CDA808121366AD20052FA24 /* FormulaInterpreterProtocol.swift in Sources */,
@@ -9264,6 +9297,7 @@
 				5E21DA6F21A5255600017D2C /* UploadViewController.swift in Sources */,
 				92EC985D1BC3ABB90003A891 /* PhiroMotorMoveForwardBrick+CBXMLHandler.m in Sources */,
 				AA74EF5A1BC0586F00D1E954 /* TurnRightBrick+CBXMLHandler.m in Sources */,
+				9E190CAD222EF4B500B5ECD1 /* ChangeTempoByBrick+CBXMLHandler.m in Sources */,
 				4CF0729D20D66F8D00F93AB5 /* LookNumberSensor.swift in Sources */,
 				597AB56E202081E8007CD10D /* LibrarySoundCollectionViewCell.swift in Sources */,
 				4CE3D68D2107B4E300005629 /* FaceDetectedSensor.swift in Sources */,
@@ -9527,6 +9561,7 @@
 				92FF31041A24DCAA00093DA7 /* StartScript.m in Sources */,
 				4C994E31207A594100C415FD /* InclinationYSensor.swift in Sources */,
 				BA9CAB5A1EC382DB00796056 /* BrickCellListData.m in Sources */,
+				9E190CA6222EF28700B5ECD1 /* ChangeTempoBy+Instruction.swift in Sources */,
 				AA74F0061BC05B5F00D1E954 /* SetXBrick.m in Sources */,
 				92EC98601BC3ABB90003A891 /* PhiroRGBLightBrick+CBXMLHandler.m in Sources */,
 				99EBDC021D5623B3008D6860 /* ChangeColorByNBrickCell.m in Sources */,
@@ -9538,6 +9573,7 @@
 				5EDBA043219549AE000EFFEF /* LoadingView.swift in Sources */,
 				AA74F0C21BC05FCE00D1E954 /* TurnLeftBrickCell.m in Sources */,
 				92C6318A1BC502CB00486958 /* KnownDevicesTableViewController.swift in Sources */,
+				9E190CA8222EF32800B5ECD1 /* ChangeTempoByBrick.swift in Sources */,
 				4C0F9F43204ADC6600E71B2D /* ThinkBubbleBrick.m in Sources */,
 				AAF6D9D81BC0BAF300686849 /* ShowBrick+Instruction.swift in Sources */,
 				593E4DDE1FE11D410016DCB9 /* CatrobatReorderableCollectionViewFlowLayout.m in Sources */,

@@ -406,9 +406,9 @@ let kLocalizedSpeak = NSLocalizedString("Speak", bundle: Bundle(for: LanguageTra
 let kLocalizedAndWait = NSLocalizedString("and wait", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedPlayNote = NSLocalizedString("Play note", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedPlayDrum = NSLocalizedString("Play drum", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedSetTempoTo = NSLocalizedString("Set tempo to", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedChangeTempoBy = NSLocalizedString("Change tempo by", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedBeats = NSLocalizedString("beats", bundle: Bundle(for: LanguageTranslation.self), comment: "")
-
-
 
 // variable
 let kLocalizedSetVariable = NSLocalizedString("Set variable", bundle: Bundle(for: LanguageTranslation.self), comment: "")

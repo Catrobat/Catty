@@ -406,9 +406,9 @@ let kLocalizedSpeak = NSLocalizedString("Speak", comment: "")
 let kLocalizedAndWait = NSLocalizedString("and wait", comment: "")
 let kLocalizedPlayNote = NSLocalizedString("Play note", comment: "")
 let kLocalizedPlayDrum = NSLocalizedString("Play drum", comment: "")
+let kLocalizedSetTempoTo = NSLocalizedString("Set tempo to", comment: "")
+let kLocalizedChangeTempoBy = NSLocalizedString("Change tempo by", comment: "")
 let kLocalizedBeats = NSLocalizedString("beats", comment: "")
-
-
 
 // variable
 let kLocalizedSetVariable = NSLocalizedString("Set variable", comment: "")

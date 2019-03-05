@@ -89,15 +89,17 @@
 
 // sound bricks
 #define kSoundBrickNameParams @[\
-    @"{SOUND}",                                             /* play sound         */\
-    @[],                                                    /* stop all sounds    */\
-    @"{FLOAT;range=(-inf,inf)}",                            /* set volume to      */\
-    @"{FLOAT;range=(-inf,inf)}",                            /* change volume to   */\
-    @"{INT}",                                               /* speak              */\
-    @"{INT}",                                               /* speak and wait     */\
-    @[@"{INT;range=(0,130)}", @"{FLOAT;range=(0,inf)}"],    /* play note          */\
-    @[@"{STATICCHOICE}", @"{FLOAT;range=(0,inf)}"],         /* play drum          */\
-    @"{STATICCHOICE}"                                       /* set instrument to  */\
+    @"{SOUND}",                                             /* play sound           */\
+    @[],                                                    /* stop all sounds      */\
+    @"{FLOAT;range=(-inf,inf)}",                            /* set volume to        */\
+    @"{FLOAT;range=(-inf,inf)}",                            /* change volume to     */\
+    @"{INT}",                                               /* speak                */\
+    @"{INT}",                                               /* speak and wait       */\
+    @[@"{INT;range=(0,130)}", @"{FLOAT;range=(0,inf)}"],    /* play note            */\
+    @[@"{STATICCHOICE}", @"{FLOAT;range=(0,inf)}"],         /* play drum            */\
+    @"{STATICCHOICE}",                                      /* set instrument to    */\
+    @"{FLOAT;range=(20,500)}",                              /* set instrument to    */\
+    @"{FLOAT;range=(-480,480)}"                             /* change instrument by */\
 ]
 
 // look bricks

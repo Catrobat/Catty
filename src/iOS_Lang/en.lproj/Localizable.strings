@@ -323,6 +323,9 @@
 "Change size by" = "Change size by";
 
 /* No comment provided by engineer. */
+"Change tempo by" = "Change tempo by";
+
+/* No comment provided by engineer. */
 "Change transparency " = "Change transparency ";
 
 /* No comment provided by engineer. */
@@ -1509,6 +1512,9 @@
 
 /* No comment provided by engineer. */
 "Set size to" = "Set size to";
+
+/* No comment provided by engineer. */
+"Set tempo to" = "Set tempo to";
 
 /* No comment provided by engineer. */
 "Set transparency " = "Set transparency ";

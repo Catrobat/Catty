@@ -406,9 +406,9 @@
 #define kLocalizedAndWait NSLocalizedString(@"and wait", nil)
 #define kLocalizedPlayNote NSLocalizedString(@"Play note", nil)
 #define kLocalizedPlayDrum NSLocalizedString(@"Play drum", nil)
+#define kLocalizedSetTempoTo NSLocalizedString(@"Set tempo to", nil)
+#define kLocalizedChangeTempoBy NSLocalizedString(@"Change tempo by", nil)
 #define kLocalizedBeats NSLocalizedString(@"beats", nil)
-
-
 
 // variable
 #define kLocalizedSetVariable NSLocalizedString(@"Set variable", nil)

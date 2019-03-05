@@ -198,7 +198,8 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
     kPlayNoteBrick             = 306,
     kPlayDrumBrick             = 307,
     kSetInstrumentToBrick      = 308,
-
+    kSetTempoToBrick           = 309,
+    kChangeTempoByBrick        = 310,
 
 
     // 4xx variable and list bricks
@@ -212,15 +213,15 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
 	kReplaceItemInUserListBrick     = 407,
     
     // 5xx arduino bricks
-    kArduinoSendDigitalValueBrick  = 500,
-    kArduinoSendPWMValueBrick = 501,
+    kArduinoSendDigitalValueBrick   = 500,
+    kArduinoSendPWMValueBrick       = 501,
     
     // 6xx phiro bricks
-    kPhiroMotorStopBrick       = 600,
-    kPhiroMotorMoveForwardBrick = 601,
-    kPhiroMotorMoveBackwardBrick = 602,
-    kPhiroPlayToneBrick          = 603,
-    kPhiroRGBLightBrick          = 604,
+    kPhiroMotorStopBrick            = 600,
+    kPhiroMotorMoveForwardBrick     = 601,
+    kPhiroMotorMoveBackwardBrick    = 602,
+    kPhiroPlayToneBrick             = 603,
+    kPhiroRGBLightBrick             = 604,
     kPhiroIfLogicBeginBrick         = 605
 
 
@@ -327,6 +328,8 @@ WRAP_BRICK_TYPE_IN_NSSTRING(kChangeVariableBrick)\
     @"PlayNoteBrick"             : @(kPlayNoteBrick),\
     @"PlayDrumBrick"             : @(kPlayDrumBrick),\
     @"SetInstrumentToBrick"      : @(kSetInstrumentToBrick),\
+    @"SetTempoToBrick"           : @(kSetTempoToBrick),\
+    @"ChangeTempoByBrick"        : @(kChangeTempoByBrick),\
 \
     /* look bricks */\
     @"SetLookBrick"              : @(kSetLookBrick),\
@@ -433,6 +436,8 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 @"PlayNoteBrick"             : @(kBrickHeight1h),\
 @"PlayDrumBrick"             : @(kBrickHeight3h),\
 @"SetInstrumentToBrick"      : @(kBrickHeight2h),\
+@"SetTempoToBrick"           : @(kBrickHeight1h),\
+@"ChangeTempoByBrick"        : @(kBrickHeight1h),\
 \
 /* look bricks */\
 @"SetLookBrick"              : @(kBrickHeight2h),\
