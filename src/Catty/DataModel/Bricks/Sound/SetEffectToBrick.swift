@@ -22,36 +22,36 @@
 
 import Foundation
 
-@objc(PlayDrumBrick) class PlayDrumBrick: Brick, BrickStaticChoiceProtocol, BrickFormulaProtocol {
+@objc(SetEffectToBrick) class SetEffectToBrick: Brick, BrickStaticChoiceProtocol, BrickFormulaProtocol {
 
-    @objc public var drumChoice: Int
-    @objc public var duration: Formula!
+    @objc public var effectChoice: Int
+    @objc public var effectValue: Formula!
 
     required override init() {
-        drumChoice = 0
-        duration = Formula(integer: 1)
+        effectChoice = 0
+        effectValue = Formula(integer: 100)
         super.init()
     }
 
     override var brickTitle: String! {
-        return kLocalizedPlayDrum + "\n%@\n" + kLocalizedFor + " %@" + kLocalizedBeats
+        return kLocalizedSet + "\n%@\n" + kLocalizedEffectTo + " %@"
     }
 
     func formula(forLineNumber lineNumber: Int, andParameterNumber paramNumber: Int) -> Formula! {
         if lineNumber == 2 && paramNumber == 0 {
-            return self.duration
+            return self.effectValue
         }
         return nil
     }
 
     func setFormula(_ formula: Formula!, forLineNumber lineNumber: Int, andParameterNumber paramNumber: Int) {
         if lineNumber == 2 && paramNumber == 0 {
-            self.duration = formula
+            self.effectValue = formula
         }
     }
 
     func getFormulas() -> [Formula]! {
-        return [self.duration]
+        return [self.effectValue]
 
     }
 
@@ -60,16 +60,16 @@ import Foundation
     }
 
     override func getRequiredResources() -> Int {
-        return self.duration.getRequiredResources()
+        return self.effectValue.getRequiredResources()
     }
 
     override func description() -> String! {
-        return ("instrument choice \(self.drumChoice)")
+        return ("effect choice \(self.effectChoice)")
     }
 
     func setDefaultValues(for spriteObject: SpriteObject!) {
-        self.drumChoice = 0
-        self.duration = Formula(integer: 1)
+        self.effectChoice = 0
+        self.effectValue = Formula(integer: 100)
     }
 
     override func mutableCopy(with context: CBMutableCopyContext!) -> Any! {
@@ -77,36 +77,36 @@ import Foundation
     }
 
     override func isEqual(to brick: Brick!) -> Bool {
-        if !self.duration.isEqual(to: (brick as! PlayDrumBrick).duration) {
+        if !self.effectValue.isEqual(to: (brick as! SetEffectToBrick).effectValue) {
             return false
         }
-        if self.drumChoice != (brick as! PlayDrumBrick).drumChoice {
+        if self.effectChoice != (brick as! SetEffectToBrick).effectChoice {
             return false
         }
         return true
     }
 
     init(choice: Int) {
-        self.drumChoice = choice
+        self.effectChoice = choice
         super.init()
     }
 
     func choice(forLineNumber lineNumber: Int, andParameterNumber paramNumber: Int) -> String! {
         let choices = possibleChoices(forLineNumber: 1, andParameterNumber: 0)
-        return choices![self.drumChoice]
+        return choices![self.effectChoice]
     }
 
     func setChoice(_ choice: String!, forLineNumber lineNumber: Int, andParameterNumber paramNumber: Int) {
         let choices = possibleChoices(forLineNumber: 1, andParameterNumber: 0)
         let index = choices!.firstIndex(of: choice)
         if (index! < choices!.count) && (index! >= 0) {
-            self.drumChoice = index!
+            self.effectChoice = index!
         } else {
-            self.drumChoice = 0
+            self.effectChoice = 0
         }
     }
 
     func possibleChoices(forLineNumber lineNumber: Int, andParameterNumber paramNumber: Int) -> [String]! {
-        return AudioEngineConfig.localizedDrumNames
+        return AudioEngineConfig.localizedEffectNames
     }
 }

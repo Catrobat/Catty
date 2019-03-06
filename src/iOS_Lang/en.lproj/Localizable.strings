@@ -314,6 +314,9 @@
 "ceil" = "ceil";
 
 /* No comment provided by engineer. */
+"Change" = "Change";
+
+/* No comment provided by engineer. */
 "Change brightness " = "Change brightness ";
 
 /* No comment provided by engineer. */
@@ -354,6 +357,9 @@
 
 /* No comment provided by engineer. */
 "Clear graphic effects" = "Clear graphic effects";
+
+/* No comment provided by engineer. */
+"Clear sound effects" = "Clear sound effects";
 
 /* No comment provided by engineer. */
 "Close" = "Close";
@@ -594,6 +600,12 @@
 
 /* Action sheet menu title */
 "Edit Sounds" = "Edit Sounds";
+
+/* No comment provided by engineer. */
+"effect by" = "effect by";
+
+/* No comment provided by engineer. */
+"effect to" = "effect to";
 
 /* No comment provided by engineer. */
 "element" = "element";
@@ -1193,6 +1205,9 @@
 "or" = "or";
 
 /* No comment provided by engineer. */
+"pan left/right" = "pan left/right";
+
+/* No comment provided by engineer. */
 "Password" = "Password";
 
 /* No comment provided by engineer. */
@@ -1224,6 +1239,9 @@
 
 /* paint */
 "Pipette" = "Pipette";
+
+/* No comment provided by engineer. */
+"pitch" = "pitch";
 
 /* No comment provided by engineer. */
 "Place at " = "Place at ";
@@ -1488,6 +1506,9 @@
 
 /* No comment provided by engineer. */
 "Server is taking to long to respond, please try again later." = "Server is taking to long to respond, please try again later.";
+
+/* No comment provided by engineer. */
+"Set" = "Set";
 
 /* No comment provided by engineer. */
 "Set Arduino digital pin" = "Set Arduino digital pin";

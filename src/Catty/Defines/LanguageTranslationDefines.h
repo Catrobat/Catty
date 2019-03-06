@@ -250,6 +250,9 @@
 #define kLocalizedCameraBack NSLocalizedString(@"back", nil)
 #define kLocalizedCameraFront NSLocalizedString(@"front", nil)
 #define kLocalizedMoreInformation NSLocalizedString(@"More information", nil)
+#define kLocalizedFor NSLocalizedString(@"for", nil)
+#define kLocalizedSet NSLocalizedString(@"Set", nil)
+#define kLocalizedChange NSLocalizedString(@"Change", nil)
 
 //************************************************************************************************************
 //**********************************       SHORT DESCRIPTIONS      *******************************************
@@ -392,7 +395,6 @@
 #define kLocalizedFlash NSLocalizedString(@"Turn flashlight", nil)
 #define kLocalizedCamera NSLocalizedString(@"Turn camera", nil)
 #define kLocalizedChooseCamera NSLocalizedString(@"Use camera", nil)
-#define kLocalizedFor NSLocalizedString(@"for", nil)
 
 // sound bricks
 #define kLocalizedPlaySound NSLocalizedString(@"Start sound", nil)
@@ -410,6 +412,9 @@
 #define kLocalizedChangeTempoBy NSLocalizedString(@"Change tempo by", nil)
 #define kLocalizedRestFor NSLocalizedString(@"Rest for", nil)
 #define kLocalizedBeats NSLocalizedString(@"beats", nil)
+#define kLocalizedEffectTo NSLocalizedString(@"effect to", nil)
+#define kLocalizedEffectBy NSLocalizedString(@"effect by", nil)
+#define kLocalizedClearSoundEffects NSLocalizedString(@"Clear sound effects", nil)
 
 // variable
 #define kLocalizedSetVariable NSLocalizedString(@"Set variable", nil)
@@ -798,6 +803,8 @@
 #define kLocalizedVibraslap NSLocalizedString(@"(17) Vibraslap", nil)
 #define kLocalizedCuica NSLocalizedString(@"(18) Cuica", nil)
 
+#define kLocalizedPitch NSLocalizedString(@"pitch", nil)
+#define kLocalizedPanLeftRight NSLocalizedString(@"pan left/right", nil)
 //************************************************************************************************************
 //****************************************       Debug        ************************************************
 //************************************************************************************************************

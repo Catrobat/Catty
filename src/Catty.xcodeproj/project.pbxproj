@@ -896,7 +896,7 @@
 		9E190CA0222ED90000B5ECD1 /* SetTempoToBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E190C9F222ED90000B5ECD1 /* SetTempoToBrick.swift */; };
 		9E190CA2222EDA3100B5ECD1 /* SetTempoToBrickCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E190CA1222EDA3100B5ECD1 /* SetTempoToBrickCell.swift */; };
 		9E190CA4222EDBAD00B5ECD1 /* SetTempoToBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E190CA3222EDBAD00B5ECD1 /* SetTempoToBrick+Instruction.swift */; };
-		9E190CA6222EF28700B5ECD1 /* ChangeTempoBy+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E190CA5222EF28700B5ECD1 /* ChangeTempoBy+Instruction.swift */; };
+		9E190CA6222EF28700B5ECD1 /* ChangeTempoByBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E190CA5222EF28700B5ECD1 /* ChangeTempoByBrick+Instruction.swift */; };
 		9E190CA8222EF32800B5ECD1 /* ChangeTempoByBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E190CA7222EF32800B5ECD1 /* ChangeTempoByBrick.swift */; };
 		9E190CAA222EF3D300B5ECD1 /* ChangeTempoByBrickCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E190CA9222EF3D300B5ECD1 /* ChangeTempoByBrickCell.swift */; };
 		9E190CAD222EF4B500B5ECD1 /* ChangeTempoByBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E190CAC222EF4B500B5ECD1 /* ChangeTempoByBrick+CBXMLHandler.m */; };
@@ -904,6 +904,18 @@
 		9E190CB1222F016B00B5ECD1 /* RestBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E190CB0222F016B00B5ECD1 /* RestBrick.swift */; };
 		9E190CB4222F025500B5ECD1 /* RestBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E190CB3222F025500B5ECD1 /* RestBrick+CBXMLHandler.m */; };
 		9E190CB6222F031700B5ECD1 /* RestBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E190CB5222F031700B5ECD1 /* RestBrick+Instruction.swift */; };
+		9E190CB9222F19B900B5ECD1 /* SetEffectToBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E190CB7222F19B800B5ECD1 /* SetEffectToBrick+CBXMLHandler.m */; };
+		9E190CBB222F1C2700B5ECD1 /* SetEffectToBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E190CBA222F1C2700B5ECD1 /* SetEffectToBrick.swift */; };
+		9E190CBD222F209D00B5ECD1 /* SetEffectToBrickCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E190CBC222F209D00B5ECD1 /* SetEffectToBrickCell.swift */; };
+		9E190CBF222F212900B5ECD1 /* SetEffectToBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E190CBE222F212900B5ECD1 /* SetEffectToBrick+Instruction.swift */; };
+		9E190CC1222F2FF200B5ECD1 /* ChangeEffectByBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E190CC0222F2FF200B5ECD1 /* ChangeEffectByBrick+Instruction.swift */; };
+		9E190CC3222F306B00B5ECD1 /* ChangeEffectByBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E190CC2222F306B00B5ECD1 /* ChangeEffectByBrick.swift */; };
+		9E190CC5222F320500B5ECD1 /* ChangeEffectByBrickCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E190CC4222F320500B5ECD1 /* ChangeEffectByBrickCell.swift */; };
+		9E190CC8222F328100B5ECD1 /* ChangeEffectByBrick+CBXMLHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E190CC7222F328100B5ECD1 /* ChangeEffectByBrick+CBXMLHandle.m */; };
+		9E190CCB222F353700B5ECD1 /* ClearSoundEffectsBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E190CC9222F353600B5ECD1 /* ClearSoundEffectsBrick+CBXMLHandler.m */; };
+		9E190CCD222F362900B5ECD1 /* ClearSoundEffectsBrickCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E190CCC222F362900B5ECD1 /* ClearSoundEffectsBrickCell.swift */; };
+		9E190CCF222F371600B5ECD1 /* ClearSoundEffectsBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E190CCE222F371600B5ECD1 /* ClearSoundEffectsBrick.swift */; };
+		9E190CD1222F385D00B5ECD1 /* ClearSoundEffectsBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E190CD0222F385D00B5ECD1 /* ClearSoundEffectsBrick+Instruction.swift */; };
 		9E2C5E96222756BB0047C642 /* PlayNoteBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2C5E95222756BA0047C642 /* PlayNoteBrick+Instruction.swift */; };
 		9E2E3E5322288B6D00E961C9 /* Sample Instruments Compressed in Resources */ = {isa = PBXBuildFile; fileRef = 9E2E3E5222288B6D00E961C9 /* Sample Instruments Compressed */; };
 		9E40AA032229BC73006ADB1E /* AudioEngineConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E40AA022229BC73006ADB1E /* AudioEngineConfig.swift */; };
@@ -942,6 +954,9 @@
 		9EE418B22224836300EA58E8 /* speakandwaittest.xml in Resources */ = {isa = PBXBuildFile; fileRef = 9EE418A722246EBA00EA58E8 /* speakandwaittest.xml */; };
 		9EE418B32224836600EA58E8 /* StartSoundTest.xml in Resources */ = {isa = PBXBuildFile; fileRef = 9EE418A922246EBB00EA58E8 /* StartSoundTest.xml */; };
 		9EE418B42224836900EA58E8 /* ballon_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EE418AA22246EBB00EA58E8 /* ballon_red.png */; };
+		9EFB8E84223016F90098018A /* PitchEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFB8E83223016F90098018A /* PitchEffect.swift */; };
+		9EFB8E86223017120098018A /* PanEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFB8E85223017120098018A /* PanEffect.swift */; };
+		9EFB8E882230231B0098018A /* SoundEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFB8E872230231B0098018A /* SoundEffect.swift */; };
 		A9F511831BE6A07A00B59540 /* SwiftBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F511821BE6A07A00B59540 /* SwiftBridge.swift */; };
 		AA3BD9091BBF4BFB002B34A0 /* WaitBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3BD9081BBF4BFB002B34A0 /* WaitBrickTests.swift */; };
 		AA401FE91BBEF6F9001BC49F /* CBInstructionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA401FE81BBEF6F9001BC49F /* CBInstructionProtocol.swift */; };
@@ -2585,7 +2600,7 @@
 		9E190C9F222ED90000B5ECD1 /* SetTempoToBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetTempoToBrick.swift; sourceTree = "<group>"; };
 		9E190CA1222EDA3100B5ECD1 /* SetTempoToBrickCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetTempoToBrickCell.swift; sourceTree = "<group>"; };
 		9E190CA3222EDBAD00B5ECD1 /* SetTempoToBrick+Instruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SetTempoToBrick+Instruction.swift"; sourceTree = "<group>"; };
-		9E190CA5222EF28700B5ECD1 /* ChangeTempoBy+Instruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChangeTempoBy+Instruction.swift"; sourceTree = "<group>"; };
+		9E190CA5222EF28700B5ECD1 /* ChangeTempoByBrick+Instruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChangeTempoByBrick+Instruction.swift"; sourceTree = "<group>"; };
 		9E190CA7222EF32800B5ECD1 /* ChangeTempoByBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeTempoByBrick.swift; sourceTree = "<group>"; };
 		9E190CA9222EF3D300B5ECD1 /* ChangeTempoByBrickCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeTempoByBrickCell.swift; sourceTree = "<group>"; };
 		9E190CAB222EF44300B5ECD1 /* ChangeTempoByBrick+CBXMLHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ChangeTempoByBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
@@ -2595,6 +2610,21 @@
 		9E190CB2222F025400B5ECD1 /* RestBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RestBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
 		9E190CB3222F025500B5ECD1 /* RestBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RestBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
 		9E190CB5222F031700B5ECD1 /* RestBrick+Instruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RestBrick+Instruction.swift"; sourceTree = "<group>"; };
+		9E190CB7222F19B800B5ECD1 /* SetEffectToBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SetEffectToBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		9E190CB8222F19B800B5ECD1 /* SetEffectToBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SetEffectToBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		9E190CBA222F1C2700B5ECD1 /* SetEffectToBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetEffectToBrick.swift; sourceTree = "<group>"; };
+		9E190CBC222F209D00B5ECD1 /* SetEffectToBrickCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetEffectToBrickCell.swift; sourceTree = "<group>"; };
+		9E190CBE222F212900B5ECD1 /* SetEffectToBrick+Instruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SetEffectToBrick+Instruction.swift"; sourceTree = "<group>"; };
+		9E190CC0222F2FF200B5ECD1 /* ChangeEffectByBrick+Instruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChangeEffectByBrick+Instruction.swift"; sourceTree = "<group>"; };
+		9E190CC2222F306B00B5ECD1 /* ChangeEffectByBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeEffectByBrick.swift; sourceTree = "<group>"; };
+		9E190CC4222F320500B5ECD1 /* ChangeEffectByBrickCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeEffectByBrickCell.swift; sourceTree = "<group>"; };
+		9E190CC6222F328000B5ECD1 /* ChangeEffectByBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ChangeEffectByBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		9E190CC7222F328100B5ECD1 /* ChangeEffectByBrick+CBXMLHandle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ChangeEffectByBrick+CBXMLHandle.m"; sourceTree = "<group>"; };
+		9E190CC9222F353600B5ECD1 /* ClearSoundEffectsBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ClearSoundEffectsBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		9E190CCA222F353700B5ECD1 /* ClearSoundEffectsBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ClearSoundEffectsBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		9E190CCC222F362900B5ECD1 /* ClearSoundEffectsBrickCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearSoundEffectsBrickCell.swift; sourceTree = "<group>"; };
+		9E190CCE222F371600B5ECD1 /* ClearSoundEffectsBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearSoundEffectsBrick.swift; sourceTree = "<group>"; };
+		9E190CD0222F385D00B5ECD1 /* ClearSoundEffectsBrick+Instruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ClearSoundEffectsBrick+Instruction.swift"; sourceTree = "<group>"; };
 		9E2C5E95222756BA0047C642 /* PlayNoteBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "PlayNoteBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Sound/PlayNoteBrick+Instruction.swift"; sourceTree = "<group>"; };
 		9E2E3E5222288B6D00E961C9 /* Sample Instruments Compressed */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "Sample Instruments Compressed"; path = "Resources/Sample Instruments Compressed"; sourceTree = "<group>"; };
 		9E40AA012229BBA2006ADB1E /* Sample Instruments Uncompressed */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "Sample Instruments Uncompressed"; path = "Resources/Sample Instruments Uncompressed"; sourceTree = "<group>"; };
@@ -2642,6 +2672,9 @@
 		9EE418A922246EBB00EA58E8 /* StartSoundTest.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = StartSoundTest.xml; path = CattyTests/Resources/AudioEngineTests/StartSoundTest.xml; sourceTree = SOURCE_ROOT; };
 		9EE418AA22246EBB00EA58E8 /* ballon_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ballon_red.png; path = CattyTests/Resources/AudioEngineTests/ballon_red.png; sourceTree = SOURCE_ROOT; };
 		9EE418AF2224805F00EA58E8 /* libchromaprint.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libchromaprint.a; path = ChromaprintLib/libchromaprint.a; sourceTree = "<group>"; };
+		9EFB8E83223016F90098018A /* PitchEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PitchEffect.swift; sourceTree = "<group>"; };
+		9EFB8E85223017120098018A /* PanEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanEffect.swift; sourceTree = "<group>"; };
+		9EFB8E872230231B0098018A /* SoundEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundEffect.swift; sourceTree = "<group>"; };
 		A988832B1BCA86FF005029E8 /* ObjectTVCTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectTVCTests.swift; sourceTree = "<group>"; };
 		A9F511821BE6A07A00B59540 /* SwiftBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftBridge.swift; sourceTree = "<group>"; };
 		AA3BD9081BBF4BFB002B34A0 /* WaitBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaitBrickTests.swift; sourceTree = "<group>"; };
@@ -5959,6 +5992,7 @@
 		92FF2E4D1A24C7D800093DA7 /* AudioManager */ = {
 			isa = PBXGroup;
 			children = (
+				9EFB8E80223016D90098018A /* Effects */,
 				92FF2E4E1A24C7D800093DA7 /* AudioManager.h */,
 				92FF2E4F1A24C7D800093DA7 /* AudioManager.m */,
 				4C48ED2820EF9AEC00784CD5 /* AudioManager+Loudness.swift */,
@@ -6653,10 +6687,14 @@
 		9EA3CB38222DAAB500BED864 /* Sound */ = {
 			isa = PBXGroup;
 			children = (
+				9E190CC6222F328000B5ECD1 /* ChangeEffectByBrick+CBXMLHandler.h */,
+				9E190CC7222F328100B5ECD1 /* ChangeEffectByBrick+CBXMLHandle.m */,
 				9E190CAB222EF44300B5ECD1 /* ChangeTempoByBrick+CBXMLHandler.h */,
 				9E190CAC222EF4B500B5ECD1 /* ChangeTempoByBrick+CBXMLHandler.m */,
 				9EA3CB3C222DAAFA00BED864 /* ChangeVolumeByNBrick+CBXMLHandler.h */,
 				9EA3CB3B222DAAFA00BED864 /* ChangeVolumeByNBrick+CBXMLHandler.m */,
+				9E190CCA222F353700B5ECD1 /* ClearSoundEffectsBrick+CBXMLHandler.h */,
+				9E190CC9222F353600B5ECD1 /* ClearSoundEffectsBrick+CBXMLHandler.m */,
 				9EA3CB54222DC55100BED864 /* PlayDrumBrick+CBXMLHandler.h */,
 				9EA3CB53222DC55100BED864 /* PlayDrumBrick+CBXMLHandler.m */,
 				9EA3CB3D222DAAFB00BED864 /* PlayNoteBrick+CBXMLHandler.h */,
@@ -6665,6 +6703,8 @@
 				9EA3CB3A222DAAFA00BED864 /* PlaySoundBrick+CBXMLHandler.m */,
 				9E190CB2222F025400B5ECD1 /* RestBrick+CBXMLHandler.h */,
 				9E190CB3222F025500B5ECD1 /* RestBrick+CBXMLHandler.m */,
+				9E190CB8222F19B800B5ECD1 /* SetEffectToBrick+CBXMLHandler.h */,
+				9E190CB7222F19B800B5ECD1 /* SetEffectToBrick+CBXMLHandler.m */,
 				9EA3CB3F222DAAFB00BED864 /* SetInstrumentToBrick+CBXMLHandler.h */,
 				9EA3CB40222DAAFB00BED864 /* SetInstrumentToBrick+CBXMLHandler.m */,
 				9E190C9A222ED7C200B5ECD1 /* SetTempoToBrick+CBXMLHandler.h */,
@@ -6690,6 +6730,16 @@
 				9EE418A922246EBB00EA58E8 /* StartSoundTest.xml */,
 			);
 			path = AudioEngineTests;
+			sourceTree = "<group>";
+		};
+		9EFB8E80223016D90098018A /* Effects */ = {
+			isa = PBXGroup;
+			children = (
+				9EFB8E83223016F90098018A /* PitchEffect.swift */,
+				9EFB8E85223017120098018A /* PanEffect.swift */,
+				9EFB8E872230231B0098018A /* SoundEffect.swift */,
+			);
+			path = Effects;
 			sourceTree = "<group>";
 		};
 		AA101E3F1B8D3A3900797DEF /* Encapsulated */ = {
@@ -6793,12 +6843,15 @@
 		AA74EDDE1BC0521500D1E954 /* Sound */ = {
 			isa = PBXGroup;
 			children = (
-				9E190CA5222EF28700B5ECD1 /* ChangeTempoBy+Instruction.swift */,
+				9E190CC0222F2FF200B5ECD1 /* ChangeEffectByBrick+Instruction.swift */,
+				9E190CA5222EF28700B5ECD1 /* ChangeTempoByBrick+Instruction.swift */,
 				AA74EE341BC0543600D1E954 /* ChangeVolumeByNBrick+Instruction.swift */,
+				9E190CD0222F385D00B5ECD1 /* ClearSoundEffectsBrick+Instruction.swift */,
 				9EA3CB5A222DCABC00BED864 /* PlayDrumBrick+Instruction.swift */,
 				9E2C5E95222756BA0047C642 /* PlayNoteBrick+Instruction.swift */,
 				AA74EE351BC0543600D1E954 /* PlaySoundBrick+Instruction.swift */,
 				9E190CB5222F031700B5ECD1 /* RestBrick+Instruction.swift */,
+				9E190CBE222F212900B5ECD1 /* SetEffectToBrick+Instruction.swift */,
 				9E40AA102229E8C1006ADB1E /* SetInstrumentToBrick+Instruction.swift */,
 				9E190CA3222EDBAD00B5ECD1 /* SetTempoToBrick+Instruction.swift */,
 				AA74EE361BC0543600D1E954 /* SetVolumeToBrick+Instruction.swift */,
@@ -6998,14 +7051,17 @@
 		AA74EFD61BC05B5F00D1E954 /* Sound */ = {
 			isa = PBXGroup;
 			children = (
+				9E190CC2222F306B00B5ECD1 /* ChangeEffectByBrick.swift */,
 				9E190CA7222EF32800B5ECD1 /* ChangeTempoByBrick.swift */,
 				AA74EFD71BC05B5F00D1E954 /* ChangeVolumeByNBrick.h */,
 				AA74EFD81BC05B5F00D1E954 /* ChangeVolumeByNBrick.m */,
+				9E190CCE222F371600B5ECD1 /* ClearSoundEffectsBrick.swift */,
 				9EA3CB56222DC75F00BED864 /* PlayDrumBrick.swift */,
 				9EA3CB34222D864F00BED864 /* PlayNoteBrick.swift */,
 				AA74EFD91BC05B5F00D1E954 /* PlaySoundBrick.h */,
 				AA74EFDA1BC05B5F00D1E954 /* PlaySoundBrick.m */,
 				9E190CB0222F016B00B5ECD1 /* RestBrick.swift */,
+				9E190CBA222F1C2700B5ECD1 /* SetEffectToBrick.swift */,
 				9EE14420222AB932009AB2B5 /* SetInstrumentToBrick.swift */,
 				9E190C9F222ED90000B5ECD1 /* SetTempoToBrick.swift */,
 				AA74EFDB1BC05B5F00D1E954 /* SetVolumeToBrick.h */,
@@ -7235,14 +7291,17 @@
 		AA74F0791BC05FCE00D1E954 /* Sound */ = {
 			isa = PBXGroup;
 			children = (
+				9E190CC4222F320500B5ECD1 /* ChangeEffectByBrickCell.swift */,
 				9E190CA9222EF3D300B5ECD1 /* ChangeTempoByBrickCell.swift */,
 				AA74F07A1BC05FCE00D1E954 /* ChangeVolumeByNBrickCell.h */,
 				AA74F07B1BC05FCE00D1E954 /* ChangeVolumeByNBrickCell.m */,
+				9E190CCC222F362900B5ECD1 /* ClearSoundEffectsBrickCell.swift */,
 				9EA3CB58222DC86E00BED864 /* PlayDrumBrickCell.swift */,
 				9EA3CB32222D83E100BED864 /* PlayNoteBrickCell.swift */,
 				AA74F07C1BC05FCE00D1E954 /* PlaySoundBrickCell.h */,
 				AA74F07D1BC05FCE00D1E954 /* PlaySoundBrickCell.m */,
 				9E190CAE222F008B00B5ECD1 /* RestBrickCell.swift */,
+				9E190CBC222F209D00B5ECD1 /* SetEffectToBrickCell.swift */,
 				9EA3CB2E222D757F00BED864 /* SetInstrumentToBrickCell.swift */,
 				9E190CA1222EDA3100B5ECD1 /* SetTempoToBrickCell.swift */,
 				AA74F07E1BC05FCE00D1E954 /* SetVolumeToBrickCell.h */,
@@ -8945,6 +9004,7 @@
 				AA74F0BF1BC05FCE00D1E954 /* PointToBrickCell.m in Sources */,
 				AA74EF771BC0589700D1E954 /* ChangeVariableBrick+CBXMLHandler.m in Sources */,
 				AAA2979C1BB371EB006F8793 /* ExternInternRepresentationMapping.m in Sources */,
+				9E190CCF222F371600B5ECD1 /* ClearSoundEffectsBrick.swift in Sources */,
 				AA74EF571BC0586F00D1E954 /* SetXBrick+CBXMLHandler.m in Sources */,
 				4C994E10207A3D4100C415FD /* LoudnessSensor.swift in Sources */,
 				9EA512FB22232FB700D57EA9 /* AudioEngine.swift in Sources */,
@@ -8982,6 +9042,7 @@
 				F4E6E598210E03FE00D86FE6 /* ExpFunction.swift in Sources */,
 				4C0F9F25204ADBC800E71B2D /* IfThenLogicEndBrick.m in Sources */,
 				9EA3CB4F222DAAFD00BED864 /* PlayNoteBrick+CBXMLHandler.m in Sources */,
+				9E190CB9222F19B900B5ECD1 /* SetEffectToBrick+CBXMLHandler.m in Sources */,
 				AA74EE221BC053FD00D1E954 /* BroadcastWaitBrick+Instruction.swift in Sources */,
 				4C994E08207A3D4100C415FD /* SensorManager.swift in Sources */,
 				AABCB3DE1BB364F2009F67D2 /* CBBackend.swift in Sources */,
@@ -8996,6 +9057,7 @@
 				4C72EA3D2108ED0800E7407F /* TouchManager.swift in Sources */,
 				4C0F9F69204BD19400E71B2D /* SetBackgroundBrick+CBXMLHandler.m in Sources */,
 				4C11795420AEC36D006C6E32 /* ProtocolConformance.swift in Sources */,
+				9EFB8E882230231B0098018A /* SoundEffect.swift in Sources */,
 				4C03A4C42133FF4B007BFFD2 /* FormulaManager+Interpreter.swift in Sources */,
 				4C8C3612213A9FDF00279BC7 /* ForeverBrick+Condition.swift in Sources */,
 				F4A2AFB72110D49900C53234 /* LetterFunction.swift in Sources */,
@@ -9034,6 +9096,7 @@
 				4C595F5721CAF6590097D850 /* AndOperator.swift in Sources */,
 				4C724E251B4D3E8C00E27479 /* CBXMLParser.m in Sources */,
 				F45AF701212960B4000F88A6 /* FaceSizeSensor.swift in Sources */,
+				9E190CD1222F385D00B5ECD1 /* ClearSoundEffectsBrick+Instruction.swift in Sources */,
 				9200C2D61C8082EF002F5CA4 /* ShowTextBrickCell.m in Sources */,
 				4CB0F9F420A173B700D1BE2F /* RotationSensor.swift in Sources */,
 				CAD740E31AF2D2E800C32937 /* CBStack.m in Sources */,
@@ -9054,6 +9117,7 @@
 				929CC0EF1BC39B8C0027DEC0 /* PhiroMotorStopBrickCell.m in Sources */,
 				4C0F9F64204BD18600E71B2D /* SayForBubbleBrick+CBXMLHandler.m in Sources */,
 				92FF32BB1A24E2F400093DA7 /* DarkBlueGradientImageCell.m in Sources */,
+				9E190CCB222F353700B5ECD1 /* ClearSoundEffectsBrick+CBXMLHandler.m in Sources */,
 				92FF314E1A24DEB300093DA7 /* LookImageViewController.m in Sources */,
 				AA74F0A41BC05FCE00D1E954 /* LoopEndBrickCell.m in Sources */,
 				921E84E81CC9F3E400F7EE9F /* TextInputViewController.m in Sources */,
@@ -9069,6 +9133,7 @@
 				4C724E5F1B4D3E8C00E27479 /* VariablesContainer+CBXMLHandler.m in Sources */,
 				E405EABB212D4E420074ADDB /* SearchStoreCell.swift in Sources */,
 				9218B2121CC4AB75007B4C60 /* ResizeViewManager.m in Sources */,
+				9E190CCD222F362900B5ECD1 /* ClearSoundEffectsBrickCell.swift in Sources */,
 				AA74F0AA1BC05FCE00D1E954 /* VibrationBrickCell.m in Sources */,
 				4C7B931F21B6DAC6001C3BA1 /* CBMultiTouchRecognizer.swift in Sources */,
 				CADBD71A19B0E8C200C62836 /* main.m in Sources */,
@@ -9085,6 +9150,7 @@
 				4CF0729420D66A7F00F93AB5 /* AltitudeSensor.swift in Sources */,
 				9218B2131CC4AB75007B4C60 /* UndoManager.m in Sources */,
 				AA74F0B31BC05FCE00D1E954 /* SetSizeToBrickCell.m in Sources */,
+				9E190CC5222F320500B5ECD1 /* ChangeEffectByBrickCell.swift in Sources */,
 				F4E6E5C6210E24F900D86FE6 /* TrueFunction.swift in Sources */,
 				4CB0F9EC20A1731700D1BE2F /* PositionYSensor.swift in Sources */,
 				AA6CC28B1BB4AB9A0007A621 /* CBScriptContext.swift in Sources */,
@@ -9151,6 +9217,7 @@
 				92FF315F1A24DEB300093DA7 /* MyProjectsViewController.m in Sources */,
 				BAEE49B61F165C3100F06741 /* ReplaceItemInUserListBrickCell.m in Sources */,
 				4C724E661B4D3EC500E27479 /* CBXMLSerializerContext.m in Sources */,
+				9E190CC8222F328100B5ECD1 /* ChangeEffectByBrick+CBXMLHandle.m in Sources */,
 				9218B20B1CC4AB75007B4C60 /* DrawTool.m in Sources */,
 				BAEAB294214BCD75000B2E4B /* WhenTouchDownScript.m in Sources */,
 				4C8BC6641B26C298001C7E32 /* iOSComboboxPickerView.m in Sources */,
@@ -9401,6 +9468,7 @@
 				4C1C8B14213FE76B003B3AA4 /* ChartProjectCell.swift in Sources */,
 				4CF072A820D6710F00F93AB5 /* FingerXSensor.swift in Sources */,
 				9EA3CB2F222D757F00BED864 /* SetInstrumentToBrickCell.swift in Sources */,
+				9E190CC3222F306B00B5ECD1 /* ChangeEffectByBrick.swift in Sources */,
 				9EA3CB4B222DAAFD00BED864 /* SetInstrumentToBrick+CBXMLHandler.m in Sources */,
 				9EA3CB4A222DAAFD00BED864 /* ChangeVolumeByNBrick+CBXMLHandler.m in Sources */,
 				4CE3D68B2107A89B00005629 /* FaceDetectionManager.swift in Sources */,
@@ -9412,6 +9480,7 @@
 				AA74F0AD1BC05FCE00D1E954 /* ClearGraphicEffectBrickCell.m in Sources */,
 				92D56C331BF202E700A54750 /* ArduinoProtocol.swift in Sources */,
 				4CB4FE071B95DF2900431757 /* BrickMoveManager.m in Sources */,
+				9E190CBB222F1C2700B5ECD1 /* SetEffectToBrick.swift in Sources */,
 				4CF072A720D6710F00F93AB5 /* FingerYSensor.swift in Sources */,
 				F4201CF220D795DB0030181B /* DateWeekdaySensor.swift in Sources */,
 				4CB4FE061B95DF2900431757 /* BrickInsertManager.m in Sources */,
@@ -9430,6 +9499,7 @@
 				AA74EF511BC0586F00D1E954 /* GoNStepsBackBrick+CBXMLHandler.m in Sources */,
 				92FF32B21A24E2F400093DA7 /* RoundBorderedButton.m in Sources */,
 				92EC985C1BC3ABB90003A891 /* PhiroMotorMoveBackwardBrick+CBXMLHandler.m in Sources */,
+				9E190CC1222F2FF200B5ECD1 /* ChangeEffectByBrick+Instruction.swift in Sources */,
 				4C0F9F4F204BD0B400E71B2D /* CameraPreviewHandler.m in Sources */,
 				4C724E611B4D3E8C00E27479 /* ProjectParser.m in Sources */,
 				AA74F0931BC05FCE00D1E954 /* BrickCellFormulaData.m in Sources */,
@@ -9437,6 +9507,7 @@
 				5E18A81221A547AA00541536 /* UIViewController+Extensions.swift in Sources */,
 				AA74F0951BC05FCE00D1E954 /* BrickCellMessageData.m in Sources */,
 				597AB578202089E0007CD10D /* NetworkDefinesSwift.swift in Sources */,
+				9EFB8E86223017120098018A /* PanEffect.swift in Sources */,
 				F4E6E59C210E051200D86FE6 /* MinFunction.swift in Sources */,
 				AA74EF591BC0586F00D1E954 /* TurnLeftBrick+CBXMLHandler.m in Sources */,
 				4C0F9F6F204BD1A300E71B2D /* ThinkForBubbleBrick+CBXMLHandler.m in Sources */,
@@ -9474,6 +9545,7 @@
 				9EA3CB49222DAAFD00BED864 /* PlaySoundBrick+CBXMLHandler.m in Sources */,
 				BA9CAB601EC383E800796056 /* AddItemToUserListBrickCell.m in Sources */,
 				9218B2051CC4AB75007B4C60 /* LinkedListStack.m in Sources */,
+				9E190CBF222F212900B5ECD1 /* SetEffectToBrick+Instruction.swift in Sources */,
 				F4E6E584210DFD4300D86FE6 /* TanFunction.swift in Sources */,
 				92B46F931BC7B3E5004980C1 /* ArduinoSendPWMValueBrick.m in Sources */,
 				F4E6E596210E03B700D86FE6 /* AtanFunction.swift in Sources */,
@@ -9550,6 +9622,7 @@
 				92FF2E361A24C5A700093DA7 /* NSDate+CustomExtensions.m in Sources */,
 				4C595F4121CAE7BE0097D850 /* PlusOperator.swift in Sources */,
 				92289A491A42F2A3008C771A /* BSKeyboardControls.m in Sources */,
+				9EFB8E84223016F90098018A /* PitchEffect.swift in Sources */,
 				4C724E231B4D3E8C00E27479 /* CBXMLSerializerHelper.m in Sources */,
 				92FF2EC11A24C8A700093DA7 /* OrderedMapTable.m in Sources */,
 				92FF325D1A24E2F400093DA7 /* EVCircularProgressView.m in Sources */,
@@ -9579,7 +9652,7 @@
 				92FF31041A24DCAA00093DA7 /* StartScript.m in Sources */,
 				4C994E31207A594100C415FD /* InclinationYSensor.swift in Sources */,
 				BA9CAB5A1EC382DB00796056 /* BrickCellListData.m in Sources */,
-				9E190CA6222EF28700B5ECD1 /* ChangeTempoBy+Instruction.swift in Sources */,
+				9E190CA6222EF28700B5ECD1 /* ChangeTempoByBrick+Instruction.swift in Sources */,
 				AA74F0061BC05B5F00D1E954 /* SetXBrick.m in Sources */,
 				92EC98601BC3ABB90003A891 /* PhiroRGBLightBrick+CBXMLHandler.m in Sources */,
 				99EBDC021D5623B3008D6860 /* ChangeColorByNBrickCell.m in Sources */,
@@ -9678,6 +9751,7 @@
 				4C0F9FA6204BD2C200E71B2D /* ThinkBubbleBrickCell.m in Sources */,
 				AA74EFFB1BC05B5F00D1E954 /* ChangeSizeByNBrick.m in Sources */,
 				92ED4D7D1BA9C1380052C852 /* RegisterViewController.m in Sources */,
+				9E190CBD222F209D00B5ECD1 /* SetEffectToBrickCell.swift in Sources */,
 				4C595F5321CAEC2B0097D850 /* SmallerOrEqualOperator.swift in Sources */,
 				E4668B3C20FDCA6D0021FA0B /* FeaturedProjectsStoreTableDataSource.swift in Sources */,
 				92FF31061A24DCAA00093DA7 /* Sound.m in Sources */,

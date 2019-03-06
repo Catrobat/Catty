@@ -29,16 +29,29 @@ import Foundation
     var audioPlayers: [String: AKAudioPlayer]
     var sampler: AKSampler
     var drumSampler: AKSampler
+    var soundEffects: [SoundEffectType: SoundEffect]
+
+//    var panEffect: PanEffect
+//    var pitchEffect: PitchEffect
 
     override init() {
-        subtreeOutputMixer = AKMixer()
         audioPlayerMixer = AKMixer()
-        audioPlayerMixer.connect(to: subtreeOutputMixer)
+        let panEffect = PanEffect()
+        let pitchEffect = PitchEffect()
+        soundEffects = [SoundEffectType: SoundEffect]()
+        soundEffects[.pan] = panEffect
+        soundEffects[.pitch] = pitchEffect
+        subtreeOutputMixer = AKMixer()
         sampler = AKSampler()
         drumSampler = AKSampler()
+        audioPlayerMixer.connect(to: pitchEffect)
+        pitchEffect.connect(to: panEffect)
+        panEffect.connect(to: subtreeOutputMixer)
         sampler.connect(to: subtreeOutputMixer)
         drumSampler.connect(to: subtreeOutputMixer)
+
         audioPlayers = [String: AKAudioPlayer]()
+
         super.init()
         setupSampler()
     }
@@ -66,6 +79,8 @@ import Foundation
 
     func playNote(note: Note) {
         sampler.play(noteNumber: UInt8(note.pitch), velocity: 127)
+        let mixer = AVAudioMixerNode()
+        mixer.pan = 0.8
     }
 
     func stopNote(pitch: Int) {
@@ -73,12 +88,6 @@ import Foundation
     }
 
     func playDrum(note: Note) {
-//        let instrumentPath = Bundle.main.resourcePath!+"/Sample Instruments Compressed/22-drums/1-snare.wv"
-//        let sd = AKSampleDescriptor(noteNumber: 0, noteFrequency: Float(AKPolyphonicNode.tuningTable.frequency(forNoteNumber: 0)),
-//                                    minimumNoteNumber: 0, maximumNoteNumber: 0, minimumVelocity: 0, maximumVelocity: 127,
-//                                    isLooping: false, loopStartPoint: 0.0, loopEndPoint: 0.0, startPoint: 0.0, endPoint: 0.0)
-//        drumSampler.loadCompressedSampleFile(from: AKSampleFileDescriptor(sampleDescriptor: sd, path: instrumentPath))
-//        drumSampler.buildKeyMap()
         drumSampler.play(noteNumber: UInt8(note.pitch), velocity: 127)
     }
 
@@ -89,6 +98,27 @@ import Foundation
     func setInstrumentTo(instrumentNumber: Int) {
         let instrumentPath = Bundle.main.resourcePath!+"/Sample Instruments Compressed/" + AudioEngineConfig.instrumentPath[instrumentNumber]
         sampler.loadSFZ(path: instrumentPath, fileName: AudioEngineConfig.instrumentPath[instrumentNumber] + ".sfz")
+    }
+
+    func setEffectTo(effectType: SoundEffectType, value: Double) {
+        var effect = getEffect(effectType)
+        effect.setEffectTo(value)
+
+    }
+
+    func changeEffectBy(effectType: SoundEffectType, value: Double) {
+        var effect = getEffect(effectType)
+        effect.changeEffectBy(value)
+    }
+
+    func clearSoundEffects() {
+        for (_, soundEffect) in soundEffects {
+            soundEffect.clear()
+        }
+    }
+
+    private func getEffect(_ effectType: SoundEffectType) -> SoundEffect {
+        return soundEffects[effectType]!
     }
 
     func loadDrums() {

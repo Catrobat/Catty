@@ -67,6 +67,9 @@ class AudioEngineConfig {
                                                       kLocalizedVibraslap,
                                                       kLocalizedCuica]
 
+    public static let localizedEffectNames: [String] = [kLocalizedPitch,
+                                                      kLocalizedPanLeftRight]
+
     public static let instrumentPath: [String] = ["1-piano",
                                                   "2-electric-piano",
                                                   "3-organ",
@@ -89,4 +92,8 @@ class AudioEngineConfig {
                                                   "20-synth-lead",
                                                   "21-synth-pad",
                                                   "22-drums"]
+}
+
+enum SoundEffectType: Int {
+    case pitch = 0, pan
 }

@@ -250,6 +250,9 @@ let kLocalizedOn = NSLocalizedString("on", bundle: Bundle(for: LanguageTranslati
 let kLocalizedCameraBack = NSLocalizedString("back", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedCameraFront = NSLocalizedString("front", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedMoreInformation = NSLocalizedString("More information", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedFor = NSLocalizedString("for", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedSet = NSLocalizedString("Set", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedChange = NSLocalizedString("Change", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
 //************************************************************************************************************
 //**********************************       SHORT DESCRIPTIONS      *******************************************
@@ -392,7 +395,6 @@ let kLocalizedChangeColor = NSLocalizedString("Change color ", bundle: Bundle(fo
 let kLocalizedFlash = NSLocalizedString("Turn flashlight", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedCamera = NSLocalizedString("Turn camera", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedChooseCamera = NSLocalizedString("Use camera", bundle: Bundle(for: LanguageTranslation.self), comment: "")
-let kLocalizedFor = NSLocalizedString("for", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
 // sound bricks
 let kLocalizedPlaySound = NSLocalizedString("Start sound", bundle: Bundle(for: LanguageTranslation.self), comment: "")
@@ -410,6 +412,9 @@ let kLocalizedSetTempoTo = NSLocalizedString("Set tempo to", bundle: Bundle(for:
 let kLocalizedChangeTempoBy = NSLocalizedString("Change tempo by", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedRestFor = NSLocalizedString("Rest for", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedBeats = NSLocalizedString("beats", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedEffectTo = NSLocalizedString("effect to", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedEffectBy = NSLocalizedString("effect by", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedClearSoundEffects = NSLocalizedString("Clear sound effects", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
 // variable
 let kLocalizedSetVariable = NSLocalizedString("Set variable", bundle: Bundle(for: LanguageTranslation.self), comment: "")
@@ -798,6 +803,8 @@ let kLocalizedGuiro = NSLocalizedString("(16) Guiro", bundle: Bundle(for: Langua
 let kLocalizedVibraslap = NSLocalizedString("(17) Vibraslap", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedCuica = NSLocalizedString("(18) Cuica", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
+let kLocalizedPitch = NSLocalizedString("pitch", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedPanLeftRight = NSLocalizedString("pan left/right", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 //************************************************************************************************************
 //****************************************       Debug        ************************************************
 //************************************************************************************************************

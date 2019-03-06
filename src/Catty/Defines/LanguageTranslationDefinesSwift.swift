@@ -250,6 +250,9 @@ let kLocalizedOn = NSLocalizedString("on", comment: "")
 let kLocalizedCameraBack = NSLocalizedString("back", comment: "")
 let kLocalizedCameraFront = NSLocalizedString("front", comment: "")
 let kLocalizedMoreInformation = NSLocalizedString("More information", comment: "")
+let kLocalizedFor = NSLocalizedString("for", comment: "")
+let kLocalizedSet = NSLocalizedString("Set", comment: "")
+let kLocalizedChange = NSLocalizedString("Change", comment: "")
 
 //************************************************************************************************************
 //**********************************       SHORT DESCRIPTIONS      *******************************************
@@ -392,7 +395,6 @@ let kLocalizedChangeColor = NSLocalizedString("Change color ", comment: "")
 let kLocalizedFlash = NSLocalizedString("Turn flashlight", comment: "")
 let kLocalizedCamera = NSLocalizedString("Turn camera", comment: "")
 let kLocalizedChooseCamera = NSLocalizedString("Use camera", comment: "")
-let kLocalizedFor = NSLocalizedString("for", comment: "")
 
 // sound bricks
 let kLocalizedPlaySound = NSLocalizedString("Start sound", comment: "")
@@ -410,6 +412,9 @@ let kLocalizedSetTempoTo = NSLocalizedString("Set tempo to", comment: "")
 let kLocalizedChangeTempoBy = NSLocalizedString("Change tempo by", comment: "")
 let kLocalizedRestFor = NSLocalizedString("Rest for", comment: "")
 let kLocalizedBeats = NSLocalizedString("beats", comment: "")
+let kLocalizedEffectTo = NSLocalizedString("effect to", comment: "")
+let kLocalizedEffectBy = NSLocalizedString("effect by", comment: "")
+let kLocalizedClearSoundEffects = NSLocalizedString("Clear sound effects", comment: "")
 
 // variable
 let kLocalizedSetVariable = NSLocalizedString("Set variable", comment: "")
@@ -798,6 +803,8 @@ let kLocalizedGuiro = NSLocalizedString("(16) Guiro", comment: "")
 let kLocalizedVibraslap = NSLocalizedString("(17) Vibraslap", comment: "")
 let kLocalizedCuica = NSLocalizedString("(18) Cuica", comment: "")
 
+let kLocalizedPitch = NSLocalizedString("pitch", comment: "")
+let kLocalizedPanLeftRight = NSLocalizedString("pan left/right", comment: "")
 //************************************************************************************************************
 //****************************************       Debug        ************************************************
 //************************************************************************************************************

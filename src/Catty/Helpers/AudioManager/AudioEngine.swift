@@ -121,6 +121,21 @@ import Foundation
         channel.changeVolumeBy(percent: percent)
     }
 
+    func setEffectTo(effectType: SoundEffectType, value: Double, key: String) {
+        let channel = getAudioChannel(key: key)
+        channel.setEffectTo(effectType: effectType, value: value)
+    }
+
+    func changeEffectBy(effectType: SoundEffectType, value: Double, key: String) {
+        let channel = getAudioChannel(key: key)
+        channel.changeEffectBy(effectType: effectType, value: value)
+    }
+
+    func clearSoundEffects(key: String) {
+        let channel = getAudioChannel(key: key)
+        channel.clearSoundEffects()
+    }
+
     func stopTheNodeRecorder() {
         recorder?.stop()
         print(" ------- Recorded \(recorder?.recordedDuration) Seconds ------- ")

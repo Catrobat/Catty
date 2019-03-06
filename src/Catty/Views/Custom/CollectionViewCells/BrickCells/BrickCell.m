@@ -95,12 +95,15 @@
     @"{FLOAT;range=(-inf,inf)}",                            /* change volume to     */\
     @"{INT}",                                               /* speak                */\
     @"{INT}",                                               /* speak and wait       */\
+    @[@"{STATICCHOICE}", @"{FLOAT;range=(-inf,inf)}"],      /* set effect to        */\
+    @[@"{STATICCHOICE}", @"{FLOAT;range=(-inf,inf)}"],      /* change effect by     */\
+    @[],                                                    /* clear sound effects  */\
     @[@"{INT;range=(0,130)}", @"{FLOAT;range=(0,inf)}"],    /* play note            */\
     @[@"{STATICCHOICE}", @"{FLOAT;range=(0,inf)}"],         /* play drum            */\
     @"{FLOAT;range=(0,inf)}",                               /* rest for             */\
     @"{STATICCHOICE}",                                      /* set instrument to    */\
-    @"{FLOAT;range=(20,500)}",                              /* set instrument to    */\
-    @"{FLOAT;range=(-480,480)}"                             /* change instrument by */\
+    @"{FLOAT;range=(20,500)}",                              /* set tempo to    */\
+    @"{FLOAT;range=(-480,480)}"                             /* change tempo by */\
 ]
 
 // look bricks
