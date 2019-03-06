@@ -563,6 +563,7 @@ let kUIFEonly15Char = NSLocalizedString("only 15 characters allowed", bundle: Bu
 let kUIFEVarName = NSLocalizedString("Variable name:", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFEListName = NSLocalizedString("List name:", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFEOtherName = NSLocalizedString("Please choose another name:", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFEAddNewText = NSLocalizedString("Abc", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
 let kUIFEProjectVars = NSLocalizedString("Project variables:", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFEObjectVars = NSLocalizedString("Object variables:", bundle: Bundle(for: LanguageTranslation.self), comment: "")
@@ -671,7 +672,7 @@ let kUIFEUnknownElementType = NSLocalizedString("Unknown Element", bundle: Bundl
 
 let kUIFENewText = NSLocalizedString("New Text", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFETextMessage = NSLocalizedString("Text message:", bundle: Bundle(for: LanguageTranslation.self), comment: "")
-let kUIFavouritesTitle = NSLocalizedString("Frequently Used", bundle: Bundle(for: LanguageTranslation.self), comment: "Title of View where the user can see the frequently used bricks.")
+let kLocalizedFrequentlyUsed = NSLocalizedString("Frequently Used", bundle: Bundle(for: LanguageTranslation.self), comment: "Title of View where the user can see the frequently used bricks.")
 let kUIScriptTitle = NSLocalizedString("Script", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIControlTitle = NSLocalizedString("Control", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIMotionTitle = NSLocalizedString("Motion", bundle: Bundle(for: LanguageTranslation.self), comment: "")

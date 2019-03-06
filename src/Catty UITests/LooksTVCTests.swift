@@ -39,51 +39,51 @@ class LooksTVCTests: XCTestCase, UITestProtocol {
         let appTables = app.tables
         let lookName = String(repeating: "a", count: 250)
 
-        appTables.staticTexts["Continue"].tap()
+        appTables.staticTexts[kLocalizedContinue].tap()
         appTables.staticTexts["Mole 1"].tap()
-        appTables.staticTexts["Looks"].tap()
+        appTables.staticTexts[kLocalizedLooks].tap()
 
         appTables.staticTexts.firstMatch.swipeLeft()
-        app.buttons["More"].tap()
-        app.buttons["Rename"].tap()
+        app.buttons[kLocalizedMore].tap()
+        app.buttons[kLocalizedRename].tap()
 
-        let alert = waitForElementToAppear(app.alerts["Rename image"])
+        let alert = waitForElementToAppear(app.alerts[kLocalizedRenameImage])
         alert.buttons["Clear text"].tap()
 
-        let textField = alert.textFields["Enter your image name here..."]
+        let textField = alert.textFields[kLocalizedEnterYourImageNameHere]
         textField.typeText(lookName)
-        alert.buttons["OK"].tap()
+        alert.buttons[kLocalizedOK].tap()
 
-        XCTAssertTrue(app.toolbars.buttons["Add"].exists)
+        XCTAssertTrue(app.toolbars.buttons[kLocalizedUserListAdd].exists)
 
         appTables.staticTexts.firstMatch.swipeLeft()
-        app.buttons["More"].tap()
-        app.buttons["Rename"].tap()
+        app.buttons[kLocalizedMore].tap()
+        app.buttons[kLocalizedRename].tap()
 
         alert.buttons["Clear text"].tap()
         textField.typeText(lookName + "b")
-        alert.buttons["OK"].tap()
+        alert.buttons[kLocalizedOK].tap()
     }
 
     func testLooksCanEnterLooksOfAllMoles() {
         let app = XCUIApplication()
         let appTables = app.tables
 
-        let testElement = "Looks"
+        let testElement = kLocalizedLooks
 
         let projectObjects = ["Mole 1", "Mole 2", "Mole 3", "Mole 4"]
 
-        appTables.staticTexts["Continue"].tap()
+        appTables.staticTexts[kLocalizedContinue].tap()
 
         for object in projectObjects {
             appTables.staticTexts[object].tap()
             appTables.staticTexts[testElement].tap()
             XCTAssert(app.navigationBars[testElement].buttons[object].exists)
             app.navigationBars[testElement].buttons[object].tap()
-            app.navigationBars[object].buttons["My first project"].tap()
+            app.navigationBars[object].buttons[kLocalizedMyFirstProject].tap()
 
-            let projectVC = waitForElementToAppear(app.navigationBars["My first project"])
-            XCTAssert(projectVC.buttons["Pocket Code"].exists)
+            let projectVC = waitForElementToAppear(app.navigationBars[kLocalizedMyFirstProject])
+            XCTAssert(projectVC.buttons[kLocalizedPocketCode].exists)
         }
     }
 }

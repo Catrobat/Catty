@@ -40,18 +40,18 @@ class ProjectTVCTests: XCTestCase, UITestProtocol {
         let objectName = String(repeating: "a", count: 250)
 
         //Create new Project
-        app.tables.staticTexts["New"].tap()
-        let alertQuery = app.alerts["New Project"]
-        alertQuery.textFields["Enter your project name here..."].typeText(projectName)
-        app.alerts["New Project"].buttons["OK"].tap()
+        app.tables.staticTexts[kLocalizedNew].tap()
+        let alertQuery = app.alerts[kLocalizedNewProject]
+        alertQuery.textFields[kLocalizedEnterYourProjectNameHere].typeText(projectName)
+        app.alerts[kLocalizedNewProject].buttons[kLocalizedOK].tap()
         XCTAssertNotNil(waitForElementToAppear(app.navigationBars[projectName]))
 
         //Add new Object
-        app.toolbars.buttons["Add"].tap()
-        app.alerts["Add object"].textFields["Enter your object name here..."].typeText(objectName)
-        app.alerts["Add object"].buttons["OK"].tap()
+        app.toolbars.buttons[kLocalizedUserListAdd].tap()
+        app.alerts[kLocalizedAddObject].textFields[kLocalizedEnterYourObjectNameHere].typeText(objectName)
+        app.alerts[kLocalizedAddObject].buttons[kLocalizedOK].tap()
 
-        XCTAssertNotNil(waitForElementToAppear(app.buttons["Draw new image"]).tap())
+        XCTAssertNotNil(waitForElementToAppear(app.buttons[kLocalizedDrawNewImage]).tap())
     }
 
     func testCreateObjectWithMaxLengthPlusOne() {
@@ -60,17 +60,17 @@ class ProjectTVCTests: XCTestCase, UITestProtocol {
         let objectName = String(repeating: "a", count: 250 + 1)
 
         //Create new Project
-        app.tables.staticTexts["New"].tap()
-        let alertQuery = app.alerts["New Project"]
-        alertQuery.textFields["Enter your project name here..."].typeText(projectName)
-        app.alerts["New Project"].buttons["OK"].tap()
+        app.tables.staticTexts[kLocalizedNew].tap()
+        let alertQuery = app.alerts[kLocalizedNewProject]
+        alertQuery.textFields[kLocalizedEnterYourProjectNameHere].typeText(projectName)
+        app.alerts[kLocalizedNewProject].buttons[kLocalizedOK].tap()
         XCTAssertNotNil(waitForElementToAppear(app.navigationBars[projectName]))
 
         //Add new Object
-        app.toolbars.buttons["Add"].tap()
-        app.alerts["Add object"].textFields["Enter your object name here..."].typeText(objectName)
-        app.alerts["Add object"].buttons["OK"].tap()
+        app.toolbars.buttons[kLocalizedUserListAdd].tap()
+        app.alerts[kLocalizedAddObject].textFields[kLocalizedEnterYourObjectNameHere].typeText(objectName)
+        app.alerts[kLocalizedAddObject].buttons[kLocalizedOK].tap()
 
-        XCTAssert(app.alerts["Pocket Code"].exists)
+        XCTAssert(app.alerts[kLocalizedPocketCode].exists)
     }
 }

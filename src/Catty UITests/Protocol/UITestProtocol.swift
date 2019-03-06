@@ -62,7 +62,7 @@ extension UITestProtocol {
     }
 
     func skipFrequentlyUsedBricks(_ app: XCUIApplication) {
-        if app.navigationBars[kUIFavouritesTitle].exists {
+        if app.navigationBars[kLocalizedFrequentlyUsed].exists {
             app.swipeLeft()
         }
     }

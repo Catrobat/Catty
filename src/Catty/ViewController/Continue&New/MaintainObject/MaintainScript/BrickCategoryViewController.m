@@ -188,7 +188,7 @@ NSString* CBTitleFromPageIndexCategoryType(PageIndexCategoryType pageIndexType)
 {
     switch (pageIndexType) {
         case kPageIndexFrequentlyUsed:
-            return kUIFavouritesTitle;
+            return kLocalizedFrequentlyUsed;
         case kPageIndexControlBrick:
             return kUIControlTitle;
         case kPageIndexMotionBrick:

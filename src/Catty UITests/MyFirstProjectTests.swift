@@ -36,15 +36,15 @@ class MyFirstProjectTests: XCTestCase, UITestProtocol {
 
     func testCanDeleteMultipleObjectsViaEditMode() {
         let app = XCUIApplication()
-        app.tables.staticTexts["Projects"].tap()
-        app.tables.staticTexts["My first project"].tap()
-        app.navigationBars["My first project"].buttons["Edit"].tap()
-        app.buttons["Delete Objects"].tap()
+        app.tables.staticTexts[kLocalizedProjects].tap()
+        app.tables.staticTexts[kLocalizedMyFirstProject].tap()
+        app.navigationBars[kLocalizedMyFirstProject].buttons[kLocalizedEdit].tap()
+        app.buttons[kLocalizedDeleteObjects].tap()
         let tablesQuery = app.tables
         tablesQuery.staticTexts["Mole 1"].tap()
         tablesQuery.staticTexts["Mole 2"].tap()
-        app.toolbars.buttons["Delete"].tap()
-        XCTAssert(app.tables.staticTexts["Background"].exists)
+        app.toolbars.buttons[kLocalizedDelete].tap()
+        XCTAssert(app.tables.staticTexts[kLocalizedBackground].exists)
         XCTAssert(app.tables.staticTexts["Mole 1"].exists == false)
         XCTAssert(app.tables.staticTexts["Mole 2"].exists == false)
         XCTAssert(app.tables.staticTexts["Mole 3"].exists)
@@ -53,25 +53,25 @@ class MyFirstProjectTests: XCTestCase, UITestProtocol {
 
     func testCanRenameProjectViaEditMode() {
         let app = XCUIApplication()
-        app.tables.staticTexts["Projects"].tap()
-        app.tables.staticTexts["My first project"].tap()
-        app.navigationBars["My first project"].buttons["Edit"].tap()
-        app.buttons["Rename Project"].tap()
+        app.tables.staticTexts[kLocalizedProjects].tap()
+        app.tables.staticTexts[kLocalizedMyFirstProject].tap()
+        app.navigationBars[kLocalizedMyFirstProject].buttons[kLocalizedEdit].tap()
+        app.buttons[kLocalizedRenameProject].tap()
 
-        XCTAssert(app.alerts["Rename Project"].exists)
-        let alertQuery = app.alerts["Rename Project"]
+        XCTAssert(app.alerts[kLocalizedRenameProject].exists)
+        let alertQuery = app.alerts[kLocalizedRenameProject]
         XCTAssert(alertQuery.buttons["Clear text"].exists)
         alertQuery.buttons["Clear text"].tap()
-        alertQuery.textFields["Enter your project name here..."].typeText("My renamed project")
-        XCTAssert(alertQuery.buttons["OK"].exists)
-        alertQuery.buttons["OK"].tap()
+        alertQuery.textFields[kLocalizedEnterYourProjectNameHere].typeText("My renamed project")
+        XCTAssert(alertQuery.buttons[kLocalizedOK].exists)
+        alertQuery.buttons[kLocalizedOK].tap()
 
         XCTAssert(app.navigationBars["My renamed project"].exists)
 
         // go back and forth to force reload table view!!
-        app.navigationBars["My renamed project"].buttons["Projects"].tap()
-        app.navigationBars["Projects"].buttons["Pocket Code"].tap()
-        app.tables.staticTexts["Projects"].tap()
+        app.navigationBars["My renamed project"].buttons[kLocalizedProjects].tap()
+        app.navigationBars[kLocalizedProjects].buttons[kLocalizedPocketCode].tap()
+        app.tables.staticTexts[kLocalizedProjects].tap()
 
         // check again
         XCTAssert(app.tables.staticTexts["My renamed project"].exists)
@@ -80,178 +80,178 @@ class MyFirstProjectTests: XCTestCase, UITestProtocol {
 
     func testCanAbortRenameProjectViaEditMode() {
         let app = XCUIApplication()
-        app.tables.staticTexts["Projects"].tap()
-        app.tables.staticTexts["My first project"].tap()
-        app.navigationBars["My first project"].buttons["Edit"].tap()
-        app.buttons["Rename Project"].tap()
+        app.tables.staticTexts[kLocalizedProjects].tap()
+        app.tables.staticTexts[kLocalizedMyFirstProject].tap()
+        app.navigationBars[kLocalizedMyFirstProject].buttons[kLocalizedEdit].tap()
+        app.buttons[kLocalizedRenameProject].tap()
 
-        XCTAssert(app.alerts["Rename Project"].exists)
-        let alertQuery = app.alerts["Rename Project"]
+        XCTAssert(app.alerts[kLocalizedRenameProject].exists)
+        let alertQuery = app.alerts[kLocalizedRenameProject]
         XCTAssert(alertQuery.buttons["Clear text"].exists)
         alertQuery.buttons["Clear text"].tap()
-        alertQuery.textFields["Enter your project name here..."].typeText("My renamed project")
-        XCTAssert(alertQuery.buttons["Cancel"].exists)
-        alertQuery.buttons["Cancel"].tap()
+        alertQuery.textFields[kLocalizedEnterYourProjectNameHere].typeText("My renamed project")
+        XCTAssert(alertQuery.buttons[kLocalizedCancel].exists)
+        alertQuery.buttons[kLocalizedCancel].tap()
 
-        XCTAssert(app.navigationBars["My first project"].exists)
+        XCTAssert(app.navigationBars[kLocalizedMyFirstProject].exists)
 
         // go back and forth to force reload table view!!
-        app.navigationBars["My first project"].buttons["Projects"].tap()
-        app.navigationBars["Projects"].buttons["Pocket Code"].tap()
-        app.tables.staticTexts["Projects"].tap()
+        app.navigationBars[kLocalizedMyFirstProject].buttons[kLocalizedProjects].tap()
+        app.navigationBars[kLocalizedProjects].buttons[kLocalizedPocketCode].tap()
+        app.tables.staticTexts[kLocalizedProjects].tap()
 
         // check again
-        XCTAssert(app.tables.staticTexts["My first project"].exists)
+        XCTAssert(app.tables.staticTexts[kLocalizedMyFirstProject].exists)
     }
 
     func testCanShowAndHideDetailsViaEditMode() {
         let app = XCUIApplication()
-        app.tables.staticTexts["Projects"].tap()
-        app.tables.staticTexts["My first project"].tap()
-        app.navigationBars["My first project"].buttons["Edit"].tap()
+        app.tables.staticTexts[kLocalizedProjects].tap()
+        app.tables.staticTexts[kLocalizedMyFirstProject].tap()
+        app.navigationBars[kLocalizedMyFirstProject].buttons[kLocalizedEdit].tap()
 
-        if app.buttons["Hide Details"].exists {
-            app.buttons["Hide Details"].tap()
-            app.navigationBars["My first project"].buttons["Edit"].tap()
+        if app.buttons[kLocalizedHideDetails].exists {
+            app.buttons[kLocalizedHideDetails].tap()
+            app.navigationBars[kLocalizedMyFirstProject].buttons[kLocalizedEdit].tap()
         }
 
-        app.buttons["Show Details"].tap()
+        app.buttons[kLocalizedShowDetails].tap()
 
-        app.navigationBars["My first project"].buttons["Edit"].tap()
-        XCTAssert(app.buttons["Hide Details"].exists)
-        app.buttons["Hide Details"].tap()
-        app.navigationBars["My first project"].buttons["Edit"].tap()
+        app.navigationBars[kLocalizedMyFirstProject].buttons[kLocalizedEdit].tap()
+        XCTAssert(app.buttons[kLocalizedHideDetails].exists)
+        app.buttons[kLocalizedHideDetails].tap()
+        app.navigationBars[kLocalizedMyFirstProject].buttons[kLocalizedEdit].tap()
 
-        XCTAssert(app.buttons["Show Details"].exists)
-        app.buttons["Cancel"].tap()
+        XCTAssert(app.buttons[kLocalizedShowDetails].exists)
+        app.buttons[kLocalizedCancel].tap()
 
-        XCTAssert(app.navigationBars["My first project"].exists)
+        XCTAssert(app.navigationBars[kLocalizedMyFirstProject].exists)
     }
 
     func testCanEditDescriptionViaEditMode() {
         let app = XCUIApplication()
-        app.tables.staticTexts["Projects"].tap()
-        app.tables.staticTexts["My first project"].tap()
-        app.navigationBars["My first project"].buttons["Edit"].tap()
+        app.tables.staticTexts[kLocalizedProjects].tap()
+        app.tables.staticTexts[kLocalizedMyFirstProject].tap()
+        app.navigationBars[kLocalizedMyFirstProject].buttons[kLocalizedEdit].tap()
 
-        XCTAssert(app.buttons["Description"].exists)
-        app.buttons["Description"].tap()
+        XCTAssert(app.buttons[kLocalizedDescription].exists)
+        app.buttons[kLocalizedDescription].tap()
 
         app.textViews["descriptionTextView"].typeText("This is test description")
 
-        app.navigationBars.buttons["Done"].tap()
-        XCTAssert(app.navigationBars["My first project"].exists)
+        app.navigationBars.buttons[kLocalizedDone].tap()
+        XCTAssert(app.navigationBars[kLocalizedMyFirstProject].exists)
 
-        app.navigationBars["My first project"].buttons["Edit"].tap()
+        app.navigationBars[kLocalizedMyFirstProject].buttons[kLocalizedEdit].tap()
 
-        XCTAssert(app.buttons["Description"].exists)
-        app.buttons["Description"].tap()
+        XCTAssert(app.buttons[kLocalizedDescription].exists)
+        app.buttons[kLocalizedDescription].tap()
 
         XCTAssertEqual(app.textViews["descriptionTextView"].value as! String, "This is test description")
     }
 
     func testCanAbortEditDescriptionViaEditMode() {
         let app = XCUIApplication()
-        app.tables.staticTexts["Projects"].tap()
-        app.tables.staticTexts["My first project"].tap()
-        app.navigationBars["My first project"].buttons["Edit"].tap()
+        app.tables.staticTexts[kLocalizedProjects].tap()
+        app.tables.staticTexts[kLocalizedMyFirstProject].tap()
+        app.navigationBars[kLocalizedMyFirstProject].buttons[kLocalizedEdit].tap()
 
-        XCTAssert(app.buttons["Description"].exists)
-        app.buttons["Description"].tap()
+        XCTAssert(app.buttons[kLocalizedDescription].exists)
+        app.buttons[kLocalizedDescription].tap()
 
-        app.navigationBars.buttons["Cancel"].tap()
-        XCTAssert(app.navigationBars["My first project"].exists)
+        app.navigationBars.buttons[kLocalizedCancel].tap()
+        XCTAssert(app.navigationBars[kLocalizedMyFirstProject].exists)
     }
 
     func testCanAbortDeleteSingleObjectViaSwipe() {
         let app = XCUIApplication()
-        app.tables.staticTexts["Projects"].tap()
-        app.tables.staticTexts["My first project"].tap()
+        app.tables.staticTexts[kLocalizedProjects].tap()
+        app.tables.staticTexts[kLocalizedMyFirstProject].tap()
         let tablesQuery = app.tables
         tablesQuery.staticTexts["Mole 3"].swipeLeft()
-        XCTAssert(app.buttons["Delete"].exists)
+        XCTAssert(app.buttons[kLocalizedDelete].exists)
 
-        app.buttons["Delete"].tap()
-        let yesButton = app.alerts["Delete this object"].buttons["Cancel"]
+        app.buttons[kLocalizedDelete].tap()
+        let yesButton = app.alerts[kLocalizedDeleteThisObject].buttons[kLocalizedCancel]
         yesButton.tap()
         XCTAssert(app.tables.staticTexts["Mole 3"].exists)
     }
 
     func testCanDeleteSingleObjectViaSwipe() {
         let app = XCUIApplication()
-        app.tables.staticTexts["Projects"].tap()
-        app.tables.staticTexts["My first project"].tap()
+        app.tables.staticTexts[kLocalizedProjects].tap()
+        app.tables.staticTexts[kLocalizedMyFirstProject].tap()
         let tablesQuery = app.tables
         tablesQuery.staticTexts["Mole 1"].swipeLeft()
-        XCTAssert(app.buttons["Delete"].exists)
+        XCTAssert(app.buttons[kLocalizedDelete].exists)
 
-        app.buttons["Delete"].tap()
-        let yesButton = app.alerts["Delete this object"].buttons["Yes"]
+        app.buttons[kLocalizedDelete].tap()
+        let yesButton = app.alerts[kLocalizedDeleteThisObject].buttons[kLocalizedYes]
         yesButton.tap()
         XCTAssert(app.tables.staticTexts["Mole 1"].exists == false)
     }
 
     func testCanRenameSingleObjectViaSwipe() {
         let app = XCUIApplication()
-        app.tables.staticTexts["Projects"].tap()
-        app.tables.staticTexts["My first project"].tap()
+        app.tables.staticTexts[kLocalizedProjects].tap()
+        app.tables.staticTexts[kLocalizedMyFirstProject].tap()
         let tablesQuery = app.tables
         tablesQuery.staticTexts["Mole 3"].swipeLeft()
-        XCTAssert(app.buttons["More"].exists)
+        XCTAssert(app.buttons[kLocalizedMore].exists)
 
-        app.buttons["More"].tap()
-        app.buttons["Rename"].tap()
+        app.buttons[kLocalizedMore].tap()
+        app.buttons[kLocalizedRename].tap()
 
-        let alert = waitForElementToAppear(app.alerts["Rename object"])
+        let alert = waitForElementToAppear(app.alerts[kLocalizedRenameObject])
         alert.buttons["Clear text"].tap()
-        alert.textFields["Enter your object name here..."].typeText("Mole 5")
-        alert.buttons["OK"].tap()
+        alert.textFields[kLocalizedEnterYourObjectNameHere].typeText("Mole 5")
+        alert.buttons[kLocalizedOK].tap()
 
         XCTAssert(app.tables.staticTexts["Mole 5"].exists)
     }
 
     func testCanAbortRenameSingleObjectViaSwipe() {
         let app = XCUIApplication()
-        app.tables.staticTexts["Projects"].tap()
-        app.tables.staticTexts["My first project"].tap()
+        app.tables.staticTexts[kLocalizedProjects].tap()
+        app.tables.staticTexts[kLocalizedMyFirstProject].tap()
         let tablesQuery = app.tables
         tablesQuery.staticTexts["Mole 1"].swipeLeft()
-        XCTAssert(app.buttons["More"].exists)
+        XCTAssert(app.buttons[kLocalizedMore].exists)
 
-        app.buttons["More"].tap()
-        app.buttons["Rename"].tap()
+        app.buttons[kLocalizedMore].tap()
+        app.buttons[kLocalizedRename].tap()
 
-        let alert = waitForElementToAppear(app.alerts["Rename object"])
+        let alert = waitForElementToAppear(app.alerts[kLocalizedRenameObject])
         alert.buttons["Clear text"].tap()
-        alert.textFields["Enter your object name here..."].typeText("Mole 5")
-        alert.buttons["Cancel"].tap()
+        alert.textFields[kLocalizedEnterYourObjectNameHere].typeText("Mole 5")
+        alert.buttons[kLocalizedCancel].tap()
 
         XCTAssert(app.tables.staticTexts["Mole 1"].exists)
     }
 
     func testCanCopySingleObjectViaSwipe() {
         let app = XCUIApplication()
-        app.tables.staticTexts["Projects"].tap()
-        app.tables.staticTexts["My first project"].tap()
+        app.tables.staticTexts[kLocalizedProjects].tap()
+        app.tables.staticTexts[kLocalizedMyFirstProject].tap()
         let tablesQuery = app.tables
         tablesQuery.staticTexts["Mole 1"].swipeLeft()
-        XCTAssert(app.buttons["More"].exists)
+        XCTAssert(app.buttons[kLocalizedMore].exists)
 
-        app.buttons["More"].tap()
-        app.buttons["Copy"].tap()
+        app.buttons[kLocalizedMore].tap()
+        app.buttons[kLocalizedCopy].tap()
         app.swipeDown()
         XCTAssert(app.tables.staticTexts["Mole 1 (1)"].exists)
     }
 
     func testCanAbortSwipe() {
         let app = XCUIApplication()
-        app.tables.staticTexts["Projects"].tap()
-        app.tables.staticTexts["My first project"].tap()
+        app.tables.staticTexts[kLocalizedProjects].tap()
+        app.tables.staticTexts[kLocalizedMyFirstProject].tap()
         let tablesQuery = app.tables
         tablesQuery.staticTexts["Mole 1"].swipeLeft()
-        XCTAssert(app.buttons["More"].exists)
+        XCTAssert(app.buttons[kLocalizedMore].exists)
 
-        app.buttons["More"].tap()
-        app.buttons["Cancel"].tap()
+        app.buttons[kLocalizedMore].tap()
+        app.buttons[kLocalizedCancel].tap()
     }
 }

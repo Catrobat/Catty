@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D010F4822240C9F00CAAA06 /* XCUIElement+staticTexts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D010F4722240C9F00CAAA06 /* XCUIElement+staticTexts.swift */; };
 		2D227D94220B38E0008A2BC9 /* ScenePresenterVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D227D93220B38E0008A2BC9 /* ScenePresenterVCTests.swift */; };
 		2D6E3F39210A0A9F00FB8139 /* ChartProjectStoreDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6E3F38210A0A9F00FB8139 /* ChartProjectStoreDataSource.swift */; };
 		2D6E3F3B210A0AB700FB8139 /* ChartProjectsStoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6E3F3A210A0AB700FB8139 /* ChartProjectsStoreViewController.swift */; };
@@ -1329,6 +1330,7 @@
 		21E62C124B07A7E0C71500AC /* kk */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = kk; path = kk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		294D641A454838288F1F14C1 /* de */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		2D010F4722240C9F00CAAA06 /* XCUIElement+staticTexts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCUIElement+staticTexts.swift"; sourceTree = "<group>"; };
 		2D227D93220B38E0008A2BC9 /* ScenePresenterVCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScenePresenterVCTests.swift; sourceTree = "<group>"; };
 		2D6E3F38210A0A9F00FB8139 /* ChartProjectStoreDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartProjectStoreDataSource.swift; sourceTree = "<group>"; };
 		2D6E3F3A210A0AB700FB8139 /* ChartProjectsStoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartProjectsStoreViewController.swift; sourceTree = "<group>"; };
@@ -3210,6 +3212,14 @@
 				92C631931BC5173100486958 /* BluetoothHelper.xcodeproj */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2D010F4422240C6400CAAA06 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				2D010F4722240C9F00CAAA06 /* XCUIElement+staticTexts.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		2DA8790F212BD67700FE0585 /* ChartProjects */ = {
@@ -7158,6 +7168,7 @@
 			isa = PBXGroup;
 			children = (
 				5E0B3620220A5ED40056EB12 /* Defines */,
+				2D010F4422240C6400CAAA06 /* Extensions */,
 				4CB1FB721BC2D74F0000A2FE /* Protocol */,
 				AAADA0081B9B29D500E0CA9A /* Info.plist */,
 				BCFED6EC2111C04000BE57BF /* BackgroundsTests.swift */,
@@ -8565,6 +8576,7 @@
 				2D227D94220B38E0008A2BC9 /* ScenePresenterVCTests.swift in Sources */,
 				4CF8747521C8E7AB00C8143F /* SoundsTVCTests.swift in Sources */,
 				BCFED6F8211318A100BE57BF /* ProjectTVCTests.swift in Sources */,
+				2D010F4822240C9F00CAAA06 /* XCUIElement+staticTexts.swift in Sources */,
 				4CB1FB741BC2D74F0000A2FE /* UITestProtocol.swift in Sources */,
 				BC19327F21186504009DE43A /* CreateProjectTests.swift in Sources */,
 				BCFED6ED2111C04000BE57BF /* BackgroundsTests.swift in Sources */,
