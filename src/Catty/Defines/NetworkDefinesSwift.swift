@@ -38,6 +38,8 @@ let kFeaturedImageBaseUrl = kBaseUrl.replacingOccurrences(of: "/pocketcode/", wi
 let kChartProjectsMaxResults = 10
 let kRecentProjectsMaxResults = 20
 let kSearchStoreMaxResults = 50
+let kAspectRatioHeight: CGFloat = 25
+let kAspectRatioWidth: CGFloat = 64
 
 //*************************************************************************************
 //********************        UploadViewController       ******************************

@@ -1,0 +1,1751 @@
+/* No comment provided by engineer. */
+"A message with the same name already exists, try again." = "Zpráva se stejným názvem již existuje, zkuste to znovu.";
+
+/* No comment provided by engineer. */
+"A project with the same name already exists, try again." = "A project with the same name already exists, try again.";
+
+/* No comment provided by engineer. */
+"About Catrobat" = "O Catrobat";
+
+/* No comment provided by engineer. */
+"About Pocket Code" = "O Pocket Code";
+
+/* No comment provided by engineer. */
+"acceleration-sensor" = "čidlo zrychlení";
+
+/* No comment provided by engineer. */
+"acceleration_x" = "zrychlení_x";
+
+/* No comment provided by engineer. */
+"acceleration_y" = "zrychlení_y";
+
+/* No comment provided by engineer. */
+"acceleration_z" = "zrychlení_z";
+
+/* No comment provided by engineer. */
+"Add" = "Přidat";
+
+/* No comment provided by engineer. */
+"add comment here..." = "přidat sem komentář…";
+
+/* No comment provided by engineer. */
+"Add image" = "Přidat obrázek";
+
+/* Action sheet menu title */
+"Add look" = "Přidat vzhled";
+
+/* No comment provided by engineer. */
+"Add object" = "Přidat objekt";
+
+/* Action sheet menu title */
+"Add sound" = "Přidat zvuk";
+
+/* No comment provided by engineer. */
+"All Bluetooth devices successfully disconnected" = "Všechna Bluetooth zařízení úspěšně odpojena";
+
+/* No comment provided by engineer. */
+"All known Bluetooth devices successfully removed" = "Všechny zařízení Bluetooth úspěšně odebrána";
+
+/* paint */
+"Alpha" = "Alpha";
+
+/* No comment provided by engineer. */
+"altitude" = "Výška";
+
+/* No comment provided by engineer. */
+"An image with the same name already exists, try again." = "Obrázek se stejným názvem již existuje, zkuste to znovu.";
+
+/* No comment provided by engineer. */
+"An object with the same name already exists, try again." = "Objekt se stejným názvem již existuje, zkuste to znovu.";
+
+/* No comment provided by engineer. */
+"An unknown error occurred. Check your Internet connection." = "Došlo k neznámé chybě. Zkontrolujte připojení k Internetu.";
+
+/* No comment provided by engineer. */
+"An unknown error occurred. Please try again later." = "Nastala neznámá chyba. Prosím zkuste to znovu později.";
+
+/* No comment provided by engineer. */
+"and" = "a";
+
+/* No comment provided by engineer. */
+"and wait" = "a počkat";
+
+/* No comment provided by engineer. */
+"Animate Brick-Parts" = "Animuj části bloku";
+
+/* No comment provided by engineer. */
+"Apr" = "Apr";
+
+/* No comment provided by engineer. */
+"April" = "Duben";
+
+/* No comment provided by engineer. */
+"Arduino" = "Arduino";
+
+/* No comment provided by engineer. */
+"arduino_analog" = "arduino_analog";
+
+/* No comment provided by engineer. */
+"arduino_digital" = "arduino_digital";
+
+/* No comment provided by engineer. */
+"at " = "na ";
+
+/* No comment provided by engineer. */
+"at position" = "na pozici";
+
+/* paint */
+"Attributes:" = "Atributy:";
+
+/* No comment provided by engineer. */
+"Aug" = "Aug";
+
+/* No comment provided by engineer. */
+"August" = "Srpen";
+
+/* No comment provided by engineer. */
+"Authentication failed" = "Autentizace selhala";
+
+/* No comment provided by engineer. */
+"Author" = "Autor";
+
+/* Title of icon shown in the side bar to enable or disable an overlayed view to show the origin of the coordinate system and implicitly the display size. */
+"Axes" = "Osy";
+
+/* No comment provided by engineer. */
+"back" = "back";
+
+/* No comment provided by engineer. */
+"Back" = "Zpět";
+
+/* No comment provided by engineer. */
+"Background" = "Pozadí";
+
+/* No comment provided by engineer. */
+"background_name" = "název_pozadí";
+
+/* No comment provided by engineer. */
+"background_number" = "číslo_pozadí";
+
+/* No comment provided by engineer. */
+"Backgrounds" = "Pozadí";
+
+/* paint */
+"Blue" = "Modrá";
+
+/* No comment provided by engineer. */
+"Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings." = "Bluetooth není k dispozici. Vaše zařízení nepodporují Bluetooth 4.0 nebo je Bluetooth čip poškozen. Zkontrolujte připojení k jinému zařízení Bluetooth v nastavení.";
+
+/* No comment provided by engineer. */
+"Bluetooth is turned off. Please turn it on to connect to a Bluetooth device." = "Bluetooth je vypnuto. Prosím zapněte ho aby jste se připojily k Bluetooth.";
+
+/* paint */
+"bold" = "tučně";
+
+/* No comment provided by engineer. */
+"Both" = "Oba";
+
+/* No comment provided by engineer. */
+"Bricks" = "Bloky";
+
+/* No comment provided by engineer. */
+"brightness" = "Jas";
+
+/* No comment provided by engineer. */
+"Broadcast" = "Vysílat";
+
+/* No comment provided by engineer. */
+"Broadcast and wait" = "Vysílat a počkat";
+
+/* paint */
+"Brush" = "Štětec";
+
+/* No comment provided by engineer. */
+"by" = "o";
+
+/* No comment provided by engineer. */
+"By registering you agree to our" = "Registrací souhlasíte s našimi";
+
+/* No comment provided by engineer. */
+"By switching to the section \"Explore\" you can discover more interesting projects from people all over the world." = "By switching to the section \"Explore\" you can discover more interesting projects from people all over the world.";
+
+/* No comment provided by engineer. */
+"Camera Roll" = "Z fotoaparátu";
+
+/* No comment provided by engineer. */
+"Can't restart project!" = "Can't restart project!";
+
+/* No comment provided by engineer. */
+"Cancel" = "Zrušit";
+
+/* bluetooth */
+"Cannot connect to device, please try resetting the device and try again." = "Nelze připojit k zařízení, prosím zkuste resetovat zařízení a opakujte akci.";
+
+/* bluetooth */
+"Cannot connect to device. The device is not responding." = "Nelze připojit k zařízení. Zařízení neodpovídá.";
+
+/* No comment provided by engineer. */
+"Cannot connect to the Media Library. Please check your Internet connection." = "Cannot connect to the Media Library. Please check your Internet connection.";
+
+/* No comment provided by engineer. */
+"Categories" = "Kategorie";
+
+/* No comment provided by engineer. */
+"ceil" = "ceil";
+
+/* No comment provided by engineer. */
+"Change brightness " = "Změnit jas ";
+
+/* No comment provided by engineer. */
+"Change color " = "Změnit barvu ";
+
+/* No comment provided by engineer. */
+"Change size by" = "Změnit velikost o";
+
+/* No comment provided by engineer. */
+"Change transparency " = "Změnit průhlednost ";
+
+/* No comment provided by engineer. */
+"Change variable" = "Změnit proměnnou";
+
+/* No comment provided by engineer. */
+"Change volume by" = "Změnit hlasitost o";
+
+/* No comment provided by engineer. */
+"Change X by " = "Změň X o ";
+
+/* No comment provided by engineer. */
+"Change Y by " = "Změň Y o ";
+
+/* No comment provided by engineer. */
+"Changes discarded!" = "Změny zrušeny!";
+
+/* No comment provided by engineer. */
+"Changes saved!" = "Změny byly uloženy!";
+
+/* No comment provided by engineer. */
+"Choose" = "Zvolte";
+
+/* No comment provided by engineer. */
+"Choose image" = "Zvolte obrázek";
+
+/* No comment provided by engineer. */
+"Clear graphic effects" = "Vyčistit grafické efekty";
+
+/* No comment provided by engineer. */
+"Close" = "Zavřít";
+
+/* paint */
+"Close Paint" = "Zavřít Malování";
+
+/* No comment provided by engineer. */
+"color" = "color";
+
+/* No comment provided by engineer. */
+"compass" = "kompas";
+
+/* No comment provided by engineer. */
+"Compute" = "Výpočetní výkon";
+
+/* No comment provided by engineer. */
+"Computed result is %.2f" = "Vypočítaný výsledek je %.2f";
+
+/* No comment provided by engineer. */
+"Computed result is FALSE" = "Vypočítaný výsledek je FALSE";
+
+/* No comment provided by engineer. */
+"Computed result is TRUE" = "Vypočítaný výsledek je TRUE";
+
+/* No comment provided by engineer. */
+"Confirm Password" = "Potvrdit Heslo";
+
+/* bluetooth */
+"Connection failed" = "Připojení se nezdařilo.";
+
+/* bluetooth */
+"Connection Lost" = "Připojení bylo ztraceno";
+
+/* bluetooth */
+"Connection not possible" = "Spojení není možné";
+
+/* No comment provided by engineer. */
+"contains" = "obsahuje";
+
+/* No comment provided by engineer. */
+"Continue" = "Pokračovat";
+
+/* No comment provided by engineer. */
+"Control" = "Ovládání";
+
+/* No comment provided by engineer. */
+"Copy" = "Kopírovat";
+
+/* No comment provided by engineer. */
+"Copy Brick" = "Kopíruj blok";
+
+/* No comment provided by engineer. */
+"Copy Looks" = "Kopírovat vzhled";
+
+/* No comment provided by engineer. */
+"Copy project" = "Copy project";
+
+/* No comment provided by engineer. */
+"Create & Remix" = "Vytvořit & Remixovat";
+
+/* No comment provided by engineer. */
+"Create account" = "Vytvořit účet";
+
+/* No comment provided by engineer. */
+"day" = "den";
+
+/* No comment provided by engineer. */
+"Debug mode" = "Režim ladění";
+
+/* No comment provided by engineer. */
+"Dec" = "Dec";
+
+/* No comment provided by engineer. */
+"December" = "Prosinec";
+
+/* No comment provided by engineer. */
+"degrees" = "stupně";
+
+/* No comment provided by engineer. */
+"Delete" = "Smazat";
+
+/* No comment provided by engineer. */
+"Delete Backgrounds" = "Odstranit pozadí";
+
+/* No comment provided by engineer. */
+"Delete Brick" = "Smaž blok";
+
+/* No comment provided by engineer. */
+"Delete Condition" = "Odstranit podmínku";
+
+/* No comment provided by engineer. */
+"Delete item from list" = "Odstranit položku ze seznamu";
+
+/* No comment provided by engineer. */
+"Delete Looks" = "Odstranit vzhled";
+
+/* No comment provided by engineer. */
+"Delete Loop" = "Odstranit smyčku";
+
+/* No comment provided by engineer. */
+"Delete Objects" = "Odstranit objekty";
+
+/* No comment provided by engineer. */
+"Delete Project" = "Delete Project";
+
+/* No comment provided by engineer. */
+"Delete Projects" = "Delete Projects";
+
+/* No comment provided by engineer. */
+"Delete Script" = "Smazat skript";
+
+/* No comment provided by engineer. */
+"Delete Sounds" = "Odstranit zvuky";
+
+/* No comment provided by engineer. */
+"Delete these Bricks?" = "Smazat tyto bloky?";
+
+/* No comment provided by engineer. */
+"Delete these Conditions?" = "Odstranit tyto podmínky?";
+
+/* No comment provided by engineer. */
+"Delete these Loops?" = "Odstranit tyto smyčky?";
+
+/* No comment provided by engineer. */
+"Delete these Scripts?" = "Odstranit tyto skripty?";
+
+/* No comment provided by engineer. */
+"Delete this background" = "Odstranit toto pozadí";
+
+/* No comment provided by engineer. */
+"Delete this Brick?" = "Smazat tento blok?";
+
+/* No comment provided by engineer. */
+"Delete this Condition?" = "Odstranit tuto podmínku?";
+
+/* No comment provided by engineer. */
+"Delete this look" = "Odstranit tento vzhled";
+
+/* No comment provided by engineer. */
+"Delete this Loop?" = "Odstranit tuto smyčku?";
+
+/* No comment provided by engineer. */
+"Delete this object" = "Odstranit tento objekt";
+
+/* No comment provided by engineer. */
+"Delete this project" = "Delete this project";
+
+/* No comment provided by engineer. */
+"Delete this Script?" = "Smazat tento skript?";
+
+/* No comment provided by engineer. */
+"Delete this sound" = "Odstranit tento zvuk";
+
+/* No comment provided by engineer. */
+"Deletion Mode" = "Režim mazání";
+
+/* No comment provided by engineer. */
+"Description" = "Popis";
+
+/* No comment provided by engineer. */
+"Details" = "Podrobnosti";
+
+/* bluetooth */
+"Device disconnected." = "Zařízení odpojeno.";
+
+/* No comment provided by engineer. */
+"device motion-sensor" = "device motion-sensor";
+
+/* No comment provided by engineer. */
+"direction" = "směr";
+
+/* No comment provided by engineer. */
+"Disconnect all devices" = "Odpojte všechna zařízení";
+
+/* No comment provided by engineer. */
+"DO" = "DO";
+
+/* paint */
+"Do you really want to delete the current drawing?" = "Opravdu chcete odstranit aktuální výkres?";
+
+/* paint */
+"Do you want to save the changes" = "Chcete uložit změny";
+
+/* No comment provided by engineer. */
+"Done" = "Hotovo";
+
+/* No comment provided by engineer. */
+"Download" = "Stáhnout";
+
+/* No comment provided by engineer. */
+"Download successful" = "Staženo úspěšně";
+
+/* No comment provided by engineer. */
+"Downloads" = "Stahování";
+
+/* No comment provided by engineer. */
+"Draw new image" = "Nakreslit nový obrázek";
+
+/* No comment provided by engineer. */
+"Duration" = "Trvání";
+
+/* No comment provided by engineer. */
+"Edit" = "Úpravy";
+
+/* Action sheet menu title */
+"Edit Background" = "Upravit pozadí";
+
+/* Action sheet menu title */
+"Edit Backgrounds" = "Upravit pozadí";
+
+/* Action sheet menu title */
+"Edit Brick" = "Uprav blok";
+
+/* No comment provided by engineer. */
+"Edit Formula" = "Upravit vzorec";
+
+/* Action sheet menu title */
+"Edit Look" = "Upravit vzhled";
+
+/* Action sheet menu title */
+"Edit Looks" = "Upravit vzhled";
+
+/* No comment provided by engineer. */
+"Edit Object" = "Upravit objekt";
+
+/* No comment provided by engineer. */
+"Edit Project" = "Edit Project";
+
+/* No comment provided by engineer. */
+"Edit Projects" = "Edit Projects";
+
+/* Action sheet menu title */
+"Edit Script" = "Upravit skript";
+
+/* Action sheet menu title */
+"Edit Sound" = "Úpravy zvuku";
+
+/* Action sheet menu title */
+"Edit Sounds" = "Úprava zvuků";
+
+/* No comment provided by engineer. */
+"element" = "prvek";
+
+/* paint */
+"Ellipse / Circle" = "Elipsa / kruh";
+
+/* No comment provided by engineer. */
+"Else" = "Jinak";
+
+/* No comment provided by engineer. */
+"Email" = "E-mail";
+
+/* No comment provided by engineer. */
+"Empty input!" = "Empty input!";
+
+/* No comment provided by engineer. */
+"End If" = "Konec pokud";
+
+/* No comment provided by engineer. */
+"End of Loop" = "Konec smyčky";
+
+/* No comment provided by engineer. */
+"Enter a reason" = "Zadejte důvod";
+
+/* Placeholder for add image-name input field */
+"Enter your image name here..." = "Zadejte sem název obrázku...";
+
+/* Placeholder for list input field */
+"Enter your list name here..." = "Enter your list name here...";
+
+/* Placeholder for message input field */
+"Enter your message here..." = "Zadejte vaši zprávu...";
+
+/* Placeholder for add object-name input field */
+"Enter your object name here..." = "Zadejte sem název objektu...";
+
+/* Placeholder for project-description input field */
+"Enter your project description here..." = "Enter your project description here...";
+
+/* Placeholder for project-name input field */
+"Enter your project name here..." = "Enter your project name here...";
+
+/* Placeholder for add sound-name input field */
+"Enter your sound name here..." = "Sem zadejte jméno zvuku...";
+
+/* Placeholder for variable input field */
+"Enter your variable name here..." = "Zadejte název své proměnné...";
+
+/* paint */
+"Eraser" = "Guma";
+
+/* No comment provided by engineer. */
+"Error" = "Chyba";
+
+/* No comment provided by engineer. */
+"Error saving file" = "Error saving file";
+
+/* No comment provided by engineer. */
+"Explore" = "Prozkoumat";
+
+/* No comment provided by engineer. */
+"Explore apps" = "Prozkoumejte aplikace";
+
+/* No comment provided by engineer. */
+"FA" = "FA";
+
+/* No comment provided by engineer. */
+"face_detected" = "obličej_nalezen";
+
+/* No comment provided by engineer. */
+"faceposition_x" = "poziceobličeje_x";
+
+/* No comment provided by engineer. */
+"faceposition_y" = "poziceobličeje_y";
+
+/* No comment provided by engineer. */
+"facesize" = "velikostobličeje";
+
+/* No comment provided by engineer. */
+"Failed to import item" = "Failed to import item";
+
+/* No comment provided by engineer. */
+"Failed to load featured projects" = "Failed to load featured projects";
+
+/* No comment provided by engineer. */
+"Failed to load recent projects" = "Failed to load recent projects";
+
+/* No comment provided by engineer. */
+"Failed to load sound" = "Failed to load sound";
+
+/* No comment provided by engineer. */
+"Failed to play sound" = "Failed to play sound";
+
+/* No comment provided by engineer. */
+"false" = "false";
+
+/* No comment provided by engineer. */
+"Featured Projects" = "Featured Projects";
+
+/* No comment provided by engineer. */
+"Feb" = "Feb";
+
+/* No comment provided by engineer. */
+"February" = "Únor";
+
+/* paint */
+"Fill" = "Vyplnit";
+
+/* No comment provided by engineer. */
+"Flashlight off" = "Baterku vypnout";
+
+/* No comment provided by engineer. */
+"Flashlight on" = "Baterku zapnout";
+
+/* No comment provided by engineer. */
+"floor" = "Podlaha";
+
+/* No comment provided by engineer. */
+"Following features used in this project are not compatible with this version of Pocket Code:" = "Following features used in this project are not compatible with this version of Pocket Code:";
+
+/* No comment provided by engineer. */
+"for" = "pro";
+
+/* No comment provided by engineer. */
+"for all objects" = "pro všechny objekty";
+
+/* No comment provided by engineer. */
+"for this object" = "pro tento objekt";
+
+/* No comment provided by engineer. */
+"Forever" = "Navždy";
+
+/* No comment provided by engineer. */
+"Forgot password" = "Zapomenuté heslo";
+
+/* No comment provided by engineer. */
+"Formula too long!" = "Vzorec je příliš dlouhý!";
+
+/* No comment provided by engineer. */
+"Fr" = "Fr";
+
+/* Title of View where the user can see the frequently used bricks. */
+"Frequently Used" = "Často používané";
+
+/* No comment provided by engineer. */
+"Friday" = "Pátek";
+
+/* No comment provided by engineer. */
+"From Camera" = "Z fotoaparátu";
+
+/* No comment provided by engineer. */
+"front" = "přední";
+
+/* No comment provided by engineer. */
+"Front camera" = "Přední fotoaparát";
+
+/* No comment provided by engineer. */
+"Glide" = "Hýbat";
+
+/* No comment provided by engineer. */
+"Go back" = "Zpět";
+
+/* No comment provided by engineer. */
+"Go to front" = "Přejít do popředí";
+
+/* paint */
+"Green" = "Zelená";
+
+/* No comment provided by engineer. */
+"gyro-sensor" = "gyroskopický senzor";
+
+/* No comment provided by engineer. */
+"Hello!" = "Ahoj!";
+
+/* No comment provided by engineer. */
+"Help" = "Nápověda";
+
+/* No comment provided by engineer. */
+"Hide" = "Skrýt";
+
+/* No comment provided by engineer. */
+"Hide Details" = "Skrýt detaily";
+
+/* No comment provided by engineer. */
+"Hide variable" = "Skrýt proměnnou";
+
+/* No comment provided by engineer. */
+"Hmmmm!" = "Hmmmm!";
+
+/* No comment provided by engineer. */
+"hour" = "hodina";
+
+/* No comment provided by engineer. */
+"If" = "Pokud";
+
+/* No comment provided by engineer. */
+"If on edge, bounce" = "Pokud na hraně, odraz";
+
+/* paint */
+"Image" = "Obrázek";
+
+/* No comment provided by engineer. */
+"Image name" = "Název obrázku";
+
+/* No comment provided by engineer. */
+"Image source not available" = "Zdroj obrázku není k dispozici.";
+
+/* Title of prompt shown when a *.catrobat file is imported from a third-party app. */
+"Import File" = "Importovat soubor";
+
+/* No comment provided by engineer. */
+"In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation." = "Chcete-li aby bylo umožněno používat Pocket Code a další spustitelné soubory projektu Catrobat, musíte souhlasit s našimi podmínkami použití a služeb a striktně je sledovat, když používáte Pocket Code a naše další spustitelné soubory. Podívejte se prosím na odkaz níže pro jejich přesnou formulaci. \n";
+
+/* No comment provided by engineer. */
+"inclination_x" = "sklon_x";
+
+/* No comment provided by engineer. */
+"inclination_y" = "sklon_y";
+
+/* No comment provided by engineer. */
+"Information" = "Informace";
+
+/* No comment provided by engineer. */
+"Insert" = "Vložit";
+
+/* paint */
+"Inserted" = "Vložen";
+
+/* No comment provided by engineer. */
+"into list" = "na seznam";
+
+/* No comment provided by engineer. */
+"Invalid input entered, try again." = "Neplatný zadaný vstup , zkuste to znovu.";
+
+/* No comment provided by engineer. */
+"Invalid URL given!" = "Neplatná uvedená adresa URL!";
+
+/* No comment provided by engineer. */
+"iOS." = "iOS.";
+
+/* No comment provided by engineer. */
+"is true" = "bude pravda";
+
+/* No comment provided by engineer. */
+"is true then" = "je pravda, pak";
+
+/* paint */
+"italic" = "kurzíva";
+
+/* No comment provided by engineer. */
+"Jan" = "Led";
+
+/* No comment provided by engineer. */
+"January" = "Leden";
+
+/* No comment provided by engineer. */
+"join" = "připojit se";
+
+/* No comment provided by engineer. */
+"Jul" = "Čvc";
+
+/* No comment provided by engineer. */
+"July" = "Červenec";
+
+/* No comment provided by engineer. */
+"Jun" = "Čer";
+
+/* No comment provided by engineer. */
+"June" = "Června";
+
+/* bluetooth */
+"Known devices" = "Známé zařízení";
+
+/* No comment provided by engineer. */
+"LA" = "LA";
+
+/* No comment provided by engineer. */
+"Last access" = "Poslední přístup";
+
+/* No comment provided by engineer. */
+"last_screen_touch_index" = "poslední _ obrazovka _ dotknout _ index";
+
+/* No comment provided by engineer. */
+"latitude" = "Zeměpisná šířka";
+
+/* No comment provided by engineer. */
+"layer" = "vrstva";
+
+/* No comment provided by engineer. */
+"layers" = "vrstev";
+
+/* No comment provided by engineer. */
+"LED" = "LED";
+
+/* No comment provided by engineer. */
+"Left" = "Nalevo";
+
+/* No comment provided by engineer. */
+"Length" = "Délka";
+
+/* No comment provided by engineer. */
+"length" = "délka";
+
+/* No comment provided by engineer. */
+"letter" = "dopis";
+
+/* paint */
+"Line" = "Čára";
+
+/* No comment provided by engineer. */
+"List name:" = "List name:";
+
+/* No comment provided by engineer. */
+"List type" = "List type";
+
+/* No comment provided by engineer. */
+"Lists" = "Seznamy";
+
+/* No comment provided by engineer. */
+"Loading" = "Načítání";
+
+/* No comment provided by engineer. */
+"location" = "location";
+
+/* No comment provided by engineer. */
+"location_accuracy" = "umístění _ přesnost";
+
+/* No comment provided by engineer. */
+"Logic" = "Logika";
+
+/* No comment provided by engineer. */
+"Login" = "Přihlásit se";
+
+/* No comment provided by engineer. */
+"Login successful" = "Přihlášení bylo úspěšné";
+
+/* No comment provided by engineer. */
+"Login/Register" = "Přihlásit se/registrovat";
+
+/* No comment provided by engineer. */
+"Logout" = "Odhlásit se";
+
+/* No comment provided by engineer. */
+"longitude" = "Zeměpisná délka";
+
+/* No comment provided by engineer. */
+"Look" = "Vzhled";
+
+/* LOOK */
+"look" = "vzhled";
+
+/* No comment provided by engineer. */
+"look_name" = "název_vzhledu";
+
+/* No comment provided by engineer. */
+"look_number" = "číslo_vzhledu";
+
+/* No comment provided by engineer. */
+"Looks" = "Vzhledy";
+
+/* No comment provided by engineer. */
+"loudness" = "hlasitost";
+
+/* No comment provided by engineer. */
+"magnetic-sensor" = "Magnetický senzor";
+
+/* No comment provided by engineer. */
+"Mar" = "Bře";
+
+/* No comment provided by engineer. */
+"March" = "Březen";
+
+/* No comment provided by engineer. */
+"Math" = "Matika\n";
+
+/* No comment provided by engineer. */
+"May" = "Kvě";
+
+/* No comment provided by engineer. */
+"Measure" = "Měření";
+
+/* No comment provided by engineer. */
+"Media Library" = "Knihovna médií";
+
+/* paint */
+"Menu" = "Nabídka";
+
+/* No comment provided by engineer. */
+"Message" = "Zpráva";
+
+/* No comment provided by engineer. */
+"message 1" = "zpráva 1";
+
+/* No comment provided by engineer. */
+"MI" = "MI";
+
+/* No comment provided by engineer. */
+"minute" = "minuta";
+
+/* paint */
+"Mirror" = "Zrcadlo";
+
+/* No comment provided by engineer. */
+"Mo" = "Mo";
+
+/* Prefix of default catrobat project object names (except background object) */
+"Mole" = "Krtek";
+
+/* No comment provided by engineer. */
+"Monday" = "Pondělí";
+
+/* No comment provided by engineer. */
+"month" = "měsíc";
+
+/* No comment provided by engineer. */
+"More" = "Více";
+
+/* No comment provided by engineer. */
+"More information" = "More information";
+
+/* No comment provided by engineer. */
+"Most Downloaded" = "Nejčastěji stahované";
+
+/* No comment provided by engineer. */
+"Most Viewed" = "Nejčastěji sledované";
+
+/* No comment provided by engineer. */
+"Motion" = "Pohyb";
+
+/* No comment provided by engineer. */
+"Move" = "Přesunout";
+
+/* No comment provided by engineer. */
+"Move Brick" = "Přesuň blok";
+
+/* No comment provided by engineer. */
+"Move Looks" = "Vzhled pohybu";
+
+/* No comment provided by engineer. */
+"Move Objects" = "Přesunutí objektů";
+
+/* No comment provided by engineer. */
+"Move Phiro motor backward" = "Přesunout Phiro motor dozadu";
+
+/* No comment provided by engineer. */
+"Move Phiro motor forward" = "Přesunout Phiro motor dopředu";
+
+/* No comment provided by engineer. */
+"Move Sounds" = "Přesunutí zvuků";
+
+/* Name of the default catrobat project (used as filename!!) */
+"My first project" = "Můj první program";
+
+/* Default title of imported photo from camera (taken by camera) */
+"My Image" = "Můj obrázek";
+
+/* Title for first (default) object */
+"My Object" = "Můj Objekt";
+
+/* No comment provided by engineer. */
+"Name" = "Jméno";
+
+/* No comment provided by engineer. */
+"Name already exists." = "Name already exists.";
+
+/* No comment provided by engineer. */
+"New" = "Nový";
+
+/* paint */
+"New Canvas" = "Nové plátno";
+
+/* No comment provided by engineer. */
+"New List" = "Nový seznam";
+
+/* No comment provided by engineer. */
+"New Message" = "Nová zpráva";
+
+/* No comment provided by engineer. */
+"New Project" = "New Project";
+
+/* No comment provided by engineer. */
+"New Text" = "Nový Text";
+
+/* No comment provided by engineer. */
+"New Variable" = "Nová proměnná";
+
+/* No comment provided by engineer. */
+"New..." = "Nové...";
+
+/* No comment provided by engineer. */
+"Newest" = "Nejnovější";
+
+/* No comment provided by engineer. */
+"Next background" = "Další pozadí";
+
+/* No comment provided by engineer. */
+"Next look" = "Další vzhled";
+
+/* No comment provided by engineer. */
+"No" = "Ne";
+
+/* No comment provided by engineer. */
+"No Camera available" = "Kamera není k dispozici";
+
+/* No comment provided by engineer. */
+"No Description available" = "Popis není k dispozici";
+
+/* No comment provided by engineer. */
+"No input. Please enter at least %lu character(s)." = "Žádný vstup. Zadejte prosím alespoň %lu znak/y.";
+
+/* No comment provided by engineer. */
+"No or invalid image name entered, try again." = "Ne nebo neplatný název obrázků, zkuste to znovu.";
+
+/* No comment provided by engineer. */
+"No or invalid sound name entered, try again." = "Ne nebo neplatný název zvuku, zkuste to znovu.";
+
+/* No comment provided by engineer. */
+"No search results" = "Žádné výsledky hledání";
+
+/* No comment provided by engineer. */
+"No whitespace character allowed" = "Mezery nejsou povolené";
+
+/* No comment provided by engineer. */
+"not" = "ne";
+
+/* No comment provided by engineer. */
+"not available. Continue anyway?" = "není k dispozici. Chcete přesto pokračovat?";
+
+/* No comment provided by engineer. */
+"Not enough free memory to download this project. Please delete some of your projects" = "Not enough free memory to download this project. Please delete some of your projects";
+
+/* No comment provided by engineer. */
+"Not enough Memory" = "Není dostatek paměti";
+
+/* No comment provided by engineer. */
+"Note" = "Poznámka";
+
+/* paint */
+"Nothing to crop!" = "Nic k oříznutí!";
+
+/* No comment provided by engineer. */
+"Nov" = "Nov";
+
+/* No comment provided by engineer. */
+"November" = "Listopad";
+
+/* No comment provided by engineer. */
+"number_of_items" = "počet_položek";
+
+/* No comment provided by engineer. */
+"Numbers" = "Čísla";
+
+/* No comment provided by engineer. */
+"Object" = "Objekt";
+
+/* No comment provided by engineer. */
+"Object lists:" = "Object lists:";
+
+/* No comment provided by engineer. */
+"Object name" = "Název objektu";
+
+/* No comment provided by engineer. */
+"Object variables:" = "Objektové proměnné:";
+
+/* No comment provided by engineer. */
+"Objects" = "Objekty";
+
+/* No comment provided by engineer. */
+"Oct" = "Oct";
+
+/* No comment provided by engineer. */
+"October" = "Říjen";
+
+/* No comment provided by engineer. */
+"off" = "vypnout";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
+
+/* No comment provided by engineer. */
+"on" = "zapnout";
+
+/* No comment provided by engineer. */
+"only 15 characters allowed" = "pouze 15 znaků";
+
+/* No comment provided by engineer. */
+"Only space is not allowed. Please enter at least %lu other character(s)." = "Není povolen prázdný řádek. Zadejte prosím alespoň %lu jiné znaky.";
+
+/* No comment provided by engineer. */
+"Only special characters are not allowed. Please enter at least %lu other character(s)." = "Pouze speciální znaky nejsou povoleny. Zadejte prosím alespoň %lu jiné znaky.";
+
+/* No comment provided by engineer. */
+"Open" = "Otevřít ";
+
+/* No comment provided by engineer. */
+"or" = "nebo";
+
+/* No comment provided by engineer. */
+"Password" = "Heslo";
+
+/* No comment provided by engineer. */
+"Password is not vaild! \n It has to contain at least 6 characters/symbols" = "Heslo není platné.   Musí obsahovat alespoň 6 znaků/symbolů";
+
+/* No comment provided by engineer. */
+"Passwords do not match" = "Hesla se neshodují";
+
+/* No comment provided by engineer. */
+"Phiro" = "Phiro";
+
+/* No comment provided by engineer. */
+"phiro_bottom_left" = "phiro_dole_vlevo";
+
+/* No comment provided by engineer. */
+"phiro_bottom_right" = "phiro_dole_vpravo";
+
+/* No comment provided by engineer. */
+"phiro_front_left" = "phiro_vepředu_vlevo";
+
+/* No comment provided by engineer. */
+"phiro_front_right" = "phiro_vepředu_vpravo";
+
+/* No comment provided by engineer. */
+"phiro_side_left" = "phiro_vboku_vlevo";
+
+/* No comment provided by engineer. */
+"phiro_side_right" = "phiro_vboku_vpravo";
+
+/* paint */
+"Pipette" = "Pipeta";
+
+/* No comment provided by engineer. */
+"Place at " = "Umístěte na ";
+
+/* No comment provided by engineer. */
+"Play Phiro music\n" = "Přehrávat hudbu Phiro ";
+
+/* No comment provided by engineer. */
+"Please choose another name:" = "Please choose another name:";
+
+/* paint */
+"Please enter a text!" = "Prosím zadejte text!";
+
+/* No comment provided by engineer. */
+"Please log in to report this project as inappropriate" = "Please log in to report this project as inappropriate";
+
+/* paint */
+"Please pick a tool" = "Vyberte nástroj";
+
+/* No comment provided by engineer. */
+"Please select a project to upload" = "Please select a project to upload";
+
+/* bluetooth */
+"Please try resetting the device and try again." = "Zkuste resetovat zařízení a opakujte akci.";
+
+/* No comment provided by engineer. */
+"Pocket Code" = "Pocket Code";
+
+/* No comment provided by engineer. */
+"Pocket Code for iOS" = "Pocket Code pro iOS";
+
+/* No comment provided by engineer. */
+"Pocket Code has been started in debug mode." = "Pocket Code byl spuštěn v režimu ladění.";
+
+/* No comment provided by engineer. */
+"Pocket Code has no access to your camera. To permit access, tap settings and activate camera. Your drawing will automatically be saved to PocketCode for you." = "Pocket Code nemá žádný přístup k fotoaparátu. Chcete-li povolit přístup, klepněte na nastavení a aktivujte fotoaparát. Výkres bude automaticky uložen do PocketCode pro vás.";
+
+/* No comment provided by engineer. */
+"Pocket Code has no access to your images. To permit access, tap settings and activate images. Your drawing will automatically be saved to PocketCode for you." = "Pocket Code nemá žádný přístup k obrázkům. Chcete-li povolit přístup, klepněte na nastavení a aktivujte obrázky. Výkres bude automaticky uložen do PocketCode pro vás.";
+
+/* No comment provided by engineer. */
+"Pocket Code has no access to your microphone. To permit access, tap settings and activate microphone." = "Kapesní kód nemá žádný přístup k mikrofonu. Chcete-li povolit přístup, klepněte na nastavení a aktivovat mikrofon.";
+
+/* No comment provided by engineer. */
+"Pocket Code is a programming environment for iOS for the visual programming language Catrobat. The code of Pocket Code is mostly under GNU AGPL v3 licence. For further information to the licence please visit following links:" = "Pocket Code je programovací prostředí pro iOS pro vizuální programovací jazyk Catrobat. Kód Pocket Code je většinou pod GNU AGPL v3 licenci. Další informace o licenci navštivte následující odkazy:";
+
+/* No comment provided by engineer. */
+"Pocket Code let's you play great games and run other fantastic apps like for instance presentations, quizzes and so on." = "Pocked Code Pojďme hrát skvělé hry a spusťte další fantastický aplikace, jako například prezentace, kvízy a podobně.";
+
+/* No comment provided by engineer. */
+"Pocket Code Recorder" = "Záznamník Pocket Code";
+
+/* No comment provided by engineer. */
+"Pocket Code Source Code License" = "Licence zdrojového kódu Pocket Code";
+
+/* paint */
+"Pocket Paint" = "Pocket Paint";
+
+/* No comment provided by engineer. */
+"Point in direction" = "Mířit směrem";
+
+/* No comment provided by engineer. */
+"Point towards" = "Mířit k";
+
+/* paint */
+"Pointer" = "Ukazatel";
+
+/* No comment provided by engineer. */
+"position_x" = "pozice_x";
+
+/* No comment provided by engineer. */
+"position_y" = "pozice_y";
+
+/* No comment provided by engineer. */
+"Preview" = "Náhled";
+
+/* No comment provided by engineer. */
+"Previous background" = "Předchozí pozadí";
+
+/* No comment provided by engineer. */
+"Previous look" = "Předchozí vzhled";
+
+/* No comment provided by engineer. */
+"Privacy Settings" = "Nastavení ochrany osobních údajů";
+
+/* No comment provided by engineer. */
+"Problems occured while uploading your project" = "Problems occured while uploading your project";
+
+/* No comment provided by engineer. */
+"Project" = "Projekt";
+
+/* No comment provided by engineer. */
+"Project lists:" = "Project lists:";
+
+/* No comment provided by engineer. */
+"Project name" = "Název programu";
+
+/* No comment provided by engineer. */
+"Project Name is necessary!" = "Project Name is necessary!";
+
+/* No comment provided by engineer. */
+"Project variables:" = "Project variables:";
+
+/* No comment provided by engineer. */
+"Projects" = "Programy";
+
+/* No comment provided by engineer. */
+"Rate Us" = "Ohodnoťte nás";
+
+/* No comment provided by engineer. */
+"RE" = "RE";
+
+/* No comment provided by engineer. */
+"Recording" = "Nahrávání";
+
+/* paint */
+"Rectangle / Square" = "Obdélník / čtverec";
+
+/* paint */
+"Red" = "Červená";
+
+/* No comment provided by engineer. */
+"Register" = "Registrovat";
+
+/* No comment provided by engineer. */
+"Registration successful" = "Registrace proběhla úspěšně";
+
+/* No comment provided by engineer. */
+"Remove known devices" = "Odstranit známé zařízení";
+
+/* No comment provided by engineer. */
+"Rename" = "Přejmenovat";
+
+/* No comment provided by engineer. */
+"Rename image" = "Přejmenovat obrázek";
+
+/* No comment provided by engineer. */
+"Rename object" = "Přejmenovat objekt";
+
+/* No comment provided by engineer. */
+"Rename Project" = "Rename Project";
+
+/* No comment provided by engineer. */
+"Rename sound" = "Přejmenovat zvuk";
+
+/* No comment provided by engineer. */
+"Repeat" = "Opakovat";
+
+/* No comment provided by engineer. */
+"Repeat until" = "Opakovat dokud";
+
+/* No comment provided by engineer. */
+"Replace item in list" = "Nahradit položku na seznamu";
+
+/* No comment provided by engineer. */
+"Report as inappropriate" = "Nahlásit jako nevhodné";
+
+/* paint */
+"Resize" = "Změna velikosti";
+
+/* No comment provided by engineer. */
+"Restart" = "Restartovat";
+
+/* No comment provided by engineer. */
+"Result" = "Výsledek";
+
+/* No comment provided by engineer. */
+"Right" = "Napravo";
+
+/* paint */
+"Rotate" = "Otočit";
+
+/* paint */
+"round" = "kola";
+
+/* No comment provided by engineer. */
+"Sa" = "Sa";
+
+/* No comment provided by engineer. */
+"Saturday" = "Sobota";
+
+/* paint */
+"Save to CameraRoll" = "Uložit do CameraRoll";
+
+/* No comment provided by engineer. */
+"Save to PocketCode" = "Uložit do PocketCode";
+
+/* No comment provided by engineer. */
+"Saved" = "Uloženo";
+
+/* No comment provided by engineer. */
+"Say" = "Říct";
+
+/* No comment provided by engineer. */
+"screen_is_touched" = "obrazovka _ je _ dotknuta";
+
+/* No comment provided by engineer. */
+"screen_touch_x" = "obrazovka _ dotknout_x";
+
+/* No comment provided by engineer. */
+"screen_touch_y" = "obrazovka _ dotknout_y";
+
+/* No comment provided by engineer. */
+"Script" = "Skript";
+
+/* No comment provided by engineer. */
+"Scripts" = "Skript";
+
+/* bluetooth */
+"Search" = "Hledat";
+
+/* No comment provided by engineer. */
+"second" = "sekunda";
+
+/* No comment provided by engineer. */
+"second " = "sekunda ";
+
+/* No comment provided by engineer. */
+"seconds" = "sekundy";
+
+/* No comment provided by engineer. */
+"seconds " = "sekund ";
+
+/* No comment provided by engineer. */
+"Select All" = "Vybrat vše";
+
+/* bluetooth */
+"Select Arduino" = "Vybrat Arduino";
+
+/* No comment provided by engineer. */
+"Select Brick Category" = "Vyberte kategorii objektu";
+
+/* No comment provided by engineer. */
+"Select logical operator" = "Vyberte logický operátor";
+
+/* No comment provided by engineer. */
+"Select mathematical function" = "Vyberte matematické funkce";
+
+/* paint */
+"Select option:" = "Vyberte možnost:";
+
+/* bluetooth */
+"Select Phiro" = "Výběr Phiro";
+
+/* No comment provided by engineer. */
+"Sensors" = "Senzory";
+
+/* No comment provided by engineer. */
+"Sep" = "Sep";
+
+/* No comment provided by engineer. */
+"September" = "Září";
+
+/* No comment provided by engineer. */
+"Server is taking to long to respond, please try again later." = "Server is taking to long to respond, please try again later.";
+
+/* No comment provided by engineer. */
+"Set Arduino digital pin" = "Nastavit Arduino digitální pin";
+
+/* No comment provided by engineer. */
+"Set Arduino PWM~ pin" = "Nastavit Arduino PWM ~ pin";
+
+/* No comment provided by engineer. */
+"Set background" = "Nastavit pozadí";
+
+/* No comment provided by engineer. */
+"Set brightness " = "Nastavit jas ";
+
+/* No comment provided by engineer. */
+"Set color " = "Nastavit barvu ";
+
+/* No comment provided by engineer. */
+"Set description" = "Nastavit popis";
+
+/* No comment provided by engineer. */
+"Set Phiro light" = "Nastavit Phiro světla";
+
+/* No comment provided by engineer. */
+"Set size to" = "Nastavit velikost na";
+
+/* No comment provided by engineer. */
+"Set transparency " = "Nastavit průhlednost ";
+
+/* No comment provided by engineer. */
+"Set variable" = "Nastavit proměnnou";
+
+/* No comment provided by engineer. */
+"Set volume to" = "Nastavit hlasitost na";
+
+/* No comment provided by engineer. */
+"Set X to " = "Nastav x na ";
+
+/* No comment provided by engineer. */
+"Set Y to " = "Nastav Y na ";
+
+/* No comment provided by engineer. */
+"Settings" = "Nastavení";
+
+/* No comment provided by engineer. */
+"Show" = "Zobrazit";
+
+/* No comment provided by engineer. */
+"Show Details" = "Zobrazit detaily";
+
+/* No comment provided by engineer. */
+"Show variable" = "Zobrazit proměnnou";
+
+/* No comment provided by engineer. */
+"size" = "Velikost";
+
+/* No comment provided by engineer. */
+"Size" = "Velikost";
+
+/* No comment provided by engineer. */
+"Skip" = "Přeskočit";
+
+/* No comment provided by engineer. */
+"SO" = "SO";
+
+/* No comment provided by engineer. */
+"Sound" = "Zvuk";
+
+/* No comment provided by engineer. */
+"Sound name" = "Název zvuku";
+
+/* No comment provided by engineer. */
+"Sounds" = "Zvuky";
+
+/* No comment provided by engineer. */
+"Speak" = "Vyslovit";
+
+/* No comment provided by engineer. */
+"Speed" = "Rychlost";
+
+/* No comment provided by engineer. */
+"sqrt" = "sqrt";
+
+/* paint */
+"square" = "Čtverec";
+
+/* paint */
+"Stamp" = "Razítko";
+
+/* paint */
+"Stamped" = "Orazítkováno";
+
+/* No comment provided by engineer. */
+"Start sound" = "Spuštění zvuku";
+
+/* No comment provided by engineer. */
+"step" = "krok";
+
+/* No comment provided by engineer. */
+"steps" = "kroků";
+
+/* No comment provided by engineer. */
+"Stop all sounds" = "Zastavit všechny zvuky";
+
+/* No comment provided by engineer. */
+"Stop Phiro motor" = "Zastavení Phiro motoru";
+
+/* No comment provided by engineer. */
+"Su" = "Su";
+
+/* No comment provided by engineer. */
+"Sunday" = "Neděle";
+
+/* No comment provided by engineer. */
+"Switch to look" = "Změnit na vzhled";
+
+/* No comment provided by engineer. */
+"Syntax Error!" = "Syntaktická chyba!";
+
+/* No comment provided by engineer. */
+"Tap \"+\" to add %@" = "Klepněte na \"+\" pro přidání %@";
+
+/* Button title at the settings screen to get to the terms of use and services. */
+"Terms of Use and Services" = "Podmínky používání a služby";
+
+/* paint */
+"Text" = "Text";
+
+/* No comment provided by engineer. */
+"Text message:" = "Textová zpráva:";
+
+/* paint */
+"Text:" = "Text:";
+
+/* No comment provided by engineer. */
+"Th" = "Th";
+
+/* No comment provided by engineer. */
+"The description contains invalid characters, try again." = "Popis obsahuje neplatné znaky, zkuste to znovu.";
+
+/* No comment provided by engineer. */
+"The featured projects cannot be loaded" = "The featured projects cannot be loaded";
+
+/* No comment provided by engineer. */
+"The following item could not be imported from the Media Library:" = "The following item could not be imported from the Media Library:";
+
+/* No comment provided by engineer. */
+"The input is too long. Please enter maximal %lu character(s)." = "Vstup je příliš dlouhý. Zadejte maximální %lu znaky.";
+
+/* No comment provided by engineer. */
+"The name contains blocked characters. Please try again!" = "Název obsahuje blokované znaky. Zkuste to prosím znovu!";
+
+/* No comment provided by engineer. */
+"The recent projects cannot be loaded" = "The recent projects cannot be loaded";
+
+/* No comment provided by engineer. */
+"The requested project can not be found. Please choose a different one." = "The requested project can not be found. Please choose a different one.";
+
+/* No comment provided by engineer. */
+"The requested project can not be loaded. Please try again later." = "The requested project can not be loaded. Please try again later.";
+
+/* No comment provided by engineer. */
+"The sound item cannot be loaded" = "The sound item cannot be loaded";
+
+/* No comment provided by engineer. */
+"The sound item cannot be played" = "The sound item cannot be played";
+
+/* No comment provided by engineer. */
+"Think" = "Myslet";
+
+/* No comment provided by engineer. */
+"This action can not be undone!" = "Tuto akci nelze vrátit zpět!";
+
+/* No comment provided by engineer. */
+"This feature is coming soon!" = "Tato funkce bude již brzy!";
+
+/* No comment provided by engineer. */
+"This variable can not be deleted because it is still in use." = "Tato proměnná nelze odstranit, protože je stále v provozu.";
+
+/* No comment provided by engineer. */
+"Thursday" = "Čtvrtek";
+
+/* No comment provided by engineer. */
+"TI" = "TI";
+
+/* No comment provided by engineer. */
+"time" = "krát";
+
+/* No comment provided by engineer. */
+"times" = "krát";
+
+/* No comment provided by engineer. */
+"to" = "do";
+
+/* No comment provided by engineer. */
+"to list" = "na seznam";
+
+/* No comment provided by engineer. */
+"to X:" = "do X:";
+
+/* No comment provided by engineer. */
+"Today" = "Dnes";
+
+/* No comment provided by engineer. */
+"transparency" = "Průhlednost";
+
+/* No comment provided by engineer. */
+"true" = "true";
+
+/* No comment provided by engineer. */
+"Tu" = "Tu";
+
+/* No comment provided by engineer. */
+"Tuesday" = "Úterý";
+
+/* No comment provided by engineer. */
+"Turn camera" = "Otočit kameru";
+
+/* No comment provided by engineer. */
+"Turn flashlight" = "Zapnout baterku";
+
+/* No comment provided by engineer. */
+"Turn left" = "Zatočit vlevo";
+
+/* No comment provided by engineer. */
+"Turn right" = "Zatočit vpravo";
+
+/* No comment provided by engineer. */
+"Unable to load project!" = "Unable to load project!";
+
+/* No comment provided by engineer. */
+"Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt." = "Nelze přehrát zvuk! Možná to neni žádný platný zvuk nebo je souborpoškozen.";
+
+/* No comment provided by engineer. */
+"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the left side of your iPhone and tap on play again." = "Nelze přehrát vybraný zvuk. Vaše zařízení je v tichém režimu. Prosím vypňete  tichý režim přepnutím přepínače na levé straně iPhonu a klepněte na hru znovu.";
+
+/* No comment provided by engineer. */
+"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again." = "Nelze přehrát vybraný zvuk. Vaše zařízení je v tichém režimu. Prosím vypňete  tichý režim přepnutím přepínače na levé straně iPadu a klepněte na hru znovu.";
+
+/* paint */
+"underline" = "podtržení";
+
+/* Button title of alert view to invoke undo if user shakes device */
+"Undo" = "Zpět";
+
+/* Description text in alert view if user shakes the device */
+"Undo Drawing?" = "Zpět: kreslení?";
+
+/* Description text in alert view if user shakes the device */
+"Undo Typing?" = "Odstranění právě napsaného textu?";
+
+/* No comment provided by engineer. */
+"Unexpected Error" = "Unexpected Error";
+
+/* No comment provided by engineer. */
+"Unexpected Error, please try again later." = "Unexpected Error, please try again later.";
+
+/* No comment provided by engineer. */
+"Unknown Element" = "Unknown Element";
+
+/* No comment provided by engineer. */
+"Unselect All" = "Zrušit výběr";
+
+/* No comment provided by engineer. */
+"Unsupported Brick:" = "Unsupported Brick:";
+
+/* No comment provided by engineer. */
+"Unsupported Elements" = "Unsupported Elements";
+
+/* No comment provided by engineer. */
+"Unsupported Script:" = "Unsupported Script:";
+
+/* No comment provided by engineer. */
+"Upload" = "Nahrát";
+
+/* No comment provided by engineer. */
+"Upload Project" = "Upload Project";
+
+/* No comment provided by engineer. */
+"Upload selected project" = "Upload selected project";
+
+/* No comment provided by engineer. */
+"Upload successful" = "Nahráno úspěšně";
+
+/* No comment provided by engineer. */
+"Uploaded" = "Nahráno";
+
+/* No comment provided by engineer. */
+"Use Arduino bricks" = "Používat Arduino objekty";
+
+/* No comment provided by engineer. */
+"Use camera" = "Použít kameru";
+
+/* No comment provided by engineer. */
+"Use Phiro bricks" = "Použít Phiro objekty";
+
+/* No comment provided by engineer. */
+"Username" = "Uživatelské jméno";
+
+/* No comment provided by engineer. */
+"Username must not be blank" = "Username must not be blank";
+
+/* No comment provided by engineer. */
+"Var/List" = "Var/List";
+
+/* No comment provided by engineer. */
+"Variable" = "Proměnná";
+
+/* No comment provided by engineer. */
+"Variable name:" = "Název proměnné:";
+
+/* No comment provided by engineer. */
+"Variable or List" = "Variable or List";
+
+/* No comment provided by engineer. */
+"Variable type" = "Typ proměnné";
+
+/* No comment provided by engineer. */
+"Variables" = "Proměnné";
+
+/* No comment provided by engineer. */
+"Version" = "Verze";
+
+/* No comment provided by engineer. */
+"Vibrate for" = "Vibrace";
+
+/* No comment provided by engineer. */
+"vibration" = "vibrace";
+
+/* No comment provided by engineer. */
+"Views" = "Názory";
+
+/* No comment provided by engineer. */
+"Wait" = "Čekat";
+
+/* No comment provided by engineer. */
+"Wait until" = "Čekat dokud";
+
+/* No comment provided by engineer. */
+"We" = "We";
+
+/* No comment provided by engineer. */
+"Wednesday" = "Středa";
+
+/* No comment provided by engineer. */
+"weekday" = "den v týdnu";
+
+/* No comment provided by engineer. */
+"Welcome to Pocket Code" = "Vítejte v Pocket Code";
+
+/* No comment provided by engineer. */
+"When project started" = "When project started";
+
+/* No comment provided by engineer. */
+"When screen is touched" = "Při dotyku obrazovky";
+
+/* No comment provided by engineer. */
+"When tapped" = "Na klepnutí";
+
+/* No comment provided by engineer. */
+"When you receive" = "Při přijetí";
+
+/* paint */
+"Width selection" = "Výběr šířky";
+
+/* No comment provided by engineer. */
+"with" = "s";
+
+/* No comment provided by engineer. */
+"X: " = "X: ";
+
+/* No comment provided by engineer. */
+"Y: " = "Y: ";
+
+/* No comment provided by engineer. */
+"year" = "rok";
+
+/* No comment provided by engineer. */
+"Yes" = "Ano";
+
+/* No comment provided by engineer. */
+"Yesterday" = "Včera";
+
+/* No comment provided by engineer. */
+"You are also able to build your own apps, remix existing ones and share them with your friends and other exciting people around the world." = "Jste také schopni vytvářet své vlastní aplikace, remixovat stávající a sdílet je s přáteli a s dalšímy zajímavýmy lidmi po celém světě.";
+
+/* No comment provided by engineer. */
+"You have already downloaded this project!" = "You have already downloaded this project!";
+
+/* No comment provided by engineer. */
+"Your email seems to be invalid" = "Your email seems to be invalid";
+
+/* paint */
+"Zoom" = "Lupa";

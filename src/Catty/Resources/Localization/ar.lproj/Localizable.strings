@@ -1,0 +1,1751 @@
+/* No comment provided by engineer. */
+"A message with the same name already exists, try again." = "رسالة بنفس الاسم موجود بالفعل، حاول مرة أخرى.";
+
+/* No comment provided by engineer. */
+"A project with the same name already exists, try again." = "A project with the same name already exists, try again.";
+
+/* No comment provided by engineer. */
+"About Catrobat" = "حول كاتروبات";
+
+/* No comment provided by engineer. */
+"About Pocket Code" = "حول تطبيق بوكت بينت";
+
+/* No comment provided by engineer. */
+"acceleration-sensor" = "جهاز استشعار لتسريع";
+
+/* No comment provided by engineer. */
+"acceleration_x" = "تسارع x";
+
+/* No comment provided by engineer. */
+"acceleration_y" = "تسارع y";
+
+/* No comment provided by engineer. */
+"acceleration_z" = "تسارع z";
+
+/* No comment provided by engineer. */
+"Add" = "إضافة";
+
+/* No comment provided by engineer. */
+"add comment here..." = "أضف تعليق هنا...";
+
+/* No comment provided by engineer. */
+"Add image" = "إضافة صورة";
+
+/* Action sheet menu title */
+"Add look" = "إضافة مظهر";
+
+/* No comment provided by engineer. */
+"Add object" = "إضافة كائن";
+
+/* Action sheet menu title */
+"Add sound" = "إضافة صوت";
+
+/* No comment provided by engineer. */
+"All Bluetooth devices successfully disconnected" = "جميع أجهزة Bluetooth التي تم قطع الاتصال بنجاح";
+
+/* No comment provided by engineer. */
+"All known Bluetooth devices successfully removed" = "كلها معروفة لأجهزة Bluetooth بنجاح إزالة";
+
+/* paint */
+"Alpha" = "ألفا";
+
+/* No comment provided by engineer. */
+"altitude" = "الإرتفاع";
+
+/* No comment provided by engineer. */
+"An image with the same name already exists, try again." = "رسالة بنفس الاسم موجود بالفعل، حاول مرة أخرى.";
+
+/* No comment provided by engineer. */
+"An object with the same name already exists, try again." = "كائن بنفس الاسم موجود بالفعل، حاول مرة أخرى.";
+
+/* No comment provided by engineer. */
+"An unknown error occurred. Check your Internet connection." = "حدث خطأ غير معروف. تحقق من اتصال الإنترنت الخاص بك.";
+
+/* No comment provided by engineer. */
+"An unknown error occurred. Please try again later." = "وقع خطأ غير معروف. الرجاء المحاولة مرة أخرى لاحقاً.";
+
+/* No comment provided by engineer. */
+"and" = "و";
+
+/* No comment provided by engineer. */
+"and wait" = "والانتظار";
+
+/* No comment provided by engineer. */
+"Animate Brick-Parts" = "تحريك أجزاء اللبّنة البرمجية";
+
+/* No comment provided by engineer. */
+"Apr" = "نيسان (إبريل)";
+
+/* No comment provided by engineer. */
+"April" = "نيسان / ابريل";
+
+/* No comment provided by engineer. */
+"Arduino" = "الاردوينو";
+
+/* No comment provided by engineer. */
+"arduino_analog" = "أردوينو تناظري";
+
+/* No comment provided by engineer. */
+"arduino_digital" = "أردوينو رقمي";
+
+/* No comment provided by engineer. */
+"at " = "في ";
+
+/* No comment provided by engineer. */
+"at position" = "في الموقع";
+
+/* paint */
+"Attributes:" = "خصائص:";
+
+/* No comment provided by engineer. */
+"Aug" = "آب (أغسطس)";
+
+/* No comment provided by engineer. */
+"August" = "آب";
+
+/* No comment provided by engineer. */
+"Authentication failed" = "فشلت المصادقة";
+
+/* No comment provided by engineer. */
+"Author" = "المؤلف";
+
+/* Title of icon shown in the side bar to enable or disable an overlayed view to show the origin of the coordinate system and implicitly the display size. */
+"Axes" = "محاور";
+
+/* No comment provided by engineer. */
+"back" = "back";
+
+/* No comment provided by engineer. */
+"Back" = "رجوع";
+
+/* No comment provided by engineer. */
+"Background" = "خلفية الشاشة";
+
+/* No comment provided by engineer. */
+"background_name" = "إسم_خلفية الشاشة";
+
+/* No comment provided by engineer. */
+"background_number" = "رقم_خلفية الشاشة";
+
+/* No comment provided by engineer. */
+"Backgrounds" = "خلفيات الشاشة";
+
+/* paint */
+"Blue" = "أزرق";
+
+/* No comment provided by engineer. */
+"Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings." = "البلوثوت غير متوفر. إما جهازك لا يدعم تقنية البلوتوث 4.0 أو رقاقة البلوتوث في جهازك معطوبة. من فضلك قم بتفحصها من خلال الاتصال بجهاز بلوتوث آخر في الإعدادات.";
+
+/* No comment provided by engineer. */
+"Bluetooth is turned off. Please turn it on to connect to a Bluetooth device." = "خاصية البلوتوث متوقفة, الرجاء تشغيلها لتوصيل جهاز بلوتوث.";
+
+/* paint */
+"bold" = "عريض";
+
+/* No comment provided by engineer. */
+"Both" = "كلاهما";
+
+/* No comment provided by engineer. */
+"Bricks" = "اللّبنات";
+
+/* No comment provided by engineer. */
+"brightness" = "السطوع";
+
+/* No comment provided by engineer. */
+"Broadcast" = "بث رسالة";
+
+/* No comment provided by engineer. */
+"Broadcast and wait" = "بث رسالة والانتظار";
+
+/* paint */
+"Brush" = "فرشاة";
+
+/* No comment provided by engineer. */
+"by" = "بمقدار";
+
+/* No comment provided by engineer. */
+"By registering you agree to our" = "بالتسجيل، أنت توافق على";
+
+/* No comment provided by engineer. */
+"By switching to the section \"Explore\" you can discover more interesting projects from people all over the world." = "By switching to the section \"Explore\" you can discover more interesting projects from people all over the world.";
+
+/* No comment provided by engineer. */
+"Camera Roll" = "شريط الكاميرا";
+
+/* No comment provided by engineer. */
+"Can't restart project!" = "Can't restart project!";
+
+/* No comment provided by engineer. */
+"Cancel" = "إلغاء";
+
+/* bluetooth */
+"Cannot connect to device, please try resetting the device and try again." = "لا يمكن الاتصال بالجهاز، الرجاء محاولة إعادة تعيين الجهاز والمحاولة من جديد.";
+
+/* bluetooth */
+"Cannot connect to device. The device is not responding." = "لا يمكن الاتصال بالجهاز. الجهاز لا يستجيب.";
+
+/* No comment provided by engineer. */
+"Cannot connect to the Media Library. Please check your Internet connection." = "لا يمكن الاتصال إلى \"مكتبة الوسائط\". الرجاء التحقق من اتصال الإنترنت الخاص بك.";
+
+/* No comment provided by engineer. */
+"Categories" = "الفئات";
+
+/* No comment provided by engineer. */
+"ceil" = "تقريب للأعلى";
+
+/* No comment provided by engineer. */
+"Change brightness " = "تغيير درجة السطوع ";
+
+/* No comment provided by engineer. */
+"Change color " = "تغيير اللون ";
+
+/* No comment provided by engineer. */
+"Change size by" = "تغيير الحجم بمقدار";
+
+/* No comment provided by engineer. */
+"Change transparency " = "تغيير درجة الشفافية ";
+
+/* No comment provided by engineer. */
+"Change variable" = "تغيير قيمة المتغير";
+
+/* No comment provided by engineer. */
+"Change volume by" = "تغيير مستوى الصوت بمقدار";
+
+/* No comment provided by engineer. */
+"Change X by " = "تغيير قيمة س بمقدار ";
+
+/* No comment provided by engineer. */
+"Change Y by " = "تغيير قيمة ص بمقدار ";
+
+/* No comment provided by engineer. */
+"Changes discarded!" = "تم تجاهل التغييرات!";
+
+/* No comment provided by engineer. */
+"Changes saved!" = "تم حفظ التغييرات!";
+
+/* No comment provided by engineer. */
+"Choose" = "إختيار";
+
+/* No comment provided by engineer. */
+"Choose image" = "اختر الصورة";
+
+/* No comment provided by engineer. */
+"Clear graphic effects" = "مسح التأثيرات الرسومية";
+
+/* No comment provided by engineer. */
+"Close" = "إغلاق";
+
+/* paint */
+"Close Paint" = "إغلاق البوكت بينت";
+
+/* No comment provided by engineer. */
+"color" = "لون";
+
+/* No comment provided by engineer. */
+"compass" = "بوصلة";
+
+/* No comment provided by engineer. */
+"Compute" = "النتيجة";
+
+/* No comment provided by engineer. */
+"Computed result is %.2f" = "النتيجة المحسوبة %.2f";
+
+/* No comment provided by engineer. */
+"Computed result is FALSE" = "النتيجة المحسوبة هي FALSE";
+
+/* No comment provided by engineer. */
+"Computed result is TRUE" = "النتيجة المحسوبة هي TRUE";
+
+/* No comment provided by engineer. */
+"Confirm Password" = "تأكيد كلمة السر";
+
+/* bluetooth */
+"Connection failed" = "فشل الاتصال";
+
+/* bluetooth */
+"Connection Lost" = "فُقِد الاتصال";
+
+/* bluetooth */
+"Connection not possible" = "الإتصال غير ممكن";
+
+/* No comment provided by engineer. */
+"contains" = "يحتوي على";
+
+/* No comment provided by engineer. */
+"Continue" = "متابعة";
+
+/* No comment provided by engineer. */
+"Control" = "التحكم";
+
+/* No comment provided by engineer. */
+"Copy" = "نسخ";
+
+/* No comment provided by engineer. */
+"Copy Brick" = "نسخ اللبّنة برمجية";
+
+/* No comment provided by engineer. */
+"Copy Looks" = "نسخ المظاهر";
+
+/* No comment provided by engineer. */
+"Copy project" = "Copy project";
+
+/* No comment provided by engineer. */
+"Create & Remix" = "إنشاء & ريمكس";
+
+/* No comment provided by engineer. */
+"Create account" = "إنشاء حساب";
+
+/* No comment provided by engineer. */
+"day" = "اليوم";
+
+/* No comment provided by engineer. */
+"Debug mode" = "وضع التصحيح";
+
+/* No comment provided by engineer. */
+"Dec" = "كانون الأول‏ (ديسمبر)";
+
+/* No comment provided by engineer. */
+"December" = "كانون أول / ديسمبر";
+
+/* No comment provided by engineer. */
+"degrees" = "درجة";
+
+/* No comment provided by engineer. */
+"Delete" = "حذف";
+
+/* No comment provided by engineer. */
+"Delete Backgrounds" = "حذف خلفيات الشاشة";
+
+/* No comment provided by engineer. */
+"Delete Brick" = "حذف لبّنة برمجية";
+
+/* No comment provided by engineer. */
+"Delete Condition" = "حذف شرط";
+
+/* No comment provided by engineer. */
+"Delete item from list" = "حذف عنصر من قائمة";
+
+/* No comment provided by engineer. */
+"Delete Looks" = "حذف مشهد";
+
+/* No comment provided by engineer. */
+"Delete Loop" = "حذف حلقة التكرار";
+
+/* No comment provided by engineer. */
+"Delete Objects" = "حذف الكائنات";
+
+/* No comment provided by engineer. */
+"Delete Project" = "Delete Project";
+
+/* No comment provided by engineer. */
+"Delete Projects" = "Delete Projects";
+
+/* No comment provided by engineer. */
+"Delete Script" = "حذف النص البرمجي";
+
+/* No comment provided by engineer. */
+"Delete Sounds" = "حذف الأصوات";
+
+/* No comment provided by engineer. */
+"Delete these Bricks?" = "هل تريد حذف هذه اللّبنات البرمجية؟";
+
+/* No comment provided by engineer. */
+"Delete these Conditions?" = "هل تريد حذف هذه الشروط؟";
+
+/* No comment provided by engineer. */
+"Delete these Loops?" = "هل تريد حذف جمل الدوران؟";
+
+/* No comment provided by engineer. */
+"Delete these Scripts?" = "هل تريد حذف هذه النصوص البرمجية؟";
+
+/* No comment provided by engineer. */
+"Delete this background" = "حذف خلفية الشاشة هذه";
+
+/* No comment provided by engineer. */
+"Delete this Brick?" = "هل تريد حذف هذه اللبّنة البرمجية؟";
+
+/* No comment provided by engineer. */
+"Delete this Condition?" = "هل تريد حذف هذا الشرط؟";
+
+/* No comment provided by engineer. */
+"Delete this look" = "حذف هذا المشهد";
+
+/* No comment provided by engineer. */
+"Delete this Loop?" = "هل تريد حذف حلقة التكرار هذه؟";
+
+/* No comment provided by engineer. */
+"Delete this object" = "حذف هذا الكائن";
+
+/* No comment provided by engineer. */
+"Delete this project" = "Delete this project";
+
+/* No comment provided by engineer. */
+"Delete this Script?" = "هل تريد حذف هذا النص البرمجي؟";
+
+/* No comment provided by engineer. */
+"Delete this sound" = "حذف هذا الصوت";
+
+/* No comment provided by engineer. */
+"Deletion Mode" = "وضع الحذف";
+
+/* No comment provided by engineer. */
+"Description" = "الوصف";
+
+/* No comment provided by engineer. */
+"Details" = "التفاصيل";
+
+/* bluetooth */
+"Device disconnected." = "الجهاز غير متصل.";
+
+/* No comment provided by engineer. */
+"device motion-sensor" = "device motion-sensor";
+
+/* No comment provided by engineer. */
+"direction" = "الاتجاه";
+
+/* No comment provided by engineer. */
+"Disconnect all devices" = "قطع إتصال جميع الأجهزة";
+
+/* No comment provided by engineer. */
+"DO" = "دو";
+
+/* paint */
+"Do you really want to delete the current drawing?" = "هل تريد حقاً حذف الرسم الحالي؟";
+
+/* paint */
+"Do you want to save the changes" = "هل تريد حفظ التغييرات";
+
+/* No comment provided by engineer. */
+"Done" = "موافق";
+
+/* No comment provided by engineer. */
+"Download" = "تحميل";
+
+/* No comment provided by engineer. */
+"Download successful" = "تم التنزيل بنجاح";
+
+/* No comment provided by engineer. */
+"Downloads" = "التنزيلات";
+
+/* No comment provided by engineer. */
+"Draw new image" = "رسم صورة جديدة";
+
+/* No comment provided by engineer. */
+"Duration" = "المدة";
+
+/* No comment provided by engineer. */
+"Edit" = "تحرير";
+
+/* Action sheet menu title */
+"Edit Background" = "تعديل خلفية الشاشة";
+
+/* Action sheet menu title */
+"Edit Backgrounds" = "تعديل خلفيات الشاشة";
+
+/* Action sheet menu title */
+"Edit Brick" = "تحرير الطوب";
+
+/* No comment provided by engineer. */
+"Edit Formula" = "تحرير صيغة";
+
+/* Action sheet menu title */
+"Edit Look" = "تحرير المشهد";
+
+/* Action sheet menu title */
+"Edit Looks" = "تحرير مظهر";
+
+/* No comment provided by engineer. */
+"Edit Object" = "تحرير كائن";
+
+/* No comment provided by engineer. */
+"Edit Project" = "Edit Project";
+
+/* No comment provided by engineer. */
+"Edit Projects" = "Edit Projects";
+
+/* Action sheet menu title */
+"Edit Script" = "تعديل النص البرمجي";
+
+/* Action sheet menu title */
+"Edit Sound" = "تحرير الصوت";
+
+/* Action sheet menu title */
+"Edit Sounds" = "تحرير الأصوات";
+
+/* No comment provided by engineer. */
+"element" = "عنصر";
+
+/* paint */
+"Ellipse / Circle" = "القطع الناقص / دائرة";
+
+/* No comment provided by engineer. */
+"Else" = "عدا ذلك";
+
+/* No comment provided by engineer. */
+"Email" = "البريد الألكتروني";
+
+/* No comment provided by engineer. */
+"Empty input!" = "Empty input!";
+
+/* No comment provided by engineer. */
+"End If" = "نهاية إذا";
+
+/* No comment provided by engineer. */
+"End of Loop" = "نهاية التكرار";
+
+/* No comment provided by engineer. */
+"Enter a reason" = "أدخل السبب";
+
+/* Placeholder for add image-name input field */
+"Enter your image name here..." = "أدخل اسم الصورة الخاصة بك هنا...";
+
+/* Placeholder for list input field */
+"Enter your list name here..." = "أدخل اسم قائمتك هنا...";
+
+/* Placeholder for message input field */
+"Enter your message here..." = "أدخل رسالتك هنا...";
+
+/* Placeholder for add object-name input field */
+"Enter your object name here..." = "أدخل اسم الكائن الخاص بك هنا...";
+
+/* Placeholder for project-description input field */
+"Enter your project description here..." = "Enter your project description here...";
+
+/* Placeholder for project-name input field */
+"Enter your project name here..." = "Enter your project name here...";
+
+/* Placeholder for add sound-name input field */
+"Enter your sound name here..." = "قم بإدخال اسم الصوت الخاص بك هنا...";
+
+/* Placeholder for variable input field */
+"Enter your variable name here..." = "أدخل اسم المتغير الخاص بك هنا...";
+
+/* paint */
+"Eraser" = "ممحاة";
+
+/* No comment provided by engineer. */
+"Error" = "خطأ";
+
+/* No comment provided by engineer. */
+"Error saving file" = "Error saving file";
+
+/* No comment provided by engineer. */
+"Explore" = "إستعراض";
+
+/* No comment provided by engineer. */
+"Explore apps" = "استكشاف التطبيقات";
+
+/* No comment provided by engineer. */
+"FA" = "فا";
+
+/* No comment provided by engineer. */
+"face_detected" = "تم إكتشاف الوجه";
+
+/* No comment provided by engineer. */
+"faceposition_x" = "موضع سينات الوجه";
+
+/* No comment provided by engineer. */
+"faceposition_y" = "موضع صادات الوجه";
+
+/* No comment provided by engineer. */
+"facesize" = "حجم الوجه";
+
+/* No comment provided by engineer. */
+"Failed to import item" = "فشلت عملية استيراد العنصر";
+
+/* No comment provided by engineer. */
+"Failed to load featured projects" = "Failed to load featured projects";
+
+/* No comment provided by engineer. */
+"Failed to load recent projects" = "Failed to load recent projects";
+
+/* No comment provided by engineer. */
+"Failed to load sound" = "فشل في تحميل الملف الصوتي";
+
+/* No comment provided by engineer. */
+"Failed to play sound" = "فشل في تشغيل الملف";
+
+/* No comment provided by engineer. */
+"false" = "خطأ";
+
+/* No comment provided by engineer. */
+"Featured Projects" = "Featured Projects";
+
+/* No comment provided by engineer. */
+"Feb" = "شباط (فبراير)";
+
+/* No comment provided by engineer. */
+"February" = "شباط / فبراير";
+
+/* paint */
+"Fill" = "تعبئة";
+
+/* No comment provided by engineer. */
+"Flashlight off" = "إيقاف ضوء الفلاش";
+
+/* No comment provided by engineer. */
+"Flashlight on" = "تشغيل ضوء الفلاش";
+
+/* No comment provided by engineer. */
+"floor" = "تقريب للاسفل";
+
+/* No comment provided by engineer. */
+"Following features used in this project are not compatible with this version of Pocket Code:" = "Following features used in this project are not compatible with this version of Pocket Code:";
+
+/* No comment provided by engineer. */
+"for" = "لفترة";
+
+/* No comment provided by engineer. */
+"for all objects" = "لكافة الكائنات";
+
+/* No comment provided by engineer. */
+"for this object" = "لهذا الكائن فقط";
+
+/* No comment provided by engineer. */
+"Forever" = "تكرار لا نهائي";
+
+/* No comment provided by engineer. */
+"Forgot password" = "نسيت كلمة المرور";
+
+/* No comment provided by engineer. */
+"Formula too long!" = "الصيغة طويلة جداً!";
+
+/* No comment provided by engineer. */
+"Fr" = "الجمعة";
+
+/* Title of View where the user can see the frequently used bricks. */
+"Frequently Used" = "المُستخدمة غالباً";
+
+/* No comment provided by engineer. */
+"Friday" = "الجمعة";
+
+/* No comment provided by engineer. */
+"From Camera" = "من الكاميرا";
+
+/* No comment provided by engineer. */
+"front" = "الأمامية";
+
+/* No comment provided by engineer. */
+"Front camera" = "الكاميرا الأمامية";
+
+/* No comment provided by engineer. */
+"Glide" = "إنزلق خلال";
+
+/* No comment provided by engineer. */
+"Go back" = "الرجوع للخلف";
+
+/* No comment provided by engineer. */
+"Go to front" = "الذهاب إلى الامام";
+
+/* paint */
+"Green" = "أخضر";
+
+/* No comment provided by engineer. */
+"gyro-sensor" = "جهاز إستشعار الدوران";
+
+/* No comment provided by engineer. */
+"Hello!" = "مرحباً!";
+
+/* No comment provided by engineer. */
+"Help" = "المساعدة";
+
+/* No comment provided by engineer. */
+"Hide" = "إخفاء";
+
+/* No comment provided by engineer. */
+"Hide Details" = "إخفاء التفاصيل";
+
+/* No comment provided by engineer. */
+"Hide variable" = "إخفاء المتغير";
+
+/* No comment provided by engineer. */
+"Hmmmm!" = "همممم!";
+
+/* No comment provided by engineer. */
+"hour" = "ساعة";
+
+/* No comment provided by engineer. */
+"If" = "إذا";
+
+/* No comment provided by engineer. */
+"If on edge, bounce" = "إذا كان على الحافة، ارتد";
+
+/* paint */
+"Image" = "صورة";
+
+/* No comment provided by engineer. */
+"Image name" = "اسم الصورة";
+
+/* No comment provided by engineer. */
+"Image source not available" = "مصدر الصورة غير متوفر";
+
+/* Title of prompt shown when a *.catrobat file is imported from a third-party app. */
+"Import File" = "استيراد ملفّ";
+
+/* No comment provided by engineer. */
+"In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation." = "من أجل السماح لك باستخدام \"البوكت كوود\" والملفات التنفيذية الأخرى التي يتيحها مشروع الكاتروبات، يجب أن توافق على \"شروط الاستخدام\" لدينا والتقيد بها عند استخدام \"البوكت كوود\" والملفات التنفيذية الأخرى. يرجى الاطلاع على الرابط أدناه للحصول على صياغة دقيقة.";
+
+/* No comment provided by engineer. */
+"inclination_x" = "زاوية ميل x";
+
+/* No comment provided by engineer. */
+"inclination_y" = "زاوية ميل y";
+
+/* No comment provided by engineer. */
+"Information" = "معلومات";
+
+/* No comment provided by engineer. */
+"Insert" = "إدراج";
+
+/* paint */
+"Inserted" = "تم الإدخال";
+
+/* No comment provided by engineer. */
+"into list" = "في القائمة";
+
+/* No comment provided by engineer. */
+"Invalid input entered, try again." = "إدخال غير صحيح، حاول مرة أخرى.";
+
+/* No comment provided by engineer. */
+"Invalid URL given!" = "عنوان URL غير صحيح!";
+
+/* No comment provided by engineer. */
+"iOS." = "iOS.";
+
+/* No comment provided by engineer. */
+"is true" = "تحقق الشرط";
+
+/* No comment provided by engineer. */
+"is true then" = "تحقق الشرط";
+
+/* paint */
+"italic" = "مائل";
+
+/* No comment provided by engineer. */
+"Jan" = "كانون الثاني (يناير)";
+
+/* No comment provided by engineer. */
+"January" = "كانون الثاني / يناير";
+
+/* No comment provided by engineer. */
+"join" = "الانضمام إلى";
+
+/* No comment provided by engineer. */
+"Jul" = "تموز (يوليو)";
+
+/* No comment provided by engineer. */
+"July" = "تموز/يوليو";
+
+/* No comment provided by engineer. */
+"Jun" = "حزيران(يونيو)";
+
+/* No comment provided by engineer. */
+"June" = "حزيران/يونيه";
+
+/* bluetooth */
+"Known devices" = "أجهزة معروفة";
+
+/* No comment provided by engineer. */
+"LA" = "لا";
+
+/* No comment provided by engineer. */
+"Last access" = "أخر وصول";
+
+/* No comment provided by engineer. */
+"last_screen_touch_index" = "أخر_دلالة_لمس_الشاشة";
+
+/* No comment provided by engineer. */
+"latitude" = "خط العرض";
+
+/* No comment provided by engineer. */
+"layer" = "طبقات";
+
+/* No comment provided by engineer. */
+"layers" = "طبقات";
+
+/* No comment provided by engineer. */
+"LED" = "ضوء ليد";
+
+/* No comment provided by engineer. */
+"Left" = "اليسار";
+
+/* No comment provided by engineer. */
+"Length" = "طول";
+
+/* No comment provided by engineer. */
+"length" = "طول النص";
+
+/* No comment provided by engineer. */
+"letter" = "حرف من النص";
+
+/* paint */
+"Line" = "خط رسم";
+
+/* No comment provided by engineer. */
+"List name:" = "إسم القائمة:";
+
+/* No comment provided by engineer. */
+"List type" = "نوع القائمة";
+
+/* No comment provided by engineer. */
+"Lists" = "قوائم";
+
+/* No comment provided by engineer. */
+"Loading" = "جار التحميل…";
+
+/* No comment provided by engineer. */
+"location" = "location";
+
+/* No comment provided by engineer. */
+"location_accuracy" = "دقة_الموقع";
+
+/* No comment provided by engineer. */
+"Logic" = "المنطق";
+
+/* No comment provided by engineer. */
+"Login" = "تسجيل الدخول";
+
+/* No comment provided by engineer. */
+"Login successful" = "تم تسجيل الدخول بنجاح";
+
+/* No comment provided by engineer. */
+"Login/Register" = "تسجيل الدخول/تسجيل";
+
+/* No comment provided by engineer. */
+"Logout" = "خروج";
+
+/* No comment provided by engineer. */
+"longitude" = "خط الطول";
+
+/* No comment provided by engineer. */
+"Look" = "منظر";
+
+/* LOOK */
+"look" = "منظر";
+
+/* No comment provided by engineer. */
+"look_name" = "إسم_المنظر";
+
+/* No comment provided by engineer. */
+"look_number" = "رقم_المنظر";
+
+/* No comment provided by engineer. */
+"Looks" = "المناظر";
+
+/* No comment provided by engineer. */
+"loudness" = "بريق";
+
+/* No comment provided by engineer. */
+"magnetic-sensor" = "جهاز الإستشعار المغناطيسي";
+
+/* No comment provided by engineer. */
+"Mar" = "آذار (مارس)";
+
+/* No comment provided by engineer. */
+"March" = "اذار/ مارس";
+
+/* No comment provided by engineer. */
+"Math" = "رياضيات";
+
+/* No comment provided by engineer. */
+"May" = "أيار/مايو";
+
+/* No comment provided by engineer. */
+"Measure" = "قياس";
+
+/* No comment provided by engineer. */
+"Media Library" = "مكتبة الوسائط";
+
+/* paint */
+"Menu" = "القائمة";
+
+/* No comment provided by engineer. */
+"Message" = "رسالة";
+
+/* No comment provided by engineer. */
+"message 1" = "رسالة 1";
+
+/* No comment provided by engineer. */
+"MI" = "مي";
+
+/* No comment provided by engineer. */
+"minute" = "دقيقة";
+
+/* paint */
+"Mirror" = "مرآة";
+
+/* No comment provided by engineer. */
+"Mo" = "الإثنين";
+
+/* Prefix of default catrobat project object names (except background object) */
+"Mole" = "الخلد";
+
+/* No comment provided by engineer. */
+"Monday" = "الاثنين";
+
+/* No comment provided by engineer. */
+"month" = "الشهر";
+
+/* No comment provided by engineer. */
+"More" = "أكثر";
+
+/* No comment provided by engineer. */
+"More information" = "More information";
+
+/* No comment provided by engineer. */
+"Most Downloaded" = "الأكثر تنزيلا";
+
+/* No comment provided by engineer. */
+"Most Viewed" = "الأكثر عرضاً";
+
+/* No comment provided by engineer. */
+"Motion" = "الحركة";
+
+/* No comment provided by engineer. */
+"Move" = "تحريك";
+
+/* No comment provided by engineer. */
+"Move Brick" = "أنقل اللبّنة البرمجية";
+
+/* No comment provided by engineer. */
+"Move Looks" = "نقل مظاهر";
+
+/* No comment provided by engineer. */
+"Move Objects" = "نقل عناصر";
+
+/* No comment provided by engineer. */
+"Move Phiro motor backward" = "تحريك روبوت الاطفال الى الخلف";
+
+/* No comment provided by engineer. */
+"Move Phiro motor forward" = "تحريك روبوت الاطفال الى الأمام";
+
+/* No comment provided by engineer. */
+"Move Sounds" = "نقل ملفات صوتية";
+
+/* Name of the default catrobat project (used as filename!!) */
+"My first project" = "برنامجي الأول";
+
+/* Default title of imported photo from camera (taken by camera) */
+"My Image" = "الصورة الخاصة بي";
+
+/* Title for first (default) object */
+"My Object" = "الكائن الخاص بي";
+
+/* No comment provided by engineer. */
+"Name" = "الإسم";
+
+/* No comment provided by engineer. */
+"Name already exists." = "هذا الاسم موجود مسبقاً.";
+
+/* No comment provided by engineer. */
+"New" = "جديد";
+
+/* paint */
+"New Canvas" = "لوحة جديدة";
+
+/* No comment provided by engineer. */
+"New List" = "قائمة جديدة";
+
+/* No comment provided by engineer. */
+"New Message" = "رسالة جديدة";
+
+/* No comment provided by engineer. */
+"New Project" = "New Project";
+
+/* No comment provided by engineer. */
+"New Text" = "نص جديد";
+
+/* No comment provided by engineer. */
+"New Variable" = "متغير جديد";
+
+/* No comment provided by engineer. */
+"New..." = "جديد...";
+
+/* No comment provided by engineer. */
+"Newest" = "الأحدث";
+
+/* No comment provided by engineer. */
+"Next background" = "خلفية الشاشة التالية";
+
+/* No comment provided by engineer. */
+"Next look" = "المنظر التالي";
+
+/* No comment provided by engineer. */
+"No" = "لا";
+
+/* No comment provided by engineer. */
+"No Camera available" = "لا توجد كاميرا متوفرة";
+
+/* No comment provided by engineer. */
+"No Description available" = "لا يوجد أي مواصفات";
+
+/* No comment provided by engineer. */
+"No input. Please enter at least %lu character(s)." = "لم يتم الإدخال. من فضلك أدخل على الأقل %lu حرف/ أحرف.";
+
+/* No comment provided by engineer. */
+"No or invalid image name entered, try again." = "لا يوجد إسم أو إدخال أسم غير صحيح للصورة، حاول مرة أخرى.";
+
+/* No comment provided by engineer. */
+"No or invalid sound name entered, try again." = "لا يوجد إسم أو إدخال أسم غير صحيح لملف الصوت، حاول مرة أخرى.";
+
+/* No comment provided by engineer. */
+"No search results" = "لا يوجد نتائج للبحث";
+
+/* No comment provided by engineer. */
+"No whitespace character allowed" = "المسافات البيضاء غير مسموحة";
+
+/* No comment provided by engineer. */
+"not" = "لا";
+
+/* No comment provided by engineer. */
+"not available. Continue anyway?" = "غير متوفر. هل تريد المتابعة على أية حال؟";
+
+/* No comment provided by engineer. */
+"Not enough free memory to download this project. Please delete some of your projects" = "Not enough free memory to download this project. Please delete some of your projects";
+
+/* No comment provided by engineer. */
+"Not enough Memory" = "لا توجد ذاكرة كافية";
+
+/* No comment provided by engineer. */
+"Note" = "دوّن ملاحظة";
+
+/* paint */
+"Nothing to crop!" = "لايوجد شيء للقيام بإقتصاصه!";
+
+/* No comment provided by engineer. */
+"Nov" = "تشرين الثاني (نوفمبر)";
+
+/* No comment provided by engineer. */
+"November" = "تشرين الثاني/ نوفمبر";
+
+/* No comment provided by engineer. */
+"number_of_items" = "عدد_العناصر";
+
+/* No comment provided by engineer. */
+"Numbers" = "أرقام";
+
+/* No comment provided by engineer. */
+"Object" = "الكائن";
+
+/* No comment provided by engineer. */
+"Object lists:" = "قوائم الكائن:";
+
+/* No comment provided by engineer. */
+"Object name" = "اسم الكائن";
+
+/* No comment provided by engineer. */
+"Object variables:" = "متغيرات الكائن:";
+
+/* No comment provided by engineer. */
+"Objects" = "الكائنات";
+
+/* No comment provided by engineer. */
+"Oct" = "تشرين الأول (أكتوبر)";
+
+/* No comment provided by engineer. */
+"October" = "تشرين الاول / اكتوبر";
+
+/* No comment provided by engineer. */
+"off" = "إيقاف التشغيل";
+
+/* No comment provided by engineer. */
+"OK" = "موافق";
+
+/* No comment provided by engineer. */
+"on" = "تشغيل";
+
+/* No comment provided by engineer. */
+"only 15 characters allowed" = "فقط يسمح بـ 15 رمزاً";
+
+/* No comment provided by engineer. */
+"Only space is not allowed. Please enter at least %lu other character(s)." = "فقط الفراغ غير مسموح به. الرجاء إدخال على الأقل %lu حرف (أحرف) أخرى.";
+
+/* No comment provided by engineer. */
+"Only special characters are not allowed. Please enter at least %lu other character(s)." = "الأحرف الخاصة فقط غير مسموح بها. الرجاء إدخال على الأقل %lu أحرف آخرى.";
+
+/* No comment provided by engineer. */
+"Open" = "فتح";
+
+/* No comment provided by engineer. */
+"or" = "أو";
+
+/* No comment provided by engineer. */
+"Password" = "كلمة المرور";
+
+/* No comment provided by engineer. */
+"Password is not vaild! \n It has to contain at least 6 characters/symbols" = "كلمة المرور غير صحيحة! يجب أن تحتوي على الأقل على أحرف ورموز";
+
+/* No comment provided by engineer. */
+"Passwords do not match" = "كلمات المرور لا تتطابق";
+
+/* No comment provided by engineer. */
+"Phiro" = "روبوت الاطفال";
+
+/* No comment provided by engineer. */
+"phiro_bottom_left" = "الأسفل_الأيسر_لربوت الأطفال";
+
+/* No comment provided by engineer. */
+"phiro_bottom_right" = "الأسفل_الأيمن_لربوت الأطفال";
+
+/* No comment provided by engineer. */
+"phiro_front_left" = "الأمامي_الأيسر_لربوت الأطفال";
+
+/* No comment provided by engineer. */
+"phiro_front_right" = "الأمامي_الأيمن_لربوت الأطفال";
+
+/* No comment provided by engineer. */
+"phiro_side_left" = "الجانبي_الأيسر_لربوت الأطفال";
+
+/* No comment provided by engineer. */
+"phiro_side_right" = "الجانبي_الأيمن_لربوت الأطفال";
+
+/* paint */
+"Pipette" = "التقاط اللون";
+
+/* No comment provided by engineer. */
+"Place at " = "تحديد موقع الكائن في ";
+
+/* No comment provided by engineer. */
+"Play Phiro music\n" = "تشغيل موسيقى روبوت الاطفال\n";
+
+/* No comment provided by engineer. */
+"Please choose another name:" = "من فضلك قم باختيار اسم اخر:";
+
+/* paint */
+"Please enter a text!" = "الرجاء إدخال نص!";
+
+/* No comment provided by engineer. */
+"Please log in to report this project as inappropriate" = "Please log in to report this project as inappropriate";
+
+/* paint */
+"Please pick a tool" = "الرجاء إنتقاء أداة";
+
+/* No comment provided by engineer. */
+"Please select a project to upload" = "Please select a project to upload";
+
+/* bluetooth */
+"Please try resetting the device and try again." = "الرجاء محاولة إعادة تعيين الجهاز, والمحاولة من جديد.";
+
+/* No comment provided by engineer. */
+"Pocket Code" = "بوكت كوود";
+
+/* No comment provided by engineer. */
+"Pocket Code for iOS" = "النص البرمجي لجهاز الجيب لـiOS";
+
+/* No comment provided by engineer. */
+"Pocket Code has been started in debug mode." = "البوكت كوود تم تشغيلة في وضع التصحيح.";
+
+/* No comment provided by engineer. */
+"Pocket Code has no access to your camera. To permit access, tap settings and activate camera. Your drawing will automatically be saved to PocketCode for you." = "لم يصل البوكت كوود إلى الكاميرا الخاصة بك. للسماح بالوصول، انقر على إعدادات ثم تنشيط الكاميرا. سيتم تلقائياً حفظ الرسم الخاص بك في بوكيت كوود لك.";
+
+/* No comment provided by engineer. */
+"Pocket Code has no access to your images. To permit access, tap settings and activate images. Your drawing will automatically be saved to PocketCode for you." = "لم يصل البوكت كوود إلى الكاميرا الخاصة بك. للسماح بالوصول، انقر على إعدادات ثم تنشيط الكاميرا. سيتم تلقائياً حفظ الرسم الخاص بك في بوكيت كوود لك.";
+
+/* No comment provided by engineer. */
+"Pocket Code has no access to your microphone. To permit access, tap settings and activate microphone." = "بوكت كوود ليست لديه صلاحية الوصول للميكروفون. لإعطاء صلاحية, انقر على الإعدادات وقم بتفعيل الميكروفون.";
+
+/* No comment provided by engineer. */
+"Pocket Code is a programming environment for iOS for the visual programming language Catrobat. The code of Pocket Code is mostly under GNU AGPL v3 licence. For further information to the licence please visit following links:" = "البوكت كوود هو بيئة برمجية iOS للغات البرمجة المرئية لكاتروبات n\n\\\nالنص البرمجي للبوكت كوود هو مرخص من قبل (GNU AGPL v3 License). للحصول على تفاصيل أكثر للرخصة يمكنك الاطلاع على الرابط في الاسفل. n\\:";
+
+/* No comment provided by engineer. */
+"Pocket Code let's you play great games and run other fantastic apps like for instance presentations, quizzes and so on." = "يسمح لك البوكت كوود لأن تلعب ألعاب عظيمة وتشغيل تطبيقات رائعة مثل العروض على سبيل المثال، وأحجبات وأشياء أخرى.";
+
+/* No comment provided by engineer. */
+"Pocket Code Recorder" = "مسجل البوكت كوود";
+
+/* No comment provided by engineer. */
+"Pocket Code Source Code License" = "رخصة مصدر النص البرمجي لبوكت كوود";
+
+/* paint */
+"Pocket Paint" = "بوكت بينت";
+
+/* No comment provided by engineer. */
+"Point in direction" = "تغيير الإتجاه بزاوية";
+
+/* No comment provided by engineer. */
+"Point towards" = "تعيين الوجهة ناحية";
+
+/* paint */
+"Pointer" = "مؤشر";
+
+/* No comment provided by engineer. */
+"position_x" = "الموقع x";
+
+/* No comment provided by engineer. */
+"position_y" = "الموقع y";
+
+/* No comment provided by engineer. */
+"Preview" = "معاينة";
+
+/* No comment provided by engineer. */
+"Previous background" = "خلفية الشاشة السابقة";
+
+/* No comment provided by engineer. */
+"Previous look" = "المنظر السابق";
+
+/* No comment provided by engineer. */
+"Privacy Settings" = "اعدادات الخصوصية";
+
+/* No comment provided by engineer. */
+"Problems occured while uploading your project" = "Problems occured while uploading your project";
+
+/* No comment provided by engineer. */
+"Project" = "المشروع";
+
+/* No comment provided by engineer. */
+"Project lists:" = "Project lists:";
+
+/* No comment provided by engineer. */
+"Project name" = "اسم البرنامج";
+
+/* No comment provided by engineer. */
+"Project Name is necessary!" = "Project Name is necessary!";
+
+/* No comment provided by engineer. */
+"Project variables:" = "Project variables:";
+
+/* No comment provided by engineer. */
+"Projects" = "البرامج";
+
+/* No comment provided by engineer. */
+"Rate Us" = "قم بتقييمنا";
+
+/* No comment provided by engineer. */
+"RE" = "ري";
+
+/* No comment provided by engineer. */
+"Recording" = "تسجيل";
+
+/* paint */
+"Rectangle / Square" = "مستطيل/مربع";
+
+/* paint */
+"Red" = "أحمر";
+
+/* No comment provided by engineer. */
+"Register" = "تسجيل";
+
+/* No comment provided by engineer. */
+"Registration successful" = "تم التسجيل بنجاح";
+
+/* No comment provided by engineer. */
+"Remove known devices" = "إزالة الأجهزة المعروفة";
+
+/* No comment provided by engineer. */
+"Rename" = "إعادة تسمية";
+
+/* No comment provided by engineer. */
+"Rename image" = "إعادة تسمية الصور";
+
+/* No comment provided by engineer. */
+"Rename object" = "إعادة تسمية الكائن";
+
+/* No comment provided by engineer. */
+"Rename Project" = "Rename Project";
+
+/* No comment provided by engineer. */
+"Rename sound" = "إعادة تسمية الصوت";
+
+/* No comment provided by engineer. */
+"Repeat" = "تكرار";
+
+/* No comment provided by engineer. */
+"Repeat until" = "تكرار حتى";
+
+/* No comment provided by engineer. */
+"Replace item in list" = "استبدال عنصر في القائمة";
+
+/* No comment provided by engineer. */
+"Report as inappropriate" = "تبليغ كـ محتوى غير مناسب";
+
+/* paint */
+"Resize" = "تغيير الحجم";
+
+/* No comment provided by engineer. */
+"Restart" = "اعادة تشغيل";
+
+/* No comment provided by engineer. */
+"Result" = "النتيجة";
+
+/* No comment provided by engineer. */
+"Right" = "اليمين";
+
+/* paint */
+"Rotate" = "تدوير";
+
+/* paint */
+"round" = "التقريب";
+
+/* No comment provided by engineer. */
+"Sa" = "السبت";
+
+/* No comment provided by engineer. */
+"Saturday" = "السبت";
+
+/* paint */
+"Save to CameraRoll" = "حفظ الى مجلد الكاميرا";
+
+/* No comment provided by engineer. */
+"Save to PocketCode" = "حفظ الي بوكت كوود";
+
+/* No comment provided by engineer. */
+"Saved" = "تم الحفظ";
+
+/* No comment provided by engineer. */
+"Say" = "قُل";
+
+/* No comment provided by engineer. */
+"screen_is_touched" = "تم لمس الشاشة";
+
+/* No comment provided by engineer. */
+"screen_touch_x" = "إحداثيات_لمس_الشاشة_س";
+
+/* No comment provided by engineer. */
+"screen_touch_y" = "إحداثيات_لمس_الشاشة_ص";
+
+/* No comment provided by engineer. */
+"Script" = "النصوص البرمجية";
+
+/* No comment provided by engineer. */
+"Scripts" = "النص البرمجي";
+
+/* bluetooth */
+"Search" = "بحث";
+
+/* No comment provided by engineer. */
+"second" = "ثانية";
+
+/* No comment provided by engineer. */
+"second " = "ثانية ";
+
+/* No comment provided by engineer. */
+"seconds" = "ثوان ";
+
+/* No comment provided by engineer. */
+"seconds " = "ثانية ";
+
+/* No comment provided by engineer. */
+"Select All" = "اختيار الكلّ";
+
+/* bluetooth */
+"Select Arduino" = "حدد أردوينو";
+
+/* No comment provided by engineer. */
+"Select Brick Category" = "حدد فئة اللّبنة";
+
+/* No comment provided by engineer. */
+"Select logical operator" = "حدد عامل التشغيل المنطقي";
+
+/* No comment provided by engineer. */
+"Select mathematical function" = "حدد دالة رياضية";
+
+/* paint */
+"Select option:" = "حدد إختيارك:";
+
+/* bluetooth */
+"Select Phiro" = "حدد روبوت أطفال";
+
+/* No comment provided by engineer. */
+"Sensors" = "الاستشعار";
+
+/* No comment provided by engineer. */
+"Sep" = "سبتمبر";
+
+/* No comment provided by engineer. */
+"September" = "أيلول";
+
+/* No comment provided by engineer. */
+"Server is taking to long to respond, please try again later." = "Server is taking to long to respond, please try again later.";
+
+/* No comment provided by engineer. */
+"Set Arduino digital pin" = "تعيين قيمة إبرة أردوينو الرقمية";
+
+/* No comment provided by engineer. */
+"Set Arduino PWM~ pin" = "تعيين قيمة إبرة أردوينو PWM";
+
+/* No comment provided by engineer. */
+"Set background" = "تعيين كـ خلفية شاشة";
+
+/* No comment provided by engineer. */
+"Set brightness " = "تعيين درجة السطوع ";
+
+/* No comment provided by engineer. */
+"Set color " = "تعيين اللون ";
+
+/* No comment provided by engineer. */
+"Set description" = "وصف مجموعة";
+
+/* No comment provided by engineer. */
+"Set Phiro light" = "تعيين ضوء روبوت الاطفال";
+
+/* No comment provided by engineer. */
+"Set size to" = "تعيين الحجم الى";
+
+/* No comment provided by engineer. */
+"Set transparency " = "تعيين درجة الشفافية الى ";
+
+/* No comment provided by engineer. */
+"Set variable" = "تعيين قيمة المتغير";
+
+/* No comment provided by engineer. */
+"Set volume to" = "تعيين مستوى الصوت إلى";
+
+/* No comment provided by engineer. */
+"Set X to " = "تعيين قيمة س الى ";
+
+/* No comment provided by engineer. */
+"Set Y to " = "تعيين قيمة ص الى ";
+
+/* No comment provided by engineer. */
+"Settings" = "إعدادات";
+
+/* No comment provided by engineer. */
+"Show" = "إظهار";
+
+/* No comment provided by engineer. */
+"Show Details" = "إظهار التفاصيل";
+
+/* No comment provided by engineer. */
+"Show variable" = "إظهار المتغير";
+
+/* No comment provided by engineer. */
+"size" = "الحجم";
+
+/* No comment provided by engineer. */
+"Size" = "الحجم";
+
+/* No comment provided by engineer. */
+"Skip" = "تخطى";
+
+/* No comment provided by engineer. */
+"SO" = "صو";
+
+/* No comment provided by engineer. */
+"Sound" = "الصوت";
+
+/* No comment provided by engineer. */
+"Sound name" = "اسم ملف الصوت";
+
+/* No comment provided by engineer. */
+"Sounds" = "الأصوات";
+
+/* No comment provided by engineer. */
+"Speak" = "تَحدّث";
+
+/* No comment provided by engineer. */
+"Speed" = "سرعة";
+
+/* No comment provided by engineer. */
+"sqrt" = "الجذر التربيعي";
+
+/* paint */
+"square" = "مربع";
+
+/* paint */
+"Stamp" = "ختم";
+
+/* paint */
+"Stamped" = "مختوم";
+
+/* No comment provided by engineer. */
+"Start sound" = "بدء تشغيل مقطع صوتي";
+
+/* No comment provided by engineer. */
+"step" = "خطوات";
+
+/* No comment provided by engineer. */
+"steps" = "خطوات";
+
+/* No comment provided by engineer. */
+"Stop all sounds" = "إيقاف كافة الأصوات";
+
+/* No comment provided by engineer. */
+"Stop Phiro motor" = "إيقاف محرك روبوت الاطفال";
+
+/* No comment provided by engineer. */
+"Su" = "الأحد";
+
+/* No comment provided by engineer. */
+"Sunday" = "الأحد";
+
+/* No comment provided by engineer. */
+"Switch to look" = "تبديل المظهر الى";
+
+/* No comment provided by engineer. */
+"Syntax Error!" = "خطأ في بناء الجملة!";
+
+/* No comment provided by engineer. */
+"Tap \"+\" to add %@" = "اضغط على \"+\" لإضافة %@";
+
+/* Button title at the settings screen to get to the terms of use and services. */
+"Terms of Use and Services" = "شروط الاستخدام والخدمات";
+
+/* paint */
+"Text" = "النص";
+
+/* No comment provided by engineer. */
+"Text message:" = "نص الرسالة:";
+
+/* paint */
+"Text:" = "نص:";
+
+/* No comment provided by engineer. */
+"Th" = "الخميس";
+
+/* No comment provided by engineer. */
+"The description contains invalid characters, try again." = "يحتوي الوصف على أحرف غير صحيحة، حاول مرة أخرى.";
+
+/* No comment provided by engineer. */
+"The featured projects cannot be loaded" = "The featured projects cannot be loaded";
+
+/* No comment provided by engineer. */
+"The following item could not be imported from the Media Library:" = "لم يتم استيراد الملف التالي من مكتبة الوسائط:";
+
+/* No comment provided by engineer. */
+"The input is too long. Please enter maximal %lu character(s)." = "الإدخال طويل جداً. الرجاء إدخال كحد أقصى %lu حرف (أحرف).";
+
+/* No comment provided by engineer. */
+"The name contains blocked characters. Please try again!" = "الاسم يحتوي على أحرف المحظورة. الرجاء إعادة المحاولة!";
+
+/* No comment provided by engineer. */
+"The recent projects cannot be loaded" = "The recent projects cannot be loaded";
+
+/* No comment provided by engineer. */
+"The requested project can not be found. Please choose a different one." = "The requested project can not be found. Please choose a different one.";
+
+/* No comment provided by engineer. */
+"The requested project can not be loaded. Please try again later." = "The requested project can not be loaded. Please try again later.";
+
+/* No comment provided by engineer. */
+"The sound item cannot be loaded" = "الملف الصوتي لم يتم تحميله";
+
+/* No comment provided by engineer. */
+"The sound item cannot be played" = "الملف الصوتي لم يتم تشغيله";
+
+/* No comment provided by engineer. */
+"Think" = "فكّر";
+
+/* No comment provided by engineer. */
+"This action can not be undone!" = "هذا الإجراء لا يمكن التراجع عنه!";
+
+/* No comment provided by engineer. */
+"This feature is coming soon!" = "هذه الميزة قريبا!";
+
+/* No comment provided by engineer. */
+"This variable can not be deleted because it is still in use." = "لا يمكن حذف هذا المتغير لأنه لا يزال قيد الاستخدام.";
+
+/* No comment provided by engineer. */
+"Thursday" = "الخميس";
+
+/* No comment provided by engineer. */
+"TI" = "تي";
+
+/* No comment provided by engineer. */
+"time" = "مرات";
+
+/* No comment provided by engineer. */
+"times" = "مرات";
+
+/* No comment provided by engineer. */
+"to" = "إلى";
+
+/* No comment provided by engineer. */
+"to list" = "الى القائمة";
+
+/* No comment provided by engineer. */
+"to X:" = "إلى س:";
+
+/* No comment provided by engineer. */
+"Today" = "اليوم";
+
+/* No comment provided by engineer. */
+"transparency" = "الشفافية";
+
+/* No comment provided by engineer. */
+"true" = "صحيح";
+
+/* No comment provided by engineer. */
+"Tu" = "الثلاثاء";
+
+/* No comment provided by engineer. */
+"Tuesday" = "الثلاثاء";
+
+/* No comment provided by engineer. */
+"Turn camera" = "تشغيل الكاميرا";
+
+/* No comment provided by engineer. */
+"Turn flashlight" = "تشغيل ضوء الفلاش";
+
+/* No comment provided by engineer. */
+"Turn left" = "انعطف نحو اليسار";
+
+/* No comment provided by engineer. */
+"Turn right" = "انعطف نحو اليمين";
+
+/* No comment provided by engineer. */
+"Unable to load project!" = "Unable to load project!";
+
+/* No comment provided by engineer. */
+"Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt." = "غير قادر على تشغيل هذا الصوت! ربما الصوت غير صالح أو أن الملف لا يعمل.";
+
+/* No comment provided by engineer. */
+"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the left side of your iPhone and tap on play again." = "لا يمكن تشغيل ملف الصوت المحدد. الجهاز الخاص بك في الوضع الصامت. الرجاء إيقاف تشغيل الوضع الصامت عن طريق تبديل المفتاح الموجود على الجانب الأيسر من أي فون الخاص بك وأنقر على تشغيل مرة أخرى.";
+
+/* No comment provided by engineer. */
+"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again." = "لا يمكن تشغيل ملف الصوت المحدد. الجهاز الخاص بك في الوضع الصامت. الرجاء إيقاف تشغيل الوضع الصامت عن طريق تبديل المفتاح الموجود على الجانب الأيمن من أي باد الخاص بك وأنقر على تشغيل مرة أخرى.";
+
+/* paint */
+"underline" = "تسطير";
+
+/* Button title of alert view to invoke undo if user shakes device */
+"Undo" = "التراجع عن";
+
+/* Description text in alert view if user shakes the device */
+"Undo Drawing?" = "هل تريد التراجع عن الرسم؟";
+
+/* Description text in alert view if user shakes the device */
+"Undo Typing?" = "هل تريد التراجع عن الكتابة؟";
+
+/* No comment provided by engineer. */
+"Unexpected Error" = "Unexpected Error";
+
+/* No comment provided by engineer. */
+"Unexpected Error, please try again later." = "Unexpected Error, please try again later.";
+
+/* No comment provided by engineer. */
+"Unknown Element" = "Unknown Element";
+
+/* No comment provided by engineer. */
+"Unselect All" = "إلغاء اختيار الكل";
+
+/* No comment provided by engineer. */
+"Unsupported Brick:" = "Unsupported Brick:";
+
+/* No comment provided by engineer. */
+"Unsupported Elements" = "Unsupported Elements";
+
+/* No comment provided by engineer. */
+"Unsupported Script:" = "Unsupported Script:";
+
+/* No comment provided by engineer. */
+"Upload" = "تحميل";
+
+/* No comment provided by engineer. */
+"Upload Project" = "Upload Project";
+
+/* No comment provided by engineer. */
+"Upload selected project" = "Upload selected project";
+
+/* No comment provided by engineer. */
+"Upload successful" = "تم التحميل بنجاح";
+
+/* No comment provided by engineer. */
+"Uploaded" = "تم التحميل";
+
+/* No comment provided by engineer. */
+"Use Arduino bricks" = "استخدم لبّنات أردوينو البرمجية";
+
+/* No comment provided by engineer. */
+"Use camera" = "إستخدام الكاميرا\n ";
+
+/* No comment provided by engineer. */
+"Use Phiro bricks" = "استخدم لبّنات روبوت الأطفال البرمجية";
+
+/* No comment provided by engineer. */
+"Username" = "اسم المستخدم";
+
+/* No comment provided by engineer. */
+"Username must not be blank" = "يجب أن لا يكون اسم المستخدم فارغ";
+
+/* No comment provided by engineer. */
+"Var/List" = "متغير/قائمة";
+
+/* No comment provided by engineer. */
+"Variable" = "متغير";
+
+/* No comment provided by engineer. */
+"Variable name:" = "اسم المتغير:";
+
+/* No comment provided by engineer. */
+"Variable or List" = "متغير أو قائمة";
+
+/* No comment provided by engineer. */
+"Variable type" = "نوع المتغير";
+
+/* No comment provided by engineer. */
+"Variables" = "المتغيرات";
+
+/* No comment provided by engineer. */
+"Version" = "الإصدار";
+
+/* No comment provided by engineer. */
+"Vibrate for" = "الإهتزاز لـفترة";
+
+/* No comment provided by engineer. */
+"vibration" = "الاهتزاز";
+
+/* No comment provided by engineer. */
+"Views" = "عرض";
+
+/* No comment provided by engineer. */
+"Wait" = "انتظر";
+
+/* No comment provided by engineer. */
+"Wait until" = "انتظر حتى";
+
+/* No comment provided by engineer. */
+"We" = "الأربعاء";
+
+/* No comment provided by engineer. */
+"Wednesday" = "الأربعاء";
+
+/* No comment provided by engineer. */
+"weekday" = "يوم من أيام الأسبوع";
+
+/* No comment provided by engineer. */
+"Welcome to Pocket Code" = "مرحبا بكم في بوكت كوود";
+
+/* No comment provided by engineer. */
+"When project started" = "When project started";
+
+/* No comment provided by engineer. */
+"When screen is touched" = "عند لمس الشاشة";
+
+/* No comment provided by engineer. */
+"When tapped" = "عند النقر";
+
+/* No comment provided by engineer. */
+"When you receive" = "عند إستلام";
+
+/* paint */
+"Width selection" = "إنتقاء العرض";
+
+/* No comment provided by engineer. */
+"with" = "مع";
+
+/* No comment provided by engineer. */
+"X: " = "س: ";
+
+/* No comment provided by engineer. */
+"Y: " = "ص: ";
+
+/* No comment provided by engineer. */
+"year" = "السنة";
+
+/* No comment provided by engineer. */
+"Yes" = "نعم";
+
+/* No comment provided by engineer. */
+"Yesterday" = "البارحة";
+
+/* No comment provided by engineer. */
+"You are also able to build your own apps, remix existing ones and share them with your friends and other exciting people around the world." = "أنت أيضا قادر على بناء التطبيقات الخاصة بك وخلط مُعدل للتطبيقات الموجودة ومشاركتها مع أصدقائك والآخرين حول العالم.";
+
+/* No comment provided by engineer. */
+"You have already downloaded this project!" = "You have already downloaded this project!";
+
+/* No comment provided by engineer. */
+"Your email seems to be invalid" = "البريد الالكتروني الخاص بك غير صحيح";
+
+/* paint */
+"Zoom" = "تكبير/تصغير";
