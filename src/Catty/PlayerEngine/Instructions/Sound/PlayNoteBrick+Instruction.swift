@@ -43,7 +43,7 @@
             audioEngine.playNote(note: note, key: spriteObjectName!)
 
             waitUntilNoteFinished.lock()
-            while waitUntilNoteFinished.accessibilityHint == "0" { //accessibilityHint used because synthesizer.speaking not yet true.
+            while waitUntilNoteFinished.accessibilityHint == "0" {
                 waitUntilNoteFinished.wait()
             }
             waitUntilNoteFinished.unlock()
