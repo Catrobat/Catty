@@ -46,7 +46,7 @@
                 waitUntilNoteFinished.wait()
             }
             waitUntilNoteFinished.unlock()
-            audioEngine.activeNotes.remove(note)
+            audioEngine.activePauses.remove(note)
         }
     }
 

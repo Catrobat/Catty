@@ -28,6 +28,7 @@ class Note: NSObject {
     var beats: Double
     var bpm: Double
     var isPause: Bool
+    var isSilent: Bool
     var pauseDate: Date?
     var previousFireDate: Date?
 
@@ -37,6 +38,7 @@ class Note: NSObject {
         self.beats = beats
         self.bpm = bpm
         self.isPause = isPause
+        self.isSilent = false
     }
 
     func setActive() {

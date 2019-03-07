@@ -48,8 +48,7 @@
                 waitUntilNoteFinished.wait()
             }
             waitUntilNoteFinished.unlock()
-            audioEngine.stopDrum(pitch: self.drumChoice, key: spriteObjectName!)
-            audioEngine.activeNotes.remove(note)
+            audioEngine.stopDrum(note: note, key: spriteObjectName!)
         }
     }
 

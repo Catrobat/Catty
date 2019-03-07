@@ -47,8 +47,7 @@
                 waitUntilNoteFinished.wait()
             }
             waitUntilNoteFinished.unlock()
-            audioEngine.stopNote(pitch: pitch, key: spriteObjectName!)
-            audioEngine.activeNotes.remove(note)
+            audioEngine.stopNote(note: note, key: spriteObjectName!)
         }
     }
 

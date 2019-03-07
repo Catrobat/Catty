@@ -939,6 +939,7 @@
 		9EA3CB5B222DCABC00BED864 /* PlayDrumBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA3CB5A222DCABC00BED864 /* PlayDrumBrick+Instruction.swift */; };
 		9EA512FB22232FB700D57EA9 /* AudioEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA512FA22232FB700D57EA9 /* AudioEngine.swift */; };
 		9EA512FF22232FFB00D57EA9 /* AudioChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA512FE22232FFB00D57EA9 /* AudioChannel.swift */; };
+		9EAB85D7223172D90095F709 /* Sampler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EAB85D6223172D90095F709 /* Sampler.swift */; };
 		9EAF0C6A2225859400D283B0 /* chromaprint.license in Resources */ = {isa = PBXBuildFile; fileRef = 9EAF0C672225859400D283B0 /* chromaprint.license */; };
 		9EDAA2FE222C985E00535908 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDAA2FD222C985E00535908 /* Note.swift */; };
 		9EE14421222AB932009AB2B5 /* SetInstrumentToBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE14420222AB932009AB2B5 /* SetInstrumentToBrick.swift */; };
@@ -2657,6 +2658,7 @@
 		9EA3CB5A222DCABC00BED864 /* PlayDrumBrick+Instruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlayDrumBrick+Instruction.swift"; sourceTree = "<group>"; };
 		9EA512FA22232FB700D57EA9 /* AudioEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioEngine.swift; sourceTree = "<group>"; };
 		9EA512FE22232FFB00D57EA9 /* AudioChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioChannel.swift; sourceTree = "<group>"; };
+		9EAB85D6223172D90095F709 /* Sampler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sampler.swift; sourceTree = "<group>"; };
 		9EAF0C672225859400D283B0 /* chromaprint.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = chromaprint.license; sourceTree = "<group>"; };
 		9EDAA2FD222C985E00535908 /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		9EE14420222AB932009AB2B5 /* SetInstrumentToBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetInstrumentToBrick.swift; sourceTree = "<group>"; };
@@ -6005,6 +6007,7 @@
 				9EE4188E222437D900EA58E8 /* AudioRecorder.swift */,
 				9E40AA022229BC73006ADB1E /* AudioEngineConfig.swift */,
 				9EDAA2FD222C985E00535908 /* Note.swift */,
+				9EAB85D6223172D90095F709 /* Sampler.swift */,
 			);
 			path = AudioManager;
 			sourceTree = "<group>";
@@ -9342,6 +9345,7 @@
 				AAAF22841BC0CA0F0076F11E /* SetXBrick+Instruction.swift in Sources */,
 				AA74EFF91BC05B5F00D1E954 /* SetTransparencyBrick.m in Sources */,
 				AA74EFE81BC05B5F00D1E954 /* LoopEndBrick.m in Sources */,
+				9EAB85D7223172D90095F709 /* Sampler.swift in Sources */,
 				9200C2DB1C8084AA002F5CA4 /* HideTextBrick+CBXMLHandler.m in Sources */,
 				AA74EEDD1BC057B900D1E954 /* ForeverBrick+CBXMLHandler.m in Sources */,
 				4C0F9F22204ADBAF00E71B2D /* IfThenLogicEndBrick+CBXMLHandler.m in Sources */,

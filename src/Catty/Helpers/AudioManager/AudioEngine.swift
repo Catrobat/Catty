@@ -30,10 +30,10 @@ import Foundation
     var recorder: AKNodeRecorder?
     var tape: AKAudioFile?
     var bpm: Double
-    var activeNotes: Set<Note>
+    var activePauses: Set<Note>
 
     override init() {
-        activeNotes = Set<Note>()
+        activePauses = Set<Note>()
         bpm = 60
         speechSynth = AVSpeechSynthesizer()
         mainOut = AKMixer()
@@ -82,28 +82,27 @@ import Foundation
 
     func playNote(note: Note, key: String) {
         let channel = getAudioChannel(key: key)
-        activeNotes.insert(note)
-        if (!note.isPause) {
+        if (note.isPause) {
+            activePauses.insert(note)
+            note.setActive()
+        } else {
             channel.playNote(note: note)
         }
-        note.setActive()
     }
 
-    func stopNote(pitch: Int, key: String) {
+    func stopNote(note: Note, key: String) {
         let channel = getAudioChannel(key: key)
-        channel.stopNote(pitch: pitch)
+        channel.stopNote(note: note)
     }
 
     func playDrum(note: Note, key: String) {
         let channel = getAudioChannel(key: key)
-        activeNotes.insert(note)
-        note.setActive()
         channel.playDrum(note: note)
     }
 
-    func stopDrum(pitch: Int, key: String) {
+    func stopDrum(note: Note, key: String) {
         let channel = getAudioChannel(key: key)
-        channel.stopDrum(pitch: pitch)
+        channel.stopDrum(note: note)
     }
 
     func setInstrumentTo(instrumentNumber: Int, key: String) {
@@ -206,34 +205,34 @@ import Foundation
 
     private func pauseAllSamplers() {
         for (_, channel) in channels {
-            channel.stopSampler()
+            channel.pauseAllSamplers()
         }
-        pauseAllNotes()
+        pauseAllPauses()
     }
 
     private func resumeAllSamplers() {
         for (_, channel) in channels {
-            channel.resumeSampler()
+            channel.resumeAllSamplers()
         }
-        resumeAllNotes()
+        resumeAllPauses()
     }
 
     private func stopAllSamplers() {
         for (_, channel) in channels {
-            channel.stopSampler()
+            channel.stopAllSamplers()
         }
-        activeNotes.removeAll()
+        activePauses.removeAll()
     }
 
-    private func pauseAllNotes() {
-        for note in activeNotes {
-            note.pause()
+    private func pauseAllPauses() {
+        for pause in activePauses {
+            pause.pause()
         }
     }
 
-    private func resumeAllNotes() {
-        for note in activeNotes {
-            note.resume()
+    private func resumeAllPauses() {
+        for pause in activePauses {
+            pause.resume()
         }
     }
 

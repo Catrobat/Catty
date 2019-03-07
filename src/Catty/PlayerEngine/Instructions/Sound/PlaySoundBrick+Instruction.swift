@@ -36,9 +36,7 @@
 
         return CBInstruction.execClosure { context, _ in
             //            self.logger.debug("Performing: PlaySoundBrick")
-            DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async {
-                audioEngine.playSound(fileName: fileName, key: objectName, filePath: filePath)
-            }
+            audioEngine.playSound(fileName: fileName, key: objectName, filePath: filePath)
             context.state = .runnable
         }
 

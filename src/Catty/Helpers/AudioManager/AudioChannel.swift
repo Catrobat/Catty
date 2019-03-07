@@ -26,9 +26,9 @@ import Foundation
 @objc class AudioChannel: NSObject {
     var subtreeOutputMixer: AKMixer
     var audioPlayerMixer: AKMixer
-    var audioPlayers: [String: AKAudioPlayer]
-    var sampler: AKSampler
-    var drumSampler: AKSampler
+    var audioPlayers = [String: AKPlayer]()
+    var sampler: Sampler
+    var drumSampler: Sampler
     var soundEffects: [SoundEffectType: SoundEffect]
 
 //    var panEffect: PanEffect
@@ -42,15 +42,13 @@ import Foundation
         soundEffects[.pan] = panEffect
         soundEffects[.pitch] = pitchEffect
         subtreeOutputMixer = AKMixer()
-        sampler = AKSampler()
-        drumSampler = AKSampler()
+        sampler = Sampler()
+        drumSampler = Sampler()
         audioPlayerMixer.connect(to: pitchEffect)
         pitchEffect.connect(to: panEffect)
         panEffect.connect(to: subtreeOutputMixer)
         sampler.connect(to: subtreeOutputMixer)
         drumSampler.connect(to: subtreeOutputMixer)
-
-        audioPlayers = [String: AKAudioPlayer]()
 
         super.init()
         setupSampler()
@@ -58,41 +56,36 @@ import Foundation
 
     func playSound(fileName: String, filePath: String) {
         if let audioPlayer = audioPlayers[fileName] {
-            if audioPlayer.isPlaying {
-                audioPlayer.stop()
-            }
+            audioPlayer.stop()
             audioPlayer.play()
         } else {
-        let audioFileURL = createFileUrl(fileName: fileName, filePath: filePath)
+            let audioFileURL = createFileUrl(fileName: fileName, filePath: filePath)
             do {
                 let file = try AKAudioFile(forReading: audioFileURL)
-                let akPlayer = try AKAudioPlayer(file: file)
+                let akPlayer = AKPlayer(audioFile: file)
                 audioPlayers[fileName] = akPlayer
                 akPlayer.connect(to: audioPlayerMixer)
                 akPlayer.play()
             } catch {
-                print("oops \(error)")
-                print("could not start audio engine")
+                print("Could not load audio file with url \(audioFileURL.absoluteString)")
             }
         }
     }
 
     func playNote(note: Note) {
-        sampler.play(noteNumber: UInt8(note.pitch), velocity: 127)
-        let mixer = AVAudioMixerNode()
-        mixer.pan = 0.8
+        sampler.playNote(note)
     }
 
-    func stopNote(pitch: Int) {
-        sampler.stop(noteNumber: UInt8(pitch))
+    func stopNote(note: Note) {
+        sampler.stopNote(note)
     }
 
     func playDrum(note: Note) {
-        drumSampler.play(noteNumber: UInt8(note.pitch), velocity: 127)
+        drumSampler.playNote(note)
     }
 
-    func stopDrum(pitch: Int) {
-        drumSampler.stop(noteNumber: UInt8(pitch))
+    func stopDrum(note: Note) {
+        drumSampler.stopNote(note)
     }
 
     func setInstrumentTo(instrumentNumber: Int) {
@@ -165,14 +158,19 @@ import Foundation
         return subtreeOutputMixer.volume
     }
 
-    func stopSampler() {
-        sampler.stopAllVoices()
-        drumSampler.stopAllVoices()
+    func pauseAllSamplers() {
+        sampler.pauseSampler()
+        drumSampler.pauseSampler()
     }
 
-    func resumeSampler() {
-        sampler.restartVoices()
-        drumSampler.restartVoices()
+    func stopAllSamplers() {
+        sampler.stopSampler()
+        drumSampler.stopSampler()
+    }
+
+    func resumeAllSamplers() {
+        sampler.resumeSampler()
+        drumSampler.resumeSampler()
     }
 
     func setupSampler() {
@@ -186,14 +184,5 @@ import Foundation
         drumSampler.releaseDuration = 0.5
         setInstrumentTo(instrumentNumber: 0)
         loadDrums()
-    }
-
-    func sequencerCallback(status: MIDIByte, noteNumber: MIDINoteNumber, velocity: MIDIVelocity) {
-        print("bli bla blub \(status)")
-        if status == 144 { // 144 is a the note on event for MIDI Channel 0
-            self.sampler.play(noteNumber: noteNumber, velocity: velocity)
-        } else if status == 128 { // 128 is a the note off event for MIDI Channel 0
-            self.sampler.stop(noteNumber: noteNumber)
-        }
     }
 }
