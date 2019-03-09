@@ -24,7 +24,6 @@
 
     @nonobjc func instruction(audioEngine: AudioEngine) -> CBInstruction {
         guard let spriteObject = self.script?.object else { fatalError("This should never happen") }
-        let spriteObjectName = spriteObject.name
 
         return CBInstruction.execClosure { context, _ in
             let tempoChange = context.formulaInterpreter.interpretDouble(self.tempoChange, for: spriteObject)

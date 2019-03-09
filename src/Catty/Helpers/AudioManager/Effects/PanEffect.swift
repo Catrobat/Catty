@@ -28,13 +28,13 @@ class PanEffect: AKPanner, SoundEffect {
     var effectType: SoundEffectType {
         return .pan
     }
-    var minExternalValue: Double{
+    var minExternalValue: Double {
          return -100.0
     }
-    var maxExternalValue: Double{
+    var maxExternalValue: Double {
         return 100.0
     }
-    var neutralInternalValue: Double{
+    var neutralInternalValue: Double {
         return 0.0
     }
 

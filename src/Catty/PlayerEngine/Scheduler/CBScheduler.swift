@@ -41,6 +41,8 @@ final class CBScheduler: CBSchedulerProtocol {
     private let _lockBufferQueue = DispatchQueue(label: "org.catrobat.LockBufferQueue", attributes: [])
     private var _lastQueueIndex = 0
 
+    var _activeTimers = Set<ExtendedTimer>()
+
     // MARK: Static properties
     static let vibrateSerialQueue = OperationQueue()
 
@@ -385,6 +387,10 @@ final class CBScheduler: CBSchedulerProtocol {
     func pause() {
         running = false
         CBScheduler.vibrateSerialQueue.isSuspended = true
+        for timer in self._activeTimers {
+            timer.pause()
+        }
+
     }
 
     func resume() {
@@ -392,7 +398,18 @@ final class CBScheduler: CBSchedulerProtocol {
             running = true
             runNextInstructionsGroup()
             CBScheduler.vibrateSerialQueue.isSuspended = false
+            for timer in self._activeTimers {
+                timer.resume()
+            }
         }
+    }
+
+    func setTimer(_ timer: ExtendedTimer) {
+        self._activeTimers.insert(timer)
+    }
+
+    func removeTimer(_ timer: ExtendedTimer) {
+        self._activeTimers.remove(timer)
     }
 
 }

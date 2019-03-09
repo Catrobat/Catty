@@ -26,7 +26,7 @@ import Foundation
 
     @objc public var instrumentChoice: Int
 
-    required override init() {
+    override required init() {
         instrumentChoice = 0
         super.init()
     }

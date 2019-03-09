@@ -27,7 +27,7 @@ import Foundation
     @objc public var drumChoice: Int
     @objc public var duration: Formula!
 
-    required override init() {
+    override required init() {
         drumChoice = 0
         duration = Formula(integer: 1)
         super.init()

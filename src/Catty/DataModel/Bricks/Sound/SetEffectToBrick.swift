@@ -27,7 +27,7 @@ import Foundation
     @objc public var effectChoice: Int
     @objc public var effectValue: Formula!
 
-    required override init() {
+    override required init() {
         effectChoice = 0
         effectValue = Formula(integer: 100)
         super.init()

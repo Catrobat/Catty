@@ -25,16 +25,16 @@ import Foundation
 
 class PitchEffect: AKVariSpeed, SoundEffect {
 
-    var effectType: SoundEffectType{
+    var effectType: SoundEffectType {
         return .pitch
     }
-    var minExternalValue: Double{
+    var minExternalValue: Double {
         return -360.0
     }
-    var maxExternalValue: Double{
+    var maxExternalValue: Double {
         return 360.0
     }
-    var neutralInternalValue: Double{
+    var neutralInternalValue: Double {
         return 1.0
     }
 

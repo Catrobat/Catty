@@ -33,7 +33,6 @@ import Foundation
         super.init()
     }
 
-
     init(choice: Int) {
         self.effectChoice = choice
         super.init()

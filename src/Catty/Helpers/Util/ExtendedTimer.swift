@@ -22,24 +22,35 @@
 
 import Foundation
 
-final class TimerWithBlock {
+final class ExtendedTimer: Hashable {
+
     var timer: Timer?
-    let block: ((TimerWithBlock) -> Void)?
+    let block: ((ExtendedTimer) -> Void)?
+    var pauseDate: Date?
+    var fireDateBeforePausing: Date?
 
     var isValid: Bool {
         return self.timer?.isValid ?? false
     }
+    var hashValue: Int {
+        return ObjectIdentifier(self).hashValue
+    }
 
-    init(timeInterval: TimeInterval, repeats: Bool, block: @escaping (TimerWithBlock) -> Void) {
+    init(timeInterval: TimeInterval, repeats: Bool, execOnCurrentRunLoop: Bool, block: @escaping (ExtendedTimer) -> Void) {
         if #available(iOS 10.0, *) {
             self.block = nil
-            self.timer = Timer.scheduledTimer(withTimeInterval: timeInterval, repeats: repeats) { _ in
+            self.timer = Timer.init(timeInterval: timeInterval, repeats: repeats) { _ in
                 block(self)
             }
         } else {
             self.timer = nil
             self.block = block
-            self.timer = Timer.scheduledTimer(timeInterval: timeInterval, target: self, selector: #selector(fire(timer:)), userInfo: nil, repeats: repeats)
+            self.timer = Timer.init(timeInterval: timeInterval, target: self, selector: #selector(fire(timer:)), userInfo: nil, repeats: repeats)
+        }
+        if execOnCurrentRunLoop {
+            RunLoop.current.add(self.timer!, forMode: RunLoop.Mode.default)
+        } else {
+            RunLoop.main.add(self.timer!, forMode: RunLoop.Mode.default)
         }
     }
 
@@ -50,5 +61,24 @@ final class TimerWithBlock {
     func invalidate() {
         self.timer?.invalidate()
         self.timer = nil
+    }
+
+    func pause() {
+        fireDateBeforePausing = timer?.fireDate
+        pauseDate = Date()
+        timer?.fireDate = Date.distantFuture
+    }
+
+    func resume() {
+        if let pauseDate = pauseDate, let fireDateBeforePausing = fireDateBeforePausing {
+            let pauseTime = -pauseDate.timeIntervalSinceNow
+            timer?.fireDate = Date(timeInterval: pauseTime, since: fireDateBeforePausing)
+        } else {
+            timer?.fire()
+        }
+    }
+
+    static func == (lhs: ExtendedTimer, rhs: ExtendedTimer) -> Bool {
+        return lhs === rhs
     }
 }
