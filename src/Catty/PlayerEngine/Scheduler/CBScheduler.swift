@@ -406,6 +406,7 @@ final class CBScheduler: CBSchedulerProtocol {
 
     func setTimer(_ timer: ExtendedTimer) {
         self._activeTimers.insert(timer)
+        timer.startTimer()
     }
 
     func removeTimer(_ timer: ExtendedTimer) {

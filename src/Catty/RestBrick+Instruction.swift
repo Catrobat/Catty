@@ -22,37 +22,31 @@
 
 @objc extension RestBrick: CBInstructionProtocol {
 
-
-
     @nonobjc func instruction(audioEngine: AudioEngine) -> CBInstruction {
         guard let spriteObject = self.script?.object else { fatalError("This should never happen") }
-        let spriteObjectName = spriteObject.name
 
-        return CBInstruction.waitExecClosure { context, _ in
-            let durationInBeats = context.formulaInterpreter.interpretDouble(self.duration, for: spriteObject)
+        return CBInstruction.waitExecClosure { context, scheduler in
             let waitUntilNoteFinished = NSCondition()
             waitUntilNoteFinished.accessibilityHint = "0"
 
-            // Timer is set with default dummy interval. Real interval/firing date is set immediately before pause starts to assure accurate timing
-            let durationTimer = Timer.init(timeInterval: AudioEngineConfig.DEFAULT_INTERVAL, target: self,
-                                               selector: #selector(RestBrick.noteOff(timer:)),
-                                               userInfo: waitUntilNoteFinished, repeats: false)
-            let note = Note(pitch: -1, beats: durationInBeats, bpm: audioEngine.bpm, durationTimer: durationTimer, isPause: true)
+            let durationInSeconds = AudioEngineConfig.beatsToSeconds(beatsFormula: self.duration, bpm: audioEngine.bpm, spriteObject: spriteObject, context: context)
 
-            audioEngine.playNote(note: note, key: spriteObjectName!)
+            let durationTimer = ExtendedTimer.init(timeInterval: durationInSeconds,
+                                                   repeats: false,
+                                                   execOnCurrentRunLoop: false,
+                                                   startTimerImmediately: false) { _ in
+                waitUntilNoteFinished.accessibilityHint = "1"
+                waitUntilNoteFinished.signal()
+            }
 
+            (scheduler as! CBScheduler).setTimer(durationTimer)
             waitUntilNoteFinished.lock()
             while waitUntilNoteFinished.accessibilityHint == "0" { //accessibilityHint used because synthesizer.speaking not yet true.
                 waitUntilNoteFinished.wait()
             }
-            waitUntilNoteFinished.unlock()
-            audioEngine.activePauses.remove(note)
-        }
-    }
 
-    func noteOff(timer: Timer) {
-        let condition = timer.userInfo as! NSCondition
-        condition.accessibilityHint = "1"
-        condition.signal()
+            waitUntilNoteFinished.unlock()
+            (scheduler as! CBScheduler).removeTimer(durationTimer)
+        }
     }
 }

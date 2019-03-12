@@ -24,8 +24,6 @@ import Foundation
 
 class AudioEngineConfig {
 
-    public static let DEFAULT_INTERVAL = Double(1)
-
     public static let localizedInstrumentNames: [String] = [kLocalizedPiano,
                                                             kLocalizedElectricPiano,
                                                             kLocalizedOrgan,
@@ -92,8 +90,18 @@ class AudioEngineConfig {
                                                   "20-synth-lead",
                                                   "21-synth-pad",
                                                   "22-drums"]
+
+    class func beatsToSeconds(beats: Double, bpm: Double) -> Double {
+        return beats*60/bpm
+    }
+
+    class func beatsToSeconds(beatsFormula: Formula, bpm: Double, spriteObject: SpriteObject, context: CBScriptContextProtocol) -> Double {
+        let beats = context.formulaInterpreter.interpretDouble(beatsFormula, for: spriteObject)
+        return beatsToSeconds(beats: beats, bpm: bpm)
+    }
 }
 
 enum SoundEffectType: Int {
     case pitch = 0, pan
 }
+

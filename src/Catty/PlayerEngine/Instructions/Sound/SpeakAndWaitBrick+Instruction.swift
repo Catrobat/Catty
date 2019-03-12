@@ -78,10 +78,10 @@
                 waitUntilTextSpoken.wait()
             }
             waitUntilTextSpoken.unlock()
-            usleep(10000) //will sleep for 0.01seconds. Nötig um im Folgenden Fall ein beständiges Verhaöten zu haben: Erstes Objekt hat einen when tapped
+            usleep(10000) //will sleep for 0.01seconds. Nötig um im Folgenden Fall ein beständiges Verhalten zu haben: Erstes Objekt hat einen when tapped
             //brick und dann 2 speak and wait bricks. 2. Objekt hat einen when tapped brick und
             //einen speak and wait brick. zuerst 1. objekt, dann 2. anklicken. Speak und wait
-            //vom 2. Brick soll gar nicht abgespielt werden, da der 2. speak and wait vom 1.
+            //vom 2. Objeckt soll gar nicht abgespielt werden, da der 2. speak and wait vom 1.
             //objekt dann gleich wieder einsetzt und den speak and wait vom 2. objekt stopt
         }
     }

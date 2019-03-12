@@ -28,32 +28,33 @@
         guard let spriteObject = self.script?.object else { fatalError("This should never happen") }
         let spriteObjectName = spriteObject.name
 
-        return CBInstruction.waitExecClosure { context, _ in
-            let pitch = context.formulaInterpreter.interpretInteger(self.pitch, for: spriteObject)
-            let durationInBeats = context.formulaInterpreter.interpretDouble(self.duration, for: spriteObject)
+        return CBInstruction.waitExecClosure { context, scheduler in
             let waitUntilNoteFinished = NSCondition()
             waitUntilNoteFinished.accessibilityHint = "0"
 
-            // Timer is set with default dummy interval. Real interval/firing date is set immediately before note starts playing to assure accurate timing
-            let durationTimer = Timer.init(timeInterval: AudioEngineConfig.DEFAULT_INTERVAL, target: self,
-                                               selector: #selector(PlayNoteBrick.noteOff(timer:)),
-                                               userInfo: waitUntilNoteFinished, repeats: false)
-            let note = Note(pitch: pitch, beats: durationInBeats, bpm: audioEngine.bpm, durationTimer: durationTimer, isPause: false)
+            let pitch = context.formulaInterpreter.interpretInteger(self.pitch, for: spriteObject)
+            let durationInSeconds = AudioEngineConfig.beatsToSeconds(beatsFormula: self.duration, bpm: audioEngine.bpm, spriteObject: spriteObject, context: context)
 
+            let durationTimer = ExtendedTimer.init(timeInterval: durationInSeconds,
+                                                   repeats: false,
+                                                   execOnCurrentRunLoop: false,
+                                                   startTimerImmediately: false) { _ in
+                waitUntilNoteFinished.accessibilityHint = "1"
+                waitUntilNoteFinished.signal()
+            }
+
+            let note = Note(pitch: pitch)
             audioEngine.playNote(note: note, key: spriteObjectName!)
 
+            (scheduler as! CBScheduler).setTimer(durationTimer)
             waitUntilNoteFinished.lock()
             while waitUntilNoteFinished.accessibilityHint == "0" {
                 waitUntilNoteFinished.wait()
             }
             waitUntilNoteFinished.unlock()
-            audioEngine.stopNote(note: note, key: spriteObjectName!)
-        }
-    }
 
-    func noteOff(timer: Timer) {
-        let condition = timer.userInfo as! NSCondition
-        condition.accessibilityHint = "1"
-        condition.signal()
+            audioEngine.stopNote(note: note, key: spriteObjectName!)
+            (scheduler as! CBScheduler).removeTimer(durationTimer)
+        }
     }
 }

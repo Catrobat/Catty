@@ -26,6 +26,8 @@ final class ExtendedTimer: Hashable {
 
     var timer: Timer?
     let block: ((ExtendedTimer) -> Void)?
+    let execOnCurrentRunLoop: Bool
+    var hasStarted = false
     var pauseDate: Date?
     var fireDateBeforePausing: Date?
 
@@ -36,7 +38,14 @@ final class ExtendedTimer: Hashable {
         return ObjectIdentifier(self).hashValue
     }
 
-    init(timeInterval: TimeInterval, repeats: Bool, execOnCurrentRunLoop: Bool, block: @escaping (ExtendedTimer) -> Void) {
+    init(timeInterval: TimeInterval,
+         repeats: Bool,
+         execOnCurrentRunLoop: Bool,
+         startTimerImmediately: Bool,
+         block: @escaping (ExtendedTimer) -> Void) {
+
+        self.execOnCurrentRunLoop = execOnCurrentRunLoop
+
         if #available(iOS 10.0, *) {
             self.block = nil
             self.timer = Timer.init(timeInterval: timeInterval, repeats: repeats) { _ in
@@ -47,10 +56,10 @@ final class ExtendedTimer: Hashable {
             self.block = block
             self.timer = Timer.init(timeInterval: timeInterval, target: self, selector: #selector(fire(timer:)), userInfo: nil, repeats: repeats)
         }
-        if execOnCurrentRunLoop {
-            RunLoop.current.add(self.timer!, forMode: RunLoop.Mode.default)
-        } else {
-            RunLoop.main.add(self.timer!, forMode: RunLoop.Mode.default)
+
+        if startTimerImmediately {
+            scheduleTimer()
+            self.hasStarted = true
         }
     }
 
@@ -75,6 +84,21 @@ final class ExtendedTimer: Hashable {
             timer?.fireDate = Date(timeInterval: pauseTime, since: fireDateBeforePausing)
         } else {
             timer?.fire()
+        }
+    }
+
+    func startTimer() {
+        if !hasStarted {
+            scheduleTimer()
+            self.hasStarted = true
+        }
+    }
+
+    private func scheduleTimer() {
+        if self.execOnCurrentRunLoop {
+            RunLoop.current.add(self.timer!, forMode: RunLoop.Mode.default)
+        } else {
+            RunLoop.main.add(self.timer!, forMode: RunLoop.Mode.default)
         }
     }
 

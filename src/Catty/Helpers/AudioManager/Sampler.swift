@@ -43,7 +43,6 @@ class Sampler: AKSampler {
         notesWithSamePitch.insert(newNote)
         activeNotes[newNote.pitch] = notesWithSamePitch
         play(noteNumber: UInt8(newNote.pitch), velocity: 127)
-        newNote.setActive()
     }
 
     func stopNote(_ note: Note) {
@@ -57,33 +56,15 @@ class Sampler: AKSampler {
     }
 
     func pauseSampler() {
-        pauseAllNotes()
         stopAllVoices()
     }
 
     func resumeSampler() {
-        resumeAllNotes()
         restartVoices()
     }
 
     func stopSampler() {
         activeNotes.removeAll()
         stopAllVoices()
-    }
-
-    private func pauseAllNotes() {
-        for (_, noteSet) in activeNotes {
-            for note in noteSet {
-                note.pause()
-            }
-        }
-    }
-
-    private func resumeAllNotes() {
-        for (_, noteSet) in activeNotes {
-            for note in noteSet {
-                note.resume()
-            }
-        }
     }
 }

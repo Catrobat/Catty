@@ -32,7 +32,10 @@
             waitUntilWaitTimeOver.accessibilityHint = "0"
             let durationInSeconds = context.formulaInterpreter.interpretDouble(self.timeToWaitInSeconds, for: object)
 
-            let durationTimer = ExtendedTimer.init(timeInterval: durationInSeconds, repeats: false, execOnCurrentRunLoop: false) {timer in
+            let durationTimer = ExtendedTimer.init(timeInterval: durationInSeconds,
+                                                   repeats: false,
+                                                   execOnCurrentRunLoop: false,
+                                                   startTimerImmediately: false) {_ in
                 waitUntilWaitTimeOver.accessibilityHint = "1"
                 waitUntilWaitTimeOver.signal()
             }

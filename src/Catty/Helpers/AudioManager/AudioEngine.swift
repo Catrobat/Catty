@@ -30,10 +30,8 @@ import Foundation
     var recorder: AKNodeRecorder?
     var tape: AKAudioFile?
     var bpm: Double
-    var activePauses: Set<Note>
 
     override init() {
-        activePauses = Set<Note>()
         bpm = 60
         speechSynth = AVSpeechSynthesizer()
         mainOut = AKMixer()
@@ -82,12 +80,7 @@ import Foundation
 
     func playNote(note: Note, key: String) {
         let channel = getAudioChannel(key: key)
-        if (note.isPause) {
-            activePauses.insert(note)
-            note.setActive()
-        } else {
-            channel.playNote(note: note)
-        }
+        channel.playNote(note: note)
     }
 
     func stopNote(note: Note, key: String) {
@@ -207,32 +200,17 @@ import Foundation
         for (_, channel) in channels {
             channel.pauseAllSamplers()
         }
-        pauseAllPauses()
     }
 
     private func resumeAllSamplers() {
         for (_, channel) in channels {
             channel.resumeAllSamplers()
         }
-        resumeAllPauses()
     }
 
     private func stopAllSamplers() {
         for (_, channel) in channels {
             channel.stopAllSamplers()
-        }
-        activePauses.removeAll()
-    }
-
-    private func pauseAllPauses() {
-        for pause in activePauses {
-            pause.pause()
-        }
-    }
-
-    private func resumeAllPauses() {
-        for pause in activePauses {
-            pause.resume()
         }
     }
 

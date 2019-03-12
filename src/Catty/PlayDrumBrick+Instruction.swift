@@ -26,35 +26,32 @@
         guard let spriteObject = self.script?.object else { fatalError("This should never happen") }
         let spriteObjectName = spriteObject.name
 
-        return CBInstruction.waitExecClosure { context, _ in
+        return CBInstruction.waitExecClosure { context, scheduler in
             let waitUntilNoteFinished = NSCondition()
             waitUntilNoteFinished.accessibilityHint = "0"
 
-            let durationInBeats = context.formulaInterpreter.interpretDouble(self.duration, for: spriteObject)
-            let durationTimer = Timer.init(timeInterval: AudioEngineConfig.DEFAULT_INTERVAL,
-                                           target: self,
-                                           selector: #selector(PlayDrumBrick.noteOff(timer:)),
-                                           userInfo: waitUntilNoteFinished,
-                                           repeats: false)
-            let note = Note(pitch: self.drumChoice,
-                            beats: durationInBeats,
-                            bpm: audioEngine.bpm,
-                            durationTimer: durationTimer,
-                            isPause: false)
+            let durationInSeconds = AudioEngineConfig.beatsToSeconds(beatsFormula: self.duration, bpm: audioEngine.bpm, spriteObject: spriteObject, context: context)
+
+            let durationTimer = ExtendedTimer.init(timeInterval: durationInSeconds,
+                                                   repeats: false,
+                                                   execOnCurrentRunLoop: false,
+                                                   startTimerImmediately: false) { _ in
+                waitUntilNoteFinished.accessibilityHint = "1"
+                waitUntilNoteFinished.signal()
+            }
+
+            let note = Note(pitch: self.drumChoice)
             audioEngine.playDrum(note: note, key: spriteObjectName!)
 
+            (scheduler as! CBScheduler).setTimer(durationTimer)
             waitUntilNoteFinished.lock()
-            while waitUntilNoteFinished.accessibilityHint == "0" { //accessibilityHint used because synthesizer.speaking not yet true.
+            while waitUntilNoteFinished.accessibilityHint == "0" {
                 waitUntilNoteFinished.wait()
             }
             waitUntilNoteFinished.unlock()
-            audioEngine.stopDrum(note: note, key: spriteObjectName!)
-        }
-    }
 
-    func noteOff(timer: Timer) {
-        let condition = timer.userInfo as! NSCondition
-        condition.accessibilityHint = "1"
-        condition.signal()
+            audioEngine.stopDrum(note: note, key: spriteObjectName!)
+            (scheduler as! CBScheduler).removeTimer(durationTimer)
+        }
     }
 }
