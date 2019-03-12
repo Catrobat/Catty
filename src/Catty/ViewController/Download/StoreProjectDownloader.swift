@@ -84,15 +84,17 @@ final class StoreProjectDownloader: StoreProjectDownloaderProtocol {
 
         case .mostDownloaded:
             guard let url = URL(string: "\(kConnectionHost)/\(kConnectionMostDownloaded)?\(kProjectsOffset)"
-                + "\(offset)\(kProjectsLimit)\(kRecentProjectsMaxResults)&\(kMaxVersion)\(version)") else { return }
+                + "\(offset)&\(kProjectsLimit)\(kRecentProjectsMaxResults)&\(kMaxVersion)\(version)") else { return }
             indexURL = url
 
         case .mostViewed:
-            guard let url = URL(string: "\(kConnectionHost)/\(kConnectionMostViewed)?\(kProjectsOffset)\(offset)\(kProjectsLimit)\(kRecentProjectsMaxResults)&\(kMaxVersion)\(version)") else { return }
+            guard let url = URL(string: "\(kConnectionHost)/\(kConnectionMostViewed)?\(kProjectsOffset)"
+                + "\(offset)&\(kProjectsLimit)\(kRecentProjectsMaxResults)&\(kMaxVersion)\(version)") else { return }
             indexURL = url
 
         case .mostRecent:
-            guard let url = URL(string: "\(kConnectionHost)/\(kConnectionRecent)?\(kProjectsOffset)\(offset)\(kProjectsLimit)\(kRecentProjectsMaxResults)&\(kMaxVersion)\(version)") else { return }
+            guard let url = URL(string: "\(kConnectionHost)/\(kConnectionRecent)?\(kProjectsOffset)"
+                + "\(offset)&\(kProjectsLimit)\(kRecentProjectsMaxResults)&\(kMaxVersion)\(version)") else { return }
             indexURL = url
         }
 
