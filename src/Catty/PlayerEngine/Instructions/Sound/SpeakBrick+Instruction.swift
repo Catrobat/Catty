@@ -30,19 +30,7 @@
 
         return CBInstruction.execClosure { context, _ in
             var speakText = context.formulaInterpreter.interpretString(self.formula, for: object)
-            if Double(speakText) != nil {
-                let num = (speakText as NSString).doubleValue
-                speakText = (num as NSNumber).stringValue
-            }
-
-            let utterance = AVSpeechUtterance(string: speakText)
-            utterance.rate = (floor(NSFoundationVersionNumber) < 1200 ? 0.15 : 0.5)
-
-            if let volume = audioEngine.getOutputVolumeOfChannel(objName: objectName) {
-                utterance.volume = Float(volume)
-            } else {
-                utterance.volume = 1.0
-            }
+            let utterance = AudioEngineConfig.stringFormulaToUtterance(text: self.formula, spriteObject: object, context: context)
 
             let synthesizer = audioEngine.getSpeechSynth()
             if synthesizer.isSpeaking {
@@ -51,6 +39,5 @@
             synthesizer.speak(utterance)
             context.state = .runnable
         }
-
     }
 }

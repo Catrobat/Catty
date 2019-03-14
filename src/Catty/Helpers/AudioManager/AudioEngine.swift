@@ -23,7 +23,7 @@
 import AudioKit
 import Foundation
 
-@objc class AudioEngine: NSObject {
+@objc class AudioEngine: NSObject, AVSpeechSynthesizerDelegate {
     var speechSynth: AVSpeechSynthesizer
     var mainOut: AKMixer
     var channels: [String: AudioChannel]
@@ -42,6 +42,8 @@ import Foundation
         } catch {
             print("could not start audio engine")
         }
+        super.init()
+        speechSynth.delegate = self
 
 //        do {
 //            tape = try AKAudioFile()
@@ -225,5 +227,40 @@ import Foundation
 //        recorder?.stop()
 //        tape?.exportAsynchronously(name: "test", baseDir: .documents, exportFormat: .caf){ [weak self] _, _ in}
 //        AKLog(recorder?.recordedDuration)
+    }
+
+    open func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
+        // self.speechSynthFinishedOrCanceled(synthesizer: synthesizer)
+        self.signalAllSynthConditions(synthesizer: synthesizer)
+    }
+
+    open func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didCancel utterance: AVSpeechUtterance) {
+        // self.speechSynthFinishedOrCanceled(synthesizer: synthesizer)
+        self.signalAllSynthConditions(synthesizer: synthesizer)
+    }
+
+    private func signalAllSynthConditions(synthesizer: AVSpeechSynthesizer) {
+        while !synthesizer.accessibilityElements!.isEmpty {
+            let object = synthesizer.accessibilityElements!.first
+            if let condition = object as? NSCondition {
+                synthesizer.accessibilityElements?.remove(at: 0)
+                condition.accessibilityHint = "1"
+                condition.signal()
+            }
+        }
+    }
+
+    func addConditionToSpeechSynth(accessibilityHint: String, synthesizer: AVSpeechSynthesizer) -> NSCondition {
+        let condition = NSCondition()
+        condition.accessibilityLabel = accessibilityLabel
+        condition.accessibilityHint = accessibilityHint
+
+        if synthesizer.accessibilityElements != nil {
+            synthesizer.accessibilityElements?.append(condition)
+        } else {
+            synthesizer.accessibilityElements = [condition]
+        }
+
+        return condition
     }
 }

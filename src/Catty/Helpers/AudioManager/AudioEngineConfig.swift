@@ -92,16 +92,28 @@ class AudioEngineConfig {
                                                   "22-drums"]
 
     class func beatsToSeconds(beats: Double, bpm: Double) -> Double {
-        return beats*60/bpm
+        return beats * 60 / bpm
     }
 
     class func beatsToSeconds(beatsFormula: Formula, bpm: Double, spriteObject: SpriteObject, context: CBScriptContextProtocol) -> Double {
         let beats = context.formulaInterpreter.interpretDouble(beatsFormula, for: spriteObject)
         return beatsToSeconds(beats: beats, bpm: bpm)
     }
+
+    class func stringFormulaToUtterance(text: Formula, spriteObject: SpriteObject, context: CBScriptContextProtocol) -> AVSpeechUtterance {
+        var speakText = context.formulaInterpreter.interpretString(text, for: spriteObject)
+        if Double(speakText) != nil {
+            let num = (speakText as NSString).doubleValue
+            speakText = (num as NSNumber).stringValue
+        }
+
+        let utterance = AVSpeechUtterance(string: speakText)
+        utterance.rate = (floor(NSFoundationVersionNumber) < 1200 ? 0.15 : 0.5)
+
+        return utterance
+    }
 }
 
 enum SoundEffectType: Int {
     case pitch = 0, pan
 }
-
