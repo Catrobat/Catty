@@ -63,11 +63,13 @@ import Foundation
     @objc func pauseAudioEngine() {
         pauseAllAudioPlayers()
         pauseAllSamplers()
+        speechSynth.pauseSpeaking(at: AVSpeechBoundary.immediate)
     }
 
     @objc func resumeAudioEngine() {
         resumeAllAudioPlayers()
         resumeAllSamplers()
+        speechSynth.continueSpeaking()
     }
 
     @objc func stopAudioEngine() {
