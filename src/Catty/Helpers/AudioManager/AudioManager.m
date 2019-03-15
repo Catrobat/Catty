@@ -28,7 +28,6 @@
 @interface AudioManager()
 
 @property (nonatomic) NSInteger soundCounter;
-@property (nonatomic) AVSpeechSynthesizer* speechSynth;
 
 @property (atomic, strong) NSMutableDictionary* sounds;
 @property (nonatomic) float current_volume;
@@ -48,7 +47,6 @@
 - (id)init
 {
     self.sounds = [[NSMutableDictionary alloc] init];
-    self.speechSynth = [[AVSpeechSynthesizer alloc] init];
     self = [super init];
     if (self) {
     }
@@ -100,35 +98,6 @@
     return [player play];
 }
 
-- (BOOL)playSoundWithFileName:(NSString*)fileName
-                       andKey:(NSString*)key
-                   atFilePath:(NSString*)filePath
-{
-    return [self playSoundWithFileName:fileName andKey:key atFilePath:filePath delegate:nil];
-}
-
-- (void)setVolumeToPercent:(CGFloat)volume forKey:(NSString*)key
-{
-    self.current_volume = volume/100;
-    for(NSMutableDictionary* audioPlayers in [self.sounds allValues]) {
-        for(CatrobatAudioPlayer* player in [audioPlayers allValues]) {
-            player.volume = self.current_volume;
-        }
-    }
-    
-}
-
-- (void)changeVolumeByPercent:(CGFloat)volume forKey:(NSString*)key
-{
-    self.current_volume += volume/100;
-    for(NSMutableDictionary* audioPlayers in [self.sounds allValues]) {
-        for(CatrobatAudioPlayer* player in [audioPlayers allValues]) {
-            player.volume = self.current_volume;
-        }
-    }
-    
-}
-
 - (void)stopAllSounds
 {
     for(NSMutableDictionary* audioPlayers in [self.sounds allValues]) {
@@ -140,45 +109,6 @@
     [[SoundCache sharedSoundCache] clearSoundCache];
 }
 
-- (void)pauseAllSounds
-{
-    for(NSMutableDictionary* audioPlayers in [self.sounds allValues]) {
-        for(CatrobatAudioPlayer* player in [audioPlayers allValues]) {
-            if ([player isPlaying]) {
-                [player pause];
-            } else {
-                [audioPlayers removeObjectForKey:player.key];
-            }
-        }
-    }
-    [[AVAudioSession sharedInstance] setActive:NO error:nil];
-}
-
-- (void)resumeAllSounds
-{
-    [[AVAudioSession sharedInstance] setActive:YES error:nil];
-    
-    for(NSMutableDictionary* audioPlayers in [self.sounds allValues]) {
-        for(CatrobatAudioPlayer* player in [audioPlayers allValues]) {
-            [player play];
-        }
-    }
-}
-
-- (void)pauseSpeechSynth
-{
-    [self.speechSynth pauseSpeakingAtBoundary: AVSpeechBoundaryImmediate];
-}
-
-- (void)resumeSpeechSynth
-{
-    [self.speechSynth continueSpeaking];
-}
-
-- (void)stopSpeechSynth
-{
-    [self.speechSynth stopSpeakingAtBoundary:AVSpeechBoundaryImmediate];
-}
 
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
 {
@@ -194,11 +124,6 @@
     AVAudioPlayer* avAudioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:filePath]
                                                                           error:&error];
     return (CGFloat)avAudioPlayer.duration;
-}
-
-- (AVSpeechSynthesizer*)getSpeechSynth
-{
-    return self.speechSynth;
 }
 
 @end

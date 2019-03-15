@@ -718,7 +718,6 @@
 		926197F01BF3249E006D1A61 /* ArduinoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926197EF1BF3249E006D1A61 /* ArduinoTests.swift */; };
 		926198021BF48384006D1A61 /* BluetoothMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926198011BF48384006D1A61 /* BluetoothMocks.swift */; };
 		9276B7051C9E8F6C008BC594 /* SoundCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 9276B7041C9E8F6C008BC594 /* SoundCache.m */; };
-		9276B70B1C9EA68A008BC594 /* CatrobatPlayerItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9276B70A1C9EA68A008BC594 /* CatrobatPlayerItem.m */; };
 		927F79D71BEE39A3008D1635 /* BrickCellPhiroIfSensorData.m in Sources */ = {isa = PBXBuildFile; fileRef = 927F79D61BEE39A3008D1635 /* BrickCellPhiroIfSensorData.m */; };
 		927F79DC1BEE39B0008D1635 /* PhiroIfLogicBeginBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 927F79DB1BEE39B0008D1635 /* PhiroIfLogicBeginBrickCell.m */; };
 		927F79E01BEE39CB008D1635 /* PhiroIfLogicBeginBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 927F79DF1BEE39CB008D1635 /* PhiroIfLogicBeginBrick.m */; };
@@ -2266,8 +2265,6 @@
 		926198011BF48384006D1A61 /* BluetoothMocks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothMocks.swift; sourceTree = "<group>"; };
 		9276B7031C9E8F6C008BC594 /* SoundCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundCache.h; sourceTree = "<group>"; };
 		9276B7041C9E8F6C008BC594 /* SoundCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundCache.m; sourceTree = "<group>"; };
-		9276B7091C9EA68A008BC594 /* CatrobatPlayerItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatPlayerItem.h; sourceTree = "<group>"; };
-		9276B70A1C9EA68A008BC594 /* CatrobatPlayerItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatrobatPlayerItem.m; sourceTree = "<group>"; };
 		927F79D51BEE39A3008D1635 /* BrickCellPhiroIfSensorData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickCellPhiroIfSensorData.h; sourceTree = "<group>"; };
 		927F79D61BEE39A3008D1635 /* BrickCellPhiroIfSensorData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickCellPhiroIfSensorData.m; sourceTree = "<group>"; };
 		927F79DA1BEE39B0008D1635 /* PhiroIfLogicBeginBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhiroIfLogicBeginBrickCell.h; sourceTree = "<group>"; };
@@ -6012,8 +6009,6 @@
 				4C48ED2820EF9AEC00784CD5 /* AudioManager+Loudness.swift */,
 				92FF2E501A24C7D800093DA7 /* CatrobatAudioPlayer.h */,
 				92FF2E511A24C7D800093DA7 /* CatrobatAudioPlayer.m */,
-				9276B7091C9EA68A008BC594 /* CatrobatPlayerItem.h */,
-				9276B70A1C9EA68A008BC594 /* CatrobatPlayerItem.m */,
 				9EA512FA22232FB700D57EA9 /* AudioEngine.swift */,
 				9EA512FE22232FFB00D57EA9 /* AudioChannel.swift */,
 				9EE4188E222437D900EA58E8 /* AudioRecorder.swift */,
@@ -9252,7 +9247,6 @@
 				921D46891BDF698A0086AD20 /* ClearGraphicEffectBrick+Instruction.swift in Sources */,
 				4C0F9F39204ADC4E00E71B2D /* SayBubbleBrick.m in Sources */,
 				AA74EE271BC0540D00D1E954 /* SetVariableBrick+Instruction.swift in Sources */,
-				9276B70B1C9EA68A008BC594 /* CatrobatPlayerItem.m in Sources */,
 				4CF072A620D6710F00F93AB5 /* LastFingerIndexSensor.swift in Sources */,
 				AAF6D9E21BC0C48300686849 /* PointToBrick+Instruction.swift in Sources */,
 				9E190CB1222F016B00B5ECD1 /* RestBrick.swift in Sources */,

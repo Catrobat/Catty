@@ -44,16 +44,8 @@
                        andKey:(NSString*)key
                    atFilePath:(NSString*)filePath
                      delegate:(id<AudioManagerDelegate>) delegate;
-- (BOOL)playSoundWithFileName:(NSString*)fileName andKey:(NSString*)key atFilePath:(NSString*)filePath;
 
-- (void)setVolumeToPercent:(CGFloat)volume forKey:(NSString*)key;
-- (void)changeVolumeByPercent:(CGFloat)volume forKey:(NSString*)key;
 - (void)stopAllSounds;
-- (void)pauseAllSounds;
-- (void)resumeAllSounds;
-- (void)pauseSpeechSynth;
-- (void)resumeSpeechSynth;
-- (void)stopSpeechSynth;
 - (CGFloat)durationOfSoundWithFilePath:(NSString*)filePath;
 - (AVSpeechSynthesizer*)getSpeechSynth;
 

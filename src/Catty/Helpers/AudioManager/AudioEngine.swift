@@ -75,6 +75,7 @@ import Foundation
     @objc func stopAudioEngine() {
         stopAllAudioPlayers()
         stopAllSamplers()
+        speechSynth.stopSpeaking(at: AVSpeechBoundary.immediate)
     }
 
     func playSound(fileName: String, key: String, filePath: String, condition: NSCondition?) {
