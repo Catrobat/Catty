@@ -85,6 +85,6 @@ import Foundation
     }
 
     override func description() -> String! {
-        return ("PlayNoteBrick")
+        return "PlayNoteBrick"
     }
 }

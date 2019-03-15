@@ -77,9 +77,9 @@ import Foundation
         stopAllSamplers()
     }
 
-    func playSound(fileName: String, key: String, filePath: String) {
+    func playSound(fileName: String, key: String, filePath: String, condition: NSCondition?) {
         let channel = getAudioChannel(key: key)
-        channel.playSound(fileName: fileName, filePath: filePath)
+        channel.playSound(fileName: fileName, filePath: filePath, condition: condition)
     }
 
     func playNote(note: Note, key: String) {
@@ -254,7 +254,6 @@ import Foundation
 
     func addConditionToSpeechSynth(accessibilityHint: String, synthesizer: AVSpeechSynthesizer) -> NSCondition {
         let condition = NSCondition()
-        condition.accessibilityLabel = accessibilityLabel
         condition.accessibilityHint = accessibilityHint
 
         if synthesizer.accessibilityElements != nil {

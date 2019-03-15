@@ -20,26 +20,31 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc extension PlaySoundBrick: CBInstructionProtocol {
+import Foundation
 
-    @nonobjc func instruction(audioEngine: AudioEngine) -> CBInstruction {
+@objc(PlaySoundAndWaitBrickCell) class PlaySoundAndWaitBrickCell: BrickCell {
 
-        guard let objectName = self.script?.object?.name,
-            let projectPath = self.script?.object?.projectPath()
-            else { fatalError("This should never happen!") }
+    public var firstTextLabel: UILabel?
+    public var soundComboBox: iOSCombobox?
 
-        guard let sound = self.sound,
-            let fileName = sound.fileName
-            else { return .invalidInstruction() }
-
-        let filePath = projectPath + kProjectSoundsDirName
-
-        return CBInstruction.execClosure { context, _ in
-            //            self.logger.debug("Performing: PlaySoundBrick")
-            audioEngine.playSound(fileName: fileName, key: objectName, filePath: filePath, condition: nil)
-            context.state = .runnable
-        }
-
+    override init(frame: CGRect) {
+        super.init(frame: frame)
     }
 
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+
+    override func draw(_ rect: CGRect) {
+        BrickShapeFactory.drawSquareBrickShape(withFill: UIColor.soundBrickViolet(), stroke: UIColor.soundBrickStroke(), height: CGFloat(mediumBrick), width: Util.screenWidth())
+    }
+
+    override static func cellHeight() -> CGFloat {
+        return CGFloat(kBrickHeight2h)
+    }
+
+    override func hookUpSubViews(_ inlineViewSubViews: [Any]!) {
+        self.firstTextLabel = inlineViewSubViews[0] as? UILabel
+        self.soundComboBox = inlineViewSubViews[1] as? iOSCombobox
+    }
 }

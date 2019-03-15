@@ -398,6 +398,7 @@ let kLocalizedChooseCamera = NSLocalizedString("Use camera", bundle: Bundle(for:
 
 // sound bricks
 let kLocalizedPlaySound = NSLocalizedString("Start sound", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedPlaySoundAndWait = NSLocalizedString("Start sound and wait", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedStopAllSounds = NSLocalizedString("Stop all sounds", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedSetVolumeTo = NSLocalizedString("Set volume to", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedChangeVolumeBy = NSLocalizedString("Change volume by", bundle: Bundle(for: LanguageTranslation.self), comment: "")

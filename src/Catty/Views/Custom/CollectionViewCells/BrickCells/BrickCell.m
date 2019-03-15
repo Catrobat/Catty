@@ -90,6 +90,7 @@
 // sound bricks
 #define kSoundBrickNameParams @[\
     @"{SOUND}",                                             /* play sound           */\
+    @"{SOUND}",                                             /* play sound and wait  */\
     @[],                                                    /* stop all sounds      */\
     @"{FLOAT;range=(-inf,inf)}",                            /* set volume to        */\
     @"{FLOAT;range=(-inf,inf)}",                            /* change volume to     */\

@@ -190,20 +190,21 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
     
     // 3xx sound bricks
     kPlaySoundBrick            = 300,
-    kStopAllSoundsBrick        = 301,
-    kSetVolumeToBrick          = 302,
-    kChangeVolumeByNBrick      = 303,
-    kSpeakBrick                = 304,
-    kSpeakAndWaitBrick         = 305,
-    kSetEffectToBrick          = 306,
-    kChangeEffectByBrick       = 307,
-    kClearSoundEffectsBrick    = 308,
-    kPlayNoteBrick             = 309,
-    kPlayDrumBrick             = 310,
-    kRestBrick                 = 311,
-    kSetInstrumentToBrick      = 312,
-    kSetTempoToBrick           = 313,
-    kChangeTempoByBrick        = 314,
+    kPlaySoundAndWaitBrick     = 301,
+    kStopAllSoundsBrick        = 302,
+    kSetVolumeToBrick          = 303,
+    kChangeVolumeByNBrick      = 304,
+    kSpeakBrick                = 305,
+    kSpeakAndWaitBrick         = 306,
+    kSetEffectToBrick          = 307,
+    kChangeEffectByBrick       = 308,
+    kClearSoundEffectsBrick    = 309,
+    kPlayNoteBrick             = 310,
+    kPlayDrumBrick             = 311,
+    kRestBrick                 = 312,
+    kSetInstrumentToBrick      = 313,
+    kSetTempoToBrick           = 314,
+    kChangeTempoByBrick        = 315,
 
 
     // 4xx variable and list bricks
@@ -324,6 +325,7 @@ WRAP_BRICK_TYPE_IN_NSSTRING(kChangeVariableBrick)\
 \
     /* sound bricks */\
     @"PlaySoundBrick"            : @(kPlaySoundBrick),\
+    @"PlaySoundAndWaitBrick"     : @(kPlaySoundAndWaitBrick),\
     @"StopAllSoundsBrick"        : @(kStopAllSoundsBrick),\
     @"SetVolumeToBrick"          : @(kSetVolumeToBrick),\
     @"ChangeVolumeByNBrick"      : @(kChangeVolumeByNBrick),\
@@ -436,6 +438,7 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 \
 /* sound bricks */\
 @"PlaySoundBrick"            : @(kBrickHeight2h),\
+@"PlaySoundAndWaitBrick"     : @(kBrickHeight2h),\
 @"StopAllSoundsBrick"        : @(kBrickHeight1h),\
 @"SetVolumeToBrick"          : @(kBrickHeight1h),\
 @"ChangeVolumeByNBrick"      : @(kBrickHeight1h),\

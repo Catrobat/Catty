@@ -20,26 +20,10 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc extension PlaySoundBrick: CBInstructionProtocol {
+#import "CBXMLNodeProtocol.h"
+#import "Pocket_Code-Swift.h"
 
-    @nonobjc func instruction(audioEngine: AudioEngine) -> CBInstruction {
+@interface PlaySoundAndWaitBrick (CBXMLHandler) <CBXMLNodeProtocol>
 
-        guard let objectName = self.script?.object?.name,
-            let projectPath = self.script?.object?.projectPath()
-            else { fatalError("This should never happen!") }
+@end
 
-        guard let sound = self.sound,
-            let fileName = sound.fileName
-            else { return .invalidInstruction() }
-
-        let filePath = projectPath + kProjectSoundsDirName
-
-        return CBInstruction.execClosure { context, _ in
-            //            self.logger.debug("Performing: PlaySoundBrick")
-            audioEngine.playSound(fileName: fileName, key: objectName, filePath: filePath, condition: nil)
-            context.state = .runnable
-        }
-
-    }
-
-}

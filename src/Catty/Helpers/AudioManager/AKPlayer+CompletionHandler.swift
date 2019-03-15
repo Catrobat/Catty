@@ -20,26 +20,25 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc extension PlaySoundBrick: CBInstructionProtocol {
+import AudioKit
+import Foundation
 
-    @nonobjc func instruction(audioEngine: AudioEngine) -> CBInstruction {
+extension  AKPlayer {
 
-        guard let objectName = self.script?.object?.name,
-            let projectPath = self.script?.object?.projectPath()
-            else { fatalError("This should never happen!") }
-
-        guard let sound = self.sound,
-            let fileName = sound.fileName
-            else { return .invalidInstruction() }
-
-        let filePath = projectPath + kProjectSoundsDirName
-
-        return CBInstruction.execClosure { context, _ in
-            //            self.logger.debug("Performing: PlaySoundBrick")
-            audioEngine.playSound(fileName: fileName, key: objectName, filePath: filePath, condition: nil)
-            context.state = .runnable
+    convenience init(soundFile: AVAudioFile, addCompletionHandler: Bool) {
+        self.init(audioFile: soundFile)
+        if addCompletionHandler {
+            self.completionHandler = soundCompletionHandler
         }
-
     }
 
+    func soundCompletionHandler() {
+        if let conditionArray = self.accessibilityElements as? [NSCondition] {
+            for condition in conditionArray {
+                condition.accessibilityHint = "1"
+                condition.signal()
+            }
+            self.accessibilityElements = nil
+        }
+    }
 }

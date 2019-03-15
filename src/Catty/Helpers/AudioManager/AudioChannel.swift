@@ -54,18 +54,25 @@ import Foundation
         setupSampler()
     }
 
-    func playSound(fileName: String, filePath: String) {
+    func playSound(fileName: String, filePath: String, condition: NSCondition?) {
         if let audioPlayer = audioPlayers[fileName] {
+            audioPlayer.soundCompletionHandler()
             audioPlayer.stop()
+            if let cond = condition {
+                audioPlayer.accessibilityElements = [cond]
+            }
             audioPlayer.play()
         } else {
             let audioFileURL = createFileUrl(fileName: fileName, filePath: filePath)
             do {
                 let file = try AKAudioFile(forReading: audioFileURL)
-                let akPlayer = AKPlayer(audioFile: file)
-                audioPlayers[fileName] = akPlayer
-                akPlayer.connect(to: audioPlayerMixer)
-                akPlayer.play()
+                let audioPlayer = AKPlayer(soundFile: file, addCompletionHandler: true)
+                audioPlayers[fileName] = audioPlayer
+                audioPlayer.connect(to: audioPlayerMixer)
+                if let cond = condition {
+                    audioPlayer.accessibilityElements = [cond]
+                }
+                audioPlayer.play()
             } catch {
                 print("Could not load audio file with url \(audioFileURL.absoluteString)")
             }
@@ -143,8 +150,8 @@ import Foundation
 
     func stopAllAudioPlayers() {
         for (_, audioPlayer) in audioPlayers {
-            audioPlayer.resume()
             audioPlayer.stop()
+            audioPlayer.soundCompletionHandler()
         }
     }
 

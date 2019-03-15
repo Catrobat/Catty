@@ -24,11 +24,8 @@
 
     @nonobjc func instruction(audioEngine: AudioEngine) -> CBInstruction {
 
-        let audioManager = AudioManager.shared()
-
         return CBInstruction.execClosure { context, _ in
-            //            self.logger.debug("Performing: StopAllSoundsBrick")
-            audioManager?.stopAllSounds()
+            audioEngine.stopAllAudioPlayers()
             context.state = .runnable
         }
 
