@@ -24,19 +24,15 @@ import AudioKit
 import Foundation
 
 @objc class AudioEngine: NSObject, AVSpeechSynthesizerDelegate {
-    var speechSynth: AVSpeechSynthesizer
-    var mainOut: AKMixer
-    var channels: [String: AudioChannel]
+    var speechSynth = AVSpeechSynthesizer()
+    var mainOut = AKMixer()
+    var channels = [String: AudioChannel]()
     var recorder: AKNodeRecorder?
     var tape: AKAudioFile?
-    var bpm: Double
+    var bpm = 60.0
 
     override init() {
-        bpm = 60
-        speechSynth = AVSpeechSynthesizer()
-        mainOut = AKMixer()
         AudioKit.output = mainOut
-        channels = [String: AudioChannel]()
         do {
             try AudioKit.start()
         } catch {
@@ -133,21 +129,6 @@ import Foundation
         channel.clearSoundEffects()
     }
 
-    func stopTheNodeRecorder() {
-        recorder?.stop()
-        print(" ------- Recorded \(recorder?.recordedDuration) Seconds ------- ")
-    }
-
-    func addNodeRecorderAtMainOut(tape: AKAudioFile) -> AKNodeRecorder {
-        do {
-            recorder = try AKNodeRecorder(node: mainOut, file: tape)
-        } catch {
-            print("Should not happen")
-        }
-
-        return recorder!
-    }
-
     @objc func pauseAllAudioPlayers() {
         for (_, channel) in channels {
             channel.pauseAllAudioPlayers()
@@ -178,10 +159,6 @@ import Foundation
 
     func getSpeechSynth() -> AVSpeechSynthesizer {
         return speechSynth
-    }
-
-    func getOutputVolumeOfChannel(objName: String) -> Double? {
-        return channels[objName]?.getOutputVolume()
     }
 
     @objc func shutdown() {
@@ -221,9 +198,24 @@ import Foundation
 
     internal func createNewAudioChannel(key: String) -> AudioChannel {
         let channel = AudioChannel()
-        channel.connectTo(node: mainOut)
+        channel.connectSubtreeTo(node: mainOut)
         channels[key] = channel
         return channel
+    }
+
+    func stopTheNodeRecorder() {
+        recorder?.stop()
+        print(" ------- Recorded \(recorder?.recordedDuration) Seconds ------- ")
+    }
+
+    func addNodeRecorderAtMainOut(tape: AKAudioFile) -> AKNodeRecorder {
+        do {
+            recorder = try AKNodeRecorder(node: mainOut, file: tape)
+        } catch {
+            print("Should not happen")
+        }
+
+        return recorder!
     }
 
     @objc func stopNodeRecorder() {
@@ -233,12 +225,10 @@ import Foundation
     }
 
     open func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
-        // self.speechSynthFinishedOrCanceled(synthesizer: synthesizer)
         self.signalAllSynthConditions(synthesizer: synthesizer)
     }
 
     open func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didCancel utterance: AVSpeechUtterance) {
-        // self.speechSynthFinishedOrCanceled(synthesizer: synthesizer)
         self.signalAllSynthConditions(synthesizer: synthesizer)
     }
 
