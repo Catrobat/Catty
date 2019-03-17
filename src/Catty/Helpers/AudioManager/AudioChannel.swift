@@ -25,33 +25,28 @@ import Foundation
 
 @objc class AudioChannel: NSObject {
     var subtreeOutputMixer: AKMixer
-    var audioPlayerMixer: AKMixer
+    var audioPlayerMixer: AKMixer?
     var audioPlayers = [String: AKPlayer]()
-    var sampler: Sampler
-    var drumSampler: Sampler
+    var sampler: Sampler?
+    var drumSampler: Sampler?
     var soundEffects: [SoundEffectType: SoundEffect]
 
-//    var panEffect: PanEffect
-//    var pitchEffect: PitchEffect
-
     override init() {
-        audioPlayerMixer = AKMixer()
-        let panEffect = PanEffect()
-        let pitchEffect = PitchEffect()
         soundEffects = [SoundEffectType: SoundEffect]()
-        soundEffects[.pan] = panEffect
-        soundEffects[.pitch] = pitchEffect
         subtreeOutputMixer = AKMixer()
-        sampler = Sampler()
-        drumSampler = Sampler()
-        audioPlayerMixer.connect(to: pitchEffect)
-        pitchEffect.connect(to: panEffect)
-        panEffect.connect(to: subtreeOutputMixer)
-        sampler.connect(to: subtreeOutputMixer)
-        drumSampler.connect(to: subtreeOutputMixer)
-
         super.init()
+    }
+
+    func setSampler(sampler: Sampler = Sampler()) {
+        self.sampler = sampler
+        self.sampler?.connect(to: subtreeOutputMixer)
         setupSampler()
+    }
+
+    func setDrumSampler(sampler: Sampler = Sampler()) {
+        drumSampler = sampler
+        drumSampler?.connect(to: subtreeOutputMixer)
+        setupDrumSampler()
     }
 
     func playSound(fileName: String, filePath: String, condition: NSCondition?) {
@@ -68,7 +63,7 @@ import Foundation
                 let file = try AKAudioFile(forReading: audioFileURL)
                 let audioPlayer = AKPlayer(soundFile: file, addCompletionHandler: true)
                 audioPlayers[fileName] = audioPlayer
-                audioPlayer.connect(to: audioPlayerMixer)
+                audioPlayer.connect(to: getAudioPlayerMixer())
                 if let cond = condition {
                     audioPlayer.accessibilityElements = [cond]
                 }
@@ -80,24 +75,30 @@ import Foundation
     }
 
     func playNote(note: Note) {
-        sampler.playNote(note)
+        if sampler == nil {
+            setSampler()
+        }
+        sampler?.playNote(note)
     }
 
     func stopNote(note: Note) {
-        sampler.stopNote(note)
+        sampler?.stopNote(note)
     }
 
     func playDrum(note: Note) {
-        drumSampler.playNote(note)
+        if drumSampler == nil {
+            setDrumSampler()
+        }
+        drumSampler?.playNote(note)
     }
 
     func stopDrum(note: Note) {
-        drumSampler.stopNote(note)
+        drumSampler?.stopNote(note)
     }
 
     func setInstrumentTo(instrumentNumber: Int) {
         let instrumentPath = Bundle.main.resourcePath!+"/Sample Instruments Compressed/" + AudioEngineConfig.instrumentPath[instrumentNumber]
-        sampler.loadSFZ(path: instrumentPath, fileName: AudioEngineConfig.instrumentPath[instrumentNumber] + ".sfz")
+        sampler?.loadSFZ(path: instrumentPath, fileName: AudioEngineConfig.instrumentPath[instrumentNumber] + ".sfz")
     }
 
     func setEffectTo(effectType: SoundEffectType, value: Double) {
@@ -123,7 +124,7 @@ import Foundation
 
     func loadDrums() {
         let instrumentPath = Bundle.main.resourcePath!+"/Sample Instruments Compressed/" + AudioEngineConfig.instrumentPath[21]
-        drumSampler.loadSFZ(path: instrumentPath, fileName: AudioEngineConfig.instrumentPath[21] + ".sfz")
+        drumSampler?.loadSFZ(path: instrumentPath, fileName: AudioEngineConfig.instrumentPath[21] + ".sfz")
     }
 
     internal func createFileUrl(fileName: String, filePath: String) -> URL {
@@ -166,30 +167,62 @@ import Foundation
     }
 
     func pauseAllSamplers() {
-        sampler.pauseSampler()
-        drumSampler.pauseSampler()
+        sampler?.pauseSampler()
+        drumSampler?.pauseSampler()
     }
 
     func stopAllSamplers() {
-        sampler.stopSampler()
-        drumSampler.stopSampler()
+        sampler?.stopSampler()
+        drumSampler?.stopSampler()
     }
 
     func resumeAllSamplers() {
-        sampler.resumeSampler()
-        drumSampler.resumeSampler()
+        sampler?.resumeSampler()
+        drumSampler?.resumeSampler()
     }
 
     func setupSampler() {
-        sampler.attackDuration = 0.01
-        sampler.decayDuration = 0.1
-        sampler.sustainLevel = 0.5
-        sampler.releaseDuration = 0.5
-        drumSampler.attackDuration = 0.01
-        drumSampler.decayDuration = 0.1
-        drumSampler.sustainLevel = 0.5
-        drumSampler.releaseDuration = 0.5
+        sampler?.attackDuration = 0.01
+        sampler?.decayDuration = 0.1
+        sampler?.sustainLevel = 0.5
+        sampler?.releaseDuration = 0.5
         setInstrumentTo(instrumentNumber: 0)
+    }
+
+    func setupDrumSampler() {
+        drumSampler?.attackDuration = 0.01
+        drumSampler?.decayDuration = 0.1
+        drumSampler?.sustainLevel = 0.5
+        drumSampler?.releaseDuration = 0.5
         loadDrums()
+    }
+
+    func getAudioPlayerMixer() -> AKMixer {
+        if audioPlayerMixer == nil {
+            audioPlayerMixer = AKMixer()
+            audioPlayerMixer?.connect(to: getPitchEffect())
+        }
+
+        return audioPlayerMixer!
+    }
+
+    func getPitchEffect() -> PitchEffect {
+        if soundEffects[.pitch] == nil {
+            let pitchEffect = PitchEffect()
+            soundEffects[.pitch] = pitchEffect
+            pitchEffect.connect(to: getPanEffect())
+        }
+
+        return soundEffects[.pitch] as! PitchEffect
+    }
+
+    func getPanEffect() -> PanEffect {
+        if soundEffects[.pan] == nil {
+            let panEffect = PanEffect()
+            soundEffects[.pan] = panEffect
+            panEffect.connect(to: subtreeOutputMixer)
+        }
+
+        return soundEffects[.pan] as! PanEffect
     }
 }
