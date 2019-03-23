@@ -25,12 +25,20 @@ import Foundation
 
 @objc class AudioChannel: NSObject {
     var subtreeOutputMixer = AKMixer()
-    var audioPlayerMixer: AKMixer?
+    var audioPlayerMixer = AKMixer()
     var audioPlayers = [String: AKPlayer]()
     var sampler: Sampler?
     var drumSampler: Sampler?
+    let panEffect = PanEffect()
+    let pitchEffect = PitchEffect()
     var soundEffects = [SoundEffectType: SoundEffect]()
     var instrumentChoice = 0
+    let connectionQueue = DispatchQueue(label: "ConnectionQueue")
+
+    init(mainOut: AKInput) {
+        super.init()
+        setupSubtree(mainOut: mainOut)
+    }
 
     func playSound(fileName: String, filePath: String, condition: NSCondition?) {
         if let audioPlayer = audioPlayers[fileName] {
@@ -46,7 +54,9 @@ import Foundation
                 let file = try AKAudioFile(forReading: audioFileURL)
                 let audioPlayer = AKPlayer(soundFile: file, addCompletionHandler: true)
                 audioPlayers[fileName] = audioPlayer
-                audioPlayer.connect(to: connectAudioPlayerMixer())
+                print("Start")
+                connectAudioPlayer(audioPlayer)
+                print("End")
                 if let cond = condition {
                     audioPlayer.accessibilityElements = [cond]
                 }
@@ -86,13 +96,11 @@ import Foundation
     }
 
     func setEffectTo(effectType: SoundEffectType, value: Double) {
-        var effect = getEffect(effectType)
-        effect.setEffectTo(value)
+        soundEffects[effectType]?.setEffectTo(value)
     }
 
     func changeEffectBy(effectType: SoundEffectType, value: Double) {
-        var effect = getEffect(effectType)
-        effect.changeEffectBy(value)
+        soundEffects[effectType]?.changeEffectBy(value)
     }
 
     func clearSoundEffects() {
@@ -147,22 +155,6 @@ import Foundation
         drumSampler?.resumeSampler()
     }
 
-    private func getEffect(_ effectType: SoundEffectType) -> SoundEffect {
-        if let effect = soundEffects[effectType] {
-            return effect
-        } else {
-            let effect: SoundEffect
-            switch effectType {
-            case .pitch:
-                effect = PitchEffect()
-            case .pan:
-                effect = PanEffect()
-            }
-            soundEffects[effectType] = effect
-            return effect
-        }
-    }
-
     internal func createFileUrl(fileName: String, filePath: String) -> URL {
         return URL.init(fileURLWithPath: filePath + "/" + fileName)
     }
@@ -200,32 +192,21 @@ import Foundation
         setupDrumSampler()
     }
 
-    private func connectAudioPlayerMixer() -> AKMixer {
-        if audioPlayerMixer == nil {
-            audioPlayerMixer = AKMixer()
-            audioPlayerMixer?.connect(to: connectPitchEffect())
-        }
+    private func setupSubtree(mainOut: AKInput) {
+        let panEffect = PanEffect()
+        let pitchEffect = PitchEffect()
+        soundEffects[SoundEffectType.pan] = panEffect
+        soundEffects[SoundEffectType.pitch] = pitchEffect
 
-        return audioPlayerMixer!
-    }
-
-    private func connectPitchEffect() -> PitchEffect {
-        if soundEffects[.pitch] == nil {
-            soundEffects[.pitch] = PitchEffect()
-        }
-        let pitchEffect = soundEffects[.pitch] as! PitchEffect
-        pitchEffect.connect(to: connectPanEffect())
-
-        return pitchEffect
-    }
-
-    private func connectPanEffect() -> PanEffect {
-        if soundEffects[.pan] == nil {
-            soundEffects[.pan] = PanEffect()
-        }
-        let panEffect = soundEffects[.pan] as! PanEffect
+        subtreeOutputMixer.connect(to: mainOut)
         panEffect.connect(to: subtreeOutputMixer)
+        pitchEffect.connect(to: panEffect)
+        audioPlayerMixer.connect(to: pitchEffect)
+    }
 
-        return panEffect
+    private func connectAudioPlayer(_ audioPlayer: AKPlayer) {
+        _ = connectionQueue.sync {
+            audioPlayer.connect(to: audioPlayerMixer)
+        }
     }
 }

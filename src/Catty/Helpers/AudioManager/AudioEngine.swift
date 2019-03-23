@@ -30,6 +30,7 @@ import Foundation
     var recorder: AKNodeRecorder?
     var tape: AKAudioFile?
     var bpm = 60.0
+    let channelCreationQueue = DispatchQueue(label: "ChannelCreationQueue")
 
     override init() {
         AudioKit.output = mainOut
@@ -171,11 +172,12 @@ import Foundation
     }
 
     private func getAudioChannel(key: String) -> AudioChannel {
-        if let channel = channels[key] {
-            return channel
-        } else {
-            return createNewAudioChannel(key: key)
+        channelCreationQueue.sync {
+            if channels[key] == nil {
+                createNewAudioChannel(key: key)
+            }
         }
+        return channels[key]!
     }
 
     private func pauseAllSamplers() {
@@ -197,8 +199,7 @@ import Foundation
     }
 
     internal func createNewAudioChannel(key: String) -> AudioChannel {
-        let channel = AudioChannel()
-        channel.connectSubtreeTo(node: mainOut)
+        let channel = AudioChannel(mainOut: mainOut)
         channels[key] = channel
         return channel
     }
