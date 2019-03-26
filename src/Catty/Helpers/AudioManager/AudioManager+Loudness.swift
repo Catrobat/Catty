@@ -106,6 +106,8 @@ extension AudioManager: AudioManagerProtocol {
             dispatchGroup.wait()
         case AVAudioSession.RecordPermission.granted:
             isGranted = true
+        @unknown default:
+            print("ERROR: case not handled by switch statement")
         }
 
         if isGranted && self.recorder == nil {

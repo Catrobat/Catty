@@ -45,7 +45,7 @@ indirect enum CBInstruction {
     case action(closure: CBActionClosure)
     case formulaBuffer(brick: BrickFormulaProtocol)
     case conditionalFormulaBuffer(conditionalBrick: CBConditionalSequence)
-    case invalidInstruction()
+    case invalidInstruction
 }
 
 enum CBDuration {

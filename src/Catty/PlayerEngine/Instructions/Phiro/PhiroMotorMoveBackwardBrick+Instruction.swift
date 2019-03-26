@@ -40,6 +40,8 @@
             case .Both:
                 phiro.moveRightMotorBackward(speedValue)
                 phiro.moveLeftMotorBackward(speedValue)
+            @unknown default:
+                print("ERROR: case not handled by switch statement")
             }
             context.state = .runnable
         }

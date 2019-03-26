@@ -45,6 +45,8 @@
                 phiro.playTone(440, duration: durationInterpretation)
             case .TI:
                 phiro.playTone(494, duration: durationInterpretation)
+            @unknown default:
+                print("ERROR: case not handled by switch statement")
             }
             context.state = .runnable
         }

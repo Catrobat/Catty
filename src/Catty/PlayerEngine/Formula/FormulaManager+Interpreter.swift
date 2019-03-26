@@ -167,6 +167,8 @@ extension FormulaManager {
             result = self.interpretRecursive(formulaElement: formulaElement.rightChild, for: spriteObject)
         case .STRING:
             result = formulaElement.value as AnyObject
+        @unknown default:
+            fatalError("ERROR: case not handled by switch statement")
         }
 
         if isIdempotent(formulaElement) {

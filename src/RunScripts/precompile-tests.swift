@@ -153,7 +153,7 @@ extension String {
         let temp = self as NSString
         let stringLength = temp.length
         let substringIndex = (stringLength < count) ? 0 : stringLength - count
-        return self.substring(to: self.index(self.startIndex, offsetBy: substringIndex))
+        return String(self[..<self.index(self.startIndex, offsetBy: substringIndex)])
     }
 }
 
@@ -165,7 +165,7 @@ func localizedStringCheck(_ filePath: String, fileContent: String) -> (failed: B
     }
 
     let newRange: Range<String.Index> = fileContent.startIndex ..< range!.lowerBound
-    let substring: String = fileContent.substring(with: newRange)
+    let substring: String = String(fileContent[newRange])
     var lineNumber: Int = substring.components(separatedBy: "\n").count
     if lineNumber == 0 {
         lineNumber = 1
@@ -181,7 +181,7 @@ func licenseCheck(_ filePath: String, fileContent: String, lineNumberOffset: Int
         let index: Int = fileContent.distance(from: fileContent.startIndex, to: range!.lowerBound)
         if index != 0 {
             let newRange: Range<String.Index> = fileContent.startIndex ..< range!.lowerBound
-            let substring: String = fileContent.substring(with: newRange)
+            let substring: String = String(fileContent[newRange])
             var lineNumber: Int = substring.components(separatedBy: "\n").count
             if lineNumber == 0 {
                 lineNumber = 1
@@ -199,7 +199,7 @@ func licenseCheck(_ filePath: String, fileContent: String, lineNumberOffset: Int
         var lineNumber: Int = 1
         if index != 0 {
             let newRange: Range<String.Index> = fileContent.startIndex ..< rangePreviousYear!.lowerBound
-            let substring: String = fileContent.substring(with: newRange)
+            let substring: String = String(fileContent[newRange])
             lineNumber = substring.components(separatedBy: "\n").count
             if lineNumber == 0 {
                 lineNumber = 1
@@ -219,14 +219,14 @@ func licenseCheckForReadme(_ filePath: String, fileContent: String) -> (failed: 
     if range == nil {
         return (true, "\(pathToReadmeFile):1: error: Unable to find license header section\n")
     }
-    let sectionString = fileContent.substring(with: range!.lowerBound ..< fileContent.endIndex)
+    let sectionString = String(fileContent[range!.lowerBound ..< fileContent.endIndex])
     let sectionRange = sectionString.range(of: "<code>")
     if sectionRange == nil {
         return (true, "\(pathToReadmeFile):1: error: Unable to find code section within license header section\n")
     }
-    let licenseString = sectionString.substring(with: sectionString.index(after: sectionRange!.upperBound) ..< sectionString.endIndex)
+    let licenseString = String(sectionString[sectionString.index(after: sectionRange!.upperBound) ..< sectionString.endIndex])
     let newLineCountRange = fileContent.startIndex ..< range!.upperBound
-    let newLineCountSubString = fileContent.substring(with: newLineCountRange)
+    let newLineCountSubString = String(fileContent[newLineCountRange])
     let lineNumberOfLicenseHeaderStart: Int = newLineCountSubString.components(separatedBy: "\n").count
     return licenseCheck(pathToReadmeFile,
                         fileContent: licenseString,

@@ -30,7 +30,7 @@
 
         guard let sound = self.sound,
             let fileName = sound.fileName
-            else { return .invalidInstruction() }
+            else { return .invalidInstruction }
 
         let filePath = projectPath + kProjectSoundsDirName
         let audioManager = AudioManager.shared()

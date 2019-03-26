@@ -41,6 +41,8 @@
             case .LBoth:
                 phiro.setLeftRGBLightColor(redValue, green: greenValue, blue: blueValue)
                 phiro.setRightRGBLightColor(redValue, green: greenValue, blue: blueValue)
+            @unknown default:
+                print("ERROR: case not handled by switch statement")
             }
             context.state = .runnable
         }

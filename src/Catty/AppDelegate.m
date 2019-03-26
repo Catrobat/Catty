@@ -71,8 +71,6 @@ void uncaughtExceptionHandler(NSException *exception)
         ScenePresenterViewController* spvc = (ScenePresenterViewController*)vc.topViewController;
         [spvc resumeAction];
     }
-    
-    [SwiftBridge sirenApplicationDidBecomeActive];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -100,8 +98,6 @@ void uncaughtExceptionHandler(NSException *exception)
         ScenePresenterViewController* spvc = (ScenePresenterViewController*)vc.topViewController;
         [spvc resumeAction];
     }
-    
-    [SwiftBridge sirenApplicationWillEnterForeground];
 }
 
 - (void)initNavigationBar

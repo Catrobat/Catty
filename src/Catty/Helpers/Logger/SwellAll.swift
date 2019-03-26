@@ -522,7 +522,7 @@ open class CBLogger {
 
     open func log<T>(_ logLevel: LogLevel, message: @autoclosure () -> T, filename: String? = #file, line: Int? = #line, function: String? = #function) {
         if (self.enabled) && (logLevel.level >= level.level) {
-            let logMessage = formatter.formatLog(self, level: logLevel, message: message,
+            let logMessage = formatter.formatLog(self, level: logLevel, message: message(),
                                                  filename: filename, line: line, function: function)
             for location in locations {
                 location.log(logMessage)
@@ -534,27 +534,27 @@ open class CBLogger {
     // Main log methods
 
     open func trace<T>(_ message: @autoclosure () -> T, filename: String? = #file, line: Int? = #line, function: String? = #function) {
-        self.log(.TRACE, message: message, filename: filename, line: line, function: function)
+        self.log(.TRACE, message: message(), filename: filename, line: line, function: function)
     }
 
     open func debug<T>(_ message: @autoclosure () -> T, filename: String? = #file, line: Int? = #line, function: String? = #function) {
-        self.log(.DEBUG, message: message, filename: filename, line: line, function: function)
+        self.log(.DEBUG, message: message(), filename: filename, line: line, function: function)
     }
 
     open func info<T>(_ message: @autoclosure () -> T, filename: String? = #file, line: Int? = #line, function: String? = #function) {
-        self.log(.INFO, message: message, filename: filename, line: line, function: function)
+        self.log(.INFO, message: message(), filename: filename, line: line, function: function)
     }
 
     open func warn<T>(_ message: @autoclosure () -> T, filename: String? = #file, line: Int? = #line, function: String? = #function) {
-        self.log(.WARN, message: message, filename: filename, line: line, function: function)
+        self.log(.WARN, message: message(), filename: filename, line: line, function: function)
     }
 
     open func error<T>(_ message: @autoclosure () -> T, filename: String? = #file, line: Int? = #line, function: String? = #function) {
-        self.log(.ERROR, message: message, filename: filename, line: line, function: function)
+        self.log(.ERROR, message: message(), filename: filename, line: line, function: function)
     }
 
     open func severe<T>(_ message: @autoclosure () -> T, filename: String? = #file, line: Int? = #line, function: String? = #function) {
-        self.log(.SEVERE, message: message, filename: filename, line: line, function: function)
+        self.log(.SEVERE, message: message(), filename: filename, line: line, function: function)
     }
 
     //*****************************************************************************************
@@ -795,27 +795,27 @@ open class Swell {
     // Global/convenience log methods used for quick logging
 
     open class func trace<T>(_ message: @autoclosure () -> T) {
-        kGlobalSwell.swellLogger?.trace(message)
+        kGlobalSwell.swellLogger?.trace(message())
     }
 
     open class func debug<T>(_ message: @autoclosure () -> T) {
-        kGlobalSwell.swellLogger?.debug(message)
+        kGlobalSwell.swellLogger?.debug(message())
     }
 
     open class func info<T>(_ message: @autoclosure () -> T) {
-        kGlobalSwell.swellLogger?.info(message)
+        kGlobalSwell.swellLogger?.info(message())
     }
 
     open class func warn<T>(_ message: @autoclosure () -> T) {
-        kGlobalSwell.swellLogger?.warn(message)
+        kGlobalSwell.swellLogger?.warn(message())
     }
 
     open class func error<T>(_ message: @autoclosure () -> T) {
-        kGlobalSwell.swellLogger?.error(message)
+        kGlobalSwell.swellLogger?.error(message())
     }
 
     open class func severe<T>(_ message: @autoclosure () -> T) {
-        kGlobalSwell.swellLogger?.severe(message)
+        kGlobalSwell.swellLogger?.severe(message())
     }
 
     open class func trace(_ fn: () -> String) {

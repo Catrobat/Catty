@@ -37,6 +37,8 @@
             case .Both:
                 phiro.stopRightMotor()
                 phiro.stopLeftMotor()
+            @unknown default:
+                print("ERROR: case not handled by switch statement")
             }
             context.state = .runnable
         }
