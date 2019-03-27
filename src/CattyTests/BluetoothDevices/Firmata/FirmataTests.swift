@@ -334,7 +334,7 @@ final class FirmataTests: XCTestCase {
         }
         bytestoSend.append(kEND_SYSEX)
         //When
-        mock.testfirmata.receiveData(Data(bytes: bytestoSend))
+        mock.testfirmata.receiveData(Data(bytestoSend))
         //Then
         XCTAssertTrue(mock.callbackInvolved, "Callback not called")
         XCTAssertEqual(mock.receivedString, name, "Received Port wrong")
