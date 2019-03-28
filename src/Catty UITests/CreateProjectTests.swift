@@ -79,24 +79,11 @@ class CreateProjectTests: XCTestCase, UITestProtocol {
         //Add Scripts to Object
         app.tables.staticTexts[testObject].tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
-        app.toolbars.buttons[kLocalizedUserListAdd].tap()
-        if app.navigationBars[kLocalizedFrequentlyUsed].exists {
-            app.swipeLeft()
-        }
-        app.collectionViews.cells.element(boundBy: 0).tap()
+
+        addBrick(label: kLocalizedWhenProjectStarted, section: kUIControlTitle, in: app)
         XCTAssert(app.collectionViews.cells.element(boundBy: 0).staticTexts[kLocalizedWhenProjectStarted].exists)
-        app.toolbars.buttons[kLocalizedUserListAdd].tap()
 
-        if app.navigationBars[kLocalizedFrequentlyUsed].exists {
-            app.swipeLeft()
-            app.swipeLeft()
-            app.swipeLeft()
-        } else {
-            app.swipeLeft()
-            app.swipeLeft()
-        }
-
-        app.collectionViews.cells.element(boundBy: 0).tap()
+        addBrick(label: kLocalizedSetLook, section: kUILookTitle, in: app)
         XCTAssert(app.collectionViews.cells.element(boundBy: 1).staticTexts[kLocalizedSetLook].exists)
 
         //Add Script to Background
@@ -104,21 +91,11 @@ class CreateProjectTests: XCTestCase, UITestProtocol {
         app.navigationBars.buttons[projectName].tap()
         app.tables.staticTexts[kLocalizedBackground].tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
-        app.toolbars.buttons[kLocalizedUserListAdd].tap()
-        if app.navigationBars[kLocalizedFrequentlyUsed].exists {
-            app.swipeLeft()
-        }
-        app.collectionViews.cells.element(boundBy: 0).tap()
+
+        addBrick(label: kLocalizedWhenProjectStarted, section: kUIControlTitle, in: app)
         XCTAssert(app.collectionViews.cells.element(boundBy: 0).staticTexts[kLocalizedWhenProjectStarted].exists)
-        app.toolbars.buttons[kLocalizedUserListAdd].tap()
-        if app.navigationBars[kLocalizedFrequentlyUsed].exists {
-            app.swipeLeft()
-            app.swipeLeft()
-            app.swipeLeft()
-        }
-        app.swipeLeft()
-        app.swipeLeft()
-        app.collectionViews.cells.element(boundBy: 1).tap()
+
+        addBrick(label: kLocalizedNextBackground, section: kUILookTitle, in: app)
         XCTAssert(app.collectionViews.cells.element(boundBy: 1).staticTexts[kLocalizedNextBackground].exists)
     }
 

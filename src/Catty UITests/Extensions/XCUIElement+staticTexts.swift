@@ -24,18 +24,72 @@ import XCTest
 
 extension XCUIElement {
     func staticTextBeginsWith(_ queryString: String) -> XCUIElement {
-        return self.staticTexts
-            .element(matching: NSPredicate(format: "label BEGINSWITH '"+queryString+"'"))
+        return staticTextBeginsWith(queryString, ignoreLeadingWhiteSpace: false)
     }
 
+    func staticTextBeginsWith(_ queryString: String, ignoreLeadingWhiteSpace: Bool) -> XCUIElement {
+        var predicate = NSPredicate(format: "label BEGINSWITH '"+queryString+"'")
+
+        if ignoreLeadingWhiteSpace {
+            predicate = NSPredicate(format: "label BEGINSWITH '"+queryString+"' OR label BEGINSWITH ' "+queryString+"'")
+        }
+        return self.staticTexts.element(matching: predicate)
+    }
+
+    func staticTextEquals(_ queryString: String, ignoreLeadingWhiteSpace: Bool) -> XCUIElement {
+        var element = self.staticTexts[queryString]
+        if element.exists || !ignoreLeadingWhiteSpace {
+            return element
+        }
+
+        element = self.staticTexts[" " + queryString]
+        if element.exists {
+            return element
+        }
+
+        element = self.staticTexts[queryString + " "]
+        if element.exists {
+            return element
+        }
+
+        return self.staticTexts[" " + queryString + " "]
+    }
 }
 
 extension XCUIElementQuery {
     func staticTextBeginsWith(_ queryString: String) -> XCUIElement {
-        return self.staticTexts.element(matching: NSPredicate(format: "label BEGINSWITH '"+queryString+"'"))
+        return staticTextBeginsWith(queryString, ignoreLeadingWhiteSpace: false)
+    }
+
+    func staticTextBeginsWith(_ queryString: String, ignoreLeadingWhiteSpace: Bool) -> XCUIElement {
+        var predicate = NSPredicate(format: "label BEGINSWITH '"+queryString+"'")
+
+        if ignoreLeadingWhiteSpace {
+            predicate = NSPredicate(format: "label BEGINSWITH '"+queryString+"' OR label BEGINSWITH ' "+queryString+"'")
+        }
+        return self.staticTexts.element(matching: predicate)
     }
 
     func identifierTextBeginsWith(_ queryString: String) -> XCUIElementQuery {
         return self.containing(NSPredicate(format: "label BEGINSWITH '"+queryString+"'"))
+    }
+
+    func staticTextEquals(_ queryString: String, ignoreLeadingWhiteSpace: Bool) -> XCUIElement {
+        var element = self.staticTexts[queryString]
+        if element.exists || !ignoreLeadingWhiteSpace {
+            return element
+        }
+
+        element = self.staticTexts[" " + queryString]
+        if element.exists {
+            return element
+        }
+
+        element = self.staticTexts[queryString + " "]
+        if element.exists {
+            return element
+        }
+
+        return self.staticTexts[" " + queryString + " "]
     }
 }

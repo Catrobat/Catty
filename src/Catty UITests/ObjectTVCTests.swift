@@ -164,26 +164,10 @@ class ObjectTVCTests: XCTestCase, UITestProtocol {
         waitForElementToAppear(app.tables.staticTexts[objectName]).tap()
         waitForElementToAppear(app.staticTexts[kLocalizedScripts]).tap()
 
-        waitForElementToAppear(app.toolbars.buttons[kLocalizedUserListAdd]).tap()
-        if app.navigationBars[kLocalizedFrequentlyUsed].exists {
-            app.swipeLeft()
-        }
-
-        XCTAssertTrue(app.navigationBars[kLocalizedControl].exists)
-
-        let startCoord = app.collectionViews.element.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5))
-        let endCoord = startCoord.withOffset(CGVector(dx: 0.0, dy: -500)); // scroll to bottom
-        startCoord.press(forDuration: 0.01, thenDragTo: endCoord)
-
-        for cellIndex in 0...app.collectionViews.cells.count {
-            let cell = app.collectionViews.cells.element(boundBy: cellIndex)
-            if cell.staticTexts.count == 2 && cell.staticTextBeginsWith(kLocalizedIfBegin).exists && cell.staticTextBeginsWith(kLocalizedIfBeginSecondPart).exists {
-                cell.tap()
-            }
-        }
+        addBrick(labels: [kLocalizedIfBegin, kLocalizedIfBeginSecondPart], section: kUIControlTitle, in: app)
 
         XCTAssertEqual(3, app.collectionViews.cells.count)
-        XCTAssert(app.collectionViews.cells.element(boundBy: 1).staticTextBeginsWith(kLocalizedIfBeginSecondPart).exists)
+        XCTAssert(app.collectionViews.cells.element(boundBy: 1).staticTextBeginsWith(kLocalizedIfBeginSecondPart, ignoreLeadingWhiteSpace: true).exists)
         XCTAssert(app.collectionViews.cells.element(boundBy: 2).staticTexts[kLocalizedEndIf].exists)
 
         app.navigationBars.buttons[objectName].tap()
@@ -204,7 +188,7 @@ class ObjectTVCTests: XCTestCase, UITestProtocol {
 
         app.staticTexts[kLocalizedScripts].tap()
         XCTAssertEqual(3, app.collectionViews.cells.count)
-        XCTAssert(app.collectionViews.cells.element(boundBy: 1).staticTextBeginsWith(kLocalizedIfBeginSecondPart).exists)
+        XCTAssert(app.collectionViews.cells.element(boundBy: 1).staticTextBeginsWith(kLocalizedIfBeginSecondPart, ignoreLeadingWhiteSpace: true).exists)
         XCTAssert(app.collectionViews.cells.element(boundBy: 2).staticTexts[kLocalizedEndIf].exists)
     }
 }
