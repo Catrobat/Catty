@@ -363,11 +363,10 @@
                                  maxInputLength:(NSUInteger)maxInputLength
 									     isList:(BOOL)isList
                                 andTextField:(FormulaEditorTextView *)textView
+                                   initialText:(NSString*)initialText
 {
-    NSString* highlightedText = [textView getHighlightedText];
-    
     [[[[[[[AlertControllerBuilder textFieldAlertWithTitle:title message:message]
-     initialText: highlightedText]
+     initialText: initialText]
      addCancelActionWithTitle:kLocalizedCancel handler:^{
          [textView becomeFirstResponder];
      }]

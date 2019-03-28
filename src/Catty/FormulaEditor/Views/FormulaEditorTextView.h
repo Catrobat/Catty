@@ -31,6 +31,6 @@
 - (void)update;
 - (void)highlightSelection:(NSUInteger)cursorPostionIndex start:(int)startIndex end:(int)endIndex;
 - (void)setParseErrorCursorAndSelection;
-- (NSString*)getHighlightedText;
+- (NSString*)getInitialTextForAlert;
 
 @end
