@@ -45,24 +45,9 @@ class CreateProjectTests: XCTestCase, UITestProtocol {
         app.alerts[kLocalizedNewProject].buttons[kLocalizedOK].tap()
         XCTAssertNotNil(waitForElementToAppear(app.navigationBars[projectName]))
 
-        //Add new Object
-        app.toolbars.buttons[kLocalizedUserListAdd].tap()
-        app.alerts[kLocalizedAddObject].textFields[kLocalizedEnterYourObjectNameHere].typeText(testObject)
-        app.alerts[kLocalizedAddObject].buttons[kLocalizedOK].tap()
-        app.buttons[kLocalizedDrawNewImage].tap()
-
-        XCTAssertNotNil(waitForElementToAppear(app.navigationBars[kLocalizedPaintPocketPaint]))
-
-        //Draw image
-        app.tap()
-
-        app.navigationBars.buttons[kLocalizedLooks].tap()
-
-        let alert = waitForElementToAppear(app.alerts[kLocalizedSaveToPocketCode])
-        alert.buttons[kLocalizedYes].tap()
+        addObjectAndDrawNewImage(name: testObject, in: app)
 
         XCTAssertNotNil(waitForElementToAppear(app.navigationBars[projectName]))
-
         app.staticTexts[testObject].tap()
         app.staticTexts[kLocalizedLooks].tap()
         XCTAssert(app.staticTexts[kLocalizedLook].exists)
@@ -149,21 +134,9 @@ class CreateProjectTests: XCTestCase, UITestProtocol {
         app.alerts[kLocalizedNewProject].buttons[kLocalizedOK].tap()
         XCTAssertNotNil(waitForElementToAppear(app.navigationBars[projectName]))
 
-        //Add new Object
-        app.toolbars.buttons[kLocalizedUserListAdd].tap()
-        app.alerts[kLocalizedAddObject].textFields[kLocalizedEnterYourObjectNameHere].typeText(helloText)
-        app.alerts[kLocalizedAddObject].buttons[kLocalizedOK].tap()
-        waitForElementToAppear(app.buttons[kLocalizedDrawNewImage]).tap()
+        addObjectAndDrawNewImage(name: helloText, in: app)
 
-        XCTAssertNotNil(waitForElementToAppear(app.navigationBars[kLocalizedPaintPocketPaint]))
-
-        //Draw image
-        app.tap()
-
-        waitForElementToAppear(app.navigationBars.buttons[kLocalizedLooks]).tap()
-        XCTAssert(app.alerts[kLocalizedSaveToPocketCode].exists)
-        app.alerts[kLocalizedSaveToPocketCode].buttons[kLocalizedYes].tap()
-
+        XCTAssertNotNil(waitForElementToAppear(app.navigationBars[projectName]))
         XCTAssert(app.staticTexts[helloText].exists)
     }
 }

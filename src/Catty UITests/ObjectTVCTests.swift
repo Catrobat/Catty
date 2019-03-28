@@ -158,21 +158,9 @@ class ObjectTVCTests: XCTestCase, UITestProtocol {
         app.alerts[kLocalizedNewProject].buttons[kLocalizedOK].tap()
         XCTAssertNotNil(waitForElementToAppear(app.navigationBars[projectName]))
 
-        // Add new Object
-        app.toolbars.buttons[kLocalizedUserListAdd].tap()
-        app.alerts[kLocalizedAddObject].textFields[kLocalizedEnterYourObjectNameHere].typeText(objectName)
-        app.alerts[kLocalizedAddObject].buttons[kLocalizedOK].tap()
-        app.buttons[kLocalizedDrawNewImage].tap()
+        addObjectAndDrawNewImage(name: objectName, in: app)
 
-        XCTAssertNotNil(waitForElementToAppear(app.navigationBars[kLocalizedPaintPocketPaint]))
-
-        // Draw image
-        app.tap()
-        app.navigationBars.buttons[kLocalizedLooks].tap()
-
-        waitForElementToAppear(app.alerts[kLocalizedSaveToPocketCode]).buttons[kLocalizedYes].tap()
         XCTAssertNotNil(waitForElementToAppear(app.navigationBars[projectName]))
-
         waitForElementToAppear(app.tables.staticTexts[objectName]).tap()
         waitForElementToAppear(app.staticTexts[kLocalizedScripts]).tap()
 

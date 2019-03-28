@@ -73,4 +73,20 @@ extension UITestProtocol {
         app.alerts[kLocalizedNewProject].buttons[kLocalizedOK].tap()
         XCTAssertNotNil(waitForElementToAppear(app.navigationBars[name]))
     }
+
+    func addObjectAndDrawNewImage(name: String, in app: XCUIApplication) {
+        app.toolbars.buttons[kLocalizedUserListAdd].tap()
+        app.alerts[kLocalizedAddObject].textFields[kLocalizedEnterYourObjectNameHere].typeText(name)
+        app.alerts[kLocalizedAddObject].buttons[kLocalizedOK].tap()
+
+        waitForElementToAppear(app.buttons[kLocalizedDrawNewImage]).tap()
+        XCTAssertNotNil(waitForElementToAppear(app.navigationBars[kLocalizedPaintPocketPaint]))
+
+        // Draw image
+        app.tap()
+        app.navigationBars.buttons[kLocalizedLooks].tap()
+
+        waitForElementToAppear(app.alerts[kLocalizedSaveToPocketCode]).buttons[kLocalizedYes].tap()
+        XCTAssertNotNil(waitForElementToAppear(app.navigationBars.buttons[kLocalizedPocketCode]))
+    }
 }
