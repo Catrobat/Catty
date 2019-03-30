@@ -746,7 +746,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
                                   maxInputLength:kMaxNumOfVariableNameCharacters
                                           isList:isList
                                     andTextField:self.formulaEditorTextView
-                                  initialText:[self.formulaEditorTextView getInitialTextForAlert]];
+                                     initialText:@""];
 }
 
 - (void)askObjectOrProject:(BOOL)isList {
@@ -867,7 +867,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
                                   maxInputLength:kMaxNumOfVariableNameCharacters
                                           isList:isList
                                     andTextField:self.formulaEditorTextView
-                                     initialText:[self.formulaEditorTextView getInitialTextForAlert]];
+                                     initialText:@""];
 }
 
 - (void)saveVariable:(NSString*)name isList:(BOOL)isList
@@ -945,7 +945,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
                                   maxInputLength:0
 										  isList:NO
                                     andTextField:self.formulaEditorTextView
-                                     initialText:[self.formulaEditorTextView getInitialTextForAlert]];
+                                     initialText:[self.formulaEditorTextView getHighlightedText]];
 }
 
 - (void)handleNewTextInput:(NSString*)text

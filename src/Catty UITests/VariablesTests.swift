@@ -140,4 +140,25 @@ class VariablesTests: XCTestCase, UITestProtocol {
         app.buttons["ABC"].tap()
         XCTAssertEqual(alert.textFields.firstMatch.value as! String, testVariable)
     }
+    func testCreateVariableWithMarkedText() {
+        let projectName = "Test Project"
+        let testVariable = "TestVariable"
+
+        createNewProjectAndAddSetVariableBrick(name: projectName)
+        app.collectionViews.cells.otherElements.containing(.staticText, identifier: kLocalizedSetVariable).children(matching: .button).element.tap()
+        XCTAssert(waitForElementToAppear(app.buttons[kLocalizedCancel]).exists)
+
+        app.buttons["ABC"].tap()
+        let newTextAlert = waitForElementToAppear(app.alerts[kUIFENewText])
+        newTextAlert.textFields.firstMatch.typeText(testVariable)
+        app.buttons[kLocalizedOK].tap()
+        app.buttons[kLocalizedDone].tap()
+        app.collectionViews.cells.otherElements.containing(.staticText, identifier: kLocalizedSetVariable).children(matching: .button).element.tap()
+        app.buttons[kUIFEVariableList].tap()
+        app.buttons[kUIFEVar].tap()
+        waitForElementToAppear(app.buttons[kUIFENewVar]).tap()
+        waitForElementToAppear(app.buttons[kUIFEActionVarPro]).tap()
+        let newVarAlert = waitForElementToAppear(app.alerts[kUIFENewVar])
+        XCTAssertEqual(newVarAlert.textFields.firstMatch.value as! String, "")
+    }
 }
