@@ -184,7 +184,10 @@ class PocketCodeMainScreenTests: XCTestCase, UITestProtocol {
         let app = XCUIApplication()
         app.navigationBars.buttons["Item"].tap()
 
-        app.switches[kLocalizedArduinoBricks].tap()
+        if app.switches[kLocalizedArduinoBricks].value as! String == "0" {
+            app.switches[kLocalizedArduinoBricks].tap()
+        }
+
         app.navigationBars.buttons[kLocalizedPocketCode].tap()
         app.tables.staticTexts[kLocalizedProjects].tap()
         app.tables.staticTexts[kLocalizedMyFirstProject].tap()
