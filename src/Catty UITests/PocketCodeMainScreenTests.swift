@@ -24,36 +24,33 @@ import XCTest
 
 class PocketCodeMainScreenTests: XCTestCase, UITestProtocol {
 
+    var app: XCUIApplication!
+
     override func setUp() {
         super.setUp()
 
         continueAfterFailure = false
         XCUIApplication().launch()
 
+        app = XCUIApplication()
+
         dismissWelcomeScreenIfShown()
         restoreDefaultProject()
     }
 
     func testContinue() {
-        restoreDefaultProject()
-
-        let app = XCUIApplication()
         app.tables.staticTexts[kLocalizedContinue].tap()
 
         XCTAssert(app.navigationBars[kLocalizedMyFirstProject].exists)
     }
 
     func testNew() {
-        let app = XCUIApplication()
         let testProject = "testProject"
 
         app.tables.staticTexts[kLocalizedNew].tap()
         app.textFields[kLocalizedEnterYourProjectNameHere].tap()
         app.textFields[kLocalizedEnterYourProjectNameHere].typeText(testProject)
         app.alerts[kLocalizedNewProject].buttons[kLocalizedOK].tap()
-
-        // check if worked to create new Project
-        //XCTAssert(app.navigationBars["testProject"].exists)
 
         // go back and try to add project with same name
         app.navigationBars[testProject].buttons[kLocalizedPocketCode].tap()
@@ -84,8 +81,6 @@ class PocketCodeMainScreenTests: XCTestCase, UITestProtocol {
                                     "\\": "Only special characters are not allowed. Please enter at least 1 other character.",
                                     "~/": "Only special characters are not allowed. Please enter at least 1 other character."]
 
-        let app = XCUIApplication()
-
         for (projectName, _) in progNamesErrorMsgMap {
             app.tables.staticTexts[kLocalizedNew].tap()
             let alertQuery = app.alerts[kLocalizedNewProject]
@@ -102,7 +97,6 @@ class PocketCodeMainScreenTests: XCTestCase, UITestProtocol {
     }
 
     func testNewCanceled() {
-        let app = XCUIApplication()
         app.tables.staticTexts[kLocalizedNew].tap()
 
         let alertQuery = app.alerts[kLocalizedNewProject]
@@ -115,7 +109,6 @@ class PocketCodeMainScreenTests: XCTestCase, UITestProtocol {
     func testProjects() {
         let projectNames = ["testProject1", "testProject2", "testProject3"]
 
-        let app = XCUIApplication()
         app.tables.staticTexts[kLocalizedProjects].tap()
 
         XCTAssert(app.navigationBars[kLocalizedProjects].exists)
@@ -143,23 +136,20 @@ class PocketCodeMainScreenTests: XCTestCase, UITestProtocol {
     }
 
     func testHelp() {
-        let app = XCUIApplication()
         app.tables.staticTexts[kLocalizedHelp].tap()
 
         XCTAssert(app.navigationBars[kLocalizedHelp].exists)
     }
 
     func testExplore() {
-        let app = XCUIApplication()
         app.tables.staticTexts[kLocalizedExplore].tap()
 
         XCTAssert(app.navigationBars[kLocalizedExplore].exists)
     }
 
     func testUploadRedirectToLogin() {
-        let app = XCUIApplication()
-
         app.navigationBars.buttons["Item"].tap()
+
         if app.tables.staticTexts[kLocalizedLogout].exists {
             app.tables.staticTexts[kLocalizedLogout].tap()
         } else {
@@ -171,7 +161,6 @@ class PocketCodeMainScreenTests: XCTestCase, UITestProtocol {
     }
 
     func testDebugMode() {
-        let app = XCUIApplication()
         app.navigationBars.buttons[kLocalizedDebugModeTitle].tap()
 
         let alertQuery = app.alerts[kLocalizedDebugModeTitle]
@@ -181,7 +170,22 @@ class PocketCodeMainScreenTests: XCTestCase, UITestProtocol {
     }
 
     func testSettings() {
-        let app = XCUIApplication()
+        app.navigationBars.buttons["Item"].tap()
+
+        XCTAssert(app.navigationBars[kLocalizedSettings].exists)
+        app.switches[kLocalizedArduinoBricks].tap()
+
+        app.staticTexts[kLocalizedAboutPocketCode].tap()
+        XCTAssert(app.navigationBars[kLocalizedAboutPocketCode].exists)
+        app.navigationBars.buttons[kLocalizedSettings].tap()
+
+        app.staticTexts[kLocalizedTermsOfUse].tap()
+        XCTAssert(app.navigationBars[kLocalizedTermsOfUse].exists)
+        app.navigationBars.buttons[kLocalizedSettings].tap()
+        XCTAssert(app.navigationBars[kLocalizedSettings].exists)
+    }
+
+    func testArduinoSettings() {
         app.navigationBars.buttons["Item"].tap()
 
         if app.switches[kLocalizedArduinoBricks].value as! String == "0" {
@@ -193,30 +197,10 @@ class PocketCodeMainScreenTests: XCTestCase, UITestProtocol {
         app.tables.staticTexts[kLocalizedMyFirstProject].tap()
         app.tables.staticTexts["Mole 1"].tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
+
         app.toolbars.buttons[kLocalizedUserListAdd].tap()
-        app.swipeLeft()
-        app.swipeLeft()
-        app.swipeLeft()
-        app.swipeLeft()
-        app.swipeLeft()
-        app.swipeLeft()
-        XCTAssert(app.collectionViews.cells.element(boundBy: 0).staticTextBeginsWith(kLocalizedArduinoSetDigitalValue).exists)
-        app.navigationBars.buttons[kLocalizedCancel].tap()
-        app.navigationBars.buttons["Mole 1"].tap()
-        app.navigationBars.buttons[kLocalizedMyFirstProject].tap()
-        app.navigationBars.buttons[kLocalizedProjects].tap()
-        app.navigationBars.buttons[kLocalizedPocketCode].tap()
-        app.navigationBars.buttons["Item"].tap()
-        app.switches[kLocalizedArduinoBricks].tap()
-        XCTAssert(app.navigationBars[kLocalizedSettings].exists)
+        findBrickSection(kUIArduinoTitle, in: app)
 
-        app.staticTexts[kLocalizedAboutPocketCode].tap()
-        XCTAssert(app.navigationBars[kLocalizedAboutPocketCode].exists)
-        app.navigationBars.buttons[kLocalizedSettings].tap()
-
-        app.staticTexts[kLocalizedTermsOfUse].tap()
-        XCTAssert(app.navigationBars[kLocalizedTermsOfUse].exists)
-        app.navigationBars.buttons[kLocalizedSettings].tap()
-        XCTAssert(app.navigationBars[kLocalizedSettings].exists)
+        XCTAssertTrue(app.navigationBars[kUIArduinoTitle].exists)
     }
 }

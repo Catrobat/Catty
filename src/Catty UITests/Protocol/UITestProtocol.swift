@@ -92,7 +92,7 @@ extension UITestProtocol {
         XCTAssertNotNil(app.staticTexts[kLocalizedScripts])
 
         waitForElementToAppear(app.toolbars.buttons[kLocalizedUserListAdd]).tap()
-        findSection(section, in: app)
+        findBrickSection(section, in: app)
 
         XCTAssertTrue(app.navigationBars[section].exists)
 
@@ -104,7 +104,7 @@ extension UITestProtocol {
         }
     }
 
-    private func findSection(_ name: String, in app: XCUIApplication) {
+    func findBrickSection(_ name: String, in app: XCUIApplication) {
         let maxTries = 8
 
         for _ in 0..<maxTries {
