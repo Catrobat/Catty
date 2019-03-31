@@ -45,6 +45,7 @@
                 waitUntilSoundPlayed.wait()
             }
             waitUntilSoundPlayed.unlock()
+            print("----- UNLOCK -----")
             usleep(10000) //will sleep for 0.01seconds. Needed to have consistent behaviour in the followin case: First Object has a "when tapped"
             //script with 2 "play sound and wait" bricks. 2nd object has a "when tapped" script with one "play sound and wait" brick. Tap first object,
             //then tap 2nd object. "play sound and wait" brick from 2nd object should not be audible because the 2nd "play sound and wait" brick from the

@@ -33,7 +33,7 @@ import Foundation
     let pitchEffect = PitchEffect()
     var soundEffects = [SoundEffectType: SoundEffect]()
     var instrumentChoice = 0
-    let connectionQueue = DispatchQueue(label: "ConnectionQueue")
+    let playerCreationQueue = DispatchQueue(label: "CreationQueue")
 
     init(mainOut: AKInput) {
         super.init()
@@ -42,25 +42,13 @@ import Foundation
 
     func playSound(fileName: String, filePath: String, condition: NSCondition?) {
         if let audioPlayer = audioPlayers[fileName] {
-            audioPlayer.soundCompletionHandler()
-            audioPlayer.stop()
-            if let cond = condition {
-                audioPlayer.accessibilityElements = [cond]
-            }
-            audioPlayer.play()
+            startExistingAudioPlayer(audioPlayer: audioPlayer, condition: condition)
         } else {
             let audioFileURL = createFileUrl(fileName: fileName, filePath: filePath)
             do {
                 let file = try AKAudioFile(forReading: audioFileURL)
                 let audioPlayer = AKPlayer(soundFile: file, addCompletionHandler: true)
-                audioPlayers[fileName] = audioPlayer
-                print("Start")
-                connectAudioPlayer(audioPlayer)
-                print("End")
-                if let cond = condition {
-                    audioPlayer.accessibilityElements = [cond]
-                }
-                audioPlayer.play()
+                startNonExistingAudioPlayer(audioPlayer: audioPlayer, fileName: fileName, condition: condition)
             } catch {
                 print("Could not load audio file with url \(audioFileURL.absoluteString)")
             }
@@ -129,8 +117,7 @@ import Foundation
 
     func stopAllAudioPlayers() {
         for (_, audioPlayer) in audioPlayers {
-            audioPlayer.stop()
-            audioPlayer.soundCompletionHandler()
+            audioPlayer.stopSound()
         }
     }
 
@@ -204,9 +191,19 @@ import Foundation
         audioPlayerMixer.connect(to: pitchEffect)
     }
 
-    private func connectAudioPlayer(_ audioPlayer: AKPlayer) {
-        _ = connectionQueue.sync {
-            audioPlayer.connect(to: audioPlayerMixer)
+    private func startNonExistingAudioPlayer(audioPlayer: AKPlayer, fileName: String, condition: NSCondition?) {
+        _ = playerCreationQueue.sync {
+            if let audioPlayer = audioPlayers[fileName] {
+                startExistingAudioPlayer(audioPlayer: audioPlayer, condition: condition)
+            } else {
+                audioPlayers[fileName] = audioPlayer
+                audioPlayer.connect(to: audioPlayerMixer)
+                audioPlayer.playSound(condition: condition)
+            }
         }
+    }
+
+    private func startExistingAudioPlayer(audioPlayer: AKPlayer, condition: NSCondition?) {
+        audioPlayer.playSound(condition: condition)
     }
 }

@@ -23,12 +23,11 @@
 import AudioKit
 import Foundation
 
-extension  AKPlayer {
-    
-    Wrapper für AKPlayer Schreiben. Play sound und Stop sound sollten beide in der selben Queue abgearbeitet werden für thread safety
+class AudioPlayer: AKAudioPlayer {
 
-    convenience init(soundFile: AVAudioFile, addCompletionHandler: Bool) {
-        self.init(audioFile: soundFile)
+    public init(soundFile: AVAudioFile, addCompletionHandler: Bool) throws {
+        try super.init(file: soundFile as! AKAudioFile)
+
         if addCompletionHandler {
             self.completionHandler = soundCompletionHandler
         }
@@ -45,8 +44,10 @@ extension  AKPlayer {
     }
 
     func playSound(condition: NSCondition?) {
-        self.stopSound()
-        RunLoop.current.run(until: Date(timeIntervalSinceNow: 0.002)) //Hack. Sonst spielt manchmal nichts mehr stop und play zu schnell nacheinander kommen.
+        if self.isPlaying {
+            self.stopSound()
+        }
+        RunLoop.current.run(until: Date(timeIntervalSinceNow: 0.005))
         if let cond = condition {
             self.accessibilityElements = [cond]
         }
@@ -56,5 +57,6 @@ extension  AKPlayer {
     func stopSound() {
         self.soundCompletionHandler()
         self.stop()
+        RunLoop.current.run(until: Date(timeIntervalSinceNow: 0.005))
     }
 }

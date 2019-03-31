@@ -174,7 +174,7 @@ import Foundation
     private func getAudioChannel(key: String) -> AudioChannel {
         channelCreationQueue.sync {
             if channels[key] == nil {
-                createNewAudioChannel(key: key)
+                _ = createNewAudioChannel(key: key)
             }
         }
         return channels[key]!
