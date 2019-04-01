@@ -24,20 +24,19 @@
 #define kAppStoreURL @"itms-apps://itunes.apple.com/app/" kAppStoreIdentifier
 
 #define kConnectionTimeout 15
+#if DEBUG == 1
+#define kBaseUrl @"https://web-test.catrob.at/pocketcode/"
+#else
 #define kBaseUrl @"https://share.catrob.at/pocketcode/"
-#define kTestUrl @"https://catroid-test.catrob.at/pocketcode/"
+#endif
 #define kConnectionHost kBaseUrl @"api/projects"
 #define kLoginOrRegisterUrlExtension @"api/loginOrRegister"
 #define kLoginUrlExtension @"api/login"
 #define kRegisterUrlExtension @"api/register"
 #define kReportProjectExtension @"api/reportProgram/reportProgram.json"
 #define kLoginOrRegisterUrl kBaseUrl kLoginOrRegisterUrlExtension
-#define kTestLoginOrRegisterUrl kTestUrl kLoginOrRegisterUrlExtension
 #define kLoginUrl kBaseUrl kLoginUrlExtension
-#define kTestLoginUrl kTestUrl kLoginUrlExtension
 #define kRegisterUrl kBaseUrl kRegisterUrlExtension
-#define kTestRegisterUrl kTestUrl kRegisterUrlExtension
-#define kTestReportProjectUrl kTestUrl kReportProjectExtension
 #define kReportProjectUrl kBaseUrl kReportProjectExtension
 #define kForumURL kBaseUrl @"help"
 #define kDownloadUrl kBaseUrl @"download"
