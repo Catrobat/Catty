@@ -37,15 +37,16 @@
         return CBInstruction.waitExecClosure { context, _ in
             let waitUntilSoundPlayed = NSCondition()
             waitUntilSoundPlayed.accessibilityHint = "0"
-
-            audioEngine.playSound(fileName: fileName, key: objectName, filePath: filePath, condition: waitUntilSoundPlayed)
-
+            
+            DispatchQueue.main.async {
+                audioEngine.playSound(fileName: fileName, key: objectName, filePath: filePath, condition: waitUntilSoundPlayed)
+            }
+            
             waitUntilSoundPlayed.lock()
             while waitUntilSoundPlayed.accessibilityHint == "0" {
                 waitUntilSoundPlayed.wait()
             }
             waitUntilSoundPlayed.unlock()
-            print("----- UNLOCK -----")
             usleep(10000) //will sleep for 0.01seconds. Needed to have consistent behaviour in the followin case: First Object has a "when tapped"
             //script with 2 "play sound and wait" bricks. 2nd object has a "when tapped" script with one "play sound and wait" brick. Tap first object,
             //then tap 2nd object. "play sound and wait" brick from 2nd object should not be audible because the 2nd "play sound and wait" brick from the

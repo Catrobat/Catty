@@ -26,7 +26,7 @@ import Foundation
 @objc class AudioChannel: NSObject {
     var subtreeOutputMixer = AKMixer()
     var audioPlayerMixer = AKMixer()
-    var audioPlayers = [String: AKPlayer]()
+    var audioPlayers = [String: AudioPlayer]()
     var sampler: Sampler?
     var drumSampler: Sampler?
     let panEffect = PanEffect()
@@ -47,7 +47,7 @@ import Foundation
             let audioFileURL = createFileUrl(fileName: fileName, filePath: filePath)
             do {
                 let file = try AKAudioFile(forReading: audioFileURL)
-                let audioPlayer = AKPlayer(soundFile: file, addCompletionHandler: true)
+                let audioPlayer = AudioPlayer(soundFile: file, addCompletionHandler: true)
                 startNonExistingAudioPlayer(audioPlayer: audioPlayer, fileName: fileName, condition: condition)
             } catch {
                 print("Could not load audio file with url \(audioFileURL.absoluteString)")
@@ -110,14 +110,14 @@ import Foundation
     }
 
     func pauseAllAudioPlayers() {
-        for (_, audioPlayer) in audioPlayers where audioPlayer.isPlaying {
+        for (_, audioPlayer) in audioPlayers {
                 audioPlayer.pause()
         }
     }
 
     func stopAllAudioPlayers() {
         for (_, audioPlayer) in audioPlayers {
-            audioPlayer.stopSound()
+            audioPlayer.stop()
         }
     }
 
@@ -191,19 +191,19 @@ import Foundation
         audioPlayerMixer.connect(to: pitchEffect)
     }
 
-    private func startNonExistingAudioPlayer(audioPlayer: AKPlayer, fileName: String, condition: NSCondition?) {
+    private func startNonExistingAudioPlayer(audioPlayer: AudioPlayer, fileName: String, condition: NSCondition?) {
         _ = playerCreationQueue.sync {
             if let audioPlayer = audioPlayers[fileName] {
                 startExistingAudioPlayer(audioPlayer: audioPlayer, condition: condition)
             } else {
                 audioPlayers[fileName] = audioPlayer
                 audioPlayer.connect(to: audioPlayerMixer)
-                audioPlayer.playSound(condition: condition)
+                audioPlayer.play(condition: condition)
             }
         }
     }
 
-    private func startExistingAudioPlayer(audioPlayer: AKPlayer, condition: NSCondition?) {
-        audioPlayer.playSound(condition: condition)
+    private func startExistingAudioPlayer(audioPlayer: AudioPlayer, condition: NSCondition?) {
+        audioPlayer.play(condition: condition)
     }
 }

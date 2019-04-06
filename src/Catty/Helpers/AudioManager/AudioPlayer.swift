@@ -23,40 +23,71 @@
 import AudioKit
 import Foundation
 
-class AudioPlayer: AKAudioPlayer {
+class AudioPlayer {
 
-    public init(soundFile: AVAudioFile, addCompletionHandler: Bool) throws {
-        try super.init(file: soundFile as! AKAudioFile)
+    let akPlayer: AKPlayer
+    var waitCondition: NSCondition?
+    var isPaused: Bool = false
 
+    let playingQueue = DispatchQueue(label: "PlayingQueue")
+
+    init(soundFile: AVAudioFile, addCompletionHandler: Bool) {
+        akPlayer = AKPlayer(audioFile: soundFile)
+        akPlayer.isLooping = false
         if addCompletionHandler {
-            self.completionHandler = soundCompletionHandler
+            akPlayer.completionHandler = soundCompletionHandler
         }
     }
 
     func soundCompletionHandler() {
-        if let conditionArray = self.accessibilityElements as? [NSCondition] {
-            for condition in conditionArray {
-                condition.accessibilityHint = "1"
-                condition.signal()
+        if let cond = self.waitCondition {
+            cond.accessibilityHint = "1"
+            print("----- Signal \(waitCondition) -----")
+            cond.signal()
+            waitCondition = nil
+        }
+    }
+
+    func play(condition: NSCondition?) {
+        _ = playingQueue.sync {
+            if akPlayer.isPlaying {
+                self.stop()
             }
-            self.accessibilityElements = nil
+            addCondition(condition)
+            akPlayer.play()
         }
     }
 
-    func playSound(condition: NSCondition?) {
-        if self.isPlaying {
-            self.stopSound()
-        }
-        RunLoop.current.run(until: Date(timeIntervalSinceNow: 0.005))
-        if let cond = condition {
-            self.accessibilityElements = [cond]
-        }
-        self.play()
-    }
-
-    func stopSound() {
+    func stop() {
         self.soundCompletionHandler()
-        self.stop()
-        RunLoop.current.run(until: Date(timeIntervalSinceNow: 0.005))
+        akPlayer.stop()
+        RunLoop.current.run(until: Date(timeIntervalSinceNow: 0.01)) //Hack. Sonst spielt manchmal nichts mehr stop und play zu schnell nacheinander kommen.
+    }
+
+    func pause() {
+        if akPlayer.isPlaying {
+            akPlayer.pause()
+            self.isPaused = true
+        }
+    }
+
+    func resume() {
+        if self.isPaused {
+            akPlayer.resume()
+            self.isPaused = false
+        }
+    }
+
+    func connect(to node: AKInput) {
+        akPlayer.connect(to: node)
+    }
+
+    func isPlaying() -> Bool {
+        return akPlayer.isPlaying
+    }
+
+    private func addCondition(_ condition: NSCondition?) {
+        print("----- Add Condition \(condition) -----")
+        self.waitCondition = condition
     }
 }
