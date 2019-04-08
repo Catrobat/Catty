@@ -82,7 +82,17 @@
                         [UIImage imageNamed:@"standardColors"],
                         [UIImage imageNamed:@"sliderColors"], nil];
   self.viewChanger = [[UISegmentedControl alloc] initWithItems:itemArray];
-  self.viewChanger.frame =CGRectMake(0, CGRectGetMaxY(self.toolBar.frame), self.view.frame.size.width, 40);
+  self.viewChanger.translatesAutoresizingMaskIntoConstraints = false;
+  [self.view addSubview:self.viewChanger];
+  
+  if (@available(iOS 11.0, *)) {
+      [self.viewChanger.widthAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.widthAnchor].active = YES;
+      [self.viewChanger.topAnchor constraintEqualToAnchor:self.toolBar.bottomAnchor].active = YES;
+  } else {
+      [self.viewChanger.widthAnchor constraintEqualToAnchor:self.view.widthAnchor].active = YES;
+      [self.viewChanger.topAnchor constraintEqualToAnchor:self.toolBar.bottomAnchor].active = YES;
+  }
+
   self.viewChanger.selectedSegmentIndex = 0;
   self.viewChanger.layer.cornerRadius = 0.0;
   self.viewChanger.layer.borderColor = [UIColor globalTintColor].CGColor;
@@ -92,8 +102,7 @@
   [self.viewChanger addTarget:self
                               action:@selector(viewChanged:)
                     forControlEvents:UIControlEventValueChanged];
-
-  [self.view addSubview:self.viewChanger];
+    
   self.rgbaView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMinY(self.toolBar.frame) + 80,self.view.frame.size.width , self.view.frame.size.height *0.40f)];
   self.rgbaSliderView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.rgbaView.frame),self.view.frame.size.width , self.view.frame.size.height *0.55f)];
   self.standardColors =[[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMinY(self.toolBar.frame) + 60, self.view.frame.size.width , self.view.frame.size.height)];
@@ -292,18 +301,28 @@
     [self updatePreview];
     [self updateRGBAView];
   };
-  
-  self.colorPicker = [[NKOColorPickerView alloc] initWithFrame:CGRectMake(0,self.view.frame.size.height * 0.05f, self.view.frame.size.width,self.view.frame.size.height * 0.3f) color:[UIColor colorWithRed:self.red green:self.green blue:self.blue alpha:self.opacity] andDidChangeColorBlock:colorDidChangeBlock];
+ 
+  self.colorPicker = [[NKOColorPickerView alloc] initWithFrame:CGRectZero color:[UIColor colorWithRed:self.red green:self.green blue:self.blue alpha:self.opacity] andDidChangeColorBlock:colorDidChangeBlock];
+    
   [self.rgbaView addSubview:self.colorPicker];
+  self.colorPicker.translatesAutoresizingMaskIntoConstraints = false;
+  [self.colorPicker.widthAnchor constraintEqualToConstant:self.view.frame.size.width].active = YES;
+  [self.colorPicker.heightAnchor constraintEqualToConstant:self.view.frame.size.height * 0.3f].active = YES;
+  [self.colorPicker.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = YES;
+  [self.colorPicker.topAnchor constraintEqualToAnchor:self.viewChanger.bottomAnchor constant:55].active = YES;
 }
 
 - (void)setupBrushPreview
 {
-  self.brushView = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.center.x-self.view.frame.size.height * 0.05f, CGRectGetMinY(self.toolBar.frame) + 87.5, self.view.frame.size.height * 0.1f, self.view.frame.size.height * 0.05f)];
+  self.brushView = [[UIImageView alloc] init];
+  [self.view addSubview:self.brushView];
+  self.brushView.translatesAutoresizingMaskIntoConstraints = false;
+  [self.brushView.widthAnchor constraintEqualToConstant:self.view.frame.size.height * 0.1f].active = YES;
+  [self.brushView.heightAnchor constraintEqualToConstant:self.view.frame.size.height * 0.05f].active = YES;
+  [self.brushView.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = YES;
+  [self.brushView.topAnchor constraintEqualToAnchor:self.viewChanger.bottomAnchor constant:12].active = YES;
   self.brushView.layer.cornerRadius = 10.0f;
   [self updatePreview];
-  [self.view addSubview:self.brushView];
-
 }
 
 
@@ -437,18 +456,6 @@
   [self.rgbaView addSubview:self.colorPicker];
   [self.rgbaView bringSubviewToFront:self.colorPicker];
 }
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 - (IBAction)closeAction:(UIBarButtonItem *)sender {
     [self.delegate closeColorPicker:self];
