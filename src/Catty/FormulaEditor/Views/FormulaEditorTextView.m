@@ -26,6 +26,7 @@
 @property (nonatomic, weak) FormulaEditorViewController *formulaEditorViewController;
 @property (nonatomic, strong) UIButton *backspaceButton;
 @property (nonatomic, strong) UITapGestureRecognizer *tapRecognizer;
+@property (nonatomic, strong) NSString *highlightedText;
 @end
 
 @implementation FormulaEditorTextView
@@ -171,6 +172,7 @@
     if(startIndex == endIndex)
     {
         self.attributedText = formulaString;
+        self.highlightedText = @"";
         UITextPosition *cursorPosition = [self positionFromPosition:self.beginningOfDocument
                                                                    offset:cursorPostionIndex];
         self.selectedTextRange = [self textRangeFromPosition:cursorPosition toPosition:cursorPosition];
@@ -180,6 +182,7 @@
         UITextPosition *cursorPosition = [self positionFromPosition:self.beginningOfDocument
                                                                    offset:endIndex];
         self.attributedText = formulaString;
+        self.highlightedText = [formulaString.string substringWithRange:NSMakeRange(location, length)];
         self.selectedTextRange = [self textRangeFromPosition:cursorPosition toPosition:cursorPosition];
         
     }
@@ -192,6 +195,25 @@
 - (void)highlightAll
 {
     
+}
+
+- (NSString*)getHighlightedText
+{
+    if(self.highlightedText.length > 2 &&
+       [self  hasApostropheAtBeginAndEnd:self.highlightedText]) {
+        NSRange textRange = NSMakeRange(1, self.highlightedText.length - 2);
+        NSString* highlightedTextWithoutApostrophe = [self.highlightedText substringWithRange:textRange];
+        return highlightedTextWithoutApostrophe;
+    } else {
+        return @"";
+    }
+}
+- (BOOL)hasApostropheAtBeginAndEnd:(NSString *)text
+{
+    BOOL containsFirstApostrophe = [[text substringWithRange:NSMakeRange(0, 1)]  isEqual: @"'"];
+    BOOL containsSecondApostrophe = [[text substringWithRange:NSMakeRange(text.length-1, 1)] isEqual: @"'"];
+    
+    return containsFirstApostrophe && containsSecondApostrophe;
 }
 
 - (void)update

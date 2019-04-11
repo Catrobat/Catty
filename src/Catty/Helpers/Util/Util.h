@@ -65,7 +65,8 @@ if (__functor) __functor(__VA_ARGS__);  \
                                 minInputLength:(NSUInteger)minInputLength
                                 maxInputLength:(NSUInteger)maxInputLength
                                         isList:(BOOL)isList
-                                  andTextField:(FormulaEditorTextView *)textView;
+                                  andTextField:(FormulaEditorTextView *)textView
+                                   initialText:(NSString*)initialText;
 
 + (NSString*)appName;
 
