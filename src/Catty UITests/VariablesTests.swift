@@ -168,13 +168,13 @@ class VariablesTests: XCTestCase, UITestProtocol {
         app.collectionViews.cells.otherElements.containing(.staticText, identifier: kLocalizedSetVariable).children(matching: .button).element.tap()
         XCTAssert(waitForElementToAppear(app.buttons[kLocalizedCancel]).exists)
 
-        app.buttons["ABC"].tap()
+        app.buttons[kUIFEAddNewText].tap()
         let alert = waitForElementToAppear(app.alerts[kUIFENewText])
         alert.textFields.firstMatch.typeText(testVariable)
         app.buttons[kLocalizedOK].tap()
         app.buttons[kLocalizedDone].tap()
         app.collectionViews.cells.otherElements.containing(.staticText, identifier: kLocalizedSetVariable).children(matching: .button).element.tap()
-        app.buttons["ABC"].tap()
+        app.buttons[kUIFEAddNewText].tap()
         XCTAssertEqual(alert.textFields.firstMatch.value as! String, testVariable)
     }
     func testCreateVariableWithMarkedText() {
@@ -185,7 +185,7 @@ class VariablesTests: XCTestCase, UITestProtocol {
         app.collectionViews.cells.otherElements.containing(.staticText, identifier: kLocalizedSetVariable).children(matching: .button).element.tap()
         XCTAssert(waitForElementToAppear(app.buttons[kLocalizedCancel]).exists)
 
-        app.buttons["ABC"].tap()
+        app.buttons[kUIFEAddNewText].tap()
         let newTextAlert = waitForElementToAppear(app.alerts[kUIFENewText])
         newTextAlert.textFields.firstMatch.typeText(testVariable)
         app.buttons[kLocalizedOK].tap()
