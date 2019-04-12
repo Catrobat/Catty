@@ -19,6 +19,8 @@ opt_out_usage
 default_platform(:ios)
 platform :ios do
 
+  xcversion(version: "10.1")
+
   $catty_schemes = {
     "release" => "Catty (RELEASE)",
     "debug" => "Catty (DEBUG)"
