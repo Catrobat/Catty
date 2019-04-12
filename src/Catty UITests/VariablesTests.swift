@@ -122,7 +122,7 @@ class VariablesTests: CattyUITest {
         XCTAssertTrue(waitForElementToAppear(app.buttons[" \"" + testVariable + "\" "]).exists)
     }
 
-    func testCreateVariableAndTapSelecetedRowInPickerView() {
+    func testCreateVariableAndTapSelectedRowInPickerView() {
         let testVariable = ["testVariable1", "testVariable2", "testVariable3"]
 
         createNewProjectAndAddSetVariableBrick(name: "Test Project")

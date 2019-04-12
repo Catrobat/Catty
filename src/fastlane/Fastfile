@@ -94,37 +94,75 @@ platform :ios do
     #sh ("rm -r crowdin.old")
   end
 
+  #https://github.com/lyndsey-ferguson/fastlane-plugin-test_center
   desc "Run tests"
   lane :tests do
     clear_derived_data
     reset_simulator_contents
-    
-    #run_tests(devices: ["iPhone 7"],
-    #          scheme: $catty_schemes["debug"])
-    
-    #https://github.com/fastlane/fastlane/issues/13414
-    #Workaround for parallel testing issue
-    scan(devices: ["iPhone 7 (12.0)"],
-      scheme: $catty_schemes["debug"], 
-      output_types: "", 
-      fail_build: false)
 
-    trainer(output_directory: "./fastlane/test_output/")
-  end
+    test_run_block = lambda do |testrun_info|
+      failed_test_count = testrun_info[:failed].size
 
-  #https://github.com/fastlane/fastlane/issues/13414
-  fastlane_require 'scan'
-  module ::Scan
-    class ErrorHandler
-      class << self
-        alias_method :orig_handle_build_error, :handle_build_error
-        def handle_build_error(output)
-          # Only call the original handle_build_error method if we can tell that there weren't failing tests
-          orig_handle_build_error(output) if (output =~ /Failing tests:/).nil?
+      if failed_test_count > 0
+        UI.important('The run of tests would finish with failures due to fragile tests here.')
+
+        try_attempt = testrun_info[:try_count]
+        if try_attempt < 3
+          UI.header('Since we are using :multi_scan, we can re-run just those failing tests!')
         end
       end
     end
+      
+    result = multi_scan(devices: ["iPhone 7 (12.0)"],
+      project: File.absolute_path('../Catty.xcodeproj'),
+      try_count: 3,
+      fail_build: false,
+      scheme: $catty_schemes["debug"],
+      testrun_completed_block: test_run_block
+    )
+    unless result[:failed_testcount].zero?
+      UI.message("There are #{result[:failed_testcount]} legitimate failing tests")
+    end
+
+    collate_junit_reports(
+      reports: ["./fastlane/test_output/results-BluetoothHelperTests/report.junit", 
+                "./fastlane/test_output/results-Catty Tests/report.junit",
+                "./fastlane/test_output/results-Catty UITests/report.junit"],
+      collated_report: './fastlane/test_output/TestSummaries.xml'
+    )
   end
+
+  #desc "Run tests" -> parallel
+  #lane :tests do
+  #  clear_derived_data
+  #  reset_simulator_contents
+  #  
+  #  #run_tests(devices: ["iPhone 7"],
+  #  #          scheme: $catty_schemes["debug"])
+  #  
+  #  #https://github.com/fastlane/fastlane/issues/13414
+  #  #Workaround for parallel testing issue
+  #  scan(devices: ["iPhone 7 (12.0)"],
+  #    scheme: $catty_schemes["debug"], 
+  #    output_types: "", 
+  #    fail_build: false)
+  #
+  #  trainer(output_directory: "./fastlane/test_output/")
+  #end
+
+  #https://github.com/fastlane/fastlane/issues/13414
+  #fastlane_require 'scan'
+  #module ::Scan
+  #  class ErrorHandler
+  #    class << self
+  #      alias_method :orig_handle_build_error, :handle_build_error
+  #      def handle_build_error(output)
+  #        # Only call the original handle_build_error method if we can tell that there weren't failing tests
+  #        orig_handle_build_error(output) if (output =~ /Failing tests:/).nil?
+  #      end
+  #    end
+  #  end
+  #end
 
   desc "Release Pocket Code"
   lane :release do
