@@ -39,19 +39,12 @@ class ProjectTVCTests: XCTestCase, UITestProtocol {
         let projectName = "projectName"
         let objectName = String(repeating: "a", count: 250)
 
-        //Create new Project
-        app.tables.staticTexts[kLocalizedNew].tap()
-        let alertQuery = app.alerts[kLocalizedNewProject]
-        alertQuery.textFields[kLocalizedEnterYourProjectNameHere].typeText(projectName)
-        app.alerts[kLocalizedNewProject].buttons[kLocalizedOK].tap()
+        createProject(name: projectName, in: app)
         XCTAssertNotNil(waitForElementToAppear(app.navigationBars[projectName]))
+        XCTAssertEqual(1, app.tables.cells.count)
 
-        //Add new Object
-        app.toolbars.buttons[kLocalizedUserListAdd].tap()
-        app.alerts[kLocalizedAddObject].textFields[kLocalizedEnterYourObjectNameHere].typeText(objectName)
-        app.alerts[kLocalizedAddObject].buttons[kLocalizedOK].tap()
-
-        XCTAssertNotNil(waitForElementToAppear(app.buttons[kLocalizedDrawNewImage]).tap())
+        addObjectAndDrawNewImage(name: objectName, in: app)
+        XCTAssertEqual(2, app.tables.cells.count)
     }
 
     func testCreateObjectWithMaxLengthPlusOne() {
