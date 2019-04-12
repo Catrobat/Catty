@@ -39,32 +39,32 @@ class ProjectsTVCTests: XCTestCase, UITestProtocol {
     }
 
     func testCanAddNewProject() {
+        let testProject = "testProject"
+
         app.tables.staticTexts[kLocalizedProjects].tap()
         app.toolbars.buttons[kLocalizedUserListAdd].tap()
-        let testProject = "testProject"
 
         let alertQuery = waitForElementToAppear(app.alerts[kLocalizedNewProject])
         alertQuery.textFields[kLocalizedEnterYourProjectNameHere].typeText(testProject)
 
         app.alerts[kLocalizedNewProject].buttons[kLocalizedOK].tap()
-
         XCTAssert(waitForElementToAppear(app.navigationBars[testProject]).exists)
 
         app.navigationBars.buttons[kLocalizedProjects].tap()
-
         XCTAssert(app.tables.staticTexts[testProject].exists)
     }
 
     func testCanCancelAddNewProject() {
+        let testProject = "testProject"
+
         app.tables.staticTexts[kLocalizedProjects].tap()
         app.toolbars.buttons[kLocalizedUserListAdd].tap()
-        let testProject = "testProject"
 
         let alertQuery = app.alerts[kLocalizedNewProject]
         alertQuery.textFields[kLocalizedEnterYourProjectNameHere].typeText(testProject)
 
         app.alerts[kLocalizedNewProject].buttons[kLocalizedCancel].tap()
-
+        XCTAssertFalse(app.tables.staticTexts[testProject].exists)
         XCTAssert(app.navigationBars[kLocalizedProjects].exists)
     }
 
