@@ -97,7 +97,10 @@ extension UITestProtocol {
         XCTAssertTrue(app.navigationBars[section].exists)
 
         for _ in 0..<maxPageLengthTries {
-            if findCell(with: labels, in: app.collectionViews.firstMatch) {
+            if let cell = findCell(with: labels, in: app.collectionViews.firstMatch) {
+                cell.tap()
+
+                XCTAssert(waitForElementToAppear(app.navigationBars[kLocalizedScripts]).exists)
                 break
             }
             app.swipeUp()
@@ -115,7 +118,7 @@ extension UITestProtocol {
         }
     }
 
-    private func findCell(with labels: [String], in collectionView: XCUIElement) -> Bool {
+    private func findCell(with labels: [String], in collectionView: XCUIElement) -> XCUIElement? {
         for cellIndex in 0...collectionView.cells.count {
             let cell = collectionView.cells.element(boundBy: cellIndex)
 
@@ -128,11 +131,10 @@ extension UITestProtocol {
                     }
                 }
                 if allLabelsPresent {
-                    cell.tap()
-                    return true
+                    return cell
                 }
             }
         }
-        return false
+        return nil
     }
 }
