@@ -14,7 +14,7 @@ pipeline {
   stages {
     stage('Carthage') {
       steps {
-	sh 'xcode-select -s /Applications/Xcode10.1.app'
+	sh 'sudo xcode-select -s /Applications/Xcode10.1.app'
         sh 'make init'
       }
     }
