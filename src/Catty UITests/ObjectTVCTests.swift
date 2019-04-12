@@ -160,7 +160,7 @@ class ObjectTVCTests: CattyUITest {
 
         app.navigationBars.buttons[kLocalizedPocketCode].tap()
         app.tables.staticTexts[kLocalizedContinue].tap()
-        waitForElementToAppear(waitForElementToAppear(app.tables.staticTexts[copiedObjectName])).tap()
+        waitForElementToAppear(app.tables.staticTexts[copiedObjectName]).tap()
 
         app.staticTexts[kLocalizedScripts].tap()
         XCTAssertEqual(3, app.collectionViews.cells.count)
