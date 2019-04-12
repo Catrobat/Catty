@@ -60,6 +60,11 @@ void uncaughtExceptionHandler(NSException *exception)
         [defaults setBool:NO forKey:kUseArduinoBricks];
     }
     [defaults synchronize];
+
+    if ([[[NSProcessInfo processInfo] arguments] containsObject: @"UITests"]) {
+        UIApplication.sharedApplication.keyWindow.layer.speed = 10.0;
+    }
+
     return YES;
 }
 

@@ -26,10 +26,6 @@ class CattyUITest: XCTestCase, UITestProtocol {
 
     var app: XCUIApplication!
 
-    override func beforeAll() {
-        UIApplication.shared.keyWindow?.layer.speed = 20
-    }
-
     override func setUp() {
         super.setUp()
 
