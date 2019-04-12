@@ -52,6 +52,6 @@ class ProjectTVCTests: CattyUITest {
         app.alerts[kLocalizedAddObject].textFields[kLocalizedEnterYourObjectNameHere].typeText(objectName)
         app.alerts[kLocalizedAddObject].buttons[kLocalizedOK].tap()
 
-        XCTAssert(app.alerts[kLocalizedPocketCode].exists)
+        XCTAssert(waitForElementToAppear(app.alerts[kLocalizedPocketCode]).exists)
     }
 }

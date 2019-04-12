@@ -27,7 +27,7 @@ class PocketCodeMainScreenTests: CattyUITest {
     func testContinue() {
         app.tables.staticTexts[kLocalizedContinue].tap()
 
-        XCTAssert(app.navigationBars[kLocalizedMyFirstProject].exists)
+        XCTAssert(waitForElementToAppear(app.navigationBars[kLocalizedMyFirstProject]).exists)
     }
 
     func testNew() {

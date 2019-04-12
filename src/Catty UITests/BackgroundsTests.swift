@@ -63,7 +63,7 @@ class BackgroundsTests: CattyUITest {
 
     func testBackgroundsCanEnterBackgrounds() {
         app.tables.staticTexts[kLocalizedContinue].tap()
-        app.tables.staticTexts[kLocalizedBackground].tap()
+        waitForElementToAppear(app.tables.staticTexts[kLocalizedBackground]).tap()
         app.tables.staticTexts[kLocalizedBackgrounds].tap()
 
         XCTAssert(app.navigationBars[kLocalizedBackgrounds].exists)

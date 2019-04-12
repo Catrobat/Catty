@@ -31,18 +31,18 @@ class ObjectTVCTests: CattyUITest {
 
         //check every mole for script
         for object in projectObjects {
-            app.tables.staticTexts[object].tap()
+            waitForElementToAppear(app.tables.staticTexts[object]).tap()
             app.tables.staticTexts[kLocalizedScripts].tap()
             XCTAssert(app.navigationBars[kLocalizedScripts].buttons[object].exists)
             app.navigationBars[kLocalizedScripts].buttons[object].tap()
             app.navigationBars[object].buttons[kLocalizedMyFirstProject].tap()
-            XCTAssert(app.navigationBars[kLocalizedMyFirstProject].exists)
+            XCTAssert(waitForElementToAppear(app.navigationBars[kLocalizedMyFirstProject]).exists)
         }
     }
 
     func testScriptsCanDeleteBrickSetSizeTo() {
         app.tables.staticTexts[kLocalizedContinue].tap()
-        app.tables.staticTexts["Mole 1"].tap()
+        waitForElementToAppear(app.tables.staticTexts["Mole 1"]).tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
 
         //delete the SetSizeTo brick
@@ -57,7 +57,7 @@ class ObjectTVCTests: CattyUITest {
 
     func testScriptsCanDeleteBrickLoop() {
         app.tables.staticTexts[kLocalizedContinue].tap()
-        app.tables.staticTexts["Mole 1"].tap()
+        waitForElementToAppear(app.tables.staticTexts["Mole 1"]).tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
 
         //delete the EndOfLoop
@@ -72,7 +72,7 @@ class ObjectTVCTests: CattyUITest {
 
     func testScriptsCanCopyForeverBrick() {
         app.tables.staticTexts[kLocalizedContinue].tap()
-        app.tables.staticTexts["Mole 1"].tap()
+        waitForElementToAppear(app.tables.staticTexts["Mole 1"]).tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
 
         //copy the Forever brick
@@ -87,7 +87,7 @@ class ObjectTVCTests: CattyUITest {
 
     func testScriptsCanDeleteWhenProjectStartedBrick() {
         app.tables.staticTexts[kLocalizedContinue].tap()
-        app.tables.staticTexts["Mole 1"].tap()
+        waitForElementToAppear(app.tables.staticTexts["Mole 1"]).tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
 
         //delete the WhenProjectStartedBrick
@@ -105,7 +105,7 @@ class ObjectTVCTests: CattyUITest {
 
     func testScriptsCanDeleteWaitBrick() {
         app.tables.staticTexts[kLocalizedContinue].tap()
-        app.tables.staticTexts["Mole 1"].tap()
+        waitForElementToAppear(app.tables.staticTexts["Mole 1"]).tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
 
         app.collectionViews.cells.element(boundBy: 4).staticTextBeginsWith(kLocalizedWait).tap()
@@ -117,7 +117,7 @@ class ObjectTVCTests: CattyUITest {
 
     func testLooksCanEnterSingleLook() {
         app.tables.staticTexts[kLocalizedContinue].tap()
-        app.tables.staticTexts["Mole 1"].tap()
+        waitForElementToAppear(app.tables.staticTexts["Mole 1"]).tap()
         app.tables.staticTexts[kLocalizedLooks].tap()
 
         XCTAssert(app.navigationBars[kLocalizedLooks].exists)
@@ -160,7 +160,7 @@ class ObjectTVCTests: CattyUITest {
 
         app.navigationBars.buttons[kLocalizedPocketCode].tap()
         app.tables.staticTexts[kLocalizedContinue].tap()
-        app.tables.staticTexts[copiedObjectName].tap()
+        waitForElementToAppear(waitForElementToAppear(app.tables.staticTexts[copiedObjectName])).tap()
 
         app.staticTexts[kLocalizedScripts].tap()
         XCTAssertEqual(3, app.collectionViews.cells.count)

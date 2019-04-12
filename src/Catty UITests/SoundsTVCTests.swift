@@ -28,7 +28,7 @@ class SoundsTVCTests: CattyUITest {
         let soundName = String(repeating: "a", count: 250)
 
         app.tables.staticTexts[kLocalizedContinue].tap()
-        app.tables.staticTexts["Mole 1"].tap()
+        waitForElementToAppear(app.tables.staticTexts["Mole 1"]).tap()
         app.tables.staticTexts[kLocalizedSounds].tap()
 
         app.tables.staticTexts.firstMatch.swipeLeft()
@@ -59,14 +59,14 @@ class SoundsTVCTests: CattyUITest {
 
         app.tables.staticTexts[kLocalizedContinue].tap()
         for object in projectObjects {
-            app.tables.staticTexts[object].tap()
+            waitForElementToAppear(app.tables.staticTexts[object]).tap()
             app.tables.staticTexts[testElement].tap()
             XCTAssert(app.navigationBars[testElement].buttons[object].exists)
             app.navigationBars[testElement].buttons[object].tap()
             app.navigationBars[object].buttons[kLocalizedMyFirstProject].tap()
 
             let projectVC = waitForElementToAppear(app.navigationBars[kLocalizedMyFirstProject])
-            XCTAssert(projectVC.buttons[kLocalizedPocketCode].exists)
+            XCTAssert(waitForElementToAppear(projectVC.buttons[kLocalizedPocketCode]).exists)
         }
     }
 }

@@ -76,7 +76,7 @@ class ScriptCollectionVCTests: CattyUITest {
 
         alert.textFields[kLocalizedEnterYourMessageHere].typeText(message + "b")
         alert.buttons[kLocalizedOK].tap()
-        XCTAssert(app.alerts[kLocalizedPocketCode].exists)
+        XCTAssert(waitForElementToAppear(app.alerts[kLocalizedPocketCode]).exists)
     }
 
     func testWaitBrick() {
