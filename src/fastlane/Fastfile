@@ -16,11 +16,11 @@
 ENV["FASTLANE_SKIP_UPDATE_CHECK"] = "1"
 opt_out_usage
 
-#xcode_select "/Applications/Xcode10.1.app"
-xcversion(version: "10.1")
-
 default_platform(:ios)
 platform :ios do
+
+  xcode_select "/Applications/Xcode10.1.app"
+  xcversion(version: "10.1")
 
   $catty_schemes = {
     "release" => "Catty (RELEASE)",
