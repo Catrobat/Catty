@@ -22,20 +22,9 @@
 
 import XCTest
 
-class MyFirstProjectTests: XCTestCase, UITestProtocol {
-
-    override func setUp() {
-        super.setUp()
-
-        continueAfterFailure = false
-        XCUIApplication().launch()
-
-        dismissWelcomeScreenIfShown()
-        restoreDefaultProject()
-    }
+class MyFirstProjectTests: CattyUITest {
 
     func testCanDeleteMultipleObjectsViaEditMode() {
-        let app = XCUIApplication()
         app.tables.staticTexts[kLocalizedProjects].tap()
         app.tables.staticTexts[kLocalizedMyFirstProject].tap()
         app.navigationBars[kLocalizedMyFirstProject].buttons[kLocalizedEdit].tap()
@@ -52,7 +41,6 @@ class MyFirstProjectTests: XCTestCase, UITestProtocol {
     }
 
     func testCanRenameProjectViaEditMode() {
-        let app = XCUIApplication()
         app.tables.staticTexts[kLocalizedProjects].tap()
         app.tables.staticTexts[kLocalizedMyFirstProject].tap()
         app.navigationBars[kLocalizedMyFirstProject].buttons[kLocalizedEdit].tap()
@@ -79,7 +67,6 @@ class MyFirstProjectTests: XCTestCase, UITestProtocol {
     }
 
     func testCanAbortRenameProjectViaEditMode() {
-        let app = XCUIApplication()
         app.tables.staticTexts[kLocalizedProjects].tap()
         app.tables.staticTexts[kLocalizedMyFirstProject].tap()
         app.navigationBars[kLocalizedMyFirstProject].buttons[kLocalizedEdit].tap()
@@ -105,7 +92,6 @@ class MyFirstProjectTests: XCTestCase, UITestProtocol {
     }
 
     func testCanShowAndHideDetailsViaEditMode() {
-        let app = XCUIApplication()
         app.tables.staticTexts[kLocalizedProjects].tap()
         app.tables.staticTexts[kLocalizedMyFirstProject].tap()
         app.navigationBars[kLocalizedMyFirstProject].buttons[kLocalizedEdit].tap()
@@ -129,7 +115,6 @@ class MyFirstProjectTests: XCTestCase, UITestProtocol {
     }
 
     func testCanEditDescriptionViaEditMode() {
-        let app = XCUIApplication()
         app.tables.staticTexts[kLocalizedProjects].tap()
         app.tables.staticTexts[kLocalizedMyFirstProject].tap()
         app.navigationBars[kLocalizedMyFirstProject].buttons[kLocalizedEdit].tap()
@@ -151,7 +136,6 @@ class MyFirstProjectTests: XCTestCase, UITestProtocol {
     }
 
     func testCanAbortEditDescriptionViaEditMode() {
-        let app = XCUIApplication()
         app.tables.staticTexts[kLocalizedProjects].tap()
         app.tables.staticTexts[kLocalizedMyFirstProject].tap()
         app.navigationBars[kLocalizedMyFirstProject].buttons[kLocalizedEdit].tap()
@@ -164,7 +148,6 @@ class MyFirstProjectTests: XCTestCase, UITestProtocol {
     }
 
     func testCanAbortDeleteSingleObjectViaSwipe() {
-        let app = XCUIApplication()
         app.tables.staticTexts[kLocalizedProjects].tap()
         app.tables.staticTexts[kLocalizedMyFirstProject].tap()
         let tablesQuery = app.tables
@@ -178,7 +161,6 @@ class MyFirstProjectTests: XCTestCase, UITestProtocol {
     }
 
     func testCanDeleteSingleObjectViaSwipe() {
-        let app = XCUIApplication()
         app.tables.staticTexts[kLocalizedProjects].tap()
         app.tables.staticTexts[kLocalizedMyFirstProject].tap()
         let tablesQuery = app.tables
@@ -192,7 +174,6 @@ class MyFirstProjectTests: XCTestCase, UITestProtocol {
     }
 
     func testCanRenameSingleObjectViaSwipe() {
-        let app = XCUIApplication()
         app.tables.staticTexts[kLocalizedProjects].tap()
         app.tables.staticTexts[kLocalizedMyFirstProject].tap()
         let tablesQuery = app.tables
@@ -211,7 +192,6 @@ class MyFirstProjectTests: XCTestCase, UITestProtocol {
     }
 
     func testCanAbortRenameSingleObjectViaSwipe() {
-        let app = XCUIApplication()
         app.tables.staticTexts[kLocalizedProjects].tap()
         app.tables.staticTexts[kLocalizedMyFirstProject].tap()
         let tablesQuery = app.tables
@@ -230,7 +210,6 @@ class MyFirstProjectTests: XCTestCase, UITestProtocol {
     }
 
     func testCanCopySingleObjectViaSwipe() {
-        let app = XCUIApplication()
         app.tables.staticTexts[kLocalizedProjects].tap()
         app.tables.staticTexts[kLocalizedMyFirstProject].tap()
         let tablesQuery = app.tables
@@ -244,7 +223,6 @@ class MyFirstProjectTests: XCTestCase, UITestProtocol {
     }
 
     func testCanAbortSwipe() {
-        let app = XCUIApplication()
         app.tables.staticTexts[kLocalizedProjects].tap()
         app.tables.staticTexts[kLocalizedMyFirstProject].tap()
         let tablesQuery = app.tables

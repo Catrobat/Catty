@@ -22,29 +22,17 @@
 
 import XCTest
 
-class ObjectTVCTests: XCTestCase, UITestProtocol {
-
-    override func setUp() {
-        super.setUp()
-
-        continueAfterFailure = false
-        XCUIApplication().launch()
-
-        dismissWelcomeScreenIfShown()
-        restoreDefaultProject()
-    }
+class ObjectTVCTests: CattyUITest {
 
     func testScriptsCanEnterScriptsOfAllMoles() {
-        let app = XCUIApplication()
-        let appTables = app.tables
         let projectObjects = ["Mole 1", "Mole 2", "Mole 3", "Mole 4"]
 
-        appTables.staticTexts[kLocalizedContinue].tap()
+        app.tables.staticTexts[kLocalizedContinue].tap()
 
         //check every mole for script
         for object in projectObjects {
-            appTables.staticTexts[object].tap()
-            appTables.staticTexts[kLocalizedScripts].tap()
+            app.tables.staticTexts[object].tap()
+            app.tables.staticTexts[kLocalizedScripts].tap()
             XCTAssert(app.navigationBars[kLocalizedScripts].buttons[object].exists)
             app.navigationBars[kLocalizedScripts].buttons[object].tap()
             app.navigationBars[object].buttons[kLocalizedMyFirstProject].tap()
@@ -53,8 +41,6 @@ class ObjectTVCTests: XCTestCase, UITestProtocol {
     }
 
     func testScriptsCanDeleteBrickSetSizeTo() {
-        let app = XCUIApplication()
-
         app.tables.staticTexts[kLocalizedContinue].tap()
         app.tables.staticTexts["Mole 1"].tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
@@ -70,8 +56,6 @@ class ObjectTVCTests: XCTestCase, UITestProtocol {
     }
 
     func testScriptsCanDeleteBrickLoop() {
-        let app = XCUIApplication()
-
         app.tables.staticTexts[kLocalizedContinue].tap()
         app.tables.staticTexts["Mole 1"].tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
@@ -87,8 +71,6 @@ class ObjectTVCTests: XCTestCase, UITestProtocol {
     }
 
     func testScriptsCanCopyForeverBrick() {
-        let app = XCUIApplication()
-
         app.tables.staticTexts[kLocalizedContinue].tap()
         app.tables.staticTexts["Mole 1"].tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
@@ -104,8 +86,6 @@ class ObjectTVCTests: XCTestCase, UITestProtocol {
     }
 
     func testScriptsCanDeleteWhenProjectStartedBrick() {
-        let app = XCUIApplication()
-
         app.tables.staticTexts[kLocalizedContinue].tap()
         app.tables.staticTexts["Mole 1"].tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
@@ -124,7 +104,6 @@ class ObjectTVCTests: XCTestCase, UITestProtocol {
     }
 
     func testScriptsCanDeleteWaitBrick() {
-        let app = XCUIApplication()
         app.tables.staticTexts[kLocalizedContinue].tap()
         app.tables.staticTexts["Mole 1"].tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
@@ -137,8 +116,6 @@ class ObjectTVCTests: XCTestCase, UITestProtocol {
     }
 
     func testLooksCanEnterSingleLook() {
-        let app = XCUIApplication()
-
         app.tables.staticTexts[kLocalizedContinue].tap()
         app.tables.staticTexts["Mole 1"].tap()
         app.tables.staticTexts[kLocalizedLooks].tap()
@@ -147,7 +124,6 @@ class ObjectTVCTests: XCTestCase, UITestProtocol {
     }
 
     func testCopyObjectWithIfBricks() {
-        let app = XCUIApplication()
         let projectName = "testProject"
         let objectName = "testObject"
         let copiedObjectName = objectName + " (1)"

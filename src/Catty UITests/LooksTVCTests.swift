@@ -22,28 +22,16 @@
 
 import XCTest
 
-class LooksTVCTests: XCTestCase, UITestProtocol {
-
-    override func setUp() {
-        super.setUp()
-
-        continueAfterFailure = false
-        XCUIApplication().launch()
-
-        dismissWelcomeScreenIfShown()
-        restoreDefaultProject()
-    }
+class LooksTVCTests: CattyUITest {
 
     func testLengthOfLook() {
-        let app = XCUIApplication()
-        let appTables = app.tables
         let lookName = String(repeating: "a", count: 250)
 
-        appTables.staticTexts[kLocalizedContinue].tap()
-        appTables.staticTexts["Mole 1"].tap()
-        appTables.staticTexts[kLocalizedLooks].tap()
+        app.tables.staticTexts[kLocalizedContinue].tap()
+        app.tables.staticTexts["Mole 1"].tap()
+        app.tables.staticTexts[kLocalizedLooks].tap()
 
-        appTables.staticTexts.firstMatch.swipeLeft()
+        app.tables.staticTexts.firstMatch.swipeLeft()
         app.buttons[kLocalizedMore].tap()
         app.buttons[kLocalizedRename].tap()
 
@@ -56,7 +44,7 @@ class LooksTVCTests: XCTestCase, UITestProtocol {
 
         XCTAssertTrue(app.toolbars.buttons[kLocalizedUserListAdd].exists)
 
-        appTables.staticTexts.firstMatch.swipeLeft()
+        app.tables.staticTexts.firstMatch.swipeLeft()
         app.buttons[kLocalizedMore].tap()
         app.buttons[kLocalizedRename].tap()
 
@@ -66,18 +54,15 @@ class LooksTVCTests: XCTestCase, UITestProtocol {
     }
 
     func testLooksCanEnterLooksOfAllMoles() {
-        let app = XCUIApplication()
-        let appTables = app.tables
-
         let testElement = kLocalizedLooks
 
         let projectObjects = ["Mole 1", "Mole 2", "Mole 3", "Mole 4"]
 
-        appTables.staticTexts[kLocalizedContinue].tap()
+        app.tables.staticTexts[kLocalizedContinue].tap()
 
         for object in projectObjects {
-            appTables.staticTexts[object].tap()
-            appTables.staticTexts[testElement].tap()
+            app.tables.staticTexts[object].tap()
+            app.tables.staticTexts[testElement].tap()
             XCTAssert(app.navigationBars[testElement].buttons[object].exists)
             app.navigationBars[testElement].buttons[object].tap()
             app.navigationBars[object].buttons[kLocalizedMyFirstProject].tap()

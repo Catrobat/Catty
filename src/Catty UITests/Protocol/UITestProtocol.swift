@@ -29,27 +29,6 @@ protocol UITestProtocol {
 
 extension UITestProtocol {
 
-    func restoreDefaultProject() {
-        let app = XCUIApplication()
-        app.tables.staticTexts[kLocalizedProjects].tap()
-        waitForElementToAppear(app.navigationBars[kLocalizedProjects]).buttons[kLocalizedEdit].tap()
-        waitForElementToAppear(app.buttons[kLocalizedDeleteProjects]).tap()
-        let toolbarsQuery = app.toolbars
-        waitForElementToAppear(toolbarsQuery.buttons[kLocalizedSelectAllItems]).tap()
-        waitForElementToAppear(toolbarsQuery.buttons[kLocalizedDelete]).tap()
-        XCTAssert(app.tables.cells.count == 1)
-        // finally go back to main menu, because this method is used by other tests
-        app.navigationBars[kLocalizedProjects].buttons[kLocalizedPocketCode].tap()
-    }
-
-    func dismissWelcomeScreenIfShown() {
-        let app = XCUIApplication()
-
-        if app.buttons["Dismiss"].exists {
-            app.buttons["Dismiss"].tap()
-        }
-    }
-
     func waitForElementToAppear(_ element: XCUIElement) -> XCUIElement {
         let expectation = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == true"), object: element)
 

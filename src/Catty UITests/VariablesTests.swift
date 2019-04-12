@@ -22,20 +22,7 @@
 
 import XCTest
 
-class VariablesTests: XCTestCase, UITestProtocol {
-
-    var app: XCUIApplication!
-
-    override func setUp() {
-        super.setUp()
-
-        continueAfterFailure = false
-        XCUIApplication().launch()
-
-        dismissWelcomeScreenIfShown()
-        restoreDefaultProject()
-        app = XCUIApplication()
-    }
+class VariablesTests: CattyUITest {
 
     private func createNewProjectAndAddSetVariableBrick(name: String) {
         createProject(name: name, in: app)
@@ -87,7 +74,7 @@ class VariablesTests: XCTestCase, UITestProtocol {
         app.buttons[kUIFEActionVarPro].tap()
         app.alerts[kUIFENewVar].textFields[kLocalizedEnterYourVariableNameHere].typeText(String(repeating: "i", count: 250 + 1))
         app.alerts[kUIFENewVar].buttons[kLocalizedOK].tap()
-        XCTAssert(app.alerts[kLocalizedPocketCode].exists)
+        XCTAssert(waitForElementToAppear(app.alerts[kLocalizedPocketCode]).exists)
     }
 
     func testCreateAndSelectVariable() {

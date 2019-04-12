@@ -22,20 +22,7 @@
 
 import XCTest
 
-class ScriptCollectionVCTests: XCTestCase, UITestProtocol {
-
-    var app: XCUIApplication!
-
-    override func setUp() {
-        super.setUp()
-
-        continueAfterFailure = false
-        XCUIApplication().launch()
-
-        dismissWelcomeScreenIfShown()
-        restoreDefaultProject()
-        app = XCUIApplication()
-    }
+class ScriptCollectionVCTests: CattyUITest {
 
     func testCopyIfLogicBeginBrick() {
         createProject(name: "testProject", in: app)

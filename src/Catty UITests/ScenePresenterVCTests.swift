@@ -22,17 +22,7 @@
 
 import XCTest
 
-class ScenePresenterVCTests: XCTestCase, UITestProtocol {
-
-    override func setUp() {
-        super.setUp()
-
-        continueAfterFailure = false
-        XCUIApplication().launch()
-
-        dismissWelcomeScreenIfShown()
-        restoreDefaultProject()
-    }
+class ScenePresenterVCTests: CattyUITest {
 
     override func tearDown() {
         XCUIDevice.shared.orientation = .portrait
@@ -40,7 +30,6 @@ class ScenePresenterVCTests: XCTestCase, UITestProtocol {
     }
 
     func testScenePresenterOrientation() {
-        let app = XCUIApplication()
         let projectName = "testProject"
 
         //Create new Project

@@ -22,21 +22,7 @@
 
 import XCTest
 
-class PocketCodeMainScreenTests: XCTestCase, UITestProtocol {
-
-    var app: XCUIApplication!
-
-    override func setUp() {
-        super.setUp()
-
-        continueAfterFailure = false
-        XCUIApplication().launch()
-
-        app = XCUIApplication()
-
-        dismissWelcomeScreenIfShown()
-        restoreDefaultProject()
-    }
+class PocketCodeMainScreenTests: CattyUITest {
 
     func testContinue() {
         app.tables.staticTexts[kLocalizedContinue].tap()

@@ -22,20 +22,9 @@
 
 import XCTest
 
-class ProjectTVCTests: XCTestCase, UITestProtocol {
-
-    override func setUp() {
-        super.setUp()
-
-        continueAfterFailure = false
-        XCUIApplication().launch()
-
-        dismissWelcomeScreenIfShown()
-        restoreDefaultProject()
-    }
+class ProjectTVCTests: CattyUITest {
 
     func testCreateObjectWithMaxLength() {
-        let app = XCUIApplication()
         let projectName = "projectName"
         let objectName = String(repeating: "a", count: 250)
 
@@ -48,7 +37,6 @@ class ProjectTVCTests: XCTestCase, UITestProtocol {
     }
 
     func testCreateObjectWithMaxLengthPlusOne() {
-        let app = XCUIApplication()
         let projectName = "projectName"
         let objectName = String(repeating: "a", count: 250 + 1)
 
