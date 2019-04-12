@@ -1,0 +1,1751 @@
+/* No comment provided by engineer. */
+"A message with the same name already exists, try again." = "Een bericht met éénzelfde naam bestaat al, probeer het opnieuw.";
+
+/* No comment provided by engineer. */
+"A project with the same name already exists, try again." = "A project with the same name already exists, try again.";
+
+/* No comment provided by engineer. */
+"About Catrobat" = "Over Catrobat";
+
+/* No comment provided by engineer. */
+"About Pocket Code" = "Over Pocket Code";
+
+/* No comment provided by engineer. */
+"acceleration-sensor" = "acceleratie-sensor";
+
+/* No comment provided by engineer. */
+"acceleration_x" = "versnelling_x";
+
+/* No comment provided by engineer. */
+"acceleration_y" = "versnelling_y";
+
+/* No comment provided by engineer. */
+"acceleration_z" = "versnelling_z";
+
+/* No comment provided by engineer. */
+"Add" = "Add";
+
+/* No comment provided by engineer. */
+"add comment here..." = "voeg hier een reactie toe...";
+
+/* No comment provided by engineer. */
+"Add image" = "Afbeelding toevoegen";
+
+/* Action sheet menu title */
+"Add look" = "Uiterlijk toevoegen";
+
+/* No comment provided by engineer. */
+"Add object" = "Voorwerp toevoegen";
+
+/* Action sheet menu title */
+"Add sound" = "Geluid toevoegen";
+
+/* No comment provided by engineer. */
+"All Bluetooth devices successfully disconnected" = "Verbinding met alle Bluetooth-apparaten met succes verbroken";
+
+/* No comment provided by engineer. */
+"All known Bluetooth devices successfully removed" = "Alle bekende Bluetooth-apparaten zijn met succes verwijderd";
+
+/* paint */
+"Alpha" = "Transparant";
+
+/* No comment provided by engineer. */
+"altitude" = "altitude";
+
+/* No comment provided by engineer. */
+"An image with the same name already exists, try again." = "Een afbeelding met dezelfde naam bestaat al, probeer opnieuw.";
+
+/* No comment provided by engineer. */
+"An object with the same name already exists, try again." = "Een object met dezelfde naam bestaat al, probeer opnieuw.";
+
+/* No comment provided by engineer. */
+"An unknown error occurred. Check your Internet connection." = "Er is een onbekende fout opgetreden. Controleer je internetverbinding.";
+
+/* No comment provided by engineer. */
+"An unknown error occurred. Please try again later." = "Er deed zich een onbekende fout voor. Probeer het later opnieuw.";
+
+/* No comment provided by engineer. */
+"and" = "en";
+
+/* No comment provided by engineer. */
+"and wait" = "and wait";
+
+/* No comment provided by engineer. */
+"Animate Brick-Parts" = "Steendelen animeren";
+
+/* No comment provided by engineer. */
+"Apr" = "Apr";
+
+/* No comment provided by engineer. */
+"April" = "april";
+
+/* No comment provided by engineer. */
+"Arduino" = "Arduino";
+
+/* No comment provided by engineer. */
+"arduino_analog" = "arduino_analoog";
+
+/* No comment provided by engineer. */
+"arduino_digital" = "arduino_digitaal";
+
+/* No comment provided by engineer. */
+"at " = "bij ";
+
+/* No comment provided by engineer. */
+"at position" = "at position";
+
+/* paint */
+"Attributes:" = "Attributen:";
+
+/* No comment provided by engineer. */
+"Aug" = "Aug";
+
+/* No comment provided by engineer. */
+"August" = "augustus";
+
+/* No comment provided by engineer. */
+"Authentication failed" = "Authenticatie mislukt";
+
+/* No comment provided by engineer. */
+"Author" = "Auteur";
+
+/* Title of icon shown in the side bar to enable or disable an overlayed view to show the origin of the coordinate system and implicitly the display size. */
+"Axes" = "Assen";
+
+/* No comment provided by engineer. */
+"back" = "back";
+
+/* No comment provided by engineer. */
+"Back" = "Naar achteren";
+
+/* No comment provided by engineer. */
+"Background" = "Achtergrond";
+
+/* No comment provided by engineer. */
+"background_name" = "background_name";
+
+/* No comment provided by engineer. */
+"background_number" = "background_number";
+
+/* No comment provided by engineer. */
+"Backgrounds" = "Achtergronden";
+
+/* paint */
+"Blue" = "Blauw";
+
+/* No comment provided by engineer. */
+"Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings." = "Bluetooth is niet beschikbaar. Uw apparaat biedt geen ondersteuning voor Bluetooth 4.0 of uw Bluetooth-chip is beschadigd. Controleer het door verbinding te maken met een ander Bluetooth-apparaat in de instellingen.";
+
+/* No comment provided by engineer. */
+"Bluetooth is turned off. Please turn it on to connect to a Bluetooth device." = "Bluetooth is uitgeschakeld. Schakel het in om te verbinden met een Bluetooth-apparaat.";
+
+/* paint */
+"bold" = "dikgedrukt";
+
+/* No comment provided by engineer. */
+"Both" = "Allebei";
+
+/* No comment provided by engineer. */
+"Bricks" = "Stenen";
+
+/* No comment provided by engineer. */
+"brightness" = "helderheid";
+
+/* No comment provided by engineer. */
+"Broadcast" = "Zend signaal";
+
+/* No comment provided by engineer. */
+"Broadcast and wait" = "Zend signaal en wacht";
+
+/* paint */
+"Brush" = "Kwast";
+
+/* No comment provided by engineer. */
+"by" = "met";
+
+/* No comment provided by engineer. */
+"By registering you agree to our" = "Door je te registreren, ga je akkoord met onze";
+
+/* No comment provided by engineer. */
+"By switching to the section \"Explore\" you can discover more interesting projects from people all over the world." = "By switching to the section \"Explore\" you can discover more interesting projects from people all over the world.";
+
+/* No comment provided by engineer. */
+"Camera Roll" = "Filmrol";
+
+/* No comment provided by engineer. */
+"Can't restart project!" = "Can't restart project!";
+
+/* No comment provided by engineer. */
+"Cancel" = "Annuleren";
+
+/* bluetooth */
+"Cannot connect to device, please try resetting the device and try again." = "Kan niet verbinden met het apparaat, probeer het apparaat te resetten en probeer opnieuw.";
+
+/* bluetooth */
+"Cannot connect to device. The device is not responding." = "Kan geen verbinding maken met het apparaat. Het apparaat reageert niet.";
+
+/* No comment provided by engineer. */
+"Cannot connect to the Media Library. Please check your Internet connection." = "Cannot connect to the Media Library. Please check your Internet connection.";
+
+/* No comment provided by engineer. */
+"Categories" = "Categorieën";
+
+/* No comment provided by engineer. */
+"ceil" = "bedek";
+
+/* No comment provided by engineer. */
+"Change brightness " = "Verander helderheid";
+
+/* No comment provided by engineer. */
+"Change color " = "Kleur wijzigen ";
+
+/* No comment provided by engineer. */
+"Change size by" = "Verander grootte met";
+
+/* No comment provided by engineer. */
+"Change transparency " = "Verander doorzichtigheid";
+
+/* No comment provided by engineer. */
+"Change variable" = "Verander variabele";
+
+/* No comment provided by engineer. */
+"Change volume by" = "Wijzig volume met";
+
+/* No comment provided by engineer. */
+"Change X by " = "Verander X met:";
+
+/* No comment provided by engineer. */
+"Change Y by " = "Verander Y met:";
+
+/* No comment provided by engineer. */
+"Changes discarded!" = "Je wijzigingen zijn ongedaan gemaakt!";
+
+/* No comment provided by engineer. */
+"Changes saved!" = "Je wijzigingen zijn opgeslagen!";
+
+/* No comment provided by engineer. */
+"Choose" = "Kies";
+
+/* No comment provided by engineer. */
+"Choose image" = "Kies afbeelding";
+
+/* No comment provided by engineer. */
+"Clear graphic effects" = "Grafische effecten verwijderen";
+
+/* No comment provided by engineer. */
+"Close" = "Sluiten";
+
+/* paint */
+"Close Paint" = "Paint sluiten";
+
+/* No comment provided by engineer. */
+"color" = "color";
+
+/* No comment provided by engineer. */
+"compass" = "kompas";
+
+/* No comment provided by engineer. */
+"Compute" = "Berekenen";
+
+/* No comment provided by engineer. */
+"Computed result is %.2f" = "Berekende resultaat is %.2f";
+
+/* No comment provided by engineer. */
+"Computed result is FALSE" = "Berekende resultaat is fout";
+
+/* No comment provided by engineer. */
+"Computed result is TRUE" = "Berekende resultaat is goed";
+
+/* No comment provided by engineer. */
+"Confirm Password" = "Confirm Password";
+
+/* bluetooth */
+"Connection failed" = "Verbinding mislukt";
+
+/* bluetooth */
+"Connection Lost" = "Verbinding verloren";
+
+/* bluetooth */
+"Connection not possible" = "Verbinden niet mogelijk";
+
+/* No comment provided by engineer. */
+"contains" = "contains";
+
+/* No comment provided by engineer. */
+"Continue" = "Doorgaan";
+
+/* No comment provided by engineer. */
+"Control" = "Besturen";
+
+/* No comment provided by engineer. */
+"Copy" = "Kopiëren";
+
+/* No comment provided by engineer. */
+"Copy Brick" = "Kopieer steen";
+
+/* No comment provided by engineer. */
+"Copy Looks" = "Kopieer uiterlijk";
+
+/* No comment provided by engineer. */
+"Copy project" = "Copy project";
+
+/* No comment provided by engineer. */
+"Create & Remix" = "Maak & remix";
+
+/* No comment provided by engineer. */
+"Create account" = "Account aanmaken";
+
+/* No comment provided by engineer. */
+"day" = "day";
+
+/* No comment provided by engineer. */
+"Debug mode" = "Debug-modus";
+
+/* No comment provided by engineer. */
+"Dec" = "Dec";
+
+/* No comment provided by engineer. */
+"December" = "december";
+
+/* No comment provided by engineer. */
+"degrees" = "graden";
+
+/* No comment provided by engineer. */
+"Delete" = "verwijderen";
+
+/* No comment provided by engineer. */
+"Delete Backgrounds" = "Verwijder achtergronden";
+
+/* No comment provided by engineer. */
+"Delete Brick" = "Verwijder steen";
+
+/* No comment provided by engineer. */
+"Delete Condition" = "Voorwaarde verwijderen";
+
+/* No comment provided by engineer. */
+"Delete item from list" = "Delete item from list";
+
+/* No comment provided by engineer. */
+"Delete Looks" = "Delete Looks";
+
+/* No comment provided by engineer. */
+"Delete Loop" = "Delete Loop";
+
+/* No comment provided by engineer. */
+"Delete Objects" = "Delete Objects";
+
+/* No comment provided by engineer. */
+"Delete Project" = "Delete Project";
+
+/* No comment provided by engineer. */
+"Delete Projects" = "Delete Projects";
+
+/* No comment provided by engineer. */
+"Delete Script" = "Verwijder script";
+
+/* No comment provided by engineer. */
+"Delete Sounds" = "Delete Sounds";
+
+/* No comment provided by engineer. */
+"Delete these Bricks?" = "Verwijderen deze stenen?";
+
+/* No comment provided by engineer. */
+"Delete these Conditions?" = "Delete these Conditions?";
+
+/* No comment provided by engineer. */
+"Delete these Loops?" = "Delete these Loops?";
+
+/* No comment provided by engineer. */
+"Delete these Scripts?" = "Delete these Scripts?";
+
+/* No comment provided by engineer. */
+"Delete this background" = "Delete this background";
+
+/* No comment provided by engineer. */
+"Delete this Brick?" = "Verwijder deze steen?";
+
+/* No comment provided by engineer. */
+"Delete this Condition?" = "Delete this Condition?";
+
+/* No comment provided by engineer. */
+"Delete this look" = "Delete this look";
+
+/* No comment provided by engineer. */
+"Delete this Loop?" = "Delete this Loop?";
+
+/* No comment provided by engineer. */
+"Delete this object" = "Delete this object";
+
+/* No comment provided by engineer. */
+"Delete this project" = "Delete this project";
+
+/* No comment provided by engineer. */
+"Delete this Script?" = "Verwijder dit script?";
+
+/* No comment provided by engineer. */
+"Delete this sound" = "Delete this sound";
+
+/* No comment provided by engineer. */
+"Deletion Mode" = "Deletion Mode";
+
+/* No comment provided by engineer. */
+"Description" = "Beschrijving";
+
+/* No comment provided by engineer. */
+"Details" = "Details";
+
+/* bluetooth */
+"Device disconnected." = "Device disconnected.";
+
+/* No comment provided by engineer. */
+"device motion-sensor" = "device motion-sensor";
+
+/* No comment provided by engineer. */
+"direction" = "richting";
+
+/* No comment provided by engineer. */
+"Disconnect all devices" = "Disconnect all devices";
+
+/* No comment provided by engineer. */
+"DO" = "DO";
+
+/* paint */
+"Do you really want to delete the current drawing?" = "Do you really want to delete the current drawing?";
+
+/* paint */
+"Do you want to save the changes" = "Do you want to save the changes";
+
+/* No comment provided by engineer. */
+"Done" = "Gereed";
+
+/* No comment provided by engineer. */
+"Download" = "Downloaden";
+
+/* No comment provided by engineer. */
+"Download successful" = "Download geslaagd";
+
+/* No comment provided by engineer. */
+"Downloads" = "Mijn Downloads";
+
+/* No comment provided by engineer. */
+"Draw new image" = "Teken een nieuwe afbeelding";
+
+/* No comment provided by engineer. */
+"Duration" = "Duur";
+
+/* No comment provided by engineer. */
+"Edit" = "Edit";
+
+/* Action sheet menu title */
+"Edit Background" = "Edit Background";
+
+/* Action sheet menu title */
+"Edit Backgrounds" = "Edit Backgrounds";
+
+/* Action sheet menu title */
+"Edit Brick" = "Steen bewerken";
+
+/* No comment provided by engineer. */
+"Edit Formula" = "Formule bewerken";
+
+/* Action sheet menu title */
+"Edit Look" = "Edit Look";
+
+/* Action sheet menu title */
+"Edit Looks" = "Edit Looks";
+
+/* No comment provided by engineer. */
+"Edit Object" = "Edit Object";
+
+/* No comment provided by engineer. */
+"Edit Project" = "Edit Project";
+
+/* No comment provided by engineer. */
+"Edit Projects" = "Edit Projects";
+
+/* Action sheet menu title */
+"Edit Script" = "Edit Script";
+
+/* Action sheet menu title */
+"Edit Sound" = "Edit Sound";
+
+/* Action sheet menu title */
+"Edit Sounds" = "Edit Sounds";
+
+/* No comment provided by engineer. */
+"element" = "element";
+
+/* paint */
+"Ellipse / Circle" = "Ellipse / Circle";
+
+/* No comment provided by engineer. */
+"Else" = "Anders";
+
+/* No comment provided by engineer. */
+"Email" = "Email";
+
+/* No comment provided by engineer. */
+"Empty input!" = "Empty input!";
+
+/* No comment provided by engineer. */
+"End If" = "Einde van Als";
+
+/* No comment provided by engineer. */
+"End of Loop" = "End of Loop";
+
+/* No comment provided by engineer. */
+"Enter a reason" = "Geef een reden";
+
+/* Placeholder for add image-name input field */
+"Enter your image name here..." = "Enter your image name here...";
+
+/* Placeholder for list input field */
+"Enter your list name here..." = "Enter your list name here...";
+
+/* Placeholder for message input field */
+"Enter your message here..." = "Enter your message here...";
+
+/* Placeholder for add object-name input field */
+"Enter your object name here..." = "Enter your object name here...";
+
+/* Placeholder for project-description input field */
+"Enter your project description here..." = "Enter your project description here...";
+
+/* Placeholder for project-name input field */
+"Enter your project name here..." = "Enter your project name here...";
+
+/* Placeholder for add sound-name input field */
+"Enter your sound name here..." = "Enter your sound name here...";
+
+/* Placeholder for variable input field */
+"Enter your variable name here..." = "Enter your variable name here...";
+
+/* paint */
+"Eraser" = "Gum";
+
+/* No comment provided by engineer. */
+"Error" = "Fout";
+
+/* No comment provided by engineer. */
+"Error saving file" = "Error saving file";
+
+/* No comment provided by engineer. */
+"Explore" = "Gemeenschap";
+
+/* No comment provided by engineer. */
+"Explore apps" = "Apps verkennen";
+
+/* No comment provided by engineer. */
+"FA" = "FA";
+
+/* No comment provided by engineer. */
+"face_detected" = "gezicht_gedetecteerd";
+
+/* No comment provided by engineer. */
+"faceposition_x" = "gezichtspositie_x";
+
+/* No comment provided by engineer. */
+"faceposition_y" = "gezichtspositie_y";
+
+/* No comment provided by engineer. */
+"facesize" = "gezichtsgrootte";
+
+/* No comment provided by engineer. */
+"Failed to import item" = "Failed to import item";
+
+/* No comment provided by engineer. */
+"Failed to load featured projects" = "Failed to load featured projects";
+
+/* No comment provided by engineer. */
+"Failed to load recent projects" = "Failed to load recent projects";
+
+/* No comment provided by engineer. */
+"Failed to load sound" = "Failed to load sound";
+
+/* No comment provided by engineer. */
+"Failed to play sound" = "Failed to play sound";
+
+/* No comment provided by engineer. */
+"false" = "onjuist";
+
+/* No comment provided by engineer. */
+"Featured Projects" = "Featured Projects";
+
+/* No comment provided by engineer. */
+"Feb" = "Feb";
+
+/* No comment provided by engineer. */
+"February" = "februari";
+
+/* paint */
+"Fill" = "Vullen";
+
+/* No comment provided by engineer. */
+"Flashlight off" = "Zaklamp uit";
+
+/* No comment provided by engineer. */
+"Flashlight on" = "Zaklamp aan";
+
+/* No comment provided by engineer. */
+"floor" = "vloer";
+
+/* No comment provided by engineer. */
+"Following features used in this project are not compatible with this version of Pocket Code:" = "Following features used in this project are not compatible with this version of Pocket Code:";
+
+/* No comment provided by engineer. */
+"for" = "for";
+
+/* No comment provided by engineer. */
+"for all objects" = "voor alle objecten";
+
+/* No comment provided by engineer. */
+"for this object" = "voor dit object";
+
+/* No comment provided by engineer. */
+"Forever" = "Herhaal";
+
+/* No comment provided by engineer. */
+"Forgot password" = "Wachtwoord vergeten";
+
+/* No comment provided by engineer. */
+"Formula too long!" = "Formule te lang! Repareer of druk opnieuw om alle wijzigingen ongedaan te maken.";
+
+/* No comment provided by engineer. */
+"Fr" = "Vr";
+
+/* Title of View where the user can see the frequently used bricks. */
+"Frequently Used" = "Veelgebruikt";
+
+/* No comment provided by engineer. */
+"Friday" = "Vrijdag";
+
+/* No comment provided by engineer. */
+"From Camera" = "Van camera";
+
+/* No comment provided by engineer. */
+"front" = "front";
+
+/* No comment provided by engineer. */
+"Front camera" = "Camera voorzijde";
+
+/* No comment provided by engineer. */
+"Glide" = "Glijd in";
+
+/* No comment provided by engineer. */
+"Go back" = "Ga";
+
+/* No comment provided by engineer. */
+"Go to front" = "Ga naar voorgrond";
+
+/* paint */
+"Green" = "Groen";
+
+/* No comment provided by engineer. */
+"gyro-sensor" = "gyro-sensor";
+
+/* No comment provided by engineer. */
+"Hello!" = "Hallo!";
+
+/* No comment provided by engineer. */
+"Help" = "Help";
+
+/* No comment provided by engineer. */
+"Hide" = "Verdwijn";
+
+/* No comment provided by engineer. */
+"Hide Details" = "Details verbergen";
+
+/* No comment provided by engineer. */
+"Hide variable" = "Variabele verbergen";
+
+/* No comment provided by engineer. */
+"Hmmmm!" = "Hmmmm!";
+
+/* No comment provided by engineer. */
+"hour" = "hour";
+
+/* No comment provided by engineer. */
+"If" = "Als";
+
+/* No comment provided by engineer. */
+"If on edge, bounce" = "Aan de rand, keer om";
+
+/* paint */
+"Image" = "Afbeelding";
+
+/* No comment provided by engineer. */
+"Image name" = "Afbeeldingsnaam";
+
+/* No comment provided by engineer. */
+"Image source not available" = "Bron van afbeelding niet beschikbaar";
+
+/* Title of prompt shown when a *.catrobat file is imported from a third-party app. */
+"Import File" = "Bestand importeren";
+
+/* No comment provided by engineer. */
+"In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation." = "Om gebruik te mogen maken van Pocket Code en andere uitvoerbare bestanden aangeboden door het Catrobat project, moet je akkoord gaan met onze gebruiksvoorwaarden en deze strikt volgen wanner je gebruikt maakt van Pocket Code en onze andere uitvoerbare bestanden. Zie de link hieronder voor de precieze formulering.";
+
+/* No comment provided by engineer. */
+"inclination_x" = "helling_x";
+
+/* No comment provided by engineer. */
+"inclination_y" = "helling_y";
+
+/* No comment provided by engineer. */
+"Information" = "Informatie";
+
+/* No comment provided by engineer. */
+"Insert" = "Insert";
+
+/* paint */
+"Inserted" = "Ingevoegd";
+
+/* No comment provided by engineer. */
+"into list" = "into list";
+
+/* No comment provided by engineer. */
+"Invalid input entered, try again." = "Ongeldige invoer, probeer opnieuw.";
+
+/* No comment provided by engineer. */
+"Invalid URL given!" = "Ongeldige URL gegeven!";
+
+/* No comment provided by engineer. */
+"iOS." = "iOS.";
+
+/* No comment provided by engineer. */
+"is true" = "is true";
+
+/* No comment provided by engineer. */
+"is true then" = "is waar, dan";
+
+/* paint */
+"italic" = "cursief";
+
+/* No comment provided by engineer. */
+"Jan" = "Jan";
+
+/* No comment provided by engineer. */
+"January" = "januari";
+
+/* No comment provided by engineer. */
+"join" = "samenvoegen";
+
+/* No comment provided by engineer. */
+"Jul" = "Jul";
+
+/* No comment provided by engineer. */
+"July" = "juli";
+
+/* No comment provided by engineer. */
+"Jun" = "Jun";
+
+/* No comment provided by engineer. */
+"June" = "juni";
+
+/* bluetooth */
+"Known devices" = "Bekende apparaten";
+
+/* No comment provided by engineer. */
+"LA" = "LA";
+
+/* No comment provided by engineer. */
+"Last access" = "Laatste aanmelding";
+
+/* No comment provided by engineer. */
+"last_screen_touch_index" = "last_screen_touch_index";
+
+/* No comment provided by engineer. */
+"latitude" = "latitude";
+
+/* No comment provided by engineer. */
+"layer" = "laag";
+
+/* No comment provided by engineer. */
+"layers" = "lagen";
+
+/* No comment provided by engineer. */
+"LED" = "LED";
+
+/* No comment provided by engineer. */
+"Left" = "Links";
+
+/* No comment provided by engineer. */
+"Length" = "Lengte";
+
+/* No comment provided by engineer. */
+"length" = "lengte";
+
+/* No comment provided by engineer. */
+"letter" = "letter";
+
+/* paint */
+"Line" = "Lijn";
+
+/* No comment provided by engineer. */
+"List name:" = "List name:";
+
+/* No comment provided by engineer. */
+"List type" = "List type";
+
+/* No comment provided by engineer. */
+"Lists" = "Lists";
+
+/* No comment provided by engineer. */
+"Loading" = "Laden";
+
+/* No comment provided by engineer. */
+"location" = "location";
+
+/* No comment provided by engineer. */
+"location_accuracy" = "location_accuracy";
+
+/* No comment provided by engineer. */
+"Logic" = "Logica";
+
+/* No comment provided by engineer. */
+"Login" = "Inloggen";
+
+/* No comment provided by engineer. */
+"Login successful" = "Succesvol ingelogd";
+
+/* No comment provided by engineer. */
+"Login/Register" = "Inloggen/Registreren";
+
+/* No comment provided by engineer. */
+"Logout" = "Logout";
+
+/* No comment provided by engineer. */
+"longitude" = "longitude";
+
+/* No comment provided by engineer. */
+"Look" = "uiterlijk";
+
+/* LOOK */
+"look" = "uiterlijk";
+
+/* No comment provided by engineer. */
+"look_name" = "look_name";
+
+/* No comment provided by engineer. */
+"look_number" = "look_number";
+
+/* No comment provided by engineer. */
+"Looks" = "Uiterlijk";
+
+/* No comment provided by engineer. */
+"loudness" = "luidheid";
+
+/* No comment provided by engineer. */
+"magnetic-sensor" = "magnetic-sensor";
+
+/* No comment provided by engineer. */
+"Mar" = "Mar";
+
+/* No comment provided by engineer. */
+"March" = "maart";
+
+/* No comment provided by engineer. */
+"Math" = "Wiskunde";
+
+/* No comment provided by engineer. */
+"May" = "mei";
+
+/* No comment provided by engineer. */
+"Measure" = "Measure";
+
+/* No comment provided by engineer. */
+"Media Library" = "Media Library";
+
+/* paint */
+"Menu" = "Menu";
+
+/* No comment provided by engineer. */
+"Message" = "Message";
+
+/* No comment provided by engineer. */
+"message 1" = "bericht 1";
+
+/* No comment provided by engineer. */
+"MI" = "MI";
+
+/* No comment provided by engineer. */
+"minute" = "minute";
+
+/* paint */
+"Mirror" = "Spiegel";
+
+/* No comment provided by engineer. */
+"Mo" = "Mo";
+
+/* Prefix of default catrobat project object names (except background object) */
+"Mole" = "Mol";
+
+/* No comment provided by engineer. */
+"Monday" = "Monday";
+
+/* No comment provided by engineer. */
+"month" = "month";
+
+/* No comment provided by engineer. */
+"More" = "Meer";
+
+/* No comment provided by engineer. */
+"More information" = "More information";
+
+/* No comment provided by engineer. */
+"Most Downloaded" = "Most Downloaded";
+
+/* No comment provided by engineer. */
+"Most Viewed" = "Most Viewed";
+
+/* No comment provided by engineer. */
+"Motion" = "Bewegen";
+
+/* No comment provided by engineer. */
+"Move" = "Neem";
+
+/* No comment provided by engineer. */
+"Move Brick" = "Verplaats steen";
+
+/* No comment provided by engineer. */
+"Move Looks" = "Move Looks";
+
+/* No comment provided by engineer. */
+"Move Objects" = "Move Objects";
+
+/* No comment provided by engineer. */
+"Move Phiro motor backward" = "Move Phiro motor backward";
+
+/* No comment provided by engineer. */
+"Move Phiro motor forward" = "Move Phiro motor forward";
+
+/* No comment provided by engineer. */
+"Move Sounds" = "Move Sounds";
+
+/* Name of the default catrobat project (used as filename!!) */
+"My first project" = "Mijn eerste programma";
+
+/* Default title of imported photo from camera (taken by camera) */
+"My Image" = "My Image";
+
+/* Title for first (default) object */
+"My Object" = "Mijn object";
+
+/* No comment provided by engineer. */
+"Name" = "Name";
+
+/* No comment provided by engineer. */
+"Name already exists." = "Name already exists.";
+
+/* No comment provided by engineer. */
+"New" = "Nieuw";
+
+/* paint */
+"New Canvas" = "New Canvas";
+
+/* No comment provided by engineer. */
+"New List" = "New List";
+
+/* No comment provided by engineer. */
+"New Message" = "New Message";
+
+/* No comment provided by engineer. */
+"New Project" = "New Project";
+
+/* No comment provided by engineer. */
+"New Text" = "Nieuwe tekst";
+
+/* No comment provided by engineer. */
+"New Variable" = "Nieuwe variabele";
+
+/* No comment provided by engineer. */
+"New..." = "New...";
+
+/* No comment provided by engineer. */
+"Newest" = "Newest";
+
+/* No comment provided by engineer. */
+"Next background" = "Volgende achtergrond";
+
+/* No comment provided by engineer. */
+"Next look" = "Volgende uiterlijk";
+
+/* No comment provided by engineer. */
+"No" = "Nee";
+
+/* No comment provided by engineer. */
+"No Camera available" = "No Camera available";
+
+/* No comment provided by engineer. */
+"No Description available" = "No Description available";
+
+/* No comment provided by engineer. */
+"No input. Please enter at least %lu character(s)." = "No input. Please enter at least %lu character(s).";
+
+/* No comment provided by engineer. */
+"No or invalid image name entered, try again." = "No or invalid image name entered, try again.";
+
+/* No comment provided by engineer. */
+"No or invalid sound name entered, try again." = "No or invalid sound name entered, try again.";
+
+/* No comment provided by engineer. */
+"No search results" = "No search results";
+
+/* No comment provided by engineer. */
+"No whitespace character allowed" = "No whitespace character allowed";
+
+/* No comment provided by engineer. */
+"not" = "NIET";
+
+/* No comment provided by engineer. */
+"not available. Continue anyway?" = "not available. Continue anyway?";
+
+/* No comment provided by engineer. */
+"Not enough free memory to download this project. Please delete some of your projects" = "Not enough free memory to download this project. Please delete some of your projects";
+
+/* No comment provided by engineer. */
+"Not enough Memory" = "Not enough Memory";
+
+/* No comment provided by engineer. */
+"Note" = "Opmerking";
+
+/* paint */
+"Nothing to crop!" = "Nothing to crop!";
+
+/* No comment provided by engineer. */
+"Nov" = "Nov";
+
+/* No comment provided by engineer. */
+"November" = "november";
+
+/* No comment provided by engineer. */
+"number_of_items" = "number_of_items";
+
+/* No comment provided by engineer. */
+"Numbers" = "Numbers";
+
+/* No comment provided by engineer. */
+"Object" = "Object";
+
+/* No comment provided by engineer. */
+"Object lists:" = "Object lists:";
+
+/* No comment provided by engineer. */
+"Object name" = "Objectnaam";
+
+/* No comment provided by engineer. */
+"Object variables:" = "Object variables:";
+
+/* No comment provided by engineer. */
+"Objects" = "Objecten";
+
+/* No comment provided by engineer. */
+"Oct" = "Oct";
+
+/* No comment provided by engineer. */
+"October" = "oktober";
+
+/* No comment provided by engineer. */
+"off" = "off";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
+
+/* No comment provided by engineer. */
+"on" = "on";
+
+/* No comment provided by engineer. */
+"only 15 characters allowed" = "only 15 characters allowed";
+
+/* No comment provided by engineer. */
+"Only space is not allowed. Please enter at least %lu other character(s)." = "Only space is not allowed. Please enter at least %lu other character(s).";
+
+/* No comment provided by engineer. */
+"Only special characters are not allowed. Please enter at least %lu other character(s)." = "Alleen speciale tekens zijn niet toegestaan. Voer ten minste %lu andere teken(s) in.";
+
+/* No comment provided by engineer. */
+"Open" = "Open ";
+
+/* No comment provided by engineer. */
+"or" = "of";
+
+/* No comment provided by engineer. */
+"Password" = "Wachtwoord";
+
+/* No comment provided by engineer. */
+"Password is not vaild! \n It has to contain at least 6 characters/symbols" = "Wachtwoord niet geldig! \n Het moet minstens 6 tekens/symbolen bevatten";
+
+/* No comment provided by engineer. */
+"Passwords do not match" = "Passwords do not match";
+
+/* No comment provided by engineer. */
+"Phiro" = "Phiro";
+
+/* No comment provided by engineer. */
+"phiro_bottom_left" = "phiro_onder_links";
+
+/* No comment provided by engineer. */
+"phiro_bottom_right" = "phiro_onder_rechts";
+
+/* No comment provided by engineer. */
+"phiro_front_left" = "phiro_voor_links";
+
+/* No comment provided by engineer. */
+"phiro_front_right" = "phiro_voor_rechts";
+
+/* No comment provided by engineer. */
+"phiro_side_left" = "phiro_zijkant_links";
+
+/* No comment provided by engineer. */
+"phiro_side_right" = "phiro_zijkant_rechts";
+
+/* paint */
+"Pipette" = "Pipet";
+
+/* No comment provided by engineer. */
+"Place at " = "Plaats op:";
+
+/* No comment provided by engineer. */
+"Play Phiro music\n" = "Speel Phiro muziek af\n";
+
+/* No comment provided by engineer. */
+"Please choose another name:" = "Please choose another name:";
+
+/* paint */
+"Please enter a text!" = "Voer een tekst in!";
+
+/* No comment provided by engineer. */
+"Please log in to report this project as inappropriate" = "Please log in to report this project as inappropriate";
+
+/* paint */
+"Please pick a tool" = "Kies een tool";
+
+/* No comment provided by engineer. */
+"Please select a project to upload" = "Please select a project to upload";
+
+/* bluetooth */
+"Please try resetting the device and try again." = "Probeer het apparaat te resetten en probeer opnieuw.";
+
+/* No comment provided by engineer. */
+"Pocket Code" = "Pocket Code";
+
+/* No comment provided by engineer. */
+"Pocket Code for iOS" = "Pocket Code voor iOS";
+
+/* No comment provided by engineer. */
+"Pocket Code has been started in debug mode." = "Pocket Code is gestart is debug-modus.";
+
+/* No comment provided by engineer. */
+"Pocket Code has no access to your camera. To permit access, tap settings and activate camera. Your drawing will automatically be saved to PocketCode for you." = "Pocket Code has no access to your camera. To permit access, tap settings and activate camera. Your drawing will automatically be saved to PocketCode for you.";
+
+/* No comment provided by engineer. */
+"Pocket Code has no access to your images. To permit access, tap settings and activate images. Your drawing will automatically be saved to PocketCode for you." = "Pocket Code has no access to your images. To permit access, tap settings and activate images. Your drawing will automatically be saved to PocketCode for you.";
+
+/* No comment provided by engineer. */
+"Pocket Code has no access to your microphone. To permit access, tap settings and activate microphone." = "Pocket Code has no access to your microphone. To permit access, tap settings and activate microphone.";
+
+/* No comment provided by engineer. */
+"Pocket Code is a programming environment for iOS for the visual programming language Catrobat. The code of Pocket Code is mostly under GNU AGPL v3 licence. For further information to the licence please visit following links:" = "Pocket Code is a programming environment for iOS for the visual programming language Catrobat. The code of Pocket Code is mostly under GNU AGPL v3 licence. For further information to the licence please visit following links:";
+
+/* No comment provided by engineer. */
+"Pocket Code let's you play great games and run other fantastic apps like for instance presentations, quizzes and so on." = "Pocket Code let's you play great games and run other fantastic apps like for instance presentations, quizzes and so on.";
+
+/* No comment provided by engineer. */
+"Pocket Code Recorder" = "Pocket Code-recorder";
+
+/* No comment provided by engineer. */
+"Pocket Code Source Code License" = "Pocket Code-licentie";
+
+/* paint */
+"Pocket Paint" = "Pocket Paint";
+
+/* No comment provided by engineer. */
+"Point in direction" = "Wijs in richting";
+
+/* No comment provided by engineer. */
+"Point towards" = "Richt naar";
+
+/* paint */
+"Pointer" = "Pointer";
+
+/* No comment provided by engineer. */
+"position_x" = "positie_x";
+
+/* No comment provided by engineer. */
+"position_y" = "positie_y";
+
+/* No comment provided by engineer. */
+"Preview" = "Preview";
+
+/* No comment provided by engineer. */
+"Previous background" = "Previous background";
+
+/* No comment provided by engineer. */
+"Previous look" = "Previous look";
+
+/* No comment provided by engineer. */
+"Privacy Settings" = "Privacy Settings";
+
+/* No comment provided by engineer. */
+"Problems occured while uploading your project" = "Problems occured while uploading your project";
+
+/* No comment provided by engineer. */
+"Project" = "Project";
+
+/* No comment provided by engineer. */
+"Project lists:" = "Project lists:";
+
+/* No comment provided by engineer. */
+"Project name" = "Project name";
+
+/* No comment provided by engineer. */
+"Project Name is necessary!" = "Project Name is necessary!";
+
+/* No comment provided by engineer. */
+"Project variables:" = "Project variables:";
+
+/* No comment provided by engineer. */
+"Projects" = "Programma's";
+
+/* No comment provided by engineer. */
+"Rate Us" = "Rate Us";
+
+/* No comment provided by engineer. */
+"RE" = "RE";
+
+/* No comment provided by engineer. */
+"Recording" = "Recording";
+
+/* paint */
+"Rectangle / Square" = "Rectangle / Square";
+
+/* paint */
+"Red" = "Rood";
+
+/* No comment provided by engineer. */
+"Register" = "Register";
+
+/* No comment provided by engineer. */
+"Registration successful" = "Registration successful";
+
+/* No comment provided by engineer. */
+"Remove known devices" = "Remove known devices";
+
+/* No comment provided by engineer. */
+"Rename" = "Hernoemen";
+
+/* No comment provided by engineer. */
+"Rename image" = "Rename image";
+
+/* No comment provided by engineer. */
+"Rename object" = "Rename object";
+
+/* No comment provided by engineer. */
+"Rename Project" = "Rename Project";
+
+/* No comment provided by engineer. */
+"Rename sound" = "Geluid hernoemen";
+
+/* No comment provided by engineer. */
+"Repeat" = "Herhaal";
+
+/* No comment provided by engineer. */
+"Repeat until" = "Repeat until";
+
+/* No comment provided by engineer. */
+"Replace item in list" = "Replace item in list";
+
+/* No comment provided by engineer. */
+"Report as inappropriate" = "Melden als ongepast";
+
+/* paint */
+"Resize" = "Resize";
+
+/* No comment provided by engineer. */
+"Restart" = "Opnieuw starten";
+
+/* No comment provided by engineer. */
+"Result" = "Result";
+
+/* No comment provided by engineer. */
+"Right" = "Recht";
+
+/* paint */
+"Rotate" = "Draaien";
+
+/* paint */
+"round" = "afgerond";
+
+/* No comment provided by engineer. */
+"Sa" = "Sa";
+
+/* No comment provided by engineer. */
+"Saturday" = "Saturday";
+
+/* paint */
+"Save to CameraRoll" = "Save to CameraRoll";
+
+/* No comment provided by engineer. */
+"Save to PocketCode" = "Save to PocketCode";
+
+/* No comment provided by engineer. */
+"Saved" = "Saved";
+
+/* No comment provided by engineer. */
+"Say" = "Say";
+
+/* No comment provided by engineer. */
+"screen_is_touched" = "screen_is_touched";
+
+/* No comment provided by engineer. */
+"screen_touch_x" = "screen_touch_x";
+
+/* No comment provided by engineer. */
+"screen_touch_y" = "screen_touch_y";
+
+/* No comment provided by engineer. */
+"Script" = "Script";
+
+/* No comment provided by engineer. */
+"Scripts" = "Scripts";
+
+/* bluetooth */
+"Search" = "Search";
+
+/* No comment provided by engineer. */
+"second" = "second";
+
+/* No comment provided by engineer. */
+"second " = "second ";
+
+/* No comment provided by engineer. */
+"seconds" = "seconden";
+
+/* No comment provided by engineer. */
+"seconds " = "seconds ";
+
+/* No comment provided by engineer. */
+"Select All" = "Select All";
+
+/* bluetooth */
+"Select Arduino" = "Select Arduino";
+
+/* No comment provided by engineer. */
+"Select Brick Category" = "Select Brick Category";
+
+/* No comment provided by engineer. */
+"Select logical operator" = "Select logical operator";
+
+/* No comment provided by engineer. */
+"Select mathematical function" = "Select mathematical function";
+
+/* paint */
+"Select option:" = "Select option:";
+
+/* bluetooth */
+"Select Phiro" = "Select Phiro";
+
+/* No comment provided by engineer. */
+"Sensors" = "Sensoren";
+
+/* No comment provided by engineer. */
+"Sep" = "Sep";
+
+/* No comment provided by engineer. */
+"September" = "september";
+
+/* No comment provided by engineer. */
+"Server is taking to long to respond, please try again later." = "Server is taking to long to respond, please try again later.";
+
+/* No comment provided by engineer. */
+"Set Arduino digital pin" = "Set Arduino digital pin";
+
+/* No comment provided by engineer. */
+"Set Arduino PWM~ pin" = "Set Arduino PWM~ pin";
+
+/* No comment provided by engineer. */
+"Set background" = "Kies achtergrond";
+
+/* No comment provided by engineer. */
+"Set brightness " = "Stel helderheid";
+
+/* No comment provided by engineer. */
+"Set color " = "Set color ";
+
+/* No comment provided by engineer. */
+"Set description" = "Vul omschrijving in";
+
+/* No comment provided by engineer. */
+"Set Phiro light" = "Set Phiro light";
+
+/* No comment provided by engineer. */
+"Set size to" = "Maak grootte";
+
+/* No comment provided by engineer. */
+"Set transparency " = "Stel doorzichtigheid";
+
+/* No comment provided by engineer. */
+"Set variable" = "Stel variabele";
+
+/* No comment provided by engineer. */
+"Set volume to" = "Maak volume";
+
+/* No comment provided by engineer. */
+"Set X to " = "Maak X:";
+
+/* No comment provided by engineer. */
+"Set Y to " = "Maak Y:";
+
+/* No comment provided by engineer. */
+"Settings" = "Instellingen";
+
+/* No comment provided by engineer. */
+"Show" = "Verschijn";
+
+/* No comment provided by engineer. */
+"Show Details" = "Details tonen";
+
+/* No comment provided by engineer. */
+"Show variable" = "Show variable";
+
+/* No comment provided by engineer. */
+"size" = "grootte";
+
+/* No comment provided by engineer. */
+"Size" = "Grootte";
+
+/* No comment provided by engineer. */
+"Skip" = "Overslaan";
+
+/* No comment provided by engineer. */
+"SO" = "SO";
+
+/* No comment provided by engineer. */
+"Sound" = "Geluid";
+
+/* No comment provided by engineer. */
+"Sound name" = "Sound name";
+
+/* No comment provided by engineer. */
+"Sounds" = "Geluiden";
+
+/* No comment provided by engineer. */
+"Speak" = "Zeg";
+
+/* No comment provided by engineer. */
+"Speed" = "Snelheid";
+
+/* No comment provided by engineer. */
+"sqrt" = "wortel";
+
+/* paint */
+"square" = "square";
+
+/* paint */
+"Stamp" = "Stempel";
+
+/* paint */
+"Stamped" = "Stamped";
+
+/* No comment provided by engineer. */
+"Start sound" = "Start geluid";
+
+/* No comment provided by engineer. */
+"step" = "step";
+
+/* No comment provided by engineer. */
+"steps" = "steps";
+
+/* No comment provided by engineer. */
+"Stop all sounds" = "Stop alle geluiden";
+
+/* No comment provided by engineer. */
+"Stop Phiro motor" = "Stop Phiro motor";
+
+/* No comment provided by engineer. */
+"Su" = "Su";
+
+/* No comment provided by engineer. */
+"Sunday" = "Sunday";
+
+/* No comment provided by engineer. */
+"Switch to look" = "Wissel naar uiterlijk";
+
+/* No comment provided by engineer. */
+"Syntax Error!" = "Syntaxfout: Repareer of druk opnieuw om alle wijzigingen ongedaan te maken";
+
+/* No comment provided by engineer. */
+"Tap \"+\" to add %@" = "Tap \"+\" to add %@";
+
+/* Button title at the settings screen to get to the terms of use and services. */
+"Terms of Use and Services" = "Terms of Use and Services";
+
+/* paint */
+"Text" = "Tekst";
+
+/* No comment provided by engineer. */
+"Text message:" = "Text message:";
+
+/* paint */
+"Text:" = "Text:";
+
+/* No comment provided by engineer. */
+"Th" = "Th";
+
+/* No comment provided by engineer. */
+"The description contains invalid characters, try again." = "The description contains invalid characters, try again.";
+
+/* No comment provided by engineer. */
+"The featured projects cannot be loaded" = "The featured projects cannot be loaded";
+
+/* No comment provided by engineer. */
+"The following item could not be imported from the Media Library:" = "The following item could not be imported from the Media Library:";
+
+/* No comment provided by engineer. */
+"The input is too long. Please enter maximal %lu character(s)." = "The input is too long. Please enter maximal %lu character(s).";
+
+/* No comment provided by engineer. */
+"The name contains blocked characters. Please try again!" = "The name contains blocked characters. Please try again!";
+
+/* No comment provided by engineer. */
+"The recent projects cannot be loaded" = "The recent projects cannot be loaded";
+
+/* No comment provided by engineer. */
+"The requested project can not be found. Please choose a different one." = "The requested project can not be found. Please choose a different one.";
+
+/* No comment provided by engineer. */
+"The requested project can not be loaded. Please try again later." = "The requested project can not be loaded. Please try again later.";
+
+/* No comment provided by engineer. */
+"The sound item cannot be loaded" = "The sound item cannot be loaded";
+
+/* No comment provided by engineer. */
+"The sound item cannot be played" = "The sound item cannot be played";
+
+/* No comment provided by engineer. */
+"Think" = "Think";
+
+/* No comment provided by engineer. */
+"This action can not be undone!" = "This action can not be undone!";
+
+/* No comment provided by engineer. */
+"This feature is coming soon!" = "This feature is coming soon!";
+
+/* No comment provided by engineer. */
+"This variable can not be deleted because it is still in use." = "This variable can not be deleted because it is still in use.";
+
+/* No comment provided by engineer. */
+"Thursday" = "Thursday";
+
+/* No comment provided by engineer. */
+"TI" = "TI";
+
+/* No comment provided by engineer. */
+"time" = "time";
+
+/* No comment provided by engineer. */
+"times" = "times";
+
+/* No comment provided by engineer. */
+"to" = "in op";
+
+/* No comment provided by engineer. */
+"to list" = "to list";
+
+/* No comment provided by engineer. */
+"to X:" = "naar X:";
+
+/* No comment provided by engineer. */
+"Today" = "Vandaag";
+
+/* No comment provided by engineer. */
+"transparency" = "doorzichtigheid";
+
+/* No comment provided by engineer. */
+"true" = "WAAR";
+
+/* No comment provided by engineer. */
+"Tu" = "Tu";
+
+/* No comment provided by engineer. */
+"Tuesday" = "Tuesday";
+
+/* No comment provided by engineer. */
+"Turn camera" = "Turn camera";
+
+/* No comment provided by engineer. */
+"Turn flashlight" = "Turn flashlight";
+
+/* No comment provided by engineer. */
+"Turn left" = "Draai linksom";
+
+/* No comment provided by engineer. */
+"Turn right" = "Draai rechtsom";
+
+/* No comment provided by engineer. */
+"Unable to load project!" = "Unable to load project!";
+
+/* No comment provided by engineer. */
+"Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt." = "Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt.";
+
+/* No comment provided by engineer. */
+"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the left side of your iPhone and tap on play again." = "Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the left side of your iPhone and tap on play again.";
+
+/* No comment provided by engineer. */
+"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again." = "Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again.";
+
+/* paint */
+"underline" = "underline";
+
+/* Button title of alert view to invoke undo if user shakes device */
+"Undo" = "Ongedaan maken";
+
+/* Description text in alert view if user shakes the device */
+"Undo Drawing?" = "Undo Drawing?";
+
+/* Description text in alert view if user shakes the device */
+"Undo Typing?" = "Undo Typing?";
+
+/* No comment provided by engineer. */
+"Unexpected Error" = "Unexpected Error";
+
+/* No comment provided by engineer. */
+"Unexpected Error, please try again later." = "Unexpected Error, please try again later.";
+
+/* No comment provided by engineer. */
+"Unknown Element" = "Unknown Element";
+
+/* No comment provided by engineer. */
+"Unselect All" = "Unselect All";
+
+/* No comment provided by engineer. */
+"Unsupported Brick:" = "Unsupported Brick:";
+
+/* No comment provided by engineer. */
+"Unsupported Elements" = "Unsupported Elements";
+
+/* No comment provided by engineer. */
+"Unsupported Script:" = "Unsupported Script:";
+
+/* No comment provided by engineer. */
+"Upload" = "Uploaden";
+
+/* No comment provided by engineer. */
+"Upload Project" = "Upload Project";
+
+/* No comment provided by engineer. */
+"Upload selected project" = "Upload selected project";
+
+/* No comment provided by engineer. */
+"Upload successful" = "Upload geslaagd";
+
+/* No comment provided by engineer. */
+"Uploaded" = "Uploaded";
+
+/* No comment provided by engineer. */
+"Use Arduino bricks" = "Use Arduino bricks";
+
+/* No comment provided by engineer. */
+"Use camera" = "Use camera";
+
+/* No comment provided by engineer. */
+"Use Phiro bricks" = "Use Phiro bricks";
+
+/* No comment provided by engineer. */
+"Username" = "Gebruikersnaam";
+
+/* No comment provided by engineer. */
+"Username must not be blank" = "Gebruikersnaam mag niet leeg zijn";
+
+/* No comment provided by engineer. */
+"Var/List" = "Var/List";
+
+/* No comment provided by engineer. */
+"Variable" = "Variable";
+
+/* No comment provided by engineer. */
+"Variable name:" = "Variable name:";
+
+/* No comment provided by engineer. */
+"Variable or List" = "Variable or List";
+
+/* No comment provided by engineer. */
+"Variable type" = "Variable type";
+
+/* No comment provided by engineer. */
+"Variables" = "Variabelen";
+
+/* No comment provided by engineer. */
+"Version" = "Version";
+
+/* No comment provided by engineer. */
+"Vibrate for" = "Tril";
+
+/* No comment provided by engineer. */
+"vibration" = "vibration";
+
+/* No comment provided by engineer. */
+"Views" = "Views";
+
+/* No comment provided by engineer. */
+"Wait" = "Wacht";
+
+/* No comment provided by engineer. */
+"Wait until" = "Wait until";
+
+/* No comment provided by engineer. */
+"We" = "We";
+
+/* No comment provided by engineer. */
+"Wednesday" = "Wednesday";
+
+/* No comment provided by engineer. */
+"weekday" = "weekday";
+
+/* No comment provided by engineer. */
+"Welcome to Pocket Code" = "Welcome to Pocket Code";
+
+/* No comment provided by engineer. */
+"When project started" = "When project started";
+
+/* No comment provided by engineer. */
+"When screen is touched" = "When screen is touched";
+
+/* No comment provided by engineer. */
+"When tapped" = "Wanneer aangeklikt";
+
+/* No comment provided by engineer. */
+"When you receive" = "When you receive";
+
+/* paint */
+"Width selection" = "Width selection";
+
+/* No comment provided by engineer. */
+"with" = "with";
+
+/* No comment provided by engineer. */
+"X: " = "X:";
+
+/* No comment provided by engineer. */
+"Y: " = "Y:";
+
+/* No comment provided by engineer. */
+"year" = "year";
+
+/* No comment provided by engineer. */
+"Yes" = "Ja";
+
+/* No comment provided by engineer. */
+"Yesterday" = "Gisteren";
+
+/* No comment provided by engineer. */
+"You are also able to build your own apps, remix existing ones and share them with your friends and other exciting people around the world." = "You are also able to build your own apps, remix existing ones and share them with your friends and other exciting people around the world.";
+
+/* No comment provided by engineer. */
+"You have already downloaded this project!" = "You have already downloaded this project!";
+
+/* No comment provided by engineer. */
+"Your email seems to be invalid" = "Je e-mailadres lijkt ongeldig te zijn";
+
+/* paint */
+"Zoom" = "Zoom";

@@ -39,128 +39,130 @@ class ProjectsTVCTests: XCTestCase, UITestProtocol {
     }
 
     func testCanAddNewProject() {
-        app.tables.staticTexts["Projects"].tap()
-        app.toolbars.buttons["Add"].tap()
+        let testProject = "testProject"
 
-        let alertQuery = waitForElementToAppear(app.alerts["New Project"])
-        alertQuery.textFields["Enter your project name here..."].typeText("testProject")
+        app.tables.staticTexts[kLocalizedProjects].tap()
+        app.toolbars.buttons[kLocalizedUserListAdd].tap()
 
-        app.alerts["New Project"].buttons["OK"].tap()
+        let alertQuery = waitForElementToAppear(app.alerts[kLocalizedNewProject])
+        alertQuery.textFields[kLocalizedEnterYourProjectNameHere].typeText(testProject)
 
-        XCTAssert(waitForElementToAppear(app.navigationBars["testProject"]).exists)
+        app.alerts[kLocalizedNewProject].buttons[kLocalizedOK].tap()
+        XCTAssert(waitForElementToAppear(app.navigationBars[testProject]).exists)
 
-        app.navigationBars.buttons["Projects"].tap()
-
-        XCTAssert(app.tables.staticTexts["testProject"].exists)
+        app.navigationBars.buttons[kLocalizedProjects].tap()
+        XCTAssert(app.tables.staticTexts[testProject].exists)
     }
 
     func testCanCancelAddNewProject() {
-        app.tables.staticTexts["Projects"].tap()
-        app.toolbars.buttons["Add"].tap()
+        let testProject = "testProject"
 
-        let alertQuery = app.alerts["New Project"]
-        alertQuery.textFields["Enter your project name here..."].typeText("testProject")
+        app.tables.staticTexts[kLocalizedProjects].tap()
+        app.toolbars.buttons[kLocalizedUserListAdd].tap()
 
-        app.alerts["New Project"].buttons["Cancel"].tap()
+        let alertQuery = app.alerts[kLocalizedNewProject]
+        alertQuery.textFields[kLocalizedEnterYourProjectNameHere].typeText(testProject)
 
-        XCTAssert(app.navigationBars["Projects"].exists)
+        app.alerts[kLocalizedNewProject].buttons[kLocalizedCancel].tap()
+        XCTAssertFalse(app.tables.staticTexts[testProject].exists)
+        XCTAssert(app.navigationBars[kLocalizedProjects].exists)
     }
 
     func testCanCancelEdit() {
-        app.tables.staticTexts["Projects"].tap()
-        app.navigationBars["Projects"].buttons["Edit"].tap()
-        XCTAssert(app.buttons["Cancel"].exists)
-        app.buttons["Cancel"].tap()
-        XCTAssert(app.navigationBars["Projects"].exists)
+        app.tables.staticTexts[kLocalizedProjects].tap()
+        app.navigationBars[kLocalizedProjects].buttons[kLocalizedEdit].tap()
+        XCTAssert(app.buttons[kLocalizedCancel].exists)
+        app.buttons[kLocalizedCancel].tap()
+        XCTAssert(app.navigationBars[kLocalizedProjects].exists)
     }
 
     func testCanCancelMoreActionSheetMenu() {
-        app.tables.staticTexts["Projects"].tap()
+        app.tables.staticTexts[kLocalizedProjects].tap()
 
         let tablesQuery = app.tables
-        tablesQuery.staticTexts["My first project"].swipeLeft()
-        XCTAssert(app.buttons["More"].exists)
+        tablesQuery.staticTexts[kLocalizedMyFirstProject].swipeLeft()
+        XCTAssert(app.buttons[kLocalizedMore].exists)
 
-        app.buttons["More"].tap()
-        XCTAssert(app.buttons["Cancel"].exists)
-        app.buttons["Cancel"].tap()
-        XCTAssert(!app.buttons["Cancel"].exists)
+        app.buttons[kLocalizedMore].tap()
+        XCTAssert(app.buttons[kLocalizedCancel].exists)
+        app.buttons[kLocalizedCancel].tap()
+        XCTAssert(!app.buttons[kLocalizedCancel].exists)
     }
 
     func testCanCopyMyFirstProject() {
-        app.tables.staticTexts["Projects"].tap()
+        app.tables.staticTexts[kLocalizedProjects].tap()
 
-        copyProject(name: "My first project", newName: "My second project")
+        copyProject(name: kLocalizedMyFirstProject, newName: "My second project")
 
         XCTAssert(app.tables.cells.count == 2)
         XCTAssert(app.tables.staticTexts["My second project"].exists)
 
         // go back and forth to force reload table view!!
-        app.navigationBars["Projects"].buttons["Pocket Code"].tap()
-        app.tables.staticTexts["Projects"].tap()
-        XCTAssert(waitForElementToAppear(app.navigationBars["Projects"]).exists)
+        app.navigationBars[kLocalizedProjects].buttons[kLocalizedPocketCode].tap()
+        app.tables.staticTexts[kLocalizedProjects].tap()
+        XCTAssert(waitForElementToAppear(app.navigationBars[kLocalizedProjects]).exists)
 
         XCTAssert(app.tables.cells.count == 2)
         XCTAssert(app.tables.staticTexts["My second project"].exists)
     }
 
     func testCanCancelCopyMyFirstProject() {
-        app.tables.staticTexts["Projects"].tap()
+        app.tables.staticTexts[kLocalizedProjects].tap()
 
         let tablesQuery = app.tables
-        tablesQuery.staticTexts["My first project"].swipeLeft()
-        XCTAssert(app.buttons["More"].exists)
+        tablesQuery.staticTexts[kLocalizedMyFirstProject].swipeLeft()
+        XCTAssert(app.buttons[kLocalizedMore].exists)
 
-        app.buttons["More"].tap()
-        XCTAssert(app.buttons["Copy"].exists)
-        app.buttons["Copy"].tap()
+        app.buttons[kLocalizedMore].tap()
+        XCTAssert(app.buttons[kLocalizedCopy].exists)
+        app.buttons[kLocalizedCopy].tap()
 
-        XCTAssert(waitForElementToAppear(app.alerts["Copy project"]).exists)
-        let alertQuery = app.alerts["Copy project"]
+        XCTAssert(waitForElementToAppear(app.alerts[kLocalizedCopyProject]).exists)
+        let alertQuery = app.alerts[kLocalizedCopyProject]
         XCTAssert(alertQuery.buttons["Clear text"].exists)
         alertQuery.buttons["Clear text"].tap()
-        alertQuery.textFields["Enter your project name here..."].typeText("My second project")
-        XCTAssert(alertQuery.buttons["Cancel"].exists)
-        alertQuery.buttons["Cancel"].tap()
+        alertQuery.textFields[kLocalizedEnterYourProjectNameHere].typeText("My second project")
+        XCTAssert(alertQuery.buttons[kLocalizedCancel].exists)
+        alertQuery.buttons[kLocalizedCancel].tap()
 
         XCTAssert(app.tables.cells.count == 1)
-        XCTAssert(app.tables.staticTexts["My first project"].exists)
+        XCTAssert(app.tables.staticTexts[kLocalizedMyFirstProject].exists)
 
         // go back and forth to force reload table view!!
-        app.navigationBars["Projects"].buttons["Pocket Code"].tap()
-        app.tables.staticTexts["Projects"].tap()
-        XCTAssert(waitForElementToAppear(app.navigationBars["Projects"]).exists)
+        app.navigationBars[kLocalizedProjects].buttons[kLocalizedPocketCode].tap()
+        app.tables.staticTexts[kLocalizedProjects].tap()
+        XCTAssert(waitForElementToAppear(app.navigationBars[kLocalizedProjects]).exists)
 
         XCTAssert(app.tables.cells.count == 1)
-        XCTAssert(app.tables.staticTexts["My first project"].exists)
+        XCTAssert(app.tables.staticTexts[kLocalizedMyFirstProject].exists)
     }
 
     func testCanRenameMyFirstProject() {
-        app.tables.staticTexts["Projects"].tap()
+        app.tables.staticTexts[kLocalizedProjects].tap()
 
         let tablesQuery = app.tables
-        tablesQuery.staticTexts["My first project"].swipeLeft()
-        XCTAssert(app.buttons["More"].exists)
+        tablesQuery.staticTexts[kLocalizedMyFirstProject].swipeLeft()
+        XCTAssert(app.buttons[kLocalizedMore].exists)
 
-        app.buttons["More"].tap()
-        XCTAssert(app.buttons["Rename"].exists)
-        app.buttons["Rename"].tap()
+        app.buttons[kLocalizedMore].tap()
+        XCTAssert(app.buttons[kLocalizedRename].exists)
+        app.buttons[kLocalizedRename].tap()
 
-        XCTAssert(waitForElementToAppear(app.alerts["Rename Project"]).exists)
-        let alertQuery = app.alerts["Rename Project"]
+        XCTAssert(waitForElementToAppear(app.alerts[kLocalizedRenameProject]).exists)
+        let alertQuery = app.alerts[kLocalizedRenameProject]
         XCTAssert(alertQuery.buttons["Clear text"].exists)
         alertQuery.buttons["Clear text"].tap()
-        alertQuery.textFields["Enter your project name here..."].typeText("My renamed project")
-        XCTAssert(alertQuery.buttons["OK"].exists)
-        alertQuery.buttons["OK"].tap()
+        alertQuery.textFields[kLocalizedEnterYourProjectNameHere].typeText("My renamed project")
+        XCTAssert(alertQuery.buttons[kLocalizedOK].exists)
+        alertQuery.buttons[kLocalizedOK].tap()
 
         XCTAssert(app.tables.cells.count == 1)
         XCTAssert(app.tables.staticTexts["My renamed project"].exists)
 
         // go back and forth to force reload table view!!
-        app.navigationBars["Projects"].buttons["Pocket Code"].tap()
-        app.tables.staticTexts["Projects"].tap()
-        XCTAssert(waitForElementToAppear(app.navigationBars["Projects"]).exists)
+        app.navigationBars[kLocalizedProjects].buttons[kLocalizedPocketCode].tap()
+        app.tables.staticTexts[kLocalizedProjects].tap()
+        XCTAssert(waitForElementToAppear(app.navigationBars[kLocalizedProjects]).exists)
 
         // check again
         XCTAssert(app.tables.cells.count == 1)
@@ -168,74 +170,74 @@ class ProjectsTVCTests: XCTestCase, UITestProtocol {
     }
 
     func testCanCancelRenameMyFirstProject() {
-        app.tables.staticTexts["Projects"].tap()
+        app.tables.staticTexts[kLocalizedProjects].tap()
 
         let tablesQuery = app.tables
-        tablesQuery.staticTexts["My first project"].swipeLeft()
-        XCTAssert(app.buttons["More"].exists)
+        tablesQuery.staticTexts[kLocalizedMyFirstProject].swipeLeft()
+        XCTAssert(app.buttons[kLocalizedMore].exists)
 
-        app.buttons["More"].tap()
-        XCTAssert(app.buttons["Rename"].exists)
-        app.buttons["Rename"].tap()
+        app.buttons[kLocalizedMore].tap()
+        XCTAssert(app.buttons[kLocalizedRename].exists)
+        app.buttons[kLocalizedRename].tap()
 
-        XCTAssert(waitForElementToAppear(app.alerts["Rename Project"]).exists)
-        let alertQuery = app.alerts["Rename Project"]
+        XCTAssert(waitForElementToAppear(app.alerts[kLocalizedRenameProject]).exists)
+        let alertQuery = app.alerts[kLocalizedRenameProject]
         XCTAssert(alertQuery.buttons["Clear text"].exists)
         alertQuery.buttons["Clear text"].tap()
-        alertQuery.textFields["Enter your project name here..."].typeText("My renamed project")
-        XCTAssert(alertQuery.buttons["Cancel"].exists)
-        alertQuery.buttons["Cancel"].tap()
+        alertQuery.textFields[kLocalizedEnterYourProjectNameHere].typeText("My renamed project")
+        XCTAssert(alertQuery.buttons[kLocalizedCancel].exists)
+        alertQuery.buttons[kLocalizedCancel].tap()
 
         XCTAssert(app.tables.cells.count == 1)
-        XCTAssert(app.tables.staticTexts["My first project"].exists)
+        XCTAssert(app.tables.staticTexts[kLocalizedMyFirstProject].exists)
 
         // go back and forth to force reload table view!!
-        app.navigationBars["Projects"].buttons["Pocket Code"].tap()
-        app.tables.staticTexts["Projects"].tap()
-        XCTAssert(waitForElementToAppear(app.navigationBars["Projects"]).exists)
+        app.navigationBars[kLocalizedProjects].buttons[kLocalizedPocketCode].tap()
+        app.tables.staticTexts[kLocalizedProjects].tap()
+        XCTAssert(waitForElementToAppear(app.navigationBars[kLocalizedProjects]).exists)
 
         // check again
         XCTAssert(app.tables.cells.count == 1)
-        XCTAssert(app.tables.staticTexts["My first project"].exists)
+        XCTAssert(app.tables.staticTexts[kLocalizedMyFirstProject].exists)
     }
 
     func testBulkDeleteProjects() {
-        let copyProjectName = "My first project"
-        app.tables.staticTexts["Projects"].tap()
-        waitForElementToAppear(app.navigationBars["Projects"]).buttons["Edit"].tap()
+        let copyProjectName = kLocalizedMyFirstProject
+        app.tables.staticTexts[kLocalizedProjects].tap()
+        waitForElementToAppear(app.navigationBars[kLocalizedProjects]).buttons[kLocalizedEdit].tap()
 
-        if !app.buttons["Hide Details"].exists {
-            app.buttons["Show Details"].tap()
+        if !app.buttons[kLocalizedHideDetails].exists {
+            app.buttons[kLocalizedShowDetails].tap()
         } else {
-            app.buttons["Cancel"].tap()
+            app.buttons[kLocalizedCancel].tap()
         }
 
         for num in 1..<8 {
             copyProject(name: copyProjectName, newName: copyProjectName + String(num))
         }
 
-        waitForElementToAppear(app.navigationBars["Projects"]).buttons["Edit"].tap()
-        waitForElementToAppear(app.buttons["Delete Projects"]).tap()
-        waitForElementToAppear(app.buttons["Select All"]).tap()
-        waitForElementToAppear(app.buttons["Delete"]).tap()
+        waitForElementToAppear(app.navigationBars[kLocalizedProjects]).buttons[kLocalizedEdit].tap()
+        waitForElementToAppear(app.buttons[kLocalizedDeleteProjects]).tap()
+        waitForElementToAppear(app.buttons[kLocalizedSelectAllItems]).tap()
+        waitForElementToAppear(app.buttons[kLocalizedDelete]).tap()
 
-        XCTAssertTrue(waitForElementToAppear(app.navigationBars["Projects"]).exists)
+        XCTAssertTrue(waitForElementToAppear(app.navigationBars[kLocalizedProjects]).exists)
         XCTAssert(app.tables.cells.count == 1)
     }
 
     private func copyProject(name: String, newName: String) {
         let tablesQuery = app.tables
         tablesQuery.staticTexts[name].swipeLeft()
-        XCTAssert(app.buttons["More"].exists)
+        XCTAssert(app.buttons[kLocalizedMore].exists)
 
-        app.buttons["More"].tap()
-        waitForElementToAppear(app.buttons["Copy"]).tap()
+        app.buttons[kLocalizedMore].tap()
+        waitForElementToAppear(app.buttons[kLocalizedCopy]).tap()
 
-        let alertQuery = waitForElementToAppear(app.alerts["Copy project"])
+        let alertQuery = waitForElementToAppear(app.alerts[kLocalizedCopyProject])
         XCTAssert(alertQuery.buttons["Clear text"].exists)
         alertQuery.buttons["Clear text"].tap()
-        alertQuery.textFields["Enter your project name here..."].typeText(newName)
-        XCTAssert(alertQuery.buttons["OK"].exists)
-        alertQuery.buttons["OK"].tap()
+        alertQuery.textFields[kLocalizedEnterYourProjectNameHere].typeText(newName)
+        XCTAssert(alertQuery.buttons[kLocalizedOK].exists)
+        alertQuery.buttons[kLocalizedOK].tap()
     }
 }

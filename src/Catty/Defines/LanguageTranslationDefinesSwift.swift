@@ -563,6 +563,7 @@ let kUIFEonly15Char = NSLocalizedString("only 15 characters allowed", comment: "
 let kUIFEVarName = NSLocalizedString("Variable name:", comment: "")
 let kUIFEListName = NSLocalizedString("List name:", comment: "")
 let kUIFEOtherName = NSLocalizedString("Please choose another name:", comment: "")
+let kUIFEAddNewText = NSLocalizedString("Abc", comment: "")
 
 let kUIFEProjectVars = NSLocalizedString("Project variables:", comment: "")
 let kUIFEObjectVars = NSLocalizedString("Object variables:", comment: "")
@@ -671,7 +672,7 @@ let kUIFEUnknownElementType = NSLocalizedString("Unknown Element", comment: "")
 
 let kUIFENewText = NSLocalizedString("New Text", comment: "")
 let kUIFETextMessage = NSLocalizedString("Text message:", comment: "")
-let kUIFavouritesTitle = NSLocalizedString("Frequently Used", comment: "Title of View where the user can see the frequently used bricks.")
+let kLocalizedFrequentlyUsed = NSLocalizedString("Frequently Used", comment: "Title of View where the user can see the frequently used bricks.")
 let kUIScriptTitle = NSLocalizedString("Script", comment: "")
 let kUIControlTitle = NSLocalizedString("Control", comment: "")
 let kUIMotionTitle = NSLocalizedString("Motion", comment: "")

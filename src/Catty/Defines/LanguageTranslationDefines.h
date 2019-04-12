@@ -563,6 +563,7 @@
 #define kUIFEVarName NSLocalizedString(@"Variable name:", nil)
 #define kUIFEListName NSLocalizedString(@"List name:", nil)
 #define kUIFEOtherName NSLocalizedString(@"Please choose another name:", nil)
+#define kUIFEAddNewText NSLocalizedString(@"Abc", nil)
 
 #define kUIFEProjectVars NSLocalizedString(@"Project variables:", nil)
 #define kUIFEObjectVars NSLocalizedString(@"Object variables:", nil)
@@ -671,7 +672,7 @@
 
 #define kUIFENewText NSLocalizedString(@"New Text", nil)
 #define kUIFETextMessage NSLocalizedString(@"Text message:", nil)
-#define kUIFavouritesTitle NSLocalizedString(@"Frequently Used", @"Title of View where the user can see the frequently used bricks.")
+#define kLocalizedFrequentlyUsed NSLocalizedString(@"Frequently Used", @"Title of View where the user can see the frequently used bricks.")
 #define kUIScriptTitle NSLocalizedString(@"Script", nil)
 #define kUIControlTitle NSLocalizedString(@"Control", nil)
 #define kUIMotionTitle NSLocalizedString(@"Motion", nil)

@@ -37,59 +37,82 @@ class VariablesTests: XCTestCase, UITestProtocol {
         app = XCUIApplication()
     }
 
+    private func createNewProjectAndAddSetVariableBrick(name: String) {
+        createProject(name: name, in: app)
+
+        app.tables.staticTexts[kLocalizedBackground].tap()
+        app.tables.staticTexts[kLocalizedScripts].tap()
+
+        addBrick(label: kLocalizedSetVariable, section: kUIVariableTitle, in: app)
+    }
+
     func testDontShowVariablePickerWhenNoVariablesDefinedForObject() {
         createNewProjectAndAddSetVariableBrick(name: "Test Project")
 
-        app.collectionViews.cells.otherElements.containing(.staticText, identifier: "Set variable").children(matching: .other).element.tap()
-        XCTAssert(app.sheets["Variable type"].exists)
+        app.collectionViews.cells.otherElements.containing(.staticText, identifier: kLocalizedSetVariable).children(matching: .other).element.tap()
+        XCTAssert(app.sheets[kUIFEActionVar].exists)
     }
 
     func testDontShowVListPickerWhenNoListsDefinedForObject() {
-        app.tables.staticTexts["New"].tap()
-        app.alerts["New Project"].textFields["Enter your project name here..."].typeText("Test Project")
-        XCUIApplication().alerts["New Project"].buttons["OK"].tap()
-        XCUIApplication().tables.staticTexts["Background"].tap()
-        app.tables.staticTexts["Scripts"].tap()
-        app.toolbars.buttons["Add"].tap()
+        app.tables.staticTexts[kLocalizedNew].tap()
+        app.alerts[kLocalizedNewProject].textFields[kLocalizedEnterYourProjectNameHere].typeText("Test Project")
+        XCUIApplication().alerts[kLocalizedNewProject].buttons[kLocalizedOK].tap()
+        XCUIApplication().tables.staticTexts[kLocalizedBackground].tap()
+        app.tables.staticTexts[kLocalizedScripts].tap()
 
-        skipFrequentlyUsedBricks(app)
-        app.swipeLeft()
-        app.swipeLeft()
-        app.swipeLeft()
-        app.swipeLeft()
-        app.swipeDown()
+        addBrick(label: kLocalizedUserListAdd, section: kUIVariableTitle, in: app)
 
-        app.collectionViews.cells.otherElements.containing(.staticText, identifier: "Add ").children(matching: .other).element.tap()
-        app.collectionViews.cells.otherElements.containing(.staticText, identifier: "Add ").children(matching: .other).element.tap()
-        XCTAssert(app.sheets["List type"].exists)
+        app.collectionViews.cells.otherElements.identifierTextBeginsWith(kLocalizedUserListAdd).children(matching: .other).element.tap()
+        XCTAssert(app.sheets[kUIFEActionList].exists)
     }
 
     func testCreateVariableWithMaxLength() {
         createNewProjectAndAddSetVariableBrick(name: "Test Project")
 
-        app.collectionViews.cells.otherElements.containing(.staticText, identifier: "Set variable").children(matching: .other).element.tap()
-        XCTAssert(app.sheets["Variable type"].exists)
+        app.collectionViews.cells.otherElements.containing(.staticText, identifier: kLocalizedSetVariable).children(matching: .other).element.tap()
+        XCTAssert(app.sheets[kUIFEActionVar].exists)
 
-        app.buttons["for all objects"].tap()
-        app.alerts["New Variable"].textFields["Enter your variable name here..."].typeText(String(repeating: "i", count: 250))
-        app.alerts["New Variable"].buttons["OK"].tap()
-        XCTAssert(waitForElementToAppear(app.staticTexts["When project started"]).exists)
+        app.buttons[kUIFEActionVarPro].tap()
+        app.alerts[kUIFENewVar].textFields[kLocalizedEnterYourVariableNameHere].typeText(String(repeating: "i", count: 250))
+        app.alerts[kUIFENewVar].buttons[kLocalizedOK].tap()
+        XCTAssert(waitForElementToAppear(app.staticTexts[kLocalizedWhenProjectStarted]).exists)
     }
 
     func testCreateVariableWithMaxLengthPlusOne() {
         createNewProjectAndAddSetVariableBrick(name: "Test Project")
 
-        app.collectionViews.cells.otherElements.containing(.staticText, identifier: "Set variable").children(matching: .other).element.tap()
-        XCTAssert(app.sheets["Variable type"].exists)
+        app.collectionViews.cells.otherElements.containing(.staticText, identifier: kLocalizedSetVariable).children(matching: .other).element.tap()
+        XCTAssert(app.sheets[kUIFEActionVar].exists)
 
-        app.buttons["for all objects"].tap()
-        app.alerts["New Variable"].textFields["Enter your variable name here..."].typeText(String(repeating: "i", count: 250 + 1))
-        app.alerts["New Variable"].buttons["OK"].tap()
-        XCTAssert(app.alerts["Pocket Code"].exists)
+        app.buttons[kUIFEActionVarPro].tap()
+        app.alerts[kUIFENewVar].textFields[kLocalizedEnterYourVariableNameHere].typeText(String(repeating: "i", count: 250 + 1))
+        app.alerts[kUIFENewVar].buttons[kLocalizedOK].tap()
+        XCTAssert(app.alerts[kLocalizedPocketCode].exists)
     }
 
     func testCreateAndSelectVariable() {
         let variableName = "testVariable"
+
+        createNewProjectAndAddSetVariableBrick(name: "Test Project")
+        app.collectionViews.cells.otherElements.containing(.staticText, identifier: kLocalizedSetVariable).children(matching: .button).element.tap()
+        XCTAssert(waitForElementToAppear(app.buttons[kLocalizedCancel]).exists)
+
+        app.buttons[kUIFEVariableList].tap()
+        app.buttons[kLocalizedNew].tap()
+        waitForElementToAppear(app.buttons[kUIFENewVar]).tap()
+        waitForElementToAppear(app.buttons[kUIFEActionVarPro]).tap()
+
+        let alert = waitForElementToAppear(app.alerts[kUIFENewVar])
+        alert.textFields.firstMatch.typeText(variableName)
+        alert.buttons[kLocalizedOK].tap()
+        app.buttons[kLocalizedDone].tap()
+
+        XCTAssertTrue(waitForElementToAppear(app.buttons[" \"" + variableName + "\" "]).exists)
+    }
+
+    func testCreateVariableAndTapChooseButton() {
+
+        let testVariable = "testVariable"
 
         createNewProjectAndAddSetVariableBrick(name: "Test Project")
         app.collectionViews.cells.otherElements.containing(.staticText, identifier: "Set variable").children(matching: .button).element.tap()
@@ -101,26 +124,78 @@ class VariablesTests: XCTestCase, UITestProtocol {
         waitForElementToAppear(app.buttons["for all objects"]).tap()
 
         let alert = waitForElementToAppear(app.alerts["New Variable"])
-        alert.textFields.firstMatch.typeText(variableName)
+        alert.textFields.firstMatch.typeText(testVariable)
         alert.buttons["OK"].tap()
+
+        app.buttons["del active"].tap()
+        app.buttons["Var/List"].tap()
+        app.buttons["Choose"].tap()
         app.buttons["Done"].tap()
 
-        XCTAssertTrue(waitForElementToAppear(app.buttons[" \"" + variableName + "\" "]).exists)
+        XCTAssertTrue(waitForElementToAppear(app.buttons[" \"" + testVariable + "\" "]).exists)
     }
 
-    private func createNewProjectAndAddSetVariableBrick(name: String) {
-        createProject(name: name, in: app)
+    func testCreateVariableAndTapSelecetedRowInPickerView() {
+        let testVariable = ["testVariable1", "testVariable2", "testVariable3"]
 
-        app.tables.staticTexts["Background"].tap()
-        app.tables.staticTexts["Scripts"].tap()
-        app.toolbars.buttons["Add"].tap()
+        createNewProjectAndAddSetVariableBrick(name: "Test Project")
+        app.collectionViews.cells.otherElements.containing(.staticText, identifier: "Set variable").children(matching: .button).element.tap()
+        XCTAssert(waitForElementToAppear(app.buttons["Cancel"]).exists)
 
-        skipFrequentlyUsedBricks(app)
-        app.swipeLeft()
-        app.swipeLeft()
-        app.swipeLeft()
-        app.swipeLeft()
+        for variable in testVariable {
+            app.buttons["Var/List"].tap()
+            app.buttons["New"].tap()
+            waitForElementToAppear(app.buttons["New Variable"]).tap()
+            waitForElementToAppear(app.buttons["for all objects"]).tap()
 
-        app.collectionViews.staticTexts["Set variable"].tap()
+            let alert = waitForElementToAppear(app.alerts["New Variable"])
+            alert.textFields.firstMatch.typeText(variable)
+            alert.buttons["OK"].tap()
+        }
+
+        app.buttons["del active"].tap()
+        app.buttons["Var/List"].tap()
+        app.pickerWheels.element.adjust(toPickerWheelValue: testVariable[2])
+        app.pickerWheels[testVariable[2]].tap()
+
+        XCTAssertTrue(waitForElementToAppear(app.buttons[" \"" + testVariable[2] + "\" "]).exists)
+    }
+    func testEditMarkedTextVariableInFormularEditor() {
+        let projectName = "Test Project"
+        let testVariable = "TestVariable"
+
+        createNewProjectAndAddSetVariableBrick(name: projectName)
+        app.collectionViews.cells.otherElements.containing(.staticText, identifier: kLocalizedSetVariable).children(matching: .button).element.tap()
+        XCTAssert(waitForElementToAppear(app.buttons[kLocalizedCancel]).exists)
+
+        app.buttons[kUIFEAddNewText].tap()
+        let alert = waitForElementToAppear(app.alerts[kUIFENewText])
+        alert.textFields.firstMatch.typeText(testVariable)
+        app.buttons[kLocalizedOK].tap()
+        app.buttons[kLocalizedDone].tap()
+        app.collectionViews.cells.otherElements.containing(.staticText, identifier: kLocalizedSetVariable).children(matching: .button).element.tap()
+        app.buttons[kUIFEAddNewText].tap()
+        XCTAssertEqual(alert.textFields.firstMatch.value as! String, testVariable)
+    }
+    func testCreateVariableWithMarkedText() {
+        let projectName = "Test Project"
+        let testVariable = "TestVariable"
+
+        createNewProjectAndAddSetVariableBrick(name: projectName)
+        app.collectionViews.cells.otherElements.containing(.staticText, identifier: kLocalizedSetVariable).children(matching: .button).element.tap()
+        XCTAssert(waitForElementToAppear(app.buttons[kLocalizedCancel]).exists)
+
+        app.buttons[kUIFEAddNewText].tap()
+        let newTextAlert = waitForElementToAppear(app.alerts[kUIFENewText])
+        newTextAlert.textFields.firstMatch.typeText(testVariable)
+        app.buttons[kLocalizedOK].tap()
+        app.buttons[kLocalizedDone].tap()
+        app.collectionViews.cells.otherElements.containing(.staticText, identifier: kLocalizedSetVariable).children(matching: .button).element.tap()
+        app.buttons[kUIFEVariableList].tap()
+        app.buttons[kUIFEVar].tap()
+        waitForElementToAppear(app.buttons[kUIFENewVar]).tap()
+        waitForElementToAppear(app.buttons[kUIFEActionVarPro]).tap()
+        let newVarAlert = waitForElementToAppear(app.alerts[kUIFENewVar])
+        XCTAssertEqual(newVarAlert.textFields.firstMatch.value as! String, "")
     }
 }
