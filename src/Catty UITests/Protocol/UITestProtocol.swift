@@ -34,7 +34,7 @@ extension UITestProtocol {
 
         let result = XCTWaiter().wait(for: [expectation], timeout: 5)
 
-        XCTAssert(result == .completed)
+        XCTAssert(result == .completed, "waitForElementToAppear failed for \(element.label) ")
 
         return element
     }
