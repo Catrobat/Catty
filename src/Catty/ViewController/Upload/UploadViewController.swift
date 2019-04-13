@@ -238,12 +238,6 @@ class UploadViewController: UIViewController {
             Util.alert(withText: kLocalizedUploadProjectNecessary)
             return
         }
-        //RemixOF
-        if project?.header.url != nil && project?.header.userHandle != nil {
-            project?.header.remixOf = project?.header.url
-            project?.header.url = nil
-            project?.header.userHandle = nil
-        }
         project?.rename(toProjectName: projectNameTextField.text!)
         project?.updateDescription(withText: descriptionTextView.text)
 
