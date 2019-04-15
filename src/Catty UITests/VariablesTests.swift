@@ -37,6 +37,15 @@ class VariablesTests: XCTestCase, UITestProtocol {
         app = XCUIApplication()
     }
 
+    private func createNewProjectAndAddSetVariableBrick(name: String) {
+        createProject(name: name, in: app)
+
+        app.tables.staticTexts[kLocalizedBackground].tap()
+        app.tables.staticTexts[kLocalizedScripts].tap()
+
+        addBrick(label: kLocalizedSetVariable, section: kUIVariableTitle, in: app)
+    }
+
     func testDontShowVariablePickerWhenNoVariablesDefinedForObject() {
         createNewProjectAndAddSetVariableBrick(name: "Test Project")
 
@@ -50,16 +59,9 @@ class VariablesTests: XCTestCase, UITestProtocol {
         XCUIApplication().alerts[kLocalizedNewProject].buttons[kLocalizedOK].tap()
         XCUIApplication().tables.staticTexts[kLocalizedBackground].tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
-        app.toolbars.buttons[kLocalizedUserListAdd].tap()
 
-        skipFrequentlyUsedBricks(app)
-        app.swipeLeft()
-        app.swipeLeft()
-        app.swipeLeft()
-        app.swipeLeft()
-        app.swipeDown()
+        addBrick(label: kLocalizedUserListAdd, section: kUIVariableTitle, in: app)
 
-        app.collectionViews.cells.otherElements.identifierTextBeginsWith(kLocalizedUserListAdd).children(matching: .other).element.tap()
         app.collectionViews.cells.otherElements.identifierTextBeginsWith(kLocalizedUserListAdd).children(matching: .other).element.tap()
         XCTAssert(app.sheets[kUIFEActionList].exists)
     }
@@ -106,22 +108,6 @@ class VariablesTests: XCTestCase, UITestProtocol {
         app.buttons[kLocalizedDone].tap()
 
         XCTAssertTrue(waitForElementToAppear(app.buttons[" \"" + variableName + "\" "]).exists)
-    }
-
-    private func createNewProjectAndAddSetVariableBrick(name: String) {
-        createProject(name: name, in: app)
-
-        app.tables.staticTexts[kLocalizedBackground].tap()
-        app.tables.staticTexts[kLocalizedScripts].tap()
-        app.toolbars.buttons[kLocalizedUserListAdd].tap()
-
-        skipFrequentlyUsedBricks(app)
-        app.swipeLeft()
-        app.swipeLeft()
-        app.swipeLeft()
-        app.swipeLeft()
-
-        app.collectionViews.staticTexts[kLocalizedSetVariable].tap()
     }
 
     func testCreateVariableAndTapChooseButton() {
@@ -182,13 +168,13 @@ class VariablesTests: XCTestCase, UITestProtocol {
         app.collectionViews.cells.otherElements.containing(.staticText, identifier: kLocalizedSetVariable).children(matching: .button).element.tap()
         XCTAssert(waitForElementToAppear(app.buttons[kLocalizedCancel]).exists)
 
-        app.buttons["ABC"].tap()
+        app.buttons[kUIFEAddNewText].tap()
         let alert = waitForElementToAppear(app.alerts[kUIFENewText])
         alert.textFields.firstMatch.typeText(testVariable)
         app.buttons[kLocalizedOK].tap()
         app.buttons[kLocalizedDone].tap()
         app.collectionViews.cells.otherElements.containing(.staticText, identifier: kLocalizedSetVariable).children(matching: .button).element.tap()
-        app.buttons["ABC"].tap()
+        app.buttons[kUIFEAddNewText].tap()
         XCTAssertEqual(alert.textFields.firstMatch.value as! String, testVariable)
     }
     func testCreateVariableWithMarkedText() {
@@ -199,7 +185,7 @@ class VariablesTests: XCTestCase, UITestProtocol {
         app.collectionViews.cells.otherElements.containing(.staticText, identifier: kLocalizedSetVariable).children(matching: .button).element.tap()
         XCTAssert(waitForElementToAppear(app.buttons[kLocalizedCancel]).exists)
 
-        app.buttons["ABC"].tap()
+        app.buttons[kUIFEAddNewText].tap()
         let newTextAlert = waitForElementToAppear(app.alerts[kUIFENewText])
         newTextAlert.textFields.firstMatch.typeText(testVariable)
         app.buttons[kLocalizedOK].tap()
