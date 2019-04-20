@@ -24,45 +24,52 @@ import AudioKit
 import Foundation
 
 class Sampler: AKSampler {
-
+    
     var activeNotes = [Int: Set<Note>]()
-
+    let playingQueue = DispatchQueue(label: "SamplerPlayingQueue")
+    
+    
     func playNote(_ newNote: Note) {
-        var notesWithSamePitch = activeNotes[newNote.pitch] ?? Set<Note>()
-
-        // Only one note of the same pitch can play at the same time (restriction of sampler).
-        // We don't have to send a noteOff event for older notes of the same pitch in the
-        // "play note" or "play drum" instruction after the durationTimer has fired because the
-        // noteOff event was automatically triggered when the new note of the same pitch was played.
-        // the "isSilent" property determines whether a noteOff event has to be sent at the end of
-        // the instruction.
-        for note in notesWithSamePitch {
-            note.isSilent = true
+        _ = playingQueue.sync {
+            var notesWithSamePitch = activeNotes[newNote.pitch] ?? Set<Note>()
+            
+            // Only one note of the same pitch can play at the same time (restriction of sampler).
+            // We don't have to send a noteOff event for older notes of the same pitch in the
+            // "play note" or "play drum" instruction after the durationTimer has fired because the
+            // noteOff event was automatically triggered when the new note of the same pitch was played.
+            // the "isSilent" property determines whether a noteOff event has to be sent at the end of
+            // the instruction.
+            for note in notesWithSamePitch {
+                note.isSilent = true
+            }
+            
+            notesWithSamePitch.insert(newNote)
+            activeNotes[newNote.pitch] = notesWithSamePitch
+            
+            play(noteNumber: UInt8(newNote.pitch), velocity: 127)
         }
-
-        notesWithSamePitch.insert(newNote)
-        activeNotes[newNote.pitch] = notesWithSamePitch
-        play(noteNumber: UInt8(newNote.pitch), velocity: 127)
     }
-
+    
     func stopNote(_ note: Note) {
-        if !note.isSilent {
-            stop(noteNumber: UInt8(note.pitch))
-        }
-        if var notesWithSamePitch = activeNotes[note.pitch] {
-            notesWithSamePitch.remove(note)
-            activeNotes[note.pitch] = notesWithSamePitch
+        _ = playingQueue.sync {
+            if !note.isSilent {
+                stop(noteNumber: UInt8(note.pitch))
+            }
+            if var notesWithSamePitch = activeNotes[note.pitch] {
+                notesWithSamePitch.remove(note)
+                activeNotes[note.pitch] = notesWithSamePitch
+            }
         }
     }
-
+    
     func pauseSampler() {
         stopAllVoices()
     }
-
+    
     func resumeSampler() {
         restartVoices()
     }
-
+    
     func stopSampler() {
         activeNotes.removeAll()
         stopAllVoices()

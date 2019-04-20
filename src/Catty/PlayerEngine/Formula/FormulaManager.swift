@@ -36,6 +36,7 @@ import CoreMotion
     let bluetoothService: BluetoothService
 
     var cachedResults = [FormulaElement: AnyObject]()
+    let cacheQueue = DispatchQueue(label: "CacheQueue")
 
     @objc(initWithSceneSize:)
     convenience init(sceneSize: CGSize) {

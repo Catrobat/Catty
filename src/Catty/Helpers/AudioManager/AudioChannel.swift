@@ -33,7 +33,9 @@ import Foundation
     let pitchEffect = PitchEffect()
     var soundEffects = [SoundEffectType: SoundEffect]()
     var instrumentChoice = 0
-    let playerCreationQueue = DispatchQueue(label: "CreationQueue")
+    let playerCreationQueue = DispatchQueue(label: "PlayerCreationQueue")
+    let samplerCreationQueue = DispatchQueue(label: "SamplerCreationQueue")
+    let drumSamplerCreationQueue = DispatchQueue(label: "DrumSamplerCreationQueue")
 
     init(mainOut: AKInput) {
         super.init()
@@ -134,7 +136,11 @@ import Foundation
 
     func stopAllSamplers() {
         sampler?.stopSampler()
+        sampler?.unloadAllSamples()
+        sampler = nil
         drumSampler?.stopSampler()
+        drumSampler?.unloadAllSamples()
+        drumSampler = nil
     }
 
     func resumeAllSamplers() {
@@ -164,11 +170,13 @@ import Foundation
     }
 
     private func connectSampler() {
-        if self.sampler == nil {
-            self.sampler = Sampler()
+        _ = samplerCreationQueue.sync {
+            if self.sampler == nil {
+                self.sampler = Sampler()
+                self.sampler?.connect(to: subtreeOutputMixer)
+                setupSampler()
+            }
         }
-        self.sampler?.connect(to: subtreeOutputMixer)
-        setupSampler()
     }
 
     private func connectDrumSampler() {

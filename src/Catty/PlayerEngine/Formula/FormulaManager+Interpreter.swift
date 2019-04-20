@@ -242,6 +242,8 @@ extension FormulaManager {
     }
 
     private func cacheResult(_ formulaElement: FormulaElement, result: AnyObject) {
-        cachedResults[formulaElement] = result
+        _ = cacheQueue.sync {           // needed to avoid thead-safety problems
+            cachedResults[formulaElement] = result
+        }
     }
 }

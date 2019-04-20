@@ -29,10 +29,12 @@
         let spriteObjectName = spriteObject.name
 
         return CBInstruction.waitExecClosure { context, scheduler in
+            let pitch = context.formulaInterpreter.interpretInteger(self.pitch, for: spriteObject)
+            let note = Note(pitch: pitch)
+
             let waitUntilNoteFinished = NSCondition()
             waitUntilNoteFinished.accessibilityHint = "0"
 
-            let pitch = context.formulaInterpreter.interpretInteger(self.pitch, for: spriteObject)
             let durationInSeconds = AudioEngineConfig.beatsToSeconds(beatsFormula: self.duration, bpm: audioEngine.bpm, spriteObject: spriteObject, context: context)
 
             let durationTimer = ExtendedTimer.init(timeInterval: durationInSeconds,
@@ -43,16 +45,15 @@
                 waitUntilNoteFinished.signal()
             }
 
-            let note = Note(pitch: pitch)
-            audioEngine.playNote(note: note, key: spriteObjectName!)
-
-            (scheduler as! CBScheduler).setTimer(durationTimer)
+            DispatchQueue.main.async {
+                audioEngine.playNote(note: note, key: spriteObjectName!)
+                (scheduler as! CBScheduler).setTimer(durationTimer)
+            }
             waitUntilNoteFinished.lock()
             while waitUntilNoteFinished.accessibilityHint == "0" {
                 waitUntilNoteFinished.wait()
             }
             waitUntilNoteFinished.unlock()
-
             audioEngine.stopNote(note: note, key: spriteObjectName!)
             (scheduler as! CBScheduler).removeTimer(durationTimer)
         }
