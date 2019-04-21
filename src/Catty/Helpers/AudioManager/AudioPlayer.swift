@@ -28,6 +28,7 @@ class AudioPlayer {
     let akPlayer: AKPlayer
     var waitCondition: NSCondition?
     var isPaused: Bool = false
+    var isDiscarded: Bool = false
 
     let playingQueue = DispatchQueue(label: "PlayingQueue")
 
@@ -42,7 +43,6 @@ class AudioPlayer {
     func soundCompletionHandler() {
         if let cond = self.waitCondition {
             cond.accessibilityHint = "1"
-            print("----- Signal \(waitCondition) -----")
             cond.signal()
             waitCondition = nil
         }
@@ -50,11 +50,15 @@ class AudioPlayer {
 
     func play(condition: NSCondition?) {
         _ = playingQueue.sync {
-            if akPlayer.isPlaying {
-                self.stop()
-            }
             addCondition(condition)
-            akPlayer.play()
+            if !self.isDiscarded {
+                if akPlayer.isPlaying {
+                    self.stop()
+                }
+                akPlayer.play()
+            } else {
+                soundCompletionHandler()
+            }
         }
     }
 
@@ -62,6 +66,15 @@ class AudioPlayer {
         self.soundCompletionHandler()
         akPlayer.stop()
         RunLoop.current.run(until: Date(timeIntervalSinceNow: 0.01)) //Hack. Sonst spielt manchmal nichts mehr stop und play zu schnell nacheinander kommen.
+    }
+
+    func remove() {
+        _ = playingQueue.sync {
+            self.isDiscarded = true
+            self.soundCompletionHandler()
+            akPlayer.stop()
+            akPlayer.detach()
+        }
     }
 
     func pause() {
@@ -86,8 +99,16 @@ class AudioPlayer {
         return akPlayer.isPlaying
     }
 
+    func getFileName() -> String {
+        if let file = akPlayer.audioFile {
+            return file.fileNamePlusExtension
+        } else {
+            debugPrint("No file found for player")
+            return "no file found"
+        }
+    }
+
     private func addCondition(_ condition: NSCondition?) {
-        print("----- Add Condition \(condition) -----")
         self.waitCondition = condition
     }
 }

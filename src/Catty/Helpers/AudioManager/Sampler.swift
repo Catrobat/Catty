@@ -24,15 +24,15 @@ import AudioKit
 import Foundation
 
 class Sampler: AKSampler {
-    
+
     var activeNotes = [Int: Set<Note>]()
     let playingQueue = DispatchQueue(label: "SamplerPlayingQueue")
-    
-    
+
+
     func playNote(_ newNote: Note) {
         _ = playingQueue.sync {
             var notesWithSamePitch = activeNotes[newNote.pitch] ?? Set<Note>()
-            
+
             // Only one note of the same pitch can play at the same time (restriction of sampler).
             // We don't have to send a noteOff event for older notes of the same pitch in the
             // "play note" or "play drum" instruction after the durationTimer has fired because the
@@ -42,14 +42,14 @@ class Sampler: AKSampler {
             for note in notesWithSamePitch {
                 note.isSilent = true
             }
-            
+
             notesWithSamePitch.insert(newNote)
             activeNotes[newNote.pitch] = notesWithSamePitch
-            
+
             play(noteNumber: UInt8(newNote.pitch), velocity: 127)
         }
     }
-    
+
     func stopNote(_ note: Note) {
         _ = playingQueue.sync {
             if !note.isSilent {
@@ -61,15 +61,15 @@ class Sampler: AKSampler {
             }
         }
     }
-    
+
     func pauseSampler() {
         stopAllVoices()
     }
-    
+
     func resumeSampler() {
         restartVoices()
     }
-    
+
     func stopSampler() {
         activeNotes.removeAll()
         stopAllVoices()

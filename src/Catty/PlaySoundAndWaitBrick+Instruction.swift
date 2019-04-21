@@ -37,11 +37,11 @@
         return CBInstruction.waitExecClosure { context, _ in
             let waitUntilSoundPlayed = NSCondition()
             waitUntilSoundPlayed.accessibilityHint = "0"
-            
+
             DispatchQueue.main.async {
                 audioEngine.playSound(fileName: fileName, key: objectName, filePath: filePath, condition: waitUntilSoundPlayed)
             }
-            
+
             waitUntilSoundPlayed.lock()
             while waitUntilSoundPlayed.accessibilityHint == "0" {
                 waitUntilSoundPlayed.wait()

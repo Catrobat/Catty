@@ -916,12 +916,11 @@
 		9E190CCF222F371600B5ECD1 /* ClearSoundEffectsBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E190CCE222F371600B5ECD1 /* ClearSoundEffectsBrick.swift */; };
 		9E190CD1222F385D00B5ECD1 /* ClearSoundEffectsBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E190CD0222F385D00B5ECD1 /* ClearSoundEffectsBrick+Instruction.swift */; };
 		9E1B4CF6223BF06900972C56 /* PlaySoundAndWaitBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E1B4CF5223BF06900972C56 /* PlaySoundAndWaitBrick+Instruction.swift */; };
-		9E1B4CFA223C00C300972C56 /* AKPlayer+CompletionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E1B4CF9223C00C300972C56 /* AKPlayer+CompletionHandler.swift */; };
 		9E2C5E96222756BB0047C642 /* PlayNoteBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2C5E95222756BA0047C642 /* PlayNoteBrick+Instruction.swift */; };
 		9E2E3E5322288B6D00E961C9 /* Sample Instruments Compressed in Resources */ = {isa = PBXBuildFile; fileRef = 9E2E3E5222288B6D00E961C9 /* Sample Instruments Compressed */; };
 		9E40AA032229BC73006ADB1E /* AudioEngineConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E40AA022229BC73006ADB1E /* AudioEngineConfig.swift */; };
 		9E40AA112229E8C2006ADB1E /* SetInstrumentToBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E40AA102229E8C1006ADB1E /* SetInstrumentToBrick+Instruction.swift */; };
-		9E6B94FD22513C560043C04D /* Audio1Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6B94FC22513C560043C04D /* Audio1Player.swift */; };
+		9E7F3EF6226B355600AA25F9 /* IterableSoundCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7F3EF5226B355600AA25F9 /* IterableSoundCache.swift */; };
 		9E890896222329C10078B1B4 /* AudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E890893222329C10078B1B4 /* AudioKit.framework */; };
 		9E890897222329F30078B1B4 /* AudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E890893222329C10078B1B4 /* AudioKit.framework */; };
 		9E9B897B2258E7D700D0869A /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9B897A2258E7D700D0869A /* AudioPlayer.swift */; };
@@ -2631,13 +2630,12 @@
 		9E190CCE222F371600B5ECD1 /* ClearSoundEffectsBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearSoundEffectsBrick.swift; sourceTree = "<group>"; };
 		9E190CD0222F385D00B5ECD1 /* ClearSoundEffectsBrick+Instruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ClearSoundEffectsBrick+Instruction.swift"; sourceTree = "<group>"; };
 		9E1B4CF5223BF06900972C56 /* PlaySoundAndWaitBrick+Instruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlaySoundAndWaitBrick+Instruction.swift"; sourceTree = "<group>"; };
-		9E1B4CF9223C00C300972C56 /* AKPlayer+CompletionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AKPlayer+CompletionHandler.swift"; sourceTree = "<group>"; };
 		9E2C5E95222756BA0047C642 /* PlayNoteBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "PlayNoteBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Sound/PlayNoteBrick+Instruction.swift"; sourceTree = "<group>"; };
 		9E2E3E5222288B6D00E961C9 /* Sample Instruments Compressed */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "Sample Instruments Compressed"; path = "Resources/Sample Instruments Compressed"; sourceTree = "<group>"; };
 		9E40AA012229BBA2006ADB1E /* Sample Instruments Uncompressed */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "Sample Instruments Uncompressed"; path = "Resources/Sample Instruments Uncompressed"; sourceTree = "<group>"; };
 		9E40AA022229BC73006ADB1E /* AudioEngineConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioEngineConfig.swift; sourceTree = "<group>"; };
 		9E40AA102229E8C1006ADB1E /* SetInstrumentToBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SetInstrumentToBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Sound/SetInstrumentToBrick+Instruction.swift"; sourceTree = "<group>"; };
-		9E6B94FC22513C560043C04D /* Audio1Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Audio1Player.swift; sourceTree = "<group>"; };
+		9E7F3EF5226B355600AA25F9 /* IterableSoundCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IterableSoundCache.swift; sourceTree = "<group>"; };
 		9E890893222329C10078B1B4 /* AudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioKit.framework; path = Carthage/Build/iOS/AudioKit.framework; sourceTree = "<group>"; };
 		9E9B897A2258E7D700D0869A /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
 		9EA2CF6C223B0D7E008934BF /* PlaySoundAndWaitBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PlaySoundAndWaitBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
@@ -6007,7 +6005,6 @@
 			isa = PBXGroup;
 			children = (
 				9EFB8E80223016D90098018A /* Effects */,
-				9E1B4CF9223C00C300972C56 /* AKPlayer+CompletionHandler.swift */,
 				92FF2E4E1A24C7D800093DA7 /* AudioManager.h */,
 				92FF2E4F1A24C7D800093DA7 /* AudioManager.m */,
 				4C48ED2820EF9AEC00784CD5 /* AudioManager+Loudness.swift */,
@@ -6019,8 +6016,8 @@
 				9E40AA022229BC73006ADB1E /* AudioEngineConfig.swift */,
 				9EDAA2FD222C985E00535908 /* Note.swift */,
 				9EAB85D6223172D90095F709 /* Sampler.swift */,
-				9E6B94FC22513C560043C04D /* Audio1Player.swift */,
 				9E9B897A2258E7D700D0869A /* AudioPlayer.swift */,
+				9E7F3EF5226B355600AA25F9 /* IterableSoundCache.swift */,
 			);
 			path = AudioManager;
 			sourceTree = "<group>";
@@ -9060,7 +9057,6 @@
 				4C0F9F31204ADC2E00E71B2D /* ChooseCameraBrick.m in Sources */,
 				AABCB3E01BB3650B009F67D2 /* CBFrontendProtocol.swift in Sources */,
 				AABCB3E11BB3650B009F67D2 /* CBSchedulerProtocol.swift in Sources */,
-				9E1B4CFA223C00C300972C56 /* AKPlayer+CompletionHandler.swift in Sources */,
 				F4E6E598210E03FE00D86FE6 /* ExpFunction.swift in Sources */,
 				4C0F9F25204ADBC800E71B2D /* IfThenLogicEndBrick.m in Sources */,
 				9EA3CB4F222DAAFD00BED864 /* PlayNoteBrick+CBXMLHandler.m in Sources */,
@@ -9454,7 +9450,6 @@
 				92B46F831BC79585004980C1 /* AboutPoketCodeOptionTableViewController.m in Sources */,
 				4C724E631B4D3E8C00E27479 /* XMLObjectReference.m in Sources */,
 				4C60663A1A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m in Sources */,
-				9E6B94FD22513C560043C04D /* Audio1Player.swift in Sources */,
 				929CC0CE1BC39B0A0027DEC0 /* PhiroMotorStopBrick.m in Sources */,
 				AA74EFF01BC05B5F00D1E954 /* VibrationBrick.m in Sources */,
 				AA74F0AE1BC05FCE00D1E954 /* HideBrickCell.m in Sources */,
@@ -9496,6 +9491,7 @@
 				9EA3CB2F222D757F00BED864 /* SetInstrumentToBrickCell.swift in Sources */,
 				9E190CC3222F306B00B5ECD1 /* ChangeEffectByBrick.swift in Sources */,
 				9EA3CB4B222DAAFD00BED864 /* SetInstrumentToBrick+CBXMLHandler.m in Sources */,
+				9E7F3EF6226B355600AA25F9 /* IterableSoundCache.swift in Sources */,
 				9EA3CB4A222DAAFD00BED864 /* ChangeVolumeByNBrick+CBXMLHandler.m in Sources */,
 				4CE3D68B2107A89B00005629 /* FaceDetectionManager.swift in Sources */,
 				AA74EFF71BC05B5F00D1E954 /* SetLookBrick.m in Sources */,

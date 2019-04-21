@@ -26,7 +26,8 @@ import Foundation
 @objc class AudioChannel: NSObject {
     var subtreeOutputMixer = AKMixer()
     var audioPlayerMixer = AKMixer()
-    var audioPlayers = [String: AudioPlayer]()
+    var iterablePlayerCache = IterableSoundCache<AudioPlayer>()
+
     var sampler: Sampler?
     var drumSampler: Sampler?
     let panEffect = PanEffect()
@@ -43,7 +44,7 @@ import Foundation
     }
 
     func playSound(fileName: String, filePath: String, condition: NSCondition?) {
-        if let audioPlayer = audioPlayers[fileName] {
+        if let audioPlayer = iterablePlayerCache.object(forKey: fileName) {
             startExistingAudioPlayer(audioPlayer: audioPlayer, condition: condition)
         } else {
             let audioFileURL = createFileUrl(fileName: fileName, filePath: filePath)
@@ -112,20 +113,21 @@ import Foundation
     }
 
     func pauseAllAudioPlayers() {
-        for (_, audioPlayer) in audioPlayers {
-                audioPlayer.pause()
+        for audioPlayerKey in iterablePlayerCache.getKeySet() {
+            iterablePlayerCache.object(forKey: audioPlayerKey)?.pause()
         }
     }
 
     func stopAllAudioPlayers() {
-        for (_, audioPlayer) in audioPlayers {
-            audioPlayer.stop()
+        for audioPlayerKey in iterablePlayerCache.getKeySet() {
+            iterablePlayerCache.object(forKey: audioPlayerKey)?.stop()
         }
+        iterablePlayerCache.removeAllObjects()
     }
 
     func resumeAllAudioPlayers() {
-        for (_, audioPlayer) in audioPlayers {
-            audioPlayer.resume()
+        for audioPlayerKey in iterablePlayerCache.getKeySet() {
+            iterablePlayerCache.object(forKey: audioPlayerKey)?.resume()
         }
     }
 
@@ -201,10 +203,10 @@ import Foundation
 
     private func startNonExistingAudioPlayer(audioPlayer: AudioPlayer, fileName: String, condition: NSCondition?) {
         _ = playerCreationQueue.sync {
-            if let audioPlayer = audioPlayers[fileName] {
+            if let audioPlayer = iterablePlayerCache.object(forKey: fileName) {
                 startExistingAudioPlayer(audioPlayer: audioPlayer, condition: condition)
             } else {
-                audioPlayers[fileName] = audioPlayer
+                iterablePlayerCache.setObject(audioPlayer, forKey: fileName)
                 audioPlayer.connect(to: audioPlayerMixer)
                 audioPlayer.play(condition: condition)
             }
