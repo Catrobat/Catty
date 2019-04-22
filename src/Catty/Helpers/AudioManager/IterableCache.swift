@@ -22,7 +22,7 @@
 
 import Foundation
 
-public class IterableSoundCache<ObjectType: AnyObject>: NSObject, NSCacheDelegate {
+public class IterableCache<ObjectType: AnyObject>: NSObject, NSCacheDelegate {
 
     var cache = NSCache<NSString, ObjectType>()
     var keySet = Set<String>()
@@ -36,7 +36,6 @@ public class IterableSoundCache<ObjectType: AnyObject>: NSObject, NSCacheDelegat
 
     func setObject(_ obj: ObjectType, forKey: String) {
         _ = cacheQueue.sync {
-        print("--- adding player \(Unmanaged.passUnretained(obj).toOpaque()) ---")
             cache.setObject(obj, forKey: forKey as NSString)
             keySet.insert(forKey)
         }
@@ -66,6 +65,10 @@ public class IterableSoundCache<ObjectType: AnyObject>: NSObject, NSCacheDelegat
         if let player = obj as? AudioPlayer {
             removeFromKeySet(key: player.getFileName())
             player.remove()
+        }
+        if let sampler = obj as? Sampler {
+            removeFromKeySet(key: sampler.type.rawValue)
+            sampler.remove()
         }
     }
 }

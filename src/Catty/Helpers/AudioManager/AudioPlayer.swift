@@ -27,8 +27,8 @@ class AudioPlayer {
 
     let akPlayer: AKPlayer
     var waitCondition: NSCondition?
-    var isPaused: Bool = false
-    var isDiscarded: Bool = false
+    var isPaused = false
+    var isDiscarded = false
 
     let playingQueue = DispatchQueue(label: "PlayingQueue")
 

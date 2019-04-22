@@ -920,7 +920,7 @@
 		9E2E3E5322288B6D00E961C9 /* Sample Instruments Compressed in Resources */ = {isa = PBXBuildFile; fileRef = 9E2E3E5222288B6D00E961C9 /* Sample Instruments Compressed */; };
 		9E40AA032229BC73006ADB1E /* AudioEngineConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E40AA022229BC73006ADB1E /* AudioEngineConfig.swift */; };
 		9E40AA112229E8C2006ADB1E /* SetInstrumentToBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E40AA102229E8C1006ADB1E /* SetInstrumentToBrick+Instruction.swift */; };
-		9E7F3EF6226B355600AA25F9 /* IterableSoundCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7F3EF5226B355600AA25F9 /* IterableSoundCache.swift */; };
+		9E7F3EF6226B355600AA25F9 /* IterableCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7F3EF5226B355600AA25F9 /* IterableCache.swift */; };
 		9E890896222329C10078B1B4 /* AudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E890893222329C10078B1B4 /* AudioKit.framework */; };
 		9E890897222329F30078B1B4 /* AudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E890893222329C10078B1B4 /* AudioKit.framework */; };
 		9E9B897B2258E7D700D0869A /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9B897A2258E7D700D0869A /* AudioPlayer.swift */; };
@@ -2635,7 +2635,7 @@
 		9E40AA012229BBA2006ADB1E /* Sample Instruments Uncompressed */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "Sample Instruments Uncompressed"; path = "Resources/Sample Instruments Uncompressed"; sourceTree = "<group>"; };
 		9E40AA022229BC73006ADB1E /* AudioEngineConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioEngineConfig.swift; sourceTree = "<group>"; };
 		9E40AA102229E8C1006ADB1E /* SetInstrumentToBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SetInstrumentToBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Sound/SetInstrumentToBrick+Instruction.swift"; sourceTree = "<group>"; };
-		9E7F3EF5226B355600AA25F9 /* IterableSoundCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IterableSoundCache.swift; sourceTree = "<group>"; };
+		9E7F3EF5226B355600AA25F9 /* IterableCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IterableCache.swift; sourceTree = "<group>"; };
 		9E890893222329C10078B1B4 /* AudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioKit.framework; path = Carthage/Build/iOS/AudioKit.framework; sourceTree = "<group>"; };
 		9E9B897A2258E7D700D0869A /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
 		9EA2CF6C223B0D7E008934BF /* PlaySoundAndWaitBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PlaySoundAndWaitBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
@@ -6017,7 +6017,7 @@
 				9EDAA2FD222C985E00535908 /* Note.swift */,
 				9EAB85D6223172D90095F709 /* Sampler.swift */,
 				9E9B897A2258E7D700D0869A /* AudioPlayer.swift */,
-				9E7F3EF5226B355600AA25F9 /* IterableSoundCache.swift */,
+				9E7F3EF5226B355600AA25F9 /* IterableCache.swift */,
 			);
 			path = AudioManager;
 			sourceTree = "<group>";
@@ -9491,7 +9491,7 @@
 				9EA3CB2F222D757F00BED864 /* SetInstrumentToBrickCell.swift in Sources */,
 				9E190CC3222F306B00B5ECD1 /* ChangeEffectByBrick.swift in Sources */,
 				9EA3CB4B222DAAFD00BED864 /* SetInstrumentToBrick+CBXMLHandler.m in Sources */,
-				9E7F3EF6226B355600AA25F9 /* IterableSoundCache.swift in Sources */,
+				9E7F3EF6226B355600AA25F9 /* IterableCache.swift in Sources */,
 				9EA3CB4A222DAAFD00BED864 /* ChangeVolumeByNBrick+CBXMLHandler.m in Sources */,
 				4CE3D68B2107A89B00005629 /* FaceDetectionManager.swift in Sources */,
 				AA74EFF71BC05B5F00D1E954 /* SetLookBrick.m in Sources */,

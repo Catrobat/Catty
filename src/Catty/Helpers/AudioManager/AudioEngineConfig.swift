@@ -117,3 +117,7 @@ class AudioEngineConfig {
 enum SoundEffectType: Int {
     case pitch = 0, pan
 }
+
+enum SamplerType: String {
+    case instrument = "instrument", drum = "drum"
+}

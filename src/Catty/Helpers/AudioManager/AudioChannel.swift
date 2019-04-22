@@ -26,10 +26,10 @@ import Foundation
 @objc class AudioChannel: NSObject {
     var subtreeOutputMixer = AKMixer()
     var audioPlayerMixer = AKMixer()
-    var iterablePlayerCache = IterableSoundCache<AudioPlayer>()
+    var audioPlayerCache = IterableCache<AudioPlayer>()
+    var samplerCache = IterableCache<Sampler>()
 
-    var sampler: Sampler?
-    var drumSampler: Sampler?
+
     let panEffect = PanEffect()
     let pitchEffect = PitchEffect()
     var soundEffects = [SoundEffectType: SoundEffect]()
@@ -44,7 +44,7 @@ import Foundation
     }
 
     func playSound(fileName: String, filePath: String, condition: NSCondition?) {
-        if let audioPlayer = iterablePlayerCache.object(forKey: fileName) {
+        if let audioPlayer = audioPlayerCache.object(forKey: fileName) {
             startExistingAudioPlayer(audioPlayer: audioPlayer, condition: condition)
         } else {
             let audioFileURL = createFileUrl(fileName: fileName, filePath: filePath)
@@ -59,31 +59,33 @@ import Foundation
     }
 
     func playNote(note: Note) {
-        if sampler == nil {
-            connectSampler()
+        if samplerCache.object(forKey: SamplerType.instrument.rawValue) == nil {
+            connectInstrumentSampler()
         }
-        sampler?.playNote(note)
+        samplerCache.object(forKey: SamplerType.instrument.rawValue)?.playNote(note)
     }
 
     func stopNote(note: Note) {
+        let sampler = samplerCache.object(forKey: SamplerType.instrument.rawValue)
         sampler?.stopNote(note)
     }
 
     func playDrum(note: Note) {
-        if drumSampler == nil {
+        if samplerCache.object(forKey: SamplerType.drum.rawValue) == nil {
             connectDrumSampler()
         }
-        drumSampler?.playNote(note)
+        samplerCache.object(forKey: SamplerType.drum.rawValue)?.playNote(note)
     }
 
     func stopDrum(note: Note) {
+        let drumSampler = samplerCache.object(forKey: SamplerType.drum.rawValue)
         drumSampler?.stopNote(note)
     }
 
     func setInstrumentTo(instrumentNumber: Int) {
         instrumentChoice = instrumentNumber
         let instrumentPath = Bundle.main.resourcePath!+"/Sample Instruments Compressed/" + AudioEngineConfig.instrumentPath[instrumentChoice]
-        sampler?.loadSFZ(path: instrumentPath, fileName: AudioEngineConfig.instrumentPath[instrumentChoice] + ".sfz")
+        samplerCache.object(forKey: SamplerType.instrument.rawValue)?.loadSFZ(path: instrumentPath, fileName: AudioEngineConfig.instrumentPath[instrumentChoice] + ".sfz")
     }
 
     func setEffectTo(effectType: SoundEffectType, value: Double) {
@@ -113,48 +115,52 @@ import Foundation
     }
 
     func pauseAllAudioPlayers() {
-        for audioPlayerKey in iterablePlayerCache.getKeySet() {
-            iterablePlayerCache.object(forKey: audioPlayerKey)?.pause()
+        for audioPlayerKey in audioPlayerCache.getKeySet() {
+            audioPlayerCache.object(forKey: audioPlayerKey)?.pause()
         }
     }
 
     func stopAllAudioPlayers() {
-        for audioPlayerKey in iterablePlayerCache.getKeySet() {
-            iterablePlayerCache.object(forKey: audioPlayerKey)?.stop()
+        for audioPlayerKey in audioPlayerCache.getKeySet() {
+            audioPlayerCache.object(forKey: audioPlayerKey)?.stop()
         }
-        iterablePlayerCache.removeAllObjects()
+        audioPlayerCache.removeAllObjects()
     }
 
     func resumeAllAudioPlayers() {
-        for audioPlayerKey in iterablePlayerCache.getKeySet() {
-            iterablePlayerCache.object(forKey: audioPlayerKey)?.resume()
+        for audioPlayerKey in audioPlayerCache.getKeySet() {
+            audioPlayerCache.object(forKey: audioPlayerKey)?.resume()
         }
     }
 
     func pauseAllSamplers() {
-        sampler?.pauseSampler()
-        drumSampler?.pauseSampler()
+        for samplerKey in samplerCache.getKeySet() {
+            let sampler = samplerCache.object(forKey: samplerKey)
+            sampler?.pauseSampler()
+        }
     }
 
     func stopAllSamplers() {
-        sampler?.stopSampler()
-        sampler?.unloadAllSamples()
-        sampler = nil
-        drumSampler?.stopSampler()
-        drumSampler?.unloadAllSamples()
-        drumSampler = nil
+        for samplerKey in samplerCache.getKeySet() {
+            let sampler = samplerCache.object(forKey: samplerKey)
+            sampler?.stopSampler()
+            sampler?.unloadAllSamples()
+        }
+        audioPlayerCache.removeAllObjects()
     }
 
     func resumeAllSamplers() {
-        sampler?.resumeSampler()
-        drumSampler?.resumeSampler()
+        for samplerKey in samplerCache.getKeySet() {
+            let sampler = samplerCache.object(forKey: samplerKey)
+            sampler?.resumeSampler()
+        }
     }
 
     internal func createFileUrl(fileName: String, filePath: String) -> URL {
         return URL.init(fileURLWithPath: filePath + "/" + fileName)
     }
 
-    private func setupSampler() {
+    private func setupSampler(_ sampler: Sampler?) {
         sampler?.attackDuration = 0.01
         sampler?.decayDuration = 0.1
         sampler?.sustainLevel = 0.5
@@ -162,7 +168,7 @@ import Foundation
         setInstrumentTo(instrumentNumber: instrumentChoice)
     }
 
-    private func setupDrumSampler() {
+    private func setupDrumSampler(_ drumSampler: Sampler?) {
         drumSampler?.attackDuration = 0.01
         drumSampler?.decayDuration = 0.1
         drumSampler?.sustainLevel = 0.5
@@ -171,22 +177,26 @@ import Foundation
         drumSampler?.loadSFZ(path: instrumentPath, fileName: AudioEngineConfig.instrumentPath[21] + ".sfz")
     }
 
-    private func connectSampler() {
+    private func connectInstrumentSampler() {
         _ = samplerCreationQueue.sync {
-            if self.sampler == nil {
-                self.sampler = Sampler()
-                self.sampler?.connect(to: subtreeOutputMixer)
-                setupSampler()
+            if samplerCache.object(forKey: SamplerType.instrument.rawValue) == nil {
+                var sampler = Sampler(type: SamplerType.instrument)
+                samplerCache.setObject(sampler, forKey: SamplerType.instrument.rawValue)
+                setupSampler(sampler)
+                sampler.connect(to: subtreeOutputMixer)
             }
         }
     }
 
     private func connectDrumSampler() {
-        if self.drumSampler == nil {
-            self.drumSampler = Sampler()
+        _ = drumSamplerCreationQueue.sync {
+            if samplerCache.object(forKey: SamplerType.drum.rawValue) == nil {
+                let drumSampler = Sampler(type: SamplerType.drum)
+                setupDrumSampler(drumSampler)
+                samplerCache.setObject(drumSampler, forKey: SamplerType.drum.rawValue)
+                drumSampler.connect(to: subtreeOutputMixer)
+            }
         }
-        drumSampler?.connect(to: subtreeOutputMixer)
-        setupDrumSampler()
     }
 
     private func setupSubtree(mainOut: AKInput) {
@@ -203,10 +213,10 @@ import Foundation
 
     private func startNonExistingAudioPlayer(audioPlayer: AudioPlayer, fileName: String, condition: NSCondition?) {
         _ = playerCreationQueue.sync {
-            if let audioPlayer = iterablePlayerCache.object(forKey: fileName) {
+            if let audioPlayer = audioPlayerCache.object(forKey: fileName) {
                 startExistingAudioPlayer(audioPlayer: audioPlayer, condition: condition)
             } else {
-                iterablePlayerCache.setObject(audioPlayer, forKey: fileName)
+                audioPlayerCache.setObject(audioPlayer, forKey: fileName)
                 audioPlayer.connect(to: audioPlayerMixer)
                 audioPlayer.play(condition: condition)
             }
