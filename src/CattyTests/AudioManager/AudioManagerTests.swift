@@ -42,12 +42,12 @@ class AudioManagerTests: XCTestCase {
         let fileURL = testBundle.url(forResource: "silence", withExtension: "mp3")
         XCTAssertNotNil(fileURL)
 
-        let result = audioManager?.playSound(withFileName: fileURL!.lastPathComponent, andKey: "key", atFilePath: fileURL!.deletingLastPathComponent().path)
+        let result = audioManager?.playSound(withFileName: fileURL!.lastPathComponent, andKey: "key", atFilePath: fileURL!.deletingLastPathComponent().path, delegate: nil)
         XCTAssertTrue(result!)
     }
 
     func testPlaySoundAndFail() {
-        let result = audioManager?.playSound(withFileName: "invalidFile", andKey: "key", atFilePath: "invalidPath")
+        let result = audioManager?.playSound(withFileName: "invalidFile", andKey: "key", atFilePath: "invalidPath", delegate: nil)
         XCTAssertFalse(result!)
     }
 }

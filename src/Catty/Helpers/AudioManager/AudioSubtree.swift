@@ -23,7 +23,7 @@
 import AudioKit
 import Foundation
 
-@objc class AudioChannel: NSObject {
+@objc class AudioSubtree: NSObject {
     var subtreeOutputMixer = AKMixer()
     var audioPlayerMixer = AKMixer()
     var audioPlayerCache = IterableCache<AudioPlayer>()
@@ -180,7 +180,7 @@ import Foundation
     private func connectInstrumentSampler() {
         _ = samplerCreationQueue.sync {
             if samplerCache.object(forKey: SamplerType.instrument.rawValue) == nil {
-                var sampler = Sampler(type: SamplerType.instrument)
+                let sampler = Sampler(type: SamplerType.instrument)
                 samplerCache.setObject(sampler, forKey: SamplerType.instrument.rawValue)
                 setupSampler(sampler)
                 sampler.connect(to: subtreeOutputMixer)

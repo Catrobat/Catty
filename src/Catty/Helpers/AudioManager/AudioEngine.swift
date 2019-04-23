@@ -26,11 +26,11 @@ import Foundation
 @objc class AudioEngine: NSObject, AVSpeechSynthesizerDelegate {
     var speechSynth = AVSpeechSynthesizer()
     var mainOut = AKMixer()
-    var channels = [String: AudioChannel]()
+    var subtrees = [String: AudioSubtree]()
     var recorder: AKNodeRecorder?
     var tape: AKAudioFile?
     var bpm = 60.0
-    let channelCreationQueue = DispatchQueue(label: "ChannelCreationQueue")
+    let subtreeCreationQueue = DispatchQueue(label: "SubtreeCreationQueue")
 
     override init() {
         AudioKit.output = mainOut
@@ -41,20 +41,6 @@ import Foundation
         }
         super.init()
         speechSynth.delegate = self
-
-//        do {
-//            tape = try AKAudioFile()
-//            recorder = try AKNodeRecorder(node: mainOut, file: tape)
-//            AKLog((recorder?.audioFile?.directoryPath.absoluteString)!)
-//            AKLog((recorder?.audioFile?.fileNamePlusExtension)!)
-//        } catch {
-//
-//        }
-//        do {
-//            try recorder?.record()
-//        } catch {
-//            AKLog("Couldn't record")
-//        }
     }
 
     @objc func pauseAudioEngine() {
@@ -76,85 +62,75 @@ import Foundation
     }
 
     func playSound(fileName: String, key: String, filePath: String, condition: NSCondition?) {
-        let channel = getAudioChannel(key: key)
-        channel.playSound(fileName: fileName, filePath: filePath, condition: condition)
+        let subtree = getSubtree(key: key)
+        subtree.playSound(fileName: fileName, filePath: filePath, condition: condition)
     }
 
     func playNote(note: Note, key: String) {
-        let channel = getAudioChannel(key: key)
-        channel.playNote(note: note)
+        let subtree = getSubtree(key: key)
+        subtree.playNote(note: note)
     }
 
     func stopNote(note: Note, key: String) {
-        let channel = getAudioChannel(key: key)
-        channel.stopNote(note: note)
+        let subtree = getSubtree(key: key)
+        subtree.stopNote(note: note)
     }
 
     func playDrum(note: Note, key: String) {
-        let channel = getAudioChannel(key: key)
-        channel.playDrum(note: note)
+        let subtree = getSubtree(key: key)
+        subtree.playDrum(note: note)
     }
 
     func stopDrum(note: Note, key: String) {
-        let channel = getAudioChannel(key: key)
-        channel.stopDrum(note: note)
+        let subtree = getSubtree(key: key)
+        subtree.stopDrum(note: note)
     }
 
     func setInstrumentTo(instrumentNumber: Int, key: String) {
-        let channel = getAudioChannel(key: key)
-        channel.setInstrumentTo(instrumentNumber: instrumentNumber)
+        let subtree = getSubtree(key: key)
+        subtree.setInstrumentTo(instrumentNumber: instrumentNumber)
     }
 
     func setVolumeTo(percent: Double, key: String) {
-        let channel = getAudioChannel(key: key)
-        channel.setVolumeTo(percent: percent)
+        let subtree = getSubtree(key: key)
+        subtree.setVolumeTo(percent: percent)
     }
 
     func changeVolumeBy(percent: Double, key: String) {
-        let channel = getAudioChannel(key: key)
-        channel.changeVolumeBy(percent: percent)
+        let subtree = getSubtree(key: key)
+        subtree.changeVolumeBy(percent: percent)
     }
 
     func setEffectTo(effectType: SoundEffectType, value: Double, key: String) {
-        let channel = getAudioChannel(key: key)
-        channel.setEffectTo(effectType: effectType, value: value)
+        let subtree = getSubtree(key: key)
+        subtree.setEffectTo(effectType: effectType, value: value)
     }
 
     func changeEffectBy(effectType: SoundEffectType, value: Double, key: String) {
-        let channel = getAudioChannel(key: key)
-        channel.changeEffectBy(effectType: effectType, value: value)
+        let subtree = getSubtree(key: key)
+        subtree.changeEffectBy(effectType: effectType, value: value)
     }
 
     func clearSoundEffects(key: String) {
-        let channel = getAudioChannel(key: key)
-        channel.clearSoundEffects()
+        let subtree = getSubtree(key: key)
+        subtree.clearSoundEffects()
     }
 
     @objc func pauseAllAudioPlayers() {
-        for (_, channel) in channels {
-            channel.pauseAllAudioPlayers()
-        }
-        do {
-            try AVAudioSession.sharedInstance().setActive(false)
-        } catch {
-            print("Could not deactivate audio engine")
+        for (_, subtree) in subtrees {
+            subtree.pauseAllAudioPlayers()
         }
     }
 
     @objc func resumeAllAudioPlayers() {
-        for (_, channel) in channels {
-            channel.resumeAllAudioPlayers()
-        }
-        do {
-            try AVAudioSession.sharedInstance().setActive(true)
-        } catch {
-            print("Could not deactivate audio engine")
+        for (_, subtree) in subtrees {
+            subtree.resumeAllAudioPlayers()
         }
     }
 
     @objc func stopAllAudioPlayers() {
-        for (_, channel) in channels {
-            channel.stopAllAudioPlayers()
+        for (_, subtree) in subtrees {
+            subtree.stopAllAudioPlayers()
         }
     }
 
@@ -171,58 +147,37 @@ import Foundation
         }
     }
 
-    private func getAudioChannel(key: String) -> AudioChannel {
-        channelCreationQueue.sync {
-            if channels[key] == nil {
-                _ = createNewAudioChannel(key: key)
+    private func getSubtree(key: String) -> AudioSubtree {
+        subtreeCreationQueue.sync {
+            if subtrees[key] == nil {
+                _ = createNewAudioSubtree(key: key)
             }
         }
-        return channels[key]!
+        return subtrees[key]!
     }
 
     private func pauseAllSamplers() {
-        for (_, channel) in channels {
-            channel.pauseAllSamplers()
+        for (_, subtree) in subtrees {
+            subtree.pauseAllSamplers()
         }
     }
 
     private func resumeAllSamplers() {
-        for (_, channel) in channels {
-            channel.resumeAllSamplers()
+        for (_, subtree) in subtrees {
+            subtree.resumeAllSamplers()
         }
     }
 
     private func stopAllSamplers() {
-        for (_, channel) in channels {
-            channel.stopAllSamplers()
+        for (_, subtree) in subtrees {
+            subtree.stopAllSamplers()
         }
     }
 
-    internal func createNewAudioChannel(key: String) -> AudioChannel {
-        let channel = AudioChannel(mainOut: mainOut)
-        channels[key] = channel
-        return channel
-    }
-
-    func stopTheNodeRecorder() {
-        recorder?.stop()
-        print(" ------- Recorded \(recorder?.recordedDuration) Seconds ------- ")
-    }
-
-    func addNodeRecorderAtMainOut(tape: AKAudioFile) -> AKNodeRecorder {
-        do {
-            recorder = try AKNodeRecorder(node: mainOut, file: tape)
-        } catch {
-            print("Should not happen")
-        }
-
-        return recorder!
-    }
-
-    @objc func stopNodeRecorder() {
-//        recorder?.stop()
-//        tape?.exportAsynchronously(name: "test", baseDir: .documents, exportFormat: .caf){ [weak self] _, _ in}
-//        AKLog(recorder?.recordedDuration)
+    internal func createNewAudioSubtree(key: String) -> AudioSubtree {
+        let subtree = AudioSubtree(mainOut: mainOut)
+        subtrees[key] = subtree
+        return subtree
     }
 
     open func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
