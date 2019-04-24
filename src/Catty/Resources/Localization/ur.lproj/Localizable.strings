@@ -5,6 +5,9 @@
 "A project with the same name already exists, try again." = "A project with the same name already exists, try again.";
 
 /* No comment provided by engineer. */
+"Abc" = "Abc";
+
+/* No comment provided by engineer. */
 "About Catrobat" = "کیٹروبیٹ کے بارے میں";
 
 /* No comment provided by engineer. */
@@ -23,7 +26,7 @@
 "acceleration_z" = "acceleration_z";
 
 /* No comment provided by engineer. */
-"Add" = "Add";
+"Add" = "جمع";
 
 /* No comment provided by engineer. */
 "add comment here..." = "add comment here...";
@@ -32,7 +35,7 @@
 "Add image" = "تصویر اضافہ کریں";
 
 /* Action sheet menu title */
-"Add look" = "Add look";
+"Add look" = "نظر کا ا ضافہ کریں";
 
 /* No comment provided by engineer. */
 "Add object" = "آبجیکٹ ا ضافہ کریں";
@@ -59,7 +62,7 @@
 "An object with the same name already exists, try again." = "ایک آبجیکٹ اسی نام سے پہلے سے ہی موجود ہے، پھر کوشش کریں۔";
 
 /* No comment provided by engineer. */
-"An unknown error occurred. Check your Internet connection." = "An unknown error occurred. Check your Internet connection.";
+"An unknown error occurred. Check your Internet connection." = "ایک نامعلوم غلطی واقع ہوئی. اپنا انٹرنیٹ کنکشن چیک کریں.";
 
 /* No comment provided by engineer. */
 "An unknown error occurred. Please try again later." = "An unknown error occurred. Please try again later.";
@@ -68,7 +71,7 @@
 "and" = "اور";
 
 /* No comment provided by engineer. */
-"and wait" = "and wait";
+"and wait" = "اور انتظار کریں";
 
 /* No comment provided by engineer. */
 "Animate Brick-Parts" = "Animate Brick-Parts";
@@ -92,7 +95,7 @@
 "at " = "at ";
 
 /* No comment provided by engineer. */
-"at position" = "at position";
+"at position" = "پوزیشن پر";
 
 /* paint */
 "Attributes:" = "Attributes:";
@@ -143,7 +146,7 @@
 "bold" = "bold";
 
 /* No comment provided by engineer. */
-"Both" = "Both";
+"Both" = "دونوں";
 
 /* No comment provided by engineer. */
 "Bricks" = "اینٹیں";
@@ -155,13 +158,13 @@
 "Broadcast" = "نشر کرنین";
 
 /* No comment provided by engineer. */
-"Broadcast and wait" = "Broadcast and wait";
+"Broadcast and wait" = "نشریات اور انتظار";
 
 /* paint */
 "Brush" = "برش";
 
 /* No comment provided by engineer. */
-"by" = "by";
+"by" = "کی طرف سے";
 
 /* No comment provided by engineer. */
 "By registering you agree to our" = "رجسٹر ہوتے ہوئے آپ متفق ہیں ہمارے";
@@ -200,16 +203,16 @@
 "Change color " = "Change color ";
 
 /* No comment provided by engineer. */
-"Change size by" = "Change size by";
+"Change size by" = "سائز تبدیل کریں";
 
 /* No comment provided by engineer. */
 "Change transparency " = "Change transparency ";
 
 /* No comment provided by engineer. */
-"Change variable" = "Change variable";
+"Change variable" = "متغیر تبدیل کریں";
 
 /* No comment provided by engineer. */
-"Change volume by" = "Change volume by";
+"Change volume by" = "حجم تبدیل کریں";
 
 /* No comment provided by engineer. */
 "Change X by " = "Change X by ";
@@ -239,7 +242,7 @@
 "Close Paint" = "پینٹ بند کریں";
 
 /* No comment provided by engineer. */
-"color" = "color";
+"color" = "رنگ";
 
 /* No comment provided by engineer. */
 "compass" = "قطب نما";
@@ -296,7 +299,7 @@
 "Create account" = "Create account";
 
 /* No comment provided by engineer. */
-"day" = "day";
+"day" = "دن";
 
 /* No comment provided by engineer. */
 "Debug mode" = "Debug mode";
@@ -323,7 +326,7 @@
 "Delete Condition" = "شرط حذف کریں";
 
 /* No comment provided by engineer. */
-"Delete item from list" = "Delete item from list";
+"Delete item from list" = "فہرست سے اشیاء حذف کریں";
 
 /* No comment provided by engineer. */
 "Delete Looks" = "Delete Looks";
@@ -479,7 +482,7 @@
 "Ellipse / Circle" = "Ellipse / Circle";
 
 /* No comment provided by engineer. */
-"Else" = "Else";
+"Else" = "علوه";
 
 /* No comment provided by engineer. */
 "Email" = "ای میل";
@@ -593,7 +596,7 @@
 "Following features used in this project are not compatible with this version of Pocket Code:" = "Following features used in this project are not compatible with this version of Pocket Code:";
 
 /* No comment provided by engineer. */
-"for" = "for";
+"for" = "کےلیے";
 
 /* No comment provided by engineer. */
 "for all objects" = "تمام آبجیکٹس کے لیے";
@@ -623,7 +626,7 @@
 "From Camera" = "From Camera";
 
 /* No comment provided by engineer. */
-"front" = "front";
+"front" = "سامنے";
 
 /* No comment provided by engineer. */
 "Front camera" = "Front camera";
@@ -644,7 +647,7 @@
 "gyro-sensor" = "gyro-sensor";
 
 /* No comment provided by engineer. */
-"Hello!" = "Hello!";
+"Hello!" = "ہیلو!";
 
 /* No comment provided by engineer. */
 "Help" = "مدد";
@@ -659,13 +662,13 @@
 "Hide variable" = "Hide variable";
 
 /* No comment provided by engineer. */
-"Hmmmm!" = "Hmmmm!";
+"Hmmmm!" = "ہمی!";
 
 /* No comment provided by engineer. */
-"hour" = "hour";
+"hour" = "گھنٹے";
 
 /* No comment provided by engineer. */
-"If" = "If";
+"If" = "اگر";
 
 /* No comment provided by engineer. */
 "If on edge, bounce" = "If on edge, bounce";
@@ -695,13 +698,13 @@
 "Information" = "Information";
 
 /* No comment provided by engineer. */
-"Insert" = "Insert";
+"Insert" = "داخل کریں";
 
 /* paint */
 "Inserted" = "Inserted";
 
 /* No comment provided by engineer. */
-"into list" = "into list";
+"into list" = "فہرست میں";
 
 /* No comment provided by engineer. */
 "Invalid input entered, try again." = "Invalid input entered, try again.";
@@ -713,10 +716,10 @@
 "iOS." = "iOS.";
 
 /* No comment provided by engineer. */
-"is true" = "is true";
+"is true" = "سچ ہے";
 
 /* No comment provided by engineer. */
-"is true then" = "is true then";
+"is true then" = "سچ ہے تو";
 
 /* paint */
 "italic" = "italic";
@@ -767,7 +770,7 @@
 "LED" = "LED";
 
 /* No comment provided by engineer. */
-"Left" = "Left";
+"Left" = "بائیں طرف";
 
 /* No comment provided by engineer. */
 "Length" = "لمبائی";
@@ -830,7 +833,7 @@
 "look_number" = "look_number";
 
 /* No comment provided by engineer. */
-"Looks" = "Looks";
+"Looks" = "نظر";
 
 /* No comment provided by engineer. */
 "loudness" = "loudness";
@@ -869,7 +872,7 @@
 "MI" = "MI";
 
 /* No comment provided by engineer. */
-"minute" = "minute";
+"minute" = "منٹ";
 
 /* paint */
 "Mirror" = "Mirror";
@@ -884,7 +887,7 @@
 "Monday" = "پیر";
 
 /* No comment provided by engineer. */
-"month" = "month";
+"month" = "ماہ";
 
 /* No comment provided by engineer. */
 "More" = "مزید";
@@ -905,7 +908,7 @@
 "Move" = "آگۓ بڑہیں";
 
 /* No comment provided by engineer. */
-"Move Brick" = "Move Brick";
+"Move Brick" = "اینٹوں کو منتقل کریں";
 
 /* No comment provided by engineer. */
 "Move Looks" = "Move Looks";
@@ -923,7 +926,7 @@
 "Move Sounds" = "Move Sounds";
 
 /* Name of the default catrobat project (used as filename!!) */
-"My first project" = "My first project";
+"My first project" = "میرا پہلا پراجیکٹ";
 
 /* Default title of imported photo from camera (taken by camera) */
 "My Image" = "My Image";
@@ -965,10 +968,10 @@
 "Newest" = "تازہ ترین";
 
 /* No comment provided by engineer. */
-"Next background" = "Next background";
+"Next background" = "اگلے پس منظر";
 
 /* No comment provided by engineer. */
-"Next look" = "Next look";
+"Next look" = "اگلی نظر";
 
 /* No comment provided by engineer. */
 "No" = "نہيں";
@@ -1046,13 +1049,13 @@
 "October" = "اکتوبر";
 
 /* No comment provided by engineer. */
-"off" = "off";
+"off" = "بند";
 
 /* No comment provided by engineer. */
 "OK" = "ٹھيک ہے";
 
 /* No comment provided by engineer. */
-"on" = "on";
+"on" = "پر";
 
 /* No comment provided by engineer. */
 "only 15 characters allowed" = "only 15 characters allowed";
@@ -1175,13 +1178,13 @@
 "position_y" = "position_y";
 
 /* No comment provided by engineer. */
-"Preview" = "Preview";
+"Preview" = "پیش منظر";
 
 /* No comment provided by engineer. */
-"Previous background" = "Previous background";
+"Previous background" = "پچھلے پس منظر";
 
 /* No comment provided by engineer. */
-"Previous look" = "Previous look";
+"Previous look" = "پچھلے نظر";
 
 /* No comment provided by engineer. */
 "Privacy Settings" = "Privacy Settings";
@@ -1196,7 +1199,7 @@
 "Project lists:" = "Project lists:";
 
 /* No comment provided by engineer. */
-"Project name" = "Project name";
+"Project name" = "نام پروجیکٹ";
 
 /* No comment provided by engineer. */
 "Project Name is necessary!" = "Project Name is necessary!";
@@ -1247,13 +1250,13 @@
 "Rename sound" = "آواز کو نیا نام دیں";
 
 /* No comment provided by engineer. */
-"Repeat" = "Repeat";
+"Repeat" = "دہرائیں";
 
 /* No comment provided by engineer. */
-"Repeat until" = "Repeat until";
+"Repeat until" = "تک دہرائیں";
 
 /* No comment provided by engineer. */
-"Replace item in list" = "Replace item in list";
+"Replace item in list" = "فہرست میں شے بدل دیں";
 
 /* No comment provided by engineer. */
 "Report as inappropriate" = "رپورٹ غیرموزوں ہے";
@@ -1268,7 +1271,7 @@
 "Result" = "نتیجہ";
 
 /* No comment provided by engineer. */
-"Right" = "Right";
+"Right" = "دائیں طرف";
 
 /* paint */
 "Rotate" = "گھمائیں";
@@ -1292,7 +1295,7 @@
 "Saved" = "محفوظ ہوا";
 
 /* No comment provided by engineer. */
-"Say" = "Say";
+"Say" = "کہہ دو";
 
 /* No comment provided by engineer. */
 "screen_is_touched" = "screen_is_touched";
@@ -1313,13 +1316,13 @@
 "Search" = "تلاش";
 
 /* No comment provided by engineer. */
-"second" = "second";
+"second" = "سیکنڈ";
 
 /* No comment provided by engineer. */
 "second " = "second ";
 
 /* No comment provided by engineer. */
-"seconds" = "seconds";
+"seconds" = "سیکنڈ";
 
 /* No comment provided by engineer. */
 "seconds " = "seconds ";
@@ -1358,13 +1361,13 @@
 "Server is taking to long to respond, please try again later." = "Server is taking to long to respond, please try again later.";
 
 /* No comment provided by engineer. */
-"Set Arduino digital pin" = "Set Arduino digital pin";
+"Set Arduino digital pin" = "اردینو ڈیجیٹل پن سیٹ کریں";
 
 /* No comment provided by engineer. */
-"Set Arduino PWM~ pin" = "Set Arduino PWM~ pin";
+"Set Arduino PWM~ pin" = "آردوانو PWM سیٹ ~ پن";
 
 /* No comment provided by engineer. */
-"Set background" = "Set background";
+"Set background" = "پس منظر مقرر کریں";
 
 /* No comment provided by engineer. */
 "Set brightness " = "Set brightness ";
@@ -1373,22 +1376,22 @@
 "Set color " = "Set color ";
 
 /* No comment provided by engineer. */
-"Set description" = "Set description";
+"Set description" = "تفصیل مقرر کریں";
 
 /* No comment provided by engineer. */
-"Set Phiro light" = "Set Phiro light";
+"Set Phiro light" = "Phiro روشنی مقرر کریں";
 
 /* No comment provided by engineer. */
-"Set size to" = "Set size to";
+"Set size to" = "سائز کو سیٹ کریں";
 
 /* No comment provided by engineer. */
 "Set transparency " = "Set transparency ";
 
 /* No comment provided by engineer. */
-"Set variable" = "Set variable";
+"Set variable" = "متغیر سیٹ کریں";
 
 /* No comment provided by engineer. */
-"Set volume to" = "Set volume to";
+"Set volume to" = "حجم سیٹ کریں";
 
 /* No comment provided by engineer. */
 "Set X to " = "Set X to ";
@@ -1400,7 +1403,7 @@
 "Settings" = "ترتیبات";
 
 /* No comment provided by engineer. */
-"Show" = "Show";
+"Show" = "نمایش کریں";
 
 /* No comment provided by engineer. */
 "Show Details" = "تفصیلات دکھائیں";
@@ -1421,7 +1424,7 @@
 "SO" = "SO";
 
 /* No comment provided by engineer. */
-"Sound" = "Sound";
+"Sound" = "آواز";
 
 /* No comment provided by engineer. */
 "Sound name" = "Sound name";
@@ -1448,7 +1451,7 @@
 "Stamped" = "Stamped";
 
 /* No comment provided by engineer. */
-"Start sound" = "Start sound";
+"Start sound" = "آواز کا آغاز";
 
 /* No comment provided by engineer. */
 "step" = "step";
@@ -1457,7 +1460,7 @@
 "steps" = "steps";
 
 /* No comment provided by engineer. */
-"Stop all sounds" = "Stop all sounds";
+"Stop all sounds" = "تمام آوازیں بند کریں";
 
 /* No comment provided by engineer. */
 "Stop Phiro motor" = "Stop Phiro motor";
@@ -1469,7 +1472,7 @@
 "Sunday" = "اتوار";
 
 /* No comment provided by engineer. */
-"Switch to look" = "Switch to look";
+"Switch to look" = "نظر میں تبدیلی کریں";
 
 /* No comment provided by engineer. */
 "Syntax Error!" = "Syntax Error!";
@@ -1523,7 +1526,7 @@
 "The sound item cannot be played" = "The sound item cannot be played";
 
 /* No comment provided by engineer. */
-"Think" = "Think";
+"Think" = "خیال";
 
 /* No comment provided by engineer. */
 "This action can not be undone!" = "This action can not be undone!";
@@ -1547,10 +1550,10 @@
 "times" = "times";
 
 /* No comment provided by engineer. */
-"to" = "to";
+"to" = "کرنا";
 
 /* No comment provided by engineer. */
-"to list" = "to list";
+"to list" = "فہرست کے لیے";
 
 /* No comment provided by engineer. */
 "to X:" = "to X:";
@@ -1571,10 +1574,10 @@
 "Tuesday" = "منگل";
 
 /* No comment provided by engineer. */
-"Turn camera" = "Turn camera";
+"Turn camera" = "کیمرے کو چالو کریں";
 
 /* No comment provided by engineer. */
-"Turn flashlight" = "Turn flashlight";
+"Turn flashlight" = "ٹارچ کو چالو کریں";
 
 /* No comment provided by engineer. */
 "Turn left" = "Turn left";
@@ -1646,7 +1649,7 @@
 "Use Arduino bricks" = "Use Arduino bricks";
 
 /* No comment provided by engineer. */
-"Use camera" = "Use camera";
+"Use camera" = "کیمرے کا استعمال کریں";
 
 /* No comment provided by engineer. */
 "Use Phiro bricks" = "Use Phiro bricks";
@@ -1679,7 +1682,7 @@
 "Version" = "Version";
 
 /* No comment provided by engineer. */
-"Vibrate for" = "Vibrate for";
+"Vibrate for" = "جھولنا کے لئے";
 
 /* No comment provided by engineer. */
 "vibration" = "vibration";
@@ -1688,10 +1691,10 @@
 "Views" = "Views";
 
 /* No comment provided by engineer. */
-"Wait" = "Wait";
+"Wait" = "انتظار کریں";
 
 /* No comment provided by engineer. */
-"Wait until" = "Wait until";
+"Wait until" = "تک انتظار کریں";
 
 /* No comment provided by engineer. */
 "We" = "بدھ";
@@ -1700,7 +1703,7 @@
 "Wednesday" = "بدھ";
 
 /* No comment provided by engineer. */
-"weekday" = "weekday";
+"weekday" = "ہفتہ کے دن";
 
 /* No comment provided by engineer. */
 "Welcome to Pocket Code" = " پاکٹ کوڈ  میں خوش آمدید";
@@ -1712,16 +1715,16 @@
 "When screen is touched" = "When screen is touched";
 
 /* No comment provided by engineer. */
-"When tapped" = "When tapped";
+"When tapped" = "جب ٹیپ کیا";
 
 /* No comment provided by engineer. */
-"When you receive" = "When you receive";
+"When you receive" = "جب آپ وصول کریں";
 
 /* paint */
 "Width selection" = "Width selection";
 
 /* No comment provided by engineer. */
-"with" = "with";
+"with" = "کے ساتھ";
 
 /* No comment provided by engineer. */
 "X: " = "X: ";
@@ -1730,7 +1733,7 @@
 "Y: " = "Y: ";
 
 /* No comment provided by engineer. */
-"year" = "year";
+"year" = "سال";
 
 /* No comment provided by engineer. */
 "Yes" = "ہاں";

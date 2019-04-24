@@ -5,6 +5,9 @@
 "A project with the same name already exists, try again." = "Ein Projekt mit dem selben Namen existiert bereits. Bitte wählen Sie einen anderen Projektnamen.";
 
 /* No comment provided by engineer. */
+"Abc" = "Abc";
+
+/* No comment provided by engineer. */
 "About Catrobat" = "Über Catrobat";
 
 /* No comment provided by engineer. */
@@ -140,7 +143,7 @@
 "Bluetooth is turned off. Please turn it on to connect to a Bluetooth device." = "Bluetooth is turned off. Please turn it on to connect to a Bluetooth device.";
 
 /* paint */
-"bold" = "bold";
+"bold" = "fett";
 
 /* No comment provided by engineer. */
 "Both" = "Beide";
@@ -287,7 +290,7 @@
 "Copy Looks" = "Copy Looks";
 
 /* No comment provided by engineer. */
-"Copy project" = "Copy project";
+"Copy project" = "Projekt kopieren";
 
 /* No comment provided by engineer. */
 "Create & Remix" = "Create & Remix";
@@ -458,13 +461,13 @@
 "Edit Object" = "Objekt bearbeiten";
 
 /* No comment provided by engineer. */
-"Edit Project" = "Edit Project";
+"Edit Project" = "Projekt bearbeiten";
 
 /* No comment provided by engineer. */
-"Edit Projects" = "Edit Projects";
+"Edit Projects" = "Projekte bearbeiten";
 
 /* Action sheet menu title */
-"Edit Script" = "Edit Script";
+"Edit Script" = "Skript bearbeiten";
 
 /* Action sheet menu title */
 "Edit Sound" = "Sounds bearbeiten";
@@ -626,7 +629,7 @@
 "front" = "Frontkamera";
 
 /* No comment provided by engineer. */
-"Front camera" = "Front camera";
+"Front camera" = "Frontkamera";
 
 /* No comment provided by engineer. */
 "Glide" = "Gleite";
@@ -1064,7 +1067,7 @@
 "Only special characters are not allowed. Please enter at least %lu other character(s)." = "Only special characters are not allowed. Please enter at least %lu other character(s).";
 
 /* No comment provided by engineer. */
-"Open" = "Öffne ";
+"Open" = "Öffnen";
 
 /* No comment provided by engineer. */
 "or" = "oder";
@@ -1184,10 +1187,10 @@
 "Previous look" = "Voriges Aussehen";
 
 /* No comment provided by engineer. */
-"Privacy Settings" = "Privacy Settings";
+"Privacy Settings" = "Datenschutz-Einstellungen";
 
 /* No comment provided by engineer. */
-"Problems occured while uploading your project" = "Es gab Probleme beim Hochladen Ihres ProJekts";
+"Problems occured while uploading your project" = "Es gab Probleme beim Hochladen Ihres Projekts";
 
 /* No comment provided by engineer. */
 "Project" = "Projekt";
@@ -1316,13 +1319,13 @@
 "second" = "Sekunde";
 
 /* No comment provided by engineer. */
-"second " = "second ";
+"second " = "Sekunde ";
 
 /* No comment provided by engineer. */
 "seconds" = "Sekunden";
 
 /* No comment provided by engineer. */
-"seconds " = "seconds ";
+"seconds " = "Sekunden ";
 
 /* No comment provided by engineer. */
 "Select All" = "Alle auswählen";
