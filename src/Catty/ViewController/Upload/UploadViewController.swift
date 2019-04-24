@@ -276,7 +276,7 @@ class UploadViewController: UIViewController {
 
             //Warning: TestServer Uploads are restricted in size (about 1MB)!!!
 
-            let uploadUrl = Util.isProductionServerActivated() ? kUploadUrl : kTestUploadUrl
+            let uploadUrl = kUploadUrl
             let urlString = "\(uploadUrl)/\(kConnectionUpload)"
 
             let request = NSMutableURLRequest()

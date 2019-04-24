@@ -830,11 +830,6 @@
     return kArduinoActivated == 1;
 }
 
-+ (BOOL)isProductionServerActivated
-{
-    return kProductionServerActivated == 1;
-}
-
 + (BOOL)isPhone
 {
 #ifdef IS_IPHONE

@@ -319,7 +319,7 @@
 {
     NSDebug(@"Login started with username:%@ and password:%@ ", username, password);
 
-    NSString *loginUrl = [Util isProductionServerActivated] ? kLoginUrl : kTestLoginUrl;
+    NSString *loginUrl = kLoginUrl;
     NSString *urlString = [NSString stringWithFormat:@"%@/%@", loginUrl, (NSString*)kConnectionLogin];
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
