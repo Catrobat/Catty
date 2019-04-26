@@ -38,15 +38,17 @@ platform :ios do
   desc "Create an ipa Build (options: scheme)"
   lane :create_build do |options|
     gym(scheme: options[:scheme],
-        export_method: "development",
+        export_method: options[:method],
         output_directory: $build_dir,
+        export_xcargs: "-allowProvisioningUpdates",
         output_name: $branch_name
     )
   end
 
   desc "Prepare for PO Review"
   lane :po_review do
-    create_build scheme:$catty_schemes["release"]
+    sh ("rm builds/*")
+    create_build scheme:$catty_schemes["release"], method:"ad-hoc"
     upload_to_browserstack
   end
 
@@ -128,7 +130,7 @@ platform :ios do
 
   desc "Release Pocket Code"
   lane :release do
-    build_app(scheme: $catty_schemes["release"])
+    create_build scheme:$catty_schemes["release"], method:"app-store"
   end
 
   desc "Use this lane as playground"

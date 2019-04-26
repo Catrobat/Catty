@@ -32,6 +32,8 @@ pipeline {
   post {
     always {
       junit testResults: 'src/fastlane/test_output/TestSummaries.xml', allowEmptyResults: true
+      archiveArtifacts(artifacts: 'src/fastlane/builds/', allowEmptyArchive: true)
+      archiveArtifacts(artifacts: 'src/fastlane/install.html', allowEmptyArchive: true)
     }
   }
 }
