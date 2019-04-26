@@ -47,7 +47,7 @@ platform :ios do
 
   desc "Prepare for PO Review"
   lane :po_review do
-    sh ("rm builds/*")
+    sh ("rm builds/* 2> /dev/null")
     create_build scheme:$catty_schemes["release"], method:"ad-hoc"
     upload_to_browserstack
   end
