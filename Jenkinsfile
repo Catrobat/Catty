@@ -22,11 +22,11 @@ pipeline {
         sh 'cd src && fastlane po_review'
       }
     }
-    stage('Run Tests') {
+    /*stage('Run Tests') {
       steps {
         sh 'cd src && fastlane tests'
       }
-    }
+    }*/
   }
 
   post {
