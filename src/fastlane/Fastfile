@@ -48,7 +48,8 @@ platform :ios do
   desc "Prepare for PO Review"
   lane :po_review do
     #sh ("rm builds/* 2> /dev/null")
-    sigh adhoc
+    cert
+    sigh
     create_build scheme:$catty_schemes["release"], method:"ad-hoc"
     upload_to_browserstack
   end
@@ -136,6 +137,6 @@ platform :ios do
 
   desc "Use this lane as playground"
   lane :playground do
-
+    
   end
 end
