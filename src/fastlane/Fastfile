@@ -48,7 +48,7 @@ platform :ios do
   desc "Prepare for PO Review"
   lane :po_review do
     #sh ("rm builds/* 2> /dev/null")
-    cert(force: true)
+    cert
     sigh(force: true,
          development: true,
          adhoc: true)
