@@ -26,7 +26,6 @@ class CreateProjectTests: XCTestCase, UITestProtocol {
 
     override func setUp() {
         super.setUp()
-
         continueAfterFailure = false
         XCUIApplication().launch()
 
@@ -37,132 +36,84 @@ class CreateProjectTests: XCTestCase, UITestProtocol {
     func testCanCreateProjectWithDrawNewImage() {
         let app = XCUIApplication()
         let projectName = "testProject"
+        let testObject = "testObject1"
 
         //Create new Project
-        app.tables.staticTexts["New"].tap()
-        let alertQuery = app.alerts["New Project"]
-        alertQuery.textFields["Enter your project name here..."].typeText(projectName)
-        app.alerts["New Project"].buttons["OK"].tap()
+        app.tables.staticTexts[kLocalizedNew].tap()
+        let alertQuery = app.alerts[kLocalizedNewProject]
+        alertQuery.textFields[kLocalizedEnterYourProjectNameHere].typeText(projectName)
+        app.alerts[kLocalizedNewProject].buttons[kLocalizedOK].tap()
         XCTAssertNotNil(waitForElementToAppear(app.navigationBars[projectName]))
 
-        //Add new Object
-        app.toolbars.buttons["Add"].tap()
-        app.alerts["Add object"].textFields["Enter your object name here..."].typeText("testObject1")
-        app.alerts["Add object"].buttons["OK"].tap()
-        app.buttons["Draw new image"].tap()
-
-        XCTAssertNotNil(waitForElementToAppear(app.navigationBars["Pocket Paint"]))
-
-        //Draw image
-        app.tap()
-
-        app.navigationBars.buttons["Looks"].tap()
-
-        let alert = waitForElementToAppear(app.alerts["Save to PocketCode"])
-        alert.buttons["Yes"].tap()
+        addObjectAndDrawNewImage(name: testObject, in: app)
 
         XCTAssertNotNil(waitForElementToAppear(app.navigationBars[projectName]))
-
-        app.staticTexts["testObject1"].tap()
-        app.staticTexts["Looks"].tap()
-        XCTAssert(app.staticTexts["look"].exists)
-        app.navigationBars.buttons["testObject1"].tap()
+        app.staticTexts[testObject].tap()
+        app.staticTexts[kLocalizedLooks].tap()
+        XCTAssert(app.staticTexts[kLocalizedLook].exists)
+        app.navigationBars.buttons[testObject].tap()
         app.navigationBars.buttons[projectName].tap()
 
         //Add Background
-        app.tables.staticTexts["Background"].tap()
-        app.tables.staticTexts["Backgrounds"].tap()
-        app.toolbars.buttons["Add"].tap()
-        waitForElementToAppear(app.buttons["Draw new image"]).tap()
+        app.tables.staticTexts[kLocalizedBackground].tap()
+        app.tables.staticTexts[kLocalizedBackgrounds].tap()
+        app.toolbars.buttons[kLocalizedUserListAdd].tap()
+        waitForElementToAppear(app.buttons[kLocalizedDrawNewImage]).tap()
 
-        XCTAssertNotNil(waitForElementToAppear(app.navigationBars["Pocket Paint"]))
+        XCTAssertNotNil(waitForElementToAppear(app.navigationBars[kLocalizedPaintPocketPaint]))
 
         //Draw image
         app.tap()
 
-        app.navigationBars.buttons["Backgrounds"].tap()
-        XCTAssert(app.alerts["Save to PocketCode"].exists)
-        app.alerts["Save to PocketCode"].buttons["Yes"].tap()
+        app.navigationBars.buttons[kLocalizedBackgrounds].tap()
+        XCTAssert(app.alerts[kLocalizedSaveToPocketCode].exists)
+        app.alerts[kLocalizedSaveToPocketCode].buttons[kLocalizedYes].tap()
 
-        let addImageAlert = waitForElementToAppear(app.alerts["Add image"])
-        addImageAlert.buttons["OK"].tap()
+        let addImageAlert = waitForElementToAppear(app.alerts[kLocalizedAddImage])
+        addImageAlert.buttons[kLocalizedOK].tap()
 
-        XCTAssert(app.staticTexts["look"].exists)
-        app.navigationBars.buttons["Background"].tap()
-        app.navigationBars.buttons["testProject"].tap()
+        XCTAssert(app.staticTexts[kLocalizedLook].exists)
+        app.navigationBars.buttons[kLocalizedBackground].tap()
+        app.navigationBars.buttons[projectName].tap()
 
         //Add Scripts to Object
-        app.tables.staticTexts["testObject1"].tap()
-        app.tables.staticTexts["Scripts"].tap()
-        app.toolbars.buttons["Add"].tap()
-        if app.navigationBars["Frequently Used"].exists {
-            app.swipeLeft()
-        }
-        app.collectionViews.cells.element(boundBy: 0).tap()
-        XCTAssert(app.collectionViews.cells.element(boundBy: 0).staticTexts["When project started"].exists)
-        app.toolbars.buttons["Add"].tap()
+        app.tables.staticTexts[testObject].tap()
+        app.tables.staticTexts[kLocalizedScripts].tap()
 
-        if app.navigationBars["Frequently Used"].exists {
-            app.swipeLeft()
-            app.swipeLeft()
-            app.swipeLeft()
-        } else {
-            app.swipeLeft()
-            app.swipeLeft()
-        }
+        addBrick(label: kLocalizedWhenProjectStarted, section: kUIControlTitle, in: app)
+        XCTAssert(app.collectionViews.cells.element(boundBy: 0).staticTexts[kLocalizedWhenProjectStarted].exists)
 
-        app.collectionViews.cells.element(boundBy: 0).tap()
-        XCTAssert(app.collectionViews.cells.element(boundBy: 1).staticTexts["Switch to look"].exists)
+        addBrick(label: kLocalizedSetLook, section: kUILookTitle, in: app)
+        XCTAssert(app.collectionViews.cells.element(boundBy: 1).staticTexts[kLocalizedSetLook].exists)
 
         //Add Script to Background
-        app.navigationBars.buttons["testObject1"].tap()
-        app.navigationBars.buttons["testProject"].tap()
-        app.tables.staticTexts["Background"].tap()
-        app.tables.staticTexts["Scripts"].tap()
-        app.toolbars.buttons["Add"].tap()
-        if app.navigationBars["Frequently Used"].exists {
-            app.swipeLeft()
-        }
-        app.collectionViews.cells.element(boundBy: 0).tap()
-        XCTAssert(app.collectionViews.cells.element(boundBy: 0).staticTexts["When project started"].exists)
-        app.toolbars.buttons["Add"].tap()
-        if app.navigationBars["Frequently Used"].exists {
-            app.swipeLeft()
-            app.swipeLeft()
-            app.swipeLeft()
-        }
-        app.swipeLeft()
-        app.swipeLeft()
-        app.collectionViews.cells.element(boundBy: 1).tap()
-        XCTAssert(app.collectionViews.cells.element(boundBy: 1).staticTexts["Next background"].exists)
+        app.navigationBars.buttons[testObject].tap()
+        app.navigationBars.buttons[projectName].tap()
+        app.tables.staticTexts[kLocalizedBackground].tap()
+        app.tables.staticTexts[kLocalizedScripts].tap()
+
+        addBrick(label: kLocalizedWhenProjectStarted, section: kUIControlTitle, in: app)
+        XCTAssert(app.collectionViews.cells.element(boundBy: 0).staticTexts[kLocalizedWhenProjectStarted].exists)
+
+        addBrick(label: kLocalizedNextBackground, section: kUILookTitle, in: app)
+        XCTAssert(app.collectionViews.cells.element(boundBy: 1).staticTexts[kLocalizedNextBackground].exists)
     }
 
     func testCanCreateProjectWithEmojiAndSpecialCharacters() {
         let app = XCUIApplication()
         let projectName = "🙀"
+        let helloText = "你好"
 
         //Create new Project
-        app.tables.staticTexts["New"].tap()
-        let alertQuery = app.alerts["New Project"]
-        alertQuery.textFields["Enter your project name here..."].typeText(projectName)
-        app.alerts["New Project"].buttons["OK"].tap()
+        app.tables.staticTexts[kLocalizedNew].tap()
+        let alertQuery = app.alerts[kLocalizedNewProject]
+        alertQuery.textFields[kLocalizedEnterYourProjectNameHere].typeText(projectName)
+        app.alerts[kLocalizedNewProject].buttons[kLocalizedOK].tap()
         XCTAssertNotNil(waitForElementToAppear(app.navigationBars[projectName]))
 
-        //Add new Object
-        app.toolbars.buttons["Add"].tap()
-        app.alerts["Add object"].textFields["Enter your object name here..."].typeText("你好")
-        app.alerts["Add object"].buttons["OK"].tap()
-        waitForElementToAppear(app.buttons["Draw new image"]).tap()
+        addObjectAndDrawNewImage(name: helloText, in: app)
 
-        XCTAssertNotNil(waitForElementToAppear(app.navigationBars["Pocket Paint"]))
-
-        //Draw image
-        app.tap()
-
-        waitForElementToAppear(app.navigationBars.buttons["Looks"]).tap()
-        XCTAssert(app.alerts["Save to PocketCode"].exists)
-        app.alerts["Save to PocketCode"].buttons["Yes"].tap()
-
-        XCTAssert(app.staticTexts["你好"].exists)
+        XCTAssertNotNil(waitForElementToAppear(app.navigationBars[projectName]))
+        XCTAssert(app.staticTexts[helloText].exists)
     }
 }

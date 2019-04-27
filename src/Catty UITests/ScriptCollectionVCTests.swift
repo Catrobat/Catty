@@ -39,112 +39,89 @@ class ScriptCollectionVCTests: XCTestCase, UITestProtocol {
 
     func testCopyIfLogicBeginBrick() {
         createProject(name: "testProject", in: app)
-        waitForElementToAppear(app.staticTexts["Background"]).tap()
-        waitForElementToAppear(app.staticTexts["Scripts"]).tap()
+        waitForElementToAppear(app.staticTexts[kLocalizedBackground]).tap()
+        waitForElementToAppear(app.staticTexts[kLocalizedScripts]).tap()
 
-        waitForElementToAppear(app.toolbars.buttons["Add"]).tap()
-        skipFrequentlyUsedBricks(app)
+        XCTAssertEqual(0, app.collectionViews.cells.count)
 
-        XCTAssertTrue(app.navigationBars["Control"].exists)
-
-        let startCoord = app.collectionViews.element.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5))
-        let endCoord = startCoord.withOffset(CGVector(dx: 0.0, dy: -500)); // scroll to bottom
-        startCoord.press(forDuration: 0.01, thenDragTo: endCoord)
-
-        for cellIndex in 0...app.collectionViews.cells.count {
-            let cell = app.collectionViews.cells.element(boundBy: cellIndex)
-            if cell.staticTexts.count == 2 && cell.staticTexts["If "].exists && cell.staticTexts[" is true then"].exists {
-                cell.tap()
-            }
-        }
+        addBrick(labels: [kLocalizedIfBegin, kLocalizedIfBeginSecondPart], section: kUIControlTitle, in: app)
 
         XCTAssertEqual(3, app.collectionViews.cells.count)
-        XCTAssert(app.collectionViews.cells.element(boundBy: 1).staticTexts[" is true then"].exists)
-        XCTAssert(app.collectionViews.cells.element(boundBy: 2).staticTexts["End If"].exists)
+        XCTAssert(app.collectionViews.cells.element(boundBy: 1).staticTextBeginsWith(kLocalizedIfBeginSecondPart, ignoreLeadingWhiteSpace: true).exists)
+        XCTAssert(app.collectionViews.cells.element(boundBy: 2).staticTexts[kLocalizedEndIf].exists)
 
         app.collectionViews.cells.element(boundBy: 1).tap()
-        XCTAssertTrue(app.sheets["Edit Brick"].exists)
+        XCTAssertTrue(app.sheets[kLocalizedEditBrick].exists)
 
-        let copyButton = app.sheets["Edit Brick"].buttons.element(boundBy: 1)
-        XCTAssertEqual("Copy Brick", copyButton.label)
+        let copyButton = app.sheets[kLocalizedEditBrick].buttons.element(boundBy: 1)
+        XCTAssertEqual(kLocalizedCopyBrick, copyButton.label)
         copyButton.tap()
 
         XCTAssertEqual(5, app.collectionViews.cells.count)
-        XCTAssert(app.collectionViews.cells.element(boundBy: 1).staticTexts[" is true then"].exists)
-        XCTAssert(app.collectionViews.cells.element(boundBy: 2).staticTexts["End If"].exists)
-        XCTAssert(app.collectionViews.cells.element(boundBy: 3).staticTexts[" is true then"].exists)
-        XCTAssert(app.collectionViews.cells.element(boundBy: 4).staticTexts["End If"].exists)
+        XCTAssert(app.collectionViews.cells.element(boundBy: 1).staticTextBeginsWith(kLocalizedIfBeginSecondPart, ignoreLeadingWhiteSpace: true).exists)
+        XCTAssert(app.collectionViews.cells.element(boundBy: 2).staticTexts[kLocalizedEndIf].exists)
+        XCTAssert(app.collectionViews.cells.element(boundBy: 3).staticTextBeginsWith(kLocalizedIfBeginSecondPart, ignoreLeadingWhiteSpace: true).exists)
+        XCTAssert(app.collectionViews.cells.element(boundBy: 4).staticTexts[kLocalizedEndIf].exists)
     }
 
     func testLengthOfBroadcastMessage() {
         let message = String(repeating: "a", count: 250)
 
         createProject(name: "testProject", in: app)
-        XCUIApplication().tables.staticTexts["Background"].tap()
-        app.tables.staticTexts["Scripts"].tap()
+        XCUIApplication().tables.staticTexts[kLocalizedBackground].tap()
+        app.tables.staticTexts[kLocalizedScripts].tap()
 
-        app.toolbars.buttons["Add"].tap()
-        skipFrequentlyUsedBricks(app)
+        addBrick(label: kLocalizedBroadcast, section: kUIControlTitle, in: app)
 
-        app.collectionViews.staticTexts["Broadcast"].tap()
-        app.collectionViews.cells.otherElements.containing(.staticText, identifier: "Broadcast").children(matching: .other).element.tap()
+        app.collectionViews.cells.otherElements.containing(.staticText, identifier: kLocalizedBroadcast).children(matching: .other).element.tap()
 
         app.pickerWheels.firstMatch.swipeDown()
-        app.buttons["Done"].tap()
+        app.buttons[kLocalizedDone].tap()
 
-        let alert = app.alerts["New Message"]
-        alert.textFields["Enter your message here..."].typeText(message)
-        alert.buttons["OK"].tap()
+        let alert = app.alerts[kLocalizedNewMessage]
+        alert.textFields[kLocalizedEnterYourMessageHere].typeText(message)
+        alert.buttons[kLocalizedOK].tap()
 
-        app.collectionViews.cells.otherElements.containing(.staticText, identifier: "Broadcast").children(matching: .other).element.tap()
+        app.collectionViews.cells.otherElements.containing(.staticText, identifier: kLocalizedBroadcast).children(matching: .other).element.tap()
 
         app.pickerWheels.firstMatch.swipeDown()
-        app.buttons["Done"].tap()
+        app.buttons[kLocalizedDone].tap()
 
-        alert.textFields["Enter your message here..."].typeText(message + "b")
-        alert.buttons["OK"].tap()
-        XCTAssert(app.alerts["Pocket Code"].exists)
+        alert.textFields[kLocalizedEnterYourMessageHere].typeText(message + "b")
+        alert.buttons[kLocalizedOK].tap()
+        XCTAssert(app.alerts[kLocalizedPocketCode].exists)
     }
 
     func testWaitBrick() {
         createProject(name: "testProject", in: app)
-        XCUIApplication().tables.staticTexts["Background"].tap()
-        app.tables.staticTexts["Scripts"].tap()
+        XCUIApplication().tables.staticTexts[kLocalizedBackground].tap()
+        app.tables.staticTexts[kLocalizedScripts].tap()
 
-        app.toolbars.buttons["Add"].tap()
-        skipFrequentlyUsedBricks(app)
+        addBrick(label: kLocalizedWait, section: kUIControlTitle, in: app)
 
-        app.collectionViews.staticTexts["Wait "].tap()
-        app.collectionViews.cells.otherElements.containing(.staticText, identifier: "Wait ").children(matching: .button).element.tap()
+        app.collectionViews.cells.otherElements.identifierTextBeginsWith(kLocalizedWait).children(matching: .button).element.tap()
+        XCTAssertTrue(waitForElementToAppear(app.buttons[kLocalizedCancel]).exists)
 
-        XCTAssertTrue(waitForElementToAppear(app.buttons["Cancel"]).exists)
+        app.buttons[kUIFESensor].tap()
+        app.buttons[kLocalizedSensorLoudness].tap()
+        app.buttons[kLocalizedDone].tap()
 
-        app.buttons["Sensors"].tap()
-        app.buttons["loudness"].tap()
-        app.buttons["Done"].tap()
-
-        XCTAssertTrue(waitForElementToAppear(app.navigationBars["Scripts"]).exists)
+        XCTAssertTrue(waitForElementToAppear(app.navigationBars[kLocalizedScripts]).exists)
     }
 
     func testEmptyStringInFormulaEditor() {
         createProject(name: "testProject", in: app)
-        XCUIApplication().tables.staticTexts["Background"].tap()
-        app.tables.staticTexts["Scripts"].tap()
+        XCUIApplication().tables.staticTexts[kLocalizedBackground].tap()
+        app.tables.staticTexts[kLocalizedScripts].tap()
 
-        app.toolbars.buttons["Add"].tap()
-        skipFrequentlyUsedBricks(app)
-        app.swipeLeft()
-        app.swipeLeft()
-        app.swipeLeft()
-        app.swipeLeft()
+        addBrick(label: kLocalizedSetVariable, section: kUIVariableTitle, in: app)
 
-        app.collectionViews.staticTexts["Set variable"].tap()
-        app.collectionViews.cells.otherElements.containing(.staticText, identifier: "Set variable").children(matching: .button).element.tap()
+        app.collectionViews.cells.otherElements.containing(.staticText, identifier: kLocalizedSetVariable).children(matching: .button).element.tap()
 
-        app.buttons["ABC"].tap()
-        app.alerts["New Text"].buttons["OK"].tap()
+        app.buttons[kUIFEAddNewText].tap()
+        app.alerts[kUIFENewText].buttons[kLocalizedOK].tap()
 
-        app.buttons["Done"].tap()
-        XCTAssertTrue(waitForElementToAppear(app.navigationBars["Scripts"]).exists)
+        app.buttons[kLocalizedDone].tap()
+        XCTAssertTrue(waitForElementToAppear(app.navigationBars[kLocalizedScripts]).exists)
     }
 }

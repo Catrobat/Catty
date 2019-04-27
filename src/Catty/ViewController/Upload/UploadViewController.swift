@@ -238,12 +238,6 @@ class UploadViewController: UIViewController {
             Util.alert(withText: kLocalizedUploadProjectNecessary)
             return
         }
-        //RemixOF
-        if project?.header.url != nil && project?.header.userHandle != nil {
-            project?.header.remixOf = project?.header.url
-            project?.header.url = nil
-            project?.header.userHandle = nil
-        }
         project?.rename(toProjectName: projectNameTextField.text!)
         project?.updateDescription(withText: descriptionTextView.text)
 
@@ -371,7 +365,7 @@ class UploadViewController: UIViewController {
                     if let aTag = dictionary?[self.statusCodeTag] {
                         statusCode = "\(aTag)"
                     }
-                    debugPrint("StatusCode is ", statusCode!)
+                    debugPrint("StatusCode is ", statusCode ?? "undefined")
 
                     if statusCode == self.statusCodeOK {
                         debugPrint("Upload successful")
@@ -394,9 +388,13 @@ class UploadViewController: UIViewController {
                         })
                     } else {
                         let serverResponse = dictionary?[self.answerTag] as? String
-                        debugPrint("Error: "+serverResponse!)
+                        debugPrint("Error: ", serverResponse ?? "undefined")
                         DispatchQueue.main.async(execute: {
-                            Util.alert(withText: serverResponse)
+                            if serverResponse != nil {
+                                Util.alert(withText: serverResponse)
+                            } else {
+                                Util.alert(withText: kLocalizedUploadProblem)
+                            }
                         })
 
                         if statusCode == self.statusCodeTokenWrong {
