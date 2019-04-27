@@ -28,7 +28,6 @@ public class IterableCache<ObjectType: AnyObject>: NSObject, NSCacheDelegate {
     var keySet = Set<String>()
     let cacheQueue = DispatchQueue(label: "cacheQueue")
 
-
     override init() {
         super.init()
         cache.delegate = self
