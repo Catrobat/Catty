@@ -952,14 +952,8 @@
 		9EE14421222AB932009AB2B5 /* SetInstrumentToBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE14420222AB932009AB2B5 /* SetInstrumentToBrick.swift */; };
 		9EE4189322243AB400EA58E8 /* AudioEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE4189222243AB400EA58E8 /* AudioEngineTests.swift */; };
 		9EE4189522243CA300EA58E8 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EE4189422243CA300EA58E8 /* CryptoSwift.framework */; };
-		9EE4189822243D4700EA58E8 /* explode.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9EE4189622243D4700EA58E8 /* explode.mp3 */; };
-		9EE4189922243D4700EA58E8 /* russianfolk.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9EE4189722243D4700EA58E8 /* russianfolk.wav */; };
 		9EE4189B222451FF00EA58E8 /* AudioFingerprinter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE4189A222451FF00EA58E8 /* AudioFingerprinter.swift */; };
 		9EE418A322246D3800EA58E8 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EE418A222246D3800EA58E8 /* Accelerate.framework */; };
-		9EE418B12224835F00EA58E8 /* soundtest.xml in Resources */ = {isa = PBXBuildFile; fileRef = 9EE418A822246EBA00EA58E8 /* soundtest.xml */; };
-		9EE418B22224836300EA58E8 /* speakandwaittest.xml in Resources */ = {isa = PBXBuildFile; fileRef = 9EE418A722246EBA00EA58E8 /* speakandwaittest.xml */; };
-		9EE418B32224836600EA58E8 /* StartSoundTest.xml in Resources */ = {isa = PBXBuildFile; fileRef = 9EE418A922246EBB00EA58E8 /* StartSoundTest.xml */; };
-		9EE418B42224836900EA58E8 /* ballon_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EE418AA22246EBB00EA58E8 /* ballon_red.png */; };
 		9EFB8E84223016F90098018A /* PitchEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFB8E83223016F90098018A /* PitchEffect.swift */; };
 		9EFB8E86223017120098018A /* PanEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFB8E85223017120098018A /* PanEffect.swift */; };
 		9EFB8E882230231B0098018A /* SoundEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFB8E872230231B0098018A /* SoundEffect.swift */; };
@@ -2681,14 +2675,8 @@
 		9EE14420222AB932009AB2B5 /* SetInstrumentToBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetInstrumentToBrick.swift; sourceTree = "<group>"; };
 		9EE4189222243AB400EA58E8 /* AudioEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioEngineTests.swift; sourceTree = "<group>"; };
 		9EE4189422243CA300EA58E8 /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CryptoSwift.framework; path = Carthage/Build/iOS/CryptoSwift.framework; sourceTree = "<group>"; };
-		9EE4189622243D4700EA58E8 /* explode.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = explode.mp3; sourceTree = "<group>"; };
-		9EE4189722243D4700EA58E8 /* russianfolk.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = russianfolk.wav; sourceTree = "<group>"; };
 		9EE4189A222451FF00EA58E8 /* AudioFingerprinter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioFingerprinter.swift; sourceTree = "<group>"; };
 		9EE418A222246D3800EA58E8 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
-		9EE418A722246EBA00EA58E8 /* speakandwaittest.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = speakandwaittest.xml; path = CattyTests/Resources/AudioEngineTests/speakandwaittest.xml; sourceTree = SOURCE_ROOT; };
-		9EE418A822246EBA00EA58E8 /* soundtest.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = soundtest.xml; path = CattyTests/Resources/AudioEngineTests/soundtest.xml; sourceTree = SOURCE_ROOT; };
-		9EE418A922246EBB00EA58E8 /* StartSoundTest.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = StartSoundTest.xml; path = CattyTests/Resources/AudioEngineTests/StartSoundTest.xml; sourceTree = SOURCE_ROOT; };
-		9EE418AA22246EBB00EA58E8 /* ballon_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ballon_red.png; path = CattyTests/Resources/AudioEngineTests/ballon_red.png; sourceTree = SOURCE_ROOT; };
 		9EFB8E83223016F90098018A /* PitchEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PitchEffect.swift; sourceTree = "<group>"; };
 		9EFB8E85223017120098018A /* PanEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanEffect.swift; sourceTree = "<group>"; };
 		9EFB8E872230231B0098018A /* SoundEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundEffect.swift; sourceTree = "<group>"; };
@@ -3543,8 +3531,6 @@
 		4C1329071CD9278E00F16E48 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
-				9EE4189622243D4700EA58E8 /* explode.mp3 */,
-				9EE4189722243D4700EA58E8 /* russianfolk.wav */,
 				4C13290A1CD92D5500F16E48 /* silence.mp3 */,
 			);
 			name = Sounds;
@@ -3563,7 +3549,6 @@
 		4C1608A31A095480002C7032 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				9EE418A622246E4C00EA58E8 /* AudioEngineTests */,
 				4C1329071CD9278E00F16E48 /* Sounds */,
 				4C6A64B31AF7CC5A00D04559 /* Images */,
 				4C1608A41A09548F002C7032 /* ParserTests */,
@@ -6764,17 +6749,6 @@
 			path = Sound;
 			sourceTree = "<group>";
 		};
-		9EE418A622246E4C00EA58E8 /* AudioEngineTests */ = {
-			isa = PBXGroup;
-			children = (
-				9EE418AA22246EBB00EA58E8 /* ballon_red.png */,
-				9EE418A822246EBA00EA58E8 /* soundtest.xml */,
-				9EE418A722246EBA00EA58E8 /* speakandwaittest.xml */,
-				9EE418A922246EBB00EA58E8 /* StartSoundTest.xml */,
-			);
-			path = AudioEngineTests;
-			sourceTree = "<group>";
-		};
 		9EFB8E80223016D90098018A /* Effects */ = {
 			isa = PBXGroup;
 			children = (
@@ -8364,7 +8338,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9EE418B22224836300EA58E8 /* speakandwaittest.xml in Resources */,
 				4CC85CD41B9C6EC80097E470 /* Word_balloon_demo_096.xml in Resources */,
 				CAE3E55E1B4C50B300CC88BD /* Tic_Tac_Toe_Master_091.xml in Resources */,
 				4CE2D3F91C294F3300938B5E /* Drink_more_water_097.xml in Resources */,
@@ -8468,7 +8441,6 @@
 				CA2D44441B1231F900A3B53D /* Swell.plist in Resources */,
 				4C9F37A91D167630002C3B45 /* transparency-gray-alpha.png in Resources */,
 				4C6D15EA1D7AC60500CE53CD /* Pong_Starter_098.xml in Resources */,
-				9EE418B32224836600EA58E8 /* StartSoundTest.xml in Resources */,
 				4C2EE40F1B555871006DE9B8 /* Word_balloon_demo_095.xml in Resources */,
 				4C6D15E61D7AC5F900CE53CD /* Nyancat_1.0_098.xml in Resources */,
 				4C6D15E81D7AC5FE00CE53CD /* Piano_098.xml in Resources */,
@@ -8506,7 +8478,6 @@
 				4CE2D4011C29501800938B5E /* Gossip_Girl_097.xml in Resources */,
 				CAE3E5551B4C50B300CC88BD /* Pong_Starter_093.xml in Resources */,
 				4C6D15D81D7AC5CB00CE53CD /* Flap_Pac_Man_098.xml in Resources */,
-				9EE4189922243D4700EA58E8 /* russianfolk.wav in Resources */,
 				4CE2D4151C29507F00938B5E /* Tic_Tac_Toe_Master_097.xml in Resources */,
 				4CE2D3F71C294F2900938B5E /* Demonstration_097.xml in Resources */,
 				4CC85CE81B9C717C0097E470 /* ValidProject096.xml in Resources */,
@@ -8518,9 +8489,7 @@
 				4CC85CD21B9C6E6F0097E470 /* Tic_Tac_Toe_Master_096.xml in Resources */,
 				4C6D15CE1D7AC59A00CE53CD /* Airplane_with_shadow_098.xml in Resources */,
 				4CC85CD61B9C6F220097E470 /* X_Ray_phone_096.xml in Resources */,
-				9EE418B42224836900EA58E8 /* ballon_red.png in Resources */,
 				4C6D15D41D7AC5BD00CE53CD /* Drink_more_water_098.xml in Resources */,
-				9EE418B12224835F00EA58E8 /* soundtest.xml in Resources */,
 				2DCB4936212EAAEF005E8E3D /* StoreProjectDownloader.downloadData.success.json in Resources */,
 				4CEF0CCC1B9C63BA003C9B20 /* Flappy_v3.0_096.xml in Resources */,
 				4C15FE7F1D168C0D009C1A2B /* transparency-rgb.png in Resources */,
@@ -8575,7 +8544,6 @@
 				4C994DDB207A26DC00C415FD /* DeleteItemOfUserListBrick0991.xml in Resources */,
 				4CFAD3611CFAB9AA0019C636 /* transparency-rgba.png in Resources */,
 				599E64A0202DACCB009494B5 /* MediaLibraryDownloader.downloadData.fail.request.json in Resources */,
-				9EE4189822243D4700EA58E8 /* explode.mp3 in Resources */,
 				4C2EE3EB1B55570C006DE9B8 /* Airplane_with_shadow_095.xml in Resources */,
 				CAE3E5531B4C50B300CC88BD /* PointToBrickWithoutSpriteObject.xml in Resources */,
 				4C2EE3F31B555754006DE9B8 /* Flap_Pac_Man_095.xml in Resources */,
