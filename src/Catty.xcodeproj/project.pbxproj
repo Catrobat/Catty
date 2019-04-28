@@ -950,9 +950,7 @@
 		9ED90E7B2274F6BE00E24A50 /* ExtendedTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED90E782274F6BE00E24A50 /* ExtendedTimer.swift */; };
 		9EDAA2FE222C985E00535908 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDAA2FD222C985E00535908 /* Note.swift */; };
 		9EE14421222AB932009AB2B5 /* SetInstrumentToBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE14420222AB932009AB2B5 /* SetInstrumentToBrick.swift */; };
-		9EE4189322243AB400EA58E8 /* AudioEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE4189222243AB400EA58E8 /* AudioEngineTests.swift */; };
 		9EE4189522243CA300EA58E8 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EE4189422243CA300EA58E8 /* CryptoSwift.framework */; };
-		9EE4189B222451FF00EA58E8 /* AudioFingerprinter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE4189A222451FF00EA58E8 /* AudioFingerprinter.swift */; };
 		9EE418A322246D3800EA58E8 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EE418A222246D3800EA58E8 /* Accelerate.framework */; };
 		9EFB8E84223016F90098018A /* PitchEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFB8E83223016F90098018A /* PitchEffect.swift */; };
 		9EFB8E86223017120098018A /* PanEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFB8E85223017120098018A /* PanEffect.swift */; };
@@ -2673,9 +2671,7 @@
 		9ED90E782274F6BE00E24A50 /* ExtendedTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendedTimer.swift; sourceTree = "<group>"; };
 		9EDAA2FD222C985E00535908 /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		9EE14420222AB932009AB2B5 /* SetInstrumentToBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetInstrumentToBrick.swift; sourceTree = "<group>"; };
-		9EE4189222243AB400EA58E8 /* AudioEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioEngineTests.swift; sourceTree = "<group>"; };
 		9EE4189422243CA300EA58E8 /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CryptoSwift.framework; path = Carthage/Build/iOS/CryptoSwift.framework; sourceTree = "<group>"; };
-		9EE4189A222451FF00EA58E8 /* AudioFingerprinter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioFingerprinter.swift; sourceTree = "<group>"; };
 		9EE418A222246D3800EA58E8 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		9EFB8E83223016F90098018A /* PitchEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PitchEffect.swift; sourceTree = "<group>"; };
 		9EFB8E85223017120098018A /* PanEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanEffect.swift; sourceTree = "<group>"; };
@@ -3522,8 +3518,6 @@
 			isa = PBXGroup;
 			children = (
 				4C1329031CD9259900F16E48 /* AudioManagerTests.swift */,
-				9EE4189222243AB400EA58E8 /* AudioEngineTests.swift */,
-				9EE4189A222451FF00EA58E8 /* AudioFingerprinter.swift */,
 			);
 			path = AudioManager;
 			sourceTree = "<group>";
@@ -8940,7 +8934,6 @@
 				BA94561821A5FBE800C5DE36 /* XMLParserObjectTests093.swift in Sources */,
 				4CFAD35F1CFAB3EC0019C636 /* UIImageExtensionTests.swift in Sources */,
 				4CEB22771B95E4BC00B3BE2F /* BrickInsertManagerTests.m in Sources */,
-				9EE4189322243AB400EA58E8 /* AudioEngineTests.swift in Sources */,
 				4C82266A213FA7A400F3D750 /* TimeSecondSensorTest.swift in Sources */,
 				4CEB22741B95E4BC00B3BE2F /* BrickInsertManagerForeverTests.m in Sources */,
 				4C53E39021D5247C00F2EC76 /* NotOperatorTest.swift in Sources */,
@@ -8952,7 +8945,6 @@
 				4C822664213FA7A400F3D750 /* LatitudeSensorTest.swift in Sources */,
 				4CB2CFAD1D7AD8A5009F3034 /* SetColorBrickTests.m in Sources */,
 				4CDE807621A1B112009EFD31 /* ScenePresenterViewControllerTest.swift in Sources */,
-				9EE4189B222451FF00EA58E8 /* AudioFingerprinter.swift in Sources */,
 				4C822683213FA7A400F3D750 /* SensorManagerTests.swift in Sources */,
 				4C82266F213FA7A400F3D750 /* DateMonthSensorTest.swift in Sources */,
 				4C822670213FA7A400F3D750 /* AccelerationYSensorTest.swift in Sources */,
