@@ -956,7 +956,6 @@
 		9EE4189922243D4700EA58E8 /* russianfolk.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9EE4189722243D4700EA58E8 /* russianfolk.wav */; };
 		9EE4189B222451FF00EA58E8 /* AudioFingerprinter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE4189A222451FF00EA58E8 /* AudioFingerprinter.swift */; };
 		9EE418A322246D3800EA58E8 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EE418A222246D3800EA58E8 /* Accelerate.framework */; };
-		9EE418B02224805F00EA58E8 /* libchromaprint.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EE418AF2224805F00EA58E8 /* libchromaprint.a */; };
 		9EE418B12224835F00EA58E8 /* soundtest.xml in Resources */ = {isa = PBXBuildFile; fileRef = 9EE418A822246EBA00EA58E8 /* soundtest.xml */; };
 		9EE418B22224836300EA58E8 /* speakandwaittest.xml in Resources */ = {isa = PBXBuildFile; fileRef = 9EE418A722246EBA00EA58E8 /* speakandwaittest.xml */; };
 		9EE418B32224836600EA58E8 /* StartSoundTest.xml in Resources */ = {isa = PBXBuildFile; fileRef = 9EE418A922246EBB00EA58E8 /* StartSoundTest.xml */; };
@@ -2690,7 +2689,6 @@
 		9EE418A822246EBA00EA58E8 /* soundtest.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = soundtest.xml; path = CattyTests/Resources/AudioEngineTests/soundtest.xml; sourceTree = SOURCE_ROOT; };
 		9EE418A922246EBB00EA58E8 /* StartSoundTest.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = StartSoundTest.xml; path = CattyTests/Resources/AudioEngineTests/StartSoundTest.xml; sourceTree = SOURCE_ROOT; };
 		9EE418AA22246EBB00EA58E8 /* ballon_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ballon_red.png; path = CattyTests/Resources/AudioEngineTests/ballon_red.png; sourceTree = SOURCE_ROOT; };
-		9EE418AF2224805F00EA58E8 /* libchromaprint.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libchromaprint.a; path = ChromaprintLib/libchromaprint.a; sourceTree = "<group>"; };
 		9EFB8E83223016F90098018A /* PitchEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PitchEffect.swift; sourceTree = "<group>"; };
 		9EFB8E85223017120098018A /* PanEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanEffect.swift; sourceTree = "<group>"; };
 		9EFB8E872230231B0098018A /* SoundEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundEffect.swift; sourceTree = "<group>"; };
@@ -3259,7 +3257,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9EE418B02224805F00EA58E8 /* libchromaprint.a in Frameworks */,
 				9EE418A322246D3800EA58E8 /* Accelerate.framework in Frameworks */,
 				9EE4189522243CA300EA58E8 /* CryptoSwift.framework in Frameworks */,
 				9E890897222329F30078B1B4 /* AudioKit.framework in Frameworks */,
@@ -3342,7 +3339,6 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				9EE418AF2224805F00EA58E8 /* libchromaprint.a */,
 				9EE418A222246D3800EA58E8 /* Accelerate.framework */,
 				9EE4189422243CA300EA58E8 /* CryptoSwift.framework */,
 				9E890893222329C10078B1B4 /* AudioKit.framework */,
