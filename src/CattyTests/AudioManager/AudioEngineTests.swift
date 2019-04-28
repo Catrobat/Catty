@@ -106,7 +106,7 @@ final class AudioEngineTests: XMLAbstractTest {
 
         let context = CBScriptContext(script: script!, spriteNode: CBSpriteNode(spriteObject: spriteObject!), formulaInterpreter: formulaInterpreter)
 
-        let instruction = soundBrick!.instruction(audioEngine: audioEngine)
+        let instruction = soundBrick!.instruction()
 
         switch instruction {
         case let .execClosure(closure):

@@ -53,7 +53,7 @@ final class WaitBrickTests: XCTestCase {
         waitBrick.timeToWaitInSeconds = Formula(double: duration)
         waitBrick.script = script
 
-        let executionTime = measureExecutionTime(instruction: waitBrick.instruction(audioEngine: AudioEngineMock()))
+        let executionTime = measureExecutionTime(instruction: waitBrick.instruction())
         XCTAssertEqual(executionTime, duration, accuracy: 0.1, "Wrong execution time")
     }
 

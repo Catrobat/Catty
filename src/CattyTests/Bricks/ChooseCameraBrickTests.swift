@@ -64,7 +64,7 @@ final class ChooseCameraBrickTests: XCTestCase {
         let brick = ChooseCameraBrick()
         brick.script = script
 
-        let instruction = brick.instruction(audioEngine: AudioEngineMock())
+        let instruction = brick.instruction()
 
         switch instruction {
         case let .execClosure(closure):
@@ -80,7 +80,7 @@ final class ChooseCameraBrickTests: XCTestCase {
         let brick = ChooseCameraBrick(choice: 0)
         brick?.script = script
 
-        let instruction = brick?.instruction(audioEngine: AudioEngineMock())
+        let instruction = brick?.instruction()
 
         switch instruction! {
         case let .execClosure(closure):
@@ -96,7 +96,7 @@ final class ChooseCameraBrickTests: XCTestCase {
         let brick = ChooseCameraBrick(choice: 1)
         brick?.script = script
 
-        let instruction = brick?.instruction(audioEngine: AudioEngineMock())
+        let instruction = brick?.instruction()
 
         switch instruction! {
         case let .execClosure(closure):

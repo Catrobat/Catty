@@ -60,7 +60,7 @@ final class HideTextBrickTests: XCTestCase {
         let brick = HideTextBrick()
         brick.script = script
 
-        let instruction = brick.instruction(audioEngine: AudioEngineMock())
+        let instruction = brick.instruction()
 
         switch instruction {
         case let .execClosure(closure):
