@@ -898,7 +898,6 @@
 		9E190CA4222EDBAD00B5ECD1 /* SetTempoToBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E190CA3222EDBAD00B5ECD1 /* SetTempoToBrick+Instruction.swift */; };
 		9E190CA6222EF28700B5ECD1 /* ChangeTempoByBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E190CA5222EF28700B5ECD1 /* ChangeTempoByBrick+Instruction.swift */; };
 		9E190CA8222EF32800B5ECD1 /* ChangeTempoByBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E190CA7222EF32800B5ECD1 /* ChangeTempoByBrick.swift */; };
-		9E190CAA222EF3D300B5ECD1 /* ChangeTempoByBrickCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E190CA9222EF3D300B5ECD1 /* ChangeTempoByBrickCell.swift */; };
 		9E190CAD222EF4B500B5ECD1 /* ChangeTempoByBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E190CAC222EF4B500B5ECD1 /* ChangeTempoByBrick+CBXMLHandler.m */; };
 		9E190CAF222F008B00B5ECD1 /* RestBrickCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E190CAE222F008B00B5ECD1 /* RestBrickCell.swift */; };
 		9E190CB1222F016B00B5ECD1 /* RestBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E190CB0222F016B00B5ECD1 /* RestBrick.swift */; };
@@ -2603,7 +2602,6 @@
 		9E190CA3222EDBAD00B5ECD1 /* SetTempoToBrick+Instruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SetTempoToBrick+Instruction.swift"; sourceTree = "<group>"; };
 		9E190CA5222EF28700B5ECD1 /* ChangeTempoByBrick+Instruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChangeTempoByBrick+Instruction.swift"; sourceTree = "<group>"; };
 		9E190CA7222EF32800B5ECD1 /* ChangeTempoByBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeTempoByBrick.swift; sourceTree = "<group>"; };
-		9E190CA9222EF3D300B5ECD1 /* ChangeTempoByBrickCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeTempoByBrickCell.swift; sourceTree = "<group>"; };
 		9E190CAB222EF44300B5ECD1 /* ChangeTempoByBrick+CBXMLHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ChangeTempoByBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
 		9E190CAC222EF4B500B5ECD1 /* ChangeTempoByBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ChangeTempoByBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
 		9E190CAE222F008B00B5ECD1 /* RestBrickCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestBrickCell.swift; sourceTree = "<group>"; };
@@ -7305,7 +7303,6 @@
 			isa = PBXGroup;
 			children = (
 				9E190CC4222F320500B5ECD1 /* ChangeEffectByBrickCell.swift */,
-				9E190CA9222EF3D300B5ECD1 /* ChangeTempoByBrickCell.swift */,
 				AA74F07A1BC05FCE00D1E954 /* ChangeVolumeByNBrickCell.h */,
 				AA74F07B1BC05FCE00D1E954 /* ChangeVolumeByNBrickCell.m */,
 				9E190CCC222F362900B5ECD1 /* ClearSoundEffectsBrickCell.swift */,
@@ -9072,7 +9069,6 @@
 				AABCB3E21BB36529009F67D2 /* CBScheduler.swift in Sources */,
 				BACDF3521F1F9B7E00346167 /* DeleteItemOfUserListBrick.m in Sources */,
 				AABCB3DF1BB3650B009F67D2 /* CBBackendProtocol.swift in Sources */,
-				9E190CAA222EF3D300B5ECD1 /* ChangeTempoByBrickCell.swift in Sources */,
 				92D56C311BF202E700A54750 /* ArduinoDevice.swift in Sources */,
 				F470A2E52129DF42005EC9A3 /* NumberOfItemsFunction.swift in Sources */,
 				92B46F9B1BC7BC8C004980C1 /* ArduinoSendDigitalValueBrick+CBXMLHandler.m in Sources */,
