@@ -1,4 +1,4 @@
 <group>lokey=0 hikey=65 pitch_keycenter=60 pitch_keytrack=1
-<region> lovel=000 hivel=127 amp_velcurve_127=1 sample=60.wav
+<region> lovel=000 hivel=127 amp_velcurve_127=1 sample=60.wv
 <group>lokey=66 hikey=127 pitch_keycenter=72 pitch_keytrack=1
-<region> lovel=000 hivel=127 amp_velcurve_127=1 sample=72.wav
+<region> lovel=000 hivel=127 amp_velcurve_127=1 sample=72.wv
