@@ -30,7 +30,6 @@ final class CBScheduler: CBSchedulerProtocol {
     private let _formulaInterpreter: FormulaInterpreterProtocol
     private let _audioEngine: AudioEngine
 
-
     private var _spriteNodes = [String: CBSpriteNode]()
     private var _contexts = [CBScriptContextProtocol]()
     private var _whenContexts = [String: [CBWhenScriptContext]]()
