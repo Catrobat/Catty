@@ -22,6 +22,6 @@
 
 protocol CBBackendProtocol {
 
-    func instructionsForSequence(_ sequenceList: CBSequenceList, soundEngine: AudioEngine) -> [CBInstruction]
+    func instructionsForSequence(_ sequenceList: CBSequenceList) -> [CBInstruction]
 
 }

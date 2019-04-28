@@ -22,10 +22,11 @@
 
 @objc extension ChangeTempoByBrick: CBInstructionProtocol {
 
-    @nonobjc func instruction(audioEngine: AudioEngine) -> CBInstruction {
+    @nonobjc func instruction() -> CBInstruction {
         guard let spriteObject = self.script?.object else { fatalError("This should never happen") }
 
-        return CBInstruction.execClosure { context, _ in
+        return CBInstruction.execClosure { context, scheduler in
+            let audioEngine = (scheduler as! CBScheduler).getAudioEngine()
             let tempoChange = context.formulaInterpreter.interpretDouble(self.tempoChange, for: spriteObject)
             audioEngine.bpm += tempoChange
             context.state = .runnable

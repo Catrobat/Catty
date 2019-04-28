@@ -22,7 +22,7 @@
 
 @objc extension GlideToBrick: CBInstructionProtocol {
 
-    @nonobjc func instruction(audioEngine: AudioEngine) -> CBInstruction {
+    @nonobjc func instruction() -> CBInstruction {
         guard let durationFormula = self.durationInSeconds else { fatalError("This should never happen!") }
 
         return .longDurationAction(duration: CBDuration.varTime(formula: durationFormula), closure: {

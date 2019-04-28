@@ -22,13 +22,13 @@
 
 @objc extension SetVolumeToBrick: CBInstructionProtocol {
 
-    @nonobjc func instruction(audioEngine: AudioEngine) -> CBInstruction {
+    @nonobjc func instruction() -> CBInstruction {
 
         guard let spriteObject = self.script?.object else { fatalError("This should never happen") }
-
         let spriteObjectName = spriteObject.name
 
-        return CBInstruction.execClosure { context, _ in
+        return CBInstruction.execClosure { context, scheduler in
+            let audioEngine = (scheduler as! CBScheduler).getAudioEngine()
             let volume = context.formulaInterpreter.interpretDouble(self.volume, for: spriteObject)
 
             if let name = spriteObjectName {

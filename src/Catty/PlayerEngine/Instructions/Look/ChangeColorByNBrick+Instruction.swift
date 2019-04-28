@@ -22,7 +22,7 @@
 
 @objc extension ChangeColorByNBrick: CBInstructionProtocol {
 
-    @nonobjc func instruction(audioEngine: AudioEngine) -> CBInstruction {
+    @nonobjc func instruction() -> CBInstruction {
         return .action { context in SKAction.run(self.actionBlock(context.formulaInterpreter)) }
     }
 

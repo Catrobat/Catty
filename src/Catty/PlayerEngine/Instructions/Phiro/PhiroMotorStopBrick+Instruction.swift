@@ -22,7 +22,7 @@
 
 @objc extension PhiroMotorStopBrick: CBInstructionProtocol {
 
-    @nonobjc func instruction(audioEngine: AudioEngine) -> CBInstruction {
+    @nonobjc func instruction() -> CBInstruction {
 
         return CBInstruction.execClosure { context, _ in
 

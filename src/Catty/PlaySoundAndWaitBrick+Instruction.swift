@@ -22,7 +22,7 @@
 
 @objc extension PlaySoundAndWaitBrick: CBInstructionProtocol {
 
-    @nonobjc func instruction(audioEngine: AudioEngine) -> CBInstruction {
+    @nonobjc func instruction() -> CBInstruction {
 
         guard let objectName = self.script?.object?.name,
             let projectPath = self.script?.object?.projectPath()
@@ -34,7 +34,8 @@
 
         let filePath = projectPath + kProjectSoundsDirName
 
-        return CBInstruction.waitExecClosure { context, _ in
+        return CBInstruction.waitExecClosure { context, scheduler in
+            let audioEngine = (scheduler as! CBScheduler).getAudioEngine()
             let waitUntilSoundPlayed = NSCondition()
             waitUntilSoundPlayed.accessibilityHint = "0"
 
@@ -47,10 +48,11 @@
                 waitUntilSoundPlayed.wait()
             }
             waitUntilSoundPlayed.unlock()
-            usleep(10000) //will sleep for 0.01seconds. Needed to have consistent behaviour in the followin case: First Object has a "when tapped"
-            //script with 2 "play sound and wait" bricks. 2nd object has a "when tapped" script with one "play sound and wait" brick. Tap first object,
-            //then tap 2nd object. "play sound and wait" brick from 2nd object should not be audible because the 2nd "play sound and wait" brick from the
-            //first object will stop the sound from the 2nd object immediately if all sounds are the same.
+            RunLoop.current.run(until: Date(timeIntervalSinceNow: 0.01)) //will sleep for 0.01seconds. Needed to have consistent
+            //behaviour in the followin case: First Object has a "when tapped" script with 2 "play sound and wait" bricks. 2nd
+            //object has a "when tapped" script with one "play sound and wait" brick. Tap first object, then tap 2nd object. "play
+            //sound and wait" brick from 2nd object should not be audible because the 2nd "play sound and wait" brick from the first
+            //object will stop the sound from the 2nd object immediately if all sounds are the same.
         }
 
     }

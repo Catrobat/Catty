@@ -24,11 +24,12 @@
 
 
 
-    @nonobjc func instruction(audioEngine: AudioEngine) -> CBInstruction {
+    @nonobjc func instruction() -> CBInstruction {
         guard let spriteObject = self.script?.object else { fatalError("This should never happen") }
         let spriteObjectName = spriteObject.name
 
         return CBInstruction.waitExecClosure { context, scheduler in
+            let audioEngine = (scheduler as! CBScheduler).getAudioEngine()
             let pitch = context.formulaInterpreter.interpretInteger(self.pitch, for: spriteObject)
             let note = Note(pitch: pitch)
 

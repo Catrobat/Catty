@@ -22,7 +22,7 @@
 
 @objc extension PhiroRGBLightBrick: CBInstructionProtocol {
 
-    @nonobjc func instruction(audioEngine: AudioEngine) -> CBInstruction {
+    @nonobjc func instruction() -> CBInstruction {
 
         return CBInstruction.execClosure { context, _ in
             let redValue = self.getFormulaValue(self.redFormula, formulaInterpreter: context.formulaInterpreter)

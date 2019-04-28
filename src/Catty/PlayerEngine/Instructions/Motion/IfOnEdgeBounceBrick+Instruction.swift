@@ -22,7 +22,7 @@
 
 @objc extension IfOnEdgeBounceBrick: CBInstructionProtocol {
 
-    @nonobjc func instruction(audioEngine: AudioEngine) -> CBInstruction {
+    @nonobjc func instruction() -> CBInstruction {
         return .action { _ in SKAction.run(self.actionBlock()) }
     }
 

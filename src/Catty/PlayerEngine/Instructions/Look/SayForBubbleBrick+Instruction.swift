@@ -22,7 +22,7 @@
 
 @objc extension SayForBubbleBrick: CBInstructionProtocol {
 
-    @nonobjc func instruction(audioEngine: AudioEngine) -> CBInstruction {
+    @nonobjc func instruction() -> CBInstruction {
         guard let object = self.script?.object,
             let _ = object.spriteNode
             else { fatalError("This should never happen!") }

@@ -167,7 +167,7 @@ final class CBScene: SKScene {
 
             for script in scriptList {
                 let scriptSequence = frontend.computeSequenceListForScript(script)
-                let instructions = backend.instructionsForSequence(scriptSequence.sequenceList, soundEngine: self.soundEngine)
+                let instructions = backend.instructionsForSequence(scriptSequence.sequenceList)
 
                 logger.info("Generating Context of \(script)")
                 var context: CBScriptContext?

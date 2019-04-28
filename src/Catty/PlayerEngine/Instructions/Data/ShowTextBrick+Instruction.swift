@@ -22,7 +22,7 @@
 
 @objc extension ShowTextBrick: CBInstructionProtocol {
 
-    @nonobjc func instruction(audioEngine: AudioEngine) -> CBInstruction {
+    @nonobjc func instruction() -> CBInstruction {
 
         guard let spriteObject = self.script?.object,
             let _ = spriteObject.project?.variables,

@@ -22,16 +22,15 @@
 
 @objc extension SpeakBrick: CBInstructionProtocol {
 
-    @nonobjc func instruction(audioEngine: AudioEngine) -> CBInstruction {
+    @nonobjc func instruction() -> CBInstruction {
 
         guard let object = self.script?.object,
             let objectName = self.script?.object?.name
             else { fatalError("This should never happen!") }
 
-        return CBInstruction.execClosure { context, _ in
-            var speakText = context.formulaInterpreter.interpretString(self.formula, for: object)
+        return CBInstruction.execClosure { context, scheduler in
+            let audioEngine = (scheduler as! CBScheduler).getAudioEngine()
             let utterance = AudioEngineConfig.stringFormulaToUtterance(text: self.formula, spriteObject: object, context: context)
-
             let synthesizer = audioEngine.getSpeechSynth()
             if synthesizer.isSpeaking {
                 synthesizer.stopSpeaking(at: AVSpeechBoundary.immediate)

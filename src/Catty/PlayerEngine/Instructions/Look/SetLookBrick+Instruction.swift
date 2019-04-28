@@ -22,7 +22,7 @@
 
 extension SetLookBrick: CBInstructionProtocol {
 
-    func instruction(audioEngine: AudioEngine) -> CBInstruction {
+    func instruction() -> CBInstruction {
         return .action { _ in SKAction.run(self.actionBlock()) }
     }
 

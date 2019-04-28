@@ -22,10 +22,11 @@
 
 @objc extension RestBrick: CBInstructionProtocol {
 
-    @nonobjc func instruction(audioEngine: AudioEngine) -> CBInstruction {
+    @nonobjc func instruction() -> CBInstruction {
         guard let spriteObject = self.script?.object else { fatalError("This should never happen") }
 
         return CBInstruction.waitExecClosure { context, scheduler in
+            let audioEngine = (scheduler as! CBScheduler).getAudioEngine()
             let waitUntilNoteFinished = NSCondition()
             waitUntilNoteFinished.accessibilityHint = "0"
 

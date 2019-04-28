@@ -22,11 +22,12 @@
 
 @objc extension SetInstrumentToBrick: CBInstructionProtocol {
 
-    @nonobjc func instruction(audioEngine: AudioEngine) -> CBInstruction {
+    @nonobjc func instruction() -> CBInstruction {
         guard let spriteObject = self.script?.object else { fatalError("This should never happen") }
         let spriteObjectName = spriteObject.name
 
-        return CBInstruction.execClosure { context, _ in
+        return CBInstruction.execClosure { context, scheduler in
+            let audioEngine = (scheduler as! CBScheduler).getAudioEngine()
             let instrumentNumber = self.instrumentChoice
             if let name = spriteObjectName {
                 audioEngine.setInstrumentTo(instrumentNumber: instrumentNumber, key: name)

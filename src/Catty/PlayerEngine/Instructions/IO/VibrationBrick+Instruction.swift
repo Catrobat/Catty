@@ -22,7 +22,7 @@
 
 @objc extension VibrationBrick: CBInstructionProtocol {
 
-    @nonobjc func instruction(audioEngine: AudioEngine) -> CBInstruction {
+    @nonobjc func instruction() -> CBInstruction {
 
         guard let spriteObject = self.script?.object else { fatalError("This should never happen!") }
 

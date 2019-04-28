@@ -22,7 +22,7 @@
 
 @objc extension PlaySoundBrick: CBInstructionProtocol {
 
-    @nonobjc func instruction(audioEngine: AudioEngine) -> CBInstruction {
+    @nonobjc func instruction() -> CBInstruction {
 
         guard let objectName = self.script?.object?.name,
             let projectPath = self.script?.object?.projectPath()
@@ -34,8 +34,8 @@
 
         let filePath = projectPath + kProjectSoundsDirName
 
-        return CBInstruction.execClosure { context, _ in
-            //            self.logger.debug("Performing: PlaySoundBrick")
+        return CBInstruction.execClosure { context, scheduler in
+            let audioEngine = (scheduler as! CBScheduler).getAudioEngine()
             audioEngine.playSound(fileName: fileName, key: objectName, filePath: filePath, condition: nil)
             context.state = .runnable
         }

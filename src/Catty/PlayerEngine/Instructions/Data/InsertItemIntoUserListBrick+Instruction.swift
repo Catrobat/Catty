@@ -22,7 +22,7 @@
 
 @objc extension InsertItemIntoUserListBrick: CBInstructionProtocol {
 
-    @nonobjc func instruction(audioEngine: AudioEngine) -> CBInstruction {
+    @nonobjc func instruction() -> CBInstruction {
 
         guard let spriteObject = self.script?.object,
             let variablesContainer = spriteObject.project?.variables,

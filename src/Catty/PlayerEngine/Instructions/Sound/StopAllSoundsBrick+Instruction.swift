@@ -22,9 +22,10 @@
 
 @objc extension StopAllSoundsBrick: CBInstructionProtocol {
 
-    @nonobjc func instruction(audioEngine: AudioEngine) -> CBInstruction {
+    @nonobjc func instruction() -> CBInstruction {
 
-        return CBInstruction.execClosure { context, _ in
+        return CBInstruction.execClosure { context, scheduler in
+            let audioEngine = (scheduler as! CBScheduler).getAudioEngine()
             audioEngine.stopAllAudioPlayers()
             context.state = .runnable
         }

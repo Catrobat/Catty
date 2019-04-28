@@ -22,13 +22,14 @@
 
 @objc extension SpeakAndWaitBrick: CBInstructionProtocol {
 
-    @nonobjc func instruction(audioEngine: AudioEngine) -> CBInstruction {
+    @nonobjc func instruction() -> CBInstruction {
 
         guard let object = self.script?.object else {
             fatalError("This should never happen!")
         }
 
-        return CBInstruction.waitExecClosure { context, _ in
+        return CBInstruction.waitExecClosure { context, scheduler in
+            let audioEngine = (scheduler as! CBScheduler).getAudioEngine()
             let synthesizer = audioEngine.getSpeechSynth()
             if synthesizer.isSpeaking {
                 let waitUntilSpeechStopped = audioEngine.addConditionToSpeechSynth(accessibilityHint: "", synthesizer: synthesizer)

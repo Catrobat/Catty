@@ -22,7 +22,7 @@
 
 @objc extension WaitBrick: CBInstructionProtocol {
 
-    @nonobjc func instruction(audioEngine: AudioEngine) -> CBInstruction {
+    @nonobjc func instruction() -> CBInstruction {
 
         guard let object = self.script?.object
             else { fatalError("This should never happen!") } // (pre)fetch only once (micro-optimization)
