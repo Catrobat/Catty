@@ -44,7 +44,6 @@
 @interface SoundsTableViewController () <AudioManagerDelegate,AVAudioPlayerDelegate>
 @property (nonatomic) BOOL useDetailCells;
 @property (atomic, strong) Sound *currentPlayingSong;
-@property (atomic, strong) AVAudioPlayer* audioPlayer;
 @property (atomic, strong) Sound *sound;
 @property (atomic, weak) UITableViewCell<CatrobatImageCell> *currentPlayingSongCell;
 @property (nonatomic, strong) SharkfoodMuteSwitchDetector *silentDetector;
@@ -557,6 +556,11 @@
             }
         });
     }
+}
+
+- (CGFloat)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath
+{
+    return [TableUtil heightForImageCell];
 }
 
 #pragma mark audio delegate
