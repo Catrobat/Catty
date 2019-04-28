@@ -38,10 +38,6 @@ extension SoundsTableViewController {
         alertController.addAction(title: buttonTitle, style: .default, handler: nil)
         self.present(alertController, animated: true, completion: nil)
     }
-
-    @objc override open func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return TableUtil.heightForImageCell()
-    }
 }
 
 extension SoundsTableViewController: MediaLibraryViewControllerImportDelegate {
