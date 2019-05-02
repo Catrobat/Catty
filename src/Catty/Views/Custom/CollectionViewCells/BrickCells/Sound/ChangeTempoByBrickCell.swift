@@ -23,26 +23,26 @@
 import Foundation
 
 @objc(ChangeTempoByBrickCell) class ChangeTempoByBrickCell: BrickCell {
-    
+
     public var firstTextLabel: UILabel?
     public var tempoTextField: UITextField?
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
-    
+
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
-    
+
     override func draw(_ rect: CGRect) {
         BrickShapeFactory.drawSquareBrickShape(withFill: UIColor.soundBrickViolet(), stroke: UIColor.soundBrickStroke(), height: CGFloat(smallBrick), width: Util.screenWidth())
     }
-    
+
     override static func cellHeight() -> CGFloat {
         return CGFloat(kBrickHeight1h)
     }
-    
+
     override func hookUpSubViews(_ inlineViewSubViews: [Any]!) {
         self.firstTextLabel = inlineViewSubViews[0] as? UILabel
         self.tempoTextField = inlineViewSubViews[1] as? UITextField
