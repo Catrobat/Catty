@@ -28,12 +28,6 @@
                 <key>Type</key>
                 <string>PSGroupSpecifier</string>
                 <key>FooterText</key>
-                <string>Catty/Resources/Licenses/CryptoSwift</string>
-            </dict>
-            <dict>
-                <key>Type</key>
-                <string>PSGroupSpecifier</string>
-                <key>FooterText</key>
                 <string>Catty/Resources/Licenses/DVR</string>
             </dict>
             <dict>
@@ -149,12 +143,6 @@
                 <string>PSGroupSpecifier</string>
                 <key>FooterText</key>
                 <string>Catty/Resources/Licenses/YKImageCropperView</string>
-            </dict>
-            <dict>
-                <key>Type</key>
-                <string>PSGroupSpecifier</string>
-                <key>FooterText</key>
-                <string>Catty/Resources/Licenses/chromaprint</string>
             </dict>
             <dict>
                 <key>Type</key>
