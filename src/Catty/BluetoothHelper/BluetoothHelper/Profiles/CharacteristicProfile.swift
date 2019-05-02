@@ -81,7 +81,7 @@ open class CharacteristicProfile {
 }
 
 // RawCharacteristicProfile
-public final class RawCharacteristicProfile<DeserializedType> : CharacteristicProfile where
+public final class RawCharacteristicProfile<DeserializedType>: CharacteristicProfile where
     DeserializedType: RawDeserialize, DeserializedType: StringDeserialize, DeserializedType: CharacteristicConfigurable, DeserializedType.RawType: Deserialize {
 
     public init() {
@@ -107,7 +107,7 @@ public final class RawCharacteristicProfile<DeserializedType> : CharacteristicPr
 }
 
 // RawArrayCharacteristicProfile
-public final class RawArrayCharacteristicProfile<DeserializedType> : CharacteristicProfile where
+public final class RawArrayCharacteristicProfile<DeserializedType>: CharacteristicProfile where
     DeserializedType: RawArrayDeserialize, DeserializedType: StringDeserialize, DeserializedType: CharacteristicConfigurable, DeserializedType.RawType: Deserialize {
 
     public init() {
@@ -133,7 +133,7 @@ public final class RawArrayCharacteristicProfile<DeserializedType> : Characteris
 }
 
 // RawPairCharacteristicProfile
-public final class RawPairCharacteristicProfile<DeserializedType> : CharacteristicProfile where
+public final class RawPairCharacteristicProfile<DeserializedType>: CharacteristicProfile where
     DeserializedType: RawPairDeserialize,
     DeserializedType: StringDeserialize,
     DeserializedType: CharacteristicConfigurable,
@@ -163,7 +163,7 @@ public final class RawPairCharacteristicProfile<DeserializedType> : Characterist
 }
 
 // RawArrayPairCharacteristicProfile
-public final class RawArrayPairCharacteristicProfile<DeserializedType> : CharacteristicProfile where
+public final class RawArrayPairCharacteristicProfile<DeserializedType>: CharacteristicProfile where
     DeserializedType: RawArrayPairDeserialize,
     DeserializedType: StringDeserialize,
     DeserializedType: CharacteristicConfigurable,
@@ -193,7 +193,7 @@ public final class RawArrayPairCharacteristicProfile<DeserializedType> : Charact
 }
 
 // StringCharacteristicProfile
-public final class StringCharacteristicProfile<T: CharacteristicConfigurable> : CharacteristicProfile {
+public final class StringCharacteristicProfile<T: CharacteristicConfigurable>: CharacteristicProfile {
 
     public var encoding: String.Encoding
 
