@@ -948,8 +948,6 @@
 		9ED90E7B2274F6BE00E24A50 /* ExtendedTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED90E782274F6BE00E24A50 /* ExtendedTimer.swift */; };
 		9EDAA2FE222C985E00535908 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDAA2FD222C985E00535908 /* Note.swift */; };
 		9EE14421222AB932009AB2B5 /* SetInstrumentToBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE14420222AB932009AB2B5 /* SetInstrumentToBrick.swift */; };
-		9EE4189522243CA300EA58E8 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EE4189422243CA300EA58E8 /* CryptoSwift.framework */; };
-		9EE418A322246D3800EA58E8 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EE418A222246D3800EA58E8 /* Accelerate.framework */; };
 		9EFB8E84223016F90098018A /* PitchEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFB8E83223016F90098018A /* PitchEffect.swift */; };
 		9EFB8E86223017120098018A /* PanEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFB8E85223017120098018A /* PanEffect.swift */; };
 		9EFB8E882230231B0098018A /* SoundEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFB8E872230231B0098018A /* SoundEffect.swift */; };
@@ -2667,8 +2665,6 @@
 		9ED90E782274F6BE00E24A50 /* ExtendedTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendedTimer.swift; sourceTree = "<group>"; };
 		9EDAA2FD222C985E00535908 /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		9EE14420222AB932009AB2B5 /* SetInstrumentToBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetInstrumentToBrick.swift; sourceTree = "<group>"; };
-		9EE4189422243CA300EA58E8 /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CryptoSwift.framework; path = Carthage/Build/iOS/CryptoSwift.framework; sourceTree = "<group>"; };
-		9EE418A222246D3800EA58E8 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		9EFB8E83223016F90098018A /* PitchEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PitchEffect.swift; sourceTree = "<group>"; };
 		9EFB8E85223017120098018A /* PanEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanEffect.swift; sourceTree = "<group>"; };
 		9EFB8E872230231B0098018A /* SoundEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundEffect.swift; sourceTree = "<group>"; };
@@ -3237,8 +3233,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9EE418A322246D3800EA58E8 /* Accelerate.framework in Frameworks */,
-				9EE4189522243CA300EA58E8 /* CryptoSwift.framework in Frameworks */,
 				9E890897222329F30078B1B4 /* AudioKit.framework in Frameworks */,
 				CA7699191B0E4BFF000D0340 /* libxml2.dylib in Frameworks */,
 				593624C51F76F374008A588D /* Bohr.framework in Frameworks */,
@@ -3319,8 +3313,6 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				9EE418A222246D3800EA58E8 /* Accelerate.framework */,
-				9EE4189422243CA300EA58E8 /* CryptoSwift.framework */,
 				9E890893222329C10078B1B4 /* AudioKit.framework */,
 				B405BAC7175DD3F600B1A0FC /* libxml2.dylib */,
 				DE5C4E6D138ED109004892CA /* libz.dylib */,
