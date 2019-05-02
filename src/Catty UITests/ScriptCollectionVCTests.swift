@@ -42,24 +42,12 @@ class ScriptCollectionVCTests: XCTestCase, UITestProtocol {
         waitForElementToAppear(app.staticTexts[kLocalizedBackground]).tap()
         waitForElementToAppear(app.staticTexts[kLocalizedScripts]).tap()
 
-        waitForElementToAppear(app.toolbars.buttons[kLocalizedUserListAdd]).tap()
-        skipFrequentlyUsedBricks(app)
+        XCTAssertEqual(0, app.collectionViews.cells.count)
 
-        XCTAssertTrue(app.navigationBars[kUIControlTitle].exists)
-
-        let startCoord = app.collectionViews.element.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5))
-        let endCoord = startCoord.withOffset(CGVector(dx: 0.0, dy: -500)); // scroll to bottom
-        startCoord.press(forDuration: 0.01, thenDragTo: endCoord)
-
-        for cellIndex in 0...app.collectionViews.cells.count {
-            let cell = app.collectionViews.cells.element(boundBy: cellIndex)
-            if cell.staticTexts.count == 2 && cell.staticTextBeginsWith(kLocalizedIfBegin).exists && cell.staticTextBeginsWith(kLocalizedIfBeginSecondPart).exists {
-                cell.tap()
-            }
-        }
+        addBrick(labels: [kLocalizedIfBegin, kLocalizedIfBeginSecondPart], section: kUIControlTitle, in: app)
 
         XCTAssertEqual(3, app.collectionViews.cells.count)
-        XCTAssert(app.collectionViews.cells.element(boundBy: 1).staticTextBeginsWith(kLocalizedIfBeginSecondPart).exists)
+        XCTAssert(app.collectionViews.cells.element(boundBy: 1).staticTextBeginsWith(kLocalizedIfBeginSecondPart, ignoreLeadingWhiteSpace: true).exists)
         XCTAssert(app.collectionViews.cells.element(boundBy: 2).staticTexts[kLocalizedEndIf].exists)
 
         app.collectionViews.cells.element(boundBy: 1).tap()
@@ -70,9 +58,9 @@ class ScriptCollectionVCTests: XCTestCase, UITestProtocol {
         copyButton.tap()
 
         XCTAssertEqual(5, app.collectionViews.cells.count)
-        XCTAssert(app.collectionViews.cells.element(boundBy: 1).staticTextBeginsWith(kLocalizedIfBeginSecondPart).exists)
+        XCTAssert(app.collectionViews.cells.element(boundBy: 1).staticTextBeginsWith(kLocalizedIfBeginSecondPart, ignoreLeadingWhiteSpace: true).exists)
         XCTAssert(app.collectionViews.cells.element(boundBy: 2).staticTexts[kLocalizedEndIf].exists)
-        XCTAssert(app.collectionViews.cells.element(boundBy: 3).staticTextBeginsWith(kLocalizedIfBeginSecondPart).exists)
+        XCTAssert(app.collectionViews.cells.element(boundBy: 3).staticTextBeginsWith(kLocalizedIfBeginSecondPart, ignoreLeadingWhiteSpace: true).exists)
         XCTAssert(app.collectionViews.cells.element(boundBy: 4).staticTexts[kLocalizedEndIf].exists)
     }
 
@@ -83,10 +71,8 @@ class ScriptCollectionVCTests: XCTestCase, UITestProtocol {
         XCUIApplication().tables.staticTexts[kLocalizedBackground].tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
 
-        app.toolbars.buttons[kLocalizedUserListAdd].tap()
-        skipFrequentlyUsedBricks(app)
+        addBrick(label: kLocalizedBroadcast, section: kUIControlTitle, in: app)
 
-        app.collectionViews.staticTexts[kLocalizedBroadcast].tap()
         app.collectionViews.cells.otherElements.containing(.staticText, identifier: kLocalizedBroadcast).children(matching: .other).element.tap()
 
         app.pickerWheels.firstMatch.swipeDown()
@@ -111,10 +97,8 @@ class ScriptCollectionVCTests: XCTestCase, UITestProtocol {
         XCUIApplication().tables.staticTexts[kLocalizedBackground].tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
 
-        app.toolbars.buttons[kLocalizedUserListAdd].tap()
-        skipFrequentlyUsedBricks(app)
+        addBrick(label: kLocalizedWait, section: kUIControlTitle, in: app)
 
-        app.collectionViews.staticTextBeginsWith(kLocalizedWait).tap()
         app.collectionViews.cells.otherElements.identifierTextBeginsWith(kLocalizedWait).children(matching: .button).element.tap()
         XCTAssertTrue(waitForElementToAppear(app.buttons[kLocalizedCancel]).exists)
 
@@ -130,14 +114,8 @@ class ScriptCollectionVCTests: XCTestCase, UITestProtocol {
         XCUIApplication().tables.staticTexts[kLocalizedBackground].tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
 
-        app.toolbars.buttons[kLocalizedUserListAdd].tap()
-        skipFrequentlyUsedBricks(app)
-        app.swipeLeft()
-        app.swipeLeft()
-        app.swipeLeft()
-        app.swipeLeft()
+        addBrick(label: kLocalizedSetVariable, section: kUIVariableTitle, in: app)
 
-        app.collectionViews.staticTexts[kLocalizedSetVariable].tap()
         app.collectionViews.cells.otherElements.containing(.staticText, identifier: kLocalizedSetVariable).children(matching: .button).element.tap()
 
         app.buttons[kUIFEAddNewText].tap()
@@ -146,5 +124,4 @@ class ScriptCollectionVCTests: XCTestCase, UITestProtocol {
         app.buttons[kLocalizedDone].tap()
         XCTAssertTrue(waitForElementToAppear(app.navigationBars[kLocalizedScripts]).exists)
     }
-
 }

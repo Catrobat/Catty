@@ -45,24 +45,9 @@ class CreateProjectTests: XCTestCase, UITestProtocol {
         app.alerts[kLocalizedNewProject].buttons[kLocalizedOK].tap()
         XCTAssertNotNil(waitForElementToAppear(app.navigationBars[projectName]))
 
-        //Add new Object
-        app.toolbars.buttons[kLocalizedUserListAdd].tap()
-        app.alerts[kLocalizedAddObject].textFields[kLocalizedEnterYourObjectNameHere].typeText(testObject)
-        app.alerts[kLocalizedAddObject].buttons[kLocalizedOK].tap()
-        app.buttons[kLocalizedDrawNewImage].tap()
-
-        XCTAssertNotNil(waitForElementToAppear(app.navigationBars[kLocalizedPaintPocketPaint]))
-
-        //Draw image
-        app.tap()
-
-        app.navigationBars.buttons[kLocalizedLooks].tap()
-
-        let alert = waitForElementToAppear(app.alerts[kLocalizedSaveToPocketCode])
-        alert.buttons[kLocalizedYes].tap()
+        addObjectAndDrawNewImage(name: testObject, in: app)
 
         XCTAssertNotNil(waitForElementToAppear(app.navigationBars[projectName]))
-
         app.staticTexts[testObject].tap()
         app.staticTexts[kLocalizedLooks].tap()
         XCTAssert(app.staticTexts[kLocalizedLook].exists)
@@ -94,24 +79,11 @@ class CreateProjectTests: XCTestCase, UITestProtocol {
         //Add Scripts to Object
         app.tables.staticTexts[testObject].tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
-        app.toolbars.buttons[kLocalizedUserListAdd].tap()
-        if app.navigationBars[kLocalizedFrequentlyUsed].exists {
-            app.swipeLeft()
-        }
-        app.collectionViews.cells.element(boundBy: 0).tap()
+
+        addBrick(label: kLocalizedWhenProjectStarted, section: kUIControlTitle, in: app)
         XCTAssert(app.collectionViews.cells.element(boundBy: 0).staticTexts[kLocalizedWhenProjectStarted].exists)
-        app.toolbars.buttons[kLocalizedUserListAdd].tap()
 
-        if app.navigationBars[kLocalizedFrequentlyUsed].exists {
-            app.swipeLeft()
-            app.swipeLeft()
-            app.swipeLeft()
-        } else {
-            app.swipeLeft()
-            app.swipeLeft()
-        }
-
-        app.collectionViews.cells.element(boundBy: 0).tap()
+        addBrick(label: kLocalizedSetLook, section: kUILookTitle, in: app)
         XCTAssert(app.collectionViews.cells.element(boundBy: 1).staticTexts[kLocalizedSetLook].exists)
 
         //Add Script to Background
@@ -119,21 +91,11 @@ class CreateProjectTests: XCTestCase, UITestProtocol {
         app.navigationBars.buttons[projectName].tap()
         app.tables.staticTexts[kLocalizedBackground].tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
-        app.toolbars.buttons[kLocalizedUserListAdd].tap()
-        if app.navigationBars[kLocalizedFrequentlyUsed].exists {
-            app.swipeLeft()
-        }
-        app.collectionViews.cells.element(boundBy: 0).tap()
+
+        addBrick(label: kLocalizedWhenProjectStarted, section: kUIControlTitle, in: app)
         XCTAssert(app.collectionViews.cells.element(boundBy: 0).staticTexts[kLocalizedWhenProjectStarted].exists)
-        app.toolbars.buttons[kLocalizedUserListAdd].tap()
-        if app.navigationBars[kLocalizedFrequentlyUsed].exists {
-            app.swipeLeft()
-            app.swipeLeft()
-            app.swipeLeft()
-        }
-        app.swipeLeft()
-        app.swipeLeft()
-        app.collectionViews.cells.element(boundBy: 1).tap()
+
+        addBrick(label: kLocalizedNextBackground, section: kUILookTitle, in: app)
         XCTAssert(app.collectionViews.cells.element(boundBy: 1).staticTexts[kLocalizedNextBackground].exists)
     }
 
@@ -149,21 +111,9 @@ class CreateProjectTests: XCTestCase, UITestProtocol {
         app.alerts[kLocalizedNewProject].buttons[kLocalizedOK].tap()
         XCTAssertNotNil(waitForElementToAppear(app.navigationBars[projectName]))
 
-        //Add new Object
-        app.toolbars.buttons[kLocalizedUserListAdd].tap()
-        app.alerts[kLocalizedAddObject].textFields[kLocalizedEnterYourObjectNameHere].typeText(helloText)
-        app.alerts[kLocalizedAddObject].buttons[kLocalizedOK].tap()
-        waitForElementToAppear(app.buttons[kLocalizedDrawNewImage]).tap()
+        addObjectAndDrawNewImage(name: helloText, in: app)
 
-        XCTAssertNotNil(waitForElementToAppear(app.navigationBars[kLocalizedPaintPocketPaint]))
-
-        //Draw image
-        app.tap()
-
-        waitForElementToAppear(app.navigationBars.buttons[kLocalizedLooks]).tap()
-        XCTAssert(app.alerts[kLocalizedSaveToPocketCode].exists)
-        app.alerts[kLocalizedSaveToPocketCode].buttons[kLocalizedYes].tap()
-
+        XCTAssertNotNil(waitForElementToAppear(app.navigationBars[projectName]))
         XCTAssert(app.staticTexts[helloText].exists)
     }
 }

@@ -43,7 +43,6 @@ extension UITestProtocol {
     }
 
     func dismissWelcomeScreenIfShown() {
-
         let app = XCUIApplication()
 
         if app.buttons["Dismiss"].exists {
@@ -61,16 +60,81 @@ extension UITestProtocol {
         return element
     }
 
-    func skipFrequentlyUsedBricks(_ app: XCUIApplication) {
-        if app.navigationBars[kLocalizedFrequentlyUsed].exists {
-            app.swipeLeft()
-        }
-    }
-
     func createProject(name: String, in app: XCUIApplication) {
         app.tables.staticTexts[kLocalizedNew].tap()
         app.alerts[kLocalizedNewProject].textFields[kLocalizedEnterYourProjectNameHere].typeText(name)
         app.alerts[kLocalizedNewProject].buttons[kLocalizedOK].tap()
         XCTAssertNotNil(waitForElementToAppear(app.navigationBars[name]))
+    }
+
+    func addObjectAndDrawNewImage(name: String, in app: XCUIApplication) {
+        app.toolbars.buttons[kLocalizedUserListAdd].tap()
+        app.alerts[kLocalizedAddObject].textFields[kLocalizedEnterYourObjectNameHere].typeText(name)
+        app.alerts[kLocalizedAddObject].buttons[kLocalizedOK].tap()
+
+        waitForElementToAppear(app.buttons[kLocalizedDrawNewImage]).tap()
+        XCTAssertNotNil(waitForElementToAppear(app.navigationBars[kLocalizedPaintPocketPaint]))
+
+        app.tap()
+        app.navigationBars.buttons[kLocalizedLooks].tap()
+
+        waitForElementToAppear(app.alerts[kLocalizedSaveToPocketCode]).buttons[kLocalizedYes].tap()
+        XCTAssertNotNil(waitForElementToAppear(app.navigationBars.buttons[kLocalizedPocketCode]))
+    }
+
+    func addBrick(label: String, section: String, in app: XCUIApplication) {
+        addBrick(labels: [label], section: section, in: app)
+    }
+
+    func addBrick(labels: [String], section: String, in app: XCUIApplication) {
+        let maxPageLengthTries = 3
+
+        XCTAssertNotNil(app.staticTexts[kLocalizedScripts])
+
+        waitForElementToAppear(app.toolbars.buttons[kLocalizedUserListAdd]).tap()
+        findBrickSection(section, in: app)
+
+        XCTAssertTrue(app.navigationBars[section].exists)
+
+        for _ in 0..<maxPageLengthTries {
+            if let cell = findCell(with: labels, in: app.collectionViews.firstMatch) {
+                cell.tap()
+
+                XCTAssert(waitForElementToAppear(app.navigationBars[kLocalizedScripts]).exists)
+                break
+            }
+            app.swipeUp()
+        }
+    }
+
+    func findBrickSection(_ name: String, in app: XCUIApplication) {
+        let maxTries = 8
+
+        for _ in 0..<maxTries {
+            if app.navigationBars[name].exists {
+                return
+            }
+            app.swipeLeft()
+        }
+    }
+
+    private func findCell(with labels: [String], in collectionView: XCUIElement) -> XCUIElement? {
+        for cellIndex in 0...collectionView.cells.count {
+            let cell = collectionView.cells.element(boundBy: cellIndex)
+
+            if cell.staticTexts.count >= labels.count {
+                var allLabelsPresent = true
+
+                for label in labels {
+                    if !cell.staticTextEquals(label, ignoreLeadingWhiteSpace: true).exists {
+                        allLabelsPresent = false
+                    }
+                }
+                if allLabelsPresent {
+                    return cell
+                }
+            }
+        }
+        return nil
     }
 }
