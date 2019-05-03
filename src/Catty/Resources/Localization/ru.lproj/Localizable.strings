@@ -95,7 +95,7 @@
 "at " = "в ";
 
 /* No comment provided by engineer. */
-"at position" = "На позицию";
+"at position" = "на позицию";
 
 /* paint */
 "Attributes:" = "Атрибуты:";
@@ -149,7 +149,7 @@
 "Both" = "Оба";
 
 /* No comment provided by engineer. */
-"Bricks" = "Кирпичи";
+"Bricks" = "Блоки";
 
 /* No comment provided by engineer. */
 "brightness" = "яркость";
@@ -230,7 +230,7 @@
 "Choose" = "Выберите";
 
 /* No comment provided by engineer. */
-"Choose image" = "Из галереи";
+"Choose image" = "Выбрать изображение";
 
 /* No comment provided by engineer. */
 "Clear graphic effects" = "Очистить графические эффекты";
@@ -350,7 +350,7 @@
 "Delete Sounds" = "Удалить Звуки";
 
 /* No comment provided by engineer. */
-"Delete these Bricks?" = "Вы уверены, что хотите удалить эти блоки?";
+"Delete these Bricks?" = "Удалить эти блоки?";
 
 /* No comment provided by engineer. */
 "Delete these Conditions?" = "Удалить эти Условия?";
@@ -365,7 +365,7 @@
 "Delete this background" = "Удалить этот фон";
 
 /* No comment provided by engineer. */
-"Delete this Brick?" = "Вы уверены, что хотите удалить этот блок?";
+"Delete this Brick?" = "Удалить этот блок?";
 
 /* No comment provided by engineer. */
 "Delete this Condition?" = "Удалить это Условие?";
@@ -383,7 +383,7 @@
 "Delete this project" = "Удалить этот проект";
 
 /* No comment provided by engineer. */
-"Delete this Script?" = "Вы уверены, что хотите удалить этот скрипт?";
+"Delete this Script?" = "Удалить этот скрипт?";
 
 /* No comment provided by engineer. */
 "Delete this sound" = "Удалить этот звук";
@@ -425,13 +425,13 @@
 "Download" = "Скачать";
 
 /* No comment provided by engineer. */
-"Download successful" = "Загрузка завершена успешно";
+"Download successful" = "Загрузка успешно завершена";
 
 /* No comment provided by engineer. */
 "Downloads" = "Загрузки";
 
 /* No comment provided by engineer. */
-"Draw new image" = "Камера";
+"Draw new image" = "Нарисовать новое изображение";
 
 /* No comment provided by engineer. */
 "Duration" = "Длительность";
@@ -716,7 +716,7 @@
 "iOS." = "iOS.";
 
 /* No comment provided by engineer. */
-"is true" = "не станет истиной";
+"is true" = "есть истина";
 
 /* No comment provided by engineer. */
 "is true then" = "истина, то";
@@ -857,10 +857,10 @@
 "Measure" = "Измерение";
 
 /* No comment provided by engineer. */
-"Media Library" = "Загрузить из библиотеки";
+"Media Library" = "Библиотека";
 
 /* paint */
-"Menu" = "&#x41C;&#x430;&#x439;";
+"Menu" = "Меню";
 
 /* No comment provided by engineer. */
 "Message" = "Сообщение";
@@ -896,7 +896,7 @@
 "More information" = "Подробности";
 
 /* No comment provided by engineer. */
-"Most Downloaded" = "&#x41D;&#x43E;&#x432;&#x435;&#x439;&#x448;&#x438;&#x435; &#x43F;&#x440;&#x43E;&#x435;&#x43A;&#x442;&#x44B;";
+"Most Downloaded" = "Самые скачиваемые";
 
 /* No comment provided by engineer. */
 "Most Viewed" = "Самые просматриваемые";
@@ -905,10 +905,10 @@
 "Motion" = "Движение";
 
 /* No comment provided by engineer. */
-"Move" = "Рука";
+"Move" = "Переместить";
 
 /* No comment provided by engineer. */
-"Move Brick" = "Переместить";
+"Move Brick" = "Переместить блок";
 
 /* No comment provided by engineer. */
 "Move Looks" = "Переместить образы";
@@ -926,7 +926,7 @@
 "Move Sounds" = "Переместить звуки";
 
 /* Name of the default catrobat project (used as filename!!) */
-"My first project" = "проектПоУмолчанию";
+"My first project" = "Мой первый проект";
 
 /* Default title of imported photo from camera (taken by camera) */
 "My Image" = "Мое изображение";
@@ -941,7 +941,7 @@
 "Name already exists." = "Такое имя уже существует.";
 
 /* No comment provided by engineer. */
-"New" = "Новая переменная";
+"New" = "Новый";
 
 /* paint */
 "New Canvas" = "Новый холст";
@@ -965,7 +965,7 @@
 "New..." = "Новый...";
 
 /* No comment provided by engineer. */
-"Newest" = "&#x441;&#x43A;&#x430;&#x447;&#x438;&#x432;&#x430;&#x43D;&#x438;&#x439;";
+"Newest" = "Новейшие";
 
 /* No comment provided by engineer. */
 "Next background" = "Следующий фон";
@@ -1106,7 +1106,7 @@
 "Pipette" = "Пипетка";
 
 /* No comment provided by engineer. */
-"Place at " = "Поместить в ";
+"Place at " = "Поставить на ";
 
 /* No comment provided by engineer. */
 "Play Phiro music\n" = "Играть музыку Phiro\n";
@@ -1166,7 +1166,7 @@
 "Point in direction" = "Указать в направлении";
 
 /* No comment provided by engineer. */
-"Point towards" = "Указать к";
+"Point towards" = "Указать на";
 
 /* paint */
 "Pointer" = "Указатель";
@@ -1208,13 +1208,13 @@
 "Project variables:" = "Переменные проекта:";
 
 /* No comment provided by engineer. */
-"Projects" = "Программы";
+"Projects" = "Проекты";
 
 /* No comment provided by engineer. */
 "Rate Us" = "Оценить нас";
 
 /* No comment provided by engineer. */
-"RE" = "RE";
+"RE" = "РЕ";
 
 /* No comment provided by engineer. */
 "Recording" = "Идет запись";
@@ -1280,7 +1280,7 @@
 "round" = "округлить";
 
 /* No comment provided by engineer. */
-"Sa" = "Са";
+"Sa" = "Сб";
 
 /* No comment provided by engineer. */
 "Saturday" = "Суббота";
@@ -1466,7 +1466,7 @@
 "Stop Phiro motor" = "Остановить мотор Phiro";
 
 /* No comment provided by engineer. */
-"Su" = "Су";
+"Su" = "Вс";
 
 /* No comment provided by engineer. */
 "Sunday" = "Воскресенье";
@@ -1553,7 +1553,7 @@
 "to" = "значение";
 
 /* No comment provided by engineer. */
-"to list" = "К списку";
+"to list" = "к списку";
 
 /* No comment provided by engineer. */
 "to X:" = "по X:";
@@ -1568,7 +1568,7 @@
 "true" = "Истина";
 
 /* No comment provided by engineer. */
-"Tu" = "Ту";
+"Tu" = "Вт";
 
 /* No comment provided by engineer. */
 "Tuesday" = "Вторник";
@@ -1697,7 +1697,7 @@
 "Wait until" = "Ждать до тех пор, пока";
 
 /* No comment provided by engineer. */
-"We" = "We";
+"We" = "Ср";
 
 /* No comment provided by engineer. */
 "Wednesday" = "Среда";
