@@ -50,7 +50,6 @@ platform :ios do
     #sh ("rm builds/* 2> /dev/null")
     cert
     sigh(force: true,
-         development: true,
          adhoc: true)
     create_build scheme:$catty_schemes["release"], method:"ad-hoc"
     upload_to_browserstack
