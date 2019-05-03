@@ -32,24 +32,29 @@ class CattyUISnapshots: XCTestCase {
         app.launch()
     }
 
-    func testExample() {
+    func appStoreScreenshots() {
         if app.buttons["Dismiss"].exists {
             app.buttons["Dismiss"].tap()
         }
+
         snapshot("0Launch")
+
         app.cells.element(boundBy: 0).tap()
         app.cells.element(boundBy: 2).tap()
         app.cells.element(boundBy: 0).tap()
         snapshot("1Scripts")
+
         app.navigationBars.buttons.element(boundBy: 0).tap()
         app.cells.element(boundBy: 1).tap()
         app.cells.element(boundBy: 0).tap()
         snapshot("4Paint")
+
         app.navigationBars.buttons.element(boundBy: 0).tap()
         app.toolbars.buttons.element(boundBy: 0).tap()
         app.buttons.element(boundBy: 6).tap()
         sleep(5)
         snapshot("3MediaLibrary")
+
         app.navigationBars.buttons.element(boundBy: 0).tap()
         app.navigationBars.buttons.element(boundBy: 0).tap()
         app.navigationBars.buttons.element(boundBy: 0).tap()
