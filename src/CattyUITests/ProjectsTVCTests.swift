@@ -22,20 +22,13 @@
 
 import XCTest
 
-class ProjectsTVCTests: XCTestCase, UITestProtocol {
+class ProjectsTVCTests: XCTestCase {
 
     var app: XCUIApplication!
 
     override func setUp() {
         super.setUp()
-
-        continueAfterFailure = false
-        XCUIApplication().launch()
-
-        dismissWelcomeScreenIfShown()
-        restoreDefaultProject()
-
-        app = XCUIApplication()
+        app = launchAppWithDefaultProject()
     }
 
     func testCanAddNewProject() {

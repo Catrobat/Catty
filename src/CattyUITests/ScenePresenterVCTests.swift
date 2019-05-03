@@ -22,16 +22,13 @@
 
 import XCTest
 
-class ScenePresenterVCTests: XCTestCase, UITestProtocol {
+class ScenePresenterVCTests: XCTestCase {
+
+    var app: XCUIApplication!
 
     override func setUp() {
         super.setUp()
-
-        continueAfterFailure = false
-        XCUIApplication().launch()
-
-        dismissWelcomeScreenIfShown()
-        restoreDefaultProject()
+        app = launchAppWithDefaultProject()
     }
 
     override func tearDown() {
@@ -40,7 +37,6 @@ class ScenePresenterVCTests: XCTestCase, UITestProtocol {
     }
 
     func testScenePresenterOrientation() {
-        let app = XCUIApplication()
         let projectName = "testProject"
 
         //Create new Project

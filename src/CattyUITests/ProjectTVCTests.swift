@@ -22,20 +22,16 @@
 
 import XCTest
 
-class ProjectTVCTests: XCTestCase, UITestProtocol {
+class ProjectTVCTests: XCTestCase {
+
+    var app: XCUIApplication!
 
     override func setUp() {
         super.setUp()
-
-        continueAfterFailure = false
-        XCUIApplication().launch()
-
-        dismissWelcomeScreenIfShown()
-        restoreDefaultProject()
+        app = launchAppWithDefaultProject()
     }
 
     func testCreateObjectWithMaxLength() {
-        let app = XCUIApplication()
         let projectName = "projectName"
         let objectName = String(repeating: "a", count: 250)
 
@@ -48,7 +44,6 @@ class ProjectTVCTests: XCTestCase, UITestProtocol {
     }
 
     func testCreateObjectWithMaxLengthPlusOne() {
-        let app = XCUIApplication()
         let projectName = "projectName"
         let objectName = String(repeating: "a", count: 250 + 1)
 
@@ -64,6 +59,6 @@ class ProjectTVCTests: XCTestCase, UITestProtocol {
         app.alerts[kLocalizedAddObject].textFields[kLocalizedEnterYourObjectNameHere].typeText(objectName)
         app.alerts[kLocalizedAddObject].buttons[kLocalizedOK].tap()
 
-        XCTAssert(app.alerts[kLocalizedPocketCode].exists)
+        XCTAssert(waitForElementToAppear(app.alerts[kLocalizedPocketCode]).exists)
     }
 }

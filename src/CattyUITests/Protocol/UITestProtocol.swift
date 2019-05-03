@@ -22,32 +22,29 @@
 
 import XCTest
 
-protocol UITestProtocol {
-    func restoreDefaultProject()
-    func dismissWelcomeScreenIfShown()
-}
+extension XCTestCase {
 
-extension UITestProtocol {
+    private func defaultApp() -> XCUIApplication {
+        continueAfterFailure = false
 
-    func restoreDefaultProject() {
         let app = XCUIApplication()
-        app.tables.staticTexts[kLocalizedProjects].tap()
-        waitForElementToAppear(app.navigationBars[kLocalizedProjects]).buttons[kLocalizedEdit].tap()
-        waitForElementToAppear(app.buttons[kLocalizedDeleteProjects]).tap()
-        let toolbarsQuery = app.toolbars
-        waitForElementToAppear(toolbarsQuery.buttons[kLocalizedSelectAllItems]).tap()
-        waitForElementToAppear(toolbarsQuery.buttons[kLocalizedDelete]).tap()
-        XCTAssert(app.tables.cells.count == 1)
-        // finally go back to main menu, because this method is used by other tests
-        app.navigationBars[kLocalizedProjects].buttons[kLocalizedPocketCode].tap()
+        app.launchArguments = ["UITests"]
+        return app
     }
 
-    func dismissWelcomeScreenIfShown() {
-        let app = XCUIApplication()
+    func launchApp() -> XCUIApplication {
+        let app = defaultApp()
+        app.launch()
 
-        if app.buttons["Dismiss"].exists {
-            app.buttons["Dismiss"].tap()
-        }
+        dismissWelcomeScreenIfShown()
+        return app
+    }
+
+    func launchAppWithDefaultProject() -> XCUIApplication {
+        let app = launchApp()
+
+        restoreDefaultProject()
+        return app
     }
 
     func waitForElementToAppear(_ element: XCUIElement) -> XCUIElement {
@@ -55,7 +52,7 @@ extension UITestProtocol {
 
         let result = XCTWaiter().wait(for: [expectation], timeout: 5)
 
-        XCTAssert(result == .completed)
+        XCTAssert(result == .completed, "waitForElementToAppear failed for \(element.label) ")
 
         return element
     }
@@ -136,5 +133,26 @@ extension UITestProtocol {
             }
         }
         return nil
+    }
+
+    private func restoreDefaultProject() {
+        let app = XCUIApplication()
+        app.tables.staticTexts[kLocalizedProjects].tap()
+        waitForElementToAppear(app.navigationBars[kLocalizedProjects]).buttons[kLocalizedEdit].tap()
+        waitForElementToAppear(app.buttons[kLocalizedDeleteProjects]).tap()
+        let toolbarsQuery = app.toolbars
+        waitForElementToAppear(toolbarsQuery.buttons[kLocalizedSelectAllItems]).tap()
+        waitForElementToAppear(toolbarsQuery.buttons[kLocalizedDelete]).tap()
+        XCTAssert(app.tables.cells.count == 1)
+        // finally go back to main menu, because this method is used by other tests
+        app.navigationBars[kLocalizedProjects].buttons[kLocalizedPocketCode].tap()
+    }
+
+    private func dismissWelcomeScreenIfShown() {
+        let app = XCUIApplication()
+
+        if app.buttons["Dismiss"].exists {
+            app.buttons["Dismiss"].tap()
+        }
     }
 }
