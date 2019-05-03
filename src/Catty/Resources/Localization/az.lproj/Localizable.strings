@@ -5,6 +5,9 @@
 "A project with the same name already exists, try again." = "A project with the same name already exists, try again.";
 
 /* No comment provided by engineer. */
+"Abc" = "Abc";
+
+/* No comment provided by engineer. */
 "About Catrobat" = "Catrobat haqqında";
 
 /* No comment provided by engineer. */
@@ -494,7 +497,7 @@
 "End of Loop" = "End of Loop";
 
 /* No comment provided by engineer. */
-"Enter a reason" = "Enter a reason";
+"Enter a reason" = "Bir səbəb daxil et";
 
 /* Placeholder for add image-name input field */
 "Enter your image name here..." = "Enter your image name here...";

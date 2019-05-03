@@ -2,7 +2,10 @@
 "A message with the same name already exists, try again." = "Uma mensagem com o mesmo nome já existe, tente novamente.";
 
 /* No comment provided by engineer. */
-"A project with the same name already exists, try again." = "A project with the same name already exists, try again.";
+"A project with the same name already exists, try again." = "Um projeto com o mesmo nome já existe, tente novamente.";
+
+/* No comment provided by engineer. */
+"Abc" = "Abc";
 
 /* No comment provided by engineer. */
 "About Catrobat" = "Sobre o Catrobat";
@@ -68,7 +71,7 @@
 "and" = "e";
 
 /* No comment provided by engineer. */
-"and wait" = "and wait";
+"and wait" = "e esperar";
 
 /* No comment provided by engineer. */
 "Animate Brick-Parts" = "Animar as peças de Blocos";
@@ -113,7 +116,7 @@
 "Axes" = "Eixos";
 
 /* No comment provided by engineer. */
-"back" = "back";
+"back" = "voltar";
 
 /* No comment provided by engineer. */
 "Back" = "Voltar";
@@ -167,13 +170,13 @@
 "By registering you agree to our" = "Ao registrar-se, você concorda com nossos";
 
 /* No comment provided by engineer. */
-"By switching to the section \"Explore\" you can discover more interesting projects from people all over the world." = "By switching to the section \"Explore\" you can discover more interesting projects from people all over the world.";
+"By switching to the section \"Explore\" you can discover more interesting projects from people all over the world." = "Mudando para a seção \"Explorar\" você pode descobrir mais projetos interessantes de pessoas ao redor do mundo.";
 
 /* No comment provided by engineer. */
 "Camera Roll" = "Camera Roll";
 
 /* No comment provided by engineer. */
-"Can't restart project!" = "Can't restart project!";
+"Can't restart project!" = "Não é possível reiniciar o projeto!";
 
 /* No comment provided by engineer. */
 "Cancel" = "Cancelar";
@@ -287,7 +290,7 @@
 "Copy Looks" = "Copiar Aparência";
 
 /* No comment provided by engineer. */
-"Copy project" = "Copy project";
+"Copy project" = "Copiar projeto";
 
 /* No comment provided by engineer. */
 "Create & Remix" = "Criar & Remisturar";
@@ -296,7 +299,7 @@
 "Create account" = "Criar conta";
 
 /* No comment provided by engineer. */
-"day" = "day";
+"day" = "dia";
 
 /* No comment provided by engineer. */
 "Debug mode" = "Modo de depuração";
@@ -335,10 +338,10 @@
 "Delete Objects" = "Apagar Objetos";
 
 /* No comment provided by engineer. */
-"Delete Project" = "Delete Project";
+"Delete Project" = "Excluir projeto";
 
 /* No comment provided by engineer. */
-"Delete Projects" = "Delete Projects";
+"Delete Projects" = "Excluir Projetos";
 
 /* No comment provided by engineer. */
 "Delete Script" = "Apagar Script";
@@ -377,7 +380,7 @@
 "Delete this object" = "Apagar este objeto";
 
 /* No comment provided by engineer. */
-"Delete this project" = "Delete this project";
+"Delete this project" = "Excluir este projeto";
 
 /* No comment provided by engineer. */
 "Delete this Script?" = "Apagar este script?";
@@ -398,7 +401,7 @@
 "Device disconnected." = "Dispositivo desligado.";
 
 /* No comment provided by engineer. */
-"device motion-sensor" = "device motion-sensor";
+"device motion-sensor" = "sensor de movimento do dispositivo";
 
 /* No comment provided by engineer. */
 "direction" = "direção";
@@ -458,7 +461,7 @@
 "Edit Object" = "Editar Objeto";
 
 /* No comment provided by engineer. */
-"Edit Project" = "Edit Project";
+"Edit Project" = "Editar Projeto";
 
 /* No comment provided by engineer. */
 "Edit Projects" = "Edit Projects";
@@ -500,7 +503,7 @@
 "Enter your image name here..." = "Insira o nome de sua imagem aqui...";
 
 /* Placeholder for list input field */
-"Enter your list name here..." = "Enter your list name here...";
+"Enter your list name here..." = "Insira o nome da sua lista aqui...";
 
 /* Placeholder for message input field */
 "Enter your message here..." = "Insira sua mensagem aqui...";
@@ -509,10 +512,10 @@
 "Enter your object name here..." = "Insira o nome de seu objeto aqui...";
 
 /* Placeholder for project-description input field */
-"Enter your project description here..." = "Enter your project description here...";
+"Enter your project description here..." = "Insira a descrição do seu projeto aqui...";
 
 /* Placeholder for project-name input field */
-"Enter your project name here..." = "Enter your project name here...";
+"Enter your project name here..." = "Insira o nome do seu projeto aqui...";
 
 /* Placeholder for add sound-name input field */
 "Enter your sound name here..." = "Insira o nome de seu som aqui...";
@@ -527,7 +530,7 @@
 "Error" = "Erro";
 
 /* No comment provided by engineer. */
-"Error saving file" = "Error saving file";
+"Error saving file" = "Erro ao salvar o arquivo";
 
 /* No comment provided by engineer. */
 "Explore" = "Explorar";
@@ -554,22 +557,22 @@
 "Failed to import item" = "Failed to import item";
 
 /* No comment provided by engineer. */
-"Failed to load featured projects" = "Failed to load featured projects";
+"Failed to load featured projects" = "Falha ao carregar projetos em destaque";
 
 /* No comment provided by engineer. */
 "Failed to load recent projects" = "Failed to load recent projects";
 
 /* No comment provided by engineer. */
-"Failed to load sound" = "Failed to load sound";
+"Failed to load sound" = "Falha ao carregar som";
 
 /* No comment provided by engineer. */
-"Failed to play sound" = "Failed to play sound";
+"Failed to play sound" = "Falha ao reproduzir som";
 
 /* No comment provided by engineer. */
 "false" = "falso";
 
 /* No comment provided by engineer. */
-"Featured Projects" = "Featured Projects";
+"Featured Projects" = "Projetos em destaque";
 
 /* No comment provided by engineer. */
 "Feb" = "Fev";
@@ -662,7 +665,7 @@
 "Hmmmm!" = "Hmmmm!";
 
 /* No comment provided by engineer. */
-"hour" = "hour";
+"hour" = "hora";
 
 /* No comment provided by engineer. */
 "If" = "Se";
@@ -713,7 +716,7 @@
 "iOS." = "iOS.";
 
 /* No comment provided by engineer. */
-"is true" = "is true";
+"is true" = "é verdadeiro";
 
 /* No comment provided by engineer. */
 "is true then" = "é verdadeiro então";
@@ -752,7 +755,7 @@
 "Last access" = "Último acesso";
 
 /* No comment provided by engineer. */
-"last_screen_touch_index" = "last_screen_touch_index";
+"last_screen_touch_index" = "último_índice_de_toque_de_tela";
 
 /* No comment provided by engineer. */
 "latitude" = "latitude";
@@ -782,10 +785,10 @@
 "Line" = "Linha";
 
 /* No comment provided by engineer. */
-"List name:" = "List name:";
+"List name:" = "Nome da lista:";
 
 /* No comment provided by engineer. */
-"List type" = "List type";
+"List type" = "Tipo de lista";
 
 /* No comment provided by engineer. */
 "Lists" = "Listas";
@@ -794,10 +797,10 @@
 "Loading" = "Carregando";
 
 /* No comment provided by engineer. */
-"location" = "location";
+"location" = "localização";
 
 /* No comment provided by engineer. */
-"location_accuracy" = "location_accuracy";
+"location_accuracy" = "precisão_da_localização";
 
 /* No comment provided by engineer. */
 "Logic" = "Lógica";
@@ -869,7 +872,7 @@
 "MI" = "Mi";
 
 /* No comment provided by engineer. */
-"minute" = "minute";
+"minute" = "minuto";
 
 /* paint */
 "Mirror" = "Espelho";
@@ -884,13 +887,13 @@
 "Monday" = "Segunda-feira";
 
 /* No comment provided by engineer. */
-"month" = "month";
+"month" = "mês";
 
 /* No comment provided by engineer. */
 "More" = "Mais";
 
 /* No comment provided by engineer. */
-"More information" = "More information";
+"More information" = "Mais informações";
 
 /* No comment provided by engineer. */
 "Most Downloaded" = "Mais Baixados";
@@ -935,7 +938,7 @@
 "Name" = "Nome";
 
 /* No comment provided by engineer. */
-"Name already exists." = "Name already exists.";
+"Name already exists." = "Nome já existe.";
 
 /* No comment provided by engineer. */
 "New" = "Novo";
@@ -950,7 +953,7 @@
 "New Message" = "Nova Mensagem";
 
 /* No comment provided by engineer. */
-"New Project" = "New Project";
+"New Project" = "Novo Projeto";
 
 /* No comment provided by engineer. */
 "New Text" = "Novo Texto";
@@ -1658,7 +1661,7 @@
 "Username must not be blank" = "O nome de usuário não pode estar em branco";
 
 /* No comment provided by engineer. */
-"Var/List" = "Var/List";
+"Var/List" = "Variável/Lista";
 
 /* No comment provided by engineer. */
 "Variable" = "Variável 1";
@@ -1667,7 +1670,7 @@
 "Variable name:" = "Nome da variável:";
 
 /* No comment provided by engineer. */
-"Variable or List" = "Variable or List";
+"Variable or List" = "Variável ou lista";
 
 /* No comment provided by engineer. */
 "Variable type" = "Tipo de variável";
@@ -1691,7 +1694,7 @@
 "Wait" = "Aguardar";
 
 /* No comment provided by engineer. */
-"Wait until" = "Wait until";
+"Wait until" = "Aguardar até";
 
 /* No comment provided by engineer. */
 "We" = "Qua";
@@ -1700,7 +1703,7 @@
 "Wednesday" = "Quarta-feira";
 
 /* No comment provided by engineer. */
-"weekday" = "weekday";
+"weekday" = "dia da semana";
 
 /* No comment provided by engineer. */
 "Welcome to Pocket Code" = "Bem-vindo ao Pocket Code";
@@ -1709,7 +1712,7 @@
 "When project started" = "When project started";
 
 /* No comment provided by engineer. */
-"When screen is touched" = "Quando alguém toca no ecrã";
+"When screen is touched" = "Quanto a tela é tocada";
 
 /* No comment provided by engineer. */
 "When tapped" = "Quando tocado";
@@ -1730,7 +1733,7 @@
 "Y: " = "Y: ";
 
 /* No comment provided by engineer. */
-"year" = "year";
+"year" = "ano";
 
 /* No comment provided by engineer. */
 "Yes" = "Sim";
@@ -1742,7 +1745,7 @@
 "You are also able to build your own apps, remix existing ones and share them with your friends and other exciting people around the world." = "Também pode criar as suas próprias aplicações, remisturar aplicações existentes e partilhá-las com os seus amigos e outras pessoas interessantes de todo o mundo.";
 
 /* No comment provided by engineer. */
-"You have already downloaded this project!" = "You have already downloaded this project!";
+"You have already downloaded this project!" = "Você já baixou este projeto!";
 
 /* No comment provided by engineer. */
 "Your email seems to be invalid" = "Seu e-mail parece ser inválido";
