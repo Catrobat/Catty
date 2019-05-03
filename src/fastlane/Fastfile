@@ -126,8 +126,8 @@ platform :ios do
 
     collate_junit_reports(
       reports: ["./fastlane/test_output/results-BluetoothHelperTests/report.junit", 
-                "./fastlane/test_output/results-Catty Tests/report.junit",
-                "./fastlane/test_output/results-Catty UITests/report.junit"],
+                "./fastlane/test_output/results-CattyTests/report.junit",
+                "./fastlane/test_output/results-CattyUITests/report.junit"],
       collated_report: './fastlane/test_output/TestSummaries.xml'
     )
   end
