@@ -74,7 +74,6 @@ let license3rdPartyDict: [String: License] = [
     "CBStack": .MIT,
     "OrderedDictionary": .zlib,
     "NSString+FastImageSize": .MIT,
-    "UIViewController+CWPopup": .MIT,
     "GDataXMLNode": .Apache2,
     "JNKeychain": .MIT,
     "SwellAll": .Apache2,
@@ -85,7 +84,7 @@ let license3rdPartyDict: [String: License] = [
     "unzip": .zlib,
     "zip": .zlib,
     "ImageHelper": .MIT,
-    "Reachability": .Apple,
+    "SnapshotHelper": .MIT,
     "SharkfoodMuteSwitchDetector": .MIT,
     "Siren": .MIT,
     "SSZipArchive": .MIT,
@@ -97,44 +96,24 @@ let license3rdPartyDict: [String: License] = [
     "UIViewController+KNSemiModal": .MIT,
     "YKImageCropperOverlayView": .MIT,
     "YKImageCropperView": .MIT,
-    "AHKActionSheet": .MIT,
-    "AHKActionSheetViewController": .MIT,
-    "UIImage+AHKAdditions": .MIT,
-    "UIWindow+AHKAdditions": .MIT,
     "BDKNotifyHUD": .MIT,
     "EVCircularProgressView": .MIT,
-    "FXBlurView": .zlib,
-    "IBActionSheet": .MIT,
     "LXReorderableCollectionViewFlowLayout": .MIT,
-    "MYIntroductionPanel": .MIT,
-    "TTTAttributedLabel": .MIT,
-    "MXPagerView": .MIT,
-    "MXPagerViewController": .MIT,
-    "MXParallaxHeader": .MIT,
-    "MXScrollView": .MIT,
-    "MXScrollViewController": .MIT
+    "TTTAttributedLabel": .MIT
 ]
 
 let licenseCheckDirs: [String: License] = [
     "Bohr": .MIT,
     "HMSegmentedControl": .MIT,
-    "PureLayout": .MIT,
-    "M13ProgressSuite": .MIT,
     "MXSegmentedPager": .MIT,
-    "Target Support Files": .MIT,
-    "VGParallaxHeader": .MIT,
-    "TOCropViewController": .MIT
+    "VGParallaxHeader": .MIT
 ]
 
 let checkDirs: [String] = [
     "Bohr",
     "HMSegmentedControl",
-    "PureLayout",
-    "M13ProgressSuite",
     "MXSegmentedPager",
-    "Target Support Files",
-    "VGParallaxHeader",
-    "TOCropViewController"
+    "VGParallaxHeader"
 ]
 
 let compatibleLicenses: [License] = [

@@ -41,7 +41,6 @@ let localizedStringCheckExcludeFiles = [
     "BSKeyboardControls.m"
 ]; let localizedStringCheckExcludeFilesLine = #line; // CAVE: NEVER separate these two statements by adding a new line
 let localizedStringCheckSeparatedExcludeDirs = [
-    "Pods",
     "Carthage",
     "Build",
     "DerivedData"
@@ -53,50 +52,27 @@ let licenseCheckExcludeDirs = [
     "SSZipArchive",
     "GDataXMLNode",
     "LXReorderableCollectionViewFlowLayout",
-    "AHKActionSheetViewController",
-    "AHKAdditions",
-    "IBActionSheet",
-    "SWCellScrollView",
-    "SWLongPressGestureRecognizer",
     "SWTableViewCell",
     "FXBlurView",
     "BDKNotifyHUD",
     "EVCircularProgressView",
     "NSString+FastImageSize",
-    "UIViewController+CWPopup",
     "OrderedDictionary",
     "3rdParty",
     "PocketPaint",
     "Carthage",
     "Build",
     "DerivedData",
-    "Siren",
-    "Pods",
-    "PodSource"
+    "Siren"
 ]; let licenseCheckExcludeDirsLine = #line; // CAVE: NEVER separate these two statements by adding a new line
 
 let licenseCheckExcludeFiles = [
-    "AHKActionSheet.[mh]",
-    "AHKActionSheetViewController.[mh]",
     "LXReorderableCollectionViewFlowLayout.[mh]",
-    "IBActionSheet.[mh]",
-    "Reachability.[mh]",
     "SharkfoodMuteSwitchDetector.[mh]",
-    "SWCellScrollView.[mh]",
-    "SWUtilityButtonView.[mh]",
-    "UIImage+AHKAdditions.[mh]",
-    "UIWindow+AHKAdditions.[mh]",
-    "SWLongPressGestureRecognizer.[mh]",
-    "SWTableViewCell.[mh]",
-    "SWUtilityButtonTapGestureRecognizer.[mh]",
-    "SMPageControl.[mh]",
-    "EAIntroPage.[mh]",
-    "MYIntroductionPanel.[mh]",
-    "FBKVOController.[mh]",
     "JNKeychain.[mh]",
     "BOButtonTableViewCell.[mh]",
-    "MXPagerView-umbrella.[mh]",
     "SwellAll.swift",
+    "SnapshotHelper.swift",
     "license-validator.swift"
 ]; let licenseCheckExcludeFilesLine = #line; // CAVE: NEVER separate these two statements by adding a new line
 

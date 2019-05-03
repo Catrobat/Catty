@@ -3,9 +3,9 @@ whitelist_rules:
 
 excluded: # paths to ignore during linting. Takes precedence over `included`.
  - Carthage
- - Pods
  - Catty/Defines/LanguageTranslationDefinesSwift.swift
- - Catty UITests/Defines/LanguageTranslationDefinesUI.swift
+ - CattyUITests/Defines/LanguageTranslationDefinesUI.swift
+ - CattyUISnapshots/Helper/SnapshotHelper.swift
  - RunScripts/license-validator.swift
  - RunScripts/precompile-tests.swift
  
