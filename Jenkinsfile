@@ -19,19 +19,19 @@ pipeline {
     }
     stage('Browserstack') {
       steps {
-        sh 'cd src && fastlane po_review'
+        sh 'fastlane po_review'
       }
     }
     stage('Run Tests') {
       steps {
-        sh 'cd src && fastlane tests'
+        sh 'fastlane tests'
       }
     }
   }
 
   post {
     always {
-      junit testResults: 'src/fastlane/test_output/TestSummaries.xml', allowEmptyResults: true
+      junit testResults: 'fastlane/test_output/TestSummaries.xml', allowEmptyResults: true
     }
   }
 }

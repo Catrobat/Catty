@@ -30,7 +30,7 @@ import Foundation
 //============================================================================================================
 
 // CAVE: NEVER separate these two statements by adding a new line
-let pathToReadmeFile = "../README.md"; let pathToReadmeFileLine = #line
+let pathToReadmeFile = "README.md"; let pathToReadmeFileLine = #line
 
 let localizedStringCheckExcludeFiles = [
     "LanguageTranslationDefines.h",
