@@ -44,7 +44,7 @@ playground.xcworkspace
 #
 # Add this line if you want to avoid checking in source code from Carthage dependencies.
 
-src/Carthage
+Carthage
 
 # fastlane
 #
@@ -53,16 +53,16 @@ src/Carthage
 # For more information about the recommended setup visit:
 # https://docs.fastlane.tools/best-practices/source-control/#source-control
 
-src/fastlane/*
-!src/fastlane/Appfile
-!src/fastlane/Fastfile
-!src/fastlane/Pluginfile
-!src/fastlane/README.md
-!src/fastlane/.env.default
-!src/fastlane/rb/
+fastlane/*
+!fastlane/Appfile
+!fastlane/Fastfile
+!fastlane/Pluginfile
+!fastlane/README.md
+!fastlane/.env.default
+!fastlane/rb/
 
 ## Various project specific ignores
 .DS_Store
 profile
 .idea/
-src/ObjectiveGit
+ObjectiveGit
