@@ -49,8 +49,7 @@ platform :ios do
   lane :po_review do
     #sh ("rm builds/* 2> /dev/null")
     cert
-    sigh(force: true,
-         adhoc: true)
+    sigh(adhoc: true)
     create_build scheme:$catty_schemes["release"], method:"ad-hoc"
     upload_to_browserstack
   end
