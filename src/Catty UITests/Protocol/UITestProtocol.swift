@@ -22,12 +22,30 @@
 
 import XCTest
 
-protocol UITestProtocol {
-    func restoreDefaultProject()
-    func dismissWelcomeScreenIfShown()
-}
+extension XCTestCase {
 
-extension UITestProtocol {
+    private func defaultApp() -> XCUIApplication {
+        continueAfterFailure = false
+
+        let app = XCUIApplication()
+        app.launchArguments = ["UITests"]
+        return app
+    }
+
+    func launchApp() -> XCUIApplication {
+        let app = defaultApp()
+        app.launch()
+
+        dismissWelcomeScreenIfShown()
+        return app
+    }
+
+    func launchAppWithDefaultProject() -> XCUIApplication {
+        let app = launchApp()
+
+        restoreDefaultProject()
+        return app
+    }
 
     func waitForElementToAppear(_ element: XCUIElement) -> XCUIElement {
         let expectation = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == true"), object: element)
@@ -115,5 +133,26 @@ extension UITestProtocol {
             }
         }
         return nil
+    }
+
+    private func restoreDefaultProject() {
+        let app = XCUIApplication()
+        app.tables.staticTexts[kLocalizedProjects].tap()
+        waitForElementToAppear(app.navigationBars[kLocalizedProjects]).buttons[kLocalizedEdit].tap()
+        waitForElementToAppear(app.buttons[kLocalizedDeleteProjects]).tap()
+        let toolbarsQuery = app.toolbars
+        waitForElementToAppear(toolbarsQuery.buttons[kLocalizedSelectAllItems]).tap()
+        waitForElementToAppear(toolbarsQuery.buttons[kLocalizedDelete]).tap()
+        XCTAssert(app.tables.cells.count == 1)
+        // finally go back to main menu, because this method is used by other tests
+        app.navigationBars[kLocalizedProjects].buttons[kLocalizedPocketCode].tap()
+    }
+
+    private func dismissWelcomeScreenIfShown() {
+        let app = XCUIApplication()
+
+        if app.buttons["Dismiss"].exists {
+            app.buttons["Dismiss"].tap()
+        }
     }
 }

@@ -22,7 +22,14 @@
 
 import XCTest
 
-class ProjectTVCTests: CattyUITest {
+class ProjectTVCTests: XCTestCase {
+
+    var app: XCUIApplication!
+
+    override func setUp() {
+        super.setUp()
+        app = launchAppWithDefaultProject()
+    }
 
     func testCreateObjectWithMaxLength() {
         let projectName = "projectName"

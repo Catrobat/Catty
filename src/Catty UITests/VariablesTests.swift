@@ -22,7 +22,14 @@
 
 import XCTest
 
-class VariablesTests: CattyUITest {
+class VariablesTests: XCTestCase {
+
+    var app: XCUIApplication!
+
+    override func setUp() {
+        super.setUp()
+        app = launchAppWithDefaultProject()
+    }
 
     private func createNewProjectAndAddSetVariableBrick(name: String) {
         createProject(name: name, in: app)

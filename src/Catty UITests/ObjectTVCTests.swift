@@ -22,7 +22,14 @@
 
 import XCTest
 
-class ObjectTVCTests: CattyUITest {
+class ObjectTVCTests: XCTestCase {
+
+    var app: XCUIApplication!
+
+    override func setUp() {
+        super.setUp()
+        app = launchAppWithDefaultProject()
+    }
 
     func testScriptsCanEnterScriptsOfAllMoles() {
         let projectObjects = ["Mole 1", "Mole 2", "Mole 3", "Mole 4"]

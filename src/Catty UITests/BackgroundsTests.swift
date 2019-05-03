@@ -22,7 +22,14 @@
 
 import XCTest
 
-class BackgroundsTests: CattyUITest {
+class BackgroundsTests: XCTestCase {
+
+    var app: XCUIApplication!
+
+    override func setUp() {
+        super.setUp()
+        app = launchAppWithDefaultProject()
+    }
 
     func testScriptsCanEnterScripts() {
         app.tables.staticTexts[kLocalizedProjects].tap()

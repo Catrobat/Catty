@@ -652,7 +652,6 @@
 		5E21DA7121A5289F00017D2C /* Data+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E21DA7021A5289F00017D2C /* Data+Extensions.swift */; };
 		5E43D71821928053006FDF2A /* SwellAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E43D71721928052006FDF2A /* SwellAll.swift */; };
 		5E7B5B0D21EC0FCF002E4B57 /* HelpWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7B5B0A21EC0FCF002E4B57 /* HelpWebViewController.swift */; };
-		5E88D364226114E6005F3BE4 /* CattyUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E88D363226114E6005F3BE4 /* CattyUITest.swift */; };
 		5EA1089421B8FBD200B837B9 /* AVAudioSession+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA1089321B8FBD200B837B9 /* AVAudioSession+Extensions.swift */; };
 		5EDBA043219549AE000EFFEF /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EDBA042219549AE000EFFEF /* LoadingView.swift */; };
 		5EF590BA2192D81F00C19F12 /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF590B92192D81F00C19F12 /* Double+Extensions.swift */; };
@@ -2081,7 +2080,6 @@
 		5E21DA7021A5289F00017D2C /* Data+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extensions.swift"; sourceTree = "<group>"; };
 		5E43D71721928052006FDF2A /* SwellAll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwellAll.swift; sourceTree = "<group>"; };
 		5E7B5B0A21EC0FCF002E4B57 /* HelpWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpWebViewController.swift; sourceTree = "<group>"; };
-		5E88D363226114E6005F3BE4 /* CattyUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CattyUITest.swift; sourceTree = "<group>"; };
 		5EA1089321B8FBD200B837B9 /* AVAudioSession+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVAudioSession+Extensions.swift"; sourceTree = "<group>"; };
 		5EDBA042219549AE000EFFEF /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		5EF590B92192D81F00C19F12 /* Double+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extensions.swift"; sourceTree = "<group>"; };
@@ -3164,7 +3162,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		29B97314FDCFA39411CA2CEA = {
+		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
 				CD0CCE54170CB39600B70036 /* Catty */,
@@ -7185,7 +7183,6 @@
 				4CF8747221C8E7AB00C8143F /* SoundsTVCTests.swift */,
 				BA6805AD21303B48004F004F /* VariablesTests.swift */,
 				2D227D93220B38E0008A2BC9 /* ScenePresenterVCTests.swift */,
-				5E88D363226114E6005F3BE4 /* CattyUITest.swift */,
 			);
 			path = "Catty UITests";
 			sourceTree = "<group>";
@@ -8084,7 +8081,7 @@
 				nb,
 				"sr-RS",
 			);
-			mainGroup = 29B97314FDCFA39411CA2CEA;
+			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			productRefGroup = 19C28FACFE9D520D11CA2CBB /* Products */;
 			projectDirPath = "";
 			projectReferences = (
@@ -8583,7 +8580,6 @@
 				4CB1FB741BC2D74F0000A2FE /* UITestProtocol.swift in Sources */,
 				BC19327F21186504009DE43A /* CreateProjectTests.swift in Sources */,
 				BCFED6ED2111C04000BE57BF /* BackgroundsTests.swift in Sources */,
-				5E88D364226114E6005F3BE4 /* CattyUITest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9896,7 +9892,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"$SDKROOT/usr/include/libxml2",
+					$SDKROOT/usr/include/libxml2,
 					"\"$(TARGET_TEMP_DIR)/../$(PROJECT_NAME).build/DerivedSources\"",
 				);
 				INFOPLIST_FILE = CattyTests/Info.plist;
@@ -9946,7 +9942,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"$SDKROOT/usr/include/libxml2",
+					$SDKROOT/usr/include/libxml2,
 					"\"$(TARGET_TEMP_DIR)/../$(PROJECT_NAME).build/DerivedSources\"",
 				);
 				INFOPLIST_FILE = CattyTests/Info.plist;
@@ -9986,7 +9982,7 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				HEADER_SEARCH_PATHS = "$SDKROOT/usr/include/libxml2";
+				HEADER_SEARCH_PATHS = $SDKROOT/usr/include/libxml2;
 				INFOPLIST_FILE = "Catty/App-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -10032,7 +10028,7 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				HEADER_SEARCH_PATHS = "$SDKROOT/usr/include/libxml2";
+				HEADER_SEARCH_PATHS = $SDKROOT/usr/include/libxml2;
 				INFOPLIST_FILE = "Catty/App-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

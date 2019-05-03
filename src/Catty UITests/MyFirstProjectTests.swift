@@ -22,7 +22,14 @@
 
 import XCTest
 
-class MyFirstProjectTests: CattyUITest {
+class MyFirstProjectTests: XCTestCase {
+
+    var app: XCUIApplication!
+
+    override func setUp() {
+        super.setUp()
+        app = launchAppWithDefaultProject()
+    }
 
     func testCanDeleteMultipleObjectsViaEditMode() {
         app.tables.staticTexts[kLocalizedProjects].tap()

@@ -22,7 +22,14 @@
 
 import XCTest
 
-class LooksTVCTests: CattyUITest {
+class LooksTVCTests: XCTestCase {
+
+    var app: XCUIApplication!
+
+    override func setUp() {
+        super.setUp()
+        app = launchAppWithDefaultProject()
+    }
 
     func testLengthOfLook() {
         let lookName = String(repeating: "a", count: 250)

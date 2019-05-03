@@ -22,7 +22,14 @@
 
 import XCTest
 
-class ScenePresenterVCTests: CattyUITest {
+class ScenePresenterVCTests: XCTestCase {
+
+    var app: XCUIApplication!
+
+    override func setUp() {
+        super.setUp()
+        app = launchAppWithDefaultProject()
+    }
 
     override func tearDown() {
         XCUIDevice.shared.orientation = .portrait

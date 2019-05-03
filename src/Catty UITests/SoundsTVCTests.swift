@@ -22,7 +22,14 @@
 
 import XCTest
 
-class SoundsTVCTests: CattyUITest {
+class SoundsTVCTests: XCTestCase {
+
+    var app: XCUIApplication!
+
+    override func setUp() {
+        super.setUp()
+        app = launchAppWithDefaultProject()
+    }
 
     func testLengthOfSounds() {
         let soundName = String(repeating: "a", count: 250)

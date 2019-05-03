@@ -22,7 +22,14 @@
 
 import XCTest
 
-class CreateProjectTests: CattyUITest {
+class CreateProjectTests: XCTestCase {
+
+    var app: XCUIApplication!
+
+    override func setUp() {
+        super.setUp()
+        app = launchAppWithDefaultProject()
+    }
 
     func testCanCreateProjectWithDrawNewImage() {
         let projectName = "testProject"

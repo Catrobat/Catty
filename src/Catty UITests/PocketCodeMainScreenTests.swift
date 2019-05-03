@@ -22,7 +22,14 @@
 
 import XCTest
 
-class PocketCodeMainScreenTests: CattyUITest {
+class PocketCodeMainScreenTests: XCTestCase {
+
+    var app: XCUIApplication!
+
+    override func setUp() {
+        super.setUp()
+        app = launchAppWithDefaultProject()
+    }
 
     func testContinue() {
         app.tables.staticTexts[kLocalizedContinue].tap()
