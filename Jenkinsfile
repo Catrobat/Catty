@@ -19,12 +19,12 @@ pipeline {
     }
     stage('Browserstack') {
       steps {
-        sh 'cd src && fastlane po_review'
+        sh 'cd src && bundle exec fastlane po_review'
       }
     }
     /*stage('Run Tests') {
       steps {
-        sh 'cd src && fastlane tests'
+        sh 'cd src && bundle exec fastlane tests'
       }
     }*/
   }
