@@ -22,19 +22,16 @@
 
 import XCTest
 
-class CreateProjectTests: XCTestCase, UITestProtocol {
+class CreateProjectTests: XCTestCase {
+
+    var app: XCUIApplication!
 
     override func setUp() {
         super.setUp()
-        continueAfterFailure = false
-        XCUIApplication().launch()
-
-        dismissWelcomeScreenIfShown()
-        restoreDefaultProject()
+        app = launchAppWithDefaultProject()
     }
 
     func testCanCreateProjectWithDrawNewImage() {
-        let app = XCUIApplication()
         let projectName = "testProject"
         let testObject = "testObject1"
 
@@ -100,7 +97,6 @@ class CreateProjectTests: XCTestCase, UITestProtocol {
     }
 
     func testCanCreateProjectWithEmojiAndSpecialCharacters() {
-        let app = XCUIApplication()
         let projectName = "🙀"
         let helloText = "你好"
 

@@ -22,19 +22,13 @@
 
 import XCTest
 
-class VariablesTests: XCTestCase, UITestProtocol {
+class VariablesTests: XCTestCase {
 
     var app: XCUIApplication!
 
     override func setUp() {
         super.setUp()
-
-        continueAfterFailure = false
-        XCUIApplication().launch()
-
-        dismissWelcomeScreenIfShown()
-        restoreDefaultProject()
-        app = XCUIApplication()
+        app = launchAppWithDefaultProject()
     }
 
     private func createNewProjectAndAddSetVariableBrick(name: String) {
@@ -87,7 +81,7 @@ class VariablesTests: XCTestCase, UITestProtocol {
         app.buttons[kUIFEActionVarPro].tap()
         app.alerts[kUIFENewVar].textFields[kLocalizedEnterYourVariableNameHere].typeText(String(repeating: "i", count: 250 + 1))
         app.alerts[kUIFENewVar].buttons[kLocalizedOK].tap()
-        XCTAssert(app.alerts[kLocalizedPocketCode].exists)
+        XCTAssert(waitForElementToAppear(app.alerts[kLocalizedPocketCode]).exists)
     }
 
     func testCreateAndSelectVariable() {
@@ -135,7 +129,7 @@ class VariablesTests: XCTestCase, UITestProtocol {
         XCTAssertTrue(waitForElementToAppear(app.buttons[" \"" + testVariable + "\" "]).exists)
     }
 
-    func testCreateVariableAndTapSelecetedRowInPickerView() {
+    func testCreateVariableAndTapSelectedRowInPickerView() {
         let testVariable = ["testVariable1", "testVariable2", "testVariable3"]
 
         createNewProjectAndAddSetVariableBrick(name: "Test Project")

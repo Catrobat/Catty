@@ -176,7 +176,7 @@
 "Camera Roll" = "Galeria";
 
 /* No comment provided by engineer. */
-"Can't restart project!" = "Can't restart project!";
+"Can't restart project!" = "Nie można ponownie uruchomić projektu!";
 
 /* No comment provided by engineer. */
 "Cancel" = "Anuluj";
@@ -290,7 +290,7 @@
 "Copy Looks" = "Kopiuj wyglądy";
 
 /* No comment provided by engineer. */
-"Copy project" = "Copy project";
+"Copy project" = "Kopiuj projekt";
 
 /* No comment provided by engineer. */
 "Create & Remix" = "Tworzenie & Remiksowanie";
@@ -338,10 +338,10 @@
 "Delete Objects" = "Usuń obiekty";
 
 /* No comment provided by engineer. */
-"Delete Project" = "Delete Project";
+"Delete Project" = "Usuń Projekt";
 
 /* No comment provided by engineer. */
-"Delete Projects" = "Delete Projects";
+"Delete Projects" = "Usuń Projekty";
 
 /* No comment provided by engineer. */
 "Delete Script" = "Usuń skrypt";
@@ -380,7 +380,7 @@
 "Delete this object" = "Usunąć ten obiekt";
 
 /* No comment provided by engineer. */
-"Delete this project" = "Delete this project";
+"Delete this project" = "Usuń ten projekt";
 
 /* No comment provided by engineer. */
 "Delete this Script?" = "Usunąć ten skrypt?";
@@ -461,10 +461,10 @@
 "Edit Object" = "Edycja obiektu";
 
 /* No comment provided by engineer. */
-"Edit Project" = "Edit Project";
+"Edit Project" = "Edytuj projekt";
 
 /* No comment provided by engineer. */
-"Edit Projects" = "Edit Projects";
+"Edit Projects" = "Edytuj projekty";
 
 /* Action sheet menu title */
 "Edit Script" = "Edytuj skrypt";
@@ -512,10 +512,10 @@
 "Enter your object name here..." = "Wprowadź nazwę obiektu tutaj...";
 
 /* Placeholder for project-description input field */
-"Enter your project description here..." = "Enter your project description here...";
+"Enter your project description here..." = "Wprowadź swój opis projektu tutaj...";
 
 /* Placeholder for project-name input field */
-"Enter your project name here..." = "Enter your project name here...";
+"Enter your project name here..." = "Wprowadź nazwę projektu tutaj...";
 
 /* Placeholder for add sound-name input field */
 "Enter your sound name here..." = "Wprowadź nazwę dźwięku tutaj...";
@@ -893,7 +893,7 @@
 "More" = "Więcej";
 
 /* No comment provided by engineer. */
-"More information" = "More information";
+"More information" = "Więcej informacji";
 
 /* No comment provided by engineer. */
 "Most Downloaded" = "Najczęściej pobierane";
@@ -953,7 +953,7 @@
 "New Message" = "Nowa wiadomość";
 
 /* No comment provided by engineer. */
-"New Project" = "New Project";
+"New Project" = "Nowy projekt";
 
 /* No comment provided by engineer. */
 "New Text" = "Nowy tekst";
@@ -1202,7 +1202,7 @@
 "Project name" = "Nazwa programu";
 
 /* No comment provided by engineer. */
-"Project Name is necessary!" = "Project Name is necessary!";
+"Project Name is necessary!" = "Nazwa projektu jest niezbędna!";
 
 /* No comment provided by engineer. */
 "Project variables:" = "Project variables:";
@@ -1244,7 +1244,7 @@
 "Rename object" = "Zmień nazwę obiektu";
 
 /* No comment provided by engineer. */
-"Rename Project" = "Rename Project";
+"Rename Project" = "Zmień nazwę projektu";
 
 /* No comment provided by engineer. */
 "Rename sound" = "Zmień nazwę dźwięku";
@@ -1586,7 +1586,7 @@
 "Turn right" = "Obróć w prawo o";
 
 /* No comment provided by engineer. */
-"Unable to load project!" = "Unable to load project!";
+"Unable to load project!" = "Nie można wczytać projektu!";
 
 /* No comment provided by engineer. */
 "Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt." = "Nie można zagrać tego dźwięku! \nMoże jest to nieprawidłowy dźwięk lub plik jest uszkodzony.";
@@ -1622,13 +1622,13 @@
 "Unselect All" = "Odznacz wszystko";
 
 /* No comment provided by engineer. */
-"Unsupported Brick:" = "Unsupported Brick:";
+"Unsupported Brick:" = "Nieobsługiwany bloczek:";
 
 /* No comment provided by engineer. */
-"Unsupported Elements" = "Unsupported Elements";
+"Unsupported Elements" = "Nieobsługiwane elementy";
 
 /* No comment provided by engineer. */
-"Unsupported Script:" = "Unsupported Script:";
+"Unsupported Script:" = "Nieobsługiwany skrypt:";
 
 /* No comment provided by engineer. */
 "Upload" = "Wyślij";
@@ -1709,7 +1709,7 @@
 "Welcome to Pocket Code" = "Witamy w Pocket Code";
 
 /* No comment provided by engineer. */
-"When project started" = "When project started";
+"When project started" = "Kiedy projekt startuje";
 
 /* No comment provided by engineer. */
 "When screen is touched" = "Kiedy dotknięto ekran";
@@ -1745,7 +1745,7 @@
 "You are also able to build your own apps, remix existing ones and share them with your friends and other exciting people around the world." = "Możesz także budować swoje własne aplikacje, remiksować istniejące i dzielić się nimi ze znajomymi i innymi ciekawymi ludźmi z całego świata.";
 
 /* No comment provided by engineer. */
-"You have already downloaded this project!" = "You have already downloaded this project!";
+"You have already downloaded this project!" = "Ten projekt już został pobrany!";
 
 /* No comment provided by engineer. */
 "Your email seems to be invalid" = "Twój e-mail wydaje się być nieprawidłowy";
