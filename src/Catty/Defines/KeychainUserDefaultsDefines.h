@@ -30,9 +30,4 @@
 
 #define kPhiroActivated 0
 #define kArduinoActivated 1
-
-#if DEBUG == 1
-    #define kProductionServerActivated 0
-#else
-    #define kProductionServerActivated 1
-#endif
+#define kProductionServerActivated 1
