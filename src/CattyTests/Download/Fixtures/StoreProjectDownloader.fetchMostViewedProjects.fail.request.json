@@ -15,7 +15,7 @@
         },
         "body" : {
           "CatrobatInformation" : {
-            "BaseUrl" : "https:\/\/share.catrob.at\/",
+            "BaseUrl" : "https:\/\/web-test.catrob.at\/",
             "TotalProjects" : "13842",
             "ProjectsExtension" : ".catrobat"
           },
@@ -384,12 +384,12 @@
             }
           ]
         },
-        "url" : "https:\/\/share.catrob.at\/pocketcode\/api\/projects\/mostViewed.json?offset=0&limit=20&max_version=0.991"
+        "url" : "https:\/\/web-test.catrob.at\/pocketcode\/api\/projects\/mostViewed.json?offset=0&limit=20&max_version=0.991"
       },
       "recorded_at" : 1535012075.0231299,
       "request" : {
         "method" : "GET",
-        "url" : "https:\/\/share.catrob.at\/pocketcode\/api\/projects\/mostViewed.json?offset=0&limit=20&max_version=0.991"
+        "url" : "https:\/\/web-test.catrob.at\/pocketcode\/api\/projects\/mostViewed.json?offset=0&limit=20&max_version=0.991"
       }
     }
   ],

@@ -15,7 +15,7 @@
         },
         "body" : {
           "CatrobatInformation" : {
-            "BaseUrl" : "https:\/\/share.catrob.at\/",
+            "BaseUrl" : "https:\/\/web-test.catrob.at\/",
             "TotalProjects" : 593,
             "ProjectsExtension" : ".catrobat"
           },
@@ -690,12 +690,12 @@
             }
           ]
         },
-        "url" : "https:\/\/share.catrob.at\/pocketcode\/api\/projects\/search.json?q=Galaxy&limit=50&offset=0&max_version=0.991"
+        "url" : "https:\/\/web-test.catrob.at\/pocketcode\/api\/projects\/search.json?q=Galaxy&limit=50&offset=0&max_version=0.991"
       },
       "recorded_at" : 1536419829.809134,
       "request" : {
         "method" : "GET",
-        "url" : "https:\/\/share.catrob.at\/pocketcode\/api\/projects\/search.json?q=Galaxy&limit=50&offset=0&max_version=0.991"
+        "url" : "https:\/\/web-test.catrob.at\/pocketcode\/api\/projects\/search.json?q=Galaxy&limit=50&offset=0&max_version=0.991"
       }
     }
   ],
