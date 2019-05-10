@@ -2,7 +2,7 @@
 "A message with the same name already exists, try again." = "Aynı isme sahip bir mesaj zaten var. Yeniden deneyin.";
 
 /* No comment provided by engineer. */
-"A project with the same name already exists, try again." = "A project with the same name already exists, try again.";
+"A project with the same name already exists, try again." = "Ayni isme sahip bir proje zaten var, yeniden deneyin.";
 
 /* No comment provided by engineer. */
 "Abc" = "Abc";
@@ -116,7 +116,7 @@
 "Axes" = "Eksenler";
 
 /* No comment provided by engineer. */
-"back" = "back";
+"back" = "geri";
 
 /* No comment provided by engineer. */
 "Back" = "Geri";
@@ -125,10 +125,10 @@
 "Background" = "Arka plan";
 
 /* No comment provided by engineer. */
-"background_name" = "background_name";
+"background_name" = "arka plan adi";
 
 /* No comment provided by engineer. */
-"background_number" = "background_number";
+"background_number" = "arka plan numarasi";
 
 /* No comment provided by engineer. */
 "Backgrounds" = "Arka planlar";
@@ -170,13 +170,13 @@
 "By registering you agree to our" = "Kayıt olarak, bizim koşullarımızı kabul";
 
 /* No comment provided by engineer. */
-"By switching to the section \"Explore\" you can discover more interesting projects from people all over the world." = "By switching to the section \"Explore\" you can discover more interesting projects from people all over the world.";
+"By switching to the section \"Explore\" you can discover more interesting projects from people all over the world." = "\"Araştır\" bölümüne geçerek, dünyanın dört bir yanındaki insanlardan daha ilginç tasarimlar keşfedebilirsin.";
 
 /* No comment provided by engineer. */
 "Camera Roll" = "Kamera Rulosu";
 
 /* No comment provided by engineer. */
-"Can't restart project!" = "Can't restart project!";
+"Can't restart project!" = "Proje yeniden başlatılamaz!";
 
 /* No comment provided by engineer. */
 "Cancel" = "İptal et";

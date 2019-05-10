@@ -4,3 +4,4 @@
 
 gem 'fastlane-plugin-browserstack'
 gem 'fastlane-plugin-trainer'
+gem 'fastlane-plugin-test_center'

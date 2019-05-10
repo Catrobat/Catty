@@ -22,19 +22,13 @@
 
 import XCTest
 
-class ScriptCollectionVCTests: XCTestCase, UITestProtocol {
+class ScriptCollectionVCTests: XCTestCase {
 
     var app: XCUIApplication!
 
     override func setUp() {
         super.setUp()
-
-        continueAfterFailure = false
-        XCUIApplication().launch()
-
-        dismissWelcomeScreenIfShown()
-        restoreDefaultProject()
-        app = XCUIApplication()
+        app = launchAppWithDefaultProject()
     }
 
     func testCopyIfLogicBeginBrick() {
@@ -89,7 +83,7 @@ class ScriptCollectionVCTests: XCTestCase, UITestProtocol {
 
         alert.textFields[kLocalizedEnterYourMessageHere].typeText(message + "b")
         alert.buttons[kLocalizedOK].tap()
-        XCTAssert(app.alerts[kLocalizedPocketCode].exists)
+        XCTAssert(waitForElementToAppear(app.alerts[kLocalizedPocketCode]).exists)
     }
 
     func testWaitBrick() {
