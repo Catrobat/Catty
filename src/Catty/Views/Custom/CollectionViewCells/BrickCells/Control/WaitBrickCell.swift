@@ -22,33 +22,31 @@
 
 import Foundation
 
-final class TimerWithBlock {
-    var timer: Timer?
-    let block: ((TimerWithBlock) -> Void)?
+@objc(WaitBrickCell) class WaitBrickCell: BrickCell {
 
-    var isValid: Bool {
-        return self.timer?.isValid ?? false
+    public var leftTextLabel: UILabel?
+    public var delayTextField: UITextField?
+    public var rightTextLabel: UILabel?
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
     }
 
-    init(timeInterval: TimeInterval, repeats: Bool, block: @escaping (TimerWithBlock) -> Void) {
-        if #available(iOS 10.0, *) {
-            self.block = nil
-            self.timer = Timer.scheduledTimer(withTimeInterval: timeInterval, repeats: repeats) { _ in
-                block(self)
-            }
-        } else {
-            self.timer = nil
-            self.block = block
-            self.timer = Timer.scheduledTimer(timeInterval: timeInterval, target: self, selector: #selector(fire(timer:)), userInfo: nil, repeats: repeats)
-        }
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
     }
 
-    @objc func fire(timer: Timer) {
-        self.block?(self)
+    override func draw(_ rect: CGRect) {
+        BrickShapeFactory.drawSquareBrickShape(withFill: UIColor.controlBrickOrange(), stroke: UIColor.controlBrickStroke(), height: CGFloat(smallBrick), width: Util.screenWidth())
     }
 
-    func invalidate() {
-        self.timer?.invalidate()
-        self.timer = nil
+    override static func cellHeight() -> CGFloat {
+        return CGFloat(kBrickHeight1h)
+    }
+
+    override func hookUpSubViews(_ inlineViewSubViews: [Any]!) {
+        self.leftTextLabel = inlineViewSubViews[0] as? UILabel
+        self.delayTextField = inlineViewSubViews[1] as? UITextField
+        self.rightTextLabel = inlineViewSubViews[2] as? UILabel
     }
 }

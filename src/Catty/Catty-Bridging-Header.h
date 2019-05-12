@@ -50,7 +50,6 @@
 #import "BroadcastBrick.h"
 #import "BroadcastWaitBrick.h"
 #import "HideBrick.h"
-#import "WaitBrick.h"
 #import "PlaySoundBrick.h"
 #import "StopAllSoundsBrick.h"
 #import "SpeakBrick.h"
@@ -204,4 +203,4 @@
 #import "SpriteObject.h"
 #import "CBXMLOpenedNestingBricksStack.h"
 #import "BDKNotifyHUD.h"
-
+#import "BrickShapeFactory.h"

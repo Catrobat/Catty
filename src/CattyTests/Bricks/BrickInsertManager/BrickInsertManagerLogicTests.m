@@ -21,7 +21,6 @@
  */
 
 #import "BrickInsertManagerAbstractTest.h"
-#import "WaitBrick.h"
 #import "SetVariableBrick.h"
 #import "ForeverBrick.h"
 #import "LoopEndBrick.h"
@@ -31,7 +30,8 @@
 #import "IfLogicEndBrick.h"
 #import "WhenScript.h"
 #import "BrickInsertManager.h"
-
+#import "Pocket_Code-Swift.h"
+ 
 @interface BrickInsertManagerLogicTests : BrickInsertManagerAbstractTest
 
 @end

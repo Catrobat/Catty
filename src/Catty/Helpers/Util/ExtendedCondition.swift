@@ -20,13 +20,8 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "Brick.h"
-#import "BrickFormulaProtocol.h"
+import Foundation
 
-@class Formula;
-
-@interface WaitBrick : Brick<BrickFormulaProtocol>
-
-@property (nonatomic, strong, nonnull) Formula *timeToWaitInSeconds;
-
-@end
+final class ExtendedCondition: NSCondition {
+    var isWaiting = false
+}
