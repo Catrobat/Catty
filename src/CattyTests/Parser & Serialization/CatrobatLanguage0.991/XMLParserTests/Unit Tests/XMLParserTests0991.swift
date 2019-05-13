@@ -421,16 +421,16 @@ class XMLParserTests0991: XMLAbstractTest {
         let waitBrick = script.brickList.object(at: 0) as! WaitBrick
         let formula = waitBrick.timeToWaitInSeconds
 
-        XCTAssertEqual(ElementType.NUMBER, formula?.formulaTree.leftChild.type)
-        XCTAssertEqual(formula!.formulaTree.leftChild.value, "1")
+        XCTAssertEqual(ElementType.NUMBER, formula.formulaTree.leftChild.type)
+        XCTAssertEqual(formula.formulaTree.leftChild.value, "1")
 
-        XCTAssertEqual(ElementType.USER_LIST, formula?.formulaTree.rightChild.type)
-        XCTAssertEqual(formula!.formulaTree.rightChild.value, "test")
+        XCTAssertEqual(ElementType.USER_LIST, formula.formulaTree.rightChild.type)
+        XCTAssertEqual(formula.formulaTree.rightChild.value, "test")
 
-        XCTAssertEqual(formula!.formulaTree.value, "LIST_ITEM")
-        XCTAssertEqual(ElementType.FUNCTION, formula?.formulaTree.type)
+        XCTAssertEqual(formula.formulaTree.value, "LIST_ITEM")
+        XCTAssertEqual(ElementType.FUNCTION, formula.formulaTree.type)
 
-        XCTAssertEqual(formula!.formulaTree.value as String, "LIST_ITEM")
+        XCTAssertEqual(formula.formulaTree.value as String, "LIST_ITEM")
     }
 
     func testDeleteItemOfUserListBrick() {

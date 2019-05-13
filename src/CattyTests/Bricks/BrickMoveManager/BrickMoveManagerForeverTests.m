@@ -23,6 +23,7 @@
 @import Foundation;
 
 #import "BrickMoveManagerAbstractTest.h"
+#import "WaitBrick.h"
 #import "SetVariableBrick.h"
 #import "ForeverBrick.h"
 #import "LoopEndBrick.h"
@@ -32,7 +33,6 @@
 #import "IfLogicEndBrick.h"
 #import "WhenScript.h"
 #import "BrickMoveManager.h"
-#import "Pocket_Code-Swift.h"
 
 @interface BrickMoveManagerForeverTests : BrickMoveManagerAbstractTest
 

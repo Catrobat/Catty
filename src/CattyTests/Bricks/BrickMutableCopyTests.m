@@ -22,8 +22,8 @@
 
 #import <XCTest/XCTest.h>
 #import "PlaceAtBrick.h"
+#import "WaitBrick.h"
 #import "CBMutableCopyContext.h"
-#import "Pocket_Code-Swift.h"
 
 @interface BrickMutableCopyTests : XCTestCase
 

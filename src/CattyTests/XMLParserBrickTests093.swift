@@ -171,7 +171,7 @@ class XMLParserBrickTests093: XMLAbstractTest {
         XCTAssertNotNil(timeToWaitInSeconds, "Invalid formula")
 
         // result is either 1 or 2
-        XCTAssertEqual(self.formulaManager.interpretDouble(timeToWaitInSeconds!, for: SpriteObject()), 1, accuracy: 1, "Formula not correctly parsed")
+        XCTAssertEqual(self.formulaManager.interpretDouble(timeToWaitInSeconds, for: SpriteObject()), 1, accuracy: 1, "Formula not correctly parsed")
     }
 
     func testValidShowBrick() {

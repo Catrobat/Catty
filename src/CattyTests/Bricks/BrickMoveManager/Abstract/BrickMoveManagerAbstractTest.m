@@ -22,6 +22,7 @@
 
 #import "BrickMoveManagerAbstractTest.h"
 #import "BrickMoveManager.h"
+#import "WaitBrick.h"
 #import "ForeverBrick.h"
 #import "RepeatBrick.h"
 #import "LoopEndBrick.h"
@@ -33,7 +34,6 @@
 #import "SetXBrick.h"
 #import "SetYBrick.h"
 #import "PlaceAtBrick.h"
-#import "Pocket_Code-Swift.h"
 
 @implementation BrickMoveManagerAbstractTest
 

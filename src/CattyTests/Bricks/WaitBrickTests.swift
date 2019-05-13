@@ -52,9 +52,10 @@ final class WaitBrickTests: XCTestCase {
         let waitBrick = WaitBrick()
         waitBrick.timeToWaitInSeconds = Formula(double: duration)
         waitBrick.script = script
+        var executionTime = Double(0)
+        executionTime = self.measureExecutionTime(instruction: waitBrick.instruction(), expectation: nil)
+        XCTAssertEqual(executionTime, duration, accuracy: 0.5, "Wrong execution time")
 
-        let executionTime = measureExecutionTime(instruction: waitBrick.instruction())
-        XCTAssertEqual(executionTime, duration, accuracy: 0.1, "Wrong execution time")
     }
 
     /*func testSpeakAndWaitDuration() {
@@ -78,8 +79,8 @@ final class WaitBrickTests: XCTestCase {
         XCTAssertEqual(kLocalizedWait + " %@ " + kLocalizedSeconds, waitBrick.brickTitle, "Wrong brick title")
     }
 
-    func measureExecutionTime(instruction: CBInstruction) -> Double {
-        let start = NSDate()
+    func measureExecutionTime(instruction: CBInstruction, expectation: XCTestExpectation?) -> Double {
+        var timeIntervalInSeconds = Double(-10)
         let formulaInterpreter = FormulaManager(sceneSize: Util.screenSize(true))
         let scheduler = CBScheduler(logger: self.logger,
                                     broadcastHandler: CBBroadcastHandler(logger: self.logger),
@@ -87,16 +88,21 @@ final class WaitBrickTests: XCTestCase {
 
         switch instruction {
         case let .waitExecClosure(closure):
-            closure(CBScriptContext(script: self.script,
-                                    spriteNode: self.spriteNode,
-                                    formulaInterpreter: formulaInterpreter)!,
-                    scheduler)
+
+            let expectation = self.expectation(description: "Wait expectation")
+            DispatchQueue.global(qos: .background).async {
+                let start = NSDate()
+                closure(CBScriptContext(script: self.script, spriteNode: self.spriteNode,formulaInterpreter: formulaInterpreter)!, scheduler)
+                let end = NSDate()
+                timeIntervalInSeconds = end.timeIntervalSince(start as Date)
+                expectation.fulfill()
+            }
+            waitForExpectations(timeout: 10)
+
         default:
             break
         }
 
-        let end = NSDate()
-        let timeIntervalInSeconds: Double = end.timeIntervalSince(start as Date)
         return timeIntervalInSeconds
     }
 }

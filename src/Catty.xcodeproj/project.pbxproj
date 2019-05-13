@@ -895,7 +895,6 @@
 		9EDCD21F2288687A0040EFE3 /* ExtendedTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDCD21E2288687A0040EFE3 /* ExtendedTimer.swift */; };
 		9EDCD22322886C870040EFE3 /* ExtendedCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDCD22222886C870040EFE3 /* ExtendedCondition.swift */; };
 		9EDCD22522886FD90040EFE3 /* WaitBrickCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDCD22422886FD90040EFE3 /* WaitBrickCell.swift */; };
-		9EDCD22A2288757E0040EFE3 /* WaitBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDCD2292288757E0040EFE3 /* WaitBrick.swift */; };
 		A9F511831BE6A07A00B59540 /* SwiftBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F511821BE6A07A00B59540 /* SwiftBridge.swift */; };
 		AA3BD9091BBF4BFB002B34A0 /* WaitBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3BD9081BBF4BFB002B34A0 /* WaitBrickTests.swift */; };
 		AA401FE91BBEF6F9001BC49F /* CBInstructionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA401FE81BBEF6F9001BC49F /* CBInstructionProtocol.swift */; };
@@ -967,6 +966,7 @@
 		AA74EFE81BC05B5F00D1E954 /* LoopEndBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74EF8F1BC05B5F00D1E954 /* LoopEndBrick.m */; };
 		AA74EFE91BC05B5F00D1E954 /* NoteBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74EF911BC05B5F00D1E954 /* NoteBrick.m */; };
 		AA74EFEA1BC05B5F00D1E954 /* RepeatBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74EF931BC05B5F00D1E954 /* RepeatBrick.m */; };
+		AA74EFEB1BC05B5F00D1E954 /* WaitBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74EF951BC05B5F00D1E954 /* WaitBrick.m */; };
 		AA74EFEC1BC05B5F00D1E954 /* ChangeVariableBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74EF981BC05B5F00D1E954 /* ChangeVariableBrick.m */; };
 		AA74EFED1BC05B5F00D1E954 /* SetVariableBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74EF9A1BC05B5F00D1E954 /* SetVariableBrick.m */; };
 		AA74EFF01BC05B5F00D1E954 /* VibrationBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74EFA11BC05B5F00D1E954 /* VibrationBrick.m */; };
@@ -2545,7 +2545,6 @@
 		9EDCD21E2288687A0040EFE3 /* ExtendedTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedTimer.swift; sourceTree = "<group>"; };
 		9EDCD22222886C870040EFE3 /* ExtendedCondition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedCondition.swift; sourceTree = "<group>"; };
 		9EDCD22422886FD90040EFE3 /* WaitBrickCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitBrickCell.swift; sourceTree = "<group>"; };
-		9EDCD2292288757E0040EFE3 /* WaitBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitBrick.swift; sourceTree = "<group>"; };
 		A46D335B661B03F52135C789 /* gu */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = gu; path = gu.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A988832B1BCA86FF005029E8 /* ObjectTVCTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectTVCTests.swift; sourceTree = "<group>"; };
 		A9F511821BE6A07A00B59540 /* SwiftBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftBridge.swift; sourceTree = "<group>"; };
@@ -2671,6 +2670,8 @@
 		AA74EF911BC05B5F00D1E954 /* NoteBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteBrick.m; sourceTree = "<group>"; };
 		AA74EF921BC05B5F00D1E954 /* RepeatBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepeatBrick.h; sourceTree = "<group>"; };
 		AA74EF931BC05B5F00D1E954 /* RepeatBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepeatBrick.m; sourceTree = "<group>"; };
+		AA74EF941BC05B5F00D1E954 /* WaitBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaitBrick.h; sourceTree = "<group>"; };
+		AA74EF951BC05B5F00D1E954 /* WaitBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaitBrick.m; sourceTree = "<group>"; };
 		AA74EF971BC05B5F00D1E954 /* ChangeVariableBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeVariableBrick.h; sourceTree = "<group>"; };
 		AA74EF981BC05B5F00D1E954 /* ChangeVariableBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeVariableBrick.m; sourceTree = "<group>"; };
 		AA74EF991BC05B5F00D1E954 /* SetVariableBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetVariableBrick.h; sourceTree = "<group>"; };
@@ -6753,7 +6754,8 @@
 				AA74EF931BC05B5F00D1E954 /* RepeatBrick.m */,
 				4C0F9F27204ADBDF00E71B2D /* RepeatUntilBrick.h */,
 				4C0F9F26204ADBDF00E71B2D /* RepeatUntilBrick.m */,
-				9EDCD2292288757E0040EFE3 /* WaitBrick.swift */,
+				AA74EF941BC05B5F00D1E954 /* WaitBrick.h */,
+				AA74EF951BC05B5F00D1E954 /* WaitBrick.m */,
 				BA987D072194E158002DAA05 /* WaitUntilBrick.h */,
 				BA987D062194E157002DAA05 /* WaitUntilBrick.m */,
 			);
@@ -9165,6 +9167,7 @@
 				4CB0F9ED20A1731700D1BE2F /* PositionXSensor.swift in Sources */,
 				92FF2E971A24C7D800093DA7 /* mztools.c in Sources */,
 				4CB2CFA61D7AD7E7009F3034 /* SetColorBrick+CBXMLHandler.m in Sources */,
+				AA74EFEB1BC05B5F00D1E954 /* WaitBrick.m in Sources */,
 				4C0F9FA5204BD2C200E71B2D /* ThinkForBubbleBrickCell.m in Sources */,
 				4CDA808521366AEA0052FA24 /* FormulaManagerProtocol.swift in Sources */,
 				4CF0728D20D659F700F93AB5 /* PhiroSideRightSensor.swift in Sources */,
@@ -9353,7 +9356,6 @@
 				F4E6E58C210DFEFE00D86FE6 /* PiFunction.swift in Sources */,
 				4CF0729220D6697300F93AB5 /* LocationAccuracySensor.swift in Sources */,
 				4C724E601B4D3E8C00E27479 /* Parser.m in Sources */,
-				9EDCD22A2288757E0040EFE3 /* WaitBrick.swift in Sources */,
 				92DFB0161A38949E00FA9B0F /* InternFormulaState.m in Sources */,
 				AA74F0C51BC05FCE00D1E954 /* PlaySoundBrickCell.m in Sources */,
 				598319991FBB90CB00639BBF /* IntroductionViewController.swift in Sources */,

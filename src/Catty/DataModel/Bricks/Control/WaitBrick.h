@@ -20,11 +20,13 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "WaitBrick.h"
-#import "CBXMLNodeProtocol.h"
+#import "Brick.h"
+#import "BrickFormulaProtocol.h"
 
-@class CBXMLContext;
+@class Formula;
 
-@interface WaitBrick (CBXMLHandler) <CBXMLNodeProtocol>
+@interface WaitBrick : Brick<BrickFormulaProtocol>
+
+@property (nonatomic, strong, nonnull) Formula *timeToWaitInSeconds;
 
 @end
