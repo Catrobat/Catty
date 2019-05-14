@@ -33,7 +33,7 @@
             if durationInSeconds <= 0.0 { return }
             let durationTimer = ExtendedTimer.init(timeInterval: durationInSeconds,
                                                    repeats: false,
-                                                   execOnCurrentRunLoop: false,
+                                                   execOnMainRunLoop: true,
                                                    startTimerImmediately: false) {_ in
                                                     waitUntilWaitTimeOver.isWaiting = false
                                                     waitUntilWaitTimeOver.signal()

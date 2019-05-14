@@ -30,6 +30,8 @@ final class WaitBrickTests: XCTestCase {
     var spriteNode: CBSpriteNode!
     var script: Script!
     var logger: CBLogger!
+    var formulaInterpreter: FormulaManager!
+    var scheduler: CBScheduler!
 
     override func setUp() {
         super.setUp()
@@ -45,17 +47,40 @@ final class WaitBrickTests: XCTestCase {
 
         script = Script()
         script.object = spriteObject
+        formulaInterpreter = FormulaManager(sceneSize: Util.screenSize(true))
+        scheduler = CBScheduler(logger: self.logger,
+                                broadcastHandler: CBBroadcastHandler(logger: self.logger),
+                                formulaInterpreter: formulaInterpreter)
     }
 
     func testWaitDuration() {
-        let duration = 2.0 // 2 seconds
+        let duration = 3.0 // 3 seconds
         let waitBrick = WaitBrick()
         waitBrick.timeToWaitInSeconds = Formula(double: duration)
         waitBrick.script = script
-        var executionTime = Double(0)
-        executionTime = self.measureExecutionTime(instruction: waitBrick.instruction(), expectation: nil)
+        let executionTime = self.measureExecutionTime(instruction: waitBrick.instruction(), expectation: nil)
         XCTAssertEqual(executionTime, duration, accuracy: 0.5, "Wrong execution time")
+        XCTAssertEqual(scheduler._activeTimers.count, 0)
+    }
 
+    func testSchedulerSetTimer_activeTimersCountIsOne() {
+        let extendedTimer = ExtendedTimer.init(timeInterval: 2,
+                                               repeats: false,
+                                               execOnMainRunLoop: true,
+                                               startTimerImmediately: true) { _ in }
+        self.scheduler.setTimer(extendedTimer)
+        XCTAssertEqual(scheduler._activeTimers.count, 1)
+    }
+
+    func testSchedulerRemoveTimer_activeTimersCountIsZero() {
+        let extendedTimer = ExtendedTimer.init(timeInterval: 2,
+                                               repeats: false,
+                                               execOnMainRunLoop: true,
+                                               startTimerImmediately: true) { _ in }
+        self.scheduler.setTimer(extendedTimer)
+        self.scheduler.removeTimer(extendedTimer)
+
+        XCTAssertEqual(scheduler._activeTimers.count, 0)
     }
 
     /*func testSpeakAndWaitDuration() {
@@ -81,10 +106,6 @@ final class WaitBrickTests: XCTestCase {
 
     func measureExecutionTime(instruction: CBInstruction, expectation: XCTestExpectation?) -> Double {
         var timeIntervalInSeconds = Double(-10)
-        let formulaInterpreter = FormulaManager(sceneSize: Util.screenSize(true))
-        let scheduler = CBScheduler(logger: self.logger,
-                                    broadcastHandler: CBBroadcastHandler(logger: self.logger),
-                                    formulaInterpreter: formulaInterpreter)
 
         switch instruction {
         case let .waitExecClosure(closure):
@@ -92,7 +113,7 @@ final class WaitBrickTests: XCTestCase {
             let expectation = self.expectation(description: "Wait expectation")
             DispatchQueue.global(qos: .background).async {
                 let start = NSDate()
-                closure(CBScriptContext(script: self.script, spriteNode: self.spriteNode,formulaInterpreter: formulaInterpreter)!, scheduler)
+                closure(CBScriptContext(script: self.script, spriteNode: self.spriteNode, formulaInterpreter: self.formulaInterpreter)!, self.scheduler)
                 let end = NSDate()
                 timeIntervalInSeconds = end.timeIntervalSince(start as Date)
                 expectation.fulfill()

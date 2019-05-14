@@ -26,7 +26,7 @@ final class ExtendedTimer: Hashable {
 
     var timer: Timer?
     let block: ((ExtendedTimer) -> Void)?
-    let execOnCurrentRunLoop: Bool
+    let execOnMainRunLoop: Bool
     var hasStarted = false
     var pauseDate: Date?
     var fireDateBeforePausing: Date?
@@ -40,11 +40,11 @@ final class ExtendedTimer: Hashable {
 
     init(timeInterval: TimeInterval,
          repeats: Bool,
-         execOnCurrentRunLoop: Bool,
+         execOnMainRunLoop: Bool,
          startTimerImmediately: Bool,
          block: @escaping (ExtendedTimer) -> Void) {
 
-        self.execOnCurrentRunLoop = execOnCurrentRunLoop
+        self.execOnMainRunLoop = execOnMainRunLoop
 
         if #available(iOS 10.0, *) {
             self.block = nil
@@ -95,10 +95,10 @@ final class ExtendedTimer: Hashable {
     }
 
     private func scheduleTimer() {
-        if self.execOnCurrentRunLoop {
-            RunLoop.current.add(self.timer!, forMode: RunLoop.Mode.default)
-        } else {
+        if self.execOnMainRunLoop {
             RunLoop.main.add(self.timer!, forMode: RunLoop.Mode.default)
+        } else {
+            RunLoop.current.add(self.timer!, forMode: RunLoop.Mode.default)
         }
     }
 
