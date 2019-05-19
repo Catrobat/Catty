@@ -27,25 +27,19 @@
         guard let object = self.script?.object
             else { fatalError("This should never happen!") } // (pre)fetch only once (micro-optimization)
         return CBInstruction.waitExecClosure { context, scheduler in
-            let waitUntilWaitTimeOver = ExtendedCondition()
-            waitUntilWaitTimeOver.isWaiting = true
+            let timeIsUpExpectation = Expectation()
             let durationInSeconds = context.formulaInterpreter.interpretDouble(self.timeToWaitInSeconds, for: object)
             if durationInSeconds <= 0.0 { return }
             let durationTimer = ExtendedTimer.init(timeInterval: durationInSeconds,
                                                    repeats: false,
                                                    execOnMainRunLoop: true,
                                                    startTimerImmediately: false) {_ in
-                                                    waitUntilWaitTimeOver.isWaiting = false
-                                                    waitUntilWaitTimeOver.signal()
+                                                    timeIsUpExpectation.fulfill()
             }
 
-            (scheduler as! CBScheduler).setTimer(durationTimer)
-            waitUntilWaitTimeOver.lock()
-            while waitUntilWaitTimeOver.isWaiting == true {
-                waitUntilWaitTimeOver.wait()
-            }
-            waitUntilWaitTimeOver.unlock()
-            (scheduler as! CBScheduler).removeTimer(durationTimer)
+            scheduler.registerTimer(durationTimer)
+            timeIsUpExpectation.wait()
+            scheduler.removeTimer(durationTimer)
         }
     }
 }

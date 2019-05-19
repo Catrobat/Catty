@@ -894,7 +894,7 @@
 		99EBDC041D5624D2008D6860 /* ChangeColorByNBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EBDC031D5624D2008D6860 /* ChangeColorByNBrick+Instruction.swift */; };
 		9E1444F6228B531400104F77 /* ExtendedTimerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E1444F5228B531400104F77 /* ExtendedTimerTests.swift */; };
 		9EDCD21F2288687A0040EFE3 /* ExtendedTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDCD21E2288687A0040EFE3 /* ExtendedTimer.swift */; };
-		9EDCD22322886C870040EFE3 /* ExtendedCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDCD22222886C870040EFE3 /* ExtendedCondition.swift */; };
+		9EDCD22322886C870040EFE3 /* Expectation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDCD22222886C870040EFE3 /* Expectation.swift */; };
 		9EDCD22522886FD90040EFE3 /* WaitBrickCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDCD22422886FD90040EFE3 /* WaitBrickCell.swift */; };
 		A9F511831BE6A07A00B59540 /* SwiftBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F511821BE6A07A00B59540 /* SwiftBridge.swift */; };
 		AA3BD9091BBF4BFB002B34A0 /* WaitBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3BD9081BBF4BFB002B34A0 /* WaitBrickTests.swift */; };
@@ -2545,7 +2545,7 @@
 		99EBDC031D5624D2008D6860 /* ChangeColorByNBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ChangeColorByNBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Look/ChangeColorByNBrick+Instruction.swift"; sourceTree = "<group>"; };
 		9E1444F5228B531400104F77 /* ExtendedTimerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedTimerTests.swift; sourceTree = "<group>"; };
 		9EDCD21E2288687A0040EFE3 /* ExtendedTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedTimer.swift; sourceTree = "<group>"; };
-		9EDCD22222886C870040EFE3 /* ExtendedCondition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedCondition.swift; sourceTree = "<group>"; };
+		9EDCD22222886C870040EFE3 /* Expectation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expectation.swift; sourceTree = "<group>"; };
 		9EDCD22422886FD90040EFE3 /* WaitBrickCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitBrickCell.swift; sourceTree = "<group>"; };
 		A46D335B661B03F52135C789 /* gu */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = gu; path = gu.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A988832B1BCA86FF005029E8 /* ObjectTVCTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectTVCTests.swift; sourceTree = "<group>"; };
@@ -6031,7 +6031,7 @@
 				CA2D44451B123B7E00A3B53D /* Util.swift */,
 				A9F511821BE6A07A00B59540 /* SwiftBridge.swift */,
 				9EDCD21E2288687A0040EFE3 /* ExtendedTimer.swift */,
-				9EDCD22222886C870040EFE3 /* ExtendedCondition.swift */,
+				9EDCD22222886C870040EFE3 /* Expectation.swift */,
 			);
 			name = Utils;
 			path = Util;
@@ -9043,7 +9043,7 @@
 				4C724E661B4D3EC500E27479 /* CBXMLSerializerContext.m in Sources */,
 				9218B20B1CC4AB75007B4C60 /* DrawTool.m in Sources */,
 				BAEAB294214BCD75000B2E4B /* WhenTouchDownScript.m in Sources */,
-				9EDCD22322886C870040EFE3 /* ExtendedCondition.swift in Sources */,
+				9EDCD22322886C870040EFE3 /* Expectation.swift in Sources */,
 				4C8BC6641B26C298001C7E32 /* iOSComboboxPickerView.m in Sources */,
 				4C0F9F79204BD1E300E71B2D /* SayForBubbleBrick+Instruction.swift in Sources */,
 				4CF429F1213A876000B78897 /* RepeatBrick+Condition.swift in Sources */,

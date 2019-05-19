@@ -68,7 +68,7 @@ final class WaitBrickTests: XCTestCase {
                                                repeats: false,
                                                execOnMainRunLoop: true,
                                                startTimerImmediately: true) { _ in }
-        self.scheduler.setTimer(extendedTimer)
+        self.scheduler.registerTimer(extendedTimer)
         XCTAssertEqual(scheduler._activeTimers.count, 1)
     }
 
@@ -77,7 +77,7 @@ final class WaitBrickTests: XCTestCase {
                                                repeats: false,
                                                execOnMainRunLoop: true,
                                                startTimerImmediately: true) { _ in }
-        self.scheduler.setTimer(extendedTimer)
+        self.scheduler.registerTimer(extendedTimer)
         self.scheduler.removeTimer(extendedTimer)
 
         XCTAssertEqual(scheduler._activeTimers.count, 0)

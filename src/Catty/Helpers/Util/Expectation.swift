@@ -22,6 +22,25 @@
 
 import Foundation
 
-final class ExtendedCondition: NSCondition {
-    var isWaiting = false
+public class Expectation: NSObject {
+    public private(set) var isFulfilled = false
+    private let state = NSCondition()
+
+    public func fulfill() {
+        state.lock()
+        isFulfilled = true
+        state.broadcast()
+        state.unlock()
+    }
+
+    public func wait(until limit: Date = Date.distantFuture) {
+        state.lock()
+        while !isFulfilled {
+            if Date() > limit {
+                break
+            }
+            state.wait(until: limit)
+        }
+        state.unlock()
+    }
 }
