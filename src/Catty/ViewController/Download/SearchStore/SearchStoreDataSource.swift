@@ -124,7 +124,10 @@ class SearchStoreDataSource: NSObject, UITableViewDataSource, UITableViewDelegat
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let cell: SearchStoreCell? = tableView.cellForRow(at: indexPath) as? SearchStoreCell
-        let timer = TimerWithBlock(timeInterval: TimeInterval(kConnectionTimeout), repeats: false) { timer in
+        let timer = ExtendedTimer(timeInterval: TimeInterval(kConnectionTimeout),
+                                  repeats: false,
+                                  execOnMainRunLoop: false,
+                                  startTimerImmediately: true) { timer in
             self.delegate?.errorAlertHandler(error: .timeout)
             timer.invalidate()
             self.delegate?.hideLoadingIndicator()

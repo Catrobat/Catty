@@ -31,7 +31,7 @@
 #import "IfLogicEndBrick.h"
 #import "WhenScript.h"
 #import "BrickInsertManager.h"
-
+ 
 @interface BrickInsertManagerLogicTests : BrickInsertManagerAbstractTest
 
 @end
