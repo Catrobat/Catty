@@ -20,10 +20,33 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "BrickCell.h"
+import Foundation
 
-@interface WaitBrickCell : BrickCell
+@objc(WaitBrickCell) class WaitBrickCell: BrickCell {
 
-@property (nonatomic, weak) UITextField *delayTextField;
+    public var leftTextLabel: UILabel?
+    public var delayTextField: UITextField?
+    public var rightTextLabel: UILabel?
 
-@end
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+
+    override func draw(_ rect: CGRect) {
+        BrickShapeFactory.drawSquareBrickShape(withFill: UIColor.controlBrickOrange(), stroke: UIColor.controlBrickStroke(), height: CGFloat(smallBrick), width: Util.screenWidth())
+    }
+
+    override static func cellHeight() -> CGFloat {
+        return CGFloat(kBrickHeight1h)
+    }
+
+    override func hookUpSubViews(_ inlineViewSubViews: [Any]!) {
+        self.leftTextLabel = inlineViewSubViews[0] as? UILabel
+        self.delayTextField = inlineViewSubViews[1] as? UITextField
+        self.rightTextLabel = inlineViewSubViews[2] as? UILabel
+    }
+}

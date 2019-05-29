@@ -392,7 +392,6 @@ final class CBScheduler: CBSchedulerProtocol {
         for timer in self._activeTimers {
             timer.pause()
         }
-
     }
 
     func resume() {
@@ -406,17 +405,16 @@ final class CBScheduler: CBSchedulerProtocol {
         }
     }
 
-    func setTimer(_ timer: ExtendedTimer) {
+    func registerTimer(_ timer: ExtendedTimer) {
         self._activeTimers.insert(timer)
         timer.startTimer()
-    }
-
-    func getAudioEngine() -> AudioEngine {
-       return _audioEngine
     }
 
     func removeTimer(_ timer: ExtendedTimer) {
         self._activeTimers.remove(timer)
     }
 
+    func getAudioEngine() -> AudioEngine {
+        return _audioEngine
+    }
 }

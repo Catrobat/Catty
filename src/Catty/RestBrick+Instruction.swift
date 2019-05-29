@@ -27,27 +27,21 @@
 
         return CBInstruction.waitExecClosure { context, scheduler in
             let audioEngine = (scheduler as! CBScheduler).getAudioEngine()
-            let waitUntilNoteFinished = NSCondition()
-            waitUntilNoteFinished.accessibilityHint = "0"
+            let noteFinishedExpectation = Expectation()
 
             let durationInSeconds = AudioEngineConfig.beatsToSeconds(beatsFormula: self.duration, bpm: audioEngine.bpm, spriteObject: spriteObject, context: context)
+            if durationInSeconds <= 0.0 { return }
 
             let durationTimer = ExtendedTimer.init(timeInterval: durationInSeconds,
-                                                   repeats: false,
-                                                   execOnCurrentRunLoop: false,
-                                                   startTimerImmediately: false) { _ in
-                waitUntilNoteFinished.accessibilityHint = "1"
-                waitUntilNoteFinished.signal()
+                                                  repeats: false,
+                                                  execOnMainRunLoop: true,
+                                                  startTimerImmediately: false) {_ in
+                                                    noteFinishedExpectation.fulfill()
             }
 
-            (scheduler as! CBScheduler).setTimer(durationTimer)
-            waitUntilNoteFinished.lock()
-            while waitUntilNoteFinished.accessibilityHint == "0" { //accessibilityHint used because synthesizer.speaking not yet true.
-                waitUntilNoteFinished.wait()
-            }
-
-            waitUntilNoteFinished.unlock()
-            (scheduler as! CBScheduler).removeTimer(durationTimer)
+            scheduler.registerTimer(durationTimer)
+            noteFinishedExpectation.wait()
+            scheduler.removeTimer(durationTimer)
         }
     }
 }

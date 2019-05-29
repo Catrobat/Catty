@@ -28,31 +28,25 @@
 
         return CBInstruction.waitExecClosure { context, scheduler in
             let audioEngine = (scheduler as! CBScheduler).getAudioEngine()
-            let waitUntilNoteFinished = NSCondition()
-            waitUntilNoteFinished.accessibilityHint = "0"
+            let noteFinishedExpectation = Expectation()
 
             let durationInSeconds = AudioEngineConfig.beatsToSeconds(beatsFormula: self.duration, bpm: audioEngine.bpm, spriteObject: spriteObject, context: context)
+            if durationInSeconds <= 0.0 { return }
 
             let durationTimer = ExtendedTimer.init(timeInterval: durationInSeconds,
                                                    repeats: false,
-                                                   execOnCurrentRunLoop: false,
-                                                   startTimerImmediately: false) { _ in
-                waitUntilNoteFinished.accessibilityHint = "1"
-                waitUntilNoteFinished.signal()
+                                                   execOnMainRunLoop: true,
+                                                   startTimerImmediately: false) {_ in
+                                                    noteFinishedExpectation.fulfill()
             }
 
             let note = Note(pitch: self.drumChoice)
             audioEngine.playDrum(note: note, key: spriteObjectName!)
 
-            (scheduler as! CBScheduler).setTimer(durationTimer)
-            waitUntilNoteFinished.lock()
-            while waitUntilNoteFinished.accessibilityHint == "0" {
-                waitUntilNoteFinished.wait()
-            }
-            waitUntilNoteFinished.unlock()
-
+            scheduler.registerTimer(durationTimer)
+            noteFinishedExpectation.wait()
             audioEngine.stopDrum(note: note, key: spriteObjectName!)
-            (scheduler as! CBScheduler).removeTimer(durationTimer)
+            scheduler.removeTimer(durationTimer)
         }
     }
 }

@@ -186,7 +186,7 @@ class ChartProjectStoreDataSource: NSObject, UITableViewDataSource, UITableViewD
         guard let cellProject = cell.project else { return }
         let timer = ExtendedTimer(timeInterval: TimeInterval(kConnectionTimeout),
                                   repeats: false,
-                                  execOnCurrentRunLoop: true,
+                                  execOnMainRunLoop: false,
                                   startTimerImmediately: true) { timer in
             self.delegate?.errorAlertHandler(error: .timeout)
             timer.invalidate()

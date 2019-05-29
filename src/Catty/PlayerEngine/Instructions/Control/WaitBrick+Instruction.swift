@@ -26,28 +26,20 @@
 
         guard let object = self.script?.object
             else { fatalError("This should never happen!") } // (pre)fetch only once (micro-optimization)
-
         return CBInstruction.waitExecClosure { context, scheduler in
-            let waitUntilWaitTimeOver = NSCondition()
-            waitUntilWaitTimeOver.accessibilityHint = "0"
+            let timeIsUpExpectation = Expectation()
             let durationInSeconds = context.formulaInterpreter.interpretDouble(self.timeToWaitInSeconds, for: object)
-
+            if durationInSeconds <= 0.0 { return }
             let durationTimer = ExtendedTimer.init(timeInterval: durationInSeconds,
                                                    repeats: false,
-                                                   execOnCurrentRunLoop: false,
+                                                   execOnMainRunLoop: true,
                                                    startTimerImmediately: false) {_ in
-                waitUntilWaitTimeOver.accessibilityHint = "1"
-                waitUntilWaitTimeOver.signal()
+                                                    timeIsUpExpectation.fulfill()
             }
 
-            (scheduler as! CBScheduler).setTimer(durationTimer)
-            waitUntilWaitTimeOver.lock()
-            while waitUntilWaitTimeOver.accessibilityHint == "0" { //accessibilityHint used because synthesizer.speaking not yet true.
-                waitUntilWaitTimeOver.wait()
-            }
-            waitUntilWaitTimeOver.unlock()
-            (scheduler as! CBScheduler).removeTimer(durationTimer)
+            scheduler.registerTimer(durationTimer)
+            timeIsUpExpectation.wait()
+            scheduler.removeTimer(durationTimer)
         }
     }
 }
-
