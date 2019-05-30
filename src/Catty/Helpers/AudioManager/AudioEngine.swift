@@ -27,8 +27,6 @@ import Foundation
     var speechSynth = AVSpeechSynthesizer()
     var mainOut = AKMixer()
     var subtrees = [String: AudioSubtree]()
-    var recorder: AKNodeRecorder?
-    var tape: AKAudioFile?
     var bpm = 60.0
     let subtreeCreationQueue = DispatchQueue(label: "SubtreeCreationQueue")
 
