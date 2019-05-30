@@ -18,12 +18,12 @@
             "code" : 500
           }
         },
-        "url" : "https:\/\/share.catrob.at\/pocketcode\/\/api\/media\/package\/Backgrounds\/json"
+        "url" : "https:\/\/web-test.catrob.at\/pocketcode\/\/api\/media\/package\/Backgrounds\/json"
       },
       "recorded_at" : 1518166431.5628099,
       "request" : {
         "method" : "GET",
-        "url" : "https:\/\/share.catrob.at\/pocketcode\/\/api\/media\/package\/Backgrounds\/json"
+        "url" : "https:\/\/web-test.catrob.at\/pocketcode\/\/api\/media\/package\/Backgrounds\/json"
       }
     }
   ],

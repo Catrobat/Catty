@@ -46,7 +46,6 @@ let kAspectRatioWidth: CGFloat = 64
 //*************************************************************************************
 
 let kUploadUrl = kBaseUrl.appending("api/upload")
-let kTestUploadUrl = kTestUrl.appending("api/upload")
 
 //*************************************************************************************
 //*********************      HelpWebViewController       ******************************
