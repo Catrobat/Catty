@@ -43,15 +43,15 @@ import Foundation
         setupSubtree(mainOut: mainOut)
     }
 
-    func playSound(fileName: String, filePath: String, condition: NSCondition?) {
+    func playSound(fileName: String, filePath: String, expectation: Expectation?) {
         if let audioPlayer = audioPlayerCache.object(forKey: fileName) {
-            startExistingAudioPlayer(audioPlayer: audioPlayer, condition: condition)
+            startExistingAudioPlayer(audioPlayer: audioPlayer, expectation: expectation)
         } else {
             let audioFileURL = createFileUrl(fileName: fileName, filePath: filePath)
             do {
                 let file = try AKAudioFile(forReading: audioFileURL)
                 let audioPlayer = AudioPlayer(soundFile: file, addCompletionHandler: true)
-                startNonExistingAudioPlayer(audioPlayer: audioPlayer, fileName: fileName, condition: condition)
+                startNonExistingAudioPlayer(audioPlayer: audioPlayer, fileName: fileName, expectation: expectation)
             } catch {
                 print("Could not load audio file with url \(audioFileURL.absoluteString)")
             }
@@ -211,19 +211,19 @@ import Foundation
         audioPlayerMixer.connect(to: pitchEffect)
     }
 
-    private func startNonExistingAudioPlayer(audioPlayer: AudioPlayer, fileName: String, condition: NSCondition?) {
+    private func startNonExistingAudioPlayer(audioPlayer: AudioPlayer, fileName: String, expectation: Expectation?) {
         _ = playerCreationQueue.sync {
             if let audioPlayer = audioPlayerCache.object(forKey: fileName) {
-                startExistingAudioPlayer(audioPlayer: audioPlayer, condition: condition)
+                startExistingAudioPlayer(audioPlayer: audioPlayer, expectation: expectation)
             } else {
                 audioPlayerCache.setObject(audioPlayer, forKey: fileName)
                 audioPlayer.connect(to: audioPlayerMixer)
-                audioPlayer.play(condition: condition)
+                audioPlayer.play(expectation: expectation)
             }
         }
     }
 
-    private func startExistingAudioPlayer(audioPlayer: AudioPlayer, condition: NSCondition?) {
-        audioPlayer.play(condition: condition)
+    private func startExistingAudioPlayer(audioPlayer: AudioPlayer, expectation: Expectation?) {
+        audioPlayer.play(expectation: expectation)
     }
 }

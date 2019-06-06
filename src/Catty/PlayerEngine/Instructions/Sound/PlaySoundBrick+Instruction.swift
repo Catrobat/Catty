@@ -36,7 +36,7 @@
 
         return CBInstruction.execClosure { context, scheduler in
             let audioEngine = (scheduler as! CBScheduler).getAudioEngine()
-            audioEngine.playSound(fileName: fileName, key: objectName, filePath: filePath, condition: nil)
+            audioEngine.playSound(fileName: fileName, key: objectName, filePath: filePath, expectation: nil)
             context.state = .runnable
         }
 

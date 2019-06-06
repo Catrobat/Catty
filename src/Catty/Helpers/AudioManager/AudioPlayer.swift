@@ -26,7 +26,7 @@ import Foundation
 class AudioPlayer {
 
     let akPlayer: AKPlayer
-    var waitCondition: NSCondition?
+    var playerIsFinishedExpectation: Expectation?
     var isPaused = false
     var isDiscarded = false
 
@@ -41,16 +41,15 @@ class AudioPlayer {
     }
 
     func soundCompletionHandler() {
-        if let cond = self.waitCondition {
-            cond.accessibilityHint = "1"
-            cond.signal()
-            waitCondition = nil
+        if let expectation = self.playerIsFinishedExpectation {
+            expectation.fulfill()
+            playerIsFinishedExpectation = nil
         }
     }
 
-    func play(condition: NSCondition?) {
+    func play(expectation: Expectation?) {
         _ = playingQueue.sync {
-            addCondition(condition)
+            addExpectation(expectation)
             if !self.isDiscarded {
                 if akPlayer.isPlaying {
                     self.stop()
@@ -108,7 +107,7 @@ class AudioPlayer {
         }
     }
 
-    private func addCondition(_ condition: NSCondition?) {
-        self.waitCondition = condition
+    private func addExpectation(_ expectation: Expectation?) {
+        self.playerIsFinishedExpectation = expectation
     }
 }

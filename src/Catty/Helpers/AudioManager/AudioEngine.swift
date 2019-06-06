@@ -59,9 +59,9 @@ import Foundation
         speechSynth.stopSpeaking(at: AVSpeechBoundary.immediate)
     }
 
-    func playSound(fileName: String, key: String, filePath: String, condition: NSCondition?) {
+    func playSound(fileName: String, key: String, filePath: String, expectation: Expectation?) {
         let subtree = getSubtree(key: key)
-        subtree.playSound(fileName: fileName, filePath: filePath, condition: condition)
+        subtree.playSound(fileName: fileName, filePath: filePath, expectation: expectation)
     }
 
     func playNote(note: Note, key: String) {
@@ -197,6 +197,9 @@ import Foundation
         }
     }
 
+    //TODO: Umwandeln zu Expectation!
+    //TODO: Umwandeln zu Expectation!
+    //TODO: Umwandeln zu Expectation!
     func addConditionToSpeechSynth(accessibilityHint: String, synthesizer: AVSpeechSynthesizer) -> NSCondition {
         let condition = NSCondition()
         condition.accessibilityHint = accessibilityHint

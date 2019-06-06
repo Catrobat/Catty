@@ -36,18 +36,13 @@
 
         return CBInstruction.waitExecClosure { context, scheduler in
             let audioEngine = (scheduler as! CBScheduler).getAudioEngine()
-            let waitUntilSoundPlayed = NSCondition()
-            waitUntilSoundPlayed.accessibilityHint = "0"
+            let soundIsFinishedExpectation = Expectation()
 
             DispatchQueue.main.async {
-                audioEngine.playSound(fileName: fileName, key: objectName, filePath: filePath, condition: waitUntilSoundPlayed)
+                audioEngine.playSound(fileName: fileName, key: objectName, filePath: filePath, expectation: soundIsFinishedExpectation)
             }
 
-            waitUntilSoundPlayed.lock()
-            while waitUntilSoundPlayed.accessibilityHint == "0" {
-                waitUntilSoundPlayed.wait()
-            }
-            waitUntilSoundPlayed.unlock()
+            soundIsFinishedExpectation.wait()
             RunLoop.current.run(until: Date(timeIntervalSinceNow: 0.01)) //will sleep for 0.01seconds. Needed to have consistent
             //behaviour in the followin case: First Object has a "when tapped" script with 2 "play sound and wait" bricks. 2nd
             //object has a "when tapped" script with one "play sound and wait" brick. Tap first object, then tap 2nd object. "play
