@@ -41,7 +41,7 @@ class DivideOperatorTest: XCTestCase {
     func testValue() {
         XCTAssertTrue(op.value(left: 0 as AnyObject, right: 0 as AnyObject).isNaN)
         XCTAssertTrue(op.value(left: 1.0 as AnyObject, right: 0 as AnyObject).isInfinite)
-        XCTAssertTrue(op.value(left: 1 as AnyObject, right: "a" as AnyObject).isInfinite)
+        XCTAssertTrue(op.value(left: 1 as AnyObject, right: "a" as AnyObject).isNaN)
         XCTAssertTrue(op.value(left: "a" as AnyObject, right: "b" as AnyObject).isNaN)
 
         XCTAssertEqual(-1, op.value(left: 1 as AnyObject, right: -1.0 as AnyObject), accuracy: Double.epsilon)

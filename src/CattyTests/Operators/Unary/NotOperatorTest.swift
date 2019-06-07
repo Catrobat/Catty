@@ -40,7 +40,7 @@ class NotOperatorTest: XCTestCase {
 
     func testValue() {
         XCTAssertTrue(op.value(parameter: 0 as AnyObject))
-        XCTAssertTrue(op.value(parameter: "abc" as AnyObject))
+        XCTAssertFalse(op.value(parameter: "abc" as AnyObject))
         XCTAssertFalse(op.value(parameter: "1" as AnyObject))
         XCTAssertFalse(op.value(parameter: "0.01" as AnyObject))
         XCTAssertFalse(op.value(parameter: 2 as AnyObject))

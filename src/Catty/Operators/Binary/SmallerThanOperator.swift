@@ -31,7 +31,7 @@
         let leftDouble = doubleParameter(object: left)
         let rightDouble = doubleParameter(object: right)
 
-        return leftDouble < rightDouble
+        return doubleParameter(leftDouble, isSmallerThan: rightDouble)
     }
 
     func formulaEditorSections() -> [FormulaEditorSection] {

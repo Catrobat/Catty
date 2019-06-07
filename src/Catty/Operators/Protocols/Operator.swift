@@ -43,10 +43,10 @@ extension Operator {
         } else if let int = object as? Int {
             return Double(int)
         } else if let string = object as? String {
-            guard let double = Double(string) else { return 0 }
+            guard let double = Double(string) else { return .nan }
             return double
         }
-        return 0
+        return .nan
     }
 }
 
@@ -58,10 +58,55 @@ protocol BinaryOperator: Operator {
     func value(left: AnyObject, right: AnyObject) -> Double
 }
 
-protocol UnaryLogicalOperator: Operator {
+protocol LogicalOperator: Operator {
+}
+
+protocol UnaryLogicalOperator: LogicalOperator {
     func value(parameter: AnyObject) -> Bool
 }
 
-protocol BinaryLogicalOperator: Operator {
+protocol BinaryLogicalOperator: LogicalOperator {
     func value(left: AnyObject, right: AnyObject) -> Bool
+}
+
+extension LogicalOperator {
+
+    func doubleParameter(object: AnyObject) -> Double {
+        if let double = object as? Double {
+            return double
+        } else if let int = object as? Int {
+            return Double(int)
+        } else if let string = object as? String {
+            // Produce same behavior as Java's Double.valueOf(string)
+            if string.count == 1 && Double(string) == nil {
+                guard let firstCharacter = string.utf8.first else { return .nan }
+                return Double(firstCharacter)
+            }
+
+            guard let double = Double(string) else { return .nan }
+            return double
+        }
+        return .nan
+    }
+
+    func doubleParameter(_ left: Double, isEqualTo right: Double) -> Bool {
+        // Produce same behavior as Java's Double.compareTo(Double)
+        return left.isEqual(to: right) || (left.isNaN && right.isNaN)
+    }
+
+    func doubleParameter(_ left: Double, isGreaterThan right: Double) -> Bool {
+        // Produce same behavior as Java's Double.compareTo(Double)
+        if left.isNaN && !right.isNaN {
+            return true
+        }
+        return left > right
+    }
+
+    func doubleParameter(_ left: Double, isSmallerThan right: Double) -> Bool {
+        // Produce same behavior as Java's Double.compareTo(Double)
+        if right.isNaN && !left.isNaN {
+            return true
+        }
+        return left < right
+    }
 }

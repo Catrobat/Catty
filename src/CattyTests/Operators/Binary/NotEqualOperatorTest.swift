@@ -50,6 +50,8 @@ class NotEqualOperatorTest: XCTestCase {
         XCTAssertFalse(op.value(left: 2 as AnyObject, right: 2 as AnyObject))
         XCTAssertFalse(op.value(left: "abc" as AnyObject, right: "abc" as AnyObject))
         XCTAssertFalse(op.value(left: 0.001 as AnyObject, right: 0.001 as AnyObject))
+        XCTAssertTrue(op.value(left: 0 as AnyObject, right: "some text" as AnyObject))
+        XCTAssertTrue(op.value(left: "some text" as AnyObject, right: 0 as AnyObject))
     }
 
     func testPriority() {
