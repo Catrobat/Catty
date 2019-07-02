@@ -44,8 +44,9 @@ class MinusOperatorTest: XCTestCase {
         XCTAssertEqual(2, op.value(left: 1 as AnyObject, right: -1.0 as AnyObject), accuracy: Double.epsilon)
         XCTAssertEqual(2, op.value(left: "1" as AnyObject, right: -1.0 as AnyObject), accuracy: Double.epsilon)
         XCTAssertEqual(-0.5, op.value(left: -1.5 as AnyObject, right: "-1.0" as AnyObject), accuracy: Double.epsilon)
-        XCTAssertEqual(1, op.value(left: 1 as AnyObject, right: "a" as AnyObject), accuracy: Double.epsilon)
-        XCTAssertEqual(0, op.value(left: "a" as AnyObject, right: "b" as AnyObject), accuracy: Double.epsilon)
+        XCTAssertTrue(op.value(left: 1 as AnyObject, right: "a" as AnyObject).isNaN)
+        XCTAssertTrue(op.value(left: "a" as AnyObject, right: "b" as AnyObject).isNaN)
+        XCTAssertTrue(op.value(left: "abc" as AnyObject, right: "bcd" as AnyObject).isNaN)
         XCTAssertEqual(10, op.value(left: -10 as AnyObject, right: -20 as AnyObject), accuracy: Double.epsilon)
         XCTAssertEqual(-30, op.value(left: "-10" as AnyObject, right: "20" as AnyObject), accuracy: Double.epsilon)
     }

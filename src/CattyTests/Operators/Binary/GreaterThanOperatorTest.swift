@@ -46,11 +46,15 @@ class GreaterThanOperatorTest: XCTestCase {
         XCTAssertFalse(op.value(left: "a" as AnyObject, right: "b" as AnyObject))
         XCTAssertFalse(op.value(left: -1 as AnyObject, right: "b" as AnyObject))
         XCTAssertTrue(op.value(left: "a" as AnyObject, right: -1 as AnyObject))
-        XCTAssertTrue(op.value(left: 1 as AnyObject, right: "b" as AnyObject))
+        XCTAssertTrue(op.value(left: "abc" as AnyObject, right: -1 as AnyObject))
+        XCTAssertTrue(op.value(left: "abc" as AnyObject, right: 1 as AnyObject))
+        XCTAssertFalse(op.value(left: "abc" as AnyObject, right: "bcde" as AnyObject))
+        XCTAssertFalse(op.value(left: 1 as AnyObject, right: "b" as AnyObject))
         XCTAssertFalse(op.value(left: 1.0 as AnyObject, right: "1.0" as AnyObject))
         XCTAssertFalse(op.value(left: -1.5 as AnyObject, right: -1.5 as AnyObject))
         XCTAssertTrue(op.value(left: -1.4 as AnyObject, right: -1.5 as AnyObject))
         XCTAssertFalse(op.value(left: -1.5 as AnyObject, right: -1.4 as AnyObject))
+        XCTAssertFalse(op.value(left: 0 as AnyObject, right: -0 as AnyObject))
     }
 
     func testPriority() {

@@ -18,12 +18,12 @@
             "code" : 404
           }
         },
-        "url" : "https:\/\/share.catrob.at\/pocketcode\/download-media\/99999"
+        "url" : "https:\/\/web-test.catrob.at\/pocketcode\/download-media\/99999"
       },
       "recorded_at" : 1518171451.8201509,
       "request" : {
         "method" : "GET",
-        "url" : "https:\/\/share.catrob.at\/pocketcode\/download-media\/99999"
+        "url" : "https:\/\/web-test.catrob.at\/pocketcode\/download-media\/99999"
       }
     }
   ],

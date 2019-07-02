@@ -416,7 +416,7 @@
     secondOperand = @"3.14";
     
     firstTerm = [self buildBinaryOperator:TOKEN_TYPE_STRING firstValue:firstOperand withOperator:PlusOperator.tag secondTokenType:TOKEN_TYPE_NUMBER secondValue:secondOperand];
-    [self binaryOperatorTest:firstTerm withExpectedResult:@"3.14"];
+    [self binaryOperatorTest:firstTerm withExpectedResult:@"NaN"];
 }
 
 - (void)testDivision
@@ -494,7 +494,7 @@
     secondOperand = @"3.14";
     
     firstTerm = [self buildBinaryOperator:TOKEN_TYPE_STRING firstValue:firstOperand withOperator:MinusOperator.tag secondTokenType:TOKEN_TYPE_NUMBER secondValue:secondOperand];
-    [self binaryOperatorTest:firstTerm withExpectedResult:@"-3.14"];
+    [self binaryOperatorTest:firstTerm withExpectedResult:@"NaN"];
 }
 
 @end

@@ -251,7 +251,7 @@
 {
     NSDebug(@"ReportMessage::::::%@",message);
     
-    NSString *reportUrl = [Util isProductionServerActivated] ? kReportProjectUrl : kTestReportProjectUrl;
+    NSString *reportUrl = kReportProjectUrl;
     
     NSString *post = [NSString stringWithFormat:@"%@=%@&%@=%@",@"program",self.project.projectID,@"note",message];
     NSData *postData = [post dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];

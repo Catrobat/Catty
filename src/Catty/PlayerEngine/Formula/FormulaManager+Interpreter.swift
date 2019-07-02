@@ -46,6 +46,10 @@ extension FormulaManager {
         if doubleValue > Double(Int.max) {
             return Int.max
         }
+        if doubleValue.isNaN {
+            return 0
+        }
+
         return Int(doubleValue)
     }
 

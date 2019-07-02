@@ -40,7 +40,7 @@ class OrOperatorTest: XCTestCase {
 
     func testValue() {
         XCTAssertFalse(op.value(left: 0 as AnyObject, right: 0 as AnyObject))
-        XCTAssertFalse(op.value(left: "a" as AnyObject, right: "b" as AnyObject))
+        XCTAssertTrue(op.value(left: "a" as AnyObject, right: "b" as AnyObject))
         XCTAssertTrue(op.value(left: "1" as AnyObject, right: "1" as AnyObject))
         XCTAssertTrue(op.value(left: "1" as AnyObject, right: "abc" as AnyObject))
         XCTAssertTrue(op.value(left: "1" as AnyObject, right: 1 as AnyObject))

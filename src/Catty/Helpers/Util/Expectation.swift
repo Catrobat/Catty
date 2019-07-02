@@ -22,33 +22,25 @@
 
 import Foundation
 
-final class TimerWithBlock {
-    var timer: Timer?
-    let block: ((TimerWithBlock) -> Void)?
+public class Expectation: NSObject {
+    public private(set) var isFulfilled = false
+    private let state = NSCondition()
 
-    var isValid: Bool {
-        return self.timer?.isValid ?? false
+    public func fulfill() {
+        state.lock()
+        isFulfilled = true
+        state.broadcast()
+        state.unlock()
     }
 
-    init(timeInterval: TimeInterval, repeats: Bool, block: @escaping (TimerWithBlock) -> Void) {
-        if #available(iOS 10.0, *) {
-            self.block = nil
-            self.timer = Timer.scheduledTimer(withTimeInterval: timeInterval, repeats: repeats) { _ in
-                block(self)
+    public func wait(until limit: Date = Date.distantFuture) {
+        state.lock()
+        while !isFulfilled {
+            if Date() > limit {
+                break
             }
-        } else {
-            self.timer = nil
-            self.block = block
-            self.timer = Timer.scheduledTimer(timeInterval: timeInterval, target: self, selector: #selector(fire(timer:)), userInfo: nil, repeats: repeats)
+            state.wait(until: limit)
         }
-    }
-
-    @objc func fire(timer: Timer) {
-        self.block?(self)
-    }
-
-    func invalidate() {
-        self.timer?.invalidate()
-        self.timer = nil
+        state.unlock()
     }
 }

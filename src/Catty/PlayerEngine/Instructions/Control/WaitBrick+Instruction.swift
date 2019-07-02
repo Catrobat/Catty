@@ -26,27 +26,20 @@
 
         guard let object = self.script?.object
             else { fatalError("This should never happen!") } // (pre)fetch only once (micro-optimization)
-
-        return CBInstruction.waitExecClosure { context, _ in
+        return CBInstruction.waitExecClosure { context, scheduler in
+            let timeIsUpExpectation = Expectation()
             let durationInSeconds = context.formulaInterpreter.interpretDouble(self.timeToWaitInSeconds, for: object)
-
-            // check if an invalid duration is given! => prevents UInt32 underflow
             if durationInSeconds <= 0.0 { return }
-
-            // UInt32 overflow protection check
-            if durationInSeconds > 60.0 {
-                //logger.warn("WOW!!! long time to sleep (> 1min!!!)...")
-                let wakeUpTime = Date().addingTimeInterval(durationInSeconds)
-                //logger.debug("Sleeping now until \(wakeUpTime)...")
-                Thread.sleep(until: wakeUpTime)
-            } else {
-                let durationInMicroSeconds = durationInSeconds * 1000000
-                let uduration = UInt32(durationInMicroSeconds) // in microseconds (10^-6)
-                if uduration > 100 { // check if it makes sense at all to pause the thread...
-                    usleep(uduration)
-                }
+            let durationTimer = ExtendedTimer.init(timeInterval: durationInSeconds,
+                                                   repeats: false,
+                                                   execOnMainRunLoop: true,
+                                                   startTimerImmediately: false) {_ in
+                                                    timeIsUpExpectation.fulfill()
             }
+
+            scheduler.registerTimer(durationTimer)
+            timeIsUpExpectation.wait()
+            scheduler.removeTimer(durationTimer)
         }
     }
-
 }

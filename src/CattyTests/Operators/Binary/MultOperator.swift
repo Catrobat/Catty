@@ -44,8 +44,8 @@ class MultOperatorTest: XCTestCase {
         XCTAssertEqual(-1, op.value(left: 1 as AnyObject, right: -1.0 as AnyObject), accuracy: Double.epsilon)
         XCTAssertEqual(-1, op.value(left: "1" as AnyObject, right: -1.0 as AnyObject), accuracy: Double.epsilon)
         XCTAssertEqual(1.5, op.value(left: -1.5 as AnyObject, right: "-1.0" as AnyObject), accuracy: Double.epsilon)
-        XCTAssertEqual(0, op.value(left: 1 as AnyObject, right: "a" as AnyObject), accuracy: Double.epsilon)
-        XCTAssertEqual(0, op.value(left: "a" as AnyObject, right: "b" as AnyObject), accuracy: Double.epsilon)
+        XCTAssertTrue(op.value(left: 1 as AnyObject, right: "a" as AnyObject).isNaN)
+        XCTAssertTrue(op.value(left: "a" as AnyObject, right: "b" as AnyObject).isNaN)
         XCTAssertEqual(-50449.5, op.value(left: 999 as AnyObject, right: -50.5 as AnyObject), accuracy: Double.epsilon)
     }
 

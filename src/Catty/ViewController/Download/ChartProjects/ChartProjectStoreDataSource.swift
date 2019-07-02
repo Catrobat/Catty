@@ -184,7 +184,10 @@ class ChartProjectStoreDataSource: NSObject, UITableViewDataSource, UITableViewD
         tableView.deselectRow(at: indexPath, animated: true)
         guard let cell = tableView.cellForRow(at: indexPath) as? ChartProjectCell else { return }
         guard let cellProject = cell.project else { return }
-        let timer = TimerWithBlock(timeInterval: TimeInterval(kConnectionTimeout), repeats: false) { timer in
+        let timer = ExtendedTimer(timeInterval: TimeInterval(kConnectionTimeout),
+                                  repeats: false,
+                                  execOnMainRunLoop: false,
+                                  startTimerImmediately: true) { timer in
             self.delegate?.errorAlertHandler(error: .timeout)
             timer.invalidate()
             self.delegate?.hideLoadingIndicator(false)

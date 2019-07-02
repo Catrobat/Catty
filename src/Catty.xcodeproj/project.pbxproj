@@ -894,6 +894,10 @@
 		99EBDBFF1D5621D3008D6860 /* ChangeColorByNBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 99EBDBFE1D5621D3008D6860 /* ChangeColorByNBrick.m */; };
 		99EBDC021D5623B3008D6860 /* ChangeColorByNBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 99EBDC011D5623B3008D6860 /* ChangeColorByNBrickCell.m */; };
 		99EBDC041D5624D2008D6860 /* ChangeColorByNBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EBDC031D5624D2008D6860 /* ChangeColorByNBrick+Instruction.swift */; };
+		9E1444F6228B531400104F77 /* ExtendedTimerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E1444F5228B531400104F77 /* ExtendedTimerTests.swift */; };
+		9EDCD21F2288687A0040EFE3 /* ExtendedTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDCD21E2288687A0040EFE3 /* ExtendedTimer.swift */; };
+		9EDCD22322886C870040EFE3 /* Expectation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDCD22222886C870040EFE3 /* Expectation.swift */; };
+		9EDCD22522886FD90040EFE3 /* WaitBrickCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDCD22422886FD90040EFE3 /* WaitBrickCell.swift */; };
 		A9F511831BE6A07A00B59540 /* SwiftBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F511821BE6A07A00B59540 /* SwiftBridge.swift */; };
 		AA3BD9091BBF4BFB002B34A0 /* WaitBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3BD9081BBF4BFB002B34A0 /* WaitBrickTests.swift */; };
 		AA401FE91BBEF6F9001BC49F /* CBInstructionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA401FE81BBEF6F9001BC49F /* CBInstructionProtocol.swift */; };
@@ -1017,7 +1021,6 @@
 		AA74F0A41BC05FCE00D1E954 /* LoopEndBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74F0361BC05FCE00D1E954 /* LoopEndBrickCell.m */; };
 		AA74F0A51BC05FCE00D1E954 /* NoteBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74F0381BC05FCE00D1E954 /* NoteBrickCell.m */; };
 		AA74F0A61BC05FCE00D1E954 /* RepeatBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74F03A1BC05FCE00D1E954 /* RepeatBrickCell.m */; };
-		AA74F0A71BC05FCE00D1E954 /* WaitBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74F03C1BC05FCE00D1E954 /* WaitBrickCell.m */; };
 		AA74F0A81BC05FCE00D1E954 /* ChangeVariableBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74F03F1BC05FCE00D1E954 /* ChangeVariableBrickCell.m */; };
 		AA74F0A91BC05FCE00D1E954 /* SetVariableBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74F0411BC05FCE00D1E954 /* SetVariableBrickCell.m */; };
 		AA74F0AA1BC05FCE00D1E954 /* VibrationBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74F0441BC05FCE00D1E954 /* VibrationBrickCell.m */; };
@@ -1216,7 +1219,6 @@
 		CAE3E5631B4C50B300CC88BD /* X_Ray_phone_091.xml in Resources */ = {isa = PBXBuildFile; fileRef = CAE3E5301B4C50B300CC88BD /* X_Ray_phone_091.xml */; };
 		CAE3E5641B4C50B300CC88BD /* X_Ray_phone_093.xml in Resources */ = {isa = PBXBuildFile; fileRef = CAE3E5311B4C50B300CC88BD /* X_Ray_phone_093.xml */; };
 		E405EABB212D4E420074ADDB /* SearchStoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E405EABA212D4E420074ADDB /* SearchStoreCell.swift */; };
-		E438738A210623230062209F /* TimerWithBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4387389210623230062209F /* TimerWithBlock.swift */; };
 		E4668B3820FDC1B90021FA0B /* FeaturedProjectsStoreTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4668B3720FDC1B90021FA0B /* FeaturedProjectsStoreTableViewController.swift */; };
 		E4668B3C20FDCA6D0021FA0B /* FeaturedProjectsStoreTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4668B3B20FDCA6D0021FA0B /* FeaturedProjectsStoreTableDataSource.swift */; };
 		E4668B4220FE02F40021FA0B /* FeaturedProjectsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4668B4120FE02F40021FA0B /* FeaturedProjectsCell.swift */; };
@@ -2555,6 +2557,10 @@
 		99EBDC001D5623B3008D6860 /* ChangeColorByNBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeColorByNBrickCell.h; sourceTree = "<group>"; };
 		99EBDC011D5623B3008D6860 /* ChangeColorByNBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeColorByNBrickCell.m; sourceTree = "<group>"; };
 		99EBDC031D5624D2008D6860 /* ChangeColorByNBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ChangeColorByNBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Look/ChangeColorByNBrick+Instruction.swift"; sourceTree = "<group>"; };
+		9E1444F5228B531400104F77 /* ExtendedTimerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedTimerTests.swift; sourceTree = "<group>"; };
+		9EDCD21E2288687A0040EFE3 /* ExtendedTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedTimer.swift; sourceTree = "<group>"; };
+		9EDCD22222886C870040EFE3 /* Expectation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expectation.swift; sourceTree = "<group>"; };
+		9EDCD22422886FD90040EFE3 /* WaitBrickCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitBrickCell.swift; sourceTree = "<group>"; };
 		A46D335B661B03F52135C789 /* gu */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = gu; path = gu.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A988832B1BCA86FF005029E8 /* ObjectTVCTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectTVCTests.swift; sourceTree = "<group>"; };
 		A9F511821BE6A07A00B59540 /* SwiftBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftBridge.swift; sourceTree = "<group>"; };
@@ -2788,8 +2794,6 @@
 		AA74F0381BC05FCE00D1E954 /* NoteBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteBrickCell.m; sourceTree = "<group>"; };
 		AA74F0391BC05FCE00D1E954 /* RepeatBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepeatBrickCell.h; sourceTree = "<group>"; };
 		AA74F03A1BC05FCE00D1E954 /* RepeatBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepeatBrickCell.m; sourceTree = "<group>"; };
-		AA74F03B1BC05FCE00D1E954 /* WaitBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaitBrickCell.h; sourceTree = "<group>"; };
-		AA74F03C1BC05FCE00D1E954 /* WaitBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaitBrickCell.m; sourceTree = "<group>"; };
 		AA74F03E1BC05FCE00D1E954 /* ChangeVariableBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeVariableBrickCell.h; sourceTree = "<group>"; };
 		AA74F03F1BC05FCE00D1E954 /* ChangeVariableBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeVariableBrickCell.m; sourceTree = "<group>"; };
 		AA74F0401BC05FCE00D1E954 /* SetVariableBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetVariableBrickCell.h; sourceTree = "<group>"; };
@@ -3059,7 +3063,6 @@
 		DA5D3B4384AEF2DE30285878 /* zh-Hant */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		DE5C4E6D138ED109004892CA /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		E405EABA212D4E420074ADDB /* SearchStoreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchStoreCell.swift; sourceTree = "<group>"; };
-		E4387389210623230062209F /* TimerWithBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerWithBlock.swift; sourceTree = "<group>"; };
 		E4668B3720FDC1B90021FA0B /* FeaturedProjectsStoreTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedProjectsStoreTableViewController.swift; sourceTree = "<group>"; };
 		E4668B3B20FDCA6D0021FA0B /* FeaturedProjectsStoreTableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedProjectsStoreTableDataSource.swift; sourceTree = "<group>"; };
 		E4668B4120FE02F40021FA0B /* FeaturedProjectsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedProjectsCell.swift; sourceTree = "<group>"; };
@@ -4693,6 +4696,7 @@
 			isa = PBXGroup;
 			children = (
 				4CD0BA952146791D00BF17A4 /* UtilTests.swift */,
+				9E1444F5228B531400104F77 /* ExtendedTimerTests.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -6067,7 +6071,8 @@
 				92FF2E8B1A24C7D800093DA7 /* Util.m */,
 				CA2D44451B123B7E00A3B53D /* Util.swift */,
 				A9F511821BE6A07A00B59540 /* SwiftBridge.swift */,
-				E4387389210623230062209F /* TimerWithBlock.swift */,
+				9EDCD21E2288687A0040EFE3 /* ExtendedTimer.swift */,
+				9EDCD22222886C870040EFE3 /* Expectation.swift */,
 			);
 			name = Utils;
 			path = Util;
@@ -7027,8 +7032,7 @@
 				AA74F03A1BC05FCE00D1E954 /* RepeatBrickCell.m */,
 				4C0F9F8C204BD27200E71B2D /* RepeatUntilBrickCell.h */,
 				4C0F9F8D204BD27200E71B2D /* RepeatUntilBrickCell.m */,
-				AA74F03B1BC05FCE00D1E954 /* WaitBrickCell.h */,
-				AA74F03C1BC05FCE00D1E954 /* WaitBrickCell.m */,
+				9EDCD22422886FD90040EFE3 /* WaitBrickCell.swift */,
 				BA987D0A2194E25A002DAA05 /* WaitUntilBrickCell.h */,
 				BA987D092194E25A002DAA05 /* WaitUntilBrickCell.m */,
 			);
@@ -8853,6 +8857,7 @@
 				4CA658ED21EBA5BD000E5797 /* CBFileManagerTests.swift in Sources */,
 				4CC50A60213BE18F004BC914 /* SingleParameterDoubleFunctionMock.swift in Sources */,
 				4CEB22691B95E47500B3BE2F /* TurnLeftBrickTests.m in Sources */,
+				9E1444F6228B531400104F77 /* ExtendedTimerTests.swift in Sources */,
 				4C822682213FA7A400F3D750 /* PhiroSensorTest.swift in Sources */,
 				4C822669213FA7A400F3D750 /* TimeMinuteSensorTest.swift in Sources */,
 				4CEB22731B95E4BC00B3BE2F /* BrickInsertManagerAbstractTest.m in Sources */,
@@ -9043,6 +9048,7 @@
 				92DFB0101A38949E00FA9B0F /* FormulaEditorHistory.m in Sources */,
 				927F79DC1BEE39B0008D1635 /* PhiroIfLogicBeginBrickCell.m in Sources */,
 				AA74EF721BC0588A00D1E954 /* StopAllSoundsBrick+CBXMLHandler.m in Sources */,
+				9EDCD22522886FD90040EFE3 /* WaitBrickCell.swift in Sources */,
 				4C994E23207A56D500C415FD /* AccelerationZSensor.swift in Sources */,
 				4CB0F9EE20A1731700D1BE2F /* TransparencySensor.swift in Sources */,
 				92FF325B1A24E2F400093DA7 /* BDKNotifyHUD.m in Sources */,
@@ -9119,6 +9125,7 @@
 				4C724E661B4D3EC500E27479 /* CBXMLSerializerContext.m in Sources */,
 				9218B20B1CC4AB75007B4C60 /* DrawTool.m in Sources */,
 				BAEAB294214BCD75000B2E4B /* WhenTouchDownScript.m in Sources */,
+				9EDCD22322886C870040EFE3 /* Expectation.swift in Sources */,
 				4C8BC6641B26C298001C7E32 /* iOSComboboxPickerView.m in Sources */,
 				4C0F9F79204BD1E300E71B2D /* SayForBubbleBrick+Instruction.swift in Sources */,
 				4CF429F1213A876000B78897 /* RepeatBrick+Condition.swift in Sources */,
@@ -9211,6 +9218,7 @@
 				4CDE807421A1A0AE009EFD31 /* ScenePresenterViewController+Screenshot.swift in Sources */,
 				AABCB3EF1BB3697E009F67D2 /* CBCustomTypes.swift in Sources */,
 				F4E6E5C4210E242D00D86FE6 /* FloorFunction.swift in Sources */,
+				9EDCD21F2288687A0040EFE3 /* ExtendedTimer.swift in Sources */,
 				4CF0728B20D659F700F93AB5 /* PhiroBottomLeftSensor.swift in Sources */,
 				AA74F09F1BC05FCE00D1E954 /* IfLogicBeginBrickCell.m in Sources */,
 				592EF6EA2094B84900BD6000 /* DeviceSensor.swift in Sources */,
@@ -9393,7 +9401,6 @@
 				F4E6E59C210E051200D86FE6 /* MinFunction.swift in Sources */,
 				AA74EF591BC0586F00D1E954 /* TurnLeftBrick+CBXMLHandler.m in Sources */,
 				4C0F9F6F204BD1A300E71B2D /* ThinkForBubbleBrick+CBXMLHandler.m in Sources */,
-				E438738A210623230062209F /* TimerWithBlock.swift in Sources */,
 				5EFBD5FC2145AADC003B3CDC /* UIView+Extensions.swift in Sources */,
 				92FF31591A24DEB300093DA7 /* DownloadTabBarController.m in Sources */,
 				F4E6E59A210E048700D86FE6 /* MaxFunction.swift in Sources */,
@@ -9569,7 +9576,6 @@
 				AA74F0CE1BC05FCE00D1E954 /* WhenScriptCell.m in Sources */,
 				5EA1089421B8FBD200B837B9 /* AVAudioSession+Extensions.swift in Sources */,
 				F4E6E580210DE61900D86FE6 /* PowFunction.swift in Sources */,
-				AA74F0A71BC05FCE00D1E954 /* WaitBrickCell.m in Sources */,
 				92FF32B91A24E2F400093DA7 /* DarkBlueGradientCell.m in Sources */,
 				AA74EF551BC0586F00D1E954 /* PointToBrick+CBXMLHandler.m in Sources */,
 				F4201CFB20D7A1060030181B /* TimeMinuteSensor.swift in Sources */,
