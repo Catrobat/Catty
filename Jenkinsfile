@@ -11,6 +11,10 @@ pipeline {
     buildDiscarder(logRotator(numToKeepStr: '30', artifactNumToKeepStr: '30'))
   }
 
+  triggers {
+    issueCommentTrigger('.*test this please.*')
+  }
+
   stages {
     stage('Carthage') {
       steps {
