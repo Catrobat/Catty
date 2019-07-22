@@ -2,7 +2,7 @@
 "A message with the same name already exists, try again." = "Wiadomość o tej samej nazwie już istnieje, spróbuj ponownie.";
 
 /* No comment provided by engineer. */
-"A project with the same name already exists, try again." = "A project with the same name already exists, try again.";
+"A project with the same name already exists, try again." = "Projekt o tej samej nazwie już istnieje, spróbuj ponownie.";
 
 /* No comment provided by engineer. */
 "Abc" = "Abc";
@@ -170,7 +170,7 @@
 "By registering you agree to our" = "Rejestrując się, zgadzasz się na nasze";
 
 /* No comment provided by engineer. */
-"By switching to the section \"Explore\" you can discover more interesting projects from people all over the world." = "By switching to the section \"Explore\" you can discover more interesting projects from people all over the world.";
+"By switching to the section \"Explore\" you can discover more interesting projects from people all over the world." = "Przechodząc do sekcji \"Przeglądaj\" możesz znaleźć wiele ciekawych projektów ludzi z całego świata.";
 
 /* No comment provided by engineer. */
 "Camera Roll" = "Galeria";
@@ -530,7 +530,7 @@
 "Error" = "Błąd";
 
 /* No comment provided by engineer. */
-"Error saving file" = "Error saving file";
+"Error saving file" = "Błąd zapisu pliku";
 
 /* No comment provided by engineer. */
 "Explore" = "Przeglądaj";
@@ -557,10 +557,10 @@
 "Failed to import item" = "Nie można zaimportować elementu";
 
 /* No comment provided by engineer. */
-"Failed to load featured projects" = "Failed to load featured projects";
+"Failed to load featured projects" = "Nie udało się załadować wybranych projektów";
 
 /* No comment provided by engineer. */
-"Failed to load recent projects" = "Failed to load recent projects";
+"Failed to load recent projects" = "Nie udało się załadować ostatnich projektów";
 
 /* No comment provided by engineer. */
 "Failed to load sound" = "Nie można załadować dźwięku";
@@ -572,7 +572,7 @@
 "false" = "fałsz";
 
 /* No comment provided by engineer. */
-"Featured Projects" = "Featured Projects";
+"Featured Projects" = "Polecane projekty";
 
 /* No comment provided by engineer. */
 "Feb" = "lut";
@@ -593,7 +593,7 @@
 "floor" = "podłoga";
 
 /* No comment provided by engineer. */
-"Following features used in this project are not compatible with this version of Pocket Code:" = "Following features used in this project are not compatible with this version of Pocket Code:";
+"Following features used in this project are not compatible with this version of Pocket Code:" = "Następujące funkcje używane w tym projekcie nie są kompatybilne z tą wersją Pocket Code:";
 
 /* No comment provided by engineer. */
 "for" = "przez";
@@ -1004,7 +1004,7 @@
 "not available. Continue anyway?" = "niedostępne. Czy mimo tego kontynuować?";
 
 /* No comment provided by engineer. */
-"Not enough free memory to download this project. Please delete some of your projects" = "Not enough free memory to download this project. Please delete some of your projects";
+"Not enough free memory to download this project. Please delete some of your projects" = "Za mało wolnej pamięci, aby pobrać ten projekt. Proszę usunąć niektóre projekty";
 
 /* No comment provided by engineer. */
 "Not enough Memory" = "Za mało pamięci";
@@ -1118,13 +1118,13 @@
 "Please enter a text!" = "Proszę wprowadzić tekst!";
 
 /* No comment provided by engineer. */
-"Please log in to report this project as inappropriate" = "Please log in to report this project as inappropriate";
+"Please log in to report this project as inappropriate" = "Zaloguj się, aby zgłosić ten projekt jako nieodpowiedni";
 
 /* paint */
 "Please pick a tool" = "Proszę wybrać narzędzie";
 
 /* No comment provided by engineer. */
-"Please select a project to upload" = "Please select a project to upload";
+"Please select a project to upload" = "Proszę wybrać projekt do przesłania";
 
 /* bluetooth */
 "Please try resetting the device and try again." = "Zresetuj, proszę, urządzenie i spróbuj ponownie.";
@@ -1190,13 +1190,13 @@
 "Privacy Settings" = "Ustawienia prywatności";
 
 /* No comment provided by engineer. */
-"Problems occured while uploading your project" = "Problems occured while uploading your project";
+"Problems occured while uploading your project" = "Wystąpiły problemy podczas wysyłania Twojego projektu";
 
 /* No comment provided by engineer. */
 "Project" = "Projekt";
 
 /* No comment provided by engineer. */
-"Project lists:" = "Project lists:";
+"Project lists:" = "Listy projektu:";
 
 /* No comment provided by engineer. */
 "Project name" = "Nazwa programu";
@@ -1205,7 +1205,7 @@
 "Project Name is necessary!" = "Nazwa projektu jest niezbędna!";
 
 /* No comment provided by engineer. */
-"Project variables:" = "Project variables:";
+"Project variables:" = "Zmienne projektu:";
 
 /* No comment provided by engineer. */
 "Projects" = "Programy";
@@ -1499,7 +1499,7 @@
 "The description contains invalid characters, try again." = "Opis zawiera nieprawidłowe znaki, spróbuj ponownie.";
 
 /* No comment provided by engineer. */
-"The featured projects cannot be loaded" = "The featured projects cannot be loaded";
+"The featured projects cannot be loaded" = "Nie można załadować polecanych programów";
 
 /* No comment provided by engineer. */
 "The following item could not be imported from the Media Library:" = "Następujący element nie może być pobrany z Biblioteki:";
@@ -1511,13 +1511,13 @@
 "The name contains blocked characters. Please try again!" = "Nazwa zawiera blokowane znaki. Spróbuj ponownie!";
 
 /* No comment provided by engineer. */
-"The recent projects cannot be loaded" = "The recent projects cannot be loaded";
+"The recent projects cannot be loaded" = "Nie można załadować tych projektów";
 
 /* No comment provided by engineer. */
-"The requested project can not be found. Please choose a different one." = "The requested project can not be found. Please choose a different one.";
+"The requested project can not be found. Please choose a different one." = "Nie można znaleźć wskazanego projektu. Proszę wybrać inny.";
 
 /* No comment provided by engineer. */
-"The requested project can not be loaded. Please try again later." = "The requested project can not be loaded. Please try again later.";
+"The requested project can not be loaded. Please try again later." = "Nie można załadować wskazanego projektu. Proszę spróbować później.";
 
 /* No comment provided by engineer. */
 "The sound item cannot be loaded" = "Nie można załadować dźwięku";
@@ -1634,10 +1634,10 @@
 "Upload" = "Wyślij";
 
 /* No comment provided by engineer. */
-"Upload Project" = "Upload Project";
+"Upload Project" = "Wyślij program";
 
 /* No comment provided by engineer. */
-"Upload selected project" = "Upload selected project";
+"Upload selected project" = "Wyślij zaznaczony program";
 
 /* No comment provided by engineer. */
 "Upload successful" = "Wysyłanie zakończone powodzeniem";
