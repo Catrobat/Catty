@@ -112,7 +112,8 @@ let license3rdPartyDict: [String: License] = [
     "MXPagerViewController": .MIT,
     "MXParallaxHeader": .MIT,
     "MXScrollView": .MIT,
-    "MXScrollViewController": .MIT
+    "MXScrollViewController": .MIT,
+    "AudioKit": .MIT
 ]
 
 let licenseCheckDirs: [String: License] = [
