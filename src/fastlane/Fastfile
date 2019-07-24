@@ -146,10 +146,13 @@ platform :ios do
 
   desc "Upload Translations to Crowdin"
   lane :crowdin_upload do
-    sh ("curl \
-          -F \"files[catty/Localizable.strings]=@../Catty/Resources/Localization/en.lproj/Localizable.strings\" \
-          -F \"export_patterns[catty/Localizable.strings]=/catty/%osx_code%/%original_file_name%\" \
-          https://api.crowdin.com/api/project/catrobat/update-file?key="+ENV["CROWDIN_KEY"])
+    sh(
+      command: "curl \
+        -F \"files[catty/Localizable.strings]=@../Catty/Resources/Localization/en.lproj/Localizable.strings\" \
+        -F \"export_patterns[catty/Localizable.strings]=/catty/%osx_code%/%original_file_name%\" \
+        https://api.crowdin.com/api/project/catrobat/update-file?key="+ENV["CROWDIN_KEY"], 
+      log: false
+    )
   end
 
   desc "Download all Translations from Crowdin"

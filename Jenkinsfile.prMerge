@@ -1,0 +1,28 @@
+#!/usr/bin/env groovy
+
+pipeline {
+  agent {
+    label 'MAC'
+  }
+
+  options {
+    timeout(time: 2, unit: 'HOURS')
+    timestamps()
+    buildDiscarder(logRotator(numToKeepStr: '30', artifactNumToKeepStr: '30'))
+  }
+
+  stages {
+    stage('Crowdin') {
+      steps {
+        sh 'cd src && fastlane crowdin_upload'
+      }
+    }
+  }
+
+  post {
+    always {
+      // clean workspace
+      deleteDir()
+    }
+  }
+}
