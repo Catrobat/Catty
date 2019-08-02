@@ -55,11 +55,6 @@ platform :ios do
       display_name: $build_name
     )
 
-    cert
-    sigh(
-      adhoc: true,
-      app_identifier: "org.catrobat.pocketcode.adhoc"
-    )
     create_build scheme:$catty_schemes["release"], method:"ad-hoc"
 
     # Browserstack
