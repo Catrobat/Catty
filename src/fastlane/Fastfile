@@ -111,9 +111,11 @@ platform :ios do
       end
     end
       
-    result = multi_scan(devices: ["iPhone 7 (12.0)"],
+    result = multi_scan(
+      devices: ["iPhone 7 (12.0)"],
       project: File.absolute_path('../Catty.xcodeproj'),
       try_count: 3,
+      parallel_testrun_count: 4,
       fail_build: false,
       scheme: $catty_schemes["debug"],
       testrun_completed_block: test_run_block

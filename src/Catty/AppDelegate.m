@@ -62,7 +62,9 @@ void uncaughtExceptionHandler(NSException *exception)
     [defaults synchronize];
 
     if ([[[NSProcessInfo processInfo] arguments] containsObject: @"UITests"]) {
-        UIApplication.sharedApplication.keyWindow.layer.speed = 10.0;
+        UIApplication.sharedApplication.keyWindow.layer.speed = 2;
+        [NSUserDefaults.standardUserDefaults removePersistentDomainForName:NSBundle.mainBundle.bundleIdentifier];
+        [UIView setAnimationsEnabled:NO];
     }
 
     return YES;

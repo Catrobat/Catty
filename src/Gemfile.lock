@@ -9,6 +9,7 @@ GEM
     claide (1.0.2)
     colored (1.2)
     colored2 (3.1.2)
+    colorize (0.8.1)
     commander-fastlane (4.4.6)
       highline (~> 1.7.2)
     declarative (0.0.10)
@@ -16,9 +17,9 @@ GEM
     digest-crc (0.4.1)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
-    dotenv (2.7.4)
+    dotenv (2.7.5)
     emoji_regex (1.0.1)
-    excon (0.64.0)
+    excon (0.65.0)
     faraday (0.15.4)
       multipart-post (>= 1.2, < 3)
     faraday-cookie_jar (0.0.6)
@@ -27,7 +28,7 @@ GEM
     faraday_middleware (0.13.1)
       faraday (>= 0.7.4, < 1.0)
     fastimage (2.1.5)
-    fastlane (2.127.2)
+    fastlane (2.128.1)
       CFPropertyList (>= 2.3, < 4.0.0)
       addressable (>= 2.3, < 3.0.0)
       babosa (>= 1.0.2, < 2.0.0)
@@ -66,11 +67,12 @@ GEM
       xcpretty-travis-formatter (>= 0.0.3)
     fastlane-plugin-browserstack (0.3.1)
       rest-client (~> 2.0, >= 2.0.2)
-    fastlane-plugin-test_center (3.7.0)
+    fastlane-plugin-test_center (3.8.0.parallelizing.beta.9)
+      colorize
       json
       plist
       xcodeproj
-      xctest_list (>= 1.1.7)
+      xctest_list (>= 1.1.8)
     fastlane-plugin-trainer (0.4.1)
       trainer (>= 0.7.0)
     gh_inspector (1.1.3)
@@ -165,7 +167,7 @@ GEM
       rouge (~> 2.0.7)
     xcpretty-travis-formatter (1.0.0)
       xcpretty (~> 0.2, >= 0.0.7)
-    xctest_list (1.1.7)
+    xctest_list (1.1.8)
 
 PLATFORMS
   ruby
@@ -173,7 +175,7 @@ PLATFORMS
 DEPENDENCIES
   fastlane
   fastlane-plugin-browserstack
-  fastlane-plugin-test_center
+  fastlane-plugin-test_center (= 3.8.0.parallelizing.beta.9)
   fastlane-plugin-trainer
 
 BUNDLED WITH

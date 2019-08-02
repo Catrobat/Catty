@@ -61,11 +61,6 @@ Update lane for Crowdin translations
 fastlane ios release
 ```
 Release Pocket Code to Testflight
-### ios playground
-```
-fastlane ios playground
-```
-
 
 ----
 
