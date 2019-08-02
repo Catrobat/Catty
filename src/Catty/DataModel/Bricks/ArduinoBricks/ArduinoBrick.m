@@ -21,6 +21,7 @@
  */
 
 #import "ArduinoBrick.h"
+#import "KeychainUserDefaultsDefines.h"
 
 @implementation ArduinoBrick
 
@@ -28,9 +29,15 @@
 {
     return YES;
 }
+
 - (NSInteger)getRequiredResources
 {
     return kBluetoothArduino;
+}
+
+- (BOOL)isSelectableForObject
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:kUseArduinoBricks];
 }
 
 @end

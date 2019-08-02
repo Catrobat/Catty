@@ -75,15 +75,9 @@
     return NO;
 }
 
-- (NSString*)brickTitle
+- (kBrickCategoryType)category
 {
-    return [kLocalizedShowVariable
-        stringByAppendingString:[@"\n%@\n"
-        stringByAppendingString:[kLocalizedAt
-        stringByAppendingString:[kLocalizedXLabel
-        stringByAppendingString:[@" %@ "
-        stringByAppendingString:[kLocalizedYLabel
-        stringByAppendingString:@" %@"]]]]]];
+    return kVariableBrick;
 }
 
 #pragma mark - Description

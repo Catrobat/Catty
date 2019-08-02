@@ -22,7 +22,7 @@
 
 #import "BrickCell.h"
 
-@interface ChangeSizeByNBrickCell : BrickCell
+@interface ChangeSizeByNBrickCell : BrickCell<BrickCellProtocol>
 
 @property (nonatomic, weak) UITextField *sizeTextField;
 

@@ -38,7 +38,7 @@ class ScriptCollectionVCTests: XCTestCase {
 
         XCTAssertEqual(0, app.collectionViews.cells.count)
 
-        addBrick(labels: [kLocalizedIfBegin, kLocalizedIfBeginSecondPart], section: kUIControlTitle, in: app)
+        addBrick(labels: [kLocalizedIfBegin, kLocalizedIfBeginSecondPart], section: kLocalizedCategoryControl, in: app)
 
         XCTAssertEqual(3, app.collectionViews.cells.count)
         XCTAssert(app.collectionViews.cells.element(boundBy: 1).staticTextBeginsWith(kLocalizedIfBeginSecondPart, ignoreLeadingWhiteSpace: true).exists)
@@ -65,7 +65,7 @@ class ScriptCollectionVCTests: XCTestCase {
         XCUIApplication().tables.staticTexts[kLocalizedBackground].tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
 
-        addBrick(label: kLocalizedBroadcast, section: kUIControlTitle, in: app)
+        addBrick(label: kLocalizedBroadcast, section: kLocalizedCategoryControl, in: app)
 
         app.collectionViews.cells.otherElements.containing(.staticText, identifier: kLocalizedBroadcast).children(matching: .other).element.tap()
 
@@ -91,7 +91,7 @@ class ScriptCollectionVCTests: XCTestCase {
         XCUIApplication().tables.staticTexts[kLocalizedBackground].tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
 
-        addBrick(label: kLocalizedWait, section: kUIControlTitle, in: app)
+        addBrick(label: kLocalizedWait, section: kLocalizedCategoryControl, in: app)
 
         app.collectionViews.cells.otherElements.identifierTextBeginsWith(kLocalizedWait).children(matching: .button).element.tap()
         XCTAssertTrue(waitForElementToAppear(app.buttons[kLocalizedCancel]).exists)
@@ -108,7 +108,7 @@ class ScriptCollectionVCTests: XCTestCase {
         XCUIApplication().tables.staticTexts[kLocalizedBackground].tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
 
-        addBrick(label: kLocalizedSetVariable, section: kUIVariableTitle, in: app)
+        addBrick(label: kLocalizedSetVariable, section: kLocalizedCategoryVariable, in: app)
 
         app.collectionViews.cells.otherElements.containing(.staticText, identifier: kLocalizedSetVariable).children(matching: .button).element.tap()
 

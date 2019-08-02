@@ -27,6 +27,11 @@
 
 @implementation IfLogicElseBrick
 
+- (kBrickCategoryType)category
+{
+    return kControlBrick;
+}
+
 - (BOOL)isSelectableForObject
 {
     return NO;
@@ -40,11 +45,6 @@
 - (BOOL)isIfLogicBrick
 {
     return YES;
-}
-
-- (NSString*)brickTitle
-{
-    return kLocalizedElse;
 }
 
 - (void)performFromScript:(Script*)script
@@ -61,10 +61,17 @@
 #pragma mark - Compare
 - (BOOL)isEqualToBrick:(Brick*)brick
 {
-    if(![Util isEqual:self.ifBeginBrick.brickTitle toObject:((IfLogicElseBrick*)brick).ifBeginBrick.brickTitle])
+    if ([brick class] != [self class]) {
         return NO;
-    if(![Util isEqual:self.ifEndBrick.brickTitle toObject:((IfLogicElseBrick*)brick).ifEndBrick.brickTitle])
-        return NO;    
+    }
+         
+    IfLogicElseBrick *logicBrick = (IfLogicElseBrick*)brick;
+    if ([logicBrick.ifBeginBrick class] != [self.ifBeginBrick class]) {
+        return NO;
+    }
+    if ([logicBrick.ifEndBrick class] != [self.ifEndBrick class]) {
+        return NO;
+    }
     return YES;
 }
 

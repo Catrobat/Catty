@@ -66,12 +66,9 @@
     }
 }
 
-- (NSString*)brickTitle
+- (kBrickCategoryType)category
 {
-    return [[[kLocalizedUserListAdd
-            stringByAppendingString:@" %@ "]
-            stringByAppendingString:kLocalizedUserListTo]
-            stringByAppendingString:@"\n%@"];
+    return kVariableBrick;
 }
 
 - (BOOL)allowsStringFormula

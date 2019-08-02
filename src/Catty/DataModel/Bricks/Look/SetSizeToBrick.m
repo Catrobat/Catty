@@ -25,6 +25,11 @@
 
 @implementation SetSizeToBrick
 
+- (kBrickCategoryType)category
+{
+    return kLookBrick;
+}
+
 - (Formula*)formulaForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
     return self.size;
@@ -48,11 +53,6 @@
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     self.size = [[Formula alloc] initWithInteger:60];
-}
-
-- (NSString*)brickTitle
-{
-    return [kLocalizedSetSizeTo stringByAppendingString:@" %@\%"];
 }
 
 #pragma mark - Description

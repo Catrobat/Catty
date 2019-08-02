@@ -24,11 +24,11 @@
 #import "PhiroHelper.h"
 
 @implementation PhiroRGBLightBrick
-- (NSString*)brickTitle
-{
-    return [[[[[[[kLocalizedPhiroRGBLight stringByAppendingString:@"\n%@\n"] stringByAppendingString:kLocalizedPhiroRGBLightRed] stringByAppendingString:@" %@ "] stringByAppendingString:kLocalizedPhiroRGBLightGreen] stringByAppendingString:@" %@ "] stringByAppendingString:kLocalizedPhiroRGBLightBlue] stringByAppendingString:@" %@"];
-}
 
+- (kBrickCategoryType)category
+{
+    return kPhiroBrick;
+}
 
 #pragma mark - Description
 - (NSString*)description

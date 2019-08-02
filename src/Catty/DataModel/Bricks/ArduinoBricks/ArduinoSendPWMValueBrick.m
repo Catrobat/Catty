@@ -24,9 +24,10 @@
 #import "Script.h"
 
 @implementation ArduinoSendPWMValueBrick
-- (NSString*)brickTitle
+
+- (kBrickCategoryType)category
 {
-    return [[[kLocalizedArduinoSendPWMValue stringByAppendingString:@" %@\n"] stringByAppendingString:kLocalizedArduinoSetPinValueTo] stringByAppendingString:@" %@"];
+    return kArduinoBrick;
 }
 
 - (Formula*)formulaForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber

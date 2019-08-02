@@ -26,11 +26,10 @@
 
 @implementation PhiroMotorMoveForwardBrick
 
-- (NSString*)brickTitle
+- (kBrickCategoryType)category
 {
-    return [[[kLocalizedPhiroMoveForward stringByAppendingString:@"\n%@\n"] stringByAppendingString:kLocalizedPhiroSpeed] stringByAppendingString:@" %@\%"];
+    return kPhiroBrick;
 }
-
 
 #pragma mark - Description
 - (NSString*)description

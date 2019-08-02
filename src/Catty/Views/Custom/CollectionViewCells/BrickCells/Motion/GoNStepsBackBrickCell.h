@@ -22,7 +22,7 @@
 
 #import "BrickCell.h"
 
-@interface GoNStepsBackBrickCell : BrickCell
+@interface GoNStepsBackBrickCell : BrickCell<BrickCellProtocol>
 
 @property (nonatomic, weak) UITextField *stepsTextField;
 

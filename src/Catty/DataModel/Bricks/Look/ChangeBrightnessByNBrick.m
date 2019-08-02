@@ -27,6 +27,11 @@
 
 @implementation ChangeBrightnessByNBrick
 
+- (kBrickCategoryType)category
+{
+    return kLookBrick;
+}
+
 - (Formula*)formulaForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
     return self.changeBrightness;
@@ -50,11 +55,6 @@
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     self.changeBrightness = [[Formula alloc] initWithInteger:25];
-}
-
-- (NSString*)brickTitle
-{
-    return [kLocalizedChangeBrightness stringByAppendingString:[@"\n" stringByAppendingString:[kLocalizedBy stringByAppendingString:@" %@\%"]]];
 }
 
 #pragma mark - Description

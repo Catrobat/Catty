@@ -22,6 +22,6 @@
 
 #import "BrickCell.h"
 
-@interface ClearGraphicEffectBrickCell : BrickCell
+@interface ClearGraphicEffectBrickCell : BrickCell<BrickCellProtocol>
 
 @end

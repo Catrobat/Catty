@@ -29,11 +29,6 @@
 
 @implementation BroadcastBrickCell
 
-- (void)drawRect:(CGRect)rect
-{
-    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.controlBrickOrange strokeColor:UIColor.controlBrickStroke height:mediumBrick width:[Util screenWidth ]];
-}
-
 + (CGFloat)cellHeight
 {
     return kBrickHeight2h;
@@ -43,6 +38,16 @@
 {
     self.textLabel = inlineViewSubViews[0];
     self.messageComboBoxView = inlineViewSubViews[1];
+}
+
+- (NSString*)brickTitleForBackground:(BOOL)isBackground andInsertionScreen:(BOOL)isInsertion
+{
+    return [kLocalizedBroadcast stringByAppendingString:@"\n%@"];
+}
+
+- (NSArray<NSString*>*)parameters
+{
+    return [[NSArray alloc] initWithObjects:@"{MESSAGE}", nil];
 }
 
 @end

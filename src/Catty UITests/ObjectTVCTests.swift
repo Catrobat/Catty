@@ -147,7 +147,7 @@ class ObjectTVCTests: XCTestCase {
         waitForElementToAppear(app.tables.staticTexts[objectName]).tap()
         waitForElementToAppear(app.staticTexts[kLocalizedScripts]).tap()
 
-        addBrick(labels: [kLocalizedIfBegin, kLocalizedIfBeginSecondPart], section: kUIControlTitle, in: app)
+        addBrick(labels: [kLocalizedIfBegin, kLocalizedIfBeginSecondPart], section: kLocalizedCategoryControl, in: app)
 
         XCTAssertEqual(3, app.collectionViews.cells.count)
         XCTAssert(app.collectionViews.cells.element(boundBy: 1).staticTextBeginsWith(kLocalizedIfBeginSecondPart, ignoreLeadingWhiteSpace: true).exists)

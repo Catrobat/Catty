@@ -25,7 +25,7 @@
 
 @class Brick;
 
-@protocol BrickPhiroMotorProtocol <NSObject>
+@protocol BrickPhiroMotorProtocol <BrickProtocol>
 
 - (NSString*)motorForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber;
 - (void)setMotor:(NSString*)motor forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber;

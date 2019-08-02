@@ -23,6 +23,6 @@
 #import "Brick.h"
 #import "LoopBeginBrick.h"
 
-@interface ForeverBrick: LoopBeginBrick
+@interface ForeverBrick: LoopBeginBrick<BrickProtocol>
 
 @end

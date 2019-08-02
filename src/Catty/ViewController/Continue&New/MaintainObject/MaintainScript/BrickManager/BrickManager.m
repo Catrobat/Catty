@@ -33,145 +33,42 @@
 #import "IfLogicEndBrick.h"
 #import "CBMutableCopyContext.h"
 #import "ForeverBrick.h"
+#import "BrickCellProtocol.h"
+#import "Pocket_Code-Swift.h"
 
-@implementation BrickManager {
-    NSDictionary *_brickHeightDictionary;
-}
+@interface BrickManager()
+@property(nonatomic, strong) NSArray<id<BrickProtocol>> *bricks;
+@end
+
+@implementation BrickManager
 
 #pragma mark - construction methods
 + (instancetype)sharedBrickManager
 {
     static BrickManager *_sharedCattyBrickManager = nil;
     static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{ _sharedCattyBrickManager = [BrickManager new]; });
+    dispatch_once(&onceToken, ^{
+        _sharedCattyBrickManager = [BrickManager new];
+        _sharedCattyBrickManager.bricks = [[CatrobatSetup class] registeredBricks];
+        
+    });
     return _sharedCattyBrickManager;
 }
 
-- (id)init
-{
-    self = [super init];
-    if (self) {
-        _brickHeightDictionary = kBrickHeightMap;
-    }
-    return self;
-}
-
 #pragma mark - helpers
-- (NSDictionary*)classNameBrickTypeMap
-{
-    // save map of kClassNameBrickTypeMap statically
-    // for performance reasons
-    static NSDictionary *classNameBrickTypeMap = nil;
-    if (classNameBrickTypeMap == nil) {
-        classNameBrickTypeMap = kClassNameBrickTypeMap;
-    }
-    return classNameBrickTypeMap;
-}
-
-- (NSDictionary*)brickTypeClassNameMap
-{
-    // get inverse map of kClassNameBrickTypeMap
-    // and save this map statically for performance reasons
-    static NSDictionary *brickTypeClassNameMap = nil;
-    if (brickTypeClassNameMap == nil) {
-        NSDictionary *classNameBrickTypeMap = [self classNameBrickTypeMap];
-        NSMutableDictionary *brickTypeClassNameMutableMap = [NSMutableDictionary
-                                                             dictionaryWithCapacity:[classNameBrickTypeMap count]];
-        for (NSString *className in classNameBrickTypeMap) {
-            [brickTypeClassNameMutableMap setObject:className
-                                             forKey:classNameBrickTypeMap[className]];
-        }
-        brickTypeClassNameMap = [brickTypeClassNameMutableMap copy]; // make NSDictionary out of NSMutableDictionary
-    }
-    return brickTypeClassNameMap;
-}
-
-- (kBrickType)brickTypeForClassName:(NSString*)className
-{
-    // find right brick type by given class name (use regular map)
-    NSDictionary *classNameBrickTypeMap = [self classNameBrickTypeMap];
-    NSNumber *brickTypeAsNumber = classNameBrickTypeMap[className];
-    if (! brickTypeAsNumber) {
-        return kInvalidBrick;
-    }
-    return (kBrickType)[brickTypeAsNumber unsignedIntegerValue];
-}
-
-- (NSString*)classNameForBrickType:(kBrickType)brickType
-{
-    // find right class name by given brick type (use inverse map)
-    NSDictionary *brickTypeClassNameMap = [self brickTypeClassNameMap];
-    return brickTypeClassNameMap[@(brickType)];
-}
-
-- (kBrickCategoryType)brickCategoryTypeForBrickType:(kBrickType)brickType
-{
-    return (kBrickCategoryType)(((NSUInteger)brickType) / 100)+1;
-}
-
-- (NSArray*)brickClassNamesOrderedByBrickType
-{
-    // save array statically for performance reasons
-    static NSArray *orderedBrickClassNames = nil;
-    if (orderedBrickClassNames == nil) {
-        // get all brick types in NSMutableArray and sort them
-        NSDictionary *brickTypeClassNameMap = [self brickTypeClassNameMap];
-        NSArray *allBrickTypes = [brickTypeClassNameMap allKeys];
-        NSArray *orderedBrickTypes = [allBrickTypes sortedArrayUsingSelector:@selector(compare:)];
-        // collect class names
-        NSMutableArray *orderedBrickClassNamesMutable = [NSMutableArray arrayWithCapacity:orderedBrickTypes.count];
-        for (NSNumber *brickType in orderedBrickTypes) {
-            [orderedBrickClassNamesMutable addObject:brickTypeClassNameMap[brickType]];
-        }
-        orderedBrickClassNames = orderedBrickClassNamesMutable;
-    }
-    return orderedBrickClassNames;
-}
-
 - (NSArray*)selectableBricks
 {
-    // save array statically for performance reasons
-    static NSArray *selectableBricks = nil;
-    if (selectableBricks == nil) {
-        NSArray *orderedBrickClassNames = [self brickClassNamesOrderedByBrickType];
-        NSMutableArray *selectableBricksMutableArray = [NSMutableArray arrayWithCapacity:[orderedBrickClassNames count]];
-        for (NSString *className in orderedBrickClassNames) {
-            // only add selectable brick/script objects to the array
-            id brickOrScript = [[NSClassFromString(className) alloc] init];
-            if ([brickOrScript conformsToProtocol:@protocol(BrickProtocol)]) {
-                id<BrickProtocol> brick = brickOrScript;
-                if (brick.isSelectableForObject) {
-                    [selectableBricksMutableArray addObject:brick];
-                }
-            }
+    NSMutableArray *selectableBricksMutableArray = [NSMutableArray arrayWithCapacity:[self.bricks count]];
+        
+    for (id brick in self.bricks) {
+        if ([brick isKindOfClass:[Brick class]] && ((Brick*)brick).isSelectableForObject) {
+            [selectableBricksMutableArray addObject:brick];
         }
-        selectableBricks = selectableBricksMutableArray;
+        if ([brick isKindOfClass:[Script class]]) {
+            [selectableBricksMutableArray addObject:brick];
+        }
     }
-    return selectableBricks;
-}
-
-- (NSArray*)selectableScriptBricks
-{
-    static NSArray *scripts = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        NSArray *allBricks = [self brickClassNamesOrderedByBrickType];
-        NSMutableArray *mutableScriptBricks = [[NSMutableArray alloc] initWithCapacity:allBricks.count];
-        [allBricks enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            CBAssert([obj isKindOfClass:[NSString class]]);
-            Class class = NSClassFromString(obj);
-            id brickOrScript = [class new];
-            if ([brickOrScript isKindOfClass:[Script class]] && [brickOrScript conformsToProtocol:@protocol(ScriptProtocol)]) {
-                if ([brickOrScript isKindOfClass:[WhenScript class]]) {
-                    ((WhenScript*)brickOrScript).action = kWhenScriptDefaultAction;
-                }
-                id<ScriptProtocol> scriptBrick = brickOrScript;
-                [mutableScriptBricks addObject:scriptBrick];
-            }
-        }];
-        scripts = mutableScriptBricks;
-    });
-    return scripts;
+    return selectableBricksMutableArray;
 }
 
 - (NSArray*)selectableBricksForCategoryType:(kBrickCategoryType)categoryType {
@@ -182,16 +79,14 @@
 {
     NSArray *selectableBricks = [self selectableBricks];
     NSMutableArray *selectableBricksForCategoryMutable = [NSMutableArray arrayWithCapacity:[selectableBricks count]];
-    if (categoryType == kControlBrick) {
-        [selectableBricksForCategoryMutable addObjectsFromArray:[[BrickManager sharedBrickManager] selectableScriptBricks]];
-    }
+    
     if (categoryType == kFavouriteBricks) {
-        NSArray *selectableBricksOrScripts = [selectableBricks arrayByAddingObjectsFromArray:[[BrickManager sharedBrickManager] selectableScriptBricks]];
         NSArray *favouriteBricks = [Util getSubsetOfTheMostFavoriteChosenBricks:kMaxFavouriteBrickSize];
-        for(NSString* oneFavouriteBrickTitle in favouriteBricks) {
-            for(id<BrickProtocol> scriptOrBrick in selectableBricksOrScripts) {
-                NSString *wrappedBrickType = [NSNumber numberWithUnsignedInteger:(NSUInteger)[scriptOrBrick brickType]].stringValue;
-                if([wrappedBrickType isEqualToString:oneFavouriteBrickTitle] && !([scriptOrBrick isDisabledForBackground] && inBackground)) {
+        
+        for(NSString* favouriteBrick in favouriteBricks) {
+            for(id<BrickProtocol> scriptOrBrick in selectableBricks) {
+                NSString *wrappedBrickType = NSStringFromClass([scriptOrBrick class]);
+                if([wrappedBrickType isEqualToString:favouriteBrick] && !([scriptOrBrick isDisabledForBackground] && inBackground)) {
                     [selectableBricksForCategoryMutable addObject:scriptOrBrick];
                 }
             }
@@ -201,7 +96,7 @@
     for (id<BrickProtocol> brick in selectableBricks) {
         if (inBackground && brick.isDisabledForBackground) {
             continue;
-        } else if (brick.brickCategoryType == categoryType) {
+        } else if (brick.category == categoryType) {
             [selectableBricksForCategoryMutable addObject:brick];
         }
     }
@@ -209,30 +104,25 @@
     return (NSArray*)selectableBricksForCategoryMutable;
 }
 
-- (kBrickType)brickTypeForCategoryType:(kBrickCategoryType)categoryType andBrickIndex:(NSUInteger)index
-{
-    return (kBrickType)((categoryType-1) * 100 + index);
-}
-
-- (NSUInteger)brickIndexForBrickType:(kBrickType)brickType
-{
-    return (brickType % 100);
-}
-
-- (CGSize)sizeForBrick:(NSString*)brickName
-{
-    CGSize size = CGSizeZero;
-    NSNumber *height = [_brickHeightDictionary objectForKey:brickName];
-    size = CGSizeMake(UIScreen.mainScreen.bounds.size.width, [height floatValue]);
-    return size;
-}
-
-- (BOOL)isScript:(kBrickType)type
-{
-    if (type == kProjectStartedBrick || type == kTappedBrick || type == kReceiveBrick) {
-        return YES;
+- (BrickCategory*)categoryForType:(kBrickCategoryType)categoryType {
+    NSArray<BrickCategory*> *categories = [[CatrobatSetup class] registeredBrickCategories];
+    
+    for (BrickCategory *category in categories) {
+        if (category.type == categoryType) {
+            return category;
+        }
     }
-    return NO;
+    return nil;
+}
+
+- (CGSize)sizeForBrick:(id<BrickProtocol>)brick
+{
+    Class<BrickCellProtocol> brickCell = [brick brickCell];
+    if (brickCell) {
+        return CGSizeMake(UIScreen.mainScreen.bounds.size.width, [brickCell cellHeight]);
+    }
+    
+    return CGSizeZero;
 }
 
 - (NSInteger)checkEndLoopBrickTypeForDrawing:(BrickCell*)cell
@@ -446,7 +336,7 @@
 
 #pragma mark ScriptCollectionViewController Copy
 
-- (NSArray*)scriptCollectionCopyBrickWithIndexPath:(NSIndexPath*)indexPath andBrick:(Brick*)brick
+- (NSArray*)scriptCollectionCopyBrickWithIndexPath:(NSIndexPath*)indexPath andBrick:(Brick<BrickProtocol>*)brick
 {
     if ([brick isLoopBrick]) {
         // loop brick

@@ -21,7 +21,6 @@
  */
 
 #import "SetTransparencyBrickCell.h"
-#import "Pocket_Code-Swift.h"
 
 @interface SetTransparencyBrickCell ()
 @property (nonatomic, strong) UILabel *firstRowTextLabel;
@@ -30,11 +29,6 @@
 @end
 
 @implementation SetTransparencyBrickCell
-
-- (void)drawRect:(CGRect)rect
-{
-    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.lookBrickGreen strokeColor:UIColor.lookBrickStroke height:mediumBrick width:[Util screenWidth]];
-}
 
 + (CGFloat)cellHeight
 {
@@ -47,6 +41,16 @@
     self.secondRowLeftTextLabel = inlineViewSubViews[1];
     self.transparencyTextField = inlineViewSubViews[2];
     self.secondRowRightTextLabel = inlineViewSubViews[3];
+}
+
+- (NSString*)brickTitleForBackground:(BOOL)isBackground andInsertionScreen:(BOOL)isInsertion
+{
+    return [kLocalizedSetTransparency stringByAppendingString:[@"\n" stringByAppendingString:[kLocalizedTo stringByAppendingString:@" %@\%"]]];
+}
+
+- (NSArray<NSString*>*)parameters
+{
+    return [[NSArray alloc] initWithObjects:@"{FLOAT;range=(-inf,inf)}", nil];
 }
 
 @end

@@ -24,7 +24,7 @@
 
 @class Brick;
 
-@protocol BrickStaticChoiceProtocol <NSObject>
+@protocol BrickStaticChoiceProtocol <BrickProtocol>
 - (NSString*)choiceForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber;
 - (void)setChoice:(NSString*)message forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber;
 - (NSArray<NSString *>*)possibleChoicesForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber;

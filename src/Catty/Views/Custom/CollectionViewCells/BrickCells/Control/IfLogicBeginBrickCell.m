@@ -21,7 +21,6 @@
  */
 
 #import "IfLogicBeginBrickCell.h"
-#import "Pocket_Code-Swift.h"
 
 @interface IfLogicBeginBrickCell ()
 @property (nonatomic, strong) UILabel *leftTextLabel;
@@ -30,9 +29,9 @@
 
 @implementation IfLogicBeginBrickCell
 
-- (void)drawRect:(CGRect)rect
++ (CGFloat)cellHeight
 {
-    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.controlBrickOrange strokeColor:UIColor.controlBrickStroke height:smallBrick width:[Util screenWidth]];
+    return kBrickHeight1h;
 }
 
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews
@@ -40,6 +39,20 @@
     self.leftTextLabel = inlineViewSubViews[0];
     self.expressionTextField = inlineViewSubViews[1];
     self.rightTextLabel = inlineViewSubViews[2];
+}
+
+- (NSString*)brickTitleForBackground:(BOOL)isBackground andInsertionScreen:(BOOL)isInsertion
+{
+    if (isInsertion) {
+        return [kLocalizedIfBegin stringByAppendingString:[[@" %@ " stringByAppendingString:kLocalizedIfBeginSecondPart] stringByAppendingString:[[@" ... " stringByAppendingString:kLocalizedElse] stringByAppendingString:@" ..."]]];
+    } else {
+        return [kLocalizedIfBegin stringByAppendingString:[@" %@ " stringByAppendingString:kLocalizedIfBeginSecondPart]];
+    }
+}
+
+- (NSArray<NSString*>*)parameters
+{
+    return [[NSArray alloc] initWithObjects:@"{FLOAT;range=(-inf,inf)}", nil];
 }
 
 @end

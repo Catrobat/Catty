@@ -25,20 +25,13 @@
 #import "CBMutableCopying.h"
 
 @class SpriteObject;
+@protocol BrickProtocol;
 
-@protocol ScriptProtocol<NSObject, CBMutableCopying>
+@protocol ScriptProtocol
 
 @required
-@property (nonatomic, readonly) kBrickCategoryType brickCategoryType;
-@property (nonatomic, readonly) kBrickType brickType;
-@property (nonatomic, strong, readonly) NSString *brickTitle;
-@property (nonatomic, getter=isAnimated) BOOL animate;
-@property (nonatomic, getter=isAnimatedInsertBrick) BOOL animateInsertBrick;
-@property (nonatomic, getter=isAnimatedMoveBrick) BOOL animateMoveBrick;
 - (BOOL)isSelectableForObject;
-- (BOOL)isAnimateable;
 - (BOOL)isDisabledForBackground;
-- (NSString*)brickTitleForBrickinSelection:(BOOL)inSelection inBackground:(BOOL)inBackground;
-- (void)setDefaultValuesForObject:(SpriteObject*)spriteObject;
+- (BOOL)isAnimateable;
 
 @end

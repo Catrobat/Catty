@@ -20,21 +20,15 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "PhiroPlayToneBrickCell.h"
-#import "Pocket_Code-Swift.h"
+#import "PhiroMotorMoveForwardBrickCell.h"
 
-@interface PhiroPlayToneBrickCell ()
+@interface PhiroMotorMoveForwardBrickCell ()
 @property (nonatomic, strong) UILabel *firstRowTextLabel;
 @property (nonatomic, strong) UILabel *thirdRowTextLabel;
 @property (nonatomic, strong) UILabel *thirdRowTextLabel2;
 @end
 
-@implementation PhiroPlayToneBrickCell
-
-- (void)drawRect:(CGRect)rect
-{
-    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.phiroBrick strokeColor:UIColor.phiroBrickStroke height:largeBrick width:[Util screenWidth]];
-}
+@implementation PhiroMotorMoveForwardBrickCell
 
 + (CGFloat)cellHeight
 {
@@ -48,6 +42,16 @@
     self.thirdRowTextLabel = inlineViewSubViews[2];
     self.valueTextField = inlineViewSubViews[3];
     self.thirdRowTextLabel2 = inlineViewSubViews[4];
+}
+
+- (NSString*)brickTitleForBackground:(BOOL)isBackground andInsertionScreen:(BOOL)isInsertion
+{
+    return [[[kLocalizedPhiroMoveForward stringByAppendingString:@"\n%@\n"] stringByAppendingString:kLocalizedPhiroSpeed] stringByAppendingString:@" %@\%"];
+}
+
+- (NSArray<NSString*>*)parameters
+{
+    return [[NSArray alloc] initWithObjects:@"{MOTOR}",@"{FLOAT;range=(-inf,inf)}", nil];
 }
 
 @end

@@ -22,6 +22,6 @@
 
 #import "Script.h"
 
-@interface StartScript : Script
+@interface StartScript : Script<BrickProtocol>
 
 @end

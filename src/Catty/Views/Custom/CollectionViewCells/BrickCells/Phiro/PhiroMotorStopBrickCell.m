@@ -20,34 +20,33 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "PhiroMotorMoveBackwardBrickCell.h"
-#import "Pocket_Code-Swift.h"
+#import "PhiroMotorStopBrickCell.h"
 
-@interface PhiroMotorMoveBackwardBrickCell ()
-@property (nonatomic, strong) UILabel *firstRowTextLabel;
-@property (nonatomic, strong) UILabel *thirdRowTextLabel;
-@property (nonatomic, strong) UILabel *thirdRowTextLabel2;
+@interface PhiroMotorStopBrickCell ()
+@property (nonatomic, strong) UILabel *textLabel;
 @end
 
-@implementation PhiroMotorMoveBackwardBrickCell
-
-- (void)drawRect:(CGRect)rect
-{
-    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.phiroBrick strokeColor:UIColor.phiroBrickStroke height:largeBrick width:[Util screenWidth]];
-}
+@implementation PhiroMotorStopBrickCell
 
 + (CGFloat)cellHeight
 {
-    return kBrickHeight3h;
+    return kBrickHeight2h;
 }
 
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews
 {
-    self.firstRowTextLabel = inlineViewSubViews[0];
-    self.variableComboBoxView = inlineViewSubViews[1];
-    self.thirdRowTextLabel = inlineViewSubViews[2];
-    self.valueTextField = inlineViewSubViews[3];
-    self.thirdRowTextLabel2 = inlineViewSubViews[4];
+    self.textLabel = inlineViewSubViews[0];
+    self.lookComboBoxView = inlineViewSubViews[1];
+}
+
+- (NSString*)brickTitleForBackground:(BOOL)isBackground andInsertionScreen:(BOOL)isInsertion
+{
+    return [kLocalizedStopPhiroMotor stringByAppendingString:@"\n%@"];
+}
+
+- (NSArray<NSString*>*)parameters
+{
+    return [[NSArray alloc] initWithObjects:@"{MOTOR}", nil];
 }
 
 @end

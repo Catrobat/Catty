@@ -24,12 +24,11 @@
 #import "PhiroHelper.h"
 
 @implementation PhiroMotorStopBrick
-- (NSString*)brickTitle
+
+- (kBrickCategoryType)category
 {
-    return [kLocalizedStopPhiroMotor stringByAppendingString:@"\n%@"];
+    return kPhiroBrick;
 }
-
-
 
 #pragma mark - Description
 - (NSString*)description

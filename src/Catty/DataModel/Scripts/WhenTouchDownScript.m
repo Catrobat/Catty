@@ -24,9 +24,9 @@
 
 @implementation WhenTouchDownScript
 
-- (NSString*)brickTitle
+- (kBrickCategoryType)category
 {
-    return kLocalizedTouchDown;
+    return kControlBrick;
 }
 
 @end

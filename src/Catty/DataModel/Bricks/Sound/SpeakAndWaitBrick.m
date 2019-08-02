@@ -25,17 +25,9 @@
 
 @implementation SpeakAndWaitBrick
 
-- (id)init
+- (kBrickCategoryType)category
 {
-    self = [super init];
-    if(self) {
-    }
-    return self;
-}
-
-- (NSString*)brickTitle
-{
-    return [[kLocalizedSpeak stringByAppendingString:@" %@ "] stringByAppendingString:kLocalizedAndWait];
+    return kSoundBrick;
 }
 
 - (BOOL)allowsStringFormula

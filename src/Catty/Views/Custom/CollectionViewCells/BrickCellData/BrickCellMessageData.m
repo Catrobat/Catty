@@ -26,6 +26,7 @@
 #import "Script.h"
 #import "Brick.h"
 #import "BroadcastScript.h"
+#import "Util.h"
 
 @implementation BrickCellMessageData
 

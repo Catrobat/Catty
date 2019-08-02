@@ -22,7 +22,7 @@
 
 #import "BrickCell.h"
 
-@interface RepeatBrickCell : BrickCell
+@interface RepeatBrickCell : BrickCell<BrickCellProtocol>
 
 @property (nonatomic, weak) UITextField *numberOfLoopsTextField;
 

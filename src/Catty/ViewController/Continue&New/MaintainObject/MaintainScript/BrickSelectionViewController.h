@@ -22,9 +22,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class BrickCategory;
 
 @interface BrickSelectionViewController : UIPageViewController
 
-@property(nonatomic, strong) NSMutableArray<NSNumber*> *pageIndexArray;
+@property (nonatomic, strong) NSArray<BrickCategory*> *categories;
 
 @end

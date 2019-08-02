@@ -21,7 +21,7 @@
  */
 
 #import "MoveNStepsBrickCell.h"
-#import "Pocket_Code-Swift.h"
+#import "MoveNStepsBrick.h"
 
 @interface MoveNStepsBrickCell ()
 @property (nonatomic, strong) UILabel *leftTextLabel;
@@ -30,9 +30,9 @@
 
 @implementation MoveNStepsBrickCell
 
-- (void)drawRect:(CGRect)rect
++ (CGFloat)cellHeight
 {
-    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.motionBrickBlue strokeColor:UIColor.motionBrickStroke height:smallBrick width:[Util screenWidth]];
+    return kBrickHeight1h;
 }
 
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews
@@ -40,6 +40,23 @@
     self.leftTextLabel = inlineViewSubViews[0];
     self.stepsTextField = inlineViewSubViews[1];
     self.rightTextLabel = inlineViewSubViews[2];
+}
+
+- (NSString*)brickTitleForBackground:(BOOL)isBackground andInsertionScreen:(BOOL)isInsertion
+{
+    NSString* localizedStep = kLocalizedSteps;
+    MoveNStepsBrick *brick = (MoveNStepsBrick*)self.scriptOrBrick;
+    
+    if (brick && [brick.steps isSingularNumber]) {
+        localizedStep = kLocalizedStep;
+    }
+    
+    return [kLocalizedMove stringByAppendingString:[@" %@ " stringByAppendingString:localizedStep]];
+}
+
+- (NSArray<NSString*>*)parameters
+{
+    return [[NSArray alloc] initWithObjects:@"{INT;range=[0,inf)}", nil];
 }
 
 @end

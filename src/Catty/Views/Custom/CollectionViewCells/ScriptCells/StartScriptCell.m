@@ -21,18 +21,12 @@
  */
 
 #import "StartScriptCell.h"
-#import "Pocket_Code-Swift.h"
 
 @interface StartScriptCell ()
 @property (strong, nonatomic) UILabel *textLabel;
 @end
 
 @implementation StartScriptCell
-
-- (void)drawRect:(CGRect)rect
-{
-    [BrickShapeFactory drawLargeRoundedControlBrickShapeWithFillColor:UIColor.controlBrickOrange strokeColor:UIColor.controlBrickStroke height:roundedSmallBrick width:[Util screenWidth]];
-}
 
 - (kBrickShapeType)brickShapeType
 {
@@ -49,13 +43,9 @@
     self.textLabel = inlineViewSubViews[0];
 }
 
-- (id)initWithFrame:(CGRect)frame
+- (NSString*)brickTitleForBackground:(BOOL)isBackground andInsertionScreen:(BOOL)isInsertion
 {
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
+    return kLocalizedWhenProjectStarted;
 }
 
 @end

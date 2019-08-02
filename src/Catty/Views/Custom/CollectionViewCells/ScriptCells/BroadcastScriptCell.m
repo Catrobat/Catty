@@ -21,18 +21,12 @@
  */
 
 #import "BroadcastScriptCell.h"
-#import "Pocket_Code-Swift.h"
 
 @interface BroadcastScriptCell ()
 @property (nonatomic, strong) UILabel *textLabel;
 @end
 
 @implementation BroadcastScriptCell
-
-- (void)drawRect:(CGRect)rect
-{
-    [BrickShapeFactory  drawLargeRoundedControlBrickShapeWithFillColor:UIColor.controlBrickOrange strokeColor:UIColor.controlBrickStroke height:roundedLargeBrick width:[Util screenWidth]];
-}
 
 - (kBrickShapeType)brickShapeType
 {
@@ -50,13 +44,14 @@
     self.messageComboBoxView = inlineViewSubViews[1];
 }
 
-- (id)initWithFrame:(CGRect)frame
+- (NSString*)brickTitleForBackground:(BOOL)isBackground andInsertionScreen:(BOOL)isInsertion
 {
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
+    return [kLocalizedWhenYouReceive stringByAppendingString:@"\n%@"];
+}
+
+- (NSArray<NSString*>*)parameters
+{
+    return [[NSArray alloc] initWithObjects:@"{MESSAGE}", nil];
 }
 
 @end

@@ -22,6 +22,6 @@
 
 #import "BrickCell.h"
 
-@interface StopAllSoundsBrickCell : BrickCell
+@interface StopAllSoundsBrickCell : BrickCell<BrickCellProtocol>
 
 @end

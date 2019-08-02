@@ -20,29 +20,12 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "PhiroMotorStopBrickCell.h"
-#import "Pocket_Code-Swift.h"
+#import "BrickCell.h"
+#import "iOSCombobox.h"
 
-@interface PhiroMotorStopBrickCell ()
-@property (nonatomic, strong) UILabel *textLabel;
-@end
+@interface PhiroMotorMoveBackwardBrickCell : BrickCell<BrickCellProtocol>
 
-@implementation PhiroMotorStopBrickCell
-
-- (void)drawRect:(CGRect)rect
-{
-    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.phiroBrick strokeColor:UIColor.phiroBrickStroke height:mediumBrick width:[Util screenWidth]];
-}
-
-+ (CGFloat)cellHeight
-{
-    return kBrickHeight2h;
-}
-
-- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
-{
-    self.textLabel = inlineViewSubViews[0];
-    self.lookComboBoxView = inlineViewSubViews[1];
-}
+@property (nonatomic, weak) iOSCombobox *variableComboBoxView;
+@property (nonatomic, weak) UITextField *valueTextField;
 
 @end

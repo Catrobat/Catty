@@ -54,7 +54,7 @@ extension UIColor {
 
     // MARK: intern Colors
 
-    static var light: UIColor? {
+    static var light: UIColor {
         /* WORK IN PROGRESS: Theming
         switch currentTheme {
         case .red:
@@ -67,7 +67,7 @@ extension UIColor {
         return UIColor(hex: 0xadeef0)
     }
 
-    static var medium: UIColor? {
+    static var medium: UIColor {
         /* WORK IN PROGRESS: Theming
         switch currentTheme {
         case .red:
@@ -80,11 +80,11 @@ extension UIColor {
         return UIColor(hex: 0x18a5b7)
     }
 
-    static var dark: UIColor? {
+    static var dark: UIColor {
         return UIColor(hex: 0x191919)
     }
 
-    static var whiteGray: UIColor? {
+    static var whiteGray: UIColor {
         return UIColor(red: 250.0 / 255.0, green: 250.0 / 255.0, blue: 250.0 / 255.0, alpha: 1.0)
     }
 
@@ -92,25 +92,25 @@ extension UIColor {
         return UIColor(red: 225.0 / 255.0, green: 225.0 / 255.0, blue: 225.0 / 255.0, alpha: 1.0)
     }
 
-    static var destructive: UIColor? {
+    static var destructive: UIColor {
         return UIColor(hex: 0xf26c4f)
     }
 
     // MARK: Global
 
-    static var globalTint: UIColor? {
+    static var globalTint: UIColor {
         return self.medium
     }
 
-    static var utilityTint: UIColor? {
+    static var utilityTint: UIColor {
         return self.medium
     }
 
-    static var navBar: UIColor? {
+    static var navBar: UIColor {
         return self.medium
     }
 
-    static var navTint: UIColor? {
+    static var navTint: UIColor {
         /* WORK IN PROGRESS: Dark mode
         if #available(iOS 13.0, *) {
             if UITraitCollection.current.userInterfaceStyle == .dark {
@@ -120,31 +120,31 @@ extension UIColor {
         return self.light
     }
 
-    static var navText: UIColor? {
+    static var navText: UIColor {
         return self.background
     }
 
-    static var toolBar: UIColor? {
+    static var toolBar: UIColor {
         return self.navBar
     }
 
-    static var toolTint: UIColor? {
+    static var toolTint: UIColor {
         return self.navTint
     }
 
-    static var tabBar: UIColor? {
+    static var tabBar: UIColor {
         return self.navBar
     }
 
-    static var tabTint: UIColor? {
+    static var tabTint: UIColor {
         return self.navTint
     }
 
-    static var buttonTint: UIColor? {
+    static var buttonTint: UIColor {
         return self.medium
     }
 
-    static var textTint: UIColor? {
+    static var textTint: UIColor {
         /* WORK IN PROGRESS: Dark mode
         if #available(iOS 13.0, *) {
             if UITraitCollection.current.userInterfaceStyle == .dark {
@@ -154,15 +154,15 @@ extension UIColor {
         return self.dark
     }
 
-    static var buttonHighlightedTint: UIColor? {
+    static var buttonHighlightedTint: UIColor {
         return self.background
     }
 
-    static var destructiveTint: UIColor? {
+    static var destructiveTint: UIColor {
         return self.destructive
     }
 
-    static var background: UIColor? {
+    static var background: UIColor {
         if #available(iOS 13.0, *) {
             if UITraitCollection.current.userInterfaceStyle == .dark {
                 return self.black
@@ -173,86 +173,86 @@ extension UIColor {
 
     // MARK: FormulaEditor
 
-    static var formulaEditorOperator: UIColor? {
+    static var formulaEditorOperator: UIColor {
         return self.buttonTint
     }
 
-    static var formulaEditorHighlight: UIColor? {
+    static var formulaEditorHighlight: UIColor {
         return self.buttonTint
     }
 
-    static var formulaEditorOperand: UIColor? {
+    static var formulaEditorOperand: UIColor {
         return self.buttonTint
     }
 
-    static var formulaEditorBorder: UIColor? {
+    static var formulaEditorBorder: UIColor {
         return self.light
     }
 
-    static var formulaButtonText: UIColor? {
+    static var formulaButtonText: UIColor {
         return self.light
     }
 
     // MARK: IDE
 
     // Bricks & Scripts Colors
-    static var brickSelectionBackground: UIColor? {
+    static var brickSelectionBackground: UIColor {
         return UIColor(red: 13.0 / 255.0, green: 13.0 / 255.0, blue: 13.0 / 255.0, alpha: 1.0)
     }
 
-    static var lookBrickGreen: UIColor? {
+    static var lookBrickGreen: UIColor {
         return UIColor(red: 57.0 / 255.0, green: 171.0 / 255.0, blue: 45.0 / 255.0, alpha: 1.0)
     }
 
-    static var lookBrickStroke: UIColor? {
+    static var lookBrickStroke: UIColor {
         return UIColor(red: 185.0 / 255.0, green: 220.0 / 255.0, blue: 110.0 / 255.0, alpha: 1.0)
     }
 
-    static var motionBrickBlue: UIColor? {
+    static var motionBrickBlue: UIColor {
         return UIColor(red: 29.0 / 255.0, green: 132.0 / 255.0, blue: 217.0 / 255.0, alpha: 1.0)
     }
 
-    static var motionBrickStroke: UIColor? {
+    static var motionBrickStroke: UIColor {
         return UIColor(red: 179.0 / 255.0, green: 203.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0)
     }
 
-    static var controlBrickOrange: UIColor? {
+    static var controlBrickOrange: UIColor {
         return UIColor(red: 255.0 / 255.0, green: 120.0 / 255.0, blue: 20.0 / 255.0, alpha: 1.0)
     }
 
-    static var controlBrickStroke: UIColor? {
+    static var controlBrickStroke: UIColor {
         return UIColor(red: 247.0 / 255.0, green: 208.0 / 255.0, blue: 187.0 / 255.0, alpha: 1.0)
     }
 
-    static var variableBrickRed: UIColor? {
+    static var variableBrickRed: UIColor {
         return UIColor(red: 234.0 / 255.0, green: 59.0 / 255.0, blue: 59.0 / 255.0, alpha: 1.0)
     }
 
-    static var variableBrickStroke: UIColor? {
+    static var variableBrickStroke: UIColor {
         return UIColor(red: 238.0 / 255.0, green: 149.0 / 255.0, blue: 149.0 / 255.0, alpha: 1.0)
     }
 
-    static var soundBrickViolet: UIColor? {
+    static var soundBrickViolet: UIColor {
         return UIColor(red: 180.0 / 255.0, green: 67.0 / 255.0, blue: 198.0 / 255.0, alpha: 1.0)
     }
 
-    static var soundBrickStroke: UIColor? {
+    static var soundBrickStroke: UIColor {
         return UIColor(red: 179.0 / 255.0, green: 137.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0)
     }
 
-    static var phiroBrick: UIColor? {
+    static var phiroBrick: UIColor {
         return UIColor(red: 234.0 / 255.0, green: 200.0 / 255.0, blue: 59.0 / 255.0, alpha: 1.0)
     }
 
-    static var phiroBrickStroke: UIColor? {
+    static var phiroBrickStroke: UIColor {
         return UIColor(red: 179.0 / 255.0, green: 137.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0)
     }
 
-    static var arduinoBrick: UIColor? {
+    static var arduinoBrick: UIColor {
         return UIColor(red: 234.0 / 255.0, green: 200.0 / 255.0, blue: 59.0 / 255.0, alpha: 1.0)
     }
 
-    static var arduinoBrickStroke: UIColor? {
+    static var arduinoBrickStroke: UIColor {
         return UIColor(red: 179.0 / 255.0, green: 137.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0)
     }
 }

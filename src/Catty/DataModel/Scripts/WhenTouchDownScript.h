@@ -23,6 +23,6 @@
 
 #import "Script.h"
 
-@interface WhenTouchDownScript : Script
+@interface WhenTouchDownScript : Script<BrickProtocol>
 
 @end

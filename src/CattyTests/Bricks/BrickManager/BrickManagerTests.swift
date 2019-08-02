@@ -20,11 +20,18 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "BrickCell.h"
+import XCTest
 
-@interface ArduinoSendDigitalValueBrickCell : BrickCell
+@testable import Pocket_Code
 
-@property (nonatomic, weak) UITextField *pinTextField;
-@property (nonatomic, weak) UITextField *valueTextField;
+final class BrickManagerTests: XCTestCase {
 
-@end
+    func testSizeForBrick() {
+        let brick = SetVariableBrick()
+        let brickCell = brick.brickCell()
+
+        let size = BrickManager.shared()?.size(forBrick: brick)
+        XCTAssertEqual(UIScreen.main.bounds.size.width, size?.width)
+        XCTAssertEqual(brickCell?.cellHeight(), size?.height)
+    }
+}

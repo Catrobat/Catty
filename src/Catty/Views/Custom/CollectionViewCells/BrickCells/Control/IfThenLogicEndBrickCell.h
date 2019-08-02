@@ -22,6 +22,6 @@
 
 #import "BrickCell.h"
 
-@interface IfThenLogicEndBrickCell : BrickCell
+@interface IfThenLogicEndBrickCell : BrickCell<BrickCellProtocol>
 
 @end

@@ -22,6 +22,7 @@
 
 #import "LoopEndBrickCell.h"
 #import "Brick.h"
+#import "Util.h"
 #import "Pocket_Code-Swift.h"
 
 @interface LoopEndBrickCell ()
@@ -30,22 +31,37 @@
 
 @implementation LoopEndBrickCell
 
++ (CGFloat)cellHeight
+{
+    return kBrickHeight1h;
+}
+
 - (void)drawRect:(CGRect)rect
 {
+    CGFloat height = [[self class] cellHeight] + marginBottomSquaredBrick;
+    CGFloat width = [Util screenWidth];
+    UIColor *fillColor = UIColor.controlBrickOrange;
+    UIColor *strokeColor = UIColor.controlBrickStroke;
+    
     if (self.type == 2) {
-        [BrickShapeFactory drawEndForeverLoopShape2WithFillColor:UIColor.controlBrickOrange strokeColor:UIColor.controlBrickStroke height:smallBrick width:[Util screenWidth]];
+        [BrickShapeFactory drawEndForeverLoopShape2WithFillColor:fillColor strokeColor:strokeColor height:height width:width];
     } else if ( self.type == 1){
-        [BrickShapeFactory drawEndForeverLoopShape1WithFillColor:UIColor.controlBrickOrange strokeColor:UIColor.controlBrickStroke height:smallBrick width:[Util screenWidth]];
+        [BrickShapeFactory drawEndForeverLoopShape1WithFillColor:fillColor strokeColor:strokeColor height:height width:width];
     } else if ( self.type == 3){
-        [BrickShapeFactory drawEndForeverLoopShape3WithFillColor:UIColor.controlBrickOrange strokeColor:UIColor.controlBrickStroke height:smallBrick width:[Util screenWidth]];
+        [BrickShapeFactory drawEndForeverLoopShape3WithFillColor:fillColor strokeColor:strokeColor height:height width:width];
     } else {
-        [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.controlBrickOrange strokeColor:UIColor.controlBrickStroke height:smallBrick width:[Util screenWidth]];
+        [BrickShapeFactory drawSquareBrickShapeWithFillColor:fillColor strokeColor:strokeColor height:height width:width];
     }
 }
 
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews
 {
     self.textLabel = inlineViewSubViews[0];
+}
+
+- (NSString*)brickTitleForBackground:(BOOL)isBackground andInsertionScreen:(BOOL)isInsertion
+{
+    return kLocalizedEndOfLoop;
 }
 
 @end

@@ -20,34 +20,11 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "PhiroMotorMoveForwardBrickCell.h"
-#import "Pocket_Code-Swift.h"
+#import "BrickCell.h"
 
-@interface PhiroMotorMoveForwardBrickCell ()
-@property (nonatomic, strong) UILabel *firstRowTextLabel;
-@property (nonatomic, strong) UILabel *thirdRowTextLabel;
-@property (nonatomic, strong) UILabel *thirdRowTextLabel2;
-@end
+@interface ArduinoSendPWMValueBrickCell : BrickCell<BrickCellProtocol>
 
-@implementation PhiroMotorMoveForwardBrickCell
-
-- (void)drawRect:(CGRect)rect
-{
-    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.phiroBrick strokeColor:UIColor.phiroBrickStroke height:largeBrick width:[Util screenWidth]];
-}
-
-+ (CGFloat)cellHeight
-{
-    return kBrickHeight3h;
-}
-
-- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
-{
-    self.firstRowTextLabel = inlineViewSubViews[0];
-    self.variableComboBoxView = inlineViewSubViews[1];
-    self.thirdRowTextLabel = inlineViewSubViews[2];
-    self.valueTextField = inlineViewSubViews[3];
-    self.thirdRowTextLabel2 = inlineViewSubViews[4];
-}
+@property (nonatomic, weak) UITextField *pinTextField;
+@property (nonatomic, weak) UITextField *valueTextField;
 
 @end

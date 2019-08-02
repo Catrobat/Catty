@@ -25,6 +25,7 @@
 #import "BrickCell.h"
 #import "Script.h"
 #import "Brick.h"
+#import "Util.h"
 #import "BrickVariableProtocol.h"
 
 @implementation BrickCellVariableData

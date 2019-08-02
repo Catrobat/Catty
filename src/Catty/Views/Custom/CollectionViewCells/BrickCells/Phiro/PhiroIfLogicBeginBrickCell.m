@@ -20,11 +20,35 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "BrickCell.h"
-#import "iOSCombobox.h"
+#import "PhiroIfLogicBeginBrickCell.h"
 
-@interface PhiroIfLogicBeginBrickCell : BrickCell
+@interface PhiroIfLogicBeginBrickCell ()
+@property (nonatomic, strong) UILabel *leftTextLabel;
+@property (nonatomic, strong) UILabel *rightTextLabel;
+@end
 
-@property (nonatomic, weak) iOSCombobox *variableComboBoxView;
+@implementation PhiroIfLogicBeginBrickCell
+
++ (CGFloat)cellHeight
+{
+    return kBrickHeight1h;
+}
+
+- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
+{
+    self.leftTextLabel = inlineViewSubViews[0];
+    self.variableComboBoxView = inlineViewSubViews[1];
+    self.rightTextLabel = inlineViewSubViews[2];
+}
+
+- (NSString*)brickTitleForBackground:(BOOL)isBackground andInsertionScreen:(BOOL)isInsertion
+{
+    return [[kLocalizedPhiroIfLogic stringByAppendingString:@" %@ "] stringByAppendingString:kLocalizedPhiroThenLogic];
+}
+
+- (NSArray<NSString*>*)parameters
+{
+    return [[NSArray alloc] initWithObjects:@"{PHIROIF}", nil];
+}
 
 @end

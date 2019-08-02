@@ -24,9 +24,9 @@
 
 @implementation FlashBrick
 
-- (NSString*)brickTitle
+- (kBrickCategoryType)category
 {
-    return [kLocalizedFlash stringByAppendingString:@"\n%@"];
+    return kLookBrick;
 }
 
 - (id)initWithChoice:(int)choice

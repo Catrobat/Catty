@@ -21,18 +21,12 @@
  */
 
 #import "SpeakAndWaitBrickCell.h"
-#import "Pocket_Code-Swift.h"
 
 @interface SpeakAndWaitBrickCell ()
 @property (nonatomic, strong) UILabel *textLabel;
 @end
 
 @implementation SpeakAndWaitBrickCell
-
-- (void)drawRect:(CGRect)rect
-{
-    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.soundBrickViolet strokeColor:UIColor.soundBrickStroke height:mediumBrick width:[Util screenWidth]];
-}
 
 + (CGFloat)cellHeight
 {
@@ -43,6 +37,16 @@
 {
     self.textLabel = inlineViewSubViews[0];
     self.speakTextField = inlineViewSubViews[1];
+}
+
+- (NSString*)brickTitleForBackground:(BOOL)isBackground andInsertionScreen:(BOOL)isInsertion
+{
+    return [[kLocalizedSpeak stringByAppendingString:@" %@ "] stringByAppendingString:kLocalizedAndWait];
+}
+
+- (NSArray<NSString*>*)parameters
+{
+    return [[NSArray alloc] initWithObjects:@"{INT}", nil];
 }
 
 @end

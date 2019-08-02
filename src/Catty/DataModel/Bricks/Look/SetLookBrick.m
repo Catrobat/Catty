@@ -31,9 +31,9 @@
     return YES;
 }
 
-- (NSString*)brickTitle
+- (kBrickCategoryType)category
 {
-    return [kLocalizedSetLook stringByAppendingString:@"\n%@"];
+    return kLookBrick;
 }
 
 - (NSString*)pathForLook

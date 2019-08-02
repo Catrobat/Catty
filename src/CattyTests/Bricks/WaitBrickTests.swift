@@ -85,27 +85,6 @@ final class WaitBrickTests: XCTestCase {
         XCTAssertEqual(scheduler._activeTimers.count, 0)
     }
 
-    /*func testSpeakAndWaitDuration() {
-     let speakAndWaitBrick = SpeakAndWaitBrick()
-     speakAndWaitBrick.formula = Formula(double: 1010101.0)
-     speakAndWaitBrick.script = self.script;
-
-     let executionTime = self.measureExecutionTime(speakAndWaitBrick.instruction())
-     XCTAssertEqualWithAccuracy(executionTime, 5.0, accuracy: 1.0, "Wrong execution time")
-     }*/
-
-    func testTitleSingular() {
-        let waitBrick = WaitBrick()
-        waitBrick.timeToWaitInSeconds = Formula(double: 1)
-        XCTAssertEqual(kLocalizedWait + " %@ " + kLocalizedSecond, waitBrick.brickTitle, "Wrong brick title")
-    }
-
-    func testTitlePlural() {
-        let waitBrick = WaitBrick()
-        waitBrick.timeToWaitInSeconds = Formula(double: 2)
-        XCTAssertEqual(kLocalizedWait + " %@ " + kLocalizedSeconds, waitBrick.brickTitle, "Wrong brick title")
-    }
-
     func measureExecutionTime(instruction: CBInstruction, expectation: XCTestExpectation?) -> Double {
         var timeIntervalInSeconds = Double(-10)
 

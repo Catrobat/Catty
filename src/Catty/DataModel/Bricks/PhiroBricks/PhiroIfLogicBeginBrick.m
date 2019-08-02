@@ -25,12 +25,6 @@
 
 @implementation PhiroIfLogicBeginBrick
 
-- (NSString*)brickTitle
-{
-    return [[kLocalizedPhiroIfLogic stringByAppendingString:@" %@ "] stringByAppendingString:kLocalizedPhiroThenLogic];
-}
-
-
 #pragma mark - Description
 - (NSString*)description
 {

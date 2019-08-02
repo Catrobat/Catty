@@ -22,7 +22,7 @@
 
 #import "BrickCell.h"
 
-@interface WaitUntilBrickCell : BrickCell
+@interface WaitUntilBrickCell : BrickCell<BrickCellProtocol>
 
 @property (nonatomic, weak) UITextField *waitConditionTextField;
 

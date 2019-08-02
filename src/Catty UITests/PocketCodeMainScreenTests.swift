@@ -183,8 +183,8 @@ class PocketCodeMainScreenTests: XCTestCase {
         app.tables.staticTexts[kLocalizedScripts].tap()
 
         app.toolbars.buttons[kLocalizedUserListAdd].tap()
-        findBrickSection(kUIArduinoTitle, in: app)
+        findBrickSection(kLocalizedCategoryArduino, in: app)
 
-        XCTAssertTrue(app.navigationBars[kUIArduinoTitle].exists)
+        XCTAssertTrue(app.navigationBars[kLocalizedCategoryArduino].exists)
     }
 }

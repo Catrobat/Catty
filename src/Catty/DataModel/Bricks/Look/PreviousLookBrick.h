@@ -22,7 +22,7 @@
 
 #import "Brick.h"
 
-@interface PreviousLookBrick : Brick
+@interface PreviousLookBrick : Brick<BrickProtocol>
 
 - (NSString*)pathForLook:(Look*)look;
 

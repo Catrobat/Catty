@@ -62,9 +62,9 @@
     }
 }
 
-- (NSString*)brickTitle
+- (kBrickCategoryType)category
 {
-    return [kLocalizedSetVariable stringByAppendingString:[@"\n%@\n" stringByAppendingString:[kLocalizedTo stringByAppendingString:@" %@"]]];
+    return kVariableBrick;
 }
 
 - (BOOL)allowsStringFormula

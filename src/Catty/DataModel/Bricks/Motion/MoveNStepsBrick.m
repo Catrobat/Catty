@@ -50,10 +50,9 @@
     self.steps = [[Formula alloc] initWithInteger:10];
 }
 
-- (NSString*)brickTitle
+- (kBrickCategoryType)category
 {
-    NSString* localizedStep = [self.steps isSingularNumber] ? kLocalizedStep : kLocalizedSteps;
-    return [kLocalizedMove stringByAppendingString:[@" %@ " stringByAppendingString:localizedStep]];
+    return kMotionBrick;
 }
 
 - (void)performFromScript:(Script *)script

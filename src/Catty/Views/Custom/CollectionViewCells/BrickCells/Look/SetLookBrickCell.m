@@ -21,18 +21,12 @@
  */
 
 #import "SetLookBrickCell.h"
-#import "Pocket_Code-Swift.h"
 
 @interface SetLookBrickCell ()
 @property (nonatomic, strong) UILabel *textLabel;
 @end
 
 @implementation SetLookBrickCell
-
-- (void)drawRect:(CGRect)rect
-{
-    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.lookBrickGreen strokeColor:UIColor.lookBrickStroke height:mediumBrick width:[Util screenWidth]];
-}
 
 + (CGFloat)cellHeight
 {
@@ -43,6 +37,16 @@
 {
     self.textLabel = inlineViewSubViews[0];
     self.lookComboBoxView = inlineViewSubViews[1];
+}
+
+- (NSString*)brickTitleForBackground:(BOOL)isBackground andInsertionScreen:(BOOL)isInsertion
+{
+    return [kLocalizedSetLook stringByAppendingString:@"\n%@"];
+}
+
+- (NSArray<NSString*>*)parameters
+{
+    return [[NSArray alloc] initWithObjects:@"{LOOK}", nil];
 }
 
 @end

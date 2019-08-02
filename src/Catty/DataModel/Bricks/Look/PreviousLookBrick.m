@@ -28,9 +28,13 @@
 
 @implementation PreviousLookBrick
 
-- (NSString*)brickTitleForBrickinSelection:(BOOL)inSelection inBackground:(BOOL)inBackground
+- (kBrickCategoryType)category
 {
-    return inBackground ? kLocalizedPreviousBackground : kLocalizedPreviousLook;
+    return kLookBrick;
+}
+
+- (NSString *)brickTitle {
+    return @"";
 }
 
 - (NSString*)pathForLook:(Look*)look
@@ -49,4 +53,5 @@
 {
     return kNoResources;
 }
+
 @end

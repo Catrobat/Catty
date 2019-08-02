@@ -22,7 +22,7 @@
 
 #import "BrickCell.h"
 
-@interface SetColorBrickCell : BrickCell
+@interface SetColorBrickCell : BrickCell<BrickCellProtocol>
 
 @property (nonatomic, weak) UITextField *colorTextField;
 

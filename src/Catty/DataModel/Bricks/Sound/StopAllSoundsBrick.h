@@ -22,6 +22,6 @@
 
 #import "Brick.h"
 
-@interface StopAllSoundsBrick : Brick
+@interface StopAllSoundsBrick : Brick<BrickProtocol>
 
 @end

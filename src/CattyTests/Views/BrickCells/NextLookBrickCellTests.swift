@@ -20,12 +20,34 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "BrickCell.h"
-#import "iOSCombobox.h"
+import XCTest
 
-@interface PhiroMotorMoveForwardBrickCell : BrickCell
+@testable import Pocket_Code
 
-@property (nonatomic, weak) iOSCombobox *variableComboBoxView;
-@property (nonatomic, weak) UITextField *valueTextField;
+final class NextLookBrickCellTests: XCTestCase {
 
-@end
+    var brick: NextLookBrick!
+    var brickCell: NextLookBrickCell!
+
+    override func setUp() {
+        super.setUp()
+
+        brick = NextLookBrick()
+        brickCell = NextLookBrickCell()
+        brickCell.scriptOrBrick = brick
+    }
+
+    func testTitle() {
+        let expectedTitle = kLocalizedNextLook
+
+        XCTAssertEqual(expectedTitle, brickCell.brickTitle(forBackground: false, andInsertionScreen: true))
+        XCTAssertEqual(expectedTitle, brickCell.brickTitle(forBackground: false, andInsertionScreen: false))
+    }
+
+    func testTitleForBackground() {
+        let expectedTitle = kLocalizedNextBackground
+
+        XCTAssertEqual(expectedTitle, brickCell.brickTitle(forBackground: true, andInsertionScreen: true))
+        XCTAssertEqual(expectedTitle, brickCell.brickTitle(forBackground: true, andInsertionScreen: false))
+    }
+}

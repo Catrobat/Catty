@@ -22,7 +22,7 @@
 
 #import "BrickCell.h"
 
-@interface SetXBrickCell : BrickCell
+@interface SetXBrickCell : BrickCell<BrickCellProtocol>
 
 @property (nonatomic, weak) UITextField *xCoordTextField;
 

@@ -23,9 +23,10 @@
 #import "BrickCell.h"
 #import "iOSCombobox.h"
 
-@interface PhiroPlayToneBrickCell : BrickCell
+@interface PhiroRGBLightBrickCell : BrickCell<BrickCellProtocol>
 
 @property (nonatomic, weak) iOSCombobox *variableComboBoxView;
-@property (nonatomic, weak) UITextField *valueTextField;
-
+@property (nonatomic, weak) UITextField *valueTextField1;
+@property (nonatomic, weak) UITextField *valueTextField2;
+@property (nonatomic, weak) UITextField *valueTextField3;
 @end

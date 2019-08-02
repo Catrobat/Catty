@@ -20,20 +20,14 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "ArduinoSendDigitalValueBrickCell.h"
-#import "Pocket_Code-Swift.h"
+#import "ArduinoSendPWMValueBrickCell.h"
 
-@interface ArduinoSendDigitalValueBrickCell ()
+@interface ArduinoSendPWMValueBrickCell ()
 @property (nonatomic, strong) UILabel *firstRowTextLabel;
 @property (nonatomic, strong) UILabel *secondRowLeftTextLabel;
 @end
 
-@implementation ArduinoSendDigitalValueBrickCell
-
-- (void)drawRect:(CGRect)rect
-{
-    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.arduinoBrick strokeColor:UIColor.arduinoBrickStroke height:mediumBrick width:[Util screenWidth]];
-}
+@implementation ArduinoSendPWMValueBrickCell
 
 + (CGFloat)cellHeight
 {
@@ -46,6 +40,16 @@
     self.pinTextField = inlineViewSubViews[1];
     self.secondRowLeftTextLabel = inlineViewSubViews[2];
     self.valueTextField = inlineViewSubViews[3];
+}
+
+- (NSString*)brickTitleForBackground:(BOOL)isBackground andInsertionScreen:(BOOL)isInsertion
+{
+    return [[[kLocalizedArduinoSendPWMValue stringByAppendingString:@" %@\n"] stringByAppendingString:kLocalizedArduinoSetPinValueTo] stringByAppendingString:@" %@"];
+}
+
+- (NSArray<NSString*>*)parameters
+{
+    return [[NSArray alloc] initWithObjects:@"{FLOAT;range=(-inf,inf)}", @"{FLOAT;range=(-inf,inf)}", nil];
 }
 
 @end

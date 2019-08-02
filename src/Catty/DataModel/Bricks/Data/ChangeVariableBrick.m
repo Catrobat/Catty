@@ -24,6 +24,11 @@
 
 @implementation ChangeVariableBrick
 
+- (kBrickCategoryType)category
+{
+    return kVariableBrick;
+}
+
 - (Formula*)formulaForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
     return self.variableFormula;
@@ -60,11 +65,6 @@
             self.userVariable = nil;
         }
     }
-}
-
-- (NSString*)brickTitle
-{
-    return [kLocalizedChangeVariable stringByAppendingString:[@"\n%@\n" stringByAppendingString:[kLocalizedBy stringByAppendingString:@" %@"]]];
 }
 
 - (BOOL)allowsStringFormula

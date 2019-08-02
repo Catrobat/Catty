@@ -62,32 +62,40 @@ final class BubbleBrickTests: XMLAbstractTest {
         return spriteNode
     }
 
-    func testSayForTitleSingular() {
-        let sayForBrick = SayForBubbleBrick()
-        sayForBrick.intFormula = Formula(double: 1)
-        let translation = kLocalizedSay + " %@\n" + kLocalizedFor + " %@ " + kLocalizedSecond
-        XCTAssertEqual(translation, sayForBrick.brickTitle, "Wrong brick title")
+    func testFormulaForLineNumberSay() {
+        let brick = SayBubbleBrick()
+
+        brick.formula = Formula(double: 1)
+
+        XCTAssertEqual(brick.formula, brick.formula(forLineNumber: 1, andParameterNumber: 1))
     }
 
-    func testSayForTitlePlural() {
-        let sayForBrick = SayForBubbleBrick()
-        sayForBrick.intFormula = Formula(double: 2)
-        let translation = kLocalizedSay + " %@\n" + kLocalizedFor + " %@ " + kLocalizedSeconds
-        XCTAssertEqual(translation, sayForBrick.brickTitle, "Wrong brick title")
+    func testFormulaForLineNumberSayFor() {
+        let brick = SayForBubbleBrick()
+
+        brick.intFormula = Formula(double: 1)
+        brick.stringFormula = Formula(string: "")
+
+        XCTAssertEqual(brick.intFormula, brick.formula(forLineNumber: 1, andParameterNumber: 1))
+        XCTAssertEqual(brick.stringFormula, brick.formula(forLineNumber: 2, andParameterNumber: 1))
     }
 
-    func testThinkForTitleSingular() {
-        let thinkForBrick = ThinkForBubbleBrick()
-        thinkForBrick.intFormula = Formula(double: 1)
-        let translation = kLocalizedThink + " %@\n" + kLocalizedFor + " %@ " + kLocalizedSecond
-        XCTAssertEqual(translation, thinkForBrick.brickTitle, "Wrong brick title")
+    func testFormulaForLineNumberThink() {
+        let brick = ThinkBubbleBrick()
+
+        brick.formula = Formula(double: 1)
+
+        XCTAssertEqual(brick.formula, brick.formula(forLineNumber: 1, andParameterNumber: 1))
     }
 
-    func testThinkForTitlePlural() {
-        let thinkForBrick = ThinkForBubbleBrick()
-        thinkForBrick.intFormula = Formula(double: 2)
-        let translation = kLocalizedThink + " %@\n" + kLocalizedFor + " %@ " + kLocalizedSeconds
-        XCTAssertEqual(translation, thinkForBrick.brickTitle, "Wrong brick title")
+    func testFormulaForLineNumberThinkFor() {
+        let brick = ThinkForBubbleBrick()
+
+        brick.intFormula = Formula(double: 1)
+        brick.stringFormula = Formula(string: "")
+
+        XCTAssertEqual(brick.intFormula, brick.formula(forLineNumber: 1, andParameterNumber: 1))
+        XCTAssertEqual(brick.stringFormula, brick.formula(forLineNumber: 2, andParameterNumber: 1))
     }
 
     func testOneLineSentenceInBubble() {

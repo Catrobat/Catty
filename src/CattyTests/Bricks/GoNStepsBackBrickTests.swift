@@ -117,14 +117,4 @@ final class GoNStepsBackBrickTests: AbstractBrickTest {
         XCTAssertEqual(spriteNode1.zPosition, 5.0, "GoNStepsBack is not correctly calculated")
         XCTAssertEqual(spriteNode2.zPosition, 3.0, "GoNStepsBack is not correctly calculated")
     }
-
-    func testTitleSingular() {
-        brick.steps = Formula(double: 1)
-        XCTAssertEqual(kLocalizedGoBack + " %@ " + kLocalizedLayer, brick.brickTitle, "Wrong brick title")
-    }
-
-    func testTitlePlural() {
-        brick.steps = Formula(double: 2)
-        XCTAssertEqual(kLocalizedGoBack + " %@ " + kLocalizedLayers, brick.brickTitle, "Wrong brick title")
-    }
 }

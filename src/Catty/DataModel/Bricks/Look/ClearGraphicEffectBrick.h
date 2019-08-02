@@ -22,6 +22,8 @@
 
 #import "Brick.h"
 
-@interface ClearGraphicEffectBrick : Brick
+@interface ClearGraphicEffectBrick : Brick<BrickProtocol>
+
 - (NSString*)pathForLook:(Look*)look;
+
 @end

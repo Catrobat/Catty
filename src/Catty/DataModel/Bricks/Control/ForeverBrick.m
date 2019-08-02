@@ -24,14 +24,14 @@
 
 @implementation ForeverBrick
 
+- (kBrickCategoryType)category
+{
+    return kControlBrick;
+}
+
 - (BOOL)isAnimateable
 {
     return YES;
-}
-
-- (NSString*)brickTitle
-{
-    return kLocalizedForever;
 }
 
 #pragma mark - Description

@@ -25,6 +25,10 @@
 
 @implementation HideTextBrick
 
+- (kBrickCategoryType)category
+{
+    return kVariableBrick;
+}
 
 - (UserVariable*)variableForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
@@ -46,11 +50,6 @@
         else
             self.userVariable = nil;
     }
-}
-
-- (NSString*)brickTitle
-{
-    return [kLocalizedHideVariable stringByAppendingString:@"\n%@"];
 }
 
 #pragma mark - Description
