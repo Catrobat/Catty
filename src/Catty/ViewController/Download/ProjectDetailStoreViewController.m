@@ -177,8 +177,13 @@
         // That's because the user could have renamed the downloaded project.
         NSString *localProjectName = [Project projectNameForProjectID:self.project.projectID];
         
+        [self showLoadingView];
+        [CATransaction flush];
+        
         // check if project loaded successfully -> not nil
         self.loadedProject = [Project projectWithLoadingInfo:[ProjectLoadingInfo projectLoadingInfoForProjectWithName:localProjectName projectID:self.project.projectID]];
+        
+        [self hideLoadingView];
         
         if (self.loadedProject) {
             return YES;
