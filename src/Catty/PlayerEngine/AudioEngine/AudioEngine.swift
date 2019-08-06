@@ -23,8 +23,10 @@
 import AudioKit
 import Foundation
 
-@objc class AudioEngine: NSObject, AVSpeechSynthesizerDelegate {
-    var mainOut = AKMixer()
+@objc class AudioEngine: NSObject, AudioEngineProtocol, AVSpeechSynthesizerDelegate {
+    var engineOutputMixer = AKMixer()
+    var postProcessingMixer = AKMixer()
+
     var subtrees = [String: AudioSubtree]()
     let subtreeCreationQueue = DispatchQueue(label: "SubtreeCreationQueue")
     let audioPlayerFactory: AudioPlayerFactory
@@ -35,33 +37,33 @@ import Foundation
     }
 
     @objc func start() {
-        AudioKit.output = mainOut
+        AudioKit.output = postProcessingMixer
+        engineOutputMixer.connect(to: postProcessingMixer)
         do {
             try AudioKit.start()
         } catch {
-            print("could not start audio engine")
+            print("COULD NOT START AUDIO ENGINE! MAKE SURE TO ALWAYS SHUT DOWN AUDIO ENGINE BEFORE" +
+                "INSTANTIATING IT AGAIN (AFTER EVERY TEST CASE)! USE AN AUDIOENGINEMOCK IN TESTS" +
+                "WHEN A SCENE DOES NOT NEED THE AUDIO ENGINE.")
         }
     }
 
-    @objc func shutdown() {
+    @objc func pause() {
+        pauseAllAudioPlayers()
+    }
+
+    @objc func resume() {
+        resumeAllAudioPlayers()
+    }
+
+    @objc func stop() {
+        stopAllAudioPlayers()
         do {
             try AudioKit.stop()
             try AudioKit.shutdown()
         } catch {
             print("Something went wrong when stopping the audio engine!")
         }
-    }
-
-    @objc func pauseAudioEngine() {
-        pauseAllAudioPlayers()
-    }
-
-    @objc func resumeAudioEngine() {
-        resumeAllAudioPlayers()
-    }
-
-    @objc func stopAudioEngine() {
-        stopAllAudioPlayers()
     }
 
     func playSound(fileName: String, key: String, filePath: String, expectation: Expectation?) {
@@ -91,7 +93,7 @@ import Foundation
         }
     }
 
-    private func stopAllAudioPlayers() {
+    func stopAllAudioPlayers() {
         for (_, subtree) in subtrees {
             subtree.stopAllAudioPlayers()
         }
@@ -108,7 +110,7 @@ import Foundation
 
     internal func createNewAudioSubtree(key: String) -> AudioSubtree {
         let subtree = AudioSubtree(audioPlayerFactory: audioPlayerFactory)
-        subtree.setup(mainOut: mainOut)
+        subtree.setup(engineOut: engineOutputMixer)
         subtrees[key] = subtree
         return subtree
     }

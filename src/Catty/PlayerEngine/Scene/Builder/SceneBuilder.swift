@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc final class SceneBuilder: NSObject {
+@objc class SceneBuilder: NSObject {
 
     private var project: Project
     private var logger: CBLogger
@@ -30,6 +30,7 @@
     private var backend: CBBackendProtocol?
     private var broadcastHandler: CBBroadcastHandler?
     private var formulaManager: FormulaManagerProtocol?
+    private var audioEngine: AudioEngineProtocol?
 
     @objc init(project: Project) {
         self.project = project
@@ -64,6 +65,11 @@
         return self
     }
 
+    func withAudioEngine(audioEngine: AudioEngineProtocol) -> Self {
+        self.audioEngine = audioEngine
+        return self
+    }
+
     @objc(andFormulaManager:)
     func withFormulaManager(formulaManager: FormulaManager) -> Self {
         self.formulaManager = formulaManager
@@ -81,9 +87,17 @@
         let frontend = getFrontend()
         let backend = getBackend()
         let broadcastHandler = getBroadcastHandler()
-        let scheduler = getScheduler(broadcastHandler: broadcastHandler, formulaInterpreter: formulaManager)
+        let audioEngine = getAudioEngine()
+        let scheduler = getScheduler(broadcastHandler: broadcastHandler, formulaInterpreter: formulaManager, audioEngine: audioEngine)
 
-        return CBScene(size: size, logger: logger, scheduler: scheduler, frontend: frontend, backend: backend, broadcastHandler: broadcastHandler, formulaManager: formulaManager)
+        return CBScene(size: size,
+                       logger: logger,
+                       scheduler: scheduler,
+                       frontend: frontend,
+                       backend: backend,
+                       broadcastHandler: broadcastHandler,
+                       formulaManager: formulaManager,
+                       soundEngine: audioEngine)
     }
 
     private func getFormulaManager() -> FormulaManagerProtocol {
@@ -91,6 +105,13 @@
             return FormulaManager(sceneSize: self.size)
         }
         return formulaManager
+    }
+
+    internal func getAudioEngine() -> AudioEngineProtocol {
+        guard let engine = self.audioEngine else {
+            return AudioEngine()
+        }
+        return engine
     }
 
     private func getBroadcastHandler() -> CBBroadcastHandler {
@@ -119,10 +140,10 @@
         return backend
     }
 
-    private func getScheduler(broadcastHandler: CBBroadcastHandler, formulaInterpreter: FormulaInterpreterProtocol) -> CBSchedulerProtocol {
+    private func getScheduler(broadcastHandler: CBBroadcastHandler, formulaInterpreter: FormulaInterpreterProtocol, audioEngine: AudioEngineProtocol) -> CBSchedulerProtocol {
         guard let scheduler = self.scheduler else {
             guard let schedulerLogger = Swell.getLogger(LoggerConfig.PlayerSchedulerID) else { preconditionFailure() }
-            let scheduler = CBScheduler(logger: schedulerLogger, broadcastHandler: broadcastHandler, formulaInterpreter: formulaInterpreter)
+            let scheduler = CBScheduler(logger: schedulerLogger, broadcastHandler: broadcastHandler, formulaInterpreter: formulaInterpreter, audioEngine: audioEngine)
             broadcastHandler.scheduler = scheduler
             return scheduler
         }

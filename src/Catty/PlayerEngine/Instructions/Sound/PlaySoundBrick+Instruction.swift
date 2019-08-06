@@ -33,13 +33,10 @@
             else { return .invalidInstruction }
 
         let filePath = projectPath + kProjectSoundsDirName
-        let audioManager = AudioManager.shared()
 
-        return CBInstruction.execClosure { context, _ in
-            //            self.logger.debug("Performing: PlaySoundBrick")
-            DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async {
-                audioManager?.playSound(withFileName: fileName, andKey: objectName, atFilePath: filePath)
-            }
+        return CBInstruction.execClosure { context, scheduler in
+            let audioEngine = scheduler.getAudioEngine()
+            audioEngine.playSound(fileName: fileName, key: objectName, filePath: filePath, expectation: nil)
             context.state = .runnable
         }
 

@@ -24,6 +24,8 @@ import AudioKit
 import Foundation
 import XCTest
 
+@testable import Pocket_Code
+
 class AudioPlayerMock: AudioPlayer {
 
     private var testExpectations = [String: XCTestExpectation]()

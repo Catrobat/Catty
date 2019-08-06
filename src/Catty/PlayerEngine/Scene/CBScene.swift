@@ -31,6 +31,7 @@ final class CBScene: SKScene {
     private final let backend: CBBackendProtocol
     private final let broadcastHandler: CBBroadcastHandlerProtocol
     private final let formulaManager: FormulaManagerProtocol
+    private final let soundEngine: AudioEngineProtocol
     private final let logger: CBLogger
 
     init(size: CGSize,
@@ -39,13 +40,15 @@ final class CBScene: SKScene {
          frontend: CBFrontendProtocol,
          backend: CBBackendProtocol,
          broadcastHandler: CBBroadcastHandlerProtocol,
-         formulaManager: FormulaManagerProtocol) {
+         formulaManager: FormulaManagerProtocol,
+         soundEngine: AudioEngineProtocol) {
         self.logger = logger
         self.scheduler = scheduler
         self.frontend = frontend
         self.backend = backend
         self.broadcastHandler = broadcastHandler
         self.formulaManager = formulaManager
+        self.soundEngine = soundEngine
         super.init(size: size)
         backgroundColor = UIColor.white
     }
@@ -207,6 +210,7 @@ final class CBScene: SKScene {
         }
 
         formulaManager.setup(for: project, and: self)
+        soundEngine.start()
         scheduler.run()
         return true
     }
@@ -221,6 +225,10 @@ final class CBScene: SKScene {
         formulaManager.resume()
     }
 
+    @objc func getSoundEngine() -> AudioEngineProtocol {
+        return self.soundEngine
+    }
+
     // MARK: - Stop project
     @objc func stopProject() {
         view?.isPaused = true
@@ -229,6 +237,6 @@ final class CBScene: SKScene {
         frontend.project?.removeReferences() // remove all references in project hierarchy
         formulaManager.stop()
         logger.info("All SpriteObjects and Scripts have been removed from Scene!")
+        soundEngine.stop()
     }
-
 }
