@@ -6,4 +6,4 @@ github "maxep/MXSegmentedPager" ~> 3.3.0
 github "caldrian/LXReorderableCollectionViewFlowLayout" "1a17393441a91f4cbcf92d6d195873c757e42b23"
 github "onevcat/Kingfisher" ~> 4.0
 github "venmo/DVR"
-github "audiokit/audiokit" "v4.6.4"
+github "audiokit/audiokit" "v4.8"
