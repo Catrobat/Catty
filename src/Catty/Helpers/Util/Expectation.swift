@@ -20,25 +20,27 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "WaitBrickCell.h"
+import Foundation
 
-@interface WaitBrickCell ()
-@property (nonatomic, strong) UILabel *leftTextLabel;
-@property (nonatomic, strong) UILabel *rightTextLabel;
-@end
+public class Expectation: NSObject {
+    public private(set) var isFulfilled = false
+    private let state = NSCondition()
 
-@implementation WaitBrickCell
+    public func fulfill() {
+        state.lock()
+        isFulfilled = true
+        state.broadcast()
+        state.unlock()
+    }
 
-- (void)drawRect:(CGRect)rect
-{
-    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.controlBrickOrangeColor strokeColor:UIColor.controlBrickStrokeColor height:smallBrick width:[Util screenWidth]];
+    public func wait(until limit: Date = Date.distantFuture) {
+        state.lock()
+        while !isFulfilled {
+            if Date() > limit {
+                break
+            }
+            state.wait(until: limit)
+        }
+        state.unlock()
+    }
 }
-
-- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
-{
-    self.leftTextLabel = inlineViewSubViews[0];
-    self.delayTextField = inlineViewSubViews[1];
-    self.rightTextLabel = inlineViewSubViews[1];
-}
-
-@end

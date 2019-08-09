@@ -204,4 +204,4 @@
 #import "SpriteObject.h"
 #import "CBXMLOpenedNestingBricksStack.h"
 #import "BDKNotifyHUD.h"
-
+#import "BrickShapeFactory.h"

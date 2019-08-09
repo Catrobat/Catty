@@ -10,10 +10,7 @@
 #     https://docs.fastlane.tools/plugins/available-plugins
 #
 
-# Uncomment the line if you want fastlane to automatically update itself
-# update_fastlane
-
-ENV["FASTLANE_SKIP_UPDATE_CHECK"] = "1"
+update_fastlane
 opt_out_usage
 
 default_platform(:ios)
@@ -25,74 +22,75 @@ platform :ios do
   } 
   $build_dir = "fastlane/builds/"
   $branch_name= git_branch.sub("origin/", "").sub("upstream/", "")
+  $build_name = $branch_name
+  if ENV["BUILD_NUMBER"]
+    $build_name += "#"+ENV["BUILD_NUMBER"]
+  end
+
+  desc "Create an ipa build (options: scheme)"
+  lane :create_build do |options|
+    gym(scheme: options[:scheme],
+        export_method: options[:method],
+        output_directory: $build_dir,
+        export_xcargs: "-allowProvisioningUpdates",
+        output_name: $build_name
+    )
+  end
+
+  ##########################################################################
+  #
+  # CI
+  #
+  ##########################################################################
+
+  desc "Create builds at CI pipeline"
+  lane :build_catty do
+    update_app_identifier(
+      plist_path: "Catty/App-Info.plist",
+      app_identifier: "org.catrobat.pocketcode.adhoc"
+    )
+    update_info_plist(
+      plist_path: "Catty/App-Info.plist",
+      app_identifier: "org.catrobat.pocketcode.adhoc",
+      display_name: $build_name
+    )
+
+    create_build scheme:$catty_schemes["release"], method:"ad-hoc"
+
+    # Browserstack
+    upload_to_browserstack
+
+    # Adhoc
+    file = File.open("Install.html", "w")
+    file.puts '<meta name="viewport" content="width=device-width, initial-scale=1">'
+    if ENV['BROWSERSTACK_LIVE_APP_ID']
+      file.puts "<h2><a href='https://app-live.browserstack.com/#os=iOS&os_version=12.0&device=iPhone+XS&zoom_to_fit=true&full_screen=true&speed=1&app_hashed_id="+ENV['BROWSERSTACK_LIVE_APP_ID'][5..-1]+"'>Browserstack</a></h2><br>"
+    end
+    if ENV["BUILD_NUMBER"]
+      file.puts '<h2><a href="itms-services://?action=download-manifest&url=https://jenkins.catrob.at/job/Catty/job/'+$branch_name+'/'+ENV["BUILD_NUMBER"]+'/artifact/src/fastlane/Adhoc.plist">Install on Device</a></h2>'
+    end
+    file.close
+    if ENV["BUILD_NUMBER"]
+      file = File.open("Adhoc.plist", "w")
+      file.puts '<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version="1.0"><dict><key>items</key><array><dict><key>assets</key><array><dict><key>kind</key><string>software-package</string><key>url</key><string>https://jenkins.catrob.at/job/Catty/job/'+$branch_name+'/'+ENV["BUILD_NUMBER"]+'/artifact/src/fastlane/builds/'+$branch_name+'%23'+ENV["BUILD_NUMBER"]+'.ipa</string></dict></array><key>metadata</key><dict><key>bundle-identifier</key><string>org.catrobat.pocketcode.adhoc</string><key>kind</key><string>software</string><key>title</key><string>'+$branch_name+'#'+ENV["BUILD_NUMBER"]+'</string></dict></dict></array></dict></plist>'
+      file.close
+    end
+  end
 
   desc "Upload Development Build to Browserstack"
   lane :upload_to_browserstack do
     upload_to_browserstack_app_live(
       browserstack_username: ENV["BROWSERSTACK_USERNAME"],
       browserstack_access_key: ENV["BROWSERSTACK_ACCESS_KEY"],
-      file_path: $build_dir+$branch_name+".ipa"
+      file_path: $build_dir+$build_name+".ipa"
     )
   end
 
-  desc "Create an ipa Build (options: scheme)"
-  lane :create_build do |options|
-    gym(scheme: options[:scheme],
-        export_method: "development",
-        output_directory: $build_dir,
-        output_name: $branch_name
-    )
-  end
-
-  desc "Prepare for PO Review"
-  lane :po_review do
-    create_build scheme:$catty_schemes["release"]
-    upload_to_browserstack
-  end
-
-  desc "Upload Translations to Crowdin"
-  lane :crowdin_upload do
-    sh ("curl \
-          -F \"files[catty/Localizable.strings]=@../Catty/Resources/Localization/en.lproj/Localizable.strings\" \
-          -F \"export_patterns[catty/Localizable.strings]=/catty/%osx_code%/%original_file_name%\" \
-          https://api.crowdin.com/api/project/catrobat/update-file?key="+ENV["CROWDIN_KEY"])
-  end
-
-  desc "Download all Translations from Crowdin"
-  lane :crowdin_download do
-    sh ("wget -O crowdin.zip https://api.crowdin.com/api/project/catrobat/download/all.zip?key="+ENV["CROWDIN_KEY"])
-    sh ("unzip -o crowdin.zip -d crowdin")
-  end
-
-  desc "Update lane for Crowdin translations"
-  lane :update_translations do
-    # Move old translations to backup location
-    rsync(
-      source: "Catty/Resources/Localization/*",
-      destination: "fastlane/crowdin.old/"
-    )
-    sh ("find ../Catty/Resources/Localization/* ! -name 'en.lproj' -type d -exec rm -rf {} +")
-
-    # Upload
-    crowdin_upload
-
-    # Download
-    crowdin_download
-
-    # Sync
-    rsync(
-      source: "fastlane/crowdin/catty/*",
-      destination: "Catty/Resources/Localization/"
-    )
-
-    # Update xcodeproj
-    sh ("ruby rb/update_translations_xcodeproj.rb")
-
-    # Cleanup
-    sh ("rm -r crowdin")
-    sh ("rm crowdin.zip")
-    #sh ("rm -r crowdin.old")
-  end
+  ##########################################################################
+  #
+  # Tests
+  #
+  ##########################################################################
 
   #https://github.com/lyndsey-ferguson/fastlane-plugin-test_center
   desc "Run tests"
@@ -123,7 +121,10 @@ platform :ios do
     unless result[:failed_testcount].zero?
       UI.message("There are #{result[:failed_testcount]} legitimate failing tests")
     end
+  end
 
+  desc "Collate all test reports"
+  lane :test_reports do
     collate_junit_reports(
       reports: ["./fastlane/test_output/results-BluetoothHelperTests/report.junit", 
                 "./fastlane/test_output/results-Catty Tests/report.junit",
@@ -132,45 +133,81 @@ platform :ios do
     )
   end
 
-  #desc "Run tests" -> parallel
-  #lane :tests do
-  #  clear_derived_data
-  #  reset_simulator_contents
-  #  
-  #  #run_tests(devices: ["iPhone 7"],
-  #  #          scheme: $catty_schemes["debug"])
-  #  
-  #  #https://github.com/fastlane/fastlane/issues/13414
-  #  #Workaround for parallel testing issue
-  #  scan(devices: ["iPhone 7 (12.0)"],
-  #    scheme: $catty_schemes["debug"], 
-  #    output_types: "", 
-  #    fail_build: false)
+  ##########################################################################
   #
-  #  trainer(output_directory: "./fastlane/test_output/")
-  #end
+  # Translations
+  #
+  ##########################################################################
 
-  #https://github.com/fastlane/fastlane/issues/13414
-  #fastlane_require 'scan'
-  #module ::Scan
-  #  class ErrorHandler
-  #    class << self
-  #      alias_method :orig_handle_build_error, :handle_build_error
-  #      def handle_build_error(output)
-  #        # Only call the original handle_build_error method if we can tell that there weren't failing tests
-  #        orig_handle_build_error(output) if (output =~ /Failing tests:/).nil?
-  #      end
-  #    end
-  #  end
-  #end
+  desc "Upload Translations to Crowdin"
+  lane :crowdin_upload do
+    sh(
+      command: "curl \
+        -F \"files[catty/Localizable.strings]=@../Catty/Resources/Localization/en.lproj/Localizable.strings\" \
+        -F \"export_patterns[catty/Localizable.strings]=/catty/%osx_code%/%original_file_name%\" \
+        https://api.crowdin.com/api/project/catrobat/update-file?key="+ENV["CROWDIN_KEY"], 
+      log: false
+    )
+  end
 
-  desc "Release Pocket Code"
+  desc "Download all Translations from Crowdin"
+  lane :crowdin_download do
+    sh ("wget -O crowdin.zip https://api.crowdin.com/api/project/catrobat/download/all.zip?key="+ENV["CROWDIN_KEY"])
+    sh ("unzip -o crowdin.zip -d crowdin")
+  end
+
+  desc "Update lane for Crowdin translations"
+  lane :update_translations do
+    # Move old translations to backup location
+    rsync(
+      source: "Catty/Resources/Localization/*",
+      destination: "fastlane/crowdin.old/"
+    )
+    sh ("find ../Catty/Resources/Localization/* ! -name 'en.lproj' -type d -exec rm -rf {} +")
+
+    # Upload
+    crowdin_upload
+
+    # Download
+    crowdin_download
+
+    # Sync
+    rsync(
+      source: "fastlane/crowdin/catty/*",
+      destination: "Catty/Resources/Localization/"
+    )
+    sh ("rm -r ../Catty/Resources/Localization/AppStore")
+
+    # Update xcodeproj
+    sh ("ruby rb/update_translations_xcodeproj.rb")
+
+    # Cleanup
+    sh ("rm -r crowdin")
+    sh ("rm crowdin.zip")
+  end
+
+  ##########################################################################
+  #
+  # Metadata
+  #
+  ##########################################################################
+
+  ##########################################################################
+  #
+  # Release to Testflight
+  #
+  ##########################################################################
+
+  desc "Release Pocket Code to Testflight"
   lane :release do
-    build_app(scheme: $catty_schemes["release"])
+    setup_jenkins
+    cert
+    sigh
+    create_build scheme:$catty_schemes["release"], method:"app-store"
+    upload_to_testflight(
+      skip_submission: true,
+      skip_waiting_for_build_processing: true
+    )
   end
 
-  desc "Use this lane as playground"
-  lane :playground do
-
-  end
 end

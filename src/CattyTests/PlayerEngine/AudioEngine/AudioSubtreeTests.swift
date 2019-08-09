@@ -20,35 +20,29 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import Foundation
+import AudioKit
+import XCTest
 
-final class TimerWithBlock {
-    var timer: Timer?
-    let block: ((TimerWithBlock) -> Void)?
+@testable import Pocket_Code
 
-    var isValid: Bool {
-        return self.timer?.isValid ?? false
+final class AudioSubtreeTests: XCTestCase {
+
+    var audioSubtree: AudioSubtree!
+
+    override func setUp() {
+        super.setUp()
+        audioSubtree = AudioSubtree(audioPlayerFactory: MockAudioPlayerFactory())
     }
 
-    init(timeInterval: TimeInterval, repeats: Bool, block: @escaping (TimerWithBlock) -> Void) {
-        if #available(iOS 10.0, *) {
-            self.block = nil
-            self.timer = Timer.scheduledTimer(withTimeInterval: timeInterval, repeats: repeats) { _ in
-                block(self)
-            }
-        } else {
-            self.timer = nil
-            self.block = block
-            self.timer = Timer.scheduledTimer(timeInterval: timeInterval, target: self, selector: #selector(fire(timer:)), userInfo: nil, repeats: repeats)
-        }
+    func testInitialVolume_expectMax() {
+        XCTAssertEqual(audioSubtree.subtreeOutputMixer.volume, 1)
     }
 
-    @objc func fire(timer: Timer) {
-        self.block?(self)
+    func testSetup_expectAllNodesToBeConnected() {
+        let mainOut = AKMixer()
+        audioSubtree.setup(mainOut: mainOut)
+        XCTAssertEqual(audioSubtree.subtreeOutputMixer.connectionPoints.first!.node, mainOut.inputNode)
+        XCTAssertEqual(audioSubtree.audioPlayerMixer.connectionPoints.first!.node, audioSubtree.subtreeOutputMixer.inputNode)
     }
 
-    func invalidate() {
-        self.timer?.invalidate()
-        self.timer = nil
-    }
 }

@@ -44,10 +44,10 @@
 "Add sound" = "Sound hinzufügen";
 
 /* No comment provided by engineer. */
-"All Bluetooth devices successfully disconnected" = "All Bluetooth devices successfully disconnected";
+"All Bluetooth devices successfully disconnected" = "Alle Bluetooth-Verbindungen wurden getrennt";
 
 /* No comment provided by engineer. */
-"All known Bluetooth devices successfully removed" = "All known Bluetooth devices successfully removed";
+"All known Bluetooth devices successfully removed" = "Alle bekannten Bluetooth-Geräte wurden getrennt";
 
 /* paint */
 "Alpha" = "Alpha";
@@ -65,7 +65,7 @@
 "An unknown error occurred. Check your Internet connection." = "Unbekannter Fehler aufgetreten. Überprüfe deine Internetverbindung.";
 
 /* No comment provided by engineer. */
-"An unknown error occurred. Please try again later." = "An unknown error occurred. Please try again later.";
+"An unknown error occurred. Please try again later." = "Unbekannter Fehler ist aufgetreten. Bitte später noch einmal probieren.";
 
 /* No comment provided by engineer. */
 "and" = "und";
@@ -98,7 +98,7 @@
 "at position" = "auf Position";
 
 /* paint */
-"Attributes:" = "Attributes:";
+"Attributes:" = "Eigenschaften:";
 
 /* No comment provided by engineer. */
 "Aug" = "Aug";
@@ -137,10 +137,10 @@
 "Blue" = "Blau";
 
 /* No comment provided by engineer. */
-"Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings." = "Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings.";
+"Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings." = "Bluetooth ist nicht erreichbar. Entweder unterstützt Ihr Gerät Bluetooth 4.0 nicht oder Ihr Bluetooth-Chip ist beschädigt. Bitte überprüfen Sie, ob Verbindungen zu anderen Geräten über Bluetooth möglich sind.";
 
 /* No comment provided by engineer. */
-"Bluetooth is turned off. Please turn it on to connect to a Bluetooth device." = "Bluetooth is turned off. Please turn it on to connect to a Bluetooth device.";
+"Bluetooth is turned off. Please turn it on to connect to a Bluetooth device." = "Bluetooth ist ausgeschalten. Bitte schalten Sie zuerst Bluetooth ein um sich mit dem Gerät zu verbinden.";
 
 /* paint */
 "bold" = "fett";
@@ -176,19 +176,19 @@
 "Camera Roll" = "Fotoalbum";
 
 /* No comment provided by engineer. */
-"Can't restart project!" = "Can't restart project!";
+"Can't restart project!" = "Projekt kann nicht neugestartet werden!";
 
 /* No comment provided by engineer. */
 "Cancel" = "Abbrechen";
 
 /* bluetooth */
-"Cannot connect to device, please try resetting the device and try again." = "Cannot connect to device, please try resetting the device and try again.";
+"Cannot connect to device, please try resetting the device and try again." = "Verbindung zum Gerät nicht möglich. Bitte setzen Sie das Gerät zurück und versuchen Sie es erneut.";
 
 /* bluetooth */
-"Cannot connect to device. The device is not responding." = "Cannot connect to device. The device is not responding.";
+"Cannot connect to device. The device is not responding." = "Keine Rückmeldung. Verbindung zum Gerät nicht möglich.";
 
 /* No comment provided by engineer. */
-"Cannot connect to the Media Library. Please check your Internet connection." = "Cannot connect to the Media Library. Please check your Internet connection.";
+"Cannot connect to the Media Library. Please check your Internet connection." = "Kein Zugriff auf die Bibliothek. Gehen Sie sicher, dass Sie mit dem Internet verbunden sind.";
 
 /* No comment provided by engineer. */
 "Categories" = "Kategorien";
@@ -227,7 +227,7 @@
 "Changes saved!" = "Änderungen gespeichert!";
 
 /* No comment provided by engineer. */
-"Choose" = "Choose";
+"Choose" = "Wähle";
 
 /* No comment provided by engineer. */
 "Choose image" = "Bild auswählen";
@@ -269,7 +269,7 @@
 "Connection Lost" = "Verbindung abgebrochen";
 
 /* bluetooth */
-"Connection not possible" = "Connection not possible";
+"Connection not possible" = "Verbindung nicht möglich";
 
 /* No comment provided by engineer. */
 "contains" = "enthält";
@@ -338,10 +338,10 @@
 "Delete Objects" = "Objekte löschen";
 
 /* No comment provided by engineer. */
-"Delete Project" = "Delete Project";
+"Delete Project" = "Projekt löschen";
 
 /* No comment provided by engineer. */
-"Delete Projects" = "Delete Projects";
+"Delete Projects" = "Projekte löschen";
 
 /* No comment provided by engineer. */
 "Delete Script" = "Lösche Skript";
@@ -380,7 +380,7 @@
 "Delete this object" = "Soll dieses Objekt wirklich gelöscht werden?";
 
 /* No comment provided by engineer. */
-"Delete this project" = "Delete this project";
+"Delete this project" = "Dieses Projekt löschen";
 
 /* No comment provided by engineer. */
 "Delete this Script?" = "Dieses Skript löschen?";
@@ -398,7 +398,7 @@
 "Details" = "Einzelheiten";
 
 /* bluetooth */
-"Device disconnected." = "Device disconnected.";
+"Device disconnected." = "Verbindung getrennt.";
 
 /* No comment provided by engineer. */
 "device motion-sensor" = "device motion-sensor";
@@ -443,7 +443,7 @@
 "Edit Background" = "Hintergrund bearbeiten";
 
 /* Action sheet menu title */
-"Edit Backgrounds" = "Edit Backgrounds";
+"Edit Backgrounds" = "Hintergrund bearbeiten";
 
 /* Action sheet menu title */
 "Edit Brick" = "Edit Brick";
@@ -785,10 +785,10 @@
 "Line" = "Linie";
 
 /* No comment provided by engineer. */
-"List name:" = "List name:";
+"List name:" = "Namenliste:";
 
 /* No comment provided by engineer. */
-"List type" = "List type";
+"List type" = "Listentyp";
 
 /* No comment provided by engineer. */
 "Lists" = "Listen";
@@ -815,7 +815,7 @@
 "Login/Register" = "Anmelden/Registrieren";
 
 /* No comment provided by engineer. */
-"Logout" = "Ausloggen";
+"Logout" = "Abmelden";
 
 /* No comment provided by engineer. */
 "longitude" = "Längengrad";
@@ -839,7 +839,7 @@
 "loudness" = "Umgebungslautstärke";
 
 /* No comment provided by engineer. */
-"magnetic-sensor" = "magnetic-sensor";
+"magnetic-sensor" = "Magnetischer Sensor";
 
 /* No comment provided by engineer. */
 "Mar" = "Mrz";

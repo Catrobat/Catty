@@ -1586,7 +1586,7 @@
 "Turn right" = "Girar a la derecha";
 
 /* No comment provided by engineer. */
-"Unable to load project!" = "Unable to load project!";
+"Unable to load project!" = "¡No se puede cargar el programa!";
 
 /* No comment provided by engineer. */
 "Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt." = "No se puede reproducir el sonido! \nPuede que el sonido no sea válido o el archivo esté dañado.";

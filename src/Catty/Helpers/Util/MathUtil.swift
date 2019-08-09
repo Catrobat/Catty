@@ -20,10 +20,18 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "BrickCell.h"
+import Foundation
 
-@interface WaitBrickCell : BrickCell
+public enum MathUtil {
 
-@property (nonatomic, weak) UITextField *delayTextField;
+    static func moveValueIntoRange(_ value: Double, min: Double, max: Double) -> Double {
+        if value > max {
+            return max
+        } else if value < min {
+            return min
+        } else {
+            return value
+        }
+    }
 
-@end
+}
