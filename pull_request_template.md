@@ -1,7 +1,7 @@
 *Please describe your pull request and add a reference to the Jira ticket.*
 
 ### Your checklist for this pull request
-🚨Please review the [guidelines for contributing](../CONTRIBUTING.md) to this repository.
+Please review the [guidelines for contributing](../CONTRIBUTING.md) to this repository.
 
 - [ ] Include the name of the Jira ticket in the PR’s title
 - [ ] Include a summary of the changes plus the relevant context
