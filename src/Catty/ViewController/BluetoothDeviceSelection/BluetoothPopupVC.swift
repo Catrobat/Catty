@@ -37,8 +37,12 @@ import UIKit
         // Segmented Control customization
         self.segmentedPager.segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocation.down
         self.segmentedPager.segmentedControl.backgroundColor = UIColor.globalTint()
-        self.segmentedPager.segmentedControl.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.background()!, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12)]
-        self.segmentedPager.segmentedControl.selectedTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.navTint()!]
+
+        let titleColor = UIColor.background() ?? UIColor.black
+        let selectedTitleColor = UIColor.navTint() ?? UIColor.black
+
+        self.segmentedPager.segmentedControl.titleTextAttributes = [NSAttributedString.Key.foregroundColor: titleColor, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12)]
+        self.segmentedPager.segmentedControl.selectedTitleTextAttributes = [NSAttributedString.Key.foregroundColor: selectedTitleColor]
         self.segmentedPager.segmentedControl.selectionStyle = HMSegmentedControlSelectionStyle.box
         self.segmentedPager.segmentedControl.selectionIndicatorColor = UIColor.globalTint()
         self.segmentedPager.segmentedControl.segmentWidthStyle = HMSegmentedControlSegmentWidthStyle.fixed
