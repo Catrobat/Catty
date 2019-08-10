@@ -1,4 +1,4 @@
-*Please describe your pull request and add a reference to the Jira ticket.*
+*Please enter a short describtion your pull request and add a reference to the Jira ticket.*
 
 ### Your checklist for this pull request
 Please review the [contributing guidelines](https://github.com/Catrobat/Catroid/blob/develop/README.md) and [wiki pages](https://github.com/Catrobat/Catroid/wiki/) of this repository.
