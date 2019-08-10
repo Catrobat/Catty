@@ -1,7 +1,7 @@
 *Please describe your pull request and add a reference to the Jira ticket.*
 
 ### Your checklist for this pull request
-Please review the [guidelines for contributing](../CONTRIBUTING.md) to this repository.
+Please review the [contributing guidelines](https://github.com/Catrobat/Catroid/blob/develop/README.md) and [wiki pages](https://github.com/Catrobat/Catroid/wiki/) of this repository.
 
 - [ ] Include the name of the Jira ticket in the PR’s title
 - [ ] Include a summary of the changes plus the relevant context
@@ -16,4 +16,3 @@ Please review the [guidelines for contributing](../CONTRIBUTING.md) to this repo
 - [ ] Stick to the project’s git workflow (rebase and squash your commits)
 - [ ] Verify that your changes do not have any conflicts with the base branch
 - [ ] After the PR, verify that all CI checks have passed
-- [ ] Read further details on the [wiki pages](https://github.com/Catrobat/Catroid/wiki/)
