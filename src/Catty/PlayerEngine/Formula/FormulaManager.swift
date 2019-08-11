@@ -35,7 +35,8 @@ import CoreMotion
     let touchManager: TouchManagerProtocol
     let bluetoothService: BluetoothService
 
-    var cachedResults = NSCache<FormulaElement, AnyObject>()
+    var cachedResults = [FormulaElement: AnyObject]()
+    let cacheQueue = DispatchQueue(label: "cache")
 
     @objc(initWithSceneSize:)
     convenience init(sceneSize: CGSize) {
