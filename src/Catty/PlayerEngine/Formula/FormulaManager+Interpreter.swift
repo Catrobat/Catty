@@ -92,7 +92,7 @@ extension FormulaManager {
     }
 
     func invalidateCache() {
-        cachedResults.removeAll()
+        cachedResults.removeAllObjects()
     }
 
     func invalidateCache(_ formula: Formula) {
@@ -102,7 +102,7 @@ extension FormulaManager {
     }
 
     private func invalidateCache(_ formulaElement: FormulaElement) {
-        cachedResults.removeValue(forKey: formulaElement)
+        cachedResults.removeObject(forKey: formulaElement)
 
         if let leftChild = formulaElement.leftChild {
             invalidateCache(leftChild)
@@ -150,7 +150,7 @@ extension FormulaManager {
         guard let formulaElement = formulaElement else { return 0 as AnyObject }
         var result: AnyObject
 
-        if let cachedResult = cachedResults[formulaElement] {
+        if let cachedResult = cachedResults.object(forKey: formulaElement) {
             return cachedResult
         }
 
@@ -246,6 +246,6 @@ extension FormulaManager {
     }
 
     private func cacheResult(_ formulaElement: FormulaElement, result: AnyObject) {
-        cachedResults[formulaElement] = result
+        cachedResults.setObject(result, forKey: formulaElement)
     }
 }
