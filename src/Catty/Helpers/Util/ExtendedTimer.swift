@@ -36,7 +36,7 @@ final class ExtendedTimer: Hashable {
     }
 
     func hash(into hasher: inout Hasher) {
-        hasher.combine(ObjectIdentifier(self))
+        hasher.combine(ObjectIdentifier(self).hashValue)
     }
 
     init(timeInterval: TimeInterval,

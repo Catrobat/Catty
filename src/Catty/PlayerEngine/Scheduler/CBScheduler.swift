@@ -413,7 +413,7 @@ final class CBScheduler: CBSchedulerProtocol {
 
     func removeTimer(_ timer: ExtendedTimer) {
         timerQueue.sync {
-            self._activeTimers.append(timer)
+            self._activeTimers.removeObject(timer)
         }
     }
 }
