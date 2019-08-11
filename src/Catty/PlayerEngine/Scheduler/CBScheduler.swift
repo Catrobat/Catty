@@ -41,7 +41,7 @@ final class CBScheduler: CBSchedulerProtocol {
     private let _lockBufferQueue = DispatchQueue(label: "org.catrobat.LockBufferQueue", attributes: [])
     private var _lastQueueIndex = 0
 
-    var _activeTimers = [ExtendedTimer]()
+    var _activeTimers = Set<ExtendedTimer>()
     let timerQueue = DispatchQueue(label: "timer")
 
     // MARK: Static properties
@@ -405,15 +405,15 @@ final class CBScheduler: CBSchedulerProtocol {
     }
 
     func registerTimer(_ timer: ExtendedTimer) {
-        timerQueue.sync {
-            self._activeTimers.append(timer)
+        _ = timerQueue.sync {
+            self._activeTimers.insert(timer)
         }
         timer.startTimer()
     }
 
     func removeTimer(_ timer: ExtendedTimer) {
-        timerQueue.sync {
-            self._activeTimers.removeObject(timer)
+        _ = timerQueue.sync {
+            self._activeTimers.remove(timer)
         }
     }
 }
