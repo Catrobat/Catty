@@ -35,19 +35,19 @@ final class FormulaManagerCacheTests: XCTestCase {
     }
 
     func testStop() {
-        manager.cachedResults[FormulaElement()] = "a" as AnyObject
-        XCTAssertEqual(1, manager.cachedResults.count)
+        manager.formulaCache.cacheObject(object: "a" as AnyObject, forKey: FormulaElement())
+        XCTAssertEqual(1, manager.formulaCache.count())
 
         manager.stop()
-        XCTAssertEqual(0, manager.cachedResults.count)
+        XCTAssertEqual(0, manager.formulaCache.count())
     }
 
     func testInvalidateCache() {
-        manager.cachedResults[FormulaElement()] = "a" as AnyObject
-        XCTAssertEqual(1, manager.cachedResults.count)
+        manager.formulaCache.cacheObject(object: "a" as AnyObject, forKey: FormulaElement())
+        XCTAssertEqual(1, manager.formulaCache.count())
 
         manager.invalidateCache()
-        XCTAssertEqual(0, manager.cachedResults.count)
+        XCTAssertEqual(0, manager.formulaCache.count())
     }
 
     func testInvalidateCacheForFormula() {
@@ -57,22 +57,22 @@ final class FormulaManagerCacheTests: XCTestCase {
 
         let formulaB = Formula(integer: 2)!
 
-        XCTAssertEqual(0, manager.cachedResults.count)
+        XCTAssertEqual(0, manager.formulaCache.count())
         XCTAssertNotNil(manager.interpretInteger(formulaA, for: object))
         XCTAssertNotNil(manager.interpretInteger(formulaB, for: object))
 
-        XCTAssertEqual(2, manager.cachedResults.count)
-        XCTAssertNotNil(manager.cachedResults[leftChild])
-        XCTAssertNil(manager.cachedResults[rightChild])
-        XCTAssertNotNil(manager.cachedResults[formulaB.formulaTree])
+        XCTAssertEqual(2, manager.formulaCache.count())
+        XCTAssertNotNil(manager.formulaCache.retrieveObject(forKey: leftChild))
+        XCTAssertNil(manager.formulaCache.retrieveObject(forKey: rightChild))
+        XCTAssertNotNil(manager.formulaCache.retrieveObject(forKey: formulaB.formulaTree))
 
         manager.invalidateCache(formulaB)
-        XCTAssertEqual(1, manager.cachedResults.count)
-        XCTAssertNotNil(manager.cachedResults[leftChild])
-        XCTAssertNil(manager.cachedResults[formulaB.formulaTree])
+        XCTAssertEqual(1, manager.formulaCache.count())
+        XCTAssertNotNil(manager.formulaCache.retrieveObject(forKey: leftChild))
+        XCTAssertNil(manager.formulaCache.retrieveObject(forKey: formulaB.formulaTree))
 
         manager.invalidateCache(formulaA)
-        XCTAssertEqual(0, manager.cachedResults.count)
+        XCTAssertEqual(0, manager.formulaCache.count())
     }
 
     func testCacheNumber() {
@@ -80,30 +80,30 @@ final class FormulaManagerCacheTests: XCTestCase {
         let formula = Formula(integer: Int32(expectedNumber))!
 
         XCTAssertTrue(manager.isIdempotent(formula))
-        XCTAssertEqual(0, manager.cachedResults.count)
+        XCTAssertEqual(0, manager.formulaCache.count())
 
         XCTAssertEqual(expectedNumber, manager.interpretInteger(formula, for: object))
-        XCTAssertEqual(1, manager.cachedResults.count)
-        XCTAssertEqual(1, manager.cachedResults[formula.formulaTree] as! Int)
+        XCTAssertEqual(1, manager.formulaCache.count())
+        XCTAssertEqual(1, manager.formulaCache.retrieveObject(forKey: formula.formulaTree) as! Int)
 
         formula.formulaTree.value = "2"
 
         XCTAssertEqual(expectedNumber, manager.interpretInteger(formula, for: object))
-        XCTAssertEqual(1, manager.cachedResults.count)
+        XCTAssertEqual(1, manager.formulaCache.count())
 
         manager.invalidateCache()
 
         XCTAssertEqual(2, manager.interpretInteger(formula, for: object))
-        XCTAssertEqual(1, manager.cachedResults.count)
+        XCTAssertEqual(1, manager.formulaCache.count())
     }
 
     func testDoNotCacheSensor() {
         let formula = Formula(formulaElement: FormulaElement(elementType: ElementType.SENSOR, value: DateDaySensor.tag))!
         XCTAssertFalse(manager.isIdempotent(formula))
-        XCTAssertEqual(0, manager.cachedResults.count)
+        XCTAssertEqual(0, manager.formulaCache.count())
 
         XCTAssertEqual(Calendar.current.component(.day, from: Date()), manager.interpretInteger(formula, for: object))
-        XCTAssertEqual(0, manager.cachedResults.count)
+        XCTAssertEqual(0, manager.formulaCache.count())
     }
 
     func testCacheNumberAndSensor() {
@@ -112,14 +112,14 @@ final class FormulaManagerCacheTests: XCTestCase {
         let formula = Formula(formulaElement: FormulaElement(elementType: ElementType.OPERATOR, value: PlusOperator.tag, leftChild: leftChild, rightChild: rightChild, parent: nil))!
 
         XCTAssertFalse(manager.isIdempotent(formula))
-        XCTAssertEqual(0, manager.cachedResults.count)
+        XCTAssertEqual(0, manager.formulaCache.count())
 
         XCTAssertEqual(Calendar.current.component(.day, from: Date()) + 1, manager.interpretInteger(formula, for: object))
 
-        XCTAssertEqual(1, manager.cachedResults.count)
-        XCTAssertNotNil(manager.cachedResults[leftChild])
-        XCTAssertEqual(1, manager.cachedResults[leftChild] as! Int)
-        XCTAssertNil(manager.cachedResults[rightChild])
+        XCTAssertEqual(1, manager.formulaCache.count())
+        XCTAssertNotNil(manager.formulaCache.retrieveObject(forKey: leftChild))
+        XCTAssertEqual(1, manager.formulaCache.retrieveObject(forKey: leftChild) as! Int)
+        XCTAssertNil(manager.formulaCache.retrieveObject(forKey: rightChild))
 
         XCTAssertEqual(Calendar.current.component(.day, from: Date()) + 1, manager.interpretInteger(formula, for: object))
     }
@@ -129,20 +129,20 @@ final class FormulaManagerCacheTests: XCTestCase {
         let formula = Formula(formulaElement: FormulaElement(elementType: ElementType.SENSOR, value: DateDaySensor.tag))!
 
         XCTAssertFalse(manager.isIdempotent(formula))
-        XCTAssertEqual(0, manager.cachedResults.count)
+        XCTAssertEqual(0, manager.formulaCache.count())
 
         XCTAssertEqual(expectedResult, manager.interpretInteger(formula, for: object))
-        XCTAssertEqual(0, manager.cachedResults.count)
+        XCTAssertEqual(0, manager.formulaCache.count())
 
         XCTAssertEqual(expectedResult, manager.interpretAndCache(formula, for: object) as! Int)
-        XCTAssertEqual(1, manager.cachedResults.count)
-        XCTAssertNotNil(manager.cachedResults[formula.formulaTree])
+        XCTAssertEqual(1, manager.formulaCache.count())
+        XCTAssertNotNil(manager.formulaCache.retrieveObject(forKey: formula.formulaTree))
 
         formula.formulaTree.value = DateYearSensor.tag
         XCTAssertEqual(expectedResult, manager.interpretInteger(formula, for: object))
 
         XCTAssertEqual(Calendar.current.component(.year, from: Date()), manager.interpretAndCache(formula, for: object) as! Int)
-        XCTAssertEqual(1, manager.cachedResults.count)
+        XCTAssertEqual(1, manager.formulaCache.count())
     }
 
     func testInterpretAndCacheNumberAndSensor() {
@@ -154,16 +154,16 @@ final class FormulaManagerCacheTests: XCTestCase {
         XCTAssertFalse(manager.isIdempotent(formula))
 
         XCTAssertEqual(expectedResult, manager.interpretInteger(formula, for: object))
-        XCTAssertEqual(1, manager.cachedResults.count)
-        XCTAssertNotNil(manager.cachedResults[leftChild])
-        XCTAssertNil(manager.cachedResults[rightChild])
-        XCTAssertNil(manager.cachedResults[formula.formulaTree])
+        XCTAssertEqual(1, manager.formulaCache.count())
+        XCTAssertNotNil(manager.formulaCache.retrieveObject(forKey: leftChild))
+        XCTAssertNil(manager.formulaCache.retrieveObject(forKey: rightChild))
+        XCTAssertNil(manager.formulaCache.retrieveObject(forKey: formula.formulaTree))
 
         XCTAssertEqual(expectedResult, manager.interpretAndCache(formula, for: object) as! Int)
-        XCTAssertEqual(2, manager.cachedResults.count)
+        XCTAssertEqual(2, manager.formulaCache.count())
 
-        XCTAssertNotNil(manager.cachedResults[leftChild])
-        XCTAssertNotNil(manager.cachedResults[formula.formulaTree])
-        XCTAssertNil(manager.cachedResults[rightChild])
+        XCTAssertNotNil(manager.formulaCache.retrieveObject(forKey: leftChild))
+        XCTAssertNotNil(manager.formulaCache.retrieveObject(forKey: formula.formulaTree))
+        XCTAssertNil(manager.formulaCache.retrieveObject(forKey: rightChild))
     }
 }

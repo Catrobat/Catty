@@ -81,7 +81,7 @@ extension FormulaManager {
         invalidateCache(formula)
 
         let result = interpretRecursive(formulaElement: formula.formulaTree, for: spriteObject)
-        cacheResult(formula.formulaTree, result: result)
+        formulaCache.cacheObject(object: result, forKey: formula.formulaTree)
 
         return result
     }
@@ -92,7 +92,7 @@ extension FormulaManager {
     }
 
     func invalidateCache() {
-        cachedResults.removeAll()
+        formulaCache.clearCache()
     }
 
     func invalidateCache(_ formula: Formula) {
@@ -102,7 +102,7 @@ extension FormulaManager {
     }
 
     private func invalidateCache(_ formulaElement: FormulaElement) {
-        cachedResults.removeValue(forKey: formulaElement)
+        formulaCache.removeObject(fromCache: formulaElement)
 
         if let leftChild = formulaElement.leftChild {
             invalidateCache(leftChild)
@@ -150,7 +150,7 @@ extension FormulaManager {
         guard let formulaElement = formulaElement else { return 0 as AnyObject }
         var result: AnyObject
 
-        if let cachedResult = getCacheElement(formulaElement) {
+        if let cachedResult = formulaCache.retrieveObject(forKey: formulaElement) {
             return cachedResult
         }
 
@@ -174,7 +174,7 @@ extension FormulaManager {
         }
 
         if isIdempotent(formulaElement) {
-            cacheResult(formulaElement, result: result)
+            formulaCache.cacheObject(object: result, forKey: formulaElement)
         }
 
         return result
@@ -243,21 +243,5 @@ extension FormulaManager {
         }
 
         return interpretRecursive(formulaElement: formulaElement, for: spriteObject)
-    }
-
-    private func cacheResult(_ formulaElement: FormulaElement, result: AnyObject) {
-        cacheQueue.sync {
-            cachedResults[formulaElement] = result
-        }
-    }
-
-    private func getCacheElement(_ formulaElement: FormulaElement) -> AnyObject? {
-        var result: AnyObject?
-
-        cacheQueue.sync {
-            result = cachedResults[formulaElement]
-        }
-
-        return result
     }
 }
