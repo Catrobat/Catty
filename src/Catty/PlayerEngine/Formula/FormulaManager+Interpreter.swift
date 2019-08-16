@@ -81,7 +81,7 @@ extension FormulaManager {
         invalidateCache(formula)
 
         let result = interpretRecursive(formulaElement: formula.formulaTree, for: spriteObject)
-        formulaCache.cacheObject(object: result, forKey: formula.formulaTree)
+        formulaCache.insert(object: result, forKey: formula.formulaTree)
 
         return result
     }
@@ -92,7 +92,7 @@ extension FormulaManager {
     }
 
     func invalidateCache() {
-        formulaCache.clearCache()
+        formulaCache.clear()
     }
 
     func invalidateCache(_ formula: Formula) {
@@ -102,7 +102,7 @@ extension FormulaManager {
     }
 
     private func invalidateCache(_ formulaElement: FormulaElement) {
-        formulaCache.removeObject(fromCache: formulaElement)
+        formulaCache.remove(forKey: formulaElement)
 
         if let leftChild = formulaElement.leftChild {
             invalidateCache(leftChild)
@@ -150,7 +150,7 @@ extension FormulaManager {
         guard let formulaElement = formulaElement else { return 0 as AnyObject }
         var result: AnyObject
 
-        if let cachedResult = formulaCache.retrieveObject(forKey: formulaElement) {
+        if let cachedResult = formulaCache.retrieve(forKey: formulaElement) {
             return cachedResult
         }
 
@@ -174,7 +174,7 @@ extension FormulaManager {
         }
 
         if isIdempotent(formulaElement) {
-            formulaCache.cacheObject(object: result, forKey: formulaElement)
+            formulaCache.insert(object: result, forKey: formulaElement)
         }
 
         return result

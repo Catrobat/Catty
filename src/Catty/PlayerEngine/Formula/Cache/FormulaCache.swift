@@ -22,18 +22,18 @@
 
 import Foundation
 
-@objc class CBFormulaCache: NSObject {
+class FormulaCache {
 
     private var cachedResults = [FormulaElement: AnyObject]()
     private let cacheQueue = DispatchQueue(label: "cache")
 
-    @objc func cacheObject(object: AnyObject, forKey key: FormulaElement) {
+    func insert(object: AnyObject, forKey key: FormulaElement) {
         cacheQueue.sync {
             cachedResults[key] = object
         }
     }
 
-    @objc func retrieveObject(forKey key: FormulaElement) -> AnyObject? {
+    func retrieve(forKey key: FormulaElement) -> AnyObject? {
         var result: AnyObject?
 
         _ = cacheQueue.sync {
@@ -43,19 +43,19 @@ import Foundation
         return result
     }
 
-    @objc func removeObject(fromCache element: FormulaElement) {
+    func remove(forKey key: FormulaElement) {
         _ = cacheQueue.sync {
-            cachedResults.removeValue(forKey: element)
+            cachedResults.removeValue(forKey: key)
         }
     }
 
-    @objc func clearCache() {
+    func clear() {
         cacheQueue.sync {
             cachedResults.removeAll()
         }
     }
 
-    @objc func count() -> Int {
+    func count() -> Int {
         var result = Int()
 
         cacheQueue.sync {

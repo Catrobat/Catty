@@ -35,7 +35,7 @@ final class FormulaManagerCacheTests: XCTestCase {
     }
 
     func testStop() {
-        manager.formulaCache.cacheObject(object: "a" as AnyObject, forKey: FormulaElement())
+        manager.formulaCache.insert(object: "a" as AnyObject, forKey: FormulaElement())
         XCTAssertEqual(1, manager.formulaCache.count())
 
         manager.stop()
@@ -43,7 +43,7 @@ final class FormulaManagerCacheTests: XCTestCase {
     }
 
     func testInvalidateCache() {
-        manager.formulaCache.cacheObject(object: "a" as AnyObject, forKey: FormulaElement())
+        manager.formulaCache.insert(object: "a" as AnyObject, forKey: FormulaElement())
         XCTAssertEqual(1, manager.formulaCache.count())
 
         manager.invalidateCache()
@@ -62,14 +62,14 @@ final class FormulaManagerCacheTests: XCTestCase {
         XCTAssertNotNil(manager.interpretInteger(formulaB, for: object))
 
         XCTAssertEqual(2, manager.formulaCache.count())
-        XCTAssertNotNil(manager.formulaCache.retrieveObject(forKey: leftChild))
-        XCTAssertNil(manager.formulaCache.retrieveObject(forKey: rightChild))
-        XCTAssertNotNil(manager.formulaCache.retrieveObject(forKey: formulaB.formulaTree))
+        XCTAssertNotNil(manager.formulaCache.retrieve(forKey: leftChild))
+        XCTAssertNil(manager.formulaCache.retrieve(forKey: rightChild))
+        XCTAssertNotNil(manager.formulaCache.retrieve(forKey: formulaB.formulaTree))
 
         manager.invalidateCache(formulaB)
         XCTAssertEqual(1, manager.formulaCache.count())
-        XCTAssertNotNil(manager.formulaCache.retrieveObject(forKey: leftChild))
-        XCTAssertNil(manager.formulaCache.retrieveObject(forKey: formulaB.formulaTree))
+        XCTAssertNotNil(manager.formulaCache.retrieve(forKey: leftChild))
+        XCTAssertNil(manager.formulaCache.retrieve(forKey: formulaB.formulaTree))
 
         manager.invalidateCache(formulaA)
         XCTAssertEqual(0, manager.formulaCache.count())
@@ -84,7 +84,7 @@ final class FormulaManagerCacheTests: XCTestCase {
 
         XCTAssertEqual(expectedNumber, manager.interpretInteger(formula, for: object))
         XCTAssertEqual(1, manager.formulaCache.count())
-        XCTAssertEqual(1, manager.formulaCache.retrieveObject(forKey: formula.formulaTree) as! Int)
+        XCTAssertEqual(1, manager.formulaCache.retrieve(forKey: formula.formulaTree) as! Int)
 
         formula.formulaTree.value = "2"
 
@@ -117,9 +117,9 @@ final class FormulaManagerCacheTests: XCTestCase {
         XCTAssertEqual(Calendar.current.component(.day, from: Date()) + 1, manager.interpretInteger(formula, for: object))
 
         XCTAssertEqual(1, manager.formulaCache.count())
-        XCTAssertNotNil(manager.formulaCache.retrieveObject(forKey: leftChild))
-        XCTAssertEqual(1, manager.formulaCache.retrieveObject(forKey: leftChild) as! Int)
-        XCTAssertNil(manager.formulaCache.retrieveObject(forKey: rightChild))
+        XCTAssertNotNil(manager.formulaCache.retrieve(forKey: leftChild))
+        XCTAssertEqual(1, manager.formulaCache.retrieve(forKey: leftChild) as! Int)
+        XCTAssertNil(manager.formulaCache.retrieve(forKey: rightChild))
 
         XCTAssertEqual(Calendar.current.component(.day, from: Date()) + 1, manager.interpretInteger(formula, for: object))
     }
@@ -136,7 +136,7 @@ final class FormulaManagerCacheTests: XCTestCase {
 
         XCTAssertEqual(expectedResult, manager.interpretAndCache(formula, for: object) as! Int)
         XCTAssertEqual(1, manager.formulaCache.count())
-        XCTAssertNotNil(manager.formulaCache.retrieveObject(forKey: formula.formulaTree))
+        XCTAssertNotNil(manager.formulaCache.retrieve(forKey: formula.formulaTree))
 
         formula.formulaTree.value = DateYearSensor.tag
         XCTAssertEqual(expectedResult, manager.interpretInteger(formula, for: object))
@@ -155,15 +155,15 @@ final class FormulaManagerCacheTests: XCTestCase {
 
         XCTAssertEqual(expectedResult, manager.interpretInteger(formula, for: object))
         XCTAssertEqual(1, manager.formulaCache.count())
-        XCTAssertNotNil(manager.formulaCache.retrieveObject(forKey: leftChild))
-        XCTAssertNil(manager.formulaCache.retrieveObject(forKey: rightChild))
-        XCTAssertNil(manager.formulaCache.retrieveObject(forKey: formula.formulaTree))
+        XCTAssertNotNil(manager.formulaCache.retrieve(forKey: leftChild))
+        XCTAssertNil(manager.formulaCache.retrieve(forKey: rightChild))
+        XCTAssertNil(manager.formulaCache.retrieve(forKey: formula.formulaTree))
 
         XCTAssertEqual(expectedResult, manager.interpretAndCache(formula, for: object) as! Int)
         XCTAssertEqual(2, manager.formulaCache.count())
 
-        XCTAssertNotNil(manager.formulaCache.retrieveObject(forKey: leftChild))
-        XCTAssertNotNil(manager.formulaCache.retrieveObject(forKey: formula.formulaTree))
-        XCTAssertNil(manager.formulaCache.retrieveObject(forKey: rightChild))
+        XCTAssertNotNil(manager.formulaCache.retrieve(forKey: leftChild))
+        XCTAssertNotNil(manager.formulaCache.retrieve(forKey: formula.formulaTree))
+        XCTAssertNil(manager.formulaCache.retrieve(forKey: rightChild))
     }
 }
