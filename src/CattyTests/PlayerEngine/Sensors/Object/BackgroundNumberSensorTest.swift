@@ -51,9 +51,9 @@ final class BackgroundNumberSensorTest: XCTestCase {
     }
 
     func testRawValue() {
-        spriteObject.lookList = [Look(name: "first", andPath: "test1.png"),
-                                 Look(name: "second", andPath: "test2.png"),
-                                 Look(name: "third", andPath: "test3.png")]
+        spriteObject.lookList = [Look(name: "first", andPath: "test1.png")!,
+                                 Look(name: "second", andPath: "test2.png")!,
+                                 Look(name: "third", andPath: "test3.png")!]
 
         spriteNode.currentLook = (spriteObject.lookList[0] as! Look)
         XCTAssertEqual(0, type(of: sensor).rawValue(for: spriteObject))

@@ -27,16 +27,16 @@ import XCTest
 final class InternFormulaKeyboardAdapterTests: XCTestCase {
 
     func testReplaceFunctionButKeepParameters() {
-        let internTokenList = NSMutableArray(array: [InternToken(type: TOKEN_TYPE_FUNCTION_NAME, andValue: CosFunction.tag),
-                                                     InternToken(type: TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_OPEN),
-                                                     InternToken(type: TOKEN_TYPE_FUNCTION_NAME, andValue: RoundFunction.tag),
-                                                     InternToken(type: TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_OPEN),
-                                                     InternToken(type: TOKEN_TYPE_FUNCTION_NAME, andValue: SinFunction.tag),
-                                                     InternToken(type: TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_OPEN),
-                                                     InternToken(type: TOKEN_TYPE_NUMBER, andValue: "42.42"),
-                                                     InternToken(type: TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_CLOSE),
-                                                     InternToken(type: TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_CLOSE),
-                                                     InternToken(type: TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_CLOSE)])
+        let internTokenList = NSMutableArray(array: [InternToken(type: TOKEN_TYPE_FUNCTION_NAME, andValue: CosFunction.tag)!,
+                                                     InternToken(type: TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_OPEN)!,
+                                                     InternToken(type: TOKEN_TYPE_FUNCTION_NAME, andValue: RoundFunction.tag)!,
+                                                     InternToken(type: TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_OPEN)!,
+                                                     InternToken(type: TOKEN_TYPE_FUNCTION_NAME, andValue: SinFunction.tag)!,
+                                                     InternToken(type: TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_OPEN)!,
+                                                     InternToken(type: TOKEN_TYPE_NUMBER, andValue: "42.42")!,
+                                                     InternToken(type: TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_CLOSE)!,
+                                                     InternToken(type: TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_CLOSE)!,
+                                                     InternToken(type: TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_CLOSE)!])
 
         let internFormula = InternFormula(internTokenList: internTokenList)!
         internFormula.generateExternFormulaStringAndInternExternMapping()
@@ -57,16 +57,16 @@ final class InternFormulaKeyboardAdapterTests: XCTestCase {
     }
 
     func testReplaceFunctionByToken() {
-        let internTokenList = NSMutableArray(array: [InternToken(type: TOKEN_TYPE_FUNCTION_NAME, andValue: CosFunction.tag),
-                                                     InternToken(type: TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_OPEN),
-                                                     InternToken(type: TOKEN_TYPE_FUNCTION_NAME, andValue: RoundFunction.tag),
-                                                     InternToken(type: TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_OPEN),
-                                                     InternToken(type: TOKEN_TYPE_FUNCTION_NAME, andValue: SinFunction.tag),
-                                                     InternToken(type: TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_OPEN),
-                                                     InternToken(type: TOKEN_TYPE_NUMBER, andValue: "42.42"),
-                                                     InternToken(type: TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_CLOSE),
-                                                     InternToken(type: TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_CLOSE),
-                                                     InternToken(type: TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_CLOSE)])
+        let internTokenList = NSMutableArray(array: [InternToken(type: TOKEN_TYPE_FUNCTION_NAME, andValue: CosFunction.tag)!,
+                                                     InternToken(type: TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_OPEN)!,
+                                                     InternToken(type: TOKEN_TYPE_FUNCTION_NAME, andValue: RoundFunction.tag)!,
+                                                     InternToken(type: TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_OPEN)!,
+                                                     InternToken(type: TOKEN_TYPE_FUNCTION_NAME, andValue: SinFunction.tag)!,
+                                                     InternToken(type: TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_OPEN)!,
+                                                     InternToken(type: TOKEN_TYPE_NUMBER, andValue: "42.42")!,
+                                                     InternToken(type: TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_CLOSE)!,
+                                                     InternToken(type: TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_CLOSE)!,
+                                                     InternToken(type: TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_CLOSE)!])
 
         let internFormula = InternFormula(internTokenList: internTokenList)!
         internFormula.generateExternFormulaStringAndInternExternMapping()
@@ -81,7 +81,7 @@ final class InternFormulaKeyboardAdapterTests: XCTestCase {
     }
 
     func testInsertOperatorInNumberToken() {
-        let internTokenList = NSMutableArray(array: [InternToken(type: TOKEN_TYPE_NUMBER, andValue: "1234")])
+        let internTokenList = NSMutableArray(array: [InternToken(type: TOKEN_TYPE_NUMBER, andValue: "1234")!])
 
         let internFormula = InternFormula(internTokenList: internTokenList)!
         internFormula.generateExternFormulaStringAndInternExternMapping()
@@ -96,7 +96,7 @@ final class InternFormulaKeyboardAdapterTests: XCTestCase {
     }
 
     func testReplaceNumberByTrue() {
-        let internTokenList = NSMutableArray(array: [InternToken(type: TOKEN_TYPE_NUMBER, andValue: "1234")])
+        let internTokenList = NSMutableArray(array: [InternToken(type: TOKEN_TYPE_NUMBER, andValue: "1234")!])
         let internFormula = InternFormula(internTokenList: internTokenList)!
 
         internFormula.generateExternFormulaStringAndInternExternMapping()

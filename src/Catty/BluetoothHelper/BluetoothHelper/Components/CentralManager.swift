@@ -232,6 +232,9 @@ import UIKit
             return .poweredOff
         case .poweredOn:
             return .poweredOn
+        @unknown default:
+            print("ERROR: case not handled by switch statement")
+            return .unknown
         }
     }
 
