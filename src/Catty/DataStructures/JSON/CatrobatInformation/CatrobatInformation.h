@@ -30,6 +30,5 @@
 @property (nonatomic, strong) NSString *apiVersion;
 @property (nonatomic, strong) NSString *baseURL;
 @property (nonatomic, strong) NSString *projectsExtension;
-@property (nonatomic, assign) NSNumber *totalProjects;
 
 @end

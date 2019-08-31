@@ -173,7 +173,7 @@ class HelpWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
             .components(separatedBy: CharacterSet(charactersIn: "?"))[0]
         // extract project ID from URL => example: https://pocketcode.org/download/959.catrobat
         var urlParts = urlWithoutParams?.components(separatedBy: "/")
-        if urlParts?.count == nil {
+        if urlParts?.isEmpty ?? true {
             Util.alert(withText: kLocalizedInvalidURLGiven)
             return false
         }
@@ -183,10 +183,9 @@ class HelpWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
             Util.alert(withText: kLocalizedInvalidURLGiven)
             return false
         }
-        // check if projectID is valid number
-        let projectID = urlParts?.first
-        if projectID == nil ||
-            !(projectID == String(Int(projectID!)!)) {
+        // check projectID
+        let projectID = urlParts?.first ?? ""
+        if projectID.isEmpty {
             Util.alert(withText: kLocalizedInvalidURLGiven)
             return false
         }
@@ -196,16 +195,16 @@ class HelpWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
             return false
         }
         // parse project name
-        let projectName: String? = urlComp.queryItems?
+        let projectName: String = urlComp.queryItems?
             .first(where: { $0.name == "fname" })?.value?
-            .replacingOccurrences(of: "+", with: " ")
-        if projectName == nil || projectName!.isEmpty {
+            .replacingOccurrences(of: "+", with: " ") ?? ""
+        if projectName.isEmpty {
             Util.alert(withText: kLocalizedInvalidURLGiven)
             return false
         }
         // check if project exists
-        if projectName != nil && Project.projectExists(withProjectName: projectName!,
-                                                       projectID: projectID!) {
+        if Project.projectExists(withProjectName: projectName,
+                                 projectID: projectID) {
             Util.alert(withText: kLocalizedProjectAlreadyDownloadedDescription)
             return false
         }

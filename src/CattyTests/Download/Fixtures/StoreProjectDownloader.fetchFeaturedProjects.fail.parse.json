@@ -22,13 +22,13 @@
             {
               "FeaturedImage" : "resources\/featured\/featured_28.jpeg",
               "ProjectName" : "Galaxy War",
-              "ProjectId" : 719,
+              "ProjectId" : "719",
               "Author" : "DavidR"
             },
             {
               "FeaturedImage" : "resources\/featured\/featured_29.jpeg",
               "ProjectName" : "Whack A Mole",
-              "ProjectId" : 821,
+              "ProjectId" : "821",
               "Author" : "VesnaK"
             }
           ],
