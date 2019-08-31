@@ -88,7 +88,7 @@ fileprivate extension IntroductionPageViewController {
 extension IntroductionPageViewController: UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController,
                             viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        guard let current = self.pages.index(of: viewController), current > 0,
+        guard let current = self.pages.firstIndex(of: viewController), current > 0,
             self.content.indices.contains(current - 1)
             else { return nil }
 
@@ -97,7 +97,7 @@ extension IntroductionPageViewController: UIPageViewControllerDataSource {
 
     func pageViewController(_ pageViewController: UIPageViewController,
                             viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        guard let current = self.pages.index(of: viewController),
+        guard let current = self.pages.firstIndex(of: viewController),
             current < self.content.count
             else { return nil }
 
@@ -131,7 +131,7 @@ extension IntroductionPageViewController: UIPageViewControllerDelegate {
                                    willTransitionTo pendingViewControllers: [UIViewController]) {
         // prepare for dismissing introduction on showing the extra page without content
         if let pendingViewController = pendingViewControllers.first,
-            let index = self.pages.index(of: pendingViewController) {
+            let index = self.pages.firstIndex(of: pendingViewController) {
             self.dismissAfterAnimation = index == self.content.count
         }
     }
@@ -140,7 +140,7 @@ extension IntroductionPageViewController: UIPageViewControllerDelegate {
                                    previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         // dismiss introduction on showing extra page without content
         if let previousViewController = previousViewControllers.first,
-            let index = self.pages.index(of: previousViewController),
+            let index = self.pages.firstIndex(of: previousViewController),
             self.dismissAfterAnimation && index == self.content.count - 1 && completed {
             self.presentingViewController?.dismiss(animated: true, completion: nil)
             IntroductionPageViewController.hasBeenShown = true

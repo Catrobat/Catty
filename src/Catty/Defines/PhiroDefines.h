@@ -20,19 +20,19 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-typedef NS_ENUM(NSUInteger, Motor){
+typedef NS_CLOSED_ENUM(NSUInteger, Motor){
     Left = 1,
     Right = 2,
     Both = 3
 };
 
-typedef NS_ENUM(NSUInteger, Light){
+typedef NS_CLOSED_ENUM(NSUInteger, Light){
     LLeft = 1,
     LRight = 2,
     LBoth = 3
 };
 
-typedef  NS_ENUM(NSUInteger, Tone){
+typedef  NS_CLOSED_ENUM(NSUInteger, Tone){
     DO = 1,
     RE = 2,
     MI = 3,

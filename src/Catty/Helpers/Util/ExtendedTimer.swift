@@ -34,8 +34,9 @@ final class ExtendedTimer: Hashable {
     var isValid: Bool {
         return self.timer?.isValid ?? false
     }
-    var hashValue: Int {
-        return ObjectIdentifier(self).hashValue
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(ObjectIdentifier(self).hashValue)
     }
 
     init(timeInterval: TimeInterval,

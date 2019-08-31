@@ -42,6 +42,7 @@ final class CBScheduler: CBSchedulerProtocol {
     private var _lastQueueIndex = 0
 
     var _activeTimers = Set<ExtendedTimer>()
+    let timerQueue = DispatchQueue(label: "timer")
 
     // MARK: Static properties
     static let vibrateSerialQueue = OperationQueue()
@@ -404,11 +405,15 @@ final class CBScheduler: CBSchedulerProtocol {
     }
 
     func registerTimer(_ timer: ExtendedTimer) {
-        self._activeTimers.insert(timer)
+        _ = timerQueue.sync {
+            self._activeTimers.insert(timer)
+        }
         timer.startTimer()
     }
 
     func removeTimer(_ timer: ExtendedTimer) {
-        self._activeTimers.remove(timer)
+        _ = timerQueue.sync {
+            self._activeTimers.remove(timer)
+        }
     }
 }
