@@ -148,7 +148,6 @@
 #import "RuntimeImageCache.h"
 #import "CBMutableCopyContext.h"
 #import "CameraPreviewHandler.h"
-#import "BubbleBrickHelper.h"
 
 //------------------------------------------------------------------------------------------------------------
 // ViewController classes
