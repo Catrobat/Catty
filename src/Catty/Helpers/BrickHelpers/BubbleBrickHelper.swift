@@ -46,13 +46,13 @@ let kSentenceLength = 10
          if fullTextLength > CGFloat(kMaxBubbleWidth) {
              while sentencePosition + kSentenceLength < text.count {
 
-                let sentencePosIndex = String.Index.init(encodedOffset: sentencePosition)
-                let sentenceLengthIndex = String.Index.init(encodedOffset: sentencePosition + kSentenceLength)
+                let sentencePosIndex = text.index(text.startIndex, offsetBy: sentencePosition)
+                let sentenceLengthIndex = text.index(text.startIndex, offsetBy: sentencePosition + kSentenceLength)
                 let sentenceRange = sentencePosIndex..<sentenceLengthIndex
                 var sentenceSubString = String(text[sentenceRange])
 
-                let lowerCharIndex = String.Index.init(encodedOffset: Int(sentencePosition + kSentenceLength))
-                let UpperCharIndex = String.Index.init(encodedOffset: Int(sentencePosition + kSentenceLength + 1))
+                let lowerCharIndex = text.index(text.startIndex, offsetBy: sentencePosition + kSentenceLength)
+                let UpperCharIndex = text.index(text.startIndex, offsetBy: sentencePosition + kSentenceLength + 1)
                 let charRange = lowerCharIndex..<UpperCharIndex
                 let nextCharInLine = String(text[charRange])
 
@@ -67,8 +67,8 @@ let kSentenceLength = 10
                  sentenceSubStringLength = Int(SKLabelNode(text: sentenceSubString).frame.size.width)
              }
 
-            let lowerSubStringIndex = String.Index.init(encodedOffset: Int(sentencePosition))
-            let UpperSubStringIndex = String.Index.init(encodedOffset: text.count)
+            let lowerSubStringIndex = text.index(text.startIndex, offsetBy: sentencePosition)
+            let UpperSubStringIndex = text.index(text.startIndex, offsetBy: text.count)
             let subStringRange = lowerSubStringIndex..<UpperSubStringIndex
             let sentenceSubString = String(text[subStringRange])
 
