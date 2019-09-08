@@ -200,7 +200,6 @@ platform :ios do
 
   desc "Release Pocket Code to Testflight"
   lane :release do
-    setup_jenkins
     cert
     sigh
     create_build scheme:$catty_schemes["release"], method:"app-store"
