@@ -128,10 +128,28 @@
     return nil;
 }
 
+- (GDataXMLElement*)singleNodeForId:(NSString*)referenceId
+{
+    NSError *error = nil;
+    NSString *xPath = [NSString stringWithFormat:@"//*[@id=%@]", referenceId];
+    NSArray *nodes = [self nodesForXPath:xPath error:&error];
+    
+    if (error || ([nodes count] == 0)) {
+        return nil;
+    }
+    
+    return [nodes firstObject];
+}
+
 - (GDataXMLElement*)singleNodeForCatrobatXPath:(NSString*)catrobatXPath
 {
+    if ([catrobatXPath intValue] > 0) {
+        return [self singleNodeForId:catrobatXPath];
+    }
+    
+    NSMutableString *xPath;
     NSArray *pathComponents = [catrobatXPath componentsSeparatedByString:@"/"];
-    NSMutableString *xPath = [NSMutableString stringWithCapacity:[catrobatXPath length]];
+    xPath = [NSMutableString stringWithCapacity:[catrobatXPath length]];
     NSUInteger index = 0;
     NSUInteger numberOfComponents = [pathComponents count];
     for (NSString *pathComponent in pathComponents) {

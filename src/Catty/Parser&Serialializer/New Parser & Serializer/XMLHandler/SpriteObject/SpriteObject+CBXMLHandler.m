@@ -46,8 +46,6 @@
     }
 
     NSArray *attributes = [xmlElement attributes];
-    [XMLError exceptionIf:[attributes count] notEquals:1
-                  message:@"Parsed name-attribute of object is invalid or empty!"];
 
     SpriteObject *spriteObject = [self new];
     context.spriteObject = spriteObject; // update context!
