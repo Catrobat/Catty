@@ -447,7 +447,6 @@
 		4CDE4CEB203DBBF500B43034 /* UIViewController+KNSemiModal.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CD3203DBBF200B43034 /* UIViewController+KNSemiModal.license */; };
 		4CDE4CEC203DBBF500B43034 /* BDKNotifyHUD.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CD4203DBBF300B43034 /* BDKNotifyHUD.license */; };
 		4CDE4CED203DBBF500B43034 /* NSString+FastImageSize.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CD5203DBBF300B43034 /* NSString+FastImageSize.license */; };
-		4CDE4CEE203DBBF500B43034 /* minizip.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CD6203DBBF300B43034 /* minizip.license */; };
 		4CDE4CF0203DBBF500B43034 /* SPUserResizableView.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CD8203DBBF300B43034 /* SPUserResizableView.license */; };
 		4CDE4CF1203DBBF500B43034 /* YKImageCropperView.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CD9203DBBF300B43034 /* YKImageCropperView.license */; };
 		4CDE4CF4203DBBF500B43034 /* HMSegmentedControl.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CDC203DBBF300B43034 /* HMSegmentedControl.license */; };
@@ -823,10 +822,6 @@
 		92FF2E931A24C7D800093DA7 /* RuntimeImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E611A24C7D800093DA7 /* RuntimeImageCache.m */; };
 		92FF2E941A24C7D800093DA7 /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E641A24C7D800093DA7 /* Logger.m */; };
 		92FF2E951A24C7D800093DA7 /* LoggerProperties.plist in Resources */ = {isa = PBXBuildFile; fileRef = 92FF2E651A24C7D800093DA7 /* LoggerProperties.plist */; };
-		92FF2E961A24C7D800093DA7 /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E681A24C7D800093DA7 /* ioapi.c */; };
-		92FF2E971A24C7D800093DA7 /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E6A1A24C7D800093DA7 /* mztools.c */; };
-		92FF2E981A24C7D800093DA7 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E6C1A24C7D800093DA7 /* unzip.c */; };
-		92FF2E991A24C7D800093DA7 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E6E1A24C7D800093DA7 /* zip.c */; };
 		92FF2E9A1A24C7D800093DA7 /* NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E721A24C7D800093DA7 /* NavigationController.m */; };
 		92FF2E9E1A24C7D800093DA7 /* IMPORTANT.caf in Resources */ = {isa = PBXBuildFile; fileRef = 92FF2E7C1A24C7D800093DA7 /* IMPORTANT.caf */; };
 		92FF2E9F1A24C7D800093DA7 /* SharkfoodMuteSwitchDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E7E1A24C7D800093DA7 /* SharkfoodMuteSwitchDetector.m */; };
@@ -1903,7 +1898,6 @@
 		4CDE4CD3203DBBF200B43034 /* UIViewController+KNSemiModal.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "UIViewController+KNSemiModal.license"; sourceTree = "<group>"; };
 		4CDE4CD4203DBBF300B43034 /* BDKNotifyHUD.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BDKNotifyHUD.license; sourceTree = "<group>"; };
 		4CDE4CD5203DBBF300B43034 /* NSString+FastImageSize.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "NSString+FastImageSize.license"; sourceTree = "<group>"; };
-		4CDE4CD6203DBBF300B43034 /* minizip.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = minizip.license; sourceTree = "<group>"; };
 		4CDE4CD8203DBBF300B43034 /* SPUserResizableView.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SPUserResizableView.license; sourceTree = "<group>"; };
 		4CDE4CD9203DBBF300B43034 /* YKImageCropperView.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = YKImageCropperView.license; sourceTree = "<group>"; };
 		4CDE4CDC203DBBF300B43034 /* HMSegmentedControl.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HMSegmentedControl.license; sourceTree = "<group>"; };
@@ -2432,15 +2426,6 @@
 		92FF2E631A24C7D800093DA7 /* Logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logger.h; sourceTree = "<group>"; };
 		92FF2E641A24C7D800093DA7 /* Logger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Logger.m; sourceTree = "<group>"; };
 		92FF2E651A24C7D800093DA7 /* LoggerProperties.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LoggerProperties.plist; sourceTree = "<group>"; };
-		92FF2E671A24C7D800093DA7 /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
-		92FF2E681A24C7D800093DA7 /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
-		92FF2E691A24C7D800093DA7 /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi.h; sourceTree = "<group>"; };
-		92FF2E6A1A24C7D800093DA7 /* mztools.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mztools.c; sourceTree = "<group>"; };
-		92FF2E6B1A24C7D800093DA7 /* mztools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mztools.h; sourceTree = "<group>"; };
-		92FF2E6C1A24C7D800093DA7 /* unzip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = unzip.c; sourceTree = "<group>"; };
-		92FF2E6D1A24C7D800093DA7 /* unzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unzip.h; sourceTree = "<group>"; };
-		92FF2E6E1A24C7D800093DA7 /* zip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zip.c; sourceTree = "<group>"; };
-		92FF2E6F1A24C7D800093DA7 /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
 		92FF2E711A24C7D800093DA7 /* NavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationController.h; sourceTree = "<group>"; };
 		92FF2E721A24C7D800093DA7 /* NavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationController.m; sourceTree = "<group>"; };
 		92FF2E7C1A24C7D800093DA7 /* IMPORTANT.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = IMPORTANT.caf; sourceTree = "<group>"; };
@@ -4604,7 +4589,6 @@
 				4CDE4CFD203DBCC100B43034 /* Kingfisher.license */,
 				4CDE4CE0203DBBF400B43034 /* LCTableViewPickerControl.license */,
 				4CDE4CCF203DBBF200B43034 /* LXReorderableCollectionViewFlowLayout.license */,
-				4CDE4CD6203DBBF300B43034 /* minizip.license */,
 				4CDE4CE2203DBBF500B43034 /* MXSegmentedPager.license */,
 				4CDE4CCB203DBBF200B43034 /* NKOColorPickerView.license */,
 				4CDE4CD5203DBBF300B43034 /* NSString+FastImageSize.license */,
@@ -5961,7 +5945,6 @@
 				92FF2E5B1A24C7D800093DA7 /* ImageCache */,
 				D63864691AE63EB4008569E6 /* Keychain */,
 				92FF2E621A24C7D800093DA7 /* Logger */,
-				92FF2E661A24C7D800093DA7 /* minizip */,
 				92FF2E701A24C7D800093DA7 /* NavigationController */,
 				4C0F9F47204ADD0C00E71B2D /* OrderedDictionary */,
 				929CC0D11BC39B280027DEC0 /* PhiroHelper */,
@@ -6023,22 +6006,6 @@
 				CA2D44421B12305400A3B53D /* Swell.plist */,
 			);
 			path = Logger;
-			sourceTree = "<group>";
-		};
-		92FF2E661A24C7D800093DA7 /* minizip */ = {
-			isa = PBXGroup;
-			children = (
-				92FF2E671A24C7D800093DA7 /* crypt.h */,
-				92FF2E681A24C7D800093DA7 /* ioapi.c */,
-				92FF2E691A24C7D800093DA7 /* ioapi.h */,
-				92FF2E6A1A24C7D800093DA7 /* mztools.c */,
-				92FF2E6B1A24C7D800093DA7 /* mztools.h */,
-				92FF2E6C1A24C7D800093DA7 /* unzip.c */,
-				92FF2E6D1A24C7D800093DA7 /* unzip.h */,
-				92FF2E6E1A24C7D800093DA7 /* zip.c */,
-				92FF2E6F1A24C7D800093DA7 /* zip.h */,
-			);
-			path = minizip;
 			sourceTree = "<group>";
 		};
 		92FF2E701A24C7D800093DA7 /* NavigationController */ = {
@@ -8475,7 +8442,6 @@
 				92FF325E1A24E2F400093DA7 /* LICENSE_EVCircularProgressView in Resources */,
 				4C33F214214BC0680014044C /* Document-Icon.png in Resources */,
 				BAD47DC51F12938D001C38BC /* AddItemToUserListBrick098.xml in Resources */,
-				4CDE4CEE203DBBF500B43034 /* minizip.license in Resources */,
 				92D346BD1B8DDC0A009EB8F7 /* LaunchScreen.storyboard in Resources */,
 				598319951FBB813C00639BBF /* Introduction.storyboard in Resources */,
 				4CDE4CE7203DBBF500B43034 /* LXReorderableCollectionViewFlowLayout.license in Resources */,
@@ -9185,7 +9151,6 @@
 				4C724E571B4D3E8C00E27479 /* FormulaElement+CBXMLHandler.m in Sources */,
 				4C37A0A0212DBDB40074F417 /* ArduinoAnalogPinFunction.swift in Sources */,
 				5947F6DE200D20040079DBCE /* MediaLibraryCollectionViewDataSource.swift in Sources */,
-				92FF2E991A24C7D800093DA7 /* zip.c in Sources */,
 				4CA6DFB92306919C003A729B /* FormulaCache.swift in Sources */,
 				59697DB0201F855C00A0071A /* LibraryCategoryCollectionReusableView.swift in Sources */,
 				92B46FA81BC7C2A5004980C1 /* ArduinoSendPWMValueBrick+Instruction.swift in Sources */,
@@ -9289,7 +9254,6 @@
 				AA74EF6F1BC0588A00D1E954 /* PlaySoundBrick+CBXMLHandler.m in Sources */,
 				4C9E076B1CD9D47E00B14B2F /* CBSceneHelper.swift in Sources */,
 				4CB0F9ED20A1731700D1BE2F /* PositionXSensor.swift in Sources */,
-				92FF2E971A24C7D800093DA7 /* mztools.c in Sources */,
 				4CB2CFA61D7AD7E7009F3034 /* SetColorBrick+CBXMLHandler.m in Sources */,
 				AA74EFEB1BC05B5F00D1E954 /* WaitBrick.m in Sources */,
 				4C0F9FA5204BD2C200E71B2D /* ThinkForBubbleBrickCell.m in Sources */,
@@ -9608,7 +9572,6 @@
 				4CF429F5213A8A0400B78897 /* IfLogicBeginBrick+Condition.swift in Sources */,
 				921D468B1BDF698A0086AD20 /* SetBrightnessBrick+Instruction.swift in Sources */,
 				F4E6E5C8210E255D00D86FE6 /* FalseFunction.swift in Sources */,
-				92FF2E961A24C7D800093DA7 /* ioapi.c in Sources */,
 				4C724E591B4D3E8C00E27479 /* Look+CBXMLHandler.m in Sources */,
 				929CC0FA1BC3A2420027DEC0 /* PhiroPlayToneBrick+Instruction.swift in Sources */,
 				99B2C3751D884F2D00736769 /* FlashBrick+Instruction.swift in Sources */,
@@ -9623,7 +9586,6 @@
 				F411560320E7732D00E2F254 /* InternFormula+KeyboardAdapter.swift in Sources */,
 				AA74EF781BC0589700D1E954 /* SetVariableBrick+CBXMLHandler.m in Sources */,
 				9218B2151CC4AB75007B4C60 /* ColorPickerViewController.m in Sources */,
-				92FF2E981A24C7D800093DA7 /* unzip.c in Sources */,
 				AA74F0B91BC05FCE00D1E954 /* GlideToBrickCell.m in Sources */,
 				9218B2071CC4AB75007B4C60 /* SPUserResizableView.m in Sources */,
 				F4E6E579210DDD5C00D86FE6 /* CosFunction.swift in Sources */,
