@@ -34,7 +34,7 @@ final class MediaLibraryDownloader: MediaLibraryDownloaderProtocol {
     }
 
     func downloadIndex(for mediaType: MediaType, completion: @escaping ([[MediaItem]]?, MediaLibraryDownloadError?) -> Void) {
-        self.session.dataTask(with: mediaType.indexURL) { data, response, error in
+        self.session.dataTask(with: URLRequest(url: mediaType.indexURL)) { data, response, error in
 
             let handleDataTaskCompletion: (Data?, URLResponse?, Error?) -> (items: [[MediaItem]]?, error: MediaLibraryDownloadError?)
             handleDataTaskCompletion = { data, response, error in
@@ -57,7 +57,7 @@ final class MediaLibraryDownloader: MediaLibraryDownloaderProtocol {
     }
 
     func downloadData(for mediaItem: MediaItem, completion: @escaping (Data?, MediaLibraryDownloadError?) -> Void) {
-        self.session.dataTask(with: mediaItem.downloadURL) { data, response, error in
+        self.session.dataTask(with: URLRequest(url: mediaItem.downloadURL)) { data, response, error in
             DispatchQueue.main.async {
                 guard let response = response as? HTTPURLResponse else { completion(nil, .unexpectedError); return }
                 guard let data = data, response.statusCode == 200, error == nil else {

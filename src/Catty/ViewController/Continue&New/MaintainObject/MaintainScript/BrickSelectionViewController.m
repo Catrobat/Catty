@@ -75,7 +75,7 @@
      viewControllerBeforeViewController:(UIViewController*)viewController
 {
     BrickCategoryViewController *bcVC = (BrickCategoryViewController *)viewController;
-    NSNumber *pageIndex = [NSNumber numberWithInt:bcVC.pageIndexCategoryType];
+    NSNumber *pageIndex = [NSNumber numberWithInt:(int)bcVC.pageIndexCategoryType];
     
     if ([pageIndex isEqualToNumber:[self.pageIndexArray firstObject]]) {
         return nil;
@@ -89,7 +89,7 @@
      viewControllerAfterViewController:(UIViewController*)viewController
 {
     BrickCategoryViewController *bcVC = (BrickCategoryViewController *)viewController;
-    NSNumber *pageIndex = [NSNumber numberWithInt:bcVC.pageIndexCategoryType];
+    NSNumber *pageIndex = [NSNumber numberWithInt:(int)bcVC.pageIndexCategoryType];
     
     if ([pageIndex isEqualToNumber:[self.pageIndexArray lastObject]]) {
         return nil;

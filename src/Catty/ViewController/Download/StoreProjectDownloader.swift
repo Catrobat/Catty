@@ -48,7 +48,7 @@ final class StoreProjectDownloader: StoreProjectDownloaderProtocol {
                                                 Util.catrobatLanguageVersion()))
             else { return }
 
-        self.session.dataTask(with: indexURL) { data, response, error in
+        self.session.dataTask(with: URLRequest(url: indexURL)) { data, response, error in
             let handleDataTaskCompletion: (Data?, URLResponse?, Error?) -> (items: StoreProjectCollection.StoreProjectCollectionNumber?, error: StoreProjectDownloaderError?)
             handleDataTaskCompletion = { data, response, error in
                 if let error = error as NSError?, error.domain == NSURLErrorDomain && error.code == NSURLErrorTimedOut {
@@ -98,7 +98,7 @@ final class StoreProjectDownloader: StoreProjectDownloaderProtocol {
             indexURL = url
         }
 
-        self.session.dataTask(with: indexURL) { data, response, error in
+        self.session.dataTask(with: URLRequest(url: indexURL)) { data, response, error in
             let handleDataTaskCompletion: (Data?, URLResponse?, Error?) -> (items: StoreProjectCollection.StoreProjectCollectionText?, error: StoreProjectDownloaderError?)
             handleDataTaskCompletion = { data, response, error in
                 if let error = error as NSError?, error.domain == NSURLErrorDomain && error.code == NSURLErrorTimedOut {
@@ -128,7 +128,7 @@ final class StoreProjectDownloader: StoreProjectDownloaderProtocol {
     func downloadProject(for project: StoreProject, completion: @escaping (StoreProject?, StoreProjectDownloaderError?) -> Void) {
         guard let indexURL = URL(string: "\(kConnectionHost)/\(kConnectionIDQuery)?id=\(project.projectId)") else { return }
 
-        self.session.dataTask(with: indexURL) { data, response, error in
+        self.session.dataTask(with: URLRequest(url: indexURL)) { data, response, error in
             let handleDataTaskCompletion: (Data?, URLResponse?, Error?) -> (project: StoreProject?, error: StoreProjectDownloaderError?)
             handleDataTaskCompletion = { data, response, error in
                 guard let response = response as? HTTPURLResponse else { return (nil, .unexpectedError) }
