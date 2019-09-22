@@ -22,7 +22,7 @@
 
 #import "CBFileManager.h"
 #import "Util.h"
-#import "SSZipArchive.h"
+#import <ZipArchive/ZipArchive.h>
 #import "Sound.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "NetworkDefines.h"

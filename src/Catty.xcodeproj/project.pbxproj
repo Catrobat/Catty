@@ -162,6 +162,8 @@
 		4C33F210214BC0200014044C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F20F214BC01F0014044C /* Default-568h@2x.png */; };
 		4C33F212214BC0390014044C /* My first project.catrobat in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F211214BC0390014044C /* My first project.catrobat */; };
 		4C33F214214BC0680014044C /* Document-Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F213214BC0680014044C /* Document-Icon.png */; };
+		4C36D6D923374FA200670D58 /* ZipArchive.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C36D6D623374FA200670D58 /* ZipArchive.framework */; };
+		4C36D6DA23374FA200670D58 /* ZipArchive.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4C36D6D623374FA200670D58 /* ZipArchive.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4C37A0A0212DBDB40074F417 /* ArduinoAnalogPinFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C37A09F212DBDB40074F417 /* ArduinoAnalogPinFunction.swift */; };
 		4C37A0A3212DBF510074F417 /* ArduinoAnalogPinFunctionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C37A0A2212DBF510074F417 /* ArduinoAnalogPinFunctionTest.swift */; };
 		4C37A0A5212E767C0074F417 /* ArduinoDigitalPinFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C37A0A4212E767C0074F417 /* ArduinoDigitalPinFunction.swift */; };
@@ -828,7 +830,6 @@
 		92FF2E9A1A24C7D800093DA7 /* NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E721A24C7D800093DA7 /* NavigationController.m */; };
 		92FF2E9E1A24C7D800093DA7 /* IMPORTANT.caf in Resources */ = {isa = PBXBuildFile; fileRef = 92FF2E7C1A24C7D800093DA7 /* IMPORTANT.caf */; };
 		92FF2E9F1A24C7D800093DA7 /* SharkfoodMuteSwitchDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E7E1A24C7D800093DA7 /* SharkfoodMuteSwitchDetector.m */; };
-		92FF2EA01A24C7D800093DA7 /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E811A24C7D800093DA7 /* SSZipArchive.m */; };
 		92FF2EA11A24C7D800093DA7 /* TimerLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E841A24C7D800093DA7 /* TimerLabel.m */; };
 		92FF2EA21A24C7D800093DA7 /* TableUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E871A24C7D800093DA7 /* TableUtil.m */; };
 		92FF2EA31A24C7D800093DA7 /* UIUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E891A24C7D800093DA7 /* UIUtil.m */; };
@@ -1344,6 +1345,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				92C6319E1BC5183D00486958 /* BluetoothHelper.framework in CopyFiles */,
+				4C36D6DA23374FA200670D58 /* ZipArchive.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1573,6 +1575,7 @@
 		4C33F20F214BC01F0014044C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "Resources/Default-568h@2x.png"; sourceTree = "<group>"; };
 		4C33F211214BC0390014044C /* My first project.catrobat */ = {isa = PBXFileReference; lastKnownFileType = file; name = "My first project.catrobat"; path = "Resources/My first project.catrobat"; sourceTree = "<group>"; };
 		4C33F213214BC0680014044C /* Document-Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Document-Icon.png"; path = "Resources/Document-Icon.png"; sourceTree = "<group>"; };
+		4C36D6D623374FA200670D58 /* ZipArchive.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ZipArchive.framework; path = Carthage/Build/iOS/ZipArchive.framework; sourceTree = "<group>"; };
 		4C37A09F212DBDB40074F417 /* ArduinoAnalogPinFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArduinoAnalogPinFunction.swift; sourceTree = "<group>"; };
 		4C37A0A2212DBF510074F417 /* ArduinoAnalogPinFunctionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArduinoAnalogPinFunctionTest.swift; sourceTree = "<group>"; };
 		4C37A0A4212E767C0074F417 /* ArduinoDigitalPinFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArduinoDigitalPinFunction.swift; sourceTree = "<group>"; };
@@ -2443,8 +2446,6 @@
 		92FF2E7C1A24C7D800093DA7 /* IMPORTANT.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = IMPORTANT.caf; sourceTree = "<group>"; };
 		92FF2E7D1A24C7D800093DA7 /* SharkfoodMuteSwitchDetector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharkfoodMuteSwitchDetector.h; sourceTree = "<group>"; };
 		92FF2E7E1A24C7D800093DA7 /* SharkfoodMuteSwitchDetector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharkfoodMuteSwitchDetector.m; sourceTree = "<group>"; };
-		92FF2E801A24C7D800093DA7 /* SSZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSZipArchive.h; sourceTree = "<group>"; };
-		92FF2E811A24C7D800093DA7 /* SSZipArchive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSZipArchive.m; sourceTree = "<group>"; };
 		92FF2E831A24C7D800093DA7 /* TimerLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerLabel.h; sourceTree = "<group>"; };
 		92FF2E841A24C7D800093DA7 /* TimerLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerLabel.m; sourceTree = "<group>"; };
 		92FF2E861A24C7D800093DA7 /* TableUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableUtil.h; sourceTree = "<group>"; };
@@ -3197,6 +3198,7 @@
 				59473A6D1F76F05000BD634F /* MXPagerView.framework in Frameworks */,
 				59473A6E1F76F05000BD634F /* MXParallaxHeader.framework in Frameworks */,
 				59473A6F1F76F05000BD634F /* MXSegmentedPager.framework in Frameworks */,
+				4C36D6D923374FA200670D58 /* ZipArchive.framework in Frameworks */,
 				59A0599D1F7512D200EB696D /* Siren.framework in Frameworks */,
 				59473A611F76F04B00BD634F /* TTTAttributedLabel.framework in Frameworks */,
 			);
@@ -3249,6 +3251,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4C36D6D623374FA200670D58 /* ZipArchive.framework */,
 				9EBAC31222A9BE5A002E198D /* AudioKit.framework */,
 				B405BAC7175DD3F600B1A0FC /* libxml2.dylib */,
 				DE5C4E6D138ED109004892CA /* libz.dylib */,
@@ -5964,7 +5967,6 @@
 				929CC0D11BC39B280027DEC0 /* PhiroHelper */,
 				9276B7021C9E8F6C008BC594 /* SoundCache */,
 				92FF2E7B1A24C7D800093DA7 /* SharkfoodMuteSwitchDetector */,
-				92FF2E7F1A24C7D800093DA7 /* SSZipArchive */,
 				92FF2E821A24C7D800093DA7 /* TimerLabel */,
 				92FF2E851A24C7D800093DA7 /* Utils */,
 			);
@@ -6056,15 +6058,6 @@
 				92FF2E7E1A24C7D800093DA7 /* SharkfoodMuteSwitchDetector.m */,
 			);
 			path = SharkfoodMuteSwitchDetector;
-			sourceTree = "<group>";
-		};
-		92FF2E7F1A24C7D800093DA7 /* SSZipArchive */ = {
-			isa = PBXGroup;
-			children = (
-				92FF2E801A24C7D800093DA7 /* SSZipArchive.h */,
-				92FF2E811A24C7D800093DA7 /* SSZipArchive.m */,
-			);
-			path = SSZipArchive;
 			sourceTree = "<group>";
 		};
 		92FF2E821A24C7D800093DA7 /* TimerLabel */ = {
@@ -9206,7 +9199,6 @@
 				AA74F0A61BC05FCE00D1E954 /* RepeatBrickCell.m in Sources */,
 				99B2C3731D884E8A00736769 /* FlashBrickCell.m in Sources */,
 				AA74F0BA1BC05FCE00D1E954 /* GoNStepsBackBrickCell.m in Sources */,
-				92FF2EA01A24C7D800093DA7 /* SSZipArchive.m in Sources */,
 				92FF2E381A24C5A700093DA7 /* NSString+CatrobatNSStringExtensions.m in Sources */,
 				4CF0729120D6697300F93AB5 /* LatitudeSensor.swift in Sources */,
 				AA74EE231BC053FD00D1E954 /* WaitBrick+Instruction.swift in Sources */,
