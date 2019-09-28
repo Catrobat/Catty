@@ -371,11 +371,12 @@ class UploadViewController: UIViewController {
                         debugPrint("Upload successful")
 
                         //Set unique Project-ID received from server
-                        var projectId: String?
-                        if let aTag = dictionary?[self.projectIDTag] {
-                            projectId = "\(aTag)"
-                            self.project?.header.programID = projectId
-                            self.project?.saveToDisk(withNotification: true)
+                        if let aTag = dictionary?[self.projectIDTag], let project = self.project {
+                            let projectId = "\(aTag)"
+
+                            DispatchQueue.main.async(execute: {
+                                self.project?.rename(toProjectName: project.header.programName, andProjectId: projectId)
+                            })
                         }
 
                         //Set new token but when? everytime is wrong

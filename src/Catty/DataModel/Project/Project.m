@@ -190,19 +190,33 @@
     [Project setLastUsedProject:self];
 }
 
-
 - (void)renameToProjectName:(NSString*)projectName
 {
-    if ([self.header.programName isEqualToString:projectName]) {
+    return [self renameToProjectName:projectName andProjectId:self.header.programID];
+}
+
+- (void)renameToProjectName:(NSString*)projectName andProjectId:(NSString*)projectId
+{
+    BOOL updateName = ![self.header.programName isEqualToString:projectName];
+    
+    if (!updateName && ((self.header.programID == nil && projectId == nil) || [self.header.programID isEqualToString:projectId])) {
         return;
     }
+    
     BOOL isLastProject = [self isLastUsedProject];
     NSString *oldPath = [self projectPath];
-    self.header.programName = [Util uniqueName:projectName existingNames:[[self class] allProjectNames]];
+    
+    self.header.programID = projectId;
+    
+    if (updateName) {
+        self.header.programName = [Util uniqueName:projectName existingNames:[[self class] allProjectNames]];
+    }
+    
     NSString *newPath = [self projectPath];
+    
     [[CBFileManager sharedManager] moveExistingDirectoryAtPath:oldPath toPath:newPath];
     if (isLastProject) {
-        [Util setLastProjectWithName:self.header.programName projectID:self.header.programID];
+        [Util setLastProjectWithName:self.header.programName projectID:projectId];
     }
     [self saveToDiskWithNotification:YES];
 }
