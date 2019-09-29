@@ -21,7 +21,7 @@
  */
 
 struct StoreProject: Codable {
-    let projectId: Int
+    let projectId: String
     let projectName: String
     let projectNameShort: String?
     let author: String

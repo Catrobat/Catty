@@ -49,7 +49,7 @@ class ChartProjectsStoreDataSourceTests: XCTestCase {
 
     func testMostDownloadedProjectEmpty() {
         self.downloaderMock.project =
-            StoreProject(projectId: 0,
+            StoreProject(projectId: "",
                          projectName: "",
                          projectNameShort: "",
                          author: "",
@@ -79,7 +79,7 @@ class ChartProjectsStoreDataSourceTests: XCTestCase {
     }
 
     func testMostViewedProjectEmpty() {
-        self.downloaderMock.project = StoreProject(projectId: 0,
+        self.downloaderMock.project = StoreProject(projectId: "",
                                                    projectName: "",
                                                    projectNameShort: "",
                                                    author: "",
@@ -109,7 +109,7 @@ class ChartProjectsStoreDataSourceTests: XCTestCase {
     }
 
     func testMostRecentProjectEmpty() {
-        self.downloaderMock.project = StoreProject(projectId: 0,
+        self.downloaderMock.project = StoreProject(projectId: "",
                                                    projectName: "",
                                                    projectNameShort: "",
                                                    author: "",

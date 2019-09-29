@@ -270,6 +270,62 @@
     XCTAssertTrue([list.name isEqualToString:copiedSetVariableBrick.userVariable.name]);
 }
 
+- (void)testRenameProject
+{
+    [self setupForNewProject];
+    
+    NSString *projectPath = [self.project projectPath];
+    
+    XCTAssertTrue([self.fileManager directoryExists:projectPath]);
+    XCTAssertNil(self.project.header.programID);
+    
+    [self.project renameToProjectName:@"newProject"];
+    
+    NSString *newProjectPath = [self.project projectPath];
+    
+    XCTAssertFalse([projectPath isEqualToString:newProjectPath]);
+    XCTAssertFalse([self.fileManager directoryExists:projectPath]);
+    XCTAssertTrue([self.fileManager directoryExists:newProjectPath]);
+    XCTAssertNil(self.project.header.programID);
+}
+
+- (void)testRenameProjectWithSameName
+{
+    [self setupForNewProject];
+    
+    NSString *projectPath = [self.project projectPath];
+    
+    XCTAssertTrue([self.fileManager directoryExists:projectPath]);
+    XCTAssertNil(self.project.header.programID);
+    
+    [self.project renameToProjectName:self.project.header.programName];
+    
+    NSString *newProjectPath = [self.project projectPath];
+    
+    XCTAssertTrue([projectPath isEqualToString:newProjectPath]);
+    XCTAssertTrue([self.fileManager directoryExists:newProjectPath]);
+    XCTAssertNil(self.project.header.programID);
+}
+
+- (void)testRenameProjectNameAndId
+{
+    [self setupForNewProject];
+    
+    NSString *projectPath = [self.project projectPath];
+    NSString *newProjectId = @"newProjectId";
+    
+    XCTAssertTrue([self.fileManager directoryExists:projectPath]);
+    XCTAssertNil(self.project.header.programID);
+    
+    [self.project renameToProjectName:self.project.header.programName andProjectId:newProjectId];
+    
+    NSString *newProjectPath = [self.project projectPath];
+    
+    XCTAssertFalse([projectPath isEqualToString:newProjectPath]);
+    XCTAssertTrue([self.fileManager directoryExists:newProjectPath]);
+    XCTAssertTrue([newProjectId isEqualToString:self.project.header.programID]);
+}
+
 #pragma mark - getters and setters
 - (CBFileManager*)fileManager {
     return [CBFileManager sharedManager];

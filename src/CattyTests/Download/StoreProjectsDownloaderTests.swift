@@ -39,7 +39,7 @@ class StoreProjectsDownloaderTests: XCTestCase {
             guard let item = projects.projects.first else { XCTFail("no featured projects in array"); return }
 
             // check that the first item in the first category has no empty properties (except cachedData)
-            XCTAssertNotEqual(item.projectId, 0)
+            XCTAssertNotEqual(item.projectId, "")
             XCTAssertNotEqual(item.projectName, "")
             XCTAssertNotEqual(item.author, "")
 
@@ -114,7 +114,7 @@ class StoreProjectsDownloaderTests: XCTestCase {
             guard let item = projects.projects.first else { XCTFail("no most downloaded projects in array"); return }
 
             // check that the first item in the first category has no empty properties (except cachedData)
-            XCTAssertNotEqual(item.projectId, 0)
+            XCTAssertNotEqual(item.projectId, "")
             XCTAssertNotEqual(item.projectName, "")
             XCTAssertNotEqual(item.author, "")
 
@@ -189,7 +189,7 @@ class StoreProjectsDownloaderTests: XCTestCase {
             guard let item = projects.projects.first else { XCTFail("no most viewed projects in array"); return }
 
             // check that the first item in the first category has no empty properties (except cachedData)
-            XCTAssertNotEqual(item.projectId, 0)
+            XCTAssertNotEqual(item.projectId, "")
             XCTAssertNotEqual(item.projectName, "")
             XCTAssertNotEqual(item.author, "")
 
@@ -264,7 +264,7 @@ class StoreProjectsDownloaderTests: XCTestCase {
             guard let item = projects.projects.first else { XCTFail("no most recent projects in array"); return }
 
             // check that the first item in the first category has no empty properties (except cachedData)
-            XCTAssertNotEqual(item.projectId, 0)
+            XCTAssertNotEqual(item.projectId, "")
             XCTAssertNotEqual(item.projectName, "")
             XCTAssertNotEqual(item.author, "")
 
@@ -340,7 +340,7 @@ class StoreProjectsDownloaderTests: XCTestCase {
             guard let item = projects.projects.first else { XCTFail("no projects in array"); return }
 
             // check that the first item in the first category has no empty properties (except cachedData)
-            XCTAssertNotEqual(item.projectId, 0)
+            XCTAssertNotEqual(item.projectId, "")
             XCTAssertNotEqual(item.projectName, "")
             XCTAssertNotEqual(item.author, "")
 
@@ -411,7 +411,7 @@ class StoreProjectsDownloaderTests: XCTestCase {
         let dvrSession = Session(cassetteName: "StoreProjectDownloader.downloadData.success")
         let downloader = StoreProjectDownloader(session: dvrSession)
 
-        let project = StoreProject(projectId: 821,
+        let project = StoreProject(projectId: "821",
                                    projectName: "Whack A Mole",
                                    projectNameShort: "",
                                    author: "VesnaK",
@@ -442,7 +442,7 @@ class StoreProjectsDownloaderTests: XCTestCase {
         let mockSession = URLSessionMock()
         let downloader = StoreProjectDownloader(session: mockSession)
         let expectation = XCTestExpectation(description: "Fetch Featured Projects")
-        let project = StoreProject(projectId: 821,
+        let project = StoreProject(projectId: "821",
                                    projectName: "Whack A Mole",
                                    projectNameShort: "",
                                    author: "VesnaK",
@@ -472,7 +472,7 @@ class StoreProjectsDownloaderTests: XCTestCase {
         let dvrSession = Session(cassetteName: "StoreProjectDownloader.downloadData.fail.request")
         let downloader = StoreProjectDownloader(session: dvrSession)
         let expectation = XCTestExpectation(description: "Fetch Featured Projects")
-        let project = StoreProject(projectId: 821,
+        let project = StoreProject(projectId: "821",
                                    projectName: "Whack A Mole",
                                    projectNameShort: "",
                                    author: "VesnaK",
