@@ -162,7 +162,6 @@
 		4C33F212214BC0390014044C /* My first project.catrobat in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F211214BC0390014044C /* My first project.catrobat */; };
 		4C33F214214BC0680014044C /* Document-Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F213214BC0680014044C /* Document-Icon.png */; };
 		4C36D6D923374FA200670D58 /* ZipArchive.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C36D6D623374FA200670D58 /* ZipArchive.framework */; };
-		4C36D6DA23374FA200670D58 /* ZipArchive.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4C36D6D623374FA200670D58 /* ZipArchive.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4C37A0A0212DBDB40074F417 /* ArduinoAnalogPinFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C37A09F212DBDB40074F417 /* ArduinoAnalogPinFunction.swift */; };
 		4C37A0A3212DBF510074F417 /* ArduinoAnalogPinFunctionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C37A0A2212DBF510074F417 /* ArduinoAnalogPinFunctionTest.swift */; };
 		4C37A0A5212E767C0074F417 /* ArduinoDigitalPinFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C37A0A4212E767C0074F417 /* ArduinoDigitalPinFunction.swift */; };
@@ -1342,7 +1341,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				92C6319E1BC5183D00486958 /* BluetoothHelper.framework in CopyFiles */,
-				4C36D6DA23374FA200670D58 /* ZipArchive.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3216,7 +3214,6 @@
 				AAADA0051B9B29D500E0CA9A /* Catty UITests */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				BCC25E28231A874200DB639C /* Recovered References */,
 			);
 			indentWidth = 4;
 			name = CustomTemplate;
@@ -8539,6 +8536,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Siren.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/TTTAttributedLabel.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Kingfisher.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/ZipArchive.framework",
 			);
 			name = "Carthage Copy Frameworks Run Script";
 			outputPaths = (
@@ -8551,6 +8549,7 @@
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Siren.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/TTTAttributedLabel.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Kingfisher.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/ZipArchive.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

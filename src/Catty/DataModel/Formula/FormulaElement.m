@@ -133,7 +133,7 @@
 - (NSString*)stringForElementType:(ElementType)type
 {
     NSDictionary *dict = kstringElementTypeDict;
-    NSString *elementType = dict[[NSNumber numberWithInt:type]];
+    NSString *elementType = dict[[NSNumber numberWithInt:(int)type]];
     if (elementType) {
         return elementType;
     }

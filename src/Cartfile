@@ -5,5 +5,5 @@ github "TTTAttributedLabel/TTTAttributedLabel" ~> 2.0.0
 github "maxep/MXSegmentedPager" ~> 3.3.0
 github "onevcat/Kingfisher" ~> 4.0
 github "venmo/DVR"
-github "audiokit/audiokit" "v4.8"
+github "audiokit/audiokit" "v4.9"
 github "ZipArchive/ZipArchive"
