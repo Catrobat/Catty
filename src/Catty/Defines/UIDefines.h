@@ -253,23 +253,23 @@ WRAP_BRICK_TYPE_IN_NSSTRING(kChangeVariableBrick)\
 ]
 
 #define kBrickCategoryColors @[\
-    [UIColor controlBrickOrangeColor],\
-    [UIColor motionBrickBlueColor],\
-    [UIColor lookBrickGreenColor],\
-    [UIColor soundBrickVioletColor],\
-    [UIColor varibaleBrickRedColor],\
-    [UIColor ArduinoBrickColor],\
-    [UIColor PhiroBrickColor]\
+    UIColor.controlBrickOrange,\
+    UIColor.motionBrickBlue,\
+    UIColor.lookBrickGreen,\
+    UIColor.soundBrickViolet,\
+    UIColor.variableBrickRed,\
+    UIColor.arduinoBrick,\
+    UIColor.phiroBrick\
 ]
 
 #define kBrickCategoryStrokeColors @[\
-    [UIColor controlBrickStrokeColor],\
-    [UIColor motionBrickStrokeColor],\
-    [UIColor lookBrickStrokeColor],\
-    [UIColor soundBrickStrokeColor],\
-    [UIColor variableBrickStrokeColor],\
-    [UIColor ArduinoBrickStrokeColor],\
-    [UIColor PhiroBrickStrokeColor]\
+    UIColor.controlBrickStroke,\
+    UIColor.motionBrickStroke,\
+    UIColor.lookBrickStroke,\
+    UIColor.soundBrickStroke,\
+    UIColor.variableBrickStroke,\
+    UIColor.arduinoBrickStroke,\
+    UIColor.phiroBrickStroke\
 ]
 
 #define kWhenScriptDefaultAction @"Tapped" // at the moment Catrobat only supports this type of action for WhenScripts

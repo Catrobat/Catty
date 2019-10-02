@@ -21,7 +21,7 @@
  */
 
 #import "ProjectTableHeaderView.h"
-#import "UIColor+CatrobatUIColorExtensions.h"
+#import "Pocket_Code-Swift.h"
 
 @interface ProjectTableHeaderView ()
 @property (strong, nonatomic) CALayer *bottomBoarder;
@@ -41,8 +41,8 @@
 
 - (void)setupView
 {
-    self.contentView.backgroundColor = UIColor.backgroundColor;
-    self.bottomBoarder.backgroundColor = [UIColor utilityTintColor].CGColor;
+    self.contentView.backgroundColor = UIColor.background;
+    self.bottomBoarder.backgroundColor = UIColor.utilityTint.CGColor;
     [self.contentView.layer addSublayer:self.bottomBoarder];
 }
 

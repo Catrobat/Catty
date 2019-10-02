@@ -49,6 +49,6 @@ class SearchStoreCell: UITableViewCell {
     func updateTable() {
         searchProjectImage?.image = searchImage
         searchProjectTitle?.text = searchTitle
-        searchProjectTitle.textColor = UIColor.globalTint()
+        searchProjectTitle.textColor = UIColor.globalTint
     }
 }

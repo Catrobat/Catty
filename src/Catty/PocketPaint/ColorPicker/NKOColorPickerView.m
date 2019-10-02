@@ -233,7 +233,7 @@ CGFloat const NKOPickerViewCrossHairshWidthAndHeight    = 38.f;
     if ([window respondsToSelector:@selector(tintColor)]) {
         return [window tintColor];
     }
-    return [UIColor whiteColor];
+    return UIColor.whiteColor;
 }
 
 #pragma mark - Touch Handling methods
@@ -328,7 +328,7 @@ CGFloat const NKOPickerViewCrossHairshWidthAndHeight    = 38.f;
         self->_crossHairs.layer.cornerRadius = 19;
         self->_crossHairs.layer.borderColor = edgeColor.CGColor;
         self->_crossHairs.layer.borderWidth = 2;
-        self->_crossHairs.layer.shadowColor = [UIColor blackColor].CGColor;
+        self->_crossHairs.layer.shadowColor = UIColor.blackColor.CGColor;
         self->_crossHairs.layer.shadowOffset = CGSizeZero;
         self->_crossHairs.layer.shadowRadius = 1;
         self->_crossHairs.layer.shadowOpacity = 0.5f;
@@ -350,7 +350,7 @@ CGFloat const NKOPickerViewCrossHairshWidthAndHeight    = 38.f;
                                                                                    NKOPickerViewBrightnessIndicatorHeight)];
         
         self->_brightnessIndicator.image = [[UIImage imageNamed:@"nko_brightness_guide"] nko_tintImageWithColor:[self _defaultTintColor]];
-        self->_brightnessIndicator.backgroundColor = [UIColor clearColor];
+        self->_brightnessIndicator.backgroundColor = UIColor.clearColor;
         self->_brightnessIndicator.autoresizingMask = UIViewAutoresizingNone;
     }
     

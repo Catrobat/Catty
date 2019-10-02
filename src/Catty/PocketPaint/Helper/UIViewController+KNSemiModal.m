@@ -239,7 +239,7 @@ NS_ENUM(NSUInteger, KNSemiModalTransitionStyle) {
         }
         
         overlay.frame = target.bounds;
-        overlay.backgroundColor = [UIColor blackColor];
+        overlay.backgroundColor = UIColor.blackColor;
         overlay.userInteractionEnabled = YES;
         overlay.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         overlay.tag = kSemiModalOverlayTag;
@@ -253,7 +253,7 @@ NS_ENUM(NSUInteger, KNSemiModalTransitionStyle) {
             // Don't use UITapGestureRecognizer to avoid complex handling
             UIButton * dismissButton = [UIButton buttonWithType:UIButtonTypeCustom];
             [dismissButton addTarget:self action:@selector(dismissSemiModalView) forControlEvents:UIControlEventTouchUpInside];
-            dismissButton.backgroundColor = [UIColor clearColor];
+            dismissButton.backgroundColor = UIColor.clearColor;
             dismissButton.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
             dismissButton.frame = overlayFrame;
             dismissButton.tag = kSemiModalDismissButtonTag;
@@ -286,7 +286,7 @@ NS_ENUM(NSUInteger, KNSemiModalTransitionStyle) {
         
         view.tag = kSemiModalModalViewTag;
         [target addSubview:view];
-        view.layer.shadowColor = [[UIColor blackColor] CGColor];
+        view.layer.shadowColor = [UIColor.blackColor CGColor];
         view.layer.shadowOffset = CGSizeMake(0, -2);
         view.layer.shadowRadius = 5.0;
         view.layer.shadowOpacity = [[self ym_optionOrDefaultForKey:KNSemiModalOptionKeys.shadowOpacity] floatValue];

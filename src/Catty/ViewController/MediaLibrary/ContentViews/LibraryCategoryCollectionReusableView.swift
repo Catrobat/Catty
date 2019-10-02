@@ -28,7 +28,7 @@ class LibraryCategoryCollectionReusableView: UICollectionReusableView {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.borderView.backgroundColor = UIColor.utilityTint()
+        self.borderView.backgroundColor = UIColor.utilityTint
         self.borderThicknessConstraint.constant = CGFloat(kDefaultImageCellBorderWidth)
     }
 

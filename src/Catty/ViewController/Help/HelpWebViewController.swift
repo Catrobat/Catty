@@ -77,7 +77,7 @@ class HelpWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
         webView.delegate = self
         webView.allowsInlineMediaPlayback = true
         webView.scalesPageToFit = true
-        webView.backgroundColor = UIColor.background()
+        webView.backgroundColor = UIColor.background
         webView.alpha = 0.0
         initUrlTitleLabel()
         if url != nil {
@@ -88,7 +88,7 @@ class HelpWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
 
         touchHelperView = UIView(frame: CGRect.zero)
         touchHelperView?.backgroundColor = UIColor.clear
-        progressView.tintColor = UIColor.navTint()
+        progressView.tintColor = UIColor.navTint
         automaticallyAdjustsScrollViewInsets = false
     }
 
@@ -253,9 +253,9 @@ class HelpWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
     // MARK: - Private
 
     private func initUrlTitleLabel() {
-        urlTitleLabel.backgroundColor = UIColor.background()
+        urlTitleLabel.backgroundColor = UIColor.background
         urlTitleLabel.font = UIFont.systemFont(ofSize: 13.0)
-        urlTitleLabel.textColor = UIColor.globalTint()
+        urlTitleLabel.textColor = UIColor.globalTint
         urlTitleLabel.textAlignment = .center
         urlTitleLabel.alpha = 0.6
     }
@@ -263,8 +263,8 @@ class HelpWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
     private func setupToolBar() {
         navigationController?.isToolbarHidden = false
         navigationController?.toolbar.barStyle = .default
-        navigationController?.toolbar.tintColor = UIColor.toolTint()
-        navigationController?.toolbar.barTintColor = UIColor.toolBar()
+        navigationController?.toolbar.tintColor = UIColor.toolTint
+        navigationController?.toolbar.barTintColor = UIColor.toolBar
         navigationController?.toolbar.autoresizingMask = [.flexibleWidth, .flexibleTopMargin]
 
         let forward = UIBarButtonItem(image: UIImage(named: "webview_arrow_right"),

@@ -24,9 +24,10 @@
 #import "Util.h"
 #import <AVFoundation/AVFoundation.h>
 #import "ScenePresenterViewController.h"
-#import "Pocket_Code-Swift.h"
 #import "KeychainUserDefaultsDefines.h"
 #import "CatrobatTableViewController.h"
+#import "Pocket_Code-Swift.h"
+
 
 void uncaughtExceptionHandler(NSException *exception)
 {
@@ -38,12 +39,11 @@ void uncaughtExceptionHandler(NSException *exception)
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
-    
+
     [self initNavigationBar];
-    
+    [ThemesHelper changeAppearance];
+
     [SwiftBridge sirenBridgeApplicationDidFinishLaunching];
-    
-    [UITextField appearance].keyboardAppearance = UIKeyboardAppearanceDefault;
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSDictionary *appDefaults = [NSDictionary dictionaryWithObject:@"YES"
@@ -107,9 +107,9 @@ void uncaughtExceptionHandler(NSException *exception)
 
 - (void)initNavigationBar
 {
-    [UINavigationBar appearance].barTintColor = UIColor.navBarColor;
-    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor navTextColor]}];
-    self.window.tintColor = [UIColor globalTintColor];
+    [UINavigationBar appearance].barTintColor = UIColor.navBar;
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: UIColor.navText}];
+    self.window.tintColor = UIColor.globalTint;
 }
 
 -(BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options

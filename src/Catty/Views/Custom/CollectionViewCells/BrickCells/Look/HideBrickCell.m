@@ -21,6 +21,7 @@
  */
 
 #import "HideBrickCell.h"
+#import "Pocket_Code-Swift.h"
 
 @interface HideBrickCell ()
 @property (nonatomic, strong) UILabel *textLabel;
@@ -30,7 +31,7 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.lookBrickGreenColor strokeColor:UIColor.lookBrickStrokeColor height:smallBrick width:[Util screenWidth]];
+    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.lookBrickGreen strokeColor:UIColor.lookBrickStroke height:smallBrick width:[Util screenWidth]];
 }
 
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews

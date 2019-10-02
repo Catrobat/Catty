@@ -23,7 +23,6 @@
 #import "CatrobatTableViewController.h"
 #import "CellTagDefines.h"
 #import "TableUtil.h"
-#import "UIColor+CatrobatUIColorExtensions.h"
 #import "AppDelegate.h"
 #import "Util.h"
 #import "CatrobatImageCell.h"
@@ -144,8 +143,8 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
 - (void)initNavigationBar
 {
     self.navigationItem.title = kLocalizedPocketCode;
-    self.navigationController.navigationBar.titleTextAttributes = @{ NSForegroundColorAttributeName : [UIColor navTintColor] };
-    self.navigationController.navigationBar.tintColor = [UIColor navTintColor];
+    self.navigationController.navigationBar.titleTextAttributes = @{ NSForegroundColorAttributeName : UIColor.navTint };
+    self.navigationController.navigationBar.tintColor = UIColor.navTint;
 
 #if DEBUG == 1
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:kLocalizedDebugModeTitle
@@ -299,6 +298,7 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
 #pragma mark - table view helpers
 - (void)configureImageCell:(UITableViewCell <CatrobatImageCell>*)cell atIndexPath:(NSIndexPath*)indexPath
 {
+    cell.backgroundColor = UIColor.background;
     cell.titleLabel.text = [self.cells objectAtIndex:indexPath.row];
     cell.iconImageView.image = [UIImage imageNamed:[self.imageNames objectAtIndex:indexPath.row]];
     cell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
@@ -307,7 +307,7 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
 - (void)configureSubtitleLabelForCell:(UITableViewCell*)cell
 {
     UILabel *subtitleLabel = (UILabel*)[cell viewWithTag:kSubtitleLabelTag];
-    subtitleLabel.textColor = [UIColor textTintColor];
+    subtitleLabel.textColor = UIColor.textTint;
     Project *lastProject = self.lastUsedProject;
     subtitleLabel.text = (lastProject) ? lastProject.header.programName :  @"";
 }

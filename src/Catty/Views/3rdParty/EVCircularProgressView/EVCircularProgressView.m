@@ -86,7 +86,7 @@
 
 - (void)commonInit
 {
-    _progressTintColor = [UIColor blackColor];
+    _progressTintColor = UIColor.blackColor;
     
     // Set up the background layer
     

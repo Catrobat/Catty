@@ -21,6 +21,7 @@
  */
 
 #import "PhiroMotorMoveBackwardBrickCell.h"
+#import "Pocket_Code-Swift.h"
 
 @interface PhiroMotorMoveBackwardBrickCell ()
 @property (nonatomic, strong) UILabel *firstRowTextLabel;
@@ -32,7 +33,7 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    [BrickShapeFactory drawSquareBrickShapeWithFillColor:[UIColor PhiroBrickColor] strokeColor:[UIColor PhiroBrickStrokeColor] height:largeBrick width:[Util screenWidth]];
+    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.phiroBrick strokeColor:UIColor.phiroBrickStroke height:largeBrick width:[Util screenWidth]];
 }
 
 + (CGFloat)cellHeight

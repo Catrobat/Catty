@@ -179,12 +179,12 @@
     CGRect rect = CGRectMake(0, 0, width, height);
     self.drawView = [[UIImageView alloc] initWithFrame:rect];
     self.saveView = [[UIImageView alloc] initWithFrame:rect];
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = UIColor.whiteColor;
     self.saveView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]];
     
     
     self.helper = [[UIView alloc] initWithFrame:rect];
-//    self.saveView.backgroundColor = [UIColor whiteColor];
+//    self.saveView.backgroundColor = UIColor.whiteColor;
     //add blank image at the beginning
     if (self.editingImage) {
         UIImage *image = self.editingImage;
@@ -217,7 +217,7 @@
     self.currentToolIndicator = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, 30, 30)];
     self.currentToolIndicator.image = [UIImage imageNamed:@"brush"];
     self.currentToolIndicator.alpha = 0.4f;
-    self.currentToolIndicator.backgroundColor = [UIColor lightGrayColor];
+    self.currentToolIndicator.backgroundColor = UIColor.lightGrayColor;
     self.currentToolIndicator.layer.cornerRadius = 10.0f;
     [self.view addSubview:self.currentToolIndicator];
 }
@@ -300,8 +300,8 @@
     [self.navigationController setToolbarHidden:NO];
     self.navigationController.navigationBar.userInteractionEnabled = YES;
     self.navigationController.toolbar.barStyle = UIBarStyleDefault;
-    self.navigationController.toolbar.barTintColor = [UIColor toolBarColor];
-    self.navigationController.toolbar.tintColor = [UIColor toolTintColor];
+    self.navigationController.toolbar.barTintColor = UIColor.toolBar;
+    self.navigationController.toolbar.tintColor = UIColor.toolTint;
     self.navigationController.toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
     [self updateToolbar];
 }
@@ -309,7 +309,7 @@
 - (void)setupNavigationBar
 {
     self.navigationController.navigationBarHidden = NO;
-    self.navigationController.navigationBar.tintColor = [UIColor navTintColor];
+    self.navigationController.navigationBar.tintColor = UIColor.navTint;
     self.navigationItem.title = kLocalizedPaintPocketPaint;
     UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedPaintMenuButtonTitle
                                                                    style:UIBarButtonItemStylePlain
@@ -494,7 +494,7 @@
     self.fillRecognizer.enabled = NO;
     
     [self.handTool disableHandTool];
-    self.pointerToolBarButtonItem.tintColor = [UIColor globalTintColor];
+    self.pointerToolBarButtonItem.tintColor = UIColor.globalTint;
     if (self.resizeViewManager.resizeViewer.hidden == NO) {
         [self.resizeViewManager hideResizeView];
     }

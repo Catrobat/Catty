@@ -38,7 +38,7 @@ static SPUserResizableViewAnchorPoint SPUserResizableViewLowerMiddleAnchorPoint 
 - (id)initWithFrame:(CGRect)frame {
     if ((self = [super initWithFrame:frame])) {
         // Clear background to ensure the content view shows through.
-        self.backgroundColor = [UIColor clearColor];
+        self.backgroundColor = UIColor.clearColor;
     }
     return self;
 }
@@ -75,7 +75,7 @@ static SPUserResizableViewAnchorPoint SPUserResizableViewLowerMiddleAnchorPoint 
     // (4) Set up the stroke for drawing the border of each of the anchor points.
     CGContextSetLineWidth(context, 1);
     CGContextSetShadow(context, CGSizeMake(0.5, 0.5), 1);
-    CGContextSetStrokeColorWithColor(context, [UIColor whiteColor].CGColor);
+    CGContextSetStrokeColorWithColor(context, UIColor.whiteColor.CGColor);
     
     // (5) Fill each anchor point using the gradient, then stroke the border.
     CGRect allPoints[8] = { upperLeft, upperRight, lowerRight, lowerLeft, upperMiddle, lowerMiddle, middleLeft, middleRight };

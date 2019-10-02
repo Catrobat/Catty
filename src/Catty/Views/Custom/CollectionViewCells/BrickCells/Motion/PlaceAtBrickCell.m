@@ -21,6 +21,7 @@
  */
 
 #import "PlaceAtBrickCell.h"
+#import "Pocket_Code-Swift.h"
 
 @interface PlaceAtBrickCell ()
 @property (nonatomic, strong) UILabel *firstRowTextLabel;
@@ -32,7 +33,7 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.motionBrickBlueColor strokeColor:UIColor.motionBrickStrokeColor height:mediumBrick width:[Util screenWidth]];
+    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.motionBrickBlue strokeColor:UIColor.motionBrickStroke height:mediumBrick width:[Util screenWidth]];
 }
 
 + (CGFloat)cellHeight

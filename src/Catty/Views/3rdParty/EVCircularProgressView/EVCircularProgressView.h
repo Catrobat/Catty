@@ -30,7 +30,7 @@
 @property (nonatomic) double progress;
 
 // On iOS 7, progressTintColor sets and gets the tintColor property, and therefore defaults to the value of tintColor
-// On iOS 6, defaults to [UIColor blackColor]
+// On iOS 6, defaults to UIColor.blackColor
 
 @property (nonatomic, strong) UIColor *progressTintColor;
 

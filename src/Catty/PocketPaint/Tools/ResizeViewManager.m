@@ -23,7 +23,7 @@
 #import "ResizeViewManager.h"
 #import "BDKNotifyHUD.h"
 #import "UndoManager.h"
-
+#import "Pocket_Code-Swift.h"
 
 #define kControlSize 45.0f
 
@@ -45,12 +45,11 @@
 {
   self.resizeViewer = [[SPUserResizableView alloc] initWithFrame:CGRectMake(50 , 50, 150 , 150)];
   UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(50 , 50, 150 , 150)];
-//  imageView.backgroundColor = [UIColor yellowColor];
   self.resizeViewer.contentView = imageView;
   self.resizeViewer.delegate = self;
   self.resizeViewer.hidden = YES;
   [self.resizeViewer showEditingHandles];
-  [self.resizeViewer changeBorderWithColor:[UIColor globalTintColor]];
+  [self.resizeViewer changeBorderWithColor:UIColor.globalTint];
   
   self.rotateView = [[UIRotationGestureRecognizer alloc] initWithTarget:self action:@selector(handleRotate:)];
   self.rotateView.delegate = self.canvas;
@@ -128,7 +127,6 @@
       //      CGContextSetLineWidth(UIGraphicsGetCurrentContext(), thickness);
       CGContextSetRGBFillColor(UIGraphicsGetCurrentContext(), self.canvas.red, self.canvas.green, self.canvas.blue, self.canvas.opacity);
       CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), self.canvas.red, self.canvas.green, self.canvas.blue,self.canvas.opacity);
-      //      CGContextSetStrokeColorWithColor(UIGraphicsGetCurrentContext(), [UIColor colorWithRed:red green:green blue:blue alpha:opacity].CGColor);
       CGRect rectangle = CGRectMake(0,
                                     0,
                                     self.resizeViewer.frame.size.width,
@@ -234,7 +232,7 @@
                 rect.size.height -= 20;
                 //for retina displays
                 UIColor *color = self.canvas.saveView.backgroundColor;
-                self.canvas.saveView.backgroundColor = [UIColor clearColor];
+                self.canvas.saveView.backgroundColor = UIColor.clearColor;
                 if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)]) {
                     UIGraphicsBeginImageContextWithOptions(rect.size, NO, scale);
                 } else {
@@ -260,7 +258,7 @@
     }
     [self.resizeViewer hideEditingHandles];
     UIColor *color = self.canvas.saveView.backgroundColor;
-    self.canvas.saveView.backgroundColor = [UIColor clearColor];
+    self.canvas.saveView.backgroundColor = UIColor.clearColor;
     CGFloat scale = self.canvas.scrollView.zoomScale;
     [self.canvas.scrollView setZoomScale:1.0f];
     UIGraphicsBeginImageContextWithOptions(self.canvas.drawView.frame.size, NO, 1.0);
@@ -281,7 +279,7 @@
 
 - (void)showUserAction
 {
-    [self.resizeViewer changeBorderWithColor:[UIColor greenColor]];
+    [self.resizeViewer changeBorderWithColor:UIColor.greenColor];
     [self.resizeViewer showEditingHandles];
     [NSTimer scheduledTimerWithTimeInterval:0.15f target:self selector:@selector(hideShowUserAction) userInfo:nil repeats:NO];
     BDKNotifyHUD *hud = [BDKNotifyHUD notifyHUDWithImage:nil
@@ -315,7 +313,7 @@
   } else{
     [self.resizeViewer showEditingHandles];
   }
-  [self.resizeViewer changeBorderWithColor:[UIColor globalTintColor]];
+  [self.resizeViewer changeBorderWithColor:UIColor.globalTint];
 }
 
 

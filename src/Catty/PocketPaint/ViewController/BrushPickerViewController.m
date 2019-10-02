@@ -24,6 +24,7 @@
 #import "PaintViewController.h"
 #import "UIImage+Rotate.h"
 #import "CatrobatUISlider.h"
+#import "Pocket_Code-Swift.h"
 
 @interface BrushPickerViewController ()
 @property (nonatomic,strong)UIImageView *brushView;
@@ -53,7 +54,7 @@
         self.brush = controller.thickness;
         self.brushEnding = controller.ending;
         if (controller.activeAction == eraser){
-            self.color =[UIColor blackColor];
+            self.color =UIColor.blackColor;
         } else {
            self.color =[UIColor colorWithRed:controller.red green:controller.green blue:controller.blue alpha:controller.opacity];
         }
@@ -67,7 +68,7 @@
 {
     [super viewDidLoad];
     [self setupToolBar];
-    self.view.backgroundColor = [UIColor backgroundColor];
+    self.view.backgroundColor = UIColor.background;
     
     
     // Do any additional setup after loading the view.
@@ -87,14 +88,14 @@
     [self.view addSubview:self.toolBar];
     self.doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneAction:)];
     UIBarButtonItem *title = [[UIBarButtonItem alloc] initWithTitle:kLocalizedPaintWidth style:UIBarButtonItemStylePlain target:nil action:nil];
-    [title setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor navTintColor], NSFontAttributeName:[UIFont systemFontOfSize:16.0f]} forState:UIControlStateDisabled];
-    [title setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor navTintColor], NSFontAttributeName:[UIFont boldSystemFontOfSize:16.0f]} forState:UIControlStateNormal];
+    [title setTitleTextAttributes:@{NSForegroundColorAttributeName : UIColor.navTint, NSFontAttributeName:[UIFont systemFontOfSize:16.0f]} forState:UIControlStateDisabled];
+    [title setTitleTextAttributes:@{NSForegroundColorAttributeName : UIColor.navTint, NSFontAttributeName:[UIFont boldSystemFontOfSize:16.0f]} forState:UIControlStateNormal];
     title.enabled = NO;
     UIBarButtonItem *flexibleItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     [self.toolBar setItems:@[title,flexibleItem, self.doneButton]];
     self.toolBar.frame = CGRectMake(0, 0, self.view.frame.size.width, self.toolBar.frame.size.height);
-    self.toolBar.tintColor = [UIColor navTintColor];
-    self.toolBar.barTintColor = UIColor.navBarColor;
+    self.toolBar.tintColor = UIColor.navTint;
+    self.toolBar.barTintColor = UIColor.navBar;
     
     
 }
@@ -107,7 +108,7 @@
     self.brushEndingControl = [[UISegmentedControl alloc] initWithItems:mySegments];
     CGFloat width = self.view.frame.size.width-140.0f;
     self.brushEndingControl.frame =CGRectMake(self.view.center.x-width/2.0f, self.view.frame.size.height*0.7f, width, self.view.frame.size.height*0.1f);
-    self.brushEndingControl.tintColor = [UIColor globalTintColor];
+    self.brushEndingControl.tintColor = UIColor.globalTint;
     switch (self.brushEnding) {
         case Round:
             self.brushEndingControl.selectedSegmentIndex = 0;
@@ -130,19 +131,19 @@
     self.brushSlider = [[CatrobatUISlider alloc] init];
     self.brushSlider.frame =CGRectMake(self.view.frame.size.width*0.25f, self.view.frame.size.height*0.5f, self.view.frame.size.width/2, 20);
     [self.brushSlider addTarget:self action:@selector(sliderAction:) forControlEvents:UIControlEventValueChanged];
-    [self.brushSlider setBackgroundColor:[UIColor clearColor]];
+    [self.brushSlider setBackgroundColor:UIColor.clearColor];
     self.brushSlider.minimumValue = 1.0f;
     self.brushSlider.maximumValue = 75.0f;
     self.brushSlider.continuous = YES;
     self.brushSlider.value = self.brush;
-    self.brushSlider.tintColor = [UIColor globalTintColor];
+    self.brushSlider.tintColor = UIColor.globalTint;
     //  UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width*0.25f, self.view.frame.size.height*0.35f, 40, 10)];
     //  label.text = kLocalizedPaintWidth;
     //  [label sizeToFit];
-    //  label.textColor = [UIColor globalTintColor];
+    //  label.textColor = UIColor.globalTint;
     self.thicknessLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.brushSlider.frame.origin.x+self.brushSlider.frame.size.width +10, self.view.frame.size.height*0.5f-7, 40, 10)];
     self.thicknessLabel.text = [NSString stringWithFormat:@"%.0f",roundf(self.brush)];
-    self.thicknessLabel.textColor = [UIColor globalTintColor];
+    self.thicknessLabel.textColor = UIColor.globalTint;
     [self.thicknessLabel sizeToFit];
     
     //  [self.view addSubview:label];

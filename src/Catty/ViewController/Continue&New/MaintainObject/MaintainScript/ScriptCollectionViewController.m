@@ -1030,7 +1030,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 #pragma mark - Setup
 - (void)setupCollectionView
 {
-    self.collectionView.backgroundColor = [UIColor backgroundColor];
+    self.collectionView.backgroundColor = UIColor.background;
     self.collectionView.alwaysBounceVertical = YES;
     self.collectionView.scrollEnabled = YES;
     self.collectionView.collectionViewLayout = [CatrobatReorderableCollectionViewFlowLayout new];

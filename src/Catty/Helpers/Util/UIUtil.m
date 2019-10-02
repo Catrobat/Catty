@@ -25,6 +25,7 @@
 #import "Util.h"
 #import "iOSCombobox.h"
 #import "ScriptCollectionViewController.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation UIUtil
 
@@ -33,7 +34,7 @@
     moreRowAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault
                                                        title:kLocalizedMore
                                                      handler:handler];
-    moreRowAction.backgroundColor = [UIColor clearColor];
+    moreRowAction.backgroundColor = UIColor.clearColor;
     return moreRowAction;
 }
 
@@ -44,7 +45,7 @@
     deleteRowAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault
                                                          title:kLocalizedDelete
                                                        handler:handler];
-    deleteRowAction.backgroundColor = [UIColor destructiveTintColor];
+    deleteRowAction.backgroundColor = UIColor.destructiveTint;
     return deleteRowAction;
 }
 
@@ -56,7 +57,7 @@
                         andRemainingSpace:(NSInteger)remainingSpace
 {
     UILabel *label = [[UILabel alloc] initWithFrame:frame];
-    label.textColor = [UIColor whiteColor];
+    label.textColor = UIColor.whiteColor;
     label.font = [UIFont fontWithName:@"Helvetica-Bold" size:kBrickLabelFontSize];
     if (text) {
         label.text = text;

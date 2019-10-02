@@ -38,7 +38,7 @@ class SelectButton: UIButton {
         setBackgroundImage(unselectedImage, for: .normal)
         setBackgroundImage(selectedImage, for: .selected)
 
-        tintColor = UIColor.globalTint()
+        tintColor = UIColor.globalTint
     }
 
     override func backgroundRect(forBounds bounds: CGRect) -> CGRect {

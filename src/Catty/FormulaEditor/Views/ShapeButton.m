@@ -138,7 +138,7 @@
 - (void)defaultSetup
 {
     self.lineWidth = 1.f;
-    self.shapeStrokeColor = [UIColor whiteColor];
+    self.shapeStrokeColor = UIColor.whiteColor;
     self.buttonInsets = UIEdgeInsetsMake(10.f, 28.f, 10.f, 24.f);
 }
 
@@ -146,12 +146,12 @@
 {
     self.backGroundLayer = [CALayer layer];
     self.backGroundLayer.frame = self.bounds;
-    self.backGroundLayer.backgroundColor = [UIColor clearColor].CGColor;
+    self.backGroundLayer.backgroundColor = UIColor.clearColor.CGColor;
     [self.layer addSublayer:self.backGroundLayer];
     
     CAShapeLayer *shapeLayer = [CAShapeLayer layer];
     shapeLayer.strokeColor = self.shapeStrokeColor.CGColor;
-    shapeLayer.fillColor = [UIColor clearColor].CGColor;
+    shapeLayer.fillColor = UIColor.clearColor.CGColor;
     shapeLayer.lineWidth = self.lineWidth;
     shapeLayer.miterLimit = 2.f;
     

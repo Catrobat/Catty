@@ -21,6 +21,7 @@
  */
 
 #import "BroadcastScriptCell.h"
+#import "Pocket_Code-Swift.h"
 
 @interface BroadcastScriptCell ()
 @property (nonatomic, strong) UILabel *textLabel;
@@ -30,7 +31,7 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    [BrickShapeFactory  drawLargeRoundedControlBrickShapeWithFillColor:UIColor.controlBrickOrangeColor strokeColor:UIColor.controlBrickStrokeColor height:roundedLargeBrick width:[Util screenWidth]];
+    [BrickShapeFactory  drawLargeRoundedControlBrickShapeWithFillColor:UIColor.controlBrickOrange strokeColor:UIColor.controlBrickStroke height:roundedLargeBrick width:[Util screenWidth]];
 }
 
 - (kBrickShapeType)brickShapeType

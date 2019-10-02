@@ -22,7 +22,6 @@
 
 #import "CreateView.h"
 #import "CatrobatProject.h"
-#import "UIColor+CatrobatUIColorExtensions.h"
 #import "ImageCache.h"
 #import "NSString+CatrobatNSStringExtensions.h"
 #import "UIImage+CatrobatUIImageExtensions.h"
@@ -32,6 +31,7 @@
 #import "LanguageTranslationDefines.h"
 #import "RoundBorderedButton.h"
 #import "Util.h"
+#import "Pocket_Code-Swift.h"
 
 #define kHTMLATagPattern @"(?i)<a([^>]+)>(.+?)</a>"
 #define kHTMLAHrefTagPattern @"href=\"(.*?)\""
@@ -47,7 +47,7 @@
 + (UIView*)createProjectDetailView:(CatrobatProject*)project target:(id)target
 {
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [Util screenWidth], 0)];
-    view.backgroundColor = [UIColor clearColor];
+    view.backgroundColor = UIColor.clearColor;
     [view setAutoresizingMask:UIViewAutoresizingFlexibleHeight];
     [self addNameLabelWithProjectName:project.projectName toView:view];
     [self addAuthorLabelWithAuthor:project.author toView:view];
@@ -182,7 +182,7 @@
     imageView.contentMode = UIViewContentModeScaleAspectFill;
     imageView.layer.cornerRadius = 8.0;
     imageView.layer.masksToBounds = YES;
-    imageView.layer.borderColor = [UIColor utilityTintColor].CGColor;
+    imageView.layer.borderColor = UIColor.utilityTint.CGColor;
     imageView.layer.borderWidth = 1.0;
     
     [view addSubview:imageView];
@@ -238,7 +238,7 @@
     downloadButton.titleLabel.adjustsFontSizeToFitWidth = YES;
     downloadButton.titleLabel.minimumScaleFactor = 0.4;
     [downloadButton setTitle:kLocalizedDownload forState:UIControlStateNormal];
-    [downloadButton setTintColor:[UIColor buttonTintColor]];
+    [downloadButton setTintColor:UIColor.buttonTint];
     
     [downloadButton addTarget:target action:@selector(downloadButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     
@@ -260,7 +260,7 @@
     openButton.titleLabel.minimumScaleFactor = 0.4;
     [openButton setTitle:kLocalizedOpen forState:UIControlStateNormal];
     [openButton addTarget:target action:@selector(openButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [openButton setTintColor:[UIColor buttonTintColor]];
+    [openButton setTintColor:UIColor.buttonTint];
     
     
     [view addSubview:openButton];
@@ -270,8 +270,8 @@
 {
     RoundBorderedButton *downloadAgainButton = [[RoundBorderedButton alloc] initWithFrame:CGRectMake(view.frame.size.width/2-10,view.frame.size.height*0.1+[Util screenHeight]/4.5f-25, 100, 25) andBorder:NO];
     downloadAgainButton.titleLabel.font = [UIFont boldSystemFontOfSize:14];
-    [downloadAgainButton setTitleColor:[UIColor buttonTintColor] forState:UIControlStateNormal];
-    [downloadAgainButton setTitleColor:[UIColor buttonHighlightedTintColor] forState:UIControlStateHighlighted];
+    [downloadAgainButton setTitleColor:UIColor.buttonTint forState:UIControlStateNormal];
+    [downloadAgainButton setTitleColor:UIColor.buttonHighlightedTint forState:UIControlStateHighlighted];
     [downloadAgainButton setTitle:kLocalizedDownload forState:UIControlStateNormal];
     downloadAgainButton.titleLabel.adjustsFontSizeToFitWidth = YES;
     downloadAgainButton.titleLabel.minimumScaleFactor = 0.4;
@@ -286,7 +286,7 @@
 {
     EVCircularProgressView *button = [[EVCircularProgressView alloc] init];
     button.tag = kStopLoadingTag;
-    button.tintColor = [UIColor buttonTintColor];
+    button.tintColor = UIColor.buttonTint;
     button.frame = CGRectMake(view.frame.size.width-40,view.frame.size.height*0.1+[Util screenHeight]/4.5f-25, 28, 28);
     button.hidden = YES;
     [button addTarget:target action:@selector(stopLoading) forControlEvents:UIControlEventTouchUpInside];
@@ -334,12 +334,12 @@
     [self addHorizontalLineToView:view andHeight:view.frame.size.height + height*0.01f-15];
     RoundBorderedButton *reportButton = [[RoundBorderedButton alloc] initWithFrame:CGRectMake(view.frame.size.width/15,view.frame.size.height + height*0.01f, 130, 25) andBorder:NO];
     reportButton.titleLabel.font = [UIFont boldSystemFontOfSize:13];
-    [reportButton.titleLabel setTintColor:[UIColor globalTintColor]];
+    [reportButton.titleLabel setTintColor:UIColor.globalTint];
     [reportButton setTitle:kLocalizedReportProject forState:UIControlStateNormal];
     [reportButton addTarget:target action:@selector(reportProject) forControlEvents:UIControlEventTouchUpInside];
     [reportButton sizeToFit];
-    [reportButton setTintColor:[UIColor buttonTintColor]];
-    [reportButton setTitleColor:[UIColor buttonTintColor] forState:UIControlStateNormal];
+    [reportButton setTintColor:UIColor.buttonTint];
+    [reportButton setTitleColor:UIColor.buttonTint forState:UIControlStateNormal];
     [view addSubview:reportButton];
     [self setMaxHeightIfGreaterForView:view withHeight:view.frame.size.height + reportButton.frame.size.height];
 }
@@ -349,13 +349,13 @@
     [self setMaxHeightIfGreaterForView:view withHeight:height];
     CGFloat offset = view.frame.size.height + 1;
     UIView *lineView =[[UIView alloc] initWithFrame:CGRectMake(view.frame.size.width/15 -10, offset,view.frame.size.width , 1)];
-    lineView.backgroundColor = [UIColor utilityTintColor];
+    lineView.backgroundColor = UIColor.utilityTint;
     [view addSubview:lineView];
 }
 
 + (void) addShadowToTitleLabelForButton:(UIButton*)button
 {
-    button.titleLabel.layer.shadowColor = [UIColor blackColor].CGColor;
+    button.titleLabel.layer.shadowColor = UIColor.blackColor.CGColor;
     button.titleLabel.layer.shadowOpacity = 0.3f;
     button.titleLabel.layer.shadowRadius = 1;
     button.titleLabel.layer.shadowOffset = CGSizeMake(0.0f, 2.0f);
@@ -364,40 +364,40 @@
 
 + (void) configureTitleLabel:(UILabel*)label andHeight:(CGFloat)height
 {
-    label.backgroundColor = [UIColor clearColor];
+    label.backgroundColor = UIColor.clearColor;
     if (height == kIpadScreenHeight) {
         label.font = [UIFont boldSystemFontOfSize:24];
     }else{
         label.font = [UIFont boldSystemFontOfSize:17];
     }
-    label.textColor = [UIColor globalTintColor];
-    label.layer.shadowColor = [[UIColor whiteColor] CGColor];
+    label.textColor = UIColor.globalTint;
+    label.layer.shadowColor = [UIColor.whiteColor CGColor];
     label.layer.shadowOffset = CGSizeMake(0.0, 0.0);
 }
 
 
 + (void) configureTextLabel:(UILabel*)label andHeight:(CGFloat)height
 {
-    label.backgroundColor = [UIColor clearColor];
+    label.backgroundColor = UIColor.clearColor;
     if (height == kIpadScreenHeight) {
         label.font = [UIFont boldSystemFontOfSize:18];
     }else{
         label.font = [UIFont boldSystemFontOfSize:12];
     }
-    label.textColor = [UIColor textTintColor];
-    label.layer.shadowColor = [[UIColor whiteColor] CGColor];
+    label.textColor = UIColor.textTint;
+    label.layer.shadowColor = [UIColor.whiteColor CGColor];
     label.layer.shadowOffset = CGSizeMake(0.0, 0.0);
 }
 + (void) configureAuthorLabel:(UILabel*)label andHeight:(CGFloat)height
 {
-    label.backgroundColor = [UIColor clearColor];
+    label.backgroundColor = UIColor.clearColor;
     if (height == kIpadScreenHeight) {
         label.font = [UIFont boldSystemFontOfSize:18];
     }else{
         label.font = [UIFont boldSystemFontOfSize:12];
     }
-    label.textColor = [UIColor textTintColor];
-    label.layer.shadowColor = [[UIColor whiteColor] CGColor];
+    label.textColor = UIColor.textTint;
+    label.layer.shadowColor = [UIColor.whiteColor CGColor];
     label.layer.shadowOffset = CGSizeMake(0.0, 0.0);
 }
 
@@ -413,14 +413,14 @@
 {
     UILabel* detailInformationLabel = [[UILabel alloc] initWithFrame:CGRectMake(xPosition, yPosition, 155, 25)];
     detailInformationLabel.text =  [title stringByEscapingHTMLEntities];
-    detailInformationLabel.textColor = [UIColor textTintColor];
+    detailInformationLabel.textColor = UIColor.textTint;
     if (height == kIpadScreenHeight) {
         detailInformationLabel.font = [UIFont systemFontOfSize:18.0f];
     }else{
         detailInformationLabel.font = [UIFont systemFontOfSize:14.0f];
     }
     
-    detailInformationLabel.backgroundColor = [UIColor clearColor];
+    detailInformationLabel.backgroundColor = UIColor.clearColor;
     [detailInformationLabel sizeToFit];
     return detailInformationLabel;
 }
@@ -444,11 +444,11 @@
     label.verticalAlignment = TTTAttributedLabelVerticalAlignmentTop;
     
     NSMutableDictionary *mutableLinkAttributes = [NSMutableDictionary dictionary];
-    [mutableLinkAttributes setObject:[UIColor textTintColor] forKey:(NSString*)kCTForegroundColorAttributeName];
+    [mutableLinkAttributes setObject:UIColor.textTint forKey:(NSString*)kCTForegroundColorAttributeName];
     [mutableLinkAttributes setObject:[NSNumber numberWithBool:YES] forKey:(NSString *)kCTUnderlineStyleAttributeName];
     
     NSMutableDictionary *mutableActiveLinkAttributes = [NSMutableDictionary dictionary];
-    [mutableActiveLinkAttributes setObject:[UIColor brownColor] forKey:(NSString*)kCTForegroundColorAttributeName];
+    [mutableActiveLinkAttributes setObject:UIColor.brownColor forKey:(NSString*)kCTForegroundColorAttributeName];
     [mutableActiveLinkAttributes setObject:[NSNumber numberWithBool:NO] forKey:(NSString *)kCTUnderlineStyleAttributeName];
     
     label.linkAttributes = mutableLinkAttributes;

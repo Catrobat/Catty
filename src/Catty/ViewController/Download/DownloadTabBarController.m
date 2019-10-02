@@ -21,8 +21,8 @@
  */
 
 #import "DownloadTabBarController.h"
-#import "UIColor+CatrobatUIColorExtensions.h"
 #import "LanguageTranslationDefines.h"
+#import "Pocket_Code-Swift.h"
 
 @interface DownloadTabBarController ()
 
@@ -42,14 +42,15 @@
 {
     [super viewDidLoad];
     self.navigationItem.title = kLocalizedExplore;
-    self.tabBar.barTintColor = [UIColor tabBarColor];
+    self.tabBar.barTintColor = UIColor.tabBar;
     self.tabBar.barStyle = UIBarStyleDefault;
-    self.tabBar.tintColor = [UIColor tabTintColor];
+    self.tabBar.tintColor = UIColor.tabTint;
+    self.view.backgroundColor = UIColor.background;
     [[UITabBarItem appearance] setTitleTextAttributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:10.0f],
-                                                      NSForegroundColorAttributeName : [UIColor tabTintColor]
+                                                      NSForegroundColorAttributeName : UIColor.tabTint
                                                       } forState:UIControlStateSelected];
     [[UITabBarItem appearance] setTitleTextAttributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:10.0f],
-                                                        NSForegroundColorAttributeName : [UIColor backgroundColor]
+                                                        NSForegroundColorAttributeName : UIColor.background
                                                         } forState:UIControlStateNormal];
   
 }
