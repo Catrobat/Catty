@@ -54,6 +54,7 @@
     self.editableSections = nil;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.tableView.backgroundColor = UIColor.background;
     self.tableView.separatorColor = UIColor.utilityTint;
     self.view.backgroundColor = UIColor.background;
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
