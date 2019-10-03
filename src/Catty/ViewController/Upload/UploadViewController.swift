@@ -103,6 +103,7 @@ class UploadViewController: UIViewController {
         projectNameLabel.text = kLocalizedName
         projectNameLabel.font = UIFont.boldSystemFont(ofSize: uploadFontSize)
 
+        projectNameTextField.borderStyle = .roundedRect
         projectNameTextField.layer.borderWidth = 1.0
         projectNameTextField.layer.borderColor = UIColor.textViewBorderGray.cgColor
         projectNameTextField.layer.cornerRadius = 3
@@ -144,6 +145,7 @@ class UploadViewController: UIViewController {
         descriptionTextView.layer.borderColor = UIColor.textViewBorderGray.cgColor
         descriptionTextView.layer.cornerRadius = 8
         descriptionTextView.textColor = UIColor.textTint
+        descriptionTextView.clipsToBounds = true
 
         //manual constraint (because we need to store the bottom anchor)
         descriptionTextViewBottomConstraint = descriptionTextView
