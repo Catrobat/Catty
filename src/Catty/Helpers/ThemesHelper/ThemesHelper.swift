@@ -20,28 +20,15 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "DarkBlueGradientFeaturedCell.h"
-#import "Util.h"
-#import "Pocket_Code-Swift.h"
+@objc
+class ThemesHelper: NSObject {
+    @objc static func changeAppearance() {
+        UITextField.appearance().keyboardAppearance = UIKeyboardAppearance.default
 
-@implementation DarkBlueGradientFeaturedCell
-
-- (void)awakeFromNib
-{
-    [super awakeFromNib];
-    [self configureImageCell];
+        if #available(iOS 13.0, *) {
+            UISegmentedControl.appearance().selectedSegmentTintColor = UIColor.globalTint
+            UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.background!], for: .selected)
+            UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.globalTint!], for: .normal)
+        }
+    }
 }
-
-- (void)configureImageCell
-{
-    self.accessoryView.hidden = YES;
-//    self.featuredImage.frame = self.frame;
-    self.backgroundColor = UIColor.background;
-}
-
-- (void)layoutSubviews {
-    [super layoutSubviews];
-}
-
-
-@end

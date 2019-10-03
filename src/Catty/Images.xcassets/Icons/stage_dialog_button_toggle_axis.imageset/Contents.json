@@ -10,8 +10,8 @@
     },
     {
       "idiom" : "universal",
-      "scale" : "3x",
-      "filename" : "stage_icons_axis-xhdpi.png"
+      "filename" : "stage_icons_axis-xhdpi.png",
+      "scale" : "3x"
     }
   ],
   "info" : {

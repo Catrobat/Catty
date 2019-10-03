@@ -80,8 +80,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor backgroundColor];
-    self.imageView.backgroundColor = [UIColor backgroundColor];
+    self.view.backgroundColor = UIColor.background;
+    self.imageView.backgroundColor = UIColor.background;
     self.navigationController.toolbar.hidden = YES;
     self.navigationController.title = self.title = self.imageName;
     UIBarButtonItem *editButtonItem = [TableUtil editButtonItemWithTarget:self action:@selector(editAction)];
@@ -114,14 +114,14 @@
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle:nil];
     PaintViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"paint"];
     vc.delegate = self;
-    self.imageView.backgroundColor = [UIColor clearColor];
-    self.view.backgroundColor = [UIColor clearColor];
+    self.imageView.backgroundColor = UIColor.clearColor;
+    self.view.backgroundColor = UIColor.clearColor;
     UIGraphicsBeginImageContextWithOptions(self.imageView.frame.size, NO, 0.0);
     [self.imageView.layer renderInContext:UIGraphicsGetCurrentContext()];
     UIImage * img = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    self.view.backgroundColor = [UIColor backgroundColor];
-    self.imageView.backgroundColor = [UIColor backgroundColor];
+    self.view.backgroundColor = UIColor.background;
+    self.imageView.backgroundColor = UIColor.background;
     vc.editingImage = img;
 //    NSDebug(@"%@",img);
     NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];

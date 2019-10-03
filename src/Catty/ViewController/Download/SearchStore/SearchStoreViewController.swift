@@ -97,8 +97,8 @@ class SearchStoreViewController: UIViewController, SelectedSearchStoreDataSource
             self.noSearchResultsLabel = UILabel(frame: self.view.frame)
             self.noSearchResultsLabel.text = kLocalizedNoSearchResults
             self.noSearchResultsLabel.textAlignment = .center
-            self.noSearchResultsLabel.textColor = UIColor.globalTint()
-            self.noSearchResultsLabel.tintColor = UIColor.globalTint()
+            self.noSearchResultsLabel.textColor = UIColor.globalTint
+            self.noSearchResultsLabel.tintColor = UIColor.globalTint
             self.noSearchResultsLabel.isHidden = true
             self.view.addSubview(self.noSearchResultsLabel)
         }
@@ -125,8 +125,8 @@ class SearchStoreViewController: UIViewController, SelectedSearchStoreDataSource
 
     private func setupTableView() {
         self.searchStoreTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
-        self.searchStoreTableView.backgroundColor = UIColor.background()
-        self.searchStoreTableView.separatorColor = UIColor.globalTint()
+        self.searchStoreTableView.backgroundColor = UIColor.background
+        self.searchStoreTableView.separatorColor = UIColor.globalTint
         self.searchStoreTableView.dataSource = self.dataSource
         self.searchStoreTableView.delegate = self.dataSource
         self.searchBar.delegate = self

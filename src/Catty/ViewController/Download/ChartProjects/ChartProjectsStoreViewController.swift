@@ -106,6 +106,7 @@ class ChartProjectsStoreViewController: UIViewController, SelectedChartProjectsD
         chartProjectsSegmentedControl?.setTitle(kLocalizedMostDownloaded, forSegmentAt: 0)
         chartProjectsSegmentedControl?.setTitle(kLocalizedMostViewed, forSegmentAt: 1)
         chartProjectsSegmentedControl?.setTitle(kLocalizedNewest, forSegmentAt: 2)
+
         fetchData(type: .mostDownloaded)
 
         if checkIphoneScreenSize() {
@@ -122,8 +123,8 @@ class ChartProjectsStoreViewController: UIViewController, SelectedChartProjectsD
 
     private func setupTableView() {
         self.chartProjectsTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
-        self.chartProjectsTableView.backgroundColor = UIColor.background()
-        self.chartProjectsTableView.separatorColor = UIColor.globalTint()
+        self.chartProjectsTableView.backgroundColor = UIColor.background
+        self.chartProjectsTableView.separatorColor = UIColor.globalTint
         self.chartProjectsTableView.dataSource = self.dataSource
         self.chartProjectsTableView.delegate = self.dataSource
     }

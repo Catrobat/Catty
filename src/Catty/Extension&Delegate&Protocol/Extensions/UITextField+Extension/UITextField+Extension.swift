@@ -20,28 +20,19 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "DarkBlueGradientFeaturedCell.h"
-#import "Util.h"
-#import "Pocket_Code-Swift.h"
-
-@implementation DarkBlueGradientFeaturedCell
-
-- (void)awakeFromNib
-{
-    [super awakeFromNib];
-    [self configureImageCell];
+@objc
+extension UITextField {
+    /*
+     * https://medium.com/nyc-design/swift-4-add-icon-to-uitextfield-48f5ebf60aa1
+     */
+    func setIcon(_ image: UIImage) {
+        if image.size.width > 0 && image.size.height > 0 {
+            let iconView = UIImageView(frame: CGRect(x: 5, y: 5, width: 50, height: 50))
+            iconView.image = image.withRenderingMode(.alwaysTemplate)
+            let iconContainerView = UIView(frame: CGRect(x: 0, y: 0, width: 60, height: 60))
+            iconContainerView.addSubview(iconView)
+            leftView = iconContainerView
+            leftViewMode = .always
+        }
+    }
 }
-
-- (void)configureImageCell
-{
-    self.accessoryView.hidden = YES;
-//    self.featuredImage.frame = self.frame;
-    self.backgroundColor = UIColor.background;
-}
-
-- (void)layoutSubviews {
-    [super layoutSubviews];
-}
-
-
-@end

@@ -28,7 +28,7 @@ class LibraryImageCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.imageView.layer.borderWidth = CGFloat(kDefaultImageCellBorderWidth)
-        self.imageView.layer.borderColor = UIColor.utilityTint().cgColor
+        self.imageView.layer.borderColor = UIColor.utilityTint?.cgColor
     }
 }
 

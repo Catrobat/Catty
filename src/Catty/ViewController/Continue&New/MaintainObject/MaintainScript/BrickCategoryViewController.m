@@ -86,8 +86,8 @@
         [self.collectionView registerClass:NSClassFromString([className stringByAppendingString:@"Cell"])
                 forCellWithReuseIdentifier:className];
     }
-    self.collectionView.backgroundColor = [UIColor clearColor];
-    self.view.backgroundColor = [UIColor clearColor];
+    self.collectionView.backgroundColor = UIColor.clearColor;
+    self.view.backgroundColor = UIColor.clearColor;
 }
 
 -(void)reloadData {

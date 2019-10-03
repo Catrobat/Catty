@@ -21,6 +21,7 @@
  */
 
 #import "StartScriptCell.h"
+#import "Pocket_Code-Swift.h"
 
 @interface StartScriptCell ()
 @property (strong, nonatomic) UILabel *textLabel;
@@ -30,7 +31,7 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    [BrickShapeFactory drawLargeRoundedControlBrickShapeWithFillColor:UIColor.controlBrickOrangeColor strokeColor:UIColor.controlBrickStrokeColor height:roundedSmallBrick width:[Util screenWidth]];
+    [BrickShapeFactory drawLargeRoundedControlBrickShapeWithFillColor:UIColor.controlBrickOrange strokeColor:UIColor.controlBrickStroke height:roundedSmallBrick width:[Util screenWidth]];
 }
 
 - (kBrickShapeType)brickShapeType

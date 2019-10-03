@@ -366,9 +366,9 @@
 
     if (self.useDetailCells && [cell isKindOfClass:[DarkBlueGradientImageDetailCell class]]) {
         DarkBlueGradientImageDetailCell *detailCell = (DarkBlueGradientImageDetailCell*)imageCell;
-        detailCell.topLeftDetailLabel.textColor = [UIColor textTintColor];
+        detailCell.topLeftDetailLabel.textColor = UIColor.textTint;
         detailCell.topLeftDetailLabel.text = [NSString stringWithFormat:@"%@:", kLocalizedLength];
-        detailCell.topRightDetailLabel.textColor = [UIColor textTintColor];
+        detailCell.topRightDetailLabel.textColor = UIColor.textTint;
 
         NSNumber *number = [self.dataCache objectForKey:sound.fileName];
         CGFloat duration;
@@ -380,9 +380,9 @@
         }
 
         detailCell.topRightDetailLabel.text = [NSString stringWithFormat:@"%.02fs", (float)duration];
-        detailCell.bottomLeftDetailLabel.textColor = [UIColor textTintColor];
+        detailCell.bottomLeftDetailLabel.textColor = UIColor.textTint;
         detailCell.bottomLeftDetailLabel.text = [NSString stringWithFormat:@"%@:", kLocalizedSize];
-        detailCell.bottomRightDetailLabel.textColor = [UIColor textTintColor];
+        detailCell.bottomRightDetailLabel.textColor = UIColor.textTint;
         NSUInteger resultSize = [self.object fileSizeOfSound:sound];
         NSNumber *sizeOfSound = [NSNumber numberWithUnsignedInteger:resultSize];
         detailCell.bottomRightDetailLabel.text = [NSByteCountFormatter stringFromByteCount:[sizeOfSound unsignedIntegerValue]
@@ -469,7 +469,7 @@
          }]
          showWithController:self];
     }];
-    moreAction.backgroundColor = [UIColor globalTintColor];
+    moreAction.backgroundColor = UIColor.globalTint;
     UITableViewRowAction *deleteAction = [UIUtil tableViewDeleteRowActionWithHandler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
         // Delete button was pressed
         [[[[[AlertControllerBuilder alertWithTitle:kLocalizedDeleteThisSound message:kLocalizedThisActionCannotBeUndone]

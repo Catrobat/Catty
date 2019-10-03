@@ -337,9 +337,9 @@
 
     if (self.useDetailCells && [cell isKindOfClass:[DarkBlueGradientImageDetailCell class]]) {
         DarkBlueGradientImageDetailCell *detailCell = (DarkBlueGradientImageDetailCell*)imageCell;
-        detailCell.topLeftDetailLabel.textColor = [UIColor textTintColor];
+        detailCell.topLeftDetailLabel.textColor = UIColor.textTint;
         detailCell.topLeftDetailLabel.text = [NSString stringWithFormat:@"%@:", kLocalizedMeasure];
-        detailCell.topRightDetailLabel.textColor = [UIColor textTintColor];
+        detailCell.topRightDetailLabel.textColor = UIColor.textTint;
 
         NSValue *value = [self.dataCache objectForKey:look.fileName];
         CGSize dimensions;
@@ -352,9 +352,9 @@
         detailCell.topRightDetailLabel.text = [NSString stringWithFormat:@"%lux%lu",
                                                (unsigned long)dimensions.width,
                                                (unsigned long)dimensions.height];
-        detailCell.bottomLeftDetailLabel.textColor = [UIColor textTintColor];
+        detailCell.bottomLeftDetailLabel.textColor = UIColor.textTint;
         detailCell.bottomLeftDetailLabel.text = [NSString stringWithFormat:@"%@:", kLocalizedSize];
-        detailCell.bottomRightDetailLabel.textColor = [UIColor textTintColor];
+        detailCell.bottomRightDetailLabel.textColor = UIColor.textTint;
         NSUInteger resultSize = [self.object fileSizeOfLook:look];
         NSNumber *sizeOfSound = [NSNumber numberWithUnsignedInteger:resultSize];
         detailCell.bottomRightDetailLabel.text = [NSByteCountFormatter stringFromByteCount:[sizeOfSound unsignedIntegerValue]
@@ -429,7 +429,7 @@
          }]
          showWithController:self];
     }];
-    moreAction.backgroundColor = [UIColor globalTintColor];
+    moreAction.backgroundColor = UIColor.globalTint;
     UITableViewRowAction *deleteAction = [UIUtil tableViewDeleteRowActionWithHandler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
         // Delete button was pressed
         NSString *alertTitle = (self.object.isBackground ? kLocalizedDeleteThisBackground : kLocalizedDeleteThisLook);
@@ -482,7 +482,7 @@
     picker.mediaTypes = @[(NSString*)kUTTypeImage];
     picker.allowsEditing = NO;
     picker.delegate = self;
-    picker.navigationBar.tintColor = [UIColor navTintColor];
+    picker.navigationBar.tintColor = UIColor.navTint;
     [self presentViewController:picker animated:YES completion:nil];
 }
 

@@ -75,7 +75,7 @@ class UploadViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.background()
+        view.backgroundColor = UIColor.background
         initProjectNameViewElements()
         initSizeViewElements()
         initDescriptionViewElements()
@@ -99,19 +99,20 @@ class UploadViewController: UIViewController {
     }
 
     func initProjectNameViewElements() {
-        projectNameLabel.textColor = UIColor.globalTint()
+        projectNameLabel.textColor = UIColor.globalTint
         projectNameLabel.text = kLocalizedName
         projectNameLabel.font = UIFont.boldSystemFont(ofSize: uploadFontSize)
 
-        projectNameTextField.textColor = UIColor.textTint()
-        projectNameTextField.backgroundColor = UIColor.white
         projectNameTextField.borderStyle = .roundedRect
+        projectNameTextField.layer.borderWidth = 1.0
+        projectNameTextField.layer.borderColor = UIColor.textViewBorderGray.cgColor
+        projectNameTextField.layer.cornerRadius = 3
         projectNameTextField.keyboardType = .default
         projectNameTextField.text = project?.header.programName!
     }
 
     func initSizeViewElements() {
-        sizeLabel.textColor = UIColor.globalTint()
+        sizeLabel.textColor = UIColor.globalTint
         sizeLabel.text = kLocalizedSize
         sizeLabel.font = UIFont.boldSystemFont(ofSize: uploadFontSize)
 
@@ -119,7 +120,7 @@ class UploadViewController: UIViewController {
         zipFileData = nil
         zipFileData = fileManager?.zip(project)
 
-        sizeValueLabel.textColor = UIColor.textTint()
+        sizeValueLabel.textColor = UIColor.textTint
         sizeValueLabel.font = UIFont.boldSystemFont(ofSize: uploadFontSize)
 
         guard let data = zipFileData else {
@@ -132,19 +133,19 @@ class UploadViewController: UIViewController {
     }
 
     func initDescriptionViewElements() {
-        descriptionLabel.textColor = UIColor.globalTint()
+        descriptionLabel.textColor = UIColor.globalTint
         descriptionLabel.text = kLocalizedDescription
         descriptionLabel.font = UIFont.boldSystemFont(ofSize: uploadFontSize)
 
-        descriptionTextView.textColor = UIColor.textTint()
         descriptionTextView.keyboardAppearance = .default
-        descriptionTextView.backgroundColor = UIColor.white
         descriptionTextView.keyboardType = .default
         descriptionTextView.text = project?.header.programDescription ?? ""
 
         descriptionTextView.layer.borderWidth = 1.0
-        descriptionTextView.layer.borderColor = UIColor.textViewBorderGray().cgColor
+        descriptionTextView.layer.borderColor = UIColor.textViewBorderGray.cgColor
         descriptionTextView.layer.cornerRadius = 8
+        descriptionTextView.textColor = UIColor.textTint
+        descriptionTextView.clipsToBounds = true
 
         //manual constraint (because we need to store the bottom anchor)
         descriptionTextViewBottomConstraint = descriptionTextView

@@ -21,6 +21,7 @@
  */
 
 #import "FlashBrickCell.h"
+#import "Pocket_Code-Swift.h"
 
 @interface FlashBrickCell ()
 @property (nonatomic, strong) UILabel *textLabel;
@@ -30,7 +31,7 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.lookBrickGreenColor strokeColor:UIColor.controlBrickStrokeColor height:mediumBrick width:[Util screenWidth ]];
+    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.lookBrickGreen strokeColor:UIColor.controlBrickStroke height:mediumBrick width:[Util screenWidth ]];
 }
 
 + (CGFloat)cellHeight

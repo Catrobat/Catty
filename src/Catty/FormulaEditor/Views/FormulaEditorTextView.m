@@ -21,6 +21,7 @@
  */
 
 #import "FormulaEditorTextView.h"
+#import "Pocket_Code-Swift.h"
 
 @interface FormulaEditorTextView ()
 @property (nonatomic, weak) FormulaEditorViewController *formulaEditorViewController;
@@ -50,11 +51,11 @@
         self.tapRecognizer.delegate = self;
         [self.tapRecognizer setCancelsTouchesInView:NO];
         self.inputView = [[[NSBundle mainBundle] loadNibNamed:@"FormulaEditor" owner:self.formulaEditorViewController options:nil] lastObject];
-        self.inputView.backgroundColor = UIColor.backgroundColor;
+        self.inputView.backgroundColor = UIColor.background;
         self.userInteractionEnabled = YES;
         [self setAutocorrectionType:UITextAutocorrectionTypeNo];
-        self.backgroundColor = [UIColor whiteColor];
-        [[self layer] setBorderColor:[[UIColor grayColor] CGColor]];
+        self.backgroundColor = UIColor.whiteColor;
+        [[self layer] setBorderColor:UIColor.grayColor.CGColor];
         [[self layer] setBorderWidth:1.0];
         [[self layer] setCornerRadius:1];
         self.font = [UIFont boldSystemFontOfSize:20.0f];
@@ -65,7 +66,7 @@
         self.backspaceButton = [[UIButton alloc] init];
         [self.backspaceButton setImage:[UIImage imageNamed:@"del_active"] forState:UIControlStateNormal];
         [self.backspaceButton setImage:[UIImage imageNamed:@"del"] forState:UIControlStateDisabled];
-        self.backspaceButton.tintColor = [UIColor globalTintColor];
+        self.backspaceButton.tintColor = UIColor.globalTint;
         self.backspaceButton.frame = CGRectMake(self.frame.size.width - BACKSPACE_WIDTH, 0, BACKSPACE_HEIGHT, BACKSPACE_WIDTH);
         [self.backspaceButton addTarget:self action:@selector(clear) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:self.backspaceButton];
@@ -149,9 +150,9 @@
     UIColor *selectionColor;
     if(selectionType == PARSER_ERROR_SELECTION)
     {
-        selectionColor = [UIColor redColor];
+        selectionColor = UIColor.redColor;
     }else{
-        selectionColor = [UIColor globalTintColor];
+        selectionColor = UIColor.globalTint;
     }
     
     NSMutableAttributedString *formulaString = [[NSMutableAttributedString alloc] initWithString:[self text] attributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:20.0f]}];

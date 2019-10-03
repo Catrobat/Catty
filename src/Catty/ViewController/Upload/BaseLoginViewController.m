@@ -21,6 +21,7 @@
  */
 
 #import "BaseLoginViewController.h"
+#import "Pocket_Code-Swift.h"
 
 @interface BaseLoginViewController ()
 @property (nonatomic,assign) BOOL isMovedUp;
@@ -40,9 +41,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
     self.isMovedUp = NO;
     self.edgesForExtendedLayout = UIRectEdgeNone;
-	// Do any additional setup after loading the view.
+    // Do any additional setup after loading the view.
     UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
     [self.view addGestureRecognizer:recognizer];
 }
@@ -57,23 +59,23 @@
 
 -(void)keyboardWillShow:(NSNotification*)notification {
 
-        NSValue *keyboardValue = (notification.userInfo[UIKeyboardFrameEndUserInfoKey]);
-        CGRect keyboardRect = keyboardValue.CGRectValue;
+    NSValue *keyboardValue = (notification.userInfo[UIKeyboardFrameEndUserInfoKey]);
+    CGRect keyboardRect = keyboardValue.CGRectValue;
     
-        UIScrollView* myScrollView;
-        for (UIView *i in self.view.subviews){
-            if([i isKindOfClass:[UIScrollView class]]){
-                myScrollView = (UIScrollView *)i;
-            }
+    UIScrollView* myScrollView;
+    for (UIView *i in self.view.subviews){
+        if([i isKindOfClass:[UIScrollView class]]){
+            myScrollView = (UIScrollView *)i;
         }
+    }
     
-        myScrollView.scrollEnabled = true;
-        UIEdgeInsets insets = UIEdgeInsetsMake(0.0, 0.0, keyboardRect.size.height, 0.0);
-        
-        myScrollView.contentInset= insets;
-        myScrollView.scrollIndicatorInsets = insets;
-        
-        [myScrollView scrollRectToVisible:self.activeField.frame animated:YES];
+    myScrollView.scrollEnabled = true;
+    UIEdgeInsets insets = UIEdgeInsetsMake(0.0, 0.0, keyboardRect.size.height, 0.0);
+
+    myScrollView.contentInset= insets;
+    myScrollView.scrollIndicatorInsets = insets;
+
+    [myScrollView scrollRectToVisible:self.activeField.frame animated:YES];
 }
 
 -(void)keyboardWillHide:(NSNotification*)notification  {
@@ -116,26 +118,26 @@
 //method to move the view up/down whenever the keyboard is shown/dismissed
 -(void)setViewMovedUp:(BOOL)movedUp
 {
-//    [UIView beginAnimations:nil context:NULL];
-//    [UIView setAnimationDuration:0.3]; // if you want to slide up the view
-//    
-//    CGRect rect = self.view.frame;
-//    if (movedUp)
-//    {
-//        // 1. move the view's origin up so that the text field that will be hidden come above the keyboard
-//        // 2. increase the size of the view so that the area behind the keyboard is covered up.
-//        rect.origin.y -= kOFFSET_FOR_KEYBOARD;
-//        rect.size.height += kOFFSET_FOR_KEYBOARD;
-//    }
-//    else
-//    {
-//        // revert back to the normal state.
-//        rect.origin.y += kOFFSET_FOR_KEYBOARD;
-//        rect.size.height -= kOFFSET_FOR_KEYBOARD;
-//    }
-//    self.view.frame = rect;
-//    
-//    [UIView commitAnimations];
+    //    [UIView beginAnimations:nil context:NULL];
+    //    [UIView setAnimationDuration:0.3]; // if you want to slide up the view
+    //
+    //    CGRect rect = self.view.frame;
+    //    if (movedUp)
+    //    {
+    //        // 1. move the view's origin up so that the text field that will be hidden come above the keyboard
+    //        // 2. increase the size of the view so that the area behind the keyboard is covered up.
+    //        rect.origin.y -= kOFFSET_FOR_KEYBOARD;
+    //        rect.size.height += kOFFSET_FOR_KEYBOARD;
+    //    }
+    //    else
+    //    {
+    //        // revert back to the normal state.
+    //        rect.origin.y += kOFFSET_FOR_KEYBOARD;
+    //        rect.size.height -= kOFFSET_FOR_KEYBOARD;
+    //    }
+    //    self.view.frame = rect;
+    //
+    //    [UIView commitAnimations];
 }
 
 

@@ -22,9 +22,9 @@
 
 #import "ColorPickerViewController.h"
 #import "NKOColorPickerView.h"
-#import "UIColor+CatrobatUIColorExtensions.h"
 #import "LanguageTranslationDefines.h"
 #import "CatrobatUISlider.h"
+#import "Pocket_Code-Swift.h"
 
 @interface ColorPickerViewController ()
 @property (nonatomic,strong)UISegmentedControl *viewChanger;
@@ -64,15 +64,15 @@
   [self setupRGBAView];
   [self setupBrushPreview];
   
-  self.view.backgroundColor = [UIColor backgroundColor];
+  self.view.backgroundColor = UIColor.background;
   self.toolBar.frame = CGRectMake(0, 0, self.view.frame.size.width, self.toolBar.frame.size.height);
-  self.toolBar.tintColor = [UIColor navTintColor];
-  self.toolBar.barTintColor = UIColor.navBarColor;
+  self.toolBar.tintColor = UIColor.navTint;
+  self.toolBar.barTintColor = UIColor.navBar;
     self.toolBar.translucent = NO;
   
   CGFloat statusBarHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
   UIView *statusBarView =  [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, statusBarHeight)];
-  statusBarView.backgroundColor  =  UIColor.navBarColor;
+  statusBarView.backgroundColor  =  UIColor.navBar;
   [self.view addSubview:statusBarView];
 }
 
@@ -83,6 +83,7 @@
                         [UIImage imageNamed:@"sliderColors"], nil];
   self.viewChanger = [[UISegmentedControl alloc] initWithItems:itemArray];
   self.viewChanger.translatesAutoresizingMaskIntoConstraints = false;
+  self.viewChanger.backgroundColor = UIColor.globalTint;
   [self.view addSubview:self.viewChanger];
   
   if (@available(iOS 11.0, *)) {
@@ -95,10 +96,10 @@
 
   self.viewChanger.selectedSegmentIndex = 0;
   self.viewChanger.layer.cornerRadius = 0.0;
-  self.viewChanger.layer.borderColor = [UIColor globalTintColor].CGColor;
+  self.viewChanger.layer.borderColor = UIColor.globalTint.CGColor;
   self.viewChanger.layer.borderWidth = 1.0f;
   self.viewChanger.layer.masksToBounds = YES;
-  self.viewChanger.tintColor = [UIColor globalTintColor];
+  self.viewChanger.tintColor = UIColor.globalTint;
   [self.viewChanger addTarget:self
                               action:@selector(viewChanged:)
                     forControlEvents:UIControlEventValueChanged];
@@ -141,7 +142,7 @@
             int column = i % 4;
             int row = i / 4;
             layer.frame = CGRectMake(8 + (column * (width +8)), 8 + row * (width*factor+8), width, width*factor);
-            layer.borderColor = [UIColor globalTintColor].CGColor;
+            layer.borderColor = UIColor.globalTint.CGColor;
             layer.borderWidth = 1.0f;
             [self.standardColors.layer addSublayer:layer];
         }
@@ -158,7 +159,7 @@
             int column = i % 6;
             int row = i / 6;
             layer.frame = CGRectMake(8 + (column * (width +8)), 8 + row * (width*factor+8), width,width*factor);
-            layer.borderColor = [UIColor globalTintColor].CGColor;
+            layer.borderColor = UIColor.globalTint.CGColor;
             layer.borderWidth = 1.0f;
             [self.standardColors.layer addSublayer:layer];
         }
@@ -182,22 +183,21 @@
   
   UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width*0.1f, self.view.frame.size.height*0.05f-7, 40, 10)];
   label.text = kLocalizedPaintRed;
-  label.textColor = [UIColor redColor];
+  label.textColor = UIColor.redColor;
   [label sizeToFit];
   self.redSlider = [[CatrobatUISlider alloc] init];
   self.redSlider.frame =CGRectMake(self.view.frame.size.width*0.3f, self.view.frame.size.height*0.05f, 150, 5);
   [self.redSlider addTarget:self action:@selector(redAction:) forControlEvents:UIControlEventValueChanged];
-  [self.redSlider setBackgroundColor:[UIColor clearColor]];
+  [self.redSlider setBackgroundColor:UIColor.clearColor];
   self.redSlider.minimumValue = 0.0;
   self.redSlider.maximumValue = 255.0;
   self.redSlider.continuous = YES;
   self.redSlider.value = self.red*255.0f;
-  self.redSlider.tintColor = [UIColor globalTintColor];
+  self.redSlider.tintColor = UIColor.globalTint;
   self.redLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.redSlider.frame.origin.x+self.redSlider.frame.size.width+20, self.view.frame.size.height*0.05f-7, 40, 10)];
   self.redLabel.text = [NSString stringWithFormat:@"%.0f",roundf(self.red*255.0f)];
   [self.redLabel sizeToFit];
-  self.redLabel.textColor = [UIColor globalTintColor];
-  
+  self.redLabel.textColor = UIColor.globalTint;
   
   [self.rgbaSliderView addSubview:label];
   [self.rgbaSliderView addSubview:self.redLabel];
@@ -210,21 +210,21 @@
   
   UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width*0.1f, self.view.frame.size.height*0.15f-7, 40, 10)];
   label.text = kLocalizedPaintGreen;
-  label.textColor = [UIColor greenColor];
+  label.textColor = UIColor.greenColor;
   [label sizeToFit];
   self.greenSlider = [[CatrobatUISlider alloc] init];
   self.greenSlider.frame =CGRectMake(self.view.frame.size.width*0.3f, self.view.frame.size.height*0.15f, 150, 5);
   [self.greenSlider addTarget:self action:@selector(greenAction:) forControlEvents:UIControlEventValueChanged];
-  [self.greenSlider setBackgroundColor:[UIColor clearColor]];
+  [self.greenSlider setBackgroundColor:UIColor.clearColor];
   self.greenSlider.minimumValue = 0.0;
   self.greenSlider.maximumValue = 255.0;
   self.greenSlider.continuous = YES;
   self.greenSlider.value = self.green*255.0f;
-  self.greenSlider.tintColor = [UIColor globalTintColor];
+  self.greenSlider.tintColor = UIColor.globalTint;
   self.greenLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.greenSlider.frame.origin.x+self.greenSlider.frame.size.width+20, self.view.frame.size.height*0.15f-7, 40, 10)];
   self.greenLabel.text = [NSString stringWithFormat:@"%.0f",roundf(self.green*255.0f)];
   [self.greenLabel sizeToFit];
-  self.greenLabel.textColor = [UIColor globalTintColor];
+  self.greenLabel.textColor = UIColor.globalTint;
   
   
   [self.rgbaSliderView addSubview:label];
@@ -236,55 +236,50 @@
 {
   UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width*0.1f, self.view.frame.size.height*0.25f-7, 40, 10)];
   label.text = kLocalizedPaintBlue;
-  label.textColor = [UIColor blueColor];
+  label.textColor = UIColor.blueColor;
   [label sizeToFit];
   self.blueSlider = [[CatrobatUISlider alloc] init];
   self.blueSlider.frame =CGRectMake(self.view.frame.size.width*0.3f, self.view.frame.size.height*0.25f, 150, 5);
   [self.blueSlider addTarget:self action:@selector(blueAction:) forControlEvents:UIControlEventValueChanged];
-  [self.blueSlider setBackgroundColor:[UIColor clearColor]];
+  [self.blueSlider setBackgroundColor:UIColor.clearColor];
   self.blueSlider.minimumValue = 0.0;
   self.blueSlider.maximumValue = 255.0;
   self.blueSlider.continuous = YES;
   self.blueSlider.value = self.blue*255.0f;
-  self.blueSlider.tintColor = [UIColor globalTintColor];
+  self.blueSlider.tintColor = UIColor.globalTint;
   self.blueLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.blueSlider.frame.origin.x+self.blueSlider.frame.size.width+20, self.view.frame.size.height*0.25f-7, 40, 10)];
   self.blueLabel.text = [NSString stringWithFormat:@"%.0f",roundf(self.blue*255.0f)];
   [self.blueLabel sizeToFit];
-  self.blueLabel.textColor = [UIColor globalTintColor];
-  
+  self.blueLabel.textColor = UIColor.globalTint;
   
   [self.rgbaSliderView addSubview:label];
   [self.rgbaSliderView addSubview:self.blueLabel];
   [self.rgbaSliderView addSubview:self.blueSlider];
-  
 }
 
 - (void)setupOpacitySlider
 {
-  
   UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width*0.1f, self.view.frame.size.height*0.35f-7, 40, 10)];
   label.text = kLocalizedPaintAlpha;
-  label.textColor = [UIColor blackColor];
+  label.textColor = UIColor.blackColor;
   [label sizeToFit];
   self.opacitySlider = [[CatrobatUISlider alloc] init];
   self.opacitySlider.frame =CGRectMake(self.view.frame.size.width*0.3f, self.view.frame.size.height*0.35f, 150, 5);
   [self.opacitySlider addTarget:self action:@selector(opacityAction:) forControlEvents:UIControlEventValueChanged];
-  [self.opacitySlider setBackgroundColor:[UIColor clearColor]];
+  [self.opacitySlider setBackgroundColor:UIColor.clearColor];
   self.opacitySlider.minimumValue = 0.0;
   self.opacitySlider.maximumValue = 255.0;
   self.opacitySlider.continuous = YES;
   self.opacitySlider.value = self.opacity*255.0f;
-  self.opacitySlider.tintColor = [UIColor globalTintColor];
+  self.opacitySlider.tintColor = UIColor.globalTint;
   self.opacityLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.opacitySlider.frame.origin.x+self.opacitySlider.frame.size.width+20, self.view.frame.size.height*0.35f-7, 40, 10)];
   self.opacityLabel.text = [NSString stringWithFormat:@"%.0f%%",roundf(self.opacity*100.0f)];
   [self.opacityLabel sizeToFit];
-  self.opacityLabel.textColor = [UIColor globalTintColor];
-  
-  
+  self.opacityLabel.textColor = UIColor.globalTint;
+
   [self.rgbaSliderView addSubview:label];
   [self.rgbaSliderView addSubview:self.opacityLabel];
   [self.rgbaSliderView addSubview:self.opacitySlider];
-  
 }
 
 - (void)setupPicker
@@ -460,8 +455,5 @@
 - (IBAction)closeAction:(UIBarButtonItem *)sender {
     [self.delegate closeColorPicker:self];
 }
-
-
-
 
 @end

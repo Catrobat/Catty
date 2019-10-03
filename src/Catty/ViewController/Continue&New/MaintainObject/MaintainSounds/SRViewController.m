@@ -24,7 +24,6 @@
 #import "Sound.h"
 #import "UIDefines.h"
 #import "AppDelegate.h"
-#import "UIColor+CatrobatUIColorExtensions.h"
 #import "TimerLabel.h"
 #import "NSString+CatrobatNSStringExtensions.h"
 #import "Util.h"
@@ -57,15 +56,15 @@
     
     self.timerLabel.timerType = TimerLabelTypeStopWatch;
     [self.view addSubview:self.timerLabel];
-    self.timerLabel.timeLabel.backgroundColor = [UIColor clearColor];
+    self.timerLabel.timeLabel.backgroundColor = UIColor.clearColor;
     self.timerLabel.timeLabel.font = [UIFont systemFontOfSize:28.0f];
-    self.timerLabel.timeLabel.textColor = [UIColor globalTintColor];
+    self.timerLabel.timeLabel.textColor = UIColor.globalTint;
     self.timerLabel.timeLabel.textAlignment = NSTextAlignmentCenter;
     
     UITapGestureRecognizer * recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(recording:)];
     [self.timerLabel addGestureRecognizer:recognizer];
     
-    self.view.backgroundColor = [UIColor backgroundColor];
+    self.view.backgroundColor = UIColor.background;
     
     self.isRecording = NO;
     self.isSaved = NO;

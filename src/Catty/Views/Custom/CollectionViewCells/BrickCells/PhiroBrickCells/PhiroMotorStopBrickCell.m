@@ -21,6 +21,7 @@
  */
 
 #import "PhiroMotorStopBrickCell.h"
+#import "Pocket_Code-Swift.h"
 
 @interface PhiroMotorStopBrickCell ()
 @property (nonatomic, strong) UILabel *textLabel;
@@ -30,7 +31,7 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    [BrickShapeFactory drawSquareBrickShapeWithFillColor:[UIColor PhiroBrickColor] strokeColor:[UIColor PhiroBrickStrokeColor] height:mediumBrick width:[Util screenWidth]];
+    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.phiroBrick strokeColor:UIColor.phiroBrickStroke height:mediumBrick width:[Util screenWidth]];
 }
 
 + (CGFloat)cellHeight

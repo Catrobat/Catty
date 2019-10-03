@@ -21,6 +21,7 @@
  */
 
 #import "ArduinoSendDigitalValueBrickCell.h"
+#import "Pocket_Code-Swift.h"
 
 @interface ArduinoSendDigitalValueBrickCell ()
 @property (nonatomic, strong) UILabel *firstRowTextLabel;
@@ -31,7 +32,7 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    [BrickShapeFactory drawSquareBrickShapeWithFillColor:[UIColor ArduinoBrickColor] strokeColor:[UIColor ArduinoBrickStrokeColor] height:mediumBrick width:[Util screenWidth]];
+    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.arduinoBrick strokeColor:UIColor.arduinoBrickStroke height:mediumBrick width:[Util screenWidth]];
 }
 
 + (CGFloat)cellHeight

@@ -22,8 +22,8 @@
 
 #import "TextInputViewController.h"
 #import "LanguageTranslationDefines.h"
-#import "UIColor+CatrobatUIColorExtensions.h"
 #import "Util.h"
+#import "Pocket_Code-Swift.h"
 
 @interface TextInputViewController () <UIPickerViewDelegate,UIPickerViewDataSource>
 @property (nonatomic,strong) UITextField *textField;
@@ -54,10 +54,10 @@
     // Do any additional setup after loading the view.
     [self setupView];
     [self setupPickerViews];
-    self.view.backgroundColor = [UIColor backgroundColor];
+    self.view.backgroundColor = UIColor.background;
     self.toolBar.frame = CGRectMake(0, 0, self.view.frame.size.width, self.toolBar.frame.size.height);
-    self.toolBar.tintColor = [UIColor navTintColor];
-    self.toolBar.barTintColor = UIColor.navBarColor;
+    self.toolBar.tintColor = UIColor.navTint;
+    self.toolBar.barTintColor = UIColor.navBar;
     self.textField.text = self.text;
     if (self.fontSize == 40) {
         [self.sizePickerView selectRow:0 inComponent:0 animated:NO];
@@ -80,30 +80,30 @@
     self.toolBar.translucent = false;
     CGFloat statusBarHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
     UIView *statusBarView =  [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, statusBarHeight)];
-    statusBarView.backgroundColor  =  UIColor.navBarColor;
+    statusBarView.backgroundColor  =  UIColor.navBar;
     [self.view addSubview:statusBarView];
 }
 
 - (void)setupView
 {
     self.textField = [[UITextField alloc] initWithFrame:CGRectMake(20, CGRectGetMaxY(self.toolBar.frame) + 30, self.view.frame.size.width-40, self.view.frame.size.height * 0.25)];
-    self.textField.textColor = [UIColor textTintColor];
-    self.textField.layer.cornerRadius=0.0f;
-    self.textField.layer.masksToBounds=YES;
-    self.textField.layer.borderColor=[[UIColor globalTintColor]CGColor];
-    self.textField.layer.borderWidth= 1.0f;
+    self.textField.textColor = UIColor.textTint;
+    self.textField.layer.cornerRadius = 0.0f;
+    self.textField.layer.masksToBounds = YES;
+    self.textField.layer.borderColor = UIColor.globalTint.CGColor;
+    self.textField.layer.borderWidth = 1.0f;
     self.textField.textAlignment = NSTextAlignmentLeft;
     self.textField.contentVerticalAlignment = UIControlContentVerticalAlignmentTop;
     [self.textField becomeFirstResponder];
     
     UILabel *textLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, CGRectGetMaxY(self.toolBar.frame) + 10, 100, 20)];
     textLabel.text = kLocalizedPaintText;
-    textLabel.textColor = [UIColor globalTintColor];
+    textLabel.textColor = UIColor.globalTint;
     
     
     UILabel *attributesLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, self.view.frame.size.height * 0.25 + 30 + CGRectGetMaxY(self.toolBar.frame), 100, 20)];
     attributesLabel.text = kLocalizedPaintAttributes;
-    attributesLabel.textColor = [UIColor globalTintColor];
+    attributesLabel.textColor = UIColor.globalTint;
     
     
     self.fontPickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(20, self.view.frame.size.height * 0.25 + 40 + CGRectGetMaxY(self.toolBar.frame), (self.view.frame.size.width-40) / 2.0 - 5, 100)];
@@ -111,21 +111,21 @@
 
     self.boldButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     self.boldButton.frame = CGRectMake(20, self.fontPickerView.frame.origin.y + self.fontPickerView.frame.size.height + 30, 100, 20);
-    self.boldButton.tintColor = [UIColor globalTintColor];
+    self.boldButton.tintColor = UIColor.globalTint;
     [self.boldButton setTitle:kLocalizedPaintBold forState:UIControlStateNormal];
     [self.boldButton addTarget:self action:@selector(boldAction) forControlEvents:UIControlEventTouchUpInside];
     _boldButton.selected = self.bold;
     
     self.italicButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     self.italicButton.frame = CGRectMake(self.view.frame.size.width / 2 - 50, self.fontPickerView.frame.origin.y + self.fontPickerView.frame.size.height + 30, 100, 20);
-    self.italicButton.tintColor = [UIColor globalTintColor];
+    self.italicButton.tintColor = UIColor.globalTint;
     [self.italicButton setTitle:kLocalizedPaintItalic forState:UIControlStateNormal];
     [self.italicButton addTarget:self action:@selector(italicAction) forControlEvents:UIControlEventTouchUpInside];
     self.italicButton.selected = self.italic;
     
     self.underlineButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     self.underlineButton.frame = CGRectMake(self.view.frame.size.width - 120, self.fontPickerView.frame.origin.y + self.fontPickerView.frame.size.height + 30, 100, 20);
-    self.underlineButton.tintColor = [UIColor globalTintColor];
+    self.underlineButton.tintColor = UIColor.globalTint;
     [self.underlineButton setTitle:kLocalizedPaintUnderline forState:UIControlStateNormal];
     [self.underlineButton addTarget:self action:@selector(underlineAction) forControlEvents:UIControlEventTouchUpInside];
     self.underlineButton.selected = self.underline;
@@ -146,10 +146,10 @@
 
     self.fontPickerView.delegate = self;
     self.fontPickerView.dataSource = self;
-    self.fontPickerView.tintColor = [UIColor globalTintColor];
+    self.fontPickerView.tintColor = UIColor.globalTint;
     self.sizePickerView.delegate = self;
     self.sizePickerView.dataSource = self;
-    self.sizePickerView.tintColor = [UIColor globalTintColor];
+    self.sizePickerView.tintColor = UIColor.globalTint;
     self.sizePickerData = [[NSMutableArray alloc] initWithObjects:@"40",@"60",@"80",@"100",@"120",nil];
     self.fontPickerData = [[NSMutableArray alloc] initWithObjects:@"Standard",@"Serif",@"SanSerif", nil];
 }
@@ -187,7 +187,7 @@
         title =  self.sizePickerData[row];
     }
     
-    NSAttributedString *attString = [[NSAttributedString alloc] initWithString:title attributes:@{NSForegroundColorAttributeName:[UIColor globalTintColor]}];
+    NSAttributedString *attString = [[NSAttributedString alloc] initWithString:title attributes:@{NSForegroundColorAttributeName:UIColor.globalTint}];
     
     return attString;
 }

@@ -37,7 +37,7 @@ import Foundation
     }
 
     override func draw(_ rect: CGRect) {
-        BrickShapeFactory.drawSquareBrickShape(withFill: UIColor.controlBrickOrange(), stroke: UIColor.controlBrickStroke(), height: CGFloat(smallBrick), width: Util.screenWidth())
+        BrickShapeFactory.drawSquareBrickShape(withFill: UIColor.controlBrickOrange, stroke: UIColor.controlBrickStroke, height: CGFloat(smallBrick), width: Util.screenWidth())
     }
 
     override static func cellHeight() -> CGFloat {

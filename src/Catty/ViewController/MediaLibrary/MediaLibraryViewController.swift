@@ -101,7 +101,7 @@ final class MediaLibraryViewController: UICollectionViewController {
         self.dataSource.registerContentViewClasses(collectionView)
         collectionView.dataSource = self.dataSource
         collectionView.delegate = self.dataSource
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = UIColor.background
     }
 
     private func setupCollectionViewLayout() {

@@ -34,7 +34,7 @@ class LibrarySoundCollectionViewCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.titleLabel.textColor = .utilityTint()
+        self.titleLabel.textColor = .utilityTint
     }
 
     @IBAction private func playOrStopButtonPressed() {

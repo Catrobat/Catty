@@ -94,7 +94,7 @@ static CameraPreviewHandler* shared = nil;
     camLayer = [[CALayer alloc] init];
     camLayer.accessibilityHint = camAccessibility;
     camLayer.frame = self.camView.bounds;
-    self.camView.backgroundColor = [UIColor whiteColor];
+    self.camView.backgroundColor = UIColor.whiteColor;
     [self.camView.layer insertSublayer:camLayer atIndex:0];
 
     AVCaptureDevice* device = [self getCaptureDevice];

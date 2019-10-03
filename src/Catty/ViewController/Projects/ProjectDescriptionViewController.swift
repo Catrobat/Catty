@@ -44,7 +44,7 @@ import UIKit
     // MARK: View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.whiteGray()
+        view.backgroundColor = UIColor.background
 
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.keyboardWillShow),
@@ -74,7 +74,7 @@ import UIKit
 
         header.textAlignment = .center
         header.text = kLocalizedSetDescription
-        header.textColor = UIColor.globalTint()
+        header.textColor = UIColor.globalTint
         var navTopAnchor = view.safeTopAnchor
         if self.navigationController != nil {
             navTopAnchor = topLayoutGuide.bottomAnchor
@@ -113,21 +113,18 @@ import UIKit
                                               style: .plain,
                                               target: self,
                                               action: #selector(cancelAction(sender:)))
-        doneBarButton.tintColor = UIColor.white
-        cancelBarButton.tintColor = UIColor.white
+        doneBarButton.tintColor = UIColor.navTint
+        cancelBarButton.tintColor = UIColor.navTint
         self.navigationItem.leftBarButtonItem = cancelBarButton
         self.navigationItem.rightBarButtonItem = doneBarButton
     }
 
     func initTextView() {
         descriptionTextView.keyboardAppearance = UIKeyboardAppearance.default
-        descriptionTextView.backgroundColor = UIColor.white
-        descriptionTextView.textColor = UIColor.textTint()
-        descriptionTextView.tintColor = UIColor.globalTint()
         descriptionTextView.font = UIFont.systemFont(ofSize: 16.0)
 
         descriptionTextView.layer.borderWidth = 1.0
-        descriptionTextView.layer.borderColor = UIColor.textViewBorderGray().cgColor
+        descriptionTextView.layer.borderColor = UIColor.textViewBorderGray.cgColor
         descriptionTextView.layer.cornerRadius = 8
 
         if delegate is MyProjectsViewController {

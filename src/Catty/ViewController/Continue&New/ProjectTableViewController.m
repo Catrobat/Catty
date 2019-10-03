@@ -372,16 +372,16 @@
 
     if (self.useDetailCells && [cell isKindOfClass:[DarkBlueGradientImageDetailCell class]]) {
         DarkBlueGradientImageDetailCell *detailCell = (DarkBlueGradientImageDetailCell*)imageCell;
-        detailCell.topLeftDetailLabel.textColor = [UIColor textTintColor];
+        detailCell.topLeftDetailLabel.textColor = UIColor.textTint;
         detailCell.topLeftDetailLabel.text = [NSString stringWithFormat:@"%@: %lu", kLocalizedScripts,
                                               (unsigned long)[object numberOfScripts]];
-        detailCell.topRightDetailLabel.textColor = [UIColor textTintColor];
+        detailCell.topRightDetailLabel.textColor = UIColor.textTint;
         detailCell.topRightDetailLabel.text = [NSString stringWithFormat:@"%@: %lu", kLocalizedBricks,
                                                (unsigned long)[object numberOfTotalBricks]];
-        detailCell.bottomLeftDetailLabel.textColor = [UIColor textTintColor];
+        detailCell.bottomLeftDetailLabel.textColor = UIColor.textTint;
         detailCell.bottomLeftDetailLabel.text = [NSString stringWithFormat:@"%@: %lu", kLocalizedLooks,
                                                  (unsigned long)[object numberOfLooks]];
-        detailCell.bottomRightDetailLabel.textColor = [UIColor textTintColor];
+        detailCell.bottomRightDetailLabel.textColor = UIColor.textTint;
         detailCell.bottomRightDetailLabel.text = [NSString stringWithFormat:@"%@: %lu", kLocalizedSounds,
                                                   (unsigned long)[object numberOfSounds]];
     }
@@ -510,7 +510,7 @@
           }]
          showWithController:self];
     }];
-    moreAction.backgroundColor = [UIColor globalTintColor];
+    moreAction.backgroundColor = UIColor.globalTint;
     UITableViewRowAction *deleteAction = [UIUtil tableViewDeleteRowActionWithHandler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
         // Delete button was pressed
         // check just to ensure that background object can never be deleted!!
@@ -569,7 +569,7 @@
 - (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
 {
     ProjectTableHeaderView *headerView = (ProjectTableHeaderView*)view;
-    headerView.textLabel.textColor = [UIColor globalTintColor];
+    headerView.textLabel.textColor = UIColor.globalTint;
 }
 
 #pragma mark - segue handler

@@ -25,6 +25,7 @@
 #import "BrickCell.h"
 #import "Brick.h"
 #import "BrickTextProtocol.h"
+#import "Pocket_Code-Swift.h"
 
 @interface BrickCellTextData() <UITextFieldDelegate>
 @property (nonatomic, strong) CAShapeLayer *border;
@@ -54,7 +55,7 @@
         self.clearButtonMode = UITextFieldViewModeWhileEditing;
         self.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         //        self.userInteractionEnabled = NO;
-        self.textColor = [UIColor whiteColor];
+        self.textColor = UIColor.whiteColor;
         
         [self sizeToFit];
         
@@ -100,8 +101,9 @@
 
 - (void)drawBorder:(BOOL)isActive
 {
-    if(self.border)
+    if (self.border) {
         [self.border removeFromSuperlayer];
+    }
     
     self.border = [[CAShapeLayer alloc] init];
     
@@ -129,19 +131,15 @@
     [self.border setOpacity:BORDER_TRANSPARENCY];
     
     if(isActive) {
-        
-        self.border.strokeColor = [UIColor globalTintColor].CGColor;
-        
-        self.border.shadowColor = [UIColor globalTintColor].CGColor;
+        self.border.strokeColor = UIColor.globalTint.CGColor;
+        self.border.shadowColor = UIColor.globalTint.CGColor;
         self.border.shadowRadius = 1;
         self.border.shadowOpacity = 1.0;
         self.border.shadowOffset = CGSizeMake(0, 0);
         
     } else {
-        
-        UIColor *borderColor = [UIColor controlBrickStrokeColor];
+        UIColor *borderColor = UIColor.controlBrickStroke;
         self.border.strokeColor = borderColor.CGColor;
-        
     }
     
     [self.layer addSublayer:self.border];

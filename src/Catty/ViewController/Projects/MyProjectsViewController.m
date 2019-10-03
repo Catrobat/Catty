@@ -71,7 +71,7 @@
     [self setSectionHeaders];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     self.tableView.separatorInset = UIEdgeInsetsZero;
-    self.tableView.sectionIndexBackgroundColor = [UIColor backgroundColor];
+    self.tableView.sectionIndexBackgroundColor = UIColor.background;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 
     [self setupObservers];
@@ -297,12 +297,12 @@
     [self configureImageCell:imageCell atIndexPath:indexPath];
     if (self.useDetailCells && [cell isKindOfClass:[DarkBlueGradientImageDetailCell class]]) {
         DarkBlueGradientImageDetailCell *detailCell = (DarkBlueGradientImageDetailCell*)imageCell;
-        detailCell.topLeftDetailLabel.textColor = [UIColor textTintColor];
+        detailCell.topLeftDetailLabel.textColor = UIColor.textTint;
         detailCell.topLeftDetailLabel.text = [NSString stringWithFormat:@"%@:", kLocalizedLastAccess];
-        detailCell.topRightDetailLabel.textColor = [UIColor textTintColor];
-        detailCell.bottomLeftDetailLabel.textColor = [UIColor textTintColor];
+        detailCell.topRightDetailLabel.textColor = UIColor.textTint;
+        detailCell.bottomLeftDetailLabel.textColor = UIColor.textTint;
         detailCell.bottomLeftDetailLabel.text = [NSString stringWithFormat:@"%@:", kLocalizedSize];
-        detailCell.bottomRightDetailLabel.textColor = [UIColor textTintColor];
+        detailCell.bottomRightDetailLabel.textColor = UIColor.textTint;
         detailCell.topRightDetailLabel.text = [kLocalizedLoading stringByAppendingString:@"..."];
         detailCell.bottomRightDetailLabel.text = [kLocalizedLoading stringByAppendingString:@"..."];
         NSString *sectionTitle = [self.sectionTitles objectAtIndex:indexPath.section];
@@ -424,7 +424,7 @@
          }]
          showWithController:self];
     }];
-    moreAction.backgroundColor = [UIColor globalTintColor];
+    moreAction.backgroundColor = UIColor.globalTint;
     UITableViewRowAction *deleteAction = [UIUtil tableViewDeleteRowActionWithHandler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
         // Delete button was pressed
         [[[[[AlertControllerBuilder alertWithTitle:kLocalizedDeleteThisProject message:kLocalizedThisActionCannotBeUndone]

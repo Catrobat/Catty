@@ -72,7 +72,7 @@ class BaseAlertController: NSObject, AlertControllerProtocol, BuilderProtocol, C
     }
 
     @objc func build() -> AlertControllerProtocol {
-        alertController.view.tintColor = UIColor.globalTint()
+        alertController.view.tintColor = UIColor.globalTint
         alertController.view.backgroundColor = UIColor.clear
         return self
     }

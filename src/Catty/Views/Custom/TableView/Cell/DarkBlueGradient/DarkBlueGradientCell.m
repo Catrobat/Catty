@@ -22,6 +22,7 @@
 
 #import "DarkBlueGradientCell.h"
 #import "Util.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation DarkBlueGradientCell
 
@@ -35,7 +36,7 @@
 
 - (void)configure
 {
-    self.backgroundColor = [UIColor backgroundColor];
+    self.backgroundColor = UIColor.background;
 }
 
 @end

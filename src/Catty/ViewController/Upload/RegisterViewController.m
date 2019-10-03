@@ -21,7 +21,6 @@
  */
 
 #import "RegisterViewController.h"
-#import "UIColor+CatrobatUIColorExtensions.h"
 #import "LanguageTranslationDefines.h"
 #import "NetworkDefines.h"
 #import "Util.h"
@@ -83,22 +82,18 @@
 
 -(void)initView
 {
-    UIColor* mainColor = [UIColor backgroundColor];
-    UIColor* darkColor = [UIColor globalTintColor];
-    
     NSString* fontName = @"Avenir-Book";
     NSString* boldFontName = @"Avenir-Black";
     
-    self.view.backgroundColor = mainColor;
+    self.view.backgroundColor = UIColor.background;
     self.headerImageView.image = [UIImage imageNamed:@"PocketCode"];
     self.headerImageView.contentMode = UIViewContentModeScaleAspectFit;
     
-    self.titleLabel.textColor =  [UIColor globalTintColor];
+    self.titleLabel.textColor = UIColor.globalTint;
     self.titleLabel.font =  [UIFont fontWithName:boldFontName size:28.0f];
     self.titleLabel.text = kLocalizedInfoRegister;
     [self.titleLabel sizeToFit];
     
-    self.usernameField.backgroundColor = [UIColor whiteColor];
     self.usernameField.placeholder = kLocalizedUsername;
     if (self.userName) {
         self.usernameField.text = self.userName;
@@ -107,30 +102,17 @@
     self.usernameField.layer.borderColor = [UIColor colorWithWhite:0.9 alpha:0.7].CGColor;
     self.usernameField.layer.borderWidth = 1.0f;
     self.usernameField.tag = 1;
+    [self.usernameField setIcon:[UIImage imageNamed:@"user"]];
 
-    
-    UIImageView* leftView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
-    leftView.image = [UIImage imageNamed:@"user"];
-    self.usernameField.leftViewMode = UITextFieldViewModeAlways;
-    self.usernameField.leftView = leftView;
-    UIImageView* leftView2 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
-    leftView2.image = [UIImage imageNamed:@"password"];
-    self.passwordField.leftViewMode = UITextFieldViewModeAlways;
-    self.passwordField.leftView = leftView2;
+    [self.passwordField setIcon:[UIImage imageNamed:@"password"]];
 
-    self.emailField.backgroundColor = [UIColor whiteColor];
     self.emailField.placeholder =kLocalizedEmail;
     self.emailField.font = [UIFont fontWithName:fontName size:16.0f];
     self.emailField.layer.borderColor = [UIColor colorWithWhite:0.9 alpha:0.7].CGColor;
     self.emailField.layer.borderWidth = 1.0f;
     self.emailField.tag = 2;
+    [self.emailField setIcon:[UIImage imageNamed:@"email"]];
 
-    UIImageView* leftView3 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
-    leftView3.image = [UIImage imageNamed:@"email"];
-    self.emailField.leftViewMode = UITextFieldViewModeAlways;
-    self.emailField.leftView = leftView3;
-
-    self.passwordField.backgroundColor = [UIColor whiteColor];
     self.passwordField.placeholder = kLocalizedPassword;
     if (self.password) {
         self.passwordField.text = self.password;
@@ -140,13 +122,7 @@
     self.passwordField.layer.borderColor = [UIColor colorWithWhite:0.9 alpha:0.7].CGColor;
     self.passwordField.layer.borderWidth = 1.0f;
     self.passwordField.tag = 3;
-    
-    UIImageView* leftView4 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
-    leftView4.image = [UIImage imageNamed:@"password"];
-    self.confirmPasswordField.leftViewMode = UITextFieldViewModeAlways;
-    self.confirmPasswordField.leftView = leftView4;  //Tried to reuse leftView2, but that led to problems
-    
-    self.confirmPasswordField.backgroundColor = [UIColor whiteColor];
+    [self.confirmPasswordField setIcon:[UIImage imageNamed:@"password"]];
     self.confirmPasswordField.placeholder = kLocalizedConfirmPassword;
     //    if (self.password) {
     //        self.passwordConfirmationField.text = self.password;
@@ -158,18 +134,18 @@
     self.confirmPasswordField.tag = 4;
 
     self.termsOfUseButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    self.termsOfUseButton.backgroundColor = [UIColor clearColor];
+    self.termsOfUseButton.backgroundColor = UIColor.clearColor;
     self.termsOfUseButton.titleLabel.font = [UIFont fontWithName:boldFontName size:14.0f];
     self.termsOfUseButton.titleLabel.textAlignment = NSTextAlignmentCenter;
     [self.termsOfUseButton setTitle:[NSString stringWithFormat:@"%@ %@",kLocalizedTermsAgreementPart,kLocalizedTermsOfUse] forState:UIControlStateNormal];
-    [self.termsOfUseButton setTitleColor:[UIColor buttonTintColor] forState:UIControlStateNormal];
+    [self.termsOfUseButton setTitleColor:UIColor.buttonTint forState:UIControlStateNormal];
     [self.termsOfUseButton setTitleColor:[UIColor colorWithWhite:1.0f alpha:0.5f] forState:UIControlStateHighlighted];
     [self.termsOfUseButton addTarget:self action:@selector(openTermsOfUse) forControlEvents:UIControlEventTouchUpInside];
 
-    self.registerButton.backgroundColor = darkColor;
+    self.registerButton.backgroundColor = UIColor.globalTint;
     self.registerButton.titleLabel.font = [UIFont fontWithName:boldFontName size:20.0f];
     [self.registerButton setTitle:kUIFEDone forState:UIControlStateNormal];
-    [self.registerButton setTitleColor:[UIColor backgroundColor] forState:UIControlStateNormal];
+    [self.registerButton setTitleColor:UIColor.navTint forState:UIControlStateNormal];
     [self.registerButton setTitleColor:[UIColor colorWithWhite:1.0f alpha:0.5f] forState:UIControlStateHighlighted];
     [self.registerButton addTarget:self action:@selector(registerAction) forControlEvents:UIControlEventTouchUpInside];
 }
@@ -208,14 +184,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-//- (void)addHorizontalLineToView:(UIView*)view andHeight:(CGFloat)height
-//{
-//    UIView *lineView =[[UIView alloc] initWithFrame:CGRectMake(0, height,view.frame.size.width , 1)];
-//    lineView.backgroundColor = [UIColor utilityTintColor];
-//    [view addSubview:lineView];
-//}
-
 
 -(BOOL)stringContainsSpace:(NSString *)checkString
 {
@@ -476,7 +444,7 @@
 {
     if(!self.loadingView) {
         self.loadingView = [[LoadingView alloc] init];
-        //        [self.loadingView setBackgroundColor:[UIColor globalTintColor]];
+        //        [self.loadingView setBackgroundColor:UIColor.globalTint];
         [self.view addSubview:self.loadingView];
     }
     [self.loadingView show];

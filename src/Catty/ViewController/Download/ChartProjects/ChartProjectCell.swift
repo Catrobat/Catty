@@ -49,6 +49,6 @@ class ChartProjectCell: UITableViewCell {
     func updateTable() {
         chartProjectImage?.image = chartImage
         chartProjectTitle?.text = chartTitle
-        chartProjectTitle.textColor = UIColor.globalTint()
+        chartProjectTitle.textColor = UIColor.globalTint
     }
 }

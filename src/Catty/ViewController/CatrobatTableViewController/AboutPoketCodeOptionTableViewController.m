@@ -23,33 +23,33 @@
 #import "AboutPoketCodeOptionTableViewController.h"
 #import "LanguageTranslationDefines.h"
 #import "NetworkDefines.h"
-#import "UIColor+CatrobatUIColorExtensions.h"
 #import "Util.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation AboutPoketCodeOptionTableViewController
 
 - (void)setup {
     self.title = kLocalizedAboutPocketCode;
-    self.view.backgroundColor = [UIColor backgroundColor];
-    self.view.tintColor = [UIColor globalTintColor];
+    self.view.backgroundColor = UIColor.background;
+    self.view.tintColor = UIColor.globalTint;
     [self addSection:[BOTableViewSection sectionWithHeaderTitle:@"" handler:^(BOTableViewSection *section) {
         
         [section addCell:[BOTableViewCell cellWithTitle:kLocalizedAboutPocketCodeDescription key:nil handler:^(BOButtonTableViewCell *cell) {
-            cell.backgroundColor = [UIColor backgroundColor];
+            cell.backgroundColor = UIColor.background;
         }]];
         
         __unsafe_unretained typeof(self) weakSelf = self;
         [section addCell:[BOButtonTableViewCell cellWithTitle:kLocalizedSourceCodeLicenseButtonLabel key:nil handler:^(BOButtonTableViewCell *cell) {
-            cell.backgroundColor = [UIColor backgroundColor];
-            cell.mainColor = [UIColor globalTintColor];
+            cell.backgroundColor = UIColor.background;
+            cell.mainColor = UIColor.globalTint;
             cell.actionBlock = ^{
                 [weakSelf openSourceCodeLicenseURL];
                 
             };
         }]];
         [section addCell:[BOButtonTableViewCell cellWithTitle:kLocalizedAboutPocketCode key:nil handler:^(BOButtonTableViewCell *cell) {
-            cell.backgroundColor = [UIColor backgroundColor];
-            cell.mainColor = [UIColor globalTintColor];
+            cell.backgroundColor = UIColor.background;
+            cell.mainColor = UIColor.globalTint;
             cell.actionBlock = ^{
                 [weakSelf openAboutURL];
             };

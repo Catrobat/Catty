@@ -23,7 +23,6 @@
 #import "ProjectDetailStoreViewController.h"
 #import "AppDelegate.h"
 #import "ButtonTags.h"
-#import "UIColor+CatrobatUIColorExtensions.h"
 #import "SegueDefines.h"
 #import "ProjectTableViewController.h"
 #import "Util.h"
@@ -86,7 +85,7 @@
     self.duplicateName = self.project.name;
     [self initNavigationBar];
     self.hidesBottomBarWhenPushed = YES;
-    self.view.backgroundColor = [UIColor backgroundColor];
+    self.view.backgroundColor = UIColor.background;
     NSDebug(@"%@",self.project.author);
     [self loadProject:self.project];
     //    self.scrollViewOutlet.exclusiveTouch = YES;
@@ -393,7 +392,7 @@
 {
     if(!self.loadingView) {
         self.loadingView = [[LoadingView alloc] init];
-        //        [self.loadingView setBackgroundColor:[UIColor globalTintColor]];
+        //        [self.loadingView setBackgroundColor:UIColor.globalTint];
         [self.view addSubview:self.loadingView];
     }
     [self.loadingView show];

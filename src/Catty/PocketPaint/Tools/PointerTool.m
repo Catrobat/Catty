@@ -22,6 +22,7 @@
 
 #import "PointerTool.h"
 #import "UndoManager.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation PointerTool
 - (id) initWithDrawViewCanvas:(PaintViewController *)canvas
@@ -39,7 +40,7 @@
 {
   self.pointerView = [[UIView alloc] initWithFrame:CGRectMake(self.canvas.helper.center.x - 62.5f, self.canvas.helper.center.y - 62.5f, 125 , 125)];
   [self.pointerView setUserInteractionEnabled:YES];
-  self.pointerView.backgroundColor = [UIColor clearColor];
+  self.pointerView.backgroundColor = UIColor.clearColor;
   self.pointerView.hidden = YES;
   
   self.moveView = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(drawWithPointer:)];
@@ -49,24 +50,20 @@
   
   self.colorView = [[UIImageView alloc] initWithFrame:CGRectMake(self.pointerView.center.x , self.pointerView.center.y, 10 , 10)];
   [self.colorView setUserInteractionEnabled:YES];
-  self.colorView.backgroundColor = [UIColor clearColor];
+  self.colorView.backgroundColor = UIColor.clearColor;
   [self updateColorView];
   self.colorView.hidden = YES;
-  
 
-  
-  
-  self.canvas.pointerToolBarButtonItem.tintColor = [UIColor globalTintColor];
+  self.canvas.pointerToolBarButtonItem.tintColor = UIColor.globalTint;
   self.drawingEnabled = NO;
-  
   
   self.border = [CALayer layer];
   CGRect borderFrame = CGRectMake(0, 0, (self.pointerView.frame.size.width), (self.pointerView.frame.size.height));
-  [self.border setBackgroundColor:[[UIColor clearColor] CGColor]];
+  [self.border setBackgroundColor:[UIColor.clearColor CGColor]];
   [self.border setFrame:borderFrame];
   [self.border setCornerRadius:4];
   [self.border setBorderWidth:4];
-  [self.border setBorderColor:[[UIColor blackColor] CGColor]];
+  [self.border setBorderColor:[UIColor.blackColor CGColor]];
   [self.pointerView.layer addSublayer:self.border];
   
   [self makeLineLayer:self.pointerView.layer lineFromPointA:CGPointMake((self.pointerView.frame.size.width /2), 0) toPointB:CGPointMake((self.pointerView.frame.size.width /2), (self.pointerView.frame.size.height))];
@@ -84,7 +81,7 @@
     line.path=linePath.CGPath;
     line.fillColor = nil;
     line.opacity = 1.0;
-    line.strokeColor = [UIColor blackColor].CGColor;
+    line.strokeColor = UIColor.blackColor.CGColor;
     [layer addSublayer:line];
 }
 
@@ -119,12 +116,12 @@
   if (self.drawingEnabled == YES) {
     self.drawingEnabled = NO;
     self.colorView.hidden = YES;
-    self.canvas.pointerToolBarButtonItem.tintColor = [UIColor navTintColor];
+    self.canvas.pointerToolBarButtonItem.tintColor = UIColor.navTint;
     
   } else{
     self.drawingEnabled = YES;
     self.colorView.hidden = NO;
-    self.canvas.pointerToolBarButtonItem.tintColor = [UIColor whiteColor];
+    self.canvas.pointerToolBarButtonItem.tintColor = UIColor.whiteColor;
     [self updateColorView];
   }
   

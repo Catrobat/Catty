@@ -654,6 +654,9 @@
 		5E21DA7121A5289F00017D2C /* Data+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E21DA7021A5289F00017D2C /* Data+Extensions.swift */; };
 		5E43D71821928053006FDF2A /* SwellAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E43D71721928052006FDF2A /* SwellAll.swift */; };
 		5E7B5B0D21EC0FCF002E4B57 /* HelpWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7B5B0A21EC0FCF002E4B57 /* HelpWebViewController.swift */; };
+		5E7E7F8A2341CB8100411298 /* UIColor+CatrobatUIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7E7F892341CB8100411298 /* UIColor+CatrobatUIColorExtensions.swift */; };
+		5E84B7A72341FC68009982AA /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E84B7A62341FC68009982AA /* UITextField+Extension.swift */; };
+		5E99F2E323442E1A007878C1 /* ThemesHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E99F2E223442E1A007878C1 /* ThemesHelper.swift */; };
 		5EA1089421B8FBD200B837B9 /* AVAudioSession+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA1089321B8FBD200B837B9 /* AVAudioSession+Extensions.swift */; };
 		5EDBA043219549AE000EFFEF /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EDBA042219549AE000EFFEF /* LoadingView.swift */; };
 		5EF590BA2192D81F00C19F12 /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF590B92192D81F00C19F12 /* Double+Extensions.swift */; };
@@ -809,7 +812,6 @@
 		92FF2E391A24C5A700093DA7 /* LICENSE_NSString+FastImageSize in Resources */ = {isa = PBXBuildFile; fileRef = 92FF2E1E1A24C5A700093DA7 /* LICENSE_NSString+FastImageSize */; };
 		92FF2E3A1A24C5A700093DA7 /* NSString+FastImageSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E201A24C5A700093DA7 /* NSString+FastImageSize.m */; };
 		92FF2E3B1A24C5A700093DA7 /* Project+CustomExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E231A24C5A700093DA7 /* Project+CustomExtensions.m */; };
-		92FF2E3C1A24C5A700093DA7 /* UIColor+CatrobatUIColorExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E281A24C5A700093DA7 /* UIColor+CatrobatUIColorExtensions.m */; };
 		92FF2E3D1A24C5A700093DA7 /* UIImage+CatrobatUIImageExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E2B1A24C5A700093DA7 /* UIImage+CatrobatUIImageExtensions.m */; };
 		92FF2E8C1A24C7D800093DA7 /* AudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E4F1A24C7D800093DA7 /* AudioManager.m */; };
 		92FF2E8D1A24C7D800093DA7 /* CatrobatAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E511A24C7D800093DA7 /* CatrobatAudioPlayer.m */; };
@@ -2108,6 +2110,9 @@
 		5E21DA7021A5289F00017D2C /* Data+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extensions.swift"; sourceTree = "<group>"; };
 		5E43D71721928052006FDF2A /* SwellAll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwellAll.swift; sourceTree = "<group>"; };
 		5E7B5B0A21EC0FCF002E4B57 /* HelpWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpWebViewController.swift; sourceTree = "<group>"; };
+		5E7E7F892341CB8100411298 /* UIColor+CatrobatUIColorExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+CatrobatUIColorExtensions.swift"; sourceTree = "<group>"; };
+		5E84B7A62341FC68009982AA /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
+		5E99F2E223442E1A007878C1 /* ThemesHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemesHelper.swift; sourceTree = "<group>"; };
 		5EA1089321B8FBD200B837B9 /* AVAudioSession+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVAudioSession+Extensions.swift"; sourceTree = "<group>"; };
 		5EDBA042219549AE000EFFEF /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		5EF590B92192D81F00C19F12 /* Double+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extensions.swift"; sourceTree = "<group>"; };
@@ -2399,8 +2404,6 @@
 		92FF2E201A24C5A700093DA7 /* NSString+FastImageSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+FastImageSize.m"; sourceTree = "<group>"; };
 		92FF2E221A24C5A700093DA7 /* Project+CustomExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Project+CustomExtensions.h"; sourceTree = "<group>"; };
 		92FF2E231A24C5A700093DA7 /* Project+CustomExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Project+CustomExtensions.m"; sourceTree = "<group>"; };
-		92FF2E271A24C5A700093DA7 /* UIColor+CatrobatUIColorExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+CatrobatUIColorExtensions.h"; sourceTree = "<group>"; };
-		92FF2E281A24C5A700093DA7 /* UIColor+CatrobatUIColorExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CatrobatUIColorExtensions.m"; sourceTree = "<group>"; };
 		92FF2E2A1A24C5A700093DA7 /* UIImage+CatrobatUIImageExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+CatrobatUIImageExtensions.h"; sourceTree = "<group>"; };
 		92FF2E2B1A24C5A700093DA7 /* UIImage+CatrobatUIImageExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+CatrobatUIImageExtensions.m"; sourceTree = "<group>"; };
 		92FF2E431A24C5F300093DA7 /* ProjectStoreDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectStoreDelegate.h; sourceTree = "<group>"; };
@@ -5240,6 +5243,22 @@
 			path = Defines;
 			sourceTree = "<group>";
 		};
+		5E84B7A32341FC4E009982AA /* UITextField+Extension */ = {
+			isa = PBXGroup;
+			children = (
+				5E84B7A62341FC68009982AA /* UITextField+Extension.swift */,
+			);
+			path = "UITextField+Extension";
+			sourceTree = "<group>";
+		};
+		5E99F2E123442DD2007878C1 /* ThemesHelper */ = {
+			isa = PBXGroup;
+			children = (
+				5E99F2E223442E1A007878C1 /* ThemesHelper.swift */,
+			);
+			path = ThemesHelper;
+			sourceTree = "<group>";
+		};
 		5EA1089021B8FBB800B837B9 /* Audio */ = {
 			isa = PBXGroup;
 			children = (
@@ -5805,6 +5824,8 @@
 				5EA1089021B8FBB800B837B9 /* Audio */,
 				92FF2E0B1A24C5A700093DA7 /* CAGradient+Extension */,
 				925819851C0208E8003247A9 /* CALayer+XibConfiguration */,
+				5E21DA7021A5289F00017D2C /* Data+Extensions.swift */,
+				5EF590B92192D81F00C19F12 /* Double+Extensions.swift */,
 				92FF2E0E1A24C5A700093DA7 /* GDataXMLElement+CustomExtensions */,
 				4C6066371A5ACC3100F486CE /* GDataXMLNode+CustomExtensions */,
 				92FF2E111A24C5A700093DA7 /* NSData+Hashes */,
@@ -5815,8 +5836,7 @@
 				92FF2E211A24C5A700093DA7 /* Project+Extension */,
 				92FF2E261A24C5A700093DA7 /* UIColor+Extension */,
 				92FF2E291A24C5A700093DA7 /* UIImage+Extension */,
-				5E21DA7021A5289F00017D2C /* Data+Extensions.swift */,
-				5EF590B92192D81F00C19F12 /* Double+Extensions.swift */,
+				5E84B7A32341FC4E009982AA /* UITextField+Extension */,
 				5EFBD5FB2145AADC003B3CDC /* UIView+Extensions.swift */,
 				5E18A81121A547AA00541536 /* UIViewController+Extensions.swift */,
 			);
@@ -5901,8 +5921,7 @@
 		92FF2E261A24C5A700093DA7 /* UIColor+Extension */ = {
 			isa = PBXGroup;
 			children = (
-				92FF2E271A24C5A700093DA7 /* UIColor+CatrobatUIColorExtensions.h */,
-				92FF2E281A24C5A700093DA7 /* UIColor+CatrobatUIColorExtensions.m */,
+				5E7E7F892341CB8100411298 /* UIColor+CatrobatUIColorExtensions.swift */,
 			);
 			path = "UIColor+Extension";
 			sourceTree = "<group>";
@@ -5956,8 +5975,9 @@
 				92FF2E701A24C7D800093DA7 /* NavigationController */,
 				4C0F9F47204ADD0C00E71B2D /* OrderedDictionary */,
 				929CC0D11BC39B280027DEC0 /* PhiroHelper */,
-				9276B7021C9E8F6C008BC594 /* SoundCache */,
 				92FF2E7B1A24C7D800093DA7 /* SharkfoodMuteSwitchDetector */,
+				9276B7021C9E8F6C008BC594 /* SoundCache */,
+				5E99F2E123442DD2007878C1 /* ThemesHelper */,
 				92FF2E821A24C7D800093DA7 /* TimerLabel */,
 				92FF2E851A24C7D800093DA7 /* Utils */,
 			);
@@ -8982,6 +9002,7 @@
 				4C0F9F8E204BD27200E71B2D /* RepeatUntilBrickCell.m in Sources */,
 				AABCB3DB1BB364B9009F67D2 /* CBBroadcastHandlerProtocol.swift in Sources */,
 				AABCB3D91BB3648E009F67D2 /* CBOperation.swift in Sources */,
+				5E7E7F8A2341CB8100411298 /* UIColor+CatrobatUIColorExtensions.swift in Sources */,
 				4C72EA3D2108ED0800E7407F /* TouchManager.swift in Sources */,
 				4C0F9F69204BD19400E71B2D /* SetBackgroundBrick+CBXMLHandler.m in Sources */,
 				4C11795420AEC36D006C6E32 /* ProtocolConformance.swift in Sources */,
@@ -9119,6 +9140,7 @@
 				BA987D0D2194E647002DAA05 /* WaitUntilBrick+Condition.swift in Sources */,
 				92D56C321BF202E700A54750 /* ArduinoHelper.swift in Sources */,
 				AAAF22881BC0CFC00076F11E /* TurnLeftBrick+Instruction.swift in Sources */,
+				5E84B7A72341FC68009982AA /* UITextField+Extension.swift in Sources */,
 				4C0F9F80204BD1F800E71B2D /* ThinkBubbleBrick+Instruction.swift in Sources */,
 				4C0F9F9D204BD2B100E71B2D /* SetBackgroundBrickCell.m in Sources */,
 				928D4D791A7BD19A00E6DFA8 /* CatrobatUISlider.m in Sources */,
@@ -9192,7 +9214,6 @@
 				929CC0DF1BC39B690027DEC0 /* BrickCellPhiroMotorData.m in Sources */,
 				4C0F9F7F204BD1F800E71B2D /* ThinkForBubbleBrick+Instruction.swift in Sources */,
 				4C0F9FA0204BD2B100E71B2D /* PreviousLookBrickCell.m in Sources */,
-				92FF2E3C1A24C5A700093DA7 /* UIColor+CatrobatUIColorExtensions.m in Sources */,
 				AA74EE3D1BC0543700D1E954 /* StopAllSoundsBrick+Instruction.swift in Sources */,
 				AA74EEDC1BC057B900D1E954 /* BroadcastWaitBrick+CBXMLHandler.m in Sources */,
 				E4AEC8712108445D0081A980 /* StoreProjectCollection.swift in Sources */,
@@ -9411,6 +9432,7 @@
 				92EC985C1BC3ABB90003A891 /* PhiroMotorMoveBackwardBrick+CBXMLHandler.m in Sources */,
 				4C0F9F4F204BD0B400E71B2D /* CameraPreviewHandler.m in Sources */,
 				4C724E611B4D3E8C00E27479 /* ProjectParser.m in Sources */,
+				5E99F2E323442E1A007878C1 /* ThemesHelper.swift in Sources */,
 				AA74F0931BC05FCE00D1E954 /* BrickCellFormulaData.m in Sources */,
 				AA74EF701BC0588A00D1E954 /* SetVolumeToBrick+CBXMLHandler.m in Sources */,
 				92FC85CE1B9E1EB5001C728F /* BrickManager.m in Sources */,
