@@ -26,11 +26,13 @@ extension UITextField {
      * https://medium.com/nyc-design/swift-4-add-icon-to-uitextfield-48f5ebf60aa1
      */
     func setIcon(_ image: UIImage) {
-        let iconView = UIImageView(frame: CGRect(x: 5, y: 5, width: 50, height: 50))
-        iconView.image = image.withRenderingMode(.alwaysTemplate)
-        let iconContainerView = UIView(frame: CGRect(x: 0, y: 0, width: 60, height: 60))
-        iconContainerView.addSubview(iconView)
-        leftView = iconContainerView
-        leftViewMode = .always
+        if image.size.width > 0 && image.size.height > 0 {
+            let iconView = UIImageView(frame: CGRect(x: 5, y: 5, width: 50, height: 50))
+            iconView.image = image.withRenderingMode(.alwaysTemplate)
+            let iconContainerView = UIView(frame: CGRect(x: 0, y: 0, width: 60, height: 60))
+            iconContainerView.addSubview(iconView)
+            leftView = iconContainerView
+            leftViewMode = .always
+        }
     }
 }
