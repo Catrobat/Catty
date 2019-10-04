@@ -59,8 +59,11 @@ extension XCTestCase {
 
     func createProject(name: String, in app: XCUIApplication) {
         app.tables.staticTexts[kLocalizedNew].tap()
-        app.alerts[kLocalizedNewProject].textFields[kLocalizedEnterYourProjectNameHere].typeText(name)
-        app.alerts[kLocalizedNewProject].buttons[kLocalizedOK].tap()
+
+        let alert = waitForElementToAppear(app.alerts[kLocalizedNewProject])
+        alert.textFields[kLocalizedEnterYourProjectNameHere].typeText(name)
+        alert.buttons[kLocalizedOK].tap()
+
         XCTAssertNotNil(waitForElementToAppear(app.navigationBars[name]))
     }
 
@@ -94,7 +97,7 @@ extension XCTestCase {
         XCTAssertTrue(app.navigationBars[section].exists)
 
         for _ in 0..<maxPageLengthTries {
-            if let cell = findCell(with: labels, in: app.collectionViews.firstMatch) {
+            if let cell = findCell(with: labels, in: app.collectionViews.element(boundBy: 1)) {
                 cell.tap()
 
                 XCTAssert(waitForElementToAppear(app.navigationBars[kLocalizedScripts]).exists)
