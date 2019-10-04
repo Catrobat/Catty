@@ -344,10 +344,11 @@
             
             NSString *xmlPath = [NSString stringWithFormat:@"%@/%@", info.basePath, kProjectCodeFileName];
             NSDate *lastAccessDate = [fileManager lastModificationTimeOfFile:xmlPath];
-            detailCell.topRightDetailLabel.text = [lastAccessDate humanFriendlyFormattedString];
-            detailCell.bottomRightDetailLabel.text = [NSByteCountFormatter stringFromByteCount:[projectSize unsignedIntegerValue]
-                                                                                    countStyle:NSByteCountFormatterCountStyleBinary];
+            
             dispatch_async(dispatch_get_main_queue(), ^{
+                detailCell.topRightDetailLabel.text = [lastAccessDate humanFriendlyFormattedString];
+                detailCell.bottomRightDetailLabel.text = [NSByteCountFormatter stringFromByteCount:[projectSize unsignedIntegerValue]
+                                                                                        countStyle:NSByteCountFormatterCountStyleBinary];
                 [detailCell setNeedsLayout];
                 [self.tableView endUpdates];
             });
