@@ -71,9 +71,9 @@
     [super viewWillAppear:animated];
     
     UIApplication.sharedApplication.idleTimerDisabled = YES;
-    UIApplication.sharedApplication.statusBarHidden = YES;
-    self.navigationController.navigationBar.hidden = YES;
-    self.navigationController.toolbarHidden = YES;
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
+    [self.navigationController setToolbarHidden:YES animated:animated];
+    
     // disable swipe back gesture
     if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
         self.navigationController.interactivePopGestureRecognizer.enabled = NO;
@@ -108,9 +108,9 @@
 {
     [super viewWillDisappear:animated];
     [self.menuView removeFromSuperview];
-    self.navigationController.navigationBar.hidden = NO;
-    self.navigationController.toolbarHidden = NO;
-    UIApplication.sharedApplication.statusBarHidden = NO;
+    
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
+    [self.navigationController setToolbarHidden:NO animated:animated];
     UIApplication.sharedApplication.idleTimerDisabled = NO;
     
     // reenable swipe back gesture
@@ -365,9 +365,6 @@
         previousScene.userInteractionEnabled = YES;
     });
     
-    
-    [self.parentViewController.navigationController setToolbarHidden:NO];
-    [self.parentViewController.navigationController setNavigationBarHidden:NO];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

@@ -108,6 +108,7 @@ void uncaughtExceptionHandler(NSException *exception)
 - (void)initNavigationBar
 {
     [UINavigationBar appearance].barTintColor = UIColor.navBar;
+    [UINavigationBar appearance].barStyle = UIBarStyleBlack;
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: UIColor.navText}];
     self.window.tintColor = UIColor.globalTint;
 }
