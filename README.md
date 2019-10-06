@@ -13,7 +13,7 @@ For more information oriented towards developers please visit our [developers pa
 
 # Issues #
 
-For reporting issues use our [JIRA Bugtracking System](https://jira.catrob.at/secure/RapidBoard.jspa?rapidView=75). Before, please browse our currently open issues [here](https://jira.catrob.at/secure/IssueNavigator.jspa?reset=true&jqlQuery=project+%3D+IOS+AND+resolution+%3D+Unresolved+ORDER+BY+priority+DESC%2C+key+DESC&mode=hide).
+For reporting issues use our [JIRA Bugtracking System](https://jira.catrob.at/secure/RapidBoard.jspa?rapidView=127). Before, please browse our currently open issues [here](https://jira.catrob.at/secure/IssueNavigator.jspa?reset=true&jqlQuery=project+%3D+CATTY+AND+resolution+%3D+Unresolved+ORDER+BY+priority+DESC%2C+key+DESC&mode=hide).
 
 # Contributing #
 
