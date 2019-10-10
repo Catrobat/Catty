@@ -19,7 +19,7 @@ pipeline {
     }
     stage('Release') {
       steps {
-        sh 'cd src && fastlane release'
+        sh 'cd src && bundle exec fastlane release'
       }
     }
   }

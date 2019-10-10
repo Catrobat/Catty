@@ -14,7 +14,7 @@ pipeline {
   stages {
     stage('Crowdin') {
       steps {
-        sh 'cd src && fastlane crowdin_upload'
+        sh 'cd src && bundle exec fastlane crowdin_upload'
       }
     }
   }

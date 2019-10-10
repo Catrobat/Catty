@@ -23,12 +23,12 @@ pipeline {
     }
     stage('Build') {
       steps {
-        sh 'cd src && fastlane build_catty'
+        sh 'cd src && bundle exec fastlane build_catty'
       }
     }
     stage('Test') {
       steps {
-        sh 'cd src && fastlane tests'
+        sh 'cd src && bundle exec fastlane tests'
       }
     }
   }
@@ -38,7 +38,7 @@ pipeline {
       archiveArtifacts(artifacts: 'src/fastlane/builds/', allowEmptyArchive: true)
       archiveArtifacts(artifacts: 'src/fastlane/Install.html', allowEmptyArchive: true)
       archiveArtifacts(artifacts: 'src/fastlane/Adhoc.plist', allowEmptyArchive: true)
-      sh 'cd src && fastlane test_reports'
+      sh 'cd src && bundle exec fastlane test_reports'
       junit testResults: 'src/fastlane/test_output/TestSummaries.xml', allowEmptyResults: true
     }
   }
