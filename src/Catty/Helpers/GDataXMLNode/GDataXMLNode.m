@@ -375,12 +375,6 @@ static xmlChar *SplitQNameReverse(const xmlChar *qname, xmlChar **prefix) {
 }
 
 - (void)dealloc {
-    
-    if (xmlNode_ && shouldFreeXMLNode_) {
-        xmlFreeNode(xmlNode_);
-        xmlNode_ = NULL;
-    }
-    
     [self releaseCachedValues];
     [super dealloc];
 }
