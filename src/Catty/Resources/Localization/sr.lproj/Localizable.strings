@@ -71,7 +71,7 @@
 "and" = "and";
 
 /* No comment provided by engineer. */
-"and wait" = "and wait";
+"and wait" = "и чекај";
 
 /* No comment provided by engineer. */
 "Animate Brick-Parts" = "Animate Brick-Parts";
@@ -155,10 +155,10 @@
 "brightness" = "brightness";
 
 /* No comment provided by engineer. */
-"Broadcast" = "Broadcast";
+"Broadcast" = "Емитуј";
 
 /* No comment provided by engineer. */
-"Broadcast and wait" = "Broadcast and wait";
+"Broadcast and wait" = "Емитуј и чекај";
 
 /* paint */
 "Brush" = "Brush";
@@ -209,10 +209,10 @@
 "Change transparency " = "Change transparency ";
 
 /* No comment provided by engineer. */
-"Change variable" = "Change variable";
+"Change variable" = "Промени променљиву";
 
 /* No comment provided by engineer. */
-"Change volume by" = "Change volume by";
+"Change volume by" = "Промени јачину за";
 
 /* No comment provided by engineer. */
 "Change X by " = "Change X by ";
@@ -284,7 +284,7 @@
 "Copy" = "Copy";
 
 /* No comment provided by engineer. */
-"Copy Brick" = "Copy Brick";
+"Copy Brick" = "Копирај блок";
 
 /* No comment provided by engineer. */
 "Copy Looks" = "Copy Looks";
@@ -311,7 +311,7 @@
 "December" = "December";
 
 /* No comment provided by engineer. */
-"degrees" = "degrees";
+"degrees" = "степени";
 
 /* No comment provided by engineer. */
 "Delete" = "Delete";
@@ -320,7 +320,7 @@
 "Delete Backgrounds" = "Delete Backgrounds";
 
 /* No comment provided by engineer. */
-"Delete Brick" = "Delete Brick";
+"Delete Brick" = "Обриши блок";
 
 /* No comment provided by engineer. */
 "Delete Condition" = "Delete Condition";
@@ -344,7 +344,7 @@
 "Delete Projects" = "Delete Projects";
 
 /* No comment provided by engineer. */
-"Delete Script" = "Delete Script";
+"Delete Script" = "Обриши скрипту";
 
 /* No comment provided by engineer. */
 "Delete Sounds" = "Delete Sounds";
@@ -425,7 +425,7 @@
 "Download" = "Download";
 
 /* No comment provided by engineer. */
-"Download successful" = "Download successful";
+"Download successful" = "Преузимање успешно";
 
 /* No comment provided by engineer. */
 "Downloads" = "Downloads";
@@ -434,7 +434,7 @@
 "Draw new image" = "Draw new image";
 
 /* No comment provided by engineer. */
-"Duration" = "Duration";
+"Duration" = "Трајање";
 
 /* No comment provided by engineer. */
 "Edit" = "Edit";
@@ -449,7 +449,7 @@
 "Edit Brick" = "Edit Brick";
 
 /* No comment provided by engineer. */
-"Edit Formula" = "Edit Formula";
+"Edit Formula" = "Уреди формулу";
 
 /* Action sheet menu title */
 "Edit Look" = "Edit Look";
@@ -482,7 +482,7 @@
 "Ellipse / Circle" = "Ellipse / Circle";
 
 /* No comment provided by engineer. */
-"Else" = "Else";
+"Else" = "Иначе";
 
 /* No comment provided by engineer. */
 "Email" = "Email";
@@ -596,7 +596,7 @@
 "Following features used in this project are not compatible with this version of Pocket Code:" = "Following features used in this project are not compatible with this version of Pocket Code:";
 
 /* No comment provided by engineer. */
-"for" = "for";
+"for" = "за";
 
 /* No comment provided by engineer. */
 "for all objects" = "for all objects";
@@ -605,7 +605,7 @@
 "for this object" = "for this object";
 
 /* No comment provided by engineer. */
-"Forever" = "Forever";
+"Forever" = "Заувек";
 
 /* No comment provided by engineer. */
 "Forgot password" = "Forgot password";
@@ -635,10 +635,10 @@
 "Glide" = "Glide";
 
 /* No comment provided by engineer. */
-"Go back" = "Go back";
+"Go back" = "Иди назад";
 
 /* No comment provided by engineer. */
-"Go to front" = "Go to front";
+"Go to front" = "Иди напред";
 
 /* paint */
 "Green" = "Green";
@@ -647,7 +647,7 @@
 "gyro-sensor" = "gyro-sensor";
 
 /* No comment provided by engineer. */
-"Hello!" = "Hello!";
+"Hello!" = "Здраво!";
 
 /* No comment provided by engineer. */
 "Help" = "Help";
@@ -668,10 +668,10 @@
 "hour" = "hour";
 
 /* No comment provided by engineer. */
-"If" = "If";
+"If" = "Ако";
 
 /* No comment provided by engineer. */
-"If on edge, bounce" = "If on edge, bounce";
+"If on edge, bounce" = "Ако је ивица, oдбиј се";
 
 /* paint */
 "Image" = "Image";
@@ -719,7 +719,7 @@
 "is true" = "is true";
 
 /* No comment provided by engineer. */
-"is true then" = "is true then";
+"is true then" = "је истина онда";
 
 /* paint */
 "italic" = "italic";
@@ -815,7 +815,7 @@
 "Login/Register" = "Login/Register";
 
 /* No comment provided by engineer. */
-"Logout" = "Logout";
+"Logout" = "Одјави се";
 
 /* No comment provided by engineer. */
 "longitude" = "longitude";
@@ -905,10 +905,10 @@
 "Motion" = "Motion";
 
 /* No comment provided by engineer. */
-"Move" = "Move";
+"Move" = "Премести";
 
 /* No comment provided by engineer. */
-"Move Brick" = "Move Brick";
+"Move Brick" = "Помери блок";
 
 /* No comment provided by engineer. */
 "Move Looks" = "Move Looks";
@@ -1010,7 +1010,7 @@
 "Not enough Memory" = "Not enough Memory";
 
 /* No comment provided by engineer. */
-"Note" = "Note";
+"Note" = "Белешка";
 
 /* paint */
 "Nothing to crop!" = "Nothing to crop!";
@@ -1067,7 +1067,7 @@
 "Only special characters are not allowed. Please enter at least %lu other character(s)." = "Only special characters are not allowed. Please enter at least %lu other character(s).";
 
 /* No comment provided by engineer. */
-"Open" = "Open";
+"Open" = "Отвори";
 
 /* No comment provided by engineer. */
 "or" = "or";
@@ -1163,10 +1163,10 @@
 "Pocket Paint" = "Pocket Paint";
 
 /* No comment provided by engineer. */
-"Point in direction" = "Point in direction";
+"Point in direction" = "Усмери у смеру";
 
 /* No comment provided by engineer. */
-"Point towards" = "Point towards";
+"Point towards" = "Усмери према";
 
 /* paint */
 "Pointer" = "Pointer";
@@ -1208,7 +1208,7 @@
 "Project variables:" = "Project variables:";
 
 /* No comment provided by engineer. */
-"Projects" = "Projects";
+"Projects" = "Пројекти";
 
 /* No comment provided by engineer. */
 "Rate Us" = "Rate Us";
@@ -1250,10 +1250,10 @@
 "Rename sound" = "Rename sound";
 
 /* No comment provided by engineer. */
-"Repeat" = "Repeat";
+"Repeat" = "Понови";
 
 /* No comment provided by engineer. */
-"Repeat until" = "Repeat until";
+"Repeat until" = "Понови док";
 
 /* No comment provided by engineer. */
 "Replace item in list" = "Replace item in list";
@@ -1295,7 +1295,7 @@
 "Saved" = "Saved";
 
 /* No comment provided by engineer. */
-"Say" = "Say";
+"Say" = "Кажи";
 
 /* No comment provided by engineer. */
 "screen_is_touched" = "screen_is_touched";
@@ -1376,7 +1376,7 @@
 "Set color " = "Set color ";
 
 /* No comment provided by engineer. */
-"Set description" = "Set description";
+"Set description" = "Постави опис";
 
 /* No comment provided by engineer. */
 "Set Phiro light" = "Set Phiro light";
@@ -1388,10 +1388,10 @@
 "Set transparency " = "Set transparency ";
 
 /* No comment provided by engineer. */
-"Set variable" = "Set variable";
+"Set variable" = "Подеси променљиву";
 
 /* No comment provided by engineer. */
-"Set volume to" = "Set volume to";
+"Set volume to" = "Подеси збук на";
 
 /* No comment provided by engineer. */
 "Set X to " = "Set X to ";
@@ -1433,7 +1433,7 @@
 "Sounds" = "Sounds";
 
 /* No comment provided by engineer. */
-"Speak" = "Speak";
+"Speak" = "Говори";
 
 /* No comment provided by engineer. */
 "Speed" = "Speed";
@@ -1526,7 +1526,7 @@
 "The sound item cannot be played" = "The sound item cannot be played";
 
 /* No comment provided by engineer. */
-"Think" = "Think";
+"Think" = "Мисли";
 
 /* No comment provided by engineer. */
 "This action can not be undone!" = "This action can not be undone!";
@@ -1559,7 +1559,7 @@
 "to X:" = "to X:";
 
 /* No comment provided by engineer. */
-"Today" = "Today";
+"Today" = "Данас";
 
 /* No comment provided by engineer. */
 "transparency" = "transparency";
@@ -1580,10 +1580,10 @@
 "Turn flashlight" = "Turn flashlight";
 
 /* No comment provided by engineer. */
-"Turn left" = "Turn left";
+"Turn left" = "Окрени улево";
 
 /* No comment provided by engineer. */
-"Turn right" = "Turn right";
+"Turn right" = "Окрени удесно";
 
 /* No comment provided by engineer. */
 "Unable to load project!" = "Unable to load project!";
@@ -1640,7 +1640,7 @@
 "Upload selected project" = "Upload selected project";
 
 /* No comment provided by engineer. */
-"Upload successful" = "Upload successful";
+"Upload successful" = "Отпремање је успешно";
 
 /* No comment provided by engineer. */
 "Uploaded" = "Uploaded";
@@ -1691,7 +1691,7 @@
 "Views" = "Views";
 
 /* No comment provided by engineer. */
-"Wait" = "Wait";
+"Wait" = "Сачекајте";
 
 /* No comment provided by engineer. */
 "Wait until" = "Wait until";
@@ -1715,10 +1715,10 @@
 "When screen is touched" = "When screen is touched";
 
 /* No comment provided by engineer. */
-"When tapped" = "When tapped";
+"When tapped" = "Кад куцнеш";
 
 /* No comment provided by engineer. */
-"When you receive" = "When you receive";
+"When you receive" = "Када примиш";
 
 /* paint */
 "Width selection" = "Width selection";
