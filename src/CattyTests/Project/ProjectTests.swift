@@ -32,7 +32,11 @@ class ProjectsTest: XCTestCase {
         super.setUp()
 
         fileManager = CBFileManager.shared()
-        project = Project.defaultProject(withName: kLocalizedNewProject, projectID: nil)
+
+        deleteAllProjectsAndCreateDefaultProject()
+
+        project = Project.lastUsed()
+        XCTAssertNotNil(project)
     }
 
     override func tearDown() {
@@ -45,9 +49,14 @@ class ProjectsTest: XCTestCase {
         super.tearDown()
     }
 
-    func testProjectDirectoryExists() {
-        XCTAssertNotNil(project)
+    private func deleteAllProjectsAndCreateDefaultProject() {
+        for loadingInfo in Project.allProjectLoadingInfos() as! [ProjectLoadingInfo] {
+            fileManager.deleteDirectory(loadingInfo.basePath!)
+        }
+        fileManager.addDefaultProjectToProjectsRootDirectoryIfNoProjectsExist()
+    }
 
+    func testProjectDirectoryExists() {
         let directoryExists = fileManager.directoryExists(project.projectPath())
         XCTAssertTrue(directoryExists)
     }
@@ -300,5 +309,42 @@ class ProjectsTest: XCTestCase {
         XCTAssertFalse(fileManager.directoryExists(projectPath))
         XCTAssertTrue(fileManager.directoryExists(newProjectPath))
         XCTAssertEqual(newProjectId, self.project.header.programID)
+    }
+
+    func testProjectWithLoadingInfoInvalidDirectory() {
+        let loadingInfo = ProjectLoadingInfo.init(forProjectWithName: project.header.programName + "invalid", projectID: kNoProjectIDYetPlaceholder)
+
+        XCTAssertFalse(fileManager.directoryExists(loadingInfo!.basePath))
+
+        let project = Project(loadingInfo: loadingInfo!)
+        XCTAssertNil(project)
+    }
+
+    func testProjectWithLoadingInfo() {
+        let loadingInfo = ProjectLoadingInfo.init(forProjectWithName: project.header.programName, projectID: kNoProjectIDYetPlaceholder)
+
+        XCTAssertTrue(fileManager.directoryExists(loadingInfo!.basePath))
+
+        let project = Project(loadingInfo: loadingInfo!)
+        XCTAssertNotNil(project)
+        XCTAssertEqual(loadingInfo!.visibleName!, project!.header.programName!)
+    }
+
+    func testProjectWithLoadingInfoDivergingDirectoryAndProjectName() {
+        let oldProjectName = project.header.programName
+        let oldDirectoryName = project.projectPath()
+
+        project.header.programName += "new"
+
+        let newProjectName = project.header.programName
+        XCTAssertNotEqual(oldProjectName, newProjectName)
+
+        fileManager.moveExistingDirectory(atPath: oldDirectoryName, toPath: project.projectPath())
+
+        let loadingInfo = ProjectLoadingInfo.init(forProjectWithName: newProjectName, projectID: kNoProjectIDYetPlaceholder)
+        XCTAssertTrue(fileManager.directoryExists(loadingInfo!.basePath))
+
+        let project = Project(loadingInfo: loadingInfo!)
+        XCTAssertEqual(newProjectName, project!.header.programName!)
     }
 }

@@ -487,6 +487,7 @@
     } else {
         project = [catrobatParser parseAndCreateProject];
     }
+    project.header.programName = loadingInfo.visibleName;
     project.header.programID = loadingInfo.projectID;
 
     if (! project)
