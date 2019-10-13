@@ -200,8 +200,9 @@ platform :ios do
 
   desc "Release Pocket Code to Testflight"
   lane :release do
+    sh ("security unlock-keychain -p $CI_PASSWORD ${HOME}/Library/Keychains/login.keychain-db")
     cert
-    sigh
+    sigh(force: true)
     create_build scheme:$catty_schemes["release"], method:"app-store"
     upload_to_testflight(
       skip_submission: true,

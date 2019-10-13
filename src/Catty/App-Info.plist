@@ -42,7 +42,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>29</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>CatrobatApplicationName</key>
 	<string>Pocket Code (Catty iOS)</string>
 	<key>CatrobatBuildName</key>
@@ -61,8 +61,10 @@
 	<true/>
 	<key>LSSupportsOpeningDocumentsInPlace</key>
 	<true/>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>Communicate with your Arduino device using Bluetooth.</string>
 	<key>NSBluetoothPeripheralUsageDescription</key>
-	<string>Communicate with your Arduino device using Blueetoth.</string>
+	<string>Communicate with your Arduino device using Bluetooth.</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Import pictures from your device camera to use as Look or Background.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
