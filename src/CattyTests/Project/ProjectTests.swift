@@ -32,11 +32,7 @@ class ProjectsTest: XCTestCase {
         super.setUp()
 
         fileManager = CBFileManager.shared()
-
         deleteAllProjectsAndCreateDefaultProject()
-
-        project = Project.lastUsed()
-        XCTAssertNotNil(project)
     }
 
     override func tearDown() {
@@ -54,6 +50,11 @@ class ProjectsTest: XCTestCase {
             fileManager.deleteDirectory(loadingInfo.basePath!)
         }
         fileManager.addDefaultProjectToProjectsRootDirectoryIfNoProjectsExist()
+
+        let loadingInfos = Project.allProjectLoadingInfos()
+        XCTAssertEqual(1, loadingInfos.count)
+
+        project = Project(loadingInfo: (loadingInfos.first as! ProjectLoadingInfo))
     }
 
     func testProjectDirectoryExists() {
@@ -265,9 +266,9 @@ class ProjectsTest: XCTestCase {
 
     func testRenameProject() {
         let projectPath = project.projectPath()
+        let projectId = project.header.programID
 
         XCTAssertTrue(fileManager.directoryExists(projectPath))
-        XCTAssertNil(project.header.programID)
 
         project.rename(toProjectName: "newProject")
 
@@ -276,14 +277,14 @@ class ProjectsTest: XCTestCase {
         XCTAssertNotEqual(projectPath, newProjectPath)
         XCTAssertFalse(fileManager.directoryExists(projectPath))
         XCTAssertTrue(fileManager.directoryExists(newProjectPath))
-        XCTAssertNil(project.header.programID)
+        XCTAssertEqual(projectId, project.header.programID)
     }
 
     func testRenameProjectWithSameName() {
         let projectPath = project.projectPath()
+        let projectId = project.header.programID
 
         XCTAssertTrue(fileManager.directoryExists(projectPath))
-        XCTAssertNil(project.header.programID)
 
         project.rename(toProjectName: project.header.programName)
 
@@ -291,7 +292,7 @@ class ProjectsTest: XCTestCase {
 
         XCTAssertEqual(projectPath, newProjectPath)
         XCTAssertTrue(fileManager.directoryExists(newProjectPath))
-        XCTAssertNil(project.header.programID)
+        XCTAssertEqual(projectId, project.header.programID)
     }
 
     func testRenameProjectNameAndId() {
@@ -299,7 +300,7 @@ class ProjectsTest: XCTestCase {
         let newProjectId = "newProjectId"
 
         XCTAssertTrue(fileManager.directoryExists(projectPath))
-        XCTAssertNil(project.header.programID)
+        XCTAssertNotEqual(newProjectId, project.header.programID)
 
         project.rename(toProjectName: project.header.programName, andProjectId: newProjectId)
 
@@ -308,7 +309,7 @@ class ProjectsTest: XCTestCase {
         XCTAssertNotEqual(projectPath, newProjectPath)
         XCTAssertFalse(fileManager.directoryExists(projectPath))
         XCTAssertTrue(fileManager.directoryExists(newProjectPath))
-        XCTAssertEqual(newProjectId, self.project.header.programID)
+        XCTAssertEqual(newProjectId, project.header.programID)
     }
 
     func testProjectWithLoadingInfoInvalidDirectory() {
