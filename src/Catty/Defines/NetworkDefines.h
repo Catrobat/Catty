@@ -30,11 +30,9 @@
 #define kBaseUrl @"https://share.catrob.at/pocketcode/"
 #endif
 #define kConnectionHost kBaseUrl @"api/projects"
-#define kLoginOrRegisterUrlExtension @"api/loginOrRegister"
 #define kLoginUrlExtension @"api/login"
 #define kRegisterUrlExtension @"api/register"
 #define kReportProjectExtension @"api/reportProgram/reportProgram.json"
-#define kLoginOrRegisterUrl kBaseUrl kLoginOrRegisterUrlExtension
 #define kLoginUrl kBaseUrl kLoginUrlExtension
 #define kRegisterUrl kBaseUrl kRegisterUrlExtension
 #define kReportProjectUrl kBaseUrl kReportProjectExtension
@@ -52,7 +50,6 @@
 #define kConnectionMostDownloaded @"mostDownloaded.json"
 #define kConnectionMostViewed @"mostViewed.json"
 #define kConnectionIDQuery @"getInfoById.json"
-#define kConnectionLoginOrRegister @"loginOrRegister.json"
 #define kConnectionLogin @"Login.json"
 #define kConnectionRegister @"Register.json"
 #define kConnectionUpload @ "upload.json"
