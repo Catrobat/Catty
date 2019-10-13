@@ -26,7 +26,6 @@
 #import "SegueDefines.h"
 #import "ProjectTableViewController.h"
 #import "Util.h"
-#import "NetworkDefines.h"
 #import "EVCircularProgressView.h"
 #import "CreateView.h"
 #import "ProjectUpdateDelegate.h"
@@ -255,7 +254,7 @@
 {
     NSDebug(@"ReportMessage::::::%@",message);
     
-    NSString *reportUrl = kReportProjectUrl;
+    NSString *reportUrl = NetworkDefines.reportProjectUrl;
     
     NSString *post = [NSString stringWithFormat:@"%@=%@&%@=%@",@"program",self.project.projectID,@"note",message];
     NSData *postData = [post dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];

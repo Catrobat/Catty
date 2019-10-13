@@ -467,7 +467,6 @@ let kLocalizedPassword = NSLocalizedString("Password", bundle: Bundle(for: Langu
 let kLocalizedConfirmPassword = NSLocalizedString("Confirm Password", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedEmail = NSLocalizedString("Email", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedRegister = NSLocalizedString("Create account", bundle: Bundle(for: LanguageTranslation.self), comment: "")
-let kLocalizedLoginOrRegister = NSLocalizedString("Login/Register", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedUploadProject = NSLocalizedString("Upload Project", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedLoginUsernameNecessary = NSLocalizedString("Username must not be blank", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedLoginEmailNotValid = NSLocalizedString("Your email seems to be invalid", bundle: Bundle(for: LanguageTranslation.self), comment: "")

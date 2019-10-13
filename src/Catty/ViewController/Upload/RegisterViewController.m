@@ -22,7 +22,6 @@
 
 #import "RegisterViewController.h"
 #import "LanguageTranslationDefines.h"
-#import "NetworkDefines.h"
 #import "Util.h"
 #import "JNKeychain.h"
 #import "Pocket_Code-Swift.h"
@@ -291,11 +290,8 @@
 {
     NSDebug(@"Register started with username:%@ and password:%@ and email:%@", username, password, email);
     
-    NSString *registrationUrl = kRegisterUrl;
-    NSString *urlString = [NSString stringWithFormat:@"%@/%@", registrationUrl, (NSString*)kConnectionRegister];
-    
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setURL:[NSURL URLWithString:urlString]];
+    [request setURL:[NSURL URLWithString:NetworkDefines.registerUrl]];
     [request setHTTPMethod:@"POST"];
     
     NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@", httpBoundary];
@@ -328,7 +324,7 @@
     // set request body
     [request setHTTPBody:body];
     
-    [request setTimeoutInterval:kConnectionTimeout];
+    [request setTimeoutInterval:NetworkDefines.connectionTimeout];
     
     NSString *postLength = [NSString stringWithFormat:@"%lu",(unsigned long)[body length]];
     [request addValue:postLength forHTTPHeaderField:@"Content-Length"];
@@ -429,7 +425,7 @@
 
 -(void)openTermsOfUse
 {
-    NSString *url = kTermsOfUseURL;
+    NSString *url = NetworkDefines.termsOfUseUrl;
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
 }
 

@@ -22,7 +22,6 @@
 
 #import "TermsOfUseOptionTableViewController.h"
 #import "LanguageTranslationDefines.h"
-#import "NetworkDefines.h"
 #import "Util.h"
 #import "Pocket_Code-Swift.h"
 
@@ -52,7 +51,7 @@
 
 - (void)openTermsOfUse
 {
-    [Util openUrlExternal:[NSURL URLWithString:kTermsOfUseURL]];
+    [Util openUrlExternal:[NSURL URLWithString:NetworkDefines.termsOfUseUrl]];
 }
 
 

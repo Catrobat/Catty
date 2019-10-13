@@ -30,13 +30,13 @@ extension MediaType {
     var indexURL: URL {
         switch self {
         case .backgrounds:
-            guard let indexURL = URL(string: kMediaLibraryBackgroundsIndex) else { fatalError("Media Library backgrounds URL constant misconfiguration") }
+            guard let indexURL = URL(string: NetworkDefines.mediaLibraryBackgroundsIndex) else { fatalError("Media Library backgrounds URL constant misconfiguration") }
             return indexURL
         case .looks:
-            guard let indexURL = URL(string: kMediaLibraryLooksIndex) else { fatalError("Media Library looks URL constant misconfiguration") }
+            guard let indexURL = URL(string: NetworkDefines.mediaLibraryLooksIndex) else { fatalError("Media Library looks URL constant misconfiguration") }
             return indexURL
         case .sounds:
-            guard let indexURL = URL(string: kMediaLibrarySoundsIndex) else { fatalError("Media Library sounds URL constant misconfiguration") }
+            guard let indexURL = URL(string: NetworkDefines.mediaLibrarySoundsIndex) else { fatalError("Media Library sounds URL constant misconfiguration") }
             return indexURL
         }
     }
