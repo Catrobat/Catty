@@ -99,7 +99,7 @@ class ChartProjectsStoreViewController: UIViewController, SelectedChartProjectsD
         projectDictionary["Views"] = project.views ?? 0
         projectDictionary["FileSize"] = project.fileSize ?? 0.0
 
-        return CatrobatProject(dict: projectDictionary, andBaseUrl: kFeaturedImageBaseUrl)
+        return CatrobatProject(dict: projectDictionary, andBaseUrl: NetworkDefines.featuredImageBaseUrl)
     }
 
     func initSegmentedControl() {

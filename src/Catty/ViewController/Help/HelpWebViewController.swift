@@ -72,7 +72,7 @@ class HelpWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
         webView.addGestureRecognizer(swipeLeftRecognizer)
         webView.addGestureRecognizer(swipeRightRecognizer)
 
-        url = URL(string: kForumURL)
+        url = URL(string: NetworkDefines.helpUrl)
         webView.scrollView.delegate = self
         webView.delegate = self
         webView.allowsInlineMediaPlayback = true
@@ -166,7 +166,7 @@ class HelpWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
     func webView(_ webView: UIWebView,
                  shouldStartLoadWith request: URLRequest,
                  navigationType: UIWebView.NavigationType) -> Bool {
-        if !((request.url?.absoluteString ?? "").contains(kDownloadUrl)) {
+        if !((request.url?.absoluteString ?? "").contains(NetworkDefines.downloadUrl)) {
             return true
         }
         let urlWithoutParams: String? = request.url?.absoluteString

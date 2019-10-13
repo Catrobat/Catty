@@ -22,7 +22,6 @@
 
 #import "AboutPoketCodeOptionTableViewController.h"
 #import "LanguageTranslationDefines.h"
-#import "NetworkDefines.h"
 #import "Util.h"
 #import "Pocket_Code-Swift.h"
 
@@ -43,7 +42,7 @@
             cell.backgroundColor = UIColor.background;
             cell.mainColor = UIColor.globalTint;
             cell.actionBlock = ^{
-                [weakSelf openSourceCodeLicenseURL];
+                [weakSelf openSourceCodeLicenseUrl];
                 
             };
         }]];
@@ -59,11 +58,11 @@
 
 - (void)openAboutURL
 {
-    [Util openUrlExternal:[NSURL URLWithString:kAboutCatrobatURL]];
+    [Util openUrlExternal:[NSURL URLWithString:NetworkDefines.aboutCatrobatUrl]];
 }
 
-- (void)openSourceCodeLicenseURL
+- (void)openSourceCodeLicenseUrl
 {
-    [Util openUrlExternal:[NSURL URLWithString:kSourceCodeLicenseURL]];
+    [Util openUrlExternal:[NSURL URLWithString:NetworkDefines.sourceCodeLicenseUrl]];
 }
 @end

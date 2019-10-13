@@ -41,7 +41,7 @@ struct MediaItem: Codable {
 
 extension MediaItem {
     var downloadURL: URL {
-        guard let baseURL = URL(string: kMediaLibraryDownloadBaseURL) else { fatalError("Media Library base URL constant misconfiguration") }
+        guard let baseURL = URL(string: NetworkDefines.mediaLibraryDownloadBaseUrl) else { fatalError("Media Library base URL constant misconfiguration") }
         return baseURL.appendingPathComponent(self.relativePath)
     }
 }

@@ -76,16 +76,16 @@ class PocketCodeMainScreenTests: XCTestCase {
 
         for (projectName, _) in progNamesErrorMsgMap {
             app.tables.staticTexts[kLocalizedNew].tap()
-            let alertQuery = app.alerts[kLocalizedNewProject]
-            alertQuery.textFields[kLocalizedEnterYourProjectNameHere].tap()
-            alertQuery.textFields[kLocalizedEnterYourProjectNameHere].typeText(projectName)
-            alertQuery.buttons[kLocalizedOK].tap()
+            let alertQuery = waitForElementToAppear(app.alerts[kLocalizedNewProject])
+            waitForElementToAppear(alertQuery.textFields[kLocalizedEnterYourProjectNameHere]).tap()
+            waitForElementToAppear(alertQuery.textFields[kLocalizedEnterYourProjectNameHere]).typeText(projectName)
+            waitForElementToAppear(alertQuery.buttons[kLocalizedOK]).tap()
 
             let alert = waitForElementToAppear(app.alerts[kLocalizedPocketCode])
             XCTAssert(alert.exists)
-            alert.buttons[kLocalizedOK].tap()
+            waitForElementToAppear(alert.buttons[kLocalizedOK]).tap()
 
-            alertQuery.buttons[kLocalizedCancel].tap()
+            waitForElementToAppear(alertQuery.buttons[kLocalizedCancel]).tap()
         }
     }
 

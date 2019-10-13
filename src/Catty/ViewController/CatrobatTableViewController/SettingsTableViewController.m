@@ -24,7 +24,6 @@
 #import "TermsOfUseOptionTableViewController.h"
 #import "AboutPoketCodeOptionTableViewController.h"
 #import "LanguageTranslationDefines.h"
-#import "NetworkDefines.h"
 #import "KeychainUserDefaultsDefines.h"
 #import "CatrobatTableViewController.h"
 #import "Pocket_Code-Swift.h"
@@ -156,7 +155,7 @@
 
 - (void)openRateUsURL
 {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:kAppStoreURL]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:NetworkDefines.appStoreUrl]];
 }
 
 - (void)openPrivacySettings
