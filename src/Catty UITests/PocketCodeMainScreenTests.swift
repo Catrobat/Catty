@@ -76,7 +76,7 @@ class PocketCodeMainScreenTests: XCTestCase {
 
         for (projectName, _) in progNamesErrorMsgMap {
             app.tables.staticTexts[kLocalizedNew].tap()
-            let alertQuery = app.alerts[kLocalizedNewProject]
+            let alertQuery = waitForElementToAppear(app.alerts[kLocalizedNewProject])
             alertQuery.textFields[kLocalizedEnterYourProjectNameHere].tap()
             alertQuery.textFields[kLocalizedEnterYourProjectNameHere].typeText(projectName)
             alertQuery.buttons[kLocalizedOK].tap()
