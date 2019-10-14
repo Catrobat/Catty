@@ -39,6 +39,8 @@
 #define statusCodeOK @"200"
 #define statusCodeRegistrationOK @"201"
 
+#define defaultCountryCode @"US"
+
 //random boundary string
 #define httpBoundary @"---------------------------98598263596598246508247098291---------------------------"
 
@@ -116,17 +118,26 @@
     if (self.password) {
         self.passwordField.text = self.password;
     }
+    
     [self.passwordField setSecureTextEntry:YES];
+    
+    if (@available(iOS 12.0, *)) {
+        self.passwordField.textContentType = UITextContentTypeOneTimeCode;
+    }
+    
     self.passwordField.font = [UIFont fontWithName:fontName size:16.0f];
     self.passwordField.layer.borderColor = [UIColor colorWithWhite:0.9 alpha:0.7].CGColor;
     self.passwordField.layer.borderWidth = 1.0f;
     self.passwordField.tag = 3;
+    
     [self.confirmPasswordField setIcon:[UIImage imageNamed:@"password"]];
     self.confirmPasswordField.placeholder = kLocalizedConfirmPassword;
-    //    if (self.password) {
-    //        self.passwordConfirmationField.text = self.password;
-    //    }
+    
     [self.confirmPasswordField setSecureTextEntry:YES];
+    if (@available(iOS 12.0, *)) {
+        self.confirmPasswordField.textContentType = UITextContentTypeOneTimeCode;
+    }
+    
     self.confirmPasswordField.font = [UIFont fontWithName:fontName size:16.0f];
     self.confirmPasswordField.layer.borderColor = [UIColor colorWithWhite:0.9 alpha:0.7].CGColor;
     self.confirmPasswordField.layer.borderWidth = 1.0f;
@@ -314,6 +325,11 @@
     //Country
     NSLocale *currentLocale = [NSLocale currentLocale];
     NSString *countryCode = [currentLocale objectForKey:NSLocaleCountryCode];
+    
+    if (countryCode == nil) {
+        countryCode = [NSString stringWithFormat: @"%@", defaultCountryCode];
+    }
+    
     NSDebug(@"Current Country is: %@", countryCode);
     [self setFormDataParameter:registrationCountryTag withData:[countryCode dataUsingEncoding:NSUTF8StringEncoding] forHTTPBody:body];
     
