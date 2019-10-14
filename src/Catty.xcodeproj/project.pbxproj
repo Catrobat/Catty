@@ -624,7 +624,7 @@
 		5977B2A620298BD0008753ED /* MediaLibraryDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5977B2A520298BD0008753ED /* MediaLibraryDownloader.swift */; };
 		597AB56E202081E8007CD10D /* LibrarySoundCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597AB56C202081E8007CD10D /* LibrarySoundCollectionViewCell.swift */; };
 		597AB56F202081E8007CD10D /* LibrarySoundCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 597AB56D202081E8007CD10D /* LibrarySoundCollectionViewCell.xib */; };
-		597AB578202089E0007CD10D /* NetworkDefinesSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597AB575202089DF007CD10D /* NetworkDefinesSwift.swift */; };
+		597AB578202089E0007CD10D /* NetworkDefines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597AB575202089DF007CD10D /* NetworkDefines.swift */; };
 		598319931FBB812D00639BBF /* IntroductionPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598319921FBB812D00639BBF /* IntroductionPageViewController.swift */; };
 		598319951FBB813C00639BBF /* Introduction.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 598319941FBB813C00639BBF /* Introduction.storyboard */; };
 		598319991FBB90CB00639BBF /* IntroductionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598319981FBB90CB00639BBF /* IntroductionViewController.swift */; };
@@ -2083,7 +2083,7 @@
 		5977B2A520298BD0008753ED /* MediaLibraryDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaLibraryDownloader.swift; sourceTree = "<group>"; };
 		597AB56C202081E8007CD10D /* LibrarySoundCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibrarySoundCollectionViewCell.swift; sourceTree = "<group>"; };
 		597AB56D202081E8007CD10D /* LibrarySoundCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LibrarySoundCollectionViewCell.xib; sourceTree = "<group>"; };
-		597AB575202089DF007CD10D /* NetworkDefinesSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkDefinesSwift.swift; sourceTree = "<group>"; };
+		597AB575202089DF007CD10D /* NetworkDefines.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkDefines.swift; sourceTree = "<group>"; };
 		598319921FBB812D00639BBF /* IntroductionPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroductionPageViewController.swift; sourceTree = "<group>"; };
 		598319941FBB813C00639BBF /* Introduction.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Introduction.storyboard; sourceTree = "<group>"; };
 		598319981FBB90CB00639BBF /* IntroductionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroductionViewController.swift; sourceTree = "<group>"; };
@@ -2385,7 +2385,6 @@
 		92FF2E011A24C3BE00093DA7 /* CatrobatLanguageDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatLanguageDefines.h; sourceTree = "<group>"; };
 		92FF2E021A24C3BE00093DA7 /* CellTagDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellTagDefines.h; sourceTree = "<group>"; };
 		92FF2E031A24C3BE00093DA7 /* LanguageTranslationDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanguageTranslationDefines.h; sourceTree = "<group>"; };
-		92FF2E041A24C3BE00093DA7 /* NetworkDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkDefines.h; sourceTree = "<group>"; };
 		92FF2E051A24C3BE00093DA7 /* ProgramDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramDefines.h; sourceTree = "<group>"; };
 		92FF2E061A24C3BE00093DA7 /* SegueDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SegueDefines.h; sourceTree = "<group>"; };
 		92FF2E071A24C3BE00093DA7 /* UIDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIDefines.h; sourceTree = "<group>"; };
@@ -5807,8 +5806,7 @@
 				D638646D1AE63F80008569E6 /* KeychainUserDefaultsDefines.h */,
 				92FF2E031A24C3BE00093DA7 /* LanguageTranslationDefines.h */,
 				92C631901BC50DEE00486958 /* LanguageTranslationDefinesSwift.swift */,
-				92FF2E041A24C3BE00093DA7 /* NetworkDefines.h */,
-				597AB575202089DF007CD10D /* NetworkDefinesSwift.swift */,
+				597AB575202089DF007CD10D /* NetworkDefines.swift */,
 				929CC0E11BC39B7B0027DEC0 /* PhiroDefines.h */,
 				92FF2E051A24C3BE00093DA7 /* ProgramDefines.h */,
 				92FF2E061A24C3BE00093DA7 /* SegueDefines.h */,
@@ -9438,7 +9436,7 @@
 				92FC85CE1B9E1EB5001C728F /* BrickManager.m in Sources */,
 				5E18A81221A547AA00541536 /* UIViewController+Extensions.swift in Sources */,
 				AA74F0951BC05FCE00D1E954 /* BrickCellMessageData.m in Sources */,
-				597AB578202089E0007CD10D /* NetworkDefinesSwift.swift in Sources */,
+				597AB578202089E0007CD10D /* NetworkDefines.swift in Sources */,
 				F4E6E59C210E051200D86FE6 /* MinFunction.swift in Sources */,
 				AA74EF591BC0586F00D1E954 /* TurnLeftBrick+CBXMLHandler.m in Sources */,
 				4C0F9F6F204BD1A300E71B2D /* ThinkForBubbleBrick+CBXMLHandler.m in Sources */,
@@ -10133,6 +10131,7 @@
 					"$(inherited)",
 					"-lc++",
 				);
+				OTHER_SWIFT_FLAGS = "-DDEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = org.catrobat.pocketcode.debug;
 				PRODUCT_NAME = "Pocket Code";
 				PROVISIONING_PROFILE = "";
@@ -10178,6 +10177,7 @@
 					"$(inherited)",
 					"-lc++",
 				);
+				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = org.catrobat.pocketcode;
 				PRODUCT_NAME = "Pocket Code";
 				PROVISIONING_PROFILE = "";

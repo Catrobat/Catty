@@ -25,7 +25,6 @@
 #import <ZipArchive/ZipArchive.h>
 #import "Sound.h"
 #import <MobileCoreServices/MobileCoreServices.h>
-#import "NetworkDefines.h"
 #import "Pocket_Code-Swift.h"
 
 @interface CBFileManager ()
@@ -361,7 +360,7 @@
     
     if (! self.downloadSession) {
         NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
-        sessionConfig.timeoutIntervalForRequest = kConnectionTimeout;
+        sessionConfig.timeoutIntervalForRequest = NetworkDefines.connectionTimeout;
         self.downloadSession = [NSURLSession sessionWithConfiguration:sessionConfig
                                                              delegate:self
                                                         delegateQueue:nil];

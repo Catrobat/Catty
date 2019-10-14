@@ -22,7 +22,6 @@
 
 #import "LoginViewController.h"
 #import "LanguageTranslationDefines.h"
-#import "NetworkDefines.h"
 #import "Util.h"
 #import "JNKeychain.h"
 #import "RegisterViewController.h"
@@ -199,7 +198,7 @@
     return false;
 }
 
--(BOOL) NSStringIsValidEmail:(NSString *)checkString
+-(BOOL)NSStringIsValidEmail:(NSString *)checkString
 {
     BOOL stricterFilter = NO; // Discussion http://blog.logichigh.com/2010/09/02/validating-an-e-mail-address/
     NSString *stricterFilterString = @"[A-Z0-9a-z\\._%+-]+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2,4}";
@@ -296,12 +295,9 @@
 - (void)loginAtServerWithUsername:(NSString*)username andPassword:(NSString*)password
 {
     NSDebug(@"Login started with username:%@ and password:%@ ", username, password);
-
-    NSString *loginUrl = kLoginUrl;
-    NSString *urlString = [NSString stringWithFormat:@"%@/%@", loginUrl, (NSString*)kConnectionLogin];
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setURL:[NSURL URLWithString:urlString]];
+    [request setURL:[NSURL URLWithString:NetworkDefines.loginUrl]];
     [request setHTTPMethod:@"POST"];
     
     NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@", httpBoundary];
@@ -333,7 +329,7 @@
     NSString *postLength = [NSString stringWithFormat:@"%lu",(unsigned long)[body length]];
     [request addValue:postLength forHTTPHeaderField:@"Content-Length"];
     
-    [request setTimeoutInterval:kConnectionTimeout];
+    [request setTimeoutInterval:NetworkDefines.connectionTimeout];
     
     [self showLoadingView];
     
@@ -437,13 +433,13 @@
 
 -(void)openTermsOfUse
 {
-    NSString *url = kTermsOfUseURL;
+    NSString *url = NetworkDefines.termsOfUseUrl;
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
 }
 
 - (void)forgotPassword
 {
-    NSString *url = kRecoverPassword;
+    NSString *url = NetworkDefines.recoverPassword;
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
 }
 

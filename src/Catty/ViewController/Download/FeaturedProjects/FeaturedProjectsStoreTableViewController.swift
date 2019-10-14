@@ -31,6 +31,9 @@ class FeaturedProjectsStoreTableViewController: UITableViewController, SelectedF
     var projectForSegue: StoreProject?
     var catrobatProject: StoreProject?
 
+    let aspectRatioHeight: CGFloat = 25
+    let aspectRatioWidth: CGFloat = 64
+
     // MARK: - Initializers
 
     required init?(coder aDecoder: NSCoder) {
@@ -81,7 +84,7 @@ class FeaturedProjectsStoreTableViewController: UITableViewController, SelectedF
         projectDictionary["Views"] = project.views ?? 0
         projectDictionary["FileSize"] = project.fileSize ?? 0.0
 
-        return CatrobatProject(dict: projectDictionary, andBaseUrl: kFeaturedImageBaseUrl)
+        return CatrobatProject(dict: projectDictionary, andBaseUrl: NetworkDefines.featuredImageBaseUrl)
     }
 
     private func setupTableView() {
@@ -99,7 +102,7 @@ class FeaturedProjectsStoreTableViewController: UITableViewController, SelectedF
     }
 
     private func calcCellHeightByAspectRatio(currentFrameWidth: CGFloat) -> CGFloat {
-        return ((currentFrameWidth / kAspectRatioWidth) * kAspectRatioHeight) - 2
+        return ((currentFrameWidth / aspectRatioWidth) * aspectRatioHeight) - 2
     }
 
     private func fetchData() {
