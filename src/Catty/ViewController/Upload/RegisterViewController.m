@@ -119,12 +119,7 @@
         self.passwordField.text = self.password;
     }
     
-    [self.passwordField setSecureTextEntry:YES];
-    
-    if (@available(iOS 12.0, *)) {
-        self.passwordField.textContentType = UITextContentTypeOneTimeCode;
-    }
-    
+    self.passwordField.delegate = self;
     self.passwordField.font = [UIFont fontWithName:fontName size:16.0f];
     self.passwordField.layer.borderColor = [UIColor colorWithWhite:0.9 alpha:0.7].CGColor;
     self.passwordField.layer.borderWidth = 1.0f;
@@ -132,11 +127,7 @@
     
     [self.confirmPasswordField setIcon:[UIImage imageNamed:@"password"]];
     self.confirmPasswordField.placeholder = kLocalizedConfirmPassword;
-    
-    [self.confirmPasswordField setSecureTextEntry:YES];
-    if (@available(iOS 12.0, *)) {
-        self.confirmPasswordField.textContentType = UITextContentTypeOneTimeCode;
-    }
+    self.confirmPasswordField.delegate = self;
     
     self.confirmPasswordField.font = [UIFont fontWithName:fontName size:16.0f];
     self.confirmPasswordField.layer.borderColor = [UIColor colorWithWhite:0.9 alpha:0.7].CGColor;
@@ -378,6 +369,17 @@
         [self hideLoadingView];
         [Util defaultAlertForNetworkError];
     }
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    if (textField == self.passwordField && !self.passwordField.secureTextEntry) {
+        self.passwordField.secureTextEntry = YES;
+    }
+    if (textField == self.confirmPasswordField && !self.confirmPasswordField.secureTextEntry) {
+        self.confirmPasswordField.secureTextEntry = YES;
+    }
+    
+    return YES;
 }
 
 -(void)handleRegisterResponseWithData:(NSData *)data andResponse:(NSURLResponse *)response
