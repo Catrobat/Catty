@@ -208,45 +208,7 @@
 
 -(BOOL)validPassword:(NSString*)password
 {
-    int numberofCharacters = 6;
-    BOOL lowerCaseLetter = NO ,upperCaseLetter = NO,digit = NO,specialCharacter = NO;
-    if([password length] >= numberofCharacters)
-    {
-        for (int i = 0; i < [password length]; i++)
-        {
-            unichar c = [password characterAtIndex:i];
-            if(!lowerCaseLetter)
-            {
-                lowerCaseLetter = [[NSCharacterSet lowercaseLetterCharacterSet] characterIsMember:c];
-            }
-            if(!upperCaseLetter)
-            {
-                upperCaseLetter = [[NSCharacterSet uppercaseLetterCharacterSet] characterIsMember:c];
-            }
-            if(!digit)
-            {
-                digit = [[NSCharacterSet decimalDigitCharacterSet] characterIsMember:c];
-            }
-            if(!specialCharacter)
-            {
-                specialCharacter = [[NSCharacterSet symbolCharacterSet] characterIsMember:c];
-            }
-        }
-        
-        if(specialCharacter && digit && lowerCaseLetter && upperCaseLetter)
-        {
-            //do what u want
-            return YES;
-        }
-        else
-        {
-            return YES;
-        }
-    }
-    else
-    {
-        return NO;
-    }
+    return ([password length] >= 6) ? YES : NO;
 }
 
 -(void)setFormDataParameter:(NSString*)parameterID withData:(NSData*)data forHTTPBody:(NSMutableData*)body
