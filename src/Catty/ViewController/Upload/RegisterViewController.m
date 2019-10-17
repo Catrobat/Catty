@@ -39,6 +39,8 @@
 #define statusCodeOK @"200"
 #define statusCodeRegistrationOK @"201"
 
+#define defaultCountryCode @"US"
+
 //random boundary string
 #define httpBoundary @"---------------------------98598263596598246508247098291---------------------------"
 
@@ -116,17 +118,17 @@
     if (self.password) {
         self.passwordField.text = self.password;
     }
-    [self.passwordField setSecureTextEntry:YES];
+    
+    self.passwordField.delegate = self;
     self.passwordField.font = [UIFont fontWithName:fontName size:16.0f];
     self.passwordField.layer.borderColor = [UIColor colorWithWhite:0.9 alpha:0.7].CGColor;
     self.passwordField.layer.borderWidth = 1.0f;
     self.passwordField.tag = 3;
+    
     [self.confirmPasswordField setIcon:[UIImage imageNamed:@"password"]];
     self.confirmPasswordField.placeholder = kLocalizedConfirmPassword;
-    //    if (self.password) {
-    //        self.passwordConfirmationField.text = self.password;
-    //    }
-    [self.confirmPasswordField setSecureTextEntry:YES];
+    self.confirmPasswordField.delegate = self;
+    
     self.confirmPasswordField.font = [UIFont fontWithName:fontName size:16.0f];
     self.confirmPasswordField.layer.borderColor = [UIColor colorWithWhite:0.9 alpha:0.7].CGColor;
     self.confirmPasswordField.layer.borderWidth = 1.0f;
@@ -206,45 +208,7 @@
 
 -(BOOL)validPassword:(NSString*)password
 {
-    int numberofCharacters = 6;
-    BOOL lowerCaseLetter = NO ,upperCaseLetter = NO,digit = NO,specialCharacter = NO;
-    if([password length] >= numberofCharacters)
-    {
-        for (int i = 0; i < [password length]; i++)
-        {
-            unichar c = [password characterAtIndex:i];
-            if(!lowerCaseLetter)
-            {
-                lowerCaseLetter = [[NSCharacterSet lowercaseLetterCharacterSet] characterIsMember:c];
-            }
-            if(!upperCaseLetter)
-            {
-                upperCaseLetter = [[NSCharacterSet uppercaseLetterCharacterSet] characterIsMember:c];
-            }
-            if(!digit)
-            {
-                digit = [[NSCharacterSet decimalDigitCharacterSet] characterIsMember:c];
-            }
-            if(!specialCharacter)
-            {
-                specialCharacter = [[NSCharacterSet symbolCharacterSet] characterIsMember:c];
-            }
-        }
-        
-        if(specialCharacter && digit && lowerCaseLetter && upperCaseLetter)
-        {
-            //do what u want
-            return YES;
-        }
-        else
-        {
-            return YES;
-        }
-    }
-    else
-    {
-        return NO;
-    }
+    return ([password length] >= 6) ? YES : NO;
 }
 
 -(void)setFormDataParameter:(NSString*)parameterID withData:(NSData*)data forHTTPBody:(NSMutableData*)body
@@ -314,6 +278,11 @@
     //Country
     NSLocale *currentLocale = [NSLocale currentLocale];
     NSString *countryCode = [currentLocale objectForKey:NSLocaleCountryCode];
+    
+    if (countryCode == nil) {
+        countryCode = defaultCountryCode;
+    }
+    
     NSDebug(@"Current Country is: %@", countryCode);
     [self setFormDataParameter:registrationCountryTag withData:[countryCode dataUsingEncoding:NSUTF8StringEncoding] forHTTPBody:body];
     
@@ -362,6 +331,17 @@
         [self hideLoadingView];
         [Util defaultAlertForNetworkError];
     }
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    if (textField == self.passwordField && !self.passwordField.secureTextEntry) {
+        self.passwordField.secureTextEntry = YES;
+    }
+    if (textField == self.confirmPasswordField && !self.confirmPasswordField.secureTextEntry) {
+        self.confirmPasswordField.secureTextEntry = YES;
+    }
+    
+    return YES;
 }
 
 -(void)handleRegisterResponseWithData:(NSData *)data andResponse:(NSURLResponse *)response
