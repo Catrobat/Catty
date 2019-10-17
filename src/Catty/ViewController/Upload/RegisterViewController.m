@@ -280,7 +280,7 @@
     NSString *countryCode = [currentLocale objectForKey:NSLocaleCountryCode];
     
     if (countryCode == nil) {
-        countryCode = [NSString stringWithFormat: @"%@", defaultCountryCode];
+        countryCode = defaultCountryCode;
     }
     
     NSDebug(@"Current Country is: %@", countryCode);
