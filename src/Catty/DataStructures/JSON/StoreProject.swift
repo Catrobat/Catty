@@ -58,4 +58,51 @@ struct StoreProject: Codable {
         case featuredImage = "FeaturedImage"
         case isPrivate = "Private"
     }
+
+    init(projectId: String, projectName: String, projectNameShort: String?, author: String, description: String?, version: String?,
+         views: Int?, downloads: Int?, uploaded: Int?, uploadedString: String?, screenshotBig: String?, screenshotSmall: String?,
+         projectUrl: String?, downloadUrl: String?, fileSize: Float?, featuredImage: String?) {
+        self.projectId = projectId
+        self.projectName = projectName
+        self.projectNameShort = projectNameShort
+        self.author = author
+        self.description = description
+        self.version = version
+        self.views = views
+        self.downloads = downloads
+        self.uploaded = uploaded
+        self.uploadedString = uploadedString
+        self.screenshotBig = screenshotBig
+        self.screenshotSmall = screenshotSmall
+        self.projectUrl = projectUrl
+        self.downloadUrl = downloadUrl
+        self.fileSize = fileSize
+        self.featuredImage = featuredImage
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        if let value = try? container.decode(Int.self, forKey: .projectId) {
+            projectId = String(value)
+        } else {
+            projectId = try container.decode(String.self, forKey: .projectId)
+        }
+
+        projectName = try container.decode(String.self, forKey: .projectName)
+        projectNameShort = try container.decodeIfPresent(String.self, forKey: .projectNameShort)
+        author = try container.decode(String.self, forKey: .author)
+        description = try container.decodeIfPresent(String.self, forKey: .description)
+        version = try container.decodeIfPresent(String.self, forKey: .version)
+        views = try container.decodeIfPresent(Int.self, forKey: .views)
+        downloads = try container.decodeIfPresent(Int.self, forKey: .downloads)
+        uploaded = try container.decodeIfPresent(Int.self, forKey: .uploaded)
+        uploadedString = try container.decodeIfPresent(String.self, forKey: .uploadedString)
+        screenshotBig = try container.decodeIfPresent(String.self, forKey: .screenshotBig)
+        screenshotSmall = try container.decodeIfPresent(String.self, forKey: .screenshotSmall)
+        projectUrl = try container.decodeIfPresent(String.self, forKey: .projectUrl)
+        downloadUrl = try container.decodeIfPresent(String.self, forKey: .downloadUrl)
+        fileSize = try container.decodeIfPresent(Float.self, forKey: .fileSize)
+        featuredImage = try container.decodeIfPresent(String.self, forKey: .featuredImage)
+    }
 }
