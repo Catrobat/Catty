@@ -69,8 +69,10 @@ extension XCTestCase {
 
     func addObjectAndDrawNewImage(name: String, in app: XCUIApplication) {
         app.toolbars.buttons[kLocalizedUserListAdd].tap()
-        app.alerts[kLocalizedAddObject].textFields[kLocalizedEnterYourObjectNameHere].typeText(name)
-        app.alerts[kLocalizedAddObject].buttons[kLocalizedOK].tap()
+
+        let alert = waitForElementToAppear(app.alerts[kLocalizedAddObject])
+        alert.textFields[kLocalizedEnterYourObjectNameHere].typeText(name)
+        alert.buttons[kLocalizedOK].tap()
 
         waitForElementToAppear(app.buttons[kLocalizedDrawNewImage]).tap()
         XCTAssertNotNil(waitForElementToAppear(app.navigationBars[kLocalizedPaintPocketPaint]))
