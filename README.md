@@ -42,7 +42,7 @@ We recommend [Developing iOS 11 Apps with Swift](https://itunes.apple.com/us/cou
 
 ## Start setting up the working environment:
 
-* Install [Xcode](https://itunes.apple.com/us/app/xcode/id497799835?mt=12) and [Carthage](https://github.com/Carthage/Carthage).
+* Install [Xcode](https://itunes.apple.com/us/app/xcode/id497799835?mt=12), [Carthage](https://github.com/Carthage/Carthage) and [SwiftLint](https://github.com/realm/SwiftLint).
 
 * Clone this repository, set up the required third-party libraries by executing `make init` within the 'Catty' directory and open [Catty.xcodeproj](src/Catty.xcodeproj)
 
