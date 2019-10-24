@@ -25,7 +25,6 @@
 #import "UIDefines.h"
 #import "BrickCellProtocol.h"
 #import "BrickShapeFactory.h"
-#import "UIColor+CatrobatUIColorExtensions.h"
 #import "Util.h"
 
 #define smallBrick 51.0f

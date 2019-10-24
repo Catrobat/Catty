@@ -30,7 +30,6 @@
         self.apiVersion = [dict valueForKey:@"ApiVersion"];
         self.baseURL = [dict valueForKey:@"BaseUrl"];
         self.projectsExtension = [dict valueForKey:@"ProjectExtension"];
-        self.totalProjects = [dict valueForKey:@"TotalProjects"];
     }
     return self;
 }

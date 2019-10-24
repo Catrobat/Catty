@@ -54,7 +54,7 @@
 
 - (void)setupView {
     self.roundness = kBDKNotifyHUDDefaultRoundness;
-    self.borderColor = [UIColor clearColor];
+    self.borderColor = UIColor.clearColor;
     self.destinationOpacity = kBDKNotifyHUDDefaultOpacity;
     self.currentOpacity = 0.0f;
     [self addSubview:self.backgroundView];
@@ -119,7 +119,7 @@
 - (void)setCurrentOpacity:(CGFloat)currentOpacity {
     self.iconView.alpha = currentOpacity > 0 ? 1.0f : 0.0f;
     self.textLabel.alpha = currentOpacity > 0 ? 1.0f : 0.0f;
-    self.backgroundView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:currentOpacity];
+    self.backgroundView.backgroundColor = [UIColor.blackColor colorWithAlphaComponent:currentOpacity];
     _currentOpacity = currentOpacity;
 }
 
@@ -131,7 +131,7 @@
     _backgroundView = [[UIView alloc] initWithFrame:self.bounds];
     _backgroundView.layer.cornerRadius = self.roundness;
     _backgroundView.layer.borderWidth = 1.0f;
-    _backgroundView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.0f];
+    _backgroundView.backgroundColor = [UIColor.blackColor colorWithAlphaComponent:0.0f];
     _backgroundView.layer.borderColor = [self.borderColor CGColor];
     
     return _backgroundView;
@@ -145,9 +145,9 @@
                               floorf(self.backgroundView.frame.size.height / 2.0f));
     _textLabel = [[UILabel alloc] initWithFrame:frame];
     _textLabel.font = [UIFont boldSystemFontOfSize:18];
-    _textLabel.textColor = [UIColor whiteColor];
+    _textLabel.textColor = UIColor.whiteColor;
     _textLabel.alpha = 0.0f;
-    _textLabel.backgroundColor = [UIColor clearColor];
+    _textLabel.backgroundColor = UIColor.clearColor;
     _textLabel.textAlignment = NSTextAlignmentCenter;
     _textLabel.numberOfLines = 0;
     if (self.text != nil) _textLabel.text = self.text;
@@ -164,7 +164,7 @@
 }
 
 - (UIView *)configureViewForCentering:(UIView *)view {
-    view.backgroundColor = [UIColor clearColor];
+    view.backgroundColor = UIColor.clearColor;
     view.contentMode = UIViewContentModeCenter;
     CGRect frame = view.frame;
     frame.origin = CGPointMake((self.backgroundView.frame.size.width - frame.size.width) / 2, kBDKNotifyHUDDefaultPadding);

@@ -37,7 +37,7 @@ class LoadingView: UIView {
     init() {
         super.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
 
-        backgroundColor = UIColor.globalTint()
+        backgroundColor = UIColor.globalTint
         alpha = 0.70
         layer.cornerRadius = 5
         isUserInteractionEnabled = false
@@ -49,9 +49,7 @@ class LoadingView: UIView {
     func initLoadingLabel() {
         loadingLabel = UILabel(frame: CGRect(x: 15, y: 65, width: 170, height: 20))
         loadingLabel?.backgroundColor = UIColor.clear
-        if let aColor = UIColor.background() {
-            loadingLabel?.textColor = aColor
-        }
+        loadingLabel?.textColor = UIColor.white
         let loadingText = "\(kLocalizedLoading)..."
         loadingLabel?.text = loadingText
         loadingLabel?.textAlignment = .center

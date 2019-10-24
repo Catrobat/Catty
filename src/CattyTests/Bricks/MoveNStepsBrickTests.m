@@ -52,7 +52,7 @@
     SpriteObject *spriteObject = [[SpriteObject alloc] init];
     
     self.spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:spriteObject];
-    self.spriteNode.color = [UIColor blackColor];
+    self.spriteNode.color = UIColor.blackColor;
     self.spriteNode.size = CGSizeMake(OBJECT_WIDTH, OBJECT_HEIGHT);
     [self.scene addChild:self.spriteNode];
     

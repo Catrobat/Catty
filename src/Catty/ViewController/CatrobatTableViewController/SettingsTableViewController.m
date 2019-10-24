@@ -24,38 +24,35 @@
 #import "TermsOfUseOptionTableViewController.h"
 #import "AboutPoketCodeOptionTableViewController.h"
 #import "LanguageTranslationDefines.h"
-#import "NetworkDefines.h"
-#import "UIColor+CatrobatUIColorExtensions.h"
 #import "KeychainUserDefaultsDefines.h"
-#import "Pocket_Code-Swift.h"
 #import "CatrobatTableViewController.h"
-
+#import "Pocket_Code-Swift.h"
 
 @implementation SettingsTableViewController
 
 - (void)setup {
     
     self.title = kLocalizedSettings;
-    self.view.backgroundColor = [UIColor backgroundColor];
-    self.view.tintColor = [UIColor globalTintColor];
+    self.view.backgroundColor = UIColor.background;
+    self.view.tintColor = UIColor.globalTint;
     
     [self addSection:[BOTableViewSection sectionWithHeaderTitle:@"" handler:^(BOTableViewSection *section) {
         
         if ([Util isPhiroActivated]) {
             [section addCell:[BOSwitchTableViewCell cellWithTitle:kLocalizedPhiroBricks key:kUsePhiroBricks handler:^(BOSwitchTableViewCell *cell) {
-                cell.backgroundColor = [UIColor backgroundColor];
-                cell.mainColor = [UIColor globalTintColor];
-                cell.toggleSwitch.tintColor = [UIColor globalTintColor];
-                [cell.toggleSwitch setOnTintColor:[UIColor globalTintColor]];
+                cell.backgroundColor = UIColor.background;
+                cell.mainColor = UIColor.globalTint;
+                cell.toggleSwitch.tintColor = UIColor.globalTint;
+                [cell.toggleSwitch setOnTintColor:UIColor.globalTint];
             }]];
         }
         
         if ([Util isArduinoActivated]) {
             [section addCell:[BOSwitchTableViewCell cellWithTitle:kLocalizedArduinoBricks key:kUseArduinoBricks handler:^(BOSwitchTableViewCell *cell) {
-                cell.backgroundColor = [UIColor backgroundColor];
-                cell.mainColor = [UIColor globalTintColor];
-                cell.toggleSwitch.tintColor = [UIColor globalTintColor];
-                [cell.toggleSwitch setOnTintColor:[UIColor globalTintColor]];
+                cell.backgroundColor = UIColor.background;
+                cell.mainColor = UIColor.globalTint;
+                cell.toggleSwitch.tintColor = UIColor.globalTint;
+                [cell.toggleSwitch setOnTintColor:UIColor.globalTint];
             }]];
         }
         
@@ -68,8 +65,8 @@
         [self addSection:[BOTableViewSection sectionWithHeaderTitle:@"" handler:^(BOTableViewSection *section) {
             if((service.phiro != nil || service.arduino != nil)){
                 [section addCell:[BOButtonTableViewCell cellWithTitle:kLocalizedDisconnectAllDevices key:nil handler:^(BOButtonTableViewCell *cell) {
-                    cell.backgroundColor = [UIColor backgroundColor];
-                    cell.mainColor = [UIColor globalTintColor];
+                    cell.backgroundColor = UIColor.background;
+                    cell.mainColor = UIColor.globalTint;
                     cell.actionBlock = ^{
                         [weakSelf disconnect];
                     };
@@ -79,8 +76,8 @@
             NSArray *tempArray = [[NSUserDefaults standardUserDefaults] arrayForKey:@"KnownBluetoothDevices"];
             if(tempArray.count) {
                 [section addCell:[BOButtonTableViewCell cellWithTitle:kLocalizedRemoveKnownDevices key:nil handler:^(BOButtonTableViewCell *cell) {
-                    cell.backgroundColor = [UIColor backgroundColor];
-                    cell.mainColor = [UIColor globalTintColor];
+                    cell.backgroundColor = UIColor.background;
+                    cell.mainColor = UIColor.globalTint;
                     cell.actionBlock = ^{
                         [weakSelf removeKnownDevices];
                     };
@@ -96,8 +93,8 @@
     {
         [self addSection:[BOTableViewSection sectionWithHeaderTitle:@"" handler:^(BOTableViewSection *section) {
             [section addCell:[BOButtonTableViewCell cellWithTitle:kLocalizedLogout key:nil handler:^(BOButtonTableViewCell *cell) {
-                cell.backgroundColor = [UIColor backgroundColor];
-                cell.mainColor = [UIColor varibaleBrickRedColor];
+                cell.backgroundColor = UIColor.background;
+                cell.mainColor = UIColor.variableBrickRed;
                 cell.actionBlock = ^{
                     [weakSelf logoutUser];
                     [self.navigationController popViewControllerAnimated:YES];
@@ -109,28 +106,28 @@
     [self addSection:[BOTableViewSection sectionWithHeaderTitle:@"" handler:^(BOTableViewSection *section) {
         [section addCell:[BOChoiceTableViewCell cellWithTitle:kLocalizedAboutPocketCode key:@"choice_2" handler:^(BOChoiceTableViewCell *cell) {
             cell.destinationViewController = [AboutPoketCodeOptionTableViewController new];
-            cell.backgroundColor = [UIColor backgroundColor];
-            cell.mainColor = [UIColor globalTintColor];
+            cell.backgroundColor = UIColor.background;
+            cell.mainColor = UIColor.globalTint;
         }]];
         [section addCell:[BOChoiceTableViewCell cellWithTitle:kLocalizedTermsOfUse key:@"choice_2" handler:^(BOChoiceTableViewCell *cell) {
             cell.destinationViewController = [TermsOfUseOptionTableViewController new];
-            cell.backgroundColor = [UIColor backgroundColor];
-            cell.mainColor = [UIColor globalTintColor];
+            cell.backgroundColor = UIColor.background;
+            cell.mainColor = UIColor.globalTint;
         }]];
     }]];
     
     [self addSection:[BOTableViewSection sectionWithHeaderTitle:@"" handler:^(BOTableViewSection *section) {
         
         [section addCell:[BOButtonTableViewCell cellWithTitle:kLocalizedPrivacySettings key:nil handler:^(BOButtonTableViewCell *cell) {
-            cell.backgroundColor = [UIColor backgroundColor];
-            cell.mainColor = [UIColor globalTintColor];
+            cell.backgroundColor = UIColor.background;
+            cell.mainColor = UIColor.globalTint;
             cell.actionBlock = ^{
                 [weakSelf openPrivacySettings];
             };
         }]];
         [section addCell:[BOButtonTableViewCell cellWithTitle:kLocalizedRateUs key:nil handler:^(BOButtonTableViewCell *cell) {
-            cell.backgroundColor = [UIColor backgroundColor];
-            cell.mainColor = [UIColor globalTintColor];
+            cell.backgroundColor = UIColor.background;
+            cell.mainColor = UIColor.globalTint;
             cell.actionBlock = ^{
                 [weakSelf openRateUsURL];
             };
@@ -140,8 +137,6 @@
                              [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]];
         section.footerTitle = version;
     }]];
-    
-    
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -160,7 +155,7 @@
 
 - (void)openRateUsURL
 {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:kAppStoreURL]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:NetworkDefines.appStoreUrl]];
 }
 
 - (void)openPrivacySettings

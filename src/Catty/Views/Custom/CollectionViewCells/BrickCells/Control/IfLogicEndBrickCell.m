@@ -21,6 +21,7 @@
  */
 
 #import "IfLogicEndBrickCell.h"
+#import "Pocket_Code-Swift.h"
 
 @interface IfLogicEndBrickCell ()
 @property (nonatomic, strong) UILabel *textLabel;
@@ -30,7 +31,7 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.controlBrickOrangeColor strokeColor:UIColor.controlBrickStrokeColor height:smallBrick width:[Util screenWidth]];
+    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.controlBrickOrange strokeColor:UIColor.controlBrickStroke height:smallBrick width:[Util screenWidth]];
 }
 
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews

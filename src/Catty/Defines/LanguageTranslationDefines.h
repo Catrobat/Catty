@@ -467,7 +467,6 @@
 #define kLocalizedConfirmPassword NSLocalizedString(@"Confirm Password", nil)
 #define kLocalizedEmail NSLocalizedString(@"Email", nil)
 #define kLocalizedRegister NSLocalizedString(@"Create account", nil)
-#define kLocalizedLoginOrRegister NSLocalizedString(@"Login/Register", nil)
 #define kLocalizedUploadProject NSLocalizedString(@"Upload Project", nil)
 #define kLocalizedLoginUsernameNecessary NSLocalizedString(@"Username must not be blank", nil)
 #define kLocalizedLoginEmailNotValid NSLocalizedString(@"Your email seems to be invalid", nil)

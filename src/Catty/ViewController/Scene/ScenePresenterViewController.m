@@ -27,8 +27,8 @@
 #import "FlashHelper.h"
 #import "CameraPreviewHandler.h"
 #import "CatrobatLanguageDefines.h"
-#import "Pocket_Code-Swift.h"
 #import "RuntimeImageCache.h"
+#import "Pocket_Code-Swift.h"
 
 @interface ScenePresenterViewController() <UIActionSheetDelegate>
 @property (nonatomic, strong) CBScene *scene;
@@ -63,7 +63,7 @@
 {
     [super viewDidLoad];
     [self.view addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)]];
-    self.skView.backgroundColor = UIColor.backgroundColor;
+    self.skView.backgroundColor = UIColor.background;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -71,9 +71,9 @@
     [super viewWillAppear:animated];
     
     UIApplication.sharedApplication.idleTimerDisabled = YES;
-    UIApplication.sharedApplication.statusBarHidden = YES;
-    self.navigationController.navigationBar.hidden = YES;
-    self.navigationController.toolbarHidden = YES;
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
+    [self.navigationController setToolbarHidden:YES animated:animated];
+    
     // disable swipe back gesture
     if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
         self.navigationController.interactivePopGestureRecognizer.enabled = NO;
@@ -108,9 +108,9 @@
 {
     [super viewWillDisappear:animated];
     [self.menuView removeFromSuperview];
-    self.navigationController.navigationBar.hidden = NO;
-    self.navigationController.toolbarHidden = NO;
-    UIApplication.sharedApplication.statusBarHidden = NO;
+    
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
+    [self.navigationController setToolbarHidden:NO animated:animated];
     UIApplication.sharedApplication.idleTimerDisabled = NO;
     
     // reenable swipe back gesture
@@ -169,7 +169,7 @@
 - (void)setupLabel:(NSString*)name andView:(UIButton*)label
 {
     [label setTitle:name forState:UIControlStateNormal];
-    label.tintColor = [UIColor navTintColor];
+    label.tintColor = UIColor.navTint;
     label.titleLabel.font = [UIFont fontWithName:@"Helvetica Neue" size:(14.0)];
     label.titleLabel.textAlignment = NSTextAlignmentCenter;
 }
@@ -213,41 +213,41 @@
 
 - (void)setUpGridView
 {
-    self.gridView.backgroundColor = [UIColor clearColor];
+    self.gridView.backgroundColor = UIColor.clearColor;
     UIView *xArrow = [[UIView alloc] initWithFrame:CGRectMake(0,[Util screenHeight]/2,[Util screenWidth],1)];
-    xArrow.backgroundColor = [UIColor redColor];
+    xArrow.backgroundColor = UIColor.redColor;
     [self.gridView addSubview:xArrow];
     UIView *yArrow = [[UIView alloc] initWithFrame:CGRectMake([Util screenWidth]/2,0,1,[Util screenHeight])];
-    yArrow.backgroundColor = [UIColor redColor];
+    yArrow.backgroundColor = UIColor.redColor;
     [self.gridView addSubview:yArrow];
     // nullLabel
     UILabel *nullLabel = [[UILabel alloc] initWithFrame:CGRectMake([Util screenWidth]/2 + 5, [Util screenHeight]/2 + 5, 10, 15)];
     nullLabel.text = @"0";
-    nullLabel.textColor = [UIColor redColor];
+    nullLabel.textColor = UIColor.redColor;
     [self.gridView addSubview:nullLabel];
     // positveWidth
     UILabel *positiveWidth = [[UILabel alloc] initWithFrame:CGRectMake([Util screenWidth]- 40, [Util screenHeight]/2 + 5, 30, 15)];
     positiveWidth.text = [NSString stringWithFormat:@"%d",(int)self.project.header.screenWidth.floatValue/2];
-    positiveWidth.textColor = [UIColor redColor];
+    positiveWidth.textColor = UIColor.redColor;
     [positiveWidth sizeToFit];
     positiveWidth.frame = CGRectMake([Util screenWidth] - positiveWidth.frame.size.width - 5, [Util screenHeight]/2 + 5, positiveWidth.frame.size.width, positiveWidth.frame.size.height);
     [self.gridView addSubview:positiveWidth];
     // negativeWidth
     UILabel *negativeWidth = [[UILabel alloc] initWithFrame:CGRectMake(5, [Util screenHeight]/2 + 5, 40, 15)];
     negativeWidth.text = [NSString stringWithFormat:@"-%d",(int)self.project.header.screenWidth.floatValue/2];
-    negativeWidth.textColor = [UIColor redColor];
+    negativeWidth.textColor = UIColor.redColor;
     [negativeWidth sizeToFit];
     [self.gridView addSubview:negativeWidth];
     // positveHeight
     UILabel *positiveHeight = [[UILabel alloc] initWithFrame:CGRectMake([Util screenWidth]/2 + 5, [Util screenHeight] - 20, 40, 15)];
     positiveHeight.text = [NSString stringWithFormat:@"-%d",(int)self.project.header.screenHeight.floatValue/2];
-    positiveHeight.textColor = [UIColor redColor];
+    positiveHeight.textColor = UIColor.redColor;
     [positiveHeight sizeToFit];
     [self.gridView addSubview:positiveHeight];
     // negativeHeight
     UILabel *negativeHeight = [[UILabel alloc] initWithFrame:CGRectMake([Util screenWidth]/2 + 5,5, 40, 15)];
     negativeHeight.text = [NSString stringWithFormat:@"%d",(int)self.project.header.screenHeight.floatValue/2];
-    negativeHeight.textColor = [UIColor redColor];
+    negativeHeight.textColor = UIColor.redColor;
     [negativeHeight sizeToFit];
     [self.gridView addSubview:negativeHeight];
     
@@ -365,9 +365,6 @@
         previousScene.userInteractionEnabled = YES;
     });
     
-    
-    [self.parentViewController.navigationController setToolbarHidden:NO];
-    [self.parentViewController.navigationController setNavigationBarHidden:NO];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

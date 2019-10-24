@@ -16,21 +16,31 @@ or alternatively using `brew cask install fastlane`
 
 # Available Actions
 ## iOS
+### ios create_build
+```
+fastlane ios create_build
+```
+Create an ipa build (options: scheme)
+### ios build_catty
+```
+fastlane ios build_catty
+```
+Create builds at CI pipeline
 ### ios upload_to_browserstack
 ```
 fastlane ios upload_to_browserstack
 ```
 Upload Development Build to Browserstack
-### ios create_build
+### ios tests
 ```
-fastlane ios create_build
+fastlane ios tests
 ```
-Create an ipa Build (options: scheme)
-### ios po_review
+Run tests
+### ios test_reports
 ```
-fastlane ios po_review
+fastlane ios test_reports
 ```
-Prepare for PO Review
+Collate all test reports
 ### ios crowdin_upload
 ```
 fastlane ios crowdin_upload
@@ -46,21 +56,16 @@ Download all Translations from Crowdin
 fastlane ios update_translations
 ```
 Update lane for Crowdin translations
-### ios tests
-```
-fastlane ios tests
-```
-Run tests
 ### ios release
 ```
 fastlane ios release
 ```
-Release Pocket Code
+Release Pocket Code to Testflight
 ### ios playground
 ```
 fastlane ios playground
 ```
-Use this lane as playground
+
 
 ----
 

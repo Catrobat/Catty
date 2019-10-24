@@ -22,26 +22,19 @@
 
 import XCTest
 
-class PocketCodeMainScreenTests: XCTestCase, UITestProtocol {
+class PocketCodeMainScreenTests: XCTestCase {
 
     var app: XCUIApplication!
 
     override func setUp() {
         super.setUp()
-
-        continueAfterFailure = false
-        XCUIApplication().launch()
-
-        app = XCUIApplication()
-
-        dismissWelcomeScreenIfShown()
-        restoreDefaultProject()
+        app = launchAppWithDefaultProject()
     }
 
     func testContinue() {
         app.tables.staticTexts[kLocalizedContinue].tap()
 
-        XCTAssert(app.navigationBars[kLocalizedMyFirstProject].exists)
+        XCTAssert(waitForElementToAppear(app.navigationBars[kLocalizedMyFirstProject]).exists)
     }
 
     func testNew() {
@@ -83,16 +76,16 @@ class PocketCodeMainScreenTests: XCTestCase, UITestProtocol {
 
         for (projectName, _) in progNamesErrorMsgMap {
             app.tables.staticTexts[kLocalizedNew].tap()
-            let alertQuery = app.alerts[kLocalizedNewProject]
-            alertQuery.textFields[kLocalizedEnterYourProjectNameHere].tap()
-            alertQuery.textFields[kLocalizedEnterYourProjectNameHere].typeText(projectName)
-            alertQuery.buttons[kLocalizedOK].tap()
+            let alertQuery = waitForElementToAppear(app.alerts[kLocalizedNewProject])
+            waitForElementToAppear(alertQuery.textFields[kLocalizedEnterYourProjectNameHere]).tap()
+            waitForElementToAppear(alertQuery.textFields[kLocalizedEnterYourProjectNameHere]).typeText(projectName)
+            waitForElementToAppear(alertQuery.buttons[kLocalizedOK]).tap()
 
             let alert = waitForElementToAppear(app.alerts[kLocalizedPocketCode])
             XCTAssert(alert.exists)
-            alert.buttons[kLocalizedOK].tap()
+            waitForElementToAppear(alert.buttons[kLocalizedOK]).tap()
 
-            alertQuery.buttons[kLocalizedCancel].tap()
+            waitForElementToAppear(alertQuery.buttons[kLocalizedCancel]).tap()
         }
     }
 

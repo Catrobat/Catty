@@ -21,6 +21,7 @@
  */
 
 #import "InsertItemIntoUserListBrickCell.h"
+#import "Pocket_Code-Swift.h"
 
 @interface InsertItemIntoUserListBrickCell ()
 @property (nonatomic, strong) UILabel *firstRowTextLabel1;
@@ -32,7 +33,7 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.varibaleBrickRedColor strokeColor:UIColor.variableBrickStrokeColor height:largeBrick width:[Util screenWidth]];
+    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.variableBrickRed strokeColor:UIColor.variableBrickStroke height:largeBrick width:[Util screenWidth]];
 }
 
 + (CGFloat)cellHeight

@@ -194,7 +194,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor backgroundColor];
+    self.view.backgroundColor = UIColor.background;
     NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
     [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
     [self showFormulaEditor];
@@ -222,11 +222,11 @@ NS_ENUM(NSInteger, ButtonIndex) {
     if (@available(iOS 11, *)) {
         topInsetNavigationBar = [UIApplication sharedApplication].statusBarFrame.size.height;
         UIView *insetNavBarView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.view.frame.size.width, topInsetNavigationBar)];
-        insetNavBarView.backgroundColor = [UIColor globalTintColor];
+        insetNavBarView.backgroundColor = UIColor.globalTint;
         [self.view addSubview:insetNavBarView];
     }
     UINavigationBar *myNav = [[UINavigationBar alloc]initWithFrame:CGRectMake(0.0f, topInsetNavigationBar, self.view.frame.size.width, kFormulaEditorTopOffset)];
-    [UINavigationBar appearance].barTintColor = [UIColor globalTintColor];
+    [UINavigationBar appearance].barTintColor = UIColor.globalTint;
     myNav.translucent = NO;
     [self.view addSubview:myNav];
     
@@ -235,11 +235,11 @@ NS_ENUM(NSInteger, ButtonIndex) {
                                                      target:self
                                                             action:@selector(dismissFormulaEditorViewController)];
     
-    item.tintColor = [UIColor navTintColor];
+    item.tintColor = UIColor.navTint;
     UINavigationItem *navigItem = [[UINavigationItem alloc] initWithTitle:@""];
     navigItem.leftBarButtonItem = item;
     myNav.items = [NSArray arrayWithObjects: navigItem,nil];
-    self.deleteButton.shapeStrokeColor = [UIColor navTintColor];
+    self.deleteButton.shapeStrokeColor = UIColor.navTint;
     
     [self setupButtons];
     
@@ -324,7 +324,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 {
     self.variablePicker.delegate = self;
     self.variablePicker.dataSource = self;
-    self.variablePicker.tintColor = [UIColor globalTintColor];
+    self.variablePicker.tintColor = UIColor.globalTint;
     self.variableSourceProject = [[NSMutableArray alloc] init];
     self.variableSourceObject = [[NSMutableArray alloc] init];
     self.variableSource = [[NSMutableArray alloc] init];
@@ -334,12 +334,12 @@ NS_ENUM(NSInteger, ButtonIndex) {
     [self updateVariablePickerData];
     [self.variableSegmentedControl setTitle:kLocalizedObject forSegmentAtIndex:1];
     [self.variableSegmentedControl setTitle:kLocalizedProject forSegmentAtIndex:0];
-    self.variableSegmentedControl.tintColor = [UIColor globalTintColor];
+    self.variableSegmentedControl.tintColor = UIColor.globalTint;
     
     
     [self.varOrListSegmentedControl setTitle:kLocalizedVariables forSegmentAtIndex:0];
     [self.varOrListSegmentedControl setTitle:kLocalizedLists forSegmentAtIndex:1];
-    self.varOrListSegmentedControl.tintColor = [UIColor globalTintColor];
+    self.varOrListSegmentedControl.tintColor = UIColor.globalTint;
 }
 
 #pragma mark - localizeView
@@ -456,7 +456,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 - (void)updateDeleteButton:(BOOL)enabled
 {
-    self.deleteButton.shapeStrokeColor = enabled ? [UIColor navTintColor] : [UIColor grayColor];
+    self.deleteButton.shapeStrokeColor = enabled ? UIColor.navTint : UIColor.grayColor;
 }
 
 - (IBAction)compute:(id)sender
@@ -538,22 +538,22 @@ NS_ENUM(NSInteger, ButtonIndex) {
 -(void) colorFormulaEditor
 {
     for(UIButton *button in self.orangeTypeButton) {
-        [button setTitleColor:[UIColor formulaButtonTextColor] forState:UIControlStateNormal];
-        [button setBackgroundColor:[UIColor formulaEditorOperatorColor]];
-        [button setBackgroundImage:[UIImage imageWithColor:[UIColor formulaEditorOperandColor]] forState:UIControlStateHighlighted];
+        [button setTitleColor:UIColor.formulaButtonText forState:UIControlStateNormal];
+        [button setBackgroundColor:UIColor.formulaEditorOperator];
+        [button setBackgroundImage:[UIImage imageWithColor:UIColor.formulaEditorOperand] forState:UIControlStateHighlighted];
         [[button layer] setBorderWidth:1.0f];
-        [[button layer] setBorderColor:[UIColor formulaEditorBorderColor].CGColor];
+        [[button layer] setBorderColor:UIColor.formulaEditorBorder.CGColor];
         button.titleLabel.adjustsFontSizeToFitWidth = YES;
         button.titleLabel.minimumScaleFactor = 0.01f;
     }
     
     for(UIButton *button in self.normalTypeButton) {
-        [button setTitleColor:[UIColor formulaEditorOperandColor] forState:UIControlStateNormal];
-        [button setTitleColor:[UIColor backgroundColor] forState:UIControlStateHighlighted];
-        [button setBackgroundColor:[UIColor backgroundColor]];
-        [button setBackgroundImage:[UIImage imageWithColor:[UIColor formulaEditorOperandColor]] forState:UIControlStateHighlighted];
+        [button setTitleColor:UIColor.formulaEditorOperand forState:UIControlStateNormal];
+        [button setTitleColor:UIColor.background forState:UIControlStateHighlighted];
+        [button setBackgroundColor:UIColor.background];
+        [button setBackgroundImage:[UIImage imageWithColor:UIColor.formulaEditorOperand] forState:UIControlStateHighlighted];
         [[button layer] setBorderWidth:1.0f];
-        [[button layer] setBorderColor:[UIColor formulaEditorBorderColor].CGColor];
+        [[button layer] setBorderColor:UIColor.formulaEditorBorder.CGColor];
         button.titleLabel.adjustsFontSizeToFitWidth = YES;
         button.titleLabel.minimumScaleFactor = 0.01f;
         //    if([[self.normalTypeButton objectAtIndex:i] tag] == 3011)
@@ -561,15 +561,15 @@ NS_ENUM(NSInteger, ButtonIndex) {
         //        if(![self.brickCellData.brickCell.scriptOrBrick isKindOfClass:[SpeakBrick class]])
         //       {
         //            [[self.normalTypeButton objectAtIndex:i] setEnabled:NO];
-        //           [[self.normalTypeButton objectAtIndex:i] setTitleColor:[UIColor navTintColor] forState:UIControlStateNormal];
+        //           [[self.normalTypeButton objectAtIndex:i] setTitleColor:UIColor.navTint forState:UIControlStateNormal];
         //            }
         //        }
     }
     //    for(UIButton *button in self.toolTypeButton) {
-    //        [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    //        [button setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
     //        [button setTitleColor:[UIColor formulaEditorHighlightColor] forState:UIControlStateHighlighted];
-    //        [button setTitleColor:[UIColor utilityTintColor] forState:UIControlStateSelected];
-    //        [button setBackgroundColor:[UIColor backgroundColor]];
+    //        [button setTitleColor:UIColor.utilityTint forState:UIControlStateSelected];
+    //        [button setBackgroundColor:UIColor.background];
     //        [[button layer] setBorderWidth:1.0f];
     //        [[button layer] setBorderColor:[UIColor formulaEditorBorderColor].CGColor];
     //        button.titleLabel.adjustsFontSizeToFitWidth = YES;
@@ -577,27 +577,27 @@ NS_ENUM(NSInteger, ButtonIndex) {
     //    }
     
     for(UIButton *button in self.toolTypeButton) {
-        [button setTitleColor:[UIColor formulaButtonTextColor] forState:UIControlStateNormal];
-        [button setTitleColor:[UIColor formulaEditorOperatorColor] forState:UIControlStateSelected];
-        [button setBackgroundImage:[UIImage imageWithColor:[UIColor formulaEditorOperatorColor]] forState:UIControlStateNormal];
-        [button setBackgroundImage:[UIImage imageWithColor:[UIColor formulaButtonTextColor]] forState:UIControlStateSelected];
+        [button setTitleColor:UIColor.formulaButtonText forState:UIControlStateNormal];
+        [button setTitleColor:UIColor.formulaEditorOperator forState:UIControlStateSelected];
+        [button setBackgroundImage:[UIImage imageWithColor:UIColor.formulaEditorOperator] forState:UIControlStateNormal];
+        [button setBackgroundImage:[UIImage imageWithColor:UIColor.formulaButtonText] forState:UIControlStateSelected];
         [[button layer] setBorderWidth:1.0f];
-        [[button layer] setBorderColor:[UIColor formulaEditorBorderColor].CGColor];
+        [[button layer] setBorderColor:UIColor.formulaEditorBorder.CGColor];
         button.titleLabel.adjustsFontSizeToFitWidth = YES;
         button.titleLabel.minimumScaleFactor = 0.01f;
     }
     
     for(UIButton *button in self.highlightedButtons) {
-        [button setTitleColor:[UIColor formulaButtonTextColor] forState:UIControlStateNormal];
-        [button setTitleColor:[UIColor grayColor] forState:UIControlStateDisabled];
-        [button setBackgroundColor:[UIColor formulaEditorOperatorColor]];
-        [button setBackgroundImage:[UIImage imageWithColor:[UIColor formulaEditorOperandColor]] forState:UIControlStateSelected];
+        [button setTitleColor:UIColor.formulaButtonText forState:UIControlStateNormal];
+        [button setTitleColor:UIColor.grayColor forState:UIControlStateDisabled];
+        [button setBackgroundColor:UIColor.formulaEditorOperator];
+        [button setBackgroundImage:[UIImage imageWithColor:UIColor.formulaEditorOperand] forState:UIControlStateSelected];
         [[button layer] setBorderWidth:1.0f];
-        [[button layer] setBorderColor:[UIColor formulaEditorBorderColor].CGColor];
+        [[button layer] setBorderColor:UIColor.formulaEditorBorder.CGColor];
         button.titleLabel.adjustsFontSizeToFitWidth = YES;
         button.titleLabel.minimumScaleFactor = 0.01f;
     }
-    self.variableScrollView.backgroundColor = [UIColor backgroundColor];
+    self.variableScrollView.backgroundColor = UIColor.background;
     
 }
 
@@ -1024,7 +1024,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 - (NSAttributedString *)pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
     NSString *title = [self pickerView:pickerView titleForRow:row forComponent:component];
-    UIColor *color = [UIColor globalTintColor];
+    UIColor *color = UIColor.globalTint;
     NSAttributedString *attString = [[NSAttributedString alloc] initWithString:title attributes:@{NSForegroundColorAttributeName:color}];
     return attString;
 }
@@ -1231,7 +1231,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     if (note.object) {
         FormulaEditorTextView *textView = (FormulaEditorTextView *)note.object;
         BOOL containsText = textView.text.length > 0;
-        self.deleteButton.shapeStrokeColor = containsText ? [UIColor navTintColor] : [UIColor grayColor];
+        self.deleteButton.shapeStrokeColor = containsText ? UIColor.navTint : UIColor.grayColor;
         self.deleteButton.enabled = containsText;
     }
 }

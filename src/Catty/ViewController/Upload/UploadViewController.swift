@@ -75,7 +75,7 @@ class UploadViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.background()
+        view.backgroundColor = UIColor.background
         initProjectNameViewElements()
         initSizeViewElements()
         initDescriptionViewElements()
@@ -99,19 +99,20 @@ class UploadViewController: UIViewController {
     }
 
     func initProjectNameViewElements() {
-        projectNameLabel.textColor = UIColor.globalTint()
+        projectNameLabel.textColor = UIColor.globalTint
         projectNameLabel.text = kLocalizedName
         projectNameLabel.font = UIFont.boldSystemFont(ofSize: uploadFontSize)
 
-        projectNameTextField.textColor = UIColor.textTint()
-        projectNameTextField.backgroundColor = UIColor.white
         projectNameTextField.borderStyle = .roundedRect
+        projectNameTextField.layer.borderWidth = 1.0
+        projectNameTextField.layer.borderColor = UIColor.textViewBorderGray.cgColor
+        projectNameTextField.layer.cornerRadius = 3
         projectNameTextField.keyboardType = .default
         projectNameTextField.text = project?.header.programName!
     }
 
     func initSizeViewElements() {
-        sizeLabel.textColor = UIColor.globalTint()
+        sizeLabel.textColor = UIColor.globalTint
         sizeLabel.text = kLocalizedSize
         sizeLabel.font = UIFont.boldSystemFont(ofSize: uploadFontSize)
 
@@ -119,7 +120,7 @@ class UploadViewController: UIViewController {
         zipFileData = nil
         zipFileData = fileManager?.zip(project)
 
-        sizeValueLabel.textColor = UIColor.textTint()
+        sizeValueLabel.textColor = UIColor.textTint
         sizeValueLabel.font = UIFont.boldSystemFont(ofSize: uploadFontSize)
 
         guard let data = zipFileData else {
@@ -132,19 +133,19 @@ class UploadViewController: UIViewController {
     }
 
     func initDescriptionViewElements() {
-        descriptionLabel.textColor = UIColor.globalTint()
+        descriptionLabel.textColor = UIColor.globalTint
         descriptionLabel.text = kLocalizedDescription
         descriptionLabel.font = UIFont.boldSystemFont(ofSize: uploadFontSize)
 
-        descriptionTextView.textColor = UIColor.textTint()
         descriptionTextView.keyboardAppearance = .default
-        descriptionTextView.backgroundColor = UIColor.white
         descriptionTextView.keyboardType = .default
         descriptionTextView.text = project?.header.programDescription ?? ""
 
         descriptionTextView.layer.borderWidth = 1.0
-        descriptionTextView.layer.borderColor = UIColor.textViewBorderGray().cgColor
+        descriptionTextView.layer.borderColor = UIColor.textViewBorderGray.cgColor
         descriptionTextView.layer.cornerRadius = 8
+        descriptionTextView.textColor = UIColor.textTint
+        descriptionTextView.clipsToBounds = true
 
         //manual constraint (because we need to store the bottom anchor)
         descriptionTextViewBottomConstraint = descriptionTextView
@@ -276,8 +277,8 @@ class UploadViewController: UIViewController {
 
             //Warning: TestServer Uploads are restricted in size (about 1MB)!!!
 
-            let uploadUrl = Util.isProductionServerActivated() ? kUploadUrl : kTestUploadUrl
-            let urlString = "\(uploadUrl)/\(kConnectionUpload)"
+            let uploadUrl = NetworkDefines.uploadUrl
+            let urlString = "\(uploadUrl)/\(NetworkDefines.connectionUpload)"
 
             let request = NSMutableURLRequest()
             request.url = URL(string: urlString)
@@ -371,11 +372,12 @@ class UploadViewController: UIViewController {
                         debugPrint("Upload successful")
 
                         //Set unique Project-ID received from server
-                        var projectId: String?
-                        if let aTag = dictionary?[self.projectIDTag] {
-                            projectId = "\(aTag)"
-                            self.project?.header.programID = projectId
-                            self.project?.saveToDisk(withNotification: true)
+                        if let aTag = dictionary?[self.projectIDTag], let project = self.project {
+                            let projectId = "\(aTag)"
+
+                            DispatchQueue.main.async(execute: {
+                                self.project?.rename(toProjectName: project.header.programName, andProjectId: projectId)
+                            })
                         }
 
                         //Set new token but when? everytime is wrong

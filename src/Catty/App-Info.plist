@@ -15,6 +15,8 @@
 			</array>
 			<key>CFBundleTypeName</key>
 			<string>Catrobat Program</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>LSItemContentTypes</key>
 			<array>
 				<string>org.catrobat.pocketcode.catrobat</string>
@@ -36,11 +38,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.6.9</string>
+	<string>0.6.10</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>24</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>CatrobatApplicationName</key>
 	<string>Pocket Code (Catty iOS)</string>
 	<key>CatrobatBuildName</key>
@@ -59,8 +61,10 @@
 	<true/>
 	<key>LSSupportsOpeningDocumentsInPlace</key>
 	<true/>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>Communicate with your Arduino device using Bluetooth.</string>
 	<key>NSBluetoothPeripheralUsageDescription</key>
-	<string>Communicate with your Arduino device using Blueetoth.</string>
+	<string>Communicate with your Arduino device using Bluetooth.</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Import pictures from your device camera to use as Look or Background.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
@@ -85,8 +89,10 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UIUserInterfaceStyle</key>
+	<string>Light</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
-	<false/>
+	<true/>
 	<key>UTImportedTypeDeclarations</key>
 	<array>
 		<dict>

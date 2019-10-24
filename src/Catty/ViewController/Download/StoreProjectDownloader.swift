@@ -37,18 +37,18 @@ final class StoreProjectDownloader: StoreProjectDownloaderProtocol {
     func fetchSearchQuery(searchTerm: String, completion: @escaping (StoreProjectCollection.StoreProjectCollectionNumber?, StoreProjectDownloaderError?) -> Void) {
 
         guard let indexURL = URL(string: String(format: "%@/%@?q=%@&%@%i&%@%i&%@%@",
-                                                kConnectionHost,
-                                                kConnectionSearch,
+                                                NetworkDefines.connectionHost,
+                                                NetworkDefines.connectionSearch,
                                                 searchTerm.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? "",
-                                                kProjectsLimit,
-                                                kSearchStoreMaxResults,
-                                                kProjectsOffset,
+                                                NetworkDefines.projectsLimit,
+                                                NetworkDefines.searchStoreMaxResults,
+                                                NetworkDefines.projectsOffset,
                                                 0,
-                                                kMaxVersion,
+                                                NetworkDefines.maxVersion,
                                                 Util.catrobatLanguageVersion()))
             else { return }
 
-        self.session.dataTask(with: indexURL) { data, response, error in
+        self.session.dataTask(with: URLRequest(url: indexURL)) { data, response, error in
             let handleDataTaskCompletion: (Data?, URLResponse?, Error?) -> (items: StoreProjectCollection.StoreProjectCollectionNumber?, error: StoreProjectDownloaderError?)
             handleDataTaskCompletion = { data, response, error in
                 if let error = error as NSError?, error.domain == NSURLErrorDomain && error.code == NSURLErrorTimedOut {
@@ -79,26 +79,27 @@ final class StoreProjectDownloader: StoreProjectDownloaderProtocol {
 
         switch forType {
         case .featured:
-            guard let url = URL(string: "\(kConnectionHost)/\(kConnectionFeatured)?\(kProjectsLimit)\(kChartProjectsMaxResults)") else { return }
+            let featuredUrl = "\(NetworkDefines.connectionHost)/\(NetworkDefines.connectionFeatured)?\(NetworkDefines.projectsLimit)\(NetworkDefines.chartProjectsMaxResults)"
+            guard let url = URL(string: featuredUrl) else { return }
             indexURL = url
 
         case .mostDownloaded:
-            guard let url = URL(string: "\(kConnectionHost)/\(kConnectionMostDownloaded)?\(kProjectsOffset)"
-                + "\(offset)&\(kProjectsLimit)\(kRecentProjectsMaxResults)&\(kMaxVersion)\(version)") else { return }
+            guard let url = URL(string: "\(NetworkDefines.connectionHost)/\(NetworkDefines.connectionMostDownloaded)?\(NetworkDefines.projectsOffset)"
+                + "\(offset)&\(NetworkDefines.projectsLimit)\(NetworkDefines.recentProjectsMaxResults)&\(NetworkDefines.maxVersion)\(version)") else { return }
             indexURL = url
 
         case .mostViewed:
-            guard let url = URL(string: "\(kConnectionHost)/\(kConnectionMostViewed)?\(kProjectsOffset)"
-                + "\(offset)&\(kProjectsLimit)\(kRecentProjectsMaxResults)&\(kMaxVersion)\(version)") else { return }
+            guard let url = URL(string: "\(NetworkDefines.connectionHost)/\(NetworkDefines.connectionMostViewed)?\(NetworkDefines.projectsOffset)"
+                + "\(offset)&\(NetworkDefines.projectsLimit)\(NetworkDefines.recentProjectsMaxResults)&\(NetworkDefines.maxVersion)\(version)") else { return }
             indexURL = url
 
         case .mostRecent:
-            guard let url = URL(string: "\(kConnectionHost)/\(kConnectionRecent)?\(kProjectsOffset)"
-                + "\(offset)&\(kProjectsLimit)\(kRecentProjectsMaxResults)&\(kMaxVersion)\(version)") else { return }
+            guard let url = URL(string: "\(NetworkDefines.connectionHost)/\(NetworkDefines.connectionRecent)?\(NetworkDefines.projectsOffset)"
+                + "\(offset)&\(NetworkDefines.projectsLimit)\(NetworkDefines.recentProjectsMaxResults)&\(NetworkDefines.maxVersion)\(version)") else { return }
             indexURL = url
         }
 
-        self.session.dataTask(with: indexURL) { data, response, error in
+        self.session.dataTask(with: URLRequest(url: indexURL)) { data, response, error in
             let handleDataTaskCompletion: (Data?, URLResponse?, Error?) -> (items: StoreProjectCollection.StoreProjectCollectionText?, error: StoreProjectDownloaderError?)
             handleDataTaskCompletion = { data, response, error in
                 if let error = error as NSError?, error.domain == NSURLErrorDomain && error.code == NSURLErrorTimedOut {
@@ -126,9 +127,9 @@ final class StoreProjectDownloader: StoreProjectDownloaderProtocol {
     }
 
     func downloadProject(for project: StoreProject, completion: @escaping (StoreProject?, StoreProjectDownloaderError?) -> Void) {
-        guard let indexURL = URL(string: "\(kConnectionHost)/\(kConnectionIDQuery)?id=\(project.projectId)") else { return }
+        guard let indexURL = URL(string: "\(NetworkDefines.connectionHost)/\(NetworkDefines.connectionIDQuery)?id=\(project.projectId)") else { return }
 
-        self.session.dataTask(with: indexURL) { data, response, error in
+        self.session.dataTask(with: URLRequest(url: indexURL)) { data, response, error in
             let handleDataTaskCompletion: (Data?, URLResponse?, Error?) -> (project: StoreProject?, error: StoreProjectDownloaderError?)
             handleDataTaskCompletion = { data, response, error in
                 guard let response = response as? HTTPURLResponse else { return (nil, .unexpectedError) }
@@ -151,7 +152,7 @@ final class StoreProjectDownloader: StoreProjectDownloaderProtocol {
 
     static func defaultSession() -> URLSession {
         let config = URLSessionConfiguration.ephemeral
-        config.timeoutIntervalForRequest = Double(kConnectionTimeout)
+        config.timeoutIntervalForRequest = Double(NetworkDefines.connectionTimeout)
         return URLSession(configuration: config, delegate: nil, delegateQueue: nil)
     }
 }

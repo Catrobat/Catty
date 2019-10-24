@@ -13,7 +13,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor clearColor];
+        self.backgroundColor = UIColor.clearColor;
     }
     return self;
 }
@@ -133,7 +133,7 @@
     CGContextRestoreGState(c);
 
     // Grid
-    CGContextSetStrokeColorWithColor(c, [UIColor blackColor].CGColor);
+    CGContextSetStrokeColorWithColor(c, UIColor.blackColor.CGColor);
     CGContextSetLineWidth(c, 1);
 
     CGContextAddRect(c, self.clearRect);

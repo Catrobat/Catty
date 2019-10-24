@@ -21,7 +21,7 @@
  */
 
 #import "DarkBlueGradientImageDetailCell.h"
-#import "UIColor+CatrobatUIColorExtensions.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation DarkBlueGradientImageDetailCell
 
@@ -33,7 +33,7 @@
 
 - (void)configureImageCell
 {
-    self.titleLabel.textColor = [UIColor buttonTintColor];
+    self.titleLabel.textColor = UIColor.buttonTint;
 }
 
 @end

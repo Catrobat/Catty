@@ -35,7 +35,7 @@ class BluetoothDevicesTableViewController: UITableViewController {
         self.view.addSubview(loadingView)
         self.loadingView = loadingView
         self.scenePresenterVC = ScenePresenterViewController()
-        self.tableView.backgroundColor = UIColor.background()
+        self.tableView.backgroundColor = UIColor.background
     }
 
     func updateWhenActive() {

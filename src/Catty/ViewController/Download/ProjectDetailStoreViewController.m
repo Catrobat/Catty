@@ -23,11 +23,9 @@
 #import "ProjectDetailStoreViewController.h"
 #import "AppDelegate.h"
 #import "ButtonTags.h"
-#import "UIColor+CatrobatUIColorExtensions.h"
 #import "SegueDefines.h"
 #import "ProjectTableViewController.h"
 #import "Util.h"
-#import "NetworkDefines.h"
 #import "EVCircularProgressView.h"
 #import "CreateView.h"
 #import "ProjectUpdateDelegate.h"
@@ -86,7 +84,7 @@
     self.duplicateName = self.project.name;
     [self initNavigationBar];
     self.hidesBottomBarWhenPushed = YES;
-    self.view.backgroundColor = [UIColor backgroundColor];
+    self.view.backgroundColor = UIColor.background;
     NSDebug(@"%@",self.project.author);
     [self loadProject:self.project];
     //    self.scrollViewOutlet.exclusiveTouch = YES;
@@ -177,8 +175,13 @@
         // That's because the user could have renamed the downloaded project.
         NSString *localProjectName = [Project projectNameForProjectID:self.project.projectID];
         
+        [self showLoadingView];
+        [CATransaction flush];
+        
         // check if project loaded successfully -> not nil
         self.loadedProject = [Project projectWithLoadingInfo:[ProjectLoadingInfo projectLoadingInfoForProjectWithName:localProjectName projectID:self.project.projectID]];
+        
+        [self hideLoadingView];
         
         if (self.loadedProject) {
             return YES;
@@ -251,7 +254,7 @@
 {
     NSDebug(@"ReportMessage::::::%@",message);
     
-    NSString *reportUrl = [Util isProductionServerActivated] ? kReportProjectUrl : kTestReportProjectUrl;
+    NSString *reportUrl = NetworkDefines.reportProjectUrl;
     
     NSString *post = [NSString stringWithFormat:@"%@=%@&%@=%@",@"program",self.project.projectID,@"note",message];
     NSData *postData = [post dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
@@ -388,7 +391,7 @@
 {
     if(!self.loadingView) {
         self.loadingView = [[LoadingView alloc] init];
-        //        [self.loadingView setBackgroundColor:[UIColor globalTintColor]];
+        //        [self.loadingView setBackgroundColor:UIColor.globalTint];
         [self.view addSubview:self.loadingView];
     }
     [self.loadingView show];

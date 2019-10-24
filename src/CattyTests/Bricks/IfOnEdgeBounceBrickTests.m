@@ -59,7 +59,7 @@
     self.spriteObject = [[SpriteObject alloc] init];
     CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:self.spriteObject];
     [self.scene addChild:spriteNode];
-    spriteNode.color = [UIColor blackColor];
+    spriteNode.color = UIColor.blackColor;
     spriteNode.size = CGSizeMake(OBJECT_WIDTH, OBJECT_HEIGHT);
     self.spriteObject.spriteNode = spriteNode;
     spriteNode.catrobatPosition = CGPointMake(0, 0);

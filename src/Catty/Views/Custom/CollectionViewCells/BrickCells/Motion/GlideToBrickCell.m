@@ -21,6 +21,7 @@
  */
 
 #import "GlideToBrickCell.h"
+#import "Pocket_Code-Swift.h"
 
 @interface GlideToBrickCell ()
 @property (nonatomic, strong) UILabel *firstRowLeftLabel;
@@ -33,7 +34,7 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.motionBrickBlueColor strokeColor:UIColor.motionBrickStrokeColor height:largeBrick width:[Util screenWidth]];
+    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.motionBrickBlue strokeColor:UIColor.motionBrickStroke height:largeBrick width:[Util screenWidth]];
 }
 
 + (CGFloat)cellHeight

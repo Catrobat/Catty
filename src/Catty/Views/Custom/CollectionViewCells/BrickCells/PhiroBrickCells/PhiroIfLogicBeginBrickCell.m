@@ -21,6 +21,7 @@
  */
 
 #import "PhiroIfLogicBeginBrickCell.h"
+#import "Pocket_Code-Swift.h"
 
 @interface PhiroIfLogicBeginBrickCell ()
 @property (nonatomic, strong) UILabel *leftTextLabel;
@@ -31,7 +32,7 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    [BrickShapeFactory drawSquareBrickShapeWithFillColor:[UIColor controlBrickOrangeColor] strokeColor:[UIColor controlBrickStrokeColor] height:smallBrick width:[Util screenWidth]];
+    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.controlBrickOrange strokeColor:UIColor.controlBrickStroke height:smallBrick width:[Util screenWidth]];
 }
 
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews

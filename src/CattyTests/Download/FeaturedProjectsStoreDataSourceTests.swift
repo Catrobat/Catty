@@ -49,7 +49,7 @@ class FeaturedProjectsStoreDataSourceTests: XCTestCase {
 
     func testProjectEmpty() {
         self.downloaderMock.project =
-            StoreProject(projectId: 0,
+            StoreProject(projectId: "",
                          projectName: "",
                          projectNameShort: "",
                          author: "",

@@ -78,7 +78,6 @@ let license3rdPartyDict: [String: License] = [
     "GDataXMLNode": .Apache2,
     "JNKeychain": .MIT,
     "SwellAll": .Apache2,
-    "minizip": .zlib,
     "crypt": .BSD,
     "ioapi": .zlib,
     "mztools": .zlib,
@@ -112,7 +111,8 @@ let license3rdPartyDict: [String: License] = [
     "MXPagerViewController": .MIT,
     "MXParallaxHeader": .MIT,
     "MXScrollView": .MIT,
-    "MXScrollViewController": .MIT
+    "MXScrollViewController": .MIT,
+    "AudioKit": .MIT
 ]
 
 let licenseCheckDirs: [String: License] = [

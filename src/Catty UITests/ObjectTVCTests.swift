@@ -22,41 +22,34 @@
 
 import XCTest
 
-class ObjectTVCTests: XCTestCase, UITestProtocol {
+class ObjectTVCTests: XCTestCase {
+
+    var app: XCUIApplication!
 
     override func setUp() {
         super.setUp()
-
-        continueAfterFailure = false
-        XCUIApplication().launch()
-
-        dismissWelcomeScreenIfShown()
-        restoreDefaultProject()
+        app = launchAppWithDefaultProject()
     }
 
     func testScriptsCanEnterScriptsOfAllMoles() {
-        let app = XCUIApplication()
-        let appTables = app.tables
         let projectObjects = ["Mole 1", "Mole 2", "Mole 3", "Mole 4"]
 
-        appTables.staticTexts[kLocalizedContinue].tap()
+        app.tables.staticTexts[kLocalizedContinue].tap()
 
         //check every mole for script
         for object in projectObjects {
-            appTables.staticTexts[object].tap()
-            appTables.staticTexts[kLocalizedScripts].tap()
+            waitForElementToAppear(app.tables.staticTexts[object]).tap()
+            app.tables.staticTexts[kLocalizedScripts].tap()
             XCTAssert(app.navigationBars[kLocalizedScripts].buttons[object].exists)
             app.navigationBars[kLocalizedScripts].buttons[object].tap()
             app.navigationBars[object].buttons[kLocalizedMyFirstProject].tap()
-            XCTAssert(app.navigationBars[kLocalizedMyFirstProject].exists)
+            XCTAssert(waitForElementToAppear(app.navigationBars[kLocalizedMyFirstProject]).exists)
         }
     }
 
     func testScriptsCanDeleteBrickSetSizeTo() {
-        let app = XCUIApplication()
-
         app.tables.staticTexts[kLocalizedContinue].tap()
-        app.tables.staticTexts["Mole 1"].tap()
+        waitForElementToAppear(app.tables.staticTexts["Mole 1"]).tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
 
         //delete the SetSizeTo brick
@@ -70,10 +63,8 @@ class ObjectTVCTests: XCTestCase, UITestProtocol {
     }
 
     func testScriptsCanDeleteBrickLoop() {
-        let app = XCUIApplication()
-
         app.tables.staticTexts[kLocalizedContinue].tap()
-        app.tables.staticTexts["Mole 1"].tap()
+        waitForElementToAppear(app.tables.staticTexts["Mole 1"]).tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
 
         //delete the EndOfLoop
@@ -87,10 +78,8 @@ class ObjectTVCTests: XCTestCase, UITestProtocol {
     }
 
     func testScriptsCanCopyForeverBrick() {
-        let app = XCUIApplication()
-
         app.tables.staticTexts[kLocalizedContinue].tap()
-        app.tables.staticTexts["Mole 1"].tap()
+        waitForElementToAppear(app.tables.staticTexts["Mole 1"]).tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
 
         //copy the Forever brick
@@ -104,10 +93,8 @@ class ObjectTVCTests: XCTestCase, UITestProtocol {
     }
 
     func testScriptsCanDeleteWhenProjectStartedBrick() {
-        let app = XCUIApplication()
-
         app.tables.staticTexts[kLocalizedContinue].tap()
-        app.tables.staticTexts["Mole 1"].tap()
+        waitForElementToAppear(app.tables.staticTexts["Mole 1"]).tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
 
         //delete the WhenProjectStartedBrick
@@ -124,9 +111,8 @@ class ObjectTVCTests: XCTestCase, UITestProtocol {
     }
 
     func testScriptsCanDeleteWaitBrick() {
-        let app = XCUIApplication()
         app.tables.staticTexts[kLocalizedContinue].tap()
-        app.tables.staticTexts["Mole 1"].tap()
+        waitForElementToAppear(app.tables.staticTexts["Mole 1"]).tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
 
         app.collectionViews.cells.element(boundBy: 4).staticTextBeginsWith(kLocalizedWait).tap()
@@ -137,17 +123,14 @@ class ObjectTVCTests: XCTestCase, UITestProtocol {
     }
 
     func testLooksCanEnterSingleLook() {
-        let app = XCUIApplication()
-
         app.tables.staticTexts[kLocalizedContinue].tap()
-        app.tables.staticTexts["Mole 1"].tap()
+        waitForElementToAppear(app.tables.staticTexts["Mole 1"]).tap()
         app.tables.staticTexts[kLocalizedLooks].tap()
 
         XCTAssert(app.navigationBars[kLocalizedLooks].exists)
     }
 
     func testCopyObjectWithIfBricks() {
-        let app = XCUIApplication()
         let projectName = "testProject"
         let objectName = "testObject"
         let copiedObjectName = objectName + " (1)"
@@ -184,7 +167,7 @@ class ObjectTVCTests: XCTestCase, UITestProtocol {
 
         app.navigationBars.buttons[kLocalizedPocketCode].tap()
         app.tables.staticTexts[kLocalizedContinue].tap()
-        app.tables.staticTexts[copiedObjectName].tap()
+        waitForElementToAppear(app.tables.staticTexts[copiedObjectName]).tap()
 
         app.staticTexts[kLocalizedScripts].tap()
         XCTAssertEqual(3, app.collectionViews.cells.count)

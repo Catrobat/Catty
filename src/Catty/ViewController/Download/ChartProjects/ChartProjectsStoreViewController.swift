@@ -99,13 +99,14 @@ class ChartProjectsStoreViewController: UIViewController, SelectedChartProjectsD
         projectDictionary["Views"] = project.views ?? 0
         projectDictionary["FileSize"] = project.fileSize ?? 0.0
 
-        return CatrobatProject(dict: projectDictionary, andBaseUrl: kFeaturedImageBaseUrl)
+        return CatrobatProject(dict: projectDictionary, andBaseUrl: NetworkDefines.featuredImageBaseUrl)
     }
 
     func initSegmentedControl() {
         chartProjectsSegmentedControl?.setTitle(kLocalizedMostDownloaded, forSegmentAt: 0)
         chartProjectsSegmentedControl?.setTitle(kLocalizedMostViewed, forSegmentAt: 1)
         chartProjectsSegmentedControl?.setTitle(kLocalizedNewest, forSegmentAt: 2)
+
         fetchData(type: .mostDownloaded)
 
         if checkIphoneScreenSize() {
@@ -122,8 +123,8 @@ class ChartProjectsStoreViewController: UIViewController, SelectedChartProjectsD
 
     private func setupTableView() {
         self.chartProjectsTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
-        self.chartProjectsTableView.backgroundColor = UIColor.background()
-        self.chartProjectsTableView.separatorColor = UIColor.globalTint()
+        self.chartProjectsTableView.backgroundColor = UIColor.background
+        self.chartProjectsTableView.separatorColor = UIColor.globalTint
         self.chartProjectsTableView.dataSource = self.dataSource
         self.chartProjectsTableView.delegate = self.dataSource
     }

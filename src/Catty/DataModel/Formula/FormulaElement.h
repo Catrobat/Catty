@@ -25,7 +25,7 @@
 
 @class SpriteObject;
 
-typedef NS_ENUM(NSInteger, ElementType) {
+typedef NS_CLOSED_ENUM(NSInteger, ElementType) {
     OPERATOR = 10000,
     FUNCTION,
     NUMBER,

@@ -21,6 +21,7 @@
  */
 
 #import "TurnLeftBrickCell.h"
+#import "Pocket_Code-Swift.h"
 
 @interface TurnLeftBrickCell ()
 @property (nonatomic, strong) UILabel *leftTextLabel;
@@ -31,7 +32,7 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.motionBrickBlueColor strokeColor:UIColor.motionBrickStrokeColor height:smallBrick width:[Util screenWidth]];
+    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.motionBrickBlue strokeColor:UIColor.motionBrickStroke height:smallBrick width:[Util screenWidth]];
 }
 
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews

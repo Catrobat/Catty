@@ -21,7 +21,6 @@
  */
 
 #import "BaseTableViewController.h"
-#import "UIColor+CatrobatUIColorExtensions.h"
 #import "TableUtil.h"
 #import "UIDefines.h"
 #import "Util.h"
@@ -55,9 +54,9 @@
     self.editableSections = nil;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.tableView.backgroundColor = [UIColor backgroundColor];
-    self.tableView.separatorColor = [UIColor utilityTintColor];
-    self.view.backgroundColor = [UIColor backgroundColor];
+    self.tableView.backgroundColor = UIColor.background;
+    self.tableView.separatorColor = UIColor.utilityTint;
+    self.view.backgroundColor = UIColor.background;
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
     [notificationCenter addObserver:self
                            selector:@selector(hideLoadingView)
@@ -274,8 +273,8 @@
 {
     [self.navigationController setToolbarHidden:NO];
     self.navigationController.toolbar.barStyle = UIBarStyleDefault;
-    self.navigationController.toolbar.tintColor = [UIColor toolTintColor];
-    self.navigationController.toolbar.barTintColor = [UIColor toolBarColor];
+    self.navigationController.toolbar.tintColor = UIColor.toolTint;
+    self.navigationController.toolbar.barTintColor = UIColor.toolBar;
     self.navigationController.toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
 }
 
@@ -427,6 +426,11 @@
         [self.view addSubview:_loadingView];
     }
     return _loadingView;
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
 }
 
 @end

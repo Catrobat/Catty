@@ -122,13 +122,13 @@ class ChartProjectStoreDataSource: NSObject, UITableViewDataSource, UITableViewD
                 switch self.projectType {
                 case .mostDownloaded:
                     self.mostDownloadedProjects.append(contentsOf: collection.projects)
-                    self.mostDownloadedOffset += kRecentProjectsMaxResults
+                    self.mostDownloadedOffset += NetworkDefines.recentProjectsMaxResults
                 case .mostViewed:
                     self.mostViewedProjects.append(contentsOf: collection.projects)
-                    self.mostViewedOffset += kRecentProjectsMaxResults
+                    self.mostViewedOffset += NetworkDefines.recentProjectsMaxResults
                 case .mostRecent:
                     self.mostRecentProjects.append(contentsOf: collection.projects)
-                    self.mostRecentOffset += kRecentProjectsMaxResults
+                    self.mostRecentOffset += NetworkDefines.recentProjectsMaxResults
                 default:
                     return
                 }
@@ -184,7 +184,10 @@ class ChartProjectStoreDataSource: NSObject, UITableViewDataSource, UITableViewD
         tableView.deselectRow(at: indexPath, animated: true)
         guard let cell = tableView.cellForRow(at: indexPath) as? ChartProjectCell else { return }
         guard let cellProject = cell.project else { return }
-        let timer = TimerWithBlock(timeInterval: TimeInterval(kConnectionTimeout), repeats: false) { timer in
+        let timer = ExtendedTimer(timeInterval: TimeInterval(NetworkDefines.connectionTimeout),
+                                  repeats: false,
+                                  execOnMainRunLoop: false,
+                                  startTimerImmediately: true) { timer in
             self.delegate?.errorAlertHandler(error: .timeout)
             timer.invalidate()
             self.delegate?.hideLoadingIndicator(false)

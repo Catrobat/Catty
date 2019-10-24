@@ -21,7 +21,7 @@
  */
 
 #import "ContinueImageCell.h"
-#import "UIColor+CatrobatUIColorExtensions.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation ContinueImageCell
 
@@ -33,7 +33,7 @@
 
 - (void)configureImageCell
 {
-    self.titleLabel.textColor = [UIColor buttonTintColor];
+    self.titleLabel.textColor = UIColor.buttonTint;
 }
 
 @end

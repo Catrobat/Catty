@@ -23,8 +23,8 @@
 #import "BrickSelectionViewController.h"
 #import "BrickCategoryViewController.h"
 #import "ScriptCollectionViewController.h"
-#import "UIColor+CatrobatUIColorExtensions.h"
 #import "KeychainUserDefaultsDefines.h"
+#import "Pocket_Code-Swift.h"
 
 @interface BrickSelectionViewController() <UIPageViewControllerDataSource, UIPageViewControllerDelegate>
 @property (nonatomic, strong) UIPageControl *pageControl;
@@ -60,7 +60,7 @@
     [super viewDidLoad];
     self.dataSource = self;
     self.delegate = self;
-    self.view.backgroundColor = [UIColor backgroundColor];
+    self.view.backgroundColor = UIColor.background;
     self.navigationController.toolbarHidden = YES;
     [self setupNavBar];
 }
@@ -75,7 +75,7 @@
      viewControllerBeforeViewController:(UIViewController*)viewController
 {
     BrickCategoryViewController *bcVC = (BrickCategoryViewController *)viewController;
-    NSNumber *pageIndex = [NSNumber numberWithInt:bcVC.pageIndexCategoryType];
+    NSNumber *pageIndex = [NSNumber numberWithInt:(int)bcVC.pageIndexCategoryType];
     
     if ([pageIndex isEqualToNumber:[self.pageIndexArray firstObject]]) {
         return nil;
@@ -89,7 +89,7 @@
      viewControllerAfterViewController:(UIViewController*)viewController
 {
     BrickCategoryViewController *bcVC = (BrickCategoryViewController *)viewController;
-    NSNumber *pageIndex = [NSNumber numberWithInt:bcVC.pageIndexCategoryType];
+    NSNumber *pageIndex = [NSNumber numberWithInt:(int)bcVC.pageIndexCategoryType];
     
     if ([pageIndex isEqualToNumber:[self.pageIndexArray lastObject]]) {
         return nil;
@@ -123,9 +123,9 @@
 {
     self.pageControl = [[self.view.subviews
                                    filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"class = %@", [UIPageControl class]]] lastObject];
-    self.pageControl.currentPageIndicatorTintColor = [UIColor backgroundColor];
-    self.pageControl.pageIndicatorTintColor = [UIColor toolTintColor];
-    self.pageControl.backgroundColor = [UIColor toolBarColor];
+    self.pageControl.currentPageIndicatorTintColor = UIColor.background;
+    self.pageControl.pageIndicatorTintColor = UIColor.toolTint;
+    self.pageControl.backgroundColor = UIColor.toolBar;
 
 }
 
@@ -143,7 +143,7 @@
                                                                                            target:self
                                                                                            action:@selector(dismiss:)];
     
-    self.navigationItem.leftBarButtonItem.tintColor = [UIColor navTintColor];
+    self.navigationItem.leftBarButtonItem.tintColor = UIColor.navTint;
     
     [self updateTitle];
 }

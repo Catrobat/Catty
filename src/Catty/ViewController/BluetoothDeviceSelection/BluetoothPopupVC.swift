@@ -31,16 +31,22 @@ import UIKit
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.segmentedPager.backgroundColor = UIColor.navBar()
-        self.navigationController?.navigationBar.tintColor = UIColor.navTint()
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.navText()]
+
+        let navigationTitleColor = UIColor.navText ?? UIColor.black
+        let titleColor = UIColor.background ?? UIColor.black
+        let selectedTitleColor = UIColor.navTint ?? UIColor.black
+
+        self.segmentedPager.backgroundColor = UIColor.navBar
+        self.navigationController?.navigationBar.tintColor = UIColor.navTint
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: navigationTitleColor]
         // Segmented Control customization
         self.segmentedPager.segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocation.down
-        self.segmentedPager.segmentedControl.backgroundColor = UIColor.globalTint()
-        self.segmentedPager.segmentedControl.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.background(), NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12)]
-        self.segmentedPager.segmentedControl.selectedTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.navTint()]
+        self.segmentedPager.segmentedControl.backgroundColor = UIColor.globalTint
+
+        self.segmentedPager.segmentedControl.titleTextAttributes = [NSAttributedString.Key.foregroundColor: titleColor, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12)]
+        self.segmentedPager.segmentedControl.selectedTitleTextAttributes = [NSAttributedString.Key.foregroundColor: selectedTitleColor]
         self.segmentedPager.segmentedControl.selectionStyle = HMSegmentedControlSelectionStyle.box
-        self.segmentedPager.segmentedControl.selectionIndicatorColor = UIColor.globalTint()
+        self.segmentedPager.segmentedControl.selectionIndicatorColor = UIColor.globalTint
         self.segmentedPager.segmentedControl.segmentWidthStyle = HMSegmentedControlSegmentWidthStyle.fixed
 
         setHeader()

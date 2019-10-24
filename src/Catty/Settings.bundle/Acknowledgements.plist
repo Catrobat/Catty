@@ -16,6 +16,12 @@
                 <key>Type</key>
                 <string>PSGroupSpecifier</string>
                 <key>FooterText</key>
+                <string>Catty/Resources/Licenses/AudioKit</string>
+            </dict>
+            <dict>
+                <key>Type</key>
+                <string>PSGroupSpecifier</string>
+                <key>FooterText</key>
                 <string>Catty/Resources/Licenses/BDKNotifyHUD</string>
             </dict>
             <dict>
@@ -137,12 +143,6 @@
                 <string>PSGroupSpecifier</string>
                 <key>FooterText</key>
                 <string>Catty/Resources/Licenses/YKImageCropperView</string>
-            </dict>
-            <dict>
-                <key>Type</key>
-                <string>PSGroupSpecifier</string>
-                <key>FooterText</key>
-                <string>Catty/Resources/Licenses/minizip</string>
             </dict>
         </array>
 </dict>

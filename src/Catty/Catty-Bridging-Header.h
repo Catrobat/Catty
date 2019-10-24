@@ -148,7 +148,6 @@
 #import "RuntimeImageCache.h"
 #import "CBMutableCopyContext.h"
 #import "CameraPreviewHandler.h"
-#import "BubbleBrickHelper.h"
 
 //------------------------------------------------------------------------------------------------------------
 // ViewController classes
@@ -165,7 +164,6 @@
 // Defines
 //------------------------------------------------------------------------------------------------------------
 
-#import "NetworkDefines.h"
 #import "ProgramDefines.h"
 #import "KeychainUserDefaultsDefines.h"
 #import "CatrobatLanguageDefines.h"
@@ -204,4 +202,4 @@
 #import "SpriteObject.h"
 #import "CBXMLOpenedNestingBricksStack.h"
 #import "BDKNotifyHUD.h"
-
+#import "BrickShapeFactory.h"

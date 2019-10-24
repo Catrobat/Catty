@@ -24,7 +24,43 @@ import XCTest
 
 @testable import Pocket_Code
 
-final class BubbleBrickTests: XCTestCase {
+let kIphoneXSceneHeight = 2436.0
+let kIphoneXSceneWidth = 1125.0
+
+let kBubbleFrameConstant = 2.1999969482421875
+let kBubbleVerticalPadding = (kSceneLabelFontSize + 20)
+let kBubbleSentenceHeight = (1 * kSceneLabelFontSize + 5)
+let kBubbleBorderConstant = kBubbleVerticalPadding + Float(kBubbleFrameConstant)
+let kBubbleHeightOneLine = (kBubbleBorderConstant + 1 * kBubbleSentenceHeight)
+let kBubbleHeightTwoLines = (kBubbleBorderConstant + 2 * kBubbleSentenceHeight)
+let kBubbleHeightThreeLines = (kBubbleBorderConstant + 3 * kBubbleSentenceHeight)
+
+let kTopBorderConstant = 2318.7998046875
+
+final class BubbleBrickTests: XMLAbstractTest {
+
+    let bubbleReflected: CGFloat = -1.0
+    let bubbleNotReflected: CGFloat = 1.0
+
+    private func createSpriteNodeWithBubble(x xPosition: Double, y yPosition: Double, andSentence sentence: String) -> CBSpriteNode {
+        let project = ProjectMock()!
+
+        let spriteObject = SpriteObject()
+        spriteObject.name = "SpriteObjectName"
+
+        let spriteNode = CBSpriteNodeMock(spriteObject: spriteObject)
+        spriteObject.spriteNode = spriteNode
+        spriteObject.project = project
+
+        project.objectList.add(spriteObject)
+        spriteNode.mockedScene = SceneBuilder(project: ProjectMock(width: CGFloat(kIphoneXSceneWidth), andHeight: CGFloat(kIphoneXSceneHeight))).build()
+
+        BubbleBrickHelper.addBubble(to: spriteNode, withText: sentence, andType: CBBubbleType.thought)
+        spriteNode.catrobatPosition = CGPoint(x: 0, y: 0)
+        spriteNode.catrobatPosition = CGPoint(x: xPosition, y: yPosition)
+
+        return spriteNode
+    }
 
     func testSayForTitleSingular() {
         let sayForBrick = SayForBubbleBrick()
@@ -52,5 +88,28 @@ final class BubbleBrickTests: XCTestCase {
         thinkForBrick.intFormula = Formula(double: 2)
         let translation = kLocalizedThink + " %@\n" + kLocalizedFor + " %@ " + kLocalizedSeconds
         XCTAssertEqual(translation, thinkForBrick.brickTitle, "Wrong brick title")
+    }
+
+    func testOneLineSentenceInBubble() {
+        let spriteNode = createSpriteNodeWithBubble(x: 0, y: 0, andSentence: "Hello")
+        let bubble = spriteNode.children.first
+        let bubbleHeight = bubble!.frame.size.height
+
+        XCTAssertTrue(bubbleHeight == CGFloat(kBubbleHeightOneLine))
+    }
+
+    func testTwoLineSentenceInBubble() {
+        let spriteNode = createSpriteNodeWithBubble(x: 0, y: 0, andSentence: "That's a 2 line text")
+        let bubble = spriteNode.children.first
+        let bubbleHeight = bubble!.frame.size.height
+
+        XCTAssertTrue(bubbleHeight == CGFloat(kBubbleHeightTwoLines))
+    }
+
+    func testThreeLineSentenceInBubble() {
+        let spriteNode = createSpriteNodeWithBubble(x: 0, y: 0, andSentence: "This is a 3 line text :)")
+        let bubble = spriteNode.children.first
+        let bubbleHeight = bubble!.frame.size.height
+        XCTAssertTrue(bubbleHeight == CGFloat(kBubbleHeightThreeLines))
     }
 }

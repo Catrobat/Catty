@@ -223,7 +223,7 @@ final class FirmataTests: XCTestCase {
     }
     func testDigitalStateReportingPinData () {
         //Given
-        var portMasks = [UInt8](repeating: 0, count: 3)
+        let portMasks = [UInt8](repeating: 0, count: 3)
         var data1 = UInt8(portMasks[Int(0)])    //retrieve saved pin mask for port;
         data1 |= 1 << 4
         let bytes: [UInt8] = [kREPORT_DIGITAL + 0, data1]
@@ -334,7 +334,7 @@ final class FirmataTests: XCTestCase {
         }
         bytestoSend.append(kEND_SYSEX)
         //When
-        mock.testfirmata.receiveData(Data(bytes: bytestoSend))
+        mock.testfirmata.receiveData(Data(bytestoSend))
         //Then
         XCTAssertTrue(mock.callbackInvolved, "Callback not called")
         XCTAssertEqual(mock.receivedString, name, "Received Port wrong")

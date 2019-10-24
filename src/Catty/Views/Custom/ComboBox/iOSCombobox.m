@@ -21,10 +21,10 @@
  */
 
 #import "iOSCombobox.h"
-#import "UIColor+CatrobatUIColorExtensions.h"
 #import "RuntimeImageCache.h"
 #import "Look.h"
 #import "Util.h"
+#import "Pocket_Code-Swift.h"
 
 #define BORDER_WIDTH 1.0f
 #define BORDER_OFFSET (BORDER_WIDTH / 2)
@@ -46,7 +46,7 @@
  **********************************************************/
 - (void)initialize {
     active = NO;
-    self.backgroundColor = [UIColor clearColor];
+    self.backgroundColor = UIColor.clearColor;
     CGFloat pickerY = [[UIScreen mainScreen] bounds].size.height - PICKER_VIEW_HEIGHT;
     CGFloat screenWidth = [[UIScreen mainScreen] bounds].size.width;
     self.pickerView = [[iOSComboboxPickerView alloc] initWithFrame:CGRectMake(0.0f, pickerY, screenWidth, PICKER_VIEW_HEIGHT)];
@@ -130,10 +130,10 @@
     CGContextSetLineCap(ctx, kCGLineCapButt);
     CGContextAddPath(ctx, background);
     if (active) {
-        CGContextSetStrokeColorWithColor(ctx, [UIColor globalTintColor].CGColor);
+        CGContextSetStrokeColorWithColor(ctx, UIColor.globalTint.CGColor);
     }
     else {
-        CGContextSetStrokeColorWithColor(ctx, [UIColor whiteColor].CGColor);
+        CGContextSetStrokeColorWithColor(ctx, UIColor.whiteColor.CGColor);
     }
     CGContextDrawPath(ctx, kCGPathStroke);
     CGContextRestoreGState(ctx);
@@ -144,10 +144,10 @@
     CGContextSaveGState(ctx);
     CGContextSetLineWidth(ctx, BORDER_WIDTH);
     if (active) {
-        CGContextSetStrokeColorWithColor(ctx, [UIColor globalTintColor].CGColor);
+        CGContextSetStrokeColorWithColor(ctx, UIColor.globalTint.CGColor);
     }
     else {
-        CGContextSetStrokeColorWithColor(ctx, [UIColor whiteColor].CGColor);
+        CGContextSetStrokeColorWithColor(ctx, UIColor.whiteColor.CGColor);
     }
     CGContextBeginPath(ctx);
     CGContextMoveToPoint(ctx,
@@ -178,10 +178,10 @@
     CGPathCloseSubpath(path);
     
     if (active) {
-        CGContextSetFillColorWithColor(ctx, [[UIColor globalTintColor] CGColor]);
+        CGContextSetFillColorWithColor(ctx, UIColor.globalTint.CGColor);
     }
     else {
-        CGContextSetFillColorWithColor(ctx, [[UIColor whiteColor] CGColor]);
+        CGContextSetFillColorWithColor(ctx, UIColor.whiteColor.CGColor);
     }
 
     CGContextAddPath(ctx, path);
@@ -223,7 +223,7 @@
         [self setCurrentValue:[[self values] objectAtIndex:0]];
     }
     NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:FONT_NAME size:rect.size.height/2], NSFontAttributeName,
-                                [UIColor whiteColor], NSForegroundColorAttributeName, nil];
+                                UIColor.whiteColor, NSForegroundColorAttributeName, nil];
     CGSize size = [self.currentValue sizeWithAttributes:@{NSFontAttributeName : [UIFont fontWithName:FONT_NAME size:rect.size.height/2]}];
     NSString* drawString = self.currentValue;
     if(size.width > rect.size.width - ARROW_BOX_WIDTH - TEXT_LEFT-30){
@@ -299,7 +299,7 @@
     UILabel *channelLabel = [[UILabel alloc] initWithFrame:CGRectMake(imageOffset+rowOffset, 0, [Util screenWidth]-imageOffset - (2*rowOffset), 60)];
     channelLabel.text = [self.values objectAtIndex:row];
     channelLabel.textAlignment = NSTextAlignmentLeft;
-    channelLabel.backgroundColor = [UIColor clearColor];
+    channelLabel.backgroundColor = UIColor.clearColor;
 
     [tmpView insertSubview:channelLabel atIndex:1];
     

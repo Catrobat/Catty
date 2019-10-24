@@ -50,6 +50,7 @@
 - (void)setAsLastUsedProject;
 - (void)translateDefaultProject;
 - (void)renameToProjectName:(NSString* _Nonnull)projectName;
+- (void)renameToProjectName:(NSString* _Nonnull)projectName andProjectId:(NSString* _Nonnull)projectId;
 - (void)renameObject:(SpriteObject* _Nonnull)object toName:(NSString* _Nonnull)newObjectName;
 - (void)updateDescriptionWithText:(NSString* _Nonnull)descriptionText;
 - (nonnull NSArray*)allObjectNames;

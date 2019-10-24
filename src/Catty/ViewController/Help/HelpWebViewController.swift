@@ -72,12 +72,12 @@ class HelpWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
         webView.addGestureRecognizer(swipeLeftRecognizer)
         webView.addGestureRecognizer(swipeRightRecognizer)
 
-        url = URL(string: kForumURL)
+        url = URL(string: NetworkDefines.helpUrl)
         webView.scrollView.delegate = self
         webView.delegate = self
         webView.allowsInlineMediaPlayback = true
         webView.scalesPageToFit = true
-        webView.backgroundColor = UIColor.background()
+        webView.backgroundColor = UIColor.background
         webView.alpha = 0.0
         initUrlTitleLabel()
         if url != nil {
@@ -88,7 +88,7 @@ class HelpWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
 
         touchHelperView = UIView(frame: CGRect.zero)
         touchHelperView?.backgroundColor = UIColor.clear
-        progressView.tintColor = UIColor.navTint()
+        progressView.tintColor = UIColor.navTint
         automaticallyAdjustsScrollViewInsets = false
     }
 
@@ -166,14 +166,14 @@ class HelpWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
     func webView(_ webView: UIWebView,
                  shouldStartLoadWith request: URLRequest,
                  navigationType: UIWebView.NavigationType) -> Bool {
-        if !((request.url?.absoluteString ?? "").contains(kDownloadUrl)) {
+        if !((request.url?.absoluteString ?? "").contains(NetworkDefines.downloadUrl)) {
             return true
         }
         let urlWithoutParams: String? = request.url?.absoluteString
             .components(separatedBy: CharacterSet(charactersIn: "?"))[0]
         // extract project ID from URL => example: https://pocketcode.org/download/959.catrobat
         var urlParts = urlWithoutParams?.components(separatedBy: "/")
-        if urlParts?.count == nil {
+        if urlParts?.isEmpty ?? true {
             Util.alert(withText: kLocalizedInvalidURLGiven)
             return false
         }
@@ -183,10 +183,9 @@ class HelpWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
             Util.alert(withText: kLocalizedInvalidURLGiven)
             return false
         }
-        // check if projectID is valid number
-        let projectID = urlParts?.first
-        if projectID == nil ||
-            !(projectID == String(Int(projectID!)!)) {
+        // check projectID
+        let projectID = urlParts?.first ?? ""
+        if projectID.isEmpty {
             Util.alert(withText: kLocalizedInvalidURLGiven)
             return false
         }
@@ -196,16 +195,16 @@ class HelpWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
             return false
         }
         // parse project name
-        let projectName: String? = urlComp.queryItems?
+        let projectName: String = urlComp.queryItems?
             .first(where: { $0.name == "fname" })?.value?
-            .replacingOccurrences(of: "+", with: " ")
-        if projectName == nil || projectName!.isEmpty {
+            .replacingOccurrences(of: "+", with: " ") ?? ""
+        if projectName.isEmpty {
             Util.alert(withText: kLocalizedInvalidURLGiven)
             return false
         }
         // check if project exists
-        if projectName != nil && Project.projectExists(withProjectName: projectName!,
-                                                       projectID: projectID!) {
+        if Project.projectExists(withProjectName: projectName,
+                                 projectID: projectID) {
             Util.alert(withText: kLocalizedProjectAlreadyDownloadedDescription)
             return false
         }
@@ -254,9 +253,9 @@ class HelpWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
     // MARK: - Private
 
     private func initUrlTitleLabel() {
-        urlTitleLabel.backgroundColor = UIColor.background()
+        urlTitleLabel.backgroundColor = UIColor.background
         urlTitleLabel.font = UIFont.systemFont(ofSize: 13.0)
-        urlTitleLabel.textColor = UIColor.globalTint()
+        urlTitleLabel.textColor = UIColor.globalTint
         urlTitleLabel.textAlignment = .center
         urlTitleLabel.alpha = 0.6
     }
@@ -264,8 +263,8 @@ class HelpWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
     private func setupToolBar() {
         navigationController?.isToolbarHidden = false
         navigationController?.toolbar.barStyle = .default
-        navigationController?.toolbar.tintColor = UIColor.toolTint()
-        navigationController?.toolbar.barTintColor = UIColor.toolBar()
+        navigationController?.toolbar.tintColor = UIColor.toolTint
+        navigationController?.toolbar.barTintColor = UIColor.toolBar
         navigationController?.toolbar.autoresizingMask = [.flexibleWidth, .flexibleTopMargin]
 
         let forward = UIBarButtonItem(image: UIImage(named: "webview_arrow_right"),

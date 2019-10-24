@@ -21,6 +21,7 @@
  */
 
 #import "BroadcastWaitBrickCell.h"
+#import "Pocket_Code-Swift.h"
 
 @interface BroadcastWaitBrickCell ()
 @property (nonatomic, strong) UILabel *textLabel;
@@ -30,7 +31,7 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.controlBrickOrangeColor strokeColor:UIColor.controlBrickStrokeColor height:mediumBrick width:[Util screenWidth]];
+    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.controlBrickOrange strokeColor:UIColor.controlBrickStroke height:mediumBrick width:[Util screenWidth]];
 }
 
 + (CGFloat)cellHeight

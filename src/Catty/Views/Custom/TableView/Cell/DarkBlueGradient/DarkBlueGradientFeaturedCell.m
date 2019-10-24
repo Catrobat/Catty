@@ -22,6 +22,7 @@
 
 #import "DarkBlueGradientFeaturedCell.h"
 #import "Util.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation DarkBlueGradientFeaturedCell
 
@@ -35,7 +36,7 @@
 {
     self.accessoryView.hidden = YES;
 //    self.featuredImage.frame = self.frame;
-    self.backgroundColor = [UIColor backgroundColor];
+    self.backgroundColor = UIColor.background;
 }
 
 - (void)layoutSubviews {

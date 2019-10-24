@@ -63,8 +63,8 @@
 - (void)setup
 {
     [self setTitleColor:[self tintColor] forState:UIControlStateNormal];
-    [self setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
-    [self setTitleColor:[UIColor grayColor] forState:UIControlStateDisabled];
+    [self setTitleColor:UIColor.whiteColor forState:UIControlStateHighlighted];
+    [self setTitleColor:UIColor.grayColor forState:UIControlStateDisabled];
     [self.titleLabel setFont:[UIFont boldSystemFontOfSize:13]];
     if (self.visibleBorder) {
         self.layer.cornerRadius = 3.5;
@@ -94,7 +94,7 @@
 
 - (void)refreshBorderColor
 {
-    self.layer.borderColor = [self isEnabled] ? [[self tintColor] CGColor] : [[UIColor grayColor] CGColor];
+    self.layer.borderColor = [self isEnabled] ? self.tintColor.CGColor : UIColor.grayColor.CGColor;
 }
 
 - (void)setHighlighted:(BOOL)highlighted
@@ -102,7 +102,7 @@
     [super setHighlighted:highlighted];
     
     [UIView animateWithDuration:0.05f animations:^{
-        self.layer.backgroundColor = highlighted ? [[self tintColor] CGColor] : [[UIColor clearColor] CGColor];
+        self.layer.backgroundColor = highlighted ? self.tintColor.CGColor : UIColor.clearColor.CGColor;
     }];
 }
 

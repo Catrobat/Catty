@@ -21,8 +21,7 @@
  */
 
 #import "CatrobatBaseCell.h"
-#import "UIColor+CatrobatUIColorExtensions.h"
-
+#import "Pocket_Code-Swift.h"
 
 @implementation CatrobatBaseCell
 
@@ -45,7 +44,7 @@
             accessoryImage = [UIImage imageNamed:@"accessory"];
             accessoryImage = [accessoryImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
             self.accessoryView = [[UIImageView alloc] initWithImage:accessoryImage];
-            self.accessoryView.tintColor = [UIColor utilityTintColor];
+            self.accessoryView.tintColor = UIColor.utilityTint;
         default:
             break;
     }
@@ -54,7 +53,7 @@
 - (UIView*)createSelectedBackground
 {
     UIView *bgColorView = [[UIView alloc] init];
-    [bgColorView setBackgroundColor:[UIColor navTintColor]];
+    [bgColorView setBackgroundColor:UIColor.navTint];
     return bgColorView;
 }
 

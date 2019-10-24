@@ -315,7 +315,7 @@
     }
     CGRect frame = CGRectMake(kBrickInlineViewOffsetX, inlineViewOffsetY, (self.frame.size.width - kBrickInlineViewOffsetX), inlineViewHeight);
     self.inlineView.frame = frame;
-    self.inlineView.backgroundColor = [UIColor clearColor];
+    self.inlineView.backgroundColor = UIColor.clearColor;
 
     NSArray *inlineViewSubViews = [self inlineViewSubviews];
 
@@ -329,8 +329,8 @@
         UILabel *label = [[UILabel alloc] initWithFrame:frame];
         label.font = [UIFont systemFontOfSize:10.0f];
         label.text = [@"Please implement hookUpSubViews in " stringByAppendingString:NSStringFromClass([self class])];
-        label.textColor = [UIColor redColor];
-        label.backgroundColor = [UIColor whiteColor];
+        label.textColor = UIColor.redColor;
+        label.backgroundColor = UIColor.whiteColor;
         [label sizeThatFits:frame.size];
         [self.inlineView addSubview:label];
     }
@@ -463,7 +463,7 @@
         UILabel *textLabel = [UIUtil newDefaultBrickLabelWithFrame:remainingFrame AndText:labelTitle andRemainingSpace:remainingFrame.size.width];
 #ifdef LAYOUT_DEBUG
         NSLog(@"Label Title: %@, Width: %f, Height: %f", labelTitle, remainingFrame.size.width, remainingFrame.size.height);
-        textLabel.backgroundColor = [UIColor yellowColor];
+        textLabel.backgroundColor = UIColor.yellowColor;
 #endif
         [subviews addObject:textLabel];
         return subviews;
@@ -480,7 +480,7 @@
             UILabel *textLabel = [UIUtil newDefaultBrickLabelWithFrame:remainingFrame AndText:partLabelTitle andRemainingSpace:remainingFrame.size.width];
     #ifdef LAYOUT_DEBUG
             NSLog(@"Label Title: %@, Width: %f, Height: %f", partLabelTitle, remainingFrame.size.width, remainingFrame.size.height);
-            textLabel.backgroundColor = [UIColor blueColor];
+            textLabel.backgroundColor = UIColor.blueColor;
     #endif
             remainingFrame.origin.x += (textLabel.frame.size.width + kBrickInputFieldLeftMargin);
             remainingFrame.size.width -= (textLabel.frame.size.width + kBrickInputFieldLeftMargin);

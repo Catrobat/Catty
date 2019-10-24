@@ -39,10 +39,27 @@ class StoreProjectsDownloaderTests: XCTestCase {
             guard let item = projects.projects.first else { XCTFail("no featured projects in array"); return }
 
             // check that the first item in the first category has no empty properties (except cachedData)
-            XCTAssertNotEqual(item.projectId, 0)
+            XCTAssertNotEqual(item.projectId, "")
             XCTAssertNotEqual(item.projectName, "")
             XCTAssertNotEqual(item.author, "")
 
+            expectation.fulfill()
+        }
+
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testfetchFeaturedProjectsSucceedsWithIntegerId() {
+        let dvrSession = Session(cassetteName: "StoreProjectDownloader.fetchFeaturedProjects.IntegerId.success")
+        let downloader = StoreProjectDownloader(session: dvrSession)
+        let expectation = XCTestExpectation(description: "Fetch Featured Projects")
+
+        downloader.fetchProjects(forType: .featured, offset: 0) { projects, error in
+            XCTAssertNil(error, "request failed")
+            guard let projects = projects else { XCTFail("no featured projects found"); return }
+            guard let item = projects.projects.first else { XCTFail("no featured projects in array"); return }
+
+            XCTAssertNotEqual(item.projectId, "")
             expectation.fulfill()
         }
 
@@ -114,10 +131,27 @@ class StoreProjectsDownloaderTests: XCTestCase {
             guard let item = projects.projects.first else { XCTFail("no most downloaded projects in array"); return }
 
             // check that the first item in the first category has no empty properties (except cachedData)
-            XCTAssertNotEqual(item.projectId, 0)
+            XCTAssertNotEqual(item.projectId, "")
             XCTAssertNotEqual(item.projectName, "")
             XCTAssertNotEqual(item.author, "")
 
+            expectation.fulfill()
+        }
+
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testfetchMostDownloadedProjectsSucceedsWithIntegerId() {
+        let dvrSession = Session(cassetteName: "StoreProjectDownloader.fetchMostDownloadedProjects.IntegerId.success")
+        let downloader = StoreProjectDownloader(session: dvrSession)
+        let expectation = XCTestExpectation(description: "Fetch Most Downloaded Projects")
+
+        downloader.fetchProjects(forType: .mostDownloaded, offset: 0) { projects, error in
+            XCTAssertNil(error, "request failed")
+            guard let projects = projects else { XCTFail("no most downloaded projects found"); return }
+            guard let item = projects.projects.first else { XCTFail("no most downloaded projects in array"); return }
+
+            XCTAssertNotEqual(item.projectId, "")
             expectation.fulfill()
         }
 
@@ -189,10 +223,27 @@ class StoreProjectsDownloaderTests: XCTestCase {
             guard let item = projects.projects.first else { XCTFail("no most viewed projects in array"); return }
 
             // check that the first item in the first category has no empty properties (except cachedData)
-            XCTAssertNotEqual(item.projectId, 0)
+            XCTAssertNotEqual(item.projectId, "")
             XCTAssertNotEqual(item.projectName, "")
             XCTAssertNotEqual(item.author, "")
 
+            expectation.fulfill()
+        }
+
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testfetchMostViewedProjectsSucceedsWithIntegerId() {
+        let dvrSession = Session(cassetteName: "StoreProjectDownloader.fetchMostViewedProjects.IntegerId.success")
+        let downloader = StoreProjectDownloader(session: dvrSession)
+        let expectation = XCTestExpectation(description: "Fetch Most Viewed Projects")
+
+        downloader.fetchProjects(forType: .mostViewed, offset: 0) { projects, error in
+            XCTAssertNil(error, "request failed")
+            guard let projects = projects else { XCTFail("no most viewed projects found"); return }
+            guard let item = projects.projects.first else { XCTFail("no most viewed projects in array"); return }
+
+            XCTAssertNotEqual(item.projectId, "")
             expectation.fulfill()
         }
 
@@ -264,10 +315,27 @@ class StoreProjectsDownloaderTests: XCTestCase {
             guard let item = projects.projects.first else { XCTFail("no most recent projects in array"); return }
 
             // check that the first item in the first category has no empty properties (except cachedData)
-            XCTAssertNotEqual(item.projectId, 0)
+            XCTAssertNotEqual(item.projectId, "")
             XCTAssertNotEqual(item.projectName, "")
             XCTAssertNotEqual(item.author, "")
 
+            expectation.fulfill()
+        }
+
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testfetchMostRecentProjectsSucceedsWithIntegerId() {
+        let dvrSession = Session(cassetteName: "StoreProjectDownloader.fetchMostRecentProjects.IntegerId.success")
+        let downloader = StoreProjectDownloader(session: dvrSession)
+        let expectation = XCTestExpectation(description: "Fetch Most Recent Projects")
+
+        downloader.fetchProjects(forType: .mostRecent, offset: 0) { projects, error in
+            XCTAssertNil(error, "request failed")
+            guard let projects = projects else { XCTFail("no most recent projects found"); return }
+            guard let item = projects.projects.first else { XCTFail("no most recent projects in array"); return }
+
+            XCTAssertNotEqual(item.projectId, "")
             expectation.fulfill()
         }
 
@@ -340,10 +408,28 @@ class StoreProjectsDownloaderTests: XCTestCase {
             guard let item = projects.projects.first else { XCTFail("no projects in array"); return }
 
             // check that the first item in the first category has no empty properties (except cachedData)
-            XCTAssertNotEqual(item.projectId, 0)
+            XCTAssertNotEqual(item.projectId, "")
             XCTAssertNotEqual(item.projectName, "")
             XCTAssertNotEqual(item.author, "")
 
+            expectation.fulfill()
+        }
+
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testSearchProjectsSucceedsWithIntegerId() {
+        let dvrSession = Session(cassetteName: "StoreProjectDownloader.searchProjects.IntegerId.success")
+        let downloader = StoreProjectDownloader(session: dvrSession)
+        let expectation = XCTestExpectation(description: "Fetch Search Projects")
+        let searchTerm = "Galaxy"
+
+        downloader.fetchSearchQuery(searchTerm: searchTerm) { projects, error in
+            XCTAssertNil(error, "request failed")
+            guard let projects = projects else { XCTFail("no projects found"); return }
+            guard let item = projects.projects.first else { XCTFail("no projects in array"); return }
+
+            XCTAssertNotEqual(item.projectId, "")
             expectation.fulfill()
         }
 
@@ -410,23 +496,22 @@ class StoreProjectsDownloaderTests: XCTestCase {
     func testDownloadDataSucceeds() {
         let dvrSession = Session(cassetteName: "StoreProjectDownloader.downloadData.success")
         let downloader = StoreProjectDownloader(session: dvrSession)
+        let project = getStoreProjectMock()
+        let expectation = XCTestExpectation(description: "Download Featured Project")
 
-        let project = StoreProject(projectId: 821,
-                                   projectName: "Whack A Mole",
-                                   projectNameShort: "",
-                                   author: "VesnaK",
-                                   description: "",
-                                   version: "",
-                                   views: 0,
-                                   downloads: 0,
-                                   uploaded: 0,
-                                   uploadedString: "",
-                                   screenshotBig: "",
-                                   screenshotSmall: "",
-                                   projectUrl: "",
-                                   downloadUrl: "",
-                                   fileSize: 1.0,
-                                   featuredImage: "")
+        downloader.downloadProject(for: project) { data, error in
+            XCTAssertNil(error, "request failed")
+            guard data != nil else { XCTFail("no data received"); return }
+            expectation.fulfill()
+        }
+
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testDownloadDataSucceedsWithIntegerId() {
+        let dvrSession = Session(cassetteName: "StoreProjectDownloader.downloadData.IntegerId.success")
+        let downloader = StoreProjectDownloader(session: dvrSession)
+        let project = getStoreProjectMock()
         let expectation = XCTestExpectation(description: "Download Featured Project")
 
         downloader.downloadProject(for: project) { data, error in
@@ -442,22 +527,7 @@ class StoreProjectsDownloaderTests: XCTestCase {
         let mockSession = URLSessionMock()
         let downloader = StoreProjectDownloader(session: mockSession)
         let expectation = XCTestExpectation(description: "Fetch Featured Projects")
-        let project = StoreProject(projectId: 821,
-                                   projectName: "Whack A Mole",
-                                   projectNameShort: "",
-                                   author: "VesnaK",
-                                   description: "",
-                                   version: "",
-                                   views: 0,
-                                   downloads: 0,
-                                   uploaded: 0,
-                                   uploadedString: "",
-                                   screenshotBig: "",
-                                   screenshotSmall: "",
-                                   projectUrl: "",
-                                   downloadUrl: "",
-                                   fileSize: 1.0,
-                                   featuredImage: "")
+        let project = getStoreProjectMock()
 
         downloader.downloadProject(for: project) { _, error in
             guard let error = error else { XCTFail("no error returned"); return }
@@ -472,22 +542,7 @@ class StoreProjectsDownloaderTests: XCTestCase {
         let dvrSession = Session(cassetteName: "StoreProjectDownloader.downloadData.fail.request")
         let downloader = StoreProjectDownloader(session: dvrSession)
         let expectation = XCTestExpectation(description: "Fetch Featured Projects")
-        let project = StoreProject(projectId: 821,
-                                   projectName: "Whack A Mole",
-                                   projectNameShort: "",
-                                   author: "VesnaK",
-                                   description: "",
-                                   version: "",
-                                   views: 0,
-                                   downloads: 0,
-                                   uploaded: 0,
-                                   uploadedString: "",
-                                   screenshotBig: "",
-                                   screenshotSmall: "",
-                                   projectUrl: "",
-                                   downloadUrl: "",
-                                   fileSize: 1.0,
-                                   featuredImage: "")
+        let project = getStoreProjectMock()
 
         downloader.downloadProject(for: project) { _, error in
             guard let error = error else { XCTFail("no error received"); return }
@@ -500,6 +555,25 @@ class StoreProjectsDownloaderTests: XCTestCase {
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 1.0)
+    }
+
+    private func getStoreProjectMock() -> StoreProject {
+        return StoreProject(projectId: "821",
+                            projectName: "Whack A Mole",
+                            projectNameShort: "",
+                            author: "VesnaK",
+                            description: "",
+                            version: "",
+                            views: 0,
+                            downloads: 0,
+                            uploaded: 0,
+                            uploadedString: "",
+                            screenshotBig: "",
+                            screenshotSmall: "",
+                            projectUrl: "",
+                            downloadUrl: "",
+                            fileSize: 1.0,
+                            featuredImage: "")
     }
 }
 

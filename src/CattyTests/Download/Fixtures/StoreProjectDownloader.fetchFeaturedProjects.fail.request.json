@@ -15,7 +15,7 @@
         },
         "body" : {
           "CatrobatInformation" : {
-            "BaseUrl" : "https:\/\/share.catrob.at\/",
+            "BaseUrl" : "https:\/\/web-test.catrob.at\/",
             "TotalProjects" : "2",
             "ProjectsExtension" : ".catrobat"
           },
@@ -23,24 +23,24 @@
             {
               "FeaturedImage" : "resources\/featured\/featured_28.jpeg",
               "ProjectName" : "Galaxy War",
-              "ProjectId" : 719,
+              "ProjectId" : "719",
               "Author" : "DavidR"
             },
             {
               "FeaturedImage" : "resources\/featured\/featured_29.jpeg",
               "ProjectName" : "Whack A Mole",
-              "ProjectId" : 821,
+              "ProjectId" : "821",
               "Author" : "VesnaK"
             }
           ],
           "preHeaderMessages" : ""
         },
-        "url" : "https:\/\/share.catrob.at\/pocketcode\/api\/projects\/ios-featured.json?limit=10"
+        "url" : "https:\/\/web-test.catrob.at\/pocketcode\/api\/projects\/ios-featured.json?limit=10"
       },
       "recorded_at" : 1535011522.5038319,
       "request" : {
         "method" : "GET",
-        "url" : "https:\/\/share.catrob.at\/pocketcode\/api\/projects\/ios-featured.json?limit=10"
+        "url" : "https:\/\/web-test.catrob.at\/pocketcode\/api\/projects\/ios-featured.json?limit=10"
       }
     }
   ],

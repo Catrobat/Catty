@@ -22,6 +22,7 @@
 
 #import "LoopEndBrickCell.h"
 #import "Brick.h"
+#import "Pocket_Code-Swift.h"
 
 @interface LoopEndBrickCell ()
 @property (nonatomic, strong) UILabel *textLabel;
@@ -32,13 +33,13 @@
 - (void)drawRect:(CGRect)rect
 {
     if (self.type == 2) {
-        [BrickShapeFactory drawEndForeverLoopShape2WithFillColor:UIColor.controlBrickOrangeColor strokeColor:UIColor.controlBrickStrokeColor height:smallBrick width:[Util screenWidth]];
+        [BrickShapeFactory drawEndForeverLoopShape2WithFillColor:UIColor.controlBrickOrange strokeColor:UIColor.controlBrickStroke height:smallBrick width:[Util screenWidth]];
     } else if ( self.type == 1){
-        [BrickShapeFactory drawEndForeverLoopShape1WithFillColor:UIColor.controlBrickOrangeColor strokeColor:UIColor.controlBrickStrokeColor height:smallBrick width:[Util screenWidth]];
+        [BrickShapeFactory drawEndForeverLoopShape1WithFillColor:UIColor.controlBrickOrange strokeColor:UIColor.controlBrickStroke height:smallBrick width:[Util screenWidth]];
     } else if ( self.type == 3){
-        [BrickShapeFactory drawEndForeverLoopShape3WithFillColor:UIColor.controlBrickOrangeColor strokeColor:UIColor.controlBrickStrokeColor height:smallBrick width:[Util screenWidth]];
+        [BrickShapeFactory drawEndForeverLoopShape3WithFillColor:UIColor.controlBrickOrange strokeColor:UIColor.controlBrickStroke height:smallBrick width:[Util screenWidth]];
     } else {
-        [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.controlBrickOrangeColor strokeColor:UIColor.controlBrickStrokeColor height:smallBrick width:[Util screenWidth]];
+        [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.controlBrickOrange strokeColor:UIColor.controlBrickStroke height:smallBrick width:[Util screenWidth]];
     }
 }
 

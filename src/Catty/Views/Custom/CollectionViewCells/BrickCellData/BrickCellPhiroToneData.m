@@ -43,7 +43,7 @@
             Brick<BrickPhiroToneProtocol> *toneBrick = (Brick<BrickPhiroToneProtocol>*)brickCell.scriptOrBrick;
             NSString* currentLight = [toneBrick toneForLineNumber:line andParameterNumber:parameter];
             Tone current = [PhiroHelper stringToTone:currentLight];
-            currentOptionIndex = current - 1;
+            currentOptionIndex = (int)current - 1;
 
         }
         [options addObject:[PhiroHelper toneToString:DO]];
