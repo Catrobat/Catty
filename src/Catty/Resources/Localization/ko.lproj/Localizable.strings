@@ -2,7 +2,7 @@
 "A message with the same name already exists, try again." = "이미 같은 이름의 메시지가 있습니다, 다시 시도하십시오.";
 
 /* No comment provided by engineer. */
-"A project with the same name already exists, try again." = "A project with the same name already exists, try again.";
+"A project with the same name already exists, try again." = "이미 같은 이름의 프로그램이 있습니다. 다시 시도하세요.";
 
 /* No comment provided by engineer. */
 "Abc" = "글자";
@@ -116,7 +116,7 @@
 "Axes" = "축";
 
 /* No comment provided by engineer. */
-"back" = "back";
+"back" = "뒤로";
 
 /* No comment provided by engineer. */
 "Back" = "돌아가기";
@@ -170,13 +170,13 @@
 "By registering you agree to our" = "등록함으로써, 우리에게 동의하는 것입니다";
 
 /* No comment provided by engineer. */
-"By switching to the section \"Explore\" you can discover more interesting projects from people all over the world." = "By switching to the section \"Explore\" you can discover more interesting projects from people all over the world.";
+"By switching to the section \"Explore\" you can discover more interesting projects from people all over the world." = "\"탐색\" 을 이용하여 전 세계 사람들이 만든 더 재미 있는 프로그램을 확인할 수 있습니다.";
 
 /* No comment provided by engineer. */
 "Camera Roll" = "카메라 롤";
 
 /* No comment provided by engineer. */
-"Can't restart project!" = "Can't restart project!";
+"Can't restart project!" = "프로그램을 다시 시작할 수 없습니다!";
 
 /* No comment provided by engineer. */
 "Cancel" = "취소";
@@ -290,7 +290,7 @@
 "Copy Looks" = "모양 복사";
 
 /* No comment provided by engineer. */
-"Copy project" = "Copy project";
+"Copy project" = "프로젝트 복사";
 
 /* No comment provided by engineer. */
 "Create & Remix" = "만들기 및 리믹스";
@@ -338,10 +338,10 @@
 "Delete Objects" = "오브젝트 삭제";
 
 /* No comment provided by engineer. */
-"Delete Project" = "Delete Project";
+"Delete Project" = "프로젝트 삭제";
 
 /* No comment provided by engineer. */
-"Delete Projects" = "Delete Projects";
+"Delete Projects" = "프로젝트 삭제";
 
 /* No comment provided by engineer. */
 "Delete Script" = "스크립트 삭제";
@@ -380,7 +380,7 @@
 "Delete this object" = "오브젝트 삭제";
 
 /* No comment provided by engineer. */
-"Delete this project" = "Delete this project";
+"Delete this project" = "프로젝트 삭제";
 
 /* No comment provided by engineer. */
 "Delete this Script?" = "이 스크립트를 삭제하시겠습니까?";
@@ -401,7 +401,7 @@
 "Device disconnected." = "장치 연결끊김";
 
 /* No comment provided by engineer. */
-"device motion-sensor" = "device motion-sensor";
+"device motion-sensor" = "동작 센서 선택";
 
 /* No comment provided by engineer. */
 "direction" = "방향";
@@ -461,10 +461,10 @@
 "Edit Object" = "오브젝트 편집";
 
 /* No comment provided by engineer. */
-"Edit Project" = "Edit Project";
+"Edit Project" = "프로젝트 편집";
 
 /* No comment provided by engineer. */
-"Edit Projects" = "Edit Projects";
+"Edit Projects" = "프로젝트를 편집하십시오";
 
 /* Action sheet menu title */
 "Edit Script" = "스크립트 편집";
@@ -488,7 +488,7 @@
 "Email" = "이메일 주소";
 
 /* No comment provided by engineer. */
-"Empty input!" = "Empty input!";
+"Empty input!" = "입력이 없습니다!";
 
 /* No comment provided by engineer. */
 "End If" = "조건문 끝";
@@ -512,10 +512,10 @@
 "Enter your object name here..." = "오브젝트 이름을 입력하세요...";
 
 /* Placeholder for project-description input field */
-"Enter your project description here..." = "Enter your project description here...";
+"Enter your project description here..." = "여기에 프로그램 설명을 입력하세요...";
 
 /* Placeholder for project-name input field */
-"Enter your project name here..." = "Enter your project name here...";
+"Enter your project name here..." = "오브젝트 이름을 입력하세요...";
 
 /* Placeholder for add sound-name input field */
 "Enter your sound name here..." = "여기에 소리파일 이름을 입력하세요...";
@@ -530,7 +530,7 @@
 "Error" = "오류";
 
 /* No comment provided by engineer. */
-"Error saving file" = "Error saving file";
+"Error saving file" = "화일저장 오류";
 
 /* No comment provided by engineer. */
 "Explore" = "탐색하기";
@@ -557,10 +557,10 @@
 "Failed to import item" = "아이템을 가져오는데 실패했습니다. ";
 
 /* No comment provided by engineer. */
-"Failed to load featured projects" = "Failed to load featured projects";
+"Failed to load featured projects" = "프로젝트 로드 실패";
 
 /* No comment provided by engineer. */
-"Failed to load recent projects" = "Failed to load recent projects";
+"Failed to load recent projects" = "최근 프로젝트 로드 실패";
 
 /* No comment provided by engineer. */
 "Failed to load sound" = "소리를 불러오는데 실패했습니다. ";
@@ -572,7 +572,7 @@
 "false" = "거짓";
 
 /* No comment provided by engineer. */
-"Featured Projects" = "Featured Projects";
+"Featured Projects" = "추천된 프로그램";
 
 /* No comment provided by engineer. */
 "Feb" = "2월";
@@ -593,7 +593,7 @@
 "floor" = "아래";
 
 /* No comment provided by engineer. */
-"Following features used in this project are not compatible with this version of Pocket Code:" = "Following features used in this project are not compatible with this version of Pocket Code:";
+"Following features used in this project are not compatible with this version of Pocket Code:" = "이 프로그램에 사용 되는 다음과 같은 장치 또는 브라우저와 호환되지 않습니다.";
 
 /* No comment provided by engineer. */
 "for" = "동안";
@@ -713,7 +713,7 @@
 "Invalid URL given!" = "잘못된 URL!";
 
 /* No comment provided by engineer. */
-"iOS." = "iOS.";
+"iOS." = "iOS";
 
 /* No comment provided by engineer. */
 "is true" = "참이다";
@@ -797,7 +797,7 @@
 "Loading" = "로딩";
 
 /* No comment provided by engineer. */
-"location" = "location";
+"location" = "위치";
 
 /* No comment provided by engineer. */
 "location_accuracy" = "위치 정확도";
@@ -893,7 +893,7 @@
 "More" = "자세히";
 
 /* No comment provided by engineer. */
-"More information" = "More information";
+"More information" = "자세한 정보 보기";
 
 /* No comment provided by engineer. */
 "Most Downloaded" = "가장 많이 다운로드한 프로그램";
@@ -953,7 +953,7 @@
 "New Message" = "새로운 메시지";
 
 /* No comment provided by engineer. */
-"New Project" = "New Project";
+"New Project" = "새 프로젝트";
 
 /* No comment provided by engineer. */
 "New Text" = "새 텍스트";
@@ -1004,7 +1004,7 @@
 "not available. Continue anyway?" = "사용할 수 없습니다. 계속하시겠습니까?";
 
 /* No comment provided by engineer. */
-"Not enough free memory to download this project. Please delete some of your projects" = "Not enough free memory to download this project. Please delete some of your projects";
+"Not enough free memory to download this project. Please delete some of your projects" = "이 프로그램을 다운로드할 메모리가 부족합니다. 다른 프로그램을 삭제하고 시도해 보세요.";
 
 /* No comment provided by engineer. */
 "Not enough Memory" = "메모리가 부족합니다";
@@ -1118,13 +1118,13 @@
 "Please enter a text!" = "텍스트를 입력해주세요!";
 
 /* No comment provided by engineer. */
-"Please log in to report this project as inappropriate" = "Please log in to report this project as inappropriate";
+"Please log in to report this project as inappropriate" = "이 프로젝트를 부적합하다고 신고하려면 로그인 해 주세요";
 
 /* paint */
 "Please pick a tool" = "도구를 선택하십시오";
 
 /* No comment provided by engineer. */
-"Please select a project to upload" = "Please select a project to upload";
+"Please select a project to upload" = "업로드할  프로젝트을 선택하십시오";
 
 /* bluetooth */
 "Please try resetting the device and try again." = "장치를 재설정 하고 다시 시도 십시오.";
@@ -1190,22 +1190,22 @@
 "Privacy Settings" = "개인 정보 설정";
 
 /* No comment provided by engineer. */
-"Problems occured while uploading your project" = "Problems occured while uploading your project";
+"Problems occured while uploading your project" = "프로그램을 업로드하는 동안 문제가 발생했습니다.";
 
 /* No comment provided by engineer. */
 "Project" = "프로그램";
 
 /* No comment provided by engineer. */
-"Project lists:" = "Project lists:";
+"Project lists:" = "오브젝트 리스트:";
 
 /* No comment provided by engineer. */
-"Project name" = "Project name";
+"Project name" = "프로젝트 이름";
 
 /* No comment provided by engineer. */
-"Project Name is necessary!" = "Project Name is necessary!";
+"Project Name is necessary!" = "프로젝트 이름이 필요합니다!";
 
 /* No comment provided by engineer. */
-"Project variables:" = "Project variables:";
+"Project variables:" = "프로젝트 변수:";
 
 /* No comment provided by engineer. */
 "Projects" = "프로그램";
@@ -1244,7 +1244,7 @@
 "Rename object" = "스프라이트 이름 바꾸기";
 
 /* No comment provided by engineer. */
-"Rename Project" = "Rename Project";
+"Rename Project" = "프로그램 이름 바꾸기";
 
 /* No comment provided by engineer. */
 "Rename sound" = "소리 이름 바꾸기";
@@ -1358,7 +1358,7 @@
 "September" = "9월";
 
 /* No comment provided by engineer. */
-"Server is taking to long to respond, please try again later." = "Server is taking to long to respond, please try again later.";
+"Server is taking to long to respond, please try again later." = "서버가 느립니다, 다시 시도하세요.";
 
 /* No comment provided by engineer. */
 "Set Arduino digital pin" = "아두이노 디지털 핀 설정";
@@ -1499,7 +1499,7 @@
 "The description contains invalid characters, try again." = "설명에 잘못된 문자가 포함되어 있습니다, 다시 시도하세요.";
 
 /* No comment provided by engineer. */
-"The featured projects cannot be loaded" = "The featured projects cannot be loaded";
+"The featured projects cannot be loaded" = "추천 프로젝트를 로드 할 수 없습니다";
 
 /* No comment provided by engineer. */
 "The following item could not be imported from the Media Library:" = "다음 항목은 미디어 라이브러리에서 가져올 수 없습니다.";
@@ -1511,13 +1511,13 @@
 "The name contains blocked characters. Please try again!" = "차단된 문자가 있습니다. 다시 시도하십시오!";
 
 /* No comment provided by engineer. */
-"The recent projects cannot be loaded" = "The recent projects cannot be loaded";
+"The recent projects cannot be loaded" = "최근 프로젝트를 가져올 수 없습니다";
 
 /* No comment provided by engineer. */
-"The requested project can not be found. Please choose a different one." = "The requested project can not be found. Please choose a different one.";
+"The requested project can not be found. Please choose a different one." = "요청한 프로그램을 찾을 수 없습니다. 다른 프로그램을 선택 하십시오.";
 
 /* No comment provided by engineer. */
-"The requested project can not be loaded. Please try again later." = "The requested project can not be loaded. Please try again later.";
+"The requested project can not be loaded. Please try again later." = "요청한 프로젝트을 가져올 수 없습니다. 다른 프로그램을 선택 하십시오.";
 
 /* No comment provided by engineer. */
 "The sound item cannot be loaded" = "소리 아이템이 불러와지지 않음";
@@ -1586,7 +1586,7 @@
 "Turn right" = "오른쪽으로 돌기";
 
 /* No comment provided by engineer. */
-"Unable to load project!" = "Unable to load project!";
+"Unable to load project!" = "프로젝트를 로드할 수 없습니다.";
 
 /* No comment provided by engineer. */
 "Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt." = "소리를 재생할 수 없습니다! 들을 수 없거나 손상된 파일입니다.";
@@ -1610,34 +1610,34 @@
 "Undo Typing?" = "입력을 취소하시겠습니까?";
 
 /* No comment provided by engineer. */
-"Unexpected Error" = "Unexpected Error";
+"Unexpected Error" = "예기치 않은 오류";
 
 /* No comment provided by engineer. */
-"Unexpected Error, please try again later." = "Unexpected Error, please try again later.";
+"Unexpected Error, please try again later." = "알 수 없는 오류. 잠시 후 다시 시도해 주세요";
 
 /* No comment provided by engineer. */
-"Unknown Element" = "Unknown Element";
+"Unknown Element" = "알 수 없는 요인";
 
 /* No comment provided by engineer. */
 "Unselect All" = "모두 선택 해제";
 
 /* No comment provided by engineer. */
-"Unsupported Brick:" = "Unsupported Brick:";
+"Unsupported Brick:" = "지원되지 않는 블록:";
 
 /* No comment provided by engineer. */
-"Unsupported Elements" = "Unsupported Elements";
+"Unsupported Elements" = "지원되지 않는 형식";
 
 /* No comment provided by engineer. */
-"Unsupported Script:" = "Unsupported Script:";
+"Unsupported Script:" = "지원되지 않는 스크립트:";
 
 /* No comment provided by engineer. */
 "Upload" = "업로드하기";
 
 /* No comment provided by engineer. */
-"Upload Project" = "Upload Project";
+"Upload Project" = "프로젝트 업로드";
 
 /* No comment provided by engineer. */
-"Upload selected project" = "Upload selected project";
+"Upload selected project" = "선택한 프로젝트 업로드";
 
 /* No comment provided by engineer. */
 "Upload successful" = "업로드 성공";
@@ -1709,7 +1709,7 @@
 "Welcome to Pocket Code" = "포켓코드에 오신 것을 환영 합니다";
 
 /* No comment provided by engineer. */
-"When project started" = "When project started";
+"When project started" = "프로그램을 시작할 때";
 
 /* No comment provided by engineer. */
 "When screen is touched" = "화면을 터치할 때";
@@ -1745,7 +1745,7 @@
 "You are also able to build your own apps, remix existing ones and share them with your friends and other exciting people around the world." = "당신은 스스로 자신만의 앱을 만들어 편집하고 친구들과 다른 흥미로운 사람들과 공유할 수 있습니다.";
 
 /* No comment provided by engineer. */
-"You have already downloaded this project!" = "You have already downloaded this project!";
+"You have already downloaded this project!" = "이미 이 프로그램은 다운로드되었습니다!";
 
 /* No comment provided by engineer. */
 "Your email seems to be invalid" = "당신의 이메일은 유효하지 않습니다";
