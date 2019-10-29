@@ -153,15 +153,6 @@ class PocketCodeMainScreenTests: XCTestCase {
         XCTAssert(app.navigationBars[kLocalizedLogin].exists)
     }
 
-    func testDebugMode() {
-        app.navigationBars.buttons[kLocalizedDebugModeTitle].tap()
-
-        let alertQuery = app.alerts[kLocalizedDebugModeTitle]
-        alertQuery.buttons[kLocalizedOK].tap()
-
-        XCTAssert(app.navigationBars[kLocalizedPocketCode].exists)
-    }
-
     func testSettings() {
         app.navigationBars.buttons["Item"].tap()
 
