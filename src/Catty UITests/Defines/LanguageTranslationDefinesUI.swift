@@ -749,8 +749,6 @@ let kLocalizedUnexpectedErrorMessage = NSLocalizedString("Unexpected Error, plea
 //************************************************************************************************************
 //****************************************       Debug        ************************************************
 //************************************************************************************************************
-let kLocalizedDebugModeTitle = NSLocalizedString("Debug mode", bundle: Bundle(for: LanguageTranslation.self), comment: "")
-let kLocalizedStartedInDebugMode = NSLocalizedString("Pocket Code has been started in debug mode.", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedDebugMode = NSLocalizedString("debug", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
 /*
