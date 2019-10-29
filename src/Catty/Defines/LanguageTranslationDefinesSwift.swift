@@ -751,6 +751,7 @@ let kLocalizedUnexpectedErrorMessage = NSLocalizedString("Unexpected Error, plea
 //************************************************************************************************************
 let kLocalizedDebugModeTitle = NSLocalizedString("Debug mode", comment: "")
 let kLocalizedStartedInDebugMode = NSLocalizedString("Pocket Code has been started in debug mode.", comment: "")
+let kLocalizedDebugMode = NSLocalizedString("debug", comment: "")
 
 /*
      _       _     _                       _              _         _

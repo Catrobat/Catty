@@ -302,6 +302,9 @@
 "day" = "day";
 
 /* No comment provided by engineer. */
+"debug" = "debug";
+
+/* No comment provided by engineer. */
 "Debug mode" = "Debug mode";
 
 /* No comment provided by engineer. */
