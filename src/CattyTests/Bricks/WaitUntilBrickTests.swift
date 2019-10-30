@@ -26,17 +26,14 @@ import XCTest
 
 final class WaitUntilBrickTests: XMLAbstractTest {
 
-    lazy var project: Project = {
-        let project = getProjectForXML(xmlFile: "WaitUntilBrick0991")
-        return project
-    }()
-
     func testWaitUntilBrick_conditionTrue_proceedsToNextBrick() {
+        let project = getProjectForXML(xmlFile: "WaitUntilBrick0991")
         let testVar = project.variables.getUserVariableNamed("testVar", for: project.objectList[0] as? SpriteObject)
         let hasFinishedWaiting = project.variables.getUserVariableNamed("hasFinishedWaiting", for: project.objectList[0] as? SpriteObject)
 
-        let scene = createScene()
-        XCTAssertTrue(scene.startProject())
+        let scene = createScene(project: project)
+        let started = scene.startProject()
+        XCTAssertTrue(started)
         project.variables.setUserVariable(testVar, toValue: NSNumber(value: 1))
 
         let conditionMetPredicate = NSPredicate(block: { variable, _ in
@@ -49,10 +46,12 @@ final class WaitUntilBrickTests: XMLAbstractTest {
     }
 
     func testWaitUntilBrick_conditionFalse_getsStuckInWaitUntilBrick() {
+        let project = getProjectForXML(xmlFile: "WaitUntilBrick0991")
         let hasFinishedWaiting = project.variables.getUserVariableNamed("hasFinishedWaiting", for: project.objectList[0] as? SpriteObject)
 
-        let scene = createScene()
-        XCTAssertTrue(scene.startProject())
+        let scene = createScene(project: project)
+        let started = scene.startProject()
+        XCTAssertTrue(started)
         let testPredicate = createPredicate(variable: hasFinishedWaiting!, shouldNotBeEqual: NSNumber(value: 1), forSeconds: 2)
 
         expectation(for: testPredicate, evaluatedWith: self, handler: nil)
@@ -95,8 +94,8 @@ final class WaitUntilBrickTests: XMLAbstractTest {
         })
     }
 
-    private func createScene() -> CBScene {
-        let sceneBuilder = SceneBuilder(project: project).withFormulaManager(formulaManager: FormulaManager(sceneSize: Util.screenSize(true)))
+    private func createScene(project: Project) -> CBScene {
+        let sceneBuilder = SceneBuilder(project: project).withFormulaManager(formulaManager: FormulaManager(sceneSize: Util.screenSize(true))).withAudioEngine(audioEngine: AudioEngineMock())
         return sceneBuilder.build()
     }
 }

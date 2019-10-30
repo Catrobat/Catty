@@ -36,8 +36,8 @@ import Foundation
         super.init()
     }
 
-    func setup(mainOut: AKInput) {
-        subtreeOutputMixer.connect(to: mainOut)
+    func setup(engineOut: AKInput) {
+        subtreeOutputMixer.connect(to: engineOut)
         audioPlayerMixer.connect(to: subtreeOutputMixer)
     }
 

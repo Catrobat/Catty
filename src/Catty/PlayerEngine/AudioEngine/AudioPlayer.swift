@@ -25,7 +25,7 @@ import Foundation
 
 class AudioPlayer {
 
-    let akPlayer: AKPlayer
+    var akPlayer: AKPlayer
     var playerIsFinishedExpectation: Expectation?
     var fileName: String
     var soundCompletionHandler: (() -> Void)!
@@ -61,7 +61,6 @@ class AudioPlayer {
     func stop() {
         self.soundCompletionHandler()
         akPlayer.stop()
-        RunLoop.current.run(until: Date(timeIntervalSinceNow: 0.01)) //Hack. Otherwise a player might not play at all if play is executed too fast after the stop command
     }
 
     func remove() {
