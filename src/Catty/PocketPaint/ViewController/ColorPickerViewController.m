@@ -83,7 +83,6 @@
                         [UIImage imageNamed:@"sliderColors"], nil];
   self.viewChanger = [[UISegmentedControl alloc] initWithItems:itemArray];
   self.viewChanger.translatesAutoresizingMaskIntoConstraints = false;
-  self.viewChanger.backgroundColor = UIColor.globalTint;
   [self.view addSubview:self.viewChanger];
   
   if (@available(iOS 11.0, *)) {
