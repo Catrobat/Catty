@@ -145,23 +145,7 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
     self.navigationItem.title = kLocalizedPocketCode;
     self.navigationController.navigationBar.titleTextAttributes = @{ NSForegroundColorAttributeName : UIColor.navTint };
     self.navigationController.navigationBar.tintColor = UIColor.navTint;
-
-#if DEBUG == 1
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:kLocalizedDebugModeTitle
-                                                                              style:UIBarButtonItemStylePlain
-                                                                             target:self
-                                                                             action:@selector(debugInfo:)];
-#endif
 }
-
-#if DEBUG == 1
-- (void)debugInfo:(id)sender
-{
-    NSString *message = [NSString stringWithFormat:@"%@\n\n-------------------\n\nBuild version:\n\n%@",
-                         kLocalizedStartedInDebugMode, [Util appBuildVersion]];
-    [Util alertWithTitle:kLocalizedDebugModeTitle andText:message];
-}
-#endif
 
 - (IBAction)openSettings:(id)sender {
     [self infoPressed:sender];
