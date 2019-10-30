@@ -70,8 +70,7 @@
   self.toolBar.barTintColor = UIColor.navBar;
     self.toolBar.translucent = NO;
   
-  CGFloat statusBarHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
-  UIView *statusBarView =  [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, statusBarHeight)];
+  UIView *statusBarView =  [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 0)];
   statusBarView.backgroundColor  =  UIColor.navBar;
   [self.view addSubview:statusBarView];
 }
