@@ -111,7 +111,7 @@ platform :ios do
       end
     end
       
-    result = multi_scan(devices: ["iPhone 11 (13.1)"],
+    result = multi_scan(devices: ["iPhone 11"],
       project: File.absolute_path('../Catty.xcodeproj'),
       try_count: 3,
       fail_build: false,
