@@ -68,8 +68,12 @@
   self.toolBar.frame = CGRectMake(0, 0, self.view.frame.size.width, self.toolBar.frame.size.height);
   self.toolBar.tintColor = UIColor.navTint;
   self.toolBar.barTintColor = UIColor.navBar;
-    self.toolBar.translucent = NO;
-  
+  self.toolBar.translucent = NO;
+
+  if (@available(iOS 13.0, *)) {
+      return;
+  }
+    
   CGFloat statusBarHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
   UIView *statusBarView =  [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, statusBarHeight)];
   statusBarView.backgroundColor  =  UIColor.navBar;
@@ -83,7 +87,6 @@
                         [UIImage imageNamed:@"sliderColors"], nil];
   self.viewChanger = [[UISegmentedControl alloc] initWithItems:itemArray];
   self.viewChanger.translatesAutoresizingMaskIntoConstraints = false;
-  self.viewChanger.backgroundColor = UIColor.globalTint;
   [self.view addSubview:self.viewChanger];
   
   if (@available(iOS 11.0, *)) {
