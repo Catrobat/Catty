@@ -68,9 +68,17 @@
   self.toolBar.frame = CGRectMake(0, 0, self.view.frame.size.width, self.toolBar.frame.size.height);
   self.toolBar.tintColor = UIColor.navTint;
   self.toolBar.barTintColor = UIColor.navBar;
-    self.toolBar.translucent = NO;
+  self.toolBar.translucent = NO;
   
-  UIView *statusBarView =  [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 0)];
+  
+  if (@available(iOS 13.0, *))
+  {
+    return;
+  }
+  
+  //Change the color of the status bar only in versions smaller than iOS 13.0
+  CGFloat statusBarHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
+  UIView *statusBarView =  [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, statusBarHeight)];
   statusBarView.backgroundColor  =  UIColor.navBar;
   [self.view addSubview:statusBarView];
 }
