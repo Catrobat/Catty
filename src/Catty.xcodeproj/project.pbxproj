@@ -2780,10 +2780,6 @@
 		AA74EF981BC05B5F00D1E954 /* ChangeVariableBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeVariableBrick.m; sourceTree = "<group>"; };
 		AA74EF991BC05B5F00D1E954 /* SetVariableBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetVariableBrick.h; sourceTree = "<group>"; };
 		AA74EF9A1BC05B5F00D1E954 /* SetVariableBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetVariableBrick.m; sourceTree = "<group>"; };
-		AA74EF9C1BC05B5F00D1E954 /* LedOffBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LedOffBrick.h; sourceTree = "<group>"; };
-		AA74EF9D1BC05B5F00D1E954 /* LedOffBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LedOffBrick.m; sourceTree = "<group>"; };
-		AA74EF9E1BC05B5F00D1E954 /* LedOnBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LedOnBrick.h; sourceTree = "<group>"; };
-		AA74EF9F1BC05B5F00D1E954 /* LedOnBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LedOnBrick.m; sourceTree = "<group>"; };
 		AA74EFA01BC05B5F00D1E954 /* VibrationBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VibrationBrick.h; sourceTree = "<group>"; };
 		AA74EFA11BC05B5F00D1E954 /* VibrationBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VibrationBrick.m; sourceTree = "<group>"; };
 		AA74EFA31BC05B5F00D1E954 /* ChangeBrightnessByNBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeBrightnessByNBrick.h; sourceTree = "<group>"; };
@@ -5586,7 +5582,7 @@
 			path = "Parser&Serializer";
 			sourceTree = "<group>";
 		};
-		929CC0BE1BC39B0A0027DEC0 /* PhiroBricks */ = {
+		929CC0BE1BC39B0A0027DEC0 /* Phiro */ = {
 			isa = PBXGroup;
 			children = (
 				927F79DE1BEE39CB008D1635 /* PhiroIfLogicBeginBrick.h */,
@@ -5604,7 +5600,7 @@
 				929CC0C91BC39B0A0027DEC0 /* PhiroRGBLightBrick.h */,
 				929CC0CA1BC39B0A0027DEC0 /* PhiroRGBLightBrick.m */,
 			);
-			path = PhiroBricks;
+			path = Phiro;
 			sourceTree = "<group>";
 		};
 		929CC0D11BC39B280027DEC0 /* PhiroHelper */ = {
@@ -5661,7 +5657,7 @@
 			name = SettingsViewController;
 			sourceTree = "<group>";
 		};
-		92B46F8A1BC7B3E5004980C1 /* ArduinoBricks */ = {
+		92B46F8A1BC7B3E5004980C1 /* Arduino */ = {
 			isa = PBXGroup;
 			children = (
 				92B46F8B1BC7B3E5004980C1 /* ArduinoBrick.h */,
@@ -5671,7 +5667,7 @@
 				92B46F8F1BC7B3E5004980C1 /* ArduinoSendPWMValueBrick.h */,
 				92B46F901BC7B3E5004980C1 /* ArduinoSendPWMValueBrick.m */,
 			);
-			path = ArduinoBricks;
+			path = Arduino;
 			sourceTree = "<group>";
 		};
 		92B46F961BC7BC8C004980C1 /* Arduino */ = {
@@ -6300,8 +6296,8 @@
 			isa = PBXGroup;
 			children = (
 				4C6F413B22F4DAAC00900B3F /* Category */,
-				92B46F8A1BC7B3E5004980C1 /* ArduinoBricks */,
-				929CC0BE1BC39B0A0027DEC0 /* PhiroBricks */,
+				92B46F8A1BC7B3E5004980C1 /* Arduino */,
+				929CC0BE1BC39B0A0027DEC0 /* Phiro */,
 				929CC0BB1BC39AD60027DEC0 /* BluetoothBrick.h */,
 				929CC0BC1BC39AD60027DEC0 /* BluetoothBrick.m */,
 				92FF302C1A24DCAA00093DA7 /* Brick.h */,
@@ -7072,10 +7068,6 @@
 			children = (
 				99B2C36E1D884D2900736769 /* FlashBrick.h */,
 				99B2C36F1D884D2900736769 /* FlashBrick.m */,
-				AA74EF9C1BC05B5F00D1E954 /* LedOffBrick.h */,
-				AA74EF9D1BC05B5F00D1E954 /* LedOffBrick.m */,
-				AA74EF9E1BC05B5F00D1E954 /* LedOnBrick.h */,
-				AA74EF9F1BC05B5F00D1E954 /* LedOnBrick.m */,
 				AA74EFA01BC05B5F00D1E954 /* VibrationBrick.h */,
 				AA74EFA11BC05B5F00D1E954 /* VibrationBrick.m */,
 			);
