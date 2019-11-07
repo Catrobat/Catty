@@ -25,17 +25,9 @@
 
 @implementation SayBubbleBrick
 
-- (id)init
+- (kBrickCategoryType)category
 {
-    self = [super init];
-    if(self) {
-    }
-    return self;
-}
-
-- (NSString*)brickTitle
-{
-    return [kLocalizedSay stringByAppendingString:@" %@"];
+    return kLookBrick;
 }
 
 - (BOOL)allowsStringFormula

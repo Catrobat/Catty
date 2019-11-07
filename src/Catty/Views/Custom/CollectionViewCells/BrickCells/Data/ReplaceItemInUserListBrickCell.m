@@ -21,7 +21,6 @@
  */
 
 #import "ReplaceItemInUserListBrickCell.h"
-#import "Pocket_Code-Swift.h"
 
 @interface ReplaceItemInUserListBrickCell ()
 @property (nonatomic, strong) UILabel *firstRowTextLabel;
@@ -30,11 +29,6 @@
 @end
 
 @implementation ReplaceItemInUserListBrickCell
-
-- (void)drawRect:(CGRect)rect
-{
-    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.variableBrickRed strokeColor:UIColor.variableBrickStroke height:largeBrick width:[Util screenWidth]];
-}
 
 + (CGFloat)cellHeight
 {
@@ -49,6 +43,21 @@
     self.positionTextField = inlineViewSubViews[3];
     self.thirdRowTextLabel2 = inlineViewSubViews[4];
     self.valueTextField = inlineViewSubViews[5];
+}
+
+- (NSString*)brickTitleForBackground:(BOOL)isBackground andInsertionScreen:(BOOL)isInsertion
+{
+    return [[[[[kLocalizedUserListReplaceItemInList
+                stringByAppendingString:@"\n%@\n"]
+               stringByAppendingString:kLocalizedUserListAtPosition]
+              stringByAppendingString:@" %@ "]
+             stringByAppendingString:kLocalizedUserListWith]
+            stringByAppendingString:@" %@"];
+}
+
+- (NSArray<NSString*>*)parameters
+{
+    return [[NSArray alloc] initWithObjects:@"{LIST}",@"{INT;range=(1,inf)}",@"{FLOAT;range=(-inf,inf)}", nil];
 }
 
 @end

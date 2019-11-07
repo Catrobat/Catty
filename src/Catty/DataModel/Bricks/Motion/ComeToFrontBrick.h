@@ -24,6 +24,6 @@
 @class Scene;
 
 
-@interface ComeToFrontBrick : Brick
+@interface ComeToFrontBrick : Brick<BrickProtocol>
 
 @end

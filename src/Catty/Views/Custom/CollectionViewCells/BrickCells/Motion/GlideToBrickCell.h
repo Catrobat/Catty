@@ -22,7 +22,7 @@
 
 #import "BrickCell.h"
 
-@interface GlideToBrickCell : BrickCell
+@interface GlideToBrickCell : BrickCell<BrickCellProtocol>
 
 @property (nonatomic, weak) UITextField *durationTextField;
 @property (nonatomic, weak) UITextField *xCoordTextField;

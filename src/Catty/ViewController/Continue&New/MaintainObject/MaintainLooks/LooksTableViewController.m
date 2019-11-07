@@ -76,7 +76,7 @@
     if (self.object.isBackground) {
         self.placeHolderView.title = kLocalizedBackground;
     } else {
-        self.placeHolderView.title = kUILookTitle;
+        self.placeHolderView.title = kLocalizedLook;
     }
     [self showPlaceHolder:(! (BOOL)[self.object.lookList count])];
     [self setupToolBar];
@@ -847,7 +847,7 @@
         [self showLoadingView];
         
         NSData *imageData = UIImagePNGRepresentation(image);
-        NSString *lookName = kLocalizedLook;
+        NSString *lookName = kLocalizedLookFilename;
             // use temporary filename, will be renamed by user afterwards
         NSString *newImageFileName = [NSString stringWithFormat:@"temp_%@.%@",
                                       [[[imageData md5] stringByReplacingOccurrencesOfString:@"-" withString:@""] uppercaseString],

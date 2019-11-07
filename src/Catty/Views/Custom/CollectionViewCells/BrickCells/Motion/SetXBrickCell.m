@@ -21,7 +21,6 @@
  */
 
 #import "SetXBrickCell.h"
-#import "Pocket_Code-Swift.h"
 
 @interface SetXBrickCell ()
 @property (nonatomic, strong) UILabel *textLabel;
@@ -29,15 +28,25 @@
 
 @implementation SetXBrickCell
 
-- (void)drawRect:(CGRect)rect
++ (CGFloat)cellHeight
 {
-    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.motionBrickBlue strokeColor:UIColor.motionBrickStroke height:smallBrick width:[Util screenWidth]];
+    return kBrickHeight1h;
 }
 
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews
 {
     self.textLabel = inlineViewSubViews[0];
     self.xCoordTextField = inlineViewSubViews[1];
+}
+
+- (NSString*)brickTitleForBackground:(BOOL)isBackground andInsertionScreen:(BOOL)isInsertion
+{
+    return [kLocalizedSetX stringByAppendingString:@"%@"];
+}
+
+- (NSArray<NSString*>*)parameters
+{
+    return [[NSArray alloc] initWithObjects:@"{FLOAT;range=(-inf,inf)}", nil];
 }
 
 @end

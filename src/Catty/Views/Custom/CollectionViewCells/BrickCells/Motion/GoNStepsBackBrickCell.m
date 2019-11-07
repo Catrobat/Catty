@@ -21,7 +21,7 @@
  */
 
 #import "GoNStepsBackBrickCell.h"
-#import "Pocket_Code-Swift.h"
+#import "GoNStepsBackBrick.h"
 
 @interface GoNStepsBackBrickCell ()
 @property (nonatomic, strong) UILabel *textLabel;
@@ -29,15 +29,32 @@
 
 @implementation GoNStepsBackBrickCell
 
-- (void)drawRect:(CGRect)rect
++ (CGFloat)cellHeight
 {
-    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.motionBrickBlue strokeColor:UIColor.motionBrickStroke height:smallBrick width:[Util screenWidth]];
+    return kBrickHeight1h;
 }
 
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews
 {
     self.textLabel = inlineViewSubViews[0];
     self.stepsTextField = inlineViewSubViews[1];
+}
+
+- (NSString*)brickTitleForBackground:(BOOL)isBackground andInsertionScreen:(BOOL)isInsertion
+{
+    NSString* localizedLayer = kLocalizedLayers;
+    GoNStepsBackBrick *brick = (GoNStepsBackBrick*)self.scriptOrBrick;
+    
+    if (brick && [brick.steps isSingularNumber]) {
+        localizedLayer = kLocalizedLayer;
+    }
+    
+    return [kLocalizedGoBack stringByAppendingString:[@" %@ " stringByAppendingString:localizedLayer]];
+}
+
+- (NSArray<NSString*>*)parameters
+{
+    return [[NSArray alloc] initWithObjects:@"{INT;range=[0,inf)}", nil];
 }
 
 @end

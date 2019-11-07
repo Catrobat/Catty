@@ -28,6 +28,11 @@
 
 @implementation RepeatUntilBrick
 
+- (kBrickCategoryType)category
+{
+    return kControlBrick;
+}
+
 - (BOOL)isAnimateable
 {
     return YES;
@@ -56,11 +61,6 @@
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     self.repeatCondition = [[Formula alloc] initWithInteger:1];
-}
-
-- (NSString*)brickTitle
-{
-    return [kLocalizedRepeatUntil stringByAppendingString:[@" %@ " stringByAppendingString:kLocalizedUntilIsTrue]];
 }
 
 #pragma mark - Description

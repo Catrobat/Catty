@@ -27,6 +27,11 @@
 
 @implementation ChangeColorByNBrick
 
+- (kBrickCategoryType)category
+{
+    return kLookBrick;
+}
+
 - (Formula*)formulaForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
     return self.changeColor;
@@ -50,11 +55,6 @@
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     self.changeColor = [[Formula alloc] initWithInteger:25];
-}
-
-- (NSString*)brickTitle
-{
-    return [kLocalizedChangeColor stringByAppendingString:[kLocalizedBy stringByAppendingString:@" %@"]];
 }
 
 #pragma mark - Description

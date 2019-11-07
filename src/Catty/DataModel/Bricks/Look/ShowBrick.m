@@ -25,9 +25,9 @@
 
 @implementation ShowBrick
 
-- (NSString*)brickTitle
+- (kBrickCategoryType)category
 {
-    return kLocalizedShow;
+    return kLookBrick;
 }
 
 #pragma mark - Description

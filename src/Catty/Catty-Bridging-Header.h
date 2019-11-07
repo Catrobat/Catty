@@ -115,6 +115,18 @@
 #import "ThinkBubbleBrick.h"
 #import "ThinkForBubbleBrick.h"
 
+// BrickCells
+#import "RepeatBrickCell.h"
+#import "SayForBubbleBrickCell.h"
+#import "ThinkForBubbleBrickCell.h"
+#import "GlideToBrickCell.h"
+#import "VibrationBrickCell.h"
+#import "MoveNStepsBrickCell.h"
+#import "GoNStepsBackBrickCell.h"
+#import "IfLogicBeginBrickCell.h"
+#import "NextLookBrickCell.h"
+#import "PreviousLookBrickCell.h"
+
 // Formulas
 #import "Formula.h"
 #import "FormulaElement.h"
@@ -144,6 +156,7 @@
 #import "CBFileManager.h"
 #import "AudioManager.h"
 #import "FlashHelper.h"
+#import "BrickManager.h"
 #import "LanguageTranslationDefines.h"
 #import "RuntimeImageCache.h"
 #import "CBMutableCopyContext.h"

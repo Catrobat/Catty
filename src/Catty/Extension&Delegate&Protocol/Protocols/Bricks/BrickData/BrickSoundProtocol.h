@@ -25,7 +25,7 @@
 @class Brick;
 @class Sound;
 
-@protocol BrickSoundProtocol <NSObject>
+@protocol BrickSoundProtocol <BrickProtocol>
 
 - (Sound*)soundForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber;
 - (void)setSound:(Sound*)sound forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber;

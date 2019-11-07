@@ -21,7 +21,6 @@
  */
 
 #import "IfThenLogicEndBrickCell.h"
-#import "Pocket_Code-Swift.h"
 
 @interface IfThenLogicEndBrickCell ()
 @property (nonatomic, strong) UILabel *textLabel;
@@ -29,14 +28,19 @@
 
 @implementation IfThenLogicEndBrickCell
 
-- (void)drawRect:(CGRect)rect
++ (CGFloat)cellHeight
 {
-    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.controlBrickOrange strokeColor:UIColor.controlBrickStroke height:smallBrick width:[Util screenWidth]];
+    return kBrickHeight1h;
 }
 
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews
 {
     self.textLabel = inlineViewSubViews[0];
+}
+
+- (NSString*)brickTitleForBackground:(BOOL)isBackground andInsertionScreen:(BOOL)isInsertion
+{
+    return kLocalizedEndIf;
 }
 
 @end

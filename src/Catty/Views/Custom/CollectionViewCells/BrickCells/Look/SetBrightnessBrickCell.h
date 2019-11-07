@@ -22,7 +22,7 @@
 
 #import "BrickCell.h"
 
-@interface SetBrightnessBrickCell : BrickCell
+@interface SetBrightnessBrickCell : BrickCell<BrickCellProtocol>
 
 @property (nonatomic, weak) UITextField *brightnessTextField;
 

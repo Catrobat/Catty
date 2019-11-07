@@ -75,14 +75,9 @@
     }
 }
 
-- (NSString*)brickTitle
+- (kBrickCategoryType)category
 {
-    return [[[[[kLocalizedUserListReplaceItemInList
-               stringByAppendingString:@"\n%@\n"]
-               stringByAppendingString:kLocalizedUserListAtPosition]
-               stringByAppendingString:@" %@ "]
-               stringByAppendingString:kLocalizedUserListWith]
-               stringByAppendingString:@" %@"];
+    return kVariableBrick;
 }
 
 - (BOOL)allowsStringFormula

@@ -26,6 +26,11 @@
 
 @implementation WaitBrick
 
+- (kBrickCategoryType)category
+{
+    return kControlBrick;
+}
+
 - (Formula*)formulaForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
     return self.timeToWaitInSeconds;
@@ -49,12 +54,6 @@
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     self.timeToWaitInSeconds = [[Formula alloc] initWithInteger:1];
-}
-
-- (NSString*)brickTitle
-{
-    NSString* timeToWaitStr = [self.timeToWaitInSeconds isSingularNumber] ? kLocalizedSecond : kLocalizedSeconds;
-    return [kLocalizedWait stringByAppendingString:[@" %@ " stringByAppendingString:timeToWaitStr]];
 }
 
 #pragma mark - Description

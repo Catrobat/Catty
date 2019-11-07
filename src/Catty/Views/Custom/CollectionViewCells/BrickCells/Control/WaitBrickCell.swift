@@ -22,7 +22,7 @@
 
 import Foundation
 
-@objc(WaitBrickCell) class WaitBrickCell: BrickCell {
+@objc(WaitBrickCell) class WaitBrickCell: BrickCell, BrickCellProtocol {
 
     public var leftTextLabel: UILabel?
     public var delayTextField: UITextField?
@@ -36,11 +36,7 @@ import Foundation
         super.init(coder: coder)
     }
 
-    override func draw(_ rect: CGRect) {
-        BrickShapeFactory.drawSquareBrickShape(withFill: UIColor.controlBrickOrange, stroke: UIColor.controlBrickStroke, height: CGFloat(smallBrick), width: Util.screenWidth())
-    }
-
-    override static func cellHeight() -> CGFloat {
+    static func cellHeight() -> CGFloat {
         return CGFloat(kBrickHeight1h)
     }
 
@@ -48,5 +44,21 @@ import Foundation
         self.leftTextLabel = inlineViewSubViews[0] as? UILabel
         self.delayTextField = inlineViewSubViews[1] as? UITextField
         self.rightTextLabel = inlineViewSubViews[2] as? UILabel
+    }
+
+    func brickTitle(forBackground isBackground: Bool, andInsertionScreen isInsertion: Bool) -> String! {
+        var formulaStr = kLocalizedSeconds
+
+        if let brick = self.scriptOrBrick as? WaitBrick {
+            if brick.timeToWaitInSeconds.isSingularNumber() {
+                formulaStr = kLocalizedSecond
+            }
+        }
+
+        return kLocalizedWait + " %@ " + formulaStr
+    }
+
+    override func parameters() -> [String] {
+        return ["{FLOAT;range=(0.0f,inf)}"]
     }
 }

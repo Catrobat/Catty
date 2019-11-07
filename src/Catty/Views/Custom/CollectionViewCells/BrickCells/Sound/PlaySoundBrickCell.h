@@ -23,7 +23,7 @@
 #import "BrickCell.h"
 #import "iOSCombobox.h"
 
-@interface PlaySoundBrickCell : BrickCell
+@interface PlaySoundBrickCell : BrickCell<BrickCellProtocol>
 
 @property (nonatomic, weak) iOSCombobox *soundComboBoxView;
 

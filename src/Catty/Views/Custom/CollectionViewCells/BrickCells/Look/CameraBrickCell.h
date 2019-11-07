@@ -23,7 +23,7 @@
 #import "BrickCell.h"
 #import "iOSCombobox.h"
 
-@interface CameraBrickCell : BrickCell
+@interface CameraBrickCell : BrickCell<BrickCellProtocol>
 
 @property (nonatomic, weak) iOSCombobox *messageComboBoxView;
 

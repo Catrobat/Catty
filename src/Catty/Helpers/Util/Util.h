@@ -38,6 +38,7 @@ if (__functor) __functor(__VA_ARGS__);  \
 #define TIMEOUT 30.0f
 
 @protocol MYIntroductionDelegate;
+@protocol BrickProtocol;
 @class SceneViewController;
 @class ProjectLoadingInfo;
 @class InputValidationResult;
@@ -185,7 +186,7 @@ if (__functor) __functor(__VA_ARGS__);  \
 
 + (void)setBrickInsertionDictionaryToUserDefaults:(NSDictionary*) statistics;
 
-+ (void)incrementStatisticCountForBrickType:(kBrickType)brickType;
++ (void)incrementStatisticCountForBrick:(id<BrickProtocol>)brick;
 
 + (void)printBrickStatistics;
 

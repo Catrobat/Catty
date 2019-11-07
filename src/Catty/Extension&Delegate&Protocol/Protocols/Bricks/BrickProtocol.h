@@ -23,13 +23,20 @@
 #import "ScriptProtocol.h"
 
 @class Script;
+@protocol BrickCellProtocol;
 
-@protocol BrickProtocol <ScriptProtocol>
+@protocol BrickProtocol<CBMutableCopying>
 
-@property (nonatomic, weak) Script *script;
-- (BOOL)isFormulaBrick;
-- (BOOL)isIfLogicBrick;
-- (BOOL)isLoopBrick;
+@property (nonatomic, getter=isAnimated) BOOL animate;
+@property (nonatomic, getter=isAnimatedInsertBrick) BOOL animateInsertBrick;
+@property (nonatomic, getter=isAnimatedMoveBrick) BOOL animateMoveBrick;
+
+- (kBrickCategoryType)category;
 - (NSInteger)getRequiredResources;
+
+- (BOOL)isDisabledForBackground;
+- (void)setDefaultValuesForObject:(SpriteObject*)spriteObject;
+
+- (Class<BrickCellProtocol>)brickCell;
 
 @end

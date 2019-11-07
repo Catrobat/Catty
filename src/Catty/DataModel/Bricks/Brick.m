@@ -27,29 +27,15 @@
 #import "LoopBeginBrick.h"
 #import "BroadcastScript.h"
 #import "CBMutableCopyContext.h"
-
-@interface Brick()
-
-@property (nonatomic, assign) kBrickCategoryType brickCategoryType;
-@property (nonatomic, assign) kBrickType brickType;
-
-@end
+#import "Util.h"
 
 @implementation Brick
 
-
-#pragma mark - NSObject
-
-- (id)init
+- (NSString*)brickTitle
 {
-    self = [super init];
-    if (self) {
-        NSString *subclassName = NSStringFromClass([self class]);
-        BrickManager *brickManager = [BrickManager sharedBrickManager];
-        self.brickType = [brickManager brickTypeForClassName:subclassName];
-        self.brickCategoryType = [brickManager brickCategoryTypeForBrickType:self.brickType];
-    }
-    return self;
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                   reason:[NSString stringWithFormat:@"You must implement %@ in a subclass", NSStringFromSelector(_cmd)]
+                                 userInfo:nil];
 }
 
 - (BOOL)isSelectableForObject
@@ -102,11 +88,6 @@
     return @"Brick (NO SPECIFIC DESCRIPTION GIVEN! OVERRIDE THE DESCRIPTION METHOD!";
 }
 
-- (NSString*)brickTitleForBrickinSelection:(BOOL)inSelection inBackground:(BOOL)inBackground
-{
-    return self.brickTitle;
-}
-
 - (void)performFromScript:(Script*)script
 {
     @throw [NSException exceptionWithName:NSInternalInconsistencyException
@@ -116,9 +97,7 @@
 
 - (BOOL)isEqualToBrick:(Brick*)brick
 {
-    if(self.brickCategoryType != brick.brickCategoryType)
-        return NO;
-    if(self.brickType != brick.brickType)
+    if([self class] != [brick class])
         return NO;
 
     NSArray *firstPropertyList = [[Util propertiesOfInstance:self] allValues];
@@ -155,13 +134,10 @@
     return [self mutableCopyWithContext:context AndErrorReporting:YES];
 }
 
-
 - (id)mutableCopyWithContext:(CBMutableCopyContext*)context AndErrorReporting:(BOOL)reportError
 {
     if (! context) NSError(@"%@ must not be nil!", [CBMutableCopyContext class]);
     Brick *brick = [[self class] new];
-    brick.brickCategoryType = self.brickCategoryType;
-    brick.brickType = self.brickType;
     [context updateReference:self WithReference:brick];
 
     NSDictionary *properties = [Util propertiesOfInstance:self];
@@ -218,5 +194,10 @@
     return resources;
 }
 
+- (Class<BrickCellProtocol>)brickCell
+{
+    NSString *brickName = NSStringFromClass([self class]);
+    return NSClassFromString([brickName stringByAppendingString:@"Cell"]);
+}
 
 @end

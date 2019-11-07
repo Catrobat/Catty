@@ -26,14 +26,14 @@
 
 @implementation ComeToFrontBrick
 
+- (kBrickCategoryType)category
+{
+    return kMotionBrick;
+}
+
 - (BOOL)isDisabledForBackground
 {
     return YES;
-}
-
-- (NSString*)brickTitle
-{
-    return kLocalizedComeToFront;
 }
 
 #pragma mark - Description

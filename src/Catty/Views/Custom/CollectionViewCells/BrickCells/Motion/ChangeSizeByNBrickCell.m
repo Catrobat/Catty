@@ -21,7 +21,6 @@
  */
 
 #import "ChangeSizeByNBrickCell.h"
-#import "Pocket_Code-Swift.h"
 
 @interface ChangeSizeByNBrickCell ()
 @property (nonatomic, strong) UILabel *leftTextLabel;
@@ -30,9 +29,9 @@
 
 @implementation ChangeSizeByNBrickCell
 
-- (void)drawRect:(CGRect)rect
++ (CGFloat)cellHeight
 {
-    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.lookBrickGreen strokeColor:UIColor.lookBrickStroke height:smallBrick width:[Util screenWidth]];
+    return kBrickHeight1h;
 }
 
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews
@@ -42,5 +41,14 @@
     self.rightTextLabel = inlineViewSubViews[2];
 }
 
+- (NSString*)brickTitleForBackground:(BOOL)isBackground andInsertionScreen:(BOOL)isInsertion
+{
+    return [kLocalizedChangeSizeByN stringByAppendingString:@" %@\%"];
+}
+
+- (NSArray<NSString*>*)parameters
+{
+    return [[NSArray alloc] initWithObjects:@"{FLOAT;range=(-inf,inf)}", nil];
+}
 
 @end

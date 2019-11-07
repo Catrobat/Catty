@@ -21,18 +21,12 @@
  */
 
 #import "SayBubbleBrickCell.h"
-#import "Pocket_Code-Swift.h"
 
 @interface SayBubbleBrickCell ()
 @property (nonatomic, strong) UILabel *textLabel;
 @end
 
 @implementation SayBubbleBrickCell
-
-- (void)drawRect:(CGRect)rect
-{
-    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.lookBrickGreen strokeColor:UIColor.lookBrickStroke height:mediumBrick width:[Util screenWidth]];
-}
 
 + (CGFloat)cellHeight
 {
@@ -43,6 +37,16 @@
 {
     self.textLabel = inlineViewSubViews[0];
     self.sayTextField = inlineViewSubViews[1];
+}
+
+- (NSString*)brickTitleForBackground:(BOOL)isBackground andInsertionScreen:(BOOL)isInsertion
+{
+    return [kLocalizedSay stringByAppendingString:@" %@"];
+}
+
+- (NSArray<NSString*>*)parameters
+{
+    return [[NSArray alloc] initWithObjects:@"{INT}", nil];
 }
 
 @end

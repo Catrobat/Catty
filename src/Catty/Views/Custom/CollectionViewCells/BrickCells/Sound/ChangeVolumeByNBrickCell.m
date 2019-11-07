@@ -21,7 +21,6 @@
  */
 
 #import "ChangeVolumeByNBrickCell.h"
-#import "Pocket_Code-Swift.h"
 
 @interface ChangeVolumeByNBrickCell ()
 @property (nonatomic, strong) UILabel *textLabel;
@@ -29,14 +28,24 @@
 
 @implementation ChangeVolumeByNBrickCell
 
-- (void)drawRect:(CGRect)rect
++ (CGFloat)cellHeight
 {
-    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.soundBrickViolet strokeColor:UIColor.soundBrickStroke height:smallBrick width:[Util screenWidth]];
+    return kBrickHeight1h;
 }
 
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews
 {
     self.textLabel = inlineViewSubViews[0];
+}
+
+- (NSString*)brickTitleForBackground:(BOOL)isBackground andInsertionScreen:(BOOL)isInsertion
+{
+    return [kLocalizedChangeVolumeBy stringByAppendingString:@" %@"];
+}
+
+- (NSArray<NSString*>*)parameters
+{
+    return [[NSArray alloc] initWithObjects:@"{FLOAT;range=(-inf,inf)}", nil];
 }
 
 @end

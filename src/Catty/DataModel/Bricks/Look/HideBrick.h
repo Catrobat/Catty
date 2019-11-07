@@ -22,6 +22,6 @@
 
 #import "Brick.h"
 
-@interface HideBrick : Brick
+@interface HideBrick : Brick<BrickProtocol>
 
 @end

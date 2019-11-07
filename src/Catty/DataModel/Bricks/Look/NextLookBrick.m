@@ -28,14 +28,19 @@
 
 @implementation NextLookBrick
 
-- (NSString*)brickTitleForBrickinSelection:(BOOL)inSelection inBackground:(BOOL)inBackground
-{
-    return inBackground ? kLocalizedNextBackground : kLocalizedNextLook;
-}
-
 - (NSString*)pathForLook:(Look*)look
 {
     return [NSString stringWithFormat:@"%@%@/%@", [self.script.object projectPath], kProjectImagesDirName, look.fileName];
+}
+
+- (NSString*)brickTitle
+{
+    return kLocalizedNextLook;
+}
+
+- (kBrickCategoryType)category
+{
+    return kLookBrick;
 }
 
 #pragma mark - Description

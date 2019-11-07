@@ -22,7 +22,7 @@
 
 #import "BrickCell.h"
 
-@interface SayBubbleBrickCell : BrickCell
+@interface SayBubbleBrickCell : BrickCell<BrickCellProtocol>
 
 @property (nonatomic, weak) UITextField *sayTextField;
 

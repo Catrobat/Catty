@@ -22,7 +22,7 @@
 
 #import "BrickCell.h"
 
-@interface SetTransparencyBrickCell : BrickCell
+@interface SetTransparencyBrickCell : BrickCell<BrickCellProtocol>
 
 @property (nonatomic, weak) UITextField *transparencyTextField;
 

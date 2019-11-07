@@ -26,6 +26,11 @@
 
 @implementation ChangeYByNBrick
 
+- (kBrickCategoryType)category
+{
+    return kMotionBrick;
+}
+
 - (Formula*)formulaForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
     return self.yMovement;
@@ -51,11 +56,6 @@
     self.yMovement = [[Formula alloc] initWithInteger:10];
 }
 
-- (NSString*)brickTitle
-{
-    return [kLocalizedChangeYBy stringByAppendingString:[@" " stringByAppendingString:[kLocalizedBy stringByAppendingString:@" %@"]]];
-}
-
 #pragma mark - Description
 - (NSString*)description
 {
@@ -66,4 +66,10 @@
 {
     return [self.yMovement getRequiredResources];
 }
+
+- (NSArray<NSString*>*)parameters
+{
+    return [[NSArray alloc] initWithObjects:@"{FLOAT;range=(-inf,inf)}", nil];
+}
+
 @end

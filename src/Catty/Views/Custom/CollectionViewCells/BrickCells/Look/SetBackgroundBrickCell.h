@@ -23,7 +23,7 @@
 #import "BrickCell.h"
 #import "iOSCombobox.h"
 
-@interface SetBackgroundBrickCell : BrickCell
+@interface SetBackgroundBrickCell : BrickCell<BrickCellProtocol>
 
 @property (nonatomic, weak) iOSCombobox *lookComboBoxView;
 

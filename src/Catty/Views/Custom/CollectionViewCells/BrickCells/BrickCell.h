@@ -23,40 +23,36 @@
 #import <UIKit/UIKit.h>
 #import "ProgramDefines.h"
 #import "UIDefines.h"
+#import "BrickProtocol.h"
 #import "BrickCellProtocol.h"
 #import "BrickShapeFactory.h"
-#import "Util.h"
 
-#define smallBrick 51.0f
-#define mediumBrick 71.0f
-#define largeBrick  94.0f
-#define roundedLargeBrick 102.0f
-#define roundedSmallBrick 75.0f
+#define marginBottomSquaredBrick -4.9f
+#define marginBottomRoundedBrick 2.6f
 
 @class Brick, BrickCellInlineView, BrickCell, SelectButton;
-@protocol ScriptProtocol, BrickCellDataDelegate, BrickCellDataProtocol;
+@protocol BrickCellDataDelegate, BrickCellDataProtocol;
 
 @protocol BrickCellDelegate<NSObject>
 @optional
 - (void)brickCell:(BrickCell*)brickCell didSelectBrickCellButton:(SelectButton*)selectButton;
 @end
 
-@interface BrickCell : UICollectionViewCell<BrickCellProtocol>
+@interface BrickCell : UICollectionViewCell
 @property (nonatomic, weak) id<BrickCellDelegate> delegate;
 @property (nonatomic, weak) id<BrickCellDataDelegate> dataDelegate;
-@property (nonatomic, strong) id<ScriptProtocol> scriptOrBrick;
+@property (nonatomic, strong) id<BrickProtocol> scriptOrBrick;
 @property (nonatomic, strong) NSArray *brickCategoryColors;
 @property (nonatomic) BOOL enabled;
 @property (nonatomic) BOOL isInserting;
+
 @property (nonatomic, strong) SelectButton *selectButton;
-@property (nonatomic) NSString* brickTitle;
 
 - (kBrickShapeType)brickShapeType;
 - (CGFloat)inlineViewHeight;
 - (CGFloat)inlineViewOffsetY;
-+ (CGFloat)cellHeight;
 
-- (void)hookUpSubViews:(NSArray *)inlineViewSubViews; // abstract
+- (void)hookUpSubViews:(NSArray*)inlineViewSubViews; // abstract
 - (BOOL)isScriptBrick;
 - (void)selectedState:(BOOL)selected setEditingState:(BOOL)editing;
 - (void)animate:(BOOL)animate;
@@ -67,5 +63,6 @@
 - (id<BrickCellDataProtocol>)dataSubviewForLineNumber:(NSInteger)line andParameterNumber:(NSInteger)parameter;
 - (id<BrickCellDataProtocol>)dataSubviewWithType:(Class)className;
 - (NSArray*)dataSubviews; // of id<BrickCellDataProtocol>
+- (NSArray<NSString*>*)parameters;
 
 @end

@@ -25,6 +25,11 @@
 
 @implementation PointInDirectionBrick
 
+- (kBrickCategoryType)category
+{
+    return kMotionBrick;
+}
+
 - (Formula*)formulaForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
     return self.degrees;
@@ -48,11 +53,6 @@
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     self.degrees = [[Formula alloc] initWithInteger:90];
-}
-
-- (NSString*)brickTitle
-{
-    return [kLocalizedPointInDirection stringByAppendingString:[@" %@ " stringByAppendingString:kLocalizedDegrees]];
 }
 
 #pragma mark - Description

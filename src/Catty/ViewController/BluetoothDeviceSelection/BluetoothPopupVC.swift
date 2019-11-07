@@ -32,9 +32,9 @@ import UIKit
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let navigationTitleColor = UIColor.navText ?? UIColor.black
-        let titleColor = UIColor.background ?? UIColor.black
-        let selectedTitleColor = UIColor.navTint ?? UIColor.black
+        let navigationTitleColor = UIColor.navText
+        let titleColor = UIColor.background
+        let selectedTitleColor = UIColor.navTint
 
         self.segmentedPager.backgroundColor = UIColor.navBar
         self.navigationController?.navigationBar.tintColor = UIColor.navTint

@@ -131,7 +131,7 @@ let kLocalizedEditBackgrounds = NSLocalizedString("Edit Backgrounds", bundle: Bu
 let kLocalizedEditScript = NSLocalizedString("Edit Script", bundle: Bundle(for: LanguageTranslation.self), comment: "Action sheet menu title")
 let kLocalizedEditBrick = NSLocalizedString("Edit Brick", bundle: Bundle(for: LanguageTranslation.self), comment: "Action sheet menu title")
 let kLocalizedAddLook = NSLocalizedString("Add look", bundle: Bundle(for: LanguageTranslation.self), comment: "Action sheet menu title")
-let kLocalizedLook = NSLocalizedString("look", bundle: Bundle(for: LanguageTranslation.self), comment: "LOOK")
+let kLocalizedLookFilename = NSLocalizedString("look", bundle: Bundle(for: LanguageTranslation.self), comment: "LOOK")
 let kLocalizedEditProject = NSLocalizedString("Edit Project", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedEditProjects = NSLocalizedString("Edit Projects", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedEditObject = NSLocalizedString("Edit Object", bundle: Bundle(for: LanguageTranslation.self), comment: "")
@@ -224,13 +224,8 @@ let kLocalizedAxes = NSLocalizedString("Axes", bundle: Bundle(for: LanguageTrans
 let kLocalizedMostDownloaded = NSLocalizedString("Most Downloaded", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedMostViewed = NSLocalizedString("Most Viewed", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedNewest = NSLocalizedString("Newest", bundle: Bundle(for: LanguageTranslation.self), comment: "")
-let kLocalizedControl = NSLocalizedString("Control", bundle: Bundle(for: LanguageTranslation.self), comment: "")
-let kLocalizedMotion = NSLocalizedString("Motion", bundle: Bundle(for: LanguageTranslation.self), comment: "")
-let kLocalizedSound = NSLocalizedString("Sound", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedVariables = NSLocalizedString("Variables", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedLists = NSLocalizedString("Lists", bundle: Bundle(for: LanguageTranslation.self), comment: "")
-let kLocalizedPhiro = NSLocalizedString("Phiro", bundle: Bundle(for: LanguageTranslation.self), comment: "")
-let kLocalizedArduino = NSLocalizedString("Arduino", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedPhiroBricks = NSLocalizedString("Use Phiro bricks", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedArduinoBricks = NSLocalizedString("Use Arduino bricks", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedFrontCamera = NSLocalizedString("Front camera", bundle: Bundle(for: LanguageTranslation.self), comment: "")
@@ -319,6 +314,7 @@ let kLocalizedUnsupportedElementsDescription = NSLocalizedString("Following feat
 //************************************************************************************************************
 
 // control bricks
+let kLocalizedScript = NSLocalizedString("Script", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedWhenProjectStarted = NSLocalizedString("When project started", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedWhenTapped = NSLocalizedString("When tapped", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedTouchDown = NSLocalizedString("When screen is touched", bundle: Bundle(for: LanguageTranslation.self), comment: "")
@@ -368,6 +364,7 @@ let kLocalizedLayers = NSLocalizedString("layers", bundle: Bundle(for: LanguageT
 let kLocalizedComeToFront = NSLocalizedString("Go to front", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
 // look bricks
+let kLocalizedLook = NSLocalizedString("Look", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedSetLook = NSLocalizedString("Switch to look", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedSetBackground = NSLocalizedString("Set background", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedNextLook = NSLocalizedString("Next look", bundle: Bundle(for: LanguageTranslation.self), comment: "")
@@ -395,6 +392,7 @@ let kLocalizedChooseCamera = NSLocalizedString("Use camera", bundle: Bundle(for:
 let kLocalizedFor = NSLocalizedString("for", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
 // sound bricks
+let kLocalizedSound = NSLocalizedString("Sound", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedPlaySound = NSLocalizedString("Start sound", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedStopAllSounds = NSLocalizedString("Stop all sounds", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedSetVolumeTo = NSLocalizedString("Set volume to", bundle: Bundle(for: LanguageTranslation.self), comment: "")
@@ -665,21 +663,21 @@ let kUIFESensorFaceY = NSLocalizedString("faceposition_y", bundle: Bundle(for: L
 
 let kUIFEUnknownElementType = NSLocalizedString("Unknown Element", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
+let kUIFENewText = NSLocalizedString("New Text", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFETextMessage = NSLocalizedString("Text message:", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+
 //************************************************************************************************************
 //************************************       BrickCategoryTitles        **************************************
 //************************************************************************************************************
 
-let kUIFENewText = NSLocalizedString("New Text", bundle: Bundle(for: LanguageTranslation.self), comment: "")
-let kUIFETextMessage = NSLocalizedString("Text message:", bundle: Bundle(for: LanguageTranslation.self), comment: "")
-let kLocalizedFrequentlyUsed = NSLocalizedString("Frequently Used", bundle: Bundle(for: LanguageTranslation.self), comment: "Title of View where the user can see the frequently used bricks.")
-let kUIScriptTitle = NSLocalizedString("Script", bundle: Bundle(for: LanguageTranslation.self), comment: "")
-let kUIControlTitle = NSLocalizedString("Control", bundle: Bundle(for: LanguageTranslation.self), comment: "")
-let kUIMotionTitle = NSLocalizedString("Motion", bundle: Bundle(for: LanguageTranslation.self), comment: "")
-let kUISoundTitle = NSLocalizedString("Sound", bundle: Bundle(for: LanguageTranslation.self), comment: "")
-let kUILookTitle = NSLocalizedString("Look", bundle: Bundle(for: LanguageTranslation.self), comment: "")
-let kUIVariableTitle = NSLocalizedString("Variable", bundle: Bundle(for: LanguageTranslation.self), comment: "")
-let kUIArduinoTitle = NSLocalizedString("Arduino", bundle: Bundle(for: LanguageTranslation.self), comment: "")
-let kUIPhiroTitle = NSLocalizedString("Phiro", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedCategoryFrequentlyUsed = NSLocalizedString("Frequently Used", bundle: Bundle(for: LanguageTranslation.self), comment: "Title of View where the user can see the frequently used bricks.")
+let kLocalizedCategoryControl = NSLocalizedString("Control", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedCategoryMotion = NSLocalizedString("Motion", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedCategoryLook = NSLocalizedString("Look", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedCategorySound = NSLocalizedString("Sound", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedCategoryVariable = NSLocalizedString("Variable", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedCategoryArduino = NSLocalizedString("Arduino", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedCategoryPhiro = NSLocalizedString("Phiro", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
 //************************************************************************************************************
 //************************************       PhiroDefines         ********************************************

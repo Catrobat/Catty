@@ -21,18 +21,12 @@
  */
 
 #import "PointToBrickCell.h"
-#import "Pocket_Code-Swift.h"
 
 @interface PointToBrickCell ()
 @property (nonatomic, strong) UILabel *textLabel;
 @end
 
 @implementation PointToBrickCell
-
-- (void)drawRect:(CGRect)rect
-{
-    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.motionBrickBlue strokeColor:UIColor.motionBrickStroke height:mediumBrick width:[Util screenWidth]];
-}
 
 + (CGFloat)cellHeight
 {
@@ -43,6 +37,16 @@
 {
     self.textLabel = inlineViewSubViews[0];
     self.objectComboBoxView = inlineViewSubViews[1];
+}
+
+- (NSString*)brickTitleForBackground:(BOOL)isBackground andInsertionScreen:(BOOL)isInsertion
+{
+    return [kLocalizedPointTowards stringByAppendingString:@"\n%@"];
+}
+
+- (NSArray<NSString*>*)parameters
+{
+    return [[NSArray alloc] initWithObjects:@"{OBJECT}", nil];
 }
 
 @end

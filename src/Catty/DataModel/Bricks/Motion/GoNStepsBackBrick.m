@@ -56,10 +56,9 @@
     return YES;
 }
 
-- (NSString*)brickTitle
+- (kBrickCategoryType)category
 {
-    NSString* localizedLayer = [self.steps isSingularNumber] ? kLocalizedLayer : kLocalizedLayers;
-    return [kLocalizedGoBack stringByAppendingString:[@" %@ " stringByAppendingString:localizedLayer]];
+    return kMotionBrick;
 }
 
 #pragma mark - Description

@@ -26,6 +26,7 @@
 #import "BrickFormulaProtocol.h"
 #import "PlaceAtBrickCell.h"
 #import "GlideToBrickCell.h"
+#import "BrickManager.h"
 #import "Pocket_Code-Swift.h"
 
 @interface BrickCellFormulaData()
@@ -134,8 +135,7 @@
         self.border.shadowOpacity = 1.0;
         self.border.shadowOffset = CGSizeMake(0, 0);
     } else {
-        UIColor *borderColor = kBrickCategoryStrokeColors[self.brickCell.scriptOrBrick.brickCategoryType-1];
-        //        UIColor *borderColor = self.brickCell.brickCategoryColors[self.brickCell.scriptOrBrick.brickCategoryType-1];
+        UIColor *borderColor = [[[[BrickManager class] sharedBrickManager] categoryForType:self.brickCell.scriptOrBrick.category] strokeColor];
         self.border.strokeColor = borderColor.CGColor;
     }
     

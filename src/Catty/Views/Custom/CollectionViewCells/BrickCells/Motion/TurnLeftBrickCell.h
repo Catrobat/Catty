@@ -22,7 +22,7 @@
 
 #import "BrickCell.h"
 
-@interface TurnLeftBrickCell : BrickCell
+@interface TurnLeftBrickCell : BrickCell<BrickCellProtocol>
 
 @property (nonatomic, weak) UITextField *degreesTextField;
 

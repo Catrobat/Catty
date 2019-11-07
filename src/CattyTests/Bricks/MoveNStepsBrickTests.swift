@@ -155,16 +155,4 @@ final class MoveNStepsBrickTests: AbstractBrickTest {
         XCTAssertEqual(position.x, self.spriteNode.catrobatPosition.x, accuracy: EPSILON, "Wrong x after MoveNStepsBrick")
         XCTAssertEqual(position.y, self.spriteNode.catrobatPosition.y, accuracy: EPSILON, "Wrong y after MoveNStepsBrick")
     }
-
-    func testTitleSingular() {
-        let brick = MoveNStepsBrick()
-        brick.steps = Formula(double: 1)
-        XCTAssertEqual(kLocalizedMove + " %@ " + kLocalizedStep, brick.brickTitle, "Wrong brick title")
-    }
-
-    func testTitlePlural() {
-        let brick = MoveNStepsBrick()
-        brick.steps = Formula(double: 2)
-        XCTAssertEqual(kLocalizedMove + " %@ " + kLocalizedSteps, brick.brickTitle, "Wrong brick title")
-    }
 }

@@ -22,6 +22,6 @@
 
 #import "BrickCell.h"
 
-@interface NextLookBrickCell : BrickCell
+@interface NextLookBrickCell : BrickCell<BrickCellProtocol>
 
 @end

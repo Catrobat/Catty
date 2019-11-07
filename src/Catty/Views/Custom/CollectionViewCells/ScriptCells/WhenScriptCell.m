@@ -21,18 +21,12 @@
  */
 
 #import "WhenScriptCell.h"
-#import "Pocket_Code-Swift.h"
 
 @interface WhenScriptCell ()
 @property (nonatomic, strong) UILabel *textLabel;
 @end
 
 @implementation WhenScriptCell
-
-- (void)drawRect:(CGRect)rect
-{
-    [BrickShapeFactory drawLargeRoundedControlBrickShapeWithFillColor:UIColor.controlBrickOrange strokeColor:UIColor.controlBrickStroke height:roundedSmallBrick width:[Util screenWidth]];
-}
 
 - (kBrickShapeType)brickShapeType
 {
@@ -44,18 +38,14 @@
     return kBrickHeightControl1h;
 }
 
+- (NSString*)brickTitleForBackground:(BOOL)isBackground andInsertionScreen:(BOOL)isInsertion
+{
+    return kLocalizedWhenTapped;
+}
+
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews
 {
     self.textLabel = inlineViewSubViews[0];
-}
-
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
 }
 
 @end

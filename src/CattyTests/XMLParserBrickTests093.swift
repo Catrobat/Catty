@@ -50,7 +50,6 @@ class XMLParserBrickTests093: XMLAbstractTest {
         self.parserContext!.spriteObject.lookList = lookList
         let brick = self.parserContext!.parse(from: brickXMLElement, withClass: SetLookBrick.self as? CBXMLNodeProtocol.Type) as! Brick
 
-        XCTAssertEqual(brick.brickType, kBrickType.setLookBrick, "Invalid brick type")
         XCTAssertTrue(brick.isKind(of: SetLookBrick.self), "Invalid brick class")
 
         let setLookBrick = brick as! SetLookBrick
@@ -67,7 +66,6 @@ class XMLParserBrickTests093: XMLAbstractTest {
         let brickXMLElement = brickElement!.first
 
         let brick = self.parserContext!.parse(from: brickXMLElement, withClass: SetVariableBrick.self) as! Brick
-        XCTAssertEqual(brick.brickType, kBrickType.setVariableBrick, "Invalid brick type")
         XCTAssertTrue(brick.isKind(of: SetVariableBrick.self), "Invalid brick class")
 
         let setVariableBrick = brick as! SetVariableBrick
@@ -97,7 +95,6 @@ class XMLParserBrickTests093: XMLAbstractTest {
         context.spriteObject.lookList = lookList
         let brick = self.parserContext!.parse(from: brickXMLElement, withClass: SetSizeToBrick.self as? CBXMLNodeProtocol.Type) as! Brick
 
-        XCTAssertEqual(brick.brickType, kBrickType.setSizeToBrick, "Invalid brick type")
         XCTAssertTrue(brick.isKind(of: SetSizeToBrick.self), "Invalid brick class")
 
         let setSizeToBrick = brick as! SetSizeToBrick
@@ -126,9 +123,7 @@ class XMLParserBrickTests093: XMLAbstractTest {
         let brick1 = self.parserContext!.parse(from: brickXMLElement1, withClass: ForeverBrick.self as? CBXMLNodeProtocol.Type) as! Brick
         let brick2 = self.parserContext!.parse(from: brickXMLElement2, withClass: LoopEndBrick.self as? CBXMLNodeProtocol.Type) as! Brick
 
-        XCTAssertEqual(brick1.brickType, kBrickType.foreverBrick, "Invalid brick type")
         XCTAssertTrue(brick1.isKind(of: ForeverBrick.self), "Invalid brick class")
-        XCTAssertEqual(brick2.brickType, kBrickType.loopEndBrick, "Invalid brick type")
         XCTAssertTrue(brick2.isKind(of: LoopEndBrick.self), "Invalid brick class")
 
         XCTAssertTrue(context.openedNestingBricksStack.isEmpty(), "Nesting bricks not closed properly")
@@ -142,7 +137,6 @@ class XMLParserBrickTests093: XMLAbstractTest {
         let brickXMLElement = brickElement!.first
         let brick = self.parserContext!.parse(from: brickXMLElement, withClass: PlaceAtBrick.self as? CBXMLNodeProtocol.Type) as! Brick
 
-        XCTAssertEqual(brick.brickType, kBrickType.placeAtBrick, "Invalid brick type")
         XCTAssertTrue(brick.isKind(of: PlaceAtBrick.self), "Invalid brick class")
 
         let placeAtBrick = brick as! PlaceAtBrick
@@ -163,7 +157,6 @@ class XMLParserBrickTests093: XMLAbstractTest {
         let brickXMLElement = brickElement!.first
         let brick = self.parserContext!.parse(from: brickXMLElement, withClass: WaitBrick.self as? CBXMLNodeProtocol.Type) as! Brick
 
-        XCTAssertEqual(brick.brickType, kBrickType.waitBrick, "Invalid brick type")
         XCTAssertTrue(brick.isKind(of: WaitBrick.self), "Invalid brick class")
 
         let waitBrick = brick as! WaitBrick
@@ -182,7 +175,6 @@ class XMLParserBrickTests093: XMLAbstractTest {
         let brickXMLElement = brickElement!.first
         let brick = self.parserContext!.parse(from: brickXMLElement, withClass: ShowBrick.self as? CBXMLNodeProtocol.Type) as! Brick
 
-        XCTAssertEqual(brick.brickType, kBrickType.showBrick, "Invalid brick type")
         XCTAssertTrue(brick.isKind(of: ShowBrick.self), "Invalid brick class")
     }
 
@@ -194,7 +186,6 @@ class XMLParserBrickTests093: XMLAbstractTest {
         let brickXMLElement = brickElement!.first
         let brick = self.parserContext!.parse(from: brickXMLElement, withClass: GlideToBrick.self as? CBXMLNodeProtocol.Type) as! Brick
 
-        XCTAssertEqual(brick.brickType, kBrickType.glideToBrick, "Invalid brick type")
         XCTAssertTrue(brick.isKind(of: GlideToBrick.self), "Invalid brick class")
 
         let glideToBrick = brick as! GlideToBrick
@@ -220,7 +211,6 @@ class XMLParserBrickTests093: XMLAbstractTest {
         let brickXMLElement = brickElement!.first
         let brick = self.parserContext!.parse(from: brickXMLElement, withClass: HideBrick.self as? CBXMLNodeProtocol.Type) as! Brick
 
-        XCTAssertEqual(brick.brickType, kBrickType.hideBrick, "Invalid brick type")
         XCTAssertTrue(brick.isKind(of: HideBrick.self), "Invalid brick class")
     }
 
@@ -240,7 +230,6 @@ class XMLParserBrickTests093: XMLAbstractTest {
 
         let brick = self.parserContext!.parse(from: brickXMLElement, withClass: PlaySoundBrick.self as? CBXMLNodeProtocol.Type) as! Brick
 
-        XCTAssertEqual(brick.brickType, kBrickType.playSoundBrick, "Invalid brick type")
         XCTAssertTrue(brick.isKind(of: PlaySoundBrick.self), "Invalid brick class")
 
         let playSoundBrick = brick as! PlaySoundBrick
@@ -257,7 +246,6 @@ class XMLParserBrickTests093: XMLAbstractTest {
         let brickXMLElement = brickElement!.first
         let brick = self.parserContext!.parse(from: brickXMLElement, withClass: SetXBrick.self as? CBXMLNodeProtocol.Type) as! Brick
 
-        XCTAssertEqual(brick.brickType, kBrickType.setXBrick, "Invalid brick type")
         XCTAssertTrue(brick.isKind(of: SetXBrick.self), "Invalid brick class")
 
         let setXBrick = brick as! SetXBrick
@@ -277,7 +265,6 @@ class XMLParserBrickTests093: XMLAbstractTest {
         let brickXMLElement = brickElement!.first
         let brick = self.parserContext!.parse(from: brickXMLElement, withClass: SetXBrick.self as? CBXMLNodeProtocol.Type) as! Brick
 
-        XCTAssertEqual(brick.brickType, kBrickType.setXBrick, "Invalid brick type")
         XCTAssertTrue(brick.isKind(of: SetXBrick.self), "Invalid brick class")
 
         let setXBrick = brick as! SetXBrick
@@ -307,7 +294,6 @@ class XMLParserBrickTests093: XMLAbstractTest {
         let brickXMLElement = brickElement!.first
         let brick = self.parserContext!.parse(from: brickXMLElement, withClass: SetYBrick.self as? CBXMLNodeProtocol.Type) as! Brick
 
-        XCTAssertEqual(brick.brickType, kBrickType.setYBrick, "Invalid brick type")
         XCTAssertTrue(brick.isKind(of: SetYBrick.self), "Invalid brick class")
 
         let setYBrick = brick as! SetYBrick
@@ -326,7 +312,6 @@ class XMLParserBrickTests093: XMLAbstractTest {
         let brickXMLElement = brickElement!.first
         let brick = self.parserContext!.parse(from: brickXMLElement, withClass: ChangeXByNBrick.self as? CBXMLNodeProtocol.Type) as! Brick
 
-        XCTAssertEqual(brick.brickType, kBrickType.changeXByNBrick, "Invalid brick type")
         XCTAssertTrue(brick.isKind(of: ChangeXByNBrick.self), "Invalid brick class")
 
         let changeXByNBrick = brick as! ChangeXByNBrick
@@ -345,7 +330,6 @@ class XMLParserBrickTests093: XMLAbstractTest {
         let brickXMLElement = brickElement!.first
         let brick = self.parserContext!.parse(from: brickXMLElement, withClass: ChangeYByNBrick.self as? CBXMLNodeProtocol.Type) as! Brick
 
-        XCTAssertEqual(brick.brickType, kBrickType.changeYByNBrick, "Invalid brick type")
         XCTAssertTrue(brick.isKind(of: ChangeYByNBrick.self), "Invalid brick class")
 
         let changeYByNBrick = brick as! ChangeYByNBrick
@@ -363,7 +347,6 @@ class XMLParserBrickTests093: XMLAbstractTest {
         let brickXMLElement = brickElement!.first
         let brick = self.parserContext!.parse(from: brickXMLElement, withClass: MoveNStepsBrick.self) as! Brick
 
-        XCTAssertEqual(brick.brickType, kBrickType.moveNStepsBrick, "Invalid brick type")
         XCTAssertTrue(brick.isKind(of: MoveNStepsBrick.self), "Invalid brick class")
 
         let moveNStepsBrick = brick as! MoveNStepsBrick
@@ -381,7 +364,6 @@ class XMLParserBrickTests093: XMLAbstractTest {
         let brickXMLElement = brickElement!.first
         let brick = self.parserContext!.parse(from: brickXMLElement, withClass: TurnLeftBrick.self as? CBXMLNodeProtocol.Type) as! Brick
 
-        XCTAssertEqual(brick.brickType, kBrickType.turnLeftBrick, "Invalid brick type")
         XCTAssertTrue(brick.isKind(of: TurnLeftBrick.self), "Invalid brick class")
 
         let turnLeftBrick = brick as! TurnLeftBrick
@@ -399,7 +381,6 @@ class XMLParserBrickTests093: XMLAbstractTest {
         let brickXMLElement = brickElement!.first
         let brick = self.parserContext!.parse(from: brickXMLElement, withClass: TurnRightBrick.self as? CBXMLNodeProtocol.Type) as! Brick
 
-        XCTAssertEqual(brick.brickType, kBrickType.turnRightBrick, "Invalid brick type")
         XCTAssertTrue(brick.isKind(of: TurnRightBrick.self), "Invalid brick class")
 
         let turnRightBrick = brick as! TurnRightBrick
@@ -417,7 +398,6 @@ class XMLParserBrickTests093: XMLAbstractTest {
         let brickXMLElement = brickElement!.first
         let brick = self.parserContext!.parse(from: brickXMLElement, withClass: PointInDirectionBrick.self as? CBXMLNodeProtocol.Type) as! Brick
 
-        XCTAssertEqual(brick.brickType, kBrickType.pointInDirectionBrick, "Invalid brick type")
         XCTAssertTrue(brick.isKind(of: PointInDirectionBrick.self), "Invalid brick class")
 
         let pointInDirectionBrick = brick as! PointInDirectionBrick
@@ -436,7 +416,6 @@ class XMLParserBrickTests093: XMLAbstractTest {
 
         let brick = self.parserContext!.parse(from: brickXMLElement, withClass: StopAllSoundsBrick.self as? CBXMLNodeProtocol.Type) as! Brick
 
-        XCTAssertEqual(brick.brickType, kBrickType.stopAllSoundsBrick, "Invalid brick type")
         XCTAssertTrue(brick.isKind(of: StopAllSoundsBrick.self), "Invalid brick class")
     }
 
@@ -448,7 +427,6 @@ class XMLParserBrickTests093: XMLAbstractTest {
         let brickXMLElement = brickElement!.first
         let brick = self.parserContext!.parse(from: brickXMLElement, withClass: PointToBrick.self) as! Brick
 
-        XCTAssertEqual(brick.brickType, kBrickType.pointToBrick, "Invalid brick type")
         XCTAssertTrue(brick.isKind(of: PointToBrick.self), "Invalid brick class")
 
         let pointToBrick = brick as! PointToBrick
@@ -485,7 +463,6 @@ class XMLParserBrickTests093: XMLAbstractTest {
         let brickXMLElement = brickElement!.first
         let brick = self.parserContext!.parse(from: brickXMLElement, withClass: SetColorBrick.self as? CBXMLNodeProtocol.Type) as! Brick
 
-        XCTAssertEqual(brick.brickType, kBrickType.setColorBrick, "Invalid brick type")
         XCTAssertTrue(brick.isKind(of: SetColorBrick.self), "Invalid brick class")
 
         let setColorBrick = brick as! SetColorBrick
@@ -501,7 +478,6 @@ class XMLParserBrickTests093: XMLAbstractTest {
         let brickXMLElement = brickElement!.first
         let brick = self.parserContext!.parse(from: brickXMLElement, withClass: ChangeColorByNBrick.self as? CBXMLNodeProtocol.Type) as! Brick
 
-        XCTAssertEqual(brick.brickType, kBrickType.changeColorByNBrick, "Invalid brick type")
         XCTAssertTrue(brick.isKind(of: ChangeColorByNBrick.self), "Invalid brick class")
 
         let changeColorByNBrick = brick as! ChangeColorByNBrick

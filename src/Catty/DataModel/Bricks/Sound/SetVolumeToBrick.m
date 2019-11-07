@@ -25,6 +25,11 @@
 
 @implementation SetVolumeToBrick
 
+- (kBrickCategoryType)category
+{
+    return kSoundBrick;
+}
+
 - (Formula*)formulaForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
     return self.volume;
@@ -48,11 +53,6 @@
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     self.volume = [[Formula alloc] initWithInteger:60];
-}
-
-- (NSString*)brickTitle
-{
-    return [kLocalizedSetVolumeTo stringByAppendingString:@" %@\%"];
 }
 
 #pragma mark - Description

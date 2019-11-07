@@ -22,7 +22,7 @@
 
 #import "BrickCell.h"
 
-@interface IfThenLogicBeginBrickCell : BrickCell
+@interface IfThenLogicBeginBrickCell : BrickCell<BrickCellProtocol>
 
 @property (nonatomic, weak) UITextField *expressionTextField;
 

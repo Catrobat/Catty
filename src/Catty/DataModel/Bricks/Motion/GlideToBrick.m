@@ -34,6 +34,11 @@
 @synthesize xDestination = _xDestination;
 @synthesize yDestination = _yDestination;
 
+- (kBrickCategoryType)category
+{
+    return kMotionBrick;
+}
+
 - (Formula*)formulaForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
     if(lineNumber == 0 && paramNumber == 0)
@@ -79,18 +84,6 @@
         self.isInitialized = NO;
     }
     return self;
-}
-
-- (NSString*)brickTitle
-{
-    NSString* localizedSecond = [self.durationInSeconds isSingularNumber] ? kLocalizedSecond : kLocalizedSeconds;
-    return [kLocalizedGlide stringByAppendingString:[@" %@ "
-                            stringByAppendingString:[localizedSecond
-                            stringByAppendingString:[@"\n"
-                            stringByAppendingString:[kLocalizedToX
-                            stringByAppendingString:[@" %@ "
-                            stringByAppendingString:[kLocalizedYLabel
-                            stringByAppendingString:@" %@"]]]]]]];
 }
 
 #pragma mark - Description

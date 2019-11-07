@@ -68,7 +68,7 @@
 }
 #pragma mark - check insert logic
 - (BOOL)collectionView:(UICollectionView*)collectionView itemAtIndexPath:(NSIndexPath*)fromIndexPath
-    canInsertToIndexPath:(NSIndexPath*)toIndexPath andObject:(SpriteObject*)object
+  canInsertToIndexPath:(NSIndexPath*)toIndexPath andObject:(SpriteObject*)object
 {
     Script *fromScript = [object.scriptList objectAtIndex:fromIndexPath.section];
     if (fromIndexPath.item == 0 && toIndexPath.item ==0 && self.isInsertingScript) {
@@ -129,17 +129,17 @@
                 }
             }
             //From Below
-                if (toIndexPath.item < fromIndexPath.item) {
-                    if ([toBrick isKindOfClass:[IfLogicElseBrick class]]||[toBrick isKindOfClass:[IfLogicEndBrick class]]||[toBrick isKindOfClass:[IfThenLogicEndBrick class]]||[toBrick isKindOfClass:[LoopEndBrick class]]) { //check if repeat?!
-                        Brick *checkBeforeEndBrick = [script.brickList objectAtIndex:toIndexPath.item - 2];
-                        if ([checkBeforeEndBrick isKindOfClass:[LoopEndBrick class]]) {
-                            return NO;
-                        }
+            if (toIndexPath.item < fromIndexPath.item) {
+                if ([toBrick isKindOfClass:[IfLogicElseBrick class]]||[toBrick isKindOfClass:[IfLogicEndBrick class]]||[toBrick isKindOfClass:[IfThenLogicEndBrick class]]||[toBrick isKindOfClass:[LoopEndBrick class]]) { //check if repeat?!
+                    Brick *checkBeforeEndBrick = [script.brickList objectAtIndex:toIndexPath.item - 2];
+                    if ([checkBeforeEndBrick isKindOfClass:[LoopEndBrick class]]) {
+                        return NO;
                     }
-                    
                 }
                 
-                return (toIndexPath.item != 0);
+            }
+            
+            return (toIndexPath.item != 0);
         } else {
             BrickCell *brickCell = (BrickCell*)[collectionView cellForItemAtIndexPath:toIndexPath];
             self.moveToOtherScript = YES;
@@ -164,13 +164,13 @@
     Script *targetScript = object.scriptList[path.section];
     brick.script = targetScript;
     NSInteger insertionIndex = path.row;
-//    NSInteger check = [self checkForeverLoopEndBrickWithStartingIndex:insertionIndex andScript:targetScript];
-//    if (check != -1) {
-//        insertionIndex = check - 1;
-//    }
+    //    NSInteger check = [self checkForeverLoopEndBrickWithStartingIndex:insertionIndex andScript:targetScript];
+    //    if (check != -1) {
+    //        insertionIndex = check - 1;
+    //    }
     if ([brick isKindOfClass:[IfLogicBeginBrick class]]) {
         //ELSE&END ALWAYS right after IFBEGIN
-//        NSInteger insertionIndex = path.row;
+        //        NSInteger insertionIndex = path.row;
         IfLogicBeginBrick *ifBeginBrick = (IfLogicBeginBrick*)brick;
         IfLogicElseBrick *ifElseBrick = [IfLogicElseBrick new];
         IfLogicEndBrick *ifEndBrick = [IfLogicEndBrick new];
@@ -277,7 +277,6 @@
                             }
                         }
                     }
-
                 }
             }
         }

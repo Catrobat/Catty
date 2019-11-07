@@ -24,9 +24,9 @@
 
 @implementation NoteBrick
 
-- (NSString*)brickTitle
+- (kBrickCategoryType)category
 {
-    return [kLocalizedNote stringByAppendingString:@" %@"];
+    return kControlBrick;
 }
 
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject

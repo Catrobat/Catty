@@ -28,6 +28,7 @@
 #import "Script.h"
 #import "Brick.h"
 #import "BrickListProtocol.h"
+#import "VariablesContainer.h"
 #import "LanguageTranslationDefines.h"
 
 @implementation BrickCellListData

@@ -47,7 +47,8 @@ class CreateProjectTests: XCTestCase {
         XCTAssertNotNil(waitForElementToAppear(app.navigationBars[projectName]))
         app.staticTexts[testObject].tap()
         app.staticTexts[kLocalizedLooks].tap()
-        XCTAssert(app.staticTexts[kLocalizedLook].exists)
+
+        XCTAssert(waitForElementToAppear(app.staticTexts[kLocalizedLookFilename]).exists)
         app.navigationBars.buttons[testObject].tap()
         app.navigationBars.buttons[projectName].tap()
 
@@ -69,7 +70,7 @@ class CreateProjectTests: XCTestCase {
         let addImageAlert = waitForElementToAppear(app.alerts[kLocalizedAddImage])
         addImageAlert.buttons[kLocalizedOK].tap()
 
-        XCTAssert(app.staticTexts[kLocalizedLook].exists)
+        XCTAssert(waitForElementToAppear(app.staticTexts[kLocalizedLookFilename]).exists)
         app.navigationBars.buttons[kLocalizedBackground].tap()
         app.navigationBars.buttons[projectName].tap()
 
@@ -77,10 +78,10 @@ class CreateProjectTests: XCTestCase {
         app.tables.staticTexts[testObject].tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
 
-        addBrick(label: kLocalizedWhenProjectStarted, section: kUIControlTitle, in: app)
+        addBrick(label: kLocalizedWhenProjectStarted, section: kLocalizedCategoryControl, in: app)
         XCTAssert(app.collectionViews.cells.element(boundBy: 0).staticTexts[kLocalizedWhenProjectStarted].exists)
 
-        addBrick(label: kLocalizedSetLook, section: kUILookTitle, in: app)
+        addBrick(label: kLocalizedSetLook, section: kLocalizedCategoryLook, in: app)
         XCTAssert(app.collectionViews.cells.element(boundBy: 1).staticTexts[kLocalizedSetLook].exists)
 
         //Add Script to Background
@@ -89,10 +90,10 @@ class CreateProjectTests: XCTestCase {
         app.tables.staticTexts[kLocalizedBackground].tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
 
-        addBrick(label: kLocalizedWhenProjectStarted, section: kUIControlTitle, in: app)
+        addBrick(label: kLocalizedWhenProjectStarted, section: kLocalizedCategoryControl, in: app)
         XCTAssert(app.collectionViews.cells.element(boundBy: 0).staticTexts[kLocalizedWhenProjectStarted].exists)
 
-        addBrick(label: kLocalizedNextBackground, section: kUILookTitle, in: app)
+        addBrick(label: kLocalizedNextBackground, section: kLocalizedCategoryLook, in: app)
         XCTAssert(app.collectionViews.cells.element(boundBy: 1).staticTexts[kLocalizedNextBackground].exists)
     }
 

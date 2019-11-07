@@ -22,7 +22,7 @@
 
 #import "BrickCell.h"
 
-@interface VibrationBrickCell : BrickCell
+@interface VibrationBrickCell : BrickCell<BrickCellProtocol>
 
 @property (nonatomic, weak) UITextField *secTextField;
 

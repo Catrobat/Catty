@@ -21,7 +21,7 @@
  */
 
 #import "RepeatBrickCell.h"
-#import "Pocket_Code-Swift.h"
+#import "RepeatBrick.h"
 
 @interface RepeatBrickCell ()
 @property (nonatomic, strong) UILabel *leftTextLabel;
@@ -30,9 +30,9 @@
 
 @implementation RepeatBrickCell
 
-- (void)drawRect:(CGRect)rect
++ (CGFloat)cellHeight
 {
-    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.controlBrickOrange strokeColor:UIColor.controlBrickStroke height:smallBrick width:[Util screenWidth]];
+    return kBrickHeight1h;
 }
 
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews
@@ -40,6 +40,23 @@
     self.leftTextLabel = inlineViewSubViews[0];
     self.numberOfLoopsTextField = inlineViewSubViews[1];
     self.rightTextLabel = inlineViewSubViews[2];
+}
+
+- (NSString*)brickTitleForBackground:(BOOL)isBackground andInsertionScreen:(BOOL)isInsertion
+{
+    NSString* repeatForStr = kLocalizedTimes;
+    RepeatBrick *brick = (RepeatBrick*)self.scriptOrBrick;
+    
+    if (brick && [brick.timesToRepeat isSingularNumber]) {
+        repeatForStr = kLocalizedTime;
+    }
+    
+    return [kLocalizedRepeat stringByAppendingString:[@" %@ " stringByAppendingString:repeatForStr]];
+}
+
+- (NSArray<NSString*>*)parameters
+{
+    return [[NSArray alloc] initWithObjects:@"{INT;range=[0,inf)}", nil];
 }
 
 @end
