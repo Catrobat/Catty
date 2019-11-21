@@ -22,7 +22,7 @@
 
 import Foundation
 
-public class Expectation: NSObject {
+public class CBExpectation: NSObject {
     public private(set) var isFulfilled = false
     private let state = NSCondition()
 

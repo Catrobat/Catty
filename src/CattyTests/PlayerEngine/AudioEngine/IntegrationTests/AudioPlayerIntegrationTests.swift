@@ -35,7 +35,7 @@ final class AudioPlayerIntegrationTests: AudioEngineAbstractTest {
         super.tearDown()
     }
 
-    func testPlaySameSoundTwiceSameObject_ExpectSoundToStopAndStartFromBeginningAgain() {
+    func testPlaySameSoundTwiceFromSameObjectExpectSoundToStopAndStartFromBeginningAgain() {
         let referenceSimHash = "11100010001011111011000000111000"
         let scene = self.createScene(xmlFile: "PlaySameSoundTwiceSameObject")
 
@@ -46,7 +46,7 @@ final class AudioPlayerIntegrationTests: AudioEngineAbstractTest {
         XCTAssertGreaterThan(similarity, 0.8)
     }
 
-    func testPlaySameSoundTwiceDifferentObjects_ExpectSameSoundsToPlaySimultaneously() {
+    func testPlaySameSoundTwiceFromDifferentObjectsExpectSameSoundsToPlaySimultaneously() {
         let referenceSimHash = "01100011001111111111000000101011"
         let scene = self.createScene(xmlFile: "PlaySameSoundTwiceDifferentObjects")
 

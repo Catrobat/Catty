@@ -39,7 +39,7 @@ class AudioEngineAbstractTest: XMLAbstractTest {
             recorder = audioEngine.addNodeRecorderAtEngineOut(tape: tape)
 
         } catch {
-            XCTFail("Could not initialize audio file occured")
+            XCTFail("Could not set up audio engine integration test")
         }
     }
 
@@ -50,7 +50,8 @@ class AudioEngineAbstractTest: XMLAbstractTest {
 
     func runAndRecord(duration: Int, scene: CBScene, muted: Bool) -> AKAudioFile {
         do {
-            audioEngine.postProcessingMixer.volume = muted ? 0 : 1
+            audioEngine.postProcessingMixer.volume = muted ? 0.0 : 1.0
+            audioEngine.speechSynth.utteranceVolume = muted ? 0.0 : 1.0
             try recorder.record()
             _ = scene.startProject()
             RunLoop.current.run(until: Date(timeIntervalSinceNow: 3))

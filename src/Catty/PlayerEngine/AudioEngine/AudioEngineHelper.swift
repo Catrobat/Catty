@@ -20,31 +20,21 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import AudioKit
 import Foundation
 
-@testable import Pocket_Code
+class AudioEngineHelper: NSObject {
 
-@objc class AudioEngineMock: NSObject, AudioEngineProtocol {
-    func getSpeechSynth() -> SpeechSynthesizer {
-        return SpeechSynthesizer()
+    class func stringFormulaToUtterance(text: Formula, volume: Float, spriteObject: SpriteObject, context: CBScriptContextProtocol) -> AVSpeechUtterance {
+        var speakText = context.formulaInterpreter.interpretString(text, for: spriteObject)
+        if Double(speakText) != nil {
+            let num = (speakText as NSString).doubleValue
+            speakText = (num as NSNumber).stringValue
+        }
+
+        let utterance = AVSpeechUtterance(string: speakText)
+        utterance.volume = volume
+        utterance.rate = (floor(NSFoundationVersionNumber) < 1200 ? 0.15 : 0.5)
+
+        return utterance
     }
-
-    func start() {}
-
-    func pause() {}
-
-    func resume() {}
-
-    func stop() {}
-
-    func playSound(fileName: String, key: String, filePath: String, expectation: CBExpectation?) {}
-
-    func setVolumeTo(percent: Double, key: String) {}
-
-    func changeVolumeBy(percent: Double, key: String) {}
-
-    func stopAllAudioPlayers() {}
-
-    func speak(_ utterance: AVSpeechUtterance, expectation: CBExpectation?) {}
 }
