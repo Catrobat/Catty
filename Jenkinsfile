@@ -16,6 +16,15 @@ pipeline {
   }
 
   stages {
+    stage('Unlock keychain') {
+      steps {
+        withCredentials([usernamePassword(credentialsId: 'eb111b76-63f8-4546-bc26-5fcb94721e1a', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
+          script {
+            unlockMACKeychain "${PASSWORD}"
+          }
+        }
+      }
+    }
     stage('Prepare') {
       steps {
         sh 'make init'
