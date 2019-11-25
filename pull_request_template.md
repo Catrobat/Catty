@@ -16,3 +16,4 @@ Please review the [contributing guidelines](https://github.com/Catrobat/Catty/bl
 - [ ] Stick to the project’s git workflow (rebase and squash your commits)
 - [ ] Verify that your changes do not have any conflicts with the base branch
 - [ ] After the PR, verify that all CI checks have passed
+- [ ] Post a message in the *#ios-general* [Slack channel](https://catrobat.slack.com) and ask for a code reviewer
