@@ -22,14 +22,17 @@
 
 #import <Foundation/Foundation.h>
 @protocol ScriptProtocol;
+@class BrickCell;
 
 @protocol BrickCellProtocol <NSObject>
 
 @required
-@property (nonatomic, strong) id<ScriptProtocol> scriptOrBrick;
+@property (nonatomic, strong) id<BrickProtocol> scriptOrBrick;
 @property (nonatomic) BOOL enabled;
 
-- (kBrickShapeType)brickShapeType;
 + (CGFloat)cellHeight;
+
+- (kBrickShapeType)brickShapeType;
+- (NSString*)brickTitleForBackground:(BOOL)isBackground andInsertionScreen:(BOOL)isInsertion;
 
 @end

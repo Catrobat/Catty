@@ -22,7 +22,7 @@
 
 #import "BrickCell.h"
 
-@interface ChangeVolumeByNBrickCell : BrickCell
+@interface ChangeVolumeByNBrickCell : BrickCell<BrickCellProtocol>
 
 @property (nonatomic, weak) UITextField *volumeTextField;
 

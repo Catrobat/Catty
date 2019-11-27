@@ -97,7 +97,9 @@ let licenseCheckExcludeFiles = [
     "BOButtonTableViewCell.[mh]",
     "MXPagerView-umbrella.[mh]",
     "SwellAll.swift",
-    "license-validator.swift"
+    "license-validator.swift",
+    "ChromaprintAudioDecoder.swift",
+    "chromaprint.h"
 ]; let licenseCheckExcludeFilesLine = #line; // CAVE: NEVER separate these two statements by adding a new line
 
 let licenseSearchStringTemplate = "/**\n *  Copyright (C) 2010-%d The Catrobat Team\n"

@@ -28,6 +28,11 @@
 
 @synthesize changeTransparency = _changeTransparency;
 
+- (kBrickCategoryType)category
+{
+    return kLookBrick;
+}
+
 - (Formula*)formulaForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
     return self.changeTransparency;
@@ -51,11 +56,6 @@
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     self.changeTransparency = [[Formula alloc] initWithInteger:25];
-}
-
-- (NSString*)brickTitle
-{
-    return [kLocalizedChangeTransparency stringByAppendingString:[@"\n" stringByAppendingString:[kLocalizedBy stringByAppendingString:@" %@\%"]]];
 }
 
 #pragma mark - Description

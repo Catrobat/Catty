@@ -26,17 +26,15 @@ import XCTest
 
 final class GlideToBrickTests: XCTestCase {
 
-    func testTitleSingular() {
-        let glideToBrick = GlideToBrick()
-        glideToBrick.durationInSeconds = Formula(double: 1)
-        let translation = kLocalizedGlide + " %@ " + kLocalizedSecond + "\n" + kLocalizedToX + " %@ " + kLocalizedYLabel + " %@"
-        XCTAssertEqual(translation, glideToBrick.brickTitle, "Wrong brick title")
-    }
+    func testFormulaForLineNumber() {
+        let brick = GlideToBrick()
 
-    func testTitlePlural() {
-        let glideToBrick = GlideToBrick()
-        glideToBrick.durationInSeconds = Formula(double: 2)
-        let translation = kLocalizedGlide + " %@ " + kLocalizedSeconds + "\n" + kLocalizedToX + " %@ " + kLocalizedYLabel + " %@"
-        XCTAssertEqual(translation, glideToBrick.brickTitle, "Wrong brick title")
+        brick.durationInSeconds = Formula(double: 1)
+        brick.xDestination = Formula(double: 1)
+        brick.yDestination = Formula(double: 1)
+
+        XCTAssertEqual(brick.durationInSeconds, brick.formula(forLineNumber: 0, andParameterNumber: 0))
+        XCTAssertEqual(brick.xDestination, brick.formula(forLineNumber: 1, andParameterNumber: 0))
+        XCTAssertEqual(brick.yDestination, brick.formula(forLineNumber: 1, andParameterNumber: 1))
     }
 }

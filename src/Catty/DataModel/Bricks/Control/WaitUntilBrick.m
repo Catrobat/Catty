@@ -28,6 +28,11 @@
 
 @implementation WaitUntilBrick
 
+- (kBrickCategoryType)category
+{
+    return kControlBrick;
+}
+
 - (BOOL)isAnimateable
 {
     return YES;
@@ -56,11 +61,6 @@
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     self.waitCondition = [[Formula alloc] initWithInteger:1];
-}
-
-- (NSString*)brickTitle
-{
-    return [kLocalizedWaitUntil stringByAppendingString:[@" %@ " stringByAppendingString:kLocalizedUntilIsTrue]];
 }
 
 #pragma mark - Description

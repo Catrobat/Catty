@@ -24,9 +24,9 @@
 
 @implementation StopAllSoundsBrick
 
-- (NSString*)brickTitle
+- (kBrickCategoryType)category
 {
-    return kLocalizedStopAllSounds;
+    return kSoundBrick;
 }
 
 #pragma mark - Description
@@ -40,6 +40,5 @@
 {
     return kNoResources;
 }
-
 
 @end

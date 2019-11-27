@@ -91,7 +91,7 @@
 @property (nonatomic, strong) NSIndexPath *variableIndexPath;
 @property (nonatomic, assign) BOOL isEditingBrickMode;
 @property (nonatomic, assign) BOOL batchUpdateMutex;
-@property (nonatomic) PageIndexCategoryType lastSelectedBrickCategoryType;
+@property (nonatomic, strong) BrickCategory *lastSelectedCategory;
 @property (nonatomic, strong) FormulaManager *formulaManager;
 @end
 
@@ -111,7 +111,7 @@
     [self setupToolBar];
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
-    self.placeHolderView.title = kUIScriptTitle;
+    self.placeHolderView.title = kLocalizedScript;
     self.placeHolderView.hidden = (self.object.scriptList.count != 0);
     [[BrickInsertManager sharedInstance] reset];
     self.isEditingBrickMode = NO;
@@ -165,7 +165,8 @@
                                               options:@{
                                                         UIPageViewControllerOptionInterPageSpacingKey : @20.f
                                                         }];
-        BrickCategoryViewController *bcvc = [[BrickCategoryViewController alloc] initWithBrickCategory:self.lastSelectedBrickCategoryType andObject:self.object andPageIndexArray:bsvc.pageIndexArray];
+        BrickCategory *selectedCategory = self.lastSelectedCategory == nil ? [bsvc.categories firstObject] : self.lastSelectedCategory;
+        BrickCategoryViewController *bcvc = [[BrickCategoryViewController alloc] initWithBrickCategory:selectedCategory andObject:self.object];
         bcvc.delegate = self;
         
         [bsvc setViewControllers:@[bcvc]
@@ -203,17 +204,17 @@
                   layout:(UICollectionViewLayout*)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath*)indexPath
 {
-    CGSize size = CGSizeZero;
     if (indexPath.section < self.object.scriptList.count) {
         Script *script = self.object.scriptList[indexPath.section];
         
         if (indexPath.item == 0) {
-           size =  [BrickManager.sharedBrickManager sizeForBrick:NSStringFromClass(script.class)];
+            return [BrickManager.sharedBrickManager sizeForBrick:(id<BrickProtocol>)script];
         } else {
-            size = [BrickManager.sharedBrickManager sizeForBrick:NSStringFromClass([script.brickList[indexPath.item - 1] class])];
+            Brick *brick = script.brickList[indexPath.item - 1];
+            return [BrickManager.sharedBrickManager sizeForBrick:(id<BrickProtocol>)brick];
         }
     }
-    return size;
+    return CGSizeZero;
 }
 
 #pragma mark- UICollectionViewDelegate
@@ -531,7 +532,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         cellIdentifier = NSStringFromClass([brick class]);
     }
     brickCell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
-    brickCell.scriptOrBrick = ((indexPath.item == 0) ? script : brick);
+    brickCell.scriptOrBrick = ((indexPath.item == 0) ? (id<BrickProtocol>)script : (id<BrickProtocol>)brick);
     brickCell.enabled = YES;
     [brickCell setupBrickCellinSelectionView:false inBackground:self.object.isBackground];
     brickCell.delegate = self;
@@ -596,12 +597,12 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 
 #pragma mark - BrickCategoryViewController delegates
 - (void)brickCategoryViewController:(BrickCategoryViewController*)brickCategoryViewController
-             didSelectScriptOrBrick:(id<ScriptProtocol>)scriptOrBrick
+             didSelectScriptOrBrick:(id<BrickProtocol>)scriptOrBrick
 {
     [self dismissViewControllerAnimated:YES completion:NULL];
     scriptOrBrick = [scriptOrBrick mutableCopyWithContext:[CBMutableCopyContext new]];
     [scriptOrBrick setDefaultValuesForObject:self.object];
-    self.lastSelectedBrickCategoryType = brickCategoryViewController.pageIndexCategoryType;
+    self.lastSelectedCategory = brickCategoryViewController.category;
     brickCategoryViewController.delegate = nil;
     self.placeHolderView.hidden = YES;
     BrickInsertManager* manager = [BrickInsertManager sharedInstance];
@@ -894,7 +895,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 }
 
 #pragma mark - Remove Brick
-- (void)removeBrickOrScript:(id<ScriptProtocol>)scriptOrBrick
+- (void)removeBrickOrScript:(id<BrickProtocol>)scriptOrBrick
                 atIndexPath:(NSIndexPath*)indexPath
 {
     [self.collectionView performBatchUpdates:^{
@@ -1040,11 +1041,11 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     [self changeDeleteBarButtonState];
     self.brickScaleTransition = [[BrickTransition alloc] initWithViewToAnimate:nil];
     [[BrickSelectionManager sharedInstance] reset];
-    // register brick cells for current brick category
-    NSDictionary *allBrickTypes = [[BrickManager sharedBrickManager] classNameBrickTypeMap];
-    for (NSString *className in allBrickTypes) {
-        [self.collectionView registerClass:NSClassFromString([className stringByAppendingString:@"Cell"])
-                forCellWithReuseIdentifier:className];
+    
+    NSArray *allBricks = [[CatrobatSetup class] registeredBricks];
+    for (id brick in allBricks) {
+        Class<BrickCellProtocol> brickCell = [brick brickCell];
+        [self.collectionView registerClass:brickCell forCellWithReuseIdentifier:NSStringFromClass([brick class])];
     }
 }
 

@@ -25,7 +25,7 @@
 @class Brick;
 @class UserVariable;
 
-@protocol BrickVariableProtocol <NSObject>
+@protocol BrickVariableProtocol <BrickProtocol>
 
 - (UserVariable*)variableForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber;
 - (void)setVariable:(UserVariable*)variable forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber;

@@ -302,7 +302,7 @@
 "day" = "day";
 
 /* No comment provided by engineer. */
-"Debug mode" = "Debug mode";
+"debug" = "debug";
 
 /* No comment provided by engineer. */
 "Dec" = "Dec";
@@ -1131,9 +1131,6 @@
 
 /* No comment provided by engineer. */
 "Pocket Code for iOS" = "Pocket Code for iOS";
-
-/* No comment provided by engineer. */
-"Pocket Code has been started in debug mode." = "Pocket Code has been started in debug mode.";
 
 /* No comment provided by engineer. */
 "Pocket Code has no access to your camera. To permit access, tap settings and activate camera. Your drawing will automatically be saved to PocketCode for you." = "Pocket Code has no access to your camera. To permit access, tap settings and activate camera. Your drawing will automatically be saved to PocketCode for you.";

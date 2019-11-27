@@ -29,6 +29,11 @@
 
 @implementation DeleteItemOfUserListBrick
 
+- (kBrickCategoryType)category
+{
+    return kVariableBrick;
+}
+
 - (Formula*)formulaForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
     return self.listFormula;
@@ -64,14 +69,6 @@
         else
             self.userList = nil;
     }
-}
-
-- (NSString*)brickTitle
-{
-    return [[[kLocalizedUserListDeleteItemFrom
-            stringByAppendingString:@"\n%@\n"]
-            stringByAppendingString:kLocalizedUserListAtPosition]
-            stringByAppendingString:@" %@"];
 }
 
 - (BOOL)allowsStringFormula

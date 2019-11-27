@@ -26,13 +26,16 @@
 
         guard let spriteObject = self.script?.object else { fatalError("This should never happen") }
 
-        let audioManager = AudioManager.shared()
         let spriteObjectName = spriteObject.name
 
-        return CBInstruction.execClosure { context, _ in
+        return CBInstruction.execClosure { context, scheduler in
+            let audioEngine = scheduler.getAudioEngine()
             let volume = context.formulaInterpreter.interpretDouble(self.volume, for: spriteObject)
-            audioManager?.setVolumeToPercent(CGFloat(volume), forKey: spriteObjectName)
-            context.state = .runnable
+
+            if let name = spriteObjectName {
+                audioEngine.setVolumeTo(percent: volume, key: name)
+                context.state = .runnable
+            }
         }
     }
 }

@@ -21,18 +21,12 @@
  */
 
 #import "SetBackgroundBrickCell.h"
-#import "Pocket_Code-Swift.h"
 
 @interface SetBackgroundBrickCell ()
 @property (nonatomic, strong) UILabel *textLabel;
 @end
 
 @implementation SetBackgroundBrickCell
-
-- (void)drawRect:(CGRect)rect
-{
-    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.lookBrickGreen strokeColor:UIColor.lookBrickStroke height:mediumBrick width:[Util screenWidth]];
-}
 
 + (CGFloat)cellHeight
 {
@@ -43,6 +37,16 @@
 {
     self.textLabel = inlineViewSubViews[0];
     self.lookComboBoxView = inlineViewSubViews[1];
+}
+
+- (NSArray<NSString*>*)parameters
+{
+    return [[NSArray alloc] initWithObjects:@"{SOUND}", nil];
+}
+
+- (NSString*)brickTitleForBackground:(BOOL)isBackground andInsertionScreen:(BOOL)isInsertion
+{
+    return [kLocalizedSetBackground stringByAppendingString:@"\n%@"];
 }
 
 @end

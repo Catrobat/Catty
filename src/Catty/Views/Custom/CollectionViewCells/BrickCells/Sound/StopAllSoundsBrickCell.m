@@ -21,7 +21,6 @@
  */
 
 #import "StopAllSoundsBrickCell.h"
-#import "Pocket_Code-Swift.h"
 
 @interface StopAllSoundsBrickCell ()
 @property (nonatomic, strong) UILabel *textLabel;
@@ -29,14 +28,19 @@
 
 @implementation StopAllSoundsBrickCell
 
-- (void)drawRect:(CGRect)rect
++ (CGFloat)cellHeight
 {
-    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.soundBrickViolet strokeColor:UIColor.soundBrickStroke height:smallBrick width:[Util screenWidth]];
+    return kBrickHeight1h;
 }
 
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews
 {
     self.textLabel = inlineViewSubViews[0];
+}
+
+- (NSString*)brickTitleForBackground:(BOOL)isBackground andInsertionScreen:(BOOL)isInsertion
+{
+    return kLocalizedStopAllSounds;
 }
 
 @end

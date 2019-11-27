@@ -25,11 +25,6 @@
 
 @implementation PointToBrick
 
-- (NSString*)brickTitle
-{
-    return [kLocalizedPointTowards stringByAppendingString:@"\n%@"];
-}
-
 - (SpriteObject*) pointedObject
 {
     if(!_pointedObject)
@@ -93,6 +88,11 @@
 - (NSInteger)getRequiredResources
 {
     return kNoResources;
+}
+
+- (kBrickCategoryType)category
+{
+    return kMotionBrick;
 }
 
 @end

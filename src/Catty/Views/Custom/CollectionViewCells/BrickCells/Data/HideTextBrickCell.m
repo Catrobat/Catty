@@ -21,18 +21,12 @@
  */
 
 #import "HideTextBrickCell.h"
-#import "Pocket_Code-Swift.h"
 
 @interface HideTextBrickCell ()
 @property (nonatomic, strong) UILabel *firstRowTextLabel;
 @end
 
 @implementation HideTextBrickCell
-
-- (void)drawRect:(CGRect)rect
-{
-    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.variableBrickRed strokeColor:UIColor.variableBrickStroke height:mediumBrick width:[Util screenWidth]];
-}
 
 + (CGFloat)cellHeight
 {
@@ -43,6 +37,16 @@
 {
     self.firstRowTextLabel = inlineViewSubViews[0];
     self.variableComboBoxView = inlineViewSubViews[1];
+}
+
+- (NSString*)brickTitleForBackground:(BOOL)isBackground andInsertionScreen:(BOOL)isInsertion
+{
+    return [kLocalizedHideVariable stringByAppendingString:@"\n%@"];
+}
+
+- (NSArray<NSString*>*)parameters
+{
+    return [[NSArray alloc] initWithObjects:@"{VARIABLE}", nil];
 }
 
 @end

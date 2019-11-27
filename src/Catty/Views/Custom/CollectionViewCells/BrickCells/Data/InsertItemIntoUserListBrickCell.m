@@ -21,7 +21,6 @@
  */
 
 #import "InsertItemIntoUserListBrickCell.h"
-#import "Pocket_Code-Swift.h"
 
 @interface InsertItemIntoUserListBrickCell ()
 @property (nonatomic, strong) UILabel *firstRowTextLabel1;
@@ -30,11 +29,6 @@
 @end
 
 @implementation InsertItemIntoUserListBrickCell
-
-- (void)drawRect:(CGRect)rect
-{
-    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.variableBrickRed strokeColor:UIColor.variableBrickStroke height:largeBrick width:[Util screenWidth]];
-}
 
 + (CGFloat)cellHeight
 {
@@ -49,6 +43,21 @@
     self.listComboBoxView = inlineViewSubViews[3];
     self.thirdRowTextLabel = inlineViewSubViews[4];
     self.positionTextField = inlineViewSubViews[5];
+}
+
+- (NSString*)brickTitleForBackground:(BOOL)isBackground andInsertionScreen:(BOOL)isInsertion
+{
+    return [[[[[kLocalizedUserListInsert
+                stringByAppendingString:@" %@ "]
+               stringByAppendingString:kLocalizedUserListInto]
+              stringByAppendingString:@"\n%@\n"]
+             stringByAppendingString:kLocalizedUserListAtPosition]
+            stringByAppendingString:@" %@"];
+}
+
+- (NSArray<NSString*>*)parameters
+{
+    return [[NSArray alloc] initWithObjects:@"{FLOAT;range=(-inf,inf)}",@"{LIST}",@"{INT;range=(1,inf)}", nil];
 }
 
 @end

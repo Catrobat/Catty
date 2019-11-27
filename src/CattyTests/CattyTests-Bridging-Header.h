@@ -28,4 +28,4 @@
 
 #import "ProjectMock.h"
 #import "ConvertExceptionToError.h"
-
+#import "chromaprint.h"

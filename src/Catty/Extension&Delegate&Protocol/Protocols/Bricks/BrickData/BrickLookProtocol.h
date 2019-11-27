@@ -25,7 +25,7 @@
 @class Brick;
 @class Sound;
 
-@protocol BrickLookProtocol <NSObject>
+@protocol BrickLookProtocol <BrickProtocol>
 
 - (Look*)lookForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber;
 - (void)setLook:(Look*)look forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber;

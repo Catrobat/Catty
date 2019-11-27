@@ -27,8 +27,8 @@ class ThemesHelper: NSObject {
 
         if #available(iOS 13.0, *) {
             UISegmentedControl.appearance().selectedSegmentTintColor = UIColor.globalTint
-            UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.background!], for: .selected)
-            UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.globalTint!], for: .normal)
+            UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.background], for: .selected)
+            UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.globalTint], for: .normal)
         }
     }
 }

@@ -133,7 +133,7 @@ import UIKit
     open func centralManager(_:CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String: Any], rssi RSSI: NSNumber) {
         if self.ownPeripherals[peripheral] == nil {
 
-            let ownPeripheral = Peripheral(cbPeripheral: peripheral, advertisements: self.unpackAdvertisements(advertisementData as [String : AnyObject]), rssi: RSSI.intValue)
+            let ownPeripheral = Peripheral(cbPeripheral: peripheral, advertisements: self.unpackAdvertisements(advertisementData as [String: AnyObject]), rssi: RSSI.intValue)
             NSLog("peripheral: \(ownPeripheral.name)")
             self.ownPeripherals[peripheral] = ownPeripheral
             self.helper.didDiscoverPeripheral(ownPeripheral)

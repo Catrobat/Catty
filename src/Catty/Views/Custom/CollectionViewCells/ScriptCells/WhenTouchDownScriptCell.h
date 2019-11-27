@@ -22,6 +22,6 @@
 
 #import "BrickCell.h"
 
-@interface WhenTouchDownScriptCell : BrickCell
+@interface WhenTouchDownScriptCell : BrickCell<BrickCellProtocol>
 
 @end

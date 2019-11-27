@@ -21,7 +21,6 @@
  */
 
 #import "SetBrightnessBrickCell.h"
-#import "Pocket_Code-Swift.h"
 
 @interface SetBrightnessBrickCell ()
 @property (nonatomic, strong) UILabel *leftTextLabel;
@@ -29,11 +28,6 @@
 @end
 
 @implementation SetBrightnessBrickCell
-
-- (void)drawRect:(CGRect)rect
-{
-    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.lookBrickGreen strokeColor:UIColor.lookBrickStroke height:mediumBrick width:[Util screenWidth]];
-}
 
 + (CGFloat)cellHeight
 {
@@ -45,6 +39,16 @@
     self.leftTextLabel = inlineViewSubViews[0];
     self.brightnessTextField = inlineViewSubViews[1];
     self.rightTextLabel = inlineViewSubViews[2];
+}
+
+- (NSString*)brickTitleForBackground:(BOOL)isBackground andInsertionScreen:(BOOL)isInsertion
+{
+    return [kLocalizedSetBrightness stringByAppendingString:[@"\n" stringByAppendingString:[kLocalizedTo stringByAppendingString:@" %@\%"]]];
+}
+
+- (NSArray<NSString*>*)parameters
+{
+    return [[NSArray alloc] initWithObjects:@"{FLOAT;range=(-inf,inf)}", nil];
 }
 
 @end

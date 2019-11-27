@@ -24,7 +24,7 @@
 
 @class IfThenLogicBeginBrick;
 
-@interface IfThenLogicEndBrick : Brick
+@interface IfThenLogicEndBrick : Brick<BrickProtocol>
 
 @property (nonatomic, weak) IfThenLogicBeginBrick *ifBeginBrick;
 

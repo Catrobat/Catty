@@ -21,18 +21,12 @@
  */
 
 #import "FlashBrickCell.h"
-#import "Pocket_Code-Swift.h"
 
 @interface FlashBrickCell ()
 @property (nonatomic, strong) UILabel *textLabel;
 @end
 
 @implementation FlashBrickCell
-
-- (void)drawRect:(CGRect)rect
-{
-    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.lookBrickGreen strokeColor:UIColor.controlBrickStroke height:mediumBrick width:[Util screenWidth ]];
-}
 
 + (CGFloat)cellHeight
 {
@@ -43,6 +37,16 @@
 {
     self.textLabel = inlineViewSubViews[0];
     self.messageComboBoxView = inlineViewSubViews[1];
+}
+
+- (NSString*)brickTitleForBackground:(BOOL)isBackground andInsertionScreen:(BOOL)isInsertion
+{
+    return [kLocalizedFlash stringByAppendingString:@"\n%@"];
+}
+
+- (NSArray<NSString*>*)parameters
+{
+    return [[NSArray alloc] initWithObjects:@"{STATICCHOICE}", nil];
 }
 
 @end

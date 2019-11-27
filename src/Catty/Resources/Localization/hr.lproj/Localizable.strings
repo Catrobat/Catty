@@ -1,8 +1,8 @@
 /* No comment provided by engineer. */
-"A message with the same name already exists, try again." = "A message with the same name already exists, try again.";
+"A message with the same name already exists, try again." = "Poruka sa istim imenom vec postoji, pokusajte ponovno.";
 
 /* No comment provided by engineer. */
-"A project with the same name already exists, try again." = "A project with the same name already exists, try again.";
+"A project with the same name already exists, try again." = "Projekt sa istim imenom već postoji, pokušajte ponovno.";
 
 /* No comment provided by engineer. */
 "Abc" = "Abc";
@@ -14,16 +14,16 @@
 "About Pocket Code" = "O Pocket Code-u";
 
 /* No comment provided by engineer. */
-"acceleration-sensor" = "acceleration-sensor";
+"acceleration-sensor" = "senzor ubrzanja";
 
 /* No comment provided by engineer. */
-"acceleration_x" = "acceleration_x";
+"acceleration_x" = "ubrzanje_x";
 
 /* No comment provided by engineer. */
-"acceleration_y" = "acceleration_y";
+"acceleration_y" = "ubrzanje_y";
 
 /* No comment provided by engineer. */
-"acceleration_z" = "acceleration_z";
+"acceleration_z" = "ubrzanje_z";
 
 /* No comment provided by engineer. */
 "Add" = "Dodaj";
@@ -47,25 +47,25 @@
 "All Bluetooth devices successfully disconnected" = "Svi bluetooth uredjaji su uspjesno odspojeni";
 
 /* No comment provided by engineer. */
-"All known Bluetooth devices successfully removed" = "All known Bluetooth devices successfully removed";
+"All known Bluetooth devices successfully removed" = "Svi poznati bluetooth uredjaji su uspjesno uklonjeni";
 
 /* paint */
 "Alpha" = "Alfa";
 
 /* No comment provided by engineer. */
-"altitude" = "altitude";
+"altitude" = "nadmorska visina";
 
 /* No comment provided by engineer. */
-"An image with the same name already exists, try again." = "An image with the same name already exists, try again.";
+"An image with the same name already exists, try again." = "Slika sa istim imenom vec postoji, pokusajte ponovno.";
 
 /* No comment provided by engineer. */
-"An object with the same name already exists, try again." = "An object with the same name already exists, try again.";
+"An object with the same name already exists, try again." = "Objekt sa istim imenom već postoji, pokušajte ponovno.";
 
 /* No comment provided by engineer. */
 "An unknown error occurred. Check your Internet connection." = "Dogodila se nepoznata pogreška. Provjerite vezu s internetom.";
 
 /* No comment provided by engineer. */
-"An unknown error occurred. Please try again later." = "An unknown error occurred. Please try again later.";
+"An unknown error occurred. Please try again later." = "Pojavila se nepoznata greška. Molimo pokušajte ponovno kasnije.";
 
 /* No comment provided by engineer. */
 "and" = "i";
@@ -137,10 +137,10 @@
 "Blue" = "Plava";
 
 /* No comment provided by engineer. */
-"Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings." = "Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings.";
+"Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings." = "Bluetooth nije dostupan. Ili vas uredjaj ne podrzava Bluetooth 4.0 ili je vas Bluetooth cip ostecen. Molimo provjerite tako sto se pokusate povezati sa drugim Bluetooth uredjajem u postavkama.";
 
 /* No comment provided by engineer. */
-"Bluetooth is turned off. Please turn it on to connect to a Bluetooth device." = "Bluetooth is turned off. Please turn it on to connect to a Bluetooth device.";
+"Bluetooth is turned off. Please turn it on to connect to a Bluetooth device." = "Bluetooth je iskljucen. Molimo ukljucite Bluetooth kako bi se povezali sa drugim Blietooth uredjajem.";
 
 /* paint */
 "bold" = "podebljano";
@@ -272,7 +272,7 @@
 "Connection not possible" = "Connection not possible";
 
 /* No comment provided by engineer. */
-"contains" = "contains";
+"contains" = "sadrži";
 
 /* No comment provided by engineer. */
 "Continue" = "Nastavi";
@@ -299,10 +299,10 @@
 "Create account" = "Create account";
 
 /* No comment provided by engineer. */
-"day" = "day";
+"day" = "dan";
 
 /* No comment provided by engineer. */
-"Debug mode" = "Debug mode";
+"Debug mode" = "Mod za lakše pronalaženje pogrešaka";
 
 /* No comment provided by engineer. */
 "Dec" = "Dec";
@@ -317,7 +317,7 @@
 "Delete" = "Izbrisati";
 
 /* No comment provided by engineer. */
-"Delete Backgrounds" = "Delete Backgrounds";
+"Delete Backgrounds" = "Izbrisi pozadine";
 
 /* No comment provided by engineer. */
 "Delete Brick" = "Izbriši blok";
@@ -326,7 +326,7 @@
 "Delete Condition" = "Delete Condition";
 
 /* No comment provided by engineer. */
-"Delete item from list" = "Delete item from list";
+"Delete item from list" = "Obriši s popisa";
 
 /* No comment provided by engineer. */
 "Delete Looks" = "Izbriši izglede";
@@ -506,7 +506,7 @@
 "Enter your list name here..." = "Enter your list name here...";
 
 /* Placeholder for message input field */
-"Enter your message here..." = "Enter your message here...";
+"Enter your message here..." = "Unesite vasu poruku ovdje...";
 
 /* Placeholder for add object-name input field */
 "Enter your object name here..." = "Unesi naziv svog objekta ovdje...";
@@ -626,7 +626,7 @@
 "From Camera" = "From Camera";
 
 /* No comment provided by engineer. */
-"front" = "front";
+"front" = "naprijed";
 
 /* No comment provided by engineer. */
 "Front camera" = "Front camera";
@@ -665,7 +665,7 @@
 "Hmmmm!" = "Hmmmm!";
 
 /* No comment provided by engineer. */
-"hour" = "hour";
+"hour" = "sat";
 
 /* No comment provided by engineer. */
 "If" = "Ako";
@@ -698,13 +698,13 @@
 "Information" = "Informacije";
 
 /* No comment provided by engineer. */
-"Insert" = "Insert";
+"Insert" = "Umetni";
 
 /* paint */
 "Inserted" = "Inserted";
 
 /* No comment provided by engineer. */
-"into list" = "into list";
+"into list" = "u listu";
 
 /* No comment provided by engineer. */
 "Invalid input entered, try again." = "Invalid input entered, try again.";
@@ -725,7 +725,7 @@
 "italic" = "italic";
 
 /* No comment provided by engineer. */
-"Jan" = "Jan";
+"Jan" = "Sijecanj";
 
 /* No comment provided by engineer. */
 "January" = "Siječanj";
@@ -734,13 +734,13 @@
 "join" = "spoji";
 
 /* No comment provided by engineer. */
-"Jul" = "Jul";
+"Jul" = "Srpanj";
 
 /* No comment provided by engineer. */
 "July" = "Srpanj";
 
 /* No comment provided by engineer. */
-"Jun" = "Jun";
+"Jun" = "Lipanj";
 
 /* No comment provided by engineer. */
 "June" = "Lipanj";
@@ -1016,7 +1016,7 @@
 "Nothing to crop!" = "Nothing to crop!";
 
 /* No comment provided by engineer. */
-"Nov" = "Nov";
+"Nov" = "Studeni";
 
 /* No comment provided by engineer. */
 "November" = "Studeni";
@@ -1025,7 +1025,7 @@
 "number_of_items" = "number_of_items";
 
 /* No comment provided by engineer. */
-"Numbers" = "Numbers";
+"Numbers" = "Brojevi";
 
 /* No comment provided by engineer. */
 "Object" = "Objekt";
@@ -1103,7 +1103,7 @@
 "phiro_side_right" = "phiro_side_right";
 
 /* paint */
-"Pipette" = "Pipette";
+"Pipette" = "Pipeta";
 
 /* No comment provided by engineer. */
 "Place at " = "Postavi na ";
@@ -1112,7 +1112,7 @@
 "Play Phiro music\n" = "Play Phiro music\n";
 
 /* No comment provided by engineer. */
-"Please choose another name:" = "Please choose another name:";
+"Please choose another name:" = "Molimo Vas odaberite drugo ime:";
 
 /* paint */
 "Please enter a text!" = "Please enter a text!";
@@ -1202,7 +1202,7 @@
 "Project name" = "Naziv projekta";
 
 /* No comment provided by engineer. */
-"Project Name is necessary!" = "Project Name is necessary!";
+"Project Name is necessary!" = "Ime projekta je potrebno!";
 
 /* No comment provided by engineer. */
 "Project variables:" = "Project variables:";
@@ -1211,7 +1211,7 @@
 "Projects" = "Programi";
 
 /* No comment provided by engineer. */
-"Rate Us" = "Rate Us";
+"Rate Us" = "Ocijenite nas";
 
 /* No comment provided by engineer. */
 "RE" = "RE";
@@ -1226,13 +1226,13 @@
 "Red" = "Crvena";
 
 /* No comment provided by engineer. */
-"Register" = "Register";
+"Register" = "Registracija";
 
 /* No comment provided by engineer. */
-"Registration successful" = "Registration successful";
+"Registration successful" = "Registracija uspješna";
 
 /* No comment provided by engineer. */
-"Remove known devices" = "Remove known devices";
+"Remove known devices" = "Uklanjanje poznatih uređaja";
 
 /* No comment provided by engineer. */
 "Rename" = "Preimenovati";
@@ -1256,7 +1256,7 @@
 "Repeat until" = "Ponovi dok";
 
 /* No comment provided by engineer. */
-"Replace item in list" = "Replace item in list";
+"Replace item in list" = "Zamijeni stavku u listi";
 
 /* No comment provided by engineer. */
 "Report as inappropriate" = "Prijavi kao neprikladno";
@@ -1268,7 +1268,7 @@
 "Restart" = "Ponovno pokreni";
 
 /* No comment provided by engineer. */
-"Result" = "Result";
+"Result" = "Rezultat";
 
 /* No comment provided by engineer. */
 "Right" = "Desno";
@@ -1316,7 +1316,7 @@
 "Search" = "Pretraga";
 
 /* No comment provided by engineer. */
-"second" = "second";
+"second" = "sekunda";
 
 /* No comment provided by engineer. */
 "second " = "sekunda ";
@@ -1553,7 +1553,7 @@
 "to" = "za";
 
 /* No comment provided by engineer. */
-"to list" = "to list";
+"to list" = "u listu";
 
 /* No comment provided by engineer. */
 "to X:" = "na X:";
@@ -1562,7 +1562,7 @@
 "Today" = "Danas";
 
 /* No comment provided by engineer. */
-"transparency" = "transparency";
+"transparency" = "transparentnost";
 
 /* No comment provided by engineer. */
 "true" = "Tačno";
@@ -1574,7 +1574,7 @@
 "Tuesday" = "Utorak";
 
 /* No comment provided by engineer. */
-"Turn camera" = "Turn camera";
+"Turn camera" = "Uključi kameru";
 
 /* No comment provided by engineer. */
 "Turn flashlight" = "Uključite bljeskalicu";
@@ -1649,7 +1649,7 @@
 "Use Arduino bricks" = "Use Arduino bricks";
 
 /* No comment provided by engineer. */
-"Use camera" = "Use camera";
+"Use camera" = "Koristi kameru";
 
 /* No comment provided by engineer. */
 "Use Phiro bricks" = "Use Phiro bricks";
@@ -1724,7 +1724,7 @@
 "Width selection" = "Width selection";
 
 /* No comment provided by engineer. */
-"with" = "with";
+"with" = "sa";
 
 /* No comment provided by engineer. */
 "X: " = "X: ";

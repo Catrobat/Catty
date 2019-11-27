@@ -131,7 +131,7 @@ let kLocalizedEditBackgrounds = NSLocalizedString("Edit Backgrounds", comment: "
 let kLocalizedEditScript = NSLocalizedString("Edit Script", comment: "Action sheet menu title")
 let kLocalizedEditBrick = NSLocalizedString("Edit Brick", comment: "Action sheet menu title")
 let kLocalizedAddLook = NSLocalizedString("Add look", comment: "Action sheet menu title")
-let kLocalizedLook = NSLocalizedString("look", comment: "LOOK")
+let kLocalizedLookFilename = NSLocalizedString("look", comment: "LOOK")
 let kLocalizedEditProject = NSLocalizedString("Edit Project", comment: "")
 let kLocalizedEditProjects = NSLocalizedString("Edit Projects", comment: "")
 let kLocalizedEditObject = NSLocalizedString("Edit Object", comment: "")
@@ -224,13 +224,8 @@ let kLocalizedAxes = NSLocalizedString("Axes", comment: "Title of icon shown in 
 let kLocalizedMostDownloaded = NSLocalizedString("Most Downloaded", comment: "")
 let kLocalizedMostViewed = NSLocalizedString("Most Viewed", comment: "")
 let kLocalizedNewest = NSLocalizedString("Newest", comment: "")
-let kLocalizedControl = NSLocalizedString("Control", comment: "")
-let kLocalizedMotion = NSLocalizedString("Motion", comment: "")
-let kLocalizedSound = NSLocalizedString("Sound", comment: "")
 let kLocalizedVariables = NSLocalizedString("Variables", comment: "")
 let kLocalizedLists = NSLocalizedString("Lists", comment: "")
-let kLocalizedPhiro = NSLocalizedString("Phiro", comment: "")
-let kLocalizedArduino = NSLocalizedString("Arduino", comment: "")
 let kLocalizedPhiroBricks = NSLocalizedString("Use Phiro bricks", comment: "")
 let kLocalizedArduinoBricks = NSLocalizedString("Use Arduino bricks", comment: "")
 let kLocalizedFrontCamera = NSLocalizedString("Front camera", comment: "")
@@ -319,6 +314,7 @@ let kLocalizedUnsupportedElementsDescription = NSLocalizedString("Following feat
 //************************************************************************************************************
 
 // control bricks
+let kLocalizedScript = NSLocalizedString("Script", comment: "")
 let kLocalizedWhenProjectStarted = NSLocalizedString("When project started", comment: "")
 let kLocalizedWhenTapped = NSLocalizedString("When tapped", comment: "")
 let kLocalizedTouchDown = NSLocalizedString("When screen is touched", comment: "")
@@ -368,6 +364,7 @@ let kLocalizedLayers = NSLocalizedString("layers", comment: "")
 let kLocalizedComeToFront = NSLocalizedString("Go to front", comment: "")
 
 // look bricks
+let kLocalizedLook = NSLocalizedString("Look", comment: "")
 let kLocalizedSetLook = NSLocalizedString("Switch to look", comment: "")
 let kLocalizedSetBackground = NSLocalizedString("Set background", comment: "")
 let kLocalizedNextLook = NSLocalizedString("Next look", comment: "")
@@ -395,6 +392,7 @@ let kLocalizedChooseCamera = NSLocalizedString("Use camera", comment: "")
 let kLocalizedFor = NSLocalizedString("for", comment: "")
 
 // sound bricks
+let kLocalizedSound = NSLocalizedString("Sound", comment: "")
 let kLocalizedPlaySound = NSLocalizedString("Start sound", comment: "")
 let kLocalizedStopAllSounds = NSLocalizedString("Stop all sounds", comment: "")
 let kLocalizedSetVolumeTo = NSLocalizedString("Set volume to", comment: "")
@@ -665,21 +663,21 @@ let kUIFESensorFaceY = NSLocalizedString("faceposition_y", comment: "")
 
 let kUIFEUnknownElementType = NSLocalizedString("Unknown Element", comment: "")
 
+let kUIFENewText = NSLocalizedString("New Text", comment: "")
+let kUIFETextMessage = NSLocalizedString("Text message:", comment: "")
+
 //************************************************************************************************************
 //************************************       BrickCategoryTitles        **************************************
 //************************************************************************************************************
 
-let kUIFENewText = NSLocalizedString("New Text", comment: "")
-let kUIFETextMessage = NSLocalizedString("Text message:", comment: "")
-let kLocalizedFrequentlyUsed = NSLocalizedString("Frequently Used", comment: "Title of View where the user can see the frequently used bricks.")
-let kUIScriptTitle = NSLocalizedString("Script", comment: "")
-let kUIControlTitle = NSLocalizedString("Control", comment: "")
-let kUIMotionTitle = NSLocalizedString("Motion", comment: "")
-let kUISoundTitle = NSLocalizedString("Sound", comment: "")
-let kUILookTitle = NSLocalizedString("Look", comment: "")
-let kUIVariableTitle = NSLocalizedString("Variable", comment: "")
-let kUIArduinoTitle = NSLocalizedString("Arduino", comment: "")
-let kUIPhiroTitle = NSLocalizedString("Phiro", comment: "")
+let kLocalizedCategoryFrequentlyUsed = NSLocalizedString("Frequently Used", comment: "Title of View where the user can see the frequently used bricks.")
+let kLocalizedCategoryControl = NSLocalizedString("Control", comment: "")
+let kLocalizedCategoryMotion = NSLocalizedString("Motion", comment: "")
+let kLocalizedCategoryLook = NSLocalizedString("Look", comment: "")
+let kLocalizedCategorySound = NSLocalizedString("Sound", comment: "")
+let kLocalizedCategoryVariable = NSLocalizedString("Variable", comment: "")
+let kLocalizedCategoryArduino = NSLocalizedString("Arduino", comment: "")
+let kLocalizedCategoryPhiro = NSLocalizedString("Phiro", comment: "")
 
 //************************************************************************************************************
 //************************************       PhiroDefines         ********************************************
@@ -749,8 +747,7 @@ let kLocalizedUnexpectedErrorMessage = NSLocalizedString("Unexpected Error, plea
 //************************************************************************************************************
 //****************************************       Debug        ************************************************
 //************************************************************************************************************
-let kLocalizedDebugModeTitle = NSLocalizedString("Debug mode", comment: "")
-let kLocalizedStartedInDebugMode = NSLocalizedString("Pocket Code has been started in debug mode.", comment: "")
+let kLocalizedDebugMode = NSLocalizedString("debug", comment: "")
 
 /*
      _       _     _                       _              _         _

@@ -26,18 +26,6 @@ import XCTest
 
 final class RepeatBrickTests: XCTestCase {
 
-    func testTitleSingular() {
-        let repeatBrick = RepeatBrick()
-        repeatBrick.timesToRepeat = Formula(double: 1)
-        XCTAssertEqual(kLocalizedRepeat + " %@ " + kLocalizedTime, repeatBrick.brickTitle, "Wrong brick title")
-    }
-
-    func testTitlePlural() {
-        let repeatBrick = RepeatBrick()
-        repeatBrick.timesToRepeat = Formula(double: 2)
-        XCTAssertEqual(kLocalizedRepeat + " %@ " + kLocalizedTimes, repeatBrick.brickTitle, "Wrong brick title")
-    }
-
     func testCondition() {
         let interpreter = FormulaManager(sceneSize: CGSize.zero)
         let repeatBrick = RepeatBrick()

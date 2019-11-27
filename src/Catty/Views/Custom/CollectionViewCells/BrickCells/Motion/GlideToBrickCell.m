@@ -20,8 +20,8 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+#import "GlideToBrick.h"
 #import "GlideToBrickCell.h"
-#import "Pocket_Code-Swift.h"
 
 @interface GlideToBrickCell ()
 @property (nonatomic, strong) UILabel *firstRowLeftLabel;
@@ -31,11 +31,6 @@
 @end
 
 @implementation GlideToBrickCell
-
-- (void)drawRect:(CGRect)rect
-{
-    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.motionBrickBlue strokeColor:UIColor.motionBrickStroke height:largeBrick width:[Util screenWidth]];
-}
 
 + (CGFloat)cellHeight
 {
@@ -51,6 +46,30 @@
     self.xCoordTextField = inlineViewSubViews[4];
     self.secondRowRightLabel = inlineViewSubViews[5];
     self.yCoordTextField = inlineViewSubViews[6];
+}
+
+- (NSString*)brickTitleForBackground:(BOOL)isBackground andInsertionScreen:(BOOL)isInsertion
+{
+    GlideToBrick *brick = (GlideToBrick*)self.scriptOrBrick;
+    NSString* localizedSecond = kLocalizedSeconds;
+    
+    if (brick && [brick.durationInSeconds isSingularNumber]) {
+        localizedSecond = kLocalizedSecond;
+        
+    }
+    
+    return [kLocalizedGlide stringByAppendingString:[@" %@ "
+                            stringByAppendingString:[localizedSecond
+                            stringByAppendingString:[@"\n"
+                            stringByAppendingString:[kLocalizedToX
+                            stringByAppendingString:[@" %@ "
+                            stringByAppendingString:[kLocalizedYLabel
+                            stringByAppendingString:@" %@"]]]]]]];
+}
+
+- (NSArray<NSString*>*)parameters
+{
+    return [[NSArray alloc] initWithObjects:@"{FLOAT;range=(0,inf)}", @"{FLOAT;range=(-inf,inf)}", @"{FLOAT;range=(-inf,inf)}", nil];
 }
 
 @end

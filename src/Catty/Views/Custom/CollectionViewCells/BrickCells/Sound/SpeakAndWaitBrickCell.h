@@ -22,7 +22,7 @@
 
 #import "BrickCell.h"
 
-@interface SpeakAndWaitBrickCell : BrickCell
+@interface SpeakAndWaitBrickCell : BrickCell<BrickCellProtocol>
 
 @property (nonatomic, weak) UITextField *speakTextField;
 

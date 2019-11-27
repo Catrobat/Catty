@@ -24,7 +24,7 @@
 
 @class Brick;
 
-@protocol BrickMessageProtocol <NSObject>
+@protocol BrickMessageProtocol <BrickProtocol>
 
 - (NSString*)messageForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber;
 - (void)setMessage:(NSString*)message forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber;

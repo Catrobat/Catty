@@ -26,9 +26,9 @@
 
 @implementation PlaySoundBrick
 
-- (NSString*)brickTitle
+- (kBrickCategoryType)category
 {
-    return [kLocalizedPlaySound stringByAppendingString:@"\n%@"];
+    return kSoundBrick;
 }
 
 #pragma mark - Copy

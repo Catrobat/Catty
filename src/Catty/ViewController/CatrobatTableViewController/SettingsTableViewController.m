@@ -132,9 +132,14 @@
                 [weakSelf openRateUsURL];
             };
         }]];
-        NSString *version = [[NSString alloc] initWithFormat:@"%@%@",
-                             kLocalizedVersionLabel,
-                             [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]];
+        
+        NSString *version = [[NSString alloc] initWithFormat:@"%@%@ (%@)", kLocalizedVersionLabel,
+        [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"], [Util appBuildVersion]];
+        
+        #if DEBUG == 1
+            version = [NSString stringWithFormat: @"%@(%@)", version, kLocalizedDebugMode];
+        #endif
+        
         section.footerTitle = version;
     }]];
 }

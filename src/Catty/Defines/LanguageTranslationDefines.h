@@ -131,7 +131,7 @@
 #define kLocalizedEditScript NSLocalizedString(@"Edit Script", @"Action sheet menu title")
 #define kLocalizedEditBrick NSLocalizedString(@"Edit Brick", @"Action sheet menu title")
 #define kLocalizedAddLook NSLocalizedString(@"Add look", @"Action sheet menu title")
-#define kLocalizedLook NSLocalizedString(@"look", @"LOOK")
+#define kLocalizedLookFilename NSLocalizedString(@"look", @"LOOK")
 #define kLocalizedEditProject NSLocalizedString(@"Edit Project", nil)
 #define kLocalizedEditProjects NSLocalizedString(@"Edit Projects", nil)
 #define kLocalizedEditObject NSLocalizedString(@"Edit Object", nil)
@@ -224,13 +224,8 @@
 #define kLocalizedMostDownloaded NSLocalizedString(@"Most Downloaded", nil)
 #define kLocalizedMostViewed NSLocalizedString(@"Most Viewed", nil)
 #define kLocalizedNewest NSLocalizedString(@"Newest", nil)
-#define kLocalizedControl NSLocalizedString(@"Control", nil)
-#define kLocalizedMotion NSLocalizedString(@"Motion", nil)
-#define kLocalizedSound NSLocalizedString(@"Sound", nil)
 #define kLocalizedVariables NSLocalizedString(@"Variables", nil)
 #define kLocalizedLists NSLocalizedString(@"Lists", nil)
-#define kLocalizedPhiro NSLocalizedString(@"Phiro", nil)
-#define kLocalizedArduino NSLocalizedString(@"Arduino", nil)
 #define kLocalizedPhiroBricks NSLocalizedString(@"Use Phiro bricks", nil)
 #define kLocalizedArduinoBricks NSLocalizedString(@"Use Arduino bricks", nil)
 #define kLocalizedFrontCamera NSLocalizedString(@"Front camera", nil)
@@ -319,6 +314,7 @@
 //************************************************************************************************************
 
 // control bricks
+#define kLocalizedScript NSLocalizedString(@"Script", nil)
 #define kLocalizedWhenProjectStarted NSLocalizedString(@"When project started", nil)
 #define kLocalizedWhenTapped NSLocalizedString(@"When tapped", nil)
 #define kLocalizedTouchDown NSLocalizedString(@"When screen is touched", nil)
@@ -368,6 +364,7 @@
 #define kLocalizedComeToFront NSLocalizedString(@"Go to front", nil)
 
 // look bricks
+#define kLocalizedLook NSLocalizedString(@"Look", nil)
 #define kLocalizedSetLook NSLocalizedString(@"Switch to look", nil)
 #define kLocalizedSetBackground NSLocalizedString(@"Set background", nil)
 #define kLocalizedNextLook NSLocalizedString(@"Next look", nil)
@@ -395,6 +392,7 @@
 #define kLocalizedFor NSLocalizedString(@"for", nil)
 
 // sound bricks
+#define kLocalizedSound NSLocalizedString(@"Sound", nil)
 #define kLocalizedPlaySound NSLocalizedString(@"Start sound", nil)
 #define kLocalizedStopAllSounds NSLocalizedString(@"Stop all sounds", nil)
 #define kLocalizedSetVolumeTo NSLocalizedString(@"Set volume to", nil)
@@ -665,21 +663,21 @@
 
 #define kUIFEUnknownElementType NSLocalizedString(@"Unknown Element", nil)
 
+#define kUIFENewText NSLocalizedString(@"New Text", nil)
+#define kUIFETextMessage NSLocalizedString(@"Text message:", nil)
+
 //************************************************************************************************************
 //************************************       BrickCategoryTitles        **************************************
 //************************************************************************************************************
 
-#define kUIFENewText NSLocalizedString(@"New Text", nil)
-#define kUIFETextMessage NSLocalizedString(@"Text message:", nil)
-#define kLocalizedFrequentlyUsed NSLocalizedString(@"Frequently Used", @"Title of View where the user can see the frequently used bricks.")
-#define kUIScriptTitle NSLocalizedString(@"Script", nil)
-#define kUIControlTitle NSLocalizedString(@"Control", nil)
-#define kUIMotionTitle NSLocalizedString(@"Motion", nil)
-#define kUISoundTitle NSLocalizedString(@"Sound", nil)
-#define kUILookTitle NSLocalizedString(@"Look", nil)
-#define kUIVariableTitle NSLocalizedString(@"Variable", nil)
-#define kUIArduinoTitle NSLocalizedString(@"Arduino", nil)
-#define kUIPhiroTitle NSLocalizedString(@"Phiro", nil)
+#define kLocalizedCategoryFrequentlyUsed NSLocalizedString(@"Frequently Used", @"Title of View where the user can see the frequently used bricks.")
+#define kLocalizedCategoryControl NSLocalizedString(@"Control", nil)
+#define kLocalizedCategoryMotion NSLocalizedString(@"Motion", nil)
+#define kLocalizedCategoryLook NSLocalizedString(@"Look", nil)
+#define kLocalizedCategorySound NSLocalizedString(@"Sound", nil)
+#define kLocalizedCategoryVariable NSLocalizedString(@"Variable", nil)
+#define kLocalizedCategoryArduino NSLocalizedString(@"Arduino", nil)
+#define kLocalizedCategoryPhiro NSLocalizedString(@"Phiro", nil)
 
 //************************************************************************************************************
 //************************************       PhiroDefines         ********************************************
@@ -749,8 +747,7 @@
 //************************************************************************************************************
 //****************************************       Debug        ************************************************
 //************************************************************************************************************
-#define kLocalizedDebugModeTitle NSLocalizedString(@"Debug mode", nil)
-#define kLocalizedStartedInDebugMode NSLocalizedString(@"Pocket Code has been started in debug mode.", nil)
+#define kLocalizedDebugMode NSLocalizedString(@"debug", nil)
 
 /*
      _       _     _                       _              _         _

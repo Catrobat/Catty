@@ -21,18 +21,12 @@
  */
 
 #import "PlaySoundBrickCell.h"
-#import "Pocket_Code-Swift.h"
 
 @interface PlaySoundBrickCell ()
 @property (nonatomic, strong) UILabel *textLabel;
 @end
 
 @implementation PlaySoundBrickCell
-
-- (void)drawRect:(CGRect)rect
-{
-    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.soundBrickViolet strokeColor:UIColor.soundBrickStroke height:mediumBrick width:[Util screenWidth]];
-}
 
 + (CGFloat)cellHeight
 {
@@ -43,6 +37,16 @@
 {
     self.textLabel = inlineViewSubViews[0];
     self.soundComboBoxView = inlineViewSubViews[1];
+}
+
+- (NSString*)brickTitleForBackground:(BOOL)isBackground andInsertionScreen:(BOOL)isInsertion
+{
+    return [kLocalizedPlaySound stringByAppendingString:@"\n%@"];
+}
+
+- (NSArray<NSString*>*)parameters
+{
+    return [[NSArray alloc] initWithObjects:@"{SOUND}", nil];
 }
 
 @end

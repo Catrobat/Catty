@@ -25,7 +25,7 @@
 @protocol CBConditionProtocol;
 @class LoopBeginBrick;
 
-@interface LoopEndBrick : Brick
+@interface LoopEndBrick : Brick<BrickProtocol>
 
 @property (weak, nonatomic) LoopBeginBrick* loopBeginBrick;
 @property (nonatomic, strong) NSDate *loopEndTime;

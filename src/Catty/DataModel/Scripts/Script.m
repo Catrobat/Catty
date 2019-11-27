@@ -27,24 +27,9 @@
 #import "NSString+CatrobatNSStringExtensions.h"
 #import "BroadcastScript.h"
 #import "WhenScript.h"
-
-@interface Script()
-@property (nonatomic, readwrite) kBrickCategoryType brickCategoryType;
-@property (nonatomic, readwrite) kBrickType brickType;
-@end
+#import "Util.h"
 
 @implementation Script
-
-- (id)init
-{
-    if (self = [super init]) {
-        NSString *subclassName = NSStringFromClass([self class]);
-        BrickManager *brickManager = [BrickManager sharedBrickManager];
-        self.brickType = [brickManager brickTypeForClassName:subclassName];
-        self.brickCategoryType = [brickManager brickCategoryTypeForBrickType:self.brickType];
-    }
-    return self;
-}
 
 #pragma mark - Getters and Setters
 - (BOOL)isSelectableForObject
@@ -57,7 +42,7 @@
     return NO;
 }
 
-- (void)addBrick:(Brick*)brick atIndex:(NSUInteger)index
+- (void)addBrick:(Brick<BrickProtocol>*)brick atIndex:(NSUInteger)index
 {
     CBAssert([self.brickList indexOfObject:brick] == NSNotFound);
     brick.script = self;
@@ -65,19 +50,6 @@
 }
 
 #pragma mark - Custom getter and setter
-- (NSString*)brickTitle
-{
-    @throw [NSException exceptionWithName:NSInternalInconsistencyException
-                                   reason:[NSString stringWithFormat:@"You must override %@ in the subclass %@",
-                                           NSStringFromSelector(_cmd), NSStringFromClass([self class])]
-                                 userInfo:nil];
-}
-
-- (NSString*)brickTitleForBrickinSelection:(BOOL)inSelection inBackground:(BOOL)inBackground
-{
-    return self.brickTitle;
-}
-
 - (NSMutableArray*)brickList
 {
     if (! _brickList) {
@@ -97,8 +69,7 @@
     if (! context) NSError(@"%@ must not be nil!", [CBMutableCopyContext class]);
     
     Script *copiedScript = [[self class] new];
-    copiedScript.brickCategoryType = self.brickCategoryType;
-    copiedScript.brickType = self.brickType;
+    
     if ([self isKindOfClass:[WhenScript class]]) {
         CBAssert([copiedScript isKindOfClass:[WhenScript class]]);
         WhenScript *whenScript = (WhenScript*)self;
@@ -138,22 +109,8 @@
 #pragma mark - isEqualToScript
 - (BOOL)isEqualToScript:(Script *)script
 {
-    if (self.brickCategoryType != script.brickCategoryType) {
+    if ([self class] != [script class]) {
         return NO;
-    }
-    if (self.brickType != script.brickType) {
-        return NO;
-    }
-    if (! [Util isEqual:self.brickTitle toObject:script.brickTitle]) {
-        return NO;
-    }
-    if ([self isKindOfClass:[WhenScript class]]) {
-        if (! [script isKindOfClass:[WhenScript class]]) {
-            return NO;
-        }
-        if (! [Util isEqual:((WhenScript*)self).action toObject:((WhenScript*)script).action]) {
-            return NO;
-        }
     }
     if (! [Util isEqual:self.object.name toObject:script.object.name]) {
         return NO;
@@ -213,6 +170,12 @@
 - (BOOL)isDisabledForBackground
 {
     return NO;
+}
+
+- (Class<BrickCellProtocol>)brickCell
+{
+    NSString *brickName = NSStringFromClass([self class]);
+    return NSClassFromString([brickName stringByAppendingString:@"Cell"]);
 }
 
 @end

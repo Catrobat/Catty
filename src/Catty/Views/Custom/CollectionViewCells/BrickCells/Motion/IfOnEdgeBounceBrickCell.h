@@ -22,7 +22,7 @@
 
 #import "BrickCell.h"
 
-@interface IfOnEdgeBounceBrickCell : BrickCell
+@interface IfOnEdgeBounceBrickCell : BrickCell<BrickCellProtocol>
 
 @property (nonatomic, weak) UITextField *yCoordTextField;
 

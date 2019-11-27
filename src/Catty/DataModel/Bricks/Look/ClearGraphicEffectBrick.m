@@ -27,9 +27,9 @@
 
 @implementation ClearGraphicEffectBrick
 
-- (NSString*)brickTitle
+- (kBrickCategoryType)category
 {
-    return kLocalizedClearGraphicEffect;
+    return kLookBrick;
 }
 
 - (NSString*)pathForLook:(Look*)look

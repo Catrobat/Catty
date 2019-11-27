@@ -22,6 +22,6 @@
 
 #import "BrickCell.h"
 
-@interface StartScriptCell : BrickCell
+@interface StartScriptCell : BrickCell<BrickCellProtocol>
 
 @end

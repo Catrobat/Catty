@@ -31,9 +31,9 @@
     return (! [self.script.object isBackground]);
 }
 
-- (NSString*)brickTitle
+- (kBrickCategoryType)category
 {
-    return kLocalizedIfIsTrueThenOnEdgeBounce;
+    return kMotionBrick;
 }
 
 - (void)performFromScript:(Script*)script;

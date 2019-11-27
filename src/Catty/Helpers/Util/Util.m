@@ -676,7 +676,6 @@
     NSDictionary *insertionStatistic = [userDefaults objectForKey:kUserDefaultsBrickSelectionStatisticsMap];
     if(insertionStatistic == nil)
     {
-//        insertionStatistic = [self defaultBrickStatisticDictionary];
         [userDefaults setObject:insertionStatistic
                          forKey:kUserDefaultsBrickSelectionStatisticsMap];
         [userDefaults synchronize];
@@ -693,10 +692,10 @@
 }
 
 
-+ (void)incrementStatisticCountForBrickType:(kBrickType)brickType
++ (void)incrementStatisticCountForBrick:(id<BrickProtocol>)brick
 {
     NSDictionary *insertionStatistic = [self getBrickInsertionDictionaryFromUserDefaults];
-    NSString *wrappedBrickType = [NSNumber numberWithUnsignedInteger:(NSUInteger)brickType].stringValue;
+    NSString *wrappedBrickType = NSStringFromClass([(id)brick class]);
     NSNumber *old_count = [insertionStatistic objectForKey:wrappedBrickType];
     NSMutableDictionary* mutableInsertionStatistic = [insertionStatistic mutableCopy];
     [mutableInsertionStatistic setValue:[NSNumber numberWithInt:old_count.intValue+1] forKey:wrappedBrickType];
@@ -751,7 +750,7 @@
 
 + (NSDictionary*)defaultBrickStatisticDictionary
 {
-    NSArray* defautArray = kDefaultFavouriteBricksStatisticArray;
+    NSArray* defautArray = [NSArray new];
     OrderedDictionary * dict = [[OrderedDictionary alloc] initWithCapacity:defautArray.count];
     for (NSString * brick in defautArray.reverseObjectEnumerator) {
         [dict insertObject:kNSNumberZero forKey:brick atIndex:0];

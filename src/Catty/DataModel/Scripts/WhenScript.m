@@ -21,12 +21,32 @@
  */
 
 #import "WhenScript.h"
+#import "Util.h"
 
 @implementation WhenScript
 
-- (NSString*)brickTitle
+- (instancetype)init {
+    self = [super init];
+    if(self) {
+        self.action = kWhenScriptDefaultAction;
+    }
+    return self;
+}
+
+- (kBrickCategoryType)category
 {
-    return kLocalizedWhenTapped;
+    return kControlBrick;
+}
+
+- (BOOL)isEqualToScript:(Script *)script
+{
+    if ([self class] != [script class]) {
+        return NO;
+    }
+    if ([self isKindOfClass:[WhenScript class]] && ! [Util isEqual:((WhenScript*)self).action toObject:((WhenScript*)script).action]) {
+        return NO;
+    }
+    return [super isEqualToScript:script];
 }
 
 @end

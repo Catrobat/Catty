@@ -24,24 +24,19 @@
 #import "UIDefines.h"
 #import "BrickCell.h"
 
+@protocol ScriptProtocol;
+@class BrickCategory;
+
 @interface BrickManager : NSObject
 
 + (instancetype)sharedBrickManager;
 
 // helpers
-- (NSDictionary*)classNameBrickTypeMap;
-- (NSDictionary*)brickTypeClassNameMap;
 - (NSArray*)selectableBricks;
-- (NSArray *)selectableScriptBricks;
 - (NSArray*)selectableBricksForCategoryType:(kBrickCategoryType)categoryType;
 - (NSArray*)selectableBricksForCategoryType:(kBrickCategoryType)categoryType inBackground:(BOOL)inBackground;
-- (kBrickType)brickTypeForClassName:(NSString*)className;
-- (kBrickCategoryType)brickCategoryTypeForBrickType:(kBrickType)brickType;
-- (NSString*)classNameForBrickType:(kBrickType)brickType;
-- (kBrickType)brickTypeForCategoryType:(kBrickCategoryType)categoryType andBrickIndex:(NSUInteger)index;
-- (NSUInteger)brickIndexForBrickType:(kBrickType)brickType;
-- (CGSize)sizeForBrick:(NSString *)brickName;
-- (BOOL)isScript:(kBrickType)type;
+- (BrickCategory*)categoryForType:(kBrickCategoryType)categoryType;
+- (CGSize)sizeForBrick:(id<BrickProtocol>)brick;
 - (NSInteger)checkEndLoopBrickTypeForDrawing:(BrickCell*)cell;
 - (NSArray*)animateWithIndexPath:(NSIndexPath*)path Script:(Script*)script andBrick:(Brick*)brick;
 - (NSArray*)scriptCollectionCopyBrickWithIndexPath:(NSIndexPath*)indexPath andBrick:(Brick*)brick;

@@ -21,7 +21,6 @@
  */
 
 #import "SetVariableBrickCell.h"
-#import "Pocket_Code-Swift.h"
 
 @interface SetVariableBrickCell ()
 @property (nonatomic, strong) UILabel *firstRowTextLabel;
@@ -29,11 +28,6 @@
 @end
 
 @implementation SetVariableBrickCell
-
-- (void)drawRect:(CGRect)rect
-{
-    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.variableBrickRed strokeColor:UIColor.variableBrickStroke height:largeBrick width:[Util screenWidth]];
-}
 
 + (CGFloat)cellHeight
 {
@@ -46,6 +40,16 @@
     self.variableComboBoxView = inlineViewSubViews[1];
     self.thirdRowTextLabel = inlineViewSubViews[2];
     self.valueTextField = inlineViewSubViews[3];
+}
+
+- (NSString*)brickTitleForBackground:(BOOL)isBackground andInsertionScreen:(BOOL)isInsertion
+{
+    return [kLocalizedSetVariable stringByAppendingString:[@"\n%@\n" stringByAppendingString:[kLocalizedTo stringByAppendingString:@" %@"]]];
+}
+
+- (NSArray<NSString*>*)parameters
+{
+    return [[NSArray alloc] initWithObjects:@"{VARIABLE}",@"{FLOAT;range=(-inf,inf)}", nil];
 }
 
 @end

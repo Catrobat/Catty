@@ -22,6 +22,6 @@
 
 #import "BrickCell.h"
 
-@interface LoopEndBrickCell : BrickCell
+@interface LoopEndBrickCell : BrickCell<BrickCellProtocol>
 @property (nonatomic)         NSInteger type;
 @end

@@ -23,7 +23,7 @@
 
 #import "Script.h"
 
-@interface WhenScript : Script
+@interface WhenScript : Script<BrickProtocol>
 
 @property (nonatomic, strong) NSString *action;
 

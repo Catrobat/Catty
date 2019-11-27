@@ -28,6 +28,11 @@
 
 @synthesize color = _color;
 
+- (kBrickCategoryType)category
+{
+    return kLookBrick;
+}
+
 - (Formula*)formulaForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
     return self.color;
@@ -51,11 +56,6 @@
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     self.color = [[Formula alloc] initWithZero];
-}
-
-- (NSString*)brickTitle
-{
-    return [kLocalizedSetColor stringByAppendingString:[kLocalizedTo stringByAppendingString:@" %@"]];
 }
 
 - (NSString*)pathForLook:(Look*)look

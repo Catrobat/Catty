@@ -22,6 +22,6 @@
 
 #import "Brick.h"
 
-@interface IfOnEdgeBounceBrick : Brick
+@interface IfOnEdgeBounceBrick : Brick<BrickProtocol>
 
 @end

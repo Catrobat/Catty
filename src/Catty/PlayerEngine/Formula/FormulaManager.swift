@@ -139,118 +139,22 @@ import CoreMotion
                                            touchManager: TouchManagerProtocol,
                                            bluetoothService: BluetoothService) -> SensorManager {
 
-        let sensorList: [Sensor] = [
-            LoudnessSensor(audioManagerGetter: { audioManager }),
-            InclinationXSensor(motionManagerGetter: { motionManager }),
-            InclinationYSensor(motionManagerGetter: { motionManager }),
-            AccelerationXSensor(motionManagerGetter: { motionManager }),
-            AccelerationYSensor(motionManagerGetter: { motionManager }),
-            AccelerationZSensor(motionManagerGetter: { motionManager }),
-            CompassDirectionSensor(locationManagerGetter: { locationManager }),
-            LatitudeSensor(locationManagerGetter: { locationManager }),
-            LongitudeSensor(locationManagerGetter: { locationManager }),
-            LocationAccuracySensor(locationManagerGetter: { locationManager }),
-            AltitudeSensor(locationManagerGetter: { locationManager }),
-            FingerTouchedSensor(touchManagerGetter: { touchManager }),
-            FingerXSensor(touchManagerGetter: { touchManager }),
-            FingerYSensor(touchManagerGetter: { touchManager }),
-            LastFingerIndexSensor(touchManagerGetter: { touchManager }),
+        let sensors = CatrobatSetup.registeredSensors(sceneSize: sceneSize,
+                                                      motionManager: motionManager,
+                                                      locationManager: locationManager,
+                                                      faceDetectionManager: faceDetectionManager,
+                                                      audioManager: audioManager,
+                                                      touchManager: touchManager,
+                                                      bluetoothService: bluetoothService)
 
-            DateYearSensor(),
-            DateMonthSensor(),
-            DateDaySensor(),
-            DateWeekdaySensor(),
-            TimeHourSensor(),
-            TimeMinuteSensor(),
-            TimeSecondSensor(),
-
-            FaceDetectedSensor(faceDetectionManagerGetter: { faceDetectionManager }),
-            FaceSizeSensor(sceneSize: sceneSize, faceDetectionManagerGetter: { faceDetectionManager }),
-            FacePositionXSensor(sceneSize: sceneSize, faceDetectionManagerGetter: { faceDetectionManager }),
-            FacePositionYSensor(sceneSize: sceneSize, faceDetectionManagerGetter: { faceDetectionManager }),
-
-            PhiroFrontLeftSensor(bluetoothServiceGetter: { bluetoothService }),
-            PhiroFrontRightSensor(bluetoothServiceGetter: { bluetoothService }),
-            PhiroBottomLeftSensor(bluetoothServiceGetter: { bluetoothService }),
-            PhiroBottomRightSensor(bluetoothServiceGetter: { bluetoothService }),
-            PhiroSideLeftSensor(bluetoothServiceGetter: { bluetoothService }),
-            PhiroSideRightSensor(bluetoothServiceGetter: { bluetoothService }),
-
-            PositionXSensor(),
-            PositionYSensor(),
-            TransparencySensor(),
-            BrightnessSensor(),
-            ColorSensor(),
-            SizeSensor(),
-            RotationSensor(),
-            LayerSensor(),
-            BackgroundNumberSensor(),
-            BackgroundNameSensor(),
-            LookNumberSensor(),
-            LookNameSensor()
-        ]
-
-        return SensorManager(sensors: sensorList)
+        return SensorManager(sensors: sensors)
     }
 
     private static func buildFunctionManager(touchManager: TouchManagerProtocol, bluetoothService: BluetoothService) -> FunctionManager {
-
-        let functionManager = FunctionManager(functions: [
-            SinFunction(),
-            CosFunction(),
-            TanFunction(),
-            LnFunction(),
-            LogFunction(),
-            PiFunction(),
-            SqrtFunction(),
-            RandFunction(),
-            AbsFunction(),
-            RoundFunction(),
-            ModFunction(),
-            AsinFunction(),
-            AcosFunction(),
-            AtanFunction(),
-            ExpFunction(),
-            PowFunction(),
-            FloorFunction(),
-            CeilFunction(),
-            MaxFunction(),
-            MinFunction(),
-            TrueFunction(),
-            FalseFunction(),
-            JoinFunction(),
-            LetterFunction(),
-            LengthFunction(),
-            ElementFunction(),
-            NumberOfItemsFunction(),
-            ContainsFunction(),
-            MultiFingerXFunction(touchManagerGetter: { touchManager }),
-            MultiFingerYFunction(touchManagerGetter: { touchManager }),
-            MultiFingerTouchedFunction(touchManagerGetter: { touchManager }),
-            ArduinoAnalogPinFunction(bluetoothServiceGetter: { bluetoothService }),
-            ArduinoDigitalPinFunction(bluetoothServiceGetter: { bluetoothService })
-        ])
-
-        return functionManager
+        return FunctionManager(functions: CatrobatSetup.registeredFunctions(touchManager: touchManager, bluetoothService: bluetoothService))
     }
 
     private static func buildOperatorManager() -> OperatorManagerProtocol {
-        let operatorManager = OperatorManager(operators: [
-            AndOperator(),
-            DivideOperator(),
-            EqualOperator(),
-            GreaterOrEqualOperator(),
-            GreaterThanOperator(),
-            MinusOperator(),
-            MultOperator(),
-            NotEqualOperator(),
-            OrOperator(),
-            PlusOperator(),
-            SmallerOrEqualOperator(),
-            SmallerThanOperator(),
-            NotOperator()
-        ])
-
-        return operatorManager
+        return OperatorManager(operators: CatrobatSetup.registeredOperators())
     }
 }

@@ -37,7 +37,7 @@ class VariablesTests: XCTestCase {
         app.tables.staticTexts[kLocalizedBackground].tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
 
-        addBrick(label: kLocalizedSetVariable, section: kUIVariableTitle, in: app)
+        addBrick(label: kLocalizedSetVariable, section: kLocalizedCategoryVariable, in: app)
     }
 
     func testDontShowVariablePickerWhenNoVariablesDefinedForObject() {
@@ -54,7 +54,7 @@ class VariablesTests: XCTestCase {
         XCUIApplication().tables.staticTexts[kLocalizedBackground].tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
 
-        addBrick(label: kLocalizedUserListAdd, section: kUIVariableTitle, in: app)
+        addBrick(label: kLocalizedUserListAdd, section: kLocalizedCategoryVariable, in: app)
 
         app.collectionViews.cells.otherElements.identifierTextBeginsWith(kLocalizedUserListAdd).children(matching: .other).element.tap()
         XCTAssert(app.sheets[kUIFEActionList].exists)
@@ -154,6 +154,7 @@ class VariablesTests: XCTestCase {
 
         XCTAssertTrue(waitForElementToAppear(app.buttons[" \"" + testVariable[2] + "\" "]).exists)
     }
+
     func testEditMarkedTextVariableInFormularEditor() {
         let projectName = "Test Project"
         let testVariable = "TestVariable"
@@ -171,6 +172,7 @@ class VariablesTests: XCTestCase {
         app.buttons[kUIFEAddNewText].tap()
         XCTAssertEqual(alert.textFields.firstMatch.value as! String, testVariable)
     }
+
     func testCreateVariableWithMarkedText() {
         let projectName = "Test Project"
         let testVariable = "TestVariable"
