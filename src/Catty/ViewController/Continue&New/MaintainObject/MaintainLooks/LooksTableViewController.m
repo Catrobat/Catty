@@ -74,9 +74,9 @@
                                               : kLocalizedLooks);
     [self initNavigationBar];
     if (self.object.isBackground) {
-        self.placeHolderView.title = kLocalizedBackground;
+        self.placeHolderView.title = kLocalizedTapPlusToAddBackground;
     } else {
-        self.placeHolderView.title = kLocalizedLook;
+        self.placeHolderView.title = kLocalizedTapPlusToAddLook;
     }
     [self showPlaceHolder:(! (BOOL)[self.object.lookList count])];
     [self setupToolBar];

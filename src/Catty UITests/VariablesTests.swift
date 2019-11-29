@@ -109,22 +109,22 @@ class VariablesTests: XCTestCase {
         let testVariable = "testVariable"
 
         createNewProjectAndAddSetVariableBrick(name: "Test Project")
-        app.collectionViews.cells.otherElements.containing(.staticText, identifier: "Set variable").children(matching: .button).element.tap()
-        XCTAssert(waitForElementToAppear(app.buttons["Cancel"]).exists)
+        app.collectionViews.cells.otherElements.containing(.staticText, identifier: kLocalizedSetVariable).children(matching: .button).element.tap()
+        XCTAssert(waitForElementToAppear(app.buttons[kLocalizedCancel]).exists)
 
-        app.buttons["Var/List"].tap()
-        app.buttons["New"].tap()
-        waitForElementToAppear(app.buttons["New Variable"]).tap()
-        waitForElementToAppear(app.buttons["for all objects"]).tap()
+        app.buttons[kUIFEVariableList].tap()
+        app.buttons[kLocalizedNew].tap()
+        waitForElementToAppear(app.buttons[kUIFENewVar]).tap()
+        waitForElementToAppear(app.buttons[kUIFEActionVarPro]).tap()
 
-        let alert = waitForElementToAppear(app.alerts["New Variable"])
+        let alert = waitForElementToAppear(app.alerts[kUIFENewVar])
         alert.textFields.firstMatch.typeText(testVariable)
-        alert.buttons["OK"].tap()
+        alert.buttons[kLocalizedOK].tap()
 
         app.buttons["del active"].tap()
-        app.buttons["Var/List"].tap()
-        app.buttons["Choose"].tap()
-        app.buttons["Done"].tap()
+        app.buttons[kUIFEVariableList].tap()
+        app.buttons[kUIFETake].tap()
+        app.buttons[kUIFEDone].tap()
 
         XCTAssertTrue(waitForElementToAppear(app.buttons[" \"" + testVariable + "\" "]).exists)
     }
@@ -133,22 +133,22 @@ class VariablesTests: XCTestCase {
         let testVariable = ["testVariable1", "testVariable2", "testVariable3"]
 
         createNewProjectAndAddSetVariableBrick(name: "Test Project")
-        app.collectionViews.cells.otherElements.containing(.staticText, identifier: "Set variable").children(matching: .button).element.tap()
-        XCTAssert(waitForElementToAppear(app.buttons["Cancel"]).exists)
+        app.collectionViews.cells.otherElements.containing(.staticText, identifier: kLocalizedSetVariable).children(matching: .button).element.tap()
+        XCTAssert(waitForElementToAppear(app.buttons[kLocalizedCancel]).exists)
 
         for variable in testVariable {
-            app.buttons["Var/List"].tap()
-            app.buttons["New"].tap()
-            waitForElementToAppear(app.buttons["New Variable"]).tap()
-            waitForElementToAppear(app.buttons["for all objects"]).tap()
+            app.buttons[kUIFEVariableList].tap()
+            app.buttons[kLocalizedNew].tap()
+            waitForElementToAppear(app.buttons[kUIFENewVar]).tap()
+            waitForElementToAppear(app.buttons[kUIFEActionVarPro]).tap()
 
-            let alert = waitForElementToAppear(app.alerts["New Variable"])
+            let alert = waitForElementToAppear(app.alerts[kUIFENewVar])
             alert.textFields.firstMatch.typeText(variable)
             alert.buttons["OK"].tap()
         }
 
         app.buttons["del active"].tap()
-        app.buttons["Var/List"].tap()
+        app.buttons[kUIFEVariableList].tap()
         app.pickerWheels.element.adjust(toPickerWheelValue: testVariable[2])
         app.pickerWheels[testVariable[2]].tap()
 

@@ -51,7 +51,7 @@ class BackgroundsTests: XCTestCase {
         yesButton.tap()
         app.navigationBars.buttons[kLocalizedBackground].tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
-        XCTAssert(app.staticTexts["Tap \"+\" to add Script"].exists)
+        XCTAssert(app.staticTexts[kLocalizedTapPlusToAddScript].exists)
     }
 
     func testScriptsCanDeleteWhenProjectStartsViaTap() {
@@ -65,7 +65,7 @@ class BackgroundsTests: XCTestCase {
 
         app.navigationBars.buttons[kLocalizedBackground].tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
-        XCTAssert(app.staticTexts["Tap \"+\" to add Script"].exists)
+        XCTAssert(app.staticTexts[kLocalizedTapPlusToAddScript].exists)
     }
 
     func testBackgroundsCanEnterBackgrounds() {
