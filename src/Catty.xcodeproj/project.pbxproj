@@ -894,6 +894,8 @@
 		9E0F741622B55D620030CD89 /* StandardAudioPlayerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0F741522B55D620030CD89 /* StandardAudioPlayerFactory.swift */; };
 		9E0F741822B55E4D0030CD89 /* MockAudioPlayerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0F741722B55E4D0030CD89 /* MockAudioPlayerFactory.swift */; };
 		9E1444F6228B531400104F77 /* ExtendedTimerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E1444F5228B531400104F77 /* ExtendedTimerTests.swift */; };
+		9E169FE02383556C0004311D /* SpeechSynthesizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E169FDF2383556B0004311D /* SpeechSynthesizer.swift */; };
+		9E169FE4238361030004311D /* AudioEngineHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E169FE3238361030004311D /* AudioEngineHelper.swift */; };
 		9E1BB3CD22BE515800CBC0B6 /* AudioEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E1BB3C922BE4EC200CBC0B6 /* AudioEngineTests.swift */; };
 		9E1ED58D231332E000E36DED /* AudioEngineAbstractTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E1ED58C231332E000E36DED /* AudioEngineAbstractTest.swift */; };
 		9E22655F22BFB3FC00898052 /* AudioPlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E22655E22BFB3FC00898052 /* AudioPlayerTests.swift */; };
@@ -918,12 +920,18 @@
 		9E4D238A232AF24B009D0C3C /* SetBrightnessBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4D2389232AF24B009D0C3C /* SetBrightnessBrickTests.swift */; };
 		9E4D238C232AF688009D0C3C /* SetColorBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4D238B232AF688009D0C3C /* SetColorBrickTests.swift */; };
 		9E4D5CB322B845F100848584 /* IterableCacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4D5CB222B845F100848584 /* IterableCacheTests.swift */; };
+		9E544D35238754C500935C17 /* SpeechSynthesizerIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E544D34238754C500935C17 /* SpeechSynthesizerIntegrationTests.swift */; };
+		9E544D392387562400935C17 /* SpeakBrickWithSoundBrick.xml in Resources */ = {isa = PBXBuildFile; fileRef = 9E544D382387562300935C17 /* SpeakBrickWithSoundBrick.xml */; };
 		9E7564B222C7AB1A00D38A3B /* ObjectTVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A988832B1BCA86FF005029E8 /* ObjectTVCTests.swift */; };
 		9E773797230B4EBC004F264D /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E773796230B4EBC004F264D /* Accelerate.framework */; };
 		9E78D88322A9AF8400948AC3 /* AudioEngineProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E78D88222A9AF8400948AC3 /* AudioEngineProtocol.swift */; };
 		9E78D88722A9AFB400948AC3 /* AudioSubtree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E78D88622A9AFB400948AC3 /* AudioSubtree.swift */; };
 		9E78D88922A9B16200948AC3 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E78D88822A9B16200948AC3 /* AudioPlayer.swift */; };
 		9E78D88B22A9B1D400948AC3 /* IterableCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E78D88A22A9B1D400948AC3 /* IterableCache.swift */; };
+		9E8176E32389AEAC00A4912B /* SpeakAndWaitBrickWithSoundBrick.xml in Resources */ = {isa = PBXBuildFile; fileRef = 9E8176E22389AEAB00A4912B /* SpeakAndWaitBrickWithSoundBrick.xml */; };
+		9E8176E52389BA4800A4912B /* SpeakAndWaitInterruptedBySpeak.xml in Resources */ = {isa = PBXBuildFile; fileRef = 9E8176E42389BA4800A4912B /* SpeakAndWaitInterruptedBySpeak.xml */; };
+		9E8176E72389C14B00A4912B /* SpeakAndWaitTwoInterruptingSpeakBricks.xml in Resources */ = {isa = PBXBuildFile; fileRef = 9E8176E62389C14A00A4912B /* SpeakAndWaitTwoInterruptingSpeakBricks.xml */; };
+		9E8176E92389C60F00A4912B /* guitar_chords.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9E8176E82389C60F00A4912B /* guitar_chords.mp3 */; };
 		9EA3FD812327089900551B6C /* SceneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA3FD802327089900551B6C /* SceneTests.swift */; };
 		9EA6DCB02329A9E1007E837A /* MoveNStepsBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA6DCAF2329A9E1007E837A /* MoveNStepsBrickTests.swift */; };
 		9EBAC31122A9B91C002E198D /* AudioKit.license in Resources */ = {isa = PBXBuildFile; fileRef = 9EBAC30E22A9B91B002E198D /* AudioKit.license */; };
@@ -936,6 +944,10 @@
 		9EBCBD8D2329C56F0074C2D9 /* SetSizeToBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EBCBD8C2329C56F0074C2D9 /* SetSizeToBrickTests.swift */; };
 		9EBCBD8F2329C7A30074C2D9 /* SetTransparencyBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EBCBD8E2329C7A30074C2D9 /* SetTransparencyBrickTests.swift */; };
 		9EBED5FD230C8E4800049BBC /* FingerprintingAudioPlayerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EBED5FC230C8E4800049BBC /* FingerprintingAudioPlayerFactory.swift */; };
+		9ECCA3A62395C0D900FE8323 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ECCA3A42395C0D900FE8323 /* Nimble.framework */; };
+		9ECCA3A72395C0D900FE8323 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ECCA3A52395C0D900FE8323 /* Quick.framework */; };
+		9ECCA3A82395C10600FE8323 /* Nimble.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 9ECCA3A42395C0D900FE8323 /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9ECCA3A92395C10600FE8323 /* Quick.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 9ECCA3A52395C0D900FE8323 /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9ECDCB0B2328491F00EBDA63 /* ChangeTransparencyByNBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECDCB0A2328491F00EBDA63 /* ChangeTransparencyByNBrickTests.swift */; };
 		9ECDCB0D23284CBE00EBDA63 /* ClearGraphicEffectBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECDCB0C23284CBE00EBDA63 /* ClearGraphicEffectBrickTests.swift */; };
 		9ECDCB0F2328528D00EBDA63 /* ComeToFrontBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECDCB0E2328528D00EBDA63 /* ComeToFrontBrickTests.swift */; };
@@ -943,8 +955,9 @@
 		9ECDCB132328578F00EBDA63 /* HideBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECDCB122328578F00EBDA63 /* HideBrickTests.swift */; };
 		9ED1150E22C56DEF0035DB63 /* AudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EBAC31222A9BE5A002E198D /* AudioKit.framework */; };
 		9EDCD21F2288687A0040EFE3 /* ExtendedTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDCD21E2288687A0040EFE3 /* ExtendedTimer.swift */; };
-		9EDCD22322886C870040EFE3 /* Expectation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDCD22222886C870040EFE3 /* Expectation.swift */; };
+		9EDCD22322886C870040EFE3 /* CBExpectation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDCD22222886C870040EFE3 /* CBExpectation.swift */; };
 		9EDCD22522886FD90040EFE3 /* WaitBrickCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDCD22422886FD90040EFE3 /* WaitBrickCell.swift */; };
+		9EE1BA5E2385F62A0024C7A5 /* SpeechSynthesizerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE1BA5D2385F62A0024C7A5 /* SpeechSynthesizerTests.swift */; };
 		9EE674D123252F510029D153 /* silence.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9EE674CE23252F510029D153 /* silence.mp3 */; };
 		9EE674D62325319B0029D153 /* PlaySameSoundTwiceSameObject.xml in Resources */ = {isa = PBXBuildFile; fileRef = 9EE674D52325319B0029D153 /* PlaySameSoundTwiceSameObject.xml */; };
 		9EE674DA23253A5E0029D153 /* PlaySameSoundTwiceDifferentObjects.xml in Resources */ = {isa = PBXBuildFile; fileRef = 9EE674D923253A5D0029D153 /* PlaySameSoundTwiceDifferentObjects.xml */; };
@@ -1362,6 +1375,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				9ECCA3A82395C10600FE8323 /* Nimble.framework in Copy Frameworks */,
+				9ECCA3A92395C10600FE8323 /* Quick.framework in Copy Frameworks */,
 				59D9EC672061171F0019EC10 /* DVR.framework in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
@@ -2594,6 +2609,8 @@
 		9E0F741522B55D620030CD89 /* StandardAudioPlayerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardAudioPlayerFactory.swift; sourceTree = "<group>"; };
 		9E0F741722B55E4D0030CD89 /* MockAudioPlayerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAudioPlayerFactory.swift; sourceTree = "<group>"; };
 		9E1444F5228B531400104F77 /* ExtendedTimerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedTimerTests.swift; sourceTree = "<group>"; };
+		9E169FDF2383556B0004311D /* SpeechSynthesizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechSynthesizer.swift; sourceTree = "<group>"; };
+		9E169FE3238361030004311D /* AudioEngineHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioEngineHelper.swift; sourceTree = "<group>"; };
 		9E1BB3C922BE4EC200CBC0B6 /* AudioEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioEngineTests.swift; sourceTree = "<group>"; };
 		9E1ED58C231332E000E36DED /* AudioEngineAbstractTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioEngineAbstractTest.swift; sourceTree = "<group>"; };
 		9E22655E22BFB3FC00898052 /* AudioPlayerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerTests.swift; sourceTree = "<group>"; };
@@ -2618,11 +2635,17 @@
 		9E4D2389232AF24B009D0C3C /* SetBrightnessBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetBrightnessBrickTests.swift; sourceTree = "<group>"; };
 		9E4D238B232AF688009D0C3C /* SetColorBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetColorBrickTests.swift; sourceTree = "<group>"; };
 		9E4D5CB222B845F100848584 /* IterableCacheTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IterableCacheTests.swift; sourceTree = "<group>"; };
+		9E544D34238754C500935C17 /* SpeechSynthesizerIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechSynthesizerIntegrationTests.swift; sourceTree = "<group>"; };
+		9E544D382387562300935C17 /* SpeakBrickWithSoundBrick.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = SpeakBrickWithSoundBrick.xml; sourceTree = "<group>"; };
 		9E773796230B4EBC004F264D /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		9E78D88222A9AF8400948AC3 /* AudioEngineProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioEngineProtocol.swift; sourceTree = "<group>"; };
 		9E78D88622A9AFB400948AC3 /* AudioSubtree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioSubtree.swift; sourceTree = "<group>"; };
 		9E78D88822A9B16200948AC3 /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
 		9E78D88A22A9B1D400948AC3 /* IterableCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IterableCache.swift; sourceTree = "<group>"; };
+		9E8176E22389AEAB00A4912B /* SpeakAndWaitBrickWithSoundBrick.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = SpeakAndWaitBrickWithSoundBrick.xml; sourceTree = "<group>"; };
+		9E8176E42389BA4800A4912B /* SpeakAndWaitInterruptedBySpeak.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = SpeakAndWaitInterruptedBySpeak.xml; sourceTree = "<group>"; };
+		9E8176E62389C14A00A4912B /* SpeakAndWaitTwoInterruptingSpeakBricks.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = SpeakAndWaitTwoInterruptingSpeakBricks.xml; sourceTree = "<group>"; };
+		9E8176E82389C60F00A4912B /* guitar_chords.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = guitar_chords.mp3; sourceTree = "<group>"; };
 		9EA3FD802327089900551B6C /* SceneTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneTests.swift; sourceTree = "<group>"; };
 		9EA6DCAF2329A9E1007E837A /* MoveNStepsBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveNStepsBrickTests.swift; sourceTree = "<group>"; };
 		9EBAC30E22A9B91B002E198D /* AudioKit.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AudioKit.license; sourceTree = "<group>"; };
@@ -2635,14 +2658,17 @@
 		9EBCBD8C2329C56F0074C2D9 /* SetSizeToBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetSizeToBrickTests.swift; sourceTree = "<group>"; };
 		9EBCBD8E2329C7A30074C2D9 /* SetTransparencyBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetTransparencyBrickTests.swift; sourceTree = "<group>"; };
 		9EBED5FC230C8E4800049BBC /* FingerprintingAudioPlayerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FingerprintingAudioPlayerFactory.swift; sourceTree = "<group>"; };
+		9ECCA3A42395C0D900FE8323 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
+		9ECCA3A52395C0D900FE8323 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
 		9ECDCB0A2328491F00EBDA63 /* ChangeTransparencyByNBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeTransparencyByNBrickTests.swift; sourceTree = "<group>"; };
 		9ECDCB0C23284CBE00EBDA63 /* ClearGraphicEffectBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearGraphicEffectBrickTests.swift; sourceTree = "<group>"; };
 		9ECDCB0E2328528D00EBDA63 /* ComeToFrontBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComeToFrontBrickTests.swift; sourceTree = "<group>"; };
 		9ECDCB102328548800EBDA63 /* SetBackgroundBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetBackgroundBrickTests.swift; sourceTree = "<group>"; };
 		9ECDCB122328578F00EBDA63 /* HideBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HideBrickTests.swift; sourceTree = "<group>"; };
 		9EDCD21E2288687A0040EFE3 /* ExtendedTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedTimer.swift; sourceTree = "<group>"; };
-		9EDCD22222886C870040EFE3 /* Expectation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expectation.swift; sourceTree = "<group>"; };
+		9EDCD22222886C870040EFE3 /* CBExpectation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBExpectation.swift; sourceTree = "<group>"; };
 		9EDCD22422886FD90040EFE3 /* WaitBrickCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitBrickCell.swift; sourceTree = "<group>"; };
+		9EE1BA5D2385F62A0024C7A5 /* SpeechSynthesizerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechSynthesizerTests.swift; sourceTree = "<group>"; };
 		9EE674CE23252F510029D153 /* silence.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = silence.mp3; sourceTree = "<group>"; };
 		9EE674D52325319B0029D153 /* PlaySameSoundTwiceSameObject.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PlaySameSoundTwiceSameObject.xml; sourceTree = "<group>"; };
 		9EE674D923253A5D0029D153 /* PlaySameSoundTwiceDifferentObjects.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PlaySameSoundTwiceDifferentObjects.xml; sourceTree = "<group>"; };
@@ -3234,11 +3260,13 @@
 				593624C61F76F374008A588D /* HMSegmentedControl.framework in Frameworks */,
 				593624C71F76F374008A588D /* M13ProgressSuite.framework in Frameworks */,
 				593624C81F76F374008A588D /* MXPagerView.framework in Frameworks */,
+				9ECCA3A72395C0D900FE8323 /* Quick.framework in Frameworks */,
 				593624C91F76F374008A588D /* MXParallaxHeader.framework in Frameworks */,
 				9EED5F8A2337ED270032898E /* libchromaprint.a in Frameworks */,
 				593624CA1F76F374008A588D /* MXSegmentedPager.framework in Frameworks */,
 				59A0599F1F7513CF00EB696D /* Siren.framework in Frameworks */,
 				593624C21F76F36F008A588D /* TTTAttributedLabel.framework in Frameworks */,
+				9ECCA3A62395C0D900FE8323 /* Nimble.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3308,6 +3336,8 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9ECCA3A42395C0D900FE8323 /* Nimble.framework */,
+				9ECCA3A52395C0D900FE8323 /* Quick.framework */,
 				4C36D6D623374FA200670D58 /* ZipArchive.framework */,
 				9E773796230B4EBC004F264D /* Accelerate.framework */,
 				9EBAC31222A9BE5A002E198D /* AudioKit.framework */,
@@ -6198,7 +6228,7 @@
 				CA2D44451B123B7E00A3B53D /* Util.swift */,
 				A9F511821BE6A07A00B59540 /* SwiftBridge.swift */,
 				9EDCD21E2288687A0040EFE3 /* ExtendedTimer.swift */,
-				9EDCD22222886C870040EFE3 /* Expectation.swift */,
+				9EDCD22222886C870040EFE3 /* CBExpectation.swift */,
 				9E0F740B22B532280030CD89 /* MathUtil.swift */,
 			);
 			name = Utils;
@@ -6778,6 +6808,7 @@
 				9E4D5CB222B845F100848584 /* IterableCacheTests.swift */,
 				9E1BB3C922BE4EC200CBC0B6 /* AudioEngineTests.swift */,
 				9E22655E22BFB3FC00898052 /* AudioPlayerTests.swift */,
+				9EE1BA5D2385F62A0024C7A5 /* SpeechSynthesizerTests.swift */,
 			);
 			path = UnitTests;
 			sourceTree = "<group>";
@@ -6786,6 +6817,7 @@
 			isa = PBXGroup;
 			children = (
 				9E445889230A024600222B14 /* AudioPlayerIntegrationTests.swift */,
+				9E544D34238754C500935C17 /* SpeechSynthesizerIntegrationTests.swift */,
 			);
 			path = IntegrationTests;
 			sourceTree = "<group>";
@@ -6807,6 +6839,8 @@
 				9E0F741322B558490030CD89 /* AudioPlayerFactory.swift */,
 				9E0F741522B55D620030CD89 /* StandardAudioPlayerFactory.swift */,
 				9E2C2D852325673C004B66C6 /* AudioEngine.swift */,
+				9E169FDF2383556B0004311D /* SpeechSynthesizer.swift */,
+				9E169FE3238361030004311D /* AudioEngineHelper.swift */,
 			);
 			name = AudioEngine;
 			path = PlayerEngine/AudioEngine;
@@ -6851,6 +6885,10 @@
 			children = (
 				9EE674D923253A5D0029D153 /* PlaySameSoundTwiceDifferentObjects.xml */,
 				9EE674D52325319B0029D153 /* PlaySameSoundTwiceSameObject.xml */,
+				9E8176E22389AEAB00A4912B /* SpeakAndWaitBrickWithSoundBrick.xml */,
+				9E8176E62389C14A00A4912B /* SpeakAndWaitTwoInterruptingSpeakBricks.xml */,
+				9E8176E42389BA4800A4912B /* SpeakAndWaitInterruptedBySpeak.xml */,
+				9E544D382387562300935C17 /* SpeakBrickWithSoundBrick.xml */,
 			);
 			path = "Project Files";
 			sourceTree = "<group>";
@@ -6859,6 +6897,7 @@
 			isa = PBXGroup;
 			children = (
 				9EE674E12325447C0029D153 /* half_seconds_patchwork.mp3 */,
+				9E8176E82389C60F00A4912B /* guitar_chords.mp3 */,
 				9EE674E22325447C0029D153 /* short_drum_long_sax.mp3 */,
 				9EE674CE23252F510029D153 /* silence.mp3 */,
 			);
@@ -8432,6 +8471,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4CC85CD41B9C6EC80097E470 /* Word_balloon_demo_096.xml in Resources */,
+				9E8176E92389C60F00A4912B /* guitar_chords.mp3 in Resources */,
 				CAE3E55E1B4C50B300CC88BD /* Tic_Tac_Toe_Master_091.xml in Resources */,
 				4CE2D3F91C294F3300938B5E /* Drink_more_water_097.xml in Resources */,
 				BAD47DC61F12938D001C38BC /* AddItemToUserListBrick098.xml in Resources */,
@@ -8509,6 +8549,7 @@
 				4CE2D4131C29506E00938B5E /* Skydiving_Steve_097.xml in Resources */,
 				4CE2D41D1C2950AB00938B5E /* ValidProject097.xml in Resources */,
 				4C0F9FF6204BD4B000E71B2D /* Memory_0991.xml in Resources */,
+				9E8176E32389AEAC00A4912B /* SpeakAndWaitBrickWithSoundBrick.xml in Resources */,
 				4C6D15FE1D7AC64000CE53CD /* ValidProjectAllBricks098.xml in Resources */,
 				4CEF0CC61B9C637D003C9B20 /* Demonstration_096.xml in Resources */,
 				CAE3E53F1B4C50B300CC88BD /* Drink_more_water_09.xml in Resources */,
@@ -8519,6 +8560,7 @@
 				CAE3E5441B4C50B300CC88BD /* Flappy_v3.0_093.xml in Resources */,
 				4C6D15D01D7AC5A500CE53CD /* Compass_0.1_098.xml in Resources */,
 				4CEF0CCE1B9C63C2003C9B20 /* Galaxy_War_096.xml in Resources */,
+				9E8176E72389C14B00A4912B /* SpeakAndWaitTwoInterruptingSpeakBricks.xml in Resources */,
 				4C6D15F41D7AC62200CE53CD /* Tic_Tac_Toe_Master_098.xml in Resources */,
 				2DCB4932212EA923005E8E3D /* StoreProjectDownloader.fetchMostViewedProjects.fail.parse.json in Resources */,
 				4C0F9FF4204BD4A000E71B2D /* LogicBricks_0991.xml in Resources */,
@@ -8560,6 +8602,7 @@
 				4CE2D4091C29503B00938B5E /* Nyancat_1.0_097.xml in Resources */,
 				4C0FA015204BD56800E71B2D /* Word_balloon_demo_0991.xml in Resources */,
 				4C6D16001D7AC65400CE53CD /* ValidProjectAllBricks093.xml in Resources */,
+				9E8176E52389BA4800A4912B /* SpeakAndWaitInterruptedBySpeak.xml in Resources */,
 				4CF3BD6D21B1B72D006DB806 /* ValidFormulaList.xml in Resources */,
 				2DCB4924212EA31B005E8E3D /* StoreProjectDownloader.fetchMostDownloadedProjects.fail.request.json in Resources */,
 				2DCB4916212E9B56005E8E3D /* StoreProjectDownloader.fetchFeaturedProjects.success.json in Resources */,
@@ -8633,6 +8676,7 @@
 				4C0F9FE3204BD43200E71B2D /* Demonstration_0991.xml in Resources */,
 				CAE3E5581B4C50B300CC88BD /* Rock_paper_scissors_091.xml in Resources */,
 				CAE3E5461B4C50B300CC88BD /* Galaxy_War_093.xml in Resources */,
+				9E544D392387562400935C17 /* SpeakBrickWithSoundBrick.xml in Resources */,
 				CAE3E5401B4C50B300CC88BD /* Drink_more_water_093.xml in Resources */,
 				CAE3E5431B4C50B300CC88BD /* Flappy_v3.0_092.xml in Resources */,
 				4CE2D40F1C29505A00938B5E /* Pythagorean_Theorem_097.xml in Resources */,
@@ -8932,6 +8976,7 @@
 				4C3A5CA121D3B4DF008FD83F /* OrOperatorTest.swift in Sources */,
 				4C6FE178212D2D2E0067B7D5 /* JoinFunctionTest.swift in Sources */,
 				4CA6DFBF23069204003A729B /* FormulaCacheTests.swift in Sources */,
+				9EE1BA5E2385F62A0024C7A5 /* SpeechSynthesizerTests.swift in Sources */,
 				4C6FE174212D2D2E0067B7D5 /* ElementFunctionTest.swift in Sources */,
 				4C0F9FD5204BD3C200E71B2D /* ChooseCameraBrickTests.swift in Sources */,
 				CA7698C21B0E4B3F000D0340 /* CBStackTests.m in Sources */,
@@ -9136,6 +9181,7 @@
 				4CAB100F1ECF1AC60019A67B /* ShowTextBrickTests.swift in Sources */,
 				9E22655F22BFB3FC00898052 /* AudioPlayerTests.swift in Sources */,
 				4C82267E213FA7A400F3D750 /* LayerSensorTest.swift in Sources */,
+				9E544D35238754C500935C17 /* SpeechSynthesizerIntegrationTests.swift in Sources */,
 				4C1AA4AE21A1572700DAC589 /* MediaItemTest.swift in Sources */,
 				4C68FC8D1B25A00B00AB3EE8 /* FormulaParserFunctionsTest.m in Sources */,
 				4CC50A53213AE386004BC914 /* FormulaManagerIdempotenceTests.swift in Sources */,
@@ -9212,6 +9258,7 @@
 				4C72EA3D2108ED0800E7407F /* TouchManager.swift in Sources */,
 				4C0F9F69204BD19400E71B2D /* SetBackgroundBrick+CBXMLHandler.m in Sources */,
 				4C11795420AEC36D006C6E32 /* ProtocolConformance.swift in Sources */,
+				9E169FE4238361030004311D /* AudioEngineHelper.swift in Sources */,
 				4C03A4C42133FF4B007BFFD2 /* FormulaManager+Interpreter.swift in Sources */,
 				4C8C3612213A9FDF00279BC7 /* ForeverBrick+Condition.swift in Sources */,
 				F4A2AFB72110D49900C53234 /* LetterFunction.swift in Sources */,
@@ -9374,7 +9421,7 @@
 				4C724E661B4D3EC500E27479 /* CBXMLSerializerContext.m in Sources */,
 				9218B20B1CC4AB75007B4C60 /* DrawTool.m in Sources */,
 				BAEAB294214BCD75000B2E4B /* WhenTouchDownScript.m in Sources */,
-				9EDCD22322886C870040EFE3 /* Expectation.swift in Sources */,
+				9EDCD22322886C870040EFE3 /* CBExpectation.swift in Sources */,
 				4C8BC6641B26C298001C7E32 /* iOSComboboxPickerView.m in Sources */,
 				4C0F9F79204BD1E300E71B2D /* SayForBubbleBrick+Instruction.swift in Sources */,
 				4CF429F1213A876000B78897 /* RepeatBrick+Condition.swift in Sources */,
@@ -9579,6 +9626,7 @@
 				929CC0CE1BC39B0A0027DEC0 /* PhiroMotorStopBrick.m in Sources */,
 				AA74EFF01BC05B5F00D1E954 /* VibrationBrick.m in Sources */,
 				AA74F0AE1BC05FCE00D1E954 /* HideBrickCell.m in Sources */,
+				9E169FE02383556C0004311D /* SpeechSynthesizer.swift in Sources */,
 				4C994E25207A56D500C415FD /* AccelerationYSensor.swift in Sources */,
 				921D467A1BDF61350086AD20 /* ChangeSizeByNBrick+Instruction.swift in Sources */,
 				F470A2E32129DAFB005EC9A3 /* ElementFunction.swift in Sources */,

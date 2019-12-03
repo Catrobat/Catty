@@ -45,7 +45,7 @@ class AudioPlayerMock: AudioPlayer {
 
     }
 
-    override func play(expectation: Expectation?) {
+    override func play(expectation: CBExpectation?) {
         let testExpectation = testExpectations["playExpectation"]
         testExpectations.removeValue(forKey: "playExpectation")
         testExpectation?.fulfill()

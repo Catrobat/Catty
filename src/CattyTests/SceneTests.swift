@@ -121,5 +121,6 @@ final class SceneTests: XCTestCase {
         XCTAssertEqual(SKLabelHorizontalAlignmentMode.left, userVariable.textLabel.horizontalAlignmentMode)
         XCTAssertEqual(CGFloat(kSceneLabelFontSize), userVariable.textLabel.fontSize)
         XCTAssertEqual(0, userVariable.textLabel.text?.count)
+        scene.stopProject()
     }
 }

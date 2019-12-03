@@ -26,7 +26,7 @@ import Foundation
 class AudioPlayer {
 
     var akPlayer: AKPlayer
-    var playerIsFinishedExpectation: Expectation?
+    var playerIsFinishedExpectation: CBExpectation?
     var fileName: String
     var soundCompletionHandler: (() -> Void)!
     var isPaused = false
@@ -44,7 +44,7 @@ class AudioPlayer {
         }
     }
 
-    func play(expectation: Expectation?) {
+    func play(expectation: CBExpectation?) {
         _ = playingQueue.sync {
             addExpectation(expectation)
             if !self.isDiscarded {
@@ -109,7 +109,7 @@ class AudioPlayer {
         }
     }
 
-    private func addExpectation(_ expectation: Expectation?) {
+    private func addExpectation(_ expectation: CBExpectation?) {
         self.playerIsFinishedExpectation = expectation
     }
 }

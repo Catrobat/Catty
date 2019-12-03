@@ -32,11 +32,15 @@ import Foundation
 
     @objc func stop()
 
-    func playSound(fileName: String, key: String, filePath: String, expectation: Expectation?)
+    func playSound(fileName: String, key: String, filePath: String, expectation: CBExpectation?)
 
     func setVolumeTo(percent: Double, key: String)
 
     func changeVolumeBy(percent: Double, key: String)
 
     func stopAllAudioPlayers()
+
+    func getSpeechSynth() -> SpeechSynthesizer
+
+    func speak(_ utterance: AVSpeechUtterance, expectation: CBExpectation?)
 }

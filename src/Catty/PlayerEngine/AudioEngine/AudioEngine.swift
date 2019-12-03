@@ -23,7 +23,9 @@
 import AudioKit
 import Foundation
 
-@objc class AudioEngine: NSObject, AudioEngineProtocol, AVSpeechSynthesizerDelegate {
+@objc class AudioEngine: NSObject, AudioEngineProtocol {
+    var speechSynth = SpeechSynthesizer()
+
     var engineOutputMixer = AKMixer()
     var postProcessingMixer = AKMixer()
 
@@ -49,16 +51,19 @@ import Foundation
     }
 
     @objc func pause() {
+        speechSynth.pauseSpeaking(at: AVSpeechBoundary.immediate)
         pauseAllAudioPlayers()
     }
 
     @objc func resume() {
+        speechSynth.continueSpeaking()
         resumeAllAudioPlayers()
     }
 
     @objc func stop() {
         stopAllAudioPlayers()
         do {
+            speechSynth.stopSpeaking(at: AVSpeechBoundary.immediate)
             try AudioKit.stop()
             try AudioKit.shutdown()
         } catch {
@@ -66,7 +71,7 @@ import Foundation
         }
     }
 
-    func playSound(fileName: String, key: String, filePath: String, expectation: Expectation?) {
+    func playSound(fileName: String, key: String, filePath: String, expectation: CBExpectation?) {
         let subtree = getSubtree(key: key)
         subtree.playSound(fileName: fileName, filePath: filePath, expectation: expectation)
     }
@@ -79,6 +84,10 @@ import Foundation
     func changeVolumeBy(percent: Double, key: String) {
         let subtree = getSubtree(key: key)
         subtree.changeVolumeBy(percent: percent)
+    }
+
+    func speak(_ utterance: AVSpeechUtterance, expectation: CBExpectation?) {
+        speechSynth.speak(utterance, expectation: expectation)
     }
 
     private func pauseAllAudioPlayers() {
@@ -97,6 +106,10 @@ import Foundation
         for (_, subtree) in subtrees {
             subtree.stopAllAudioPlayers()
         }
+    }
+
+    func getSpeechSynth() -> SpeechSynthesizer {
+        return speechSynth
     }
 
     private func getSubtree(key: String) -> AudioSubtree {
