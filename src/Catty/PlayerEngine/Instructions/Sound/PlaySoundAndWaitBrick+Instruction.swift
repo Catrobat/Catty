@@ -20,23 +20,29 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import AudioKit
-import Foundation
+@objc extension PlaySoundAndWaitBrick: CBInstructionProtocol {
 
-class StandardAudioPlayerFactory: AudioPlayerFactory {
+    @nonobjc func instruction() -> CBInstruction {
 
-    func createAudioPlayer(fileName: String, filePath: String) -> AudioPlayer? {
-        var audioPlayer: AudioPlayer?
-        let audioFileURL = URL.init(fileURLWithPath: filePath + "/" + fileName)
+        guard let objectName = self.script?.object?.name,
+            let projectPath = self.script?.object?.projectPath()
+            else { fatalError("This should never happen!") }
 
-        do {
-            let file = try AKAudioFile(forReading: audioFileURL)
-            audioPlayer = AudioPlayer(soundFile: file)
-        } catch {
-            print("Could not load audio file with url \(audioFileURL.absoluteString)")
+        guard let sound = self.sound,
+            let fileName = sound.fileName
+            else { return .invalidInstruction }
+
+        let filePath = projectPath + kProjectSoundsDirName
+
+        return CBInstruction.waitExecClosure { _, scheduler in
+            let audioEngine = (scheduler as! CBScheduler).getAudioEngine()
+            let soundIsFinishedExpectation = CBExpectation()
+
+            DispatchQueue.main.async {
+                audioEngine.playSound(fileName: fileName, key: objectName, filePath: filePath, expectation: soundIsFinishedExpectation)
+            }
+
+            soundIsFinishedExpectation.wait()
         }
-
-        return audioPlayer
     }
-
 }

@@ -58,54 +58,54 @@ final class AudioEngineTests: XCTestCase {
         XCTAssertEqual(audioEngine.subtrees["object1"]?.subtreeOutputMixer.volume, 0.7)
     }
 
-    func testSetVolumeToLowerThanMin_expectMin() {
+    func testSetVolumeToLowerThanMinExpectMin() {
         audioEngine.setVolumeTo(percent: -20, key: "object1")
         XCTAssertEqual(audioEngine.subtrees["object1"]?.subtreeOutputMixer.volume, 0)
     }
 
-    func testSetVolumeToHigherThanMax_expectMax() {
+    func testSetVolumeToHigherThanMaxExpectMax() {
         audioEngine.setVolumeTo(percent: 120, key: "object1")
         XCTAssertEqual(audioEngine.subtrees["object1"]?.subtreeOutputMixer.volume, 1)
     }
 
-    func testChangeVolumeBy_turnUpVolumeInsideBounds_expectCorrectValueInsideBounds() {
+    func testChangeVolumeByTurnUpVolumeInsideBoundsExpectCorrectValueInsideBounds() {
         audioEngine.setVolumeTo(percent: 50, key: "object1")
         audioEngine.changeVolumeBy(percent: 20, key: "object1")
         XCTAssertEqual(audioEngine.subtrees["object1"]?.subtreeOutputMixer.volume, 0.7)
     }
 
-    func testChangeVolumeBy_turnDownVolumeInsideBounds_expectCorrectValueInsideBounds() {
+    func testChangeVolumeByTurnDownVolumeInsideBoundsExpectCorrectValueInsideBounds() {
         audioEngine.setVolumeTo(percent: 50, key: "object1")
         audioEngine.changeVolumeBy(percent: -20, key: "object1")
         XCTAssertEqual(audioEngine.subtrees["object1"]?.subtreeOutputMixer.volume, 0.3)
     }
 
-    func testChangeVolumeBy_turnUpVolumeOutsideBounds_expectMax() {
+    func testChangeVolumeByTurnUpVolumeOutsideBoundsExpectMax() {
         audioEngine.setVolumeTo(percent: 50, key: "object1")
         audioEngine.changeVolumeBy(percent: 80, key: "object1")
         XCTAssertEqual(audioEngine.subtrees["object1"]?.subtreeOutputMixer.volume, 1)
     }
 
-    func testChangeVolumeBy_turnDownVolumeOutsideBounds_expectMin() {
+    func testChangeVolumeByTurnDownVolumeOutsideBoundsExpectMin() {
         audioEngine.setVolumeTo(percent: 50, key: "object1")
         audioEngine.changeVolumeBy(percent: -80, key: "object1")
         XCTAssertEqual(audioEngine.subtrees["object1"]?.subtreeOutputMixer.volume, 0)
     }
 
-    func testPlaySound_playOneSound_expectOneSoundInCache() {
+    func testPlayOneSoundExpectOneSoundInCache() {
         audioEngine.playSound(fileName: "sound1", key: "object1", filePath: "sound1", expectation: nil)
         XCTAssertEqual(audioEngine.subtrees["object1"]?.audioPlayerCache.getKeySet().count, 1)
         XCTAssertTrue((audioEngine.subtrees["object1"]!.audioPlayerCache.getKeySet().contains("sound1")))
     }
 
-    func testPlaySound_playOneSoundTwice_expectOneSoundInCache() {
+    func testPlayOneSoundTwiceExpectOneSoundInCache() {
         audioEngine.playSound(fileName: "sound1", key: "object1", filePath: "sound1", expectation: nil)
         audioEngine.playSound(fileName: "sound1", key: "object1", filePath: "sound1", expectation: nil)
         XCTAssertEqual(audioEngine.subtrees["object1"]?.audioPlayerCache.getKeySet().count, 1)
         XCTAssertTrue(audioEngine.subtrees["object1"]!.audioPlayerCache.getKeySet().contains("sound1"))
     }
 
-    func testPlaySound_playTwoSounds_expectTwoSoundsInCache() {
+    func testPlayTwoSoundsExpectTwoSoundsInCache() {
         audioEngine.playSound(fileName: "sound1", key: "object1", filePath: "sound1", expectation: nil)
         audioEngine.playSound(fileName: "sound2", key: "object1", filePath: "sound2", expectation: nil)
         XCTAssertEqual(audioEngine.subtrees["object1"]?.audioPlayerCache.getKeySet().count, 2)
@@ -113,25 +113,25 @@ final class AudioEngineTests: XCTestCase {
         XCTAssertTrue(audioEngine.subtrees["object1"]!.audioPlayerCache.getKeySet().contains("sound2"))
     }
 
-    func testPauseAudioEngine_expectAllPlayersPaused() {
+    func testPauseAudioEngineExpectAllPlayersPaused() {
         createPauseStopResumeExpectationSetup(methodUnderTest: "pause")
         audioEngine.pause()
         self.waitForExpectations(timeout: 1.0, handler: nil)
     }
 
-    func testStopAudioEngine_expectAllPlayersStopped() {
+    func testStopAudioEngineExpectAllPlayersStopped() {
         createPauseStopResumeExpectationSetup(methodUnderTest: "stop")
         audioEngine.stop()
         self.waitForExpectations(timeout: 1.0, handler: nil)
     }
 
-    func testResumeAudioEngine_expectAllPlayersResumed() {
+    func testResumeAudioEngineExpectAllPlayersResumed() {
         createPauseStopResumeExpectationSetup(methodUnderTest: "resume")
         audioEngine.resume()
         self.waitForExpectations(timeout: 1.0, handler: nil)
     }
 
-    func testPlaySound_expectAllPlayersPlayed() {
+    func testPlaySoundExpectAllPlayersPlayed() {
         createPauseStopResumeExpectationSetup(methodUnderTest: "play")
         audioEngine.playSound(fileName: "player1", key: "object1", filePath: "player1", expectation: nil)
         audioEngine.playSound(fileName: "player2", key: "object1", filePath: "player2", expectation: nil)

@@ -394,6 +394,7 @@
 // sound bricks
 #define kLocalizedSound NSLocalizedString(@"Sound", nil)
 #define kLocalizedPlaySound NSLocalizedString(@"Start sound", nil)
+#define kLocalizedPlaySoundAndWait NSLocalizedString(@"Start sound and wait", nil)
 #define kLocalizedStopAllSounds NSLocalizedString(@"Stop all sounds", nil)
 #define kLocalizedSetVolumeTo NSLocalizedString(@"Set volume to", nil)
 #define kLocalizedChangeVolumeBy NSLocalizedString(@"Change volume by", nil)

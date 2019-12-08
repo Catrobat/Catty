@@ -394,6 +394,7 @@ let kLocalizedFor = NSLocalizedString("for", comment: "")
 // sound bricks
 let kLocalizedSound = NSLocalizedString("Sound", comment: "")
 let kLocalizedPlaySound = NSLocalizedString("Start sound", comment: "")
+let kLocalizedPlaySoundAndWait = NSLocalizedString("Start sound and wait", comment: "")
 let kLocalizedStopAllSounds = NSLocalizedString("Stop all sounds", comment: "")
 let kLocalizedSetVolumeTo = NSLocalizedString("Set volume to", comment: "")
 let kLocalizedChangeVolumeBy = NSLocalizedString("Change volume by", comment: "")

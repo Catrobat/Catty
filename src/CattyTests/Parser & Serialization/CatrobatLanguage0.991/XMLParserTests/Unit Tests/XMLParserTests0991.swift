@@ -536,4 +536,14 @@ class XMLParserTests0991: XMLAbstractTest {
         XCTAssertEqual(0, project.unsupportedElements.count)
         XCTAssertTrue(whenTouchDownScript.isKind(of: WhenTouchDownScript.self), "Invalid script type")
     }
+
+    func testPlaySoundAndWaitBrick() {
+        let project = self.getProjectForXML(xmlFile: "PlaySoundAndWaitBrickContinueWhenFinished")
+        let object = project.objectList.object(at: 0) as! SpriteObject
+        let startScript = object.scriptList.object(at: 0) as! Script
+        let playSoundAndWaitBrick = startScript.brickList.object(at: 0) as! PlaySoundAndWaitBrick
+
+        XCTAssertEqual(playSoundAndWaitBrick.sound.name, "Bling")
+        XCTAssertEqual(playSoundAndWaitBrick.sound.fileName, "bling_short.mp3")
+    }
 }

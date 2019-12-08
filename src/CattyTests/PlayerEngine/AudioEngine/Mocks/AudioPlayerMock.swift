@@ -41,7 +41,7 @@ class AudioPlayerMock: AudioPlayer {
         } catch {
             print("Could not load audio file with url \(audioFileURL!.absoluteString)")
         }
-        super.init(soundFile: file!, addCompletionHandler: true)
+        super.init(soundFile: file!)
 
     }
 

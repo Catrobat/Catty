@@ -21,6 +21,7 @@
  */
 
 import AudioKit
+import Nimble
 import XCTest
 
 @testable import Pocket_Code
@@ -39,7 +40,7 @@ final class AudioPlayerTests: XCTestCase {
         }
 
         let akPlayer = AKPlayer(audioFile: file!)
-        player = AudioPlayer(soundFile: file!, addCompletionHandler: true)
+        player = AudioPlayer(soundFile: file!)
 
         player.akPlayer = akPlayer
         AudioKit.output = player.akPlayer
@@ -52,67 +53,55 @@ final class AudioPlayerTests: XCTestCase {
     }
 
     override func tearDown() {
-        do {
-            try AudioKit.stop()
-            try AudioKit.stop()
-        } catch {
-            print("Something went wrong when stopping the audio engine!")
-        }
+        try? AudioKit.stop()
     }
 
-    func testPlay_playerDiscarded_expectCompletionHandlerCalled() {
-        let completionExpectation = self.expectation(description: "Expect sound completion handler to be called on player.")
-        player.setSoundCompletionHandler {
-            completionExpectation.fulfill()
-        }
+    func testPlayDiscardedPlayerExpectPlayerNotToPlay() {
         player.isDiscarded = true
         player.play(expectation: nil)
-        self.waitForExpectations(timeout: 1.0, handler: nil)
+        expect(self.player.akPlayer.isPlaying).to(beFalse())
     }
 
-    func testStop_expectCompletionHandlerCalled() {
-        let completionExpectation = self.expectation(description: "Expect sound completion handler to be called on player.")
-        player.setSoundCompletionHandler {
-            completionExpectation.fulfill()
-        }
-        player.play(expectation: nil)
+    func testStopExpectWaitExpectationToBeFulfilled() {
+        let soundIsFinishedExpectation = CBExpectation()
+
+        player.play(expectation: soundIsFinishedExpectation)
         XCTAssertTrue(player.akPlayer.isPlaying)
         player.stop()
-        self.waitForExpectations(timeout: 1.0, handler: nil)
-        XCTAssertFalse(player.akPlayer.isPlaying)
+
+        expect(soundIsFinishedExpectation.isFulfilled).toEventually(beTrue(), timeout: 3)
+        expect(self.player.akPlayer.isPlaying).to(beFalse())
     }
 
-    func testPause_expectPlayerPaused() {
+    func testPause() {
         player.play(expectation: nil)
-        XCTAssertTrue(player.akPlayer.isPlaying)
+        expect(self.player.akPlayer.isPlaying).to(beTrue())
         player.pause()
-        XCTAssertTrue(player.akPlayer.isPaused)
-        XCTAssertTrue(player.isPaused)
+        expect(self.player.akPlayer.isPaused).to(beTrue())
+        expect(self.player.isPaused).to(beTrue())
         player.stop()
     }
 
-    func testResume_expectPlayerResumed() {
+    func testResume() {
         player.play(expectation: nil)
-        XCTAssertTrue(player.akPlayer.isPlaying)
+        expect(self.player.akPlayer.isPlaying).to(beTrue())
         player.pause()
-        XCTAssertTrue(player.akPlayer.isPaused)
-        XCTAssertTrue(player.isPaused)
+        expect(self.player.akPlayer.isPaused).to(beTrue())
+        expect(self.player.isPaused).to(beTrue())
         player.resume()
-        XCTAssertTrue(player.akPlayer.isPlaying)
+        expect(self.player.akPlayer.isPlaying).to(beTrue())
         player.stop()
     }
 
-    func testRemove_expectPlayerDiscardedAndStopped() {
-        let completionExpectation = self.expectation(description: "Expect sound completion handler to be called on player.")
-        player.setSoundCompletionHandler {
-            completionExpectation.fulfill()
-        }
-        XCTAssertEqual(player.akPlayer.connectionPoints.count, 1)
-        player.play(expectation: nil)
-        XCTAssertTrue(player.akPlayer.isPlaying)
+    func testRemoveExpectPlayerDiscardedAndStopped() {
+        let soundIsFinishedExpectation = CBExpectation()
+
+        expect(self.player.akPlayer.connectionPoints.count) == 1
+        player.play(expectation: soundIsFinishedExpectation)
+        expect(self.player.akPlayer.isPlaying).to(beTrue())
         player.remove()
-        self.waitForExpectations(timeout: 1.0, handler: nil)
-        XCTAssertFalse(player.akPlayer.isPlaying)
-        XCTAssertEqual(player.akPlayer.connectionPoints.count, 0)
+        expect(soundIsFinishedExpectation.isFulfilled).toEventually(beTrue(), timeout: 3)
+        expect(self.player.akPlayer.isPlaying).to(beFalse())
+        expect(self.player.akPlayer.connectionPoints.count) == 0
     }
 }

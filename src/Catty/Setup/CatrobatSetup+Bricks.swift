@@ -80,6 +80,7 @@
             ThinkBubbleBrick(),
             ThinkForBubbleBrick(),
             PlaySoundBrick(),
+            PlaySoundAndWaitBrick(),
             StopAllSoundsBrick(),
             SetVolumeToBrick(),
             ChangeVolumeByNBrick(),

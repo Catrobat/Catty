@@ -20,23 +20,35 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import AudioKit
 import Foundation
 
-class StandardAudioPlayerFactory: AudioPlayerFactory {
+@objc(PlaySoundAndWaitBrickCell) class PlaySoundAndWaitBrickCell: BrickCell, BrickCellProtocol {
 
-    func createAudioPlayer(fileName: String, filePath: String) -> AudioPlayer? {
-        var audioPlayer: AudioPlayer?
-        let audioFileURL = URL.init(fileURLWithPath: filePath + "/" + fileName)
+    public var firstTextLabel: UILabel?
+    public var soundComboBox: iOSCombobox?
 
-        do {
-            let file = try AKAudioFile(forReading: audioFileURL)
-            audioPlayer = AudioPlayer(soundFile: file)
-        } catch {
-            print("Could not load audio file with url \(audioFileURL.absoluteString)")
-        }
-
-        return audioPlayer
+    override init(frame: CGRect) {
+        super.init(frame: frame)
     }
 
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+
+    static func cellHeight() -> CGFloat {
+        return CGFloat(kBrickHeight2h)
+    }
+
+    override func hookUpSubViews(_ inlineViewSubViews: [Any]!) {
+        self.firstTextLabel = inlineViewSubViews[0] as? UILabel
+        self.soundComboBox = inlineViewSubViews[1] as? iOSCombobox
+    }
+
+    func brickTitle(forBackground isBackground: Bool, andInsertionScreen isInsertion: Bool) -> String! {
+        return kLocalizedPlaySoundAndWait + "\n%@ "
+    }
+
+    override func parameters() -> [String] {
+        return ["{SOUND}"]
+    }
 }

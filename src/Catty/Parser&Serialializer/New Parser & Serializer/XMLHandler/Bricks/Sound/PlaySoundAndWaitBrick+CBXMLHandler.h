@@ -20,23 +20,9 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import AudioKit
-import Foundation
+#import "CBXMLNodeProtocol.h"
+#import "Pocket_Code-Swift.h"
 
-class StandardAudioPlayerFactory: AudioPlayerFactory {
+@interface PlaySoundAndWaitBrick (CBXMLHandler) <CBXMLNodeProtocol>
 
-    func createAudioPlayer(fileName: String, filePath: String) -> AudioPlayer? {
-        var audioPlayer: AudioPlayer?
-        let audioFileURL = URL.init(fileURLWithPath: filePath + "/" + fileName)
-
-        do {
-            let file = try AKAudioFile(forReading: audioFileURL)
-            audioPlayer = AudioPlayer(soundFile: file)
-        } catch {
-            print("Could not load audio file with url \(audioFileURL.absoluteString)")
-        }
-
-        return audioPlayer
-    }
-
-}
+@end
