@@ -26,11 +26,11 @@ import XCTest
 
 class PowFunctionTest: XCTestCase {
 
-    var function: PowFunction!
+    var function: PowerFunction!
 
     override func setUp() {
         super.setUp()
-        function = PowFunction()
+        function = PowerFunction()
     }
 
     override func tearDown() {
@@ -63,7 +63,7 @@ class PowFunctionTest: XCTestCase {
     }
 
     func testTag() {
-        XCTAssertEqual("POW", type(of: function).tag)
+        XCTAssertEqual("POWER", type(of: function).tag)
     }
 
     func testName() {

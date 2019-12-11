@@ -39,7 +39,7 @@ extension CatrobatSetup {
             AcosFunction(),
             AtanFunction(),
             ExpFunction(),
-            PowFunction(),
+            PowerFunction(),
             FloorFunction(),
             CeilFunction(),
             MaxFunction(),
