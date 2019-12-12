@@ -173,6 +173,15 @@ extension FormulaManager {
             result = formulaElement.value as AnyObject
         }
 
+        if let doubleValue = result as? Double {
+            if doubleValue == Double.infinity {
+                result = Double.greatestFiniteMagnitude as AnyObject
+            }
+            if doubleValue == Double.infinity * (-1) {
+                result = Double.greatestFiniteMagnitude * (-1) as AnyObject
+            }
+        }
+
         if isIdempotent(formulaElement) {
             formulaCache.insert(object: result, forKey: formulaElement)
         }
