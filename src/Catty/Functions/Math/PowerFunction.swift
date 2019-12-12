@@ -20,8 +20,8 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class PowFunction: DoubleParameterDoubleFunction {
-    static var tag = "POW"
+class PowerFunction: DoubleParameterDoubleFunction {
+    static var tag = "POWER"
     static var name = "power"
     static var defaultValue = 0.0
     static var requiredResource = ResourceType.noResources

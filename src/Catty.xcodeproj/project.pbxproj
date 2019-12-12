@@ -1326,7 +1326,7 @@
 		F4A2AFB72110D49900C53234 /* LetterFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A2AFB62110D49900C53234 /* LetterFunction.swift */; };
 		F4A2AFB92110D4A800C53234 /* LengthFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A2AFB82110D4A800C53234 /* LengthFunction.swift */; };
 		F4E6E579210DDD5C00D86FE6 /* CosFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E578210DDD5C00D86FE6 /* CosFunction.swift */; };
-		F4E6E580210DE61900D86FE6 /* PowFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E57F210DE61900D86FE6 /* PowFunction.swift */; };
+		F4E6E580210DE61900D86FE6 /* PowerFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E57F210DE61900D86FE6 /* PowerFunction.swift */; };
 		F4E6E584210DFD4300D86FE6 /* TanFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E583210DFD4300D86FE6 /* TanFunction.swift */; };
 		F4E6E586210DFE0800D86FE6 /* LnFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E585210DFE0800D86FE6 /* LnFunction.swift */; };
 		F4E6E588210DFE8800D86FE6 /* LogFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E587210DFE8800D86FE6 /* LogFunction.swift */; };
@@ -3240,7 +3240,7 @@
 		F4A2AFB62110D49900C53234 /* LetterFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterFunction.swift; sourceTree = "<group>"; };
 		F4A2AFB82110D4A800C53234 /* LengthFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LengthFunction.swift; sourceTree = "<group>"; };
 		F4E6E578210DDD5C00D86FE6 /* CosFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CosFunction.swift; sourceTree = "<group>"; };
-		F4E6E57F210DE61900D86FE6 /* PowFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowFunction.swift; sourceTree = "<group>"; };
+		F4E6E57F210DE61900D86FE6 /* PowerFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerFunction.swift; sourceTree = "<group>"; };
 		F4E6E583210DFD4300D86FE6 /* TanFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TanFunction.swift; sourceTree = "<group>"; };
 		F4E6E585210DFE0800D86FE6 /* LnFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LnFunction.swift; sourceTree = "<group>"; };
 		F4E6E587210DFE8800D86FE6 /* LogFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogFunction.swift; sourceTree = "<group>"; };
@@ -5074,7 +5074,7 @@
 			children = (
 				4CE67898210C6EEE00D90B5D /* SinFunction.swift */,
 				F4E6E578210DDD5C00D86FE6 /* CosFunction.swift */,
-				F4E6E57F210DE61900D86FE6 /* PowFunction.swift */,
+				F4E6E57F210DE61900D86FE6 /* PowerFunction.swift */,
 				F4E6E583210DFD4300D86FE6 /* TanFunction.swift */,
 				F4E6E585210DFE0800D86FE6 /* LnFunction.swift */,
 				F4E6E587210DFE8800D86FE6 /* LogFunction.swift */,
@@ -9924,7 +9924,7 @@
 				9218B2111CC4AB75007B4C60 /* PointerTool.m in Sources */,
 				AA74F0CE1BC05FCE00D1E954 /* WhenScriptCell.m in Sources */,
 				5EA1089421B8FBD200B837B9 /* AVAudioSession+Extensions.swift in Sources */,
-				F4E6E580210DE61900D86FE6 /* PowFunction.swift in Sources */,
+				F4E6E580210DE61900D86FE6 /* PowerFunction.swift in Sources */,
 				92FF32B91A24E2F400093DA7 /* DarkBlueGradientCell.m in Sources */,
 				AA74EF551BC0586F00D1E954 /* PointToBrick+CBXMLHandler.m in Sources */,
 				F4201CFB20D7A1060030181B /* TimeMinuteSensor.swift in Sources */,
