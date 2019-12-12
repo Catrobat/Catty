@@ -48,13 +48,13 @@ class AudioEngineAbstractTest: XMLAbstractTest {
         audioEngine.stop()
     }
 
-    func runAndRecord(duration: Int, scene: CBScene, muted: Bool) -> AKAudioFile {
+    func runAndRecord(duration: Double, scene: CBScene, muted: Bool) -> AKAudioFile {
         do {
             audioEngine.postProcessingMixer.volume = muted ? 0.0 : 1.0
             audioEngine.speechSynth.utteranceVolume = muted ? 0.0 : 1.0
             try recorder.record()
             _ = scene.startProject()
-            RunLoop.current.run(until: Date(timeIntervalSinceNow: 3))
+            RunLoop.current.run(until: Date(timeIntervalSinceNow: duration))
             recorder.stop()
         } catch {
             XCTFail("Error occured")
@@ -72,12 +72,12 @@ class AudioEngineAbstractTest: XMLAbstractTest {
         }
 
         let fingerprinter = ChromaprintFingerprinter()
-        guard let (simHashString, duration) = fingerprinter.generateFingerprint(fromSongAtUrl: readTape.url) else {
+        guard let (simHashString, recordedFileLength) = fingerprinter.generateFingerprint(fromSongAtUrl: readTape.url) else {
             print("No fingerprint was generated")
             return 0
         }
 
-        print("The recorded duration is \(duration)")
+        print("The recorded duration is \(recordedFileLength)")
         print("The binary fingerprint is: \(simHashString)")
 
         let currentSimHash = Array(simHashString).map({ Int(String($0))! })

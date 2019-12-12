@@ -35,7 +35,7 @@ class FingerprintingAudioPlayerFactory: AudioPlayerFactory {
 
         do {
             let file = try AKAudioFile(forReading: audioFileURL)
-            audioPlayer = AudioPlayer(soundFile: file, addCompletionHandler: true)
+            audioPlayer = AudioPlayer(soundFile: file)
         } catch {
             print("Could not load audio file with url \(audioFileURL.absoluteString)")
         }

@@ -34,32 +34,29 @@ class AudioPlayer {
 
     let playingQueue = DispatchQueue(label: "PlayingQueue")
 
-    init(soundFile: AVAudioFile, addCompletionHandler: Bool) {
+    init(soundFile: AVAudioFile) {
         fileName = soundFile.fileNamePlusExtension
         akPlayer = AKPlayer(audioFile: soundFile)
         akPlayer.isLooping = false
-        if addCompletionHandler {
-            soundCompletionHandler = standardSoundCompletionHandler
-            akPlayer.completionHandler = soundCompletionHandler
-        }
+        soundCompletionHandler = standardSoundCompletionHandler
+        akPlayer.completionHandler = soundCompletionHandler
     }
 
     func play(expectation: CBExpectation?) {
         _ = playingQueue.sync {
-            addExpectation(expectation)
+            soundCompletionHandler()
             if !self.isDiscarded {
                 if akPlayer.isPlaying {
-                    self.stop()
+                    akPlayer.stop()
                 }
+                addExpectation(expectation)
                 akPlayer.play()
-            } else {
-                soundCompletionHandler()
             }
         }
     }
 
     func stop() {
-        self.soundCompletionHandler()
+        soundCompletionHandler()
         akPlayer.stop()
     }
 

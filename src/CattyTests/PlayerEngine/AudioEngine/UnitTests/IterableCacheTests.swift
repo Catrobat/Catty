@@ -33,7 +33,7 @@ final class IterableCacheTests: XCTestCase {
         iterableCache = IterableCache<AudioPlayer>()
     }
 
-    func testSetObject_setOnePlayerInCache_expectSamePlayerInCache() {
+    func testSetObjectSettingOnePlayerInCache() {
         let audioPlayerFactory = MockAudioPlayerFactory()
         let player = audioPlayerFactory.createAudioPlayer(fileName: "player1", filePath: "player1")
         iterableCache.setObject(player!, forKey: "player1")
@@ -41,14 +41,14 @@ final class IterableCacheTests: XCTestCase {
         XCTAssertTrue(iterableCache.cache.object(forKey: "player1" as NSString)! === player)
     }
 
-    func testSetObject_setTwoPlayersInCache_expectSamePlayersInCache() {
+    func testSetObjectSettingTwoPlayersInCache() {
         let players = setTwoPlayersInCache()
         XCTAssertEqual(iterableCache.getKeySet().count, 2)
         XCTAssertTrue(iterableCache.cache.object(forKey: "player1" as NSString)! === players.0)
         XCTAssertTrue(iterableCache.cache.object(forKey: "player2" as NSString)! === players.1)
     }
 
-    func testSetObject_limitCacheToOneElementAndSetTwoElements_expectFirstElementGettingEvicted() {
+    func testSetObjectLimitCacheToOneElementAndSetTwoElementsExpectFirstElementGettingEvicted() {
         iterableCache.cache.countLimit = 1
         let players = setTwoPlayersInCache()
 
@@ -60,19 +60,19 @@ final class IterableCacheTests: XCTestCase {
         XCTAssertTrue(iterableCache.cache.object(forKey: "player2" as NSString)! === players.1)
     }
 
-    func testObjectForKey_setTwoPlayersInCache_retrieveCorrectPlayers() {
+    func testObjectForKeySetTwoPlayersInCacheExpectingCorrectPlayersBeingRetrieved() {
         let players = setTwoPlayersInCache()
         XCTAssertTrue(iterableCache.object(forKey: "player1") === players.0)
         XCTAssertTrue(iterableCache.object(forKey: "player2") === players.1)
     }
 
-    func testGetKeySet_setTwoPlayersInCache_retrieveCorrectKeySet() {
+    func testGetKeySetSetTwoPlayersInCacheExpectCorrectKeySetBeingRetrieved() {
         _ = setTwoPlayersInCache()
         XCTAssertTrue(iterableCache.keySet.contains("player1"))
         XCTAssertTrue(iterableCache.keySet.contains("player2"))
     }
 
-    func testRemoveAllObjects_removePlayersFromCahce_noPlayersInCache() {
+    func testRemoveAllObjectsExpectNoPlayersInCache() {
         _ = setTwoPlayersInCache()
         iterableCache.removeAllObjects()
         XCTAssertEqual(iterableCache.keySet.count, 0)

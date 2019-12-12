@@ -41,15 +41,14 @@ final class AudioSubtreeTests: XCTestCase {
         audioEngine.stop()
     }
 
-    func testInitialVolume_expectMax() {
+    func testInitialVolumeExpectMax() {
         XCTAssertEqual(audioSubtree.subtreeOutputMixer.volume, 1)
     }
 
-    func testSetup_expectAllNodesToBeConnected() {
+    func testSetupExpectAllNodesToBeConnected() {
         let engineOutputMixer = audioEngine.engineOutputMixer
         audioSubtree.setup(engineOut: engineOutputMixer)
         XCTAssertEqual(audioSubtree.subtreeOutputMixer.connectionPoints.first!.node, engineOutputMixer.inputNode)
         XCTAssertEqual(audioSubtree.audioPlayerMixer.connectionPoints.first!.node, audioSubtree.subtreeOutputMixer.inputNode)
     }
-
 }

@@ -20,11 +20,11 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "PlaySoundBrick.h"
+#import "PlaySoundAndWaitBrick.h"
 #import "Sound.h"
 #import "CBMutableCopyContext.h"
 
-@implementation PlaySoundBrick
+@implementation PlaySoundAndWaitBrick
 
 - (kBrickCategoryType)category
 {
@@ -35,7 +35,7 @@
 - (id)mutableCopyWithContext:(CBMutableCopyContext*)context
 {
     if (! context) NSError(@"%@ must not be nil!", [CBMutableCopyContext class]);
-    PlaySoundBrick *brick = [[self class] new];
+    PlaySoundAndWaitBrick *brick = [[self class] new];
     
     id updatedReference = [context updatedReferenceForReference: self.sound];
     
@@ -51,14 +51,14 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"PlaySound (File Name: %@)", self.sound.fileName];
+    return [NSString stringWithFormat:@"PlaySoundAndWait (File Name: %@)", self.sound.fileName];
 }
 
 - (BOOL)isEqualToBrick:(Brick*)brick
 {
     if([self class] != [brick class])
         return NO;
-    if(![self.sound isEqualToSound:((PlaySoundBrick*)brick).sound])
+    if(![self.sound isEqualToSound:((PlaySoundAndWaitBrick*)brick).sound])
         return NO;
     return YES;
 }
