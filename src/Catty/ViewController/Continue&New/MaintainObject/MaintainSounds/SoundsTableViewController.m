@@ -85,7 +85,7 @@
     [self changeEditingBarButtonState];
     self.currentPlayingSong = nil;
     self.currentPlayingSongCell = nil;
-    self.placeHolderView.title = kLocalizedSound;
+    self.placeHolderView.title = kLocalizedTapPlusToAddSound;
     [self showPlaceHolder:(! (BOOL)[self.object.soundList count])];
     [self setupToolBar];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];

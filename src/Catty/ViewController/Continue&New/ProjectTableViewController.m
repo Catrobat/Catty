@@ -80,7 +80,7 @@
         self.navigationItem.title = self.project.header.programName;
         self.title = self.project.header.programName;
     }
-    self.placeHolderView.title = kLocalizedObject;
+    self.placeHolderView.title = kLocalizedTapPlusToAddSprite;
     [self showPlaceHolder:!(BOOL)[self.project numberOfNormalObjects]];
     [self setupToolBar];
     if(self.showAddObjectActionSheetAtStart) {
