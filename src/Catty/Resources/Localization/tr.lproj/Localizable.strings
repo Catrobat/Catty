@@ -14,19 +14,25 @@
 "About Pocket Code" = "Cep kodu hakkında";
 
 /* No comment provided by engineer. */
+"acceleration x" = "x_ivmesi";
+
+/* No comment provided by engineer. */
+"acceleration y" = "y_ivmesi";
+
+/* No comment provided by engineer. */
+"acceleration z" = "z_ivmesi";
+
+/* No comment provided by engineer. */
 "acceleration-sensor" = "ivme sensörü";
 
 /* No comment provided by engineer. */
-"acceleration_x" = "x_ivmesi";
-
-/* No comment provided by engineer. */
-"acceleration_y" = "y_ivmesi";
-
-/* No comment provided by engineer. */
-"acceleration_z" = "z_ivmesi";
+"Actors or objects" = "Actors or objects";
 
 /* No comment provided by engineer. */
 "Add" = "Ekle";
+
+/* No comment provided by engineer. */
+"Add actor or object" = "Add actor or object";
 
 /* No comment provided by engineer. */
 "add comment here..." = "buraya yorum ekle...";
@@ -36,9 +42,6 @@
 
 /* Action sheet menu title */
 "Add look" = "Yeni Görünüm Ekle";
-
-/* No comment provided by engineer. */
-"Add object" = "Nesne ekle";
 
 /* Action sheet menu title */
 "Add sound" = "Ses ekle";
@@ -74,7 +77,7 @@
 "and wait" = "ve bekleyin";
 
 /* No comment provided by engineer. */
-"Animate Brick-Parts" = "Tuğla parçalarıyla animasyon yap";
+"Animate brick-parts" = "Animate brick-parts";
 
 /* No comment provided by engineer. */
 "Apr" = "Nisan";
@@ -86,10 +89,10 @@
 "Arduino" = "Arduino";
 
 /* No comment provided by engineer. */
-"arduino_analog" = "arduino_analog";
+"arduino analog" = "arduino analog";
 
 /* No comment provided by engineer. */
-"arduino_digital" = "arduino_digital";
+"arduino digital" = "arduino digital";
 
 /* No comment provided by engineer. */
 "at " = "en ";
@@ -125,16 +128,19 @@
 "Background" = "Arka plan";
 
 /* No comment provided by engineer. */
-"background_name" = "arka plan adi";
+"background name" = "background name";
 
 /* No comment provided by engineer. */
-"background_number" = "arka plan numarasi";
+"background number" = "background number";
 
 /* No comment provided by engineer. */
 "Backgrounds" = "Arka planlar";
 
 /* paint */
 "Blue" = "Mavi";
+
+/* No comment provided by engineer. */
+"blue" = "blue";
 
 /* No comment provided by engineer. */
 "Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings." = "Bluetooth kullanılamaz. Cihazınız Bluetooth 4.0 teknolojisi desteklemiyor veya Bluetooth çipi zarar görmüş. Lütfen başka bir cihazda kontrol edin.";
@@ -173,7 +179,7 @@
 "By switching to the section \"Explore\" you can discover more interesting projects from people all over the world." = "\"Araştır\" bölümüne geçerek, dünyanın dört bir yanındaki insanlardan daha ilginç tasarimlar keşfedebilirsin.";
 
 /* No comment provided by engineer. */
-"Camera Roll" = "Kamera Rulosu";
+"Camera roll" = "Camera roll";
 
 /* No comment provided by engineer. */
 "Can't restart project!" = "Proje yeniden başlatılamaz!";
@@ -188,7 +194,7 @@
 "Cannot connect to device. The device is not responding." = "Aygıta bağlanılamıyor. Aygıt yanıt veremiyor.";
 
 /* No comment provided by engineer. */
-"Cannot connect to the Media Library. Please check your Internet connection." = "Cannot connect to the Media Library. Please check your Internet connection.";
+"Cannot connect to the media library. Please check your internet connection." = "Cannot connect to the media library. Please check your internet connection.";
 
 /* No comment provided by engineer. */
 "Categories" = "Kategoriler";
@@ -215,16 +221,16 @@
 "Change volume by" = "Ses düzeyini değiştir";
 
 /* No comment provided by engineer. */
-"Change X by " = " X'in degerini değiştir";
+"Change x by " = "Change x by ";
 
 /* No comment provided by engineer. */
-"Change Y by " = "Y'nin degerini değiştir";
+"Change y by " = "Change y by ";
 
 /* No comment provided by engineer. */
-"Changes discarded!" = "Değişiklikler çıkarıldı!";
+"Changes discarded." = "Changes discarded.";
 
 /* No comment provided by engineer. */
-"Changes saved!" = "Değişiklikler kaydedildi!";
+"Changes saved." = "Değişiklikler kaydedildi!";
 
 /* No comment provided by engineer. */
 "Choose" = "Seç";
@@ -260,13 +266,13 @@
 "Computed result is TRUE" = "Hesaplanan sonuç DOĞRU";
 
 /* No comment provided by engineer. */
-"Confirm Password" = "Şifreyi Doğrula";
+"Confirm password" = "Şifreyi Doğrula";
 
 /* bluetooth */
 "Connection failed" = "Bağlantı başarısız oldu";
 
 /* bluetooth */
-"Connection Lost" = "Bağlantı kaybedildi";
+"Connection lost" = "Connection lost";
 
 /* bluetooth */
 "Connection not possible" = "Bağlantı mümkün değil";
@@ -284,10 +290,10 @@
 "Copy" = "Kopyala";
 
 /* No comment provided by engineer. */
-"Copy Brick" = "Tuğlayı Kopyala";
+"Copy brick" = "Copy brick";
 
 /* No comment provided by engineer. */
-"Copy Looks" = "Görünüşleri Kopyala";
+"Copy looks" = "Copy looks";
 
 /* No comment provided by engineer. */
 "Copy project" = "Copy project";
@@ -302,7 +308,7 @@
 "day" = "gün";
 
 /* No comment provided by engineer. */
-"Debug mode" = "Hata ayıklama modu";
+"debug" = "debug";
 
 /* No comment provided by engineer. */
 "Dec" = "Aralık";
@@ -317,79 +323,79 @@
 "Delete" = "Sil";
 
 /* No comment provided by engineer. */
-"Delete Backgrounds" = "Arka Planları Sil";
+"Delete actors or objects" = "Delete actors or objects";
 
 /* No comment provided by engineer. */
-"Delete Brick" = "Tuğlayı  Sil";
+"Delete backgrounds" = "Delete backgrounds";
 
 /* No comment provided by engineer. */
-"Delete Condition" = "Durumu Sil";
+"Delete brick" = "Delete brick";
+
+/* No comment provided by engineer. */
+"Delete condition" = "Delete condition";
 
 /* No comment provided by engineer. */
 "Delete item from list" = "Öğeyi listeden sil";
 
 /* No comment provided by engineer. */
-"Delete Looks" = "Görünümü sil";
+"Delete looks" = "Delete looks";
 
 /* No comment provided by engineer. */
-"Delete Loop" = "Döngüyü Sil";
+"Delete loop" = "Delete loop";
 
 /* No comment provided by engineer. */
-"Delete Objects" = "Nesneleri Sil";
+"Delete project" = "Delete project";
 
 /* No comment provided by engineer. */
-"Delete Project" = "Delete Project";
+"Delete projects" = "Delete projects";
 
 /* No comment provided by engineer. */
-"Delete Projects" = "Delete Projects";
+"Delete script" = "Delete script";
 
 /* No comment provided by engineer. */
-"Delete Script" = "Komut dosyasını sil";
+"Delete sounds" = "Delete sounds";
 
 /* No comment provided by engineer. */
-"Delete Sounds" = "Sesleri Sil";
+"Delete these bricks?" = "Delete these bricks?";
 
 /* No comment provided by engineer. */
-"Delete these Bricks?" = "Bu tuğlalar silinsinmi?";
+"Delete these conditions?" = "Delete these conditions?";
 
 /* No comment provided by engineer. */
-"Delete these Conditions?" = "Bu Koşulları Silinsin mi?";
+"Delete these loops?" = "Delete these loops?";
 
 /* No comment provided by engineer. */
-"Delete these Loops?" = "Bu Döngüler silinsin mi?";
+"Delete these scripts?" = "Delete these scripts?";
 
 /* No comment provided by engineer. */
-"Delete these Scripts?" = "Bu Komut Dosyalarını Silinsin mi?";
+"Delete this actor or object" = "Delete this actor or object";
 
 /* No comment provided by engineer. */
 "Delete this background" = "Bu arka planı sil";
 
 /* No comment provided by engineer. */
-"Delete this Brick?" = "Bu tuğla silinsinmi?";
+"Delete this brick?" = "Delete this brick?";
 
 /* No comment provided by engineer. */
-"Delete this Condition?" = "Bu Durum Silinsin mi?";
+"Delete this condition?" = "Delete this condition?";
 
 /* No comment provided by engineer. */
 "Delete this look" = "Bu görünümü sil";
 
 /* No comment provided by engineer. */
-"Delete this Loop?" = "Bu döngü silinsin mi?";
-
-/* No comment provided by engineer. */
-"Delete this object" = "Bu nesneyi sil";
+"Delete this loop?" = "Delete this loop?";
 
 /* No comment provided by engineer. */
 "Delete this project" = "Delete this project";
 
 /* No comment provided by engineer. */
-"Delete this Script?" = "Bu komut dosyası silinsin mi?";
+"Delete this script?" = "Delete this script?";
 
 /* No comment provided by engineer. */
 "Delete this sound" = "Bu sesi sil";
 
 /* No comment provided by engineer. */
-"Deletion Mode" = "Silme Modu";
+"Deletion mode" = "Deletion mode";
 
 /* No comment provided by engineer. */
 "Description" = "Açıklama";
@@ -439,41 +445,41 @@
 /* No comment provided by engineer. */
 "Edit" = "Düzenle";
 
-/* Action sheet menu title */
-"Edit Background" = "Arka Planı Düzenle";
+/* No comment provided by engineer. */
+"Edit actor or object" = "Edit actor or object";
 
 /* Action sheet menu title */
-"Edit Backgrounds" = "Arka Planları Düzenle";
+"Edit background" = "Edit background";
 
 /* Action sheet menu title */
-"Edit Brick" = "Tuğlayı düzenle";
+"Edit backgrounds" = "Edit backgrounds";
+
+/* Action sheet menu title */
+"Edit brick" = "Edit brick";
 
 /* No comment provided by engineer. */
-"Edit Formula" = "Formülü düzenle";
+"Edit formula" = "Edit formula";
 
 /* Action sheet menu title */
-"Edit Look" = "Düzenleme Bakış";
+"Edit look" = "Edit look";
 
 /* Action sheet menu title */
-"Edit Looks" = "Görünüşleri Düzenle";
+"Edit looks" = "Edit looks";
 
 /* No comment provided by engineer. */
-"Edit Object" = "Nesneyi Düzenle";
+"Edit project" = "Edit project";
 
 /* No comment provided by engineer. */
-"Edit Project" = "Edit Project";
-
-/* No comment provided by engineer. */
-"Edit Projects" = "Edit Projects";
+"Edit projects" = "Edit projects";
 
 /* Action sheet menu title */
-"Edit Script" = "Komut Dosyasını Düzenle";
+"Edit script" = "Edit script";
 
 /* Action sheet menu title */
-"Edit Sound" = "Ses Düzenle";
+"Edit sound" = "Edit sound";
 
 /* Action sheet menu title */
-"Edit Sounds" = "Sesleri Düzenle";
+"Edit sounds" = "Edit sounds";
 
 /* No comment provided by engineer. */
 "element" = "öğeler";
@@ -491,7 +497,7 @@
 "Empty input!" = "Empty input!";
 
 /* No comment provided by engineer. */
-"End If" = "Bitir eğer";
+"End if" = "Bitir eğer";
 
 /* No comment provided by engineer. */
 "End of Loop" = "Döngü sonu";
@@ -542,13 +548,13 @@
 "FA" = "FA";
 
 /* No comment provided by engineer. */
-"face_detected" = "face_detected";
+"face detected" = "face detected";
 
 /* No comment provided by engineer. */
-"faceposition_x" = "faceposition_x";
+"faceposition x" = "faceposition x";
 
 /* No comment provided by engineer. */
-"faceposition_y" = "faceposition_y";
+"faceposition y" = "faceposition y";
 
 /* No comment provided by engineer. */
 "facesize" = "facesize";
@@ -572,7 +578,7 @@
 "false" = "yanlış";
 
 /* No comment provided by engineer. */
-"Featured Projects" = "Featured Projects";
+"Featured projects" = "Featured projects";
 
 /* No comment provided by engineer. */
 "Feb" = "Şubat";
@@ -599,10 +605,10 @@
 "for" = "için";
 
 /* No comment provided by engineer. */
-"for all objects" = "tüm nesneler için";
+"for all actors or objects" = "for all actors or objects";
 
 /* No comment provided by engineer. */
-"for this object" = "bu nesne için";
+"for this actor or object" = "for this actor or object";
 
 /* No comment provided by engineer. */
 "Forever" = "Daima";
@@ -617,13 +623,13 @@
 "Fr" = "Cu";
 
 /* Title of View where the user can see the frequently used bricks. */
-"Frequently Used" = "Sıklıkla kullanılan";
+"Frequently used" = "Frequently used";
 
 /* No comment provided by engineer. */
 "Friday" = "Cuma";
 
 /* No comment provided by engineer. */
-"From Camera" = "Kameradan";
+"From camera" = "From camera";
 
 /* No comment provided by engineer. */
 "front" = "ön";
@@ -644,6 +650,9 @@
 "Green" = "Yeşil";
 
 /* No comment provided by engineer. */
+"green" = "green";
+
+/* No comment provided by engineer. */
 "gyro-sensor" = "gyro sensörü";
 
 /* No comment provided by engineer. */
@@ -656,7 +665,7 @@
 "Hide" = "Gizle";
 
 /* No comment provided by engineer. */
-"Hide Details" = "Ayrıntıyı gizle";
+"Hide details" = "Detayları gizle";
 
 /* No comment provided by engineer. */
 "Hide variable" = "Değişkeni gizle";
@@ -689,10 +698,10 @@
 "In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation." = "Cep Kodunu ve Catrobat projesi tarafından sunulan diğer yürütülebilir dosyaları kullanmaya izin verilmesi için Kullanım Kodları'nı kabul etmeniz veya Cep Kodunu ve diğer yürütülebilir dosyalarınızı kullanırken bunlara kesinlikle uymanız gerekmekte. Kesin formülasyon için lütfen aşağıdaki bağlantıya bakınız.";
 
 /* No comment provided by engineer. */
-"inclination_x" = "x_eğim açısı";
+"inclination x" = "x_eğim açısı";
 
 /* No comment provided by engineer. */
-"inclination_y" = "y_eğim açısı";
+"inclination y" = "y_eğim açısı";
 
 /* No comment provided by engineer. */
 "Information" = "Bilgi";
@@ -755,7 +764,7 @@
 "Last access" = "Son erişim";
 
 /* No comment provided by engineer. */
-"last_screen_touch_index" = "last_screen_touch_index";
+"last stage touch index" = "last stage touch index";
 
 /* No comment provided by engineer. */
 "latitude" = "latitude";
@@ -800,7 +809,7 @@
 "location" = "location";
 
 /* No comment provided by engineer. */
-"location_accuracy" = "location_accuracy";
+"location accuracy" = "location accuracy";
 
 /* No comment provided by engineer. */
 "Logic" = "Mantık";
@@ -810,9 +819,6 @@
 
 /* No comment provided by engineer. */
 "Login successful" = "Giriş başarılı";
-
-/* No comment provided by engineer. */
-"Login/Register" = "Giriş / Kayıt";
 
 /* No comment provided by engineer. */
 "Logout" = "Çıkış Yap";
@@ -827,10 +833,10 @@
 "look" = "Görünüş";
 
 /* No comment provided by engineer. */
-"look_name" = "look_name";
+"look name" = "look name";
 
 /* No comment provided by engineer. */
-"look_number" = "look_number";
+"look number" = "look number";
 
 /* No comment provided by engineer. */
 "Looks" = "Görünüş";
@@ -857,7 +863,7 @@
 "Measure" = "Tedbir";
 
 /* No comment provided by engineer. */
-"Media Library" = "Medya kütüphanesi";
+"Media library" = "Medya kütüphanesi";
 
 /* paint */
 "Menu" = "Menü";
@@ -896,10 +902,10 @@
 "More information" = "More information";
 
 /* No comment provided by engineer. */
-"Most Downloaded" = "En çok indirilen";
+"Most downloaded" = "En çok indirilen";
 
 /* No comment provided by engineer. */
-"Most Viewed" = "En çok İzlenenler";
+"Most viewed" = "En çok İzlenenler";
 
 /* No comment provided by engineer. */
 "Motion" = "Hareket";
@@ -908,13 +914,13 @@
 "Move" = "Taşı";
 
 /* No comment provided by engineer. */
-"Move Brick" = "Tuğlayı taşı";
+"Move actors or objects" = "Move actors or objects";
 
 /* No comment provided by engineer. */
-"Move Looks" = "Taşı Tipler";
+"Move brick" = "Move brick";
 
 /* No comment provided by engineer. */
-"Move Objects" = "Nesneleri Taşı";
+"Move looks" = "Move looks";
 
 /* No comment provided by engineer. */
 "Move Phiro motor backward" = "Phiro motorunu geriye taşı";
@@ -923,16 +929,16 @@
 "Move Phiro motor forward" = "Phiro motorunu ileri taşı";
 
 /* No comment provided by engineer. */
-"Move Sounds" = "Sesleri Taşı";
+"Move sounds" = "Move sounds";
 
 /* Name of the default catrobat project (used as filename!!) */
 "My first project" = "İlk programım";
 
 /* Default title of imported photo from camera (taken by camera) */
-"My Image" = "Benim görselim";
+"My image" = "My image";
 
 /* Title for first (default) object */
-"My Object" = "Benim nesnem";
+"My object" = "My object";
 
 /* No comment provided by engineer. */
 "Name" = "Isim";
@@ -944,22 +950,22 @@
 "New" = "Yeni";
 
 /* paint */
-"New Canvas" = "Yeni Kanvas";
+"New canvas" = "New canvas";
 
 /* No comment provided by engineer. */
-"New List" = "Yeni liste";
+"New list" = "Yeni liste";
 
 /* No comment provided by engineer. */
-"New Message" = "Yeni Mesaj";
+"New message" = "Yeni mesaj";
 
 /* No comment provided by engineer. */
-"New Project" = "New Project";
+"New project" = "New project";
 
 /* No comment provided by engineer. */
-"New Text" = "Yeni Metin";
+"New text" = "Yeni metin";
 
 /* No comment provided by engineer. */
-"New Variable" = "Yeni değişken";
+"New variable" = "Yeni değişken";
 
 /* No comment provided by engineer. */
 "New..." = "Yeni...";
@@ -977,10 +983,10 @@
 "No" = "Hayır";
 
 /* No comment provided by engineer. */
-"No Camera available" = "Kamera yok";
+"No camera available" = "No camera available";
 
 /* No comment provided by engineer. */
-"No Description available" = "Açıklama mevcut değil";
+"No description available" = "No description available";
 
 /* No comment provided by engineer. */
 "No input. Please enter at least %lu character(s)." = "Giriş yok. Lütfen en az %lu karakter (ler) girin.";
@@ -1022,7 +1028,7 @@
 "November" = "Kasım";
 
 /* No comment provided by engineer. */
-"number_of_items" = "number_of_items";
+"number of items" = "number of items";
 
 /* No comment provided by engineer. */
 "Numbers" = "Sayılar";
@@ -1034,13 +1040,10 @@
 "Object lists:" = "Object lists:";
 
 /* No comment provided by engineer. */
-"Object name" = "Nesne adı";
+"Object or actor name" = "Object or actor name";
 
 /* No comment provided by engineer. */
 "Object variables:" = "Nesne değişkenleri:";
-
-/* No comment provided by engineer. */
-"Objects" = "Nesneler";
 
 /* No comment provided by engineer. */
 "Oct" = "Ekim";
@@ -1085,22 +1088,22 @@
 "Phiro" = "Phiro";
 
 /* No comment provided by engineer. */
-"phiro_bottom_left" = "phiro_bottom_left";
+"phiro bottom left" = "phiro bottom left";
 
 /* No comment provided by engineer. */
-"phiro_bottom_right" = "phiro_bottom_right";
+"phiro bottom right" = "phiro bottom right";
 
 /* No comment provided by engineer. */
-"phiro_front_left" = "phiro_front_left";
+"phiro front left" = "phiro front left";
 
 /* No comment provided by engineer. */
-"phiro_front_right" = "phiro_front_right";
+"phiro front right" = "phiro front right";
 
 /* No comment provided by engineer. */
-"phiro_side_left" = "phiro_side_left";
+"phiro side left" = "phiro side left";
 
 /* No comment provided by engineer. */
-"phiro_side_right" = "phiro_side_right";
+"phiro side right" = "phiro side right";
 
 /* paint */
 "Pipette" = "Renk Seçici";
@@ -1115,7 +1118,7 @@
 "Please choose another name:" = "Please choose another name:";
 
 /* paint */
-"Please enter a text!" = "Lütfen bir metin girin!";
+"Please enter a text." = "Please enter a text.";
 
 /* No comment provided by engineer. */
 "Please log in to report this project as inappropriate" = "Please log in to report this project as inappropriate";
@@ -1134,9 +1137,6 @@
 
 /* No comment provided by engineer. */
 "Pocket Code for iOS" = "Ios için Cep Kodu";
-
-/* No comment provided by engineer. */
-"Pocket Code has been started in debug mode." = "Pocket Code, hata ayıklama modunda başlatılmıştır.";
 
 /* No comment provided by engineer. */
 "Pocket Code has no access to your camera. To permit access, tap settings and activate camera. Your drawing will automatically be saved to PocketCode for you." = "Cep Kodunun fotoğraf makinenize erişimi yoktur. Erişime izin vermek için ayarlara dokunun ve kamerayı etkinleştirin. Çiziminiz sizin için otomatik olarak PocketCode'a kaydedilecektir.";
@@ -1172,10 +1172,10 @@
 "Pointer" = "Işaretçi";
 
 /* No comment provided by engineer. */
-"position_x" = "konum_x";
+"position x" = "konum_x";
 
 /* No comment provided by engineer. */
-"position_y" = "konum_y";
+"position y" = "konum_y";
 
 /* No comment provided by engineer. */
 "Preview" = "Önizleme";
@@ -1222,6 +1222,9 @@
 /* paint */
 "Rectangle / Square" = "Dikdörtgen / kare";
 
+/* No comment provided by engineer. */
+"red" = "red";
+
 /* paint */
 "Red" = "Kırmızı";
 
@@ -1238,13 +1241,13 @@
 "Rename" = "Yeniden adlandır";
 
 /* No comment provided by engineer. */
+"Rename actor or object" = "Nesneyi yeniden adlandır";
+
+/* No comment provided by engineer. */
 "Rename image" = "Görüntüyü yeniden adlandır";
 
 /* No comment provided by engineer. */
-"Rename object" = "Nesneyi yeniden adlandır";
-
-/* No comment provided by engineer. */
-"Rename Project" = "Rename Project";
+"Rename project" = "Programı yeniden adlandır";
 
 /* No comment provided by engineer. */
 "Rename sound" = "Sesi yeniden adlandır";
@@ -1286,7 +1289,7 @@
 "Saturday" = "Cumartesi";
 
 /* paint */
-"Save to CameraRoll" = "CameraRoll'a kaydet";
+"Save to cameraRoll" = "Save to cameraRoll";
 
 /* No comment provided by engineer. */
 "Save to PocketCode" = "Cep Koduna Kaydet";
@@ -1296,15 +1299,6 @@
 
 /* No comment provided by engineer. */
 "Say" = "Söylemek";
-
-/* No comment provided by engineer. */
-"screen_is_touched" = "screen_is_touched";
-
-/* No comment provided by engineer. */
-"screen_touch_x" = "screen_touch_x";
-
-/* No comment provided by engineer. */
-"screen_touch_y" = "screen_touch_y";
 
 /* No comment provided by engineer. */
 "Script" = "Komut dizisi";
@@ -1328,13 +1322,13 @@
 "seconds " = "saniyeler ";
 
 /* No comment provided by engineer. */
-"Select All" = "Hepsini seç";
+"Select all" = "Hepsini seç";
 
 /* bluetooth */
 "Select Arduino" = "Arduino'yu seçin";
 
 /* No comment provided by engineer. */
-"Select Brick Category" = "Tuğla Kategorisini Seçiniz";
+"Select brick category" = "Select brick category";
 
 /* No comment provided by engineer. */
 "Select logical operator" = "Mantıksal operatörü seçin";
@@ -1394,10 +1388,10 @@
 "Set volume to" = "Ses düzeyini";
 
 /* No comment provided by engineer. */
-"Set X to " = " X'e deger ver";
+"Set x to " = "Set x to ";
 
 /* No comment provided by engineer. */
-"Set Y to " = "Y'ye deger ver";
+"Set y to " = "Set y to ";
 
 /* No comment provided by engineer. */
 "Settings" = "Ayarlar";
@@ -1406,7 +1400,7 @@
 "Show" = "Göster";
 
 /* No comment provided by engineer. */
-"Show Details" = "Ayrıntıyı Göster";
+"Show details" = "Detayları göster";
 
 /* No comment provided by engineer. */
 "Show variable" = "Değişkeni göster";
@@ -1444,6 +1438,15 @@
 /* paint */
 "square" = "kare";
 
+/* No comment provided by engineer. */
+"stage is touched" = "stage is touched";
+
+/* No comment provided by engineer. */
+"stage touch x" = "stage touch x";
+
+/* No comment provided by engineer. */
+"stage touch y" = "stage touch y";
+
 /* paint */
 "Stamp" = "Kopyalama Aracı";
 
@@ -1452,6 +1455,9 @@
 
 /* No comment provided by engineer. */
 "Start sound" = "Sesi başlat";
+
+/* No comment provided by engineer. */
+"Start sound and wait" = "Sesi başlat ve bekle";
 
 /* No comment provided by engineer. */
 "step" = "adım";
@@ -1478,10 +1484,22 @@
 "Syntax Error!" = "Yazım Hatası!";
 
 /* No comment provided by engineer. */
-"Tap \"+\" to add %@" = "%@ Öğesine eklemek için \"+\" işaretine hafifçe dokunun";
+"Tap \"+\" to add actors or objects" = "Tap \"+\" to add actors or objects";
 
-/* Button title at the settings screen to get to the terms of use and services. */
-"Terms of Use and Services" = "Kullanım Koşulları ve Hizmetleri";
+/* No comment provided by engineer. */
+"Tap \"+\" to add backgrounds" = "Tap \"+\" to add backgrounds";
+
+/* No comment provided by engineer. */
+"Tap \"+\" to add looks" = "Görüntü eklemek icin buraya \"+\" dokun";
+
+/* No comment provided by engineer. */
+"Tap \"+\" to add scripts" = "Komut dosyası eklemek için buraya \"+\" dokunun";
+
+/* No comment provided by engineer. */
+"Tap \"+\" to add sounds" = "Ses eklemek için buraya \"+\" dokunun";
+
+/* Button title at the settings screen to get to the terms of use and service. */
+"Terms of Use and Service" = "Kullanım Koşulları ve Hizmetleri";
 
 /* paint */
 "Text" = "Metin";
@@ -1502,7 +1520,7 @@
 "The featured projects cannot be loaded" = "The featured projects cannot be loaded";
 
 /* No comment provided by engineer. */
-"The following item could not be imported from the Media Library:" = "The following item could not be imported from the Media Library:";
+"The following item could not be imported from the media library:" = "The following item could not be imported from the media library:";
 
 /* No comment provided by engineer. */
 "The input is too long. Please enter maximal %lu character(s)." = "Girdi çok uzun. Lütfen en fazla %lu karakter (leri) girin.";
@@ -1556,7 +1574,7 @@
 "to list" = "listeye eklemek";
 
 /* No comment provided by engineer. */
-"to X:" = "X'e dogru";
+"to x:" = "X'e dogru";
 
 /* No comment provided by engineer. */
 "Today" = "Bugün";
@@ -1619,7 +1637,7 @@
 "Unknown Element" = "Unknown Element";
 
 /* No comment provided by engineer. */
-"Unselect All" = "Tümünü Seç seçimini kaldır";
+"Unselect all" = "Unselect all";
 
 /* No comment provided by engineer. */
 "Unsupported Brick:" = "Unsupported Brick:";
@@ -1634,7 +1652,7 @@
 "Upload" = "Karşıya yükle";
 
 /* No comment provided by engineer. */
-"Upload Project" = "Upload Project";
+"Upload project" = "Program yükle";
 
 /* No comment provided by engineer. */
 "Upload selected project" = "Upload selected project";
@@ -1670,7 +1688,7 @@
 "Variable name:" = "Değişkenin adı:";
 
 /* No comment provided by engineer. */
-"Variable or List" = "Variable or List";
+"Variable or list" = "Variable or list";
 
 /* No comment provided by engineer. */
 "Variable type" = "Değişkenin türü";
@@ -1712,7 +1730,7 @@
 "When project started" = "When project started";
 
 /* No comment provided by engineer. */
-"When screen is touched" = "When screen is touched";
+"When stage is tapped" = "When stage is tapped";
 
 /* No comment provided by engineer. */
 "When tapped" = "Dokunduğunuz zaman";
@@ -1727,10 +1745,10 @@
 "with" = "ile";
 
 /* No comment provided by engineer. */
-"X: " = "X: ";
+"x: " = "x: ";
 
 /* No comment provided by engineer. */
-"Y: " = "Y: ";
+"y: " = "y: ";
 
 /* No comment provided by engineer. */
 "year" = "yıl";

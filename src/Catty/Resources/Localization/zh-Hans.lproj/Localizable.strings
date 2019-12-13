@@ -14,19 +14,25 @@
 "About Pocket Code" = "关于口袋编程";
 
 /* No comment provided by engineer. */
+"acceleration x" = "x方向加速度";
+
+/* No comment provided by engineer. */
+"acceleration y" = "y方向加速度";
+
+/* No comment provided by engineer. */
+"acceleration z" = "z方向加速度";
+
+/* No comment provided by engineer. */
 "acceleration-sensor" = "加速度传感器";
 
 /* No comment provided by engineer. */
-"acceleration_x" = "x方向加速度";
-
-/* No comment provided by engineer. */
-"acceleration_y" = "y方向加速度";
-
-/* No comment provided by engineer. */
-"acceleration_z" = "z方向加速度";
+"Actors or objects" = "Actors or objects";
 
 /* No comment provided by engineer. */
 "Add" = "添加";
+
+/* No comment provided by engineer. */
+"Add actor or object" = "Add actor or object";
 
 /* No comment provided by engineer. */
 "add comment here..." = "在这里添加注释...";
@@ -36,9 +42,6 @@
 
 /* Action sheet menu title */
 "Add look" = "添加外观";
-
-/* No comment provided by engineer. */
-"Add object" = "添加对象";
 
 /* Action sheet menu title */
 "Add sound" = "添加声音";
@@ -74,7 +77,7 @@
 "and wait" = "并等待";
 
 /* No comment provided by engineer. */
-"Animate Brick-Parts" = "动画积木元件";
+"Animate brick-parts" = "Animate brick-parts";
 
 /* No comment provided by engineer. */
 "Apr" = "四月";
@@ -86,10 +89,10 @@
 "Arduino" = "Arduino";
 
 /* No comment provided by engineer. */
-"arduino_analog" = "arduino模拟端口";
+"arduino analog" = "arduino analog";
 
 /* No comment provided by engineer. */
-"arduino_digital" = "arduino数字端口";
+"arduino digital" = "arduino digital";
 
 /* No comment provided by engineer. */
 "at " = "在 ";
@@ -125,16 +128,19 @@
 "Background" = "背景";
 
 /* No comment provided by engineer. */
-"background_name" = "背景名称";
+"background name" = "背景名称";
 
 /* No comment provided by engineer. */
-"background_number" = "背景编号";
+"background number" = "背景编号";
 
 /* No comment provided by engineer. */
 "Backgrounds" = "背景";
 
 /* paint */
 "Blue" = "蓝色";
+
+/* No comment provided by engineer. */
+"blue" = "蓝色";
 
 /* No comment provided by engineer. */
 "Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings." = "蓝牙不可用。原因是您的设备不支持蓝牙 4.0 或蓝牙芯片已损坏。请在设置中将它连接到另一个蓝牙设备进行检查。";
@@ -173,7 +179,7 @@
 "By switching to the section \"Explore\" you can discover more interesting projects from people all over the world." = "By switching to the section \"Explore\" you can discover more interesting projects from people all over the world.";
 
 /* No comment provided by engineer. */
-"Camera Roll" = "相册";
+"Camera roll" = "Camera roll";
 
 /* No comment provided by engineer. */
 "Can't restart project!" = "Can't restart project!";
@@ -188,7 +194,7 @@
 "Cannot connect to device. The device is not responding." = "无法连接到设备。设备没有响应。";
 
 /* No comment provided by engineer. */
-"Cannot connect to the Media Library. Please check your Internet connection." = "Cannot connect to the Media Library. Please check your Internet connection.";
+"Cannot connect to the media library. Please check your internet connection." = "Cannot connect to the media library. Please check your internet connection.";
 
 /* No comment provided by engineer. */
 "Categories" = "类别";
@@ -215,16 +221,16 @@
 "Change volume by" = "将音量增加";
 
 /* No comment provided by engineer. */
-"Change X by " = "将X坐标增加 ";
+"Change x by " = "Change x by ";
 
 /* No comment provided by engineer. */
-"Change Y by " = "将Y坐标增加 ";
+"Change y by " = "Change y by ";
 
 /* No comment provided by engineer. */
-"Changes discarded!" = "更改已取消！";
+"Changes discarded." = "Changes discarded.";
 
 /* No comment provided by engineer. */
-"Changes saved!" = "已保存更改！";
+"Changes saved." = "已保存更改！";
 
 /* No comment provided by engineer. */
 "Choose" = "选择";
@@ -260,13 +266,13 @@
 "Computed result is TRUE" = "计算结果为真";
 
 /* No comment provided by engineer. */
-"Confirm Password" = "确认密码";
+"Confirm password" = "确认密码";
 
 /* bluetooth */
 "Connection failed" = "连接失败";
 
 /* bluetooth */
-"Connection Lost" = "连接丢失";
+"Connection lost" = "Connection lost";
 
 /* bluetooth */
 "Connection not possible" = "连接不可用";
@@ -284,10 +290,10 @@
 "Copy" = "复制";
 
 /* No comment provided by engineer. */
-"Copy Brick" = "复制积木";
+"Copy brick" = "Copy brick";
 
 /* No comment provided by engineer. */
-"Copy Looks" = "复制外观";
+"Copy looks" = "Copy looks";
 
 /* No comment provided by engineer. */
 "Copy project" = "Copy project";
@@ -302,7 +308,7 @@
 "day" = "日";
 
 /* No comment provided by engineer. */
-"Debug mode" = "调试模式";
+"debug" = "debug";
 
 /* No comment provided by engineer. */
 "Dec" = "十二月";
@@ -317,79 +323,79 @@
 "Delete" = "删除";
 
 /* No comment provided by engineer. */
-"Delete Backgrounds" = "删除背景";
+"Delete actors or objects" = "Delete actors or objects";
 
 /* No comment provided by engineer. */
-"Delete Brick" = "删除积木";
+"Delete backgrounds" = "Delete backgrounds";
 
 /* No comment provided by engineer. */
-"Delete Condition" = "删除条件";
+"Delete brick" = "Delete brick";
+
+/* No comment provided by engineer. */
+"Delete condition" = "Delete condition";
 
 /* No comment provided by engineer. */
 "Delete item from list" = "从列表中删除项，在列表";
 
 /* No comment provided by engineer. */
-"Delete Looks" = "删除外观";
+"Delete looks" = "Delete looks";
 
 /* No comment provided by engineer. */
-"Delete Loop" = "删除循环";
+"Delete loop" = "Delete loop";
 
 /* No comment provided by engineer. */
-"Delete Objects" = "删除对象";
+"Delete project" = "Delete project";
 
 /* No comment provided by engineer. */
-"Delete Project" = "Delete Project";
+"Delete projects" = "Delete projects";
 
 /* No comment provided by engineer. */
-"Delete Projects" = "Delete Projects";
+"Delete script" = "Delete script";
 
 /* No comment provided by engineer. */
-"Delete Script" = "删除脚本";
+"Delete sounds" = "Delete sounds";
 
 /* No comment provided by engineer. */
-"Delete Sounds" = "删除声音";
+"Delete these bricks?" = "Delete these bricks?";
 
 /* No comment provided by engineer. */
-"Delete these Bricks?" = "删除这些积木么？";
+"Delete these conditions?" = "Delete these conditions?";
 
 /* No comment provided by engineer. */
-"Delete these Conditions?" = "删除这些条件吗？";
+"Delete these loops?" = "Delete these loops?";
 
 /* No comment provided by engineer. */
-"Delete these Loops?" = "删除这些循环吗？";
+"Delete these scripts?" = "Delete these scripts?";
 
 /* No comment provided by engineer. */
-"Delete these Scripts?" = "删除这些脚本么？";
+"Delete this actor or object" = "Delete this actor or object";
 
 /* No comment provided by engineer. */
 "Delete this background" = "删除这个背景";
 
 /* No comment provided by engineer. */
-"Delete this Brick?" = "删除这块积木么？";
+"Delete this brick?" = "Delete this brick?";
 
 /* No comment provided by engineer. */
-"Delete this Condition?" = "删除这个条件吗？";
+"Delete this condition?" = "Delete this condition?";
 
 /* No comment provided by engineer. */
 "Delete this look" = "删除这个外观";
 
 /* No comment provided by engineer. */
-"Delete this Loop?" = "删除这个循环吗？";
-
-/* No comment provided by engineer. */
-"Delete this object" = "删除这个对象";
+"Delete this loop?" = "Delete this loop?";
 
 /* No comment provided by engineer. */
 "Delete this project" = "Delete this project";
 
 /* No comment provided by engineer. */
-"Delete this Script?" = "删除这段脚本么？";
+"Delete this script?" = "Delete this script?";
 
 /* No comment provided by engineer. */
 "Delete this sound" = "删除这个声音";
 
 /* No comment provided by engineer. */
-"Deletion Mode" = "删除模式";
+"Deletion mode" = "Deletion mode";
 
 /* No comment provided by engineer. */
 "Description" = "描述";
@@ -439,41 +445,41 @@
 /* No comment provided by engineer. */
 "Edit" = "编辑";
 
-/* Action sheet menu title */
-"Edit Background" = "编辑背景";
+/* No comment provided by engineer. */
+"Edit actor or object" = "Edit actor or object";
 
 /* Action sheet menu title */
-"Edit Backgrounds" = "编辑背景";
+"Edit background" = "Edit background";
 
 /* Action sheet menu title */
-"Edit Brick" = "编辑积木";
+"Edit backgrounds" = "Edit backgrounds";
+
+/* Action sheet menu title */
+"Edit brick" = "Edit brick";
 
 /* No comment provided by engineer. */
-"Edit Formula" = "编辑公式";
+"Edit formula" = "Edit formula";
 
 /* Action sheet menu title */
-"Edit Look" = "编辑外观";
+"Edit look" = "Edit look";
 
 /* Action sheet menu title */
-"Edit Looks" = "编辑外观";
+"Edit looks" = "Edit looks";
 
 /* No comment provided by engineer. */
-"Edit Object" = "编辑对象";
+"Edit project" = "Edit project";
 
 /* No comment provided by engineer. */
-"Edit Project" = "Edit Project";
-
-/* No comment provided by engineer. */
-"Edit Projects" = "Edit Projects";
+"Edit projects" = "Edit projects";
 
 /* Action sheet menu title */
-"Edit Script" = "编辑脚本";
+"Edit script" = "Edit script";
 
 /* Action sheet menu title */
-"Edit Sound" = "编辑声音";
+"Edit sound" = "Edit sound";
 
 /* Action sheet menu title */
-"Edit Sounds" = "编辑声音";
+"Edit sounds" = "Edit sounds";
 
 /* No comment provided by engineer. */
 "element" = "列表项";
@@ -491,7 +497,7 @@
 "Empty input!" = "Empty input!";
 
 /* No comment provided by engineer. */
-"End If" = "如果结束";
+"End if" = "如果结束";
 
 /* No comment provided by engineer. */
 "End of Loop" = "重复执行结束";
@@ -542,13 +548,13 @@
 "FA" = "FA";
 
 /* No comment provided by engineer. */
-"face_detected" = "检测到人脸";
+"face detected" = "face detected";
 
 /* No comment provided by engineer. */
-"faceposition_x" = "人脸位置_x";
+"faceposition x" = "faceposition x";
 
 /* No comment provided by engineer. */
-"faceposition_y" = "人脸位置_y";
+"faceposition y" = "faceposition y";
 
 /* No comment provided by engineer. */
 "facesize" = "人脸尺寸";
@@ -572,7 +578,7 @@
 "false" = "假";
 
 /* No comment provided by engineer. */
-"Featured Projects" = "Featured Projects";
+"Featured projects" = "Featured projects";
 
 /* No comment provided by engineer. */
 "Feb" = "二月";
@@ -599,10 +605,10 @@
 "for" = "持续";
 
 /* No comment provided by engineer. */
-"for all objects" = "给所有角色用";
+"for all actors or objects" = "for all actors or objects";
 
 /* No comment provided by engineer. */
-"for this object" = "给这个角色用";
+"for this actor or object" = "for this actor or object";
 
 /* No comment provided by engineer. */
 "Forever" = "无限重复";
@@ -617,13 +623,13 @@
 "Fr" = "Fr";
 
 /* Title of View where the user can see the frequently used bricks. */
-"Frequently Used" = "常用";
+"Frequently used" = "Frequently used";
 
 /* No comment provided by engineer. */
 "Friday" = "星期五";
 
 /* No comment provided by engineer. */
-"From Camera" = "来自相机";
+"From camera" = "From camera";
 
 /* No comment provided by engineer. */
 "front" = "前置";
@@ -644,6 +650,9 @@
 "Green" = "绿色";
 
 /* No comment provided by engineer. */
+"green" = "绿色";
+
+/* No comment provided by engineer. */
 "gyro-sensor" = "陀螺仪传感器";
 
 /* No comment provided by engineer. */
@@ -656,7 +665,7 @@
 "Hide" = "隐藏";
 
 /* No comment provided by engineer. */
-"Hide Details" = "隐藏详情";
+"Hide details" = "隐藏详情";
 
 /* No comment provided by engineer. */
 "Hide variable" = "隐藏变量";
@@ -689,10 +698,10 @@
 "In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation." = "为了获权使用口袋编程和Catrobat提供的其他可执行文件，当您使用我们的应用程序和其他可执行文件时，您必须同意我们的使用条款并严格遵循它们。请参阅下面的链接获取详细的条款 \n\n";
 
 /* No comment provided by engineer. */
-"inclination_x" = "x轴倾角";
+"inclination x" = "x轴倾角";
 
 /* No comment provided by engineer. */
-"inclination_y" = "y轴倾角";
+"inclination y" = "y轴倾角";
 
 /* No comment provided by engineer. */
 "Information" = "信息";
@@ -755,7 +764,7 @@
 "Last access" = "上次访问时间";
 
 /* No comment provided by engineer. */
-"last_screen_touch_index" = "最后屏幕点击索引值";
+"last stage touch index" = "最后屏幕点击索引值";
 
 /* No comment provided by engineer. */
 "latitude" = "纬度";
@@ -800,7 +809,7 @@
 "location" = "location";
 
 /* No comment provided by engineer. */
-"location_accuracy" = "定位精度";
+"location accuracy" = "定位精度";
 
 /* No comment provided by engineer. */
 "Logic" = "逻辑";
@@ -810,9 +819,6 @@
 
 /* No comment provided by engineer. */
 "Login successful" = "登录成功！";
-
-/* No comment provided by engineer. */
-"Login/Register" = "登录/注册";
 
 /* No comment provided by engineer. */
 "Logout" = "登出";
@@ -827,10 +833,10 @@
 "look" = "外观";
 
 /* No comment provided by engineer. */
-"look_name" = "外观名称";
+"look name" = "外观名称";
 
 /* No comment provided by engineer. */
-"look_number" = "外观编号";
+"look number" = "外观编号";
 
 /* No comment provided by engineer. */
 "Looks" = "外观";
@@ -857,7 +863,7 @@
 "Measure" = "方法";
 
 /* No comment provided by engineer. */
-"Media Library" = "媒体库";
+"Media library" = "媒体库";
 
 /* paint */
 "Menu" = "&#x4E94;&#x6708;";
@@ -896,10 +902,10 @@
 "More information" = "More information";
 
 /* No comment provided by engineer. */
-"Most Downloaded" = "&#x6700;&#x65B0;&#x9879;&#x76EE;";
+"Most downloaded" = "下载得最多的";
 
 /* No comment provided by engineer. */
-"Most Viewed" = "访问最多";
+"Most viewed" = "看得最多的";
 
 /* No comment provided by engineer. */
 "Motion" = "运动";
@@ -908,13 +914,13 @@
 "Move" = "移动";
 
 /* No comment provided by engineer. */
-"Move Brick" = "移动积木";
+"Move actors or objects" = "Move actors or objects";
 
 /* No comment provided by engineer. */
-"Move Looks" = "移动外观";
+"Move brick" = "Move brick";
 
 /* No comment provided by engineer. */
-"Move Objects" = "移动角色";
+"Move looks" = "Move looks";
 
 /* No comment provided by engineer. */
 "Move Phiro motor backward" = "设置Phiro马达向后运动";
@@ -923,16 +929,16 @@
 "Move Phiro motor forward" = "设置Phiro马达向前运动";
 
 /* No comment provided by engineer. */
-"Move Sounds" = "移动声音";
+"Move sounds" = "Move sounds";
 
 /* Name of the default catrobat project (used as filename!!) */
 "My first project" = "我的第一个程序";
 
 /* Default title of imported photo from camera (taken by camera) */
-"My Image" = "我的相册";
+"My image" = "My image";
 
 /* Title for first (default) object */
-"My Object" = "我的对象";
+"My object" = "My object";
 
 /* No comment provided by engineer. */
 "Name" = "名称";
@@ -944,22 +950,22 @@
 "New" = "新变量";
 
 /* paint */
-"New Canvas" = "新建画布";
+"New canvas" = "New canvas";
 
 /* No comment provided by engineer. */
-"New List" = "新建列表";
+"New list" = "新建列表";
 
 /* No comment provided by engineer. */
-"New Message" = "新消息";
+"New message" = "新消息";
 
 /* No comment provided by engineer. */
-"New Project" = "New Project";
+"New project" = "新建";
 
 /* No comment provided by engineer. */
-"New Text" = "新文本";
+"New text" = "新文本";
 
 /* No comment provided by engineer. */
-"New Variable" = "新建变量";
+"New variable" = "新建变量";
 
 /* No comment provided by engineer. */
 "New..." = "新建…";
@@ -977,10 +983,10 @@
 "No" = "否";
 
 /* No comment provided by engineer. */
-"No Camera available" = "没有可用的摄像头";
+"No camera available" = "No camera available";
 
 /* No comment provided by engineer. */
-"No Description available" = "没有可用的说明";
+"No description available" = "No description available";
 
 /* No comment provided by engineer. */
 "No input. Please enter at least %lu character(s)." = "输入内容为空。请输入至少 %lu 个字符。";
@@ -1022,7 +1028,7 @@
 "November" = "&#x5341;&#x4E00;&#x6708;";
 
 /* No comment provided by engineer. */
-"number_of_items" = "数据项数量";
+"number of items" = "数据项数量";
 
 /* No comment provided by engineer. */
 "Numbers" = "数字";
@@ -1034,13 +1040,10 @@
 "Object lists:" = "Object lists:";
 
 /* No comment provided by engineer. */
-"Object name" = "对象名称";
+"Object or actor name" = "Object or actor name";
 
 /* No comment provided by engineer. */
 "Object variables:" = "对象变量：";
-
-/* No comment provided by engineer. */
-"Objects" = "对象";
 
 /* No comment provided by engineer. */
 "Oct" = "十月";
@@ -1085,22 +1088,22 @@
 "Phiro" = "Phiro";
 
 /* No comment provided by engineer. */
-"phiro_bottom_left" = "phiro_bottom_left";
+"phiro bottom left" = "phiro bottom left";
 
 /* No comment provided by engineer. */
-"phiro_bottom_right" = "phiro_bottom_right";
+"phiro bottom right" = "phiro bottom right";
 
 /* No comment provided by engineer. */
-"phiro_front_left" = "phiro_front_left";
+"phiro front left" = "phiro front left";
 
 /* No comment provided by engineer. */
-"phiro_front_right" = "phiro_front_right";
+"phiro front right" = "phiro front right";
 
 /* No comment provided by engineer. */
-"phiro_side_left" = "phiro_side_left";
+"phiro side left" = "phiro side left";
 
 /* No comment provided by engineer. */
-"phiro_side_right" = "phiro_side_right";
+"phiro side right" = "phiro side right";
 
 /* paint */
 "Pipette" = "吸管";
@@ -1115,7 +1118,7 @@
 "Please choose another name:" = "Please choose another name:";
 
 /* paint */
-"Please enter a text!" = "请输入文本 ！";
+"Please enter a text." = "Please enter a text.";
 
 /* No comment provided by engineer. */
 "Please log in to report this project as inappropriate" = "Please log in to report this project as inappropriate";
@@ -1134,9 +1137,6 @@
 
 /* No comment provided by engineer. */
 "Pocket Code for iOS" = "口袋编程IOS版";
-
-/* No comment provided by engineer. */
-"Pocket Code has been started in debug mode." = "口袋编程已在调试模式下启动。";
 
 /* No comment provided by engineer. */
 "Pocket Code has no access to your camera. To permit access, tap settings and activate camera. Your drawing will automatically be saved to PocketCode for you." = "口袋编程无法访问您的相机。要允许访问，请点击设置并激活相机。口袋编程将自动为您保存您的绘图。";
@@ -1172,10 +1172,10 @@
 "Pointer" = "Pointer";
 
 /* No comment provided by engineer. */
-"position_x" = "x轴坐标";
+"position x" = "x轴坐标";
 
 /* No comment provided by engineer. */
-"position_y" = "y轴坐标";
+"position y" = "y轴坐标";
 
 /* No comment provided by engineer. */
 "Preview" = "预览";
@@ -1222,6 +1222,9 @@
 /* paint */
 "Rectangle / Square" = "Rectangle / Square";
 
+/* No comment provided by engineer. */
+"red" = "红色";
+
 /* paint */
 "Red" = "红色";
 
@@ -1238,13 +1241,13 @@
 "Rename" = "重命名";
 
 /* No comment provided by engineer. */
+"Rename actor or object" = "重命名对象";
+
+/* No comment provided by engineer. */
 "Rename image" = "Rename image";
 
 /* No comment provided by engineer. */
-"Rename object" = "Rename object";
-
-/* No comment provided by engineer. */
-"Rename Project" = "Rename Project";
+"Rename project" = "重命名项目";
 
 /* No comment provided by engineer. */
 "Rename sound" = "重命名声音";
@@ -1286,7 +1289,7 @@
 "Saturday" = "Saturday";
 
 /* paint */
-"Save to CameraRoll" = "Save to CameraRoll";
+"Save to cameraRoll" = "Save to cameraRoll";
 
 /* No comment provided by engineer. */
 "Save to PocketCode" = "Save to PocketCode";
@@ -1296,15 +1299,6 @@
 
 /* No comment provided by engineer. */
 "Say" = "说";
-
-/* No comment provided by engineer. */
-"screen_is_touched" = "屏幕被点击";
-
-/* No comment provided by engineer. */
-"screen_touch_x" = "屏幕被点击处x坐标";
-
-/* No comment provided by engineer. */
-"screen_touch_y" = "屏幕被点击处y坐标";
 
 /* No comment provided by engineer. */
 "Script" = "Script";
@@ -1328,13 +1322,13 @@
 "seconds " = "秒 ";
 
 /* No comment provided by engineer. */
-"Select All" = "Select All";
+"Select all" = "全部选择";
 
 /* bluetooth */
 "Select Arduino" = "Select Arduino";
 
 /* No comment provided by engineer. */
-"Select Brick Category" = "Select Brick Category";
+"Select brick category" = "Select brick category";
 
 /* No comment provided by engineer. */
 "Select logical operator" = "Select logical operator";
@@ -1394,10 +1388,10 @@
 "Set volume to" = "将音量设为";
 
 /* No comment provided by engineer. */
-"Set X to " = "设置X坐标为 ";
+"Set x to " = "Set x to ";
 
 /* No comment provided by engineer. */
-"Set Y to " = "设置Y坐标为 ";
+"Set y to " = "Set y to ";
 
 /* No comment provided by engineer. */
 "Settings" = "设置";
@@ -1406,7 +1400,7 @@
 "Show" = "显示";
 
 /* No comment provided by engineer. */
-"Show Details" = "Show Details";
+"Show details" = "显示详情";
 
 /* No comment provided by engineer. */
 "Show variable" = "显示变量";
@@ -1444,6 +1438,15 @@
 /* paint */
 "square" = "square";
 
+/* No comment provided by engineer. */
+"stage is touched" = "屏幕被点击";
+
+/* No comment provided by engineer. */
+"stage touch x" = "屏幕被点击处x坐标";
+
+/* No comment provided by engineer. */
+"stage touch y" = "屏幕被点击处y坐标";
+
 /* paint */
 "Stamp" = "图章";
 
@@ -1452,6 +1455,9 @@
 
 /* No comment provided by engineer. */
 "Start sound" = "播放声音";
+
+/* No comment provided by engineer. */
+"Start sound and wait" = "播放声音并等待";
 
 /* No comment provided by engineer. */
 "step" = "step";
@@ -1478,10 +1484,22 @@
 "Syntax Error!" = "Syntax Error!";
 
 /* No comment provided by engineer. */
-"Tap \"+\" to add %@" = "Tap \"+\" to add %@";
+"Tap \"+\" to add actors or objects" = "Tap \"+\" to add actors or objects";
 
-/* Button title at the settings screen to get to the terms of use and services. */
-"Terms of Use and Services" = "使用与服务条例";
+/* No comment provided by engineer. */
+"Tap \"+\" to add backgrounds" = "Tap \"+\" to add backgrounds";
+
+/* No comment provided by engineer. */
+"Tap \"+\" to add looks" = "按“+”添加外观";
+
+/* No comment provided by engineer. */
+"Tap \"+\" to add scripts" = "点击\"+\"来添加脚本";
+
+/* No comment provided by engineer. */
+"Tap \"+\" to add sounds" = "按“+”添加声音";
+
+/* Button title at the settings screen to get to the terms of use and service. */
+"Terms of Use and Service" = "使用与服务条例";
 
 /* paint */
 "Text" = "文本";
@@ -1502,7 +1520,7 @@
 "The featured projects cannot be loaded" = "The featured projects cannot be loaded";
 
 /* No comment provided by engineer. */
-"The following item could not be imported from the Media Library:" = "The following item could not be imported from the Media Library:";
+"The following item could not be imported from the media library:" = "The following item could not be imported from the media library:";
 
 /* No comment provided by engineer. */
 "The input is too long. Please enter maximal %lu character(s)." = "The input is too long. Please enter maximal %lu character(s).";
@@ -1556,7 +1574,7 @@
 "to list" = "到列表中";
 
 /* No comment provided by engineer. */
-"to X:" = "到 X:";
+"to x:" = "到 X:";
 
 /* No comment provided by engineer. */
 "Today" = "今天";
@@ -1619,7 +1637,7 @@
 "Unknown Element" = "Unknown Element";
 
 /* No comment provided by engineer. */
-"Unselect All" = "Unselect All";
+"Unselect all" = "Unselect all";
 
 /* No comment provided by engineer. */
 "Unsupported Brick:" = "Unsupported Brick:";
@@ -1634,7 +1652,7 @@
 "Upload" = "上传";
 
 /* No comment provided by engineer. */
-"Upload Project" = "Upload Project";
+"Upload project" = "上传程序";
 
 /* No comment provided by engineer. */
 "Upload selected project" = "Upload selected project";
@@ -1670,7 +1688,7 @@
 "Variable name:" = "Variable name:";
 
 /* No comment provided by engineer. */
-"Variable or List" = "Variable or List";
+"Variable or list" = "Variable or list";
 
 /* No comment provided by engineer. */
 "Variable type" = "Variable type";
@@ -1712,7 +1730,7 @@
 "When project started" = "When project started";
 
 /* No comment provided by engineer. */
-"When screen is touched" = "当屏幕被点击";
+"When stage is tapped" = "当屏幕被点击";
 
 /* No comment provided by engineer. */
 "When tapped" = "当被点击";
@@ -1727,10 +1745,10 @@
 "with" = "以";
 
 /* No comment provided by engineer. */
-"X: " = "X: ";
+"x: " = "x: ";
 
 /* No comment provided by engineer. */
-"Y: " = "Y: ";
+"y: " = "y: ";
 
 /* No comment provided by engineer. */
 "year" = "年";

@@ -14,19 +14,25 @@
 "About Pocket Code" = "포켓 코드에 대하여";
 
 /* No comment provided by engineer. */
+"acceleration x" = "x축방향 가속도";
+
+/* No comment provided by engineer. */
+"acceleration y" = "y축방향 가속도";
+
+/* No comment provided by engineer. */
+"acceleration z" = "z축방향 가속도";
+
+/* No comment provided by engineer. */
 "acceleration-sensor" = "가속 센서";
 
 /* No comment provided by engineer. */
-"acceleration_x" = "x축방향 가속도";
-
-/* No comment provided by engineer. */
-"acceleration_y" = "y축방향 가속도";
-
-/* No comment provided by engineer. */
-"acceleration_z" = "z축방향 가속도";
+"Actors or objects" = "Actors or objects";
 
 /* No comment provided by engineer. */
 "Add" = "추가하기";
+
+/* No comment provided by engineer. */
+"Add actor or object" = "Add actor or object";
 
 /* No comment provided by engineer. */
 "add comment here..." = "여기에 설명을 추가하세요...";
@@ -36,9 +42,6 @@
 
 /* Action sheet menu title */
 "Add look" = "형태 추가";
-
-/* No comment provided by engineer. */
-"Add object" = "오브젝트 추가";
 
 /* Action sheet menu title */
 "Add sound" = "소리 추가";
@@ -74,7 +77,7 @@
 "and wait" = "그리고 대기";
 
 /* No comment provided by engineer. */
-"Animate Brick-Parts" = "블럭 애니메이션";
+"Animate brick-parts" = "Animate brick-parts";
 
 /* No comment provided by engineer. */
 "Apr" = "4월";
@@ -86,10 +89,10 @@
 "Arduino" = "아두이노";
 
 /* No comment provided by engineer. */
-"arduino_analog" = "아두이노 아날로그";
+"arduino analog" = "arduino analog";
 
 /* No comment provided by engineer. */
-"arduino_digital" = "아두이노 디지털";
+"arduino digital" = "arduino digital";
 
 /* No comment provided by engineer. */
 "at " = "  ";
@@ -125,16 +128,19 @@
 "Background" = "배경";
 
 /* No comment provided by engineer. */
-"background_name" = "배경 이름";
+"background name" = "배경 이름";
 
 /* No comment provided by engineer. */
-"background_number" = "배경 번호";
+"background number" = "배경 번호";
 
 /* No comment provided by engineer. */
 "Backgrounds" = "배경";
 
 /* paint */
 "Blue" = "파랑";
+
+/* No comment provided by engineer. */
+"blue" = "파랑";
 
 /* No comment provided by engineer. */
 "Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings." = "Bluetooth는 사용할 수 없습니다. 장치는 블루투스 4.0을 지원 하지 않거나 또는 블루투스 칩 손상되었습니다. 설정에서 다른 Bluetooth 장치에 연결하여 확인 하시기 바랍니다.";
@@ -173,7 +179,7 @@
 "By switching to the section \"Explore\" you can discover more interesting projects from people all over the world." = "\"탐색\" 을 이용하여 전 세계 사람들이 만든 더 재미 있는 프로그램을 확인할 수 있습니다.";
 
 /* No comment provided by engineer. */
-"Camera Roll" = "카메라 롤";
+"Camera roll" = "Camera roll";
 
 /* No comment provided by engineer. */
 "Can't restart project!" = "프로그램을 다시 시작할 수 없습니다!";
@@ -188,7 +194,7 @@
 "Cannot connect to device. The device is not responding." = "장치에 연결할 수 없습니다. 장치가 응답하지 않습니다.";
 
 /* No comment provided by engineer. */
-"Cannot connect to the Media Library. Please check your Internet connection." = "미디어 라이브러리에 연결할 수 없습니다. 인터넷 연결을 확인 하십시오.";
+"Cannot connect to the media library. Please check your internet connection." = "Cannot connect to the media library. Please check your internet connection.";
 
 /* No comment provided by engineer. */
 "Categories" = "카테고리";
@@ -215,16 +221,16 @@
 "Change volume by" = "음량 바꾸기";
 
 /* No comment provided by engineer. */
-"Change X by " = "X좌표 바꾸기 :";
+"Change x by " = "Change x by ";
 
 /* No comment provided by engineer. */
-"Change Y by " = "Y좌표 바꾸기 :";
+"Change y by " = "Change y by ";
 
 /* No comment provided by engineer. */
-"Changes discarded!" = "변경 내용이 취소되었습니다.";
+"Changes discarded." = "Changes discarded.";
 
 /* No comment provided by engineer. */
-"Changes saved!" = "변경 내용이 저장되었습니다.";
+"Changes saved." = "변경 내용이 저장되었습니다.";
 
 /* No comment provided by engineer. */
 "Choose" = "선택";
@@ -260,13 +266,13 @@
 "Computed result is TRUE" = "계산된 결과는 참입니다";
 
 /* No comment provided by engineer. */
-"Confirm Password" = "비밀번호 확인";
+"Confirm password" = "비밀번호 확인";
 
 /* bluetooth */
 "Connection failed" = "연결 실패";
 
 /* bluetooth */
-"Connection Lost" = "연결 끊김";
+"Connection lost" = "Connection lost";
 
 /* bluetooth */
 "Connection not possible" = "연결 불가능";
@@ -284,10 +290,10 @@
 "Copy" = "복사하기";
 
 /* No comment provided by engineer. */
-"Copy Brick" = "블록 복사";
+"Copy brick" = "Copy brick";
 
 /* No comment provided by engineer. */
-"Copy Looks" = "모양 복사";
+"Copy looks" = "Copy looks";
 
 /* No comment provided by engineer. */
 "Copy project" = "프로젝트 복사";
@@ -302,7 +308,7 @@
 "day" = "일";
 
 /* No comment provided by engineer. */
-"Debug mode" = "디버그 모드";
+"debug" = "debug";
 
 /* No comment provided by engineer. */
 "Dec" = "12월";
@@ -317,79 +323,79 @@
 "Delete" = "삭제";
 
 /* No comment provided by engineer. */
-"Delete Backgrounds" = "배경 삭제";
+"Delete actors or objects" = "Delete actors or objects";
 
 /* No comment provided by engineer. */
-"Delete Brick" = "블럭 삭제";
+"Delete backgrounds" = "Delete backgrounds";
 
 /* No comment provided by engineer. */
-"Delete Condition" = "조건 삭제";
+"Delete brick" = "Delete brick";
+
+/* No comment provided by engineer. */
+"Delete condition" = "Delete condition";
 
 /* No comment provided by engineer. */
 "Delete item from list" = "리스트에서 항목을 삭제하기";
 
 /* No comment provided by engineer. */
-"Delete Looks" = "형태 삭제";
+"Delete looks" = "Delete looks";
 
 /* No comment provided by engineer. */
-"Delete Loop" = "반복 삭제";
+"Delete loop" = "Delete loop";
 
 /* No comment provided by engineer. */
-"Delete Objects" = "오브젝트 삭제";
+"Delete project" = "Delete project";
 
 /* No comment provided by engineer. */
-"Delete Project" = "프로젝트 삭제";
+"Delete projects" = "Delete projects";
 
 /* No comment provided by engineer. */
-"Delete Projects" = "프로젝트 삭제";
+"Delete script" = "Delete script";
 
 /* No comment provided by engineer. */
-"Delete Script" = "스크립트 삭제";
+"Delete sounds" = "Delete sounds";
 
 /* No comment provided by engineer. */
-"Delete Sounds" = "소리 삭제";
+"Delete these bricks?" = "Delete these bricks?";
 
 /* No comment provided by engineer. */
-"Delete these Bricks?" = "이 블럭들을 삭제하시겠습니까?";
+"Delete these conditions?" = "Delete these conditions?";
 
 /* No comment provided by engineer. */
-"Delete these Conditions?" = "이 조건을 삭제하시겠습니까?";
+"Delete these loops?" = "Delete these loops?";
 
 /* No comment provided by engineer. */
-"Delete these Loops?" = "이 반복을 삭제하시겠습니까?";
+"Delete these scripts?" = "Delete these scripts?";
 
 /* No comment provided by engineer. */
-"Delete these Scripts?" = "이 스크립트를 삭제하시겠습니까?";
+"Delete this actor or object" = "Delete this actor or object";
 
 /* No comment provided by engineer. */
 "Delete this background" = "이 배경 삭제";
 
 /* No comment provided by engineer. */
-"Delete this Brick?" = "이 블럭을 삭제하시겠습니까?";
+"Delete this brick?" = "Delete this brick?";
 
 /* No comment provided by engineer. */
-"Delete this Condition?" = "이 조건을 삭제하시겠습니까?";
+"Delete this condition?" = "Delete this condition?";
 
 /* No comment provided by engineer. */
 "Delete this look" = "이 형태를 삭제";
 
 /* No comment provided by engineer. */
-"Delete this Loop?" = "이 반복을 삭제하시겠습니까?";
-
-/* No comment provided by engineer. */
-"Delete this object" = "오브젝트 삭제";
+"Delete this loop?" = "Delete this loop?";
 
 /* No comment provided by engineer. */
 "Delete this project" = "프로젝트 삭제";
 
 /* No comment provided by engineer. */
-"Delete this Script?" = "이 스크립트를 삭제하시겠습니까?";
+"Delete this script?" = "Delete this script?";
 
 /* No comment provided by engineer. */
 "Delete this sound" = "이 소리 삭제";
 
 /* No comment provided by engineer. */
-"Deletion Mode" = "삭제 모드";
+"Deletion mode" = "Deletion mode";
 
 /* No comment provided by engineer. */
 "Description" = "설명";
@@ -439,41 +445,41 @@
 /* No comment provided by engineer. */
 "Edit" = "편집";
 
-/* Action sheet menu title */
-"Edit Background" = "배경 편집";
+/* No comment provided by engineer. */
+"Edit actor or object" = "Edit actor or object";
 
 /* Action sheet menu title */
-"Edit Backgrounds" = "배경 편집";
+"Edit background" = "Edit background";
 
 /* Action sheet menu title */
-"Edit Brick" = "블록 편집";
+"Edit backgrounds" = "Edit backgrounds";
+
+/* Action sheet menu title */
+"Edit brick" = "Edit brick";
 
 /* No comment provided by engineer. */
-"Edit Formula" = "수식 편집";
+"Edit formula" = "Edit formula";
 
 /* Action sheet menu title */
-"Edit Look" = "형태 편집";
+"Edit look" = "Edit look";
 
 /* Action sheet menu title */
-"Edit Looks" = "형태 편집";
+"Edit looks" = "Edit looks";
 
 /* No comment provided by engineer. */
-"Edit Object" = "오브젝트 편집";
+"Edit project" = "Edit project";
 
 /* No comment provided by engineer. */
-"Edit Project" = "프로젝트 편집";
-
-/* No comment provided by engineer. */
-"Edit Projects" = "프로젝트를 편집하십시오";
+"Edit projects" = "Edit projects";
 
 /* Action sheet menu title */
-"Edit Script" = "스크립트 편집";
+"Edit script" = "Edit script";
 
 /* Action sheet menu title */
-"Edit Sound" = "소리 편집";
+"Edit sound" = "Edit sound";
 
 /* Action sheet menu title */
-"Edit Sounds" = "소리 편집";
+"Edit sounds" = "Edit sounds";
 
 /* No comment provided by engineer. */
 "element" = "항목";
@@ -491,7 +497,7 @@
 "Empty input!" = "입력이 없습니다!";
 
 /* No comment provided by engineer. */
-"End If" = "조건문 끝";
+"End if" = "조건문 끝";
 
 /* No comment provided by engineer. */
 "End of Loop" = "반복 끝";
@@ -542,13 +548,13 @@
 "FA" = "파";
 
 /* No comment provided by engineer. */
-"face_detected" = "얼굴 인식";
+"face detected" = "face detected";
 
 /* No comment provided by engineer. */
-"faceposition_x" = "얼굴 위치 x";
+"faceposition x" = "faceposition x";
 
 /* No comment provided by engineer. */
-"faceposition_y" = "얼굴 위치 y";
+"faceposition y" = "faceposition y";
 
 /* No comment provided by engineer. */
 "facesize" = "얼굴 크기";
@@ -572,7 +578,7 @@
 "false" = "거짓";
 
 /* No comment provided by engineer. */
-"Featured Projects" = "추천된 프로그램";
+"Featured projects" = "Featured projects";
 
 /* No comment provided by engineer. */
 "Feb" = "2월";
@@ -599,10 +605,10 @@
 "for" = "동안";
 
 /* No comment provided by engineer. */
-"for all objects" = "모든 스프라이트에 대하여";
+"for all actors or objects" = "for all actors or objects";
 
 /* No comment provided by engineer. */
-"for this object" = "이 스프라이트에 대하여";
+"for this actor or object" = "for this actor or object";
 
 /* No comment provided by engineer. */
 "Forever" = "계속 반복";
@@ -617,13 +623,13 @@
 "Fr" = "금";
 
 /* Title of View where the user can see the frequently used bricks. */
-"Frequently Used" = "자주 사용되는";
+"Frequently used" = "Frequently used";
 
 /* No comment provided by engineer. */
 "Friday" = "금요일";
 
 /* No comment provided by engineer. */
-"From Camera" = "카메라에서 가져오기";
+"From camera" = "From camera";
 
 /* No comment provided by engineer. */
 "front" = "전면";
@@ -644,6 +650,9 @@
 "Green" = "초록";
 
 /* No comment provided by engineer. */
+"green" = "초록";
+
+/* No comment provided by engineer. */
 "gyro-sensor" = "자이로 센서";
 
 /* No comment provided by engineer. */
@@ -656,7 +665,7 @@
 "Hide" = "숨기기";
 
 /* No comment provided by engineer. */
-"Hide Details" = "세부 사항 숨기기";
+"Hide details" = "세부 사항 숨기기";
 
 /* No comment provided by engineer. */
 "Hide variable" = "변수 숨기기";
@@ -689,10 +698,10 @@
 "In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation." = "포켓 코드와 Catrobat 프로젝트에 의해 제공하는 다른 실행 파일을 사용하도록 허용하려면 우리의 이용 약관에 동의 하고 포켓 코드와 우리의 다른 실행 파일을 사용할 때 엄격하게 약관을 따라 해야 합니다. 자세한 세부규정은 아래 링크를 참조하십시오.";
 
 /* No comment provided by engineer. */
-"inclination_x" = "x축방향 기울기";
+"inclination x" = "x축방향 기울기";
 
 /* No comment provided by engineer. */
-"inclination_y" = "y축방향 기울기";
+"inclination y" = "y축방향 기울기";
 
 /* No comment provided by engineer. */
 "Information" = "정보";
@@ -755,7 +764,7 @@
 "Last access" = "최종 사용";
 
 /* No comment provided by engineer. */
-"last_screen_touch_index" = "마지막 터치 번호";
+"last stage touch index" = "마지막 터치 번호";
 
 /* No comment provided by engineer. */
 "latitude" = "위도";
@@ -800,7 +809,7 @@
 "location" = "위치";
 
 /* No comment provided by engineer. */
-"location_accuracy" = "위치 정확도";
+"location accuracy" = "위치 정확도";
 
 /* No comment provided by engineer. */
 "Logic" = "논리 연산";
@@ -810,9 +819,6 @@
 
 /* No comment provided by engineer. */
 "Login successful" = "로그인 성공";
-
-/* No comment provided by engineer. */
-"Login/Register" = "로그인/등록";
 
 /* No comment provided by engineer. */
 "Logout" = "로그아웃";
@@ -827,10 +833,10 @@
 "look" = "모양";
 
 /* No comment provided by engineer. */
-"look_name" = "모양 이름";
+"look name" = "모양 이름";
 
 /* No comment provided by engineer. */
-"look_number" = "모양 번호";
+"look number" = "모양 번호";
 
 /* No comment provided by engineer. */
 "Looks" = "모양";
@@ -857,7 +863,7 @@
 "Measure" = "측정";
 
 /* No comment provided by engineer. */
-"Media Library" = "미디어 라이브러리";
+"Media library" = "미디어 라이브러리";
 
 /* paint */
 "Menu" = "메뉴";
@@ -896,10 +902,10 @@
 "More information" = "자세한 정보 보기";
 
 /* No comment provided by engineer. */
-"Most Downloaded" = "가장 많이 다운로드한 프로그램";
+"Most downloaded" = "인기 다운로드";
 
 /* No comment provided by engineer. */
-"Most Viewed" = "가장 많이 본 프로그램";
+"Most viewed" = "가장 많이 본 프로그램";
 
 /* No comment provided by engineer. */
 "Motion" = "움직임";
@@ -908,13 +914,13 @@
 "Move" = "이동하기";
 
 /* No comment provided by engineer. */
-"Move Brick" = "블럭 이동";
+"Move actors or objects" = "Move actors or objects";
 
 /* No comment provided by engineer. */
-"Move Looks" = "모양 이동";
+"Move brick" = "Move brick";
 
 /* No comment provided by engineer. */
-"Move Objects" = "오브젝트 이동";
+"Move looks" = "Move looks";
 
 /* No comment provided by engineer. */
 "Move Phiro motor backward" = "Phiro 모터 뒤로 이동";
@@ -923,16 +929,16 @@
 "Move Phiro motor forward" = "Phiro 모터 앞으로 이동";
 
 /* No comment provided by engineer. */
-"Move Sounds" = "소리 이동";
+"Move sounds" = "Move sounds";
 
 /* Name of the default catrobat project (used as filename!!) */
 "My first project" = "내 첫 프로그램";
 
 /* Default title of imported photo from camera (taken by camera) */
-"My Image" = "내 그림";
+"My image" = "My image";
 
 /* Title for first (default) object */
-"My Object" = "내 오브젝트";
+"My object" = "My object";
 
 /* No comment provided by engineer. */
 "Name" = "이름";
@@ -944,22 +950,22 @@
 "New" = "새로운";
 
 /* paint */
-"New Canvas" = "새로운 캔버스";
+"New canvas" = "New canvas";
 
 /* No comment provided by engineer. */
-"New List" = "새 리스트 만들기";
+"New list" = "새 리스트 만들기";
 
 /* No comment provided by engineer. */
-"New Message" = "새로운 메시지";
+"New message" = "새 신호";
 
 /* No comment provided by engineer. */
-"New Project" = "새 프로젝트";
+"New project" = "새 프로젝트";
 
 /* No comment provided by engineer. */
-"New Text" = "새 텍스트";
+"New text" = "새로운 글자";
 
 /* No comment provided by engineer. */
-"New Variable" = "새 변수";
+"New variable" = "새 변수";
 
 /* No comment provided by engineer. */
 "New..." = "새로운...";
@@ -977,10 +983,10 @@
 "No" = "아니오";
 
 /* No comment provided by engineer. */
-"No Camera available" = "사용 가능한 카메라 없음";
+"No camera available" = "No camera available";
 
 /* No comment provided by engineer. */
-"No Description available" = "설명 없음";
+"No description available" = "No description available";
 
 /* No comment provided by engineer. */
 "No input. Please enter at least %lu character(s)." = "입력되지 않았습니다. 적어도 %lu 문자를 입력하세요.";
@@ -1022,7 +1028,7 @@
 "November" = "11월";
 
 /* No comment provided by engineer. */
-"number_of_items" = "항목의 수";
+"number of items" = "항목의 수";
 
 /* No comment provided by engineer. */
 "Numbers" = "숫자";
@@ -1034,13 +1040,10 @@
 "Object lists:" = "오브젝트 리스트:";
 
 /* No comment provided by engineer. */
-"Object name" = "오브젝트 이름";
+"Object or actor name" = "Object or actor name";
 
 /* No comment provided by engineer. */
 "Object variables:" = "스프라이트 변수:";
-
-/* No comment provided by engineer. */
-"Objects" = "오브젝트";
 
 /* No comment provided by engineer. */
 "Oct" = "10월";
@@ -1085,22 +1088,22 @@
 "Phiro" = "Phiro";
 
 /* No comment provided by engineer. */
-"phiro_bottom_left" = "피로 아래 왼쪽";
+"phiro bottom left" = "phiro bottom left";
 
 /* No comment provided by engineer. */
-"phiro_bottom_right" = "피로 아래 오른쪽";
+"phiro bottom right" = "phiro bottom right";
 
 /* No comment provided by engineer. */
-"phiro_front_left" = "피로 앞 왼쪽";
+"phiro front left" = "phiro front left";
 
 /* No comment provided by engineer. */
-"phiro_front_right" = "피로 앞 오른쪽";
+"phiro front right" = "phiro front right";
 
 /* No comment provided by engineer. */
-"phiro_side_left" = "피로 옆 왼쪽";
+"phiro side left" = "phiro side left";
 
 /* No comment provided by engineer. */
-"phiro_side_right" = "피로 옆 오른쪽";
+"phiro side right" = "phiro side right";
 
 /* paint */
 "Pipette" = "색 고르기";
@@ -1115,7 +1118,7 @@
 "Please choose another name:" = "다른 이름을 선택하기:";
 
 /* paint */
-"Please enter a text!" = "텍스트를 입력해주세요!";
+"Please enter a text." = "Please enter a text.";
 
 /* No comment provided by engineer. */
 "Please log in to report this project as inappropriate" = "이 프로젝트를 부적합하다고 신고하려면 로그인 해 주세요";
@@ -1134,9 +1137,6 @@
 
 /* No comment provided by engineer. */
 "Pocket Code for iOS" = "iOS용 포켓 코드";
-
-/* No comment provided by engineer. */
-"Pocket Code has been started in debug mode." = "포켓 코드 디버그 모드에서 시작되었습니다.";
 
 /* No comment provided by engineer. */
 "Pocket Code has no access to your camera. To permit access, tap settings and activate camera. Your drawing will automatically be saved to PocketCode for you." = "포켓 코드는 카메라에 액세스할 수 없습니다. 액세스를 허용하려면 설정을 누르고 카메라를 활성화합니다. 여러분의 그림은 자동으로 당신을 위해 PocketCode에 저장됩니다.";
@@ -1172,10 +1172,10 @@
 "Pointer" = "포인터";
 
 /* No comment provided by engineer. */
-"position_x" = "x좌표";
+"position x" = "x좌표";
 
 /* No comment provided by engineer. */
-"position_y" = "y좌표";
+"position y" = "y좌표";
 
 /* No comment provided by engineer. */
 "Preview" = "캡처하기";
@@ -1222,6 +1222,9 @@
 /* paint */
 "Rectangle / Square" = "직사각형 / 정사각형";
 
+/* No comment provided by engineer. */
+"red" = "빨강";
+
 /* paint */
 "Red" = "빨강";
 
@@ -1238,13 +1241,13 @@
 "Rename" = "이름 바꾸기";
 
 /* No comment provided by engineer. */
+"Rename actor or object" = "오브젝트 이름 바꾸기";
+
+/* No comment provided by engineer. */
 "Rename image" = "이미지 이름 바꾸기";
 
 /* No comment provided by engineer. */
-"Rename object" = "스프라이트 이름 바꾸기";
-
-/* No comment provided by engineer. */
-"Rename Project" = "프로그램 이름 바꾸기";
+"Rename project" = "프로그램 이름 바꾸기";
 
 /* No comment provided by engineer. */
 "Rename sound" = "소리 이름 바꾸기";
@@ -1286,7 +1289,7 @@
 "Saturday" = "토요일";
 
 /* paint */
-"Save to CameraRoll" = "카메라 롤로 저장";
+"Save to cameraRoll" = "Save to cameraRoll";
 
 /* No comment provided by engineer. */
 "Save to PocketCode" = "PocketCode에 저장";
@@ -1296,15 +1299,6 @@
 
 /* No comment provided by engineer. */
 "Say" = "말";
-
-/* No comment provided by engineer. */
-"screen_is_touched" = "화면을 터치할 때";
-
-/* No comment provided by engineer. */
-"screen_touch_x" = "터치한 x 좌표";
-
-/* No comment provided by engineer. */
-"screen_touch_y" = "터치한 y 좌표";
 
 /* No comment provided by engineer. */
 "Script" = "스크립트";
@@ -1328,13 +1322,13 @@
 "seconds " = "초";
 
 /* No comment provided by engineer. */
-"Select All" = "모두 선택";
+"Select all" = "모두 선택";
 
 /* bluetooth */
 "Select Arduino" = "아두이노 선택";
 
 /* No comment provided by engineer. */
-"Select Brick Category" = "블록 카테고리 선택";
+"Select brick category" = "Select brick category";
 
 /* No comment provided by engineer. */
 "Select logical operator" = "논리 연산자를 선택";
@@ -1394,10 +1388,10 @@
 "Set volume to" = "음량 설정하기";
 
 /* No comment provided by engineer. */
-"Set X to " = "X좌표 정하기 :";
+"Set x to " = "Set x to ";
 
 /* No comment provided by engineer. */
-"Set Y to " = "Y좌표 정하기 :";
+"Set y to " = "Set y to ";
 
 /* No comment provided by engineer. */
 "Settings" = "설정";
@@ -1406,7 +1400,7 @@
 "Show" = "보이기";
 
 /* No comment provided by engineer. */
-"Show Details" = "세부 정보 보기";
+"Show details" = "세부 정보 표시";
 
 /* No comment provided by engineer. */
 "Show variable" = "변수 보이기";
@@ -1444,6 +1438,15 @@
 /* paint */
 "square" = "정사각형";
 
+/* No comment provided by engineer. */
+"stage is touched" = "화면을 터치할 때";
+
+/* No comment provided by engineer. */
+"stage touch x" = "터치한 x 좌표";
+
+/* No comment provided by engineer. */
+"stage touch y" = "터치한 y 좌표";
+
 /* paint */
 "Stamp" = "스탬프";
 
@@ -1452,6 +1455,9 @@
 
 /* No comment provided by engineer. */
 "Start sound" = "소리 재생";
+
+/* No comment provided by engineer. */
+"Start sound and wait" = "소리 재생하고 기다리기";
 
 /* No comment provided by engineer. */
 "step" = "단계";
@@ -1478,10 +1484,22 @@
 "Syntax Error!" = "입력에 오류가 있습니다! 해결하거나 취소하려면 다시 누르십시오.";
 
 /* No comment provided by engineer. */
-"Tap \"+\" to add %@" = "%@를 추가하려면 \"+\" 를 터치하세요";
+"Tap \"+\" to add actors or objects" = "배우와 오브젝트를 추가하려면 \"+\" 를 터치";
 
-/* Button title at the settings screen to get to the terms of use and services. */
-"Terms of Use and Services" = "사용과 서비스 약관";
+/* No comment provided by engineer. */
+"Tap \"+\" to add backgrounds" = "Tap \"+\" to add backgrounds";
+
+/* No comment provided by engineer. */
+"Tap \"+\" to add looks" = "모양을 추가하려면 \"+\"를 터치하세요";
+
+/* No comment provided by engineer. */
+"Tap \"+\" to add scripts" = "스크립트를 추가하려면 \"+\"를 터치";
+
+/* No comment provided by engineer. */
+"Tap \"+\" to add sounds" = "소리를 추가하려면 \"+\"를 터치하세요";
+
+/* Button title at the settings screen to get to the terms of use and service. */
+"Terms of Use and Service" = "사용과 서비스 약관";
 
 /* paint */
 "Text" = "텍스트";
@@ -1502,7 +1520,7 @@
 "The featured projects cannot be loaded" = "추천 프로젝트를 로드 할 수 없습니다";
 
 /* No comment provided by engineer. */
-"The following item could not be imported from the Media Library:" = "다음 항목은 미디어 라이브러리에서 가져올 수 없습니다.";
+"The following item could not be imported from the media library:" = "The following item could not be imported from the media library:";
 
 /* No comment provided by engineer. */
 "The input is too long. Please enter maximal %lu character(s)." = "입력이 너무 깁니다. 최대 %lu 문자를 입력하십시오.";
@@ -1556,7 +1574,7 @@
 "to list" = "리스트에";
 
 /* No comment provided by engineer. */
-"to X:" = "X:";
+"to x:" = "X:";
 
 /* No comment provided by engineer. */
 "Today" = "오늘";
@@ -1619,7 +1637,7 @@
 "Unknown Element" = "알 수 없는 요인";
 
 /* No comment provided by engineer. */
-"Unselect All" = "모두 선택 해제";
+"Unselect all" = "Unselect all";
 
 /* No comment provided by engineer. */
 "Unsupported Brick:" = "지원되지 않는 블록:";
@@ -1634,7 +1652,7 @@
 "Upload" = "업로드하기";
 
 /* No comment provided by engineer. */
-"Upload Project" = "프로젝트 업로드";
+"Upload project" = "프로그램 업로드";
 
 /* No comment provided by engineer. */
 "Upload selected project" = "선택한 프로젝트 업로드";
@@ -1670,7 +1688,7 @@
 "Variable name:" = "변수 이름:";
 
 /* No comment provided by engineer. */
-"Variable or List" = "변수 또는 리스트";
+"Variable or list" = "Variable or list";
 
 /* No comment provided by engineer. */
 "Variable type" = "변수 유형";
@@ -1712,7 +1730,7 @@
 "When project started" = "프로그램을 시작할 때";
 
 /* No comment provided by engineer. */
-"When screen is touched" = "화면을 터치할 때";
+"When stage is tapped" = "화면을 터치할 때";
 
 /* No comment provided by engineer. */
 "When tapped" = "터치할 때";
@@ -1727,10 +1745,10 @@
 "with" = "으로";
 
 /* No comment provided by engineer. */
-"X: " = "X:";
+"x: " = "x: ";
 
 /* No comment provided by engineer. */
-"Y: " = "Y:";
+"y: " = "y: ";
 
 /* No comment provided by engineer. */
 "year" = "년";
