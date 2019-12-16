@@ -311,7 +311,8 @@
     [self.projectView viewWithTag:kDownloadButtonTag].hidden = YES;
     button.hidden = NO;
     button.progress = 0;
-    [self downloadWithName:self.project.name];
+    self.duplicateName = [Util uniqueName:self.project.name existingNames:[Project allProjectNames]];
+    [self downloadWithName:self.duplicateName];
 }
 
 - (void)downloadButtonPressed:(id)sender
