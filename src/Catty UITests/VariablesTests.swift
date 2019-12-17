@@ -109,7 +109,7 @@ class VariablesTests: XCTestCase {
         let testVariable = "testVariable"
 
         createNewProjectAndAddSetVariableBrick(name: "Test Project")
-        app.collectionViews.cells.otherElements.containing(.staticText, identifier: "Set variable").children(matching: .button).element.tap()
+        app.collectionViews.cells.otherElements.containing(.staticText, identifier: kLocalizedSetVariable).children(matching: .button).element.tap()
         XCTAssert(waitForElementToAppear(app.buttons["Cancel"]).exists)
 
         app.buttons["Var/List"].tap()
@@ -133,7 +133,7 @@ class VariablesTests: XCTestCase {
         let testVariable = ["testVariable1", "testVariable2", "testVariable3"]
 
         createNewProjectAndAddSetVariableBrick(name: "Test Project")
-        app.collectionViews.cells.otherElements.containing(.staticText, identifier: "Set variable").children(matching: .button).element.tap()
+        app.collectionViews.cells.otherElements.containing(.staticText, identifier: kLocalizedSetVariable).children(matching: .button).element.tap()
         XCTAssert(waitForElementToAppear(app.buttons["Cancel"]).exists)
 
         for variable in testVariable {
