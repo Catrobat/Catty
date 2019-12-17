@@ -94,7 +94,7 @@ final class AudioPlayerIntegrationTests: AudioEngineAbstractTest {
     func testPlaySoundAndWaitExpectScriptToContinueWhenSoundFinished() {
         let referenceSimHash = "01100011001111101000000011001001"
         let scene = self.createScene(xmlFile: "PlaySoundAndWaitBrickContinueWhenFinished")
-     
+
         // Run program and record
         let recordedTape = self.runAndRecord(duration: 3, scene: scene, muted: true)
 

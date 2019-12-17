@@ -168,10 +168,10 @@ final class FormulaManagerInterpreterTests: XCTestCase {
                                  parent: nil)
 
         formula = Formula(formulaElement: element)!
-        XCTAssertEqual(-Double.infinity, interpreter.interpretDouble(formula, for: object))
+        XCTAssertEqual(-Double.greatestFiniteMagnitude, interpreter.interpretDouble(formula, for: object))
     }
 
-    func testDivisionByZero() {
+    func testDivisionZeroByZero() {
         let leftChild = FormulaElement(double: 0)
         let rightChild = FormulaElement(double: 0)
         let element = FormulaElement(elementType: ElementType.OPERATOR,
@@ -182,6 +182,28 @@ final class FormulaManagerInterpreterTests: XCTestCase {
         let formula = Formula(formulaElement: element)!
 
         XCTAssertTrue(interpreter.interpretDouble(formula, for: object).isNaN)
+    }
+
+    func testDivisionByZeroAndExpectMaxDouble() {
+        let element = FormulaElement(elementType: ElementType.OPERATOR,
+                                     value: DivideOperator.tag,
+                                     leftChild: FormulaElement(double: 1),
+                                     rightChild: FormulaElement(double: 0),
+                                     parent: nil)
+        let formula = Formula(formulaElement: element)!
+
+        XCTAssertEqual(Double.greatestFiniteMagnitude, interpreter.interpretDouble(formula, for: object))
+    }
+
+    func testDivisionNegativeNumberByZeroAndExpectMinDouble() {
+        let element = FormulaElement(elementType: ElementType.OPERATOR,
+                                     value: DivideOperator.tag,
+                                     leftChild: FormulaElement(double: -1),
+                                     rightChild: FormulaElement(double: 0),
+                                     parent: nil)
+        let formula = Formula(formulaElement: element)!
+
+        XCTAssertEqual(-Double.greatestFiniteMagnitude, interpreter.interpretDouble(formula, for: object))
     }
 
     func testDivision() {
