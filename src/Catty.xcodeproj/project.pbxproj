@@ -1165,7 +1165,6 @@
 		AAF6D9E01BC0C2AA00686849 /* PointInDirectionBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF6D9DF1BC0C2AA00686849 /* PointInDirectionBrick+Instruction.swift */; };
 		AAF6D9E21BC0C48300686849 /* PointToBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF6D9E11BC0C48300686849 /* PointToBrick+Instruction.swift */; };
 		BA08DB4021A320D100AB1ACB /* XMLParserFormulaTests093.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA08DB3F21A320D100AB1ACB /* XMLParserFormulaTests093.swift */; };
-		BA1FA9941F02A1150084184D /* UserListFunctionsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = BA1FA9901F02A10C0084184D /* UserListFunctionsTest.m */; };
 		BA1FA9981F02AD770084184D /* InsertItemIntoUserListBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = BA1FA9971F02AD770084184D /* InsertItemIntoUserListBrick+CBXMLHandler.m */; };
 		BA1FA99D1F02AEDC0084184D /* InsertItemIntoUserListBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = BA1FA99C1F02AEDC0084184D /* InsertItemIntoUserListBrick.m */; };
 		BA1FA9A01F02B0020084184D /* InsertItemIntoUserListBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA1FA99F1F02B0020084184D /* InsertItemIntoUserListBrickCell.m */; };
@@ -1296,6 +1295,7 @@
 		CAE3E5611B4C50B300CC88BD /* Word_balloon_demo_093.xml in Resources */ = {isa = PBXBuildFile; fileRef = CAE3E52D1B4C50B300CC88BD /* Word_balloon_demo_093.xml */; };
 		CAE3E5631B4C50B300CC88BD /* X_Ray_phone_091.xml in Resources */ = {isa = PBXBuildFile; fileRef = CAE3E5301B4C50B300CC88BD /* X_Ray_phone_091.xml */; };
 		CAE3E5641B4C50B300CC88BD /* X_Ray_phone_093.xml in Resources */ = {isa = PBXBuildFile; fileRef = CAE3E5311B4C50B300CC88BD /* X_Ray_phone_093.xml */; };
+		D3374C4423AA5AC10088FA36 /* UserListFunctionsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3374C4323AA5AC10088FA36 /* UserListFunctionsTest.swift */; };
 		E405EABB212D4E420074ADDB /* SearchStoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E405EABA212D4E420074ADDB /* SearchStoreCell.swift */; };
 		E4668B3820FDC1B90021FA0B /* FeaturedProjectsStoreTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4668B3720FDC1B90021FA0B /* FeaturedProjectsStoreTableViewController.swift */; };
 		E4668B3C20FDCA6D0021FA0B /* FeaturedProjectsStoreTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4668B3B20FDCA6D0021FA0B /* FeaturedProjectsStoreTableDataSource.swift */; };
@@ -3037,7 +3037,6 @@
 		B7EEF76F87F0A9D0BFF0C2AA /* es */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B94B8CFF0168D667D71ACC96 /* cs */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BA08DB3F21A320D100AB1ACB /* XMLParserFormulaTests093.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLParserFormulaTests093.swift; sourceTree = "<group>"; };
-		BA1FA9901F02A10C0084184D /* UserListFunctionsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserListFunctionsTest.m; path = Formula/UserListFunctionsTest.m; sourceTree = "<group>"; };
 		BA1FA9961F02AD770084184D /* InsertItemIntoUserListBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "InsertItemIntoUserListBrick+CBXMLHandler.h"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Data/InsertItemIntoUserListBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
 		BA1FA9971F02AD770084184D /* InsertItemIntoUserListBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "InsertItemIntoUserListBrick+CBXMLHandler.m"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Data/InsertItemIntoUserListBrick+CBXMLHandler.m"; sourceTree = SOURCE_ROOT; };
 		BA1FA99B1F02AEDC0084184D /* InsertItemIntoUserListBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InsertItemIntoUserListBrick.h; sourceTree = "<group>"; };
@@ -3196,6 +3195,7 @@
 		CC7AC0EC7C3FE7D0298ABB4B /* sl */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CC8375C29E5886620CED275A /* ja */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CD83AA3639A4C0DD990858AD /* ps */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = ps; path = ps.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D3374C4323AA5AC10088FA36 /* UserListFunctionsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListFunctionsTest.swift; sourceTree = "<group>"; };
 		D638646D1AE63F80008569E6 /* KeychainUserDefaultsDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeychainUserDefaultsDefines.h; sourceTree = "<group>"; };
 		D737B9D786A63C4A5EEB17B4 /* it */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D75C98434F494F304C83216B /* en-GB */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -3791,8 +3791,8 @@
 				4C68FC851B25A00B00AB3EE8 /* InternFormulaTest.m */,
 				4C68FC871B25A00B00AB3EE8 /* InternFormulaTokenSelectionTest.m */,
 				4C68FC881B25A00B00AB3EE8 /* InternFormulaUtilsTest.m */,
-				BA1FA9901F02A10C0084184D /* UserListFunctionsTest.m */,
 				4CF429E9213A64B600B78897 /* InternFormulaKeyboardAdapterTests.swift */,
+				D3374C4323AA5AC10088FA36 /* UserListFunctionsTest.swift */,
 			);
 			name = Formula;
 			sourceTree = "<group>";
@@ -9170,6 +9170,7 @@
 				BAAA6BED21A4C02100A46563 /* XMLParserHeaderTests095.swift in Sources */,
 				4CF4CB7521E64BEE009D6DD9 /* InsertItemIntoUserListBrickTests.swift in Sources */,
 				9E44588A230A024600222B14 /* AudioPlayerIntegrationTests.swift in Sources */,
+				D3374C4423AA5AC10088FA36 /* UserListFunctionsTest.swift in Sources */,
 				4C6FE16C212D2D2E0067B7D5 /* AcosFunctionTest.swift in Sources */,
 				9E1ED58D231332E000E36DED /* AudioEngineAbstractTest.swift in Sources */,
 				4C53E38D21D5241300F2EC76 /* SmallerOrEqualOperatorTest.swift in Sources */,
@@ -9210,7 +9211,6 @@
 				4C0C164921439B2F005ADE86 /* ChartProjectsStoreDataSourceTests.swift in Sources */,
 				4CC50A62213BE4D3004BC914 /* DoubleParameterDoubleFunctionMock.swift in Sources */,
 				4CB23D7221E6613D00A0FEA7 /* DeleteItemOfUserListBrickTests.swift in Sources */,
-				BA1FA9941F02A1150084184D /* UserListFunctionsTest.m in Sources */,
 				4CD27AA821B55DBC00DDADB5 /* FaceDetectionManagerTest.swift in Sources */,
 				4C822656213FA7A400F3D750 /* DeviceSensorMock.swift in Sources */,
 				4C822655213FA7A400F3D750 /* SensorMock.swift in Sources */,
