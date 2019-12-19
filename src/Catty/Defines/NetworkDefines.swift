@@ -52,7 +52,7 @@ class NetworkDefines: NSObject {
 
     @objc static var loginUrl: String { return baseUrl.appending("api/login/Login.json") }
     @objc static var registerUrl: String { return baseUrl.appending("api/register/Register.json") }
-    @objc static var reportProjectUrl: String { return baseUrl.appending("api/reportProgram/reportProgram.json") }
+    @objc static var reportProjectUrl: String { return baseUrl.appending("api/reportProject/reportProject.json") }
     @objc static var termsOfUseUrl: String { return baseUrl.appending("termsOfUse") }
     @objc static var recoverPassword: String { return baseUrl.appending("resetting/request") }
     static var uploadUrl: String { return baseUrl.appending("api/upload") }
@@ -85,4 +85,6 @@ class NetworkDefines: NSObject {
     static let chartProjectsMaxResults = 10
     static let recentProjectsMaxResults = 20
     static let searchStoreMaxResults = 50
+    @objc static let reportProjectNoteMaxLength = 100
+    @objc static let reportProjectNoteMinLength = 3
 }
