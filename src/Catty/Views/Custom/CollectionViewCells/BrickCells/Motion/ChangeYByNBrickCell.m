@@ -41,7 +41,7 @@
 
 - (NSString*)brickTitleForBackground:(BOOL)isBackground andInsertionScreen:(BOOL)isInsertion
 {
-    return [kLocalizedChangeYBy stringByAppendingString:[@" " stringByAppendingString:[kLocalizedBy stringByAppendingString:@" %@"]]];
+    return [kLocalizedChangeYBy stringByAppendingString:@"%@"];
 }
 
 - (NSArray<NSString*>*)parameters
