@@ -589,6 +589,7 @@
 		4CFAD35E1CFAB3EC0019C636 /* CustomExtensionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFAD35C1CFAB3EC0019C636 /* CustomExtensionsTests.m */; };
 		4CFAD35F1CFAB3EC0019C636 /* UIImageExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFAD35D1CFAB3EC0019C636 /* UIImageExtensionTests.swift */; };
 		4CFAD3611CFAB9AA0019C636 /* transparency-rgba.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CFAD3601CFAB9AA0019C636 /* transparency-rgba.png */; };
+		4CFD5C5B23C47E2100980CD0 /* GlideToBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFD5C5823C47E2100980CD0 /* GlideToBrickTests.swift */; };
 		592EF6E62094B3D700BD6000 /* SpriteObjectProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592EF6E52094B3D700BD6000 /* SpriteObjectProtocol.swift */; };
 		592EF6EA2094B84900BD6000 /* DeviceSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592EF6E92094B84900BD6000 /* DeviceSensor.swift */; };
 		593624C21F76F36F008A588D /* TTTAttributedLabel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59473A601F76F04B00BD634F /* TTTAttributedLabel.framework */; };
@@ -2104,6 +2105,7 @@
 		4CFAD35C1CFAB3EC0019C636 /* CustomExtensionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomExtensionsTests.m; path = Extensions/CustomExtensionsTests.m; sourceTree = "<group>"; };
 		4CFAD35D1CFAB3EC0019C636 /* UIImageExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIImageExtensionTests.swift; path = Extensions/UIImageExtensionTests.swift; sourceTree = "<group>"; };
 		4CFAD3601CFAB9AA0019C636 /* transparency-rgba.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "transparency-rgba.png"; path = "CattyTests/Resources/Images/transparency-rgba.png"; sourceTree = SOURCE_ROOT; };
+		4CFD5C5823C47E2100980CD0 /* GlideToBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlideToBrickTests.swift; sourceTree = "<group>"; };
 		50E46742940F2B55110C6286 /* zh-Hans */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		5178C62672999D4F03B5F435 /* ru */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		549E9AB2BAC4EDDB63F01654 /* tr */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -5118,6 +5120,7 @@
 				9ECDCB0C23284CBE00EBDA63 /* ClearGraphicEffectBrickTests.swift */,
 				9ECDCB0E2328528D00EBDA63 /* ComeToFrontBrickTests.swift */,
 				4CB23D6F21E6613D00A0FEA7 /* DeleteItemOfUserListBrickTests.swift */,
+				4CFD5C5823C47E2100980CD0 /* GlideToBrickTests.swift */,
 				9E4D2385232AE9E5009D0C3C /* GoNStepsBackBrickTests.swift */,
 				9ECDCB122328578F00EBDA63 /* HideBrickTests.swift */,
 				4CAB10081ECF1A9A0019A67B /* HideTextBrickTests.swift */,
@@ -9077,6 +9080,7 @@
 				9EBCBD872329BD700074C2D9 /* PointInDirectionBrickTests.swift in Sources */,
 				4C822691213FBB8300F3D750 /* MultiFingerTouchedFunctionTests.swift in Sources */,
 				4C37A0A3212DBF510074F417 /* ArduinoAnalogPinFunctionTest.swift in Sources */,
+				4CFD5C5B23C47E2100980CD0 /* GlideToBrickTests.swift in Sources */,
 				BAAA6BF321A4C92F00A46563 /* XMLParserFormulaTests095.swift in Sources */,
 				9E4D238A232AF24B009D0C3C /* SetBrightnessBrickTests.swift in Sources */,
 				4C6FE175212D2D2E0067B7D5 /* ContainsFunctionTest.swift in Sources */,
