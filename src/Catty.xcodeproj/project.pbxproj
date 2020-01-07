@@ -223,7 +223,6 @@
 		4C68FC8D1B25A00B00AB3EE8 /* FormulaParserFunctionsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68FC7F1B25A00B00AB3EE8 /* FormulaParserFunctionsTest.m */; };
 		4C68FC8E1B25A00B00AB3EE8 /* FormulaParserOperatorsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68FC801B25A00B00AB3EE8 /* FormulaParserOperatorsTest.m */; };
 		4C68FC8F1B25A00B00AB3EE8 /* FormulaParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68FC811B25A00B00AB3EE8 /* FormulaParserTest.m */; };
-		4C68FC901B25A00B00AB3EE8 /* FormulaTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68FC821B25A00B00AB3EE8 /* FormulaTest.m */; };
 		4C68FC911B25A00B00AB3EE8 /* InternFormulaParserStringFunctionsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68FC831B25A00B00AB3EE8 /* InternFormulaParserStringFunctionsTest.m */; };
 		4C68FC921B25A00B00AB3EE8 /* InternFormulaStateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68FC841B25A00B00AB3EE8 /* InternFormulaStateTest.m */; };
 		4C68FC931B25A00B00AB3EE8 /* InternFormulaTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68FC851B25A00B00AB3EE8 /* InternFormulaTest.m */; };
@@ -589,6 +588,7 @@
 		4CFAD35F1CFAB3EC0019C636 /* UIImageExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFAD35D1CFAB3EC0019C636 /* UIImageExtensionTests.swift */; };
 		4CFAD3611CFAB9AA0019C636 /* transparency-rgba.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CFAD3601CFAB9AA0019C636 /* transparency-rgba.png */; };
 		4CFD5C5B23C47E2100980CD0 /* GlideToBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFD5C5823C47E2100980CD0 /* GlideToBrickTests.swift */; };
+		5912C21623C4EAC700B3D9C0 /* FormulaTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5912C21523C4EAC700B3D9C0 /* FormulaTest.swift */; };
 		592EF6E62094B3D700BD6000 /* SpriteObjectProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592EF6E52094B3D700BD6000 /* SpriteObjectProtocol.swift */; };
 		592EF6EA2094B84900BD6000 /* DeviceSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592EF6E92094B84900BD6000 /* DeviceSensor.swift */; };
 		593624C21F76F36F008A588D /* TTTAttributedLabel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59473A601F76F04B00BD634F /* TTTAttributedLabel.framework */; };
@@ -1708,7 +1708,6 @@
 		4C68FC7F1B25A00B00AB3EE8 /* FormulaParserFunctionsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FormulaParserFunctionsTest.m; path = Formula/FormulaParserFunctionsTest.m; sourceTree = "<group>"; };
 		4C68FC801B25A00B00AB3EE8 /* FormulaParserOperatorsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FormulaParserOperatorsTest.m; path = Formula/FormulaParserOperatorsTest.m; sourceTree = "<group>"; };
 		4C68FC811B25A00B00AB3EE8 /* FormulaParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FormulaParserTest.m; path = Formula/FormulaParserTest.m; sourceTree = "<group>"; };
-		4C68FC821B25A00B00AB3EE8 /* FormulaTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FormulaTest.m; path = Formula/FormulaTest.m; sourceTree = "<group>"; };
 		4C68FC831B25A00B00AB3EE8 /* InternFormulaParserStringFunctionsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InternFormulaParserStringFunctionsTest.m; path = Formula/InternFormulaParserStringFunctionsTest.m; sourceTree = "<group>"; };
 		4C68FC841B25A00B00AB3EE8 /* InternFormulaStateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InternFormulaStateTest.m; path = Formula/InternFormulaStateTest.m; sourceTree = "<group>"; };
 		4C68FC851B25A00B00AB3EE8 /* InternFormulaTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InternFormulaTest.m; path = Formula/InternFormulaTest.m; sourceTree = "<group>"; };
@@ -2111,6 +2110,7 @@
 		5178C62672999D4F03B5F435 /* ru */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		549E9AB2BAC4EDDB63F01654 /* tr */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		58272AE1A8D3A638A258B722 /* bs */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = bs; path = bs.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5912C21523C4EAC700B3D9C0 /* FormulaTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FormulaTest.swift; path = Formula/FormulaTest.swift; sourceTree = "<group>"; };
 		592EF6E52094B3D700BD6000 /* SpriteObjectProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteObjectProtocol.swift; sourceTree = "<group>"; };
 		592EF6E92094B84900BD6000 /* DeviceSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceSensor.swift; sourceTree = "<group>"; };
 		5936893B2021979A00FC3115 /* SoundsTableViewController+MediaLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SoundsTableViewController+MediaLibrary.swift"; sourceTree = "<group>"; };
@@ -3789,7 +3789,6 @@
 				4C68FC7F1B25A00B00AB3EE8 /* FormulaParserFunctionsTest.m */,
 				4C68FC801B25A00B00AB3EE8 /* FormulaParserOperatorsTest.m */,
 				4C68FC811B25A00B00AB3EE8 /* FormulaParserTest.m */,
-				4C68FC821B25A00B00AB3EE8 /* FormulaTest.m */,
 				4C68FC831B25A00B00AB3EE8 /* InternFormulaParserStringFunctionsTest.m */,
 				4C68FC841B25A00B00AB3EE8 /* InternFormulaStateTest.m */,
 				4C68FC851B25A00B00AB3EE8 /* InternFormulaTest.m */,
@@ -3799,6 +3798,7 @@
 				D3374C4323AA5AC10088FA36 /* UserListFunctionsTest.swift */,
 				D311958723C72BBF005FC1A1 /* FormulaElementTest.swift */,
 				D3F2717823CC9ADF00E339FD /* FormulaFunctionsTest.swift */,
+				5912C21523C4EAC700B3D9C0 /* FormulaTest.swift */,
 			);
 			name = Formula;
 			sourceTree = "<group>";
@@ -9031,7 +9031,6 @@
 				4CC50A5E213BE036004BC914 /* ZeroParameterDoubleFunctionMock.swift in Sources */,
 				4CEB22521B95E47500B3BE2F /* BrickMoveManagerTests.m in Sources */,
 				4CF429EA213A64B600B78897 /* InternFormulaKeyboardAdapterTests.swift in Sources */,
-				4C68FC901B25A00B00AB3EE8 /* FormulaTest.m in Sources */,
 				4C822681213FA7A400F3D750 /* TransparencySensorTest.swift in Sources */,
 				4C822661213FA7A400F3D750 /* FaceSizeSensorTest.swift in Sources */,
 				4C6FE16E212D2D2E0067B7D5 /* AsinFunctionTest.swift in Sources */,
@@ -9097,6 +9096,7 @@
 				4C38B3742371522200F33721 /* BrickManagerTests.swift in Sources */,
 				9E22CC932323FFEF00BA4CBA /* ChromaprintAudioDecoder.swift in Sources */,
 				4C822685213FA7CD00F3D750 /* FunctionManagerTests.swift in Sources */,
+				5912C21623C4EAC700B3D9C0 /* FormulaTest.swift in Sources */,
 				9E2C2D8E23257387004B66C6 /* AbstractBrickTest.swift in Sources */,
 				4CD487761ED2C2A3001BB80A /* ChangeVariableBrickTests.swift in Sources */,
 				4C82267B213FA7A400F3D750 /* BackgroundNumberSensorTest.swift in Sources */,
