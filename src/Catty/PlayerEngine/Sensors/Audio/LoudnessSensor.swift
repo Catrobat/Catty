@@ -24,7 +24,7 @@
     @objc static let tag = "LOUDNESS"
     static let name = kUIFESensorLoudness
     static let defaultRawValue = -160.0
-    static let position = 10
+    static let position = 170
     static let requiredResource = ResourceType.loudness
 
     let getAudioManager: () -> AudioManagerProtocol?

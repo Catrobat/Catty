@@ -27,7 +27,7 @@
     static let defaultRawValue = 0.0
     static let requiredResource = ResourceType.bluetoothPhiro
     static let pinNumber = 4
-    static let position = 320
+    static let position = 340
 
     let getBluetoothService: () -> BluetoothService?
 

@@ -27,7 +27,7 @@ class RoundFunction: SingleParameterDoubleFunction {
     static var defaultValue = 0.0
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = true
-    static let position = 100
+    static let position = 120
 
     func tag() -> String {
         return type(of: self).tag

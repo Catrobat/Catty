@@ -25,7 +25,7 @@ class TimeMinuteSensor: DateSensor {
     static let tag = "TIME_MINUTE"
     static let name = kUIFESensorTimeMinute
     static let defaultRawValue = 0.0
-    static let position = 280
+    static let position = 150
     static let requiredResource = ResourceType.noResources
 
     func tag() -> String {

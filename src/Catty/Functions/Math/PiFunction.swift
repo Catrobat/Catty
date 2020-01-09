@@ -26,7 +26,7 @@ class PiFunction: ZeroParameterDoubleFunction {
     static var defaultValue = Double.pi
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = true
-    static let position = 60
+    static let position = 280
 
     func tag() -> String {
         return type(of: self).tag

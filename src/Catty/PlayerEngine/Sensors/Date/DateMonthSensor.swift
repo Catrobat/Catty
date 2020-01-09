@@ -25,7 +25,7 @@ class DateMonthSensor: DateSensor {
     static let tag = "DATE_MONTH"
     static let name = kUIFESensorDateMonth
     static let defaultRawValue = 0.0
-    static let position = 240
+    static let position = 110
     static let requiredResource = ResourceType.noResources
 
     func date() -> Date {

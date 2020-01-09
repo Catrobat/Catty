@@ -26,7 +26,7 @@ class RandFunction: DoubleParameterDoubleFunction {
     static var defaultValue = 0.0
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = false
-    static let position = 80
+    static let position = 10
 
     func tag() -> String {
         return type(of: self).tag

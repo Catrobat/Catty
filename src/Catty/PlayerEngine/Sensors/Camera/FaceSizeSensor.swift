@@ -25,7 +25,7 @@ class FaceSizeSensor: DeviceSensor {
     static let tag = "FACE_SIZE"
     static let name = kUIFESensorFaceSize
     static let defaultRawValue = 0.0
-    static let position = 200
+    static let position = 250
     static let requiredResource = ResourceType.faceDetection
 
     let getFaceDetectionManager: () -> FaceDetectionManagerProtocol?

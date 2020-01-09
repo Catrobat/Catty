@@ -27,7 +27,7 @@ class LogFunction: SingleParameterDoubleFunction {
     static var defaultValue = 0.0
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = true
-    static let position = 50
+    static let position = 250
 
     func tag() -> String {
         return type(of: self).tag

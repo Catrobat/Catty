@@ -26,7 +26,7 @@ class TrueFunction: ZeroParameterDoubleFunction {
     static var defaultValue = 1.0
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = true
-    static let position = 300
+    static let position = 20
 
     func tag() -> String {
         return type(of: self).tag

@@ -26,7 +26,7 @@ class ElementFunction: DoubleParameterFunction {
     static var defaultValue = "" as AnyObject
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = false
-    static let position = 250
+    static let position = 40
 
     func tag() -> String {
         return type(of: self).tag

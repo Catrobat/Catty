@@ -26,7 +26,7 @@
     static let name = kUIFEObjectLookName
     static let defaultRawValue = 0.0
     static let defaultStringValue = ""
-    static let position = 50
+    static let position = 40
     static let requiredResource = ResourceType.noResources
 
     func tag() -> String {

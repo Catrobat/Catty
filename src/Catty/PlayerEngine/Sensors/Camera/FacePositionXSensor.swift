@@ -25,7 +25,7 @@ class FacePositionXSensor: DeviceSensor {
     static let tag = "FACE_X_POSITION"
     static let name = kUIFESensorFaceX
     static let defaultRawValue = 0.0
-    static let position = 210
+    static let position = 230
     static let requiredResource = ResourceType.faceDetection
 
     let getFaceDetectionManager: () -> FaceDetectionManagerProtocol?
