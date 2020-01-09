@@ -82,7 +82,7 @@ class UploadViewController: UIViewController {
         initObservers()
         hideKeyboardWhenTapInViewController()
 
-        self.uploadBarButton = UIBarButtonItem(title: kLocalizedUpload,
+        self.uploadBarButton = UIBarButtonItem(title: kLocalizedUploadProject,
                                                style: .plain,
                                                target: self,
                                                action: #selector(UploadViewController.checkProjectAction))

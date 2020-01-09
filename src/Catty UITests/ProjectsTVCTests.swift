@@ -34,7 +34,7 @@ class ProjectsTVCTests: XCTestCase {
     func testCanAddNewProject() {
         let testProject = "testProject"
 
-        app.tables.staticTexts[kLocalizedProjects].tap()
+        app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
         app.toolbars.buttons[kLocalizedUserListAdd].tap()
 
         let alertQuery = waitForElementToAppear(app.alerts[kLocalizedNewProject])
@@ -50,7 +50,7 @@ class ProjectsTVCTests: XCTestCase {
     func testCanCancelAddNewProject() {
         let testProject = "testProject"
 
-        app.tables.staticTexts[kLocalizedProjects].tap()
+        app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
         app.toolbars.buttons[kLocalizedUserListAdd].tap()
 
         let alertQuery = app.alerts[kLocalizedNewProject]
@@ -62,7 +62,7 @@ class ProjectsTVCTests: XCTestCase {
     }
 
     func testCanCancelEdit() {
-        app.tables.staticTexts[kLocalizedProjects].tap()
+        app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
         app.navigationBars[kLocalizedProjects].buttons[kLocalizedEdit].tap()
         XCTAssert(app.buttons[kLocalizedCancel].exists)
         app.buttons[kLocalizedCancel].tap()
@@ -70,7 +70,7 @@ class ProjectsTVCTests: XCTestCase {
     }
 
     func testCanCancelMoreActionSheetMenu() {
-        app.tables.staticTexts[kLocalizedProjects].tap()
+        app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
 
         let tablesQuery = app.tables
         tablesQuery.staticTexts[kLocalizedMyFirstProject].swipeLeft()
@@ -83,7 +83,7 @@ class ProjectsTVCTests: XCTestCase {
     }
 
     func testCanCopyMyFirstProject() {
-        app.tables.staticTexts[kLocalizedProjects].tap()
+        app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
 
         copyProject(name: kLocalizedMyFirstProject, newName: "My second project")
 
@@ -92,7 +92,7 @@ class ProjectsTVCTests: XCTestCase {
 
         // go back and forth to force reload table view!!
         app.navigationBars[kLocalizedProjects].buttons[kLocalizedPocketCode].tap()
-        app.tables.staticTexts[kLocalizedProjects].tap()
+        app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
         XCTAssert(waitForElementToAppear(app.navigationBars[kLocalizedProjects]).exists)
 
         XCTAssert(app.tables.cells.count == 2)
@@ -100,7 +100,7 @@ class ProjectsTVCTests: XCTestCase {
     }
 
     func testCanCancelCopyMyFirstProject() {
-        app.tables.staticTexts[kLocalizedProjects].tap()
+        app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
 
         let tablesQuery = app.tables
         tablesQuery.staticTexts[kLocalizedMyFirstProject].swipeLeft()
@@ -123,7 +123,7 @@ class ProjectsTVCTests: XCTestCase {
 
         // go back and forth to force reload table view!!
         app.navigationBars[kLocalizedProjects].buttons[kLocalizedPocketCode].tap()
-        app.tables.staticTexts[kLocalizedProjects].tap()
+        app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
         XCTAssert(waitForElementToAppear(app.navigationBars[kLocalizedProjects]).exists)
 
         XCTAssert(app.tables.cells.count == 1)
@@ -131,7 +131,7 @@ class ProjectsTVCTests: XCTestCase {
     }
 
     func testCanRenameMyFirstProject() {
-        app.tables.staticTexts[kLocalizedProjects].tap()
+        app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
 
         let tablesQuery = app.tables
         tablesQuery.staticTexts[kLocalizedMyFirstProject].swipeLeft()
@@ -154,7 +154,7 @@ class ProjectsTVCTests: XCTestCase {
 
         // go back and forth to force reload table view!!
         app.navigationBars[kLocalizedProjects].buttons[kLocalizedPocketCode].tap()
-        app.tables.staticTexts[kLocalizedProjects].tap()
+        app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
         XCTAssert(waitForElementToAppear(app.navigationBars[kLocalizedProjects]).exists)
 
         // check again
@@ -163,7 +163,7 @@ class ProjectsTVCTests: XCTestCase {
     }
 
     func testCanCancelRenameMyFirstProject() {
-        app.tables.staticTexts[kLocalizedProjects].tap()
+        app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
 
         let tablesQuery = app.tables
         tablesQuery.staticTexts[kLocalizedMyFirstProject].swipeLeft()
@@ -186,7 +186,7 @@ class ProjectsTVCTests: XCTestCase {
 
         // go back and forth to force reload table view!!
         app.navigationBars[kLocalizedProjects].buttons[kLocalizedPocketCode].tap()
-        app.tables.staticTexts[kLocalizedProjects].tap()
+        app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
         XCTAssert(waitForElementToAppear(app.navigationBars[kLocalizedProjects]).exists)
 
         // check again
@@ -196,7 +196,7 @@ class ProjectsTVCTests: XCTestCase {
 
     func testBulkDeleteProjects() {
         let copyProjectName = kLocalizedMyFirstProject
-        app.tables.staticTexts[kLocalizedProjects].tap()
+        app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
         waitForElementToAppear(app.navigationBars[kLocalizedProjects]).buttons[kLocalizedEdit].tap()
 
         if !app.buttons[kLocalizedHideDetails].exists {

@@ -36,7 +36,7 @@ class CreateProjectTests: XCTestCase {
         let testObject = "testObject1"
 
         //Create new Project
-        app.tables.staticTexts[kLocalizedNew].tap()
+        app.tables.staticTexts[kLocalizedNewProject].tap()
         let alertQuery = app.alerts[kLocalizedNewProject]
         alertQuery.textFields[kLocalizedEnterYourProjectNameHere].typeText(projectName)
         app.alerts[kLocalizedNewProject].buttons[kLocalizedOK].tap()
@@ -102,7 +102,7 @@ class CreateProjectTests: XCTestCase {
         let helloText = "你好"
 
         //Create new Project
-        app.tables.staticTexts[kLocalizedNew].tap()
+        app.tables.staticTexts[kLocalizedNewProject].tap()
         let alertQuery = app.alerts[kLocalizedNewProject]
         alertQuery.textFields[kLocalizedEnterYourProjectNameHere].typeText(projectName)
         app.alerts[kLocalizedNewProject].buttons[kLocalizedOK].tap()

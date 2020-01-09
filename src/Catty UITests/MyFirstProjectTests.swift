@@ -32,7 +32,7 @@ class MyFirstProjectTests: XCTestCase {
     }
 
     func testCanDeleteMultipleObjectsViaEditMode() {
-        app.tables.staticTexts[kLocalizedProjects].tap()
+        app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
         app.tables.staticTexts[kLocalizedMyFirstProject].tap()
         app.navigationBars[kLocalizedMyFirstProject].buttons[kLocalizedEdit].tap()
         app.buttons[kLocalizedDeleteObjects].tap()
@@ -48,7 +48,7 @@ class MyFirstProjectTests: XCTestCase {
     }
 
     func testCanRenameProjectViaEditMode() {
-        app.tables.staticTexts[kLocalizedProjects].tap()
+        app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
         app.tables.staticTexts[kLocalizedMyFirstProject].tap()
         app.navigationBars[kLocalizedMyFirstProject].buttons[kLocalizedEdit].tap()
         app.buttons[kLocalizedRenameProject].tap()
@@ -66,7 +66,7 @@ class MyFirstProjectTests: XCTestCase {
         // go back and forth to force reload table view!!
         app.navigationBars["My renamed project"].buttons[kLocalizedProjects].tap()
         app.navigationBars[kLocalizedProjects].buttons[kLocalizedPocketCode].tap()
-        app.tables.staticTexts[kLocalizedProjects].tap()
+        app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
 
         // check again
         XCTAssert(app.tables.staticTexts["My renamed project"].exists)
@@ -74,7 +74,7 @@ class MyFirstProjectTests: XCTestCase {
     }
 
     func testCanAbortRenameProjectViaEditMode() {
-        app.tables.staticTexts[kLocalizedProjects].tap()
+        app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
         app.tables.staticTexts[kLocalizedMyFirstProject].tap()
         app.navigationBars[kLocalizedMyFirstProject].buttons[kLocalizedEdit].tap()
         app.buttons[kLocalizedRenameProject].tap()
@@ -92,14 +92,14 @@ class MyFirstProjectTests: XCTestCase {
         // go back and forth to force reload table view!!
         app.navigationBars[kLocalizedMyFirstProject].buttons[kLocalizedProjects].tap()
         app.navigationBars[kLocalizedProjects].buttons[kLocalizedPocketCode].tap()
-        app.tables.staticTexts[kLocalizedProjects].tap()
+        app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
 
         // check again
         XCTAssert(app.tables.staticTexts[kLocalizedMyFirstProject].exists)
     }
 
     func testCanShowAndHideDetailsViaEditMode() {
-        app.tables.staticTexts[kLocalizedProjects].tap()
+        app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
         app.tables.staticTexts[kLocalizedMyFirstProject].tap()
         app.navigationBars[kLocalizedMyFirstProject].buttons[kLocalizedEdit].tap()
 
@@ -122,7 +122,7 @@ class MyFirstProjectTests: XCTestCase {
     }
 
     func testCanEditDescriptionViaEditMode() {
-        app.tables.staticTexts[kLocalizedProjects].tap()
+        app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
         app.tables.staticTexts[kLocalizedMyFirstProject].tap()
         app.navigationBars[kLocalizedMyFirstProject].buttons[kLocalizedEdit].tap()
 
@@ -143,7 +143,7 @@ class MyFirstProjectTests: XCTestCase {
     }
 
     func testCanAbortEditDescriptionViaEditMode() {
-        app.tables.staticTexts[kLocalizedProjects].tap()
+        app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
         app.tables.staticTexts[kLocalizedMyFirstProject].tap()
         app.navigationBars[kLocalizedMyFirstProject].buttons[kLocalizedEdit].tap()
 
@@ -155,7 +155,7 @@ class MyFirstProjectTests: XCTestCase {
     }
 
     func testCanAbortDeleteSingleObjectViaSwipe() {
-        app.tables.staticTexts[kLocalizedProjects].tap()
+        app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
         app.tables.staticTexts[kLocalizedMyFirstProject].tap()
         let tablesQuery = app.tables
         tablesQuery.staticTexts["Mole 3"].swipeLeft()
@@ -168,7 +168,7 @@ class MyFirstProjectTests: XCTestCase {
     }
 
     func testCanDeleteSingleObjectViaSwipe() {
-        app.tables.staticTexts[kLocalizedProjects].tap()
+        app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
         app.tables.staticTexts[kLocalizedMyFirstProject].tap()
         let tablesQuery = app.tables
         tablesQuery.staticTexts["Mole 1"].swipeLeft()
@@ -181,7 +181,7 @@ class MyFirstProjectTests: XCTestCase {
     }
 
     func testCanRenameSingleObjectViaSwipe() {
-        app.tables.staticTexts[kLocalizedProjects].tap()
+        app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
         app.tables.staticTexts[kLocalizedMyFirstProject].tap()
         let tablesQuery = app.tables
         tablesQuery.staticTexts["Mole 3"].swipeLeft()
@@ -199,7 +199,7 @@ class MyFirstProjectTests: XCTestCase {
     }
 
     func testCanAbortRenameSingleObjectViaSwipe() {
-        app.tables.staticTexts[kLocalizedProjects].tap()
+        app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
         app.tables.staticTexts[kLocalizedMyFirstProject].tap()
         let tablesQuery = app.tables
         tablesQuery.staticTexts["Mole 1"].swipeLeft()
@@ -217,7 +217,7 @@ class MyFirstProjectTests: XCTestCase {
     }
 
     func testCanCopySingleObjectViaSwipe() {
-        app.tables.staticTexts[kLocalizedProjects].tap()
+        app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
         app.tables.staticTexts[kLocalizedMyFirstProject].tap()
         let tablesQuery = app.tables
         tablesQuery.staticTexts["Mole 1"].swipeLeft()
@@ -230,7 +230,7 @@ class MyFirstProjectTests: XCTestCase {
     }
 
     func testCanAbortSwipe() {
-        app.tables.staticTexts[kLocalizedProjects].tap()
+        app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
         app.tables.staticTexts[kLocalizedMyFirstProject].tap()
         let tablesQuery = app.tables
         tablesQuery.staticTexts["Mole 1"].swipeLeft()

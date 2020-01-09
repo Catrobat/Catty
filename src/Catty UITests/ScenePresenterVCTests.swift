@@ -40,7 +40,7 @@ class ScenePresenterVCTests: XCTestCase {
         let projectName = "testProject"
 
         //Create new Project
-        app.tables.staticTexts[kLocalizedNew].tap()
+        app.tables.staticTexts[kLocalizedNewProject].tap()
         let alertQuery = app.alerts[kLocalizedNewProject]
         alertQuery.textFields[kLocalizedEnterYourProjectNameHere].typeText(projectName)
         app.alerts[kLocalizedNewProject].buttons[kLocalizedOK].tap()
