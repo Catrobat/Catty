@@ -989,7 +989,7 @@
 "No description available" = "No description available";
 
 /* No comment provided by engineer. */
-"No input. Please enter at least %lu character(s)." = "Giriş yok. Lütfen en az %lu karakter (ler) girin.";
+"Please enter at least %lu character(s)." = "Giriş yok. Lütfen en az %lu karakter (ler) girin.";
 
 /* No comment provided by engineer. */
 "No or invalid image name entered, try again." = "Hayır veya geçersiz resim adı girildi, tekrar deneyin.";

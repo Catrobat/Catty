@@ -989,7 +989,7 @@
 "No description available" = "No description available";
 
 /* No comment provided by engineer. */
-"No input. Please enter at least %lu character(s)." = "Žádný vstup. Zadejte prosím alespoň %lu znak/y.";
+"Please enter at least %lu character(s)." = "Žádný vstup. Zadejte prosím alespoň %lu znak/y.";
 
 /* No comment provided by engineer. */
 "No or invalid image name entered, try again." = "Ne nebo neplatný název obrázků, zkuste to znovu.";

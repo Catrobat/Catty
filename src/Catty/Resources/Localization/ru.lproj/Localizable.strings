@@ -989,7 +989,7 @@
 "No description available" = "No description available";
 
 /* No comment provided by engineer. */
-"No input. Please enter at least %lu character(s)." = "Нет ввода. Пожалуйста, введите хотя бы %lu символ(ов).";
+"Please enter at least %lu character(s)." = "Нет ввода. Пожалуйста, введите хотя бы %lu символ(ов).";
 
 /* No comment provided by engineer. */
 "No or invalid image name entered, try again." = "Нет или введено недопустимое имя изображения, попробуйте снова.";
