@@ -989,7 +989,7 @@
 "No description available" = "No description available";
 
 /* No comment provided by engineer. */
-"No input. Please enter at least %lu character(s)." = "输入内容为空。请输入至少 %lu 个字符。";
+"Please enter at least %lu character(s)." = "输入内容为空。请输入至少 %lu 个字符。";
 
 /* No comment provided by engineer. */
 "No or invalid image name entered, try again." = "输入了空的或无效的图像名称，请再试一次。";

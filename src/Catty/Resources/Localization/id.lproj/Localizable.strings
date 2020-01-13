@@ -989,7 +989,7 @@
 "No description available" = "No description available";
 
 /* No comment provided by engineer. */
-"No input. Please enter at least %lu character(s)." = "Tidak ada masukan Harap masukkan minimal %lu karakter.";
+"Please enter at least %lu character(s)." = "Tidak ada masukan Harap masukkan minimal %lu karakter.";
 
 /* No comment provided by engineer. */
 "No or invalid image name entered, try again." = "Nama citra yang kosong atau tidak valid dimasukkan, cobalah lagi.";

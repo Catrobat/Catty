@@ -989,7 +989,7 @@
 "No description available" = "No description available";
 
 /* No comment provided by engineer. */
-"No input. Please enter at least %lu character(s)." = "لم يتم الإدخال. من فضلك أدخل على الأقل %lu حرف/ أحرف.";
+"Please enter at least %lu character(s)." = "لم يتم الإدخال. من فضلك أدخل على الأقل %lu حرف/ أحرف.";
 
 /* No comment provided by engineer. */
 "No or invalid image name entered, try again." = "لا يوجد إسم أو إدخال أسم غير صحيح للصورة، حاول مرة أخرى.";

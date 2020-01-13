@@ -989,7 +989,7 @@
 "No description available" = "No description available";
 
 /* No comment provided by engineer. */
-"No input. Please enter at least %lu character(s)." = "কোনও ইনপুট নেই। কমপক্ষে %lu অক্ষর লিখুন";
+"Please enter at least %lu character(s)." = "কোনও ইনপুট নেই। কমপক্ষে %lu অক্ষর লিখুন";
 
 /* No comment provided by engineer. */
 "No or invalid image name entered, try again." = "না বা অবৈধ চিত্রের নাম প্রবেশ করানো হয়েছে, আবার চেষ্টা করুন।";

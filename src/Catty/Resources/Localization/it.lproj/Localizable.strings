@@ -989,7 +989,7 @@
 "No description available" = "No description available";
 
 /* No comment provided by engineer. */
-"No input. Please enter at least %lu character(s)." = "Nessun input. Si prega di inserire almeno %lu caratteri.";
+"Please enter at least %lu character(s)." = "Nessun input. Si prega di inserire almeno %lu caratteri.";
 
 /* No comment provided by engineer. */
 "No or invalid image name entered, try again." = "Nome dell'immagine mancante o non valido; riprova.";

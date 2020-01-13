@@ -989,7 +989,7 @@
 "No description available" = "No description available";
 
 /* No comment provided by engineer. */
-"No input. Please enter at least %lu character(s)." = "입력되지 않았습니다. 적어도 %lu 문자를 입력하세요.";
+"Please enter at least %lu character(s)." = "입력되지 않았습니다. 적어도 %lu 문자를 입력하세요.";
 
 /* No comment provided by engineer. */
 "No or invalid image name entered, try again." = "없거나 사용할 수 없는 이미지 미름이 입력되었습니다. 다시 시도하세요.";
