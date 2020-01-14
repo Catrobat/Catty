@@ -175,7 +175,7 @@
     [self showLoadingView];
     NSString *oldProjectName = self.project.header.programName;
     newProjectName = [Util uniqueName:newProjectName existingNames:[Project allProjectNames]];
-    [self.project renameToProjectName:newProjectName];
+    [self.project renameToProjectName:newProjectName andShowSaveNotification:YES];
     [self.delegate renameOldProjectWithName:oldProjectName
                                   projectID:self.project.header.programID
                            toNewProjectName:self.project.header.programName];

@@ -43,7 +43,7 @@ final class BubbleBrickTests: XMLAbstractTest {
     let bubbleNotReflected: CGFloat = 1.0
 
     private func createSpriteNodeWithBubble(x xPosition: Double, y yPosition: Double, andSentence sentence: String) -> CBSpriteNode {
-        let project = ProjectMock()!
+        let project = ProjectMock()
 
         let spriteObject = SpriteObject()
         spriteObject.name = "SpriteObjectName"

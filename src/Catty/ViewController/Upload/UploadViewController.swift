@@ -239,7 +239,7 @@ class UploadViewController: UIViewController {
             Util.alert(withText: kLocalizedUploadProjectNecessary)
             return
         }
-        project?.rename(toProjectName: projectNameTextField.text!)
+        project?.rename(toProjectName: projectNameTextField.text!, andShowSaveNotification: true)
         project?.updateDescription(withText: descriptionTextView.text)
 
         self.showLoading()
@@ -376,7 +376,7 @@ class UploadViewController: UIViewController {
                             let projectId = "\(aTag)"
 
                             DispatchQueue.main.async(execute: {
-                                self.project?.rename(toProjectName: project.header.programName, andProjectId: projectId)
+                                self.project?.rename(toProjectName: project.header.programName, andProjectId: projectId, andShowSaveNotification: true)
                             })
                         }
 

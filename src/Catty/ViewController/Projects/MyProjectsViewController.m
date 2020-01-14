@@ -199,7 +199,7 @@
     [self showLoadingView];
     Project *project = [Project projectWithLoadingInfo:projectLoadingInfo];
     newProjectName = [Util uniqueName:newProjectName existingNames:[Project allProjectNames]];
-    [project renameToProjectName:newProjectName];
+    [project renameToProjectName:newProjectName andShowSaveNotification:YES];
     [self renameOldProjectWithName:projectLoadingInfo.visibleName
                          projectID:projectLoadingInfo.projectID
                   toNewProjectName:project.header.programName];
