@@ -144,7 +144,7 @@ class VariablesTests: XCTestCase {
 
             let alert = waitForElementToAppear(app.alerts[kUIFENewVar])
             alert.textFields.firstMatch.typeText(variable)
-            alert.buttons["OK"].tap()
+            alert.buttons[kLocalizedOK].tap()
         }
 
         app.buttons["del active"].tap()
