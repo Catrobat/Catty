@@ -231,7 +231,7 @@ let kLocalizedNewest = NSLocalizedString("Newest", bundle: Bundle(for: LanguageT
 let kLocalizedVariables = NSLocalizedString("Variables", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedLists = NSLocalizedString("Lists", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedPhiroBricks = NSLocalizedString("Use Phiro bricks", bundle: Bundle(for: LanguageTranslation.self), comment: "")
-let kLocalizedArduinoBricks = NSLocalizedString("Use Arduino bricks", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedArduinoBricks = NSLocalizedString("Arduino extension", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedFrontCamera = NSLocalizedString("Front camera", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedDisconnectAllDevices = NSLocalizedString("Disconnect all devices", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedRemoveKnownDevices = NSLocalizedString("Remove known devices", bundle: Bundle(for: LanguageTranslation.self), comment: "")
@@ -269,6 +269,7 @@ let kLocalizedBluetoothPoweredOff = NSLocalizedString("Bluetooth is turned off. 
 let kLocalizedBluetoothNotAvailable = NSLocalizedString("Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings.", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedDisconnectBluetoothDevices = NSLocalizedString("All Bluetooth devices successfully disconnected", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedRemovedKnownBluetoothDevices = NSLocalizedString("All known Bluetooth devices successfully removed", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedArduinoBricksDescription = NSLocalizedString("Allow the app to control Arduino boards", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
 //************************************************************************************************************
 //**********************************       LONG DESCRIPTIONS      ********************************************

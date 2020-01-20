@@ -231,7 +231,7 @@ let kLocalizedNewest = NSLocalizedString("Newest", comment: "")
 let kLocalizedVariables = NSLocalizedString("Variables", comment: "")
 let kLocalizedLists = NSLocalizedString("Lists", comment: "")
 let kLocalizedPhiroBricks = NSLocalizedString("Use Phiro bricks", comment: "")
-let kLocalizedArduinoBricks = NSLocalizedString("Use Arduino bricks", comment: "")
+let kLocalizedArduinoBricks = NSLocalizedString("Arduino extension", comment: "")
 let kLocalizedFrontCamera = NSLocalizedString("Front camera", comment: "")
 let kLocalizedDisconnectAllDevices = NSLocalizedString("Disconnect all devices", comment: "")
 let kLocalizedRemoveKnownDevices = NSLocalizedString("Remove known devices", comment: "")
@@ -269,6 +269,7 @@ let kLocalizedBluetoothPoweredOff = NSLocalizedString("Bluetooth is turned off. 
 let kLocalizedBluetoothNotAvailable = NSLocalizedString("Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings.", comment: "")
 let kLocalizedDisconnectBluetoothDevices = NSLocalizedString("All Bluetooth devices successfully disconnected", comment: "")
 let kLocalizedRemovedKnownBluetoothDevices = NSLocalizedString("All known Bluetooth devices successfully removed", comment: "")
+let kLocalizedArduinoBricksDescription = NSLocalizedString("Allow the app to control Arduino boards", comment: "")
 
 //************************************************************************************************************
 //**********************************       LONG DESCRIPTIONS      ********************************************

@@ -52,6 +52,9 @@
 /* No comment provided by engineer. */
 "All known Bluetooth devices successfully removed" = "All known Bluetooth devices successfully removed";
 
+/* No comment provided by engineer. */
+"Allow the app to control Arduino boards" = "Allow the app to control Arduino boards";
+
 /* paint */
 "Alpha" = "Alpha";
 
@@ -93,6 +96,9 @@
 
 /* No comment provided by engineer. */
 "arduino digital" = "arduino digital";
+
+/* No comment provided by engineer. */
+"Arduino extension" = "Arduino extension";
 
 /* No comment provided by engineer. */
 "at " = "at ";
@@ -1662,9 +1668,6 @@
 
 /* No comment provided by engineer. */
 "Uploaded" = "Uploaded";
-
-/* No comment provided by engineer. */
-"Use Arduino bricks" = "Use Arduino bricks";
 
 /* No comment provided by engineer. */
 "Use camera" = "Use camera";

@@ -48,14 +48,15 @@
         }
         
         if ([Util isArduinoActivated]) {
-            [section addCell:[BOSwitchTableViewCell cellWithTitle:kLocalizedArduinoBricks key:kUseArduinoBricks handler:^(BOSwitchTableViewCell *cell) {
+            [section addCell:[BOSwitchTableViewCell cellWithTitle: kLocalizedArduinoBricks key:kUseArduinoBricks handler:^(BOSwitchTableViewCell *cell) {
                 cell.backgroundColor = UIColor.background;
                 cell.mainColor = UIColor.globalTint;
                 cell.toggleSwitch.tintColor = UIColor.globalTint;
                 [cell.toggleSwitch setOnTintColor:UIColor.globalTint];
+                cell.onFooterTitle = kLocalizedArduinoBricksDescription;
+                cell.offFooterTitle = kLocalizedArduinoBricksDescription;
             }]];
         }
-        
         
     }]];
     __unsafe_unretained typeof(self) weakSelf = self;

@@ -231,7 +231,7 @@
 #define kLocalizedVariables NSLocalizedString(@"Variables", nil)
 #define kLocalizedLists NSLocalizedString(@"Lists", nil)
 #define kLocalizedPhiroBricks NSLocalizedString(@"Use Phiro bricks", nil)
-#define kLocalizedArduinoBricks NSLocalizedString(@"Use Arduino bricks", nil)
+#define kLocalizedArduinoBricks NSLocalizedString(@"Arduino extension", nil)
 #define kLocalizedFrontCamera NSLocalizedString(@"Front camera", nil)
 #define kLocalizedDisconnectAllDevices NSLocalizedString(@"Disconnect all devices", nil)
 #define kLocalizedRemoveKnownDevices NSLocalizedString(@"Remove known devices", nil)
@@ -269,6 +269,7 @@
 #define kLocalizedBluetoothNotAvailable NSLocalizedString(@"Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings.",nil)
 #define kLocalizedDisconnectBluetoothDevices NSLocalizedString(@"All Bluetooth devices successfully disconnected", nil)
 #define kLocalizedRemovedKnownBluetoothDevices NSLocalizedString(@"All known Bluetooth devices successfully removed", nil)
+#define kLocalizedArduinoBricksDescription NSLocalizedString(@"Allow the app to control Arduino boards", nil)
 
 //************************************************************************************************************
 //**********************************       LONG DESCRIPTIONS      ********************************************
