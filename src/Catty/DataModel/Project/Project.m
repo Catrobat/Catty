@@ -190,12 +190,12 @@
     [Project setLastUsedProject:self];
 }
 
-- (void)renameToProjectName:(NSString*)projectName
+- (void)renameToProjectName:(NSString*)projectName andShowSaveNotification:(BOOL)showSaveNotification
 {
-    return [self renameToProjectName:projectName andProjectId:self.header.programID];
+    return [self renameToProjectName:projectName andProjectId:self.header.programID andShowSaveNotification:showSaveNotification];
 }
 
-- (void)renameToProjectName:(NSString*)projectName andProjectId:(NSString*)projectId
+- (void)renameToProjectName:(NSString*)projectName andProjectId:(NSString*)projectId andShowSaveNotification:(BOOL)showSaveNotification
 {
     BOOL updateName = ![self.header.programName isEqualToString:projectName];
     
@@ -218,7 +218,7 @@
     if (isLastProject) {
         [Util setLastProjectWithName:self.header.programName projectID:projectId];
     }
-    [self saveToDiskWithNotification:YES];
+    [self saveToDiskWithNotification:showSaveNotification];
 }
 
 - (void)renameObject:(SpriteObject*)object toName:(NSString*)newObjectName
@@ -568,7 +568,7 @@
         }
         ++index;
     }
-    [self renameToProjectName:kLocalizedMyFirstProject]; // saves to disk!
+    [self renameToProjectName:kLocalizedMyFirstProject andShowSaveNotification:NO]; // saves to disk!
 }
 
 + (NSString*)basePath

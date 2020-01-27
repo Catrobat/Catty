@@ -108,7 +108,7 @@ final class SceneTests: XCTestCase {
     }
 
     func testVariableLabel() {
-        let project = ProjectMock(width: self.screenSize.width, andHeight: self.screenSize.height)!
+        let project = ProjectMock(width: self.screenSize.width, andHeight: self.screenSize.height)
         let scene = SceneBuilder(project: project).build()
 
         let userVariable = UserVariable()

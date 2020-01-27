@@ -270,7 +270,7 @@ class ProjectsTest: XCTestCase {
 
         XCTAssertTrue(fileManager.directoryExists(projectPath))
 
-        project.rename(toProjectName: "newProject")
+        project.rename(toProjectName: "newProject", andShowSaveNotification: true)
 
         let newProjectPath = project.projectPath()
 
@@ -286,7 +286,7 @@ class ProjectsTest: XCTestCase {
 
         XCTAssertTrue(fileManager.directoryExists(projectPath))
 
-        project.rename(toProjectName: project.header.programName)
+        project.rename(toProjectName: project.header.programName, andShowSaveNotification: true)
 
         let newProjectPath = project.projectPath()
 
@@ -302,7 +302,7 @@ class ProjectsTest: XCTestCase {
         XCTAssertTrue(fileManager.directoryExists(projectPath))
         XCTAssertNotEqual(newProjectId, project.header.programID)
 
-        project.rename(toProjectName: project.header.programName, andProjectId: newProjectId)
+        project.rename(toProjectName: project.header.programName, andProjectId: newProjectId, andShowSaveNotification: true)
 
         let newProjectPath = project.projectPath()
 
@@ -347,5 +347,15 @@ class ProjectsTest: XCTestCase {
 
         let project = Project(loadingInfo: loadingInfo!)
         XCTAssertEqual(newProjectName, project!.header.programName!)
+    }
+
+    func testDefaultProjectWithoutSavedNotification() {
+        let project = ProjectMock()
+
+        project.rename(toProjectName: "Project Name", andShowSaveNotification: true)
+        XCTAssertTrue(project.saveNotificationShown)
+
+        project.translateDefaultProject()
+        XCTAssertFalse(project.saveNotificationShown)
     }
 }
