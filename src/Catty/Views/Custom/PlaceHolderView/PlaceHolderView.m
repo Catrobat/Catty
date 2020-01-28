@@ -63,8 +63,9 @@
     self.placeholderDescriptionLabel.backgroundColor = UIColor.clearColor;
     self.placeholderDescriptionLabel.textColor = UIColor.globalTint;
     self.placeholderDescriptionLabel.numberOfLines = 0;
+    self.placeholderDescriptionLabel.lineBreakMode = NSLineBreakByWordWrapping;
     self.contentView = self.placeholderDescriptionLabel;
-    self.contentView.translatesAutoresizingMaskIntoConstraints = NO;
+    self.contentView.translatesAutoresizingMaskIntoConstraints = YES;
 }
 
 - (void)setTitle:(NSString *)title
