@@ -26,13 +26,13 @@
 "acceleration-sensor" = "sensor-aceleración";
 
 /* No comment provided by engineer. */
-"Actors and objects" = "Actors and objects";
+"Actors and objects" = "Actores y objetos";
 
 /* No comment provided by engineer. */
 "Add" = "Añadir";
 
 /* No comment provided by engineer. */
-"Add actor or object" = "Add actor or object";
+"Add actor or object" = "Añadir actor o objeto";
 
 /* No comment provided by engineer. */
 "add comment here..." = "añada comentario aqui...";
@@ -194,7 +194,7 @@
 "Cannot connect to device. The device is not responding." = "No se puede conectar al dispositivo. El dispositivo no responde.";
 
 /* No comment provided by engineer. */
-"Cannot connect to the media library. Please check your internet connection." = "Cannot connect to the media library. Please check your internet connection.";
+"Cannot connect to the media library. Please check your internet connection." = "No se puede conectar a la Biblioteca de Medios. Por favor, compruebe su conexión a Internet.";
 
 /* No comment provided by engineer. */
 "Categories" = "Categorías";
@@ -221,13 +221,13 @@
 "Change volume by" = "Cambiar el volumen en";
 
 /* No comment provided by engineer. */
-"Change x by " = "Change x by ";
+"Change x by " = "Cambiar X por ";
 
 /* No comment provided by engineer. */
-"Change y by " = "Change y by ";
+"Change y by " = "Cambiar Y por ";
 
 /* No comment provided by engineer. */
-"Changes discarded." = "Changes discarded.";
+"Changes discarded." = "Cambios descartados.";
 
 /* No comment provided by engineer. */
 "Changes saved." = "¡Cambios guardados!";
@@ -272,7 +272,7 @@
 "Connection failed" = "Conexión fallida";
 
 /* bluetooth */
-"Connection lost" = "Connection lost";
+"Connection lost" = "Conexión perdida";
 
 /* bluetooth */
 "Connection not possible" = "La conexión no es posible";
@@ -290,10 +290,10 @@
 "Copy" = "Copiar";
 
 /* No comment provided by engineer. */
-"Copy brick" = "Copy brick";
+"Copy brick" = "Copiar bloque";
 
 /* No comment provided by engineer. */
-"Copy looks" = "Copy looks";
+"Copy looks" = "Copiar apariencias";
 
 /* No comment provided by engineer. */
 "Copy project" = "Copiar proyecto";
@@ -344,16 +344,16 @@
 "Delete loop" = "Delete loop";
 
 /* No comment provided by engineer. */
-"Delete project" = "Delete project";
+"Delete project" = "Eliminar proyecto";
 
 /* No comment provided by engineer. */
-"Delete projects" = "Delete projects";
+"Delete projects" = "Eliminar proyectos";
 
 /* No comment provided by engineer. */
-"Delete script" = "Delete script";
+"Delete script" = "Eliminar script";
 
 /* No comment provided by engineer. */
-"Delete sounds" = "Delete sounds";
+"Delete sounds" = "Eliminar sonidos";
 
 /* No comment provided by engineer. */
 "Delete these bricks?" = "Delete these bricks?";
@@ -551,10 +551,10 @@
 "face detected" = "face detected";
 
 /* No comment provided by engineer. */
-"faceposition x" = "faceposition x";
+"faceposition x" = "posicion facial x";
 
 /* No comment provided by engineer. */
-"faceposition y" = "faceposition y";
+"faceposition y" = "posicion facial y";
 
 /* No comment provided by engineer. */
 "facesize" = "tamaño_de_cara";
@@ -602,7 +602,7 @@
 "Following features used in this project are not compatible with this version of Pocket Code:" = "Las siguientes características usadas en este proyecto no son compatibles con esta versión de Pocket Code:";
 
 /* No comment provided by engineer. */
-"for" = "para";
+"for" = "por";
 
 /* No comment provided by engineer. */
 "for all actors or objects" = "for all actors or objects";
@@ -989,9 +989,6 @@
 "No description available" = "No description available";
 
 /* No comment provided by engineer. */
-"Please enter at least %lu character(s)." = "Please enter at least %lu character(s).";
-
-/* No comment provided by engineer. */
 "No or invalid image name entered, try again." = "No se ha introducido nombre de imagen o es inválido, por favor pruebe otra vez.";
 
 /* No comment provided by engineer. */
@@ -1004,7 +1001,7 @@
 "No whitespace character allowed" = "No whitespace character allowed";
 
 /* No comment provided by engineer. */
-"not" = "NO";
+"not" = "no";
 
 /* No comment provided by engineer. */
 "not available. Continue anyway?" = "no está disponible. ¿Continuar de todos modos?";
@@ -1121,6 +1118,9 @@
 "Please enter a text." = "Please enter a text.";
 
 /* No comment provided by engineer. */
+"Please enter at least %lu character(s)." = "Please enter at least %lu character(s).";
+
+/* No comment provided by engineer. */
 "Please log in to report this project as inappropriate" = "Please log in to report this project as inappropriate";
 
 /* paint */
@@ -1199,7 +1199,7 @@
 "Project lists:" = "Project lists:";
 
 /* No comment provided by engineer. */
-"Project name" = "Project name";
+"Project name" = "Nombre del proyecto";
 
 /* No comment provided by engineer. */
 "Project Name is necessary!" = "Project Name is necessary!";
@@ -1484,7 +1484,7 @@
 "Syntax Error!" = "Error de sintaxis.";
 
 /* No comment provided by engineer. */
-"Tap \"+\" to add actors or objects" = "Tap \"+\" to add actors or objects";
+"Tap \"+\" to add actors or objects" = "Pulsa \"+\" para añadir actores u objetos";
 
 /* No comment provided by engineer. */
 "Tap \"+\" to add backgrounds" = "Tap \"+\" to add backgrounds";

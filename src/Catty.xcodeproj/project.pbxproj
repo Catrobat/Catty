@@ -1408,6 +1408,7 @@
 
 /* Begin PBXFileReference section */
 		0041F40278ECB64E534F023D /* te */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = te; path = te.lproj/Localizable.strings; sourceTree = "<group>"; };
+		008104EAAB0CBEC616F8EABD /* uz */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = uz; path = uz.lproj/Localizable.strings; sourceTree = "<group>"; };
 		04FC473CDF0FCFB7BD890320 /* el */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0A1A12A18F2C85AB4CBCDD4D /* lt */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = lt; path = lt.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0C2E3B83D1DDFF32F7255F50 /* pl */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -8451,6 +8452,7 @@
 				bn,
 				chr,
 				"sr-Latn",
+				uz,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			productRefGroup = 19C28FACFE9D520D11CA2CBB /* Products */;
@@ -10066,6 +10068,7 @@
 				F511044FACC2C8E38A678BB4 /* chr */,
 				39DDF5E9790E36F418D99ACA /* sr-Cyrl */,
 				7DBD7E053B638AB004053196 /* sr-Latn */,
+				008104EAAB0CBEC616F8EABD /* uz */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

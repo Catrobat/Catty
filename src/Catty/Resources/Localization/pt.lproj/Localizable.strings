@@ -989,9 +989,6 @@
 "No description available" = "No description available";
 
 /* No comment provided by engineer. */
-"Please enter at least %lu character(s)." = "Nenhuma entrada. Por favor introduza pelo menos %lu caracter(es).";
-
-/* No comment provided by engineer. */
 "No or invalid image name entered, try again." = "Nenhum nome de imagem ou nome de imagem inválido inserido; tente de novo.";
 
 /* No comment provided by engineer. */
@@ -1119,6 +1116,9 @@
 
 /* paint */
 "Please enter a text." = "Please enter a text.";
+
+/* No comment provided by engineer. */
+"Please enter at least %lu character(s)." = "Please enter at least %lu character(s).";
 
 /* No comment provided by engineer. */
 "Please log in to report this project as inappropriate" = "Please log in to report this project as inappropriate";
