@@ -217,7 +217,7 @@
 #define kLocalizedMeasure NSLocalizedString(@"Measure", nil)
 #define kLocalizedSize NSLocalizedString(@"Size", nil)
 #define kLocalizedObject NSLocalizedString(@"Object", nil)
-#define kLocalizedObjects NSLocalizedString(@"Actors or objects", nil)
+#define kLocalizedObjects NSLocalizedString(@"Actors and objects", nil)
 #define kLocalizedBricks NSLocalizedString(@"Bricks", nil)
 #define kLocalizedSounds NSLocalizedString(@"Sounds", nil)
 #define kLocalizedLastAccess NSLocalizedString(@"Last access", nil)
