@@ -1553,7 +1553,7 @@
 "This feature is coming soon!" = "This feature is coming soon!";
 
 /* No comment provided by engineer. */
-"this is a test translation which will be removed." = "this is a test translation which will be removed.";
+"this is another test translation which will be removed." = "this is another test translation which will be removed.";
 
 /* No comment provided by engineer. */
 "This variable can not be deleted because it is still in use." = "This variable can not be deleted because it is still in use.";

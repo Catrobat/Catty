@@ -753,7 +753,7 @@
 //****************************************       Debug        ************************************************
 //************************************************************************************************************
 #define kLocalizedDebugMode NSLocalizedString(@"debug", nil)
-#define kLocalizedTestTranslation NSLocalizedString(@"this is a test translation which will be removed.", nil)
+#define kLocalizedAnotherTestTranslation NSLocalizedString(@"this is another test translation which will be removed.", nil)
 
 /*
      _       _     _                       _              _         _
