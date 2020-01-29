@@ -19,7 +19,7 @@ platform :ios do
   $catty_schemes = {
     "release" => "Catty (RELEASE)",
     "debug" => "Catty (DEBUG)"
-  } 
+  }
   $build_dir = "fastlane/builds/"
   $branch_name= git_branch.sub("origin/", "").sub("upstream/", "")
   $build_name = $branch_name
@@ -110,7 +110,7 @@ platform :ios do
         end
       end
     end
-      
+
     result = multi_scan(devices: ["iPhone 11"],
       project: File.absolute_path('../Catty.xcodeproj'),
       try_count: 3,
@@ -126,7 +126,7 @@ platform :ios do
   desc "Collate all test reports"
   lane :test_reports do
     collate_junit_reports(
-      reports: ["./fastlane/test_output/results-BluetoothHelperTests/report.junit", 
+      reports: ["./fastlane/test_output/results-BluetoothHelperTests/report.junit",
                 "./fastlane/test_output/results-Catty Tests/report.junit",
                 "./fastlane/test_output/results-Catty UITests/report.junit"],
       collated_report: './fastlane/test_output/TestSummaries.xml'
@@ -145,8 +145,8 @@ platform :ios do
       command: "curl \
         -F \"files[catty/Localizable.strings]=@../Catty/Resources/Localization/en.lproj/Localizable.strings\" \
         -F \"export_patterns[catty/Localizable.strings]=/catty/%osx_code%/%original_file_name%\" \
-        https://api.crowdin.com/api/project/catrobat/update-file?key="+ENV["CROWDIN_KEY"], 
-      log: false
+        https://api.crowdin.com/api/project/catrobat/update-file?key="+ENV["CROWDIN_KEY"],
+      log: true
     )
   end
 
