@@ -26,7 +26,7 @@
 "acceleration-sensor" = "加速度传感器";
 
 /* No comment provided by engineer. */
-"Actors and objects" = "Actors and objects";
+"Actors and objects" = "行为者和物体";
 
 /* No comment provided by engineer. */
 "Add" = "添加";
@@ -989,9 +989,6 @@
 "No description available" = "No description available";
 
 /* No comment provided by engineer. */
-"Please enter at least %lu character(s)." = "输入内容为空。请输入至少 %lu 个字符。";
-
-/* No comment provided by engineer. */
 "No or invalid image name entered, try again." = "输入了空的或无效的图像名称，请再试一次。";
 
 /* No comment provided by engineer. */
@@ -1119,6 +1116,9 @@
 
 /* paint */
 "Please enter a text." = "Please enter a text.";
+
+/* No comment provided by engineer. */
+"Please enter at least %lu character(s)." = "Please enter at least %lu character(s).";
 
 /* No comment provided by engineer. */
 "Please log in to report this project as inappropriate" = "Please log in to report this project as inappropriate";

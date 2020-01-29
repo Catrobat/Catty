@@ -26,13 +26,13 @@
 "acceleration-sensor" = "Beschleunigungssensor";
 
 /* No comment provided by engineer. */
-"Actors and objects" = "Actors and objects";
+"Actors and objects" = "Figuren und Objekte";
 
 /* No comment provided by engineer. */
 "Add" = "Hinzufügen";
 
 /* No comment provided by engineer. */
-"Add actor or object" = "Add actor or object";
+"Add actor or object" = "Figur oder Objekt hinzuzufügen";
 
 /* No comment provided by engineer. */
 "add comment here..." = "Hier Kommentar hinzufügen...";
@@ -989,9 +989,6 @@
 "No description available" = "No description available";
 
 /* No comment provided by engineer. */
-"Please enter at least %lu character(s)." = "Please enter at least %lu character(s).";
-
-/* No comment provided by engineer. */
 "No or invalid image name entered, try again." = "Sie haben keinen oder einen ungültigen Bildnamen eingegeben. Bitte versuchen Sie es erneut.";
 
 /* No comment provided by engineer. */
@@ -1119,6 +1116,9 @@
 
 /* paint */
 "Please enter a text." = "Please enter a text.";
+
+/* No comment provided by engineer. */
+"Please enter at least %lu character(s)." = "Please enter at least %lu character(s).";
 
 /* No comment provided by engineer. */
 "Please log in to report this project as inappropriate" = "Please log in to report this project as inappropriate";
@@ -1637,7 +1637,7 @@
 "Unknown Element" = "Unknown Element";
 
 /* No comment provided by engineer. */
-"Unselect all" = "Unselect all";
+"Unselect all" = "Alle abwählen";
 
 /* No comment provided by engineer. */
 "Unsupported Brick:" = "Unsupported Brick:";

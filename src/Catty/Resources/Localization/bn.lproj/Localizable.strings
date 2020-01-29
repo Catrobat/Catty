@@ -26,7 +26,7 @@
 "acceleration-sensor" = "ত্বরণ সেন্সর";
 
 /* No comment provided by engineer. */
-"Actors and objects" = "Actors and objects";
+"Actors and objects" = "অভিনেতা এবং অবজেক্টস";
 
 /* No comment provided by engineer. */
 "Add" = "যোগ করুন";
@@ -989,9 +989,6 @@
 "No description available" = "No description available";
 
 /* No comment provided by engineer. */
-"Please enter at least %lu character(s)." = "কোনও ইনপুট নেই। কমপক্ষে %lu অক্ষর লিখুন";
-
-/* No comment provided by engineer. */
 "No or invalid image name entered, try again." = "না বা অবৈধ চিত্রের নাম প্রবেশ করানো হয়েছে, আবার চেষ্টা করুন।";
 
 /* No comment provided by engineer. */
@@ -1119,6 +1116,9 @@
 
 /* paint */
 "Please enter a text." = "Please enter a text.";
+
+/* No comment provided by engineer. */
+"Please enter at least %lu character(s)." = "Please enter at least %lu character(s).";
 
 /* No comment provided by engineer. */
 "Please log in to report this project as inappropriate" = "অনুপযুক্ত হিসাবে এই প্রজেক্টটি রিপোর্ট করতে লগ ইন করুন";
