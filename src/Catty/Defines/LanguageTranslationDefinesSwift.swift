@@ -753,7 +753,6 @@ let kLocalizedUnexpectedErrorMessage = NSLocalizedString("Unexpected Error, plea
 //****************************************       Debug        ************************************************
 //************************************************************************************************************
 let kLocalizedDebugMode = NSLocalizedString("debug", comment: "")
-let kLocalizedAnotherTestTranslation = NSLocalizedString("this is another test translation which will be removed.", comment: "")
 
 /*
      _       _     _                       _              _         _
