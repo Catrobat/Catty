@@ -1,18 +1,15 @@
-name: prmerge-upload-crowdin
+name: scheduled-upload-crowdin
 
 on:
-  pull_request:
-    types: [closed] 
+  schedule:
+    - cron:  '*/15 * * * *'
 
 jobs:
   build:
-
     runs-on: macos-latest
-
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@develop
     - name: Upload Localization to Crowdin by fastlane
-      if: github.event.pull_request.merged == true
       env:
         CROWDIN_KEY: ${{ secrets.CROWDIN_API }}
       run: cd src && fastlane crowdin_upload

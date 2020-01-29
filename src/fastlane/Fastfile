@@ -146,7 +146,7 @@ platform :ios do
         -F \"files[catty/Localizable.strings]=@../Catty/Resources/Localization/en.lproj/Localizable.strings\" \
         -F \"export_patterns[catty/Localizable.strings]=/catty/%osx_code%/%original_file_name%\" \
         https://api.crowdin.com/api/project/catrobat/update-file?key="+ENV["CROWDIN_KEY"],
-      log: true
+      log: false
     )
   end
 
