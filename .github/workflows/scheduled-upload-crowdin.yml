@@ -8,7 +8,9 @@ jobs:
   build:
     runs-on: macos-latest
     steps:
-    - uses: actions/checkout@develop
+    - uses: actions/checkout@v2
+      with:
+          ref: develop
     - name: Upload Localization to Crowdin by fastlane
       env:
         CROWDIN_KEY: ${{ secrets.CROWDIN_API }}
