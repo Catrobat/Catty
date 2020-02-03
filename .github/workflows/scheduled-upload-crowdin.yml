@@ -14,4 +14,5 @@ jobs:
     - name: Upload Localization to Crowdin by fastlane
       env:
         CROWDIN_KEY: ${{ secrets.CROWDIN_API }}
+        FASTLANE_SKIP_UPDATE_CHECK: '1'
       run: cd src && fastlane crowdin_upload

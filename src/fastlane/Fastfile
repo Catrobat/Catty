@@ -10,8 +10,13 @@
 #     https://docs.fastlane.tools/plugins/available-plugins
 #
 
-update_fastlane
-opt_out_usage
+before_all do
+  if ENV["FASTLANE_SKIP_UPDATE_CHECK"] != "1"
+    update_fastlane
+  end
+
+  opt_out_usage
+end
 
 default_platform(:ios)
 platform :ios do
