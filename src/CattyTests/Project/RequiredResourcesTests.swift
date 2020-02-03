@@ -26,7 +26,7 @@ import XCTest
 
 final class RequiredResourcesTests: XCTestCase {
     func setUp() {
-    	let screenSize = Util.screenSize(true)
+        let screenSize = Util.screenSize(true)
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
 
