@@ -34,6 +34,10 @@ platform :ios do
 
   desc "Create an ipa build (options: scheme)"
   lane :create_build do |options|
+    clear_derived_data
+    sh ("rm -rf ~/Library/Developer/Xcode/Archives")
+    sh ("rm -rf ~/Library/Caches/org.carthage.CarthageKit")
+
     gym(scheme: options[:scheme],
         export_method: options[:method],
         output_directory: $build_dir,
@@ -205,7 +209,6 @@ platform :ios do
 
   desc "Release Pocket Code to Testflight"
   lane :release do
-    sh ("security unlock-keychain -p $CI_PASSWORD ${HOME}/Library/Keychains/login.keychain-db")
     cert
     sigh(force: true)
     create_build scheme:$catty_schemes["release"], method:"app-store"
