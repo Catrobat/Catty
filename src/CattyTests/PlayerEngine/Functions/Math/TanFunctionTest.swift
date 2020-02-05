@@ -50,7 +50,7 @@ class TanFunctionTest: XCTestCase {
     }
 
     func testParameter() {
-        XCTAssertEqual(.number(defaultValue: 0), function.firstParameter())
+        XCTAssertEqual(.number(defaultValue: 45), function.firstParameter())
     }
 
     func testTag() {

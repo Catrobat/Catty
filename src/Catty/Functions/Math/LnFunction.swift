@@ -34,7 +34,7 @@ class LnFunction: SingleParameterDoubleFunction {
     }
 
     func firstParameter() -> FunctionParameter {
-        return .number(defaultValue: 0)
+        return .number(defaultValue: 2.718281828459)
     }
 
     func value(parameter: AnyObject?) -> Double {

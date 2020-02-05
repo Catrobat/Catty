@@ -50,7 +50,7 @@ class SinFunctionTest: XCTestCase {
     }
 
     func testParameter() {
-        XCTAssertEqual(.number(defaultValue: 0), function.firstParameter())
+        XCTAssertEqual(.number(defaultValue: 90), function.firstParameter())
     }
 
     func testTag() {

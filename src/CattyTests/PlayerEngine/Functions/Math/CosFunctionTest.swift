@@ -50,7 +50,7 @@ class CosFunctionTest: XCTestCase {
     }
 
     func testParameter() {
-        XCTAssertEqual(.number(defaultValue: 0), function.firstParameter())
+        XCTAssertEqual(.number(defaultValue: 360), function.firstParameter())
     }
 
     func testTag() {

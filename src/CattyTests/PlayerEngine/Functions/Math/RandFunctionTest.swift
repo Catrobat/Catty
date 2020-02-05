@@ -118,11 +118,11 @@ class RandFunctionTest: XCTestCase {
     }
 
     func testFirstParameter() {
-        XCTAssertEqual(.number(defaultValue: 0), function.firstParameter())
+        XCTAssertEqual(.number(defaultValue: 1), function.firstParameter())
     }
 
     func testSecondParameter() {
-        XCTAssertEqual(.number(defaultValue: 1), function.secondParameter())
+        XCTAssertEqual(.number(defaultValue: 6), function.secondParameter())
     }
 
     func testTag() {

@@ -33,11 +33,11 @@ class MaxFunction: DoubleParameterDoubleFunction {
     }
 
     func firstParameter() -> FunctionParameter {
-        return .number(defaultValue: 0)
+        return .number(defaultValue: 5)
     }
 
     func secondParameter() -> FunctionParameter {
-        return .number(defaultValue: 1)
+        return .number(defaultValue: 4)
     }
 
     func value(firstParameter: AnyObject?, secondParameter: AnyObject?) -> Double {

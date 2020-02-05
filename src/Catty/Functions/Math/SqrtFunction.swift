@@ -34,7 +34,7 @@ class SqrtFunction: SingleParameterDoubleFunction {
     }
 
     func firstParameter() -> FunctionParameter {
-        return .number(defaultValue: 0)
+        return .number(defaultValue: 4)
     }
 
     func value(parameter: AnyObject?) -> Double {
