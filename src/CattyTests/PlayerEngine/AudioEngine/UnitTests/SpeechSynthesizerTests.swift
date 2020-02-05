@@ -63,7 +63,7 @@ final class SpeechSynthesizerTests: XCTestCase {
         speechSynth.finishedSpeakingExpectationTuple = previousExpectationTuple
 
         speechSynth.speak(newUtterance, expectation: nil)
-        expect(self.currentUtteranceExpectation.isFulfilled).to(beTrue())
+        expect(self.currentUtteranceExpectation.isFulfilled) == true
         XCTAssertNil(speechSynth.finishedSpeakingExpectationTuple)
     }
 
@@ -71,8 +71,8 @@ final class SpeechSynthesizerTests: XCTestCase {
         speechSynth.finishedSpeakingExpectationTuple = previousExpectationTuple
 
         speechSynth.speak(newUtterance, expectation: newUtteranceExpectation)
-        expect(self.currentUtteranceExpectation.isFulfilled).to(beTrue())
-        expect(self.newUtteranceExpectation.isFulfilled).to(beFalse())
+        expect(self.currentUtteranceExpectation.isFulfilled) == true
+        expect(self.newUtteranceExpectation.isFulfilled) == false
         expect(self.speechSynth.finishedSpeakingExpectationTuple?.0) === newUtterance
         expect(self.speechSynth.finishedSpeakingExpectationTuple?.1) === newUtteranceExpectation
     }

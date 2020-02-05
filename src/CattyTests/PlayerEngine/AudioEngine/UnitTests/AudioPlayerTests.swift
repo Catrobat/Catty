@@ -59,7 +59,7 @@ final class AudioPlayerTests: XCTestCase {
     func testPlayDiscardedPlayerExpectPlayerNotToPlay() {
         player.isDiscarded = true
         player.play(expectation: nil)
-        expect(self.player.akPlayer.isPlaying).to(beFalse())
+        expect(self.player.akPlayer.isPlaying) == false
     }
 
     func testStopExpectWaitExpectationToBeFulfilled() {
@@ -70,26 +70,26 @@ final class AudioPlayerTests: XCTestCase {
         player.stop()
 
         expect(soundIsFinishedExpectation.isFulfilled).toEventually(beTrue(), timeout: 3)
-        expect(self.player.akPlayer.isPlaying).to(beFalse())
+        expect(self.player.akPlayer.isPlaying) == false
     }
 
     func testPause() {
         player.play(expectation: nil)
-        expect(self.player.akPlayer.isPlaying).to(beTrue())
+        expect(self.player.akPlayer.isPlaying) == true
         player.pause()
-        expect(self.player.akPlayer.isPaused).to(beTrue())
-        expect(self.player.isPaused).to(beTrue())
+        expect(self.player.akPlayer.isPaused) == true
+        expect(self.player.isPaused) == true
         player.stop()
     }
 
     func testResume() {
         player.play(expectation: nil)
-        expect(self.player.akPlayer.isPlaying).to(beTrue())
+        expect(self.player.akPlayer.isPlaying) == true
         player.pause()
-        expect(self.player.akPlayer.isPaused).to(beTrue())
-        expect(self.player.isPaused).to(beTrue())
+        expect(self.player.akPlayer.isPaused) == true
+        expect(self.player.isPaused) == true
         player.resume()
-        expect(self.player.akPlayer.isPlaying).to(beTrue())
+        expect(self.player.akPlayer.isPlaying) == true
         player.stop()
     }
 
@@ -98,10 +98,10 @@ final class AudioPlayerTests: XCTestCase {
 
         expect(self.player.akPlayer.connectionPoints.count) == 1
         player.play(expectation: soundIsFinishedExpectation)
-        expect(self.player.akPlayer.isPlaying).to(beTrue())
+        expect(self.player.akPlayer.isPlaying) == true
         player.remove()
         expect(soundIsFinishedExpectation.isFulfilled).toEventually(beTrue(), timeout: 3)
-        expect(self.player.akPlayer.isPlaying).to(beFalse())
+        expect(self.player.akPlayer.isPlaying) == false
         expect(self.player.akPlayer.connectionPoints.count) == 0
     }
 }
