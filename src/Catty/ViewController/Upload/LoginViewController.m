@@ -367,15 +367,19 @@
         self.loginButton.enabled = YES;
         [self hideLoadingView];
         NSDebug(@"Error: %@", kLocalizedAuthenticationFailed);
-        [Util alertWithText:kLocalizedAuthenticationFailed];
+        [self showError:kLocalizedAuthenticationFailed];
     } else {
         self.loginButton.enabled = YES;
         [self hideLoadingView];
         
         NSString *serverResponse = [dictionary valueForKey:answerTag];
         NSDebug(@"Error: %@", serverResponse);
-        [Util alertWithText:serverResponse];
+        [self showError:kLocalizedServerTimeoutIssueMessage];
     }
+}
+
+-(void)showError:(NSString *)message {
+    [Util alertWithText:message];
 }
 
 - (NSURLSession *)session {

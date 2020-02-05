@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		22524C38239FAFC500DD515E /* LoginViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22524C37239FAFC500DD515E /* LoginViewControllerTests.swift */; };
+		22524C3D23A2533F00DD515E /* LoginViewControllerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22524C3C23A2533F00DD515E /* LoginViewControllerMock.swift */; };
 		2D010F4822240C9F00CAAA06 /* XCUIElement+staticTexts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D010F4722240C9F00CAAA06 /* XCUIElement+staticTexts.swift */; };
 		2D227D94220B38E0008A2BC9 /* ScenePresenterVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D227D93220B38E0008A2BC9 /* ScenePresenterVCTests.swift */; };
 		2D6E3F39210A0A9F00FB8139 /* ChartProjectStoreDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6E3F38210A0A9F00FB8139 /* ChartProjectStoreDataSource.swift */; };
@@ -1419,6 +1421,8 @@
 		1B5E0F4EFA8B76CD707F0556 /* ur */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = ur; path = ur.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1C035A070A526C061039C146 /* ha */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = ha; path = ha.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1C557E56F94895CB30ED2558 /* en-CA */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = "en-CA"; path = "en-CA.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		22524C37239FAFC500DD515E /* LoginViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewControllerTests.swift; sourceTree = "<group>"; };
+		22524C3C23A2533F00DD515E /* LoginViewControllerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewControllerMock.swift; sourceTree = "<group>"; };
 		232DAAC73BFD01550ECFD889 /* sk */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2B9E6447F112720F0F74D139 /* tw */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = tw; path = tw.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -4921,6 +4925,7 @@
 		4CD0BA92214678D500BF17A4 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				22524C37239FAFC500DD515E /* LoginViewControllerTests.swift */,
 				4CD0BA952146791D00BF17A4 /* UtilTests.swift */,
 				9E1444F5228B531400104F77 /* ExtendedTimerTests.swift */,
 			);
@@ -5373,6 +5378,7 @@
 				4CBF5F9D21AF1D390079C834 /* UIGestureRecognizerMock.swift */,
 				4C1C8B15213FE7F1003B3AA4 /* StoreProjectDownloaderMock.swift */,
 				D3CF3A0E23D07F06006B2667 /* ProjectMock.swift */,
+				22524C3C23A2533F00DD515E /* LoginViewControllerMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -9197,6 +9203,7 @@
 				4C68FC931B25A00B00AB3EE8 /* InternFormulaTest.m in Sources */,
 				E4C5C1122143A3150054F236 /* SearchStoreDataSourceTests.swift in Sources */,
 				4C6FE177212D2D2E0067B7D5 /* LengthFunctionTest.swift in Sources */,
+				22524C38239FAFC500DD515E /* LoginViewControllerTests.swift in Sources */,
 				4C6FE161212D2D2E0067B7D5 /* RoundFunctionTest.swift in Sources */,
 				BAA2B9B021A5B30400FEE300 /* XMLParserTests0991.swift in Sources */,
 				9E3AF7982326F21300AB16F1 /* SetXBrickTests.swift in Sources */,
@@ -9235,6 +9242,7 @@
 				4CD0BA9921467C5A00BF17A4 /* HeaderTests.swift in Sources */,
 				4C3A5CA721D3B687008FD83F /* EqualOperatorTest.swift in Sources */,
 				4C3A5CA321D3B542008FD83F /* MultOperator.swift in Sources */,
+				22524C3D23A2533F00DD515E /* LoginViewControllerMock.swift in Sources */,
 				4C82268F213FB2C600F3D750 /* MultiFingerYFunctionTests.swift in Sources */,
 				4C6FE16D212D2D2E0067B7D5 /* PowFunctionTest.swift in Sources */,
 				4C68FC911B25A00B00AB3EE8 /* InternFormulaParserStringFunctionsTest.m in Sources */,
