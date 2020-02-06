@@ -33,11 +33,11 @@ class ModFunction: DoubleParameterDoubleFunction {
     }
 
     func firstParameter() -> FunctionParameter {
-        return .number(defaultValue: 1)
+        return .number(defaultValue: 3)
     }
 
     func secondParameter() -> FunctionParameter {
-        return .number(defaultValue: 1)
+        return .number(defaultValue: 2)
     }
 
     func value(firstParameter: AnyObject?, secondParameter: AnyObject?) -> Double {

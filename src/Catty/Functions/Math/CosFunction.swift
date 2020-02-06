@@ -34,7 +34,7 @@ class CosFunction: SingleParameterDoubleFunction {
     }
 
     func firstParameter() -> FunctionParameter {
-        return .number(defaultValue: 0)
+        return .number(defaultValue: 360)
     }
 
     func value(parameter: AnyObject?) -> Double {

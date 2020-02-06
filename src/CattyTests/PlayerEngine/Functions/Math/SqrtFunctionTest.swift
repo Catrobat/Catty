@@ -50,7 +50,7 @@ class SqrtFunctionTest: XCTestCase {
     }
 
     func testParameter() {
-        XCTAssertEqual(.number(defaultValue: 0), function.firstParameter())
+        XCTAssertEqual(.number(defaultValue: 4), function.firstParameter())
     }
 
     func testTag() {

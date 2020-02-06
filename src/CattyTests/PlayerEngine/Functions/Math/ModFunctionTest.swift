@@ -71,11 +71,11 @@ class ModFunctionTest: XCTestCase {
     }
 
     func testFirstParameter() {
-        XCTAssertEqual(.number(defaultValue: 1), function.firstParameter())
+        XCTAssertEqual(.number(defaultValue: 3), function.firstParameter())
     }
 
     func testSecondParameter() {
-        XCTAssertEqual(.number(defaultValue: 1), function.secondParameter())
+        XCTAssertEqual(.number(defaultValue: 2), function.secondParameter())
     }
 
     func testTag() {

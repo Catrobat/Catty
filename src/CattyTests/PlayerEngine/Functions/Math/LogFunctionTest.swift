@@ -50,7 +50,7 @@ class LogFunctionTest: XCTestCase {
     }
 
     func testParameter() {
-        XCTAssertEqual(.number(defaultValue: 0), function.firstParameter())
+        XCTAssertEqual(.number(defaultValue: 10), function.firstParameter())
     }
 
     func testTag() {

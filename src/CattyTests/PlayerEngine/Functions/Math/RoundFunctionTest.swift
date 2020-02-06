@@ -50,7 +50,7 @@ class RoundFunctionTest: XCTestCase {
     }
 
     func testParameter() {
-        XCTAssertEqual(.number(defaultValue: 0), function.firstParameter())
+        XCTAssertEqual(.number(defaultValue: 1.6), function.firstParameter())
     }
 
     func testTag() {

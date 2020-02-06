@@ -34,7 +34,7 @@ class LogFunction: SingleParameterDoubleFunction {
     }
 
     func firstParameter() -> FunctionParameter {
-        return .number(defaultValue: 0)
+        return .number(defaultValue: 10)
     }
 
     func value(parameter: AnyObject?) -> Double {

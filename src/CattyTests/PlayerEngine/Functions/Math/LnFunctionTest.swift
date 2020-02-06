@@ -50,7 +50,7 @@ class LnFunctionTest: XCTestCase {
     }
 
     func testParameter() {
-        XCTAssertEqual(.number(defaultValue: 0), function.firstParameter())
+        XCTAssertEqual(.number(defaultValue: 2.718281828459), function.firstParameter())
     }
 
     func testTag() {

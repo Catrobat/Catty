@@ -50,7 +50,7 @@ class AsinFunctionTest: XCTestCase {
     }
 
     func testParameter() {
-        XCTAssertEqual(.number(defaultValue: 0), function.firstParameter())
+        XCTAssertEqual(.number(defaultValue: 0.5), function.firstParameter())
     }
 
     func testTag() {
