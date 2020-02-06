@@ -20,32 +20,11 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
-#import "BaseLoginViewController.h"
-#import "CatrobatTableViewController.h"
+class LoginViewControllerMock: LoginViewController {
+    
+    var errorMessage: String?
 
-@interface LoginViewController : BaseLoginViewController<UITextFieldDelegate>
-
-@property (nonatomic, weak) CatrobatTableViewController * catTVC;
-
-@property (weak, nonatomic) IBOutlet UITextField *usernameField;
-
-@property (weak, nonatomic) IBOutlet UITextField *passwordField;
-
-@property (weak, nonatomic) IBOutlet UIButton *loginButton;
-
-@property (weak, nonatomic) IBOutlet UIButton *forgotButton;
-
-@property (nonatomic, weak) IBOutlet UILabel * titleLabel;
-
-@property (weak, nonatomic) IBOutlet UIImageView *headerImageView;
-
-@property (weak, nonatomic) IBOutlet UILabel *infoLabel;
-
-@property (weak, nonatomic) IBOutlet UIButton *registerButton;
-
--(void)handleLoginResponseWithData:(NSData *)data andResponse:(NSURLResponse *)response;
-
--(void)showError:(NSString *)message;
-
-@end
+    override func showError(_ message: String!) {
+        errorMessage = message
+    }
+}

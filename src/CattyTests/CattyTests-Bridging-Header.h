@@ -28,3 +28,4 @@
 
 #import "ConvertExceptionToError.h"
 #import "chromaprint.h"
+#import "LoginViewController.h"
