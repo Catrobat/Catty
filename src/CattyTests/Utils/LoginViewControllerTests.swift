@@ -25,7 +25,7 @@ import XCTest
 @testable import Pocket_Code
 
 class LoginViewControllerTests: XCTestCase {
-    
+
     var loginViewController: LoginViewControllerMock!
 
     override func setUp() {
