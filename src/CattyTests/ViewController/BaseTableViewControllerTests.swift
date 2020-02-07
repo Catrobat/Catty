@@ -20,16 +20,21 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-//
-//  Use this file to import your target's public headers that you would like to expose to Swift.
-//
+import Nimble
+import XCTest
 
-#import "Catty-Bridging-Header.h"
+@testable import Pocket_Code
 
-#import "ConvertExceptionToError.h"
-#import "chromaprint.h"
-#import "LoginViewController.h"
-#import "BaseCollectionViewController.h"
-#import "ScriptCollectionViewController.h"
-#import "FormulaEditorViewController.h"
-#import "PaintViewController.h"
+final class BaseCollectionViewControllerTests: XCTestCase {
+
+    override func setUp() {
+        super.setUp()
+    }
+
+    func testNotification() {
+        let controller = BaseCollectionViewController()
+        let expectedNotification = Notification(name: .baseCollectionViewControllerDidAppear, object: controller)
+
+        expect(controller.viewDidAppear(true)).to(postNotifications(contain(expectedNotification)))
+    }
+}

@@ -21,6 +21,7 @@
  */
 
 import DVR
+import Nimble
 @testable import Pocket_Code
 import XCTest
 
@@ -491,15 +492,15 @@ class StoreProjectsDownloaderTests: XCTestCase {
         wait(for: [expectation], timeout: 1.0)
     }
 
-    // MARK: - Download Data
+    // MARK: - Fetch Project Details
 
-    func testDownloadDataSucceeds() {
-        let dvrSession = Session(cassetteName: "StoreProjectDownloader.downloadData.success")
+    func testFetchProjectDetailsSucceeds() {
+        let dvrSession = Session(cassetteName: "StoreProjectDownloader.fetchProjectDetails.success")
         let downloader = StoreProjectDownloader(session: dvrSession)
         let project = getStoreProjectMock()
         let expectation = XCTestExpectation(description: "Download Featured Project")
 
-        downloader.downloadProject(for: project) { data, error in
+        downloader.fetchProjectDetails(for: project) { data, error in
             XCTAssertNil(error, "request failed")
             guard data != nil else { XCTFail("no data received"); return }
             expectation.fulfill()
@@ -508,13 +509,13 @@ class StoreProjectsDownloaderTests: XCTestCase {
         wait(for: [expectation], timeout: 1.0)
     }
 
-    func testDownloadDataSucceedsWithIntegerId() {
-        let dvrSession = Session(cassetteName: "StoreProjectDownloader.downloadData.IntegerId.success")
+    func testFetchProjectDetailsSucceedsWithIntegerId() {
+        let dvrSession = Session(cassetteName: "StoreProjectDownloader.fetchProjectDetails.IntegerId.success")
         let downloader = StoreProjectDownloader(session: dvrSession)
         let project = getStoreProjectMock()
         let expectation = XCTestExpectation(description: "Download Featured Project")
 
-        downloader.downloadProject(for: project) { data, error in
+        downloader.fetchProjectDetails(for: project) { data, error in
             XCTAssertNil(error, "request failed")
             guard data != nil else { XCTFail("no data received"); return }
             expectation.fulfill()
@@ -523,13 +524,13 @@ class StoreProjectsDownloaderTests: XCTestCase {
         wait(for: [expectation], timeout: 1.0)
     }
 
-    func testDownloadDataFailsWithUnexpectedError() {
+    func testFetchProjectDetailsFailsWithUnexpectedError() {
         let mockSession = URLSessionMock()
         let downloader = StoreProjectDownloader(session: mockSession)
         let expectation = XCTestExpectation(description: "Fetch Featured Projects")
         let project = getStoreProjectMock()
 
-        downloader.downloadProject(for: project) { _, error in
+        downloader.fetchProjectDetails(for: project) { _, error in
             guard let error = error else { XCTFail("no error returned"); return }
             XCTAssertEqual(error, .unexpectedError)
             expectation.fulfill()
@@ -538,13 +539,13 @@ class StoreProjectsDownloaderTests: XCTestCase {
         wait(for: [expectation], timeout: 1.0)
     }
 
-    func testDownloadDataFailsWithRequestError() {
-        let dvrSession = Session(cassetteName: "StoreProjectDownloader.downloadData.fail.request")
+    func testFetchProjectDetailsFailsWithRequestError() {
+        let dvrSession = Session(cassetteName: "StoreProjectDownloader.fetchProjectDetails.fail.request")
         let downloader = StoreProjectDownloader(session: dvrSession)
         let expectation = XCTestExpectation(description: "Fetch Featured Projects")
         let project = getStoreProjectMock()
 
-        downloader.downloadProject(for: project) { _, error in
+        downloader.fetchProjectDetails(for: project) { _, error in
             guard let error = error else { XCTFail("no error received"); return }
             switch error {
             case let .request(error: _, statusCode: statusCode):
@@ -555,6 +556,23 @@ class StoreProjectsDownloaderTests: XCTestCase {
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testFetchProjectDetailsNotFoundNotification() {
+        let project = getStoreProjectMock()
+        let url = URL(string: "\(NetworkDefines.connectionHost)/\(NetworkDefines.connectionIDQuery)?id=\(project.projectId)")!
+        let response = HTTPURLResponse(url: url, statusCode: 404, httpVersion: nil, headerFields: nil)
+        let error = ErrorMock("errorDescription")
+        let session = URLSessionMock(response: response, error: error)
+        let downloader = StoreProjectDownloader(session: session)
+        let userInfo = ["projectId": project.projectId,
+                        "url": url.absoluteString,
+                        "statusCode": 404,
+                        "error": error.localizedDescription] as [String: Any]
+
+        let expectedNotification = Notification(name: .projectFetchDetailsFailure, object: downloader, userInfo: userInfo)
+
+        expect(downloader.fetchProjectDetails(for: project) { _, _ in }).toEventually(postNotifications(contain(expectedNotification)))
     }
 
     private func getStoreProjectMock() -> StoreProject {

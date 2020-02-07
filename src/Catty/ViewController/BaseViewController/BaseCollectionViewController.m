@@ -102,6 +102,12 @@
     [self hideLoadingView];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [[NSNotificationCenter defaultCenter] postNotificationName:NotificationName.baseCollectionViewControllerDidAppear object:self];
+}
+
 - (PlaceHolderView*)placeHolderView
 {
     if (!_placeHolderView) {

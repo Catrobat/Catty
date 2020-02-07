@@ -132,6 +132,12 @@
     [self hideLoadingView];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [[NSNotificationCenter defaultCenter] postNotificationName:NotificationName.baseTableViewControllerDidAppear object:self];
+}
+
 #pragma mark - system events
 - (void)didReceiveMemoryWarning
 {

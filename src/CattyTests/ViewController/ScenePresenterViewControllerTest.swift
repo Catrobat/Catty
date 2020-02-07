@@ -21,6 +21,7 @@
  */
 
 import XCTest
+import Nimble
 
 @testable import Pocket_Code
 
@@ -68,5 +69,11 @@ final class ScenePresenterViewControllerTest: XCTestCase {
         let image = UIImage(contentsOfFile: expectedPath)
         XCTAssertEqual(CGFloat(type(of: vc).previewImageWidth), image?.size.width)
         XCTAssertEqual(CGFloat(type(of: vc).previewImageHeight), image?.size.height)
+    }
+
+    func testNotification() {
+        let expectedNotification = Notification(name: .scenePresenterViewControllerDidAppear, object: vc)
+
+        expect(self.vc.viewDidAppear(true)).to(postNotifications(contain(expectedNotification)))
     }
 }
