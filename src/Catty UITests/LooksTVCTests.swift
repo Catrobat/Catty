@@ -34,7 +34,7 @@ class LooksTVCTests: XCTestCase {
     func testLengthOfLook() {
         let lookName = String(repeating: "a", count: 250)
 
-        app.tables.staticTexts[kLocalizedContinue].tap()
+        app.tables.staticTexts[kLocalizedContinueProject].tap()
         waitForElementToAppear(app.tables.staticTexts["Mole 1"]).tap()
         app.tables.staticTexts[kLocalizedLooks].tap()
 
@@ -65,7 +65,7 @@ class LooksTVCTests: XCTestCase {
 
         let projectObjects = ["Mole 1", "Mole 2", "Mole 3", "Mole 4"]
 
-        app.tables.staticTexts[kLocalizedContinue].tap()
+        app.tables.staticTexts[kLocalizedContinueProject].tap()
 
         for object in projectObjects {
             waitForElementToAppear(app.tables.staticTexts[object]).tap()

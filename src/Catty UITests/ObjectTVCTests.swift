@@ -34,7 +34,7 @@ class ObjectTVCTests: XCTestCase {
     func testScriptsCanEnterScriptsOfAllMoles() {
         let projectObjects = ["Mole 1", "Mole 2", "Mole 3", "Mole 4"]
 
-        app.tables.staticTexts[kLocalizedContinue].tap()
+        app.tables.staticTexts[kLocalizedContinueProject].tap()
 
         //check every mole for script
         for object in projectObjects {
@@ -48,7 +48,7 @@ class ObjectTVCTests: XCTestCase {
     }
 
     func testScriptsCanDeleteBrickSetSizeTo() {
-        app.tables.staticTexts[kLocalizedContinue].tap()
+        app.tables.staticTexts[kLocalizedContinueProject].tap()
         waitForElementToAppear(app.tables.staticTexts["Mole 1"]).tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
 
@@ -63,7 +63,7 @@ class ObjectTVCTests: XCTestCase {
     }
 
     func testScriptsCanDeleteBrickLoop() {
-        app.tables.staticTexts[kLocalizedContinue].tap()
+        app.tables.staticTexts[kLocalizedContinueProject].tap()
         waitForElementToAppear(app.tables.staticTexts["Mole 1"]).tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
 
@@ -78,7 +78,7 @@ class ObjectTVCTests: XCTestCase {
     }
 
     func testScriptsCanCopyForeverBrick() {
-        app.tables.staticTexts[kLocalizedContinue].tap()
+        app.tables.staticTexts[kLocalizedContinueProject].tap()
         waitForElementToAppear(app.tables.staticTexts["Mole 1"]).tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
 
@@ -93,7 +93,7 @@ class ObjectTVCTests: XCTestCase {
     }
 
     func testScriptsCanDeleteWhenProjectStartedBrick() {
-        app.tables.staticTexts[kLocalizedContinue].tap()
+        app.tables.staticTexts[kLocalizedContinueProject].tap()
         waitForElementToAppear(app.tables.staticTexts["Mole 1"]).tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
 
@@ -111,7 +111,7 @@ class ObjectTVCTests: XCTestCase {
     }
 
     func testScriptsCanDeleteWaitBrick() {
-        app.tables.staticTexts[kLocalizedContinue].tap()
+        app.tables.staticTexts[kLocalizedContinueProject].tap()
         waitForElementToAppear(app.tables.staticTexts["Mole 1"]).tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
 
@@ -123,7 +123,7 @@ class ObjectTVCTests: XCTestCase {
     }
 
     func testLooksCanEnterSingleLook() {
-        app.tables.staticTexts[kLocalizedContinue].tap()
+        app.tables.staticTexts[kLocalizedContinueProject].tap()
         waitForElementToAppear(app.tables.staticTexts["Mole 1"]).tap()
         app.tables.staticTexts[kLocalizedLooks].tap()
 
@@ -135,7 +135,7 @@ class ObjectTVCTests: XCTestCase {
         let objectName = "testObject"
         let copiedObjectName = objectName + " (1)"
 
-        app.tables.staticTexts[kLocalizedNew].tap()
+        app.tables.staticTexts[kLocalizedNewProject].tap()
         let alertQuery = app.alerts[kLocalizedNewProject]
         alertQuery.textFields[kLocalizedEnterYourProjectNameHere].typeText(projectName)
         app.alerts[kLocalizedNewProject].buttons[kLocalizedOK].tap()
@@ -166,7 +166,7 @@ class ObjectTVCTests: XCTestCase {
         sheet.buttons[kLocalizedCopy].tap()
 
         app.navigationBars.buttons[kLocalizedPocketCode].tap()
-        app.tables.staticTexts[kLocalizedContinue].tap()
+        app.tables.staticTexts[kLocalizedContinueProject].tap()
         waitForElementToAppear(app.tables.staticTexts[copiedObjectName]).tap()
 
         app.staticTexts[kLocalizedScripts].tap()

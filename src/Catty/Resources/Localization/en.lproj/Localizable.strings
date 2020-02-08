@@ -206,6 +206,9 @@
 "Categories" = "Categories";
 
 /* No comment provided by engineer. */
+"Catrobat community" = "Catrobat community";
+
+/* No comment provided by engineer. */
 "ceil" = "ceil";
 
 /* No comment provided by engineer. */
@@ -288,6 +291,9 @@
 
 /* No comment provided by engineer. */
 "Continue" = "Continue";
+
+/* No comment provided by engineer. */
+"Continue project" = "Continue project";
 
 /* No comment provided by engineer. */
 "Control" = "Control";
@@ -543,9 +549,6 @@
 
 /* No comment provided by engineer. */
 "Error saving file" = "Error saving file";
-
-/* No comment provided by engineer. */
-"Explore" = "Explore";
 
 /* No comment provided by engineer. */
 "Explore apps" = "Explore apps";
@@ -1217,6 +1220,9 @@
 "Projects" = "Projects";
 
 /* No comment provided by engineer. */
+"Projects on device" = "Projects on device";
+
+/* No comment provided by engineer. */
 "Rate Us" = "Rate Us";
 
 /* No comment provided by engineer. */
@@ -1653,9 +1659,6 @@
 
 /* No comment provided by engineer. */
 "Unsupported Script:" = "Unsupported Script:";
-
-/* No comment provided by engineer. */
-"Upload" = "Upload";
 
 /* No comment provided by engineer. */
 "Upload project" = "Upload project";

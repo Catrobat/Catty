@@ -32,7 +32,7 @@ class BackgroundsTests: XCTestCase {
     }
 
     func testScriptsCanEnterScripts() {
-        app.tables.staticTexts[kLocalizedProjects].tap()
+        app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
         app.tables.staticTexts[kLocalizedMyFirstProject].tap()
         app.tables.staticTexts[kLocalizedBackground].tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
@@ -69,7 +69,7 @@ class BackgroundsTests: XCTestCase {
     }
 
     func testBackgroundsCanEnterBackgrounds() {
-        app.tables.staticTexts[kLocalizedContinue].tap()
+        app.tables.staticTexts[kLocalizedContinueProject].tap()
         waitForElementToAppear(app.tables.staticTexts[kLocalizedBackground]).tap()
         app.tables.staticTexts[kLocalizedBackgrounds].tap()
 
@@ -214,7 +214,7 @@ class BackgroundsTests: XCTestCase {
     }
 
     func testSoundsCanEnterSounds() {
-        app.tables.staticTexts[kLocalizedProjects].tap()
+        app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
         app.tables.staticTexts[kLocalizedMyFirstProject].tap()
         app.tables.staticTexts[kLocalizedBackground].tap()
         app.tables.staticTexts[kLocalizedSounds].tap()

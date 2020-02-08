@@ -129,12 +129,12 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
 - (void)initTableView
 {
     self.cells = [[NSArray alloc] initWithObjects:
-                  kLocalizedContinue,
-                  kLocalizedNew,
-                  kLocalizedProjects,
+                  kLocalizedContinueProject,
+                  kLocalizedNewProject,
+                  kLocalizedProjectsOnDevice,
                   kLocalizedHelp,
-                  kLocalizedExplore,
-                  kLocalizedUpload, nil];
+                  kLocalizedCatrobatCommunity,
+                  kLocalizedUploadProject, nil];
 
     self.imageNames = [[NSArray alloc] initWithObjects:kMenuImageNameContinue, kMenuImageNameNew, kMenuImageNameProjects, kMenuImageNameHelp, kMenuImageNameExplore, kMenuImageNameUpload, nil];
     self.identifiers = [[NSMutableArray alloc] initWithObjects:kSegueToContinue, kSegueToNewProject, kSegueToProjects, kSegueToHelp, kSegueToExplore, kSegueToUpload, nil];

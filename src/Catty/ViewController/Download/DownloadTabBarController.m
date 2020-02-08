@@ -41,7 +41,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.navigationItem.title = kLocalizedExplore;
+    self.navigationItem.title = kLocalizedCatrobatCommunity;
     self.tabBar.barTintColor = UIColor.tabBar;
     self.tabBar.barStyle = UIBarStyleDefault;
     self.tabBar.tintColor = UIColor.tabTint;

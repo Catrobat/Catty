@@ -58,7 +58,7 @@ extension XCTestCase {
     }
 
     func createProject(name: String, in app: XCUIApplication) {
-        app.tables.staticTexts[kLocalizedNew].tap()
+        app.tables.staticTexts[kLocalizedNewProject].tap()
 
         let alert = waitForElementToAppear(app.alerts[kLocalizedNewProject])
         alert.textFields[kLocalizedEnterYourProjectNameHere].typeText(name)
@@ -142,7 +142,7 @@ extension XCTestCase {
 
     private func restoreDefaultProject() {
         let app = XCUIApplication()
-        app.tables.staticTexts[kLocalizedProjects].tap()
+        app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
         waitForElementToAppear(app.navigationBars[kLocalizedProjects]).buttons[kLocalizedEdit].tap()
         waitForElementToAppear(app.buttons[kLocalizedDeleteProjects]).tap()
         let toolbarsQuery = app.toolbars

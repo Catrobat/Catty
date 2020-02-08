@@ -48,7 +48,7 @@ class VariablesTests: XCTestCase {
     }
 
     func testDontShowVListPickerWhenNoListsDefinedForObject() {
-        app.tables.staticTexts[kLocalizedNew].tap()
+        app.tables.staticTexts[kLocalizedNewProject].tap()
         app.alerts[kLocalizedNewProject].textFields[kLocalizedEnterYourProjectNameHere].typeText("Test Project")
         XCUIApplication().alerts[kLocalizedNewProject].buttons[kLocalizedOK].tap()
         XCUIApplication().tables.staticTexts[kLocalizedBackground].tap()
