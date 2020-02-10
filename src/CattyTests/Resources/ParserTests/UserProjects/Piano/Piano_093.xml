@@ -50,6 +50,7 @@ REMIX TIPS:
         <script type="StartScript">
           <brickList>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <type>NUMBER</type>
@@ -62,6 +63,7 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="TurnRightBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TURN_RIGHT_DEGREES">
                   <type>NUMBER</type>
@@ -70,6 +72,7 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="SetSizeToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE">
                   <type>NUMBER</type>
@@ -78,16 +81,20 @@ REMIX TIPS:
               </formulaList>
             </brick>
           </brickList>
+        <commentedOut>false</commentedOut>
         </script>
         <script type="WhenScript">
           <brickList>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look[2]"/>
             </brick>
             <brick type="PlaySoundBrick">
+              <commentedOut>false</commentedOut>
               <sound reference="../../../../../soundList/sound"/>
             </brick>
             <brick type="WaitBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                   <type>NUMBER</type>
@@ -96,9 +103,11 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <action>Tapped</action>
         </script>
       </scriptList>
@@ -122,6 +131,7 @@ REMIX TIPS:
         <script type="StartScript">
           <brickList>
             <brick type="SetSizeToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE">
                   <type>NUMBER</type>
@@ -130,6 +140,7 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="TurnRightBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TURN_RIGHT_DEGREES">
                   <type>NUMBER</type>
@@ -138,6 +149,7 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <type>NUMBER</type>
@@ -150,16 +162,20 @@ REMIX TIPS:
               </formulaList>
             </brick>
           </brickList>
+        <commentedOut>false</commentedOut>
         </script>
         <script type="WhenScript">
           <brickList>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look[2]"/>
             </brick>
             <brick type="PlaySoundBrick">
+              <commentedOut>false</commentedOut>
               <sound reference="../../../../../soundList/sound"/>
             </brick>
             <brick type="WaitBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                   <type>NUMBER</type>
@@ -168,9 +184,11 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <action>Tapped</action>
         </script>
       </scriptList>
@@ -194,6 +212,7 @@ REMIX TIPS:
         <script type="StartScript">
           <brickList>
             <brick type="SetSizeToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE">
                   <type>NUMBER</type>
@@ -202,6 +221,7 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <type>NUMBER</type>
@@ -214,6 +234,7 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="TurnRightBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TURN_RIGHT_DEGREES">
                   <type>NUMBER</type>
@@ -222,16 +243,20 @@ REMIX TIPS:
               </formulaList>
             </brick>
           </brickList>
+        <commentedOut>false</commentedOut>
         </script>
         <script type="WhenScript">
           <brickList>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look[2]"/>
             </brick>
             <brick type="PlaySoundBrick">
+              <commentedOut>false</commentedOut>
               <sound reference="../../../../../soundList/sound"/>
             </brick>
             <brick type="WaitBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                   <type>NUMBER</type>
@@ -240,9 +265,11 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <action>Tapped</action>
         </script>
       </scriptList>
@@ -266,6 +293,7 @@ REMIX TIPS:
         <script type="StartScript">
           <brickList>
             <brick type="SetSizeToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE">
                   <type>NUMBER</type>
@@ -274,6 +302,7 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <rightChild>
@@ -290,6 +319,7 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="TurnRightBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TURN_RIGHT_DEGREES">
                   <type>NUMBER</type>
@@ -298,16 +328,20 @@ REMIX TIPS:
               </formulaList>
             </brick>
           </brickList>
+        <commentedOut>false</commentedOut>
         </script>
         <script type="WhenScript">
           <brickList>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look[2]"/>
             </brick>
             <brick type="PlaySoundBrick">
+              <commentedOut>false</commentedOut>
               <sound reference="../../../../../soundList/sound"/>
             </brick>
             <brick type="WaitBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                   <type>NUMBER</type>
@@ -316,9 +350,11 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <action>Tapped</action>
         </script>
       </scriptList>
@@ -342,6 +378,7 @@ REMIX TIPS:
         <script type="StartScript">
           <brickList>
             <brick type="SetSizeToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE">
                   <type>NUMBER</type>
@@ -350,6 +387,7 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <rightChild>
@@ -366,6 +404,7 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="TurnRightBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TURN_RIGHT_DEGREES">
                   <type>NUMBER</type>
@@ -374,16 +413,20 @@ REMIX TIPS:
               </formulaList>
             </brick>
           </brickList>
+        <commentedOut>false</commentedOut>
         </script>
         <script type="WhenScript">
           <brickList>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look[2]"/>
             </brick>
             <brick type="PlaySoundBrick">
+              <commentedOut>false</commentedOut>
               <sound reference="../../../../../soundList/sound"/>
             </brick>
             <brick type="WaitBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                   <type>NUMBER</type>
@@ -392,9 +435,11 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <action>Tapped</action>
         </script>
       </scriptList>
@@ -418,6 +463,7 @@ REMIX TIPS:
         <script type="StartScript">
           <brickList>
             <brick type="SetSizeToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE">
                   <type>NUMBER</type>
@@ -426,6 +472,7 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <rightChild>
@@ -442,6 +489,7 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="TurnRightBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TURN_RIGHT_DEGREES">
                   <type>NUMBER</type>
@@ -450,16 +498,20 @@ REMIX TIPS:
               </formulaList>
             </brick>
           </brickList>
+        <commentedOut>false</commentedOut>
         </script>
         <script type="WhenScript">
           <brickList>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look[2]"/>
             </brick>
             <brick type="PlaySoundBrick">
+              <commentedOut>false</commentedOut>
               <sound reference="../../../../../soundList/sound"/>
             </brick>
             <brick type="WaitBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                   <type>NUMBER</type>
@@ -468,9 +520,11 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <action>Tapped</action>
         </script>
       </scriptList>
@@ -494,6 +548,7 @@ REMIX TIPS:
         <script type="StartScript">
           <brickList>
             <brick type="SetSizeToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE">
                   <type>NUMBER</type>
@@ -502,6 +557,7 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <rightChild>
@@ -518,6 +574,7 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="TurnRightBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TURN_RIGHT_DEGREES">
                   <type>NUMBER</type>
@@ -526,16 +583,20 @@ REMIX TIPS:
               </formulaList>
             </brick>
           </brickList>
+        <commentedOut>false</commentedOut>
         </script>
         <script type="WhenScript">
           <brickList>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look[2]"/>
             </brick>
             <brick type="PlaySoundBrick">
+              <commentedOut>false</commentedOut>
               <sound reference="../../../../../soundList/sound"/>
             </brick>
             <brick type="WaitBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                   <type>NUMBER</type>
@@ -544,9 +605,11 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <action>Tapped</action>
         </script>
       </scriptList>
@@ -570,6 +633,7 @@ REMIX TIPS:
         <script type="StartScript">
           <brickList>
             <brick type="SetSizeToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE">
                   <type>NUMBER</type>
@@ -578,6 +642,7 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <type>NUMBER</type>
@@ -590,6 +655,7 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="TurnRightBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TURN_RIGHT_DEGREES">
                   <type>NUMBER</type>
@@ -598,13 +664,16 @@ REMIX TIPS:
               </formulaList>
             </brick>
           </brickList>
+        <commentedOut>false</commentedOut>
         </script>
         <script type="WhenScript">
           <brickList>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look[2]"/>
             </brick>
             <brick type="SetSizeToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE">
                   <type>NUMBER</type>
@@ -613,9 +682,11 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="PlaySoundBrick">
+              <commentedOut>false</commentedOut>
               <sound reference="../../../../../soundList/sound"/>
             </brick>
             <brick type="WaitBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                   <type>NUMBER</type>
@@ -624,6 +695,7 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="SetSizeToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE">
                   <type>NUMBER</type>
@@ -632,9 +704,11 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <action>Tapped</action>
         </script>
       </scriptList>
@@ -658,6 +732,7 @@ REMIX TIPS:
         <script type="StartScript">
           <brickList>
             <brick type="SetSizeToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE">
                   <type>NUMBER</type>
@@ -666,6 +741,7 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <type>NUMBER</type>
@@ -678,6 +754,7 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="TurnRightBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TURN_RIGHT_DEGREES">
                   <type>NUMBER</type>
@@ -686,13 +763,16 @@ REMIX TIPS:
               </formulaList>
             </brick>
           </brickList>
+        <commentedOut>false</commentedOut>
         </script>
         <script type="WhenScript">
           <brickList>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look[2]"/>
             </brick>
             <brick type="SetSizeToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE">
                   <type>NUMBER</type>
@@ -701,9 +781,11 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="PlaySoundBrick">
+              <commentedOut>false</commentedOut>
               <sound reference="../../../../../soundList/sound"/>
             </brick>
             <brick type="WaitBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                   <type>NUMBER</type>
@@ -712,6 +794,7 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="SetSizeToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE">
                   <type>NUMBER</type>
@@ -720,9 +803,11 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <action>Tapped</action>
         </script>
       </scriptList>
@@ -746,6 +831,7 @@ REMIX TIPS:
         <script type="StartScript">
           <brickList>
             <brick type="SetSizeToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE">
                   <type>NUMBER</type>
@@ -754,6 +840,7 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <rightChild>
@@ -770,6 +857,7 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="TurnRightBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TURN_RIGHT_DEGREES">
                   <type>NUMBER</type>
@@ -778,13 +866,16 @@ REMIX TIPS:
               </formulaList>
             </brick>
           </brickList>
+        <commentedOut>false</commentedOut>
         </script>
         <script type="WhenScript">
           <brickList>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look[2]"/>
             </brick>
             <brick type="SetSizeToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE">
                   <type>NUMBER</type>
@@ -793,9 +884,11 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="PlaySoundBrick">
+              <commentedOut>false</commentedOut>
               <sound reference="../../../../../soundList/sound"/>
             </brick>
             <brick type="WaitBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                   <type>NUMBER</type>
@@ -804,6 +897,7 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="SetSizeToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE">
                   <type>NUMBER</type>
@@ -812,9 +906,11 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <action>Tapped</action>
         </script>
       </scriptList>
@@ -838,6 +934,7 @@ REMIX TIPS:
         <script type="StartScript">
           <brickList>
             <brick type="SetSizeToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE">
                   <type>NUMBER</type>
@@ -846,6 +943,7 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <rightChild>
@@ -862,6 +960,7 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="TurnRightBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TURN_RIGHT_DEGREES">
                   <type>NUMBER</type>
@@ -870,13 +969,16 @@ REMIX TIPS:
               </formulaList>
             </brick>
           </brickList>
+        <commentedOut>false</commentedOut>
         </script>
         <script type="WhenScript">
           <brickList>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look[2]"/>
             </brick>
             <brick type="SetSizeToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE">
                   <type>NUMBER</type>
@@ -885,9 +987,11 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="PlaySoundBrick">
+              <commentedOut>false</commentedOut>
               <sound reference="../../../../../soundList/sound"/>
             </brick>
             <brick type="WaitBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                   <type>NUMBER</type>
@@ -896,6 +1000,7 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="SetSizeToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE">
                   <type>NUMBER</type>
@@ -904,9 +1009,11 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <action>Tapped</action>
         </script>
       </scriptList>
@@ -930,6 +1037,7 @@ REMIX TIPS:
         <script type="StartScript">
           <brickList>
             <brick type="SetSizeToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE">
                   <type>NUMBER</type>
@@ -938,6 +1046,7 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <rightChild>
@@ -954,6 +1063,7 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="TurnRightBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TURN_RIGHT_DEGREES">
                   <type>NUMBER</type>
@@ -962,13 +1072,16 @@ REMIX TIPS:
               </formulaList>
             </brick>
           </brickList>
+        <commentedOut>false</commentedOut>
         </script>
         <script type="WhenScript">
           <brickList>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look[2]"/>
             </brick>
             <brick type="SetSizeToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE">
                   <type>NUMBER</type>
@@ -977,9 +1090,11 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="PlaySoundBrick">
+              <commentedOut>false</commentedOut>
               <sound reference="../../../../../soundList/sound"/>
             </brick>
             <brick type="WaitBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                   <type>NUMBER</type>
@@ -988,6 +1103,7 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="SetSizeToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE">
                   <type>NUMBER</type>
@@ -996,9 +1112,11 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <action>Tapped</action>
         </script>
       </scriptList>

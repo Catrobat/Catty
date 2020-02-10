@@ -31,6 +31,7 @@
         <script type="StartScript">
           <brickList>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <type>SENSOR</type>
@@ -43,6 +44,7 @@
               </formulaList>
             </brick>
             <brick type="SetXBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="X_POSITION">
                   <type>USER_VARIABLE</type>
@@ -51,6 +53,7 @@
               </formulaList>
             </brick>
             <brick type="SetYBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <type>USER_VARIABLE</type>
@@ -59,6 +62,7 @@
               </formulaList>
             </brick>
             <brick type="ChangeXByNBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="X_POSITION_CHANGE">
                   <type>SENSOR</type>
@@ -67,6 +71,7 @@
               </formulaList>
             </brick>
             <brick type="ChangeYByNBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION_CHANGE">
                   <type>NUMBER</type>
@@ -75,6 +80,7 @@
               </formulaList>
             </brick>
             <brick type="MoveNStepsBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="STEPS">
                   <leftChild>
@@ -91,6 +97,7 @@
               </formulaList>
             </brick>
             <brick type="TurnLeftBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TURN_LEFT_DEGREES">
                   <type>NUMBER</type>
@@ -99,6 +106,7 @@
               </formulaList>
             </brick>
             <brick type="TurnRightBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TURN_RIGHT_DEGREES">
                   <type>NUMBER</type>
@@ -107,6 +115,7 @@
               </formulaList>
             </brick>
             <brick type="PointInDirectionBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="DEGREES">
                   <type>NUMBER</type>
@@ -115,6 +124,7 @@
               </formulaList>
             </brick>
             <brick type="PointToBrick">
+              <commentedOut>false</commentedOut>
               <pointedObject name="stickers">
                 <lookList>
                   <look name="stickers">
@@ -131,10 +141,14 @@
                   <script type="BroadcastScript">
                     <brickList>
                       <brick type="PlaySoundBrick">
+                        <commentedOut>false</commentedOut>
                         <sound reference="../../../../../soundList/sound"/>
                       </brick>
-                      <brick type="StopAllSoundsBrick"/>
+                      <brick type="StopAllSoundsBrick">
+                          <commentedOut>false</commentedOut>
+                      </brick>
                       <brick type="IfLogicBeginBrick">
+                        <commentedOut>false</commentedOut>
                         <formulaList>
                           <formula category="IF_CONDITION">
                             <type>NUMBER</type>
@@ -143,6 +157,7 @@
                         </formulaList>
                       </brick>
                       <brick type="SpeakBrick">
+                        <commentedOut>false</commentedOut>
                         <formulaList>
                           <formula category="SPEAK">
                             <type>STRING</type>
@@ -150,9 +165,14 @@
                           </formula>
                         </formulaList>
                       </brick>
-                      <brick type="IfLogicElseBrick"/>
-                      <brick type="IfLogicEndBrick"/>
+                      <brick type="IfLogicElseBrick">
+                          <commentedOut>false</commentedOut>
+                      </brick>
+                      <brick type="IfLogicEndBrick">
+                          <commentedOut>false</commentedOut>
+                      </brick>
                       <brick type="ChangeVolumeByNBrick">
+                        <commentedOut>false</commentedOut>
                         <formulaList>
                           <formula category="VOLUME_CHANGE">
                             <rightChild>
@@ -165,6 +185,7 @@
                         </formulaList>
                       </brick>
                       <brick type="SetVolumeToBrick">
+                        <commentedOut>false</commentedOut>
                         <formulaList>
                           <formula category="VOLUME">
                             <type>NUMBER</type>
@@ -173,11 +194,13 @@
                         </formulaList>
                       </brick>
                     </brickList>
+                    <commentedOut>false</commentedOut>
                     <receivedMessage>Nachricht 2</receivedMessage>
                   </script>
                   <script type="WhenScript">
                     <brickList>
                       <brick type="WaitBrick">
+                        <commentedOut>false</commentedOut>
                         <formulaList>
                           <formula category="TIME_TO_WAIT_IN_SECONDS">
                             <type>NUMBER</type>
@@ -186,6 +209,7 @@
                         </formulaList>
                       </brick>
                       <brick type="RepeatBrick">
+                        <commentedOut>false</commentedOut>
                         <formulaList>
                           <formula category="TIMES_TO_REPEAT">
                             <type>NUMBER</type>
@@ -194,10 +218,14 @@
                         </formulaList>
                       </brick>
                       <brick type="BroadcastBrick">
+                        <commentedOut>false</commentedOut>
                         <broadcastMessage>Nachricht 1</broadcastMessage>
                       </brick>
-                      <brick type="LoopEndBrick"/>
+                      <brick type="LoopEndBrick">
+                          <commentedOut>false</commentedOut>
+                      </brick>
                       <brick type="NoteBrick">
+                        <commentedOut>false</commentedOut>
                         <formulaList>
                           <formula category="NOTE">
                             <type>STRING</type>
@@ -205,12 +233,18 @@
                           </formula>
                         </formulaList>
                       </brick>
-                      <brick type="ForeverBrick"/>
+                      <brick type="ForeverBrick">
+                          <commentedOut>false</commentedOut>
+                      </brick>
                       <brick type="SetLookBrick">
+                        <commentedOut>false</commentedOut>
                         <look reference="../../../../../lookList/look"/>
                       </brick>
-                      <brick type="NextLookBrick"/>
+                      <brick type="NextLookBrick">
+                          <commentedOut>false</commentedOut>
+                      </brick>
                       <brick type="SetSizeToBrick">
+                        <commentedOut>false</commentedOut>
                         <formulaList>
                           <formula category="SIZE">
                             <type>NUMBER</type>
@@ -219,6 +253,7 @@
                         </formulaList>
                       </brick>
                       <brick type="ChangeSizeByNBrick">
+                        <commentedOut>false</commentedOut>
                         <formulaList>
                           <formula category="SIZE_CHANGE">
                             <type>NUMBER</type>
@@ -226,9 +261,14 @@
                           </formula>
                         </formulaList>
                       </brick>
-                      <brick type="HideBrick"/>
-                      <brick type="ShowBrick"/>
+                      <brick type="HideBrick">
+                          <commentedOut>false</commentedOut>
+                      </brick>
+                      <brick type="ShowBrick">
+                          <commentedOut>false</commentedOut>
+                      </brick>
                       <brick type="SetTransparencyBrick">
+                        <commentedOut>false</commentedOut>
                         <formulaList>
                           <formula category="TRANSPARENCY">
                             <type>NUMBER</type>
@@ -237,6 +277,7 @@
                         </formulaList>
                       </brick>
                       <brick type="ChangeTransparencyByNBrick">
+                        <commentedOut>false</commentedOut>
                         <formulaList>
                           <formula category="TRANSPARENCY_CHANGE">
                             <type>NUMBER</type>
@@ -245,6 +286,7 @@
                         </formulaList>
                       </brick>
                       <brick type="SetBrightnessBrick">
+                        <commentedOut>false</commentedOut>
                         <formulaList>
                           <formula category="BRIGHTNESS">
                             <type>NUMBER</type>
@@ -252,12 +294,18 @@
                           </formula>
                         </formulaList>
                       </brick>
-                      <brick type="ClearGraphicEffectBrick"/>
+                      <brick type="ClearGraphicEffectBrick">
+                          <commentedOut>false</commentedOut>
+                      </brick>
                       <brick type="BroadcastWaitBrick">
+                        <commentedOut>false</commentedOut>
                         <broadcastMessage>Nachricht 1</broadcastMessage>
                       </brick>
-                      <brick type="LoopEndlessBrick"/>
+                      <brick type="LoopEndlessBrick">
+                          <commentedOut>false</commentedOut>
+                      </brick>
                     </brickList>
+                    <commentedOut>false</commentedOut>
                     <action>Tapped</action>
                   </script>
                 </scriptList>
@@ -266,6 +314,7 @@
               </pointedObject>
             </brick>
             <brick type="GlideToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="DURATION_IN_SECONDS">
                   <type>NUMBER</type>
@@ -282,6 +331,7 @@
               </formulaList>
             </brick>
             <brick type="VibrationBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VIBRATE_DURATION_IN_SECONDS">
                   <type>NUMBER</type>
@@ -290,6 +340,7 @@
               </formulaList>
             </brick>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>NUMBER</type>
@@ -300,6 +351,7 @@
               <userVariable>global</userVariable>
             </brick>
             <brick type="ChangeVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE_CHANGE">
                   <leftChild>
@@ -318,6 +370,7 @@
               <userVariable>lokal</userVariable>
             </brick>
             <brick type="SetColorBrick">
+                <commentedOut>false</commentedOut>
                 <formulaList>
                     <formula category="COLOR">
                         <type>NUMBER</type>
@@ -326,6 +379,7 @@
                 </formulaList>
             </brick>
             <brick type="ChangeColorByNBrick">
+                <commentedOut>false</commentedOut>
                 <formulaList>
                     <formula category="COLOR_CHANGE">
                         <type>NUMBER</type>
@@ -334,6 +388,7 @@
                 </formulaList>
             </brick>
             <brick type="ShowTextBrick">
+                <commentedOut>false</commentedOut>
                 <formulaList>
                     <formula category="Y_POSITION">
                         <type>NUMBER</type>
@@ -349,6 +404,7 @@
                 <userVariableName>global</userVariableName>
             </brick>
             <brick type="FlashBrick">
+                <commentedOut>false</commentedOut>
                 <spinnerSelectionID>1</spinnerSelectionID>
                 <spinnerValues>
                     <string>off</string>
@@ -356,6 +412,7 @@
                 </spinnerValues>
             </brick>
             <brick type="AddItemToUserListBrick">
+                <commentedOut>false</commentedOut>
                 <formulaList>
                     <formula category="LIST_ADD_ITEM">
                         <type>NUMBER</type>
@@ -378,6 +435,7 @@
                 </userList>
             </brick>
             <brick type="InsertItemIntoUserListBrick">
+                <commentedOut>false</commentedOut>
                 <formulaList>
                     <formula category="INSERT_ITEM_INTO_USERLIST_INDEX">
                         <type>NUMBER</type>
@@ -393,6 +451,7 @@
                 </userList>
             </brick>
             <brick type="ReplaceItemInUserListBrick">
+                <commentedOut>false</commentedOut>
                 <formulaList>
                     <formula category="REPLACE_ITEM_IN_USERLIST_VALUE">
                         <type>NUMBER</type>
@@ -408,6 +467,7 @@
                 </userList>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <isUserScript>false</isUserScript>
         </script>
       </scriptList>

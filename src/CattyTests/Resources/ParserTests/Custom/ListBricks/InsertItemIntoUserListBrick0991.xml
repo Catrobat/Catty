@@ -31,6 +31,7 @@
         <script type="StartScript">
           <brickList>
             <brick type="InsertItemIntoUserListBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="INSERT_ITEM_INTO_USERLIST_VALUE">
                   <type>NUMBER</type>
@@ -46,6 +47,7 @@
               </userList>
             </brick>
             <brick type="InsertItemIntoUserListBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="INSERT_ITEM_INTO_USERLIST_INDEX">
                   <type>NUMBER</type>
@@ -59,6 +61,7 @@
               <userList reference="../../brick/userList"/>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <isUserScript>false</isUserScript>
         </script>
       </scriptList>

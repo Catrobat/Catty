@@ -26,6 +26,7 @@
 
 - (BOOL)isEqualToNode:(GDataXMLNode*)node;
 - (NSArray*)childrenWithoutComments;
+- (NSArray*)childrenWithoutCommentsAndCommentedOutTag;
 - (NSString*)decodedStringValue;
 - (NSString*)decodedName;
 + (NSString*)decodedStringForString:(NSString*)xmlString;

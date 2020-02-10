@@ -126,7 +126,7 @@
         guard let frontend = self.frontend else {
             guard let frontendLogger = Swell.getLogger(LoggerConfig.PlayerFrontendID) else { preconditionFailure() }
             let frontend = CBFrontend(logger: frontendLogger, project: project)
-            frontend.addSequenceFilter(CBFilterRedundantBroadcastWaits())
+            frontend.addSequenceFilter(CBFilterDisabled())
             return frontend
         }
         return frontend

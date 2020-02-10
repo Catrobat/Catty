@@ -31,6 +31,7 @@
         <script type="StartScript">
           <brickList>
             <brick type="IfThenLogicBeginBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="IF_CONDITION">
                   <type>USER_LIST</type>
@@ -38,8 +39,11 @@
                 </formula>
               </formulaList>
             </brick>
-            <brick type="IfThenLogicEndBrick"/>
+            <brick type="IfThenLogicEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <isUserScript>false</isUserScript>
         </script>
       </scriptList>

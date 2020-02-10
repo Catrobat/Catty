@@ -43,6 +43,16 @@
     return children;
 }
 
+- (NSArray*)childrenWithoutCommentsAndCommentedOutTag
+{
+    NSMutableArray *children = [NSMutableArray new];
+    for (GDataXMLNode *child in [self childrenWithoutComments]) {
+        if (![child.name isEqualToString:@"commentedOut"])
+            [children addObject:child];
+    }
+    return children;
+}
+
 - (NSString*)decodedStringValue
 {
     return [[self class] decodedStringForString:self.stringValue];

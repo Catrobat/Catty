@@ -38,20 +38,25 @@
         <script type="StartScript">
           <brickList>
             <brick type="SetBackgroundBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <isUserScript>false</isUserScript>
         </script>
         <script type="BroadcastScript">
           <brickList>
             <brick type="SetBackgroundBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
             <brick type="SetBackgroundBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look[2]"/>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>Nachricht 1</receivedMessage>
         </script>
       </scriptList>

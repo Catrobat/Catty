@@ -50,7 +50,9 @@
       <scriptList>
         <script type="WhenNfcScript">
           <brickList>
-            <brick type="NextLookBrick"/>
+            <brick type="NextLookBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
           <matchAll>true</matchAll>
         </script>

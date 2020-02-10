@@ -38,13 +38,16 @@
 
 - (void)drawRect:(CGRect)rect
 {
+    LoopEndBrick *brick = (LoopEndBrick*)[self scriptOrBrick];
+    BrickCategory *category = [[[BrickManager class] sharedBrickManager] categoryForType:brick.category];
+    
     CGFloat height = [[self class] cellHeight] + marginBottomSquaredBrick;
     CGFloat width = [Util screenWidth];
-    UIColor *fillColor = UIColor.controlBrickOrange;
-    UIColor *strokeColor = UIColor.controlBrickStroke;
-    
+    UIColor *fillColor = brick.isDisabled ? [category colorDisabled] : UIColor.controlBrickOrange;
+    UIColor *strokeColor = brick.isDisabled ? [category strokeColorDisabled] : UIColor.controlBrickStroke;
+        
     if (self.type == 2) {
-        [BrickShapeFactory drawEndForeverLoopShape2WithFillColor:fillColor strokeColor:strokeColor height:height width:width];
+        [BrickShapeFactory drawEndForeverLoopShape2WithFillColor: fillColor strokeColor:strokeColor height:height width:width];
     } else if ( self.type == 1){
         [BrickShapeFactory drawEndForeverLoopShape1WithFillColor:fillColor strokeColor:strokeColor height:height width:width];
     } else if ( self.type == 3){
