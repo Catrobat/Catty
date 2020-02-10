@@ -55,4 +55,5 @@
 - (void)comboboxClosed:(iOSCombobox *)combobox withValue:(NSString*)value;
 - (void)comboboxChanged:(iOSCombobox *)combobox toValue:(NSString*)toValue;
 - (void)comboboxDonePressed:(iOSCombobox *)combobox withValue:(NSString*)value;
+- (void)comboboxCancelPressed:(iOSCombobox *)combobox withValue:(NSString*)value;
 @end

@@ -37,6 +37,13 @@
 
 #define PICKER_VIEW_HEIGHT 216.0f // This is fixed by Apple, and Stack Overflow reports some bugs can be introduced if it's changed.
 
+
+@interface iOSCombobox()
+
+@property (nonatomic, weak) NSString *changedValue;
+@property (nonatomic, weak) UIImage *changedImage;
+@end
+
 @implementation iOSCombobox
 @synthesize values = _values;
 @synthesize currentValue = _currentValue;
@@ -49,6 +56,7 @@
     self.backgroundColor = UIColor.clearColor;
     CGFloat pickerY = [[UIScreen mainScreen] bounds].size.height - PICKER_VIEW_HEIGHT;
     CGFloat screenWidth = [[UIScreen mainScreen] bounds].size.width;
+    
     self.pickerView = [[iOSComboboxPickerView alloc] initWithFrame:CGRectMake(0.0f, pickerY, screenWidth, PICKER_VIEW_HEIGHT)];
     [self.pickerView setShowsSelectionIndicator:YES];
     [self.pickerView setDataSource:self];
@@ -58,6 +66,8 @@
     [self.keyboard setDelegate:self];
     
     self.inputView = self.pickerView;
+    _changedValue = self.currentValue;
+    _changedImage = self.currentImage;
 }
 
 - (id)initWithFrame:(CGRect)frame {
@@ -252,6 +262,15 @@
     }
 }
 
+- (void)setChangedValue:(NSString *)value {
+    _changedValue = value;
+    [self setNeedsDisplay];
+    if ([_values indexOfObject:_changedValue] != NSNotFound)
+    {
+        [_pickerView selectRow:[_values indexOfObject:_changedValue] inComponent:0 animated:NO];
+    }
+}
+
 - (void)setCurrentValue:(NSString *)currentValue {
     _currentValue = currentValue;
     [self setNeedsDisplay];
@@ -263,6 +282,11 @@
 
 - (void)setCurrentImagee:(UIImage *)image {
     self.currentImage = image;
+    [self setNeedsDisplay];
+}
+
+- (void)setChangedImagee:(UIImage *)image {
+    _changedImage = image;
     [self setNeedsDisplay];
 }
 
@@ -310,11 +334,11 @@
  **  UIPICKERVIEW DELEGATE COMMANDS
  **********************************************************/
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    [self setCurrentValue:[self.values objectAtIndex:row]];
+    [self setChangedValue:[self.values objectAtIndex:row]];
     if (row > 0) {
-        [self setCurrentImage:[self.images objectAtIndex:row-1]];
+        _changedImage = [self.images objectAtIndex:row-1];
     } else {
-        [self setCurrentImagee:nil];
+        _changedImage = nil;
     }
     
     [self setNeedsDisplay];
@@ -337,10 +361,11 @@
  **********************************************************/
 - (BOOL)beginTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event {
     [super beginTrackingWithTouch:touch withEvent:event];
+    
     if (self.currentImage) {
         [self addLookData];
     }
-
+    
     [self becomeFirstResponder];
     return NO;
 }
@@ -377,9 +402,22 @@
 }
 
 - (void)keyboardControlsDonePressed:(BSKeyboardControls *)keyboardControls {
+    if (_changedValue) {
+        [self setCurrentValue: _changedValue];
+    }
+    
     if ([[self delegate] respondsToSelector:@selector(comboboxDonePressed:withValue:)])
     {
         [[self delegate] comboboxDonePressed:self withValue:[self currentValue]];
+    }
+    [[keyboardControls activeField] resignFirstResponder];
+    [self resignFirstResponder];
+}
+ 
+- (void)keyboardControlsCancelPressed:(BSKeyboardControls *)keyboardControls {
+    if ([[self delegate] respondsToSelector:@selector(comboboxCancelPressed:withValue:)])
+    {
+        [[self delegate] comboboxCancelPressed:self withValue:[self currentValue]];
     }
     [[keyboardControls activeField] resignFirstResponder];
     [self resignFirstResponder];

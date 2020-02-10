@@ -28,6 +28,8 @@
 #import "BroadcastScript.h"
 #import "Util.h"
 
+NSString *const ACCESSIBILITY_LABEL = @"MessageView_%@";
+
 @implementation BrickCellMessageData
 
 static NSMutableArray *messages = nil;
@@ -71,6 +73,7 @@ static NSMutableArray *messages = nil;
         [self setValues:options];
         [self setCurrentValue:options[currentOptionIndex]];
         [self setDelegate:(id<iOSComboboxDelegate>)self];
+        self.accessibilityLabel = [NSString stringWithFormat:ACCESSIBILITY_LABEL, options[currentOptionIndex]];
     }
     return self;
 }
@@ -78,6 +81,11 @@ static NSMutableArray *messages = nil;
 - (void)comboboxDonePressed:(iOSCombobox *)combobox withValue:(NSString *)value
 {
     [self.brickCell.dataDelegate updateBrickCellData:self withValue:value];
+}
+
+- (void)comboboxCancelPressed:(iOSCombobox *)combobox withValue:(NSString *)value
+{
+    [self.brickCell.dataDelegate enableUserInteractionAndResetHighlight];
 }
 
 - (void)comboboxOpened:(iOSCombobox *)combobox
