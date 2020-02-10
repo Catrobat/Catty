@@ -21,7 +21,7 @@
  */
 
 class LoginViewControllerMock: LoginViewController {
-    
+
     var errorMessage: String?
 
     override func showError(_ message: String!) {
