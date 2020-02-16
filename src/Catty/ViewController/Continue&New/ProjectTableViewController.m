@@ -81,6 +81,7 @@
         self.title = self.project.header.programName;
     }
     self.placeHolderView.title = kLocalizedTapPlusToAddSprite;
+    self.placeHolderView.contentView.translatesAutoresizingMaskIntoConstraints = YES;
     [self showPlaceHolder:!(BOOL)[self.project numberOfNormalObjects]];
     [self setupToolBar];
     if(self.showAddObjectActionSheetAtStart) {

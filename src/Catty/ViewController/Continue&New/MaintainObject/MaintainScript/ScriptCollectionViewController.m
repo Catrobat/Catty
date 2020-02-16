@@ -112,6 +112,7 @@
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
     self.placeHolderView.title = kLocalizedTapPlusToAddScript;
+    self.placeHolderView.contentView.translatesAutoresizingMaskIntoConstraints = YES;
     self.placeHolderView.hidden = (self.object.scriptList.count != 0);
     [[BrickInsertManager sharedInstance] reset];
     self.isEditingBrickMode = NO;

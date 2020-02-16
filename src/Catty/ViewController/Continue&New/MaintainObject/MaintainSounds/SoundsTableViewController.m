@@ -86,6 +86,7 @@
     self.currentPlayingSong = nil;
     self.currentPlayingSongCell = nil;
     self.placeHolderView.title = kLocalizedTapPlusToAddSound;
+    self.placeHolderView.contentView.translatesAutoresizingMaskIntoConstraints = YES;
     [self showPlaceHolder:(! (BOOL)[self.object.soundList count])];
     [self setupToolBar];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
