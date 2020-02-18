@@ -32,6 +32,7 @@
 		2DCB4934212EA9BF005E8E3D /* StoreProjectDownloader.fetchMostRecentProjects.fail.parse.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DCB4933212EA9BE005E8E3D /* StoreProjectDownloader.fetchMostRecentProjects.fail.parse.json */; };
 		2DCB4936212EAAEF005E8E3D /* StoreProjectDownloader.downloadData.success.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DCB4935212EAAEE005E8E3D /* StoreProjectDownloader.downloadData.success.json */; };
 		2DCB4938212EAB36005E8E3D /* StoreProjectDownloader.downloadData.fail.request.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DCB4937212EAB35005E8E3D /* StoreProjectDownloader.downloadData.fail.request.json */; };
+		4647D55A23D8AF9F001A67F6 /* PrivacyPolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4647D55923D8AF9F001A67F6 /* PrivacyPolicyViewController.swift */; };
 		4C03A4BE2133FD05007BFFD2 /* FormulaManager+Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C03A4BD2133FD05007BFFD2 /* FormulaManager+Resources.swift */; };
 		4C03A4C22133FDE7007BFFD2 /* FormulaManager+Editor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C03A4C12133FDE7007BFFD2 /* FormulaManager+Editor.swift */; };
 		4C03A4C42133FF4B007BFFD2 /* FormulaManager+Interpreter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C03A4C32133FF4B007BFFD2 /* FormulaManager+Interpreter.swift */; };
@@ -403,6 +404,9 @@
 		4CAB100F1ECF1AC60019A67B /* ShowTextBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAB100E1ECF1AC60019A67B /* ShowTextBrickTests.swift */; };
 		4CAB933B2132753A00AEB86D /* FormulaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAB93392132753A00AEB86D /* FormulaManager.swift */; };
 		4CAC7DA21DCF444A00EC7D6F /* CBSceneTouchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC7DA11DCF444A00EC7D6F /* CBSceneTouchTests.swift */; };
+		4CAEB26C23F3F8BC00DB31BB /* CatrobatTableViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAEB26B23F3F8BC00DB31BB /* CatrobatTableViewControllerTests.swift */; };
+		4CAEB26E23F3FC6700DB31BB /* CatrobatTableViewControllerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAEB26D23F3FC6600DB31BB /* CatrobatTableViewControllerMock.swift */; };
+		4CAEB27023F3FC8F00DB31BB /* NavigationControllerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAEB26F23F3FC8F00DB31BB /* NavigationControllerMock.swift */; };
 		4CB0F9EC20A1731700D1BE2F /* PositionYSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB0F9E920A1731600D1BE2F /* PositionYSensor.swift */; };
 		4CB0F9ED20A1731700D1BE2F /* PositionXSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB0F9EA20A1731700D1BE2F /* PositionXSensor.swift */; };
 		4CB0F9EE20A1731700D1BE2F /* TransparencySensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB0F9EB20A1731700D1BE2F /* TransparencySensor.swift */; };
@@ -622,9 +626,6 @@
 		597AB56E202081E8007CD10D /* LibrarySoundCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597AB56C202081E8007CD10D /* LibrarySoundCollectionViewCell.swift */; };
 		597AB56F202081E8007CD10D /* LibrarySoundCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 597AB56D202081E8007CD10D /* LibrarySoundCollectionViewCell.xib */; };
 		597AB578202089E0007CD10D /* NetworkDefines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597AB575202089DF007CD10D /* NetworkDefines.swift */; };
-		598319931FBB812D00639BBF /* IntroductionPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598319921FBB812D00639BBF /* IntroductionPageViewController.swift */; };
-		598319951FBB813C00639BBF /* Introduction.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 598319941FBB813C00639BBF /* Introduction.storyboard */; };
-		598319991FBB90CB00639BBF /* IntroductionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598319981FBB90CB00639BBF /* IntroductionViewController.swift */; };
 		599E6498202D953F009494B5 /* MediaLibraryDownloader.downloadData.success.json in Resources */ = {isa = PBXBuildFile; fileRef = 599E6497202D953F009494B5 /* MediaLibraryDownloader.downloadData.success.json */; };
 		599E649E202D9F95009494B5 /* URLSessionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599E649D202D9F95009494B5 /* URLSessionMock.swift */; };
 		599E64A0202DACCB009494B5 /* MediaLibraryDownloader.downloadData.fail.request.json in Resources */ = {isa = PBXBuildFile; fileRef = 599E649F202DACCB009494B5 /* MediaLibraryDownloader.downloadData.fail.request.json */; };
@@ -1457,6 +1458,7 @@
 		389FA65050440F173C5147C5 /* bg */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = bg; path = bg.lproj/Localizable.strings; sourceTree = "<group>"; };
 		39DDF5E9790E36F418D99ACA /* sr-Cyrl */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = "sr-Cyrl"; path = "sr-Cyrl.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		3D5D59359A67834683175607 /* th */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/Localizable.strings; sourceTree = "<group>"; };
+		4647D55923D8AF9F001A67F6 /* PrivacyPolicyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyViewController.swift; sourceTree = "<group>"; };
 		481639B0D938C88A5E2E6963 /* ms */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = ms; path = ms.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4997640FD2AB79927E45C4EF /* ca */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = ca; path = ca.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4C03A4BD2133FD05007BFFD2 /* FormulaManager+Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FormulaManager+Resources.swift"; sourceTree = "<group>"; };
@@ -1910,6 +1912,9 @@
 		4CAB100E1ECF1AC60019A67B /* ShowTextBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowTextBrickTests.swift; sourceTree = "<group>"; };
 		4CAB93392132753A00AEB86D /* FormulaManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormulaManager.swift; sourceTree = "<group>"; };
 		4CAC7DA11DCF444A00EC7D6F /* CBSceneTouchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBSceneTouchTests.swift; path = Scene/CBSceneTouchTests.swift; sourceTree = "<group>"; };
+		4CAEB26B23F3F8BC00DB31BB /* CatrobatTableViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatrobatTableViewControllerTests.swift; sourceTree = "<group>"; };
+		4CAEB26D23F3FC6600DB31BB /* CatrobatTableViewControllerMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatrobatTableViewControllerMock.swift; sourceTree = "<group>"; };
+		4CAEB26F23F3FC8F00DB31BB /* NavigationControllerMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationControllerMock.swift; sourceTree = "<group>"; };
 		4CB0F9E920A1731600D1BE2F /* PositionYSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PositionYSensor.swift; sourceTree = "<group>"; };
 		4CB0F9EA20A1731700D1BE2F /* PositionXSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PositionXSensor.swift; sourceTree = "<group>"; };
 		4CB0F9EB20A1731700D1BE2F /* TransparencySensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransparencySensor.swift; sourceTree = "<group>"; };
@@ -2139,9 +2144,6 @@
 		597AB56C202081E8007CD10D /* LibrarySoundCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibrarySoundCollectionViewCell.swift; sourceTree = "<group>"; };
 		597AB56D202081E8007CD10D /* LibrarySoundCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LibrarySoundCollectionViewCell.xib; sourceTree = "<group>"; };
 		597AB575202089DF007CD10D /* NetworkDefines.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkDefines.swift; sourceTree = "<group>"; };
-		598319921FBB812D00639BBF /* IntroductionPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroductionPageViewController.swift; sourceTree = "<group>"; };
-		598319941FBB813C00639BBF /* Introduction.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Introduction.storyboard; sourceTree = "<group>"; };
-		598319981FBB90CB00639BBF /* IntroductionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroductionViewController.swift; sourceTree = "<group>"; };
 		599E6497202D953F009494B5 /* MediaLibraryDownloader.downloadData.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MediaLibraryDownloader.downloadData.success.json; sourceTree = "<group>"; };
 		599E649D202D9F95009494B5 /* URLSessionMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionMock.swift; sourceTree = "<group>"; };
 		599E649F202DACCB009494B5 /* MediaLibraryDownloader.downloadData.fail.request.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MediaLibraryDownloader.downloadData.fail.request.json; sourceTree = "<group>"; };
@@ -3417,6 +3419,15 @@
 			);
 			path = SearchStore;
 			sourceTree = "<group>";
+		};
+		4647D55823D8AF9F001A67F6 /* PrivacyPolicy */ = {
+			isa = PBXGroup;
+			children = (
+				4647D55923D8AF9F001A67F6 /* PrivacyPolicyViewController.swift */,
+			);
+			name = PrivacyPolicy;
+			path = Catty/ViewController/PrivacyPolicy;
+			sourceTree = SOURCE_ROOT;
 		};
 		4C0DC6651C3D5CE5006D6691 /* CatrobatLanguage0.97 */ = {
 			isa = PBXGroup;
@@ -4839,6 +4850,14 @@
 			path = PlayerEngine/Formula;
 			sourceTree = "<group>";
 		};
+		4CAEB26623F3F61B00DB31BB /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4CAEB26B23F3F8BC00DB31BB /* CatrobatTableViewControllerTests.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		4CB1FB721BC2D74F0000A2FE /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
@@ -5357,22 +5376,14 @@
 			path = ContentViews;
 			sourceTree = "<group>";
 		};
-		5983198F1FBB810400639BBF /* Introduction */ = {
-			isa = PBXGroup;
-			children = (
-				598319941FBB813C00639BBF /* Introduction.storyboard */,
-				598319981FBB90CB00639BBF /* IntroductionViewController.swift */,
-				598319921FBB812D00639BBF /* IntroductionPageViewController.swift */,
-			);
-			path = Introduction;
-			sourceTree = "<group>";
-		};
 		599E649C202D9F85009494B5 /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
+				4CAEB26D23F3FC6600DB31BB /* CatrobatTableViewControllerMock.swift */,
 				4CD27AA921B5765B00DDADB5 /* FeatureMock.swift */,
 				5973F235202EF2BB00A4CED9 /* MediaLibraryCollectionViewDataSourceDelegateMock.swift */,
 				599E64A5202DB2FB009494B5 /* MediaLibraryDownloaderMock.swift */,
+				4CAEB26F23F3FC8F00DB31BB /* NavigationControllerMock.swift */,
 				5973F243202EF37600A4CED9 /* SoundsLibraryCollectionViewDataSourceDelegateMock.swift */,
 				599E649D202D9F95009494B5 /* URLSessionMock.swift */,
 				4CBF5F9D21AF1D390079C834 /* UIGestureRecognizerMock.swift */,
@@ -6484,13 +6495,13 @@
 		92FF310A1A24DEB300093DA7 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				4647D55823D8AF9F001A67F6 /* PrivacyPolicy */,
 				92FF310B1A24DEB300093DA7 /* BaseViewController */,
 				92C631831BC502CB00486958 /* BluetoothDeviceSelection */,
 				92FF31121A24DEB300093DA7 /* CatrobatTableViewController */,
 				92FF31171A24DEB300093DA7 /* Continue&New */,
 				92FF31321A24DEB300093DA7 /* Download */,
 				92FF313D1A24DEB300093DA7 /* Help */,
-				5983198F1FBB810400639BBF /* Introduction */,
 				5947F6D3200CF3A20079DBCE /* MediaLibrary */,
 				92FF31401A24DEB300093DA7 /* Projects */,
 				92FF31431A24DEB300093DA7 /* Scene */,
@@ -7595,6 +7606,7 @@
 				B46B270417703F9400172837 /* Supporting Files */,
 				4CD0BA92214678D500BF17A4 /* Utils */,
 				4C5AEEDE22F6EBA100280F8B /* Views */,
+				4CAEB26623F3F61B00DB31BB /* ViewController */,
 			);
 			path = CattyTests;
 			sourceTree = "<group>";
@@ -8771,7 +8783,6 @@
 				4C33F214214BC0680014044C /* Document-Icon.png in Resources */,
 				BAD47DC51F12938D001C38BC /* AddItemToUserListBrick098.xml in Resources */,
 				92D346BD1B8DDC0A009EB8F7 /* LaunchScreen.storyboard in Resources */,
-				598319951FBB813C00639BBF /* Introduction.storyboard in Resources */,
 				4CDE4CE7203DBBF500B43034 /* LXReorderableCollectionViewFlowLayout.license in Resources */,
 				4CDE4CE6203DBBF500B43034 /* GDataXMLNode.license in Resources */,
 				92FF2E951A24C7D800093DA7 /* LoggerProperties.plist in Resources */,
@@ -9005,6 +9016,7 @@
 				4C5AEEFB22F6F92B00280F8B /* ArduinoBrickTests.swift in Sources */,
 				4C3A5CA121D3B4DF008FD83F /* OrOperatorTest.swift in Sources */,
 				4C6FE178212D2D2E0067B7D5 /* JoinFunctionTest.swift in Sources */,
+				4CAEB27023F3FC8F00DB31BB /* NavigationControllerMock.swift in Sources */,
 				4CA6DFBF23069204003A729B /* FormulaCacheTests.swift in Sources */,
 				9EE1BA5E2385F62A0024C7A5 /* SpeechSynthesizerTests.swift in Sources */,
 				4C6FE174212D2D2E0067B7D5 /* ElementFunctionTest.swift in Sources */,
@@ -9160,6 +9172,7 @@
 				9E1ED58D231332E000E36DED /* AudioEngineAbstractTest.swift in Sources */,
 				4C53E38D21D5241300F2EC76 /* SmallerOrEqualOperatorTest.swift in Sources */,
 				4C822688213FAC3C00F3D750 /* MultiFingerXFunctionTests.swift in Sources */,
+				4CAEB26E23F3FC6700DB31BB /* CatrobatTableViewControllerMock.swift in Sources */,
 				9E2D47CB232846AD00917D92 /* ChangeSizeByNBrickTests.swift in Sources */,
 				4C53E39221D525F800F2EC76 /* OperatorManagerTest.swift in Sources */,
 				4C68FC921B25A00B00AB3EE8 /* InternFormulaStateTest.m in Sources */,
@@ -9187,6 +9200,7 @@
 				BA38081321A208730075B831 /* XMLSerializerTests.swift in Sources */,
 				4C68FC931B25A00B00AB3EE8 /* InternFormulaTest.m in Sources */,
 				E4C5C1122143A3150054F236 /* SearchStoreDataSourceTests.swift in Sources */,
+				4CAEB26C23F3F8BC00DB31BB /* CatrobatTableViewControllerTests.swift in Sources */,
 				4C6FE177212D2D2E0067B7D5 /* LengthFunctionTest.swift in Sources */,
 				22524C38239FAFC500DD515E /* LoginViewControllerTests.swift in Sources */,
 				4C6FE161212D2D2E0067B7D5 /* RoundFunctionTest.swift in Sources */,
@@ -9408,7 +9422,6 @@
 				921EE9B61BA8045A00834711 /* JNKeychain.m in Sources */,
 				AA74F0991BC05FCE00D1E954 /* BrickCellVariableData.m in Sources */,
 				9218B20A1CC4AB75007B4C60 /* UIViewController+KNSemiModal.m in Sources */,
-				598319931FBB812D00639BBF /* IntroductionPageViewController.swift in Sources */,
 				AA74F0B11BC05FCE00D1E954 /* SetTransparencyBrickCell.m in Sources */,
 				4C724E581B4D3E8C00E27479 /* Header+CBXMLHandler.m in Sources */,
 				E4E5599820FCD6AD004B4A08 /* StoreProject.swift in Sources */,
@@ -9424,6 +9437,7 @@
 				5E21DA7121A5289F00017D2C /* Data+Extensions.swift in Sources */,
 				92B46F841BC79585004980C1 /* SettingsTableViewController.m in Sources */,
 				92FF31491A24DEB300093DA7 /* BaseCollectionViewController.m in Sources */,
+				4647D55A23D8AF9F001A67F6 /* PrivacyPolicyViewController.swift in Sources */,
 				BA987D0D2194E647002DAA05 /* WaitUntilBrick+Condition.swift in Sources */,
 				92D56C321BF202E700A54750 /* ArduinoHelper.swift in Sources */,
 				AAAF22881BC0CFC00076F11E /* TurnLeftBrick+Instruction.swift in Sources */,
@@ -9782,7 +9796,6 @@
 				4C724E601B4D3E8C00E27479 /* Parser.m in Sources */,
 				92DFB0161A38949E00FA9B0F /* InternFormulaState.m in Sources */,
 				AA74F0C51BC05FCE00D1E954 /* PlaySoundBrickCell.m in Sources */,
-				598319991FBB90CB00639BBF /* IntroductionViewController.swift in Sources */,
 				4CE6788F210C506B00D90B5D /* FunctionManagerProtocol.swift in Sources */,
 				92DFB0151A38949E00FA9B0F /* InternFormulaParserEmptyStackException.m in Sources */,
 				926198021BF48384006D1A61 /* BluetoothMocks.swift in Sources */,

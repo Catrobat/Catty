@@ -20,37 +20,18 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class IntroductionViewController: UIViewController {
+class CatrobatTableViewControllerMock: CatrobatTableViewController {
 
-    @IBOutlet private weak var headline: UILabel!
-    @IBOutlet private weak var paragraph: UILabel!
-    @IBOutlet private weak var image: UIImageView!
+    let navigationControllerMock: UINavigationController
 
-    @IBOutlet private var dismissButton: UIButton!
+    override var navigationController: UINavigationController? { navigationControllerMock }
 
-    @IBAction private func touchDismiss(_ sender: UIButton) {
-        self.presentingViewController?.dismiss(animated: true, completion: nil)
-        IntroductionPageViewController.hasBeenShown = true
+    init(_ navigationController: UINavigationController) {
+        self.navigationControllerMock = navigationController
+        super.init(style: .plain)
     }
 
-    var content: Content?
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        self.view.backgroundColor = .clear
-
-        self.headline.text = self.content?.title
-        self.paragraph.text = self.content?.description
-        self.image.image = self.content?.image
-        self.dismissButton.isHidden = self.content == nil
-    }
-}
-
-extension IntroductionViewController {
-    struct Content {
-        var title: String
-        var description: String
-        var image: UIImage
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
