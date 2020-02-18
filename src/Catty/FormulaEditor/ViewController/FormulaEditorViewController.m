@@ -1143,7 +1143,6 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 - (BOOL)isVarOrListBeingUsed:(UserVariable*)variable
 {
-    // TODO: Make it work for lists
     if([self.object.project.variables isProjectVariableOrList:variable]) {
         for(SpriteObject *spriteObject in self.object.project.objectList) {
             for(Script *script in spriteObject.scriptList) {
