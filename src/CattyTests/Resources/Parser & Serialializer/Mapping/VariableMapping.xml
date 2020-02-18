@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<program>
+    <header>
+        <applicationBuildName>Catty</applicationBuildName>
+        <applicationBuildNumber>24</applicationBuildNumber>
+        <applicationName>Pocket Code</applicationName>
+        <applicationVersion>0.6.9</applicationVersion>
+        <catrobatLanguageVersion>0.991</catrobatLanguageVersion>
+        <dateTimeUpload/>
+        <description/>
+        <deviceName>iPhone9,3</deviceName>
+        <landscapeMode>false</landscapeMode>
+        <mediaLicense>http://developer.catrobat.org/ccbysa_v4</mediaLicense>
+        <platform>iOS</platform>
+        <platformVersion>12.3</platformVersion>
+        <programLicense>http://developer.catrobat.org/agpl_v3</programLicense>
+        <programName>VariableMapping</programName>
+        <remixOf></remixOf>
+        <screenHeight>1334</screenHeight>
+        <screenMode>STRETCH</screenMode>
+        <screenWidth>750</screenWidth>
+        <tags/>
+        <url>/pocketcode/program/95614</url>
+        <userHandle>gatcodedev</userHandle>
+    </header>
+    <objectList>
+        <object name="Hintergrund">
+            <lookList/>
+            <soundList/>
+            <scriptList>
+                <script type="StartScript">
+                    <brickList>
+                        <brick type="SetVariableBrick">
+                            <formulaList>
+                                <formula category="VARIABLE">
+                                    <type>NUMBER</type>
+                                    <value>1</value>
+                                </formula>
+                            </formulaList>
+                            <userVariable>LocalVar</userVariable>
+                        </brick>
+                        <brick type="SetVariableBrick">
+                            <formulaList>
+                                <formula category="VARIABLE">
+                                    <type>NUMBER</type>
+                                    <value>1</value>
+                                </formula>
+                            </formulaList>
+                            <userVariable>GlobalVar</userVariable>
+                        </brick>
+                        <brick type="AddItemToUserListBrick">
+                            <formulaList>
+                                <formula category="LIST_ADD_ITEM">
+                                    <type>NUMBER</type>
+                                    <value>1</value>
+                                </formula>
+                            </formulaList>
+                            <userList>
+                                <name>LocalList</name>
+                            </userList>
+                        </brick>
+                        <brick type="AddItemToUserListBrick">
+                            <formulaList>
+                                <formula category="LIST_ADD_ITEM">
+                                    <type>NUMBER</type>
+                                    <value>1</value>
+                                </formula>
+                            </formulaList>
+                            <userList>
+                                <name>GlobalList</name>
+                            </userList>
+                        </brick>
+                    </brickList>
+                    <isUserScript>false</isUserScript>
+                </script>
+                <script type="BroadcastScript">
+                    <brickList>
+                        <brick type="SetVariableBrick">
+                            <formulaList>
+                                <formula category="VARIABLE">
+                                    <type>NUMBER</type>
+                                    <value>1</value>
+                                </formula>
+                            </formulaList>
+                            <userVariable reference="../../../../script/brickList/brick/userVariable"/>
+                        </brick>
+                        <brick type="SetVariableBrick">
+                            <formulaList>
+                                <formula category="VARIABLE">
+                                    <type>NUMBER</type>
+                                    <value>1</value>
+                                </formula>
+                            </formulaList>
+                            <userVariable reference="../../../../script/brickList/brick[2]/userVariable"/>
+                        </brick>
+                        <brick type="AddItemToUserListBrick">
+                            <formulaList>
+                                <formula category="LIST_ADD_ITEM">
+                                    <type>NUMBER</type>
+                                    <value>1</value>
+                                </formula>
+                            </formulaList>
+                            <userList reference="../../../../script/brickList/brick[3]/userList"/>
+                        </brick>
+                        <brick type="AddItemToUserListBrick">
+                            <formulaList>
+                                <formula category="LIST_ADD_ITEM">
+                                    <type>NUMBER</type>
+                                    <value>1</value>
+                                </formula>
+                            </formulaList>
+                            <userList reference="../../../../script/brickList/brick[4]/userList"/>
+                        </brick>
+                    </brickList>
+                    <receivedMessage>Nachricht 1</receivedMessage>
+                </script>
+            </scriptList>
+            <userBricks/>
+            <nfcTagList/>
+        </object>
+    </objectList>
+    <data>
+        <objectListOfList>
+            <entry>
+                <object reference="../../../../objectList/object"/>
+                <list>
+                    <userList reference="../../../../../objectList/object/scriptList/script/brickList/brick[3]/userList"/>
+                </list>
+            </entry>
+        </objectListOfList>
+        <objectVariableList>
+            <entry>
+                <object reference="../../../../objectList/object"/>
+                <list>
+                    <userVariable reference="../../../../../objectList/object/scriptList/script/brickList/brick/userVariable"/>
+                </list>
+            </entry>
+        </objectVariableList>
+        <programListOfLists>
+            <userList reference="../../../objectList/object/scriptList/script/brickList/brick[4]/userList"/>
+        </programListOfLists>
+        <programVariableList>
+            <userVariable reference="../../../objectList/object/scriptList/script/brickList/brick[2]/userVariable"/>
+        </programVariableList>
+        <userBrickVariableList/>
+    </data>
+    <settings/>
+</program>
+

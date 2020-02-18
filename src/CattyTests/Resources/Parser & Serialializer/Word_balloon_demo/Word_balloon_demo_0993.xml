@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<program>
+    <header>
+        <applicationBuildName/>
+        <applicationBuildNumber>0</applicationBuildNumber>
+        <applicationName>Pocket Code</applicationName>
+        <applicationVersion>0.9.28</applicationVersion>
+        <catrobatLanguageVersion>0.993</catrobatLanguageVersion>
+        <dateTimeUpload/>
+        <description>I made the word balloons using PicSay. Details =&gt; http://catrob.at/WordBalloonExplanation</description>
+        <deviceName>PRA-LX1</deviceName>
+        <landscapeMode>false</landscapeMode>
+        <mediaLicense>http://developer.catrobat.org/ccbysa_v4</mediaLicense>
+        <platform>Android</platform>
+        <platformVersion>26.0</platformVersion>
+        <programLicense>http://developer.catrobat.org/agpl_v3</programLicense>
+        <programName>Word balloon demo</programName>
+        <remixOf>http://pocketcode.org/details/0</remixOf>
+        <scenesEnabled>true</scenesEnabled>
+        <screenHeight>960</screenHeight>
+        <screenMode>STRETCH</screenMode>
+        <screenWidth>540</screenWidth>
+        <tags>Spiele</tags>
+        <url>/pocketcode/program/828</url>
+        <userHandle>hej-wickie-hej</userHandle>
+    </header>
+    <settings/>
+    <scenes>
+        <scene>
+            <name>Szene 1</name>
+            <objectList>
+                <object type="SingleSprite" name="Background">
+                    <lookList>
+                        <look name="background">
+                            <fileName>291D88CE030809FD8CC660E59C7A8FF5_catroidTemp.png</fileName>
+                        </look>
+                    </lookList>
+                    <nfcTagList/>
+                    <scriptList>
+                        <script type="StartScript">
+                            <brickList>
+                                <brick type="SetLookBrick">
+                                    <commentedOut>false</commentedOut>
+                                    <look reference="../../../../../lookList/look"/>
+                                </brick>
+                            </brickList>
+                            <commentedOut>false</commentedOut>
+                            <isUserScript>false</isUserScript>
+                        </script>
+                    </scriptList>
+                    <soundList/>
+                    <userBricks/>
+                </object>
+                <object type="SingleSprite" name="Scratch's cat">
+                    <lookList>
+                        <look name="Scratch' cat">
+                            <fileName>EF0968C51AD708EDA1D3B556BFAEAF46_cat1-a.gif</fileName>
+                        </look>
+                    </lookList>
+                    <nfcTagList/>
+                    <scriptList>
+                        <script type="StartScript">
+                            <brickList>
+                                <brick type="SetVariableBrick">
+                                    <commentedOut>false</commentedOut>
+                                    <formulaList>
+                                        <formula category="VARIABLE">
+                                            <type>NUMBER</type>
+                                            <value>30</value>
+                                        </formula>
+                                    </formulaList>
+                                    <userVariable>cat offset x</userVariable>
+                                </brick>
+                                <brick type="SetVariableBrick">
+                                    <commentedOut>false</commentedOut>
+                                    <formulaList>
+                                        <formula category="VARIABLE">
+                                            <rightChild>
+                                                <type>NUMBER</type>
+                                                <value>200</value>
+                                            </rightChild>
+                                            <type>OPERATOR</type>
+                                            <value>MINUS</value>
+                                        </formula>
+                                    </formulaList>
+                                    <userVariable>cat offset y</userVariable>
+                                </brick>
+                                <brick type="PlaceAtBrick">
+                                    <commentedOut>false</commentedOut>
+                                    <formulaList>
+                                        <formula category="X_POSITION">
+                                            <type>USER_VARIABLE</type>
+                                            <value>cat offset x</value>
+                                        </formula>
+                                        <formula category="Y_POSITION">
+                                            <type>USER_VARIABLE</type>
+                                            <value>cat offset y</value>
+                                        </formula>
+                                    </formulaList>
+                                </brick>
+                                <brick type="SetSizeToBrick">
+                                    <commentedOut>false</commentedOut>
+                                    <formulaList>
+                                        <formula category="SIZE">
+                                            <type>NUMBER</type>
+                                            <value>150</value>
+                                        </formula>
+                                    </formulaList>
+                                </brick>
+                                <brick type="SetLookBrick">
+                                    <commentedOut>false</commentedOut>
+                                    <look reference="../../../../../lookList/look"/>
+                                </brick>
+                            </brickList>
+                            <commentedOut>false</commentedOut>
+                            <isUserScript>false</isUserScript>
+                        </script>
+                        <script type="WhenScript">
+                            <brickList>
+                                <brick type="ForeverBrick">
+                                    <commentedOut>false</commentedOut>
+                                </brick>
+                                <brick type="SetVariableBrick">
+                                    <commentedOut>false</commentedOut>
+                                    <formulaList>
+                                        <formula category="VARIABLE">
+                                            <leftChild>
+                                                <rightChild>
+                                                    <type>NUMBER</type>
+                                                    <value>200</value>
+                                                </rightChild>
+                                                <type>OPERATOR</type>
+                                                <value>MINUS</value>
+                                            </leftChild>
+                                            <rightChild>
+                                                <type>NUMBER</type>
+                                                <value>200</value>
+                                            </rightChild>
+                                            <type>FUNCTION</type>
+                                            <value>RAND</value>
+                                        </formula>
+                                    </formulaList>
+                                    <userVariable>random x</userVariable>
+                                </brick>
+                                <brick type="SetVariableBrick">
+                                    <commentedOut>false</commentedOut>
+                                    <formulaList>
+                                        <formula category="VARIABLE">
+                                            <leftChild>
+                                                <rightChild>
+                                                    <type>NUMBER</type>
+                                                    <value>400</value>
+                                                </rightChild>
+                                                <type>OPERATOR</type>
+                                                <value>MINUS</value>
+                                            </leftChild>
+                                            <rightChild>
+                                                <type>NUMBER</type>
+                                                <value>400</value>
+                                            </rightChild>
+                                            <type>FUNCTION</type>
+                                            <value>RAND</value>
+                                        </formula>
+                                    </formulaList>
+                                    <userVariable>random y</userVariable>
+                                </brick>
+                                <brick type="BroadcastWaitBrick">
+                                    <commentedOut>false</commentedOut>
+                                    <broadcastMessage>move!</broadcastMessage>
+                                </brick>
+                                <brick type="LoopEndlessBrick">
+                                    <commentedOut>false</commentedOut>
+                                </brick>
+                            </brickList>
+                            <commentedOut>false</commentedOut>
+                            <action>Tapped</action>
+                        </script>
+                        <script type="BroadcastScript">
+                            <brickList>
+                                <brick type="GlideToBrick">
+                                    <commentedOut>false</commentedOut>
+                                    <formulaList>
+                                        <formula category="DURATION_IN_SECONDS">
+                                            <type>NUMBER</type>
+                                            <value>1.0</value>
+                                        </formula>
+                                        <formula category="X_DESTINATION">
+                                            <type>USER_VARIABLE</type>
+                                            <value>random x</value>
+                                        </formula>
+                                        <formula category="Y_DESTINATION">
+                                            <type>USER_VARIABLE</type>
+                                            <value>random y</value>
+                                        </formula>
+                                    </formulaList>
+                                </brick>
+                            </brickList>
+                            <commentedOut>false</commentedOut>
+                            <receivedMessage>move!</receivedMessage>
+                        </script>
+                    </scriptList>
+                    <soundList/>
+                    <userBricks/>
+                </object>
+                <object type="SingleSprite" name="Word balloon">
+                    <lookList>
+                        <look name="picsay-1367227842444">
+                            <fileName>3F17E32B6E7217D2BF36AC5C58B287C6_picsay-1367227842444.jpg</fileName>
+                        </look>
+                        <look name="picsay-1367229543145">
+                            <fileName>8FC5218FAB4FC318B83B63AAD32CC6C8_picsay-1367229543145.jpg</fileName>
+                        </look>
+                    </lookList>
+                    <nfcTagList/>
+                    <scriptList>
+                        <script type="StartScript">
+                            <brickList>
+                                <brick type="PlaceAtBrick">
+                                    <commentedOut>false</commentedOut>
+                                    <formulaList>
+                                        <formula category="X_POSITION">
+                                            <type>NUMBER</type>
+                                            <value>150</value>
+                                        </formula>
+                                        <formula category="Y_POSITION">
+                                            <rightChild>
+                                                <type>NUMBER</type>
+                                                <value>60</value>
+                                            </rightChild>
+                                            <type>OPERATOR</type>
+                                            <value>MINUS</value>
+                                        </formula>
+                                    </formulaList>
+                                </brick>
+                                <brick type="SetSizeToBrick">
+                                    <commentedOut>false</commentedOut>
+                                    <formulaList>
+                                        <formula category="SIZE">
+                                            <type>NUMBER</type>
+                                            <value>65</value>
+                                        </formula>
+                                    </formulaList>
+                                </brick>
+                                <brick type="SetLookBrick">
+                                    <commentedOut>false</commentedOut>
+                                    <look reference="../../../../../lookList/look"/>
+                                </brick>
+                                <brick type="WaitBrick">
+                                    <commentedOut>false</commentedOut>
+                                    <formulaList>
+                                        <formula category="TIME_TO_WAIT_IN_SECONDS">
+                                            <type>NUMBER</type>
+                                            <value>2</value>
+                                        </formula>
+                                    </formulaList>
+                                </brick>
+                                <brick type="HideBrick">
+                                    <commentedOut>false</commentedOut>
+                                </brick>
+                                <brick type="SetVariableBrick">
+                                    <commentedOut>false</commentedOut>
+                                    <formulaList>
+                                        <formula category="VARIABLE">
+                                            <rightChild>
+                                                <type>NUMBER</type>
+                                                <value>90</value>
+                                            </rightChild>
+                                            <type>OPERATOR</type>
+                                            <value>MINUS</value>
+                                        </formula>
+                                    </formulaList>
+                                    <userVariable>offset x</userVariable>
+                                </brick>
+                                <brick type="SetVariableBrick">
+                                    <commentedOut>false</commentedOut>
+                                    <formulaList>
+                                        <formula category="VARIABLE">
+                                            <type>NUMBER</type>
+                                            <value>100</value>
+                                        </formula>
+                                    </formulaList>
+                                    <userVariable>offset y</userVariable>
+                                </brick>
+                                <brick type="PlaceAtBrick">
+                                    <commentedOut>false</commentedOut>
+                                    <formulaList>
+                                        <formula category="X_POSITION">
+                                            <type>USER_VARIABLE</type>
+                                            <value>offset x</value>
+                                        </formula>
+                                        <formula category="Y_POSITION">
+                                            <type>USER_VARIABLE</type>
+                                            <value>offset y</value>
+                                        </formula>
+                                    </formulaList>
+                                </brick>
+                                <brick type="SetSizeToBrick">
+                                    <commentedOut>false</commentedOut>
+                                    <formulaList>
+                                        <formula category="SIZE">
+                                            <type>NUMBER</type>
+                                            <value>100</value>
+                                        </formula>
+                                    </formulaList>
+                                </brick>
+                                <brick type="NextLookBrick">
+                                    <commentedOut>false</commentedOut>
+                                </brick>
+                                <brick type="ShowBrick">
+                                    <commentedOut>false</commentedOut>
+                                </brick>
+                            </brickList>
+                            <commentedOut>false</commentedOut>
+                            <isUserScript>false</isUserScript>
+                        </script>
+                        <script type="BroadcastScript">
+                            <brickList>
+                                <brick type="GlideToBrick">
+                                    <commentedOut>false</commentedOut>
+                                    <formulaList>
+                                        <formula category="DURATION_IN_SECONDS">
+                                            <type>NUMBER</type>
+                                            <value>1.0</value>
+                                        </formula>
+                                        <formula category="X_DESTINATION">
+                                            <leftChild>
+                                                <leftChild>
+                                                    <type>USER_VARIABLE</type>
+                                                    <value>random x</value>
+                                                </leftChild>
+                                                <rightChild>
+                                                    <type>USER_VARIABLE</type>
+                                                    <value>offset x</value>
+                                                </rightChild>
+                                                <type>OPERATOR</type>
+                                                <value>PLUS</value>
+                                            </leftChild>
+                                            <rightChild>
+                                                <type>USER_VARIABLE</type>
+                                                <value>cat offset x</value>
+                                            </rightChild>
+                                            <type>OPERATOR</type>
+                                            <value>MINUS</value>
+                                        </formula>
+                                        <formula category="Y_DESTINATION">
+                                            <leftChild>
+                                                <leftChild>
+                                                    <type>USER_VARIABLE</type>
+                                                    <value>random y</value>
+                                                </leftChild>
+                                                <rightChild>
+                                                    <type>USER_VARIABLE</type>
+                                                    <value>offset y</value>
+                                                </rightChild>
+                                                <type>OPERATOR</type>
+                                                <value>PLUS</value>
+                                            </leftChild>
+                                            <rightChild>
+                                                <type>USER_VARIABLE</type>
+                                                <value>cat offset y</value>
+                                            </rightChild>
+                                            <type>OPERATOR</type>
+                                            <value>MINUS</value>
+                                        </formula>
+                                    </formulaList>
+                                </brick>
+                            </brickList>
+                            <commentedOut>false</commentedOut>
+                            <receivedMessage>move!</receivedMessage>
+                        </script>
+                    </scriptList>
+                    <soundList/>
+                    <userBricks/>
+                </object>
+            </objectList>
+            <data>
+                <objectListOfList/>
+                <objectVariableList>
+                    <entry>
+                        <object reference="../../../../objectList/object[2]"/>
+                        <list/>
+                    </entry>
+                    <entry>
+                        <object reference="../../../../objectList/object[3]"/>
+                        <list/>
+                    </entry>
+                </objectVariableList>
+                <userBrickVariableList/>
+            </data>
+            <originalWidth>540</originalWidth>
+            <originalHeight>960</originalHeight>
+        </scene>
+    </scenes>
+    <programVariableList>
+        <userVariable reference="../../scenes/scene/objectList/object[2]/scriptList/script[2]/brickList/brick[2]/userVariable"/>
+        <userVariable reference="../../scenes/scene/objectList/object[2]/scriptList/script[2]/brickList/brick[3]/userVariable"/>
+        <userVariable reference="../../scenes/scene/objectList/object[3]/scriptList/script/brickList/brick[6]/userVariable"/>
+        <userVariable reference="../../scenes/scene/objectList/object[3]/scriptList/script/brickList/brick[7]/userVariable"/>
+        <userVariable reference="../../scenes/scene/objectList/object[2]/scriptList/script/brickList/brick/userVariable"/>
+        <userVariable reference="../../scenes/scene/objectList/object[2]/scriptList/script/brickList/brick[2]/userVariable"/>
+    </programVariableList>
+    <programListOfLists/>
+</program>
+
