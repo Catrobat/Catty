@@ -774,7 +774,7 @@
 		929CC0FA1BC3A2420027DEC0 /* PhiroPlayToneBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929CC0F51BC3A2420027DEC0 /* PhiroPlayToneBrick+Instruction.swift */; };
 		929CC0FB1BC3A2420027DEC0 /* PhiroRGBLightBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929CC0F61BC3A2420027DEC0 /* PhiroRGBLightBrick+Instruction.swift */; };
 		929CC0FC1BC3A2420027DEC0 /* PhiroMotorStopBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929CC0F71BC3A2420027DEC0 /* PhiroMotorStopBrick+Instruction.swift */; };
-		92B46F831BC79585004980C1 /* AboutPoketCodeOptionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B46F7E1BC79585004980C1 /* AboutPoketCodeOptionTableViewController.m */; };
+		92B46F831BC79585004980C1 /* AboutPocketCodeOptionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B46F7E1BC79585004980C1 /* AboutPocketCodeOptionTableViewController.m */; };
 		92B46F841BC79585004980C1 /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B46F801BC79585004980C1 /* SettingsTableViewController.m */; };
 		92B46F851BC79585004980C1 /* TermsOfUseOptionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B46F821BC79585004980C1 /* TermsOfUseOptionTableViewController.m */; };
 		92B46F911BC7B3E5004980C1 /* ArduinoBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B46F8C1BC7B3E5004980C1 /* ArduinoBrick.m */; };
@@ -2401,8 +2401,8 @@
 		929CC0F51BC3A2420027DEC0 /* PhiroPlayToneBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PhiroPlayToneBrick+Instruction.swift"; sourceTree = "<group>"; };
 		929CC0F61BC3A2420027DEC0 /* PhiroRGBLightBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PhiroRGBLightBrick+Instruction.swift"; sourceTree = "<group>"; };
 		929CC0F71BC3A2420027DEC0 /* PhiroMotorStopBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PhiroMotorStopBrick+Instruction.swift"; sourceTree = "<group>"; };
-		92B46F7D1BC79585004980C1 /* AboutPoketCodeOptionTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutPoketCodeOptionTableViewController.h; sourceTree = "<group>"; };
-		92B46F7E1BC79585004980C1 /* AboutPoketCodeOptionTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutPoketCodeOptionTableViewController.m; sourceTree = "<group>"; };
+		92B46F7D1BC79585004980C1 /* AboutPocketCodeOptionTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutPocketCodeOptionTableViewController.h; sourceTree = "<group>"; };
+		92B46F7E1BC79585004980C1 /* AboutPocketCodeOptionTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutPocketCodeOptionTableViewController.m; sourceTree = "<group>"; };
 		92B46F7F1BC79585004980C1 /* SettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsTableViewController.h; sourceTree = "<group>"; };
 		92B46F801BC79585004980C1 /* SettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTableViewController.m; sourceTree = "<group>"; };
 		92B46F811BC79585004980C1 /* TermsOfUseOptionTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TermsOfUseOptionTableViewController.h; sourceTree = "<group>"; };
@@ -5832,8 +5832,8 @@
 		92B46F881BC7958C004980C1 /* SettingsViewController */ = {
 			isa = PBXGroup;
 			children = (
-				92B46F7D1BC79585004980C1 /* AboutPoketCodeOptionTableViewController.h */,
-				92B46F7E1BC79585004980C1 /* AboutPoketCodeOptionTableViewController.m */,
+				92B46F7D1BC79585004980C1 /* AboutPocketCodeOptionTableViewController.h */,
+				92B46F7E1BC79585004980C1 /* AboutPocketCodeOptionTableViewController.m */,
 				92B46F7F1BC79585004980C1 /* SettingsTableViewController.h */,
 				92B46F801BC79585004980C1 /* SettingsTableViewController.m */,
 				92B46F811BC79585004980C1 /* TermsOfUseOptionTableViewController.h */,
@@ -9793,7 +9793,7 @@
 				92FF30C81A24DCAA00093DA7 /* Brick.m in Sources */,
 				AA74F0971BC05FCE00D1E954 /* BrickCellSoundData.m in Sources */,
 				92B46F911BC7B3E5004980C1 /* ArduinoBrick.m in Sources */,
-				92B46F831BC79585004980C1 /* AboutPoketCodeOptionTableViewController.m in Sources */,
+				92B46F831BC79585004980C1 /* AboutPocketCodeOptionTableViewController.m in Sources */,
 				4C724E631B4D3E8C00E27479 /* XMLObjectReference.m in Sources */,
 				4C60663A1A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m in Sources */,
 				929CC0CE1BC39B0A0027DEC0 /* PhiroMotorStopBrick.m in Sources */,

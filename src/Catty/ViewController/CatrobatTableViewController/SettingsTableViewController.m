@@ -22,7 +22,7 @@
 
 #import "SettingsTableViewController.h"
 #import "TermsOfUseOptionTableViewController.h"
-#import "AboutPoketCodeOptionTableViewController.h"
+#import "AboutPocketCodeOptionTableViewController.h"
 #import "LanguageTranslationDefines.h"
 #import "KeychainUserDefaultsDefines.h"
 #import "CatrobatTableViewController.h"
@@ -106,7 +106,7 @@
     
     [self addSection:[BOTableViewSection sectionWithHeaderTitle:@"" handler:^(BOTableViewSection *section) {
         [section addCell:[BOChoiceTableViewCell cellWithTitle:kLocalizedAboutPocketCode key:@"choice_2" handler:^(BOChoiceTableViewCell *cell) {
-            cell.destinationViewController = [AboutPoketCodeOptionTableViewController new];
+            cell.destinationViewController = [AboutPocketCodeOptionTableViewController new];
             cell.backgroundColor = UIColor.background;
             cell.mainColor = UIColor.globalTint;
         }]];
