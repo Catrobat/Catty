@@ -34,15 +34,9 @@
     self.view.tintColor = UIColor.globalTint;
     [self addSection:[BOTableViewSection sectionWithHeaderTitle:@"" handler:^(BOTableViewSection *section) {
         
-        BOTableViewCell *cell = [BOTableViewCell cellWithTitle:kLocalizedAboutPocketCodeDescription key:nil handler:^(BOButtonTableViewCell *cell) {
+        [section addCell:[BOTableViewCell cellWithTitle:kLocalizedAboutPocketCodeDescription key:nil handler:^(BOButtonTableViewCell *cell) {
             cell.backgroundColor = UIColor.background;
-        }];
-        
-        UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(aboutPocketCodeDescriptionTapped:)];
-        tapRecognizer.numberOfTapsRequired = 4;
-        [cell.contentView addGestureRecognizer:tapRecognizer];
-        
-        [section addCell:cell];
+        }]];
         
         __unsafe_unretained typeof(self) weakSelf = self;
         [section addCell:[BOButtonTableViewCell cellWithTitle:kLocalizedSourceCodeLicenseButtonLabel key:nil handler:^(BOButtonTableViewCell *cell) {
@@ -61,11 +55,6 @@
             };
         }]];
     }]];
-}
-
-- (void)aboutPocketCodeDescriptionTapped:(UITapGestureRecognizer*)recognizer {
-    [[FIRCrashlytics crashlytics] log:@"This is an easter egg for an workshop which needs to be removed with CATTY-162"];
-    assert(NO);
 }
 
 - (void)openAboutURL
