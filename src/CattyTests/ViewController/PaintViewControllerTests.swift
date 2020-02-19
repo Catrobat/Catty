@@ -20,12 +20,21 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import Foundation
-import Siren
+import Nimble
+import XCTest
 
-@objc open class SwiftBridge: NSObject {
+@testable import Pocket_Code
 
-    @objc open class func sirenBridgeApplicationDidFinishLaunching() {
-        Siren.shared.wail()
+final class PaintViewControllerTests: XCTestCase {
+
+    override func setUp() {
+        super.setUp()
+    }
+
+    func testNotification() {
+        let controller = PaintViewController()
+        let expectedNotification = Notification(name: .paintViewControllerDidAppear, object: controller)
+
+        expect(controller.viewDidAppear(true)).to(postNotifications(contain(expectedNotification)))
     }
 }

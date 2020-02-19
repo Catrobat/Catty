@@ -20,16 +20,24 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-//
-//  Use this file to import your target's public headers that you would like to expose to Swift.
-//
+class UICollectionViewMock: UICollectionView {
 
-#import "Catty-Bridging-Header.h"
+    let cell: UICollectionViewCell
 
-#import "ConvertExceptionToError.h"
-#import "chromaprint.h"
-#import "LoginViewController.h"
-#import "BaseCollectionViewController.h"
-#import "ScriptCollectionViewController.h"
-#import "FormulaEditorViewController.h"
-#import "PaintViewController.h"
+    init(cell: UICollectionViewCell) {
+        self.cell = cell
+        super.init(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout())
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    override func numberOfItems(inSection section: Int) -> Int {
+        1
+    }
+
+    override func cellForItem(at indexPath: IndexPath) -> UICollectionViewCell? {
+        return cell
+    }
+}

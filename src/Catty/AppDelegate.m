@@ -42,8 +42,6 @@ void uncaughtExceptionHandler(NSException *exception)
 
     [self initNavigationBar];
     [ThemesHelper changeAppearance];
-
-    [SwiftBridge sirenBridgeApplicationDidFinishLaunching];
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSDictionary *appDefaults = [NSDictionary dictionaryWithObject:@"YES"
@@ -64,6 +62,9 @@ void uncaughtExceptionHandler(NSException *exception)
     if ([[[NSProcessInfo processInfo] arguments] containsObject: @"UITests"]) {
         UIApplication.sharedApplication.keyWindow.layer.speed = 10.0;
     }
+    
+    [self setupSiren];
+    [self setupFirebase];
 
     return YES;
 }

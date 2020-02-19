@@ -49,6 +49,7 @@ final class CustomAlertController: UIAlertController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
+        NotificationCenter.default.post(name: .alertDidAppear, object: self)
         delegate?.viewDidAppear?(self.view)
     }
 

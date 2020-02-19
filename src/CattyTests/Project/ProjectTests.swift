@@ -21,6 +21,8 @@
  */
 
 @testable import Pocket_Code
+
+import Nimble
 import XCTest
 
 class ProjectsTest: XCTestCase {
@@ -357,5 +359,18 @@ class ProjectsTest: XCTestCase {
 
         project.translateDefaultProject()
         XCTAssertFalse(project.saveNotificationShown)
+    }
+
+    func testNotificationForValidProjectWithLoadingInfo() {
+        let loadingInfo = ProjectLoadingInfo.init(forProjectWithName: project.header.programName, projectID: kNoProjectIDYetPlaceholder)
+
+        expect(Project(loadingInfo: loadingInfo!)).to(postNotifications(equal([])))
+    }
+
+    func testNotificationForInvalidProjectWithLoading() {
+        let loadingInfo = ProjectLoadingInfo.init(forProjectWithName: project.header.programName + "InvalidProject", projectID: kNoProjectIDYetPlaceholder)
+
+        let expectedNotification = Notification(name: .projectInvalidVersion, object: loadingInfo)
+        expect(Project(loadingInfo: loadingInfo!)).to(postNotifications(equal([expectedNotification])))
     }
 }

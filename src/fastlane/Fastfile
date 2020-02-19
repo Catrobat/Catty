@@ -199,20 +199,40 @@ platform :ios do
 
   ##########################################################################
   #
+  # Update dSYMs for Firebase Crashlytics
+  #
+  ##########################################################################
+
+  desc "Download dSYMs from Apple and upload to Firebase Crashlytics"
+  lane :crashylytics_update_dsyms do
+    download_dsyms(version: "latest")
+    upload_symbols_to_crashlytics(binary_path: "./RunScripts/Firebase/Crashlytics/upload-symbols")
+    clean_build_artifacts
+  end
+
+  ##########################################################################
+  #
   # Release to Testflight
   #
   ##########################################################################
 
   desc "Release Pocket Code to Testflight"
   lane :release do
-    sh ("security unlock-keychain -p $CI_PASSWORD ${HOME}/Library/Keychains/login.keychain-db")
+    update_plist(
+      plist_path: "Catty/Supporting Files/Firebase/GoogleService-Info.plist",
+      block: proc do |plist|
+        plist["API_KEY"] = ENV["FIREBASE_API_KEY"]
+        plist["GOOGLE_APP_ID"] = ENV["FIREBASE_GOOGLE_APP_ID"]
+      end
+    )
     cert
     sigh(force: true)
     create_build scheme:$catty_schemes["release"], method:"app-store"
     upload_to_testflight(
       skip_submission: true,
-      skip_waiting_for_build_processing: true
+      skip_waiting_for_build_processing: false
     )
+    crashylytics_update_dsyms
   end
 
 end

@@ -23,24 +23,37 @@
 /// An URLSession subclass that doesn't send a proper URLResponse in the completion handlers.
 class URLSessionMock: URLSession {
 
+    var response: URLResponse?
+    var error: Error?
+
+    init(response: URLResponse? = nil, error: Error? = nil) {
+        self.response = response
+        self.error = error
+        super.init()
+    }
+
     override func dataTask(with url: URL, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
-        return URLSessionDataTaskMock(completionHandler)
+        return URLSessionDataTaskMock(completionHandler, response: response, error: error)
     }
 
     override func dataTask(with request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
-        return URLSessionDataTaskMock(completionHandler)
+        return URLSessionDataTaskMock(completionHandler, response: response, error: error)
     }
 
     class URLSessionDataTaskMock: URLSessionDataTask {
 
         var completionHandler: ((Data?, URLResponse?, Error?) -> Void)?
+        var mockResponse: URLResponse?
+        var mockError: Error?
 
-        required init(_ completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) {
+        required init(_ completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void, response: URLResponse?, error: Error?) {
             self.completionHandler = completionHandler
+            self.mockResponse = response
+            self.mockError = error
         }
 
         override func resume() {
-            self.completionHandler?(nil, nil, nil)
+            self.completionHandler?(nil, mockResponse, mockError)
             self.completionHandler = nil
         }
     }

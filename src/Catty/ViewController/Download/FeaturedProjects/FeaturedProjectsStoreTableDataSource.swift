@@ -82,7 +82,7 @@ class FeaturedProjectsStoreTableDataSource: NSObject, UITableViewDataSource, UIT
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell: FeaturedProjectsCell? = tableView.cellForRow(at: indexPath) as? FeaturedProjectsCell
 
-        self.downloader.downloadProject(for: (cell?.project)!) { project, error in
+        self.downloader.fetchProjectDetails(for: (cell?.project)!) { project, error in
             guard let StoreProject = project, error == nil else { return }
             cell?.project = StoreProject
             self.delegate?.selectedCell(dataSource: self, didSelectCellWith: cell!)

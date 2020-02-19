@@ -101,6 +101,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    [[NSNotificationCenter defaultCenter] postNotificationName:NotificationName.scenePresenterViewControllerDidAppear object:self];
 }
 
 - (void)viewWillDisappear:(BOOL)animated

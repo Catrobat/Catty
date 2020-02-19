@@ -119,6 +119,11 @@
     self.textDictionary = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:NO],@"Bold",[NSNumber numberWithBool:NO],@"Italic",[NSNumber numberWithBool:NO],@"Underline",[NSNumber numberWithInteger:40],@"Size",[NSNumber numberWithInteger:0],@"Font", nil];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [[NSNotificationCenter defaultCenter] postNotificationName:NotificationName.paintViewControllerDidAppear object:self];
+}
 
 - (void)willMoveToParentViewController:(UIViewController *)parent
 {
