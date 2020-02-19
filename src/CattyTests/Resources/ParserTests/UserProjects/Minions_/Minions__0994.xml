@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<program>
+    <header>
+        <applicationBuildName/>
+        <applicationBuildNumber>0</applicationBuildNumber>
+        <applicationName>Pocket Code</applicationName>
+        <applicationVersion>0.9.30</applicationVersion>
+        <catrobatLanguageVersion>0.994</catrobatLanguageVersion>
+        <dateTimeUpload/>
+        <description/>
+        <deviceName>PRA-LX1</deviceName>
+        <isCastProject>false</isCastProject>
+        <landscapeMode>false</landscapeMode>
+        <mediaLicense>http://developer.catrobat.org/ccbysa_v4</mediaLicense>
+        <platform>Android</platform>
+        <platformVersion>26.0</platformVersion>
+        <programLicense>http://developer.catrobat.org/agpl_v3</programLicense>
+        <programName>Minions </programName>
+        <remixOf></remixOf>
+        <scenesEnabled>true</scenesEnabled>
+        <screenHeight>888</screenHeight>
+        <screenMode>STRETCH</screenMode>
+        <screenWidth>540</screenWidth>
+        <tags>Bewegte Animation</tags>
+        <url>/pocketcode/program/1450</url>
+        <userHandle>kestapa</userHandle>
+    </header>
+    <settings/>
+    <scenes>
+        <scene>
+            <name>Szene 1</name>
+            <objectList>
+                <object type="SingleSprite" name="Background">
+                    <lookList>
+                        <look name="despicable_me_2_minions-1920x1080">
+                            <fileName>3bdd676ea990fc5bca2242098ddd4975_despicable_me_2_minions-1920x1080.jpg</fileName>
+                        </look>
+                        <look name="Despicable-me-minions">
+                            <fileName>25a99faffe27782c879188f97d77374e_Despicable-me-minions.jpg</fileName>
+                        </look>
+                    </lookList>
+                    <soundList>
+                        <sound>
+                            <fileName>4af95e84a596e97ee55042466a11d855_Ba Ba Ba Banana_2.mp3</fileName>
+                            <name>Ba Ba Ba Banana_2</name>
+                        </sound>
+                    </soundList>
+                    <scriptList>
+                        <script type="StartScript">
+                            <brickList>
+                                <brick type="WaitBrick">
+                                    <commentedOut>false</commentedOut>
+                                    <formulaList>
+                                        <formula category="TIME_TO_WAIT_IN_SECONDS">
+                                            <type>NUMBER</type>
+                                            <value>2.0</value>
+                                        </formula>
+                                    </formulaList>
+                                </brick>
+                                <brick type="PlaySoundBrick">
+                                    <commentedOut>false</commentedOut>
+                                    <sound reference="../../../../../soundList/sound"/>
+                                </brick>
+                            </brickList>
+                            <commentedOut>false</commentedOut>
+                            <isUserScript>false</isUserScript>
+                        </script>
+                        <script type="WhenScript">
+                            <brickList>
+                                <brick type="IfLogicBeginBrick">
+                                    <commentedOut>false</commentedOut>
+                                    <formulaList>
+                                        <formula category="IF_CONDITION">
+                                            <type>NUMBER</type>
+                                            <value>1</value>
+                                        </formula>
+                                    </formulaList>
+                                </brick>
+                                <brick type="NextLookBrick">
+                                    <commentedOut>false</commentedOut>
+                                </brick>
+                                <brick type="IfLogicElseBrick">
+                                    <commentedOut>false</commentedOut>
+                                </brick>
+                                <brick type="IfLogicEndBrick">
+                                    <commentedOut>false</commentedOut>
+                                </brick>
+                            </brickList>
+                            <commentedOut>false</commentedOut>
+                            <action>Tapped</action>
+                        </script>
+                    </scriptList>
+                    <userBricks/>
+                    <nfcTagList/>
+                </object>
+            </objectList>
+            <data>
+                <objectListOfList/>
+                <objectVariableList>
+                    <entry>
+                        <object reference="../../../../objectList/object"/>
+                        <list/>
+                    </entry>
+                </objectVariableList>
+                <userBrickVariableList/>
+            </data>
+            <originalWidth>540</originalWidth>
+            <originalHeight>888</originalHeight>
+        </scene>
+    </scenes>
+    <programVariableList/>
+    <programListOfLists/>
+</program>
+

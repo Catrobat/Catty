@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<program>
+    <header>
+        <applicationBuildName>Catty</applicationBuildName>
+        <applicationBuildNumber>24</applicationBuildNumber>
+        <applicationName>Pocket Code</applicationName>
+        <applicationVersion>0.6.9</applicationVersion>
+        <catrobatLanguageVersion>0.991</catrobatLanguageVersion>
+        <dateTimeUpload/>
+        <description/>
+        <deviceName>iPhone9,3</deviceName>
+        <landscapeMode>false</landscapeMode>
+        <mediaLicense>http://developer.catrobat.org/ccbysa_v4</mediaLicense>
+        <platform>iOS</platform>
+        <platformVersion>12.3</platformVersion>
+        <programLicense>http://developer.catrobat.org/agpl_v3</programLicense>
+        <programName>CopyTest</programName>
+        <remixOf></remixOf>
+        <screenHeight>1334</screenHeight>
+        <screenMode>STRETCH</screenMode>
+        <screenWidth>750</screenWidth>
+        <tags/>
+        <url>/pocketcode/program/97301</url>
+        <userHandle>gatcodedev</userHandle>
+    </header>
+    <objectList>
+        <object name="Hintergrund">
+            <lookList>
+                <look name="forest-day">
+                    <fileName>E86F68AD22AF0B10597FDF5EBC0FDB81_forest-day.png</fileName>
+                </look>
+            </lookList>
+            <soundList/>
+            <scriptList>
+                <script type="StartScript">
+                    <brickList>
+                        <brick type="SetBackgroundBrick">
+                            <look reference="../../../../../lookList/look"/>
+                        </brick>
+                        <brick type="SetVariableBrick">
+                            <formulaList>
+                                <formula category="VARIABLE">
+                                    <type>NUMBER</type>
+                                    <value>1</value>
+                                </formula>
+                            </formulaList>
+                            <userVariable>local</userVariable>
+                        </brick>
+                    </brickList>
+                    <isUserScript>false</isUserScript>
+                </script>
+            </scriptList>
+            <userBricks/>
+            <nfcTagList/>
+        </object>
+        <object name="Object">
+            <lookList>
+                <look name="Pocket Panda (front)">
+                    <fileName>81470EC508FD1DB7BEFEAD7F53F65D3D_Pocket Panda (front).png</fileName>
+                </look>
+            </lookList>
+            <soundList/>
+            <scriptList>
+                <script type="StartScript">
+                    <brickList>
+                        <brick type="SetVariableBrick">
+                            <formulaList>
+                                <formula category="VARIABLE">
+                                    <type>NUMBER</type>
+                                    <value>1</value>
+                                </formula>
+                            </formulaList>
+                            <userVariable>local</userVariable>
+                        </brick>
+                        <brick type="SetVariableBrick">
+                            <formulaList>
+                                <formula category="VARIABLE">
+                                    <type>NUMBER</type>
+                                    <value>1</value>
+                                </formula>
+                            </formulaList>
+                            <userVariable>global</userVariable>
+                        </brick>
+                    </brickList>
+                    <isUserScript>false</isUserScript>
+                </script>
+            </scriptList>
+            <userBricks/>
+            <nfcTagList/>
+        </object>
+        <object name="Object (1)">
+            <lookList>
+                <look name="Pocket Panda (front)">
+                    <fileName>81470EC508FD1DB7BEFEAD7F53F65D3D_Pocket Panda (front).png</fileName>
+                </look>
+            </lookList>
+            <soundList/>
+            <scriptList>
+                <script type="StartScript">
+                    <brickList>
+                        <brick type="SetVariableBrick">
+                            <formulaList>
+                                <formula category="VARIABLE">
+                                    <type>NUMBER</type>
+                                    <value>1</value>
+                                </formula>
+                            </formulaList>
+                            <userVariable>local</userVariable>
+                        </brick>
+                        <brick type="SetVariableBrick">
+                            <formulaList>
+                                <formula category="VARIABLE">
+                                    <type>NUMBER</type>
+                                    <value>1</value>
+                                </formula>
+                            </formulaList>
+                            <userVariable reference="../../../../../../object[2]/scriptList/script/brickList/brick[2]/userVariable"/>
+                        </brick>
+                    </brickList>
+                    <isUserScript>false</isUserScript>
+                </script>
+            </scriptList>
+            <userBricks/>
+            <nfcTagList/>
+        </object>
+        <object name="Object (2)">
+            <lookList>
+                <look name="Pocket Panda (front)">
+                    <fileName>81470EC508FD1DB7BEFEAD7F53F65D3D_Pocket Panda (front).png</fileName>
+                </look>
+            </lookList>
+            <soundList/>
+            <scriptList>
+                <script type="StartScript">
+                    <brickList>
+                        <brick type="SetVariableBrick">
+                            <formulaList>
+                                <formula category="VARIABLE">
+                                    <type>NUMBER</type>
+                                    <value>1</value>
+                                </formula>
+                            </formulaList>
+                            <userVariable>local</userVariable>
+                        </brick>
+                        <brick type="SetVariableBrick">
+                            <formulaList>
+                                <formula category="VARIABLE">
+                                    <type>NUMBER</type>
+                                    <value>1</value>
+                                </formula>
+                            </formulaList>
+                            <userVariable reference="../../../../../../object[2]/scriptList/script/brickList/brick[2]/userVariable"/>
+                        </brick>
+                    </brickList>
+                    <isUserScript>false</isUserScript>
+                </script>
+            </scriptList>
+            <userBricks/>
+            <nfcTagList/>
+        </object>
+        <object name="Object (3)">
+            <lookList>
+                <look name="Pocket Panda (front)">
+                    <fileName>81470EC508FD1DB7BEFEAD7F53F65D3D_Pocket Panda (front).png</fileName>
+                </look>
+            </lookList>
+            <soundList/>
+            <scriptList>
+                <script type="StartScript">
+                    <brickList>
+                        <brick type="SetVariableBrick">
+                            <formulaList>
+                                <formula category="VARIABLE">
+                                    <type>NUMBER</type>
+                                    <value>1</value>
+                                </formula>
+                            </formulaList>
+                            <userVariable>local</userVariable>
+                        </brick>
+                        <brick type="SetVariableBrick">
+                            <formulaList>
+                                <formula category="VARIABLE">
+                                    <type>NUMBER</type>
+                                    <value>1</value>
+                                </formula>
+                            </formulaList>
+                            <userVariable reference="../../../../../../object[2]/scriptList/script/brickList/brick[2]/userVariable"/>
+                        </brick>
+                    </brickList>
+                    <isUserScript>false</isUserScript>
+                </script>
+            </scriptList>
+            <userBricks/>
+            <nfcTagList/>
+        </object>
+    </objectList>
+    <data>
+        <objectListOfList/>
+        <objectVariableList>
+            <entry>
+                <object reference="../../../../objectList/object"/>
+                <list>
+                    <userVariable reference="../../../../../objectList/object/scriptList/script/brickList/brick[2]/userVariable"/>
+                </list>
+            </entry>
+            <entry>
+                <object reference="../../../../objectList/object[2]"/>
+                <list>
+                    <userVariable reference="../../../../../objectList/object[2]/scriptList/script/brickList/brick/userVariable"/>
+                </list>
+            </entry>
+            <entry>
+                <object reference="../../../../objectList/object[3]"/>
+                <list>
+                    <userVariable reference="../../../../../objectList/object[3]/scriptList/script/brickList/brick/userVariable"/>
+                </list>
+            </entry>
+            <entry>
+                <object reference="../../../../objectList/object[4]"/>
+                <list>
+                    <userVariable reference="../../../../../objectList/object[4]/scriptList/script/brickList/brick/userVariable"/>
+                </list>
+            </entry>
+            <entry>
+                <object reference="../../../../objectList/object[5]"/>
+                <list>
+                    <userVariable reference="../../../../../objectList/object[5]/scriptList/script/brickList/brick/userVariable"/>
+                </list>
+            </entry>
+        </objectVariableList>
+        <programListOfLists/>
+        <programVariableList>
+            <userVariable reference="../../../objectList/object[2]/scriptList/script/brickList/brick[2]/userVariable"/>
+        </programVariableList>
+        <userBrickVariableList/>
+    </data>
+    <settings/>
+</program>
+

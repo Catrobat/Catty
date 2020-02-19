@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<program>
+    <header>
+        <applicationBuildName/>
+        <applicationBuildNumber>0</applicationBuildNumber>
+        <applicationName>Pocket Code</applicationName>
+        <applicationVersion>0.9.30</applicationVersion>
+        <catrobatLanguageVersion>0.994</catrobatLanguageVersion>
+        <dateTimeUpload/>
+        <description>Use the phone to control the paddle.
+            REMIX TIPS:
+            * Change what the ball looks like
+            * Add a score if the ball touches the paddle
+            * Add background music
+            * Increase the speed of the ball each time it hits the paddle</description>
+        <deviceName>PRA-LX1</deviceName>
+        <isCastProject>false</isCastProject>
+        <landscapeMode>false</landscapeMode>
+        <mediaLicense>http://developer.catrobat.org/ccbysa_v4</mediaLicense>
+        <platform>Android</platform>
+        <platformVersion>26.0</platformVersion>
+        <programLicense>http://developer.catrobat.org/agpl_v3</programLicense>
+        <programName>Pong Starter</programName>
+        <remixOf>http://pocketcode.org/details/0</remixOf>
+        <scenesEnabled>true</scenesEnabled>
+        <screenHeight>1205</screenHeight>
+        <screenMode>STRETCH</screenMode>
+        <screenWidth>800</screenWidth>
+        <tags>Spiele</tags>
+        <url>/pocketcode/program/959</url>
+        <userHandle>PocketCodeTeam</userHandle>
+    </header>
+    <settings/>
+    <scenes>
+        <scene>
+            <name>Szene 1</name>
+            <objectList>
+                <object type="SingleSprite" name="Background">
+                    <lookList>
+                        <look name="grassland">
+                            <fileName>f26cbf79372f08620945708906287207_grassland.jpg</fileName>
+                        </look>
+                    </lookList>
+                    <soundList/>
+                    <scriptList>
+                        <script type="StartScript">
+                            <brickList>
+                                <brick type="SetSizeToBrick">
+                                    <commentedOut>false</commentedOut>
+                                    <formulaList>
+                                        <formula category="SIZE">
+                                            <type>NUMBER</type>
+                                            <value>200</value>
+                                        </formula>
+                                    </formulaList>
+                                </brick>
+                                <brick type="SetLookBrick">
+                                    <commentedOut>false</commentedOut>
+                                    <look reference="../../../../../lookList/look"/>
+                                </brick>
+                            </brickList>
+                            <commentedOut>false</commentedOut>
+                            <isUserScript>false</isUserScript>
+                        </script>
+                    </scriptList>
+                    <userBricks/>
+                    <nfcTagList/>
+                </object>
+                <object type="SingleSprite" name="Paddle">
+                    <lookList>
+                        <look name="Paddle">
+                            <fileName>be40e5993d4bc69eb14711dbebe7fd75_look.png</fileName>
+                        </look>
+                    </lookList>
+                    <soundList/>
+                    <scriptList>
+                        <script type="StartScript">
+                            <brickList>
+                                <brick type="SetLookBrick">
+                                    <commentedOut>false</commentedOut>
+                                    <look reference="../../../../../lookList/look"/>
+                                </brick>
+                                <brick type="SetYBrick">
+                                    <commentedOut>false</commentedOut>
+                                    <formulaList>
+                                        <formula category="Y_POSITION">
+                                            <rightChild>
+                                                <type>NUMBER</type>
+                                                <value>480</value>
+                                            </rightChild>
+                                            <type>OPERATOR</type>
+                                            <value>MINUS</value>
+                                        </formula>
+                                    </formulaList>
+                                </brick>
+                                <brick type="ForeverBrick">
+                                    <commentedOut>false</commentedOut>
+                                </brick>
+                                <brick type="SetVariableBrick">
+                                    <commentedOut>false</commentedOut>
+                                    <formulaList>
+                                        <formula category="VARIABLE">
+                                            <type>SENSOR</type>
+                                            <value>OBJECT_X</value>
+                                        </formula>
+                                    </formulaList>
+                                    <userVariable>paddle_x_position</userVariable>
+                                </brick>
+                                <brick type="SetVariableBrick">
+                                    <commentedOut>false</commentedOut>
+                                    <formulaList>
+                                        <formula category="VARIABLE">
+                                            <type>NUMBER</type>
+                                            <value>100</value>
+                                        </formula>
+                                    </formulaList>
+                                    <userVariable>paddle_lenght</userVariable>
+                                </brick>
+                                <brick type="IfOnEdgeBounceBrick">
+                                    <commentedOut>false</commentedOut>
+                                </brick>
+                                <brick type="ChangeXByNBrick">
+                                    <commentedOut>false</commentedOut>
+                                    <formulaList>
+                                        <formula category="X_POSITION_CHANGE">
+                                            <rightChild>
+                                                <type>SENSOR</type>
+                                                <value>X_INCLINATION</value>
+                                            </rightChild>
+                                            <type>OPERATOR</type>
+                                            <value>MINUS</value>
+                                        </formula>
+                                    </formulaList>
+                                </brick>
+                                <brick type="LoopEndlessBrick">
+                                    <commentedOut>false</commentedOut>
+                                </brick>
+                            </brickList>
+                            <commentedOut>false</commentedOut>
+                            <isUserScript>false</isUserScript>
+                        </script>
+                    </scriptList>
+                    <userBricks/>
+                    <nfcTagList/>
+                </object>
+                <object type="SingleSprite" name="Ball">
+                    <lookList>
+                        <look name="tennisball">
+                            <fileName>d0b546fa3e67cc14a49dc2a639045a2a_tennisball.png</fileName>
+                        </look>
+                    </lookList>
+                    <soundList/>
+                    <scriptList>
+                        <script type="StartScript">
+                            <brickList>
+                                <brick type="PlaceAtBrick">
+                                    <commentedOut>false</commentedOut>
+                                    <formulaList>
+                                        <formula category="X_POSITION">
+                                            <type>NUMBER</type>
+                                            <value>0</value>
+                                        </formula>
+                                        <formula category="Y_POSITION">
+                                            <type>NUMBER</type>
+                                            <value>400</value>
+                                        </formula>
+                                    </formulaList>
+                                </brick>
+                                <brick type="PointInDirectionBrick">
+                                    <commentedOut>false</commentedOut>
+                                    <formulaList>
+                                        <formula category="DEGREES">
+                                            <type>NUMBER</type>
+                                            <value>45</value>
+                                        </formula>
+                                    </formulaList>
+                                </brick>
+                                <brick type="SetLookBrick">
+                                    <commentedOut>false</commentedOut>
+                                    <look reference="../../../../../lookList/look"/>
+                                </brick>
+                                <brick type="ForeverBrick">
+                                    <commentedOut>false</commentedOut>
+                                </brick>
+                                <brick type="IfLogicBeginBrick">
+                                    <commentedOut>false</commentedOut>
+                                    <formulaList>
+                                        <formula category="IF_CONDITION">
+                                            <leftChild>
+                                                <type>USER_VARIABLE</type>
+                                                <value>stop</value>
+                                            </leftChild>
+                                            <rightChild>
+                                                <type>FUNCTION</type>
+                                                <value>FALSE</value>
+                                            </rightChild>
+                                            <type>OPERATOR</type>
+                                            <value>EQUAL</value>
+                                        </formula>
+                                    </formulaList>
+                                </brick>
+                                <brick type="IfOnEdgeBounceBrick">
+                                    <commentedOut>false</commentedOut>
+                                </brick>
+                                <brick type="MoveNStepsBrick">
+                                    <commentedOut>false</commentedOut>
+                                    <formulaList>
+                                        <formula category="STEPS">
+                                            <type>NUMBER</type>
+                                            <value>10.0</value>
+                                        </formula>
+                                    </formulaList>
+                                </brick>
+                                <brick type="IfLogicElseBrick">
+                                    <commentedOut>false</commentedOut>
+                                </brick>
+                                <brick type="IfLogicEndBrick">
+                                    <commentedOut>false</commentedOut>
+                                </brick>
+                                <brick type="LoopEndlessBrick">
+                                    <commentedOut>false</commentedOut>
+                                </brick>
+                            </brickList>
+                            <commentedOut>false</commentedOut>
+                            <isUserScript>false</isUserScript>
+                        </script>
+                        <script type="StartScript">
+                            <brickList>
+                                <brick type="ForeverBrick">
+                                    <commentedOut>false</commentedOut>
+                                </brick>
+                                <brick type="IfLogicBeginBrick">
+                                    <commentedOut>false</commentedOut>
+                                    <formulaList>
+                                        <formula category="IF_CONDITION">
+                                            <leftChild>
+                                                <leftChild>
+                                                    <leftChild>
+                                                        <type>SENSOR</type>
+                                                        <value>OBJECT_Y</value>
+                                                    </leftChild>
+                                                    <rightChild>
+                                                        <rightChild>
+                                                            <rightChild>
+                                                                <type>NUMBER</type>
+                                                                <value>480</value>
+                                                            </rightChild>
+                                                            <type>OPERATOR</type>
+                                                            <value>MINUS</value>
+                                                        </rightChild>
+                                                        <type>BRACKET</type>
+                                                    </rightChild>
+                                                    <type>OPERATOR</type>
+                                                    <value>SMALLER_THAN</value>
+                                                </leftChild>
+                                                <rightChild>
+                                                    <leftChild>
+                                                        <type>SENSOR</type>
+                                                        <value>OBJECT_X</value>
+                                                    </leftChild>
+                                                    <rightChild>
+                                                        <leftChild>
+                                                            <type>USER_VARIABLE</type>
+                                                            <value>paddle_x_position</value>
+                                                        </leftChild>
+                                                        <rightChild>
+                                                            <leftChild>
+                                                                <type>USER_VARIABLE</type>
+                                                                <value>paddle_lenght</value>
+                                                            </leftChild>
+                                                            <rightChild>
+                                                                <type>NUMBER</type>
+                                                                <value>2</value>
+                                                            </rightChild>
+                                                            <type>OPERATOR</type>
+                                                            <value>DIVIDE</value>
+                                                        </rightChild>
+                                                        <type>OPERATOR</type>
+                                                        <value>PLUS</value>
+                                                    </rightChild>
+                                                    <type>OPERATOR</type>
+                                                    <value>SMALLER_THAN</value>
+                                                </rightChild>
+                                                <type>OPERATOR</type>
+                                                <value>LOGICAL_AND</value>
+                                            </leftChild>
+                                            <rightChild>
+                                                <leftChild>
+                                                    <type>SENSOR</type>
+                                                    <value>OBJECT_X</value>
+                                                </leftChild>
+                                                <rightChild>
+                                                    <leftChild>
+                                                        <type>USER_VARIABLE</type>
+                                                        <value>paddle_x_position</value>
+                                                    </leftChild>
+                                                    <rightChild>
+                                                        <type>USER_VARIABLE</type>
+                                                        <value>paddle_lenght</value>
+                                                    </rightChild>
+                                                    <type>OPERATOR</type>
+                                                    <value>MINUS</value>
+                                                </rightChild>
+                                                <type>OPERATOR</type>
+                                                <value>GREATER_THAN</value>
+                                            </rightChild>
+                                            <type>OPERATOR</type>
+                                            <value>LOGICAL_AND</value>
+                                        </formula>
+                                    </formulaList>
+                                </brick>
+                                <brick type="TurnLeftBrick">
+                                    <commentedOut>false</commentedOut>
+                                    <formulaList>
+                                        <formula category="TURN_LEFT_DEGREES">
+                                            <type>NUMBER</type>
+                                            <value>90</value>
+                                        </formula>
+                                    </formulaList>
+                                </brick>
+                                <brick type="IfLogicElseBrick">
+                                    <commentedOut>false</commentedOut>
+                                </brick>
+                                <brick type="IfLogicEndBrick">
+                                    <commentedOut>false</commentedOut>
+                                </brick>
+                                <brick type="LoopEndlessBrick">
+                                    <commentedOut>false</commentedOut>
+                                </brick>
+                            </brickList>
+                            <commentedOut>false</commentedOut>
+                            <isUserScript>false</isUserScript>
+                        </script>
+                        <script type="StartScript">
+                            <brickList>
+                                <brick type="ForeverBrick">
+                                    <commentedOut>false</commentedOut>
+                                </brick>
+                                <brick type="IfLogicBeginBrick">
+                                    <commentedOut>false</commentedOut>
+                                    <formulaList>
+                                        <formula category="IF_CONDITION">
+                                            <leftChild>
+                                                <type>SENSOR</type>
+                                                <value>OBJECT_Y</value>
+                                            </leftChild>
+                                            <rightChild>
+                                                <rightChild>
+                                                    <type>NUMBER</type>
+                                                    <value>500</value>
+                                                </rightChild>
+                                                <type>OPERATOR</type>
+                                                <value>MINUS</value>
+                                            </rightChild>
+                                            <type>OPERATOR</type>
+                                            <value>SMALLER_THAN</value>
+                                        </formula>
+                                    </formulaList>
+                                </brick>
+                                <brick type="SetVariableBrick">
+                                    <commentedOut>false</commentedOut>
+                                    <formulaList>
+                                        <formula category="VARIABLE">
+                                            <type>FUNCTION</type>
+                                            <value>TRUE</value>
+                                        </formula>
+                                    </formulaList>
+                                    <userVariable>stop</userVariable>
+                                </brick>
+                                <brick type="IfLogicElseBrick">
+                                    <commentedOut>false</commentedOut>
+                                </brick>
+                                <brick type="IfLogicEndBrick">
+                                    <commentedOut>false</commentedOut>
+                                </brick>
+                                <brick type="MoveNStepsBrick">
+                                    <commentedOut>false</commentedOut>
+                                    <formulaList>
+                                        <formula category="STEPS">
+                                            <type>NUMBER</type>
+                                            <value>10.0</value>
+                                        </formula>
+                                    </formulaList>
+                                </brick>
+                                <brick type="LoopEndlessBrick">
+                                    <commentedOut>false</commentedOut>
+                                </brick>
+                            </brickList>
+                            <commentedOut>false</commentedOut>
+                            <isUserScript>false</isUserScript>
+                        </script>
+                        <script type="StartScript">
+                            <brickList/>
+                            <commentedOut>false</commentedOut>
+                            <isUserScript>false</isUserScript>
+                        </script>
+                    </scriptList>
+                    <userBricks/>
+                    <nfcTagList/>
+                </object>
+            </objectList>
+            <data>
+                <objectListOfList/>
+                <objectVariableList>
+                    <entry>
+                        <object reference="../../../../objectList/object[3]"/>
+                        <list/>
+                    </entry>
+                    <entry>
+                        <object reference="../../../../objectList/object[2]"/>
+                        <list/>
+                    </entry>
+                </objectVariableList>
+                <userBrickVariableList/>
+            </data>
+            <originalWidth>800</originalWidth>
+            <originalHeight>1205</originalHeight>
+        </scene>
+    </scenes>
+    <programVariableList>
+        <userVariable reference="../../scenes/scene/objectList/object[2]/scriptList/script/brickList/brick[4]/userVariable"/>
+        <userVariable reference="../../scenes/scene/objectList/object[2]/scriptList/script/brickList/brick[5]/userVariable"/>
+        <userVariable reference="../../scenes/scene/objectList/object[3]/scriptList/script[3]/brickList/brick[3]/userVariable"/>
+    </programVariableList>
+</program>
+

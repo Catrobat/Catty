@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<program>
+    <header>
+        <applicationBuildName>Catty</applicationBuildName>
+        <applicationBuildNumber>26</applicationBuildNumber>
+        <applicationName>Pocket Code</applicationName>
+        <applicationVersion>0.6.10</applicationVersion>
+        <catrobatLanguageVersion>0.991</catrobatLanguageVersion>
+        <dateTimeUpload/>
+        <description/>
+        <deviceName>iPhone9,3</deviceName>
+        <landscapeMode>false</landscapeMode>
+        <mediaLicense>http://developer.catrobat.org/ccbysa_v4</mediaLicense>
+        <platform>iOS</platform>
+        <platformVersion>12.3</platformVersion>
+        <programLicense>http://developer.catrobat.org/agpl_v3</programLicense>
+        <programName>UninitListTest</programName>
+        <remixOf></remixOf>
+        <screenHeight>1334</screenHeight>
+        <screenMode>STRETCH</screenMode>
+        <screenWidth>750</screenWidth>
+        <tags/>
+        <url>/pocketcode/program/96325</url>
+        <userHandle>gatcodedev</userHandle>
+    </header>
+    <objectList>
+        <object name="Hintergrund">
+            <lookList/>
+            <soundList/>
+            <scriptList>
+                <script type="StartScript">
+                    <brickList>
+                        <brick type="IfThenLogicBeginBrick">
+                            <formulaList>
+                                <formula category="IF_CONDITION">
+                                    <type>USER_LIST</type>
+                                    <value>list</value>
+                                </formula>
+                            </formulaList>
+                        </brick>
+                        <brick type="IfThenLogicEndBrick"/>
+                    </brickList>
+                    <isUserScript>false</isUserScript>
+                </script>
+            </scriptList>
+            <userBricks/>
+            <nfcTagList/>
+        </object>
+    </objectList>
+    <data>
+        <objectListOfList/>
+        <objectVariableList/>
+        <programListOfLists>
+            <userList>
+                <name>list</name>
+            </userList>
+        </programListOfLists>
+        <programVariableList/>
+        <userBrickVariableList/>
+    </data>
+    <settings/>
+</program>
+

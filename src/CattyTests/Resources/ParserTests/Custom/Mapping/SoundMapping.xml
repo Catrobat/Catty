@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<program>
+    <header>
+        <applicationBuildName>Catty</applicationBuildName>
+        <applicationBuildNumber>24</applicationBuildNumber>
+        <applicationName>Pocket Code</applicationName>
+        <applicationVersion>0.6.9</applicationVersion>
+        <catrobatLanguageVersion>0.991</catrobatLanguageVersion>
+        <dateTimeUpload/>
+        <description/>
+        <deviceName>iPhone9,3</deviceName>
+        <landscapeMode>false</landscapeMode>
+        <mediaLicense>http://developer.catrobat.org/ccbysa_v4</mediaLicense>
+        <platform>iOS</platform>
+        <platformVersion>12.3</platformVersion>
+        <programLicense>http://developer.catrobat.org/agpl_v3</programLicense>
+        <programName>SoundMapping</programName>
+        <remixOf></remixOf>
+        <screenHeight>1334</screenHeight>
+        <screenMode>STRETCH</screenMode>
+        <screenWidth>750</screenWidth>
+        <tags/>
+        <url>/pocketcode/program/95607</url>
+        <userHandle>gatcodedev</userHandle>
+    </header>
+    <objectList>
+        <object name="Hintergrund">
+            <lookList/>
+            <soundList>
+                <sound>
+                    <fileName>A2B3CAC37065C109AAC17ED46005445E_Cricket.wav</fileName>
+                    <name>Cricket</name>
+                </sound>
+                <sound>
+                    <fileName>18BD4B634A3F992A16B30344C7D810E0_Bird.wav</fileName>
+                    <name>Bird</name>
+                </sound>
+            </soundList>
+            <scriptList>
+                <script type="StartScript">
+                    <brickList>
+                        <brick type="PlaySoundBrick">
+                            <sound reference="../../../../../soundList/sound"/>
+                        </brick>
+                        <brick type="SpeakBrick">
+                            <formulaList>
+                                <formula category="SPEAK">
+                                    <type>STRING</type>
+                                    <value>Hallo!</value>
+                                </formula>
+                            </formulaList>
+                        </brick>
+                    </brickList>
+                    <isUserScript>false</isUserScript>
+                </script>
+                <script type="BroadcastScript">
+                    <brickList>
+                        <brick type="PlaySoundBrick">
+                            <sound reference="../../../../../soundList/sound"/>
+                        </brick>
+                        <brick type="PlaySoundBrick">
+                            <sound reference="../../../../../soundList/sound"/>
+                        </brick>
+                        <brick type="PlaySoundBrick">
+                            <sound reference="../../../../../soundList/sound[2]"/>
+                        </brick>
+                    </brickList>
+                    <receivedMessage>Nachricht 1</receivedMessage>
+                </script>
+            </scriptList>
+            <userBricks/>
+            <nfcTagList/>
+        </object>
+    </objectList>
+    <data>
+        <objectListOfList/>
+        <objectVariableList/>
+        <programListOfLists/>
+        <programVariableList/>
+        <userBrickVariableList/>
+    </data>
+    <settings/>
+</program>
+
