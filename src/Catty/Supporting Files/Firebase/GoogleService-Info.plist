@@ -7,11 +7,11 @@
 	<key>BUNDLE_ID</key>
 	<string>org.catrobat.pocketcode</string>
 	<key>CLIENT_ID</key>
-	<string>138555302995-ufovii15bco0voellv5s4e65htphauil.apps.googleusercontent.com</string>
+	<string>111053102425-sj5ic1lgtmr7teac4n3bu86usnduff96.apps.googleusercontent.com</string>
 	<key>DATABASE_URL</key>
 	<string>https://pocket-code-for-ios.firebaseio.com</string>
 	<key>GCM_SENDER_ID</key>
-	<string>138555302995</string>
+	<string>111053102425</string>
 	<key>GOOGLE_APP_ID</key>
 	<string>1:2:ios:3</string>
 	<key>IS_ADS_ENABLED</key>
@@ -27,10 +27,10 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>PROJECT_ID</key>
-	<string>pocket-code-for-ios</string>
+	<string>catty-dd2fd</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.138555302995-ufovii15bco0voellv5s4e65htphauil</string>
+	<string>com.googleusercontent.apps.111053102425-sj5ic1lgtmr7teac4n3bu86usnduff96</string>
 	<key>STORAGE_BUCKET</key>
-	<string>pocket-code-for-ios.appspot.com</string>
+	<string>catty-dd2fd.appspot.com</string>
 </dict>
 </plist>
