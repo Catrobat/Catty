@@ -28,5 +28,11 @@
 #define kUsePhiroBricks @"usePhiroBricks"
 #define kUseArduinoBricks @"useArduinoBricks"
 
+#define kUserPrivacyPolicyHasBeenShown @"privacyPolicyHasBeenShown"
+#define kUserShowPrivacyPolicyOnEveryLaunch @"showPrivacyPolicyOnEveryLaunch"
+
+#define kFirebaseSendCrashReports @"firebaseSendCrashReports"
+
 #define kPhiroActivated 0
 #define kArduinoActivated 1
+#define kFirebaseSendCrashReportsDefault 1

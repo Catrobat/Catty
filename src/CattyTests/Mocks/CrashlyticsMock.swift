@@ -20,11 +20,31 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Bohr/Bohr.h>
+import Firebase
 
-@interface SettingsTableViewController : BOTableViewController
+final class CrashlyticsMock: Crashlytics {
 
-- (void)changeFirebaseCrashReportSettings:(UISwitch *)sender;
+    public var logs: [String]
+    public var records: [Error]
+    var collectionEnabled: Bool
 
-@end
+    init(collectionEnabled: Bool) {
+        self.collectionEnabled = collectionEnabled
+        self.logs = []
+        self.records = []
+    }
 
+    override func isCrashlyticsCollectionEnabled() -> Bool { collectionEnabled }
+
+    override func setCrashlyticsCollectionEnabled(_ enabled: Bool) {
+        collectionEnabled = enabled
+    }
+
+    override func log(_ msg: String) {
+        logs.append(msg)
+    }
+
+    override func record(error: Error) {
+        records.append(error)
+    }
+}

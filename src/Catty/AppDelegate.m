@@ -51,12 +51,7 @@ void uncaughtExceptionHandler(NSException *exception)
     application.statusBarHidden = NO;
     application.statusBarStyle = UIStatusBarStyleLightContent;
     
-    if (![Util isPhiroActivated]) {
-        [defaults setBool:NO forKey:kUsePhiroBricks];
-    }
-    if (![Util isArduinoActivated]) {
-        [defaults setBool:NO forKey:kUseArduinoBricks];
-    }
+    [self setDefaultUserDefaults: defaults];
     [defaults synchronize];
 
     if ([[[NSProcessInfo processInfo] arguments] containsObject: @"UITests"]) {
@@ -103,6 +98,18 @@ void uncaughtExceptionHandler(NSException *exception)
     if ([vc.topViewController isKindOfClass:[ScenePresenterViewController class]]){
         ScenePresenterViewController* spvc = (ScenePresenterViewController*)vc.topViewController;
         [spvc resumeAction];
+    }
+}
+
+- (void)setDefaultUserDefaults:(NSUserDefaults*)defaults {
+    if (![Util isPhiroActivated]) {
+        [defaults setBool:NO forKey:kUsePhiroBricks];
+    }
+    if (![Util isArduinoActivated]) {
+        [defaults setBool:NO forKey:kUseArduinoBricks];
+    }
+    if ([defaults valueForKey:kFirebaseSendCrashReports] == nil) {
+        [defaults setBool:kFirebaseSendCrashReportsDefault forKey:kFirebaseSendCrashReports];
     }
 }
 
