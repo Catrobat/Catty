@@ -39,20 +39,20 @@ final class FirebaseCrashlyticsSetupTests: XCTestCase {
     func testSetupCrashReportsEnabled() {
         UserDefaults.standard.set(true, forKey: kFirebaseSendCrashReports)
 
-        app?.setupCrashReports()
+        app?.setupCrashlytics()
         XCTAssertTrue(crashlytics!.isCrashlyticsCollectionEnabled())
     }
 
     func testSetupCrashReportsDisabled() {
         UserDefaults.standard.set(false, forKey: kFirebaseSendCrashReports)
 
-        app?.setupCrashReports()
+        app?.setupCrashlytics()
         XCTAssertFalse(crashlytics!.isCrashlyticsCollectionEnabled())
     }
 
     func testSettingsDisabledNotification() {
         UserDefaults.standard.set(true, forKey: kFirebaseSendCrashReports)
-        app?.setupCrashReports()
+        app?.setupCrashlytics()
 
         NotificationCenter.default.post(name: .settingsCrashReportingChanged, object: NSNumber(0))
         XCTAssertFalse(crashlytics!.isCrashlyticsCollectionEnabled())
@@ -60,7 +60,7 @@ final class FirebaseCrashlyticsSetupTests: XCTestCase {
 
     func testSettingsEnabledNotification() {
         UserDefaults.standard.set(false, forKey: kFirebaseSendCrashReports)
-        app?.setupCrashReports()
+        app?.setupCrashlytics()
 
         NotificationCenter.default.post(name: .settingsCrashReportingChanged, object: NSNumber(1))
         XCTAssertTrue(crashlytics!.isCrashlyticsCollectionEnabled())
@@ -68,7 +68,7 @@ final class FirebaseCrashlyticsSetupTests: XCTestCase {
 
     func testBaseTableViewControllerDidAppearNotification() {
         UserDefaults.standard.set(true, forKey: kFirebaseSendCrashReports)
-        app?.setupCrashReports()
+        app?.setupCrashlytics()
 
         NotificationCenter.default.post(name: .baseTableViewControllerDidAppear, object: nil)
 
@@ -78,7 +78,7 @@ final class FirebaseCrashlyticsSetupTests: XCTestCase {
 
     func testBaseCollectionViewControllerDidAppearNotification() {
         UserDefaults.standard.set(true, forKey: kFirebaseSendCrashReports)
-        app?.setupCrashReports()
+        app?.setupCrashlytics()
 
         NotificationCenter.default.post(name: .baseCollectionViewControllerDidAppear, object: nil)
 
@@ -88,7 +88,7 @@ final class FirebaseCrashlyticsSetupTests: XCTestCase {
 
     func testPaintViewControllerDidAppearNotification() {
         UserDefaults.standard.set(true, forKey: kFirebaseSendCrashReports)
-        app?.setupCrashReports()
+        app?.setupCrashlytics()
 
         NotificationCenter.default.post(name: .paintViewControllerDidAppear, object: nil)
 
@@ -98,7 +98,7 @@ final class FirebaseCrashlyticsSetupTests: XCTestCase {
 
     func testFormulaEditorControllerDidAppearNotification() {
         UserDefaults.standard.set(true, forKey: kFirebaseSendCrashReports)
-        app?.setupCrashReports()
+        app?.setupCrashlytics()
 
         NotificationCenter.default.post(name: .formulaEditorControllerDidAppear, object: nil)
 
@@ -108,7 +108,7 @@ final class FirebaseCrashlyticsSetupTests: XCTestCase {
 
     func testScenePresenterViewControllerDidAppearNotification() {
         UserDefaults.standard.set(true, forKey: kFirebaseSendCrashReports)
-        app?.setupCrashReports()
+        app?.setupCrashlytics()
 
         NotificationCenter.default.post(name: .scenePresenterViewControllerDidAppear, object: nil)
 
@@ -118,7 +118,7 @@ final class FirebaseCrashlyticsSetupTests: XCTestCase {
 
     func testBrickSelectedNotification() {
         UserDefaults.standard.set(true, forKey: kFirebaseSendCrashReports)
-        app?.setupCrashReports()
+        app?.setupCrashlytics()
 
         NotificationCenter.default.post(name: .brickSelected, object: nil)
 
@@ -128,7 +128,7 @@ final class FirebaseCrashlyticsSetupTests: XCTestCase {
 
     func testProjectInvalidVersionNotification() {
         UserDefaults.standard.set(true, forKey: kFirebaseSendCrashReports)
-        app?.setupCrashReports()
+        app?.setupCrashlytics()
 
         NotificationCenter.default.post(name: .projectInvalidVersion, object: nil)
 
@@ -138,7 +138,7 @@ final class FirebaseCrashlyticsSetupTests: XCTestCase {
 
     func testProjectFetchDetailsFailureNotification() {
         UserDefaults.standard.set(true, forKey: kFirebaseSendCrashReports)
-        app?.setupCrashReports()
+        app?.setupCrashlytics()
 
         NotificationCenter.default.post(name: .projectFetchDetailsFailure, object: nil)
 

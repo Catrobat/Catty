@@ -115,10 +115,10 @@
 			</dict>
 		</dict>
 	</array>
-	<key>FIREBASE_ANALYTICS_COLLECTION_DEACTIVATED</key>
-	<true/>
-	<key>FirebaseScreenReportingEnabled</key>
+	<key>FIREBASE_ANALYTICS_COLLECTION_ENABLED</key>
 	<false/>
+	<key>FirebaseScreenReportingEnabled</key>
+	<true/>
 	<key>FirebaseCrashlyticsCollectionEnabled</key>
 	<false/>
 </dict>
