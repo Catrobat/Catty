@@ -22,45 +22,17 @@
 
 extension Notification.Name {
 
-    static var alertDidAppear: Notification.Name {
-        return .init(rawValue: NotificationName.alertDidAppear)
-    }
-
-    static var baseTableViewControllerDidAppear: Notification.Name {
-        return .init(rawValue: NotificationName.baseTableViewControllerDidAppear)
-    }
-
-    static var baseCollectionViewControllerDidAppear: Notification.Name {
-        return .init(rawValue: NotificationName.baseCollectionViewControllerDidAppear)
-    }
-
-    static var paintViewControllerDidAppear: Notification.Name {
-        return .init(rawValue: NotificationName.paintViewControllerDidAppear)
-    }
-
-    static var formulaEditorControllerDidAppear: Notification.Name {
-        return .init(rawValue: NotificationName.formulaEditorControllerDidAppear)
-    }
-
-    static var scenePresenterViewControllerDidAppear: Notification.Name {
-        return .init(rawValue: NotificationName.scenePresenterViewControllerDidAppear)
-    }
-
-    static var brickSelected: Notification.Name {
-        return .init(rawValue: NotificationName.brickSelected)
-    }
-
-    static var projectInvalidVersion: Notification.Name {
-        return .init(rawValue: NotificationName.projectInvalidVersion)
-    }
-
-    static var projectInvalidXml: Notification.Name {
-        return .init(rawValue: NotificationName.projectInvalidXml)
-    }
-
-    static var projectFetchDetailsFailure: Notification.Name {
-        return .init(rawValue: NotificationName.projectFetchDetailsFailure)
-    }
+    static var alertDidAppear: Notification.Name { .init(rawValue: NotificationName.alertDidAppear) }
+    static var baseTableViewControllerDidAppear: Notification.Name { .init(rawValue: NotificationName.baseTableViewControllerDidAppear) }
+    static var baseCollectionViewControllerDidAppear: Notification.Name { .init(rawValue: NotificationName.baseCollectionViewControllerDidAppear) }
+    static var paintViewControllerDidAppear: Notification.Name { .init(rawValue: NotificationName.paintViewControllerDidAppear) }
+    static var formulaEditorControllerDidAppear: Notification.Name { .init(rawValue: NotificationName.formulaEditorControllerDidAppear) }
+    static var scenePresenterViewControllerDidAppear: Notification.Name { .init(rawValue: NotificationName.scenePresenterViewControllerDidAppear) }
+    static var brickSelected: Notification.Name { .init(rawValue: NotificationName.brickSelected) }
+    static var projectInvalidVersion: Notification.Name { .init(rawValue: NotificationName.projectInvalidVersion) }
+    static var projectInvalidXml: Notification.Name { .init(rawValue: NotificationName.projectInvalidXml) }
+    static var projectFetchDetailsFailure: Notification.Name { .init(rawValue: NotificationName.projectFetchDetailsFailure) }
+    static var settingsCrashReportingChanged: Notification.Name { .init(rawValue: NotificationName.settingsCrashReportingChanged) }
 }
 
 @objcMembers
@@ -76,4 +48,5 @@ public class NotificationName: NSObject {
     public static let projectInvalidVersion = "Project.invalidVersion"
     public static let projectInvalidXml = "Project.invalidXml"
     public static let projectFetchDetailsFailure = "Project.fetchDetailsFailure"
+    public static let settingsCrashReportingChanged = "SettingsTableViewController.crashReportingChanged"
 }

@@ -130,6 +130,10 @@
 		4C11795420AEC36D006C6E32 /* ProtocolConformance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C11795320AEC36D006C6E32 /* ProtocolConformance.swift */; };
 		4C1329041CD9259900F16E48 /* AudioManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1329031CD9259900F16E48 /* AudioManagerTests.swift */; };
 		4C15FE7F1D168C0D009C1A2B /* transparency-rgb.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C15FE7E1D168C0D009C1A2B /* transparency-rgb.png */; };
+		4C1A596323FD9E79001A78D2 /* SettingsTableViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1A596023FD9E79001A78D2 /* SettingsTableViewControllerTests.swift */; };
+		4C1A596623FDA0FF001A78D2 /* FirebaseCrashlyticsSetupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1A596523FDA0FF001A78D2 /* FirebaseCrashlyticsSetupTests.swift */; };
+		4C1A596823FE9997001A78D2 /* CrashlyticsMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1A596723FE9997001A78D2 /* CrashlyticsMock.swift */; };
+		4C1A597323FEAC10001A78D2 /* AppDelegateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1A597223FEAC0F001A78D2 /* AppDelegateMock.swift */; };
 		4C1AA4AE21A1572700DAC589 /* MediaItemTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1AA4AD21A1572700DAC589 /* MediaItemTest.swift */; };
 		4C1C8B14213FE76B003B3AA4 /* ChartProjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1C8B13213FE76B003B3AA4 /* ChartProjectCell.swift */; };
 		4C1C8B16213FE7F1003B3AA4 /* StoreProjectDownloaderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1C8B15213FE7F1003B3AA4 /* StoreProjectDownloaderMock.swift */; };
@@ -189,6 +193,7 @@
 		4C3A5CAB21D3B967008FD83F /* SmallerThanOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A5CAA21D3B967008FD83F /* SmallerThanOperatorTest.swift */; };
 		4C3A5CAD21D3BAB9008FD83F /* GreaterThanOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A5CAC21D3BAB9008FD83F /* GreaterThanOperatorTest.swift */; };
 		4C3B151B23F07C7800527D4A /* ErrorMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3B151A23F07C7800527D4A /* ErrorMock.swift */; };
+		4C48E5CE23FD7F4B004C6E6A /* SettingsTVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C48E5CB23FD7F4B004C6E6A /* SettingsTVCTests.swift */; };
 		4C48ED2520EF9A1D00784CD5 /* AudioManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C48ED2420EF9A1D00784CD5 /* AudioManagerProtocol.swift */; };
 		4C48ED2920EF9AEC00784CD5 /* AudioManager+Loudness.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C48ED2820EF9AEC00784CD5 /* AudioManager+Loudness.swift */; };
 		4C4A71921B52733C00BBE32B /* CBXMLAbstractContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4A71911B52733C00BBE32B /* CBXMLAbstractContext.m */; };
@@ -1621,6 +1626,10 @@
 		4C11795320AEC36D006C6E32 /* ProtocolConformance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtocolConformance.swift; sourceTree = "<group>"; };
 		4C1329031CD9259900F16E48 /* AudioManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioManagerTests.swift; sourceTree = "<group>"; };
 		4C15FE7E1D168C0D009C1A2B /* transparency-rgb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "transparency-rgb.png"; path = "CattyTests/Resources/Images/transparency-rgb.png"; sourceTree = SOURCE_ROOT; };
+		4C1A596023FD9E79001A78D2 /* SettingsTableViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewControllerTests.swift; sourceTree = "<group>"; };
+		4C1A596523FDA0FF001A78D2 /* FirebaseCrashlyticsSetupTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseCrashlyticsSetupTests.swift; sourceTree = "<group>"; };
+		4C1A596723FE9997001A78D2 /* CrashlyticsMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrashlyticsMock.swift; sourceTree = "<group>"; };
+		4C1A597223FEAC0F001A78D2 /* AppDelegateMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegateMock.swift; sourceTree = "<group>"; };
 		4C1AA4AD21A1572700DAC589 /* MediaItemTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaItemTest.swift; sourceTree = "<group>"; };
 		4C1C8B13213FE76B003B3AA4 /* ChartProjectCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartProjectCell.swift; sourceTree = "<group>"; };
 		4C1C8B15213FE7F1003B3AA4 /* StoreProjectDownloaderMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreProjectDownloaderMock.swift; sourceTree = "<group>"; };
@@ -1689,6 +1698,7 @@
 		4C3AEF2E198E7EDD00604ABF /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		4C3B151A23F07C7800527D4A /* ErrorMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMock.swift; sourceTree = "<group>"; };
 		4C4867BF1AC2CA6D009D679D /* BrickMessageProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickMessageProtocol.h; sourceTree = "<group>"; };
+		4C48E5CB23FD7F4B004C6E6A /* SettingsTVCTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTVCTests.swift; sourceTree = "<group>"; };
 		4C48ED2420EF9A1D00784CD5 /* AudioManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManagerProtocol.swift; sourceTree = "<group>"; };
 		4C48ED2820EF9AEC00784CD5 /* AudioManager+Loudness.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AudioManager+Loudness.swift"; sourceTree = "<group>"; };
 		4C4A71901B52733C00BBE32B /* CBXMLAbstractContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBXMLAbstractContext.h; sourceTree = "<group>"; };
@@ -3712,6 +3722,14 @@
 			name = ParserTests;
 			sourceTree = "<group>";
 		};
+		4C1A596423FDA0DC001A78D2 /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				4C1A596523FDA0FF001A78D2 /* FirebaseCrashlyticsSetupTests.swift */,
+			);
+			path = Firebase;
+			sourceTree = "<group>";
+		};
 		4C2650671A6538470050775B /* CBCopyContext */ = {
 			isa = PBXGroup;
 			children = (
@@ -3842,6 +3860,7 @@
 			isa = PBXGroup;
 			children = (
 				4C38B36F237151FB00F33721 /* CatrobatSetupTests.swift */,
+				4C1A596423FDA0DC001A78D2 /* Firebase */,
 			);
 			path = Setup;
 			sourceTree = "<group>";
@@ -3956,6 +3975,7 @@
 				4C7182E223EF0AEB00195BC7 /* FormulaEditorViewControllerTests.swift */,
 				4C7182DB23EEB22B00195BC7 /* PaintViewControllerTests.swift */,
 				4CDE807521A1B112009EFD31 /* ScenePresenterViewControllerTest.swift */,
+				4C1A596023FD9E79001A78D2 /* SettingsTableViewControllerTests.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -5493,7 +5513,9 @@
 		599E649C202D9F85009494B5 /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
+				4C1A597223FEAC0F001A78D2 /* AppDelegateMock.swift */,
 				4CB73A8F23FC1F0300D5E9A7 /* CatrobatTableViewControllerMock.swift */,
+				4C1A596723FE9997001A78D2 /* CrashlyticsMock.swift */,
 				4C3B151A23F07C7800527D4A /* ErrorMock.swift */,
 				4CD27AA921B5765B00DDADB5 /* FeatureMock.swift */,
 				22524C3C23A2533F00DD515E /* LoginViewControllerMock.swift */,
@@ -7660,6 +7682,7 @@
 				BCFED6F7211318A100BE57BF /* ProjectTVCTests.swift */,
 				4C7F50F921E62B0E0010AC36 /* ProjectsTVCTests.swift */,
 				4C1EDCA9218A080200B60464 /* ScriptCollectionVCTests.swift */,
+				4C48E5CB23FD7F4B004C6E6A /* SettingsTVCTests.swift */,
 				4CF8747221C8E7AB00C8143F /* SoundsTVCTests.swift */,
 				BA6805AD21303B48004F004F /* VariablesTests.swift */,
 				2D227D93220B38E0008A2BC9 /* ScenePresenterVCTests.swift */,
@@ -9067,6 +9090,7 @@
 			files = (
 				BCFED6F12111CA5D00BE57BF /* PocketCodeMainScreenTests.swift in Sources */,
 				4C1EDCAC218A080200B60464 /* ScriptCollectionVCTests.swift in Sources */,
+				4C48E5CE23FD7F4B004C6E6A /* SettingsTVCTests.swift in Sources */,
 				BCFED6F62113188700BE57BF /* MyFirstProjectTests.swift in Sources */,
 				4C7F50FC21E62B0E0010AC36 /* ProjectsTVCTests.swift in Sources */,
 				5E0B3622220A5F3C0056EB12 /* LanguageTranslationDefinesUI.swift in Sources */,
@@ -9111,6 +9135,7 @@
 				9E2C2D9223258F3F004B66C6 /* TurnRightBrickTests.swift in Sources */,
 				4C28D78B2132A83D00870CE2 /* FormulaMock.swift in Sources */,
 				4C6FE163212D2D2E0067B7D5 /* ModFunctionTest.swift in Sources */,
+				4C1A596823FE9997001A78D2 /* CrashlyticsMock.swift in Sources */,
 				4C82265A213FA7A400F3D750 /* TouchManagerMock.swift in Sources */,
 				4CBF96BF2351B3EC0063D5FC /* ProjectTests.swift in Sources */,
 				5973F245202EF3A000A4CED9 /* SoundsLibraryCollectionViewDataSourceDelegateMock.swift in Sources */,
@@ -9140,6 +9165,7 @@
 				CA7698C21B0E4B3F000D0340 /* CBStackTests.m in Sources */,
 				4C822679213FA7A400F3D750 /* SizeSensorTest.swift in Sources */,
 				4CFAD35E1CFAB3EC0019C636 /* CustomExtensionsTests.m in Sources */,
+				4C1A597323FEAC10001A78D2 /* AppDelegateMock.swift in Sources */,
 				9E2C2D9023257704004B66C6 /* ChangeBrightnessByNBrickTests.swift in Sources */,
 				4CC50A5E213BE036004BC914 /* ZeroParameterDoubleFunctionMock.swift in Sources */,
 				4CEB22521B95E47500B3BE2F /* BrickMoveManagerTests.m in Sources */,
@@ -9206,6 +9232,7 @@
 				4C6FE16F212D2D2E0067B7D5 /* SinFunctionTest.swift in Sources */,
 				4C82267A213FA7A400F3D750 /* LookNumberSensorTest.swift in Sources */,
 				4C82267C213FA7A400F3D750 /* BackgroundNameSensorTest.swift in Sources */,
+				4C1A596623FDA0FF001A78D2 /* FirebaseCrashlyticsSetupTests.swift in Sources */,
 				4C38B3762371529600F33721 /* GlideToBrickCellTests.swift in Sources */,
 				9EBCBD8B2329C3BF0074C2D9 /* PreviousLookBrickTests.swift in Sources */,
 				4C38B3742371522200F33721 /* BrickManagerTests.swift in Sources */,
@@ -9315,6 +9342,7 @@
 				4C68FC8F1B25A00B00AB3EE8 /* FormulaParserTest.m in Sources */,
 				4C6FE16B212D2D2E0067B7D5 /* SqrtFunctionTest.swift in Sources */,
 				4CBF5F9E21AF1D390079C834 /* UIGestureRecognizerMock.swift in Sources */,
+				4C1A596323FD9E79001A78D2 /* SettingsTableViewControllerTests.swift in Sources */,
 				4C6FE170212D2D2E0067B7D5 /* AbsFunctionTest.swift in Sources */,
 				BA38081321A208730075B831 /* XMLSerializerTests.swift in Sources */,
 				4C68FC931B25A00B00AB3EE8 /* InternFormulaTest.m in Sources */,

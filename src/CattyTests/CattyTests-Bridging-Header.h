@@ -33,3 +33,4 @@
 #import "ScriptCollectionViewController.h"
 #import "FormulaEditorViewController.h"
 #import "PaintViewController.h"
+#import "SettingsTableViewController.h"

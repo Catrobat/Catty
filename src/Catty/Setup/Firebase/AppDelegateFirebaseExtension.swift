@@ -24,87 +24,103 @@ import Firebase
 
 extension AppDelegate {
 
-    static let firebaseLogNoValue = "No value"
+    @objc open var crashlytics: Crashlytics { Crashlytics.crashlytics() }
+
+    var sendCrashReports: Bool { UserDefaults.standard.bool(forKey: kFirebaseSendCrashReports) }
+    static let logNoValue = "No value"
 
     @objc func setupFirebase() {
         #if !DEBUG
         FirebaseApp.configure()
-        Crashlytics.crashlytics().setCrashlyticsCollectionEnabled(true)
-
-        addObserver(selector: #selector(self.baseTableViewControllerDidAppear(notification:)), name: .baseTableViewControllerDidAppear)
-        addObserver(selector: #selector(self.baseCollectionViewControllerDidAppear(notification:)), name: .baseCollectionViewControllerDidAppear)
-        addObserver(selector: #selector(self.alertDidAppear(notification:)), name: .alertDidAppear)
-        addObserver(selector: #selector(self.paintViewControllerDidAppear(notification:)), name: .paintViewControllerDidAppear)
-        addObserver(selector: #selector(self.formulaEditorViewControllerDidAppear(notification:)), name: .formulaEditorControllerDidAppear)
-        addObserver(selector: #selector(self.scenePresenterViewControllerDidAppear(notification:)), name: .scenePresenterViewControllerDidAppear)
-        addObserver(selector: #selector(self.brickSelected(notification:)), name: .brickSelected)
-        addObserver(selector: #selector(self.projectInvalidVersion(notification:)), name: .projectInvalidVersion)
-        addObserver(selector: #selector(self.projectInvalidXml(notification:)), name: .projectInvalidXml)
-        addObserver(selector: #selector(self.projectFetchDetailsFailure(notification:)), name: .projectFetchDetailsFailure)
+        setupCrashReports()
         #endif
+    }
+
+    @objc public func setupCrashReports() {
+        if self.sendCrashReports {
+            crashlytics.setCrashlyticsCollectionEnabled(true)
+
+            addObserver(selector: #selector(self.baseTableViewControllerDidAppear(notification:)), name: .baseTableViewControllerDidAppear)
+            addObserver(selector: #selector(self.baseCollectionViewControllerDidAppear(notification:)), name: .baseCollectionViewControllerDidAppear)
+            addObserver(selector: #selector(self.alertDidAppear(notification:)), name: .alertDidAppear)
+            addObserver(selector: #selector(self.paintViewControllerDidAppear(notification:)), name: .paintViewControllerDidAppear)
+            addObserver(selector: #selector(self.formulaEditorViewControllerDidAppear(notification:)), name: .formulaEditorControllerDidAppear)
+            addObserver(selector: #selector(self.scenePresenterViewControllerDidAppear(notification:)), name: .scenePresenterViewControllerDidAppear)
+            addObserver(selector: #selector(self.brickSelected(notification:)), name: .brickSelected)
+            addObserver(selector: #selector(self.projectInvalidVersion(notification:)), name: .projectInvalidVersion)
+            addObserver(selector: #selector(self.projectInvalidXml(notification:)), name: .projectInvalidXml)
+            addObserver(selector: #selector(self.projectFetchDetailsFailure(notification:)), name: .projectFetchDetailsFailure)
+        }
+
+        addObserver(selector: #selector(self.settingsCrashReportingChanged(notification:)), name: .settingsCrashReportingChanged)
+    }
+
+    @objc func settingsCrashReportingChanged(notification: Notification) {
+        let enabled = (notification.object as? NSNumber)?.boolValue ?? false
+        crashlytics.setCrashlyticsCollectionEnabled(enabled)
     }
 
     @objc func baseTableViewControllerDidAppear(notification: Notification) {
         let controllerClass = getObjectClassName(for: notification)
-        let title = (notification.object as? UITableViewController)?.title ?? type(of: self).firebaseLogNoValue
-        Crashlytics.crashlytics().log("BaseTableViewController (" + controllerClass + ") did appear with title: \"" + title + "\"")
+        let title = (notification.object as? UITableViewController)?.title ?? type(of: self).logNoValue
+        crashlytics.log("BaseTableViewController (" + controllerClass + ") did appear with title: \"" + title + "\"")
     }
 
     @objc func baseCollectionViewControllerDidAppear(notification: Notification) {
         let controllerClass = getObjectClassName(for: notification)
-        let title = (notification.object as? UICollectionViewController)?.title ?? type(of: self).firebaseLogNoValue
-        Crashlytics.crashlytics().log("BaseCollectionViewController (" + controllerClass + ") did appear with title: \"" + title + "\"")
+        let title = (notification.object as? UICollectionViewController)?.title ?? type(of: self).logNoValue
+        crashlytics.log("BaseCollectionViewController (" + controllerClass + ") did appear with title: \"" + title + "\"")
     }
 
     @objc func alertDidAppear(notification: Notification) {
-        let title = (notification.object as? CustomAlertController)?.title ?? type(of: self).firebaseLogNoValue
-        Crashlytics.crashlytics().log("Alert did appear with title: \"" + title + "\"")
+        let title = (notification.object as? CustomAlertController)?.title ?? type(of: self).logNoValue
+        crashlytics.log("Alert did appear with title: \"" + title + "\"")
     }
 
     @objc func paintViewControllerDidAppear(notification: Notification) {
-        Crashlytics.crashlytics().log("Paint started")
+        crashlytics.log("Paint started")
     }
 
     @objc func formulaEditorViewControllerDidAppear(notification: Notification) {
-        Crashlytics.crashlytics().log("FormulaEditor started")
+        crashlytics.log("FormulaEditor started")
     }
 
     @objc func scenePresenterViewControllerDidAppear(notification: Notification) {
-        let projectName = (notification.object as? ScenePresenterViewController)?.project?.header.programName ?? type(of: self).firebaseLogNoValue
-        let projectId = (notification.object as? ScenePresenterViewController)?.project?.header.programID ?? type(of: self).firebaseLogNoValue
-        Crashlytics.crashlytics().log("Scene started with Project: \"" + projectName + "\" (" + projectId + ")")
+        let projectName = (notification.object as? ScenePresenterViewController)?.project?.header.programName ?? type(of: self).logNoValue
+        let projectId = (notification.object as? ScenePresenterViewController)?.project?.header.programID ?? type(of: self).logNoValue
+        crashlytics.log("Scene started with Project: \"" + projectName + "\" (" + projectId + ")")
     }
 
     @objc func brickSelected(notification: Notification) {
         let controllerClass = getObjectClassName(for: notification)
-        Crashlytics.crashlytics().log("Brick selected: " + controllerClass)
+        crashlytics.log("Brick selected: " + controllerClass)
     }
 
     @objc func projectInvalidVersion(notification: Notification) {
-        let projectName = (notification.object as? ProjectLoadingInfo)?.visibleName ?? type(of: self).firebaseLogNoValue
-        let projectId = (notification.object as? ProjectLoadingInfo)?.projectID ?? type(of: self).firebaseLogNoValue
+        let projectName = (notification.object as? ProjectLoadingInfo)?.visibleName ?? type(of: self).logNoValue
+        let projectId = (notification.object as? ProjectLoadingInfo)?.projectID ?? type(of: self).logNoValue
         let userInfo = ["description": "Unsupported CatrobatLanguageVersion or code.xml not found for Project",
                         "projectId": projectId,
                         "projectName": projectName]
 
         let error = NSError(domain: "ProjectParserError", code: 500, userInfo: userInfo)
-        Crashlytics.crashlytics().record(error: error)
+        crashlytics.record(error: error)
     }
 
     @objc func projectInvalidXml(notification: Notification) {
-        let projectName = (notification.object as? ProjectLoadingInfo)?.visibleName ?? type(of: self).firebaseLogNoValue
-        let projectId = (notification.object as? ProjectLoadingInfo)?.projectID ?? type(of: self).firebaseLogNoValue
+        let projectName = (notification.object as? ProjectLoadingInfo)?.visibleName ?? type(of: self).logNoValue
+        let projectId = (notification.object as? ProjectLoadingInfo)?.projectID ?? type(of: self).logNoValue
         let userInfo = ["description": "Invalid XML for Project",
                         "projectId": projectId,
                         "projectName": projectName]
 
         let error = NSError(domain: "ProjectParserError", code: 501, userInfo: userInfo)
-        Crashlytics.crashlytics().record(error: error)
+        crashlytics.record(error: error)
     }
 
     @objc func projectFetchDetailsFailure(notification: Notification) {
         let error = NSError(domain: "ProjectFetchDetailsError", code: 400, userInfo: notification.userInfo as? [String: Any] ?? [:])
-        Crashlytics.crashlytics().record(error: error)
+        crashlytics.record(error: error)
     }
 
     private func getObjectClassName(for notification: Notification) -> String {

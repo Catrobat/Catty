@@ -693,7 +693,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     }
     [self turnOnInsertingBrickMode];
 
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"BrickSelected" object:scriptOrBrick];
+    [[NSNotificationCenter defaultCenter] postNotificationName:NotificationName.brickSelected object:scriptOrBrick];
 }
 
 

@@ -91,8 +91,6 @@ typedef NS_ENUM(NSInteger, ResourceType) {
 #define kUserDetailsShowDetailsKey @"showDetails"
 #define kUserIsLoggedIn @"userIsLoggedIn"
 #define kUserLoginToken @"userLoginToken"
-#define kUserPrivacyPolicyHasBeenShown @"privacyPolicyHasBeenShown"
-#define kUserShowPrivacyPolicyOnEveryLaunch @"showPrivacyPolicyOnEveryLaunch"
 #define kUserDetailsShowDetailsObjectsKey @"detailsForObjects"
 #define kUserDetailsShowDetailsLooksKey @"detailsForLooks"
 #define kUserDetailsShowDetailsSoundsKey @"detailsForSounds"

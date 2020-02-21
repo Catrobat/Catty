@@ -20,11 +20,15 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Bohr/Bohr.h>
+import Firebase
 
-@interface SettingsTableViewController : BOTableViewController
+class AppDelegateMock: AppDelegate {
 
-- (void)changeFirebaseCrashReportSettings:(UISwitch *)sender;
+    var crashlyticsMock: Crashlytics
 
-@end
+    override open var crashlytics: Crashlytics { crashlyticsMock }
 
+    init(crashlytics: Crashlytics) {
+        self.crashlyticsMock = crashlytics
+    }
+}
