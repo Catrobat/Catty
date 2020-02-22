@@ -205,7 +205,7 @@ platform :ios do
 
   desc "Download dSYMs from Apple and upload to Firebase Crashlytics"
   lane :crashylytics_update_dsyms do
-    download_dsyms(version: "latest")
+    download_dsyms(version: "latest", wait_for_dsym_processing: true)
     upload_symbols_to_crashlytics(binary_path: "./RunScripts/Firebase/Crashlytics/upload-symbols")
     clean_build_artifacts
   end
