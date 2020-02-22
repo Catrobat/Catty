@@ -24,6 +24,7 @@ import Firebase
 
 extension AppDelegate {
 
+    @objc open var analytics: Analytics.Type { Analytics.self }
     @objc open var crashlytics: Crashlytics { Crashlytics.crashlytics() }
 
     var sendCrashReports: Bool { UserDefaults.standard.bool(forKey: kFirebaseSendCrashReports) }
@@ -32,11 +33,16 @@ extension AppDelegate {
     @objc func setupFirebase() {
         #if !DEBUG
         FirebaseApp.configure()
-        setupCrashReports()
+        setupAnalytics()
+        setupCrashlytics()
         #endif
     }
 
-    @objc public func setupCrashReports() {
+    @objc public func setupAnalytics() {
+        analytics.setAnalyticsCollectionEnabled(true)
+    }
+
+    @objc public func setupCrashlytics() {
         if self.sendCrashReports {
             crashlytics.setCrashlyticsCollectionEnabled(true)
 
