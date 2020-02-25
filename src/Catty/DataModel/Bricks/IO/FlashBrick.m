@@ -41,7 +41,7 @@
 
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
-    self.flashChoice = 0;
+    self.flashChoice = 1;
 }
 
 - (void)setChoice:(NSString*)choice forLineNumber:(NSInteger)lineNumber
