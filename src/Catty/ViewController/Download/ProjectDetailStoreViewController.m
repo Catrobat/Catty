@@ -40,7 +40,6 @@
 @property (nonatomic, strong) Project *loadedProject;
 @property (strong, nonatomic) NSURLSession *session;
 @property (strong, nonatomic) NSURLSessionDataTask *dataTask;
-@property (nonatomic, strong) NSString *duplicateName;
 
 @end
 
@@ -81,7 +80,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.duplicateName = self.project.name;
     [self initNavigationBar];
     self.hidesBottomBarWhenPushed = YES;
     self.view.backgroundColor = UIColor.background;
@@ -309,7 +307,8 @@
     [self.projectView viewWithTag:kDownloadButtonTag].hidden = YES;
     button.hidden = NO;
     button.progress = 0;
-    [self downloadWithName:self.project.name];
+    NSString* duplicateName = [Util uniqueName:self.project.name existingNames:[Project allProjectNames]];
+    [self downloadWithName:duplicateName];
 }
 
 - (void)downloadButtonPressed:(id)sender
@@ -325,9 +324,9 @@
     downloadAgainButton.enabled = NO;
     button.hidden = NO;
     button.progress = 0;
-    self.duplicateName = [Util uniqueName:self.project.name existingNames:[Project allProjectNames]];
+    NSString* duplicateName = [Util uniqueName:self.project.name existingNames:[Project allProjectNames]];
     NSDebug(@"%@",[Project allProjectNames]);
-    [self downloadWithName:self.duplicateName];
+    [self downloadWithName:duplicateName];
 }
 
 -(void)downloadWithName:(NSString*)name
