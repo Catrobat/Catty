@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2019 The Catrobat Team
+ *  Copyright (C) 2010-2020 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -53,11 +53,11 @@ class MaxFunctionTest: XCTestCase {
     }
 
     func testFirstParameter() {
-        XCTAssertEqual(.number(defaultValue: 0), function.firstParameter())
+        XCTAssertEqual(.number(defaultValue: 5), function.firstParameter())
     }
 
     func testSecondParameter() {
-        XCTAssertEqual(.number(defaultValue: 1), function.secondParameter())
+        XCTAssertEqual(.number(defaultValue: 4), function.secondParameter())
     }
 
     func testTag() {

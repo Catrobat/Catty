@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2019 The Catrobat Team
+ *  Copyright (C) 2010-2020 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -52,6 +52,7 @@
 #import "HideBrick.h"
 #import "WaitBrick.h"
 #import "PlaySoundBrick.h"
+#import "PlaySoundAndWaitBrick.h"
 #import "StopAllSoundsBrick.h"
 #import "SpeakBrick.h"
 #import "SpeakAndWaitBrick.h"
@@ -216,3 +217,6 @@
 #import "CBXMLOpenedNestingBricksStack.h"
 #import "BDKNotifyHUD.h"
 #import "BrickShapeFactory.h"
+#import "iOSCombobox.h"
+#import "CBXMLValidator.h"
+#import "CBXMLSerializerHelper.h"

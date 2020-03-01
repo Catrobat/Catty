@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2019 The Catrobat Team
+ *  Copyright (C) 2010-2020 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -21,6 +21,8 @@
  */
 
 @testable import Pocket_Code
+
+import Nimble
 import XCTest
 
 class ProjectsTest: XCTestCase {
@@ -270,7 +272,7 @@ class ProjectsTest: XCTestCase {
 
         XCTAssertTrue(fileManager.directoryExists(projectPath))
 
-        project.rename(toProjectName: "newProject")
+        project.rename(toProjectName: "newProject", andShowSaveNotification: true)
 
         let newProjectPath = project.projectPath()
 
@@ -286,7 +288,7 @@ class ProjectsTest: XCTestCase {
 
         XCTAssertTrue(fileManager.directoryExists(projectPath))
 
-        project.rename(toProjectName: project.header.programName)
+        project.rename(toProjectName: project.header.programName, andShowSaveNotification: true)
 
         let newProjectPath = project.projectPath()
 
@@ -302,7 +304,7 @@ class ProjectsTest: XCTestCase {
         XCTAssertTrue(fileManager.directoryExists(projectPath))
         XCTAssertNotEqual(newProjectId, project.header.programID)
 
-        project.rename(toProjectName: project.header.programName, andProjectId: newProjectId)
+        project.rename(toProjectName: project.header.programName, andProjectId: newProjectId, andShowSaveNotification: true)
 
         let newProjectPath = project.projectPath()
 
@@ -347,5 +349,28 @@ class ProjectsTest: XCTestCase {
 
         let project = Project(loadingInfo: loadingInfo!)
         XCTAssertEqual(newProjectName, project!.header.programName!)
+    }
+
+    func testDefaultProjectWithoutSavedNotification() {
+        let project = ProjectMock()
+
+        project.rename(toProjectName: "Project Name", andShowSaveNotification: true)
+        XCTAssertTrue(project.saveNotificationShown)
+
+        project.translateDefaultProject()
+        XCTAssertFalse(project.saveNotificationShown)
+    }
+
+    func testNotificationForValidProjectWithLoadingInfo() {
+        let loadingInfo = ProjectLoadingInfo.init(forProjectWithName: project.header.programName, projectID: kNoProjectIDYetPlaceholder)
+
+        expect(Project(loadingInfo: loadingInfo!)).to(postNotifications(equal([])))
+    }
+
+    func testNotificationForInvalidProjectWithLoading() {
+        let loadingInfo = ProjectLoadingInfo.init(forProjectWithName: project.header.programName + "InvalidProject", projectID: kNoProjectIDYetPlaceholder)
+
+        let expectedNotification = Notification(name: .projectInvalidVersion, object: loadingInfo)
+        expect(Project(loadingInfo: loadingInfo!)).to(postNotifications(equal([expectedNotification])))
     }
 }

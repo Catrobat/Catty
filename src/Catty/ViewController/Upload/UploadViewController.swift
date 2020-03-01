@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2019 The Catrobat Team
+ *  Copyright (C) 2010-2020 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -82,7 +82,7 @@ class UploadViewController: UIViewController {
         initObservers()
         hideKeyboardWhenTapInViewController()
 
-        self.uploadBarButton = UIBarButtonItem(title: kLocalizedUpload,
+        self.uploadBarButton = UIBarButtonItem(title: kLocalizedUploadProject,
                                                style: .plain,
                                                target: self,
                                                action: #selector(UploadViewController.checkProjectAction))
@@ -239,7 +239,7 @@ class UploadViewController: UIViewController {
             Util.alert(withText: kLocalizedUploadProjectNecessary)
             return
         }
-        project?.rename(toProjectName: projectNameTextField.text!)
+        project?.rename(toProjectName: projectNameTextField.text!, andShowSaveNotification: true)
         project?.updateDescription(withText: descriptionTextView.text)
 
         self.showLoading()
@@ -376,7 +376,7 @@ class UploadViewController: UIViewController {
                             let projectId = "\(aTag)"
 
                             DispatchQueue.main.async(execute: {
-                                self.project?.rename(toProjectName: project.header.programName, andProjectId: projectId)
+                                self.project?.rename(toProjectName: project.header.programName, andProjectId: projectId, andShowSaveNotification: true)
                             })
                         }
 

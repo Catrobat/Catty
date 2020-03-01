@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2019 The Catrobat Team
+ *  Copyright (C) 2010-2020 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -32,11 +32,15 @@ import Foundation
 
     @objc func stop()
 
-    func playSound(fileName: String, key: String, filePath: String, expectation: Expectation?)
+    func playSound(fileName: String, key: String, filePath: String, expectation: CBExpectation?)
 
     func setVolumeTo(percent: Double, key: String)
 
     func changeVolumeBy(percent: Double, key: String)
 
     func stopAllAudioPlayers()
+
+    func getSpeechSynth() -> SpeechSynthesizer
+
+    func speak(_ utterance: AVSpeechUtterance, expectation: CBExpectation?)
 }

@@ -10,8 +10,13 @@
 #     https://docs.fastlane.tools/plugins/available-plugins
 #
 
-update_fastlane
-opt_out_usage
+before_all do
+  if ENV["FASTLANE_SKIP_UPDATE_CHECK"] != "1"
+    update_fastlane
+  end
+
+  opt_out_usage
+end
 
 default_platform(:ios)
 platform :ios do
@@ -19,7 +24,7 @@ platform :ios do
   $catty_schemes = {
     "release" => "Catty (RELEASE)",
     "debug" => "Catty (DEBUG)"
-  } 
+  }
   $build_dir = "fastlane/builds/"
   $branch_name= git_branch.sub("origin/", "").sub("upstream/", "")
   $build_name = $branch_name
@@ -110,7 +115,7 @@ platform :ios do
         end
       end
     end
-      
+
     result = multi_scan(devices: ["iPhone 11"],
       project: File.absolute_path('../Catty.xcodeproj'),
       try_count: 3,
@@ -126,7 +131,7 @@ platform :ios do
   desc "Collate all test reports"
   lane :test_reports do
     collate_junit_reports(
-      reports: ["./fastlane/test_output/results-BluetoothHelperTests/report.junit", 
+      reports: ["./fastlane/test_output/results-BluetoothHelperTests/report.junit",
                 "./fastlane/test_output/results-Catty Tests/report.junit",
                 "./fastlane/test_output/results-Catty UITests/report.junit"],
       collated_report: './fastlane/test_output/TestSummaries.xml'
@@ -145,7 +150,7 @@ platform :ios do
       command: "curl \
         -F \"files[catty/Localizable.strings]=@../Catty/Resources/Localization/en.lproj/Localizable.strings\" \
         -F \"export_patterns[catty/Localizable.strings]=/catty/%osx_code%/%original_file_name%\" \
-        https://api.crowdin.com/api/project/catrobat/update-file?key="+ENV["CROWDIN_KEY"], 
+        https://api.crowdin.com/api/project/catrobat/update-file?key="+ENV["CROWDIN_KEY"],
       log: false
     )
   end
@@ -194,20 +199,40 @@ platform :ios do
 
   ##########################################################################
   #
+  # Update dSYMs for Firebase Crashlytics
+  #
+  ##########################################################################
+
+  desc "Download dSYMs from Apple and upload to Firebase Crashlytics"
+  lane :crashylytics_update_dsyms do
+    download_dsyms(version: "latest", wait_for_dsym_processing: true)
+    upload_symbols_to_crashlytics(binary_path: "./RunScripts/Firebase/Crashlytics/upload-symbols")
+    clean_build_artifacts
+  end
+
+  ##########################################################################
+  #
   # Release to Testflight
   #
   ##########################################################################
 
   desc "Release Pocket Code to Testflight"
   lane :release do
-    sh ("security unlock-keychain -p $CI_PASSWORD ${HOME}/Library/Keychains/login.keychain-db")
+    update_plist(
+      plist_path: "Catty/Supporting Files/Firebase/GoogleService-Info.plist",
+      block: proc do |plist|
+        plist["API_KEY"] = ENV["FIREBASE_API_KEY"]
+        plist["GOOGLE_APP_ID"] = ENV["FIREBASE_GOOGLE_APP_ID"]
+      end
+    )
     cert
     sigh(force: true)
     create_build scheme:$catty_schemes["release"], method:"app-store"
     upload_to_testflight(
       skip_submission: true,
-      skip_waiting_for_build_processing: true
+      skip_waiting_for_build_processing: false
     )
+    crashylytics_update_dsyms
   end
 
 end

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2019 The Catrobat Team
+ *  Copyright (C) 2010-2020 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -119,6 +119,11 @@
     self.textDictionary = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:NO],@"Bold",[NSNumber numberWithBool:NO],@"Italic",[NSNumber numberWithBool:NO],@"Underline",[NSNumber numberWithInteger:40],@"Size",[NSNumber numberWithInteger:0],@"Font", nil];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [[NSNotificationCenter defaultCenter] postNotificationName:NotificationName.paintViewControllerDidAppear object:self];
+}
 
 - (void)willMoveToParentViewController:(UIViewController *)parent
 {

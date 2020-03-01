@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2019 The Catrobat Team
+ *  Copyright (C) 2010-2020 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -26,6 +26,11 @@
 
 #import "Catty-Bridging-Header.h"
 
-#import "ProjectMock.h"
 #import "ConvertExceptionToError.h"
 #import "chromaprint.h"
+#import "LoginViewController.h"
+#import "BaseCollectionViewController.h"
+#import "ScriptCollectionViewController.h"
+#import "FormulaEditorViewController.h"
+#import "PaintViewController.h"
+#import "SettingsTableViewController.h"

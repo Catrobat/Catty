@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2019 The Catrobat Team
+ *  Copyright (C) 2010-2020 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -24,22 +24,14 @@
 
     @nonobjc func instruction() -> CBInstruction {
 
-        guard let object = self.script?.object else { fatalError("This should never happen!") }
+        guard let object = self.script?.object
+            else { fatalError("This should never happen!") }
 
-        return CBInstruction.execClosure { context, _ in
-            var speakText = context.formulaInterpreter.interpretString(self.formula, for: object)
-            if Double(speakText) != nil {
-                let num = (speakText as NSString).doubleValue
-                speakText = (num as NSNumber).stringValue
-            }
-
-            let utterance = AVSpeechUtterance(string: speakText)
-            utterance.rate = (floor(NSFoundationVersionNumber) < 1200 ? 0.15 : 0.5)
-
-            let synthesizer = AVSpeechSynthesizer()
-            synthesizer.speak(utterance)
+        return CBInstruction.execClosure { context, scheduler in
+            let audioEngine = (scheduler as! CBScheduler).getAudioEngine()
+            let utterance = AudioEngineHelper.stringFormulaToUtterance(text: self.formula, volume: audioEngine.getSpeechSynth().utteranceVolume, spriteObject: object, context: context)
+            audioEngine.speak(utterance, expectation: nil)
             context.state = .runnable
         }
-
     }
 }

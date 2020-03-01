@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2019 The Catrobat Team
+ *  Copyright (C) 2010-2020 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -111,7 +111,7 @@
     [self setupToolBar];
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
-    self.placeHolderView.title = kLocalizedScript;
+    self.placeHolderView.title = kLocalizedTapPlusToAddScript;
     self.placeHolderView.hidden = (self.object.scriptList.count != 0);
     [[BrickInsertManager sharedInstance] reset];
     self.isEditingBrickMode = NO;
@@ -692,7 +692,8 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         [self reloadData];
     }
     [self turnOnInsertingBrickMode];
-//    [self.object.project saveToDisk];
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:NotificationName.brickSelected object:scriptOrBrick];
 }
 
 

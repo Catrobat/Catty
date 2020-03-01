@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2019 The Catrobat Team
+ *  Copyright (C) 2010-2020 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -135,7 +135,7 @@ class SearchStoreDataSource: NSObject, UITableViewDataSource, UITableViewDelegat
         self.delegate?.showLoadingIndicator()
 
         guard let cellProject = cell?.project else { return }
-        self.downloader.downloadProject(for: cellProject) { project, error in
+        self.downloader.fetchProjectDetails(for: cellProject) { project, error in
             guard timer.isValid else { return }
             guard let StoreProject = project, error == nil else { return }
             guard let cell = cell else { return }

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2019 The Catrobat Team
+ *  Copyright (C) 2010-2020 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -197,7 +197,7 @@ final class FormulaManagerResourceTests: XCTestCase {
     }
 
     func testSetupForProject() {
-        let project = ProjectMock(requiredResources: ResourceType.compass.rawValue | ResourceType.accelerometer.rawValue | ResourceType.deviceMotion.rawValue)!
+        let project = ProjectMock(requiredResources: ResourceType.compass.rawValue | ResourceType.accelerometer.rawValue | ResourceType.deviceMotion.rawValue)
         let scene = SceneBuilder.init(project: project).build()
         manager.setup(for: project, and: scene)
 
@@ -212,7 +212,7 @@ final class FormulaManagerResourceTests: XCTestCase {
     }
 
     func testSetupForProjectAlwaysStartTouchManager() {
-        let project = ProjectMock(requiredResources: ResourceType.noResources.rawValue)!
+        let project = ProjectMock(requiredResources: ResourceType.noResources.rawValue)
         let scene = SceneBuilder.init(project: project).build()
         manager.setup(for: project, and: scene)
 

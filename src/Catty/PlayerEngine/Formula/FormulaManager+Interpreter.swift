@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2019 The Catrobat Team
+ *  Copyright (C) 2010-2020 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -171,6 +171,15 @@ extension FormulaManager {
             result = self.interpretRecursive(formulaElement: formulaElement.rightChild, for: spriteObject)
         case .STRING:
             result = formulaElement.value as AnyObject
+        }
+
+        if let doubleValue = result as? Double {
+            if doubleValue == Double.infinity {
+                result = Double.greatestFiniteMagnitude as AnyObject
+            }
+            if doubleValue == Double.infinity * (-1) {
+                result = Double.greatestFiniteMagnitude * (-1) as AnyObject
+            }
         }
 
         if isIdempotent(formulaElement) {

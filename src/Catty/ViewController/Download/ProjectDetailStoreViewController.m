@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2019 The Catrobat Team
+ *  Copyright (C) 2010-2020 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -232,14 +232,12 @@
                  [self sendReportWithMessage:report];
              }]
            valueValidator:^InputValidationResult *(NSString *report) {
-               int minInputLength = 1;
-               int maxInputLength = 10;
-               if (report.length < minInputLength) {
+               if (report.length < NetworkDefines.reportProjectNoteMinLength) {
                    return [InputValidationResult invalidInputWithLocalizedMessage:
-                           [NSString stringWithFormat:kLocalizedNoOrTooShortInputDescription, minInputLength]];
-               } else if (report.length > maxInputLength) {
+                           [NSString stringWithFormat:kLocalizedNoOrTooShortInputDescription, NetworkDefines.reportProjectNoteMinLength]];
+               } else if (report.length > NetworkDefines.reportProjectNoteMaxLength) {
                    return [InputValidationResult invalidInputWithLocalizedMessage:
-                           [NSString stringWithFormat:kLocalizedTooLongInputDescription, maxInputLength]];
+                           [NSString stringWithFormat:kLocalizedTooLongInputDescription, NetworkDefines.reportProjectNoteMaxLength]];
                } else {
                    return [InputValidationResult validInput];
                }
@@ -256,7 +254,7 @@
     
     NSString *reportUrl = NetworkDefines.reportProjectUrl;
     
-    NSString *post = [NSString stringWithFormat:@"%@=%@&%@=%@",@"program",self.project.projectID,@"note",message];
+    NSString *post = [NSString stringWithFormat:@"%@=%@&%@=%@&%@=%@",@"program",self.project.projectID,@"note",message, @"category",nil];
     NSData *postData = [post dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
     NSString *postLength = [NSString stringWithFormat:@"%lu",(unsigned long)[postData length]];
     

@@ -1,0 +1,18 @@
+name: scheduled-upload-crowdin
+
+on:
+  schedule:
+    - cron:  '0 0 * * *'
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+          ref: develop
+    - name: Upload Localization to Crowdin by fastlane
+      env:
+        CROWDIN_KEY: ${{ secrets.CROWDIN_API }}
+        FASTLANE_SKIP_UPDATE_CHECK: '1'
+      run: cd src && fastlane crowdin_upload

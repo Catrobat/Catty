@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2019 The Catrobat Team
+ *  Copyright (C) 2010-2020 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -22,7 +22,7 @@
 
 #import "SettingsTableViewController.h"
 #import "TermsOfUseOptionTableViewController.h"
-#import "AboutPoketCodeOptionTableViewController.h"
+#import "AboutPocketCodeOptionTableViewController.h"
 #import "LanguageTranslationDefines.h"
 #import "KeychainUserDefaultsDefines.h"
 #import "CatrobatTableViewController.h"
@@ -37,7 +37,6 @@
     self.view.tintColor = UIColor.globalTint;
     
     [self addSection:[BOTableViewSection sectionWithHeaderTitle:@"" handler:^(BOTableViewSection *section) {
-        
         if ([Util isPhiroActivated]) {
             [section addCell:[BOSwitchTableViewCell cellWithTitle:kLocalizedPhiroBricks key:kUsePhiroBricks handler:^(BOSwitchTableViewCell *cell) {
                 cell.backgroundColor = UIColor.background;
@@ -48,16 +47,30 @@
         }
         
         if ([Util isArduinoActivated]) {
-            [section addCell:[BOSwitchTableViewCell cellWithTitle:kLocalizedArduinoBricks key:kUseArduinoBricks handler:^(BOSwitchTableViewCell *cell) {
+            [section addCell:[BOSwitchTableViewCell cellWithTitle: kLocalizedArduinoBricks key:kUseArduinoBricks handler:^(BOSwitchTableViewCell *cell) {
                 cell.backgroundColor = UIColor.background;
                 cell.mainColor = UIColor.globalTint;
                 cell.toggleSwitch.tintColor = UIColor.globalTint;
                 [cell.toggleSwitch setOnTintColor:UIColor.globalTint];
+                cell.onFooterTitle = kLocalizedArduinoBricksDescription;
+                cell.offFooterTitle = kLocalizedArduinoBricksDescription;
             }]];
         }
-        
-        
     }]];
+    
+    [self addSection:[BOTableViewSection sectionWithHeaderTitle:@"" handler:^(BOTableViewSection *section) {
+        [section addCell:[BOSwitchTableViewCell cellWithTitle: kLocalizedSendCrashReports key:kFirebaseSendCrashReports handler:^(BOSwitchTableViewCell *cell) {
+            cell.backgroundColor = UIColor.background;
+            cell.mainColor = UIColor.globalTint;
+            cell.toggleSwitch.tintColor = UIColor.globalTint;
+            [cell.toggleSwitch setOnTintColor:UIColor.globalTint];
+            cell.onFooterTitle = kLocalizedSendCrashReportsDescription;
+            cell.offFooterTitle = kLocalizedSendCrashReportsDescription;
+            
+            [cell.toggleSwitch addTarget:self action:@selector(changeFirebaseCrashReportSettings:) forControlEvents:UIControlEventValueChanged];
+        }]];
+    }]];
+    
     __unsafe_unretained typeof(self) weakSelf = self;
     BluetoothService *service = [BluetoothService sharedInstance];
     
@@ -86,11 +99,9 @@
             }
             
         }]];
-        
     }
     
-    if ([[[NSUserDefaults standardUserDefaults] valueForKey:kUserIsLoggedIn] boolValue])
-    {
+    if ([[[NSUserDefaults standardUserDefaults] valueForKey:kUserIsLoggedIn] boolValue]) {
         [self addSection:[BOTableViewSection sectionWithHeaderTitle:@"" handler:^(BOTableViewSection *section) {
             [section addCell:[BOButtonTableViewCell cellWithTitle:kLocalizedLogout key:nil handler:^(BOButtonTableViewCell *cell) {
                 cell.backgroundColor = UIColor.background;
@@ -105,7 +116,7 @@
     
     [self addSection:[BOTableViewSection sectionWithHeaderTitle:@"" handler:^(BOTableViewSection *section) {
         [section addCell:[BOChoiceTableViewCell cellWithTitle:kLocalizedAboutPocketCode key:@"choice_2" handler:^(BOChoiceTableViewCell *cell) {
-            cell.destinationViewController = [AboutPoketCodeOptionTableViewController new];
+            cell.destinationViewController = [AboutPocketCodeOptionTableViewController new];
             cell.backgroundColor = UIColor.background;
             cell.mainColor = UIColor.globalTint;
         }]];
@@ -117,7 +128,6 @@
     }]];
     
     [self addSection:[BOTableViewSection sectionWithHeaderTitle:@"" handler:^(BOTableViewSection *section) {
-        
         [section addCell:[BOButtonTableViewCell cellWithTitle:kLocalizedPrivacySettings key:nil handler:^(BOButtonTableViewCell *cell) {
             cell.backgroundColor = UIColor.background;
             cell.mainColor = UIColor.globalTint;
@@ -147,6 +157,10 @@
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (void)changeFirebaseCrashReportSettings:(UISwitch *)sender {
+   [[NSNotificationCenter defaultCenter] postNotificationName:NotificationName.settingsCrashReportingChanged object:[NSNumber numberWithBool:sender.on]];
 }
 
 - (void)presentAlertControllerWithTitle:(NSString *)title message:(NSString *)message {

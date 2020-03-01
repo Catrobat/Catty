@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2019 The Catrobat Team
+ *  Copyright (C) 2010-2020 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -31,7 +31,7 @@ class StandardAudioPlayerFactory: AudioPlayerFactory {
 
         do {
             let file = try AKAudioFile(forReading: audioFileURL)
-            audioPlayer = AudioPlayer(soundFile: file, addCompletionHandler: true)
+            audioPlayer = AudioPlayer(soundFile: file)
         } catch {
             print("Could not load audio file with url \(audioFileURL.absoluteString)")
         }

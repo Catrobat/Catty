@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2019 The Catrobat Team
+ *  Copyright (C) 2010-2020 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -23,6 +23,8 @@
 #import <Bohr/Bohr.h>
 
 @interface SettingsTableViewController : BOTableViewController
+
+- (void)changeFirebaseCrashReportSettings:(UISwitch *)sender;
 
 @end
 

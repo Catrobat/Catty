@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2019 The Catrobat Team
+ *  Copyright (C) 2010-2020 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -108,7 +108,7 @@ final class SceneTests: XCTestCase {
     }
 
     func testVariableLabel() {
-        let project = ProjectMock(width: self.screenSize.width, andHeight: self.screenSize.height)!
+        let project = ProjectMock(width: self.screenSize.width, andHeight: self.screenSize.height)
         let scene = SceneBuilder(project: project).build()
 
         let userVariable = UserVariable()
@@ -121,5 +121,6 @@ final class SceneTests: XCTestCase {
         XCTAssertEqual(SKLabelHorizontalAlignmentMode.left, userVariable.textLabel.horizontalAlignmentMode)
         XCTAssertEqual(CGFloat(kSceneLabelFontSize), userVariable.textLabel.fontSize)
         XCTAssertEqual(0, userVariable.textLabel.text?.count)
+        scene.stopProject()
     }
 }

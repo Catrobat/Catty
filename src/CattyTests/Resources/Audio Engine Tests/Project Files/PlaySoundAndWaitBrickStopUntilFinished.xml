@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<program>
+  <header>
+    <applicationBuildName>Catty</applicationBuildName>
+    <applicationBuildNumber>34</applicationBuildNumber>
+    <applicationName>Pocket Code</applicationName>
+    <applicationVersion>0.6.11</applicationVersion>
+    <catrobatLanguageVersion>0.991</catrobatLanguageVersion>
+    <dateTimeUpload/>
+    <description/>
+    <deviceName>x86_64</deviceName>
+    <landscapeMode>false</landscapeMode>
+    <mediaLicense>http://developer.catrobat.org/ccbysa_v3</mediaLicense>
+    <platform>iOS</platform>
+    <platformVersion>13.1</platformVersion>
+    <programLicense>http://developer.catrobat.org/agpl_v3</programLicense>
+    <programName>TestPlaySoundAndWait</programName>
+    <remixOf/>
+    <screenHeight>2688</screenHeight>
+    <screenMode>STRETCH</screenMode>
+    <screenWidth>1242</screenWidth>
+    <tags/>
+    <url/>
+    <userHandle/>
+  </header>
+  <objectList>
+    <object name="Background">
+      <lookList/>
+      <soundList>
+        <sound>
+          <fileName>piano_jazz.mp3</fileName>
+          <name>PianoJazz</name>
+        </sound>
+        <sound>
+          <fileName>half_seconds_patchwork.mp3</fileName>
+          <name>HalfSeconds</name>
+        </sound>
+      </soundList>
+      <scriptList>
+        <script type="StartScript">
+          <brickList>
+            <brick type="PlaySoundAndWaitBrick">
+              <sound reference="../../../../../soundList/sound"/>
+            </brick>
+            <brick type="PlaySoundBrick">
+              <sound reference="../../../../../soundList/sound[2]"/>
+            </brick>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+      </scriptList>
+      <userBricks/>
+      <nfcTagList/>
+    </object>
+  </objectList>
+  <data>
+    <objectListOfList/>
+    <objectVariableList/>
+    <programListOfLists/>
+    <programVariableList/>
+    <userBrickVariableList/>
+  </data>
+  <settings/>
+</program>

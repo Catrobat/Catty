@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2019 The Catrobat Team
+ *  Copyright (C) 2010-2020 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -26,7 +26,7 @@ import Foundation
 class AudioPlayer {
 
     var akPlayer: AKPlayer
-    var playerIsFinishedExpectation: Expectation?
+    var playerIsFinishedExpectation: CBExpectation?
     var fileName: String
     var soundCompletionHandler: (() -> Void)!
     var isPaused = false
@@ -34,32 +34,29 @@ class AudioPlayer {
 
     let playingQueue = DispatchQueue(label: "PlayingQueue")
 
-    init(soundFile: AVAudioFile, addCompletionHandler: Bool) {
+    init(soundFile: AVAudioFile) {
         fileName = soundFile.fileNamePlusExtension
         akPlayer = AKPlayer(audioFile: soundFile)
         akPlayer.isLooping = false
-        if addCompletionHandler {
-            soundCompletionHandler = standardSoundCompletionHandler
-            akPlayer.completionHandler = soundCompletionHandler
-        }
+        soundCompletionHandler = standardSoundCompletionHandler
+        akPlayer.completionHandler = soundCompletionHandler
     }
 
-    func play(expectation: Expectation?) {
+    func play(expectation: CBExpectation?) {
         _ = playingQueue.sync {
-            addExpectation(expectation)
+            soundCompletionHandler()
             if !self.isDiscarded {
                 if akPlayer.isPlaying {
-                    self.stop()
+                    akPlayer.stop()
                 }
+                addExpectation(expectation)
                 akPlayer.play()
-            } else {
-                soundCompletionHandler()
             }
         }
     }
 
     func stop() {
-        self.soundCompletionHandler()
+        soundCompletionHandler()
         akPlayer.stop()
     }
 
@@ -109,7 +106,7 @@ class AudioPlayer {
         }
     }
 
-    private func addExpectation(_ expectation: Expectation?) {
+    private func addExpectation(_ expectation: CBExpectation?) {
         self.playerIsFinishedExpectation = expectation
     }
 }

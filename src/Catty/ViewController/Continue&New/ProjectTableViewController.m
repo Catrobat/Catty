@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2019 The Catrobat Team
+ *  Copyright (C) 2010-2020 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -80,7 +80,7 @@
         self.navigationItem.title = self.project.header.programName;
         self.title = self.project.header.programName;
     }
-    self.placeHolderView.title = kLocalizedObject;
+    self.placeHolderView.title = kLocalizedTapPlusToAddSprite;
     [self showPlaceHolder:!(BOOL)[self.project numberOfNormalObjects]];
     [self setupToolBar];
     if(self.showAddObjectActionSheetAtStart) {
@@ -175,7 +175,7 @@
     [self showLoadingView];
     NSString *oldProjectName = self.project.header.programName;
     newProjectName = [Util uniqueName:newProjectName existingNames:[Project allProjectNames]];
-    [self.project renameToProjectName:newProjectName];
+    [self.project renameToProjectName:newProjectName andShowSaveNotification:YES];
     [self.delegate renameOldProjectWithName:oldProjectName
                                   projectID:self.project.header.programID
                            toNewProjectName:self.project.header.programName];

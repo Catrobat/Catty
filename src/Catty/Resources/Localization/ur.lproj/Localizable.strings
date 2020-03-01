@@ -14,19 +14,25 @@
 "About Pocket Code" = "پاکٹ کوڈ کے بارے میں";
 
 /* No comment provided by engineer. */
+"acceleration x" = "تیز رفتار x";
+
+/* No comment provided by engineer. */
+"acceleration y" = "تیز رفتار y";
+
+/* No comment provided by engineer. */
+"acceleration z" = "تیز رفتار z";
+
+/* No comment provided by engineer. */
 "acceleration-sensor" = "تیز رفتار سینسر";
 
 /* No comment provided by engineer. */
-"acceleration_x" = "تیز رفتار x";
-
-/* No comment provided by engineer. */
-"acceleration_y" = "تیز رفتار y";
-
-/* No comment provided by engineer. */
-"acceleration_z" = "تیز رفتار z";
+"Actors and objects" = "اداکار اور آبجیکٹ";
 
 /* No comment provided by engineer. */
 "Add" = "جمع";
+
+/* No comment provided by engineer. */
+"Add actor or object" = "Add actor or object";
 
 /* No comment provided by engineer. */
 "add comment here..." = "یہاں تبصرہ شامل کریں ...";
@@ -37,17 +43,20 @@
 /* Action sheet menu title */
 "Add look" = "نظر کا ا ضافہ کریں";
 
-/* No comment provided by engineer. */
-"Add object" = "آبجیکٹ ا ضافہ کریں";
-
 /* Action sheet menu title */
 "Add sound" = "آواز ا ضافہ کریں";
+
+/* No comment provided by engineer. */
+"Agree" = "متفق";
 
 /* No comment provided by engineer. */
 "All Bluetooth devices successfully disconnected" = "تمام بلوٹوت آلات کو کامیابی سے منقطع کیا گیا";
 
 /* No comment provided by engineer. */
 "All known Bluetooth devices successfully removed" = "تمام معروف بلوٹوت آلات کو کامیابی سے ہٹایا گیا";
+
+/* No comment provided by engineer. */
+"Allow the app to control Arduino boards" = "اپلی کیشن کو آردوانوبورڈوں کو کنٹرول کرنے کی اجازت دیں";
 
 /* paint */
 "Alpha" = "الفا";
@@ -74,7 +83,7 @@
 "and wait" = "اور انتظار کریں";
 
 /* No comment provided by engineer. */
-"Animate Brick-Parts" = "متحرک  اینٹوں کے حصے";
+"Animate brick-parts" = "Animate brick-parts";
 
 /* No comment provided by engineer. */
 "Apr" = "اپریل";
@@ -86,10 +95,13 @@
 "Arduino" = "آردوانو";
 
 /* No comment provided by engineer. */
-"arduino_analog" = "arduino کے مطابق";
+"arduino analog" = "arduino analog";
 
 /* No comment provided by engineer. */
-"arduino_digital" = "arduino ڈیجیٹل";
+"arduino digital" = "arduino digital";
+
+/* No comment provided by engineer. */
+"Arduino extension" = "آردوانو توسیع";
 
 /* No comment provided by engineer. */
 "at " = "پر";
@@ -125,16 +137,22 @@
 "Background" = "پس پشت";
 
 /* No comment provided by engineer. */
-"background_name" = "پس منظر کا نام";
+"background name" = "پس منظر کے نام";
 
 /* No comment provided by engineer. */
-"background_number" = "پس منظر نمبر";
+"background number" = "پس منظر نمبر";
 
 /* No comment provided by engineer. */
 "Backgrounds" = "پس منظر";
 
+/* No comment provided by engineer. */
+"Before you can start coding, please read and accept our Privacy Policy to use the app:" = "Before you can start coding, please read and accept our Privacy Policy to use the app:";
+
 /* paint */
 "Blue" = "نیلا";
+
+/* No comment provided by engineer. */
+"blue" = "نیلا";
 
 /* No comment provided by engineer. */
 "Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings." = "بلوٹوت دستیاب نہیں ہے. یا تو آپ کا آلہ بلوٹوت 4.0 کی حمایت نہیں کرتا ہے یا آپ کا بلوٹوت چپ نقصان پہنچا ہے. اس ترتیبات میں کسی اور بلوٹوت آلہ کے سلسلے میں براہ کرم چیک کریں.";
@@ -170,10 +188,7 @@
 "By registering you agree to our" = "رجسٹر ہوتے ہوئے آپ متفق ہیں ہمارے";
 
 /* No comment provided by engineer. */
-"By switching to the section \"Explore\" you can discover more interesting projects from people all over the world." = "اس سیکشن کو \"تفسیر\" میں سوئچنگ کرکے آپ دنیا بھر میں زیادہ دلچسپ منصوبوں کو تلاش کر سکتے ہیں.";
-
-/* No comment provided by engineer. */
-"Camera Roll" = "کیمرہ رول";
+"Camera roll" = "Camera roll";
 
 /* No comment provided by engineer. */
 "Can't restart project!" = "پروگرام پھر شروع نہیں کر سکتے!";
@@ -188,10 +203,13 @@
 "Cannot connect to device. The device is not responding." = "آلہ سے منسلک نہیں ہوسکتا. آلہ جواب نہیں دے رہا ہے.";
 
 /* No comment provided by engineer. */
-"Cannot connect to the Media Library. Please check your Internet connection." = "میڈیا لائبریری سے منسلک نہیں ہوسکتا. براہ مہربانی اپنا انٹرنیٹ کنکشن چیک کریں.";
+"Cannot connect to the media library. Please check your internet connection." = "Cannot connect to the media library. Please check your internet connection.";
 
 /* No comment provided by engineer. */
 "Categories" = "زمرہ جات";
+
+/* No comment provided by engineer. */
+"Catrobat community" = "کاٹروبٹ کے تمام لوگ                      ";
 
 /* No comment provided by engineer. */
 "ceil" = "چھت";
@@ -215,16 +233,16 @@
 "Change volume by" = "حجم تبدیل کریں";
 
 /* No comment provided by engineer. */
-"Change X by " = "ایکس کی طرف سے تبدیل کریں";
+"Change x by " = "Change x by ";
 
 /* No comment provided by engineer. */
-"Change Y by " = "Y کی طرف سے تبدیل کریں";
+"Change y by " = "Change y by ";
 
 /* No comment provided by engineer. */
-"Changes discarded!" = "تبدیلیاں مسترد کر دی گئی!";
+"Changes discarded." = "Changes discarded.";
 
 /* No comment provided by engineer. */
-"Changes saved!" = "تبدیلیاں محفوظ کردی گئیں!";
+"Changes saved." = "تبدیلیاں محفوظ کردی گئیں";
 
 /* No comment provided by engineer. */
 "Choose" = "- منتخب کریں -";
@@ -260,13 +278,13 @@
 "Computed result is TRUE" = "حسابی نتیجہ درست ہے۔";
 
 /* No comment provided by engineer. */
-"Confirm Password" = "پاس ورڈ کی تصدیق کریں";
+"Confirm password" = "پاس ورڈ کی تصدیق";
 
 /* bluetooth */
 "Connection failed" = "کنیکشن ناکام";
 
 /* bluetooth */
-"Connection Lost" = "کنکشن چلا گیا";
+"Connection lost" = "Connection lost";
 
 /* bluetooth */
 "Connection not possible" = "کنکشن ممکن نہیں ہے";
@@ -278,22 +296,22 @@
 "Continue" = "جاری رکھیں";
 
 /* No comment provided by engineer. */
+"Continue project" = "پروجیکٹ جاری رکھیں";
+
+/* No comment provided by engineer. */
 "Control" = "قابو کریں";
 
 /* No comment provided by engineer. */
 "Copy" = "نقل بنائین";
 
 /* No comment provided by engineer. */
-"Copy Brick" = "اینٹ کاپی کریں";
+"Copy brick" = "Copy brick";
 
 /* No comment provided by engineer. */
-"Copy Looks" = "کاپی لگ رہا ہے";
+"Copy looks" = "Copy looks";
 
 /* No comment provided by engineer. */
 "Copy project" = " منصوبے کاپی کریں\n";
-
-/* No comment provided by engineer. */
-"Create & Remix" = "بنائیں اور ریمکس";
 
 /* No comment provided by engineer. */
 "Create account" = "اکاؤنٹ بنائیں\n";
@@ -302,7 +320,7 @@
 "day" = "دن";
 
 /* No comment provided by engineer. */
-"Debug mode" = "ٹھیک کرنے کا طریقہ";
+"debug" = "debug";
 
 /* No comment provided by engineer. */
 "Dec" = "دسمبر";
@@ -317,79 +335,79 @@
 "Delete" = "خارج کر دیں";
 
 /* No comment provided by engineer. */
-"Delete Backgrounds" = "پس منظر ختم  کریں";
+"Delete actors or objects" = "Delete actors or objects";
 
 /* No comment provided by engineer. */
-"Delete Brick" = "اینٹ حذف کریں";
+"Delete backgrounds" = "Delete backgrounds";
 
 /* No comment provided by engineer. */
-"Delete Condition" = "شرط حذف کریں";
+"Delete brick" = "Delete brick";
+
+/* No comment provided by engineer. */
+"Delete condition" = "Delete condition";
 
 /* No comment provided by engineer. */
 "Delete item from list" = "فہرست سے اشیاء حذف کریں";
 
 /* No comment provided by engineer. */
-"Delete Looks" = "٪ d نظر کو حذف کریں\n";
+"Delete looks" = "Delete looks";
 
 /* No comment provided by engineer. */
-"Delete Loop" = "لوپ حذف کریں";
+"Delete loop" = "Delete loop";
 
 /* No comment provided by engineer. */
-"Delete Objects" = "آبجیکٹ حذف کریں";
+"Delete project" = "Delete project";
 
 /* No comment provided by engineer. */
-"Delete Project" = " پروجیکٹ ختم کرو\n";
+"Delete projects" = "Delete projects";
 
 /* No comment provided by engineer. */
-"Delete Projects" = " پروجیکٹ ختم کرو";
+"Delete script" = "Delete script";
 
 /* No comment provided by engineer. */
-"Delete Script" = "نوشتہ حذف کریں";
+"Delete sounds" = "Delete sounds";
 
 /* No comment provided by engineer. */
-"Delete Sounds" = "آوازیں حذف کریں";
+"Delete these bricks?" = "Delete these bricks?";
 
 /* No comment provided by engineer. */
-"Delete these Bricks?" = "ان اینٹوں کو حذف کریں؟";
+"Delete these conditions?" = "Delete these conditions?";
 
 /* No comment provided by engineer. */
-"Delete these Conditions?" = "ان شرائط کو حذف کریں؟";
+"Delete these loops?" = "Delete these loops?";
 
 /* No comment provided by engineer. */
-"Delete these Loops?" = "ان لوپس کو حذف کریں؟";
+"Delete these scripts?" = "Delete these scripts?";
 
 /* No comment provided by engineer. */
-"Delete these Scripts?" = "ان سکرپٹ کو حذف کریں؟";
+"Delete this actor or object" = "Delete this actor or object";
 
 /* No comment provided by engineer. */
 "Delete this background" = "یہ آواز ختم کریں";
 
 /* No comment provided by engineer. */
-"Delete this Brick?" = "یہ اینٹ حذف کریں؟";
+"Delete this brick?" = "Delete this brick?";
 
 /* No comment provided by engineer. */
-"Delete this Condition?" = "اس شرط کو حذف کریں؟";
+"Delete this condition?" = "Delete this condition?";
 
 /* No comment provided by engineer. */
 "Delete this look" = "اس نظر کو ختم کریں؟";
 
 /* No comment provided by engineer. */
-"Delete this Loop?" = "اس لوپ کو حذف کریں؟";
-
-/* No comment provided by engineer. */
-"Delete this object" = "یہ آبجیکٹ حذف کریں";
+"Delete this loop?" = "Delete this loop?";
 
 /* No comment provided by engineer. */
 "Delete this project" = "اس منصوبے کو حذف کریں";
 
 /* No comment provided by engineer. */
-"Delete this Script?" = "یہ نوشتہ حذف کریں؟";
+"Delete this script?" = "Delete this script?";
 
 /* No comment provided by engineer. */
 "Delete this sound" = "یہ آواز حذف کریں";
 
 /* No comment provided by engineer. */
-"Deletion Mode" = "حذف  موڈ";
+"Deletion mode" = "Deletion mode";
 
 /* No comment provided by engineer. */
 "Description" = "تفصیل (وضاحت)";
@@ -405,6 +423,9 @@
 
 /* No comment provided by engineer. */
 "direction" = "سمت";
+
+/* No comment provided by engineer. */
+"Disagree" = "غیر متفق";
 
 /* No comment provided by engineer. */
 "Disconnect all devices" = "تمام آلات کو منسلک کریں";
@@ -439,41 +460,41 @@
 /* No comment provided by engineer. */
 "Edit" = "تدوین کریں";
 
-/* Action sheet menu title */
-"Edit Background" = "پس منظر میں ترمیم کریں";
+/* No comment provided by engineer. */
+"Edit actor or object" = "Edit actor or object";
 
 /* Action sheet menu title */
-"Edit Backgrounds" = "پس منظر میں ترمیم کریں";
+"Edit background" = "Edit background";
 
 /* Action sheet menu title */
-"Edit Brick" = "اینٹ میں ترمیم کریں";
+"Edit backgrounds" = "Edit backgrounds";
+
+/* Action sheet menu title */
+"Edit brick" = "Edit brick";
 
 /* No comment provided by engineer. */
-"Edit Formula" = "فارمولہ کی تدوین کریں";
+"Edit formula" = "Edit formula";
 
 /* Action sheet menu title */
-"Edit Look" = "نظر میں ترمیم کریں";
+"Edit look" = "Edit look";
 
 /* Action sheet menu title */
-"Edit Looks" = "نظر میں ترمیم کریں";
+"Edit looks" = "Edit looks";
 
 /* No comment provided by engineer. */
-"Edit Object" = "آبجیکٹ تدوین کریں";
+"Edit project" = "Edit project";
 
 /* No comment provided by engineer. */
-"Edit Project" = "پروجیکٹ میں ترمیم کریں";
-
-/* No comment provided by engineer. */
-"Edit Projects" = "پروجیکٹ میں ترمیم کریں";
+"Edit projects" = "Edit projects";
 
 /* Action sheet menu title */
-"Edit Script" = "اسکرپٹ میں ترمیم کریں";
+"Edit script" = "Edit script";
 
 /* Action sheet menu title */
-"Edit Sound" = "تدوین آواز";
+"Edit sound" = "Edit sound";
 
 /* Action sheet menu title */
-"Edit Sounds" = "آوازوں کی تدوین";
+"Edit sounds" = "Edit sounds";
 
 /* No comment provided by engineer. */
 "element" = "عنصر";
@@ -491,7 +512,7 @@
 "Empty input!" = "خالی ان پٹ!";
 
 /* No comment provided by engineer. */
-"End If" = "ختم کرو اگر";
+"End if" = "ختم کرو اگر";
 
 /* No comment provided by engineer. */
 "End of Loop" = "لوپ کے اختتام";
@@ -533,22 +554,16 @@
 "Error saving file" = "فائل کو بچانے میں خرابی";
 
 /* No comment provided by engineer. */
-"Explore" = "دریافت کریں";
-
-/* No comment provided by engineer. */
-"Explore apps" = "ایپس کی تلاش کریں";
-
-/* No comment provided by engineer. */
 "FA" = "FA";
 
 /* No comment provided by engineer. */
-"face_detected" = "چہرے کا پتہ چلا";
+"face detected" = "face detected";
 
 /* No comment provided by engineer. */
-"faceposition_x" = "چہرے کی پوزیشن ایکس";
+"faceposition x" = "faceposition x";
 
 /* No comment provided by engineer. */
-"faceposition_y" = "چہرے کی پوزیشن y";
+"faceposition y" = "faceposition y";
 
 /* No comment provided by engineer. */
 "facesize" = "چہرے کا سائز";
@@ -572,7 +587,7 @@
 "false" = "غلط";
 
 /* No comment provided by engineer. */
-"Featured Projects" = "خصوصیت منصوبوں";
+"Featured projects" = "Featured projects";
 
 /* No comment provided by engineer. */
 "Feb" = "فروری";
@@ -599,10 +614,10 @@
 "for" = "کےلیے";
 
 /* No comment provided by engineer. */
-"for all objects" = "تمام آبجیکٹس کے لیے";
+"for all actors or objects" = "for all actors or objects";
 
 /* No comment provided by engineer. */
-"for this object" = "اس آبجیکٹ کے لیے";
+"for this actor or object" = "for this actor or object";
 
 /* No comment provided by engineer. */
 "Forever" = "ہمیشہ کے لئے";
@@ -617,13 +632,13 @@
 "Fr" = "جمعہ";
 
 /* Title of View where the user can see the frequently used bricks. */
-"Frequently Used" = "اکثر استعمال کیا جاتا ہے";
+"Frequently used" = "Frequently used";
 
 /* No comment provided by engineer. */
 "Friday" = "جمعہ";
 
 /* No comment provided by engineer. */
-"From Camera" = "کیمرہ سے";
+"From camera" = "From camera";
 
 /* No comment provided by engineer. */
 "front" = "سامنے";
@@ -644,6 +659,9 @@
 "Green" = "سبز";
 
 /* No comment provided by engineer. */
+"green" = "سبز";
+
+/* No comment provided by engineer. */
 "gyro-sensor" = "گریرو سینسر";
 
 /* No comment provided by engineer. */
@@ -656,7 +674,7 @@
 "Hide" = "چھپائیں";
 
 /* No comment provided by engineer. */
-"Hide Details" = "تفصیلات چھپائیں";
+"Hide details" = "تفصیلات چھپائیں";
 
 /* No comment provided by engineer. */
 "Hide variable" = "متغیر چھپائیں";
@@ -689,10 +707,10 @@
 "In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation." = "جیبی کوڈ اور دیگر کیٹلاگ کو کیٹروبیٹ پراجیکٹ کے ذریعہ پیش کرنے کی اجازت دینے کے لۓ، آپ کو ہمارے استعمال کے شرائط پر اتفاق کرنا ہوگا اور جب آپ جیب کوڈ اور ہمارے دیگر ایگزیکٹوبل استعمال کرتے ہیں تو ان کی پیروی کریں. براہ کرم ذیل میں اپنی لنکس کے لئے ذیل میں ملاحظہ کریں.";
 
 /* No comment provided by engineer. */
-"inclination_x" = "رجحان x";
+"inclination x" = "inclination x";
 
 /* No comment provided by engineer. */
-"inclination_y" = "رجحان y";
+"inclination y" = "inclination y";
 
 /* No comment provided by engineer. */
 "Information" = "معلومات";
@@ -755,7 +773,7 @@
 "Last access" = "آخری رسائی:";
 
 /* No comment provided by engineer. */
-"last_screen_touch_index" = "last_screen_touch_index";
+"last stage touch index" = "آخری مرحلے ٹچ انڈیکس";
 
 /* No comment provided by engineer. */
 "latitude" = "طول";
@@ -800,7 +818,7 @@
 "location" = "مقام";
 
 /* No comment provided by engineer. */
-"location_accuracy" = "مقام کی درستگی";
+"location accuracy" = "مقام کی درستگی";
 
 /* No comment provided by engineer. */
 "Logic" = "منطق";
@@ -810,9 +828,6 @@
 
 /* No comment provided by engineer. */
 "Login successful" = "لاگ ان کامیاب";
-
-/* No comment provided by engineer. */
-"Login/Register" = "لاگ ان/رجسٹر";
 
 /* No comment provided by engineer. */
 "Logout" = "لاگ آؤٹ";
@@ -827,10 +842,10 @@
 "look" = "دیکھو";
 
 /* No comment provided by engineer. */
-"look_name" = "نام دیکھو";
+"look name" = "نام دیکھو";
 
 /* No comment provided by engineer. */
-"look_number" = "نمبر دیکھیں";
+"look number" = "نمبر دیکھیں";
 
 /* No comment provided by engineer. */
 "Looks" = "نظر";
@@ -857,7 +872,7 @@
 "Measure" = "پیمائش";
 
 /* No comment provided by engineer. */
-"Media Library" = "میڈیا لائبریری";
+"Media library" = "میڈیا لائبریری";
 
 /* paint */
 "Menu" = "مینیو";
@@ -896,10 +911,10 @@
 "More information" = "مزید معلومات";
 
 /* No comment provided by engineer. */
-"Most Downloaded" = "سب سے زیادہ ڈاؤنلوڈ کیے گئے";
+"Most downloaded" = "سب سے زیادہ ڈاؤنلوڈ کیے گئے";
 
 /* No comment provided by engineer. */
-"Most Viewed" = "سب سے زیادہ دیکھے گئے";
+"Most viewed" = "سب سے زیادہ دیکھے گئے";
 
 /* No comment provided by engineer. */
 "Motion" = "حرکت";
@@ -908,13 +923,13 @@
 "Move" = "آگۓ بڑہیں";
 
 /* No comment provided by engineer. */
-"Move Brick" = "اینٹوں کو منتقل کریں";
+"Move actors or objects" = "Move actors or objects";
 
 /* No comment provided by engineer. */
-"Move Looks" = "نظر منتقل";
+"Move brick" = "Move brick";
 
 /* No comment provided by engineer. */
-"Move Objects" = "آبجیکٹ منتقل کریں";
+"Move looks" = "Move looks";
 
 /* No comment provided by engineer. */
 "Move Phiro motor backward" = "پہرو موٹر پیچھے بڑھو ";
@@ -923,16 +938,16 @@
 "Move Phiro motor forward" = "پہرو موٹر آگے بڑھو ";
 
 /* No comment provided by engineer. */
-"Move Sounds" = "آوازیں منتقل کریں";
+"Move sounds" = "Move sounds";
 
 /* Name of the default catrobat project (used as filename!!) */
 "My first project" = "میرا پہلا پراجیکٹ";
 
 /* Default title of imported photo from camera (taken by camera) */
-"My Image" = "میری تصویر";
+"My image" = "My image";
 
 /* Title for first (default) object */
-"My Object" = "میری آبجیکٹ";
+"My object" = "My object";
 
 /* No comment provided by engineer. */
 "Name" = "نام\n";
@@ -944,22 +959,22 @@
 "New" = "نیا";
 
 /* paint */
-"New Canvas" = "نیو کینوس";
+"New canvas" = "New canvas";
 
 /* No comment provided by engineer. */
-"New List" = "نئی فہرست";
+"New list" = "نئی فہرست";
 
 /* No comment provided by engineer. */
-"New Message" = "نیا پیغام";
+"New message" = "نیا پیغام";
 
 /* No comment provided by engineer. */
-"New Project" = "نیا پروجیکٹ";
+"New project" = "نیا پروجیکٹ";
 
 /* No comment provided by engineer. */
-"New Text" = "نیا متن";
+"New text" = "نیا متن";
 
 /* No comment provided by engineer. */
-"New Variable" = "نئی متغیر";
+"New variable" = "نئی متغیر";
 
 /* No comment provided by engineer. */
 "New..." = "نئی...";
@@ -977,13 +992,10 @@
 "No" = "نہيں";
 
 /* No comment provided by engineer. */
-"No Camera available" = "کیمرے دستیاب نہیں ہے";
+"No camera available" = "No camera available";
 
 /* No comment provided by engineer. */
-"No Description available" = "کوئی وضاحت دستیاب نہیں۔";
-
-/* No comment provided by engineer. */
-"No input. Please enter at least %lu character(s)." = "No input. Please enter at least %lu character(s).";
+"No description available" = "No description available";
 
 /* No comment provided by engineer. */
 "No or invalid image name entered, try again." = "کوئی یا غلط تصویر کا نام درج نہیں، دوبارہ کوشش کریں.";
@@ -1022,7 +1034,7 @@
 "November" = "نومبر";
 
 /* No comment provided by engineer. */
-"number_of_items" = "اشیاء کی تعداد";
+"number of items" = "اشیاء کی تعداد";
 
 /* No comment provided by engineer. */
 "Numbers" = "نمبر";
@@ -1034,13 +1046,10 @@
 "Object lists:" = "آبجیکٹ کی فہرست";
 
 /* No comment provided by engineer. */
-"Object name" = "نام آبجیکٹ";
+"Object or actor name" = "Object or actor name";
 
 /* No comment provided by engineer. */
 "Object variables:" = "آبجیکٹ متغیرات:";
-
-/* No comment provided by engineer. */
-"Objects" = "آبجیکٹس";
 
 /* No comment provided by engineer. */
 "Oct" = "اکتوبر";
@@ -1085,22 +1094,22 @@
 "Phiro" = "پہرو";
 
 /* No comment provided by engineer. */
-"phiro_bottom_left" = "پہرو  نیچے بائیں";
+"phiro bottom left" = "phiro bottom left";
 
 /* No comment provided by engineer. */
-"phiro_bottom_right" = "پہرو  نیچے  دائیں";
+"phiro bottom right" = "phiro bottom right";
 
 /* No comment provided by engineer. */
-"phiro_front_left" = "پہرو سامنے بائیں";
+"phiro front left" = "phiro front left";
 
 /* No comment provided by engineer. */
-"phiro_front_right" = "پہرو  سامنے دائیں";
+"phiro front right" = "phiro front right";
 
 /* No comment provided by engineer. */
-"phiro_side_left" = "پہرو طرف بائیں";
+"phiro side left" = "phiro side left";
 
 /* No comment provided by engineer. */
-"phiro_side_right" = "پہرو  طرف دائیں";
+"phiro side right" = "phiro side right";
 
 /* paint */
 "Pipette" = "نعمونہ";
@@ -1115,7 +1124,10 @@
 "Please choose another name:" = "برائے مہربانی کوئی دوسری فائل منتخب کریں";
 
 /* paint */
-"Please enter a text!" = "براہ مہربانی ایک متن درج کریں";
+"Please enter a text." = "Please enter a text.";
+
+/* No comment provided by engineer. */
+"Please enter at least %lu character(s)." = "Please enter at least %lu character(s).";
 
 /* No comment provided by engineer. */
 "Please log in to report this project as inappropriate" = "اس منصوبے کو نامناسب طور پر رپورٹ کرنے کیلئے لاگ ان کریں";
@@ -1136,9 +1148,6 @@
 "Pocket Code for iOS" = "پاکٹ کوڈ برائے IOS";
 
 /* No comment provided by engineer. */
-"Pocket Code has been started in debug mode." = "ڈیبی کوڈ ڈیبگ موڈ میں شروع کردی گئی ہے.";
-
-/* No comment provided by engineer. */
 "Pocket Code has no access to your camera. To permit access, tap settings and activate camera. Your drawing will automatically be saved to PocketCode for you." = "جیب کوڈ آپ کے کیمرے تک رسائی نہیں ہے. رسائی کی اجازت دینے کے لئے، ترتیبات کو نل اور کیمرے کو چالو کریں. آپ کا ڈرائنگ خود کار طریقے سے آپ کے لئے PocketCode میں محفوظ ہو جائے گا.";
 
 /* No comment provided by engineer. */
@@ -1149,9 +1158,6 @@
 
 /* No comment provided by engineer. */
 "Pocket Code is a programming environment for iOS for the visual programming language Catrobat. The code of Pocket Code is mostly under GNU AGPL v3 licence. For further information to the licence please visit following links:" = "جیبی کوڈ بصری پروگرامنگ زبان کیٹروبیٹ کے لئے iOS کیلئے ایک پروگرامنگ ماحول ہے. جیبی کوڈ کا کوڈ زیادہ تر GNU AGPL V3 لائسنس کے تحت ہے. لائسنس کو مزید معلومات کے لئے براہ کرم درج ذیل لنکس ملاحظہ کریں:";
-
-/* No comment provided by engineer. */
-"Pocket Code let's you play great games and run other fantastic apps like for instance presentations, quizzes and so on." = "جیب کوڈ آپ کو بہترین کھیلوں کو کھیلنے اور دیگر تصوراتی، بہترین اطلاقات جیسے مثال کے طور پر پیشکشوں، سوالات اور اسی طرح چلانے کی اجازت دیتا ہے.";
 
 /* No comment provided by engineer. */
 "Pocket Code Recorder" = "پاکٹ کوڈ ریکارڈر";
@@ -1172,10 +1178,10 @@
 "Pointer" = "پوائنٹر";
 
 /* No comment provided by engineer. */
-"position_x" = "پوزیشن ایکس";
+"position x" = "پوزیشن ایکس";
 
 /* No comment provided by engineer. */
-"position_y" = "پوزیشن y";
+"position y" = "پوزیشن y";
 
 /* No comment provided by engineer. */
 "Preview" = "پیش منظر";
@@ -1211,6 +1217,9 @@
 "Projects" = "پروگرامات";
 
 /* No comment provided by engineer. */
+"Projects on device" = "پروگرامات";
+
+/* No comment provided by engineer. */
 "Rate Us" = "ہمیں اعزاز دیں!";
 
 /* No comment provided by engineer. */
@@ -1221,6 +1230,9 @@
 
 /* paint */
 "Rectangle / Square" = "مستطیل / مربع";
+
+/* No comment provided by engineer. */
+"red" = "سرخ";
 
 /* paint */
 "Red" = "سرخ";
@@ -1238,13 +1250,13 @@
 "Rename" = "نام تبدیل کریں";
 
 /* No comment provided by engineer. */
+"Rename actor or object" = "آبجیکٹ کو نیا نام دیں";
+
+/* No comment provided by engineer. */
 "Rename image" = "تصویر کو نیا نام دیں";
 
 /* No comment provided by engineer. */
-"Rename object" = "آبجیکٹ کو نیا نام دیں";
-
-/* No comment provided by engineer. */
-"Rename Project" = "پراجیکٹ کا نام تبدیل کریں";
+"Rename project" = "پروگرام کو نیا نام دیں";
 
 /* No comment provided by engineer. */
 "Rename sound" = "آواز کو نیا نام دیں";
@@ -1286,7 +1298,7 @@
 "Saturday" = "ہفتہ";
 
 /* paint */
-"Save to CameraRoll" = "کیمرہ رول میں محفوظ کریں";
+"Save to cameraRoll" = "Save to cameraRoll";
 
 /* No comment provided by engineer. */
 "Save to PocketCode" = "پاکٹ کوڈ میں محفوظ کریں";
@@ -1296,15 +1308,6 @@
 
 /* No comment provided by engineer. */
 "Say" = "کہہ دو";
-
-/* No comment provided by engineer. */
-"screen_is_touched" = "screen_is_touched";
-
-/* No comment provided by engineer. */
-"screen_touch_x" = "اسکرین ٹچ ایکس";
-
-/* No comment provided by engineer. */
-"screen_touch_y" = "اسکرین ٹچ y";
 
 /* No comment provided by engineer. */
 "Script" = "سکرپٹ";
@@ -1328,13 +1331,13 @@
 "seconds " = "سیکنڈز";
 
 /* No comment provided by engineer. */
-"Select All" = "تمام منتخب کریں";
+"Select all" = "تمام منتخب کریں";
 
 /* bluetooth */
 "Select Arduino" = "Arduino منتخب کریں";
 
 /* No comment provided by engineer. */
-"Select Brick Category" = "کیٹیگری منتخب کریں";
+"Select brick category" = "Select brick category";
 
 /* No comment provided by engineer. */
 "Select logical operator" = "منطقی آپریٹر منتخب کریں";
@@ -1394,10 +1397,10 @@
 "Set volume to" = "حجم سیٹ کریں";
 
 /* No comment provided by engineer. */
-"Set X to " = "ایکس سیٹ کریں";
+"Set x to " = "Set x to ";
 
 /* No comment provided by engineer. */
-"Set Y to " = "وائے  سیٹ کریں";
+"Set y to " = "Set y to ";
 
 /* No comment provided by engineer. */
 "Settings" = "ترتیبات";
@@ -1406,7 +1409,7 @@
 "Show" = "نمایش کریں";
 
 /* No comment provided by engineer. */
-"Show Details" = "تفصیلات دکھائیں";
+"Show details" = "تفصیلات دکھائیں";
 
 /* No comment provided by engineer. */
 "Show variable" = "ویریئبل دکھائیں";
@@ -1444,6 +1447,15 @@
 /* paint */
 "square" = "مربع";
 
+/* No comment provided by engineer. */
+"stage is touched" = "مرحلے چھوڑا جاتا ہے";
+
+/* No comment provided by engineer. */
+"stage touch x" = "stage touch x";
+
+/* No comment provided by engineer. */
+"stage touch y" = "مرحلے ٹچ y";
+
 /* paint */
 "Stamp" = "مہر";
 
@@ -1452,6 +1464,9 @@
 
 /* No comment provided by engineer. */
 "Start sound" = "آواز کا آغاز";
+
+/* No comment provided by engineer. */
+"Start sound and wait" = "آواز کا آغاز اور انتظار کریں";
 
 /* No comment provided by engineer. */
 "step" = "قدم";
@@ -1478,10 +1493,22 @@
 "Syntax Error!" = "مطابقت پذیری کی خرابی!";
 
 /* No comment provided by engineer. */
-"Tap \"+\" to add %@" = "Tap \"+\" to add %@";
+"Tap \"+\" to add actors or objects" = "اداکاروں یا اشیاء کو شامل کرنے کیلئے \"+\" ٹیپ کریں";
 
-/* Button title at the settings screen to get to the terms of use and services. */
-"Terms of Use and Services" = "سروس اور استعمال کی شرائط";
+/* No comment provided by engineer. */
+"Tap \"+\" to add backgrounds" = "Tap \"+\" to add backgrounds";
+
+/* No comment provided by engineer. */
+"Tap \"+\" to add looks" = "نظر ڈالنے کیلئے \"+\" ٹیپ کریں";
+
+/* No comment provided by engineer. */
+"Tap \"+\" to add scripts" = "نئے نوشتہ جات اضافہ کرنے کے لیے \"+\" پر کلک کریں";
+
+/* No comment provided by engineer. */
+"Tap \"+\" to add sounds" = "آواز شامل کرنے کیلئے \"+\" ٹپ کریں";
+
+/* Button title at the settings screen to get to the terms of use and service. */
+"Terms of Use and Service" = "استعمال اور خدمات کی شرائط";
 
 /* paint */
 "Text" = "متن";
@@ -1502,7 +1529,7 @@
 "The featured projects cannot be loaded" = "نمایاں منصوبوں کو لوڈ نہیں کیا جا سکتا";
 
 /* No comment provided by engineer. */
-"The following item could not be imported from the Media Library:" = "مندرجہ ذیل آئٹم میڈیا لائبریری سے درآمد نہیں کیا جا سکتا:";
+"The following item could not be imported from the media library:" = "The following item could not be imported from the media library:";
 
 /* No comment provided by engineer. */
 "The input is too long. Please enter maximal %lu character(s)." = "The input is too long. Please enter maximal %lu character(s).";
@@ -1556,7 +1583,13 @@
 "to list" = "فہرست کے لیے";
 
 /* No comment provided by engineer. */
-"to X:" = "ایکس کے لئے:";
+"To offer you all the benefits of our services and the associated account, it is necessary to collect certain data from you.\n\n\u{2022} To maintain and improve our services (apps and websites) and to do scientific research on ICT and STEM/STEAM education, we use Google Analytics, Crashlytics, and Firebase, all by Google LLC (USA), as well as Dynatrace by Dynatrace LLC (USA) to get metadata about the usage of our services, e.g., crash information, timestamps, visited pages/screens, usage of our apps and services, used operating system, and information about the network provider. This analysis and the collected data is not linked to your profile and does not contain any personal information (last bits of the IP address get anonymized). However, the collected data will get transferred to the service-provider (Google LLC, USA and Dynatrace LLC, USA). Data processing is based on agreements with Google LLC and Dynatrace LLC. This relationship to the service provider conforms to the European Union\'s General Data Protection Regulation (EU GDPR) and EU-USA \"Privacy Shield\" agreement.\n\n\u{2022} To create and use an account in our systems, and to inform you about necessary changes about your account per e-mail, e.g., updates or violations of our Terms of Use and Service, our community rules, or our policies, we will store your username and, if provided by you, your e-mail address. If you have connected your account via your Google or Facebook account, we additionally store an identification key connected to your account on these services. We will not use this data for any other (e.g., marketing) purposes, unless you explicitly allowed us to do so.\n\n\u{2022} On a voluntary basis, you can give us your country of residence through your account page on the sharing site. This will get displayed on your public profile and only be used for statistical and research purposes by us. It can be removed at any time in your profile settings.\n\n\u{2022} You can withdraw the usage of the personal data belonging to your account at any time by deleting your account through your profile page on https://share.catrob.at. After deleting your account you will still be able to use the provided services, but not to collaborate, e.g., through uploading programs, commenting, or liking. Also, all provided content linked to your account, e.g., uploaded programs, comments, etc., will be deleted.\n\n\u{2022} To avoid misuse of our services, e.g., through user contributed uploads or comments for illegal purposes, all user generated public data (uploads, comments) will be stored internally in a database, together with a timestamp and the used internet address. This data will not be used by or forwarded to any institutions, unless sufficiently illegal actions are reasonably suspected and officially entitled legal institutions request it based on applicable law. Each case will be thoroughly checked on an individual basis by us first.\n\n\u{2022} You can voluntarily subscribe to the Catrobat Newsletter, on https://catrob.at/newsletter provided by us through the MailChimp service (The Rocket Science Group LLC d/b/a MailChimp, USA). You will then receive updates on the Catrobat project and its services to your provided e-mail address. You can withdraw the newsletter at any time by using the \"unsubscribe\" link in the footer of every newsletter. This newsletter is provided by MailChimp with whom we do have a data-processing agreement and who committed to the EU General Data Protection Regulation and EU-USA \"Privacy Shield\". For further details on MailChimp please also look up MailChimp\'s Privacy Policy and Terms of Use.\n\n\u{2022} All Services are provided by the free open source Catrobat project under the umbrella of the International Catrobat Association – Verein zur Förderung freier Software, a non-profit NGO incorporated in Graz, Austria (European Union). Our policies pay respect to EU and Austrian data protection law (GDPR). To get in touch with us, please send an e-mail to contact@catrobat.org or mail us to Catrobat,\nc/o\nInstitute of Software Technology,\nGraz University of Technology,\nInffeldgasse 16b,\nA-8010 Graz, Austria\n(European Union).\n\nIn case you are below the age of 14, this policy must be accepted by a legal guardian (usually a parent).\n\nCatrobat\'s official English language privacy policy is available on the web under https://catrob.at/privacypolicy.\n\nVersion 2.2, 17 October 2019\n\nFind the previous, outdated, version of our privacy policy (2.0) here: http://developer.catrobat.org/privacy_policy_2-0" = "To offer you all the benefits of our services and the associated account, it is necessary to collect certain data from you.\n\n\u{2022} To maintain and improve our services (apps and websites) and to do scientific research on ICT and STEM/STEAM education, we use Google Analytics, Crashlytics, and Firebase, all by Google LLC (USA), as well as Dynatrace by Dynatrace LLC (USA) to get metadata about the usage of our services, e.g., crash information, timestamps, visited pages/screens, usage of our apps and services, used operating system, and information about the network provider. This analysis and the collected data is not linked to your profile and does not contain any personal information (last bits of the IP address get anonymized). However, the collected data will get transferred to the service-provider (Google LLC, USA and Dynatrace LLC, USA). Data processing is based on agreements with Google LLC and Dynatrace LLC. This relationship to the service provider conforms to the European Union\'s General Data Protection Regulation (EU GDPR) and EU-USA \"Privacy Shield\" agreement.\n\n\u{2022} To create and use an account in our systems, and to inform you about necessary changes about your account per e-mail, e.g., updates or violations of our Terms of Use and Service, our community rules, or our policies, we will store your username and, if provided by you, your e-mail address. If you have connected your account via your Google or Facebook account, we additionally store an identification key connected to your account on these services. We will not use this data for any other (e.g., marketing) purposes, unless you explicitly allowed us to do so.\n\n\u{2022} On a voluntary basis, you can give us your country of residence through your account page on the sharing site. This will get displayed on your public profile and only be used for statistical and research purposes by us. It can be removed at any time in your profile settings.\n\n\u{2022} You can withdraw the usage of the personal data belonging to your account at any time by deleting your account through your profile page on https://share.catrob.at. After deleting your account you will still be able to use the provided services, but not to collaborate, e.g., through uploading programs, commenting, or liking. Also, all provided content linked to your account, e.g., uploaded programs, comments, etc., will be deleted.\n\n\u{2022} To avoid misuse of our services, e.g., through user contributed uploads or comments for illegal purposes, all user generated public data (uploads, comments) will be stored internally in a database, together with a timestamp and the used internet address. This data will not be used by or forwarded to any institutions, unless sufficiently illegal actions are reasonably suspected and officially entitled legal institutions request it based on applicable law. Each case will be thoroughly checked on an individual basis by us first.\n\n\u{2022} You can voluntarily subscribe to the Catrobat Newsletter, on https://catrob.at/newsletter provided by us through the MailChimp service (The Rocket Science Group LLC d/b/a MailChimp, USA). You will then receive updates on the Catrobat project and its services to your provided e-mail address. You can withdraw the newsletter at any time by using the \"unsubscribe\" link in the footer of every newsletter. This newsletter is provided by MailChimp with whom we do have a data-processing agreement and who committed to the EU General Data Protection Regulation and EU-USA \"Privacy Shield\". For further details on MailChimp please also look up MailChimp\'s Privacy Policy and Terms of Use.\n\n\u{2022} All Services are provided by the free open source Catrobat project under the umbrella of the International Catrobat Association – Verein zur Förderung freier Software, a non-profit NGO incorporated in Graz, Austria (European Union). Our policies pay respect to EU and Austrian data protection law (GDPR). To get in touch with us, please send an e-mail to contact@catrobat.org or mail us to Catrobat,\nc/o\nInstitute of Software Technology,\nGraz University of Technology,\nInffeldgasse 16b,\nA-8010 Graz, Austria\n(European Union).\n\nIn case you are below the age of 14, this policy must be accepted by a legal guardian (usually a parent).\n\nCatrobat\'s official English language privacy policy is available on the web under https://catrob.at/privacypolicy.\n\nVersion 2.2, 17 October 2019\n\nFind the previous, outdated, version of our privacy policy (2.0) here: http://developer.catrobat.org/privacy_policy_2-0";
+
+/* No comment provided by engineer. */
+"To use our app, it is necessary to accept our Privacy Policy. However, if you don\'t feel comfortable to do so, you can use our free web-services on share.catrob.at" = "To use our app, it is necessary to accept our Privacy Policy. However, if you don\'t feel comfortable to do so, you can use our free web-services on share.catrob.at";
+
+/* No comment provided by engineer. */
+"to x:" = "ایکس کے لئے:";
 
 /* No comment provided by engineer. */
 "Today" = "آج";
@@ -1619,7 +1652,7 @@
 "Unknown Element" = "نامعلوم عنصر";
 
 /* No comment provided by engineer. */
-"Unselect All" = "سب کو منتخب کریں";
+"Unselect all" = "Unselect all";
 
 /* No comment provided by engineer. */
 "Unsupported Brick:" = "غیر کارآمد ڈیوائس";
@@ -1631,10 +1664,7 @@
 "Unsupported Script:" = "غیر تعاون شدہ اسکرپٹ:";
 
 /* No comment provided by engineer. */
-"Upload" = "اپ لوڈ کریں";
-
-/* No comment provided by engineer. */
-"Upload Project" = "پروجیکٹ کو اپ لوڈ کریں";
+"Upload project" = "پروجیکٹ کو اپ لوڈ کریں";
 
 /* No comment provided by engineer. */
 "Upload selected project" = "منتخب کردہ منصوبے کو اپ لوڈ کریں";
@@ -1644,9 +1674,6 @@
 
 /* No comment provided by engineer. */
 "Uploaded" = "اپلوڈ کیا گیا";
-
-/* No comment provided by engineer. */
-"Use Arduino bricks" = "Arduino اینٹوں کا استعمال کریں";
 
 /* No comment provided by engineer. */
 "Use camera" = "کیمرے کا استعمال کریں";
@@ -1670,7 +1697,7 @@
 "Variable name:" = "متغیر نام";
 
 /* No comment provided by engineer. */
-"Variable or List" = "متغیر یا فہرست";
+"Variable or list" = "Variable or list";
 
 /* No comment provided by engineer. */
 "Variable type" = "متغیر قسم";
@@ -1706,13 +1733,13 @@
 "weekday" = "ہفتہ کے دن";
 
 /* No comment provided by engineer. */
-"Welcome to Pocket Code" = " پاکٹ کوڈ  میں خوش آمدید";
+"Welcome!" = "خوش آمدید";
 
 /* No comment provided by engineer. */
 "When project started" = "جب منصوبے شروع ہوگئے";
 
 /* No comment provided by engineer. */
-"When screen is touched" = "جب سکرین چھو جاتا ہے";
+"When stage is tapped" = "جب اسٹیج  ٹیپ کیا جاتا ہے";
 
 /* No comment provided by engineer. */
 "When tapped" = "جب ٹیپ کیا";
@@ -1727,10 +1754,10 @@
 "with" = "کے ساتھ";
 
 /* No comment provided by engineer. */
-"X: " = "ایکس:";
+"x: " = "x: ";
 
 /* No comment provided by engineer. */
-"Y: " = "وائے:";
+"y: " = "y: ";
 
 /* No comment provided by engineer. */
 "year" = "سال";
@@ -1740,9 +1767,6 @@
 
 /* No comment provided by engineer. */
 "Yesterday" = "گزشتہ روز";
-
-/* No comment provided by engineer. */
-"You are also able to build your own apps, remix existing ones and share them with your friends and other exciting people around the world." = "آپ اپنے ایپس کی تعمیر کرنے میں بھی کامیاب ہیں، موجودہ لوگ ریمکس کریں اور انہیں اپنے دوستوں اور دنیا کے دوسرے دلچسپ لوگوں کے ساتھ اشتراک کریں.";
 
 /* No comment provided by engineer. */
 "You have already downloaded this project!" = "آپ پہلے ہی اس پروگرام کو ڈاؤن لوڈ کرچکے ہیں!";

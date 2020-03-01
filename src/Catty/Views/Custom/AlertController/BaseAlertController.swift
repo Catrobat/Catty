@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2019 The Catrobat Team
+ *  Copyright (C) 2010-2020 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -49,6 +49,7 @@ final class CustomAlertController: UIAlertController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
+        NotificationCenter.default.post(name: .alertDidAppear, object: self)
         delegate?.viewDidAppear?(self.view)
     }
 

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2019 The Catrobat Team
+ *  Copyright (C) 2010-2020 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -41,11 +41,11 @@ class AudioPlayerMock: AudioPlayer {
         } catch {
             print("Could not load audio file with url \(audioFileURL!.absoluteString)")
         }
-        super.init(soundFile: file!, addCompletionHandler: true)
+        super.init(soundFile: file!)
 
     }
 
-    override func play(expectation: Expectation?) {
+    override func play(expectation: CBExpectation?) {
         let testExpectation = testExpectations["playExpectation"]
         testExpectations.removeValue(forKey: "playExpectation")
         testExpectation?.fulfill()

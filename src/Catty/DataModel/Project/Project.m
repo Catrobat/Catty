@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2019 The Catrobat Team
+ *  Copyright (C) 2010-2020 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -190,12 +190,12 @@
     [Project setLastUsedProject:self];
 }
 
-- (void)renameToProjectName:(NSString*)projectName
+- (void)renameToProjectName:(NSString*)projectName andShowSaveNotification:(BOOL)showSaveNotification
 {
-    return [self renameToProjectName:projectName andProjectId:self.header.programID];
+    return [self renameToProjectName:projectName andProjectId:self.header.programID andShowSaveNotification:showSaveNotification];
 }
 
-- (void)renameToProjectName:(NSString*)projectName andProjectId:(NSString*)projectId
+- (void)renameToProjectName:(NSString*)projectName andProjectId:(NSString*)projectId andShowSaveNotification:(BOOL)showSaveNotification
 {
     BOOL updateName = ![self.header.programName isEqualToString:projectName];
     
@@ -218,7 +218,7 @@
     if (isLastProject) {
         [Util setLastProjectWithName:self.header.programName projectID:projectId];
     }
-    [self saveToDiskWithNotification:YES];
+    [self saveToDiskWithNotification:showSaveNotification];
 }
 
 - (void)renameObject:(SpriteObject*)object toName:(NSString*)newObjectName
@@ -476,6 +476,7 @@
 
     if (languageVersion == kCatrobatInvalidVersion) {
         NSDebug(@"Invalid catrobat language version!");
+        [[NSNotificationCenter defaultCenter] postNotificationName:NotificationName.projectInvalidVersion object:loadingInfo];
         return nil;
     }
 
@@ -490,8 +491,10 @@
     project.header.programName = loadingInfo.visibleName;
     project.header.programID = loadingInfo.projectID;
 
-    if (! project)
+    if (! project) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:NotificationName.projectInvalidXml object:loadingInfo];
         return nil;
+    }
 
     NSDebug(@"%@", [project description]);
     NSDebug(@"ProjectResolution: width/height:  %f / %f", project.header.screenWidth.floatValue, project.header.screenHeight.floatValue);
@@ -568,7 +571,7 @@
         }
         ++index;
     }
-    [self renameToProjectName:kLocalizedMyFirstProject]; // saves to disk!
+    [self renameToProjectName:kLocalizedMyFirstProject andShowSaveNotification:NO]; // saves to disk!
 }
 
 + (NSString*)basePath

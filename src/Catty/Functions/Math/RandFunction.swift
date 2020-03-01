@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2019 The Catrobat Team
+ *  Copyright (C) 2010-2020 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -33,11 +33,11 @@ class RandFunction: DoubleParameterDoubleFunction {
     }
 
     func firstParameter() -> FunctionParameter {
-        return .number(defaultValue: 0)
+        return .number(defaultValue: 1)
     }
 
     func secondParameter() -> FunctionParameter {
-        return .number(defaultValue: 1)
+        return .number(defaultValue: 6)
     }
 
     func value(firstParameter: AnyObject?, secondParameter: AnyObject?) -> Double {

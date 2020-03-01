@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2019 The Catrobat Team
+ *  Copyright (C) 2010-2020 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -199,7 +199,7 @@
     [self showLoadingView];
     Project *project = [Project projectWithLoadingInfo:projectLoadingInfo];
     newProjectName = [Util uniqueName:newProjectName existingNames:[Project allProjectNames]];
-    [project renameToProjectName:newProjectName];
+    [project renameToProjectName:newProjectName andShowSaveNotification:YES];
     [self renameOldProjectWithName:projectLoadingInfo.visibleName
                          projectID:projectLoadingInfo.projectID
                   toNewProjectName:project.header.programName];

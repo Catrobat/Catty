@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2019 The Catrobat Team
+ *  Copyright (C) 2010-2020 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -23,7 +23,7 @@
 protocol StoreProjectDownloaderProtocol {
     func fetchProjects(forType: ProjectType, offset: Int, completion: @escaping (StoreProjectCollection.StoreProjectCollectionText?, StoreProjectDownloaderError?) -> Void)
     func fetchSearchQuery(searchTerm: String, completion: @escaping (StoreProjectCollection.StoreProjectCollectionNumber?, StoreProjectDownloaderError?) -> Void)
-    func downloadProject(for project: StoreProject, completion: @escaping (StoreProject?, StoreProjectDownloaderError?) -> Void)
+    func fetchProjectDetails(for project: StoreProject, completion: @escaping (StoreProject?, StoreProjectDownloaderError?) -> Void)
 }
 
 final class StoreProjectDownloader: StoreProjectDownloaderProtocol {
@@ -126,14 +126,23 @@ final class StoreProjectDownloader: StoreProjectDownloaderProtocol {
         }.resume()
     }
 
-    func downloadProject(for project: StoreProject, completion: @escaping (StoreProject?, StoreProjectDownloaderError?) -> Void) {
+    func fetchProjectDetails(for project: StoreProject, completion: @escaping (StoreProject?, StoreProjectDownloaderError?) -> Void) {
         guard let indexURL = URL(string: "\(NetworkDefines.connectionHost)/\(NetworkDefines.connectionIDQuery)?id=\(project.projectId)") else { return }
 
         self.session.dataTask(with: URLRequest(url: indexURL)) { data, response, error in
             let handleDataTaskCompletion: (Data?, URLResponse?, Error?) -> (project: StoreProject?, error: StoreProjectDownloaderError?)
             handleDataTaskCompletion = { data, response, error in
                 guard let response = response as? HTTPURLResponse else { return (nil, .unexpectedError) }
-                guard let data = data, response.statusCode == 200, error == nil else { return (nil, .request(error: error, statusCode: response.statusCode)) }
+
+                guard let data = data, response.statusCode == 200, error == nil else {
+                    let userInfo = ["projectId": project.projectId,
+                                    "url": indexURL.absoluteString,
+                                    "statusCode": response.statusCode,
+                                    "error": error?.localizedDescription ?? ""] as [String: Any]
+
+                    NotificationCenter.default.post(name: .projectFetchDetailsFailure, object: self, userInfo: userInfo)
+                    return (nil, .request(error: error, statusCode: response.statusCode))
+                }
 
                 let collection: StoreProjectCollection.StoreProjectCollectionNumber?
                 do {

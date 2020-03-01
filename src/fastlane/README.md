@@ -56,6 +56,11 @@ Download all Translations from Crowdin
 fastlane ios update_translations
 ```
 Update lane for Crowdin translations
+### ios crashylytics_update_dsyms
+```
+fastlane ios crashylytics_update_dsyms
+```
+Download dSYMs from Apple and upload to Firebase Crashlytics
 ### ios release
 ```
 fastlane ios release

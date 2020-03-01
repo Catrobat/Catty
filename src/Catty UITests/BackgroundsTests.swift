@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2019 The Catrobat Team
+ *  Copyright (C) 2010-2020 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -32,7 +32,7 @@ class BackgroundsTests: XCTestCase {
     }
 
     func testScriptsCanEnterScripts() {
-        app.tables.staticTexts[kLocalizedProjects].tap()
+        app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
         app.tables.staticTexts[kLocalizedMyFirstProject].tap()
         app.tables.staticTexts[kLocalizedBackground].tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
@@ -51,7 +51,7 @@ class BackgroundsTests: XCTestCase {
         yesButton.tap()
         app.navigationBars.buttons[kLocalizedBackground].tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
-        XCTAssert(app.staticTexts["Tap \"+\" to add Script"].exists)
+        XCTAssert(app.staticTexts[kLocalizedTapPlusToAddScript].exists)
     }
 
     func testScriptsCanDeleteWhenProjectStartsViaTap() {
@@ -65,11 +65,11 @@ class BackgroundsTests: XCTestCase {
 
         app.navigationBars.buttons[kLocalizedBackground].tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
-        XCTAssert(app.staticTexts["Tap \"+\" to add Script"].exists)
+        XCTAssert(app.staticTexts[kLocalizedTapPlusToAddScript].exists)
     }
 
     func testBackgroundsCanEnterBackgrounds() {
-        app.tables.staticTexts[kLocalizedContinue].tap()
+        app.tables.staticTexts[kLocalizedContinueProject].tap()
         waitForElementToAppear(app.tables.staticTexts[kLocalizedBackground]).tap()
         app.tables.staticTexts[kLocalizedBackgrounds].tap()
 
@@ -214,7 +214,7 @@ class BackgroundsTests: XCTestCase {
     }
 
     func testSoundsCanEnterSounds() {
-        app.tables.staticTexts[kLocalizedProjects].tap()
+        app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
         app.tables.staticTexts[kLocalizedMyFirstProject].tap()
         app.tables.staticTexts[kLocalizedBackground].tap()
         app.tables.staticTexts[kLocalizedSounds].tap()

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2019 The Catrobat Team
+ *  Copyright (C) 2010-2020 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -88,7 +88,7 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
 
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 
-    [self presentIntroductionIfNeeded];
+    [self presentPrivacyPolicyIfNeeded];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -129,12 +129,12 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
 - (void)initTableView
 {
     self.cells = [[NSArray alloc] initWithObjects:
-                  kLocalizedContinue,
-                  kLocalizedNew,
-                  kLocalizedProjects,
+                  kLocalizedContinueProject,
+                  kLocalizedNewProject,
+                  kLocalizedProjectsOnDevice,
                   kLocalizedHelp,
-                  kLocalizedExplore,
-                  kLocalizedUpload, nil];
+                  kLocalizedCatrobatCommunity,
+                  kLocalizedUploadProject, nil];
 
     self.imageNames = [[NSArray alloc] initWithObjects:kMenuImageNameContinue, kMenuImageNameNew, kMenuImageNameProjects, kMenuImageNameHelp, kMenuImageNameExplore, kMenuImageNameUpload, nil];
     self.identifiers = [[NSMutableArray alloc] initWithObjects:kSegueToContinue, kSegueToNewProject, kSegueToProjects, kSegueToHelp, kSegueToExplore, kSegueToUpload, nil];
@@ -147,15 +147,16 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
     self.navigationController.navigationBar.tintColor = UIColor.navTint;
 }
 
-- (IBAction)openSettings:(id)sender {
+- (IBAction)openSettings:(id)sender
+{
     [self infoPressed:sender];
 }
 
-#pragma mark - introduction
-
-- (void)presentIntroductionIfNeeded {
-    if (!IntroductionPageViewController.hasBeenShown || IntroductionPageViewController.showOnEveryLaunch) {
-        UIViewController *viewController = [IntroductionPageViewController new];
+#pragma mark - privacy policy
+- (void)presentPrivacyPolicyIfNeeded
+{
+    if (!PrivacyPolicyViewController.hasBeenShown || PrivacyPolicyViewController.showOnEveryLaunch) {
+        UIViewController *viewController = [PrivacyPolicyViewController new];
         viewController.modalPresentationStyle = UIModalPresentationOverFullScreen;
         viewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
         [self.navigationController presentViewController:viewController animated:NO completion:nil];
@@ -398,3 +399,4 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
 }
 
 @end
+

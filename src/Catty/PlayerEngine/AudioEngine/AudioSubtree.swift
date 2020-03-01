@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2019 The Catrobat Team
+ *  Copyright (C) 2010-2020 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -41,7 +41,7 @@ import Foundation
         audioPlayerMixer.connect(to: subtreeOutputMixer)
     }
 
-    func playSound(fileName: String, filePath: String, expectation: Expectation?) {
+    func playSound(fileName: String, filePath: String, expectation: CBExpectation?) {
         if let audioPlayer = audioPlayerCache.object(forKey: fileName) {
             startExistingAudioPlayer(audioPlayer: audioPlayer, expectation: expectation)
         } else {
@@ -85,7 +85,7 @@ import Foundation
         }
     }
 
-    private func startNonExistingAudioPlayer(audioPlayer: AudioPlayer, fileName: String, expectation: Expectation?) {
+    private func startNonExistingAudioPlayer(audioPlayer: AudioPlayer, fileName: String, expectation: CBExpectation?) {
         _ = playerCreationQueue.sync {
             if let audioPlayer = audioPlayerCache.object(forKey: fileName) {
                 startExistingAudioPlayer(audioPlayer: audioPlayer, expectation: expectation)
@@ -97,7 +97,7 @@ import Foundation
         }
     }
 
-    private func startExistingAudioPlayer(audioPlayer: AudioPlayer, expectation: Expectation?) {
+    private func startExistingAudioPlayer(audioPlayer: AudioPlayer, expectation: CBExpectation?) {
         audioPlayer.play(expectation: expectation)
     }
 }

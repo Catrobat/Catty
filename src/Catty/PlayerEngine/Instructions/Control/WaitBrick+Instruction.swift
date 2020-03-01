@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2019 The Catrobat Team
+ *  Copyright (C) 2010-2020 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -27,7 +27,7 @@
         guard let object = self.script?.object
             else { fatalError("This should never happen!") } // (pre)fetch only once (micro-optimization)
         return CBInstruction.waitExecClosure { context, scheduler in
-            let timeIsUpExpectation = Expectation()
+            let timeIsUpExpectation = CBExpectation()
             let durationInSeconds = context.formulaInterpreter.interpretDouble(self.timeToWaitInSeconds, for: object)
             if durationInSeconds <= 0.0 { return }
             let durationTimer = ExtendedTimer.init(timeInterval: durationInSeconds,

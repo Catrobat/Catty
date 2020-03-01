@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2019 The Catrobat Team
+ *  Copyright (C) 2010-2020 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -117,7 +117,7 @@
     return brickCell;
 }
 
--   (void)collectionView:(UICollectionView*)collectionView
+-  (void)collectionView:(UICollectionView*)collectionView
 didSelectItemAtIndexPath:(NSIndexPath*)indexPath
 {
     [collectionView deselectItemAtIndexPath:indexPath animated:NO];
@@ -125,6 +125,8 @@ didSelectItemAtIndexPath:(NSIndexPath*)indexPath
     NSAssert(cell.scriptOrBrick, @"Error, no brick.");
     
     [Util incrementStatisticCountForBrick:cell.scriptOrBrick];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:NotificationName.brickSelected object:cell.scriptOrBrick];
     
     if ([self.delegate respondsToSelector:@selector(brickCategoryViewController:didSelectScriptOrBrick:)]) {
         [self.delegate brickCategoryViewController:self didSelectScriptOrBrick:cell.scriptOrBrick];

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2019 The Catrobat Team
+ *  Copyright (C) 2010-2020 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -43,7 +43,7 @@ final class BubbleBrickTests: XMLAbstractTest {
     let bubbleNotReflected: CGFloat = 1.0
 
     private func createSpriteNodeWithBubble(x xPosition: Double, y yPosition: Double, andSentence sentence: String) -> CBSpriteNode {
-        let project = ProjectMock()!
+        let project = ProjectMock()
 
         let spriteObject = SpriteObject()
         spriteObject.name = "SpriteObjectName"

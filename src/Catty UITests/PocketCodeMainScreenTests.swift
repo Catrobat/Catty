@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2019 The Catrobat Team
+ *  Copyright (C) 2010-2020 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -24,6 +24,8 @@ import XCTest
 
 class PocketCodeMainScreenTests: XCTestCase {
 
+    public static let settingsButtonLabel = "Settings"
+
     var app: XCUIApplication!
 
     override func setUp() {
@@ -32,7 +34,7 @@ class PocketCodeMainScreenTests: XCTestCase {
     }
 
     func testContinue() {
-        app.tables.staticTexts[kLocalizedContinue].tap()
+        app.tables.staticTexts[kLocalizedContinueProject].tap()
 
         XCTAssert(waitForElementToAppear(app.navigationBars[kLocalizedMyFirstProject]).exists)
     }
@@ -40,7 +42,7 @@ class PocketCodeMainScreenTests: XCTestCase {
     func testNew() {
         let testProject = "testProject"
 
-        app.tables.staticTexts[kLocalizedNew].tap()
+        app.tables.staticTexts[kLocalizedNewProject].tap()
         app.textFields[kLocalizedEnterYourProjectNameHere].tap()
         app.textFields[kLocalizedEnterYourProjectNameHere].typeText(testProject)
         app.alerts[kLocalizedNewProject].buttons[kLocalizedOK].tap()
@@ -48,7 +50,7 @@ class PocketCodeMainScreenTests: XCTestCase {
         // go back and try to add project with same name
         app.navigationBars[testProject].buttons[kLocalizedPocketCode].tap()
 
-        app.tables.staticTexts[kLocalizedNew].tap()
+        app.tables.staticTexts[kLocalizedNewProject].tap()
         app.textFields[kLocalizedEnterYourProjectNameHere].tap()
         app.textFields[kLocalizedEnterYourProjectNameHere].typeText(testProject)
         app.alerts[kLocalizedNewProject].buttons[kLocalizedOK].tap()
@@ -59,7 +61,7 @@ class PocketCodeMainScreenTests: XCTestCase {
         app.alerts[kLocalizedNewProject].buttons[kLocalizedCancel].tap()
 
         // check if gone back to initial screen after pressing cancel button
-        XCTAssert(app.tables.staticTexts[kLocalizedNew].exists)
+        XCTAssert(app.tables.staticTexts[kLocalizedNewProject].exists)
     }
 
     func testNewInvalidNames() {
@@ -75,7 +77,7 @@ class PocketCodeMainScreenTests: XCTestCase {
                                     "~/": "Only special characters are not allowed. Please enter at least 1 other character."]
 
         for (projectName, _) in progNamesErrorMsgMap {
-            app.tables.staticTexts[kLocalizedNew].tap()
+            app.tables.staticTexts[kLocalizedNewProject].tap()
             let alertQuery = waitForElementToAppear(app.alerts[kLocalizedNewProject])
             waitForElementToAppear(alertQuery.textFields[kLocalizedEnterYourProjectNameHere]).tap()
             waitForElementToAppear(alertQuery.textFields[kLocalizedEnterYourProjectNameHere]).typeText(projectName)
@@ -90,7 +92,7 @@ class PocketCodeMainScreenTests: XCTestCase {
     }
 
     func testNewCanceled() {
-        app.tables.staticTexts[kLocalizedNew].tap()
+        app.tables.staticTexts[kLocalizedNewProject].tap()
 
         let alertQuery = app.alerts[kLocalizedNewProject]
         alertQuery.textFields[kLocalizedEnterYourProjectNameHere].typeText("testprojectToCancel")
@@ -102,14 +104,14 @@ class PocketCodeMainScreenTests: XCTestCase {
     func testProjects() {
         let projectNames = ["testProject1", "testProject2", "testProject3"]
 
-        app.tables.staticTexts[kLocalizedProjects].tap()
+        app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
 
         XCTAssert(app.navigationBars[kLocalizedProjects].exists)
 
         app.navigationBars[kLocalizedProjects].buttons[kLocalizedPocketCode].tap()
 
         let tablesQuery = app.tables
-        let newStaticText = tablesQuery.staticTexts[kLocalizedNew]
+        let newStaticText = tablesQuery.staticTexts[kLocalizedNewProject]
         let alertQuery = app.alerts[kLocalizedNewProject]
         let enterYourProjectNameHereTextField = alertQuery.textFields[kLocalizedEnterYourProjectNameHere]
         let okButton = alertQuery.buttons[kLocalizedOK]
@@ -121,7 +123,7 @@ class PocketCodeMainScreenTests: XCTestCase {
             app.navigationBars[projectNames[i]].buttons[kLocalizedPocketCode].tap()
         }
 
-        tablesQuery.staticTexts[kLocalizedProjects].tap()
+        tablesQuery.staticTexts[kLocalizedProjectsOnDevice].tap()
 
         for projectName in projectNames {
             XCTAssert(app.tables.staticTexts[projectName].exists)
@@ -135,13 +137,13 @@ class PocketCodeMainScreenTests: XCTestCase {
     }
 
     func testExplore() {
-        app.tables.staticTexts[kLocalizedExplore].tap()
+        app.tables.staticTexts[kLocalizedCatrobatCommunity].tap()
 
-        XCTAssert(app.navigationBars[kLocalizedExplore].exists)
+        XCTAssert(app.navigationBars[kLocalizedCatrobatCommunity].exists)
     }
 
     func testUploadRedirectToLogin() {
-        app.navigationBars.buttons["Item"].tap()
+        app.navigationBars.buttons[type(of: self).settingsButtonLabel].tap()
 
         if app.tables.staticTexts[kLocalizedLogout].exists {
             app.tables.staticTexts[kLocalizedLogout].tap()
@@ -149,42 +151,7 @@ class PocketCodeMainScreenTests: XCTestCase {
             app.navigationBars.buttons[kLocalizedPocketCode].tap()
         }
 
-        app.tables.staticTexts[kLocalizedUpload].tap()
+        app.tables.staticTexts[kLocalizedUploadProject].tap()
         XCTAssert(app.navigationBars[kLocalizedLogin].exists)
-    }
-
-    func testSettings() {
-        app.navigationBars.buttons["Item"].tap()
-
-        XCTAssert(app.navigationBars[kLocalizedSettings].exists)
-        app.switches[kLocalizedArduinoBricks].tap()
-
-        app.staticTexts[kLocalizedAboutPocketCode].tap()
-        XCTAssert(app.navigationBars[kLocalizedAboutPocketCode].exists)
-        app.navigationBars.buttons[kLocalizedSettings].tap()
-
-        app.staticTexts[kLocalizedTermsOfUse].tap()
-        XCTAssert(app.navigationBars[kLocalizedTermsOfUse].exists)
-        app.navigationBars.buttons[kLocalizedSettings].tap()
-        XCTAssert(app.navigationBars[kLocalizedSettings].exists)
-    }
-
-    func testArduinoSettings() {
-        app.navigationBars.buttons["Item"].tap()
-
-        if app.switches[kLocalizedArduinoBricks].value as! String == "0" {
-            app.switches[kLocalizedArduinoBricks].tap()
-        }
-
-        app.navigationBars.buttons[kLocalizedPocketCode].tap()
-        app.tables.staticTexts[kLocalizedProjects].tap()
-        app.tables.staticTexts[kLocalizedMyFirstProject].tap()
-        app.tables.staticTexts["Mole 1"].tap()
-        app.tables.staticTexts[kLocalizedScripts].tap()
-
-        app.toolbars.buttons[kLocalizedUserListAdd].tap()
-        findBrickSection(kLocalizedCategoryArduino, in: app)
-
-        XCTAssertTrue(app.navigationBars[kLocalizedCategoryArduino].exists)
     }
 }

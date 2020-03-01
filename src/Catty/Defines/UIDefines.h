@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2019 The Catrobat Team
+ *  Copyright (C) 2010-2020 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -31,6 +31,7 @@
 // ScenePresenterViewController
 #define kSlidingStartArea 40
 #define kFirstSwipeDuration 0.65f
+#define kHideMenuViewDelay 0.45f
 
 // Scene
 

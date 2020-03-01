@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2019 The Catrobat Team
+ *  Copyright (C) 2010-2020 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -21,6 +21,7 @@
  */
 
 import AudioKit
+import Nimble
 import XCTest
 
 @testable import Pocket_Code
@@ -35,7 +36,7 @@ final class AudioPlayerIntegrationTests: AudioEngineAbstractTest {
         super.tearDown()
     }
 
-    func testPlaySameSoundTwiceSameObject_ExpectSoundToStopAndStartFromBeginningAgain() {
+    func testPlaySoundSameSoundTwiceFromSameObjectExpectSoundToStopAndStartFromBeginningAgain() {
         let referenceSimHash = "11100010001011111011000000111000"
         let scene = self.createScene(xmlFile: "PlaySameSoundTwiceSameObject")
 
@@ -43,10 +44,10 @@ final class AudioPlayerIntegrationTests: AudioEngineAbstractTest {
         let recordedTape = self.runAndRecord(duration: 3, scene: scene, muted: true)
 
         let similarity = calculateSimilarity(tape: recordedTape, referenceHash: referenceSimHash)
-        XCTAssertGreaterThan(similarity, 0.8)
+        expect(similarity) >= 0.8
     }
 
-    func testPlaySameSoundTwiceDifferentObjects_ExpectSameSoundsToPlaySimultaneously() {
+    func testPlaySoundSameSoundTwiceFromDifferentObjectsExpectSameSoundsToPlaySimultaneously() {
         let referenceSimHash = "01100011001111111111000000101011"
         let scene = self.createScene(xmlFile: "PlaySameSoundTwiceDifferentObjects")
 
@@ -54,6 +55,50 @@ final class AudioPlayerIntegrationTests: AudioEngineAbstractTest {
         let recordedTape = self.runAndRecord(duration: 3, scene: scene, muted: true)
 
         let similarity = calculateSimilarity(tape: recordedTape, referenceHash: referenceSimHash)
-        XCTAssertGreaterThan(similarity, 0.85)
+        expect(similarity) >= 0.85
+    }
+
+    func testPlaySoundAndWaitExpectSoundInterruptedBySameSoundInSameObject() {
+        let referenceSimHash = "01111100010001001010100110000100"
+        let scene = self.createScene(xmlFile: "PlaySoundAndWaitBrickContinueWhenInterrupted")
+
+        // Run program and record
+        let recordedTape = self.runAndRecord(duration: 3, scene: scene, muted: true)
+
+        let similarity = calculateSimilarity(tape: recordedTape, referenceHash: referenceSimHash)
+        expect(similarity) >= 0.85
+    }
+
+    func testPlaySoundAndWaitExpectSoundNotInterruptedByDifferentSoundInSameObjet() {
+        let referenceSimHash = "01100100000011101001101010100100"
+        let scene = self.createScene(xmlFile: "PlaySoundAndWaitBrickSoundNotInterruptedByDifferentSound")
+
+        // Run program and record
+        let recordedTape = self.runAndRecord(duration: 3, scene: scene, muted: true)
+
+        let similarity = calculateSimilarity(tape: recordedTape, referenceHash: referenceSimHash)
+        expect(similarity) >= 0.85
+    }
+
+    func testPlaySoundAndWaitExpectScriptToStopUntilSoundFinished() {
+        let referenceSimHash = "10100000000010001110111010100010"
+        let scene = self.createScene(xmlFile: "PlaySoundAndWaitBrickStopUntilFinished")
+
+        // Run program and record
+        let recordedTape = self.runAndRecord(duration: 4, scene: scene, muted: true)
+
+        let similarity = calculateSimilarity(tape: recordedTape, referenceHash: referenceSimHash)
+        expect(similarity) >= 0.85
+    }
+
+    func testPlaySoundAndWaitExpectScriptToContinueWhenSoundFinished() {
+        let referenceSimHash = "01100011001111101000000011001001"
+        let scene = self.createScene(xmlFile: "PlaySoundAndWaitBrickContinueWhenFinished")
+
+        // Run program and record
+        let recordedTape = self.runAndRecord(duration: 3, scene: scene, muted: true)
+
+        let similarity = calculateSimilarity(tape: recordedTape, referenceHash: referenceSimHash)
+        expect(similarity) >= 0.85
     }
 }

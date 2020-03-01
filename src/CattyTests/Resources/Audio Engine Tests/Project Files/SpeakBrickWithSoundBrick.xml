@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<program>
+  <header>
+    <applicationBuildName>Catty</applicationBuildName>
+    <applicationBuildNumber>33</applicationBuildNumber>
+    <applicationName>Pocket Code</applicationName>
+    <applicationVersion>0.6.10</applicationVersion>
+    <catrobatLanguageVersion>0.991</catrobatLanguageVersion>
+    <dateTimeUpload/>
+    <description/>
+    <deviceName>x86_64</deviceName>
+    <landscapeMode>false</landscapeMode>
+    <mediaLicense>http://developer.catrobat.org/ccbysa_v3</mediaLicense>
+    <platform>iOS</platform>
+    <platformVersion>13.1</platformVersion>
+    <programLicense>http://developer.catrobat.org/agpl_v3</programLicense>
+    <programName>SpeakBrickWithSoundBrick</programName>
+    <remixOf/>
+    <screenHeight>2688</screenHeight>
+    <screenMode>STRETCH</screenMode>
+    <screenWidth>1242</screenWidth>
+    <tags/>
+    <url/>
+    <userHandle/>
+  </header>
+  <objectList>
+    <object name="Background">
+      <lookList/>
+      <soundList>
+        <sound>
+          <fileName>half_seconds_patchwork.mp3</fileName>
+          <name>SeaLion</name>
+        </sound>
+        <sound>
+          <fileName>silence.mp3</fileName>
+          <name>Submarine</name>
+        </sound>
+      </soundList>
+      <scriptList>
+        <script type="StartScript">
+          <brickList>
+            <brick type="PlaySoundBrick">
+              <sound reference="../../../../../soundList/sound[2]"/>
+            </brick>
+            <brick type="SpeakBrick">
+              <formulaList>
+                <formula category="SPEAK">
+                  <type>STRING</type>
+                  <value>This is a speak brick with a lot of text. One two three four five six seven.</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="PlaySoundBrick">
+              <sound reference="../../../../../soundList/sound"/>
+            </brick>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+      </scriptList>
+      <userBricks/>
+      <nfcTagList/>
+    </object>
+  </objectList>
+  <data>
+    <objectListOfList/>
+    <objectVariableList/>
+    <programListOfLists/>
+    <programVariableList/>
+    <userBrickVariableList/>
+  </data>
+  <settings/>
+</program>

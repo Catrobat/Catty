@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2019 The Catrobat Team
+ *  Copyright (C) 2010-2020 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -101,6 +101,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    [[NSNotificationCenter defaultCenter] postNotificationName:NotificationName.scenePresenterViewControllerDidAppear object:self];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -340,7 +341,7 @@
     animateDuration = (duration > 0.0001f && duration < 1.0f)? duration : 0.35f;
 
     [UIView animateWithDuration:animateDuration
-                          delay:0.0f
+                          delay:kHideMenuViewDelay
                         options: UIViewAnimationOptionTransitionFlipFromRight
                      animations:^{[self hideMenuView];}
                      completion:^(BOOL finished){

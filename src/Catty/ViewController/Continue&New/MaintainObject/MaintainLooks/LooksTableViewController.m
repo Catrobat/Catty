@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2019 The Catrobat Team
+ *  Copyright (C) 2010-2020 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -74,9 +74,9 @@
                                               : kLocalizedLooks);
     [self initNavigationBar];
     if (self.object.isBackground) {
-        self.placeHolderView.title = kLocalizedBackground;
+        self.placeHolderView.title = kLocalizedTapPlusToAddBackground;
     } else {
-        self.placeHolderView.title = kLocalizedLook;
+        self.placeHolderView.title = kLocalizedTapPlusToAddLook;
     }
     [self showPlaceHolder:(! (BOOL)[self.object.lookList count])];
     [self setupToolBar];

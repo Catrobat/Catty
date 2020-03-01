@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2019 The Catrobat Team
+ *  Copyright (C) 2010-2020 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -34,7 +34,7 @@ class SqrtFunction: SingleParameterDoubleFunction {
     }
 
     func firstParameter() -> FunctionParameter {
-        return .number(defaultValue: 0)
+        return .number(defaultValue: 4)
     }
 
     func value(parameter: AnyObject?) -> Double {
