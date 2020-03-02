@@ -746,6 +746,7 @@ let kLocalizedServerTimeoutIssueTitle = NSLocalizedString("Connection failed", b
 let kLocalizedServerTimeoutIssueMessage = NSLocalizedString("Server is taking to long to respond, please try again later.", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedUnexpectedErrorTitle = NSLocalizedString("Unexpected Error", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedUnexpectedErrorMessage = NSLocalizedString("Unexpected Error, please try again later.", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedInvalidUser = NSLocalizedString("Invalid Credentials.", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
 //************************************************************************************************************
 //****************************************       Debug        ************************************************

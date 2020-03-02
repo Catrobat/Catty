@@ -746,6 +746,7 @@ let kLocalizedServerTimeoutIssueTitle = NSLocalizedString("Connection failed", c
 let kLocalizedServerTimeoutIssueMessage = NSLocalizedString("Server is taking to long to respond, please try again later.", comment: "")
 let kLocalizedUnexpectedErrorTitle = NSLocalizedString("Unexpected Error", comment: "")
 let kLocalizedUnexpectedErrorMessage = NSLocalizedString("Unexpected Error, please try again later.", comment: "")
+let kLocalizedInvalidUser = NSLocalizedString("Invalid Credentials.", comment: "")
 
 //************************************************************************************************************
 //****************************************       Debug        ************************************************

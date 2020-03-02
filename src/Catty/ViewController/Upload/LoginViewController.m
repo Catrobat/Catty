@@ -40,6 +40,7 @@
 #define statusCodeOK @"200"
 #define statusCodeRegistrationOK @"201"
 #define statusAuthenticationFailed @"601"
+#define statusInvalidUser @"803"
 
 //random boundary string
 #define httpBoundary @"---------------------------98598263596598246508247098291---------------------------"
@@ -368,6 +369,14 @@
         [self hideLoadingView];
         NSDebug(@"Error: %@", kLocalizedAuthenticationFailed);
         [self showError:kLocalizedAuthenticationFailed];
+    } else if([statusCode isEqualToString:statusInvalidUser]){
+        self.loginButton.enabled = YES;
+        [self hideLoadingView];
+        
+        NSString *serverResponse = [dictionary valueForKey:answerTag];
+        NSDebug(@"Error: %@", serverResponse);
+        [self showError:kLocalizedInvalidUser];
+
     } else {
         self.loginButton.enabled = YES;
         [self hideLoadingView];

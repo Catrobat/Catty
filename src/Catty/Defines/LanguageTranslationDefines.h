@@ -746,6 +746,7 @@
 #define kLocalizedServerTimeoutIssueMessage NSLocalizedString(@"Server is taking to long to respond, please try again later.", nil)
 #define kLocalizedUnexpectedErrorTitle NSLocalizedString(@"Unexpected Error", nil)
 #define kLocalizedUnexpectedErrorMessage NSLocalizedString(@"Unexpected Error, please try again later.", nil)
+#define kLocalizedInvalidUser NSLocalizedString(@"Invalid Credentials.", nil)
 
 //************************************************************************************************************
 //****************************************       Debug        ************************************************
