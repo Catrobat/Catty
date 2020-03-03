@@ -25,7 +25,7 @@
     static let tag = "OBJECT_LAYER"
     static let name = kUIFEObjectLayer
     static let defaultRawValue = 0.0
-    static let position = 100
+    static let position = 120
     static let requiredResource = ResourceType.noResources
 
     func tag() -> String {

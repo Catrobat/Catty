@@ -25,7 +25,7 @@
     @objc static let tag = "OBJECT_BRIGHTNESS"
     static let name = kUIFEObjectBrightness
     @objc static let defaultRawValue = 0.0
-    static let position = 20
+    static let position = 90
     static let requiredResource = ResourceType.noResources
 
     func tag() -> String {

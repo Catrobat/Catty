@@ -28,7 +28,7 @@
     static let requiredResource = ResourceType.noResources
     static let rotationDegreeOffset = 90.0
     static let circleMaxDegrees = 360.0
-    static let position = 90
+    static let position = 60
 
     func tag() -> String {
         return type(of: self).tag

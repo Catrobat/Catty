@@ -25,7 +25,7 @@
     @objc static let tag = "ALTITUDE"
     static let name = kUIFESensorAltitude
     static let defaultRawValue = 0.0
-    static let position = 110
+    static let position = 290
     static let requiredResource = ResourceType.location
 
     let getLocationManager: () -> LocationManager?

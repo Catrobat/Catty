@@ -27,7 +27,7 @@ class LnFunction: SingleParameterDoubleFunction {
     static var defaultValue = 0.0
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = true
-    static let position = 40
+    static let position = 260
 
     func tag() -> String {
         return type(of: self).tag

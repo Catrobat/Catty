@@ -26,7 +26,7 @@ class FloorFunction: SingleParameterDoubleFunction {
     static var defaultValue = 0.0
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = true
-    static let position = 170
+    static let position = 210
 
     func tag() -> String {
         return type(of: self).tag

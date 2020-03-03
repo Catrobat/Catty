@@ -26,7 +26,7 @@ class LetterFunction: DoubleParameterStringFunction {
     static var defaultValue = ""
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = true
-    static let position = 220
+    static let position = 90
 
     func tag() -> String {
         return type(of: self).tag

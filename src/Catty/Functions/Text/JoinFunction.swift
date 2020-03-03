@@ -26,7 +26,7 @@ class JoinFunction: DoubleParameterStringFunction {
     static var defaultValue = ""
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = true
-    static let position = 230
+    static let position = 80
 
     func tag() -> String {
         return type(of: self).tag

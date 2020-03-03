@@ -25,7 +25,7 @@ class DateWeekdaySensor: DateSensor {
     static let tag = "DATE_WEEKDAY"
     static let name = kUIFESensorDateWeekday
     static let defaultRawValue = 0.0
-    static let position = 260
+    static let position = 130
     static let requiredResource = ResourceType.noResources
 
     func date() -> Date {
