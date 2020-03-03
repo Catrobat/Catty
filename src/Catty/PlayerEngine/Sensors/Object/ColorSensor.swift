@@ -25,7 +25,7 @@
     @objc static let tag = "OBJECT_COLOR"
     static let name = kUIFEObjectColor
     @objc static let defaultRawValue = 0.0
-    static let position = 30
+    static let position = 110
     static let requiredResource = ResourceType.noResources
 
     func tag() -> String {

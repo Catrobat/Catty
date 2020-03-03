@@ -25,7 +25,7 @@
     @objc static let tag = "OBJECT_BACKGROUND_NUMBER"
     static let name = kUIFEObjectBackgroundNumber
     static let defaultRawValue = 0.0
-    static let position = 40
+    static let position = 80
     static let requiredResource = ResourceType.noResources
 
     func tag() -> String {

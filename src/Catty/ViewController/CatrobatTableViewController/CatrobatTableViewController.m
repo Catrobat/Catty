@@ -88,7 +88,7 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
 
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 
-    [self presentIntroductionIfNeeded];
+    [self presentPrivacyPolicyIfNeeded];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -147,15 +147,16 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
     self.navigationController.navigationBar.tintColor = UIColor.navTint;
 }
 
-- (IBAction)openSettings:(id)sender {
+- (IBAction)openSettings:(id)sender
+{
     [self infoPressed:sender];
 }
 
-#pragma mark - introduction
-
-- (void)presentIntroductionIfNeeded {
-    if (!IntroductionPageViewController.hasBeenShown || IntroductionPageViewController.showOnEveryLaunch) {
-        UIViewController *viewController = [IntroductionPageViewController new];
+#pragma mark - privacy policy
+- (void)presentPrivacyPolicyIfNeeded
+{
+    if (!PrivacyPolicyViewController.hasBeenShown || PrivacyPolicyViewController.showOnEveryLaunch) {
+        UIViewController *viewController = [PrivacyPolicyViewController new];
         viewController.modalPresentationStyle = UIModalPresentationOverFullScreen;
         viewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
         [self.navigationController presentViewController:viewController animated:NO completion:nil];
@@ -398,3 +399,4 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
 }
 
 @end
+

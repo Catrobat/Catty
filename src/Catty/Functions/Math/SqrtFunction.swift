@@ -27,7 +27,7 @@ class SqrtFunction: SingleParameterDoubleFunction {
     static var defaultValue = 0.0
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = true
-    static let position = 70
+    static let position = 140
 
     func tag() -> String {
         return type(of: self).tag

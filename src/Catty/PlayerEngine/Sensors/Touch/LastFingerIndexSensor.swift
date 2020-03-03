@@ -26,7 +26,7 @@
     static let name = kUIFESensorLastFingerIndex
     static let defaultRawValue = 0.0
     static let requiredResource = ResourceType.touchHandler
-    static let position = 150
+    static let position = 40
 
     let getTouchManager: () -> TouchManagerProtocol?
 

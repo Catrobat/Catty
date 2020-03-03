@@ -29,3 +29,8 @@
 #import "ConvertExceptionToError.h"
 #import "chromaprint.h"
 #import "LoginViewController.h"
+#import "BaseCollectionViewController.h"
+#import "ScriptCollectionViewController.h"
+#import "FormulaEditorViewController.h"
+#import "PaintViewController.h"
+#import "SettingsTableViewController.h"

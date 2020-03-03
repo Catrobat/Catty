@@ -26,7 +26,7 @@ class ModFunction: DoubleParameterDoubleFunction {
     static var defaultValue = 0.0
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = true
-    static let position = 110
+    static let position = 70
 
     func tag() -> String {
         return type(of: self).tag

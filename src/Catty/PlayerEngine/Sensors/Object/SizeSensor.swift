@@ -26,7 +26,7 @@ class SizeSensor: ObjectDoubleSensor {
     static let name = kUIFEObjectSize
     static let defaultRawValue = 1.0
     static let requiredResource = ResourceType.noResources
-    static let position = 80
+    static let position = 50
 
     func tag() -> String {
         return type(of: self).tag

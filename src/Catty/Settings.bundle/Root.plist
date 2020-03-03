@@ -8,7 +8,7 @@
 			<key>Key</key>
 			<string></string>
 			<key>Title</key>
-			<string>Introduction</string>
+			<string>Privacy Policy</string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 		</dict>
@@ -16,9 +16,9 @@
 			<key>DefaultValue</key>
 			<false/>
 			<key>Key</key>
-			<string>showIntroductionOnEveryLaunch</string>
+			<string>showPrivacyPolicyOnEveryLaunch</string>
 			<key>Title</key>
-			<string>Show introduction on launch</string>
+			<string>Show privacy policy on launch</string>
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 		</dict>
@@ -30,7 +30,7 @@
 		</dict>
 		<dict>
 			<key>DefaultValue</key>
-			<string>0.6.11</string>
+			<string>$(MARKETING_VERSION)</string>
 			<key>Key</key>
 			<string>versionNumberSettings</string>
 			<key>Title</key>

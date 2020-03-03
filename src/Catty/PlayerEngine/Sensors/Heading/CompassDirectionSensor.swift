@@ -25,7 +25,7 @@
     @objc static let tag = "COMPASS_DIRECTION"
     static let name = kUIFESensorCompass
     static let defaultRawValue = 0.0
-    static let position = 70
+    static let position = 180
     static let requiredResource = ResourceType.compass
 
     let getLocationManager: () -> LocationManager?

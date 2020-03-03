@@ -476,6 +476,7 @@
 
     if (languageVersion == kCatrobatInvalidVersion) {
         NSDebug(@"Invalid catrobat language version!");
+        [[NSNotificationCenter defaultCenter] postNotificationName:NotificationName.projectInvalidVersion object:loadingInfo];
         return nil;
     }
 
@@ -490,8 +491,10 @@
     project.header.programName = loadingInfo.visibleName;
     project.header.programID = loadingInfo.projectID;
 
-    if (! project)
+    if (! project) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:NotificationName.projectInvalidXml object:loadingInfo];
         return nil;
+    }
 
     NSDebug(@"%@", [project description]);
     NSDebug(@"ProjectResolution: width/height:  %f / %f", project.header.screenWidth.floatValue, project.header.screenHeight.floatValue);

@@ -26,7 +26,7 @@ class ContainsFunction: DoubleParameterDoubleFunction {
     static var defaultValue = 0.0
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = false
-    static let position = 260
+    static let position = 60
 
     func tag() -> String {
         return type(of: self).tag

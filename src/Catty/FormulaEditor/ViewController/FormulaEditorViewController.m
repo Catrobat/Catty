@@ -267,9 +267,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    //self.pickerGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(chosenVariable:)];
-    //self.pickerGesture.numberOfTapsRequired = 1;
-    //[self.variablePicker addGestureRecognizer:self.pickerGesture];
+    [[NSNotificationCenter defaultCenter] postNotificationName:NotificationName.formulaEditorControllerDidAppear object:self];
     [self update];
 }
 

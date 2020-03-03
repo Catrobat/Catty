@@ -24,5 +24,7 @@
 
 @interface SettingsTableViewController : BOTableViewController
 
+- (void)changeFirebaseCrashReportSettings:(UISwitch *)sender;
+
 @end
 

@@ -24,6 +24,8 @@ import XCTest
 
 class PocketCodeMainScreenTests: XCTestCase {
 
+    public static let settingsButtonLabel = "Settings"
+
     var app: XCUIApplication!
 
     override func setUp() {
@@ -141,7 +143,7 @@ class PocketCodeMainScreenTests: XCTestCase {
     }
 
     func testUploadRedirectToLogin() {
-        app.navigationBars.buttons["Item"].tap()
+        app.navigationBars.buttons[type(of: self).settingsButtonLabel].tap()
 
         if app.tables.staticTexts[kLocalizedLogout].exists {
             app.tables.staticTexts[kLocalizedLogout].tap()
@@ -151,40 +153,5 @@ class PocketCodeMainScreenTests: XCTestCase {
 
         app.tables.staticTexts[kLocalizedUploadProject].tap()
         XCTAssert(app.navigationBars[kLocalizedLogin].exists)
-    }
-
-    func testSettings() {
-        app.navigationBars.buttons["Item"].tap()
-
-        XCTAssert(app.navigationBars[kLocalizedSettings].exists)
-        app.switches[kLocalizedArduinoBricks].tap()
-
-        app.staticTexts[kLocalizedAboutPocketCode].tap()
-        XCTAssert(app.navigationBars[kLocalizedAboutPocketCode].exists)
-        app.navigationBars.buttons[kLocalizedSettings].tap()
-
-        app.staticTexts[kLocalizedTermsOfUse].tap()
-        XCTAssert(app.navigationBars[kLocalizedTermsOfUse].exists)
-        app.navigationBars.buttons[kLocalizedSettings].tap()
-        XCTAssert(app.navigationBars[kLocalizedSettings].exists)
-    }
-
-    func testArduinoSettings() {
-        app.navigationBars.buttons["Item"].tap()
-
-        if app.switches[kLocalizedArduinoBricks].value as! String == "0" {
-            app.switches[kLocalizedArduinoBricks].tap()
-        }
-
-        app.navigationBars.buttons[kLocalizedPocketCode].tap()
-        app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
-        app.tables.staticTexts[kLocalizedMyFirstProject].tap()
-        app.tables.staticTexts["Mole 1"].tap()
-        app.tables.staticTexts[kLocalizedScripts].tap()
-
-        app.toolbars.buttons[kLocalizedUserListAdd].tap()
-        findBrickSection(kLocalizedCategoryArduino, in: app)
-
-        XCTAssertTrue(app.navigationBars[kLocalizedCategoryArduino].exists)
     }
 }

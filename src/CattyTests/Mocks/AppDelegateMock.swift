@@ -20,37 +20,15 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class IntroductionViewController: UIViewController {
+import Firebase
 
-    @IBOutlet private weak var headline: UILabel!
-    @IBOutlet private weak var paragraph: UILabel!
-    @IBOutlet private weak var image: UIImageView!
+class AppDelegateMock: AppDelegate {
 
-    @IBOutlet private var dismissButton: UIButton!
+    var crashlyticsMock: Crashlytics
 
-    @IBAction private func touchDismiss(_ sender: UIButton) {
-        self.presentingViewController?.dismiss(animated: true, completion: nil)
-        IntroductionPageViewController.hasBeenShown = true
-    }
+    override open var crashlytics: Crashlytics { crashlyticsMock }
 
-    var content: Content?
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        self.view.backgroundColor = .clear
-
-        self.headline.text = self.content?.title
-        self.paragraph.text = self.content?.description
-        self.image.image = self.content?.image
-        self.dismissButton.isHidden = self.content == nil
-    }
-}
-
-extension IntroductionViewController {
-    struct Content {
-        var title: String
-        var description: String
-        var image: UIImage
+    init(crashlytics: Crashlytics) {
+        self.crashlyticsMock = crashlytics
     }
 }

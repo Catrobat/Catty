@@ -25,7 +25,7 @@
     @objc static let tag = "OBJECT_LOOK_NUMBER"
     static let name = kUIFEObjectLookNumber
     static let defaultRawValue = 0.0
-    static let position = 40
+    static let position = 30
     static let requiredResource = ResourceType.noResources
 
     func tag() -> String {

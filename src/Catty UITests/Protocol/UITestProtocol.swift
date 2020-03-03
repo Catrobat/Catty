@@ -36,7 +36,7 @@ extension XCTestCase {
         let app = defaultApp()
         app.launch()
 
-        dismissWelcomeScreenIfShown()
+        dismissPrivacyPolicyScreenIfShown()
         return app
     }
 
@@ -153,11 +153,11 @@ extension XCTestCase {
         app.navigationBars[kLocalizedProjects].buttons[kLocalizedPocketCode].tap()
     }
 
-    private func dismissWelcomeScreenIfShown() {
+    private func dismissPrivacyPolicyScreenIfShown() {
         let app = XCUIApplication()
 
-        if app.buttons["Dismiss"].exists {
-            app.buttons["Dismiss"].tap()
+        if app.buttons[kLocalizedPrivacyPolicyAgree].exists {
+            app.buttons[kLocalizedPrivacyPolicyAgree].tap()
         }
     }
 }

@@ -26,7 +26,7 @@ class PowerFunction: DoubleParameterDoubleFunction {
     static var defaultValue = 0.0
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = true
-    static let position = 160
+    static let position = 130
 
     func tag() -> String {
         return type(of: self).tag

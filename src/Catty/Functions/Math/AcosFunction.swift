@@ -27,7 +27,7 @@ class AcosFunction: SingleParameterDoubleFunction {
     static var defaultValue = Double.pi / 2
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = true
-    static let position = 130
+    static let position = 190
 
     func tag() -> String {
         return type(of: self).tag

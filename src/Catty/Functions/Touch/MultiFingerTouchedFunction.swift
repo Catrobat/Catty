@@ -27,7 +27,7 @@ class MultiFingerTouchedFunction: SingleParameterDoubleFunction {
     static var defaultValue = 0.0
     static var requiredResource = ResourceType.touchHandler
     static var isIdempotent = false
-    static let position = 180
+    static let position = 70
 
     let getTouchManager: () -> TouchManagerProtocol?
 

@@ -25,7 +25,7 @@
     @objc static let tag = "Y_ACCELERATION"
     static let name = kUIFESensorAccelerationY
     static let defaultRawValue = 0.0
-    static let position = 30
+    static let position = 200
     static let requiredResource = ResourceType.deviceMotion
 
     let getMotionManager: () -> MotionManager?
