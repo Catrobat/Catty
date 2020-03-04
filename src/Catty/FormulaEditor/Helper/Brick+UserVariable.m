@@ -29,13 +29,9 @@
 #import "ShowTextBrick.h"
 #import "HideTextBrick.h"
 #import "AddItemToUserListBrick.h"
-
-// TODO: uncomment as soon as classes exist
-/*
 #import "ReplaceItemInUserListBrick.h"
 #import "DeleteItemOfUserListBrick.h"
 #import "InsertItemIntoUserListBrick.h"
-*/
 
 @implementation Brick (UserVariable)
 
@@ -43,7 +39,7 @@
 #define BRICK_MAX_PARAM_NUMBER 3
 - (BOOL)isVarOrListBeingUsed:(UserVariable*)varOrList
 {
-    if([self conformsToProtocol:@protocol(BrickVariableProtocol)]){
+    if ([self conformsToProtocol:@protocol(BrickVariableProtocol)]) {
         
         if ([self isKindOfClass:[SetVariableBrick class]]) {
             SetVariableBrick* varBrick = (SetVariableBrick*) self;
@@ -70,51 +66,24 @@
         }
     }
     
-    if([self conformsToProtocol:@protocol(BrickListProtocol)]){
-        
-        if ([self isKindOfClass:[AddItemToUserListBrick class]]) {
-            AddItemToUserListBrick* listBrick = (AddItemToUserListBrick*) self;
-            if ([varOrList isEqualToUserVariable:listBrick.userList]) {
-                return YES;
-            }
+    if ([self conformsToProtocol:@protocol(BrickListProtocol)]) {
+        Brick<BrickListProtocol>* listBrick = (Brick<BrickListProtocol>*) self;
+        if ([varOrList isEqualToUserVariable:listBrick.userList]) {
+            return YES;
         }
-        
-        
-        // TODO: Implement following bricks, uncomment afterwards
-        /*
-         else if ([self isKindOfClass:[ReplaceItemInUserListBrick class]]) {
-         ReplaceItemInUserListBrick* listBrick = (ReplaceItemInUserListBrick*) self;
-         if ([varOrList isEqualToUserVariable:listBrick.userList]) {
-         return YES;
-         }
-         }
-         else if ([self isKindOfClass:[DeleteItemOfUserListBrick class]]) {
-         DeleteItemOfUserListBrick* listBrick = (DeleteItemOfUserListBrick*) self;
-         if ([varOrList isEqualToUserVariable:listBrick.userList]) {
-         return YES;
-         }
-         }
-         else if ([self isKindOfClass:[InsertItemIntoUserListBrick class]]) {
-         InsertItemIntoUserListBrick* listBrick = (InsertItemIntoUserListBrick*) self;
-         if ([varOrList isEqualToUserVariable:listBrick.userList]) {
-         return YES;
-         }
-         }
-         */
     }
-
-    if(![self conformsToProtocol:@protocol(BrickFormulaProtocol)])
+    
+    if (![self conformsToProtocol:@protocol(BrickFormulaProtocol)])
         return NO;
     
-    for(int line = 0; line <= BRICK_MAX_LINE_NUMBER; line++) {
-        for(int param = 0; param <= BRICK_MAX_PARAM_NUMBER; param++) {
+    for (int line = 0; line <= BRICK_MAX_LINE_NUMBER; line++) {
+        for (int param = 0; param <= BRICK_MAX_PARAM_NUMBER; param++) {
             id<BrickFormulaProtocol> formulaBrick = (id<BrickFormulaProtocol>)self;
             Formula *formula = [formulaBrick formulaForLineNumber:line andParameterNumber:param];
-            if(formula && [formula.formulaTree isVarOrListBeingUsed:varOrList])
+            if (formula && [formula.formulaTree isVarOrListBeingUsed:varOrList])
                 return YES;
         }
     }
-    
     return NO;
 }
 
