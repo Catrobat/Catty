@@ -42,7 +42,15 @@ class BrickCellBackgroundData: iOSCombobox, BrickCellDataProtocol, iOSComboboxDe
         var currentOptionIndex = 0
 
         if !brickCell.isInserting {
-            guard let brick = brickCell.scriptOrBrick as? Brick, let script = brick.script, let backgroundObject = script.object.scene.objects().first else { return }
+            var backgroundObject: SpriteObject
+
+            if let script = brickCell.scriptOrBrick as? Script {
+                guard let backgroundObj = script.object.scene.objects().first else { return }
+                backgroundObject = backgroundObj
+            } else {
+                guard let brick = brickCell.scriptOrBrick as? Brick, let script = brick.script, let backgroundObj = script.object.scene.objects().first else { return }
+                backgroundObject = backgroundObj
+            }
 
             let currentLook = (brickCell.scriptOrBrick as? BrickLookProtocol)?.look(forLineNumber: line, andParameterNumber: parameter)
             self.object = backgroundObject

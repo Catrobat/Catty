@@ -666,6 +666,11 @@
               <commentedOut>false</commentedOut>
               <isUserScript>false</isUserScript>
             </script>
+            <script type="WhenBackgroundChangesScript">
+              <brickList/>
+              <commentedOut>false</commentedOut>
+              <look reference="../../../lookList/look"/>
+            </script>
           </scriptList>
           <soundList/>
           <userBricks/>
@@ -692,7 +697,7 @@
               <commentedOut>false</commentedOut>
               <isUserScript>false</isUserScript>
             </script>
-          </scriptList>
+            </scriptList>
           <soundList/>
           <userBricks/>
         </object>

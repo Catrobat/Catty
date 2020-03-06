@@ -34,6 +34,7 @@ final class CBScheduler: CBSchedulerProtocol {
     private var _contexts = [CBScriptContextProtocol]()
     private var _whenContexts = [String: [CBWhenScriptContext]]()
     private var _whenTouchDownContexts = [CBWhenTouchDownScriptContext]()
+    private var _whenBackgroundChangesContexts = [CBWhenBackgroundChangesScriptContext]()
     private var _scheduledContexts = OrderedDictionary<String, [CBScriptContextProtocol]>()
 
     private var _availableWaitQueues = [DispatchQueue]()
@@ -95,6 +96,9 @@ final class CBScheduler: CBSchedulerProtocol {
         }
         if let whenTouchDownContext = context as? CBWhenTouchDownScriptContext {
             _whenTouchDownContexts.append(whenTouchDownContext)
+        }
+        if let whenBackgroundChangesContext = context as? CBWhenBackgroundChangesScriptContext {
+            _whenBackgroundChangesContexts.append(whenBackgroundChangesContext)
         }
     }
 
@@ -329,6 +333,20 @@ final class CBScheduler: CBSchedulerProtocol {
     func startWhenTouchDownContexts() {
         for context in _whenTouchDownContexts {
             scheduleContext(context)
+        }
+        runNextInstructionsGroup()
+    }
+
+    func startWhenBackgroundChangesContexts() {
+        for context in _whenBackgroundChangesContexts {
+            let script = context.script as! WhenBackgroundChangesScript
+            let conditionQueue = DispatchQueue(label: "WhenBackgroundChangesCondition")
+            conditionQueue.sync {
+                if script.checkCondition(formulaInterpreter: context.formulaInterpreter) {
+                    scheduleContext(context)
+                    script.resetCondition()
+                }
+            }
         }
         runNextInstructionsGroup()
     }

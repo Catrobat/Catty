@@ -33,6 +33,7 @@
 #import "Brick.h"
 #import "CBXMLParserHelper.h"
 #import "CBXMLSerializerHelper.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation Script (CBXMLHandler)
 
@@ -55,8 +56,7 @@
     } else if ([scriptType isEqualToString:@"WhenScript"]) {
         WhenScript *whenScript = [WhenScript new];
         NSArray *actionElements = [xmlElement elementsForName:@"action"];
-        [XMLError exceptionIf:[actionElements count] notEquals:1
-                      message:@"Wrong number of action elements given!"];
+        [XMLError exceptionIf:[actionElements count] notEquals:1 message:@"Wrong number of action elements given!"];
         GDataXMLElement *actionElement = [actionElements firstObject];
         [XMLError exceptionIf:[kWhenScriptDefaultAction isEqualToString:[actionElement stringValue]] equals:NO
                       message:@"Invalid action %@ for WhenScript given", [actionElement stringValue]];
@@ -64,6 +64,35 @@
         script = whenScript;
     } else if ([scriptType isEqualToString:@"WhenTouchDownScript"]) {
         script = [WhenTouchDownScript new];
+    } else if ([scriptType isEqualToString:@"WhenBackgroundChangesScript"]) {
+        WhenBackgroundChangesScript *whenBackgroundChangesScript = [WhenBackgroundChangesScript new];
+        
+        GDataXMLElement *lookElement = [xmlElement childWithElementName:@"look"];
+        if (lookElement == nil) {
+            return whenBackgroundChangesScript;
+        }
+        
+        SpriteObject *backgroundObject = context.spriteObjectList.firstObject;
+        NSMutableArray *lookList = backgroundObject.lookList;
+        
+        Look *look = nil;
+        if ([CBXMLParserHelper isReferenceElement:lookElement]) {
+            GDataXMLNode *referenceAttribute = [lookElement attributeForName:@"reference"];
+            NSString *xPath = [referenceAttribute stringValue];
+            lookElement = [lookElement singleNodeForCatrobatXPath:xPath];
+            [XMLError exceptionIfNil:lookElement message:@"Invalid reference in WhenBackgroundChangesBrick. No or too many looks found!"];
+            GDataXMLNode *nameAttribute = [lookElement attributeForName:@"name"];
+            [XMLError exceptionIfNil:nameAttribute message:@"Look element does not contain a name attribute!"];
+            look = [CBXMLParserHelper findLookInArray:lookList withName:[nameAttribute stringValue]];
+        } else {
+            // OMG!! a look has been defined within the brick element...
+            look = [context parseFromElement:xmlElement withClass:[Look class]];
+            [XMLError exceptionIfNil:look message:@"Unable to parse look..."];
+            [lookList addObject:look];
+        }
+        
+        whenBackgroundChangesScript.look = look;
+        script = whenBackgroundChangesScript;
     } else if ([scriptType isEqualToString:@"BroadcastScript"]) {
         BroadcastScript *broadcastScript = [BroadcastScript new];
         NSArray *receivedMessageElements = [xmlElement elementsForName:@"receivedMessage"];
@@ -215,6 +244,27 @@
                                                                           stringValue:broadcastScript.receivedMessage
                                                                               context:context];
         [xmlElement addChild:receivedMessageXmlElement context:context];
+    } else if ([self isKindOfClass:[WhenBackgroundChangesScript class]]) {
+        WhenBackgroundChangesScript *whenBackgroundChangesScript = (WhenBackgroundChangesScript*)self;
+        SpriteObject *backgroundObject = context.spriteObjectList.firstObject;
+        
+        if (whenBackgroundChangesScript.look) {
+            if([CBXMLSerializerHelper indexOfElement:whenBackgroundChangesScript.look inArray:backgroundObject.lookList] == NSNotFound) {
+                whenBackgroundChangesScript.look = nil;
+            } else {
+                GDataXMLElement *referenceXMLElement = [GDataXMLElement elementWithName:@"look" context:context];
+                NSInteger depthOfResource = [CBXMLSerializerHelper getDepthOfResource:whenBackgroundChangesScript forSpriteObject:context.spriteObject];
+                NSString *refPath;
+                if (self.object == backgroundObject) {
+                    refPath = [CBXMLSerializerHelper relativeXPathToLook:whenBackgroundChangesScript.look inLookList:backgroundObject.lookList withDepth:depthOfResource];
+                } else {
+                    refPath = [CBXMLSerializerHelper relativeXPathToBackground:whenBackgroundChangesScript.look forBackgroundObject:backgroundObject withDepth:depthOfResource];
+                }
+                
+                [referenceXMLElement addAttribute:[GDataXMLElement attributeWithName:@"reference" escapedStringValue:refPath]];
+                [xmlElement addChild:referenceXMLElement context:context];
+            }
+        }
     } else if ([self isKindOfClass:[WhenScript class]]) {
         WhenScript *whenScript = (WhenScript*)self;
         [XMLError exceptionIfNil:whenScript.action message:@"WhenScript contains invalid action string"];

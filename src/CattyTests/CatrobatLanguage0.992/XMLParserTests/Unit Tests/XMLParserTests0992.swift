@@ -355,4 +355,14 @@ class XMLParserTests0992: XMLAbstractTest {
         XCTAssertTrue(disabledBrick.isDisabled)
         XCTAssertFalse(enabledBrick.isDisabled)
     }
+
+    func testWhenBackgroundChangesScript() {
+
+        let project = self.getProjectForXML(xmlFile: "ValidProjectAllBricks0992")
+        let object = project.allObjects().first!
+        let whenBackgroundChangesScript = object.scriptList.object(at: 1) as! Script
+
+        XCTAssertEqual(0, project.unsupportedElements.count)
+        XCTAssertTrue(whenBackgroundChangesScript.isKind(of: WhenBackgroundChangesScript.self), "Invalid script type")
+    }
 }

@@ -39,6 +39,7 @@
             ForeverBrick(),
             RepeatBrick(),
             RepeatUntilBrick(),
+            WhenBackgroundChangesScript(),
             WhenTouchDownScript(),
             NoteBrick(),
             WaitUntilBrick(),

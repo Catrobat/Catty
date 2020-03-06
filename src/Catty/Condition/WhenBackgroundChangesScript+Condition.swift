@@ -20,30 +20,23 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc extension NextLookBrick: CBInstructionProtocol {
+extension WhenBackgroundChangesScript: CBConditionProtocol {
 
-    @nonobjc func instruction() -> CBInstruction {
-        .action { _ in SKAction.run(self.actionBlock()) }
+    func checkCondition(formulaInterpreter: FormulaInterpreterProtocol) -> Bool {
+        guard let backgroundObject = self.object.scene.objects().first else { return false }
+        guard let currentLook = backgroundObject.spriteNode.currentLook else { return false }
+
+        if currentLook.isEqual(to: self.look) {
+            return true
+        }
+        return false
     }
 
-    @objc func actionBlock() -> () -> Void {
-        guard let object = self.script?.object,
-            let spriteNode = object.spriteNode
-            else { fatalError("This should never happen!") }
-        return {
-            guard let look = spriteNode.nextLook() else { return }
-            let cache = RuntimeImageCache.shared()
-            var image = cache?.cachedImage(forPath: self.path(for: look))
+    func resetCondition() {
+        // nothing to do
+    }
 
-            if image == nil {
-                print("LoadImageFromDisk")
-                cache?.loadImageFromDisk(withPath: self.path(for: look))
-                guard let imageFromDisk = UIImage(contentsOfFile: self.path(for: look)) else { return }
-                image = imageFromDisk
-            }
-
-            spriteNode.currentLook = look
-            spriteNode.executeFilter(image)
-        }
+    func conditionFormulas() -> [Formula] {
+        []
     }
 }

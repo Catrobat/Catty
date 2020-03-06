@@ -30,6 +30,7 @@
 @class Brick;
 @class SpriteObject;
 @class GDataXMLElement;
+@class WhenBackgroundChangesScript;
 
 @interface Script : NSObject <ScriptProtocol, CBMutableCopying>
 

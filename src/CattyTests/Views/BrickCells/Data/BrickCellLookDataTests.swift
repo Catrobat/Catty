@@ -24,16 +24,16 @@ import XCTest
 
 @testable import Pocket_Code
 
-class BrickCellBackgroundDataTests: XCTestCase {
+class BrickCellLookDataTests: XCTestCase {
 
     var backgroundObject: SpriteObject!
     var spriteObject: SpriteObject!
     var scene: Scene!
     var currentScript: Script!
-    var brick: SetBackgroundBrick!
-    var brickCell: SetBackgroundBrickCell!
+    var brick: SetLookBrick!
+    var brickCell: SetLookBrickCell!
+    var fakeScriptCell: SetLookBrickCell!
     var whenBackgroundChangesScript: WhenBackgroundChangesScript!
-    var scriptCell: WhenBackgroundChangesScriptCell!
 
     override func setUp() {
         scene = Scene(name: "scene")
@@ -41,39 +41,43 @@ class BrickCellBackgroundDataTests: XCTestCase {
         backgroundObject = SpriteObject()
         backgroundObject.scene = scene
         backgroundObject.lookList = [
-            Look(name: "backgroundLookA", andPath: "path") as Any,
-            Look(name: "backgroundLookB", andPath: "path") as Any
+            Look(name: "lookA", andPath: "path") as Any,
+            Look(name: "lookB", andPath: "path") as Any,
+            Look(name: "lookC", andPath: "path") as Any
         ]
 
         scene.add(object: backgroundObject)
 
         spriteObject = SpriteObject()
         spriteObject.scene = scene
-        spriteObject.lookList = [ Look(name: "objectLook", andPath: "path") as Any ]
+        spriteObject.lookList = [
+            Look(name: "objectLookA", andPath: "path") as Any,
+            Look(name: "objectLookB", andPath: "path") as Any
+        ]
 
         scene.add(object: spriteObject)
 
         currentScript = Script()
         currentScript.object = spriteObject
 
-        brick = SetBackgroundBrick()
+        brick = SetLookBrick()
         brick.script = currentScript
 
-        brickCell = SetBackgroundBrickCell()
+        brickCell = SetLookBrickCell()
         brickCell.scriptOrBrick = brick
 
         whenBackgroundChangesScript = WhenBackgroundChangesScript()
         whenBackgroundChangesScript.object = spriteObject
-        scriptCell = WhenBackgroundChangesScriptCell()
-        scriptCell.scriptOrBrick = whenBackgroundChangesScript
+        fakeScriptCell = SetLookBrickCell()
+        fakeScriptCell.scriptOrBrick = whenBackgroundChangesScript
 
-        XCTAssertNotEqual(spriteObject.lookList.count, backgroundObject.lookList.count)
+        XCTAssertNotEqual(backgroundObject.lookList.count, spriteObject.lookList.count)
     }
 
     func testValuesInsertionMode() {
         brickCell.isInserting = true
 
-        let data = BrickCellBackgroundData(frame: CGRect(), andBrickCell: brickCell, andLineNumber: 0, andParameterNumber: 0)
+        let data = BrickCellLookData(frame: CGRect(), andBrickCell: brickCell, andLineNumber: 0, andParameterNumber: 0)
 
         XCTAssertEqual(kLocalizedNewElement, data?.currentValue)
 
@@ -83,9 +87,9 @@ class BrickCellBackgroundDataTests: XCTestCase {
     }
 
     func testValuesInsertionModeForScript() {
-        scriptCell.isInserting = true
+        fakeScriptCell.isInserting = true
 
-        let data = BrickCellBackgroundData(frame: CGRect(), andBrickCell: scriptCell, andLineNumber: 0, andParameterNumber: 0)
+        let data = BrickCellLookData(frame: CGRect(), andBrickCell: fakeScriptCell, andLineNumber: 0, andParameterNumber: 0)
 
         XCTAssertEqual(kLocalizedNewElement, data?.currentValue)
 
@@ -94,10 +98,10 @@ class BrickCellBackgroundDataTests: XCTestCase {
         XCTAssertEqual(1, values?.count)
     }
 
-    func testValuesForBackgroundObject() {
+    func testValuesForLookObject() {
         currentScript.object = backgroundObject
 
-        let data = BrickCellBackgroundData(frame: CGRect(), andBrickCell: brickCell, andLineNumber: 0, andParameterNumber: 0)
+        let data = BrickCellLookData(frame: CGRect(), andBrickCell: brickCell, andLineNumber: 0, andParameterNumber: 0)
         XCTAssertEqual(backgroundObject, data?.object)
 
         let values = data?.values as? [String]
@@ -105,44 +109,45 @@ class BrickCellBackgroundDataTests: XCTestCase {
         XCTAssertEqual(kLocalizedNewElement, values?[0])
         XCTAssertEqual((backgroundObject.lookList[0] as? Look)?.name, values?[1])
         XCTAssertEqual((backgroundObject.lookList[1] as? Look)?.name, values?[2])
+        XCTAssertEqual((backgroundObject.lookList[2] as? Look)?.name, values?[3])
     }
 
-    func testValuesForBackgroundObjectForScript() {
-        whenBackgroundChangesScript.object = backgroundObject
+    func testValuesForLookObjectForScript() {
+        whenBackgroundChangesScript.object = spriteObject
 
-        let data = BrickCellBackgroundData(frame: CGRect(), andBrickCell: scriptCell, andLineNumber: 0, andParameterNumber: 0)
-        XCTAssertEqual(backgroundObject, data?.object)
+        let data = BrickCellLookData(frame: CGRect(), andBrickCell: fakeScriptCell, andLineNumber: 0, andParameterNumber: 0)
+        XCTAssertEqual(spriteObject, data?.object)
 
         let values = data?.values as? [String]
-        XCTAssertEqual(backgroundObject.lookList.count + 1, values?.count)
+        XCTAssertEqual(spriteObject.lookList.count + 1, values?.count)
         XCTAssertEqual(kLocalizedNewElement, values?[0])
-        XCTAssertEqual((backgroundObject.lookList[0] as? Look)?.name, values?[1])
-        XCTAssertEqual((backgroundObject.lookList[1] as? Look)?.name, values?[2])
+        XCTAssertEqual((spriteObject.lookList[0] as? Look)?.name, values?[1])
+        XCTAssertEqual((spriteObject.lookList[1] as? Look)?.name, values?[2])
     }
 
     func testValuesForNormalObject() {
         currentScript.object = spriteObject
 
-        let data = BrickCellBackgroundData(frame: CGRect(), andBrickCell: brickCell, andLineNumber: 0, andParameterNumber: 0)
-        XCTAssertEqual(backgroundObject, data?.object)
+        let data = BrickCellLookData(frame: CGRect(), andBrickCell: brickCell, andLineNumber: 0, andParameterNumber: 0)
+        XCTAssertEqual(spriteObject, data?.object)
 
         let values = data?.values as? [String]
-        XCTAssertEqual(backgroundObject.lookList.count + 1, values?.count)
+        XCTAssertEqual(spriteObject.lookList.count + 1, values?.count)
         XCTAssertEqual(kLocalizedNewElement, values?[0])
-        XCTAssertEqual((backgroundObject.lookList[0] as? Look)?.name, values?[1])
-        XCTAssertEqual((backgroundObject.lookList[1] as? Look)?.name, values?[2])
+        XCTAssertEqual((spriteObject.lookList[0] as? Look)?.name, values?[1])
+        XCTAssertEqual((spriteObject.lookList[1] as? Look)?.name, values?[2])
     }
 
     func testValuesForNormalObjectForScript() {
         whenBackgroundChangesScript.object = spriteObject
 
-        let data = BrickCellBackgroundData(frame: CGRect(), andBrickCell: scriptCell, andLineNumber: 0, andParameterNumber: 0)
-        XCTAssertEqual(backgroundObject, data?.object)
+        let data = BrickCellLookData(frame: CGRect(), andBrickCell: fakeScriptCell, andLineNumber: 0, andParameterNumber: 0)
+        XCTAssertEqual(spriteObject, data?.object)
 
         let values = data?.values as? [String]
-        XCTAssertEqual(backgroundObject.lookList.count + 1, values?.count)
+        XCTAssertEqual(spriteObject.lookList.count + 1, values?.count)
         XCTAssertEqual(kLocalizedNewElement, values?[0])
-        XCTAssertEqual((backgroundObject.lookList[0] as? Look)?.name, values?[1])
-        XCTAssertEqual((backgroundObject.lookList[1] as? Look)?.name, values?[2])
+        XCTAssertEqual((spriteObject.lookList[0] as? Look)?.name, values?[1])
+        XCTAssertEqual((spriteObject.lookList[1] as? Look)?.name, values?[2])
     }
 }
