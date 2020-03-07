@@ -482,7 +482,6 @@
     picker.mediaTypes = @[(NSString*)kUTTypeImage];
     picker.allowsEditing = NO;
     picker.delegate = self;
-    picker.navigationBar.tintColor = UIColor.navTint;
     [self presentViewController:picker animated:YES completion:nil];
 }
 
