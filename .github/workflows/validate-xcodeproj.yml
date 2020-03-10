@@ -1,0 +1,26 @@
+name: validate-xcodeproj
+
+on: 
+  pull_request:
+    types: [opened, reopened]
+    
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout Catty
+        uses: actions/checkout@v2
+        with:
+          path: Catty
+      - name: Checkout xcprojectlint
+        uses: actions/checkout@v2
+        with:
+          repository: americanexpress/xcprojectlint
+          path: xcprojectlint
+      - name: Build xcodeprojlint
+        run: |
+          cd ${{ github.workspace }}/xcprojectlint
+          swift package update
+          make build
+      - name: Verify xcodeproj
+        run: xcprojectlint/.build/x86_64-apple-macosx/debug/xcprojectlint --report error --validations all --project Catty/src/Catty.xcodeproj
