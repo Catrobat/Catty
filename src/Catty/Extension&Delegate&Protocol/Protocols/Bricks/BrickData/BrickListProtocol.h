@@ -27,6 +27,8 @@
 
 @protocol BrickListProtocol <BrickProtocol>
 
+@property (nonatomic, strong) UserVariable *userList;
+
 - (UserVariable*)listForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber;
 - (void)setList:(UserVariable*)list forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber;
 
