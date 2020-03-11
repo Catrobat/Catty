@@ -22,6 +22,6 @@
 
 #import <Bohr/Bohr.h>
 
-@interface AboutPocketCodeOptionTableViewController : BOTableViewController
+@interface AboutPoketCodeOptionTableViewController : BOTableViewController
 
 @end

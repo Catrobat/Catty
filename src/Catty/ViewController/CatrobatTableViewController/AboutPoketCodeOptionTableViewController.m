@@ -20,13 +20,12 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "AboutPocketCodeOptionTableViewController.h"
+#import "AboutPoketCodeOptionTableViewController.h"
 #import "LanguageTranslationDefines.h"
 #import "Util.h"
 #import "Pocket_Code-Swift.h"
-#import <Firebase/Firebase.h>
 
-@implementation AboutPocketCodeOptionTableViewController
+@implementation AboutPoketCodeOptionTableViewController
 
 - (void)setup {
     self.title = kLocalizedAboutPocketCode;
