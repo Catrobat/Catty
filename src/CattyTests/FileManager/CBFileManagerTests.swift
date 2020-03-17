@@ -50,21 +50,21 @@ final class CBFileManagerTests: XCTestCase {
         XCTAssertTrue(Project.projectExists(withProjectID: projectId))
         XCTAssertTrue(Project.projectExists(withProjectName: projectName, projectID: projectId))
     }
-    
+
     func testUnzipAndStoreWithSameName() {
-        
+
         Project.removeProjectFromDisk(withProjectName: projectName, projectID: projectId)
         XCTAssertFalse(Project.projectExists(withProjectID: projectId))
-        
+
         let projectData = NSData(contentsOf: Bundle.main.url(forResource: "My first project", withExtension: "catrobat")!)! as Data
-        
+
         let result = fileManager.unzipAndStore(projectData, withProjectID: projectId, withName: projectName)
 
         let newProjectName = "testProject (1)"
         XCTAssertTrue(result)
         XCTAssertTrue(Project.projectExists(withProjectID: projectId))
         XCTAssertTrue(Project.projectExists(withProjectName: newProjectName, projectID: projectId))
-        
+
         let result_2 = fileManager.unzipAndStore(projectData, withProjectID: projectId, withName: projectName)
 
         let newProjectName_2 = "testProject (2)"
@@ -72,9 +72,9 @@ final class CBFileManagerTests: XCTestCase {
         XCTAssertTrue(Project.projectExists(withProjectID: projectId))
         XCTAssertTrue(Project.projectExists(withProjectName: newProjectName_2, projectID: projectId))
     }
-    
+
     func testUnzipAndStoreWithSameNameDifferentId() {
-        
+
         Project.removeProjectFromDisk(withProjectName: projectName, projectID: projectId)
         Project.removeProjectFromDisk(withProjectName: projectName + " (1)", projectID: projectId)
         Project.removeProjectFromDisk(withProjectName: projectName + " (2)", projectID: projectId)
@@ -83,14 +83,14 @@ final class CBFileManagerTests: XCTestCase {
         Project.removeProjectFromDisk(withProjectName: projectName + " (2)", projectID: "4321")
         XCTAssertFalse(Project.projectExists(withProjectID: projectId))
         XCTAssertFalse(Project.projectExists(withProjectID: "4321"))
-        
+
         let projectData = NSData(contentsOf: Bundle.main.url(forResource: "My first project", withExtension: "catrobat")!)! as Data
-        
+
         let result = fileManager.unzipAndStore(projectData, withProjectID: projectId, withName: projectName)
         XCTAssertTrue(result)
         XCTAssertTrue(Project.projectExists(withProjectID: projectId))
         XCTAssertTrue(Project.projectExists(withProjectName: projectName, projectID: projectId))
-        
+
         let projectId_2 = "4321"
         let result_2 = fileManager.unzipAndStore(projectData, withProjectID: projectId_2, withName: projectName)
 
@@ -98,7 +98,7 @@ final class CBFileManagerTests: XCTestCase {
         XCTAssertTrue(result_2)
         XCTAssertTrue(Project.projectExists(withProjectID: projectId_2))
         XCTAssertTrue(Project.projectExists(withProjectName: newProjectName, projectID: projectId_2))
-        
+
         let result_3 = fileManager.unzipAndStore(projectData, withProjectID: projectId_2, withName: projectName)
 
         let newProjectName_2 = "testProject (2)"
