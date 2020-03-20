@@ -144,7 +144,6 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
 {
     self.navigationItem.title = kLocalizedPocketCode;
     self.navigationController.navigationBar.titleTextAttributes = @{ NSForegroundColorAttributeName : UIColor.navTint };
-    self.navigationController.navigationBar.tintColor = UIColor.navTint;
 }
 
 - (IBAction)openSettings:(id)sender

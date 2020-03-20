@@ -37,7 +37,6 @@ import UIKit
         let selectedTitleColor = UIColor.navTint
 
         self.segmentedPager.backgroundColor = UIColor.navBar
-        self.navigationController?.navigationBar.tintColor = UIColor.navTint
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: navigationTitleColor]
         // Segmented Control customization
         self.segmentedPager.segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocation.down
