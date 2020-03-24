@@ -194,6 +194,12 @@
     return [self screenSize:false].width;
 }
 
++ (CGFloat)statusBarHeight
+{
+    CGSize statusBarSize = [[UIApplication sharedApplication] statusBarFrame].size;
+    return MIN(statusBarSize.width, statusBarSize.height);
+}
+
 + (CATransition*)getPushCATransition
 {
     CATransition *transition = [CATransition animation];

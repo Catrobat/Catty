@@ -51,7 +51,8 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
 @property (nonatomic, strong) Project *lastUsedProject;
 @property (nonatomic, strong) Project *defaultProject;
 @property (nonatomic, assign) BOOL freshLogin;
-
+@property (nonatomic, assign) CGFloat dynamicStatusBarHeight;
+@property (nonatomic, assign) CGFloat fixedStatusBarHeight;
 @end
 
 @implementation CatrobatTableViewController
@@ -127,6 +128,9 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
 #pragma mark init
 - (void)initTableView
 {
+    self.fixedStatusBarHeight = [Util statusBarHeight];
+    self.dynamicStatusBarHeight = self.fixedStatusBarHeight;
+    
     self.cells = [[NSArray alloc] initWithObjects:
                   kLocalizedContinueProject,
                   kLocalizedNewProject,
@@ -205,6 +209,10 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
     }
     if (indexPath.row == 0) {
         [self configureSubtitleLabelForCell:cell];
+    }
+    
+    if (indexPath.row == [self.tableView numberOfRowsInSection:indexPath.section] - 1) {
+        cell.separatorInset = UIEdgeInsetsMake(0.f, MAX([Util screenHeight],[Util screenWidth]), 0.f, 0.f);
     }
     
     cell.layoutMargins = UIEdgeInsetsZero;
@@ -300,11 +308,33 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
     CGFloat height;
     CGFloat navBarHeight = self.navigationController.navigationBar.frame.size.height;
     if (indexPath.row == 0) {
-        height= [TableUtil heightForContinueCell:navBarHeight];
+        height= [TableUtil heightForContinueCell:navBarHeight withStatusBarHeight:self.dynamicStatusBarHeight];
     } else {
-        height = [TableUtil heightForCatrobatTableViewImageCell:navBarHeight];
+        height = [TableUtil heightForCatrobatTableViewImageCell:navBarHeight withStatusBarHeight:self.dynamicStatusBarHeight];
     }
     return height; // for scrolling reasons
+}
+
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
+{
+    CGFloat height = size.height;
+    CGFloat width = size.width;
+    
+    if(self.fixedStatusBarHeight == 0) {
+        [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext> context) {}
+                                     completion:^(id<UIViewControllerTransitionCoordinatorContext> context) {
+            self.fixedStatusBarHeight = [Util statusBarHeight];
+            self.dynamicStatusBarHeight = self.fixedStatusBarHeight;
+            [self.tableView reloadData];
+        }];
+    }
+    
+    if (height >= width) {
+        self.dynamicStatusBarHeight = self.fixedStatusBarHeight;
+    } else {
+        self.dynamicStatusBarHeight = 0;
+    }
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
 }
 
 #pragma mark - segue handling

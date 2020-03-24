@@ -108,6 +108,8 @@ if (__functor) __functor(__VA_ARGS__);  \
 /* Returns the screen width in points */
 + (CGFloat)screenWidth;
 
++ (CGFloat)statusBarHeight;
+
 + (CATransition*)getPushCATransition;
 
 + (ProjectLoadingInfo*)lastUsedProjectLoadingInfo;
