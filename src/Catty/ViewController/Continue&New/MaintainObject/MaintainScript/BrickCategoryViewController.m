@@ -146,9 +146,17 @@ didSelectItemAtIndexPath:(NSIndexPath*)indexPath
                         layout:(UICollectionViewLayout*)collectionViewLayout
         insetForSectionAtIndex:(NSInteger)section
 {
-    return UIEdgeInsetsMake(CGRectGetHeight(self.navigationController.navigationBar.bounds) +
-                            CGRectGetHeight([UIApplication sharedApplication].statusBarFrame) +
-                            kScriptCollectionViewInset, 0.0f, kScriptCollectionViewInset, 0.0f);
+    if (@available(iOS 13, *))
+    {
+        return UIEdgeInsetsMake(CGRectGetHeight(self.navigationController.navigationBar.bounds) +
+        kScriptCollectionViewInset, 0.0f, kScriptCollectionViewInset, 0.0f);
+    } else
+    {
+        return UIEdgeInsetsMake(CGRectGetHeight(self.navigationController.navigationBar.bounds) +
+        CGRectGetHeight([UIApplication sharedApplication].statusBarFrame) +
+        kScriptCollectionViewInset, 0.0f, kScriptCollectionViewInset, 0.0f);
+    }
+    
 }
 
 - (CGFloat)collectionView:(UICollectionView*)collectionView
