@@ -154,6 +154,10 @@ extension UIColor {
         return self.dark
     }
 
+    static var pageIndicator: UIColor {
+        return UIColor(hex: 0x3ab2c1)
+    }
+
     static var buttonHighlightedTint: UIColor {
         return self.background
     }

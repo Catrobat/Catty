@@ -47,7 +47,7 @@
     [super viewDidLoad];
     self.dataSource = self;
     self.delegate = self;
-    self.view.backgroundColor = UIColor.background;
+    self.view.backgroundColor = UIColor.pageIndicator;
     self.navigationController.toolbarHidden = YES;
     [self setupNavBar];
 }
@@ -114,14 +114,28 @@
     return self.categories.count;
 }
 
+- (NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController
+{
+    BrickCategoryViewController *lastSelectedView = (BrickCategoryViewController*)self.viewControllers.firstObject;
+    NSInteger index = 0;
+    for (BrickCategory *category in self.categories)
+    {
+        if (category.type == lastSelectedView.category.type && index < [self.categories count])
+        {
+            return index;
+        }
+        index++;
+    }
+    return 0;
+}
+
 - (void)overwritePageControl
 {
     self.pageControl = [[self.view.subviews
                                    filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"class = %@", [UIPageControl class]]] lastObject];
-    self.pageControl.currentPageIndicatorTintColor = UIColor.background;
-    self.pageControl.pageIndicatorTintColor = UIColor.toolTint;
-    self.pageControl.backgroundColor = UIColor.toolBar;
-
+    self.pageControl.currentPageIndicatorTintColor = UIColor.whiteColor;
+    self.pageControl.pageIndicatorTintColor = UIColor.navTint;
+    self.pageControl.backgroundColor = UIColor.pageIndicator;
 }
 
 #pragma mark - Setup
@@ -131,6 +145,8 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
                                                                                            target:self
                                                                                            action:@selector(dismiss:)];
+    
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : UIColor.navTint};
     
     self.navigationItem.leftBarButtonItem.tintColor = UIColor.navTint;
     

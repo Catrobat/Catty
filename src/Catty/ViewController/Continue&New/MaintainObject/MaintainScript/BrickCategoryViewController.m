@@ -67,7 +67,7 @@
     }
     
     self.collectionView.backgroundColor = UIColor.clearColor;
-    self.view.backgroundColor = UIColor.clearColor;
+    self.view.backgroundColor = UIColor.whiteColor;
 }
 
 -(void)reloadData {
