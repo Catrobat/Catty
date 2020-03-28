@@ -40,6 +40,8 @@
 #define statusCodeOK @"200"
 #define statusCodeRegistrationOK @"201"
 #define statusAuthenticationFailed @"601"
+#define statusUserDoesNotExist @"803"
+
 
 //random boundary string
 #define httpBoundary @"---------------------------98598263596598246508247098291---------------------------"
@@ -363,7 +365,8 @@
         [self hideLoadingView];
         [self.navigationController popViewControllerAnimated:NO];
         
-    } else if ([statusCode isEqualToString:statusAuthenticationFailed]) {
+    } else if ([statusCode isEqualToString:statusAuthenticationFailed] ||
+               [statusCode isEqualToString:statusUserDoesNotExist]) {
         self.loginButton.enabled = YES;
         [self hideLoadingView];
         NSDebug(@"Error: %@", kLocalizedAuthenticationFailed);
