@@ -82,4 +82,14 @@ final class PointToBrickTests: AbstractBrickTest {
         XCTAssertEqual(45.0, firstSpriteNode.catrobatRotation, accuracy: 0.1, "PointToBrick not correct")
     }
 
+    func testMutableCopy() {
+        secondSpriteNode.spriteObject.name = "second object"
+        let copiedBrick: PointToBrick = brick.mutableCopy(with: CBMutableCopyContext(), andErrorReporting: true) as! PointToBrick
+
+        XCTAssertTrue(brick.isEqual(to: copiedBrick))
+        XCTAssertFalse(brick === copiedBrick)
+        XCTAssertTrue(brick.pointedObject.isEqual(to: copiedBrick.pointedObject))
+        XCTAssertTrue(brick.pointedObject === copiedBrick.pointedObject)
+    }
+
 }

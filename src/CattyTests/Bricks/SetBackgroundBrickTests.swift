@@ -26,12 +26,25 @@ import XCTest
 
 final class SetBackgroundBrickTests: AbstractBrickTest {
 
-    func testSetBackgroundBrick() {
-        let object = SpriteObject()
-        let project = Project.defaultProject(withName: "a", projectID: "1")
-        let spriteNode = CBSpriteNode(spriteObject: object)
+    var object: SpriteObject!
+    var project: Project!
+    var spriteNode: CBSpriteNode!
+    var script: Script!
+
+    override func setUp() {
+
+        object = SpriteObject()
+        project = Project.defaultProject(withName: "a", projectID: "1")
+        spriteNode = CBSpriteNode(spriteObject: object)
         object.spriteNode = spriteNode
         object.project = project
+
+        script = WhenScript()
+        script.object = object
+
+    }
+
+    func testSetBackgroundBrick() {
 
         let backgroundObject = project.objectList.firstObject as! SpriteObject
         XCTAssertNotNil(backgroundObject)
@@ -54,8 +67,6 @@ final class SetBackgroundBrickTests: AbstractBrickTest {
             XCTFail("Error when writing image data")
         }
 
-        let script = WhenScript()
-        script.object = object
         let brick = SetBackgroundBrick()
         brick.script = script
         brick.look = look1
@@ -69,4 +80,19 @@ final class SetBackgroundBrickTests: AbstractBrickTest {
         XCTAssertEqual(backgroundObject.spriteNode.currentLook, look1, "SetBackgroundBrick not correct")
         Project.removeProjectFromDisk(withProjectName: project.header.programName, projectID: project.header.programID)
     }
+
+    func testMutableCopy() {
+
+        let brick = SetBackgroundBrick()
+        let look = Look(name: "backgroundToCopy", andPath: "background")
+        brick.look = look
+
+        let copiedBrick: SetBackgroundBrick = brick.mutableCopy(with: CBMutableCopyContext()) as! SetBackgroundBrick
+
+        XCTAssertTrue(brick.isEqual(to: copiedBrick))
+        XCTAssertTrue(brick.look.isEqual(to: copiedBrick.look))
+        XCTAssertTrue(copiedBrick.look.isEqual(to: look))
+        XCTAssertTrue(copiedBrick.look === brick.look)
+    }
+
 }
