@@ -66,6 +66,6 @@ final class HeaderTests: XCTestCase {
 
 class UtilMock: Util {
     override class func platformVersion() -> OperatingSystemVersion {
-        return OperatingSystemVersion(majorVersion: 11, minorVersion: 4, patchVersion: 1)
+        OperatingSystemVersion(majorVersion: 11, minorVersion: 4, patchVersion: 1)
     }
 }

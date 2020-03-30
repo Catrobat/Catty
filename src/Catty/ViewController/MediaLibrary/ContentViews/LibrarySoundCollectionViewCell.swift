@@ -83,7 +83,7 @@ extension LibrarySoundCollectionViewCell {
 
     var title: String? {
         get {
-            return self.titleLabel.text
+            self.titleLabel.text
         }
         set {
             self.titleLabel.text = newValue

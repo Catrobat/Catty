@@ -43,6 +43,6 @@ extension ObjectDoubleSensor {
     }
 
     static func standardizedRawValue(for spriteObject: SpriteObject) -> Double {
-        return convertToStandardized(rawValue: defaultRawValue, for: spriteObject)
+        convertToStandardized(rawValue: defaultRawValue, for: spriteObject)
     }
 }

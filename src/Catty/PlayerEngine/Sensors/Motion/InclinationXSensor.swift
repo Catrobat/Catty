@@ -35,7 +35,7 @@
     }
 
     func tag() -> String {
-        return type(of: self).tag
+        type(of: self).tag
     }
 
     func rawValue() -> Double {
@@ -51,10 +51,10 @@
     // going to right, it is negative on Android and positive on iOS
     // going to left, it is positive on Android and negative on iOS
     func convertToStandardized(rawValue: Double) -> Double {
-        return Util.radians(toDegree: -rawValue)
+        Util.radians(toDegree: -rawValue)
     }
 
     func formulaEditorSections(for spriteObject: SpriteObject) -> [FormulaEditorSection] {
-        return [.device(position: type(of: self).position)]
+        [.device(position: type(of: self).position)]
     }
 }

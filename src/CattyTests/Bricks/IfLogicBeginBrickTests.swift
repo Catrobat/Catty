@@ -20,13 +20,23 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "AppDelegate.h"
+import XCTest
 
-int main(int argc, char *argv[]) 
-{
-    @autoreleasepool
-    {
-        int retVal = UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
-        return retVal;
+@testable import Pocket_Code
+
+final class IfLogicBeginBrickTests: XCTestCase {
+
+    func testMutableCopy() {
+        let brick = IfLogicBeginBrick()
+        brick.ifCondition = Formula(float: 1)
+
+        let copiedBrick: IfLogicBeginBrick = brick.mutableCopy(with: CBMutableCopyContext(), andErrorReporting: true) as! IfLogicBeginBrick
+
+        XCTAssertTrue(brick.isEqual(to: copiedBrick))
+        XCTAssertFalse(brick === copiedBrick)
+        XCTAssertTrue(brick.ifCondition.isEqual(to: copiedBrick.ifCondition))
+        XCTAssertFalse(copiedBrick.ifCondition.isEqual(to: Formula(float: 0)))
+        XCTAssertFalse(brick.ifCondition === copiedBrick.ifCondition)
     }
+
 }

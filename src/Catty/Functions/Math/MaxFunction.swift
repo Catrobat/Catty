@@ -29,15 +29,15 @@ class MaxFunction: DoubleParameterDoubleFunction {
     static let position = 220
 
     func tag() -> String {
-        return type(of: self).tag
+        type(of: self).tag
     }
 
     func firstParameter() -> FunctionParameter {
-        return .number(defaultValue: 5)
+        .number(defaultValue: 5)
     }
 
     func secondParameter() -> FunctionParameter {
-        return .number(defaultValue: 4)
+        .number(defaultValue: 4)
     }
 
     func value(firstParameter: AnyObject?, secondParameter: AnyObject?) -> Double {
@@ -49,6 +49,6 @@ class MaxFunction: DoubleParameterDoubleFunction {
     }
 
     func formulaEditorSections() -> [FormulaEditorSection] {
-        return [.math(position: type(of: self).position)]
+        [.math(position: type(of: self).position)]
     }
 }

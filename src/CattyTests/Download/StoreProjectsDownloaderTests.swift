@@ -576,22 +576,22 @@ class StoreProjectsDownloaderTests: XCTestCase {
     }
 
     private func getStoreProjectMock() -> StoreProject {
-        return StoreProject(projectId: "821",
-                            projectName: "Whack A Mole",
-                            projectNameShort: "",
-                            author: "VesnaK",
-                            description: "",
-                            version: "",
-                            views: 0,
-                            downloads: 0,
-                            uploaded: 0,
-                            uploadedString: "",
-                            screenshotBig: "",
-                            screenshotSmall: "",
-                            projectUrl: "",
-                            downloadUrl: "",
-                            fileSize: 1.0,
-                            featuredImage: "")
+        StoreProject(projectId: "821",
+                     projectName: "Whack A Mole",
+                     projectNameShort: "",
+                     author: "VesnaK",
+                     description: "",
+                     version: "",
+                     views: 0,
+                     downloads: 0,
+                     uploaded: 0,
+                     uploadedString: "",
+                     screenshotBig: "",
+                     screenshotSmall: "",
+                     projectUrl: "",
+                     downloadUrl: "",
+                     fileSize: 1.0,
+                     featuredImage: "")
     }
 }
 

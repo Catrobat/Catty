@@ -173,6 +173,7 @@
 #import "FormulaEditorViewController.h"
 #import "MyProjectsViewController.h"
 #import "ProjectTableViewController.h"
+#import "CatrobatTableViewController.h"
 
 //------------------------------------------------------------------------------------------------------------
 
@@ -190,7 +191,6 @@
 //-----------------------------------------------------------------------------------------------------------
 #import "CatrobatInformation.h"
 #import "CatrobatProject.h"
-#import "AppDelegate.h"
 #import "TableUtil.h"
 #import "CellTagDefines.h"
 #import "SegueDefines.h"

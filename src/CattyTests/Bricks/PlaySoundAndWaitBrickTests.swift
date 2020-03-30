@@ -20,11 +20,23 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
-#import "CBFileManager.h"
+import XCTest
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@testable import Pocket_Code
 
-@property (nonatomic, strong) UIWindow *window;
+final class PlaySoundAndWaitBrickTests: XCTestCase {
 
-@end
+    func testMutableCopy() {
+        let brick = PlaySoundAndWaitBrick()
+        let sound = Sound(name: "soundToCopy", fileName: "sound")
+        brick.sound = sound
+
+        let copiedBrick: PlaySoundAndWaitBrick = brick.mutableCopy(with: CBMutableCopyContext()) as! PlaySoundAndWaitBrick
+
+        XCTAssertTrue(brick.isEqual(to: copiedBrick))
+        XCTAssertFalse(brick === copiedBrick)
+        XCTAssertTrue(brick.sound.isEqual(to: copiedBrick.sound))
+        XCTAssertTrue(brick.sound === copiedBrick.sound)
+    }
+
+}

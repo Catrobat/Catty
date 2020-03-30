@@ -63,7 +63,7 @@ import Foundation
     }
 
     @objc static func defaultTag() -> String {
-        return defaultSensor.tag
+        defaultSensor.tag
     }
 
     @objc static func pinNumber(tag: String) -> Int {
@@ -91,11 +91,11 @@ import Foundation
     }
 
     static func sensors() -> [PhiroSensor.Type] {
-        return [PhiroSideLeftSensor.self,
-                PhiroSideRightSensor.self,
-                PhiroFrontLeftSensor.self,
-                PhiroFrontRightSensor.self,
-                PhiroBottomLeftSensor.self,
-                PhiroBottomLeftSensor.self]
+        [PhiroSideLeftSensor.self,
+         PhiroSideRightSensor.self,
+         PhiroFrontLeftSensor.self,
+         PhiroFrontRightSensor.self,
+         PhiroBottomLeftSensor.self,
+         PhiroBottomLeftSensor.self]
     }
 }

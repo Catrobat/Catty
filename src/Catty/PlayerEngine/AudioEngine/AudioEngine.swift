@@ -109,7 +109,7 @@ import Foundation
     }
 
     func getSpeechSynth() -> SpeechSynthesizer {
-        return speechSynth
+        speechSynth
     }
 
     private func getSubtree(key: String) -> AudioSubtree {

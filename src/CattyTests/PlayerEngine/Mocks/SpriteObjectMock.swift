@@ -31,6 +31,6 @@ final class SpriteObjectMock: SpriteObject {
     }
 
     override func isBackground() -> Bool {
-        return self.background
+        self.background
     }
 }

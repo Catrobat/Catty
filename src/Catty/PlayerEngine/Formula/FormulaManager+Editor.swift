@@ -23,23 +23,23 @@
 extension FormulaManager {
 
     @nonobjc func formulaEditorItems(spriteObject: SpriteObject) -> [FormulaEditorItem] {
-        return formulaEditorItems(for: spriteObject, mathSection: true, logicSection: true, objectSection: true, deviceSection: true)
+        formulaEditorItems(for: spriteObject, mathSection: true, logicSection: true, objectSection: true, deviceSection: true)
     }
 
     @nonobjc func formulaEditorItemsForMathSection(spriteObject: SpriteObject) -> [FormulaEditorItem] {
-        return formulaEditorItems(for: spriteObject, mathSection: true, logicSection: false, objectSection: false, deviceSection: false)
+        formulaEditorItems(for: spriteObject, mathSection: true, logicSection: false, objectSection: false, deviceSection: false)
     }
 
     @nonobjc func formulaEditorItemsForLogicSection(spriteObject: SpriteObject) -> [FormulaEditorItem] {
-        return formulaEditorItems(for: spriteObject, mathSection: false, logicSection: true, objectSection: false, deviceSection: false)
+        formulaEditorItems(for: spriteObject, mathSection: false, logicSection: true, objectSection: false, deviceSection: false)
     }
 
     @nonobjc func formulaEditorItemsForObjectSection(spriteObject: SpriteObject) -> [FormulaEditorItem] {
-        return formulaEditorItems(for: spriteObject, mathSection: false, logicSection: false, objectSection: true, deviceSection: false)
+        formulaEditorItems(for: spriteObject, mathSection: false, logicSection: false, objectSection: true, deviceSection: false)
     }
 
     @nonobjc func formulaEditorItemsForDeviceSection(spriteObject: SpriteObject) -> [FormulaEditorItem] {
-        return formulaEditorItems(for: spriteObject, mathSection: false, logicSection: false, objectSection: false, deviceSection: true)
+        formulaEditorItems(for: spriteObject, mathSection: false, logicSection: false, objectSection: false, deviceSection: true)
     }
 
     private func formulaEditorItems(for spriteObject: SpriteObject, mathSection: Bool, logicSection: Bool, objectSection: Bool, deviceSection: Bool) -> [FormulaEditorItem] {

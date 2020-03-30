@@ -31,7 +31,7 @@
 #import "AudioManager.h"
 #import "Util.h"
 #import "CBFileManager.h"
-#import "AppDelegate.h"
+#import "CBFileManager.h"
 #import "NSData+Hashes.h"
 #import "RuntimeImageCache.h"
 #import "SharkfoodMuteSwitchDetector.h"

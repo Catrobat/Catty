@@ -37,7 +37,7 @@ open class ServiceProfile {
     }
 
     open var characteristic: [CBUUID: CharacteristicProfile] {
-        return self.characteristicProfiles
+        self.characteristicProfiles
     }
 
     public init(uuid: String, name: String, tag: String = "Miscellaneous") {

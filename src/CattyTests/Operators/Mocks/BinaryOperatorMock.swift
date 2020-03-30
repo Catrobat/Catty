@@ -45,10 +45,10 @@ class BinaryOperatorMock: BinaryOperator {
     }
 
     func value(left: AnyObject, right: AnyObject) -> Double {
-        return mockedValue
+        mockedValue
     }
 
     func formulaEditorSections() -> [FormulaEditorSection] {
-        return mockedSections
+        mockedSections
     }
 }

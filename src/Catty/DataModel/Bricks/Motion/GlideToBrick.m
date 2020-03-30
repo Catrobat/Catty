@@ -78,13 +78,6 @@
     self.yDestination = [[Formula alloc] initWithInteger:200];
 }
 
-- (id)init
-{
-    if(self = [super init]) {
-        self.isInitialized = NO;
-    }
-    return self;
-}
 
 #pragma mark - Description
 - (NSString*)description
@@ -101,13 +94,6 @@
     if(![self.yDestination isEqualToFormula:((GlideToBrick*)brick).yDestination])
         return NO;
     return YES;
-}
-
-#pragma mark - Copy
-- (id)mutableCopyWithContext:(CBMutableCopyContext*)context
-{
-    return [self mutableCopyWithContext:context AndErrorReporting:NO];
-    
 }
 
 #pragma mark - Resources

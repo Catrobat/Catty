@@ -97,7 +97,7 @@ public struct LogLevel {
     }
 
     public func description() -> String {
-        return "LogLevel level=\(label)"
+        "LogLevel level=\(label)"
     }
 }
 
@@ -369,7 +369,7 @@ open class ConsoleLocation: LogLocation {
     }
 
     open class func getInstance() -> LogLocation {
-        return instance
+        instance
     }
 
     open func log(_ message: @autoclosure () -> String) {
@@ -387,7 +387,7 @@ open class ConsoleLocation: LogLocation {
     }
 
     open func description() -> String {
-        return "ConsoleLocation"
+        "ConsoleLocation"
     }
 }
 
@@ -485,7 +485,7 @@ open class FileLocation: LogLocation {
     }
 
     open func description() -> String {
-        return "FileLocation filename=\(filename)"
+        "FileLocation filename=\(filename)"
     }
 }
 
@@ -608,7 +608,7 @@ open class CBLogger {
     // Methods to expose this functionality to Objective C code
 
     class func getLogger(_ name: String) -> CBLogger {
-        return CBLogger(name: name)
+        CBLogger(name: name)
     }
 
     open func traceMessage(_ message: String) {
@@ -848,7 +848,7 @@ open class Swell {
     /// Returns the logger configured for the given name.
     /// This is the recommended way of retrieving a Swell logger.
     open class func getLogger(_ name: String) -> CBLogger? {
-        return kGlobalSwell.getLogger(name)
+        kGlobalSwell.getLogger(name)
     }
 
     /// Turns off all logging.

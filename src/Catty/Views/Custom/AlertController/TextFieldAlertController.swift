@@ -46,12 +46,12 @@ public final class InputValidationResult: NSObject {
 
     @objc
     static func validInput() -> InputValidationResult {
-        return InputValidationResult(valid: true, localizedMessage: nil)
+        InputValidationResult(valid: true, localizedMessage: nil)
     }
 
     @objc(invalidInputWithLocalizedMessage:)
     static func invalidInput(_ localizedMessage: String) -> InputValidationResult {
-        return InputValidationResult(valid: false, localizedMessage: localizedMessage)
+        InputValidationResult(valid: false, localizedMessage: localizedMessage)
     }
 }
 

@@ -90,25 +90,25 @@ private func > <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
     }
 
     open func connect(_ capacity: Int? = nil, timeoutRetries: Int? = nil, disconnectRetries: Int? = nil, connectionTimeout: Double = 10.0) -> FutureStream<(Peripheral, ConnectionEvent)> {
-        return self.helper.connect(self, capacity: capacity, timeoutRetries: timeoutRetries, disconnectRetries: disconnectRetries, connectionTimeout: connectionTimeout)
+        self.helper.connect(self, capacity: capacity, timeoutRetries: timeoutRetries, disconnectRetries: disconnectRetries, connectionTimeout: connectionTimeout)
     }
 
     // MARK: Discover Services
     @discardableResult
     open func discoverAllServices() -> Future<Peripheral> {
-        return self.helper.discoverServices(self, services: nil)
+        self.helper.discoverServices(self, services: nil)
     }
 
     open func discoverServices(_ services: [CBUUID]?) -> Future<Peripheral> {
-        return self.helper.discoverServices(self, services: services)
+        self.helper.discoverServices(self, services: services)
     }
 
     open func discoverAllPeripheralServices() -> Future<Peripheral> {
-        return self.helper.discoverPeripheralServices(self, services: nil)
+        self.helper.discoverPeripheralServices(self, services: nil)
     }
 
     open func discoverPeripheralServices(_ services: [CBUUID]?) -> Future<Peripheral> {
-        return self.helper.discoverPeripheralServices(self, services: services)
+        self.helper.discoverPeripheralServices(self, services: services)
     }
 
     // MARK: CBPeripheralDelegate
@@ -207,7 +207,7 @@ private func > <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
     }
 
     @objc open var state: CBPeripheralState {
-        return self.cbPeripheral.state
+        self.cbPeripheral.state
     }
 
     open var services: [Service] {
@@ -247,11 +247,11 @@ private func > <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
     }
 
     open var id: UUID {
-        return self.cbPeripheral.identifier
+        self.cbPeripheral.identifier
     }
 
     open func service(_ uuid: CBUUID) -> Service? {
-        return self.ownServices[uuid]
+        self.ownServices[uuid]
     }
 
 }

@@ -420,6 +420,6 @@ final class CBScheduler: CBSchedulerProtocol {
     }
 
     func getAudioEngine() -> AudioEngineProtocol {
-        return _audioEngine
+        _audioEngine
     }
 }

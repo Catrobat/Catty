@@ -36,6 +36,6 @@ final class FaceDetectionManagerMock: FaceDetectionManager {
     }
 
     override func available() -> Bool {
-        return isAvailable
+        isAvailable
     }
 }

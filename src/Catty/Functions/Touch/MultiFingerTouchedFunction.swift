@@ -36,11 +36,11 @@ class MultiFingerTouchedFunction: SingleParameterDoubleFunction {
     }
 
     func tag() -> String {
-        return type(of: self).tag
+        type(of: self).tag
     }
 
     func firstParameter() -> FunctionParameter {
-        return .number(defaultValue: 1)
+        .number(defaultValue: 1)
     }
 
     func value(parameter: AnyObject?) -> Double {
@@ -49,6 +49,6 @@ class MultiFingerTouchedFunction: SingleParameterDoubleFunction {
     }
 
     func formulaEditorSections() -> [FormulaEditorSection] {
-        return [.device(position: type(of: self).position)]
+        [.device(position: type(of: self).position)]
     }
 }

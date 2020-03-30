@@ -48,7 +48,7 @@ class CBScriptContext: CBScriptContextProtocol {
     final let script: Script
     final let formulaInterpreter: FormulaInterpreterProtocol
     final var state: CBScriptContextState
-    final var count: Int { return _instructionList.count }
+    final var count: Int { _instructionList.count }
     final var index: Int = 0
 
     private final var _instructionPointer: Int = 0

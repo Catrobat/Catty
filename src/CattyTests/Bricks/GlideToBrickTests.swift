@@ -37,4 +37,27 @@ final class GlideToBrickTests: XCTestCase {
         XCTAssertEqual(brick.xDestination, brick.formula(forLineNumber: 1, andParameterNumber: 0))
         XCTAssertEqual(brick.yDestination, brick.formula(forLineNumber: 1, andParameterNumber: 1))
     }
+
+    func testMutableCopy() {
+        let brick = GlideToBrick()
+
+        brick.durationInSeconds = Formula(double: 1)
+        brick.xDestination = Formula(double: 1)
+        brick.yDestination = Formula(double: 1)
+
+        let copiedBrick: GlideToBrick = brick.mutableCopy(with: CBMutableCopyContext(), andErrorReporting: true) as! GlideToBrick
+
+        XCTAssertTrue(brick.isEqual(to: copiedBrick))
+        XCTAssertFalse(brick === copiedBrick)
+
+        XCTAssertTrue(brick.durationInSeconds.isEqual(to: copiedBrick.durationInSeconds))
+        XCTAssertFalse(brick.durationInSeconds === copiedBrick.durationInSeconds)
+
+        XCTAssertTrue(brick.xDestination.isEqual(to: copiedBrick.xDestination))
+        XCTAssertFalse(brick.xDestination === copiedBrick.xDestination)
+
+        XCTAssertTrue(brick.yDestination.isEqual(to: copiedBrick.yDestination))
+        XCTAssertFalse(brick.yDestination === copiedBrick.yDestination)
+    }
+
 }

@@ -23,7 +23,7 @@
 @objc extension PreviousLookBrick: CBInstructionProtocol {
 
     @nonobjc func instruction() -> CBInstruction {
-        return .action { _ in SKAction.run(self.actionBlock()) }
+        .action { _ in SKAction.run(self.actionBlock()) }
     }
 
     @objc func actionBlock() -> () -> Void {
