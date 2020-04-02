@@ -35,6 +35,8 @@
 
 @implementation BrickCellFormulaData
 
+#define SPACE_DISTRIBUTE_VALUE 3.1f
+
 - (instancetype)initWithFrame:(CGRect)frame andBrickCell:(BrickCell*)brickCell andLineNumber:(NSInteger)line andParameterNumber:(NSInteger)parameter
 {
     Brick<BrickFormulaProtocol> *formulaBrick = (Brick<BrickFormulaProtocol>*)brickCell.scriptOrBrick;
@@ -59,9 +61,9 @@
             self.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
             self.titleLabel.minimumScaleFactor = 10./self.titleLabel.font.pointSize;
         } else if ([brickCell isKindOfClass:[PlaceAtBrickCell class]] || [brickCell isKindOfClass:[GlideToBrickCell class]]) {
-            if (self.frame.size.width > [Util screenWidth]/4.0f ) {
+            if (self.frame.size.width > [Util screenWidth]/SPACE_DISTRIBUTE_VALUE) {
                 CGRect labelFrame = self.frame;
-                labelFrame.size.width = [Util screenWidth]/4.0f;
+                labelFrame.size.width = [Util screenWidth]/SPACE_DISTRIBUTE_VALUE;
                 self.frame = labelFrame;
             }
         } else {
