@@ -26,6 +26,7 @@
 
 @interface BSKeyboardControls ()
 @property (nonatomic, strong) UIToolbar *toolbar;
+@property (nonatomic, strong) UIBarButtonItem *cancelButton;
 @property (nonatomic, strong) UIBarButtonItem *doneButton;
 @property (nonatomic, strong) UIBarButtonItem *segmentedControlItem;
 @end
@@ -53,15 +54,20 @@
         [self.toolbar setBarStyle:UIBarStyleDefault];
         [self.toolbar setAutoresizingMask:(UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleWidth)];
         [self addSubview:self.toolbar];
-
       
-        [self setDoneButton:[[UIBarButtonItem alloc] initWithTitle:NSLocalizedStringFromTable(@"Done", @"BSKeyboardControls", @"Done button title.")
-                                                             style:UIBarButtonItemStyleDone
-                                                            target:self
-                                                            action:@selector(doneButtonPressed:)]];
-      self.doneButton.tintColor = UIColor.globalTint;
+        [self setCancelButton:[[UIBarButtonItem alloc] initWithTitle:kLocalizedCancel
+            style:UIBarButtonItemStyleDone
+            target:self
+            action:@selector(cancelButtonPressed:)]];
+        self.cancelButton.tintColor = UIColor.globalTint;
         
-        [self setVisibleControls:(BSKeyboardControlPreviousNext | BSKeyboardControlDone)];
+        [self setDoneButton:[[UIBarButtonItem alloc] initWithTitle:kLocalizedDone
+            style:UIBarButtonItemStyleDone
+            target:self
+            action:@selector(doneButtonPressed:)]];
+        self.doneButton.tintColor = UIColor.globalTint;
+        
+        [self setVisibleControls:(BSKeyboardControlPreviousNext | BSKeyboardControlCancel | BSKeyboardControlDone)];
         
         [self setFields:fields];
     }
@@ -76,11 +82,14 @@
     [self setPreviousTitle:nil];
     [self setBarTintColor:nil];
     [self setNextTitle:nil];
+    [self setCancelTitle:nil];
+    [self setCancelTintColor:nil];
     [self setDoneTitle:nil];
     [self setDoneTintColor:nil];
     [self setActiveField:nil];
     [self setToolbar:nil];
     [self setSegmentedControlItem:nil];
+    [self setCancelButton:nil];
     [self setDoneButton:nil];
 }
 
@@ -148,7 +157,25 @@
     }
 }
 
+- (void)setCancelTitle:(NSString *)cancelTitle
+{
+    if (![cancelTitle isEqualToString:_cancelTitle])
+    {
+        [self.cancelButton setTitle:cancelTitle];
+        
+        _cancelTitle = cancelTitle;
+    }
+}
 
+- (void)setCancelTintColor:(UIColor *)cancelTintColor
+{
+    if (cancelTintColor != _cancelTintColor)
+    {
+        [self.cancelButton setTintColor:cancelTintColor];
+        
+        _cancelTintColor = cancelTintColor;
+    }
+}
 
 - (void)setDoneTitle:(NSString *)doneTitle
 {
@@ -183,15 +210,21 @@
 #pragma mark -
 #pragma mark Private Methods
 
+- (void)cancelButtonPressed:(id)sender
+{
+    if ([self.delegate respondsToSelector:@selector(keyboardControlsCancelPressed:)])
+    {
+        [self.delegate keyboardControlsCancelPressed:self];
+    }
+}
+
 - (void)doneButtonPressed:(id)sender
 {
-    if ([self.delegate respondsToSelector:@selector(keyboardControlsDonePressed:)])
+   if ([self.delegate respondsToSelector:@selector(keyboardControlsDonePressed:)])
     {
         [self.delegate keyboardControlsDonePressed:self];
     }
 }
-
-
 
 - (void)selectPreviousField
 {
@@ -227,11 +260,11 @@
 
 - (NSArray *)toolbarItems
 {
-    NSMutableArray *items = [NSMutableArray arrayWithCapacity:1];
+    NSMutableArray *items = [NSMutableArray arrayWithCapacity:2];
 
-    
-    if (self.visibleControls & BSKeyboardControlDone)
+    if (self.visibleControls)
     {
+        [items addObject:self.cancelButton];
         [items addObject:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil]];
         [items addObject:self.doneButton];
     }

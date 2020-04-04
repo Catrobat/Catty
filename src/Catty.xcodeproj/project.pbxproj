@@ -781,6 +781,7 @@
 		59D008ED208E4249000539E7 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D008EC208E4249000539E7 /* LocationManager.swift */; };
 		59D9EC65206117000019EC10 /* DVR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59D9EC62206117000019EC10 /* DVR.framework */; };
 		59D9EC672061171F0019EC10 /* DVR.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 59D9EC62206117000019EC10 /* DVR.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		59F5C2AF23F2E36D00D95016 /* BrickCellPickerViewerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F5C2AE23F2E36D00D95016 /* BrickCellPickerViewerTest.swift */; };
 		5E0B361E220A55BB0056EB12 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 92300CE918B2196700F2B4DC /* Localizable.strings */; };
 		5E0B3622220A5F3C0056EB12 /* LanguageTranslationDefinesUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0B3621220A5F3C0056EB12 /* LanguageTranslationDefinesUI.swift */; };
 		5E18A81221A547AA00541536 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E18A81121A547AA00541536 /* UIViewController+Extensions.swift */; };
@@ -2364,6 +2365,7 @@
 		59D008E8208E3FDC000539E7 /* MotionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionManager.swift; sourceTree = "<group>"; };
 		59D008EC208E4249000539E7 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		59D9EC62206117000019EC10 /* DVR.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVR.framework; path = Carthage/Build/iOS/DVR.framework; sourceTree = "<group>"; };
+		59F5C2AE23F2E36D00D95016 /* BrickCellPickerViewerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrickCellPickerViewerTest.swift; sourceTree = "<group>"; };
 		5E0B3621220A5F3C0056EB12 /* LanguageTranslationDefinesUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageTranslationDefinesUI.swift; sourceTree = "<group>"; };
 		5E18A81121A547AA00541536 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		5E219F2521C8B46A000439BA /* SelectButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectButton.swift; sourceTree = "<group>"; };
@@ -6071,6 +6073,15 @@
 			path = Fixtures;
 			sourceTree = "<group>";
 		};
+		59DC626D23FAF7A6009C28E3 /* ScriptCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				59F5C2AE23F2E36D00D95016 /* BrickCellPickerViewerTest.swift */,
+				4C1EDCA9218A080200B60464 /* ScriptCollectionVCTests.swift */,
+			);
+			path = ScriptCollectionView;
+			sourceTree = "<group>";
+		};
 		5E0B3620220A5ED40056EB12 /* Defines */ = {
 			isa = PBXGroup;
 			children = (
@@ -8169,6 +8180,7 @@
 				5E0B3620220A5ED40056EB12 /* Defines */,
 				2D010F4422240C6400CAAA06 /* Extensions */,
 				4CB1FB721BC2D74F0000A2FE /* Protocol */,
+				59DC626D23FAF7A6009C28E3 /* ScriptCollectionView */,
 				AAADA0081B9B29D500E0CA9A /* Info.plist */,
 				BCFED6EC2111C04000BE57BF /* BackgroundsTests.swift */,
 				BC19327E21186504009DE43A /* CreateProjectTests.swift */,
@@ -8178,7 +8190,6 @@
 				BCFED6EE2111C54100BE57BF /* PocketCodeMainScreenTests.swift */,
 				BCFED6F7211318A100BE57BF /* ProjectTVCTests.swift */,
 				4C7F50F921E62B0E0010AC36 /* ProjectsTVCTests.swift */,
-				4C1EDCA9218A080200B60464 /* ScriptCollectionVCTests.swift */,
 				4C48E5CB23FD7F4B004C6E6A /* SettingsTVCTests.swift */,
 				4CF8747221C8E7AB00C8143F /* SoundsTVCTests.swift */,
 				BA6805AD21303B48004F004F /* VariablesTests.swift */,
@@ -9247,6 +9258,7 @@
 			files = (
 				22C48768240FFAA3003CB222 /* BrickCellTests.swift in Sources */,
 				BCFED6F12111CA5D00BE57BF /* PocketCodeMainScreenTests.swift in Sources */,
+				59F5C2AF23F2E36D00D95016 /* BrickCellPickerViewerTest.swift in Sources */,
 				4C1EDCAC218A080200B60464 /* ScriptCollectionVCTests.swift in Sources */,
 				4C48E5CE23FD7F4B004C6E6A /* SettingsTVCTests.swift in Sources */,
 				BCFED6F62113188700BE57BF /* MyFirstProjectTests.swift in Sources */,
