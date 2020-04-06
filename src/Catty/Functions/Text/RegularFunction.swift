@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class RegularFunction: DoubleParameterStringFunction {
+class RegularExpressionFunction: DoubleParameterStringFunction {
     static var tag = "REGEX"
     static var name = "regex"
     static var defaultValue = ""
@@ -52,51 +52,29 @@ class RegularFunction: DoubleParameterStringFunction {
     }
 
     func regularExpression(pattern: String, longText: String) -> String {
-        var finalResult: String?
+        var finalResult: String!
         let regexOptions: NSRegularExpression.Options = []
+
         do {
             let regex = try NSRegularExpression(pattern: pattern, options: regexOptions)
-            let match = regex.firstMatch(in: longText, range: NSRange(0..<longText.utf16.count))
-            if match != nil {
-                if isParenthesesGroupPresent(in: pattern) {
-                    //parenthesesGroup present
-                    let firstParenthesssRange = match!.range(at: 1)
-                    finalResult = firstParenthesssRange.location != NSNotFound ? (longText as NSString).substring(with: firstParenthesssRange) : nil
+
+            if let match = regex.firstMatch(in: longText, range: NSRange(0..<longText.utf16.count)) {
+                var firstParenthesssRange: NSRange!
+                if match.numberOfRanges > 1 {
+                    firstParenthesssRange = match.range(at: 1)
                 } else {
-                    //parenthesesGroup not present
-                    match.map {
-                        finalResult = String(longText[Range($0.range, in: longText)!])
-                    }
+                    firstParenthesssRange = match.range(at: 0)
                 }
+                finalResult = firstParenthesssRange.location != NSNotFound ? (longText as NSString).substring(with: firstParenthesssRange) : nil
             }
         } catch {
-            //Invalid pattern
             finalResult = error.localizedDescription
         }
 
         if finalResult == nil {
-            //pattern did not match
-            finalResult = RegularFunction.defaultValue
+            finalResult = RegularExpressionFunction.defaultValue
         }
-        return finalResult!
+        return finalResult
     }
 
-}
-
-extension RegularFunction {
-    //For all private function , variable
-   private enum SkipElement: String {
-        case openParenthesis = "("
-        case closedParenthesis = ")"
-    }
-
-  private func isParenthesesGroupPresent(in pattern: String) -> Bool {
-    //function to check if parentheses group is present or not 
-       for eachChar in pattern {
-           if String(eachChar) == SkipElement.openParenthesis.rawValue {
-               return true
-           }
-       }
-       return false
-   }
 }

@@ -26,11 +26,11 @@ import XCTest
 
 class RegularFunctionTest: XCTestCase {
 
-    var function: RegularFunction!
+    var function: RegularExpressionFunction!
 
     override func setUp() {
         super.setUp()
-        function = RegularFunction()
+        function = RegularExpressionFunction()
     }
 
     override func tearDown() {

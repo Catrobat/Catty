@@ -47,7 +47,7 @@ extension CatrobatSetup {
             TrueFunction(),
             FalseFunction(),
             JoinFunction(),
-            RegularFunction(),
+            RegularExpressionFunction(),
             LetterFunction(),
             LengthFunction(),
             ElementFunction(),
