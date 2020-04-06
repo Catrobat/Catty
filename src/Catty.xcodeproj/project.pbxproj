@@ -6076,6 +6076,7 @@
 		59DC626D23FAF7A6009C28E3 /* ScriptCollectionView */ = {
 			isa = PBXGroup;
 			children = (
+				22C48767240FFAA3003CB222 /* BrickCellTests.swift */,
 				59F5C2AE23F2E36D00D95016 /* BrickCellPickerViewerTest.swift */,
 				4C1EDCA9218A080200B60464 /* ScriptCollectionVCTests.swift */,
 			);
@@ -8194,7 +8195,6 @@
 				4CF8747221C8E7AB00C8143F /* SoundsTVCTests.swift */,
 				BA6805AD21303B48004F004F /* VariablesTests.swift */,
 				2D227D93220B38E0008A2BC9 /* ScenePresenterVCTests.swift */,
-				22C48767240FFAA3003CB222 /* BrickCellTests.swift */,
 			);
 			path = "Catty UITests";
 			sourceTree = "<group>";
