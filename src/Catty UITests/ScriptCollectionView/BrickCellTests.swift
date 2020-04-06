@@ -35,7 +35,7 @@ class BrickCellTests: XCTestCase {
         super.tearDown()
     }
 
-    func testBrickParameterSpace() {
+    func testVariableBrickParameterSpace() {
 
         let brickWidth: CGFloat
         let initialParameterTextViewWidth: CGFloat
