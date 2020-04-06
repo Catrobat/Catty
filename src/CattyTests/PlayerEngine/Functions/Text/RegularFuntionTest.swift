@@ -39,7 +39,7 @@ class RegularFunctionTest: XCTestCase {
     }
 
     func testDefaultValue() {
-        XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: " an? ([^ .]+)" as AnyObject, secondParameter: "I am a panda" as AnyObject))
+        XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: "([0-9]{10})" as AnyObject, secondParameter: "I am a panda" as AnyObject))
     }
 
     func testValue() {
