@@ -48,6 +48,14 @@ class RegularExpressionFunctionTest: XCTestCase {
         XCTAssertEqual("The value “[]” is invalid.", function.value(firstParameter: "[]" as AnyObject, secondParameter: "I am a panda" as AnyObject))
     }
 
+    func testDotALLAndMultiLine() {
+        XCTAssertEqual("\n", function.value(firstParameter: "." as AnyObject, secondParameter: "\n" as AnyObject))
+
+        XCTAssertEqual("panda", function.value(firstParameter: "([^ .]+)$" as AnyObject, secondParameter: "I am a panda" as AnyObject))
+
+        XCTAssertEqual("panda", function.value(firstParameter: "^I? am? a? ([^ .]+)" as AnyObject, secondParameter: "I am not a tiger\nI am a panda" as AnyObject))
+    }
+
     func testValue() {
         XCTAssertEqual("9999999999", function.value(firstParameter: "([0-9]{10})" as AnyObject, secondParameter: "My number is 9999999999" as AnyObject))
 

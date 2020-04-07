@@ -53,7 +53,7 @@ class RegularExpressionFunction: DoubleParameterStringFunction {
 
     func regularExpression(pattern: String, longText: String) -> String {
         var finalResult = RegularExpressionFunction.defaultValue
-        let regexOptions: NSRegularExpression.Options = []
+        let regexOptions: NSRegularExpression.Options = [.dotMatchesLineSeparators,.anchorsMatchLines]
 
         do {
             let regex = try NSRegularExpression(pattern: pattern, options: regexOptions)
