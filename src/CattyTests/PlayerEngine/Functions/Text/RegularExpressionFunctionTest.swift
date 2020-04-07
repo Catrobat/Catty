@@ -24,7 +24,7 @@ import XCTest
 
 @testable import Pocket_Code
 
-class RegularFunctionTest: XCTestCase {
+class RegularExpressionFunctionTest: XCTestCase {
 
     var function: RegularExpressionFunction!
 
@@ -42,6 +42,12 @@ class RegularFunctionTest: XCTestCase {
         XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: "([0-9]{10})" as AnyObject, secondParameter: "I am a panda" as AnyObject))
     }
 
+    func testValueWithInvalidExpression() {
+        XCTAssertEqual("The value “([0-9]{10}” is invalid.", function.value(firstParameter: "([0-9]{10}" as AnyObject, secondParameter: "My number is 9999999999" as AnyObject))
+
+        XCTAssertEqual("The value “[]” is invalid.", function.value(firstParameter: "[]" as AnyObject, secondParameter: "I am a panda" as AnyObject))
+    }
+
     func testValue() {
         XCTAssertEqual("9999999999", function.value(firstParameter: "([0-9]{10})" as AnyObject, secondParameter: "My number is 9999999999" as AnyObject))
 
@@ -55,7 +61,6 @@ class RegularFunctionTest: XCTestCase {
 
         XCTAssertEqual("", function.value(firstParameter: " am? a [^ .]+ ([a-z]+)" as AnyObject, secondParameter: "My number is 9999999999" as AnyObject))
 
-        XCTAssertEqual("The value “([0-9]{10}” is invalid.", function.value(firstParameter: "([0-9]{10}" as AnyObject, secondParameter: "My number is 9999999999" as AnyObject))
     }
 
     func testFirstParameter() {

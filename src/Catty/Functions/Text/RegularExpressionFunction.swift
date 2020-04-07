@@ -52,27 +52,26 @@ class RegularExpressionFunction: DoubleParameterStringFunction {
     }
 
     func regularExpression(pattern: String, longText: String) -> String {
-        var finalResult: String!
+        var finalResult = RegularExpressionFunction.defaultValue
         let regexOptions: NSRegularExpression.Options = []
 
         do {
             let regex = try NSRegularExpression(pattern: pattern, options: regexOptions)
 
             if let match = regex.firstMatch(in: longText, range: NSRange(0..<longText.utf16.count)) {
-                var firstParenthesssRange: NSRange!
+                var firstParenthesssRange = NSRange()
                 if match.numberOfRanges > 1 {
                     firstParenthesssRange = match.range(at: 1)
                 } else {
                     firstParenthesssRange = match.range(at: 0)
                 }
-                finalResult = firstParenthesssRange.location != NSNotFound ? (longText as NSString).substring(with: firstParenthesssRange) : nil
+
+                if firstParenthesssRange.location != NSNotFound {
+                    finalResult = (longText as NSString).substring(with: firstParenthesssRange)
+                }
             }
         } catch {
             finalResult = error.localizedDescription
-        }
-
-        if finalResult == nil {
-            finalResult = RegularExpressionFunction.defaultValue
         }
         return finalResult
     }
