@@ -39,9 +39,9 @@ protocol Function {
 }
 
 extension Function {
-    static var parameterDelimiter: String { return ", " }
-    static var bracketOpen: String { return "(" }
-    static var bracketClose: String { return ")" }
+    static var parameterDelimiter: String { ", " }
+    static var bracketOpen: String { "(" }
+    static var bracketClose: String { ")" }
 
     func parameters() -> [FunctionParameter] {
         var parameters = [FunctionParameter]()

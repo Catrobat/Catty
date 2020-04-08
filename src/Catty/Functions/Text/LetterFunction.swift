@@ -29,15 +29,15 @@ class LetterFunction: DoubleParameterStringFunction {
     static let position = 90
 
     func tag() -> String {
-        return type(of: self).tag
+        type(of: self).tag
     }
 
     func firstParameter() -> FunctionParameter {
-        return .number(defaultValue: 1)
+        .number(defaultValue: 1)
     }
 
     func secondParameter() -> FunctionParameter {
-        return .string(defaultValue: "hello world")
+        .string(defaultValue: "hello world")
     }
 
     func value(firstParameter: AnyObject?, secondParameter: AnyObject?) -> String {
@@ -54,6 +54,6 @@ class LetterFunction: DoubleParameterStringFunction {
     }
 
     func formulaEditorSections() -> [FormulaEditorSection] {
-        return [.math(position: type(of: self).position)]
+        [.math(position: type(of: self).position)]
     }
 }

@@ -51,7 +51,7 @@ extension Sequence where Iterator.Element == MediaItem {
     // The following categories should be shown on top of the list (IOS-677).
     // TODO fetch ordering information from API
     var prioritizedCategories: [String] {
-        return ["Pocket Family"]
+        ["Pocket Family"]
     }
 
     var groupedByCategories: [[MediaItem]] {

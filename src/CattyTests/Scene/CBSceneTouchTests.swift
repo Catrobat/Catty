@@ -33,7 +33,7 @@ open class MockTouch: UITouch {
     }
 
     override open func location(in view: UIView?) -> CGPoint {
-        return self.point
+        self.point
     }
 
     override open func location(in node: SKNode) -> CGPoint {
@@ -57,7 +57,7 @@ open class MockImage: UIImage {
     }
 
     override open func isTransparentPixel(at point: CGPoint) -> Bool {
-        return false
+        false
     }
 }
 

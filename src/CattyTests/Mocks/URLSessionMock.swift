@@ -33,11 +33,11 @@ class URLSessionMock: URLSession {
     }
 
     override func dataTask(with url: URL, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
-        return URLSessionDataTaskMock(completionHandler, response: response, error: error)
+        URLSessionDataTaskMock(completionHandler, response: response, error: error)
     }
 
     override func dataTask(with request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
-        return URLSessionDataTaskMock(completionHandler, response: response, error: error)
+        URLSessionDataTaskMock(completionHandler, response: response, error: error)
     }
 
     class URLSessionDataTaskMock: URLSessionDataTask {

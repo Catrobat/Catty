@@ -24,11 +24,11 @@ import CoreBluetooth
 import Foundation
 
 func toHostByteOrder<T>(_ value: T) -> T {
-    return value
+    value
 }
 
 func fromHostByteOrder<T>(_ value: T) -> T {
-    return value
+    value
 }
 
 func byteArrayValue<T>(_ value: T) -> [UInt8] {
@@ -130,46 +130,46 @@ public protocol RawArrayPairDeserialize {
 public enum Serializer {
 
     public static func serialize(_ value: String, encoding: String.Encoding = String.Encoding.utf8) -> Data? {
-        return Data.fromString(value, encoding: encoding)
+        Data.fromString(value, encoding: encoding)
     }
 
     public static func serialize<T: Deserialize>(_ value: T) -> Data {
-        return Data.serialize(value)
+        Data.serialize(value)
     }
 
     public static func serialize<T: Deserialize>(_ values: [T]) -> Data {
-        return Data.serializeArray(values)
+        Data.serializeArray(values)
     }
 
     public static func serialize<T: RawDeserialize>(_ value: T) -> Data {
-        return Data.serialize(value.rawValue)
+        Data.serialize(value.rawValue)
     }
 
     public static func serialize<T: RawArrayDeserialize>(_ value: T) -> Data {
-        return Data.serializeArray(value.rawValue)
+        Data.serializeArray(value.rawValue)
     }
 
     public static func serialize<T: RawPairDeserialize>(_ value: T) -> Data {
-        return Data.serialize(value.rawValue1, value2: value.rawValue2)
+        Data.serialize(value.rawValue1, value2: value.rawValue2)
     }
 
     public static func serialize<T: RawArrayPairDeserialize>(_ value: T) -> Data {
-        return Data.serializeArrays(value.rawValue1, values2: value.rawValue2)
+        Data.serializeArrays(value.rawValue1, values2: value.rawValue2)
     }
 }
 
 public enum Deserializer {
 
     public static func deserialize(_ data: Data, encoding: String.Encoding = String.Encoding.utf8) -> String? {
-        return (NSString(data: data, encoding: encoding.rawValue) as String?)
+        (NSString(data: data, encoding: encoding.rawValue) as String?)
     }
 
     public static func deserialize<T: Deserialize>(_ data: Data) -> T? {
-        return T.deserialize(data)
+        T.deserialize(data)
     }
 
     public static func deserialize<T: RawDeserialize>(_ data: Data) -> T? where T.RawType: Deserialize {
-        return T.RawType.deserialize(data).flatmap { T(rawValue: $0) }
+        T.RawType.deserialize(data).flatmap { T(rawValue: $0) }
     }
 
     public static func deserialize<T: RawArrayDeserialize>(_ data: Data) -> T? where T.RawType: Deserialize {

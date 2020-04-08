@@ -36,6 +36,6 @@ final class FormulaMock: Formula {
     }
 
     override func getRequiredResources() -> Int {
-        return requiredResources
+        requiredResources
     }
 }

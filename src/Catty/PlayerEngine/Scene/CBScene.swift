@@ -226,7 +226,7 @@ final class CBScene: SKScene {
     }
 
     @objc func getSoundEngine() -> AudioEngineProtocol {
-        return self.soundEngine
+        self.soundEngine
     }
 
     // MARK: - Stop project

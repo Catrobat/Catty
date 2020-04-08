@@ -179,7 +179,7 @@ class CharacteristicMock: CBCharacteristic {
     }
 
     override internal var properties: CBCharacteristicProperties {
-        return CBCharacteristicProperties(rawValue: CBCharacteristicProperties.writeWithoutResponse.rawValue)
+        CBCharacteristicProperties(rawValue: CBCharacteristicProperties.writeWithoutResponse.rawValue)
     }
 
 }

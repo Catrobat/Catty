@@ -24,7 +24,7 @@
 
     @nonobjc func instruction() -> CBInstruction {
 
-        return CBInstruction.execClosure { context, _ in
+        CBInstruction.execClosure { context, _ in
 
             guard let phiro = BluetoothService.swiftSharedInstance.phiro else {
                 return

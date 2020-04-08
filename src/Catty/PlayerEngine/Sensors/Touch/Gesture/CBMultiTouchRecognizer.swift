@@ -63,7 +63,7 @@ class CBMultiTouchRecognizer: UIGestureRecognizer {
     }
 
     override func ignore(_ touch: UITouch, for event: UIEvent) {
-        return // do nothing
+        // do nothing
     }
 }
 

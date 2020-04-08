@@ -28,7 +28,7 @@ final class DateWeekdaySensorMock: DateWeekdaySensor {
     var mockDate = Date()
 
     override func date() -> Date {
-        return mockDate
+        mockDate
     }
 }
 

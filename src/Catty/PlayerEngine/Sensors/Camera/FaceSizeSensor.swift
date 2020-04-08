@@ -37,7 +37,7 @@ class FaceSizeSensor: DeviceSensor {
     }
 
     func tag() -> String {
-        return type(of: self).tag
+        type(of: self).tag
     }
 
     func rawValue() -> Double {
@@ -61,6 +61,6 @@ class FaceSizeSensor: DeviceSensor {
     }
 
     func formulaEditorSections(for spriteObject: SpriteObject) -> [FormulaEditorSection] {
-        return [.device(position: type(of: self).position)]
+        [.device(position: type(of: self).position)]
     }
 }

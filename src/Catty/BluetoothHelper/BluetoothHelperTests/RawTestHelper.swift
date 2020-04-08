@@ -32,11 +32,11 @@ struct RawPairTest: RawPairDeserialize {
     static let uuid = "TEST"
 
     var rawValue1: Int8 {
-        return self.value1
+        self.value1
     }
 
     var rawValue2: UInt8 {
-        return self.value2
+        self.value2
     }
 
     init?(rawValue1: Int8, rawValue2: UInt8) {
@@ -70,7 +70,7 @@ struct RawArrayTest: RawArrayDeserialize {
     }
 
     var rawValue: [Int8] {
-        return [self.value1, self.value2, self.value3]
+        [self.value1, self.value2, self.value3]
     }
 
 }
@@ -85,11 +85,11 @@ struct RawArrayPairTest: RawArrayPairDeserialize {
     static let uuid = "TEST"
 
     var rawValue1: [Int8] {
-        return self.value1
+        self.value1
     }
 
     var rawValue2: [UInt8] {
-        return self.value2
+        self.value2
     }
 
     init?(rawValue1: [Int8], rawValue2: [UInt8]) {

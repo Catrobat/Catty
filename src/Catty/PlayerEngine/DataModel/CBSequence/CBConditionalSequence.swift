@@ -37,11 +37,11 @@ class CBConditionalSequence: CBSequenceProtocol, CBSequenceVisitProtocol {
 
     // MARK: - Operations
     func isEmpty() -> Bool {
-        return sequenceList.isEmpty()
+        sequenceList.isEmpty()
     }
 
     final func checkCondition(context: CBScriptContextProtocol) -> Bool {
-        return condition.checkCondition(formulaInterpreter: context.formulaInterpreter)
+        condition.checkCondition(formulaInterpreter: context.formulaInterpreter)
     }
 
     final func resetCondition() {

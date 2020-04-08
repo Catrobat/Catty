@@ -23,7 +23,7 @@
 @objc extension IfOnEdgeBounceBrick: CBInstructionProtocol {
 
     @nonobjc func instruction() -> CBInstruction {
-        return .action { _ in SKAction.run(self.actionBlock()) }
+        .action { _ in SKAction.run(self.actionBlock()) }
     }
 
     @objc func actionBlock() -> () -> Void {
@@ -128,22 +128,22 @@
     }
 
     private func isGreater(_ first: Double, second: Double) -> Bool {
-        return first - second > Double.epsilon
+        first - second > Double.epsilon
     }
 
     private func isGreaterOrEqual(_ first: Double, second: Double) -> Bool {
-        return first - second > Double.epsilon || self.isEqual(first, second: second)
+        first - second > Double.epsilon || self.isEqual(first, second: second)
     }
 
     private func isLess(_ first: Double, second: Double) -> Bool {
-        return first - second < Double.epsilon && !self.isEqual(first, second: second)
+        first - second < Double.epsilon && !self.isEqual(first, second: second)
     }
 
     private func isLessOrEqual(_ first: Double, second: Double) -> Bool {
-        return first - second < Double.epsilon || self.isEqual(first, second: second)
+        first - second < Double.epsilon || self.isEqual(first, second: second)
     }
 
     private func isEqual(_ first: Double, second: Double) -> Bool {
-        return abs(first - second) <= Double.epsilon
+        abs(first - second) <= Double.epsilon
     }
 }

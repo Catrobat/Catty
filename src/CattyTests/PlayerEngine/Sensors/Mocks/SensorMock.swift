@@ -45,10 +45,10 @@ class SensorMock: Sensor {
     }
 
     func tag() -> String {
-        return mockedTag
+        mockedTag
     }
 
     func formulaEditorSections(for spriteObject: SpriteObject) -> [FormulaEditorSection] {
-        return mockedSections
+        mockedSections
     }
 }

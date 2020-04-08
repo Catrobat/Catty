@@ -27,7 +27,7 @@ import Foundation
 
 @objc class AudioEngineMock: NSObject, AudioEngineProtocol {
     func getSpeechSynth() -> SpeechSynthesizer {
-        return SpeechSynthesizer()
+        SpeechSynthesizer()
     }
 
     func start() {}

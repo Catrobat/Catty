@@ -168,7 +168,7 @@ extension Array {
 
 // MARK: - Custom operators
 func == (lhs: CBScriptContextProtocol, rhs: CBScriptContextProtocol) -> Bool {
-    return lhs.id == rhs.id
+    lhs.id == rhs.id
 }
 
 func += (left: inout CBScriptContext, right: CBInstruction) {
@@ -184,7 +184,7 @@ func += <T>(left: inout [T], right: T) {
 }
 
 func == (lhs: Date, rhs: Date) -> Bool {
-    return lhs.timeIntervalSince1970 == rhs.timeIntervalSince1970
+    lhs.timeIntervalSince1970 == rhs.timeIntervalSince1970
 }
 
 func < (lhs: Date, rhs: Date) -> Bool {

@@ -93,51 +93,51 @@ extension InternFormula {
     }
 
     private func createInternTokenListForSensor(sensor: Sensor) -> [InternToken] {
-        return buildSensor(sensor: sensor)
+        buildSensor(sensor: sensor)
     }
 
     private func createInternTokenListForFunction(function: Function) -> [InternToken] {
-        return buildFunction(function: function)
+        buildFunction(function: function)
     }
 
     private func createInternTokenListForOperator(op: Operator) -> [InternToken] {
-        return buildOperator(op: op)
+        buildOperator(op: op)
     }
 
     private func buildUserVariable(name: String) -> [InternToken] {
-        return [InternToken.init(type: TOKEN_TYPE_USER_VARIABLE, andValue: name)]
+        [InternToken.init(type: TOKEN_TYPE_USER_VARIABLE, andValue: name)]
     }
 
     private func buildUserList(name: String) -> [InternToken] {
-        return [InternToken.init(type: TOKEN_TYPE_USER_LIST, andValue: name)]
+        [InternToken.init(type: TOKEN_TYPE_USER_LIST, andValue: name)]
     }
 
     private func buildString(name: String) -> [InternToken] {
-        return [InternToken.init(type: TOKEN_TYPE_STRING, andValue: name)]
+        [InternToken.init(type: TOKEN_TYPE_STRING, andValue: name)]
     }
 
     private func buildNumber(numberValue: String) -> [InternToken] {
-        return [InternToken.init(type: TOKEN_TYPE_NUMBER, andValue: numberValue)]
+        [InternToken.init(type: TOKEN_TYPE_NUMBER, andValue: numberValue)]
     }
 
     private func buildPeriod() -> [InternToken] {
-        return [InternToken.init(type: TOKEN_TYPE_PERIOD)]
+        [InternToken.init(type: TOKEN_TYPE_PERIOD)]
     }
 
     private func buildBracketOpen() -> [InternToken] {
-        return [InternToken.init(type: TOKEN_TYPE_BRACKET_OPEN)]
+        [InternToken.init(type: TOKEN_TYPE_BRACKET_OPEN)]
     }
 
     private func buildBracketClose() -> [InternToken] {
-        return [InternToken.init(type: TOKEN_TYPE_BRACKET_CLOSE)]
+        [InternToken.init(type: TOKEN_TYPE_BRACKET_CLOSE)]
     }
 
     private func buildOperator(op: Operator) -> [InternToken] {
-        return [InternToken.init(type: TOKEN_TYPE_OPERATOR, andValue: type(of: op).tag)]
+        [InternToken.init(type: TOKEN_TYPE_OPERATOR, andValue: type(of: op).tag)]
     }
 
     private func buildSensor(sensor: Sensor) -> [InternToken] {
-        return [InternToken.init(type: TOKEN_TYPE_SENSOR, andValue: sensor.tag())]
+        [InternToken.init(type: TOKEN_TYPE_SENSOR, andValue: sensor.tag())]
     }
 
     private func buildFunction(function: Function) -> [InternToken] {

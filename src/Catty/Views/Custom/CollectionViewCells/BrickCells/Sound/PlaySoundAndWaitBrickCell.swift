@@ -36,7 +36,7 @@ import Foundation
     }
 
     static func cellHeight() -> CGFloat {
-        return CGFloat(kBrickHeight2h)
+        CGFloat(kBrickHeight2h)
     }
 
     override func hookUpSubViews(_ inlineViewSubViews: [Any]!) {
@@ -45,10 +45,10 @@ import Foundation
     }
 
     func brickTitle(forBackground isBackground: Bool, andInsertionScreen isInsertion: Bool) -> String! {
-        return kLocalizedPlaySoundAndWait + "\n%@ "
+        kLocalizedPlaySoundAndWait + "\n%@ "
     }
 
     override func parameters() -> [String] {
-        return ["{SOUND}"]
+        ["{SOUND}"]
     }
 }

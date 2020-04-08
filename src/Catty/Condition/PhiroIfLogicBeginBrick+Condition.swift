@@ -36,6 +36,6 @@ extension PhiroIfLogicBeginBrick {
     }
 
     override func conditionFormulas() -> [Formula] {
-        return []
+        []
     }
 }

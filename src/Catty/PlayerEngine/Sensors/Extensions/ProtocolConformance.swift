@@ -27,13 +27,13 @@ import CoreMotion
 
 extension CMMotionManager: MotionManager {
     var accelerometerData: AccelerometerData? {
-        return self.value(forKey: "accelerometerData") as? CMAccelerometerData
+        self.value(forKey: "accelerometerData") as? CMAccelerometerData
     }
     var deviceMotion: DeviceMotion? {
-        return self.value(forKey: "deviceMotion") as? CMDeviceMotion
+        self.value(forKey: "deviceMotion") as? CMDeviceMotion
     }
     var gyroData: GyroData? {
-        return self.value(forKey: "gyroData") as? CMGyroData
+        self.value(forKey: "gyroData") as? CMGyroData
     }
 }
 
@@ -55,11 +55,11 @@ extension CMAttitude: Attitude {}
 
 extension CLLocationManager: LocationManager {
     var heading: Heading? {
-        return self.value(forKey: "heading") as? CLHeading
+        self.value(forKey: "heading") as? CLHeading
     }
 
     var location: Location? {
-        return self.value(forKey: "location") as? CLLocation
+        self.value(forKey: "location") as? CLLocation
     }
 }
 
