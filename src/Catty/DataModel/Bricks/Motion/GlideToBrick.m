@@ -100,13 +100,6 @@
     return YES;
 }
 
-#pragma mark - Copy
-- (id)mutableCopyWithContext:(CBMutableCopyContext*)context
-{
-    return [self mutableCopyWithContext:context AndErrorReporting:NO];
-    
-}
-
 #pragma mark - Resources
 - (NSInteger)getRequiredResources
 {

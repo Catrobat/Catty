@@ -84,6 +84,14 @@
     return copy;
 }
 
+- (id)mutableCopyWithContext:(CBMutableCopyContext*)context AndErrorReporting:(BOOL)reportError
+{
+    PointToBrick *copy = [super mutableCopyWithContext:context AndErrorReporting:reportError];
+    if(self.pointedObject)
+        copy.pointedObject = self.pointedObject;
+    return copy;
+}
+
 #pragma mark - Resources
 - (NSInteger)getRequiredResources
 {

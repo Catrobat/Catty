@@ -73,4 +73,26 @@ final class RepeatBrickTests: XCTestCase {
         XCTAssertEqual(0, repeatBrick.repetitions)
         XCTAssertNil(repeatBrick.maxRepetitions)
     }
+
+    func testMutableCopy() {
+        let interpreter = FormulaManager(sceneSize: CGSize.zero)
+
+        let brick = RepeatBrick()
+        let script = Script()
+        let object = SpriteObject()
+
+        script.object = object
+        brick.script = script
+        brick.timesToRepeat = Formula(double: 2)
+
+        XCTAssertTrue(brick.checkCondition(formulaInterpreter: interpreter))
+
+        let copiedBrick: RepeatBrick = brick.mutableCopy(with: CBMutableCopyContext()) as! RepeatBrick
+
+        XCTAssertTrue(brick.isEqual(to: copiedBrick))
+        XCTAssertFalse(brick === copiedBrick)
+        XCTAssertTrue(brick.timesToRepeat.isEqual(to: copiedBrick.timesToRepeat))
+        XCTAssertFalse(brick.timesToRepeat === copiedBrick.timesToRepeat)
+    }
+
 }
