@@ -80,9 +80,6 @@
 
 - (id)init
 {
-    if(self = [super init]) {
-        self.isInitialized = NO;
-    }
     return self;
 }
 
