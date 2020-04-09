@@ -25,6 +25,8 @@ import XCTest
 class BrickCellTests: XCTestCase {
 
     var app: XCUIApplication!
+    let testLookNames_toType: [String] = ["_test1", "_test2", "_test3"]
+    let testLookNames: [String] = ["look_test1", "look_test2", "look_test3"]
 
     override func setUp() {
         super.setUp()
@@ -78,4 +80,64 @@ class BrickCellTests: XCTestCase {
         XCTAssertEqual(firstParameterTextViewWidth, secondParameterTextViewWidth, accuracy: 0.0001)
         XCTAssertTrue(brickWidth - (firstParameterTextViewWidth + secondParameterTextViewWidth) < firstParameterTextViewWidth)
     }
+
+    private func clearScript() {
+        app.buttons[kLocalizedDelete].tap()
+        app.buttons[kLocalizedSelectAllItems].firstMatch.tap()
+        app.buttons[kLocalizedDelete].tap()
+        app.buttons[kLocalizedYes].tap()
+    }
+
+    private func addLookBrickWithValuesToProject(brick: String, category: String) {
+        clearScript()
+        addBrick(label: brick, section: category, in: app)
+
+        for lookName in testLookNames_toType {
+            app.collectionViews.cells.otherElements.containing(.staticText, identifier: brick).children(matching: .other).element.tap()
+            app.pickerWheels.firstMatch.swipeDown()
+            app.buttons[kLocalizedDone].tap()
+
+            let alert1 = waitForElementToAppear(app.sheets[kLocalizedAddLook])
+            alert1.buttons[kLocalizedDrawNewImage].tap()
+
+            waitForElementToAppear(app.buttons["tools"]).tap()
+            waitForElementToAppear(app.tables.firstMatch).swipeUp()
+            app.tables.staticTexts[kLocalizedPaintFill].tap()
+
+            let drawView = waitForElementToAppear(app.images["Canvas"])
+            let coordinate: XCUICoordinate = drawView.coordinate(withNormalizedOffset: CGVector(dx: 0.0, dy: 0.0))
+            coordinate.tap()
+
+            waitForElementToAppear(app.navigationBars[kLocalizedPaintPocketPaint]).buttons[kLocalizedBackgrounds].tap()
+
+            let alert2 = waitForElementToAppear(app.alerts[kLocalizedSaveToPocketCode])
+            alert2.buttons[kLocalizedYes].tap()
+
+            let alert3 = waitForElementToAppear(app.alerts[kLocalizedAddImage])
+            alert3.textFields.element.typeText(lookName)
+            alert3.buttons[kLocalizedOK].tap()
+        }
+    }
+
+    func testSetBackgroundBrick() {
+        let brick: String = kLocalizedSetBackground
+
+        app.tables.staticTexts[kLocalizedContinueProject].tap()
+        app.tables.staticTexts[kLocalizedBackground].tap()
+        app.tables.staticTexts[kLocalizedScripts].tap()
+
+        addLookBrickWithValuesToProject(brick: brick, category: kLocalizedCategoryLook)
+
+        app.collectionViews.cells.otherElements.containing(.staticText, identifier: brick).children(matching: .other).element.tap()
+
+        XCTAssertEqual(app.pickerWheels.element.children(matching: .any).count, 5)
+
+        for lookName in testLookNames {
+            app.collectionViews.cells.otherElements.containing(.staticText, identifier: brick).children(matching: .other).element.tap()
+
+            app.pickerWheels.element.adjust(toPickerWheelValue: lookName)
+            app.buttons[kLocalizedDone].tap()
+        }
+    }
+
 }
