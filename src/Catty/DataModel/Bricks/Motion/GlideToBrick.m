@@ -80,9 +80,6 @@
 
 - (id)init
 {
-    if(self = [super init]) {
-        self.isInitialized = NO;
-    }
     return self;
 }
 
@@ -101,13 +98,6 @@
     if(![self.yDestination isEqualToFormula:((GlideToBrick*)brick).yDestination])
         return NO;
     return YES;
-}
-
-#pragma mark - Copy
-- (id)mutableCopyWithContext:(CBMutableCopyContext*)context
-{
-    return [self mutableCopyWithContext:context AndErrorReporting:NO];
-    
 }
 
 #pragma mark - Resources

@@ -78,7 +78,6 @@
     return kNoResources;
 }
 
-
 - (id)mutableCopyWithContext:(CBMutableCopyContext*)context
 {
     if (! context) NSError(@"%@ must not be nil!", [CBMutableCopyContext class]);

@@ -33,9 +33,13 @@
         let copiedBrick = brick.mutableCopy(with: CBMutableCopyContext(), andErrorReporting: true) as AnyObject
 
         XCTAssertTrue(brick.isEqual(to: copiedBrick as? Brick))
+        XCTAssertFalse(brick === (copiedBrick as? Brick))
+
         XCTAssertFalse(brick.xPosition.isEqual(to: brick.yPosition))
         XCTAssertTrue(brick.xPosition.isEqual(to: copiedBrick.xPosition))
+        XCTAssertFalse(brick.xPosition === copiedBrick.xPosition)
         XCTAssertTrue(brick.yPosition.isEqual(to: copiedBrick.yPosition))
+        XCTAssertFalse(brick.yPosition === copiedBrick.yPosition)
     }
 
      func testMutableCopyForBool() {
@@ -46,6 +50,8 @@
         let copiedBrick = brick.mutableCopy(with: CBMutableCopyContext(), andErrorReporting: true) as AnyObject
 
         XCTAssertTrue(brick.isEqual(to: copiedBrick as? Brick))
+
+        XCTAssertFalse(brick === copiedBrick as? Brick)
         XCTAssertEqual(brick.isAnimated, copiedBrick.isAnimated)
         XCTAssertEqual(brick.isAnimatedInsertBrick, copiedBrick.isAnimatedInsertBrick)
 
