@@ -28,7 +28,8 @@
 typedef enum
 {
     BSKeyboardControlPreviousNext = 1 << 0,
-    BSKeyboardControlDone = 1 << 1
+    BSKeyboardControlCancel = 1 << 1,
+    BSKeyboardControlDone = 1 << 2
 } BSKeyboardControl;
 
 /**
@@ -97,6 +98,16 @@ typedef enum
 @property (nonatomic, strong) NSString *nextTitle;
 
 /**
+ *  Title of the cancel button. If this is not set, a default localized title will be used.
+ */
+@property (nonatomic, strong) NSString *cancelTitle;
+
+/**
+ *  Tint color of the cancel button.
+ */
+@property (nonatomic, strong) UIColor *cancelTintColor;
+
+/**
  *  Title of the done button. If this is not set, a default localized title will be used.
  */
 @property (nonatomic, strong) NSString *doneTitle;
@@ -125,6 +136,12 @@ typedef enum
  *  @param direction Direction in which the field was selected.
  */
 - (void)keyboardControls:(BSKeyboardControls *)keyboardControls selectedField:(UIView *)field inDirection:(BSKeyboardControlsDirection)direction;
+
+/**
+ *  Called when the cancel button was pressed.
+ *  @param keyboardControls The instance of keyboard controls.
+ */
+- (void)keyboardControlsCancelPressed:(BSKeyboardControls *)keyboardControls;
 
 /**
  *  Called when the done button was pressed.

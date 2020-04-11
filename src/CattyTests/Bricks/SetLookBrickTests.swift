@@ -20,59 +20,36 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "WaitUntilBrick.h"
-#import "Script.h"
+import XCTest
 
-@interface WaitUntilBrick()
-@end
+@testable import Pocket_Code
 
-@implementation WaitUntilBrick
+final class SetLookBrickTests: XCTestCase {
 
-- (kBrickCategoryType)category
-{
-    return kControlBrick;
+    var object: SpriteObject!
+    var project: Project!
+    var spriteNode: CBSpriteNode!
+
+    override func setUp() {
+
+        object = SpriteObject()
+        project = Project.defaultProject(withName: "a", projectID: "1")
+        spriteNode = CBSpriteNode(spriteObject: object)
+        object.spriteNode = spriteNode
+        object.project = project
+
+    }
+
+    func testMutableCopy() {
+        let brick = SetLookBrick()
+        let look = Look(name: "lookToCopy", andPath: "look")
+        brick.look = look
+
+        let copiedBrick: SetLookBrick = brick.mutableCopy(with: CBMutableCopyContext()) as! SetLookBrick
+
+        XCTAssertTrue(brick.isEqual(to: copiedBrick))
+        XCTAssertTrue(brick.look.isEqual(to: copiedBrick.look))
+        XCTAssertTrue(copiedBrick.look === brick.look)
+    }
+
 }
-
-- (BOOL)isAnimateable
-{
-    return YES;
-}
-
-- (Formula*)formulaForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
-{
-    return self.waitCondition;
-}
-
-- (void)setFormula:(Formula*)formula forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
-{
-    self.waitCondition = formula;
-}
-
-- (BOOL)allowsStringFormula
-{
-    return NO;
-}
-
-- (NSArray*)getFormulas
-{
-    return @[self.waitCondition];
-}
-
-- (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
-{
-    self.waitCondition = [[Formula alloc] initWithInteger:1];
-}
-
-#pragma mark - Description
-- (NSString*)description
-{
-    return [NSString stringWithFormat:@"WaitForCondition"];
-}
-
-#pragma mark - Resources
-- (NSInteger)getRequiredResources
-{
-    return [self.waitCondition getRequiredResources];
-}
-
-@end

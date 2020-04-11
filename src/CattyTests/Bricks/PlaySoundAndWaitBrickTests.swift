@@ -20,33 +20,23 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "SetBackgroundBrickCell.h"
+import XCTest
 
-@interface SetBackgroundBrickCell ()
-@property (nonatomic, strong) UILabel *textLabel;
-@end
+@testable import Pocket_Code
 
-@implementation SetBackgroundBrickCell
+final class PlaySoundAndWaitBrickTests: XCTestCase {
 
-+ (CGFloat)cellHeight
-{
-    return kBrickHeight2h;
+    func testMutableCopy() {
+        let brick = PlaySoundAndWaitBrick()
+        let sound = Sound(name: "soundToCopy", fileName: "sound")
+        brick.sound = sound
+
+        let copiedBrick: PlaySoundAndWaitBrick = brick.mutableCopy(with: CBMutableCopyContext()) as! PlaySoundAndWaitBrick
+
+        XCTAssertTrue(brick.isEqual(to: copiedBrick))
+        XCTAssertFalse(brick === copiedBrick)
+        XCTAssertTrue(brick.sound.isEqual(to: copiedBrick.sound))
+        XCTAssertTrue(brick.sound === copiedBrick.sound)
+    }
+
 }
-
-- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
-{
-    self.textLabel = inlineViewSubViews[0];
-    self.lookComboBoxView = inlineViewSubViews[1];
-}
-
-- (NSArray<NSString*>*)parameters
-{
-    return [[NSArray alloc] initWithObjects:@"{LOOK}", nil];
-}
-
-- (NSString*)brickTitleForBackground:(BOOL)isBackground andInsertionScreen:(BOOL)isInsertion
-{
-    return [kLocalizedSetBackground stringByAppendingString:@"\n%@"];
-}
-
-@end

@@ -49,4 +49,25 @@ final class RepeatUntilBrickTests: XCTestCase {
         brick.repeatCondition = Formula(double: 1)
         XCTAssertFalse(brick.checkCondition(formulaInterpreter: formulaInterpreter))
     }
+
+    func testMutableCopy() {
+        brick.repeatCondition = Formula.init(double: 0)
+
+        var copiedBrick: RepeatUntilBrick = brick.mutableCopy(with: CBMutableCopyContext(), andErrorReporting: true) as! RepeatUntilBrick
+
+        XCTAssertTrue(brick.isEqual(to: copiedBrick))
+        XCTAssertFalse(brick === copiedBrick)
+        XCTAssertTrue(brick.repeatCondition.isEqual(to: copiedBrick.repeatCondition))
+        XCTAssertFalse(brick.repeatCondition === copiedBrick.repeatCondition)
+
+        brick.repeatCondition = Formula.init(double: 1)
+        copiedBrick = brick.mutableCopy(with: CBMutableCopyContext(), andErrorReporting: true) as! RepeatUntilBrick
+
+        XCTAssertTrue(brick.repeatCondition.isEqual(to: copiedBrick.repeatCondition))
+
+        brick.repeatCondition = Formula.init(double: 0)
+
+        XCTAssertFalse(brick.repeatCondition.isEqual(to: copiedBrick.repeatCondition))
+    }
+
 }
