@@ -79,7 +79,7 @@ class MediaLibraryCollectionViewDataSource: NSObject, UICollectionViewDataSource
     }
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return self.items.count
+        self.items.count
     }
 
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -91,7 +91,7 @@ class MediaLibraryCollectionViewDataSource: NSObject, UICollectionViewDataSource
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.items[section].count
+        self.items[section].count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -315,7 +315,7 @@ extension Array where Iterator.Element == [MediaItem] {
 
     subscript(indexPath: IndexPath) -> MediaItem {
         get {
-            return self[indexPath.section][indexPath.item]
+            self[indexPath.section][indexPath.item]
         }
         set {
             self[indexPath.section][indexPath.item] = newValue

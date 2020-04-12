@@ -42,9 +42,9 @@ class SelectButton: UIButton {
     }
 
     override func backgroundRect(forBounds bounds: CGRect) -> CGRect {
-        return CGRect(x: self.frame.width / 4,
-                      y: self.frame.height / 4,
-                      width: self.frame.width / 2,
-                      height: self.frame.height / 2)
+        CGRect(x: self.frame.width / 4,
+               y: self.frame.height / 4,
+               width: self.frame.width / 2,
+               height: self.frame.height / 2)
     }
 }

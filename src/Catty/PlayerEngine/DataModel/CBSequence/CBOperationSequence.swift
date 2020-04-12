@@ -36,7 +36,7 @@ final class CBOperationSequence: CBSequenceProtocol, CBSequenceVisitProtocol {
     // MARK: - Operations
 
     func isEmpty() -> Bool {
-        return operationList.isEmpty
+        operationList.isEmpty
     }
 
     func addOperation(_ operation: CBOperation) {

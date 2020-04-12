@@ -30,11 +30,11 @@ class NumberOfItemsFunction: SingleParameterDoubleFunction {
     static let position = 50
 
     func tag() -> String {
-        return type(of: self).tag
+        type(of: self).tag
     }
 
     func firstParameter() -> FunctionParameter {
-        return .list(defaultValue: "list name")
+        .list(defaultValue: "list name")
     }
 
     func value(parameter: AnyObject?) -> Double {
@@ -47,6 +47,6 @@ class NumberOfItemsFunction: SingleParameterDoubleFunction {
     }
 
     func formulaEditorSections() -> [FormulaEditorSection] {
-        return [.math(position: (type(of: self).position))]
+        [.math(position: (type(of: self).position))]
     }
 }

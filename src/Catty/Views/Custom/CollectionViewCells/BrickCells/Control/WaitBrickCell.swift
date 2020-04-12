@@ -37,7 +37,7 @@ import Foundation
     }
 
     static func cellHeight() -> CGFloat {
-        return CGFloat(kBrickHeight1h)
+        CGFloat(kBrickHeight1h)
     }
 
     override func hookUpSubViews(_ inlineViewSubViews: [Any]!) {
@@ -59,6 +59,6 @@ import Foundation
     }
 
     override func parameters() -> [String] {
-        return ["{FLOAT;range=(0.0f,inf)}"]
+        ["{FLOAT;range=(0.0f,inf)}"]
     }
 }

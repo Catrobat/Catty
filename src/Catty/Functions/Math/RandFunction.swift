@@ -29,15 +29,15 @@ class RandFunction: DoubleParameterDoubleFunction {
     static let position = 10
 
     func tag() -> String {
-        return type(of: self).tag
+        type(of: self).tag
     }
 
     func firstParameter() -> FunctionParameter {
-        return .number(defaultValue: 1)
+        .number(defaultValue: 1)
     }
 
     func secondParameter() -> FunctionParameter {
-        return .number(defaultValue: 6)
+        .number(defaultValue: 6)
     }
 
     func value(firstParameter: AnyObject?, secondParameter: AnyObject?) -> Double {
@@ -69,6 +69,6 @@ class RandFunction: DoubleParameterDoubleFunction {
     }
 
     func formulaEditorSections() -> [FormulaEditorSection] {
-        return [.math(position: type(of: self).position)]
+        [.math(position: type(of: self).position)]
     }
 }

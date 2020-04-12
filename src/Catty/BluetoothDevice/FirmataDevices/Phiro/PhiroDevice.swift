@@ -58,8 +58,8 @@ class PhiroDevice: FirmataDevice, PhiroProtocol {
     private let minSensorPin: Int = 0
     private let maxSensorPin: Int = 5
 
-    override var rxUUID: CBUUID { return CBUUID.init(string: "00001101-0000-1000-8000-00805F9B34FB") }
-    override var txUUID: CBUUID { return CBUUID.init(string: "00001101-0000-1000-8000-00805F9B34FB") }
+    override var rxUUID: CBUUID { CBUUID.init(string: "00001101-0000-1000-8000-00805F9B34FB") }
+    override var txUUID: CBUUID { CBUUID.init(string: "00001101-0000-1000-8000-00805F9B34FB") }
 
     internal let phiroHelper = PhiroHelper()
     internal var toneTimer = Timer()
@@ -68,11 +68,11 @@ class PhiroDevice: FirmataDevice, PhiroProtocol {
     // MARK: override
 
     override internal func getName() -> String {
-        return "Phiro"
+        "Phiro"
     }
 
     override internal func getBluetoothDeviceUUID() -> CBUUID {
-        return PHIRO_UUID
+        PHIRO_UUID
     }
     // MARK: Phiro Protocol
 
@@ -217,27 +217,27 @@ class PhiroDevice: FirmataDevice, PhiroProtocol {
     // MARK: Sensor Values
 
     private func getFrontLeftSensor() -> Int {
-        return phiroHelper.frontLeftSensor
+        phiroHelper.frontLeftSensor
     }
 
     private func getFrontRightSensor() -> Int {
-        return phiroHelper.frontRightSensor
+        phiroHelper.frontRightSensor
     }
 
     private func getSideLeftSensor() -> Int {
-        return phiroHelper.sideLeftSensor
+        phiroHelper.sideLeftSensor
     }
 
     private func getSideRightSensor() -> Int {
-        return phiroHelper.sideRightSensor
+        phiroHelper.sideRightSensor
     }
 
     private func getBottomLeftSensor() -> Int {
-        return phiroHelper.bottomLeftSensor
+        phiroHelper.bottomLeftSensor
     }
 
     private func getBottomRightSensor() -> Int {
-        return phiroHelper.bottomRightSensor
+        phiroHelper.bottomRightSensor
     }
 
     // MARK: Firmata Delegate override

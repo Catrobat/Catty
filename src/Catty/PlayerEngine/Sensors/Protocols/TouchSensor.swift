@@ -37,6 +37,6 @@ extension TouchSensor {
     }
 
     func standardizedRawValue(for spriteObject: SpriteObject) -> Double {
-        return convertToStandardized(rawValue: type(of: self).defaultRawValue, for: spriteObject)
+        convertToStandardized(rawValue: type(of: self).defaultRawValue, for: spriteObject)
     }
 }

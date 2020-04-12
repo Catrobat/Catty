@@ -48,14 +48,14 @@ final class ZeroParameterDoubleFunctionMock: ZeroParameterDoubleFunction {
     }
 
     func tag() -> String {
-        return self.mockedTag
+        self.mockedTag
     }
 
     func formulaEditorSections() -> [FormulaEditorSection] {
-        return self.mockedSections
+        self.mockedSections
     }
 
     func value() -> Double {
-        return self.mockedValue
+        self.mockedValue
     }
 }

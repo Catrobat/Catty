@@ -33,6 +33,6 @@ extension RepeatUntilBrick: CBConditionProtocol {
     }
 
     func conditionFormulas() -> [Formula] {
-        return self.getFormulas()
+        self.getFormulas()
     }
 }

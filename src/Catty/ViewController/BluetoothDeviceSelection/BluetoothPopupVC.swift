@@ -60,7 +60,7 @@ import UIKit
     }
 
     override func segmentedPager(_ segmentedPager: MXSegmentedPager, titleForSectionAt index: Int) -> String {
-        return [klocalizedBluetoothKnown, klocalizedBluetoothSearch][index];//
+        [klocalizedBluetoothKnown, klocalizedBluetoothSearch][index];//
     }
 
     override func segmentedPager(_ segmentedPager: MXSegmentedPager, viewControllerForPageAt index: Int) -> UIViewController {

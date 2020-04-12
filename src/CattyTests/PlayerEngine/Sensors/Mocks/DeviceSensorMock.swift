@@ -53,10 +53,10 @@ final class DeviceSensorMock: SensorMock, DeviceSensor {
     }
 
     func rawValue() -> Double {
-        return mockedValue
+        mockedValue
     }
 
     func convertToStandardized(rawValue: Double) -> Double {
-        return rawValue
+        rawValue
     }
 }

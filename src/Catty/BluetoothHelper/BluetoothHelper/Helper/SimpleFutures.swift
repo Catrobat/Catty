@@ -56,7 +56,7 @@ extension Optional {
 }
 
 public func flatmap<T, M>(_ maybe: T?, mapping: (T) -> M?) -> M? {
-    return maybe.flatmap(mapping)
+    maybe.flatmap(mapping)
 }
 
 public func foreach<T>(_ maybe: T?, apply: (T) -> Void) {
@@ -64,7 +64,7 @@ public func foreach<T>(_ maybe: T?, apply: (T) -> Void) {
 }
 
 public func filter<T>(_ maybe: T?, predicate: (T) -> Bool) -> T? {
-    return maybe.filter(predicate)
+    maybe.filter(predicate)
 }
 
 public func forcomp<T, U>(_ f: T?, g: U?, apply: (T, U) -> Void) {
@@ -94,7 +94,7 @@ public func forcomp<T, U, V>(_ f: T?, g: U?, h: V?, apply: (T, U, V) -> Void) {
 }
 
 public func forcomp<T, U, V>(_ f: T?, g: U?, yield: (T, U) -> V) -> V? {
-    return f.flatmap {fvalue in
+    f.flatmap {fvalue in
         g.map {gvalue in
             yield(fvalue, gvalue)
         }
@@ -102,7 +102,7 @@ public func forcomp<T, U, V>(_ f: T?, g: U?, yield: (T, U) -> V) -> V? {
 }
 
 public func forcomp<T, U, V, W>(_ f: T?, g: U?, h: V?, yield: (T, U, V) -> W) -> W? {
-    return f.flatmap {fvalue in
+    f.flatmap {fvalue in
         g.flatmap {gvalue in
             h.map {hvalue in
                 yield(fvalue, gvalue, hvalue)
@@ -134,7 +134,7 @@ public func forcomp<T, U, V>(_ f: T?, g: U?, h: V?, filter: (T, U, V) -> Bool, a
 }
 
 public func forcomp<T, U, V>(_ f: T?, g: U?, filter: (T, U) -> Bool, yield: (T, U) -> V) -> V? {
-    return f.flatmap {fvalue in
+    f.flatmap {fvalue in
         g.filter {gvalue in
             filter(fvalue, gvalue)
         }.map {gvalue in
@@ -144,7 +144,7 @@ public func forcomp<T, U, V>(_ f: T?, g: U?, filter: (T, U) -> Bool, yield: (T, 
 }
 
 public func forcomp<T, U, V, W>(_ f: T?, g: U?, h: V?, filter: (T, U, V) -> Bool, yield: (T, U, V) -> W) -> W? {
-    return f.flatmap {fvalue in
+    f.flatmap {fvalue in
         g.flatmap {gvalue in
             h.filter {hvalue in
                 filter(fvalue, gvalue, hvalue)
@@ -308,7 +308,7 @@ public func forcomp<T, U, V>(_ f: Try<T>, g: Try<U>, h: Try<V>, apply: (T, U, V)
 }
 
 public func forcomp<T, U, V>(_ f: Try<T>, g: Try<U>, yield: (T, U) -> V) -> Try<V> {
-    return f.flatmap {fvalue in
+    f.flatmap {fvalue in
         g.map {gvalue in
             yield(fvalue, gvalue)
         }
@@ -316,7 +316,7 @@ public func forcomp<T, U, V>(_ f: Try<T>, g: Try<U>, yield: (T, U) -> V) -> Try<
 }
 
 public func forcomp<T, U, V, W>(_ f: Try<T>, g: Try<U>, h: Try<V>, yield: (T, U, V) -> W) -> Try<W> {
-    return f.flatmap {fvalue in
+    f.flatmap {fvalue in
         g.flatmap {gvalue in
             h.map {hvalue in
                 yield(fvalue, gvalue, hvalue)
@@ -348,7 +348,7 @@ public func forcomp<T, U, V>(_ f: Try<T>, g: Try<U>, h: Try<V>, filter: (T, U, V
 }
 
 public func forcomp<T, U, V>(_ f: Try<T>, g: Try<U>, filter: (T, U) -> Bool, yield: (T, U) -> V) -> Try<V> {
-    return f.flatmap {fvalue in
+    f.flatmap {fvalue in
         g.filter {gvalue in
             filter(fvalue, gvalue)
         }.map {gvalue in
@@ -358,7 +358,7 @@ public func forcomp<T, U, V>(_ f: Try<T>, g: Try<U>, filter: (T, U) -> Bool, yie
 }
 
 public func forcomp<T, U, V, W>(_ f: Try<T>, g: Try<U>, h: Try<V>, filter: (T, U, V) -> Bool, yield: (T, U, V) -> W) -> Try<W> {
-    return f.flatmap {fvalue in
+    f.flatmap {fvalue in
         g.flatmap {gvalue in
             h.filter {hvalue in
                 filter(fvalue, gvalue, hvalue)
@@ -421,7 +421,7 @@ public struct Queue {
     }
 
     public func sync<T>(_ block:() -> T) -> T {
-        return self.queue.sync {
+        self.queue.sync {
             block()
         }
     }
@@ -450,7 +450,7 @@ open class Promise<T> {
     public let future = Future<T>()
 
     open var completed: Bool {
-        return self.future.completed
+        self.future.completed
     }
 
     public init() {
@@ -491,7 +491,7 @@ open class Future<T> {
     private var saveCompletes = [OnComplete]()
 
     open var completed: Bool {
-        return self.result != nil
+        self.result != nil
     }
 
     public init() {
@@ -546,7 +546,7 @@ open class Future<T> {
     }
 
     open func onFailure(_ failure:@escaping (NSError) -> Void) {
-        return self.onFailure(self.defaultExecutionContext, failure: failure)
+        self.onFailure(self.defaultExecutionContext, failure: failure)
     }
 
     open func onFailure(_ executionContext: ExecutionContext, failure:@escaping (NSError) -> Void) {
@@ -561,7 +561,7 @@ open class Future<T> {
     }
 
     open func map<M>(_ mapping:@escaping (T) -> Try<M>) -> Future<M> {
-        return map(self.defaultExecutionContext, mapping: mapping)
+        map(self.defaultExecutionContext, mapping: mapping)
     }
 
     open func map<M>(_ executionContext: ExecutionContext, mapping:@escaping (T) -> Try<M>) -> Future<M> {
@@ -573,7 +573,7 @@ open class Future<T> {
     }
 
     open func flatmap<M>(_ mapping:@escaping (T) -> Future<M>) -> Future<M> {
-        return self.flatmap(self.defaultExecutionContext, mapping: mapping)
+        self.flatmap(self.defaultExecutionContext, mapping: mapping)
     }
 
     open func flatmap<M>(_ executionContext: ExecutionContext, mapping:@escaping (T) -> Future<M>) -> Future<M> {
@@ -590,7 +590,7 @@ open class Future<T> {
     }
 
     open func andThen(_ complete:@escaping (Try<T>) -> Void) -> Future<T> {
-        return self.andThen(self.defaultExecutionContext, complete: complete)
+        self.andThen(self.defaultExecutionContext, complete: complete)
     }
 
     open func andThen(_ executionContext: ExecutionContext, complete:@escaping (Try<T>) -> Void) -> Future<T> {
@@ -603,7 +603,7 @@ open class Future<T> {
     }
 
     open func recover(_ recovery: @escaping (NSError) -> Try<T>) -> Future<T> {
-        return self.recover(self.defaultExecutionContext, recovery: recovery)
+        self.recover(self.defaultExecutionContext, recovery: recovery)
     }
 
     open func recover(_ executionContext: ExecutionContext, recovery:@escaping (NSError) -> Try<T>) -> Future<T> {
@@ -615,7 +615,7 @@ open class Future<T> {
     }
 
     open func recoverWith(_ recovery:@escaping (NSError) -> Future<T>) -> Future<T> {
-        return self.recoverWith(self.defaultExecutionContext, recovery: recovery)
+        self.recoverWith(self.defaultExecutionContext, recovery: recovery)
     }
 
     open func recoverWith(_ executionContext: ExecutionContext, recovery:@escaping (NSError) -> Future<T>) -> Future<T> {
@@ -632,7 +632,7 @@ open class Future<T> {
     }
 
     open func withFilter(_ filter:@escaping (T) -> Bool) -> Future<T> {
-        return self.withFilter(self.defaultExecutionContext, filter: filter)
+        self.withFilter(self.defaultExecutionContext, filter: filter)
     }
 
     open func withFilter(_ executionContext: ExecutionContext, filter:@escaping (T) -> Bool) -> Future<T> {
@@ -678,35 +678,35 @@ open class Future<T> {
 
     // future stream extensions
     open func flatmap<M>(_ capacity: Int, mapping:@escaping (T) -> FutureStream<M>) -> FutureStream<M> {
-        return self.flatMapStream(capacity, executionContext: self.defaultExecutionContext, mapping: mapping)
+        self.flatMapStream(capacity, executionContext: self.defaultExecutionContext, mapping: mapping)
     }
 
     open func flatmap<M>(_ mapping:@escaping (T) -> FutureStream<M>) -> FutureStream<M> {
-        return self.flatMapStream(nil, executionContext: self.defaultExecutionContext, mapping: mapping)
+        self.flatMapStream(nil, executionContext: self.defaultExecutionContext, mapping: mapping)
     }
 
     open func flatmap<M>(_ capacity: Int, executionContext: ExecutionContext, mapping:@escaping (T) -> FutureStream<M>) -> FutureStream<M> {
-        return self.flatMapStream(capacity, executionContext: self.defaultExecutionContext, mapping: mapping)
+        self.flatMapStream(capacity, executionContext: self.defaultExecutionContext, mapping: mapping)
     }
 
     open func flatmap<M>(_ executionContext: ExecutionContext, mapping:@escaping (T) -> FutureStream<M>) -> FutureStream<M> {
-        return self.flatMapStream(nil, executionContext: self.defaultExecutionContext, mapping: mapping)
+        self.flatMapStream(nil, executionContext: self.defaultExecutionContext, mapping: mapping)
     }
 
     open func recoverWith(_ recovery:@escaping (NSError) -> FutureStream<T>) -> FutureStream<T> {
-        return self.recoverWithStream(nil, executionContext: self.defaultExecutionContext, recovery: recovery)
+        self.recoverWithStream(nil, executionContext: self.defaultExecutionContext, recovery: recovery)
     }
 
     open func recoverWith(_ capacity: Int, recovery:@escaping (NSError) -> FutureStream<T>) -> FutureStream<T> {
-        return self.recoverWithStream(capacity, executionContext: self.defaultExecutionContext, recovery: recovery)
+        self.recoverWithStream(capacity, executionContext: self.defaultExecutionContext, recovery: recovery)
     }
 
     open func recoverWith(_ executionContext: ExecutionContext, recovery:@escaping (NSError) -> FutureStream<T>) -> FutureStream<T> {
-        return self.recoverWithStream(nil, executionContext: executionContext, recovery: recovery)
+        self.recoverWithStream(nil, executionContext: executionContext, recovery: recovery)
     }
 
     open func recoverWith(_ capacity: Int, executionContext: ExecutionContext, recovery:@escaping (NSError) -> FutureStream<T>) -> FutureStream<T> {
-        return self.recoverWithStream(capacity, executionContext: executionContext, recovery: recovery)
+        self.recoverWithStream(capacity, executionContext: executionContext, recovery: recovery)
     }
 
     internal func completeWith(_ stream: FutureStream<T>) {
@@ -750,7 +750,7 @@ open class Future<T> {
 //////////////////////////////////////////////////////////////////////////////
 // create futures
 public func future<T>(_ computeResult:@escaping () -> Try<T>) -> Future<T> {
-    return future(QueueContext.global, calculateResult: computeResult)
+    future(QueueContext.global, calculateResult: computeResult)
 }
 
 public func future<T>(_ executionContext: ExecutionContext, calculateResult:@escaping () -> Try<T>) -> Future<T> {
@@ -762,7 +762,7 @@ public func future<T>(_ executionContext: ExecutionContext, calculateResult:@esc
 }
 
 public func forcomp<T, U>(_ f: Future<T>, g: Future<U>, apply:@escaping (T, U) -> Void) {
-    return forcomp(f.defaultExecutionContext, f: f, g: g, apply: apply)
+    forcomp(f.defaultExecutionContext, f: f, g: g, apply: apply)
 }
 
 public func forcomp<T, U>(_ executionContext: ExecutionContext, f: Future<T>, g: Future<U>, apply:@escaping (T, U) -> Void) {
@@ -776,7 +776,7 @@ public func forcomp<T, U>(_ executionContext: ExecutionContext, f: Future<T>, g:
 //////////////////////////////////////////////////////////////////////////////
 // for comprehensions
 public func forcomp<T, U>(_ f: Future<T>, g: Future<U>, filter:@escaping (T, U) -> Bool, apply:@escaping (T, U) -> Void) {
-    return forcomp(f.defaultExecutionContext, f: f, g: g, filter: filter, apply: apply)
+    forcomp(f.defaultExecutionContext, f: f, g: g, filter: filter, apply: apply)
 }
 
 public func forcomp<T, U>(_ executionContext: ExecutionContext, f: Future<T>, g: Future<U>, filter:@escaping (T, U) -> Bool, apply:@escaping (T, U) -> Void) {
@@ -790,7 +790,7 @@ public func forcomp<T, U>(_ executionContext: ExecutionContext, f: Future<T>, g:
 }
 
 public func forcomp<T, U, V>(_ f: Future<T>, g: Future<U>, h: Future<V>, apply:@escaping (T, U, V) -> Void) {
-    return forcomp(f.defaultExecutionContext, f: f, g: g, h: h, apply: apply)
+    forcomp(f.defaultExecutionContext, f: f, g: g, h: h, apply: apply)
 }
 
 public func forcomp<T, U, V>(_ executionContext: ExecutionContext, f: Future<T>, g: Future<U>, h: Future<V>, apply:@escaping (T, U, V) -> Void) {
@@ -804,7 +804,7 @@ public func forcomp<T, U, V>(_ executionContext: ExecutionContext, f: Future<T>,
 }
 
 public func forcomp<T, U, V>(_ f: Future<T>, g: Future<U>, h: Future<V>, filter:@escaping (T, U, V) -> Bool, apply:@escaping (T, U, V) -> Void) {
-    return forcomp(f.defaultExecutionContext, f: f, g: g, h: h, filter: filter, apply: apply)
+    forcomp(f.defaultExecutionContext, f: f, g: g, h: h, filter: filter, apply: apply)
 }
 
 public func forcomp<T, U, V>(_ executionContext: ExecutionContext, f: Future<T>, g: Future<U>, h: Future<V>, filter:@escaping (T, U, V) -> Bool, apply:@escaping (T, U, V) -> Void) {
@@ -820,11 +820,11 @@ public func forcomp<T, U, V>(_ executionContext: ExecutionContext, f: Future<T>,
 }
 
 public func forcomp<T, U, V>(_ f: Future<T>, g: Future<U>, yield:@escaping (T, U) -> Try<V>) -> Future<V> {
-    return forcomp(f.defaultExecutionContext, f: f, g: g, yield: yield)
+    forcomp(f.defaultExecutionContext, f: f, g: g, yield: yield)
 }
 
 public func forcomp<T, U, V>(_ executionContext: ExecutionContext, f: Future<T>, g: Future<U>, yield:@escaping (T, U) -> Try<V>) -> Future<V> {
-    return f.flatmap(executionContext) {fvalue in
+    f.flatmap(executionContext) {fvalue in
         g.map(executionContext) {gvalue in
             yield(fvalue, gvalue)
         }
@@ -832,11 +832,11 @@ public func forcomp<T, U, V>(_ executionContext: ExecutionContext, f: Future<T>,
 }
 
 public func forcomp<T, U, V>(_ f: Future<T>, g: Future<U>, filter:@escaping (T, U) -> Bool, yield:@escaping (T, U) -> Try<V>) -> Future<V> {
-    return forcomp(f.defaultExecutionContext, f: f, g: g, filter: filter, yield: yield)
+    forcomp(f.defaultExecutionContext, f: f, g: g, filter: filter, yield: yield)
 }
 
 public func forcomp<T, U, V>(_ executionContext: ExecutionContext, f: Future<T>, g: Future<U>, filter:@escaping (T, U) -> Bool, yield:@escaping (T, U) -> Try<V>) -> Future<V> {
-    return f.flatmap(executionContext) {fvalue in
+    f.flatmap(executionContext) {fvalue in
         g.withFilter(executionContext) {gvalue in
             filter(fvalue, gvalue)
         }.map(executionContext) {gvalue in
@@ -846,11 +846,11 @@ public func forcomp<T, U, V>(_ executionContext: ExecutionContext, f: Future<T>,
 }
 
 public func forcomp<T, U, V, W>(_ f: Future<T>, g: Future<U>, h: Future<V>, yield:@escaping (T, U, V) -> Try<W>) -> Future<W> {
-    return forcomp(f.defaultExecutionContext, f: f, g: g, h: h, yield: yield)
+    forcomp(f.defaultExecutionContext, f: f, g: g, h: h, yield: yield)
 }
 
 public func forcomp<T, U, V, W>(_ executionContext: ExecutionContext, f: Future<T>, g: Future<U>, h: Future<V>, yield:@escaping (T, U, V) -> Try<W>) -> Future<W> {
-    return f.flatmap(executionContext) {fvalue in
+    f.flatmap(executionContext) {fvalue in
         g.flatmap(executionContext) {gvalue in
             h.map(executionContext) {hvalue in
                 yield(fvalue, gvalue, hvalue)
@@ -860,11 +860,11 @@ public func forcomp<T, U, V, W>(_ executionContext: ExecutionContext, f: Future<
 }
 
 public func forcomp<T, U, V, W>(_ f: Future<T>, g: Future<U>, h: Future<V>, filter:@escaping (T, U, V) -> Bool, yield:@escaping (T, U, V) -> Try<W>) -> Future<W> {
-    return forcomp(f.defaultExecutionContext, f: f, g: g, h: h, filter: filter, yield: yield)
+    forcomp(f.defaultExecutionContext, f: f, g: g, h: h, filter: filter, yield: yield)
 }
 
 public func forcomp<T, U, V, W>(_ executionContext: ExecutionContext, f: Future<T>, g: Future<U>, h: Future<V>, filter:@escaping (T, U, V) -> Bool, yield:@escaping (T, U, V) -> Try<W>) -> Future<W> {
-    return f.flatmap(executionContext) {fvalue in
+    f.flatmap(executionContext) {fvalue in
         g.flatmap(executionContext) {gvalue in
             h.withFilter(executionContext) {hvalue in
                 filter(fvalue, gvalue, hvalue)
@@ -927,7 +927,7 @@ open class FutureStream<T> {
     internal let defaultExecutionContext: ExecutionContext = QueueContext.main
 
     open var count: Int {
-        return futures.count
+        futures.count
     }
 
     public init(capacity: Int?=nil) {
@@ -993,7 +993,7 @@ open class FutureStream<T> {
     }
 
     open func map<M>(_ mapping:@escaping (T) -> Try<M>) -> FutureStream<M> {
-        return self.map(self.defaultExecutionContext, mapping: mapping)
+        self.map(self.defaultExecutionContext, mapping: mapping)
     }
 
     open func map<M>(_ executionContext: ExecutionContext, mapping:@escaping (T) -> Try<M>) -> FutureStream<M> {
@@ -1005,7 +1005,7 @@ open class FutureStream<T> {
     }
 
     open func flatmap<M>(_ mapping:@escaping (T) -> FutureStream<M>) -> FutureStream<M> {
-        return self.flatMap(self.defaultExecutionContext, mapping: mapping)
+        self.flatMap(self.defaultExecutionContext, mapping: mapping)
     }
 
     open func flatMap<M>(_ executionContext: ExecutionContext, mapping:@escaping (T) -> FutureStream<M>) -> FutureStream<M> {
@@ -1022,7 +1022,7 @@ open class FutureStream<T> {
     }
 
     open func andThen(_ complete:@escaping (Try<T>) -> Void) -> FutureStream<T> {
-        return self.andThen(self.defaultExecutionContext, complete: complete)
+        self.andThen(self.defaultExecutionContext, complete: complete)
     }
 
     open func andThen(_ executionContext: ExecutionContext, complete:@escaping (Try<T>) -> Void) -> FutureStream<T> {
@@ -1035,7 +1035,7 @@ open class FutureStream<T> {
     }
 
     open func recover(_ recovery:@escaping (NSError) -> Try<T>) -> FutureStream<T> {
-        return self.recover(self.defaultExecutionContext, recovery: recovery)
+        self.recover(self.defaultExecutionContext, recovery: recovery)
     }
 
     open func recover(_ executionContext: ExecutionContext, recovery:@escaping (NSError) -> Try<T>) -> FutureStream<T> {
@@ -1047,7 +1047,7 @@ open class FutureStream<T> {
     }
 
     open func recoverWith(_ recovery:@escaping (NSError) -> FutureStream<T>) -> FutureStream<T> {
-        return self.recoverWith(self.defaultExecutionContext, recovery: recovery)
+        self.recoverWith(self.defaultExecutionContext, recovery: recovery)
     }
 
     open func recoverWith(_ executionContext: ExecutionContext, recovery:@escaping (NSError) -> FutureStream<T>) -> FutureStream<T> {
@@ -1064,7 +1064,7 @@ open class FutureStream<T> {
     }
 
     open func withFilter(_ filter:@escaping (T) -> Bool) -> FutureStream<T> {
-        return self.withFilter(self.defaultExecutionContext, filter: filter)
+        self.withFilter(self.defaultExecutionContext, filter: filter)
     }
 
     open func withFilter(_ executionContext: ExecutionContext, filter:@escaping (T) -> Bool) -> FutureStream<T> {
@@ -1105,7 +1105,7 @@ open class FutureStream<T> {
 
     // future stream extensions
     open func flatmap<M>(_ mapping:@escaping (T) -> Future<M>) -> FutureStream<M> {
-        return self.flatmap(self.defaultExecutionContext, mapping: mapping)
+        self.flatmap(self.defaultExecutionContext, mapping: mapping)
     }
 
     open func flatmap<M>(_ executionContext: ExecutionContext, mapping:@escaping (T) -> Future<M>) -> FutureStream<M> {
@@ -1122,7 +1122,7 @@ open class FutureStream<T> {
     }
 
     open func recoverWith(_ recovery:@escaping (NSError) -> Future<T>) -> FutureStream<T> {
-        return self.recoverWith(self.defaultExecutionContext, recovery: recovery)
+        self.recoverWith(self.defaultExecutionContext, recovery: recovery)
     }
 
     open func recoverWith(_ executionContext: ExecutionContext, recovery:@escaping (NSError) -> Future<T>) -> FutureStream<T> {

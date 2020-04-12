@@ -28,7 +28,7 @@ final class TimeHourSensorMock: TimeHourSensor {
     var mockDate = Date()
 
     override func date() -> Date {
-        return mockDate
+        mockDate
     }
 }
 

@@ -20,11 +20,15 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Bohr/Bohr.h>
+import Nimble
 
-@interface SettingsTableViewController : BOTableViewController
+public func contain<T: Equatable>(_ expectedNotificationName: Notification.Name, expectedObject: T) -> Predicate<[Notification]> {
+    Predicate.define("contain " + stringify(expectedNotificationName) + " with object " + stringify(expectedObject)) { actualExpression, msg in
+        guard let actualNotifications = try actualExpression.evaluate() else {
+            return PredicateResult(status: .fail, message: msg)
+        }
 
-- (void)changeFirebaseCrashReportSettings:(UISwitch *)sender;
-
-@end
-
+        let matches = actualNotifications.filter { $0.name == expectedNotificationName && ($0.object as? T) == expectedObject }
+        return PredicateResult(bool: !matches.isEmpty, message: msg)
+    }
+}

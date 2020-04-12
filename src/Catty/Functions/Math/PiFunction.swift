@@ -29,14 +29,14 @@ class PiFunction: ZeroParameterDoubleFunction {
     static let position = 280
 
     func tag() -> String {
-        return type(of: self).tag
+        type(of: self).tag
     }
 
     func value() -> Double {
-        return Double.pi
+        Double.pi
     }
 
     func formulaEditorSections() -> [FormulaEditorSection] {
-        return [.math(position: type(of: self).position)]
+        [.math(position: type(of: self).position)]
     }
 }

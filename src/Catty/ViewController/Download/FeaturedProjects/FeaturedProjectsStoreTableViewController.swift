@@ -102,7 +102,7 @@ class FeaturedProjectsStoreTableViewController: UITableViewController, SelectedF
     }
 
     private func calcCellHeightByAspectRatio(currentFrameWidth: CGFloat) -> CGFloat {
-        return ((currentFrameWidth / aspectRatioWidth) * aspectRatioHeight) - 2
+        ((currentFrameWidth / aspectRatioWidth) * aspectRatioHeight) - 2
     }
 
     private func fetchData() {

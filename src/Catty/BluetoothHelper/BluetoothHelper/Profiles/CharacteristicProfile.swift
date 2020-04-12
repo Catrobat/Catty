@@ -35,7 +35,7 @@ open class CharacteristicProfile {
     internal var afterDiscoveredPromise: StreamPromise<Characteristic>!
 
     open var stringValues: [String] {
-        return []
+        []
     }
 
     public init(uuid: String,
@@ -64,19 +64,19 @@ open class CharacteristicProfile {
     }
 
     open func propertyEnabled(_ property: CBCharacteristicProperties) -> Bool {
-        return (self.properties.rawValue & property.rawValue) > 0
+        (self.properties.rawValue & property.rawValue) > 0
     }
 
     open func permissionEnabled(_ permission: CBAttributePermissions) -> Bool {
-        return (self.permissions.rawValue & permission.rawValue) > 0
+        (self.permissions.rawValue & permission.rawValue) > 0
     }
 
     open func stringValue(_ data: Data) -> [String: String]? {
-        return [self.name: data.hexStringValue()]
+        [self.name: data.hexStringValue()]
     }
 
     open func dataFromStringValue(_ data: [String: String]) -> Data? {
-        return data[self.name].map { ($0.dataFromHexString() as Data) }
+        data[self.name].map { ($0.dataFromHexString() as Data) }
     }
 }
 
@@ -93,7 +93,7 @@ public final class RawCharacteristicProfile<DeserializedType>: CharacteristicPro
     }
 
     override public var stringValues: [String] {
-        return DeserializedType.stringValues
+        DeserializedType.stringValues
     }
 
     override public func stringValue(_ data: Data) -> [String: String]? {
@@ -102,7 +102,7 @@ public final class RawCharacteristicProfile<DeserializedType>: CharacteristicPro
     }
 
     override public func dataFromStringValue(_ data: [String: String]) -> Data? {
-        return DeserializedType(stringValue: data).flatmap { Serializer.serialize($0) }
+        DeserializedType(stringValue: data).flatmap { Serializer.serialize($0) }
     }
 }
 
@@ -119,7 +119,7 @@ public final class RawArrayCharacteristicProfile<DeserializedType>: Characterist
     }
 
     override public var stringValues: [String] {
-        return DeserializedType.stringValues
+        DeserializedType.stringValues
     }
 
     override public func stringValue(_ data: Data) -> [String: String]? {
@@ -128,7 +128,7 @@ public final class RawArrayCharacteristicProfile<DeserializedType>: Characterist
     }
 
     override public func dataFromStringValue(_ data: [String: String]) -> Data? {
-        return DeserializedType(stringValue: data).flatmap { Serializer.serialize($0) }
+        DeserializedType(stringValue: data).flatmap { Serializer.serialize($0) }
     }
 }
 
@@ -149,7 +149,7 @@ public final class RawPairCharacteristicProfile<DeserializedType>: Characteristi
     }
 
     override public var stringValues: [String] {
-        return DeserializedType.stringValues
+        DeserializedType.stringValues
     }
 
     override public func stringValue(_ data: Data) -> [String: String]? {
@@ -158,7 +158,7 @@ public final class RawPairCharacteristicProfile<DeserializedType>: Characteristi
     }
 
     override public func dataFromStringValue(_ data: [String: String]) -> Data? {
-        return DeserializedType(stringValue: data).flatmap { Serializer.serialize($0) }
+        DeserializedType(stringValue: data).flatmap { Serializer.serialize($0) }
     }
 }
 
@@ -179,7 +179,7 @@ public final class RawArrayPairCharacteristicProfile<DeserializedType>: Characte
     }
 
     override public var stringValues: [String] {
-        return DeserializedType.stringValues
+        DeserializedType.stringValues
     }
 
     override public func stringValue(_ data: Data) -> [String: String]? {
@@ -188,7 +188,7 @@ public final class RawArrayPairCharacteristicProfile<DeserializedType>: Characte
     }
 
     override public func dataFromStringValue(_ data: [String: String]) -> Data? {
-        return DeserializedType(stringValue: data).flatmap { Serializer.serialize($0) }
+        DeserializedType(stringValue: data).flatmap { Serializer.serialize($0) }
     }
 }
 
@@ -217,6 +217,6 @@ public final class StringCharacteristicProfile<T: CharacteristicConfigurable>: C
     }
 
     override public func dataFromStringValue(_ data: [String: String]) -> Data? {
-        return data[self.name].flatmap { Serializer.serialize($0, encoding: self.encoding) }
+        data[self.name].flatmap { Serializer.serialize($0, encoding: self.encoding) }
     }
 }

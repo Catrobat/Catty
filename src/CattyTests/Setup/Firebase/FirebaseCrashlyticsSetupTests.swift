@@ -136,6 +136,28 @@ final class FirebaseCrashlyticsSetupTests: XCTestCase {
         XCTAssertEqual(1, crashlytics!.records.count)
     }
 
+    func testProjectFetchFailureNotification() {
+        UserDefaults.standard.set(true, forKey: kFirebaseSendCrashReports)
+        app?.setupCrashlytics()
+
+        let errorInfo = ProjectFetchFailureInfo(type: nil, url: "testurl", statusCode: nil, description: "Invalid API response while fetching project")
+
+        let expectedErrorValue: String = "No value"
+        let info: [String: Any] = ["type": expectedErrorValue,
+                                   "url": errorInfo.url,
+                                   "statusCode": expectedErrorValue,
+                                   "description": errorInfo.description]
+
+        let error = NSError(domain: "ProjectFetchError", code: 410, userInfo: info)
+
+        NotificationCenter.default.post(name: .projectFetchFailure, object: errorInfo)
+
+        XCTAssertEqual(0, crashlytics!.logs.count)
+        XCTAssertEqual(1, crashlytics!.records.count)
+        XCTAssertEqual(error.domain, (crashlytics!.records.first as NSError?)?.domain)
+        XCTAssertEqual(error.userInfo as NSDictionary, (crashlytics!.records.first! as NSError).userInfo as NSDictionary)
+    }
+
     func testProjectFetchDetailsFailureNotification() {
         UserDefaults.standard.set(true, forKey: kFirebaseSendCrashReports)
         app?.setupCrashlytics()
@@ -145,4 +167,41 @@ final class FirebaseCrashlyticsSetupTests: XCTestCase {
         XCTAssertEqual(0, crashlytics!.logs.count)
         XCTAssertEqual(1, crashlytics!.records.count)
     }
+
+    func testProjectSearchFailureNotification() {
+        UserDefaults.standard.set(true, forKey: kFirebaseSendCrashReports)
+        app?.setupCrashlytics()
+
+        var errorInfo = ProjectFetchFailureInfo(url: "testUrl", statusCode: nil, description: "Invalid API response while fetching project", projectName: nil)
+
+        let expectedErrorValue = "No value"
+        var projectInfo: [String: Any] = ["description": errorInfo.description,
+                                          "projectName": expectedErrorValue,
+                                          "statusCode": expectedErrorValue,
+                                          "url": errorInfo.url]
+
+        var error = NSError(domain: "ProjectSearchError", code: 400, userInfo: projectInfo)
+
+        NotificationCenter.default.post(name: .projectSearchFailure, object: errorInfo)
+
+        XCTAssertEqual(0, crashlytics!.logs.count)
+        XCTAssertEqual(1, crashlytics!.records.count)
+        XCTAssertEqual(error.domain, (crashlytics!.records.first as NSError?)?.domain)
+        XCTAssertEqual(error.userInfo as NSDictionary, (crashlytics!.records.first! as NSError).userInfo as NSDictionary)
+
+        errorInfo = ProjectFetchFailureInfo(url: "testUrl", statusCode: 404, description: "Invalid API response while fetching project", projectName: "Galaxy")
+
+        projectInfo["projectName"] = errorInfo.projectName
+        projectInfo["statusCode"] = errorInfo.statusCode
+
+        error = NSError(domain: "ProjectSearchError", code: 404, userInfo: projectInfo)
+
+        NotificationCenter.default.post(name: .projectSearchFailure, object: errorInfo)
+
+        XCTAssertEqual(0, crashlytics!.logs.count)
+        XCTAssertEqual(2, crashlytics!.records.count)
+        XCTAssertEqual(error.domain, (crashlytics!.records.last as NSError?)?.domain)
+        XCTAssertEqual(error.userInfo as NSDictionary, (crashlytics!.records.last! as NSError).userInfo as NSDictionary)
+    }
+
 }

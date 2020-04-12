@@ -25,7 +25,7 @@ final class CBSequenceList: CBSequenceProtocol, CBSequenceVisitProtocol, Sequenc
     // MARK: - Properties
     final weak var rootSequenceList: CBScriptSequenceList?
     lazy var sequenceList = [CBSequenceProtocol]()
-    var count: Int { return sequenceList.count }
+    var count: Int { sequenceList.count }
 
     // MARK: - Initializers
     init(rootSequenceList: CBScriptSequenceList?) {
@@ -52,7 +52,7 @@ final class CBSequenceList: CBSequenceProtocol, CBSequenceVisitProtocol, Sequenc
     }
 
     func isEmpty() -> Bool {
-        return sequenceList.isEmpty
+        sequenceList.isEmpty
     }
 
     func accept(_ visitor: CBOptimizeSequenceVisitorProtocol) {

@@ -31,7 +31,9 @@ extension Notification.Name {
     static var brickSelected: Notification.Name { .init(rawValue: NotificationName.brickSelected) }
     static var projectInvalidVersion: Notification.Name { .init(rawValue: NotificationName.projectInvalidVersion) }
     static var projectInvalidXml: Notification.Name { .init(rawValue: NotificationName.projectInvalidXml) }
+    static var projectFetchFailure: Notification.Name { .init(rawValue: NotificationName.projectFetchFailure) }
     static var projectFetchDetailsFailure: Notification.Name { .init(rawValue: NotificationName.projectFetchDetailsFailure) }
+    static var projectSearchFailure: Notification.Name { .init(rawValue: NotificationName.projectSearchFailure) }
     static var settingsCrashReportingChanged: Notification.Name { .init(rawValue: NotificationName.settingsCrashReportingChanged) }
 }
 
@@ -47,6 +49,8 @@ public class NotificationName: NSObject {
     public static let brickSelected = "BrickCategoryViewController.brickSelected"
     public static let projectInvalidVersion = "Project.invalidVersion"
     public static let projectInvalidXml = "Project.invalidXml"
+    public static let projectFetchFailure = "Project.fetchFailure"
     public static let projectFetchDetailsFailure = "Project.fetchDetailsFailure"
+    public static let projectSearchFailure = "Project.searchFailure"
     public static let settingsCrashReportingChanged = "SettingsTableViewController.crashReportingChanged"
 }

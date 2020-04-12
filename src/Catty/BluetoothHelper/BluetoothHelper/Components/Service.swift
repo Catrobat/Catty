@@ -47,15 +47,15 @@ public final class Service: ServiceWrapper {
     }
 
     public var peripheral: Peripheral {
-        return self._peripheral
+        self._peripheral
     }
 
     // MARK: Characteristic
     public func discoverCharacteristics(_ characteristics: [CBUUID]) -> Future<Service> {
-        return self.helper.discoverCharacteristicsIfConnected(self, characteristics: characteristics)
+        self.helper.discoverCharacteristicsIfConnected(self, characteristics: characteristics)
     }
     public func characteristic(_ uuid: CBUUID) -> Characteristic? {
-        return self.ownCharacteristics[uuid]
+        self.ownCharacteristics[uuid]
     }
     public func didDiscoverCharacteristics(_ error: NSError?) {
         self.helper.didDiscoverCharacteristics(self, error: error)
@@ -71,11 +71,11 @@ public final class Service: ServiceWrapper {
     }
 
     public var uuid: CBUUID {
-        return self.cbService.uuid
+        self.cbService.uuid
     }
 
     public var state: CBPeripheralState {
-        return self.peripheral.state
+        self.peripheral.state
     }
 
     public func discoverCharacteristics(_ characteristics: [CBUUID]?) {
@@ -98,7 +98,7 @@ public final class Service: ServiceWrapper {
     }
 
     public func discoverAllCharacteristics() -> Future<Service> {
-        return self.helper.discoverCharacteristicsIfConnected(self, characteristics: nil)
+        self.helper.discoverCharacteristicsIfConnected(self, characteristics: nil)
     }
 
 }

@@ -23,7 +23,7 @@
 extension SayBubbleBrick: CBInstructionProtocol {
 
     func instruction() -> CBInstruction {
-        return .action { context in SKAction.run(self.actionBlock(context: context)) }
+        .action { context in SKAction.run(self.actionBlock(context: context)) }
     }
 
     func actionBlock(context: CBScriptContextProtocol) -> () -> Void {
