@@ -29,15 +29,15 @@ class ModFunction: DoubleParameterDoubleFunction {
     static let position = 70
 
     func tag() -> String {
-        return type(of: self).tag
+        type(of: self).tag
     }
 
     func firstParameter() -> FunctionParameter {
-        return .number(defaultValue: 3)
+        .number(defaultValue: 3)
     }
 
     func secondParameter() -> FunctionParameter {
-        return .number(defaultValue: 2)
+        .number(defaultValue: 2)
     }
 
     func value(firstParameter: AnyObject?, secondParameter: AnyObject?) -> Double {
@@ -67,6 +67,6 @@ class ModFunction: DoubleParameterDoubleFunction {
     }
 
     func formulaEditorSections() -> [FormulaEditorSection] {
-        return [.math(position: type(of: self).position)]
+        [.math(position: type(of: self).position)]
     }
 }

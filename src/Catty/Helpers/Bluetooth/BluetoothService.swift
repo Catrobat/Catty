@@ -36,7 +36,7 @@ open class BluetoothService: NSObject {
 
     // the sharedInstance class method can be reached from ObjC
     @objc open class func sharedInstance() -> BluetoothService {
-        return BluetoothService.swiftSharedInstance
+        BluetoothService.swiftSharedInstance
     }
 
     var digitalSemaphoreArray: [DispatchSemaphore] = []
@@ -80,7 +80,7 @@ open class BluetoothService: NSObject {
     }
 
     @objc func getSemaphore() -> DispatchSemaphore {
-        return DispatchSemaphore(value: 0)
+        DispatchSemaphore(value: 0)
     }
 
     @objc func getSensorPhiro() -> PhiroDevice? {

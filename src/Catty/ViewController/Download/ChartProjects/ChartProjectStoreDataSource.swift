@@ -104,7 +104,7 @@ class ChartProjectStoreDataSource: NSObject, UITableViewDataSource, UITableViewD
     }
 
     static func dataSource(with downloader: StoreProjectDownloaderProtocol = StoreProjectDownloader()) -> ChartProjectStoreDataSource {
-        return ChartProjectStoreDataSource(with: downloader)
+        ChartProjectStoreDataSource(with: downloader)
     }
 
     // MARK: - DataSource
@@ -142,15 +142,15 @@ class ChartProjectStoreDataSource: NSObject, UITableViewDataSource, UITableViewD
     }
 
     func numberOfRows(in tableView: UITableView) -> Int {
-        return self.projects.count
+        self.projects.count
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.projects.count
+        self.projects.count
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return TableUtil.heightForImageCell()
+        TableUtil.heightForImageCell()
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

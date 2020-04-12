@@ -108,27 +108,27 @@ import CoreMotion
     }
 
     @objc func functionExists(tag: String) -> Bool {
-        return self.functionManager.exists(tag: tag)
+        self.functionManager.exists(tag: tag)
     }
 
     @objc func sensorExists(tag: String) -> Bool {
-        return self.sensorManager.exists(tag: tag)
+        self.sensorManager.exists(tag: tag)
     }
 
     @objc func operatorExists(tag: String) -> Bool {
-        return self.operatorManager.exists(tag: tag)
+        self.operatorManager.exists(tag: tag)
     }
 
     func getFunction(tag: String) -> Function? {
-        return self.functionManager.function(tag: tag)
+        self.functionManager.function(tag: tag)
     }
 
     func getSensor(tag: String) -> Sensor? {
-        return self.sensorManager.sensor(tag: tag)
+        self.sensorManager.sensor(tag: tag)
     }
 
     func getOperator(tag: String) -> Operator? {
-        return self.operatorManager.getOperator(tag: tag)
+        self.operatorManager.getOperator(tag: tag)
     }
 
     private static func buildSensorManager(sceneSize: CGSize,
@@ -151,10 +151,10 @@ import CoreMotion
     }
 
     private static func buildFunctionManager(touchManager: TouchManagerProtocol, bluetoothService: BluetoothService) -> FunctionManager {
-        return FunctionManager(functions: CatrobatSetup.registeredFunctions(touchManager: touchManager, bluetoothService: bluetoothService))
+        FunctionManager(functions: CatrobatSetup.registeredFunctions(touchManager: touchManager, bluetoothService: bluetoothService))
     }
 
     private static func buildOperatorManager() -> OperatorManagerProtocol {
-        return OperatorManager(operators: CatrobatSetup.registeredOperators())
+        OperatorManager(operators: CatrobatSetup.registeredOperators())
     }
 }

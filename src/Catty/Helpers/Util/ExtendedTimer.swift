@@ -32,7 +32,7 @@ final class ExtendedTimer: Hashable {
     var fireDateBeforePausing: Date?
 
     var isValid: Bool {
-        return self.timer?.isValid ?? false
+        self.timer?.isValid ?? false
     }
 
     func hash(into hasher: inout Hasher) {
@@ -104,6 +104,6 @@ final class ExtendedTimer: Hashable {
     }
 
     static func == (lhs: ExtendedTimer, rhs: ExtendedTimer) -> Bool {
-        return lhs === rhs
+        lhs === rhs
     }
 }

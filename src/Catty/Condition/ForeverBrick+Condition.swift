@@ -23,7 +23,7 @@
 extension ForeverBrick: CBConditionProtocol {
 
     func checkCondition(formulaInterpreter: FormulaInterpreterProtocol) -> Bool {
-        return true
+        true
     }
 
     func resetCondition() {
@@ -31,6 +31,6 @@ extension ForeverBrick: CBConditionProtocol {
     }
 
     func conditionFormulas() -> [Formula] {
-        return []
+        []
     }
 }

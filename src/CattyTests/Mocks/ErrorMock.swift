@@ -24,7 +24,7 @@ class ErrorMock: LocalizedError {
 
     let mockDescription: String
 
-    var errorDescription: String? { return mockDescription }
+    var errorDescription: String? { mockDescription }
 
     required init(_ description: String) {
         self.mockDescription = description

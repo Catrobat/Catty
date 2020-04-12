@@ -29,15 +29,15 @@ class MinFunction: DoubleParameterDoubleFunction {
     static let position = 230
 
     func tag() -> String {
-        return type(of: self).tag
+        type(of: self).tag
     }
 
     func firstParameter() -> FunctionParameter {
-        return .number(defaultValue: 7)
+        .number(defaultValue: 7)
     }
 
     func secondParameter() -> FunctionParameter {
-        return .number(defaultValue: 2)
+        .number(defaultValue: 2)
     }
 
     func value(firstParameter: AnyObject?, secondParameter: AnyObject?) -> Double {
@@ -49,6 +49,6 @@ class MinFunction: DoubleParameterDoubleFunction {
     }
 
     func formulaEditorSections() -> [FormulaEditorSection] {
-        return [.math(position: type(of: self).position)]
+        [.math(position: type(of: self).position)]
     }
 }

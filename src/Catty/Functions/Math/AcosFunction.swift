@@ -30,11 +30,11 @@ class AcosFunction: SingleParameterDoubleFunction {
     static let position = 190
 
     func tag() -> String {
-        return type(of: self).tag
+        type(of: self).tag
     }
 
     func firstParameter() -> FunctionParameter {
-        return .number(defaultValue: 0)
+        .number(defaultValue: 0)
     }
 
     func value(parameter: AnyObject?) -> Double {
@@ -43,6 +43,6 @@ class AcosFunction: SingleParameterDoubleFunction {
     }
 
     func formulaEditorSections() -> [FormulaEditorSection] {
-        return [.math(position: (type(of: self).position))]
+        [.math(position: (type(of: self).position))]
     }
 }

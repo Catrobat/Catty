@@ -44,19 +44,19 @@ final class TouchManagerMock: TouchManagerProtocol {
     }
 
     func screenTouched() -> Bool {
-        return isScreenTouched
+        isScreenTouched
     }
 
     func screenTouched(for toucNumber: Int) -> Bool {
-        return isScreenTouched
+        isScreenTouched
     }
 
     func numberOfTouches() -> Int {
-        return touches.count
+        touches.count
     }
 
     func lastPositionInScene() -> CGPoint? {
-        return lastTouch
+        lastTouch
     }
 
     func getPositionInScene(for touchNumber: Int) -> CGPoint? {

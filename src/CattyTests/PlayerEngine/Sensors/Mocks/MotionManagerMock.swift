@@ -53,7 +53,7 @@ final class MotionManagerMock: MotionManager {
     var attitude: (pitch: Double, roll: Double) = (pitch: 0, roll: 0)
 
     var accelerometerData: AccelerometerData? {
-        return AccelerometerDataMock(
+        AccelerometerDataMock(
             acceleration: CMAcceleration(
                 x: self.xAcceleration, y: self.yAcceleration, z: self.zAcceleration
             )
@@ -61,7 +61,7 @@ final class MotionManagerMock: MotionManager {
     }
 
     var gyroData: GyroData? {
-        return GyroDataMock(
+        GyroDataMock(
             rotationRate: CMRotationRate (
                 x: self.xRotation, y: self.yRotation, z: self.zRotation
             )
@@ -69,7 +69,7 @@ final class MotionManagerMock: MotionManager {
     }
 
     var deviceMotion: DeviceMotion? {
-        return DeviceMotionMock(
+        DeviceMotionMock(
             attitude: AttitudeMock(
                 pitch: attitude.pitch, roll: attitude.roll
             ),

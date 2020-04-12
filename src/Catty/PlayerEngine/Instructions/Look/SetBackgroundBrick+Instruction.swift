@@ -23,7 +23,7 @@
 @objc extension SetBackgroundBrick: CBInstructionProtocol {
 
     @nonobjc func instruction() -> CBInstruction {
-        return .action { context in SKAction.run(self.actionBlock()) }
+        .action { context in SKAction.run(self.actionBlock()) }
     }
 
     @objc func actionBlock() -> () -> Void {

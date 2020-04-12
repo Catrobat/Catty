@@ -46,12 +46,12 @@ class SearchDevicesTableViewController: BluetoothDevicesTableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        return CentralManager.sharedInstance.peripherals.count
+        CentralManager.sharedInstance.peripherals.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

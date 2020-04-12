@@ -103,6 +103,6 @@ class MultiFingerXFunctionTests: XCTestCase {
     }
 
     private func standardizedValue(_ point: CGPoint) -> Double {
-        return PositionXSensor.convertToStandardized(rawValue: Double(point.x), for: spriteObject)
+        PositionXSensor.convertToStandardized(rawValue: Double(point.x), for: spriteObject)
     }
 }

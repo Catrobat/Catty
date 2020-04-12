@@ -25,7 +25,7 @@ import Foundation
 extension Int8: Deserialize {
 
     public static var size: Int {
-        return MemoryLayout<Int8>.size
+        MemoryLayout<Int8>.size
     }
 
     public init?(doubleValue: Double) {
@@ -88,7 +88,7 @@ extension Int8: Deserialize {
 extension Int16: Deserialize {
 
     public static var size: Int {
-        return MemoryLayout<Int16>.size
+        MemoryLayout<Int16>.size
     }
 
     public init?(doubleValue: Double) {
@@ -136,7 +136,7 @@ extension Int16: Deserialize {
 extension UInt8: Deserialize {
 
     public static var size: Int {
-        return MemoryLayout<UInt8>.size
+        MemoryLayout<UInt8>.size
     }
 
     public init?(doubleValue: Double) {
@@ -199,7 +199,7 @@ extension UInt8: Deserialize {
 extension UInt16: Deserialize {
 
     public static var size: Int {
-        return MemoryLayout<UInt16>.size
+        MemoryLayout<UInt16>.size
     }
 
     public init?(doubleValue: Double) {

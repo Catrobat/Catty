@@ -39,7 +39,7 @@ open class ProfileManager {
     }
 
     open var service: [CBUUID: ServiceProfile] {
-        return self.serviceProfiles
+        self.serviceProfiles
     }
 
     open class var sharedInstance: ProfileManager {

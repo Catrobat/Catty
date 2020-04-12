@@ -53,7 +53,7 @@ import Foundation
     }
 
     func connectSubtreeTo(node: AKInput) -> AKInput {
-        return subtreeOutputMixer.connect(to: node)
+        subtreeOutputMixer.connect(to: node)
     }
 
     func setVolumeTo(percent: Double) {
