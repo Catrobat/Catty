@@ -28,17 +28,13 @@ class RegularExpressionFunction: DoubleParameterStringFunction {
     static var isIdempotent = true
     static let position = 85
 
-    func tag() -> String {
-        return type(of: self).tag
-    }
+    func tag() -> String { type(of: self).tag }
 
-    func firstParameter() -> FunctionParameter {
-        return .string(defaultValue: " an? ([^ .]+)")
-    }
+    func firstParameter() -> FunctionParameter { .string(defaultValue: " an? ([^ .]+)") }
 
-    func secondParameter() -> FunctionParameter {
-        return .string(defaultValue: "I am a panda")
-    }
+    func secondParameter() -> FunctionParameter { .string(defaultValue: "I am a panda") }
+
+    func formulaEditorSections() -> [FormulaEditorSection] { [.math(position: type(of: self).position)] }
 
     func value(firstParameter: AnyObject?, secondParameter: AnyObject?) -> String {
         let pattern = type(of: self).interpretParameter(parameter: firstParameter)
@@ -47,13 +43,9 @@ class RegularExpressionFunction: DoubleParameterStringFunction {
         return self.regularExpression(pattern: pattern, longText: longText)
     }
 
-    func formulaEditorSections() -> [FormulaEditorSection] {
-        return [.math(position: type(of: self).position)]
-    }
-
     func regularExpression(pattern: String, longText: String) -> String {
         var finalResult = RegularExpressionFunction.defaultValue
-        let regexOptions: NSRegularExpression.Options = [.dotMatchesLineSeparators,.anchorsMatchLines]
+        let regexOptions: NSRegularExpression.Options = [.dotMatchesLineSeparators, .anchorsMatchLines]
 
         do {
             let regex = try NSRegularExpression(pattern: pattern, options: regexOptions)
