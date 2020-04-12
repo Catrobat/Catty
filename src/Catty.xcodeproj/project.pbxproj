@@ -1501,7 +1501,7 @@
 		22524C3C23A2533F00DD515E /* LoginViewControllerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewControllerMock.swift; sourceTree = "<group>"; };
 		22C48767240FFAA3003CB222 /* BrickCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrickCellTests.swift; sourceTree = "<group>"; };
 		232DAAC73BFD01550ECFD889 /* sk */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/Localizable.strings; sourceTree = "<group>"; };
-		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = "Supporting Files/main.m"; sourceTree = "<group>"; };
 		2B9E6447F112720F0F74D139 /* tw */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = tw; path = tw.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2D010F4722240C9F00CAAA06 /* XCUIElement+staticTexts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCUIElement+staticTexts.swift"; sourceTree = "<group>"; };
 		2D227D93220B38E0008A2BC9 /* ScenePresenterVCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScenePresenterVCTests.swift; sourceTree = "<group>"; };
@@ -1777,7 +1777,7 @@
 		2ED418B12411213D00AFE2FD /* XMLParserTests092.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLParserTests092.swift; sourceTree = "<group>"; };
 		307727D68FC877FADDBB318E /* da */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/Localizable.strings; sourceTree = "<group>"; };
 		31B8C09D8586CC1D8718B2F0 /* sv */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Localizable.strings; sourceTree = "<group>"; };
-		32CA4F630368D1EE00C91783 /* App-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "App-Prefix.pch"; sourceTree = "<group>"; };
+		32CA4F630368D1EE00C91783 /* App-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "App-Prefix.pch"; path = "Supporting Files/App-Prefix.pch"; sourceTree = "<group>"; };
 		384F2D2E72522DC0473A710C /* gl */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = gl; path = gl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		38966F32202F4B32187905D4 /* kk */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = kk; path = kk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		389FA65050440F173C5147C5 /* bg */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = bg; path = bg.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -2411,7 +2411,7 @@
 		81C27425189EF94600827A95 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		81D46EA21CC29E3000653EAB /* ShapeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShapeButton.h; sourceTree = "<group>"; };
 		81D46EA31CC29E3000653EAB /* ShapeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShapeButton.m; sourceTree = "<group>"; };
-		8D1107310486CEB800E47090 /* App-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "App-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* App-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "App-Info.plist"; path = "Supporting Files/App-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		91FC8B4C21851D2F18232470 /* AlertControllerBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertControllerBuilder.swift; sourceTree = "<group>"; };
 		91FC8B8C0B21945B560F7272 /* AlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
 		91FC8E53F7F6FEA7225F910E /* BaseAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseAlertController.swift; sourceTree = "<group>"; };
@@ -3253,8 +3253,8 @@
 		B46B270517703F9400172837 /* CattyTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CattyTests-Info.plist"; sourceTree = "<group>"; };
 		B46B270717703F9400172837 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B46B270B17703F9400172837 /* CattyTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CattyTests-Prefix.pch"; sourceTree = "<group>"; };
-		B4F243CB170EBEF7007A071D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		B4F243CC170EBEF7007A071D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		B4F243CB170EBEF7007A071D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = "Supporting Files/AppDelegate.h"; sourceTree = "<group>"; };
+		B4F243CC170EBEF7007A071D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = "Supporting Files/AppDelegate.m"; sourceTree = "<group>"; };
 		B7EEF76F87F0A9D0BFF0C2AA /* es */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B94B8CFF0168D667D71ACC96 /* cs */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BA1FA9961F02AD770084184D /* InsertItemIntoUserListBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "InsertItemIntoUserListBrick+CBXMLHandler.h"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Data/InsertItemIntoUserListBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
@@ -3322,7 +3322,7 @@
 		CA2D44481B1249DD00A3B53D /* CBScheduler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBScheduler.swift; path = PlayerEngine/Scheduler/CBScheduler.swift; sourceTree = "<group>"; };
 		CA2D444E1B1251BF00A3B53D /* CBSchedulingAlgorithms.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBSchedulingAlgorithms.swift; path = PlayerEngine/Scheduler/CBSchedulingAlgorithms.swift; sourceTree = "<group>"; };
 		CA2D8C961AEDDA2100A5BDC2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CA3E72D41B0BA5FF00D6B184 /* Catty-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Catty-Bridging-Header.h"; sourceTree = "<group>"; };
+		CA3E72D41B0BA5FF00D6B184 /* Catty-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Catty-Bridging-Header.h"; path = "Supporting Files/Catty-Bridging-Header.h"; sourceTree = "<group>"; };
 		CA3E72E71B0C00A500D6B184 /* CBStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBStack.swift; path = 3rdParty/Stack/CBStack.swift; sourceTree = "<group>"; };
 		CA3E72EB1B0C01CD00D6B184 /* LLNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LLNode.swift; path = 3rdParty/LLNode/LLNode.swift; sourceTree = "<group>"; };
 		CA43C4B91B165C0B009B604F /* CBBroadcastHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBBroadcastHandler.swift; path = PlayerEngine/Scheduler/CBBroadcastHandler.swift; sourceTree = "<group>"; };
@@ -3513,6 +3513,7 @@
 		29B97315FDCFA39411CA2CEA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				6F4CD80B242F88790075742B /* Logger */,
 				4C0EEE6A23F423E3005340B2 /* Firebase */,
 				CA3E72D41B0BA5FF00D6B184 /* Catty-Bridging-Header.h */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
@@ -6129,6 +6130,16 @@
 			path = Audio;
 			sourceTree = "<group>";
 		};
+		6F4CD80B242F88790075742B /* Logger */ = {
+			isa = PBXGroup;
+			children = (
+				92FF2E651A24C7D800093DA7 /* LoggerProperties.plist */,
+				CA2D44421B12305400A3B53D /* Swell.plist */,
+			);
+			name = Logger;
+			path = "Supporting Files/Logger";
+			sourceTree = "<group>";
+		};
 		91FC81FA01E91B5CF3266F79 /* AlertController */ = {
 			isa = PBXGroup;
 			children = (
@@ -6892,8 +6903,6 @@
 				5E43D71721928052006FDF2A /* SwellAll.swift */,
 				92FF2E631A24C7D800093DA7 /* Logger.h */,
 				92FF2E641A24C7D800093DA7 /* Logger.m */,
-				92FF2E651A24C7D800093DA7 /* LoggerProperties.plist */,
-				CA2D44421B12305400A3B53D /* Swell.plist */,
 			);
 			path = Logger;
 			sourceTree = "<group>";
@@ -9235,6 +9244,7 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "/usr/libexec/PlistBuddy \"$SRCROOT/Catty/Settings.bundle/Root.plist\" -c \"set PreferenceSpecifiers:3:DefaultValue $MARKETING_VERSION\"\n";
+
 		};
 		CADBD6D619B0E8C200C62836 /* Catty Precompile Tests */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -10541,7 +10551,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Catty/App-Prefix.pch";
+				GCC_PREFIX_HEADER = "Catty/Supporting Files/App-Prefix.pch";
 				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = DEBUG;
 				GCC_THUMB_SUPPORT = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -10616,7 +10626,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Catty/App-Prefix.pch";
+				GCC_PREFIX_HEADER = "Catty/Supporting Files/App-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
@@ -10787,7 +10797,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS/**",
 				);
-				GCC_PREFIX_HEADER = "Catty/App-Prefix.pch";
+				GCC_PREFIX_HEADER = "Catty/Supporting Files/App-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"TESTMODE=0",
 					"DEBUG=1",
@@ -10795,7 +10805,7 @@
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				HEADER_SEARCH_PATHS = $SDKROOT/usr/include/libxml2;
-				INFOPLIST_FILE = "Catty/App-Info.plist";
+				INFOPLIST_FILE = "Catty/Supporting Files/App-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 0.6.12;
@@ -10808,7 +10818,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.catrobat.pocketcode.debug;
 				PRODUCT_NAME = "Pocket Code";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "Catty/Catty-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Catty/Supporting Files/Catty-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -10835,7 +10845,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS/**",
 				);
-				GCC_PREFIX_HEADER = "Catty/App-Prefix.pch";
+				GCC_PREFIX_HEADER = "Catty/Supporting Files/App-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"TESTMODE=0",
 					"DEBUG=0",
@@ -10843,7 +10853,7 @@
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				HEADER_SEARCH_PATHS = $SDKROOT/usr/include/libxml2;
-				INFOPLIST_FILE = "Catty/App-Info.plist";
+				INFOPLIST_FILE = "Catty/Supporting Files/App-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 0.6.12;
@@ -10856,7 +10866,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.catrobat.pocketcode;
 				PRODUCT_NAME = "Pocket Code";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "Catty/Catty-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Catty/Supporting Files/Catty-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

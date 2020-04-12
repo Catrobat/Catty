@@ -50,6 +50,7 @@
         let copiedBrick = brick.mutableCopy(with: CBMutableCopyContext(), andErrorReporting: true) as AnyObject
 
         XCTAssertTrue(brick.isEqual(to: copiedBrick as? Brick))
+
         XCTAssertFalse(brick === copiedBrick as? Brick)
         XCTAssertEqual(brick.isAnimated, copiedBrick.isAnimated)
         XCTAssertEqual(brick.isAnimatedInsertBrick, copiedBrick.isAnimatedInsertBrick)

@@ -51,11 +51,11 @@ platform :ios do
   desc "Create builds at CI pipeline"
   lane :build_catty do
     update_app_identifier(
-      plist_path: "Catty/App-Info.plist",
+      plist_path: "Catty/Supporting Files/App-Info.plist",
       app_identifier: "org.catrobat.pocketcode.adhoc"
     )
     update_info_plist(
-      plist_path: "Catty/App-Info.plist",
+      plist_path: "Catty/Supporting Files/App-Info.plist",
       app_identifier: "org.catrobat.pocketcode.adhoc",
       display_name: $build_name
     )

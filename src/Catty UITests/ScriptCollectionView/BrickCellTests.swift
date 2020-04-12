@@ -139,5 +139,4 @@ class BrickCellTests: XCTestCase {
             app.buttons[kLocalizedDone].tap()
         }
     }
-
 }
