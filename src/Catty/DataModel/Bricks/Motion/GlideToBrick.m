@@ -78,10 +78,6 @@
     self.yDestination = [[Formula alloc] initWithInteger:200];
 }
 
-- (id)init
-{
-    return self;
-}
 
 #pragma mark - Description
 - (NSString*)description
