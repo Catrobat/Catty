@@ -39,11 +39,11 @@
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLParserContext*)context
 {
     [XMLError exceptionIfNil:xmlElement message:@"The rootElement nil"];
-    if (! [xmlElement.name isEqualToString:@"object"] && ![xmlElement.name isEqualToString:@"pointedObject"]) {
+    if (! [xmlElement.name isEqualToString:@"object"] && ![xmlElement.name isEqualToString:@"pointedObject"] && ! [xmlElement.name isEqualToString:@"destinationSprite"]) {
         [XMLError exceptionIfString:xmlElement.name
                  isNotEqualToString:@"object"
                             message:@"The name of the rootElement is '%@' but should be '%@'",
-         xmlElement.name, @"object or pointedObject"];
+         xmlElement.name, @"object, pointedObject or destinationSprite"];
     }
 
     NSArray *attributes = [xmlElement attributes];
@@ -71,11 +71,13 @@
         // case: it's a normal object
         spriteObject.name = [attribute stringValue];
     } else if ([attribute.name isEqualToString:@"reference"]) {
-        // case: it's a pointed object
+        // case: it's a pointed object or a destinationSprite
         NSString *xPath = [attribute stringValue];
         referencedObjectElement = [xmlElement singleNodeForCatrobatXPath:xPath];
         if ([referencedObjectElement.name isEqualToString:@"object"]) {
             [XMLError exceptionIfNode:referencedObjectElement isNilOrNodeNameNotEquals:@"object"];
+        } else if([referencedObjectElement.name isEqualToString:@"destinationSprite"]) {
+            [XMLError exceptionIfNode:referencedObjectElement isNilOrNodeNameNotEquals:@"destinationSprite"];
         } else {
             [XMLError exceptionIfNode:referencedObjectElement isNilOrNodeNameNotEquals:@"pointedObject"];
         }
@@ -172,10 +174,10 @@
 #pragma mark - Serialization
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context
 {
-    return [self xmlElementWithContext:context asPointedObject:NO];
+    return [self xmlElementWithContext:context asPointedObject:NO asGoToObject:NO];
 }
 
-- (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context asPointedObject:(BOOL)asPointedObject
+- (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context asPointedObject:(BOOL)asPointedObject asGoToObject:(BOOL)asGoToObject
 {
     SpriteObject *previousObject = context.spriteObject;
     [context.soundNamePositions removeAllObjects];
@@ -185,11 +187,12 @@
 
     // generate xml element for sprite object
     GDataXMLElement *xmlElement = nil;
-    if (! asPointedObject) {
+    if (! asPointedObject && !asGoToObject) {
         NSUInteger indexOfSpriteObject = [CBXMLSerializerHelper indexOfElement:self inArray:context.spriteObjectList];
         xmlElement = [GDataXMLElement elementWithName:@"object" xPathIndex:(indexOfSpriteObject+1) context:context];
     } else {
-        xmlElement = [GDataXMLElement elementWithName:@"pointedObject" context:context];
+        NSString* elementName = asGoToObject ? @"destinationSprite" : @"pointedObject";
+        xmlElement = [GDataXMLElement elementWithName:elementName context:context];
     }
 
     CBXMLPositionStack *currentPositionStack = [context.currentPositionStack mutableCopy];

@@ -56,4 +56,5 @@
     func invalidateCache()
 
     func invalidateCache(_ formula: Formula)
+
 }

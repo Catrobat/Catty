@@ -20,16 +20,11 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "SpriteObject.h"
-#import "CBXMLNodeProtocol.h"
+#import "BrickCell.h"
+#import "iOSCombobox.h"
 
-@interface SpriteObject (CBXMLHandler) <CBXMLNodeProtocol>
+@interface GoToBrickCell : BrickCell<BrickCellProtocol>
 
-#if TESTMODE
-+ (NSMutableArray*)parseAndCreateLooks:(GDataXMLElement*)objectElement withContext:(CBXMLParserContext*)context;
-+ (NSMutableArray*)parseAndCreateSounds:(GDataXMLElement*)objectElement withContext:(CBXMLParserContext*)context;
-#endif
-
-- (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context asPointedObject:(BOOL)asPointedObject asGoToObject:(BOOL)asGoToObject;
+@property (nonatomic, weak) iOSCombobox *objectComboBoxView;
 
 @end

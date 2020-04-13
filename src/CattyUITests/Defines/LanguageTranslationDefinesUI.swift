@@ -375,6 +375,9 @@ let kLocalizedGoBack = NSLocalizedString("Go back", bundle: Bundle(for: Language
 let kLocalizedLayer = NSLocalizedString("layer", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedLayers = NSLocalizedString("layers", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedComeToFront = NSLocalizedString("Go to front", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedGoTo = NSLocalizedString("Go to", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedGoToTouchPosition = NSLocalizedString("touch position", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedGoToRandomPosition = NSLocalizedString("random position", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
 // look bricks
 let kLocalizedLook = NSLocalizedString("Look", bundle: Bundle(for: LanguageTranslation.self), comment: "")

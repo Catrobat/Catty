@@ -22,6 +22,8 @@
 
 protocol FormulaManagerProtocol: FormulaInterpreterProtocol {
 
+    var touchManager: TouchManagerProtocol { get }
+
     func setup(for project: Project, and stage: Stage)
 
     func setup(for formula: Formula)

@@ -53,7 +53,7 @@ final class ChangeVariableBrickTests: XCTestCase {
         let formulaInterpreter = FormulaManager(stageSize: Util.screenSize(true), landscapeMode: false)
 
         scheduler = CBScheduler(logger: logger, broadcastHandler: broadcastHandler, formulaInterpreter: formulaInterpreter, audioEngine: AudioEngineMock())
-        context = CBScriptContext(script: script, spriteNode: spriteNode, formulaInterpreter: formulaInterpreter)
+        context = CBScriptContext(script: script, spriteNode: spriteNode, formulaInterpreter: formulaInterpreter, touchManager: formulaInterpreter.touchManager)
     }
 
     func testChangeVariableBrickUserVariablesNil() {

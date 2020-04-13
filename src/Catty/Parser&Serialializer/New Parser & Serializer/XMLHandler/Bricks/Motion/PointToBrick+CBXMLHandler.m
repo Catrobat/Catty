@@ -100,7 +100,7 @@
             // not serialized yet
             CBXMLSerializerContext *newContext = [context mutableCopy]; // IMPORTANT: copy context!!!
             newContext.currentPositionStack = context.currentPositionStack; // but position stacks must remain the same!
-            GDataXMLElement *pointedObjectXmlElement = [self.pointedObject xmlElementWithContext:newContext asPointedObject:YES];
+            GDataXMLElement *pointedObjectXmlElement = [self.pointedObject xmlElementWithContext:newContext asPointedObject:YES asGoToObject:NO];
             context.spriteObjectNamePositions = newContext.spriteObjectNamePositions;
             context.spriteObjectNameUserVariableListPositions = newContext.spriteObjectNameUserVariableListPositions;
             context.projectUserVariableNamePositions = newContext.projectUserVariableNamePositions;

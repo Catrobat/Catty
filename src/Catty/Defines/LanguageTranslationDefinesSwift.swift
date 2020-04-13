@@ -375,6 +375,9 @@ let kLocalizedGoBack = NSLocalizedString("Go back", comment: "")
 let kLocalizedLayer = NSLocalizedString("layer", comment: "")
 let kLocalizedLayers = NSLocalizedString("layers", comment: "")
 let kLocalizedComeToFront = NSLocalizedString("Go to front", comment: "")
+let kLocalizedGoTo = NSLocalizedString("Go to", comment: "")
+let kLocalizedGoToTouchPosition = NSLocalizedString("touch position", comment: "")
+let kLocalizedGoToRandomPosition = NSLocalizedString("random position", comment: "")
 
 // look bricks
 let kLocalizedLook = NSLocalizedString("Look", comment: "")
