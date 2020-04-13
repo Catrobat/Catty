@@ -84,6 +84,22 @@
                             <inUserBrick>false</inUserBrick>
                             <userVariable>random to</userVariable>
                         </brick>
+                        <brick type="SpeakBrick">
+                          <formulaList>
+                            <formula category="SPEAK">
+                              <leftChild>
+                                <type>STRING</type>
+                                <value> an? ([^ .]+)</value>
+                              </leftChild>
+                              <rightChild>
+                                <type>STRING</type>
+                                <value>I am a panda</value>
+                              </rightChild>
+                              <type>FUNCTION</type>
+                              <value>REGEX</value>
+                            </formula>
+                          </formulaList>
+                        </brick>
                     </brickList>
                     <isUserScript>false</isUserScript>
                 </script>
