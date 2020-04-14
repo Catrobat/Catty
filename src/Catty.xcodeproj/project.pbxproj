@@ -36,6 +36,17 @@
 		2DCB4934212EA9BF005E8E3D /* StoreProjectDownloader.fetchMostRecentProjects.fail.parse.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DCB4933212EA9BE005E8E3D /* StoreProjectDownloader.fetchMostRecentProjects.fail.parse.json */; };
 		2DCB4936212EAAEF005E8E3D /* StoreProjectDownloader.fetchProjectDetails.success.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DCB4935212EAAEE005E8E3D /* StoreProjectDownloader.fetchProjectDetails.success.json */; };
 		2DCB4938212EAB36005E8E3D /* StoreProjectDownloader.fetchProjectDetails.fail.request.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DCB4937212EAB35005E8E3D /* StoreProjectDownloader.fetchProjectDetails.fail.request.json */; };
+		2E6120FF2445AC0700708FED /* CBProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6120FE2445AC0700708FED /* CBProject.swift */; };
+		2E6121052445B55600708FED /* CBHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6121042445B55600708FED /* CBHeader.swift */; };
+		2E61210B2445BDFB00708FED /* XMLMappingToObjcHeaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E61210A2445BDFB00708FED /* XMLMappingToObjcHeaderTests.swift */; };
+		2E6121112445C9A400708FED /* CBXMLMappingToObjc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6121102445C9A400708FED /* CBXMLMappingToObjc.swift */; };
+		2E6121132445C9CF00708FED /* MapHeaderMTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6121122445C9CF00708FED /* MapHeaderMTO.swift */; };
+		2E6121162445CBCB00708FED /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6121152445CBCB00708FED /* String.swift */; };
+		2E6121182445CBF400708FED /* Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6121172445CBF400708FED /* Optional.swift */; };
+		2EC78F992445D637006D9000 /* HeaderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC78F972445D607006D9000 /* HeaderMock.swift */; };
+		2EC78FA4244605FB006D9000 /* CBXMLMappingFromObjc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC78FA3244605FB006D9000 /* CBXMLMappingFromObjc.swift */; };
+		2EC78FA724460678006D9000 /* MapHeaderMFO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC78FA624460678006D9000 /* MapHeaderMFO.swift */; };
+		2EC78FAD2446070B006D9000 /* XMLMappingFromObjcHeaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC78FAB24460708006D9000 /* XMLMappingFromObjcHeaderTests.swift */; };
 		2ED4179F241120AF00AFE2FD /* Nyancat_1.0_0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = 2ED41695241120AE00AFE2FD /* Nyancat_1.0_0991.xml */; };
 		2ED417A0241120AF00AFE2FD /* Nyancat_1.0_091.xml in Resources */ = {isa = PBXBuildFile; fileRef = 2ED41696241120AE00AFE2FD /* Nyancat_1.0_091.xml */; };
 		2ED417A1241120AF00AFE2FD /* Nyancat_1.0_093.xml in Resources */ = {isa = PBXBuildFile; fileRef = 2ED41697241120AE00AFE2FD /* Nyancat_1.0_093.xml */; };
@@ -1526,6 +1537,17 @@
 		2DCB4933212EA9BE005E8E3D /* StoreProjectDownloader.fetchMostRecentProjects.fail.parse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectDownloader.fetchMostRecentProjects.fail.parse.json; sourceTree = "<group>"; };
 		2DCB4935212EAAEE005E8E3D /* StoreProjectDownloader.fetchProjectDetails.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectDownloader.fetchProjectDetails.success.json; sourceTree = "<group>"; };
 		2DCB4937212EAB35005E8E3D /* StoreProjectDownloader.fetchProjectDetails.fail.request.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectDownloader.fetchProjectDetails.fail.request.json; sourceTree = "<group>"; };
+		2E6120FE2445AC0700708FED /* CBProject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBProject.swift; sourceTree = "<group>"; };
+		2E6121042445B55600708FED /* CBHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBHeader.swift; sourceTree = "<group>"; };
+		2E61210A2445BDFB00708FED /* XMLMappingToObjcHeaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLMappingToObjcHeaderTests.swift; sourceTree = "<group>"; };
+		2E6121102445C9A400708FED /* CBXMLMappingToObjc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBXMLMappingToObjc.swift; sourceTree = "<group>"; };
+		2E6121122445C9CF00708FED /* MapHeaderMTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapHeaderMTO.swift; sourceTree = "<group>"; };
+		2E6121152445CBCB00708FED /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		2E6121172445CBF400708FED /* Optional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Optional.swift; sourceTree = "<group>"; };
+		2EC78F972445D607006D9000 /* HeaderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderMock.swift; sourceTree = "<group>"; };
+		2EC78FA3244605FB006D9000 /* CBXMLMappingFromObjc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBXMLMappingFromObjc.swift; sourceTree = "<group>"; };
+		2EC78FA624460678006D9000 /* MapHeaderMFO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapHeaderMFO.swift; sourceTree = "<group>"; };
+		2EC78FAB24460708006D9000 /* XMLMappingFromObjcHeaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLMappingFromObjcHeaderTests.swift; sourceTree = "<group>"; };
 		2ED41695241120AE00AFE2FD /* Nyancat_1.0_0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Nyancat_1.0_0991.xml; sourceTree = "<group>"; };
 		2ED41696241120AE00AFE2FD /* Nyancat_1.0_091.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Nyancat_1.0_091.xml; sourceTree = "<group>"; };
 		2ED41697241120AE00AFE2FD /* Nyancat_1.0_093.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Nyancat_1.0_093.xml; sourceTree = "<group>"; };
@@ -3594,6 +3616,101 @@
 			path = SearchStore;
 			sourceTree = "<group>";
 		};
+		2E6121022445AC1200708FED /* Data Structure */ = {
+			isa = PBXGroup;
+			children = (
+				2E6120FE2445AC0700708FED /* CBProject.swift */,
+				2E6121082445B55C00708FED /* Header */,
+			);
+			path = "Data Structure";
+			sourceTree = "<group>";
+		};
+		2E6121082445B55C00708FED /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				2E6121042445B55600708FED /* CBHeader.swift */,
+			);
+			path = Header;
+			sourceTree = "<group>";
+		};
+		2E6121092445BDBE00708FED /* Refactoring2020 */ = {
+			isa = PBXGroup;
+			children = (
+				2EC78F9E2445FDAB006D9000 /* Mocks */,
+				2EC78FA9244606C7006D9000 /* Mapping */,
+			);
+			path = Refactoring2020;
+			sourceTree = "<group>";
+		};
+		2E61210E2445C85100708FED /* Refactoring2020 */ = {
+			isa = PBXGroup;
+			children = (
+				2E6121022445AC1200708FED /* Data Structure */,
+				2EC78FA524460603006D9000 /* Mapping From Objc (MFO) */,
+				2E61210F2445C99200708FED /* Mapping To Objc (MTO) */,
+			);
+			path = Refactoring2020;
+			sourceTree = "<group>";
+		};
+		2E61210F2445C99200708FED /* Mapping To Objc (MTO) */ = {
+			isa = PBXGroup;
+			children = (
+				2E6121102445C9A400708FED /* CBXMLMappingToObjc.swift */,
+				2E6121142445C9D200708FED /* Header */,
+			);
+			path = "Mapping To Objc (MTO)";
+			sourceTree = "<group>";
+		};
+		2E6121142445C9D200708FED /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				2E6121122445C9CF00708FED /* MapHeaderMTO.swift */,
+			);
+			path = Header;
+			sourceTree = "<group>";
+		};
+		2EC78F9E2445FDAB006D9000 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				2EC78F972445D607006D9000 /* HeaderMock.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
+		2EC78FA524460603006D9000 /* Mapping From Objc (MFO) */ = {
+			isa = PBXGroup;
+			children = (
+				2EC78FA3244605FB006D9000 /* CBXMLMappingFromObjc.swift */,
+				2EC78FA82446067B006D9000 /* Header */,
+			);
+			path = "Mapping From Objc (MFO)";
+			sourceTree = "<group>";
+		};
+		2EC78FA82446067B006D9000 /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				2EC78FA624460678006D9000 /* MapHeaderMFO.swift */,
+			);
+			path = Header;
+			sourceTree = "<group>";
+		};
+		2EC78FA9244606C7006D9000 /* Mapping */ = {
+			isa = PBXGroup;
+			children = (
+				2EC78FAA244606CE006D9000 /* Header */,
+			);
+			path = Mapping;
+			sourceTree = "<group>";
+		};
+		2EC78FAA244606CE006D9000 /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				2E61210A2445BDFB00708FED /* XMLMappingToObjcHeaderTests.swift */,
+				2EC78FAB24460708006D9000 /* XMLMappingFromObjcHeaderTests.swift */,
+			);
+			path = Header;
+			sourceTree = "<group>";
+		};
 		2ED41693241120AE00AFE2FD /* UserProjects */ = {
 			isa = PBXGroup;
 			children = (
@@ -4953,6 +5070,7 @@
 		4C724D851B4D3E8C00E27479 /* Parser&Serialializer */ = {
 			isa = PBXGroup;
 			children = (
+				2E61210E2445C85100708FED /* Refactoring2020 */,
 				4C724D861B4D3E8C00E27479 /* New Parser & Serializer */,
 				4C724E191B4D3E8C00E27479 /* Old Parser */,
 			);
@@ -5679,6 +5797,7 @@
 		4CD194F21A0631B200484E4F /* Parser & Serialization */ = {
 			isa = PBXGroup;
 			children = (
+				2E6121092445BDBE00708FED /* Refactoring2020 */,
 				2ED4188D2411213D00AFE2FD /* Abstract */,
 				2ED418B02411213D00AFE2FD /* CatrobatLanguage0.92 */,
 				2ED418A42411213D00AFE2FD /* CatrobatLanguage0.93 */,
@@ -6712,6 +6831,8 @@
 				5E84B7A32341FC4E009982AA /* UITextField+Extension */,
 				5EFBD5FB2145AADC003B3CDC /* UIView+Extensions.swift */,
 				5E18A81121A547AA00541536 /* UIViewController+Extensions.swift */,
+				2E6121152445CBCB00708FED /* String.swift */,
+				2E6121172445CBF400708FED /* Optional.swift */,
 			);
 			name = Extensions;
 			path = "Extension&Delegate&Protocol/Extensions";
@@ -9167,6 +9288,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/TTTAttributedLabel.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Kingfisher.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/ZipArchive.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SWXMLHash.framework",
 			);
 			name = "Carthage Copy Frameworks Run Script";
 			outputPaths = (
@@ -9180,6 +9302,7 @@
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/TTTAttributedLabel.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Kingfisher.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/ZipArchive.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/SWXMLHash.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -9244,7 +9367,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "/usr/libexec/PlistBuddy \"$SRCROOT/Catty/Settings.bundle/Root.plist\" -c \"set PreferenceSpecifiers:3:DefaultValue $MARKETING_VERSION\"\n";
-
 		};
 		CADBD6D619B0E8C200C62836 /* Catty Precompile Tests */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -9332,6 +9454,7 @@
 				187A3F202434BC4300EF1B02 /* PlaySoundAndWaitBrickTests.swift in Sources */,
 				4C1A596823FE9997001A78D2 /* CrashlyticsMock.swift in Sources */,
 				4C82265A213FA7A400F3D750 /* TouchManagerMock.swift in Sources */,
+				2EC78F992445D637006D9000 /* HeaderMock.swift in Sources */,
 				4CBF96BF2351B3EC0063D5FC /* ProjectTests.swift in Sources */,
 				5973F245202EF3A000A4CED9 /* SoundsLibraryCollectionViewDataSourceDelegateMock.swift in Sources */,
 				4C3A5CA921D3B7EF008FD83F /* NotEqualOperatorTest.swift in Sources */,
@@ -9415,6 +9538,7 @@
 				4C6FE175212D2D2E0067B7D5 /* ContainsFunctionTest.swift in Sources */,
 				4C822663213FA7A400F3D750 /* FacePositionXSensorTest.swift in Sources */,
 				4CBDF1AA21CF830E00325338 /* BinaryOperatorMock.swift in Sources */,
+				2E61210B2445BDFB00708FED /* XMLMappingToObjcHeaderTests.swift in Sources */,
 				9E22CC8D2323FC6700BA4CBA /* AudioEngineFingerprintingStub.swift in Sources */,
 				9E2C2D8A23256901004B66C6 /* AudioEngineMock.swift in Sources */,
 				4C822668213FA7A400F3D750 /* CompassDirectionSensorTest.swift in Sources */,
@@ -9457,6 +9581,7 @@
 				9EBCBD892329BF5F0074C2D9 /* PointToBrickTests.swift in Sources */,
 				9EBCBD8F2329C7A30074C2D9 /* SetTransparencyBrickTests.swift in Sources */,
 				4C6FE171212D2D2E0067B7D5 /* CosFunctionTest.swift in Sources */,
+				2EC78FAD2446070B006D9000 /* XMLMappingFromObjcHeaderTests.swift in Sources */,
 				4C53E38821D5238900F2EC76 /* GreaterOrEqualOperatorTest.swift in Sources */,
 				D3F2717923CC9ADF00E339FD /* FormulaFunctionsTest.swift in Sources */,
 				4C6FE15F212D2D2E0067B7D5 /* FalseFunctionTest.swift in Sources */,
@@ -9708,6 +9833,7 @@
 				AA74EFEC1BC05B5F00D1E954 /* ChangeVariableBrick.m in Sources */,
 				92FF31031A24DCAA00093DA7 /* Script.m in Sources */,
 				4CF773EE1AEE786600DBBB2B /* FormulaElement+UserVariable.m in Sources */,
+				2E6120FF2445AC0700708FED /* CBProject.swift in Sources */,
 				4C822693213FBC4400F3D750 /* MultiFingerTouchedFunction.swift in Sources */,
 				4C0F9F9E204BD2B100E71B2D /* SayBubbleBrickCell.m in Sources */,
 				4C2EE41E1B555B55006DE9B8 /* CBXMLOpenedNestingBricksStack.m in Sources */,
@@ -9827,6 +9953,7 @@
 				4CF429F1213A876000B78897 /* RepeatBrick+Condition.swift in Sources */,
 				92D56C301BF202E700A54750 /* BluetoothDevice.swift in Sources */,
 				4C0F9F91204BD28100E71B2D /* CameraBrickCell.m in Sources */,
+				2EC78FA724460678006D9000 /* MapHeaderMFO.swift in Sources */,
 				92FF2EBE1A24C8A700093DA7 /* CatrobatInformation.m in Sources */,
 				921D46891BDF698A0086AD20 /* ClearGraphicEffectBrick+Instruction.swift in Sources */,
 				4C0F9F39204ADC4E00E71B2D /* SayBubbleBrick.m in Sources */,
@@ -9907,6 +10034,7 @@
 				92FF2E941A24C7D800093DA7 /* Logger.m in Sources */,
 				AA74F0C61BC05FCE00D1E954 /* SetVolumeToBrickCell.m in Sources */,
 				4C0F9F42204ADC6600E71B2D /* ThinkForBubbleBrick.m in Sources */,
+				2E6121182445CBF400708FED /* Optional.swift in Sources */,
 				92FF32B81A24E2F400093DA7 /* ContinueImageCell.m in Sources */,
 				AA74EF581BC0586F00D1E954 /* SetYBrick+CBXMLHandler.m in Sources */,
 				4CDE807421A1A0AE009EFD31 /* ScenePresenterViewController+Screenshot.swift in Sources */,
@@ -10035,6 +10163,7 @@
 				92FF30FF1A24DCAA00093DA7 /* Project.m in Sources */,
 				4C82268D213FB29A00F3D750 /* MultiFingerYFunction.swift in Sources */,
 				BA987D0F2194EA1F002DAA05 /* WaitUntilBrick+Instruction.swift in Sources */,
+				2E6121112445C9A400708FED /* CBXMLMappingToObjc.swift in Sources */,
 				BA9CAB541EC380CA00796056 /* AddItemToUserListBrick.m in Sources */,
 				929CC0CF1BC39B0A0027DEC0 /* PhiroPlayToneBrick.m in Sources */,
 				BA1FA9A01F02B0020084184D /* InsertItemIntoUserListBrickCell.m in Sources */,
@@ -10163,6 +10292,7 @@
 				92FF30FD1A24DCAA00093DA7 /* Header.m in Sources */,
 				92B46FA71BC7C2A5004980C1 /* ArduinoSendDigitalValueBrick+Instruction.swift in Sources */,
 				E4AEC86D210843D20081A980 /* ProjectInformation.swift in Sources */,
+				2E6121132445C9CF00708FED /* MapHeaderMTO.swift in Sources */,
 				AA74EFFC1BC05B5F00D1E954 /* ChangeXByNBrick.m in Sources */,
 				AA74EFE31BC05B5F00D1E954 /* ForeverBrick.m in Sources */,
 				AA74EEFB1BC057C900D1E954 /* HideBrick+CBXMLHandler.m in Sources */,
@@ -10185,6 +10315,7 @@
 				99B2C3701D884D2900736769 /* FlashBrick.m in Sources */,
 				4CF0728420D6581900F93AB5 /* PhiroFrontLeftSensor.swift in Sources */,
 				9218B2001CC4AB75007B4C60 /* YKImageCropperOverlayView.m in Sources */,
+				2E6121162445CBCB00708FED /* String.swift in Sources */,
 				4C724E5E1B4D3E8C00E27479 /* UserVariable+CBXMLHandler.m in Sources */,
 				4C0F9F2E204ADC2300E71B2D /* CameraBrick.m in Sources */,
 				92C631891BC502CB00486958 /* ConnectedDevicesTableViewController.swift in Sources */,
@@ -10306,6 +10437,7 @@
 				AA74F0081BC05B5F00D1E954 /* TurnLeftBrick.m in Sources */,
 				AA74F0C71BC05FCE00D1E954 /* SpeakBrickCell.m in Sources */,
 				AA74F0B21BC05FCE00D1E954 /* SetLookBrickCell.m in Sources */,
+				2EC78FA4244605FB006D9000 /* CBXMLMappingFromObjc.swift in Sources */,
 				AA74F0091BC05B5F00D1E954 /* TurnRightBrick.m in Sources */,
 				4CF773E51AEE3B5100DBBB2B /* VariablePickerData.m in Sources */,
 				AA74F0071BC05B5F00D1E954 /* SetYBrick.m in Sources */,
@@ -10318,6 +10450,7 @@
 				59ABDC622021BBFB00061403 /* LooksTableViewController+MediaLibrary.swift in Sources */,
 				811FB6EA1A4980EF00957E10 /* ScriptCollectionViewController.m in Sources */,
 				4C4EE29D210901E70045F890 /* FormulaEditorSection.swift in Sources */,
+				2E6121052445B55600708FED /* CBHeader.swift in Sources */,
 				92FF32B41A24E2F400093DA7 /* CellMotionEffect.m in Sources */,
 				92FF314F1A24DEB300093DA7 /* LooksTableViewController.m in Sources */,
 				929CC0D01BC39B0A0027DEC0 /* PhiroRGBLightBrick.m in Sources */,
