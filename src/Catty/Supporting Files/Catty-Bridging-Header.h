@@ -173,6 +173,9 @@
 #import "FormulaEditorViewController.h"
 #import "MyProjectsViewController.h"
 #import "ProjectTableViewController.h"
+#import "TermsOfUseOptionTableViewController.h"
+#import "AboutPocketCodeOptionTableViewController.h"
+#import "CatrobatTableViewController.h"
 
 //------------------------------------------------------------------------------------------------------------
 
