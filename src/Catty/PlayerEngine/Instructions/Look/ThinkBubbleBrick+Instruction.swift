@@ -23,7 +23,7 @@
 extension ThinkBubbleBrick: CBInstructionProtocol {
 
     func instruction() -> CBInstruction {
-        return .action { context in SKAction.run(self.actionBlock(context.formulaInterpreter)) }
+        .action { context in SKAction.run(self.actionBlock(context.formulaInterpreter)) }
     }
 
     func actionBlock(_ formulaInterpreter: FormulaInterpreterProtocol) -> () -> Void {

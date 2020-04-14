@@ -32,6 +32,6 @@ protocol DeviceSensor: Sensor {
 extension DeviceSensor {
     // The Pocket Code standardized sensor value
     func standardizedValue() -> Double {
-        return convertToStandardized(rawValue: self.rawValue())
+        convertToStandardized(rawValue: self.rawValue())
     }
 }

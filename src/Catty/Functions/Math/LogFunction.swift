@@ -30,11 +30,11 @@ class LogFunction: SingleParameterDoubleFunction {
     static let position = 250
 
     func tag() -> String {
-        return type(of: self).tag
+        type(of: self).tag
     }
 
     func firstParameter() -> FunctionParameter {
-        return .number(defaultValue: 10)
+        .number(defaultValue: 10)
     }
 
     func value(parameter: AnyObject?) -> Double {
@@ -43,6 +43,6 @@ class LogFunction: SingleParameterDoubleFunction {
     }
 
     func formulaEditorSections() -> [FormulaEditorSection] {
-        return [.math(position: type(of: self).position)]
+        [.math(position: type(of: self).position)]
     }
 }

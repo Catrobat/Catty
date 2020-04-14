@@ -36,7 +36,7 @@ extension FormulaManager {
 
     @objc(interpretFloat: forSpriteObject:)
     func interpretFloat(_ formula: Formula, for spriteObject: SpriteObject) -> Float {
-        return Float(interpretDouble(formula, for: spriteObject))
+        Float(interpretDouble(formula, for: spriteObject))
     }
 
     @objc(interpretInteger: forSpriteObject:)
@@ -74,7 +74,7 @@ extension FormulaManager {
 
     @objc(interpret: forSpriteObject:)
     func interpret(_ formula: Formula, for spriteObject: SpriteObject) -> AnyObject {
-        return interpretRecursive(formulaElement: formula.formulaTree, for: spriteObject)
+        interpretRecursive(formulaElement: formula.formulaTree, for: spriteObject)
     }
 
     func interpretAndCache(_ formula: Formula, for spriteObject: SpriteObject) -> AnyObject {
@@ -190,11 +190,11 @@ extension FormulaManager {
     }
 
     private func interpretDouble(_ formulaElement: FormulaElement, for spriteObject: SpriteObject) -> AnyObject {
-        return Double(formulaElement.value) as AnyObject
+        Double(formulaElement.value) as AnyObject
     }
 
     private func boolResult(value: Bool) -> Double {
-        return Double(value ? 1.0 : 0.0)
+        Double(value ? 1.0 : 0.0)
     }
 
     private func interpretVariable(_ formulaElement: FormulaElement, for spriteObject: SpriteObject) -> AnyObject {
@@ -227,7 +227,7 @@ extension FormulaManager {
     }
 
     private func interpretSensor(_ formulaElement: FormulaElement, for spriteObject: SpriteObject) -> AnyObject {
-        return sensorManager.value(tag: formulaElement.value, spriteObject: spriteObject)
+        sensorManager.value(tag: formulaElement.value, spriteObject: spriteObject)
     }
 
     private func interpretFunction(_ formulaElement: FormulaElement, for spriteObject: SpriteObject) -> AnyObject {

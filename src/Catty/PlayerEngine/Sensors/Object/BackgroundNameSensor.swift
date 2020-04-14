@@ -30,7 +30,7 @@
     static let requiredResource = ResourceType.noResources
 
     func tag() -> String {
-        return type(of: self).tag
+        type(of: self).tag
     }
 
     static func rawValue(for spriteObject: SpriteObject) -> String {
@@ -40,7 +40,7 @@
     }
 
     static func convertToStandardized(rawValue: String, for spriteObject: SpriteObject) -> String {
-        return rawValue
+        rawValue
     }
 
     func formulaEditorSections(for spriteObject: SpriteObject) -> [FormulaEditorSection] {

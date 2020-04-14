@@ -67,4 +67,5 @@ final class BrickTests: XCTestCase {
                        formulaManager.interpretDouble(brick.variableFormula, for: SpriteObject()),
                        "Invalid formula")
     }
+
 }

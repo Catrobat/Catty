@@ -32,10 +32,10 @@ class FeatureMock: CIFeature {
     }
 
     override var type: String {
-        return mockedType
+        mockedType
     }
 
     override var bounds: CGRect {
-        return mockedBounds
+        mockedBounds
     }
 }

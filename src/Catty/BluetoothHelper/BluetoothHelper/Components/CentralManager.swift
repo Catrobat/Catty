@@ -45,7 +45,7 @@ import UIKit
     }
 
     @objc open var isScanning: Bool {
-        return self.helper.isScanning
+        self.helper.isScanning
     }
 
     // MARK: init
@@ -66,19 +66,19 @@ import UIKit
 
     // MARK: SCAN
     open func getKnownPeripheralsWithIdentifiers(_ uuids: [UUID]) -> [CBPeripheral] {
-        return self.helper.retrieveKnownPeripheralsWithIdentifiers(self, uuids: uuids)
+        self.helper.retrieveKnownPeripheralsWithIdentifiers(self, uuids: uuids)
     }
 
     open func getConnectedPeripheralsWithServices(_ uuids: [CBUUID])-> FutureStream<[Peripheral]> {
-        return self.helper.retrieveConnectedPeripheralsWithServices(self, uuids: uuids)
+        self.helper.retrieveConnectedPeripheralsWithServices(self, uuids: uuids)
     }
 
     open func startScan() -> FutureStream<Peripheral> {
-        return self.helper.startScanningForServiceUUIDs(self, uuids: nil)
+        self.helper.startScanningForServiceUUIDs(self, uuids: nil)
     }
 
     open func startScanningForServiceUUIDs(_ uuids: [CBUUID]!, capacity: Int? = nil) -> FutureStream<Peripheral> {
-        return self.helper.startScanningForServiceUUIDs(self, uuids: uuids, capacity: capacity)
+        self.helper.startScanningForServiceUUIDs(self, uuids: uuids, capacity: capacity)
     }
 
     open func stopScanning() {
@@ -104,11 +104,11 @@ import UIKit
 
     // MARK: Start/Stop
     open func start() -> Future<Void> {
-        return self.helper.start(self)
+        self.helper.start(self)
     }
 
     open func stop() -> Future<Void> {
-        return self.helper.stop(self)
+        self.helper.stop(self)
     }
 
     // MARK: CBCentralManagerDelegate
@@ -243,7 +243,7 @@ import UIKit
     }
 
     open func retrievePeripheralsWithIdentifiers(_ uuids: [UUID]) -> [CBPeripheral] {
-        return self.cbCentralManager.retrievePeripherals(withIdentifiers: uuids)
+        self.cbCentralManager.retrievePeripherals(withIdentifiers: uuids)
     }
     open func retrieveConnectedPeripheralsWithServices(_ uuids: [CBUUID]) {
         self.cbCentralManager.retrieveConnectedPeripherals(withServices: uuids)
@@ -268,7 +268,7 @@ CM.PeripheralWrap: PeripheralWrapper {
     private var _isScanning = false
 
     open var isScanning: Bool {
-        return self._isScanning
+        self._isScanning
     }
 
     public init() {
@@ -291,7 +291,7 @@ CM.PeripheralWrap: PeripheralWrapper {
     }
 
     open func retrieveKnownPeripheralsWithIdentifiers(_ central: CM, uuids: [UUID]) -> [CBPeripheral] {
-        return central.retrievePeripheralsWithIdentifiers(uuids)
+        central.retrievePeripheralsWithIdentifiers(uuids)
     }
 
     open func retrieveConnectedPeripheralsWithServices(_ central: CM, uuids: [CBUUID])-> FutureStream<[CM.PeripheralWrap]> {

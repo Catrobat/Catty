@@ -45,10 +45,10 @@ class UnaryOperatorMock: UnaryOperator {
     }
 
     func value(parameter: AnyObject) -> Double {
-        return mockedValue
+        mockedValue
     }
 
     func formulaEditorSections() -> [FormulaEditorSection] {
-        return mockedSections
+        mockedSections
     }
 }

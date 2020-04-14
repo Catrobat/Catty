@@ -49,7 +49,7 @@ public class IterableCache<ObjectType: AnyObject>: NSObject, NSCacheDelegate {
     }
 
     func getKeySet() -> Set<String> {
-        return self.keySet
+        self.keySet
     }
 
     private func removeFromKeySet(key: String) {

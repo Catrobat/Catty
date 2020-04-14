@@ -141,7 +141,9 @@
         if(authStatus == AVAuthorizationStatusNotDetermined){
             [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
                 if(granted){
-                    [self openPicker:pickerType];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self openPicker:pickerType];
+                    });
                     return;
                 }
             }];

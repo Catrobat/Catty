@@ -29,15 +29,15 @@ class TrueFunction: ZeroParameterDoubleFunction {
     static let position = 20
 
     func tag() -> String {
-        return type(of: self).tag
+        type(of: self).tag
     }
 
     func value() -> Double {
-        return 1.0
+        1.0
     }
 
     func formulaEditorSections() -> [FormulaEditorSection] {
-        return [.logic(position: type(of: self).position),
+        [.logic(position: type(of: self).position),
                 .math(position: type(of: self).position)]
     }
 }

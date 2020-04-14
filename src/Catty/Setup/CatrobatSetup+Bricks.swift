@@ -166,14 +166,14 @@
     }
 
     private static func isArduinoEnabled() -> Bool {
-        return UserDefaults.standard.bool(forKey: kUseArduinoBricks)
+        UserDefaults.standard.bool(forKey: kUseArduinoBricks)
     }
 
     private static func isPhiroEnabled() -> Bool {
-        return UserDefaults.standard.bool(forKey: kUsePhiroBricks)
+        UserDefaults.standard.bool(forKey: kUsePhiroBricks)
     }
 
     private static func isFavouritesCategoryAvailable() -> Bool {
-        return Util.getBrickInsertionDictionaryFromUserDefaults()?.count ?? 0 >= kMinFavouriteBrickSize
+        Util.getBrickInsertionDictionaryFromUserDefaults()?.count ?? 0 >= kMinFavouriteBrickSize
     }
 }

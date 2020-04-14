@@ -35,18 +35,18 @@
     }
 
     func tag() -> String {
-        return type(of: self).tag
+        type(of: self).tag
     }
 
     func rawValue() -> Double {
-        return self.getMotionManager()?.deviceMotion?.userAcceleration.x ?? type(of: self).defaultRawValue
+        self.getMotionManager()?.deviceMotion?.userAcceleration.x ?? type(of: self).defaultRawValue
     }
 
     func convertToStandardized(rawValue: Double) -> Double {
-        return rawValue * 9.8
+        rawValue * 9.8
     }
 
     func formulaEditorSections(for spriteObject: SpriteObject) -> [FormulaEditorSection] {
-        return [.device(position: type(of: self).position)]
+        [.device(position: type(of: self).position)]
     }
 }

@@ -23,20 +23,18 @@
 extension CatrobatSetup {
 
     static func registeredOperators() -> [Operator] {
-        return [
-            AndOperator(),
-            DivideOperator(),
-            EqualOperator(),
-            GreaterOrEqualOperator(),
-            GreaterThanOperator(),
-            MinusOperator(),
-            MultOperator(),
-            NotEqualOperator(),
-            OrOperator(),
-            PlusOperator(),
-            SmallerOrEqualOperator(),
-            SmallerThanOperator(),
-            NotOperator()
-        ]
+        [AndOperator(),
+         DivideOperator(),
+         EqualOperator(),
+         GreaterOrEqualOperator(),
+         GreaterThanOperator(),
+         MinusOperator(),
+         MultOperator(),
+         NotEqualOperator(),
+         OrOperator(),
+         PlusOperator(),
+         SmallerOrEqualOperator(),
+         SmallerThanOperator(),
+         NotOperator()]
     }
 }

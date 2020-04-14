@@ -52,22 +52,22 @@ final class DoubleParameterDoubleFunctionMock: DoubleParameterDoubleFunction {
     }
 
     func tag() -> String {
-        return mockedTag
+        mockedTag
     }
 
     func firstParameter() -> FunctionParameter {
-        return self.mockedFirstParameter
+        self.mockedFirstParameter
     }
 
     func secondParameter() -> FunctionParameter {
-        return self.mockedSecondParameter
+        self.mockedSecondParameter
     }
 
     func formulaEditorSections() -> [FormulaEditorSection] {
-        return self.mockedSections
+        self.mockedSections
     }
 
     func value(firstParameter: AnyObject?, secondParameter: AnyObject?) -> Double {
-        return self.mockedValue
+        self.mockedValue
     }
 }

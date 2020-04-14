@@ -52,7 +52,7 @@ class TouchManager: TouchManagerProtocol, CBMultiTouchRecognizerDelegate {
     }
 
     func screenTouched() -> Bool {
-        return !activeTouches.isEmpty
+        !activeTouches.isEmpty
     }
 
     func screenTouched(for touchNumber: Int) -> Bool {
@@ -61,7 +61,7 @@ class TouchManager: TouchManagerProtocol, CBMultiTouchRecognizerDelegate {
     }
 
     func numberOfTouches() -> Int {
-        return allTouches.count
+        allTouches.count
     }
 
     func lastPositionInScene() -> CGPoint? {

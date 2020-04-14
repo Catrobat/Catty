@@ -49,19 +49,19 @@ import CoreMotion
     }
 
     func sensors() -> [Sensor] {
-        return Array(type(of: self).sensorMap.values)
+        Array(type(of: self).sensorMap.values)
     }
 
     func sensor(tag: String) -> Sensor? {
-        return type(of: self).sensorMap[tag]
+        type(of: self).sensorMap[tag]
     }
 
     func tag(sensor: Sensor) -> String {
-        return sensor.tag()
+        sensor.tag()
     }
 
     @objc func exists(tag: String) -> Bool {
-        return self.sensor(tag: tag) != nil
+        self.sensor(tag: tag) != nil
     }
 
     @objc func value(tag: String, spriteObject: SpriteObject? = nil) -> AnyObject {

@@ -69,13 +69,6 @@
     return [NSString stringWithFormat:@"WaitForCondition"];
 }
 
-#pragma mark - Copy
-- (id)mutableCopyWithContext:(CBMutableCopyContext*)context
-{
-    WaitUntilBrick *brick = [self mutableCopyWithContext:context AndErrorReporting:NO];
-    return brick;
-}
-
 #pragma mark - Resources
 - (NSInteger)getRequiredResources
 {

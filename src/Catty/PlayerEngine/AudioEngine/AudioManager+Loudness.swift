@@ -21,8 +21,8 @@
  */
 
 extension AudioManager: AudioManagerProtocol {
-    private var noiseRecogniserTimeIntervalInSeconds: Double { return 0.05 }
-    private var noiseRecorderChannel: Int { return 0 }
+    private var noiseRecogniserTimeIntervalInSeconds: Double { 0.05 }
+    private var noiseRecorderChannel: Int { 0 }
 
     func startLoudnessRecorder() {
         if self.recorder == nil {

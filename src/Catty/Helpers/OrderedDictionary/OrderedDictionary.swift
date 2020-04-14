@@ -53,11 +53,11 @@ public struct OrderedDictionary<Key: Hashable, Value>: MutableCollection, Expres
     // ======================================================= //
 
     public var orderedKeys: [Key] {
-        return _orderedKeys
+        _orderedKeys
     }
 
     public var orderedValues: [Value] {
-        return _orderedKeys.compactMap { _keysToValues[$0] }
+        _orderedKeys.compactMap { _keysToValues[$0] }
     }
 
     // ======================================================= //
@@ -66,7 +66,7 @@ public struct OrderedDictionary<Key: Hashable, Value>: MutableCollection, Expres
 
     public subscript(key: Key) -> Value? {
         get {
-            return _keysToValues[key]
+            _keysToValues[key]
         }
         set(newValue) {
             if let newValue = newValue {
@@ -78,7 +78,7 @@ public struct OrderedDictionary<Key: Hashable, Value>: MutableCollection, Expres
     }
 
     public func containsKey(_ key: Key) -> Bool {
-        return _orderedKeys.contains(key)
+        _orderedKeys.contains(key)
     }
 
     @discardableResult
@@ -138,7 +138,7 @@ public struct OrderedDictionary<Key: Hashable, Value>: MutableCollection, Expres
     }
 
     public func indexForKey(_ key: Key) -> Index? {
-        return _orderedKeys.firstIndex(of: key)
+        _orderedKeys.firstIndex(of: key)
     }
 
     public func elementAtIndex(_ index: Index) -> Element? {
@@ -154,7 +154,7 @@ public struct OrderedDictionary<Key: Hashable, Value>: MutableCollection, Expres
     }
 
     public mutating func insertElementWithKey(_ key: Key, value: Value, atIndex index: Index) -> Value? {
-        return insertElement((key, value), atIndex: index)
+        insertElement((key, value), atIndex: index)
     }
 
     public mutating func insertElement(_ newElement: Element, atIndex index: Index) -> Value? {
@@ -214,7 +214,7 @@ public struct OrderedDictionary<Key: Hashable, Value>: MutableCollection, Expres
     }
 
     public func index(after i: Int) -> Int {
-        return i + 1
+        i + 1
     }
 
     // ======================================================= //
@@ -222,11 +222,11 @@ public struct OrderedDictionary<Key: Hashable, Value>: MutableCollection, Expres
     // ======================================================= //
 
     public var startIndex: Index {
-        return _orderedKeys.startIndex
+        _orderedKeys.startIndex
     }
 
     public var endIndex: Index {
-        return _orderedKeys.endIndex
+        _orderedKeys.endIndex
     }
 
     public func makeIterator() -> AnyIterator<Element> {

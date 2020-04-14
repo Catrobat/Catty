@@ -46,7 +46,7 @@ class ProjectMock: Project {
     }
 
     override func getRequiredResources() -> Int {
-        return mockedRequiredResources
+        mockedRequiredResources
     }
 
     override func rename(toProjectName projectName: String, andShowSaveNotification showSaveNotification: Bool) {

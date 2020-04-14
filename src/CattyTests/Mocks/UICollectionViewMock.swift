@@ -38,6 +38,6 @@ class UICollectionViewMock: UICollectionView {
     }
 
     override func cellForItem(at indexPath: IndexPath) -> UICollectionViewCell? {
-        return cell
+        cell
     }
 }

@@ -34,6 +34,6 @@
     }
 
     func formulaEditorSections() -> [FormulaEditorSection] {
-        return []
+        []
     }
 }

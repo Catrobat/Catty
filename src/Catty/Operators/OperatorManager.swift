@@ -36,11 +36,11 @@
     }
 
     func operators() -> [Operator] {
-        return Array(type(of: self).operatorMap.values)
+        Array(type(of: self).operatorMap.values)
     }
 
     func getOperator(tag: String) -> Operator? {
-        return type(of: self).operatorMap[tag]
+        type(of: self).operatorMap[tag]
     }
 
     func value(tag: String, leftParameter: AnyObject?, rightParameter: AnyObject?) -> AnyObject {
@@ -60,7 +60,7 @@
     }
 
     func exists(tag: String) -> Bool {
-        return getOperator(tag: tag) != nil
+        getOperator(tag: tag) != nil
     }
 
     func formulaEditorItems() -> [FormulaEditorItem] {

@@ -87,11 +87,11 @@ class AudioPlayer {
     }
 
     func isPlaying() -> Bool {
-        return akPlayer.isPlaying
+        akPlayer.isPlaying
     }
 
     func getFileName() -> String {
-        return fileName
+        fileName
     }
 
     func setSoundCompletionHandler(_ completionHandler: @escaping () -> Void) {

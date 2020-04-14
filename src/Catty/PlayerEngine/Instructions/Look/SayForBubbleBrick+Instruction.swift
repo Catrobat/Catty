@@ -33,8 +33,7 @@
         })
     }
 
-    @objc func actionBlock(_ object: SpriteObject, _ formulaInterpreter: FormulaInterpreterProtocol) -> () -> Void {
-        return {
+    @objc func actionBlock(_ object: SpriteObject, _ formulaInterpreter: FormulaInterpreterProtocol) -> () -> Void { {
             var speakText = formulaInterpreter.interpretString(self.stringFormula, for: object)
 
             if Double(speakText) != nil {
@@ -45,8 +44,7 @@
         }
     }
 
-    @nonobjc func removeActionBlock(_ object: SpriteObject) -> () -> Void {
-        return {
+    @nonobjc func removeActionBlock(_ object: SpriteObject) -> () -> Void { {
             let oldBubble = object.spriteNode.childNode(withName: kBubbleBrickNodeName)
 
             if oldBubble != nil {

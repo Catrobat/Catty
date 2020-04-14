@@ -69,13 +69,6 @@
     return [NSString stringWithFormat:@"RepeatLoop"];
 }
 
-#pragma mark - Copy
-- (id)mutableCopyWithContext:(CBMutableCopyContext*)context
-{
-    RepeatUntilBrick *brick = [self mutableCopyWithContext:context AndErrorReporting:NO];
-    return brick;
-}
-
 #pragma mark - Resources
 - (NSInteger)getRequiredResources
 {

@@ -38,11 +38,11 @@ import BluetoothHelper
     }
 
     func function(tag: String) -> Function? {
-        return type(of: self).functionMap[tag]
+        type(of: self).functionMap[tag]
     }
 
     func functions() -> [Function] {
-        return Array(type(of: self).functionMap.values)
+        Array(type(of: self).functionMap.values)
     }
 
     func isIdempotent(tag: String) -> Bool {
@@ -94,7 +94,7 @@ import BluetoothHelper
     }
 
     func exists(tag: String) -> Bool {
-        return self.function(tag: tag) != nil
+        self.function(tag: tag) != nil
     }
 
     @objc static func requiredResource(tag: String) -> ResourceType {

@@ -81,33 +81,33 @@ extension UIColor {
     }
 
     static var dark: UIColor {
-        return UIColor(hex: 0x191919)
+        UIColor(hex: 0x191919)
     }
 
     static var whiteGray: UIColor {
-        return UIColor(red: 250.0 / 255.0, green: 250.0 / 255.0, blue: 250.0 / 255.0, alpha: 1.0)
+        UIColor(red: 250.0 / 255.0, green: 250.0 / 255.0, blue: 250.0 / 255.0, alpha: 1.0)
     }
 
     static var textViewBorderGray: UIColor {
-        return UIColor(red: 225.0 / 255.0, green: 225.0 / 255.0, blue: 225.0 / 255.0, alpha: 1.0)
+        UIColor(red: 225.0 / 255.0, green: 225.0 / 255.0, blue: 225.0 / 255.0, alpha: 1.0)
     }
 
     static var destructive: UIColor {
-        return UIColor(hex: 0xf26c4f)
+        UIColor(hex: 0xf26c4f)
     }
 
     // MARK: Global
 
     static var globalTint: UIColor {
-        return self.medium
+        self.medium
     }
 
     static var utilityTint: UIColor {
-        return self.medium
+        self.medium
     }
 
     static var navBar: UIColor {
-        return self.medium
+        self.medium
     }
 
     static var navTint: UIColor {
@@ -121,27 +121,27 @@ extension UIColor {
     }
 
     static var navText: UIColor {
-        return self.background
+        self.background
     }
 
     static var toolBar: UIColor {
-        return self.navBar
+        self.navBar
     }
 
     static var toolTint: UIColor {
-        return self.navTint
+        self.navTint
     }
 
     static var tabBar: UIColor {
-        return self.navBar
+        self.navBar
     }
 
     static var tabTint: UIColor {
-        return self.navTint
+        self.navTint
     }
 
     static var buttonTint: UIColor {
-        return self.medium
+        self.medium
     }
 
     static var textTint: UIColor {
@@ -155,15 +155,15 @@ extension UIColor {
     }
 
     static var pageIndicator: UIColor {
-        return UIColor(hex: 0x3ab2c1)
+        UIColor(hex: 0x3ab2c1)
     }
 
     static var buttonHighlightedTint: UIColor {
-        return self.background
+        self.background
     }
 
     static var destructiveTint: UIColor {
-        return self.destructive
+        self.destructive
     }
 
     static var background: UIColor {
@@ -178,85 +178,85 @@ extension UIColor {
     // MARK: FormulaEditor
 
     static var formulaEditorOperator: UIColor {
-        return self.buttonTint
+        self.buttonTint
     }
 
     static var formulaEditorHighlight: UIColor {
-        return self.buttonTint
+        self.buttonTint
     }
 
     static var formulaEditorOperand: UIColor {
-        return self.buttonTint
+        self.buttonTint
     }
 
     static var formulaEditorBorder: UIColor {
-        return self.light
+        self.light
     }
 
     static var formulaButtonText: UIColor {
-        return self.light
+        self.light
     }
 
     // MARK: IDE
 
     // Bricks & Scripts Colors
     static var brickSelectionBackground: UIColor {
-        return UIColor(red: 13.0 / 255.0, green: 13.0 / 255.0, blue: 13.0 / 255.0, alpha: 1.0)
+        UIColor(red: 13.0 / 255.0, green: 13.0 / 255.0, blue: 13.0 / 255.0, alpha: 1.0)
     }
 
     static var lookBrickGreen: UIColor {
-        return UIColor(red: 57.0 / 255.0, green: 171.0 / 255.0, blue: 45.0 / 255.0, alpha: 1.0)
+        UIColor(red: 57.0 / 255.0, green: 171.0 / 255.0, blue: 45.0 / 255.0, alpha: 1.0)
     }
 
     static var lookBrickStroke: UIColor {
-        return UIColor(red: 185.0 / 255.0, green: 220.0 / 255.0, blue: 110.0 / 255.0, alpha: 1.0)
+        UIColor(red: 185.0 / 255.0, green: 220.0 / 255.0, blue: 110.0 / 255.0, alpha: 1.0)
     }
 
     static var motionBrickBlue: UIColor {
-        return UIColor(red: 29.0 / 255.0, green: 132.0 / 255.0, blue: 217.0 / 255.0, alpha: 1.0)
+        UIColor(red: 29.0 / 255.0, green: 132.0 / 255.0, blue: 217.0 / 255.0, alpha: 1.0)
     }
 
     static var motionBrickStroke: UIColor {
-        return UIColor(red: 179.0 / 255.0, green: 203.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0)
+        UIColor(red: 179.0 / 255.0, green: 203.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0)
     }
 
     static var controlBrickOrange: UIColor {
-        return UIColor(red: 255.0 / 255.0, green: 120.0 / 255.0, blue: 20.0 / 255.0, alpha: 1.0)
+        UIColor(red: 255.0 / 255.0, green: 120.0 / 255.0, blue: 20.0 / 255.0, alpha: 1.0)
     }
 
     static var controlBrickStroke: UIColor {
-        return UIColor(red: 247.0 / 255.0, green: 208.0 / 255.0, blue: 187.0 / 255.0, alpha: 1.0)
+        UIColor(red: 247.0 / 255.0, green: 208.0 / 255.0, blue: 187.0 / 255.0, alpha: 1.0)
     }
 
     static var variableBrickRed: UIColor {
-        return UIColor(red: 234.0 / 255.0, green: 59.0 / 255.0, blue: 59.0 / 255.0, alpha: 1.0)
+        UIColor(red: 234.0 / 255.0, green: 59.0 / 255.0, blue: 59.0 / 255.0, alpha: 1.0)
     }
 
     static var variableBrickStroke: UIColor {
-        return UIColor(red: 238.0 / 255.0, green: 149.0 / 255.0, blue: 149.0 / 255.0, alpha: 1.0)
+        UIColor(red: 238.0 / 255.0, green: 149.0 / 255.0, blue: 149.0 / 255.0, alpha: 1.0)
     }
 
     static var soundBrickViolet: UIColor {
-        return UIColor(red: 180.0 / 255.0, green: 67.0 / 255.0, blue: 198.0 / 255.0, alpha: 1.0)
+        UIColor(red: 180.0 / 255.0, green: 67.0 / 255.0, blue: 198.0 / 255.0, alpha: 1.0)
     }
 
     static var soundBrickStroke: UIColor {
-        return UIColor(red: 179.0 / 255.0, green: 137.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0)
+        UIColor(red: 179.0 / 255.0, green: 137.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0)
     }
 
     static var phiroBrick: UIColor {
-        return UIColor(red: 234.0 / 255.0, green: 200.0 / 255.0, blue: 59.0 / 255.0, alpha: 1.0)
+        UIColor(red: 234.0 / 255.0, green: 200.0 / 255.0, blue: 59.0 / 255.0, alpha: 1.0)
     }
 
     static var phiroBrickStroke: UIColor {
-        return UIColor(red: 179.0 / 255.0, green: 137.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0)
+        UIColor(red: 179.0 / 255.0, green: 137.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0)
     }
 
     static var arduinoBrick: UIColor {
-        return UIColor(red: 234.0 / 255.0, green: 200.0 / 255.0, blue: 59.0 / 255.0, alpha: 1.0)
+        UIColor(red: 234.0 / 255.0, green: 200.0 / 255.0, blue: 59.0 / 255.0, alpha: 1.0)
     }
 
     static var arduinoBrickStroke: UIColor {
-        return UIColor(red: 179.0 / 255.0, green: 137.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0)
+        UIColor(red: 179.0 / 255.0, green: 137.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0)
     }
 }

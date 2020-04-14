@@ -35,18 +35,18 @@
     }
 
     func tag() -> String {
-        return type(of: self).tag
+        type(of: self).tag
     }
 
     func rawValue() -> Double {
-        return self.getLocationManager()?.location?.altitude ?? type(of: self).defaultRawValue
+        self.getLocationManager()?.location?.altitude ?? type(of: self).defaultRawValue
     }
 
     func convertToStandardized(rawValue: Double) -> Double {
-        return rawValue
+        rawValue
     }
 
     func formulaEditorSections(for spriteObject: SpriteObject) -> [FormulaEditorSection] {
-        return [.device(position: type(of: self).position)]
+        [.device(position: type(of: self).position)]
     }
 }
