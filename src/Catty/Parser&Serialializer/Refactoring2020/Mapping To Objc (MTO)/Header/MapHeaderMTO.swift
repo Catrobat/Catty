@@ -22,10 +22,7 @@
 
 extension CBXMLMappingToObjc {
 
-    static func mapHeader(project: CBProject?) -> Header? {
-        
-        guard let input = project?.header else { return nil }
-
+    static func mapHeader(_ input: CBHeader) -> Header? {
         let header = Header()
         header.applicationBuildName = input.applicationBuildName
         header.applicationBuildNumber = input.applicationBuildNumber
@@ -39,7 +36,7 @@ extension CBXMLMappingToObjc {
 
         header.programDescription = input.description
         header.deviceName = input.deviceName
-        header.landscapeMode = input.landscapeMode?.bool ?? false
+        header.landscapeMode = input.landscapeMode.bool
         header.mediaLicense = input.mediaLicense
         header.platform = input.platform
         header.platformVersion = input.platformVersion

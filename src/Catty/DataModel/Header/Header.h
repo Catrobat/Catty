@@ -24,6 +24,7 @@
 #import <Foundation/Foundation.h>
 @class SpriteObject;
 
+__attribute__((objc_subclassing_restricted))
 @interface Header : NSObject
 
 // meta infos

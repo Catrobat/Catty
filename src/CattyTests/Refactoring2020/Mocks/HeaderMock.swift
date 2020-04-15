@@ -23,7 +23,7 @@
 @testable import Pocket_Code
 
 class HeaderMock {
-    
+
     var applicationBuildName = "Catty"
     var applicationBuildNumber = "0"
     var applicationName = "Mock"
@@ -46,47 +46,23 @@ class HeaderMock {
     var url = "http://pocketcode.org/details/719"
     var userHandle = "Catrobat"
     var programID = "123"
-        
-    func getCBProject() -> CBProject {
-        var header = CBHeader()
-        header.applicationBuildName = applicationBuildName
-        header.applicationBuildNumber = applicationBuildNumber
-        header.applicationName = applicationName
-        header.applicationVersion = applicationVersion
-        header.catrobatLanguageVersion = catrobatLanguageVersion
-        header.dateTimeUpload = dateTimeUpload
-        header.description = programDescription
-        header.deviceName = deviceName
-        header.landscapeMode = String(landscapeMode)
-        header.mediaLicense = mediaLicense
-        header.platform = platform
-        header.platformVersion = platformVersion
-        header.programLicense = programLicense
-        header.programName = programName
-        header.remixOf = remixOf
-        header.screenHeight = screenHeight.stringValue
-        header.screenWidth = screenWidth.stringValue
-        header.screenMode = screenMode
-        header.tags = tags
-        header.url = url
-        header.userHandle = userHandle
-        header.programID = programID
-        
-        return CBProject(header: header)
+
+    func getMockCBHeader() -> CBHeader {
+        return CBHeader(getHeader())
     }
-    
-    func getProject() -> Project {
+
+    func getHeader() -> Header {
         let header = Header()
         header.applicationBuildName = applicationBuildName
         header.applicationBuildNumber = applicationBuildNumber
         header.applicationName = applicationName
         header.applicationVersion = applicationVersion
         header.catrobatLanguageVersion = catrobatLanguageVersion
-        
+
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = kCatrobatHeaderDateTimeFormat
         header.dateTimeUpload = dateFormatter.date(from: dateTimeUpload)
-        
+
         header.programDescription = programDescription
         header.deviceName = deviceName
         header.landscapeMode = landscapeMode
@@ -103,10 +79,7 @@ class HeaderMock {
         header.url = url
         header.userHandle = userHandle
         header.programID = programID
-        
-        let project = Project()
-        project.header = header
-        
-        return project
+
+        return header
     }
 }

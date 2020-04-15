@@ -23,7 +23,7 @@
 import SWXMLHash
 
 struct CBProject: XMLIndexerDeserializable, Equatable {
-    
+
     var header: CBHeader?
 
     init(header: CBHeader? = nil) {

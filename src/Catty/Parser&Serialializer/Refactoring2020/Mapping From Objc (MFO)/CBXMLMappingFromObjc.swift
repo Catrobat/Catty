@@ -26,7 +26,7 @@ enum CBXMLMappingFromObjc {
 
         var mappedProject = CBProject()
 
-        mappedProject.header = mapHeader(project: project)
+        mappedProject.header = mapHeader(project.header)
 
         return mappedProject
     }
