@@ -24,11 +24,13 @@ protocol StoreProjectDownloaderProtocol {
     func fetchProjects(forType: ProjectType, offset: Int, completion: @escaping (StoreProjectCollection.StoreProjectCollectionText?, StoreProjectDownloaderError?) -> Void)
     func fetchSearchQuery(searchTerm: String, completion: @escaping (StoreProjectCollection.StoreProjectCollectionNumber?, StoreProjectDownloaderError?) -> Void)
     func fetchProjectDetails(for project: StoreProject, completion: @escaping (StoreProject?, StoreProjectDownloaderError?) -> Void)
+    func download(projectId: String, completion: @escaping (Data?, StoreProjectDownloaderError?) -> Void, progression: ((Float) -> Void)?)
 }
 
 final class StoreProjectDownloader: StoreProjectDownloaderProtocol {
 
     let session: URLSession
+    var downloadProjectProgressObserver: NSKeyValueObservation?
 
     init(session: URLSession = StoreProjectDownloader.defaultSession()) {
         self.session = session
@@ -182,4 +184,46 @@ enum ProjectType {
     case mostDownloaded
     case mostViewed
     case mostRecent
+}
+
+extension StoreProjectDownloader {
+    func download(projectId: String, completion: @escaping (Data?, StoreProjectDownloaderError?) -> Void, progression: ((Float) -> Void)?) {
+        guard let indexURL = URL(string: "\(NetworkDefines.downloadUrl)/\(projectId).catrobat") else { return }
+
+        let task = self.session.dataTask(with: URLRequest(url: indexURL)) { data, response, error in
+            let handleDataTaskCompletion: (Data?, URLResponse?, Error?) -> (projectData: Data?, error: StoreProjectDownloaderError?)
+            handleDataTaskCompletion = { data, response, error in
+                guard let response = response as? HTTPURLResponse else { return (nil, .unexpectedError) }
+
+                if let error = error as NSError?, error.domain == NSURLErrorDomain && error.code == NSURLErrorTimedOut {
+                    return (nil, .timeout)
+                }
+                guard let data = data, response.statusCode == 200, error == nil else {
+                    return (nil, .request(error: error, statusCode: response.statusCode)) }
+
+                if let error = error {
+                    return (nil, .parse(error: error))
+                }
+
+                return (data, nil)
+            }
+
+            let result = handleDataTaskCompletion(data, response, error)
+            DispatchQueue.main.async {
+                completion(result.projectData, result.error)
+            }
+        }
+
+        if let progression = progression {
+            downloadProjectProgressObserver = task.observe(\.countOfBytesReceived, options: [.new, .initial]) { progress, _ in
+                var progress = Float(progress.countOfBytesReceived) / Float(progress.countOfBytesExpectedToReceive)
+                if progress.isNaN {
+                    progress = 0
+                }
+                progression(progress)
+            }
+        }
+
+        task.resume()
+    }
 }
