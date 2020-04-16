@@ -52,7 +52,6 @@ static const CGFloat kPointMinDistanceSquared = kPointMinDistance * kPointMinDis
       }
       else
           return;
-      
       currentPoint = CGPointMake(-1, -1);
       [self drawLine:point];
   }else if (recognizer.state == UIGestureRecognizerStateChanged){
