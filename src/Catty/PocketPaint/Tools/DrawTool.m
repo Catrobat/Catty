@@ -40,18 +40,22 @@ static const CGFloat kPointMinDistanceSquared = kPointMinDistance * kPointMinDis
 
 - (void)draw:(UIGestureRecognizer *)recognizer
 {
-
+  CGPoint point;
   if (recognizer.state == UIGestureRecognizerStateBegan){
       if (self.canvas.isEraser) {
           self.canvas.saveView.hidden = YES;
           self.canvas.drawView.image = self.canvas.saveView.image;
           self.canvas.drawView.backgroundColor = self.canvas.saveView.backgroundColor;
       }
-      CGPoint point = [recognizer locationOfTouch:0 inView:self.canvas.drawView];
+      if (recognizer.numberOfTouches) {
+          point = [recognizer locationOfTouch:0 inView:self.canvas.drawView];
+      }
+      else {
+          return;
+      }
       currentPoint = CGPointMake(-1, -1);
       [self drawLine:point];
   }else if (recognizer.state == UIGestureRecognizerStateChanged){
-
       CGPoint point = [recognizer locationOfTouch:0 inView:self.canvas.drawView];
       [self drawLine:point];
   }else {
