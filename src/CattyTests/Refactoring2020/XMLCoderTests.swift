@@ -34,6 +34,7 @@ final class XMLCoderTests: XCTestCase {
         super.setUp()
         self.encoder = XMLEncoder()
         encoder.outputFormatting = .prettyPrinted
+        encoder.userInfo = [CodingUserInfoKey(rawValue: "CatrobatLanguageVersion")!: 0.991]
 
         self.decoder = XMLDecoder()
     }
@@ -90,11 +91,6 @@ final class XMLCoderTests: XCTestCase {
         let data = xmlStr.data(using: .utf8)!
         let cbHeader = try? decoder.decode(CBHeader.self, from: data)
         XCTAssertNil(cbHeader)
-    }
-
-    func getDocumentsDirectory() -> URL {
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        return paths[0]
     }
 
     func compareHeaders(left: CBHeader, right: CBHeader) {
