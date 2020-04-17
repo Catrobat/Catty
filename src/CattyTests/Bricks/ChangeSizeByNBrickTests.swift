@@ -72,4 +72,16 @@ final class ChangeSizeByNBrickTests: AbstractBrickTest {
 
         XCTAssertEqual(10.0, spriteNode.catrobatSize, accuracy: 0.0001, "Size not correct")
     }
+
+    func testMutableCopy() {
+        brick.size = Formula(integer: -50)
+
+        let copiedBrick: ChangeSizeByNBrick = brick.mutableCopy(with: CBMutableCopyContext(), andErrorReporting: true) as! ChangeSizeByNBrick
+
+        XCTAssertTrue(brick.isEqual(to: copiedBrick))
+        XCTAssertFalse(brick === copiedBrick)
+
+        XCTAssertTrue(brick.size.isEqual(to: copiedBrick.size))
+        XCTAssertFalse(brick.size === copiedBrick.size)
+    }
 }

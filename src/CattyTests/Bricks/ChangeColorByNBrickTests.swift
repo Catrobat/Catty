@@ -106,4 +106,23 @@ final class ChangeColorByNBrickTests: AbstractBrickTest {
 
         XCTAssertEqual(200.0 - 130.0, spriteNode.catrobatColor, accuracy: 0.1, "ChangeColorBrick - Color not correct")
     }
+
+    func testMutableCopy() {
+        brick.changeColor = Formula(integer: 70)
+
+        var copiedBrick: ChangeColorByNBrick = brick.mutableCopy(with: CBMutableCopyContext(), andErrorReporting: true) as! ChangeColorByNBrick
+
+        XCTAssertTrue(brick.isEqual(to: copiedBrick))
+        XCTAssertFalse(brick === copiedBrick)
+
+        XCTAssertTrue(brick.changeColor.isEqual(to: copiedBrick.changeColor))
+        XCTAssertFalse(brick.changeColor === copiedBrick.changeColor)
+
+        brick.changeColor = Formula(integer: -10)
+
+        copiedBrick = brick.mutableCopy(with: CBMutableCopyContext(), andErrorReporting: true) as! ChangeColorByNBrick
+
+        XCTAssertTrue(brick.changeColor.isEqual(to: copiedBrick.changeColor))
+        XCTAssertFalse(brick.changeColor === copiedBrick.changeColor)
+    }
 }

@@ -106,4 +106,23 @@ final class ChangeBrightnessByNBrickTests: AbstractBrickTest {
 
         XCTAssertEqual(50.0, spriteNode.catrobatBrightness, accuracy: 0.1, "ChangeBrightnessBrick - Brightness not correct")
     }
+
+    func testMutableCopy() {
+        brick.changeBrightness = Formula(integer: -50)
+
+        var copiedBrick: ChangeBrightnessByNBrick = brick.mutableCopy(with: CBMutableCopyContext(), andErrorReporting: true) as! ChangeBrightnessByNBrick
+
+        XCTAssertTrue(brick.isEqual(to: copiedBrick))
+        XCTAssertFalse(brick === copiedBrick)
+
+        XCTAssertTrue(brick.changeBrightness.isEqual(to: copiedBrick.changeBrightness))
+        XCTAssertFalse(brick.changeBrightness === copiedBrick.changeBrightness)
+
+        brick.changeBrightness = Formula(integer: 50)
+
+        copiedBrick = brick.mutableCopy(with: CBMutableCopyContext(), andErrorReporting: true) as! ChangeBrightnessByNBrick
+
+        XCTAssertTrue(brick.changeBrightness.isEqual(to: copiedBrick.changeBrightness))
+        XCTAssertFalse(brick.changeBrightness === copiedBrick.changeBrightness)
+    }
 }
