@@ -31,6 +31,7 @@
         <script type="StartScript">
           <brickList>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>NUMBER</type>
@@ -40,6 +41,7 @@
               <userVariable>escape " &amp; &lt;&gt; ⚙️</userVariable>
             </brick>
             <brick type="ChangeXByNBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="X_POSITION_CHANGE">
                   <type>USER_VARIABLE</type>
@@ -48,6 +50,7 @@
               </formulaList>
             </brick>
             <brick type="SetXBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="X_POSITION">
                   <leftChild>
@@ -64,11 +67,13 @@
               </formulaList>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <isUserScript>false</isUserScript>
         </script>
         <script type="BroadcastScript">
           <brickList>
             <brick type="ChangeXByNBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="X_POSITION_CHANGE">
                   <type>SENSOR</type>
@@ -77,6 +82,7 @@
               </formulaList>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>&amp;€@45</receivedMessage>
         </script>
       </scriptList>

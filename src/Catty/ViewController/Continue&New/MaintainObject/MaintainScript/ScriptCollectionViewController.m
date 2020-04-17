@@ -279,11 +279,19 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         NSString *destructiveTitle = ([brick isIfLogicBrick] ? kLocalizedDeleteCondition
                                       : ([brick isLoopBrick]) ? kLocalizedDeleteLoop
                                       : kLocalizedDeleteBrick);
+        NSString *disableTitle = ([brick isIfLogicBrick] ? (brick.isDisabled ? kLocalizedEnableCondition : kLocalizedDisableCondition)
+                                  : ([brick isLoopBrick]) ? (brick.isDisabled ? kLocalizedEnableLoop : kLocalizedDisableLoop)
+                                  : (brick.isDisabled ? kLocalizedEnableBrick : kLocalizedDisableBrick));
         
-        actionSheet = [[[[[AlertControllerBuilder actionSheetWithTitle:kLocalizedEditBrick]
+        actionSheet = [[[[[[AlertControllerBuilder actionSheetWithTitle:kLocalizedEditBrick]
                        addCancelActionWithTitle:kLocalizedCancel handler:nil]
                        addDestructiveActionWithTitle:destructiveTitle handler:^{
                            [self removeBrickOrScript:scriptOrBrick atIndexPath:indexPath];
+                       }]
+                      addDefaultActionWithTitle:disableTitle handler:^{
+                           [self disableOrEnableWithBrick:brick];
+                           [self reloadData];
+                           [self.object.project saveToDiskWithNotification:YES];
                        }]
                        addDefaultActionWithTitle:kLocalizedCopyBrick handler:^{
                            [self copyBrick:brick atIndexPath:indexPath];
@@ -307,7 +315,9 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             }];
         }
     } else {
-        actionSheet = [[[AlertControllerBuilder actionSheetWithTitle:kLocalizedEditScript]
+        Script *script = (Script*)scriptOrBrick;
+        NSString *disableTitle = script.isDisabled ? kLocalizedEnableScript : kLocalizedDisableScript;
+        actionSheet = [[[[AlertControllerBuilder actionSheetWithTitle:kLocalizedEditScript]
          addCancelActionWithTitle:kLocalizedCancel handler:nil]
          addDestructiveActionWithTitle:kLocalizedDeleteScript handler:^{
              NSInteger numberOfBricksInSection = [self.collectionView numberOfItemsInSection:indexPath.section];
@@ -322,7 +332,18 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
              } else {
                  [self removeBrickOrScript:scriptOrBrick atIndexPath:indexPath];
              }
-         }];
+            }]
+        addDefaultActionWithTitle: disableTitle handler:^{
+            script.isDisabled = !script.isDisabled;
+            NSInteger numberOfBricksInSection = [self.collectionView numberOfItemsInSection:indexPath.section];
+            if (numberOfBricksInSection > 1) {
+                for (Brick* brick in script.brickList) {
+                    brick.isDisabled = script.isDisabled;
+                }
+            }
+            [self reloadData];
+            [self.object.project saveToDiskWithNotification:YES];
+        }];
     }
     
     [[[[actionSheet build]

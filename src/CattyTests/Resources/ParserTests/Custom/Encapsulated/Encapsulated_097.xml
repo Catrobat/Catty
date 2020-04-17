@@ -30,6 +30,7 @@
                 <script type="StartScript">
                     <brickList>
                         <brick type="PointToBrick">
+                            <commentedOut>false</commentedOut>
                             <pointedObject name="test1">
                                 <lookList>
                                     <look name="test1">
@@ -41,6 +42,7 @@
                                     <script type="StartScript">
                                         <brickList>
                                             <brick type="PointToBrick">
+                                                <commentedOut>false</commentedOut>
                                                 <pointedObject name="test2">
                                                     <lookList>
                                                         <look name="test2">
@@ -52,9 +54,11 @@
                                                         <script type="StartScript">
                                                             <brickList>
                                                                 <brick type="PointToBrick">
+                                                                    <commentedOut>false</commentedOut>
                                                                     <pointedObject reference="../../../../../../../../../.."/>
                                                                 </brick>
                                                                 <brick type="PointToBrick">
+                                                                    <commentedOut>false</commentedOut>
                                                                     <pointedObject name="test3">
                                                                         <lookList>
                                                                             <look name="test3">
@@ -66,9 +70,11 @@
                                                                             <script type="StartScript">
                                                                                 <brickList>
                                                                                     <brick type="PointToBrick">
+                                                                                        <commentedOut>false</commentedOut>
                                                                                         <pointedObject reference="../../../../../../../../../../../../../../.."/>
                                                                                     </brick>
                                                                                 </brickList>
+                                                                                <commentedOut>false</commentedOut>
                                                                                 <isUserScript>false</isUserScript>
                                                                             </script>
                                                                         </scriptList>
@@ -76,6 +82,7 @@
                                                                     </pointedObject>
                                                                 </brick>
                                                                 <brick type="TurnLeftBrick">
+                                                                    <commentedOut>false</commentedOut>
                                                                     <formulaList>
                                                                         <formula category="TURN_LEFT_DEGREES">
                                                                             <type>NUMBER</type>
@@ -84,6 +91,7 @@
                                                                     </formulaList>
                                                                 </brick>
                                                             </brickList>
+                                                            <commentedOut>false</commentedOut>
                                                             <isUserScript>false</isUserScript>
                                                         </script>
                                                     </scriptList>
@@ -91,6 +99,7 @@
                                                 </pointedObject>
                                             </brick>
                                         </brickList>
+                                        <commentedOut>false</commentedOut>
                                         <isUserScript>false</isUserScript>
                                     </script>
                                 </scriptList>
@@ -98,6 +107,7 @@
                             </pointedObject>
                         </brick>
                     </brickList>
+                    <commentedOut>false</commentedOut>
                     <isUserScript>false</isUserScript>
                 </script>
             </scriptList>

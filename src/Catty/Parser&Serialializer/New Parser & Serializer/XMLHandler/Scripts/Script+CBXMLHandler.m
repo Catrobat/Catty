@@ -32,6 +32,7 @@
 #import "WhenScript.h"
 #import "WhenTouchDownScript.h"
 #import "Brick.h"
+#import "CBXMLParserHelper.h"
 #import "CBXMLSerializerHelper.h"
 
 @implementation Script (CBXMLHandler)
@@ -84,6 +85,15 @@
 
     script.object = context.spriteObject;
     script.brickList = [self parseAndCreateBricks:xmlElement forScript:script withContext:context];
+    
+    NSArray *commentedOutElements = [xmlElement elementsForName:@"commentedOut"];
+    if ([commentedOutElements count] > 0) {
+        GDataXMLElement *commentedOutElement = [commentedOutElements firstObject];
+        script.isDisabled = [commentedOutElement.stringValue isEqualToString:@"true"] ? YES : NO;
+    } else {
+        script.isDisabled = NO;
+    }
+    
     return script;
 }
 
@@ -137,9 +147,20 @@
         [XMLError exceptionIf:[class conformsToProtocol:@protocol(CBXMLNodeProtocol)] equals:NO
                       message:@"%@ must have a category %@+CBXMLHandler that implements CBXMLNodeProtocol",
                               brickClassName, brickClassName];
+        
         Brick *brick = [context parseFromElement:brickXmlElement withClass:class];
         [XMLError exceptionIfNil:brick message:@"Unable to parse brick..."];
         brick.script = script;
+        
+        NSArray *commentedOutElements = [brickXmlElement elementsForName:@"commentedOut"];
+
+        if ([commentedOutElements count] > 0) {
+            GDataXMLElement *commentedOutElement = [commentedOutElements firstObject];
+            brick.isDisabled = [commentedOutElement.stringValue isEqualToString:@"true"] ? YES : NO;
+        } else {
+            brick.isDisabled = NO;
+        }
+        
         [brickList addObject:brick];
     }
     [XMLError exceptionIf:[context.openedNestingBricksStack isEmpty] equals:NO
@@ -176,6 +197,10 @@
     NSString *scriptTypeName = NSStringFromClass([self class]);
     [xmlElement addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:scriptTypeName]];
     [xmlElement addChild:[self xmlElementForBrickList:self.brickList withContext:context] context:context];
+    
+    NSString *commentedOutValue = ((Script*) [self.object.scriptList objectAtIndex:indexOfScript]).isDisabled ? @"true" : @"false";
+    [xmlElement addChild:[GDataXMLElement elementWithName:@"commentedOut" stringValue: commentedOutValue context:context] context:context];
+    
     if ([self isKindOfClass:[StartScript class]]) {
         //  Unused at the moment => TODO: implement this after Catroid has decided to officially use this feature!
         //GDataXMLElement *isUserScriptXmlElement = [GDataXMLElement elementWithName:@"isUserScript" stringValue:@"false" context:context];
@@ -223,7 +248,9 @@
                       message:@"Invalid brick instance given"];
         [XMLError exceptionIf:[brick conformsToProtocol:@protocol(CBXMLNodeProtocol)] equals:NO
                       message:@"Brick does not have a CBXMLHandler category that implements CBXMLNodeProtocol"];
-        [xmlElement addChild:[((Brick<CBXMLNodeProtocol>*)brick) xmlElementWithContext:context] context:context];
+        
+        GDataXMLElement *xmlBrick = [((Brick<CBXMLNodeProtocol>*)brick) xmlElementWithContext:context];
+        [xmlElement addChild:xmlBrick context:context];
     }
     [XMLError exceptionIf:[openedNestingBricksStack isEmpty] equals:NO
                   message:@"FATAL ERROR: there are still some unclosed nesting bricks (e.g. IF, \

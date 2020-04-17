@@ -53,9 +53,11 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
         <script type="StartScript">
           <brickList>
             <brick type="PlaySoundBrick">
+              <commentedOut>false</commentedOut>
               <sound reference="../../../../../soundList/sound[2]"/>
             </brick>
             <brick type="SetSizeToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE">
                   <type>NUMBER</type>
@@ -63,15 +65,20 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
                 </formula>
               </formulaList>
             </brick>
-            <brick type="ShowBrick"/>
+            <brick type="ShowBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look[4]"/>
             </brick>
           </brickList>
+        <commentedOut>false</commentedOut>
         </script>
         <script type="BroadcastScript">
           <brickList>
             <brick type="SetSizeToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE">
                   <type>NUMBER</type>
@@ -80,14 +87,17 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               </formulaList>
             </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>message 1</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
             <brick type="SetSizeToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE">
                   <type>NUMBER</type>
@@ -96,15 +106,20 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               </formulaList>
             </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look[2]"/>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>new</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
-            <brick type="NextLookBrick"/>
+            <brick type="NextLookBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="SetSizeToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE">
                   <type>NUMBER</type>
@@ -113,14 +128,17 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               </formulaList>
             </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>landing</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
             <brick type="SetSizeToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE">
                   <type>NUMBER</type>
@@ -129,9 +147,11 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               </formulaList>
             </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look[2]"/>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>start!!!</receivedMessage>
         </script>
       </scriptList>
@@ -158,12 +178,16 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
       <scriptList>
         <script type="StartScript">
           <brickList>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+        <commentedOut>false</commentedOut>
         </script>
         <script type="BroadcastScript">
           <brickList>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <rightChild>
@@ -184,6 +208,7 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               </formulaList>
             </brick>
             <brick type="SetSizeToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE">
                   <type>NUMBER</type>
@@ -192,10 +217,14 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               </formulaList>
             </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
-            <brick type="ShowBrick"/>
+            <brick type="ShowBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="GlideToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_DESTINATION">
                   <rightChild>
@@ -216,6 +245,7 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               </formulaList>
             </brick>
             <brick type="GlideToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_DESTINATION">
                   <rightChild>
@@ -239,13 +269,17 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
                 </formula>
               </formulaList>
             </brick>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>message 1</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <type>NUMBER</type>
@@ -257,8 +291,11 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
                 </formula>
               </formulaList>
             </brick>
-            <brick type="ShowBrick"/>
+            <brick type="ShowBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="GlideToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_DESTINATION">
                   <type>NUMBER</type>
@@ -278,11 +315,15 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
                 </formula>
               </formulaList>
             </brick>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
             <brick type="SetSizeToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE">
                   <type>NUMBER</type>
@@ -291,6 +332,7 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               </formulaList>
             </brick>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>SENSOR</type>
@@ -300,6 +342,7 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               <userVariable>yskypascal</userVariable>
             </brick>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>SENSOR</type>
@@ -309,9 +352,11 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               <userVariable>xskypascal</userVariable>
             </brick>
             <brick type="BroadcastBrick">
+              <commentedOut>false</commentedOut>
               <broadcastMessage>do it</broadcastMessage>
             </brick>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <type>NUMBER</type>
@@ -323,10 +368,17 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
                 </formula>
               </formulaList>
             </brick>
-            <brick type="ShowBrick"/>
-            <brick type="ForeverBrick"/>
-            <brick type="IfOnEdgeBounceBrick"/>
+            <brick type="ShowBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="ForeverBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="IfOnEdgeBounceBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="ChangeYByNBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION_CHANGE">
                   <rightChild>
@@ -339,6 +391,7 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               </formulaList>
             </brick>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>SENSOR</type>
@@ -348,6 +401,7 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               <userVariable reference="../../brick[8]/userVariable"/>
             </brick>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>SENSOR</type>
@@ -357,6 +411,7 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               <userVariable reference="../../brick[7]/userVariable"/>
             </brick>
             <brick type="IfLogicBeginBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="IF_CONDITION">
                   <leftChild>
@@ -377,10 +432,14 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               </formulaList>
             </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look[2]"/>
             </brick>
-            <brick type="IfLogicElseBrick"/>
+            <brick type="IfLogicElseBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="IfLogicBeginBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="IF_CONDITION">
                   <leftChild>
@@ -397,31 +456,49 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               </formulaList>
             </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look[3]"/>
             </brick>
-            <brick type="IfLogicElseBrick"/>
+            <brick type="IfLogicElseBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look[4]"/>
             </brick>
-            <brick type="IfLogicEndBrick"/>
-            <brick type="IfLogicEndBrick"/>
-            <brick type="LoopEndlessBrick"/>
+            <brick type="IfLogicEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="IfLogicEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="LoopEndlessBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>start!!!</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
             <brick type="BroadcastBrick">
+              <commentedOut>false</commentedOut>
               <broadcastMessage>newback</broadcastMessage>
             </brick>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>dead</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>open</receivedMessage>
         </script>
       </scriptList>
@@ -437,6 +514,7 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
         <script type="StartScript">
           <brickList>
             <brick type="SetSizeToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE">
                   <type>NUMBER</type>
@@ -445,6 +523,7 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               </formulaList>
             </brick>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <type>NUMBER</type>
@@ -461,17 +540,23 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               </formulaList>
             </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
           </brickList>
+        <commentedOut>false</commentedOut>
         </script>
         <script type="WhenScript">
           <brickList>
             <brick type="BroadcastBrick">
+              <commentedOut>false</commentedOut>
               <broadcastMessage>message 1</broadcastMessage>
             </brick>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <action>Tapped</action>
         </script>
       </scriptList>
@@ -486,8 +571,11 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
       <scriptList>
         <script type="StartScript">
           <brickList>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="SetSizeToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE">
                   <type>NUMBER</type>
@@ -496,13 +584,16 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               </formulaList>
             </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
           </brickList>
+        <commentedOut>false</commentedOut>
         </script>
         <script type="BroadcastScript">
           <brickList>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <type>NUMBER</type>
@@ -518,8 +609,11 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
                 </formula>
               </formulaList>
             </brick>
-            <brick type="ShowBrick"/>
+            <brick type="ShowBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="WaitBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                   <type>NUMBER</type>
@@ -528,6 +622,7 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               </formulaList>
             </brick>
             <brick type="GlideToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_DESTINATION">
                   <type>NUMBER</type>
@@ -547,11 +642,15 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
                 </formula>
               </formulaList>
             </brick>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="BroadcastBrick">
+              <commentedOut>false</commentedOut>
               <broadcastMessage>new</broadcastMessage>
             </brick>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <rightChild>
@@ -572,10 +671,14 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               </formulaList>
             </brick>
             <brick type="BroadcastBrick">
+              <commentedOut>false</commentedOut>
               <broadcastMessage>skip</broadcastMessage>
             </brick>
-            <brick type="ShowBrick"/>
+            <brick type="ShowBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="GlideToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_DESTINATION">
                   <type>NUMBER</type>
@@ -591,8 +694,11 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
                 </formula>
               </formulaList>
             </brick>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <type>NUMBER</type>
@@ -604,11 +710,15 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
                 </formula>
               </formulaList>
             </brick>
-            <brick type="ShowBrick"/>
+            <brick type="ShowBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="BroadcastBrick">
+              <commentedOut>false</commentedOut>
               <broadcastMessage>start2</broadcastMessage>
             </brick>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>FUNCTION</type>
@@ -617,8 +727,11 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               </formulaList>
               <userVariable>start</userVariable>
             </brick>
-            <brick type="ForeverBrick"/>
+            <brick type="ForeverBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="IfLogicBeginBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="IF_CONDITION">
                   <leftChild>
@@ -635,6 +748,7 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               </formulaList>
             </brick>
             <brick type="GlideToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_DESTINATION">
                   <type>NUMBER</type>
@@ -651,6 +765,7 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               </formulaList>
             </brick>
             <brick type="IfLogicBeginBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="IF_CONDITION">
                   <leftChild>
@@ -667,6 +782,7 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               </formulaList>
             </brick>
             <brick type="GlideToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_DESTINATION">
                   <type>NUMBER</type>
@@ -682,17 +798,29 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
                 </formula>
               </formulaList>
             </brick>
-            <brick type="IfLogicElseBrick"/>
-            <brick type="IfLogicEndBrick"/>
-            <brick type="IfLogicElseBrick"/>
-            <brick type="IfLogicEndBrick"/>
-            <brick type="LoopEndlessBrick"/>
+            <brick type="IfLogicElseBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="IfLogicEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="IfLogicElseBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="IfLogicEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="LoopEndlessBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>message 1</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>FUNCTION</type>
@@ -702,6 +830,7 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               <userVariable reference="../../../../script[2]/brickList/brick[15]/userVariable"/>
             </brick>
             <brick type="WaitBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                   <type>NUMBER</type>
@@ -710,6 +839,7 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               </formulaList>
             </brick>
             <brick type="GlideToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_DESTINATION">
                   <type>NUMBER</type>
@@ -725,8 +855,11 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
                 </formula>
               </formulaList>
             </brick>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>start!!!</receivedMessage>
         </script>
       </scriptList>
@@ -741,8 +874,11 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
       <scriptList>
         <script type="StartScript">
           <brickList>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="SetSizeToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE">
                   <type>NUMBER</type>
@@ -751,9 +887,11 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               </formulaList>
             </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <type>NUMBER</type>
@@ -770,25 +908,34 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               </formulaList>
             </brick>
           </brickList>
+        <commentedOut>false</commentedOut>
         </script>
         <script type="BroadcastScript">
           <brickList>
-            <brick type="ShowBrick"/>
+            <brick type="ShowBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>start2</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>start!!!</receivedMessage>
         </script>
         <script type="WhenScript">
           <brickList>
             <brick type="BroadcastBrick">
+              <commentedOut>false</commentedOut>
               <broadcastMessage>start!!!</broadcastMessage>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <action>Tapped</action>
         </script>
       </scriptList>
@@ -803,11 +950,15 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
       <scriptList>
         <script type="StartScript">
           <brickList>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
             <brick type="SetSizeToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE">
                   <type>NUMBER</type>
@@ -816,6 +967,7 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               </formulaList>
             </brick>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <rightChild>
@@ -832,26 +984,37 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               </formulaList>
             </brick>
           </brickList>
+        <commentedOut>false</commentedOut>
         </script>
         <script type="BroadcastScript">
           <brickList>
-            <brick type="ShowBrick"/>
+            <brick type="ShowBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>skip</receivedMessage>
         </script>
         <script type="WhenScript">
           <brickList>
             <brick type="BroadcastBrick">
+              <commentedOut>false</commentedOut>
               <broadcastMessage>start!!!</broadcastMessage>
             </brick>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <action>Tapped</action>
         </script>
         <script type="BroadcastScript">
           <brickList>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>start!!!</receivedMessage>
         </script>
       </scriptList>
@@ -875,16 +1038,23 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
       <scriptList>
         <script type="StartScript">
           <brickList>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
           </brickList>
+        <commentedOut>false</commentedOut>
         </script>
         <script type="BroadcastScript">
           <brickList>
-            <brick type="ForeverBrick"/>
+            <brick type="ForeverBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <leftChild>
@@ -906,6 +1076,7 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               <userVariable>ymoney</userVariable>
             </brick>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>NUMBER</type>
@@ -915,6 +1086,7 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               <userVariable>vis</userVariable>
             </brick>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <type>USER_VARIABLE</type>
@@ -930,8 +1102,11 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
                 </formula>
               </formulaList>
             </brick>
-            <brick type="ShowBrick"/>
+            <brick type="ShowBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="GlideToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_DESTINATION">
                   <type>USER_VARIABLE</type>
@@ -947,14 +1122,20 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
                 </formula>
               </formulaList>
             </brick>
-            <brick type="LoopEndlessBrick"/>
+            <brick type="LoopEndlessBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>do it</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
-            <brick type="ForeverBrick"/>
+            <brick type="ForeverBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>SENSOR</type>
@@ -964,6 +1145,7 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               <userVariable>ycash</userVariable>
             </brick>
             <brick type="IfLogicBeginBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="IF_CONDITION">
                   <leftChild>
@@ -1064,6 +1246,7 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               </formulaList>
             </brick>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>NUMBER</type>
@@ -1073,10 +1256,14 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               <userVariable reference="../../../../script[2]/brickList/brick[3]/userVariable"/>
             </brick>
             <brick type="PlaySoundBrick">
+              <commentedOut>false</commentedOut>
               <sound reference="../../../../../soundList/sound[2]"/>
             </brick>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="ChangeVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE_CHANGE">
                   <type>NUMBER</type>
@@ -1086,24 +1273,38 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               <userVariable>score</userVariable>
             </brick>
             <brick type="BroadcastBrick">
+              <commentedOut>false</commentedOut>
               <broadcastMessage>count</broadcastMessage>
             </brick>
-            <brick type="IfLogicElseBrick"/>
-            <brick type="IfLogicEndBrick"/>
-            <brick type="LoopEndlessBrick"/>
+            <brick type="IfLogicElseBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="IfLogicEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="LoopEndlessBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>do it</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>newback</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <type>NUMBER</type>
@@ -1116,6 +1317,7 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               </formulaList>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>open</receivedMessage>
         </script>
       </scriptList>
@@ -1135,17 +1337,26 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
       <scriptList>
         <script type="StartScript">
           <brickList>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
           </brickList>
+        <commentedOut>false</commentedOut>
         </script>
         <script type="BroadcastScript">
           <brickList>
-            <brick type="ForeverBrick"/>
-            <brick type="HideBrick"/>
+            <brick type="ForeverBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="WaitBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                   <leftChild>
@@ -1162,6 +1373,7 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               </formulaList>
             </brick>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <rightChild>
@@ -1181,8 +1393,11 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
                 </formula>
               </formulaList>
             </brick>
-            <brick type="ShowBrick"/>
+            <brick type="ShowBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="GlideToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_DESTINATION">
                   <type>NUMBER</type>
@@ -1198,13 +1413,17 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
                 </formula>
               </formulaList>
             </brick>
-            <brick type="LoopEndlessBrick"/>
+            <brick type="LoopEndlessBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>start!!!</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
             <brick type="WaitBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                   <leftChild>
@@ -1220,8 +1439,11 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
                 </formula>
               </formulaList>
             </brick>
-            <brick type="ForeverBrick"/>
+            <brick type="ForeverBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="IfLogicBeginBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="IF_CONDITION">
                   <leftChild>
@@ -1346,28 +1568,45 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               </formulaList>
             </brick>
             <brick type="BroadcastBrick">
+              <commentedOut>false</commentedOut>
               <broadcastMessage>dead</broadcastMessage>
             </brick>
             <brick type="PlaySoundBrick">
+              <commentedOut>false</commentedOut>
               <sound reference="../../../../../soundList/sound"/>
             </brick>
-            <brick type="HideBrick"/>
-            <brick type="IfLogicElseBrick"/>
-            <brick type="IfLogicEndBrick"/>
-            <brick type="LoopEndlessBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="IfLogicElseBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="IfLogicEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="LoopEndlessBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>start!!!</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>dead</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <type>NUMBER</type>
@@ -1380,14 +1619,17 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               </formulaList>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>open</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>start!!!</receivedMessage>
         </script>
       </scriptList>
@@ -1407,17 +1649,26 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
       <scriptList>
         <script type="StartScript">
           <brickList>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
           </brickList>
+        <commentedOut>false</commentedOut>
         </script>
         <script type="BroadcastScript">
           <brickList>
-            <brick type="ForeverBrick"/>
-            <brick type="HideBrick"/>
+            <brick type="ForeverBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="WaitBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                   <leftChild>
@@ -1434,6 +1685,7 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               </formulaList>
             </brick>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <type>NUMBER</type>
@@ -1449,8 +1701,11 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
                 </formula>
               </formulaList>
             </brick>
-            <brick type="ShowBrick"/>
+            <brick type="ShowBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="GlideToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_DESTINATION">
                   <rightChild>
@@ -1470,13 +1725,17 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
                 </formula>
               </formulaList>
             </brick>
-            <brick type="LoopEndlessBrick"/>
+            <brick type="LoopEndlessBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>start!!!</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
             <brick type="WaitBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                   <type>NUMBER</type>
@@ -1484,8 +1743,11 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
                 </formula>
               </formulaList>
             </brick>
-            <brick type="ForeverBrick"/>
+            <brick type="ForeverBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="IfLogicBeginBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="IF_CONDITION">
                   <leftChild>
@@ -1610,27 +1872,42 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               </formulaList>
             </brick>
             <brick type="PlaySoundBrick">
+              <commentedOut>false</commentedOut>
               <sound reference="../../../../../soundList/sound"/>
             </brick>
             <brick type="BroadcastBrick">
+              <commentedOut>false</commentedOut>
               <broadcastMessage>dead</broadcastMessage>
             </brick>
-            <brick type="IfLogicElseBrick"/>
-            <brick type="IfLogicEndBrick"/>
-            <brick type="LoopEndlessBrick"/>
+            <brick type="IfLogicElseBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="IfLogicEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="LoopEndlessBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>start!!!</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>dead</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <type>NUMBER</type>
@@ -1643,6 +1920,7 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               </formulaList>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>open</receivedMessage>
         </script>
       </scriptList>
@@ -1657,8 +1935,11 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
       <scriptList>
         <script type="StartScript">
           <brickList>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="SetSizeToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE">
                   <type>NUMBER</type>
@@ -1667,13 +1948,16 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               </formulaList>
             </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
           </brickList>
+        <commentedOut>false</commentedOut>
         </script>
         <script type="BroadcastScript">
           <brickList>
             <brick type="WaitBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                   <type>NUMBER</type>
@@ -1681,8 +1965,11 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
                 </formula>
               </formulaList>
             </brick>
-            <brick type="ForeverBrick"/>
+            <brick type="ForeverBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <leftChild>
@@ -1704,6 +1991,7 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               <userVariable>open</userVariable>
             </brick>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <type>USER_VARIABLE</type>
@@ -1719,8 +2007,11 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
                 </formula>
               </formulaList>
             </brick>
-            <brick type="ShowBrick"/>
+            <brick type="ShowBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="GlideToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_DESTINATION">
                   <type>USER_VARIABLE</type>
@@ -1736,14 +2027,20 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
                 </formula>
               </formulaList>
             </brick>
-            <brick type="LoopEndlessBrick"/>
+            <brick type="LoopEndlessBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>do it</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
-            <brick type="ForeverBrick"/>
+            <brick type="ForeverBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>SENSOR</type>
@@ -1753,6 +2050,7 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               <userVariable reference="../../../../script[2]/brickList/brick[3]/userVariable"/>
             </brick>
             <brick type="IfLogicBeginBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="IF_CONDITION">
                   <leftChild>
@@ -1860,20 +2158,33 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
                 </formula>
               </formulaList>
             </brick>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="BroadcastWaitBrick">
+              <commentedOut>false</commentedOut>
               <broadcastMessage>open</broadcastMessage>
             </brick>
-            <brick type="IfLogicElseBrick"/>
-            <brick type="IfLogicEndBrick"/>
-            <brick type="LoopEndlessBrick"/>
+            <brick type="IfLogicElseBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="IfLogicEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="LoopEndlessBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>do it</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>dead</receivedMessage>
         </script>
       </scriptList>
@@ -1891,13 +2202,19 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
       <scriptList>
         <script type="StartScript">
           <brickList>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+        <commentedOut>false</commentedOut>
         </script>
         <script type="BroadcastScript">
           <brickList>
-            <brick type="ShowBrick"/>
+            <brick type="ShowBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="SetSizeToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE">
                   <type>NUMBER</type>
@@ -1906,9 +2223,11 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               </formulaList>
             </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
             <brick type="SetXBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="X_POSITION">
                   <type>NUMBER</type>
@@ -1916,9 +2235,14 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
                 </formula>
               </formulaList>
             </brick>
-            <brick type="ForeverBrick"/>
-            <brick type="IfOnEdgeBounceBrick"/>
+            <brick type="ForeverBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="IfOnEdgeBounceBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="ChangeYByNBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION_CHANGE">
                   <rightChild>
@@ -1930,19 +2254,26 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
                 </formula>
               </formulaList>
             </brick>
-            <brick type="LoopEndlessBrick"/>
+            <brick type="LoopEndlessBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>open</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>land</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <type>NUMBER</type>
@@ -1954,8 +2285,11 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
                 </formula>
               </formulaList>
             </brick>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>dead</receivedMessage>
         </script>
       </scriptList>
@@ -1970,16 +2304,23 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
       <scriptList>
         <script type="StartScript">
           <brickList>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+        <commentedOut>false</commentedOut>
         </script>
         <script type="BroadcastScript">
           <brickList>
-            <brick type="ShowBrick"/>
+            <brick type="ShowBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
             <brick type="SetSizeToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE">
                   <type>NUMBER</type>
@@ -1988,6 +2329,7 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               </formulaList>
             </brick>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <rightChild>
@@ -2008,15 +2350,20 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               </formulaList>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>open</receivedMessage>
         </script>
         <script type="WhenScript">
           <brickList>
             <brick type="BroadcastBrick">
+              <commentedOut>false</commentedOut>
               <broadcastMessage>land</broadcastMessage>
             </brick>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <action>Tapped</action>
         </script>
       </scriptList>
@@ -2031,16 +2378,23 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
       <scriptList>
         <script type="StartScript">
           <brickList>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+        <commentedOut>false</commentedOut>
         </script>
         <script type="BroadcastScript">
           <brickList>
-            <brick type="ShowBrick"/>
+            <brick type="ShowBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
             <brick type="SetSizeToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE">
                   <type>NUMBER</type>
@@ -2049,6 +2403,7 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               </formulaList>
             </brick>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <type>NUMBER</type>
@@ -2061,6 +2416,7 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               </formulaList>
             </brick>
             <brick type="GlideToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_DESTINATION">
                   <type>NUMBER</type>
@@ -2081,9 +2437,11 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               </formulaList>
             </brick>
             <brick type="BroadcastBrick">
+              <commentedOut>false</commentedOut>
               <broadcastMessage>landing</broadcastMessage>
             </brick>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <type>NUMBER</type>
@@ -2096,6 +2454,7 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               </formulaList>
             </brick>
             <brick type="GlideToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_DESTINATION">
                   <rightChild>
@@ -2116,6 +2475,7 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               </formulaList>
             </brick>
             <brick type="GlideToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_DESTINATION">
                   <type>NUMBER</type>
@@ -2136,15 +2496,20 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               </formulaList>
             </brick>
             <brick type="BroadcastBrick">
+              <commentedOut>false</commentedOut>
               <broadcastMessage>landed</broadcastMessage>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>land</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>dead</receivedMessage>
         </script>
       </scriptList>
@@ -2159,13 +2524,19 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
       <scriptList>
         <script type="StartScript">
           <brickList>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+        <commentedOut>false</commentedOut>
         </script>
         <script type="BroadcastScript">
           <brickList>
-            <brick type="ShowBrick"/>
+            <brick type="ShowBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="SetSizeToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE">
                   <type>NUMBER</type>
@@ -2174,9 +2545,11 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               </formulaList>
             </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>landed</receivedMessage>
         </script>
       </scriptList>
@@ -2191,14 +2564,22 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
       <scriptList>
         <script type="StartScript">
           <brickList>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+        <commentedOut>false</commentedOut>
         </script>
         <script type="BroadcastScript">
           <brickList>
-            <brick type="StopAllSoundsBrick"/>
-            <brick type="ShowBrick"/>
+            <brick type="StopAllSoundsBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="ShowBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="SetSizeToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE">
                   <type>NUMBER</type>
@@ -2207,9 +2588,11 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               </formulaList>
             </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>dead</receivedMessage>
         </script>
       </scriptList>
@@ -2251,12 +2634,16 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
       <scriptList>
         <script type="StartScript">
           <brickList>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+        <commentedOut>false</commentedOut>
         </script>
         <script type="BroadcastScript">
           <brickList>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <type>NUMBER</type>
@@ -2269,6 +2656,7 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               </formulaList>
             </brick>
             <brick type="SetSizeToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE">
                   <type>NUMBER</type>
@@ -2276,22 +2664,30 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
                 </formula>
               </formulaList>
             </brick>
-            <brick type="ShowBrick"/>
+            <brick type="ShowBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>start!!!</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
-            <brick type="NextLookBrick"/>
+            <brick type="NextLookBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>count</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <type>NUMBER</type>
@@ -2304,6 +2700,7 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               </formulaList>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>dead</receivedMessage>
         </script>
       </scriptList>
@@ -2345,8 +2742,11 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
       <scriptList>
         <script type="StartScript">
           <brickList>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>NUMBER</type>
@@ -2356,10 +2756,12 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               <userVariable reference="../../../../../../object[7]/scriptList/script[3]/brickList/brick[7]/userVariable"/>
             </brick>
           </brickList>
+        <commentedOut>false</commentedOut>
         </script>
         <script type="BroadcastScript">
           <brickList>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <type>NUMBER</type>
@@ -2371,8 +2773,11 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
                 </formula>
               </formulaList>
             </brick>
-            <brick type="ForeverBrick"/>
+            <brick type="ForeverBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="SetSizeToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE">
                   <type>NUMBER</type>
@@ -2381,6 +2786,7 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               </formulaList>
             </brick>
             <brick type="IfLogicBeginBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="IF_CONDITION">
                   <leftChild>
@@ -2396,12 +2802,18 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
                 </formula>
               </formulaList>
             </brick>
-            <brick type="ShowBrick"/>
+            <brick type="ShowBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look[2]"/>
             </brick>
-            <brick type="IfLogicElseBrick"/>
+            <brick type="IfLogicElseBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="IfLogicBeginBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="IF_CONDITION">
                   <leftChild>
@@ -2417,12 +2829,18 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
                 </formula>
               </formulaList>
             </brick>
-            <brick type="NextLookBrick"/>
+            <brick type="NextLookBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look[3]"/>
             </brick>
-            <brick type="IfLogicElseBrick"/>
+            <brick type="IfLogicElseBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="IfLogicBeginBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="IF_CONDITION">
                   <leftChild>
@@ -2438,12 +2856,18 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
                 </formula>
               </formulaList>
             </brick>
-            <brick type="NextLookBrick"/>
+            <brick type="NextLookBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look[4]"/>
             </brick>
-            <brick type="IfLogicElseBrick"/>
+            <brick type="IfLogicElseBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="IfLogicBeginBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="IF_CONDITION">
                   <leftChild>
@@ -2459,12 +2883,18 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
                 </formula>
               </formulaList>
             </brick>
-            <brick type="NextLookBrick"/>
+            <brick type="NextLookBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look[5]"/>
             </brick>
-            <brick type="IfLogicElseBrick"/>
+            <brick type="IfLogicElseBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="IfLogicBeginBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="IF_CONDITION">
                   <leftChild>
@@ -2480,12 +2910,18 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
                 </formula>
               </formulaList>
             </brick>
-            <brick type="NextLookBrick"/>
+            <brick type="NextLookBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look[6]"/>
             </brick>
-            <brick type="IfLogicElseBrick"/>
+            <brick type="IfLogicElseBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="IfLogicBeginBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="IF_CONDITION">
                   <leftChild>
@@ -2501,12 +2937,18 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
                 </formula>
               </formulaList>
             </brick>
-            <brick type="NextLookBrick"/>
+            <brick type="NextLookBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look[7]"/>
             </brick>
-            <brick type="IfLogicElseBrick"/>
+            <brick type="IfLogicElseBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="IfLogicBeginBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="IF_CONDITION">
                   <leftChild>
@@ -2522,12 +2964,18 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
                 </formula>
               </formulaList>
             </brick>
-            <brick type="NextLookBrick"/>
+            <brick type="NextLookBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look[8]"/>
             </brick>
-            <brick type="IfLogicElseBrick"/>
+            <brick type="IfLogicElseBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="IfLogicBeginBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="IF_CONDITION">
                   <leftChild>
@@ -2543,12 +2991,18 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
                 </formula>
               </formulaList>
             </brick>
-            <brick type="NextLookBrick"/>
+            <brick type="NextLookBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look[9]"/>
             </brick>
-            <brick type="IfLogicElseBrick"/>
+            <brick type="IfLogicElseBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="IfLogicBeginBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="IF_CONDITION">
                   <leftChild>
@@ -2564,27 +3018,54 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
                 </formula>
               </formulaList>
             </brick>
-            <brick type="NextLookBrick"/>
+            <brick type="NextLookBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look[10]"/>
             </brick>
-            <brick type="IfLogicElseBrick"/>
-            <brick type="IfLogicEndBrick"/>
-            <brick type="IfLogicEndBrick"/>
-            <brick type="IfLogicEndBrick"/>
-            <brick type="IfLogicEndBrick"/>
-            <brick type="IfLogicEndBrick"/>
-            <brick type="IfLogicEndBrick"/>
-            <brick type="IfLogicEndBrick"/>
-            <brick type="IfLogicEndBrick"/>
-            <brick type="IfLogicEndBrick"/>
-            <brick type="LoopEndlessBrick"/>
+            <brick type="IfLogicElseBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="IfLogicEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="IfLogicEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="IfLogicEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="IfLogicEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="IfLogicEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="IfLogicEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="IfLogicEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="IfLogicEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="IfLogicEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="LoopEndlessBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>start!!!</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <type>NUMBER</type>
@@ -2597,6 +3078,7 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               </formulaList>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>dead</receivedMessage>
         </script>
       </scriptList>
@@ -2611,13 +3093,19 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
       <scriptList>
         <script type="StartScript">
           <brickList>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+        <commentedOut>false</commentedOut>
         </script>
         <script type="BroadcastScript">
           <brickList>
-            <brick type="ShowBrick"/>
+            <brick type="ShowBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <type>NUMBER</type>
@@ -2630,6 +3118,7 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               </formulaList>
             </brick>
             <brick type="SetSizeToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE">
                   <type>NUMBER</type>
@@ -2638,15 +3127,20 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               </formulaList>
             </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>landed</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
-            <brick type="ShowBrick"/>
+            <brick type="ShowBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="SetSizeToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE">
                   <type>NUMBER</type>
@@ -2655,9 +3149,11 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               </formulaList>
             </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <type>NUMBER</type>
@@ -2670,6 +3166,7 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               </formulaList>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>dead</receivedMessage>
         </script>
       </scriptList>
@@ -2684,8 +3181,11 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
       <scriptList>
         <script type="StartScript">
           <brickList>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="SetSizeToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE">
                   <type>NUMBER</type>
@@ -2694,15 +3194,22 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               </formulaList>
             </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
           </brickList>
+        <commentedOut>false</commentedOut>
         </script>
         <script type="BroadcastScript">
           <brickList>
-            <brick type="ForeverBrick"/>
-            <brick type="HideBrick"/>
+            <brick type="ForeverBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="WaitBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                   <leftChild>
@@ -2719,6 +3226,7 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               </formulaList>
             </brick>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <leftChild>
@@ -2740,6 +3248,7 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               <userVariable>ybomb</userVariable>
             </brick>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <type>USER_VARIABLE</type>
@@ -2755,8 +3264,11 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
                 </formula>
               </formulaList>
             </brick>
-            <brick type="ShowBrick"/>
+            <brick type="ShowBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="GlideToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_DESTINATION">
                   <type>NUMBER</type>
@@ -2772,14 +3284,20 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
                 </formula>
               </formulaList>
             </brick>
-            <brick type="LoopEndlessBrick"/>
+            <brick type="LoopEndlessBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>do it</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
-            <brick type="ForeverBrick"/>
+            <brick type="ForeverBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>SENSOR</type>
@@ -2789,6 +3307,7 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               <userVariable>yboom</userVariable>
             </brick>
             <brick type="IfLogicBeginBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="IF_CONDITION">
                   <leftChild>
@@ -2897,19 +3416,32 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               </formulaList>
             </brick>
             <brick type="BroadcastBrick">
+              <commentedOut>false</commentedOut>
               <broadcastMessage>dead</broadcastMessage>
             </brick>
-            <brick type="HideBrick"/>
-            <brick type="IfLogicElseBrick"/>
-            <brick type="IfLogicEndBrick"/>
-            <brick type="LoopEndlessBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="IfLogicElseBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="IfLogicEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="LoopEndlessBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>do it</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <type>NUMBER</type>
@@ -2922,13 +3454,19 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               </formulaList>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>open</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
-            <brick type="ForeverBrick"/>
-            <brick type="HideBrick"/>
+            <brick type="ForeverBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <type>NUMBER</type>
@@ -2940,8 +3478,11 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
                 </formula>
               </formulaList>
             </brick>
-            <brick type="LoopEndlessBrick"/>
+            <brick type="LoopEndlessBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>dead</receivedMessage>
         </script>
       </scriptList>
@@ -2983,8 +3524,11 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
       <scriptList>
         <script type="StartScript">
           <brickList>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>NUMBER</type>
@@ -2994,10 +3538,12 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               <userVariable reference="../../../../../../object[7]/scriptList/script[3]/brickList/brick[7]/userVariable"/>
             </brick>
           </brickList>
+        <commentedOut>false</commentedOut>
         </script>
         <script type="BroadcastScript">
           <brickList>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <type>NUMBER</type>
@@ -3009,8 +3555,11 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
                 </formula>
               </formulaList>
             </brick>
-            <brick type="ForeverBrick"/>
+            <brick type="ForeverBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="SetSizeToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE">
                   <type>NUMBER</type>
@@ -3019,6 +3568,7 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               </formulaList>
             </brick>
             <brick type="IfLogicBeginBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="IF_CONDITION">
                   <leftChild>
@@ -3034,12 +3584,18 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
                 </formula>
               </formulaList>
             </brick>
-            <brick type="ShowBrick"/>
+            <brick type="ShowBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look[2]"/>
             </brick>
-            <brick type="IfLogicElseBrick"/>
+            <brick type="IfLogicElseBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="IfLogicBeginBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="IF_CONDITION">
                   <leftChild>
@@ -3055,12 +3611,18 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
                 </formula>
               </formulaList>
             </brick>
-            <brick type="NextLookBrick"/>
+            <brick type="NextLookBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look[3]"/>
             </brick>
-            <brick type="IfLogicElseBrick"/>
+            <brick type="IfLogicElseBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="IfLogicBeginBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="IF_CONDITION">
                   <leftChild>
@@ -3076,12 +3638,18 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
                 </formula>
               </formulaList>
             </brick>
-            <brick type="NextLookBrick"/>
+            <brick type="NextLookBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look[4]"/>
             </brick>
-            <brick type="IfLogicElseBrick"/>
+            <brick type="IfLogicElseBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="IfLogicBeginBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="IF_CONDITION">
                   <leftChild>
@@ -3097,12 +3665,18 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
                 </formula>
               </formulaList>
             </brick>
-            <brick type="NextLookBrick"/>
+            <brick type="NextLookBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look[5]"/>
             </brick>
-            <brick type="IfLogicElseBrick"/>
+            <brick type="IfLogicElseBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="IfLogicBeginBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="IF_CONDITION">
                   <leftChild>
@@ -3118,12 +3692,18 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
                 </formula>
               </formulaList>
             </brick>
-            <brick type="NextLookBrick"/>
+            <brick type="NextLookBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look[6]"/>
             </brick>
-            <brick type="IfLogicElseBrick"/>
+            <brick type="IfLogicElseBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="IfLogicBeginBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="IF_CONDITION">
                   <leftChild>
@@ -3139,12 +3719,18 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
                 </formula>
               </formulaList>
             </brick>
-            <brick type="NextLookBrick"/>
+            <brick type="NextLookBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look[7]"/>
             </brick>
-            <brick type="IfLogicElseBrick"/>
+            <brick type="IfLogicElseBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="IfLogicBeginBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="IF_CONDITION">
                   <leftChild>
@@ -3160,12 +3746,18 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
                 </formula>
               </formulaList>
             </brick>
-            <brick type="NextLookBrick"/>
+            <brick type="NextLookBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look[8]"/>
             </brick>
-            <brick type="IfLogicElseBrick"/>
+            <brick type="IfLogicElseBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="IfLogicBeginBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="IF_CONDITION">
                   <leftChild>
@@ -3181,12 +3773,18 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
                 </formula>
               </formulaList>
             </brick>
-            <brick type="NextLookBrick"/>
+            <brick type="NextLookBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look[9]"/>
             </brick>
-            <brick type="IfLogicElseBrick"/>
+            <brick type="IfLogicElseBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="IfLogicBeginBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="IF_CONDITION">
                   <leftChild>
@@ -3202,27 +3800,54 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
                 </formula>
               </formulaList>
             </brick>
-            <brick type="NextLookBrick"/>
+            <brick type="NextLookBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look[10]"/>
             </brick>
-            <brick type="IfLogicElseBrick"/>
-            <brick type="IfLogicEndBrick"/>
-            <brick type="IfLogicEndBrick"/>
-            <brick type="IfLogicEndBrick"/>
-            <brick type="IfLogicEndBrick"/>
-            <brick type="IfLogicEndBrick"/>
-            <brick type="IfLogicEndBrick"/>
-            <brick type="IfLogicEndBrick"/>
-            <brick type="IfLogicEndBrick"/>
-            <brick type="IfLogicEndBrick"/>
-            <brick type="LoopEndlessBrick"/>
+            <brick type="IfLogicElseBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="IfLogicEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="IfLogicEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="IfLogicEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="IfLogicEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="IfLogicEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="IfLogicEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="IfLogicEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="IfLogicEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="IfLogicEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="LoopEndlessBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>start!!!</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <type>NUMBER</type>
@@ -3235,6 +3860,7 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
               </formulaList>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>dead</receivedMessage>
         </script>
       </scriptList>

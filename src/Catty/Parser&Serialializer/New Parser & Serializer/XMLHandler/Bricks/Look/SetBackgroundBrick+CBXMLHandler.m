@@ -23,24 +23,27 @@
 #import "SetBackgroundBrick+CBXMLHandler.h"
 #import "CBXMLValidator.h"
 #import "GDataXMLElement+CustomExtensions.h"
+#import "GDataXMLNode+CustomExtensions.h"
 #import "Look+CBXMLHandler.h"
 #import "CBXMLParserContext.h"
 #import "CBXMLSerializerContext.h"
 #import "CBXMLParserHelper.h"
 #import "CBXMLSerializerHelper.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation SetBackgroundBrick (CBXMLHandler)
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLParserContext*)context
 {
     SetBackgroundBrick *setLookBrick = [self new];
-    if([xmlElement childCount] == 0) {
+    NSArray<GDataXMLElement*> *children = xmlElement.childrenWithoutCommentsAndCommentedOutTag;
+    if([children count] == 0) {
         return setLookBrick;
     }
     
     [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1];
     
-    GDataXMLElement *lookElement = [[xmlElement children] firstObject];
+    GDataXMLElement *lookElement = [children firstObject];
     NSMutableArray *lookList = context.spriteObject.lookList;
 
     Look *look = nil;
@@ -65,9 +68,7 @@
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context
 {
-    NSUInteger indexOfBrick = [CBXMLSerializerHelper indexOfElement:self inArray:context.brickList];
-    GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" xPathIndex:(indexOfBrick+1) context:context];
-    [brick addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:@"SetBackgroundBrick"]];
+    GDataXMLElement *brick = [super xmlElementForBrickType:@"SetBackgroundBrick" withContext:context];
     if (self.look) {
         if([CBXMLSerializerHelper indexOfElement:self.look inArray:context.spriteObject.lookList] == NSNotFound) {
             self.look = nil;

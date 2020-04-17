@@ -38,6 +38,7 @@
         <script type="StartScript">
           <brickList>
             <brick type="ChangeSizeByNBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE_CHANGE">
                   <type>NUMBER</type>
@@ -46,6 +47,7 @@
               </formulaList>
             </brick>
             <brick type="BroadcastBrick">
+              <commentedOut>false</commentedOut>
               <broadcastMessage>start</broadcastMessage>
             </brick>
           </brickList>
@@ -54,6 +56,7 @@
         <script type="BroadcastScript">
           <brickList>
             <brick type="WaitBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                   <type>NUMBER</type>
@@ -62,9 +65,11 @@
               </formulaList>
             </brick>
             <brick type="BroadcastWaitBrick">
+              <commentedOut>false</commentedOut>
               <broadcastMessage>triangle in the upper right corner, come</broadcastMessage>
             </brick>
             <brick type="WaitBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                   <type>NUMBER</type>
@@ -73,9 +78,11 @@
               </formulaList>
             </brick>
             <brick type="BroadcastWaitBrick">
+              <commentedOut>false</commentedOut>
               <broadcastMessage>triangle in the lower left, come</broadcastMessage>
             </brick>
             <brick type="WaitBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                   <type>NUMBER</type>
@@ -84,9 +91,11 @@
               </formulaList>
             </brick>
             <brick type="BroadcastWaitBrick">
+              <commentedOut>false</commentedOut>
               <broadcastMessage>two triangles, come</broadcastMessage>
             </brick>
             <brick type="WaitBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                   <type>NUMBER</type>
@@ -95,9 +104,11 @@
               </formulaList>
             </brick>
             <brick type="BroadcastWaitBrick">
+              <commentedOut>false</commentedOut>
               <broadcastMessage>square, come</broadcastMessage>
             </brick>
             <brick type="WaitBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                   <type>NUMBER</type>
@@ -106,9 +117,11 @@
               </formulaList>
             </brick>
             <brick type="BroadcastWaitBrick">
+              <commentedOut>false</commentedOut>
               <broadcastMessage>go to the top and right</broadcastMessage>
             </brick>
             <brick type="WaitBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                   <type>NUMBER</type>
@@ -117,9 +130,11 @@
               </formulaList>
             </brick>
             <brick type="BroadcastWaitBrick">
+              <commentedOut>false</commentedOut>
               <broadcastMessage>go to the lower left</broadcastMessage>
             </brick>
             <brick type="WaitBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                   <type>NUMBER</type>
@@ -128,9 +143,11 @@
               </formulaList>
             </brick>
             <brick type="BroadcastWaitBrick">
+              <commentedOut>false</commentedOut>
               <broadcastMessage>c2, appear</broadcastMessage>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>start</receivedMessage>
         </script>
       </scriptList>
@@ -146,13 +163,17 @@
       <scriptList>
         <script type="BroadcastScript">
           <brickList>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>start</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <type>NUMBER</type>
@@ -165,11 +186,17 @@
               </formulaList>
             </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
-            <brick type="ShowBrick"/>
-            <brick type="ComeToFrontBrick"/>
+            <brick type="ShowBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="ComeToFrontBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="WaitBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                   <type>NUMBER</type>
@@ -178,17 +205,21 @@
               </formulaList>
             </brick>
             <brick type="BroadcastWaitBrick">
+              <commentedOut>false</commentedOut>
               <broadcastMessage>abc, appear</broadcastMessage>
             </brick>
             <brick type="BroadcastWaitBrick">
+              <commentedOut>false</commentedOut>
               <broadcastMessage>go to the upper right</broadcastMessage>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>triangle in the upper right corner, come</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
             <brick type="GlideToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_DESTINATION">
                   <type>NUMBER</type>
@@ -205,6 +236,7 @@
               </formulaList>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>go to the upper right</receivedMessage>
         </script>
       </scriptList>
@@ -220,13 +252,17 @@
       <scriptList>
         <script type="BroadcastScript">
           <brickList>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>start</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <type>NUMBER</type>
@@ -239,6 +275,7 @@
               </formulaList>
             </brick>
             <brick type="PointInDirectionBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="DEGREES">
                   <type>NUMBER</type>
@@ -247,11 +284,17 @@
               </formulaList>
             </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
-            <brick type="ShowBrick"/>
-            <brick type="ComeToFrontBrick"/>
+            <brick type="ShowBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="ComeToFrontBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="RepeatBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIMES_TO_REPEAT">
                   <type>NUMBER</type>
@@ -260,6 +303,7 @@
               </formulaList>
             </brick>
             <brick type="TurnLeftBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TURN_LEFT_DEGREES">
                   <type>NUMBER</type>
@@ -267,16 +311,21 @@
                 </formula>
               </formulaList>
             </brick>
-            <brick type="LoopEndBrick"/>
+            <brick type="LoopEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="BroadcastWaitBrick">
+              <commentedOut>false</commentedOut>
               <broadcastMessage>ab, appear</broadcastMessage>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>triangle in the lower left, come</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
             <brick type="WaitBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                   <type>NUMBER</type>
@@ -284,8 +333,11 @@
                 </formula>
               </formulaList>
             </brick>
-            <brick type="ComeToFrontBrick"/>
+            <brick type="ComeToFrontBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="GlideToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_DESTINATION">
                   <rightChild>
@@ -310,6 +362,7 @@
               </formulaList>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>go to the lower left</receivedMessage>
         </script>
       </scriptList>
@@ -325,13 +378,17 @@
       <scriptList>
         <script type="BroadcastScript">
           <brickList>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>start</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
             <brick type="PointInDirectionBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="DEGREES">
                   <type>NUMBER</type>
@@ -340,6 +397,7 @@
               </formulaList>
             </brick>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <rightChild>
@@ -356,11 +414,17 @@
               </formulaList>
             </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
-            <brick type="ShowBrick"/>
-            <brick type="ComeToFrontBrick"/>
+            <brick type="ShowBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="ComeToFrontBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="RepeatBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIMES_TO_REPEAT">
                   <type>NUMBER</type>
@@ -369,6 +433,7 @@
               </formulaList>
             </brick>
             <brick type="TurnLeftBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TURN_LEFT_DEGREES">
                   <type>NUMBER</type>
@@ -376,18 +441,26 @@
                 </formula>
               </formulaList>
             </brick>
-            <brick type="LoopEndBrick"/>
+            <brick type="LoopEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="BroadcastWaitBrick">
+              <commentedOut>false</commentedOut>
               <broadcastMessage>triangle in the upper left, appear</broadcastMessage>
             </brick>
             <brick type="BroadcastWaitBrick">
+              <commentedOut>false</commentedOut>
               <broadcastMessage>triangle in the lower right, appear</broadcastMessage>
             </brick>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="BroadcastWaitBrick">
+              <commentedOut>false</commentedOut>
               <broadcastMessage>ab second, appear</broadcastMessage>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>two triangles, come</receivedMessage>
         </script>
       </scriptList>
@@ -403,21 +476,27 @@
       <scriptList>
         <script type="BroadcastScript">
           <brickList>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>start</receivedMessage>
         </script>
         <script type="WhenScript">
           <brickList>
             <brick type="BroadcastBrick">
+              <commentedOut>false</commentedOut>
               <broadcastMessage>start</broadcastMessage>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <action>Tapped</action>
         </script>
         <script type="BroadcastScript">
           <brickList>
             <brick type="SetGhostEffectBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TRANSPARENCY">
                   <type>NUMBER</type>
@@ -426,6 +505,7 @@
               </formulaList>
             </brick>
             <brick type="GoNStepsBackBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="STEPS">
                   <type>NUMBER</type>
@@ -434,13 +514,18 @@
               </formulaList>
             </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
-            <brick type="ShowBrick"/>
+            <brick type="ShowBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="BroadcastBrick">
+              <commentedOut>false</commentedOut>
               <broadcastMessage>ab, hide</broadcastMessage>
             </brick>
             <brick type="RepeatBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIMES_TO_REPEAT">
                   <type>NUMBER</type>
@@ -449,6 +534,7 @@
               </formulaList>
             </brick>
             <brick type="ChangeGhostEffectByNBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TRANSPARENCY_CHANGE">
                   <rightChild>
@@ -460,11 +546,15 @@
                 </formula>
               </formulaList>
             </brick>
-            <brick type="LoopEndBrick"/>
+            <brick type="LoopEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="BroadcastWaitBrick">
+              <commentedOut>false</commentedOut>
               <broadcastMessage>a2b2, appear</broadcastMessage>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>square, come</receivedMessage>
         </script>
       </scriptList>
@@ -480,13 +570,17 @@
       <scriptList>
         <script type="BroadcastScript">
           <brickList>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>start</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
             <brick type="PointInDirectionBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="DEGREES">
                   <type>NUMBER</type>
@@ -495,6 +589,7 @@
               </formulaList>
             </brick>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <rightChild>
@@ -515,17 +610,26 @@
               </formulaList>
             </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
-            <brick type="ComeToFrontBrick"/>
-            <brick type="ShowBrick"/>
+            <brick type="ComeToFrontBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="ShowBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>triangle in the upper left, appear</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
-            <brick type="ComeToFrontBrick"/>
+            <brick type="ComeToFrontBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="GlideToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_DESTINATION">
                   <type>NUMBER</type>
@@ -546,9 +650,11 @@
               </formulaList>
             </brick>
             <brick type="BroadcastWaitBrick">
+              <commentedOut>false</commentedOut>
               <broadcastMessage>c, appear</broadcastMessage>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>go to the top and right</receivedMessage>
         </script>
       </scriptList>
@@ -564,13 +670,17 @@
       <scriptList>
         <script type="BroadcastScript">
           <brickList>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>start</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <rightChild>
@@ -591,6 +701,7 @@
               </formulaList>
             </brick>
             <brick type="PointInDirectionBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="DEGREES">
                   <type>NUMBER</type>
@@ -599,17 +710,26 @@
               </formulaList>
             </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
-            <brick type="ComeToFrontBrick"/>
-            <brick type="ShowBrick"/>
+            <brick type="ComeToFrontBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="ShowBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>triangle in the lower right, appear</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
-            <brick type="ComeToFrontBrick"/>
+            <brick type="ComeToFrontBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="GlideToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_DESTINATION">
                   <rightChild>
@@ -630,6 +750,7 @@
               </formulaList>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>go to the top and right</receivedMessage>
         </script>
       </scriptList>
@@ -645,13 +766,17 @@
       <scriptList>
         <script type="BroadcastScript">
           <brickList>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>start</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <type>NUMBER</type>
@@ -664,6 +789,7 @@
               </formulaList>
             </brick>
             <brick type="SetSizeToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE">
                   <type>NUMBER</type>
@@ -672,6 +798,7 @@
               </formulaList>
             </brick>
             <brick type="SetGhostEffectBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TRANSPARENCY">
                   <type>NUMBER</type>
@@ -680,11 +807,17 @@
               </formulaList>
             </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
-            <brick type="ComeToFrontBrick"/>
-            <brick type="ShowBrick"/>
+            <brick type="ComeToFrontBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="ShowBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="RepeatBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIMES_TO_REPEAT">
                   <type>NUMBER</type>
@@ -693,6 +826,7 @@
               </formulaList>
             </brick>
             <brick type="ChangeGhostEffectByNBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TRANSPARENCY_CHANGE">
                   <rightChild>
@@ -704,13 +838,17 @@
                 </formula>
               </formulaList>
             </brick>
-            <brick type="LoopEndBrick"/>
+            <brick type="LoopEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>abc, appear</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
             <brick type="GlideToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_DESTINATION">
                   <type>NUMBER</type>
@@ -727,11 +865,13 @@
               </formulaList>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>go to the upper right</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
             <brick type="RepeatBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIMES_TO_REPEAT">
                   <type>NUMBER</type>
@@ -740,6 +880,7 @@
               </formulaList>
             </brick>
             <brick type="ChangeGhostEffectByNBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TRANSPARENCY_CHANGE">
                   <type>NUMBER</type>
@@ -747,13 +888,17 @@
                 </formula>
               </formulaList>
             </brick>
-            <brick type="LoopEndBrick"/>
+            <brick type="LoopEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>ab, appear</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
             <brick type="GoNStepsBackBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="STEPS">
                   <type>NUMBER</type>
@@ -762,6 +907,7 @@
               </formulaList>
             </brick>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <rightChild>
@@ -778,6 +924,7 @@
               </formulaList>
             </brick>
             <brick type="RepeatBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIMES_TO_REPEAT">
                   <type>NUMBER</type>
@@ -786,6 +933,7 @@
               </formulaList>
             </brick>
             <brick type="ChangeGhostEffectByNBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TRANSPARENCY_CHANGE">
                   <rightChild>
@@ -797,13 +945,17 @@
                 </formula>
               </formulaList>
             </brick>
-            <brick type="LoopEndBrick"/>
+            <brick type="LoopEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>ab second, appear</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
             <brick type="GoNStepsBackBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="STEPS">
                   <type>NUMBER</type>
@@ -812,6 +964,7 @@
               </formulaList>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>ab, hide</receivedMessage>
         </script>
       </scriptList>
@@ -827,8 +980,11 @@
       <scriptList>
         <script type="BroadcastScript">
           <brickList>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="WaitBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                   <type>NUMBER</type>
@@ -836,13 +992,17 @@
                 </formula>
               </formulaList>
             </brick>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>start</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
             <brick type="RepeatBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIMES_TO_REPEAT">
                   <type>NUMBER</type>
@@ -851,6 +1011,7 @@
               </formulaList>
             </brick>
             <brick type="ChangeGhostEffectByNBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TRANSPARENCY_CHANGE">
                   <type>NUMBER</type>
@@ -858,13 +1019,17 @@
                 </formula>
               </formulaList>
             </brick>
-            <brick type="LoopEndBrick"/>
+            <brick type="LoopEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>go to the top and right</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <rightChild>
@@ -881,6 +1046,7 @@
               </formulaList>
             </brick>
             <brick type="SetSizeToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE">
                   <type>NUMBER</type>
@@ -889,6 +1055,7 @@
               </formulaList>
             </brick>
             <brick type="SetGhostEffectBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TRANSPARENCY">
                   <type>NUMBER</type>
@@ -897,11 +1064,17 @@
               </formulaList>
             </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
-            <brick type="ComeToFrontBrick"/>
-            <brick type="ShowBrick"/>
+            <brick type="ComeToFrontBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="ShowBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="RepeatBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIMES_TO_REPEAT">
                   <type>NUMBER</type>
@@ -910,6 +1083,7 @@
               </formulaList>
             </brick>
             <brick type="ChangeGhostEffectByNBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TRANSPARENCY_CHANGE">
                   <rightChild>
@@ -921,8 +1095,11 @@
                 </formula>
               </formulaList>
             </brick>
-            <brick type="LoopEndBrick"/>
+            <brick type="LoopEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>a2b2, appear</receivedMessage>
         </script>
       </scriptList>
@@ -938,13 +1115,17 @@
       <scriptList>
         <script type="BroadcastScript">
           <brickList>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>start</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <rightChild>
@@ -961,6 +1142,7 @@
               </formulaList>
             </brick>
             <brick type="SetSizeToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE">
                   <type>NUMBER</type>
@@ -969,6 +1151,7 @@
               </formulaList>
             </brick>
             <brick type="SetGhostEffectBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TRANSPARENCY">
                   <type>NUMBER</type>
@@ -977,6 +1160,7 @@
               </formulaList>
             </brick>
             <brick type="GoNStepsBackBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="STEPS">
                   <type>NUMBER</type>
@@ -985,11 +1169,17 @@
               </formulaList>
             </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
-            <brick type="ComeToFrontBrick"/>
-            <brick type="ShowBrick"/>
+            <brick type="ComeToFrontBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="ShowBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="WaitBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                   <type>NUMBER</type>
@@ -998,6 +1188,7 @@
               </formulaList>
             </brick>
             <brick type="RepeatBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIMES_TO_REPEAT">
                   <type>NUMBER</type>
@@ -1006,6 +1197,7 @@
               </formulaList>
             </brick>
             <brick type="ChangeGhostEffectByNBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TRANSPARENCY_CHANGE">
                   <rightChild>
@@ -1017,13 +1209,17 @@
                 </formula>
               </formulaList>
             </brick>
-            <brick type="LoopEndBrick"/>
+            <brick type="LoopEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>ab, appear</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
             <brick type="WaitBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                   <type>NUMBER</type>
@@ -1032,6 +1228,7 @@
               </formulaList>
             </brick>
             <brick type="GoNStepsBackBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="STEPS">
                   <type>NUMBER</type>
@@ -1040,6 +1237,7 @@
               </formulaList>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>ab, hide</receivedMessage>
         </script>
       </scriptList>
@@ -1055,13 +1253,17 @@
       <scriptList>
         <script type="BroadcastScript">
           <brickList>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>start</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <type>NUMBER</type>
@@ -1074,6 +1276,7 @@
               </formulaList>
             </brick>
             <brick type="SetSizeToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE">
                   <type>NUMBER</type>
@@ -1082,6 +1285,7 @@
               </formulaList>
             </brick>
             <brick type="SetGhostEffectBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TRANSPARENCY">
                   <type>NUMBER</type>
@@ -1090,11 +1294,17 @@
               </formulaList>
             </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
-            <brick type="ComeToFrontBrick"/>
-            <brick type="ShowBrick"/>
+            <brick type="ComeToFrontBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="ShowBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="RepeatBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIMES_TO_REPEAT">
                   <type>NUMBER</type>
@@ -1103,6 +1313,7 @@
               </formulaList>
             </brick>
             <brick type="ChangeGhostEffectByNBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TRANSPARENCY_CHANGE">
                   <rightChild>
@@ -1114,13 +1325,17 @@
                 </formula>
               </formulaList>
             </brick>
-            <brick type="LoopEndBrick"/>
+            <brick type="LoopEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>abc, appear</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
             <brick type="GlideToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_DESTINATION">
                   <type>NUMBER</type>
@@ -1137,11 +1352,13 @@
               </formulaList>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>go to the upper right</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
             <brick type="RepeatBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIMES_TO_REPEAT">
                   <type>NUMBER</type>
@@ -1150,6 +1367,7 @@
               </formulaList>
             </brick>
             <brick type="ChangeGhostEffectByNBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TRANSPARENCY_CHANGE">
                   <type>NUMBER</type>
@@ -1157,13 +1375,17 @@
                 </formula>
               </formulaList>
             </brick>
-            <brick type="LoopEndBrick"/>
+            <brick type="LoopEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>ab, appear</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <rightChild>
@@ -1184,6 +1406,7 @@
               </formulaList>
             </brick>
             <brick type="SetSizeToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE">
                   <type>NUMBER</type>
@@ -1192,6 +1415,7 @@
               </formulaList>
             </brick>
             <brick type="SetGhostEffectBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TRANSPARENCY">
                   <type>NUMBER</type>
@@ -1199,8 +1423,11 @@
                 </formula>
               </formulaList>
             </brick>
-            <brick type="ComeToFrontBrick"/>
+            <brick type="ComeToFrontBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="GoNStepsBackBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="STEPS">
                   <type>NUMBER</type>
@@ -1209,10 +1436,14 @@
               </formulaList>
             </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
-            <brick type="ShowBrick"/>
+            <brick type="ShowBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="RepeatBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIMES_TO_REPEAT">
                   <type>NUMBER</type>
@@ -1221,6 +1452,7 @@
               </formulaList>
             </brick>
             <brick type="ChangeGhostEffectByNBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TRANSPARENCY_CHANGE">
                   <rightChild>
@@ -1232,14 +1464,20 @@
                 </formula>
               </formulaList>
             </brick>
-            <brick type="LoopEndBrick"/>
+            <brick type="LoopEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>ab second, appear</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
-            <brick type="ComeToFrontBrick"/>
+            <brick type="ComeToFrontBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="GoNStepsBackBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="STEPS">
                   <type>SENSOR</type>
@@ -1248,6 +1486,7 @@
               </formulaList>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>ab, hide</receivedMessage>
         </script>
       </scriptList>
@@ -1263,8 +1502,11 @@
       <scriptList>
         <script type="BroadcastScript">
           <brickList>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="WaitBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                   <type>NUMBER</type>
@@ -1272,13 +1514,17 @@
                 </formula>
               </formulaList>
             </brick>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>start</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
             <brick type="RepeatBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIMES_TO_REPEAT">
                   <type>NUMBER</type>
@@ -1287,6 +1533,7 @@
               </formulaList>
             </brick>
             <brick type="ChangeGhostEffectByNBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TRANSPARENCY_CHANGE">
                   <type>NUMBER</type>
@@ -1294,13 +1541,17 @@
                 </formula>
               </formulaList>
             </brick>
-            <brick type="LoopEndBrick"/>
+            <brick type="LoopEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>go to the top and right</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <type>NUMBER</type>
@@ -1317,6 +1568,7 @@
               </formulaList>
             </brick>
             <brick type="SetSizeToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE">
                   <type>NUMBER</type>
@@ -1325,6 +1577,7 @@
               </formulaList>
             </brick>
             <brick type="SetGhostEffectBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TRANSPARENCY">
                   <type>NUMBER</type>
@@ -1333,11 +1586,17 @@
               </formulaList>
             </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
-            <brick type="ComeToFrontBrick"/>
-            <brick type="ShowBrick"/>
+            <brick type="ComeToFrontBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="ShowBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="RepeatBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIMES_TO_REPEAT">
                   <type>NUMBER</type>
@@ -1346,6 +1605,7 @@
               </formulaList>
             </brick>
             <brick type="ChangeGhostEffectByNBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TRANSPARENCY_CHANGE">
                   <rightChild>
@@ -1357,8 +1617,11 @@
                 </formula>
               </formulaList>
             </brick>
-            <brick type="LoopEndBrick"/>
+            <brick type="LoopEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>a2b2, appear</receivedMessage>
         </script>
       </scriptList>
@@ -1374,13 +1637,17 @@
       <scriptList>
         <script type="BroadcastScript">
           <brickList>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>start</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <type>NUMBER</type>
@@ -1393,6 +1660,7 @@
               </formulaList>
             </brick>
             <brick type="SetSizeToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE">
                   <type>NUMBER</type>
@@ -1401,6 +1669,7 @@
               </formulaList>
             </brick>
             <brick type="SetGhostEffectBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TRANSPARENCY">
                   <type>NUMBER</type>
@@ -1408,8 +1677,11 @@
                 </formula>
               </formulaList>
             </brick>
-            <brick type="ComeToFrontBrick"/>
+            <brick type="ComeToFrontBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="GoNStepsBackBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="STEPS">
                   <type>NUMBER</type>
@@ -1418,10 +1690,14 @@
               </formulaList>
             </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
-            <brick type="ShowBrick"/>
+            <brick type="ShowBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="WaitBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                   <type>NUMBER</type>
@@ -1430,6 +1706,7 @@
               </formulaList>
             </brick>
             <brick type="RepeatBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIMES_TO_REPEAT">
                   <type>NUMBER</type>
@@ -1438,6 +1715,7 @@
               </formulaList>
             </brick>
             <brick type="ChangeGhostEffectByNBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TRANSPARENCY_CHANGE">
                   <rightChild>
@@ -1449,14 +1727,20 @@
                 </formula>
               </formulaList>
             </brick>
-            <brick type="LoopEndBrick"/>
+            <brick type="LoopEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>ab, appear</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
-            <brick type="ComeToFrontBrick"/>
+            <brick type="ComeToFrontBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="GoNStepsBackBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="STEPS">
                   <type>NUMBER</type>
@@ -1465,6 +1749,7 @@
               </formulaList>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>ab, hide</receivedMessage>
         </script>
       </scriptList>
@@ -1483,13 +1768,17 @@
       <scriptList>
         <script type="BroadcastScript">
           <brickList>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>start</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
             <brick type="RepeatBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIMES_TO_REPEAT">
                   <type>NUMBER</type>
@@ -1498,6 +1787,7 @@
               </formulaList>
             </brick>
             <brick type="ChangeGhostEffectByNBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TRANSPARENCY_CHANGE">
                   <type>NUMBER</type>
@@ -1505,13 +1795,17 @@
                 </formula>
               </formulaList>
             </brick>
-            <brick type="LoopEndBrick"/>
+            <brick type="LoopEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>c2, appear</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
             <brick type="SetGhostEffectBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TRANSPARENCY">
                   <type>NUMBER</type>
@@ -1519,9 +1813,14 @@
                 </formula>
               </formulaList>
             </brick>
-            <brick type="ShowBrick"/>
-            <brick type="NextLookBrick"/>
+            <brick type="ShowBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="NextLookBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <type>NUMBER</type>
@@ -1534,6 +1833,7 @@
               </formulaList>
             </brick>
             <brick type="RepeatBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIMES_TO_REPEAT">
                   <type>NUMBER</type>
@@ -1542,6 +1842,7 @@
               </formulaList>
             </brick>
             <brick type="ChangeGhostEffectByNBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TRANSPARENCY_CHANGE">
                   <rightChild>
@@ -1553,13 +1854,17 @@
                 </formula>
               </formulaList>
             </brick>
-            <brick type="LoopEndBrick"/>
+            <brick type="LoopEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>go to the lower left</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <rightChild>
@@ -1580,6 +1885,7 @@
               </formulaList>
             </brick>
             <brick type="SetSizeToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE">
                   <type>NUMBER</type>
@@ -1588,6 +1894,7 @@
               </formulaList>
             </brick>
             <brick type="SetGhostEffectBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TRANSPARENCY">
                   <type>NUMBER</type>
@@ -1596,11 +1903,17 @@
               </formulaList>
             </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
-            <brick type="ComeToFrontBrick"/>
-            <brick type="ShowBrick"/>
+            <brick type="ComeToFrontBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="ShowBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="RepeatBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIMES_TO_REPEAT">
                   <type>NUMBER</type>
@@ -1609,6 +1922,7 @@
               </formulaList>
             </brick>
             <brick type="ChangeGhostEffectByNBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TRANSPARENCY_CHANGE">
                   <rightChild>
@@ -1620,8 +1934,11 @@
                 </formula>
               </formulaList>
             </brick>
-            <brick type="LoopEndBrick"/>
+            <brick type="LoopEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="WaitBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                   <type>NUMBER</type>
@@ -1630,11 +1947,13 @@
               </formulaList>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>abc, appear</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
             <brick type="GlideToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_DESTINATION">
                   <type>NUMBER</type>
@@ -1651,12 +1970,16 @@
               </formulaList>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>go to the upper right</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>two triangles, come</receivedMessage>
         </script>
       </scriptList>
@@ -1672,8 +1995,11 @@
       <scriptList>
         <script type="BroadcastScript">
           <brickList>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="WaitBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                   <type>NUMBER</type>
@@ -1681,13 +2007,17 @@
                 </formula>
               </formulaList>
             </brick>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>start</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <type>NUMBER</type>
@@ -1700,6 +2030,7 @@
               </formulaList>
             </brick>
             <brick type="SetSizeToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE">
                   <type>NUMBER</type>
@@ -1708,6 +2039,7 @@
               </formulaList>
             </brick>
             <brick type="SetGhostEffectBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TRANSPARENCY">
                   <type>NUMBER</type>
@@ -1716,11 +2048,17 @@
               </formulaList>
             </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
-            <brick type="ComeToFrontBrick"/>
-            <brick type="ShowBrick"/>
+            <brick type="ComeToFrontBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="ShowBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="RepeatBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIMES_TO_REPEAT">
                   <type>NUMBER</type>
@@ -1729,6 +2067,7 @@
               </formulaList>
             </brick>
             <brick type="ChangeGhostEffectByNBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TRANSPARENCY_CHANGE">
                   <rightChild>
@@ -1740,8 +2079,11 @@
                 </formula>
               </formulaList>
             </brick>
-            <brick type="LoopEndBrick"/>
+            <brick type="LoopEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="WaitBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                   <type>NUMBER</type>
@@ -1750,6 +2092,7 @@
               </formulaList>
             </brick>
             <brick type="RepeatBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIMES_TO_REPEAT">
                   <type>NUMBER</type>
@@ -1758,6 +2101,7 @@
               </formulaList>
             </brick>
             <brick type="ChangeGhostEffectByNBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TRANSPARENCY_CHANGE">
                   <type>NUMBER</type>
@@ -1765,8 +2109,11 @@
                 </formula>
               </formulaList>
             </brick>
-            <brick type="LoopEndBrick"/>
+            <brick type="LoopEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>c2, appear</receivedMessage>
         </script>
       </scriptList>
@@ -1782,13 +2129,17 @@
       <scriptList>
         <script type="BroadcastScript">
           <brickList>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>start</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
             <brick type="RepeatBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIMES_TO_REPEAT">
                   <type>NUMBER</type>
@@ -1797,6 +2148,7 @@
               </formulaList>
             </brick>
             <brick type="ChangeGhostEffectByNBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TRANSPARENCY_CHANGE">
                   <type>NUMBER</type>
@@ -1804,13 +2156,17 @@
                 </formula>
               </formulaList>
             </brick>
-            <brick type="LoopEndBrick"/>
+            <brick type="LoopEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>c2, appear</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <type>NUMBER</type>
@@ -1827,6 +2183,7 @@
               </formulaList>
             </brick>
             <brick type="SetSizeToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE">
                   <type>NUMBER</type>
@@ -1835,6 +2192,7 @@
               </formulaList>
             </brick>
             <brick type="SetGhostEffectBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TRANSPARENCY">
                   <type>NUMBER</type>
@@ -1843,11 +2201,17 @@
               </formulaList>
             </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
-            <brick type="ComeToFrontBrick"/>
-            <brick type="ShowBrick"/>
+            <brick type="ComeToFrontBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="ShowBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="RepeatBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIMES_TO_REPEAT">
                   <type>NUMBER</type>
@@ -1856,6 +2220,7 @@
               </formulaList>
             </brick>
             <brick type="ChangeGhostEffectByNBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TRANSPARENCY_CHANGE">
                   <rightChild>
@@ -1867,8 +2232,11 @@
                 </formula>
               </formulaList>
             </brick>
-            <brick type="LoopEndBrick"/>
+            <brick type="LoopEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>go to the lower left</receivedMessage>
         </script>
       </scriptList>

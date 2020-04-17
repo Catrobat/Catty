@@ -47,7 +47,8 @@ class ScriptCollectionVCTests: XCTestCase {
         app.collectionViews.cells.element(boundBy: 1).tap()
         XCTAssertTrue(app.sheets[kLocalizedEditBrick].exists)
 
-        let copyButton = app.sheets[kLocalizedEditBrick].buttons.element(boundBy: 1)
+        let copyButton = app.sheets[kLocalizedEditBrick].buttons[kLocalizedCopyBrick]
+
         XCTAssertEqual(kLocalizedCopyBrick, copyButton.label)
         copyButton.tap()
 
@@ -117,5 +118,35 @@ class ScriptCollectionVCTests: XCTestCase {
 
         app.buttons[kLocalizedDone].tap()
         XCTAssertTrue(waitForElementToAppear(app.navigationBars[kLocalizedScripts]).exists)
+    }
+
+    func testEditBrickButtonDisableOrEnable() {
+        createProject(name: "testProject", in: app)
+        waitForElementToAppear(app.staticTexts[kLocalizedBackground]).tap()
+        waitForElementToAppear(app.staticTexts[kLocalizedScripts]).tap()
+
+        XCTAssertEqual(0, app.collectionViews.cells.count)
+
+        addBrick(label: kLocalizedHide, section: kLocalizedCategoryLook, in: app)
+
+        XCTAssertEqual(2, app.collectionViews.cells.count)
+        app.collectionViews.cells.element(boundBy: 1).tap()
+
+        XCTAssertTrue(app.sheets[kLocalizedEditBrick].exists)
+
+        let disableButton = app.sheets[kLocalizedEditBrick].buttons[kLocalizedDisableBrick]
+        XCTAssertTrue(disableButton.exists)
+
+        disableButton.tap()
+        app.collectionViews.cells.element(boundBy: 1).tap()
+        XCTAssertTrue(app.sheets[kLocalizedEditBrick].exists)
+
+        let enableButton = app.sheets[kLocalizedEditBrick].buttons[kLocalizedEnableBrick]
+        XCTAssertTrue(enableButton.exists)
+        enableButton.tap()
+
+        app.collectionViews.cells.element(boundBy: 1).tap()
+        XCTAssertTrue(app.sheets[kLocalizedEditBrick].exists)
+        XCTAssertTrue(disableButton.exists)
     }
 }

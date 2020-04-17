@@ -28,6 +28,7 @@
 #import "CBXMLParserContext.h"
 #import "CBXMLSerializerContext.h"
 #import "CBXMLSerializerHelper.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation ChooseCameraBrick (CBXMLHandler)
 
@@ -38,7 +39,7 @@
     
     if([brickType rangeOfString:@"ChooseCameraBrick"].location != NSNotFound){
         
-        NSUInteger childrenCount = [[xmlElement childrenWithoutComments] count];
+        NSUInteger childrenCount = [[xmlElement childrenWithoutCommentsAndCommentedOutTag] count];
         if (childrenCount != 1 && childrenCount != 2) {
             [XMLError exceptionWithMessage:@"Wrong number of child elements for ChooseCameraBrick"];
         }
@@ -65,10 +66,9 @@
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context
 {
-    NSString *numberString = [NSString stringWithFormat:@"%i", self.cameraPosition];
+    GDataXMLElement *brick = [super xmlElementForBrickType:@"ChooseCameraBrick" withContext:context];
     
-    NSUInteger indexOfBrick = [CBXMLSerializerHelper indexOfElement:self inArray:context.brickList];
-    GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" xPathIndex:(indexOfBrick+1) context:context];
+    NSString *numberString = [NSString stringWithFormat:@"%i", self.cameraPosition];   
     GDataXMLElement *spinnerID = [GDataXMLElement elementWithName:@"spinnerSelectionID" stringValue:numberString context:context];
     GDataXMLElement *backString = [GDataXMLElement elementWithName:@"string" stringValue:@"back" context:context];
     GDataXMLElement *frontString = [GDataXMLElement elementWithName:@"string" stringValue:@"front" context:context];
@@ -76,7 +76,6 @@
     
     [spinnerValues addChild:backString context:context];
     [spinnerValues addChild:frontString context:context];
-    [brick addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:@"ChooseCameraBrick"]];
     [brick addChild:spinnerID context:context];
     [brick addChild:spinnerValues context:context];
     return brick;

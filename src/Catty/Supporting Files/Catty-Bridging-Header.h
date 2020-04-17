@@ -176,6 +176,7 @@
 #import "TermsOfUseOptionTableViewController.h"
 #import "AboutPocketCodeOptionTableViewController.h"
 #import "CatrobatTableViewController.h"
+#import "ScriptCollectionViewController.h"
 
 //------------------------------------------------------------------------------------------------------------
 

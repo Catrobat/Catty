@@ -40,6 +40,7 @@
         <script type="StartScript">
           <brickList>
             <brick type="WaitBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                   <type>NUMBER</type>
@@ -47,11 +48,15 @@
                 </formula>
               </formulaList>
             </brick>
-            <brick type="ForeverBrick"/>
+            <brick type="ForeverBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="PlaySoundBrick">
+              <commentedOut>false</commentedOut>
               <sound reference="../../../../../soundList/sound"/>
             </brick>
             <brick type="WaitBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                   <type>NUMBER</type>
@@ -59,8 +64,11 @@
                 </formula>
               </formulaList>
             </brick>
-            <brick type="LoopEndlessBrick"/>
+            <brick type="LoopEndlessBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <isUserScript>false</isUserScript>
         </script>
       </scriptList>
@@ -110,6 +118,7 @@
         <script type="StartScript">
           <brickList>
             <brick type="SetSizeToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE">
                   <type>NUMBER</type>
@@ -118,6 +127,7 @@
               </formulaList>
             </brick>
             <brick type="SetTransparencyBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TRANSPARENCY">
                   <type>NUMBER</type>
@@ -126,6 +136,7 @@
               </formulaList>
             </brick>
             <brick type="WaitBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                   <type>NUMBER</type>
@@ -134,6 +145,7 @@
               </formulaList>
             </brick>
             <brick type="RepeatBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIMES_TO_REPEAT">
                   <type>NUMBER</type>
@@ -142,6 +154,7 @@
               </formulaList>
             </brick>
             <brick type="ChangeTransparencyByNBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TRANSPARENCY_CHANGE">
                   <rightChild>
@@ -153,13 +166,17 @@
                 </formula>
               </formulaList>
             </brick>
-            <brick type="LoopEndBrick"/>
+            <brick type="LoopEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <isUserScript>false</isUserScript>
         </script>
         <script type="StartScript">
           <brickList>
             <brick type="WaitBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                   <type>NUMBER</type>
@@ -167,8 +184,11 @@
                 </formula>
               </formulaList>
             </brick>
-            <brick type="ForeverBrick"/>
+            <brick type="ForeverBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="WaitBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                   <type>NUMBER</type>
@@ -176,9 +196,14 @@
                 </formula>
               </formulaList>
             </brick>
-            <brick type="NextLookBrick"/>
-            <brick type="LoopEndlessBrick"/>
+            <brick type="NextLookBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="LoopEndlessBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <isUserScript>false</isUserScript>
         </script>
       </scriptList>

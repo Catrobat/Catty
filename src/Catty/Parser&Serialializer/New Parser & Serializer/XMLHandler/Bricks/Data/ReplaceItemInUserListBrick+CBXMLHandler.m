@@ -31,6 +31,7 @@
 #import "CBXMLSerializerContext.h"
 #import "CBXMLParserHelper.h"
 #import "CBXMLSerializerHelper.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation ReplaceItemInUserListBrick (CBXMLHandler)
 
@@ -63,9 +64,7 @@
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context
 {
-    NSUInteger indexOfBrick = [CBXMLSerializerHelper indexOfElement:self inArray:context.brickList];
-    GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" xPathIndex:(indexOfBrick+1) context:context];
-    [brick addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:@"ReplaceItemInUserListBrick"]];
+    GDataXMLElement *brick = [super xmlElementForBrickType:@"ReplaceItemInUserListBrick" withContext:context];
     GDataXMLElement *formulaList = [GDataXMLElement elementWithName:@"formulaList" context:context];
     GDataXMLElement *formula = [self.elementFormula xmlElementWithContext:context];
     GDataXMLElement *index = [self.index xmlElementWithContext:context];

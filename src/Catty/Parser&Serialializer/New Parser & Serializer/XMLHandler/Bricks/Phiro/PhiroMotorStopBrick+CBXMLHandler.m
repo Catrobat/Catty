@@ -26,6 +26,7 @@
 #import "CBXMLSerializerContext.h"
 #import "CBXMLParserHelper.h"
 #import "CBXMLSerializerHelper.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation PhiroMotorStopBrick (CBXMLHandler)
 
@@ -40,9 +41,7 @@
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context
 {
-    NSUInteger indexOfBrick = [CBXMLSerializerHelper indexOfElement:self inArray:context.brickList];
-    GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" xPathIndex:(indexOfBrick+1) context:context];
-    [brick addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:@"PhiroMotorStopBrick"]];
+    GDataXMLElement *brick = [super xmlElementForBrickType:@"PhiroMotorStopBrick" withContext:context];
     GDataXMLElement *value = [GDataXMLElement elementWithName:@"motor" stringValue:self.motor context:context];
     [brick addChild:value context:context];
     return brick;
