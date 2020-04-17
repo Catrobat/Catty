@@ -76,7 +76,7 @@ class BrickCellPickerViewerTests: XCTestCase {
         }
     }
 
-    func testChangeVariableDone() {
+    func testChangeVariableDoneAndCancel() {
         let bricks: [String] = [
             kLocalizedSetVariable,
             kLocalizedChangeVariable,
@@ -94,47 +94,24 @@ class BrickCellPickerViewerTests: XCTestCase {
                 addValuesForVariableBrick(brick: brick, category: kLocalizedCategoryVariable)
                 variableBrickHasValues = true
             }
+
+            XCTAssertFalse(app.otherElements[ACCESSABILITY_LABEL_VARIABLE + testValues[0]].exists, "Brick: " + brick + " has wrong initial value")
 
             app.collectionViews.cells.otherElements.containing(.staticText, identifier: brick).children(matching: .other).element.tap()
 
             app.pickerWheels.element.adjust(toPickerWheelValue: testValues[0])
             app.buttons[kLocalizedDone].tap()
             XCTAssert(waitForElementToAppear(app.otherElements[ACCESSABILITY_LABEL_VARIABLE + testValues[0]]).exists, "Error while changing variable for Brick: " + brick)
-        }
-    }
-
-    func testChangeVariableCancel() {
-        let bricks: [String] = [
-            kLocalizedSetVariable,
-            kLocalizedChangeVariable,
-            kLocalizedShowVariable
-        ]
-
-        app.tables.staticTexts[kLocalizedBackground].tap()
-        app.tables.staticTexts[kLocalizedScripts].tap()
-
-        for brick in bricks {
-            clearScript()
-            addBrick(label: brick, section: kLocalizedCategoryVariable, in: app)
-            if variableBrickHasValues == false {
-                addValuesForVariableBrick(brick: brick, category: kLocalizedCategoryVariable)
-                variableBrickHasValues = true
-            }
 
             app.collectionViews.cells.otherElements.containing(.staticText, identifier: brick).children(matching: .other).element.tap()
 
             app.pickerWheels.element.adjust(toPickerWheelValue: testValues[2])
-            app.buttons[kLocalizedDone].tap()
-
-            app.collectionViews.cells.otherElements.containing(.staticText, identifier: brick).children(matching: .other).element.tap()
-
-            app.pickerWheels.element.adjust(toPickerWheelValue: testValues[0])
             app.buttons[kLocalizedCancel].tap()
-            XCTAssert(waitForElementToAppear(app.otherElements[ACCESSABILITY_LABEL_VARIABLE + testValues[2]]).exists, "Error while changing variable for Brick and cancel: " + brick)
+            XCTAssert(waitForElementToAppear(app.otherElements[ACCESSABILITY_LABEL_VARIABLE + testValues[0]]).exists, "Error while changing variable for Brick and cancel: " + brick)
         }
     }
 
-    func testChangeControlDone() {
+    func testChangeControlDoneAndCancel() {
         let bricks: [String] = [
             kLocalizedBroadcast,
             kLocalizedBroadcastAndWait,
@@ -151,25 +128,6 @@ class BrickCellPickerViewerTests: XCTestCase {
             app.pickerWheels.element.adjust(toPickerWheelValue: testValues[2])
             app.buttons[kLocalizedDone].tap()
             XCTAssert(waitForElementToAppear(app.otherElements[ACCESSABILITY_LABEL_MESSAGE + testValues[2]]).exists, "Error while changing variable for Brick: " + brick)
-        }
-    }
-
-    func testChangeControlCancel() {
-        let bricks: [String] = [
-            kLocalizedBroadcast,
-            kLocalizedBroadcastAndWait,
-            kLocalizedWhenYouReceive
-        ]
-
-        app.tables.staticTexts[kLocalizedBackground].tap()
-        app.tables.staticTexts[kLocalizedScripts].tap()
-
-        for brick in bricks {
-            addControlBrickWithValuesToProject(brick: brick, category: kLocalizedCategoryControl)
-            app.collectionViews.cells.otherElements.containing(.staticText, identifier: brick).children(matching: .other).element.tap()
-
-            app.pickerWheels.element.adjust(toPickerWheelValue: testValues[2])
-            app.buttons[kLocalizedDone].tap()
 
             app.collectionViews.cells.otherElements.containing(.staticText, identifier: brick).children(matching: .other).element.tap()
 
