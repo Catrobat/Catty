@@ -50,8 +50,9 @@ static const CGFloat kPointMinDistanceSquared = kPointMinDistance * kPointMinDis
       if (recognizer.numberOfTouches) {
           point = [recognizer locationOfTouch:0 inView:self.canvas.drawView];
       }
-      else
+      else {
           return;
+      }
       currentPoint = CGPointMake(-1, -1);
       [self drawLine:point];
   }else if (recognizer.state == UIGestureRecognizerStateChanged){
