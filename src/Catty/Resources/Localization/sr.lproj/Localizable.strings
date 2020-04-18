@@ -1,17 +1,17 @@
 /* No comment provided by engineer. */
-"A message with the same name already exists, try again." = "Poruka sa tim imеnom vеć postoji, probajte ponovo.";
+"A message with the same name already exists, try again." = "Порука са тим именом већ постоји, покушајте поново.";
 
 /* No comment provided by engineer. */
-"A project with the same name already exists, try again." = "Projekat sa tim imеnom vеć postoji, probajte ponovo.";
+"A project with the same name already exists, try again." = "Пројекат са тим именом већ постоји, покушајте поново.";
 
 /* No comment provided by engineer. */
 "Abc" = "Abc";
 
 /* No comment provided by engineer. */
-"About Catrobat" = "O Catrobat";
+"About Catrobat" = "О Catrobat";
 
 /* No comment provided by engineer. */
-"About Pocket Code" = "O Pocket Code-u";
+"About Pocket Code" = "О Pocket Code";
 
 /* No comment provided by engineer. */
 "acceleration x" = "acceleration x";
@@ -26,28 +26,28 @@
 "acceleration-sensor" = "acceleration-sensor";
 
 /* No comment provided by engineer. */
-"Actors and objects" = "Actors and objects";
+"Actors and objects" = "Actors и objects";
 
 /* No comment provided by engineer. */
-"Add" = "Dodaj";
+"Add" = "Додај";
 
 /* No comment provided by engineer. */
 "Add actor or object" = "Add actor or object";
 
 /* No comment provided by engineer. */
-"add comment here..." = "add comment here...";
+"add comment here..." = "додај коментар овде...";
 
 /* No comment provided by engineer. */
-"Add image" = "Dodaj sliku";
+"Add image" = "Додај фотографију";
 
 /* Action sheet menu title */
 "Add look" = "Add look";
 
 /* Action sheet menu title */
-"Add sound" = "Dodaj zvuk";
+"Add sound" = "Add sound";
 
 /* No comment provided by engineer. */
-"Agree" = "Prihvati";
+"Agree" = "Прихватам";
 
 /* No comment provided by engineer. */
 "All Bluetooth devices successfully disconnected" = "All Bluetooth devices successfully disconnected";
@@ -56,7 +56,10 @@
 "All known Bluetooth devices successfully removed" = "All known Bluetooth devices successfully removed";
 
 /* No comment provided by engineer. */
-"Allow the app to control Arduino boards" = "Allow the app to control Arduino boards";
+"Allow the app to control Arduino boards" = "Дозволи да апликација контролише Arduino boards";
+
+/* No comment provided by engineer. */
+"Allow the app to send crash reports automatically" = "Дозволи да апликација аутоматски пошаље crash reports";
 
 /* paint */
 "Alpha" = "Alpha";
@@ -80,7 +83,7 @@
 "and" = "and";
 
 /* No comment provided by engineer. */
-"and wait" = "and wait";
+"and wait" = "и чекај";
 
 /* No comment provided by engineer. */
 "Animate brick-parts" = "Animate brick-parts";
@@ -89,7 +92,7 @@
 "Apr" = "Apr";
 
 /* No comment provided by engineer. */
-"April" = "April";
+"April" = "Април";
 
 /* No comment provided by engineer. */
 "Arduino" = "Arduino";
@@ -101,7 +104,7 @@
 "arduino digital" = "arduino digital";
 
 /* No comment provided by engineer. */
-"Arduino extension" = "Arduino extension";
+"Arduino extension" = "Arduino екстензија";
 
 /* No comment provided by engineer. */
 "at " = "at ";
@@ -116,25 +119,25 @@
 "Aug" = "Aug";
 
 /* No comment provided by engineer. */
-"August" = "Avgust";
+"August" = "Август";
 
 /* No comment provided by engineer. */
 "Authentication failed" = "Authentication failed";
 
 /* No comment provided by engineer. */
-"Author" = "Author";
+"Author" = "Аутор";
 
 /* Title of icon shown in the side bar to enable or disable an overlayed view to show the origin of the coordinate system and implicitly the display size. */
-"Axes" = "Axes";
+"Axes" = "Осе";
 
 /* No comment provided by engineer. */
-"back" = "back";
+"back" = "назад";
 
 /* No comment provided by engineer. */
-"Back" = "Nazad";
+"Back" = "Назад";
 
 /* No comment provided by engineer. */
-"Background" = "Pozadina";
+"Background" = "Позадина";
 
 /* No comment provided by engineer. */
 "background name" = "background name";
@@ -143,16 +146,16 @@
 "background number" = "background number";
 
 /* No comment provided by engineer. */
-"Backgrounds" = "Backgrounds";
+"Backgrounds" = "Позадине";
 
 /* No comment provided by engineer. */
 "Before you can start coding, please read and accept our Privacy Policy to use the app:" = "Before you can start coding, please read and accept our Privacy Policy to use the app:";
 
 /* paint */
-"Blue" = "Plava";
+"Blue" = "Плава";
 
 /* No comment provided by engineer. */
-"blue" = "plava";
+"blue" = "blue";
 
 /* No comment provided by engineer. */
 "Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings." = "Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings.";
@@ -164,28 +167,28 @@
 "bold" = "bold";
 
 /* No comment provided by engineer. */
-"Both" = "Oba";
+"Both" = "Both";
 
 /* No comment provided by engineer. */
 "Bricks" = "Bricks";
 
 /* No comment provided by engineer. */
-"brightness" = "brightness";
+"brightness" = "осветљење";
 
 /* No comment provided by engineer. */
-"Broadcast" = "Emituj";
+"Broadcast" = "Емитуј";
 
 /* No comment provided by engineer. */
-"Broadcast and wait" = "Broadcast and wait";
+"Broadcast and wait" = "Емитуј и чекај";
 
 /* paint */
-"Brush" = "Čеtka";
+"Brush" = "Четка";
 
 /* No comment provided by engineer. */
 "by" = "by";
 
 /* No comment provided by engineer. */
-"By registering you agree to our" = "By registering you agree to our";
+"By registering you agree to our" = "Регистрацијом пристајете на наше";
 
 /* No comment provided by engineer. */
 "Camera roll" = "Camera roll";
@@ -194,43 +197,43 @@
 "Can't restart project!" = "Can't restart project!";
 
 /* No comment provided by engineer. */
-"Cancel" = "Otkaži";
+"Cancel" = "Откажи";
 
 /* bluetooth */
-"Cannot connect to device, please try resetting the device and try again." = "Cannot connect to device, please try resetting the device and try again.";
+"Cannot connect to device, please try resetting the device and try again." = "Не могу да се повежем са уређајем, покушајте да ресетујете уређај и покушајте поново.";
 
 /* bluetooth */
-"Cannot connect to device. The device is not responding." = "Nije moguće povezivanje sa uređajem. Uređaj ne reaguje.";
+"Cannot connect to device. The device is not responding." = "Није могуће повезивање са уређајем. Уређај не реагује.";
 
 /* No comment provided by engineer. */
 "Cannot connect to the media library. Please check your internet connection." = "Cannot connect to the media library. Please check your internet connection.";
 
 /* No comment provided by engineer. */
-"Categories" = "Kategorije";
+"Categories" = "Категорије";
 
 /* No comment provided by engineer. */
-"Catrobat community" = "Catrobat zajednica";
+"Catrobat community" = "Catrobat заједница";
 
 /* No comment provided by engineer. */
 "ceil" = "ceil";
 
 /* No comment provided by engineer. */
-"Change brightness " = "Promeni svetlinu ";
+"Change brightness " = "Промени осветљење ";
 
 /* No comment provided by engineer. */
-"Change color " = "Promeni boju ";
+"Change color " = "Промени боју ";
 
 /* No comment provided by engineer. */
-"Change size by" = "Promena veličine";
+"Change size by" = "Промени величину за";
 
 /* No comment provided by engineer. */
 "Change transparency " = "Change transparency ";
 
 /* No comment provided by engineer. */
-"Change variable" = "Promeni varijablu";
+"Change variable" = "Промени променљиву";
 
 /* No comment provided by engineer. */
-"Change volume by" = "Change volume by";
+"Change volume by" = "Промени јачину за";
 
 /* No comment provided by engineer. */
 "Change x by " = "Change x by ";
@@ -245,64 +248,64 @@
 "Changes saved." = "Changes saved.";
 
 /* No comment provided by engineer. */
-"Choose" = "Izaberi";
+"Choose" = "Изабрати";
 
 /* No comment provided by engineer. */
-"Choose image" = "Izaberite sliku";
+"Choose image" = "Изабери слику";
 
 /* No comment provided by engineer. */
-"Clear graphic effects" = "Clear graphic effects";
+"Clear graphic effects" = "Обриши графичке ефекте";
 
 /* No comment provided by engineer. */
-"Close" = "Zatvori";
+"Close" = "Затвори";
 
 /* paint */
-"Close Paint" = "Zatvori Paint";
+"Close Paint" = "Close Paint";
 
 /* No comment provided by engineer. */
-"color" = "boja";
+"color" = "color";
 
 /* No comment provided by engineer. */
-"compass" = "kompas";
+"compass" = "компас";
 
 /* No comment provided by engineer. */
-"Compute" = "Računaj";
+"Compute" = "Израчунај";
 
 /* No comment provided by engineer. */
-"Computed result is %.2f" = "Izračunati rezultat je %.2f";
+"Computed result is %.2f" = "Computed result is %.2f";
 
 /* No comment provided by engineer. */
-"Computed result is FALSE" = "Izračunati rezultat je NETAČAN";
+"Computed result is FALSE" = "Computed result is FALSE";
 
 /* No comment provided by engineer. */
-"Computed result is TRUE" = "Izračunati rezultat je TAČAN";
+"Computed result is TRUE" = "Computed result is TRUE";
 
 /* No comment provided by engineer. */
-"Confirm password" = "Potvrdi lozinku";
+"Confirm password" = "Потврдите лозинку";
 
 /* bluetooth */
-"Connection failed" = "Veza nije uspela";
+"Connection failed" = "Повезивање није успело";
 
 /* bluetooth */
 "Connection lost" = "Connection lost";
 
 /* bluetooth */
-"Connection not possible" = "Povezivanje nemoguće";
+"Connection not possible" = "Повезивање није могуће";
 
 /* No comment provided by engineer. */
-"contains" = "sadrži";
+"contains" = "садржи";
 
 /* No comment provided by engineer. */
-"Continue" = "Nastavi";
+"Continue" = "Настави";
 
 /* No comment provided by engineer. */
-"Continue project" = "Nastavi projekat";
+"Continue project" = "Настави пројекат";
 
 /* No comment provided by engineer. */
-"Control" = "Kontrole";
+"Control" = "Control";
 
 /* No comment provided by engineer. */
-"Copy" = "kopiraj";
+"Copy" = "Копирај";
 
 /* No comment provided by engineer. */
 "Copy brick" = "Copy brick";
@@ -311,13 +314,13 @@
 "Copy looks" = "Copy looks";
 
 /* No comment provided by engineer. */
-"Copy project" = "Kopiraj projekat";
+"Copy project" = "Copy project";
 
 /* No comment provided by engineer. */
-"Create account" = "Napravite nalog";
+"Create account" = "Направи налог";
 
 /* No comment provided by engineer. */
-"day" = "dan";
+"day" = "дан";
 
 /* No comment provided by engineer. */
 "debug" = "debug";
@@ -326,13 +329,13 @@
 "Dec" = "Dec";
 
 /* No comment provided by engineer. */
-"December" = "Decembar";
+"December" = "Децембар";
 
 /* No comment provided by engineer. */
-"degrees" = "degrees";
+"degrees" = "степени";
 
 /* No comment provided by engineer. */
-"Delete" = "Obriši";
+"Delete" = "Обриши";
 
 /* No comment provided by engineer. */
 "Delete actors or objects" = "Delete actors or objects";
@@ -347,7 +350,7 @@
 "Delete condition" = "Delete condition";
 
 /* No comment provided by engineer. */
-"Delete item from list" = "Izbriši stavku sa liste";
+"Delete item from list" = "Delete item from list";
 
 /* No comment provided by engineer. */
 "Delete looks" = "Delete looks";
@@ -383,7 +386,7 @@
 "Delete this actor or object" = "Delete this actor or object";
 
 /* No comment provided by engineer. */
-"Delete this background" = "Delete this background";
+"Delete this background" = "Избришите ову позадину";
 
 /* No comment provided by engineer. */
 "Delete this brick?" = "Delete this brick?";
@@ -398,7 +401,7 @@
 "Delete this loop?" = "Delete this loop?";
 
 /* No comment provided by engineer. */
-"Delete this project" = "Delete this project";
+"Delete this project" = "Обриши овај пројекат";
 
 /* No comment provided by engineer. */
 "Delete this script?" = "Delete this script?";
@@ -410,13 +413,13 @@
 "Deletion mode" = "Deletion mode";
 
 /* No comment provided by engineer. */
-"Description" = "Opis";
+"Description" = "Description";
 
 /* No comment provided by engineer. */
-"Details" = "Details";
+"Details" = "Детаљи";
 
 /* bluetooth */
-"Device disconnected." = "Device disconnected.";
+"Device disconnected." = "Уређај је искључен.";
 
 /* No comment provided by engineer. */
 "device motion-sensor" = "device motion-sensor";
@@ -425,10 +428,22 @@
 "direction" = "direction";
 
 /* No comment provided by engineer. */
-"Disagree" = "Ne slažem se";
+"Disable brick" = "Disable brick";
 
 /* No comment provided by engineer. */
-"Disconnect all devices" = "Isključite sve uređaje";
+"Disable condition" = "Disable condition";
+
+/* No comment provided by engineer. */
+"Disable loop" = "Disable loop";
+
+/* No comment provided by engineer. */
+"Disable script" = "Онемогући скрипту";
+
+/* No comment provided by engineer. */
+"Disagree" = "Не прихватам";
+
+/* No comment provided by engineer. */
+"Disconnect all devices" = "Искључите све уређаје";
 
 /* No comment provided by engineer. */
 "DO" = "DO";
@@ -437,28 +452,28 @@
 "Do you really want to delete the current drawing?" = "Do you really want to delete the current drawing?";
 
 /* paint */
-"Do you want to save the changes" = "Do you want to save the changes";
+"Do you want to save the changes" = "Да ли желите да сачувате измене";
 
 /* No comment provided by engineer. */
-"Done" = "Gotovo";
+"Done" = "Готово";
 
 /* No comment provided by engineer. */
-"Download" = "Preuzmi";
+"Download" = "Преузми";
 
 /* No comment provided by engineer. */
-"Download successful" = "Download successful";
+"Download successful" = "Преузимање успешно";
 
 /* No comment provided by engineer. */
-"Downloads" = "Prеuzimanja";
+"Downloads" = "Преузимања";
 
 /* No comment provided by engineer. */
-"Draw new image" = "Draw new image";
+"Draw new image" = "Нацртај нову слику";
 
 /* No comment provided by engineer. */
-"Duration" = "Trajanje";
+"Duration" = "Трајање";
 
 /* No comment provided by engineer. */
-"Edit" = "Izmeni";
+"Edit" = "Измени";
 
 /* No comment provided by engineer. */
 "Edit actor or object" = "Edit actor or object";
@@ -503,22 +518,34 @@
 "Ellipse / Circle" = "Ellipse / Circle";
 
 /* No comment provided by engineer. */
-"Else" = "Else";
+"Else" = "Иначе";
 
 /* No comment provided by engineer. */
-"Email" = "Email";
+"Email" = "Е-пошта";
 
 /* No comment provided by engineer. */
-"Empty input!" = "Empty input!";
+"Empty input!" = "Празан унос!";
 
 /* No comment provided by engineer. */
-"End if" = "End if";
+"Enable brick" = "Enable brick";
 
 /* No comment provided by engineer. */
-"End of Loop" = "Kraj petlje";
+"Enable condition" = "Enable condition";
 
 /* No comment provided by engineer. */
-"Enter a reason" = "Unesi razlog";
+"Enable loop" = "Enable loop";
+
+/* No comment provided by engineer. */
+"Enable script" = "Омогући скрипту";
+
+/* No comment provided by engineer. */
+"End if" = "Крај ако";
+
+/* No comment provided by engineer. */
+"End of Loop" = "End of Loop";
+
+/* No comment provided by engineer. */
+"Enter a reason" = "Enter a reason";
 
 /* Placeholder for add image-name input field */
 "Enter your image name here..." = "Enter your image name here...";
@@ -545,10 +572,10 @@
 "Enter your variable name here..." = "Enter your variable name here...";
 
 /* paint */
-"Eraser" = "Gumica";
+"Eraser" = "Гумица";
 
 /* No comment provided by engineer. */
-"Error" = "Greška";
+"Error" = "Грешка";
 
 /* No comment provided by engineer. */
 "Error saving file" = "Error saving file";
@@ -593,10 +620,10 @@
 "Feb" = "Feb";
 
 /* No comment provided by engineer. */
-"February" = "Februar";
+"February" = "Фебруар";
 
 /* paint */
-"Fill" = "Popuni";
+"Fill" = "Fill";
 
 /* No comment provided by engineer. */
 "Flashlight off" = "Flashlight off";
@@ -611,7 +638,7 @@
 "Following features used in this project are not compatible with this version of Pocket Code:" = "Following features used in this project are not compatible with this version of Pocket Code:";
 
 /* No comment provided by engineer. */
-"for" = "for";
+"for" = "за";
 
 /* No comment provided by engineer. */
 "for all actors or objects" = "for all actors or objects";
@@ -620,13 +647,13 @@
 "for this actor or object" = "for this actor or object";
 
 /* No comment provided by engineer. */
-"Forever" = "Zauvek";
+"Forever" = "Заувек";
 
 /* No comment provided by engineer. */
-"Forgot password" = "Zaboravljеna lozinka";
+"Forgot password" = "Forgot password";
 
 /* No comment provided by engineer. */
-"Formula too long!" = "Formula preduga!";
+"Formula too long!" = "Formula too long!";
 
 /* No comment provided by engineer. */
 "Fr" = "Fr";
@@ -635,7 +662,7 @@
 "Frequently used" = "Frequently used";
 
 /* No comment provided by engineer. */
-"Friday" = "Petak";
+"Friday" = "Петак";
 
 /* No comment provided by engineer. */
 "From camera" = "From camera";
@@ -647,55 +674,55 @@
 "Front camera" = "Front camera";
 
 /* No comment provided by engineer. */
-"Glide" = "Klizati";
+"Glide" = "Glide";
 
 /* No comment provided by engineer. */
-"Go back" = "Nazad";
+"Go back" = "Иди назад";
 
 /* No comment provided by engineer. */
-"Go to front" = "Idi napred";
+"Go to front" = "Иди напред";
 
 /* paint */
-"Green" = "Zelena";
+"Green" = "Зелена";
 
 /* No comment provided by engineer. */
-"green" = "zelena";
+"green" = "green";
 
 /* No comment provided by engineer. */
 "gyro-sensor" = "gyro-sensor";
 
 /* No comment provided by engineer. */
-"Hello!" = "Zdravo!";
+"Hello!" = "Здраво!";
 
 /* No comment provided by engineer. */
-"Help" = "Pomoć";
+"Help" = "Помоћ";
 
 /* No comment provided by engineer. */
-"Hide" = "Hide";
+"Hide" = "Сакриј";
 
 /* No comment provided by engineer. */
-"Hide details" = "Hide details";
+"Hide details" = "Сакриј детаље";
 
 /* No comment provided by engineer. */
-"Hide variable" = "Sakrij varijablu";
+"Hide variable" = "Hide variable";
 
 /* No comment provided by engineer. */
 "Hmmmm!" = "Hmmmm!";
 
 /* No comment provided by engineer. */
-"hour" = "sat";
+"hour" = "сат";
 
 /* No comment provided by engineer. */
-"If" = "If";
+"If" = "Ако";
 
 /* No comment provided by engineer. */
-"If on edge, bounce" = "If on edge, bounce";
+"If on edge, bounce" = "Ако је ивица, oдбиј се";
 
 /* paint */
-"Image" = "Image";
+"Image" = "Слика";
 
 /* No comment provided by engineer. */
-"Image name" = "Image name";
+"Image name" = "Назив слике";
 
 /* No comment provided by engineer. */
 "Image source not available" = "Image source not available";
@@ -716,7 +743,7 @@
 "Information" = "Information";
 
 /* No comment provided by engineer. */
-"Insert" = "Ubaci";
+"Insert" = "Insert";
 
 /* paint */
 "Inserted" = "Inserted";
@@ -725,10 +752,10 @@
 "into list" = "into list";
 
 /* No comment provided by engineer. */
-"Invalid input entered, try again." = "Unos neispravan, pokušajte ponovo.";
+"Invalid input entered, try again." = "Invalid input entered, try again.";
 
 /* No comment provided by engineer. */
-"Invalid URL given!" = "Data nevažeća URL adresa!";
+"Invalid URL given!" = "Invalid URL given!";
 
 /* No comment provided by engineer. */
 "iOS." = "iOS.";
@@ -737,7 +764,7 @@
 "is true" = "is true";
 
 /* No comment provided by engineer. */
-"is true then" = "is true then";
+"is true then" = "је истина онда";
 
 /* paint */
 "italic" = "italic";
@@ -746,22 +773,22 @@
 "Jan" = "Jan";
 
 /* No comment provided by engineer. */
-"January" = "Januar";
+"January" = "Јануар";
 
 /* No comment provided by engineer. */
 "join" = "join";
 
 /* No comment provided by engineer. */
-"Jul" = "Jul";
+"Jul" = "Јул";
 
 /* No comment provided by engineer. */
-"July" = "Juli";
+"July" = "Јули";
 
 /* No comment provided by engineer. */
-"Jun" = "Jun";
+"Jun" = "Јун";
 
 /* No comment provided by engineer. */
-"June" = "Juni";
+"June" = "June";
 
 /* bluetooth */
 "Known devices" = "Known devices";
@@ -770,7 +797,7 @@
 "LA" = "LA";
 
 /* No comment provided by engineer. */
-"Last access" = "Last access";
+"Last access" = "Последњи приступ";
 
 /* No comment provided by engineer. */
 "last stage touch index" = "last stage touch index";
@@ -779,43 +806,43 @@
 "latitude" = "latitude";
 
 /* No comment provided by engineer. */
-"layer" = "sloj";
+"layer" = "layer";
 
 /* No comment provided by engineer. */
-"layers" = "slojevi";
+"layers" = "layers";
 
 /* No comment provided by engineer. */
 "LED" = "LED";
 
 /* No comment provided by engineer. */
-"Left" = "Levo";
+"Left" = "Лево";
 
 /* No comment provided by engineer. */
-"Length" = "Dužina";
+"Length" = "Дужина";
 
 /* No comment provided by engineer. */
-"length" = "dužina";
+"length" = "дужина";
 
 /* No comment provided by engineer. */
 "letter" = "letter";
 
 /* paint */
-"Line" = "Linija";
+"Line" = "Линија";
 
 /* No comment provided by engineer. */
-"List name:" = "Ime liste:";
+"List name:" = "List name:";
 
 /* No comment provided by engineer. */
-"List type" = "Tip liste";
+"List type" = "List type";
 
 /* No comment provided by engineer. */
-"Lists" = "Liste";
+"Lists" = "Lists";
 
 /* No comment provided by engineer. */
-"Loading" = "Učitavanje";
+"Loading" = "Loading";
 
 /* No comment provided by engineer. */
-"location" = "lokacija";
+"location" = "location";
 
 /* No comment provided by engineer. */
 "location accuracy" = "location accuracy";
@@ -824,13 +851,13 @@
 "Logic" = "Logic";
 
 /* No comment provided by engineer. */
-"Login" = "Prijava";
+"Login" = "Login";
 
 /* No comment provided by engineer. */
-"Login successful" = "Login successful";
+"Login successful" = "Пријава успешна";
 
 /* No comment provided by engineer. */
-"Logout" = "Odjava";
+"Logout" = "Одјави се";
 
 /* No comment provided by engineer. */
 "longitude" = "longitude";
@@ -851,7 +878,7 @@
 "Looks" = "Looks";
 
 /* No comment provided by engineer. */
-"loudness" = "glasnoća";
+"loudness" = "loudness";
 
 /* No comment provided by engineer. */
 "magnetic-sensor" = "magnetic-sensor";
@@ -860,7 +887,7 @@
 "Mar" = "Mar";
 
 /* No comment provided by engineer. */
-"March" = "Mart";
+"March" = "Март";
 
 /* No comment provided by engineer. */
 "Math" = "Math";
@@ -875,13 +902,13 @@
 "Media library" = "Media library";
 
 /* paint */
-"Menu" = "Meni";
+"Menu" = "Мени";
 
 /* No comment provided by engineer. */
-"Message" = "Poruka";
+"Message" = "Порука";
 
 /* No comment provided by engineer. */
-"message 1" = "poruka 1";
+"message 1" = "порука 1";
 
 /* No comment provided by engineer. */
 "MI" = "MI";
@@ -899,28 +926,28 @@
 "Mole" = "Mole";
 
 /* No comment provided by engineer. */
-"Monday" = "Ponedeljak";
+"Monday" = "Понедељак";
 
 /* No comment provided by engineer. */
-"month" = "mesec";
+"month" = "месец";
 
 /* No comment provided by engineer. */
-"More" = "Više";
+"More" = "More";
 
 /* No comment provided by engineer. */
-"More information" = "Više informacija";
+"More information" = "Више информација";
 
 /* No comment provided by engineer. */
-"Most downloaded" = "Sa najviše preuzimanja";
+"Most downloaded" = "Most downloaded";
 
 /* No comment provided by engineer. */
-"Most viewed" = "Najgledanije";
+"Most viewed" = "Most viewed";
 
 /* No comment provided by engineer. */
 "Motion" = "Motion";
 
 /* No comment provided by engineer. */
-"Move" = "Pomakni";
+"Move" = "Премести";
 
 /* No comment provided by engineer. */
 "Move actors or objects" = "Move actors or objects";
@@ -941,7 +968,7 @@
 "Move sounds" = "Move sounds";
 
 /* Name of the default catrobat project (used as filename!!) */
-"My first project" = "Moj prvi projekat";
+"My first project" = "Мој први пројекат";
 
 /* Default title of imported photo from camera (taken by camera) */
 "My image" = "My image";
@@ -950,28 +977,28 @@
 "My object" = "My object";
 
 /* No comment provided by engineer. */
-"Name" = "Imе";
+"Name" = "Име";
 
 /* No comment provided by engineer. */
-"Name already exists." = "Ime već postoji.";
+"Name already exists." = "Име већ постоји.";
 
 /* No comment provided by engineer. */
-"New" = "Novi";
+"New" = "New";
 
 /* paint */
 "New canvas" = "New canvas";
 
 /* No comment provided by engineer. */
-"New list" = "Nova lista";
+"New list" = "New list";
 
 /* No comment provided by engineer. */
 "New message" = "New message";
 
 /* No comment provided by engineer. */
-"New project" = "Novi projekat";
+"New project" = "Нови пројекат";
 
 /* No comment provided by engineer. */
-"New text" = "Novi tekst";
+"New text" = "New text";
 
 /* No comment provided by engineer. */
 "New variable" = "New variable";
@@ -980,16 +1007,16 @@
 "New..." = "New...";
 
 /* No comment provided by engineer. */
-"Newest" = "Najnoviji";
+"Newest" = "Најновије";
 
 /* No comment provided by engineer. */
-"Next background" = "Next background";
+"Next background" = "Следећа позадина";
 
 /* No comment provided by engineer. */
 "Next look" = "Next look";
 
 /* No comment provided by engineer. */
-"No" = "Ne";
+"No" = "No";
 
 /* No comment provided by engineer. */
 "No camera available" = "No camera available";
@@ -1022,7 +1049,7 @@
 "Not enough Memory" = "Not enough Memory";
 
 /* No comment provided by engineer. */
-"Note" = "Note";
+"Note" = "Белешка";
 
 /* paint */
 "Nothing to crop!" = "Nothing to crop!";
@@ -1031,16 +1058,16 @@
 "Nov" = "Nov";
 
 /* No comment provided by engineer. */
-"November" = "Novembar";
+"November" = "Новембар";
 
 /* No comment provided by engineer. */
-"number of items" = "broj stavki";
+"number of items" = "number of items";
 
 /* No comment provided by engineer. */
-"Numbers" = "Brojevi";
+"Numbers" = "Бројеви";
 
 /* No comment provided by engineer. */
-"Object" = "Object";
+"Object" = "Објекат";
 
 /* No comment provided by engineer. */
 "Object lists:" = "Object lists:";
@@ -1049,46 +1076,46 @@
 "Object or actor name" = "Object or actor name";
 
 /* No comment provided by engineer. */
-"Object variables:" = "Object variables:";
+"Object variables:" = "Варијабле објекта:";
 
 /* No comment provided by engineer. */
 "Oct" = "Oct";
 
 /* No comment provided by engineer. */
-"October" = "Oktobar";
+"October" = "Октобар";
 
 /* No comment provided by engineer. */
 "off" = "off";
 
 /* No comment provided by engineer. */
-"OK" = "U redu";
+"OK" = "OK";
 
 /* No comment provided by engineer. */
 "on" = "on";
 
 /* No comment provided by engineer. */
-"only 15 characters allowed" = "samo 15 znakova dozvoljeno";
+"only 15 characters allowed" = "само 15 знакова је дозвољено";
 
 /* No comment provided by engineer. */
-"Only space is not allowed. Please enter at least %lu other character(s)." = "Only space is not allowed. Please enter at least %lu other character(s).";
+"Only space is not allowed. Please enter at least %lu other character(s)." = "Није дозвољен само размак. Молимо унести најмање %lu других знакова.";
 
 /* No comment provided by engineer. */
 "Only special characters are not allowed. Please enter at least %lu other character(s)." = "Only special characters are not allowed. Please enter at least %lu other character(s).";
 
 /* No comment provided by engineer. */
-"Open" = "Otvori";
+"Open" = "Отвори";
 
 /* No comment provided by engineer. */
 "or" = "or";
 
 /* No comment provided by engineer. */
-"Password" = "Lozinka";
+"Password" = "Лозинка";
 
 /* No comment provided by engineer. */
-"Password is not vaild! \n It has to contain at least 6 characters/symbols" = "Password is not vaild! \n It has to contain at least 6 characters/symbols";
+"Password is not vaild! \n It has to contain at least 6 characters/symbols" = "Лозинка није важећа! \n Мора да садржи најмање 6 знакова / симбола";
 
 /* No comment provided by engineer. */
-"Passwords do not match" = "Lozinke se ne podudaraju";
+"Passwords do not match" = "Лозинке се не подударају";
 
 /* No comment provided by engineer. */
 "Phiro" = "Phiro";
@@ -1121,7 +1148,7 @@
 "Play Phiro music\n" = "Play Phiro music\n";
 
 /* No comment provided by engineer. */
-"Please choose another name:" = "Molimo Vas unesite drugo ime:";
+"Please choose another name:" = "Молимо одаберите друго име:";
 
 /* paint */
 "Please enter a text." = "Please enter a text.";
@@ -1130,34 +1157,34 @@
 "Please enter at least %lu character(s)." = "Please enter at least %lu character(s).";
 
 /* No comment provided by engineer. */
-"Please log in to report this project as inappropriate" = "Prijavite se da prijavite ovaj projekat kao neprikladan";
+"Please log in to report this project as inappropriate" = "Пријавите се да бисте пријавили овај пројекат као неприкладан";
 
 /* paint */
-"Please pick a tool" = "Izaberite alat";
+"Please pick a tool" = "Please pick a tool";
 
 /* No comment provided by engineer. */
-"Please select a project to upload" = "Molim vas označite projekat za slanje";
+"Please select a project to upload" = "Молим вас означите пројекат за слање";
 
 /* bluetooth */
-"Please try resetting the device and try again." = "Please try resetting the device and try again.";
+"Please try resetting the device and try again." = "Покушајте ресетовати уређај и покушајте поново.";
 
 /* No comment provided by engineer. */
 "Pocket Code" = "Pocket Code";
 
 /* No comment provided by engineer. */
-"Pocket Code for iOS" = "Pocket Code za iOS";
+"Pocket Code for iOS" = "Pocket Code за iOS";
 
 /* No comment provided by engineer. */
-"Pocket Code has no access to your camera. To permit access, tap settings and activate camera. Your drawing will automatically be saved to PocketCode for you." = "Pocket Code has no access to your camera. To permit access, tap settings and activate camera. Your drawing will automatically be saved to PocketCode for you.";
+"Pocket Code has no access to your camera. To permit access, tap settings and activate camera. Your drawing will automatically be saved to PocketCode for you." = "Pocket Code нема приступ вашој камери. Да бисте дозволили приступ, додирните на подешавања и активирајте камеру. Ваш цртеж ће се аутоматски сачувати у Pocket Code за вас.";
 
 /* No comment provided by engineer. */
-"Pocket Code has no access to your images. To permit access, tap settings and activate images. Your drawing will automatically be saved to PocketCode for you." = "Pocket Code has no access to your images. To permit access, tap settings and activate images. Your drawing will automatically be saved to PocketCode for you.";
+"Pocket Code has no access to your images. To permit access, tap settings and activate images. Your drawing will automatically be saved to PocketCode for you." = "Pocket Code нема приступ вашим сликама. Да бисте дозволили приступ, додирните на подешавања и активирајте слике. Ваш цртеж ће се аутоматски сачувати у Pocket Code за вас.";
 
 /* No comment provided by engineer. */
-"Pocket Code has no access to your microphone. To permit access, tap settings and activate microphone." = "Pocket Code has no access to your microphone. To permit access, tap settings and activate microphone.";
+"Pocket Code has no access to your microphone. To permit access, tap settings and activate microphone." = "Pocket Code нема приступ вашем микрофону. Да бисте дозволили приступ, тапните на подешавања и активирајте микрофон.";
 
 /* No comment provided by engineer. */
-"Pocket Code is a programming environment for iOS for the visual programming language Catrobat. The code of Pocket Code is mostly under GNU AGPL v3 licence. For further information to the licence please visit following links:" = "Pocket Code je programsko okruženje za iOS za jezik vizuelnog programiranja Catrobat. Pocket Code je uglavnom pod GNU AGPL v3 licencom. Za dodatne informacije o licenci posetite sledeće linkove:";
+"Pocket Code is a programming environment for iOS for the visual programming language Catrobat. The code of Pocket Code is mostly under GNU AGPL v3 licence. For further information to the licence please visit following links:" = "Pocket Code је програмско окружење за iOS за језик визуелног програмирања Catrobat. Изворни код Pocket Code углавном је под GNU AGPL v3 лиценцом. За додатне информације о лиценци молимо вас да посјетите следеће линкове:";
 
 /* No comment provided by engineer. */
 "Pocket Code Recorder" = "Pocket Code Recorder";
@@ -1169,28 +1196,28 @@
 "Pocket Paint" = "Pocket Paint";
 
 /* No comment provided by engineer. */
-"Point in direction" = "Point in direction";
+"Point in direction" = "Усмери у смеру";
 
 /* No comment provided by engineer. */
-"Point towards" = "Point towards";
+"Point towards" = "Усмери према";
 
 /* paint */
 "Pointer" = "Pointer";
 
 /* No comment provided by engineer. */
-"position x" = "pozicija x";
+"position x" = "position x";
 
 /* No comment provided by engineer. */
-"position y" = "pozicija y";
+"position y" = "position y";
 
 /* No comment provided by engineer. */
 "Preview" = "Preview";
 
 /* No comment provided by engineer. */
-"Previous background" = "Previous background";
+"Previous background" = "Претходна позадина";
 
 /* No comment provided by engineer. */
-"Previous look" = "Previous look";
+"Previous look" = "Претходни изглед";
 
 /* No comment provided by engineer. */
 "Privacy Settings" = "Privacy Settings";
@@ -1214,64 +1241,64 @@
 "Project variables:" = "Project variables:";
 
 /* No comment provided by engineer. */
-"Projects" = "Programi";
+"Projects" = "Пројекти";
 
 /* No comment provided by engineer. */
-"Projects on device" = "Programi";
+"Projects on device" = "Пројекти на уређају";
 
 /* No comment provided by engineer. */
-"Rate Us" = "Ocenite nas";
+"Rate Us" = "Rate Us";
 
 /* No comment provided by engineer. */
 "RE" = "RE";
 
 /* No comment provided by engineer. */
-"Recording" = "Snimanje";
+"Recording" = "Recording";
 
 /* paint */
 "Rectangle / Square" = "Rectangle / Square";
 
 /* No comment provided by engineer. */
-"red" = "crvena";
+"red" = "red";
 
 /* paint */
-"Red" = "Crvena";
+"Red" = "Red";
 
 /* No comment provided by engineer. */
 "Register" = "Register";
 
 /* No comment provided by engineer. */
-"Registration successful" = "Registration successful";
+"Registration successful" = "Успешна регистрација";
 
 /* No comment provided by engineer. */
-"Remove known devices" = "Remove known devices";
+"Remove known devices" = "Уклоните познате уређаје";
 
 /* No comment provided by engineer. */
-"Rename" = "Preimenuj";
+"Rename" = "Преименуј";
 
 /* No comment provided by engineer. */
 "Rename actor or object" = "Rename actor or object";
 
 /* No comment provided by engineer. */
-"Rename image" = "Preimenuj sliku";
+"Rename image" = "Преименуј слику";
 
 /* No comment provided by engineer. */
-"Rename project" = "Preimenuj projekat";
+"Rename project" = "Преименуј пројекат";
 
 /* No comment provided by engineer. */
-"Rename sound" = "Preimenuj zvuk";
+"Rename sound" = "Преименуј звук";
 
 /* No comment provided by engineer. */
-"Repeat" = "Ponovi";
+"Repeat" = "Понови";
 
 /* No comment provided by engineer. */
-"Repeat until" = "Ponovi dok";
+"Repeat until" = "Понови док";
 
 /* No comment provided by engineer. */
 "Replace item in list" = "Replace item in list";
 
 /* No comment provided by engineer. */
-"Report as inappropriate" = "Prijavi kao neprikladno";
+"Report as inappropriate" = "Report as inappropriate";
 
 /* paint */
 "Resize" = "Resize";
@@ -1280,13 +1307,13 @@
 "Restart" = "Restart";
 
 /* No comment provided by engineer. */
-"Result" = "Rezultat";
+"Result" = "Резултат";
 
 /* No comment provided by engineer. */
-"Right" = "Desno";
+"Right" = "Десно";
 
 /* paint */
-"Rotate" = "Rotiraj";
+"Rotate" = "Rotate";
 
 /* paint */
 "round" = "round";
@@ -1295,7 +1322,7 @@
 "Sa" = "Sa";
 
 /* No comment provided by engineer. */
-"Saturday" = "Subota";
+"Saturday" = "Субота";
 
 /* paint */
 "Save to cameraRoll" = "Save to cameraRoll";
@@ -1307,7 +1334,7 @@
 "Saved" = "Saved";
 
 /* No comment provided by engineer. */
-"Say" = "Say";
+"Say" = "Кажи";
 
 /* No comment provided by engineer. */
 "Script" = "Script";
@@ -1316,25 +1343,25 @@
 "Scripts" = "Scripts";
 
 /* bluetooth */
-"Search" = "Pretraga";
+"Search" = "Search";
 
 /* No comment provided by engineer. */
-"second" = "sekunda";
+"second" = "second";
 
 /* No comment provided by engineer. */
-"second " = "sekunda ";
+"second " = "second ";
 
 /* No comment provided by engineer. */
-"seconds" = "sekundi";
+"seconds" = "seconds";
 
 /* No comment provided by engineer. */
 "seconds " = "seconds ";
 
 /* No comment provided by engineer. */
-"Select all" = "Izaberi sve";
+"Select all" = "Изабери све";
 
 /* bluetooth */
-"Select Arduino" = "Odaberi Arduino";
+"Select Arduino" = "Select Arduino";
 
 /* No comment provided by engineer. */
 "Select brick category" = "Select brick category";
@@ -1346,19 +1373,22 @@
 "Select mathematical function" = "Select mathematical function";
 
 /* paint */
-"Select option:" = "Odaberi opciju:";
+"Select option:" = "Select option:";
 
 /* bluetooth */
 "Select Phiro" = "Select Phiro";
 
 /* No comment provided by engineer. */
-"Sensors" = "Senzori";
+"Sending anonymous crash reports" = "Слање анонимних crash reports";
+
+/* No comment provided by engineer. */
+"Sensors" = "Sensors";
 
 /* No comment provided by engineer. */
 "Sep" = "Sep";
 
 /* No comment provided by engineer. */
-"September" = "Septembar";
+"September" = "Септембар";
 
 /* No comment provided by engineer. */
 "Server is taking to long to respond, please try again later." = "Server is taking to long to respond, please try again later.";
@@ -1370,16 +1400,16 @@
 "Set Arduino PWM~ pin" = "Set Arduino PWM~ pin";
 
 /* No comment provided by engineer. */
-"Set background" = "Set background";
+"Set background" = "Постави позадину";
 
 /* No comment provided by engineer. */
-"Set brightness " = "Set brightness ";
+"Set brightness " = "Подесите осветљење ";
 
 /* No comment provided by engineer. */
-"Set color " = "Set color ";
+"Set color " = "Подесите боју ";
 
 /* No comment provided by engineer. */
-"Set description" = "Postavi opis";
+"Set description" = "Постави опис";
 
 /* No comment provided by engineer. */
 "Set Phiro light" = "Set Phiro light";
@@ -1391,10 +1421,10 @@
 "Set transparency " = "Set transparency ";
 
 /* No comment provided by engineer. */
-"Set variable" = "Set variable";
+"Set variable" = "Подеси променљиву";
 
 /* No comment provided by engineer. */
-"Set volume to" = "Set volume to";
+"Set volume to" = "Подеси збук на";
 
 /* No comment provided by engineer. */
 "Set x to " = "Set x to ";
@@ -1403,16 +1433,16 @@
 "Set y to " = "Set y to ";
 
 /* No comment provided by engineer. */
-"Settings" = "Podešavanja";
+"Settings" = "Settings";
 
 /* No comment provided by engineer. */
 "Show" = "Show";
 
 /* No comment provided by engineer. */
-"Show details" = "Show details";
+"Show details" = "Прикажи детаље";
 
 /* No comment provided by engineer. */
-"Show variable" = "Pokaži varijablu";
+"Show variable" = "Show variable";
 
 /* No comment provided by engineer. */
 "size" = "size";
@@ -1427,7 +1457,7 @@
 "SO" = "SO";
 
 /* No comment provided by engineer. */
-"Sound" = "Zvuk";
+"Sound" = "Sound";
 
 /* No comment provided by engineer. */
 "Sound name" = "Sound name";
@@ -1436,7 +1466,7 @@
 "Sounds" = "Sounds";
 
 /* No comment provided by engineer. */
-"Speak" = "Speak";
+"Speak" = "Говори";
 
 /* No comment provided by engineer. */
 "Speed" = "Speed";
@@ -1481,10 +1511,10 @@
 "Stop Phiro motor" = "Stop Phiro motor";
 
 /* No comment provided by engineer. */
-"Su" = "Ned";
+"Su" = "Su";
 
 /* No comment provided by engineer. */
-"Sunday" = "Nedelja";
+"Sunday" = "Недеља";
 
 /* No comment provided by engineer. */
 "Switch to look" = "Switch to look";
@@ -1493,37 +1523,37 @@
 "Syntax Error!" = "Syntax Error!";
 
 /* No comment provided by engineer. */
-"Tap \"+\" to add actors or objects" = "Tap \"+\" to add actors or objects";
+"Tap \"+\" to add actors or objects" = "Куцни \"+\" да додаш акторе или објекте";
 
 /* No comment provided by engineer. */
 "Tap \"+\" to add backgrounds" = "Tap \"+\" to add backgrounds";
 
 /* No comment provided by engineer. */
-"Tap \"+\" to add looks" = "Tap \"+\" to add looks";
+"Tap \"+\" to add looks" = "Куцни \"+\" да додаш изгледе";
 
 /* No comment provided by engineer. */
-"Tap \"+\" to add scripts" = "Pritisni \"+\" da dodate skripte";
+"Tap \"+\" to add scripts" = "Куцни \"+\" да додаш скрипте";
 
 /* No comment provided by engineer. */
-"Tap \"+\" to add sounds" = "Pritisni \"+\" da bi dodali zvuk";
+"Tap \"+\" to add sounds" = "Куцни \"+\" да додаш звукове";
 
 /* Button title at the settings screen to get to the terms of use and service. */
-"Terms of Use and Service" = "Uslovi korišćenja i usluge";
+"Terms of Use and Service" = "Услови коришћења и услуге";
 
 /* paint */
-"Text" = "Tekst";
+"Text" = "Текст";
 
 /* No comment provided by engineer. */
-"Text message:" = "Text message:";
+"Text message:" = "Текстуална порука:";
 
 /* paint */
-"Text:" = "Тekst:";
+"Text:" = "Текст:";
 
 /* No comment provided by engineer. */
-"Th" = "Čet";
+"Th" = "Th";
 
 /* No comment provided by engineer. */
-"The description contains invalid characters, try again." = "The description contains invalid characters, try again.";
+"The description contains invalid characters, try again." = "Опис садржи неважеће карактере, покушајте поново.";
 
 /* No comment provided by engineer. */
 "The featured projects cannot be loaded" = "The featured projects cannot be loaded";
@@ -1535,16 +1565,16 @@
 "The input is too long. Please enter maximal %lu character(s)." = "The input is too long. Please enter maximal %lu character(s).";
 
 /* No comment provided by engineer. */
-"The name contains blocked characters. Please try again!" = "The name contains blocked characters. Please try again!";
+"The name contains blocked characters. Please try again!" = "Име садржи блокиране знакове. Молим вас, покушајте поново!";
 
 /* No comment provided by engineer. */
-"The recent projects cannot be loaded" = "The recent projects cannot be loaded";
+"The recent projects cannot be loaded" = "Недавни пројекти се не могу учитати";
 
 /* No comment provided by engineer. */
-"The requested project can not be found. Please choose a different one." = "The requested project can not be found. Please choose a different one.";
+"The requested project can not be found. Please choose a different one." = "Тражени пројекат се не може пронаћи. Молимо изаберите други.";
 
 /* No comment provided by engineer. */
-"The requested project can not be loaded. Please try again later." = "The requested project can not be loaded. Please try again later.";
+"The requested project can not be loaded. Please try again later." = "Тражени пројекат се не може учитати. Молимо покушајте поново касније.";
 
 /* No comment provided by engineer. */
 "The sound item cannot be loaded" = "The sound item cannot be loaded";
@@ -1553,7 +1583,7 @@
 "The sound item cannot be played" = "The sound item cannot be played";
 
 /* No comment provided by engineer. */
-"Think" = "Think";
+"Think" = "Мисли";
 
 /* No comment provided by engineer. */
 "This action can not be undone!" = "This action can not be undone!";
@@ -1565,7 +1595,7 @@
 "This variable can not be deleted because it is still in use." = "This variable can not be deleted because it is still in use.";
 
 /* No comment provided by engineer. */
-"Thursday" = "Četvrtak";
+"Thursday" = "Четвртак";
 
 /* No comment provided by engineer. */
 "TI" = "TI";
@@ -1589,10 +1619,10 @@
 "To use our app, it is necessary to accept our Privacy Policy. However, if you don\'t feel comfortable to do so, you can use our free web-services on share.catrob.at" = "To use our app, it is necessary to accept our Privacy Policy. However, if you don\'t feel comfortable to do so, you can use our free web-services on share.catrob.at";
 
 /* No comment provided by engineer. */
-"to x:" = "do x:";
+"to x:" = "до x:";
 
 /* No comment provided by engineer. */
-"Today" = "Danas";
+"Today" = "Данас";
 
 /* No comment provided by engineer. */
 "transparency" = "transparency";
@@ -1601,10 +1631,10 @@
 "true" = "true";
 
 /* No comment provided by engineer. */
-"Tu" = "Uto";
+"Tu" = "Tu";
 
 /* No comment provided by engineer. */
-"Tuesday" = "Utorak";
+"Tuesday" = "Уторак";
 
 /* No comment provided by engineer. */
 "Turn camera" = "Turn camera";
@@ -1613,28 +1643,28 @@
 "Turn flashlight" = "Turn flashlight";
 
 /* No comment provided by engineer. */
-"Turn left" = "Okreni levo";
+"Turn left" = "Окрени улево";
 
 /* No comment provided by engineer. */
-"Turn right" = "Okreni desno";
+"Turn right" = "Окрени удесно";
 
 /* No comment provided by engineer. */
-"Unable to load project!" = "Nije moguće učitati projekat!";
+"Unable to load project!" = "Није могуће учитати пројекат!";
 
 /* No comment provided by engineer. */
-"Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt." = "Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt.";
+"Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt." = "Није могуће репродуковати тај звук!\nМожда ово није важећи звук или је датотека оштећена.";
 
 /* No comment provided by engineer. */
-"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the left side of your iPhone and tap on play again." = "Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the left side of your iPhone and tap on play again.";
+"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the left side of your iPhone and tap on play again." = "Није могуће репродуковање одабраног звука. Ваш уређај је у нечујном режиму. Искључите нечујни режим тако што ћете укључити прекидач на левој страни вашег iPhone-а и поново додирните репродукцију.";
 
 /* No comment provided by engineer. */
-"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again." = "Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again.";
+"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again." = "Није могуће репродуковање одабраног звука. Ваш уређај је у нечујном режиму. Искључите нечујни режим тако што ћете укључити прекидач на десној страни iPad-а и поново додирните репродукцију.";
 
 /* paint */
 "underline" = "underline";
 
 /* Button title of alert view to invoke undo if user shakes device */
-"Undo" = "Opozovi";
+"Undo" = "Undo";
 
 /* Description text in alert view if user shakes the device */
 "Undo Drawing?" = "Undo Drawing?";
@@ -1643,10 +1673,10 @@
 "Undo Typing?" = "Undo Typing?";
 
 /* No comment provided by engineer. */
-"Unexpected Error" = "Neočekivana greška";
+"Unexpected Error" = "Unexpected Error";
 
 /* No comment provided by engineer. */
-"Unexpected Error, please try again later." = "Neočekivana greška, pokušajte ponovo kasnije.";
+"Unexpected Error, please try again later." = "Unexpected Error, please try again later.";
 
 /* No comment provided by engineer. */
 "Unknown Element" = "Unknown Element";
@@ -1670,10 +1700,10 @@
 "Upload selected project" = "Upload selected project";
 
 /* No comment provided by engineer. */
-"Upload successful" = "Upload successful";
+"Upload successful" = "Отпремање је успешно";
 
 /* No comment provided by engineer. */
-"Uploaded" = "postavljen";
+"Uploaded" = "Uploaded";
 
 /* No comment provided by engineer. */
 "Use camera" = "Use camera";
@@ -1682,10 +1712,10 @@
 "Use Phiro bricks" = "Use Phiro bricks";
 
 /* No comment provided by engineer. */
-"Username" = "Korisničko ime";
+"Username" = "Корисничко име";
 
 /* No comment provided by engineer. */
-"Username must not be blank" = "Korisničko ime ne sme da bude prazno";
+"Username must not be blank" = "Корисничко име не сме да буде празно";
 
 /* No comment provided by engineer. */
 "Var/List" = "Var/List";
@@ -1706,7 +1736,7 @@
 "Variables" = "Variables";
 
 /* No comment provided by engineer. */
-"Version" = "Verzija";
+"Version" = "Version";
 
 /* No comment provided by engineer. */
 "Vibrate for" = "Vibrate for";
@@ -1715,37 +1745,37 @@
 "vibration" = "vibration";
 
 /* No comment provided by engineer. */
-"Views" = "pregleda";
+"Views" = "Views";
 
 /* No comment provided by engineer. */
-"Wait" = "Sačekaj";
+"Wait" = "Сачекајте";
 
 /* No comment provided by engineer. */
 "Wait until" = "Wait until";
 
 /* No comment provided by engineer. */
-"We" = "Sre";
+"We" = "We";
 
 /* No comment provided by engineer. */
-"Wednesday" = "Sreda";
+"Wednesday" = "Среда";
 
 /* No comment provided by engineer. */
-"weekday" = "radni dan";
+"weekday" = "радни дан";
 
 /* No comment provided by engineer. */
-"Welcome!" = "Welcome!";
+"Welcome!" = "Добродошли!";
 
 /* No comment provided by engineer. */
 "When project started" = "When project started";
 
 /* No comment provided by engineer. */
-"When stage is tapped" = "When stage is tapped";
+"When stage is tapped" = "Када је фаза додирнута";
 
 /* No comment provided by engineer. */
-"When tapped" = "When tapped";
+"When tapped" = "Кад куцнеш";
 
 /* No comment provided by engineer. */
-"When you receive" = "When you receive";
+"When you receive" = "Када примиш";
 
 /* paint */
 "Width selection" = "Width selection";
@@ -1760,19 +1790,19 @@
 "y: " = "y: ";
 
 /* No comment provided by engineer. */
-"year" = "godina";
+"year" = "year";
 
 /* No comment provided by engineer. */
-"Yes" = "Da";
+"Yes" = "Yes";
 
 /* No comment provided by engineer. */
-"Yesterday" = "Juče";
+"Yesterday" = "Јуче";
 
 /* No comment provided by engineer. */
-"You have already downloaded this project!" = "Već ste preuzeli ovaj projekat!";
+"You have already downloaded this project!" = "Већ сте преузели овај пројекат!";
 
 /* No comment provided by engineer. */
-"Your email seems to be invalid" = "Tvoja e-mail adresa je nevažeća";
+"Your email seems to be invalid" = "Ваша емаил адреса изгледа неважећа";
 
 /* paint */
 "Zoom" = "Zoom";
