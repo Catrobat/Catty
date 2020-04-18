@@ -58,6 +58,9 @@
 /* No comment provided by engineer. */
 "Allow the app to control Arduino boards" = "Arduino பலகைகளைக் கட்டுப்படுத்த பயன்பாட்டை அனுமதிக்கவும்";
 
+/* No comment provided by engineer. */
+"Allow the app to send crash reports automatically" = "செயலிழப்பு அறிக்கைகளை தானாக அனுப்ப பயன்பாட்டை அனுமதிக்கவும்";
+
 /* paint */
 "Alpha" = "ஆல்ஃபா";
 
@@ -425,6 +428,18 @@
 "direction" = "திசை";
 
 /* No comment provided by engineer. */
+"Disable brick" = "Disable brick";
+
+/* No comment provided by engineer. */
+"Disable condition" = "Disable condition";
+
+/* No comment provided by engineer. */
+"Disable loop" = "Disable loop";
+
+/* No comment provided by engineer. */
+"Disable script" = "ஸ்கிரிப்டை முடக்கு";
+
+/* No comment provided by engineer. */
 "Disagree" = "மறுக்கிறேன்";
 
 /* No comment provided by engineer. */
@@ -510,6 +525,18 @@
 
 /* No comment provided by engineer. */
 "Empty input!" = "வெற்று உள்ளீடு!";
+
+/* No comment provided by engineer. */
+"Enable brick" = "Enable brick";
+
+/* No comment provided by engineer. */
+"Enable condition" = "Enable condition";
+
+/* No comment provided by engineer. */
+"Enable loop" = "Enable loop";
+
+/* No comment provided by engineer. */
+"Enable script" = "ஸ்கிரிப்டை இயக்கு";
 
 /* No comment provided by engineer. */
 "End if" = "என்றால் முடிவு";
@@ -1350,6 +1377,9 @@
 
 /* bluetooth */
 "Select Phiro" = "ஃபிரோவைத் தேர்ந்தெடுக்கவும்";
+
+/* No comment provided by engineer. */
+"Sending anonymous crash reports" = "அநாமதேய செயலிழப்பு அறிக்கைகளை அனுப்புகிறது";
 
 /* No comment provided by engineer. */
 "Sensors" = "சென்ஸார்ஸ்";
