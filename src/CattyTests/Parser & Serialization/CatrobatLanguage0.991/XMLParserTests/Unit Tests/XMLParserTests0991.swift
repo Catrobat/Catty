@@ -558,4 +558,14 @@ class XMLParserTests0991: XMLAbstractTest {
         XCTAssertTrue(disabledBrick.isDisabled)
         XCTAssertFalse(enabledBrick.isDisabled)
     }
+
+    func testSpeakBrickWithoutCommentedOut() {
+        let project = self.getProjectForXML(xmlFile: "SpeakBrickWithoutCommentedOut_0991")
+        let object = project.objectList.object(at: 0) as! SpriteObject
+        let startScript = object.scriptList.object(at: 0) as! Script
+        let speakBrick = startScript.brickList.object(at: 0) as! SpeakBrick
+
+        XCTAssertEqual(speakBrick.formula.formulaTree.value!, "Panda")
+        XCTAssertFalse(speakBrick.isDisabled)
+    }
 }
