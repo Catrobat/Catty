@@ -58,6 +58,9 @@
 /* No comment provided by engineer. */
 "Allow the app to control Arduino boards" = "아두이노 제어 가능 허용";
 
+/* No comment provided by engineer. */
+"Allow the app to send crash reports automatically" = "충돌 보고서를 자동으로 보내도록 허용";
+
 /* paint */
 "Alpha" = "투명도";
 
@@ -425,6 +428,18 @@
 "direction" = "방향";
 
 /* No comment provided by engineer. */
+"Disable brick" = "Disable brick";
+
+/* No comment provided by engineer. */
+"Disable condition" = "Disable condition";
+
+/* No comment provided by engineer. */
+"Disable loop" = "Disable loop";
+
+/* No comment provided by engineer. */
+"Disable script" = "비활성화 스크립트";
+
+/* No comment provided by engineer. */
 "Disagree" = "동의하지 않음";
 
 /* No comment provided by engineer. */
@@ -510,6 +525,18 @@
 
 /* No comment provided by engineer. */
 "Empty input!" = "입력이 없습니다!";
+
+/* No comment provided by engineer. */
+"Enable brick" = "Enable brick";
+
+/* No comment provided by engineer. */
+"Enable condition" = "Enable condition";
+
+/* No comment provided by engineer. */
+"Enable loop" = "Enable loop";
+
+/* No comment provided by engineer. */
+"Enable script" = "사용가능 스크립트";
 
 /* No comment provided by engineer. */
 "End if" = "조건문 끝";
@@ -1350,6 +1377,9 @@
 
 /* bluetooth */
 "Select Phiro" = "Phiro 선택";
+
+/* No comment provided by engineer. */
+"Sending anonymous crash reports" = "익명 충돌 보고서 보내기";
 
 /* No comment provided by engineer. */
 "Sensors" = "센서";

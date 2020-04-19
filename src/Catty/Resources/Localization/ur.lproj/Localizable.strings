@@ -58,6 +58,9 @@
 /* No comment provided by engineer. */
 "Allow the app to control Arduino boards" = "اپلی کیشن کو آردوانوبورڈوں کو کنٹرول کرنے کی اجازت دیں";
 
+/* No comment provided by engineer. */
+"Allow the app to send crash reports automatically" = "اپلی کیشن کو خود کار طریقے سے کریش رپورٹ بھیجنے کی اجازت دیں";
+
 /* paint */
 "Alpha" = "الفا";
 
@@ -425,6 +428,18 @@
 "direction" = "سمت";
 
 /* No comment provided by engineer. */
+"Disable brick" = "Disable brick";
+
+/* No comment provided by engineer. */
+"Disable condition" = "Disable condition";
+
+/* No comment provided by engineer. */
+"Disable loop" = "Disable loop";
+
+/* No comment provided by engineer. */
+"Disable script" = "اینٹ کو غیر فعال کریں";
+
+/* No comment provided by engineer. */
 "Disagree" = "غیر متفق";
 
 /* No comment provided by engineer. */
@@ -510,6 +525,18 @@
 
 /* No comment provided by engineer. */
 "Empty input!" = "خالی ان پٹ!";
+
+/* No comment provided by engineer. */
+"Enable brick" = "Enable brick";
+
+/* No comment provided by engineer. */
+"Enable condition" = "Enable condition";
+
+/* No comment provided by engineer. */
+"Enable loop" = "Enable loop";
+
+/* No comment provided by engineer. */
+"Enable script" = "سکرپٹ کو فعال کریں";
 
 /* No comment provided by engineer. */
 "End if" = "ختم کرو اگر";
@@ -1350,6 +1377,9 @@
 
 /* bluetooth */
 "Select Phiro" = "Phiro منتخب کریں";
+
+/* No comment provided by engineer. */
+"Sending anonymous crash reports" = "گمنام حادثات کی اطلاع بھیج رہا ہے";
 
 /* No comment provided by engineer. */
 "Sensors" = "سینسر";

@@ -1493,6 +1493,7 @@
 /* Begin PBXFileReference section */
 		0041F40278ECB64E534F023D /* te */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = te; path = te.lproj/Localizable.strings; sourceTree = "<group>"; };
 		008104EAAB0CBEC616F8EABD /* uz */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = uz; path = uz.lproj/Localizable.strings; sourceTree = "<group>"; };
+		04A3B489CBF02EB8C919DC3B /* sr */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = sr; path = sr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		04FC473CDF0FCFB7BD890320 /* el */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0A1A12A18F2C85AB4CBCDD4D /* lt */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = lt; path = lt.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0C2E3B83D1DDFF32F7255F50 /* pl */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1791,7 +1792,6 @@
 		384F2D2E72522DC0473A710C /* gl */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = gl; path = gl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		38966F32202F4B32187905D4 /* kk */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = kk; path = kk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		389FA65050440F173C5147C5 /* bg */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = bg; path = bg.lproj/Localizable.strings; sourceTree = "<group>"; };
-		39DDF5E9790E36F418D99ACA /* sr-Cyrl */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = "sr-Cyrl"; path = "sr-Cyrl.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		3D5D59359A67834683175607 /* th */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3DA1BED824365A3400133C99 /* BrickMutableCopyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrickMutableCopyTests.swift; sourceTree = "<group>"; };
 		4647D55923D8AF9F001A67F6 /* PrivacyPolicyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyViewController.swift; sourceTree = "<group>"; };
@@ -2413,7 +2413,6 @@
 		758FD262053C04755851BC4D /* ml */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = ml; path = ml.lproj/Localizable.strings; sourceTree = "<group>"; };
 		77A836DDE7C46D9275CE4812 /* ar */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7A7C5B407D7B4FD7DA1E1DBD /* hr */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = hr; path = hr.lproj/Localizable.strings; sourceTree = "<group>"; };
-		7DBD7E053B638AB004053196 /* sr-Latn */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = "sr-Latn"; path = "sr-Latn.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		7DF7515CF295B6E738B88031 /* fa */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = fa; path = fa.lproj/Localizable.strings; sourceTree = "<group>"; };
 		811FB6E81A4980EF00957E10 /* ScriptCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScriptCollectionViewController.h; sourceTree = "<group>"; };
 		811FB6E91A4980EF00957E10 /* ScriptCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScriptCollectionViewController.m; sourceTree = "<group>"; };
@@ -10477,9 +10476,8 @@
 				2B9E6447F112720F0F74D139 /* tw */,
 				C42D117BCEADFF7368CA3159 /* bn */,
 				F511044FACC2C8E38A678BB4 /* chr */,
-				39DDF5E9790E36F418D99ACA /* sr-Cyrl */,
-				7DBD7E053B638AB004053196 /* sr-Latn */,
 				008104EAAB0CBEC616F8EABD /* uz */,
+				04A3B489CBF02EB8C919DC3B /* sr */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -10840,7 +10838,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
-				CURRENT_PROJECT_VERSION = 38;
+				CURRENT_PROJECT_VERSION = 39;
 				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = 8FL5R8726S;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -10858,7 +10856,7 @@
 				INFOPLIST_FILE = "Catty/Supporting Files/App-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 0.6.12;
+				MARKETING_VERSION = 0.6.13;
 				OTHER_LDFLAGS = (
 					"-lxml2",
 					"$(inherited)",
@@ -10888,7 +10886,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
-				CURRENT_PROJECT_VERSION = 38;
+				CURRENT_PROJECT_VERSION = 39;
 				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = 8FL5R8726S;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -10906,7 +10904,7 @@
 				INFOPLIST_FILE = "Catty/Supporting Files/App-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 0.6.12;
+				MARKETING_VERSION = 0.6.13;
 				OTHER_LDFLAGS = (
 					"-lxml2",
 					"$(inherited)",
