@@ -183,6 +183,8 @@
     NSInteger height = (NSInteger)self.projectHeight;
     CGRect rect = CGRectMake(0, 0, width, height);
     self.drawView = [[UIImageView alloc] initWithFrame:rect];
+    self.drawView.accessibilityIdentifier = @"PaintCanvas";
+    self.drawView.accessibilityLabel = @"Paint Canvas";
     self.saveView = [[UIImageView alloc] initWithFrame:rect];
     self.view.backgroundColor = UIColor.whiteColor;
     self.saveView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]];
@@ -314,7 +316,6 @@
 - (void)setupNavigationBar
 {
     self.navigationController.navigationBarHidden = NO;
-    self.navigationController.navigationBar.tintColor = UIColor.navTint;
     self.navigationItem.title = kLocalizedPaintPocketPaint;
     UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedPaintMenuButtonTitle
                                                                    style:UIBarButtonItemStylePlain

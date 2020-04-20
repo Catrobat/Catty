@@ -23,23 +23,27 @@
 #import "PlaySoundBrick+CBXMLHandler.h"
 #import "CBXMLValidator.h"
 #import "GDataXMLElement+CustomExtensions.h"
+#import "GDataXMLNode+CustomExtensions.h"
 #import "Sound+CBXMLHandler.h"
 #import "CBXMLParserContext.h"
 #import "CBXMLSerializerContext.h"
 #import "CBXMLParserHelper.h"
 #import "CBXMLSerializerHelper.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation PlaySoundBrick (CBXMLHandler)
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLParserContext*)context
 {
     PlaySoundBrick *playSoundBrick = [self new];
-    if([xmlElement childCount] == 0) {
+    
+    NSArray<GDataXMLElement*> *children = xmlElement.childrenWithoutCommentsAndCommentedOutTag;
+    if([children count] == 0) {
         return playSoundBrick;
     }
     
     [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1];
-    GDataXMLElement *soundElement = [[xmlElement children] firstObject];
+    GDataXMLElement *soundElement = [children firstObject];
     NSMutableArray *soundList = context.spriteObject.soundList;
     
     Sound *sound = nil;
@@ -64,9 +68,7 @@
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context
 {
-    NSUInteger indexOfBrick = [CBXMLSerializerHelper indexOfElement:self inArray:context.brickList];
-    GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" xPathIndex:(indexOfBrick+1) context:context];
-    [brick addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:@"PlaySoundBrick"]];
+    GDataXMLElement *brick = [super xmlElementForBrickType:@"PlaySoundBrick" withContext:context];
     if (self.sound) {
         if([CBXMLSerializerHelper indexOfElement:self.sound inArray:context.spriteObject.soundList] == NSNotFound) {
             self.sound = nil;

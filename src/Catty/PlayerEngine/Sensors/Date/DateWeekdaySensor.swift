@@ -25,19 +25,19 @@ class DateWeekdaySensor: DateSensor {
     static let tag = "DATE_WEEKDAY"
     static let name = kUIFESensorDateWeekday
     static let defaultRawValue = 0.0
-    static let position = 260
+    static let position = 130
     static let requiredResource = ResourceType.noResources
 
     func date() -> Date {
-        return Date()
+        Date()
     }
 
     func tag() -> String {
-        return type(of: self).tag
+        type(of: self).tag
     }
 
     func rawValue() -> Double {
-        return Double(Calendar.current.component(.weekday, from: self.date()))
+        Double(Calendar.current.component(.weekday, from: self.date()))
     }
 
     func convertToStandardized(rawValue: Double) -> Double {
@@ -51,6 +51,6 @@ class DateWeekdaySensor: DateSensor {
     }
 
     func formulaEditorSections(for spriteObject: SpriteObject) -> [FormulaEditorSection] {
-        return [.device(position: type(of: self).position)]
+        [.device(position: type(of: self).position)]
     }
 }

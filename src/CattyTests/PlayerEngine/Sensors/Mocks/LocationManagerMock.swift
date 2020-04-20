@@ -37,19 +37,19 @@ final class LocationManagerMock: LocationManager {
     static var isLocationServicesEnabled = true
 
     var heading: Heading? {
-        return HeadingMock(magneticHeading: magneticHeading)
+        HeadingMock(magneticHeading: magneticHeading)
     }
 
     var location: Location? {
-        return LocationMock(coordinate: LocationCoordinate2DMock(longitude: longitude, latitude: latitude), altitude: altitude, horizontalAccuracy: locationAccuracy)
+        LocationMock(coordinate: LocationCoordinate2DMock(longitude: longitude, latitude: latitude), altitude: altitude, horizontalAccuracy: locationAccuracy)
     }
 
     static func headingAvailable() -> Bool {
-        return isHeadingAvailable
+        isHeadingAvailable
     }
 
     static func locationServicesEnabled() -> Bool {
-        return isLocationServicesEnabled
+        isLocationServicesEnabled
     }
 
     func requestWhenInUseAuthorization() {

@@ -22,6 +22,7 @@
 
 #import <XCTest/XCTest.h>
 #import "StartScript.h"
+#import "WhenScript.h"
 #import "ScriptCollectionViewController.h"
 #import "SpriteObject.h"
 

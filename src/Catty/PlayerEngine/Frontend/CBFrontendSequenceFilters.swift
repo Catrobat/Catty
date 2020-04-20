@@ -21,16 +21,22 @@
  */
 
 protocol CBFrontendSequenceFilterProtocol: AnyObject {
-    func filterScriptSequenceList(_ scriptSequenceList: CBScriptSequenceList) -> CBScriptSequenceList
+    func filter(_ script: Script) -> [Brick]?
 }
 
-// analyzes script sequence list for redundant BroadcastWait operations
-// and replaces them by simple Broadcast operations
-final class CBFilterRedundantBroadcastWaits: CBFrontendSequenceFilterProtocol {
+final class CBFilterDisabled: CBFrontendSequenceFilterProtocol {
+    func filter(_ script: Script) -> [Brick]? {
+        guard !script.isDisabled else {
+            return nil
+        }
 
-    func filterScriptSequenceList(_ scriptSequenceList: CBScriptSequenceList) -> CBScriptSequenceList {
-        // TODO: implement this...
-        return scriptSequenceList
+        guard let brickList = script.brickList as? [Brick] else {
+            NSLog("Could not cast brickList into array of Brick elements!")
+            return []
+        }
+
+        let filteredBrickList = brickList.filter({ !($0 as Brick).isDisabled })
+
+        return filteredBrickList
     }
-
 }

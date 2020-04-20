@@ -34,6 +34,6 @@ class UIGestureRecognizerMock: UIGestureRecognizer {
     }
 
     override func location(in view: UIView?) -> CGPoint {
-        return mockedLocation
+        mockedLocation
     }
 }

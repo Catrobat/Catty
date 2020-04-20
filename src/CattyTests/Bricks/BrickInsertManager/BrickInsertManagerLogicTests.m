@@ -29,6 +29,8 @@
 #import "IfLogicBeginBrick.h"
 #import "IfLogicElseBrick.h"
 #import "IfLogicEndBrick.h"
+#import "IfThenLogicBeginBrick.h"
+#import "IfThenLogicEndBrick.h"
 #import "WhenScript.h"
 #import "BrickInsertManager.h"
  

@@ -32,7 +32,6 @@
 #import "Script.h"
 #import "ProjectTableViewController.h"
 #import "LoginViewController.h"
-#import "SettingsTableViewController.h"
 #import "Pocket_Code-Swift.h"
 
 NS_ENUM(NSInteger, ViewControllerIndex) {
@@ -144,7 +143,6 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
 {
     self.navigationItem.title = kLocalizedPocketCode;
     self.navigationController.navigationBar.titleTextAttributes = @{ NSForegroundColorAttributeName : UIColor.navTint };
-    self.navigationController.navigationBar.tintColor = UIColor.navTint;
 }
 
 - (IBAction)openSettings:(id)sender

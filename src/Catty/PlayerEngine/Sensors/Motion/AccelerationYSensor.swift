@@ -25,7 +25,7 @@
     @objc static let tag = "Y_ACCELERATION"
     static let name = kUIFESensorAccelerationY
     static let defaultRawValue = 0.0
-    static let position = 30
+    static let position = 200
     static let requiredResource = ResourceType.deviceMotion
 
     let getMotionManager: () -> MotionManager?
@@ -35,18 +35,18 @@
     }
 
     func tag() -> String {
-        return type(of: self).tag
+        type(of: self).tag
     }
 
     func rawValue() -> Double {
-        return self.getMotionManager()?.deviceMotion?.userAcceleration.y ?? type(of: self).defaultRawValue
+        self.getMotionManager()?.deviceMotion?.userAcceleration.y ?? type(of: self).defaultRawValue
     }
 
     func convertToStandardized(rawValue: Double) -> Double {
-        return rawValue * 9.8
+        rawValue * 9.8
     }
 
     func formulaEditorSections(for spriteObject: SpriteObject) -> [FormulaEditorSection] {
-        return [.device(position: type(of: self).position)]
+        [.device(position: type(of: self).position)]
     }
 }

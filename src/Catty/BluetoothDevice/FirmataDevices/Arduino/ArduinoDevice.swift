@@ -49,8 +49,8 @@ class ArduinoDevice: FirmataDevice, ArduinoProtocol, ArduinoPropertyProtocol {
     let minAnalogSensorPin: Int = 0
     let maxAnalogSensorPin: Int = 5
 
-    override var rxUUID: CBUUID { return CBUUID.init(string: "713D0002-503E-4C75-BA94-3148F18D941E") }
-    override var txUUID: CBUUID { return CBUUID.init(string: "00001101-0000-1000-8000-00805F9B34FB") }
+    override var rxUUID: CBUUID { CBUUID.init(string: "713D0002-503E-4C75-BA94-3148F18D941E") }
+    override var txUUID: CBUUID { CBUUID.init(string: "00001101-0000-1000-8000-00805F9B34FB") }
 
     var digitalValue: Int = 0
     var analogValue: Double = 0
@@ -64,11 +64,11 @@ class ArduinoDevice: FirmataDevice, ArduinoProtocol, ArduinoPropertyProtocol {
     // MARK: override
 
     override internal func getName() -> String {
-        return "Arduino"
+        "Arduino"
     }
 
     override internal func getBluetoothDeviceUUID() -> CBUUID {
-        return Arduino_UUID
+        Arduino_UUID
     }
 
     // MARK: Arduino Protocol
@@ -314,27 +314,27 @@ class ArduinoDevice: FirmataDevice, ArduinoProtocol, ArduinoPropertyProtocol {
     // MARK: setter/getter
 
     private func getAnalogPin0() -> Int {
-        return arduinoHelper.analogPin0
+        arduinoHelper.analogPin0
     }
 
     internal func getAnalogPin1() -> Int {
-        return arduinoHelper.analogPin1
+        arduinoHelper.analogPin1
     }
 
     internal func getAnalogPin2() -> Int {
-        return arduinoHelper.analogPin2
+        arduinoHelper.analogPin2
     }
 
     internal func getAnalogPin3() -> Int {
-        return arduinoHelper.analogPin3
+        arduinoHelper.analogPin3
     }
 
     internal func getAnalogPin4() -> Int {
-        return arduinoHelper.analogPin4
+        arduinoHelper.analogPin4
     }
 
     internal func getAnalogPin5() -> Int {
-        return arduinoHelper.analogPin5
+        arduinoHelper.analogPin5
     }
 
     internal func getPortValue(_ pin: Int) -> Int {

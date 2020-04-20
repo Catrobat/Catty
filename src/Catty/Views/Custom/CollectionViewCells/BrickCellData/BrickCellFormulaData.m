@@ -35,6 +35,8 @@
 
 @implementation BrickCellFormulaData
 
+#define SPACE_DISTRIBUTE_VALUE 3.1f
+
 - (instancetype)initWithFrame:(CGRect)frame andBrickCell:(BrickCell*)brickCell andLineNumber:(NSInteger)line andParameterNumber:(NSInteger)parameter
 {
     Brick<BrickFormulaProtocol> *formulaBrick = (Brick<BrickFormulaProtocol>*)brickCell.scriptOrBrick;
@@ -59,9 +61,9 @@
             self.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
             self.titleLabel.minimumScaleFactor = 10./self.titleLabel.font.pointSize;
         } else if ([brickCell isKindOfClass:[PlaceAtBrickCell class]] || [brickCell isKindOfClass:[GlideToBrickCell class]]) {
-            if (self.frame.size.width > [Util screenWidth]/4.0f ) {
+            if (self.frame.size.width > [Util screenWidth]/SPACE_DISTRIBUTE_VALUE) {
                 CGRect labelFrame = self.frame;
-                labelFrame.size.width = [Util screenWidth]/4.0f;
+                labelFrame.size.width = [Util screenWidth]/SPACE_DISTRIBUTE_VALUE;
                 self.frame = labelFrame;
             }
         } else {
@@ -128,6 +130,8 @@
     self.border.lineWidth = BORDER_WIDTH;
     [self.border setOpacity:BORDER_TRANSPARENCY];
     
+    
+    
     if (isActive) {
         self.border.strokeColor = UIColor.background.CGColor;
         self.border.shadowColor = UIColor.clearColor.CGColor;
@@ -135,8 +139,8 @@
         self.border.shadowOpacity = 1.0;
         self.border.shadowOffset = CGSizeMake(0, 0);
     } else {
-        UIColor *borderColor = [[[[BrickManager class] sharedBrickManager] categoryForType:self.brickCell.scriptOrBrick.category] strokeColor];
-        self.border.strokeColor = borderColor.CGColor;
+        BrickCategory *category = [[[BrickManager class] sharedBrickManager] categoryForType:self.brickCell.scriptOrBrick.category];
+        self.border.strokeColor = self.brickCell.scriptOrBrick.isDisabled ? [category strokeColorDisabled].CGColor : category.strokeColor.CGColor;
     }
     
     [self.layer addSublayer:self.border];

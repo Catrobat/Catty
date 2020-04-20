@@ -25,11 +25,11 @@
     @objc static let tag = "OBJECT_LOOK_NUMBER"
     static let name = kUIFEObjectLookNumber
     static let defaultRawValue = 0.0
-    static let position = 40
+    static let position = 30
     static let requiredResource = ResourceType.noResources
 
     func tag() -> String {
-        return type(of: self).tag
+        type(of: self).tag
     }
 
     static func rawValue(for spriteObject: SpriteObject) -> Double {
@@ -40,7 +40,7 @@
     }
 
     static func convertToStandardized(rawValue: Double, for spriteObject: SpriteObject) -> Double {
-        return rawValue + 1
+        rawValue + 1
     }
 
     static func setRawValue(userInput: Double, for spriteObject: SpriteObject) {

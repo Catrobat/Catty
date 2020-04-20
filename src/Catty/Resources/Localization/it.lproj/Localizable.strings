@@ -58,6 +58,9 @@
 /* No comment provided by engineer. */
 "Allow the app to control Arduino boards" = "Permette all'app di controllare le schede Arduino";
 
+/* No comment provided by engineer. */
+"Allow the app to send crash reports automatically" = "Permetti all'app di inviare automaticamente segnalazioni sugli arresti anomali";
+
 /* paint */
 "Alpha" = "Alpha (opacità)";
 
@@ -425,6 +428,18 @@
 "direction" = "direzione";
 
 /* No comment provided by engineer. */
+"Disable brick" = "Disable brick";
+
+/* No comment provided by engineer. */
+"Disable condition" = "Disable condition";
+
+/* No comment provided by engineer. */
+"Disable loop" = "Disable loop";
+
+/* No comment provided by engineer. */
+"Disable script" = "Disabilita script";
+
+/* No comment provided by engineer. */
 "Disagree" = "Non sono d'accordo";
 
 /* No comment provided by engineer. */
@@ -510,6 +525,18 @@
 
 /* No comment provided by engineer. */
 "Empty input!" = "Input vuoto!";
+
+/* No comment provided by engineer. */
+"Enable brick" = "Enable brick";
+
+/* No comment provided by engineer. */
+"Enable condition" = "Enable condition";
+
+/* No comment provided by engineer. */
+"Enable loop" = "Enable loop";
+
+/* No comment provided by engineer. */
+"Enable script" = "Abilita script";
 
 /* No comment provided by engineer. */
 "End if" = "Fine Se";
@@ -1350,6 +1377,9 @@
 
 /* bluetooth */
 "Select Phiro" = "Seleziona Phiro";
+
+/* No comment provided by engineer. */
+"Sending anonymous crash reports" = "Invia report anonimi sui crash";
 
 /* No comment provided by engineer. */
 "Sensors" = "Sensori";

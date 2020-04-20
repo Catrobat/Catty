@@ -27,14 +27,14 @@ class LengthFunction: SingleParameterDoubleFunction {
     static var defaultValue = 0.0
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = true
-    static let position = 210
+    static let position = 100
 
     func tag() -> String {
-        return type(of: self).tag
+        type(of: self).tag
     }
 
     func firstParameter() -> FunctionParameter {
-        return .string(defaultValue: "hello world")
+        .string(defaultValue: "hello world")
     }
 
     func value(parameter: AnyObject?) -> Double {
@@ -43,6 +43,6 @@ class LengthFunction: SingleParameterDoubleFunction {
     }
 
     func formulaEditorSections() -> [FormulaEditorSection] {
-        return [.math(position: type(of: self).position)]
+        [.math(position: type(of: self).position)]
     }
 }

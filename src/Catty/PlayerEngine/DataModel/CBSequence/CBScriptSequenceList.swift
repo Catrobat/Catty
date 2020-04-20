@@ -25,7 +25,7 @@ final class CBScriptSequenceList: CBSequenceVisitProtocol {
     // MARK: - Properties
     final let script: Script
     final let sequenceList: CBSequenceList
-    final var count: Int { return sequenceList.count }
+    final var count: Int { sequenceList.count }
 
     // MARK: - Initializers
     init(script: Script, sequenceList: CBSequenceList) {

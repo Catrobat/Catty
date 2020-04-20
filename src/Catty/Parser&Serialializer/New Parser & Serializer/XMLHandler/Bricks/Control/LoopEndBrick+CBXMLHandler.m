@@ -31,6 +31,7 @@
 #import "RepeatUntilBrick.h"
 #import "CBXMLParserHelper.h"
 #import "CBXMLSerializerHelper.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation LoopEndBrick (CBXMLHandler)
 
@@ -53,9 +54,6 @@
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context
 {
-    NSUInteger indexOfBrick = [CBXMLSerializerHelper indexOfElement:self inArray:context.brickList];
-    GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" xPathIndex:(indexOfBrick+1) context:context];
-
     // pop opening nesting brick from stack
     Brick *openingNestingBrick = [context.openedNestingBricksStack popAndCloseTopMostNestingBrick];
     if ((! [openingNestingBrick isKindOfClass:[LoopBeginBrick class]])) {
@@ -63,6 +61,7 @@
          got %@", NSStringFromClass([openingNestingBrick class])];
     }
     LoopBeginBrick *loopBeginBrick = (LoopBeginBrick*)openingNestingBrick;
+    
     if (self.loopBeginBrick != loopBeginBrick) {
         [XMLError exceptionWithMessage:@"LoopEndBrick contains no or a reference to other loopBeginBrick"];
     }
@@ -78,7 +77,8 @@
     } else {
         [XMLError exceptionWithMessage:@"Found unsupported referenced LoopBeginBrick brick type in LoopEndBrick"];
     }
-    [brick addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:brickXmlElementTypeName]];
+    
+    GDataXMLElement *brick = [super xmlElementForBrickType:brickXmlElementTypeName withContext:context];
     return brick;
 }
 

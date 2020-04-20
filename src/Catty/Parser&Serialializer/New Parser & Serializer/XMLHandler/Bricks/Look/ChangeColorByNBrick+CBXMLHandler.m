@@ -27,6 +27,7 @@
 #import "CBXMLParserContext.h"
 #import "CBXMLSerializerContext.h"
 #import "CBXMLSerializerHelper.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation ChangeColorByNBrick (CBXMLHandler)
 
@@ -42,9 +43,7 @@
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context
 {
-    NSUInteger indexOfBrick = [CBXMLSerializerHelper indexOfElement:self inArray:context.brickList];
-    GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" xPathIndex:(indexOfBrick+1) context:context];
-    [brick addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:@"ChangeColorByNBrick"]];
+    GDataXMLElement *brick = [super xmlElementForBrickType:@"ChangeColorByNBrick" withContext:context];
     GDataXMLElement *formulaList = [GDataXMLElement elementWithName:@"formulaList" context:context];
     GDataXMLElement *formula = [self.changeColor xmlElementWithContext:context];
     [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"COLOR_CHANGE"]];

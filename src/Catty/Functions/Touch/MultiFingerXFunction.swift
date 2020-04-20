@@ -27,7 +27,7 @@ class MultiFingerXFunction: SingleParameterDoubleObjectFunction {
     static var defaultValue = 0.0
     static var requiredResource = ResourceType.touchHandler
     static var isIdempotent = false
-    static let position = 160
+    static let position = 80
 
     let getTouchManager: () -> TouchManagerProtocol?
 
@@ -36,11 +36,11 @@ class MultiFingerXFunction: SingleParameterDoubleObjectFunction {
     }
 
     func tag() -> String {
-        return type(of: self).tag
+        type(of: self).tag
     }
 
     func firstParameter() -> FunctionParameter {
-        return .number(defaultValue: 1)
+        .number(defaultValue: 1)
     }
 
     func value(parameter: AnyObject?, spriteObject: SpriteObject) -> Double {
@@ -50,10 +50,10 @@ class MultiFingerXFunction: SingleParameterDoubleObjectFunction {
     }
 
     func convertToStandardized(rawValue: Double, for spriteObject: SpriteObject) -> Double {
-        return PositionXSensor.convertToStandardized(rawValue: rawValue, for: spriteObject)
+        PositionXSensor.convertToStandardized(rawValue: rawValue, for: spriteObject)
     }
 
     func formulaEditorSections() -> [FormulaEditorSection] {
-        return [.device(position: type(of: self).position)]
+        [.device(position: type(of: self).position)]
     }
 }

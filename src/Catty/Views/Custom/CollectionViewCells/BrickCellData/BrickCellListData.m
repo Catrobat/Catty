@@ -73,6 +73,11 @@
     [self.brickCell.dataDelegate updateBrickCellData:self withValue:value];
 }
 
+- (void)comboboxCancelPressed:(iOSCombobox *)combobox withValue:(NSString *)value
+{
+    [self.brickCell.dataDelegate enableUserInteractionAndResetHighlight];
+}
+
 - (void)comboboxOpened:(iOSCombobox *)combobox
 {
     [self.brickCell.dataDelegate disableUserInteractionAndHighlight:self.brickCell withMarginBottom:kiOSComboboxTotalHeight];

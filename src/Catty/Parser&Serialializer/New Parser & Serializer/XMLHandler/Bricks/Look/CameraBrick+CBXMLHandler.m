@@ -28,6 +28,7 @@
 #import "CBXMLParserContext.h"
 #import "CBXMLSerializerContext.h"
 #import "CBXMLSerializerHelper.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation CameraBrick (CBXMLHandler)
 
@@ -38,7 +39,7 @@
     
     if([brickType rangeOfString:@"CameraBrick"].location != NSNotFound){
         
-        NSUInteger childCount = [[xmlElement childrenWithoutComments] count];
+        NSUInteger childCount = [[xmlElement childrenWithoutCommentsAndCommentedOutTag] count];
         
         if (childCount != 1 && childCount != 2) {
             [XMLError exceptionWithMessage:@"Camera Brick is faulty"];
@@ -70,14 +71,12 @@
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context
 {
+    GDataXMLElement *brick = [super xmlElementForBrickType:@"CameraBrick" withContext:context];
+    
     NSString *numberString = [NSString stringWithFormat:@"%i", self.cameraChoice];
-    
-    NSUInteger indexOfBrick = [CBXMLSerializerHelper indexOfElement:self inArray:context.brickList];
-    GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" xPathIndex:(indexOfBrick+1) context:context];
     GDataXMLElement *spinnerID = [GDataXMLElement elementWithName:@"spinnerSelectionID" stringValue:numberString context:context];
-    
-    [brick addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:@"CameraBrick"]];
     [brick addChild:spinnerID context:context];
+    
     return brick;
 }
 

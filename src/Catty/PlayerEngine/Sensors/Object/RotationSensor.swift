@@ -28,10 +28,10 @@
     static let requiredResource = ResourceType.noResources
     static let rotationDegreeOffset = 90.0
     static let circleMaxDegrees = 360.0
-    static let position = 90
+    static let position = 60
 
     func tag() -> String {
-        return type(of: self).tag
+        type(of: self).tag
     }
 
     static func rawValue(for spriteObject: SpriteObject) -> Double {
@@ -82,6 +82,6 @@
     }
 
     func formulaEditorSections(for spriteObject: SpriteObject) -> [FormulaEditorSection] {
-        return [.object(position: type(of: self).position)]
+        [.object(position: type(of: self).position)]
     }
 }

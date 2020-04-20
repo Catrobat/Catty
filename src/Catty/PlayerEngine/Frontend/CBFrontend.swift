@@ -44,10 +44,32 @@ final class CBFrontend: CBFrontendProtocol {
         var currentOperationSequence = CBOperationSequence(rootSequenceList: scriptSequenceList)
         let sequenceStack = CBStack<CBSequenceList>()
 
-        guard let brickList = script.brickList as? [Brick] else {
-            preconditionFailure()
+        var filteredBrickList: [Brick] = []
+
+        if _sequenceFilters.isEmpty {
+            guard let brickList = script.brickList as? [Brick] else {
+                preconditionFailure()
+            }
+
+            filteredBrickList = brickList
+        } else {
+            var isScriptDisabled = false
+
+            _sequenceFilters.forEach {
+                if let filtered = $0.filter(script) {
+                    filteredBrickList = filtered
+                    isScriptDisabled = false
+                } else {
+                    isScriptDisabled = true
+                }
+            }
+
+            if isScriptDisabled || filteredBrickList.isEmpty {
+                return scriptSequenceList
+            }
         }
-        for brick in brickList {
+
+        for brick in filteredBrickList {
 
             switch brick {
             case _ as IfLogicBeginBrick,
@@ -157,9 +179,6 @@ final class CBFrontend: CBFrontendProtocol {
             scriptSequenceList.sequenceList += currentOperationSequence
         }
 
-        // finally apply all filters on script's sequence list
-        var filteredList = scriptSequenceList
-        _sequenceFilters.forEach { filteredList = $0.filterScriptSequenceList(filteredList) }
-        return filteredList
+        return scriptSequenceList
     }
 }

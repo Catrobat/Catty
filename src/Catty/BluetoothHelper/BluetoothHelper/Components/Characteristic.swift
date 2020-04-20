@@ -51,53 +51,53 @@ public final class Characteristic: CharacteristicWrapper {
     // MARK: getter
 
     public var service: Service {
-        return self._service
+        self._service
     }
 
     public var dataValue: Data? {
-        return self.cbCharacteristic.value
+        self.cbCharacteristic.value
     }
 
     public var stringValue: [String: String]? {
-        return self.implementation.stringValue(self, data: self.dataValue)
+        self.implementation.stringValue(self, data: self.dataValue)
     }
 
     public var properties: CBCharacteristicProperties {
-        return self.cbCharacteristic.properties
+        self.cbCharacteristic.properties
     }
 
     public func value<T: Deserialize>() -> T? {
-        return self.implementation.value(self.dataValue)
+        self.implementation.value(self.dataValue)
     }
 
     public func value<T: RawDeserialize>() -> T? where T.RawType: Deserialize {
-        return self.implementation.value(self.dataValue)
+        self.implementation.value(self.dataValue)
     }
 
     public func value<T: RawArrayDeserialize>() -> T? where T.RawType: Deserialize {
-        return self.implementation.value(self.dataValue)
+        self.implementation.value(self.dataValue)
     }
 
     public func value<T: RawPairDeserialize>() -> T? where T.RawType1: Deserialize, T.RawType2: Deserialize {
-        return self.implementation.value(self.dataValue)
+        self.implementation.value(self.dataValue)
     }
 
     public func value<T: RawArrayPairDeserialize>() -> T? where T.RawType1: Deserialize, T.RawType2: Deserialize {
-        return self.implementation.value(self.dataValue)
+        self.implementation.value(self.dataValue)
     }
 
     // MARK: Notification
 
     public func startNotifying() -> Future<Characteristic> {
-        return self.implementation.startNotifying(self)
+        self.implementation.startNotifying(self)
     }
 
     public func stopNotifying() -> Future<Characteristic> {
-        return self.implementation.stopNotifying(self)
+        self.implementation.stopNotifying(self)
     }
 
     public func recieveNotificationUpdates(_ capacity: Int? = nil) -> FutureStream<Characteristic> {
-        return self.implementation.recieveNotificationUpdates(capacity)
+        self.implementation.recieveNotificationUpdates(capacity)
     }
 
     public func stopNotificationUpdates() {
@@ -107,37 +107,37 @@ public final class Characteristic: CharacteristicWrapper {
     // MARK: read
 
     public func read(_ timeout: Double = 10.0) -> Future<Characteristic> {
-        return self.implementation.read(self, timeout: timeout)
+        self.implementation.read(self, timeout: timeout)
     }
 
     // MARK: write
 
     public func writeData(_ value: Data, timeout: Double = 10.0) -> Future<Characteristic> {
-        return self.implementation.writeData(self, value: value, timeout: timeout)
+        self.implementation.writeData(self, value: value, timeout: timeout)
     }
 
     public func writeString(_ stringValue: [String: String], timeout: Double = 10.0) -> Future<Characteristic> {
-        return self.implementation.writeString(self, stringValue: stringValue, timeout: timeout)
+        self.implementation.writeString(self, stringValue: stringValue, timeout: timeout)
     }
 
     public func write<T: Deserialize>(_ value: T, timeout: Double = 10.0) -> Future<Characteristic> {
-        return self.implementation.write(self, value: value, timeout: timeout)
+        self.implementation.write(self, value: value, timeout: timeout)
     }
 
     public func write<T: RawDeserialize>(_ value: T, timeout: Double = 10.0) -> Future<Characteristic> {
-        return self.implementation.write(self, value: value, timeout: timeout)
+        self.implementation.write(self, value: value, timeout: timeout)
     }
 
     public func write<T: RawArrayDeserialize>(_ value: T, timeout: Double = 10.0) -> Future<Characteristic> {
-        return self.implementation.write(self, value: value, timeout: timeout)
+        self.implementation.write(self, value: value, timeout: timeout)
     }
 
     public func write<T: RawPairDeserialize>(_ value: T, timeout: Double = 10.0) -> Future<Characteristic> {
-        return self.implementation.write(self, value: value, timeout: timeout)
+        self.implementation.write(self, value: value, timeout: timeout)
     }
 
     public func write<T: RawArrayPairDeserialize>(_ value: T, timeout: Double = 10.0) -> Future<Characteristic> {
-        return self.implementation.write(self, value: value, timeout: timeout)
+        self.implementation.write(self, value: value, timeout: timeout)
     }
 
     // MARK: helper
@@ -159,23 +159,23 @@ public final class Characteristic: CharacteristicWrapper {
 
     // MARK: CharacteristicWrapper
     public var uuid: CBUUID {
-        return self.cbCharacteristic.uuid
+        self.cbCharacteristic.uuid
     }
 
     public var name: String {
-        return self.profile.name
+        self.profile.name
     }
 
     public var isNotifying: Bool {
-        return self.cbCharacteristic.isNotifying
+        self.cbCharacteristic.isNotifying
     }
 
     public var stringValues: [String] {
-        return self.profile.stringValues
+        self.profile.stringValues
     }
 
     public var afterDiscoveredPromise: StreamPromise<Characteristic>? {
-        return self.profile.afterDiscoveredPromise
+        self.profile.afterDiscoveredPromise
     }
 
     public func stringValue(_ data: Data?) -> [String: String]? {
@@ -186,7 +186,7 @@ public final class Characteristic: CharacteristicWrapper {
     }
 
     public func dataFromStringValue(_ stringValue: [String: String]) -> Data? {
-        return self.profile.dataFromStringValue(stringValue)
+        self.profile.dataFromStringValue(stringValue)
     }
 
     public func setNotifyValue(_ state: Bool) {
@@ -194,7 +194,7 @@ public final class Characteristic: CharacteristicWrapper {
     }
 
     public func propertyEnabled(_ property: CBCharacteristicProperties) -> Bool {
-        return (self.properties.rawValue & property.rawValue) > 0
+        (self.properties.rawValue & property.rawValue) > 0
     }
 
     public func readValueForCharacteristic() {
@@ -268,11 +268,11 @@ public final class CharacteristicImplementation<C: CharacteristicWrapper> {
 
     // MARK: String values
     public func stringValue(_ characteristic: C, data: Data?) -> [String: String]? {
-        return characteristic.stringValue(data).map { $0 }
+        characteristic.stringValue(data).map { $0 }
     }
 
     public func stringValues(_ characteristic: C) -> [String] {
-        return characteristic.stringValues
+        characteristic.stringValues
     }
 
     // MARK: Notification
@@ -359,23 +359,23 @@ public final class CharacteristicImplementation<C: CharacteristicWrapper> {
     }
 
     public func write<T: Deserialize>(_ characteristic: C, value: T, timeout: Double = 10.0) -> Future<C> {
-        return self.writeData(characteristic, value: Serializer.serialize(value), timeout: timeout)
+        self.writeData(characteristic, value: Serializer.serialize(value), timeout: timeout)
     }
 
     public func write<T: RawDeserialize>(_ characteristic: C, value: T, timeout: Double = 10.0) -> Future<C> {
-        return self.writeData(characteristic, value: Serializer.serialize(value), timeout: timeout)
+        self.writeData(characteristic, value: Serializer.serialize(value), timeout: timeout)
     }
 
     public func write<T: RawArrayDeserialize>(_ characteristic: C, value: T, timeout: Double = 10.0) -> Future<C> {
-        return self.writeData(characteristic, value: Serializer.serialize(value), timeout: timeout)
+        self.writeData(characteristic, value: Serializer.serialize(value), timeout: timeout)
     }
 
     public func write<T: RawPairDeserialize>(_ characteristic: C, value: T, timeout: Double = 10.0) -> Future<C> {
-        return self.writeData(characteristic, value: Serializer.serialize(value), timeout: timeout)
+        self.writeData(characteristic, value: Serializer.serialize(value), timeout: timeout)
     }
 
     public func write<T: RawArrayPairDeserialize>(_ characteristic: C, value: T, timeout: Double = 10.0) -> Future<C> {
-        return self.writeData(characteristic, value: Serializer.serialize(value), timeout: timeout)
+        self.writeData(characteristic, value: Serializer.serialize(value), timeout: timeout)
     }
 
     public func didDiscover(_ characteristic: C) {

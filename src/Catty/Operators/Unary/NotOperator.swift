@@ -33,6 +33,6 @@
     }
 
     func formulaEditorSections() -> [FormulaEditorSection] {
-        return [.logic(position: type(of: self).position)]
+        [.logic(position: type(of: self).position)]
     }
 }

@@ -141,7 +141,9 @@
         if(authStatus == AVAuthorizationStatusNotDetermined){
             [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
                 if(granted){
-                    [self openPicker:pickerType];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self openPicker:pickerType];
+                    });
                     return;
                 }
             }];
@@ -159,7 +161,6 @@
         picker.delegate = self;
         picker.allowsEditing = YES;
         picker.sourceType = pickerType;
-        picker.navigationBar.tintColor = UIColor.navTint;
         
         [self.canvas presentViewController:picker animated:YES completion:NULL];
     } else {

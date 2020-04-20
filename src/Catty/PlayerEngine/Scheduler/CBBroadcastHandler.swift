@@ -178,7 +178,7 @@ final class CBBroadcastHandler: CBBroadcastHandlerProtocol {
     }
 
     func isWaitingForCalledBroadcastContexts(_ context: CBScriptContextProtocol) -> Bool {
-        return (_broadcastWaitingContextsQueue[context.id]?.count ?? 0) > 0
+        (_broadcastWaitingContextsQueue[context.id]?.count ?? 0) > 0
     }
 
     func terminateAllCalledBroadcastContextsAndRemoveWaitingContext(_ context: CBScriptContextProtocol) {

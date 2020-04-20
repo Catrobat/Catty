@@ -37,7 +37,7 @@ class CBSpriteNodeMock: CBSpriteNode {
 
     override var position: CGPoint {
         get {
-            return mockedPosition ?? super.position
+            mockedPosition ?? super.position
         }
         set {
             self.mockedPosition = newValue
@@ -46,7 +46,7 @@ class CBSpriteNodeMock: CBSpriteNode {
 
     override var scene: SKScene {
         get {
-            return mockedScene ?? super.scene!
+            mockedScene ?? super.scene!
         }
         set {
             self.mockedScene = newValue

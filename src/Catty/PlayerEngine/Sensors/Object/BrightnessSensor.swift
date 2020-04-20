@@ -25,11 +25,11 @@
     @objc static let tag = "OBJECT_BRIGHTNESS"
     static let name = kUIFEObjectBrightness
     @objc static let defaultRawValue = 0.0
-    static let position = 20
+    static let position = 90
     static let requiredResource = ResourceType.noResources
 
     func tag() -> String {
-        return type(of: self).tag
+        type(of: self).tag
     }
 
     static func rawValue(for spriteObject: SpriteObject) -> Double {
@@ -67,6 +67,6 @@
     }
 
     func formulaEditorSections(for spriteObject: SpriteObject) -> [FormulaEditorSection] {
-        return [.object(position: type(of: self).position)]
+        [.object(position: type(of: self).position)]
     }
 }

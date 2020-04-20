@@ -23,6 +23,7 @@
 #import "PointToBrick+CBXMLHandler.h"
 #import "CBXMLValidator.h"
 #import "GDataXMLElement+CustomExtensions.h"
+#import "GDataXMLNode+CustomExtensions.h"
 #import "SpriteObject+CBXMLHandler.h"
 #import "CBXMLParserHelper.h"
 #import "CBXMLParserContext.h"
@@ -30,18 +31,20 @@
 #import "CBXMLSerializerHelper.h"
 #import "CBXMLPositionStack.h"
 #import "Script.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation PointToBrick (CBXMLHandler)
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLParserContext*)context
 {
-    if([xmlElement childCount] > 1) {
+    NSUInteger childCount = [xmlElement.childrenWithoutCommentsAndCommentedOutTag count];
+    if(childCount > 1) {
         [XMLError exceptionWithMessage:@"Too many child nodes found... (0 or 1 expected, actual %lu)", (unsigned long)[xmlElement childCount]];
     }
     
     PointToBrick *pointToBrick = [self new];
     
-    if([xmlElement childCount] == 1) {
+    if(childCount == 1) {
         [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1];
         GDataXMLElement *pointedObjectElement = [xmlElement childWithElementName:@"pointedObject"];
         [XMLError exceptionIfNil:pointedObjectElement message:@"No pointedObject element found..."];
@@ -68,9 +71,7 @@
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context
 {
-    NSUInteger indexOfBrick = [CBXMLSerializerHelper indexOfElement:self inArray:context.brickList];
-    GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" xPathIndex:(indexOfBrick+1) context:context];
-    [brick addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:@"PointToBrick"]];
+    GDataXMLElement *brick = [super xmlElementForBrickType:@"PointToBrick" withContext:context];
 
     [XMLError exceptionIfNil:self.pointedObject message:@"No sprite object given in PointToBrick"];
     [XMLError exceptionIfNil:self.script.object message:@"Missing reference to brick's sprite object"];

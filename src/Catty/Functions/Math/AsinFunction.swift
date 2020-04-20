@@ -27,14 +27,14 @@ class AsinFunction: SingleParameterDoubleFunction {
     static var defaultValue = 0.0
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = true
-    static let position = 120
+    static let position = 180
 
     func tag() -> String {
-        return type(of: self).tag
+        type(of: self).tag
     }
 
     func firstParameter() -> FunctionParameter {
-        return .number(defaultValue: 0.5)
+        .number(defaultValue: 0.5)
     }
 
     func value(parameter: AnyObject?) -> Double {
@@ -43,6 +43,6 @@ class AsinFunction: SingleParameterDoubleFunction {
     }
 
     func formulaEditorSections() -> [FormulaEditorSection] {
-        return [.math(position: (type(of: self).position))]
+        [.math(position: (type(of: self).position))]
     }
 }

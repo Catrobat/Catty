@@ -26,10 +26,10 @@ class SizeSensor: ObjectDoubleSensor {
     static let name = kUIFEObjectSize
     static let defaultRawValue = 1.0
     static let requiredResource = ResourceType.noResources
-    static let position = 80
+    static let position = 50
 
     func tag() -> String {
-        return type(of: self).tag
+        type(of: self).tag
     }
 
     static func rawValue(for spriteObject: SpriteObject) -> Double {
@@ -46,7 +46,7 @@ class SizeSensor: ObjectDoubleSensor {
     }
 
     static func convertToStandardized(rawValue: Double, for spriteObject: SpriteObject) -> Double {
-        return rawValue * 100
+        rawValue * 100
     }
 
     static func convertToRaw(userInput: Double, for spriteObject: SpriteObject) -> Double {
@@ -57,6 +57,6 @@ class SizeSensor: ObjectDoubleSensor {
     }
 
     func formulaEditorSections(for spriteObject: SpriteObject) -> [FormulaEditorSection] {
-        return [.object(position: type(of: self).position)]
+        [.object(position: type(of: self).position)]
     }
 }

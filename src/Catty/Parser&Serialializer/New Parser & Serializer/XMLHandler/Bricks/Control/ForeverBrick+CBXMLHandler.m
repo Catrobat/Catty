@@ -27,6 +27,7 @@
 #import "CBXMLParserHelper.h"
 #import "GDataXMLElement+CustomExtensions.h"
 #import "CBXMLSerializerHelper.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation ForeverBrick (CBXMLHandler)
 
@@ -42,9 +43,7 @@
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context
 {
-    NSUInteger indexOfBrick = [CBXMLSerializerHelper indexOfElement:self inArray:context.brickList];
-    GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" xPathIndex:(indexOfBrick+1) context:context];
-    [brick addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:@"ForeverBrick"]];
+    GDataXMLElement *brick = [super xmlElementForBrickType:@"ForeverBrick" withContext:context];
 
     // add opening nesting brick on stack
     [context.openedNestingBricksStack pushAndOpenNestingBrick:self];

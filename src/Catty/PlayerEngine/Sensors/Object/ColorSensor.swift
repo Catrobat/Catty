@@ -25,11 +25,11 @@
     @objc static let tag = "OBJECT_COLOR"
     static let name = kUIFEObjectColor
     @objc static let defaultRawValue = 0.0
-    static let position = 30
+    static let position = 110
     static let requiredResource = ResourceType.noResources
 
     func tag() -> String {
-        return type(of: self).tag
+        type(of: self).tag
     }
 
     static func rawValue(for spriteObject: SpriteObject) -> Double {
@@ -45,7 +45,7 @@
     }
 
     static func convertToStandardized(rawValue: Double, for spriteObject: SpriteObject) -> Double {
-        return rawValue * 100 / Double.pi
+        rawValue * 100 / Double.pi
     }
 
     static func convertToRaw(userInput: Double, for spriteObject: SpriteObject) -> Double {
@@ -65,6 +65,6 @@
     }
 
     func formulaEditorSections(for spriteObject: SpriteObject) -> [FormulaEditorSection] {
-        return [.object(position: type(of: self).position)]
+        [.object(position: type(of: self).position)]
     }
 }

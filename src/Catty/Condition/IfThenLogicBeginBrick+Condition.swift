@@ -32,6 +32,6 @@ extension IfThenLogicBeginBrick: CBConditionProtocol {
     }
 
     func conditionFormulas() -> [Formula] {
-        return self.getFormulas()
+        self.getFormulas()
     }
 }

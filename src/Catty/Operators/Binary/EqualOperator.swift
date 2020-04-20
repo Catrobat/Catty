@@ -25,7 +25,7 @@
     @objc static var tag = "EQUAL"
     static var name = "="
     static var priority = 3
-    static var position = 2
+    static var position = 1
 
     func value(left: AnyObject, right: AnyObject) -> Bool {
         let leftDouble = doubleParameter(object: left)
@@ -43,6 +43,6 @@
     }
 
     func formulaEditorSections() -> [FormulaEditorSection] {
-        return [.logic(position: type(of: self).position)]
+        [.logic(position: type(of: self).position)]
     }
 }

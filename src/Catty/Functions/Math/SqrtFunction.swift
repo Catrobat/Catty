@@ -27,14 +27,14 @@ class SqrtFunction: SingleParameterDoubleFunction {
     static var defaultValue = 0.0
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = true
-    static let position = 70
+    static let position = 140
 
     func tag() -> String {
-        return type(of: self).tag
+        type(of: self).tag
     }
 
     func firstParameter() -> FunctionParameter {
-        return .number(defaultValue: 4)
+        .number(defaultValue: 4)
     }
 
     func value(parameter: AnyObject?) -> Double {
@@ -43,6 +43,6 @@ class SqrtFunction: SingleParameterDoubleFunction {
     }
 
     func formulaEditorSections() -> [FormulaEditorSection] {
-        return [.math(position: type(of: self).position)]
+        [.math(position: type(of: self).position)]
     }
 }

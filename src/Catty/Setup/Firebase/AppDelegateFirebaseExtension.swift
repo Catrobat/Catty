@@ -55,6 +55,7 @@ extension AppDelegate {
             addObserver(selector: #selector(self.brickSelected(notification:)), name: .brickSelected)
             addObserver(selector: #selector(self.projectInvalidVersion(notification:)), name: .projectInvalidVersion)
             addObserver(selector: #selector(self.projectInvalidXml(notification:)), name: .projectInvalidXml)
+            addObserver(selector: #selector(self.projectFetchFailure(notification:)), name: .projectFetchFailure)
             addObserver(selector: #selector(self.projectFetchDetailsFailure(notification:)), name: .projectFetchDetailsFailure)
         }
 
@@ -121,6 +122,20 @@ extension AppDelegate {
                         "projectName": projectName]
 
         let error = NSError(domain: "ProjectParserError", code: 501, userInfo: userInfo)
+        crashlytics.record(error: error)
+    }
+
+    @objc func projectFetchFailure(notification: Notification) {
+        var info: [String: Any] = [:]
+
+        if let errorInfo = notification.object as? ProjectFetchFailureInfo {
+            info["type"] = errorInfo.type ?? type(of: self).logNoValue
+            info["url"] = errorInfo.url
+            info["statusCode"] = errorInfo.type ?? type(of: self).logNoValue
+            info["description"] = errorInfo.description
+        }
+
+        let error = NSError(domain: "ProjectFetchError", code: 410, userInfo: info)
         crashlytics.record(error: error)
     }
 

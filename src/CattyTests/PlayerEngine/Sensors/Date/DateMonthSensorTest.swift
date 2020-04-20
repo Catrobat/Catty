@@ -28,7 +28,7 @@ final class DateMonthSensorMock: DateMonthSensor {
     var mockDate = Date()
 
     override func date() -> Date {
-        return mockDate
+        mockDate
     }
 }
 

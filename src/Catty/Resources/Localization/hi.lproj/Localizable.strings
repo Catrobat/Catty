@@ -58,6 +58,9 @@
 /* No comment provided by engineer. */
 "Allow the app to control Arduino boards" = "Allow the app to control Arduino boards";
 
+/* No comment provided by engineer. */
+"Allow the app to send crash reports automatically" = "Allow the app to send crash reports automatically";
+
 /* paint */
 "Alpha" = "अल्फा";
 
@@ -425,6 +428,18 @@
 "direction" = "दिशा";
 
 /* No comment provided by engineer. */
+"Disable brick" = "Disable brick";
+
+/* No comment provided by engineer. */
+"Disable condition" = "Disable condition";
+
+/* No comment provided by engineer. */
+"Disable loop" = "Disable loop";
+
+/* No comment provided by engineer. */
+"Disable script" = "Disable script";
+
+/* No comment provided by engineer. */
 "Disagree" = "असहमत";
 
 /* No comment provided by engineer. */
@@ -510,6 +525,18 @@
 
 /* No comment provided by engineer. */
 "Empty input!" = "Empty input!";
+
+/* No comment provided by engineer. */
+"Enable brick" = "Enable brick";
+
+/* No comment provided by engineer. */
+"Enable condition" = "Enable condition";
+
+/* No comment provided by engineer. */
+"Enable loop" = "Enable loop";
+
+/* No comment provided by engineer. */
+"Enable script" = "Enable script";
 
 /* No comment provided by engineer. */
 "End if" = "समाप्त करें जब";
@@ -1350,6 +1377,9 @@
 
 /* bluetooth */
 "Select Phiro" = "Select Phiro";
+
+/* No comment provided by engineer. */
+"Sending anonymous crash reports" = "अनाम क्रैश रिपोर्ट भेजें";
 
 /* No comment provided by engineer. */
 "Sensors" = "ज्ञानेन्द्रियाँ";

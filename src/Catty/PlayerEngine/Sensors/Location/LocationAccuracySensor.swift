@@ -25,7 +25,7 @@
     @objc static let tag = "LOCATION_ACCURACY"
     static let name = kUIFESensorLocationAccuracy
     static let defaultRawValue = 0.0
-    static let position = 100
+    static let position = 260
     static let requiredResource = ResourceType.location
 
     let getLocationManager: () -> LocationManager?
@@ -35,11 +35,11 @@
     }
 
     func tag() -> String {
-        return type(of: self).tag
+        type(of: self).tag
     }
 
     func rawValue() -> Double {
-        return self.getLocationManager()?.location?.horizontalAccuracy ?? type(of: self).defaultRawValue
+        self.getLocationManager()?.location?.horizontalAccuracy ?? type(of: self).defaultRawValue
     }
 
     func convertToStandardized(rawValue: Double) -> Double {
@@ -50,6 +50,6 @@
     }
 
     func formulaEditorSections(for spriteObject: SpriteObject) -> [FormulaEditorSection] {
-        return [.device(position: type(of: self).position)]
+        [.device(position: type(of: self).position)]
     }
 }

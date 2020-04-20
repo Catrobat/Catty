@@ -26,18 +26,18 @@ class TrueFunction: ZeroParameterDoubleFunction {
     static var defaultValue = 1.0
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = true
-    static let position = 300
+    static let position = 20
 
     func tag() -> String {
-        return type(of: self).tag
+        type(of: self).tag
     }
 
     func value() -> Double {
-        return 1.0
+        1.0
     }
 
     func formulaEditorSections() -> [FormulaEditorSection] {
-        return [.logic(position: type(of: self).position),
+        [.logic(position: type(of: self).position),
                 .math(position: type(of: self).position)]
     }
 }

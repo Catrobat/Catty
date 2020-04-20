@@ -27,8 +27,8 @@ import Foundation
 class FirmataDevice: BluetoothDevice, FirmataDelegate {
     var firmata = Firmata()
 
-    var rxUUID: CBUUID { return CBUUID.init(string: "713D0002-503E-4C75-BA94-3148F18D941E") }
-    var txUUID: CBUUID { return CBUUID.init(string: "00001101-0000-1000-8000-00805F9B34FB") }
+    var rxUUID: CBUUID { CBUUID.init(string: "713D0002-503E-4C75-BA94-3148F18D941E") }
+    var txUUID: CBUUID { CBUUID.init(string: "00001101-0000-1000-8000-00805F9B34FB") }
 
     var rxCharacteristic: CBCharacteristic?
     var txCharacteristic: CBCharacteristic?
@@ -44,7 +44,7 @@ class FirmataDevice: BluetoothDevice, FirmataDelegate {
 
     // MARK: override BluetoothDevice
     override internal func getName() -> String {
-        return "FirmataDevice"
+        "FirmataDevice"
     }
 
     // MARK: dicovered Characteristics
@@ -92,10 +92,10 @@ class FirmataDevice: BluetoothDevice, FirmataDelegate {
     }
 
     func rxCharacteristicUUID() -> CBUUID {
-        return rxUUID
+        rxUUID
     }
     func txCharacteristicUUID() -> CBUUID {
-        return txUUID
+        txUUID
     }
 
     // MARK: Helper

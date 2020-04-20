@@ -52,15 +52,15 @@ final class ObjectDoubleSensorMock: SensorMock, ObjectDoubleSensor {
     }
 
     static func rawValue(for spriteObject: SpriteObject) -> Double {
-        return mockedValue
+        mockedValue
     }
 
     static func convertToStandardized(rawValue: Double, for spriteObject: SpriteObject) -> Double {
-        return rawValue
+        rawValue
     }
 
     static func convertToRaw(userInput: Double, for spriteObject: SpriteObject) -> Double {
-        return userInput
+        userInput
     }
 
     static func setRawValue(userInput: Double, for spriteObject: SpriteObject) {

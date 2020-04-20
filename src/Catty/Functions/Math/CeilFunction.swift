@@ -27,14 +27,14 @@ class CeilFunction: SingleParameterDoubleFunction {
     static var defaultValue = 1.0
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = true
-    static let position = 180
+    static let position = 240
 
     func tag() -> String {
-        return type(of: self).tag
+        type(of: self).tag
     }
 
     func firstParameter() -> FunctionParameter {
-        return .number(defaultValue: 0.3)
+        .number(defaultValue: 0.3)
     }
 
     func value(parameter: AnyObject?) -> Double {
@@ -43,6 +43,6 @@ class CeilFunction: SingleParameterDoubleFunction {
     }
 
     func formulaEditorSections() -> [FormulaEditorSection] {
-        return [.math(position: type(of: self).position)]
+        [.math(position: type(of: self).position)]
     }
 }

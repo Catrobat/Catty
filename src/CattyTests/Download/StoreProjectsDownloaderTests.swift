@@ -27,6 +27,8 @@ import XCTest
 
 class StoreProjectsDownloaderTests: XCTestCase {
 
+    let expectedParsingException = "The data couldn’t be read because it is missing."
+
     // MARK: - Fetch Projects
 
     func testfetchFeaturedProjectsSucceeds() {
@@ -117,6 +119,55 @@ class StoreProjectsDownloaderTests: XCTestCase {
         }
 
         wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testfetchFeaturedProjectsFailsWithUnexpectedErrorNotification() {
+        let session = URLSessionMock()
+        let url = URL(string: "\(NetworkDefines.connectionHost)/\(NetworkDefines.connectionFeatured)?\(NetworkDefines.projectsLimit)\(NetworkDefines.chartProjectsMaxResults)")!
+        let error = ErrorMock("")
+        let downloader = StoreProjectDownloader(session: session)
+        let errorInfo = ProjectFetchFailureInfo(type: ProjectType.featured, url: url.absoluteString, description: error.localizedDescription)
+
+        expect(downloader.fetchProjects(forType: .featured, offset: 0) { _, _ in }).toEventually(postNotifications(contain(.projectFetchFailure, expectedObject: errorInfo)))
+    }
+
+    func testfetchFeaturedProjectsFailsWithRequestErrorNotification() {
+        let dvrSession = Session(cassetteName: "StoreProjectDownloader.fetchFeaturedProjects.fail.request")
+        let downloader = StoreProjectDownloader(session: dvrSession)
+        let url = URL(string: "\(NetworkDefines.connectionHost)/\(NetworkDefines.connectionFeatured)?\(NetworkDefines.projectsLimit)\(NetworkDefines.chartProjectsMaxResults)")!
+        let error = ErrorMock("")
+        let errorInfo = ProjectFetchFailureInfo(type: ProjectType.featured, url: url.absoluteString, statusCode: 404, description: error.localizedDescription)
+
+        expect(downloader.fetchProjects(forType: .featured, offset: 0) { _, _ in }).toEventually(postNotifications(contain(.projectFetchFailure, expectedObject: errorInfo)))
+    }
+
+    func testfetchFeaturedProjectsFailsWithParseErrorNotification() {
+        let dvrSession = Session(cassetteName: "StoreProjectDownloader.fetchFeaturedProjects.fail.parse")
+        let downloader = StoreProjectDownloader(session: dvrSession)
+        let url = URL(string: "\(NetworkDefines.connectionHost)/\(NetworkDefines.connectionFeatured)?\(NetworkDefines.projectsLimit)\(NetworkDefines.chartProjectsMaxResults)")!
+        let errorInfo = ProjectFetchFailureInfo(type: ProjectType.featured, url: url.absoluteString, statusCode: 200, description: expectedParsingException)
+
+        expect(downloader.fetchProjects(forType: .featured, offset: 0) { _, error in
+                guard let error = error else { XCTFail("no error received"); return }
+                switch error {
+                case .parse(error: _):
+                    break
+                default:
+                    XCTFail("wrong error received")
+                }
+        }).toEventually(postNotifications(contain(.projectFetchFailure, expectedObject: errorInfo)))
+    }
+
+    func testfetchFeaturedProjectsFailsWithTimeoutErrorNotification() {
+        let url = URL(string: "\(NetworkDefines.connectionHost)/\(NetworkDefines.connectionFeatured)?\(NetworkDefines.projectsLimit)\(NetworkDefines.chartProjectsMaxResults)")!
+        let response = HTTPURLResponse(url: url, statusCode: NSURLErrorTimedOut, httpVersion: nil, headerFields: nil)
+        let error = NSError(domain: NSURLErrorDomain, code: NSURLErrorTimedOut, userInfo: nil)
+        let session = URLSessionMock(response: response, error: error)
+        let downloader = StoreProjectDownloader(session: session)
+
+        let errorInfo = ProjectFetchFailureInfo(type: ProjectType.featured, url: url.absoluteString, description: error.localizedDescription)
+
+        expect(downloader.fetchProjects(forType: .featured, offset: 0) { _, _ in }).toEventually(postNotifications(contain(.projectFetchFailure, expectedObject: errorInfo)))
     }
 
     // MARK: - Most Downloaded Projects
@@ -211,6 +262,67 @@ class StoreProjectsDownloaderTests: XCTestCase {
         wait(for: [expectation], timeout: 1.0)
     }
 
+    func testfetchMostDownloadedProjectsFailsWithUnexpectedErrorNotification() {
+        let session = URLSessionMock()
+        let version: String = Util.catrobatLanguageVersion()
+        let offset: Int = 0
+        let url = URL(string: "\(NetworkDefines.connectionHost)/\(NetworkDefines.connectionMostDownloaded)?\(NetworkDefines.projectsOffset)"
+                            + "\(offset)&\(NetworkDefines.projectsLimit)\(NetworkDefines.recentProjectsMaxResults)&\(NetworkDefines.maxVersion)\(version)")!
+        let error = ErrorMock("")
+        let downloader = StoreProjectDownloader(session: session)
+        let errorInfo = ProjectFetchFailureInfo(type: ProjectType.mostDownloaded, url: url.absoluteString, description: error.localizedDescription)
+
+        expect(downloader.fetchProjects(forType: .mostDownloaded, offset: 0) { _, _ in }).toEventually(postNotifications(contain(.projectFetchFailure, expectedObject: errorInfo)))
+    }
+
+    func testfetchMostDownloadedProjectsFailsWithRequestErrorNotification() {
+        let dvrSession = Session(cassetteName: "StoreProjectDownloader.fetchMostDownloadedProjects.fail.request")
+        let downloader = StoreProjectDownloader(session: dvrSession)
+        let version: String = Util.catrobatLanguageVersion()
+        let offset: Int = 0
+        let url = URL(string: "\(NetworkDefines.connectionHost)/\(NetworkDefines.connectionMostDownloaded)?\(NetworkDefines.projectsOffset)"
+                            + "\(offset)&\(NetworkDefines.projectsLimit)\(NetworkDefines.recentProjectsMaxResults)&\(NetworkDefines.maxVersion)\(version)")!
+        let error = ErrorMock("")
+        let errorInfo = ProjectFetchFailureInfo(type: ProjectType.mostDownloaded, url: url.absoluteString, statusCode: 404, description: error.localizedDescription)
+
+        expect(downloader.fetchProjects(forType: .mostDownloaded, offset: 0) { _, _ in }).toEventually(postNotifications(contain(.projectFetchFailure, expectedObject: errorInfo)))
+    }
+
+    func testfetchMostDownloadedProjectsFailsWithParseErrorNotification() {
+        let dvrSession = Session(cassetteName: "StoreProjectDownloader.fetchMostDownloadedProjects.fail.parse")
+        let downloader = StoreProjectDownloader(session: dvrSession)
+        let version: String = Util.catrobatLanguageVersion()
+        let offset: Int = 0
+        let url = URL(string: "\(NetworkDefines.connectionHost)/\(NetworkDefines.connectionMostDownloaded)?\(NetworkDefines.projectsOffset)"
+                            + "\(offset)&\(NetworkDefines.projectsLimit)\(NetworkDefines.recentProjectsMaxResults)&\(NetworkDefines.maxVersion)\(version)")!
+
+        let errorInfo = ProjectFetchFailureInfo(type: ProjectType.mostDownloaded, url: url.absoluteString, statusCode: 200, description: expectedParsingException)
+
+        expect(downloader.fetchProjects(forType: .mostDownloaded, offset: 0) { _, error in
+            guard let error = error else { XCTFail("no error received"); return }
+            switch error {
+            case .parse(error: _):
+                break
+            default:
+                XCTFail("wrong error received")
+            }
+        }).toEventually(postNotifications(contain(.projectFetchFailure, expectedObject: errorInfo)))
+    }
+
+    func testfetchMostDownloadedProjectsFailsWithTimeoutErrorNotification() {
+        let version: String = Util.catrobatLanguageVersion()
+        let offset: Int = 0
+        let url = URL(string: "\(NetworkDefines.connectionHost)/\(NetworkDefines.connectionMostDownloaded)?\(NetworkDefines.projectsOffset)"
+                            + "\(offset)&\(NetworkDefines.projectsLimit)\(NetworkDefines.recentProjectsMaxResults)&\(NetworkDefines.maxVersion)\(version)")!
+        let response = HTTPURLResponse(url: url, statusCode: NSURLErrorTimedOut, httpVersion: nil, headerFields: nil)
+        let error = NSError(domain: NSURLErrorDomain, code: NSURLErrorTimedOut, userInfo: nil)
+        let session = URLSessionMock(response: response, error: error)
+        let downloader = StoreProjectDownloader(session: session)
+        let errorInfo = ProjectFetchFailureInfo(type: ProjectType.mostDownloaded, url: url.absoluteString, description: error.localizedDescription)
+
+        expect(downloader.fetchProjects(forType: .mostDownloaded, offset: 0) { _, _ in }).toEventually(postNotifications(contain(.projectFetchFailure, expectedObject: errorInfo)))
+    }
+
     // MARK: - Most Viewed Projects
 
     func testfetchMostViewedProjectsSucceeds() {
@@ -303,6 +415,67 @@ class StoreProjectsDownloaderTests: XCTestCase {
         wait(for: [expectation], timeout: 1.0)
     }
 
+    func testfetchMostViewedProjectsFailsWithUnexpectedErrorNotification() {
+        let session = URLSessionMock()
+        let version: String = Util.catrobatLanguageVersion()
+        let offset: Int = 0
+        let url = URL(string: "\(NetworkDefines.connectionHost)/\(NetworkDefines.connectionMostViewed)?\(NetworkDefines.projectsOffset)"
+                            + "\(offset)&\(NetworkDefines.projectsLimit)\(NetworkDefines.recentProjectsMaxResults)&\(NetworkDefines.maxVersion)\(version)")!
+        let error = ErrorMock("")
+        let downloader = StoreProjectDownloader(session: session)
+        let errorInfo = ProjectFetchFailureInfo(type: ProjectType.mostViewed, url: url.absoluteString, description: error.localizedDescription)
+
+        expect(downloader.fetchProjects(forType: .mostViewed, offset: 0) { _, _ in }).toEventually(postNotifications(contain(.projectFetchFailure, expectedObject: errorInfo)))
+    }
+
+    func testfetchMostViewedProjectsFailsWithRequestErrorNotification() {
+        let dvrSession = Session(cassetteName: "StoreProjectDownloader.fetchMostViewedProjects.fail.request")
+        let downloader = StoreProjectDownloader(session: dvrSession)
+        let version: String = Util.catrobatLanguageVersion()
+        let offset: Int = 0
+        let url = URL(string: "\(NetworkDefines.connectionHost)/\(NetworkDefines.connectionMostViewed)?\(NetworkDefines.projectsOffset)"
+                            + "\(offset)&\(NetworkDefines.projectsLimit)\(NetworkDefines.recentProjectsMaxResults)&\(NetworkDefines.maxVersion)\(version)")!
+        let error = ErrorMock("")
+        let errorInfo = ProjectFetchFailureInfo(type: ProjectType.mostViewed, url: url.absoluteString, statusCode: 404, description: error.localizedDescription)
+
+        expect(downloader.fetchProjects(forType: .mostViewed, offset: 0) { _, _ in }).toEventually(postNotifications(contain(.projectFetchFailure, expectedObject: errorInfo)))
+    }
+
+    func testfetchMostViewedProjectsFailsWithParseErrorNotification() {
+        let dvrSession = Session(cassetteName: "StoreProjectDownloader.fetchMostViewedProjects.fail.parse")
+        let downloader = StoreProjectDownloader(session: dvrSession)
+        let version: String = Util.catrobatLanguageVersion()
+        let offset: Int = 0
+        let url = URL(string: "\(NetworkDefines.connectionHost)/\(NetworkDefines.connectionMostViewed)?\(NetworkDefines.projectsOffset)"
+                            + "\(offset)&\(NetworkDefines.projectsLimit)\(NetworkDefines.recentProjectsMaxResults)&\(NetworkDefines.maxVersion)\(version)")!
+
+        let errorInfo = ProjectFetchFailureInfo(type: ProjectType.mostViewed, url: url.absoluteString, statusCode: 200, description: expectedParsingException)
+
+        expect(downloader.fetchProjects(forType: .mostViewed, offset: 0) { _, error in
+            guard let error = error else { XCTFail("no error received"); return }
+            switch error {
+            case .parse(error: _):
+                break
+            default:
+                XCTFail("wrong error received")
+            }
+        }).toEventually(postNotifications(contain(.projectFetchFailure, expectedObject: errorInfo)))
+    }
+
+    func testfetchMostViewedProjectsFailsWithTimeoutErrorNotification() {
+        let version: String = Util.catrobatLanguageVersion()
+        let offset: Int = 0
+        let url = URL(string: "\(NetworkDefines.connectionHost)/\(NetworkDefines.connectionMostViewed)?\(NetworkDefines.projectsOffset)"
+                            + "\(offset)&\(NetworkDefines.projectsLimit)\(NetworkDefines.recentProjectsMaxResults)&\(NetworkDefines.maxVersion)\(version)")!
+        let response = HTTPURLResponse(url: url, statusCode: NSURLErrorTimedOut, httpVersion: nil, headerFields: nil)
+        let error = NSError(domain: NSURLErrorDomain, code: NSURLErrorTimedOut, userInfo: nil)
+        let session = URLSessionMock(response: response, error: error)
+        let downloader = StoreProjectDownloader(session: session)
+        let errorInfo = ProjectFetchFailureInfo(type: ProjectType.mostViewed, url: url.absoluteString, description: error.localizedDescription)
+
+        expect(downloader.fetchProjects(forType: .mostViewed, offset: 0) { _, _ in }).toEventually(postNotifications(contain(.projectFetchFailure, expectedObject: errorInfo)))
+    }
+
     // MARK: - Most Recent Projects
 
     func testfetchMostRecentProjectsSucceeds() {
@@ -393,6 +566,67 @@ class StoreProjectsDownloaderTests: XCTestCase {
         }
 
         wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testfetchMostRecentProjectsFailsWithUnexpectedErrorNotification() {
+        let session = URLSessionMock()
+        let version: String = Util.catrobatLanguageVersion()
+        let offset: Int = 0
+        let url = URL(string: "\(NetworkDefines.connectionHost)/\(NetworkDefines.connectionRecent)?\(NetworkDefines.projectsOffset)"
+                            + "\(offset)&\(NetworkDefines.projectsLimit)\(NetworkDefines.recentProjectsMaxResults)&\(NetworkDefines.maxVersion)\(version)")!
+        let error = ErrorMock("")
+        let downloader = StoreProjectDownloader(session: session)
+        let errorInfo = ProjectFetchFailureInfo(type: ProjectType.mostRecent, url: url.absoluteString, description: error.localizedDescription)
+
+        expect(downloader.fetchProjects(forType: .mostRecent, offset: 0) { _, _ in }).toEventually(postNotifications(contain(.projectFetchFailure, expectedObject: errorInfo)))
+    }
+
+    func testfetchMostRecentProjectsFailsWithRequestErrorNotification() {
+        let dvrSession = Session(cassetteName: "StoreProjectDownloader.fetchMostRecentProjects.fail.request")
+        let downloader = StoreProjectDownloader(session: dvrSession)
+        let version: String = Util.catrobatLanguageVersion()
+        let offset: Int = 0
+        let url = URL(string: "\(NetworkDefines.connectionHost)/\(NetworkDefines.connectionRecent)?\(NetworkDefines.projectsOffset)"
+                            + "\(offset)&\(NetworkDefines.projectsLimit)\(NetworkDefines.recentProjectsMaxResults)&\(NetworkDefines.maxVersion)\(version)")!
+        let error = ErrorMock("")
+        let errorInfo = ProjectFetchFailureInfo(type: ProjectType.mostRecent, url: url.absoluteString, statusCode: 404, description: error.localizedDescription)
+
+        expect(downloader.fetchProjects(forType: .mostRecent, offset: 0) { _, _ in }).toEventually(postNotifications(contain(.projectFetchFailure, expectedObject: errorInfo)))
+    }
+
+    func testfetchMostRecentProjectsFailsWithParseErrorNotification() {
+        let dvrSession = Session(cassetteName: "StoreProjectDownloader.fetchMostRecentProjects.fail.parse")
+        let downloader = StoreProjectDownloader(session: dvrSession)
+        let version: String = Util.catrobatLanguageVersion()
+        let offset: Int = 0
+        let url = URL(string: "\(NetworkDefines.connectionHost)/\(NetworkDefines.connectionRecent)?\(NetworkDefines.projectsOffset)"
+                            + "\(offset)&\(NetworkDefines.projectsLimit)\(NetworkDefines.recentProjectsMaxResults)&\(NetworkDefines.maxVersion)\(version)")!
+
+        let errorInfo = ProjectFetchFailureInfo(type: ProjectType.mostRecent, url: url.absoluteString, statusCode: 200, description: expectedParsingException)
+
+        expect(downloader.fetchProjects(forType: .mostRecent, offset: 0) { _, error in
+            guard let error = error else { XCTFail("no error received"); return }
+            switch error {
+            case .parse(error: _):
+                break
+            default:
+                XCTFail("wrong error received")
+            }
+        }).toEventually(postNotifications(contain(.projectFetchFailure, expectedObject: errorInfo)))
+    }
+
+    func testfetchMostRecentProjectsFailsWithTimeoutErrorNotification() {
+        let version: String = Util.catrobatLanguageVersion()
+        let offset: Int = 0
+        let url = URL(string: "\(NetworkDefines.connectionHost)/\(NetworkDefines.connectionRecent)?\(NetworkDefines.projectsOffset)"
+                            + "\(offset)&\(NetworkDefines.projectsLimit)\(NetworkDefines.recentProjectsMaxResults)&\(NetworkDefines.maxVersion)\(version)")!
+        let response = HTTPURLResponse(url: url, statusCode: NSURLErrorTimedOut, httpVersion: nil, headerFields: nil)
+        let error = NSError(domain: NSURLErrorDomain, code: NSURLErrorTimedOut, userInfo: nil)
+        let session = URLSessionMock(response: response, error: error)
+        let downloader = StoreProjectDownloader(session: session)
+        let errorInfo = ProjectFetchFailureInfo(type: ProjectType.mostRecent, url: url.absoluteString, description: error.localizedDescription)
+
+        expect(downloader.fetchProjects(forType: .mostRecent, offset: 0) { _, _ in }).toEventually(postNotifications(contain(.projectFetchFailure, expectedObject: errorInfo)))
     }
 
     // MARK: - Search Store
@@ -575,23 +809,91 @@ class StoreProjectsDownloaderTests: XCTestCase {
         expect(downloader.fetchProjectDetails(for: project) { _, _ in }).toEventually(postNotifications(contain(expectedNotification)))
     }
 
+    // MARK: - Download project
+    func testDownloadProjectSucceeds() {
+           let dvrSession = Session(cassetteName: "StoreProjectDownloader.downloadProject.success")
+           let downloader = StoreProjectDownloader(session: dvrSession)
+           let projectId = "00fbfbe1-6f87-11ea-959c-000c293d4b76"
+           let expectation = XCTestExpectation(description: "Download Project")
+
+        downloader.download(projectId: projectId,
+                            completion: { data, error in
+            XCTAssertNil(error, "request failed")
+            guard data != nil else { XCTFail("no data received"); return }
+            expectation.fulfill()
+        }, progression: nil)
+
+            wait(for: [expectation], timeout: 1)
+    }
+
+    func testDownloadProjectFailsWithUnexpectedError() {
+        let mockSession = URLSessionMock()
+        let downloader = StoreProjectDownloader(session: mockSession)
+        let expectation = XCTestExpectation(description: "Download Projects")
+        let projectId = ""
+
+        downloader.download(projectId: projectId,
+                            completion: {_, error in
+            guard let error = error else { XCTFail("no error returned"); return }
+            XCTAssertEqual(error, .unexpectedError)
+            expectation.fulfill()
+        }, progression: nil)
+
+        wait(for: [expectation], timeout: 1)
+    }
+
+    func testDownloadProjectFailsWithRequestError() {
+        let dvrSession = Session(cassetteName: "StoreProjectDownloader.downloadProject.fail.request")
+        let downloader = StoreProjectDownloader(session: dvrSession)
+        let expectation = XCTestExpectation(description: "Download Projects")
+        let projectId = "00fbfbe1-6f87-11ea-959c-000c293d4b76"
+
+        downloader.download(projectId: projectId,
+                            completion: { _, error in
+            guard let error = error else { XCTFail("no error received"); return }
+            switch error {
+            case let .request(error: _, statusCode: statusCode):
+                XCTAssertEqual(statusCode, 404)
+            default:
+                XCTFail("wrong error received")
+            }
+            expectation.fulfill()
+        }, progression: nil)
+        wait(for: [expectation], timeout: 1)
+    }
+
+    func testDownloadProjectVaildProgression() {
+        let mockSession = URLSessionMock(response: nil, error: nil, bytesReceived: 600, bytesTotal: 1200)
+        let downloader = StoreProjectDownloader(session: mockSession)
+        let expectation = XCTestExpectation(description: "Download Project Progression")
+        let projectId = "00fbfbe1-6f87-11ea-959c-000c293d4b76"
+
+        downloader.download(projectId: projectId,
+                            completion: { _, _ in },
+                            progression: { progress in
+            XCTAssertEqual(0.5, progress)
+            expectation.fulfill()
+        })
+        wait(for: [expectation], timeout: 1)
+    }
+
     private func getStoreProjectMock() -> StoreProject {
-        return StoreProject(projectId: "821",
-                            projectName: "Whack A Mole",
-                            projectNameShort: "",
-                            author: "VesnaK",
-                            description: "",
-                            version: "",
-                            views: 0,
-                            downloads: 0,
-                            uploaded: 0,
-                            uploadedString: "",
-                            screenshotBig: "",
-                            screenshotSmall: "",
-                            projectUrl: "",
-                            downloadUrl: "",
-                            fileSize: 1.0,
-                            featuredImage: "")
+        StoreProject(projectId: "821",
+                     projectName: "Whack A Mole",
+                     projectNameShort: "",
+                     author: "VesnaK",
+                     description: "",
+                     version: "",
+                     views: 0,
+                     downloads: 0,
+                     uploaded: 0,
+                     uploadedString: "",
+                     screenshotBig: "",
+                     screenshotSmall: "",
+                     projectUrl: "",
+                     downloadUrl: "",
+                     fileSize: 1.0,
+                     featuredImage: "")
     }
 }
 

@@ -50,14 +50,14 @@ class NetworkDefines: NSObject {
 
     @objc static let connectionTimeout = 15
 
-    @objc static var loginUrl: String { return baseUrl.appending("api/login/Login.json") }
-    @objc static var registerUrl: String { return baseUrl.appending("api/register/Register.json") }
-    @objc static var reportProjectUrl: String { return baseUrl.appending("api/reportProject/reportProject.json") }
-    @objc static var termsOfUseUrl: String { return baseUrl.appending("termsOfUse") }
-    @objc static var recoverPassword: String { return baseUrl.appending("resetting/request") }
-    static var uploadUrl: String { return baseUrl.appending("api/upload") }
-    static var downloadUrl: String { return baseUrl.appending("download") }
-    static var helpUrl: String { return baseUrl.appending("help") }
+    @objc static var loginUrl: String { baseUrl.appending("api/login/Login.json") }
+    @objc static var registerUrl: String { baseUrl.appending("api/register/Register.json") }
+    @objc static var reportProjectUrl: String { baseUrl.appending("api/reportProject/reportProject.json") }
+    @objc static var termsOfUseUrl: String { baseUrl.appending("termsOfUse") }
+    @objc static var recoverPassword: String { baseUrl.appending("resetting/request") }
+    static var uploadUrl: String { baseUrl.appending("api/upload") }
+    static var downloadUrl: String { baseUrl.appending("download") }
+    static var helpUrl: String { baseUrl.appending("help") }
 
     static let connectionSearch = "search.json"
     static let connectionUpload = "upload.json"
@@ -73,15 +73,15 @@ class NetworkDefines: NSObject {
 
     // MARK: MediaLibrary
 
-    static var mediaLibraryBackgroundsIndex: String { return baseUrl.appending("/api/media/package/Backgrounds/json") }
-    static var mediaLibraryLooksIndex: String { return baseUrl.appending("/api/media/package/Looks/json") }
-    static var mediaLibrarySoundsIndex: String { return baseUrl.appending("/api/media/package/Sounds/json") }
-    static var mediaLibraryDownloadBaseUrl: String { return baseUrl.replacingOccurrences(of: "/pocketcode/", with: "") }
+    static var mediaLibraryBackgroundsIndex: String { baseUrl.appending("/api/media/package/Backgrounds/json") }
+    static var mediaLibraryLooksIndex: String { baseUrl.appending("/api/media/package/Looks/json") }
+    static var mediaLibrarySoundsIndex: String { baseUrl.appending("/api/media/package/Sounds/json") }
+    static var mediaLibraryDownloadBaseUrl: String { baseUrl.replacingOccurrences(of: "/pocketcode/", with: "") }
 
     // MARK: FeaturedProjectStoreViewController
 
-    static var connectionHost: String { return baseUrl.appending("api/projects") }
-    static var featuredImageBaseUrl: String { return baseUrl.replacingOccurrences(of: "/pocketcode/", with: "/") }
+    static var connectionHost: String { baseUrl.appending("api/projects") }
+    static var featuredImageBaseUrl: String { baseUrl.replacingOccurrences(of: "/pocketcode/", with: "/") }
     static let chartProjectsMaxResults = 10
     static let recentProjectsMaxResults = 20
     static let searchStoreMaxResults = 50

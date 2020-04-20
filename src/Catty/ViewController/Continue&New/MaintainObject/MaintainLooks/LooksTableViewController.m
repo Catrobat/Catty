@@ -482,7 +482,6 @@
     picker.mediaTypes = @[(NSString*)kUTTypeImage];
     picker.allowsEditing = NO;
     picker.delegate = self;
-    picker.navigationBar.tintColor = UIColor.navTint;
     [self presentViewController:picker animated:YES completion:nil];
 }
 
@@ -916,7 +915,9 @@
         if(authStatus == AVAuthorizationStatusNotDetermined){
             [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
                 if(granted){
-                    [self presentImagePicker:pickerType];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self presentImagePicker:pickerType];
+                    });
                     return;
                 }
             }];

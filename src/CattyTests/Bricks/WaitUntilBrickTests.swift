@@ -80,6 +80,27 @@ final class WaitUntilBrickTests: XMLAbstractTest {
         XCTAssertFalse(conditionResult, "Condition should have returned false.")
     }
 
+    func testMutableCopy() {
+        var brick = WaitUntilBrick()
+        brick.waitCondition = Formula(float: 0)
+
+        var copiedBrick: WaitUntilBrick = brick.mutableCopy(with: CBMutableCopyContext(), andErrorReporting: true) as! WaitUntilBrick
+
+        XCTAssertTrue(brick.isEqual(to: copiedBrick))
+        XCTAssertFalse(brick === copiedBrick)
+        XCTAssertTrue(brick.waitCondition.isEqual(to: copiedBrick.waitCondition))
+        XCTAssertFalse(brick.waitCondition === copiedBrick.waitCondition)
+
+        brick = WaitUntilBrick()
+        brick.waitCondition = Formula(float: 1)
+
+        copiedBrick = brick.mutableCopy(with: CBMutableCopyContext(), andErrorReporting: true) as! WaitUntilBrick
+
+        XCTAssertTrue(brick.waitCondition.isEqual(to: copiedBrick.waitCondition))
+        XCTAssertFalse(brick.waitCondition === copiedBrick.waitCondition)
+
+    }
+
     private func createPredicate(variable: UserVariable, shouldNotBeEqual: NSNumber, forSeconds: Double) -> NSPredicate {
         let stopTime = Date().addingTimeInterval(TimeInterval(forSeconds))
         return NSPredicate(block: { _, _ in

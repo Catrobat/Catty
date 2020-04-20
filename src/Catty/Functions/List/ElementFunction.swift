@@ -26,18 +26,18 @@ class ElementFunction: DoubleParameterFunction {
     static var defaultValue = "" as AnyObject
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = false
-    static let position = 250
+    static let position = 40
 
     func tag() -> String {
-        return type(of: self).tag
+        type(of: self).tag
     }
 
     func firstParameter() -> FunctionParameter {
-        return .number(defaultValue: 1)
+        .number(defaultValue: 1)
     }
 
     func secondParameter() -> FunctionParameter {
-        return .list(defaultValue: "list name")
+        .list(defaultValue: "list name")
     }
 
     func value(firstParameter: AnyObject?, secondParameter: AnyObject?) -> AnyObject {
@@ -56,6 +56,6 @@ class ElementFunction: DoubleParameterFunction {
     }
 
     func formulaEditorSections() -> [FormulaEditorSection] {
-        return [.math(position: (type(of: self).position))]
+        [.math(position: (type(of: self).position))]
     }
 }

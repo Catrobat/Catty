@@ -27,6 +27,6 @@ import Foundation
 
 class MockAudioPlayerFactory: AudioPlayerFactory {
     func createAudioPlayer(fileName: String, filePath: String) -> AudioPlayer? {
-        return AudioPlayerMock()
+        AudioPlayerMock()
     }
 }

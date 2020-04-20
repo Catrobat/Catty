@@ -22,8 +22,8 @@
 
 @objc extension ScenePresenterViewController {
 
-    public static var previewImageWidth: CGFloat { return UIScreen.main.bounds.width }
-    public static var previewImageHeight: CGFloat { return previewImageWidth }
+    public static var previewImageWidth: CGFloat { UIScreen.main.bounds.width }
+    public static var previewImageHeight: CGFloat { previewImageWidth }
 
     @objc(takeAutomaticScreenshotForSKView: andProject:)
     func takeAutomaticScreenshot(for skView: SKView, and project: Project) {

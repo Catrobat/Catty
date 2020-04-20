@@ -24,7 +24,7 @@ import XCTest
 
 extension XCUIElement {
     func staticTextBeginsWith(_ queryString: String) -> XCUIElement {
-        return staticTextBeginsWith(queryString, ignoreLeadingWhiteSpace: false)
+        staticTextBeginsWith(queryString, ignoreLeadingWhiteSpace: false)
     }
 
     func staticTextBeginsWith(_ queryString: String, ignoreLeadingWhiteSpace: Bool) -> XCUIElement {
@@ -58,7 +58,7 @@ extension XCUIElement {
 
 extension XCUIElementQuery {
     func staticTextBeginsWith(_ queryString: String) -> XCUIElement {
-        return staticTextBeginsWith(queryString, ignoreLeadingWhiteSpace: false)
+        staticTextBeginsWith(queryString, ignoreLeadingWhiteSpace: false)
     }
 
     func staticTextBeginsWith(_ queryString: String, ignoreLeadingWhiteSpace: Bool) -> XCUIElement {
@@ -71,7 +71,7 @@ extension XCUIElementQuery {
     }
 
     func identifierTextBeginsWith(_ queryString: String) -> XCUIElementQuery {
-        return self.containing(NSPredicate(format: "label BEGINSWITH '"+queryString+"'"))
+        self.containing(NSPredicate(format: "label BEGINSWITH '"+queryString+"'"))
     }
 
     func staticTextEquals(_ queryString: String, ignoreLeadingWhiteSpace: Bool) -> XCUIElement {

@@ -48,10 +48,10 @@ final class ObjectStringSensorMock: SensorMock, ObjectStringSensor {
     }
 
     static func rawValue(for spriteObject: SpriteObject) -> String {
-        return mockedValue
+        mockedValue
     }
 
     static func convertToStandardized(rawValue: String, for spriteObject: SpriteObject) -> String {
-        return rawValue
+        rawValue
     }
 }

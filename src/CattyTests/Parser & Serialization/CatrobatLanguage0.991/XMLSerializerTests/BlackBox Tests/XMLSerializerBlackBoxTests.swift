@@ -120,4 +120,8 @@ final class XMLSerializerBlackBoxTests: XMLAbstractTest {
     func testLogicBricks() {
         self.testParseXMLAndSerializeProjectAndCompareXML(xmlFile: "LogicBricks_0991")
     }
+
+    func testDisabledBricks() {
+        self.testParseXMLAndSerializeProjectAndCompareXML(xmlFile: "DisabledBricks_0991")
+    }
 }

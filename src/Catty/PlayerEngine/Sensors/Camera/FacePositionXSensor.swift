@@ -25,7 +25,7 @@ class FacePositionXSensor: DeviceSensor {
     static let tag = "FACE_X_POSITION"
     static let name = kUIFESensorFaceX
     static let defaultRawValue = 0.0
-    static let position = 210
+    static let position = 230
     static let requiredResource = ResourceType.faceDetection
 
     let getFaceDetectionManager: () -> FaceDetectionManagerProtocol?
@@ -37,7 +37,7 @@ class FacePositionXSensor: DeviceSensor {
     }
 
     func tag() -> String {
-        return type(of: self).tag
+        type(of: self).tag
     }
 
     func rawValue() -> Double {
@@ -54,6 +54,6 @@ class FacePositionXSensor: DeviceSensor {
     }
 
     func formulaEditorSections(for spriteObject: SpriteObject) -> [FormulaEditorSection] {
-        return [.device(position: type(of: self).position)]
+        [.device(position: type(of: self).position)]
     }
 }

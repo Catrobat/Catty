@@ -31,11 +31,11 @@ open class BluetoothDevice: Peripheral {
     }
 
     open func getName() -> String {
-        return "BluetoothDevice"
+        "BluetoothDevice"
     }
 
     open func getBluetoothDeviceUUID() -> CBUUID {
-        return CBUUID.init(string: "TEST")
+        CBUUID.init(string: "TEST")
     }
     //
     //    override public func peripheral(peri: CBPeripheral, didDiscoverCharacteristicsForService service: CBService, error: NSError?) {

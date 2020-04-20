@@ -37,7 +37,6 @@ import UIKit
         let selectedTitleColor = UIColor.navTint
 
         self.segmentedPager.backgroundColor = UIColor.navBar
-        self.navigationController?.navigationBar.tintColor = UIColor.navTint
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: navigationTitleColor]
         // Segmented Control customization
         self.segmentedPager.segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocation.down
@@ -61,7 +60,7 @@ import UIKit
     }
 
     override func segmentedPager(_ segmentedPager: MXSegmentedPager, titleForSectionAt index: Int) -> String {
-        return [klocalizedBluetoothKnown, klocalizedBluetoothSearch][index];//
+        [klocalizedBluetoothKnown, klocalizedBluetoothSearch][index];//
     }
 
     override func segmentedPager(_ segmentedPager: MXSegmentedPager, viewControllerForPageAt index: Int) -> UIViewController {

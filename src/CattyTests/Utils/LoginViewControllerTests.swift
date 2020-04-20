@@ -49,6 +49,12 @@ class LoginViewControllerTests: XCTestCase {
         XCTAssertEqual(kLocalizedAuthenticationFailed, loginViewController.errorMessage!)
     }
 
+    func testServerForUserNotExistingStatusCode() {
+        let statusUserNotExisting = ["statusCode": "803"]
+        loginViewController.handleLoginResponse(with: dataMock(status_code: statusUserNotExisting), andResponse: nil)
+        XCTAssertEqual(kLocalizedAuthenticationFailed, loginViewController.errorMessage!)
+    }
+
     func testServerForStatusCodeOK() {
         let statusOk = ["statusCode": "200"]
         loginViewController.handleLoginResponse(with: dataMock(status_code: statusOk), andResponse: nil)

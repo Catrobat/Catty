@@ -35,15 +35,15 @@ class TestCentralManager: CMWrapper {
     var state: ManagerState
 
     var isOn: Bool {
-        return self.state == ManagerState.poweredOn
+        self.state == ManagerState.poweredOn
     }
 
     var isOff: Bool {
-        return self.state == ManagerState.poweredOff
+        self.state == ManagerState.poweredOff
     }
 
     var peripherals: [TestPeripheral] {
-        return []
+        []
     }
 
     init(state: ManagerState = .poweredOn) {
@@ -61,7 +61,7 @@ class TestCentralManager: CMWrapper {
     }
 
     func retrievePeripheralsWithIdentifiers(_ uuids: [UUID]) -> [CBPeripheral] {
-        return [CBPeripheral]()
+        [CBPeripheral]()
     }
 
 }
@@ -160,7 +160,7 @@ final class TestCharacteristic: CharacteristicWrapper {
     let helper = CharacteristicImplementation<TestCharacteristic>()
 
     var uuid: CBUUID {
-        return CBUUID(string: "2f0a0017-69aa-f316-3e78-4194989a6c1a")
+        CBUUID(string: "2f0a0017-69aa-f316-3e78-4194989a6c1a")
     }
 
     init (propertyEnabled: Bool = true) {
@@ -168,27 +168,27 @@ final class TestCharacteristic: CharacteristicWrapper {
     }
 
     var name: String {
-        return "Mock"
+        "Mock"
     }
 
     var isNotifying: Bool {
-        return self._isNotifying
+        self._isNotifying
     }
 
     var stringValues: [String] {
-        return self._stringValues
+        self._stringValues
     }
 
     var afterDiscoveredPromise: StreamPromise<TestCharacteristic>? {
-        return self._afterDiscoveredPromise
+        self._afterDiscoveredPromise
     }
 
     func stringValue(_ data: Data?) -> [String: String]? {
-        return self._stringValue
+        self._stringValue
     }
 
     func dataFromStringValue(_ stringValue: [String: String]) -> Data? {
-        return self._dataFromStringValue
+        self._dataFromStringValue
     }
 
     func setNotifyValue(_ state: Bool) {
@@ -196,7 +196,7 @@ final class TestCharacteristic: CharacteristicWrapper {
     }
 
     func propertyEnabled(_ property: CBCharacteristicProperties) -> Bool {
-        return self._propertyEnabled
+        self._propertyEnabled
     }
 
     func readValueForCharacteristic() {

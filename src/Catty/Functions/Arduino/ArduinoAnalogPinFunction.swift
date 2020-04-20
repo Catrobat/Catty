@@ -36,11 +36,11 @@
     }
 
     func tag() -> String {
-        return type(of: self).tag
+        type(of: self).tag
     }
 
     func firstParameter() -> FunctionParameter {
-        return .number(defaultValue: 0)
+        .number(defaultValue: 0)
     }
 
     func value(parameter: AnyObject?) -> Double {

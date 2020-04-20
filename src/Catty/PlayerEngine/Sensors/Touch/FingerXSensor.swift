@@ -26,7 +26,7 @@
     static let name = kUIFESensorFingerX
     static let defaultRawValue = 0.0
     static let requiredResource = ResourceType.touchHandler
-    static let position = 130
+    static let position = 20
 
     let getTouchManager: () -> TouchManagerProtocol?
 
@@ -35,7 +35,7 @@
     }
 
     func tag() -> String {
-        return type(of: self).tag
+        type(of: self).tag
     }
 
     func rawValue() -> Double {
@@ -49,6 +49,6 @@
     }
 
     func formulaEditorSections(for spriteObject: SpriteObject) -> [FormulaEditorSection] {
-        return [.device(position: type(of: self).position)]
+        [.device(position: type(of: self).position)]
     }
 }

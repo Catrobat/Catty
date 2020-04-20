@@ -30,12 +30,13 @@
 #import "CBXMLSerializerContext.h"
 #import "CBXMLParserHelper.h"
 #import "CBXMLSerializerHelper.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation ShowTextBrick (CBXMLHandler)
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLParserContext*)context
 {
-    NSUInteger childCount = [xmlElement.childrenWithoutComments count];
+    NSUInteger childCount = [xmlElement.childrenWithoutCommentsAndCommentedOutTag count];
     GDataXMLElement *userVariableElement = nil;
     
     [CBXMLParserHelper validateXMLElement:xmlElement forFormulaListWithTotalNumberOfFormulas:2];
@@ -82,9 +83,7 @@
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context
 {
-    NSUInteger indexOfBrick = [CBXMLSerializerHelper indexOfElement:self inArray:context.brickList];
-    GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" xPathIndex:(indexOfBrick+1) context:context];
-    [brick addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:@"ShowTextBrick"]];
+    GDataXMLElement *brick = [super xmlElementForBrickType:@"ShowTextBrick" withContext:context];
     GDataXMLElement *formulaList = [GDataXMLElement elementWithName:@"formulaList" context:context];
     GDataXMLElement *formula = [self.yFormula xmlElementWithContext:context];
     [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"Y_POSITION"]];

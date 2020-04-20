@@ -34,7 +34,7 @@ class LibraryCategoryCollectionReusableView: UICollectionReusableView {
 
     var title: String {
         get {
-            return titleLabel.text!
+            titleLabel.text!
         }
         set {
             titleLabel.text = newValue

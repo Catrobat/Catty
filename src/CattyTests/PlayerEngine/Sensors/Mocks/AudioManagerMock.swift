@@ -49,10 +49,10 @@ final class AudioManagerMock: AudioManagerProtocol {
     }
 
     func loudness() -> Double? {
-        return mockedLoudnessInDecibels
+        mockedLoudnessInDecibels
     }
 
     func loudnessAvailable() -> Bool {
-        return isAvailable
+        isAvailable
     }
 }

@@ -26,18 +26,18 @@ class JoinFunction: DoubleParameterStringFunction {
     static var defaultValue = ""
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = true
-    static let position = 230
+    static let position = 80
 
     func tag() -> String {
-        return type(of: self).tag
+        type(of: self).tag
     }
 
     func firstParameter() -> FunctionParameter {
-        return .string(defaultValue: "hello ")
+        .string(defaultValue: "hello ")
     }
 
     func secondParameter() -> FunctionParameter {
-        return .string(defaultValue: "world")
+        .string(defaultValue: "world")
     }
 
     func value(firstParameter: AnyObject?, secondParameter: AnyObject?) -> String {
@@ -47,6 +47,6 @@ class JoinFunction: DoubleParameterStringFunction {
     }
 
     func formulaEditorSections() -> [FormulaEditorSection] {
-        return [.math(position: type(of: self).position)]
+        [.math(position: type(of: self).position)]
     }
 }

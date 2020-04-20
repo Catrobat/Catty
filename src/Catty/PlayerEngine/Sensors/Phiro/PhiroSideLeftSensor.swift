@@ -27,7 +27,7 @@
     static let defaultRawValue = 0.0
     static let requiredResource = ResourceType.bluetoothPhiro
     static let pinNumber = 4
-    static let position = 320
+    static let position = 340
 
     let getBluetoothService: () -> BluetoothService?
 
@@ -36,15 +36,15 @@
     }
 
     func tag() -> String {
-        return type(of: self).tag
+        type(of: self).tag
     }
 
     func rawValue() -> Double {
-        return self.getBluetoothService()?.getSensorPhiro()?.getSensorValue(type(of: self).pinNumber) ?? type(of: self).defaultRawValue
+        self.getBluetoothService()?.getSensorPhiro()?.getSensorValue(type(of: self).pinNumber) ?? type(of: self).defaultRawValue
     }
 
     func convertToStandardized(rawValue: Double) -> Double {
-        return rawValue
+        rawValue
     }
 
     func formulaEditorSections(for spriteObject: SpriteObject) -> [FormulaEditorSection] {

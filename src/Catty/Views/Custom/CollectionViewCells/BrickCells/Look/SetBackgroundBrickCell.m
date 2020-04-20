@@ -41,7 +41,7 @@
 
 - (NSArray<NSString*>*)parameters
 {
-    return [[NSArray alloc] initWithObjects:@"{SOUND}", nil];
+    return [[NSArray alloc] initWithObjects:@"{LOOK}", nil];
 }
 
 - (NSString*)brickTitleForBackground:(BOOL)isBackground andInsertionScreen:(BOOL)isInsertion

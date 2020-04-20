@@ -26,18 +26,18 @@ class ContainsFunction: DoubleParameterDoubleFunction {
     static var defaultValue = 0.0
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = false
-    static let position = 260
+    static let position = 60
 
     func tag() -> String {
-        return type(of: self).tag
+        type(of: self).tag
     }
 
     func firstParameter() -> FunctionParameter {
-        return .list(defaultValue: "list name")
+        .list(defaultValue: "list name")
     }
 
     func secondParameter() -> FunctionParameter {
-        return .number(defaultValue: 1)
+        .number(defaultValue: 1)
     }
 
     func value(firstParameter: AnyObject?, secondParameter: AnyObject?) -> Double {
@@ -60,6 +60,6 @@ class ContainsFunction: DoubleParameterDoubleFunction {
     }
 
     func formulaEditorSections() -> [FormulaEditorSection] {
-        return [.math(position: (type(of: self).position))]
+        [.math(position: (type(of: self).position))]
     }
 }

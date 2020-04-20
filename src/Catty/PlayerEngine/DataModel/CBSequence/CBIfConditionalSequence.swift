@@ -41,7 +41,7 @@ final class CBIfConditionalSequence: CBConditionalSequence {
     // MARK: - Operations
 
     override func isEmpty() -> Bool {
-        return super.isEmpty() && (elseSequenceList == nil || elseSequenceList!.isEmpty())
+        super.isEmpty() && (elseSequenceList == nil || elseSequenceList!.isEmpty())
     }
 
     override func accept(_ visitor: CBOptimizeSequenceVisitorProtocol) {
