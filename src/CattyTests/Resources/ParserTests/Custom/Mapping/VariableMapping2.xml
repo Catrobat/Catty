@@ -31,6 +31,7 @@
         <script type="StartScript">
           <brickList>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>NUMBER</type>
@@ -40,6 +41,7 @@
               <userVariable>local</userVariable>
             </brick>
             <brick type="ChangeVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE_CHANGE">
                   <type>NUMBER</type>
@@ -49,6 +51,7 @@
               <userVariable reference="../../brick/userVariable"/>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <isUserScript>false</isUserScript>
         </script>
       </scriptList>
@@ -66,6 +69,7 @@
         <script type="StartScript">
           <brickList>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>NUMBER</type>
@@ -75,6 +79,7 @@
               <userVariable>local</userVariable>
             </brick>
             <brick type="ChangeVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE_CHANGE">
                   <type>NUMBER</type>
@@ -84,6 +89,7 @@
               <userVariable reference="../../brick/userVariable"/>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <isUserScript>false</isUserScript>
         </script>
       </scriptList>

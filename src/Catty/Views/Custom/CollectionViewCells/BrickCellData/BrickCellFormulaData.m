@@ -130,6 +130,8 @@
     self.border.lineWidth = BORDER_WIDTH;
     [self.border setOpacity:BORDER_TRANSPARENCY];
     
+    
+    
     if (isActive) {
         self.border.strokeColor = UIColor.background.CGColor;
         self.border.shadowColor = UIColor.clearColor.CGColor;
@@ -137,8 +139,8 @@
         self.border.shadowOpacity = 1.0;
         self.border.shadowOffset = CGSizeMake(0, 0);
     } else {
-        UIColor *borderColor = [[[[BrickManager class] sharedBrickManager] categoryForType:self.brickCell.scriptOrBrick.category] strokeColor];
-        self.border.strokeColor = borderColor.CGColor;
+        BrickCategory *category = [[[BrickManager class] sharedBrickManager] categoryForType:self.brickCell.scriptOrBrick.category];
+        self.border.strokeColor = self.brickCell.scriptOrBrick.isDisabled ? [category strokeColorDisabled].CGColor : category.strokeColor.CGColor;
     }
     
     [self.layer addSublayer:self.border];

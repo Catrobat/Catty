@@ -58,6 +58,9 @@
 /* No comment provided by engineer. */
 "Allow the app to control Arduino boards" = "السماح للتطبيق بالتحكم في لوحات الاردوينو";
 
+/* No comment provided by engineer. */
+"Allow the app to send crash reports automatically" = "السماح للتطبيق بإرسال تقارير الأعطال تلقائياً";
+
 /* paint */
 "Alpha" = "ألفا";
 
@@ -425,6 +428,18 @@
 "direction" = "الاتجاه";
 
 /* No comment provided by engineer. */
+"Disable brick" = "Disable brick";
+
+/* No comment provided by engineer. */
+"Disable condition" = "Disable condition";
+
+/* No comment provided by engineer. */
+"Disable loop" = "Disable loop";
+
+/* No comment provided by engineer. */
+"Disable script" = "تعطيل النص البرمجي";
+
+/* No comment provided by engineer. */
 "Disagree" = "غير موافق";
 
 /* No comment provided by engineer. */
@@ -510,6 +525,18 @@
 
 /* No comment provided by engineer. */
 "Empty input!" = "Empty input!";
+
+/* No comment provided by engineer. */
+"Enable brick" = "Enable brick";
+
+/* No comment provided by engineer. */
+"Enable condition" = "Enable condition";
+
+/* No comment provided by engineer. */
+"Enable loop" = "Enable loop";
+
+/* No comment provided by engineer. */
+"Enable script" = "تفعيل النص البرمجي";
 
 /* No comment provided by engineer. */
 "End if" = "نهاية إذا";
@@ -1350,6 +1377,9 @@
 
 /* bluetooth */
 "Select Phiro" = "حدد روبوت أطفال";
+
+/* No comment provided by engineer. */
+"Sending anonymous crash reports" = "إرسال تقارير الأعطال الغير معروفة";
 
 /* No comment provided by engineer. */
 "Sensors" = "الاستشعار";

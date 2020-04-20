@@ -58,6 +58,9 @@
 /* No comment provided by engineer. */
 "Allow the app to control Arduino boards" = "允许控制Arduino控制板";
 
+/* No comment provided by engineer. */
+"Allow the app to send crash reports automatically" = "允许自动发送故障报告";
+
 /* paint */
 "Alpha" = "透明度";
 
@@ -425,6 +428,18 @@
 "direction" = "方向";
 
 /* No comment provided by engineer. */
+"Disable brick" = "禁用积木";
+
+/* No comment provided by engineer. */
+"Disable condition" = "Disable condition";
+
+/* No comment provided by engineer. */
+"Disable loop" = "Disable loop";
+
+/* No comment provided by engineer. */
+"Disable script" = "禁用脚本";
+
+/* No comment provided by engineer. */
 "Disagree" = "不同意";
 
 /* No comment provided by engineer. */
@@ -510,6 +525,18 @@
 
 /* No comment provided by engineer. */
 "Empty input!" = "Empty input!";
+
+/* No comment provided by engineer. */
+"Enable brick" = "启用积木";
+
+/* No comment provided by engineer. */
+"Enable condition" = "Enable condition";
+
+/* No comment provided by engineer. */
+"Enable loop" = "Enable loop";
+
+/* No comment provided by engineer. */
+"Enable script" = "启用脚本";
 
 /* No comment provided by engineer. */
 "End if" = "如果结束";
@@ -1352,6 +1379,9 @@
 "Select Phiro" = "Select Phiro";
 
 /* No comment provided by engineer. */
+"Sending anonymous crash reports" = "发送匿名故障报告";
+
+/* No comment provided by engineer. */
 "Sensors" = "Sensors";
 
 /* No comment provided by engineer. */
@@ -1493,7 +1523,7 @@
 "Syntax Error!" = "Syntax Error!";
 
 /* No comment provided by engineer. */
-"Tap \"+\" to add actors or objects" = "Tap \"+\" to add actors or objects";
+"Tap \"+\" to add actors or objects" = "点击 \"+\" 添加演员或对象";
 
 /* No comment provided by engineer. */
 "Tap \"+\" to add backgrounds" = "Tap \"+\" to add backgrounds";
@@ -1733,7 +1763,7 @@
 "weekday" = "平日";
 
 /* No comment provided by engineer. */
-"Welcome!" = "Welcome!";
+"Welcome!" = "欢迎!";
 
 /* No comment provided by engineer. */
 "When project started" = "When project started";

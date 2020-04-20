@@ -31,6 +31,7 @@
         <script type="StartScript">
           <brickList>
             <brick type="FlashBrick">
+              <commentedOut>false</commentedOut>
               <spinnerSelectionID>1</spinnerSelectionID>
               <spinnerValues>
                 <string>off</string>
@@ -38,15 +39,21 @@
               </spinnerValues>
             </brick>
             <brick type="FlashBrick">
+              <commentedOut>false</commentedOut>
               <spinnerSelectionID>0</spinnerSelectionID>
               <spinnerValues>
                 <string>off</string>
                 <string>on</string>
               </spinnerValues>
             </brick>
-            <brick type="LedOnBrick"/>
-            <brick type="LedOffBrick"/>
+            <brick type="LedOnBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="LedOffBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <isUserScript>false</isUserScript>
         </script>
       </scriptList>

@@ -27,6 +27,7 @@
 #import "CBXMLSerializerContext.h"
 #import "CBXMLParserContext.h"
 #import "CBXMLSerializerHelper.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation ChangeTransparencyByNBrick (CBXMLHandler)
 
@@ -42,9 +43,7 @@
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context
 {
-    NSUInteger indexOfBrick = [CBXMLSerializerHelper indexOfElement:self inArray:context.brickList];
-    GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" xPathIndex:(indexOfBrick+1) context:context];
-    [brick addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:@"ChangeTransparencyByNBrick"]];
+    GDataXMLElement *brick = [super xmlElementForBrickType:@"ChangeTransparencyByNBrick" withContext:context];
     GDataXMLElement *formulaList = [GDataXMLElement elementWithName:@"formulaList" context:context];
     GDataXMLElement *formula = [self.changeTransparency xmlElementWithContext:context];
     [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"TRANSPARENCY_CHANGE"]];

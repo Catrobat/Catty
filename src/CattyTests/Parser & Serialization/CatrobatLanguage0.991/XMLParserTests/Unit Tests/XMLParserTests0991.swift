@@ -546,4 +546,16 @@ class XMLParserTests0991: XMLAbstractTest {
         XCTAssertEqual(playSoundAndWaitBrick.sound.name, "Bling")
         XCTAssertEqual(playSoundAndWaitBrick.sound.fileName, "bling_short.mp3")
     }
+
+    func testDisabledBricks() {
+        let project = self.getProjectForXML(xmlFile: "DisabledBricks_0991")
+        let object = project.objectList.object(at: 0) as! SpriteObject
+        let startScript = object.scriptList.object(at: 0) as! Script
+
+        let disabledBrick = startScript.brickList.object(at: 0) as! SetVariableBrick
+        let enabledBrick = startScript.brickList?.object(at: 1) as! ChangeVariableBrick
+
+        XCTAssertTrue(disabledBrick.isDisabled)
+        XCTAssertFalse(enabledBrick.isDisabled)
+    }
 }

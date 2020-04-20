@@ -395,8 +395,25 @@
     CGFloat height = [[self class] cellHeight];
     CGFloat width = [Util screenWidth];
     BrickCategory *category = [[[BrickManager class] sharedBrickManager] categoryForType:self.scriptOrBrick.category];
+    
     UIColor *fillColor = category.color;
     UIColor *strokeColor = category.strokeColor;
+    UIColor *grayColor = [category colorDisabled];
+    UIColor *grayStrokeColor = [category strokeColorDisabled];
+        
+    if ([self isScriptBrick]) {
+        Script *script = (Script*)[self scriptOrBrick];
+        if (script.isDisabled) {
+            fillColor = grayColor;
+            strokeColor = grayStrokeColor;
+        }
+    } else {
+        Brick *brick = (Brick*)[self scriptOrBrick];
+        if (brick.isDisabled) {
+            fillColor = grayColor;
+            strokeColor = grayStrokeColor;
+        }
+    }
     kBrickShapeType shapeType = [self brickShapeType];
     
     if (shapeType == kBrickShapeSquareSmall) {

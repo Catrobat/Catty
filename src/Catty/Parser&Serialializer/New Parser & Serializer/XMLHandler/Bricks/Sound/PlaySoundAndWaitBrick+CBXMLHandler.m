@@ -64,9 +64,7 @@
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context
 {
-    NSUInteger indexOfBrick = [CBXMLSerializerHelper indexOfElement:self inArray:context.brickList];
-    GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" xPathIndex:(indexOfBrick+1) context:context];
-    [brick addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:@"PlaySoundAndWaitBrick"]];
+    GDataXMLElement *brick = [super xmlElementForBrickType:@"PlaySoundAndWaitBrick" withContext:context];
     if (self.sound) {
         if([CBXMLSerializerHelper indexOfElement:self.sound inArray:context.spriteObject.soundList] == NSNotFound) {
             self.sound = nil;

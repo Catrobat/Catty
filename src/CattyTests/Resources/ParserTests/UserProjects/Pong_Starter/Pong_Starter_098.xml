@@ -40,6 +40,7 @@ REMIX TIPS:
         <script type="StartScript">
           <brickList>
             <brick type="SetSizeToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE">
                   <type>NUMBER</type>
@@ -48,9 +49,11 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <isUserScript>false</isUserScript>
         </script>
       </scriptList>
@@ -68,9 +71,11 @@ REMIX TIPS:
         <script type="StartScript">
           <brickList>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
             <brick type="SetYBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <rightChild>
@@ -82,8 +87,11 @@ REMIX TIPS:
                 </formula>
               </formulaList>
             </brick>
-            <brick type="ForeverBrick"/>
+            <brick type="ForeverBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>SENSOR</type>
@@ -94,6 +102,7 @@ REMIX TIPS:
               <userVariable>paddle_x_position</userVariable>
             </brick>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>NUMBER</type>
@@ -103,8 +112,11 @@ REMIX TIPS:
               <inUserBrick>false</inUserBrick>
               <userVariable>paddle_lenght</userVariable>
             </brick>
-            <brick type="IfOnEdgeBounceBrick"/>
+            <brick type="IfOnEdgeBounceBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="ChangeXByNBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="X_POSITION_CHANGE">
                   <rightChild>
@@ -116,8 +128,11 @@ REMIX TIPS:
                 </formula>
               </formulaList>
             </brick>
-            <brick type="LoopEndlessBrick"/>
+            <brick type="LoopEndlessBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <isUserScript>false</isUserScript>
         </script>
       </scriptList>
@@ -135,6 +150,7 @@ REMIX TIPS:
         <script type="StartScript">
           <brickList>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <type>NUMBER</type>
@@ -147,6 +163,7 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="PointInDirectionBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="DEGREES">
                   <type>NUMBER</type>
@@ -155,10 +172,14 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
-            <brick type="ForeverBrick"/>
+            <brick type="ForeverBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="IfLogicBeginBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="IF_CONDITION">
                   <leftChild>
@@ -174,8 +195,11 @@ REMIX TIPS:
                 </formula>
               </formulaList>
             </brick>
-            <brick type="IfOnEdgeBounceBrick"/>
+            <brick type="IfOnEdgeBounceBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="MoveNStepsBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="STEPS">
                   <type>NUMBER</type>
@@ -183,16 +207,26 @@ REMIX TIPS:
                 </formula>
               </formulaList>
             </brick>
-            <brick type="IfLogicElseBrick"/>
-            <brick type="IfLogicEndBrick"/>
-            <brick type="LoopEndlessBrick"/>
+            <brick type="IfLogicElseBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="IfLogicEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="LoopEndlessBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <isUserScript>false</isUserScript>
         </script>
         <script type="StartScript">
           <brickList>
-            <brick type="ForeverBrick"/>
+            <brick type="ForeverBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="IfLogicBeginBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="IF_CONDITION">
                   <leftChild>
@@ -272,6 +306,7 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="TurnLeftBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TURN_LEFT_DEGREES">
                   <type>NUMBER</type>
@@ -279,16 +314,26 @@ REMIX TIPS:
                 </formula>
               </formulaList>
             </brick>
-            <brick type="IfLogicElseBrick"/>
-            <brick type="IfLogicEndBrick"/>
-            <brick type="LoopEndlessBrick"/>
+            <brick type="IfLogicElseBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="IfLogicEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="LoopEndlessBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <isUserScript>false</isUserScript>
         </script>
         <script type="StartScript">
           <brickList>
-            <brick type="ForeverBrick"/>
+            <brick type="ForeverBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="IfLogicBeginBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="IF_CONDITION">
                   <leftChild>
@@ -309,6 +354,7 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>FUNCTION</type>
@@ -318,9 +364,14 @@ REMIX TIPS:
               <inUserBrick>false</inUserBrick>
               <userVariable>stop</userVariable>
             </brick>
-            <brick type="IfLogicElseBrick"/>
-            <brick type="IfLogicEndBrick"/>
+            <brick type="IfLogicElseBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="IfLogicEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="MoveNStepsBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="STEPS">
                   <type>NUMBER</type>
@@ -328,12 +379,16 @@ REMIX TIPS:
                 </formula>
               </formulaList>
             </brick>
-            <brick type="LoopEndlessBrick"/>
+            <brick type="LoopEndlessBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <isUserScript>false</isUserScript>
         </script>
         <script type="StartScript">
           <brickList/>
+          <commentedOut>false</commentedOut>
           <isUserScript>false</isUserScript>
         </script>
       </scriptList>

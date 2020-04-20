@@ -33,4 +33,18 @@
         self.color = color
         self.strokeColor = strokeColor
     }
+
+    @objc public func colorDisabled() -> UIColor {
+        getGrayScaleFromColor(color: self.color)
+    }
+
+    @objc public func strokeColorDisabled() -> UIColor {
+        getGrayScaleFromColor(color: self.strokeColor)
+    }
+
+    fileprivate func getGrayScaleFromColor(color: UIColor) -> UIColor {
+        let colorComponents: [CGFloat] = color.cgColor.components!
+        let gray: CGFloat = (colorComponents[0] + colorComponents[1] + colorComponents[2]) / 3
+        return UIColor(red: gray, green: gray, blue: gray, alpha: 1.0)
+    }
 }

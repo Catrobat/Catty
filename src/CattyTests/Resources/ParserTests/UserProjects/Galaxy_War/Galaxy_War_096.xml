@@ -40,9 +40,11 @@
         <script type="StartScript">
           <brickList>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
             <brick type="SetSizeToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE">
                   <type>NUMBER</type>
@@ -51,9 +53,11 @@
               </formulaList>
             </brick>
             <brick type="PlaySoundBrick">
+              <commentedOut>false</commentedOut>
               <sound reference="../../../../../soundList/sound"/>
             </brick>
             <brick type="WaitBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                   <type>NUMBER</type>
@@ -62,9 +66,11 @@
               </formulaList>
             </brick>
             <brick type="BroadcastBrick">
+              <commentedOut>false</commentedOut>
               <broadcastMessage>gameOver</broadcastMessage>
             </brick>
             <brick type="IfLogicBeginBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="IF_CONDITION">
                   <leftChild>
@@ -81,6 +87,7 @@
               </formulaList>
             </brick>
             <brick type="SpeakBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SPEAK">
                   <type>STRING</type>
@@ -88,8 +95,11 @@
                 </formula>
               </formulaList>
             </brick>
-            <brick type="IfLogicElseBrick"/>
+            <brick type="IfLogicElseBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="SpeakBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SPEAK">
                   <type>STRING</type>
@@ -97,14 +107,20 @@
                 </formula>
               </formulaList>
             </brick>
-            <brick type="IfLogicEndBrick"/>
+            <brick type="IfLogicEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <isUserScript>false</isUserScript>
         </script>
         <script type="StartScript">
           <brickList>
-            <brick type="ForeverBrick"/>
+            <brick type="ForeverBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="ChangeXByNBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="X_POSITION_CHANGE">
                   <leftChild>
@@ -120,13 +136,17 @@
                 </formula>
               </formulaList>
             </brick>
-            <brick type="LoopEndlessBrick"/>
+            <brick type="LoopEndlessBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <isUserScript>false</isUserScript>
         </script>
         <script type="WhenScript">
           <brickList>
             <brick type="IfLogicBeginBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="IF_CONDITION">
                   <leftChild>
@@ -143,11 +163,17 @@
               </formulaList>
             </brick>
             <brick type="BroadcastWaitBrick">
+              <commentedOut>false</commentedOut>
               <broadcastMessage>fire</broadcastMessage>
             </brick>
-            <brick type="IfLogicElseBrick"/>
-            <brick type="IfLogicEndBrick"/>
+            <brick type="IfLogicElseBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="IfLogicEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <action>Tapped</action>
         </script>
       </scriptList>
@@ -170,9 +196,11 @@
         <script type="StartScript">
           <brickList>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
             <brick type="SetSizeToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE">
                   <type>NUMBER</type>
@@ -181,6 +209,7 @@
               </formulaList>
             </brick>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <rightChild>
@@ -197,12 +226,16 @@
               </formulaList>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <isUserScript>false</isUserScript>
         </script>
         <script type="StartScript">
           <brickList>
-            <brick type="ForeverBrick"/>
+            <brick type="ForeverBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>SENSOR</type>
@@ -212,14 +245,20 @@
               <inUserBrick>false</inUserBrick>
               <userVariable>ShipX</userVariable>
             </brick>
-            <brick type="LoopEndlessBrick"/>
+            <brick type="LoopEndlessBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <isUserScript>false</isUserScript>
         </script>
         <script type="StartScript">
           <brickList>
-            <brick type="ForeverBrick"/>
+            <brick type="ForeverBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="IfLogicBeginBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="IF_CONDITION">
                   <leftChild>
@@ -240,18 +279,29 @@
               </formulaList>
             </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look[2]"/>
             </brick>
-            <brick type="IfLogicElseBrick"/>
-            <brick type="IfLogicEndBrick"/>
-            <brick type="LoopEndlessBrick"/>
+            <brick type="IfLogicElseBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="IfLogicEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="LoopEndlessBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <isUserScript>false</isUserScript>
         </script>
         <script type="StartScript">
           <brickList>
-            <brick type="ForeverBrick"/>
+            <brick type="ForeverBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="IfLogicBeginBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="IF_CONDITION">
                   <leftChild>
@@ -294,18 +344,29 @@
               </formulaList>
             </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
-            <brick type="IfLogicElseBrick"/>
-            <brick type="IfLogicEndBrick"/>
-            <brick type="LoopEndlessBrick"/>
+            <brick type="IfLogicElseBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="IfLogicEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="LoopEndlessBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <isUserScript>false</isUserScript>
         </script>
         <script type="StartScript">
           <brickList>
-            <brick type="ForeverBrick"/>
+            <brick type="ForeverBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="IfLogicBeginBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="IF_CONDITION">
                   <leftChild>
@@ -322,18 +383,29 @@
               </formulaList>
             </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look[3]"/>
             </brick>
-            <brick type="IfLogicElseBrick"/>
-            <brick type="IfLogicEndBrick"/>
-            <brick type="LoopEndlessBrick"/>
+            <brick type="IfLogicElseBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="IfLogicEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="LoopEndlessBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <isUserScript>false</isUserScript>
         </script>
         <script type="StartScript">
           <brickList>
-            <brick type="ForeverBrick"/>
+            <brick type="ForeverBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="ChangeXByNBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="X_POSITION_CHANGE">
                   <leftChild>
@@ -354,6 +426,7 @@
               </formulaList>
             </brick>
             <brick type="IfLogicBeginBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="IF_CONDITION">
                   <rightChild>
@@ -377,6 +450,7 @@
               </formulaList>
             </brick>
             <brick type="SetXBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="X_POSITION">
                   <type>NUMBER</type>
@@ -384,9 +458,14 @@
                 </formula>
               </formulaList>
             </brick>
-            <brick type="IfLogicElseBrick"/>
-            <brick type="IfLogicEndBrick"/>
+            <brick type="IfLogicElseBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="IfLogicEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="IfLogicBeginBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="IF_CONDITION">
                   <leftChild>
@@ -403,6 +482,7 @@
               </formulaList>
             </brick>
             <brick type="SetXBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="X_POSITION">
                   <rightChild>
@@ -414,10 +494,17 @@
                 </formula>
               </formulaList>
             </brick>
-            <brick type="IfLogicElseBrick"/>
-            <brick type="IfLogicEndBrick"/>
-            <brick type="LoopEndlessBrick"/>
+            <brick type="IfLogicElseBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="IfLogicEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="LoopEndlessBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <isUserScript>false</isUserScript>
         </script>
       </scriptList>
@@ -438,8 +525,11 @@
       <scriptList>
         <script type="StartScript">
           <brickList>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>NUMBER</type>
@@ -449,8 +539,11 @@
               <inUserBrick>false</inUserBrick>
               <userVariable>beamReady</userVariable>
             </brick>
-            <brick type="ForeverBrick"/>
+            <brick type="ForeverBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>SENSOR</type>
@@ -461,6 +554,7 @@
               <userVariable>laserBeamX</userVariable>
             </brick>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>SENSOR</type>
@@ -470,13 +564,17 @@
               <inUserBrick>false</inUserBrick>
               <userVariable>laserBeamY</userVariable>
             </brick>
-            <brick type="LoopEndlessBrick"/>
+            <brick type="LoopEndlessBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <isUserScript>false</isUserScript>
         </script>
         <script type="BroadcastScript">
           <brickList>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>NUMBER</type>
@@ -487,6 +585,7 @@
               <userVariable reference="../../../../script/brickList/brick[2]/userVariable"/>
             </brick>
             <brick type="SetXBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="X_POSITION">
                   <type>USER_VARIABLE</type>
@@ -495,6 +594,7 @@
               </formulaList>
             </brick>
             <brick type="SetYBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <rightChild>
@@ -506,14 +606,19 @@
                 </formula>
               </formulaList>
             </brick>
-            <brick type="ShowBrick"/>
+            <brick type="ShowBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
             <brick type="PlaySoundBrick">
+              <commentedOut>false</commentedOut>
               <sound reference="../../../../../soundList/sound"/>
             </brick>
             <brick type="GlideToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_DESTINATION">
                   <type>NUMBER</type>
@@ -529,8 +634,11 @@
                 </formula>
               </formulaList>
             </brick>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>NUMBER</type>
@@ -541,12 +649,16 @@
               <userVariable reference="../../../../script/brickList/brick[2]/userVariable"/>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>fire</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>NUMBER</type>
@@ -557,6 +669,7 @@
               <userVariable reference="../../../../script/brickList/brick[2]/userVariable"/>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>dead</receivedMessage>
         </script>
       </scriptList>
@@ -604,8 +717,11 @@
       <scriptList>
         <script type="StartScript">
           <brickList>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>NUMBER</type>
@@ -615,12 +731,18 @@
               <inUserBrick>false</inUserBrick>
               <userVariable>killCount</userVariable>
             </brick>
-            <brick type="ForeverBrick"/>
+            <brick type="ForeverBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
-            <brick type="ShowBrick"/>
+            <brick type="ShowBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <type>NUMBER</type>
@@ -645,6 +767,7 @@
               </formulaList>
             </brick>
             <brick type="GlideToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_DESTINATION">
                   <rightChild>
@@ -684,8 +807,11 @@
                 </formula>
               </formulaList>
             </brick>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="WaitBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                   <leftChild>
@@ -701,13 +827,17 @@
                 </formula>
               </formulaList>
             </brick>
-            <brick type="LoopEndlessBrick"/>
+            <brick type="LoopEndlessBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <isUserScript>false</isUserScript>
         </script>
         <script type="StartScript">
           <brickList>
             <brick type="NoteBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="NOTE">
                   <type>STRING</type>
@@ -715,8 +845,11 @@
                 </formula>
               </formulaList>
             </brick>
-            <brick type="ForeverBrick"/>
+            <brick type="ForeverBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="IfLogicBeginBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="IF_CONDITION">
                   <leftChild>
@@ -825,6 +958,7 @@
               </formulaList>
             </brick>
             <brick type="NoteBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="NOTE">
                   <type>STRING</type>
@@ -833,6 +967,7 @@
               </formulaList>
             </brick>
             <brick type="ChangeVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE_CHANGE">
                   <type>NUMBER</type>
@@ -843,12 +978,15 @@
               <userVariable reference="../../../../script/brickList/brick[2]/userVariable"/>
             </brick>
             <brick type="PlaySoundBrick">
+              <commentedOut>false</commentedOut>
               <sound reference="../../../../../soundList/sound"/>
             </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look[3]"/>
             </brick>
             <brick type="RepeatBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIMES_TO_REPEAT">
                   <type>NUMBER</type>
@@ -857,6 +995,7 @@
               </formulaList>
             </brick>
             <brick type="WaitBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                   <type>NUMBER</type>
@@ -864,10 +1003,17 @@
                 </formula>
               </formulaList>
             </brick>
-            <brick type="NextLookBrick"/>
-            <brick type="LoopEndBrick"/>
-            <brick type="HideBrick"/>
+            <brick type="NextLookBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="LoopEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <type>NUMBER</type>
@@ -884,12 +1030,20 @@
               </formulaList>
             </brick>
             <brick type="BroadcastBrick">
+              <commentedOut>false</commentedOut>
               <broadcastMessage>dead</broadcastMessage>
             </brick>
-            <brick type="IfLogicElseBrick"/>
-            <brick type="IfLogicEndBrick"/>
-            <brick type="LoopEndlessBrick"/>
+            <brick type="IfLogicElseBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="IfLogicEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="LoopEndlessBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <isUserScript>false</isUserScript>
         </script>
       </scriptList>
@@ -937,8 +1091,11 @@
       <scriptList>
         <script type="StartScript">
           <brickList>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>NUMBER</type>
@@ -948,12 +1105,18 @@
               <inUserBrick>false</inUserBrick>
               <userVariable reference="../../../../../../object[4]/scriptList/script/brickList/brick[2]/userVariable"/>
             </brick>
-            <brick type="ForeverBrick"/>
+            <brick type="ForeverBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
-            <brick type="ShowBrick"/>
+            <brick type="ShowBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <type>NUMBER</type>
@@ -978,6 +1141,7 @@
               </formulaList>
             </brick>
             <brick type="GlideToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_DESTINATION">
                   <rightChild>
@@ -1017,8 +1181,11 @@
                 </formula>
               </formulaList>
             </brick>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="WaitBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                   <leftChild>
@@ -1034,13 +1201,17 @@
                 </formula>
               </formulaList>
             </brick>
-            <brick type="LoopEndlessBrick"/>
+            <brick type="LoopEndlessBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <isUserScript>false</isUserScript>
         </script>
         <script type="StartScript">
           <brickList>
             <brick type="NoteBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="NOTE">
                   <type>STRING</type>
@@ -1048,8 +1219,11 @@
                 </formula>
               </formulaList>
             </brick>
-            <brick type="ForeverBrick"/>
+            <brick type="ForeverBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="IfLogicBeginBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="IF_CONDITION">
                   <leftChild>
@@ -1158,6 +1332,7 @@
               </formulaList>
             </brick>
             <brick type="NoteBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="NOTE">
                   <type>STRING</type>
@@ -1166,6 +1341,7 @@
               </formulaList>
             </brick>
             <brick type="ChangeVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE_CHANGE">
                   <type>NUMBER</type>
@@ -1176,12 +1352,15 @@
               <userVariable reference="../../../../../../object[4]/scriptList/script/brickList/brick[2]/userVariable"/>
             </brick>
             <brick type="PlaySoundBrick">
+              <commentedOut>false</commentedOut>
               <sound reference="../../../../../soundList/sound"/>
             </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look[3]"/>
             </brick>
             <brick type="RepeatBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIMES_TO_REPEAT">
                   <type>NUMBER</type>
@@ -1190,6 +1369,7 @@
               </formulaList>
             </brick>
             <brick type="WaitBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                   <type>NUMBER</type>
@@ -1197,10 +1377,17 @@
                 </formula>
               </formulaList>
             </brick>
-            <brick type="NextLookBrick"/>
-            <brick type="LoopEndBrick"/>
-            <brick type="HideBrick"/>
+            <brick type="NextLookBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="LoopEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <type>NUMBER</type>
@@ -1217,12 +1404,20 @@
               </formulaList>
             </brick>
             <brick type="BroadcastBrick">
+              <commentedOut>false</commentedOut>
               <broadcastMessage>dead</broadcastMessage>
             </brick>
-            <brick type="IfLogicElseBrick"/>
-            <brick type="IfLogicEndBrick"/>
-            <brick type="LoopEndlessBrick"/>
+            <brick type="IfLogicElseBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="IfLogicEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="LoopEndlessBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <isUserScript>false</isUserScript>
         </script>
       </scriptList>
@@ -1270,8 +1465,11 @@
       <scriptList>
         <script type="StartScript">
           <brickList>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>NUMBER</type>
@@ -1281,12 +1479,18 @@
               <inUserBrick>false</inUserBrick>
               <userVariable reference="../../../../../../object[4]/scriptList/script/brickList/brick[2]/userVariable"/>
             </brick>
-            <brick type="ForeverBrick"/>
+            <brick type="ForeverBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
-            <brick type="ShowBrick"/>
+            <brick type="ShowBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <type>NUMBER</type>
@@ -1311,6 +1515,7 @@
               </formulaList>
             </brick>
             <brick type="GlideToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_DESTINATION">
                   <rightChild>
@@ -1350,8 +1555,11 @@
                 </formula>
               </formulaList>
             </brick>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="WaitBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                   <leftChild>
@@ -1367,13 +1575,17 @@
                 </formula>
               </formulaList>
             </brick>
-            <brick type="LoopEndlessBrick"/>
+            <brick type="LoopEndlessBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <isUserScript>false</isUserScript>
         </script>
         <script type="StartScript">
           <brickList>
             <brick type="NoteBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="NOTE">
                   <type>STRING</type>
@@ -1381,8 +1593,11 @@
                 </formula>
               </formulaList>
             </brick>
-            <brick type="ForeverBrick"/>
+            <brick type="ForeverBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="IfLogicBeginBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="IF_CONDITION">
                   <leftChild>
@@ -1491,6 +1706,7 @@
               </formulaList>
             </brick>
             <brick type="NoteBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="NOTE">
                   <type>STRING</type>
@@ -1499,6 +1715,7 @@
               </formulaList>
             </brick>
             <brick type="ChangeVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE_CHANGE">
                   <type>NUMBER</type>
@@ -1509,12 +1726,15 @@
               <userVariable reference="../../../../../../object[4]/scriptList/script/brickList/brick[2]/userVariable"/>
             </brick>
             <brick type="PlaySoundBrick">
+              <commentedOut>false</commentedOut>
               <sound reference="../../../../../soundList/sound"/>
             </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look[3]"/>
             </brick>
             <brick type="RepeatBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIMES_TO_REPEAT">
                   <type>NUMBER</type>
@@ -1523,6 +1743,7 @@
               </formulaList>
             </brick>
             <brick type="WaitBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                   <type>NUMBER</type>
@@ -1530,10 +1751,17 @@
                 </formula>
               </formulaList>
             </brick>
-            <brick type="NextLookBrick"/>
-            <brick type="LoopEndBrick"/>
-            <brick type="HideBrick"/>
+            <brick type="NextLookBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="LoopEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <type>NUMBER</type>
@@ -1550,12 +1778,20 @@
               </formulaList>
             </brick>
             <brick type="BroadcastBrick">
+              <commentedOut>false</commentedOut>
               <broadcastMessage>dead</broadcastMessage>
             </brick>
-            <brick type="IfLogicElseBrick"/>
-            <brick type="IfLogicEndBrick"/>
-            <brick type="LoopEndlessBrick"/>
+            <brick type="IfLogicElseBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="IfLogicEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="LoopEndlessBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <isUserScript>false</isUserScript>
         </script>
       </scriptList>
@@ -1603,8 +1839,11 @@
       <scriptList>
         <script type="StartScript">
           <brickList>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>NUMBER</type>
@@ -1614,12 +1853,18 @@
               <inUserBrick>false</inUserBrick>
               <userVariable reference="../../../../../../object[4]/scriptList/script/brickList/brick[2]/userVariable"/>
             </brick>
-            <brick type="ForeverBrick"/>
+            <brick type="ForeverBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
-            <brick type="ShowBrick"/>
+            <brick type="ShowBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <type>NUMBER</type>
@@ -1644,6 +1889,7 @@
               </formulaList>
             </brick>
             <brick type="GlideToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_DESTINATION">
                   <rightChild>
@@ -1683,8 +1929,11 @@
                 </formula>
               </formulaList>
             </brick>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="WaitBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                   <leftChild>
@@ -1700,13 +1949,17 @@
                 </formula>
               </formulaList>
             </brick>
-            <brick type="LoopEndlessBrick"/>
+            <brick type="LoopEndlessBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <isUserScript>false</isUserScript>
         </script>
         <script type="StartScript">
           <brickList>
             <brick type="NoteBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="NOTE">
                   <type>STRING</type>
@@ -1714,8 +1967,11 @@
                 </formula>
               </formulaList>
             </brick>
-            <brick type="ForeverBrick"/>
+            <brick type="ForeverBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="IfLogicBeginBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="IF_CONDITION">
                   <leftChild>
@@ -1824,6 +2080,7 @@
               </formulaList>
             </brick>
             <brick type="NoteBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="NOTE">
                   <type>STRING</type>
@@ -1832,6 +2089,7 @@
               </formulaList>
             </brick>
             <brick type="ChangeVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE_CHANGE">
                   <type>NUMBER</type>
@@ -1842,12 +2100,15 @@
               <userVariable reference="../../../../../../object[4]/scriptList/script/brickList/brick[2]/userVariable"/>
             </brick>
             <brick type="PlaySoundBrick">
+              <commentedOut>false</commentedOut>
               <sound reference="../../../../../soundList/sound"/>
             </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look[3]"/>
             </brick>
             <brick type="RepeatBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIMES_TO_REPEAT">
                   <type>NUMBER</type>
@@ -1856,6 +2117,7 @@
               </formulaList>
             </brick>
             <brick type="WaitBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                   <type>NUMBER</type>
@@ -1863,10 +2125,17 @@
                 </formula>
               </formulaList>
             </brick>
-            <brick type="NextLookBrick"/>
-            <brick type="LoopEndBrick"/>
-            <brick type="HideBrick"/>
+            <brick type="NextLookBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="LoopEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <type>NUMBER</type>
@@ -1883,12 +2152,20 @@
               </formulaList>
             </brick>
             <brick type="BroadcastBrick">
+              <commentedOut>false</commentedOut>
               <broadcastMessage>dead</broadcastMessage>
             </brick>
-            <brick type="IfLogicElseBrick"/>
-            <brick type="IfLogicEndBrick"/>
-            <brick type="LoopEndlessBrick"/>
+            <brick type="IfLogicElseBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="IfLogicEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="LoopEndlessBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <isUserScript>false</isUserScript>
         </script>
       </scriptList>
@@ -1904,12 +2181,18 @@
       <scriptList>
         <script type="BroadcastScript">
           <brickList>
-            <brick type="ShowBrick"/>
-            <brick type="ComeToFrontBrick"/>
+            <brick type="ShowBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="ComeToFrontBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
             <brick type="SetSizeToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE">
                   <type>NUMBER</type>
@@ -1918,12 +2201,16 @@
               </formulaList>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>gameOver</receivedMessage>
         </script>
         <script type="StartScript">
           <brickList>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <isUserScript>false</isUserScript>
         </script>
       </scriptList>

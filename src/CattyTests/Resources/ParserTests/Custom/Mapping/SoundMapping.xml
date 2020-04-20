@@ -40,9 +40,11 @@
         <script type="StartScript">
           <brickList>
             <brick type="PlaySoundBrick">
+              <commentedOut>false</commentedOut>
               <sound reference="../../../../../soundList/sound"/>
             </brick>
             <brick type="SpeakBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SPEAK">
                   <type>STRING</type>
@@ -51,20 +53,25 @@
               </formulaList>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <isUserScript>false</isUserScript>
         </script>
         <script type="BroadcastScript">
           <brickList>
             <brick type="PlaySoundBrick">
+              <commentedOut>false</commentedOut>
               <sound reference="../../../../../soundList/sound"/>
             </brick>
             <brick type="PlaySoundBrick">
+              <commentedOut>false</commentedOut>
               <sound reference="../../../../../soundList/sound"/>
             </brick>
             <brick type="PlaySoundBrick">
+              <commentedOut>false</commentedOut>
               <sound reference="../../../../../soundList/sound[2]"/>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>Nachricht 1</receivedMessage>
         </script>
       </scriptList>

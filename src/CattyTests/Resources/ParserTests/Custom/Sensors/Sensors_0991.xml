@@ -31,6 +31,7 @@
         <script type="StartScript">
           <brickList>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>SENSOR</type>
@@ -40,6 +41,7 @@
               <userVariable>sensor1</userVariable>
             </brick>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>SENSOR</type>
@@ -49,6 +51,7 @@
               <userVariable>sensor2</userVariable>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <isUserScript>false</isUserScript>
         </script>
       </scriptList>
@@ -62,6 +65,7 @@
         <script type="StartScript">
           <brickList>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>SENSOR</type>
@@ -71,6 +75,7 @@
               <userVariable reference="../../../../../../object/scriptList/script/brickList/brick/userVariable"/>
             </brick>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>SENSOR</type>
@@ -80,6 +85,7 @@
               <userVariable reference="../../../../../../object/scriptList/script/brickList/brick[2]/userVariable"/>
             </brick>
             <brick type="SetVariableBrick">
+                <commentedOut>false</commentedOut>
                 <formulaList>
                     <formula category="VARIABLE">
                         <type>SENSOR</type>
@@ -89,6 +95,7 @@
                 <userVariable reference="../../../../../../object/scriptList/script/brickList/brick[2]/userVariable"/>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <isUserScript>false</isUserScript>
         </script>
       </scriptList>
@@ -102,6 +109,7 @@
             <script type="StartScript">
                 <brickList>
                     <brick type="SetVariableBrick">
+                        <commentedOut>false</commentedOut>
                         <formulaList>
                             <formula category="VARIABLE">
                                 <type>SENSOR</type>
@@ -111,6 +119,7 @@
                         <userVariable reference="../../../../../../object/scriptList/script/brickList/brick/userVariable"/>
                     </brick>
                     <brick type="SetVariableBrick">
+                        <commentedOut>false</commentedOut>
                         <formulaList>
                             <formula category="VARIABLE">
                                 <type>SENSOR</type>
@@ -120,6 +129,7 @@
                         <userVariable reference="../../../../../../object/scriptList/script/brickList/brick[2]/userVariable"/>
                     </brick>
                     <brick type="SetVariableBrick">
+                        <commentedOut>false</commentedOut>
                         <formulaList>
                             <formula category="VARIABLE">
                                 <type>SENSOR</type>
@@ -129,6 +139,7 @@
                         <userVariable reference="../../../../../../object/scriptList/script/brickList/brick[2]/userVariable"/>
                     </brick>
                     <brick type="SetVariableBrick">
+                        <commentedOut>false</commentedOut>
                         <formulaList>
                             <formula category="VARIABLE">
                                 <type>SENSOR</type>
@@ -138,6 +149,7 @@
                         <userVariable reference="../../../../../../object/scriptList/script/brickList/brick[2]/userVariable"/>
                     </brick>
                 </brickList>
+                <commentedOut>false</commentedOut>
                 <isUserScript>false</isUserScript>
             </script>
         </scriptList>
@@ -151,6 +163,7 @@
             <script type="StartScript">
                 <brickList>
                     <brick type="SetVariableBrick">
+                        <commentedOut>false</commentedOut>
                         <formulaList>
                             <formula category="VARIABLE">
                                 <type>SENSOR</type>
@@ -160,6 +173,7 @@
                         <userVariable reference="../../../../../../object/scriptList/script/brickList/brick[2]/userVariable"/>
                     </brick>
                     <brick type="SetVariableBrick">
+                        <commentedOut>false</commentedOut>
                         <formulaList>
                             <formula category="VARIABLE">
                                 <type>SENSOR</type>
@@ -169,6 +183,7 @@
                         <userVariable reference="../../../../../../object/scriptList/script/brickList/brick[2]/userVariable"/>
                     </brick>
                     <brick type="SetVariableBrick">
+                        <commentedOut>false</commentedOut>
                         <formulaList>
                             <formula category="VARIABLE">
                                 <type>SENSOR</type>
@@ -178,6 +193,7 @@
                         <userVariable reference="../../../../../../object/scriptList/script/brickList/brick[2]/userVariable"/>
                     </brick>
                     <brick type="SetVariableBrick">
+                        <commentedOut>false</commentedOut>
                         <formulaList>
                             <formula category="VARIABLE">
                                 <type>SENSOR</type>
@@ -187,6 +203,7 @@
                         <userVariable reference="../../../../../../object/scriptList/script/brickList/brick[2]/userVariable"/>
                     </brick>
                 </brickList>
+                <commentedOut>false</commentedOut>
                 <isUserScript>false</isUserScript>
             </script>
         </scriptList>

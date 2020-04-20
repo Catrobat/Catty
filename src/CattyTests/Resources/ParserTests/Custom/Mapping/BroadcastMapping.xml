@@ -31,23 +31,29 @@
         <script type="StartScript">
           <brickList>
             <brick type="BroadcastBrick">
+              <commentedOut>false</commentedOut>
               <broadcastMessage>Nachricht 1</broadcastMessage>
             </brick>
             <brick type="BroadcastWaitBrick">
+              <commentedOut>false</commentedOut>
               <broadcastMessage>Nachricht 1</broadcastMessage>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <isUserScript>false</isUserScript>
         </script>
         <script type="WhenTouchDownScript">
           <brickList>
             <brick type="BroadcastBrick">
+              <commentedOut>false</commentedOut>
               <broadcastMessage>Nachricht 1</broadcastMessage>
             </brick>
             <brick type="BroadcastWaitBrick">
+              <commentedOut>false</commentedOut>
               <broadcastMessage>Nachricht 1</broadcastMessage>
             </brick>
           </brickList>
+        <commentedOut>false</commentedOut>
         </script>
       </scriptList>
       <userBricks/>

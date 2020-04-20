@@ -78,7 +78,7 @@ final class CBFrontendTests: XCTestCase {
         }
     }
 
-    func testComputeIfElseConditionalSequence() {
+   func testComputeIfElseConditionalSequence() {
         let frontend = CBFrontend(logger: self.logger, project: nil)
         let whenScript = WhenScript()
         whenScript.action = kWhenScriptDefaultAction

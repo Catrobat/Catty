@@ -47,7 +47,7 @@
 
 + (BOOL)validateXMLElement:(GDataXMLElement*)xmlElement forNumberOfChildNodes:(NSUInteger)numberOfChildNodes
 {
-    [XMLError exceptionIf:[[xmlElement childrenWithoutComments] count]
+    [XMLError exceptionIf:[[xmlElement childrenWithoutCommentsAndCommentedOutTag] count]
                 notEquals:numberOfChildNodes
                   message:@"Too less or too many child nodes found... (%lu expected)",
                           (unsigned long)numberOfChildNodes];

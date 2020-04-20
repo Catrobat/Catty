@@ -51,9 +51,7 @@
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context
 {
-    NSUInteger indexOfBrick = [CBXMLSerializerHelper indexOfElement:self inArray:context.brickList];
-    GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" xPathIndex:(indexOfBrick+1) context:context];
-    [brick addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:@"PhiroIfLogicBeginBrick"]];
+    GDataXMLElement *brick = [super xmlElementForBrickType:@"PhiroIfLogicBeginBrick" withContext:context];
     
     GDataXMLElement *formulaList = [GDataXMLElement elementWithName:@"formulaList" context:context];
     if (!self.ifCondition) {

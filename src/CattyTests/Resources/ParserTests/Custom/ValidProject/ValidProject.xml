@@ -34,9 +34,11 @@
                 <script type="StartScript">
                     <brickList>
                         <brick type="SetLookBrick">
+                            <commentedOut>false</commentedOut>
                             <look reference="../../../../../lookList/look"/>
                         </brick>
                         <brick type="SetVariableBrick">
+                            <commentedOut>false</commentedOut>
                             <formulaList>
                                 <formula category="VARIABLE">
                                     <type>NUMBER</type>
@@ -47,6 +49,7 @@
                             <userVariable>random from</userVariable>
                         </brick>
                         <brick type="SetVariableBrick">
+                            <commentedOut>false</commentedOut>
                             <formulaList>
                                 <formula category="VARIABLE">
                                     <type>NUMBER</type>
@@ -57,6 +60,7 @@
                             <userVariable>random to</userVariable>
                         </brick>
                     </brickList>
+                    <commentedOut>false</commentedOut>
                     <isUserScript>false</isUserScript>
                 </script>
             </scriptList>
@@ -84,6 +88,7 @@
                 <script type="StartScript">
                     <brickList>
                         <brick type="SetSizeToBrick">
+                            <commentedOut>false</commentedOut>
                             <formulaList>
                                 <formula category="SIZE">
                                     <type>NUMBER</type>
@@ -91,8 +96,11 @@
                                 </formula>
                             </formulaList>
                         </brick>
-                        <brick type="ForeverBrick"/>
+                        <brick type="ForeverBrick">
+                            <commentedOut>false</commentedOut>
+                        </brick>
                         <brick type="PlaceAtBrick">
+                            <commentedOut>false</commentedOut>
                             <formulaList>
                                 <formula category="Y_POSITION">
                                     <rightChild>
@@ -113,6 +121,7 @@
                             </formulaList>
                         </brick>
                         <brick type="WaitBrick">
+                            <commentedOut>false</commentedOut>
                             <formulaList>
                                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                                     <leftChild>
@@ -128,11 +137,15 @@
                                 </formula>
                             </formulaList>
                         </brick>
-                        <brick type="ShowBrick"/>
+                        <brick type="ShowBrick">
+                            <commentedOut>false</commentedOut>
+                        </brick>
                         <brick type="SetLookBrick">
+                            <commentedOut>false</commentedOut>
                             <look reference="../../../../../lookList/look"/>
                         </brick>
                         <brick type="GlideToBrick">
+                            <commentedOut>false</commentedOut>
                             <formulaList>
                                 <formula category="Y_DESTINATION">
                                     <rightChild>
@@ -157,9 +170,11 @@
                             </formulaList>
                         </brick>
                         <brick type="SetLookBrick">
+                            <commentedOut>false</commentedOut>
                             <look reference="../../../../../lookList/look[2]"/>
                         </brick>
                         <brick type="WaitBrick">
+                            <commentedOut>false</commentedOut>
                             <formulaList>
                                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                                     <leftChild>
@@ -175,8 +190,11 @@
                                 </formula>
                             </formulaList>
                         </brick>
-                        <brick type="HideBrick"/>
+                        <brick type="HideBrick">
+                            <commentedOut>false</commentedOut>
+                        </brick>
                         <brick type="WaitBrick">
+                            <commentedOut>false</commentedOut>
                             <formulaList>
                                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                                     <leftChild>
@@ -192,19 +210,25 @@
                                 </formula>
                             </formulaList>
                         </brick>
-                        <brick type="LoopEndlessBrick"/>
+                        <brick type="LoopEndlessBrick">
+                            <commentedOut>false</commentedOut>
+                        </brick>
                     </brickList>
+                    <commentedOut>false</commentedOut>
                     <isUserScript>false</isUserScript>
                 </script>
                 <script type="WhenScript">
                     <brickList>
                         <brick type="PlaySoundBrick">
+                            <commentedOut>false</commentedOut>
                             <sound reference="../../../../../soundList/sound"/>
                         </brick>
                         <brick type="SetLookBrick">
+                            <commentedOut>false</commentedOut>
                             <look reference="../../../../../lookList/look[3]"/>
                         </brick>
                         <brick type="WaitBrick">
+                            <commentedOut>false</commentedOut>
                             <formulaList>
                                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                                     <type>NUMBER</type>
@@ -212,8 +236,11 @@
                                 </formula>
                             </formulaList>
                         </brick>
-                        <brick type="HideBrick"/>
+                        <brick type="HideBrick">
+                            <commentedOut>false</commentedOut>
+                        </brick>
                     </brickList>
+                    <commentedOut>false</commentedOut>
                     <action>Tapped</action>
                 </script>
             </scriptList>
@@ -241,6 +268,7 @@
                 <script type="StartScript">
                     <brickList>
                         <brick type="SetSizeToBrick">
+                            <commentedOut>false</commentedOut>
                             <formulaList>
                                 <formula category="SIZE">
                                     <type>NUMBER</type>
@@ -248,8 +276,11 @@
                                 </formula>
                             </formulaList>
                         </brick>
-                        <brick type="ForeverBrick"/>
+                        <brick type="ForeverBrick">
+                            <commentedOut>false</commentedOut>
+                        </brick>
                         <brick type="PlaceAtBrick">
+                            <commentedOut>false</commentedOut>
                             <formulaList>
                                 <formula category="Y_POSITION">
                                     <rightChild>
@@ -266,6 +297,7 @@
                             </formulaList>
                         </brick>
                         <brick type="WaitBrick">
+                            <commentedOut>false</commentedOut>
                             <formulaList>
                                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                                     <leftChild>
@@ -281,11 +313,15 @@
                                 </formula>
                             </formulaList>
                         </brick>
-                        <brick type="ShowBrick"/>
+                        <brick type="ShowBrick">
+                            <commentedOut>false</commentedOut>
+                        </brick>
                         <brick type="SetLookBrick">
+                            <commentedOut>false</commentedOut>
                             <look reference="../../../../../lookList/look"/>
                         </brick>
                         <brick type="GlideToBrick">
+                            <commentedOut>false</commentedOut>
                             <formulaList>
                                 <formula category="Y_DESTINATION">
                                     <rightChild>
@@ -306,9 +342,11 @@
                             </formulaList>
                         </brick>
                         <brick type="SetLookBrick">
+                            <commentedOut>false</commentedOut>
                             <look reference="../../../../../lookList/look[2]"/>
                         </brick>
                         <brick type="WaitBrick">
+                            <commentedOut>false</commentedOut>
                             <formulaList>
                                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                                     <leftChild>
@@ -324,8 +362,11 @@
                                 </formula>
                             </formulaList>
                         </brick>
-                        <brick type="HideBrick"/>
+                        <brick type="HideBrick">
+                            <commentedOut>false</commentedOut>
+                        </brick>
                         <brick type="WaitBrick">
+                            <commentedOut>false</commentedOut>
                             <formulaList>
                                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                                     <leftChild>
@@ -341,19 +382,25 @@
                                 </formula>
                             </formulaList>
                         </brick>
-                        <brick type="LoopEndlessBrick"/>
+                        <brick type="LoopEndlessBrick">
+                            <commentedOut>false</commentedOut>
+                        </brick>
                     </brickList>
+                    <commentedOut>false</commentedOut>
                     <isUserScript>false</isUserScript>
                 </script>
                 <script type="WhenScript">
                     <brickList>
                         <brick type="PlaySoundBrick">
+                            <commentedOut>false</commentedOut>
                             <sound reference="../../../../../soundList/sound"/>
                         </brick>
                         <brick type="SetLookBrick">
+                            <commentedOut>false</commentedOut>
                             <look reference="../../../../../lookList/look[3]"/>
                         </brick>
                         <brick type="WaitBrick">
+                            <commentedOut>false</commentedOut>
                             <formulaList>
                                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                                     <type>NUMBER</type>
@@ -361,8 +408,11 @@
                                 </formula>
                             </formulaList>
                         </brick>
-                        <brick type="HideBrick"/>
+                        <brick type="HideBrick">
+                            <commentedOut>false</commentedOut>
+                        </brick>
                     </brickList>
+                    <commentedOut>false</commentedOut>
                     <action>Tapped</action>
                 </script>
             </scriptList>
@@ -390,6 +440,7 @@
                 <script type="StartScript">
                     <brickList>
                         <brick type="SetSizeToBrick">
+                            <commentedOut>false</commentedOut>
                             <formulaList>
                                 <formula category="SIZE">
                                     <type>NUMBER</type>
@@ -397,8 +448,11 @@
                                 </formula>
                             </formulaList>
                         </brick>
-                        <brick type="ForeverBrick"/>
+                        <brick type="ForeverBrick">
+                            <commentedOut>false</commentedOut>
+                        </brick>
                         <brick type="PlaceAtBrick">
+                            <commentedOut>false</commentedOut>
                             <formulaList>
                                 <formula category="Y_POSITION">
                                     <rightChild>
@@ -419,6 +473,7 @@
                             </formulaList>
                         </brick>
                         <brick type="WaitBrick">
+                            <commentedOut>false</commentedOut>
                             <formulaList>
                                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                                     <leftChild>
@@ -434,11 +489,15 @@
                                 </formula>
                             </formulaList>
                         </brick>
-                        <brick type="ShowBrick"/>
+                        <brick type="ShowBrick">
+                            <commentedOut>false</commentedOut>
+                        </brick>
                         <brick type="SetLookBrick">
+                            <commentedOut>false</commentedOut>
                             <look reference="../../../../../lookList/look"/>
                         </brick>
                         <brick type="GlideToBrick">
+                            <commentedOut>false</commentedOut>
                             <formulaList>
                                 <formula category="Y_DESTINATION">
                                     <rightChild>
@@ -463,9 +522,11 @@
                             </formulaList>
                         </brick>
                         <brick type="SetLookBrick">
+                            <commentedOut>false</commentedOut>
                             <look reference="../../../../../lookList/look[2]"/>
                         </brick>
                         <brick type="WaitBrick">
+                            <commentedOut>false</commentedOut>
                             <formulaList>
                                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                                     <leftChild>
@@ -481,8 +542,11 @@
                                 </formula>
                             </formulaList>
                         </brick>
-                        <brick type="HideBrick"/>
+                        <brick type="HideBrick">
+                            <commentedOut>false</commentedOut>
+                        </brick>
                         <brick type="WaitBrick">
+                            <commentedOut>false</commentedOut>
                             <formulaList>
                                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                                     <leftChild>
@@ -498,19 +562,25 @@
                                 </formula>
                             </formulaList>
                         </brick>
-                        <brick type="LoopEndlessBrick"/>
+                        <brick type="LoopEndlessBrick">
+                            <commentedOut>false</commentedOut>
+                        </brick>
                     </brickList>
+                    <commentedOut>false</commentedOut>
                     <isUserScript>false</isUserScript>
                 </script>
                 <script type="WhenScript">
                     <brickList>
                         <brick type="PlaySoundBrick">
+                            <commentedOut>false</commentedOut>
                             <sound reference="../../../../../soundList/sound"/>
                         </brick>
                         <brick type="SetLookBrick">
+                            <commentedOut>false</commentedOut>
                             <look reference="../../../../../lookList/look[3]"/>
                         </brick>
                         <brick type="WaitBrick">
+                            <commentedOut>false</commentedOut>
                             <formulaList>
                                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                                     <type>NUMBER</type>
@@ -518,8 +588,11 @@
                                 </formula>
                             </formulaList>
                         </brick>
-                        <brick type="HideBrick"/>
+                        <brick type="HideBrick">
+                            <commentedOut>false</commentedOut>
+                        </brick>
                     </brickList>
+                    <commentedOut>false</commentedOut>
                     <action>Tapped</action>
                 </script>
             </scriptList>
@@ -547,6 +620,7 @@
                 <script type="StartScript">
                     <brickList>
                         <brick type="SetSizeToBrick">
+                            <commentedOut>false</commentedOut>
                             <formulaList>
                                 <formula category="SIZE">
                                     <type>NUMBER</type>
@@ -554,8 +628,11 @@
                                 </formula>
                             </formulaList>
                         </brick>
-                        <brick type="ForeverBrick"/>
+                        <brick type="ForeverBrick">
+                            <commentedOut>false</commentedOut>
+                        </brick>
                         <brick type="PlaceAtBrick">
+                            <commentedOut>false</commentedOut>
                             <formulaList>
                                 <formula category="Y_POSITION">
                                     <rightChild>
@@ -572,6 +649,7 @@
                             </formulaList>
                         </brick>
                         <brick type="WaitBrick">
+                            <commentedOut>false</commentedOut>
                             <formulaList>
                                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                                     <leftChild>
@@ -587,11 +665,15 @@
                                 </formula>
                             </formulaList>
                         </brick>
-                        <brick type="ShowBrick"/>
+                        <brick type="ShowBrick">
+                            <commentedOut>false</commentedOut>
+                        </brick>
                         <brick type="SetLookBrick">
+                            <commentedOut>false</commentedOut>
                             <look reference="../../../../../lookList/look"/>
                         </brick>
                         <brick type="GlideToBrick">
+                            <commentedOut>false</commentedOut>
                             <formulaList>
                                 <formula category="Y_DESTINATION">
                                     <rightChild>
@@ -612,9 +694,11 @@
                             </formulaList>
                         </brick>
                         <brick type="SetLookBrick">
+                            <commentedOut>false</commentedOut>
                             <look reference="../../../../../lookList/look[2]"/>
                         </brick>
                         <brick type="WaitBrick">
+                            <commentedOut>false</commentedOut>
                             <formulaList>
                                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                                     <leftChild>
@@ -630,8 +714,11 @@
                                 </formula>
                             </formulaList>
                         </brick>
-                        <brick type="HideBrick"/>
+                        <brick type="HideBrick">
+                            <commentedOut>false</commentedOut>
+                        </brick>
                         <brick type="WaitBrick">
+                            <commentedOut>false</commentedOut>
                             <formulaList>
                                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                                     <leftChild>
@@ -647,19 +734,25 @@
                                 </formula>
                             </formulaList>
                         </brick>
-                        <brick type="LoopEndlessBrick"/>
+                        <brick type="LoopEndlessBrick">
+                            <commentedOut>false</commentedOut>
+                        </brick>
                     </brickList>
+                    <commentedOut>false</commentedOut>
                     <isUserScript>false</isUserScript>
                 </script>
                 <script type="WhenScript">
                     <brickList>
                         <brick type="PlaySoundBrick">
+                            <commentedOut>false</commentedOut>
                             <sound reference="../../../../../soundList/sound"/>
                         </brick>
                         <brick type="SetLookBrick">
+                            <commentedOut>false</commentedOut>
                             <look reference="../../../../../lookList/look[3]"/>
                         </brick>
                         <brick type="WaitBrick">
+                            <commentedOut>false</commentedOut>
                             <formulaList>
                                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                                     <type>NUMBER</type>
@@ -667,8 +760,11 @@
                                 </formula>
                             </formulaList>
                         </brick>
-                        <brick type="HideBrick"/>
+                        <brick type="HideBrick">
+                            <commentedOut>false</commentedOut>
+                        </brick>
                     </brickList>
+                    <commentedOut>false</commentedOut>
                     <action>Tapped</action>
                 </script>
             </scriptList>

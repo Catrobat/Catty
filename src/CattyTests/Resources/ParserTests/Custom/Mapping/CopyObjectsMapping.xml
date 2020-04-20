@@ -35,9 +35,11 @@
         <script type="StartScript">
           <brickList>
             <brick type="SetBackgroundBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>NUMBER</type>
@@ -47,6 +49,7 @@
               <userVariable>local</userVariable>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <isUserScript>false</isUserScript>
         </script>
       </scriptList>
@@ -64,6 +67,7 @@
         <script type="StartScript">
           <brickList>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>NUMBER</type>
@@ -73,6 +77,7 @@
               <userVariable>local</userVariable>
             </brick>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>NUMBER</type>
@@ -82,6 +87,7 @@
               <userVariable>global</userVariable>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <isUserScript>false</isUserScript>
         </script>
       </scriptList>
@@ -99,6 +105,7 @@
         <script type="StartScript">
           <brickList>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>NUMBER</type>
@@ -108,6 +115,7 @@
               <userVariable>local</userVariable>
             </brick>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>NUMBER</type>
@@ -117,6 +125,7 @@
               <userVariable reference="../../../../../../object[2]/scriptList/script/brickList/brick[2]/userVariable"/>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <isUserScript>false</isUserScript>
         </script>
       </scriptList>
@@ -134,6 +143,7 @@
         <script type="StartScript">
           <brickList>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>NUMBER</type>
@@ -143,6 +153,7 @@
               <userVariable>local</userVariable>
             </brick>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>NUMBER</type>
@@ -152,6 +163,7 @@
               <userVariable reference="../../../../../../object[2]/scriptList/script/brickList/brick[2]/userVariable"/>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <isUserScript>false</isUserScript>
         </script>
       </scriptList>
@@ -169,6 +181,7 @@
         <script type="StartScript">
           <brickList>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>NUMBER</type>
@@ -178,6 +191,7 @@
               <userVariable>local</userVariable>
             </brick>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>NUMBER</type>
@@ -187,6 +201,7 @@
               <userVariable reference="../../../../../../object[2]/scriptList/script/brickList/brick[2]/userVariable"/>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <isUserScript>false</isUserScript>
         </script>
       </scriptList>

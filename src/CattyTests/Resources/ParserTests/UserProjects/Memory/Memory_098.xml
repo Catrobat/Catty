@@ -51,6 +51,7 @@ REMIX TIPS:
         <script type="StartScript">
           <brickList>
             <brick type="SetSizeToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE">
                   <type>NUMBER</type>
@@ -59,6 +60,7 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <type>NUMBER</type>
@@ -75,11 +77,13 @@ REMIX TIPS:
               </formulaList>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <isUserScript>false</isUserScript>
         </script>
         <script type="WhenScript">
           <brickList>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>FUNCTION</type>
@@ -90,9 +94,11 @@ REMIX TIPS:
               <userVariable>A</userVariable>
             </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look[2]"/>
             </brick>
             <brick type="ChangeVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE_CHANGE">
                   <type>NUMBER</type>
@@ -103,20 +109,26 @@ REMIX TIPS:
               <userVariable>count</userVariable>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <action>Tapped</action>
         </script>
         <script type="BroadcastScript">
           <brickList>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>hideCards</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>1_correct</receivedMessage>
         </script>
       </scriptList>
@@ -140,6 +152,7 @@ REMIX TIPS:
         <script type="StartScript">
           <brickList>
             <brick type="SetSizeToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE">
                   <type>NUMBER</type>
@@ -148,6 +161,7 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <type>NUMBER</type>
@@ -160,14 +174,17 @@ REMIX TIPS:
               </formulaList>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <isUserScript>false</isUserScript>
         </script>
         <script type="WhenScript">
           <brickList>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look[2]"/>
             </brick>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>FUNCTION</type>
@@ -178,6 +195,7 @@ REMIX TIPS:
               <userVariable>B</userVariable>
             </brick>
             <brick type="ChangeVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE_CHANGE">
                   <type>NUMBER</type>
@@ -188,20 +206,26 @@ REMIX TIPS:
               <userVariable reference="../../../../../../object[2]/scriptList/script[2]/brickList/brick[3]/userVariable"/>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <action>Tapped</action>
         </script>
         <script type="BroadcastScript">
           <brickList>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>hideCards</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>1_correct</receivedMessage>
         </script>
       </scriptList>
@@ -215,15 +239,20 @@ REMIX TIPS:
         <script type="StartScript">
           <brickList>
             <brick type="BroadcastBrick">
+              <commentedOut>false</commentedOut>
               <broadcastMessage>reset_vars</broadcastMessage>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <isUserScript>false</isUserScript>
         </script>
         <script type="StartScript">
           <brickList>
-            <brick type="ForeverBrick"/>
+            <brick type="ForeverBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="IfLogicBeginBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="IF_CONDITION">
                   <leftChild>
@@ -240,6 +269,7 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>NUMBER</type>
@@ -250,6 +280,7 @@ REMIX TIPS:
               <userVariable reference="../../../../../../object[2]/scriptList/script[2]/brickList/brick[3]/userVariable"/>
             </brick>
             <brick type="IfLogicBeginBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="IF_CONDITION">
                   <leftChild>
@@ -288,6 +319,7 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="WaitBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                   <type>NUMBER</type>
@@ -296,9 +328,11 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="BroadcastBrick">
+              <commentedOut>false</commentedOut>
               <broadcastMessage>1_correct</broadcastMessage>
             </brick>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>FUNCTION</type>
@@ -309,6 +343,7 @@ REMIX TIPS:
               <userVariable reference="../../../../../../object[2]/scriptList/script[2]/brickList/brick/userVariable"/>
             </brick>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>FUNCTION</type>
@@ -318,8 +353,11 @@ REMIX TIPS:
               <inUserBrick>false</inUserBrick>
               <userVariable reference="../../../../../../object[3]/scriptList/script[2]/brickList/brick[2]/userVariable"/>
             </brick>
-            <brick type="IfLogicElseBrick"/>
+            <brick type="IfLogicElseBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="IfLogicBeginBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="IF_CONDITION">
                   <leftChild>
@@ -358,6 +396,7 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="WaitBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                   <type>NUMBER</type>
@@ -366,9 +405,11 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="BroadcastBrick">
+              <commentedOut>false</commentedOut>
               <broadcastMessage>2_correct</broadcastMessage>
             </brick>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>FUNCTION</type>
@@ -379,6 +420,7 @@ REMIX TIPS:
               <userVariable>C</userVariable>
             </brick>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>FUNCTION</type>
@@ -388,8 +430,11 @@ REMIX TIPS:
               <inUserBrick>false</inUserBrick>
               <userVariable>D</userVariable>
             </brick>
-            <brick type="IfLogicElseBrick"/>
+            <brick type="IfLogicElseBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="IfLogicBeginBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="IF_CONDITION">
                   <leftChild>
@@ -428,6 +473,7 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="WaitBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                   <type>NUMBER</type>
@@ -436,9 +482,11 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="BroadcastBrick">
+              <commentedOut>false</commentedOut>
               <broadcastMessage>3_correct</broadcastMessage>
             </brick>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>FUNCTION</type>
@@ -449,6 +497,7 @@ REMIX TIPS:
               <userVariable>E</userVariable>
             </brick>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>FUNCTION</type>
@@ -458,8 +507,11 @@ REMIX TIPS:
               <inUserBrick>false</inUserBrick>
               <userVariable>F</userVariable>
             </brick>
-            <brick type="IfLogicElseBrick"/>
+            <brick type="IfLogicElseBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="IfLogicBeginBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="IF_CONDITION">
                   <leftChild>
@@ -498,6 +550,7 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="WaitBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                   <type>NUMBER</type>
@@ -506,9 +559,11 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="BroadcastBrick">
+              <commentedOut>false</commentedOut>
               <broadcastMessage>4_correct</broadcastMessage>
             </brick>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>NUMBER</type>
@@ -519,6 +574,7 @@ REMIX TIPS:
               <userVariable>G</userVariable>
             </brick>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>NUMBER</type>
@@ -528,8 +584,11 @@ REMIX TIPS:
               <inUserBrick>false</inUserBrick>
               <userVariable>H</userVariable>
             </brick>
-            <brick type="IfLogicElseBrick"/>
+            <brick type="IfLogicElseBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="IfLogicBeginBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="IF_CONDITION">
                   <leftChild>
@@ -568,6 +627,7 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="WaitBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                   <type>NUMBER</type>
@@ -576,9 +636,11 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="BroadcastBrick">
+              <commentedOut>false</commentedOut>
               <broadcastMessage>5_correct</broadcastMessage>
             </brick>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>NUMBER</type>
@@ -589,6 +651,7 @@ REMIX TIPS:
               <userVariable>I</userVariable>
             </brick>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>NUMBER</type>
@@ -598,8 +661,11 @@ REMIX TIPS:
               <inUserBrick>false</inUserBrick>
               <userVariable>J</userVariable>
             </brick>
-            <brick type="IfLogicElseBrick"/>
+            <brick type="IfLogicElseBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="IfLogicBeginBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="IF_CONDITION">
                   <leftChild>
@@ -638,6 +704,7 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="WaitBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                   <type>NUMBER</type>
@@ -646,9 +713,11 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="BroadcastBrick">
+              <commentedOut>false</commentedOut>
               <broadcastMessage>6_correct</broadcastMessage>
             </brick>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>FUNCTION</type>
@@ -659,6 +728,7 @@ REMIX TIPS:
               <userVariable>K</userVariable>
             </brick>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>FUNCTION</type>
@@ -668,8 +738,11 @@ REMIX TIPS:
               <inUserBrick>false</inUserBrick>
               <userVariable>L</userVariable>
             </brick>
-            <brick type="IfLogicElseBrick"/>
+            <brick type="IfLogicElseBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
             <brick type="WaitBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="TIME_TO_WAIT_IN_SECONDS">
                   <type>NUMBER</type>
@@ -678,26 +751,48 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="BroadcastBrick">
+              <commentedOut>false</commentedOut>
               <broadcastMessage>reset_vars</broadcastMessage>
             </brick>
             <brick type="BroadcastBrick">
+              <commentedOut>false</commentedOut>
               <broadcastMessage>hideCards</broadcastMessage>
             </brick>
-            <brick type="IfLogicEndBrick"/>
-            <brick type="IfLogicEndBrick"/>
-            <brick type="IfLogicEndBrick"/>
-            <brick type="IfLogicEndBrick"/>
-            <brick type="IfLogicEndBrick"/>
-            <brick type="IfLogicEndBrick"/>
-            <brick type="IfLogicElseBrick"/>
-            <brick type="IfLogicEndBrick"/>
-            <brick type="LoopEndlessBrick"/>
+            <brick type="IfLogicEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="IfLogicEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="IfLogicEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="IfLogicEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="IfLogicEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="IfLogicEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="IfLogicElseBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="IfLogicEndBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="LoopEndlessBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <isUserScript>false</isUserScript>
         </script>
         <script type="BroadcastScript">
           <brickList>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>NUMBER</type>
@@ -708,6 +803,7 @@ REMIX TIPS:
               <userVariable reference="../../../../../../object[2]/scriptList/script[2]/brickList/brick/userVariable"/>
             </brick>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>NUMBER</type>
@@ -718,6 +814,7 @@ REMIX TIPS:
               <userVariable reference="../../../../../../object[3]/scriptList/script[2]/brickList/brick[2]/userVariable"/>
             </brick>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>NUMBER</type>
@@ -728,6 +825,7 @@ REMIX TIPS:
               <userVariable reference="../../../../script[2]/brickList/brick[13]/userVariable"/>
             </brick>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>NUMBER</type>
@@ -738,6 +836,7 @@ REMIX TIPS:
               <userVariable reference="../../../../script[2]/brickList/brick[14]/userVariable"/>
             </brick>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>NUMBER</type>
@@ -748,6 +847,7 @@ REMIX TIPS:
               <userVariable reference="../../../../script[2]/brickList/brick[19]/userVariable"/>
             </brick>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>NUMBER</type>
@@ -758,6 +858,7 @@ REMIX TIPS:
               <userVariable reference="../../../../script[2]/brickList/brick[20]/userVariable"/>
             </brick>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>NUMBER</type>
@@ -768,6 +869,7 @@ REMIX TIPS:
               <userVariable reference="../../../../script[2]/brickList/brick[25]/userVariable"/>
             </brick>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>NUMBER</type>
@@ -778,6 +880,7 @@ REMIX TIPS:
               <userVariable reference="../../../../script[2]/brickList/brick[26]/userVariable"/>
             </brick>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>NUMBER</type>
@@ -788,6 +891,7 @@ REMIX TIPS:
               <userVariable reference="../../../../script[2]/brickList/brick[31]/userVariable"/>
             </brick>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>NUMBER</type>
@@ -798,6 +902,7 @@ REMIX TIPS:
               <userVariable reference="../../../../script[2]/brickList/brick[32]/userVariable"/>
             </brick>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>NUMBER</type>
@@ -808,6 +913,7 @@ REMIX TIPS:
               <userVariable reference="../../../../script[2]/brickList/brick[37]/userVariable"/>
             </brick>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>NUMBER</type>
@@ -818,6 +924,7 @@ REMIX TIPS:
               <userVariable reference="../../../../script[2]/brickList/brick[38]/userVariable"/>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>reset_vars</receivedMessage>
         </script>
       </scriptList>
@@ -841,6 +948,7 @@ REMIX TIPS:
         <script type="StartScript">
           <brickList>
             <brick type="SetSizeToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE">
                   <type>NUMBER</type>
@@ -849,6 +957,7 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <type>NUMBER</type>
@@ -861,11 +970,13 @@ REMIX TIPS:
               </formulaList>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <isUserScript>false</isUserScript>
         </script>
         <script type="WhenScript">
           <brickList>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>FUNCTION</type>
@@ -876,9 +987,11 @@ REMIX TIPS:
               <userVariable reference="../../../../../../object[4]/scriptList/script[2]/brickList/brick[13]/userVariable"/>
             </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look[2]"/>
             </brick>
             <brick type="ChangeVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE_CHANGE">
                   <type>NUMBER</type>
@@ -889,20 +1002,26 @@ REMIX TIPS:
               <userVariable reference="../../../../../../object[2]/scriptList/script[2]/brickList/brick[3]/userVariable"/>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <action>Tapped</action>
         </script>
         <script type="BroadcastScript">
           <brickList>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>hideCards</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>2_correct</receivedMessage>
         </script>
       </scriptList>
@@ -926,6 +1045,7 @@ REMIX TIPS:
         <script type="StartScript">
           <brickList>
             <brick type="SetSizeToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE">
                   <type>NUMBER</type>
@@ -934,6 +1054,7 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <type>NUMBER</type>
@@ -950,14 +1071,17 @@ REMIX TIPS:
               </formulaList>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <isUserScript>false</isUserScript>
         </script>
         <script type="WhenScript">
           <brickList>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look[2]"/>
             </brick>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>FUNCTION</type>
@@ -968,6 +1092,7 @@ REMIX TIPS:
               <userVariable reference="../../../../../../object[4]/scriptList/script[2]/brickList/brick[14]/userVariable"/>
             </brick>
             <brick type="ChangeVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE_CHANGE">
                   <type>NUMBER</type>
@@ -978,20 +1103,26 @@ REMIX TIPS:
               <userVariable reference="../../../../../../object[2]/scriptList/script[2]/brickList/brick[3]/userVariable"/>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <action>Tapped</action>
         </script>
         <script type="BroadcastScript">
           <brickList>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>hideCards</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>2_correct</receivedMessage>
         </script>
       </scriptList>
@@ -1015,6 +1146,7 @@ REMIX TIPS:
         <script type="StartScript">
           <brickList>
             <brick type="SetSizeToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE">
                   <type>NUMBER</type>
@@ -1023,6 +1155,7 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <type>NUMBER</type>
@@ -1035,11 +1168,13 @@ REMIX TIPS:
               </formulaList>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <isUserScript>false</isUserScript>
         </script>
         <script type="WhenScript">
           <brickList>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>FUNCTION</type>
@@ -1050,9 +1185,11 @@ REMIX TIPS:
               <userVariable reference="../../../../../../object[4]/scriptList/script[2]/brickList/brick[19]/userVariable"/>
             </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look[2]"/>
             </brick>
             <brick type="ChangeVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE_CHANGE">
                   <type>NUMBER</type>
@@ -1063,20 +1200,26 @@ REMIX TIPS:
               <userVariable reference="../../../../../../object[2]/scriptList/script[2]/brickList/brick[3]/userVariable"/>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <action>Tapped</action>
         </script>
         <script type="BroadcastScript">
           <brickList>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>hideCards</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>3_correct</receivedMessage>
         </script>
       </scriptList>
@@ -1100,6 +1243,7 @@ REMIX TIPS:
         <script type="StartScript">
           <brickList>
             <brick type="SetSizeToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE">
                   <type>NUMBER</type>
@@ -1108,6 +1252,7 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <type>NUMBER</type>
@@ -1120,14 +1265,17 @@ REMIX TIPS:
               </formulaList>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <isUserScript>false</isUserScript>
         </script>
         <script type="WhenScript">
           <brickList>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look[2]"/>
             </brick>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>FUNCTION</type>
@@ -1138,6 +1286,7 @@ REMIX TIPS:
               <userVariable reference="../../../../../../object[4]/scriptList/script[2]/brickList/brick[20]/userVariable"/>
             </brick>
             <brick type="ChangeVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE_CHANGE">
                   <type>NUMBER</type>
@@ -1148,20 +1297,26 @@ REMIX TIPS:
               <userVariable reference="../../../../../../object[2]/scriptList/script[2]/brickList/brick[3]/userVariable"/>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <action>Tapped</action>
         </script>
         <script type="BroadcastScript">
           <brickList>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>hideCards</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>3_correct</receivedMessage>
         </script>
       </scriptList>
@@ -1185,6 +1340,7 @@ REMIX TIPS:
         <script type="StartScript">
           <brickList>
             <brick type="SetSizeToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE">
                   <type>NUMBER</type>
@@ -1193,6 +1349,7 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <rightChild>
@@ -1213,11 +1370,13 @@ REMIX TIPS:
               </formulaList>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <isUserScript>false</isUserScript>
         </script>
         <script type="WhenScript">
           <brickList>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>FUNCTION</type>
@@ -1228,9 +1387,11 @@ REMIX TIPS:
               <userVariable reference="../../../../../../object[4]/scriptList/script[2]/brickList/brick[25]/userVariable"/>
             </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look[2]"/>
             </brick>
             <brick type="ChangeVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE_CHANGE">
                   <type>NUMBER</type>
@@ -1241,20 +1402,26 @@ REMIX TIPS:
               <userVariable reference="../../../../../../object[2]/scriptList/script[2]/brickList/brick[3]/userVariable"/>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <action>Tapped</action>
         </script>
         <script type="BroadcastScript">
           <brickList>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>hideCards</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>4_correct</receivedMessage>
         </script>
       </scriptList>
@@ -1278,6 +1445,7 @@ REMIX TIPS:
         <script type="StartScript">
           <brickList>
             <brick type="SetSizeToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE">
                   <type>NUMBER</type>
@@ -1286,6 +1454,7 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <rightChild>
@@ -1302,14 +1471,17 @@ REMIX TIPS:
               </formulaList>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <isUserScript>false</isUserScript>
         </script>
         <script type="WhenScript">
           <brickList>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look[2]"/>
             </brick>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>FUNCTION</type>
@@ -1320,6 +1492,7 @@ REMIX TIPS:
               <userVariable reference="../../../../../../object[4]/scriptList/script[2]/brickList/brick[26]/userVariable"/>
             </brick>
             <brick type="ChangeVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE_CHANGE">
                   <type>NUMBER</type>
@@ -1330,20 +1503,26 @@ REMIX TIPS:
               <userVariable reference="../../../../../../object[2]/scriptList/script[2]/brickList/brick[3]/userVariable"/>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <action>Tapped</action>
         </script>
         <script type="BroadcastScript">
           <brickList>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>hideCards</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>4_correct</receivedMessage>
         </script>
       </scriptList>
@@ -1367,6 +1546,7 @@ REMIX TIPS:
         <script type="StartScript">
           <brickList>
             <brick type="SetSizeToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE">
                   <type>NUMBER</type>
@@ -1375,6 +1555,7 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <rightChild>
@@ -1391,11 +1572,13 @@ REMIX TIPS:
               </formulaList>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <isUserScript>false</isUserScript>
         </script>
         <script type="WhenScript">
           <brickList>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>FUNCTION</type>
@@ -1406,9 +1589,11 @@ REMIX TIPS:
               <userVariable reference="../../../../../../object[4]/scriptList/script[2]/brickList/brick[31]/userVariable"/>
             </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look[2]"/>
             </brick>
             <brick type="ChangeVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE_CHANGE">
                   <type>NUMBER</type>
@@ -1419,20 +1604,26 @@ REMIX TIPS:
               <userVariable reference="../../../../../../object[2]/scriptList/script[2]/brickList/brick[3]/userVariable"/>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <action>Tapped</action>
         </script>
         <script type="BroadcastScript">
           <brickList>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>hideCards</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>5_correct</receivedMessage>
         </script>
       </scriptList>
@@ -1456,6 +1647,7 @@ REMIX TIPS:
         <script type="StartScript">
           <brickList>
             <brick type="SetSizeToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE">
                   <type>NUMBER</type>
@@ -1464,6 +1656,7 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <rightChild>
@@ -1484,14 +1677,17 @@ REMIX TIPS:
               </formulaList>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <isUserScript>false</isUserScript>
         </script>
         <script type="WhenScript">
           <brickList>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look[2]"/>
             </brick>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>FUNCTION</type>
@@ -1502,6 +1698,7 @@ REMIX TIPS:
               <userVariable reference="../../../../../../object[4]/scriptList/script[2]/brickList/brick[32]/userVariable"/>
             </brick>
             <brick type="ChangeVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE_CHANGE">
                   <type>NUMBER</type>
@@ -1512,20 +1709,26 @@ REMIX TIPS:
               <userVariable reference="../../../../../../object[2]/scriptList/script[2]/brickList/brick[3]/userVariable"/>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <action>Tapped</action>
         </script>
         <script type="BroadcastScript">
           <brickList>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>hideCards</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>5_correct</receivedMessage>
         </script>
       </scriptList>
@@ -1549,6 +1752,7 @@ REMIX TIPS:
         <script type="StartScript">
           <brickList>
             <brick type="SetSizeToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE">
                   <type>NUMBER</type>
@@ -1557,6 +1761,7 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <rightChild>
@@ -1573,11 +1778,13 @@ REMIX TIPS:
               </formulaList>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <isUserScript>false</isUserScript>
         </script>
         <script type="WhenScript">
           <brickList>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>FUNCTION</type>
@@ -1588,9 +1795,11 @@ REMIX TIPS:
               <userVariable reference="../../../../../../object[4]/scriptList/script[2]/brickList/brick[37]/userVariable"/>
             </brick>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look[2]"/>
             </brick>
             <brick type="ChangeVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE_CHANGE">
                   <type>NUMBER</type>
@@ -1601,20 +1810,26 @@ REMIX TIPS:
               <userVariable reference="../../../../../../object[2]/scriptList/script[2]/brickList/brick[3]/userVariable"/>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <action>Tapped</action>
         </script>
         <script type="BroadcastScript">
           <brickList>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>hideCards</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>6_correct</receivedMessage>
         </script>
       </scriptList>
@@ -1638,6 +1853,7 @@ REMIX TIPS:
         <script type="StartScript">
           <brickList>
             <brick type="SetSizeToBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="SIZE">
                   <type>NUMBER</type>
@@ -1646,6 +1862,7 @@ REMIX TIPS:
               </formulaList>
             </brick>
             <brick type="PlaceAtBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="Y_POSITION">
                   <rightChild>
@@ -1662,14 +1879,17 @@ REMIX TIPS:
               </formulaList>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <isUserScript>false</isUserScript>
         </script>
         <script type="WhenScript">
           <brickList>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look[2]"/>
             </brick>
             <brick type="SetVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE">
                   <type>FUNCTION</type>
@@ -1680,6 +1900,7 @@ REMIX TIPS:
               <userVariable reference="../../../../../../object[4]/scriptList/script[2]/brickList/brick[38]/userVariable"/>
             </brick>
             <brick type="ChangeVariableBrick">
+              <commentedOut>false</commentedOut>
               <formulaList>
                 <formula category="VARIABLE_CHANGE">
                   <type>NUMBER</type>
@@ -1690,20 +1911,26 @@ REMIX TIPS:
               <userVariable reference="../../../../../../object[2]/scriptList/script[2]/brickList/brick[3]/userVariable"/>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <action>Tapped</action>
         </script>
         <script type="BroadcastScript">
           <brickList>
             <brick type="SetLookBrick">
+              <commentedOut>false</commentedOut>
               <look reference="../../../../../lookList/look"/>
             </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>hideCards</receivedMessage>
         </script>
         <script type="BroadcastScript">
           <brickList>
-            <brick type="HideBrick"/>
+            <brick type="HideBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
+          <commentedOut>false</commentedOut>
           <receivedMessage>6_correct</receivedMessage>
         </script>
       </scriptList>
