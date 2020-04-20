@@ -53,4 +53,56 @@ final class FormulaElementTest: XCTestCase {
         }
         internTokenList.removeAllObjects()
     }
+
+    func testSingleNumberFormula() {
+        let element = FormulaElement(elementType: ElementType.NUMBER,
+                                     value: nil,
+                                     leftChild: nil,
+                                     rightChild: nil,
+                                     parent: nil)
+        XCTAssertEqual(element?.isSingleNumberFormula(), true)
+
+        element?.type = ElementType.STRING
+        XCTAssertEqual(element?.isSingleNumberFormula(), false)
+
+        element?.type = ElementType.FUNCTION
+        XCTAssertEqual(element?.isSingleNumberFormula(), false)
+
+        element?.type = ElementType.OPERATOR
+        XCTAssertEqual(element?.isSingleNumberFormula(), false)
+
+        element?.type = ElementType.OPERATOR
+
+        element?.value = MultOperator.tag
+        XCTAssertEqual(element?.isSingleNumberFormula(), false)
+
+        element?.value = MinusOperator.tag
+        XCTAssertEqual(element?.isSingleNumberFormula(), false)
+    }
+
+    func testSingleNumberFormulaWithChildren() {
+
+        let element = FormulaElement(elementType: ElementType.OPERATOR,
+                                     value: MinusOperator.tag,
+                                     leftChild: nil,
+                                     rightChild: nil,
+                                     parent: nil)
+
+        element?.rightChild = FormulaElement(elementType: ElementType.NUMBER,
+                                             value: nil,
+                                             leftChild: nil,
+                                             rightChild: nil,
+                                             parent: nil)
+
+        XCTAssertEqual(element?.isSingleNumberFormula(), true)
+
+        element?.leftChild = FormulaElement(elementType: ElementType.NUMBER,
+                                            value: nil,
+                                            leftChild: nil,
+                                            rightChild: nil,
+                                            parent: nil)
+
+        XCTAssertEqual(element?.isSingleNumberFormula(), false)
+    }
+
 }
