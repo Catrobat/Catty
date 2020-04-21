@@ -81,4 +81,28 @@ final class ChangeVariableBrickTests: XCTestCase {
         XCTAssertTrue(true); // The purpose of this test is to show that the program does not crash
         // when no UserVariable is selected in the IDE and the brick is executed
     }
+
+    func testMutableCopy() {
+
+        let brick = ChangeVariableBrick()
+        brick.variableFormula = Formula(integer: 50)
+
+        let userVariable = UserVariable()
+        userVariable.name = "some_name"
+        userVariable.value = 30
+        userVariable.isList = false
+
+        brick.userVariable = userVariable
+
+        let copiedBrick: ChangeVariableBrick = brick.mutableCopy(with: CBMutableCopyContext(), andErrorReporting: true) as! ChangeVariableBrick
+
+        XCTAssertTrue(brick.isEqual(to: copiedBrick))
+        XCTAssertFalse(brick === copiedBrick)
+
+        XCTAssertTrue(brick.variableFormula.isEqual(to: copiedBrick.variableFormula))
+        XCTAssertFalse(brick.variableFormula === copiedBrick.variableFormula)
+
+        XCTAssertTrue(brick.userVariable.isEqual(to: copiedBrick.userVariable))
+        XCTAssertTrue(brick.userVariable === copiedBrick.userVariable)
+    }
 }

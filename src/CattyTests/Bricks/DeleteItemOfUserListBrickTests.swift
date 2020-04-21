@@ -51,6 +51,7 @@ final class DeleteItemOfUserListBrickTests: XCTestCase {
 
         userList = UserVariable()
         userList.isList = true
+        userList.name = "test_name"
         spriteObject.project.variables.addObjectList(userList, for: spriteObject)
 
         brick = DeleteItemOfUserListBrick()
@@ -104,5 +105,21 @@ final class DeleteItemOfUserListBrickTests: XCTestCase {
         }
 
         XCTAssertEqual(1, (userList.value as! [AnyObject]).count)
+    }
+
+    func testMutableCopy() {
+        brick.listFormula = Formula(integer: -1)
+        userList.value = NSMutableArray(array: [1])
+
+        let copiedBrick: DeleteItemOfUserListBrick = brick.mutableCopy(with: CBMutableCopyContext(), andErrorReporting: true) as! DeleteItemOfUserListBrick
+
+        XCTAssertTrue(brick.isEqual(to: copiedBrick))
+        XCTAssertFalse(brick === copiedBrick)
+
+        XCTAssertTrue(brick.listFormula.isEqual(to: copiedBrick.listFormula))
+        XCTAssertFalse(brick.listFormula === copiedBrick.listFormula)
+
+        XCTAssertTrue(brick.userList.isEqual(to: userList))
+        XCTAssertTrue(brick.userList === copiedBrick.userList)
     }
 }

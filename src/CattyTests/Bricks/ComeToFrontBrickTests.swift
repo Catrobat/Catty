@@ -58,4 +58,13 @@ final class ComeToFrontBrickTests: AbstractBrickTest {
         XCTAssertEqual(spriteNode1.zPosition, CGFloat(2.0), "ComeToFront is not correctly calculated")
         XCTAssertEqual(spriteNode2.zPosition, CGFloat(1.0), "ComeToFront is not correctly calculated")
     }
+
+    func testMutableCopy() {
+        let brick = ComeToFrontBrick()
+
+        let copiedBrick: ComeToFrontBrick = brick.mutableCopy(with: CBMutableCopyContext()) as! ComeToFrontBrick
+
+        XCTAssertTrue(brick.isEqual(to: copiedBrick))
+        XCTAssertFalse(brick === copiedBrick)
+    }
 }

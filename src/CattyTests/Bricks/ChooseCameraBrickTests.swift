@@ -107,4 +107,15 @@ final class ChooseCameraBrickTests: XCTestCase {
 
         XCTAssertEqual(AVCaptureDevice.Position.front, CameraPreviewHandler.shared().cameraPosition)
     }
+
+    func testMutableCopy() {
+        let brick = ChooseCameraBrick()
+        brick.cameraPosition = 0
+
+        let copiedBrick: ChooseCameraBrick = brick.mutableCopy(with: CBMutableCopyContext()) as! ChooseCameraBrick
+
+        XCTAssertTrue(brick.isEqual(to: copiedBrick))
+        XCTAssertFalse(brick === copiedBrick)
+        XCTAssertEqual(brick.cameraPosition, brick.cameraPosition)
+    }
 }
