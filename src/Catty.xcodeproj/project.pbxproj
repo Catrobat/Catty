@@ -3519,7 +3519,7 @@
 				29B97315FDCFA39411CA2CEA /* Supporting Files */,
 				B43498471927A3AB002F9075 /* Resources */,
 				B46B270317703F9400172837 /* CattyTests */,
-				AAADA0051B9B29D500E0CA9A /* Catty UITests */,
+				AAADA0051B9B29D500E0CA9A /* CattyUITests */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
@@ -8230,7 +8230,7 @@
 			path = ScriptCells;
 			sourceTree = "<group>";
 		};
-		AAADA0051B9B29D500E0CA9A /* Catty UITests */ = {
+		AAADA0051B9B29D500E0CA9A /* CattyUITests */ = {
 			isa = PBXGroup;
 			children = (
 				5E0B3620220A5ED40056EB12 /* Defines */,
@@ -8251,7 +8251,7 @@
 				BA6805AD21303B48004F004F /* VariablesTests.swift */,
 				2D227D93220B38E0008A2BC9 /* ScenePresenterVCTests.swift */,
 			);
-			path = "Catty UITests";
+			path = CattyUITests;
 			sourceTree = "<group>";
 		};
 		AAD498B51B8D2431005894C4 /* Protocols */ = {
@@ -10526,7 +10526,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				INFOPLIST_FILE = "Catty UITests/Info.plist";
+				INFOPLIST_FILE = CattyUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -10557,7 +10557,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				INFOPLIST_FILE = "Catty UITests/Info.plist";
+				INFOPLIST_FILE = CattyUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
