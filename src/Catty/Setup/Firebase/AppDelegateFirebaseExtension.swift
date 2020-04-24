@@ -57,6 +57,7 @@ extension AppDelegate {
             addObserver(selector: #selector(self.projectInvalidXml(notification:)), name: .projectInvalidXml)
             addObserver(selector: #selector(self.projectFetchFailure(notification:)), name: .projectFetchFailure)
             addObserver(selector: #selector(self.projectFetchDetailsFailure(notification:)), name: .projectFetchDetailsFailure)
+            addObserver(selector: #selector(self.projectSearchFailure(notification:)), name: .projectSearchFailure)
         }
 
         addObserver(selector: #selector(self.settingsCrashReportingChanged(notification:)), name: .settingsCrashReportingChanged)
@@ -141,6 +142,21 @@ extension AppDelegate {
 
     @objc func projectFetchDetailsFailure(notification: Notification) {
         let error = NSError(domain: "ProjectFetchDetailsError", code: 400, userInfo: notification.userInfo as? [String: Any] ?? [:])
+        crashlytics.record(error: error)
+    }
+
+    @objc func projectSearchFailure(notification: Notification) {
+
+        var projectInfo: [String: Any] = [:]
+
+        if let errorInfo = notification.object as? ProjectFetchFailureInfo {
+            projectInfo["projectName"] = errorInfo.projectName ?? type(of: self).logNoValue
+            projectInfo["description"] = errorInfo.description
+            projectInfo["statusCode"] = errorInfo.statusCode ?? type(of: self).logNoValue
+            projectInfo["url"] = errorInfo.url
+        }
+
+        let error = NSError(domain: "ProjectSearchError", code: 400, userInfo: projectInfo)
         crashlytics.record(error: error)
     }
 

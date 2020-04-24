@@ -726,6 +726,29 @@ class StoreProjectsDownloaderTests: XCTestCase {
         wait(for: [expectation], timeout: 1.0)
     }
 
+    func testSearchProjectsNotFoundNotification() {
+        let searchTerm = "Galaxy"
+        let url = URL(string: String(format: "%@/%@?q=%@&%@%i&%@%i&%@%@",
+                                     NetworkDefines.connectionHost,
+                                     NetworkDefines.connectionSearch,
+                                     searchTerm.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? "",
+                                     NetworkDefines.projectsLimit,
+                                     NetworkDefines.searchStoreMaxResults,
+                                     NetworkDefines.projectsOffset,
+                                     0,
+                                     NetworkDefines.maxVersion,
+                                     Util.catrobatLanguageVersion()))
+        let response = HTTPURLResponse(url: url!, statusCode: 404, httpVersion: nil, headerFields: nil)
+        let error = ErrorMock("errorDescription")
+        let session = URLSessionMock(response: response, error: error)
+        let downloader = StoreProjectDownloader(session: session)
+
+        let projectErrorInfo = ProjectFetchFailureInfo(url: url?.absoluteString ?? "", statusCode: 404, description: error.localizedDescription, projectName: searchTerm)
+
+        expect(downloader.fetchSearchQuery(searchTerm: searchTerm, completion: { _, _ in
+        })).toEventually(postNotifications(contain(.projectSearchFailure, expectedObject: projectErrorInfo)))
+    }
+
     // MARK: - Fetch Project Details
 
     func testFetchProjectDetailsSucceeds() {

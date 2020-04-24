@@ -54,15 +54,35 @@ final class StoreProjectDownloader: StoreProjectDownloaderProtocol {
             let handleDataTaskCompletion: (Data?, URLResponse?, Error?) -> (items: StoreProjectCollection.StoreProjectCollectionNumber?, error: StoreProjectDownloaderError?)
             handleDataTaskCompletion = { data, response, error in
                 if let error = error as NSError?, error.domain == NSURLErrorDomain && error.code == NSURLErrorTimedOut {
+                    let searchErrorInfo = ProjectFetchFailureInfo(url: indexURL.absoluteString, description: error.localizedDescription, projectName: searchTerm)
+
+                    NotificationCenter.default.post(name: .projectSearchFailure, object: searchErrorInfo)
                     return (nil, .timeout)
                 }
 
-                guard let response = response as? HTTPURLResponse else { return (nil, .unexpectedError) }
-                guard let data = data, response.statusCode == 200, error == nil else { return (nil, .request(error: error, statusCode: response.statusCode)) }
+                guard let response = response as? HTTPURLResponse else {
+                    let searchErrorInfo = ProjectFetchFailureInfo(url: indexURL.absoluteString, description: error?.localizedDescription ?? "", projectName: searchTerm)
+
+                    NotificationCenter.default.post(name: .projectSearchFailure, object: searchErrorInfo)
+                    return (nil, .unexpectedError)
+                }
+                guard let data = data, response.statusCode == 200, error == nil else {
+                    let searchErrorInfo = ProjectFetchFailureInfo(url: indexURL.absoluteString,
+                                                                  statusCode: response.statusCode,
+                                                                  description: error?.localizedDescription ?? "",
+                                                                  projectName: searchTerm)
+
+                    NotificationCenter.default.post(name: .projectSearchFailure, object: searchErrorInfo)
+
+                    return (nil, .request(error: error, statusCode: response.statusCode))
+                }
                 let items: StoreProjectCollection.StoreProjectCollectionNumber?
                 do {
                     items = try JSONDecoder().decode(StoreProjectCollection.StoreProjectCollectionNumber.self, from: data)
                 } catch {
+                    let searchErrorInfo = ProjectFetchFailureInfo(url: indexURL.absoluteString, statusCode: response.statusCode, description: error.localizedDescription, projectName: searchTerm)
+
+                    NotificationCenter.default.post(name: .projectSearchFailure, object: searchErrorInfo)
                     return (nil, .parse(error: error))
                 }
                 return (items, nil)
@@ -205,6 +225,7 @@ struct ProjectFetchFailureInfo: Equatable {
     var url: String
     var statusCode: Int?
     var description: String
+    var projectName: String?
 }
 
 extension StoreProjectDownloader {
