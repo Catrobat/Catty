@@ -33,6 +33,8 @@
 
 - (id)initWithVariable:(UserVariable*)userVariable;
 
+- (id)initWithName:(NSString*)name isList:(BOOL)isList;
+
 - (id)mutableCopyWithContext:(CBMutableCopyContext*)context;
 
 - (BOOL)isEqualToUserVariable:(UserVariable*)userVariable;

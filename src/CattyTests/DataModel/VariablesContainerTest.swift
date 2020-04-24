@@ -96,4 +96,144 @@ final class VariablesContainerTest: XCTestCase {
         XCTAssertEqual(1, container.allLists(for: objectA)?.count)
         XCTAssertEqual(1, container.allLists(for: objectB)?.count)
     }
+
+    func testAllVariables() {
+        let objectA = SpriteObject()
+        objectA.name = "testObjectA"
+
+        let userVariable1 = UserVariable(name: "testName1", isList: false)
+        let userVariable2 = UserVariable(name: "testName2", isList: false)
+        let list = UserVariable(name: "testlist", isList: true)
+
+        let container = VariablesContainer()
+
+        container.addObjectVariable(userVariable1, for: objectA)
+        container.addObjectList(list, for: objectA)
+
+        var allVariable = container.allVariables() as! [UserVariable]
+
+        XCTAssertEqual(1, allVariable.count)
+        XCTAssertEqual(allVariable[0].name, userVariable1?.name)
+
+        container.addObjectVariable(userVariable2, for: objectA)
+        allVariable = container.allVariables() as! [UserVariable]
+
+        XCTAssertEqual(2, allVariable.count)
+        XCTAssertEqual(allVariable[0].name, userVariable1?.name)
+        XCTAssertEqual(allVariable[1].name, userVariable2?.name)
+    }
+
+    func testAllList() {
+        let objectA = SpriteObject()
+        objectA.name = "testObjectA"
+
+        let list1 = UserVariable(name: "testName1", isList: true)
+        let list2 = UserVariable(name: "testName2", isList: true)
+        let variable = UserVariable(name: "testvariable", isList: false)
+
+        let container = VariablesContainer()
+
+        container.addObjectList(list1, for: objectA)
+        container.addObjectVariable(variable, for: objectA)
+
+        var allList = container.allLists() as! [UserVariable]
+
+        XCTAssertEqual(1, allList.count)
+        XCTAssertEqual(allList[0].name, list1?.name)
+
+        container.addObjectList(list2, for: objectA)
+        allList = container.allLists() as! [UserVariable]
+
+        XCTAssertEqual(2, allList.count)
+        XCTAssertEqual(allList[0].name, list1?.name)
+        XCTAssertEqual(allList[1].name, list2?.name)
+    }
+
+    func testAllVariableAndAllList() {
+        let objectA = SpriteObject()
+        objectA.name = "testObjectA"
+
+        let userVariable = UserVariable(name: "testVariable", isList: false)
+
+        let list = UserVariable(name: "testList", isList: true)
+
+        let container = VariablesContainer()
+
+        container.addObjectVariable(userVariable, for: objectA)
+        var allListAndALlVariable = container.allVariablesAndLists() as! [UserVariable]
+
+        XCTAssertEqual(1, allListAndALlVariable.count)
+        XCTAssertEqual(allListAndALlVariable[0].name, userVariable?.name)
+        XCTAssertFalse(allListAndALlVariable[0].isList)
+
+        container.addObjectList(list, for: objectA)
+        allListAndALlVariable = container.allVariablesAndLists() as! [UserVariable]
+
+        XCTAssertEqual(2, allListAndALlVariable.count)
+        XCTAssertEqual(allListAndALlVariable[0].name, userVariable?.name)
+        XCTAssertEqual(allListAndALlVariable[1].name, list?.name)
+        XCTAssertFalse(allListAndALlVariable[0].isList)
+        XCTAssertTrue(allListAndALlVariable[1].isList)
+    }
+
+    func testObjectVariablesForObject() {
+        let objectA = SpriteObject()
+        objectA.name = "testObjectA"
+
+        let objectB = SpriteObject()
+        objectB.name = "testObjectB"
+
+        let userVariable1 = UserVariable(name: "testName1", isList: false)
+        let userVariable2 = UserVariable(name: "testName2", isList: false)
+        let userVariable3 = UserVariable(name: "testName3", isList: false)
+
+        let container = VariablesContainer()
+
+        container.addObjectVariable(userVariable1, for: objectA)
+        var variables = container.objectVariables(for: objectA) as! [UserVariable]
+
+        XCTAssertEqual(1, variables.count)
+        XCTAssertEqual(variables[0].name, userVariable1?.name)
+
+        container.addObjectVariable(userVariable2, for: objectA)
+        container.addObjectVariable(userVariable3, for: objectB)
+
+        variables = container.objectVariables(for: objectA) as! [UserVariable]
+
+        XCTAssertEqual(2, variables.count)
+        XCTAssertEqual(variables[0].name, userVariable1?.name)
+        XCTAssertEqual(variables[1].name, userVariable2?.name)
+    }
+
+    func testObjectListsForObject() {
+        let objectA = SpriteObject()
+        objectA.name = "testObjectA"
+
+        let objectB = SpriteObject()
+        objectB.name = "testObjectB"
+
+        let list1 = UserVariable(name: "testVariable1", isList: true)
+        let list2 = UserVariable(name: "testVariable2", isList: true)
+        let list3 = UserVariable(name: "testVariable3", isList: true)
+
+        let container = VariablesContainer()
+
+        container.addObjectList(list1, for: objectA)
+        var lists = container.objectLists(for: objectA) as! [UserVariable]
+
+        XCTAssertEqual(1, lists.count)
+        XCTAssertEqual(lists[0].name, list1?.name)
+        XCTAssertTrue(lists[0].isList)
+
+        container.addObjectList(list2, for: objectA)
+        container.addObjectList(list3, for: objectB)
+
+        lists = container.objectLists(for: objectA) as! [UserVariable]
+
+        XCTAssertEqual(2, lists.count)
+        XCTAssertEqual(lists[0].name, list1?.name)
+        XCTAssertEqual(lists[1].name, list2?.name)
+        XCTAssertTrue(lists[0].isList)
+        XCTAssertTrue(lists[1].isList)
+    }
 }

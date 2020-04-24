@@ -36,6 +36,16 @@
     return self;
 }
 
+- (id)initWithName:(NSString *)name isList:(BOOL)isList
+{
+    self = [self init];
+    if (self) {
+        self.name = name;
+        self.isList = isList;
+    }
+    return self;
+}
+
 - (NSString*)description
 {
     return [NSString stringWithFormat:@"UserVariable: Name: %@, Value: %@", self.name, self.value ];
