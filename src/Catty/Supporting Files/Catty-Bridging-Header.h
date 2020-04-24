@@ -194,7 +194,6 @@
 //-----------------------------------------------------------------------------------------------------------
 #import "CatrobatInformation.h"
 #import "CatrobatProject.h"
-#import "AppDelegate.h"
 #import "TableUtil.h"
 #import "CellTagDefines.h"
 #import "SegueDefines.h"

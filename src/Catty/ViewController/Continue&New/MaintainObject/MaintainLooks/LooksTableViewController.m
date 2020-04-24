@@ -34,7 +34,7 @@
 #import "LookImageViewController.h"
 #import "NSString+CatrobatNSStringExtensions.h"
 #import "NSData+Hashes.h"
-#import "AppDelegate.h"
+#import "CBFileManager.h"
 #import "RuntimeImageCache.h"
 #import "PlaceHolderView.h"
 #import "UIImage+Rotate.h"

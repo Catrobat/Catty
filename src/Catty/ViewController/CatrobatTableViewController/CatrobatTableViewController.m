@@ -23,7 +23,7 @@
 #import "CatrobatTableViewController.h"
 #import "CellTagDefines.h"
 #import "TableUtil.h"
-#import "AppDelegate.h"
+#import "CBFileManager.h"
 #import "Util.h"
 #import "CatrobatImageCell.h"
 #import "DownloadTabBarController.h"

@@ -21,7 +21,7 @@
  */
 
 #import "ProjectDetailStoreViewController.h"
-#import "AppDelegate.h"
+#import "CBFileManager.h"
 #import "ButtonTags.h"
 #import "SegueDefines.h"
 #import "ProjectTableViewController.h"
