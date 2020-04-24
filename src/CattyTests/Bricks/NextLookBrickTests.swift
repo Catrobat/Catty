@@ -65,4 +65,12 @@ final class NextLookBrickTests: AbstractBrickTest {
         Project.removeProjectFromDisk(withProjectName: project.header.programName, projectID: project.header.programID)
     }
 
+    func testMutableCopy() {
+        let brick = NextLookBrick()
+
+        let copiedBrick: NextLookBrick = brick.mutableCopy(with: CBMutableCopyContext(), andErrorReporting: true) as! NextLookBrick
+
+        XCTAssertTrue(brick.isEqual(to: copiedBrick))
+        XCTAssertFalse(brick == copiedBrick)
+    }
 }
