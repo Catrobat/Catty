@@ -155,4 +155,16 @@ final class MoveNStepsBrickTests: AbstractBrickTest {
         XCTAssertEqual(position.x, self.spriteNode.catrobatPosition.x, accuracy: EPSILON, "Wrong x after MoveNStepsBrick")
         XCTAssertEqual(position.y, self.spriteNode.catrobatPosition.y, accuracy: EPSILON, "Wrong y after MoveNStepsBrick")
     }
+
+    func testMutableCopy() {
+        brick.steps = Formula(double: 76.8)
+
+        let copiedBrick: MoveNStepsBrick = brick.mutableCopy(with: CBMutableCopyContext(), andErrorReporting: true) as! MoveNStepsBrick
+
+        XCTAssertTrue(brick.isEqual(to: copiedBrick))
+        XCTAssertFalse(brick == copiedBrick)
+
+        XCTAssertTrue(brick.steps.isEqual(to: copiedBrick.steps))
+        XCTAssertFalse(brick.steps == copiedBrick.steps)
+    }
 }

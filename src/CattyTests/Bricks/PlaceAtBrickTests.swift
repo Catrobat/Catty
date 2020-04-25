@@ -94,4 +94,20 @@ final class PlaceAtBrickTests: AbstractBrickTest {
         XCTAssertEqual(spriteNode.catrobatPosition, testPoint, "PlaceAtBrick is not correctly calculated")
     }
 
+    func testMutableCopy() {
+        brick.xPosition = Formula(double: 60)
+        brick.yPosition = Formula(double: 60)
+
+        let copiedBrick: PlaceAtBrick = brick.mutableCopy(with: CBMutableCopyContext(), andErrorReporting: true) as! PlaceAtBrick
+
+        XCTAssertTrue(brick.isEqual(to: copiedBrick))
+        XCTAssertFalse(brick == copiedBrick)
+
+        XCTAssertTrue(brick.xPosition.isEqual(to: copiedBrick.xPosition))
+        XCTAssertFalse(brick.xPosition == copiedBrick.xPosition)
+
+        XCTAssertTrue(brick.yPosition.isEqual(to: copiedBrick.yPosition))
+        XCTAssertFalse(brick.yPosition == copiedBrick.yPosition)
+    }
+
 }

@@ -225,4 +225,13 @@ final class IfOnEdgeBounceBrickTests: AbstractBrickTest {
         XCTAssertEqual(position.y, self.spriteObject.spriteNode.catrobatPosition.y, accuracy: IfOnEdgeBounceBrickTests.EPSILON, "Wrong y after bounce")
         XCTAssertEqual(rotation, self.spriteObject.spriteNode.catrobatRotation, accuracy: Double(IfOnEdgeBounceBrickTests.EPSILON), "Wrong rotation after bounce")
     }
+
+    func testMutableCopy() {
+        brick = IfOnEdgeBounceBrick()
+
+        let copiedBrick: IfOnEdgeBounceBrick = brick.mutableCopy(with: CBMutableCopyContext(), andErrorReporting: true) as! IfOnEdgeBounceBrick
+
+        XCTAssertTrue(brick.isEqual(to: copiedBrick))
+        XCTAssertFalse(brick == copiedBrick)
+    }
 }

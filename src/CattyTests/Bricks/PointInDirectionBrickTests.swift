@@ -47,4 +47,17 @@ final class PointInDirectionBrickTests: AbstractBrickTest {
         XCTAssertEqual(20.0, spriteNode.catrobatRotation, accuracy: 0.0001, "PointInDirectionBrick is not correctly calculated")
     }
 
+    func testMutableCopy() {
+        let brick = PointInDirectionBrick()
+        brick.degrees = Formula(double: 270)
+
+        let copiedBrick: PointInDirectionBrick = brick.mutableCopy(with: CBMutableCopyContext(), andErrorReporting: true) as! PointInDirectionBrick
+
+        XCTAssertTrue(brick.isEqual(to: copiedBrick))
+        XCTAssertFalse(brick == copiedBrick)
+
+        XCTAssertTrue(brick.degrees.isEqual(to: copiedBrick.degrees))
+        XCTAssertFalse(brick.degrees == copiedBrick.degrees)
+    }
+
 }
