@@ -28,7 +28,7 @@
 
 @class CatrobatProject;
 
-@interface ProjectDetailStoreViewController : UIViewController<ProjectStoreDelegate, UIScrollViewDelegate, FileManagerDelegate, TTTAttributedLabelDelegate, NSURLConnectionDataDelegate, UIGestureRecognizerDelegate>
+@interface ProjectDetailStoreViewController : UIViewController<ProjectStoreDelegate, UIScrollViewDelegate, CBFileManagerDelegate, TTTAttributedLabelDelegate, NSURLConnectionDataDelegate, UIGestureRecognizerDelegate>
 
 @property (nonatomic, strong) CatrobatProject *project;
 @property (nonatomic, strong) NSMutableDictionary *projects;
