@@ -234,6 +234,196 @@ final class VariablesContainerTest: XCTestCase {
         XCTAssertTrue(lists[1].isList)
     }
 
+    func testSetUserVariable() {
+        let objectA = SpriteObject()
+        objectA.name = "testObjectA"
+
+        let userVariable1 = UserVariable(name: "testName1", isList: false)
+
+        let container = VariablesContainer()
+
+        container.addObjectVariable(userVariable1, for: objectA)
+        container.setUserVariable(userVariable1, toValue: 10)
+
+        let variables = container.objectVariables(for: objectA) as! [UserVariable]
+
+        XCTAssertEqual(1, variables.count)
+        XCTAssertEqual(variables[0].value as! Int, 10)
+    }
+
+    func testChangeVariable() {
+        let objectA = SpriteObject()
+        objectA.name = "testObjectA"
+
+        let userVariable1 = UserVariable(name: "testName1", isList: false)
+
+        let container = VariablesContainer()
+
+        container.addObjectVariable(userVariable1, for: objectA)
+        container.setUserVariable(userVariable1, toValue: 10)
+        container.change(userVariable1, byValue: 10)
+
+        var variables = container.objectVariables(for: objectA) as! [UserVariable]
+
+        XCTAssertEqual(1, variables.count)
+        XCTAssertEqual(variables[0].value as! Int, 20)
+
+        container.change(userVariable1, byValue: 10)
+
+        variables = container.objectVariables(for: objectA) as! [UserVariable]
+
+        XCTAssertEqual(1, variables.count)
+        XCTAssertEqual(variables[0].value as! Int, 30)
+    }
+
+    func testAddToUserList() {
+        let objectA = SpriteObject()
+        objectA.name = "testObjectA"
+
+        let list1 = UserVariable(name: "testVariable1", isList: true)
+
+        let container = VariablesContainer()
+
+        container.addObjectList(list1, for: objectA)
+        container.add(toUserList: list1, value: 10)
+        container.add(toUserList: list1, value: 20)
+
+        let lists = container.allLists() as! [UserVariable]
+        let itemInList = lists[0].value as! [Int]
+
+        XCTAssertEqual(2, itemInList.count)
+        XCTAssertEqual(itemInList[0], 10)
+        XCTAssertEqual(itemInList[1], 20)
+    }
+
+    func testDeleteFromUserList() {
+        let objectA = SpriteObject()
+        objectA.name = "testObjectA"
+
+        let list1 = UserVariable(name: "testVariable1", isList: true)
+
+        let container = VariablesContainer()
+
+        container.addObjectList(list1, for: objectA)
+        container.add(toUserList: list1, value: 10)
+        container.add(toUserList: list1, value: 20)
+
+        var lists = container.allLists() as! [UserVariable]
+        var itemInList = lists[0].value as! [Int]
+
+        XCTAssertEqual(2, itemInList.count)
+
+        container.delete(fromUserList: list1, atIndex: 2)
+
+        lists = container.allLists() as! [UserVariable]
+        itemInList = lists[0].value as! [Int]
+
+        XCTAssertEqual(1, itemInList.count)
+        XCTAssertEqual(itemInList[0], 10)
+    }
+
+    func testInsertToUserList() {
+        let objectA = SpriteObject()
+        objectA.name = "testObjectA"
+
+        let list1 = UserVariable(name: "testVariable1", isList: true)
+
+        let container = VariablesContainer()
+
+        container.addObjectList(list1, for: objectA)
+        container.insert(toUserList: list1, value: 10, atIndex: 1)
+        container.insert(toUserList: list1, value: 30, atIndex: 2)
+
+        var lists = container.allLists() as! [UserVariable]
+        var itemInList = lists[0].value as! [Int]
+
+        XCTAssertEqual(itemInList.count, 2)
+        XCTAssertEqual(itemInList[0], 10)
+        XCTAssertEqual(itemInList[1], 30)
+
+        container.insert(toUserList: list1, value: 20, atIndex: 2)
+
+        lists = container.allLists() as! [UserVariable]
+        itemInList = lists[0].value as! [Int]
+
+        XCTAssertEqual(itemInList.count, 3)
+        XCTAssertEqual(itemInList[0], 10)
+        XCTAssertEqual(itemInList[1], 20)
+        XCTAssertEqual(itemInList[2], 30)
+    }
+
+    func testInsertToUserListInvalidIndex() {
+        let objectA = SpriteObject()
+        objectA.name = "testObjectA"
+
+        let list1 = UserVariable(name: "testVariable1", isList: true)
+
+        let container = VariablesContainer()
+
+        container.addObjectList(list1, for: objectA)
+        container.insert(toUserList: list1, value: 10, atIndex: -1)
+
+        var lists = container.allLists() as! [UserVariable]
+        var itemInList = lists[0].value
+
+        XCTAssertNil(itemInList)
+
+        container.insert(toUserList: list1, value: 10, atIndex: 5)
+
+        lists = container.allLists() as! [UserVariable]
+        itemInList = lists[0].value
+
+        XCTAssertNil(itemInList)
+    }
+
+    func testReplaceItemInUserList() {
+        let objectA = SpriteObject()
+        objectA.name = "testObjectA"
+
+        let list1 = UserVariable(name: "testVariable1", isList: true)
+
+        let container = VariablesContainer()
+
+        container.addObjectList(list1, for: objectA)
+        container.insert(toUserList: list1, value: 10, atIndex: 1)
+        container.insert(toUserList: list1, value: 20, atIndex: 2)
+        container.replaceItem(inUserList: list1, value: 30, atIndex: 2)
+
+        var lists = container.allLists() as! [UserVariable]
+        var itemInList = lists[0].value as! [Int]
+
+        XCTAssertEqual(itemInList.count, 2)
+        XCTAssertEqual(itemInList[0], 10)
+        XCTAssertEqual(itemInList[1], 30)
+
+        container.replaceItem(inUserList: list1, value: 40, atIndex: 1)
+
+        lists = container.allLists() as! [UserVariable]
+        itemInList = lists[0].value as! [Int]
+
+        XCTAssertEqual(itemInList.count, 2)
+        XCTAssertEqual(itemInList[0], 40)
+        XCTAssertEqual(itemInList[1], 30)
+    }
+
+    func testReplaceItemInUserListInvalidIndex() {
+        let objectA = SpriteObject()
+        objectA.name = "testObjectA"
+
+        let list1 = UserVariable(name: "testVariable1", isList: true)
+
+        let container = VariablesContainer()
+
+        container.addObjectList(list1, for: objectA)
+        container.insert(toUserList: list1, value: 10, atIndex: 1)
+        container.replaceItem(inUserList: list1, value: 30, atIndex: 2)
+
+        let lists = container.allLists() as! [UserVariable]
+        let itemInList = lists[0].value as! [Int]
+
+        XCTAssertNotEqual(itemInList[0], 30)
+    }
+
     func testSpriteObjectForObjectVariableWhenNotList() {
         let objectA = SpriteObject()
         objectA.name = "testObjectA"
