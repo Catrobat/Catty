@@ -58,6 +58,8 @@ extension AppDelegate {
             addObserver(selector: #selector(self.projectFetchFailure(notification:)), name: .projectFetchFailure)
             addObserver(selector: #selector(self.projectFetchDetailsFailure(notification:)), name: .projectFetchDetailsFailure)
             addObserver(selector: #selector(self.projectSearchFailure(notification:)), name: .projectSearchFailure)
+            addObserver(selector: #selector(self.mediaLibraryDownloadIndexFailure(notification:)), name: .mediaLibraryDownloadIndexFailure)
+            addObserver(selector: #selector(self.mediaLibraryDownloadDataFailure(notification:)), name: .mediaLibraryDownloadDataFailure)
         }
 
         addObserver(selector: #selector(self.settingsCrashReportingChanged(notification:)), name: .settingsCrashReportingChanged)
@@ -142,6 +144,32 @@ extension AppDelegate {
 
     @objc func projectFetchDetailsFailure(notification: Notification) {
         let error = NSError(domain: "ProjectFetchDetailsError", code: 400, userInfo: notification.userInfo as? [String: Any] ?? [:])
+        crashlytics.record(error: error)
+    }
+
+    @objc func mediaLibraryDownloadIndexFailure(notification: Notification) {
+        var info: [String: Any] = [:]
+
+        if let errorInfo = notification.object as? MediaLibraryDownloadFailureInfo {
+            info["url"] = errorInfo.url
+            info["statusCode"] = errorInfo.statusCode
+            info["description"] = errorInfo.description
+        }
+
+        let error = NSError(domain: "MediaLibraryDownloadIndexError", code: 420, userInfo: info)
+        crashlytics.record(error: error)
+    }
+
+    @objc func mediaLibraryDownloadDataFailure(notification: Notification) {
+        var info: [String: Any] = [:]
+
+        if let errorInfo = notification.object as? MediaLibraryDownloadFailureInfo {
+            info["url"] = errorInfo.url
+            info["statusCode"] = errorInfo.statusCode
+            info["description"] = errorInfo.description
+        }
+
+        let error = NSError(domain: "MediaLibraryDownloadDataError", code: 430, userInfo: info)
         crashlytics.record(error: error)
     }
 

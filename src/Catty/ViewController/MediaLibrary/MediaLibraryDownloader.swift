@@ -38,12 +38,22 @@ final class MediaLibraryDownloader: MediaLibraryDownloaderProtocol {
 
             let handleDataTaskCompletion: (Data?, URLResponse?, Error?) -> (items: [[MediaItem]]?, error: MediaLibraryDownloadError?)
             handleDataTaskCompletion = { data, response, error in
-                guard let response = response as? HTTPURLResponse else { return (nil, .unexpectedError) }
-                guard let data = data, response.statusCode == 200, error == nil else { return (nil, .request(error: error, statusCode: response.statusCode)) }
+                guard let response = response as? HTTPURLResponse else {
+                    let errorInfo = MediaLibraryDownloadFailureInfo(url: mediaType.indexURL.absoluteString, description: error?.localizedDescription ?? "")
+                    NotificationCenter.default.post(name: .mediaLibraryDownloadIndexFailure, object: errorInfo)
+                    return (nil, .unexpectedError)
+                }
+                guard let data = data, response.statusCode == 200, error == nil else {
+                    let errorInfo = MediaLibraryDownloadFailureInfo(url: mediaType.indexURL.absoluteString, statusCode: response.statusCode, description: error?.localizedDescription ?? "")
+                    NotificationCenter.default.post(name: .mediaLibraryDownloadIndexFailure, object: errorInfo)
+                    return (nil, .request(error: error, statusCode: response.statusCode))
+                }
                 let items: [[MediaItem]]?
                 do {
                     items = try JSONDecoder().decode([MediaItem].self, from: data).groupedByCategories
                 } catch {
+                    let errorInfo = MediaLibraryDownloadFailureInfo(url: mediaType.indexURL.absoluteString, statusCode: response.statusCode, description: error.localizedDescription)
+                    NotificationCenter.default.post(name: .mediaLibraryDownloadIndexFailure, object: errorInfo)
                     return (nil, .parse(error: error))
                 }
                 return (items, nil)
@@ -59,9 +69,16 @@ final class MediaLibraryDownloader: MediaLibraryDownloaderProtocol {
     func downloadData(for mediaItem: MediaItem, completion: @escaping (Data?, MediaLibraryDownloadError?) -> Void) {
         self.session.dataTask(with: URLRequest(url: mediaItem.downloadURL)) { data, response, error in
             DispatchQueue.main.async {
-                guard let response = response as? HTTPURLResponse else { completion(nil, .unexpectedError); return }
+                guard let response = response as? HTTPURLResponse else {
+                    completion(nil, .unexpectedError)
+                    let errorInfo = MediaLibraryDownloadFailureInfo(url: mediaItem.downloadURL.absoluteString, description: error?.localizedDescription ?? "")
+                    NotificationCenter.default.post(name: .mediaLibraryDownloadDataFailure, object: errorInfo)
+                    return
+                }
                 guard let data = data, response.statusCode == 200, error == nil else {
                     completion(nil, .request(error: error, statusCode: response.statusCode))
+                    let errorInfo = MediaLibraryDownloadFailureInfo(url: mediaItem.downloadURL.absoluteString, statusCode: response.statusCode, description: error?.localizedDescription ?? "")
+                    NotificationCenter.default.post(name: .mediaLibraryDownloadDataFailure, object: errorInfo)
                     return
                 }
                 completion(data, nil)
@@ -77,4 +94,10 @@ enum MediaLibraryDownloadError: Error {
     case parse(error: Error)
     /// Indicates an unexpected error.
     case unexpectedError
+}
+
+struct MediaLibraryDownloadFailureInfo: Equatable {
+    var url: String
+    var statusCode: Int?
+    var description: String
 }
