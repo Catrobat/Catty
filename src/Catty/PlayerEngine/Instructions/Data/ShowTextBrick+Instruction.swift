@@ -45,13 +45,13 @@
                 } else {
                     value = "0"
                 }
-                userVariable.textLabel.text = value
+                userVariable.textLabel?.text = value
 
-                guard let scene = userVariable.textLabel.scene else {
+                guard let scene = userVariable.textLabel?.scene else {
                     fatalError("This should never happen!")
                 }
-                userVariable.textLabel.position = CGPoint(x: scene.size.width / 2 + CGFloat(xResult), y: scene.size.height / 2 + CGFloat(yResult))
-                userVariable.textLabel.isHidden = false
+                userVariable.textLabel?.position = CGPoint(x: scene.size.width / 2 + CGFloat(xResult), y: scene.size.height / 2 + CGFloat(yResult))
+                userVariable.textLabel?.isHidden = false
             }
             context.state = .runnable
         }

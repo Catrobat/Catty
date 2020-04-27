@@ -77,9 +77,7 @@
     }
     
     // Init new UserVariable -> this method has been called from VariablesContainer+CBXMLHandler
-    userVariable = [UserVariable new];
-    userVariable.name = userVariableName;
-    userVariable.isList = false;
+    userVariable = [[UserVariable alloc] initWithName:userVariableName];
     return userVariable;
 }
 
@@ -114,9 +112,7 @@
     }
     
     // Init new UserVariable -> this method has been called from VariablesContainer+CBXMLHandler
-    userList = [UserVariable new];
-    userList.name = userListName;
-    userList.isList = true;
+    userList = [[UserVariable alloc] initWithName:userListName isList:true];
     return userList;
 }
 

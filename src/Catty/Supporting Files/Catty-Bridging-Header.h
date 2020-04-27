@@ -133,9 +133,6 @@
 #import "Formula.h"
 #import "FormulaElement.h"
 
-// UserVariable
-#import "UserVariable.h"
-
 // Assets
 #import "Look.h"
 #import "Sound.h"

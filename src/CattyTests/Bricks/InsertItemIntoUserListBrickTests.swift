@@ -49,8 +49,7 @@ final class InsertItemIntoUserListBrickTests: XCTestCase {
 
         spriteObject.project.variables = VariablesContainer()
 
-        userList = UserVariable()
-        userList.isList = true
+        userList = UserVariable(name: "testName", isList: true)
         spriteObject.project.variables.addObjectList(userList, for: spriteObject)
 
         brick = InsertItemIntoUserListBrick()
@@ -115,14 +114,13 @@ final class InsertItemIntoUserListBrickTests: XCTestCase {
     func testMutableCopy() {
         brick.elementFormula = Formula(float: 90.9)
         brick.index = Formula(integer: 5)
-        userList.name = "Name"
 
         brick.userList = userList
 
         let copiedBrick: InsertItemIntoUserListBrick = brick.mutableCopy(with: CBMutableCopyContext(), andErrorReporting: true) as! InsertItemIntoUserListBrick
 
         XCTAssertTrue(brick.isEqual(to: copiedBrick))
-        XCTAssertFalse(brick == copiedBrick)
+        XCTAssertFalse(brick === copiedBrick)
 
         XCTAssertTrue(brick.elementFormula.isEqual(to: copiedBrick.elementFormula))
         XCTAssertFalse(brick.elementFormula == copiedBrick.elementFormula)

@@ -20,8 +20,8 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+#import "Pocket_Code-Swift.h"
 #import "Brick+UserVariable.h"
-#import "UserVariable.h"
 #import "BrickFormulaProtocol.h"
 #import "FormulaElement+UserVariable.h"
 #import "SetVariableBrick.h"
@@ -43,24 +43,24 @@
         
         if ([self isKindOfClass:[SetVariableBrick class]]) {
             SetVariableBrick* varBrick = (SetVariableBrick*) self;
-            if ([varOrList isEqualToUserVariable:varBrick.userVariable]) {
+            if ([varOrList isEqual:varBrick.userVariable]) {
                 return YES;
             }
         } else if ([self isKindOfClass:[ChangeVariableBrick class]]) {
             ChangeVariableBrick* varBrick = (ChangeVariableBrick*) self;
-            if ([varOrList isEqualToUserVariable:varBrick.userVariable]) {
+            if ([varOrList isEqual:varBrick.userVariable]) {
                 return YES;
             }
         }
         else if ([self isKindOfClass:[ShowTextBrick class]]) {
             ShowTextBrick* varBrick = (ShowTextBrick*) self;
-            if ([varOrList isEqualToUserVariable:varBrick.userVariable]) {
+            if ([varOrList isEqual:varBrick.userVariable]) {
                 return YES;
             }
         }
         else if ([self isKindOfClass:[HideTextBrick class]]) {
             HideTextBrick* varBrick = (HideTextBrick*) self;
-            if ([varOrList isEqualToUserVariable:varBrick.userVariable]) {
+            if ([varOrList isEqual:varBrick.userVariable]) {
                 return YES;
             }
         }
@@ -68,7 +68,7 @@
     
     if ([self conformsToProtocol:@protocol(BrickListProtocol)]) {
         Brick<BrickListProtocol>* listBrick = (Brick<BrickListProtocol>*) self;
-        if ([varOrList isEqualToUserVariable:listBrick.userList]) {
+        if ([varOrList isEqual:listBrick.userList]) {
             return YES;
         }
     }

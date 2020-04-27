@@ -232,6 +232,6 @@ final class IfOnEdgeBounceBrickTests: AbstractBrickTest {
         let copiedBrick: IfOnEdgeBounceBrick = brick.mutableCopy(with: CBMutableCopyContext(), andErrorReporting: true) as! IfOnEdgeBounceBrick
 
         XCTAssertTrue(brick.isEqual(to: copiedBrick))
-        XCTAssertFalse(brick == copiedBrick)
+        XCTAssertFalse(brick === copiedBrick)
     }
 }

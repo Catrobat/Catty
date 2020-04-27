@@ -968,10 +968,8 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                                         target:self
                                   cancelAction:@selector(reloadData)
                                     withObject:(id) ^(NSString* variableName) {
-                                        UserVariable *variable = [UserVariable new];
-                                        variable.name = variableName;
+                                        UserVariable *variable = [[UserVariable alloc] initWithName:variableName];
                                         variable.value = [NSNumber numberWithInt:0];
-                                        variable.isList = NO;
                                         if (isProjectVar) {
                                             [self.object.project.variables.programVariableList addObject:variable];
                                         } else { // object variable
@@ -1019,10 +1017,8 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                                         target:self
                                   cancelAction:@selector(reloadData)
                                     withObject:(id) ^(NSString* listName) {
-                                        UserVariable *list = [UserVariable new];
-                                        list.name = listName;
+                                        UserVariable *list = [[UserVariable alloc] initWithName:listName isList:YES];
                                         list.value = [[NSMutableArray alloc] init];
-                                        list.isList = YES;
                                         if (isProjectList) {
                                             [self.object.project.variables.programListOfLists addObject:list];
                                         } else { // object list

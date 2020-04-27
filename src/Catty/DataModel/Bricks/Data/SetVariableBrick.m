@@ -22,6 +22,7 @@
 
 #import "SetVariableBrick.h"
 #import "Script.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation SetVariableBrick
 
@@ -80,7 +81,7 @@
 
 - (BOOL)isEqualToBrick:(Brick*)brick
 {
-    if (! [self.userVariable isEqualToUserVariable:((SetVariableBrick*)brick).userVariable])
+    if (! [self.userVariable isEqual:((SetVariableBrick*)brick).userVariable])
         return NO;
     if (! [self.variableFormula isEqualToFormula:((SetVariableBrick*)brick).variableFormula])
         return NO;

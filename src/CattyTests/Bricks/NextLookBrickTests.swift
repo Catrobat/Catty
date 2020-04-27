@@ -71,6 +71,6 @@ final class NextLookBrickTests: AbstractBrickTest {
         let copiedBrick: NextLookBrick = brick.mutableCopy(with: CBMutableCopyContext(), andErrorReporting: true) as! NextLookBrick
 
         XCTAssertTrue(brick.isEqual(to: copiedBrick))
-        XCTAssertFalse(brick == copiedBrick)
+        XCTAssertFalse(brick === copiedBrick)
     }
 }

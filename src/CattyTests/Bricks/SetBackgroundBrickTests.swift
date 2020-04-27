@@ -90,6 +90,7 @@ final class SetBackgroundBrickTests: AbstractBrickTest {
         let copiedBrick: SetBackgroundBrick = brick.mutableCopy(with: CBMutableCopyContext()) as! SetBackgroundBrick
 
         XCTAssertTrue(brick.isEqual(to: copiedBrick))
+        XCTAssertFalse(brick === copiedBrick)
         XCTAssertTrue(brick.look.isEqual(to: copiedBrick.look))
         XCTAssertTrue(copiedBrick.look.isEqual(to: look))
         XCTAssertTrue(copiedBrick.look === brick.look)

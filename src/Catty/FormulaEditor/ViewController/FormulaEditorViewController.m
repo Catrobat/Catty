@@ -919,15 +919,13 @@ NS_ENUM(NSInteger, ButtonIndex) {
     }
     
     [self.formulaEditorTextView becomeFirstResponder];
-    UserVariable* var = [UserVariable new];
-    var.name = name;
+    UserVariable* var = [[UserVariable alloc] initWithName:name isList:isList];
     
     if (isList) {
         var.value = [[NSMutableArray alloc] init];
     } else{
         var.value = [NSNumber numberWithInt:0];
     }
-    var.isList = isList;
     
     int buttonType = isList ? 11 : 0;
     if (self.isProjectVariable && !isList) {

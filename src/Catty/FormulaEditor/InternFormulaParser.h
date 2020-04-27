@@ -23,7 +23,6 @@
 #import <Foundation/Foundation.h>
 #import "InternToken.h"
 #import "FormulaElement.h"
-#import "UserVariable.h"
 #import "VariablesContainer.h"
 
 typedef enum {
@@ -35,6 +34,7 @@ typedef enum {
 } FormulaParserStatus;
 
 @protocol FormulaManagerProtocol;
+@class UserVariable;
 
 @interface InternFormulaParser : NSObject
 

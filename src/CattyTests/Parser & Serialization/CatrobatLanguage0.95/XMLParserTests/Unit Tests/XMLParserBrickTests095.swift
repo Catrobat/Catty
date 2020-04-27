@@ -58,8 +58,7 @@ final class XMLParserBrickTests095: XMLAbstractTest {
     }
 
     func testCompleteSetVariableBrick() {
-        let userVariable = UserVariable()
-        userVariable.name = "test"
+        let userVariable = UserVariable(name: "test")
         self.serializerContext.variables.programVariableList.add(userVariable)
 
         let setVariableBrick = SetVariableBrick()
@@ -107,8 +106,7 @@ final class XMLParserBrickTests095: XMLAbstractTest {
     }
 
     func testCompleteChangeVariableBrick() {
-        let userVariable = UserVariable()
-        userVariable.name = "test"
+        let userVariable = UserVariable(name: "testName")
         self.serializerContext.variables.programVariableList.add(userVariable)
 
         let changeVariableBrick = ChangeVariableBrick()

@@ -44,11 +44,9 @@ class XMLParserObjectTests093: XMLAbstractTest {
         let objectList = NSMutableArray(capacity: objectElements.count)
 
         let context = CBXMLParserContext()
-        var userVariable = UserVariable()
-        userVariable.name = "random from"
+        var userVariable = UserVariable(name: "random from")
         context.programVariableList.add(userVariable)
-        userVariable = UserVariable()
-        userVariable.name = "random to"
+        userVariable = UserVariable(name: "random to")
         context.programVariableList.add(userVariable)
         for objectElement in objectElements {
             let spriteObject = self.parserContext?.parse(from: objectElement, withClass: SpriteObject.self) as! SpriteObject
@@ -94,11 +92,9 @@ class XMLParserObjectTests093: XMLAbstractTest {
         let objectList = NSMutableArray(capacity: objectElements.count)
 
         let context = CBXMLParserContext()
-        var userVariable = UserVariable()
-        userVariable.name = "global"
+        var userVariable = UserVariable(name: "global")
         context.programVariableList.add(userVariable)
-        userVariable = UserVariable()
-        userVariable.name = "lokal"
+        userVariable = UserVariable(name: "lokal")
         context.programVariableList.add(userVariable)
 
         for objectElement in objectElements {

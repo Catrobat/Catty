@@ -124,9 +124,9 @@ final class GoNStepsBackBrickTests: AbstractBrickTest {
         let copiedBrick: GoNStepsBackBrick = brick.mutableCopy(with: CBMutableCopyContext()) as! GoNStepsBackBrick
 
         XCTAssertTrue(brick.isEqual(to: copiedBrick))
-        XCTAssertFalse(brick == copiedBrick)
+        XCTAssertFalse(brick === copiedBrick)
 
         XCTAssertTrue(brick.steps.isEqual(to: copiedBrick.steps))
-        XCTAssertFalse(brick.steps == copiedBrick.steps)
+        XCTAssertFalse(brick.steps === copiedBrick.steps)
     }
 }

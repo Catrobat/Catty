@@ -51,6 +51,6 @@ final class HideBrickTests: AbstractBrickTest {
         let copiedBrick: HideBrick = brick.mutableCopy(with: CBMutableCopyContext(), andErrorReporting: true) as! HideBrick
 
         XCTAssertTrue(brick.isEqual(to: copiedBrick))
-        XCTAssertFalse(brick == copiedBrick)
+        XCTAssertFalse(brick === copiedBrick)
     }
 }

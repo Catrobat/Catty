@@ -46,7 +46,7 @@
                 } else {
                     value = ""
                 }
-                userVariable.textLabel.text = value
+                userVariable.textLabel?.text = value
             }
             context.state = .runnable
         }
