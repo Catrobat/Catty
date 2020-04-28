@@ -204,4 +204,43 @@ final class FirebaseCrashlyticsSetupTests: XCTestCase {
         XCTAssertEqual(error.userInfo as NSDictionary, (crashlytics!.records.last! as NSError).userInfo as NSDictionary)
     }
 
+    func testMediaLibraryDownloadIndexFailureNotification() {
+        UserDefaults.standard.set(true, forKey: kFirebaseSendCrashReports)
+        app?.setupCrashlytics()
+
+        let errorInfo = MediaLibraryDownloadFailureInfo(url: "testUrl", statusCode: 404, description: "Invalid Response while downloading media library index")
+
+        let info: [String: Any] = ["url": errorInfo.url,
+                                   "statusCode": errorInfo.statusCode as Any,
+                                   "description": errorInfo.description]
+
+        let error = NSError(domain: "MediaLibraryDownloadIndexError", code: 420, userInfo: info)
+
+        NotificationCenter.default.post(name: .mediaLibraryDownloadIndexFailure, object: errorInfo)
+
+        XCTAssertEqual(0, crashlytics!.logs.count)
+        XCTAssertEqual(1, crashlytics!.records.count)
+        XCTAssertEqual(error.domain, (crashlytics!.records.first as NSError?)?.domain)
+        XCTAssertEqual(error.userInfo as NSDictionary, (crashlytics!.records.first! as NSError).userInfo as NSDictionary)
+    }
+
+    func testMediaLibraryDownloadDataFailureNotification() {
+        UserDefaults.standard.set(true, forKey: kFirebaseSendCrashReports)
+        app?.setupCrashlytics()
+
+        let errorInfo = MediaLibraryDownloadFailureInfo(url: "testUrl", statusCode: 404, description: "Invalid Response while downloading media library data")
+
+        let info: [String: Any] = ["url": errorInfo.url,
+                                   "statusCode": errorInfo.statusCode as Any,
+                                   "description": errorInfo.description]
+
+        let error = NSError(domain: "MediaLibraryDownloadDataError", code: 430, userInfo: info)
+
+        NotificationCenter.default.post(name: .mediaLibraryDownloadDataFailure, object: errorInfo)
+
+        XCTAssertEqual(0, crashlytics!.logs.count)
+        XCTAssertEqual(1, crashlytics!.records.count)
+        XCTAssertEqual(error.domain, (crashlytics!.records.first as NSError?)?.domain)
+        XCTAssertEqual(error.userInfo as NSDictionary, (crashlytics!.records.first! as NSError).userInfo as NSDictionary)
+    }
 }
