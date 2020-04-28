@@ -153,7 +153,7 @@ if (__functor) __functor(__VA_ARGS__);  \
 
 + (Look* _Nullable)lookWithName:(NSString* _Nullable)objectName forObject:(SpriteObject* _Nullable)object;
 
-+ (NSArray* _Nullable)allMessagesForProject:(Project* _Nullable)project;
++ (NSMutableOrderedSet* _Nullable)allMessagesForProject:(Project* _Nonnull)project;
 
 + (BOOL)isNetworkError:(NSError* _Nullable)error;
 

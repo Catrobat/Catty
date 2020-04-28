@@ -222,7 +222,7 @@
                               minInputLength:(NSUInteger)minInputLength
                               maxInputLength:(NSUInteger)maxInputLength
                     invalidInputAlertMessage:(NSString*)invalidInputAlertMessage
-                               existingNames:(NSArray*)existingNames {
+                               existingNames:(NSOrderedSet*)existingNames {
     [[[[[[[[AlertControllerBuilder textFieldAlertWithTitle:title message:message]
      placeholder:placeholder]
      initialText:value]
@@ -559,9 +559,10 @@
     return nil;
 }
 
-+ (NSArray*)allMessagesForProject:(Project*)project
++ (NSMutableOrderedSet*)allMessagesForProject:(Project*)project
 {
-    NSMutableArray *messages = [[NSMutableArray alloc] init];
+    NSMutableOrderedSet* messages = [[NSMutableOrderedSet alloc] init];
+    [messages addObjectsFromArray:project.allBroadcastMessages.array];
     for(SpriteObject *object in project.allObjects) {
         for(Script *script in object.scriptList) {
             if([script isKindOfClass:[BroadcastScript class]]) {

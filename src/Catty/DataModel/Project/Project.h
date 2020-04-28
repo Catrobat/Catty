@@ -34,7 +34,9 @@
 @property (nonatomic, strong, nonnull) UserDataContainer *userData;
 @property (nonatomic, strong, nonnull) NSMutableSet<NSString*> *unsupportedElements;
 @property (nonatomic) BOOL requiresBluetooth;
+@property (nonatomic, strong, nullable) NSMutableOrderedSet *allBroadcastMessages;
 
+- (instancetype _Nonnull)init;
 - (NSInteger)numberOfTotalObjects;
 - (NSInteger)numberOfBackgroundObjects;
 - (NSInteger)numberOfNormalObjects;

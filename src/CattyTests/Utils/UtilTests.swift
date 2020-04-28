@@ -26,7 +26,17 @@ import XCTest
 
 final class UtilTests: XCTestCase {
 
+    var project: Project!
+    var spriteObject: SpriteObject!
+    var script: Script!
+    var broadcastScript: BroadcastScript!
+    var broadcastBrick: BroadcastBrick!
+    var broadcastWaitBrick: BroadcastWaitBrick!
+
     override func setUp() {
+
+        project = Project()
+
         super.setUp()
     }
 
@@ -151,5 +161,38 @@ final class UtilTests: XCTestCase {
         let utilPlatformVersion = Util.platformVersionWithoutPatch()
         let devicePlatformVersion = UIDevice.current.systemVersion
         XCTAssertEqual(utilPlatformVersion, devicePlatformVersion)
+    }
+
+    func testAllMessagesForProjectIsEmptyAtInit() {
+
+        let messages = Util.allMessages(for: project)
+
+        XCTAssertEqual(messages?.count, 0)
+    }
+
+    func testAllMessagesForProjectWithValues() {
+
+        project.allBroadcastMessages?.add("firstValue")
+
+        spriteObject = SpriteObject()
+        project.objectList.add(spriteObject!)
+        broadcastScript = BroadcastScript()
+        spriteObject.scriptList.add(broadcastScript!)
+        broadcastScript.receivedMessage = "secondValue"
+
+        script = Script()
+        spriteObject.scriptList.add(script!)
+
+        broadcastBrick = BroadcastBrick()
+        script.brickList.add(broadcastBrick!)
+        broadcastBrick.broadcastMessage = "thirdValue"
+
+        broadcastWaitBrick = BroadcastWaitBrick()
+        script.brickList.add(broadcastWaitBrick!)
+        broadcastWaitBrick.broadcastMessage = "fourthValue"
+
+        let messages = Util.allMessages(for: project)
+
+        XCTAssertEqual(messages?.count, 4)
     }
 }
