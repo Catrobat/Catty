@@ -70,4 +70,65 @@ final class UserVariableTests: XCTestCase {
         XCTAssertFalse(userVariableA === userVariableCopy)
         XCTAssertTrue(userVariableB === userVariableCopy)
     }
+
+    func testIsEqualToUserVariableForEmptyInit() {
+        let userVariableA = UserVariable()
+        userVariableA.name = "userVar"
+
+        let userVariableB = UserVariable()
+        userVariableB.name = "userVar"
+
+        userVariableA.value = "NewValue"
+        userVariableB.value = "valueB"
+        XCTAssertFalse(userVariableA.isEqual(to: userVariableB))
+
+        userVariableB.value = "NewValue"
+        XCTAssertTrue(userVariableA.isEqual(to: userVariableB))
+    }
+
+    func testIsEqualToUserVariableForVariable() {
+        let userVariableA = UserVariable(name: "userVar", isList: false)
+        let userVariableB = UserVariable(name: "userVar", isList: false)
+
+        userVariableA?.value = "NewValue"
+        userVariableB?.value = "valueB"
+        XCTAssertFalse(userVariableB!.isEqual(to: userVariableA))
+
+        userVariableB?.value = "NewValue"
+        XCTAssertTrue(userVariableB!.isEqual(to: userVariableA))
+    }
+
+    func testIsEqualToUserVariableForList() {
+        let listA = UserVariable(name: "userList", isList: true)
+        let listB = UserVariable(name: "userList", isList: true)
+
+        listA?.value = NSMutableArray(array: [50, 51])
+        listB?.value = NSMutableArray(array: [50, 52])
+        XCTAssertFalse(listB!.isEqual(to: listA))
+
+        listB?.value = NSMutableArray(array: [50, 51])
+        XCTAssertTrue(listB!.isEqual(to: listA))
+    }
+
+    func testIsEqualToUserVariableForSameValueTypeDifferentName() {
+        let userVariableA = UserVariable(name: "userVariable", isList: false)
+        let userVariableB = UserVariable(name: "userVariableB", isList: false)
+
+        userVariableA?.value = "NewValue"
+        userVariableB?.value = "NewValue"
+        XCTAssertFalse(userVariableB!.isEqual(to: userVariableA))
+
+        userVariableB?.name = "userVariable"
+        XCTAssertTrue(userVariableB!.isEqual(to: userVariableA))
+    }
+
+    func testIsEqualToUserVariableForSameValueDiiferentType() {
+        let userVariableA = UserVariable(name: "userVariable", isList: true)
+        let userVariableB = UserVariable(name: "userVariable", isList: false)
+
+        XCTAssertFalse(userVariableB!.isEqual(to: userVariableA))
+
+        userVariableB?.isList = true
+        XCTAssertTrue(userVariableB!.isEqual(to: userVariableA))
+    }
 }
