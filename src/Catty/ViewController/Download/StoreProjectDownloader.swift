@@ -23,7 +23,7 @@
 protocol StoreProjectDownloaderProtocol {
     func fetchProjects(forType: ProjectType, offset: Int, completion: @escaping (StoreProjectCollection.StoreProjectCollectionText?, StoreProjectDownloaderError?) -> Void)
     func fetchSearchQuery(searchTerm: String, completion: @escaping (StoreProjectCollection.StoreProjectCollectionNumber?, StoreProjectDownloaderError?) -> Void)
-    func fetchProjectDetails(for project: StoreProject, completion: @escaping (StoreProject?, StoreProjectDownloaderError?) -> Void)
+    func fetchProjectDetails(for projectId: String, completion: @escaping (StoreProject?, StoreProjectDownloaderError?) -> Void)
     func download(projectId: String, completion: @escaping (Data?, StoreProjectDownloaderError?) -> Void, progression: ((Float) -> Void)?)
 }
 
@@ -162,8 +162,8 @@ final class StoreProjectDownloader: StoreProjectDownloaderProtocol {
         }.resume()
     }
 
-    func fetchProjectDetails(for project: StoreProject, completion: @escaping (StoreProject?, StoreProjectDownloaderError?) -> Void) {
-        guard let indexURL = URL(string: "\(NetworkDefines.connectionHost)/\(NetworkDefines.connectionIDQuery)?id=\(project.projectId)") else { return }
+    func fetchProjectDetails(for projectId: String, completion: @escaping (StoreProject?, StoreProjectDownloaderError?) -> Void) {
+        guard let indexURL = URL(string: "\(NetworkDefines.connectionHost)/\(NetworkDefines.connectionIDQuery)?id=\(projectId)") else { return }
 
         self.session.dataTask(with: URLRequest(url: indexURL)) { data, response, error in
             let handleDataTaskCompletion: (Data?, URLResponse?, Error?) -> (project: StoreProject?, error: StoreProjectDownloaderError?)
@@ -171,7 +171,7 @@ final class StoreProjectDownloader: StoreProjectDownloaderProtocol {
                 guard let response = response as? HTTPURLResponse else { return (nil, .unexpectedError) }
 
                 guard let data = data, response.statusCode == 200, error == nil else {
-                    let userInfo = ["projectId": project.projectId,
+                    let userInfo = ["projectId": projectId,
                                     "url": indexURL.absoluteString,
                                     "statusCode": response.statusCode,
                                     "error": error?.localizedDescription ?? ""] as [String: Any]

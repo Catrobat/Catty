@@ -50,7 +50,7 @@ final class StoreProjectDownloaderMock: StoreProjectDownloaderProtocol {
         }
     }
 
-    func fetchProjectDetails(for project: StoreProject, completion: @escaping (StoreProject?, StoreProjectDownloaderError?) -> Void) {
+    func fetchProjectDetails(for projectId: String, completion: @escaping (StoreProject?, StoreProjectDownloaderError?) -> Void) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
             completion(self.project, nil)
         }
