@@ -4,7 +4,13 @@ pipeline {
   agent {
     label 'MAC'
   }
-
+  parameters {
+    gitParameter defaultValue: 'origin/master', name: 'gitBranch', type: 'BRANCH', description: 'Select the branch you want to build e.g. origin/master.'
+    password name: 'CI_PASSWORD', defaultValue: '', description: ''
+    password name: 'FASTLANE_SESSION', defaultValue: '', description: ''
+    password name: 'FIREBASE_API_KEY', defaultValue: '', description: ''
+    password name: 'FIREBASE_GOOGLE_APP_ID', defaultValue: '', description: ''
+  }
   options {
     timeout(time: 2, unit: 'HOURS')
     timestamps()
