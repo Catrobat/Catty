@@ -555,4 +555,117 @@ final class VariablesContainerTest: XCTestCase {
         XCTAssertEqual(0, container.allLists(for: objectA)?.count)
         XCTAssertEqual(2, container.allLists(for: objectB)?.count)
     }
+
+    func testIsEqualToVariablesContainer() {
+        let objectA = SpriteObject()
+        objectA.name = "testObjectA"
+
+        let list = UserVariable(name: "testList", isList: true)
+        let variable = UserVariable(name: "testvariable", isList: false)
+
+        let container1 = VariablesContainer()
+        let container2 = VariablesContainer()
+
+        container1.addObjectList(list, for: objectA)
+        container1.addObjectVariable(variable, for: objectA)
+
+        container2.addObjectList(list, for: objectA)
+        container2.addObjectVariable(variable, for: objectA)
+
+        XCTAssertTrue(container1.isEqual(to: container2))
+    }
+
+    func testIsEqualToVariablesContainerForUnqualNumberOfObject() {
+        let objectA = SpriteObject()
+        objectA.name = "testObjectA"
+
+        let objectB = SpriteObject()
+        objectB.name = "testObjectB"
+
+        let list = UserVariable(name: "testList", isList: true)
+
+        let container1 = VariablesContainer()
+        let container2 = VariablesContainer()
+
+        container1.addObjectList(list, for: objectA)
+
+        container2.addObjectList(list, for: objectA)
+        container2.addObjectList(list, for: objectB)
+
+        XCTAssertFalse(container1.isEqual(to: container2))
+    }
+
+    func testIsEqualToVariablesContainerForSameNameDifferentObject() {
+        let objectA = SpriteObject()
+        objectA.name = "testObjectA"
+
+        let objectB = SpriteObject()
+        objectB.name = "testObjectA"
+
+        let list = UserVariable(name: "testList", isList: true)
+
+        let container1 = VariablesContainer()
+        let container2 = VariablesContainer()
+
+        container1.addObjectList(list, for: objectA)
+        container2.addObjectList(list, for: objectB)
+
+        XCTAssertTrue(container1.isEqual(to: container2))
+    }
+
+    func testIsEqualToVariablesContainerForVariableWithSameNameDifferentValues() {
+        let objectA = SpriteObject()
+        objectA.name = "testObjectA"
+
+        let variable1 = UserVariable(name: "testvariable", isList: false)
+        variable1?.value = 10
+
+        let variable2 = UserVariable(name: "testvariable", isList: false)
+        variable2?.value = 20
+
+        let container1 = VariablesContainer()
+        let container2 = VariablesContainer()
+
+        container1.addObjectVariable(variable1, for: objectA)
+        container2.addObjectVariable(variable2, for: objectA)
+
+        XCTAssertFalse(container1.isEqual(to: container2))
+    }
+
+    func testIsEqualToVariablesContainerForItemWithSameNameDifferentType() {
+        let objectA = SpriteObject()
+        objectA.name = "testObjectA"
+
+        let list = UserVariable(name: "testUserVariable", isList: true)
+        let variable = UserVariable(name: "testUserVariable", isList: false)
+
+        let container1 = VariablesContainer()
+        let container2 = VariablesContainer()
+
+        container1.addObjectList(list, for: objectA)
+        container2.addObjectVariable(variable, for: objectA)
+
+        XCTAssertFalse(container1.isEqual(to: container2))
+    }
+
+    func testMutableCopy() {
+        let objectA = SpriteObject()
+        objectA.name = "testObjectA"
+
+        let list = UserVariable(name: "testList", isList: true)
+        let variable = UserVariable(name: "testvariable", isList: false)
+
+        let container = VariablesContainer()
+
+        container.addObjectList(list, for: objectA)
+        container.addObjectVariable(variable, for: objectA)
+        container.setUserVariable(variable, toValue: 10)
+
+        let copyContainer = container.mutableCopy() as! VariablesContainer
+
+        XCTAssertTrue(container.isEqual(to: copyContainer))
+        XCTAssertFalse(container == copyContainer)
+        XCTAssertTrue(container.allVariables()[0] as! UserVariable === copyContainer.allVariables()[0] as! UserVariable)
+        XCTAssertTrue(container.allLists()[0] as! UserVariable === copyContainer.allLists()[0] as! UserVariable)
+    }
 }
