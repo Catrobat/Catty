@@ -398,41 +398,4 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
 }
 
-#pragma mark - network status
--(void)addProjectFromInboxWithName:(NSString*)newProjectName
-{
-    NSFileManager* filemgr = [NSFileManager defaultManager];
-    NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString* documentsDirectory = [paths objectAtIndex:0];
-    NSString* inboxPath = [documentsDirectory stringByAppendingPathComponent:@"Inbox"];
-    NSArray* dirFiles = [filemgr contentsOfDirectoryAtPath:inboxPath
-                                                     error:nil];
-    if(![dirFiles firstObject])
-    {
-        return;
-    }
-    NSString* newProjectPath = [NSString stringWithFormat:@"%@/%@", inboxPath, [dirFiles firstObject]];
-    
-    NSData* newProject = [NSData dataWithContentsOfFile:newProjectPath];
-    
-    CBFileManager *fileManager = [CBFileManager sharedManager];
-    [fileManager unzipAndStore:newProject withProjectID:nil withName:newProjectName];
-    
-    [[NSFileManager defaultManager] removeItemAtPath:newProjectPath error:nil];
-}
-
--(void)addProjectFromInbox
-{
-    [Util askUserForUniqueNameAndPerformAction:@selector(addProjectFromInboxWithName:)
-                                        target:self
-                                   promptTitle:kLocalizedEnterNameForImportedProjectTitle
-                                 promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedProjectName]
-                                   promptValue:nil
-                             promptPlaceholder:kLocalizedEnterYourProjectNameHere
-                                minInputLength:kMinNumOfProjectNameCharacters
-                                maxInputLength:kMaxNumOfProjectNameCharacters
-                      invalidInputAlertMessage:kLocalizedProjectNameAlreadyExistsDescription
-                                 existingNames:[Project allProjectNames]];
-}
-
 @end

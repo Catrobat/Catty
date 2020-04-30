@@ -21,38 +21,47 @@
  */
 
 @testable import Pocket_Code
+import XCTest
 
 final class StoreProjectDownloaderMock: StoreProjectDownloaderProtocol {
-    func download(projectId: String, completion: @escaping (Data?, StoreProjectDownloaderError?) -> Void, progression: ((Float) -> Void)?) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
-            completion(self.projectData, nil)
-            if let progression = progression {
-                progression(self.progress)
-            }
-        }
-    }
 
     var progress: Float = 0
     var project: StoreProject?
     var collectionText: StoreProjectCollection.StoreProjectCollectionText?
     var collectionNumber: StoreProjectCollection.StoreProjectCollectionNumber?
     var projectData: Data?
+    var error: StoreProjectDownloaderError?
+    var expectation: XCTestExpectation?
+
+    func download(projectId: String, completion: @escaping (Data?, StoreProjectDownloaderError?) -> Void, progression: ((Float) -> Void)?) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+            completion(self.projectData, self.error)
+            self.expectation?.fulfill()
+
+            if let progression = progression {
+                progression(self.progress)
+            }
+        }
+    }
 
     func fetchSearchQuery(searchTerm: String, completion: @escaping (StoreProjectCollection.StoreProjectCollectionNumber?, StoreProjectDownloaderError?) -> Void) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
-            completion(self.collectionNumber, nil)
+            completion(self.collectionNumber, self.error)
+            self.expectation?.fulfill()
         }
     }
 
     func fetchProjects(forType: ProjectType, offset: Int, completion: @escaping (StoreProjectCollection.StoreProjectCollectionText?, StoreProjectDownloaderError?) -> Void) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
-            completion(self.collectionText, nil)
+            completion(self.collectionText, self.error)
+            self.expectation?.fulfill()
         }
     }
 
     func fetchProjectDetails(for projectId: String, completion: @escaping (StoreProject?, StoreProjectDownloaderError?) -> Void) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
-            completion(self.project, nil)
+            completion(self.project, self.error)
+            self.expectation?.fulfill()
         }
     }
 }
