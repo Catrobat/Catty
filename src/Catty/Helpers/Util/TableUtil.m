@@ -25,14 +25,18 @@
 
 #define kFeaturedProjectsBannerHeight  400.0f
 #define kFeaturedProjectsBannerWidth   1024.0f
+#define kContinueCellRelativeHeight 0.25f
+#define kStandardImageCellRelativeHeight 0.15f
 
 @implementation TableUtil
 
-+ (CGFloat)heightForContinueCell:(CGFloat)navBarHeight
++ (CGFloat)heightForContinueCell:(CGFloat)navBarHeight withStatusBarHeight:(CGFloat)statusBarHeight
 {
     CGFloat screenHeight = [Util screenHeight];
+    
+    screenHeight -= statusBarHeight;
     screenHeight -= navBarHeight;
-    return screenHeight * 0.25f;
+    return screenHeight * kContinueCellRelativeHeight;
 }
 
 + (CGFloat)heightForImageCell
@@ -42,10 +46,14 @@
 }
 
 + (CGFloat)heightForCatrobatTableViewImageCell:(CGFloat)navBarHeight
+                           withStatusBarHeight:(CGFloat)statusBarHeight
 {
     CGFloat screenHeight = [Util screenHeight];
+       
+    screenHeight -= statusBarHeight;
     screenHeight -= navBarHeight;
-    return screenHeight * 0.14f;
+    
+    return screenHeight * kStandardImageCellRelativeHeight;
 }
 + (CGFloat)heightForFeaturedCell
 {
