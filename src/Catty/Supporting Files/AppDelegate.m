@@ -122,14 +122,15 @@ void uncaughtExceptionHandler(NSException *exception)
     self.window.tintColor = UIColor.globalTint;
 }
 
--(BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options
+- (BOOL)application:(UIApplication *)application
+continueUserActivity:(NSUserActivity *)userActivity
+ restorationHandler:(void (^)(NSArray<id<UIUserActivityRestoring>> *restorableObjects))restorationHandler
 {
     UINavigationController* vc = (UINavigationController*)self.window.rootViewController;
     [vc popToRootViewControllerAnimated:YES];
-    
     if ([vc.topViewController isKindOfClass:[CatrobatTableViewController class]]){
         CatrobatTableViewController* ctvc = (CatrobatTableViewController*)vc.topViewController;
-        [ctvc addProjectFromInbox];
+        [ctvc openURLWithUrl: userActivity.webpageURL];
         return YES;
     }
     return NO;

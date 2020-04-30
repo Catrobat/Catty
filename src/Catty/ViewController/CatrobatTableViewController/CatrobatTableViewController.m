@@ -350,6 +350,11 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
             projectTableViewController.project = self.defaultProject;
             self.defaultProject = nil;
         }
+    } else if ([segue.identifier isEqualToString:kSegueToProjectDetail]) {
+        if ([segue.destinationViewController isKindOfClass:[ProjectDetailStoreViewController class]]){
+            ProjectDetailStoreViewController *projectDetailStoreViewController = (ProjectDetailStoreViewController*)segue.destinationViewController;
+            projectDetailStoreViewController.project = sender;
+        }
     }
 }
 

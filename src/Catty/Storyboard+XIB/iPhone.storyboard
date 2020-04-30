@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="62e-MX-z1C">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="62e-MX-z1C">
     <device id="retina4_7" orientation="portrait" appearance="dark"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -705,11 +705,12 @@
                         <segue destination="39D-hJ-FD1" kind="show" identifier="segueToExplore" id="7JT-6F-5d1"/>
                         <segue destination="IZh-b2-DYW" kind="show" identifier="segueToHelp" id="A6m-lh-qyH"/>
                         <segue destination="bYj-Ga-eye" kind="show" identifier="segueToUpload" id="d5M-d9-Nnc"/>
+                        <segue destination="5oV-85-Xov" kind="show" identifier="segueToProjectDetail" id="4Va-Vz-upR"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d1W-id-jRf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5861.25" y="-1560.2112676056338"/>
+            <point key="canvasLocation" x="-5862" y="-1861"/>
         </scene>
         <!--Looks-->
         <scene sceneID="wWp-yc-EGI">
@@ -1175,7 +1176,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l2N-cX-jqZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-6798.75" y="-1508.450704225352"/>
+            <point key="canvasLocation" x="-6794" y="-1528"/>
         </scene>
         <!--Scene Presenter View Controller-->
         <scene sceneID="tde-d3-jr8">
@@ -2322,7 +2323,7 @@
         <image name="top_charts" width="25.5" height="23"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="5UD-6W-Ykq"/>
+        <segue reference="Gbh-WU-doT"/>
         <segue reference="1kj-7D-Va7"/>
     </inferredMetricsTieBreakers>
 </document>
