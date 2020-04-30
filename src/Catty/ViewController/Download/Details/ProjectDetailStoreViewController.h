@@ -20,12 +20,21 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import "ProjectStoreDelegate.h"
+#import "CBFileManager.h"
+#import <TTTAttributedLabel/TTTAttributedLabel.h>
+#import "BaseTableViewController.h"
 
 @class CatrobatProject;
 
-@interface CreateView : NSObject
+@interface ProjectDetailStoreViewController : UIViewController<ProjectStoreDelegate, UIScrollViewDelegate, CBFileManagerDelegate, TTTAttributedLabelDelegate, NSURLConnectionDataDelegate, UIGestureRecognizerDelegate>
 
-+ (UIView*)createProjectDetailView:(CatrobatProject*)project target:(id)target;
-
+@property (nonatomic, strong) CatrobatProject *project;
+@property (nonatomic, strong) NSMutableDictionary *projects;
+- (void)reportProject;
+- (void)downloadAgain;
+@property (nonatomic, weak) IBOutlet UIScrollView *scrollViewOutlet;
 @end
+
+

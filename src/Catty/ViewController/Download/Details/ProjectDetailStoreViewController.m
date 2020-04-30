@@ -27,7 +27,6 @@
 #import "ProjectTableViewController.h"
 #import "Util.h"
 #import "EVCircularProgressView.h"
-#import "CreateView.h"
 #import "ProjectUpdateDelegate.h"
 #import "KeychainUserDefaultsDefines.h"
 #import "Pocket_Code-Swift.h"
@@ -127,7 +126,7 @@
 
 - (UIView*)createViewForProject:(CatrobatProject*)project
 {
-    UIView *view = [CreateView createProjectDetailView:project target:self];
+    UIView *view = [self createProjectDetailView:project target:self];
     if ([Project projectExistsWithProjectID:project.projectID]) {
         [view viewWithTag:kDownloadButtonTag].hidden = YES;
         [view viewWithTag:kOpenButtonTag].hidden = NO;

@@ -225,3 +225,6 @@
 #import "iOSCombobox.h"
 #import "CBXMLValidator.h"
 #import "CBXMLSerializerHelper.h"
+#import "RoundBorderedButton.h"
+#import "EVCircularProgressView.h"
+#import "ButtonTags.h"
