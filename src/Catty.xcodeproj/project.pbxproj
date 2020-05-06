@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1833ED942446572F0053BF7C /* HelpWebViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1833ED912446572E0053BF7C /* HelpWebViewControllerTests.swift */; };
+		1875C5BA2457190000F3F276 /* UserVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1875C5B92457190000F3F276 /* UserVariable.swift */; };
 		187A3F202434BC4300EF1B02 /* PlaySoundAndWaitBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187A3F1F2434BC4300EF1B02 /* PlaySoundAndWaitBrickTests.swift */; };
 		187CECAB24314F1600C3EDCA /* SetLookBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187CECAA24314F1600C3EDCA /* SetLookBrickTests.swift */; };
 		18A9DBA92434C7F400F4C390 /* IfLogicBeginBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A9DBA82434C7F400F4C390 /* IfLogicBeginBrickTests.swift */; };
@@ -996,7 +997,6 @@
 		92FF31051A24DCAA00093DA7 /* WhenScript.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30BA1A24DCAA00093DA7 /* WhenScript.m */; };
 		92FF31061A24DCAA00093DA7 /* Sound.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30BD1A24DCAA00093DA7 /* Sound.m */; };
 		92FF31071A24DCAA00093DA7 /* SpriteObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30C01A24DCAA00093DA7 /* SpriteObject.m */; };
-		92FF31081A24DCAA00093DA7 /* UserVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30C31A24DCAA00093DA7 /* UserVariable.m */; };
 		92FF31091A24DCAA00093DA7 /* VariablesContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30C61A24DCAA00093DA7 /* VariablesContainer.m */; };
 		92FF31491A24DEB300093DA7 /* BaseCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF310D1A24DEB300093DA7 /* BaseCollectionViewController.m */; };
 		92FF314A1A24DEB300093DA7 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF310F1A24DEB300093DA7 /* BaseTableViewController.m */; };
@@ -1503,6 +1503,7 @@
 		113CDA22CF21176FFA49E694 /* sd */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = sd; path = sd.lproj/Localizable.strings; sourceTree = "<group>"; };
 		13B5EB79EDA9CF73908FF75C /* no */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = no; path = no.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1833ED912446572E0053BF7C /* HelpWebViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpWebViewControllerTests.swift; sourceTree = "<group>"; };
+		1875C5B92457190000F3F276 /* UserVariable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserVariable.swift; sourceTree = "<group>"; };
 		187A3F1F2434BC4300EF1B02 /* PlaySoundAndWaitBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaySoundAndWaitBrickTests.swift; sourceTree = "<group>"; };
 		187CECAA24314F1600C3EDCA /* SetLookBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetLookBrickTests.swift; sourceTree = "<group>"; };
 		18A9DBA82434C7F400F4C390 /* IfLogicBeginBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IfLogicBeginBrickTests.swift; sourceTree = "<group>"; };
@@ -2766,8 +2767,6 @@
 		92FF30BD1A24DCAA00093DA7 /* Sound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sound.m; sourceTree = "<group>"; };
 		92FF30BF1A24DCAA00093DA7 /* SpriteObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpriteObject.h; sourceTree = "<group>"; };
 		92FF30C01A24DCAA00093DA7 /* SpriteObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpriteObject.m; sourceTree = "<group>"; };
-		92FF30C21A24DCAA00093DA7 /* UserVariable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserVariable.h; sourceTree = "<group>"; };
-		92FF30C31A24DCAA00093DA7 /* UserVariable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserVariable.m; sourceTree = "<group>"; };
 		92FF30C51A24DCAA00093DA7 /* VariablesContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VariablesContainer.h; sourceTree = "<group>"; };
 		92FF30C61A24DCAA00093DA7 /* VariablesContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VariablesContainer.m; sourceTree = "<group>"; };
 		92FF310C1A24DEB300093DA7 /* BaseCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseCollectionViewController.h; sourceTree = "<group>"; };
@@ -7183,8 +7182,7 @@
 		92FF30C11A24DCAA00093DA7 /* UserVariable */ = {
 			isa = PBXGroup;
 			children = (
-				92FF30C21A24DCAA00093DA7 /* UserVariable.h */,
-				92FF30C31A24DCAA00093DA7 /* UserVariable.m */,
+				1875C5B92457190000F3F276 /* UserVariable.swift */,
 			);
 			path = UserVariable;
 			sourceTree = "<group>";
@@ -9737,6 +9735,7 @@
 				CABF43B91B115E6400419A55 /* CBOperationSequence.swift in Sources */,
 				81D46EA41CC29E3000653EAB /* ShapeButton.m in Sources */,
 				AA74F0B41BC05FCE00D1E954 /* ShowBrickCell.m in Sources */,
+				1875C5BA2457190000F3F276 /* UserVariable.swift in Sources */,
 				AA74EEFE1BC057C900D1E954 /* SetLookBrick+CBXMLHandler.m in Sources */,
 				9E0F741422B558490030CD89 /* AudioPlayerFactory.swift in Sources */,
 				CA2D444F1B1251BF00A3B53D /* CBSchedulingAlgorithms.swift in Sources */,
@@ -9955,7 +9954,6 @@
 				92FF32BF1A24E2F400093DA7 /* BrickTransition.m in Sources */,
 				4CEFFADB2105E46500DC5CFE /* ObjectDoubleSensor.swift in Sources */,
 				921D46871BDF698A0086AD20 /* ChangeBrightnessByNBrick+Instruction.swift in Sources */,
-				92FF31081A24DCAA00093DA7 /* UserVariable.m in Sources */,
 				4C724E221B4D3E8C00E27479 /* CBXMLParserHelper.m in Sources */,
 				923503911BA707DE00021F6A /* LoginViewController.m in Sources */,
 				D346B25923FAFEAB00FDBFA8 /* ScriptCollectionViewController+Disable.swift in Sources */,

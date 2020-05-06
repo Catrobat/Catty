@@ -31,9 +31,7 @@ final class BrickWithUserVariableTests: XCTestCase {
     }
 
     func testUserVariableNoList() {
-        let userVariable = UserVariable()
-        userVariable.name = "test"
-        userVariable.isList = false
+        let userVariable = UserVariable(name: "testName")
         userVariable.value = "testValue"
 
         let brick = SetVariableBrick()
@@ -44,9 +42,7 @@ final class BrickWithUserVariableTests: XCTestCase {
 
     func testUserVariableList() {
         let variablesContainer = VariablesContainer()
-        let userList = UserVariable()
-        userList.name = "test"
-        userList.isList = true
+        let userList = UserVariable(name: "testName", isList: true)
 
         variablesContainer.programListOfLists = [userList]
         variablesContainer.add(toUserList: userList, value: 4)
@@ -60,9 +56,7 @@ final class BrickWithUserVariableTests: XCTestCase {
 
     func testUserVariableListUsedReplaceItemInUserListBrick() {
         let variablesContainer = VariablesContainer()
-        let userList = UserVariable()
-        userList.name = "test"
-        userList.isList = true
+        let userList = UserVariable(name: "testName", isList: true)
 
         variablesContainer.programListOfLists = [userList]
         variablesContainer.add(toUserList: userList, value: 4)
@@ -76,12 +70,8 @@ final class BrickWithUserVariableTests: XCTestCase {
 
     func testUserVariableListNotUsedReplaceItemInUserListBrick() {
         let variablesContainer = VariablesContainer()
-        let userList = UserVariable()
-        let userList2 = UserVariable()
-        userList.name = "test"
-        userList.isList = true
-        userList2.name = "test2"
-        userList2.isList = true
+        let userList = UserVariable(name: "testName1", isList: true)
+        let userList2 = UserVariable(name: "testName2", isList: true)
 
         variablesContainer.programListOfLists = [userList]
         variablesContainer.add(toUserList: userList, value: 4)
@@ -96,9 +86,7 @@ final class BrickWithUserVariableTests: XCTestCase {
 
     func testUserVariableListUsedMultipleBrick() {
         let variablesContainer = VariablesContainer()
-        let userList = UserVariable()
-        userList.name = "test"
-        userList.isList = true
+        let userList = UserVariable(name: "testName", isList: true)
 
         variablesContainer.programListOfLists = [userList]
         variablesContainer.add(toUserList: userList, value: 4)

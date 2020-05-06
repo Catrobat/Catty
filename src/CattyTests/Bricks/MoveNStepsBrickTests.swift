@@ -162,9 +162,9 @@ final class MoveNStepsBrickTests: AbstractBrickTest {
         let copiedBrick: MoveNStepsBrick = brick.mutableCopy(with: CBMutableCopyContext(), andErrorReporting: true) as! MoveNStepsBrick
 
         XCTAssertTrue(brick.isEqual(to: copiedBrick))
-        XCTAssertFalse(brick == copiedBrick)
+        XCTAssertFalse(brick === copiedBrick)
 
         XCTAssertTrue(brick.steps.isEqual(to: copiedBrick.steps))
-        XCTAssertFalse(brick.steps == copiedBrick.steps)
+        XCTAssertFalse(brick.steps === copiedBrick.steps)
     }
 }

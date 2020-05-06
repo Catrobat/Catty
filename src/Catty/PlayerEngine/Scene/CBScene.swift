@@ -199,14 +199,15 @@ final class CBScene: SKScene {
             }
         }
         for variable: UserVariable in variableList {
-            variable.textLabel = SKLabelNode(fontNamed: kSceneDefaultFont)
-            variable.textLabel.text = ""
-            variable.textLabel.zPosition = CGFloat(zPosition + 1)
-            variable.textLabel.fontColor = UIColor.black
-            variable.textLabel.fontSize = CGFloat(kSceneLabelFontSize)
-            variable.textLabel.isHidden = true
-            variable.textLabel.horizontalAlignmentMode = .left
-            addChild(variable.textLabel)
+            let label = SKLabelNode(fontNamed: kSceneDefaultFont)
+            variable.textLabel = label
+            variable.textLabel?.text = ""
+            variable.textLabel?.zPosition = CGFloat(zPosition + 1)
+            variable.textLabel?.fontColor = UIColor.black
+            variable.textLabel?.fontSize = CGFloat(kSceneLabelFontSize)
+            variable.textLabel?.isHidden = true
+            variable.textLabel?.horizontalAlignmentMode = .left
+            addChild(label)
         }
 
         formulaManager.setup(for: project, and: self)

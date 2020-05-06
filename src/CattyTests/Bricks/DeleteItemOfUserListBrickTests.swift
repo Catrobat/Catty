@@ -49,9 +49,7 @@ final class DeleteItemOfUserListBrickTests: XCTestCase {
 
         spriteObject.project.variables = VariablesContainer()
 
-        userList = UserVariable()
-        userList.isList = true
-        userList.name = "test_name"
+        userList = UserVariable(name: "testName", isList: true)
         spriteObject.project.variables.addObjectList(userList, for: spriteObject)
 
         brick = DeleteItemOfUserListBrick()
@@ -119,7 +117,7 @@ final class DeleteItemOfUserListBrickTests: XCTestCase {
         XCTAssertTrue(brick.listFormula.isEqual(to: copiedBrick.listFormula))
         XCTAssertFalse(brick.listFormula === copiedBrick.listFormula)
 
-        XCTAssertTrue(brick.userList.isEqual(to: userList))
+        XCTAssertTrue(brick.userList.isEqual(userList))
         XCTAssertTrue(brick.userList === copiedBrick.userList)
     }
 }

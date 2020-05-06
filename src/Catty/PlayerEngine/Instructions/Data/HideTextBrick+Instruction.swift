@@ -33,7 +33,7 @@
         return CBInstruction.execClosure { context, _ in
             //            self.logger.debug("Performing: HideTextBrick")
             if let userVariable = userVariable {
-                userVariable.textLabel.isHidden = true
+                userVariable.textLabel?.isHidden = true
             }
             context.state = .runnable
         }

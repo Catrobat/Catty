@@ -20,9 +20,9 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+#import "Pocket_Code-Swift.h"
 #import "AddItemToUserListBrick.h"
 #import "Formula.h"
-#import "UserVariable.h"
 #import "Project.h"
 #import "VariablesContainer.h"
 #import "Script.h"
@@ -84,7 +84,7 @@
 
 - (BOOL)isEqualToBrick:(Brick*)brick
 {
-    if (! [self.userList isEqualToUserVariable:((AddItemToUserListBrick*)brick).userList])
+    if (! [self.userList isEqual:((AddItemToUserListBrick*)brick).userList])
         return NO;
     if (! [self.listFormula isEqualToFormula:((AddItemToUserListBrick*)brick).listFormula])
         return NO;

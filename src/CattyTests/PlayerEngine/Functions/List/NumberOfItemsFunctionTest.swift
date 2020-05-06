@@ -42,8 +42,7 @@ class NumberOfItemsFunctionTest: XCTestCase {
         XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: -2 as AnyObject), accuracy: Double.epsilon)
         XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: nil), accuracy: Double.epsilon)
 
-        let userVariable = UserVariable()
-        userVariable.isList = true
+        let userVariable = UserVariable(name: "testName", isList: true)
         userVariable.value = nil
 
         XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: userVariable as AnyObject), accuracy: Double.epsilon)
@@ -52,25 +51,19 @@ class NumberOfItemsFunctionTest: XCTestCase {
     func testValue() {
 
         // number list
-        let userVariableNumber = UserVariable()
-        userVariableNumber.name = "myListNumber"
-        userVariableNumber.isList = true
+        let userVariableNumber = UserVariable(name: "myListNumber", isList: true)
         userVariableNumber.value = [1, 5, -7]
 
         XCTAssertEqual(Double(3), function.value(parameter: userVariableNumber as AnyObject), accuracy: Double.epsilon)
 
         // string list
-        let userVariableString = UserVariable()
-        userVariableString.name = "myListString"
-        userVariableString.isList = true
+        let userVariableString = UserVariable(name: "myListString", isList: true)
         userVariableString.value = ["a", "b", "c"]
 
         XCTAssertEqual(Double(3), function.value(parameter: userVariableString as AnyObject), accuracy: Double.epsilon)
 
         // empty list
-        let userVariableEmpty = UserVariable()
-        userVariableEmpty.name = "myListEmpty"
-        userVariableEmpty.isList = true
+        let userVariableEmpty = UserVariable(name: "myListEmpty", isList: true)
         userVariableEmpty.value = []
         XCTAssertEqual(Double(0), function.value(parameter: userVariableEmpty as AnyObject), accuracy: Double.epsilon)
     }

@@ -183,8 +183,7 @@ class ProjectsTest: XCTestCase {
         object.name = "newObjectName"
         project.objectList.add(object)
 
-        let variable = UserVariable()
-        variable.name = "userVariable"
+        let variable = UserVariable(name: "userVariable")
         project.variables.addObjectVariable(variable, for: object)
 
         let setVariableBrick = SetVariableBrick()
@@ -215,7 +214,7 @@ class ProjectsTest: XCTestCase {
 
         let copiedSetVariableBrick = copiedScript.brickList[0] as! SetVariableBrick
         XCTAssertNotNil(copiedSetVariableBrick.userVariable)
-        XCTAssertNotEqual(variable, copiedSetVariableBrick.userVariable)
+        XCTAssertFalse(variable === copiedSetVariableBrick.userVariable)
         XCTAssertEqual(variable.name, copiedSetVariableBrick.userVariable.name)
     }
 
@@ -224,14 +223,10 @@ class ProjectsTest: XCTestCase {
         object.name = "newObjectName"
         project.objectList.add(object)
 
-        let list = UserVariable()
-        list.name = "userList"
-        list.isList = true
-
+        let list = UserVariable(name: "userList", isList: true)
         project.variables.addObjectList(list, for: object)
 
-        let variable = UserVariable()
-        variable.name = "userVariable"
+        let variable = UserVariable(name: "userVariable")
         project.variables.addObjectVariable(variable, for: object)
 
         let setVariableBrick = SetVariableBrick()
@@ -262,7 +257,7 @@ class ProjectsTest: XCTestCase {
 
         let copiedSetVariableBrick = copiedScript.brickList[0] as! SetVariableBrick
         XCTAssertNotNil(copiedSetVariableBrick.userVariable)
-        XCTAssertNotEqual(list, copiedSetVariableBrick.userVariable)
+        XCTAssertFalse(list === copiedSetVariableBrick.userVariable)
         XCTAssertEqual(list.name, copiedSetVariableBrick.userVariable.name)
     }
 

@@ -20,6 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+#import "Pocket_Code-Swift.h"
 #import "Project+CBXMLHandler.h"
 #import "GDataXMLElement+CustomExtensions.h"
 #import "CBXMLValidator.h"
@@ -124,9 +125,7 @@
         
         for(NSString *variableName in variableList) {
             if(![varAndListContainer getUserVariableNamed:variableName forSpriteObject:object]) {
-                UserVariable *userVariable = [UserVariable new];
-                userVariable.name = variableName;
-                userVariable.isList = false;
+                UserVariable *userVariable = [[UserVariable alloc] initWithName:variableName];
                 
                 [varAndListContainer addObjectVariable:userVariable forObject:object];
                 NSDebug(@"Added UserVariable with name %@ to global object "\
@@ -146,9 +145,7 @@
         
         for(NSString *listName in listOfLists) {
             if(![varAndListContainer getUserListNamed:listName forSpriteObject:object]) {
-                UserVariable *userList = [UserVariable new];
-                userList.name = listName;
-                userList.isList = true;
+                UserVariable *userList = [[UserVariable alloc] initWithName:listName isList:true];
                 
                 [varAndListContainer addObjectList:userList forObject:object];
                 NSDebug(@"Added a user list with name %@ to global object "\

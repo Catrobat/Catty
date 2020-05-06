@@ -75,14 +75,12 @@ final class HideTextBrickTests: XCTestCase {
 
     func testMutableCopy() {
         let brick = HideTextBrick()
-        let userVariable = UserVariable()
-        userVariable.name = "Name"
-
+        let userVariable = UserVariable(name: "testName")
         brick.userVariable = userVariable
 
         let copiedBrick: HideTextBrick = brick.mutableCopy(with: CBMutableCopyContext(), andErrorReporting: true) as! HideTextBrick
 
         XCTAssertTrue(brick.isEqual(to: copiedBrick))
-        XCTAssertFalse(brick == copiedBrick)
+        XCTAssertFalse(brick === copiedBrick)
     }
 }

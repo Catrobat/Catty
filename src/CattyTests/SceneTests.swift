@@ -111,16 +111,16 @@ final class SceneTests: XCTestCase {
         let project = ProjectMock(width: self.screenSize.width, andHeight: self.screenSize.height)
         let scene = SceneBuilder(project: project).build()
 
-        let userVariable = UserVariable()
+        let userVariable = UserVariable(name: "testName")
         project.variables.programVariableList.add(userVariable)
 
         XCTAssertNil(userVariable.textLabel)
         XCTAssertTrue(scene.startProject())
         XCTAssertNotNil(userVariable.textLabel)
-        XCTAssertTrue(userVariable.textLabel.isHidden)
-        XCTAssertEqual(SKLabelHorizontalAlignmentMode.left, userVariable.textLabel.horizontalAlignmentMode)
-        XCTAssertEqual(CGFloat(kSceneLabelFontSize), userVariable.textLabel.fontSize)
-        XCTAssertEqual(0, userVariable.textLabel.text?.count)
+        XCTAssertTrue(userVariable.textLabel?.isHidden == true)
+        XCTAssertEqual(SKLabelHorizontalAlignmentMode.left, userVariable.textLabel?.horizontalAlignmentMode)
+        XCTAssertEqual(CGFloat(kSceneLabelFontSize), userVariable.textLabel?.fontSize)
+        XCTAssertEqual(0, userVariable.textLabel?.text?.count)
         scene.stopProject()
     }
 }

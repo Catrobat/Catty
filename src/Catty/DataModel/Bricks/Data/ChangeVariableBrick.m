@@ -20,6 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+#import "Pocket_Code-Swift.h"
 #import "ChangeVariableBrick.h"
 
 @implementation ChangeVariableBrick
@@ -80,7 +81,7 @@
 
 - (BOOL)isEqualToBrick:(Brick*)brick
 {
-    if (![self.userVariable isEqualToUserVariable:((ChangeVariableBrick*)brick).userVariable]) {
+    if (![self.userVariable isEqual:((ChangeVariableBrick*)brick).userVariable]) {
         return NO;
     }
     if (![self.variableFormula isEqualToFormula:((ChangeVariableBrick*)brick).variableFormula]) {

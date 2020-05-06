@@ -20,6 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+#import "Pocket_Code-Swift.h"
 #import "HideTextBrick.h"
 #import "Formula.h"
 
@@ -60,7 +61,7 @@
 
 - (BOOL)isEqualToBrick:(Brick*)brick
 {
-    if (! [self.userVariable isEqualToUserVariable:((HideTextBrick*)brick).userVariable])
+    if (! [self.userVariable isEqual:((HideTextBrick*)brick).userVariable])
         return NO;
     return YES;
 }

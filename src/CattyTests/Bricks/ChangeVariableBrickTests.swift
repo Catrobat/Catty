@@ -87,10 +87,8 @@ final class ChangeVariableBrickTests: XCTestCase {
         let brick = ChangeVariableBrick()
         brick.variableFormula = Formula(integer: 50)
 
-        let userVariable = UserVariable()
-        userVariable.name = "some_name"
+        let userVariable = UserVariable(name: "testName")
         userVariable.value = 30
-        userVariable.isList = false
 
         brick.userVariable = userVariable
 
@@ -102,7 +100,7 @@ final class ChangeVariableBrickTests: XCTestCase {
         XCTAssertTrue(brick.variableFormula.isEqual(to: copiedBrick.variableFormula))
         XCTAssertFalse(brick.variableFormula === copiedBrick.variableFormula)
 
-        XCTAssertTrue(brick.userVariable.isEqual(to: copiedBrick.userVariable))
+        XCTAssertTrue(brick.userVariable.isEqual(copiedBrick.userVariable))
         XCTAssertTrue(brick.userVariable === copiedBrick.userVariable)
     }
 }

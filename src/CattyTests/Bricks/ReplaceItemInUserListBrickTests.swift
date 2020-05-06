@@ -49,8 +49,7 @@ final class ReplaceItemInUserListBrickTests: XCTestCase {
 
         spriteObject.project.variables = VariablesContainer()
 
-        userList = UserVariable()
-        userList.isList = true
+        userList = UserVariable(name: "testName", isList: true)
         spriteObject.project.variables.addObjectList(userList, for: spriteObject)
 
         brick = ReplaceItemInUserListBrick()

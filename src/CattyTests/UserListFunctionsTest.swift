@@ -38,9 +38,7 @@ final class UserListFunctionsTest: XCTestCase {
         let object = SpriteObject()
         object.project = project
 
-        let userVariable = UserVariable()
-        userVariable.name = "TestList"
-        userVariable.isList = true
+        let userVariable = UserVariable(name: "TestList", isList: true)
         userVariable.value = [0, 0, 0]
         project.variables.programListOfLists.add(userVariable)
 
@@ -58,9 +56,7 @@ final class UserListFunctionsTest: XCTestCase {
         let object = SpriteObject()
         object.project = project
 
-        let userVariable = UserVariable()
-        userVariable.name = "TestList"
-        userVariable.isList = true
+        let userVariable = UserVariable(name: "TestList", isList: true)
         userVariable.value = [1, 4, 8]
         project.variables.programListOfLists.add(userVariable)
 
@@ -92,9 +88,7 @@ final class UserListFunctionsTest: XCTestCase {
         let object = SpriteObject()
         object.project = project
 
-        let userVariable = UserVariable()
-        userVariable.name = "TestList"
-        userVariable.isList = true
+        let userVariable = UserVariable(name: "TestList", isList: true)
         userVariable.value = [0, 4, 8]
         project.variables.programListOfLists.add(userVariable)
 

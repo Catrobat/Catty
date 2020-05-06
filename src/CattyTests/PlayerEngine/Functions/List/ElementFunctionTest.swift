@@ -43,15 +43,14 @@ class ElementFunctionTest: XCTestCase {
         XCTAssertEqual(type(of: function).defaultValue as! String, function.value(firstParameter: 2 as AnyObject, secondParameter: -3 as AnyObject) as! String)
         XCTAssertEqual(type(of: function).defaultValue as! String, function.value(firstParameter: nil, secondParameter: nil) as! String)
 
-        let userVariableNumber = UserVariable()
-        userVariableNumber.isList = true
+        let userVariableNumber = UserVariable(name: "testName", isList: true)
         userVariableNumber.value = nil
 
         XCTAssertEqual(type(of: function).defaultValue as! String, function.value(firstParameter: 2 as AnyObject, secondParameter: userVariableNumber as AnyObject) as! String)
     }
 
     func testEmptyList() {
-        let emptyList = UserVariable()
+        let emptyList = UserVariable(name: "testName")
         emptyList.value = []
 
         XCTAssertEqual(type(of: function).defaultValue as! String, function.value(firstParameter: 0 as AnyObject, secondParameter: emptyList as AnyObject) as! String)
@@ -60,9 +59,7 @@ class ElementFunctionTest: XCTestCase {
 
     func testValue() {
         // number list
-        let userVariableNumber = UserVariable()
-        userVariableNumber.name = "myListNumber"
-        userVariableNumber.isList = true
+        let userVariableNumber = UserVariable(name: "myListNumber", isList: true)
         userVariableNumber.value = [1, 5, -7]
 
         XCTAssertEqual(5, function.value(firstParameter: 2 as AnyObject, secondParameter: userVariableNumber as AnyObject) as! NSNumber)
@@ -74,9 +71,7 @@ class ElementFunctionTest: XCTestCase {
         XCTAssertEqual(type(of: function).defaultValue as! String, function.value(firstParameter: 10 as AnyObject, secondParameter: userVariableNumber as AnyObject) as! String)
 
         // string list
-        let userVariableString = UserVariable()
-        userVariableString.name = "myListString"
-        userVariableString.isList = true
+        let userVariableString = UserVariable(name: "myListString", isList: true)
         userVariableString.value = ["a", "b", "c"]
 
         XCTAssertEqual("b", function.value(firstParameter: 2 as AnyObject, secondParameter: userVariableString as AnyObject) as! String)

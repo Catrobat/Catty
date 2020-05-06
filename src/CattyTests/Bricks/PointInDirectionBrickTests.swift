@@ -54,10 +54,10 @@ final class PointInDirectionBrickTests: AbstractBrickTest {
         let copiedBrick: PointInDirectionBrick = brick.mutableCopy(with: CBMutableCopyContext(), andErrorReporting: true) as! PointInDirectionBrick
 
         XCTAssertTrue(brick.isEqual(to: copiedBrick))
-        XCTAssertFalse(brick == copiedBrick)
+        XCTAssertFalse(brick === copiedBrick)
 
         XCTAssertTrue(brick.degrees.isEqual(to: copiedBrick.degrees))
-        XCTAssertFalse(brick.degrees == copiedBrick.degrees)
+        XCTAssertFalse(brick.degrees === copiedBrick.degrees)
     }
 
 }

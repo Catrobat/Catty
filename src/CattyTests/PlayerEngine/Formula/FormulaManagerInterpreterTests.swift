@@ -731,9 +731,7 @@ final class FormulaManagerInterpreterTests: XCTestCase {
         project.variables = variables
         object.project = project
 
-        let userVariable = UserVariable()
-        userVariable.name = "test"
-        userVariable.isList = false
+        let userVariable = UserVariable(name: "testName")
         userVariable.value = "testValue"
         variables.programVariableList = [userVariable]
 
@@ -762,9 +760,7 @@ final class FormulaManagerInterpreterTests: XCTestCase {
         project.variables = variables
         object.project = project
 
-        let userList = UserVariable()
-        userList.name = "test"
-        userList.isList = true
+        let userList = UserVariable(name: "test", isList: true)
 
         variables.programListOfLists = [userList]
         variables.add(toUserList: userList, value: 12.3)

@@ -22,6 +22,7 @@
 
 #import "ShowTextBrick.h"
 #import "Script.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation ShowTextBrick
 
@@ -88,7 +89,7 @@
 
 - (BOOL)isEqualToBrick:(Brick*)brick
 {
-    if (! [self.userVariable isEqualToUserVariable:((ShowTextBrick*)brick).userVariable])
+    if (! [self.userVariable isEqual:((ShowTextBrick*)brick).userVariable])
         return NO;
     if (! [self.xFormula isEqualToFormula:((ShowTextBrick*)brick).xFormula])
         return NO;

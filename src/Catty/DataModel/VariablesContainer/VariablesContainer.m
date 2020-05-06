@@ -21,7 +21,7 @@
  */
 
 #import "VariablesContainer.h"
-#import "UserVariable.h"
+#import "Pocket_Code-Swift.h"
 #import "OrderedMapTable.h"
 #include "SpriteObject.h"
 #import <pthread.h>
@@ -590,7 +590,7 @@ static pthread_mutex_t variablesLock;
                     }
                 }
                 
-                if ((secondVariable == nil) || (! [firstVariable isEqualToUserVariable:secondVariable]))
+                if ((secondVariable == nil) || (! [firstVariable isEqual:secondVariable]))
                     return NO;
             }
         }
@@ -619,7 +619,7 @@ static pthread_mutex_t variablesLock;
                     break;
                 }
             }
-            if ((secondVariable == nil) || (! [firstVariable isEqualToUserVariable:secondVariable]))
+            if ((secondVariable == nil) || (! [firstVariable isEqual:secondVariable]))
                 return NO;
         }
     }
