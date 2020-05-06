@@ -21,6 +21,7 @@
  */
 
 import Firebase
+@testable import Pocket_Code
 
 class AppDelegateMock: AppDelegate {
 

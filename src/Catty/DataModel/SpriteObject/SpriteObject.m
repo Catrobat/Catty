@@ -28,7 +28,7 @@
 #import "Brick.h"
 #import "CBFileManager.h"
 #import "AudioManager.h"
-#import "AppDelegate.h"
+#import "CBFileManager.h"
 #import "NSString+FastImageSize.h"
 #import "CBMutableCopyContext.h"
 
