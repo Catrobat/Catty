@@ -390,17 +390,6 @@ static pthread_mutex_t variablesLock;
     return vars;
 }
 
-- (NSMutableArray*)allVariablesAndLists
-{
-    NSMutableArray *vars = [self allVariables ];
-    NSMutableArray *lists = [self allLists ];
-    if([vars count] > 0){
-        [vars addObjectsFromArray:lists];
-    }
-    
-    return vars;
-}
-
 - (NSArray*)objectVariablesForObject:(SpriteObject*)spriteObject
 {
     NSMutableArray *vars = [NSMutableArray new];
@@ -450,24 +439,6 @@ static pthread_mutex_t variablesLock;
         }
     }
     return nil;
-}
-
-- (BOOL)isVariableOfSpriteObject:(SpriteObject*)spriteObject userVariable:(UserVariable*)userVariable
-{
-    for (NSUInteger index = 0; index < [self.objectVariableList count]; ++index) {
-        SpriteObject *spriteObjectToCompare = [self.objectVariableList keyAtIndex:index];
-        if (spriteObjectToCompare != spriteObject) {
-            continue;
-        }
-
-        NSMutableArray *userVariableList = [self.objectVariableList objectAtIndex:index];
-        for (UserVariable *userVariableToCompare in userVariableList) {
-            if ([userVariableToCompare.name isEqualToString:userVariable.name]) {
-                return YES;
-            }
-        }
-    }
-    return NO;
 }
 
 - (BOOL)isProjectVariableOrList:(UserVariable*)userVarOrList

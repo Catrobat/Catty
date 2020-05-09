@@ -65,8 +65,6 @@
 - (NSMutableArray*)allVariables;
 // Array of Lists
 - (NSMutableArray*)allLists;
-// Array of Variables and Lists
-- (NSMutableArray*)allVariablesAndLists;
 
 // Array of UserVariable
 - (NSArray*)objectVariablesForObject:(SpriteObject*)spriteObject;
@@ -76,8 +74,6 @@
 - (BOOL)addObjectList:(UserVariable*)userList forObject:(SpriteObject*)spriteObject;
 
 - (SpriteObject*)spriteObjectForObjectVariable:(UserVariable*)userVariable;
-
-- (BOOL)isVariableOfSpriteObject:(SpriteObject*)spriteObject userVariable:(UserVariable*)userVariable;
 
 - (BOOL)isProjectVariableOrList:(UserVariable*)userVariable;
 

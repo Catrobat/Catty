@@ -146,33 +146,6 @@ final class VariablesContainerTest: XCTestCase {
         XCTAssertEqual(allList[1].name, list2.name)
     }
 
-    func testAllVariableAndAllList() {
-        let objectA = SpriteObject()
-        objectA.name = "testObjectA"
-
-        let userVariable = UserVariable(name: "testVariable", isList: false)
-
-        let list = UserVariable(name: "testList", isList: true)
-
-        let container = VariablesContainer()
-
-        container.addObjectVariable(userVariable, for: objectA)
-        var allListAndALlVariable = container.allVariablesAndLists() as! [UserVariable]
-
-        XCTAssertEqual(1, allListAndALlVariable.count)
-        XCTAssertEqual(allListAndALlVariable[0].name, userVariable.name)
-        XCTAssertFalse(allListAndALlVariable[0].isList)
-
-        container.addObjectList(list, for: objectA)
-        allListAndALlVariable = container.allVariablesAndLists() as! [UserVariable]
-
-        XCTAssertEqual(2, allListAndALlVariable.count)
-        XCTAssertEqual(allListAndALlVariable[0].name, userVariable.name)
-        XCTAssertEqual(allListAndALlVariable[1].name, list.name)
-        XCTAssertFalse(allListAndALlVariable[0].isList)
-        XCTAssertTrue(allListAndALlVariable[1].isList)
-    }
-
     func testObjectVariablesForObject() {
         let objectA = SpriteObject()
         objectA.name = "testObjectA"
