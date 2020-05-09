@@ -257,6 +257,7 @@ let kLocalizedOn = NSLocalizedString("on", bundle: Bundle(for: LanguageTranslati
 let kLocalizedCameraBack = NSLocalizedString("back", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedCameraFront = NSLocalizedString("front", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedMoreInformation = NSLocalizedString("More information", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedScene = NSLocalizedString("Scene", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
 //************************************************************************************************************
 //**********************************       SHORT DESCRIPTIONS      *******************************************
