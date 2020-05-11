@@ -128,6 +128,9 @@
 #import "IfLogicBeginBrickCell.h"
 #import "NextLookBrickCell.h"
 #import "PreviousLookBrickCell.h"
+#import "ChangeVariableBrickCell.h"
+
+#import "BrickCellVariableData.h"
 
 // Formulas
 #import "Formula.h"
