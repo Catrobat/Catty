@@ -21,7 +21,7 @@
  */
 
 @objc(UserVariable)
-@objcMembers class UserVariable: NSObject, CBMutableCopying {
+@objcMembers class UserVariable: NSObject, UserDataProtocol {
 
     var name: String
     var value: Any?
