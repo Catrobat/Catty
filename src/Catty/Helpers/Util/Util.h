@@ -216,4 +216,6 @@ if (__functor) __functor(__VA_ARGS__);  \
 
 + (BOOL)isPhone;
 
++ (NSString*_Nonnull)defaultSceneNameForSceneNumber:(NSUInteger)sceneNumber;
+
 @end

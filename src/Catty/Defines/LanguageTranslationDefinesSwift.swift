@@ -257,6 +257,7 @@ let kLocalizedOn = NSLocalizedString("on", comment: "")
 let kLocalizedCameraBack = NSLocalizedString("back", comment: "")
 let kLocalizedCameraFront = NSLocalizedString("front", comment: "")
 let kLocalizedMoreInformation = NSLocalizedString("More information", comment: "")
+let kLocalizedScene = NSLocalizedString("Scene", comment: "")
 
 //************************************************************************************************************
 //**********************************       SHORT DESCRIPTIONS      *******************************************

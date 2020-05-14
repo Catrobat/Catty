@@ -69,4 +69,12 @@ final class UtilTests: XCTestCase {
         }
         return screenSizeInPixel
     }
+
+    func testdefaultSceneNameForSceneNumber() {
+        var sceneDirectoryname = Util.defaultSceneName(forSceneNumber: 1)
+        XCTAssertEqual(sceneDirectoryname, "Scene 1")
+
+        sceneDirectoryname = Util.defaultSceneName(forSceneNumber: 99)
+        XCTAssertEqual(sceneDirectoryname, "Scene 99")
+    }
 }

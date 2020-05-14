@@ -568,6 +568,14 @@
     return propertiesDictionary;
 }
 
++ (NSString*)defaultSceneNameForSceneNumber:(NSUInteger)sceneNumber
+{
+    NSString *sceneNumberAsString = [NSString stringWithFormat:@" %@",  @(sceneNumber)];
+    NSString *sceneNameForSceneNumber = [kLocalizedScene stringByAppendingString:sceneNumberAsString];
+    
+    return sceneNameForSceneNumber;
+}
+
 + (BOOL)isEqual:(id)object toObject:(id)objectToCompare
 {
     if(object == nil && objectToCompare == nil)
