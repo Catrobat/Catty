@@ -12,6 +12,7 @@
 		187A3F202434BC4300EF1B02 /* PlaySoundAndWaitBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187A3F1F2434BC4300EF1B02 /* PlaySoundAndWaitBrickTests.swift */; };
 		187CECAB24314F1600C3EDCA /* SetLookBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187CECAA24314F1600C3EDCA /* SetLookBrickTests.swift */; };
 		18A9DBA92434C7F400F4C390 /* IfLogicBeginBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A9DBA82434C7F400F4C390 /* IfLogicBeginBrickTests.swift */; };
+		18B8021F2469170400201847 /* BrickCellVariableDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B8021E2469170400201847 /* BrickCellVariableDataTests.swift */; };
 		224D5C582423AEF900CD6302 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224D5C512420C8B400CD6302 /* SettingsTableViewController.swift */; };
 		22524C38239FAFC500DD515E /* LoginViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22524C37239FAFC500DD515E /* LoginViewControllerTests.swift */; };
 		22524C3D23A2533F00DD515E /* LoginViewControllerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22524C3C23A2533F00DD515E /* LoginViewControllerMock.swift */; };
@@ -1511,6 +1512,7 @@
 		187A3F1F2434BC4300EF1B02 /* PlaySoundAndWaitBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaySoundAndWaitBrickTests.swift; sourceTree = "<group>"; };
 		187CECAA24314F1600C3EDCA /* SetLookBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetLookBrickTests.swift; sourceTree = "<group>"; };
 		18A9DBA82434C7F400F4C390 /* IfLogicBeginBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IfLogicBeginBrickTests.swift; sourceTree = "<group>"; };
+		18B8021E2469170400201847 /* BrickCellVariableDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrickCellVariableDataTests.swift; sourceTree = "<group>"; };
 		18EF8F4D5C0ED599CBA2B488 /* vi */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1B5E0F4EFA8B76CD707F0556 /* ur */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = ur; path = ur.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1C035A070A526C061039C146 /* ha */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = ha; path = ha.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -3509,6 +3511,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		18B8021B246916CB00201847 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				18B8021E2469170400201847 /* BrickCellVariableDataTests.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -4817,6 +4827,7 @@
 		4C5AEEDE22F6EBA100280F8B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				18B8021B246916CB00201847 /* Data */,
 				4C5AEEDF22F6EBA100280F8B /* BrickCells */,
 			);
 			path = Views;
@@ -9594,6 +9605,7 @@
 				4CEB22731B95E4BC00B3BE2F /* BrickInsertManagerAbstractTest.m in Sources */,
 				4C822673213FA7A400F3D750 /* AccelerationZSensorTest.swift in Sources */,
 				BC35168C231D00B90090872A /* SpriteBubbleConstraintsTests.swift in Sources */,
+				18B8021F2469170400201847 /* BrickCellVariableDataTests.swift in Sources */,
 				4C6FE15E212D2D2E0067B7D5 /* MaxFunctionTest.swift in Sources */,
 				1833ED942446572F0053BF7C /* HelpWebViewControllerTests.swift in Sources */,
 				4C822674213FA7A400F3D750 /* InclinationXSensorTest.swift in Sources */,
