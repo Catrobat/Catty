@@ -24,5 +24,5 @@ protocol UserDataProtocol: CBMutableCopying {
     associatedtype DataType
 
     var name: String { get set }
-    var value: DataType? { get set }
+    var value: DataType { get set }
 }
