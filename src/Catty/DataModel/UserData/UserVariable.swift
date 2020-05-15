@@ -30,11 +30,6 @@
     var textLabel: SKLabelNode?
     var isList: Bool
 
-    override private init() {
-        self.name = String()
-        self.isList = false
-    }
-
     init(name: String) {
         self.name = name
         self.isList = false
