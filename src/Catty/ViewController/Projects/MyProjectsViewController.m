@@ -31,7 +31,6 @@
 #import "SegueDefines.h"
 #import "ProjectUpdateDelegate.h"
 #import "DarkBlueGradientImageDetailCell.h"
-#import "NSDate+CustomExtensions.h"
 #import "RuntimeImageCache.h"
 #import "NSString+CatrobatNSStringExtensions.h"
 #import "NSMutableArray+CustomExtensions.h"
