@@ -75,7 +75,8 @@
 
 - (SpriteObject*)spriteObjectForObjectVariable:(UserVariable*)userVariable;
 
-- (BOOL)isProjectVariableOrList:(UserVariable*)userVariable;
+- (BOOL)isProjectList: (UserVariable*)userList;
+- (BOOL)isProjectVariable: (UserVariable*)userVariable;
 
 - (void)removeObjectVariablesForSpriteObject:(SpriteObject*)object;
 - (void)removeObjectListsForSpriteObject:(SpriteObject*)object;

@@ -183,7 +183,7 @@
     }
 
     // it must be a project variable!
-    if (! [context.variables isProjectVariableOrList:self]) {
+    if (! [context.variables isProjectVariable:self] && ! [context.variables isProjectList:self]) {
         [XMLError exceptionWithMessage:@"UserVariable is neither objectVariable nor projectVariable"];
     }
 
