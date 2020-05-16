@@ -20,43 +20,31 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc(UserVariable)
-@objcMembers class UserVariable: NSObject, UserDataProtocol {
+class UserList: NSObject, UserDataProtocol {
+    typealias DataType = NSMutableArray
 
     var name: String
-    var value: Any?
-    var textLabel: SKLabelNode?
-    var isList: Bool
-
-    override private init() {
-        self.name = String()
-        self.isList = false
-    }
+    var value: NSMutableArray
 
     init(name: String) {
         self.name = name
-        self.isList = false
+        self.value = NSMutableArray()
     }
 
-    init(variable: UserVariable) {
-        self.name = variable.name
-        self.isList = variable.isList
-    }
-
-    init(name: String, isList: Bool) {
-        self.name = name
-        self.isList = isList
+    init(list: UserList) {
+        self.name = list.name
+        self.value = NSMutableArray()
     }
 
     override var description: String {
-        "UserVariable: Name: \(String(describing: self.name)), Value: \(String(describing: self.value))"
+        "UserList: Name: \(String(describing: self.name)), Value: \(String(describing: self.value))"
     }
 
     override func isEqual(_ object: Any?) -> Bool {
-        guard let userVariable = object as? UserVariable else {
+        guard let userList = object as? UserList else {
             return false
         }
-        if (name == userVariable.name) && Util.isEqual(value, to: userVariable.value) && (isList == userVariable.isList) {
+        if (name == userList.name) && Util.isEqual(value, to: userList.value) {
             return true
         }
         return false
@@ -71,5 +59,4 @@
 
         return self
     }
-
 }
