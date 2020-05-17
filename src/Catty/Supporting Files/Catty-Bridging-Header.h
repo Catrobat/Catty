@@ -129,8 +129,10 @@
 #import "NextLookBrickCell.h"
 #import "PreviousLookBrickCell.h"
 #import "ChangeVariableBrickCell.h"
+#import "ReplaceItemInUserListBrickCell.h"
 
 #import "BrickCellVariableData.h"
+#import "BrickCellListData.h"
 
 // Formulas
 #import "Formula.h"

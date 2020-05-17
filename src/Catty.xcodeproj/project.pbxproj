@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1822C1392471C7CB00F8F158 /* BrickCellListDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1822C1382471C7CB00F8F158 /* BrickCellListDataTests.swift */; };
 		1833ED942446572F0053BF7C /* HelpWebViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1833ED912446572E0053BF7C /* HelpWebViewControllerTests.swift */; };
 		1875C5BA2457190000F3F276 /* UserVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1875C5B92457190000F3F276 /* UserVariable.swift */; };
 		187A3F202434BC4300EF1B02 /* PlaySoundAndWaitBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187A3F1F2434BC4300EF1B02 /* PlaySoundAndWaitBrickTests.swift */; };
@@ -1510,6 +1511,7 @@
 		0C64E34E5347DA71ECB56DE6 /* pt */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Localizable.strings; sourceTree = "<group>"; };
 		113CDA22CF21176FFA49E694 /* sd */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = sd; path = sd.lproj/Localizable.strings; sourceTree = "<group>"; };
 		13B5EB79EDA9CF73908FF75C /* no */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = no; path = no.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1822C1382471C7CB00F8F158 /* BrickCellListDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrickCellListDataTests.swift; sourceTree = "<group>"; };
 		1833ED912446572E0053BF7C /* HelpWebViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpWebViewControllerTests.swift; sourceTree = "<group>"; };
 		1875C5B92457190000F3F276 /* UserVariable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserVariable.swift; sourceTree = "<group>"; };
 		187A3F1F2434BC4300EF1B02 /* PlaySoundAndWaitBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaySoundAndWaitBrickTests.swift; sourceTree = "<group>"; };
@@ -3521,6 +3523,7 @@
 			isa = PBXGroup;
 			children = (
 				18B8021E2469170400201847 /* BrickCellVariableDataTests.swift */,
+				1822C1382471C7CB00F8F158 /* BrickCellListDataTests.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -4833,7 +4836,6 @@
 		4C5AEEDE22F6EBA100280F8B /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				18B8021B246916CB00201847 /* Data */,
 				4C5AEEDF22F6EBA100280F8B /* BrickCells */,
 			);
 			path = Views;
@@ -4842,6 +4844,7 @@
 		4C5AEEDF22F6EBA100280F8B /* BrickCells */ = {
 			isa = PBXGroup;
 			children = (
+				18B8021B246916CB00201847 /* Data */,
 				4C38B3752371529600F33721 /* GlideToBrickCellTests.swift */,
 				4C5AEEF022F6F1A300280F8B /* GoNStepsBackBrickCellTests.swift */,
 				4C5AEEF422F6F33A00280F8B /* IfLogicBeginBrickCellTests.swift */,
@@ -9587,6 +9590,7 @@
 				9ECDCB0D23284CBE00EBDA63 /* ClearGraphicEffectBrickTests.swift in Sources */,
 				4C1C8B16213FE7F1003B3AA4 /* StoreProjectDownloaderMock.swift in Sources */,
 				E4AEC8A0210852030081A980 /* FeaturedProjectsStoreDataSourceTests.swift in Sources */,
+				1822C1392471C7CB00F8F158 /* BrickCellListDataTests.swift in Sources */,
 				4C822680213FA7A400F3D750 /* BrightnessSensorTest.swift in Sources */,
 				9EBCBD832329B44E0074C2D9 /* NextLookBrickTests.swift in Sources */,
 				2ED418B52411213E00AFE2FD /* XMLAbstractTest.swift in Sources */,
