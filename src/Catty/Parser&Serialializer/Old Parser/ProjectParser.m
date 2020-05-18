@@ -33,6 +33,7 @@
 #import "NSString+CatrobatNSStringExtensions.h"
 #import "SpriteObject.h"
 #import "NoteBrick.h"
+#import "Pocket_Code-Swift.h"
 
 #define kCatroidXMLPrefix               @"org.catrobat.catroid.content."
 #define kCatroidXMLSpriteList           @"spriteList"
@@ -133,7 +134,14 @@
         className = @"project";
     className = [self classNameForString:className];
     
-    id object = [[NSClassFromString(className) alloc] init];
+    id object;
+    if ([className isEqualToString:@"UserVariable"]) {
+        NSString *userVariableName = [node stringValue];
+        object = [[UserVariable alloc] initWithName:userVariableName];
+    } else {
+        object = [[NSClassFromString(className) alloc] init];
+    }
+    
     if (! object) {
         if ([className hasSuffix:@"Brick"]) {
             NSWarn(@"Unsupported brick type: %@ => to be replaced by a NoteBrick", className);
