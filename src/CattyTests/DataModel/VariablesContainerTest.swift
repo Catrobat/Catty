@@ -441,22 +441,36 @@ final class VariablesContainerTest: XCTestCase {
         XCTAssertTrue(container.spriteObject(forObjectVariable: list2)?.isEqual(to: objectB) == true)
     }
 
-    func testIsProjectVariableOrList() {
+    func testIsProjectVariable() {
+        let objectA = SpriteObject()
+        objectA.name = "testObjectA"
+
         let userVariable1 = UserVariable(name: "testVar1", isList: false)
         let userVariable2 = UserVariable(name: "testVar2", isList: false)
 
-        let list1 = UserVariable(name: "testList1", isList: true)
-        let list2 = UserVariable(name: "testList2", isList: true)
+        let container = VariablesContainer()
+
+        container.programVariableList.add(userVariable1)
+        container.addObjectVariable(userVariable2, for: objectA)
+
+        XCTAssertTrue(container.isProjectVariable(userVariable1))
+        XCTAssertFalse(container.isProjectVariable(userVariable2))
+    }
+
+    func testIsProjectList() {
+        let objectA = SpriteObject()
+        objectA.name = "testObjectA"
+
+        let list1 = UserVariable(name: "testList1")
+        let list2 = UserVariable(name: "testList2")
 
         let container = VariablesContainer()
 
-        container.programVariableList.add(userVariable1 as Any)
-        container.programListOfLists.add(list1 as Any)
+        container.programListOfLists.add(list1)
+        container.addObjectList(list2, for: objectA)
 
-        XCTAssertTrue(container.isProjectVariableOrList(userVariable1))
-        XCTAssertFalse(container.isProjectVariableOrList(userVariable2))
-        XCTAssertTrue(container.isProjectVariableOrList(list1))
-        XCTAssertFalse(container.isProjectVariableOrList(list2))
+        XCTAssertTrue(container.isProjectList(list1))
+        XCTAssertFalse(container.isProjectList(list2))
     }
 
     func testRemoveObjectVariablesForSpriteObject() {

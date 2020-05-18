@@ -1141,7 +1141,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 - (BOOL)isVarOrListBeingUsed:(UserVariable*)variable
 {
-    if([self.object.project.variables isProjectVariableOrList:variable]) {
+    if([self.object.project.variables isProjectVariable:variable] || [self.object.project.variables isProjectList:variable]) {
         for(SpriteObject *spriteObject in self.object.project.objectList) {
             for(Script *script in spriteObject.scriptList) {
                 for(id brick in script.brickList) {
