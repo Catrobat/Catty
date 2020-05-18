@@ -813,6 +813,7 @@
 		6F4B2FB92466706B00B5F0ED /* ProjectMigratorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4B2FB82466706B00B5F0ED /* ProjectMigratorTest.swift */; };
 		6F4B2FBB246670C800B5F0ED /* ProjectMigratorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4B2FBA246670C800B5F0ED /* ProjectMigratorProtocol.swift */; };
 		6F4B2FC12466F58500B5F0ED /* CBFileManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4B2FC02466F58500B5F0ED /* CBFileManagerMock.swift */; };
+		6F5865FA2471756900A7B4B2 /* CBXMLParserHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F5865F92471756900A7B4B2 /* CBXMLParserHelperTests.swift */; };
 		6F5CACA1246ADE0000BC58A4 /* CBFileManagerMockTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F5CACA0246ADE0000BC58A4 /* CBFileManagerMockTests.swift */; };
 		6F659875243E8B9B00BD6B8C /* StoreProjectDownloader.downloadProject.fail.request.json in Resources */ = {isa = PBXBuildFile; fileRef = 6F659874243E8B9B00BD6B8C /* StoreProjectDownloader.downloadProject.fail.request.json */; };
 		6F87B80D2441300A00D79A2C /* StoreProjectDownloader.downloadProject.success.json in Resources */ = {isa = PBXBuildFile; fileRef = 6F87B80C2441300A00D79A2C /* StoreProjectDownloader.downloadProject.success.json */; };
@@ -2421,6 +2422,7 @@
 		6F4B2FB82466706B00B5F0ED /* ProjectMigratorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectMigratorTest.swift; sourceTree = "<group>"; };
 		6F4B2FBA246670C800B5F0ED /* ProjectMigratorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectMigratorProtocol.swift; sourceTree = "<group>"; };
 		6F4B2FC02466F58500B5F0ED /* CBFileManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBFileManagerMock.swift; sourceTree = "<group>"; };
+		6F5865F92471756900A7B4B2 /* CBXMLParserHelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBXMLParserHelperTests.swift; sourceTree = "<group>"; };
 		6F5CACA0246ADE0000BC58A4 /* CBFileManagerMockTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBFileManagerMockTests.swift; sourceTree = "<group>"; };
 		6F659874243E8B9B00BD6B8C /* StoreProjectDownloader.downloadProject.fail.request.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectDownloader.downloadProject.fail.request.json; sourceTree = "<group>"; };
 		6F87B80C2441300A00D79A2C /* StoreProjectDownloader.downloadProject.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectDownloader.downloadProject.success.json; sourceTree = "<group>"; };
@@ -5729,6 +5731,7 @@
 		4CD194F21A0631B200484E4F /* Parser & Serialization */ = {
 			isa = PBXGroup;
 			children = (
+				6F5865F62471754000A7B4B2 /* Helper */,
 				2ED4188D2411213D00AFE2FD /* Abstract */,
 				2ED418B02411213D00AFE2FD /* CatrobatLanguage0.92 */,
 				2ED418A42411213D00AFE2FD /* CatrobatLanguage0.93 */,
@@ -6191,6 +6194,15 @@
 			);
 			name = Logger;
 			path = "Supporting Files/Logger";
+			sourceTree = "<group>";
+		};
+		6F5865F62471754000A7B4B2 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				6F5865F92471756900A7B4B2 /* CBXMLParserHelperTests.swift */,
+			);
+			name = Helper;
+			path = "Parser & Serialization/Helper";
 			sourceTree = "<group>";
 		};
 		6F9CF11C246E732D008CED1C /* UserData */ = {
@@ -9629,6 +9641,7 @@
 				4CAEB26C23F3F8BC00DB31BB /* CatrobatTableViewControllerTests.swift in Sources */,
 				4C6FE177212D2D2E0067B7D5 /* LengthFunctionTest.swift in Sources */,
 				22524C38239FAFC500DD515E /* LoginViewControllerTests.swift in Sources */,
+				6F5865FA2471756900A7B4B2 /* CBXMLParserHelperTests.swift in Sources */,
 				2ED418B62411213E00AFE2FD /* XMLParserHeaderTests095.swift in Sources */,
 				4C6FE161212D2D2E0067B7D5 /* RoundFunctionTest.swift in Sources */,
 				2ED418C32411213E00AFE2FD /* XMLParserBrickTests093.swift in Sources */,
