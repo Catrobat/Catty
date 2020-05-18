@@ -146,7 +146,7 @@
     CBXMLPositionStack *positionStackOfUserVariable = nil;
 
     // check whether object variable/list or project variable/list
-    SpriteObject *spriteObject = [context.variables spriteObjectForObjectVariable:self];
+    SpriteObject *spriteObject = [context.variables spriteObjectForObjectData:self];
     if (spriteObject) {
         // it is an object variable/list!
         NSMutableDictionary *alreadySerializedVarsOrLists = self.isList ? [context.spriteObjectNameUserListOfListsPositions objectForKey:spriteObject.name] :

@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objcMembers class UserList: NSObject, UserDataProtocol {
+@objcMembers class UserList: NSObject, UserListProtocol {
     typealias DataType = NSMutableArray
 
     var name: String
