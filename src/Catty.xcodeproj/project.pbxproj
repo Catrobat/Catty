@@ -820,7 +820,9 @@
 		6F96E9F5246D52C70054E2F7 /* UserDataProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F96E9F4246D52C70054E2F7 /* UserDataProtocol.swift */; };
 		6F9CF120246E7AA7008CED1C /* UserList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9CF11F246E7AA7008CED1C /* UserList.swift */; };
 		6F9CF123246E8767008CED1C /* UserListTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9CF122246E8767008CED1C /* UserListTest.swift */; };
+		6F9CF133246F0B81008CED1C /* NSDateExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9CF132246F0B81008CED1C /* NSDateExtensionTests.swift */; };
 		6FAAD8B6244CAFDA00142FA7 /* SpeakBrickWithoutCommentedOut_0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = 6FAAD8B5244CAFDA00142FA7 /* SpeakBrickWithoutCommentedOut_0991.xml */; };
+		6FD28D0A24702CAD0035F606 /* NSDateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD28D0924702CAD0035F606 /* NSDateExtension.swift */; };
 		6FDC3CB82439423D0033F252 /* RegularExpressionFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FDC3CB52439423D0033F252 /* RegularExpressionFunction.swift */; };
 		6FDC3CBA243942980033F252 /* RegularExpressionFunctionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FDC3CB9243942980033F252 /* RegularExpressionFunctionTest.swift */; };
 		811FB6EA1A4980EF00957E10 /* ScriptCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 811FB6E91A4980EF00957E10 /* ScriptCollectionViewController.m */; };
@@ -966,7 +968,6 @@
 		92FC85CE1B9E1EB5001C728F /* BrickManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FC85CD1B9E1EB5001C728F /* BrickManager.m */; };
 		92FF2E331A24C5A700093DA7 /* CAGradientLayer+CatrobatCAGradientExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E0D1A24C5A700093DA7 /* CAGradientLayer+CatrobatCAGradientExtensions.m */; };
 		92FF2E351A24C5A700093DA7 /* NSData+Hashes.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E131A24C5A700093DA7 /* NSData+Hashes.m */; };
-		92FF2E361A24C5A700093DA7 /* NSDate+CustomExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E161A24C5A700093DA7 /* NSDate+CustomExtensions.m */; };
 		92FF2E371A24C5A700093DA7 /* NSMutableArray+CustomExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E191A24C5A700093DA7 /* NSMutableArray+CustomExtensions.m */; };
 		92FF2E381A24C5A700093DA7 /* NSString+CatrobatNSStringExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E1C1A24C5A700093DA7 /* NSString+CatrobatNSStringExtensions.m */; };
 		92FF2E391A24C5A700093DA7 /* LICENSE_NSString+FastImageSize in Resources */ = {isa = PBXBuildFile; fileRef = 92FF2E1E1A24C5A700093DA7 /* LICENSE_NSString+FastImageSize */; };
@@ -2429,7 +2430,9 @@
 		6F96E9F4246D52C70054E2F7 /* UserDataProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataProtocol.swift; sourceTree = "<group>"; };
 		6F9CF11F246E7AA7008CED1C /* UserList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserList.swift; sourceTree = "<group>"; };
 		6F9CF122246E8767008CED1C /* UserListTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListTest.swift; sourceTree = "<group>"; };
+		6F9CF132246F0B81008CED1C /* NSDateExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NSDateExtensionTests.swift; path = Extensions/NSDateExtensionTests.swift; sourceTree = "<group>"; };
 		6FAAD8B5244CAFDA00142FA7 /* SpeakBrickWithoutCommentedOut_0991.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SpeakBrickWithoutCommentedOut_0991.xml; sourceTree = "<group>"; };
+		6FD28D0924702CAD0035F606 /* NSDateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSDateExtension.swift; sourceTree = "<group>"; };
 		6FDC3CB52439423D0033F252 /* RegularExpressionFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegularExpressionFunction.swift; sourceTree = "<group>"; };
 		6FDC3CB9243942980033F252 /* RegularExpressionFunctionTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegularExpressionFunctionTest.swift; sourceTree = "<group>"; };
 		71003B79069F162A53CC656E /* fr */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -2702,8 +2705,6 @@
 		92FF2E0D1A24C5A700093DA7 /* CAGradientLayer+CatrobatCAGradientExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CAGradientLayer+CatrobatCAGradientExtensions.m"; sourceTree = "<group>"; };
 		92FF2E121A24C5A700093DA7 /* NSData+Hashes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Hashes.h"; sourceTree = "<group>"; };
 		92FF2E131A24C5A700093DA7 /* NSData+Hashes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Hashes.m"; sourceTree = "<group>"; };
-		92FF2E151A24C5A700093DA7 /* NSDate+CustomExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+CustomExtensions.h"; sourceTree = "<group>"; };
-		92FF2E161A24C5A700093DA7 /* NSDate+CustomExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+CustomExtensions.m"; sourceTree = "<group>"; };
 		92FF2E181A24C5A700093DA7 /* NSMutableArray+CustomExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+CustomExtensions.h"; sourceTree = "<group>"; };
 		92FF2E191A24C5A700093DA7 /* NSMutableArray+CustomExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+CustomExtensions.m"; sourceTree = "<group>"; };
 		92FF2E1B1A24C5A700093DA7 /* NSString+CatrobatNSStringExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CatrobatNSStringExtensions.h"; sourceTree = "<group>"; };
@@ -6822,8 +6823,7 @@
 		92FF2E141A24C5A700093DA7 /* NSDate+Extension */ = {
 			isa = PBXGroup;
 			children = (
-				92FF2E151A24C5A700093DA7 /* NSDate+CustomExtensions.h */,
-				92FF2E161A24C5A700093DA7 /* NSDate+CustomExtensions.m */,
+				6FD28D0924702CAD0035F606 /* NSDateExtension.swift */,
 			);
 			path = "NSDate+Extension";
 			sourceTree = "<group>";
@@ -8410,6 +8410,7 @@
 			children = (
 				4CFAD35C1CFAB3EC0019C636 /* CustomExtensionsTests.m */,
 				4CFAD35D1CFAB3EC0019C636 /* UIImageExtensionTests.swift */,
+				6F9CF132246F0B81008CED1C /* NSDateExtensionTests.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -9644,6 +9645,7 @@
 				6F5865FA2471756900A7B4B2 /* CBXMLParserHelperTests.swift in Sources */,
 				2ED418B62411213E00AFE2FD /* XMLParserHeaderTests095.swift in Sources */,
 				4C6FE161212D2D2E0067B7D5 /* RoundFunctionTest.swift in Sources */,
+				6F9CF133246F0B81008CED1C /* NSDateExtensionTests.swift in Sources */,
 				2ED418C32411213E00AFE2FD /* XMLParserBrickTests093.swift in Sources */,
 				9E3AF7982326F21300AB16F1 /* SetXBrickTests.swift in Sources */,
 				2ED418BF2411213E00AFE2FD /* XMLParserBlackBoxTests0991.swift in Sources */,
@@ -9803,6 +9805,7 @@
 				4CB0F9F420A173B700D1BE2F /* RotationSensor.swift in Sources */,
 				CAD740E31AF2D2E800C32937 /* CBStack.m in Sources */,
 				9200C2C91C808006002F5CA4 /* HideTextBrick.m in Sources */,
+				6FD28D0A24702CAD0035F606 /* NSDateExtension.swift in Sources */,
 				AA74F0BB1BC05FCE00D1E954 /* IfOnEdgeBounceBrickCell.m in Sources */,
 				BAEE49BE1F165CBA00F06741 /* ReplaceItemInUserListBrick+CBXMLHandler.m in Sources */,
 				2D6E3F3B210A0AB700FB8139 /* ChartProjectsStoreViewController.swift in Sources */,
@@ -10311,7 +10314,6 @@
 				AAF6D9E01BC0C2AA00686849 /* PointInDirectionBrick+Instruction.swift in Sources */,
 				4C4B4CD723EE8ABB0054C861 /* NotificationExtension.swift in Sources */,
 				AA74EF541BC0586F00D1E954 /* PointInDirectionBrick+CBXMLHandler.m in Sources */,
-				92FF2E361A24C5A700093DA7 /* NSDate+CustomExtensions.m in Sources */,
 				4C595F4121CAE7BE0097D850 /* PlusOperator.swift in Sources */,
 				92289A491A42F2A3008C771A /* BSKeyboardControls.m in Sources */,
 				4C724E231B4D3E8C00E27479 /* CBXMLSerializerHelper.m in Sources */,
