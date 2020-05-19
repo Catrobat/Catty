@@ -21,7 +21,7 @@
  */
 
 @objc(UserVariable)
-@objcMembers class UserVariable: NSObject, UserDataProtocol {
+@objcMembers class UserVariable: NSObject, UserVariableProtocol {
 
     typealias DataType = Any?
 

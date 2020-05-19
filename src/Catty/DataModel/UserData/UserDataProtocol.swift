@@ -20,9 +20,14 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-protocol UserDataProtocol: CBMutableCopying {
-    associatedtype DataType
-
+@objc protocol UserDataProtocol: CBMutableCopying {
     var name: String { get set }
-    var value: DataType { get set }
+}
+
+protocol UserVariableProtocol: UserDataProtocol {
+    var value: Any? { get set }
+}
+
+protocol UserListProtocol: UserDataProtocol {
+    var value: NSMutableArray { get set }
 }

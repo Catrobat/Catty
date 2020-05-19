@@ -412,32 +412,29 @@ static pthread_mutex_t variablesLock;
     return lists;
 }
 
-- (SpriteObject*)spriteObjectForObjectVariable:(UserVariable*)userVariable
+- (SpriteObject*)spriteObjectForObjectData:(id<UserDataProtocol>)userData
 {
-    if (!userVariable.isList)
-    {
-        for (NSUInteger index = 0; index < [self.objectVariableList count]; ++index) {
-            SpriteObject *spriteObject = [self.objectVariableList keyAtIndex:index];
-            NSMutableArray *userVariableList = [self.objectVariableList objectAtIndex:index];
-            for (UserVariable *userVariableToCompare in userVariableList) {
-                if (userVariableToCompare == userVariable) {
-                    return spriteObject;
-                }
+    
+    for (NSUInteger index = 0; index < [self.objectVariableList count]; ++index) {
+        SpriteObject *spriteObject = [self.objectVariableList keyAtIndex:index];
+        NSMutableArray *userVariableList = [self.objectVariableList objectAtIndex:index];
+        for (UserVariable *userVariableToCompare in userVariableList) {
+            if (userVariableToCompare == userData) {
+                return spriteObject;
             }
         }
     }
-    if (userVariable.isList)
-    {
-        for (NSUInteger index = 0; index < [self.objectListOfLists count]; ++index) {
-            SpriteObject *spriteObject = [self.objectListOfLists keyAtIndex:index];
-            NSMutableArray *userListOfLists = [self.objectListOfLists objectAtIndex:index];
-            for (UserVariable *userListToCompare in userListOfLists) {
-                if (userListToCompare == userVariable) {
-                    return spriteObject;
-                }
+    
+    for (NSUInteger index = 0; index < [self.objectListOfLists count]; ++index) {
+        SpriteObject *spriteObject = [self.objectListOfLists keyAtIndex:index];
+        NSMutableArray *userListOfLists = [self.objectListOfLists objectAtIndex:index];
+        for (UserList *userListToCompare in userListOfLists) {
+            if (userListToCompare == userData) {
+                return spriteObject;
             }
         }
     }
+    
     return nil;
 }
 
@@ -451,7 +448,7 @@ static pthread_mutex_t variablesLock;
     return NO;
 }
 
-- (BOOL)isProjectList: (UserVariable*)userList
+- (BOOL)isProjectList: (id<UserDataProtocol>)userList
 {
     for (UserVariable *userListToCompare in self.programListOfLists) {
         if ([userListToCompare.name isEqualToString:userList.name]) {
