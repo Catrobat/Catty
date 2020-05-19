@@ -726,7 +726,6 @@
 		4CF4CB7721E65A9B009D6DD9 /* ReplaceItemInUserListBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF4CB7621E65A9B009D6DD9 /* ReplaceItemInUserListBrickTests.swift */; };
 		4CF6941D24399EA600EE6D72 /* Brick+CBXMLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF6941A24399EA500EE6D72 /* Brick+CBXMLHandler.swift */; };
 		4CF773E51AEE3B5100DBBB2B /* VariablePickerData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF773E41AEE3B5100DBBB2B /* VariablePickerData.m */; };
-		4CF773EE1AEE786600DBBB2B /* FormulaElement+UserVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF773ED1AEE786600DBBB2B /* FormulaElement+UserVariable.m */; };
 		4CF773F41AEE79A800DBBB2B /* Brick+UserVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF773F31AEE79A800DBBB2B /* Brick+UserVariable.m */; };
 		4CF80276231D4E2400426396 /* SayForBubbleBrickCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F9FD2204BD3B400E71B2D /* SayForBubbleBrickCellTests.swift */; };
 		4CF8747521C8E7AB00C8143F /* SoundsTVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF8747221C8E7AB00C8143F /* SoundsTVCTests.swift */; };
@@ -823,6 +822,7 @@
 		6F9CF120246E7AA7008CED1C /* UserList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9CF11F246E7AA7008CED1C /* UserList.swift */; };
 		6F9CF123246E8767008CED1C /* UserListTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9CF122246E8767008CED1C /* UserListTest.swift */; };
 		6F9CF133246F0B81008CED1C /* NSDateExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9CF132246F0B81008CED1C /* NSDateExtensionTests.swift */; };
+		6FAAD43824740B1D00FF2A34 /* FormulaElementExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FAAD43724740B1D00FF2A34 /* FormulaElementExtension.swift */; };
 		6FAAD8B6244CAFDA00142FA7 /* SpeakBrickWithoutCommentedOut_0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = 6FAAD8B5244CAFDA00142FA7 /* SpeakBrickWithoutCommentedOut_0991.xml */; };
 		6FD28D0A24702CAD0035F606 /* NSDateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD28D0924702CAD0035F606 /* NSDateExtension.swift */; };
 		6FDC3CB82439423D0033F252 /* RegularExpressionFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FDC3CB52439423D0033F252 /* RegularExpressionFunction.swift */; };
@@ -2339,8 +2339,6 @@
 		4CF6941A24399EA500EE6D72 /* Brick+CBXMLHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Brick+CBXMLHandler.swift"; path = "Bricks/Brick+CBXMLHandler.swift"; sourceTree = "<group>"; };
 		4CF773E31AEE3B5100DBBB2B /* VariablePickerData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VariablePickerData.h; sourceTree = "<group>"; };
 		4CF773E41AEE3B5100DBBB2B /* VariablePickerData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VariablePickerData.m; sourceTree = "<group>"; };
-		4CF773EC1AEE786600DBBB2B /* FormulaElement+UserVariable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FormulaElement+UserVariable.h"; sourceTree = "<group>"; };
-		4CF773ED1AEE786600DBBB2B /* FormulaElement+UserVariable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FormulaElement+UserVariable.m"; sourceTree = "<group>"; };
 		4CF773F21AEE79A800DBBB2B /* Brick+UserVariable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Brick+UserVariable.h"; sourceTree = "<group>"; };
 		4CF773F31AEE79A800DBBB2B /* Brick+UserVariable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Brick+UserVariable.m"; sourceTree = "<group>"; };
 		4CF8747221C8E7AB00C8143F /* SoundsTVCTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundsTVCTests.swift; sourceTree = "<group>"; };
@@ -2435,6 +2433,7 @@
 		6F9CF11F246E7AA7008CED1C /* UserList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserList.swift; sourceTree = "<group>"; };
 		6F9CF122246E8767008CED1C /* UserListTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListTest.swift; sourceTree = "<group>"; };
 		6F9CF132246F0B81008CED1C /* NSDateExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NSDateExtensionTests.swift; path = Extensions/NSDateExtensionTests.swift; sourceTree = "<group>"; };
+		6FAAD43724740B1D00FF2A34 /* FormulaElementExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaElementExtension.swift; sourceTree = "<group>"; };
 		6FAAD8B5244CAFDA00142FA7 /* SpeakBrickWithoutCommentedOut_0991.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SpeakBrickWithoutCommentedOut_0991.xml; sourceTree = "<group>"; };
 		6FD28D0924702CAD0035F606 /* NSDateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSDateExtension.swift; sourceTree = "<group>"; };
 		6FDC3CB52439423D0033F252 /* RegularExpressionFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegularExpressionFunction.swift; sourceTree = "<group>"; };
@@ -6670,8 +6669,6 @@
 				92DFAFF11A38949E00FA9B0F /* NSMutableArray+Reverse.m */,
 				4CF773E31AEE3B5100DBBB2B /* VariablePickerData.h */,
 				4CF773E41AEE3B5100DBBB2B /* VariablePickerData.m */,
-				4CF773EC1AEE786600DBBB2B /* FormulaElement+UserVariable.h */,
-				4CF773ED1AEE786600DBBB2B /* FormulaElement+UserVariable.m */,
 				4CF773F21AEE79A800DBBB2B /* Brick+UserVariable.h */,
 				4CF773F31AEE79A800DBBB2B /* Brick+UserVariable.m */,
 			);
@@ -6773,6 +6770,7 @@
 		92FF2E081A24C5A700093DA7 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				6FAAD43724740B1D00FF2A34 /* FormulaElementExtension.swift */,
 				5EA1089021B8FBB800B837B9 /* Audio */,
 				92FF2E0B1A24C5A700093DA7 /* CAGradient+Extension */,
 				925819851C0208E8003247A9 /* CALayer+XibConfiguration */,
@@ -9820,7 +9818,6 @@
 				92FF2EA41A24C7D800093DA7 /* Util.m in Sources */,
 				AA74EFEC1BC05B5F00D1E954 /* ChangeVariableBrick.m in Sources */,
 				92FF31031A24DCAA00093DA7 /* Script.m in Sources */,
-				4CF773EE1AEE786600DBBB2B /* FormulaElement+UserVariable.m in Sources */,
 				4C822693213FBC4400F3D750 /* MultiFingerTouchedFunction.swift in Sources */,
 				4C0F9F9E204BD2B100E71B2D /* SayBubbleBrickCell.m in Sources */,
 				4C2EE41E1B555B55006DE9B8 /* CBXMLOpenedNestingBricksStack.m in Sources */,
@@ -9942,6 +9939,7 @@
 				4C0F9F39204ADC4E00E71B2D /* SayBubbleBrick.m in Sources */,
 				AA74EE271BC0540D00D1E954 /* SetVariableBrick+Instruction.swift in Sources */,
 				9276B70B1C9EA68A008BC594 /* CatrobatPlayerItem.m in Sources */,
+				6FAAD43824740B1D00FF2A34 /* FormulaElementExtension.swift in Sources */,
 				4CF072A620D6710F00F93AB5 /* LastFingerIndexSensor.swift in Sources */,
 				AAF6D9E21BC0C48300686849 /* PointToBrick+Instruction.swift in Sources */,
 				AA74F09C1BC05FCE00D1E954 /* BroadcastBrickCell.m in Sources */,

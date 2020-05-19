@@ -23,7 +23,6 @@
 #import "Pocket_Code-Swift.h"
 #import "Brick+UserVariable.h"
 #import "BrickFormulaProtocol.h"
-#import "FormulaElement+UserVariable.h"
 #import "SetVariableBrick.h"
 #import "ChangeVariableBrick.h"
 #import "ShowTextBrick.h"
@@ -80,7 +79,7 @@
         for (int param = 0; param <= BRICK_MAX_PARAM_NUMBER; param++) {
             id<BrickFormulaProtocol> formulaBrick = (id<BrickFormulaProtocol>)self;
             Formula *formula = [formulaBrick formulaForLineNumber:line andParameterNumber:param];
-            if (formula && [formula.formulaTree isVarOrListBeingUsed:varOrList])
+            if (formula && ([formula.formulaTree isVariableUsed:varOrList] || [formula.formulaTree isListUsed:varOrList]))
                 return YES;
         }
     }
