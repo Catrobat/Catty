@@ -397,50 +397,6 @@ final class VariablesContainerTest: XCTestCase {
         XCTAssertNotEqual(itemInList[0], 30)
     }
 
-    func testSpriteObjectForObjectDataNotList() {
-        let objectA = SpriteObject()
-        objectA.name = "testObjectA"
-
-        let objectB = SpriteObject()
-        objectB.name = "testObjectB"
-
-        let userVariable1 = UserVariable(name: "testName1", isList: false)
-        let userVariable2 = UserVariable(name: "testName2", isList: false)
-
-        let container = VariablesContainer()
-
-        var result = container.addObjectVariable(userVariable1, for: objectA)
-        XCTAssertTrue(result)
-
-        result = container.addObjectVariable(userVariable2, for: objectB)
-        XCTAssertTrue(result)
-
-        XCTAssertTrue(container.spriteObject(forObjectData: userVariable1)?.isEqual(to: objectA) == true)
-        XCTAssertTrue(container.spriteObject(forObjectData: userVariable2)?.isEqual(to: objectB) == true)
-    }
-
-    func testSpriteObjectForObjectDataWhenList() {
-        let objectA = SpriteObject()
-        objectA.name = "testObjectA"
-
-        let objectB = SpriteObject()
-        objectB.name = "testObjectB"
-
-        let list1 = UserVariable(name: "testName1", isList: true)
-        let list2 = UserVariable(name: "testName2", isList: true)
-
-        let container = VariablesContainer()
-
-        var result = container.addObjectList(list1, for: objectA)
-        XCTAssertTrue(result)
-
-        result = container.addObjectList(list2, for: objectB)
-        XCTAssertTrue(result)
-
-        XCTAssertTrue(container.spriteObject(forObjectData: list1)?.isEqual(to: objectA) == true)
-        XCTAssertTrue(container.spriteObject(forObjectData: list2)?.isEqual(to: objectB) == true)
-    }
-
     func testIsProjectVariable() {
         let objectA = SpriteObject()
         objectA.name = "testObjectA"

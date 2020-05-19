@@ -74,8 +74,6 @@
 - (BOOL)addObjectVariable:(UserVariable*)userVariable forObject:(SpriteObject*)spriteObject;
 - (BOOL)addObjectList:(UserVariable*)userList forObject:(SpriteObject*)spriteObject;
 
-- (SpriteObject*)spriteObjectForObjectData:(id<UserDataProtocol>)userData;
-
 - (BOOL)isProjectList: (id<UserDataProtocol>)userList;
 - (BOOL)isProjectVariable: (UserVariable*)userVariable;
 

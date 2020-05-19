@@ -318,6 +318,8 @@
             continue;
         }
         
+        context.spriteObject = spriteObject;
+        
         GDataXMLElement *entryXmlElement = [GDataXMLElement elementWithName:@"entry" context:context];
         GDataXMLElement *entryToObjectReferenceXmlElement = [GDataXMLElement elementWithName:@"object" context:context];
         CBXMLPositionStack *positionStackOfSpriteObject = context.spriteObjectNamePositions[((SpriteObject*)spriteObject).name];
@@ -364,6 +366,8 @@
             NSWarn(@"Error while serializing object variable for object '%@': object does not exists!", ((SpriteObject*)spriteObject).name);
             continue;
         }
+        
+        context.spriteObject = spriteObject;
         
         GDataXMLElement *entryXmlElement = [GDataXMLElement elementWithName:@"entry" context:context];
         GDataXMLElement *entryToObjectReferenceXmlElement = [GDataXMLElement elementWithName:@"object" context:context];

@@ -146,9 +146,9 @@
     CBXMLPositionStack *positionStackOfUserVariable = nil;
 
     // check whether object variable/list or project variable/list
-    SpriteObject *spriteObject = [context.variables spriteObjectForObjectData:self];
-    if (spriteObject) {
+    if (! [context.variables isProjectVariable:self] && ! [context.variables isProjectList:self]) {
         // it is an object variable/list!
+        SpriteObject *spriteObject = context.spriteObject;
         NSMutableDictionary *alreadySerializedVarsOrLists = self.isList ? [context.spriteObjectNameUserListOfListsPositions objectForKey:spriteObject.name] :
                                                                         [context.spriteObjectNameUserVariableListPositions objectForKey:spriteObject.name];
         if (alreadySerializedVarsOrLists) {
@@ -180,11 +180,6 @@
         // save current stack position in context
         [alreadySerializedVarsOrLists setObject:currentPositionStack forKey:self.name];
         return xmlElement;
-    }
-
-    // it must be a project variable!
-    if (! [context.variables isProjectVariable:self] && ! [context.variables isProjectList:self]) {
-        [XMLError exceptionWithMessage:@"UserVariable is neither objectVariable nor projectVariable"];
     }
 
     positionStackOfUserVariable = self.isList ? [context.projectUserListNamePositions objectForKey:self.name] :
