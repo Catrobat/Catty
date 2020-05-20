@@ -28,8 +28,8 @@ let kIphoneXSceneHeight = 2436.0
 let kIphoneXSceneWidth = 1125.0
 
 let kBubbleFrameConstant = 2.1999969482421875
-let kBubbleVerticalPadding = (kSceneLabelFontSize + 20)
-let kBubbleSentenceHeight = (1 * kSceneLabelFontSize + 5)
+let kBubbleVerticalPadding = (SpriteKitDefines.defaultLabelFontSize + 20)
+let kBubbleSentenceHeight = (1 * SpriteKitDefines.defaultLabelFontSize + 5)
 let kBubbleBorderConstant = kBubbleVerticalPadding + Float(kBubbleFrameConstant)
 let kBubbleHeightOneLine = (kBubbleBorderConstant + 1 * kBubbleSentenceHeight)
 let kBubbleHeightTwoLines = (kBubbleBorderConstant + 2 * kBubbleSentenceHeight)

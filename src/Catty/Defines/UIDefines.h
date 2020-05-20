@@ -33,11 +33,6 @@
 #define kFirstSwipeDuration 0.65f
 #define kHideMenuViewDelay 0.45f
 
-// Scene
-
-#define kSceneDefaultFont @"Helvetica"
-#define kSceneLabelFontSize 45.0f
-
 // Blocked characters for project names, object names, images names, sounds names and variable/list names
 #define kTextFieldBlockedCharacters @""
 

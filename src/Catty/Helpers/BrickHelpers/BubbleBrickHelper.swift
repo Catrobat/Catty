@@ -38,7 +38,7 @@ let kSentenceLength = 10
         var verticalPosition = Float(0.0)
         let verticalPadding = 20
         let horizontalPadding = 150.0
-        var bubbleHeight = kSceneLabelFontSize + Float(verticalPadding)
+        var bubbleHeight = SpriteKitDefines.defaultLabelFontSize + Float(verticalPadding)
         let fullTextNode = SKLabelNode(text: text)
         let fullTextLength = fullTextNode.frame.size.width
         var sentenceSubStringLength = Int(fullTextLength)
@@ -62,8 +62,8 @@ let kSentenceLength = 10
 
                  addSentence(toLabel: labelNode, withSentence: sentenceSubString, andPosition: (CGFloat)(verticalPosition))
                  sentencePosition += kSentenceLength
-                 verticalPosition += kSceneLabelFontSize + 5
-                 bubbleHeight += kSceneLabelFontSize + 5
+                verticalPosition += SpriteKitDefines.defaultLabelFontSize + 5
+                bubbleHeight += SpriteKitDefines.defaultLabelFontSize + 5
                  sentenceSubStringLength = Int(SKLabelNode(text: sentenceSubString).frame.size.width)
              }
 
@@ -84,10 +84,10 @@ let kSentenceLength = 10
 
         if type == CBBubbleType.thought {
             labelNode.position = CGPoint(x: bubble.frame.size.width / 2,
-                                         y: bubble.frame.size.height - CGFloat(kSceneLabelFontSize) - CGFloat(verticalPadding / 2))
+                                         y: bubble.frame.size.height - CGFloat(SpriteKitDefines.defaultLabelFontSize) - CGFloat(verticalPadding / 2))
         } else {
             labelNode.position = CGPoint(x: bubble.frame.size.width / 2 + 6.0 * bubbleWidth / CGFloat(kMaxBubbleWidth),
-                                         y: bubble.frame.size.height - CGFloat(kSceneLabelFontSize) - CGFloat(verticalPadding / 3 ))
+                                         y: bubble.frame.size.height - CGFloat(SpriteKitDefines.defaultLabelFontSize) - CGFloat(verticalPadding / 3 ))
         }
 
         bubble.addChild(labelNode)
@@ -111,7 +111,7 @@ let kSentenceLength = 10
                                                                      height: height,
                                                                      position: bubbleInitialPosition,
                                                                      bubbleTailHeight: bubbleTailHeight)) as! [SKConstraint])
-        bubble.name = kBubbleBrickNodeName
+        bubble.name = SpriteKitDefines.bubbleBrickNodeName
         bubble.fillColor = UIColor.white
         bubble.strokeColor = UIColor.black
         bubble.lineWidth = 3.5
@@ -123,15 +123,15 @@ let kSentenceLength = 10
     }
     private static func addSentence(toLabel label: SKNode, withSentence subString: String, andPosition verticalPosition: CGFloat) {
         let subSentenceLabel = SKLabelNode(text: subString)
-        subSentenceLabel.fontName = kSceneDefaultFont
-        subSentenceLabel.fontSize = CGFloat(kSceneLabelFontSize)
+        subSentenceLabel.fontName = SpriteKitDefines.defaultFont
+        subSentenceLabel.fontSize = CGFloat(SpriteKitDefines.defaultLabelFontSize)
         subSentenceLabel.name = "bubbleText"
         subSentenceLabel.fontColor = UIColor.black
         subSentenceLabel.position = CGPoint(x: subSentenceLabel.position.x, y: subSentenceLabel.position.y - verticalPosition)
         label.addChild(subSentenceLabel)
     }
     private static func removeOldBubbleFromNode(node: SKNode) {
-        if let oldBubble = node.childNode(withName: kBubbleBrickNodeName) {
+        if let oldBubble = node.childNode(withName: SpriteKitDefines.bubbleBrickNodeName) {
             oldBubble.run(SKAction.removeFromParent())
             node.removeChildren(in: [oldBubble])
         }

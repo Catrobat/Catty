@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1822C1392471C7CB00F8F158 /* BrickCellListDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1822C1382471C7CB00F8F158 /* BrickCellListDataTests.swift */; };
 		1833ED942446572F0053BF7C /* HelpWebViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1833ED912446572E0053BF7C /* HelpWebViewControllerTests.swift */; };
+		186212382475A1070098F4C5 /* SpriteKitDefines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186212372475A1070098F4C5 /* SpriteKitDefines.swift */; };
 		1875C5BA2457190000F3F276 /* UserVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1875C5B92457190000F3F276 /* UserVariable.swift */; };
 		187A3F202434BC4300EF1B02 /* PlaySoundAndWaitBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187A3F1F2434BC4300EF1B02 /* PlaySoundAndWaitBrickTests.swift */; };
 		187CECAB24314F1600C3EDCA /* SetLookBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187CECAA24314F1600C3EDCA /* SetLookBrickTests.swift */; };
@@ -1517,6 +1518,7 @@
 		13B5EB79EDA9CF73908FF75C /* no */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = no; path = no.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1822C1382471C7CB00F8F158 /* BrickCellListDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrickCellListDataTests.swift; sourceTree = "<group>"; };
 		1833ED912446572E0053BF7C /* HelpWebViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpWebViewControllerTests.swift; sourceTree = "<group>"; };
+		186212372475A1070098F4C5 /* SpriteKitDefines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteKitDefines.swift; sourceTree = "<group>"; };
 		1875C5B92457190000F3F276 /* UserVariable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserVariable.swift; sourceTree = "<group>"; };
 		187A3F1F2434BC4300EF1B02 /* PlaySoundAndWaitBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaySoundAndWaitBrickTests.swift; sourceTree = "<group>"; };
 		187CECAA24314F1600C3EDCA /* SetLookBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetLookBrickTests.swift; sourceTree = "<group>"; };
@@ -6765,6 +6767,7 @@
 				92FF2E061A24C3BE00093DA7 /* SegueDefines.h */,
 				92FF2E071A24C3BE00093DA7 /* UIDefines.h */,
 				4C5517BC1ABC16B600A52FF4 /* ViewControllerDefines.h */,
+				186212372475A1070098F4C5 /* SpriteKitDefines.swift */,
 			);
 			path = Defines;
 			sourceTree = "<group>";
@@ -10455,6 +10458,7 @@
 				AA74EFFB1BC05B5F00D1E954 /* ChangeSizeByNBrick.m in Sources */,
 				92ED4D7D1BA9C1380052C852 /* RegisterViewController.m in Sources */,
 				4C595F5321CAEC2B0097D850 /* SmallerOrEqualOperator.swift in Sources */,
+				186212382475A1070098F4C5 /* SpriteKitDefines.swift in Sources */,
 				E4668B3C20FDCA6D0021FA0B /* FeaturedProjectsStoreTableDataSource.swift in Sources */,
 				92FF31061A24DCAA00093DA7 /* Sound.m in Sources */,
 				91FC87CEFA4B1008B213EA31 /* AlertControllerBuilder.swift in Sources */,
