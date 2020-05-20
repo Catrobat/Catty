@@ -20,12 +20,31 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "FormulaElement.h"
+@objc extension FormulaElement {
 
-@class UserVariable;
+    func isVariableUsed(_ variable: UserVariable) -> Bool {
+        if (type == ElementType.USER_VARIABLE) && (value == variable.name) {
+            return true
+        }
+        if (self.rightChild != nil) && (rightChild.isVariableUsed(variable)) {
+            return true
+        }
+        if (self.leftChild != nil) && (leftChild.isVariableUsed(variable)) {
+            return true
+        }
+        return false
+    }
 
-@interface FormulaElement (UserVariable)
-
-- (BOOL)isVarOrListBeingUsed:(UserVariable*)variable;
-
-@end
+    func isListUsed(_ list: UserDataProtocol) -> Bool {
+        if (type == ElementType.USER_LIST) && (value == list.name) {
+            return true
+        }
+        if (self.rightChild != nil) && (rightChild.isListUsed(list)) {
+            return true
+        }
+        if (self.leftChild != nil) && (leftChild.isListUsed(list)) {
+            return true
+        }
+        return false
+    }
+}
