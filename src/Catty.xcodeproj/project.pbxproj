@@ -811,6 +811,7 @@
 		5EFBD5F92145533B003B3CDC /* ProjectDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFBD5F82145533B003B3CDC /* ProjectDescriptionViewController.swift */; };
 		5EFBD5FC2145AADC003B3CDC /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFBD5FB2145AADC003B3CDC /* UIView+Extensions.swift */; };
 		6F348C85245499F1000C963B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F348C84245499F1000C963B /* AppDelegate.swift */; };
+		6F38BF69247537290052C692 /* ListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F38BF65247536F70052C692 /* ListTests.swift */; };
 		6F4B2FB72466704500B5F0ED /* ProjectMigrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4B2FB42466704500B5F0ED /* ProjectMigrator.swift */; };
 		6F4B2FB92466706B00B5F0ED /* ProjectMigratorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4B2FB82466706B00B5F0ED /* ProjectMigratorTest.swift */; };
 		6F4B2FBB246670C800B5F0ED /* ProjectMigratorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4B2FBA246670C800B5F0ED /* ProjectMigratorProtocol.swift */; };
@@ -1334,7 +1335,7 @@
 		BA3337372195BC6D00DA3505 /* RepeatUntilBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = BA3337362195BC6D00DA3505 /* RepeatUntilBrick+CBXMLHandler.m */; };
 		BA38080C21A1D8920075B831 /* ConvertExceptionToError.m in Sources */ = {isa = PBXBuildFile; fileRef = BA38080B21A1D8920075B831 /* ConvertExceptionToError.m */; };
 		BA651EED21A319BF00A94D67 /* SpriteObjectMutableCopyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA651EEC21A319BF00A94D67 /* SpriteObjectMutableCopyTests.swift */; };
-		BA6805AE21303B48004F004F /* VariablesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6805AD21303B48004F004F /* VariablesTests.swift */; };
+		BA6805AE21303B48004F004F /* VariableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6805AD21303B48004F004F /* VariableTests.swift */; };
 		BA987D052194DDCF002DAA05 /* WaitUntilBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = BA987D032194DDCF002DAA05 /* WaitUntilBrick+CBXMLHandler.m */; };
 		BA987D082194E158002DAA05 /* WaitUntilBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = BA987D062194E157002DAA05 /* WaitUntilBrick.m */; };
 		BA987D0B2194E25A002DAA05 /* WaitUntilBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA987D092194E25A002DAA05 /* WaitUntilBrickCell.m */; };
@@ -2423,6 +2424,7 @@
 		5F4B40BB347790D38FB5B19E /* de */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		602C3F3AB880252BC2FA6D5D /* nl */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6F348C84245499F1000C963B /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = "Supporting Files/AppDelegate.swift"; sourceTree = "<group>"; };
+		6F38BF65247536F70052C692 /* ListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTests.swift; sourceTree = "<group>"; };
 		6F4B2FB42466704500B5F0ED /* ProjectMigrator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectMigrator.swift; sourceTree = "<group>"; };
 		6F4B2FB82466706B00B5F0ED /* ProjectMigratorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectMigratorTest.swift; sourceTree = "<group>"; };
 		6F4B2FBA246670C800B5F0ED /* ProjectMigratorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectMigratorProtocol.swift; sourceTree = "<group>"; };
@@ -3305,7 +3307,7 @@
 		BA38080D21A1D8CD0075B831 /* ConvertExceptionToError.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConvertExceptionToError.h; sourceTree = "<group>"; };
 		BA584CB9219C8803002CC082 /* WaitUntilBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitUntilBrickTests.swift; sourceTree = "<group>"; };
 		BA651EEC21A319BF00A94D67 /* SpriteObjectMutableCopyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteObjectMutableCopyTests.swift; sourceTree = "<group>"; };
-		BA6805AD21303B48004F004F /* VariablesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VariablesTests.swift; sourceTree = "<group>"; };
+		BA6805AD21303B48004F004F /* VariableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VariableTests.swift; sourceTree = "<group>"; };
 		BA987D032194DDCF002DAA05 /* WaitUntilBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "WaitUntilBrick+CBXMLHandler.m"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Control/WaitUntilBrick+CBXMLHandler.m"; sourceTree = SOURCE_ROOT; };
 		BA987D042194DDCF002DAA05 /* WaitUntilBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "WaitUntilBrick+CBXMLHandler.h"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Control/WaitUntilBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
 		BA987D062194E157002DAA05 /* WaitUntilBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaitUntilBrick.m; sourceTree = "<group>"; };
@@ -8287,8 +8289,9 @@
 				4C7F50F921E62B0E0010AC36 /* ProjectsTVCTests.swift */,
 				4C48E5CB23FD7F4B004C6E6A /* SettingsTVCTests.swift */,
 				4CF8747221C8E7AB00C8143F /* SoundsTVCTests.swift */,
-				BA6805AD21303B48004F004F /* VariablesTests.swift */,
+				BA6805AD21303B48004F004F /* VariableTests.swift */,
 				2D227D93220B38E0008A2BC9 /* ScenePresenterVCTests.swift */,
+				6F38BF65247536F70052C692 /* ListTests.swift */,
 			);
 			path = CattyUITests;
 			sourceTree = "<group>";
@@ -9385,10 +9388,11 @@
 				4C48E5CE23FD7F4B004C6E6A /* SettingsTVCTests.swift in Sources */,
 				BCFED6F62113188700BE57BF /* MyFirstProjectTests.swift in Sources */,
 				4C7F50FC21E62B0E0010AC36 /* ProjectsTVCTests.swift in Sources */,
+				6F38BF69247537290052C692 /* ListTests.swift in Sources */,
 				5E0B3622220A5F3C0056EB12 /* LanguageTranslationDefinesUI.swift in Sources */,
 				9E7564B222C7AB1A00D38A3B /* ObjectTVCTests.swift in Sources */,
 				4CA98E8821C8F1D400B2D9CA /* LooksTVCTests.swift in Sources */,
-				BA6805AE21303B48004F004F /* VariablesTests.swift in Sources */,
+				BA6805AE21303B48004F004F /* VariableTests.swift in Sources */,
 				2D227D94220B38E0008A2BC9 /* ScenePresenterVCTests.swift in Sources */,
 				4CF8747521C8E7AB00C8143F /* SoundsTVCTests.swift in Sources */,
 				BCFED6F8211318A100BE57BF /* ProjectTVCTests.swift in Sources */,

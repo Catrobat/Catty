@@ -22,7 +22,7 @@
 
 import XCTest
 
-class VariablesTests: XCTestCase {
+class VariableTests: XCTestCase {
 
     var app: XCUIApplication!
 
@@ -45,19 +45,6 @@ class VariablesTests: XCTestCase {
 
         app.collectionViews.cells.otherElements.containing(.staticText, identifier: kLocalizedSetVariable).children(matching: .other).element.tap()
         XCTAssert(app.sheets[kUIFEActionVar].exists)
-    }
-
-    func testDontShowVListPickerWhenNoListsDefinedForObject() {
-        app.tables.staticTexts[kLocalizedNewProject].tap()
-        app.alerts[kLocalizedNewProject].textFields[kLocalizedEnterYourProjectNameHere].typeText("Test Project")
-        XCUIApplication().alerts[kLocalizedNewProject].buttons[kLocalizedOK].tap()
-        XCUIApplication().tables.staticTexts[kLocalizedBackground].tap()
-        app.tables.staticTexts[kLocalizedScripts].tap()
-
-        addBrick(label: kLocalizedUserListAdd, section: kLocalizedCategoryVariable, in: app)
-
-        app.collectionViews.cells.otherElements.identifierTextBeginsWith(kLocalizedUserListAdd).children(matching: .other).element.tap()
-        XCTAssert(app.sheets[kUIFEActionList].exists)
     }
 
     func testCreateVariableWithMaxLength() {
@@ -193,5 +180,31 @@ class VariablesTests: XCTestCase {
         waitForElementToAppear(app.buttons[kUIFEActionVarPro]).tap()
         let newVarAlert = waitForElementToAppear(app.alerts[kUIFENewVar])
         XCTAssertEqual(newVarAlert.textFields.firstMatch.value as! String, "")
+    }
+
+    func testDeleteVariableInFormulaEditor() {
+        let testVariable = ["testVariable1", "testVariable2", "testVariable3"]
+
+        createNewProjectAndAddSetVariableBrick(name: "Test Project")
+        app.collectionViews.cells.otherElements.containing(.staticText, identifier: kLocalizedSetVariable).children(matching: .button).element.tap()
+        XCTAssert(waitForElementToAppear(app.buttons[kLocalizedCancel]).exists)
+
+        for variable in testVariable {
+            app.buttons[kUIFEVariableList].tap()
+            app.buttons[kLocalizedNew].tap()
+            waitForElementToAppear(app.buttons[kUIFENewVar]).tap()
+            waitForElementToAppear(app.buttons[kUIFEActionVarPro]).tap()
+
+            let alert = waitForElementToAppear(app.alerts[kUIFENewVar])
+            alert.textFields.firstMatch.typeText(variable)
+            alert.buttons[kLocalizedOK].tap()
+        }
+
+        app.buttons["del active"].tap()
+        app.buttons[kUIFEVariableList].tap()
+        app.scrollViews.firstMatch.buttons["Delete"].tap()
+        app.buttons[kUIFETake].tap()
+        app.buttons[kUIFEDone].tap()
+        XCTAssertTrue(waitForElementToAppear(app.buttons[" \"" + testVariable[1] + "\" "]).exists)
     }
 }
