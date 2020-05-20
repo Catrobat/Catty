@@ -45,7 +45,7 @@
     }
 
     @nonobjc func removeActionBlock(_ object: SpriteObject) -> () -> Void { {
-            let oldBubble = object.spriteNode.childNode(withName: kBubbleBrickNodeName)
+            let oldBubble = object.spriteNode.childNode(withName: SpriteKitDefines.bubbleBrickNodeName)
 
             if oldBubble != nil {
                 oldBubble!.run(SKAction.removeFromParent())

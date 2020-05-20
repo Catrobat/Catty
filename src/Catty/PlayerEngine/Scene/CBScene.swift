@@ -199,12 +199,12 @@ final class CBScene: SKScene {
             }
         }
         for variable: UserVariable in variableList {
-            let label = SKLabelNode(fontNamed: kSceneDefaultFont)
+            let label = SKLabelNode(fontNamed: SpriteKitDefines.defaultFont)
             variable.textLabel = label
             variable.textLabel?.text = ""
             variable.textLabel?.zPosition = CGFloat(zPosition + 1)
             variable.textLabel?.fontColor = UIColor.black
-            variable.textLabel?.fontSize = CGFloat(kSceneLabelFontSize)
+            variable.textLabel?.fontSize = CGFloat(SpriteKitDefines.defaultLabelFontSize)
             variable.textLabel?.isHidden = true
             variable.textLabel?.horizontalAlignmentMode = .left
             addChild(label)
