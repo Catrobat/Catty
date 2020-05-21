@@ -1,0 +1,16 @@
+firstPRWelcomeComment: >
+  Thanks for opening this pull request! Please check out our contributing guidelines.
+firstPRWelcomeComment: >
+  Thanks for opening this pull request! Please check out our contributing guidelines.
+firstPRWelcomeComment: >
+  Thanks for opening this pull request! Please check out our contributing guidelines.
+
+firstPRMergeComment: >
+  Awesome work, congrats on your first merged pull request!
+
+verifyTitles:
+  titleRegexp: ^\[CATTY-[0-9]{3,4}\].*$|^\[AIRFLOW-XXXX\].*$
+  alwaysUsePrTitle: false
+  validateEitherPrOrSingleCommitTitle: false
+  statusTitle: "Ticket validator"
+  failureMessage: "Wrong ${type} title or message. Expected: ${regex}. Actual: ${title}"
