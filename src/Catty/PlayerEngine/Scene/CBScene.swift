@@ -33,6 +33,7 @@ final class CBScene: SKScene {
     private final let formulaManager: FormulaManagerProtocol
     private final let soundEngine: AudioEngineProtocol
     private final let logger: CBLogger
+    private var frameCounter: Int
 
     init(size: CGSize,
          logger: CBLogger,
@@ -49,6 +50,7 @@ final class CBScene: SKScene {
         self.broadcastHandler = broadcastHandler
         self.formulaManager = formulaManager
         self.soundEngine = soundEngine
+        self.frameCounter = 0
         super.init(size: size)
         backgroundColor = UIColor.white
     }
@@ -59,6 +61,18 @@ final class CBScene: SKScene {
 
     // MARK: - Deinitializer
     @objc deinit { logger.info("Dealloc Scene") }
+
+    override func update(_ currentTime: TimeInterval) {
+
+        if frameCounter >= PlayerConfig.NumberOfFramesPerSpriteNodeUpdate {
+            frameCounter = 0
+            let spriteNodes = scheduler.spriteNodes()
+            spriteNodes.forEach { $0.update(currentTime) }
+        }
+
+        frameCounter += 1
+
+    }
 
     // MARK: - Scene events
     @objc override func willMove(from view: SKView) {

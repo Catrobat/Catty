@@ -64,6 +64,9 @@ class CBSpriteNode: SKSpriteNode {
         fatalError("init(coder:) has not been implemented")
     }
 
+    @objc func update(_ currentTime: TimeInterval) {
+    }
+
     // MARK: - Operations
     func returnFilterInstance(_ filterName: String, image: CIImage) -> CIFilter? {
         var filter: CIFilter?

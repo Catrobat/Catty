@@ -123,4 +123,40 @@ final class SceneTests: XCTestCase {
         XCTAssertEqual(0, userVariable.textLabel?.text?.count)
         scene.stopProject()
     }
+
+    func testUpdate() {
+
+        let scene = SceneBuilder(project: ProjectMock()).build()
+
+        let spriteNode1 = CBSpriteNodeMock(spriteObject: SpriteObject())
+        spriteNode1.name = "testObject1"
+        scene.scheduler.registerSpriteNode(spriteNode1)
+
+        let spriteNode2 = CBSpriteNodeMock(spriteObject: SpriteObject())
+        spriteNode2.name = "testObject2"
+        scene.scheduler.registerSpriteNode(spriteNode2)
+
+        XCTAssertEqual(spriteNode1.updateMethodCallCount, 0)
+        XCTAssertEqual(spriteNode2.updateMethodCallCount, 0)
+
+        scene.update(CACurrentMediaTime())
+        XCTAssertEqual(spriteNode1.updateMethodCallCount, 0)
+        XCTAssertEqual(spriteNode2.updateMethodCallCount, 0)
+
+        scene.update(CACurrentMediaTime())
+        XCTAssertEqual(spriteNode1.updateMethodCallCount, 0)
+        XCTAssertEqual(spriteNode2.updateMethodCallCount, 0)
+
+        scene.update(CACurrentMediaTime())
+        XCTAssertEqual(spriteNode1.updateMethodCallCount, 1)
+        XCTAssertEqual(spriteNode2.updateMethodCallCount, 1)
+
+        scene.update(CACurrentMediaTime())
+        XCTAssertEqual(spriteNode1.updateMethodCallCount, 1)
+        XCTAssertEqual(spriteNode2.updateMethodCallCount, 1)
+
+        scene.update(CACurrentMediaTime())
+        XCTAssertEqual(spriteNode1.updateMethodCallCount, 2)
+        XCTAssertEqual(spriteNode2.updateMethodCallCount, 2)
+    }
 }
