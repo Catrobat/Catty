@@ -164,6 +164,8 @@
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context asPointedObject:(BOOL)asPointedObject
 {
+    SpriteObject *previousObject = context.spriteObject;
+    
     // update context object
     context.spriteObject = self;
 
@@ -226,6 +228,10 @@
     
     // add pseudo <nfcTagList/> element to produce a Catroid equivalent XML (unused at the moment)
     [xmlElement addChild:[GDataXMLElement elementWithName:@"nfcTagList" context:nil]];
+    
+    if (asPointedObject) {
+        context.spriteObject = previousObject;
+    }
 
     return xmlElement;
 }
