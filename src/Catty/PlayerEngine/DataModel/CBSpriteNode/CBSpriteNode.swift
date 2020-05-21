@@ -28,6 +28,8 @@ class CBSpriteNode: SKSpriteNode {
     @objc var currentLook: Look?
     @objc var currentUIImageLook: UIImage?
 
+    var penConfiguration: PenConfiguration
+
     @objc var filterDict = ["brightness": false, "color": false]
     @objc var ciBrightness = CGFloat(BrightnessSensor.defaultRawValue) // CoreImage specific brightness
     @objc var ciHueAdjust = CGFloat(ColorSensor.defaultRawValue) // CoreImage specific hue adjust
@@ -41,6 +43,7 @@ class CBSpriteNode: SKSpriteNode {
     @objc required init(spriteObject: SpriteObject) {
         let color = UIColor.clear
         self.spriteObject = spriteObject
+        self.penConfiguration = PenConfiguration()
 
         if let firstLook = spriteObject.lookList.firstObject as? Look,
             let filePathForLook = spriteObject.path(for: firstLook),
