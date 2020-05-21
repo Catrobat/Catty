@@ -22,27 +22,19 @@
 
 import Firebase
 
-extension AppDelegate {
+class FirebaseCrashlyticsReporter {
 
-    @objc open var analytics: Analytics.Type { Analytics.self }
-    @objc open var crashlytics: Crashlytics { Crashlytics.crashlytics() }
+    @objc open var crashlytics: Crashlytics
 
     var sendCrashReports: Bool { UserDefaults.standard.bool(forKey: kFirebaseSendCrashReports) }
     static let logNoValue = "No value"
 
-    @objc func setupFirebase() {
-        #if !DEBUG
-        FirebaseApp.configure()
-        setupAnalytics()
+    @objc init(crashlytics: Crashlytics) {
+        self.crashlytics = crashlytics
         setupCrashlytics()
-        #endif
     }
 
-    @objc public func setupAnalytics() {
-        analytics.setAnalyticsCollectionEnabled(true)
-    }
-
-    @objc public func setupCrashlytics() {
+    private func setupCrashlytics() {
         if self.sendCrashReports {
             crashlytics.setCrashlyticsCollectionEnabled(true)
 
@@ -102,8 +94,8 @@ extension AppDelegate {
     }
 
     @objc func brickSelected(notification: Notification) {
-        let controllerClass = getObjectClassName(for: notification)
-        crashlytics.log("Brick selected: " + controllerClass)
+        let brickClass = getObjectClassName(for: notification)
+        crashlytics.log("Brick selected: " + brickClass)
     }
 
     @objc func projectInvalidVersion(notification: Notification) {

@@ -21,55 +21,49 @@
  */
 
 import Firebase
+
 @testable import Pocket_Code
+
 import XCTest
 
-final class FirebaseCrashlyticsSetupTests: XCTestCase {
+final class FirebaseCrashlyticsReporterTests: XCTestCase {
 
-    var app: AppDelegate?
     var crashlytics: CrashlyticsMock?
+    var reporter: FirebaseCrashlyticsReporter?
 
     override func setUp() {
         super.setUp()
 
         crashlytics = CrashlyticsMock(collectionEnabled: false)
-        app = AppDelegateMock(crashlytics: crashlytics!)
+        UserDefaults.standard.set(true, forKey: kFirebaseSendCrashReports)
+        reporter = FirebaseCrashlyticsReporter(crashlytics: crashlytics!)
     }
 
     func testSetupCrashReportsEnabled() {
-        UserDefaults.standard.set(true, forKey: kFirebaseSendCrashReports)
-
-        app?.setupCrashlytics()
         XCTAssertTrue(crashlytics!.isCrashlyticsCollectionEnabled())
     }
 
     func testSetupCrashReportsDisabled() {
         UserDefaults.standard.set(false, forKey: kFirebaseSendCrashReports)
 
-        app?.setupCrashlytics()
+        crashlytics = CrashlyticsMock(collectionEnabled: false)
+        _ = FirebaseCrashlyticsReporter(crashlytics: crashlytics!)
         XCTAssertFalse(crashlytics!.isCrashlyticsCollectionEnabled())
     }
 
     func testSettingsDisabledNotification() {
-        UserDefaults.standard.set(true, forKey: kFirebaseSendCrashReports)
-        app?.setupCrashlytics()
-
         NotificationCenter.default.post(name: .settingsCrashReportingChanged, object: NSNumber(0))
         XCTAssertFalse(crashlytics!.isCrashlyticsCollectionEnabled())
     }
 
     func testSettingsEnabledNotification() {
         UserDefaults.standard.set(false, forKey: kFirebaseSendCrashReports)
-        app?.setupCrashlytics()
 
         NotificationCenter.default.post(name: .settingsCrashReportingChanged, object: NSNumber(1))
         XCTAssertTrue(crashlytics!.isCrashlyticsCollectionEnabled())
     }
 
     func testBaseTableViewControllerDidAppearNotification() {
-        UserDefaults.standard.set(true, forKey: kFirebaseSendCrashReports)
-        app?.setupCrashlytics()
-
         NotificationCenter.default.post(name: .baseTableViewControllerDidAppear, object: nil)
 
         XCTAssertEqual(1, crashlytics!.logs.count)
@@ -77,9 +71,6 @@ final class FirebaseCrashlyticsSetupTests: XCTestCase {
     }
 
     func testBaseCollectionViewControllerDidAppearNotification() {
-        UserDefaults.standard.set(true, forKey: kFirebaseSendCrashReports)
-        app?.setupCrashlytics()
-
         NotificationCenter.default.post(name: .baseCollectionViewControllerDidAppear, object: nil)
 
         XCTAssertEqual(1, crashlytics!.logs.count)
@@ -87,9 +78,6 @@ final class FirebaseCrashlyticsSetupTests: XCTestCase {
     }
 
     func testPaintViewControllerDidAppearNotification() {
-        UserDefaults.standard.set(true, forKey: kFirebaseSendCrashReports)
-        app?.setupCrashlytics()
-
         NotificationCenter.default.post(name: .paintViewControllerDidAppear, object: nil)
 
         XCTAssertEqual(1, crashlytics!.logs.count)
@@ -97,9 +85,6 @@ final class FirebaseCrashlyticsSetupTests: XCTestCase {
     }
 
     func testFormulaEditorControllerDidAppearNotification() {
-        UserDefaults.standard.set(true, forKey: kFirebaseSendCrashReports)
-        app?.setupCrashlytics()
-
         NotificationCenter.default.post(name: .formulaEditorControllerDidAppear, object: nil)
 
         XCTAssertEqual(1, crashlytics!.logs.count)
@@ -107,9 +92,6 @@ final class FirebaseCrashlyticsSetupTests: XCTestCase {
     }
 
     func testScenePresenterViewControllerDidAppearNotification() {
-        UserDefaults.standard.set(true, forKey: kFirebaseSendCrashReports)
-        app?.setupCrashlytics()
-
         NotificationCenter.default.post(name: .scenePresenterViewControllerDidAppear, object: nil)
 
         XCTAssertEqual(1, crashlytics!.logs.count)
@@ -117,9 +99,6 @@ final class FirebaseCrashlyticsSetupTests: XCTestCase {
     }
 
     func testBrickSelectedNotification() {
-        UserDefaults.standard.set(true, forKey: kFirebaseSendCrashReports)
-        app?.setupCrashlytics()
-
         NotificationCenter.default.post(name: .brickSelected, object: nil)
 
         XCTAssertEqual(1, crashlytics!.logs.count)
@@ -127,9 +106,6 @@ final class FirebaseCrashlyticsSetupTests: XCTestCase {
     }
 
     func testProjectInvalidVersionNotification() {
-        UserDefaults.standard.set(true, forKey: kFirebaseSendCrashReports)
-        app?.setupCrashlytics()
-
         NotificationCenter.default.post(name: .projectInvalidVersion, object: nil)
 
         XCTAssertEqual(0, crashlytics!.logs.count)
@@ -137,9 +113,6 @@ final class FirebaseCrashlyticsSetupTests: XCTestCase {
     }
 
     func testProjectFetchFailureNotification() {
-        UserDefaults.standard.set(true, forKey: kFirebaseSendCrashReports)
-        app?.setupCrashlytics()
-
         let errorInfo = ProjectFetchFailureInfo(type: nil, url: "testurl", statusCode: nil, description: "Invalid API response while fetching project")
 
         let expectedErrorValue: String = "No value"
@@ -159,9 +132,6 @@ final class FirebaseCrashlyticsSetupTests: XCTestCase {
     }
 
     func testProjectFetchDetailsFailureNotification() {
-        UserDefaults.standard.set(true, forKey: kFirebaseSendCrashReports)
-        app?.setupCrashlytics()
-
         NotificationCenter.default.post(name: .projectFetchDetailsFailure, object: nil)
 
         XCTAssertEqual(0, crashlytics!.logs.count)
@@ -169,9 +139,6 @@ final class FirebaseCrashlyticsSetupTests: XCTestCase {
     }
 
     func testProjectSearchFailureNotification() {
-        UserDefaults.standard.set(true, forKey: kFirebaseSendCrashReports)
-        app?.setupCrashlytics()
-
         var errorInfo = ProjectFetchFailureInfo(url: "testUrl", statusCode: nil, description: "Invalid API response while fetching project", projectName: nil)
 
         let expectedErrorValue = "No value"
@@ -205,9 +172,6 @@ final class FirebaseCrashlyticsSetupTests: XCTestCase {
     }
 
     func testMediaLibraryDownloadIndexFailureNotification() {
-        UserDefaults.standard.set(true, forKey: kFirebaseSendCrashReports)
-        app?.setupCrashlytics()
-
         let errorInfo = MediaLibraryDownloadFailureInfo(url: "testUrl", statusCode: 404, description: "Invalid Response while downloading media library index")
 
         let info: [String: Any] = ["url": errorInfo.url,
@@ -225,9 +189,6 @@ final class FirebaseCrashlyticsSetupTests: XCTestCase {
     }
 
     func testMediaLibraryDownloadDataFailureNotification() {
-        UserDefaults.standard.set(true, forKey: kFirebaseSendCrashReports)
-        app?.setupCrashlytics()
-
         let errorInfo = MediaLibraryDownloadFailureInfo(url: "testUrl", statusCode: 404, description: "Invalid Response while downloading media library data")
 
         let info: [String: Any] = ["url": errorInfo.url,
