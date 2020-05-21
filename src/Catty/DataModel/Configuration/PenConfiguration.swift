@@ -20,14 +20,8 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class SpriteKitDefines: NSObject {
-
-    static let defaultFont = "Helvetica"
-    static let defaultLabelFontSize = Float(45.0)
-
-    static let bubbleBrickNodeName = "textBubble"
-
-    static let defaultPenSize = CGFloat(3.15)
-    static let defaultPenColor = UIColor(red: 0.0, green: 0.0, blue: 1.0, alpha: 1.0)
-
+struct PenConfiguration {
+    var penDown = false
+    var size = SpriteKitDefines.defaultPenSize
+    var color = SpriteKitDefines.defaultPenColor
 }
