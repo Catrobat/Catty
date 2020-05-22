@@ -728,7 +728,6 @@
 		4CF4CB7521E64BEE009D6DD9 /* InsertItemIntoUserListBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF4CB7221E64BEE009D6DD9 /* InsertItemIntoUserListBrickTests.swift */; };
 		4CF4CB7721E65A9B009D6DD9 /* ReplaceItemInUserListBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF4CB7621E65A9B009D6DD9 /* ReplaceItemInUserListBrickTests.swift */; };
 		4CF6941D24399EA600EE6D72 /* Brick+CBXMLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF6941A24399EA500EE6D72 /* Brick+CBXMLHandler.swift */; };
-		4CF773E51AEE3B5100DBBB2B /* VariablePickerData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF773E41AEE3B5100DBBB2B /* VariablePickerData.m */; };
 		4CF773F41AEE79A800DBBB2B /* Brick+UserVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF773F31AEE79A800DBBB2B /* Brick+UserVariable.m */; };
 		4CF80276231D4E2400426396 /* SayForBubbleBrickCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F9FD2204BD3B400E71B2D /* SayForBubbleBrickCellTests.swift */; };
 		4CF8747521C8E7AB00C8143F /* SoundsTVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF8747221C8E7AB00C8143F /* SoundsTVCTests.swift */; };
@@ -2344,8 +2343,6 @@
 		4CF4CB7221E64BEE009D6DD9 /* InsertItemIntoUserListBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsertItemIntoUserListBrickTests.swift; sourceTree = "<group>"; };
 		4CF4CB7621E65A9B009D6DD9 /* ReplaceItemInUserListBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplaceItemInUserListBrickTests.swift; sourceTree = "<group>"; };
 		4CF6941A24399EA500EE6D72 /* Brick+CBXMLHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Brick+CBXMLHandler.swift"; path = "Bricks/Brick+CBXMLHandler.swift"; sourceTree = "<group>"; };
-		4CF773E31AEE3B5100DBBB2B /* VariablePickerData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VariablePickerData.h; sourceTree = "<group>"; };
-		4CF773E41AEE3B5100DBBB2B /* VariablePickerData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VariablePickerData.m; sourceTree = "<group>"; };
 		4CF773F21AEE79A800DBBB2B /* Brick+UserVariable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Brick+UserVariable.h"; sourceTree = "<group>"; };
 		4CF773F31AEE79A800DBBB2B /* Brick+UserVariable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Brick+UserVariable.m"; sourceTree = "<group>"; };
 		4CF8747221C8E7AB00C8143F /* SoundsTVCTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundsTVCTests.swift; sourceTree = "<group>"; };
@@ -6692,8 +6689,6 @@
 			children = (
 				92DFAFF01A38949E00FA9B0F /* NSMutableArray+Reverse.h */,
 				92DFAFF11A38949E00FA9B0F /* NSMutableArray+Reverse.m */,
-				4CF773E31AEE3B5100DBBB2B /* VariablePickerData.h */,
-				4CF773E41AEE3B5100DBBB2B /* VariablePickerData.m */,
 				4CF773F21AEE79A800DBBB2B /* Brick+UserVariable.h */,
 				4CF773F31AEE79A800DBBB2B /* Brick+UserVariable.m */,
 			);
@@ -10450,7 +10445,6 @@
 				AA74F0C71BC05FCE00D1E954 /* SpeakBrickCell.m in Sources */,
 				AA74F0B21BC05FCE00D1E954 /* SetLookBrickCell.m in Sources */,
 				AA74F0091BC05B5F00D1E954 /* TurnRightBrick.m in Sources */,
-				4CF773E51AEE3B5100DBBB2B /* VariablePickerData.m in Sources */,
 				AA74F0071BC05B5F00D1E954 /* SetYBrick.m in Sources */,
 				9200C2D01C808206002F5CA4 /* ShowTextBrick+Instruction.swift in Sources */,
 				92FF31611A24DEB300093DA7 /* ScenePresenterViewController.m in Sources */,
