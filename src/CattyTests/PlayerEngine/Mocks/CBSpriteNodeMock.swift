@@ -56,6 +56,7 @@ class CBSpriteNodeMock: CBSpriteNode {
     }
 
     override func update(_ currentTime: TimeInterval) {
+        super.update(currentTime)
         self.updateMethodCallCount += 1
     }
 }

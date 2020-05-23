@@ -20,9 +20,24 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-struct PenConfiguration {
-    var penDown = false
-    var size = SpriteKitDefines.defaultPenSize
-    var color = SpriteKitDefines.defaultPenColor
-    var previousPosition: CGPoint?
+import XCTest
+
+@testable import Pocket_Code
+
+final class ListShapeNodeTests: XCTestCase {
+
+    func testLineShapeNode() {
+
+        let pathStartPoint = CGPoint(x: 10, y: 10)
+        let pathEndPoint = CGPoint(x: 20, y: 20)
+
+        let path = CGMutablePath()
+        path.move(to: pathStartPoint)
+        path.addLine(to: pathEndPoint)
+
+        let line = LineShapeNode(pathStartPoint: pathStartPoint, pathEndPoint: pathEndPoint)
+
+        XCTAssertEqual(line.path, path)
+    }
+
 }

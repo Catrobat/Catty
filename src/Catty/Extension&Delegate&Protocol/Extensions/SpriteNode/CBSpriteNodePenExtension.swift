@@ -20,9 +20,28 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-struct PenConfiguration {
-    var penDown = false
-    var size = SpriteKitDefines.defaultPenSize
-    var color = SpriteKitDefines.defaultPenColor
-    var previousPosition: CGPoint?
+extension CBSpriteNode {
+
+    @objc func drawPenLine() {
+
+        guard let previousPosition = penConfiguration.previousPosition else {
+            penConfiguration.previousPosition = self.position
+            return
+        }
+
+        if (penConfiguration.penDown) && (previousPosition != self.position) {
+
+            let line = LineShapeNode(pathStartPoint: previousPosition, pathEndPoint: self.position)
+            line.name = SpriteKitDefines.penShapeNodeName
+            line.strokeColor = penConfiguration.color
+            line.lineWidth = penConfiguration.size
+            line.zPosition = SpriteKitDefines.defaultPenZPosition
+
+            self.scene?.addChild(line)
+
+        }
+
+        penConfiguration.previousPosition = self.position
+
+    }
 }
