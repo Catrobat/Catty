@@ -56,7 +56,7 @@
 
 - (NSArray*)getFormulas
 {
-    return @[self.listFormula];
+   return @[self.listFormula];
 }
 
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject

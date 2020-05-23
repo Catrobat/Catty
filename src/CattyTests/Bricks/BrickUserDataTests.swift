@@ -79,6 +79,8 @@ final class BrickUserDataTests: XCTestCase {
 
         let brick = ReplaceItemInUserListBrick()
         brick.setList(userList, forLineNumber: 1, andParameterNumber: 1)
+        brick.setFormula(Formula(), forLineNumber: 2, andParameterNumber: 0)
+        brick.setFormula(Formula(), forLineNumber: 2, andParameterNumber: 1)
 
         XCTAssertTrue(brick.isVarOrListBeingUsed(userList))
         XCTAssertFalse(brick.isVarOrListBeingUsed(userList2))
@@ -95,6 +97,10 @@ final class BrickUserDataTests: XCTestCase {
         let insertBrick = InsertItemIntoUserListBrick()
         let addBrick = AddItemToUserListBrick()
         let deleteBrick = DeleteItemOfUserListBrick()
+
+        insertBrick.setFormula(Formula(), forLineNumber: 1, andParameterNumber: 2)
+        addBrick.setFormula(Formula(), forLineNumber: 1, andParameterNumber: 2)
+        deleteBrick.setFormula(Formula(), forLineNumber: 1, andParameterNumber: 2)
 
         insertBrick.setList(userList, forLineNumber: 1, andParameterNumber: 1)
         XCTAssertTrue(insertBrick.isVarOrListBeingUsed(userList))
@@ -120,6 +126,11 @@ final class BrickUserDataTests: XCTestCase {
         let hideTextBrick = HideTextBrick()
         let showTextBrick = ShowTextBrick()
 
+        changeVariableBrick.setFormula(Formula(), forLineNumber: 1, andParameterNumber: 0)
+        changeVariableBrick.setFormula(Formula(), forLineNumber: 1, andParameterNumber: 1)
+        showTextBrick.setFormula(Formula(), forLineNumber: 1, andParameterNumber: 0)
+        showTextBrick.setFormula(Formula(), forLineNumber: 1, andParameterNumber: 1)
+
         changeVariableBrick.setVariable(userVariable, forLineNumber: 1, andParameterNumber: 1)
         XCTAssertTrue(changeVariableBrick.isVarOrListBeingUsed(userVariable))
         XCTAssertFalse(hideTextBrick.isVarOrListBeingUsed(userVariable))
@@ -142,12 +153,12 @@ final class BrickUserDataTests: XCTestCase {
 
         let brick = SetVariableBrick()
 
-        XCTAssertFalse(brick.isVarOrListBeingUsed(userVariable))
-        XCTAssertFalse(brick.isVarOrListBeingUsed(uservariableB))
-
         brick.setFormula(Formula(double: 50.50), forLineNumber: 1, andParameterNumber: 1)
         brick.setFormula(Formula(string: "TestFormula"), forLineNumber: 2, andParameterNumber: 1)
         brick.setFormula(Formula(integer: 100), forLineNumber: 2, andParameterNumber: 1)
+
+        XCTAssertFalse(brick.isVarOrListBeingUsed(userVariable))
+        XCTAssertFalse(brick.isVarOrListBeingUsed(uservariableB))
 
         brick.setVariable(userVariable, forLineNumber: 1, andParameterNumber: 1)
 
@@ -169,12 +180,11 @@ final class BrickUserDataTests: XCTestCase {
 
         let brick = ArduinoSendDigitalValueBrick()
 
-        XCTAssertFalse(brick.isVarOrListBeingUsed(userVariable))
-
         let formulaElement = FormulaElement()
         formulaElement.value = userVariable.name
         formulaElement.type = ElementType.USER_VARIABLE
 
+        brick.setFormula(Formula(formulaElement: formulaElement), forLineNumber: 0, andParameterNumber: 1)
         brick.setFormula(Formula(formulaElement: formulaElement), forLineNumber: 1, andParameterNumber: 1)
 
         XCTAssertTrue(brick.isVarOrListBeingUsed(userVariable))
