@@ -39,29 +39,9 @@
 - (BOOL)isVarOrListBeingUsed:(UserVariable*)varOrList
 {
     if ([self conformsToProtocol:@protocol(BrickVariableProtocol)]) {
-        
-        if ([self isKindOfClass:[SetVariableBrick class]]) {
-            SetVariableBrick* varBrick = (SetVariableBrick*) self;
-            if ([varOrList isEqual:varBrick.userVariable]) {
-                return YES;
-            }
-        } else if ([self isKindOfClass:[ChangeVariableBrick class]]) {
-            ChangeVariableBrick* varBrick = (ChangeVariableBrick*) self;
-            if ([varOrList isEqual:varBrick.userVariable]) {
-                return YES;
-            }
-        }
-        else if ([self isKindOfClass:[ShowTextBrick class]]) {
-            ShowTextBrick* varBrick = (ShowTextBrick*) self;
-            if ([varOrList isEqual:varBrick.userVariable]) {
-                return YES;
-            }
-        }
-        else if ([self isKindOfClass:[HideTextBrick class]]) {
-            HideTextBrick* varBrick = (HideTextBrick*) self;
-            if ([varOrList isEqual:varBrick.userVariable]) {
-                return YES;
-            }
+        Brick<BrickVariableProtocol>* variableBrick = (Brick<BrickVariableProtocol>*) self;
+        if ([varOrList isEqual:variableBrick.userVariable]) {
+            return YES;
         }
     }
     
@@ -72,13 +52,10 @@
         }
     }
     
-    if (![self conformsToProtocol:@protocol(BrickFormulaProtocol)])
-        return NO;
-    
-    for (int line = 0; line <= BRICK_MAX_LINE_NUMBER; line++) {
-        for (int param = 0; param <= BRICK_MAX_PARAM_NUMBER; param++) {
-            id<BrickFormulaProtocol> formulaBrick = (id<BrickFormulaProtocol>)self;
-            Formula *formula = [formulaBrick formulaForLineNumber:line andParameterNumber:param];
+    if ([self conformsToProtocol:@protocol(BrickFormulaProtocol)]) {
+        id<BrickFormulaProtocol> formulaBrick = (id<BrickFormulaProtocol>)self;
+        NSArray *formulas = [formulaBrick getFormulas];
+        for (Formula *formula in formulas) {
             if (formula && ([formula.formulaTree isVariableUsed:varOrList] || [formula.formulaTree isListUsed:varOrList]))
                 return YES;
         }
