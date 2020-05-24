@@ -89,7 +89,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 @property (weak, nonatomic) IBOutlet UIButton *doneButton;
 @property (weak, nonatomic) IBOutlet UIButton *variable;
 @property (weak, nonatomic) IBOutlet UIButton *takeVar;
-@property (weak, nonatomic) IBOutlet UIButton *deleteVar;
+@property (weak, nonatomic) IBOutlet UIButton *deleteUserData;
 @property (weak, nonatomic) IBOutlet UIButton *addNewTextButton;
 
 @property (nonatomic) BOOL isProjectVariable;
@@ -350,7 +350,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     [self.doneButton setTitle:kUIFEDone forState:UIControlStateNormal];
     [self.variable setTitle:kUIFEVar forState:UIControlStateNormal];
     [self.takeVar setTitle:kUIFETake forState:UIControlStateNormal];
-    [self.deleteVar setTitle:kUIFEDelete forState:UIControlStateNormal];
+    [self.deleteUserData setTitle:kUIFEDelete forState:UIControlStateNormal];
     [self.addNewTextButton setTitle:kUIFEAddNewText forState:UIControlStateNormal];
 }
 
@@ -743,21 +743,40 @@ NS_ENUM(NSInteger, ButtonIndex) {
     [self.variableButton setSelected:NO];
 }
 
-- (void)addNewVarOrList: (BOOL)isProjectVarOrList isList:(BOOL)isList {
-    
-    NSString* promptTitle = isList ? kUIFENewList : kUIFENewVar;
-    NSString* promptMessage = isList ? kUIFEListName : kUIFEVarName;
-    self.isProjectVariable = isProjectVarOrList;
-    self.variableSegmentedControl.selectedSegmentIndex = isProjectVarOrList ? 0 : 1;
+- (void)addNewVariable: (BOOL)isProjectVariable
+{
+    NSString* promptTitle =  kUIFENewVar;
+    NSString* promptMessage = kUIFEVarName;
+    self.isProjectVariable = isProjectVariable;
+    self.variableSegmentedControl.selectedSegmentIndex = isProjectVariable ? 0 : 1;
     [self.variableSegmentedControl setNeedsDisplay];
 
-    [Util askUserForVariableNameAndPerformAction:@selector(saveVariable:isList:)
+    [Util askUserForVariableNameAndPerformAction:@selector(saveVariable:)
                                           target:self
                                      promptTitle:promptTitle
                                    promptMessage:promptMessage
                                   minInputLength:kMinNumOfVariableNameCharacters
                                   maxInputLength:kMaxNumOfVariableNameCharacters
-                                          isList:isList
+                                          isList:NO
+                                    andTextField:self.formulaEditorTextView
+                                     initialText:@""];
+}
+
+- (void)addNewList: (BOOL)isProjectList
+{
+    NSString* promptTitle =  kUIFENewList;
+    NSString* promptMessage = kUIFEListName;
+    self.isProjectVariable = isProjectList;
+    self.variableSegmentedControl.selectedSegmentIndex = isProjectList ? 0 : 1;
+    [self.variableSegmentedControl setNeedsDisplay];
+
+    [Util askUserForVariableNameAndPerformAction:@selector(saveList:)
+                                          target:self
+                                     promptTitle:promptTitle
+                                   promptMessage:promptMessage
+                                  minInputLength:kMinNumOfVariableNameCharacters
+                                  maxInputLength:kMaxNumOfVariableNameCharacters
+                                          isList:YES
                                     andTextField:self.formulaEditorTextView
                                      initialText:@""];
 }
@@ -769,11 +788,18 @@ NS_ENUM(NSInteger, ButtonIndex) {
              [self.formulaEditorTextView becomeFirstResponder];
          }]
         addDefaultActionWithTitle:kUIFEActionVarPro handler:^{
-            [self addNewVarOrList: YES isList: isList];
+            if (isList) {
+                [self addNewList:YES];
+            } else {
+                [self addNewVariable:YES];
+            }
         }]
        addDefaultActionWithTitle:kUIFEActionVarObj handler:^{
-           [self addNewVarOrList: NO isList: isList];
-       }] build]
+           if (isList) {
+               [self addNewList:NO];
+           } else {
+               [self addNewVariable:NO];
+           }       }] build]
      showWithController:self];
 }
 
@@ -840,74 +866,98 @@ NS_ENUM(NSInteger, ButtonIndex) {
         [self.variablePicker selectRow:0 inComponent:0 animated:NO];
 }
 
-- (void)askForVariableName:(BOOL)isList
+- (void)askForVariableName
 {
-    [Util askUserForVariableNameAndPerformAction:@selector(saveVariable:isList:)
+    [Util askUserForVariableNameAndPerformAction:@selector(saveVariable:)
                                           target:self
                                      promptTitle:kUIFENewVarExists
                                    promptMessage:kUIFEOtherName
                                   minInputLength:kMinNumOfVariableNameCharacters
                                   maxInputLength:kMaxNumOfVariableNameCharacters
-                                          isList:isList
+                                          isList:NO
                                     andTextField:self.formulaEditorTextView
                                      initialText:@""];
 }
 
-- (void)saveVariable:(NSString*)name isList:(BOOL)isList
+- (void)askForListName
 {
-    if (self.isProjectVariable && !isList){
+    [Util askUserForVariableNameAndPerformAction:@selector(saveList:)
+            target:self
+       promptTitle:kUIFENewVarExists
+     promptMessage:kUIFEOtherName
+    minInputLength:kMinNumOfVariableNameCharacters
+    maxInputLength:kMaxNumOfVariableNameCharacters
+            isList:YES
+      andTextField:self.formulaEditorTextView
+       initialText:@""];
+}
+
+- (void)saveVariable:(NSString*)name
+{
+    if (self.isProjectVariable){
         for (UserVariable* variable in [self.object.project.variables allVariables]) {
             if ([variable.name isEqualToString:name]) {
-                [self askForVariableName: isList];
+                [self askForVariableName];
                 return;
             }
         }
-    } else if (!self.isProjectVariable && !isList) {
+    } else {
         for (UserVariable* variable in [self.object.project.variables allVariablesForObject:self.object]) {
             if ([variable.name isEqualToString:name]) {
-                [self askForVariableName: isList];
-                return;
-            }
-        }
-    } else if (self.isProjectVariable && isList){
-        for (UserVariable* variable in [self.object.project.variables allLists]) {
-            if ([variable.name isEqualToString:name]) {
-                [self askForVariableName: isList];
-                return;
-            }
-        }
-    } else if (!self.isProjectVariable && isList) {
-        for (UserVariable* variable in [self.object.project.variables allListsForObject:self.object]) {
-            if ([variable.name isEqualToString:name]) {
-                [self askForVariableName: isList];
+                [self askForVariableName];
                 return;
             }
         }
     }
     
     [self.formulaEditorTextView becomeFirstResponder];
-    UserVariable* var = [[UserVariable alloc] initWithName:name isList:isList];
+    UserVariable* variable = [[UserVariable alloc] initWithName:name isList:NO];
+    variable.value = [NSNumber numberWithInt:0];
+    int buttonType = 0;
     
-    if (isList) {
-        var.value = [[NSMutableArray alloc] init];
-    } else{
-        var.value = [NSNumber numberWithInt:0];
-    }
-    
-    int buttonType = isList ? 11 : 0;
-    if (self.isProjectVariable && !isList) {
-        [self.object.project.variables.programVariableList addObject:var];
-    } else if (self.isProjectVariable && isList){
-        [self.object.project.variables.programListOfLists addObject:var];
-    } else if (!self.isProjectVariable && !isList) {
-        [self.object.project.variables addObjectVariable:var forObject:self.object];
-    } else if (!self.isProjectVariable && isList) {
-        [self.object.project.variables addObjectList:var forObject:self.object];
+    if (self.isProjectVariable) {
+        [self.object.project.variables.programVariableList addObject:variable];
+    }  else {
+        [self.object.project.variables addObjectVariable:variable forObject:self.object];
     }
     
     [self.object.project saveToDiskWithNotification:YES];
     [self updateVariablePickerData];
-    [self handleInputWithTitle:var.name AndButtonType:buttonType];
+    [self handleInputWithTitle:variable.name AndButtonType:buttonType];
+}
+
+- (void)saveList:(NSString*)name
+{
+    if (self.isProjectVariable){
+        for (UserVariable* variable in [self.object.project.variables allLists]) {
+            if ([variable.name isEqualToString:name]) {
+                [self askForListName];
+                return;
+            }
+        }
+    } else {
+        for (UserVariable* variable in [self.object.project.variables allListsForObject:self.object]) {
+            if ([variable.name isEqualToString:name]) {
+                [self askForListName];
+                return;
+            }
+        }
+    }
+    
+    [self.formulaEditorTextView becomeFirstResponder];
+    UserVariable* list = [[UserVariable alloc] initWithName:name isList:YES];
+    list.value = [[NSMutableArray alloc] init];
+    int buttonType = 11;
+    
+    if (self.isProjectVariable){
+        [self.object.project.variables.programListOfLists addObject:list];
+    } else {
+        [self.object.project.variables addObjectList:list forObject:self.object];
+    }
+    
+    [self.object.project saveToDiskWithNotification:YES];
+    [self updateVariablePickerData];
+    [self handleInputWithTitle:list.name AndButtonType:buttonType];
 }
 
 - (void)closeMenu
@@ -1055,7 +1105,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 }
 
 
-- (IBAction)deleteVariable:(UIButton *)sender {
+- (IBAction)deleteUserData:(UIButton *)sender {
     NSInteger row = [self.variablePicker selectedRowInComponent:0];
     BOOL isProjectData = false;
     
@@ -1085,42 +1135,55 @@ NS_ENUM(NSInteger, ButtonIndex) {
             }
         }
         if (userVariable) {
-            if(![self isVarOrListBeingUsed:userVariable]) {
-                
-                BOOL removed = NO;
-                BOOL isList = self.varOrListSegmentedControl.selectedSegmentIndex;
-                if (!isList) {
-                    removed = [self.object.project.variables removeUserVariableNamed:userVariable.name forSpriteObject:self.object];
+            BOOL isList = self.varOrListSegmentedControl.selectedSegmentIndex;
+            if (!isList) {
+                if(![self isVariableUsed:userVariable]) {
+                    [self deleteVariable:userVariable atRow:row isProjectData:isProjectData];
                 } else {
-                    removed = [self.object.project.variables removeUserListNamed:userVariable.name forSpriteObject:self.object];
-                }
-                if (removed) {
-                    if (!isList) {
-                        if (isProjectData) {
-                            [self.variableSourceProject removeObjectAtIndex:row];
-                        } else {
-                            [self.variableSourceObject removeObjectAtIndex:row];
-                        }
-                    } else {
-                        if (isProjectData) {
-                            [self.listSourceProject removeObjectAtIndex:row];
-                        } else {
-                            [self.listSourceObject removeObjectAtIndex:row];
-                        }
-                    }
-                    [self.object.project saveToDiskWithNotification:YES];
-                    [self updateVariablePickerData];
+                    [self showNotification:kUIFEDeleteVarBeingUsed andDuration:1.5f];
                 }
             } else {
-                [self showNotification:kUIFEDeleteVarBeingUsed andDuration:1.5f];
+                if(![self isListUsed:userVariable]) {
+                    [self deleteList:userVariable atRow:row isProjectData:isProjectData];
+                } else {
+                    [self showNotification:kUIFEDeleteListBeingUsed andDuration:1.5f];
+                }
             }
         }
     }
 }
 
-- (BOOL)isVarOrListBeingUsed:(UserVariable*)variable
+- (void)deleteVariable: (UserVariable*)userVariable atRow:(NSInteger)row isProjectData:(BOOL)isProjectData
 {
-    if([self.object.project.variables isProjectVariable:variable] || [self.object.project.variables isProjectList:variable]) {
+    BOOL removed = [self.object.project.variables removeUserVariableNamed:userVariable.name forSpriteObject:self.object];
+    if (removed) {
+        if (isProjectData) {
+            [self.variableSourceProject removeObjectAtIndex:row];
+        } else {
+            [self.variableSourceObject removeObjectAtIndex:row];
+        }
+        [self.object.project saveToDiskWithNotification:YES];
+        [self updateVariablePickerData];
+    }
+}
+
+- (void)deleteList: (id<UserDataProtocol>)userList atRow:(NSInteger)row isProjectData:(BOOL)isProjectData
+{
+    BOOL removed = [self.object.project.variables removeUserListNamed:userList.name forSpriteObject:self.object];
+    if (removed) {
+        if (isProjectData) {
+            [self.listSourceProject removeObjectAtIndex:row];
+        } else {
+            [self.listSourceObject removeObjectAtIndex:row];
+        }
+        [self.object.project saveToDiskWithNotification:YES];
+        [self updateVariablePickerData];
+    }
+}
+
+- (BOOL)isVariableUsed:(UserVariable*)variable
+{
+    if([self.object.project.variables isProjectVariable:variable]) {
         for(SpriteObject *spriteObject in self.object.project.objectList) {
             for(Script *script in spriteObject.scriptList) {
                 for(id brick in script.brickList) {
@@ -1134,6 +1197,31 @@ NS_ENUM(NSInteger, ButtonIndex) {
         for(Script *script in self.object.scriptList) {
             for(id brick in script.brickList) {
                 if([brick isKindOfClass:[Brick class]] && [brick isVarOrListBeingUsed:variable]) {
+                    return YES;
+                }
+            }
+        }
+    }
+    
+    return NO;
+}
+
+- (BOOL)isListUsed:(id<UserDataProtocol>)list
+{
+    if([self.object.project.variables isProjectList:list]) {
+        for(SpriteObject *spriteObject in self.object.project.objectList) {
+            for(Script *script in spriteObject.scriptList) {
+                for(id brick in script.brickList) {
+                    if([brick isKindOfClass:[Brick class]] && [brick isVarOrListBeingUsed:list]) {
+                        return YES;
+                    }
+                }
+            }
+        }
+    } else {
+        for(Script *script in self.object.scriptList) {
+            for(id brick in script.brickList) {
+                if([brick isKindOfClass:[Brick class]] && [brick isVarOrListBeingUsed:list]) {
                     return YES;
                 }
             }

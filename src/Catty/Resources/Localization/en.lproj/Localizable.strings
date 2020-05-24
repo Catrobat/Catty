@@ -1595,6 +1595,9 @@
 "This feature is coming soon!" = "This feature is coming soon!";
 
 /* No comment provided by engineer. */
+"This list can not be deleted because it is still in use." = "This list can not be deleted because it is still in use.";
+
+/* No comment provided by engineer. */
 "This variable can not be deleted because it is still in use." = "This variable can not be deleted because it is still in use.";
 
 /* No comment provided by engineer. */
