@@ -52,5 +52,6 @@
 - (BOOL)changeBrickCellFormulaData:(BrickCellFormulaData*)brickCellData andForce:(BOOL)forceChange;
 
 - (void)handleInput;
+- (BOOL)isVarOrListBeingUsed:(UserVariable*)variable;
 
 @end
