@@ -23,7 +23,7 @@
 import AudioKit
 import Foundation
 
-class AudioPlayer {
+class AudioPlayer: NSDiscardableContent {
 
     var akPlayer: AKPlayer
     var playerIsFinishedExpectation: CBExpectation?
@@ -43,6 +43,10 @@ class AudioPlayer {
     }
 
     func play(expectation: CBExpectation?) {
+        if !(akPlayer.playerNode.engine?.isRunning ?? false) {
+            return
+        }
+
         _ = playingQueue.sync {
             soundCompletionHandler()
             if !self.isDiscarded {
@@ -64,7 +68,9 @@ class AudioPlayer {
         _ = playingQueue.sync {
             self.isDiscarded = true
             self.stop()
-            akPlayer.detach()
+            if !akPlayer.connectionPoints.isEmpty {
+                akPlayer.detach()
+            }
         }
     }
 
@@ -108,5 +114,21 @@ class AudioPlayer {
 
     private func addExpectation(_ expectation: CBExpectation?) {
         self.playerIsFinishedExpectation = expectation
+    }
+
+    func beginContentAccess() -> Bool {
+        true // Only exists to conform with NSDiscardableContent. Prevents cache from being emptied when app enters background
+    }
+
+    func endContentAccess() {
+        // Only exists to conform with NSDiscardableContent. Prevents cache from being emptied when app enters background
+    }
+
+    func discardContentIfPossible() {
+        // Only exists to conform with NSDiscardableContent. Prevents cache from being emptied when app enters background
+    }
+
+    func isContentDiscarded() -> Bool {
+        false // Only exists to conform with NSDiscardableContent. Prevents cache from being emptied when app enters background
     }
 }

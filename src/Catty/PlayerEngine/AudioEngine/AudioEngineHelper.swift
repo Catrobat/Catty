@@ -37,4 +37,23 @@ class AudioEngineHelper: NSObject {
 
         return utterance
     }
+
+    func activateAudioSession() {
+        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.soloAmbient, options: AVAudioSession.CategoryOptions.defaultToSpeaker)
+            try AVAudioSession.sharedInstance().setActive(true)
+        } catch let error as NSError {
+            debugPrint("Could not activate audio session.")
+            debugPrint(error)
+        }
+    }
+
+    func deactivateAudioSession() {
+        do {
+            try AVAudioSession.sharedInstance().setActive(false)
+        } catch let error as NSError {
+            debugPrint("Could not deactivate audio session.")
+            debugPrint(error)
+        }
+    }
 }

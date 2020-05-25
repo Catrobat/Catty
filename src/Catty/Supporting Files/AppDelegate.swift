@@ -34,6 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var firebaseAnalyticsReporter: FirebaseAnalyticsReporter?
     var firebaseCrashlyticsReporter: FirebaseCrashlyticsReporter?
+    var audioEngineHelper = AudioEngineHelper()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         self.setupFirebase()
@@ -58,22 +59,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let vc = self.window?.rootViewController as! UINavigationController
 
         if let spvc = vc.topViewController as? ScenePresenterViewController {
-            spvc.resumeAction()
+            spvc.pauseAction()
         }
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
-        do {
-           try AVAudioSession.sharedInstance().setActive(false)
-        } catch {
-            debugPrint("Error in AVAudioSession.sharedInstance().setActive")
-        }
+        audioEngineHelper.deactivateAudioSession()
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         let vc = self.window?.rootViewController as! UINavigationController
-        if let spvc = vc.topViewController as? ScenePresenterViewController {
-            spvc.resumeAction()
+        if let _ = vc.topViewController as? ScenePresenterViewController {
+            audioEngineHelper.activateAudioSession()
         }
     }
 
