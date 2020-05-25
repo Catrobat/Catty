@@ -27,14 +27,263 @@ import XCTest
 
 final class FormulaEditorViewControllerTests: XCTestCase {
 
+    var controller: FormulaEditorViewController!
+    var project: Project!
+    var spriteObject: SpriteObject!
+    var script: Script!
+
     override func setUp() {
         super.setUp()
+
+        project = Project()
+        project.variables = VariablesContainer()
+
+        spriteObject = SpriteObjectMock()
+        spriteObject.project = project
+        project.objectList.add(spriteObject!)
+
+        script = StartScript()
+        spriteObject.scriptList.add(script!)
+
+        controller = FormulaEditorViewController()
+        controller.object = spriteObject
     }
 
     func testNotification() {
-        let controller = FormulaEditorViewController()
         let expectedNotification = Notification(name: .formulaEditorControllerDidAppear, object: controller)
 
-        expect(controller.viewDidAppear(true)).to(postNotifications(contain(expectedNotification)))
+        expect(self.controller.viewDidAppear(true)).to(postNotifications(contain(expectedNotification)))
+    }
+
+    func testIsVariableUsedGlobalWithoutBrick() {
+        let variable = UserVariable(name: "globalVariable")
+        project.variables.programVariableList.add(variable)
+
+        XCTAssertFalse(controller.isVarOrListBeingUsed(variable))
+    }
+
+    func testIsVariableUsedGlobalWithMultipleBricks() {
+        let variable = UserVariable(name: "globalVariable")
+        let brickA = HideTextBrick()
+        let brickB = HideTextBrick()
+
+        project.variables.programVariableList.add(variable)
+        brickB.userVariable = variable
+        script.brickList.add(brickA)
+
+        XCTAssertFalse(controller.isVarOrListBeingUsed(variable))
+
+        script.brickList.add(brickB)
+        XCTAssertTrue(controller.isVarOrListBeingUsed(variable))
+    }
+
+    func testIsVariableUsedGlobalWithMultipleScripts() {
+        let variable = UserVariable(name: "globalVariable")
+        let brick = HideTextBrick()
+        let scriptB = WhenScript()
+
+        project.variables.programVariableList.add(variable)
+        brick.userVariable = variable
+        scriptB.brickList.add(brick)
+
+        XCTAssertFalse(controller.isVarOrListBeingUsed(variable))
+
+        spriteObject.scriptList.add(scriptB)
+        XCTAssertTrue(controller.isVarOrListBeingUsed(variable))
+    }
+
+    func testIsVariableUsedGlobalWithMultipleObjects() {
+        let variable = UserVariable(name: "globalVariable")
+        let brick = HideTextBrick()
+        let scriptB = WhenScript()
+        let objectB = SpriteObject()
+
+        project.variables.programVariableList.add(variable)
+        brick.userVariable = variable
+        scriptB.brickList.add(brick)
+        objectB.scriptList.add(scriptB)
+
+        XCTAssertFalse(controller.isVarOrListBeingUsed(variable))
+
+        project.objectList.add(objectB)
+        XCTAssertTrue(controller.isVarOrListBeingUsed(variable))
+    }
+
+    func testIsVariableUsedLocalWithoutBrick() {
+        let variable = UserVariable(name: "localVariable")
+        project.variables.addObjectVariable(variable, for: spriteObject)
+
+        XCTAssertFalse(controller.isVarOrListBeingUsed(variable))
+    }
+
+    func testIsVariableUsedLocalWithMultipleBricks() {
+        let variable = UserVariable(name: "localVariable")
+        let brickA = HideTextBrick()
+        let brickB = HideTextBrick()
+
+        project.variables.addObjectVariable(variable, for: spriteObject)
+        brickB.userVariable = variable
+        script.brickList.add(brickA)
+
+        XCTAssertFalse(controller.isVarOrListBeingUsed(variable))
+
+        script.brickList.add(brickB)
+        XCTAssertTrue(controller.isVarOrListBeingUsed(variable))
+    }
+
+    func testIsVariableUsedLocalWithMultipleScripts() {
+        let variable = UserVariable(name: "localVariable")
+        let brick = HideTextBrick()
+        let scriptB = WhenScript()
+
+        project.variables.addObjectVariable(variable, for: spriteObject)
+        brick.userVariable = variable
+        scriptB.brickList.add(brick)
+
+        XCTAssertFalse(controller.isVarOrListBeingUsed(variable))
+
+        spriteObject.scriptList.add(scriptB)
+        XCTAssertTrue(controller.isVarOrListBeingUsed(variable))
+    }
+
+    func testIsVariableUsedLocalWithMultipleObjects() {
+        let variable = UserVariable(name: "localVariable")
+        let brick = HideTextBrick()
+        let scriptB = WhenScript()
+        let objectB = SpriteObject()
+
+        project.variables.addObjectVariable(variable, for: spriteObject)
+        brick.userVariable = variable
+        scriptB.brickList.add(brick)
+        objectB.scriptList.add(scriptB)
+        project.objectList.add(objectB)
+
+        XCTAssertFalse(controller.isVarOrListBeingUsed(variable))
+
+        controller.object = objectB
+        XCTAssertTrue(controller.isVarOrListBeingUsed(variable))
+    }
+
+    func testIsListUsedGlobalWithoutBrick() {
+        let list = UserVariable(name: "globalList", isList: true)
+        project.variables.programListOfLists.add(list)
+
+        XCTAssertFalse(controller.isVarOrListBeingUsed(list))
+    }
+
+    func testIsListUsedGlobalWithMultipleBricks() {
+        let list = UserVariable(name: "globalList", isList: true)
+        let brickA = AddItemToUserListBrick()
+        let brickB = AddItemToUserListBrick()
+
+        brickA.listFormula = Formula()
+        brickB.listFormula = Formula()
+
+        project.variables.programListOfLists.add(list)
+        brickB.userList = list
+        script.brickList.add(brickA)
+
+        XCTAssertFalse(controller.isVarOrListBeingUsed(list))
+
+        script.brickList.add(brickB)
+        XCTAssertTrue(controller.isVarOrListBeingUsed(list))
+    }
+
+    func testIsListUsedGlobalWithMultipleScripts() {
+        let list = UserVariable(name: "globalList", isList: true)
+        let brick = AddItemToUserListBrick()
+        let scriptB = WhenScript()
+
+        brick.listFormula = Formula()
+
+        project.variables.programListOfLists.add(list)
+        brick.userList = list
+        scriptB.brickList.add(brick)
+
+        XCTAssertFalse(controller.isVarOrListBeingUsed(list))
+
+        spriteObject.scriptList.add(scriptB)
+        XCTAssertTrue(controller.isVarOrListBeingUsed(list))
+    }
+
+    func testIsListUsedGlobalWithMultipleObjects() {
+        let list = UserVariable(name: "globalList", isList: true)
+        let brick = AddItemToUserListBrick()
+        let scriptB = WhenScript()
+        let objectB = SpriteObject()
+
+        brick.listFormula = Formula()
+
+        project.variables.programListOfLists.add(list)
+        brick.userList = list
+        scriptB.brickList.add(brick)
+        objectB.scriptList.add(scriptB)
+
+        XCTAssertFalse(controller.isVarOrListBeingUsed(list))
+
+        project.objectList.add(objectB)
+        XCTAssertTrue(controller.isVarOrListBeingUsed(list))
+    }
+
+    func testIsListUsedLocalWithoutBrick() {
+        let list = UserVariable(name: "localList", isList: true)
+        project.variables.addObjectList(list, for: spriteObject)
+
+        XCTAssertFalse(controller.isVarOrListBeingUsed(list))
+    }
+
+    func testIsListUsedLocalWithMultipleBricks() {
+        let list = UserVariable(name: "localList", isList: true)
+        let brickA = AddItemToUserListBrick()
+        let brickB = AddItemToUserListBrick()
+
+        brickA.listFormula = Formula()
+        brickB.listFormula = Formula()
+
+        project.variables.addObjectList(list, for: spriteObject)
+        brickB.userList = list
+        script.brickList.add(brickA)
+
+        XCTAssertFalse(controller.isVarOrListBeingUsed(list))
+
+        script.brickList.add(brickB)
+        XCTAssertTrue(controller.isVarOrListBeingUsed(list))
+    }
+
+    func testIsListUsedLocalWithMultipleScripts() {
+        let list = UserVariable(name: "localList", isList: true)
+        let brick = AddItemToUserListBrick()
+        let scriptB = WhenScript()
+
+        brick.listFormula = Formula()
+
+        project.variables.addObjectList(list, for: spriteObject)
+        brick.userList = list
+        scriptB.brickList.add(brick)
+
+        XCTAssertFalse(controller.isVarOrListBeingUsed(list))
+
+        spriteObject.scriptList.add(scriptB)
+        XCTAssertTrue(controller.isVarOrListBeingUsed(list))
+    }
+
+    func testIsListUsedLocalWithMultipleObjects() {
+        let list = UserVariable(name: "localList", isList: true)
+        let brick = AddItemToUserListBrick()
+        let scriptB = WhenScript()
+        let objectB = SpriteObject()
+
+        brick.listFormula = Formula()
+
+        project.variables.addObjectList(list, for: spriteObject)
+        brick.userList = list
+        scriptB.brickList.add(brick)
+        objectB.scriptList.add(scriptB)
+        project.objectList.add(objectB)
+
+        XCTAssertFalse(controller.isVarOrListBeingUsed(list))
+
+        controller.object = objectB
+        XCTAssertTrue(controller.isVarOrListBeingUsed(list))
     }
 }
