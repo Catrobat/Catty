@@ -39,7 +39,6 @@
 
 // Bricks
 #import "Brick.h"
-#import "Brick+UserVariable.h"
 #import "IfLogicBeginBrick.h"
 #import "IfThenLogicBeginBrick.h"
 #import "IfLogicElseBrick.h"

@@ -30,7 +30,6 @@
 #import "OrderedMapTable.h"
 #import "Script.h"
 #import "BrickCellFormulaData.h"
-#import "Brick+UserVariable.h"
 #import "BDKNotifyHUD.h"
 #import "KeychainUserDefaultsDefines.h"
 #import "ShapeButton.h"
@@ -1187,7 +1186,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
         for(SpriteObject *spriteObject in self.object.project.objectList) {
             for(Script *script in spriteObject.scriptList) {
                 for(id brick in script.brickList) {
-                    if([brick isKindOfClass:[Brick class]] && [brick isVarOrListBeingUsed:variable]) {
+                    if([brick isKindOfClass:[Brick class]] && [brick isVariableUsedWithVariable:variable]) {
                         return YES;
                     }
                 }
@@ -1196,7 +1195,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     } else {
         for(Script *script in self.object.scriptList) {
             for(id brick in script.brickList) {
-                if([brick isKindOfClass:[Brick class]] && [brick isVarOrListBeingUsed:variable]) {
+                if([brick isKindOfClass:[Brick class]] && [brick isVariableUsedWithVariable:variable]) {
                     return YES;
                 }
             }
@@ -1212,7 +1211,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
         for(SpriteObject *spriteObject in self.object.project.objectList) {
             for(Script *script in spriteObject.scriptList) {
                 for(id brick in script.brickList) {
-                    if([brick isKindOfClass:[Brick class]] && [brick isVarOrListBeingUsed:list]) {
+                    if([brick isKindOfClass:[Brick class]] && [brick isListUsedWithList:list]) {
                         return YES;
                     }
                 }
@@ -1221,7 +1220,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     } else {
         for(Script *script in self.object.scriptList) {
             for(id brick in script.brickList) {
-                if([brick isKindOfClass:[Brick class]] && [brick isVarOrListBeingUsed:list]) {
+                if([brick isKindOfClass:[Brick class]] && [brick isListUsedWithList:list]) {
                     return YES;
                 }
             }
