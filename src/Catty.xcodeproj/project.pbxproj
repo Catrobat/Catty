@@ -294,6 +294,9 @@
 		2ED418C52411213E00AFE2FD /* XMLParserBlackBoxTests096.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED418AF2411213D00AFE2FD /* XMLParserBlackBoxTests096.swift */; };
 		2ED418C62411213E00AFE2FD /* XMLParserTests092.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED418B12411213D00AFE2FD /* XMLParserTests092.swift */; };
 		3DA1BED924365A3400133C99 /* BrickMutableCopyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA1BED824365A3400133C99 /* BrickMutableCopyTests.swift */; };
+		44B76EC12476BF0100DC30E2 /* FirebaseCrashlyticsReporterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B76EBE2476BF0100DC30E2 /* FirebaseCrashlyticsReporterTests.swift */; };
+		44B76EC72476C19600DC30E2 /* FirebaseCrashlyticsReporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B76EC52476C19500DC30E2 /* FirebaseCrashlyticsReporter.swift */; };
+		44B76EC82476C19600DC30E2 /* FirebaseAnalyticsReporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B76EC62476C19500DC30E2 /* FirebaseAnalyticsReporter.swift */; };
 		4647D55A23D8AF9F001A67F6 /* PrivacyPolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4647D55923D8AF9F001A67F6 /* PrivacyPolicyViewController.swift */; };
 		4C03A4BE2133FD05007BFFD2 /* FormulaManager+Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C03A4BD2133FD05007BFFD2 /* FormulaManager+Resources.swift */; };
 		4C03A4C22133FDE7007BFFD2 /* FormulaManager+Editor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C03A4C12133FDE7007BFFD2 /* FormulaManager+Editor.swift */; };
@@ -364,9 +367,7 @@
 		4C1329041CD9259900F16E48 /* AudioManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1329031CD9259900F16E48 /* AudioManagerTests.swift */; };
 		4C15FE7F1D168C0D009C1A2B /* transparency-rgb.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C15FE7E1D168C0D009C1A2B /* transparency-rgb.png */; };
 		4C1A596323FD9E79001A78D2 /* SettingsTableViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1A596023FD9E79001A78D2 /* SettingsTableViewControllerTests.swift */; };
-		4C1A596623FDA0FF001A78D2 /* FirebaseCrashlyticsSetupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1A596523FDA0FF001A78D2 /* FirebaseCrashlyticsSetupTests.swift */; };
 		4C1A596823FE9997001A78D2 /* CrashlyticsMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1A596723FE9997001A78D2 /* CrashlyticsMock.swift */; };
-		4C1A597323FEAC10001A78D2 /* AppDelegateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1A597223FEAC0F001A78D2 /* AppDelegateMock.swift */; };
 		4C1AA4AE21A1572700DAC589 /* MediaItemTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1AA4AD21A1572700DAC589 /* MediaItemTest.swift */; };
 		4C1C8B14213FE76B003B3AA4 /* ChartProjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1C8B13213FE76B003B3AA4 /* ChartProjectCell.swift */; };
 		4C1C8B16213FE7F1003B3AA4 /* StoreProjectDownloaderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1C8B15213FE7F1003B3AA4 /* StoreProjectDownloaderMock.swift */; };
@@ -416,8 +417,6 @@
 		4C4A71A11B527E2F00BBE32B /* CBXMLParserContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4A71A01B527E2F00BBE32B /* CBXMLParserContext.m */; };
 		4C4B4CC223ED94230054C861 /* FirebaseCrashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C4B4CC123ED94230054C861 /* FirebaseCrashlytics.framework */; };
 		4C4B4CCC23EDE1560054C861 /* FirebaseAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C10D9C223ED8CDB00EB0C6E /* FirebaseAnalytics.framework */; };
-		4C4B4CCF23EDE4FA0054C861 /* AppDelegateFirebaseExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4B4CCE23EDE4FA0054C861 /* AppDelegateFirebaseExtension.swift */; };
-		4C4B4CD223EDE9980054C861 /* AppDelegateSirenExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4B4CD123EDE9980054C861 /* AppDelegateSirenExtension.swift */; };
 		4C4B4CD323EE76370054C861 /* GoogleAppMeasurement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C10D9C423ED8CDB00EB0C6E /* GoogleAppMeasurement.framework */; };
 		4C4B4CD723EE8ABB0054C861 /* NotificationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4B4CD623EE8ABB0054C861 /* NotificationExtension.swift */; };
 		4C4B4CDF23EE98C80054C861 /* CustomAlertControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4B4CDE23EE98C80054C861 /* CustomAlertControllerTests.swift */; };
@@ -1817,6 +1816,9 @@
 		389FA65050440F173C5147C5 /* bg */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = bg; path = bg.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3D5D59359A67834683175607 /* th */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3DA1BED824365A3400133C99 /* BrickMutableCopyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrickMutableCopyTests.swift; sourceTree = "<group>"; };
+		44B76EBE2476BF0100DC30E2 /* FirebaseCrashlyticsReporterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseCrashlyticsReporterTests.swift; sourceTree = "<group>"; };
+		44B76EC52476C19500DC30E2 /* FirebaseCrashlyticsReporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseCrashlyticsReporter.swift; sourceTree = "<group>"; };
+		44B76EC62476C19500DC30E2 /* FirebaseAnalyticsReporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseAnalyticsReporter.swift; sourceTree = "<group>"; };
 		4647D55923D8AF9F001A67F6 /* PrivacyPolicyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyViewController.swift; sourceTree = "<group>"; };
 		481639B0D938C88A5E2E6963 /* ms */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = ms; path = ms.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4997640FD2AB79927E45C4EF /* ca */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = ca; path = ca.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1929,9 +1931,7 @@
 		4C1329031CD9259900F16E48 /* AudioManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioManagerTests.swift; sourceTree = "<group>"; };
 		4C15FE7E1D168C0D009C1A2B /* transparency-rgb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "transparency-rgb.png"; path = "CattyTests/Resources/Images/transparency-rgb.png"; sourceTree = SOURCE_ROOT; };
 		4C1A596023FD9E79001A78D2 /* SettingsTableViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewControllerTests.swift; sourceTree = "<group>"; };
-		4C1A596523FDA0FF001A78D2 /* FirebaseCrashlyticsSetupTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseCrashlyticsSetupTests.swift; sourceTree = "<group>"; };
 		4C1A596723FE9997001A78D2 /* CrashlyticsMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrashlyticsMock.swift; sourceTree = "<group>"; };
-		4C1A597223FEAC0F001A78D2 /* AppDelegateMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegateMock.swift; sourceTree = "<group>"; };
 		4C1AA4AD21A1572700DAC589 /* MediaItemTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaItemTest.swift; sourceTree = "<group>"; };
 		4C1C8B13213FE76B003B3AA4 /* ChartProjectCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartProjectCell.swift; sourceTree = "<group>"; };
 		4C1C8B15213FE7F1003B3AA4 /* StoreProjectDownloaderMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreProjectDownloaderMock.swift; sourceTree = "<group>"; };
@@ -1991,8 +1991,6 @@
 		4C4A719F1B527E2F00BBE32B /* CBXMLParserContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBXMLParserContext.h; sourceTree = "<group>"; };
 		4C4A71A01B527E2F00BBE32B /* CBXMLParserContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBXMLParserContext.m; sourceTree = "<group>"; };
 		4C4B4CC123ED94230054C861 /* FirebaseCrashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseCrashlytics.framework; path = Carthage/Build/iOS/FirebaseCrashlytics.framework; sourceTree = "<group>"; };
-		4C4B4CCE23EDE4FA0054C861 /* AppDelegateFirebaseExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegateFirebaseExtension.swift; sourceTree = "<group>"; };
-		4C4B4CD123EDE9980054C861 /* AppDelegateSirenExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegateSirenExtension.swift; sourceTree = "<group>"; };
 		4C4B4CD623EE8ABB0054C861 /* NotificationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationExtension.swift; sourceTree = "<group>"; };
 		4C4B4CDE23EE98C80054C861 /* CustomAlertControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAlertControllerTests.swift; sourceTree = "<group>"; };
 		4C4B4CE523EEA6BF0054C861 /* BaseTableViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewControllerTests.swift; sourceTree = "<group>"; };
@@ -4433,6 +4431,23 @@
 			path = "Parser & Serialization/CatrobatLanguage0.92";
 			sourceTree = "<group>";
 		};
+		44B76EC42476C19500DC30E2 /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				44B76EC52476C19500DC30E2 /* FirebaseCrashlyticsReporter.swift */,
+				44B76EC62476C19500DC30E2 /* FirebaseAnalyticsReporter.swift */,
+			);
+			path = Firebase;
+			sourceTree = "<group>";
+		};
+		44C5818F2477C46D00784F5A /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				44B76EBE2476BF0100DC30E2 /* FirebaseCrashlyticsReporterTests.swift */,
+			);
+			path = Firebase;
+			sourceTree = "<group>";
+		};
 		4647D55823D8AF9F001A67F6 /* PrivacyPolicy */ = {
 			isa = PBXGroup;
 			children = (
@@ -4514,14 +4529,6 @@
 				2ED41693241120AE00AFE2FD /* UserProjects */,
 			);
 			name = ParserTests;
-			sourceTree = "<group>";
-		};
-		4C1A596423FDA0DC001A78D2 /* Firebase */ = {
-			isa = PBXGroup;
-			children = (
-				4C1A596523FDA0FF001A78D2 /* FirebaseCrashlyticsSetupTests.swift */,
-			);
-			path = Firebase;
 			sourceTree = "<group>";
 		};
 		4C2650671A6538470050775B /* CBCopyContext */ = {
@@ -4607,7 +4614,6 @@
 			isa = PBXGroup;
 			children = (
 				4C38B36F237151FB00F33721 /* CatrobatSetupTests.swift */,
-				4C1A596423FDA0DC001A78D2 /* Firebase */,
 			);
 			path = Setup;
 			sourceTree = "<group>";
@@ -4693,22 +4699,6 @@
 				4C4A71A01B527E2F00BBE32B /* CBXMLParserContext.m */,
 			);
 			path = Context;
-			sourceTree = "<group>";
-		};
-		4C4B4CC523ED9A530054C861 /* Firebase */ = {
-			isa = PBXGroup;
-			children = (
-				4C4B4CCE23EDE4FA0054C861 /* AppDelegateFirebaseExtension.swift */,
-			);
-			path = Firebase;
-			sourceTree = "<group>";
-		};
-		4C4B4CD023EDE9770054C861 /* Siren */ = {
-			isa = PBXGroup;
-			children = (
-				4C4B4CD123EDE9980054C861 /* AppDelegateSirenExtension.swift */,
-			);
-			path = Siren;
 			sourceTree = "<group>";
 		};
 		4C4B4CD523EE8A9F0054C861 /* Notification */ = {
@@ -4893,8 +4883,6 @@
 				4C5AEF0422F7037100280F8B /* CatrobatSetup+Functions.swift */,
 				4C5AEF0122F7037100280F8B /* CatrobatSetup+Operators.swift */,
 				4C5AEF0222F7037100280F8B /* CatrobatSetup+Sensors.swift */,
-				4C4B4CC523ED9A530054C861 /* Firebase */,
-				4C4B4CD023EDE9770054C861 /* Siren */,
 			);
 			path = Setup;
 			sourceTree = "<group>";
@@ -6120,7 +6108,6 @@
 		599E649C202D9F85009494B5 /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
-				4C1A597223FEAC0F001A78D2 /* AppDelegateMock.swift */,
 				4CB73A8F23FC1F0300D5E9A7 /* CatrobatTableViewControllerMock.swift */,
 				4C1A596723FE9997001A78D2 /* CrashlyticsMock.swift */,
 				4C3B151A23F07C7800527D4A /* ErrorMock.swift */,
@@ -8348,6 +8335,7 @@
 		B46B270317703F9400172837 /* CattyTests */ = {
 			isa = PBXGroup;
 			children = (
+				44C5818F2477C46D00784F5A /* Firebase */,
 				AA70F7EF1B866E63003057C6 /* PlayerEngine */,
 				92BCDC801BF1DE2A00F9CB23 /* BluetoothDevices */,
 				4CEB222C1B95E47500B3BE2F /* Bricks */,
@@ -8586,6 +8574,7 @@
 		CD0CCE54170CB39600B70036 /* Catty */ = {
 			isa = PBXGroup;
 			children = (
+				44B76EC42476C19500DC30E2 /* Firebase */,
 				4C5AEEFE22F702F600280F8B /* Setup */,
 				4C74BD081DA6476A0079336C /* Pocket Code.entitlements */,
 				92D56C261BF202E700A54750 /* BluetoothDevice */,
@@ -9479,7 +9468,6 @@
 				CA7698C21B0E4B3F000D0340 /* CBStackTests.m in Sources */,
 				4C822679213FA7A400F3D750 /* SizeSensorTest.swift in Sources */,
 				4CFAD35E1CFAB3EC0019C636 /* CustomExtensionsTests.m in Sources */,
-				4C1A597323FEAC10001A78D2 /* AppDelegateMock.swift in Sources */,
 				9E2C2D9023257704004B66C6 /* ChangeBrightnessByNBrickTests.swift in Sources */,
 				18A9DBA92434C7F400F4C390 /* IfLogicBeginBrickTests.swift in Sources */,
 				4CC50A5E213BE036004BC914 /* ZeroParameterDoubleFunctionMock.swift in Sources */,
@@ -9547,7 +9535,6 @@
 				4C6FE16F212D2D2E0067B7D5 /* SinFunctionTest.swift in Sources */,
 				4C82267A213FA7A400F3D750 /* LookNumberSensorTest.swift in Sources */,
 				4C82267C213FA7A400F3D750 /* BackgroundNameSensorTest.swift in Sources */,
-				4C1A596623FDA0FF001A78D2 /* FirebaseCrashlyticsSetupTests.swift in Sources */,
 				4C38B3762371529600F33721 /* GlideToBrickCellTests.swift in Sources */,
 				9EBCBD8B2329C3BF0074C2D9 /* PreviousLookBrickTests.swift in Sources */,
 				4C38B3742371522200F33721 /* BrickManagerTests.swift in Sources */,
@@ -9668,6 +9655,7 @@
 				4C1A596323FD9E79001A78D2 /* SettingsTableViewControllerTests.swift in Sources */,
 				4C6FE170212D2D2E0067B7D5 /* AbsFunctionTest.swift in Sources */,
 				4C68FC931B25A00B00AB3EE8 /* InternFormulaTest.m in Sources */,
+				44B76EC12476BF0100DC30E2 /* FirebaseCrashlyticsReporterTests.swift in Sources */,
 				E4C5C1122143A3150054F236 /* SearchStoreDataSourceTests.swift in Sources */,
 				4CAEB26C23F3F8BC00DB31BB /* CatrobatTableViewControllerTests.swift in Sources */,
 				4C6FE177212D2D2E0067B7D5 /* LengthFunctionTest.swift in Sources */,
@@ -9995,6 +9983,7 @@
 				AA74EE231BC053FD00D1E954 /* WaitBrick+Instruction.swift in Sources */,
 				927F79E01BEE39CB008D1635 /* PhiroIfLogicBeginBrick.m in Sources */,
 				AA74EEFF1BC057C900D1E954 /* SetTransparencyBrick+CBXMLHandler.m in Sources */,
+				44B76EC82476C19600DC30E2 /* FirebaseAnalyticsReporter.swift in Sources */,
 				92EC985F1BC3ABB90003A891 /* PhiroPlayToneBrick+CBXMLHandler.m in Sources */,
 				92FF2EA21A24C7D800093DA7 /* TableUtil.m in Sources */,
 				4CDA808121366AD20052FA24 /* FormulaInterpreterProtocol.swift in Sources */,
@@ -10030,6 +10019,7 @@
 				4C0F9F65204BD18600E71B2D /* PreviousLookBrick+CBXMLHandler.m in Sources */,
 				5977B2A620298BD0008753ED /* MediaLibraryDownloader.swift in Sources */,
 				4C0F9F3D204ADC5900E71B2D /* SetBackgroundBrick.m in Sources */,
+				44B76EC72476C19600DC30E2 /* FirebaseCrashlyticsReporter.swift in Sources */,
 				AA74EEE21BC057B900D1E954 /* LoopEndBrick+CBXMLHandler.m in Sources */,
 				92FF32BF1A24E2F400093DA7 /* BrickTransition.m in Sources */,
 				4CEFFADB2105E46500DC5CFE /* ObjectDoubleSensor.swift in Sources */,
@@ -10133,7 +10123,6 @@
 				4C0F9F8B204BD26100E71B2D /* IfThenLogicBeginBrickCell.m in Sources */,
 				BAEE49BB1F165C6E00F06741 /* ReplaceItemInUserListBrick.m in Sources */,
 				99EBDC041D5624D2008D6860 /* ChangeColorByNBrick+Instruction.swift in Sources */,
-				4C4B4CCF23EDE4FA0054C861 /* AppDelegateFirebaseExtension.swift in Sources */,
 				92DFB01A1A38949E00FA9B0F /* InternToken.m in Sources */,
 				4C994E27207A56D500C415FD /* AccelerationXSensor.swift in Sources */,
 				9218B20D1CC4AB75007B4C60 /* HandTool.m in Sources */,
@@ -10396,7 +10385,6 @@
 				4CEFFAD32105DE4800DC5CFE /* ObjectSensor.swift in Sources */,
 				921D467B1BDF61350086AD20 /* ChangeXByNBrick+Instruction.swift in Sources */,
 				4CB0F9F220A1739400D1BE2F /* SizeSensor.swift in Sources */,
-				4C4B4CD223EDE9980054C861 /* AppDelegateSirenExtension.swift in Sources */,
 				F4A2AFB52110D48C00C53234 /* JoinFunction.swift in Sources */,
 				92FF2E901A24C7D800093DA7 /* GDataXMLNode.m in Sources */,
 				F48E945920D6955E007E782E /* DateSensor.swift in Sources */,

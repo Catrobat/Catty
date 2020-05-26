@@ -21,15 +21,16 @@
  */
 
 import Firebase
-@testable import Pocket_Code
 
-class AppDelegateMock: AppDelegate {
+class FirebaseAnalyticsReporter {
+    @objc open var analytics: Analytics.Type
 
-    var crashlyticsMock: Crashlytics
+    @objc init(analytics: Analytics.Type) {
+        self.analytics = analytics
+        setupAnalytics()
+    }
 
-    override open var crashlytics: Crashlytics { crashlyticsMock }
-
-    init(crashlytics: Crashlytics) {
-        self.crashlyticsMock = crashlytics
+    private func setupAnalytics() {
+        analytics.setAnalyticsCollectionEnabled(true)
     }
 }

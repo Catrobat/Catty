@@ -20,6 +20,8 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+import Firebase
+import Siren
 import UIKit
 
 func uncaughtExceptionHandler(exception: NSException) {
@@ -30,8 +32,13 @@ func uncaughtExceptionHandler(exception: NSException) {
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var firebaseAnalyticsReporter: FirebaseAnalyticsReporter?
+    var firebaseCrashlyticsReporter: FirebaseCrashlyticsReporter?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        self.setupFirebase()
+        self.setupSiren()
+
         self.initNavigationBar()
         ThemesHelper.changeAppearance()
         let defaults = UserDefaults.standard
@@ -43,9 +50,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if ProcessInfo.processInfo.arguments.contains("UITests") {
             UIApplication.shared.keyWindow?.layer.speed = 10.0
         }
-
-        self.setupSiren()
-        self.setupFirebase()
 
         return true
     }
@@ -100,6 +104,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if defaults.value(forKey: kFirebaseSendCrashReports) == nil {
             defaults.set(kFirebaseSendCrashReportsDefault, forKey: kFirebaseSendCrashReports)
         }
+    }
+
+    func setupFirebase() {
+        #if !DEBUG
+        FirebaseApp.configure()
+        firebaseAnalyticsReporter = FirebaseAnalyticsReporter.init(analytics: Analytics.self)
+        firebaseCrashlyticsReporter = FirebaseCrashlyticsReporter.init(crashlytics: Crashlytics.crashlytics())
+        #endif
+    }
+
+    @objc func setupSiren() {
+        Siren.shared.wail()
     }
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [: ]) -> Bool {
