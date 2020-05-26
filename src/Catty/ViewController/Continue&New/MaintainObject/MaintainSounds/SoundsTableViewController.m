@@ -32,7 +32,6 @@
 #import "Util.h"
 #import "CBFileManager.h"
 #import "CBFileManager.h"
-#import "NSData+Hashes.h"
 #import "RuntimeImageCache.h"
 #import "SharkfoodMuteSwitchDetector.h"
 #import "SRViewController.h"
