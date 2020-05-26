@@ -579,6 +579,7 @@
 #define kUIFEProjectLists NSLocalizedString(@"Project lists:", nil)
 #define kUIFEObjectLists NSLocalizedString(@"Object lists:", nil)
 #define kUIFEDeleteVarBeingUsed NSLocalizedString(@"This variable can not be deleted because it is still in use.", nil)
+#define kUIFEDeleteListBeingUsed NSLocalizedString(@"This list can not be deleted because it is still in use.", nil)
 #define kUIFEActionVar NSLocalizedString(@"Variable type", nil)
 #define kUIFEActionList NSLocalizedString(@"List type", nil)
 #define kUIFEActionVarObj NSLocalizedString(@"for this actor or object", nil)

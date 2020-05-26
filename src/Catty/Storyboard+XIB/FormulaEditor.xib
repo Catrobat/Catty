@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,7 +16,7 @@
                 <outlet property="calcScrollView" destination="OK4-Wq-asm" id="mAD-cC-Hlv"/>
                 <outlet property="computeButton" destination="oQN-vf-ZdE" id="dbs-ff-alX"/>
                 <outlet property="deleteButton" destination="uCt-gq-t2x" id="WlE-m3-Uhd"/>
-                <outlet property="deleteVar" destination="8uE-Bt-F7y" id="fst-xh-iTK"/>
+                <outlet property="deleteUserData" destination="8uE-Bt-F7y" id="OkR-Zg-dDX"/>
                 <outlet property="divisionButton" destination="huL-az-i7Z" id="5lL-3N-W9Y"/>
                 <outlet property="doneButton" destination="SUT-4U-uAA" id="FDR-kY-DVd"/>
                 <outlet property="logicButton" destination="BjT-SP-YH6" id="Z1f-rU-mai"/>
@@ -684,7 +682,7 @@
                                 <color key="titleShadowColor" red="0.42467421293258667" green="0.42466151714324951" blue="0.42466866970062256" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                             <connections>
-                                <action selector="deleteVariable:" destination="-1" eventType="touchUpInside" id="mzP-Aw-M4H"/>
+                                <action selector="deleteUserData:" destination="-1" eventType="touchUpInside" id="OPg-qW-Bga"/>
                             </connections>
                         </button>
                         <button opaque="NO" tag="400" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L8j-Vt-p8t">
@@ -710,7 +708,7 @@
                             </connections>
                         </button>
                         <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="aAn-6g-gNG">
-                            <rect key="frame" x="0.0" y="76" width="327" height="29"/>
+                            <rect key="frame" x="0.0" y="79" width="327" height="32"/>
                             <segments>
                                 <segment title="First"/>
                                 <segment title="Second"/>
@@ -720,14 +718,14 @@
                             </connections>
                         </segmentedControl>
                         <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EC0-vt-5UA">
-                            <rect key="frame" x="0.0" y="109" width="327" height="100"/>
+                            <rect key="frame" x="0.0" y="115" width="327" height="100"/>
                             <color key="tintColor" red="0.84308499097824097" green="0.42041474580764771" blue="0.052701011300086975" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="100" id="D3a-WJ-tKH"/>
                             </constraints>
                         </pickerView>
                         <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="nzs-qF-IZo">
-                            <rect key="frame" x="0.0" y="43" width="327" height="29"/>
+                            <rect key="frame" x="0.0" y="43" width="327" height="32"/>
                             <segments>
                                 <segment title="First"/>
                                 <segment title="Second"/>

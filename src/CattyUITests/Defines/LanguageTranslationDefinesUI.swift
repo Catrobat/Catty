@@ -579,6 +579,7 @@ let kUIFEObjectVars = NSLocalizedString("Object variables:", bundle: Bundle(for:
 let kUIFEProjectLists = NSLocalizedString("Project lists:", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFEObjectLists = NSLocalizedString("Object lists:", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFEDeleteVarBeingUsed = NSLocalizedString("This variable can not be deleted because it is still in use.", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kUIFEDeleteListBeingUsed = NSLocalizedString("This list can not be deleted because it is still in use.", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFEActionVar = NSLocalizedString("Variable type", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFEActionList = NSLocalizedString("List type", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kUIFEActionVarObj = NSLocalizedString("for this actor or object", bundle: Bundle(for: LanguageTranslation.self), comment: "")
