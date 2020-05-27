@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		181DB738247DA62600B82B20 /* NSDataExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181DB737247DA62600B82B20 /* NSDataExtension.swift */; };
 		1822C1392471C7CB00F8F158 /* BrickCellListDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1822C1382471C7CB00F8F158 /* BrickCellListDataTests.swift */; };
 		1833ED942446572F0053BF7C /* HelpWebViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1833ED912446572E0053BF7C /* HelpWebViewControllerTests.swift */; };
 		186212382475A1070098F4C5 /* SpriteKitDefines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186212372475A1070098F4C5 /* SpriteKitDefines.swift */; };
@@ -16,6 +17,7 @@
 		187CECAB24314F1600C3EDCA /* SetLookBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187CECAA24314F1600C3EDCA /* SetLookBrickTests.swift */; };
 		187D119C2472AAF200A09CE5 /* DataExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187D11992472AAF100A09CE5 /* DataExtensionTests.swift */; };
 		18A9DBA92434C7F400F4C390 /* IfLogicBeginBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A9DBA82434C7F400F4C390 /* IfLogicBeginBrickTests.swift */; };
+		18B5B529247E542A007D24A3 /* NSDataExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B5B528247E542A007D24A3 /* NSDataExtensionTests.swift */; };
 		18B8021F2469170400201847 /* BrickCellVariableDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B8021E2469170400201847 /* BrickCellVariableDataTests.swift */; };
 		224D5C582423AEF900CD6302 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224D5C512420C8B400CD6302 /* SettingsTableViewController.swift */; };
 		22524C38239FAFC500DD515E /* LoginViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22524C37239FAFC500DD515E /* LoginViewControllerTests.swift */; };
@@ -971,7 +973,6 @@
 		92ED4D7D1BA9C1380052C852 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92ED4D7C1BA9C1380052C852 /* RegisterViewController.m */; };
 		92FC85CE1B9E1EB5001C728F /* BrickManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FC85CD1B9E1EB5001C728F /* BrickManager.m */; };
 		92FF2E331A24C5A700093DA7 /* CAGradientLayer+CatrobatCAGradientExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E0D1A24C5A700093DA7 /* CAGradientLayer+CatrobatCAGradientExtensions.m */; };
-		92FF2E351A24C5A700093DA7 /* NSData+Hashes.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E131A24C5A700093DA7 /* NSData+Hashes.m */; };
 		92FF2E371A24C5A700093DA7 /* NSMutableArray+CustomExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E191A24C5A700093DA7 /* NSMutableArray+CustomExtensions.m */; };
 		92FF2E381A24C5A700093DA7 /* NSString+CatrobatNSStringExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E1C1A24C5A700093DA7 /* NSString+CatrobatNSStringExtensions.m */; };
 		92FF2E391A24C5A700093DA7 /* LICENSE_NSString+FastImageSize in Resources */ = {isa = PBXBuildFile; fileRef = 92FF2E1E1A24C5A700093DA7 /* LICENSE_NSString+FastImageSize */; };
@@ -1516,6 +1517,7 @@
 		0C64E34E5347DA71ECB56DE6 /* pt */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Localizable.strings; sourceTree = "<group>"; };
 		113CDA22CF21176FFA49E694 /* sd */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = sd; path = sd.lproj/Localizable.strings; sourceTree = "<group>"; };
 		13B5EB79EDA9CF73908FF75C /* no */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = no; path = no.lproj/Localizable.strings; sourceTree = "<group>"; };
+		181DB737247DA62600B82B20 /* NSDataExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSDataExtension.swift; sourceTree = "<group>"; };
 		1822C1382471C7CB00F8F158 /* BrickCellListDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrickCellListDataTests.swift; sourceTree = "<group>"; };
 		1833ED912446572E0053BF7C /* HelpWebViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpWebViewControllerTests.swift; sourceTree = "<group>"; };
 		186212372475A1070098F4C5 /* SpriteKitDefines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteKitDefines.swift; sourceTree = "<group>"; };
@@ -1525,6 +1527,7 @@
 		187CECAA24314F1600C3EDCA /* SetLookBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetLookBrickTests.swift; sourceTree = "<group>"; };
 		187D11992472AAF100A09CE5 /* DataExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataExtensionTests.swift; sourceTree = "<group>"; };
 		18A9DBA82434C7F400F4C390 /* IfLogicBeginBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IfLogicBeginBrickTests.swift; sourceTree = "<group>"; };
+		18B5B528247E542A007D24A3 /* NSDataExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NSDataExtensionTests.swift; path = Extensions/NSDataExtensionTests.swift; sourceTree = "<group>"; };
 		18B8021E2469170400201847 /* BrickCellVariableDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrickCellVariableDataTests.swift; sourceTree = "<group>"; };
 		18EF8F4D5C0ED599CBA2B488 /* vi */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1B5E0F4EFA8B76CD707F0556 /* ur */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = ur; path = ur.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -2709,8 +2712,6 @@
 		92FF2E071A24C3BE00093DA7 /* UIDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIDefines.h; sourceTree = "<group>"; };
 		92FF2E0C1A24C5A700093DA7 /* CAGradientLayer+CatrobatCAGradientExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CAGradientLayer+CatrobatCAGradientExtensions.h"; sourceTree = "<group>"; };
 		92FF2E0D1A24C5A700093DA7 /* CAGradientLayer+CatrobatCAGradientExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CAGradientLayer+CatrobatCAGradientExtensions.m"; sourceTree = "<group>"; };
-		92FF2E121A24C5A700093DA7 /* NSData+Hashes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Hashes.h"; sourceTree = "<group>"; };
-		92FF2E131A24C5A700093DA7 /* NSData+Hashes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Hashes.m"; sourceTree = "<group>"; };
 		92FF2E181A24C5A700093DA7 /* NSMutableArray+CustomExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+CustomExtensions.h"; sourceTree = "<group>"; };
 		92FF2E191A24C5A700093DA7 /* NSMutableArray+CustomExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+CustomExtensions.m"; sourceTree = "<group>"; };
 		92FF2E1B1A24C5A700093DA7 /* NSString+CatrobatNSStringExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CatrobatNSStringExtensions.h"; sourceTree = "<group>"; };
@@ -6787,7 +6788,6 @@
 				92FF2E0E1A24C5A700093DA7 /* GDataXMLElement+CustomExtensions */,
 				4C6066371A5ACC3100F486CE /* GDataXMLNode+CustomExtensions */,
 				4C4B4CD523EE8A9F0054C861 /* Notification */,
-				92FF2E111A24C5A700093DA7 /* NSData+Hashes */,
 				92FF2E141A24C5A700093DA7 /* NSDate+Extension */,
 				92FF2E171A24C5A700093DA7 /* NSMutableArray+CustomExtension */,
 				92FF2E1A1A24C5A700093DA7 /* NSString+Extension */,
@@ -6798,6 +6798,7 @@
 				5E84B7A32341FC4E009982AA /* UITextField+Extension */,
 				5EFBD5FB2145AADC003B3CDC /* UIView+Extensions.swift */,
 				5E18A81121A547AA00541536 /* UIViewController+Extensions.swift */,
+				181DB737247DA62600B82B20 /* NSDataExtension.swift */,
 			);
 			name = Extensions;
 			path = "Extension&Delegate&Protocol/Extensions";
@@ -6820,15 +6821,6 @@
 			);
 			name = "GDataXMLElement+CustomExtensions";
 			path = GDataXMLNode;
-			sourceTree = "<group>";
-		};
-		92FF2E111A24C5A700093DA7 /* NSData+Hashes */ = {
-			isa = PBXGroup;
-			children = (
-				92FF2E121A24C5A700093DA7 /* NSData+Hashes.h */,
-				92FF2E131A24C5A700093DA7 /* NSData+Hashes.m */,
-			);
-			path = "NSData+Hashes";
 			sourceTree = "<group>";
 		};
 		92FF2E141A24C5A700093DA7 /* NSDate+Extension */ = {
@@ -8426,6 +8418,7 @@
 				4CFAD35C1CFAB3EC0019C636 /* CustomExtensionsTests.m */,
 				4CFAD35D1CFAB3EC0019C636 /* UIImageExtensionTests.swift */,
 				6F9CF132246F0B81008CED1C /* NSDateExtensionTests.swift */,
+				18B5B528247E542A007D24A3 /* NSDataExtensionTests.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -9425,6 +9418,7 @@
 				9E24D7092326ED6C00608203 /* SetYBrickTests.swift in Sources */,
 				4C6FE15C212D2D2E0067B7D5 /* FloorFunctionTest.swift in Sources */,
 				4C5AEEF322F6F22700280F8B /* MoveNStepsBrickCellTests.swift in Sources */,
+				18B5B529247E542A007D24A3 /* NSDataExtensionTests.swift in Sources */,
 				4CBF5F9C21AF1D200079C834 /* TouchManagerTests.swift in Sources */,
 				4C2732A91CE4F30F00CA61AC /* CBSpriteNodeTests.swift in Sources */,
 				4C6FE169212D2D2E0067B7D5 /* ExpFunctionTest.swift in Sources */,
@@ -9844,6 +9838,7 @@
 				AA74F0A41BC05FCE00D1E954 /* LoopEndBrickCell.m in Sources */,
 				921E84E81CC9F3E400F7EE9F /* TextInputViewController.m in Sources */,
 				921D467D1BDF61350086AD20 /* ComeToFrontBrick+Instruction.swift in Sources */,
+				181DB738247DA62600B82B20 /* NSDataExtension.swift in Sources */,
 				9218B20F1CC4AB75007B4C60 /* MirrorRotationZoomTool.m in Sources */,
 				AA74EEF91BC057C900D1E954 /* ChangeTransparencyByNBrick+CBXMLHandler.m in Sources */,
 				9E78D88722A9AFB400948AC3 /* AudioSubtree.swift in Sources */,
@@ -9891,7 +9886,6 @@
 				AA74EFF11BC05B5F00D1E954 /* ChangeBrightnessByNBrick.m in Sources */,
 				4C48ED2520EF9A1D00784CD5 /* AudioManagerProtocol.swift in Sources */,
 				AA74F0B71BC05FCE00D1E954 /* ChangeYByNBrickCell.m in Sources */,
-				92FF2E351A24C5A700093DA7 /* NSData+Hashes.m in Sources */,
 				921EE9B61BA8045A00834711 /* JNKeychain.m in Sources */,
 				AA74F0991BC05FCE00D1E954 /* BrickCellVariableData.m in Sources */,
 				9218B20A1CC4AB75007B4C60 /* UIViewController+KNSemiModal.m in Sources */,

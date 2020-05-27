@@ -20,15 +20,9 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
-
-@interface NSData (Hashes)
-
-- (NSString*)md5;
-- (NSString*)sha1;
-- (NSString*)sha224;
-- (NSString*)sha256;
-- (NSString*)sha384;
-- (NSString*)sha512;
-
-@end
+@objc extension NSData {
+    func md5() -> String {
+        let data = Data(self)
+        return data.md5()
+    }
+}
