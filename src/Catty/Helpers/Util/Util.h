@@ -49,49 +49,49 @@ if (__functor) __functor(__VA_ARGS__);  \
 + (BOOL)activateTestMode:(BOOL)activate;
 //#endif
 
-+ (NSString*)applicationDocumentsDirectory;
++ (NSString* _Nullable)applicationDocumentsDirectory;
 
-+ (UIViewController *)topViewControllerInViewController:(UIViewController *)viewController;
++ (UIViewController* _Nullable)topViewControllerInViewController:(UIViewController* _Nullable)viewController;
 
-+ (UIViewController *)topmostViewController;
++ (UIViewController* _Nonnull)topmostViewController;
 
-+ (void)alertWithText:(NSString*)text;
++ (void)alertWithText:(NSString* _Nullable)text;
 
-+ (void)alertWithTitle:(NSString*)title andText:(NSString*)text;
++ (void)alertWithTitle:(NSString* _Nullable)title andText:(NSString* _Nullable)text;
 
-+ (void)askUserForVariableNameAndPerformAction:(SEL)action
-                                        target:(id)target
-                                   promptTitle:(NSString*)title
-                                 promptMessage:(NSString*)message
++ (void)askUserForVariableNameAndPerformAction:(SEL _Nullable)action
+                                        target:(id _Nullable)target
+                                   promptTitle:(NSString* _Nullable)title
+                                 promptMessage:(NSString* _Nullable)message
                                 minInputLength:(NSUInteger)minInputLength
                                 maxInputLength:(NSUInteger)maxInputLength
                                         isList:(BOOL)isList
-                                  andTextField:(FormulaEditorTextView *)textView
-                                   initialText:(NSString*)initialText;
+                                  andTextField:(FormulaEditorTextView* _Nullable)textView
+                                   initialText:(NSString* _Nullable)initialText;
 
-+ (NSString*)appName;
++ (NSString* _Nullable)appName;
 
-+ (NSString*)appVersion;
++ (NSString* _Nullable)appVersion;
 
-+ (NSString*)appBuildName;
++ (NSString* _Nullable)appBuildName;
 
-+ (NSString*)appBuildVersion;
++ (NSString* _Nullable)appBuildVersion;
 
-+ (NSString*)catrobatLanguageVersion;
++ (NSString* _Nonnull)catrobatLanguageVersion;
 
-+ (NSString*)catrobatMediaLicense;
++ (NSString* _Nullable)catrobatMediaLicense;
 
-+ (NSString*)catrobatProgramLicense;
++ (NSString* _Nullable)catrobatProgramLicense;
 
-+ (NSString*)deviceName;
++ (NSString* _Nullable)deviceName;
 
-+ (NSString*)platformName;
++ (NSString* _Nullable)platformName;
 
 + (NSOperatingSystemVersion)platformVersion;
 
-+ (NSString*)platformVersionWithPatch;
++ (NSString* _Nonnull)platformVersionWithPatch;
 
-+ (NSString*)platformVersionWithoutPatch;
++ (NSString* _Nonnull)platformVersionWithoutPatch;
 
 /* Returns the screen size in pixel or points */
 + (CGSize)screenSize:(BOOL)inPixel;
@@ -110,103 +110,103 @@ if (__functor) __functor(__VA_ARGS__);  \
 
 + (CGFloat)statusBarHeight;
 
-+ (CATransition*)getPushCATransition;
++ (CATransition* _Nonnull)getPushCATransition;
 
-+ (ProjectLoadingInfo*)lastUsedProjectLoadingInfo;
++ (ProjectLoadingInfo* _Nonnull)lastUsedProjectLoadingInfo;
 
-+ (void)setLastProjectWithName:(NSString*)projectName projectID:(NSString*)projectID;
++ (void)setLastProjectWithName:(NSString* _Nullable)projectName projectID:(NSString* _Nullable)projectID;
 
-+ (InputValidationResult*)validationResultWithName:(NSString *)name minLength:(NSUInteger)minLength maxlength:(NSUInteger)maxLength;
++ (InputValidationResult* _Nullable)validationResultWithName:(NSString* _Nullable)name minLength:(NSUInteger)minLength maxlength:(NSUInteger)maxLength;
 
-+ (void)askUserForUniqueNameAndPerformAction:(SEL)action
-                                      target:(id)target
-                                 promptTitle:(NSString*)title
-                               promptMessage:(NSString*)message
-                                 promptValue:(NSString*)value
-                           promptPlaceholder:(NSString*)placeholder
++ (void)askUserForUniqueNameAndPerformAction:(SEL _Nullable)action
+                                      target:(id _Nullable)target
+                                 promptTitle:(NSString* _Nullable)title
+                               promptMessage:(NSString* _Nullable)message
+                                 promptValue:(NSString* _Nullable)value
+                           promptPlaceholder:(NSString* _Nullable)placeholder
                               minInputLength:(NSUInteger)minInputLength
                               maxInputLength:(NSUInteger)maxInputLength
-                    invalidInputAlertMessage:(NSString*)invalidInputAlertMessage
-                               existingNames:(NSArray*)existingNames;
+                    invalidInputAlertMessage:(NSString* _Nullable)invalidInputAlertMessage
+                               existingNames:(NSArray* _Nullable)existingNames;
 
-+ (void)askUserForUniqueNameAndPerformAction:(SEL)action
-                                      target:(id)target
-                                cancelAction:(SEL)cancelAction
-                                  withObject:(id)passingObject
-                                 promptTitle:(NSString*)title
-                               promptMessage:(NSString*)message
-                                 promptValue:(NSString*)value
-                           promptPlaceholder:(NSString*)placeholder
++ (void)askUserForUniqueNameAndPerformAction:(SEL _Nullable)action
+                                      target:(id _Nullable)target
+                                cancelAction:(SEL _Nullable)cancelAction
+                                  withObject:(id _Nullable)passingObject
+                                 promptTitle:(NSString* _Nullable)title
+                               promptMessage:(NSString* _Nullable)message
+                                 promptValue:(NSString* _Nullable)value
+                           promptPlaceholder:(NSString* _Nullable)placeholder
                               minInputLength:(NSUInteger)minInputLength
                               maxInputLength:(NSUInteger)maxInputLength
-                    invalidInputAlertMessage:(NSString*)invalidInputAlertMessage
-                               existingNames:(NSArray*)existingNames;
+                    invalidInputAlertMessage:(NSString* _Nullable)invalidInputAlertMessage
+                               existingNames:(NSArray* _Nullable)existingNames;
 
-+ (void)askUserForTextAndPerformAction:(SEL)action
-                                target:(id)target
-                          cancelAction:(SEL)cancelAction
-                            withObject:(id)passingObject
-                           promptTitle:(NSString*)title
-                         promptMessage:(NSString*)message
-                           promptValue:(NSString*)value
-                     promptPlaceholder:(NSString*)placeholder
++ (void)askUserForTextAndPerformAction:(SEL _Nullable)action
+                                target:(id _Nullable)target
+                          cancelAction:(SEL _Nullable)cancelAction
+                            withObject:(id _Nullable)passingObject
+                           promptTitle:(NSString* _Nullable)title
+                         promptMessage:(NSString* _Nullable)message
+                           promptValue:(NSString* _Nullable)value
+                     promptPlaceholder:(NSString* _Nullable)placeholder
                         minInputLength:(NSUInteger)minInputLength
                         maxInputLength:(NSUInteger)maxInputLength
-              invalidInputAlertMessage:(NSString*)invalidInputAlertMessage;
+              invalidInputAlertMessage:(NSString* _Nullable)invalidInputAlertMessage;
 
-+ (NSString*)uniqueName:(NSString*)nameToCheck existingNames:(NSArray*)existingNames;
++ (NSString* _Nullable)uniqueName:(NSString* _Nullable)nameToCheck existingNames:(NSArray* _Nullable)existingNames;
 
-+ (void)showNotificationWithMessage:(NSString*)message;
++ (void)showNotificationWithMessage:(NSString* _Nullable)message;
 
 + (void)showNotificationForSaveAction;
 
-+ (CGFloat)detectCBLanguageVersionFromXMLWithPath:(NSString*)xmlPath;
++ (CGFloat)detectCBLanguageVersionFromXMLWithPath:(NSString* _Nullable)xmlPath;
 
 + (double)radiansToDegree:(double)rad;
 
 + (double)degreeToRadians:(double)deg;
 
-+ (NSDictionary*)propertiesOfInstance:(id)instance;
++ (NSDictionary* _Nullable)propertiesOfInstance:(id _Nullable)instance;
 
-+ (BOOL)isEqual:(id)object toObject:(id)objectToCompare;
++ (BOOL)isEqual:(id _Nullable)object toObject:(id _Nullable)objectToCompare;
 
-+ (SpriteObject*)objectWithName:(NSString*)objectName forProject:(Project*)project;
++ (SpriteObject* _Nullable)objectWithName:(NSString* _Nullable)objectName forProject:(Project* _Nullable)project;
 
-+ (Sound*)soundWithName:(NSString*)objectName forObject:(SpriteObject*)object;
++ (Sound* _Nullable)soundWithName:(NSString* _Nullable)objectName forObject:(SpriteObject* _Nullable)object;
 
-+ (Look*)lookWithName:(NSString*)objectName forObject:(SpriteObject*)object;
++ (Look* _Nullable)lookWithName:(NSString* _Nullable)objectName forObject:(SpriteObject* _Nullable)object;
 
-+ (NSArray*)allMessagesForProject:(Project*)project;
++ (NSArray* _Nullable)allMessagesForProject:(Project* _Nullable)project;
 
-+ (BOOL)isNetworkError:(NSError*)error;
++ (BOOL)isNetworkError:(NSError* _Nullable)error;
 
 + (void)defaultAlertForNetworkError;
 
 + (void)defaultAlertForUnknownError;
 
-+ (NSDictionary*)getBrickInsertionDictionaryFromUserDefaults;
++ (NSDictionary* _Nullable)getBrickInsertionDictionaryFromUserDefaults;
 
-+ (void)setBrickInsertionDictionaryToUserDefaults:(NSDictionary*) statistics;
++ (void)setBrickInsertionDictionaryToUserDefaults:(NSDictionary* _Nullable) statistics;
 
-+ (void)incrementStatisticCountForBrick:(id<BrickProtocol>)brick;
++ (void)incrementStatisticCountForBrick:(id<BrickProtocol> _Nullable)brick;
 
 + (void)printBrickStatistics;
 
 + (void)printSubsetOfTheMost:(NSUInteger)N;
 
-+ (NSArray*)getSubsetOfTheMost:(NSUInteger)N usedBricksInDictionary:(NSDictionary*) brickCountDictionary;
++ (NSArray* _Nullable)getSubsetOfTheMost:(NSUInteger)N usedBricksInDictionary:(NSDictionary* _Nullable) brickCountDictionary;
 
-+ (NSArray*)getSubsetOfTheMostFavoriteChosenBricks:(NSUInteger) amount;
++ (NSArray* _Nullable)getSubsetOfTheMostFavoriteChosenBricks:(NSUInteger) amount;
 
 + (void)resetBrickStatistics;
 
-+ (NSDictionary*)defaultBrickStatisticDictionary;
++ (NSDictionary* _Nullable)defaultBrickStatisticDictionary;
 
-+ (NSString*)replaceBlockedCharactersForString:(NSString*)string;
++ (NSString* _Nullable)replaceBlockedCharactersForString:(NSString* _Nullable)string;
 
-+ (NSString*)enableBlockedCharactersForString:(NSString*)string;
++ (NSString* _Nullable)enableBlockedCharactersForString:(NSString* _Nullable)string;
 
-+ (void)openUrlExternal:(NSURL*)url;
++ (void)openUrlExternal:(NSURL* _Nullable)url;
 
 + (void)setNetworkActivityIndicator:(BOOL)enabled;
 
@@ -216,6 +216,6 @@ if (__functor) __functor(__VA_ARGS__);  \
 
 + (BOOL)isPhone;
 
-+ (NSString*_Nonnull)defaultSceneNameForSceneNumber:(NSUInteger)sceneNumber;
++ (NSString* _Nonnull)defaultSceneNameForSceneNumber:(NSUInteger)sceneNumber;
 
 @end
