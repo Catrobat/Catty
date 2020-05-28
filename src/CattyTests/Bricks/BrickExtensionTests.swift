@@ -24,23 +24,23 @@ import XCTest
 
 @testable import Pocket_Code
 
-final class BrickUserDataTests: XCTestCase {
+final class BrickExtensionTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
     }
 
-    func testUserVariableNoList() {
+    func testIsVariableUsed() {
         let userVariable = UserVariable(name: "testName")
         userVariable.value = "testValue"
 
         let brick = SetVariableBrick()
         brick.setVariable(userVariable, forLineNumber: 1, andParameterNumber: 1)
 
-        XCTAssertTrue(brick.isVarOrListBeingUsed(userVariable))
+        XCTAssertTrue(brick.isVariableUsed(variable: userVariable))
     }
 
-    func testUserVariableList() {
+    func testIsListUsed() {
         let variablesContainer = VariablesContainer()
         let userList = UserVariable(name: "testName", isList: true)
 
@@ -51,10 +51,16 @@ final class BrickUserDataTests: XCTestCase {
         let brick = SetVariableBrick()
         brick.setVariable(userList, forLineNumber: 1, andParameterNumber: 1)
 
-        XCTAssertTrue(brick.isVarOrListBeingUsed(userList))
+        let formulaElement = FormulaElement()
+        formulaElement.value = userList.name
+        formulaElement.type = ElementType.USER_LIST
+
+        brick.setFormula(Formula(formulaElement: formulaElement), forLineNumber: 0, andParameterNumber: 1)
+
+        XCTAssertTrue(brick.isListUsed(list: userList))
     }
 
-    func testUserVariableListUsedReplaceItemInUserListBrick() {
+    func testIsListUsedWithReplaceItemInUserListBrick() {
         let variablesContainer = VariablesContainer()
         let userList = UserVariable(name: "testName", isList: true)
 
@@ -65,10 +71,10 @@ final class BrickUserDataTests: XCTestCase {
         let brick = ReplaceItemInUserListBrick()
         brick.setList(userList, forLineNumber: 1, andParameterNumber: 1)
 
-        XCTAssertTrue(brick.isVarOrListBeingUsed(userList))
+        XCTAssertTrue(brick.isListUsed(list: userList))
     }
 
-    func testUserVariableListNotUsedReplaceItemInUserListBrick() {
+    func testIsListUsedWithReplaceItemInUserListBrickForMultipleUserList() {
         let variablesContainer = VariablesContainer()
         let userList = UserVariable(name: "testName1", isList: true)
         let userList2 = UserVariable(name: "testName2", isList: true)
@@ -79,14 +85,14 @@ final class BrickUserDataTests: XCTestCase {
 
         let brick = ReplaceItemInUserListBrick()
         brick.setList(userList, forLineNumber: 1, andParameterNumber: 1)
-        brick.setFormula(Formula(), forLineNumber: 2, andParameterNumber: 0)
-        brick.setFormula(Formula(), forLineNumber: 2, andParameterNumber: 1)
+        brick.setFormula(Formula(double: 50.50), forLineNumber: 2, andParameterNumber: 0)
+        brick.setFormula(Formula(double: 50.50), forLineNumber: 2, andParameterNumber: 1)
 
-        XCTAssertTrue(brick.isVarOrListBeingUsed(userList))
-        XCTAssertFalse(brick.isVarOrListBeingUsed(userList2))
+        XCTAssertTrue(brick.isListUsed(list: userList))
+        XCTAssertFalse(brick.isListUsed(list: userList2))
     }
 
-    func testUserVariableListUsedMultipleBrick() {
+    func testIsListUsedWithMultipleBrick() {
         let variablesContainer = VariablesContainer()
         let userList = UserVariable(name: "testName", isList: true)
 
@@ -98,27 +104,27 @@ final class BrickUserDataTests: XCTestCase {
         let addBrick = AddItemToUserListBrick()
         let deleteBrick = DeleteItemOfUserListBrick()
 
-        insertBrick.setFormula(Formula(), forLineNumber: 1, andParameterNumber: 2)
-        addBrick.setFormula(Formula(), forLineNumber: 1, andParameterNumber: 2)
-        deleteBrick.setFormula(Formula(), forLineNumber: 1, andParameterNumber: 2)
+        insertBrick.setFormula(Formula(double: 50.50), forLineNumber: 1, andParameterNumber: 2)
+        addBrick.setFormula(Formula(double: 50.50), forLineNumber: 1, andParameterNumber: 2)
+        deleteBrick.setFormula(Formula(double: 50.50), forLineNumber: 1, andParameterNumber: 2)
 
         insertBrick.setList(userList, forLineNumber: 1, andParameterNumber: 1)
-        XCTAssertTrue(insertBrick.isVarOrListBeingUsed(userList))
-        XCTAssertFalse(addBrick.isVarOrListBeingUsed(userList))
-        XCTAssertFalse(deleteBrick.isVarOrListBeingUsed(userList))
+        XCTAssertTrue(insertBrick.isListUsed(list: userList))
+        XCTAssertFalse(addBrick.isListUsed(list: userList))
+        XCTAssertFalse(deleteBrick.isListUsed(list: userList))
 
         addBrick.setList(userList, forLineNumber: 1, andParameterNumber: 1)
-        XCTAssertTrue(insertBrick.isVarOrListBeingUsed(userList))
-        XCTAssertTrue(addBrick.isVarOrListBeingUsed(userList))
-        XCTAssertFalse(deleteBrick.isVarOrListBeingUsed(userList))
+        XCTAssertTrue(insertBrick.isListUsed(list: userList))
+        XCTAssertTrue(addBrick.isListUsed(list: userList))
+        XCTAssertFalse(deleteBrick.isListUsed(list: userList))
 
         deleteBrick.setList(userList, forLineNumber: 1, andParameterNumber: 1)
-        XCTAssertTrue(insertBrick.isVarOrListBeingUsed(userList))
-        XCTAssertTrue(addBrick.isVarOrListBeingUsed(userList))
-        XCTAssertTrue(deleteBrick.isVarOrListBeingUsed(userList))
+        XCTAssertTrue(insertBrick.isListUsed(list: userList))
+        XCTAssertTrue(addBrick.isListUsed(list: userList))
+        XCTAssertTrue(deleteBrick.isListUsed(list: userList))
     }
 
-    func testUserVariableNoListUsedMultipleVariableBrick() {
+    func testIsVariableUsedWithMultipleVariableBrick() {
         let userVariable = UserVariable(name: "testName")
         userVariable.value = "testValue"
 
@@ -126,28 +132,28 @@ final class BrickUserDataTests: XCTestCase {
         let hideTextBrick = HideTextBrick()
         let showTextBrick = ShowTextBrick()
 
-        changeVariableBrick.setFormula(Formula(), forLineNumber: 1, andParameterNumber: 0)
-        changeVariableBrick.setFormula(Formula(), forLineNumber: 1, andParameterNumber: 1)
-        showTextBrick.setFormula(Formula(), forLineNumber: 1, andParameterNumber: 0)
-        showTextBrick.setFormula(Formula(), forLineNumber: 1, andParameterNumber: 1)
+        changeVariableBrick.setFormula(Formula(double: 50.50), forLineNumber: 1, andParameterNumber: 0)
+        changeVariableBrick.setFormula(Formula(double: 50.50), forLineNumber: 1, andParameterNumber: 1)
+        showTextBrick.setFormula(Formula(double: 50.50), forLineNumber: 1, andParameterNumber: 0)
+        showTextBrick.setFormula(Formula(double: 50.50), forLineNumber: 1, andParameterNumber: 1)
 
         changeVariableBrick.setVariable(userVariable, forLineNumber: 1, andParameterNumber: 1)
-        XCTAssertTrue(changeVariableBrick.isVarOrListBeingUsed(userVariable))
-        XCTAssertFalse(hideTextBrick.isVarOrListBeingUsed(userVariable))
-        XCTAssertFalse(showTextBrick.isVarOrListBeingUsed(userVariable))
+        XCTAssertTrue(changeVariableBrick.isVariableUsed(variable: userVariable))
+        XCTAssertFalse(hideTextBrick.isVariableUsed(variable: userVariable))
+        XCTAssertFalse(showTextBrick.isVariableUsed(variable: userVariable))
 
         hideTextBrick.setVariable(userVariable, forLineNumber: 1, andParameterNumber: 1)
-        XCTAssertTrue(changeVariableBrick.isVarOrListBeingUsed(userVariable))
-        XCTAssertTrue(hideTextBrick.isVarOrListBeingUsed(userVariable))
-        XCTAssertFalse(showTextBrick.isVarOrListBeingUsed(userVariable))
+        XCTAssertTrue(changeVariableBrick.isVariableUsed(variable: userVariable))
+        XCTAssertTrue(hideTextBrick.isVariableUsed(variable: userVariable))
+        XCTAssertFalse(showTextBrick.isVariableUsed(variable: userVariable))
 
         showTextBrick.setVariable(userVariable, forLineNumber: 1, andParameterNumber: 1)
-        XCTAssertTrue(changeVariableBrick.isVarOrListBeingUsed(userVariable))
-        XCTAssertTrue(hideTextBrick.isVarOrListBeingUsed(userVariable))
-        XCTAssertTrue(showTextBrick.isVarOrListBeingUsed(userVariable))
+        XCTAssertTrue(changeVariableBrick.isVariableUsed(variable: userVariable))
+        XCTAssertTrue(hideTextBrick.isVariableUsed(variable: userVariable))
+        XCTAssertTrue(showTextBrick.isVariableUsed(variable: userVariable))
     }
 
-    func testUserVariableNoListForBrickWithMultipleFormula() {
+    func testIsVariableUsedForBrickWithMultipleFormula() {
         let userVariable = UserVariable(name: "testName", isList: false)
         let uservariableB = UserVariable(name: "testNameB", isList: false)
 
@@ -157,13 +163,13 @@ final class BrickUserDataTests: XCTestCase {
         brick.setFormula(Formula(string: "TestFormula"), forLineNumber: 2, andParameterNumber: 1)
         brick.setFormula(Formula(integer: 100), forLineNumber: 2, andParameterNumber: 1)
 
-        XCTAssertFalse(brick.isVarOrListBeingUsed(userVariable))
-        XCTAssertFalse(brick.isVarOrListBeingUsed(uservariableB))
+        XCTAssertFalse(brick.isVariableUsed(variable: userVariable))
+        XCTAssertFalse(brick.isVariableUsed(variable: uservariableB))
 
         brick.setVariable(userVariable, forLineNumber: 1, andParameterNumber: 1)
 
-        XCTAssertTrue(brick.isVarOrListBeingUsed(userVariable))
-        XCTAssertFalse(brick.isVarOrListBeingUsed(uservariableB))
+        XCTAssertTrue(brick.isVariableUsed(variable: userVariable))
+        XCTAssertFalse(brick.isVariableUsed(variable: uservariableB))
 
         let formulaElement = FormulaElement()
         formulaElement.value = uservariableB.name
@@ -171,11 +177,11 @@ final class BrickUserDataTests: XCTestCase {
 
         brick.setFormula(Formula(formulaElement: formulaElement), forLineNumber: 1, andParameterNumber: 1)
 
-        XCTAssertTrue(brick.isVarOrListBeingUsed(userVariable))
-        XCTAssertTrue(brick.isVarOrListBeingUsed(uservariableB))
+        XCTAssertTrue(brick.isVariableUsed(variable: userVariable))
+        XCTAssertTrue(brick.isVariableUsed(variable: uservariableB))
     }
 
-    func testUserVariableNoListUseOnlyFormulaBrick() {
+    func testIsVariableUsedWithOnlyFormulaBrick() {
         let userVariable = UserVariable(name: "testName", isList: false)
 
         let brick = ArduinoSendDigitalValueBrick()
@@ -187,14 +193,27 @@ final class BrickUserDataTests: XCTestCase {
         brick.setFormula(Formula(formulaElement: formulaElement), forLineNumber: 0, andParameterNumber: 1)
         brick.setFormula(Formula(formulaElement: formulaElement), forLineNumber: 1, andParameterNumber: 1)
 
-        XCTAssertTrue(brick.isVarOrListBeingUsed(userVariable))
+        XCTAssertTrue(brick.isVariableUsed(variable: userVariable))
+
+        formulaElement.type = ElementType.USER_LIST
+
+        brick.setFormula(Formula(formulaElement: formulaElement), forLineNumber: 0, andParameterNumber: 1)
+        brick.setFormula(Formula(formulaElement: formulaElement), forLineNumber: 1, andParameterNumber: 1)
+
+        XCTAssertTrue(brick.isListUsed(list: userVariable))
     }
 
-    func testUserVariableNoListUseNitherVaribleListOrFormulaBrick() {
+    func testIsVariableUsedWithNitherVaribleOrFormulaBrick() {
         let userVariable = UserVariable(name: "testName", isList: false)
 
         let brick = IfLogicEndBrick()
+        XCTAssertFalse(brick.isVariableUsed(variable: userVariable))
+    }
 
-        XCTAssertFalse(brick.isVarOrListBeingUsed(userVariable))
+    func testIsListUsedWithNitherListOrFormulaBrick() {
+        let userList = UserVariable(name: "testName", isList: true)
+
+        let brick = IfLogicEndBrick()
+        XCTAssertFalse(brick.isListUsed(list: userList))
     }
 }
