@@ -130,10 +130,12 @@ final class SceneTests: XCTestCase {
 
         let spriteNode1 = CBSpriteNodeMock(spriteObject: SpriteObject())
         spriteNode1.name = "testObject1"
+        spriteNode1.scene = scene
         scene.scheduler.registerSpriteNode(spriteNode1)
 
         let spriteNode2 = CBSpriteNodeMock(spriteObject: SpriteObject())
         spriteNode2.name = "testObject2"
+        spriteNode2.scene = scene
         scene.scheduler.registerSpriteNode(spriteNode2)
 
         XCTAssertEqual(spriteNode1.updateMethodCallCount, 0)

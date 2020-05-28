@@ -68,6 +68,7 @@ class CBSpriteNode: SKSpriteNode {
     }
 
     @objc func update(_ currentTime: TimeInterval) {
+        self.drawPenLine()
     }
 
     // MARK: - Operations
@@ -209,6 +210,8 @@ class CBSpriteNode: SKSpriteNode {
 
     // MARK: Events
     @objc func start(_ zPosition: CGFloat) {
+        self.penConfiguration.previousPosition = self.position
+
         self.catrobatPositionX = PositionXSensor.defaultRawValue
         self.catrobatPositionY = PositionYSensor.defaultRawValue
 

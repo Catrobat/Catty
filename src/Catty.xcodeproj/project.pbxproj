@@ -10,15 +10,19 @@
 		181DB738247DA62600B82B20 /* NSDataExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181DB737247DA62600B82B20 /* NSDataExtension.swift */; };
 		1822C1392471C7CB00F8F158 /* BrickCellListDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1822C1382471C7CB00F8F158 /* BrickCellListDataTests.swift */; };
 		1833ED942446572F0053BF7C /* HelpWebViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1833ED912446572E0053BF7C /* HelpWebViewControllerTests.swift */; };
+		18385C68247C0EB30050819A /* LineShapeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18385C67247C0EB30050819A /* LineShapeNode.swift */; };
 		186212382475A1070098F4C5 /* SpriteKitDefines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186212372475A1070098F4C5 /* SpriteKitDefines.swift */; };
 		186212462475C9140098F4C5 /* PenConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186212452475C9140098F4C5 /* PenConfiguration.swift */; };
+		186FBE65247C29AD00AE3F17 /* LineShapeNodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186FBE64247C29AD00AE3F17 /* LineShapeNodeTests.swift */; };
 		1875C5BA2457190000F3F276 /* UserVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1875C5B92457190000F3F276 /* UserVariable.swift */; };
 		187A3F202434BC4300EF1B02 /* PlaySoundAndWaitBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187A3F1F2434BC4300EF1B02 /* PlaySoundAndWaitBrickTests.swift */; };
 		187CECAB24314F1600C3EDCA /* SetLookBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187CECAA24314F1600C3EDCA /* SetLookBrickTests.swift */; };
 		187D119C2472AAF200A09CE5 /* DataExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187D11992472AAF100A09CE5 /* DataExtensionTests.swift */; };
+		189B8A0F24784A03009BC735 /* SceneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189B8A0E24784A03009BC735 /* SceneTests.swift */; };
 		18A9DBA92434C7F400F4C390 /* IfLogicBeginBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A9DBA82434C7F400F4C390 /* IfLogicBeginBrickTests.swift */; };
 		18B5B529247E542A007D24A3 /* NSDataExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B5B528247E542A007D24A3 /* NSDataExtensionTests.swift */; };
 		18B8021F2469170400201847 /* BrickCellVariableDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B8021E2469170400201847 /* BrickCellVariableDataTests.swift */; };
+		18DAFC5A247BD1700082C62A /* CBSpriteNodePenExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DAFC59247BD1700082C62A /* CBSpriteNodePenExtension.swift */; };
 		224D5C582423AEF900CD6302 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224D5C512420C8B400CD6302 /* SettingsTableViewController.swift */; };
 		22524C38239FAFC500DD515E /* LoginViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22524C37239FAFC500DD515E /* LoginViewControllerTests.swift */; };
 		22524C3D23A2533F00DD515E /* LoginViewControllerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22524C3C23A2533F00DD515E /* LoginViewControllerMock.swift */; };
@@ -1112,7 +1116,7 @@
 		9E929E3B239D7966002D8F96 /* kontrabass_jazz.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9E929E3A239D7965002D8F96 /* kontrabass_jazz.mp3 */; };
 		9E929E3D239D7E2B002D8F96 /* PlaySoundAndWaitBrickContinueWhenFinished.xml in Resources */ = {isa = PBXBuildFile; fileRef = 9E929E3C239D7E2A002D8F96 /* PlaySoundAndWaitBrickContinueWhenFinished.xml */; };
 		9E929E3F239D7EFB002D8F96 /* PlaySoundAndWaitBrickContinueWhenInterrupted.xml in Resources */ = {isa = PBXBuildFile; fileRef = 9E929E3E239D7EFB002D8F96 /* PlaySoundAndWaitBrickContinueWhenInterrupted.xml */; };
-		9EA3FD812327089900551B6C /* SceneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA3FD802327089900551B6C /* SceneTests.swift */; };
+		9EA3FD812327089900551B6C /* CBSpriteNodePenExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA3FD802327089900551B6C /* CBSpriteNodePenExtensionTests.swift */; };
 		9EA6DCB02329A9E1007E837A /* MoveNStepsBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA6DCAF2329A9E1007E837A /* MoveNStepsBrickTests.swift */; };
 		9EAE57E823A19B0400E76229 /* PlaySoundAndWaitBrickSoundNotInterruptedByDifferentSound.xml in Resources */ = {isa = PBXBuildFile; fileRef = 9EAE57E523A19B0400E76229 /* PlaySoundAndWaitBrickSoundNotInterruptedByDifferentSound.xml */; };
 		9EBAC31122A9B91C002E198D /* AudioKit.license in Resources */ = {isa = PBXBuildFile; fileRef = 9EBAC30E22A9B91B002E198D /* AudioKit.license */; };
@@ -1522,15 +1526,19 @@
 		181DB737247DA62600B82B20 /* NSDataExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSDataExtension.swift; sourceTree = "<group>"; };
 		1822C1382471C7CB00F8F158 /* BrickCellListDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrickCellListDataTests.swift; sourceTree = "<group>"; };
 		1833ED912446572E0053BF7C /* HelpWebViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpWebViewControllerTests.swift; sourceTree = "<group>"; };
+		18385C67247C0EB30050819A /* LineShapeNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LineShapeNode.swift; path = PlayerEngine/DataModel/LineShapeNode.swift; sourceTree = "<group>"; };
 		186212372475A1070098F4C5 /* SpriteKitDefines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteKitDefines.swift; sourceTree = "<group>"; };
 		186212452475C9140098F4C5 /* PenConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PenConfiguration.swift; sourceTree = "<group>"; };
+		186FBE64247C29AD00AE3F17 /* LineShapeNodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LineShapeNodeTests.swift; path = Scene/LineShapeNodeTests.swift; sourceTree = "<group>"; };
 		1875C5B92457190000F3F276 /* UserVariable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserVariable.swift; sourceTree = "<group>"; };
 		187A3F1F2434BC4300EF1B02 /* PlaySoundAndWaitBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaySoundAndWaitBrickTests.swift; sourceTree = "<group>"; };
 		187CECAA24314F1600C3EDCA /* SetLookBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetLookBrickTests.swift; sourceTree = "<group>"; };
 		187D11992472AAF100A09CE5 /* DataExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataExtensionTests.swift; sourceTree = "<group>"; };
+		189B8A0E24784A03009BC735 /* SceneTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SceneTests.swift; path = Scene/SceneTests.swift; sourceTree = "<group>"; };
 		18A9DBA82434C7F400F4C390 /* IfLogicBeginBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IfLogicBeginBrickTests.swift; sourceTree = "<group>"; };
 		18B5B528247E542A007D24A3 /* NSDataExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NSDataExtensionTests.swift; path = Extensions/NSDataExtensionTests.swift; sourceTree = "<group>"; };
 		18B8021E2469170400201847 /* BrickCellVariableDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrickCellVariableDataTests.swift; sourceTree = "<group>"; };
+		18DAFC59247BD1700082C62A /* CBSpriteNodePenExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBSpriteNodePenExtension.swift; sourceTree = "<group>"; };
 		18EF8F4D5C0ED599CBA2B488 /* vi */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1B5E0F4EFA8B76CD707F0556 /* ur */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = ur; path = ur.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1C035A070A526C061039C146 /* ha */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = ha; path = ha.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -2936,7 +2944,7 @@
 		9E929E3A239D7965002D8F96 /* kontrabass_jazz.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = kontrabass_jazz.mp3; sourceTree = "<group>"; };
 		9E929E3C239D7E2A002D8F96 /* PlaySoundAndWaitBrickContinueWhenFinished.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PlaySoundAndWaitBrickContinueWhenFinished.xml; sourceTree = "<group>"; };
 		9E929E3E239D7EFB002D8F96 /* PlaySoundAndWaitBrickContinueWhenInterrupted.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PlaySoundAndWaitBrickContinueWhenInterrupted.xml; sourceTree = "<group>"; };
-		9EA3FD802327089900551B6C /* SceneTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneTests.swift; sourceTree = "<group>"; };
+		9EA3FD802327089900551B6C /* CBSpriteNodePenExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CBSpriteNodePenExtensionTests.swift; path = Scene/CBSpriteNodePenExtensionTests.swift; sourceTree = "<group>"; };
 		9EA6DCAF2329A9E1007E837A /* MoveNStepsBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveNStepsBrickTests.swift; sourceTree = "<group>"; };
 		9EAE57E523A19B0400E76229 /* PlaySoundAndWaitBrickSoundNotInterruptedByDifferentSound.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PlaySoundAndWaitBrickSoundNotInterruptedByDifferentSound.xml; sourceTree = "<group>"; };
 		9EBAC30E22A9B91B002E198D /* AudioKit.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AudioKit.license; sourceTree = "<group>"; };
@@ -3531,6 +3539,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		18385C66247C0E910050819A /* LineShapeNode */ = {
+			isa = PBXGroup;
+			children = (
+				18385C67247C0EB30050819A /* LineShapeNode.swift */,
+			);
+			name = LineShapeNode;
+			sourceTree = "<group>";
+		};
 		186212422475C8F90098F4C5 /* Configuration */ = {
 			isa = PBXGroup;
 			children = (
@@ -3546,6 +3562,14 @@
 				1822C1382471C7CB00F8F158 /* BrickCellListDataTests.swift */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		18DAFC56247BD1400082C62A /* SpriteNode */ = {
+			isa = PBXGroup;
+			children = (
+				18DAFC59247BD1700082C62A /* CBSpriteNodePenExtension.swift */,
+			);
+			path = SpriteNode;
 			sourceTree = "<group>";
 		};
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
@@ -6800,6 +6824,7 @@
 		92FF2E081A24C5A700093DA7 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				18DAFC56247BD1400082C62A /* SpriteNode */,
 				6FAAD43724740B1D00FF2A34 /* FormulaElementExtension.swift */,
 				5EA1089021B8FBB800B837B9 /* Audio */,
 				92FF2E0B1A24C5A700093DA7 /* CAGradient+Extension */,
@@ -8391,8 +8416,10 @@
 		B496F5131775996D004BF78A /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				189B8A0E24784A03009BC735 /* SceneTests.swift */,
 				4CAC7DA11DCF444A00EC7D6F /* CBSceneTouchTests.swift */,
-				9EA3FD802327089900551B6C /* SceneTests.swift */,
+				9EA3FD802327089900551B6C /* CBSpriteNodePenExtensionTests.swift */,
+				186FBE64247C29AD00AE3F17 /* LineShapeNodeTests.swift */,
 			);
 			name = Scene;
 			sourceTree = "<group>";
@@ -8521,6 +8548,7 @@
 		CAD232181B10F12600570370 /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
+				18385C66247C0E910050819A /* LineShapeNode */,
 				CA02C5E81B14386E00233FB0 /* CBSpriteNode */,
 				CAD232191B10F13100570370 /* CBScriptContext */,
 				CAEE3BEA1ABDFADE009FDA72 /* CBSequence */,
@@ -9445,6 +9473,7 @@
 				4C2732A91CE4F30F00CA61AC /* CBSpriteNodeTests.swift in Sources */,
 				4C6FE169212D2D2E0067B7D5 /* ExpFunctionTest.swift in Sources */,
 				9ECDCB132328578F00EBDA63 /* HideBrickTests.swift in Sources */,
+				189B8A0F24784A03009BC735 /* SceneTests.swift in Sources */,
 				4C82265C213FA7A400F3D750 /* FingerXSensorTest.swift in Sources */,
 				9E2D47C72328428100917D92 /* ChangeColorByNBrickTests.swift in Sources */,
 				2ED418B22411213E00AFE2FD /* XMLParserBlackBoxTests097.swift in Sources */,
@@ -9575,7 +9604,7 @@
 				9E24D7032326E8E600608203 /* TurnLeftBrickTests.swift in Sources */,
 				4C968C401F00288500355C0D /* BrickTests.swift in Sources */,
 				2ED418BC2411213E00AFE2FD /* XMLSerializerTests.swift in Sources */,
-				9EA3FD812327089900551B6C /* SceneTests.swift in Sources */,
+				9EA3FD812327089900551B6C /* CBSpriteNodePenExtensionTests.swift in Sources */,
 				4C0F9FD9204BD3D500E71B2D /* RepeatUntilBrickTests.swift in Sources */,
 				4C82266B213FA7A400F3D750 /* DateYearSensorTest.swift in Sources */,
 				4C3A5C9921D3B23E008FD83F /* PlusOperatorTest.swift in Sources */,
@@ -9672,6 +9701,7 @@
 				4C6FE170212D2D2E0067B7D5 /* AbsFunctionTest.swift in Sources */,
 				4C68FC931B25A00B00AB3EE8 /* InternFormulaTest.m in Sources */,
 				44B76EC12476BF0100DC30E2 /* FirebaseCrashlyticsReporterTests.swift in Sources */,
+				186FBE65247C29AD00AE3F17 /* LineShapeNodeTests.swift in Sources */,
 				E4C5C1122143A3150054F236 /* SearchStoreDataSourceTests.swift in Sources */,
 				4CAEB26C23F3F8BC00DB31BB /* CatrobatTableViewControllerTests.swift in Sources */,
 				4C6FE177212D2D2E0067B7D5 /* LengthFunctionTest.swift in Sources */,
@@ -9804,6 +9834,7 @@
 				AABCB3D81BB36469009F67D2 /* CBScriptSequenceList.swift in Sources */,
 				AA74EFF61BC05B5F00D1E954 /* SetBrightnessBrick.m in Sources */,
 				AA74EE331BC0542C00D1E954 /* VibrationBrick+Instruction.swift in Sources */,
+				18DAFC5A247BD1700082C62A /* CBSpriteNodePenExtension.swift in Sources */,
 				929CC0CB1BC39B0A0027DEC0 /* PhiroBrick.m in Sources */,
 				CAE3C79C1B49FABC00AFE9D7 /* CBSequenceProtocol.swift in Sources */,
 				CAE3C79D1B49FABC00AFE9D7 /* CBSequenceVisitProtocol.swift in Sources */,
@@ -10386,6 +10417,7 @@
 				BA9CAB5A1EC382DB00796056 /* BrickCellListData.m in Sources */,
 				AA74F0061BC05B5F00D1E954 /* SetXBrick.m in Sources */,
 				92EC98601BC3ABB90003A891 /* PhiroRGBLightBrick+CBXMLHandler.m in Sources */,
+				18385C68247C0EB30050819A /* LineShapeNode.swift in Sources */,
 				99EBDC021D5623B3008D6860 /* ChangeColorByNBrickCell.m in Sources */,
 				AA74EF4D1BC0586F00D1E954 /* ChangeXByNBrick+CBXMLHandler.m in Sources */,
 				4CB0F9F020A1732700D1BE2F /* BrightnessSensor.swift in Sources */,
