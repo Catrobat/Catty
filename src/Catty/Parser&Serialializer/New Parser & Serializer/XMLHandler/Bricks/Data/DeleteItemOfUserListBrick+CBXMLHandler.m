@@ -25,7 +25,7 @@
 #import "GDataXMLElement+CustomExtensions.h"
 #import "GDataXMLNode+CustomExtensions.h"
 #import "Formula+CBXMLHandler.h"
-#import "UserVariable+CBXMLHandler.h"
+#import "UserList+CBXMLHandler.h"
 #import "CBXMLParser.h"
 #import "CBXMLParserContext.h"
 #import "CBXMLSerializerContext.h"
@@ -50,7 +50,7 @@
     deleteItemOfUserListBrick.listFormula = formula;
     
     if (userListElement != nil) {
-        UserVariable *userList = [context parseFromElement:userListElement withClass:[UserVariable class]];
+        UserList *userList = [context parseFromElement:userListElement withClass:[UserList class]];
         [XMLError exceptionIfNil:userList message:@"Unable to parse userList..."];
         deleteItemOfUserListBrick.userList = userList;
     }

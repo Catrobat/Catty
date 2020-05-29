@@ -245,7 +245,7 @@ const int MAXIMUM_TOKENS_TO_PARSE = 1000;
         }
             
         case TOKEN_TYPE_USER_LIST: {
-            UserVariable *list = [object.project.variables getUserListNamed:[self.currentToken getTokenStringValue] forSpriteObject:object];
+            UserList *list = [object.project.variables getUserListNamed:[self.currentToken getTokenStringValue] forSpriteObject:object];
             
             if (list == nil) {
                 self.errorTokenIndex = self.currentTokenParseIndex;

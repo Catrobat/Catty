@@ -35,7 +35,7 @@
         return false
     }
 
-    func isListUsed(_ list: UserDataProtocol) -> Bool {
+    func isListUsed(_ list: UserList) -> Bool {
         if (type == ElementType.USER_LIST) && (value == list.name) {
             return true
         }

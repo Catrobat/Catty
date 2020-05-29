@@ -38,11 +38,11 @@ class NumberOfItemsFunction: SingleParameterDoubleFunction {
     }
 
     func value(parameter: AnyObject?) -> Double {
-        guard let list = parameter as? UserVariable,
-            let elements = list.value as? [AnyObject] else {
+        guard let list = parameter as? UserList else {
                 return type(of: self).defaultValue
         }
 
+        let elements = list.value
         return Double(elements.count)
     }
 

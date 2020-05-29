@@ -78,7 +78,6 @@ class XMLAbstractTest: XCTestCase {
         if catrobatParser == nil {
             XCTFail("Could not retrieve parser for xml file \(xmlFile)")
         }
-
         if !catrobatParser!.isSupportedLanguageVersion(languageVersion) {
             let parser = Parser()
             let project = parser.generateObjectForProject(withPath: xmlPath)

@@ -27,6 +27,7 @@
 #import "CBXMLParserHelper.h"
 #import "SpriteObject+CBXMLHandler.h"
 #import "UserVariable+CBXMLHandler.h"
+#import "UserList+CBXMLHandler.h"
 #import "CBXMLParserContext.h"
 #import "CBXMLSerializerContext.h"
 #import "CBXMLSerializerHelper.h"
@@ -278,11 +279,11 @@
     NSMutableArray *userListOfLists = [NSMutableArray arrayWithCapacity:[userListOfListsElements count]];
     for (GDataXMLElement *userListElement in userListOfListsElements) {
         [XMLError exceptionIfNode:userListElement isNilOrNodeNameNotEquals:@"userList"];
-        UserVariable *userList = [context parseFromElement:userListElement withClass:[UserVariable class]];
+        UserList *userList = [context parseFromElement:userListElement withClass:[UserList class]];
         [XMLError exceptionIfNil:userList message:@"Unable to parse user list..."];
         
         if([userList.name length] > 0) {
-            if ([CBXMLParserHelper findUserVariableInArray:userListOfLists withName:userList.name]) {
+            if ([CBXMLParserHelper findUserListInArray:userListOfLists withName:userList.name]) {
                 [XMLError exceptionWithMessage:@"A userList-entry of the same UserList already \
                  exists. This should never happen!"];
             }
@@ -333,9 +334,9 @@
         GDataXMLElement *listXmlElement = [GDataXMLElement elementWithName:@"list" context:context];
         NSArray *lists = [self.objectListOfLists objectAtIndex:index];
         for (id list in lists) {
-            [XMLError exceptionIf:[list isKindOfClass:[UserVariable class]] equals:NO
-                          message:@"Invalid user variable instance given"];
-            GDataXMLElement *userListXmlElement = [(UserVariable*)list xmlElementWithContext:context];
+            [XMLError exceptionIf:[list isKindOfClass:[UserList class]] equals:NO
+                          message:@"Invalid user List instance given"];
+            GDataXMLElement *userListXmlElement = [(UserList*)list xmlElementWithContext:context];
             [listXmlElement addChild:userListXmlElement context:context];
         }
         [entryXmlElement addChild:listXmlElement context:context];
@@ -403,9 +404,9 @@
     GDataXMLElement *programListOfListsXmlElement = [GDataXMLElement elementWithName:@"programListOfLists"
                                                                               context:context];
     for (id list in self.programListOfLists) {
-        [XMLError exceptionIf:[list isKindOfClass:[UserVariable class]] equals:NO
+        [XMLError exceptionIf:[list isKindOfClass:[UserList class]] equals:NO
                       message:@"Invalid user list instance given"];
-        GDataXMLElement *userListXmlElement = [(UserVariable*)list xmlElementWithContext:context];
+        GDataXMLElement *userListXmlElement = [(UserList*)list xmlElementWithContext:context];
         [programListOfListsXmlElement addChild:userListXmlElement context:context];
     }
     [xmlElement addChild:programListOfListsXmlElement context:context];

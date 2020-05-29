@@ -32,7 +32,7 @@ final class InsertItemIntoUserListBrickTests: XCTestCase {
     var script: Script!
     var scheduler: CBScheduler!
     var context: CBScriptContextProtocol!
-    var userList: UserVariable!
+    var userList: UserList!
     var brick: InsertItemIntoUserListBrick!
 
     override func setUp() {
@@ -49,7 +49,7 @@ final class InsertItemIntoUserListBrickTests: XCTestCase {
 
         spriteObject.project.variables = VariablesContainer()
 
-        userList = UserVariable(name: "testName", isList: true)
+        userList = UserList(name: "testName")
         spriteObject.project.variables.addObjectList(userList, for: spriteObject)
 
         brick = InsertItemIntoUserListBrick()
@@ -64,7 +64,7 @@ final class InsertItemIntoUserListBrickTests: XCTestCase {
     }
 
     func testInsertItem() {
-        XCTAssertNil(userList.value)
+        XCTAssertEqual(userList.value.count, 0)
 
         brick.index = Formula(integer: 1)
         brick.elementFormula = Formula(integer: 1)
@@ -76,11 +76,11 @@ final class InsertItemIntoUserListBrickTests: XCTestCase {
             XCTFail("Fatal Error")
         }
 
-        XCTAssertNotNil(userList.value)
+        XCTAssertEqual(userList.value.count, 1)
     }
 
     func testInsertItemAtInvalidPosition() {
-        XCTAssertNil(userList.value)
+        XCTAssertEqual(userList.value.count, 0)
 
         brick.index = Formula(string: "abc")
         brick.elementFormula = Formula(integer: 1)
@@ -92,11 +92,11 @@ final class InsertItemIntoUserListBrickTests: XCTestCase {
             XCTFail("Fatal Error")
         }
 
-        XCTAssertNil(userList.value)
+        XCTAssertEqual(userList.value.count, 0)
     }
 
     func testInsertItemAtNegativePosition() {
-        XCTAssertNil(userList.value)
+       XCTAssertEqual(userList.value.count, 0)
 
         brick.index = Formula(integer: -1)
         brick.elementFormula = Formula(integer: 1)
@@ -108,7 +108,7 @@ final class InsertItemIntoUserListBrickTests: XCTestCase {
             XCTFail("Fatal Error")
         }
 
-        XCTAssertNil(userList.value)
+        XCTAssertEqual(userList.value.count, 0)
     }
 
     func testMutableCopy() {

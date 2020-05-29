@@ -264,28 +264,36 @@
         return nil;
     }
     CBMutableCopyContext *context = [CBMutableCopyContext new];
-    NSMutableArray<UserVariable*> *copiedVariablesAndLists = [NSMutableArray new];
+    NSMutableArray<UserVariable*> *copiedVariables = [NSMutableArray new];
+    NSMutableArray<UserList*> *copiedLists = [NSMutableArray new];
     
-    NSMutableArray<UserVariable*> *variablesAndLists = [[NSMutableArray alloc] initWithArray:[self.variables objectVariablesForObject:sourceObject]];
-    [variablesAndLists addObjectsFromArray: [self.variables objectListsForObject:sourceObject]];
+    NSArray<UserVariable*> *variables = [[NSMutableArray alloc] initWithArray:[self.variables objectVariablesForObject:sourceObject]];
+    NSArray<UserList*> *lists = [[NSMutableArray alloc] initWithArray:[self.variables objectListsForObject:sourceObject]];
     
-    for (UserVariable *variableOrList in variablesAndLists) {
-        UserVariable *copiedVariableOrList = [[UserVariable alloc] initWithVariable:variableOrList];
+    for (UserVariable *variable in variables) {
+        UserVariable *copiedVariable = [[UserVariable alloc] initWithVariable:variable];
         
-        [copiedVariablesAndLists addObject:copiedVariableOrList];
-        [context updateReference:variableOrList WithReference:copiedVariableOrList];
+        [copiedVariables addObject:copiedVariable];
+        [context updateReference:variable WithReference:copiedVariable];
+    }
+    
+    for (UserList *list in lists) {
+        UserList *copiedList = [[UserList alloc] initWithList:list];
+        
+        [copiedLists addObject:copiedList];
+        [context updateReference:list WithReference:copiedList];
     }
     
     SpriteObject *copiedObject = [sourceObject mutableCopyWithContext:context];
     copiedObject.name = [Util uniqueName:nameOfCopiedObject existingNames:[self allObjectNames]];
     [self.objectList addObject:copiedObject];
     
-    for (UserVariable *variableOrList in copiedVariablesAndLists) {
-        if (variableOrList.isList) {
-            [self.variables addObjectList:variableOrList forObject:copiedObject];
-        } else {
-            [self.variables addObjectVariable:variableOrList forObject:copiedObject];
-        }
+    for (UserVariable *variable in copiedVariables) {
+       [self.variables addObjectVariable:variable forObject:copiedObject];
+    }
+    
+    for (UserList *list in copiedLists) {
+       [self.variables addObjectList:list forObject:copiedObject];
     }
     
     [self saveToDiskWithNotification:YES];

@@ -37,7 +37,7 @@ final class VariablesContainerTest: XCTestCase {
         let objectB = SpriteObject()
         objectB.name = "testObjectB"
 
-        let userVariable = UserVariable(name: "testName", isList: false)
+        let userVariable = UserVariable(name: "testName")
 
         let container = VariablesContainer()
         XCTAssertEqual(0, container.allVariables()?.count)
@@ -69,7 +69,7 @@ final class VariablesContainerTest: XCTestCase {
         let objectB = SpriteObject()
         objectB.name = "testObjectB"
 
-        let list = UserVariable(name: "testName", isList: true)
+        let list = UserList(name: "testName")
 
         let container = VariablesContainer()
         XCTAssertEqual(0, container.allLists().count)
@@ -98,52 +98,52 @@ final class VariablesContainerTest: XCTestCase {
         let objectA = SpriteObject()
         objectA.name = "testObjectA"
 
-        let userVariable1 = UserVariable(name: "testName1", isList: false)
-        let userVariable2 = UserVariable(name: "testName2", isList: false)
-        let list = UserVariable(name: "testlist", isList: true)
+        let userVariable1 = UserVariable(name: "testName1")
+        let userVariable2 = UserVariable(name: "testName2")
+        let list = UserList(name: "testName")
 
         let container = VariablesContainer()
 
         container.addObjectVariable(userVariable1, for: objectA)
         container.addObjectList(list, for: objectA)
 
-        var allVariable = container.allVariables() as! [UserVariable]
+        var allVariable = container.allVariables()
 
-        XCTAssertEqual(1, allVariable.count)
-        XCTAssertEqual(allVariable[0].name, userVariable1.name)
+        XCTAssertEqual(1, allVariable?.count)
+        XCTAssertEqual(allVariable?[0].name, userVariable1.name)
 
         container.addObjectVariable(userVariable2, for: objectA)
-        allVariable = container.allVariables() as! [UserVariable]
+        allVariable = container.allVariables()
 
-        XCTAssertEqual(2, allVariable.count)
-        XCTAssertEqual(allVariable[0].name, userVariable1.name)
-        XCTAssertEqual(allVariable[1].name, userVariable2.name)
+        XCTAssertEqual(2, allVariable?.count)
+        XCTAssertEqual(allVariable?[0].name, userVariable1.name)
+        XCTAssertEqual(allVariable?[1].name, userVariable2.name)
     }
 
     func testAllList() {
         let objectA = SpriteObject()
         objectA.name = "testObjectA"
 
-        let list1 = UserVariable(name: "testName1", isList: true)
-        let list2 = UserVariable(name: "testName2", isList: true)
-        let variable = UserVariable(name: "testvariable", isList: false)
+        let list1 = UserList(name: "testName1")
+        let list2 = UserList(name: "testName2")
+        let variable = UserVariable(name: "testvariable")
 
         let container = VariablesContainer()
 
         container.addObjectList(list1, for: objectA)
         container.addObjectVariable(variable, for: objectA)
 
-        var allList = container.allLists() as! [UserVariable]
+        var allList = container.allLists()
 
-        XCTAssertEqual(1, allList.count)
-        XCTAssertEqual(allList[0].name, list1.name)
+        XCTAssertEqual(1, allList?.count)
+        XCTAssertEqual(allList?[0].name, list1.name)
 
         container.addObjectList(list2, for: objectA)
-        allList = container.allLists() as! [UserVariable]
+        allList = container.allLists()
 
-        XCTAssertEqual(2, allList.count)
-        XCTAssertEqual(allList[0].name, list1.name)
-        XCTAssertEqual(allList[1].name, list2.name)
+        XCTAssertEqual(2, allList?.count)
+        XCTAssertEqual(allList?[0].name, list1.name)
+        XCTAssertEqual(allList?[1].name, list2.name)
     }
 
     func testObjectVariablesForObject() {
@@ -153,26 +153,26 @@ final class VariablesContainerTest: XCTestCase {
         let objectB = SpriteObject()
         objectB.name = "testObjectB"
 
-        let userVariable1 = UserVariable(name: "testName1", isList: false)
-        let userVariable2 = UserVariable(name: "testName2", isList: false)
-        let userVariable3 = UserVariable(name: "testName3", isList: false)
+        let userVariable1 = UserVariable(name: "testName1")
+        let userVariable2 = UserVariable(name: "testName2")
+        let userVariable3 = UserVariable(name: "testName3")
 
         let container = VariablesContainer()
 
         container.addObjectVariable(userVariable1, for: objectA)
-        var variables = container.objectVariables(for: objectA) as! [UserVariable]
+        var variables = container.objectVariables(for: objectA)
 
-        XCTAssertEqual(1, variables.count)
-        XCTAssertEqual(variables[0].name, userVariable1.name)
+        XCTAssertEqual(1, variables?.count)
+        XCTAssertEqual(variables?[0].name, userVariable1.name)
 
         container.addObjectVariable(userVariable2, for: objectA)
         container.addObjectVariable(userVariable3, for: objectB)
 
-        variables = container.objectVariables(for: objectA) as! [UserVariable]
+        variables = container.objectVariables(for: objectA)
 
-        XCTAssertEqual(2, variables.count)
-        XCTAssertEqual(variables[0].name, userVariable1.name)
-        XCTAssertEqual(variables[1].name, userVariable2.name)
+        XCTAssertEqual(2, variables?.count)
+        XCTAssertEqual(variables?[0].name, userVariable1.name)
+        XCTAssertEqual(variables?[1].name, userVariable2.name)
     }
 
     func testObjectListsForObject() {
@@ -182,53 +182,50 @@ final class VariablesContainerTest: XCTestCase {
         let objectB = SpriteObject()
         objectB.name = "testObjectB"
 
-        let list1 = UserVariable(name: "testVariable1", isList: true)
-        let list2 = UserVariable(name: "testVariable2", isList: true)
-        let list3 = UserVariable(name: "testVariable3", isList: true)
+        let list1 = UserList(name: "testName1")
+        let list2 = UserList(name: "testName2")
+        let list3 = UserList(name: "testName3")
 
         let container = VariablesContainer()
 
         container.addObjectList(list1, for: objectA)
-        var lists = container.objectLists(for: objectA) as! [UserVariable]
+        var lists = container.objectLists(for: objectA)
 
-        XCTAssertEqual(1, lists.count)
-        XCTAssertEqual(lists[0].name, list1.name)
-        XCTAssertTrue(lists[0].isList)
+        XCTAssertEqual(1, lists?.count)
+        XCTAssertEqual(lists?[0].name, list1.name)
 
         container.addObjectList(list2, for: objectA)
         container.addObjectList(list3, for: objectB)
 
-        lists = container.objectLists(for: objectA) as! [UserVariable]
+        lists = container.objectLists(for: objectA)
 
-        XCTAssertEqual(2, lists.count)
-        XCTAssertEqual(lists[0].name, list1.name)
-        XCTAssertEqual(lists[1].name, list2.name)
-        XCTAssertTrue(lists[0].isList)
-        XCTAssertTrue(lists[1].isList)
+        XCTAssertEqual(2, lists?.count)
+        XCTAssertEqual(lists?[0].name, list1.name)
+        XCTAssertEqual(lists?[1].name, list2.name)
     }
 
     func testSetUserVariable() {
         let objectA = SpriteObject()
         objectA.name = "testObjectA"
 
-        let userVariable1 = UserVariable(name: "testName1", isList: false)
+        let userVariable1 = UserVariable(name: "testName1")
 
         let container = VariablesContainer()
 
         container.addObjectVariable(userVariable1, for: objectA)
         container.setUserVariable(userVariable1, toValue: 10)
 
-        let variables = container.objectVariables(for: objectA) as! [UserVariable]
+        let variables = container.objectVariables(for: objectA)
 
-        XCTAssertEqual(1, variables.count)
-        XCTAssertEqual(variables[0].value as! Int, 10)
+        XCTAssertEqual(1, variables?.count)
+        XCTAssertEqual(variables?[0].value as! Int, 10)
     }
 
     func testChangeVariable() {
         let objectA = SpriteObject()
         objectA.name = "testObjectA"
 
-        let userVariable1 = UserVariable(name: "testName1", isList: false)
+        let userVariable1 = UserVariable(name: "testName1")
 
         let container = VariablesContainer()
 
@@ -236,33 +233,33 @@ final class VariablesContainerTest: XCTestCase {
         container.setUserVariable(userVariable1, toValue: 10)
         container.change(userVariable1, byValue: 10)
 
-        var variables = container.objectVariables(for: objectA) as! [UserVariable]
+        var variables = container.objectVariables(for: objectA)
 
-        XCTAssertEqual(1, variables.count)
-        XCTAssertEqual(variables[0].value as! Int, 20)
+        XCTAssertEqual(1, variables?.count)
+        XCTAssertEqual(variables?[0].value as! Int, 20)
 
         container.change(userVariable1, byValue: 10)
 
-        variables = container.objectVariables(for: objectA) as! [UserVariable]
+        variables = container.objectVariables(for: objectA)
 
-        XCTAssertEqual(1, variables.count)
-        XCTAssertEqual(variables[0].value as! Int, 30)
+        XCTAssertEqual(1, variables?.count)
+        XCTAssertEqual(variables?[0].value as! Int, 30)
     }
 
     func testAddToUserList() {
         let objectA = SpriteObject()
         objectA.name = "testObjectA"
 
-        let list1 = UserVariable(name: "testVariable1", isList: true)
+        let list1 = UserList(name: "testName")
 
         let container = VariablesContainer()
 
         container.addObjectList(list1, for: objectA)
-        container.add(toUserList: list1, value: 10)
-        container.add(toUserList: list1, value: 20)
+        container.add(to: list1, value: 10)
+        container.add(to: list1, value: 20)
 
-        let lists = container.allLists() as! [UserVariable]
-        let itemInList = lists[0].value as! [Int]
+        let lists = container.allLists()
+        let itemInList = lists![0].value as! [Int]
 
         XCTAssertEqual(2, itemInList.count)
         XCTAssertEqual(itemInList[0], 10)
@@ -273,23 +270,23 @@ final class VariablesContainerTest: XCTestCase {
         let objectA = SpriteObject()
         objectA.name = "testObjectA"
 
-        let list1 = UserVariable(name: "testVariable1", isList: true)
+        let list1 = UserList(name: "testName")
 
         let container = VariablesContainer()
 
         container.addObjectList(list1, for: objectA)
-        container.add(toUserList: list1, value: 10)
-        container.add(toUserList: list1, value: 20)
+        container.add(to: list1, value: 10)
+        container.add(to: list1, value: 20)
 
-        var lists = container.allLists() as! [UserVariable]
-        var itemInList = lists[0].value as! [Int]
+        var lists = container.allLists()
+        var itemInList = lists?[0].value as! [Int]
 
         XCTAssertEqual(2, itemInList.count)
 
-        container.delete(fromUserList: list1, atIndex: 2)
+        container.delete(from: list1, atIndex: 2)
 
-        lists = container.allLists() as! [UserVariable]
-        itemInList = lists[0].value as! [Int]
+        lists = container.allLists()
+        itemInList = lists?[0].value as! [Int]
 
         XCTAssertEqual(1, itemInList.count)
         XCTAssertEqual(itemInList[0], 10)
@@ -299,25 +296,25 @@ final class VariablesContainerTest: XCTestCase {
         let objectA = SpriteObject()
         objectA.name = "testObjectA"
 
-        let list1 = UserVariable(name: "testVariable1", isList: true)
+        let list1 = UserList(name: "testName")
 
         let container = VariablesContainer()
 
         container.addObjectList(list1, for: objectA)
-        container.insert(toUserList: list1, value: 10, atIndex: 1)
-        container.insert(toUserList: list1, value: 30, atIndex: 2)
+        container.insert(to: list1, value: 10, atIndex: 1)
+        container.insert(to: list1, value: 30, atIndex: 2)
 
-        var lists = container.allLists() as! [UserVariable]
-        var itemInList = lists[0].value as! [Int]
+        var lists = container.allLists()
+        var itemInList = lists?[0].value as! [Int]
 
         XCTAssertEqual(itemInList.count, 2)
         XCTAssertEqual(itemInList[0], 10)
         XCTAssertEqual(itemInList[1], 30)
 
-        container.insert(toUserList: list1, value: 20, atIndex: 2)
+        container.insert(to: list1, value: 20, atIndex: 2)
 
-        lists = container.allLists() as! [UserVariable]
-        itemInList = lists[0].value as! [Int]
+        lists = container.allLists()
+        itemInList = lists?[0].value as! [Int]
 
         XCTAssertEqual(itemInList.count, 3)
         XCTAssertEqual(itemInList[0], 10)
@@ -329,50 +326,50 @@ final class VariablesContainerTest: XCTestCase {
         let objectA = SpriteObject()
         objectA.name = "testObjectA"
 
-        let list1 = UserVariable(name: "testVariable1", isList: true)
+        let list1 = UserList(name: "testName1")
 
         let container = VariablesContainer()
 
         container.addObjectList(list1, for: objectA)
-        container.insert(toUserList: list1, value: 10, atIndex: -1)
+        container.insert(to: list1, value: 10, atIndex: -1)
 
-        var lists = container.allLists() as! [UserVariable]
-        var itemInList = lists[0].value
+        var lists = container.allLists()
+        var itemInList = lists?[0].value
 
-        XCTAssertNil(itemInList)
+        XCTAssertEqual(itemInList?.count, 0)
 
-        container.insert(toUserList: list1, value: 10, atIndex: 5)
+        container.insert(to: list1, value: 10, atIndex: 5)
 
-        lists = container.allLists() as! [UserVariable]
-        itemInList = lists[0].value
+        lists = container.allLists()
+        itemInList = lists?[0].value
 
-        XCTAssertNil(itemInList)
+        XCTAssertEqual(itemInList?.count, 0)
     }
 
     func testReplaceItemInUserList() {
         let objectA = SpriteObject()
         objectA.name = "testObjectA"
 
-        let list1 = UserVariable(name: "testVariable1", isList: true)
+        let list1 = UserList(name: "testName1")
 
         let container = VariablesContainer()
 
         container.addObjectList(list1, for: objectA)
-        container.insert(toUserList: list1, value: 10, atIndex: 1)
-        container.insert(toUserList: list1, value: 20, atIndex: 2)
-        container.replaceItem(inUserList: list1, value: 30, atIndex: 2)
+        container.insert(to: list1, value: 10, atIndex: 1)
+        container.insert(to: list1, value: 20, atIndex: 2)
+        container.replaceItem(in: list1, value: 30, atIndex: 2)
 
-        var lists = container.allLists() as! [UserVariable]
-        var itemInList = lists[0].value as! [Int]
+        var lists = container.allLists()
+        var itemInList = lists?[0].value as! [Int]
 
         XCTAssertEqual(itemInList.count, 2)
         XCTAssertEqual(itemInList[0], 10)
         XCTAssertEqual(itemInList[1], 30)
 
-        container.replaceItem(inUserList: list1, value: 40, atIndex: 1)
+        container.replaceItem(in: list1, value: 40, atIndex: 1)
 
-        lists = container.allLists() as! [UserVariable]
-        itemInList = lists[0].value as! [Int]
+        lists = container.allLists()
+        itemInList = lists?[0].value as! [Int]
 
         XCTAssertEqual(itemInList.count, 2)
         XCTAssertEqual(itemInList[0], 40)
@@ -383,16 +380,16 @@ final class VariablesContainerTest: XCTestCase {
         let objectA = SpriteObject()
         objectA.name = "testObjectA"
 
-        let list1 = UserVariable(name: "testVariable1", isList: true)
+        let list1 = UserList(name: "testName1")
 
         let container = VariablesContainer()
 
         container.addObjectList(list1, for: objectA)
-        container.insert(toUserList: list1, value: 10, atIndex: 1)
-        container.replaceItem(inUserList: list1, value: 30, atIndex: 2)
+        container.insert(to: list1, value: 10, atIndex: 1)
+        container.replaceItem(in: list1, value: 30, atIndex: 2)
 
-        let lists = container.allLists() as! [UserVariable]
-        let itemInList = lists[0].value as! [Int]
+        let lists = container.allLists()
+        let itemInList = lists?[0].value as! [Int]
 
         XCTAssertNotEqual(itemInList[0], 30)
     }
@@ -401,8 +398,8 @@ final class VariablesContainerTest: XCTestCase {
         let objectA = SpriteObject()
         objectA.name = "testObjectA"
 
-        let userVariable1 = UserVariable(name: "testVar1", isList: false)
-        let userVariable2 = UserVariable(name: "testVar2", isList: false)
+        let userVariable1 = UserVariable(name: "testVar1")
+        let userVariable2 = UserVariable(name: "testVar2")
 
         let container = VariablesContainer()
 
@@ -417,8 +414,8 @@ final class VariablesContainerTest: XCTestCase {
         let objectA = SpriteObject()
         objectA.name = "testObjectA"
 
-        let list1 = UserVariable(name: "testList1")
-        let list2 = UserVariable(name: "testList2")
+        let list1 = UserList(name: "testName1")
+        let list2 = UserList(name: "testName2")
 
         let container = VariablesContainer()
 
@@ -433,8 +430,8 @@ final class VariablesContainerTest: XCTestCase {
         let object = SpriteObject()
         object.name = "testObject"
 
-       let projectList = UserVariable(name: "name", isList: true)
-       let objectVariable = UserVariable(name: "name", isList: false)
+       let projectList = UserList(name: "testName")
+       let objectVariable = UserVariable(name: "name")
 
         let container = VariablesContainer()
 
@@ -452,10 +449,10 @@ final class VariablesContainerTest: XCTestCase {
         let objectB = SpriteObject()
         objectB.name = "testObjectB"
 
-        let userVariable1 = UserVariable(name: "testName1", isList: false)
-        let userVariable2 = UserVariable(name: "testName2", isList: false)
-        let userVariable3 = UserVariable(name: "testName3", isList: false)
-        let userVariable4 = UserVariable(name: "testName4", isList: false)
+        let userVariable1 = UserVariable(name: "testName1")
+        let userVariable2 = UserVariable(name: "testName2")
+        let userVariable3 = UserVariable(name: "testName3")
+        let userVariable4 = UserVariable(name: "testName4")
 
         let container = VariablesContainer()
 
@@ -487,10 +484,10 @@ final class VariablesContainerTest: XCTestCase {
         let objectB = SpriteObject()
         objectB.name = "testObjectB"
 
-        let list1 = UserVariable(name: "testName1", isList: true)
-        let list2 = UserVariable(name: "testName2", isList: true)
-        let list3 = UserVariable(name: "testName3", isList: true)
-        let list4 = UserVariable(name: "testName4", isList: true)
+        let list1 = UserList(name: "testName1")
+        let list2 = UserList(name: "testName2")
+        let list3 = UserList(name: "testName3")
+        let list4 = UserList(name: "testName4")
 
         let container = VariablesContainer()
 
@@ -519,8 +516,8 @@ final class VariablesContainerTest: XCTestCase {
         let objectA = SpriteObject()
         objectA.name = "testObjectA"
 
-        let list = UserVariable(name: "testList", isList: true)
-        let variable = UserVariable(name: "testvariable", isList: false)
+        let list = UserList(name: "testList")
+        let variable = UserVariable(name: "testvariable")
 
         let container1 = VariablesContainer()
         let container2 = VariablesContainer()
@@ -541,7 +538,7 @@ final class VariablesContainerTest: XCTestCase {
         let objectB = SpriteObject()
         objectB.name = "testObjectB"
 
-        let list = UserVariable(name: "testList", isList: true)
+        let list = UserList(name: "testList")
 
         let container1 = VariablesContainer()
         let container2 = VariablesContainer()
@@ -561,7 +558,7 @@ final class VariablesContainerTest: XCTestCase {
         let objectB = SpriteObject()
         objectB.name = "testObjectA"
 
-        let list = UserVariable(name: "testList", isList: true)
+        let list = UserList(name: "testList")
 
         let container1 = VariablesContainer()
         let container2 = VariablesContainer()
@@ -576,10 +573,10 @@ final class VariablesContainerTest: XCTestCase {
         let objectA = SpriteObject()
         objectA.name = "testObjectA"
 
-        let variable1 = UserVariable(name: "testvariable", isList: false)
+        let variable1 = UserVariable(name: "testvariable")
         variable1.value = 10
 
-        let variable2 = UserVariable(name: "testvariable", isList: false)
+        let variable2 = UserVariable(name: "testvariable")
         variable2.value = 20
 
         let container1 = VariablesContainer()
@@ -595,8 +592,8 @@ final class VariablesContainerTest: XCTestCase {
         let objectA = SpriteObject()
         objectA.name = "testObjectA"
 
-        let list = UserVariable(name: "testUserVariable", isList: true)
-        let variable = UserVariable(name: "testUserVariable", isList: false)
+        let list = UserList(name: "testList")
+        let variable = UserVariable(name: "testUserVariable")
 
         let container1 = VariablesContainer()
         let container2 = VariablesContainer()
@@ -611,8 +608,8 @@ final class VariablesContainerTest: XCTestCase {
         let objectA = SpriteObject()
         objectA.name = "testObjectA"
 
-        let list = UserVariable(name: "testList", isList: true)
-        let variable = UserVariable(name: "testvariable", isList: false)
+        let list = UserList(name: "testList")
+        let variable = UserVariable(name: "testvariable")
 
         let container = VariablesContainer()
 
@@ -624,8 +621,8 @@ final class VariablesContainerTest: XCTestCase {
 
         XCTAssertTrue(container.isEqual(to: copyContainer))
         XCTAssertFalse(container == copyContainer)
-        XCTAssertTrue(container.allVariables()[0] as! UserVariable === copyContainer.allVariables()[0] as! UserVariable)
-        XCTAssertTrue(container.allLists()[0] as! UserVariable === copyContainer.allLists()[0] as! UserVariable)
+        XCTAssertTrue(container.allVariables()[0] === copyContainer.allVariables()[0])
+        XCTAssertTrue(container.allLists()[0] === copyContainer.allLists()[0])
     }
 
     func testGetUserVariableNamed() {
@@ -635,10 +632,10 @@ final class VariablesContainerTest: XCTestCase {
         let objectB = SpriteObject()
         objectB.name = "testObjectB"
 
-        let userVariable1 = UserVariable(name: "testName1", isList: false)
-        let userVariable2 = UserVariable(name: "testName2", isList: false)
-        let userVariable3 = UserVariable(name: "testName3", isList: false)
-        let userVariable4 = UserVariable(name: "testName4", isList: false)
+        let userVariable1 = UserVariable(name: "testName1")
+        let userVariable2 = UserVariable(name: "testName2")
+        let userVariable3 = UserVariable(name: "testName3")
+        let userVariable4 = UserVariable(name: "testName4")
 
         let container = VariablesContainer()
 
@@ -664,10 +661,10 @@ final class VariablesContainerTest: XCTestCase {
         let objectB = SpriteObject()
         objectB.name = "testObjectB"
 
-        let list1 = UserVariable(name: "testName1", isList: true)
-        let list2 = UserVariable(name: "testName2", isList: true)
-        let list3 = UserVariable(name: "testName3", isList: true)
-        let list4 = UserVariable(name: "testName4", isList: true)
+        let list1 = UserList(name: "testName1")
+        let list2 = UserList(name: "testName2")
+        let list3 = UserList(name: "testName3")
+        let list4 = UserList(name: "testName4")
 
         let container = VariablesContainer()
 
@@ -696,10 +693,10 @@ final class VariablesContainerTest: XCTestCase {
         let objectC = SpriteObject()
         objectC.name = "testObjectC"
 
-        let userVariable1 = UserVariable(name: "testName1", isList: false)
-        let userVariable2 = UserVariable(name: "testName2", isList: false)
-        let userVariable3 = UserVariable(name: "testName3", isList: false)
-        let userVariable4 = UserVariable(name: "testName4", isList: false)
+        let userVariable1 = UserVariable(name: "testName1")
+        let userVariable2 = UserVariable(name: "testName2")
+        let userVariable3 = UserVariable(name: "testName3")
+        let userVariable4 = UserVariable(name: "testName4")
 
         let container = VariablesContainer()
 
@@ -743,10 +740,10 @@ final class VariablesContainerTest: XCTestCase {
         let objectC = SpriteObject()
         objectC.name = "testObjectC"
 
-        let list1 = UserVariable(name: "testName1", isList: true)
-        let list2 = UserVariable(name: "testName2", isList: true)
-        let list3 = UserVariable(name: "testName3", isList: true)
-        let list4 = UserVariable(name: "testName4", isList: true)
+        let list1 = UserList(name: "testName1")
+        let list2 = UserList(name: "testName2")
+        let list3 = UserList(name: "testName3")
+        let list4 = UserList(name: "testName4")
 
         let container = VariablesContainer()
 

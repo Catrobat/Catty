@@ -42,14 +42,14 @@ final class BrickExtensionTests: XCTestCase {
 
     func testIsListUsed() {
         let variablesContainer = VariablesContainer()
-        let userList = UserVariable(name: "testName", isList: true)
+        let userList = UserList(name: "testName")
 
         variablesContainer.programListOfLists = [userList]
-        variablesContainer.add(toUserList: userList, value: 4)
-        variablesContainer.add(toUserList: userList, value: "testValue")
+        variablesContainer.add(to: userList, value: 4)
+        variablesContainer.add(to: userList, value: "testValue")
 
-        let brick = SetVariableBrick()
-        brick.setVariable(userList, forLineNumber: 1, andParameterNumber: 1)
+        let brick = ReplaceItemInUserListBrick()
+        brick.setList(userList, forLineNumber: 1, andParameterNumber: 1)
 
         let formulaElement = FormulaElement()
         formulaElement.value = userList.name
@@ -62,11 +62,11 @@ final class BrickExtensionTests: XCTestCase {
 
     func testIsListUsedWithReplaceItemInUserListBrick() {
         let variablesContainer = VariablesContainer()
-        let userList = UserVariable(name: "testName", isList: true)
+        let userList = UserList(name: "testName")
 
         variablesContainer.programListOfLists = [userList]
-        variablesContainer.add(toUserList: userList, value: 4)
-        variablesContainer.add(toUserList: userList, value: "testValue")
+        variablesContainer.add(to: userList, value: 4)
+        variablesContainer.add(to: userList, value: "testValue")
 
         let brick = ReplaceItemInUserListBrick()
         brick.setList(userList, forLineNumber: 1, andParameterNumber: 1)
@@ -76,12 +76,12 @@ final class BrickExtensionTests: XCTestCase {
 
     func testIsListUsedWithReplaceItemInUserListBrickForMultipleUserList() {
         let variablesContainer = VariablesContainer()
-        let userList = UserVariable(name: "testName1", isList: true)
-        let userList2 = UserVariable(name: "testName2", isList: true)
+        let userList = UserList(name: "testName")
+        let userList2 = UserList(name: "testName")
 
         variablesContainer.programListOfLists = [userList]
-        variablesContainer.add(toUserList: userList, value: 4)
-        variablesContainer.add(toUserList: userList, value: "testValue")
+        variablesContainer.add(to: userList, value: 4)
+        variablesContainer.add(to: userList, value: "testValue")
 
         let brick = ReplaceItemInUserListBrick()
         brick.setList(userList, forLineNumber: 1, andParameterNumber: 1)
@@ -94,11 +94,11 @@ final class BrickExtensionTests: XCTestCase {
 
     func testIsListUsedWithMultipleBrick() {
         let variablesContainer = VariablesContainer()
-        let userList = UserVariable(name: "testName", isList: true)
+        let userList = UserList(name: "testName")
 
         variablesContainer.programListOfLists = [userList]
-        variablesContainer.add(toUserList: userList, value: 4)
-        variablesContainer.add(toUserList: userList, value: "testValue")
+        variablesContainer.add(to: userList, value: 4)
+        variablesContainer.add(to: userList, value: "testValue")
 
         let insertBrick = InsertItemIntoUserListBrick()
         let addBrick = AddItemToUserListBrick()
@@ -154,8 +154,8 @@ final class BrickExtensionTests: XCTestCase {
     }
 
     func testIsVariableUsedForBrickWithMultipleFormula() {
-        let userVariable = UserVariable(name: "testName", isList: false)
-        let uservariableB = UserVariable(name: "testNameB", isList: false)
+        let userVariable = UserVariable(name: "testName")
+        let uservariableB = UserVariable(name: "testNameB")
 
         let brick = SetVariableBrick()
 
@@ -182,7 +182,8 @@ final class BrickExtensionTests: XCTestCase {
     }
 
     func testIsVariableUsedWithOnlyFormulaBrick() {
-        let userVariable = UserVariable(name: "testName", isList: false)
+        let userVariable = UserVariable(name: "testUserVariable")
+        let userList = UserList(name: "testUserList")
 
         let brick = ArduinoSendDigitalValueBrick()
 
@@ -195,23 +196,24 @@ final class BrickExtensionTests: XCTestCase {
 
         XCTAssertTrue(brick.isVariableUsed(variable: userVariable))
 
+        formulaElement.value = userList.name
         formulaElement.type = ElementType.USER_LIST
 
         brick.setFormula(Formula(formulaElement: formulaElement), forLineNumber: 0, andParameterNumber: 1)
         brick.setFormula(Formula(formulaElement: formulaElement), forLineNumber: 1, andParameterNumber: 1)
 
-        XCTAssertTrue(brick.isListUsed(list: userVariable))
+        XCTAssertTrue(brick.isListUsed(list: userList))
     }
 
     func testIsVariableUsedWithNitherVaribleOrFormulaBrick() {
-        let userVariable = UserVariable(name: "testName", isList: false)
+        let userVariable = UserVariable(name: "testName")
 
         let brick = IfLogicEndBrick()
         XCTAssertFalse(brick.isVariableUsed(variable: userVariable))
     }
 
     func testIsListUsedWithNitherListOrFormulaBrick() {
-        let userList = UserVariable(name: "testName", isList: true)
+        let userList = UserList(name: "testUserList")
 
         let brick = IfLogicEndBrick()
         XCTAssertFalse(brick.isListUsed(list: userList))

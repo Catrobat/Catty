@@ -25,6 +25,7 @@
 
 @class SpriteObject;
 @class UserVariable;
+@class UserList;
 @class OrderedMapTable;
 @protocol UserDataProtocol;
 
@@ -35,11 +36,11 @@
 @property (nonatomic, strong) OrderedMapTable *objectVariableList;
 
 // List<UserVariable>
-@property (nonatomic, strong) NSMutableArray *programVariableList;
-@property (nonatomic, strong) NSMutableArray *programListOfLists;
+@property (nonatomic, strong) NSMutableArray<UserVariable*> *programVariableList;
+@property (nonatomic, strong) NSMutableArray<UserList*> *programListOfLists;
 
 - (UserVariable*)getUserVariableNamed:(NSString*)name forSpriteObject:(SpriteObject*)sprite;
-- (UserVariable*)getUserListNamed:(NSString*)name forSpriteObject:(SpriteObject*)sprite;
+- (UserList*)getUserListNamed:(NSString*)name forSpriteObject:(SpriteObject*)sprite;
 
 
 - (BOOL)removeUserVariableNamed:(NSString*)name forSpriteObject:(SpriteObject*)sprite;
@@ -50,31 +51,31 @@
 
 - (void)changeVariable:(UserVariable*)userVariable byValue:(double)value;
 
-- (void)addToUserList:(UserVariable*)userList value:(id)value;
+- (void)addToUserList:(UserList*)userList value:(id)value;
 
-- (void)deleteFromUserList:(UserVariable*)userList atIndex:(id)index;
+- (void)deleteFromUserList:(UserList*)userList atIndex:(id)index;
 
-- (void)insertToUserList:(UserVariable*)userList value:(id)value atIndex:(id)position;
+- (void)insertToUserList:(UserList*)userList value:(id)value atIndex:(id)position;
 
-- (void)replaceItemInUserList:(UserVariable*)userList value:(id)value atIndex:(id)position;
+- (void)replaceItemInUserList:(UserList*)userList value:(id)value atIndex:(id)position;
 
 // Array of UserVariable
-- (NSArray*)allVariablesForObject:(SpriteObject*)spriteObject;
-- (NSArray*)allListsForObject:(SpriteObject*)spriteObject;
+- (NSArray<UserVariable*>*)allVariablesForObject:(SpriteObject*)spriteObject;
+- (NSArray<UserList*>*)allListsForObject:(SpriteObject*)spriteObject;
 
 // Array of Variables
-- (NSMutableArray*)allVariables;
+- (NSArray<UserVariable*>*)allVariables;
 // Array of Lists
-- (NSMutableArray*)allLists;
+- (NSArray<UserList*>*)allLists;
 
 // Array of UserVariable
-- (NSArray*)objectVariablesForObject:(SpriteObject*)spriteObject;
-- (NSArray*)objectListsForObject:(SpriteObject*)spriteObject;
+- (NSArray<UserVariable*>*)objectVariablesForObject:(SpriteObject*)spriteObject;
+- (NSArray<UserList*>*)objectListsForObject:(SpriteObject*)spriteObject;
 
 - (BOOL)addObjectVariable:(UserVariable*)userVariable forObject:(SpriteObject*)spriteObject;
-- (BOOL)addObjectList:(UserVariable*)userList forObject:(SpriteObject*)spriteObject;
+- (BOOL)addObjectList:(UserList*)userList forObject:(SpriteObject*)spriteObject;
 
-- (BOOL)isProjectList: (id<UserDataProtocol>)userList;
+- (BOOL)isProjectList: (UserList*)userList;
 - (BOOL)isProjectVariable: (UserVariable*)userVariable;
 
 - (void)removeObjectVariablesForSpriteObject:(SpriteObject*)object;

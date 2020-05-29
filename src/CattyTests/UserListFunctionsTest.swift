@@ -38,9 +38,9 @@ final class UserListFunctionsTest: XCTestCase {
         let object = SpriteObject()
         object.project = project
 
-        let userVariable = UserVariable(name: "TestList", isList: true)
-        userVariable.value = [0, 0, 0]
-        project.variables.programListOfLists.add(userVariable)
+        let userList = UserList(name: "TestList")
+        userList.value = [0, 0, 0]
+        project.variables.programListOfLists.add(userList)
 
         let leftChild = FormulaElement(elementType: ElementType.USER_LIST, value: "TestList", leftChild: nil, rightChild: nil, parent: nil)
         let formulaTree = FormulaElement(elementType: ElementType.FUNCTION, value: NumberOfItemsFunction.tag, leftChild: leftChild, rightChild: nil, parent: nil)
@@ -56,9 +56,9 @@ final class UserListFunctionsTest: XCTestCase {
         let object = SpriteObject()
         object.project = project
 
-        let userVariable = UserVariable(name: "TestList", isList: true)
-        userVariable.value = [1, 4, 8]
-        project.variables.programListOfLists.add(userVariable)
+        let userList = UserList(name: "TestList")
+        userList.value = [1, 4, 8]
+        project.variables.programListOfLists.add(userList)
 
         var leftChild = FormulaElement(elementType: ElementType.NUMBER, value: "2", leftChild: nil, rightChild: nil, parent: nil)
         let rightChild = FormulaElement(elementType: ElementType.USER_LIST, value: "TestList", leftChild: nil, rightChild: nil, parent: nil)
@@ -88,9 +88,9 @@ final class UserListFunctionsTest: XCTestCase {
         let object = SpriteObject()
         object.project = project
 
-        let userVariable = UserVariable(name: "TestList", isList: true)
-        userVariable.value = [0, 4, 8]
-        project.variables.programListOfLists.add(userVariable)
+        let userList = UserList(name: "TestList")
+        userList.value = [0, 4, 8]
+        project.variables.programListOfLists.add(userList)
 
         let rightChild = FormulaElement(elementType: ElementType.NUMBER, value: "4", leftChild: nil, rightChild: nil, parent: nil)
         let leftChild = FormulaElement(elementType: ElementType.USER_LIST, value: "TestList", leftChild: nil, rightChild: nil, parent: nil)

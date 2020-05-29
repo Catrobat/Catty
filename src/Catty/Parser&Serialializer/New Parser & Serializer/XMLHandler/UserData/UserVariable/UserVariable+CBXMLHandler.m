@@ -39,9 +39,7 @@
     UserVariable *userVariableOrUserList = nil;
     if ([xmlElement.name  isEqual: @"userVariable"]){
         userVariableOrUserList = [self parseUserVariable: xmlElement withContext: context];
-    } else if ([xmlElement.name  isEqual: @"userList"]){
-        userVariableOrUserList = [self parseUserList: xmlElement withContext: context];
-    } else{
+    } else {
         [XMLError exceptionIfNode:xmlElement isNilOrNodeNameNotEquals:@"userVariable"];
     }
     return userVariableOrUserList;
@@ -82,63 +80,13 @@
 }
 
 
-+ (instancetype)parseUserList:(GDataXMLElement*)xmlElement withContext:(CBXMLParserContext*)context
-{
-    if ([CBXMLParserHelper isReferenceElement:xmlElement]) {
-        GDataXMLNode *referenceAttribute = [xmlElement attributeForName:@"reference"];
-        NSString *xPath = [referenceAttribute stringValue];
-        xmlElement = [xmlElement singleNodeForCatrobatXPath:xPath];
-        [XMLError exceptionIfNil:xmlElement message:@"Invalid reference in UserList!"];
-    }
-    NSString *userListName = [[xmlElement childWithElementName:@"name"] stringValue];
-    
-    [XMLError exceptionIfNil:userListName message:@"No name for user list given"];
-    UserVariable *userList = nil;
-    
-    SpriteObject *spriteObject = context.spriteObject;
-    if (spriteObject) {
-        [XMLError exceptionIfNil:spriteObject.name message:@"Given SpriteObject has no name."];
-        NSMutableArray *objectUserLists = [context.spriteObjectNameListOfLists objectForKey:spriteObject.name];
-        for (UserVariable *userListToCompare in objectUserLists) {
-            if ([userListToCompare.name isEqualToString:userListName]) {
-                return userListToCompare;
-            }
-        }
-    }
-    userList = [CBXMLParserHelper findUserVariableInArray:context.programListOfLists
-                                                     withName:userListName];
-    if (userList) {
-        return userList;
-    }
-    
-    // Init new UserVariable -> this method has been called from VariablesContainer+CBXMLHandler
-    userList = [[UserVariable alloc] initWithName:userListName isList:true];
-    return userList;
-}
-
-
-
-
-
-
-
-
-
-
 
 #pragma mark - Serialization
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context
 {
     GDataXMLElement *xmlElement;
-    if(!self.isList){
-        xmlElement = [GDataXMLElement elementWithName:@"userVariable" stringValue:self.name
-                                              context:context]; // needed here for stack
-    }else{
-        xmlElement = [GDataXMLElement elementWithName:@"userList" context:context];
-        GDataXMLElement *nameElement = [GDataXMLElement elementWithName:@"name" stringValue:self.name
-                                                          context:context];
-        [xmlElement addChild:nameElement context:context];
-    }
+    xmlElement = [GDataXMLElement elementWithName:@"userVariable" stringValue:self.name
+    context:context]; // needed here for stack
 
     CBXMLPositionStack *currentPositionStack = [context.currentPositionStack mutableCopy];
 
@@ -146,22 +94,18 @@
     CBXMLPositionStack *positionStackOfUserVariable = nil;
 
     // check whether object variable/list or project variable/list
-    if (! [context.variables isProjectVariable:self] && ! [context.variables isProjectList:self]) {
+    if (! [context.variables isProjectVariable:self]) {
         // it is an object variable/list!
         SpriteObject *spriteObject = context.spriteObject;
-        NSMutableDictionary *alreadySerializedVarsOrLists = self.isList ? [context.spriteObjectNameUserListOfListsPositions objectForKey:spriteObject.name] :
-                                                                        [context.spriteObjectNameUserVariableListPositions objectForKey:spriteObject.name];
+        NSMutableDictionary *alreadySerializedVarsOrLists = [context.spriteObjectNameUserVariableListPositions objectForKey:spriteObject.name];
+                                                                        
         if (alreadySerializedVarsOrLists) {
             positionStackOfUserVariable = [alreadySerializedVarsOrLists objectForKey:self.name];
             if (positionStackOfUserVariable) {
                 // already serialized
                 [context.currentPositionStack popXmlElementName]; // remove already added userVariable that contains stringValue!
                 GDataXMLElement *xmlElement;
-                if(!self.isList){
-                    xmlElement = [GDataXMLElement elementWithName:@"userVariable" context:context]; // add new one without stringValue!
-                }else{
-                    xmlElement = [GDataXMLElement elementWithName:@"userList" context:context];
-                }
+                xmlElement = [GDataXMLElement elementWithName:@"userVariable" context:context]; // add new one without stringValue!
                 NSString *refPath = [CBXMLSerializerHelper relativeXPathFromSourcePositionStack:currentPositionStack
                                                                      toDestinationPositionStack:positionStackOfUserVariable];
                 [xmlElement addAttribute:[GDataXMLElement attributeWithName:@"reference" escapedStringValue:refPath]];
@@ -169,41 +113,28 @@
             }
         } else {
             alreadySerializedVarsOrLists = [NSMutableDictionary dictionary];
-            if (!self.isList) {
-                [context.spriteObjectNameUserVariableListPositions setObject:alreadySerializedVarsOrLists
-                                                                      forKey:spriteObject.name];
-            } else {
-                [context.spriteObjectNameUserListOfListsPositions setObject:alreadySerializedVarsOrLists
-                                                                      forKey:spriteObject.name];
-            }
+            [context.spriteObjectNameUserVariableListPositions setObject:alreadySerializedVarsOrLists
+            forKey:spriteObject.name];
         }
         // save current stack position in context
         [alreadySerializedVarsOrLists setObject:currentPositionStack forKey:self.name];
         return xmlElement;
     }
 
-    positionStackOfUserVariable = self.isList ? [context.projectUserListNamePositions objectForKey:self.name] :
-                                                [context.projectUserVariableNamePositions objectForKey:self.name];
+    positionStackOfUserVariable = [context.projectUserVariableNamePositions objectForKey:self.name];
+                                                
     if (positionStackOfUserVariable) {
         // already serialized
         [context.currentPositionStack popXmlElementName]; // remove already added userVariable that contains stringValue!
         GDataXMLElement *xmlElement;
-        if(!self.isList){
-            xmlElement = [GDataXMLElement elementWithName:@"userVariable" context:context]; // add new one without stringValue!
-        } else{
-            xmlElement = [GDataXMLElement elementWithName:@"userList" context:context]; // add new one without stringValue!
-        }
+        xmlElement = [GDataXMLElement elementWithName:@"userVariable" context:context]; // add new one without stringValue!
         NSString *refPath = [CBXMLSerializerHelper relativeXPathFromSourcePositionStack:currentPositionStack
                                                              toDestinationPositionStack:positionStackOfUserVariable];
         [xmlElement addAttribute:[GDataXMLElement attributeWithName:@"reference" escapedStringValue:refPath]];
         return xmlElement;
     }
     // save current stack position in context
-    if (!self.isList) {
-        [context.projectUserVariableNamePositions setObject:currentPositionStack forKey:self.name];
-    } else {
-        [context.projectUserListNamePositions setObject:currentPositionStack forKey:self.name];
-    }
+    [context.projectUserVariableNamePositions setObject:currentPositionStack forKey:self.name];
     return xmlElement;
 }
 
