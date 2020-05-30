@@ -35,6 +35,7 @@
 
 NSString* const camAccessibility = @"camLayer";
 CALayer* camLayer;
+dispatch_queue_t sessionQueue;
 
 static CameraPreviewHandler* shared = nil;
 
@@ -52,6 +53,9 @@ static CameraPreviewHandler* shared = nil;
 {
     self = [super init];
     if (self) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(sessionWasInterrupted:) name:AVCaptureSessionWasInterruptedNotification object:self.session];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(sessionRuntimeError:) name:AVCaptureSessionRuntimeErrorNotification object:self.session];
+        sessionQueue = dispatch_queue_create("org.catrobat.camera.session", DISPATCH_QUEUE_SERIAL);
         [self reset];
     }
     
@@ -60,7 +64,20 @@ static CameraPreviewHandler* shared = nil;
 
 - (AVCaptureSession*)getSession
 {
-    return self.session;
+    __block AVCaptureSession* ret;
+    dispatch_sync(sessionQueue, ^{
+        ret = self.session;
+    });
+    return ret;
+}
+
+- (AVCaptureDevicePosition)getCameraPosition
+{
+    __block AVCaptureDevicePosition ret;
+    dispatch_sync(sessionQueue, ^{
+        ret = self.cameraPosition;
+    });
+    return ret;
 }
 
 - (void)setCamView:(UIView *)camView
@@ -69,40 +86,52 @@ static CameraPreviewHandler* shared = nil;
     {
         _camView = camView;
     }
-    if ([self.session isRunning])
-    {
-        [self stopCamera];
-        [self startCameraPreview];
-    }
+    dispatch_async(sessionQueue, ^{
+        if (self.session.running)
+        {
+            [self _stopCamera];
+            [self _startCameraPreview];
+        }
+    });
 }
 
 - (void)switchCameraPositionTo:(AVCaptureDevicePosition)position
 {
-    self.cameraPosition = position;
-    if ([self.session isRunning])
-    {
-        [self stopCamera];
-        [self startCameraPreview];
-    }
+    dispatch_async(sessionQueue, ^{
+        self.cameraPosition = position;
+        if (self.session.running)
+        {
+            [self _stopCamera];
+            [self _startCameraPreview];
+        }
+    });
 }
 
 
 - (void)startCameraPreview
 {
-    assert(self.camView);
-    
-    camLayer = [[CALayer alloc] init];
-    camLayer.accessibilityHint = camAccessibility;
-    camLayer.frame = self.camView.bounds;
-    self.camView.backgroundColor = UIColor.whiteColor;
-    [self.camView.layer insertSublayer:camLayer atIndex:0];
+    dispatch_async(sessionQueue, ^{
+        [self _startCameraPreview];
+    });
+}
 
+-(void) _startCameraPreview
+{
+    assert(self.camView);
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        camLayer = [[CALayer alloc] init];
+        camLayer.accessibilityHint = camAccessibility;
+        camLayer.frame = self.camView.bounds;
+        self.camView.backgroundColor = UIColor.whiteColor;
+        [self.camView.layer insertSublayer:camLayer atIndex:0];
+    });
     AVCaptureDevice* device = [self getCaptureDevice];
     if (device != nil) {
         [self beginSessionForCaptureDevice:device toLayer:camLayer];
     } else {
         NSLog(@"Requested capture device unavailable");
     }
+
 }
 
 - (AVCaptureDevice *)getCaptureDevice {
@@ -117,6 +146,8 @@ static CameraPreviewHandler* shared = nil;
 
 - (void)beginSessionForCaptureDevice:(AVCaptureDevice*)device toLayer:(CALayer*)rootLayer
 {
+    [device lockForConfiguration:nil];
+
     NSError* err;
     AVCaptureDeviceInput* deviceInput = [AVCaptureDeviceInput deviceInputWithDevice:device error:&err];
 
@@ -124,49 +155,80 @@ static CameraPreviewHandler* shared = nil;
         NSLog(@"error: \(err.localizedDescription)");
     }
     
-    if ([self.session isRunning]) {
+    if (self.session.running) {
         [self.session stopRunning];
     }
     if ([self.session canAddInput:deviceInput]) {
         [self.session addInput:deviceInput];
     }
-    
     AVCaptureVideoDataOutput* videoDataOutput = [AVCaptureVideoDataOutput new];
     videoDataOutput.alwaysDiscardsLateVideoFrames = true;
     if ([self.session canAddOutput:videoDataOutput]){
         [self.session addOutput: videoDataOutput];
     }
-    
     [videoDataOutput connectionWithMediaType:AVMediaTypeVideo].enabled = true;
     
-    AVCaptureVideoPreviewLayer* previewLayer = [AVCaptureVideoPreviewLayer layerWithSession:self.session];
-    previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
-    
-    rootLayer.masksToBounds = true;
-    previewLayer.frame = rootLayer.bounds;
-    [rootLayer addSublayer:previewLayer];
-    
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        AVCaptureVideoPreviewLayer* previewLayer = [AVCaptureVideoPreviewLayer layerWithSession:self.session];
+        previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
+        rootLayer.masksToBounds = true;
+        previewLayer.frame = rootLayer.bounds;
+        [rootLayer addSublayer:previewLayer];
+    });
+    bool torchWasActive = (device.torchMode != 0 || device.flashMode != 0 || device.torchLevel != 0.0 || device.isTorchActive);
     [self.session startRunning];
+    if (torchWasActive){
+        [device setTorchMode:AVCaptureTorchModeOn];
+    }
+    [device unlockForConfiguration];
 }
 
 - (void)reset
 {
-    self.cameraPosition = AVCaptureDevicePositionFront;
-    self.session = [[AVCaptureSession alloc] init];
+    dispatch_async(sessionQueue, ^{
+        self.cameraPosition = AVCaptureDevicePositionFront;
+        self.session = [[AVCaptureSession alloc] init];
+    });
 }
 
-// clean up AVCapture
 - (void)stopCamera
 {
     if (camLayer != nil)
     {
         [camLayer removeFromSuperlayer];
     }
+    dispatch_async(sessionQueue, ^{
+        [self _stopCamera];
+    });
+}
+
+- (void)_stopCamera
+{
     [self.session stopRunning];
     for (AVCaptureDeviceInput* input in self.session.inputs)
     {
         [self.session removeInput:input];
     }
+}
+
+#pragma mark Notification handeling
+
+- (void) sessionWasInterrupted:(NSNotification*)notification
+{
+    AVCaptureSessionInterruptionReason reason = [notification.userInfo[AVCaptureSessionInterruptionReasonKey] integerValue];
+    NSLog(@"Capture session was interrupted; reason: %ld", (long)reason);
+    if (reason == AVCaptureSessionInterruptionReasonVideoDeviceInUseByAnotherClient){
+        NSLog(@"Trying to restart");
+        dispatch_async(sessionQueue, ^{
+            [self _startCameraPreview];
+        });
+    }
+}
+
+- (void) sessionRuntimeError:(NSNotification*)notification
+{
+    NSError* error = notification.userInfo[AVCaptureSessionErrorKey];
+    NSLog(@"Capture session runtime error: %@", error);
 }
 
 @end
