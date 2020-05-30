@@ -21,7 +21,6 @@
  */
 
 #import "SayBubbleBrick.h"
-#import "NSString+CatrobatNSStringExtensions.h"
 
 @implementation SayBubbleBrick
 

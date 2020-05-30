@@ -11,6 +11,7 @@
 		1822C1392471C7CB00F8F158 /* BrickCellListDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1822C1382471C7CB00F8F158 /* BrickCellListDataTests.swift */; };
 		1833ED942446572F0053BF7C /* HelpWebViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1833ED912446572E0053BF7C /* HelpWebViewControllerTests.swift */; };
 		18385C68247C0EB30050819A /* LineShapeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18385C67247C0EB30050819A /* LineShapeNode.swift */; };
+		184949B9248130A9000B8CDA /* NSStringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184949B8248130A9000B8CDA /* NSStringExtension.swift */; };
 		186212382475A1070098F4C5 /* SpriteKitDefines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186212372475A1070098F4C5 /* SpriteKitDefines.swift */; };
 		186212462475C9140098F4C5 /* PenConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186212452475C9140098F4C5 /* PenConfiguration.swift */; };
 		186FBE65247C29AD00AE3F17 /* LineShapeNodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186FBE64247C29AD00AE3F17 /* LineShapeNodeTests.swift */; };
@@ -21,6 +22,7 @@
 		189B8A0F24784A03009BC735 /* SceneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189B8A0E24784A03009BC735 /* SceneTests.swift */; };
 		18A9DBA92434C7F400F4C390 /* IfLogicBeginBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A9DBA82434C7F400F4C390 /* IfLogicBeginBrickTests.swift */; };
 		18B5B529247E542A007D24A3 /* NSDataExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B5B528247E542A007D24A3 /* NSDataExtensionTests.swift */; };
+		18B5B530247EB059007D24A3 /* NSStringExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B5B52F247EB059007D24A3 /* NSStringExtensionTests.swift */; };
 		18B8021F2469170400201847 /* BrickCellVariableDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B8021E2469170400201847 /* BrickCellVariableDataTests.swift */; };
 		18DAFC5A247BD1700082C62A /* CBSpriteNodePenExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DAFC59247BD1700082C62A /* CBSpriteNodePenExtension.swift */; };
 		224D5C582423AEF900CD6302 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224D5C512420C8B400CD6302 /* SettingsTableViewController.swift */; };
@@ -980,7 +982,6 @@
 		92FC85CE1B9E1EB5001C728F /* BrickManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FC85CD1B9E1EB5001C728F /* BrickManager.m */; };
 		92FF2E331A24C5A700093DA7 /* CAGradientLayer+CatrobatCAGradientExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E0D1A24C5A700093DA7 /* CAGradientLayer+CatrobatCAGradientExtensions.m */; };
 		92FF2E371A24C5A700093DA7 /* NSMutableArray+CustomExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E191A24C5A700093DA7 /* NSMutableArray+CustomExtensions.m */; };
-		92FF2E381A24C5A700093DA7 /* NSString+CatrobatNSStringExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E1C1A24C5A700093DA7 /* NSString+CatrobatNSStringExtensions.m */; };
 		92FF2E391A24C5A700093DA7 /* LICENSE_NSString+FastImageSize in Resources */ = {isa = PBXBuildFile; fileRef = 92FF2E1E1A24C5A700093DA7 /* LICENSE_NSString+FastImageSize */; };
 		92FF2E3A1A24C5A700093DA7 /* NSString+FastImageSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E201A24C5A700093DA7 /* NSString+FastImageSize.m */; };
 		92FF2E3B1A24C5A700093DA7 /* Project+CustomExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E231A24C5A700093DA7 /* Project+CustomExtensions.m */; };
@@ -1527,6 +1528,7 @@
 		1822C1382471C7CB00F8F158 /* BrickCellListDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrickCellListDataTests.swift; sourceTree = "<group>"; };
 		1833ED912446572E0053BF7C /* HelpWebViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpWebViewControllerTests.swift; sourceTree = "<group>"; };
 		18385C67247C0EB30050819A /* LineShapeNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LineShapeNode.swift; path = PlayerEngine/DataModel/LineShapeNode.swift; sourceTree = "<group>"; };
+		184949B8248130A9000B8CDA /* NSStringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSStringExtension.swift; sourceTree = "<group>"; };
 		186212372475A1070098F4C5 /* SpriteKitDefines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteKitDefines.swift; sourceTree = "<group>"; };
 		186212452475C9140098F4C5 /* PenConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PenConfiguration.swift; sourceTree = "<group>"; };
 		186FBE64247C29AD00AE3F17 /* LineShapeNodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LineShapeNodeTests.swift; path = Scene/LineShapeNodeTests.swift; sourceTree = "<group>"; };
@@ -1537,6 +1539,7 @@
 		189B8A0E24784A03009BC735 /* SceneTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SceneTests.swift; path = Scene/SceneTests.swift; sourceTree = "<group>"; };
 		18A9DBA82434C7F400F4C390 /* IfLogicBeginBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IfLogicBeginBrickTests.swift; sourceTree = "<group>"; };
 		18B5B528247E542A007D24A3 /* NSDataExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NSDataExtensionTests.swift; path = Extensions/NSDataExtensionTests.swift; sourceTree = "<group>"; };
+		18B5B52F247EB059007D24A3 /* NSStringExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NSStringExtensionTests.swift; path = Extensions/NSStringExtensionTests.swift; sourceTree = "<group>"; };
 		18B8021E2469170400201847 /* BrickCellVariableDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrickCellVariableDataTests.swift; sourceTree = "<group>"; };
 		18DAFC59247BD1700082C62A /* CBSpriteNodePenExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBSpriteNodePenExtension.swift; sourceTree = "<group>"; };
 		18EF8F4D5C0ED599CBA2B488 /* vi */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -2726,8 +2729,6 @@
 		92FF2E0D1A24C5A700093DA7 /* CAGradientLayer+CatrobatCAGradientExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CAGradientLayer+CatrobatCAGradientExtensions.m"; sourceTree = "<group>"; };
 		92FF2E181A24C5A700093DA7 /* NSMutableArray+CustomExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+CustomExtensions.h"; sourceTree = "<group>"; };
 		92FF2E191A24C5A700093DA7 /* NSMutableArray+CustomExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+CustomExtensions.m"; sourceTree = "<group>"; };
-		92FF2E1B1A24C5A700093DA7 /* NSString+CatrobatNSStringExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CatrobatNSStringExtensions.h"; sourceTree = "<group>"; };
-		92FF2E1C1A24C5A700093DA7 /* NSString+CatrobatNSStringExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CatrobatNSStringExtensions.m"; sourceTree = "<group>"; };
 		92FF2E1E1A24C5A700093DA7 /* LICENSE_NSString+FastImageSize */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "LICENSE_NSString+FastImageSize"; sourceTree = "<group>"; };
 		92FF2E1F1A24C5A700093DA7 /* NSString+FastImageSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+FastImageSize.h"; sourceTree = "<group>"; };
 		92FF2E201A24C5A700093DA7 /* NSString+FastImageSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+FastImageSize.m"; sourceTree = "<group>"; };
@@ -6836,7 +6837,6 @@
 				4C4B4CD523EE8A9F0054C861 /* Notification */,
 				92FF2E141A24C5A700093DA7 /* NSDate+Extension */,
 				92FF2E171A24C5A700093DA7 /* NSMutableArray+CustomExtension */,
-				92FF2E1A1A24C5A700093DA7 /* NSString+Extension */,
 				92FF2E1D1A24C5A700093DA7 /* NSString+FastImageSize */,
 				92FF2E211A24C5A700093DA7 /* Project+Extension */,
 				92FF2E261A24C5A700093DA7 /* UIColor+Extension */,
@@ -6846,6 +6846,7 @@
 				5E18A81121A547AA00541536 /* UIViewController+Extensions.swift */,
 				181DB737247DA62600B82B20 /* NSDataExtension.swift */,
 				6F5ADF12247D4703008FC2C5 /* BrickExtension.swift */,
+				184949B8248130A9000B8CDA /* NSStringExtension.swift */,
 			);
 			name = Extensions;
 			path = "Extension&Delegate&Protocol/Extensions";
@@ -6885,15 +6886,6 @@
 				92FF2E191A24C5A700093DA7 /* NSMutableArray+CustomExtensions.m */,
 			);
 			path = "NSMutableArray+CustomExtension";
-			sourceTree = "<group>";
-		};
-		92FF2E1A1A24C5A700093DA7 /* NSString+Extension */ = {
-			isa = PBXGroup;
-			children = (
-				92FF2E1B1A24C5A700093DA7 /* NSString+CatrobatNSStringExtensions.h */,
-				92FF2E1C1A24C5A700093DA7 /* NSString+CatrobatNSStringExtensions.m */,
-			);
-			path = "NSString+Extension";
 			sourceTree = "<group>";
 		};
 		92FF2E1D1A24C5A700093DA7 /* NSString+FastImageSize */ = {
@@ -8468,6 +8460,7 @@
 				4CFAD35D1CFAB3EC0019C636 /* UIImageExtensionTests.swift */,
 				6F9CF132246F0B81008CED1C /* NSDateExtensionTests.swift */,
 				18B5B528247E542A007D24A3 /* NSDataExtensionTests.swift */,
+				18B5B52F247EB059007D24A3 /* NSStringExtensionTests.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -9498,6 +9491,7 @@
 				4C1F6FA5213CF6BE00C20BEB /* SingleParameterStringFunctionMock.swift in Sources */,
 				4CE5C5701E0AD71800FD021C /* RequiredResources.m in Sources */,
 				2ED418B82411213E00AFE2FD /* XMLParserFormulaTests095.swift in Sources */,
+				18B5B530247EB059007D24A3 /* NSStringExtensionTests.swift in Sources */,
 				4C822675213FA7A400F3D750 /* LoudnessSensorTest.swift in Sources */,
 				4CD0BA962146791D00BF17A4 /* UtilTests.swift in Sources */,
 				4CBDF1A921CF830E00325338 /* UnaryOperatorMock.swift in Sources */,
@@ -10026,7 +10020,6 @@
 				AA74F0A61BC05FCE00D1E954 /* RepeatBrickCell.m in Sources */,
 				99B2C3731D884E8A00736769 /* FlashBrickCell.m in Sources */,
 				AA74F0BA1BC05FCE00D1E954 /* GoNStepsBackBrickCell.m in Sources */,
-				92FF2E381A24C5A700093DA7 /* NSString+CatrobatNSStringExtensions.m in Sources */,
 				4CF0729120D6697300F93AB5 /* LatitudeSensor.swift in Sources */,
 				AA74EE231BC053FD00D1E954 /* WaitBrick+Instruction.swift in Sources */,
 				927F79E01BEE39CB008D1635 /* PhiroIfLogicBeginBrick.m in Sources */,
@@ -10350,6 +10343,7 @@
 				AA74EFEA1BC05B5F00D1E954 /* RepeatBrick.m in Sources */,
 				92B46F9C1BC7BC8C004980C1 /* ArduinoSendPWMValueBrick+CBXMLHandler.m in Sources */,
 				4C724E5C1B4D3E8C00E27479 /* Sound+CBXMLHandler.m in Sources */,
+				184949B9248130A9000B8CDA /* NSStringExtension.swift in Sources */,
 				92FF2E8C1A24C7D800093DA7 /* AudioManager.m in Sources */,
 				92FF2E9F1A24C7D800093DA7 /* SharkfoodMuteSwitchDetector.m in Sources */,
 				186212462475C9140098F4C5 /* PenConfiguration.swift in Sources */,

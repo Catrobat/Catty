@@ -25,7 +25,7 @@
 #import "CBXMLSerializerContext.h"
 #import "CBXMLValidator.h"
 #import "CBXMLPositionStack.h"
-#import "NSString+CatrobatNSStringExtensions.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation GDataXMLElement (CustomExtensions)
 

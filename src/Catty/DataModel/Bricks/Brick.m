@@ -22,7 +22,6 @@
 #import "Brick.h"
 #import "Script.h"
 #import "BrickManager.h"
-#import "NSString+CatrobatNSStringExtensions.h"
 #import "IfLogicBeginBrick.h"
 #import "LoopBeginBrick.h"
 #import "BroadcastScript.h"
