@@ -77,4 +77,79 @@ final class UtilTests: XCTestCase {
         sceneDirectoryname = Util.defaultSceneName(forSceneNumber: 99)
         XCTAssertEqual(sceneDirectoryname, "Scene 99")
     }
+
+    func testAppName() {
+        let utilAppName = Util.appName()
+        let bundleDisplayName = Bundle.main.infoDictionary?["CFBundleDisplayName"] as? String
+        XCTAssertEqual(utilAppName, bundleDisplayName)
+    }
+
+    func testAppVersion() {
+        let utilAppVersion = Util.appVersion()
+        let bundleShortVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
+        XCTAssertEqual(utilAppVersion, bundleShortVersion)
+    }
+
+    func testAppBuildName() {
+        let utilAppBuildName = Util.appBuildName()
+        let bundleBuildName = Bundle.main.infoDictionary?["CatrobatBuildName"] as? String
+        XCTAssertEqual(utilAppBuildName, bundleBuildName)
+    }
+
+    func testAppBuildVersion() {
+        let utilAppBuildVersion = Util.appBuildVersion()
+        let bundleBuildVersion = Bundle.main.infoDictionary?["CFBundleVersion"] as? String
+        XCTAssertEqual(utilAppBuildVersion, bundleBuildVersion)
+    }
+
+    func testCatrobatLanguageVersion() {
+        let utilCatrobatLanguageVersion = Util.catrobatLanguageVersion()
+        let bundleCatrobatLanguageVersion = Bundle.main.infoDictionary?["CatrobatLanguageVersion"] as? String
+        XCTAssertEqual(utilCatrobatLanguageVersion, bundleCatrobatLanguageVersion)
+    }
+
+    func testCatrobatMediaLicense() {
+        let utilCatrobatMediaLicense = Util.catrobatMediaLicense()
+        let bundleCatrobatMediaLicense = Bundle.main.infoDictionary?["CatrobatMediaLicense"] as? String
+        XCTAssertEqual(utilCatrobatMediaLicense, bundleCatrobatMediaLicense)
+    }
+
+    func testCatrobatProgramLicense() {
+        let utilCatrobatProgramLicense = Util.catrobatProgramLicense()
+        let bundleCatrobatProgramLicense = Bundle.main.infoDictionary?["CatrobatProgramLicense"] as? String
+        XCTAssertEqual(utilCatrobatProgramLicense, bundleCatrobatProgramLicense)
+    }
+
+    func testDeviceName() {
+        let utilDeviceName = Util.deviceName()
+        let systemInfoDeviceName = UIDevice.current.modelName
+        XCTAssertEqual(utilDeviceName, systemInfoDeviceName)
+    }
+
+    func testPlatformName() {
+        let utilPlatformName = Util.platformName()
+        let bundlePlatformName = Bundle.main.infoDictionary?["CatrobatPlatformName"] as? String
+        XCTAssertEqual(utilPlatformName, bundlePlatformName)
+    }
+
+    func testPlatformVersion() {
+        let utilPlatformVersion = Util.platformVersionWithoutPatch()
+        let devicePlatformVersion = UIDevice.current.systemVersion
+        XCTAssertEqual(utilPlatformVersion, devicePlatformVersion)
+    }
+
+    func testPlatformVersionWithPatch() {
+        let utilPlatformVersionWithPatch = Util.platformVersionWithPatch()
+        let operatingSystemVersion = ProcessInfo.processInfo.operatingSystemVersion
+        let majorPlatformVerison = String(operatingSystemVersion.majorVersion)
+        let minorPlatformVersion = String(operatingSystemVersion.minorVersion)
+        let patchPlatformVersion = String(operatingSystemVersion.patchVersion)
+        let fullDevicePlatformVersion = "\(majorPlatformVerison).\(minorPlatformVersion).\(patchPlatformVersion)"
+        XCTAssertEqual(utilPlatformVersionWithPatch, fullDevicePlatformVersion)
+    }
+    func testPlatformVersionWithoutPatch() {
+        let utilPlatformVersion = Util.platformVersionWithoutPatch()
+        let devicePlatformVersion = UIDevice.current.systemVersion
+        XCTAssertEqual(utilPlatformVersion, devicePlatformVersion)
+    }
 }

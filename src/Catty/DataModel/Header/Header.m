@@ -23,6 +23,7 @@
 #import "Header.h"
 #import "Util.h"
 #import "CatrobatLanguageDefines.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation Header
 
