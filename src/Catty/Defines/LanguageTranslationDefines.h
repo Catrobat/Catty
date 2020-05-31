@@ -402,6 +402,9 @@
 #define kLocalizedChooseCamera NSLocalizedString(@"Use camera", nil)
 #define kLocalizedFor NSLocalizedString(@"for", nil)
 
+// pen bricks
+#define kLocalizedPenDown NSLocalizedString(@"Pen down", nil)
+
 // sound bricks
 #define kLocalizedSound NSLocalizedString(@"Sound", nil)
 #define kLocalizedPlaySound NSLocalizedString(@"Start sound", nil)
@@ -691,6 +694,7 @@
 #define kLocalizedCategoryVariable NSLocalizedString(@"Variable", nil)
 #define kLocalizedCategoryArduino NSLocalizedString(@"Arduino", nil)
 #define kLocalizedCategoryPhiro NSLocalizedString(@"Phiro", nil)
+#define kLocalizedCategoryPen NSLocalizedString(@"Pen", nil)
 
 //************************************************************************************************************
 //************************************       PhiroDefines         ********************************************
