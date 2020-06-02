@@ -161,4 +161,41 @@ final class SceneTests: XCTestCase {
         XCTAssertEqual(spriteNode1.updateMethodCallCount, 2)
         XCTAssertEqual(spriteNode2.updateMethodCallCount, 2)
     }
+
+    func testPenClearLines() {
+        let scene = SceneBuilder(project: ProjectMock()).build()
+
+        let line1 = LineShapeNode(pathStartPoint: CGPoint.zero, pathEndPoint: CGPoint(x: 1, y: 1))
+        line1.name = SpriteKitDefines.penShapeNodeName
+        scene.addChild(line1)
+
+        let line2 = LineShapeNode(pathStartPoint: CGPoint(x: 1, y: 1), pathEndPoint: CGPoint(x: 2, y: 2))
+        line2.name = SpriteKitDefines.penShapeNodeName
+        scene.addChild(line2)
+
+        var allLineShapeNodes = [LineShapeNode]()
+        scene.enumerateChildNodes(withName: SpriteKitDefines.penShapeNodeName) { node, _ in
+            guard let line = node as? LineShapeNode else {
+                XCTFail("Could not cast SKNode to LineShapeNode")
+                return
+            }
+            allLineShapeNodes.append(line)
+        }
+
+        XCTAssertEqual(allLineShapeNodes.count, 2)
+
+        scene.clearPenLines()
+
+        allLineShapeNodes.removeAll()
+        scene.enumerateChildNodes(withName: SpriteKitDefines.penShapeNodeName) { node, _ in
+            guard let line = node as? LineShapeNode else {
+                XCTFail("Could not cast SKNode to LineShapeNode")
+                return
+            }
+            allLineShapeNodes.append(line)
+        }
+
+        XCTAssertEqual(allLineShapeNodes.count, 0)
+
+    }
 }

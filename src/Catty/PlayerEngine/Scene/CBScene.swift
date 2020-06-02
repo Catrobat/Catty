@@ -254,4 +254,15 @@ final class CBScene: SKScene {
         logger.info("All SpriteObjects and Scripts have been removed from Scene!")
         soundEngine.stop()
     }
+
+    func clearPenLines() {
+
+        self.enumerateChildNodes(withName: SpriteKitDefines.penShapeNodeName) { node, _ in
+            guard let line = node as? LineShapeNode else {
+                fatalError("Could not cast SKNode named SpriteKitDefines.penShapeNodeName to LineShapeNode")
+            }
+            line.removeFromParent()
+        }
+
+    }
 }
