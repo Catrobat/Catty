@@ -32,6 +32,7 @@
 
 @class BrickCellFormulaData;
 @class FormulaManager;
+@class UserList;
 
 @interface FormulaEditorViewController : UIViewController<UIPickerViewDataSource,UIPickerViewDelegate,UIGestureRecognizerDelegate>
 @property (strong, nonatomic) InternFormula *internFormula;

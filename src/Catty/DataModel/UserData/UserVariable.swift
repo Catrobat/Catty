@@ -28,21 +28,13 @@
     var name: String
     var value: Any?
     var textLabel: SKLabelNode?
-    var isList: Bool
 
     init(name: String) {
         self.name = name
-        self.isList = false
     }
 
     init(variable: UserVariable) {
         self.name = variable.name
-        self.isList = variable.isList
-    }
-
-    init(name: String, isList: Bool) {
-        self.name = name
-        self.isList = isList
     }
 
     override var description: String {
@@ -53,7 +45,7 @@
         guard let userVariable = object as? UserVariable else {
             return false
         }
-        if (name == userVariable.name) && Util.isEqual(value, to: userVariable.value) && (isList == userVariable.isList) {
+        if (name == userVariable.name) && Util.isEqual(value, to: userVariable.value) {
             return true
         }
         return false

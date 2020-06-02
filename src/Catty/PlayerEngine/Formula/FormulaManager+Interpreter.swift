@@ -207,9 +207,8 @@ extension FormulaManager {
 
     private func interpretList(_ formulaElement: FormulaElement, for spriteObject: SpriteObject) -> AnyObject {
         guard let project = spriteObject.project,
-            let list = project.variables.getUserListNamed(formulaElement.value, for: spriteObject),
-            let value = list.value,
-            let listElements = value as? [Any] else { return 0 as AnyObject }
+            let list = project.variables.getUserListNamed(formulaElement.value, for: spriteObject), let listElements = list.value as? [Any]
+            else { return 0 as AnyObject }
 
         var stringElements = [String]()
 

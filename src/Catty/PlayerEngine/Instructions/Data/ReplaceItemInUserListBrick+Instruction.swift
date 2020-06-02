@@ -36,7 +36,7 @@
             if userList != nil {
                 let valueResult = context.formulaInterpreter.interpret(elementFormula, for: spriteObject)
                 let positionResult = context.formulaInterpreter.interpretInteger(position, for: spriteObject)
-                variablesContainer.replaceItem(inUserList: userList, value: valueResult, atIndex: positionResult)
+                variablesContainer.replaceItem(in: userList, value: valueResult, atIndex: positionResult)
             }
             context.state = .runnable
         }

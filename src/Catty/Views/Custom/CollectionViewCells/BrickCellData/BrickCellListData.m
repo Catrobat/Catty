@@ -47,8 +47,8 @@
             int optionIndex = 1;
             if([brickCell.scriptOrBrick conformsToProtocol:@protocol(BrickListProtocol)]) {
                 Brick<BrickListProtocol> *listBrick = (Brick<BrickListProtocol>*)brickCell.scriptOrBrick;
-                UserVariable *currentList = [listBrick listForLineNumber:line andParameterNumber:parameter];
-                for(UserVariable *list in [listBrick.script.object.project.variables allListsForObject:listBrick.script.object]) {
+                UserList *currentList = [listBrick listForLineNumber:line andParameterNumber:parameter];
+                for(UserList *list in [listBrick.script.object.project.variables allListsForObject:listBrick.script.object]) {
                     [options addObject:list.name];
                     if([list.name isEqualToString:currentList.name])
                         currentOptionIndex = optionIndex;

@@ -145,7 +145,7 @@
         
         for(NSString *listName in listOfLists) {
             if(![varAndListContainer getUserListNamed:listName forSpriteObject:object]) {
-                UserVariable *userList = [[UserVariable alloc] initWithName:listName isList:true];
+                UserList *userList = [[UserList alloc] initWithName:listName];
                 
                 [varAndListContainer addObjectList:userList forObject:object];
                 NSDebug(@"Added a user list with name %@ to global object "\

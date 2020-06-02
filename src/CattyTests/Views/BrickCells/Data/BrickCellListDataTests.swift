@@ -34,10 +34,10 @@ class BrickCellListDataTests: XCTestCase {
     var brickCell: ReplaceItemInUserListBrickCell!
 
     var variablesContainer: VariablesContainer!
-    var objectList1: UserVariable!
-    var objectList2: UserVariable!
-    var secondObjectList: UserVariable!
-    var programList: UserVariable!
+    var objectList1: UserList!
+    var objectList2: UserList!
+    var secondObjectList: UserList!
+    var programList: UserList!
 
     override func setUp() {
 
@@ -48,10 +48,10 @@ class BrickCellListDataTests: XCTestCase {
         spriteObject2.name = "testObject2"
 
         variablesContainer = VariablesContainer()
-        objectList1 = UserVariable(name: "testList1", isList: true)
-        objectList2 = UserVariable(name: "testList2", isList: true)
-        secondObjectList = UserVariable(name: "testList3", isList: true)
-        programList = UserVariable(name: "testList4", isList: true)
+        objectList1 = UserList(name: "testList1")
+        objectList2 = UserList(name: "testList2")
+        secondObjectList = UserList(name: "testList3")
+        programList = UserList(name: "testList4")
 
         variablesContainer.addObjectList(objectList1, for: spriteObject)
         variablesContainer.addObjectList(objectList2, for: spriteObject)

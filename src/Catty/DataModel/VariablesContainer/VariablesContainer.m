@@ -99,13 +99,13 @@ static pthread_mutex_t variablesLock;
     return variable;
 }
 
-- (UserVariable*)getUserListNamed:(NSString*)name forSpriteObject:(SpriteObject*)sprite
+- (UserList*)getUserListNamed:(NSString*)name forSpriteObject:(SpriteObject*)sprite
 {
     NSArray *objectUserLists = [self.objectListOfLists objectForKey:sprite];
-    UserVariable *list = [self findUserVariableNamed:name inArray:objectUserLists];
+    UserList *list = [self findUserListNamed:name inArray:objectUserLists];
     
     if (! list) {
-        list = [self findUserVariableNamed:name inArray:self.programListOfLists];
+        list = [self findUserListNamed:name inArray:self.programListOfLists];
     }
     return list;
 }
@@ -159,6 +159,21 @@ static pthread_mutex_t variablesLock;
     return variable;
 }
 
+- (UserList*)findUserListNamed:(NSString*)name inArray:(NSArray*)userLists
+{
+    UserList *list = nil;
+    pthread_mutex_lock(&variablesLock);
+    for (int i = 0; i < [userLists count]; ++i) {
+        UserList *lis = [userLists objectAtIndex:i];
+        if ([lis.name isEqualToString:name]) {
+            list = lis;
+            break;
+        }
+    }
+    pthread_mutex_unlock(&variablesLock);
+    return list;
+}
+
 - (void)removeObjectUserVariableNamed:(NSString*)name inArray:(NSMutableArray*)userVariables forSpriteObject:(SpriteObject*)sprite
 {
     pthread_mutex_lock(&variablesLock);
@@ -204,7 +219,7 @@ static pthread_mutex_t variablesLock;
 {
     pthread_mutex_lock(&variablesLock);
     for (int i = 0; i < [self.programListOfLists count]; ++i) {
-        UserVariable *list = [self.programListOfLists objectAtIndex:i];
+        UserList *list = [self.programListOfLists objectAtIndex:i];
         if ([list.name isEqualToString:name]) {
             [self.programListOfLists removeObjectAtIndex:i];
             break;
@@ -228,7 +243,7 @@ static pthread_mutex_t variablesLock;
     pthread_mutex_unlock(&variablesLock);
 }
 
-- (void)addToUserList:(UserVariable*)userList value:(id)value
+- (void)addToUserList:(UserList*)userList value:(id)value
 {
     pthread_mutex_lock(&variablesLock);
     if((![userList.value isKindOfClass:[NSMutableArray class]]) && (userList.value != nil)){
@@ -253,7 +268,7 @@ static pthread_mutex_t variablesLock;
     pthread_mutex_unlock(&variablesLock);
 }
 
-- (void)deleteFromUserList:(UserVariable*)userList atIndex:(id)position
+- (void)deleteFromUserList:(UserList*)userList atIndex:(id)position
 {
     pthread_mutex_lock(&variablesLock);
     if((![userList.value isKindOfClass:[NSMutableArray class]]) && (userList.value != nil)){
@@ -280,7 +295,7 @@ static pthread_mutex_t variablesLock;
     pthread_mutex_unlock(&variablesLock);
 }
 
-- (void)insertToUserList:(UserVariable*)userList value:(id)value atIndex:(id)position
+- (void)insertToUserList:(UserList*)userList value:(id)value atIndex:(id)position
 {
     pthread_mutex_lock(&variablesLock);
     if((![userList.value isKindOfClass:[NSMutableArray class]]) && (userList.value != nil)){
@@ -314,7 +329,7 @@ static pthread_mutex_t variablesLock;
     pthread_mutex_unlock(&variablesLock);
 }
 
-- (void)replaceItemInUserList:(UserVariable*)userList value:(id)value atIndex:(id)position
+- (void)replaceItemInUserList:(UserList*)userList value:(id)value atIndex:(id)position
 {
     pthread_mutex_lock(&variablesLock);
     if((![userList.value isKindOfClass:[NSMutableArray class]]) && (userList.value != nil)){
@@ -368,7 +383,7 @@ static pthread_mutex_t variablesLock;
     return lists;
 }
 
-- (NSMutableArray*)allVariables
+- (NSArray<UserVariable*>*)allVariables
 {
     NSMutableArray *vars = [NSMutableArray arrayWithArray:self.programVariableList];
     for(NSUInteger index = 0; index < [self.objectVariableList count]; index++) {
@@ -379,7 +394,7 @@ static pthread_mutex_t variablesLock;
     return vars;
 }
 
-- (NSMutableArray*)allLists
+- (NSArray<UserList*>*)allLists
 {
     NSMutableArray *vars = [NSMutableArray arrayWithArray:self.programListOfLists];
     for(NSUInteger index = 0; index < [self.objectListOfLists count]; index++) {
@@ -405,7 +420,7 @@ static pthread_mutex_t variablesLock;
 {
     NSMutableArray *lists = [NSMutableArray new];
     if([self.objectListOfLists objectForKey:spriteObject]) {
-        for(UserVariable *list in [self.objectListOfLists objectForKey:spriteObject]) {
+        for(UserList *list in [self.objectListOfLists objectForKey:spriteObject]) {
             [lists addObject:list];
         }
     }
@@ -422,7 +437,7 @@ static pthread_mutex_t variablesLock;
     return NO;
 }
 
-- (BOOL)isProjectList: (id<UserDataProtocol>)userList
+- (BOOL)isProjectList: (UserList*)userList
 {
     for (UserVariable *userListToCompare in self.programListOfLists) {
         if ([userListToCompare.name isEqualToString:userList.name]) {
@@ -451,7 +466,7 @@ static pthread_mutex_t variablesLock;
     return YES;
 }
 
-- (BOOL)addObjectList:(UserVariable*)userList forObject:(SpriteObject*)spriteObject
+- (BOOL)addObjectList:(UserList*)userList forObject:(SpriteObject*)spriteObject
 {
     NSMutableArray *array = [self.objectListOfLists objectForKey:spriteObject];
     

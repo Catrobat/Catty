@@ -165,14 +165,14 @@ final class FormulaEditorViewControllerTests: XCTestCase {
     }
 
     func testIsListUsedGlobalWithoutBrick() {
-        let list = UserVariable(name: "globalList", isList: true)
+        let list = UserList(name: "globalList")
         project.variables.programListOfLists.add(list)
 
         XCTAssertFalse(controller.isListUsed(list))
     }
 
     func testIsListUsedGlobalWithMultipleBricks() {
-        let list = UserVariable(name: "globalList", isList: true)
+        let list = UserList(name: "globalList")
         let brickA = AddItemToUserListBrick()
         let brickB = AddItemToUserListBrick()
 
@@ -190,7 +190,7 @@ final class FormulaEditorViewControllerTests: XCTestCase {
     }
 
     func testIsListUsedGlobalWithMultipleScripts() {
-        let list = UserVariable(name: "globalList", isList: true)
+        let list = UserList(name: "globalList")
         let brick = AddItemToUserListBrick()
         let scriptB = WhenScript()
 
@@ -207,7 +207,7 @@ final class FormulaEditorViewControllerTests: XCTestCase {
     }
 
     func testIsListUsedGlobalWithMultipleObjects() {
-        let list = UserVariable(name: "globalList", isList: true)
+        let list = UserList(name: "globalList")
         let brick = AddItemToUserListBrick()
         let scriptB = WhenScript()
         let objectB = SpriteObject()
@@ -226,14 +226,14 @@ final class FormulaEditorViewControllerTests: XCTestCase {
     }
 
     func testIsListUsedLocalWithoutBrick() {
-        let list = UserVariable(name: "localList", isList: true)
+        let list = UserList(name: "localList")
         project.variables.addObjectList(list, for: spriteObject)
 
         XCTAssertFalse(controller.isListUsed(list))
     }
 
     func testIsListUsedLocalWithMultipleBricks() {
-        let list = UserVariable(name: "localList", isList: true)
+        let list = UserList(name: "localList")
         let brickA = AddItemToUserListBrick()
         let brickB = AddItemToUserListBrick()
 
@@ -251,7 +251,7 @@ final class FormulaEditorViewControllerTests: XCTestCase {
     }
 
     func testIsListUsedLocalWithMultipleScripts() {
-        let list = UserVariable(name: "localList", isList: true)
+        let list = UserList(name: "localList")
         let brick = AddItemToUserListBrick()
         let scriptB = WhenScript()
 
@@ -268,7 +268,7 @@ final class FormulaEditorViewControllerTests: XCTestCase {
     }
 
     func testIsListUsedLocalWithMultipleObjects() {
-        let list = UserVariable(name: "localList", isList: true)
+        let list = UserList(name: "localList")
         let brick = AddItemToUserListBrick()
         let scriptB = WhenScript()
         let objectB = SpriteObject()

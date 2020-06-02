@@ -32,7 +32,7 @@ final class ReplaceItemInUserListBrickTests: XCTestCase {
     var script: Script!
     var scheduler: CBScheduler!
     var context: CBScriptContextProtocol!
-    var userList: UserVariable!
+    var userList: UserList!
     var brick: ReplaceItemInUserListBrick!
 
     override func setUp() {
@@ -49,7 +49,7 @@ final class ReplaceItemInUserListBrickTests: XCTestCase {
 
         spriteObject.project.variables = VariablesContainer()
 
-        userList = UserVariable(name: "testName", isList: true)
+        userList = UserList(name: "testName")
         spriteObject.project.variables.addObjectList(userList, for: spriteObject)
 
         brick = ReplaceItemInUserListBrick()
@@ -77,13 +77,13 @@ final class ReplaceItemInUserListBrickTests: XCTestCase {
             XCTFail("Fatal Error")
         }
 
-        let valueArr = userList.value as! [AnyObject]
+        let valueArr = userList.value
         XCTAssertEqual(1, valueArr.count)
         XCTAssertEqual(newValue, valueArr[0] as! Int32)
     }
 
     func testReplaceItemAtInvalidPosition() {
-        XCTAssertNil(userList.value)
+        XCTAssertEqual(userList.value.count, 0)
 
         brick.index = Formula(string: "abc")
         brick.elementFormula = Formula(integer: 1)
@@ -95,11 +95,11 @@ final class ReplaceItemInUserListBrickTests: XCTestCase {
             XCTFail("Fatal Error")
         }
 
-        XCTAssertNil(userList.value)
+        XCTAssertEqual(userList.value.count, 0)
     }
 
     func testReplaceItemAtNegativePosition() {
-        XCTAssertNil(userList.value)
+        XCTAssertEqual(userList.value.count, 0)
 
         brick.index = Formula(integer: -1)
         brick.elementFormula = Formula(integer: 1)
@@ -111,6 +111,6 @@ final class ReplaceItemInUserListBrickTests: XCTestCase {
             XCTFail("Fatal Error")
         }
 
-        XCTAssertNil(userList.value)
+       XCTAssertEqual(userList.value.count, 0)
     }
 }

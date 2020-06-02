@@ -32,7 +32,7 @@ final class DeleteItemOfUserListBrickTests: XCTestCase {
     var script: Script!
     var scheduler: CBScheduler!
     var context: CBScriptContextProtocol!
-    var userList: UserVariable!
+    var userList: UserList!
     var brick: DeleteItemOfUserListBrick!
 
     override func setUp() {
@@ -49,7 +49,7 @@ final class DeleteItemOfUserListBrickTests: XCTestCase {
 
         spriteObject.project.variables = VariablesContainer()
 
-        userList = UserVariable(name: "testName", isList: true)
+        userList = UserList(name: "testName")
         spriteObject.project.variables.addObjectList(userList, for: spriteObject)
 
         brick = DeleteItemOfUserListBrick()
@@ -74,7 +74,7 @@ final class DeleteItemOfUserListBrickTests: XCTestCase {
             XCTFail("Fatal Error")
         }
 
-        XCTAssertEqual(0, (userList.value as! [AnyObject]).count)
+        XCTAssertEqual(0, userList.value.count)
     }
 
     func testDeleteItemAtInvalidPosition() {
@@ -88,7 +88,7 @@ final class DeleteItemOfUserListBrickTests: XCTestCase {
             XCTFail("Fatal Error")
         }
 
-        XCTAssertEqual(1, (userList.value as! [AnyObject]).count)
+        XCTAssertEqual(1, userList.value.count)
     }
 
     func testDeleteItemAtNegativePosition() {
@@ -102,7 +102,7 @@ final class DeleteItemOfUserListBrickTests: XCTestCase {
             XCTFail("Fatal Error")
         }
 
-        XCTAssertEqual(1, (userList.value as! [AnyObject]).count)
+        XCTAssertEqual(1, userList.value.count)
     }
 
     func testMutableCopy() {

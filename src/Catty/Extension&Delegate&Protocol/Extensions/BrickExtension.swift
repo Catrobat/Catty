@@ -40,18 +40,10 @@
         return false
     }
 
-    func isListUsed(list: UserDataProtocol) -> Bool {
+    func isListUsed(list: UserList) -> Bool {
         if let listBrick = self as? (Brick & BrickListProtocol) {
-            if let list = list as? UserVariable {
-                if list == listBrick.userList {
-                    return true
-                }
-            }
-
-            if let list = list as? UserList {
-                if list == listBrick.userList {
-                    return true
-                }
+            if list == listBrick.userList {
+                return true
             }
         }
 

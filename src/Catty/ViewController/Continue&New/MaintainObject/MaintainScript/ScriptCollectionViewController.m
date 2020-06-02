@@ -1017,14 +1017,14 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                                         target:self
                                   cancelAction:@selector(reloadData)
                                     withObject:(id) ^(NSString* listName) {
-                                        UserVariable *list = [[UserVariable alloc] initWithName:listName isList:YES];
+                                        UserList *list = [[UserList alloc] initWithName:listName];
                                         list.value = [[NSMutableArray alloc] init];
                                         if (isProjectList) {
                                             [self.object.project.variables.programListOfLists addObject:list];
                                         } else { // object list
                                             [self.object.project.variables addObjectList:list forObject:self.object];
                                         }
-                                        UserVariable *listToSet = [self.object.project.variables getUserListNamed:(NSString*)listName forSpriteObject:self.object];
+                                        UserList *listToSet = [self.object.project.variables getUserListNamed:(NSString*)listName forSpriteObject:self.object];
                                         BrickCell *brickCell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:self.variableIndexPath];
                                         Brick * brick = (Brick*)brickCell.scriptOrBrick;
                                         Brick<BrickListProtocol> *listBrick;
@@ -1228,7 +1228,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             return;
         } else {
             Brick<BrickListProtocol> *listBrick = (Brick<BrickListProtocol>*)brick;
-            UserVariable *list = [self.object.project.variables getUserListNamed:(NSString*)value forSpriteObject:self.object];
+            UserList *list = [self.object.project.variables getUserListNamed:(NSString*)value forSpriteObject:self.object];
             if(list)
                 [listBrick setList:list forLineNumber:line andParameterNumber:parameter];
         }

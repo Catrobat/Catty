@@ -33,7 +33,7 @@
 @property (nonatomic, strong) CBXMLParserContext *paeserContext;
 @property (nonatomic, strong) CBXMLSerializerContext *serializerContext;
 @property (nonatomic, strong) UserList *userList;
-@property (nonatomic, strong) UserVariable *userListOfTypeUserVariable;
+@property (nonatomic, strong) UserVariable *userVariable;
 
 @end
  
@@ -53,7 +53,7 @@
     self.serializerContext = [[CBXMLSerializerContext alloc] init];
 
     self.userList = [[UserList alloc] initWithName: @"testUserList"];
-    self.userListOfTypeUserVariable = [[UserVariable alloc] initWithName: @"testUserListOfTypeUserVariable" isList:YES];
+    self.userVariable = [[UserVariable alloc] initWithName: @"testUserListOfTypeUserVariable"];
 }
 
 - (void)testParseFromElementWithOutXmlElimentName
@@ -114,7 +114,7 @@
 
 - (void)testXmlElementWithContextWithObjectListAlreadySerialized
 {
-    NSMutableArray *userListArray = [[NSMutableArray alloc] initWithObjects: self.userListOfTypeUserVariable, nil];
+    NSMutableArray *userListArray = [[NSMutableArray alloc] initWithObjects: self.userVariable, nil];
     
     [self.serializerContext.variables setProgramListOfLists:userListArray];
     SpriteObject *object = [SpriteObject alloc];
@@ -142,7 +142,7 @@
 
 - (void)testXmlElementWithContextWithObjectListNotAlreadySerialized
 {
-    NSMutableArray *userListArray = [[NSMutableArray alloc] initWithObjects: self.userListOfTypeUserVariable, nil];
+    NSMutableArray *userListArray = [[NSMutableArray alloc] initWithObjects: self.userVariable, nil];
     [self.serializerContext.variables setProgramListOfLists:userListArray];
     
     SpriteObject *object = [SpriteObject alloc];
