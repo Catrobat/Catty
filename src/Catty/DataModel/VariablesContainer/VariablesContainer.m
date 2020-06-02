@@ -539,10 +539,10 @@ static pthread_mutex_t variablesLock;
             if ([firstUserVariableList count] != [secondUserVariableList count])
                 return NO;
             
-            for (UserVariable *firstVariable in firstUserVariableList) {
-                UserVariable *secondVariable = nil;
+            for (id<UserDataProtocol> firstVariable in firstUserVariableList) {
+                id<UserDataProtocol> secondVariable = nil;
                 // look for variable with same name (order in VariableList/ListOfLists can differ)
-                for (UserVariable *variable in secondUserVariableList) {
+                for (id<UserDataProtocol> variable in secondUserVariableList) {
                     if ([firstVariable.name isEqualToString:variable.name]) {
                         secondVariable = variable;
                         break;
@@ -569,10 +569,10 @@ static pthread_mutex_t variablesLock;
         if ([thisVarsOrLists count] != [otherVarsOrLists count])
             return NO;
         
-        for (UserVariable *firstVariable in thisVarsOrLists) {
-            UserVariable *secondVariable = nil;
+        for (id<UserDataProtocol> firstVariable in thisVarsOrLists) {
+            id<UserDataProtocol> secondVariable = nil;
             // look for variable with same name (order in variable list can differ)
-            for (UserVariable *variable in otherVarsOrLists) {
+            for (id<UserDataProtocol> variable in otherVarsOrLists) {
                 if ([firstVariable.name isEqualToString:variable.name]) {
                     secondVariable = variable;
                     break;
