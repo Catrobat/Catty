@@ -32,7 +32,6 @@
 #import "Look.h"
 #import "SpriteObject.h"
 #import "LookImageViewController.h"
-#import "NSString+CatrobatNSStringExtensions.h"
 #import "CBFileManager.h"
 #import "RuntimeImageCache.h"
 #import "PlaceHolderView.h"

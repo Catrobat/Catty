@@ -24,7 +24,6 @@
 #import "ProjectLoadingInfo.h"
 #import "UIImage+CatrobatUIImageExtensions.h"
 #import "CatrobatLanguageDefines.h"
-#import "NSString+CatrobatNSStringExtensions.h"
 #import "Sound.h"
 #import "Look.h"
 #import "Script.h"

@@ -21,7 +21,6 @@
  */
 
 #import <XCTest/XCTest.h>
-#import "NSString+CatrobatNSStringExtensions.h"
 
 @interface CustomExtensionsTests : XCTestCase
 

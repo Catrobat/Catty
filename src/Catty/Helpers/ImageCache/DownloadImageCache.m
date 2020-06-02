@@ -21,8 +21,8 @@
  */
 
 #import "DownloadImageCache.h"
-#import "NSString+CatrobatNSStringExtensions.h"
 #import "CBFileManager.h"
+#import "Pocket_Code-Swift.h"
 
 #define kOneWeekImageCacheAge 60 * 60 * 24 * 7;
 #define kImageCacheDirectory @"at.tugraz.ist.catrobat.ImageCache"

@@ -25,7 +25,6 @@
 #import "UIDefines.h"
 #import "CBFileManager.h"
 #import "TimerLabel.h"
-#import "NSString+CatrobatNSStringExtensions.h"
 #import "Util.h"
 #import "Pocket_Code-Swift.h"
 

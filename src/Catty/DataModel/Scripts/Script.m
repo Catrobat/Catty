@@ -24,7 +24,6 @@
 #import "Brick.h"
 #import "BrickManager.h"
 #import "CBMutableCopyContext.h"
-#import "NSString+CatrobatNSStringExtensions.h"
 #import "BroadcastScript.h"
 #import "WhenScript.h"
 #import "Util.h"

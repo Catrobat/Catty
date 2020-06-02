@@ -30,7 +30,6 @@
 #import "Script.h"
 #import "XMLObjectReference.h"
 #import "OrderedMapTable.h"
-#import "NSString+CatrobatNSStringExtensions.h"
 #import "SpriteObject.h"
 #import "NoteBrick.h"
 #import "Pocket_Code-Swift.h"

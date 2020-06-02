@@ -23,7 +23,6 @@
 #import "CreateView.h"
 #import "CatrobatProject.h"
 #import "ImageCache.h"
-#import "NSString+CatrobatNSStringExtensions.h"
 #import "UIImage+CatrobatUIImageExtensions.h"
 #import "ButtonTags.h"
 #import <TTTAttributedLabel/TTTAttributedLabel.h>
