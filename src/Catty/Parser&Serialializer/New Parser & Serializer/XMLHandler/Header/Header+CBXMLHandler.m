@@ -29,6 +29,7 @@
 #import "CBXMLPropertyMapping.h"
 #import "CBXMLParserContext.h"
 #import "Util.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation Header (CBXMLHandler)
 

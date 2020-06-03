@@ -42,6 +42,7 @@ if (__functor) __functor(__VA_ARGS__);  \
 @class SceneViewController;
 @class ProjectLoadingInfo;
 @class InputValidationResult;
+@class Util;
 
 @interface Util : NSObject
 
@@ -68,30 +69,6 @@ if (__functor) __functor(__VA_ARGS__);  \
                                         isList:(BOOL)isList
                                   andTextField:(FormulaEditorTextView* _Nullable)textView
                                    initialText:(NSString* _Nullable)initialText;
-
-+ (NSString* _Nullable)appName;
-
-+ (NSString* _Nullable)appVersion;
-
-+ (NSString* _Nullable)appBuildName;
-
-+ (NSString* _Nullable)appBuildVersion;
-
-+ (NSString* _Nonnull)catrobatLanguageVersion;
-
-+ (NSString* _Nullable)catrobatMediaLicense;
-
-+ (NSString* _Nullable)catrobatProgramLicense;
-
-+ (NSString* _Nullable)deviceName;
-
-+ (NSString* _Nullable)platformName;
-
-+ (NSOperatingSystemVersion)platformVersion;
-
-+ (NSString* _Nonnull)platformVersionWithPatch;
-
-+ (NSString* _Nonnull)platformVersionWithoutPatch;
 
 /* Returns the screen size in pixel or points */
 + (CGSize)screenSize:(BOOL)inPixel;
