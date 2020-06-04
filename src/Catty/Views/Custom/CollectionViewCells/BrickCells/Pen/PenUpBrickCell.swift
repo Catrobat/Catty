@@ -20,14 +20,19 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension PenDownBrick: CBXMLNodeProtocol {
-    static func parse(from xmlElement: GDataXMLElement, with context: CBXMLParserContext) -> Self {
-        CBXMLParserHelper.validate(xmlElement, forNumberOfChildNodes: 0)
-        return self.init()
+class PenUpBrickCell: BrickCell, BrickCellProtocol {
+
+    var textLabel: UILabel?
+
+    static func cellHeight() -> CGFloat {
+        CGFloat(kBrickHeight1h)
     }
 
-    func xmlElement(with context: CBXMLSerializerContext) -> GDataXMLElement? {
-        let brick = super.xmlElement(for: "PenDownBrick", with: context)
-        return brick
+    func brickTitle(forBackground isBackground: Bool, andInsertionScreen isInsertion: Bool) -> String! {
+        kLocalizedPenUp
+    }
+
+    override func hookUpSubViews(_ inlineViewSubViews: [Any]!) {
+        self.textLabel = inlineViewSubViews[0] as? UILabel
     }
 }

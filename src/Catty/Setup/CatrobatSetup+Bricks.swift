@@ -84,6 +84,7 @@
             ThinkBubbleBrick(),
             // pen bricks
             PenDownBrick(),
+            PenUpBrick(),
             // sound bricks
             PlaySoundBrick(),
             PlaySoundAndWaitBrick(),

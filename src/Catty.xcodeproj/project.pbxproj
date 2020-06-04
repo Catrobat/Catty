@@ -19,6 +19,11 @@
 		186AA3442482DDD5001E38FD /* PenDownBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186AA3432482DDD5001E38FD /* PenDownBrick+Instruction.swift */; };
 		186AA3472482E0CC001E38FD /* PenDownBrick+CBXMLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186AA3462482E0CC001E38FD /* PenDownBrick+CBXMLHandler.swift */; };
 		186AA34924830491001E38FD /* PenDownBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186AA34824830491001E38FD /* PenDownBrickTests.swift */; };
+		186E99132488F3FF00627E36 /* PenUpBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186E99122488F3FF00627E36 /* PenUpBrick.swift */; };
+		186E99172488F4F400627E36 /* PenUpBrickCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186E99162488F4F400627E36 /* PenUpBrickCell.swift */; };
+		186E99192488F74500627E36 /* PenUpBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186E99182488F74500627E36 /* PenUpBrick+Instruction.swift */; };
+		186E991B2488F89200627E36 /* PenUpBrick+CBXMLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186E991A2488F89200627E36 /* PenUpBrick+CBXMLHandler.swift */; };
+		186E991D2488FBDB00627E36 /* PenUpBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186E991C2488FBDB00627E36 /* PenUpBrickTests.swift */; };
 		186FBE65247C29AD00AE3F17 /* LineShapeNodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186FBE64247C29AD00AE3F17 /* LineShapeNodeTests.swift */; };
 		1875C5BA2457190000F3F276 /* UserVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1875C5B92457190000F3F276 /* UserVariable.swift */; };
 		187A3F202434BC4300EF1B02 /* PlaySoundAndWaitBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187A3F1F2434BC4300EF1B02 /* PlaySoundAndWaitBrickTests.swift */; };
@@ -1545,6 +1550,11 @@
 		186AA3432482DDD5001E38FD /* PenDownBrick+Instruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "PenDownBrick+Instruction.swift"; path = "Catty/PlayerEngine/Instructions/Pen/PenDownBrick+Instruction.swift"; sourceTree = SOURCE_ROOT; };
 		186AA3462482E0CC001E38FD /* PenDownBrick+CBXMLHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PenDownBrick+CBXMLHandler.swift"; sourceTree = "<group>"; };
 		186AA34824830491001E38FD /* PenDownBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PenDownBrickTests.swift; sourceTree = "<group>"; };
+		186E99122488F3FF00627E36 /* PenUpBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PenUpBrick.swift; sourceTree = "<group>"; };
+		186E99162488F4F400627E36 /* PenUpBrickCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PenUpBrickCell.swift; sourceTree = "<group>"; };
+		186E99182488F74500627E36 /* PenUpBrick+Instruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "PenUpBrick+Instruction.swift"; path = "Catty/PlayerEngine/Instructions/Pen/PenUpBrick+Instruction.swift"; sourceTree = SOURCE_ROOT; };
+		186E991A2488F89200627E36 /* PenUpBrick+CBXMLHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PenUpBrick+CBXMLHandler.swift"; sourceTree = "<group>"; };
+		186E991C2488FBDB00627E36 /* PenUpBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PenUpBrickTests.swift; sourceTree = "<group>"; };
 		186FBE64247C29AD00AE3F17 /* LineShapeNodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LineShapeNodeTests.swift; path = Scene/LineShapeNodeTests.swift; sourceTree = "<group>"; };
 		1875C5B92457190000F3F276 /* UserVariable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserVariable.swift; sourceTree = "<group>"; };
 		187A3F1F2434BC4300EF1B02 /* PlaySoundAndWaitBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaySoundAndWaitBrickTests.swift; sourceTree = "<group>"; };
@@ -3577,6 +3587,7 @@
 			isa = PBXGroup;
 			children = (
 				186AA33B2482D0CA001E38FD /* PenDownBrick.swift */,
+				186E99122488F3FF00627E36 /* PenUpBrick.swift */,
 			);
 			path = Pen;
 			sourceTree = "<group>";
@@ -3585,6 +3596,7 @@
 			isa = PBXGroup;
 			children = (
 				186AA33E2482DA65001E38FD /* PenDownBrickCell.swift */,
+				186E99162488F4F400627E36 /* PenUpBrickCell.swift */,
 			);
 			path = Pen;
 			sourceTree = "<group>";
@@ -3593,6 +3605,7 @@
 			isa = PBXGroup;
 			children = (
 				186AA3432482DDD5001E38FD /* PenDownBrick+Instruction.swift */,
+				186E99182488F74500627E36 /* PenUpBrick+Instruction.swift */,
 			);
 			path = Pen;
 			sourceTree = "<group>";
@@ -3601,6 +3614,7 @@
 			isa = PBXGroup;
 			children = (
 				186AA3462482E0CC001E38FD /* PenDownBrick+CBXMLHandler.swift */,
+				186E991A2488F89200627E36 /* PenUpBrick+CBXMLHandler.swift */,
 			);
 			path = Pen;
 			sourceTree = "<group>";
@@ -6002,6 +6016,7 @@
 				3DA1BED824365A3400133C99 /* BrickMutableCopyTests.swift */,
 				D3AF5C18243F6A4C00B04BC6 /* BrickCategoryTest.swift */,
 				186AA34824830491001E38FD /* PenDownBrickTests.swift */,
+				186E991C2488FBDB00627E36 /* PenUpBrickTests.swift */,
 			);
 			path = Bricks;
 			sourceTree = "<group>";
@@ -9728,6 +9743,7 @@
 				4C53E39221D525F800F2EC76 /* OperatorManagerTest.swift in Sources */,
 				4C68FC921B25A00B00AB3EE8 /* InternFormulaStateTest.m in Sources */,
 				5973F239202EF34700A4CED9 /* MediaLibraryCollectionViewDataSourceDelegateMock.swift in Sources */,
+				186E991D2488FBDB00627E36 /* PenUpBrickTests.swift in Sources */,
 				9ECDCB0F2328528D00EBDA63 /* ComeToFrontBrickTests.swift in Sources */,
 				4CC614B7212EA84E006E4720 /* FormulaEditorItemTest.swift in Sources */,
 				4C822676213FA7A400F3D750 /* LookNameSensorTest.swift in Sources */,
@@ -10166,6 +10182,7 @@
 				F45AF703212960D4000F88A6 /* FacePositionYSensor.swift in Sources */,
 				AAAF22841BC0CA0F0076F11E /* SetXBrick+Instruction.swift in Sources */,
 				AA74EFF91BC05B5F00D1E954 /* SetTransparencyBrick.m in Sources */,
+				186E99192488F74500627E36 /* PenUpBrick+Instruction.swift in Sources */,
 				AA74EFE81BC05B5F00D1E954 /* LoopEndBrick.m in Sources */,
 				9200C2DB1C8084AA002F5CA4 /* HideTextBrick+CBXMLHandler.m in Sources */,
 				AA74EEDD1BC057B900D1E954 /* ForeverBrick+CBXMLHandler.m in Sources */,
@@ -10263,6 +10280,7 @@
 				921D467A1BDF61350086AD20 /* ChangeSizeByNBrick+Instruction.swift in Sources */,
 				F470A2E32129DAFB005EC9A3 /* ElementFunction.swift in Sources */,
 				92FF30FF1A24DCAA00093DA7 /* Project.m in Sources */,
+				186E99172488F4F400627E36 /* PenUpBrickCell.swift in Sources */,
 				4C82268D213FB29A00F3D750 /* MultiFingerYFunction.swift in Sources */,
 				BA987D0F2194EA1F002DAA05 /* WaitUntilBrick+Instruction.swift in Sources */,
 				BA9CAB541EC380CA00796056 /* AddItemToUserListBrick.m in Sources */,
@@ -10325,6 +10343,7 @@
 				5E99F2E323442E1A007878C1 /* ThemesHelper.swift in Sources */,
 				AA74F0931BC05FCE00D1E954 /* BrickCellFormulaData.m in Sources */,
 				AA74EF701BC0588A00D1E954 /* SetVolumeToBrick+CBXMLHandler.m in Sources */,
+				186E991B2488F89200627E36 /* PenUpBrick+CBXMLHandler.swift in Sources */,
 				92FC85CE1B9E1EB5001C728F /* BrickManager.m in Sources */,
 				5E18A81221A547AA00541536 /* UIViewController+Extensions.swift in Sources */,
 				AA74F0951BC05FCE00D1E954 /* BrickCellMessageData.m in Sources */,
@@ -10367,6 +10386,7 @@
 				929CC0EE1BC39B8C0027DEC0 /* PhiroMotorMoveForwardBrickCell.m in Sources */,
 				AAF6D9DE1BC0C1F300686849 /* PlaceAtBrick+Instruction.swift in Sources */,
 				AA74EFED1BC05B5F00D1E954 /* SetVariableBrick.m in Sources */,
+				186E99132488F3FF00627E36 /* PenUpBrick.swift in Sources */,
 				BA9CAB601EC383E800796056 /* AddItemToUserListBrickCell.m in Sources */,
 				9E2AEA50239887A600CDF58F /* PlaySoundAndWaitBrickCell.swift in Sources */,
 				9218B2051CC4AB75007B4C60 /* LinkedListStack.m in Sources */,

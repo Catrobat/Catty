@@ -94,7 +94,26 @@ final class XMLSerializerTests: XMLAbstractTest {
 
         let brick = ((project.objectList.object(at: 0) as! SpriteObject).scriptList.object(at: 0) as! Script).brickList.object(at: 41) as! PenDownBrick
         let xmlElementPath = "//program/objectList/object[1]/scriptList/script[1]/brickList/brick[42]"
-        let equal = self.isXMLElement(xmlElement: brick.xmlElement(with: CBXMLSerializerContext()), equalToXMLElementForXPath: xmlElementPath, inProjectForXML: "ValidProjectAllBricks0991")
+
+        guard let xmlElement = brick.xmlElement(with: CBXMLSerializerContext()) else {
+            XCTFail("xmlElement is nil")
+            return
+        }
+        let equal = self.isXMLElement(xmlElement: xmlElement, equalToXMLElementForXPath: xmlElementPath, inProjectForXML: "ValidProjectAllBricks0991")
+        XCTAssertTrue(equal, "XMLElement invalid!")
+    }
+
+    func testPenUpBrick() {
+        let project = self.getProjectForXML(xmlFile: "ValidProjectAllBricks0991")
+
+        let brick = ((project.objectList.object(at: 0) as! SpriteObject).scriptList.object(at: 0) as! Script).brickList.object(at: 42) as! PenUpBrick
+        let xmlElementPath = "//program/objectList/object[1]/scriptList/script[1]/brickList/brick[43]"
+
+        guard let xmlElement = brick.xmlElement(with: CBXMLSerializerContext()) else {
+            XCTFail("xmlElement is nil")
+            return
+        }
+        let equal = self.isXMLElement(xmlElement: xmlElement, equalToXMLElementForXPath: xmlElementPath, inProjectForXML: "ValidProjectAllBricks0991")
         XCTAssertTrue(equal, "XMLElement invalid!")
     }
 }

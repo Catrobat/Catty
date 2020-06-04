@@ -609,6 +609,9 @@
             <brick type="PenDownBrick">
                 <commentedOut>false</commentedOut>
             </brick>
+            <brick type="PenUpBrick">
+                <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
           <commentedOut>false</commentedOut>
           <isUserScript>false</isUserScript>

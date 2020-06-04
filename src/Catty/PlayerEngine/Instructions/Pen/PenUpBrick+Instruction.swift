@@ -20,14 +20,18 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension PenDownBrick: CBXMLNodeProtocol {
-    static func parse(from xmlElement: GDataXMLElement, with context: CBXMLParserContext) -> Self {
-        CBXMLParserHelper.validate(xmlElement, forNumberOfChildNodes: 0)
-        return self.init()
+extension PenUpBrick: CBInstructionProtocol {
+
+    func instruction() -> CBInstruction {
+        .action { _ in SKAction.run(self.actionBlock()) }
     }
 
-    func xmlElement(with context: CBXMLSerializerContext) -> GDataXMLElement? {
-        let brick = super.xmlElement(for: "PenDownBrick", with: context)
-        return brick
+    func actionBlock() -> () -> Void {
+        guard let object = self.script?.object,
+            let spriteNode = object.spriteNode
+            else { fatalError("This should never happen!") }
+
+        return { spriteNode.penConfiguration.penDown = false }
     }
+
 }

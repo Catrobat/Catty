@@ -20,14 +20,28 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension PenDownBrick: CBXMLNodeProtocol {
-    static func parse(from xmlElement: GDataXMLElement, with context: CBXMLParserContext) -> Self {
-        CBXMLParserHelper.validate(xmlElement, forNumberOfChildNodes: 0)
-        return self.init()
+@objc(PenUpBrick)
+
+@objcMembers class PenUpBrick: Brick, BrickProtocol {
+
+    override required init() {
+        super.init()
     }
 
-    func xmlElement(with context: CBXMLSerializerContext) -> GDataXMLElement? {
-        let brick = super.xmlElement(for: "PenDownBrick", with: context)
-        return brick
+    func category() -> kBrickCategoryType {
+        kBrickCategoryType.penBrick
     }
+
+    override class func description() -> String {
+        "PenBrick"
+    }
+
+    override func getRequiredResources() -> Int {
+        ResourceType.noResources.rawValue
+    }
+
+    override func brickCell() -> BrickCellProtocol.Type! {
+        PenUpBrickCell.self as BrickCellProtocol.Type
+    }
+
 }
