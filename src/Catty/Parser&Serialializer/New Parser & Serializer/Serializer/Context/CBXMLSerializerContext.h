@@ -26,7 +26,7 @@
 @class CBXMLOpenedNestingBricksStack;
 @class CBXMLPositionStack;
 @class SpriteObject;
-@class VariablesContainer;
+@class UserDataContainer;
 
 @interface CBXMLSerializerContext : CBXMLAbstractContext
 

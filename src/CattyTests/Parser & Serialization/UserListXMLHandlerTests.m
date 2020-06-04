@@ -104,7 +104,7 @@
 {
     NSMutableArray *userListArray = [[NSMutableArray alloc] initWithObjects: self.userList,nil];
     
-    [self.serializerContext.variables setProgramListOfLists:userListArray];
+    [self.serializerContext.userData setProgramListOfLists:userListArray];
     
     GDataXMLElement *xmlElement = [self.userList xmlElementWithContext:self.serializerContext];
     NSString *expectedXMLString = [NSString stringWithFormat:@"<userList><name>testUserList</name></userList>"];
@@ -116,7 +116,7 @@
 {
     NSMutableArray *userListArray = [[NSMutableArray alloc] initWithObjects: self.userVariable, nil];
     
-    [self.serializerContext.variables setProgramListOfLists:userListArray];
+    [self.serializerContext.userData setProgramListOfLists:userListArray];
     SpriteObject *object = [SpriteObject alloc];
     object.name = @"spriteObject";
     self.serializerContext.spriteObject = object;
@@ -143,7 +143,7 @@
 - (void)testXmlElementWithContextWithObjectListNotAlreadySerialized
 {
     NSMutableArray *userListArray = [[NSMutableArray alloc] initWithObjects: self.userVariable, nil];
-    [self.serializerContext.variables setProgramListOfLists:userListArray];
+    [self.serializerContext.userData setProgramListOfLists:userListArray];
     
     SpriteObject *object = [SpriteObject alloc];
     object.name = @"spriteObject";
@@ -158,7 +158,7 @@
 - (void)testXmlElementWithContextWithAlreadySerializedList
 {
     NSMutableArray *userListArray = [[NSMutableArray alloc] initWithObjects: self.userList, nil];
-    [self.serializerContext.variables setProgramListOfLists:userListArray];
+    [self.serializerContext.userData setProgramListOfLists:userListArray];
     
     
     CBXMLPositionStack *destinationPositionStack = [[CBXMLPositionStack alloc] init];

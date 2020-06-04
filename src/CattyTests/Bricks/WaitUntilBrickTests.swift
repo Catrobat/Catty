@@ -28,13 +28,13 @@ final class WaitUntilBrickTests: XMLAbstractTest {
 
     func testWaitUntilBrick_conditionTrue_proceedsToNextBrick() {
         let project = getProjectForXML(xmlFile: "WaitUntilBrick0991")
-        let testVar = project.variables.getUserVariableNamed("testVar", for: project.objectList[0] as? SpriteObject)
-        let hasFinishedWaiting = project.variables.getUserVariableNamed("hasFinishedWaiting", for: project.objectList[0] as? SpriteObject)
+        let testVar = project.userData.getUserVariableNamed("testVar", for: project.objectList[0] as? SpriteObject)
+        let hasFinishedWaiting = project.userData.getUserVariableNamed("hasFinishedWaiting", for: project.objectList[0] as? SpriteObject)
 
         let scene = createScene(project: project)
         let started = scene.startProject()
         XCTAssertTrue(started)
-        project.variables.setUserVariable(testVar, toValue: NSNumber(value: 1))
+        project.userData.setUserVariable(testVar, toValue: NSNumber(value: 1))
 
         let conditionMetPredicate = NSPredicate(block: { variable, _ in
             let hasFinishedWaiting = (variable as? UserVariable)!.value as! NSNumber
@@ -47,7 +47,7 @@ final class WaitUntilBrickTests: XMLAbstractTest {
 
     func testWaitUntilBrick_conditionFalse_getsStuckInWaitUntilBrick() {
         let project = getProjectForXML(xmlFile: "WaitUntilBrick0991")
-        let hasFinishedWaiting = project.variables.getUserVariableNamed("hasFinishedWaiting", for: project.objectList[0] as? SpriteObject)
+        let hasFinishedWaiting = project.userData.getUserVariableNamed("hasFinishedWaiting", for: project.objectList[0] as? SpriteObject)
 
         let scene = createScene(project: project)
         let started = scene.startProject()

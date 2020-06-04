@@ -41,12 +41,12 @@ final class BrickExtensionTests: XCTestCase {
     }
 
     func testIsListUsed() {
-        let variablesContainer = VariablesContainer()
+        let userDataContainer = UserDataContainer()
         let userList = UserList(name: "testName")
 
-        variablesContainer.programListOfLists = [userList]
-        variablesContainer.add(to: userList, value: 4)
-        variablesContainer.add(to: userList, value: "testValue")
+        userDataContainer.programListOfLists = [userList]
+        userDataContainer.add(to: userList, value: 4)
+        userDataContainer.add(to: userList, value: "testValue")
 
         let brick = ReplaceItemInUserListBrick()
         brick.setList(userList, forLineNumber: 1, andParameterNumber: 1)
@@ -61,12 +61,12 @@ final class BrickExtensionTests: XCTestCase {
     }
 
     func testIsListUsedWithReplaceItemInUserListBrick() {
-        let variablesContainer = VariablesContainer()
+        let userDataContainer = UserDataContainer()
         let userList = UserList(name: "testName")
 
-        variablesContainer.programListOfLists = [userList]
-        variablesContainer.add(to: userList, value: 4)
-        variablesContainer.add(to: userList, value: "testValue")
+        userDataContainer.programListOfLists = [userList]
+        userDataContainer.add(to: userList, value: 4)
+        userDataContainer.add(to: userList, value: "testValue")
 
         let brick = ReplaceItemInUserListBrick()
         brick.setList(userList, forLineNumber: 1, andParameterNumber: 1)
@@ -75,13 +75,13 @@ final class BrickExtensionTests: XCTestCase {
     }
 
     func testIsListUsedWithReplaceItemInUserListBrickForMultipleUserList() {
-        let variablesContainer = VariablesContainer()
+        let userDataContainer = UserDataContainer()
         let userList = UserList(name: "testName")
         let userList2 = UserList(name: "testName")
 
-        variablesContainer.programListOfLists = [userList]
-        variablesContainer.add(to: userList, value: 4)
-        variablesContainer.add(to: userList, value: "testValue")
+        userDataContainer.programListOfLists = [userList]
+        userDataContainer.add(to: userList, value: 4)
+        userDataContainer.add(to: userList, value: "testValue")
 
         let brick = ReplaceItemInUserListBrick()
         brick.setList(userList, forLineNumber: 1, andParameterNumber: 1)
@@ -93,12 +93,12 @@ final class BrickExtensionTests: XCTestCase {
     }
 
     func testIsListUsedWithMultipleBrick() {
-        let variablesContainer = VariablesContainer()
+        let userDataContainer = UserDataContainer()
         let userList = UserList(name: "testName")
 
-        variablesContainer.programListOfLists = [userList]
-        variablesContainer.add(to: userList, value: 4)
-        variablesContainer.add(to: userList, value: "testValue")
+        userDataContainer.programListOfLists = [userList]
+        userDataContainer.add(to: userList, value: 4)
+        userDataContainer.add(to: userList, value: "testValue")
 
         let insertBrick = InsertItemIntoUserListBrick()
         let addBrick = AddItemToUserListBrick()

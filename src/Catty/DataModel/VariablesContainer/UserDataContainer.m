@@ -20,13 +20,13 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "VariablesContainer.h"
+#import "UserDataContainer.h"
 #import "Pocket_Code-Swift.h"
 #import "OrderedMapTable.h"
 #include "SpriteObject.h"
 #import <pthread.h>
 
-@implementation VariablesContainer
+@implementation UserDataContainer
 
 static pthread_mutex_t variablesLock;
 
@@ -495,14 +495,14 @@ static pthread_mutex_t variablesLock;
     [self.objectListOfLists removeObjectForKey:object];
 }
 
-- (BOOL)isEqualToVariablesContainer:(VariablesContainer*)variablesContainer
+- (BOOL)isEqualToUserDataContainer:(UserDataContainer*)userDataContainer
 {
     //----------------------------------------------------------------------------------------------------
     // objectVariableList and objectListOfLists
     //----------------------------------------------------------------------------------------------------
     NSMutableArray *objVarsAndLists = [[NSMutableArray alloc] initWithCapacity: 2];
-    [objVarsAndLists insertObject:[NSMutableArray arrayWithObjects:self.objectVariableList,variablesContainer.objectVariableList, nil] atIndex:0];
-    [objVarsAndLists insertObject:[NSMutableArray arrayWithObjects:self.objectListOfLists,variablesContainer.objectListOfLists, nil] atIndex:1];
+    [objVarsAndLists insertObject:[NSMutableArray arrayWithObjects:self.objectVariableList,userDataContainer.objectVariableList, nil] atIndex:0];
+    [objVarsAndLists insertObject:[NSMutableArray arrayWithObjects:self.objectListOfLists,userDataContainer.objectListOfLists, nil] atIndex:1];
     
     for (NSMutableArray *varsOrLists in objVarsAndLists) {
         OrderedMapTable *thisVarsOrLists = [varsOrLists objectAtIndex:0];
@@ -559,8 +559,8 @@ static pthread_mutex_t variablesLock;
     // programVariableList and programListOfLists
     //----------------------------------------------------------------------------------------------------
     NSMutableArray *progVarsAndLists = [[NSMutableArray alloc] initWithCapacity: 2];
-    [progVarsAndLists insertObject:[NSMutableArray arrayWithObjects:self.programVariableList,variablesContainer.programVariableList, nil] atIndex:0];
-    [progVarsAndLists insertObject:[NSMutableArray arrayWithObjects:self.programListOfLists,variablesContainer.programListOfLists, nil] atIndex:1];
+    [progVarsAndLists insertObject:[NSMutableArray arrayWithObjects:self.programVariableList,userDataContainer.programVariableList, nil] atIndex:0];
+    [progVarsAndLists insertObject:[NSMutableArray arrayWithObjects:self.programListOfLists,userDataContainer.programListOfLists, nil] atIndex:1];
     
     for (NSMutableArray *varsOrLists in progVarsAndLists) {
         NSMutableArray *thisVarsOrLists = [varsOrLists objectAtIndex:0];
@@ -587,13 +587,13 @@ static pthread_mutex_t variablesLock;
 
 - (id)mutableCopy
 {
-    VariablesContainer *copiedVariablesContainer = [VariablesContainer new];
-    copiedVariablesContainer.objectVariableList = [self.objectVariableList mutableCopy];
-    copiedVariablesContainer.programVariableList = [self.programVariableList mutableCopy];
-    copiedVariablesContainer.objectListOfLists = [self.objectListOfLists mutableCopy];
-    copiedVariablesContainer.programListOfLists = [self.programListOfLists mutableCopy];
+    UserDataContainer *copiedUserDataContainer = [UserDataContainer new];
+    copiedUserDataContainer.objectVariableList = [self.objectVariableList mutableCopy];
+    copiedUserDataContainer.programVariableList = [self.programVariableList mutableCopy];
+    copiedUserDataContainer.objectListOfLists = [self.objectListOfLists mutableCopy];
+    copiedUserDataContainer.programListOfLists = [self.programListOfLists mutableCopy];
 
-    return copiedVariablesContainer;
+    return copiedUserDataContainer;
 }
 
 @end

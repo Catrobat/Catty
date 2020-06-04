@@ -20,11 +20,11 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "VariablesContainer.h"
+#import "UserDataContainer.h"
 #import "CBXMLNodeProtocol.h"
 
 @class CBXMLContext;
 
-@interface VariablesContainer (CBXMLHandler) <CBXMLNodeProtocol>
+@interface UserDataContainer (CBXMLHandler) <CBXMLNodeProtocol>
 
 @end

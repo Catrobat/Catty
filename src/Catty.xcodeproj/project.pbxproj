@@ -531,7 +531,7 @@
 		4C724E5C1B4D3E8C00E27479 /* Sound+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C724E0F1B4D3E8C00E27479 /* Sound+CBXMLHandler.m */; };
 		4C724E5D1B4D3E8C00E27479 /* SpriteObject+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C724E121B4D3E8C00E27479 /* SpriteObject+CBXMLHandler.m */; };
 		4C724E5E1B4D3E8C00E27479 /* UserVariable+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C724E151B4D3E8C00E27479 /* UserVariable+CBXMLHandler.m */; };
-		4C724E5F1B4D3E8C00E27479 /* VariablesContainer+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C724E181B4D3E8C00E27479 /* VariablesContainer+CBXMLHandler.m */; };
+		4C724E5F1B4D3E8C00E27479 /* UserDataContainer+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C724E181B4D3E8C00E27479 /* UserDataContainer+CBXMLHandler.m */; };
 		4C724E601B4D3E8C00E27479 /* Parser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C724E1B1B4D3E8C00E27479 /* Parser.m */; };
 		4C724E611B4D3E8C00E27479 /* ProjectParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C724E1D1B4D3E8C00E27479 /* ProjectParser.m */; };
 		4C724E631B4D3E8C00E27479 /* XMLObjectReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C724E211B4D3E8C00E27479 /* XMLObjectReference.m */; };
@@ -636,7 +636,7 @@
 		4CB2CFA61D7AD7E7009F3034 /* SetColorBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB2CFA51D7AD7E7009F3034 /* SetColorBrick+CBXMLHandler.m */; };
 		4CB2CFAB1D7AD86D009F3034 /* SetColorBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB2CFAA1D7AD86D009F3034 /* SetColorBrickCell.m */; };
 		4CB2CFAE1D7ADA1D009F3034 /* SetColorBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB2CFA71D7AD833009F3034 /* SetColorBrick+Instruction.swift */; };
-		4CB412202198635900FC4594 /* VariablesContainerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB4121D2198635900FC4594 /* VariablesContainerTest.swift */; };
+		4CB412202198635900FC4594 /* UserDataContainerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB4121D2198635900FC4594 /* UserDataContainerTest.swift */; };
 		4CB4FE061B95DF2900431757 /* BrickInsertManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB4FE031B95DF2900431757 /* BrickInsertManager.m */; };
 		4CB4FE071B95DF2900431757 /* BrickMoveManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB4FE051B95DF2900431757 /* BrickMoveManager.m */; };
 		4CB73A9023FC1F0400D5E9A7 /* CatrobatTableViewControllerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB73A8F23FC1F0300D5E9A7 /* CatrobatTableViewControllerMock.swift */; };
@@ -1028,7 +1028,7 @@
 		92FF31051A24DCAA00093DA7 /* WhenScript.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30BA1A24DCAA00093DA7 /* WhenScript.m */; };
 		92FF31061A24DCAA00093DA7 /* Sound.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30BD1A24DCAA00093DA7 /* Sound.m */; };
 		92FF31071A24DCAA00093DA7 /* SpriteObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30C01A24DCAA00093DA7 /* SpriteObject.m */; };
-		92FF31091A24DCAA00093DA7 /* VariablesContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30C61A24DCAA00093DA7 /* VariablesContainer.m */; };
+		92FF31091A24DCAA00093DA7 /* UserDataContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30C61A24DCAA00093DA7 /* UserDataContainer.m */; };
 		92FF31491A24DEB300093DA7 /* BaseCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF310D1A24DEB300093DA7 /* BaseCollectionViewController.m */; };
 		92FF314A1A24DEB300093DA7 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF310F1A24DEB300093DA7 /* BaseTableViewController.m */; };
 		92FF314C1A24DEB300093DA7 /* CatrobatTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31141A24DEB300093DA7 /* CatrobatTableViewController.m */; };
@@ -2142,8 +2142,8 @@
 		4C724E121B4D3E8C00E27479 /* SpriteObject+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "SpriteObject+CBXMLHandler.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		4C724E141B4D3E8C00E27479 /* UserVariable+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UserVariable+CBXMLHandler.h"; sourceTree = "<group>"; };
 		4C724E151B4D3E8C00E27479 /* UserVariable+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "UserVariable+CBXMLHandler.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		4C724E171B4D3E8C00E27479 /* VariablesContainer+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "VariablesContainer+CBXMLHandler.h"; sourceTree = "<group>"; };
-		4C724E181B4D3E8C00E27479 /* VariablesContainer+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "VariablesContainer+CBXMLHandler.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		4C724E171B4D3E8C00E27479 /* UserDataContainer+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UserDataContainer+CBXMLHandler.h"; sourceTree = "<group>"; };
+		4C724E181B4D3E8C00E27479 /* UserDataContainer+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "UserDataContainer+CBXMLHandler.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		4C724E1A1B4D3E8C00E27479 /* Parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Parser.h; sourceTree = "<group>"; };
 		4C724E1B1B4D3E8C00E27479 /* Parser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Parser.m; sourceTree = "<group>"; };
 		4C724E1C1B4D3E8C00E27479 /* ProjectParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectParser.h; sourceTree = "<group>"; };
@@ -2258,7 +2258,7 @@
 		4CB2CFA71D7AD833009F3034 /* SetColorBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SetColorBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Look/SetColorBrick+Instruction.swift"; sourceTree = "<group>"; };
 		4CB2CFA91D7AD86D009F3034 /* SetColorBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetColorBrickCell.h; sourceTree = "<group>"; };
 		4CB2CFAA1D7AD86D009F3034 /* SetColorBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetColorBrickCell.m; sourceTree = "<group>"; };
-		4CB4121D2198635900FC4594 /* VariablesContainerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VariablesContainerTest.swift; sourceTree = "<group>"; };
+		4CB4121D2198635900FC4594 /* UserDataContainerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDataContainerTest.swift; sourceTree = "<group>"; };
 		4CB4FE021B95DF2900431757 /* BrickInsertManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickInsertManager.h; sourceTree = "<group>"; };
 		4CB4FE031B95DF2900431757 /* BrickInsertManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BrickInsertManager.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		4CB4FE041B95DF2900431757 /* BrickMoveManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickMoveManager.h; sourceTree = "<group>"; };
@@ -2820,8 +2820,8 @@
 		92FF30BD1A24DCAA00093DA7 /* Sound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sound.m; sourceTree = "<group>"; };
 		92FF30BF1A24DCAA00093DA7 /* SpriteObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpriteObject.h; sourceTree = "<group>"; };
 		92FF30C01A24DCAA00093DA7 /* SpriteObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpriteObject.m; sourceTree = "<group>"; };
-		92FF30C51A24DCAA00093DA7 /* VariablesContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VariablesContainer.h; sourceTree = "<group>"; };
-		92FF30C61A24DCAA00093DA7 /* VariablesContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VariablesContainer.m; sourceTree = "<group>"; };
+		92FF30C51A24DCAA00093DA7 /* UserDataContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDataContainer.h; sourceTree = "<group>"; };
+		92FF30C61A24DCAA00093DA7 /* UserDataContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDataContainer.m; sourceTree = "<group>"; };
 		92FF310C1A24DEB300093DA7 /* BaseCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseCollectionViewController.h; sourceTree = "<group>"; };
 		92FF310D1A24DEB300093DA7 /* BaseCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseCollectionViewController.m; sourceTree = "<group>"; };
 		92FF310E1A24DEB300093DA7 /* BaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
@@ -5433,8 +5433,8 @@
 		4C724E161B4D3E8C00E27479 /* VariablesContainer */ = {
 			isa = PBXGroup;
 			children = (
-				4C724E171B4D3E8C00E27479 /* VariablesContainer+CBXMLHandler.h */,
-				4C724E181B4D3E8C00E27479 /* VariablesContainer+CBXMLHandler.m */,
+				4C724E171B4D3E8C00E27479 /* UserDataContainer+CBXMLHandler.h */,
+				4C724E181B4D3E8C00E27479 /* UserDataContainer+CBXMLHandler.m */,
 			);
 			path = VariablesContainer;
 			sourceTree = "<group>";
@@ -5804,7 +5804,7 @@
 			children = (
 				4CD0BA9821467C5A00BF17A4 /* HeaderTests.swift */,
 				4CAA66C121469C0400CCDD6E /* UserVariableTests.swift */,
-				4CB4121D2198635900FC4594 /* VariablesContainerTest.swift */,
+				4CB4121D2198635900FC4594 /* UserDataContainerTest.swift */,
 				6F9CF122246E8767008CED1C /* UserListTest.swift */,
 			);
 			path = DataModel;
@@ -7316,8 +7316,8 @@
 		92FF30C41A24DCAA00093DA7 /* VariablesContainer */ = {
 			isa = PBXGroup;
 			children = (
-				92FF30C51A24DCAA00093DA7 /* VariablesContainer.h */,
-				92FF30C61A24DCAA00093DA7 /* VariablesContainer.m */,
+				92FF30C51A24DCAA00093DA7 /* UserDataContainer.h */,
+				92FF30C61A24DCAA00093DA7 /* UserDataContainer.m */,
 			);
 			path = VariablesContainer;
 			sourceTree = "<group>";
@@ -9539,7 +9539,7 @@
 				4CD0BA962146791D00BF17A4 /* UtilTests.swift in Sources */,
 				4CBDF1A921CF830E00325338 /* UnaryOperatorMock.swift in Sources */,
 				4CE1D431213E5C130014DAF9 /* CBSpriteNodeMock.swift in Sources */,
-				4CB412202198635900FC4594 /* VariablesContainerTest.swift in Sources */,
+				4CB412202198635900FC4594 /* UserDataContainerTest.swift in Sources */,
 				4C5AEEFB22F6F92B00280F8B /* ArduinoBrickTests.swift in Sources */,
 				4C3A5CA121D3B4DF008FD83F /* OrOperatorTest.swift in Sources */,
 				4C6FE178212D2D2E0067B7D5 /* JoinFunctionTest.swift in Sources */,
@@ -9942,7 +9942,7 @@
 				92FF32B11A24E2F400093DA7 /* CreateView.m in Sources */,
 				4CF072A920D6710F00F93AB5 /* FingerTouchedSensor.swift in Sources */,
 				AA74EEE41BC057B900D1E954 /* RepeatBrick+CBXMLHandler.m in Sources */,
-				4C724E5F1B4D3E8C00E27479 /* VariablesContainer+CBXMLHandler.m in Sources */,
+				4C724E5F1B4D3E8C00E27479 /* UserDataContainer+CBXMLHandler.m in Sources */,
 				E405EABB212D4E420074ADDB /* SearchStoreCell.swift in Sources */,
 				9E5811842399BAA2004EFB56 /* PlaySoundAndWaitBrick+CBXMLHandler.m in Sources */,
 				9E78D88922A9B16200948AC3 /* AudioPlayer.swift in Sources */,
@@ -10168,7 +10168,7 @@
 				AA74F0021BC05B5F00D1E954 /* MoveNStepsBrick.m in Sources */,
 				4C4A71A11B527E2F00BBE32B /* CBXMLParserContext.m in Sources */,
 				92FF2E9A1A24C7D800093DA7 /* NavigationController.m in Sources */,
-				92FF31091A24DCAA00093DA7 /* VariablesContainer.m in Sources */,
+				92FF31091A24DCAA00093DA7 /* UserDataContainer.m in Sources */,
 				AA74F0A51BC05FCE00D1E954 /* NoteBrickCell.m in Sources */,
 				AA74EF521BC0586F00D1E954 /* MoveNStepsBrick+CBXMLHandler.m in Sources */,
 				9E78D88B22A9B1D400948AC3 /* IterableCache.swift in Sources */,

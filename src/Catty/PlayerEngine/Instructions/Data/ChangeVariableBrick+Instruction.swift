@@ -25,7 +25,7 @@
     @nonobjc func instruction() -> CBInstruction {
 
         guard let spriteObject = self.script?.object,
-            let variables = spriteObject.project?.variables
+            let userData = spriteObject.project?.userData
             else { fatalError("This should never happen!") }
 
         let userVariable = self.userVariable
@@ -43,7 +43,7 @@
                 }
                 if let _ = (userVariable.value as? NSNumber)?.doubleValue,
                     let numberDoubleValue = (result as? NSNumber)?.doubleValue {
-                    variables.change(userVariable, byValue: numberDoubleValue)
+                    userData.change(userVariable, byValue: numberDoubleValue)
                     //update active UserVariable
                     userVariable.textLabel?.text = (userVariable.value as? NSNumber)?.stringValue
                 } else if userVariable.value is NSString {

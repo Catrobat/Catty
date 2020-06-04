@@ -28,7 +28,7 @@
 #import "Script.h"
 #import "Brick.h"
 #import "BrickListProtocol.h"
-#import "VariablesContainer.h"
+#import "UserDataContainer.h"
 #import "LanguageTranslationDefines.h"
 
 @implementation BrickCellListData
@@ -48,7 +48,7 @@
             if([brickCell.scriptOrBrick conformsToProtocol:@protocol(BrickListProtocol)]) {
                 Brick<BrickListProtocol> *listBrick = (Brick<BrickListProtocol>*)brickCell.scriptOrBrick;
                 UserList *currentList = [listBrick listForLineNumber:line andParameterNumber:parameter];
-                for(UserList *list in [listBrick.script.object.project.variables allListsForObject:listBrick.script.object]) {
+                for(UserList *list in [listBrick.script.object.project.userData allListsForObject:listBrick.script.object]) {
                     [options addObject:list.name];
                     if([list.name isEqualToString:currentList.name])
                         currentOptionIndex = optionIndex;

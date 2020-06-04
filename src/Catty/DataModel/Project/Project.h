@@ -23,7 +23,7 @@
 #import "Header.h"
 #import "ProgramDefines.h"
 
-@class VariablesContainer;
+@class UserDataContainer;
 @class SpriteObject;
 @class ProjectLoadingInfo;
 
@@ -31,7 +31,7 @@
 
 @property (nonatomic, strong, nonnull) Header *header;
 @property (nonatomic, strong, nonnull) NSMutableArray<SpriteObject*> *objectList;
-@property (nonatomic, strong, nonnull) VariablesContainer *variables;
+@property (nonatomic, strong, nonnull) UserDataContainer *userData;
 @property (nonatomic, strong, nonnull) NSMutableSet<NSString*> *unsupportedElements;
 @property (nonatomic) BOOL requiresBluetooth;
 

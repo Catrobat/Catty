@@ -54,8 +54,8 @@ final class HideTextBrickTests: XCTestCase {
     }
 
     func testHideTextBrickUserVariablesNil() {
-        let varContainer = VariablesContainer()
-        spriteObject.project.variables = varContainer
+        let userDataContainer = UserDataContainer()
+        spriteObject.project.userData = userDataContainer
 
         let brick = HideTextBrick()
         brick.script = script

@@ -819,7 +819,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 }
 
 - (void)updateVariablePickerData {
-    VariablesContainer *variables = self.object.project.variables;
+    UserDataContainer *userData = self.object.project.userData;
     [self.variableSourceProject  removeAllObjects];
     [self.variableSourceObject  removeAllObjects];
     [self.listSourceProject  removeAllObjects];
@@ -828,21 +828,21 @@ NS_ENUM(NSInteger, ButtonIndex) {
     // ------------------
     // Project Variables
     // ------------------
-    for(UserVariable *userVariable in variables.programVariableList) {
+    for(UserVariable *userVariable in userData.programVariableList) {
         [self.variableSourceProject addObject:userVariable];
     }
     
     // ------------------
     // Project Lists
     // ------------------
-    for(UserVariable *userVariable in variables.programListOfLists) {
+    for(UserVariable *userVariable in userData.programListOfLists) {
         [self.listSourceProject addObject:userVariable];
     }
     
     // ------------------
     // Object Variables
     // ------------------
-    NSArray *array = [variables allVariablesForObject:self.object];
+    NSArray *array = [userData allVariablesForObject:self.object];
     if (array) {
         for (UserVariable *var in array) {
             [self.variableSourceObject addObject:var];
@@ -852,7 +852,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     // ------------------
     // Object Lists
     // ------------------
-    array = [variables allListsForObject:self.object];
+    array = [userData allListsForObject:self.object];
     if (array) {
         for (UserVariable *var in array) {
             [self.listSourceObject addObject:var];
@@ -894,14 +894,14 @@ NS_ENUM(NSInteger, ButtonIndex) {
 - (void)saveVariable:(NSString*)name
 {
     if (self.isProjectVariable){
-        for (UserVariable* variable in [self.object.project.variables allVariables]) {
+        for (UserVariable* variable in [self.object.project.userData allVariables]) {
             if ([variable.name isEqualToString:name]) {
                 [self askForVariableName];
                 return;
             }
         }
     } else {
-        for (UserVariable* variable in [self.object.project.variables allVariablesForObject:self.object]) {
+        for (UserVariable* variable in [self.object.project.userData allVariablesForObject:self.object]) {
             if ([variable.name isEqualToString:name]) {
                 [self askForVariableName];
                 return;
@@ -915,9 +915,9 @@ NS_ENUM(NSInteger, ButtonIndex) {
     int buttonType = 0;
     
     if (self.isProjectVariable) {
-        [self.object.project.variables.programVariableList addObject:variable];
+        [self.object.project.userData.programVariableList addObject:variable];
     }  else {
-        [self.object.project.variables addObjectVariable:variable forObject:self.object];
+        [self.object.project.userData addObjectVariable:variable forObject:self.object];
     }
     
     [self.object.project saveToDiskWithNotification:YES];
@@ -928,14 +928,14 @@ NS_ENUM(NSInteger, ButtonIndex) {
 - (void)saveList:(NSString*)name
 {
     if (self.isProjectVariable){
-        for (UserVariable* variable in [self.object.project.variables allLists]) {
+        for (UserVariable* variable in [self.object.project.userData allLists]) {
             if ([variable.name isEqualToString:name]) {
                 [self askForListName];
                 return;
             }
         }
     } else {
-        for (UserVariable* variable in [self.object.project.variables allListsForObject:self.object]) {
+        for (UserVariable* variable in [self.object.project.userData allListsForObject:self.object]) {
             if ([variable.name isEqualToString:name]) {
                 [self askForListName];
                 return;
@@ -949,9 +949,9 @@ NS_ENUM(NSInteger, ButtonIndex) {
     int buttonType = 11;
     
     if (self.isProjectVariable){
-        [self.object.project.variables.programListOfLists addObject:list];
+        [self.object.project.userData.programListOfLists addObject:list];
     } else {
-        [self.object.project.variables addObjectList:list forObject:self.object];
+        [self.object.project.userData addObjectList:list forObject:self.object];
     }
     
     [self.object.project saveToDiskWithNotification:YES];
@@ -1154,7 +1154,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 - (void)deleteVariable: (UserVariable*)userVariable atRow:(NSInteger)row isProjectData:(BOOL)isProjectData
 {
-    BOOL removed = [self.object.project.variables removeUserVariableNamed:userVariable.name forSpriteObject:self.object];
+    BOOL removed = [self.object.project.userData removeUserVariableNamed:userVariable.name forSpriteObject:self.object];
     if (removed) {
         if (isProjectData) {
             [self.variableSourceProject removeObjectAtIndex:row];
@@ -1168,7 +1168,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 - (void)deleteList: (id<UserDataProtocol>)userList atRow:(NSInteger)row isProjectData:(BOOL)isProjectData
 {
-    BOOL removed = [self.object.project.variables removeUserListNamed:userList.name forSpriteObject:self.object];
+    BOOL removed = [self.object.project.userData removeUserListNamed:userList.name forSpriteObject:self.object];
     if (removed) {
         if (isProjectData) {
             [self.listSourceProject removeObjectAtIndex:row];
@@ -1182,7 +1182,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 - (BOOL)isVariableUsed:(UserVariable*)variable
 {
-    if([self.object.project.variables isProjectVariable:variable]) {
+    if([self.object.project.userData isProjectVariable:variable]) {
         for(SpriteObject *spriteObject in self.object.project.objectList) {
             for(Script *script in spriteObject.scriptList) {
                 for(id brick in script.brickList) {
@@ -1207,7 +1207,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 - (BOOL)isListUsed:(id<UserDataProtocol>)list
 {
-    if([self.object.project.variables isProjectList:list]) {
+    if([self.object.project.userData isProjectList:list]) {
         for(SpriteObject *spriteObject in self.object.project.objectList) {
             for(Script *script in spriteObject.scriptList) {
                 for(id brick in script.brickList) {

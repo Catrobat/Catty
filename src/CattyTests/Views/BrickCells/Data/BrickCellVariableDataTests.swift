@@ -33,7 +33,7 @@ class BrickCellVariableDataTests: XCTestCase {
     var brick: ChangeVariableBrick!
     var brickCell: ChangeVariableBrickCell!
 
-    var variablesContainer: VariablesContainer!
+    var userDataContainer: UserDataContainer!
     var objectVariable1: UserVariable!
     var objectVariable2: UserVariable!
     var secondObjectVariable: UserVariable!
@@ -47,18 +47,18 @@ class BrickCellVariableDataTests: XCTestCase {
         spriteObject2 = SpriteObject()
         spriteObject2.name = "testObject2"
 
-        variablesContainer = VariablesContainer()
+        userDataContainer = UserDataContainer()
         objectVariable1 = UserVariable(name: "testVariable1")
         objectVariable2 = UserVariable(name: "testVariable2")
         secondObjectVariable = UserVariable(name: "testVariable3")
         programVariable = UserVariable(name: "testVariable4")
 
-        variablesContainer.addObjectVariable(objectVariable1, for: spriteObject)
-        variablesContainer.addObjectVariable(objectVariable2, for: spriteObject)
-        variablesContainer.addObjectVariable(secondObjectVariable, for: spriteObject2)
-        variablesContainer.programVariableList.add(programVariable as Any)
+        userDataContainer.addObjectVariable(objectVariable1, for: spriteObject)
+        userDataContainer.addObjectVariable(objectVariable2, for: spriteObject)
+        userDataContainer.addObjectVariable(secondObjectVariable, for: spriteObject2)
+        userDataContainer.programVariableList.add(programVariable as Any)
         project = Project()
-        project.variables = variablesContainer
+        project.userData = userDataContainer
 
         spriteObject.project = project
         spriteObject2.project = project
@@ -128,7 +128,7 @@ class BrickCellVariableDataTests: XCTestCase {
 
     func testValuesWhenNoVariableInContainer() {
 
-        project.variables = VariablesContainer()
+        project.userData = UserDataContainer()
         brick.userVariable = nil
         brickCell.scriptOrBrick = brick
 

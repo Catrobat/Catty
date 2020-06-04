@@ -215,7 +215,7 @@
 #import "Project+CBXMLHandler.h"
 #import "Header+CBXMLHandler.h"
 #import "SpriteObject+CBXMLHandler.h"
-#import "VariablesContainer.h"
+#import "UserDataContainer.h"
 #import "OrderedMapTable.h"
 #import "UIDefines.h"
 #import "SpriteObject.h"

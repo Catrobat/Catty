@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "VariablesContainer+CBXMLHandler.h"
+#import "UserDataContainer+CBXMLHandler.h"
 #import "GDataXMLElement+CustomExtensions.h"
 #import "CBXMLValidator.h"
 #import "OrderedMapTable.h"
@@ -34,7 +34,7 @@
 #import "CBXMLPositionStack.h"
 #import "OrderedDictionary.h"
 
-@implementation VariablesContainer (CBXMLHandler)
+@implementation UserDataContainer (CBXMLHandler)
 
 #pragma mark - Parsing
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLParserContext *)context
@@ -51,7 +51,7 @@
     NSArray *variablesElements = [xmlElement elementsForName:elementName];
     [XMLError exceptionIf:[variablesElements count] notEquals:1 message:@"Too many %@-elements given!", elementName];
     GDataXMLElement *variablesElement = [variablesElements firstObject];
-    VariablesContainer *varContainer = [VariablesContainer new];
+    UserDataContainer *varContainer = [UserDataContainer new];
     
     
     
@@ -144,7 +144,7 @@
     
     
     
-    context.variables = varContainer;
+    context.userData = varContainer;
     return varContainer;
 }
 
