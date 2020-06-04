@@ -259,4 +259,13 @@ extension UIColor {
     static var arduinoBrickStroke: UIColor {
         UIColor(red: 179.0 / 255.0, green: 137.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0)
     }
+
+    static var penBrickGreen: UIColor {
+        UIColor(red: 48 / 255.0, green: 87 / 255.0, blue: 22 / 255.0, alpha: 1.0)
+    }
+
+    static var penBrickStroke: UIColor {
+        UIColor(red: 208 / 255.0, green: 218 / 255.0, blue: 203 / 255.0, alpha: 1.0)
+    }
+
 }

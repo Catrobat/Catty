@@ -402,6 +402,9 @@ let kLocalizedCamera = NSLocalizedString("Turn camera", comment: "")
 let kLocalizedChooseCamera = NSLocalizedString("Use camera", comment: "")
 let kLocalizedFor = NSLocalizedString("for", comment: "")
 
+// pen bricks
+let kLocalizedPenDown = NSLocalizedString("Pen down", comment: "")
+
 // sound bricks
 let kLocalizedSound = NSLocalizedString("Sound", comment: "")
 let kLocalizedPlaySound = NSLocalizedString("Start sound", comment: "")
@@ -691,6 +694,7 @@ let kLocalizedCategorySound = NSLocalizedString("Sound", comment: "")
 let kLocalizedCategoryVariable = NSLocalizedString("Variable", comment: "")
 let kLocalizedCategoryArduino = NSLocalizedString("Arduino", comment: "")
 let kLocalizedCategoryPhiro = NSLocalizedString("Phiro", comment: "")
+let kLocalizedCategoryPen = NSLocalizedString("Pen", comment: "")
 
 //************************************************************************************************************
 //************************************       PhiroDefines         ********************************************

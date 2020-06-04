@@ -14,6 +14,11 @@
 		184949B9248130A9000B8CDA /* NSStringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184949B8248130A9000B8CDA /* NSStringExtension.swift */; };
 		186212382475A1070098F4C5 /* SpriteKitDefines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186212372475A1070098F4C5 /* SpriteKitDefines.swift */; };
 		186212462475C9140098F4C5 /* PenConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186212452475C9140098F4C5 /* PenConfiguration.swift */; };
+		186AA33C2482D0CA001E38FD /* PenDownBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186AA33B2482D0CA001E38FD /* PenDownBrick.swift */; };
+		186AA33F2482DA65001E38FD /* PenDownBrickCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186AA33E2482DA65001E38FD /* PenDownBrickCell.swift */; };
+		186AA3442482DDD5001E38FD /* PenDownBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186AA3432482DDD5001E38FD /* PenDownBrick+Instruction.swift */; };
+		186AA3472482E0CC001E38FD /* PenDownBrick+CBXMLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186AA3462482E0CC001E38FD /* PenDownBrick+CBXMLHandler.swift */; };
+		186AA34924830491001E38FD /* PenDownBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186AA34824830491001E38FD /* PenDownBrickTests.swift */; };
 		186FBE65247C29AD00AE3F17 /* LineShapeNodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186FBE64247C29AD00AE3F17 /* LineShapeNodeTests.swift */; };
 		1875C5BA2457190000F3F276 /* UserVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1875C5B92457190000F3F276 /* UserVariable.swift */; };
 		187A3F202434BC4300EF1B02 /* PlaySoundAndWaitBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187A3F1F2434BC4300EF1B02 /* PlaySoundAndWaitBrickTests.swift */; };
@@ -1533,6 +1538,11 @@
 		184949B8248130A9000B8CDA /* NSStringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSStringExtension.swift; sourceTree = "<group>"; };
 		186212372475A1070098F4C5 /* SpriteKitDefines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteKitDefines.swift; sourceTree = "<group>"; };
 		186212452475C9140098F4C5 /* PenConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PenConfiguration.swift; sourceTree = "<group>"; };
+		186AA33B2482D0CA001E38FD /* PenDownBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PenDownBrick.swift; sourceTree = "<group>"; };
+		186AA33E2482DA65001E38FD /* PenDownBrickCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PenDownBrickCell.swift; sourceTree = "<group>"; };
+		186AA3432482DDD5001E38FD /* PenDownBrick+Instruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "PenDownBrick+Instruction.swift"; path = "Catty/PlayerEngine/Instructions/Pen/PenDownBrick+Instruction.swift"; sourceTree = SOURCE_ROOT; };
+		186AA3462482E0CC001E38FD /* PenDownBrick+CBXMLHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PenDownBrick+CBXMLHandler.swift"; sourceTree = "<group>"; };
+		186AA34824830491001E38FD /* PenDownBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PenDownBrickTests.swift; sourceTree = "<group>"; };
 		186FBE64247C29AD00AE3F17 /* LineShapeNodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LineShapeNodeTests.swift; path = Scene/LineShapeNodeTests.swift; sourceTree = "<group>"; };
 		1875C5B92457190000F3F276 /* UserVariable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserVariable.swift; sourceTree = "<group>"; };
 		187A3F1F2434BC4300EF1B02 /* PlaySoundAndWaitBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaySoundAndWaitBrickTests.swift; sourceTree = "<group>"; };
@@ -3559,6 +3569,38 @@
 			path = Configuration;
 			sourceTree = "<group>";
 		};
+		186AA3382482D0A8001E38FD /* Pen */ = {
+			isa = PBXGroup;
+			children = (
+				186AA33B2482D0CA001E38FD /* PenDownBrick.swift */,
+			);
+			path = Pen;
+			sourceTree = "<group>";
+		};
+		186AA33D2482DA3F001E38FD /* Pen */ = {
+			isa = PBXGroup;
+			children = (
+				186AA33E2482DA65001E38FD /* PenDownBrickCell.swift */,
+			);
+			path = Pen;
+			sourceTree = "<group>";
+		};
+		186AA3422482DD73001E38FD /* Pen */ = {
+			isa = PBXGroup;
+			children = (
+				186AA3432482DDD5001E38FD /* PenDownBrick+Instruction.swift */,
+			);
+			path = Pen;
+			sourceTree = "<group>";
+		};
+		186AA3452482E086001E38FD /* Pen */ = {
+			isa = PBXGroup;
+			children = (
+				186AA3462482E0CC001E38FD /* PenDownBrick+CBXMLHandler.swift */,
+			);
+			path = Pen;
+			sourceTree = "<group>";
+		};
 		18B8021B246916CB00201847 /* Data */ = {
 			isa = PBXGroup;
 			children = (
@@ -5130,6 +5172,7 @@
 		4C724D9B1B4D3E8C00E27479 /* Bricks */ = {
 			isa = PBXGroup;
 			children = (
+				186AA3452482E086001E38FD /* Pen */,
 				92B46F961BC7BC8C004980C1 /* Arduino */,
 				92EC98511BC3ABB90003A891 /* Phiro */,
 				4C724D9C1B4D3E8C00E27479 /* Control */,
@@ -5962,6 +6005,7 @@
 				BA584CB9219C8803002CC082 /* WaitUntilBrickTests.swift */,
 				3DA1BED824365A3400133C99 /* BrickMutableCopyTests.swift */,
 				D3AF5C18243F6A4C00B04BC6 /* BrickCategoryTest.swift */,
+				186AA34824830491001E38FD /* PenDownBrickTests.swift */,
 			);
 			path = Bricks;
 			sourceTree = "<group>";
@@ -7175,6 +7219,7 @@
 				92FF302D1A24DCAA00093DA7 /* Brick.m */,
 				AA74EF7F1BC05B5F00D1E954 /* Control */,
 				AA74EFA21BC05B5F00D1E954 /* Look */,
+				186AA3382482D0A8001E38FD /* Pen */,
 				AA74EFB71BC05B5F00D1E954 /* Motion */,
 				AA74EF9B1BC05B5F00D1E954 /* IO */,
 				AA74EFD61BC05B5F00D1E954 /* Sound */,
@@ -7745,6 +7790,7 @@
 		AA401FE51BBEF5F5001BC49F /* Instructions */ = {
 			isa = PBXGroup;
 			children = (
+				186AA3422482DD73001E38FD /* Pen */,
 				92B46FA41BC7C2A5004980C1 /* Arduino */,
 				AA74EDD31BC050A000D1E954 /* Control */,
 				AA74EDDB1BC051FB00D1E954 /* Data */,
@@ -8099,6 +8145,7 @@
 				AA74F0231BC05FCE00D1E954 /* BrickCell.m */,
 				AA74F0241BC05FCE00D1E954 /* Control */,
 				AA74F0451BC05FCE00D1E954 /* Look */,
+				186AA33D2482DA3F001E38FD /* Pen */,
 				AA74F05A1BC05FCE00D1E954 /* Motion */,
 				AA74F0421BC05FCE00D1E954 /* IO */,
 				AA74F0791BC05FCE00D1E954 /* Sound */,
@@ -9641,6 +9688,7 @@
 				4C822664213FA7A400F3D750 /* LatitudeSensorTest.swift in Sources */,
 				4C5AEEEB22F6EFF900280F8B /* VibrationBrickCellTests.swift in Sources */,
 				4CDE807621A1B112009EFD31 /* ScenePresenterViewControllerTest.swift in Sources */,
+				186AA34924830491001E38FD /* PenDownBrickTests.swift in Sources */,
 				4C822683213FA7A400F3D750 /* SensorManagerTests.swift in Sources */,
 				9E3AF79A2326F4D100AB16F1 /* IfOnEdgeBounceBrickTests.swift in Sources */,
 				4C82266F213FA7A400F3D750 /* DateMonthSensorTest.swift in Sources */,
@@ -9774,6 +9822,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4CB2CFAE1D7ADA1D009F3034 /* SetColorBrick+Instruction.swift in Sources */,
+				186AA33F2482DA65001E38FD /* PenDownBrickCell.swift in Sources */,
 				AA74F0BF1BC05FCE00D1E954 /* PointToBrickCell.m in Sources */,
 				AA74EF771BC0589700D1E954 /* ChangeVariableBrick+CBXMLHandler.m in Sources */,
 				AAA2979C1BB371EB006F8793 /* ExternInternRepresentationMapping.m in Sources */,
@@ -9855,6 +9904,7 @@
 				AA74EEFE1BC057C900D1E954 /* SetLookBrick+CBXMLHandler.m in Sources */,
 				9E0F741422B558490030CD89 /* AudioPlayerFactory.swift in Sources */,
 				CA2D444F1B1251BF00A3B53D /* CBSchedulingAlgorithms.swift in Sources */,
+				186AA33C2482D0CA001E38FD /* PenDownBrick.swift in Sources */,
 				AA74F00C1BC05B5F00D1E954 /* SetVolumeToBrick.m in Sources */,
 				CA43C4BA1B165C0B009B604F /* CBBroadcastHandler.swift in Sources */,
 				4CF0729E20D66F8D00F93AB5 /* LookNameSensor.swift in Sources */,
@@ -9939,6 +9989,7 @@
 				AA74EFF11BC05B5F00D1E954 /* ChangeBrightnessByNBrick.m in Sources */,
 				4C48ED2520EF9A1D00784CD5 /* AudioManagerProtocol.swift in Sources */,
 				AA74F0B71BC05FCE00D1E954 /* ChangeYByNBrickCell.m in Sources */,
+				186AA3472482E0CC001E38FD /* PenDownBrick+CBXMLHandler.swift in Sources */,
 				921EE9B61BA8045A00834711 /* JNKeychain.m in Sources */,
 				AA74F0991BC05FCE00D1E954 /* BrickCellVariableData.m in Sources */,
 				9218B20A1CC4AB75007B4C60 /* UIViewController+KNSemiModal.m in Sources */,
@@ -10179,6 +10230,7 @@
 				929CC0BD1BC39AD60027DEC0 /* BluetoothBrick.m in Sources */,
 				4C0F9F7A204BD1E300E71B2D /* SayBubbleBrick+Instruction.swift in Sources */,
 				9E2C2D862325673C004B66C6 /* AudioEngine.swift in Sources */,
+				186AA3442482DDD5001E38FD /* PenDownBrick+Instruction.swift in Sources */,
 				5EF590BA2192D81F00C19F12 /* Double+Extensions.swift in Sources */,
 				92FF2E911A24C7D800093DA7 /* DownloadImageCache.m in Sources */,
 				AA74EFF81BC05B5F00D1E954 /* SetSizeToBrick.m in Sources */,

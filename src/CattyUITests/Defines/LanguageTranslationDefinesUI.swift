@@ -402,6 +402,9 @@ let kLocalizedCamera = NSLocalizedString("Turn camera", bundle: Bundle(for: Lang
 let kLocalizedChooseCamera = NSLocalizedString("Use camera", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedFor = NSLocalizedString("for", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
+// pen bricks
+let kLocalizedPenDown = NSLocalizedString("Pen down", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+
 // sound bricks
 let kLocalizedSound = NSLocalizedString("Sound", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedPlaySound = NSLocalizedString("Start sound", bundle: Bundle(for: LanguageTranslation.self), comment: "")
@@ -691,6 +694,7 @@ let kLocalizedCategorySound = NSLocalizedString("Sound", bundle: Bundle(for: Lan
 let kLocalizedCategoryVariable = NSLocalizedString("Variable", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedCategoryArduino = NSLocalizedString("Arduino", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedCategoryPhiro = NSLocalizedString("Phiro", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedCategoryPen = NSLocalizedString("Pen", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
 //************************************************************************************************************
 //************************************       PhiroDefines         ********************************************

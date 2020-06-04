@@ -121,18 +121,15 @@ final class CBSpriteNodePenExtensionTests: XCTestCase {
         XCTAssertEqual(scene.children.count, 1)
     }
 
-    func testWithStartMethodPositionChangedAndPenDown() {
-        spriteNode.penConfiguration.penDown = true
-        spriteNode.position = initialPosition
+    func testStartAndSetDefaultPenPosition() {
+        let expectedPosition = CGPoint(
+          x: PositionXSensor.convertToRaw(userInput: PositionXSensor.defaultRawValue, for: spriteNode.spriteObject),
+          y: PositionYSensor.convertToRaw(userInput: PositionYSensor.defaultRawValue, for: spriteNode.spriteObject)
+        )
 
         spriteNode.start(1)
 
-        XCTAssertEqual(spriteNode.penConfiguration.previousPosition, initialPosition)
-
-        spriteNode.position = CGPoint(x: 1, y: 1)
-        spriteNode.update(CACurrentMediaTime())
-
-        XCTAssertEqual(spriteNode.penConfiguration.previousPosition, spriteNode.position)
+        XCTAssertEqual(spriteNode.penConfiguration.previousPosition, expectedPosition)
     }
 
     func testDrawnLineAttributes() {

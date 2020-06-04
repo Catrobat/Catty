@@ -82,6 +82,8 @@
             ChooseCameraBrick(),
             ThinkForBubbleBrick(),
             ThinkBubbleBrick(),
+            // pen bricks
+            PenDownBrick(),
             // sound bricks
             PlaySoundBrick(),
             PlaySoundAndWaitBrick(),
@@ -131,6 +133,11 @@
                           name: kLocalizedCategoryLook,
                           color: UIColor.lookBrickGreen,
                           strokeColor: UIColor.lookBrickStroke),
+
+            BrickCategory(type: kBrickCategoryType.penBrick,
+                          name: kLocalizedCategoryPen,
+                          color: UIColor.penBrickGreen,
+                          strokeColor: UIColor.penBrickStroke),
 
             BrickCategory(type: kBrickCategoryType.soundBrick,
                           name: kLocalizedCategorySound,
