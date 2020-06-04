@@ -604,6 +604,43 @@ final class VariablesContainerTest: XCTestCase {
         XCTAssertFalse(container1.isEqual(to: container2))
     }
 
+    func testIsEqualToVariablesContainerWithProgramListAndVariableHavingSameName() {
+        let container1 = VariablesContainer()
+        let container2 = VariablesContainer()
+
+        XCTAssertFalse(container1 === container2)
+        XCTAssertTrue(container1.isEqual(to: container2))
+
+        let userList = UserList(name: "userData")
+        let userVariable = UserVariable(name: "userData")
+
+        container1.programVariableList.add(userVariable)
+        container2.programListOfLists.add(userList)
+
+        XCTAssertFalse(container1 === container2)
+        XCTAssertFalse(container1.isEqual(to: container2))
+    }
+
+    func testIsEqualToVariablesContainerWithObjectListAndVariableHavingSameName() {
+        let object = SpriteObject()
+        object.name = "object"
+
+        let container1 = VariablesContainer()
+        let container2 = VariablesContainer()
+
+        XCTAssertFalse(container1 === container2)
+        XCTAssertTrue(container1.isEqual(to: container2))
+
+        let userList = UserList(name: "userData")
+        let userVariable = UserVariable(name: "userData")
+
+        container1.addObjectVariable(userVariable, for: object)
+        container2.addObjectList(userList, for: object)
+
+        XCTAssertFalse(container1 === container2)
+        XCTAssertFalse(container1.isEqual(to: container2))
+    }
+
     func testMutableCopy() {
         let objectA = SpriteObject()
         objectA.name = "testObjectA"
@@ -776,5 +813,4 @@ final class VariablesContainerTest: XCTestCase {
 
         XCTAssertFalse(container.removeUserListNamed(list4.name, for: objectC))
     }
-
 }
