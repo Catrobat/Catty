@@ -4631,14 +4631,6 @@
 			name = SpriteObject;
 			sourceTree = "<group>";
 		};
-		4C28D7872132A82700870CE2 /* Mock */ = {
-			isa = PBXGroup;
-			children = (
-				4C28D78A2132A83D00870CE2 /* FormulaMock.swift */,
-			);
-			path = Mock;
-			sourceTree = "<group>";
-		};
 		4C2EE4141B555B55006DE9B8 /* Parser & Serializer */ = {
 			isa = PBXGroup;
 			children = (
@@ -4722,7 +4714,6 @@
 		4C3C03F5199BA5250004F594 /* Formula */ = {
 			isa = PBXGroup;
 			children = (
-				4C28D7872132A82700870CE2 /* Mock */,
 				4CC614B3212EA838006E4720 /* Dto */,
 				4C68FC7E1B25A00B00AB3EE8 /* FormulaParserErrorDetectionTest.m */,
 				4C68FC7F1B25A00B00AB3EE8 /* FormulaParserFunctionsTest.m */,
@@ -6187,6 +6178,7 @@
 			isa = PBXGroup;
 			children = (
 				4CB73A8F23FC1F0300D5E9A7 /* CatrobatTableViewControllerMock.swift */,
+				4C28D78A2132A83D00870CE2 /* FormulaMock.swift */,
 				4C1A596723FE9997001A78D2 /* CrashlyticsMock.swift */,
 				4C3B151A23F07C7800527D4A /* ErrorMock.swift */,
 				4CD27AA921B5765B00DDADB5 /* FeatureMock.swift */,
