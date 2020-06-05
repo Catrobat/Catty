@@ -24,7 +24,7 @@
 #import "InsertItemIntoUserListBrick.h"
 #import "Formula.h"
 #import "Project.h"
-#import "VariablesContainer.h"
+#import "UserDataContainer.h"
 #import "Script.h"
 
 @implementation InsertItemIntoUserListBrick
@@ -67,7 +67,7 @@
     self.elementFormula = [[Formula alloc] initWithInteger:1];
     self.index = [[Formula alloc] initWithInteger:1];
     if(spriteObject) {
-        NSArray *lists = [spriteObject.project.variables allListsForObject:spriteObject];
+        NSArray *lists = [spriteObject.project.userData allListsForObject:spriteObject];
         if([lists count] > 0)
             self.userList = [lists objectAtIndex:0];
         else

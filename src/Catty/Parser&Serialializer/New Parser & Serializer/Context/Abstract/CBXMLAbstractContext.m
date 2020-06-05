@@ -22,7 +22,7 @@
 
 #import "CBXMLAbstractContext.h"
 #import "CBXMLOpenedNestingBricksStack.h"
-#import "VariablesContainer.h"
+#import "UserDataContainer.h"
 
 @implementation CBXMLAbstractContext
 
@@ -51,12 +51,12 @@
     return _spriteObjectList;
 }
 
-- (VariablesContainer*)variables
+- (UserDataContainer*)userData
 {
-    if (! _variables) {
-        _variables = [VariablesContainer new];
+    if (! _userData) {
+        _userData = [UserDataContainer new];
     }
-    return _variables;
+    return _userData;
 }
 
 
@@ -67,7 +67,7 @@
     copiedContext.pointedSpriteObjectList = [self.pointedSpriteObjectList mutableCopy];
     copiedContext.spriteObjectList = [self.spriteObjectList mutableCopy];
     copiedContext.spriteObject = self.spriteObject;
-    copiedContext.variables = [self.variables mutableCopy];
+    copiedContext.userData = [self.userData mutableCopy];
     return copiedContext;
 }
 

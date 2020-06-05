@@ -953,11 +953,11 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 
     NSMutableArray *allVariableNames = [NSMutableArray new];
     if (isProjectVar) {
-        for(UserVariable *var in [self.object.project.variables allVariables]) {
+        for(UserVariable *var in [self.object.project.userData allVariables]) {
             [allVariableNames addObject:var.name];
         }
     } else {
-        for(UserVariable *var in [self.object.project.variables allVariablesForObject:self.object]) {
+        for(UserVariable *var in [self.object.project.userData allVariablesForObject:self.object]) {
             [allVariableNames addObject:var.name];
         }
     }
@@ -971,11 +971,11 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                                         UserVariable *variable = [[UserVariable alloc] initWithName:variableName];
                                         variable.value = [NSNumber numberWithInt:0];
                                         if (isProjectVar) {
-                                            [self.object.project.variables.programVariableList addObject:variable];
+                                            [self.object.project.userData.programVariableList addObject:variable];
                                         } else { // object variable
-                                            [self.object.project.variables addObjectVariable:variable forObject:self.object];
+                                            [self.object.project.userData addObjectVariable:variable forObject:self.object];
                                         }
-                                        UserVariable *var = [self.object.project.variables getUserVariableNamed:(NSString*)variableName forSpriteObject:self.object];
+                                        UserVariable *var = [self.object.project.userData getUserVariableNamed:(NSString*)variableName forSpriteObject:self.object];
                                         BrickCell *brickCell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:self.variableIndexPath];
                                         Brick * brick = (Brick*)brickCell.scriptOrBrick;
                                         Brick<BrickVariableProtocol> *variableBrick;
@@ -1002,11 +1002,11 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 
     NSMutableArray *allListNames = [NSMutableArray new];
     if (isProjectList) {
-        for(UserVariable *list in [self.object.project.variables allLists]) {
+        for(UserVariable *list in [self.object.project.userData allLists]) {
             [allListNames addObject:list.name];
         }
     } else {
-        for(UserVariable *list in [self.object.project.variables allListsForObject:self.object]) {
+        for(UserVariable *list in [self.object.project.userData allListsForObject:self.object]) {
             [allListNames addObject:list.name];
         }
     }
@@ -1020,11 +1020,11 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                                         UserList *list = [[UserList alloc] initWithName:listName];
                                         list.value = [[NSMutableArray alloc] init];
                                         if (isProjectList) {
-                                            [self.object.project.variables.programListOfLists addObject:list];
+                                            [self.object.project.userData.programListOfLists addObject:list];
                                         } else { // object list
-                                            [self.object.project.variables addObjectList:list forObject:self.object];
+                                            [self.object.project.userData addObjectList:list forObject:self.object];
                                         }
-                                        UserList *listToSet = [self.object.project.variables getUserListNamed:(NSString*)listName forSpriteObject:self.object];
+                                        UserList *listToSet = [self.object.project.userData getUserListNamed:(NSString*)listName forSpriteObject:self.object];
                                         BrickCell *brickCell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:self.variableIndexPath];
                                         Brick * brick = (Brick*)brickCell.scriptOrBrick;
                                         Brick<BrickListProtocol> *listBrick;
@@ -1202,7 +1202,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             return;
         } else {
             Brick<BrickVariableProtocol> *variableBrick = (Brick<BrickVariableProtocol>*)brick;
-            UserVariable *variable = [self.object.project.variables getUserVariableNamed:(NSString*)value forSpriteObject:self.object];
+            UserVariable *variable = [self.object.project.userData getUserVariableNamed:(NSString*)value forSpriteObject:self.object];
             if(variable)
                 [variableBrick setVariable:variable forLineNumber:line andParameterNumber:parameter];
         }
@@ -1228,7 +1228,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             return;
         } else {
             Brick<BrickListProtocol> *listBrick = (Brick<BrickListProtocol>*)brick;
-            UserList *list = [self.object.project.variables getUserListNamed:(NSString*)value forSpriteObject:self.object];
+            UserList *list = [self.object.project.userData getUserListNamed:(NSString*)value forSpriteObject:self.object];
             if(list)
                 [listBrick setList:list forLineNumber:line andParameterNumber:parameter];
         }

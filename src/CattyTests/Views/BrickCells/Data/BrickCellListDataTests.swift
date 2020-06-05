@@ -33,7 +33,7 @@ class BrickCellListDataTests: XCTestCase {
     var brick: ReplaceItemInUserListBrick!
     var brickCell: ReplaceItemInUserListBrickCell!
 
-    var variablesContainer: VariablesContainer!
+    var userDataContainer: UserDataContainer!
     var objectList1: UserList!
     var objectList2: UserList!
     var secondObjectList: UserList!
@@ -47,19 +47,19 @@ class BrickCellListDataTests: XCTestCase {
         spriteObject2 = SpriteObject()
         spriteObject2.name = "testObject2"
 
-        variablesContainer = VariablesContainer()
+        userDataContainer = UserDataContainer()
         objectList1 = UserList(name: "testList1")
         objectList2 = UserList(name: "testList2")
         secondObjectList = UserList(name: "testList3")
         programList = UserList(name: "testList4")
 
-        variablesContainer.addObjectList(objectList1, for: spriteObject)
-        variablesContainer.addObjectList(objectList2, for: spriteObject)
-        variablesContainer.addObjectList(secondObjectList, for: spriteObject2)
-        variablesContainer.programListOfLists.add(programList as Any)
+        userDataContainer.addObjectList(objectList1, for: spriteObject)
+        userDataContainer.addObjectList(objectList2, for: spriteObject)
+        userDataContainer.addObjectList(secondObjectList, for: spriteObject2)
+        userDataContainer.programListOfLists.add(programList as Any)
 
         project = Project()
-        project.variables = variablesContainer
+        project.userData = userDataContainer
 
         spriteObject.project = project
         spriteObject2.project = project
@@ -129,7 +129,7 @@ class BrickCellListDataTests: XCTestCase {
 
     func testValuesWhenNoListInContainer() {
 
-        project.variables = VariablesContainer()
+        project.userData = UserDataContainer()
         brick.userList = nil
         brickCell.scriptOrBrick = brick
 

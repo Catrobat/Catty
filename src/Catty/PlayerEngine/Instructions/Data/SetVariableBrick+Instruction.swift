@@ -25,7 +25,7 @@
     @nonobjc func instruction() -> CBInstruction {
 
         guard let spriteObject = self.script?.object,
-            let variables = spriteObject.project?.variables
+            let userData = spriteObject.project?.userData
             else { fatalError("This should never happen!") }
 
         let userVariable = self.userVariable
@@ -34,7 +34,7 @@
         return CBInstruction.execClosure { context, _ in
             guard let formula = variableFormula else { return }
             let result = context.formulaInterpreter.interpret(formula, for: spriteObject)
-            variables.setUserVariable(userVariable, toValue: result)
+            userData.setUserVariable(userVariable, toValue: result)
 
             //update visible userVariable
             var value = ""

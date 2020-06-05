@@ -29,7 +29,7 @@
 @class OrderedMapTable;
 @protocol UserDataProtocol;
 
-@interface VariablesContainer : NSObject
+@interface UserDataContainer : NSObject
 
 // Map<Sprite, List<UserVariable>
 @property (nonatomic, strong) OrderedMapTable *objectListOfLists;
@@ -81,7 +81,7 @@
 - (void)removeObjectVariablesForSpriteObject:(SpriteObject*)object;
 - (void)removeObjectListsForSpriteObject:(SpriteObject*)object;
 
-- (BOOL)isEqualToVariablesContainer:(VariablesContainer*)variablesContainer;
+- (BOOL)isEqualToUserDataContainer:(UserDataContainer*)userDataContainer;
 
 - (id)mutableCopy;
 

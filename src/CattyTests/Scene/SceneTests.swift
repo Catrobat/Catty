@@ -112,7 +112,7 @@ final class SceneTests: XCTestCase {
         let scene = SceneBuilder(project: project).build()
 
         let userVariable = UserVariable(name: "testName")
-        project.variables.programVariableList.add(userVariable)
+        project.userData.programVariableList.add(userVariable)
 
         XCTAssertNil(userVariable.textLabel)
         XCTAssertTrue(scene.startProject())

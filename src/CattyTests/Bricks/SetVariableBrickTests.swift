@@ -56,8 +56,8 @@ final class SetVariableBrickTests: XCTestCase {
     func testSetVariableBrickUserVariablesNil() {
         spriteNode.position = CGPoint(x: 0, y: 0)
 
-        let varContainer = VariablesContainer()
-        spriteObject.project.variables = varContainer
+        let userDataContainer = UserDataContainer()
+        spriteObject.project.userData = userDataContainer
 
         let brick = SetVariableBrick()
         brick.variableFormula = Formula(integer: 0)

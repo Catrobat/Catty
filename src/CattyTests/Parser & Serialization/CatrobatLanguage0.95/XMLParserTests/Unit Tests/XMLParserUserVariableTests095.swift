@@ -37,51 +37,51 @@ final class XMLParserUserVariableTests095: XMLAbstractTest {
         let xmlRoot = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "Airplane_with_shadow_095"))
         XCTAssertNotNil(xmlRoot.rootElement, "rootElement is nil")
 
-        let variablesContainer = self.parserContext?.parse(from: xmlRoot.rootElement(), withClass: VariablesContainer.self as? CBXMLNodeProtocol.Type) as! VariablesContainer
-        XCTAssertNotNil(variablesContainer, "VariablesContainer is nil")
-        XCTAssertEqual(8, variablesContainer.objectVariableList.count(), "Invalid number of object variables")
+        let userDataContainer = self.parserContext?.parse(from: xmlRoot.rootElement(), withClass: UserDataContainer.self as? CBXMLNodeProtocol.Type) as! UserDataContainer
+        XCTAssertNotNil(userDataContainer, "UserDataContainer is nil")
+        XCTAssertEqual(8, userDataContainer.objectVariableList.count(), "Invalid number of object variables")
 
-        var spriteObject = variablesContainer.objectVariableList.key(at: 0) as! SpriteObject
+        var spriteObject = userDataContainer.objectVariableList.key(at: 0) as! SpriteObject
         XCTAssertEqual(spriteObject.name, "Lower right tile", "Invalid SpriteObject name for object variable 1")
-        var variables = variablesContainer.objectVariables(for: spriteObject)
+        var variables = userDataContainer.objectVariables(for: spriteObject)
         XCTAssertEqual(0, variables!.count, "Invalid number of object variables for object 1")
 
-        spriteObject = variablesContainer.objectVariableList.key(at: 1) as! SpriteObject
+        spriteObject = userDataContainer.objectVariableList.key(at: 1) as! SpriteObject
         XCTAssertEqual(spriteObject.name, "Lower left tile", "Invalid SpriteObject name for object variable 2")
-        variables = variablesContainer.objectVariables(for: spriteObject)
+        variables = userDataContainer.objectVariables(for: spriteObject)
         XCTAssertEqual(0, variables!.count, "Invalid number of object variables for object 2")
 
-        spriteObject = variablesContainer.objectVariableList.key(at: 2) as! SpriteObject
+        spriteObject = userDataContainer.objectVariableList.key(at: 2) as! SpriteObject
         XCTAssertEqual(spriteObject.name, "Upper left tile", "Invalid SpriteObject name for object variable 3")
-        variables = variablesContainer.objectVariables(for: spriteObject)
+        variables = userDataContainer.objectVariables(for: spriteObject)
         XCTAssertEqual(0, variables!.count, "Invalid number of object variables for object 3")
 
-        spriteObject = variablesContainer.objectVariableList.key(at: 3) as! SpriteObject
+        spriteObject = userDataContainer.objectVariableList.key(at: 3) as! SpriteObject
         XCTAssertEqual(spriteObject.name, "Airplane", "Invalid SpriteObject name for object variable 4")
-        variables = variablesContainer.objectVariables(for: spriteObject)
+        variables = userDataContainer.objectVariables(for: spriteObject)
         XCTAssertEqual(0, variables!.count, "Invalid number of object variables for object 5")
 
-        spriteObject = variablesContainer.objectVariableList.key(at: 4) as! SpriteObject
+        spriteObject = userDataContainer.objectVariableList.key(at: 4) as! SpriteObject
         XCTAssertEqual(spriteObject.name, "Upper right tile", "Invalid SpriteObject name for object variable 5")
-        variables = variablesContainer.objectVariables(for: spriteObject)
+        variables = userDataContainer.objectVariables(for: spriteObject)
         XCTAssertEqual(0, variables!.count, "Invalid number of object variables for object 5")
 
-        spriteObject = variablesContainer.objectVariableList.key(at: 5) as! SpriteObject
+        spriteObject = userDataContainer.objectVariableList.key(at: 5) as! SpriteObject
         XCTAssertEqual(spriteObject.name, "Shadow", "Invalid SpriteObject name for object variable 6")
-        variables = variablesContainer.objectVariables(for: spriteObject)
+        variables = userDataContainer.objectVariables(for: spriteObject)
         XCTAssertEqual(0, variables!.count, "Invalid number of object variables for object 6")
 
-        spriteObject = variablesContainer.objectVariableList.key(at: 6) as! SpriteObject
+        spriteObject = userDataContainer.objectVariableList.key(at: 6) as! SpriteObject
         XCTAssertEqual(spriteObject.name, "Background", "Invalid SpriteObject name for object variable 7")
-        variables = variablesContainer.objectVariables(for: spriteObject)
+        variables = userDataContainer.objectVariables(for: spriteObject)
         XCTAssertEqual(0, variables!.count, "Invalid number of object variables for object 7")
 
-        spriteObject = variablesContainer.objectVariableList.key(at: 7) as! SpriteObject
+        spriteObject = userDataContainer.objectVariableList.key(at: 7) as! SpriteObject
         XCTAssertEqual(spriteObject.name, "Pointer", "Invalid SpriteObject name for object variable 8")
-        variables = variablesContainer.objectVariables(for: spriteObject)
+        variables = userDataContainer.objectVariables(for: spriteObject)
         XCTAssertEqual(0, variables!.count, "Invalid number of object variables for object 8")
 
-        XCTAssertEqual(5, variablesContainer.programVariableList.count, "Invalid number of project variables")
+        XCTAssertEqual(5, userDataContainer.programVariableList.count, "Invalid number of project variables")
     }
 
 }

@@ -47,10 +47,10 @@ final class DeleteItemOfUserListBrickTests: XCTestCase {
         script = Script()
         script.object = spriteObject
 
-        spriteObject.project.variables = VariablesContainer()
+        spriteObject.project.userData = UserDataContainer()
 
         userList = UserList(name: "testName")
-        spriteObject.project.variables.addObjectList(userList, for: spriteObject)
+        spriteObject.project.userData.addObjectList(userList, for: spriteObject)
 
         brick = DeleteItemOfUserListBrick()
         brick.userList = userList

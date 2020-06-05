@@ -28,7 +28,7 @@
 #import "CBXMLSerializerContext.h"
 #import "CBXMLPositionStack.h"
 #import "CBXMLSerializerHelper.h"
-#import "VariablesContainer.h"
+#import "UserDataContainer.h"
 #import "SpriteObject.h"
 
 @implementation UserVariable (CBXMLHandler)
@@ -94,7 +94,7 @@
     CBXMLPositionStack *positionStackOfUserVariable = nil;
 
     // check whether object variable/list or project variable/list
-    if (! [context.variables isProjectVariable:self]) {
+    if (! [context.userData isProjectVariable:self]) {
         // it is an object variable/list!
         SpriteObject *spriteObject = context.spriteObject;
         NSMutableDictionary *alreadySerializedVarsOrLists = [context.spriteObjectNameUserVariableListPositions objectForKey:spriteObject.name];
