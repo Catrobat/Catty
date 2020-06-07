@@ -21,7 +21,6 @@
  */
 
 @objcMembers class UserList: NSObject, UserListProtocol {
-    typealias DataType = NSMutableArray
 
     var name: String
     var value: NSMutableArray
