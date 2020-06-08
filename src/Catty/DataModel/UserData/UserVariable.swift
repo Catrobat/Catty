@@ -23,8 +23,6 @@
 @objc(UserVariable)
 @objcMembers class UserVariable: NSObject, UserVariableProtocol {
 
-    typealias DataType = Any?
-
     var name: String
     var value: Any?
     var textLabel: SKLabelNode?
