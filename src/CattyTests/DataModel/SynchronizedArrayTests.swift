@@ -187,6 +187,49 @@ final class SynchronizedArrayTests: XCTestCase {
         XCTAssertTrue(doesContain)
     }
 
+    func testIsEqual() {
+        let array1 = SynchronizedArray<Int>()
+        let array2 = SynchronizedArray<Int>()
+
+        array1.append(6)
+        XCTAssertFalse(array1.isEqual(array2))
+
+        array2.append(6)
+        XCTAssertTrue(array1.isEqual(array2))
+    }
+
+    func testIsEqualForArrayWithDifferentOrder() {
+        let array1 = SynchronizedArray<AnyObject>()
+        let array2 = SynchronizedArray<AnyObject>()
+
+        let formula1 = Formula(double: 1)!
+        let formula2 = Formula(double: 2)!
+
+        array1.append(formula1)
+        array1.append(formula2)
+        XCTAssertFalse(array1.isEqual(array2))
+
+        array2.append(formula2)
+        array2.append(formula1)
+        XCTAssertFalse(array1.isEqual(array2))
+    }
+
+    func testIsEqualWithMultipleDataType() {
+        let array1 = SynchronizedArray<Any>()
+        let array2 = SynchronizedArray<Any>()
+
+        let formula1 = Formula(double: 1)!
+
+        array1.append(formula1)
+        array1.append("2")
+        XCTAssertFalse(array1.isEqual(array2))
+
+        array2.append(formula1)
+        array2.append("2")
+        XCTAssertTrue(array1.isEqual(array2))
+
+    }
+
     func testThreadSafeArray() {
         let array = SynchronizedArray<Int>()
 
