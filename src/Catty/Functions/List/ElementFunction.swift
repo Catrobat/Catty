@@ -46,14 +46,14 @@ class ElementFunction: DoubleParameterFunction {
                 return type(of: self).defaultValue
         }
 
-        let elements = list.value as [AnyObject]
+        let elements = list.value
 
         if elements.isEmpty || elementNumber <= 0 || elementNumber > elements.count {
             return type(of: self).defaultValue
         }
 
-        let index = elements.index(elements.startIndex, offsetBy: elementNumber - 1)
-        return elements[index]
+        let index = elements.index(i: elements.startIndex, offsetBy: elementNumber - 1)
+        return elements[index] as AnyObject
     }
 
     func formulaEditorSections() -> [FormulaEditorSection] {

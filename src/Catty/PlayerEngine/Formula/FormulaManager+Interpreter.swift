@@ -207,18 +207,19 @@ extension FormulaManager {
 
     private func interpretList(_ formulaElement: FormulaElement, for spriteObject: SpriteObject) -> AnyObject {
         guard let project = spriteObject.project,
-            let list = project.userData.getUserListNamed(formulaElement.value, for: spriteObject), let listElements = list.value as? [Any]
+            let list = project.userData.getUserListNamed(formulaElement.value, for: spriteObject)
             else { return 0 as AnyObject }
 
         var stringElements = [String]()
-
-        for listElement in listElements {
-            if let stringElem = listElement as? String {
-                stringElements.append(stringElem)
-            } else if let intElem = listElement as? Int {
-                stringElements.append(String(intElem))
-            } else if let doubleElem = listElement as? Double {
-                stringElements.append(String(doubleElem))
+        for i in 0..<list.value.count {
+            if let listElement = list.value[i] {
+                if let stringElem = listElement as? String {
+                    stringElements.append(stringElem)
+                } else if let intElem = listElement as? Int {
+                    stringElements.append(String(intElem))
+                } else if let doubleElem = listElement as? Double {
+                    stringElements.append(String(doubleElem))
+                }
             }
         }
 

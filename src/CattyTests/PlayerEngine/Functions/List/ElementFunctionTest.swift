@@ -50,7 +50,6 @@ class ElementFunctionTest: XCTestCase {
 
     func testEmptyList() {
         let emptyList = UserList(name: "testName")
-        emptyList.value = []
 
         XCTAssertEqual(type(of: function).defaultValue as! String, function.value(firstParameter: 0 as AnyObject, secondParameter: emptyList as AnyObject) as! String)
         XCTAssertEqual(type(of: function).defaultValue as! String, function.value(firstParameter: 1 as AnyObject, secondParameter: emptyList as AnyObject) as! String)
@@ -59,7 +58,9 @@ class ElementFunctionTest: XCTestCase {
     func testValue() {
         // number list
         let userListNumber = UserList(name: "myListNumber")
-        userListNumber.value = [1, 5, -7]
+        userListNumber.value.append(1)
+        userListNumber.value.append(5)
+        userListNumber.value.append(-7)
 
         XCTAssertEqual(5, function.value(firstParameter: 2 as AnyObject, secondParameter: userListNumber as AnyObject) as! NSNumber)
         XCTAssertEqual(-7, function.value(firstParameter: 3 as AnyObject, secondParameter: userListNumber as AnyObject) as! NSNumber)
@@ -71,7 +72,9 @@ class ElementFunctionTest: XCTestCase {
 
         // string list
         let userListString = UserList(name: "myListString")
-        userListString.value = ["a", "b", "c"]
+        userListString.value.append("a")
+        userListString.value.append("b")
+        userListString.value.append("c")
 
         XCTAssertEqual("b", function.value(firstParameter: 2 as AnyObject, secondParameter: userListString as AnyObject) as! String)
         XCTAssertEqual("a", function.value(firstParameter: 1 as AnyObject, secondParameter: userListString as AnyObject) as! String)

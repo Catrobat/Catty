@@ -42,7 +42,7 @@
 
     func isListUsed(list: UserList) -> Bool {
         if let listBrick = self as? (Brick & BrickListProtocol) {
-            if list == listBrick.userList {
+            if list.isEqual(listBrick.userList) {
                 return true
             }
         }

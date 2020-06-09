@@ -23,16 +23,16 @@
 @objcMembers class UserList: NSObject, UserListProtocol {
 
     var name: String
-    var value: NSMutableArray
+    var value: SynchronizedArray<Any>
 
     init(name: String) {
         self.name = name
-        self.value = NSMutableArray()
+        self.value = SynchronizedArray()
     }
 
     init(list: UserList) {
         self.name = list.name
-        self.value = NSMutableArray()
+        self.value = SynchronizedArray()
     }
 
     override var description: String {
@@ -43,7 +43,7 @@
         guard let userList = object as? UserList else {
             return false
         }
-        if (name == userList.name) && Util.isEqual(value, to: userList.value) {
+        if (name == userList.name) && self.value.isEqual(userList.value) {
             return true
         }
         return false
@@ -58,4 +58,32 @@
 
         return self
     }
+
+    func add(element: Any) {
+        self.value.append(element)
+    }
+
+    func insert(element: Any, at index: Int) {
+        if index == 1 && self.value.isEmpty {
+            self.add(element: element)
+        } else if index > 0 && index <= (self.value.count + 1) {
+            self.value.insert(element, at: index - 1)
+        }
+    }
+
+    func delete(at index: Int) {
+        if index > 0 && index <= self.value.count {
+            self.value.remove(at: index - 1)
+        }
+    }
+
+    func replace(at index: Int, with element: Any) {
+        if index > 0 && index <= self.value.count {
+            let actualIndex = index - 1
+            if value[actualIndex] != nil {
+                value[actualIndex] = element
+            }
+        }
+    }
+
 }
