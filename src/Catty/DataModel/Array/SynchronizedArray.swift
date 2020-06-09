@@ -55,12 +55,20 @@ public class SynchronizedArray<Element> {
     }
 
     subscript(index: Int) -> Element? {
-         var result: Element?
-            queue.sync {
-                guard self.array.startIndex..<self.array.endIndex ~= index else { return }
-                result = self.array[index]
-            }
-         return result
+         get {
+             var result: Element?
+             queue.sync {
+                 guard self.array.startIndex..<self.array.endIndex ~= index else { return }
+                 result = self.array[index]
+             }
+             return result
+         }
+         set {
+             guard let newValue = newValue else { return }
+             queue.async(flags: .barrier) {
+                 self.array[index] = newValue
+             }
+         }
     }
 
     public func append(_ element: Element) {
@@ -105,6 +113,21 @@ public class SynchronizedArray<Element> {
         return result
     }
 
+    func isEqual(_ object: SynchronizedArray) -> Bool {
+        var result = true
+        queue.sync {
+            let count = self.array.count
+            if count == object.count {
+                for index in 0..<count where !Util.isEqual(self.array[index], to: object[index]) {
+                    result = false
+                    break
+                }
+            } else {
+               result = false
+            }
+        }
+        return result
+    }
 }
 
 public extension SynchronizedArray where Element: Equatable {
