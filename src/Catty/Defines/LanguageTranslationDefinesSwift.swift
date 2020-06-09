@@ -404,6 +404,7 @@ let kLocalizedFor = NSLocalizedString("for", comment: "")
 
 // pen bricks
 let kLocalizedPenDown = NSLocalizedString("Pen down", comment: "")
+let kLocalizedPenUp = NSLocalizedString("Pen up", comment: "")
 
 // sound bricks
 let kLocalizedSound = NSLocalizedString("Sound", comment: "")
