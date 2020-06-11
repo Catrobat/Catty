@@ -1018,7 +1018,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                                   cancelAction:@selector(reloadData)
                                     withObject:(id) ^(NSString* listName) {
                                         UserList *list = [[UserList alloc] initWithName:listName];
-                                        list.value = [[NSMutableArray alloc] init];
                                         if (isProjectList) {
                                             [self.object.project.userData.programListOfLists addObject:list];
                                         } else { // object list

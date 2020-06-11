@@ -66,7 +66,7 @@ final class ReplaceItemInUserListBrickTests: XCTestCase {
     func testReplaceItem() {
         let newValue: Int32 = 2
 
-        userList.value = NSMutableArray(array: [1])
+        userList.value.append(1 as Int32)
         brick.index = Formula(integer: 1)
         brick.elementFormula = Formula(integer: newValue)
 

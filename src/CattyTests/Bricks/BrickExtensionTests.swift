@@ -45,8 +45,8 @@ final class BrickExtensionTests: XCTestCase {
         let userList = UserList(name: "testName")
 
         userDataContainer.programListOfLists = [userList]
-        userDataContainer.add(to: userList, value: 4)
-        userDataContainer.add(to: userList, value: "testValue")
+        userList.add(element: 4)
+        userList.add(element: "testValue")
 
         let brick = ReplaceItemInUserListBrick()
         brick.setList(userList, forLineNumber: 1, andParameterNumber: 1)
@@ -65,8 +65,8 @@ final class BrickExtensionTests: XCTestCase {
         let userList = UserList(name: "testName")
 
         userDataContainer.programListOfLists = [userList]
-        userDataContainer.add(to: userList, value: 4)
-        userDataContainer.add(to: userList, value: "testValue")
+        userList.add(element: 4)
+        userList.add(element: "testValue")
 
         let brick = ReplaceItemInUserListBrick()
         brick.setList(userList, forLineNumber: 1, andParameterNumber: 1)
@@ -80,8 +80,8 @@ final class BrickExtensionTests: XCTestCase {
         let userList2 = UserList(name: "testName")
 
         userDataContainer.programListOfLists = [userList]
-        userDataContainer.add(to: userList, value: 4)
-        userDataContainer.add(to: userList, value: "testValue")
+        userList.add(element: 4)
+        userList.add(element: "testValue")
 
         let brick = ReplaceItemInUserListBrick()
         brick.setList(userList, forLineNumber: 1, andParameterNumber: 1)
@@ -97,8 +97,8 @@ final class BrickExtensionTests: XCTestCase {
         let userList = UserList(name: "testName")
 
         userDataContainer.programListOfLists = [userList]
-        userDataContainer.add(to: userList, value: 4)
-        userDataContainer.add(to: userList, value: "testValue")
+        userList.add(element: 4)
+        userList.add(element: "testValue")
 
         let insertBrick = InsertItemIntoUserListBrick()
         let addBrick = AddItemToUserListBrick()

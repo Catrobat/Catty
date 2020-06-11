@@ -51,14 +51,6 @@
 
 - (void)changeVariable:(UserVariable*)userVariable byValue:(double)value;
 
-- (void)addToUserList:(UserList*)userList value:(id)value;
-
-- (void)deleteFromUserList:(UserList*)userList atIndex:(id)index;
-
-- (void)insertToUserList:(UserList*)userList value:(id)value atIndex:(id)position;
-
-- (void)replaceItemInUserList:(UserList*)userList value:(id)value atIndex:(id)position;
-
 // Array of UserVariable
 - (NSArray<UserVariable*>*)allVariablesForObject:(SpriteObject*)spriteObject;
 - (NSArray<UserList*>*)allListsForObject:(SpriteObject*)spriteObject;

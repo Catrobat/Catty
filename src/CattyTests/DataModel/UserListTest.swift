@@ -32,9 +32,18 @@ final class UserListTest: XCTestCase {
 
     func testInit() {
         let userList1 = UserList(name: "testList")
-        let userList2 = UserList(list: userList1)
+        var userList2 = UserList(list: userList1)
 
         XCTAssertTrue(userList1.isEqual(userList2))
+        XCTAssertFalse(userList1 === userList2)
+
+        userList1.add(element: 1)
+        userList2 = UserList(list: userList1)
+
+        XCTAssertEqual(userList1.name, userList2.name)
+        XCTAssertFalse(userList2.value.isEqual(userList1.value))
+        XCTAssertNotEqual(userList1.value.count, userList2.value.count)
+        XCTAssertFalse(userList1.isEqual(userList2))
         XCTAssertFalse(userList1 === userList2)
     }
 
@@ -67,11 +76,13 @@ final class UserListTest: XCTestCase {
         let listA = UserList(name: "userList")
         let listB = UserList(name: "userList")
 
-        listA.value = NSMutableArray(array: [50, 51, "item"])
-        listB.value = NSMutableArray(array: [50, 52, "itemB"])
+        listA.add(element: 50)
+        listB.add(element: 50)
+        listA.add(element: "item")
+        listB.add(element: "itemB")
         XCTAssertFalse(listB.isEqual(listA))
 
-        listB.value = NSMutableArray(array: [50, 51, "item"])
+        listB.replace(at: 2, with: "item")
         XCTAssertTrue(listB.isEqual(listA))
 
     }
@@ -81,11 +92,131 @@ final class UserListTest: XCTestCase {
         let userListB = UserList(name: "userListB")
         let userListC = UserList(name: "userList")
 
-        userListA.value = NSMutableArray(array: [50, 51, "item"])
-        userListB.value = NSMutableArray(array: [50, 51, "item"])
-        userListC.value = NSMutableArray(array: [50, 51, "item"])
+        userListA.add(element: 50)
+        userListB.add(element: 50)
+        userListC.add(element: 50)
+        userListA.add(element: "item")
+        userListB.add(element: "item")
+        userListC.add(element: "item")
 
         XCTAssertFalse(userListB.isEqual(userListA))
         XCTAssertTrue(userListC.isEqual(userListA))
+    }
+
+    func testAdd() {
+        let list1 = UserList(name: "testName")
+
+        list1.add(element: 10)
+        list1.add(element: 20)
+
+        let value = list1.value
+
+        XCTAssertEqual(2, value.count)
+        XCTAssertEqual(value[0] as! Int, 10)
+        XCTAssertEqual(value[1] as! Int, 20)
+    }
+
+    func testDelete() {
+        let list1 = UserList(name: "testName")
+
+        list1.add(element: 10)
+        list1.add(element: 20)
+
+        var value = list1.value
+
+        XCTAssertEqual(2, value.count)
+
+        list1.delete(at: 2)
+        value = list1.value
+
+        XCTAssertEqual(1, value.count)
+        XCTAssertEqual(value[0] as! Int, 10)
+    }
+
+    func testDeleteInvalidIndex() {
+        let list1 = UserList(name: "testName")
+
+        list1.add(element: 10)
+        list1.add(element: 20)
+
+        var value = list1.value
+        XCTAssertEqual(2, value.count)
+
+        list1.delete(at: 3)
+        value = list1.value
+        XCTAssertEqual(2, value.count)
+
+        list1.delete(at: 0)
+        value = list1.value
+        XCTAssertEqual(2, value.count)
+    }
+
+    func testInsert() {
+        let list1 = UserList(name: "testName")
+
+        list1.insert(element: 10, at: 1)
+        list1.insert(element: 30, at: 2)
+
+        var value = list1.value
+
+        XCTAssertEqual(value.count, 2)
+        XCTAssertEqual(value[0] as! Int, 10)
+        XCTAssertEqual(value[1] as! Int, 30)
+
+        list1.insert(element: 20, at: 2)
+
+        value = list1.value
+
+        XCTAssertEqual(value.count, 3)
+        XCTAssertEqual(value[0] as! Int, 10)
+        XCTAssertEqual(value[1] as! Int, 20)
+        XCTAssertEqual(value[2] as! Int, 30)
+    }
+
+    func testInsertWithInvalidIndex() {
+        let list1 = UserList(name: "testName1")
+
+        list1.insert(element: 10, at: -1)
+        var value = list1.value
+
+        XCTAssertEqual(value.count, 0)
+
+        list1.insert(element: 20, at: 2)
+        value = list1.value
+
+        XCTAssertEqual(value.count, 0)
+    }
+
+    func testReplace() {
+        let list1 = UserList(name: "testName1")
+
+        list1.insert(element: 10, at: 1)
+        list1.insert(element: 20, at: 2)
+        list1.replace(at: 2, with: 30)
+
+        var value = list1.value
+
+        XCTAssertEqual(value.count, 2)
+        XCTAssertEqual(value[0] as! Int, 10)
+        XCTAssertEqual(value[1] as! Int, 30)
+
+        list1.replace(at: 1, with: 40)
+
+        value = list1.value
+
+        XCTAssertEqual(value.count, 2)
+        XCTAssertEqual(value[0] as! Int, 40)
+        XCTAssertEqual(value[1] as! Int, 30)
+    }
+
+    func testReplaceInvalidIndex() {
+        let list1 = UserList(name: "testName1")
+
+        list1.insert(element: 10, at: 1)
+        list1.replace(at: 1, with: 40)
+
+        let value = list1.value
+
+        XCTAssertNotEqual(value[0] as! Int, 30)
     }
 }

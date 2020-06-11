@@ -29,5 +29,10 @@ protocol UserVariableProtocol: UserDataProtocol {
 }
 
 protocol UserListProtocol: UserDataProtocol {
-    var value: NSMutableArray { get set }
+    var value: SynchronizedArray<Any> { get set }
+
+    func add(element: Any)
+    func insert(element: Any, at index: Int)
+    func delete(at index: Int)
+    func replace(at index: Int, with element: Any)
 }

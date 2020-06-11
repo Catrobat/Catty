@@ -761,16 +761,17 @@ final class FormulaManagerInterpreterTests: XCTestCase {
         object.project = project
 
         let userList = UserList(name: "test")
+        userList.add(element: 12.3)
 
         userData.programListOfLists = [userList]
-        userData.add(to: userList, value: 12.3)
 
         var element = FormulaElement(elementType: ElementType.USER_LIST,
                                      value: userList.name)
         var formula = Formula(formulaElement: element)!
         XCTAssertEqual(12.3, interpreter.interpretDouble(formula, for: object))
 
-        userData.add(to: userList, value: "testValue")
+        userList.add(element: "testValue")
+        userData.programListOfLists = [userList]
         element = FormulaElement(elementType: ElementType.USER_LIST,
                                  value: userList.name)
         formula = Formula(formulaElement: element)!

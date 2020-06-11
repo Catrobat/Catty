@@ -945,7 +945,6 @@ NS_ENUM(NSInteger, ButtonIndex) {
     
     [self.formulaEditorTextView becomeFirstResponder];
     UserList* list = [[UserList alloc] initWithName:name];
-    list.value = [[NSMutableArray alloc] init];
     int buttonType = 11;
     
     if (self.isProjectVariable){

@@ -64,7 +64,7 @@ final class DeleteItemOfUserListBrickTests: XCTestCase {
     }
 
     func testDeleteItem() {
-        userList.value = NSMutableArray(array: [1])
+        userList.value.append(1)
         brick.listFormula = Formula(integer: 1)
 
         switch brick.instruction() {
@@ -77,8 +77,8 @@ final class DeleteItemOfUserListBrickTests: XCTestCase {
         XCTAssertEqual(0, userList.value.count)
     }
 
-    func testDeleteItemAtInvalidPosition() {
-        userList.value = NSMutableArray(array: [1])
+     func testDeleteItemAtInvalidPosition() {
+        userList.value.append(1)
         brick.listFormula = Formula(string: "abc")
 
         switch brick.instruction() {
@@ -92,7 +92,7 @@ final class DeleteItemOfUserListBrickTests: XCTestCase {
     }
 
     func testDeleteItemAtNegativePosition() {
-        userList.value = NSMutableArray(array: [1])
+        userList.value.append(1)
         brick.listFormula = Formula(integer: -1)
 
         switch brick.instruction() {
@@ -106,9 +106,8 @@ final class DeleteItemOfUserListBrickTests: XCTestCase {
     }
 
     func testMutableCopy() {
+        userList.value.append(1)
         brick.listFormula = Formula(integer: -1)
-        userList.value = NSMutableArray(array: [1])
-
         let copiedBrick: DeleteItemOfUserListBrick = brick.mutableCopy(with: CBMutableCopyContext(), andErrorReporting: true) as! DeleteItemOfUserListBrick
 
         XCTAssertTrue(brick.isEqual(to: copiedBrick))
