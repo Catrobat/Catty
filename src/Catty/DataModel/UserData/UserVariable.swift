@@ -24,8 +24,26 @@
 @objcMembers class UserVariable: NSObject, UserVariableProtocol {
 
     var name: String
-    var value: Any?
     var textLabel: SKLabelNode?
+    private let variableLocker = NSLock()
+    private var _value: Any?
+
+    var value: Any? {
+        get {
+          _value
+        }
+        set {
+            variableLocker.lock()
+            if let value = newValue as? NSString {
+                _value = value
+            } else if let value = newValue as? NSNumber {
+                _value = value
+            } else {
+                _value = NSNumber(value: 0)
+            }
+            variableLocker.unlock()
+        }
+    }
 
     init(name: String) {
         self.name = name
@@ -59,4 +77,11 @@
         return self
     }
 
+    func change(by value: Double) {
+        variableLocker.lock()
+        if let valueAsDouble = _value as? NSNumber {
+         _value = NSNumber(value: valueAsDouble.doubleValue + value)
+        }
+        variableLocker.unlock()
+    }
 }
