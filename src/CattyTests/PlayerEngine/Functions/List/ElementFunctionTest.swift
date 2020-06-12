@@ -58,9 +58,9 @@ class ElementFunctionTest: XCTestCase {
     func testValue() {
         // number list
         let userListNumber = UserList(name: "myListNumber")
-        userListNumber.value.append(1)
-        userListNumber.value.append(5)
-        userListNumber.value.append(-7)
+        userListNumber.add(element: 1)
+        userListNumber.add(element: 5)
+        userListNumber.add(element: -7)
 
         XCTAssertEqual(5, function.value(firstParameter: 2 as AnyObject, secondParameter: userListNumber as AnyObject) as! NSNumber)
         XCTAssertEqual(-7, function.value(firstParameter: 3 as AnyObject, secondParameter: userListNumber as AnyObject) as! NSNumber)
@@ -72,9 +72,9 @@ class ElementFunctionTest: XCTestCase {
 
         // string list
         let userListString = UserList(name: "myListString")
-        userListString.value.append("a")
-        userListString.value.append("b")
-        userListString.value.append("c")
+        userListString.add(element: "a")
+        userListString.add(element: "b")
+        userListString.add(element: "c")
 
         XCTAssertEqual("b", function.value(firstParameter: 2 as AnyObject, secondParameter: userListString as AnyObject) as! String)
         XCTAssertEqual("a", function.value(firstParameter: 1 as AnyObject, secondParameter: userListString as AnyObject) as! String)

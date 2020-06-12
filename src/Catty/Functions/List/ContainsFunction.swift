@@ -45,9 +45,7 @@ class ContainsFunction: DoubleParameterDoubleFunction {
                 return type(of: self).defaultValue
         }
 
-        let elements = list.value
-
-        if elements.contains(where: { self.parameterMatch(firstParam: $0 as AnyObject, secondParam: secondParameter) }) {
+        if list.contains(where: { self.parameterMatch(firstParam: $0 as AnyObject, secondParam: secondParameter) }) {
             return 1.0
         }
         return 0.0

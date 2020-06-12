@@ -211,14 +211,16 @@ extension FormulaManager {
             else { return 0 as AnyObject }
 
         var stringElements = [String]()
-        for i in 0..<list.value.count {
-            if let listElement = list.value[i] {
-                if let stringElem = listElement as? String {
-                    stringElements.append(stringElem)
-                } else if let intElem = listElement as? Int {
-                    stringElements.append(String(intElem))
-                } else if let doubleElem = listElement as? Double {
-                    stringElements.append(String(doubleElem))
+        if !list.isEmpty {
+            for i in 1...list.count {
+                if let listElement = list.element(at: i) {
+                    if let stringElem = listElement as? String {
+                        stringElements.append(stringElem)
+                    } else if let intElem = listElement as? Int {
+                        stringElements.append(String(intElem))
+                    } else if let doubleElem = listElement as? Double {
+                        stringElements.append(String(doubleElem))
+                    }
                 }
             }
         }

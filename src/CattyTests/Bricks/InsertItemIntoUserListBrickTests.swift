@@ -64,7 +64,7 @@ final class InsertItemIntoUserListBrickTests: XCTestCase {
     }
 
     func testInsertItem() {
-        XCTAssertEqual(userList.value.count, 0)
+        XCTAssertEqual(userList.count, 0)
 
         brick.index = Formula(integer: 1)
         brick.elementFormula = Formula(integer: 1)
@@ -76,11 +76,11 @@ final class InsertItemIntoUserListBrickTests: XCTestCase {
             XCTFail("Fatal Error")
         }
 
-        XCTAssertEqual(userList.value.count, 1)
+        XCTAssertEqual(userList.count, 1)
     }
 
     func testInsertItemAtInvalidPosition() {
-        XCTAssertEqual(userList.value.count, 0)
+        XCTAssertEqual(userList.count, 0)
 
         brick.index = Formula(string: "abc")
         brick.elementFormula = Formula(integer: 1)
@@ -92,11 +92,11 @@ final class InsertItemIntoUserListBrickTests: XCTestCase {
             XCTFail("Fatal Error")
         }
 
-        XCTAssertEqual(userList.value.count, 0)
+        XCTAssertEqual(userList.count, 0)
     }
 
     func testInsertItemAtNegativePosition() {
-       XCTAssertEqual(userList.value.count, 0)
+       XCTAssertEqual(userList.count, 0)
 
         brick.index = Formula(integer: -1)
         brick.elementFormula = Formula(integer: 1)
@@ -108,7 +108,7 @@ final class InsertItemIntoUserListBrickTests: XCTestCase {
             XCTFail("Fatal Error")
         }
 
-        XCTAssertEqual(userList.value.count, 0)
+        XCTAssertEqual(userList.count, 0)
     }
 
     func testMutableCopy() {

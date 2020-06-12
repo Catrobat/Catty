@@ -29,10 +29,13 @@ protocol UserVariableProtocol: UserDataProtocol {
 }
 
 protocol UserListProtocol: UserDataProtocol {
-    var value: SynchronizedArray<Any> { get set }
+    var count: Int { get }
+    var isEmpty: Bool { get }
 
     func add(element: Any)
     func insert(element: Any, at index: Int)
     func delete(at index: Int)
     func replace(at index: Int, with element: Any)
+    func element(at index: Int) -> Any?
+    func contains(where predicate: (Any) throws -> Bool) rethrows -> Bool
 }

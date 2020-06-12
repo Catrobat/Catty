@@ -42,8 +42,7 @@ class NumberOfItemsFunction: SingleParameterDoubleFunction {
                 return type(of: self).defaultValue
         }
 
-        let elements = list.value
-        return Double(elements.count)
+        return Double(list.count)
     }
 
     func formulaEditorSections() -> [FormulaEditorSection] {

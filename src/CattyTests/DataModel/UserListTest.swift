@@ -41,8 +41,8 @@ final class UserListTest: XCTestCase {
         userList2 = UserList(list: userList1)
 
         XCTAssertEqual(userList1.name, userList2.name)
-        XCTAssertFalse(userList2.value.isEqual(userList1.value))
-        XCTAssertNotEqual(userList1.value.count, userList2.value.count)
+        XCTAssertNil(userList2.element(at: 1))
+        XCTAssertNotEqual(userList1.count, userList2.count)
         XCTAssertFalse(userList1.isEqual(userList2))
         XCTAssertFalse(userList1 === userList2)
     }
@@ -109,11 +109,9 @@ final class UserListTest: XCTestCase {
         list1.add(element: 10)
         list1.add(element: 20)
 
-        let value = list1.value
-
-        XCTAssertEqual(2, value.count)
-        XCTAssertEqual(value[0] as! Int, 10)
-        XCTAssertEqual(value[1] as! Int, 20)
+        XCTAssertEqual(2, list1.count)
+        XCTAssertEqual(list1.element(at: 1) as! Int, 10)
+        XCTAssertEqual(list1.element(at: 2) as! Int, 20)
     }
 
     func testDelete() {
@@ -122,15 +120,12 @@ final class UserListTest: XCTestCase {
         list1.add(element: 10)
         list1.add(element: 20)
 
-        var value = list1.value
-
-        XCTAssertEqual(2, value.count)
+        XCTAssertEqual(2, list1.count)
 
         list1.delete(at: 2)
-        value = list1.value
 
-        XCTAssertEqual(1, value.count)
-        XCTAssertEqual(value[0] as! Int, 10)
+        XCTAssertEqual(1, list1.count)
+        XCTAssertEqual(list1.element(at: 1) as! Int, 10)
     }
 
     func testDeleteInvalidIndex() {
@@ -139,16 +134,13 @@ final class UserListTest: XCTestCase {
         list1.add(element: 10)
         list1.add(element: 20)
 
-        var value = list1.value
-        XCTAssertEqual(2, value.count)
+        XCTAssertEqual(2, list1.count)
 
         list1.delete(at: 3)
-        value = list1.value
-        XCTAssertEqual(2, value.count)
+        XCTAssertEqual(2, list1.count)
 
         list1.delete(at: 0)
-        value = list1.value
-        XCTAssertEqual(2, value.count)
+        XCTAssertEqual(2, list1.count)
     }
 
     func testInsert() {
@@ -157,34 +149,26 @@ final class UserListTest: XCTestCase {
         list1.insert(element: 10, at: 1)
         list1.insert(element: 30, at: 2)
 
-        var value = list1.value
-
-        XCTAssertEqual(value.count, 2)
-        XCTAssertEqual(value[0] as! Int, 10)
-        XCTAssertEqual(value[1] as! Int, 30)
+        XCTAssertEqual(list1.count, 2)
+        XCTAssertEqual(list1.element(at: 1) as! Int, 10)
+        XCTAssertEqual(list1.element(at: 2) as! Int, 30)
 
         list1.insert(element: 20, at: 2)
 
-        value = list1.value
-
-        XCTAssertEqual(value.count, 3)
-        XCTAssertEqual(value[0] as! Int, 10)
-        XCTAssertEqual(value[1] as! Int, 20)
-        XCTAssertEqual(value[2] as! Int, 30)
+        XCTAssertEqual(list1.count, 3)
+        XCTAssertEqual(list1.element(at: 1) as! Int, 10)
+        XCTAssertEqual(list1.element(at: 2) as! Int, 20)
+        XCTAssertEqual(list1.element(at: 3) as! Int, 30)
     }
 
     func testInsertWithInvalidIndex() {
         let list1 = UserList(name: "testName1")
 
         list1.insert(element: 10, at: -1)
-        var value = list1.value
-
-        XCTAssertEqual(value.count, 0)
+        XCTAssertEqual(list1.count, 0)
 
         list1.insert(element: 20, at: 2)
-        value = list1.value
-
-        XCTAssertEqual(value.count, 0)
+        XCTAssertEqual(list1.count, 0)
     }
 
     func testReplace() {
@@ -194,29 +178,85 @@ final class UserListTest: XCTestCase {
         list1.insert(element: 20, at: 2)
         list1.replace(at: 2, with: 30)
 
-        var value = list1.value
-
-        XCTAssertEqual(value.count, 2)
-        XCTAssertEqual(value[0] as! Int, 10)
-        XCTAssertEqual(value[1] as! Int, 30)
+        XCTAssertEqual(list1.count, 2)
+        XCTAssertEqual(list1.element(at: 1) as! Int, 10)
+        XCTAssertEqual(list1.element(at: 2) as! Int, 30)
 
         list1.replace(at: 1, with: 40)
 
-        value = list1.value
-
-        XCTAssertEqual(value.count, 2)
-        XCTAssertEqual(value[0] as! Int, 40)
-        XCTAssertEqual(value[1] as! Int, 30)
+        XCTAssertEqual(list1.count, 2)
+        XCTAssertEqual(list1.element(at: 1) as! Int, 40)
+        XCTAssertEqual(list1.element(at: 2) as! Int, 30)
     }
 
     func testReplaceInvalidIndex() {
         let list1 = UserList(name: "testName1")
 
         list1.insert(element: 10, at: 1)
-        list1.replace(at: 1, with: 40)
+        list1.replace(at: 0, with: 40)
 
-        let value = list1.value
+        XCTAssertEqual(1, list1.count)
+        XCTAssertEqual(list1.element(at: 1) as! Int, 10)
 
-        XCTAssertNotEqual(value[0] as! Int, 30)
+        list1.replace(at: 5, with: 40)
+
+        XCTAssertEqual(1, list1.count)
+        XCTAssertEqual(list1.element(at: 1) as! Int, 10)
+    }
+
+    func testCount() {
+        let list = UserList(name: "testName1")
+
+        list.add(element: 10)
+        list.add(element: 20)
+        XCTAssertEqual(2, list.count)
+
+        list.add(element: "SomeValue")
+        XCTAssertEqual(3, list.count)
+
+        let formula = Formula(double: 50.50)!
+        list.insert(element: formula, at: 2)
+        XCTAssertEqual(4, list.count)
+    }
+
+    func testElemetAt() {
+        let list = UserList(name: "testName1")
+
+        list.add(element: 10)
+        XCTAssertEqual(10, list.element(at: 1) as! Int)
+
+        list.add(element: "SomeValue")
+        XCTAssertEqual("SomeValue", list.element(at: 2) as! String)
+
+        let formula = Formula(double: 50.50)!
+        list.insert(element: formula, at: 2)
+        XCTAssertEqual(formula, list.element(at: 2) as! Formula)
+    }
+
+    func testElementAtInvalidIndex() {
+        let list = UserList(name: "testName1")
+
+        XCTAssertNil(list.element(at: 1))
+
+        list.add(element: 10)
+
+        XCTAssertEqual(1, list.count)
+        XCTAssertNil(list.element(at: 0))
+        XCTAssertNil(list.element(at: 5))
+    }
+
+    func testContainsWhere() {
+        let list = UserList(name: "testName1")
+
+        list.add(element: 10)
+        list.add(element: 20)
+        let doesContain = list.contains { element -> Bool in
+            if (element as! Int) == 20 {
+                return true
+            } else {
+                return false
+            }
+        }
+        XCTAssertTrue(doesContain)
     }
 }

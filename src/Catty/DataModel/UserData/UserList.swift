@@ -23,27 +23,35 @@
 @objcMembers class UserList: NSObject, UserListProtocol {
 
     var name: String
-    var value: SynchronizedArray<Any>
+    fileprivate var elements: SynchronizedArray<Any>
 
     init(name: String) {
         self.name = name
-        self.value = SynchronizedArray()
+        self.elements = SynchronizedArray()
     }
 
     init(list: UserList) {
         self.name = list.name
-        self.value = SynchronizedArray()
+        self.elements = SynchronizedArray()
+    }
+
+    var count: Int {
+        self.elements.count
+    }
+
+    var isEmpty: Bool {
+        self.elements.isEmpty
     }
 
     override var description: String {
-        "UserList: Name: \(String(describing: self.name)), Value: \(String(describing: self.value))"
+        "UserList: Name: \(String(describing: self.name)), Value: \(String(describing: self.elements))"
     }
 
     override func isEqual(_ object: Any?) -> Bool {
         guard let userList = object as? UserList else {
             return false
         }
-        if (name == userList.name) && self.value.isEqual(userList.value) {
+        if (name == userList.name) && self.elements.isEqual(userList.elements) {
             return true
         }
         return false
@@ -60,30 +68,46 @@
     }
 
     func add(element: Any) {
-        self.value.append(element)
+        self.elements.append(element)
     }
 
     func insert(element: Any, at index: Int) {
-        if index == 1 && self.value.isEmpty {
+        if index == 1 && self.elements.isEmpty {
             self.add(element: element)
-        } else if index > 0 && index <= (self.value.count + 1) {
-            self.value.insert(element, at: index - 1)
+        } else if index > 0 && index <= (self.elements.count + 1) {
+            self.elements.insert(element, at: index - 1)
         }
     }
 
     func delete(at index: Int) {
-        if index > 0 && index <= self.value.count {
-            self.value.remove(at: index - 1)
+        if index > 0 && index <= self.elements.count {
+            self.elements.remove(at: index - 1)
         }
     }
 
     func replace(at index: Int, with element: Any) {
-        if index > 0 && index <= self.value.count {
+        if index > 0 && index <= self.elements.count {
             let actualIndex = index - 1
-            if value[actualIndex] != nil {
-                value[actualIndex] = element
+            if elements[actualIndex] != nil {
+                elements[actualIndex] = element
             }
         }
     }
 
+    func element(at index: Int) -> Any? {
+        if index > 0 && index <= self.elements.count {
+            return elements[index - 1]
+        }
+        return nil
+    }
+
+    func contains(where predicate: (Any) throws -> Bool) rethrows -> Bool {
+        var result = false
+        do {
+            result = try self.elements.contains(where: predicate)
+        } catch {
+            throw error
+        }
+        return result
+    }
 }
