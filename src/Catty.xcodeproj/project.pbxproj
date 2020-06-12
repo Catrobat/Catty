@@ -35,6 +35,11 @@
 		18B5B530247EB059007D24A3 /* NSStringExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B5B52F247EB059007D24A3 /* NSStringExtensionTests.swift */; };
 		18B8021F2469170400201847 /* BrickCellVariableDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B8021E2469170400201847 /* BrickCellVariableDataTests.swift */; };
 		18DAFC5A247BD1700082C62A /* CBSpriteNodePenExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DAFC59247BD1700082C62A /* CBSpriteNodePenExtension.swift */; };
+		18E83F7B2493BEFF003295DA /* PenClearBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E83F7A2493BEFF003295DA /* PenClearBrick.swift */; };
+		18E83F7F2493BFE6003295DA /* PenClearBrickCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E83F7E2493BFE6003295DA /* PenClearBrickCell.swift */; };
+		18E83F812493C32C003295DA /* PenClearBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E83F802493C32C003295DA /* PenClearBrick+Instruction.swift */; };
+		18E83F832493C4C3003295DA /* PenClearBrick+CBXMLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E83F822493C4C3003295DA /* PenClearBrick+CBXMLHandler.swift */; };
+		18E83F852493C978003295DA /* PenClearBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E83F842493C978003295DA /* PenClearBrickTests.swift */; };
 		222A6934247E43AB004BE434 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2D44451B123B7E00A3B53D /* Util.swift */; };
 		222A693E247EA490004BE434 /* UIDeviceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222A693D247EA490004BE434 /* UIDeviceExtension.swift */; };
 		224D5C582423AEF900CD6302 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224D5C512420C8B400CD6302 /* SettingsTableViewController.swift */; };
@@ -1566,6 +1571,11 @@
 		18B5B52F247EB059007D24A3 /* NSStringExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NSStringExtensionTests.swift; path = Extensions/NSStringExtensionTests.swift; sourceTree = "<group>"; };
 		18B8021E2469170400201847 /* BrickCellVariableDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrickCellVariableDataTests.swift; sourceTree = "<group>"; };
 		18DAFC59247BD1700082C62A /* CBSpriteNodePenExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBSpriteNodePenExtension.swift; sourceTree = "<group>"; };
+		18E83F7A2493BEFF003295DA /* PenClearBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PenClearBrick.swift; sourceTree = "<group>"; };
+		18E83F7E2493BFE6003295DA /* PenClearBrickCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PenClearBrickCell.swift; sourceTree = "<group>"; };
+		18E83F802493C32C003295DA /* PenClearBrick+Instruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "PenClearBrick+Instruction.swift"; path = "Catty/Views/Custom/CollectionViewCells/BrickCells/Pen/PenClearBrick+Instruction.swift"; sourceTree = SOURCE_ROOT; };
+		18E83F822493C4C3003295DA /* PenClearBrick+CBXMLHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PenClearBrick+CBXMLHandler.swift"; sourceTree = "<group>"; };
+		18E83F842493C978003295DA /* PenClearBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PenClearBrickTests.swift; sourceTree = "<group>"; };
 		18EF8F4D5C0ED599CBA2B488 /* vi */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1B5E0F4EFA8B76CD707F0556 /* ur */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = ur; path = ur.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1C035A070A526C061039C146 /* ha */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = ha; path = ha.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -3588,6 +3598,7 @@
 			children = (
 				186AA33B2482D0CA001E38FD /* PenDownBrick.swift */,
 				186E99122488F3FF00627E36 /* PenUpBrick.swift */,
+				18E83F7A2493BEFF003295DA /* PenClearBrick.swift */,
 			);
 			path = Pen;
 			sourceTree = "<group>";
@@ -3597,6 +3608,7 @@
 			children = (
 				186AA33E2482DA65001E38FD /* PenDownBrickCell.swift */,
 				186E99162488F4F400627E36 /* PenUpBrickCell.swift */,
+				18E83F7E2493BFE6003295DA /* PenClearBrickCell.swift */,
 			);
 			path = Pen;
 			sourceTree = "<group>";
@@ -3606,6 +3618,7 @@
 			children = (
 				186AA3432482DDD5001E38FD /* PenDownBrick+Instruction.swift */,
 				186E99182488F74500627E36 /* PenUpBrick+Instruction.swift */,
+				18E83F802493C32C003295DA /* PenClearBrick+Instruction.swift */,
 			);
 			path = Pen;
 			sourceTree = "<group>";
@@ -3615,6 +3628,7 @@
 			children = (
 				186AA3462482E0CC001E38FD /* PenDownBrick+CBXMLHandler.swift */,
 				186E991A2488F89200627E36 /* PenUpBrick+CBXMLHandler.swift */,
+				18E83F822493C4C3003295DA /* PenClearBrick+CBXMLHandler.swift */,
 			);
 			path = Pen;
 			sourceTree = "<group>";
@@ -6017,6 +6031,7 @@
 				D3AF5C18243F6A4C00B04BC6 /* BrickCategoryTest.swift */,
 				186AA34824830491001E38FD /* PenDownBrickTests.swift */,
 				186E991C2488FBDB00627E36 /* PenUpBrickTests.swift */,
+				18E83F842493C978003295DA /* PenClearBrickTests.swift */,
 			);
 			path = Bricks;
 			sourceTree = "<group>";
@@ -9768,6 +9783,7 @@
 				4C1A596323FD9E79001A78D2 /* SettingsTableViewControllerTests.swift in Sources */,
 				4C6FE170212D2D2E0067B7D5 /* AbsFunctionTest.swift in Sources */,
 				4C68FC931B25A00B00AB3EE8 /* InternFormulaTest.m in Sources */,
+				18E83F852493C978003295DA /* PenClearBrickTests.swift in Sources */,
 				44B76EC12476BF0100DC30E2 /* FirebaseCrashlyticsReporterTests.swift in Sources */,
 				186FBE65247C29AD00AE3F17 /* LineShapeNodeTests.swift in Sources */,
 				E4C5C1122143A3150054F236 /* SearchStoreDataSourceTests.swift in Sources */,
@@ -10152,6 +10168,7 @@
 				92FF2E941A24C7D800093DA7 /* Logger.m in Sources */,
 				6F96E9F5246D52C70054E2F7 /* UserDataProtocol.swift in Sources */,
 				AA74F0C61BC05FCE00D1E954 /* SetVolumeToBrickCell.m in Sources */,
+				18E83F832493C4C3003295DA /* PenClearBrick+CBXMLHandler.swift in Sources */,
 				4C0F9F42204ADC6600E71B2D /* ThinkForBubbleBrick.m in Sources */,
 				92FF32B81A24E2F400093DA7 /* ContinueImageCell.m in Sources */,
 				AA74EF581BC0586F00D1E954 /* SetYBrick+CBXMLHandler.m in Sources */,
@@ -10256,6 +10273,7 @@
 				4C0F9F7A204BD1E300E71B2D /* SayBubbleBrick+Instruction.swift in Sources */,
 				9E2C2D862325673C004B66C6 /* AudioEngine.swift in Sources */,
 				186AA3442482DDD5001E38FD /* PenDownBrick+Instruction.swift in Sources */,
+				18E83F812493C32C003295DA /* PenClearBrick+Instruction.swift in Sources */,
 				5EF590BA2192D81F00C19F12 /* Double+Extensions.swift in Sources */,
 				92FF2E911A24C7D800093DA7 /* DownloadImageCache.m in Sources */,
 				AA74EFF81BC05B5F00D1E954 /* SetSizeToBrick.m in Sources */,
@@ -10382,6 +10400,7 @@
 				4C0F9F6E204BD1A300E71B2D /* ThinkBubbleBrick+CBXMLHandler.m in Sources */,
 				AA74F0041BC05B5F00D1E954 /* PointInDirectionBrick.m in Sources */,
 				921D467C1BDF61350086AD20 /* ChangeYByNBrick+Instruction.swift in Sources */,
+				18E83F7F2493BFE6003295DA /* PenClearBrickCell.swift in Sources */,
 				4C595F4D21CAEBC50097D850 /* SmallerThanOperator.swift in Sources */,
 				929CC0EE1BC39B8C0027DEC0 /* PhiroMotorMoveForwardBrickCell.m in Sources */,
 				AAF6D9DE1BC0C1F300686849 /* PlaceAtBrick+Instruction.swift in Sources */,
@@ -10503,6 +10522,7 @@
 				4CB0F9F020A1732700D1BE2F /* BrightnessSensor.swift in Sources */,
 				4C0F9F8A204BD26100E71B2D /* IfThenLogicEndBrickCell.m in Sources */,
 				92FF314A1A24DEB300093DA7 /* BaseTableViewController.m in Sources */,
+				18E83F7B2493BEFF003295DA /* PenClearBrick.swift in Sources */,
 				AA74EF4C1BC0586F00D1E954 /* ChangeSizeByNBrick+CBXMLHandler.m in Sources */,
 				5EDBA043219549AE000EFFEF /* LoadingView.swift in Sources */,
 				AA74EF6E1BC0588A00D1E954 /* ChangeVolumeByNBrick+CBXMLHandler.m in Sources */,

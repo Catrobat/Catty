@@ -116,4 +116,18 @@ final class XMLSerializerTests: XMLAbstractTest {
         let equal = self.isXMLElement(xmlElement: xmlElement, equalToXMLElementForXPath: xmlElementPath, inProjectForXML: "ValidProjectAllBricks0991")
         XCTAssertTrue(equal, "XMLElement invalid!")
     }
+
+    func testPenClearBrick() {
+        let project = self.getProjectForXML(xmlFile: "ValidProjectAllBricks0991")
+
+        let brick = ((project.objectList.object(at: 0) as! SpriteObject).scriptList.object(at: 0) as! Script).brickList.object(at: 43) as! PenClearBrick
+        let xmlElementPath = "//program/objectList/object[1]/scriptList/script[1]/brickList/brick[44]"
+
+        guard let xmlElement = brick.xmlElement(with: CBXMLSerializerContext()) else {
+            XCTFail("xmlElement is nil")
+            return
+        }
+        let equal = self.isXMLElement(xmlElement: xmlElement, equalToXMLElementForXPath: xmlElementPath, inProjectForXML: "ValidProjectAllBricks0991")
+        XCTAssertTrue(equal, "XMLElement invalid!")
+    }
 }

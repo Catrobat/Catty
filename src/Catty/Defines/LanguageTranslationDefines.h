@@ -405,6 +405,7 @@
 // pen bricks
 #define kLocalizedPenDown NSLocalizedString(@"Pen down", nil)
 #define kLocalizedPenUp NSLocalizedString(@"Pen up", nil)
+#define kLocalizedPenClear NSLocalizedString(@"Clear", nil)
 
 // sound bricks
 #define kLocalizedSound NSLocalizedString(@"Sound", nil)
