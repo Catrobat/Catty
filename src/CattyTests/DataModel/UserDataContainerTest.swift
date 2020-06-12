@@ -204,48 +204,6 @@ final class UserDataContainerTest: XCTestCase {
         XCTAssertEqual(lists?[1].name, list2.name)
     }
 
-    func testSetUserVariable() {
-        let objectA = SpriteObject()
-        objectA.name = "testObjectA"
-
-        let userVariable1 = UserVariable(name: "testName1")
-
-        let container = UserDataContainer()
-
-        container.addObjectVariable(userVariable1, for: objectA)
-        container.setUserVariable(userVariable1, toValue: 10)
-
-        let variables = container.objectVariables(for: objectA)
-
-        XCTAssertEqual(1, variables?.count)
-        XCTAssertEqual(variables?[0].value as! Int, 10)
-    }
-
-    func testChangeVariable() {
-        let objectA = SpriteObject()
-        objectA.name = "testObjectA"
-
-        let userVariable1 = UserVariable(name: "testName1")
-
-        let container = UserDataContainer()
-
-        container.addObjectVariable(userVariable1, for: objectA)
-        container.setUserVariable(userVariable1, toValue: 10)
-        container.change(userVariable1, byValue: 10)
-
-        var variables = container.objectVariables(for: objectA)
-
-        XCTAssertEqual(1, variables?.count)
-        XCTAssertEqual(variables?[0].value as! Int, 20)
-
-        container.change(userVariable1, byValue: 10)
-
-        variables = container.objectVariables(for: objectA)
-
-        XCTAssertEqual(1, variables?.count)
-        XCTAssertEqual(variables?[0].value as! Int, 30)
-    }
-
     func testIsProjectVariable() {
         let objectA = SpriteObject()
         objectA.name = "testObjectA"
@@ -504,7 +462,7 @@ final class UserDataContainerTest: XCTestCase {
 
         container.addObjectList(list, for: objectA)
         container.addObjectVariable(variable, for: objectA)
-        container.setUserVariable(variable, toValue: 10)
+        variable.value = 10
 
         let copyContainer = container.mutableCopy() as! UserDataContainer
 

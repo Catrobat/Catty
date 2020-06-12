@@ -46,11 +46,6 @@
 - (BOOL)removeUserVariableNamed:(NSString*)name forSpriteObject:(SpriteObject*)sprite;
 - (BOOL)removeUserListNamed:(NSString*)name forSpriteObject:(SpriteObject*)sprite;
 
-
-- (void)setUserVariable:(UserVariable*)userVariable toValue:(id)value;
-
-- (void)changeVariable:(UserVariable*)userVariable byValue:(double)value;
-
 // Array of UserVariable
 - (NSArray<UserVariable*>*)allVariablesForObject:(SpriteObject*)spriteObject;
 - (NSArray<UserList*>*)allListsForObject:(SpriteObject*)spriteObject;

@@ -34,7 +34,7 @@ final class WaitUntilBrickTests: XMLAbstractTest {
         let scene = createScene(project: project)
         let started = scene.startProject()
         XCTAssertTrue(started)
-        project.userData.setUserVariable(testVar, toValue: NSNumber(value: 1))
+        testVar?.value = NSNumber(value: 1)
 
         let conditionMetPredicate = NSPredicate(block: { variable, _ in
             let hasFinishedWaiting = (variable as? UserVariable)!.value as! NSNumber

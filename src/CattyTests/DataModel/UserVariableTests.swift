@@ -98,4 +98,62 @@ final class UserVariableTests: XCTestCase {
         XCTAssertFalse(userVariableB.isEqual(userVariableA))
         XCTAssertTrue(userVariableC.isEqual(userVariableA))
     }
+
+    func testSet() {
+        let userVariable1 = UserVariable(name: "testName1")
+
+        XCTAssertNil(userVariable1.value)
+
+        userVariable1.value = 10
+        XCTAssertEqual(10, userVariable1.value as! Int)
+
+        userVariable1.value = "testValue"
+        XCTAssertEqual("testValue", userVariable1.value as! String)
+    }
+
+    func testSetWithInvalidDataType() {
+        let userVariable1 = UserVariable(name: "testName1")
+
+        XCTAssertNil(userVariable1.value)
+
+        let formula = Formula(double: 50.50)!
+        userVariable1.value = formula
+        XCTAssertEqual(0, userVariable1.value as! Int)
+    }
+
+    func testChange() {
+        let userVariable1 = UserVariable(name: "testName1")
+
+        XCTAssertNil(userVariable1.value)
+
+        userVariable1.value = 10
+        XCTAssertEqual(10, userVariable1.value as! Int)
+
+        userVariable1.change(by: 10)
+        XCTAssertEqual(20, userVariable1.value as! Int)
+    }
+
+    func testChangeToInvalidDataType() {
+        let userVariable1 = UserVariable(name: "testName1")
+
+        XCTAssertNil(userVariable1.value)
+
+        userVariable1.value = "10"
+        XCTAssertEqual("10", userVariable1.value as! String)
+
+        userVariable1.change(by: 10)
+        XCTAssertEqual("10", userVariable1.value as! String)
+    }
+
+    func testThreadSafety() {
+        let iterations = 1000
+
+        let userVariable = UserVariable(name: "name")
+        userVariable.value = NSNumber(0)
+
+        DispatchQueue.concurrentPerform(iterations: iterations) { _ in
+            userVariable.change(by: 1)
+        }
+        XCTAssertEqual(iterations, userVariable.value as! Int)
+    }
 }
