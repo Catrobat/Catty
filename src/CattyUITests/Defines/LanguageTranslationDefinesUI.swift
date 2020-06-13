@@ -405,6 +405,7 @@ let kLocalizedFor = NSLocalizedString("for", bundle: Bundle(for: LanguageTransla
 // pen bricks
 let kLocalizedPenDown = NSLocalizedString("Pen down", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedPenUp = NSLocalizedString("Pen up", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedPenClear = NSLocalizedString("Clear", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
 // sound bricks
 let kLocalizedSound = NSLocalizedString("Sound", bundle: Bundle(for: LanguageTranslation.self), comment: "")
