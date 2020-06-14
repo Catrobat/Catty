@@ -34,6 +34,7 @@
         return {
             let positionY = formulaInterpreter.interpretDouble(self.yPosition, for: object)
             spriteNode.catrobatPositionY = positionY
+            spriteNode.update(CACurrentMediaTime())
         }
     }
 }

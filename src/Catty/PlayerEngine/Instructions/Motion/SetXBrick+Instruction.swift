@@ -33,6 +33,7 @@
 
         return {
             spriteNode.catrobatPositionX = formulaInterpreter.interpretDouble(self.xPosition, for: object)
+            spriteNode.update(CACurrentMediaTime())
         }
     }
 }
