@@ -894,7 +894,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 - (void)saveVariable:(NSString*)name
 {
     if (self.isProjectVariable){
-        for (UserVariable* variable in [self.object.project.userData allVariables]) {
+        for (UserVariable* variable in [UserDataContainer allVariablesForProject: self.object.project]) {
             if ([variable.name isEqualToString:name]) {
                 [self askForVariableName];
                 return;
@@ -928,7 +928,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 - (void)saveList:(NSString*)name
 {
     if (self.isProjectVariable){
-        for (UserVariable* variable in [self.object.project.userData allLists]) {
+        for (UserVariable* variable in [UserDataContainer allListsForProject: self.object.project]) {
             if ([variable.name isEqualToString:name]) {
                 [self askForListName];
                 return;

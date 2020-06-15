@@ -50,11 +50,6 @@
 - (NSArray<UserVariable*>*)allVariablesForObject:(SpriteObject*)spriteObject;
 - (NSArray<UserList*>*)allListsForObject:(SpriteObject*)spriteObject;
 
-// Array of Variables
-- (NSArray<UserVariable*>*)allVariables;
-// Array of Lists
-- (NSArray<UserList*>*)allLists;
-
 // Array of UserVariable
 - (NSArray<UserVariable*>*)objectVariablesForObject:(SpriteObject*)spriteObject;
 - (NSArray<UserList*>*)objectListsForObject:(SpriteObject*)spriteObject;

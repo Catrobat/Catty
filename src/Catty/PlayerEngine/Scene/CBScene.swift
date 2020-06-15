@@ -143,7 +143,7 @@ final class CBScene: SKScene {
         }
 
         guard let spriteObjectList = project.objectList as NSArray? as? [SpriteObject],
-            let variableList = frontend.project?.userData.allVariables() as NSArray? as? [UserVariable] else {
+            let variableList = UserDataContainer.allVariables(for: project) as NSArray? as? [UserVariable] else {
                 //fatalError
                 debugPrint("!! Invalid sprite object list given !! This should never happen!")
                 return false
