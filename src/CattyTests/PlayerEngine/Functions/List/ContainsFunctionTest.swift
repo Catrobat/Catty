@@ -51,9 +51,9 @@ class ContainsFunctionTest: XCTestCase {
     func testValue() {
         // number list
         let userListNumber = UserList(name: "myListNumber")
-        userListNumber.value.append(1)
-        userListNumber.value.append(5)
-        userListNumber.value.append(-7)
+        userListNumber.add(element: 1)
+        userListNumber.add(element: 5)
+        userListNumber.add(element: -7)
 
         XCTAssertEqual(1.0, function.value(firstParameter: userListNumber as AnyObject, secondParameter: 1 as AnyObject), accuracy: Double.epsilon)
         XCTAssertEqual(1.0, function.value(firstParameter: userListNumber as AnyObject, secondParameter: -7 as AnyObject), accuracy: Double.epsilon)
@@ -61,9 +61,9 @@ class ContainsFunctionTest: XCTestCase {
 
         // string list
         let userListString = UserList(name: "myListString")
-        userListString.value.append("a")
-        userListString.value.append("b")
-        userListString.value.append("c")
+        userListString.add(element: "a")
+        userListString.add(element: "b")
+        userListString.add(element: "c")
 
         XCTAssertEqual(1.0, function.value(firstParameter: userListString as AnyObject, secondParameter: "a" as AnyObject), accuracy: Double.epsilon)
         XCTAssertEqual(1.0, function.value(firstParameter: userListString as AnyObject, secondParameter: "b" as AnyObject), accuracy: Double.epsilon)

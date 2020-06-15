@@ -51,17 +51,17 @@ class NumberOfItemsFunctionTest: XCTestCase {
 
         // number list
         let userListNumber = UserList(name: "myListNumber")
-        userListNumber.value.append(1)
-        userListNumber.value.append(5)
-        userListNumber.value.append(7)
+        userListNumber.add(element: 1)
+        userListNumber.add(element: 5)
+        userListNumber.add(element: 7)
 
         XCTAssertEqual(Double(3), function.value(parameter: userListNumber as AnyObject), accuracy: Double.epsilon)
 
         // string list
         let userListString = UserList(name: "myListString")
-        userListString.value.append("a")
-        userListString.value.append("b")
-        userListString.value.append("c")
+        userListString.add(element: "a")
+        userListString.add(element: "b")
+        userListString.add(element: "c")
 
         XCTAssertEqual(Double(3), function.value(parameter: userListString as AnyObject), accuracy: Double.epsilon)
 

@@ -64,7 +64,7 @@ final class DeleteItemOfUserListBrickTests: XCTestCase {
     }
 
     func testDeleteItem() {
-        userList.value.append(1)
+        userList.add(element: 1)
         brick.listFormula = Formula(integer: 1)
 
         switch brick.instruction() {
@@ -74,11 +74,11 @@ final class DeleteItemOfUserListBrickTests: XCTestCase {
             XCTFail("Fatal Error")
         }
 
-        XCTAssertEqual(0, userList.value.count)
+        XCTAssertEqual(0, userList.count)
     }
 
      func testDeleteItemAtInvalidPosition() {
-        userList.value.append(1)
+        userList.add(element: 1)
         brick.listFormula = Formula(string: "abc")
 
         switch brick.instruction() {
@@ -88,11 +88,11 @@ final class DeleteItemOfUserListBrickTests: XCTestCase {
             XCTFail("Fatal Error")
         }
 
-        XCTAssertEqual(1, userList.value.count)
+        XCTAssertEqual(1, userList.count)
     }
 
     func testDeleteItemAtNegativePosition() {
-        userList.value.append(1)
+        userList.add(element: 1)
         brick.listFormula = Formula(integer: -1)
 
         switch brick.instruction() {
@@ -102,11 +102,11 @@ final class DeleteItemOfUserListBrickTests: XCTestCase {
             XCTFail("Fatal Error")
         }
 
-        XCTAssertEqual(1, userList.value.count)
+        XCTAssertEqual(1, userList.count)
     }
 
     func testMutableCopy() {
-        userList.value.append(1)
+        userList.add(element: 1)
         brick.listFormula = Formula(integer: -1)
         let copiedBrick: DeleteItemOfUserListBrick = brick.mutableCopy(with: CBMutableCopyContext(), andErrorReporting: true) as! DeleteItemOfUserListBrick
 

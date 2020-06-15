@@ -66,7 +66,7 @@ final class ReplaceItemInUserListBrickTests: XCTestCase {
     func testReplaceItem() {
         let newValue: Int32 = 2
 
-        userList.value.append(1 as Int32)
+        userList.add(element: 1 as Int32)
         brick.index = Formula(integer: 1)
         brick.elementFormula = Formula(integer: newValue)
 
@@ -77,13 +77,12 @@ final class ReplaceItemInUserListBrickTests: XCTestCase {
             XCTFail("Fatal Error")
         }
 
-        let valueArr = userList.value
-        XCTAssertEqual(1, valueArr.count)
-        XCTAssertEqual(newValue, valueArr[0] as! Int32)
+        XCTAssertEqual(1, userList.count)
+        XCTAssertEqual(newValue, userList.element(at: 1) as! Int32)
     }
 
     func testReplaceItemAtInvalidPosition() {
-        XCTAssertEqual(userList.value.count, 0)
+        XCTAssertEqual(userList.count, 0)
 
         brick.index = Formula(string: "abc")
         brick.elementFormula = Formula(integer: 1)
@@ -95,11 +94,11 @@ final class ReplaceItemInUserListBrickTests: XCTestCase {
             XCTFail("Fatal Error")
         }
 
-        XCTAssertEqual(userList.value.count, 0)
+        XCTAssertEqual(userList.count, 0)
     }
 
     func testReplaceItemAtNegativePosition() {
-        XCTAssertEqual(userList.value.count, 0)
+        XCTAssertEqual(userList.count, 0)
 
         brick.index = Formula(integer: -1)
         brick.elementFormula = Formula(integer: 1)
@@ -111,6 +110,6 @@ final class ReplaceItemInUserListBrickTests: XCTestCase {
             XCTFail("Fatal Error")
         }
 
-       XCTAssertEqual(userList.value.count, 0)
+       XCTAssertEqual(userList.count, 0)
     }
 }
