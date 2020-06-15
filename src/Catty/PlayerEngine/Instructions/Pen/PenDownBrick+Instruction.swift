@@ -31,7 +31,10 @@ extension PenDownBrick: CBInstructionProtocol {
             let spriteNode = object.spriteNode
             else { fatalError("This should never happen!") }
 
-        return { spriteNode.penConfiguration.penDown = true }
+        return {
+            spriteNode.penConfiguration.previousPosition = spriteNode.position
+            spriteNode.penConfiguration.penDown = true
+        }
     }
 
 }

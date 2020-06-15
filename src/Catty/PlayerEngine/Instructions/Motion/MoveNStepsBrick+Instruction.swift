@@ -43,7 +43,6 @@
             spriteNode.catrobatPositionX = xPosition
             spriteNode.catrobatPositionY = yPosition
 
-            spriteNode.update(CACurrentMediaTime())
         }
     }
 }
