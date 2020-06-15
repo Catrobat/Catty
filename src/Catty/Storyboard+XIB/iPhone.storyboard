@@ -559,7 +559,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" tag="11" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kWN-vS-ZVh">
-                                            <rect key="frame" x="28" y="41" width="43" height="43"/>
+                                            <rect key="frame" x="31" y="41" width="43" height="43"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="50" id="RYh-0E-U5O"/>
                                                 <constraint firstAttribute="width" secondItem="kWN-vS-ZVh" secondAttribute="height" multiplier="1:1" id="uIM-W8-t6A"/>
@@ -573,13 +573,13 @@
                                             </variation>
                                         </imageView>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="13" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="Jy9-F0-2qz">
-                                            <rect key="frame" x="95" y="69.5" width="245" height="17"/>
+                                            <rect key="frame" x="98" y="69.5" width="242" height="17"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="12" contentMode="left" text="Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K54-ev-Orf">
-                                            <rect key="frame" x="95" y="47" width="38.5" height="21.5"/>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="12" contentMode="left" text="Title" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K54-ev-Orf">
+                                            <rect key="frame" x="98" y="47" width="226" height="21.5"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -593,6 +593,7 @@
                                         <constraint firstAttribute="bottomMargin" secondItem="kWN-vS-ZVh" secondAttribute="bottom" constant="30" id="GAg-4O-JGE">
                                             <variation key="heightClass=compact" constant="5"/>
                                         </constraint>
+                                        <constraint firstAttribute="trailing" secondItem="K54-ev-Orf" secondAttribute="trailing" constant="24" id="MsP-YI-w9N"/>
                                         <constraint firstItem="K54-ev-Orf" firstAttribute="leading" secondItem="kWN-vS-ZVh" secondAttribute="trailing" constant="24" id="Tli-I8-UbM"/>
                                         <constraint firstItem="Jy9-F0-2qz" firstAttribute="leading" secondItem="kWN-vS-ZVh" secondAttribute="trailing" constant="24" id="VBv-7W-EJQ"/>
                                         <constraint firstItem="K54-ev-Orf" firstAttribute="centerY" secondItem="gXb-K6-d7d" secondAttribute="centerY" constant="-5" id="gh2-hb-s2W"/>
@@ -600,7 +601,7 @@
                                             <variation key="heightClass=compact" constant="5"/>
                                         </constraint>
                                         <constraint firstItem="kWN-vS-ZVh" firstAttribute="top" secondItem="gXb-K6-d7d" secondAttribute="topMargin" constant="29" id="rO3-Xw-e01"/>
-                                        <constraint firstItem="kWN-vS-ZVh" firstAttribute="leading" secondItem="gXb-K6-d7d" secondAttribute="leadingMargin" constant="12" id="raJ-LD-qUE"/>
+                                        <constraint firstItem="kWN-vS-ZVh" firstAttribute="leading" secondItem="gXb-K6-d7d" secondAttribute="leadingMargin" constant="15" id="raJ-LD-qUE"/>
                                     </constraints>
                                     <variation key="default">
                                         <mask key="constraints">

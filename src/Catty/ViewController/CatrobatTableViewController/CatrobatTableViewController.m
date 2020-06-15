@@ -208,7 +208,7 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
         [self configureImageCell:imageCell atIndexPath:indexPath];
     }
     if (indexPath.row == 0) {
-        [self configureSubtitleLabelForCell:cell];
+        [self configureTitleLabelForCell:(UITableViewCell <CatrobatImageCell>*) cell];
     }
     
     if (indexPath.row == [self.tableView numberOfRowsInSection:indexPath.section] - 1) {
@@ -290,17 +290,50 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
 - (void)configureImageCell:(UITableViewCell <CatrobatImageCell>*)cell atIndexPath:(NSIndexPath*)indexPath
 {
     cell.backgroundColor = UIColor.background;
-    cell.titleLabel.text = [self.cells objectAtIndex:indexPath.row];
-    cell.iconImageView.image = [UIImage imageNamed:[self.imageNames objectAtIndex:indexPath.row]];
-    cell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
+    if (indexPath.row == 0) {
+        UILabel *subtitleLabel = (UILabel*)[cell viewWithTag:kSubtitleLabelTag];
+        subtitleLabel.textColor = UIColor.textTint;
+        subtitleLabel.text = [self.cells objectAtIndex:indexPath.row];
+        
+        cell.iconImageView.image = [UIImage imageWithColor:UIColor.whiteColor];
+        [cell.iconImageView.layer setBorderColor: [[UIColor medium] CGColor]];
+        [cell.iconImageView.layer setBorderWidth: 1.0f];
+        cell.iconImageView.layer.cornerRadius = 10.0;
+        cell.iconImageView.clipsToBounds = true;
+        [cell setNeedsLayout];
+    } else {
+        cell.titleLabel.text = [self.cells objectAtIndex:indexPath.row];
+    }
+    
+    ProjectLoadingInfo *info = [ProjectLoadingInfo projectLoadingInfoForProjectWithName:self.lastUsedProject.header.programName projectID:self.lastUsedProject.header.programID];
+
+    if (indexPath.row == 0) {
+        
+        CBFileManager *fileManager = [CBFileManager sharedManager];
+        [fileManager loadPreviewImageAndCacheWithProjectLoadingInfo:info completion:^(UIImage * image, NSString * path) {
+            
+            if(image) {
+                cell.iconImageView.image = image;
+                cell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
+                dispatch_queue_main_t queue = dispatch_get_main_queue();
+                dispatch_async(queue, ^{
+                    [self.tableView endUpdates];
+                });
+            }
+            
+        }];
+        
+    } else {
+        cell.iconImageView.image = [UIImage imageNamed:[self.imageNames objectAtIndex:indexPath.row]];
+        cell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
+    }
+    
 }
 
-- (void)configureSubtitleLabelForCell:(UITableViewCell*)cell
+- (void)configureTitleLabelForCell:(UITableViewCell <CatrobatImageCell>*)cell
 {
-    UILabel *subtitleLabel = (UILabel*)[cell viewWithTag:kSubtitleLabelTag];
-    subtitleLabel.textColor = UIColor.textTint;
     Project *lastProject = self.lastUsedProject;
-    subtitleLabel.text = (lastProject) ? lastProject.header.programName :  @"";
+    cell.titleLabel.text = (lastProject) ? lastProject.header.programName :  @"";
 }
 
 - (CGFloat)getHeightForCellAtIndexPath:(NSIndexPath*)indexPath

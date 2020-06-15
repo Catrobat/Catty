@@ -460,57 +460,36 @@
     cell.iconImageView.image = nil;
     cell.indexPath = indexPath;
     
-    // check if one of these screenshot files is available in memory
     CBFileManager *fileManager = [CBFileManager sharedManager];
-    NSArray *fallbackPaths = @[[[NSString alloc] initWithFormat:@"%@%@", info.basePath, kScreenshotFilename],
-                               [[NSString alloc] initWithFormat:@"%@%@", info.basePath, kScreenshotManualFilename],
-                               [[NSString alloc] initWithFormat:@"%@%@", info.basePath, kScreenshotAutoFilename]];
-    RuntimeImageCache *imageCache = [RuntimeImageCache sharedImageCache];
-    for (NSString *fallbackPath in fallbackPaths) {
-        NSString *fileName = [fallbackPath lastPathComponent];
-        NSString *thumbnailPath = [NSString stringWithFormat:@"%@%@%@",
-                                   info.basePath, kScreenshotThumbnailPrefix, fileName];
-        UIImage *image = [imageCache cachedImageForPath:thumbnailPath];
-        if (image) {
-            cell.iconImageView.image = image;
-            return;
-        }
-    }
-    
-    // no screenshot files in memory, check if one of these screenshot files exists on disk
-    // if a screenshot file is found, then load it from disk and cache it in memory for future access
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
-    dispatch_async(queue, ^{
-        for (NSString *fallbackPath in fallbackPaths) {
-            if ([fileManager fileExists:fallbackPath]) {
-                NSString *fileName = [fallbackPath lastPathComponent];
-                NSString *thumbnailPath = [NSString stringWithFormat:@"%@%@%@",
-                                           info.basePath, kScreenshotThumbnailPrefix, fileName];
-                [imageCache loadThumbnailImageFromDiskWithThumbnailPath:thumbnailPath
-                                                              imagePath:fallbackPath
-                                                     thumbnailFrameSize:CGSizeMake(kPreviewThumbnailWidth, kPreviewThumbnailHeight)
-                                                           onCompletion:^(UIImage *image, NSString* path){
-                                                               // check if cell still needed
-                                                               if ([cell.indexPath isEqual:indexPath]) {
-                                                                   cell.iconImageView.image = image;
-                                                                   [cell setNeedsLayout];
-                                                                   [self.tableView endUpdates];
-                                                               }
-                                                           }];
-                return;
-            }
-        }
-        
-        // no screenshot file available -> last fallback, show standard project icon instead
-        [imageCache loadImageWithName:@"projects" onCompletion:^(UIImage *image){
-            // check if cell still needed
+    [fileManager loadPreviewImageAndCacheWithProjectLoadingInfo:info completion:^(UIImage *image, NSString *path) {
+      
+        if(image) {
             if ([cell.indexPath isEqual:indexPath]) {
                 cell.iconImageView.image = image;
                 [cell setNeedsLayout];
-                [self.tableView endUpdates];
+                dispatch_queue_main_t queue = dispatch_get_main_queue();
+                dispatch_async(queue, ^{
+                    [self.tableView endUpdates];
+                });
             }
-        }];
-    });
+        } else {
+            RuntimeImageCache *imageCache = [RuntimeImageCache sharedImageCache];
+            [imageCache loadImageWithName:@"projects" onCompletion:^(UIImage *image){
+
+                if ([cell.indexPath isEqual:indexPath]) {
+                    cell.iconImageView.image = image;
+                    [cell setNeedsLayout];
+                    dispatch_queue_main_t queue = dispatch_get_main_queue();
+                    dispatch_async(queue, ^{
+                        [self.tableView endUpdates];
+                    });
+                }
+
+            }];
+        }
+        
+    }];
+
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
