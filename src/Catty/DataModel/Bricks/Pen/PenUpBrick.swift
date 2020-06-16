@@ -44,4 +44,8 @@
         PenUpBrickCell.self as BrickCellProtocol.Type
     }
 
+    override func isDisabledForBackground() -> Bool {
+        true
+    }
+
 }
