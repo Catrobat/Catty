@@ -137,3 +137,14 @@ public extension SynchronizedArray where Element: Equatable {
         return result
     }
 }
+
+extension SynchronizedArray where Element: UserDataProtocol {
+    func remove(name: String) {
+        queue.async(flags: .barrier) {
+            for index in 0..<self.array.count where name == self.array[index].name {
+                self.array.remove(at: index)
+                break
+            }
+        }
+    }
+}
