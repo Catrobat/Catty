@@ -56,6 +56,7 @@ final class PenClearBrickTests: XCTestCase {
         XCTAssertEqual(scene.children.count, 1)
         XCTAssertNil(scene.childNode(withName: SpriteKitDefines.penShapeNodeName))
         XCTAssertNotNil(scene.childNode(withName: "testName"))
+        XCTAssertEqual(spriteNode.penConfiguration.previousPosition, spriteNode.position)
     }
 
 }
