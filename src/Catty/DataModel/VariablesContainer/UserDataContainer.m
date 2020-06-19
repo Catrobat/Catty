@@ -242,28 +242,6 @@ static pthread_mutex_t variablesLock;
     return lists;
 }
 
-- (NSArray<UserVariable*>*)allVariables
-{
-    NSMutableArray *vars = [NSMutableArray arrayWithArray:self.programVariableList];
-    for(NSUInteger index = 0; index < [self.objectVariableList count]; index++) {
-        NSMutableArray *variableList = [self.objectVariableList objectAtIndex:index];
-        if([variableList count] > 0)
-            [vars addObjectsFromArray:variableList];
-    }
-    return vars;
-}
-
-- (NSArray<UserList*>*)allLists
-{
-    NSMutableArray *vars = [NSMutableArray arrayWithArray:self.programListOfLists];
-    for(NSUInteger index = 0; index < [self.objectListOfLists count]; index++) {
-        NSMutableArray *listOfLists = [self.objectListOfLists objectAtIndex:index];
-        if([listOfLists count] > 0)
-            [vars addObjectsFromArray:listOfLists];
-    }
-    return vars;
-}
-
 - (NSArray*)objectVariablesForObject:(SpriteObject*)spriteObject
 {
     NSMutableArray *vars = [NSMutableArray new];
