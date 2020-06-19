@@ -27,7 +27,7 @@ extension PenClearBrick: CBXMLNodeProtocol {
     }
 
     func xmlElement(with context: CBXMLSerializerContext) -> GDataXMLElement? {
-        let brick = super.xmlElement(for: "PenClearBrick", with: context)
+        let brick = super.xmlElement(for: "ClearBackgroundBrick", with: context)
         return brick
     }
 }

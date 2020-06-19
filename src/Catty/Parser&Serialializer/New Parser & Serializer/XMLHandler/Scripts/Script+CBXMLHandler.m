@@ -184,6 +184,9 @@
        ([brickTypeName isEqualToString:@"LedOffBrick"])){
         return @"FlashBrick";
     }
+    if (([brickTypeName isEqualToString:@"ClearBackgroundBrick"])){
+        return @"PenClearBrick";
+    }
     return (NSString*)brickXMLHandlerClassName;
 }
 

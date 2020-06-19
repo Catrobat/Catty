@@ -612,7 +612,7 @@
             <brick type="PenUpBrick">
                 <commentedOut>false</commentedOut>
             </brick>
-            <brick type="PenClearBrick">
+            <brick type="ClearBackgroundBrick">
                 <commentedOut>false</commentedOut>
             </brick>
           </brickList>
