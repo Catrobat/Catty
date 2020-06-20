@@ -28,33 +28,38 @@ final class UserDataContainerTest: XCTestCase {
 
     var project: Project!
     var container: UserDataContainer!
+    var objectA: SpriteObject!
+    var objectB: SpriteObject!
 
     override func setUp() {
         super.setUp()
         self.project = Project()
         self.container = UserDataContainer()
         self.project.userData = self.container
+
+        self.objectA = SpriteObject()
+        self.objectA.name = "testObjectA"
+        objectA.project = self.project
+
+        self.objectB = SpriteObject()
+        self.objectB.name = "testObjectB"
+        self.objectB.project = self.project
+
     }
 
     func testAddObjectVariable() {
-        let objectA = SpriteObject()
-        objectA.name = "testObjectA"
-
-        let objectB = SpriteObject()
-        objectB.name = "testObjectB"
-
         let userVariable = UserVariable(name: "testName")
 
         XCTAssertEqual(0, UserDataContainer.allVariables(for: project).count)
-        XCTAssertEqual(0, container.allVariables(for: objectA)?.count)
-        XCTAssertEqual(0, container.allVariables(for: objectB)?.count)
+        XCTAssertEqual(0, UserDataContainer.objectAndProjectVariables(for: objectA).count)
+        XCTAssertEqual(0, UserDataContainer.objectAndProjectVariables(for: objectB).count)
 
         var result = container.addObjectVariable(userVariable, for: objectA)
         XCTAssertTrue(result)
 
         XCTAssertEqual(1, UserDataContainer.allVariables(for: project).count)
-        XCTAssertEqual(1, container.allVariables(for: objectA)?.count)
-        XCTAssertEqual(0, container.allVariables(for: objectB)?.count)
+        XCTAssertEqual(1, UserDataContainer.objectAndProjectVariables(for: objectA).count)
+        XCTAssertEqual(0, UserDataContainer.objectAndProjectVariables(for: objectB).count)
 
         result = container.addObjectVariable(userVariable, for: objectA)
         XCTAssertFalse(result)
@@ -63,29 +68,23 @@ final class UserDataContainerTest: XCTestCase {
         XCTAssertTrue(result)
 
         XCTAssertEqual(2, UserDataContainer.allVariables(for: project).count)
-        XCTAssertEqual(1, container.allVariables(for: objectA)?.count)
-        XCTAssertEqual(1, container.allVariables(for: objectB)?.count)
+        XCTAssertEqual(1, UserDataContainer.objectAndProjectVariables(for: objectA).count)
+        XCTAssertEqual(1, UserDataContainer.objectAndProjectVariables(for: objectB).count)
     }
 
     func testAddObjectList() {
-        let objectA = SpriteObject()
-        objectA.name = "testObjectA"
-
-        let objectB = SpriteObject()
-        objectB.name = "testObjectB"
-
         let list = UserList(name: "testName")
 
         XCTAssertEqual(0, UserDataContainer.allVariables(for: project).count)
-        XCTAssertEqual(0, container.allLists(for: objectA)?.count)
-        XCTAssertEqual(0, container.allLists(for: objectB)?.count)
+        XCTAssertEqual(0, UserDataContainer.objectAndProjectLists(for: objectA).count)
+        XCTAssertEqual(0, UserDataContainer.objectAndProjectLists(for: objectB).count)
 
         var result = container.addObjectList(list, for: objectA)
         XCTAssertTrue(result)
 
         XCTAssertEqual(1, UserDataContainer.allLists(for: project).count)
-        XCTAssertEqual(1, container.allLists(for: objectA)?.count)
-        XCTAssertEqual(0, container.allLists(for: objectB)?.count)
+        XCTAssertEqual(1, UserDataContainer.objectAndProjectLists(for: objectA).count)
+        XCTAssertEqual(0, UserDataContainer.objectAndProjectLists(for: objectB).count)
 
         result = container.addObjectList(list, for: objectA)
         XCTAssertFalse(result)
@@ -94,14 +93,11 @@ final class UserDataContainerTest: XCTestCase {
         XCTAssertTrue(result)
 
         XCTAssertEqual(2, UserDataContainer.allLists(for: project).count)
-        XCTAssertEqual(1, container.allLists(for: objectA)?.count)
-        XCTAssertEqual(1, container.allLists(for: objectB)?.count)
+        XCTAssertEqual(1, UserDataContainer.objectAndProjectLists(for: objectA).count)
+        XCTAssertEqual(1, UserDataContainer.objectAndProjectLists(for: objectB).count)
     }
 
     func testAllVariables() {
-        let objectA = SpriteObject()
-        objectA.name = "testObjectA"
-
         let userVariable1 = UserVariable(name: "testName1")
         let userVariable2 = UserVariable(name: "testName2")
         let list = UserList(name: "testName")
@@ -123,9 +119,6 @@ final class UserDataContainerTest: XCTestCase {
     }
 
     func testAllList() {
-        let objectA = SpriteObject()
-        objectA.name = "testObjectA"
-
         let list1 = UserList(name: "testName1")
         let list2 = UserList(name: "testName2")
         let variable = UserVariable(name: "testvariable")
@@ -147,63 +140,48 @@ final class UserDataContainerTest: XCTestCase {
     }
 
     func testObjectVariablesForObject() {
-        let objectA = SpriteObject()
-        objectA.name = "testObjectA"
-
-        let objectB = SpriteObject()
-        objectB.name = "testObjectB"
-
         let userVariable1 = UserVariable(name: "testName1")
         let userVariable2 = UserVariable(name: "testName2")
         let userVariable3 = UserVariable(name: "testName3")
 
         container.addObjectVariable(userVariable1, for: objectA)
-        var variables = container.objectVariables(for: objectA)
+        var variables = UserDataContainer.objectVariables(for: objectA)
 
-        XCTAssertEqual(1, variables?.count)
-        XCTAssertEqual(variables?[0].name, userVariable1.name)
+        XCTAssertEqual(1, variables.count)
+        XCTAssertEqual(variables[0].name, userVariable1.name)
 
         container.addObjectVariable(userVariable2, for: objectA)
         container.addObjectVariable(userVariable3, for: objectB)
 
-        variables = container.objectVariables(for: objectA)
+        variables = UserDataContainer.objectVariables(for: objectA)
 
-        XCTAssertEqual(2, variables?.count)
-        XCTAssertEqual(variables?[0].name, userVariable1.name)
-        XCTAssertEqual(variables?[1].name, userVariable2.name)
+        XCTAssertEqual(2, variables.count)
+        XCTAssertEqual(variables[0].name, userVariable1.name)
+        XCTAssertEqual(variables[1].name, userVariable2.name)
     }
 
     func testObjectListsForObject() {
-        let objectA = SpriteObject()
-        objectA.name = "testObjectA"
-
-        let objectB = SpriteObject()
-        objectB.name = "testObjectB"
-
         let list1 = UserList(name: "testName1")
         let list2 = UserList(name: "testName2")
         let list3 = UserList(name: "testName3")
 
         container.addObjectList(list1, for: objectA)
-        var lists = container.objectLists(for: objectA)
+        var lists = UserDataContainer.objectLists(for: objectA)
 
-        XCTAssertEqual(1, lists?.count)
-        XCTAssertEqual(lists?[0].name, list1.name)
+        XCTAssertEqual(1, lists.count)
+        XCTAssertEqual(lists[0].name, list1.name)
 
         container.addObjectList(list2, for: objectA)
         container.addObjectList(list3, for: objectB)
 
-        lists = container.objectLists(for: objectA)
+        lists = UserDataContainer.objectLists(for: objectA)
 
-        XCTAssertEqual(2, lists?.count)
-        XCTAssertEqual(lists?[0].name, list1.name)
-        XCTAssertEqual(lists?[1].name, list2.name)
+        XCTAssertEqual(2, lists.count)
+        XCTAssertEqual(lists[0].name, list1.name)
+        XCTAssertEqual(lists[1].name, list2.name)
     }
 
     func testIsProjectVariable() {
-        let objectA = SpriteObject()
-        objectA.name = "testObjectA"
-
         let userVariable1 = UserVariable(name: "testVar1")
         let userVariable2 = UserVariable(name: "testVar2")
 
@@ -215,9 +193,6 @@ final class UserDataContainerTest: XCTestCase {
     }
 
     func testIsProjectList() {
-        let objectA = SpriteObject()
-        objectA.name = "testObjectA"
-
         let list1 = UserList(name: "testName1")
         let list2 = UserList(name: "testName2")
 
@@ -243,12 +218,6 @@ final class UserDataContainerTest: XCTestCase {
     }
 
     func testRemoveObjectVariablesForSpriteObject() {
-        let objectA = SpriteObject()
-        objectA.name = "testObjectA"
-
-        let objectB = SpriteObject()
-        objectB.name = "testObjectB"
-
         let userVariable1 = UserVariable(name: "testName1")
         let userVariable2 = UserVariable(name: "testName2")
         let userVariable3 = UserVariable(name: "testName3")
@@ -266,22 +235,16 @@ final class UserDataContainerTest: XCTestCase {
         result = container.addObjectVariable(userVariable4, for: objectB)
         XCTAssertTrue(result)
 
-        XCTAssertEqual(2, container.allVariables(for: objectA)?.count)
-        XCTAssertEqual(2, container.allVariables(for: objectB)?.count)
+        XCTAssertEqual(2, UserDataContainer.objectAndProjectVariables(for: objectA).count)
+        XCTAssertEqual(2, UserDataContainer.objectAndProjectVariables(for: objectB).count)
 
         container.removeObjectVariables(for: objectA)
 
-        XCTAssertEqual(0, container.allVariables(for: objectA)?.count)
-        XCTAssertEqual(2, container.allVariables(for: objectB)?.count)
+        XCTAssertEqual(0, UserDataContainer.objectAndProjectVariables(for: objectA).count)
+        XCTAssertEqual(2, UserDataContainer.objectAndProjectVariables(for: objectB).count)
     }
 
     func testRemoveObjectListsForSpriteObject() {
-        let objectA = SpriteObject()
-        objectA.name = "testObjectA"
-
-        let objectB = SpriteObject()
-        objectB.name = "testObjectB"
-
         let list1 = UserList(name: "testName1")
         let list2 = UserList(name: "testName2")
         let list3 = UserList(name: "testName3")
@@ -299,19 +262,16 @@ final class UserDataContainerTest: XCTestCase {
         result = container.addObjectList(list4, for: objectB)
         XCTAssertTrue(result)
 
-        XCTAssertEqual(2, container.allLists(for: objectA)?.count)
-        XCTAssertEqual(2, container.allLists(for: objectB)?.count)
+        XCTAssertEqual(2, UserDataContainer.objectAndProjectLists(for: objectA).count)
+        XCTAssertEqual(2, UserDataContainer.objectAndProjectLists(for: objectB).count)
 
         container.removeObjectLists(for: objectA)
 
-        XCTAssertEqual(0, container.allLists(for: objectA)?.count)
-        XCTAssertEqual(2, container.allLists(for: objectB)?.count)
+        XCTAssertEqual(0, UserDataContainer.objectAndProjectLists(for: objectA).count)
+        XCTAssertEqual(2, UserDataContainer.objectAndProjectLists(for: objectB).count)
     }
 
     func testIsEqualToVariablesContainer() {
-        let objectA = SpriteObject()
-        objectA.name = "testObjectA"
-
         let list = UserList(name: "testList")
         let variable = UserVariable(name: "testvariable")
 
@@ -328,12 +288,6 @@ final class UserDataContainerTest: XCTestCase {
     }
 
     func testIsEqualToVariablesContainerForUnqualNumberOfObject() {
-        let objectA = SpriteObject()
-        objectA.name = "testObjectA"
-
-        let objectB = SpriteObject()
-        objectB.name = "testObjectB"
-
         let list = UserList(name: "testList")
 
         let container1 = UserDataContainer()
@@ -348,10 +302,6 @@ final class UserDataContainerTest: XCTestCase {
     }
 
     func testIsEqualToVariablesContainerForSameNameDifferentObject() {
-        let objectA = SpriteObject()
-        objectA.name = "testObjectA"
-
-        let objectB = SpriteObject()
         objectB.name = "testObjectA"
 
         let list = UserList(name: "testList")
@@ -366,9 +316,6 @@ final class UserDataContainerTest: XCTestCase {
     }
 
     func testIsEqualToVariablesContainerForVariableWithSameNameDifferentValues() {
-        let objectA = SpriteObject()
-        objectA.name = "testObjectA"
-
         let variable1 = UserVariable(name: "testvariable")
         variable1.value = 10
 
@@ -385,9 +332,6 @@ final class UserDataContainerTest: XCTestCase {
     }
 
     func testIsEqualToVariablesContainerForItemWithSameNameDifferentType() {
-        let objectA = SpriteObject()
-        objectA.name = "testObjectA"
-
         let list = UserList(name: "testList")
         let variable = UserVariable(name: "testUserVariable")
 
@@ -438,9 +382,6 @@ final class UserDataContainerTest: XCTestCase {
     }
 
     func testMutableCopy() {
-        let objectA = SpriteObject()
-        objectA.name = "testObjectA"
-
         let list = UserList(name: "testList")
         let variable = UserVariable(name: "testvariable")
 
@@ -459,12 +400,6 @@ final class UserDataContainerTest: XCTestCase {
     }
 
     func testGetUserVariableNamed() {
-        let objectA = SpriteObject()
-        objectA.name = "testObjectA"
-
-        let objectB = SpriteObject()
-        objectB.name = "testObjectB"
-
         let userVariable1 = UserVariable(name: "testName1")
         let userVariable2 = UserVariable(name: "testName2")
         let userVariable3 = UserVariable(name: "testName3")
@@ -486,12 +421,6 @@ final class UserDataContainerTest: XCTestCase {
     }
 
     func testGetUserListNamed() {
-        let objectA = SpriteObject()
-        objectA.name = "testObjectA"
-
-        let objectB = SpriteObject()
-        objectB.name = "testObjectB"
-
         let list1 = UserList(name: "testName1")
         let list2 = UserList(name: "testName2")
         let list3 = UserList(name: "testName3")
@@ -513,12 +442,6 @@ final class UserDataContainerTest: XCTestCase {
     }
 
     func testRemoveUserVariableNamed() {
-        let objectA = SpriteObject()
-        objectA.name = "testObjectA"
-
-        let objectB = SpriteObject()
-        objectB.name = "testObjectB"
-
         let objectC = SpriteObject()
         objectC.name = "testObjectC"
 
@@ -536,34 +459,28 @@ final class UserDataContainerTest: XCTestCase {
         container.programVariableList.add(userVariable3)
 
         XCTAssertEqual(3, UserDataContainer.allVariables(for: project).count)
-        XCTAssertEqual(2, container.allVariables(for: objectA)?.count)
-        XCTAssertEqual(2, container.allVariables(for: objectB)?.count)
+        XCTAssertEqual(2, UserDataContainer.objectAndProjectVariables(for: objectA).count)
+        XCTAssertEqual(2, UserDataContainer.objectAndProjectVariables(for: objectB).count)
 
         XCTAssertFalse(container.removeUserVariableNamed(userVariable1.name, for: objectB))
         XCTAssertTrue(container.removeUserVariableNamed(userVariable1.name, for: objectA))
         XCTAssertFalse(container.removeUserVariableNamed(userVariable1.name, for: objectA))
 
         XCTAssertEqual(2, UserDataContainer.allVariables(for: project).count)
-        XCTAssertEqual(1, container.allVariables(for: objectA)?.count)
-        XCTAssertEqual(2, container.allVariables(for: objectB)?.count)
+        XCTAssertEqual(1, UserDataContainer.objectAndProjectVariables(for: objectA).count)
+        XCTAssertEqual(2, UserDataContainer.objectAndProjectVariables(for: objectB).count)
 
         XCTAssertTrue(container.removeUserVariableNamed(userVariable3.name, for: objectB))
         XCTAssertFalse(container.removeUserVariableNamed(userVariable3.name, for: objectB))
 
         XCTAssertEqual(1, UserDataContainer.allVariables(for: project).count)
-        XCTAssertEqual(0, container.allVariables(for: objectA)?.count)
-        XCTAssertEqual(1, container.allVariables(for: objectB)?.count)
+        XCTAssertEqual(0, UserDataContainer.objectAndProjectVariables(for: objectA).count)
+        XCTAssertEqual(1, UserDataContainer.objectAndProjectVariables(for: objectB).count)
 
         XCTAssertFalse(container.removeUserVariableNamed(userVariable4.name, for: objectC))
     }
 
     func testRemoveUserListNamed() {
-        let objectA = SpriteObject()
-        objectA.name = "testObjectA"
-
-        let objectB = SpriteObject()
-        objectB.name = "testObjectB"
-
         let objectC = SpriteObject()
         objectC.name = "testObjectC"
 
@@ -580,23 +497,23 @@ final class UserDataContainerTest: XCTestCase {
         container.programListOfLists.add(list3 as Any)
 
         XCTAssertEqual(3, UserDataContainer.allLists(for: project).count)
-        XCTAssertEqual(2, container.allLists(for: objectA)?.count)
-        XCTAssertEqual(2, container.allLists(for: objectB)?.count)
+        XCTAssertEqual(2, UserDataContainer.objectAndProjectLists(for: objectA).count)
+        XCTAssertEqual(2, UserDataContainer.objectAndProjectLists(for: objectB).count)
 
         XCTAssertFalse(container.removeUserListNamed(list1.name, for: objectB))
         XCTAssertTrue(container.removeUserListNamed(list1.name, for: objectA))
         XCTAssertFalse(container.removeUserListNamed(list1.name, for: objectA))
 
         XCTAssertEqual(2, UserDataContainer.allLists(for: project).count)
-        XCTAssertEqual(1, container.allLists(for: objectA)?.count)
-        XCTAssertEqual(2, container.allLists(for: objectB)?.count)
+        XCTAssertEqual(1, UserDataContainer.objectAndProjectLists(for: objectA).count)
+        XCTAssertEqual(2, UserDataContainer.objectAndProjectLists(for: objectB).count)
 
         XCTAssertTrue(container.removeUserListNamed(list3.name, for: objectB))
         XCTAssertFalse(container.removeUserListNamed(list3.name, for: objectB))
 
         XCTAssertEqual(1, UserDataContainer.allLists(for: project).count)
-        XCTAssertEqual(0, container.allLists(for: objectA)?.count)
-        XCTAssertEqual(1, container.allLists(for: objectB)?.count)
+        XCTAssertEqual(0, UserDataContainer.objectAndProjectLists(for: objectA).count)
+        XCTAssertEqual(1, UserDataContainer.objectAndProjectLists(for: objectB).count)
 
         XCTAssertFalse(container.removeUserListNamed(list4.name, for: objectC))
     }

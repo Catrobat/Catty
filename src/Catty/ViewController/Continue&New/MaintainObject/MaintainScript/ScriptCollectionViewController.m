@@ -953,11 +953,11 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 
     NSMutableArray *allVariableNames = [NSMutableArray new];
     if (isProjectVar) {
-        for(UserVariable *var in [UserDataContainer allListsForProject: self.object.project]) {
+        for(UserVariable *var in [UserDataContainer allVariablesForProject: self.object.project]) {
             [allVariableNames addObject:var.name];
         }
     } else {
-        for(UserVariable *var in [self.object.project.userData allVariablesForObject:self.object]) {
+        for(UserVariable *var in [UserDataContainer objectAndProjectVariablesForObject:self.object]) {
             [allVariableNames addObject:var.name];
         }
     }
@@ -1006,7 +1006,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             [allListNames addObject:list.name];
         }
     } else {
-        for(UserVariable *list in [self.object.project.userData allListsForObject:self.object]) {
+        for(UserVariable *list in [UserDataContainer objectAndProjectListsForObject:self.object]) {
             [allListNames addObject:list.name];
         }
     }

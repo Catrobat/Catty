@@ -267,8 +267,8 @@
     NSMutableArray<UserVariable*> *copiedVariables = [NSMutableArray new];
     NSMutableArray<UserList*> *copiedLists = [NSMutableArray new];
     
-    NSArray<UserVariable*> *variables = [[NSMutableArray alloc] initWithArray:[self.userData objectVariablesForObject:sourceObject]];
-    NSArray<UserList*> *lists = [[NSMutableArray alloc] initWithArray:[self.userData objectListsForObject:sourceObject]];
+    NSArray<UserVariable*> *variables = [[NSMutableArray alloc] initWithArray:[UserDataContainer objectVariablesForObject:sourceObject]];
+    NSArray<UserList*> *lists = [[NSMutableArray alloc] initWithArray:[UserDataContainer objectListsForObject:sourceObject]];
     
     for (UserVariable *variable in variables) {
         UserVariable *copiedVariable = [[UserVariable alloc] initWithVariable:variable];

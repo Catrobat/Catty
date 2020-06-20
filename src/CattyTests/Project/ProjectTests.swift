@@ -29,12 +29,16 @@ class ProjectsTest: XCTestCase {
 
     var project: Project!
     var fileManager: CBFileManager!
+    var object: SpriteObject!
 
     override func setUp() {
         super.setUp()
 
         fileManager = CBFileManager.shared()
         deleteAllProjectsAndCreateDefaultProject()
+
+        self.object = SpriteObject()
+        self.object.project = self.project
     }
 
     override func tearDown() {
@@ -80,7 +84,6 @@ class ProjectsTest: XCTestCase {
         let objectName = "newObject"
         let copiedObjectName = "copiedObject"
 
-        let object = SpriteObject()
         object.name = objectName
 
         let ifThenLogicBeginBrick = IfThenLogicBeginBrick()
@@ -93,7 +96,7 @@ class ProjectsTest: XCTestCase {
         let script = StartScript()
         script.brickList.addObjects(from: [ifThenLogicBeginBrick, ifThenLogicEndBrick] as [AnyObject])
         object.scriptList.add(script)
-        project.objectList.add(object)
+        project.objectList.add(object as Any)
 
         let initialObjectSize = project.objectList.count
         XCTAssertTrue(initialObjectSize > 0)
@@ -123,7 +126,6 @@ class ProjectsTest: XCTestCase {
         let objectName = "newObject"
         let copiedObjectName = "copiedObject"
 
-        let object = SpriteObject()
         object.name = objectName
 
         let ifLogicBeginBrick = IfLogicBeginBrick()
@@ -141,7 +143,7 @@ class ProjectsTest: XCTestCase {
         let script = StartScript()
         script.brickList.addObjects(from: [ifLogicBeginBrick, ifLogicElseBrick, ifLogicEndBrick] as [AnyObject])
         object.scriptList.add(script)
-        project.objectList.add(object)
+        project.objectList.add(object as Any)
 
         let initialObjectSize = project.objectList.count
         XCTAssertTrue(initialObjectSize > 0)
@@ -179,9 +181,8 @@ class ProjectsTest: XCTestCase {
     }
 
     func testCopyObjectWithObjectVariable() {
-        let object = SpriteObject()
         object.name = "newObjectName"
-        project.objectList.add(object)
+        project.objectList.add(object as Any)
 
         let variable = UserVariable(name: "userVariable")
         project.userData.addObjectVariable(variable, for: object)
@@ -219,9 +220,8 @@ class ProjectsTest: XCTestCase {
     }
 
     func testCopyObjectWithObjectList() {
-        let object = SpriteObject()
         object.name = "newObjectName"
-        project.objectList.add(object)
+        project.objectList.add(object as Any)
 
         let list = UserList(name: "userList")
         project.userData.addObjectList(list, for: object)
