@@ -230,6 +230,64 @@ final class SynchronizedArrayTests: XCTestCase {
 
     }
 
+    func testRemoveWhenInitializedWithUserList() {
+        let array = SynchronizedArray<UserList>()
+
+        XCTAssertEqual(0, array.count)
+
+        let userList1 = UserList(name: "userList1")
+        let userList2 = UserList(name: "userList2")
+
+        array.append(userList1)
+        array.append(userList2)
+        XCTAssertEqual(2, array.count)
+
+        array.remove(name: "testList")
+        XCTAssertEqual(2, array.count)
+
+        array.remove(name: "userList1")
+        XCTAssertEqual(1, array.count)
+        XCTAssertEqual(userList2, array[0])
+    }
+
+    func testRemoveWhenInitializedWithUserVariable() {
+        let array = SynchronizedArray<UserVariable>()
+
+        XCTAssertEqual(0, array.count)
+
+        let userVariable1 = UserVariable(name: "userVariable1")
+        let userVariable2 = UserVariable(name: "userVariable2")
+
+        array.append(userVariable1)
+        array.append(userVariable2)
+        XCTAssertEqual(2, array.count)
+
+        array.remove(name: "testVariable")
+        XCTAssertEqual(2, array.count)
+
+        array.remove(name: "userVariable1")
+        XCTAssertEqual(1, array.count)
+        XCTAssertEqual(userVariable2, array[0])
+    }
+
+    func testRemoveWhenInitializedWithUserDataProtocol() {
+        let array = SynchronizedArray<UserDataProtocol>()
+
+        let variable = UserVariable(name: "userVariable")
+        let list = UserList(name: "userList")
+
+        array.append(variable)
+        array.append(list)
+        XCTAssertEqual(2, array.count)
+
+        array.remove(name: "testUserData")
+        XCTAssertEqual(2, array.count)
+
+        array.remove(name: "userVariable")
+        XCTAssertEqual(1, array.count)
+        XCTAssertEqual(list, array[0] as! UserList)
+    }
+
     func testThreadSafeArray() {
         let array = SynchronizedArray<Int>()
 
