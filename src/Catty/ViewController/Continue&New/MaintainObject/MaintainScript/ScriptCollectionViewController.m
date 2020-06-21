@@ -282,28 +282,34 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         NSString *disableTitle = ([brick isIfLogicBrick] ? (brick.isDisabled ? kLocalizedEnableCondition : kLocalizedDisableCondition)
                                   : ([brick isLoopBrick]) ? (brick.isDisabled ? kLocalizedEnableLoop : kLocalizedDisableLoop)
                                   : (brick.isDisabled ? kLocalizedEnableBrick : kLocalizedDisableBrick));
-        
-        actionSheet = [[[[[[AlertControllerBuilder actionSheetWithTitle:kLocalizedEditBrick]
-                       addCancelActionWithTitle:kLocalizedCancel handler:nil]
-                       addDestructiveActionWithTitle:destructiveTitle handler:^{
-                           [self removeBrickOrScript:scriptOrBrick atIndexPath:indexPath];
-                       }]
-                      addDefaultActionWithTitle:disableTitle handler:^{
-                           [self disableOrEnableWithBrick:brick];
-                           [self reloadData];
-                           [self.object.project saveToDiskWithNotification:YES];
-                       }]
-                       addDefaultActionWithTitle:kLocalizedCopyBrick handler:^{
-                           [self copyBrick:brick atIndexPath:indexPath];
-                       }]
-                       addDefaultActionWithTitle:kLocalizedMoveBrick handler:^{
-                           brick.animateInsertBrick = YES;
-                           brick.animateMoveBrick = YES;
-                           [[BrickInsertManager sharedInstance] setBrickMoveMode:YES];
-                           [self turnOnInsertingBrickMode];
-                           [self reloadData];
-                       }];
-        
+
+        actionSheet = [[AlertControllerBuilder actionSheetWithTitle:kLocalizedEditBrick]
+            addCancelActionWithTitle:kLocalizedCancel handler:nil];
+
+        [actionSheet addDestructiveActionWithTitle:destructiveTitle handler:^{
+            [self removeBrickOrScript:scriptOrBrick atIndexPath:indexPath];
+        }];
+
+        if (![self isInsideDisabledLoopOrIfWithBrick:brick]) {
+            [actionSheet addDefaultActionWithTitle:disableTitle handler:^{
+                [self disableOrEnableWithBrick:brick];
+                [self reloadData];
+                [self.object.project saveToDiskWithNotification:YES];
+            }];
+        }
+
+        [actionSheet addDefaultActionWithTitle:kLocalizedCopyBrick handler:^{
+            [self copyBrick:brick atIndexPath:indexPath];
+        }];
+
+        [actionSheet addDefaultActionWithTitle:kLocalizedMoveBrick handler:^{
+            brick.animateInsertBrick = YES;
+            brick.animateMoveBrick = YES;
+            [[BrickInsertManager sharedInstance] setBrickMoveMode:YES];
+            [self turnOnInsertingBrickMode];
+            [self reloadData];
+        }];
+
         if (brick.isAnimateable) {
             [actionSheet addDefaultActionWithTitle:kLocalizedAnimateBrick handler:^{
                 [self animate:indexPath brickCell:brickCell];

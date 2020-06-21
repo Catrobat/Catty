@@ -134,4 +134,33 @@ extension ScriptCollectionViewController {
             logicBrick = brickList[logicIndex]
         }
     }
+
+    @objc func isInsideDisabledLoopOrIf(brick: Brick) -> Bool {
+        if let brickList = brick.script.brickList as? [Brick] {
+            for b in brickList where b != brick {
+                if let begin = b as? LoopBeginBrick, begin.isDisabled, let end = begin.loopEndBrick, brick != end {
+                    if isInsideScope(brick: brick, begin: begin, end: end) {
+                        return true
+                    }
+                } else if let begin = b as? IfLogicBeginBrick, begin.isDisabled, let end = begin.ifEndBrick, brick != end {
+                    if isInsideScope(brick: brick, begin: begin, end: end) {
+                        return true
+                    }
+                } else if let begin = b as? IfThenLogicBeginBrick, begin.isDisabled, let end = begin.ifEndBrick, brick != end {
+                    if isInsideScope(brick: brick, begin: begin, end: end) {
+                        return true
+                    }
+                }
+            }
+        }
+
+        return false
+    }
+
+    fileprivate func isInsideScope(brick: Brick, begin: Brick, end: Brick) -> Bool {
+        let startIdx = begin.script.brickList.index(of: begin)
+        let endIdx = end.script.brickList.index(of: end)
+
+        return (startIdx...endIdx).contains(brick.script.brickList.index(of: brick))
+    }
 }
