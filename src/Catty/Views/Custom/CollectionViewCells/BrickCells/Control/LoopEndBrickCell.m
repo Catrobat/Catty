@@ -53,7 +53,7 @@
     } else if ( self.type == 3){
         [BrickShapeFactory drawEndForeverLoopShape3WithFillColor:fillColor strokeColor:strokeColor height:height width:width];
     } else {
-        [BrickShapeFactory drawSquareBrickShapeWithFillColor:fillColor strokeColor:strokeColor height:height width:width];
+        [BrickShapeFactory drawSquareBrickShapeWithFillColor:fillColor strokeColor:strokeColor height:height-marginBottomSquaredBrick width:width];
     }
 }
 
