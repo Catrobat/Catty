@@ -86,6 +86,7 @@
             PenDownBrick(),
             PenUpBrick(),
             PenClearBrick(),
+            SetPenSizeBrick(),
             // sound bricks
             PlaySoundBrick(),
             PlaySoundAndWaitBrick(),
