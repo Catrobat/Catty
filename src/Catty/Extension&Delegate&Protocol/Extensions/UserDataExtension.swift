@@ -54,4 +54,51 @@
         }
         return allLists
     }
+
+    @objc(objectVariablesForObject:)
+    static func objectVariables(for object: SpriteObject) -> [UserVariable] {
+        var objectVariables = [UserVariable]()
+        if let project = object.project {
+            if let variableList = project.userData.objectVariableList.object(forKey: object) as? [UserVariable] {
+                objectVariables.append(contentsOf: variableList)
+            }
+        }
+        return objectVariables
+    }
+
+    @objc(objectListsForObject:)
+    static func objectLists(for object: SpriteObject) -> [UserList] {
+        var objectList = [UserList]()
+        if let project = object.project {
+            if let listList = project.userData.objectListOfLists.object(forKey: object) as? [UserList] {
+                objectList.append(contentsOf: listList)
+            }
+        }
+        return objectList
+    }
+
+    @objc(objectAndProjectVariablesForObject:)
+    static func objectAndProjectVariables(for object: SpriteObject) -> [UserVariable] {
+        var objectAndProjectVariables = [UserVariable]()
+        if let project = object.project {
+            if let vars = NSMutableArray(array: project.userData.programVariableList) as? [UserVariable] {
+                objectAndProjectVariables = vars
+            }
+        }
+        objectAndProjectVariables.append(contentsOf: UserDataContainer.objectVariables(for: object))
+        return objectAndProjectVariables
+    }
+
+    @objc(objectAndProjectListsForObject:)
+    static func objectAndProjectLists(for object: SpriteObject) -> [UserList] {
+        var objectAndProjectLists = [UserList]()
+        if let project = object.project {
+            if let lists = NSMutableArray(array: project.userData.programListOfLists) as? [UserList] {
+                objectAndProjectLists = lists
+            }
+        }
+        objectAndProjectLists.append(contentsOf: UserDataContainer.objectLists(for: object))
+        return objectAndProjectLists
+    }
+
 }

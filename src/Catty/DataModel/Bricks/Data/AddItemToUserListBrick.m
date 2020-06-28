@@ -58,7 +58,7 @@
 {
     self.listFormula = [[Formula alloc] initWithInteger:1];
     if(spriteObject) {
-        NSArray *lists = [spriteObject.project.userData allListsForObject:spriteObject];
+        NSArray *lists = [UserDataContainer objectAndProjectListsForObject:spriteObject];
         if([lists count] > 0)
             self.userList = [lists objectAtIndex:0];
         else

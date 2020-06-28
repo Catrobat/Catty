@@ -842,7 +842,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     // ------------------
     // Object Variables
     // ------------------
-    NSArray *array = [userData allVariablesForObject:self.object];
+    NSArray *array = [UserDataContainer objectAndProjectVariablesForObject:self.object];
     if (array) {
         for (UserVariable *var in array) {
             [self.variableSourceObject addObject:var];
@@ -852,7 +852,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     // ------------------
     // Object Lists
     // ------------------
-    array = [userData allListsForObject:self.object];
+    array = [UserDataContainer objectAndProjectListsForObject:self.object];
     if (array) {
         for (UserVariable *var in array) {
             [self.listSourceObject addObject:var];
@@ -901,7 +901,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
             }
         }
     } else {
-        for (UserVariable* variable in [self.object.project.userData allVariablesForObject:self.object]) {
+        for (UserVariable* variable in [UserDataContainer objectAndProjectVariablesForObject:self.object]) {
             if ([variable.name isEqualToString:name]) {
                 [self askForVariableName];
                 return;
@@ -935,7 +935,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
             }
         }
     } else {
-        for (UserVariable* variable in [self.object.project.userData allListsForObject:self.object]) {
+        for (UserVariable* variable in [UserDataContainer objectAndProjectListsForObject:self.object]) {
             if ([variable.name isEqualToString:name]) {
                 [self askForListName];
                 return;

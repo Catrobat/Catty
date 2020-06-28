@@ -45,7 +45,7 @@
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     if(spriteObject) {
-        NSArray *variables = [spriteObject.project.userData allVariablesForObject:spriteObject];
+        NSArray *variables = [UserDataContainer objectAndProjectVariablesForObject:spriteObject];
         if([variables count] > 0)
             self.userVariable = [variables objectAtIndex:0];
         else

@@ -228,42 +228,6 @@ static pthread_mutex_t variablesLock;
     pthread_mutex_unlock(&variablesLock);
 }
 
-- (NSArray*)allVariablesForObject:(SpriteObject*)spriteObject
-{
-    NSMutableArray *vars = [NSMutableArray arrayWithArray:self.programVariableList];
-    [vars addObjectsFromArray:[self objectVariablesForObject:spriteObject]];
-    return vars;
-}
-
-- (NSArray*)allListsForObject:(SpriteObject*)spriteObject
-{
-    NSMutableArray *lists = [NSMutableArray arrayWithArray:self.programListOfLists];
-    [lists addObjectsFromArray:[self objectListsForObject:spriteObject]];
-    return lists;
-}
-
-- (NSArray*)objectVariablesForObject:(SpriteObject*)spriteObject
-{
-    NSMutableArray *vars = [NSMutableArray new];
-    if([self.objectVariableList objectForKey:spriteObject]) {
-        for(UserVariable *var in [self.objectVariableList objectForKey:spriteObject]) {
-            [vars addObject:var];
-        }
-    }
-    return vars;
-}
-
-- (NSArray*)objectListsForObject:(SpriteObject*)spriteObject
-{
-    NSMutableArray *lists = [NSMutableArray new];
-    if([self.objectListOfLists objectForKey:spriteObject]) {
-        for(UserList *list in [self.objectListOfLists objectForKey:spriteObject]) {
-            [lists addObject:list];
-        }
-    }
-    return lists;
-}
-
 - (BOOL)isProjectVariable: (UserVariable*)userVariable
 {
     for (UserVariable *userVariableToCompare in self.programVariableList) {
