@@ -28,12 +28,11 @@
         if let vars = NSMutableArray(array: project.userData.programVariableList) as? [UserVariable] {
             allVariables = vars
         }
-        for index in 0..<project.userData.objectVariableList.count() {
-            if let variableList = project.userData.objectVariableList.object(at: index) as? [UserVariable] {
-                if variableList.isNotEmpty {
-                    allVariables.append(contentsOf: variableList)
-                }
-            }
+
+        let allObjects = project.allObjects()
+        for object in allObjects {
+            let objectVariables = UserDataContainer.objectVariables(for: object)
+            allVariables.append(contentsOf: objectVariables)
         }
         return allVariables
     }
@@ -45,12 +44,10 @@
             allLists = lists
         }
 
-        for index in 0..<project.userData.objectListOfLists.count() {
-            if let listOfLists = project.userData.objectListOfLists.object(at: index) as? [UserList] {
-                if listOfLists.isNotEmpty {
-                    allLists.append(contentsOf: listOfLists)
-                }
-            }
+        let allObjects = project.allObjects()
+        for object in allObjects {
+            let objectLists = UserDataContainer.objectLists(for: object)
+            allLists.append(contentsOf: objectLists)
         }
         return allLists
     }

@@ -54,6 +54,7 @@
 - (void)renameObject:(SpriteObject* _Nonnull)object toName:(NSString* _Nonnull)newObjectName;
 - (void)updateDescriptionWithText:(NSString* _Nonnull)descriptionText;
 - (nonnull NSArray*)allObjectNames;
+- (NSArray<SpriteObject*>* _Nonnull)allObjects;
 - (BOOL)hasObject:(SpriteObject* _Nonnull)object;
 - (SpriteObject* _Nonnull)copyObject:(SpriteObject* _Nonnull)sourceObject
     withNameForCopiedObject:(NSString* _Nonnull)nameOfCopiedObject;
