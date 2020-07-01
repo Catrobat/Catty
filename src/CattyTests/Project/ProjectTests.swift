@@ -25,7 +25,7 @@
 import Nimble
 import XCTest
 
-class ProjectsTest: XCTestCase {
+class ProjectTest: XCTestCase {
 
     var project: Project!
     var fileManager: CBFileManager!
@@ -364,5 +364,18 @@ class ProjectsTest: XCTestCase {
 
         let expectedNotification = Notification(name: .projectInvalidVersion, object: loadingInfo)
         expect(Project(loadingInfo: loadingInfo!)).to(postNotifications(equal([expectedNotification])))
+    }
+
+    func testAllObject() {
+        self.project = Project()
+
+        XCTAssertEqual(0, self.project.allObjects().count)
+
+        let objectA = SpriteObject()
+        objectA.name = "objectA"
+
+        project.objectList.add(objectA)
+        XCTAssertEqual(1, self.project.allObjects().count)
+        XCTAssertTrue(self.project.allObjects()[0] === objectA)
     }
 }

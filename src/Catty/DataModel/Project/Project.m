@@ -252,6 +252,11 @@
     return [objectNames copy];
 }
 
+- (NSArray<SpriteObject*>*)allObjects
+{
+    return self.objectList;
+}
+
 - (BOOL)hasObject:(SpriteObject *)object
 {
     return [self.objectList containsObject:object];

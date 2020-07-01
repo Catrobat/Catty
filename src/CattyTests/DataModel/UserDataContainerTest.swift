@@ -45,6 +45,8 @@ final class UserDataContainerTest: XCTestCase {
         self.objectB.name = "testObjectB"
         self.objectB.project = self.project
 
+        self.project.objectList.add(objectA as Any)
+        self.project.objectList.add(objectB as Any)
     }
 
     func testAddObjectVariable() {
@@ -391,6 +393,8 @@ final class UserDataContainerTest: XCTestCase {
 
         let copyContainer = container.mutableCopy() as! UserDataContainer
         let copyProject = Project()
+        copyProject.objectList.add(objectA as Any)
+        copyProject.objectList.add(objectB as Any)
         copyProject.userData = copyContainer
 
         XCTAssertTrue(container.isEqual(to: copyContainer))

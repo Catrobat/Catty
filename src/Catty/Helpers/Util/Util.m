@@ -562,7 +562,7 @@
 + (NSArray*)allMessagesForProject:(Project*)project
 {
     NSMutableArray *messages = [[NSMutableArray alloc] init];
-    for(SpriteObject *object in project.objectList) {
+    for(SpriteObject *object in project.allObjects) {
         for(Script *script in object.scriptList) {
             if([script isKindOfClass:[BroadcastScript class]]) {
                 BroadcastScript *broadcastScript = (BroadcastScript*)script;

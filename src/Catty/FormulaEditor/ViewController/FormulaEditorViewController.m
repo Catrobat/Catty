@@ -1182,7 +1182,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 - (BOOL)isVariableUsed:(UserVariable*)variable
 {
     if([self.object.project.userData isProjectVariable:variable]) {
-        for(SpriteObject *spriteObject in self.object.project.objectList) {
+        for(SpriteObject *spriteObject in self.object.project.allObjects) {
             for(Script *script in spriteObject.scriptList) {
                 for(id brick in script.brickList) {
                     if([brick isKindOfClass:[Brick class]] && [brick isVariableUsedWithVariable:variable]) {
@@ -1207,7 +1207,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 - (BOOL)isListUsed:(id<UserDataProtocol>)list
 {
     if([self.object.project.userData isProjectList:list]) {
-        for(SpriteObject *spriteObject in self.object.project.objectList) {
+        for(SpriteObject *spriteObject in self.object.project.allObjects) {
             for(Script *script in spriteObject.scriptList) {
                 for(id brick in script.brickList) {
                     if([brick isKindOfClass:[Brick class]] && [brick isListUsedWithList:list]) {
