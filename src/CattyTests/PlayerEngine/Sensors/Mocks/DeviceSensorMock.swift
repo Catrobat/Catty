@@ -56,7 +56,7 @@ final class DeviceSensorMock: SensorMock, DeviceSensor {
         mockedValue
     }
 
-    func convertToStandardized(rawValue: Double) -> Double {
+    func convertToStandardized(rawValue: Double, landscapeMode: Bool) -> Double {
         rawValue
     }
 }

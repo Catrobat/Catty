@@ -42,7 +42,7 @@ class LongitudeSensor: NSObject, DeviceSensor {
         self.getLocationManager()?.location?.coordinate.longitude ?? type(of: self).defaultRawValue
     }
 
-    func convertToStandardized(rawValue: Double) -> Double {
+    func convertToStandardized(rawValue: Double, landscapeMode: Bool) -> Double {
         rawValue
     }
 

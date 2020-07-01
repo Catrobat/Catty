@@ -59,16 +59,24 @@ final class LoudnessSensorTest: XCTestCase {
 
     func testConvertToStandardized() {
         // background noise
-        XCTAssertEqual(1, sensor.convertToStandardized(rawValue: -40), accuracy: Double.epsilon)
+        XCTAssertEqual(1, sensor.convertToStandardized(rawValue: -40, landscapeMode: false), accuracy: Double.epsilon)
 
-        let whisper = sensor.convertToStandardized(rawValue: -24)
+        let whisper = sensor.convertToStandardized(rawValue: -24, landscapeMode: false)
         XCTAssertEqual(6.3095, whisper, accuracy: Double.epsilon)
 
-        let normalVoice = sensor.convertToStandardized(rawValue: -15)
+        let normalVoice = sensor.convertToStandardized(rawValue: -15, landscapeMode: false)
         XCTAssertEqual(17.7827, normalVoice, accuracy: Double.epsilon)
 
-        let shouting = sensor.convertToStandardized(rawValue: -0.99)
+        let shouting = sensor.convertToStandardized(rawValue: -0.99, landscapeMode: false)
         XCTAssertEqual(89.2277, shouting, accuracy: Double.epsilon)
+    }
+
+    func testStandardizedValue() {
+        let convertToStandardizedValue = sensor.convertToStandardized(rawValue: sensor.rawValue(), landscapeMode: false)
+        let standardizedValue = sensor.standardizedValue(landscapeMode: false)
+        let standardizedValueLandscape = sensor.standardizedValue(landscapeMode: true)
+        XCTAssertEqual(convertToStandardizedValue, standardizedValue)
+        XCTAssertEqual(standardizedValue, standardizedValueLandscape)
     }
 
     func testTag() {

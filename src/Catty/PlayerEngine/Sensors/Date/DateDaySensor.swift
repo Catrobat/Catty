@@ -40,7 +40,7 @@ class DateDaySensor: DateSensor {
         Double(Calendar.current.component(.day, from: self.date()))
     }
 
-    func convertToStandardized(rawValue: Double) -> Double {
+    func convertToStandardized(rawValue: Double, landscapeMode: Bool) -> Double {
         rawValue
     }
 

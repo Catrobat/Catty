@@ -41,7 +41,7 @@
         self.getAudioManager()?.loudness() ?? type(of: self).defaultRawValue
     }
 
-    func convertToStandardized(rawValue: Double) -> Double {
+    func convertToStandardized(rawValue: Double, landscapeMode: Bool) -> Double {
         let rawValueConverted = pow(10, 0.05 * rawValue)
         return rawValueConverted * 100
     }

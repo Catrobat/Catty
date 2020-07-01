@@ -26,12 +26,12 @@ protocol DeviceSensor: Sensor {
     func rawValue() -> Double
 
     // Convert the iOS specific value (rawValue) to the Pocket Code standardized sensor value
-    func convertToStandardized(rawValue: Double) -> Double
+    func convertToStandardized(rawValue: Double, landscapeMode: Bool) -> Double
 }
 
 extension DeviceSensor {
     // The Pocket Code standardized sensor value
-    func standardizedValue() -> Double {
-        convertToStandardized(rawValue: self.rawValue())
+    func standardizedValue(landscapeMode: Bool) -> Double {
+        convertToStandardized(rawValue: self.rawValue(), landscapeMode: landscapeMode)
     }
 }

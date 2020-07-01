@@ -42,7 +42,7 @@
         self.getLocationManager()?.heading?.magneticHeading ?? type(of: self).defaultRawValue
     }
 
-    func convertToStandardized(rawValue: Double) -> Double {
+    func convertToStandardized(rawValue: Double, landscapeMode: Bool) -> Double {
         if rawValue <= 180 {
             return -rawValue
         }

@@ -50,7 +50,7 @@
     // roll is between -pi, pi on both iOS and Android
     // going to right, it is negative on Android and positive on iOS
     // going to left, it is positive on Android and negative on iOS
-    func convertToStandardized(rawValue: Double) -> Double {
+    func convertToStandardized(rawValue: Double, landscapeMode: Bool) -> Double {
         Util.radians(toDegree: -rawValue)
     }
 

@@ -70,8 +70,10 @@ final class TimeHourSensorTest: XCTestCase {
     }
 
     func testConvertToStandardized() {
-        XCTAssertEqual(1, sensor.convertToStandardized(rawValue: 1))
-        XCTAssertEqual(10, sensor.convertToStandardized(rawValue: 10))
+        XCTAssertEqual(1, sensor.convertToStandardized(rawValue: 1, landscapeMode: false))
+        XCTAssertEqual(10, sensor.convertToStandardized(rawValue: 10, landscapeMode: false))
+        XCTAssertEqual(1, sensor.convertToStandardized(rawValue: 1, landscapeMode: true))
+        XCTAssertEqual(10, sensor.convertToStandardized(rawValue: 10, landscapeMode: true))
     }
 
     func testFormulaEditorSections() {

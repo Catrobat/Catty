@@ -30,7 +30,7 @@ final class UserListFunctionsTest: XCTestCase {
 
     override func setUp() {
         let screenSize = Util.screenSize(true)
-        formulaManager = FormulaManager(sceneSize: screenSize)
+        formulaManager = FormulaManager(sceneSize: screenSize, landscapeMode: false)
     }
 
     func testNumberOfItems() {

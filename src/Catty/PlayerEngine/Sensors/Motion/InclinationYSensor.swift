@@ -52,7 +52,7 @@ import CoreMotion
     // pitch is between -pi/2, pi/2 on iOS and -pi,pi on Android
     // going forward, it is positive on both iOS and Android
     // going backwards, it is negative on both iOS and Android
-    func convertToStandardized(rawValue: Double) -> Double {
+    func convertToStandardized(rawValue: Double, landscapeMode: Bool) -> Double {
         let faceDown = (getMotionManager()?.accelerometerData?.acceleration.z ?? 0) > 0
         if faceDown == false {
             // screen up

@@ -27,13 +27,12 @@ import CoreBluetooth
 
     @objc(checkResourcesAndPushViewControllerTo:)
     func checkResourcesAndPushViewControllerTo(navigationController: UINavigationController) {
-        self.formulaManager = FormulaManager(sceneSize: Util.screenSize(true))
-
         navigationController.view.addSubview(self.loadingView)
         self.showLoadingView()
 
         DispatchQueue.global(qos: .userInitiated).async {
             self.project = Project.init(loadingInfo: Util.lastUsedProjectLoadingInfo())!
+            self.formulaManager = FormulaManager(sceneSize: Util.screenSize(true), landscapeMode: self.project.header.landscapeMode)
             let readyToStart = self.notifyUserAboutUnavailableResources(navigationController: navigationController)
 
             DispatchQueue.main.async {
