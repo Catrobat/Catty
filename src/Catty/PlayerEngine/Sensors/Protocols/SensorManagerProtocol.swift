@@ -24,7 +24,7 @@ protocol SensorManagerProtocol {
 
     static var defaultValueForUndefinedSensor: Double { get set }
 
-    init(sensors: [Sensor])
+    init(sensors: [Sensor], landscapeMode: Bool)
 
     func exists(tag: String) -> Bool
 

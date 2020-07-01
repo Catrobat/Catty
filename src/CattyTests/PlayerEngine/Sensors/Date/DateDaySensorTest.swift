@@ -68,9 +68,17 @@ final class DateDaySensorTest: XCTestCase {
         XCTAssertEqual(18, Int(sensor.rawValue()))
     }
 
+    func testConvertToStandardizedValue() {
+        XCTAssertEqual(1, sensor.convertToStandardized(rawValue: 1, landscapeMode: false))
+        XCTAssertEqual(10, sensor.convertToStandardized(rawValue: 10, landscapeMode: false))
+    }
+
     func testStandardizedValue() {
-        XCTAssertEqual(1, sensor.convertToStandardized(rawValue: 1))
-        XCTAssertEqual(10, sensor.convertToStandardized(rawValue: 10))
+        let convertToStandardizedValue = sensor.convertToStandardized(rawValue: sensor.rawValue(), landscapeMode: false)
+        let standardizedValue = sensor.standardizedValue(landscapeMode: false)
+        let standardizedValueLandscape = sensor.standardizedValue(landscapeMode: true)
+        XCTAssertEqual(convertToStandardizedValue, standardizedValue)
+        XCTAssertEqual(standardizedValue, standardizedValueLandscape)
     }
 
     func testFormulaEditorSections() {

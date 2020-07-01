@@ -27,8 +27,10 @@ import CoreMotion
 
     public static var defaultValueForUndefinedSensor: Double = 0
     private static var sensorMap = [String: Sensor]() // TODO: make instance let
+    private let landscapeMode: Bool
 
-    public required init(sensors: [Sensor]) {
+    public required init(sensors: [Sensor], landscapeMode: Bool) {
+        self.landscapeMode = landscapeMode
         super.init()
         registerSensors(sensorList: sensors)
     }
@@ -77,9 +79,8 @@ import CoreMotion
         } else if let sensor = sensor as? TouchSensor, let spriteObject = spriteObject {
             rawValue = sensor.standardizedValue(for: spriteObject) as AnyObject
         } else if let sensor = sensor as? DeviceSensor {
-            rawValue = sensor.standardizedValue() as AnyObject
+            rawValue = sensor.standardizedValue(landscapeMode: landscapeMode) as AnyObject
         }
-
         return rawValue
     }
 

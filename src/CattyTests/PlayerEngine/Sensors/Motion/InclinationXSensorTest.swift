@@ -70,25 +70,33 @@ final class InclinationXSensorTest: XCTestCase {
     // does not depend on the orientation of the screen (left/right, up/down)
     func testConvertToStandardized() {
         // test no inclination
-        XCTAssertEqual(sensor.convertToStandardized(rawValue: 0), 0, accuracy: Double.epsilon)
+        XCTAssertEqual(sensor.convertToStandardized(rawValue: 0, landscapeMode: false), 0, accuracy: Double.epsilon)
 
         // test screen half left
-        XCTAssertEqual(sensor.convertToStandardized(rawValue: -Double.pi / 4), 45, accuracy: Double.epsilon)
+        XCTAssertEqual(sensor.convertToStandardized(rawValue: -Double.pi / 4, landscapeMode: false), 45, accuracy: Double.epsilon)
 
         // test screen half right
-        XCTAssertEqual(sensor.convertToStandardized(rawValue: Double.pi / 4), -45, accuracy: Double.epsilon)
+        XCTAssertEqual(sensor.convertToStandardized(rawValue: Double.pi / 4, landscapeMode: false), -45, accuracy: Double.epsilon)
 
         // test screen left
-        XCTAssertEqual(sensor.convertToStandardized(rawValue: -Double.pi / 2), 90, accuracy: Double.epsilon)
+        XCTAssertEqual(sensor.convertToStandardized(rawValue: -Double.pi / 2, landscapeMode: false), 90, accuracy: Double.epsilon)
 
         // test screen right
-        XCTAssertEqual(sensor.convertToStandardized(rawValue: Double.pi / 2), -90, accuracy: Double.epsilon)
+        XCTAssertEqual(sensor.convertToStandardized(rawValue: Double.pi / 2, landscapeMode: false), -90, accuracy: Double.epsilon)
 
         // test screen left, then down
-        XCTAssertEqual(sensor.convertToStandardized(rawValue: -Double.pi), 180, accuracy: Double.epsilon)
+        XCTAssertEqual(sensor.convertToStandardized(rawValue: -Double.pi, landscapeMode: false), 180, accuracy: Double.epsilon)
 
         // test screen right, then down
-        XCTAssertEqual(sensor.convertToStandardized(rawValue: Double.pi), -180, accuracy: Double.epsilon)
+        XCTAssertEqual(sensor.convertToStandardized(rawValue: Double.pi, landscapeMode: false), -180, accuracy: Double.epsilon)
+    }
+
+    func testStandardizedValue() {
+        let convertToStandardizedValue = sensor.convertToStandardized(rawValue: sensor.rawValue(), landscapeMode: false)
+        let standardizedValue = sensor.standardizedValue(landscapeMode: false)
+        let standardizedValueLandscape = sensor.standardizedValue(landscapeMode: true)
+        XCTAssertEqual(convertToStandardizedValue, standardizedValue)
+        XCTAssertEqual(standardizedValue, standardizedValueLandscape)
     }
 
     func testTag() {

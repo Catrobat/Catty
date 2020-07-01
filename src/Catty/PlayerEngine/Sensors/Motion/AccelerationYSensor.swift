@@ -42,7 +42,7 @@
         self.getMotionManager()?.deviceMotion?.userAcceleration.y ?? type(of: self).defaultRawValue
     }
 
-    func convertToStandardized(rawValue: Double) -> Double {
+    func convertToStandardized(rawValue: Double, landscapeMode: Bool) -> Double {
         rawValue * 9.8
     }
 

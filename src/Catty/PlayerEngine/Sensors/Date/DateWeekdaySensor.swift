@@ -40,7 +40,7 @@ class DateWeekdaySensor: DateSensor {
         Double(Calendar.current.component(.weekday, from: self.date()))
     }
 
-    func convertToStandardized(rawValue: Double) -> Double {
+    func convertToStandardized(rawValue: Double, landscapeMode: Bool) -> Double {
         var weekday = rawValue
         if weekday == 1.0 { //Sunday
             weekday = 7

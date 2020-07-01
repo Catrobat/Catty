@@ -43,7 +43,7 @@ class FaceDetectedSensor: DeviceSensor {
         return isFaceDetected ? 1.0 : 0.0
     }
 
-    func convertToStandardized(rawValue: Double) -> Double {
+    func convertToStandardized(rawValue: Double, landscapeMode: Bool) -> Double {
         rawValue
     }
 

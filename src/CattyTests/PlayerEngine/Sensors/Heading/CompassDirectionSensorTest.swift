@@ -67,28 +67,36 @@ final class CompassDirectionSensorTest: XCTestCase {
 
     func testConvertToStandardized() {
         // N
-        XCTAssertEqual(0, sensor.convertToStandardized(rawValue: 0))
+        XCTAssertEqual(0, sensor.convertToStandardized(rawValue: 0, landscapeMode: false))
 
         // N-E
-        XCTAssertEqual(-45, sensor.convertToStandardized(rawValue: 45))
+        XCTAssertEqual(-45, sensor.convertToStandardized(rawValue: 45, landscapeMode: false))
 
         // E
-        XCTAssertEqual(-90, sensor.convertToStandardized(rawValue: 90))
+        XCTAssertEqual(-90, sensor.convertToStandardized(rawValue: 90, landscapeMode: false))
 
         // S-E
-        XCTAssertEqual(-135, sensor.convertToStandardized(rawValue: 135))
+        XCTAssertEqual(-135, sensor.convertToStandardized(rawValue: 135, landscapeMode: false))
 
         // S
-        XCTAssertEqual(-180, sensor.convertToStandardized(rawValue: 180))
+        XCTAssertEqual(-180, sensor.convertToStandardized(rawValue: 180, landscapeMode: false))
 
         // S-W
-        XCTAssertEqual(135, sensor.convertToStandardized(rawValue: 225))
+        XCTAssertEqual(135, sensor.convertToStandardized(rawValue: 225, landscapeMode: false))
 
         // W
-        XCTAssertEqual(90, sensor.convertToStandardized(rawValue: 270))
+        XCTAssertEqual(90, sensor.convertToStandardized(rawValue: 270, landscapeMode: false))
 
         // Kanye's daughter
-        XCTAssertEqual(45, sensor.convertToStandardized(rawValue: 315))
+        XCTAssertEqual(45, sensor.convertToStandardized(rawValue: 315, landscapeMode: false))
+    }
+
+    func testStandardizedValue() {
+        let convertToStandardizedValue = sensor.convertToStandardized(rawValue: sensor.rawValue(), landscapeMode: false)
+        let standardizedValue = sensor.standardizedValue(landscapeMode: false)
+        let standardizedValueLandscape = sensor.standardizedValue(landscapeMode: true)
+        XCTAssertEqual(convertToStandardizedValue, standardizedValue)
+        XCTAssertEqual(standardizedValue, standardizedValueLandscape)
     }
 
     func testTag() {

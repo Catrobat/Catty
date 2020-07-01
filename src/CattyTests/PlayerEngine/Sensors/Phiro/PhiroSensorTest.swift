@@ -123,4 +123,19 @@ final class PhiroSensorTest: XCTestCase {
         UserDefaults.standard.set(false, forKey: kUsePhiroBricks)
         XCTAssertEqual(0, phiroBottomRight.formulaEditorSections(for: SpriteObject()).count)
     }
+
+    func testConvertToStandardized() {
+        XCTAssertEqual(100, phiroSideLeft.convertToStandardized(rawValue: 100, landscapeMode: false))
+        XCTAssertEqual(100, phiroSideLeft.convertToStandardized(rawValue: 100, landscapeMode: true))
+        XCTAssertEqual(100, phiroSideRight.convertToStandardized(rawValue: 100, landscapeMode: false))
+        XCTAssertEqual(100, phiroSideRight.convertToStandardized(rawValue: 100, landscapeMode: true))
+        XCTAssertEqual(100, phiroFrontLeft.convertToStandardized(rawValue: 100, landscapeMode: false))
+        XCTAssertEqual(100, phiroFrontLeft.convertToStandardized(rawValue: 100, landscapeMode: true))
+        XCTAssertEqual(100, phiroFrontRight.convertToStandardized(rawValue: 100, landscapeMode: false))
+        XCTAssertEqual(100, phiroFrontRight.convertToStandardized(rawValue: 100, landscapeMode: true))
+        XCTAssertEqual(100, phiroBottomLeft.convertToStandardized(rawValue: 100, landscapeMode: false))
+        XCTAssertEqual(100, phiroBottomLeft.convertToStandardized(rawValue: 100, landscapeMode: true))
+        XCTAssertEqual(100, phiroBottomRight.convertToStandardized(rawValue: 100, landscapeMode: false))
+        XCTAssertEqual(100, phiroBottomRight.convertToStandardized(rawValue: 100, landscapeMode: true))
+    }
 }

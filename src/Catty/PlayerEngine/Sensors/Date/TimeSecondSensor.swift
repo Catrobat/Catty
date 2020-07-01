@@ -40,7 +40,7 @@ class TimeSecondSensor: DateSensor {
         Double(Calendar.current.component(.second, from: self.date()))
     }
 
-    func convertToStandardized(rawValue: Double) -> Double {
+    func convertToStandardized(rawValue: Double, landscapeMode: Bool) -> Double {
         rawValue
     }
 

@@ -40,7 +40,7 @@ class DateMonthSensor: DateSensor {
         Double(Calendar.current.component(.month, from: self.date()))
     }
 
-    func convertToStandardized(rawValue: Double) -> Double {
+    func convertToStandardized(rawValue: Double, landscapeMode: Bool) -> Double {
         rawValue
     }
 

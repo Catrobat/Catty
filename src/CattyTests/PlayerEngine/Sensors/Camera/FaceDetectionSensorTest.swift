@@ -55,8 +55,16 @@ final class FaceDetectionSensorTest: XCTestCase {
     }
 
     func testConvertToStandardized() {
-        XCTAssertEqual(0, sensor.convertToStandardized(rawValue: 0))
-        XCTAssertEqual(1, sensor.convertToStandardized(rawValue: 1))
+        XCTAssertEqual(0, sensor.convertToStandardized(rawValue: 0, landscapeMode: false))
+        XCTAssertEqual(1, sensor.convertToStandardized(rawValue: 1, landscapeMode: false))
+    }
+
+    func testStandardizedValue() {
+        let convertToStandardizedValue = sensor.convertToStandardized(rawValue: sensor.rawValue(), landscapeMode: false)
+        let standardizedValue = sensor.standardizedValue(landscapeMode: false)
+        let standardizedValueLandscape = sensor.standardizedValue(landscapeMode: true)
+        XCTAssertEqual(convertToStandardizedValue, standardizedValue)
+        XCTAssertEqual(standardizedValue, standardizedValueLandscape)
     }
 
     func testTag() {

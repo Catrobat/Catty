@@ -90,25 +90,32 @@ final class DateWeekdaySensorTest: XCTestCase {
 
     func testConvertToStandardized() {
         /* test Sunday */
-        XCTAssertEqual(7, Int(sensor.convertToStandardized(rawValue: 1)))
+        XCTAssertEqual(7, Int(sensor.convertToStandardized(rawValue: 1, landscapeMode: false)))
+        XCTAssertEqual(7, Int(sensor.convertToStandardized(rawValue: 1, landscapeMode: true)))
 
         /* test Monday */
-        XCTAssertEqual(1, Int(sensor.convertToStandardized(rawValue: 2)))
+        XCTAssertEqual(1, Int(sensor.convertToStandardized(rawValue: 2, landscapeMode: false)))
+        XCTAssertEqual(1, Int(sensor.convertToStandardized(rawValue: 2, landscapeMode: true)))
 
         /* test Tuesday */
-        XCTAssertEqual(2, Int(sensor.convertToStandardized(rawValue: 3)))
+        XCTAssertEqual(2, Int(sensor.convertToStandardized(rawValue: 3, landscapeMode: false)))
+        XCTAssertEqual(2, Int(sensor.convertToStandardized(rawValue: 3, landscapeMode: true)))
 
         /* test Wednesday */
-        XCTAssertEqual(3, Int(sensor.convertToStandardized(rawValue: 4)))
+        XCTAssertEqual(3, Int(sensor.convertToStandardized(rawValue: 4, landscapeMode: false)))
+        XCTAssertEqual(3, Int(sensor.convertToStandardized(rawValue: 4, landscapeMode: true)))
 
         /* test Thursday */
-        XCTAssertEqual(4, Int(sensor.convertToStandardized(rawValue: 5)))
+        XCTAssertEqual(4, Int(sensor.convertToStandardized(rawValue: 5, landscapeMode: false)))
+        XCTAssertEqual(4, Int(sensor.convertToStandardized(rawValue: 5, landscapeMode: true)))
 
         /* test Friday */
-        XCTAssertEqual(5, Int(sensor.convertToStandardized(rawValue: 6)))
+        XCTAssertEqual(5, Int(sensor.convertToStandardized(rawValue: 6, landscapeMode: false)))
+        XCTAssertEqual(5, Int(sensor.convertToStandardized(rawValue: 6, landscapeMode: true)))
 
         /* test Saturday */
-        XCTAssertEqual(6, Int(sensor.convertToStandardized(rawValue: 7)))
+        XCTAssertEqual(6, Int(sensor.convertToStandardized(rawValue: 7, landscapeMode: false)))
+        XCTAssertEqual(6, Int(sensor.convertToStandardized(rawValue: 7, landscapeMode: true)))
     }
 
     func testFormulaEditorSections() {

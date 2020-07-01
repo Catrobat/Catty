@@ -45,7 +45,7 @@ class FacePositionXSensor: DeviceSensor {
         return positionX
     }
 
-    func convertToStandardized(rawValue: Double) -> Double {
+    func convertToStandardized(rawValue: Double, landscapeMode: Bool) -> Double {
         if rawValue == type(of: self).defaultRawValue {
             return rawValue
         }
