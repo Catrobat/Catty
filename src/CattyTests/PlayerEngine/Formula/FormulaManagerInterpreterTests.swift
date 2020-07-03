@@ -733,7 +733,7 @@ final class FormulaManagerInterpreterTests: XCTestCase {
 
         let userVariable = UserVariable(name: "testName")
         userVariable.value = "testValue"
-        userData.programVariableList = [userVariable]
+        object.userData.addVariable(userVariable)
 
         var element = FormulaElement(elementType: ElementType.USER_VARIABLE,
                                      value: userVariable.name)
@@ -763,7 +763,7 @@ final class FormulaManagerInterpreterTests: XCTestCase {
         let userList = UserList(name: "test")
         userList.add(element: 12.3)
 
-        userData.programListOfLists = [userList]
+        object.userData.addList(userList)
 
         var element = FormulaElement(elementType: ElementType.USER_LIST,
                                      value: userList.name)
@@ -771,7 +771,7 @@ final class FormulaManagerInterpreterTests: XCTestCase {
         XCTAssertEqual(12.3, interpreter.interpretDouble(formula, for: object))
 
         userList.add(element: "testValue")
-        userData.programListOfLists = [userList]
+        userData.addList(userList)
         element = FormulaElement(elementType: ElementType.USER_LIST,
                                  value: userList.name)
         formula = Formula(formulaElement: element)!

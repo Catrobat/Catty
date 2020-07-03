@@ -50,7 +50,7 @@ final class InsertItemIntoUserListBrickTests: XCTestCase {
         spriteObject.project.userData = UserDataContainer()
 
         userList = UserList(name: "testName")
-        spriteObject.project.userData.addObjectList(userList, for: spriteObject)
+        spriteObject.userData.addList(userList)
 
         brick = InsertItemIntoUserListBrick()
         brick.userList = userList

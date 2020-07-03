@@ -828,14 +828,14 @@ NS_ENUM(NSInteger, ButtonIndex) {
     // ------------------
     // Project Variables
     // ------------------
-    for(UserVariable *userVariable in userData.programVariableList) {
+    for(UserVariable *userVariable in userData.variables) {
         [self.variableSourceProject addObject:userVariable];
     }
     
     // ------------------
     // Project Lists
     // ------------------
-    for(UserVariable *userVariable in userData.programListOfLists) {
+    for(UserVariable *userVariable in userData.lists) {
         [self.listSourceProject addObject:userVariable];
     }
     
@@ -915,9 +915,9 @@ NS_ENUM(NSInteger, ButtonIndex) {
     int buttonType = 0;
     
     if (self.isProjectVariable) {
-        [self.object.project.userData.programVariableList addObject:variable];
+        [self.object.project.userData addVariable:variable];
     }  else {
-        [self.object.project.userData addObjectVariable:variable forObject:self.object];
+        [self.object.userData addVariable:variable];
     }
     
     [self.object.project saveToDiskWithNotification:YES];
@@ -948,9 +948,9 @@ NS_ENUM(NSInteger, ButtonIndex) {
     int buttonType = 11;
     
     if (self.isProjectVariable){
-        [self.object.project.userData.programListOfLists addObject:list];
+        [self.object.project.userData addList:list];
     } else {
-        [self.object.project.userData addObjectList:list forObject:self.object];
+        [self.object.userData addList:list];
     }
     
     [self.object.project saveToDiskWithNotification:YES];
@@ -1153,7 +1153,10 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 - (void)deleteVariable: (UserVariable*)userVariable atRow:(NSInteger)row isProjectData:(BOOL)isProjectData
 {
-    BOOL removed = [self.object.project.userData removeUserVariableNamed:userVariable.name forSpriteObject:self.object];
+    BOOL removed = [self.object.userData removeUserVariableWithName: userVariable.name];
+    if (!removed) {
+        removed = [self.object.project.userData removeUserVariableWithName: userVariable.name];
+    }
     if (removed) {
         if (isProjectData) {
             [self.variableSourceProject removeObjectAtIndex:row];
@@ -1167,7 +1170,10 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 - (void)deleteList: (id<UserDataProtocol>)userList atRow:(NSInteger)row isProjectData:(BOOL)isProjectData
 {
-    BOOL removed = [self.object.project.userData removeUserListNamed:userList.name forSpriteObject:self.object];
+    BOOL removed = [self.object.userData removeUserListWithName: userList.name];
+    if (!removed) {
+        removed = [self.object.project.userData removeUserListWithName: userList.name];
+    }
     if (removed) {
         if (isProjectData) {
             [self.listSourceProject removeObjectAtIndex:row];
@@ -1181,7 +1187,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 - (BOOL)isVariableUsed:(UserVariable*)variable
 {
-    if([self.object.project.userData isProjectVariable:variable]) {
+    if([self.object.project.userData containsVariable:variable]) {
         for(SpriteObject *spriteObject in self.object.project.allObjects) {
             for(Script *script in spriteObject.scriptList) {
                 for(id brick in script.brickList) {
@@ -1206,7 +1212,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 - (BOOL)isListUsed:(id<UserDataProtocol>)list
 {
-    if([self.object.project.userData isProjectList:list]) {
+    if([self.object.project.userData containsList:list]) {
         for(SpriteObject *spriteObject in self.object.project.allObjects) {
             for(Script *script in spriteObject.scriptList) {
                 for(id brick in script.brickList) {

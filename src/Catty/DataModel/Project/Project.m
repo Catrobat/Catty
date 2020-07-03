@@ -82,8 +82,8 @@
         if (currentObject == object) {
             [currentObject removeSounds:currentObject.soundList AndSaveToDisk:NO];
             [currentObject removeLooks:currentObject.lookList AndSaveToDisk:NO];
-            [currentObject.project.userData removeObjectVariablesForSpriteObject:currentObject];
-            [currentObject.project.userData removeObjectListsForSpriteObject:currentObject];
+            [currentObject.userData removeAllVariables];
+            [currentObject.userData removeAllLists];
             currentObject.project = nil;
             [self.objectList removeObjectAtIndex:index];
             break;
@@ -294,11 +294,11 @@
     [self.objectList addObject:copiedObject];
     
     for (UserVariable *variable in copiedVariables) {
-       [self.userData addObjectVariable:variable forObject:copiedObject];
+       [copiedObject.userData addVariable:variable];
     }
     
     for (UserList *list in copiedLists) {
-       [self.userData addObjectList:list forObject:copiedObject];
+        [copiedObject.userData addList:list];
     }
     
     [self saveToDiskWithNotification:YES];

@@ -53,10 +53,10 @@ class BrickCellVariableDataTests: XCTestCase {
         secondObjectVariable = UserVariable(name: "testVariable3")
         programVariable = UserVariable(name: "testVariable4")
 
-        userDataContainer.addObjectVariable(objectVariable1, for: spriteObject)
-        userDataContainer.addObjectVariable(objectVariable2, for: spriteObject)
-        userDataContainer.addObjectVariable(secondObjectVariable, for: spriteObject2)
-        userDataContainer.programVariableList.add(programVariable as Any)
+        spriteObject.userData.addVariable(objectVariable1)
+        spriteObject.userData.addVariable(objectVariable2)
+        spriteObject2.userData.addVariable(secondObjectVariable)
+        userDataContainer.addVariable(programVariable)
         project = Project()
         project.userData = userDataContainer
 
@@ -129,6 +129,7 @@ class BrickCellVariableDataTests: XCTestCase {
     func testValuesWhenNoVariableInContainer() {
 
         project.userData = UserDataContainer()
+        spriteObject.userData.removeAllVariables()
         brick.userVariable = nil
         brickCell.scriptOrBrick = brick
 

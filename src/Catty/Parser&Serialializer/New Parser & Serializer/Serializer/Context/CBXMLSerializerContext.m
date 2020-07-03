@@ -25,6 +25,15 @@
 
 @implementation CBXMLSerializerContext
 
+- (instancetype)initWithProject:(Project *)project {
+    
+    self = [super init];
+    if (self) {
+        _project = project;
+    }
+    return self;
+}
+
 #pragma mark - Getters and Setters
 - (CBXMLPositionStack*)currentPositionStack
 {
@@ -92,6 +101,7 @@
     copiedContext.spriteObjectNameUserVariableListPositions = [self.spriteObjectNameUserVariableListPositions mutableCopy];
     copiedContext.spriteObjectNameUserListOfListsPositions = [self.spriteObjectNameUserListOfListsPositions mutableCopy];
     copiedContext.brickList = [self.brickList mutableCopy];
+    copiedContext.project = self.project;
     return copiedContext;
 }
 

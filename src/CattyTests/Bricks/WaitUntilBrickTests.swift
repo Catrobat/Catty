@@ -28,8 +28,8 @@ final class WaitUntilBrickTests: XMLAbstractTest {
 
     func testWaitUntilBrick_conditionTrue_proceedsToNextBrick() {
         let project = getProjectForXML(xmlFile: "WaitUntilBrick0991")
-        let testVar = project.userData.getUserVariableNamed("testVar", for: project.objectList[0] as? SpriteObject)
-        let hasFinishedWaiting = project.userData.getUserVariableNamed("hasFinishedWaiting", for: project.objectList[0] as? SpriteObject)
+        let testVar = project.userData.getUserVariable(withName: "testVar")
+        let hasFinishedWaiting = project.userData.getUserVariable(withName: "hasFinishedWaiting")
 
         let scene = createScene(project: project)
         let started = scene.startProject()
@@ -47,7 +47,7 @@ final class WaitUntilBrickTests: XMLAbstractTest {
 
     func testWaitUntilBrick_conditionFalse_getsStuckInWaitUntilBrick() {
         let project = getProjectForXML(xmlFile: "WaitUntilBrick0991")
-        let hasFinishedWaiting = project.userData.getUserVariableNamed("hasFinishedWaiting", for: project.objectList[0] as? SpriteObject)
+        let hasFinishedWaiting = project.userData.getUserVariable(withName: "hasFinishedWaiting")
 
         let scene = createScene(project: project)
         let started = scene.startProject()

@@ -58,6 +58,14 @@
     return _scriptList;
 }
 
+- (UserDataContainer*)userData
+{
+    // lazy instantiation
+    if (! _userData)
+        _userData = [UserDataContainer new];
+    return _userData;
+}
+
 - (NSUInteger)numberOfScripts
 {
     return [self.scriptList count];
@@ -415,6 +423,13 @@
         if (! [firstScript isEqualToScript:secondScript])
             return NO;
     }
+    
+    if(self.userData && spriteObject.userData) {
+        if (![self.userData isEqualToUserDataContainer:spriteObject.userData]) {
+            return NO;
+        }
+    }
+    
     return YES;
 }
 
@@ -426,6 +441,7 @@
     SpriteObject *newObject = [[SpriteObject alloc] init];
     newObject.name = [NSString stringWithString:self.name];
     newObject.project = self.project;
+    newObject.userData = [self.userData mutableCopy];
     [context updateReference:self WithReference:newObject];
 
     // deep copy

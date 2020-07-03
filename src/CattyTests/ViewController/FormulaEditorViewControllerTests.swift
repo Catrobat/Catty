@@ -57,7 +57,7 @@ final class FormulaEditorViewControllerTests: XCTestCase {
 
     func testIsVariableUsedGlobalWithoutBrick() {
         let variable = UserVariable(name: "globalVariable")
-        project.userData.programVariableList.add(variable)
+        project.userData.addVariable(variable)
 
         XCTAssertFalse(controller.isVariableUsed(variable))
     }
@@ -67,7 +67,7 @@ final class FormulaEditorViewControllerTests: XCTestCase {
         let brickA = HideTextBrick()
         let brickB = HideTextBrick()
 
-        project.userData.programVariableList.add(variable)
+        project.userData.addVariable(variable)
         brickB.userVariable = variable
         script.brickList.add(brickA)
 
@@ -82,7 +82,7 @@ final class FormulaEditorViewControllerTests: XCTestCase {
         let brick = HideTextBrick()
         let scriptB = WhenScript()
 
-        project.userData.programVariableList.add(variable)
+        project.userData.addVariable(variable)
         brick.userVariable = variable
         scriptB.brickList.add(brick)
 
@@ -98,7 +98,7 @@ final class FormulaEditorViewControllerTests: XCTestCase {
         let scriptB = WhenScript()
         let objectB = SpriteObject()
 
-        project.userData.programVariableList.add(variable)
+        project.userData.addVariable(variable)
         brick.userVariable = variable
         scriptB.brickList.add(brick)
         objectB.scriptList.add(scriptB)
@@ -111,7 +111,7 @@ final class FormulaEditorViewControllerTests: XCTestCase {
 
     func testIsVariableUsedLocalWithoutBrick() {
         let variable = UserVariable(name: "localVariable")
-        project.userData.addObjectVariable(variable, for: spriteObject)
+        spriteObject.userData.addVariable(variable)
 
         XCTAssertFalse(controller.isVariableUsed(variable))
     }
@@ -121,7 +121,7 @@ final class FormulaEditorViewControllerTests: XCTestCase {
         let brickA = HideTextBrick()
         let brickB = HideTextBrick()
 
-        project.userData.addObjectVariable(variable, for: spriteObject)
+        spriteObject.userData.addVariable(variable)
         brickB.userVariable = variable
         script.brickList.add(brickA)
 
@@ -136,7 +136,7 @@ final class FormulaEditorViewControllerTests: XCTestCase {
         let brick = HideTextBrick()
         let scriptB = WhenScript()
 
-        project.userData.addObjectVariable(variable, for: spriteObject)
+        spriteObject.userData.addVariable(variable)
         brick.userVariable = variable
         scriptB.brickList.add(brick)
 
@@ -152,7 +152,7 @@ final class FormulaEditorViewControllerTests: XCTestCase {
         let scriptB = WhenScript()
         let objectB = SpriteObject()
 
-        project.userData.addObjectVariable(variable, for: spriteObject)
+        spriteObject.userData.addVariable(variable)
         brick.userVariable = variable
         scriptB.brickList.add(brick)
         objectB.scriptList.add(scriptB)
@@ -166,7 +166,7 @@ final class FormulaEditorViewControllerTests: XCTestCase {
 
     func testIsListUsedGlobalWithoutBrick() {
         let list = UserList(name: "globalList")
-        project.userData.programListOfLists.add(list)
+        project.userData.addList(list)
 
         XCTAssertFalse(controller.isListUsed(list))
     }
@@ -179,7 +179,7 @@ final class FormulaEditorViewControllerTests: XCTestCase {
         brickA.listFormula = Formula()
         brickB.listFormula = Formula()
 
-        project.userData.programListOfLists.add(list)
+        project.userData.addList(list)
         brickB.userList = list
         script.brickList.add(brickA)
 
@@ -196,7 +196,7 @@ final class FormulaEditorViewControllerTests: XCTestCase {
 
         brick.listFormula = Formula()
 
-        project.userData.programListOfLists.add(list)
+        project.userData.addList(list)
         brick.userList = list
         scriptB.brickList.add(brick)
 
@@ -214,7 +214,7 @@ final class FormulaEditorViewControllerTests: XCTestCase {
 
         brick.listFormula = Formula()
 
-        project.userData.programListOfLists.add(list)
+        project.userData.addList(list)
         brick.userList = list
         scriptB.brickList.add(brick)
         objectB.scriptList.add(scriptB)
@@ -227,7 +227,7 @@ final class FormulaEditorViewControllerTests: XCTestCase {
 
     func testIsListUsedLocalWithoutBrick() {
         let list = UserList(name: "localList")
-        project.userData.addObjectList(list, for: spriteObject)
+        spriteObject.userData.addList(list)
 
         XCTAssertFalse(controller.isListUsed(list))
     }
@@ -240,7 +240,7 @@ final class FormulaEditorViewControllerTests: XCTestCase {
         brickA.listFormula = Formula()
         brickB.listFormula = Formula()
 
-        project.userData.addObjectList(list, for: spriteObject)
+        spriteObject.userData.addList(list)
         brickB.userList = list
         script.brickList.add(brickA)
 
@@ -257,7 +257,7 @@ final class FormulaEditorViewControllerTests: XCTestCase {
 
         brick.listFormula = Formula()
 
-        project.userData.addObjectList(list, for: spriteObject)
+        spriteObject.userData.addList(list)
         brick.userList = list
         scriptB.brickList.add(brick)
 
@@ -275,7 +275,7 @@ final class FormulaEditorViewControllerTests: XCTestCase {
 
         brick.listFormula = Formula()
 
-        project.userData.addObjectList(list, for: spriteObject)
+        spriteObject.userData.addList(list)
         brick.userList = list
         scriptB.brickList.add(brick)
         objectB.scriptList.add(scriptB)

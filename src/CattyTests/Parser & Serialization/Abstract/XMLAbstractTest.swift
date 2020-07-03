@@ -66,7 +66,7 @@ class XMLAbstractTest: XCTestCase {
         firstBgObject.name = firstBgObject.name.replacingOccurrences(of: "Hintergrund", with: "Background")
         secondBgObject.name = secondBgObject.name.replacingOccurrences(of: "Hintergrund", with: "Background")
 
-        XCTAssertTrue((firstProject.isEqual(to: secondProject)), "Projects are not equal")
+        XCTAssertTrue(firstProject.isEqual(to: secondProject))
     }
 
     func getProjectForXML(xmlFile: String) -> Project {

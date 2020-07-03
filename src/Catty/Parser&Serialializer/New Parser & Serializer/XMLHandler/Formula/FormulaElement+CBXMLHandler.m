@@ -58,22 +58,6 @@
         formulaTree.leftChild = leftChildFormula;
     }
     
-    if(formulaTree.type == USER_VARIABLE && context && context.spriteObject) {
-        NSMutableArray *formulaVariableList = [context.formulaVariableNameList objectForKey:context.spriteObject.name];
-        if(!formulaVariableList)
-            formulaVariableList = [NSMutableArray new];
-        [formulaVariableList addObject:formulaTree.value];
-        [context.formulaVariableNameList setObject:formulaVariableList forKey:context.spriteObject.name];
-    }
-    
-    if(formulaTree.type == USER_LIST && context && context.spriteObject) {
-        NSMutableArray *formulaListOfLists = [context.formulaListNameList objectForKey:context.spriteObject.name];
-        if(!formulaListOfLists)
-            formulaListOfLists = [NSMutableArray new];
-        [formulaListOfLists addObject:formulaTree.value];
-        [context.formulaListNameList setObject:formulaListOfLists forKey:context.spriteObject.name];
-    }
-        
     return formulaTree;
 }
 

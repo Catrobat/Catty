@@ -30,8 +30,15 @@ class XMLParserBrickTests093: XMLAbstractTest {
 
     override func setUp() {
         super.setUp()
-        parserContext = CBXMLParserContext(languageVersion: CGFloat(Float32(0.93)))
         formulaManager = FormulaManager(sceneSize: Util.screenSize(true), landscapeMode: false)
+    }
+
+    override func getXMLDocumentForPath(xmlPath: String) -> GDataXMLDocument {
+        let document = super.getXMLDocumentForPath(xmlPath: xmlPath)
+
+        parserContext = CBXMLParserContext(languageVersion: CGFloat(Float32(0.93)), andRootElement: document.rootElement())
+
+        return document
     }
 
     func testValidSetLookBrick() {
@@ -90,9 +97,9 @@ class XMLParserBrickTests093: XMLAbstractTest {
         let lookList = SpriteObject.parseAndCreateLooks(objectElement, with: self.parserContext)
         let brickXMLElement = brickElement!.first
 
-        let context = CBXMLParserContext()
-        context.spriteObject = SpriteObject()
-        context.spriteObject.lookList = lookList
+        let context = CBXMLSerializerContext(project: Project())
+        context?.spriteObject = SpriteObject()
+        context?.spriteObject.lookList = lookList
         let brick = self.parserContext!.parse(from: brickXMLElement, withClass: SetSizeToBrick.self as? CBXMLNodeProtocol.Type) as! Brick
 
         XCTAssertTrue(brick.isKind(of: SetSizeToBrick.self), "Invalid brick class")
@@ -105,11 +112,11 @@ class XMLParserBrickTests093: XMLAbstractTest {
         XCTAssertEqual(formula!.formulaTree.type, ElementType.NUMBER, "Invalid variable type")
         XCTAssertEqual(formula!.formulaTree.value, "30", "Invalid formula value")
 
-        XCTAssertEqual(self.formulaManager.interpretDouble(formula!, for: context.spriteObject), 30, accuracy: 0.00001, "Formula not correctly parsed")
+        XCTAssertEqual(self.formulaManager.interpretDouble(formula!, for: context!.spriteObject), 30, accuracy: 0.00001, "Formula not correctly parsed")
     }
 
     func testValidForeverBrickAndLoopEndlessBrick() {
-        let context = CBXMLParserContext()
+        let context = CBXMLSerializerContext(project: Project())
         let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProject"))
         let brickElement1 = self.getXMLElementsForXPath(document, xPath: "//program/objectList/object[2]/scriptList/script[1]/brickList/brick[2]")
         let brickElement2 = self.getXMLElementsForXPath(document, xPath: "//program/objectList/object[2]/scriptList/script[1]/brickList/brick[12]")
@@ -126,7 +133,7 @@ class XMLParserBrickTests093: XMLAbstractTest {
         XCTAssertTrue(brick1.isKind(of: ForeverBrick.self), "Invalid brick class")
         XCTAssertTrue(brick2.isKind(of: LoopEndBrick.self), "Invalid brick class")
 
-        XCTAssertTrue(context.openedNestingBricksStack.isEmpty(), "Nesting bricks not closed properly")
+        XCTAssertTrue(context!.openedNestingBricksStack.isEmpty(), "Nesting bricks not closed properly")
     }
 
     func testValidPlaceAtBrick() {

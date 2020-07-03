@@ -42,7 +42,7 @@ final class UserListFunctionsTest: XCTestCase {
         userList.add(element: 0)
         userList.add(element: 0)
         userList.add(element: 0)
-        project.userData.programListOfLists.add(userList)
+        project.userData.addList(userList)
 
         let leftChild = FormulaElement(elementType: ElementType.USER_LIST, value: "TestList", leftChild: nil, rightChild: nil, parent: nil)
         let formulaTree = FormulaElement(elementType: ElementType.FUNCTION, value: NumberOfItemsFunction.tag, leftChild: leftChild, rightChild: nil, parent: nil)
@@ -62,7 +62,7 @@ final class UserListFunctionsTest: XCTestCase {
         userList.add(element: 1)
         userList.add(element: 4)
         userList.add(element: 8)
-        project.userData.programListOfLists.add(userList)
+        project.userData.addList(userList)
 
         var leftChild = FormulaElement(elementType: ElementType.NUMBER, value: "2", leftChild: nil, rightChild: nil, parent: nil)
         let rightChild = FormulaElement(elementType: ElementType.USER_LIST, value: "TestList", leftChild: nil, rightChild: nil, parent: nil)
@@ -96,7 +96,7 @@ final class UserListFunctionsTest: XCTestCase {
         userList.add(element: 0)
         userList.add(element: 4)
         userList.add(element: 8)
-        project.userData.programListOfLists.add(userList)
+        project.userData.addList(userList)
 
         let rightChild = FormulaElement(elementType: ElementType.NUMBER, value: "4", leftChild: nil, rightChild: nil, parent: nil)
         let leftChild = FormulaElement(elementType: ElementType.USER_LIST, value: "TestList", leftChild: nil, rightChild: nil, parent: nil)

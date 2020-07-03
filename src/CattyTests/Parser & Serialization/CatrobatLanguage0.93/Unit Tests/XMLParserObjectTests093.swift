@@ -30,7 +30,14 @@ class XMLParserObjectTests093: XMLAbstractTest {
 
     override func setUp( ) {
         super.setUp()
-        parserContext = CBXMLParserContext(languageVersion: CGFloat(Float32(0.93)))
+    }
+
+    override func getXMLDocumentForPath(xmlPath: String) -> GDataXMLDocument {
+        let document = super.getXMLDocumentForPath(xmlPath: xmlPath)
+
+        parserContext = CBXMLParserContext(languageVersion: CGFloat(Float32(0.93)), andRootElement: document.rootElement())
+
+        return document
     }
 
     func testValidObjectList() {
@@ -43,15 +50,9 @@ class XMLParserObjectTests093: XMLAbstractTest {
         let objectElements = (objectListElements?.first as! GDataXMLElement).children() as! [GDataXMLElement]
         let objectList = NSMutableArray(capacity: objectElements.count)
 
-        let context = CBXMLParserContext()
-        var userVariable = UserVariable(name: "random from")
-        context.programVariableList.add(userVariable)
-        userVariable = UserVariable(name: "random to")
-        context.programVariableList.add(userVariable)
         for objectElement in objectElements {
             let spriteObject = self.parserContext?.parse(from: objectElement, withClass: SpriteObject.self) as! SpriteObject
             objectList.add(spriteObject)
-
         }
 
         XCTAssertEqual(objectList.count, 5)
@@ -90,12 +91,6 @@ class XMLParserObjectTests093: XMLAbstractTest {
 
         let objectElements = (objectListElements?.first as! GDataXMLElement).children() as! [GDataXMLElement]
         let objectList = NSMutableArray(capacity: objectElements.count)
-
-        let context = CBXMLParserContext()
-        var userVariable = UserVariable(name: "global")
-        context.programVariableList.add(userVariable)
-        userVariable = UserVariable(name: "lokal")
-        context.programVariableList.add(userVariable)
 
         for objectElement in objectElements {
             let spriteObject = self.parserContext?.parse(from: objectElement, withClass: SpriteObject.self as CBXMLNodeProtocol.Type) as! SpriteObject
