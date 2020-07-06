@@ -1235,9 +1235,6 @@
 "Privacy Settings" = "Privacy Settings";
 
 /* No comment provided by engineer. */
-"Problems occured while uploading your project" = "Problems occured while uploading your project";
-
-/* No comment provided by engineer. */
 "Project" = "Project";
 
 /* No comment provided by engineer. */
@@ -1409,6 +1406,9 @@
 "Server is taking to long to respond, please try again later." = "Server is taking to long to respond, please try again later.";
 
 /* No comment provided by engineer. */
+"Session expired, please log in." = "Session expired, please log in.";
+
+/* No comment provided by engineer. */
 "Set Arduino digital pin" = "Set Arduino digital pin";
 
 /* No comment provided by engineer. */
@@ -1470,6 +1470,9 @@
 
 /* No comment provided by engineer. */
 "SO" = "SO";
+
+/* No comment provided by engineer. */
+"Something went wrong while uploading the project." = "Something went wrong while uploading the project.";
 
 /* No comment provided by engineer. */
 "Sound" = "Sound";

@@ -58,7 +58,9 @@ class StoreProjectUploaderTests: XCTestCase {
         let expectation = XCTestExpectation(description: "Upload Project")
         let uploader = StoreProjectUploader(fileManager: fileManagerMock, session: dvrSession)
         uploader.upload(project: self.project,
-                        completion: { error in
+                        completion: { projectId, error  in
+                            XCTAssertNotNil(projectId)
+                            XCTAssertEqual("4942a248-b7e1-11ea-a7ff-005056a36f47", projectId)
                             XCTAssertNil(error)
                             expectation.fulfill()
         }, progression: nil)
@@ -71,8 +73,9 @@ class StoreProjectUploaderTests: XCTestCase {
         let expectation = XCTestExpectation(description: "Upload Projects")
 
         uploader.upload(project: self.project,
-                        completion: { error in
+                        completion: { projectId, error in
                             guard let error = error else { XCTFail("no error returned"); return }
+                            XCTAssertNil(projectId)
                             XCTAssertEqual(error, .unexpectedError)
                             expectation.fulfill()
         }, progression: nil)
@@ -87,8 +90,9 @@ class StoreProjectUploaderTests: XCTestCase {
         let uploader = StoreProjectUploader(fileManager: fileManagerMock, session: dvrSession)
 
         uploader.upload(project: self.project,
-                        completion: { error in
+                        completion: { projectId, error in
                             guard let error = error else { XCTFail("no error received"); return }
+                            XCTAssertNil(projectId)
                             XCTAssertEqual(error, .authenticationFailed)
                             expectation.fulfill()
         }, progression: nil)
@@ -102,8 +106,9 @@ class StoreProjectUploaderTests: XCTestCase {
         let expectation = XCTestExpectation(description: "Upload Projects")
 
         uploader.upload(project: project,
-                        completion: { error in
+                        completion: { projectId, error in
                             guard let error = error else { XCTFail("no error received"); return }
+                            XCTAssertNil(projectId)
                             XCTAssertEqual(error, .zippingError)
                             expectation.fulfill()
         }, progression: nil)
@@ -117,8 +122,9 @@ class StoreProjectUploaderTests: XCTestCase {
         let expectation = XCTestExpectation(description: "Upload Projects")
 
         uploader.upload(project: project,
-                        completion: { error in
+                        completion: { projectId, error in
                             guard let error = error else { XCTFail("no error received"); return }
+                            XCTAssertNil(projectId)
                             XCTAssertEqual(error, .invalidProject)
                             expectation.fulfill()
         }, progression: nil)
@@ -132,8 +138,9 @@ class StoreProjectUploaderTests: XCTestCase {
         let expectation = XCTestExpectation(description: "Upload Projects")
 
         uploader.upload(project: project,
-                        completion: { error in
+                        completion: { projectId, error in
                             guard let error = error else { XCTFail("no error received"); return }
+                            XCTAssertNil(projectId)
                             XCTAssertEqual(error, .invalidProject)
                             expectation.fulfill()
         }, progression: nil)
@@ -147,8 +154,9 @@ class StoreProjectUploaderTests: XCTestCase {
         let uploader = StoreProjectUploader(fileManager: fileManagerMock, session: dvrSession)
 
         uploader.upload(project: self.project,
-                        completion: { error in
+                        completion: { projectId, error in
                             guard let error = error else { XCTFail("no error received"); return }
+                            XCTAssertNil(projectId)
                             XCTAssertEqual(error, .unexpectedError)
                             expectation.fulfill()
         }, progression: nil)
@@ -162,7 +170,7 @@ class StoreProjectUploaderTests: XCTestCase {
         let expectation = XCTestExpectation(description: "Upload Projects")
 
         uploader.upload(project: self.project,
-                        completion: { _ in },
+                        completion: { _, _  in },
                         progression: { progress in
                             XCTAssertEqual(0.5, progress)
                             expectation.fulfill()

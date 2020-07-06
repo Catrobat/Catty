@@ -21,7 +21,7 @@
  */
 
 protocol StoreProjectUploaderProtocol {
-    func upload( project: Project, completion: @escaping (StoreProjectUploaderError?) -> Void, progression: ((Float) -> Void)?)
+    func upload( project: Project, completion: @escaping (String?, StoreProjectUploaderError?) -> Void, progression: ((Float) -> Void)?)
 }
 
 enum StoreProjectUploaderError: Error {
@@ -50,6 +50,7 @@ final class StoreProjectUploader: StoreProjectUploaderProtocol {
     private let userNameTag = "username"
     private let deviceLanguageTag = "deviceLanguage"
     private let statusCodeTag = "statusCode"
+    private let projectIDTag = "projectId"
     private let session: URLSession
     private let fileManager: CBFileManager
 
@@ -60,8 +61,8 @@ final class StoreProjectUploader: StoreProjectUploaderProtocol {
         self.fileManager = fileManager
     }
 
-    func upload( project: Project, completion: @escaping (StoreProjectUploaderError?) -> Void, progression: ((Float) -> Void)?) {
-        guard let zipFileData = fileManager.zip(project) else { completion(.zippingError); return }
+    func upload(project: Project, completion: @escaping (String?, StoreProjectUploaderError?) -> Void, progression: ((Float) -> Void)?) {
+        guard let zipFileData = fileManager.zip(project) else { completion(nil, .zippingError); return }
 
         let checksum = zipFileData.md5()
 
@@ -107,35 +108,39 @@ final class StoreProjectUploader: StoreProjectUploaderProtocol {
         request.addValue(postLength, forHTTPHeaderField: "Content-Length")
 
         let task = self.session.dataTask(with: request) { data, response, error in
-            let handleDataTaskCompletion: (Data?, URLResponse?, Error?) -> (StoreProjectUploaderError?)
+            let handleDataTaskCompletion: (Data?, URLResponse?, Error?) -> (projectId: String?, error: StoreProjectUploaderError?)
             handleDataTaskCompletion = { data, response, error in
-                guard let response = response as? HTTPURLResponse else { return (.unexpectedError) }
+                guard let response = response as? HTTPURLResponse else { return (nil, .unexpectedError) }
 
                 if let error = error as NSError?, error.domain == NSURLErrorDomain && error.code == NSURLErrorTimedOut {
-                    return (.timeout)
+                    return (nil, .timeout)
                 }
 
                 guard let data = data, response.statusCode == 200, error == nil else {
-                    if response.statusCode == 401 { return (.authenticationFailed) }
-                    return (.request(error: error, statusCode: response.statusCode))
+                    if response.statusCode == 401 { return (nil, .authenticationFailed) }
+                    return (nil, .request(error: error, statusCode: response.statusCode))
                 }
 
                 var statusCode: Int?
+                var programId: String?
                 do {
                     let dictionary = try JSONSerialization.jsonObject(with: data, options: []) as? [AnyHashable: Any]
                     statusCode = dictionary?[self.statusCodeTag] as? Int
+                    if let programTag = dictionary?[self.projectIDTag] as? String {
+                        programId = programTag
+                    }
                 } catch {
-                    return (.unexpectedError)
+                    return (nil, .unexpectedError)
                 }
 
-                guard statusCode == 200  else { return (.invalidProject) }
+                guard statusCode == 200  else { return (nil, .invalidProject) }
 
-                return (nil)
+                return (programId, nil)
             }
 
             let result = handleDataTaskCompletion(data, response, error)
             DispatchQueue.main.async {
-                completion(result)
+                completion(result.projectId, result.error)
             }
         }
 
