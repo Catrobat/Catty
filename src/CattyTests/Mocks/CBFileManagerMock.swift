@@ -21,13 +21,18 @@
  */
 
 final class CBFileManagerMock: CBFileManager {
-
     private var existingFiles: [String]
     private var existingDirectories: [String]
+    private var zipData: Data?
 
     init(filePath: [String], directoryPath: [String]) {
         self.existingFiles = filePath
         self.existingDirectories = directoryPath
+    }
+
+    convenience init(zipData: Data) {
+        self.init(filePath: [String](), directoryPath: [String]())
+        self.zipData = zipData
     }
 
     override func fileExists(_ path: String) -> Bool {
@@ -54,4 +59,7 @@ final class CBFileManagerMock: CBFileManager {
         }
     }
 
+    override func zip(_ project: Project) -> Data? {
+        zipData
+    }
 }

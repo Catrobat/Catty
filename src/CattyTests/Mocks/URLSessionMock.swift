@@ -26,29 +26,31 @@ class URLSessionMock: URLSession {
     var response: URLResponse?
     var error: Error?
     var bytesReceived: Int64?
+    var bytesSent: Int64?
     var bytesTotal: Int64?
 
-    init(response: URLResponse? = nil, error: Error? = nil, bytesReceived: Int64? = nil, bytesTotal: Int64? = nil) {
+    init(response: URLResponse? = nil, error: Error? = nil, bytesSent: Int64? = nil, bytesReceived: Int64? = nil, bytesTotal: Int64? = nil) {
         self.response = response
         self.error = error
         self.bytesReceived = bytesReceived
         self.bytesTotal = bytesTotal
+        self.bytesSent = bytesSent
         super.init()
     }
 
     override func dataTask(with url: URL, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
-         URLSessionDataTaskMock(completionHandler, response: response, error: error, self.bytesReceived, self.bytesTotal)
+         URLSessionDataTaskMock(completionHandler, response: response, error: error, self.bytesSent, self.bytesReceived, self.bytesTotal)
     }
 
     override func dataTask(with request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
-         URLSessionDataTaskMock(completionHandler, response: response, error: error, self.bytesReceived, self.bytesTotal)
-
+        URLSessionDataTaskMock(completionHandler, response: response, error: error, self.bytesSent, self.bytesReceived, self.bytesTotal)
     }
 
     class URLSessionDataTaskMock: URLSessionDataTask {
 
         private var bytesReceived = Int64()
         private var bytesTotal = Int64()
+        private var bytesSent = Int64()
 
         override var countOfBytesReceived: Int64 {
              bytesReceived
@@ -58,11 +60,25 @@ class URLSessionMock: URLSession {
              bytesTotal
         }
 
+        override var countOfBytesExpectedToSend: Int64 {
+            bytesTotal
+        }
+
+        override var countOfBytesSent: Int64 {
+            bytesSent
+        }
+
         var completionHandler: ((Data?, URLResponse?, Error?) -> Void)?
         var mockResponse: URLResponse?
         var mockError: Error?
 
-        required init(_ completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void, response: URLResponse?, error: Error?, _ bytesReceived: Int64? = 0, _ bytesTotal: Int64? = 0) {
+        required init(_ completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void,
+                      response: URLResponse?,
+                      error: Error?,
+                      _ bytesSent: Int64? = 0,
+                      _ bytesReceived: Int64? = 0,
+                      _ bytesTotal: Int64? = 0) {
+
             self.completionHandler = completionHandler
             self.mockResponse = response
             self.mockError = error
@@ -71,6 +87,10 @@ class URLSessionMock: URLSession {
             }
             if let bytesReceived = bytesReceived {
                 self.bytesReceived = bytesReceived
+            }
+
+            if let bytesSent = bytesSent {
+                self.bytesSent = bytesSent
             }
         }
 
