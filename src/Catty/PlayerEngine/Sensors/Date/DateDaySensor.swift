@@ -36,11 +36,11 @@ class DateDaySensor: DateSensor {
         type(of: self).tag
     }
 
-    func rawValue() -> Double {
+    func rawValue(landscapeMode: Bool) -> Double {
         Double(Calendar.current.component(.day, from: self.date()))
     }
 
-    func convertToStandardized(rawValue: Double, landscapeMode: Bool) -> Double {
+    func convertToStandardized(rawValue: Double) -> Double {
         rawValue
     }
 

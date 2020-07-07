@@ -57,22 +57,23 @@ final class DateMonthSensorTest: XCTestCase {
     func testRawValue() {
         /* test one digit */
         self.sensor.mockDate = Calendar.current.date(from: DateComponents(year: 2018, month: 5, day: 3, hour: 10))!
-        XCTAssertEqual(5, Int(sensor.rawValue()))
+        XCTAssertEqual(5, Int(sensor.rawValue(landscapeMode: false)))
+        XCTAssertEqual(5, Int(sensor.rawValue(landscapeMode: true)))
 
         /* test two digits */
         self.sensor.mockDate = Calendar.current.date(from: DateComponents(year: 2017, month: 12, day: 16, hour: 17))!
-        XCTAssertEqual(12, Int(sensor.rawValue()))
+        XCTAssertEqual(12, Int(sensor.rawValue(landscapeMode: false)))
+        XCTAssertEqual(12, Int(sensor.rawValue(landscapeMode: true)))
 
         /* test edge case - almost the beginning of the next month */
         self.sensor.mockDate = Calendar.current.date(from: DateComponents(year: 2018, month: 10, day: 31, hour: 23))!
-        XCTAssertEqual(10, Int(sensor.rawValue()))
+        XCTAssertEqual(10, Int(sensor.rawValue(landscapeMode: false)))
+        XCTAssertEqual(10, Int(sensor.rawValue(landscapeMode: true)))
     }
 
     func testConvertToStandardized() {
-        XCTAssertEqual(1, sensor.convertToStandardized(rawValue: 1, landscapeMode: false))
-        XCTAssertEqual(10, sensor.convertToStandardized(rawValue: 10, landscapeMode: false))
-        XCTAssertEqual(1, sensor.convertToStandardized(rawValue: 1, landscapeMode: true))
-        XCTAssertEqual(10, sensor.convertToStandardized(rawValue: 10, landscapeMode: true))
+        XCTAssertEqual(1, sensor.convertToStandardized(rawValue: 1))
+        XCTAssertEqual(10, sensor.convertToStandardized(rawValue: 10))
     }
 
     func testFormulaEditorSections() {

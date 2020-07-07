@@ -43,41 +43,48 @@ final class LatitudeSensorTest: XCTestCase {
 
     func testDefaultRawValue() {
         let sensor = LatitudeSensor { nil }
-        XCTAssertEqual(LatitudeSensor.defaultRawValue, sensor.rawValue(), accuracy: Double.epsilon)
+        XCTAssertEqual(LatitudeSensor.defaultRawValue, sensor.rawValue(landscapeMode: false), accuracy: Double.epsilon)
+        XCTAssertEqual(LatitudeSensor.defaultRawValue, sensor.rawValue(landscapeMode: true), accuracy: Double.epsilon)
     }
 
     func testRawValue() {
         // min value - South Pole
         locationManager.latitude = -90
-        XCTAssertEqual(-90, sensor.rawValue())
+        XCTAssertEqual(-90, sensor.rawValue(landscapeMode: false))
+        XCTAssertEqual(-90, sensor.rawValue(landscapeMode: true))
 
         // max value - North Pole
         locationManager.latitude = 90
-        XCTAssertEqual(90, sensor.rawValue())
+        XCTAssertEqual(90, sensor.rawValue(landscapeMode: false))
+        XCTAssertEqual(90, sensor.rawValue(landscapeMode: true))
 
         // center
         locationManager.latitude = 0
-        XCTAssertEqual(0, sensor.rawValue())
+        XCTAssertEqual(0, sensor.rawValue(landscapeMode: false))
+        XCTAssertEqual(0, sensor.rawValue(landscapeMode: true))
 
         // London
         locationManager.latitude = 51.5
-        XCTAssertEqual(51.5, sensor.rawValue())
+        XCTAssertEqual(51.5, sensor.rawValue(landscapeMode: false))
+        XCTAssertEqual(51.5, sensor.rawValue(landscapeMode: true))
 
         // Cape Town
         locationManager.latitude = -33.92
-        XCTAssertEqual(-33.92, sensor.rawValue())
+        XCTAssertEqual(-33.92, sensor.rawValue(landscapeMode: false))
+        XCTAssertEqual(-33.92, sensor.rawValue(landscapeMode: true))
 
         // Munich
         locationManager.latitude = 48.13
-        XCTAssertEqual(48.13, sensor.rawValue())
+        XCTAssertEqual(48.13, sensor.rawValue(landscapeMode: false))
+        XCTAssertEqual(48.13, sensor.rawValue(landscapeMode: true))
     }
 
     func testConvertToStandardized() {
-        XCTAssertEqual(100, sensor.convertToStandardized(rawValue: 100, landscapeMode: false))
+        XCTAssertEqual(100, sensor.convertToStandardized(rawValue: 100))
     }
 
     func testStandardizedValue() {
-        let convertToStandardizedValue = sensor.convertToStandardized(rawValue: sensor.rawValue(), landscapeMode: false)
+        let convertToStandardizedValue = sensor.convertToStandardized(rawValue: sensor.rawValue(landscapeMode: false))
         let standardizedValue = sensor.standardizedValue(landscapeMode: false)
         let standardizedValueLandscape = sensor.standardizedValue(landscapeMode: true)
         XCTAssertEqual(convertToStandardizedValue, standardizedValue)

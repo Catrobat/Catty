@@ -40,7 +40,7 @@ import CoreMotion
         type(of: self).tag
     }
 
-    func rawValue() -> Double {
+    func rawValue(landscapeMode: Bool) -> Double {
         guard let inclinationSensor = getMotionManager() else { return type(of: self).defaultRawValue }
         guard let deviceMotion = inclinationSensor.deviceMotion else {
             return type(of: self).defaultRawValue
@@ -52,7 +52,7 @@ import CoreMotion
     // pitch is between -pi/2, pi/2 on iOS and -pi,pi on Android
     // going forward, it is positive on both iOS and Android
     // going backwards, it is negative on both iOS and Android
-    func convertToStandardized(rawValue: Double, landscapeMode: Bool) -> Double {
+    func convertToStandardized(rawValue: Double) -> Double {
         let faceDown = (getMotionManager()?.accelerometerData?.acceleration.z ?? 0) > 0
         if faceDown == false {
             // screen up

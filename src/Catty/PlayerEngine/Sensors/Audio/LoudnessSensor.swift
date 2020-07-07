@@ -37,11 +37,11 @@
         type(of: self).tag
     }
 
-    func rawValue() -> Double {
+    func rawValue(landscapeMode: Bool) -> Double {
         self.getAudioManager()?.loudness() ?? type(of: self).defaultRawValue
     }
 
-    func convertToStandardized(rawValue: Double, landscapeMode: Bool) -> Double {
+    func convertToStandardized(rawValue: Double) -> Double {
         let rawValueConverted = pow(10, 0.05 * rawValue)
         return rawValueConverted * 100
     }

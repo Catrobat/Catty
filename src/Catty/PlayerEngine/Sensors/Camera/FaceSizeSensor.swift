@@ -40,12 +40,12 @@ class FaceSizeSensor: DeviceSensor {
         type(of: self).tag
     }
 
-    func rawValue() -> Double {
+    func rawValue(landscapeMode: Bool) -> Double {
         guard let faceSize = self.getFaceDetectionManager()?.faceSizeRatio else { return type(of: self).defaultRawValue }
         return Double(faceSize)
     }
 
-    func convertToStandardized(rawValue: Double, landscapeMode: Bool) -> Double {
+    func convertToStandardized(rawValue: Double) -> Double {
         guard let frameSize = self.getFaceDetectionManager()?.faceDetectionFrameSize,
             let sceneWidth = self.sceneWidth
             else { return type(of: self).defaultRawValue }

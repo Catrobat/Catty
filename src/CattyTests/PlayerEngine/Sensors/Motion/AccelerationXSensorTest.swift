@@ -43,30 +43,34 @@ final class AccelerationXSensorTest: XCTestCase {
 
     func testDefaultRawValue() {
         let sensor = AccelerationXSensor { nil }
-        XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(landscapeMode: false), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(landscapeMode: true), accuracy: Double.epsilon)
     }
 
     func testRawValue() {
         motionManager.xUserAcceleration = 0
-        XCTAssertEqual(0, sensor.rawValue(), accuracy: Double.epsilon)
+        XCTAssertEqual(0, sensor.rawValue(landscapeMode: false), accuracy: Double.epsilon)
+        XCTAssertEqual(0, sensor.rawValue(landscapeMode: true), accuracy: Double.epsilon)
 
         motionManager.xUserAcceleration = 9.8
-        XCTAssertEqual(9.8, sensor.rawValue(), accuracy: Double.epsilon)
+        XCTAssertEqual(9.8, sensor.rawValue(landscapeMode: false), accuracy: Double.epsilon)
+        XCTAssertEqual(9.8, sensor.rawValue(landscapeMode: true), accuracy: Double.epsilon)
 
         motionManager.xUserAcceleration = -9.8
-        XCTAssertEqual(-9.8, sensor.rawValue(), accuracy: Double.epsilon)
+        XCTAssertEqual(-9.8, sensor.rawValue(landscapeMode: false), accuracy: Double.epsilon)
+        XCTAssertEqual(-9.8, sensor.rawValue(landscapeMode: true), accuracy: Double.epsilon)
     }
 
     func testConvertToStandardized() {
-        XCTAssertEqual(0, sensor.convertToStandardized(rawValue: 0, landscapeMode: false), accuracy: Double.epsilon)
-        XCTAssertEqual(9.8, sensor.convertToStandardized(rawValue: 1, landscapeMode: false), accuracy: Double.epsilon)
-        XCTAssertEqual(-9.8, sensor.convertToStandardized(rawValue: -1, landscapeMode: false), accuracy: Double.epsilon)
-        XCTAssertEqual(98, sensor.convertToStandardized(rawValue: 10, landscapeMode: false), accuracy: Double.epsilon)
-        XCTAssertEqual(-98, sensor.convertToStandardized(rawValue: -10, landscapeMode: false), accuracy: Double.epsilon)
+        XCTAssertEqual(0, sensor.convertToStandardized(rawValue: 0), accuracy: Double.epsilon)
+        XCTAssertEqual(9.8, sensor.convertToStandardized(rawValue: 1), accuracy: Double.epsilon)
+        XCTAssertEqual(-9.8, sensor.convertToStandardized(rawValue: -1), accuracy: Double.epsilon)
+        XCTAssertEqual(98, sensor.convertToStandardized(rawValue: 10), accuracy: Double.epsilon)
+        XCTAssertEqual(-98, sensor.convertToStandardized(rawValue: -10), accuracy: Double.epsilon)
     }
 
     func testStandardizedValue() {
-        let convertToStandardizedValue = sensor.convertToStandardized(rawValue: sensor.rawValue(), landscapeMode: false)
+        let convertToStandardizedValue = sensor.convertToStandardized(rawValue: sensor.rawValue(landscapeMode: false))
         let standardizedValue = sensor.standardizedValue(landscapeMode: false)
         let standardizedValueLandscape = sensor.standardizedValue(landscapeMode: true)
         XCTAssertEqual(convertToStandardizedValue, standardizedValue)
