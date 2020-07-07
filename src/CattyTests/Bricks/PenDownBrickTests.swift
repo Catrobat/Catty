@@ -39,8 +39,10 @@ final class PenDownBrickTests: XCTestCase {
 
         let action = brick.actionBlock()
         XCTAssertFalse(spriteNode.penConfiguration.penDown)
+        XCTAssertNil(spriteNode.penConfiguration.previousPosition)
         action()
         XCTAssertTrue(spriteNode.penConfiguration.penDown)
+        XCTAssertEqual(spriteNode.penConfiguration.previousPosition, spriteNode.position)
     }
 
 }

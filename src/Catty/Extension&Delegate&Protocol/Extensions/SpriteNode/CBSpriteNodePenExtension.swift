@@ -38,10 +38,8 @@ extension CBSpriteNode {
             line.zPosition = SpriteKitDefines.defaultPenZPosition
 
             self.scene?.addChild(line)
+            penConfiguration.previousPosition = self.position
 
         }
-
-        penConfiguration.previousPosition = self.position
-
     }
 }

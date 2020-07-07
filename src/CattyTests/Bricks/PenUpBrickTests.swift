@@ -42,6 +42,7 @@ final class PenUpBrickTests: XCTestCase {
         XCTAssertTrue(spriteNode.penConfiguration.penDown)
         action()
         XCTAssertFalse(spriteNode.penConfiguration.penDown)
+        XCTAssertNil(spriteNode.penConfiguration.previousPosition)
     }
 
 }

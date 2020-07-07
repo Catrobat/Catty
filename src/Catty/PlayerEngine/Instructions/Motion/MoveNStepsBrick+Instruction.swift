@@ -42,6 +42,7 @@
 
             spriteNode.catrobatPositionX = xPosition
             spriteNode.catrobatPositionY = yPosition
+
         }
     }
 }
