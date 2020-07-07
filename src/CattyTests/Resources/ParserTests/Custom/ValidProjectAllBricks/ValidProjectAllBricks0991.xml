@@ -634,6 +634,10 @@
           <userVariable reference="../../../../../objectList/object/scriptList/script/brickList/brick[14]/userVariable"/>
         </list>
       </entry>
+      <entry>
+         <object reference="../../../../objectList/object/scriptList/script/brickList/brick[10]/pointedObject"/>
+        <list/>
+      </entry>
     </objectVariableList>
     <programListOfLists/>
     <programVariableList>
