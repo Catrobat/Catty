@@ -25,13 +25,16 @@
 @class Sound;
 @class Look;
 @class CBXMLPositionStack;
+@class SpriteObject;
+@protocol BrickProtocol;
 
 @interface CBXMLSerializerHelper : NSObject
 
 + (NSUInteger)indexOfElement:(id)element inArray:(NSArray*)array;
-+ (NSString*)relativeXPathToSound:(Sound*)sound inSoundList:(NSArray*)soundList;
-+ (NSString*)relativeXPathToLook:(Look*)look inLookList:(NSArray*)lookList;
++ (NSString*)relativeXPathToSound:(Sound*)sound inSoundList:(NSArray*)soundList withDepth:(NSInteger)depth;
++ (NSString*)relativeXPathToLook:(Look*)look inLookList:(NSArray*)lookList withDepth:(NSInteger)depth;
 + (NSString*)relativeXPathFromSourcePositionStack:(CBXMLPositionStack*)sourcePositionStack
                        toDestinationPositionStack:(CBXMLPositionStack*)destinationPositionStack;
++ (NSInteger)getDepthOfResource:(id<BrickProtocol>)scriptOrBrick forSpriteObject:(SpriteObject*)spriteObject;
 
 @end
