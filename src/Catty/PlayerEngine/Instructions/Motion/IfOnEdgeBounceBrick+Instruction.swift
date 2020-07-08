@@ -41,8 +41,9 @@
             let virtualScreenWidth = scene.size.width / 2.0
             let virtualScreenHeight = scene.size.height / 2.0
 
-            var xPosition = CGFloat(spriteNode.catrobatPositionX)
-            var yPosition = CGFloat(spriteNode.catrobatPositionY)
+            let position = spriteNode.catrobatPosition
+            var xPosition = CGFloat(position.x)
+            var yPosition = CGFloat(position.y)
             var rotation = spriteNode.catrobatRotation
 
             //Check left/right edge
@@ -78,8 +79,7 @@
             }
 
             spriteNode.catrobatRotation = rotation
-            spriteNode.catrobatPositionX = Double(xPosition)
-            spriteNode.catrobatPositionY = Double(yPosition)
+            spriteNode.catrobatPosition = CBPosition(x: Double(xPosition), y: Double(yPosition))
         }
     }
 

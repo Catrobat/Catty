@@ -54,7 +54,7 @@ final class IfOnEdgeBounceBrickTests: AbstractBrickTest {
         spriteNode.color = UIColor.black
         spriteNode.size = CGSize(width: IfOnEdgeBounceBrickTests.OBJECT_WIDTH, height: IfOnEdgeBounceBrickTests.OBJECT_HEIGHT)
         self.spriteObject.spriteNode = spriteNode
-        spriteNode.catrobatPosition = CGPoint(x: 0, y: 0)
+        spriteNode.catrobatPosition = CBPosition(x: 0, y: 0)
         self.spriteObject.name = "Test"
 
         self.script = WhenScript()
@@ -65,8 +65,8 @@ final class IfOnEdgeBounceBrickTests: AbstractBrickTest {
     }
 
     func testNoBounce() {
-        setPosition(position: CGPoint(x: 0, y: 0), rotation: 90.0)
-        checkPosition(position: CGPoint(x: 0, y: 0), rotation: 90.0)
+        setPosition(position: CBPosition(x: 0, y: 0), rotation: 90.0)
+        checkPosition(position: CBPosition(x: 0, y: 0), rotation: 90.0)
     }
 
     func testTopBounce() {
@@ -77,8 +77,8 @@ final class IfOnEdgeBounceBrickTests: AbstractBrickTest {
         for rotation in rotations {
             let rotationBefore = rotation.0
             let rotationAfter = rotation.1
-            setPosition(position: CGPoint(x: 0, y: IfOnEdgeBounceBrickTests.TOP_BORDER_POSITION), rotation: rotationBefore)
-            checkPosition(position: CGPoint(x: 0, y: IfOnEdgeBounceBrickTests.BOUNCE_TOP_POSITION), rotation: rotationAfter)
+            setPosition(position: CBPosition(x: 0, y: IfOnEdgeBounceBrickTests.TOP_BORDER_POSITION), rotation: rotationBefore)
+            checkPosition(position: CBPosition(x: 0, y: IfOnEdgeBounceBrickTests.BOUNCE_TOP_POSITION), rotation: rotationAfter)
         }
     }
 
@@ -90,8 +90,8 @@ final class IfOnEdgeBounceBrickTests: AbstractBrickTest {
         for rotation in rotations {
             let rotationBefore = rotation.0
             let rotationAfter = rotation.1
-            setPosition(position: CGPoint(x: 0, y: IfOnEdgeBounceBrickTests.BOTTOM_BORDER_POSITION), rotation: rotationBefore)
-            checkPosition(position: CGPoint(x: 0, y: IfOnEdgeBounceBrickTests.BOUNCE_BOTTOM_POSITION), rotation: rotationAfter)
+            setPosition(position: CBPosition(x: 0, y: IfOnEdgeBounceBrickTests.BOTTOM_BORDER_POSITION), rotation: rotationBefore)
+            checkPosition(position: CBPosition(x: 0, y: IfOnEdgeBounceBrickTests.BOUNCE_BOTTOM_POSITION), rotation: rotationAfter)
         }
     }
 
@@ -103,8 +103,8 @@ final class IfOnEdgeBounceBrickTests: AbstractBrickTest {
         for rotation in rotations {
             let rotationBefore = rotation.0
             let rotationAfter = rotation.1
-            setPosition(position: CGPoint(x: IfOnEdgeBounceBrickTests.LEFT_BORDER_POSITION, y: 0), rotation: rotationBefore)
-            checkPosition(position: CGPoint(x: IfOnEdgeBounceBrickTests.BOUNCE_LEFT_POSITION, y: 0), rotation: rotationAfter)
+            setPosition(position: CBPosition(x: IfOnEdgeBounceBrickTests.LEFT_BORDER_POSITION, y: 0), rotation: rotationBefore)
+            checkPosition(position: CBPosition(x: IfOnEdgeBounceBrickTests.BOUNCE_LEFT_POSITION, y: 0), rotation: rotationAfter)
         }
     }
 
@@ -116,41 +116,41 @@ final class IfOnEdgeBounceBrickTests: AbstractBrickTest {
         for rotation in rotations {
             let rotationBefore = rotation.0
             let rotationAfter = rotation.1
-            setPosition(position: CGPoint(x: IfOnEdgeBounceBrickTests.RIGHT_BORDER_POSITION, y: 0), rotation: rotationBefore)
-            checkPosition(position: CGPoint(x: IfOnEdgeBounceBrickTests.BOUNCE_RIGHT_POSITION, y: 0), rotation: rotationAfter)
+            setPosition(position: CBPosition(x: IfOnEdgeBounceBrickTests.RIGHT_BORDER_POSITION, y: 0), rotation: rotationBefore)
+            checkPosition(position: CBPosition(x: IfOnEdgeBounceBrickTests.BOUNCE_RIGHT_POSITION, y: 0), rotation: rotationAfter)
         }
     }
 
     func testUpLeftBounce() {
-        setPosition(position: CGPoint(x: IfOnEdgeBounceBrickTests.LEFT_BORDER_POSITION, y: IfOnEdgeBounceBrickTests.TOP_BORDER_POSITION), rotation: 135)
-        checkPosition(position: CGPoint(x: IfOnEdgeBounceBrickTests.BOUNCE_LEFT_POSITION, y: IfOnEdgeBounceBrickTests.BOUNCE_TOP_POSITION), rotation: 135)
+        setPosition(position: CBPosition(x: IfOnEdgeBounceBrickTests.LEFT_BORDER_POSITION, y: IfOnEdgeBounceBrickTests.TOP_BORDER_POSITION), rotation: 135)
+        checkPosition(position: CBPosition(x: IfOnEdgeBounceBrickTests.BOUNCE_LEFT_POSITION, y: IfOnEdgeBounceBrickTests.BOUNCE_TOP_POSITION), rotation: 135)
 
-        setPosition(position: CGPoint(x: IfOnEdgeBounceBrickTests.LEFT_BORDER_POSITION, y: IfOnEdgeBounceBrickTests.TOP_BORDER_POSITION), rotation: -45)
-        checkPosition(position: CGPoint(x: IfOnEdgeBounceBrickTests.BOUNCE_LEFT_POSITION, y: IfOnEdgeBounceBrickTests.BOUNCE_TOP_POSITION), rotation: 135)
+        setPosition(position: CBPosition(x: IfOnEdgeBounceBrickTests.LEFT_BORDER_POSITION, y: IfOnEdgeBounceBrickTests.TOP_BORDER_POSITION), rotation: -45)
+        checkPosition(position: CBPosition(x: IfOnEdgeBounceBrickTests.BOUNCE_LEFT_POSITION, y: IfOnEdgeBounceBrickTests.BOUNCE_TOP_POSITION), rotation: 135)
     }
 
     func testUpRightBounce() {
-        setPosition(position: CGPoint(x: IfOnEdgeBounceBrickTests.RIGHT_BORDER_POSITION, y: IfOnEdgeBounceBrickTests.TOP_BORDER_POSITION), rotation: -135)
-        checkPosition(position: CGPoint(x: IfOnEdgeBounceBrickTests.BOUNCE_RIGHT_POSITION, y: IfOnEdgeBounceBrickTests.BOUNCE_TOP_POSITION), rotation: -135)
+        setPosition(position: CBPosition(x: IfOnEdgeBounceBrickTests.RIGHT_BORDER_POSITION, y: IfOnEdgeBounceBrickTests.TOP_BORDER_POSITION), rotation: -135)
+        checkPosition(position: CBPosition(x: IfOnEdgeBounceBrickTests.BOUNCE_RIGHT_POSITION, y: IfOnEdgeBounceBrickTests.BOUNCE_TOP_POSITION), rotation: -135)
 
-        setPosition(position: CGPoint(x: IfOnEdgeBounceBrickTests.RIGHT_BORDER_POSITION, y: IfOnEdgeBounceBrickTests.TOP_BORDER_POSITION), rotation: -45)
-        checkPosition(position: CGPoint(x: IfOnEdgeBounceBrickTests.BOUNCE_RIGHT_POSITION, y: IfOnEdgeBounceBrickTests.BOUNCE_TOP_POSITION), rotation: -135)
+        setPosition(position: CBPosition(x: IfOnEdgeBounceBrickTests.RIGHT_BORDER_POSITION, y: IfOnEdgeBounceBrickTests.TOP_BORDER_POSITION), rotation: -45)
+        checkPosition(position: CBPosition(x: IfOnEdgeBounceBrickTests.BOUNCE_RIGHT_POSITION, y: IfOnEdgeBounceBrickTests.BOUNCE_TOP_POSITION), rotation: -135)
     }
 
     func testBottomLeftBounce() {
-        setPosition(position: CGPoint(x: IfOnEdgeBounceBrickTests.LEFT_BORDER_POSITION, y: IfOnEdgeBounceBrickTests.BOTTOM_BORDER_POSITION), rotation: 45)
-        checkPosition(position: CGPoint(x: IfOnEdgeBounceBrickTests.BOUNCE_LEFT_POSITION, y: IfOnEdgeBounceBrickTests.BOUNCE_BOTTOM_POSITION), rotation: 45)
+        setPosition(position: CBPosition(x: IfOnEdgeBounceBrickTests.LEFT_BORDER_POSITION, y: IfOnEdgeBounceBrickTests.BOTTOM_BORDER_POSITION), rotation: 45)
+        checkPosition(position: CBPosition(x: IfOnEdgeBounceBrickTests.BOUNCE_LEFT_POSITION, y: IfOnEdgeBounceBrickTests.BOUNCE_BOTTOM_POSITION), rotation: 45)
 
-        setPosition(position: CGPoint(x: IfOnEdgeBounceBrickTests.LEFT_BORDER_POSITION, y: IfOnEdgeBounceBrickTests.BOTTOM_BORDER_POSITION), rotation: -135)
-        checkPosition(position: CGPoint(x: IfOnEdgeBounceBrickTests.BOUNCE_LEFT_POSITION, y: IfOnEdgeBounceBrickTests.BOUNCE_BOTTOM_POSITION), rotation: 45)
+        setPosition(position: CBPosition(x: IfOnEdgeBounceBrickTests.LEFT_BORDER_POSITION, y: IfOnEdgeBounceBrickTests.BOTTOM_BORDER_POSITION), rotation: -135)
+        checkPosition(position: CBPosition(x: IfOnEdgeBounceBrickTests.BOUNCE_LEFT_POSITION, y: IfOnEdgeBounceBrickTests.BOUNCE_BOTTOM_POSITION), rotation: 45)
     }
 
     func testBottomRightBounce() {
-        setPosition(position: CGPoint(x: IfOnEdgeBounceBrickTests.RIGHT_BORDER_POSITION, y: IfOnEdgeBounceBrickTests.BOTTOM_BORDER_POSITION), rotation: -45)
-        checkPosition(position: CGPoint(x: IfOnEdgeBounceBrickTests.BOUNCE_RIGHT_POSITION, y: IfOnEdgeBounceBrickTests.BOUNCE_BOTTOM_POSITION), rotation: -45)
+        setPosition(position: CBPosition(x: IfOnEdgeBounceBrickTests.RIGHT_BORDER_POSITION, y: IfOnEdgeBounceBrickTests.BOTTOM_BORDER_POSITION), rotation: -45)
+        checkPosition(position: CBPosition(x: IfOnEdgeBounceBrickTests.BOUNCE_RIGHT_POSITION, y: IfOnEdgeBounceBrickTests.BOUNCE_BOTTOM_POSITION), rotation: -45)
 
-        setPosition(position: CGPoint(x: IfOnEdgeBounceBrickTests.RIGHT_BORDER_POSITION, y: IfOnEdgeBounceBrickTests.BOTTOM_BORDER_POSITION), rotation: 135)
-        checkPosition(position: CGPoint(x: IfOnEdgeBounceBrickTests.BOUNCE_RIGHT_POSITION, y: IfOnEdgeBounceBrickTests.BOUNCE_BOTTOM_POSITION), rotation: -45)
+        setPosition(position: CBPosition(x: IfOnEdgeBounceBrickTests.RIGHT_BORDER_POSITION, y: IfOnEdgeBounceBrickTests.BOTTOM_BORDER_POSITION), rotation: 135)
+        checkPosition(position: CBPosition(x: IfOnEdgeBounceBrickTests.BOUNCE_RIGHT_POSITION, y: IfOnEdgeBounceBrickTests.BOUNCE_BOTTOM_POSITION), rotation: -45)
     }
 
     func testIsLookingDown() {
@@ -212,7 +212,7 @@ final class IfOnEdgeBounceBrickTests: AbstractBrickTest {
         XCTAssertTrue(self.brick.isLookingRight(90), "Brick should be looking right")
     }
 
-    private func setPosition(position: CGPoint, rotation: Double) {
+    private func setPosition(position: CBPosition, rotation: Double) {
         self.spriteObject.spriteNode.catrobatPosition = position
         self.spriteObject.spriteNode.catrobatRotation = rotation
 
@@ -220,9 +220,9 @@ final class IfOnEdgeBounceBrickTests: AbstractBrickTest {
         action()
     }
 
-    private func checkPosition(position: CGPoint, rotation: Double) {
-        XCTAssertEqual(position.x, self.spriteObject.spriteNode.catrobatPosition.x, accuracy: IfOnEdgeBounceBrickTests.EPSILON, "Wrong x after bounce")
-        XCTAssertEqual(position.y, self.spriteObject.spriteNode.catrobatPosition.y, accuracy: IfOnEdgeBounceBrickTests.EPSILON, "Wrong y after bounce")
+    private func checkPosition(position: CBPosition, rotation: Double) {
+        XCTAssertEqual(position.x, self.spriteObject.spriteNode.catrobatPosition.x, accuracy: Double(IfOnEdgeBounceBrickTests.EPSILON), "Wrong x after bounce")
+        XCTAssertEqual(position.y, self.spriteObject.spriteNode.catrobatPosition.y, accuracy: Double(IfOnEdgeBounceBrickTests.EPSILON), "Wrong y after bounce")
         XCTAssertEqual(rotation, self.spriteObject.spriteNode.catrobatRotation, accuracy: Double(IfOnEdgeBounceBrickTests.EPSILON), "Wrong rotation after bounce")
     }
 

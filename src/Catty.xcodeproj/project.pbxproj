@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		181CC10724B750AF004A783E /* CBPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181CC10424B750AE004A783E /* CBPosition.swift */; };
 		181DB738247DA62600B82B20 /* NSDataExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181DB737247DA62600B82B20 /* NSDataExtension.swift */; };
 		1822C1392471C7CB00F8F158 /* BrickCellListDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1822C1382471C7CB00F8F158 /* BrickCellListDataTests.swift */; };
 		1833ED942446572F0053BF7C /* HelpWebViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1833ED912446572E0053BF7C /* HelpWebViewControllerTests.swift */; };
@@ -1552,6 +1553,7 @@
 		0C64E34E5347DA71ECB56DE6 /* pt */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Localizable.strings; sourceTree = "<group>"; };
 		113CDA22CF21176FFA49E694 /* sd */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = sd; path = sd.lproj/Localizable.strings; sourceTree = "<group>"; };
 		13B5EB79EDA9CF73908FF75C /* no */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = no; path = no.lproj/Localizable.strings; sourceTree = "<group>"; };
+		181CC10424B750AE004A783E /* CBPosition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBPosition.swift; sourceTree = "<group>"; };
 		181DB737247DA62600B82B20 /* NSDataExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSDataExtension.swift; sourceTree = "<group>"; };
 		1822C1382471C7CB00F8F158 /* BrickCellListDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrickCellListDataTests.swift; sourceTree = "<group>"; };
 		1833ED912446572E0053BF7C /* HelpWebViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpWebViewControllerTests.swift; sourceTree = "<group>"; };
@@ -7409,6 +7411,7 @@
 		92FF30BE1A24DCAA00093DA7 /* SpriteObject */ = {
 			isa = PBXGroup;
 			children = (
+				181CC10424B750AE004A783E /* CBPosition.swift */,
 				92FF30BF1A24DCAA00093DA7 /* SpriteObject.h */,
 				92FF30C01A24DCAA00093DA7 /* SpriteObject.m */,
 			);
@@ -10265,6 +10268,7 @@
 				9218B20E1CC4AB75007B4C60 /* LineTool.m in Sources */,
 				F45AF703212960D4000F88A6 /* FacePositionYSensor.swift in Sources */,
 				AAAF22841BC0CA0F0076F11E /* SetXBrick+Instruction.swift in Sources */,
+				181CC10724B750AF004A783E /* CBPosition.swift in Sources */,
 				AA74EFF91BC05B5F00D1E954 /* SetTransparencyBrick.m in Sources */,
 				186E99192488F74500627E36 /* PenUpBrick+Instruction.swift in Sources */,
 				AA74EFE81BC05B5F00D1E954 /* LoopEndBrick.m in Sources */,

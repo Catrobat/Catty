@@ -39,7 +39,7 @@ final class SetXBrickTests: AbstractBrickTest {
         object.spriteNode = spriteNode
 
         self.scene.addChild(spriteNode)
-        spriteNode.catrobatPosition = CGPoint(x: 0, y: 0)
+        spriteNode.catrobatPosition = CBPosition(x: 0, y: 0)
 
         script = WhenScript()
         script.object = object
