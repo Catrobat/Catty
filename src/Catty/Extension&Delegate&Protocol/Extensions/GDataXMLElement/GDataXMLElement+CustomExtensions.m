@@ -245,6 +245,10 @@
             return false;
     }
     
+    if ([self.decodedName isEqualToString:@"objectVariableList"] || [self.decodedName isEqualToString:@"objectListOfList"]) {
+        return [self isObjectUserDataEqualToElement:node];
+    }
+    
     NSArray *children = [self childrenWithoutComments];
     NSArray *nodeChildren = [node childrenWithoutComments];
     NSUInteger childrenCount = [children count];
@@ -253,18 +257,7 @@
         return false;
     }
     for (int i = 0; i < childrenCount; i++) {
-        if ([[children objectAtIndex:i] isKindOfClass:[GDataXMLElement class]]) {
-            GDataXMLElement *firstChild = [children objectAtIndex:i];
-            GDataXMLElement *secondChild = [nodeChildren objectAtIndex:i];
-            if(![firstChild isEqualToElement:secondChild])
-                return false;
-        } else if ([[children objectAtIndex:i] isKindOfClass:[GDataXMLNode class]]) {
-            GDataXMLNode *firstChild = [children objectAtIndex:i];
-            GDataXMLElement *secondChild = [nodeChildren objectAtIndex:i];
-            if (! [firstChild isEqualToNode:secondChild])
-                return false;
-        } else {
-            NSDebug(@"GDataXMLElements not equal: invalid class name %@!", [[self.children objectAtIndex:i] class]);
+        if (![self isElementOrNode:[children objectAtIndex:i] equalToElementOrNode:[nodeChildren objectAtIndex:i]]) {
             return false;
         }
     }
@@ -273,6 +266,49 @@
             return false;
     }
     return true;
+}
+
+- (BOOL)isObjectUserDataEqualToElement:(GDataXMLElement*)node {
+    NSArray *children = [self childrenWithoutComments];
+    NSUInteger dataCount = 0;
+
+    NSArray *nodeChildren = [node childrenWithoutComments];
+    NSUInteger nodeDataCount = 0;
+
+    for (GDataXMLElement *nodeChild in nodeChildren) {
+        nodeDataCount += [nodeChild childWithElementName:@"list"].childCount;
+    }
+
+    for (GDataXMLElement *child in children) {
+        BOOL found = false;
+        NSUInteger dataSize = [child childWithElementName:@"list"].childCount;
+        dataCount += dataSize;
+
+        if (dataSize == 0) {
+            continue;
+        }
+
+        for (GDataXMLElement *nodeChild in nodeChildren) {
+            if (![self isElementOrNode:child equalToElementOrNode:nodeChild]) {
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            return false;
+        }
+    }
+
+    return dataCount == nodeDataCount;
+}
+
+- (BOOL)isElementOrNode:(id)first equalToElementOrNode:(id)second {
+    if ([first isKindOfClass:[GDataXMLElement class]]) {
+        return [first isEqualToElement:second];
+    } else if ([self isKindOfClass:[GDataXMLNode class]]) {
+        return [first isEqualToNode:second];
+    }
+    return false;
 }
 
 @end
