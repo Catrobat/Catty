@@ -43,56 +43,60 @@ final class CompassDirectionSensorTest: XCTestCase {
 
     func testDefaultRawValue() {
         let sensor = CompassDirectionSensor { nil }
-        XCTAssertEqual(CompassDirectionSensor.defaultRawValue, sensor.rawValue(), accuracy: Double.epsilon)
+        XCTAssertEqual(CompassDirectionSensor.defaultRawValue, sensor.rawValue(landscapeMode: false), accuracy: Double.epsilon)
+        XCTAssertEqual(CompassDirectionSensor.defaultRawValue, sensor.rawValue(landscapeMode: true), accuracy: Double.epsilon)
     }
 
     func testRawValue() {
         // N
         locationManager.magneticHeading = 0
-        XCTAssertEqual(0, sensor.rawValue())
+        XCTAssertEqual(0, sensor.rawValue(landscapeMode: false))
+        XCTAssertEqual(0, sensor.rawValue(landscapeMode: true))
 
         // E
         locationManager.magneticHeading = 90
-        XCTAssertEqual(90, sensor.rawValue())
+        XCTAssertEqual(90, sensor.rawValue(landscapeMode: false))
+        XCTAssertEqual(90, sensor.rawValue(landscapeMode: true))
 
         // S
         locationManager.magneticHeading = 180
-        XCTAssertEqual(180, sensor.rawValue())
+        XCTAssertEqual(180, sensor.rawValue(landscapeMode: false))
+        XCTAssertEqual(180, sensor.rawValue(landscapeMode: true))
 
         // W
         locationManager.magneticHeading = 270
-        XCTAssertEqual(270, sensor.rawValue())
-
+        XCTAssertEqual(270, sensor.rawValue(landscapeMode: false))
+        XCTAssertEqual(270, sensor.rawValue(landscapeMode: true))
     }
 
     func testConvertToStandardized() {
         // N
-        XCTAssertEqual(0, sensor.convertToStandardized(rawValue: 0, landscapeMode: false))
+        XCTAssertEqual(0, sensor.convertToStandardized(rawValue: 0))
 
         // N-E
-        XCTAssertEqual(-45, sensor.convertToStandardized(rawValue: 45, landscapeMode: false))
+        XCTAssertEqual(-45, sensor.convertToStandardized(rawValue: 45))
 
         // E
-        XCTAssertEqual(-90, sensor.convertToStandardized(rawValue: 90, landscapeMode: false))
+        XCTAssertEqual(-90, sensor.convertToStandardized(rawValue: 90))
 
         // S-E
-        XCTAssertEqual(-135, sensor.convertToStandardized(rawValue: 135, landscapeMode: false))
+        XCTAssertEqual(-135, sensor.convertToStandardized(rawValue: 135))
 
         // S
-        XCTAssertEqual(-180, sensor.convertToStandardized(rawValue: 180, landscapeMode: false))
+        XCTAssertEqual(-180, sensor.convertToStandardized(rawValue: 180))
 
         // S-W
-        XCTAssertEqual(135, sensor.convertToStandardized(rawValue: 225, landscapeMode: false))
+        XCTAssertEqual(135, sensor.convertToStandardized(rawValue: 225))
 
         // W
-        XCTAssertEqual(90, sensor.convertToStandardized(rawValue: 270, landscapeMode: false))
+        XCTAssertEqual(90, sensor.convertToStandardized(rawValue: 270))
 
         // Kanye's daughter
-        XCTAssertEqual(45, sensor.convertToStandardized(rawValue: 315, landscapeMode: false))
+        XCTAssertEqual(45, sensor.convertToStandardized(rawValue: 315))
     }
 
     func testStandardizedValue() {
-        let convertToStandardizedValue = sensor.convertToStandardized(rawValue: sensor.rawValue(), landscapeMode: false)
+        let convertToStandardizedValue = sensor.convertToStandardized(rawValue: sensor.rawValue(landscapeMode: false))
         let standardizedValue = sensor.standardizedValue(landscapeMode: false)
         let standardizedValueLandscape = sensor.standardizedValue(landscapeMode: true)
         XCTAssertEqual(convertToStandardizedValue, standardizedValue)

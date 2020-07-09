@@ -117,8 +117,10 @@ final class SensorManagerTests: XCTestCase {
         type(of: manager).defaultValueForUndefinedSensor = 12.3
 
         XCTAssertEqual(type(of: manager).defaultValueForUndefinedSensor, manager.value(tag: "undefinedTag", spriteObject: object) as! Double)
-        XCTAssertEqual(sensorA.rawValue(), manager.value(tag: sensorA.tag(), spriteObject: object) as! Double)
-        XCTAssertEqual(sensorA.rawValue(), manager.value(tag: sensorA.tag(), spriteObject: nil) as! Double)
+        XCTAssertEqual(sensorA.rawValue(landscapeMode: false), manager.value(tag: sensorA.tag(), spriteObject: object) as! Double)
+        XCTAssertEqual(sensorA.rawValue(landscapeMode: true), manager.value(tag: sensorA.tag(), spriteObject: object) as! Double)
+        XCTAssertEqual(sensorA.rawValue(landscapeMode: false), manager.value(tag: sensorA.tag(), spriteObject: nil) as! Double)
+        XCTAssertEqual(sensorA.rawValue(landscapeMode: true), manager.value(tag: sensorA.tag(), spriteObject: nil) as! Double)
         XCTAssertEqual(type(of: sensorB).rawValue(for: SpriteObject()), manager.value(tag: sensorB.tag(), spriteObject: object) as! Double)
         XCTAssertEqual(type(of: sensorC).rawValue(for: object), manager.value(tag: sensorC.tag(), spriteObject: object) as! String)
         XCTAssertEqual(type(of: sensorC).defaultRawValue, manager.value(tag: sensorC.tag()) as! Double)

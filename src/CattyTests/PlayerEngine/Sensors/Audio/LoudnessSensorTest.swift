@@ -43,36 +43,40 @@ final class LoudnessSensorTest: XCTestCase {
 
     func testDefaultRawValue() {
         let sensor = LoudnessSensor { nil }
-        XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(landscapeMode: false), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(landscapeMode: true), accuracy: Double.epsilon)
     }
 
     func testRawValue() {
         audioManager.mockedLoudnessInDecibels = 3
-        XCTAssertEqual(3, sensor.rawValue(), accuracy: Double.epsilon)
+        XCTAssertEqual(3, sensor.rawValue(landscapeMode: false), accuracy: Double.epsilon)
+        XCTAssertEqual(3, sensor.rawValue(landscapeMode: true), accuracy: Double.epsilon)
 
         audioManager.mockedLoudnessInDecibels = -50
-        XCTAssertEqual(-50, sensor.rawValue(), accuracy: Double.epsilon)
+        XCTAssertEqual(-50, sensor.rawValue(landscapeMode: false), accuracy: Double.epsilon)
+        XCTAssertEqual(-50, sensor.rawValue(landscapeMode: true), accuracy: Double.epsilon)
 
         audioManager.mockedLoudnessInDecibels = 10.786
-        XCTAssertEqual(10.786, sensor.rawValue(), accuracy: Double.epsilon)
+        XCTAssertEqual(10.786, sensor.rawValue(landscapeMode: false), accuracy: Double.epsilon)
+        XCTAssertEqual(10.786, sensor.rawValue(landscapeMode: true), accuracy: Double.epsilon)
     }
 
     func testConvertToStandardized() {
         // background noise
-        XCTAssertEqual(1, sensor.convertToStandardized(rawValue: -40, landscapeMode: false), accuracy: Double.epsilon)
+        XCTAssertEqual(1, sensor.convertToStandardized(rawValue: -40), accuracy: Double.epsilon)
 
-        let whisper = sensor.convertToStandardized(rawValue: -24, landscapeMode: false)
+        let whisper = sensor.convertToStandardized(rawValue: -24)
         XCTAssertEqual(6.3095, whisper, accuracy: Double.epsilon)
 
-        let normalVoice = sensor.convertToStandardized(rawValue: -15, landscapeMode: false)
+        let normalVoice = sensor.convertToStandardized(rawValue: -15)
         XCTAssertEqual(17.7827, normalVoice, accuracy: Double.epsilon)
 
-        let shouting = sensor.convertToStandardized(rawValue: -0.99, landscapeMode: false)
+        let shouting = sensor.convertToStandardized(rawValue: -0.99)
         XCTAssertEqual(89.2277, shouting, accuracy: Double.epsilon)
     }
 
     func testStandardizedValue() {
-        let convertToStandardizedValue = sensor.convertToStandardized(rawValue: sensor.rawValue(), landscapeMode: false)
+        let convertToStandardizedValue = sensor.convertToStandardized(rawValue: sensor.rawValue(landscapeMode: false))
         let standardizedValue = sensor.standardizedValue(landscapeMode: false)
         let standardizedValueLandscape = sensor.standardizedValue(landscapeMode: true)
         XCTAssertEqual(convertToStandardizedValue, standardizedValue)

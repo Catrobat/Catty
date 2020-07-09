@@ -45,29 +45,32 @@ final class FacePositionXSensorTest: XCTestCase {
 
     func testDefaultRawValue() {
         let sensor = FacePositionXSensor(sceneSize: sceneSize, faceDetectionManagerGetter: { nil })
-        XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(landscapeMode: false), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(landscapeMode: true), accuracy: Double.epsilon)
     }
 
     func testRawValue() {
         // only positive values - (0, 0) is at the bottom left
         self.cameraManagerMock.facePositionRatioFromLeft = 0
-        XCTAssertEqual(0, self.sensor.rawValue())
+        XCTAssertEqual(0, self.sensor.rawValue(landscapeMode: false))
+        XCTAssertEqual(0, self.sensor.rawValue(landscapeMode: true))
 
         self.cameraManagerMock.facePositionRatioFromLeft = 56
-        XCTAssertEqual(56, self.sensor.rawValue())
+        XCTAssertEqual(56, self.sensor.rawValue(landscapeMode: false))
+        XCTAssertEqual(56, self.sensor.rawValue(landscapeMode: true))
     }
 
     func testConvertToStandardized() {
-        XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.convertToStandardized(rawValue: 0, landscapeMode: false))
+        XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.convertToStandardized(rawValue: 0))
 
-        XCTAssertEqual(Double(sceneSize.width * 0.02) - Double(sceneSize.width / 2), sensor.convertToStandardized(rawValue: 0.02, landscapeMode: false))
-        XCTAssertEqual(Double(sceneSize.width * 0.45) - Double(sceneSize.width / 2), sensor.convertToStandardized(rawValue: 0.45, landscapeMode: false))
-        XCTAssertEqual(Double(sceneSize.width * 0.93) - Double(sceneSize.width / 2), sensor.convertToStandardized(rawValue: 0.93, landscapeMode: false))
-        XCTAssertEqual(Double(sceneSize.width / 2), sensor.convertToStandardized(rawValue: 1.0, landscapeMode: false))
+        XCTAssertEqual(Double(sceneSize.width * 0.02) - Double(sceneSize.width / 2), sensor.convertToStandardized(rawValue: 0.02))
+        XCTAssertEqual(Double(sceneSize.width * 0.45) - Double(sceneSize.width / 2), sensor.convertToStandardized(rawValue: 0.45))
+        XCTAssertEqual(Double(sceneSize.width * 0.93) - Double(sceneSize.width / 2), sensor.convertToStandardized(rawValue: 0.93))
+        XCTAssertEqual(Double(sceneSize.width / 2), sensor.convertToStandardized(rawValue: 1.0))
     }
 
     func testStandardizedValue() {
-        let convertToStandardizedValue = sensor.convertToStandardized(rawValue: sensor.rawValue(), landscapeMode: false)
+        let convertToStandardizedValue = sensor.convertToStandardized(rawValue: sensor.rawValue(landscapeMode: false))
         let standardizedValue = sensor.standardizedValue(landscapeMode: false)
         let standardizedValueLandscape = sensor.standardizedValue(landscapeMode: true)
         XCTAssertEqual(convertToStandardizedValue, standardizedValue)

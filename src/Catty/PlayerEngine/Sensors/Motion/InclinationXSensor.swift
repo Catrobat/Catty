@@ -38,19 +38,18 @@
         type(of: self).tag
     }
 
-    func rawValue() -> Double {
+    func rawValue(landscapeMode: Bool) -> Double {
         guard let inclinationSensor = self.getMotionManager() else { return type(of: self).defaultRawValue }
         guard let deviceMotion = inclinationSensor.deviceMotion else {
             return type(of: self).defaultRawValue
         }
-
         return deviceMotion.attitude.roll
     }
 
     // roll is between -pi, pi on both iOS and Android
     // going to right, it is negative on Android and positive on iOS
     // going to left, it is positive on Android and negative on iOS
-    func convertToStandardized(rawValue: Double, landscapeMode: Bool) -> Double {
+    func convertToStandardized(rawValue: Double) -> Double {
         Util.radians(toDegree: -rawValue)
     }
 

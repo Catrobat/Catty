@@ -57,18 +57,18 @@ final class TimeSecondSensorTest: XCTestCase {
     func testRawValue() {
         /* test one digit */
         self.sensor.mockDate = Date.init(timeIntervalSince1970: 1529301965)
-        XCTAssertEqual(5, Int(sensor.rawValue()))
+        XCTAssertEqual(5, Int(sensor.rawValue(landscapeMode: false)))
+        XCTAssertEqual(5, Int(sensor.rawValue(landscapeMode: true)))
 
         /* test two digits */
         self.sensor.mockDate = Date.init(timeIntervalSince1970: 1528265185)
-        XCTAssertEqual(25, Int(sensor.rawValue()))
+        XCTAssertEqual(25, Int(sensor.rawValue(landscapeMode: false)))
+        XCTAssertEqual(25, Int(sensor.rawValue(landscapeMode: true)))
     }
 
     func testConvertToStandardized() {
-        XCTAssertEqual(1, sensor.convertToStandardized(rawValue: 1, landscapeMode: false))
-        XCTAssertEqual(100, sensor.convertToStandardized(rawValue: 100, landscapeMode: false))
-        XCTAssertEqual(1, sensor.convertToStandardized(rawValue: 1, landscapeMode: true))
-        XCTAssertEqual(100, sensor.convertToStandardized(rawValue: 100, landscapeMode: true))
+        XCTAssertEqual(1, sensor.convertToStandardized(rawValue: 1))
+        XCTAssertEqual(100, sensor.convertToStandardized(rawValue: 100))
     }
 
     func testFormulaEditorSections() {
