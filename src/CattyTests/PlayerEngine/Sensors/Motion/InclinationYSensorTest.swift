@@ -51,26 +51,43 @@ final class InclinationYSensorTest: XCTestCase {
         // test maximum value
         motionManager.attitude = (pitch: Double.pi / 2, roll: 0)
         XCTAssertEqual(sensor.rawValue(landscapeMode: false), Double.pi / 2, accuracy: Double.epsilon)
+        XCTAssertNotEqual(sensor.rawValue(landscapeMode: true), Double.pi / 2, accuracy: Double.epsilon)
+
+        motionManager.attitude = (pitch: Double.pi / 2, roll: Double.pi / 2)
         XCTAssertEqual(sensor.rawValue(landscapeMode: true), Double.pi / 2, accuracy: Double.epsilon)
+        XCTAssertEqual(sensor.rawValue(landscapeMode: false), sensor.rawValue(landscapeMode: true), accuracy: Double.epsilon)
 
         // test minimum value
         motionManager.attitude = (pitch: -Double.pi / 2, roll: 0)
         XCTAssertEqual(sensor.rawValue(landscapeMode: false), -Double.pi / 2, accuracy: Double.epsilon)
+        XCTAssertNotEqual(sensor.rawValue(landscapeMode: true), -Double.pi / 2, accuracy: Double.epsilon)
+
+        motionManager.attitude = (pitch: -Double.pi / 2, roll: -Double.pi / 2)
         XCTAssertEqual(sensor.rawValue(landscapeMode: true), -Double.pi / 2, accuracy: Double.epsilon)
+        XCTAssertEqual(sensor.rawValue(landscapeMode: false), sensor.rawValue(landscapeMode: true), accuracy: Double.epsilon)
 
         // test no inclination
         motionManager.attitude = (pitch: 0, roll: 0)
         XCTAssertEqual(sensor.rawValue(landscapeMode: false), 0, accuracy: Double.epsilon)
         XCTAssertEqual(sensor.rawValue(landscapeMode: true), 0, accuracy: Double.epsilon)
+        XCTAssertEqual(sensor.rawValue(landscapeMode: false), sensor.rawValue(landscapeMode: true), accuracy: Double.epsilon)
 
         // tests inside the range
         motionManager.attitude = (pitch: Double.pi / 3, roll: 0)
         XCTAssertEqual(sensor.rawValue(landscapeMode: false), Double.pi / 3, accuracy: Double.epsilon)
+        XCTAssertNotEqual(sensor.rawValue(landscapeMode: true), Double.pi / 3, accuracy: Double.epsilon)
+
+        motionManager.attitude = (pitch: Double.pi / 3, roll: Double.pi / 3)
         XCTAssertEqual(sensor.rawValue(landscapeMode: true), Double.pi / 3, accuracy: Double.epsilon)
+        XCTAssertEqual(sensor.rawValue(landscapeMode: false), sensor.rawValue(landscapeMode: true), accuracy: Double.epsilon)
 
         motionManager.attitude = (pitch: -Double.pi / 6, roll: 0)
         XCTAssertEqual(sensor.rawValue(landscapeMode: false), -Double.pi / 6, accuracy: Double.epsilon)
+        XCTAssertNotEqual(sensor.rawValue(landscapeMode: true), -Double.pi / 6, accuracy: Double.epsilon)
+
+        motionManager.attitude = (pitch: -Double.pi / 6, roll: -Double.pi / 6)
         XCTAssertEqual(sensor.rawValue(landscapeMode: true), -Double.pi / 6, accuracy: Double.epsilon)
+        XCTAssertEqual(sensor.rawValue(landscapeMode: false), sensor.rawValue(landscapeMode: true), accuracy: Double.epsilon)
     }
 
     func testConvertToStandardizedScreenUp() {
@@ -100,6 +117,11 @@ final class InclinationYSensorTest: XCTestCase {
 
         // half down - home button up
         XCTAssertEqual(sensor.convertToStandardized(rawValue: -Double.pi / 4), -135, accuracy: Double.epsilon)
+    }
+
+    func testRawValueXSensor() {
+        motionManager.attitude.roll = Double.pi / 4
+        XCTAssertEqual(sensor.rawValueXSensor(), motionManager.attitude.roll, accuracy: Double.epsilon)
     }
 
     func testStandardizedValue() {
