@@ -222,6 +222,7 @@
 #define kLocalizedInformation NSLocalizedString(@"Information", nil)
 #define kLocalizedMeasure NSLocalizedString(@"Measure", nil)
 #define kLocalizedSize NSLocalizedString(@"Size", nil)
+#define kLocalizedSelectCategories NSLocalizedString(@"Select categories", nil)
 #define kLocalizedObject NSLocalizedString(@"Object", nil)
 #define kLocalizedObjects NSLocalizedString(@"Actors and objects", nil)
 #define kLocalizedBricks NSLocalizedString(@"Bricks", nil)
