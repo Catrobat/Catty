@@ -37,12 +37,11 @@
             let standardizedRotation = spriteNode.catrobatRotation
             let rotationRadians = Util.degree(toRadians: Double(standardizedRotation))
 
-            let xPosition = spriteNode.catrobatPositionX + (steps * sin(rotationRadians))
-            let yPosition = spriteNode.catrobatPositionY + (steps * cos(rotationRadians))
+            let position = spriteNode.catrobatPosition
+            let xPosition = position.x + (steps * sin(rotationRadians))
+            let yPosition = position.y + (steps * cos(rotationRadians))
 
-            spriteNode.catrobatPositionX = xPosition
-            spriteNode.catrobatPositionY = yPosition
-
+            spriteNode.catrobatPosition = CBPosition(x: xPosition, y: yPosition)
         }
     }
 }

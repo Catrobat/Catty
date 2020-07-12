@@ -20,23 +20,26 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension ChangeXByNBrick: CBInstructionProtocol {
+struct CBPosition: Equatable {
+    let x: Double
+    let y: Double
 
-    func instruction() -> CBInstruction {
-        .action { context in SKAction.run(self.actionBlock(context.formulaInterpreter)) }
+    init(x: Double, y: Double) {
+        self.x = x
+        self.y = y
     }
 
-    func actionBlock(_ formulaInterpreter: FormulaInterpreterProtocol) -> () -> Void {
-        guard let object = self.script?.object,
-            let spriteNode = object.spriteNode,
-            let xMovement = self.xMovement
-            else { fatalError("This should never happen!") }
+    init(x: CGFloat, y: CGFloat) {
+        self.x = Double(x)
+        self.y = Double(y)
+    }
 
-        return {
-            let xMov = formulaInterpreter.interpretDouble(xMovement, for: object)
-            let position = spriteNode.catrobatPosition
-            spriteNode.catrobatPosition = CBPosition(x: position.x + xMov,
-                                                     y: position.y)
-        }
+    init(x: Int, y: Int) {
+        self.x = Double(x)
+        self.y = Double(y)
+    }
+
+    public static func == (lhs: CBPosition, rhs: CBPosition) -> Bool {
+        (lhs.x == rhs.x) && (lhs.y == rhs.y)
     }
 }

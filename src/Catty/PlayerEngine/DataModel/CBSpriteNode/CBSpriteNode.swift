@@ -211,8 +211,7 @@ class CBSpriteNode: SKSpriteNode {
     // MARK: Events
     @objc func start(_ zPosition: CGFloat) {
 
-        self.catrobatPositionX = PositionXSensor.defaultRawValue
-        self.catrobatPositionY = PositionYSensor.defaultRawValue
+        self.catrobatPosition = CBPosition(x: PositionXSensor.defaultRawValue, y: PositionYSensor.defaultRawValue)
 
         self.zRotation = CGFloat(RotationSensor.defaultRawValue)
         self.xScale = CGFloat(SizeSensor.defaultRawValue)

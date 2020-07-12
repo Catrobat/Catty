@@ -41,7 +41,7 @@ final class ClearGraphicEffectBrickTests: AbstractBrickTest {
         object.spriteNode = spriteNode
         object.project = project
         self.scene.addChild(spriteNode)
-        spriteNode.catrobatPosition = CGPoint(x: 0.0, y: 0.0)
+        spriteNode.catrobatPosition = CBPosition(x: 0.0, y: 0.0)
 
         let bundle = Bundle(for: type(of: self))
         let filePath = bundle.path(forResource: "test.png", ofType: nil)
