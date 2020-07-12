@@ -13,6 +13,7 @@
 		1833ED942446572F0053BF7C /* HelpWebViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1833ED912446572E0053BF7C /* HelpWebViewControllerTests.swift */; };
 		18385C68247C0EB30050819A /* LineShapeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18385C67247C0EB30050819A /* LineShapeNode.swift */; };
 		184949B9248130A9000B8CDA /* NSStringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184949B8248130A9000B8CDA /* NSStringExtension.swift */; };
+		184CA799249E839A00D3668B /* CBFileManagerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184CA798249E839A00D3668B /* CBFileManagerExtension.swift */; };
 		186212382475A1070098F4C5 /* SpriteKitDefines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186212372475A1070098F4C5 /* SpriteKitDefines.swift */; };
 		186212462475C9140098F4C5 /* PenConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186212452475C9140098F4C5 /* PenConfiguration.swift */; };
 		186AA33C2482D0CA001E38FD /* PenDownBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186AA33B2482D0CA001E38FD /* PenDownBrick.swift */; };
@@ -761,6 +762,7 @@
 		4CF8A5802359B93800905BA9 /* StoreProjectDownloader.fetchMostViewedProjects.IntegerId.success.json in Resources */ = {isa = PBXBuildFile; fileRef = 4CF8A57F2359B93800905BA9 /* StoreProjectDownloader.fetchMostViewedProjects.IntegerId.success.json */; };
 		4CF8A5822359B96500905BA9 /* StoreProjectDownloader.searchProjects.IntegerId.success.json in Resources */ = {isa = PBXBuildFile; fileRef = 4CF8A5812359B96500905BA9 /* StoreProjectDownloader.searchProjects.IntegerId.success.json */; };
 		4CF8A5842359BA5E00905BA9 /* StoreProjectDownloader.fetchProjectDetails.IntegerId.success.json in Resources */ = {isa = PBXBuildFile; fileRef = 4CF8A5832359BA5E00905BA9 /* StoreProjectDownloader.fetchProjectDetails.IntegerId.success.json */; };
+		4CFABF5F24AB0DD40023D581 /* RuntimeImageCacheMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFABF5C24AB0DD40023D581 /* RuntimeImageCacheMock.swift */; };
 		4CFAD35E1CFAB3EC0019C636 /* CustomExtensionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFAD35C1CFAB3EC0019C636 /* CustomExtensionsTests.m */; };
 		4CFAD35F1CFAB3EC0019C636 /* UIImageExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFAD35D1CFAB3EC0019C636 /* UIImageExtensionTests.swift */; };
 		4CFAD3611CFAB9AA0019C636 /* transparency-rgba.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CFAD3601CFAB9AA0019C636 /* transparency-rgba.png */; };
@@ -1559,6 +1561,7 @@
 		1833ED912446572E0053BF7C /* HelpWebViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpWebViewControllerTests.swift; sourceTree = "<group>"; };
 		18385C67247C0EB30050819A /* LineShapeNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LineShapeNode.swift; path = PlayerEngine/DataModel/LineShapeNode.swift; sourceTree = "<group>"; };
 		184949B8248130A9000B8CDA /* NSStringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSStringExtension.swift; sourceTree = "<group>"; };
+		184CA798249E839A00D3668B /* CBFileManagerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBFileManagerExtension.swift; sourceTree = "<group>"; };
 		186212372475A1070098F4C5 /* SpriteKitDefines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteKitDefines.swift; sourceTree = "<group>"; };
 		186212452475C9140098F4C5 /* PenConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PenConfiguration.swift; sourceTree = "<group>"; };
 		186AA33B2482D0CA001E38FD /* PenDownBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PenDownBrick.swift; sourceTree = "<group>"; };
@@ -2410,6 +2413,7 @@
 		4CF8A57F2359B93800905BA9 /* StoreProjectDownloader.fetchMostViewedProjects.IntegerId.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectDownloader.fetchMostViewedProjects.IntegerId.success.json; sourceTree = "<group>"; };
 		4CF8A5812359B96500905BA9 /* StoreProjectDownloader.searchProjects.IntegerId.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectDownloader.searchProjects.IntegerId.success.json; sourceTree = "<group>"; };
 		4CF8A5832359BA5E00905BA9 /* StoreProjectDownloader.fetchProjectDetails.IntegerId.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectDownloader.fetchProjectDetails.IntegerId.success.json; sourceTree = "<group>"; };
+		4CFABF5C24AB0DD40023D581 /* RuntimeImageCacheMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuntimeImageCacheMock.swift; sourceTree = "<group>"; };
 		4CFAD35C1CFAB3EC0019C636 /* CustomExtensionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomExtensionsTests.m; path = Extensions/CustomExtensionsTests.m; sourceTree = "<group>"; };
 		4CFAD35D1CFAB3EC0019C636 /* UIImageExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIImageExtensionTests.swift; path = Extensions/UIImageExtensionTests.swift; sourceTree = "<group>"; };
 		4CFAD3601CFAB9AA0019C636 /* transparency-rgba.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "transparency-rgba.png"; path = "CattyTests/Resources/Images/transparency-rgba.png"; sourceTree = SOURCE_ROOT; };
@@ -6242,6 +6246,7 @@
 				599E64A5202DB2FB009494B5 /* MediaLibraryDownloaderMock.swift */,
 				4CB73A9123FC1F1300D5E9A7 /* NavigationControllerMock.swift */,
 				D3CF3A0E23D07F06006B2667 /* ProjectMock.swift */,
+				4CFABF5C24AB0DD40023D581 /* RuntimeImageCacheMock.swift */,
 				5973F243202EF37600A4CED9 /* SoundsLibraryCollectionViewDataSourceDelegateMock.swift */,
 				4C1C8B15213FE7F1003B3AA4 /* StoreProjectDownloaderMock.swift */,
 				4C7182E023EEF47500195BC7 /* UICollectionViewMock.swift */,
@@ -6990,6 +6995,7 @@
 				222A693D247EA490004BE434 /* UIDeviceExtension.swift */,
 				184949B8248130A9000B8CDA /* NSStringExtension.swift */,
 				6FA48C4B2497710300248AE7 /* UserDataExtension.swift */,
+				184CA798249E839A00D3668B /* CBFileManagerExtension.swift */,
 			);
 			name = Extensions;
 			path = "Extension&Delegate&Protocol/Extensions";
@@ -9885,6 +9891,7 @@
 				6F6EA568248A657400FAFBB6 /* SynchronizedArrayTests.swift in Sources */,
 				4C82266C213FA7A400F3D750 /* TimeHourSensorTest.swift in Sources */,
 				4C3A5C9D21D3B38A008FD83F /* MinusOperatorTest.swift in Sources */,
+				4CFABF5F24AB0DD40023D581 /* RuntimeImageCacheMock.swift in Sources */,
 				4C6FE162212D2D2E0067B7D5 /* LnFunctionTest.swift in Sources */,
 				2ED418B72411213E00AFE2FD /* XMLParserObjectTests095.swift in Sources */,
 				4CAB100F1ECF1AC60019A67B /* ShowTextBrickTests.swift in Sources */,
@@ -10536,6 +10543,7 @@
 				4C0F9F2E204ADC2300E71B2D /* CameraBrick.m in Sources */,
 				92C631891BC502CB00486958 /* ConnectedDevicesTableViewController.swift in Sources */,
 				92FF30F91A24DCAA00093DA7 /* FormulaElement.m in Sources */,
+				184CA799249E839A00D3668B /* CBFileManagerExtension.swift in Sources */,
 				AA74EE211BC053FD00D1E954 /* BroadcastBrick+Instruction.swift in Sources */,
 				9218B2161CC4AB75007B4C60 /* PaintViewController.m in Sources */,
 				4C595F4521CAEB230097D850 /* DivideOperator.swift in Sources */,

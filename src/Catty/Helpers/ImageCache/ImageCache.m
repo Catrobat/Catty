@@ -78,12 +78,6 @@ static NSMutableDictionary *sharedImageCaches = nil;
     return _imageCacheQueue;
 }
 
-- (void)dealloc
-{
-    // Should never be called, but just here for clarity really.
-    abort();
-}
-
 - (UIImage*)getImageWithName:(NSString*)imageName
 {
     return [self.imageCache objectForKey:imageName];

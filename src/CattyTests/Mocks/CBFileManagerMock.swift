@@ -20,10 +20,18 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+@testable import Pocket_Code
+
 final class CBFileManagerMock: CBFileManager {
     private var existingFiles: [String]
     private var existingDirectories: [String]
     private var zipData: Data?
+    private var imageCacheMock: RuntimeImageCache?
+
+    override var imageCache: RuntimeImageCache {
+        guard let imageCache = imageCacheMock else { return RuntimeImageCache.shared() }
+        return imageCache
+    }
 
     init(filePath: [String], directoryPath: [String]) {
         self.existingFiles = filePath
@@ -33,6 +41,16 @@ final class CBFileManagerMock: CBFileManager {
     convenience init(zipData: Data) {
         self.init(filePath: [String](), directoryPath: [String]())
         self.zipData = zipData
+    }
+
+    convenience init(imageCache: RuntimeImageCache) {
+        self.init(filePath: [], directoryPath: [])
+        self.imageCacheMock = imageCache
+    }
+
+    convenience init(imageCache: RuntimeImageCache, filePath: [String]) {
+        self.init(filePath: filePath, directoryPath: [])
+        self.imageCacheMock = imageCache
     }
 
     override func fileExists(_ path: String) -> Bool {
