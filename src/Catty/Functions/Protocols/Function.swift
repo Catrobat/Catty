@@ -97,6 +97,30 @@ extension Function {
             }
             return String(number)
         }
+        if let userVariable = parameter as? UserVariable {
+            return self.interpretParameter(parameter: userVariable.value as AnyObject?)
+        }
+        if let userList = parameter as? UserList {
+            var value = ""
+            if !userList.isEmpty {
+                var allElemenetsAreSilgleLength = true
+                var elements = [String]()
+
+                for index in 1...userList.count {
+                    let newValue = self.interpretParameter(parameter: userList.element(at: index) as AnyObject?)
+                    elements.append(newValue)
+                    if newValue.count > 1 {
+                        allElemenetsAreSilgleLength = false
+                    }
+                }
+                if allElemenetsAreSilgleLength {
+                    value = elements.joined()
+                } else {
+                    value = elements.joined(separator: " ")
+                }
+            }
+            return value
+        }
         return ""
     }
 
