@@ -58,7 +58,7 @@ final class PenClearBrickTests: XCTestCase {
         XCTAssertNotNil(scene.childNode(withName: "testName"))
     }
 
-    func testUpdatePreviousPosition() {
+    func testRemoveAllPreviousPositions() {
 
         let object = SpriteObject()
         let spriteNode = CBSpriteNode(spriteObject: object)
@@ -74,7 +74,7 @@ final class PenClearBrickTests: XCTestCase {
         let action = brick.actionBlock()
         action()
 
-        XCTAssertEqual(spriteNode.penConfiguration.previousPosition, spriteNode.position)
+        XCTAssertEqual(spriteNode.penConfiguration.previousPositions.count, 0)
 
     }
 

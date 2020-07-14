@@ -54,7 +54,6 @@ final class CBSpriteNodePenExtensionTests: XCTestCase {
 
     func testWhenSpritePositionChangedPenUp() {
         spriteNode.penConfiguration.penDown = false
-        spriteNode.penConfiguration.previousPosition = initialPosition
         spriteNode.position = CGPoint(x: 1, y: 1)
 
         XCTAssertEqual(scene.children.count, 1)
@@ -66,7 +65,7 @@ final class CBSpriteNodePenExtensionTests: XCTestCase {
 
     func testWhenSpritePositionChangedPenDown() {
         spriteNode.penConfiguration.penDown = true
-        spriteNode.penConfiguration.previousPosition = initialPosition
+        spriteNode.penConfiguration.previousPositions.append(initialPosition)
         spriteNode.position = initialPosition
 
         XCTAssertEqual(scene.children.count, 1)
@@ -99,7 +98,6 @@ final class CBSpriteNodePenExtensionTests: XCTestCase {
 
     func testWhenSpritePositionNotChangedPenUp() {
         spriteNode.penConfiguration.penDown = false
-        spriteNode.penConfiguration.previousPosition = initialPosition
         spriteNode.position = initialPosition
 
         XCTAssertEqual(scene.children.count, 1)
@@ -111,7 +109,6 @@ final class CBSpriteNodePenExtensionTests: XCTestCase {
 
     func testWhenSpritePositionNotChangedPenDown() {
         spriteNode.penConfiguration.penDown = true
-        spriteNode.penConfiguration.previousPosition = initialPosition
         spriteNode.position = initialPosition
 
         XCTAssertEqual(scene.children.count, 1)
@@ -121,22 +118,12 @@ final class CBSpriteNodePenExtensionTests: XCTestCase {
         XCTAssertEqual(scene.children.count, 1)
     }
 
-    func testStartAndSetDefaultPenPosition() {
-        let expectedPosition = CGPoint(
-          x: PositionXSensor.convertToRaw(userInput: PositionXSensor.defaultRawValue, for: spriteNode.spriteObject),
-          y: PositionYSensor.convertToRaw(userInput: PositionYSensor.defaultRawValue, for: spriteNode.spriteObject)
-        )
-
-        spriteNode.start(1)
-
-        XCTAssertEqual(spriteNode.penConfiguration.previousPosition, expectedPosition)
-    }
-
     func testDrawnLineAttributes() {
         spriteNode.penConfiguration.penDown = true
+        spriteNode.penConfiguration.previousPositions.append(initialPosition)
         spriteNode.penConfiguration.color = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
+
         spriteNode.penConfiguration.catrobatSize = 5.0
-        spriteNode.penConfiguration.previousPosition = initialPosition
 
         spriteNode.position = CGPoint(x: 1, y: 1)
         spriteNode.update(CACurrentMediaTime())

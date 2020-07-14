@@ -27,6 +27,9 @@ extension CBSpriteNode {
         set {
             PositionXSensor.setRawValue(userInput: Double(newValue.x), for: self.spriteObject)
             PositionYSensor.setRawValue(userInput: Double(newValue.y), for: self.spriteObject)
+            if self.penConfiguration.penDown {
+                self.penConfiguration.previousPositions.append(CGPoint(x: self.position.x, y: self.position.y))
+            }
         }
 
         get {

@@ -24,22 +24,34 @@ extension CBSpriteNode {
 
     @objc func drawPenLine() {
 
-        guard let previousPosition = penConfiguration.previousPosition else {
-            penConfiguration.previousPosition = self.position
-            return
+        if penConfiguration.previousPositions.last != self.position && penConfiguration.penDown {
+            penConfiguration.previousPositions.append(self.position)
         }
 
-        if (penConfiguration.penDown) && (previousPosition != self.position) {
+        let positionCount = penConfiguration.previousPositions.count
+        if positionCount > 1 {
+            for (index, point) in penConfiguration.previousPositions.enumerated() where index > 0 {
+                guard let lineFrom = penConfiguration.previousPositions[index - 1] else {
+                    fatalError("This should never happen")
+                }
+                let lineTo = point
 
-            let line = LineShapeNode(pathStartPoint: previousPosition, pathEndPoint: self.position)
-            line.name = SpriteKitDefines.penShapeNodeName
-            line.strokeColor = penConfiguration.color
-            line.lineWidth = penConfiguration.size
-            line.zPosition = SpriteKitDefines.defaultPenZPosition
+                self.addLine(from: lineFrom, to: lineTo, withColor: penConfiguration.color, withSize: penConfiguration.size)
+            }
 
-            self.scene?.addChild(line)
-            penConfiguration.previousPosition = self.position
-
+            penConfiguration.previousPositions.removeSubrange(0..<positionCount - 1)
         }
+
     }
+
+    private func addLine(from startPoint: CGPoint, to endPoint: CGPoint, withColor color: UIColor, withSize size: CGFloat) {
+        let line = LineShapeNode(pathStartPoint: startPoint, pathEndPoint: endPoint)
+        line.name = SpriteKitDefines.penShapeNodeName
+        line.strokeColor = color
+        line.lineWidth = size
+        line.zPosition = SpriteKitDefines.defaultPenZPosition
+
+        self.scene?.addChild(line)
+    }
+
 }

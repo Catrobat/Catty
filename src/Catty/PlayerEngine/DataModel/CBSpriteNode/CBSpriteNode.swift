@@ -195,8 +195,6 @@ class CBSpriteNode: SKSpriteNode {
         self.xScale = CGFloat(SizeSensor.defaultRawValue)
         self.yScale = CGFloat(SizeSensor.defaultRawValue)
 
-        self.penConfiguration.previousPosition = self.position
-
         self.ciBrightness = CGFloat(BrightnessSensor.defaultRawValue)
 
         if self.spriteObject.isBackground() == true {
