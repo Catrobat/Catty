@@ -222,7 +222,7 @@
                               minInputLength:(NSUInteger)minInputLength
                               maxInputLength:(NSUInteger)maxInputLength
                     invalidInputAlertMessage:(NSString*)invalidInputAlertMessage
-                               existingNames:(NSOrderedSet*)existingNames {
+                               existingNames:(NSArray*)existingNames {
     [[[[[[[[AlertControllerBuilder textFieldAlertWithTitle:title message:message]
      placeholder:placeholder]
      initialText:value]

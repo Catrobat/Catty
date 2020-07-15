@@ -195,4 +195,13 @@ final class UtilTests: XCTestCase {
 
         XCTAssertEqual(messages?.count, 4)
     }
+
+    func testAllMessagesForProjectWithDuplicatedValues() {
+
+        project.allBroadcastMessages?.add("duplicate")
+        project.allBroadcastMessages?.add("duplicate")
+        project.allBroadcastMessages?.add("duplicate")
+
+        XCTAssertEqual(project.allBroadcastMessages?.count, 1)
+    }
 }
