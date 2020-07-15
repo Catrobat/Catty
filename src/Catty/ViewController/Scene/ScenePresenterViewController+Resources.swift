@@ -99,13 +99,15 @@ import CoreBluetooth
         }
 
         if !unavailableResourceNames.isEmpty {
-            AlertControllerBuilder.alert(title: kLocalizedPocketCode, message: unavailableResourceNames.joined(separator: ", ") + " " + kLocalizedNotAvailable)
+            DispatchQueue.main.async {
+                AlertControllerBuilder.alert(title: kLocalizedPocketCode, message: unavailableResourceNames.joined(separator: ", ") + " " + kLocalizedNotAvailable)
                 .addCancelAction(title: kLocalizedCancel, handler: nil)
                 .addDefaultAction(title: kLocalizedYes) {
                     self.continueWithoutRequiredResources(navigationController: navigationController)
                 }
                 .build()
                 .showWithController(navigationController)
+            }
 
             return false
         }
