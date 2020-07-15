@@ -543,6 +543,4 @@ final class ScriptCollectionViewControllerDisableTests: XCTestCase {
         XCTAssertTrue(viewController.isInsideDisabledLoopOrIf(brick: changeVariableBrick))
         XCTAssertFalse(viewController.isInsideDisabledLoopOrIf(brick: ifThenLogicEndBrick))
     }
-    
-    FUNC
 }
