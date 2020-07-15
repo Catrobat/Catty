@@ -350,6 +350,7 @@
 		4C03A4C22133FDE7007BFFD2 /* FormulaManager+Editor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C03A4C12133FDE7007BFFD2 /* FormulaManager+Editor.swift */; };
 		4C03A4C42133FF4B007BFFD2 /* FormulaManager+Interpreter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C03A4C32133FF4B007BFFD2 /* FormulaManager+Interpreter.swift */; };
 		4C099F6E1C282B3C00E190CA /* CBBackendTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C099F6D1C282B3C00E190CA /* CBBackendTests.swift */; };
+		4C0A209824CEA46700CC9B04 /* PaintViewControllerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0A209524CEA46600CC9B04 /* PaintViewControllerMock.swift */; };
 		4C0C164921439B2F005ADE86 /* ChartProjectsStoreDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0C164821439B2F005ADE86 /* ChartProjectsStoreDataSourceTests.swift */; };
 		4C0E25E920D39E5000A80273 /* ScenePresenterViewController+Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0E25E820D39E5000A80273 /* ScenePresenterViewController+Resources.swift */; };
 		4C0EEE6C23F423E9005340B2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4C0EEE6B23F423E9005340B2 /* GoogleService-Info.plist */; };
@@ -2000,6 +2001,7 @@
 		4C03A4C12133FDE7007BFFD2 /* FormulaManager+Editor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FormulaManager+Editor.swift"; sourceTree = "<group>"; };
 		4C03A4C32133FF4B007BFFD2 /* FormulaManager+Interpreter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FormulaManager+Interpreter.swift"; sourceTree = "<group>"; };
 		4C099F6D1C282B3C00E190CA /* CBBackendTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBBackendTests.swift; path = PlayerEngine/CBBackendTests.swift; sourceTree = "<group>"; };
+		4C0A209524CEA46600CC9B04 /* PaintViewControllerMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaintViewControllerMock.swift; sourceTree = "<group>"; };
 		4C0C164821439B2F005ADE86 /* ChartProjectsStoreDataSourceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartProjectsStoreDataSourceTests.swift; sourceTree = "<group>"; };
 		4C0E25E820D39E5000A80273 /* ScenePresenterViewController+Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScenePresenterViewController+Resources.swift"; sourceTree = "<group>"; };
 		4C0EEE6B23F423E9005340B2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = "GoogleService-Info.plist"; path = "Catty/Supporting Files/Firebase/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
@@ -6506,6 +6508,7 @@
 				5973F235202EF2BB00A4CED9 /* MediaLibraryCollectionViewDataSourceDelegateMock.swift */,
 				599E64A5202DB2FB009494B5 /* MediaLibraryDownloaderMock.swift */,
 				4CB73A9123FC1F1300D5E9A7 /* NavigationControllerMock.swift */,
+				4C0A209524CEA46600CC9B04 /* PaintViewControllerMock.swift */,
 				D3CF3A0E23D07F06006B2667 /* ProjectMock.swift */,
 				4CFABF5C24AB0DD40023D581 /* RuntimeImageCacheMock.swift */,
 				9E05FAB0247FF57F008951DE /* ScenePresenterViewControllerSpy.swift */,
@@ -10136,6 +10139,7 @@
 				2ED418C42411213E00AFE2FD /* XMLParserBlackBoxTests093.swift in Sources */,
 				4CD487761ED2C2A3001BB80A /* ChangeVariableBrickTests.swift in Sources */,
 				2ED418C62411213E00AFE2FD /* XMLParserTests092.swift in Sources */,
+				4C0A209824CEA46700CC9B04 /* PaintViewControllerMock.swift in Sources */,
 				4C82267B213FA7A400F3D750 /* BackgroundNumberSensorTest.swift in Sources */,
 				59A58D83202C714A008B1A8F /* MediaLibraryDownloaderTests.swift in Sources */,
 				9E24D7072326EBC300608203 /* ShowBrickTests.swift in Sources */,

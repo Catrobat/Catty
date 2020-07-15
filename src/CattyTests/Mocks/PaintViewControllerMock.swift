@@ -20,29 +20,29 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class NavigationControllerMock: UINavigationController {
+class PaintViewControllerMock: PaintViewController {
 
-    var currentViewController: UIViewController?
-    var navigationBarFrame = CGRect.zero
-    var toolbarFrame = CGRect.zero
+    let navigationControllerMock: UINavigationController
 
-    override var navigationBar: UINavigationBar {
-        let navigationBar = UINavigationBar()
-        navigationBar.frame = self.navigationBarFrame
-        return navigationBar
+    override var navigationController: UINavigationController? { navigationControllerMock }
+
+    init?(editingImage: UIImage, navigationController: UINavigationController) {
+        let data = NSMutableData()
+        let archiver = NSKeyedArchiver(forWritingWith: data)
+        archiver.finishEncoding()
+        let coder = NSKeyedUnarchiver(forReadingWith: data as Data)
+
+        self.navigationControllerMock = navigationController
+
+        super.init(coder: coder)
+
+        self.editingImage = editingImage
+        self.helper = UIView()
+        self.drawView = UIImageView()
+        self.saveView = UIImageView()
     }
 
-    override var toolbar: UIToolbar {
-        let toolbar = UIToolbar()
-        toolbar.frame = self.toolbarFrame
-        return toolbar
-    }
-
-    override func pushViewController(_ viewController: UIViewController, animated: Bool) {
-        self.currentViewController = viewController
-    }
-
-    override func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)? = nil) {
-        self.currentViewController = viewControllerToPresent
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
