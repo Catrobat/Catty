@@ -56,6 +56,23 @@ class JoinFunctionTest: XCTestCase {
         XCTAssertEqual("XCode 9", function.value(firstParameter: "XCode " as AnyObject, secondParameter: 9 as AnyObject))
         XCTAssertEqual("XCode 9.4", function.value(firstParameter: "XCode " as AnyObject, secondParameter: 9.4 as AnyObject))
         XCTAssertEqual("limit inf", function.value(firstParameter: "limit " as AnyObject, secondParameter: Double.infinity as AnyObject))
+
+        var list = UserList(name: "testList")
+        list.add(element: 1)
+        list.add(element: "A")
+        XCTAssertEqual("list 1A", function.value(firstParameter: "list " as AnyObject, secondParameter: list as AnyObject))
+
+        list.add(element: "testValue")
+        XCTAssertEqual("list 1 A testValue", function.value(firstParameter: "list " as AnyObject, secondParameter: list as AnyObject))
+
+        list = UserList(name: "newTestList")
+        list.add(element: "itemA")
+        list.add(element: "itemB")
+        XCTAssertEqual("list itemA itemB", function.value(firstParameter: "list " as AnyObject, secondParameter: list as AnyObject))
+
+        let variable = UserVariable(name: "testVariable")
+        variable.value = "testValue"
+        XCTAssertEqual("variable testValue", function.value(firstParameter: "variable " as AnyObject, secondParameter: variable as AnyObject))
     }
 
     func testFirstParameter() {
