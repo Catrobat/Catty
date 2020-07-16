@@ -1,18 +1,18 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <program>
   <header>
-    <applicationBuildName/>
+    <applicationBuildName></applicationBuildName>
     <applicationBuildNumber>0</applicationBuildNumber>
     <applicationName>Pocket Code</applicationName>
-    <applicationVersion>0.9.27</applicationVersion>
+    <applicationVersion>0.9.-1</applicationVersion>
     <catrobatLanguageVersion>0.992</catrobatLanguageVersion>
-    <dateTimeUpload/>
+    <dateTimeUpload></dateTimeUpload>
     <description>A simple game similar to the popular Flappy Bird, completely made using Pocket Code. Game not tested on multiple devices yet, which might lead to minor issues. Please let me know about any issues and always welcome to remix this game. </description>
-    <deviceName>PRA-LX1</deviceName>
+    <deviceName>Nexus 4</deviceName>
     <landscapeMode>false</landscapeMode>
     <mediaLicense>http://developer.catrobat.org/ccbysa_v4</mediaLicense>
     <platform>Android</platform>
-    <platformVersion>26.0</platformVersion>
+    <platformVersion>19.0</platformVersion>
     <programLicense>http://developer.catrobat.org/agpl_v3</programLicense>
     <programName>Flappy_v3.0</programName>
     <remixOf>http://pocketcode.org/details/1579</remixOf>
@@ -20,14 +20,14 @@
     <screenHeight>782</screenHeight>
     <screenMode>STRETCH</screenMode>
     <screenWidth>480</screenWidth>
-    <tags>Spiele</tags>
-    <url>/pocketcode/program/1581</url>
+    <tags></tags>
+    <url>http://pocketcode.org/details/1581</url>
     <userHandle>mj7007</userHandle>
   </header>
   <settings/>
   <scenes>
     <scene>
-      <name>Szene 1</name>
+      <name>Scene 1</name>
       <objectList>
         <object type="SingleSprite" name="Background">
           <lookList>
@@ -83,18 +83,18 @@
                 <brick type="PlaceAtBrick">
                   <commentedOut>false</commentedOut>
                   <formulaList>
-                    <formula category="X_POSITION">
-                      <rightChild>
-                        <type>NUMBER</type>
-                        <value>110</value>
-                      </rightChild>
-                      <type>OPERATOR</type>
-                      <value>MINUS</value>
-                    </formula>
                     <formula category="Y_POSITION">
                       <rightChild>
                         <type>NUMBER</type>
                         <value>75</value>
+                      </rightChild>
+                      <type>OPERATOR</type>
+                      <value>MINUS</value>
+                    </formula>
+                    <formula category="X_POSITION">
+                      <rightChild>
+                        <type>NUMBER</type>
+                        <value>110</value>
                       </rightChild>
                       <type>OPERATOR</type>
                       <value>MINUS</value>
@@ -575,27 +575,19 @@
                 <brick type="PlaceAtBrick">
                   <commentedOut>false</commentedOut>
                   <formulaList>
-                    <formula category="X_POSITION">
-                      <type>NUMBER</type>
-                      <value>650</value>
-                    </formula>
                     <formula category="Y_POSITION">
                       <type>USER_VARIABLE</type>
                       <value>rand_y2</value>
+                    </formula>
+                    <formula category="X_POSITION">
+                      <type>NUMBER</type>
+                      <value>650</value>
                     </formula>
                   </formulaList>
                 </brick>
                 <brick type="GlideToBrick">
                   <commentedOut>false</commentedOut>
                   <formulaList>
-                    <formula category="X_DESTINATION">
-                      <rightChild>
-                        <type>NUMBER</type>
-                        <value>50</value>
-                      </rightChild>
-                      <type>OPERATOR</type>
-                      <value>MINUS</value>
-                    </formula>
                     <formula category="DURATION_IN_SECONDS">
                       <type>NUMBER</type>
                       <value>7</value>
@@ -603,6 +595,14 @@
                     <formula category="Y_DESTINATION">
                       <type>USER_VARIABLE</type>
                       <value>rand_y2</value>
+                    </formula>
+                    <formula category="X_DESTINATION">
+                      <rightChild>
+                        <type>NUMBER</type>
+                        <value>50</value>
+                      </rightChild>
+                      <type>OPERATOR</type>
+                      <value>MINUS</value>
                     </formula>
                   </formulaList>
                 </brick>
@@ -661,14 +661,6 @@
                 <brick type="GlideToBrick">
                   <commentedOut>false</commentedOut>
                   <formulaList>
-                    <formula category="X_DESTINATION">
-                      <rightChild>
-                        <type>NUMBER</type>
-                        <value>170</value>
-                      </rightChild>
-                      <type>OPERATOR</type>
-                      <value>MINUS</value>
-                    </formula>
                     <formula category="DURATION_IN_SECONDS">
                       <type>NUMBER</type>
                       <value>1.2</value>
@@ -676,6 +668,14 @@
                     <formula category="Y_DESTINATION">
                       <type>USER_VARIABLE</type>
                       <value>rand_y2</value>
+                    </formula>
+                    <formula category="X_DESTINATION">
+                      <rightChild>
+                        <type>NUMBER</type>
+                        <value>170</value>
+                      </rightChild>
+                      <type>OPERATOR</type>
+                      <value>MINUS</value>
                     </formula>
                   </formulaList>
                 </brick>
@@ -692,14 +692,6 @@
                 <brick type="GlideToBrick">
                   <commentedOut>false</commentedOut>
                   <formulaList>
-                    <formula category="X_DESTINATION">
-                      <rightChild>
-                        <type>NUMBER</type>
-                        <value>400</value>
-                      </rightChild>
-                      <type>OPERATOR</type>
-                      <value>MINUS</value>
-                    </formula>
                     <formula category="DURATION_IN_SECONDS">
                       <type>NUMBER</type>
                       <value>2.3</value>
@@ -708,15 +700,19 @@
                       <type>USER_VARIABLE</type>
                       <value>rand_y2</value>
                     </formula>
+                    <formula category="X_DESTINATION">
+                      <rightChild>
+                        <type>NUMBER</type>
+                        <value>400</value>
+                      </rightChild>
+                      <type>OPERATOR</type>
+                      <value>MINUS</value>
+                    </formula>
                   </formulaList>
                 </brick>
                 <brick type="GlideToBrick">
                   <commentedOut>false</commentedOut>
                   <formulaList>
-                    <formula category="X_DESTINATION">
-                      <type>NUMBER</type>
-                      <value>300</value>
-                    </formula>
                     <formula category="DURATION_IN_SECONDS">
                       <type>NUMBER</type>
                       <value>0.000000001</value>
@@ -724,6 +720,10 @@
                     <formula category="Y_DESTINATION">
                       <type>USER_VARIABLE</type>
                       <value>rand_y2</value>
+                    </formula>
+                    <formula category="X_DESTINATION">
+                      <type>NUMBER</type>
+                      <value>300</value>
                     </formula>
                   </formulaList>
                 </brick>
@@ -733,14 +733,6 @@
                 <brick type="GlideToBrick">
                   <commentedOut>false</commentedOut>
                   <formulaList>
-                    <formula category="X_DESTINATION">
-                      <rightChild>
-                        <type>NUMBER</type>
-                        <value>50</value>
-                      </rightChild>
-                      <type>OPERATOR</type>
-                      <value>MINUS</value>
-                    </formula>
                     <formula category="DURATION_IN_SECONDS">
                       <type>NUMBER</type>
                       <value>3.5</value>
@@ -748,6 +740,14 @@
                     <formula category="Y_DESTINATION">
                       <type>USER_VARIABLE</type>
                       <value>rand_y2</value>
+                    </formula>
+                    <formula category="X_DESTINATION">
+                      <rightChild>
+                        <type>NUMBER</type>
+                        <value>50</value>
+                      </rightChild>
+                      <type>OPERATOR</type>
+                      <value>MINUS</value>
                     </formula>
                   </formulaList>
                 </brick>
@@ -764,14 +764,6 @@
                 <brick type="GlideToBrick">
                   <commentedOut>false</commentedOut>
                   <formulaList>
-                    <formula category="X_DESTINATION">
-                      <rightChild>
-                        <type>NUMBER</type>
-                        <value>170</value>
-                      </rightChild>
-                      <type>OPERATOR</type>
-                      <value>MINUS</value>
-                    </formula>
                     <formula category="DURATION_IN_SECONDS">
                       <type>NUMBER</type>
                       <value>1.2</value>
@@ -779,6 +771,14 @@
                     <formula category="Y_DESTINATION">
                       <type>USER_VARIABLE</type>
                       <value>rand_y2</value>
+                    </formula>
+                    <formula category="X_DESTINATION">
+                      <rightChild>
+                        <type>NUMBER</type>
+                        <value>170</value>
+                      </rightChild>
+                      <type>OPERATOR</type>
+                      <value>MINUS</value>
                     </formula>
                   </formulaList>
                 </brick>
@@ -795,14 +795,6 @@
                 <brick type="GlideToBrick">
                   <commentedOut>false</commentedOut>
                   <formulaList>
-                    <formula category="X_DESTINATION">
-                      <rightChild>
-                        <type>NUMBER</type>
-                        <value>400</value>
-                      </rightChild>
-                      <type>OPERATOR</type>
-                      <value>MINUS</value>
-                    </formula>
                     <formula category="DURATION_IN_SECONDS">
                       <type>NUMBER</type>
                       <value>2.3</value>
@@ -811,15 +803,19 @@
                       <type>USER_VARIABLE</type>
                       <value>rand_y2</value>
                     </formula>
+                    <formula category="X_DESTINATION">
+                      <rightChild>
+                        <type>NUMBER</type>
+                        <value>400</value>
+                      </rightChild>
+                      <type>OPERATOR</type>
+                      <value>MINUS</value>
+                    </formula>
                   </formulaList>
                 </brick>
                 <brick type="GlideToBrick">
                   <commentedOut>false</commentedOut>
                   <formulaList>
-                    <formula category="X_DESTINATION">
-                      <type>NUMBER</type>
-                      <value>300</value>
-                    </formula>
                     <formula category="DURATION_IN_SECONDS">
                       <type>NUMBER</type>
                       <value>0.000000001</value>
@@ -827,6 +823,10 @@
                     <formula category="Y_DESTINATION">
                       <type>USER_VARIABLE</type>
                       <value>rand_y2</value>
+                    </formula>
+                    <formula category="X_DESTINATION">
+                      <type>NUMBER</type>
+                      <value>300</value>
                     </formula>
                   </formulaList>
                 </brick>
@@ -940,27 +940,19 @@
                 <brick type="PlaceAtBrick">
                   <commentedOut>false</commentedOut>
                   <formulaList>
-                    <formula category="X_POSITION">
-                      <type>NUMBER</type>
-                      <value>300</value>
-                    </formula>
                     <formula category="Y_POSITION">
                       <type>USER_VARIABLE</type>
                       <value>rand_y1</value>
+                    </formula>
+                    <formula category="X_POSITION">
+                      <type>NUMBER</type>
+                      <value>300</value>
                     </formula>
                   </formulaList>
                 </brick>
                 <brick type="GlideToBrick">
                   <commentedOut>false</commentedOut>
                   <formulaList>
-                    <formula category="X_DESTINATION">
-                      <rightChild>
-                        <type>NUMBER</type>
-                        <value>50</value>
-                      </rightChild>
-                      <type>OPERATOR</type>
-                      <value>MINUS</value>
-                    </formula>
                     <formula category="DURATION_IN_SECONDS">
                       <type>NUMBER</type>
                       <value>3.5</value>
@@ -968,6 +960,14 @@
                     <formula category="Y_DESTINATION">
                       <type>USER_VARIABLE</type>
                       <value>rand_y1</value>
+                    </formula>
+                    <formula category="X_DESTINATION">
+                      <rightChild>
+                        <type>NUMBER</type>
+                        <value>50</value>
+                      </rightChild>
+                      <type>OPERATOR</type>
+                      <value>MINUS</value>
                     </formula>
                   </formulaList>
                 </brick>
@@ -1026,14 +1026,6 @@
                 <brick type="GlideToBrick">
                   <commentedOut>false</commentedOut>
                   <formulaList>
-                    <formula category="X_DESTINATION">
-                      <rightChild>
-                        <type>NUMBER</type>
-                        <value>170</value>
-                      </rightChild>
-                      <type>OPERATOR</type>
-                      <value>MINUS</value>
-                    </formula>
                     <formula category="DURATION_IN_SECONDS">
                       <type>NUMBER</type>
                       <value>1.2</value>
@@ -1041,6 +1033,14 @@
                     <formula category="Y_DESTINATION">
                       <type>USER_VARIABLE</type>
                       <value>rand_y1</value>
+                    </formula>
+                    <formula category="X_DESTINATION">
+                      <rightChild>
+                        <type>NUMBER</type>
+                        <value>170</value>
+                      </rightChild>
+                      <type>OPERATOR</type>
+                      <value>MINUS</value>
                     </formula>
                   </formulaList>
                 </brick>
@@ -1057,14 +1057,6 @@
                 <brick type="GlideToBrick">
                   <commentedOut>false</commentedOut>
                   <formulaList>
-                    <formula category="X_DESTINATION">
-                      <rightChild>
-                        <type>NUMBER</type>
-                        <value>400</value>
-                      </rightChild>
-                      <type>OPERATOR</type>
-                      <value>MINUS</value>
-                    </formula>
                     <formula category="DURATION_IN_SECONDS">
                       <type>NUMBER</type>
                       <value>2.3</value>
@@ -1073,15 +1065,19 @@
                       <type>USER_VARIABLE</type>
                       <value>rand_y1</value>
                     </formula>
+                    <formula category="X_DESTINATION">
+                      <rightChild>
+                        <type>NUMBER</type>
+                        <value>400</value>
+                      </rightChild>
+                      <type>OPERATOR</type>
+                      <value>MINUS</value>
+                    </formula>
                   </formulaList>
                 </brick>
                 <brick type="GlideToBrick">
                   <commentedOut>false</commentedOut>
                   <formulaList>
-                    <formula category="X_DESTINATION">
-                      <type>NUMBER</type>
-                      <value>300</value>
-                    </formula>
                     <formula category="DURATION_IN_SECONDS">
                       <type>NUMBER</type>
                       <value>0.0000000001</value>
@@ -1089,6 +1085,10 @@
                     <formula category="Y_DESTINATION">
                       <type>USER_VARIABLE</type>
                       <value>rand_y1</value>
+                    </formula>
+                    <formula category="X_DESTINATION">
+                      <type>NUMBER</type>
+                      <value>300</value>
                     </formula>
                   </formulaList>
                 </brick>
@@ -1137,10 +1137,6 @@
                 <brick type="PlaceAtBrick">
                   <commentedOut>false</commentedOut>
                   <formulaList>
-                    <formula category="X_POSITION">
-                      <type>NUMBER</type>
-                      <value>150</value>
-                    </formula>
                     <formula category="Y_POSITION">
                       <rightChild>
                         <type>NUMBER</type>
@@ -1148,6 +1144,10 @@
                       </rightChild>
                       <type>OPERATOR</type>
                       <value>MINUS</value>
+                    </formula>
+                    <formula category="X_POSITION">
+                      <type>NUMBER</type>
+                      <value>150</value>
                     </formula>
                   </formulaList>
                 </brick>
@@ -1160,14 +1160,6 @@
                 <brick type="GlideToBrick">
                   <commentedOut>false</commentedOut>
                   <formulaList>
-                    <formula category="X_DESTINATION">
-                      <rightChild>
-                        <type>NUMBER</type>
-                        <value>150</value>
-                      </rightChild>
-                      <type>OPERATOR</type>
-                      <value>MINUS</value>
-                    </formula>
                     <formula category="DURATION_IN_SECONDS">
                       <type>NUMBER</type>
                       <value>3</value>
@@ -1180,15 +1172,19 @@
                       <type>OPERATOR</type>
                       <value>MINUS</value>
                     </formula>
+                    <formula category="X_DESTINATION">
+                      <rightChild>
+                        <type>NUMBER</type>
+                        <value>150</value>
+                      </rightChild>
+                      <type>OPERATOR</type>
+                      <value>MINUS</value>
+                    </formula>
                   </formulaList>
                 </brick>
                 <brick type="GlideToBrick">
                   <commentedOut>false</commentedOut>
                   <formulaList>
-                    <formula category="X_DESTINATION">
-                      <type>NUMBER</type>
-                      <value>150</value>
-                    </formula>
                     <formula category="DURATION_IN_SECONDS">
                       <type>NUMBER</type>
                       <value>0.000000001</value>
@@ -1200,6 +1196,10 @@
                       </rightChild>
                       <type>OPERATOR</type>
                       <value>MINUS</value>
+                    </formula>
+                    <formula category="X_DESTINATION">
+                      <type>NUMBER</type>
+                      <value>150</value>
                     </formula>
                   </formulaList>
                 </brick>
@@ -1364,11 +1364,11 @@
                 <brick type="PlaceAtBrick">
                   <commentedOut>false</commentedOut>
                   <formulaList>
-                    <formula category="X_POSITION">
+                    <formula category="Y_POSITION">
                       <type>NUMBER</type>
                       <value>0</value>
                     </formula>
-                    <formula category="Y_POSITION">
+                    <formula category="X_POSITION">
                       <type>NUMBER</type>
                       <value>0</value>
                     </formula>
@@ -2152,16 +2152,10 @@
         <objectListOfList/>
         <objectVariableList>
           <entry>
-            <object reference="../../../../objectList/object[7]"/>
-            <list/>
-          </entry>
-          <entry>
-            <object reference="../../../../objectList/object[6]"/>
-            <list/>
-          </entry>
-          <entry>
-            <object reference="../../../../objectList/object"/>
-            <list/>
+            <object reference="../../../../objectList/object[8]"/>
+            <list>
+              <userVariable reference="../../../../../objectList/object[8]/scriptList/script[2]/brickList/brick[2]/userVariable"/>
+            </list>
           </entry>
           <entry>
             <object reference="../../../../objectList/object[2]"/>
@@ -2170,10 +2164,22 @@
             </list>
           </entry>
           <entry>
-            <object reference="../../../../objectList/object[8]"/>
+            <object reference="../../../../objectList/object[9]"/>
             <list>
-              <userVariable reference="../../../../../objectList/object[8]/scriptList/script[2]/brickList/brick[2]/userVariable"/>
+              <userVariable reference="../../../../../objectList/object[9]/scriptList/script[2]/brickList/brick[2]/userVariable"/>
             </list>
+          </entry>
+          <entry>
+            <object reference="../../../../objectList/object[7]"/>
+            <list/>
+          </entry>
+          <entry>
+            <object reference="../../../../objectList/object"/>
+            <list/>
+          </entry>
+          <entry>
+            <object reference="../../../../objectList/object[5]"/>
+            <list/>
           </entry>
           <entry>
             <object reference="../../../../objectList/object[3]"/>
@@ -2184,14 +2190,8 @@
             <list/>
           </entry>
           <entry>
-            <object reference="../../../../objectList/object[5]"/>
+            <object reference="../../../../objectList/object[6]"/>
             <list/>
-          </entry>
-          <entry>
-            <object reference="../../../../objectList/object[9]"/>
-            <list>
-              <userVariable reference="../../../../../objectList/object[9]/scriptList/script[2]/brickList/brick[2]/userVariable"/>
-            </list>
           </entry>
         </objectVariableList>
         <userBrickVariableList/>
@@ -2212,4 +2212,3 @@
   </programVariableList>
   <programListOfLists/>
 </program>
-
