@@ -99,13 +99,15 @@ import CoreBluetooth
         }
 
         if !unavailableResourceNames.isEmpty {
-            AlertControllerBuilder.alert(title: kLocalizedPocketCode, message: unavailableResourceNames.joined(separator: ", ") + " " + kLocalizedNotAvailable)
+            DispatchQueue.main.async {
+                AlertControllerBuilder.alert(title: kLocalizedPocketCode, message: unavailableResourceNames.joined(separator: ", ") + " " + kLocalizedNotAvailable)
                 .addCancelAction(title: kLocalizedCancel, handler: nil)
                 .addDefaultAction(title: kLocalizedYes) {
                     self.continueWithoutRequiredResources(navigationController: navigationController)
                 }
                 .build()
                 .showWithController(navigationController)
+            }
 
             return false
         }
@@ -116,18 +118,20 @@ import CoreBluetooth
     @nonobjc private func bluetoothDevicesUnconnected(navigationController: UINavigationController, bluetoothDevices: [BluetoothDeviceID]) {
         let intDevices = bluetoothDevices.map { $0.rawValue }
 
-        if CentralManager.sharedInstance.state == ManagerState.poweredOn || CentralManager.sharedInstance.state == ManagerState.unknown {
-            let storyboard = UIStoryboard(name: "iPhone", bundle: nil)
-            let bvc: BluetoothPopupVC = storyboard.instantiateViewController(withIdentifier: "bluetoothPopupVC") as! BluetoothPopupVC
-            bvc.deviceArray = intDevices
+        DispatchQueue.main.async {
+            if CentralManager.sharedInstance.state == ManagerState.poweredOn || CentralManager.sharedInstance.state == ManagerState.unknown {
+                let storyboard = UIStoryboard(name: "iPhone", bundle: nil)
+                let bvc: BluetoothPopupVC = storyboard.instantiateViewController(withIdentifier: "bluetoothPopupVC") as! BluetoothPopupVC
+                bvc.deviceArray = intDevices
 
-            let navController = UINavigationController(rootViewController: bvc)
-            self.present(navController, animated: true)
+                let navController = UINavigationController(rootViewController: bvc)
+                self.present(navController, animated: true)
 
-        } else if CentralManager.sharedInstance.state == ManagerState.poweredOff {
-            Util.alert(withText: kLocalizedBluetoothPoweredOff)
-        } else {
-            Util.alert(withText: kLocalizedBluetoothNotAvailable)
+            } else if CentralManager.sharedInstance.state == ManagerState.poweredOff {
+                Util.alert(withText: kLocalizedBluetoothPoweredOff)
+            } else {
+                Util.alert(withText: kLocalizedBluetoothNotAvailable)
+            }
         }
     }
 
