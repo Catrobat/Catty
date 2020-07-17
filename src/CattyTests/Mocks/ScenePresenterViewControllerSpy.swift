@@ -29,6 +29,11 @@ import XCTest
 class ScenePresenterViewControllerSpy: ScenePresenterViewController {
 
     public var methodCalls = [String]()
+    public var paused = false
+
+    override func isPaused() -> Bool {
+        paused
+    }
 
     override func pauseAction() {
         methodCalls.append("pauseAction")

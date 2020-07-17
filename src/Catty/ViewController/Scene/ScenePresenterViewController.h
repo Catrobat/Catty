@@ -56,4 +56,6 @@
 - (void)showLoadingView;
 - (void)hideLoadingView;
 
+- (BOOL)isPaused;
+
 @end

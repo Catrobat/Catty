@@ -30,21 +30,23 @@ final class AppDelegateTests: XCTestCase {
 
     var scenePresenterViewController: ScenePresenterViewControllerSpy!
     var audioEngineHelper: AudioEngineHelperSpy!
+    weak var appDelegate: AppDelegate!
 
     override func setUp() {
         scenePresenterViewController = ScenePresenterViewControllerSpy()
         audioEngineHelper = AudioEngineHelperSpy()
         let rootViewController = UINavigationController()
         rootViewController.pushViewController(scenePresenterViewController, animated: false)
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+
         let window = UIWindow()
         window.rootViewController = rootViewController
+
+        appDelegate = (UIApplication.shared.delegate as! AppDelegate)
         appDelegate.window = window
         appDelegate.audioEngineHelper = audioEngineHelper
     }
 
     func testApplicationWillResignActiveWhenSceneActive() {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.applicationWillResignActive(UIApplication.shared)
 
         expect(self.scenePresenterViewController.methodCalls).to(contain("pauseAction"))
@@ -52,26 +54,46 @@ final class AppDelegateTests: XCTestCase {
     }
 
     func testApplicationDidEnterBackground() {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.applicationDidEnterBackground(UIApplication.shared)
 
         expect(self.audioEngineHelper.methodCalls).to(contain("deactivateAudioSession"))
         expect(self.audioEngineHelper.methodCalls.count).to(be(1))
     }
 
-    func testApplicationWillEnterForegroundWhenScenePaused() {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    func testApplicationWillEnterForeground() {
+        scenePresenterViewController.paused = true
+        expect(self.scenePresenterViewController.isPaused()) == true
+
         appDelegate.applicationWillEnterForeground(UIApplication.shared)
 
         expect(self.audioEngineHelper.methodCalls).to(contain("activateAudioSession"))
         expect(self.audioEngineHelper.methodCalls.count).to(be(1))
     }
 
-    func testApplicationDidBecomeActiveWhenScenePaused() {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    func testApplicationWillEnterForegroundWhenScenePaused() {
+        expect(self.scenePresenterViewController.isPaused()) == false
+
+        appDelegate.applicationWillEnterForeground(UIApplication.shared)
+
+        expect(self.audioEngineHelper.methodCalls).to(contain("activateAudioSession"))
+        expect(self.audioEngineHelper.methodCalls.count).to(be(1))
+    }
+
+    func testApplicationDidBecomeActive() {
+        expect(self.scenePresenterViewController.isPaused()) == false
+
         appDelegate.applicationDidBecomeActive(UIApplication.shared)
 
         expect(self.scenePresenterViewController.methodCalls).to(contain("resumeAction"))
         expect(self.scenePresenterViewController.methodCalls.count).to(be(1))
+    }
+
+    func testApplicationDidBecomeActiveWhenScenePaused() {
+        scenePresenterViewController.paused = true
+        expect(self.scenePresenterViewController.isPaused()) == true
+
+        appDelegate.applicationDidBecomeActive(UIApplication.shared)
+
+        expect(self.scenePresenterViewController.methodCalls).toNot(contain("resumeAction"))
     }
 }
