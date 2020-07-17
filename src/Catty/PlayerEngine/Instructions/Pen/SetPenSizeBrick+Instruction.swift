@@ -20,21 +20,22 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-struct PenConfiguration {
-    var penDown = false
-    static let sizeConversionFactor = 0.634
+extension SetPenSizeBrick: CBInstructionProtocol {
 
-    private(set) var size: CGFloat = SpriteKitDefines.defaultCatrobatPenSize * CGFloat(PenConfiguration.sizeConversionFactor)
+    func instruction() -> CBInstruction {
+        .action { context in SKAction.run(self.actionBlock(context.formulaInterpreter)) }
+    }
 
-    var catrobatSize: CGFloat {
-        set {
-            size = CGFloat(PenConfiguration.sizeConversionFactor) * newValue
-        }
-        get {
-            size / CGFloat(PenConfiguration.sizeConversionFactor)
+    func actionBlock(_ formulaInterpreter: FormulaInterpreterProtocol) -> () -> Void {
+        guard let object = self.script?.object,
+            let spriteNode = object.spriteNode,
+            let formula = self.penSize
+            else { fatalError("This should never happen!") }
+
+        return {
+            let size = formulaInterpreter.interpretFloat(formula, for: object)
+            spriteNode.penConfiguration.catrobatSize = CGFloat(size)
         }
     }
 
-    var color = SpriteKitDefines.defaultPenColor
-    var previousPosition: CGPoint?
 }

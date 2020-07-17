@@ -20,21 +20,30 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-struct PenConfiguration {
-    var penDown = false
-    static let sizeConversionFactor = 0.634
+import XCTest
 
-    private(set) var size: CGFloat = SpriteKitDefines.defaultCatrobatPenSize * CGFloat(PenConfiguration.sizeConversionFactor)
+@testable import Pocket_Code
 
-    var catrobatSize: CGFloat {
-        set {
-            size = CGFloat(PenConfiguration.sizeConversionFactor) * newValue
-        }
-        get {
-            size / CGFloat(PenConfiguration.sizeConversionFactor)
-        }
+final class SetPenSizeBrickTests: AbstractBrickTest {
+
+    func testSetPenSizeBrick() {
+        let expectedCatrobatPenSize = CGFloat(10.0)
+
+        let object = SpriteObject()
+        let spriteNode = CBSpriteNode(spriteObject: object)
+        object.spriteNode = spriteNode
+
+        let script = Script()
+        script.object = object
+
+        let brick = SetPenSizeBrick()
+        brick.script = script
+        brick.penSize = Formula(float: Float(expectedCatrobatPenSize))
+
+        let action = brick.actionBlock(self.formulaInterpreter)
+        XCTAssertEqual(spriteNode.penConfiguration.catrobatSize, SpriteKitDefines.defaultCatrobatPenSize, accuracy: 0.01)
+        action()
+        XCTAssertEqual(spriteNode.penConfiguration.catrobatSize, expectedCatrobatPenSize, accuracy: 0.01)
     }
 
-    var color = SpriteKitDefines.defaultPenColor
-    var previousPosition: CGPoint?
 }

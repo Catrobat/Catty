@@ -136,6 +136,7 @@
 // Formulas
 #import "Formula.h"
 #import "FormulaElement.h"
+#import "Formula+CBXMLHandler.h"
 
 // Assets
 #import "Look.h"

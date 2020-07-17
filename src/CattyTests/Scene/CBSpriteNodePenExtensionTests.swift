@@ -79,7 +79,7 @@ final class CBSpriteNodePenExtensionTests: XCTestCase {
         var allShapeNodes = getAllLineShapeNodes()
 
         XCTAssertEqual(allShapeNodes.count, 1)
-        XCTAssertEqual(allShapeNodes[0].lineWidth, SpriteKitDefines.defaultPenSize, accuracy: CGFloat(Double.epsilon))
+        XCTAssertEqual(allShapeNodes[0].lineWidth, spriteNode.penConfiguration.size, accuracy: CGFloat(0.01))
         XCTAssertEqual(allShapeNodes[0].strokeColor, SpriteKitDefines.defaultPenColor)
         XCTAssertEqual(allShapeNodes[0].pathStartPoint, initialPosition)
         XCTAssertEqual(allShapeNodes[0].pathEndPoint, spriteNode.position)
@@ -135,7 +135,7 @@ final class CBSpriteNodePenExtensionTests: XCTestCase {
     func testDrawnLineAttributes() {
         spriteNode.penConfiguration.penDown = true
         spriteNode.penConfiguration.color = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
-        spriteNode.penConfiguration.size = 5.0
+        spriteNode.penConfiguration.catrobatSize = 5.0
         spriteNode.penConfiguration.previousPosition = initialPosition
 
         spriteNode.position = CGPoint(x: 1, y: 1)
@@ -148,7 +148,7 @@ final class CBSpriteNodePenExtensionTests: XCTestCase {
             return
         }
 
-        XCTAssertEqual(line.lineWidth, 5.0)
+        XCTAssertEqual(line.lineWidth, CGFloat(5.0 * PenConfiguration.sizeConversionFactor), accuracy: CGFloat(0.01))
         XCTAssertEqual(line.strokeColor, UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0))
         XCTAssertEqual(line.zPosition, SpriteKitDefines.defaultPenZPosition)
     }

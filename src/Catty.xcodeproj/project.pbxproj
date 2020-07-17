@@ -33,9 +33,15 @@
 		187D119C2472AAF200A09CE5 /* DataExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187D11992472AAF100A09CE5 /* DataExtensionTests.swift */; };
 		189B8A0F24784A03009BC735 /* SceneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189B8A0E24784A03009BC735 /* SceneTests.swift */; };
 		18A9DBA92434C7F400F4C390 /* IfLogicBeginBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A9DBA82434C7F400F4C390 /* IfLogicBeginBrickTests.swift */; };
+		18AAC22F24A6088100C96335 /* SetPenSizeBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AAC22E24A6088100C96335 /* SetPenSizeBrick.swift */; };
+		18AAC23324A60C8800C96335 /* SetPenSizeBrickCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AAC23224A60C8800C96335 /* SetPenSizeBrickCell.swift */; };
+		18AAC23724A6170600C96335 /* SetPenSizeBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AAC23624A6170600C96335 /* SetPenSizeBrick+Instruction.swift */; };
+		18AAC23924A61B1300C96335 /* SetPenSizeBrick+CBXMLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AAC23824A61B1300C96335 /* SetPenSizeBrick+CBXMLHandler.swift */; };
+		18AB0ACD24C032EF00508536 /* PenConfigurationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AB0ACC24C032EF00508536 /* PenConfigurationTests.swift */; };
 		18B5B529247E542A007D24A3 /* NSDataExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B5B528247E542A007D24A3 /* NSDataExtensionTests.swift */; };
 		18B5B530247EB059007D24A3 /* NSStringExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B5B52F247EB059007D24A3 /* NSStringExtensionTests.swift */; };
 		18B8021F2469170400201847 /* BrickCellVariableDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B8021E2469170400201847 /* BrickCellVariableDataTests.swift */; };
+		18B9A1BA24A75F3C009028F8 /* SetPenSizeBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B9A1B924A75F3C009028F8 /* SetPenSizeBrickTests.swift */; };
 		18DAFC5A247BD1700082C62A /* CBSpriteNodePenExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DAFC59247BD1700082C62A /* CBSpriteNodePenExtension.swift */; };
 		18E83F7B2493BEFF003295DA /* PenClearBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E83F7A2493BEFF003295DA /* PenClearBrick.swift */; };
 		18E83F7F2493BFE6003295DA /* PenClearBrickCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E83F7E2493BFE6003295DA /* PenClearBrickCell.swift */; };
@@ -1620,13 +1626,19 @@
 		187D11992472AAF100A09CE5 /* DataExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataExtensionTests.swift; sourceTree = "<group>"; };
 		189B8A0E24784A03009BC735 /* SceneTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SceneTests.swift; path = Scene/SceneTests.swift; sourceTree = "<group>"; };
 		18A9DBA82434C7F400F4C390 /* IfLogicBeginBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IfLogicBeginBrickTests.swift; sourceTree = "<group>"; };
+		18AAC22E24A6088100C96335 /* SetPenSizeBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPenSizeBrick.swift; sourceTree = "<group>"; };
+		18AAC23224A60C8800C96335 /* SetPenSizeBrickCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPenSizeBrickCell.swift; sourceTree = "<group>"; };
+		18AAC23624A6170600C96335 /* SetPenSizeBrick+Instruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SetPenSizeBrick+Instruction.swift"; sourceTree = "<group>"; };
+		18AAC23824A61B1300C96335 /* SetPenSizeBrick+CBXMLHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SetPenSizeBrick+CBXMLHandler.swift"; sourceTree = "<group>"; };
+		18AB0ACC24C032EF00508536 /* PenConfigurationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PenConfigurationTests.swift; path = Scene/PenConfigurationTests.swift; sourceTree = "<group>"; };
 		18B5B528247E542A007D24A3 /* NSDataExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NSDataExtensionTests.swift; path = Extensions/NSDataExtensionTests.swift; sourceTree = "<group>"; };
 		18B5B52F247EB059007D24A3 /* NSStringExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NSStringExtensionTests.swift; path = Extensions/NSStringExtensionTests.swift; sourceTree = "<group>"; };
 		18B8021E2469170400201847 /* BrickCellVariableDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrickCellVariableDataTests.swift; sourceTree = "<group>"; };
+		18B9A1B924A75F3C009028F8 /* SetPenSizeBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPenSizeBrickTests.swift; sourceTree = "<group>"; };
 		18DAFC59247BD1700082C62A /* CBSpriteNodePenExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBSpriteNodePenExtension.swift; sourceTree = "<group>"; };
 		18E83F7A2493BEFF003295DA /* PenClearBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PenClearBrick.swift; sourceTree = "<group>"; };
 		18E83F7E2493BFE6003295DA /* PenClearBrickCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PenClearBrickCell.swift; sourceTree = "<group>"; };
-		18E83F802493C32C003295DA /* PenClearBrick+Instruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "PenClearBrick+Instruction.swift"; path = "Catty/Views/Custom/CollectionViewCells/BrickCells/Pen/PenClearBrick+Instruction.swift"; sourceTree = SOURCE_ROOT; };
+		18E83F802493C32C003295DA /* PenClearBrick+Instruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "PenClearBrick+Instruction.swift"; path = "Catty/PlayerEngine/Instructions/Pen/PenClearBrick+Instruction.swift"; sourceTree = SOURCE_ROOT; };
 		18E83F822493C4C3003295DA /* PenClearBrick+CBXMLHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PenClearBrick+CBXMLHandler.swift"; sourceTree = "<group>"; };
 		18E83F842493C978003295DA /* PenClearBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PenClearBrickTests.swift; sourceTree = "<group>"; };
 		18EF8F4D5C0ED599CBA2B488 /* vi */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -3701,6 +3713,7 @@
 				186AA33B2482D0CA001E38FD /* PenDownBrick.swift */,
 				186E99122488F3FF00627E36 /* PenUpBrick.swift */,
 				18E83F7A2493BEFF003295DA /* PenClearBrick.swift */,
+				18AAC22E24A6088100C96335 /* SetPenSizeBrick.swift */,
 			);
 			path = Pen;
 			sourceTree = "<group>";
@@ -3711,6 +3724,7 @@
 				186AA33E2482DA65001E38FD /* PenDownBrickCell.swift */,
 				186E99162488F4F400627E36 /* PenUpBrickCell.swift */,
 				18E83F7E2493BFE6003295DA /* PenClearBrickCell.swift */,
+				18AAC23224A60C8800C96335 /* SetPenSizeBrickCell.swift */,
 			);
 			path = Pen;
 			sourceTree = "<group>";
@@ -3721,8 +3735,10 @@
 				186AA3432482DDD5001E38FD /* PenDownBrick+Instruction.swift */,
 				186E99182488F74500627E36 /* PenUpBrick+Instruction.swift */,
 				18E83F802493C32C003295DA /* PenClearBrick+Instruction.swift */,
+				18AAC23624A6170600C96335 /* SetPenSizeBrick+Instruction.swift */,
 			);
-			path = Pen;
+			name = Pen;
+			path = PlayerEngine/Instructions/Pen;
 			sourceTree = "<group>";
 		};
 		186AA3452482E086001E38FD /* Pen */ = {
@@ -3731,6 +3747,7 @@
 				186AA3462482E0CC001E38FD /* PenDownBrick+CBXMLHandler.swift */,
 				186E991A2488F89200627E36 /* PenUpBrick+CBXMLHandler.swift */,
 				18E83F822493C4C3003295DA /* PenClearBrick+CBXMLHandler.swift */,
+				18AAC23824A61B1300C96335 /* SetPenSizeBrick+CBXMLHandler.swift */,
 			);
 			path = Pen;
 			sourceTree = "<group>";
@@ -6168,6 +6185,7 @@
 				186AA34824830491001E38FD /* PenDownBrickTests.swift */,
 				186E991C2488FBDB00627E36 /* PenUpBrickTests.swift */,
 				18E83F842493C978003295DA /* PenClearBrickTests.swift */,
+				18B9A1B924A75F3C009028F8 /* SetPenSizeBrickTests.swift */,
 			);
 			path = Bricks;
 			sourceTree = "<group>";
@@ -8689,6 +8707,7 @@
 				4CAC7DA11DCF444A00EC7D6F /* CBSceneTouchTests.swift */,
 				9EA3FD802327089900551B6C /* CBSpriteNodePenExtensionTests.swift */,
 				186FBE64247C29AD00AE3F17 /* LineShapeNodeTests.swift */,
+				18AB0ACC24C032EF00508536 /* PenConfigurationTests.swift */,
 			);
 			name = Scene;
 			sourceTree = "<group>";
@@ -9820,6 +9839,7 @@
 				4C3A5CA121D3B4DF008FD83F /* OrOperatorTest.swift in Sources */,
 				4C6FE178212D2D2E0067B7D5 /* JoinFunctionTest.swift in Sources */,
 				4CA6DFBF23069204003A729B /* FormulaCacheTests.swift in Sources */,
+				18AB0ACD24C032EF00508536 /* PenConfigurationTests.swift in Sources */,
 				9EE1BA5E2385F62A0024C7A5 /* SpeechSynthesizerTests.swift in Sources */,
 				4C6FE174212D2D2E0067B7D5 /* ElementFunctionTest.swift in Sources */,
 				4C0F9FD5204BD3C200E71B2D /* ChooseCameraBrickTests.swift in Sources */,
@@ -10061,6 +10081,7 @@
 				9E22655F22BFB3FC00898052 /* AudioPlayerTests.swift in Sources */,
 				4C82267E213FA7A400F3D750 /* LayerSensorTest.swift in Sources */,
 				9E544D35238754C500935C17 /* SpeechSynthesizerIntegrationTests.swift in Sources */,
+				18B9A1BA24A75F3C009028F8 /* SetPenSizeBrickTests.swift in Sources */,
 				4C1AA4AE21A1572700DAC589 /* MediaItemTest.swift in Sources */,
 				D30ECD1D2440963100FAD17D /* CBFilterDisabledTests.swift in Sources */,
 				4C68FC8D1B25A00B00AB3EE8 /* FormulaParserFunctionsTest.m in Sources */,
@@ -10398,6 +10419,7 @@
 				4C0F9F65204BD18600E71B2D /* PreviousLookBrick+CBXMLHandler.m in Sources */,
 				5977B2A620298BD0008753ED /* MediaLibraryDownloader.swift in Sources */,
 				4C0F9F3D204ADC5900E71B2D /* SetBackgroundBrick.m in Sources */,
+				18AAC22F24A6088100C96335 /* SetPenSizeBrick.swift in Sources */,
 				44B76EC72476C19600DC30E2 /* FirebaseCrashlyticsReporter.swift in Sources */,
 				AA74EEE21BC057B900D1E954 /* LoopEndBrick+CBXMLHandler.m in Sources */,
 				92FF32BF1A24E2F400093DA7 /* BrickTransition.m in Sources */,
@@ -10414,6 +10436,7 @@
 				92FF32B81A24E2F400093DA7 /* ContinueImageCell.m in Sources */,
 				AA74EF581BC0586F00D1E954 /* SetYBrick+CBXMLHandler.m in Sources */,
 				4CDE807421A1A0AE009EFD31 /* ScenePresenterViewController+Screenshot.swift in Sources */,
+				18AAC23324A60C8800C96335 /* SetPenSizeBrickCell.swift in Sources */,
 				AABCB3EF1BB3697E009F67D2 /* CBCustomTypes.swift in Sources */,
 				9E2AEA4E239886DA00CDF58F /* PlaySoundAndWaitBrick.m in Sources */,
 				F4E6E5C4210E242D00D86FE6 /* FloorFunction.swift in Sources */,
@@ -10524,6 +10547,7 @@
 				923503901BA707DE00021F6A /* BaseLoginViewController.m in Sources */,
 				4C595F4921CAEB7E0097D850 /* NotEqualOperator.swift in Sources */,
 				4C11795120AEBE38006C6E32 /* LongitudeSensor.swift in Sources */,
+				18AAC23924A61B1300C96335 /* SetPenSizeBrick+CBXMLHandler.swift in Sources */,
 				F4201D0120D7A3B60030181B /* TimeSecondSensor.swift in Sources */,
 				92FF2EA11A24C7D800093DA7 /* TimerLabel.m in Sources */,
 				92FF30C81A24DCAA00093DA7 /* Brick.m in Sources */,
@@ -10756,6 +10780,7 @@
 				BA1FA9981F02AD770084184D /* InsertItemIntoUserListBrick+CBXMLHandler.m in Sources */,
 				9218B2021CC4AB75007B4C60 /* ImageHelper.m in Sources */,
 				92FF31041A24DCAA00093DA7 /* StartScript.m in Sources */,
+				18AAC23724A6170600C96335 /* SetPenSizeBrick+Instruction.swift in Sources */,
 				4C994E31207A594100C415FD /* InclinationYSensor.swift in Sources */,
 				BA9CAB5A1EC382DB00796056 /* BrickCellListData.m in Sources */,
 				AA74F0061BC05B5F00D1E954 /* SetXBrick.m in Sources */,

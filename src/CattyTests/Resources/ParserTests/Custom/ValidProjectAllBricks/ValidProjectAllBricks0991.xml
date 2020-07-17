@@ -615,6 +615,15 @@
             <brick type="ClearBackgroundBrick">
                 <commentedOut>false</commentedOut>
             </brick>
+            <brick type="SetPenSizeBrick">
+              <commentedOut>false</commentedOut>
+              <formulaList>
+                <formula category="PEN_SIZE">
+                  <type>NUMBER</type>
+                  <value>3.15</value>
+                </formula>
+              </formulaList>
+            </brick>
           </brickList>
           <commentedOut>false</commentedOut>
           <isUserScript>false</isUserScript>

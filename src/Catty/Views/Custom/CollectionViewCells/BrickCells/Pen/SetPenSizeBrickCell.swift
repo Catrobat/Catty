@@ -20,21 +20,25 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-struct PenConfiguration {
-    var penDown = false
-    static let sizeConversionFactor = 0.634
+class SetPenSizeBrickCell: BrickCell, BrickCellProtocol {
 
-    private(set) var size: CGFloat = SpriteKitDefines.defaultCatrobatPenSize * CGFloat(PenConfiguration.sizeConversionFactor)
+    var textLabel: UILabel?
+    var textField: UITextField?
 
-    var catrobatSize: CGFloat {
-        set {
-            size = CGFloat(PenConfiguration.sizeConversionFactor) * newValue
-        }
-        get {
-            size / CGFloat(PenConfiguration.sizeConversionFactor)
-        }
+    static func cellHeight() -> CGFloat {
+        CGFloat(kBrickHeight1h)
     }
 
-    var color = SpriteKitDefines.defaultPenColor
-    var previousPosition: CGPoint?
+    func brickTitle(forBackground isBackground: Bool, andInsertionScreen isInsertion: Bool) -> String! {
+        kLocalizedSetPenSize
+    }
+
+    override func hookUpSubViews(_ inlineViewSubViews: [Any]!) {
+        self.textLabel = inlineViewSubViews[0] as? UILabel
+        self.textField = inlineViewSubViews[1] as? UITextField
+    }
+
+    override func parameters() -> [String]! {
+        NSArray.init(objects: "{FLOAT;range=(0,inf)}") as? [String]
+    }
 }
