@@ -114,6 +114,6 @@ final class XMLParserBlackBoxTests093: XMLAbstractTest {
     }
 
     func testUserVariable() {
-        self.compareProject(firstProjectName: "UserVariables_093", withProject: "UserVariables_0991")
+        self.compareProject(firstProjectName: "UserVariables_091", withProject: "UserVariables_0991")
     }
 }
