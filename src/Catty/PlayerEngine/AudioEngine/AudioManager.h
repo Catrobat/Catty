@@ -51,10 +51,6 @@
 - (void)stopAllSounds;
 - (void)pauseAllSounds;
 - (void)resumeAllSounds;
-- (void)pauseSpeechSynth;
-- (void)resumeSpeechSynth;
-- (void)stopSpeechSynth;
 - (CGFloat)durationOfSoundWithFilePath:(NSString*)filePath;
-- (AVSpeechSynthesizer*)getSpeechSynth;
 
 @end

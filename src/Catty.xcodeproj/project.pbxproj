@@ -1129,6 +1129,8 @@
 		99EBDBFF1D5621D3008D6860 /* ChangeColorByNBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 99EBDBFE1D5621D3008D6860 /* ChangeColorByNBrick.m */; };
 		99EBDC021D5623B3008D6860 /* ChangeColorByNBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 99EBDC011D5623B3008D6860 /* ChangeColorByNBrickCell.m */; };
 		99EBDC041D5624D2008D6860 /* ChangeColorByNBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EBDC031D5624D2008D6860 /* ChangeColorByNBrick+Instruction.swift */; };
+		9E05FAAC247FF356008951DE /* AppDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E05FAAB247FF356008951DE /* AppDelegateTests.swift */; };
+		9E05FAB1247FF57F008951DE /* ScenePresenterViewControllerSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E05FAB0247FF57F008951DE /* ScenePresenterViewControllerSpy.swift */; };
 		9E0F740A22B517A10030CD89 /* AudioSubtreeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0F740822B5179C0030CD89 /* AudioSubtreeTests.swift */; };
 		9E0F740C22B532280030CD89 /* MathUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0F740B22B532280030CD89 /* MathUtil.swift */; };
 		9E0F740E22B53C9F0030CD89 /* AudioPlayerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0F740D22B53C9F0030CD89 /* AudioPlayerMock.swift */; };
@@ -1158,6 +1160,7 @@
 		9E2D47CB232846AD00917D92 /* ChangeSizeByNBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2D47CA232846AD00917D92 /* ChangeSizeByNBrickTests.swift */; };
 		9E3AF7982326F21300AB16F1 /* SetXBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3AF7972326F21300AB16F1 /* SetXBrickTests.swift */; };
 		9E3AF79A2326F4D100AB16F1 /* IfOnEdgeBounceBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3AF7992326F4D100AB16F1 /* IfOnEdgeBounceBrickTests.swift */; };
+		9E40C100248C07B20061E7FB /* AudioEngineHelperSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E40C0FF248C07B20061E7FB /* AudioEngineHelperSpy.swift */; };
 		9E4458862309FC7A00222B14 /* chromaprint.license in Resources */ = {isa = PBXBuildFile; fileRef = 9E4458852309FC7A00222B14 /* chromaprint.license */; };
 		9E445888230A021100222B14 /* ChromaprintFingerprinter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E445887230A021100222B14 /* ChromaprintFingerprinter.swift */; };
 		9E44588A230A024600222B14 /* AudioPlayerIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E445889230A024600222B14 /* AudioPlayerIntegrationTests.swift */; };
@@ -3022,6 +3025,8 @@
 		99EBDC001D5623B3008D6860 /* ChangeColorByNBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeColorByNBrickCell.h; sourceTree = "<group>"; };
 		99EBDC011D5623B3008D6860 /* ChangeColorByNBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeColorByNBrickCell.m; sourceTree = "<group>"; };
 		99EBDC031D5624D2008D6860 /* ChangeColorByNBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ChangeColorByNBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Look/ChangeColorByNBrick+Instruction.swift"; sourceTree = "<group>"; };
+		9E05FAAB247FF356008951DE /* AppDelegateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegateTests.swift; sourceTree = "<group>"; };
+		9E05FAB0247FF57F008951DE /* ScenePresenterViewControllerSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScenePresenterViewControllerSpy.swift; sourceTree = "<group>"; };
 		9E0F740822B5179C0030CD89 /* AudioSubtreeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioSubtreeTests.swift; sourceTree = "<group>"; };
 		9E0F740B22B532280030CD89 /* MathUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathUtil.swift; sourceTree = "<group>"; };
 		9E0F740D22B53C9F0030CD89 /* AudioPlayerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerMock.swift; sourceTree = "<group>"; };
@@ -3052,6 +3057,7 @@
 		9E2D47CA232846AD00917D92 /* ChangeSizeByNBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeSizeByNBrickTests.swift; sourceTree = "<group>"; };
 		9E3AF7972326F21300AB16F1 /* SetXBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetXBrickTests.swift; sourceTree = "<group>"; };
 		9E3AF7992326F4D100AB16F1 /* IfOnEdgeBounceBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IfOnEdgeBounceBrickTests.swift; sourceTree = "<group>"; };
+		9E40C0FF248C07B20061E7FB /* AudioEngineHelperSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioEngineHelperSpy.swift; sourceTree = "<group>"; };
 		9E4458852309FC7A00222B14 /* chromaprint.license */ = {isa = PBXFileReference; lastKnownFileType = text; path = chromaprint.license; sourceTree = "<group>"; };
 		9E445887230A021100222B14 /* ChromaprintFingerprinter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChromaprintFingerprinter.swift; sourceTree = "<group>"; };
 		9E445889230A024600222B14 /* AudioPlayerIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerIntegrationTests.swift; sourceTree = "<group>"; };
@@ -4939,6 +4945,7 @@
 		4C4B4CE023EEA3F40054C861 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				9E05FAAF247FF557008951DE /* Scene */,
 				D3CF986123FD23E40076F366 /* ScriptCollectionViewControllerDisableTests.swift */,
 				4C7182D723EEAFF600195BC7 /* BaseCollectionViewControllerTests.swift */,
 				4C4B4CE523EEA6BF0054C861 /* BaseTableViewControllerTests.swift */,
@@ -4948,7 +4955,6 @@
 				4C7182E223EF0AEB00195BC7 /* FormulaEditorViewControllerTests.swift */,
 				1833ED912446572E0053BF7C /* HelpWebViewControllerTests.swift */,
 				4C7182DB23EEB22B00195BC7 /* PaintViewControllerTests.swift */,
-				4CDE807521A1B112009EFD31 /* ScenePresenterViewControllerTest.swift */,
 				4C1A596023FD9E79001A78D2 /* SettingsTableViewControllerTests.swift */,
 				6F17FA1724B7579000885E07 /* UploadViewControllerTests.swift */,
 			);
@@ -6353,6 +6359,7 @@
 				4CB73A9123FC1F1300D5E9A7 /* NavigationControllerMock.swift */,
 				D3CF3A0E23D07F06006B2667 /* ProjectMock.swift */,
 				4CFABF5C24AB0DD40023D581 /* RuntimeImageCacheMock.swift */,
+				9E05FAB0247FF57F008951DE /* ScenePresenterViewControllerSpy.swift */,
 				5973F243202EF37600A4CED9 /* SoundsLibraryCollectionViewDataSourceDelegateMock.swift */,
 				4C1C8B15213FE7F1003B3AA4 /* StoreProjectDownloaderMock.swift */,
 				4C7182E023EEF47500195BC7 /* UICollectionViewMock.swift */,
@@ -7875,6 +7882,14 @@
 			path = "Catty/Storyboard+XIB";
 			sourceTree = "<group>";
 		};
+		9E05FAAF247FF557008951DE /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				4CDE807521A1B112009EFD31 /* ScenePresenterViewControllerTest.swift */,
+			);
+			path = Scene;
+			sourceTree = "<group>";
+		};
 		9E1ED5892313327200E36DED /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -7946,11 +7961,12 @@
 		9E8F729D22E12881005CDABE /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
-				9E0F740D22B53C9F0030CD89 /* AudioPlayerMock.swift */,
-				9E0F741722B55E4D0030CD89 /* MockAudioPlayerFactory.swift */,
-				9EBED5FC230C8E4800049BBC /* FingerprintingAudioPlayerFactory.swift */,
 				9E22CC8C2323FC6700BA4CBA /* AudioEngineFingerprintingStub.swift */,
+				9E40C0FF248C07B20061E7FB /* AudioEngineHelperSpy.swift */,
 				9E2C2D8923256901004B66C6 /* AudioEngineMock.swift */,
+				9E0F740D22B53C9F0030CD89 /* AudioPlayerMock.swift */,
+				9EBED5FC230C8E4800049BBC /* FingerprintingAudioPlayerFactory.swift */,
+				9E0F741722B55E4D0030CD89 /* MockAudioPlayerFactory.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -8661,6 +8677,7 @@
 				B46B270517703F9400172837 /* CattyTests-Info.plist */,
 				CA2D8C961AEDDA2100A5BDC2 /* Info.plist */,
 				B46B270617703F9400172837 /* InfoPlist.strings */,
+				9E05FAAB247FF356008951DE /* AppDelegateTests.swift */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -9965,6 +9982,7 @@
 				9EBCBD832329B44E0074C2D9 /* NextLookBrickTests.swift in Sources */,
 				2ED418B52411213E00AFE2FD /* XMLAbstractTest.swift in Sources */,
 				4CF4CB7521E64BEE009D6DD9 /* InsertItemIntoUserListBrickTests.swift in Sources */,
+				9E05FAAC247FF356008951DE /* AppDelegateTests.swift in Sources */,
 				9E44588A230A024600222B14 /* AudioPlayerIntegrationTests.swift in Sources */,
 				D3374C4423AA5AC10088FA36 /* UserListFunctionsTest.swift in Sources */,
 				4C6FE16C212D2D2E0067B7D5 /* AcosFunctionTest.swift in Sources */,
@@ -9999,6 +10017,7 @@
 				4C6FE16B212D2D2E0067B7D5 /* SqrtFunctionTest.swift in Sources */,
 				4CBF5F9E21AF1D390079C834 /* UIGestureRecognizerMock.swift in Sources */,
 				4C1A596323FD9E79001A78D2 /* SettingsTableViewControllerTests.swift in Sources */,
+				9E05FAB1247FF57F008951DE /* ScenePresenterViewControllerSpy.swift in Sources */,
 				4C6FE170212D2D2E0067B7D5 /* AbsFunctionTest.swift in Sources */,
 				4C68FC931B25A00B00AB3EE8 /* InternFormulaTest.m in Sources */,
 				18E83F852493C978003295DA /* PenClearBrickTests.swift in Sources */,
@@ -10050,6 +10069,7 @@
 				4C822666213FA7A400F3D750 /* LongitudeSensorTest.swift in Sources */,
 				4C822665213FA7A400F3D750 /* AltitudeSensorTest.swift in Sources */,
 				4C245CAC244481F3004C941C /* NimbleMatcher.swift in Sources */,
+				9E40C100248C07B20061E7FB /* AudioEngineHelperSpy.swift in Sources */,
 				4CB73A9023FC1F0400D5E9A7 /* CatrobatTableViewControllerMock.swift in Sources */,
 				9E445888230A021100222B14 /* ChromaprintFingerprinter.swift in Sources */,
 				4C7182E323EF0AEB00195BC7 /* FormulaEditorViewControllerTests.swift in Sources */,
