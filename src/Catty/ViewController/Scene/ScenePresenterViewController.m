@@ -567,6 +567,11 @@
     [self.loadingView hide];
 }
 
+- (BOOL)isPaused
+{
+    return self.menuOpen;
+}
+
 - (SKView*)skView
 {
     if (!_skView) {

@@ -77,7 +77,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(_ application: UIApplication) {
         let vc = window!.rootViewController as! UINavigationController
         if let spvc = vc.topViewController as? ScenePresenterViewController {
-            spvc.resumeAction()
+            if !spvc.isPaused() {
+                spvc.resumeAction()
+            }
         }
     }
 
