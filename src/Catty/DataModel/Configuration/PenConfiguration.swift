@@ -22,19 +22,39 @@
 
 struct PenConfiguration {
     var penDown = false
-    static let sizeConversionFactor = 0.634
+    static let sizeConversionFactor = CGFloat(0.634)
 
-    private(set) var size: CGFloat = SpriteKitDefines.defaultCatrobatPenSize * CGFloat(PenConfiguration.sizeConversionFactor)
+    private(set) var size: CGFloat
+    let screenRatio: CGFloat
 
     var catrobatSize: CGFloat {
         set {
-            size = CGFloat(PenConfiguration.sizeConversionFactor) * newValue
+            size = PenConfiguration.sizeConversionFactor * newValue * screenRatio
         }
         get {
-            size / CGFloat(PenConfiguration.sizeConversionFactor)
+            (size / PenConfiguration.sizeConversionFactor) / screenRatio
         }
     }
 
     var color = SpriteKitDefines.defaultPenColor
     var previousPositions = SynchronizedArray<CGPoint>()
+
+    init(projectWidth: CGFloat?, projectHeight: CGFloat?) {
+
+        size = SpriteKitDefines.defaultCatrobatPenSize * PenConfiguration.sizeConversionFactor
+
+        guard let width = projectWidth, let height = projectHeight else {
+            screenRatio = 1
+            return
+        }
+
+        let deviceScreenRect = UIScreen.main.nativeBounds
+        let deviceDiagonalPixel = CGFloat(sqrt(pow(deviceScreenRect.width, 2) + pow(deviceScreenRect.height, 2)))
+
+        let creatorDiagonalPixel = CGFloat(sqrt(pow(width, 2) + pow(height, 2)))
+
+        screenRatio = creatorDiagonalPixel / deviceDiagonalPixel
+        size *= screenRatio
+
+    }
 }
