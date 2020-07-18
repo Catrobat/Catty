@@ -49,16 +49,23 @@ final class AccelerationXSensorTest: XCTestCase {
 
     func testRawValue() {
         motionManager.xUserAcceleration = 0
-        XCTAssertEqual(0, sensor.rawValue(landscapeMode: false), accuracy: Double.epsilon)
-        XCTAssertEqual(0, sensor.rawValue(landscapeMode: true), accuracy: Double.epsilon)
+        motionManager.yUserAcceleration = 0
+        XCTAssertEqual(motionManager.xUserAcceleration, sensor.rawValue(landscapeMode: false), accuracy: Double.epsilon)
+        XCTAssertEqual(motionManager.yUserAcceleration, sensor.rawValue(landscapeMode: true), accuracy: Double.epsilon)
 
         motionManager.xUserAcceleration = 9.8
-        XCTAssertEqual(9.8, sensor.rawValue(landscapeMode: false), accuracy: Double.epsilon)
-        XCTAssertEqual(9.8, sensor.rawValue(landscapeMode: true), accuracy: Double.epsilon)
+        XCTAssertEqual(motionManager.xUserAcceleration, sensor.rawValue(landscapeMode: false), accuracy: Double.epsilon)
+        XCTAssertNotEqual(motionManager.xUserAcceleration, sensor.rawValue(landscapeMode: true), accuracy: Double.epsilon)
+
+        motionManager.yUserAcceleration = 9.8
+        XCTAssertEqual(sensor.rawValue(landscapeMode: true), sensor.rawValue(landscapeMode: false), accuracy: Double.epsilon)
 
         motionManager.xUserAcceleration = -9.8
-        XCTAssertEqual(-9.8, sensor.rawValue(landscapeMode: false), accuracy: Double.epsilon)
-        XCTAssertEqual(-9.8, sensor.rawValue(landscapeMode: true), accuracy: Double.epsilon)
+        XCTAssertEqual(motionManager.xUserAcceleration, sensor.rawValue(landscapeMode: false), accuracy: Double.epsilon)
+        XCTAssertNotEqual(motionManager.xUserAcceleration, sensor.rawValue(landscapeMode: true), accuracy: Double.epsilon)
+
+        motionManager.yUserAcceleration = -9.8
+        XCTAssertEqual(sensor.rawValue(landscapeMode: true), sensor.rawValue(landscapeMode: false), accuracy: Double.epsilon)
     }
 
     func testConvertToStandardized() {

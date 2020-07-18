@@ -39,7 +39,11 @@
     }
 
     func rawValue(landscapeMode: Bool) -> Double {
-        self.getMotionManager()?.deviceMotion?.userAcceleration.y ?? type(of: self).defaultRawValue
+        if !landscapeMode {
+            return self.getMotionManager()?.deviceMotion?.userAcceleration.y ?? type(of: self).defaultRawValue
+        } else {
+            return self.getMotionManager()?.deviceMotion?.userAcceleration.x ?? type(of: self).defaultRawValue
+        }
     }
 
     func convertToStandardized(rawValue: Double) -> Double {
