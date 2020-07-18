@@ -259,4 +259,29 @@ final class UserListTest: XCTestCase {
         }
         XCTAssertTrue(doesContain)
     }
+
+    func testStringRepresentationWhenAllElementsAreSingleLength() {
+        let list = UserList(name: "testList")
+        list.add(element: 1)
+        list.add(element: "A")
+        XCTAssertEqual("1A", list.stringRepresentation())
+    }
+
+    func testStringRepresentationWhenElementsAreOfDifferentLength() {
+        let list = UserList(name: "testList")
+        list.add(element: 1.5)
+        list.add(element: "A")
+
+        XCTAssertEqual("1.5 A", list.stringRepresentation())
+
+        list.add(element: "testValue")
+        XCTAssertEqual("1.5 A testValue", list.stringRepresentation())
+    }
+
+    func testStringRepresentationWhenNoElementIsSingleLength() {
+        let list = UserList(name: "newTestList")
+        list.add(element: "itemA")
+        list.add(element: "itemB")
+        XCTAssertEqual("itemA itemB", list.stringRepresentation())
+    }
 }
