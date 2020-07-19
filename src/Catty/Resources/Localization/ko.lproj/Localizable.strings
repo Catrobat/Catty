@@ -254,6 +254,9 @@
 "Choose image" = "갤러리에서 가져오기";
 
 /* No comment provided by engineer. */
+"Clear" = "펜 지우기";
+
+/* No comment provided by engineer. */
 "Clear graphic effects" = "그래픽 효과 지우기";
 
 /* No comment provided by engineer. */
@@ -1118,6 +1121,15 @@
 "Passwords do not match" = "비밀번호가 일치하지 않습니다";
 
 /* No comment provided by engineer. */
+"Pen" = "펜";
+
+/* No comment provided by engineer. */
+"Pen down" = "펜 내리기";
+
+/* No comment provided by engineer. */
+"Pen up" = "펜 올리기";
+
+/* No comment provided by engineer. */
 "Phiro" = "Phiro";
 
 /* No comment provided by engineer. */
@@ -1221,9 +1233,6 @@
 
 /* No comment provided by engineer. */
 "Privacy Settings" = "개인 정보 설정";
-
-/* No comment provided by engineer. */
-"Problems occured while uploading your project" = "프로그램을 업로드하는 동안 문제가 발생했습니다.";
 
 /* No comment provided by engineer. */
 "Project" = "프로그램";
@@ -1337,6 +1346,9 @@
 "Say" = "말";
 
 /* No comment provided by engineer. */
+"Scene" = "Scene";
+
+/* No comment provided by engineer. */
 "Script" = "스크립트";
 
 /* No comment provided by engineer. */
@@ -1394,6 +1406,9 @@
 "Server is taking to long to respond, please try again later." = "서버가 느립니다, 다시 시도하세요.";
 
 /* No comment provided by engineer. */
+"Session expired, please log in." = "세션이 만료되었습니다. 다시 로그인해 주십시오.";
+
+/* No comment provided by engineer. */
 "Set Arduino digital pin" = "아두이노 디지털 핀 설정";
 
 /* No comment provided by engineer. */
@@ -1410,6 +1425,9 @@
 
 /* No comment provided by engineer. */
 "Set description" = "설명 설정";
+
+/* No comment provided by engineer. */
+"Set pen size to" = "펜 굵기 정하기";
 
 /* No comment provided by engineer. */
 "Set Phiro light" = "Phiro 빛 정하기";
@@ -1455,6 +1473,9 @@
 
 /* No comment provided by engineer. */
 "SO" = "솔";
+
+/* No comment provided by engineer. */
+"Something went wrong while uploading the project." = "프로그램을 업로드하는 중에 오류가 발생했습니다.";
 
 /* No comment provided by engineer. */
 "Sound" = "소리";
@@ -1590,6 +1611,9 @@
 
 /* No comment provided by engineer. */
 "This feature is coming soon!" = "이 기능은 준비중입니다!";
+
+/* No comment provided by engineer. */
+"This list can not be deleted because it is still in use." = "This list can not be deleted because it is still in use.";
 
 /* No comment provided by engineer. */
 "This variable can not be deleted because it is still in use." = "이 변수는 사용중이기 때문에 삭제할 수 없습니다.";

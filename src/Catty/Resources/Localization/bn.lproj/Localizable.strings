@@ -254,6 +254,9 @@
 "Choose image" = "ছবি নির্বাচন করুন";
 
 /* No comment provided by engineer. */
+"Clear" = "পরিষ্কার";
+
+/* No comment provided by engineer. */
 "Clear graphic effects" = "গ্রাফিক প্রভাব উজ্জ্বল করুন";
 
 /* No comment provided by engineer. */
@@ -1118,6 +1121,15 @@
 "Passwords do not match" = "পাসওয়ার্ড মিলছে না";
 
 /* No comment provided by engineer. */
+"Pen" = "কলম";
+
+/* No comment provided by engineer. */
+"Pen down" = "কলম নিচে";
+
+/* No comment provided by engineer. */
+"Pen up" = "কলম উপরে";
+
+/* No comment provided by engineer. */
 "Phiro" = "ফিরো";
 
 /* No comment provided by engineer. */
@@ -1221,9 +1233,6 @@
 
 /* No comment provided by engineer. */
 "Privacy Settings" = "গোপনীয়তা সেটিংস";
-
-/* No comment provided by engineer. */
-"Problems occured while uploading your project" = "আপনার প্রজেক্টটি আপলোড করার সময় সমস্যা দেখা দিয়েছে";
 
 /* No comment provided by engineer. */
 "Project" = "প্রজেক্ট";
@@ -1337,6 +1346,9 @@
 "Say" = "বলা";
 
 /* No comment provided by engineer. */
+"Scene" = "Scene";
+
+/* No comment provided by engineer. */
 "Script" = "স্ক্রিপ্ট";
 
 /* No comment provided by engineer. */
@@ -1394,6 +1406,9 @@
 "Server is taking to long to respond, please try again later." = "সার্ভার প্রতিক্রিয়া জানাতে অনেক সময় নিচ্ছে, দয়া করে পরে আবার চেষ্টা করুন।";
 
 /* No comment provided by engineer. */
+"Session expired, please log in." = "সেশনটির মেয়াদ শেষ হয়েছে, দয়া করে লগ ইন করুন।";
+
+/* No comment provided by engineer. */
 "Set Arduino digital pin" = "আরডুইনো ডিজিটাল পিন সেট করুন";
 
 /* No comment provided by engineer. */
@@ -1410,6 +1425,9 @@
 
 /* No comment provided by engineer. */
 "Set description" = "বর্ণনা করুন";
+
+/* No comment provided by engineer. */
+"Set pen size to" = "কলমের আকার সেট করুন";
 
 /* No comment provided by engineer. */
 "Set Phiro light" = "ফিরো আলো সেট করুন";
@@ -1455,6 +1473,9 @@
 
 /* No comment provided by engineer. */
 "SO" = "সুতরাং";
+
+/* No comment provided by engineer. */
+"Something went wrong while uploading the project." = "প্রজেক্টটি আপলোড করার সময় কিছু ভুল হয়েছে।";
 
 /* No comment provided by engineer. */
 "Sound" = "শব্দ";
@@ -1590,6 +1611,9 @@
 
 /* No comment provided by engineer. */
 "This feature is coming soon!" = "এই বৈশিষ্ট্য শীঘ্রই আসছে!";
+
+/* No comment provided by engineer. */
+"This list can not be deleted because it is still in use." = "This list can not be deleted because it is still in use.";
 
 /* No comment provided by engineer. */
 "This variable can not be deleted because it is still in use." = "এই ভেরিয়েবলটি মুছে ফেলা যায় না কারণ এটি এখনও ব্যবহৃত।";

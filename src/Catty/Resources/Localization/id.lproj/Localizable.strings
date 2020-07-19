@@ -254,6 +254,9 @@
 "Choose image" = "Pilih citra";
 
 /* No comment provided by engineer. */
+"Clear" = "Bersih";
+
+/* No comment provided by engineer. */
 "Clear graphic effects" = "Hapus efek grafik";
 
 /* No comment provided by engineer. */
@@ -1118,6 +1121,15 @@
 "Passwords do not match" = "Sandi tidak cocok";
 
 /* No comment provided by engineer. */
+"Pen" = "Pena";
+
+/* No comment provided by engineer. */
+"Pen down" = "Pen bawah";
+
+/* No comment provided by engineer. */
+"Pen up" = "Pen atas";
+
+/* No comment provided by engineer. */
 "Phiro" = "Phiro";
 
 /* No comment provided by engineer. */
@@ -1221,9 +1233,6 @@
 
 /* No comment provided by engineer. */
 "Privacy Settings" = "Pengaturan Privasi";
-
-/* No comment provided by engineer. */
-"Problems occured while uploading your project" = "Problems occured while uploading your project";
 
 /* No comment provided by engineer. */
 "Project" = "Proyek";
@@ -1337,6 +1346,9 @@
 "Say" = "Mengatakan";
 
 /* No comment provided by engineer. */
+"Scene" = "Scene";
+
+/* No comment provided by engineer. */
 "Script" = "Naskah";
 
 /* No comment provided by engineer. */
@@ -1394,6 +1406,9 @@
 "Server is taking to long to respond, please try again later." = "Server is taking to long to respond, please try again later.";
 
 /* No comment provided by engineer. */
+"Session expired, please log in." = "Session expired, please log in.";
+
+/* No comment provided by engineer. */
 "Set Arduino digital pin" = "Tetapkan pin digital Arduino";
 
 /* No comment provided by engineer. */
@@ -1410,6 +1425,9 @@
 
 /* No comment provided by engineer. */
 "Set description" = "Atur keterangan";
+
+/* No comment provided by engineer. */
+"Set pen size to" = "Tetapkan ukuran pena ke";
 
 /* No comment provided by engineer. */
 "Set Phiro light" = "Atur lampu Phiro";
@@ -1455,6 +1473,9 @@
 
 /* No comment provided by engineer. */
 "SO" = "JADI";
+
+/* No comment provided by engineer. */
+"Something went wrong while uploading the project." = "Terjadi kesalahan pada saat memuat program.";
 
 /* No comment provided by engineer. */
 "Sound" = "Suara";
@@ -1590,6 +1611,9 @@
 
 /* No comment provided by engineer. */
 "This feature is coming soon!" = "Fitur ini akan segera hadir!";
+
+/* No comment provided by engineer. */
+"This list can not be deleted because it is still in use." = "This list can not be deleted because it is still in use.";
 
 /* No comment provided by engineer. */
 "This variable can not be deleted because it is still in use." = "Variabel ini tidak dapat dihapus karena masih dalam penggunaan.";
