@@ -161,30 +161,8 @@ class CBSpriteNode: SKSpriteNode {
         let texture = SKTexture(image: image)
         self.currentUIImageLook = image
         self.size = texture.size()
-        //if spriteObject?.isBackground() == true {
-        //    self.currentUIImageLook = image
-        //    self.size = texture.size()
-        //} else {
-        // We do not need cropping if touch through transparent pixel is possible!!!!
-        //        CGRect newRect = [image cropRectForImage:image];
-        //        if ((newRect.size.height <= image.size.height - 50 && newRect.size.height <= image.size.height - 50)) {
-        //            CGImageRef imageRef = CGImageCreateWithImageInRect(image.CGImage, newRect);
-        //            UIImage *newImage = [UIImage imageWithCGImage:imageRef];
-        ////            NSLog(@"%f,%f,%f,%f",newRect.origin.x,newRect.origin.y,newRect.size.width,newRect.size.height);
-        //            [self setPositionForCropping:CGPointMake(newRect.origin.x+newRect.size.width/2,self.scene.size.height-newRect.origin.y-newRect.size.height/2)];
-        //            CGImageRelease(imageRef);
-        //            texture = [SKTexture textureWithImage:newImage];
-        //            self.currentUIImageLook = newImage;
-        //        }
-        //        else{
-        //          self.currentUIImageLook = image
-        //        }
-        //        self.size = texture.size()
-        //}
-
         let xScale = self.xScale
         let yScale = self.yScale
-
         let defaultSize = CGFloat(SizeSensor.defaultRawValue)
         self.xScale = defaultSize
         self.yScale = defaultSize
