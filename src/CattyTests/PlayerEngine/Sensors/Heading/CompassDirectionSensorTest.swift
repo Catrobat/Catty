@@ -51,22 +51,22 @@ final class CompassDirectionSensorTest: XCTestCase {
         // N
         locationManager.magneticHeading = 0
         XCTAssertEqual(0, sensor.rawValue(landscapeMode: false))
-        XCTAssertEqual(0, sensor.rawValue(landscapeMode: true))
+        XCTAssertEqual(-90, sensor.rawValue(landscapeMode: true))
 
         // E
         locationManager.magneticHeading = 90
         XCTAssertEqual(90, sensor.rawValue(landscapeMode: false))
-        XCTAssertEqual(90, sensor.rawValue(landscapeMode: true))
+        XCTAssertEqual(0, sensor.rawValue(landscapeMode: true))
 
         // S
         locationManager.magneticHeading = 180
         XCTAssertEqual(180, sensor.rawValue(landscapeMode: false))
-        XCTAssertEqual(180, sensor.rawValue(landscapeMode: true))
+        XCTAssertEqual(90, sensor.rawValue(landscapeMode: true))
 
         // W
         locationManager.magneticHeading = 270
         XCTAssertEqual(270, sensor.rawValue(landscapeMode: false))
-        XCTAssertEqual(270, sensor.rawValue(landscapeMode: true))
+        XCTAssertEqual(180, sensor.rawValue(landscapeMode: true))
     }
 
     func testConvertToStandardized() {
@@ -100,7 +100,7 @@ final class CompassDirectionSensorTest: XCTestCase {
         let standardizedValue = sensor.standardizedValue(landscapeMode: false)
         let standardizedValueLandscape = sensor.standardizedValue(landscapeMode: true)
         XCTAssertEqual(convertToStandardizedValue, standardizedValue)
-        XCTAssertEqual(standardizedValue, standardizedValueLandscape)
+        XCTAssertEqual(standardizedValue, standardizedValueLandscape - 90.0)
     }
 
     func testTag() {
