@@ -26,13 +26,11 @@
 #define kSegueToHelp @"segueToHelp"
 #define kSegueToExplore @"segueToExplore"
 #define kSegueToUpload @"segueToUpload"
-#define kSegueToLogin @"segueToLogin"
-#define kSegueToAddNewProject @"segueToAddProject"
 
 #define kSegueToProjectDetail @"segueToProjectDetail"
-#define kSegueToScene @"segueToScene"
 #define kSegueToObject @"segueToObject"
 #define kSegueToScripts @"segueToScripts"
 #define kSegueToLooks @"segueToLooks"
 #define kSegueToSounds @"segueToSounds"
 #define kSegueToImage @"segueToImage"
+
