@@ -119,11 +119,6 @@ final class InclinationYSensorTest: XCTestCase {
         XCTAssertEqual(sensor.convertToStandardized(rawValue: -Double.pi / 4), -135, accuracy: Double.epsilon)
     }
 
-    func testRawValueXSensor() {
-        motionManager.attitude.roll = Double.pi / 4
-        XCTAssertEqual(sensor.rawValueXSensor(), motionManager.attitude.roll, accuracy: Double.epsilon)
-    }
-
     func testStandardizedValue() {
         let convertToStandardizedValue = sensor.convertToStandardized(rawValue: sensor.rawValue(landscapeMode: false))
         let standardizedValue = sensor.standardizedValue(landscapeMode: false)
