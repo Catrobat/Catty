@@ -705,7 +705,7 @@
 		4CC50A60213BE18F004BC914 /* SingleParameterDoubleFunctionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC50A5F213BE18F004BC914 /* SingleParameterDoubleFunctionMock.swift */; };
 		4CC50A62213BE4D3004BC914 /* DoubleParameterDoubleFunctionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC50A61213BE4D3004BC914 /* DoubleParameterDoubleFunctionMock.swift */; };
 		4CC614B7212EA84E006E4720 /* FormulaEditorItemTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC614B6212EA84E006E4720 /* FormulaEditorItemTest.swift */; };
-		4CC6CE592104715700AA2A04 /* CBSpriteNode+Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6CE582104715700AA2A04 /* CBSpriteNode+Sensor.swift */; };
+		4CC6CE592104715700AA2A04 /* CBSpriteNodeSensorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6CE582104715700AA2A04 /* CBSpriteNodeSensorExtension.swift */; };
 		4CD0BA962146791D00BF17A4 /* UtilTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD0BA952146791D00BF17A4 /* UtilTests.swift */; };
 		4CD0BA9921467C5A00BF17A4 /* HeaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD0BA9821467C5A00BF17A4 /* HeaderTests.swift */; };
 		4CD27AA821B55DBC00DDADB5 /* FaceDetectionManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD27AA521B55DBB00DDADB5 /* FaceDetectionManagerTest.swift */; };
@@ -2399,7 +2399,7 @@
 		4CC50A5F213BE18F004BC914 /* SingleParameterDoubleFunctionMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleParameterDoubleFunctionMock.swift; sourceTree = "<group>"; };
 		4CC50A61213BE4D3004BC914 /* DoubleParameterDoubleFunctionMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleParameterDoubleFunctionMock.swift; sourceTree = "<group>"; };
 		4CC614B6212EA84E006E4720 /* FormulaEditorItemTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaEditorItemTest.swift; sourceTree = "<group>"; };
-		4CC6CE582104715700AA2A04 /* CBSpriteNode+Sensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CBSpriteNode+Sensor.swift"; sourceTree = "<group>"; };
+		4CC6CE582104715700AA2A04 /* CBSpriteNodeSensorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBSpriteNodeSensorExtension.swift; sourceTree = "<group>"; };
 		4CD0BA952146791D00BF17A4 /* UtilTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilTests.swift; sourceTree = "<group>"; };
 		4CD0BA9821467C5A00BF17A4 /* HeaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderTests.swift; sourceTree = "<group>"; };
 		4CD27AA521B55DBB00DDADB5 /* FaceDetectionManagerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaceDetectionManagerTest.swift; sourceTree = "<group>"; };
@@ -3764,6 +3764,7 @@
 		18DAFC56247BD1400082C62A /* SpriteNode */ = {
 			isa = PBXGroup;
 			children = (
+				4CC6CE582104715700AA2A04 /* CBSpriteNodeSensorExtension.swift */,
 				18DAFC59247BD1700082C62A /* CBSpriteNodePenExtension.swift */,
 			);
 			path = SpriteNode;
@@ -4753,7 +4754,6 @@
 		4C11795220AEC351006C6E32 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				4CC6CE582104715700AA2A04 /* CBSpriteNode+Sensor.swift */,
 				4C11795320AEC36D006C6E32 /* ProtocolConformance.swift */,
 			);
 			path = Extensions;
@@ -10403,7 +10403,7 @@
 				AA74F09A1BC05FCE00D1E954 /* BrickCellInlineView.m in Sources */,
 				AA74EE3B1BC0543700D1E954 /* SetVolumeToBrick+Instruction.swift in Sources */,
 				92FF30FE1A24DCAA00093DA7 /* Look.m in Sources */,
-				4CC6CE592104715700AA2A04 /* CBSpriteNode+Sensor.swift in Sources */,
+				4CC6CE592104715700AA2A04 /* CBSpriteNodeSensorExtension.swift in Sources */,
 				AA74EF631BC0587B00D1E954 /* VibrationBrick+CBXMLHandler.m in Sources */,
 				921D46881BDF698A0086AD20 /* ChangeTransparencyByNBrick+Instruction.swift in Sources */,
 				F48E946B20D6F869007E782E /* DateDaySensor.swift in Sources */,
