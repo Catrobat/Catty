@@ -222,6 +222,7 @@ let kLocalizedViews = NSLocalizedString("Views", bundle: Bundle(for: LanguageTra
 let kLocalizedInformation = NSLocalizedString("Information", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedMeasure = NSLocalizedString("Measure", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedSize = NSLocalizedString("Size", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedSelectCategories = NSLocalizedString("Select categories", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedObject = NSLocalizedString("Object", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedObjects = NSLocalizedString("Actors and objects", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedBricks = NSLocalizedString("Bricks", bundle: Bundle(for: LanguageTranslation.self), comment: "")

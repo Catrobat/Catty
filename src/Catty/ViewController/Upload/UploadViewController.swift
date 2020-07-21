@@ -21,20 +21,23 @@
  */
 
 class UploadViewController: UIViewController {
-    let uploadFontSize: CGFloat = 16.0
+    let labelFontSize: CGFloat = 17.0
+    let valueFontSize: CGFloat = 17.0
+    let horizontalConstrainValue: CGFloat = 25.0
+    let verticalConstrainValue: CGFloat = 10.0
 
     private var uploadBarButton: UIBarButtonItem?
     private var activeRequest: Bool = false
     private var project: Project?
     private var descriptionTextViewBottomConstraint: NSLayoutConstraint!
     private var uploader: StoreProjectUploaderProtocol?
+    private var projectNameTextFieldRenderingForFirstTime = true
 
-    @IBOutlet private weak var projectNameLabel: UILabel!
-    @IBOutlet private weak var projectNameTextField: UITextField!
-    @IBOutlet private weak var sizeLabel: UILabel!
-    @IBOutlet private weak var sizeValueLabel: UILabel!
-    @IBOutlet private weak var descriptionLabel: UILabel!
-    @IBOutlet private weak var descriptionTextView: UITextView!
+    private var projectNameTextField: UITextField
+    private var descriptionTextView: UITextView
+    private var labels: [UILabel]
+    private var separationViews: [UIView]
+    private var values: [UILabel]
 
     private var loadingView: LoadingView?
 
@@ -55,14 +58,24 @@ class UploadViewController: UIViewController {
                                                    target: self,
                                                    action: #selector(UploadViewController.checkProjectAction))
             navigationItem.rightBarButtonItem = self.uploadBarButton
-
-            projectNameTextField.becomeFirstResponder()
         }
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        if projectNameTextFieldRenderingForFirstTime {
+            projectNameTextField.becomeFirstResponder()
+            projectNameTextFieldRenderingForFirstTime = false
+        }
+    }
     // MARK: - Initialization
 
     required init?(coder aDecoder: NSCoder) {
+        self.separationViews = [UIView]()
+        self.labels = [UILabel]()
+        self.values = [UILabel]()
+        self.projectNameTextField = UITextField()
+        self.descriptionTextView = UITextView()
         super.init(coder: aDecoder)
         self.project = Project.init(loadingInfo: Util.lastUsedProjectLoadingInfo())!
 
@@ -72,50 +85,63 @@ class UploadViewController: UIViewController {
     init(uploader: StoreProjectUploaderProtocol, project: Project) {
         activeRequest = true
         self.project = project
+        self.separationViews = [UIView]()
+        self.labels = [UILabel]()
+        self.values = [UILabel]()
+        self.projectNameTextField = UITextField()
+        self.descriptionTextView = UITextView()
         super.init(nibName: nil, bundle: nil)
         self.uploader = uploader
     }
 
     func initProjectNameViewElements() {
-        projectNameLabel.textColor = UIColor.globalTint
-        projectNameLabel.text = kLocalizedName
-        projectNameLabel.font = UIFont.boldSystemFont(ofSize: uploadFontSize)
+        addLineViewElement(withTopConstraint: 3 * verticalConstrainValue, fromElement: self.view)
+        let programLabel = createLabel(text: kLocalizedName, font: .boldSystemFont(ofSize: labelFontSize))
+        programLabel.widthAnchor.constraint(equalToConstant: 50).isActive = true
 
-        projectNameTextField.borderStyle = .roundedRect
-        projectNameTextField.layer.borderWidth = 1.0
-        projectNameTextField.layer.borderColor = UIColor.textViewBorderGray.cgColor
-        projectNameTextField.layer.cornerRadius = 3
+        self.projectNameTextField = UITextField()
         projectNameTextField.keyboardType = .default
         projectNameTextField.text = project?.header.programName!
+        self.view.addSubview(self.projectNameTextField)
+
+        projectNameTextField.translatesAutoresizingMaskIntoConstraints = false
+        projectNameTextField.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        projectNameTextField.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -horizontalConstrainValue).isActive = true
+        projectNameTextField.centerYAnchor.constraint(equalTo: programLabel.centerYAnchor, constant: 1).isActive = true
+        projectNameTextField.leftAnchor.constraint(equalTo: programLabel.rightAnchor, constant: 10).isActive = true
     }
 
     func initSizeViewElements() {
-        sizeLabel.textColor = UIColor.globalTint
-        sizeLabel.text = kLocalizedSize
-        sizeLabel.font = UIFont.boldSystemFont(ofSize: uploadFontSize)
+        if let lastLabel = labels.last {
+            addLineViewElement(withTopConstraint: verticalConstrainValue, fromElement: lastLabel)
+        }
+        let sizeLabel = createLabel(text: kLocalizedSize, font: .boldSystemFont(ofSize: labelFontSize))
 
         let fileManager = CBFileManager.shared()
         let zipFileData = fileManager?.zip(project)
-
-        sizeValueLabel.textColor = UIColor.textTint
-        sizeValueLabel.font = UIFont.boldSystemFont(ofSize: uploadFontSize)
-
         guard let data = zipFileData else {
             debugPrint("ZIPing project files failed")
             self.dismissView()
             return
         }
-        sizeValueLabel.text = ByteCountFormatter.string(fromByteCount: Int64(data.count),
-                                                        countStyle: .file)
+        let value = ByteCountFormatter.string(fromByteCount: Int64(data.count), countStyle: .file)
+        let sizeValueLabel = self.createValue(text: value, font: .systemFont(ofSize: valueFontSize))
+
+        sizeValueLabel.translatesAutoresizingMaskIntoConstraints = false
+        sizeValueLabel.centerYAnchor.constraint(equalTo: sizeLabel.centerYAnchor).isActive = true
+        sizeValueLabel.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -horizontalConstrainValue).isActive = true
     }
 
     func initDescriptionViewElements() {
-        descriptionLabel.textColor = UIColor.globalTint
-        descriptionLabel.text = kLocalizedDescription
-        descriptionLabel.font = UIFont.boldSystemFont(ofSize: uploadFontSize)
+        if let lastLabel = labels.last {
+            addLineViewElement(withTopConstraint: verticalConstrainValue, fromElement: lastLabel)
+        }
+        let descriptionLabel = createLabel(text: kLocalizedDescription, font: .boldSystemFont(ofSize: labelFontSize))
 
+        descriptionTextView = UITextView()
         descriptionTextView.keyboardAppearance = .default
         descriptionTextView.keyboardType = .default
+        descriptionTextView.font = .systemFont(ofSize: valueFontSize)
         descriptionTextView.text = project?.header.programDescription ?? ""
 
         descriptionTextView.layer.borderWidth = 1.0
@@ -123,10 +149,18 @@ class UploadViewController: UIViewController {
         descriptionTextView.layer.cornerRadius = 8
         descriptionTextView.textColor = UIColor.textTint
         descriptionTextView.clipsToBounds = true
+        self.view.addSubview(descriptionTextView)
+
+        descriptionTextView.translatesAutoresizingMaskIntoConstraints = false
+        let hightConstrain = descriptionTextView.heightAnchor.constraint(equalToConstant: 100)
+        hightConstrain.priority = UILayoutPriority(rawValue: 50)
+        hightConstrain.isActive = true
+        descriptionTextView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: verticalConstrainValue).isActive = true
+        descriptionTextView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: horizontalConstrainValue).isActive = true
+        descriptionTextView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -horizontalConstrainValue).isActive = true
 
         //manual constraint (because we need to store the bottom anchor)
-        descriptionTextViewBottomConstraint = descriptionTextView
-            .bottomAnchor.constraint(equalTo: view.safeBottomAnchor, constant: -20)
+        descriptionTextViewBottomConstraint = descriptionTextView.bottomAnchor.constraint(equalTo: view.safeBottomAnchor, constant: -20)
         descriptionTextViewBottomConstraint.isActive = true
     }
 
@@ -176,6 +210,50 @@ class UploadViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: barButtonSpinner)
     }
 
+    func createValue(text: String, font: UIFont) -> UILabel {
+        let label = UILabel()
+        label.text = text
+        label.textColor = UIColor.lightGray
+        label.font = font
+        self.view.addSubview(label)
+        self.values.append(label)
+
+        return label
+    }
+
+    func createLabel(text: String, font: UIFont) -> UILabel {
+        let label = UILabel()
+        label.text = text
+        label.textColor = UIColor.globalTint
+        label.font = font
+        self.view.addSubview(label)
+        self.labels.append(label)
+
+        label.translatesAutoresizingMaskIntoConstraints = false
+        if let lastSeperationView = self.separationViews.last {
+         label.topAnchor.constraint(equalTo: lastSeperationView.bottomAnchor, constant: verticalConstrainValue).isActive = true
+        }
+        label.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: horizontalConstrainValue).isActive = true
+
+        return label
+    }
+
+    func addLineViewElement(withTopConstraint topConstraint: CGFloat, fromElement element: UIView) {
+        let lineView = UIView()
+        lineView.backgroundColor = UIColor.textViewBorderGray
+        self.separationViews.append(lineView)
+        view.addSubview(lineView)
+
+        lineView.translatesAutoresizingMaskIntoConstraints = false
+        if element == self.view {
+            lineView.topAnchor.constraint(equalTo: element.topAnchor, constant: topConstraint).isActive = true
+        } else {
+            lineView.topAnchor.constraint(equalTo: element.bottomAnchor, constant: topConstraint).isActive = true
+        }
+        lineView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0).isActive = true
+        lineView.heightAnchor.constraint(equalToConstant: 1).isActive = true
+        lineView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0).isActive = true
+    }
     // MARK: - Actions
 
     @objc func checkProjectAction() {
@@ -243,7 +321,10 @@ class UploadViewController: UIViewController {
             let keyboardFrameValue = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             let keyboardFrame = keyboardFrameValue.cgRectValue
             UIView.animate(withDuration: 0.5, animations: {
-                self.descriptionTextViewBottomConstraint.constant = -keyboardFrame.size.height - 20
+                let keyboardIsCoveringDescriptionView = self.descriptionTextView.frame.origin.y < (self.view.frame.height - (keyboardFrame.size.height + 20))
+                if keyboardIsCoveringDescriptionView {
+                    self.descriptionTextViewBottomConstraint.constant = -keyboardFrame.size.height - 20
+                }
                 self.view.layoutIfNeeded()
             })
         }
