@@ -36,8 +36,8 @@ import CoreMotion
     let bluetoothService: BluetoothService
     let formulaCache: FormulaCache
 
-    @objc(initWithSceneSize:)
-    convenience init(sceneSize: CGSize) {
+    @objc(initWithSceneSize: andLandscapeMode:)
+    convenience init(sceneSize: CGSize, landscapeMode: Bool) {
         let motionManager = CMMotionManager()
         let locationManager = CLLocationManager()
         let faceDetectionManager = FaceDetectionManager()
@@ -52,7 +52,8 @@ import CoreMotion
                                               faceDetectionManager: faceDetectionManager,
                                               audioManager: audioManager,
                                               touchManager: touchManager,
-                                              bluetoothService: bluetoothService)
+                                              bluetoothService: bluetoothService,
+                                              landscapeMode: landscapeMode)
 
         let functionManager =
             FormulaManager.buildFunctionManager(touchManager: touchManager,
@@ -137,7 +138,8 @@ import CoreMotion
                                            faceDetectionManager: FaceDetectionManager,
                                            audioManager: AudioManagerProtocol,
                                            touchManager: TouchManagerProtocol,
-                                           bluetoothService: BluetoothService) -> SensorManager {
+                                           bluetoothService: BluetoothService,
+                                           landscapeMode: Bool) -> SensorManager {
 
         let sensors = CatrobatSetup.registeredSensors(sceneSize: sceneSize,
                                                       motionManager: motionManager,
@@ -147,7 +149,7 @@ import CoreMotion
                                                       touchManager: touchManager,
                                                       bluetoothService: bluetoothService)
 
-        return SensorManager(sensors: sensors)
+        return SensorManager(sensors: sensors, landscapeMode: landscapeMode)
     }
 
     private static func buildFunctionManager(touchManager: TouchManagerProtocol, bluetoothService: BluetoothService) -> FunctionManager {

@@ -39,7 +39,6 @@
 
 // Bricks
 #import "Brick.h"
-#import "Brick+UserVariable.h"
 #import "IfLogicBeginBrick.h"
 #import "IfThenLogicBeginBrick.h"
 #import "IfLogicElseBrick.h"
@@ -128,13 +127,16 @@
 #import "IfLogicBeginBrickCell.h"
 #import "NextLookBrickCell.h"
 #import "PreviousLookBrickCell.h"
+#import "ChangeVariableBrickCell.h"
+#import "ReplaceItemInUserListBrickCell.h"
+
+#import "BrickCellVariableData.h"
+#import "BrickCellListData.h"
 
 // Formulas
 #import "Formula.h"
 #import "FormulaElement.h"
-
-// UserVariable
-#import "UserVariable.h"
+#import "Formula+CBXMLHandler.h"
 
 // Assets
 #import "Look.h"
@@ -177,6 +179,7 @@
 #import "AboutPocketCodeOptionTableViewController.h"
 #import "CatrobatTableViewController.h"
 #import "ScriptCollectionViewController.h"
+#import "LoginViewController.h"
 
 //------------------------------------------------------------------------------------------------------------
 
@@ -194,7 +197,6 @@
 //-----------------------------------------------------------------------------------------------------------
 #import "CatrobatInformation.h"
 #import "CatrobatProject.h"
-#import "AppDelegate.h"
 #import "TableUtil.h"
 #import "CellTagDefines.h"
 #import "SegueDefines.h"
@@ -215,7 +217,7 @@
 #import "Project+CBXMLHandler.h"
 #import "Header+CBXMLHandler.h"
 #import "SpriteObject+CBXMLHandler.h"
-#import "VariablesContainer.h"
+#import "UserDataContainer.h"
 #import "OrderedMapTable.h"
 #import "UIDefines.h"
 #import "SpriteObject.h"

@@ -23,16 +23,16 @@
 #import "ProjectParser.h"
 #import "GDataXMLNode.h"
 #import "Project.h"
-#import "VariablesContainer.h"
+#import "UserDataContainer.h"
 #import <objc/runtime.h>
 #import "Sound.h"
 #import "Formula.h"
 #import "Script.h"
 #import "XMLObjectReference.h"
 #import "OrderedMapTable.h"
-#import "NSString+CatrobatNSStringExtensions.h"
 #import "SpriteObject.h"
 #import "NoteBrick.h"
+#import "Pocket_Code-Swift.h"
 
 #define kCatroidXMLPrefix               @"org.catrobat.catroid.content."
 #define kCatroidXMLSpriteList           @"spriteList"
@@ -55,7 +55,7 @@
 #define kParserObjectTypeIfEndBrick     @"T@\"IfLogicEndBrick\""
 #define kParserObjectTypeIfBeginBrick   @"T@\"IfLogicBeginBrick\""
 #define kParserObjectTypeElseBrick      @"T@\"ElseBrick\""
-#define kParserObjectTypeVariables      @"T@\"VariablesContainer\""
+#define kParserObjectTypeUserData      @"T@\"UserDataContainer\""
 #define kPropertyWeak                   @",W"
 
 
@@ -133,7 +133,14 @@
         className = @"project";
     className = [self classNameForString:className];
     
-    id object = [[NSClassFromString(className) alloc] init];
+    id object;
+    if ([className isEqualToString:@"UserVariable"]) {
+        NSString *userVariableName = [node stringValue];
+        object = [[UserVariable alloc] initWithName:userVariableName];
+    } else {
+        object = [[NSClassFromString(className) alloc] init];
+    }
+    
     if (! object) {
         if ([className hasSuffix:@"Brick"]) {
             NSWarn(@"Unsupported brick type: %@ => to be replaced by a NoteBrick", className);
@@ -311,7 +318,7 @@
         }
         return [self parseNode:element withParent:parent];
     }
-    else if ([propertyType isEqualToString:kParserObjectTypeVariables]) {
+    else if ([propertyType isEqualToString:kParserObjectTypeUserData]) {
         return [self parseVariablesContainer:element withParent:parent];
     } else if([propertyType isEqualToString:kParserObjectTypeLoopBeginBrick]) {
         if([self isReferenceElement:element]) {
@@ -349,31 +356,31 @@
 - (id) parseVariablesContainer:(GDataXMLElement*)element withParent:(XMLObjectReference*)parent
 {
     
-    VariablesContainer* variables = nil;
+    UserDataContainer* userData = nil;
     
     if (self.project) {
         
-        variables = [[VariablesContainer alloc] init];
+        userData = [[UserDataContainer alloc] init];
         
         NSArray* objectVariableListArray= [element elementsForName:@"objectVariableList"];
         
-        XMLObjectReference* ref = [[XMLObjectReference alloc] initWithParent:parent andObject:variables];
+        XMLObjectReference* ref = [[XMLObjectReference alloc] initWithParent:parent andObject:userData];
         
         if(objectVariableListArray) {
             GDataXMLElement* objectVariableList = [objectVariableListArray objectAtIndex:0];
-            variables.objectVariableList = [self parseObjectVariableMap:objectVariableList andParent:ref];
+            userData.objectVariableList = [self parseObjectVariableMap:objectVariableList andParent:ref];
         }
         
         NSArray* programVariableListArray = [element elementsForName:@"programVariableList"];
         
         if(programVariableListArray) {
             GDataXMLElement* programVariableList  = [programVariableListArray objectAtIndex:0];
-            variables.programVariableList = [self parseProgramVariableList:programVariableList andParent:ref];
+            userData.programVariableList = [self parseProgramVariableList:programVariableList andParent:ref];
         }
     }
     
     
-    return variables;
+    return userData;
     
 }
 
@@ -623,6 +630,11 @@ const char *property_getTypeString(objc_property_t property)
     if ([propertyName isEqualToString:@"changeGhostEffect"]) {
         propertyName = @"changeTransparency";
     }
+    
+    if ([propertyName isEqualToString:@"variables"]) {
+        propertyName = @"userData";
+    }
+    
     return propertyName;
 }
 

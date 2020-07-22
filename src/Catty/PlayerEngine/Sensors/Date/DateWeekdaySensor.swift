@@ -36,7 +36,7 @@ class DateWeekdaySensor: DateSensor {
         type(of: self).tag
     }
 
-    func rawValue() -> Double {
+    func rawValue(landscapeMode: Bool) -> Double {
         Double(Calendar.current.component(.weekday, from: self.date()))
     }
 

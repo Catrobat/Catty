@@ -117,4 +117,16 @@ final class GoNStepsBackBrickTests: AbstractBrickTest {
         XCTAssertEqual(spriteNode1.zPosition, 5.0, "GoNStepsBack is not correctly calculated")
         XCTAssertEqual(spriteNode2.zPosition, 3.0, "GoNStepsBack is not correctly calculated")
     }
+
+    func testMutableCopy() {
+        brick.steps = Formula(double: 60.0)
+
+        let copiedBrick: GoNStepsBackBrick = brick.mutableCopy(with: CBMutableCopyContext()) as! GoNStepsBackBrick
+
+        XCTAssertTrue(brick.isEqual(to: copiedBrick))
+        XCTAssertFalse(brick === copiedBrick)
+
+        XCTAssertTrue(brick.steps.isEqual(to: copiedBrick.steps))
+        XCTAssertFalse(brick.steps === copiedBrick.steps)
+    }
 }

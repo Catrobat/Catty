@@ -50,11 +50,11 @@
 	<key>CatrobatLanguageVersion</key>
 	<string>0.991</string>
 	<key>CatrobatMediaLicense</key>
-	<string>http://developer.catrobat.org/ccbysa_v3</string>
+	<string>https://developer.catrobat.org/ccbysa_v4</string>
 	<key>CatrobatPlatformName</key>
 	<string>iOS</string>
 	<key>CatrobatProgramLicense</key>
-	<string>http://developer.catrobat.org/agpl_v3</string>
+	<string>https://developer.catrobat.org/agpl_v3</string>
 	<key>FIREBASE_ANALYTICS_COLLECTION_ENABLED</key>
 	<false/>
 	<key>FirebaseCrashlyticsCollectionEnabled</key>

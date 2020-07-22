@@ -33,7 +33,7 @@ final class FormulaManagerTests: XCTestCase {
     }
 
     func testFormulaEditorItemsEmpty() {
-        let manager = FormulaManager(sensorManager: SensorManager(sensors: []),
+        let manager = FormulaManager(sensorManager: SensorManager(sensors: [], landscapeMode: false),
                                      functionManager: FunctionManager(functions: []),
                                      operatorManager: OperatorManager(operators: []))
 
@@ -62,7 +62,7 @@ final class FormulaManagerTests: XCTestCase {
         let operatorA = UnaryOperatorMock(value: 0, formulaEditorSection: .object(position: 4))
         let operatorB = BinaryOperatorMock(value: 0)
 
-        let manager = FormulaManager(sensorManager: SensorManager(sensors: [sensorA, sensorB]),
+        let manager = FormulaManager(sensorManager: SensorManager(sensors: [sensorA, sensorB], landscapeMode: false),
                                      functionManager: FunctionManager(functions: [functionA, functionB, functionC]),
                                      operatorManager: OperatorManager(operators: [operatorA, operatorB]))
 
@@ -87,7 +87,7 @@ final class FormulaManagerTests: XCTestCase {
 
         let operatorA = UnaryOperatorMock(value: 0, formulaEditorSection: .object(position: 1))
 
-        let manager = FormulaManager(sensorManager: SensorManager(sensors: [sensorA]),
+        let manager = FormulaManager(sensorManager: SensorManager(sensors: [sensorA], landscapeMode: false),
                                      functionManager: FunctionManager(functions: [functionA, functionB]),
                                      operatorManager: OperatorManager(operators: [operatorA]))
 
@@ -109,7 +109,7 @@ final class FormulaManagerTests: XCTestCase {
         let operatorA = UnaryOperatorMock(value: 0, formulaEditorSections: [.math(position: 30), .logic(position: 40)])
         let operatorB = BinaryOperatorMock(value: 0)
 
-        let manager = FormulaManager(sensorManager: SensorManager(sensors: [sensorA, sensorB]),
+        let manager = FormulaManager(sensorManager: SensorManager(sensors: [sensorA, sensorB], landscapeMode: false),
                                      functionManager: FunctionManager(functions: [functionA, functionB]),
                                      operatorManager: OperatorManager(operators: [operatorA, operatorB]))
 
@@ -135,7 +135,7 @@ final class FormulaManagerTests: XCTestCase {
         let operatorA = UnaryOperatorMock(value: 0, formulaEditorSection: .logic(position: 30))
         let operatorB = BinaryOperatorMock(value: 0)
 
-        let manager = FormulaManager(sensorManager: SensorManager(sensors: [sensorA, sensorB]),
+        let manager = FormulaManager(sensorManager: SensorManager(sensors: [sensorA, sensorB], landscapeMode: false),
                                      functionManager: FunctionManager(functions: [functionA, functionB]),
                                      operatorManager: OperatorManager(operators: [operatorA, operatorB]))
 
@@ -158,7 +158,7 @@ final class FormulaManagerTests: XCTestCase {
         let sensorA = SensorMock(tag: "sensorTagA", formulaEditorSection: .device(position: 1))
         let sensorB = SensorMock(tag: "sensorTagB")
 
-        let manager = FormulaManager(sensorManager: SensorManager(sensors: [sensorA, sensorB]),
+        let manager = FormulaManager(sensorManager: SensorManager(sensors: [sensorA, sensorB], landscapeMode: false),
                                      functionManager: FunctionManager(functions: [functionA, functionB]),
                                      operatorManager: OperatorManager(operators: []))
 
@@ -182,7 +182,7 @@ final class FormulaManagerTests: XCTestCase {
         let operatorA = UnaryOperatorMock(value: 0, formulaEditorSection: .object(position: 40))
         let operatorB = BinaryOperatorMock(value: 0)
 
-        let manager = FormulaManager(sensorManager: SensorManager(sensors: [sensorA, sensorB]),
+        let manager = FormulaManager(sensorManager: SensorManager(sensors: [sensorA, sensorB], landscapeMode: false),
                                      functionManager: FunctionManager(functions: [functionA, functionB]),
                                      operatorManager: OperatorManager(operators: [operatorA, operatorB]))
 
@@ -200,7 +200,7 @@ final class FormulaManagerTests: XCTestCase {
 
         let op = UnaryOperatorMock(value: 0, formulaEditorSections: [.math(position: 60), .logic(position: 70)])
 
-        let manager = FormulaManager(sensorManager: SensorManager(sensors: [sensorA, sensorB]),
+        let manager = FormulaManager(sensorManager: SensorManager(sensors: [sensorA, sensorB], landscapeMode: false),
                                      functionManager: FunctionManager(functions: [function]),
                                      operatorManager: OperatorManager(operators: [op]))
 
@@ -225,7 +225,7 @@ final class FormulaManagerTests: XCTestCase {
                                                           parameter: .number(defaultValue: 20),
                                                           formulaEditorSection: .device(position: 20))
 
-        let manager = FormulaManager(sensorManager: SensorManager(sensors: []),
+        let manager = FormulaManager(sensorManager: SensorManager(sensors: [], landscapeMode: false),
                                      functionManager: FunctionManager(functions: [functionA, functionB]),
                                      operatorManager: OperatorManager(operators: []))
 
@@ -242,7 +242,7 @@ final class FormulaManagerTests: XCTestCase {
         let sensorA = AccelerationXSensor(motionManagerGetter: { nil })
         let sensorB = AccelerationYSensor(motionManagerGetter: { nil })
 
-        let manager = FormulaManager(sensorManager: SensorManager(sensors: [sensorA, sensorB]),
+        let manager = FormulaManager(sensorManager: SensorManager(sensors: [sensorA, sensorB], landscapeMode: false),
                                      functionManager: FunctionManager(functions: []),
                                      operatorManager: OperatorManager(operators: []))
 
@@ -259,7 +259,7 @@ final class FormulaManagerTests: XCTestCase {
         let operatorA = UnaryOperatorMock(value: 0, formulaEditorSection: .object(position: 40))
         let operatorB = BinaryOperatorMock(value: 0)
 
-        let manager = FormulaManager(sensorManager: SensorManager(sensors: []),
+        let manager = FormulaManager(sensorManager: SensorManager(sensors: [], landscapeMode: false),
                                      functionManager: FunctionManager(functions: []),
                                      operatorManager: OperatorManager(operators: [operatorA, operatorB]))
 

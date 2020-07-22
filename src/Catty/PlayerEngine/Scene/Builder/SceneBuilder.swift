@@ -102,7 +102,7 @@
 
     private func getFormulaManager() -> FormulaManagerProtocol {
         guard let formulaManager = self.formulaManager else {
-            return FormulaManager(sceneSize: self.size)
+            return FormulaManager(sceneSize: self.size, landscapeMode: self.project.header.landscapeMode)
         }
         return formulaManager
     }

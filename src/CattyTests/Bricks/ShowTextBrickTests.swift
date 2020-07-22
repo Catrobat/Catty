@@ -32,7 +32,7 @@ final class ShowTextBrickTests: XCTestCase {
     var script: Script!
     var scheduler: CBScheduler!
     var context: CBScriptContextProtocol!
-    var varContainer: VariablesContainer!
+    var userDataContainer: UserDataContainer!
 
     override func setUp() {
         project = Project()
@@ -47,12 +47,12 @@ final class ShowTextBrickTests: XCTestCase {
         script = Script()
         script.object = spriteObject
 
-        varContainer = VariablesContainer()
-        spriteObject.project.variables = varContainer
+        userDataContainer = UserDataContainer()
+        spriteObject.project.userData = userDataContainer
 
         let logger = CBLogger(name: "Logger")
         let broadcastHandler = CBBroadcastHandler(logger: logger)
-        let formulaInterpreter = FormulaManager(sceneSize: Util.screenSize(true))
+        let formulaInterpreter = FormulaManager(sceneSize: Util.screenSize(true), landscapeMode: false)
         scheduler = CBScheduler(logger: logger, broadcastHandler: broadcastHandler, formulaInterpreter: formulaInterpreter, audioEngine: AudioEngineMock())
         context = CBScriptContext(script: script, spriteNode: spriteNode, formulaInterpreter: formulaInterpreter)
     }
@@ -74,11 +74,12 @@ final class ShowTextBrickTests: XCTestCase {
         let sceneSize = CGSize(width: 200, height: 300)
         let expectedPos = CGPoint(x: sceneSize.width / 2 + pos.x, y: sceneSize.height / 2 + pos.y)
 
-        let userVariable = UserVariable()
-        userVariable.textLabel = SKLabelNode()
+        let userVariable = UserVariable(name: "testName")
+        let label = SKLabelNode()
+        userVariable.textLabel = label
 
         let scene = SKScene(size: sceneSize)
-        scene.addChild(userVariable.textLabel)
+        scene.addChild(label)
 
         let brick = ShowTextBrick()
         brick.script = script
@@ -88,8 +89,8 @@ final class ShowTextBrickTests: XCTestCase {
 
         executeInstruction(for: brick)
 
-        XCTAssertEqual(expectedPos.x, userVariable.textLabel.position.x)
-        XCTAssertEqual(expectedPos.y, userVariable.textLabel.position.y)
+        XCTAssertEqual(expectedPos.x, userVariable.textLabel?.position.x)
+        XCTAssertEqual(expectedPos.y, userVariable.textLabel?.position.y)
     }
 
     private func executeInstruction(for brick: CBInstructionProtocol) {

@@ -36,7 +36,7 @@ class TimeMinuteSensor: DateSensor {
         Date()
     }
 
-    func rawValue() -> Double {
+    func rawValue(landscapeMode: Bool) -> Double {
         Double(Calendar.current.component(.minute, from: self.date()))
     }
 

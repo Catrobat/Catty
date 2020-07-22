@@ -39,7 +39,7 @@
         type(of: self).tag
     }
 
-    func rawValue() -> Double {
+    func rawValue(landscapeMode: Bool) -> Double {
         self.getBluetoothService()?.getSensorPhiro()?.getSensorValue(type(of: self).pinNumber) ?? type(of: self).defaultRawValue
     }
 

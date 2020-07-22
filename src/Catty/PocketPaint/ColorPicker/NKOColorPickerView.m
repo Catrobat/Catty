@@ -264,6 +264,10 @@ CGFloat const NKOPickerViewCrossHairshWidthAndHeight    = 38.f;
 	}
 }
 
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
+    return false;
+}
+
 #pragma mark - Lazy loading
 - (NKOBrightnessView*)gradientView
 {

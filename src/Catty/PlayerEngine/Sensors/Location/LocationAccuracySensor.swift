@@ -38,7 +38,7 @@
         type(of: self).tag
     }
 
-    func rawValue() -> Double {
+    func rawValue(landscapeMode: Bool) -> Double {
         self.getLocationManager()?.location?.horizontalAccuracy ?? type(of: self).defaultRawValue
     }
 

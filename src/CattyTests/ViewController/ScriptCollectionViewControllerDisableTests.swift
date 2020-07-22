@@ -475,4 +475,72 @@ final class ScriptCollectionViewControllerDisableTests: XCTestCase {
         //after loop
         XCTAssertFalse(showTextBrick.isDisabled)
     }
+
+    func testBrickIsDisabledInsideLoopBrick() {
+        let startScript = StartScript()
+        let loopBeginBrick = LoopBeginBrick()
+        let changeVariableBrick = ChangeVariableBrick()
+        let loopEndBrick = LoopEndBrick()
+        loopBeginBrick.loopEndBrick = loopEndBrick
+
+        let scriptBrickList = [loopBeginBrick, changeVariableBrick, loopEndBrick]
+        startScript.brickList = NSMutableArray(array: scriptBrickList)
+
+        scriptBrickList.forEach({ $0.script = startScript })
+
+        viewController.disableOrEnable(brick: loopBeginBrick)
+        XCTAssertTrue(loopBeginBrick.isDisabled)
+        XCTAssertTrue(changeVariableBrick.isDisabled)
+        XCTAssertTrue(loopEndBrick.isDisabled)
+
+        XCTAssertFalse(viewController.isInsideDisabledLoopOrIf(brick: loopBeginBrick))
+        XCTAssertTrue(viewController.isInsideDisabledLoopOrIf(brick: changeVariableBrick))
+        XCTAssertFalse(viewController.isInsideDisabledLoopOrIf(brick: loopEndBrick))
+    }
+
+    func testBrickIsDisabledInsideIfLogicBeginBrick() {
+        let startScript = StartScript()
+        let ifLogicBeginBrick = IfLogicBeginBrick()
+        let changeVariableBrick = ChangeVariableBrick()
+        let ifLogicEndBrick = IfLogicEndBrick()
+        ifLogicBeginBrick.ifEndBrick = ifLogicEndBrick
+        ifLogicEndBrick.ifBeginBrick = ifLogicBeginBrick
+
+        let scriptBrickList = [ifLogicBeginBrick, changeVariableBrick, ifLogicEndBrick]
+        startScript.brickList = NSMutableArray(array: scriptBrickList)
+
+        scriptBrickList.forEach({ $0.script = startScript })
+
+        viewController.disableOrEnable(brick: ifLogicBeginBrick)
+        XCTAssertTrue(ifLogicBeginBrick.isDisabled)
+        XCTAssertTrue(changeVariableBrick.isDisabled)
+        XCTAssertTrue(ifLogicEndBrick.isDisabled)
+
+        XCTAssertFalse(viewController.isInsideDisabledLoopOrIf(brick: ifLogicBeginBrick))
+        XCTAssertTrue(viewController.isInsideDisabledLoopOrIf(brick: changeVariableBrick))
+        XCTAssertFalse(viewController.isInsideDisabledLoopOrIf(brick: ifLogicEndBrick))
+    }
+
+    func testBrickIsDisabledInsideIfThenLogicBrick() {
+        let startScript = StartScript()
+        let ifThenLogicBeginBrick = IfThenLogicBeginBrick()
+        let changeVariableBrick = ChangeVariableBrick()
+        let ifThenLogicEndBrick = IfThenLogicEndBrick()
+        ifThenLogicBeginBrick.ifEndBrick = ifThenLogicEndBrick
+        ifThenLogicEndBrick.ifBeginBrick = ifThenLogicBeginBrick
+
+        let scriptBrickList = [ifThenLogicBeginBrick, changeVariableBrick, ifThenLogicEndBrick]
+        startScript.brickList = NSMutableArray(array: scriptBrickList)
+
+        scriptBrickList.forEach({ $0.script = startScript })
+
+        viewController.disableOrEnable(brick: ifThenLogicBeginBrick)
+        XCTAssertTrue(ifThenLogicBeginBrick.isDisabled)
+        XCTAssertTrue(changeVariableBrick.isDisabled)
+        XCTAssertTrue(ifThenLogicEndBrick.isDisabled)
+
+        XCTAssertFalse(viewController.isInsideDisabledLoopOrIf(brick: ifThenLogicBeginBrick))
+        XCTAssertTrue(viewController.isInsideDisabledLoopOrIf(brick: changeVariableBrick))
+        XCTAssertFalse(viewController.isInsideDisabledLoopOrIf(brick: ifThenLogicEndBrick))
+    }
 }

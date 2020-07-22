@@ -27,6 +27,7 @@
 
 @protocol BrickVariableProtocol <BrickProtocol>
 
+@property (nonatomic, strong) UserVariable* userVariable;
 - (UserVariable*)variableForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber;
 - (void)setVariable:(UserVariable*)variable forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber;
 

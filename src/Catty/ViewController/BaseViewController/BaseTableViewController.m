@@ -26,7 +26,7 @@
 #import "Util.h"
 #import "BDKNotifyHUD.h"
 #import "PlaceHolderView.h"
-#import "AppDelegate.h"
+#import "CBFileManager.h"
 #import "Pocket_Code-Swift.h"
 
 // identifiers

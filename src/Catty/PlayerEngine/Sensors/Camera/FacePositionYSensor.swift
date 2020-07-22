@@ -40,7 +40,7 @@ class FacePositionYSensor: DeviceSensor {
         type(of: self).tag
     }
 
-    func rawValue() -> Double {
+    func rawValue(landscapeMode: Bool) -> Double {
         guard let positionY = self.getFaceDetectionManager()?.facePositionRatioFromBottom else { return type(of: self).defaultRawValue }
         return positionY
     }

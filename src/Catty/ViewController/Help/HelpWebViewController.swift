@@ -20,7 +20,9 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class HelpWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDelegate, FileManagerDelegate {
+import WebKit
+
+class HelpWebViewController: UIViewController, WKUIDelegate, WKNavigationDelegate, UIScrollViewDelegate, CBFileManagerDelegate {
     private var errorLoadingURL = false
     private var doneLoadingURL = false
     private var controlsHidden = false
@@ -30,27 +32,33 @@ class HelpWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
     private var url: URL?
     private var touchHelperView: UIView?
     private var loadingView: LoadingView?
+    private var webView: WKWebView?
 
     @IBOutlet private weak var urlTitleLabel: UILabel!
     @IBOutlet private weak var progressView: UIProgressView!
-    @IBOutlet private weak var webView: UIWebView!
-
-    // MARK: - Init
-
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-
-    deinit {
-        url = nil
-        webView.delegate = nil
-        webView = nil
-    }
+    @IBOutlet private weak var viewForWebView: UIView!
 
     // MARK: - View Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        let webConfiguration = WKWebViewConfiguration()
+        webConfiguration.allowsInlineMediaPlayback = true
+
+        let webView = WKWebView(frame: self.viewForWebView.bounds, configuration: webConfiguration)
+        self.webView = webView
+        webView.uiDelegate = self
+        webView.navigationDelegate = self
+        webView.translatesAutoresizingMaskIntoConstraints = false
+
+        viewForWebView.addSubview(webView)
+
+        viewForWebView.addConstraint(NSLayoutConstraint(item: webView, attribute: .leading, relatedBy: .equal, toItem: viewForWebView, attribute: .leading, multiplier: 1.0, constant: 0.0))
+        viewForWebView.addConstraint(NSLayoutConstraint(item: webView, attribute: .trailing, relatedBy: .equal, toItem: viewForWebView, attribute: .trailing, multiplier: 1.0, constant: 0.0))
+        viewForWebView.addConstraint(NSLayoutConstraint(item: webView, attribute: .top, relatedBy: .equal, toItem: viewForWebView, attribute: .top, multiplier: 1.0, constant: 0.0))
+        viewForWebView.addConstraint(NSLayoutConstraint(item: webView, attribute: .bottom, relatedBy: .equal, toItem: viewForWebView, attribute: .bottom, multiplier: 1.0, constant: 0.0))
+
         title = kLocalizedHelp
 
         setupToolBar()
@@ -74,16 +82,12 @@ class HelpWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
 
         url = URL(string: NetworkDefines.helpUrl)
         webView.scrollView.delegate = self
-        webView.delegate = self
-        webView.allowsInlineMediaPlayback = true
-        webView.scalesPageToFit = true
+        webView.uiDelegate = self
         webView.backgroundColor = UIColor.background
         webView.alpha = 0.0
         initUrlTitleLabel()
-        if url != nil {
-            if let url = url {
-                webView.loadRequest(URLRequest(url: url))
-            }
+        if let url = url {
+            webView.load(URLRequest(url: url))
         }
 
         touchHelperView = UIView(frame: CGRect.zero)
@@ -97,7 +101,9 @@ class HelpWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
 
         setupToolbarItems()
         if let touchHelperView = touchHelperView {
-            view.insertSubview(touchHelperView, aboveSubview: webView)
+            if let webView = webView {
+                view.insertSubview(touchHelperView, aboveSubview: webView)
+            }
         }
 
         if loadingView == nil {
@@ -111,7 +117,7 @@ class HelpWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        webView.stopLoading()
+        webView?.stopLoading()
 
         topViewController = navigationController?.topViewController
         navigationController?.hidesBarsOnSwipe = false
@@ -127,8 +133,7 @@ class HelpWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
     }
 
     // MARK: - WebViewDelegate
-
-    func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
+    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
         Util.setNetworkActivityIndicator(false)
         setupToolbarItems()
         errorLoadingURL = true
@@ -142,103 +147,123 @@ class HelpWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
         }
     }
 
-    func webViewDidFinishLoad(_ webView: UIWebView) {
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         Util.setNetworkActivityIndicator(false)
-        url = webView.request?.url
+        url = webView.url
         setupToolbarItems()
         errorLoadingURL = false
         doneLoadingURL = true
-        loadingView?.hide()
+        DispatchQueue.main.async(execute: {
+            self.loadingView?.hide()
+        })
         setProgress(1.0)
 
         UIView.animate(withDuration: 0.25, animations: {
-            self.webView.alpha = 1.0
+            self.webView?.alpha = 1.0
         })
     }
 
-    func webViewDidStartLoad(_ webView: UIWebView) {
+    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
         Util.setNetworkActivityIndicator(true)
         doneLoadingURL = false
         setProgress(0.2)
         setupToolbarItems()
     }
 
-    func webView(_ webView: UIWebView,
-                 shouldStartLoadWith request: URLRequest,
-                 navigationType: UIWebView.NavigationType) -> Bool {
-        if !((request.url?.absoluteString ?? "").contains(NetworkDefines.downloadUrl)) {
-            return true
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+
+        let request = navigationAction.request
+
+        // Check whether the URL is valid
+        if request.url?.absoluteString
+            .components(separatedBy: CharacterSet(charactersIn: "/")).count ?? 0 <= 1 {
+            Util.alert(withText: kLocalizedInvalidURLGiven)
+            decisionHandler(.cancel)
+            return
         }
+
+        if !((request.url?.absoluteString ?? "").contains(NetworkDefines.downloadUrl)) {
+            decisionHandler(.allow)
+            return
+        }
+
         let urlWithoutParams: String? = request.url?.absoluteString
             .components(separatedBy: CharacterSet(charactersIn: "?"))[0]
+
         // extract project ID from URL => example: https://pocketcode.org/download/959.catrobat
         var urlParts = urlWithoutParams?.components(separatedBy: "/")
-        if urlParts?.isEmpty ?? true {
-            Util.alert(withText: kLocalizedInvalidURLGiven)
-            return false
-        }
+
         // get last part of url and split by using separator "." => 959.catrobat
         urlParts = urlParts?.last?.components(separatedBy: ".")
         if urlParts?.count != 2 {
             Util.alert(withText: kLocalizedInvalidURLGiven)
-            return false
+            decisionHandler(.cancel)
+            return
         }
+
         // check projectID
         let projectID = urlParts?.first ?? ""
         if projectID.isEmpty {
             Util.alert(withText: kLocalizedInvalidURLGiven)
-            return false
+            decisionHandler(.cancel)
+            return
         }
+
         // get url parameters
-        guard let urlComp = URLComponents(string: (request.url?.absoluteString)!) else {
-            Util.alert(withText: kLocalizedInvalidURLGiven)
-            return false
-        }
+        let urlComp = URLComponents(string: (request.url?.absoluteString) ?? "")
+
         // parse project name
-        let projectName: String = urlComp.queryItems?
+        let projectName: String = urlComp?.queryItems?
             .first(where: { $0.name == "fname" })?.value?
             .replacingOccurrences(of: "+", with: " ") ?? ""
         if projectName.isEmpty {
             Util.alert(withText: kLocalizedInvalidURLGiven)
-            return false
+            decisionHandler(.cancel)
+            return
         }
+
         // check if project exists
         if Project.projectExists(withProjectName: projectName,
                                  projectID: projectID) {
             Util.alert(withText: kLocalizedProjectAlreadyDownloadedDescription)
-            return false
+            decisionHandler(.cancel)
+            return
         }
 
         let url = URL(string: urlWithoutParams ?? "")
         if let fileManager = CBFileManager.shared() {
             fileManager.delegate = self
             fileManager.downloadProject(from: url, withProjectID: projectID, andName: projectName)
-            loadingView?.show()
+            DispatchQueue.main.async(execute: {
+                self.loadingView?.show()
+            })
         }
-        return false
+
+        decisionHandler(.cancel)
+        return
     }
 
     // MARK: - WebView Navigation
 
     @objc func goBack(_ sender: Any?) {
-        if webView.canGoBack {
-            webView.goBack()
+        if webView?.canGoBack == true {
+            webView?.goBack()
         }
     }
 
     @objc func goForward(_ sender: Any?) {
-        if webView.canGoForward {
-            webView.goForward()
+        if webView?.canGoForward == true {
+            webView?.goForward()
         }
     }
 
     @objc func refresh(_ sender: Any?) {
         if sender is UIBarButtonItem {
             if !errorLoadingURL {
-                webView.reload()
+                webView?.reload()
             } else {
                 if let url = url {
-                    webView.loadRequest(URLRequest(url: url))
+                    webView?.load(URLRequest(url: url))
                 }
             }
         }
@@ -246,7 +271,7 @@ class HelpWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
 
     @objc func stop(_ sender: Any?) {
         if sender is UIBarButtonItem {
-            webView.stopLoading()
+            webView?.stopLoading()
         }
     }
 
@@ -271,13 +296,14 @@ class HelpWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
                                       style: .plain,
                                       target: self,
                                       action: #selector(HelpWebViewController.goForward(_:)))
-        forward.isEnabled = webView.canGoForward
+        forward.isEnabled = webView?.canGoForward ?? false
 
         let back = UIBarButtonItem(image: UIImage(named: "webview_arrow_left"),
                                    style: .plain,
                                    target: self,
                                    action: #selector(HelpWebViewController.goBack(_:)))
-        back.isEnabled = webView.canGoBack
+        back.isEnabled = webView?.canGoBack ?? false
+
         let share = UIBarButtonItem(barButtonSystemItem: .action,
                                     target: self,
                                     action: #selector(HelpWebViewController.openInSafari))
@@ -288,7 +314,7 @@ class HelpWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
     }
 
     private func setupToolbarItems() {
-        let refreshOrStopButton: UIBarButtonItem? = webView.isLoading ? stopButton : refreshButton
+        let refreshOrStopButton: UIBarButtonItem? = webView?.isLoading ?? false ? stopButton : refreshButton
         urlTitleLabel.text = "\(url?.host ?? "")\(url?.relativePath ?? "")"
         navigationItem.rightBarButtonItems = [refreshOrStopButton] as? [UIBarButtonItem]
 
@@ -314,7 +340,11 @@ class HelpWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
         hud?.center = CGPoint(x: view.center.x,
                               y: view.center.y + CGFloat(kBDKNotifyHUDCenterOffsetY))
         hud?.tag = Int(kSavedViewTag)
-        view.addSubview(hud!)
+
+        if let hud = hud {
+            view.addSubview(hud)
+        }
+
         hud?.present(withDuration: CGFloat(kBDKNotifyHUDPresentationDuration),
                      speed: CGFloat(kBDKNotifyHUDPresentationSpeed),
                      in: view) {
@@ -347,6 +377,7 @@ class HelpWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
         DispatchQueue.main.async(execute: {
             self.loadingView?.hide()
             self.showDownloadedView()
+            self.setProgress(0)
         })
     }
 
@@ -356,7 +387,6 @@ class HelpWebViewController: UIViewController, UIWebViewDelegate, UIScrollViewDe
         } else {
             doneLoadingURL = true
         }
-        setProgress(CGFloat(progress))
     }
 
     func timeoutReached() {

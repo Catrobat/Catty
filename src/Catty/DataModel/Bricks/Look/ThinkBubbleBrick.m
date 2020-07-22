@@ -21,7 +21,6 @@
  */
 
 #import "ThinkBubbleBrick.h"
-#import "NSString+CatrobatNSStringExtensions.h"
 
 @implementation ThinkBubbleBrick
 

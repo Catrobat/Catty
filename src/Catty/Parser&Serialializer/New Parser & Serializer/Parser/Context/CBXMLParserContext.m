@@ -24,6 +24,7 @@
 #import "GDataXMLElement+CustomExtensions.h"
 #import "CBXMLNodeProtocol.h"
 #import "Util.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation CBXMLParserContext
 

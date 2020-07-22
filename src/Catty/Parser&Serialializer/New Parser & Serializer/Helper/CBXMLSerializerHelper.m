@@ -23,12 +23,21 @@
 #import "CBXMLSerializerHelper.h"
 #import "CBXMLParserContext.h"
 #import "CBXMLPositionStack.h"
+#import "Script.h"
+#import "SpriteObject.h"
 
 @implementation CBXMLSerializerHelper
 
-+ (NSString*)relativeXPathToRessourceList
++ (NSString*)relativeXPathToRessourceList:(NSInteger)depth
 {
-    return @"../../../../../"; // TODO: should be computed dynamically!
+    NSString *cd = @"../";
+    NSString *path = @"";
+    
+    for (NSInteger i = 0; i < depth; i++) {
+        path = [path stringByAppendingString: cd];
+    }
+    
+    return path;
 }
 
 + (NSString*)indexXPathStringForIndexNumber:(NSUInteger)indexNumber
@@ -54,20 +63,20 @@
     return NSNotFound;
 }
 
-+ (NSString*)relativeXPathToSound:(Sound*)sound inSoundList:(NSArray*)soundList
++ (NSString*)relativeXPathToSound:(Sound*)sound inSoundList:(NSArray*)soundList withDepth:(NSInteger)depth
 {
     NSString *index = [[self class] indexXPathStringForIndexNumber:[[self class] indexOfElement:sound
                                                                                         inArray:soundList]];
     return [NSString stringWithFormat:@"%@soundList/sound%@",
-            [[self class] relativeXPathToRessourceList], index];
+            [[self class] relativeXPathToRessourceList:depth], index];
 }
 
-+ (NSString*)relativeXPathToLook:(Look*)look inLookList:(NSArray*)lookList
++ (NSString*)relativeXPathToLook:(Look*)look inLookList:(NSArray*)lookList withDepth:(NSInteger)depth
 {
     NSString *index = [[self class] indexXPathStringForIndexNumber:[[self class] indexOfElement:look
                                                                                         inArray:lookList]];
     return [NSString stringWithFormat:@"%@lookList/look%@",
-            [[self class] relativeXPathToRessourceList], index];
+            [[self class] relativeXPathToRessourceList:depth], index];
 }
 
 + (NSString*)relativeXPathFromSourcePositionStack:(CBXMLPositionStack*)sourcePositionStack
@@ -100,6 +109,21 @@
         ++index;
     }
     return [path copy];
+}
+
++ (NSInteger)getDepthOfResource:(id<BrickProtocol>)scriptOrBrick forSpriteObject:(SpriteObject*)spriteObject
+{
+    if ([scriptOrBrick conformsToProtocol:@protocol(ScriptProtocol)]) {
+        return 3;
+    }
+    
+    for (Script* script in spriteObject.scriptList) {
+        if ([script.brickList containsObject:scriptOrBrick]) {
+            return 5;
+        }
+    }
+    
+    return 0;
 }
 
 @end

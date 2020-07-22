@@ -254,6 +254,9 @@
 "Choose image" = "选择图像";
 
 /* No comment provided by engineer. */
+"Clear" = "清空";
+
+/* No comment provided by engineer. */
 "Clear graphic effects" = "清除所有图形效果";
 
 /* No comment provided by engineer. */
@@ -1118,6 +1121,15 @@
 "Passwords do not match" = "密码不匹配";
 
 /* No comment provided by engineer. */
+"Pen" = "画笔";
+
+/* No comment provided by engineer. */
+"Pen down" = "落笔";
+
+/* No comment provided by engineer. */
+"Pen up" = "抬笔";
+
+/* No comment provided by engineer. */
 "Phiro" = "Phiro";
 
 /* No comment provided by engineer. */
@@ -1221,9 +1233,6 @@
 
 /* No comment provided by engineer. */
 "Privacy Settings" = "Privacy Settings";
-
-/* No comment provided by engineer. */
-"Problems occured while uploading your project" = "Problems occured while uploading your project";
 
 /* No comment provided by engineer. */
 "Project" = "Project";
@@ -1337,6 +1346,9 @@
 "Say" = "说";
 
 /* No comment provided by engineer. */
+"Scene" = "Scene";
+
+/* No comment provided by engineer. */
 "Script" = "Script";
 
 /* No comment provided by engineer. */
@@ -1394,6 +1406,9 @@
 "Server is taking to long to respond, please try again later." = "Server is taking to long to respond, please try again later.";
 
 /* No comment provided by engineer. */
+"Session expired, please log in." = "您的会话已过期，请登录。";
+
+/* No comment provided by engineer. */
 "Set Arduino digital pin" = "设置 Arduino 数字端口";
 
 /* No comment provided by engineer. */
@@ -1410,6 +1425,9 @@
 
 /* No comment provided by engineer. */
 "Set description" = "设置描述";
+
+/* No comment provided by engineer. */
+"Set pen size to" = "把画笔的大小设定为";
 
 /* No comment provided by engineer. */
 "Set Phiro light" = "设置Phiro灯光";
@@ -1455,6 +1473,9 @@
 
 /* No comment provided by engineer. */
 "SO" = "SO";
+
+/* No comment provided by engineer. */
+"Something went wrong while uploading the project." = "在上传程序的时候发生了一个错误。";
 
 /* No comment provided by engineer. */
 "Sound" = "声音";
@@ -1590,6 +1611,9 @@
 
 /* No comment provided by engineer. */
 "This feature is coming soon!" = "This feature is coming soon!";
+
+/* No comment provided by engineer. */
+"This list can not be deleted because it is still in use." = "This list can not be deleted because it is still in use.";
 
 /* No comment provided by engineer. */
 "This variable can not be deleted because it is still in use." = "This variable can not be deleted because it is still in use.";

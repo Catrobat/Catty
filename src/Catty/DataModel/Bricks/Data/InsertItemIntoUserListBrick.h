@@ -24,12 +24,12 @@
 #import "BrickFormulaProtocol.h"
 #import "BrickListProtocol.h"
 
-@class UserVariable;
+@class UserList;
 @class Formula;
 
 @interface InsertItemIntoUserListBrick : Brick<BrickFormulaProtocol, BrickListProtocol>
 
-@property (nonatomic, strong) UserVariable *userList;
+@property (nonatomic, strong) UserList *userList;
 @property (nonatomic, strong) Formula *elementFormula;
 @property (nonatomic, strong) Formula *index;
 

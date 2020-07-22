@@ -38,7 +38,7 @@
         type(of: self).tag
     }
 
-    func rawValue() -> Double {
+    func rawValue(landscapeMode: Bool) -> Double {
         self.getLocationManager()?.location?.coordinate.latitude ?? type(of: self).defaultRawValue
     }
 

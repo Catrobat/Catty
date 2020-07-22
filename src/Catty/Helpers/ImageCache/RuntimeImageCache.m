@@ -21,8 +21,7 @@
  */
 
 #import "RuntimeImageCache.h"
-#import "NSString+CatrobatNSStringExtensions.h"
-#import "AppDelegate.h"
+#import "CBFileManager.h"
 
 @interface RuntimeImageCache()
 

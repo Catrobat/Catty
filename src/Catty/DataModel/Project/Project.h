@@ -23,7 +23,7 @@
 #import "Header.h"
 #import "ProgramDefines.h"
 
-@class VariablesContainer;
+@class UserDataContainer;
 @class SpriteObject;
 @class ProjectLoadingInfo;
 
@@ -31,7 +31,7 @@
 
 @property (nonatomic, strong, nonnull) Header *header;
 @property (nonatomic, strong, nonnull) NSMutableArray<SpriteObject*> *objectList;
-@property (nonatomic, strong, nonnull) VariablesContainer *variables;
+@property (nonatomic, strong, nonnull) UserDataContainer *userData;
 @property (nonatomic, strong, nonnull) NSMutableSet<NSString*> *unsupportedElements;
 @property (nonatomic) BOOL requiresBluetooth;
 
@@ -54,6 +54,7 @@
 - (void)renameObject:(SpriteObject* _Nonnull)object toName:(NSString* _Nonnull)newObjectName;
 - (void)updateDescriptionWithText:(NSString* _Nonnull)descriptionText;
 - (nonnull NSArray*)allObjectNames;
+- (NSArray<SpriteObject*>* _Nonnull)allObjects;
 - (BOOL)hasObject:(SpriteObject* _Nonnull)object;
 - (SpriteObject* _Nonnull)copyObject:(SpriteObject* _Nonnull)sourceObject
     withNameForCopiedObject:(NSString* _Nonnull)nameOfCopiedObject;

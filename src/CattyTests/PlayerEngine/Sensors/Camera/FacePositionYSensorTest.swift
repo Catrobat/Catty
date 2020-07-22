@@ -45,16 +45,19 @@ final class FacePositionYSensorTest: XCTestCase {
 
     func testDefaultRawValue() {
         let sensor = FacePositionYSensor(sceneSize: self.sceneSize, faceDetectionManagerGetter: { nil })
-        XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(landscapeMode: false), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(landscapeMode: true), accuracy: Double.epsilon)
     }
 
     func testRawValue() {
         // only positive values - (0, 0) is at the bottom left
         self.cameraManagerMock.facePositionRatioFromBottom = 0
-        XCTAssertEqual(0, self.sensor.rawValue())
+        XCTAssertEqual(0, self.sensor.rawValue(landscapeMode: false))
+        XCTAssertEqual(0, self.sensor.rawValue(landscapeMode: true))
 
         self.cameraManagerMock.facePositionRatioFromBottom = 256
-        XCTAssertEqual(256, self.sensor.rawValue())
+        XCTAssertEqual(256, self.sensor.rawValue(landscapeMode: false))
+        XCTAssertEqual(256, self.sensor.rawValue(landscapeMode: true))
     }
 
     func testConvertToStandardized() {
@@ -64,6 +67,14 @@ final class FacePositionYSensorTest: XCTestCase {
         XCTAssertEqual(Double(sceneSize.height * 0.4) - Double(sceneSize.height / 2), sensor.convertToStandardized(rawValue: 0.4))
         XCTAssertEqual(Double(sceneSize.height * 0.95) - Double(sceneSize.height / 2), sensor.convertToStandardized(rawValue: 0.95))
         XCTAssertEqual(Double(sceneSize.height / 2), sensor.convertToStandardized(rawValue: 1.0))
+    }
+
+    func testStandardizedValue() {
+        let convertToStandardizedValue = sensor.convertToStandardized(rawValue: sensor.rawValue(landscapeMode: false))
+        let standardizedValue = sensor.standardizedValue(landscapeMode: false)
+        let standardizedValueLandscape = sensor.standardizedValue(landscapeMode: true)
+        XCTAssertEqual(convertToStandardizedValue, standardizedValue)
+        XCTAssertEqual(standardizedValue, standardizedValueLandscape)
     }
 
     func testTag() {

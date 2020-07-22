@@ -257,6 +257,7 @@
 #define kLocalizedCameraBack NSLocalizedString(@"back", nil)
 #define kLocalizedCameraFront NSLocalizedString(@"front", nil)
 #define kLocalizedMoreInformation NSLocalizedString(@"More information", nil)
+#define kLocalizedScene NSLocalizedString(@"Scene", nil)
 
 //************************************************************************************************************
 //**********************************       SHORT DESCRIPTIONS      *******************************************
@@ -401,6 +402,12 @@
 #define kLocalizedChooseCamera NSLocalizedString(@"Use camera", nil)
 #define kLocalizedFor NSLocalizedString(@"for", nil)
 
+// pen bricks
+#define kLocalizedPenDown NSLocalizedString(@"Pen down", nil)
+#define kLocalizedPenUp NSLocalizedString(@"Pen up", nil)
+#define kLocalizedPenClear NSLocalizedString(@"Clear", nil)
+#define kLocalizedSetPenSize NSLocalizedString(@"Set pen size to", nil)
+
 // sound bricks
 #define kLocalizedSound NSLocalizedString(@"Sound", nil)
 #define kLocalizedPlaySound NSLocalizedString(@"Start sound", nil)
@@ -487,7 +494,8 @@
 #define kLocalizedRegistrationSuccessful NSLocalizedString(@"Registration successful", nil)
 #define kLocalizedLoginSuccessful NSLocalizedString(@"Login successful", nil)
 #define kUploadSelectedProject NSLocalizedString(@"Upload selected project", nil)
-#define kLocalizedUploadProblem NSLocalizedString(@"Problems occured while uploading your project", nil)
+#define kLocalizedUploadProblem NSLocalizedString(@"Something went wrong while uploading the project.", nil)
+#define kLocalizedSessionExpired NSLocalizedString(@"Session expired, please log in.", nil)
 #define kLocalizedUploadSelectProject NSLocalizedString(@"Please select a project to upload", nil)
 #define kLocalizedNoWhitespaceAllowed NSLocalizedString(@"No whitespace character allowed",nil)
 #define kLocalizedAuthenticationFailed NSLocalizedString(@"Authentication failed",nil)
@@ -578,6 +586,7 @@
 #define kUIFEProjectLists NSLocalizedString(@"Project lists:", nil)
 #define kUIFEObjectLists NSLocalizedString(@"Object lists:", nil)
 #define kUIFEDeleteVarBeingUsed NSLocalizedString(@"This variable can not be deleted because it is still in use.", nil)
+#define kUIFEDeleteListBeingUsed NSLocalizedString(@"This list can not be deleted because it is still in use.", nil)
 #define kUIFEActionVar NSLocalizedString(@"Variable type", nil)
 #define kUIFEActionList NSLocalizedString(@"List type", nil)
 #define kUIFEActionVarObj NSLocalizedString(@"for this actor or object", nil)
@@ -689,6 +698,7 @@
 #define kLocalizedCategoryVariable NSLocalizedString(@"Variable", nil)
 #define kLocalizedCategoryArduino NSLocalizedString(@"Arduino", nil)
 #define kLocalizedCategoryPhiro NSLocalizedString(@"Phiro", nil)
+#define kLocalizedCategoryPen NSLocalizedString(@"Pen", nil)
 
 //************************************************************************************************************
 //************************************       PhiroDefines         ********************************************

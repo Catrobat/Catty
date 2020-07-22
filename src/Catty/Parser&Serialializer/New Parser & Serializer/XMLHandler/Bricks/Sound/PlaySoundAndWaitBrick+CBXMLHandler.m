@@ -70,8 +70,9 @@
             self.sound = nil;
         } else {
             GDataXMLElement *referenceXMLElement = [GDataXMLElement elementWithName:@"sound" context:context];
+            NSInteger depthOfResource = [CBXMLSerializerHelper getDepthOfResource:self forSpriteObject:context.spriteObject];
             NSString *refPath = [CBXMLSerializerHelper relativeXPathToSound:self.sound
-                                                                inSoundList:context.spriteObject.soundList];
+                                                                inSoundList:context.spriteObject.soundList withDepth:depthOfResource];
             [referenceXMLElement addAttribute:[GDataXMLElement attributeWithName:@"reference" escapedStringValue:refPath]];
             [brick addChild:referenceXMLElement context:context];
         }

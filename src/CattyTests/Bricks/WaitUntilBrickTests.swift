@@ -28,13 +28,13 @@ final class WaitUntilBrickTests: XMLAbstractTest {
 
     func testWaitUntilBrick_conditionTrue_proceedsToNextBrick() {
         let project = getProjectForXML(xmlFile: "WaitUntilBrick0991")
-        let testVar = project.variables.getUserVariableNamed("testVar", for: project.objectList[0] as? SpriteObject)
-        let hasFinishedWaiting = project.variables.getUserVariableNamed("hasFinishedWaiting", for: project.objectList[0] as? SpriteObject)
+        let testVar = project.userData.getUserVariableNamed("testVar", for: project.objectList[0] as? SpriteObject)
+        let hasFinishedWaiting = project.userData.getUserVariableNamed("hasFinishedWaiting", for: project.objectList[0] as? SpriteObject)
 
         let scene = createScene(project: project)
         let started = scene.startProject()
         XCTAssertTrue(started)
-        project.variables.setUserVariable(testVar, toValue: NSNumber(value: 1))
+        testVar?.value = NSNumber(value: 1)
 
         let conditionMetPredicate = NSPredicate(block: { variable, _ in
             let hasFinishedWaiting = (variable as? UserVariable)!.value as! NSNumber
@@ -47,7 +47,7 @@ final class WaitUntilBrickTests: XMLAbstractTest {
 
     func testWaitUntilBrick_conditionFalse_getsStuckInWaitUntilBrick() {
         let project = getProjectForXML(xmlFile: "WaitUntilBrick0991")
-        let hasFinishedWaiting = project.variables.getUserVariableNamed("hasFinishedWaiting", for: project.objectList[0] as? SpriteObject)
+        let hasFinishedWaiting = project.userData.getUserVariableNamed("hasFinishedWaiting", for: project.objectList[0] as? SpriteObject)
 
         let scene = createScene(project: project)
         let started = scene.startProject()
@@ -65,7 +65,7 @@ final class WaitUntilBrickTests: XMLAbstractTest {
         script.object = object
         brick.script = script
         brick.waitCondition = Formula(float: 0)
-        let conditionResult = brick.checkCondition(formulaInterpreter: FormulaManager(sceneSize: Util.screenSize(true)))
+        let conditionResult = brick.checkCondition(formulaInterpreter: FormulaManager(sceneSize: Util.screenSize(true), landscapeMode: false))
         XCTAssertTrue(conditionResult, "Condition should have returned true.")
     }
 
@@ -76,7 +76,7 @@ final class WaitUntilBrickTests: XMLAbstractTest {
         script.object = object
         brick.script = script
         brick.waitCondition = Formula(float: 1)
-        let conditionResult = brick.checkCondition(formulaInterpreter: FormulaManager(sceneSize: Util.screenSize(true)))
+        let conditionResult = brick.checkCondition(formulaInterpreter: FormulaManager(sceneSize: Util.screenSize(true), landscapeMode: false))
         XCTAssertFalse(conditionResult, "Condition should have returned false.")
     }
 
@@ -116,7 +116,9 @@ final class WaitUntilBrickTests: XMLAbstractTest {
     }
 
     private func createScene(project: Project) -> CBScene {
-        let sceneBuilder = SceneBuilder(project: project).withFormulaManager(formulaManager: FormulaManager(sceneSize: Util.screenSize(true))).withAudioEngine(audioEngine: AudioEngineMock())
+        let sceneBuilder = SceneBuilder(project: project)
+            .withFormulaManager(formulaManager: FormulaManager(sceneSize: Util.screenSize(true), landscapeMode: false))
+            .withAudioEngine(audioEngine: AudioEngineMock())
         return sceneBuilder.build()
     }
 }

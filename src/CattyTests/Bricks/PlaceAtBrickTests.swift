@@ -38,7 +38,7 @@ final class PlaceAtBrickTests: AbstractBrickTest {
         object.spriteNode = spriteNode
 
         self.scene.addChild(spriteNode)
-        spriteNode.catrobatPosition = CGPoint(x: 0, y: 0)
+        spriteNode.catrobatPosition = CBPosition(x: 0, y: 0)
 
         script = WhenScript()
         script.object = object
@@ -55,7 +55,7 @@ final class PlaceAtBrickTests: AbstractBrickTest {
         let action = brick.actionBlock(self.formulaInterpreter)
         action()
 
-        let testPoint = CGPoint(x: 20, y: 20)
+        let testPoint = CBPosition(x: 20, y: 20)
         XCTAssertEqual( testPoint, spriteNode.catrobatPosition, "PlaceAtBrick is not correctly calculated")
     }
 
@@ -66,7 +66,7 @@ final class PlaceAtBrickTests: AbstractBrickTest {
         let action = brick.actionBlock(self.formulaInterpreter)
         action()
 
-        let testPoint = CGPoint(x: -20, y: -20)
+        let testPoint = CBPosition(x: -20, y: -20)
         XCTAssertEqual( testPoint, spriteNode.catrobatPosition, "PlaceAtBrick is not correctly calculated")
     }
 
@@ -77,7 +77,7 @@ final class PlaceAtBrickTests: AbstractBrickTest {
         let action = brick.actionBlock(self.formulaInterpreter)
         action()
 
-        let testPoint = CGPoint(x: -20000, y: -20000)
+        let testPoint = CBPosition(x: -20000, y: -20000)
         XCTAssertEqual( testPoint, spriteNode.catrobatPosition, "PlaceAtBrick is not correctly calculated")
     }
 
@@ -90,8 +90,24 @@ final class PlaceAtBrickTests: AbstractBrickTest {
         let action = brick.actionBlock(self.formulaInterpreter)
         action()
 
-        let testPoint = CGPoint(x: 0, y: 0)
+        let testPoint = CBPosition(x: 0, y: 0)
         XCTAssertEqual(spriteNode.catrobatPosition, testPoint, "PlaceAtBrick is not correctly calculated")
+    }
+
+    func testMutableCopy() {
+        brick.xPosition = Formula(double: 60)
+        brick.yPosition = Formula(double: 60)
+
+        let copiedBrick: PlaceAtBrick = brick.mutableCopy(with: CBMutableCopyContext(), andErrorReporting: true) as! PlaceAtBrick
+
+        XCTAssertTrue(brick.isEqual(to: copiedBrick))
+        XCTAssertFalse(brick === copiedBrick)
+
+        XCTAssertTrue(brick.xPosition.isEqual(to: copiedBrick.xPosition))
+        XCTAssertFalse(brick.xPosition === copiedBrick.xPosition)
+
+        XCTAssertTrue(brick.yPosition.isEqual(to: copiedBrick.yPosition))
+        XCTAssertFalse(brick.yPosition === copiedBrick.yPosition)
     }
 
 }

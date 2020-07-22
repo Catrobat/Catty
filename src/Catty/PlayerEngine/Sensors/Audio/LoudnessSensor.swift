@@ -37,7 +37,7 @@
         type(of: self).tag
     }
 
-    func rawValue() -> Double {
+    func rawValue(landscapeMode: Bool) -> Double {
         self.getAudioManager()?.loudness() ?? type(of: self).defaultRawValue
     }
 

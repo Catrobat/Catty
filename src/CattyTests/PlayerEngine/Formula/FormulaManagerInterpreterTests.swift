@@ -30,7 +30,7 @@ final class FormulaManagerInterpreterTests: XCTestCase {
     var object: SpriteObject!
 
     override func setUp() {
-        interpreter = FormulaManager(sceneSize: Util.screenSize(true))
+        interpreter = FormulaManager(sceneSize: Util.screenSize(true), landscapeMode: false)
         object = SpriteObject()
     }
 
@@ -727,15 +727,13 @@ final class FormulaManagerInterpreterTests: XCTestCase {
 
     func testUserVariable() {
         let project = ProjectMock()
-        let variables = VariablesContainer()
-        project.variables = variables
+        let userData = UserDataContainer()
+        project.userData = userData
         object.project = project
 
-        let userVariable = UserVariable()
-        userVariable.name = "test"
-        userVariable.isList = false
+        let userVariable = UserVariable(name: "testName")
         userVariable.value = "testValue"
-        variables.programVariableList = [userVariable]
+        userData.programVariableList = [userVariable]
 
         var element = FormulaElement(elementType: ElementType.USER_VARIABLE,
                                      value: userVariable.name)
@@ -758,23 +756,22 @@ final class FormulaManagerInterpreterTests: XCTestCase {
 
     func testUserList() {
         let project = ProjectMock()
-        let variables = VariablesContainer()
-        project.variables = variables
+        let userData = UserDataContainer()
+        project.userData = userData
         object.project = project
 
-        let userList = UserVariable()
-        userList.name = "test"
-        userList.isList = true
+        let userList = UserList(name: "test")
+        userList.add(element: 12.3)
 
-        variables.programListOfLists = [userList]
-        variables.add(toUserList: userList, value: 12.3)
+        userData.programListOfLists = [userList]
 
         var element = FormulaElement(elementType: ElementType.USER_LIST,
                                      value: userList.name)
         var formula = Formula(formulaElement: element)!
         XCTAssertEqual(12.3, interpreter.interpretDouble(formula, for: object))
 
-        variables.add(toUserList: userList, value: "testValue")
+        userList.add(element: "testValue")
+        userData.programListOfLists = [userList]
         element = FormulaElement(elementType: ElementType.USER_LIST,
                                  value: userList.name)
         formula = Formula(formulaElement: element)!

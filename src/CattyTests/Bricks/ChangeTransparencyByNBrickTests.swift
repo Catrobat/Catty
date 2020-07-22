@@ -91,4 +91,18 @@ final class ChangeTransparencyByNBrickTests: AbstractBrickTest {
 
         XCTAssertEqual(0.0, spriteNode.catrobatTransparency, accuracy: 0.01, "ChangeTransparencyBrick is not correctly calculated")
     }
+
+    func testMutableCopy() {
+        brick.changeTransparency = Formula(integer: -5)
+
+        let copiedBrick: ChangeTransparencyByNBrick = brick.mutableCopy(with: CBMutableCopyContext(), andErrorReporting: true) as! ChangeTransparencyByNBrick
+
+        XCTAssertTrue(brick.isEqual(to: copiedBrick))
+        XCTAssertFalse(brick === copiedBrick)
+
+        copiedBrick.changeTransparency = Formula(integer: 5)
+        brick.changeTransparency = Formula(integer: 5)
+        XCTAssertTrue(brick.changeTransparency.isEqual(to: copiedBrick.changeTransparency))
+        XCTAssertFalse(brick.changeTransparency === copiedBrick.changeTransparency)
+    }
 }

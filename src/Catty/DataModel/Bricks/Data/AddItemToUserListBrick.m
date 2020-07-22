@@ -20,11 +20,11 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+#import "Pocket_Code-Swift.h"
 #import "AddItemToUserListBrick.h"
 #import "Formula.h"
-#import "UserVariable.h"
 #import "Project.h"
-#import "VariablesContainer.h"
+#import "UserDataContainer.h"
 #import "Script.h"
 
 @implementation AddItemToUserListBrick
@@ -39,12 +39,12 @@
     self.listFormula = formula;
 }
 
-- (UserVariable*)listForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
+- (UserList*)listForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
     return self.userList;
 }
 
-- (void)setList:(UserVariable*)list forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
+- (void)setList:(UserList*)list forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
     self.userList = list;
 }
@@ -58,7 +58,7 @@
 {
     self.listFormula = [[Formula alloc] initWithInteger:1];
     if(spriteObject) {
-        NSArray *lists = [spriteObject.project.variables allListsForObject:spriteObject];
+        NSArray *lists = [UserDataContainer objectAndProjectListsForObject:spriteObject];
         if([lists count] > 0)
             self.userList = [lists objectAtIndex:0];
         else
@@ -84,7 +84,7 @@
 
 - (BOOL)isEqualToBrick:(Brick*)brick
 {
-    if (! [self.userList isEqualToUserVariable:((AddItemToUserListBrick*)brick).userList])
+    if (! [self.userList isEqual:((AddItemToUserListBrick*)brick).userList])
         return NO;
     if (! [self.listFormula isEqualToFormula:((AddItemToUserListBrick*)brick).listFormula])
         return NO;

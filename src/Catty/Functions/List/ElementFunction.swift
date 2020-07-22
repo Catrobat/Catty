@@ -42,17 +42,16 @@ class ElementFunction: DoubleParameterFunction {
 
     func value(firstParameter: AnyObject?, secondParameter: AnyObject?) -> AnyObject {
         guard let elementNumber = firstParameter as? Int,
-            let list = secondParameter as? UserVariable,
-            let elements = list.value as? [AnyObject] else {
+            let list = secondParameter as? UserList else {
                 return type(of: self).defaultValue
         }
 
-        if elements.isEmpty || elementNumber <= 0 || elementNumber > elements.count {
+        if list.isEmpty || elementNumber <= 0 || elementNumber > list.count {
             return type(of: self).defaultValue
         }
 
-        let index = elements.index(elements.startIndex, offsetBy: elementNumber - 1)
-        return elements[index]
+        let element = list.element(at: elementNumber) as AnyObject
+        return element
     }
 
     func formulaEditorSections() -> [FormulaEditorSection] {

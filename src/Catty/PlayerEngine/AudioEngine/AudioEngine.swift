@@ -24,6 +24,7 @@ import AudioKit
 import Foundation
 
 @objc class AudioEngine: NSObject, AudioEngineProtocol {
+    var audioEngineHelper = AudioEngineHelper()
     var speechSynth = SpeechSynthesizer()
 
     var engineOutputMixer = AKMixer()
@@ -39,6 +40,8 @@ import Foundation
     }
 
     @objc func start() {
+        AKSettings.disableAVAudioSessionCategoryManagement = true
+        audioEngineHelper.activateAudioSession()
         AudioKit.output = postProcessingMixer
         engineOutputMixer.connect(to: postProcessingMixer)
         do {
@@ -51,24 +54,45 @@ import Foundation
     }
 
     @objc func pause() {
-        speechSynth.pauseSpeaking(at: AVSpeechBoundary.immediate)
-        pauseAllAudioPlayers()
+        pauseAllAudioSources()
+        AudioKit.engine.pause()
     }
 
     @objc func resume() {
-        speechSynth.continueSpeaking()
-        resumeAllAudioPlayers()
+        do {
+            try AudioKit.engine.start()
+        } catch let error as NSError {
+            print("Could not resume audio engine.")
+            print(error)
+        }
+
+        resumeAllAudioSources()
     }
 
     @objc func stop() {
-        stopAllAudioPlayers()
+        stopAllAudioSources()
+
         do {
-            speechSynth.stopSpeaking(at: AVSpeechBoundary.immediate)
             try AudioKit.stop()
             try AudioKit.shutdown()
         } catch {
             print("Something went wrong when stopping the audio engine!")
         }
+    }
+
+    private func pauseAllAudioSources() {
+        speechSynth.pauseSpeaking(at: AVSpeechBoundary.immediate)
+        pauseAllAudioPlayers()
+    }
+
+    private func resumeAllAudioSources() {
+        speechSynth.continueSpeaking()
+        resumeAllAudioPlayers()
+    }
+
+    private func stopAllAudioSources() {
+        stopAllAudioPlayers()
+        speechSynth.stopSpeaking(at: AVSpeechBoundary.immediate)
     }
 
     func playSound(fileName: String, key: String, filePath: String, expectation: CBExpectation?) {

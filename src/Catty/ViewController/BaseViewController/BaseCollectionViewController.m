@@ -21,7 +21,7 @@
  */
 
 #import "BaseCollectionViewController.h"
-#import "AppDelegate.h"
+#import "CBFileManager.h"
 #import "UIDefines.h"
 #import "Util.h"
 #import "PlaceHolderView.h"

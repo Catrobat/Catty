@@ -21,6 +21,7 @@
  */
 
 
+#import "Pocket_Code-Swift.h"
 #import "BrickCellVariableData.h"
 #import "BrickCell.h"
 #import "Script.h"
@@ -48,7 +49,7 @@ NSString *const ACCESSABILITY_LABEL = @"VariableView_%@";
             if([brickCell.scriptOrBrick conformsToProtocol:@protocol(BrickVariableProtocol)]) {
                 Brick<BrickVariableProtocol> *variableBrick = (Brick<BrickVariableProtocol>*)brickCell.scriptOrBrick;
                 UserVariable *currentVariable = [variableBrick variableForLineNumber:line andParameterNumber:parameter];
-                for(UserVariable *variable in [variableBrick.script.object.project.variables allVariablesForObject:variableBrick.script.object]) {
+                for(UserVariable *variable in [UserDataContainer objectAndProjectVariablesForObject:variableBrick.script.object]) {
                     [options addObject:variable.name];
                     if([variable.name isEqualToString:currentVariable.name])
                         currentOptionIndex = optionIndex;

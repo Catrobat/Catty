@@ -24,7 +24,7 @@
 #import "ProjectLoadingInfo.h"
 #import "Project.h"
 
-@protocol FileManagerDelegate <NSObject>
+@protocol CBFileManagerDelegate <NSObject>
 
 - (void) downloadFinishedWithURL:(NSURL*)url andProjectLoadingInfo:(ProjectLoadingInfo*)info;
 - (void) updateProgress:(double)progress;

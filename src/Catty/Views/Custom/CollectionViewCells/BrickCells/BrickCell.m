@@ -399,18 +399,19 @@
     UIColor *fillColor = category.color;
     UIColor *strokeColor = category.strokeColor;
     UIColor *grayColor = [category colorDisabled];
+    UIColor *grayStrokeColor = [category strokeColorDisabled];
         
     if ([self isScriptBrick]) {
         Script *script = (Script*)[self scriptOrBrick];
         if (script.isDisabled) {
             fillColor = grayColor;
-            strokeColor = [fillColor colorWithAlphaComponent:0.5];
+            strokeColor = grayStrokeColor;
         }
     } else {
         Brick *brick = (Brick*)[self scriptOrBrick];
         if (brick.isDisabled) {
             fillColor = grayColor;
-            strokeColor = [fillColor colorWithAlphaComponent:0.5];
+            strokeColor = grayStrokeColor;
         }
     }
     kBrickShapeType shapeType = [self brickShapeType];

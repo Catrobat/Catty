@@ -153,11 +153,21 @@
     return nil;
 }
 
-+ (UserVariable*)findUserVariableInArray:(NSArray*)userVariableList withName:(NSString*)userVariableName
++ (UserVariable*)findUserVariableInArray:(NSArray<UserVariable *>*)userVariableList withName:(NSString*)userVariableName
 {
     for (UserVariable *userVariable in userVariableList) {
         if ([userVariable.name isEqualToString:userVariableName]) { // TODO: implement isEqual in UserVariable class
             return userVariable;
+        }
+    }
+    return nil;
+}
+
++ (UserList*)findUserListInArray:(NSArray<UserList*>*)userLists withName:(NSString*)userVariableName
+{
+    for (UserList *userList in userLists) {
+        if ([userList.name isEqualToString:userVariableName]) {
+            return userList;
         }
     }
     return nil;

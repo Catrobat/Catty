@@ -32,7 +32,7 @@ final class HideBrickTests: AbstractBrickTest {
         object.spriteNode = spriteNode
 
         self.scene.addChild(spriteNode)
-        spriteNode.catrobatPosition = CGPoint(x: 0, y: 0)
+        spriteNode.catrobatPosition = CBPosition(x: 0, y: 0)
 
         let script = WhenScript()
         script.object = object
@@ -45,4 +45,12 @@ final class HideBrickTests: AbstractBrickTest {
         XCTAssertTrue(spriteNode.isHidden, "HideBrick is not correctly calculated")
     }
 
+    func testMutableCopy() {
+        let brick = HideBrick()
+
+        let copiedBrick: HideBrick = brick.mutableCopy(with: CBMutableCopyContext(), andErrorReporting: true) as! HideBrick
+
+        XCTAssertTrue(brick.isEqual(to: copiedBrick))
+        XCTAssertFalse(brick === copiedBrick)
+    }
 }

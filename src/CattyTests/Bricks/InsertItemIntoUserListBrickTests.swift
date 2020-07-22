@@ -32,7 +32,7 @@ final class InsertItemIntoUserListBrickTests: XCTestCase {
     var script: Script!
     var scheduler: CBScheduler!
     var context: CBScriptContextProtocol!
-    var userList: UserVariable!
+    var userList: UserList!
     var brick: InsertItemIntoUserListBrick!
 
     override func setUp() {
@@ -47,11 +47,10 @@ final class InsertItemIntoUserListBrickTests: XCTestCase {
         script = Script()
         script.object = spriteObject
 
-        spriteObject.project.variables = VariablesContainer()
+        spriteObject.project.userData = UserDataContainer()
 
-        userList = UserVariable()
-        userList.isList = true
-        spriteObject.project.variables.addObjectList(userList, for: spriteObject)
+        userList = UserList(name: "testName")
+        spriteObject.project.userData.addObjectList(userList, for: spriteObject)
 
         brick = InsertItemIntoUserListBrick()
         brick.userList = userList
@@ -59,13 +58,13 @@ final class InsertItemIntoUserListBrickTests: XCTestCase {
 
         let logger = CBLogger(name: "Logger")
         let broadcastHandler = CBBroadcastHandler(logger: logger)
-        let formulaInterpreter = FormulaManager(sceneSize: Util.screenSize(true))
+        let formulaInterpreter = FormulaManager(sceneSize: Util.screenSize(true), landscapeMode: false)
         scheduler = CBScheduler(logger: logger, broadcastHandler: broadcastHandler, formulaInterpreter: formulaInterpreter, audioEngine: AudioEngineMock())
         context = CBScriptContext(script: script, spriteNode: spriteNode, formulaInterpreter: formulaInterpreter)
     }
 
     func testInsertItem() {
-        XCTAssertNil(userList.value)
+        XCTAssertEqual(userList.count, 0)
 
         brick.index = Formula(integer: 1)
         brick.elementFormula = Formula(integer: 1)
@@ -77,11 +76,11 @@ final class InsertItemIntoUserListBrickTests: XCTestCase {
             XCTFail("Fatal Error")
         }
 
-        XCTAssertNotNil(userList.value)
+        XCTAssertEqual(userList.count, 1)
     }
 
     func testInsertItemAtInvalidPosition() {
-        XCTAssertNil(userList.value)
+        XCTAssertEqual(userList.count, 0)
 
         brick.index = Formula(string: "abc")
         brick.elementFormula = Formula(integer: 1)
@@ -93,11 +92,11 @@ final class InsertItemIntoUserListBrickTests: XCTestCase {
             XCTFail("Fatal Error")
         }
 
-        XCTAssertNil(userList.value)
+        XCTAssertEqual(userList.count, 0)
     }
 
     func testInsertItemAtNegativePosition() {
-        XCTAssertNil(userList.value)
+       XCTAssertEqual(userList.count, 0)
 
         brick.index = Formula(integer: -1)
         brick.elementFormula = Formula(integer: 1)
@@ -109,6 +108,21 @@ final class InsertItemIntoUserListBrickTests: XCTestCase {
             XCTFail("Fatal Error")
         }
 
-        XCTAssertNil(userList.value)
+        XCTAssertEqual(userList.count, 0)
+    }
+
+    func testMutableCopy() {
+        brick.elementFormula = Formula(float: 90.9)
+        brick.index = Formula(integer: 5)
+
+        brick.userList = userList
+
+        let copiedBrick: InsertItemIntoUserListBrick = brick.mutableCopy(with: CBMutableCopyContext(), andErrorReporting: true) as! InsertItemIntoUserListBrick
+
+        XCTAssertTrue(brick.isEqual(to: copiedBrick))
+        XCTAssertFalse(brick === copiedBrick)
+
+        XCTAssertTrue(brick.elementFormula.isEqual(to: copiedBrick.elementFormula))
+        XCTAssertFalse(brick.elementFormula == copiedBrick.elementFormula)
     }
 }

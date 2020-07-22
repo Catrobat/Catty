@@ -24,7 +24,6 @@
 #import "ProjectLoadingInfo.h"
 #import "UIImage+CatrobatUIImageExtensions.h"
 #import "CatrobatLanguageDefines.h"
-#import "NSString+CatrobatNSStringExtensions.h"
 #import "Sound.h"
 #import "Look.h"
 #import "Script.h"
@@ -89,78 +88,6 @@
      showWithController:[Util topmostViewController]];
 }
 
-+ (NSString*)appName
-{
-  return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"];
-}
-
-+ (NSString*)appVersion
-{
-  return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
-}
-
-+ (NSString*)appBuildName
-{
-    return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CatrobatBuildName"];
-}
-
-+ (NSString*)appBuildVersion
-{
-    NSBundle *bundle = [NSBundle mainBundle];
-    NSString *buildVersion = [[bundle infoDictionary] objectForKey:@"CFBundleVersion"];
-    return buildVersion;
-}
-
-+ (NSString*)catrobatLanguageVersion
-{
-    return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CatrobatLanguageVersion"];
-}
-
-+ (NSString*)catrobatMediaLicense
-{
-    return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CatrobatMediaLicense"];
-}
-
-+ (NSString*)catrobatProgramLicense
-{
-    return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CatrobatProgramLicense"];
-}
-
-+ (NSString*)deviceName
-{
-    // https://stackoverflow.com/a/11197770
-    struct utsname systemInfo;
-    uname(&systemInfo);
-    return [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
-}
-
-+ (NSString*)platformName
-{
-    return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CatrobatPlatformName"];
-}
-
-+ (NSOperatingSystemVersion)platformVersion
-{
-    return [[NSProcessInfo processInfo] operatingSystemVersion];
-}
-
-+ (NSString*)platformVersionWithPatch
-{
-    NSOperatingSystemVersion os = [self platformVersion];
-    NSString* major = [NSString stringWithFormat:@"%ld", (long)os.majorVersion];
-    NSString* minor = [NSString stringWithFormat:@"%ld", (long)os.minorVersion];
-    NSString* patch = [NSString stringWithFormat:@"%ld", (long)os.patchVersion];
-    return [NSString stringWithFormat:@"%@.%@.%@", major, minor, patch];
-}
-
-+ (NSString*)platformVersionWithoutPatch
-{
-    NSOperatingSystemVersion os = [self platformVersion];
-    NSString* major = [NSString stringWithFormat:@"%ld", (long)os.majorVersion];
-    NSString* minor = [NSString stringWithFormat:@"%ld", (long)os.minorVersion];
-    return [NSString stringWithFormat:@"%@.%@", major, minor];
-}
-
 + (CGSize)screenSize:(BOOL)inPixel
 {
     CGSize screenSize = inPixel ? [[UIScreen mainScreen] nativeBounds].size : [[UIScreen mainScreen] bounds].size;
@@ -192,6 +119,12 @@
 + (CGFloat)screenWidth
 {
     return [self screenSize:false].width;
+}
+
++ (CGFloat)statusBarHeight
+{
+    CGSize statusBarSize = [[UIApplication sharedApplication] statusBarFrame].size;
+    return MIN(statusBarSize.width, statusBarSize.height);
 }
 
 + (CATransition*)getPushCATransition
@@ -562,6 +495,14 @@
     return propertiesDictionary;
 }
 
++ (NSString*)defaultSceneNameForSceneNumber:(NSUInteger)sceneNumber
+{
+    NSString *sceneNumberAsString = [NSString stringWithFormat:@" %@",  @(sceneNumber)];
+    NSString *sceneNameForSceneNumber = [kLocalizedScene stringByAppendingString:sceneNumberAsString];
+    
+    return sceneNameForSceneNumber;
+}
+
 + (BOOL)isEqual:(id)object toObject:(id)objectToCompare
 {
     if(object == nil && objectToCompare == nil)
@@ -621,7 +562,7 @@
 + (NSArray*)allMessagesForProject:(Project*)project
 {
     NSMutableArray *messages = [[NSMutableArray alloc] init];
-    for(SpriteObject *object in project.objectList) {
+    for(SpriteObject *object in project.allObjects) {
         for(Script *script in object.scriptList) {
             if([script isKindOfClass:[BroadcastScript class]]) {
                 BroadcastScript *broadcastScript = (BroadcastScript*)script;

@@ -57,11 +57,13 @@ final class TimeMinuteSensorTest: XCTestCase {
     func testRawValue() {
         /* test one digit */
         self.sensor.mockDate = Date.init(timeIntervalSince1970: 1529345340)
-        XCTAssertEqual(9, Int(sensor.rawValue()))
+        XCTAssertEqual(9, Int(sensor.rawValue(landscapeMode: false)))
+        XCTAssertEqual(9, Int(sensor.rawValue(landscapeMode: true)))
 
         /* test two digits */
         self.sensor.mockDate = Date.init(timeIntervalSince1970: 1529326620)
-        XCTAssertEqual(57, Int(sensor.rawValue()))
+        XCTAssertEqual(57, Int(sensor.rawValue(landscapeMode: false)))
+        XCTAssertEqual(57, Int(sensor.rawValue(landscapeMode: true)))
     }
 
     func testConvertToStandardized() {

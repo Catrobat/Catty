@@ -48,14 +48,14 @@ final class HideTextBrickTests: XCTestCase {
 
         let logger = CBLogger(name: "Logger")
         let broadcastHandler = CBBroadcastHandler(logger: logger)
-        let formulaInterpreter = FormulaManager(sceneSize: Util.screenSize(true))
+        let formulaInterpreter = FormulaManager(sceneSize: Util.screenSize(true), landscapeMode: false)
         scheduler = CBScheduler(logger: logger, broadcastHandler: broadcastHandler, formulaInterpreter: formulaInterpreter, audioEngine: AudioEngineMock())
         context = CBScriptContext(script: script, spriteNode: spriteNode, formulaInterpreter: formulaInterpreter)
     }
 
     func testHideTextBrickUserVariablesNil() {
-        let varContainer = VariablesContainer()
-        spriteObject.project.variables = varContainer
+        let userDataContainer = UserDataContainer()
+        spriteObject.project.userData = userDataContainer
 
         let brick = HideTextBrick()
         brick.script = script
@@ -71,5 +71,16 @@ final class HideTextBrickTests: XCTestCase {
 
         XCTAssertTrue(true); // The purpose of this test is to show that the program does not crash
         // when no UserVariable is selected in the IDE and the brick is executed
+    }
+
+    func testMutableCopy() {
+        let brick = HideTextBrick()
+        let userVariable = UserVariable(name: "testName")
+        brick.userVariable = userVariable
+
+        let copiedBrick: HideTextBrick = brick.mutableCopy(with: CBMutableCopyContext(), andErrorReporting: true) as! HideTextBrick
+
+        XCTAssertTrue(brick.isEqual(to: copiedBrick))
+        XCTAssertFalse(brick === copiedBrick)
     }
 }

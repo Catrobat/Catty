@@ -44,13 +44,14 @@
     self.navigationItem.title = kLocalizedCatrobatCommunity;
     self.tabBar.barTintColor = UIColor.tabBar;
     self.tabBar.barStyle = UIBarStyleDefault;
-    self.tabBar.tintColor = UIColor.tabTint;
+    self.tabBar.tintColor = UIColor.whiteGray;
+    self.tabBar.unselectedItemTintColor = UIColor.tabTint;
     self.view.backgroundColor = UIColor.background;
     [[UITabBarItem appearance] setTitleTextAttributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:10.0f],
-                                                      NSForegroundColorAttributeName : UIColor.tabTint
+                                                      NSForegroundColorAttributeName : UIColor.whiteGray
                                                       } forState:UIControlStateSelected];
     [[UITabBarItem appearance] setTitleTextAttributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:10.0f],
-                                                        NSForegroundColorAttributeName : UIColor.background
+                                                        NSForegroundColorAttributeName : UIColor.tabTint
                                                         } forState:UIControlStateNormal];
   
 }

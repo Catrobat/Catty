@@ -29,6 +29,7 @@
 #import "CBXMLPropertyMapping.h"
 #import "CBXMLParserContext.h"
 #import "Util.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation Header (CBXMLHandler)
 
@@ -76,7 +77,7 @@
 {
     NSMutableArray *headerProperties = [self defaultHeaderProperties];
     [headerProperties addObject:[[CBXMLPropertyMapping alloc]
-                                 initWithClassPropertyName:@"landscapeMode" andIgnore:YES]];
+                                 initWithClassPropertyName:@"landscapeMode" andIgnore:NO]];
     return headerProperties;
 }
 

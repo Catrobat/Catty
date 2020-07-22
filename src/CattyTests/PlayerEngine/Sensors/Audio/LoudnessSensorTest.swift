@@ -43,18 +43,22 @@ final class LoudnessSensorTest: XCTestCase {
 
     func testDefaultRawValue() {
         let sensor = LoudnessSensor { nil }
-        XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(landscapeMode: false), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(landscapeMode: true), accuracy: Double.epsilon)
     }
 
     func testRawValue() {
         audioManager.mockedLoudnessInDecibels = 3
-        XCTAssertEqual(3, sensor.rawValue(), accuracy: Double.epsilon)
+        XCTAssertEqual(3, sensor.rawValue(landscapeMode: false), accuracy: Double.epsilon)
+        XCTAssertEqual(3, sensor.rawValue(landscapeMode: true), accuracy: Double.epsilon)
 
         audioManager.mockedLoudnessInDecibels = -50
-        XCTAssertEqual(-50, sensor.rawValue(), accuracy: Double.epsilon)
+        XCTAssertEqual(-50, sensor.rawValue(landscapeMode: false), accuracy: Double.epsilon)
+        XCTAssertEqual(-50, sensor.rawValue(landscapeMode: true), accuracy: Double.epsilon)
 
         audioManager.mockedLoudnessInDecibels = 10.786
-        XCTAssertEqual(10.786, sensor.rawValue(), accuracy: Double.epsilon)
+        XCTAssertEqual(10.786, sensor.rawValue(landscapeMode: false), accuracy: Double.epsilon)
+        XCTAssertEqual(10.786, sensor.rawValue(landscapeMode: true), accuracy: Double.epsilon)
     }
 
     func testConvertToStandardized() {
@@ -69,6 +73,14 @@ final class LoudnessSensorTest: XCTestCase {
 
         let shouting = sensor.convertToStandardized(rawValue: -0.99)
         XCTAssertEqual(89.2277, shouting, accuracy: Double.epsilon)
+    }
+
+    func testStandardizedValue() {
+        let convertToStandardizedValue = sensor.convertToStandardized(rawValue: sensor.rawValue(landscapeMode: false))
+        let standardizedValue = sensor.standardizedValue(landscapeMode: false)
+        let standardizedValueLandscape = sensor.standardizedValue(landscapeMode: true)
+        XCTAssertEqual(convertToStandardizedValue, standardizedValue)
+        XCTAssertEqual(standardizedValue, standardizedValueLandscape)
     }
 
     func testTag() {

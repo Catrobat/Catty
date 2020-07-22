@@ -26,7 +26,6 @@
 #import "CBXMLParserContext.h"
 #import "CBXMLSerializerContext.h"
 #import "CBXMLOpenedNestingBricksStack.h"
-#import "NSString+CatrobatNSStringExtensions.h"
 #import "BroadcastScript.h"
 #import "StartScript.h"
 #import "WhenScript.h"
@@ -184,6 +183,9 @@
     if (([brickTypeName isEqualToString:@"LedOnBrick"]) ||
        ([brickTypeName isEqualToString:@"LedOffBrick"])){
         return @"FlashBrick";
+    }
+    if (([brickTypeName isEqualToString:@"ClearBackgroundBrick"])){
+        return @"PenClearBrick";
     }
     return (NSString*)brickXMLHandlerClassName;
 }

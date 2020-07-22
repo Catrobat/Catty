@@ -22,7 +22,6 @@
 
 #import "SayForBubbleBrick.h"
 #import "Script.h"
-#import "NSString+CatrobatNSStringExtensions.h"
 
 @implementation SayForBubbleBrick
 

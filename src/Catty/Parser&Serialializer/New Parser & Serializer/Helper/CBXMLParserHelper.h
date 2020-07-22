@@ -31,6 +31,7 @@
 @class SpriteObject;
 @class OrderedMapTable;
 @class CBXMLParserContext;
+@class UserList;
 
 @interface CBXMLParserHelper : NSObject
 
@@ -44,6 +45,7 @@
 + (SpriteObject*)findSpriteObjectInArray:(NSArray*)spriteObjectList withName:(NSString*)spriteObjectName;
 + (Look*)findLookInArray:(NSArray*)lookList withName:(NSString*)lookName;
 + (Sound*)findSoundInArray:(NSArray*)soundList withName:(NSString*)soundName;
-+ (UserVariable*)findUserVariableInArray:(NSArray*)userVariableList withName:(NSString*)userVariableName;
++ (UserVariable*)findUserVariableInArray:(NSArray<UserVariable *>*)userVariableList withName:(NSString*)userVariableName;
++ (UserList*)findUserListInArray:(NSArray<UserList*>*)userLists withName:(NSString*)userVariableName;
 
 @end

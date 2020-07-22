@@ -23,7 +23,7 @@
 #import "CatrobatTableViewController.h"
 #import "CellTagDefines.h"
 #import "TableUtil.h"
-#import "AppDelegate.h"
+#import "CBFileManager.h"
 #import "Util.h"
 #import "CatrobatImageCell.h"
 #import "DownloadTabBarController.h"
@@ -51,7 +51,8 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
 @property (nonatomic, strong) Project *lastUsedProject;
 @property (nonatomic, strong) Project *defaultProject;
 @property (nonatomic, assign) BOOL freshLogin;
-
+@property (nonatomic, assign) CGFloat dynamicStatusBarHeight;
+@property (nonatomic, assign) CGFloat fixedStatusBarHeight;
 @end
 
 @implementation CatrobatTableViewController
@@ -127,6 +128,9 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
 #pragma mark init
 - (void)initTableView
 {
+    self.fixedStatusBarHeight = [Util statusBarHeight];
+    self.dynamicStatusBarHeight = self.fixedStatusBarHeight;
+    
     self.cells = [[NSArray alloc] initWithObjects:
                   kLocalizedContinueProject,
                   kLocalizedNewProject,
@@ -204,7 +208,11 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
         [self configureImageCell:imageCell atIndexPath:indexPath];
     }
     if (indexPath.row == 0) {
-        [self configureSubtitleLabelForCell:cell];
+        [self configureTitleLabelForCell:(UITableViewCell <CatrobatImageCell>*) cell];
+    }
+    
+    if (indexPath.row == [self.tableView numberOfRowsInSection:indexPath.section] - 1) {
+        cell.separatorInset = UIEdgeInsetsMake(0.f, MAX([Util screenHeight],[Util screenWidth]), 0.f, 0.f);
     }
     
     cell.layoutMargins = UIEdgeInsetsZero;
@@ -282,17 +290,50 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
 - (void)configureImageCell:(UITableViewCell <CatrobatImageCell>*)cell atIndexPath:(NSIndexPath*)indexPath
 {
     cell.backgroundColor = UIColor.background;
-    cell.titleLabel.text = [self.cells objectAtIndex:indexPath.row];
-    cell.iconImageView.image = [UIImage imageNamed:[self.imageNames objectAtIndex:indexPath.row]];
-    cell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
+    if (indexPath.row == 0) {
+        UILabel *subtitleLabel = (UILabel*)[cell viewWithTag:kSubtitleLabelTag];
+        subtitleLabel.textColor = UIColor.textTint;
+        subtitleLabel.text = [self.cells objectAtIndex:indexPath.row];
+        
+        cell.iconImageView.image = [UIImage imageWithColor:UIColor.whiteColor];
+        [cell.iconImageView.layer setBorderColor: [[UIColor medium] CGColor]];
+        [cell.iconImageView.layer setBorderWidth: 1.0f];
+        cell.iconImageView.layer.cornerRadius = 10.0;
+        cell.iconImageView.clipsToBounds = true;
+        [cell setNeedsLayout];
+    } else {
+        cell.titleLabel.text = [self.cells objectAtIndex:indexPath.row];
+    }
+    
+    ProjectLoadingInfo *info = [ProjectLoadingInfo projectLoadingInfoForProjectWithName:self.lastUsedProject.header.programName projectID:self.lastUsedProject.header.programID];
+
+    if (indexPath.row == 0) {
+        
+        CBFileManager *fileManager = [CBFileManager sharedManager];
+        [fileManager loadPreviewImageAndCacheWithProjectLoadingInfo:info completion:^(UIImage * image, NSString * path) {
+            
+            if(image) {
+                cell.iconImageView.image = image;
+                cell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
+                dispatch_queue_main_t queue = dispatch_get_main_queue();
+                dispatch_async(queue, ^{
+                    [self.tableView endUpdates];
+                });
+            }
+            
+        }];
+        
+    } else {
+        cell.iconImageView.image = [UIImage imageNamed:[self.imageNames objectAtIndex:indexPath.row]];
+        cell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
+    }
+    
 }
 
-- (void)configureSubtitleLabelForCell:(UITableViewCell*)cell
+- (void)configureTitleLabelForCell:(UITableViewCell <CatrobatImageCell>*)cell
 {
-    UILabel *subtitleLabel = (UILabel*)[cell viewWithTag:kSubtitleLabelTag];
-    subtitleLabel.textColor = UIColor.textTint;
     Project *lastProject = self.lastUsedProject;
-    subtitleLabel.text = (lastProject) ? lastProject.header.programName :  @"";
+    cell.titleLabel.text = (lastProject) ? lastProject.header.programName :  @"";
 }
 
 - (CGFloat)getHeightForCellAtIndexPath:(NSIndexPath*)indexPath
@@ -300,11 +341,33 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
     CGFloat height;
     CGFloat navBarHeight = self.navigationController.navigationBar.frame.size.height;
     if (indexPath.row == 0) {
-        height= [TableUtil heightForContinueCell:navBarHeight];
+        height= [TableUtil heightForContinueCell:navBarHeight withStatusBarHeight:self.dynamicStatusBarHeight];
     } else {
-        height = [TableUtil heightForCatrobatTableViewImageCell:navBarHeight];
+        height = [TableUtil heightForCatrobatTableViewImageCell:navBarHeight withStatusBarHeight:self.dynamicStatusBarHeight];
     }
     return height; // for scrolling reasons
+}
+
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
+{
+    CGFloat height = size.height;
+    CGFloat width = size.width;
+    
+    if(self.fixedStatusBarHeight == 0) {
+        [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext> context) {}
+                                     completion:^(id<UIViewControllerTransitionCoordinatorContext> context) {
+            self.fixedStatusBarHeight = [Util statusBarHeight];
+            self.dynamicStatusBarHeight = self.fixedStatusBarHeight;
+            [self.tableView reloadData];
+        }];
+    }
+    
+    if (height >= width) {
+        self.dynamicStatusBarHeight = self.fixedStatusBarHeight;
+    } else {
+        self.dynamicStatusBarHeight = 0;
+    }
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
 }
 
 #pragma mark - segue handling

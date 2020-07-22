@@ -32,7 +32,7 @@ final class DeleteItemOfUserListBrickTests: XCTestCase {
     var script: Script!
     var scheduler: CBScheduler!
     var context: CBScriptContextProtocol!
-    var userList: UserVariable!
+    var userList: UserList!
     var brick: DeleteItemOfUserListBrick!
 
     override func setUp() {
@@ -47,11 +47,10 @@ final class DeleteItemOfUserListBrickTests: XCTestCase {
         script = Script()
         script.object = spriteObject
 
-        spriteObject.project.variables = VariablesContainer()
+        spriteObject.project.userData = UserDataContainer()
 
-        userList = UserVariable()
-        userList.isList = true
-        spriteObject.project.variables.addObjectList(userList, for: spriteObject)
+        userList = UserList(name: "testName")
+        spriteObject.project.userData.addObjectList(userList, for: spriteObject)
 
         brick = DeleteItemOfUserListBrick()
         brick.userList = userList
@@ -59,13 +58,13 @@ final class DeleteItemOfUserListBrickTests: XCTestCase {
 
         let logger = CBLogger(name: "Logger")
         let broadcastHandler = CBBroadcastHandler(logger: logger)
-        let formulaInterpreter = FormulaManager(sceneSize: Util.screenSize(true))
+        let formulaInterpreter = FormulaManager(sceneSize: Util.screenSize(true), landscapeMode: false)
         scheduler = CBScheduler(logger: logger, broadcastHandler: broadcastHandler, formulaInterpreter: formulaInterpreter, audioEngine: AudioEngineMock())
         context = CBScriptContext(script: script, spriteNode: spriteNode, formulaInterpreter: formulaInterpreter)
     }
 
     func testDeleteItem() {
-        userList.value = NSMutableArray(array: [1])
+        userList.add(element: 1)
         brick.listFormula = Formula(integer: 1)
 
         switch brick.instruction() {
@@ -75,11 +74,11 @@ final class DeleteItemOfUserListBrickTests: XCTestCase {
             XCTFail("Fatal Error")
         }
 
-        XCTAssertEqual(0, (userList.value as! [AnyObject]).count)
+        XCTAssertEqual(0, userList.count)
     }
 
-    func testDeleteItemAtInvalidPosition() {
-        userList.value = NSMutableArray(array: [1])
+     func testDeleteItemAtInvalidPosition() {
+        userList.add(element: 1)
         brick.listFormula = Formula(string: "abc")
 
         switch brick.instruction() {
@@ -89,11 +88,11 @@ final class DeleteItemOfUserListBrickTests: XCTestCase {
             XCTFail("Fatal Error")
         }
 
-        XCTAssertEqual(1, (userList.value as! [AnyObject]).count)
+        XCTAssertEqual(1, userList.count)
     }
 
     func testDeleteItemAtNegativePosition() {
-        userList.value = NSMutableArray(array: [1])
+        userList.add(element: 1)
         brick.listFormula = Formula(integer: -1)
 
         switch brick.instruction() {
@@ -103,6 +102,21 @@ final class DeleteItemOfUserListBrickTests: XCTestCase {
             XCTFail("Fatal Error")
         }
 
-        XCTAssertEqual(1, (userList.value as! [AnyObject]).count)
+        XCTAssertEqual(1, userList.count)
+    }
+
+    func testMutableCopy() {
+        userList.add(element: 1)
+        brick.listFormula = Formula(integer: -1)
+        let copiedBrick: DeleteItemOfUserListBrick = brick.mutableCopy(with: CBMutableCopyContext(), andErrorReporting: true) as! DeleteItemOfUserListBrick
+
+        XCTAssertTrue(brick.isEqual(to: copiedBrick))
+        XCTAssertFalse(brick === copiedBrick)
+
+        XCTAssertTrue(brick.listFormula.isEqual(to: copiedBrick.listFormula))
+        XCTAssertFalse(brick.listFormula === copiedBrick.listFormula)
+
+        XCTAssertTrue(brick.userList.isEqual(userList))
+        XCTAssertTrue(brick.userList === copiedBrick.userList)
     }
 }

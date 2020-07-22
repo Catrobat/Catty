@@ -21,6 +21,7 @@
  */
 
 import DVR
+import Nimble
 @testable import Pocket_Code
 import XCTest
 
@@ -104,6 +105,55 @@ class MediaLibraryDownloaderTests: XCTestCase {
         wait(for: [expectation], timeout: 1.0)
     }
 
+    func testDownloadIndexFailsWithUnexpectedErrorNotification() {
+        let mockSession = URLSessionMock()
+        let downloader = MediaLibraryDownloader(session: mockSession)
+        let error = ErrorMock("")
+        let indexURL = URL(string: NetworkDefines.mediaLibraryBackgroundsIndex)
+
+        let errorInfo = MediaLibraryDownloadFailureInfo(url: indexURL!.absoluteString, description: error.localizedDescription)
+
+        expect(downloader.downloadIndex(for: .backgrounds) { _, _ in }).toEventually(postNotifications(contain(.mediaLibraryDownloadIndexFailure, expectedObject: errorInfo)))
+    }
+
+    func testDownloadIndexFailsWithRequestErrorNotification() {
+        let dvrSession = Session(cassetteName: "MediaLibraryDownloader.downloadIndex.fail.request")
+        let downloader = MediaLibraryDownloader(session: dvrSession)
+        let error = ErrorMock("")
+        let indexURL = URL(string: NetworkDefines.mediaLibraryBackgroundsIndex)
+
+        let errorInfo = MediaLibraryDownloadFailureInfo(url: indexURL!.absoluteString, statusCode: 500, description: error.localizedDescription)
+
+        expect(downloader.downloadIndex(for: .backgrounds) { _, error in
+            guard let error = error else { XCTFail("no error received"); return }
+            switch error {
+            case let .request(error: _, statusCode: statusCode):
+                XCTAssertNotEqual(statusCode, 200)
+            default:
+                XCTFail("wrong error received")
+            }
+        }).toEventually(postNotifications(contain(.mediaLibraryDownloadIndexFailure, expectedObject: errorInfo)))
+    }
+
+    func testDownloadIndexFailsWithParseErrorNotification() {
+        let dvrSession = Session(cassetteName: "MediaLibraryDownloader.downloadIndex.fail.parse")
+        let downloader = MediaLibraryDownloader(session: dvrSession)
+        let indexURL = URL(string: NetworkDefines.mediaLibraryBackgroundsIndex)
+        let expectedParsingException = "The data couldn’t be read because it is missing."
+
+        let errorInfo = MediaLibraryDownloadFailureInfo(url: indexURL!.absoluteString, statusCode: 200, description: expectedParsingException)
+
+        expect(downloader.downloadIndex(for: .backgrounds) { _, error in
+            guard let error = error else { XCTFail("no error received"); return }
+            switch error {
+            case .parse(error: _):
+                break
+            default:
+                XCTFail("wrong error received")
+            }
+        }).toEventually(postNotifications(contain(.mediaLibraryDownloadIndexFailure, expectedObject: errorInfo)))
+    }
+
     // MARK: - Download Data
 
     func testDownloadDataSucceeds() {
@@ -159,6 +209,44 @@ class MediaLibraryDownloaderTests: XCTestCase {
         }
 
         wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testDownloadDataFailsWithUnexpectedErrorNotification() {
+        let mockSession = URLSessionMock()
+        let downloader = MediaLibraryDownloader(session: mockSession)
+        let mediaItem = MediaItem(name: "", fileExtension: "", category: "", relativePath: "/pocketcode/download-media/99999", cachedData: nil)
+        let error = ErrorMock("")
+
+        let errorInfo = MediaLibraryDownloadFailureInfo(url: mediaItem.downloadURL.absoluteString, description: error.localizedDescription)
+
+        expect(downloader.downloadData(for: mediaItem) { _, error in
+            guard let error = error else { XCTFail("no error returned"); return }
+            switch error {
+            case .unexpectedError:
+                break
+            default:
+                XCTFail("wrong error type")
+            }
+        }).toEventually(postNotifications(contain(.mediaLibraryDownloadDataFailure, expectedObject: errorInfo)))
+    }
+
+    func testDownloadDataFailsWithRequestErrorNotification() {
+        let dvrSession = Session(cassetteName: "MediaLibraryDownloader.downloadData.fail.request")
+        let downloader = MediaLibraryDownloader(session: dvrSession)
+        let mediaItem = MediaItem(name: "", fileExtension: "", category: "", relativePath: "/pocketcode/download-media/99999", cachedData: nil)
+        let error = ErrorMock("")
+
+        let errorInfo = MediaLibraryDownloadFailureInfo(url: mediaItem.downloadURL.absoluteString, statusCode: 404, description: error.localizedDescription)
+
+        expect(downloader.downloadData(for: mediaItem) { _, error in
+            guard let error = error else { XCTFail("no error returned"); return }
+            switch error {
+            case let .request(error: _, statusCode: statusCode):
+                XCTAssertEqual(statusCode, 404)
+            default:
+                XCTFail("wrong error received")
+            }
+        }).toEventually(postNotifications(contain(.mediaLibraryDownloadDataFailure, expectedObject: errorInfo)))
     }
 }
 

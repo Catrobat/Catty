@@ -32,7 +32,7 @@ final class FormulaFunctionsTest: XCTestCase {
 
     override func setUp() {
         let screenSize = Util.screenSize(true)
-        formulaManager = FormulaManager(sceneSize: screenSize)
+        formulaManager = FormulaManager(sceneSize: screenSize, landscapeMode: false)
         spriteObject = SpriteObject()
     }
 

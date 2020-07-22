@@ -25,7 +25,7 @@
 @class CBXMLOpenedNestingBricksStack;
 @class CBXMLPositionStack;
 @class SpriteObject;
-@class VariablesContainer;
+@class UserDataContainer;
 
 @interface CBXMLAbstractContext : NSObject
 
@@ -41,7 +41,7 @@
 @property (nonatomic, strong) NSMutableArray *spriteObjectList; // contains all known SpriteObjects
 @property (nonatomic, strong) SpriteObject *spriteObject; // contains all looks, sounds, bricks, ... of currently parsed/serialized SpriteObject
 // TODO: refactor this later: remove brickList here and dynamically find brick in scriptList. maybe scripts should be referenced in bricks as well!!
-@property (nonatomic, strong) VariablesContainer *variables;
+@property (nonatomic, strong) UserDataContainer *userData;
 
 - (id)mutableCopy;
 

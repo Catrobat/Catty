@@ -22,6 +22,7 @@
 
 #import "ShowTextBrick.h"
 #import "Script.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation ShowTextBrick
 
@@ -63,7 +64,7 @@
     self.xFormula = [[Formula alloc] initWithInteger:100];
     self.yFormula = [[Formula alloc] initWithInteger:200];
     if(spriteObject) {
-        NSArray *variables = [spriteObject.project.variables allVariablesForObject:spriteObject];
+        NSArray *variables = [UserDataContainer objectAndProjectVariablesForObject:spriteObject];
         if([variables count] > 0)
             self.userVariable = [variables objectAtIndex:0];
         else
@@ -88,7 +89,7 @@
 
 - (BOOL)isEqualToBrick:(Brick*)brick
 {
-    if (! [self.userVariable isEqualToUserVariable:((ShowTextBrick*)brick).userVariable])
+    if (! [self.userVariable isEqual:((ShowTextBrick*)brick).userVariable])
         return NO;
     if (! [self.xFormula isEqualToFormula:((ShowTextBrick*)brick).xFormula])
         return NO;

@@ -27,6 +27,8 @@ class CBSpriteNodeMock: CBSpriteNode {
     var mockedPosition: CGPoint?
     var mockedScene: SKScene?
 
+    var updateMethodCallCount = 0
+
     required init(spriteObject: SpriteObject) {
         super.init(spriteObject: spriteObject)
     }
@@ -51,5 +53,10 @@ class CBSpriteNodeMock: CBSpriteNode {
         set {
             self.mockedScene = newValue
         }
+    }
+
+    override func update(_ currentTime: TimeInterval) {
+        super.update(currentTime)
+        self.updateMethodCallCount += 1
     }
 }

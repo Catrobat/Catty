@@ -47,7 +47,7 @@ final class ChangeVariableBrickTests: XCTestCase {
 
         let logger = CBLogger(name: "Logger")
         let broadcastHandler = CBBroadcastHandler(logger: logger)
-        let formulaInterpreter = FormulaManager(sceneSize: Util.screenSize(true))
+        let formulaInterpreter = FormulaManager(sceneSize: Util.screenSize(true), landscapeMode: false)
 
         scheduler = CBScheduler(logger: logger, broadcastHandler: broadcastHandler, formulaInterpreter: formulaInterpreter, audioEngine: AudioEngineMock())
         context = CBScriptContext(script: script, spriteNode: spriteNode, formulaInterpreter: formulaInterpreter)
@@ -62,8 +62,8 @@ final class ChangeVariableBrickTests: XCTestCase {
         formulaTree.value = "0"
         formula.formulaTree = formulaTree
 
-        let varContainer = VariablesContainer()
-        spriteObject.project.variables = varContainer
+        let userDataContainer = UserDataContainer()
+        spriteObject.project.userData = userDataContainer
 
         let brick = ChangeVariableBrick()
         brick.variableFormula = formula
@@ -80,5 +80,27 @@ final class ChangeVariableBrickTests: XCTestCase {
 
         XCTAssertTrue(true); // The purpose of this test is to show that the program does not crash
         // when no UserVariable is selected in the IDE and the brick is executed
+    }
+
+    func testMutableCopy() {
+
+        let brick = ChangeVariableBrick()
+        brick.variableFormula = Formula(integer: 50)
+
+        let userVariable = UserVariable(name: "testName")
+        userVariable.value = 30
+
+        brick.userVariable = userVariable
+
+        let copiedBrick: ChangeVariableBrick = brick.mutableCopy(with: CBMutableCopyContext(), andErrorReporting: true) as! ChangeVariableBrick
+
+        XCTAssertTrue(brick.isEqual(to: copiedBrick))
+        XCTAssertFalse(brick === copiedBrick)
+
+        XCTAssertTrue(brick.variableFormula.isEqual(to: copiedBrick.variableFormula))
+        XCTAssertFalse(brick.variableFormula === copiedBrick.variableFormula)
+
+        XCTAssertTrue(brick.userVariable.isEqual(copiedBrick.userVariable))
+        XCTAssertTrue(brick.userVariable === copiedBrick.userVariable)
     }
 }

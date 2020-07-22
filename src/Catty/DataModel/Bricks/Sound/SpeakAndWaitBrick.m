@@ -21,7 +21,6 @@
  */
 
 #import "SpeakAndWaitBrick.h"
-#import "NSString+CatrobatNSStringExtensions.h"
 
 @implementation SpeakAndWaitBrick
 

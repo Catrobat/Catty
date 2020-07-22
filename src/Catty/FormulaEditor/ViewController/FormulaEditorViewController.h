@@ -32,16 +32,15 @@
 
 @class BrickCellFormulaData;
 @class FormulaManager;
+@class UserList;
 
 @interface FormulaEditorViewController : UIViewController<UIPickerViewDataSource,UIPickerViewDelegate,UIGestureRecognizerDelegate>
 @property (strong, nonatomic) InternFormula *internFormula;
 @property (strong, nonatomic) FormulaEditorHistory *history;
-@property (strong, nonatomic) NSMutableArray *variableSourceProject;
-@property (strong, nonatomic) NSMutableArray *variableSourceObject;
-@property (strong, nonatomic) NSMutableArray *variableSource;
-@property (strong, nonatomic) NSMutableArray *listSourceProject;
-@property (strong, nonatomic) NSMutableArray *listSourceObject;
-@property (strong, nonatomic) NSMutableArray *listSource;
+@property (strong, nonatomic) NSMutableArray<UserVariable*> *variableSourceProject;
+@property (strong, nonatomic) NSMutableArray<UserVariable*> *variableSourceObject;
+@property (strong, nonatomic) NSMutableArray<UserVariable*> *listSourceProject;
+@property (strong, nonatomic) NSMutableArray<UserVariable*> *listSourceObject;
 @property (weak, nonatomic) SpriteObject *object;
 @property (strong, nonatomic) FormulaManager *formulaManager;
 @property (strong, nonatomic) id<FormulaEditorViewControllerDelegate> delegate;
@@ -54,5 +53,7 @@
 - (BOOL)changeBrickCellFormulaData:(BrickCellFormulaData*)brickCellData andForce:(BOOL)forceChange;
 
 - (void)handleInput;
+- (BOOL)isVariableUsed:(UserVariable*)variable;
+- (BOOL)isListUsed:(id<UserDataProtocol>)list;
 
 @end

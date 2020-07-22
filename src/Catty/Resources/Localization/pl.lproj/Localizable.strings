@@ -254,6 +254,9 @@
 "Choose image" = "Wybierz obraz";
 
 /* No comment provided by engineer. */
+"Clear" = "Wyczyść";
+
+/* No comment provided by engineer. */
 "Clear graphic effects" = "Wyczyść efekty graficzne";
 
 /* No comment provided by engineer. */
@@ -1118,6 +1121,15 @@
 "Passwords do not match" = "Hasła nie pasują";
 
 /* No comment provided by engineer. */
+"Pen" = "Pisak";
+
+/* No comment provided by engineer. */
+"Pen down" = "Opuść pisak";
+
+/* No comment provided by engineer. */
+"Pen up" = "Podnieś pisak";
+
+/* No comment provided by engineer. */
 "Phiro" = "Phiro";
 
 /* No comment provided by engineer. */
@@ -1221,9 +1233,6 @@
 
 /* No comment provided by engineer. */
 "Privacy Settings" = "Ustawienia prywatności";
-
-/* No comment provided by engineer. */
-"Problems occured while uploading your project" = "Wystąpiły problemy podczas wysyłania Twojego projektu";
 
 /* No comment provided by engineer. */
 "Project" = "Projekt";
@@ -1337,6 +1346,9 @@
 "Say" = "Powiedz";
 
 /* No comment provided by engineer. */
+"Scene" = "Scene";
+
+/* No comment provided by engineer. */
 "Script" = "Skrypt";
 
 /* No comment provided by engineer. */
@@ -1394,6 +1406,9 @@
 "Server is taking to long to respond, please try again later." = "Za długo zajmuje odpowiedź od serwera, proszę spróbuj ponownie później.";
 
 /* No comment provided by engineer. */
+"Session expired, please log in." = "Sesja wygasła, zaloguj się ponownie.";
+
+/* No comment provided by engineer. */
 "Set Arduino digital pin" = "Ustaw cyfrowe wyjście";
 
 /* No comment provided by engineer. */
@@ -1410,6 +1425,9 @@
 
 /* No comment provided by engineer. */
 "Set description" = "Wprowadź opis";
+
+/* No comment provided by engineer. */
+"Set pen size to" = "Ustaw rozmiar pisaka na";
 
 /* No comment provided by engineer. */
 "Set Phiro light" = "Ustaw światło Phiro";
@@ -1455,6 +1473,9 @@
 
 /* No comment provided by engineer. */
 "SO" = "SOL";
+
+/* No comment provided by engineer. */
+"Something went wrong while uploading the project." = "Podczas wysyłania programu wystąpił błąd.";
 
 /* No comment provided by engineer. */
 "Sound" = "Dźwięk";
@@ -1590,6 +1611,9 @@
 
 /* No comment provided by engineer. */
 "This feature is coming soon!" = "Ta funkcja będzie dostępna wkrótce!";
+
+/* No comment provided by engineer. */
+"This list can not be deleted because it is still in use." = "This list can not be deleted because it is still in use.";
 
 /* No comment provided by engineer. */
 "This variable can not be deleted because it is still in use." = "Tej zmiennej nie można usunąć, ponieważ jest nadal w użyciu.";

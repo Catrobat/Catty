@@ -20,27 +20,19 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc extension CBSpriteNode {
+extension CBSpriteNode {
 
-    // Computed properties to get and set values within the standardized range
-    var catrobatPosition: CGPoint {
+    var catrobatPosition: CBPosition {
+
         set {
             PositionXSensor.setRawValue(userInput: Double(newValue.x), for: self.spriteObject)
             PositionYSensor.setRawValue(userInput: Double(newValue.y), for: self.spriteObject)
         }
+
         get {
-            CGPoint(x: PositionXSensor.standardizedValue(for: self.spriteObject), y: PositionYSensor.standardizedValue(for: self.spriteObject))
+            CBPosition(x: PositionXSensor.standardizedValue(for: self.spriteObject), y: PositionYSensor.standardizedValue(for: self.spriteObject))
         }
-    }
 
-    var catrobatPositionX: Double {
-        set { PositionXSensor.setRawValue(userInput: newValue, for: self.spriteObject) }
-        get { PositionXSensor.standardizedValue(for: self.spriteObject) }
-    }
-
-    var catrobatPositionY: Double {
-        set { PositionYSensor.setRawValue(userInput: newValue, for: self.spriteObject) }
-        get { PositionYSensor.standardizedValue(for: self.spriteObject) }
     }
 
     var catrobatSize: Double {

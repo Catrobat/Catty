@@ -32,7 +32,7 @@ final class ReplaceItemInUserListBrickTests: XCTestCase {
     var script: Script!
     var scheduler: CBScheduler!
     var context: CBScriptContextProtocol!
-    var userList: UserVariable!
+    var userList: UserList!
     var brick: ReplaceItemInUserListBrick!
 
     override func setUp() {
@@ -47,11 +47,10 @@ final class ReplaceItemInUserListBrickTests: XCTestCase {
         script = Script()
         script.object = spriteObject
 
-        spriteObject.project.variables = VariablesContainer()
+        spriteObject.project.userData = UserDataContainer()
 
-        userList = UserVariable()
-        userList.isList = true
-        spriteObject.project.variables.addObjectList(userList, for: spriteObject)
+        userList = UserList(name: "testName")
+        spriteObject.project.userData.addObjectList(userList, for: spriteObject)
 
         brick = ReplaceItemInUserListBrick()
         brick.userList = userList
@@ -59,7 +58,7 @@ final class ReplaceItemInUserListBrickTests: XCTestCase {
 
         let logger = CBLogger(name: "Logger")
         let broadcastHandler = CBBroadcastHandler(logger: logger)
-        let formulaInterpreter = FormulaManager(sceneSize: Util.screenSize(true))
+        let formulaInterpreter = FormulaManager(sceneSize: Util.screenSize(true), landscapeMode: false)
         scheduler = CBScheduler(logger: logger, broadcastHandler: broadcastHandler, formulaInterpreter: formulaInterpreter, audioEngine: AudioEngineMock())
         context = CBScriptContext(script: script, spriteNode: spriteNode, formulaInterpreter: formulaInterpreter)
     }
@@ -67,7 +66,7 @@ final class ReplaceItemInUserListBrickTests: XCTestCase {
     func testReplaceItem() {
         let newValue: Int32 = 2
 
-        userList.value = NSMutableArray(array: [1])
+        userList.add(element: 1 as Int32)
         brick.index = Formula(integer: 1)
         brick.elementFormula = Formula(integer: newValue)
 
@@ -78,13 +77,12 @@ final class ReplaceItemInUserListBrickTests: XCTestCase {
             XCTFail("Fatal Error")
         }
 
-        let valueArr = userList.value as! [AnyObject]
-        XCTAssertEqual(1, valueArr.count)
-        XCTAssertEqual(newValue, valueArr[0] as! Int32)
+        XCTAssertEqual(1, userList.count)
+        XCTAssertEqual(newValue, userList.element(at: 1) as! Int32)
     }
 
     func testReplaceItemAtInvalidPosition() {
-        XCTAssertNil(userList.value)
+        XCTAssertEqual(userList.count, 0)
 
         brick.index = Formula(string: "abc")
         brick.elementFormula = Formula(integer: 1)
@@ -96,11 +94,11 @@ final class ReplaceItemInUserListBrickTests: XCTestCase {
             XCTFail("Fatal Error")
         }
 
-        XCTAssertNil(userList.value)
+        XCTAssertEqual(userList.count, 0)
     }
 
     func testReplaceItemAtNegativePosition() {
-        XCTAssertNil(userList.value)
+        XCTAssertEqual(userList.count, 0)
 
         brick.index = Formula(integer: -1)
         brick.elementFormula = Formula(integer: 1)
@@ -112,6 +110,6 @@ final class ReplaceItemInUserListBrickTests: XCTestCase {
             XCTFail("Fatal Error")
         }
 
-        XCTAssertNil(userList.value)
+       XCTAssertEqual(userList.count, 0)
     }
 }

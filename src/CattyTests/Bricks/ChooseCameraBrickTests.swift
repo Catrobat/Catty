@@ -48,7 +48,7 @@ final class ChooseCameraBrickTests: XCTestCase {
 
         let logger = CBLogger(name: "Logger")
         let broadcastHandler = CBBroadcastHandler(logger: logger)
-        let formulaInterpreter = FormulaManager(sceneSize: Util.screenSize(true))
+        let formulaInterpreter = FormulaManager(sceneSize: Util.screenSize(true), landscapeMode: false)
         scheduler = CBScheduler(logger: logger, broadcastHandler: broadcastHandler, formulaInterpreter: formulaInterpreter, audioEngine: AudioEngineMock())
 
         context = CBScriptContext(script: script, spriteNode: spriteNode, formulaInterpreter: formulaInterpreter)
@@ -106,5 +106,16 @@ final class ChooseCameraBrickTests: XCTestCase {
         }
 
         XCTAssertEqual(AVCaptureDevice.Position.front, CameraPreviewHandler.shared().cameraPosition)
+    }
+
+    func testMutableCopy() {
+        let brick = ChooseCameraBrick()
+        brick.cameraPosition = 0
+
+        let copiedBrick: ChooseCameraBrick = brick.mutableCopy(with: CBMutableCopyContext()) as! ChooseCameraBrick
+
+        XCTAssertTrue(brick.isEqual(to: copiedBrick))
+        XCTAssertFalse(brick === copiedBrick)
+        XCTAssertEqual(brick.cameraPosition, brick.cameraPosition)
     }
 }

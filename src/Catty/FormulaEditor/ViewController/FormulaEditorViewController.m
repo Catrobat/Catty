@@ -30,8 +30,6 @@
 #import "OrderedMapTable.h"
 #import "Script.h"
 #import "BrickCellFormulaData.h"
-#import "VariablePickerData.h"
-#import "Brick+UserVariable.h"
 #import "BDKNotifyHUD.h"
 #import "KeychainUserDefaultsDefines.h"
 #import "ShapeButton.h"
@@ -90,7 +88,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 @property (weak, nonatomic) IBOutlet UIButton *doneButton;
 @property (weak, nonatomic) IBOutlet UIButton *variable;
 @property (weak, nonatomic) IBOutlet UIButton *takeVar;
-@property (weak, nonatomic) IBOutlet UIButton *deleteVar;
+@property (weak, nonatomic) IBOutlet UIButton *deleteUserData;
 @property (weak, nonatomic) IBOutlet UIButton *addNewTextButton;
 
 @property (nonatomic) BOOL isProjectVariable;
@@ -325,10 +323,8 @@ NS_ENUM(NSInteger, ButtonIndex) {
     self.variablePicker.tintColor = UIColor.globalTint;
     self.variableSourceProject = [[NSMutableArray alloc] init];
     self.variableSourceObject = [[NSMutableArray alloc] init];
-    self.variableSource = [[NSMutableArray alloc] init];
     self.listSourceProject = [[NSMutableArray alloc] init];
     self.listSourceObject = [[NSMutableArray alloc] init];
-    self.listSource = [[NSMutableArray alloc] init];
     [self updateVariablePickerData];
     [self.variableSegmentedControl setTitle:kLocalizedObject forSegmentAtIndex:1];
     [self.variableSegmentedControl setTitle:kLocalizedProject forSegmentAtIndex:0];
@@ -353,7 +349,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     [self.doneButton setTitle:kUIFEDone forState:UIControlStateNormal];
     [self.variable setTitle:kUIFEVar forState:UIControlStateNormal];
     [self.takeVar setTitle:kUIFETake forState:UIControlStateNormal];
-    [self.deleteVar setTitle:kUIFEDelete forState:UIControlStateNormal];
+    [self.deleteUserData setTitle:kUIFEDelete forState:UIControlStateNormal];
     [self.addNewTextButton setTitle:kUIFEAddNewText forState:UIControlStateNormal];
 }
 
@@ -746,21 +742,40 @@ NS_ENUM(NSInteger, ButtonIndex) {
     [self.variableButton setSelected:NO];
 }
 
-- (void)addNewVarOrList: (BOOL)isProjectVarOrList isList:(BOOL)isList {
-    
-    NSString* promptTitle = isList ? kUIFENewList : kUIFENewVar;
-    NSString* promptMessage = isList ? kUIFEListName : kUIFEVarName;
-    self.isProjectVariable = isProjectVarOrList;
-    self.variableSegmentedControl.selectedSegmentIndex = isProjectVarOrList ? 0 : 1;
+- (void)addNewVariable: (BOOL)isProjectVariable
+{
+    NSString* promptTitle =  kUIFENewVar;
+    NSString* promptMessage = kUIFEVarName;
+    self.isProjectVariable = isProjectVariable;
+    self.variableSegmentedControl.selectedSegmentIndex = isProjectVariable ? 0 : 1;
     [self.variableSegmentedControl setNeedsDisplay];
 
-    [Util askUserForVariableNameAndPerformAction:@selector(saveVariable:isList:)
+    [Util askUserForVariableNameAndPerformAction:@selector(saveVariable:)
                                           target:self
                                      promptTitle:promptTitle
                                    promptMessage:promptMessage
                                   minInputLength:kMinNumOfVariableNameCharacters
                                   maxInputLength:kMaxNumOfVariableNameCharacters
-                                          isList:isList
+                                          isList:NO
+                                    andTextField:self.formulaEditorTextView
+                                     initialText:@""];
+}
+
+- (void)addNewList: (BOOL)isProjectList
+{
+    NSString* promptTitle =  kUIFENewList;
+    NSString* promptMessage = kUIFEListName;
+    self.isProjectVariable = isProjectList;
+    self.variableSegmentedControl.selectedSegmentIndex = isProjectList ? 0 : 1;
+    [self.variableSegmentedControl setNeedsDisplay];
+
+    [Util askUserForVariableNameAndPerformAction:@selector(saveList:)
+                                          target:self
+                                     promptTitle:promptTitle
+                                   promptMessage:promptMessage
+                                  minInputLength:kMinNumOfVariableNameCharacters
+                                  maxInputLength:kMaxNumOfVariableNameCharacters
+                                          isList:YES
                                     andTextField:self.formulaEditorTextView
                                      initialText:@""];
 }
@@ -772,11 +787,18 @@ NS_ENUM(NSInteger, ButtonIndex) {
              [self.formulaEditorTextView becomeFirstResponder];
          }]
         addDefaultActionWithTitle:kUIFEActionVarPro handler:^{
-            [self addNewVarOrList: YES isList: isList];
+            if (isList) {
+                [self addNewList:YES];
+            } else {
+                [self addNewVariable:YES];
+            }
         }]
        addDefaultActionWithTitle:kUIFEActionVarObj handler:^{
-           [self addNewVarOrList: NO isList: isList];
-       }] build]
+           if (isList) {
+               [self addNewList:NO];
+           } else {
+               [self addNewVariable:NO];
+           }       }] build]
      showWithController:self];
 }
 
@@ -797,152 +819,143 @@ NS_ENUM(NSInteger, ButtonIndex) {
 }
 
 - (void)updateVariablePickerData {
-    VariablesContainer *variables = self.object.project.variables;
-    [self.variableSource removeAllObjects];
+    UserDataContainer *userData = self.object.project.userData;
     [self.variableSourceProject  removeAllObjects];
     [self.variableSourceObject  removeAllObjects];
-    [self.listSource removeAllObjects];
     [self.listSourceProject  removeAllObjects];
     [self.listSourceObject  removeAllObjects];
     
     // ------------------
     // Project Variables
     // ------------------
-    if([variables.programVariableList count] > 0){
-        [self.variableSource addObject:[[VariablePickerData alloc] initWithTitle:kUIFEProjectVars]];
+    for(UserVariable *userVariable in userData.programVariableList) {
+        [self.variableSourceProject addObject:userVariable];
     }
-    
-    for(UserVariable *userVariable in variables.programVariableList) {
-        VariablePickerData *pickerData = [[VariablePickerData alloc] initWithTitle:userVariable.name andVariable:userVariable];
-        [pickerData setIsProjectVariable:YES];
-        [self.variableSource addObject:pickerData];
-        [self.variableSourceProject addObject:pickerData];
-    }
-    
     
     // ------------------
     // Project Lists
     // ------------------
-    if([variables.programListOfLists count] > 0){
-        [self.listSource addObject:[[VariablePickerData alloc] initWithTitle:kUIFEProjectLists]];
+    for(UserVariable *userVariable in userData.programListOfLists) {
+        [self.listSourceProject addObject:userVariable];
     }
     
-    for(UserVariable *userVariable in variables.programListOfLists) {
-        VariablePickerData *pickerData = [[VariablePickerData alloc] initWithTitle:userVariable.name andVariable:userVariable];
-        [pickerData setIsProjectVariable:YES];
-        [self.listSource addObject:pickerData];
-        [self.listSourceProject addObject:pickerData];
-    }
-    
-  
     // ------------------
     // Object Variables
     // ------------------
-    NSArray *array = [variables allVariablesForObject:self.object];
+    NSArray *array = [UserDataContainer objectAndProjectVariablesForObject:self.object];
     if (array) {
-        if([array count] > 0)
-            [self.variableSource addObject:[[VariablePickerData alloc] initWithTitle:kUIFEObjectVars]];
-        
         for (UserVariable *var in array) {
-            VariablePickerData *pickerData = [[VariablePickerData alloc] initWithTitle:var.name andVariable:var];
-            [pickerData setIsProjectVariable:NO];
-            [self.variableSource addObject:pickerData];
-            [self.variableSourceObject addObject:pickerData];
+            [self.variableSourceObject addObject:var];
         }
     }
-    
     
     // ------------------
     // Object Lists
     // ------------------
-    array = [variables allListsForObject:self.object];
+    array = [UserDataContainer objectAndProjectListsForObject:self.object];
     if (array) {
-        if([array count] > 0)
-            [self.listSource addObject:[[VariablePickerData alloc] initWithTitle:kUIFEObjectLists]];
-        
         for (UserVariable *var in array) {
-            VariablePickerData *pickerData = [[VariablePickerData alloc] initWithTitle:var.name andVariable:var];
-            [pickerData setIsProjectVariable:NO];
-            [self.listSource addObject:pickerData];
-            [self.listSourceObject addObject:pickerData];
+            [self.listSourceObject addObject:var];
         }
     }
   
     [self.variablePicker reloadAllComponents];
-    if([self.variableSource count] > 0)
+    
+    if([self.variableSourceProject count] > 0 || [self.variableSourceObject count] > 0 || [self.listSourceProject count] > 0 || [self.listSourceObject count] > 0)
         [self.variablePicker selectRow:0 inComponent:0 animated:NO];
 }
 
-- (void)askForVariableName:(BOOL)isList
+- (void)askForVariableName
 {
-    [Util askUserForVariableNameAndPerformAction:@selector(saveVariable:isList:)
+    [Util askUserForVariableNameAndPerformAction:@selector(saveVariable:)
                                           target:self
                                      promptTitle:kUIFENewVarExists
                                    promptMessage:kUIFEOtherName
                                   minInputLength:kMinNumOfVariableNameCharacters
                                   maxInputLength:kMaxNumOfVariableNameCharacters
-                                          isList:isList
+                                          isList:NO
                                     andTextField:self.formulaEditorTextView
                                      initialText:@""];
 }
 
-- (void)saveVariable:(NSString*)name isList:(BOOL)isList
+- (void)askForListName
 {
-    if (self.isProjectVariable && !isList){
-        for (UserVariable* variable in [self.object.project.variables allVariables]) {
+    [Util askUserForVariableNameAndPerformAction:@selector(saveList:)
+            target:self
+       promptTitle:kUIFENewVarExists
+     promptMessage:kUIFEOtherName
+    minInputLength:kMinNumOfVariableNameCharacters
+    maxInputLength:kMaxNumOfVariableNameCharacters
+            isList:YES
+      andTextField:self.formulaEditorTextView
+       initialText:@""];
+}
+
+- (void)saveVariable:(NSString*)name
+{
+    if (self.isProjectVariable){
+        for (UserVariable* variable in [UserDataContainer allVariablesForProject: self.object.project]) {
             if ([variable.name isEqualToString:name]) {
-                [self askForVariableName: isList];
+                [self askForVariableName];
                 return;
             }
         }
-    } else if (!self.isProjectVariable && !isList) {
-        for (UserVariable* variable in [self.object.project.variables allVariablesForObject:self.object]) {
+    } else {
+        for (UserVariable* variable in [UserDataContainer objectAndProjectVariablesForObject:self.object]) {
             if ([variable.name isEqualToString:name]) {
-                [self askForVariableName: isList];
-                return;
-            }
-        }
-    } else if (self.isProjectVariable && isList){
-        for (UserVariable* variable in [self.object.project.variables allLists]) {
-            if ([variable.name isEqualToString:name]) {
-                [self askForVariableName: isList];
-                return;
-            }
-        }
-    } else if (!self.isProjectVariable && isList) {
-        for (UserVariable* variable in [self.object.project.variables allListsForObject:self.object]) {
-            if ([variable.name isEqualToString:name]) {
-                [self askForVariableName: isList];
+                [self askForVariableName];
                 return;
             }
         }
     }
     
     [self.formulaEditorTextView becomeFirstResponder];
-    UserVariable* var = [UserVariable new];
-    var.name = name;
+    UserVariable* variable = [[UserVariable alloc] initWithName:name];
+    variable.value = [NSNumber numberWithInt:0];
+    int buttonType = 0;
     
-    if (isList) {
-        var.value = [[NSMutableArray alloc] init];
-    } else{
-        var.value = [NSNumber numberWithInt:0];
-    }
-    var.isList = isList;
-    
-    int buttonType = isList ? 11 : 0;
-    if (self.isProjectVariable && !isList) {
-        [self.object.project.variables.programVariableList addObject:var];
-    } else if (self.isProjectVariable && isList){
-        [self.object.project.variables.programListOfLists addObject:var];
-    } else if (!self.isProjectVariable && !isList) {
-        [self.object.project.variables addObjectVariable:var forObject:self.object];
-    } else if (!self.isProjectVariable && isList) {
-        [self.object.project.variables addObjectList:var forObject:self.object];
+    if (self.isProjectVariable) {
+        [self.object.project.userData.programVariableList addObject:variable];
+    }  else {
+        [self.object.project.userData addObjectVariable:variable forObject:self.object];
     }
     
     [self.object.project saveToDiskWithNotification:YES];
     [self updateVariablePickerData];
-    [self handleInputWithTitle:var.name AndButtonType:buttonType];
+    [self handleInputWithTitle:variable.name AndButtonType:buttonType];
+}
+
+- (void)saveList:(NSString*)name
+{
+    if (self.isProjectVariable){
+        for (UserVariable* variable in [UserDataContainer allListsForProject: self.object.project]) {
+            if ([variable.name isEqualToString:name]) {
+                [self askForListName];
+                return;
+            }
+        }
+    } else {
+        for (UserVariable* variable in [UserDataContainer objectAndProjectListsForObject:self.object]) {
+            if ([variable.name isEqualToString:name]) {
+                [self askForListName];
+                return;
+            }
+        }
+    }
+    
+    [self.formulaEditorTextView becomeFirstResponder];
+    UserList* list = [[UserList alloc] initWithName:name];
+    int buttonType = 11;
+    
+    if (self.isProjectVariable){
+        [self.object.project.userData.programListOfLists addObject:list];
+    } else {
+        [self.object.project.userData addObjectList:list forObject:self.object];
+    }
+    
+    [self.object.project saveToDiskWithNotification:YES];
+    [self updateVariablePickerData];
+    [self handleInputWithTitle:list.name AndButtonType:buttonType];
 }
 
 - (void)closeMenu
@@ -999,20 +1012,20 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
     if (component == 0 && !forObjectOnly && !isList) {
         if (row < self.variableSourceProject.count) {
-            return [[self.variableSourceProject objectAtIndex:row] title];
+            return [self.variableSourceProject objectAtIndex:row].name;
         }
     } else if (component == 0 && forObjectOnly && !isList) {
         if (row < self.variableSourceObject.count) {
-            return [[self.variableSourceObject objectAtIndex:row] title];
+            return [self.variableSourceObject objectAtIndex:row].name;
         }
     } else if (component == 0 && !forObjectOnly && isList) {
         if (row < self.listSourceProject.count) {
-            return [[self.listSourceProject objectAtIndex:row] title];
+            return [self.listSourceProject objectAtIndex:row].name;
         }
     }
     else if (component == 0 && forObjectOnly && isList) {
         if (row < self.listSourceObject.count) {
-            return [[self.listSourceObject objectAtIndex:row] title];
+            return [self.listSourceObject objectAtIndex:row].name;
         }
     }
     
@@ -1059,28 +1072,28 @@ NS_ENUM(NSInteger, ButtonIndex) {
     NSInteger row = [self.variablePicker selectedRowInComponent:0];
     if (row >= 0) {
         int buttonType = 0;
-        VariablePickerData *pickerData;
+        UserVariable *userVariable;
         if (self.variableSegmentedControl.selectedSegmentIndex == 0 && self.varOrListSegmentedControl.selectedSegmentIndex == 0) {
             if (row < self.variableSourceProject.count) {
-                pickerData = [self.variableSourceProject objectAtIndex:row];
+                userVariable = [self.variableSourceProject objectAtIndex:row];
             }
         } else if (self.variableSegmentedControl.selectedSegmentIndex == 1 && self.varOrListSegmentedControl.selectedSegmentIndex == 0){
             if (row < self.variableSourceObject.count) {
-                pickerData = [self.variableSourceObject objectAtIndex:row];
+                userVariable = [self.variableSourceObject objectAtIndex:row];
             }
         } else if (self.variableSegmentedControl.selectedSegmentIndex == 0 && self.varOrListSegmentedControl.selectedSegmentIndex == 1){
             if (row < self.listSourceProject.count) {
-                pickerData = [self.listSourceProject objectAtIndex:row];
+                userVariable = [self.listSourceProject objectAtIndex:row];
                 buttonType = 11;
             }
         } else if (self.variableSegmentedControl.selectedSegmentIndex == 1 && self.varOrListSegmentedControl.selectedSegmentIndex == 1){
             if (row < self.listSourceObject.count) {
-                pickerData = [self.listSourceObject objectAtIndex:row];
+                userVariable = [self.listSourceObject objectAtIndex:row];
                 buttonType = 11;
             }
         }
-        if (pickerData) {
-            [self handleInputWithTitle:pickerData.userVariable.name AndButtonType:buttonType];
+        if (userVariable) {
+            [self handleInputWithTitle:userVariable.name AndButtonType:buttonType];
         }
     }
 }
@@ -1090,64 +1103,89 @@ NS_ENUM(NSInteger, ButtonIndex) {
 }
 
 
-- (IBAction)deleteVariable:(UIButton *)sender {
+- (IBAction)deleteUserData:(UIButton *)sender {
     NSInteger row = [self.variablePicker selectedRowInComponent:0];
+    BOOL isProjectData = false;
+    
     if (row >= 0) {
-        VariablePickerData *pickerData;
+        UserVariable *userVariable;
         if ((self.variableSegmentedControl.selectedSegmentIndex == 0)
             && (self.varOrListSegmentedControl.selectedSegmentIndex == 0)) {
             if (row < self.variableSourceProject.count) {
-                pickerData = [self.variableSourceProject objectAtIndex:row];
+                userVariable = [self.variableSourceProject objectAtIndex:row];
+                isProjectData = true;
             }
         } else if ((self.variableSegmentedControl.selectedSegmentIndex == 1)
                    && (self.varOrListSegmentedControl.selectedSegmentIndex == 0)) {
             if (row < self.variableSourceObject.count) {
-                pickerData = [self.variableSourceObject objectAtIndex:row];
+                userVariable = [self.variableSourceObject objectAtIndex:row];
             }
         } else if ((self.variableSegmentedControl.selectedSegmentIndex == 0)
                    && (self.varOrListSegmentedControl.selectedSegmentIndex == 1)) {
             if (row < self.listSourceProject.count) {
-                pickerData = [self.listSourceProject objectAtIndex:row];
+                userVariable = [self.listSourceProject objectAtIndex:row];
+                isProjectData = true;
             }
         } else if ((self.variableSegmentedControl.selectedSegmentIndex == 1)
                    && (self.varOrListSegmentedControl.selectedSegmentIndex == 1)) {
             if (row < self.listSourceObject.count) {
-                pickerData = [self.listSourceObject objectAtIndex:row];
+                userVariable = [self.listSourceObject objectAtIndex:row];
             }
         }
-        if (pickerData) {
-            if(![self isVarOrListBeingUsed:pickerData.userVariable]) {
-                
-                BOOL removed = NO;
-                BOOL isList = pickerData.userVariable.isList;
-                if (!isList) {
-                    removed = [self.object.project.variables removeUserVariableNamed:pickerData.userVariable.name forSpriteObject:self.object];
+        if (userVariable) {
+            BOOL isList = self.varOrListSegmentedControl.selectedSegmentIndex;
+            if (!isList) {
+                if(![self isVariableUsed:userVariable]) {
+                    [self deleteVariable:userVariable atRow:row isProjectData:isProjectData];
                 } else {
-                    removed = [self.object.project.variables removeUserListNamed:pickerData.userVariable.name forSpriteObject:self.object];
-                }
-                if (removed) {
-                    if (!isList) {
-                        [self.variableSource removeObjectAtIndex:row];
-                    } else {
-                        [self.listSource removeObjectAtIndex:row];
-                    }
-                    [self.object.project saveToDiskWithNotification:YES];
-                    [self updateVariablePickerData];
+                    [self showNotification:kUIFEDeleteVarBeingUsed andDuration:1.5f];
                 }
             } else {
-                [self showNotification:kUIFEDeleteVarBeingUsed andDuration:1.5f];
+                if(![self isListUsed:userVariable]) {
+                    [self deleteList:userVariable atRow:row isProjectData:isProjectData];
+                } else {
+                    [self showNotification:kUIFEDeleteListBeingUsed andDuration:1.5f];
+                }
             }
         }
     }
 }
 
-- (BOOL)isVarOrListBeingUsed:(UserVariable*)variable
+- (void)deleteVariable: (UserVariable*)userVariable atRow:(NSInteger)row isProjectData:(BOOL)isProjectData
 {
-    if([self.object.project.variables isProjectVariableOrList:variable]) {
-        for(SpriteObject *spriteObject in self.object.project.objectList) {
+    BOOL removed = [self.object.project.userData removeUserVariableNamed:userVariable.name forSpriteObject:self.object];
+    if (removed) {
+        if (isProjectData) {
+            [self.variableSourceProject removeObjectAtIndex:row];
+        } else {
+            [self.variableSourceObject removeObjectAtIndex:row];
+        }
+        [self.object.project saveToDiskWithNotification:YES];
+        [self updateVariablePickerData];
+    }
+}
+
+- (void)deleteList: (id<UserDataProtocol>)userList atRow:(NSInteger)row isProjectData:(BOOL)isProjectData
+{
+    BOOL removed = [self.object.project.userData removeUserListNamed:userList.name forSpriteObject:self.object];
+    if (removed) {
+        if (isProjectData) {
+            [self.listSourceProject removeObjectAtIndex:row];
+        } else {
+            [self.listSourceObject removeObjectAtIndex:row];
+        }
+        [self.object.project saveToDiskWithNotification:YES];
+        [self updateVariablePickerData];
+    }
+}
+
+- (BOOL)isVariableUsed:(UserVariable*)variable
+{
+    if([self.object.project.userData isProjectVariable:variable]) {
+        for(SpriteObject *spriteObject in self.object.project.allObjects) {
             for(Script *script in spriteObject.scriptList) {
                 for(id brick in script.brickList) {
-                    if([brick isKindOfClass:[Brick class]] && [brick isVarOrListBeingUsed:variable]) {
+                    if([brick isKindOfClass:[Brick class]] && [brick isVariableUsedWithVariable:variable]) {
                         return YES;
                     }
                 }
@@ -1156,7 +1194,32 @@ NS_ENUM(NSInteger, ButtonIndex) {
     } else {
         for(Script *script in self.object.scriptList) {
             for(id brick in script.brickList) {
-                if([brick isKindOfClass:[Brick class]] && [brick isVarOrListBeingUsed:variable]) {
+                if([brick isKindOfClass:[Brick class]] && [brick isVariableUsedWithVariable:variable]) {
+                    return YES;
+                }
+            }
+        }
+    }
+    
+    return NO;
+}
+
+- (BOOL)isListUsed:(id<UserDataProtocol>)list
+{
+    if([self.object.project.userData isProjectList:list]) {
+        for(SpriteObject *spriteObject in self.object.project.allObjects) {
+            for(Script *script in spriteObject.scriptList) {
+                for(id brick in script.brickList) {
+                    if([brick isKindOfClass:[Brick class]] && [brick isListUsedWithList:list]) {
+                        return YES;
+                    }
+                }
+            }
+        }
+    } else {
+        for(Script *script in self.object.scriptList) {
+            for(id brick in script.brickList) {
+                if([brick isKindOfClass:[Brick class]] && [brick isListUsedWithList:list]) {
                     return YES;
                 }
             }

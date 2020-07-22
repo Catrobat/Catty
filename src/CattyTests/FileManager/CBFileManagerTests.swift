@@ -121,4 +121,197 @@ final class CBFileManagerTests: XCTestCase {
         XCTAssertFalse(result)
         XCTAssertFalse(Project.projectExists(withProjectID: projectId))
     }
+
+    func testLoadPreviewImageAndCacheWhenScreenshotCached() {
+        let info = ProjectLoadingInfo.init(forProjectWithName: kDefaultProjectBundleName, projectID: kNoProjectIDYetPlaceholder)!
+        let project = Project(loadingInfo: info)!
+
+        let manualScreenshotThumbnailPath = project.projectPath() + kScreenshotThumbnailPrefix + kScreenshotManualFilename
+        let manualScreenshotCached = UIImage(color: UIColor.green)!
+        let manualScreenshotOnDisk = UIImage(color: UIColor.yellow)!
+
+        let automaticScreenshotThumbnailPath = project.projectPath() + kScreenshotThumbnailPrefix + kScreenshotAutoFilename
+        let automaticScreenshotCached = UIImage(color: UIColor.red)!
+        let automaticScreenshotOnDisk = UIImage(color: UIColor.blue)!
+
+        let screenshotThumbnailPath = project.projectPath() + kScreenshotThumbnailPrefix + kScreenshotFilename
+        let screenshotCached = UIImage(color: UIColor.orange)!
+        let screenshotOnDisk = UIImage(color: UIColor.brown)!
+
+        let imageCache = RuntimeImageCacheMock(thumbnails: [manualScreenshotThumbnailPath: manualScreenshotOnDisk,
+                                                            automaticScreenshotThumbnailPath: automaticScreenshotOnDisk,
+                                                            screenshotThumbnailPath: screenshotOnDisk],
+                                               cachedImages: [manualScreenshotThumbnailPath: manualScreenshotCached,
+                                                              automaticScreenshotThumbnailPath: automaticScreenshotCached,
+                                                              screenshotThumbnailPath: screenshotCached])
+
+        let fileManager = CBFileManagerMock(imageCache: imageCache)
+
+        let expectation = XCTestExpectation(description: "Load image from cache - Screenshot")
+
+        fileManager.loadPreviewImageAndCache(projectLoadingInfo: info) { image, path in
+            XCTAssertEqual(screenshotThumbnailPath, path)
+            XCTAssertEqual(screenshotCached, image)
+
+            expectation.fulfill()
+        }
+
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testLoadPreviewImageAndCacheWhenManualScreenshotCached() {
+        let info = ProjectLoadingInfo.init(forProjectWithName: kDefaultProjectBundleName, projectID: kNoProjectIDYetPlaceholder)!
+        let project = Project(loadingInfo: info)!
+
+        let manualScreenshotThumbnailPath = project.projectPath() + kScreenshotThumbnailPrefix + kScreenshotManualFilename
+        let manualScreenshotCached = UIImage(color: UIColor.green)!
+        let manualScreenshotOnDisk = UIImage(color: UIColor.yellow)!
+
+        let automaticScreenshotThumbnailPath = project.projectPath() + kScreenshotThumbnailPrefix + kScreenshotAutoFilename
+        let automaticScreenshotCached = UIImage(color: UIColor.red)!
+        let automaticScreenshotOnDisk = UIImage(color: UIColor.blue)!
+
+        let imageCache = RuntimeImageCacheMock(thumbnails: [manualScreenshotThumbnailPath: manualScreenshotOnDisk, automaticScreenshotThumbnailPath: automaticScreenshotOnDisk],
+                                               cachedImages: [manualScreenshotThumbnailPath: manualScreenshotCached, automaticScreenshotThumbnailPath: automaticScreenshotCached])
+
+        let fileManager = CBFileManagerMock(imageCache: imageCache)
+
+        let expectation = XCTestExpectation(description: "Load image from cache - Manual Screenshot")
+
+        fileManager.loadPreviewImageAndCache(projectLoadingInfo: info) { image, path in
+            XCTAssertEqual(manualScreenshotThumbnailPath, path)
+            XCTAssertEqual(manualScreenshotCached, image)
+
+            expectation.fulfill()
+        }
+
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testLoadPreviewImageAndCacheWhenAutomaticScreenshotCached() {
+        let info = ProjectLoadingInfo.init(forProjectWithName: kDefaultProjectBundleName, projectID: kNoProjectIDYetPlaceholder)!
+        let project = Project(loadingInfo: info)!
+
+        let automaticScreenshotThumbnailPath = project.projectPath() + kScreenshotThumbnailPrefix + kScreenshotAutoFilename
+        let automaticScreenshotCached = UIImage(color: UIColor.red)!
+        let automaticScreenshotOnDisk = UIImage(color: UIColor.blue)!
+
+        let imageCache = RuntimeImageCacheMock(thumbnails: [automaticScreenshotThumbnailPath: automaticScreenshotOnDisk],
+                                               cachedImages: [automaticScreenshotThumbnailPath: automaticScreenshotCached])
+
+        let fileManager = CBFileManagerMock(imageCache: imageCache)
+
+        let expectation = XCTestExpectation(description: "Load image from cache - Automatic Screenshot")
+
+        fileManager.loadPreviewImageAndCache(projectLoadingInfo: info) { image, path in
+            XCTAssertEqual(automaticScreenshotThumbnailPath, path)
+            XCTAssertEqual(automaticScreenshotCached, image)
+
+            expectation.fulfill()
+        }
+
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testLoadPreviewImageAndCacheWhenAutomaticScreenshotNotCached() {
+        let info = ProjectLoadingInfo.init(forProjectWithName: kDefaultProjectBundleName, projectID: kNoProjectIDYetPlaceholder)!
+        let project = Project(loadingInfo: info)!
+
+        let automaticScreenshotThumbnailPath = project.projectPath() + kScreenshotThumbnailPrefix + kScreenshotAutoFilename
+        let automaticScreenshot = UIImage(color: UIColor.red)!
+
+        let imageCache = RuntimeImageCacheMock(thumbnails: [automaticScreenshotThumbnailPath: automaticScreenshot], cachedImages: [:])
+        let filePath = project.projectPath() + kScreenshotAutoFilename
+
+        let fileManager = CBFileManagerMock(imageCache: imageCache, filePath: [filePath])
+
+        let expectation = XCTestExpectation(description: "Load image from disk - Automatic Screenshot")
+
+        fileManager.loadPreviewImageAndCache(projectLoadingInfo: info) { image, path in
+            XCTAssertEqual(automaticScreenshotThumbnailPath, path)
+            XCTAssertEqual(automaticScreenshot, image)
+
+            expectation.fulfill()
+        }
+
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testLoadPreviewImageAndCacheWhenManualScreenshotNotCached() {
+        let info = ProjectLoadingInfo.init(forProjectWithName: kDefaultProjectBundleName, projectID: kNoProjectIDYetPlaceholder)!
+        let project = Project(loadingInfo: info)!
+
+        let manualScreenshotThumbnailPath = project.projectPath() + kScreenshotThumbnailPrefix + kScreenshotManualFilename
+        let manualScreenshot = UIImage(color: UIColor.green)!
+
+        let automaticScreenshotThumbnailPath = project.projectPath() + kScreenshotThumbnailPrefix + kScreenshotAutoFilename
+        let automaticScreenshot = UIImage(color: UIColor.red)!
+
+        let imageCache = RuntimeImageCacheMock(thumbnails: [automaticScreenshotThumbnailPath: automaticScreenshot, manualScreenshotThumbnailPath: manualScreenshot], cachedImages: [:])
+
+        let autoScreenshotFilePath = project.projectPath() + kScreenshotAutoFilename
+        let manualScreenshotFilePath = project.projectPath() + kScreenshotManualFilename
+
+        let fileManager = CBFileManagerMock(imageCache: imageCache, filePath: [autoScreenshotFilePath, manualScreenshotFilePath])
+
+        let expectation = XCTestExpectation(description: "Load image from disk - Manual Screenshot")
+
+        fileManager.loadPreviewImageAndCache(projectLoadingInfo: info) { image, path in
+            XCTAssertEqual(manualScreenshotThumbnailPath, path)
+            XCTAssertEqual(manualScreenshot, image)
+
+            expectation.fulfill()
+        }
+
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testLoadPreviewImageAndCacheWhenScreenshotNotCached() {
+        let info = ProjectLoadingInfo.init(forProjectWithName: kDefaultProjectBundleName, projectID: kNoProjectIDYetPlaceholder)!
+        let project = Project(loadingInfo: info)!
+
+        let manualScreenshotThumbnailPath = project.projectPath() + kScreenshotThumbnailPrefix + kScreenshotManualFilename
+        let manualScreenshot = UIImage(color: UIColor.green)!
+
+        let automaticScreenshotThumbnailPath = project.projectPath() + kScreenshotThumbnailPrefix + kScreenshotAutoFilename
+        let automaticScreenshot = UIImage(color: UIColor.red)!
+
+        let screenshotThumbnailPath = project.projectPath() + kScreenshotThumbnailPrefix + kScreenshotFilename
+        let screenshot = UIImage(color: UIColor.orange)!
+
+        let imageCache = RuntimeImageCacheMock(thumbnails: [automaticScreenshotThumbnailPath: automaticScreenshot,
+                                                            manualScreenshotThumbnailPath: manualScreenshot,
+                                                            screenshotThumbnailPath: screenshot],
+                                               cachedImages: [:])
+
+        let autoScreenshotFilePath = project.projectPath() + kScreenshotAutoFilename
+        let manualScreenshotFilePath = project.projectPath() + kScreenshotManualFilename
+        let screenshotFilePath = project.projectPath() + kScreenshotFilename
+
+        let fileManager = CBFileManagerMock(imageCache: imageCache, filePath: [autoScreenshotFilePath, manualScreenshotFilePath, screenshotFilePath])
+
+        let expectation = XCTestExpectation(description: "Load image from disk - Screenshot")
+
+        fileManager.loadPreviewImageAndCache(projectLoadingInfo: info) { image, path in
+            XCTAssertEqual(screenshotThumbnailPath, path)
+            XCTAssertEqual(screenshot, image)
+
+            expectation.fulfill()
+        }
+
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testLoadPreviewImageAndCacheWhenNoScreenshotOnDisk() {
+        let info = ProjectLoadingInfo.init(forProjectWithName: kDefaultProjectBundleName, projectID: kNoProjectIDYetPlaceholder)!
+
+        let imageCache = RuntimeImageCacheMock(thumbnails: [:], cachedImages: [:])
+        let fileManager = CBFileManagerMock(imageCache: imageCache)
+
+        fileManager.loadPreviewImageAndCache(projectLoadingInfo: info) { image, path in
+            XCTAssertNil(image)
+            XCTAssertNil(path)
+        }
+        fileManager.addDefaultProjectToProjectsRootDirectoryIfNoProjectsExist()
+    }
 }

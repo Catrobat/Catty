@@ -22,6 +22,7 @@
 
 #import "SetVariableBrick.h"
 #import "Script.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation SetVariableBrick
 
@@ -54,7 +55,7 @@
 {
     self.variableFormula = [[Formula alloc] initWithInteger:1];
     if(spriteObject) {
-        NSArray *variables = [spriteObject.project.variables allVariablesForObject:spriteObject];
+        NSArray *variables = [UserDataContainer objectAndProjectVariablesForObject:spriteObject];
         if([variables count] > 0)
             self.userVariable = [variables objectAtIndex:0];
         else
@@ -80,7 +81,7 @@
 
 - (BOOL)isEqualToBrick:(Brick*)brick
 {
-    if (! [self.userVariable isEqualToUserVariable:((SetVariableBrick*)brick).userVariable])
+    if (! [self.userVariable isEqual:((SetVariableBrick*)brick).userVariable])
         return NO;
     if (! [self.variableFormula isEqualToFormula:((SetVariableBrick*)brick).variableFormula])
         return NO;

@@ -43,26 +43,30 @@ final class CompassDirectionSensorTest: XCTestCase {
 
     func testDefaultRawValue() {
         let sensor = CompassDirectionSensor { nil }
-        XCTAssertEqual(CompassDirectionSensor.defaultRawValue, sensor.rawValue(), accuracy: Double.epsilon)
+        XCTAssertEqual(CompassDirectionSensor.defaultRawValue, sensor.rawValue(landscapeMode: false), accuracy: Double.epsilon)
+        XCTAssertEqual(CompassDirectionSensor.defaultRawValue, sensor.rawValue(landscapeMode: true), accuracy: Double.epsilon)
     }
 
     func testRawValue() {
         // N
         locationManager.magneticHeading = 0
-        XCTAssertEqual(0, sensor.rawValue())
+        XCTAssertEqual(0, sensor.rawValue(landscapeMode: false))
+        XCTAssertEqual(0, sensor.rawValue(landscapeMode: true))
 
         // E
         locationManager.magneticHeading = 90
-        XCTAssertEqual(90, sensor.rawValue())
+        XCTAssertEqual(90, sensor.rawValue(landscapeMode: false))
+        XCTAssertEqual(90, sensor.rawValue(landscapeMode: true))
 
         // S
         locationManager.magneticHeading = 180
-        XCTAssertEqual(180, sensor.rawValue())
+        XCTAssertEqual(180, sensor.rawValue(landscapeMode: false))
+        XCTAssertEqual(180, sensor.rawValue(landscapeMode: true))
 
         // W
         locationManager.magneticHeading = 270
-        XCTAssertEqual(270, sensor.rawValue())
-
+        XCTAssertEqual(270, sensor.rawValue(landscapeMode: false))
+        XCTAssertEqual(270, sensor.rawValue(landscapeMode: true))
     }
 
     func testConvertToStandardized() {
@@ -89,6 +93,14 @@ final class CompassDirectionSensorTest: XCTestCase {
 
         // Kanye's daughter
         XCTAssertEqual(45, sensor.convertToStandardized(rawValue: 315))
+    }
+
+    func testStandardizedValue() {
+        let convertToStandardizedValue = sensor.convertToStandardized(rawValue: sensor.rawValue(landscapeMode: false))
+        let standardizedValue = sensor.standardizedValue(landscapeMode: false)
+        let standardizedValueLandscape = sensor.standardizedValue(landscapeMode: true)
+        XCTAssertEqual(convertToStandardizedValue, standardizedValue)
+        XCTAssertEqual(standardizedValue, standardizedValueLandscape)
     }
 
     func testTag() {

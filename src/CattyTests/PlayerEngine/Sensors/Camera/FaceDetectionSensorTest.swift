@@ -31,7 +31,8 @@ final class FaceDetectionSensorTest: XCTestCase {
 
     func testDefaultRawValue() {
         let sensor = FaceDetectedSensor { nil }
-        XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(landscapeMode: false), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(landscapeMode: true), accuracy: Double.epsilon)
     }
 
     override func setUp() {
@@ -48,15 +49,25 @@ final class FaceDetectionSensorTest: XCTestCase {
 
     func testRawValue() {
         self.cameraManagerMock.isFaceDetected = true
-        XCTAssertEqual(1, self.sensor.rawValue())
+        XCTAssertEqual(1, self.sensor.rawValue(landscapeMode: false))
+        XCTAssertEqual(1, self.sensor.rawValue(landscapeMode: true))
 
         self.cameraManagerMock.isFaceDetected = false
-        XCTAssertEqual(0, self.sensor.rawValue())
+        XCTAssertEqual(0, self.sensor.rawValue(landscapeMode: false))
+        XCTAssertEqual(0, self.sensor.rawValue(landscapeMode: true))
     }
 
     func testConvertToStandardized() {
         XCTAssertEqual(0, sensor.convertToStandardized(rawValue: 0))
         XCTAssertEqual(1, sensor.convertToStandardized(rawValue: 1))
+    }
+
+    func testStandardizedValue() {
+        let convertToStandardizedValue = sensor.convertToStandardized(rawValue: sensor.rawValue(landscapeMode: false))
+        let standardizedValue = sensor.standardizedValue(landscapeMode: false)
+        let standardizedValueLandscape = sensor.standardizedValue(landscapeMode: true)
+        XCTAssertEqual(convertToStandardizedValue, standardizedValue)
+        XCTAssertEqual(standardizedValue, standardizedValueLandscape)
     }
 
     func testTag() {

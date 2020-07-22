@@ -57,20 +57,31 @@ final class DateDaySensorTest: XCTestCase {
     func testRawValue() {
         /* test one digit */
         self.sensor.mockDate = Calendar.current.date(from: DateComponents(year: 2018, month: 4, day: 6, hour: 5))!
-        XCTAssertEqual(6, Int(sensor.rawValue()))
+        XCTAssertEqual(6, Int(sensor.rawValue(landscapeMode: false)))
+        XCTAssertEqual(6, Int(sensor.rawValue(landscapeMode: true)))
 
         /* test two digits */
         self.sensor.mockDate = Calendar.current.date(from: DateComponents(year: 2018, month: 8, day: 22, hour: 7))!
-        XCTAssertEqual(22, Int(sensor.rawValue()))
+        XCTAssertEqual(22, Int(sensor.rawValue(landscapeMode: false)))
+        XCTAssertEqual(22, Int(sensor.rawValue(landscapeMode: true)))
 
         /* test edge case - almost the beginning of the next day */
         self.sensor.mockDate = Calendar.current.date(from: DateComponents(year: 2018, month: 6, day: 18, hour: 23))!
-        XCTAssertEqual(18, Int(sensor.rawValue()))
+        XCTAssertEqual(18, Int(sensor.rawValue(landscapeMode: false)))
+        XCTAssertEqual(18, Int(sensor.rawValue(landscapeMode: true)))
+    }
+
+    func testConvertToStandardizedValue() {
+        XCTAssertEqual(1, sensor.convertToStandardized(rawValue: 1))
+        XCTAssertEqual(10, sensor.convertToStandardized(rawValue: 10))
     }
 
     func testStandardizedValue() {
-        XCTAssertEqual(1, sensor.convertToStandardized(rawValue: 1))
-        XCTAssertEqual(10, sensor.convertToStandardized(rawValue: 10))
+        let convertToStandardizedValue = sensor.convertToStandardized(rawValue: sensor.rawValue(landscapeMode: false))
+        let standardizedValue = sensor.standardizedValue(landscapeMode: false)
+        let standardizedValueLandscape = sensor.standardizedValue(landscapeMode: true)
+        XCTAssertEqual(convertToStandardizedValue, standardizedValue)
+        XCTAssertEqual(standardizedValue, standardizedValueLandscape)
     }
 
     func testFormulaEditorSections() {

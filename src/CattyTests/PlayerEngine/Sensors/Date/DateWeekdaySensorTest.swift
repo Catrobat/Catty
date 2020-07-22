@@ -57,35 +57,43 @@ final class DateWeekdaySensorTest: XCTestCase {
     func testRawValue() {
         /* test Sunday */
         sensor.mockDate = Calendar.current.date(from: DateComponents(year: 2018, month: 6, day: 17, hour: 10))!
-        XCTAssertEqual(1, Int(sensor.rawValue()))
+        XCTAssertEqual(1, Int(sensor.rawValue(landscapeMode: false)))
+        XCTAssertEqual(1, Int(sensor.rawValue(landscapeMode: true)))
 
         /* test Monday */
         sensor.mockDate = Calendar.current.date(from: DateComponents(year: 2018, month: 6, day: 18, hour: 10))!
-        XCTAssertEqual(2, Int(sensor.rawValue()))
+        XCTAssertEqual(2, Int(sensor.rawValue(landscapeMode: false)))
+        XCTAssertEqual(2, Int(sensor.rawValue(landscapeMode: true)))
 
         /* test Tuesday */
         sensor.mockDate = Calendar.current.date(from: DateComponents(year: 2018, month: 6, day: 19, hour: 10))!
-        XCTAssertEqual(3, Int(sensor.rawValue()))
+        XCTAssertEqual(3, Int(sensor.rawValue(landscapeMode: false)))
+        XCTAssertEqual(3, Int(sensor.rawValue(landscapeMode: true)))
 
         /* test Wednesday */
         sensor.mockDate = Calendar.current.date(from: DateComponents(year: 2018, month: 6, day: 20, hour: 10))!
-        XCTAssertEqual(4, Int(sensor.rawValue()))
+        XCTAssertEqual(4, Int(sensor.rawValue(landscapeMode: false)))
+        XCTAssertEqual(4, Int(sensor.rawValue(landscapeMode: true)))
 
         /* test Thursday */
         sensor.mockDate = Calendar.current.date(from: DateComponents(year: 2018, month: 6, day: 21, hour: 10))!
-        XCTAssertEqual(5, Int(sensor.rawValue()))
+        XCTAssertEqual(5, Int(sensor.rawValue(landscapeMode: false)))
+        XCTAssertEqual(5, Int(sensor.rawValue(landscapeMode: true)))
 
         /* test Friday */
         sensor.mockDate = Calendar.current.date(from: DateComponents(year: 2018, month: 6, day: 22, hour: 10))!
-        XCTAssertEqual(6, Int(sensor.rawValue()))
+        XCTAssertEqual(6, Int(sensor.rawValue(landscapeMode: false)))
+        XCTAssertEqual(6, Int(sensor.rawValue(landscapeMode: true)))
 
         /* test Saturday */
         sensor.mockDate = Calendar.current.date(from: DateComponents(year: 2018, month: 6, day: 23, hour: 10))!
-        XCTAssertEqual(7, Int(sensor.rawValue()))
+        XCTAssertEqual(7, Int(sensor.rawValue(landscapeMode: false)))
+        XCTAssertEqual(7, Int(sensor.rawValue(landscapeMode: true)))
 
         /* test edge case - almost the beginning of the next day - Tuesday */
         sensor.mockDate = Calendar.current.date(from: DateComponents(year: 2018, month: 6, day: 19, hour: 23))!
-        XCTAssertEqual(3, Int(sensor.rawValue()))
+        XCTAssertEqual(3, Int(sensor.rawValue(landscapeMode: false)))
+        XCTAssertEqual(3, Int(sensor.rawValue(landscapeMode: true)))
     }
 
     func testConvertToStandardized() {

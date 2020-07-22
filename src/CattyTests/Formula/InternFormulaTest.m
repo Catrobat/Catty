@@ -47,7 +47,7 @@
 
 - (void)setUp {
     [super setUp];
-    _formulaManager = [[FormulaManager alloc] initWithSceneSize:CGSizeZero];
+    _formulaManager = [[FormulaManager alloc] initWithSceneSize:CGSizeZero andLandscapeMode: false];
 }
 
 - (void)testInsertRightToCurrentToken

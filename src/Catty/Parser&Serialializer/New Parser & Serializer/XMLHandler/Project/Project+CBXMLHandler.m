@@ -20,10 +20,11 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+#import "Pocket_Code-Swift.h"
 #import "Project+CBXMLHandler.h"
 #import "GDataXMLElement+CustomExtensions.h"
 #import "CBXMLValidator.h"
-#import "VariablesContainer+CBXMLHandler.h"
+#import "UserDataContainer+CBXMLHandler.h"
 #import "SpriteObject+CBXMLHandler.h"
 #import "CBXMLParserContext.h"
 #import "CBXMLSerializerContext.h"
@@ -42,10 +43,10 @@
     Project *project = [Project new];
     // IMPORTANT: DO NOT CHANGE ORDER HERE!!
     project.header = [self parseAndCreateHeaderFromElement:xmlElement withContext:context];
-    project.variables = [self parseAndCreateVariablesFromElement:xmlElement withContext:context];
+    project.userData = [self parseAndCreateVariablesFromElement:xmlElement withContext:context];
     project.objectList = [self parseAndCreateObjectsFromElement:xmlElement withContext:context];
     
-    [self addMissingVariablesAndListsToVariablesContainer:project.variables withContext:context];
+    [self addMissingVariablesAndListsToVariablesContainer:project.userData withContext:context];
     return project;
 }
 
@@ -105,13 +106,13 @@
 }
 
 #pragma mark Variable parsing
-+ (VariablesContainer*)parseAndCreateVariablesFromElement:(GDataXMLElement*)projectElement
++ (UserDataContainer*)parseAndCreateVariablesFromElement:(GDataXMLElement*)projectElement
                                               withContext:(CBXMLParserContext*)context
 {
-    return [context parseFromElement:projectElement withClass:[VariablesContainer class]];
+    return [context parseFromElement:projectElement withClass:[UserDataContainer class]];
 }
 
-+ (void)addMissingVariablesAndListsToVariablesContainer:(VariablesContainer*)varAndListContainer
++ (void)addMissingVariablesAndListsToVariablesContainer:(UserDataContainer*)varAndListContainer
                                     withContext:(CBXMLParserContext*)context
 {
     for(NSString *objectName in context.formulaVariableNameList) {
@@ -124,9 +125,7 @@
         
         for(NSString *variableName in variableList) {
             if(![varAndListContainer getUserVariableNamed:variableName forSpriteObject:object]) {
-                UserVariable *userVariable = [UserVariable new];
-                userVariable.name = variableName;
-                userVariable.isList = false;
+                UserVariable *userVariable = [[UserVariable alloc] initWithName:variableName];
                 
                 [varAndListContainer addObjectVariable:userVariable forObject:object];
                 NSDebug(@"Added UserVariable with name %@ to global object "\
@@ -146,9 +145,7 @@
         
         for(NSString *listName in listOfLists) {
             if(![varAndListContainer getUserListNamed:listName forSpriteObject:object]) {
-                UserVariable *userList = [UserVariable new];
-                userList.name = listName;
-                userList.isList = true;
+                UserList *userList = [[UserList alloc] initWithName:listName];
                 
                 [varAndListContainer addObjectList:userList forObject:object];
                 NSDebug(@"Added a user list with name %@ to global object "\
@@ -178,7 +175,7 @@
 {
     // update context object
     context.spriteObjectList = self.objectList;
-    context.variables = self.variables;
+    context.userData = self.userData;
 
     // generate xml element for program
     GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"program" context:context];
@@ -194,8 +191,8 @@
     }
     [xmlElement addChild:objectListXmlElement context:context];
 
-    if (self.variables) {
-        [xmlElement addChild:[self.variables xmlElementWithContext:context] context:context];
+    if (self.userData) {
+        [xmlElement addChild:[self.userData xmlElementWithContext:context] context:context];
     }
 
     // add pseudo <settings/> element to produce a Catroid equivalent XML (unused at the moment)

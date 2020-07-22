@@ -31,20 +31,15 @@ final class UserVariableTests: XCTestCase {
     }
 
     func testInit() {
-        let userVariable = UserVariable()
-        userVariable.name = "userVar"
-        userVariable.isList = true
+        let userVariable1 = UserVariable(name: "testName1")
+        let userVariable2 = UserVariable(variable: userVariable1)
 
-        let userVariableCopy = UserVariable(variable: userVariable)!
-
-        XCTAssertEqual(userVariable.name, userVariableCopy.name)
-        XCTAssertTrue(userVariable.name == userVariableCopy.name)
-        XCTAssertEqual(userVariable.isList, userVariableCopy.isList)
+        XCTAssertTrue(userVariable1.isEqual(userVariable2))
+        XCTAssertFalse(userVariable1 === userVariable2)
     }
 
     func testMutableCopyWithContext() {
-        let userVariable = UserVariable()
-        userVariable.name = "userVar"
+        let userVariable = UserVariable(name: "userVar")
 
         let context = CBMutableCopyContext()
         XCTAssertEqual(0, context.updatedReferences.count)
@@ -55,11 +50,8 @@ final class UserVariableTests: XCTestCase {
     }
 
     func testMutableCopyAndUpdateReference() {
-        let userVariableA = UserVariable()
-        userVariableA.name = "userVar"
-
-        let userVariableB = UserVariable()
-        userVariableB.name = "userVar"
+        let userVariableA = UserVariable(name: "userVar")
+        let userVariableB = UserVariable(name: "userVar")
 
         let context = CBMutableCopyContext()
         context.updateReference(userVariableA, withReference: userVariableB)
@@ -69,5 +61,99 @@ final class UserVariableTests: XCTestCase {
         XCTAssertEqual(userVariableA.name, userVariableCopy.name)
         XCTAssertFalse(userVariableA === userVariableCopy)
         XCTAssertTrue(userVariableB === userVariableCopy)
+    }
+
+    func testIsEqualToUserVariableForEmptyInit() {
+        let userVariableA = UserVariable(name: "userVar")
+        let userVariableB = UserVariable(name: "userVar")
+
+        userVariableA.value = "NewValue"
+        userVariableB.value = "valueB"
+        XCTAssertFalse(userVariableA.isEqual(userVariableB))
+
+        userVariableB.value = "NewValue"
+        XCTAssertTrue(userVariableA.isEqual(userVariableB))
+    }
+
+    func testIsEqualToUserVariableForVariable() {
+        let userVariableA = UserVariable(name: "userVar")
+        let userVariableB = UserVariable(name: "userVar")
+
+        userVariableA.value = "NewValue"
+        userVariableB.value = "valueB"
+        XCTAssertFalse(userVariableB.isEqual(userVariableA))
+
+        userVariableB.value = "NewValue"
+        XCTAssertTrue(userVariableB.isEqual(userVariableA))
+    }
+
+    func testIsEqualToUserVariableForSameValueTypeDifferentName() {
+        let userVariableA = UserVariable(name: "userVariable")
+        let userVariableB = UserVariable(name: "userVariableB")
+        let userVariableC = UserVariable(name: "userVariable")
+
+        userVariableA.value = "NewValue"
+        userVariableB.value = "NewValue"
+        userVariableC.value = "NewValue"
+        XCTAssertFalse(userVariableB.isEqual(userVariableA))
+        XCTAssertTrue(userVariableC.isEqual(userVariableA))
+    }
+
+    func testSet() {
+        let userVariable1 = UserVariable(name: "testName1")
+
+        XCTAssertNil(userVariable1.value)
+
+        userVariable1.value = 10
+        XCTAssertEqual(10, userVariable1.value as! Int)
+
+        userVariable1.value = "testValue"
+        XCTAssertEqual("testValue", userVariable1.value as! String)
+    }
+
+    func testSetWithInvalidDataType() {
+        let userVariable1 = UserVariable(name: "testName1")
+
+        XCTAssertNil(userVariable1.value)
+
+        let formula = Formula(double: 50.50)!
+        userVariable1.value = formula
+        XCTAssertEqual(0, userVariable1.value as! Int)
+    }
+
+    func testChange() {
+        let userVariable1 = UserVariable(name: "testName1")
+
+        XCTAssertNil(userVariable1.value)
+
+        userVariable1.value = 10
+        XCTAssertEqual(10, userVariable1.value as! Int)
+
+        userVariable1.change(by: 10)
+        XCTAssertEqual(20, userVariable1.value as! Int)
+    }
+
+    func testChangeToInvalidDataType() {
+        let userVariable1 = UserVariable(name: "testName1")
+
+        XCTAssertNil(userVariable1.value)
+
+        userVariable1.value = "10"
+        XCTAssertEqual("10", userVariable1.value as! String)
+
+        userVariable1.change(by: 10)
+        XCTAssertEqual("10", userVariable1.value as! String)
+    }
+
+    func testThreadSafety() {
+        let iterations = 1000
+
+        let userVariable = UserVariable(name: "name")
+        userVariable.value = NSNumber(0)
+
+        DispatchQueue.concurrentPerform(iterations: iterations) { _ in
+            userVariable.change(by: 1)
+        }
+        XCTAssertEqual(iterations, userVariable.value as! Int)
     }
 }

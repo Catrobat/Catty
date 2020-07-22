@@ -72,6 +72,11 @@ final class CBScheduler: CBSchedulerProtocol {
         _spriteNodes[spriteNodeName] = spriteNode
     }
 
+    func spriteNodes() -> [CBSpriteNode] {
+        let spriteNodes = Array(_spriteNodes.values)
+        return spriteNodes
+    }
+
     func registerContext(_ context: CBScriptContextProtocol) {
         guard let spriteName = context.spriteNode.name else { fatalError("Sprite node has no name!") }
         precondition(!_contexts.contains(context))

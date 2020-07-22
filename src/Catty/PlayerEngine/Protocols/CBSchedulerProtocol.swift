@@ -35,6 +35,9 @@ protocol CBSchedulerProtocol: AnyObject {
     func registerSpriteNode(_ spriteNode: CBSpriteNode)
     func registerContext(_ context: CBScriptContextProtocol)
 
+    // spriteNodes
+    func spriteNodes() -> [CBSpriteNode]
+
     // events
     func run()
     func shutdown()

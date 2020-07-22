@@ -33,11 +33,6 @@
 #define kFirstSwipeDuration 0.65f
 #define kHideMenuViewDelay 0.45f
 
-// Scene
-
-#define kSceneDefaultFont @"Helvetica"
-#define kSceneLabelFontSize 45.0f
-
 // Blocked characters for project names, object names, images names, sounds names and variable/list names
 #define kTextFieldBlockedCharacters @""
 
@@ -108,6 +103,7 @@ typedef NS_ENUM(NSUInteger, kBrickCategoryType) {
     kVariableBrick             = 5,
     kArduinoBrick              = 6,
     kPhiroBrick                = 7,
+    kPenBrick                  = 8,
     kInvisible                = 99,
     kFavouriteBricks           = 0
 };

@@ -104,7 +104,7 @@
 "arduino digital" = "arduino digital";
 
 /* No comment provided by engineer. */
-"Arduino extension" = "Blocos Arduino";
+"Arduino extension" = "Arduino extension";
 
 /* No comment provided by engineer. */
 "at " = "em ";
@@ -254,6 +254,9 @@
 "Choose image" = "Selecionar Imagem";
 
 /* No comment provided by engineer. */
+"Clear" = "Clear";
+
+/* No comment provided by engineer. */
 "Clear graphic effects" = "Limpar efeitos gráficos";
 
 /* No comment provided by engineer. */
@@ -281,7 +284,7 @@
 "Computed result is TRUE" = "O resultado calculado é VERDADEIRO";
 
 /* No comment provided by engineer. */
-"Confirm password" = "Confirme sua senha";
+"Confirm password" = "Confirm password";
 
 /* bluetooth */
 "Connection failed" = "Ligação falhou";
@@ -638,7 +641,7 @@
 "Following features used in this project are not compatible with this version of Pocket Code:" = "Following features used in this project are not compatible with this version of Pocket Code:";
 
 /* No comment provided by engineer. */
-"for" = "durante";
+"for" = "for";
 
 /* No comment provided by engineer. */
 "for all actors or objects" = "for all actors or objects";
@@ -686,7 +689,7 @@
 "Green" = "Verde";
 
 /* No comment provided by engineer. */
-"green" = "Verde";
+"green" = "green";
 
 /* No comment provided by engineer. */
 "gyro-sensor" = "sensor-giroscópico";
@@ -701,7 +704,7 @@
 "Hide" = "Esconder";
 
 /* No comment provided by engineer. */
-"Hide details" = "Esconder pormenores";
+"Hide details" = "Hide details";
 
 /* No comment provided by engineer. */
 "Hide variable" = "Esconder variável";
@@ -869,10 +872,10 @@
 "look" = "aparência";
 
 /* No comment provided by engineer. */
-"look name" = "nome_aparência";
+"look name" = "look name";
 
 /* No comment provided by engineer. */
-"look number" = "número_aparência";
+"look number" = "look number";
 
 /* No comment provided by engineer. */
 "Looks" = "Aparências";
@@ -899,7 +902,7 @@
 "Measure" = "Medida";
 
 /* No comment provided by engineer. */
-"Media library" = "Biblioteca Multimédia";
+"Media library" = "Media library";
 
 /* paint */
 "Menu" = "Menu";
@@ -1118,6 +1121,15 @@
 "Passwords do not match" = "As senhas não conferem";
 
 /* No comment provided by engineer. */
+"Pen" = "Pen";
+
+/* No comment provided by engineer. */
+"Pen down" = "Pen down";
+
+/* No comment provided by engineer. */
+"Pen up" = "Pen up";
+
+/* No comment provided by engineer. */
 "Phiro" = "Phiro";
 
 /* No comment provided by engineer. */
@@ -1211,7 +1223,7 @@
 "position y" = "posição_y";
 
 /* No comment provided by engineer. */
-"Preview" = "Pré visualizar";
+"Preview" = "Preview";
 
 /* No comment provided by engineer. */
 "Previous background" = "Previous background";
@@ -1221,9 +1233,6 @@
 
 /* No comment provided by engineer. */
 "Privacy Settings" = "Configurações de Privacidade";
-
-/* No comment provided by engineer. */
-"Problems occured while uploading your project" = "Problems occured while uploading your project";
 
 /* No comment provided by engineer. */
 "Project" = "Projeto";
@@ -1259,7 +1268,7 @@
 "Rectangle / Square" = "Rectângulo / Quadrado";
 
 /* No comment provided by engineer. */
-"red" = "Vermelho";
+"red" = "red";
 
 /* paint */
 "Red" = "Vermelho";
@@ -1292,7 +1301,7 @@
 "Repeat" = "Repetir";
 
 /* No comment provided by engineer. */
-"Repeat until" = "Repetir até";
+"Repeat until" = "Repeat until";
 
 /* No comment provided by engineer. */
 "Replace item in list" = "Substituir item na lista";
@@ -1337,6 +1346,9 @@
 "Say" = "Say";
 
 /* No comment provided by engineer. */
+"Scene" = "Scene";
+
+/* No comment provided by engineer. */
 "Script" = "Script";
 
 /* No comment provided by engineer. */
@@ -1379,7 +1391,7 @@
 "Select Phiro" = "Seleccionar o Phiro";
 
 /* No comment provided by engineer. */
-"Sending anonymous crash reports" = "Enviar relatórios de acidente anônimo";
+"Sending anonymous crash reports" = "Sending anonymous crash reports";
 
 /* No comment provided by engineer. */
 "Sensors" = "Sensores";
@@ -1392,6 +1404,9 @@
 
 /* No comment provided by engineer. */
 "Server is taking to long to respond, please try again later." = "Server is taking to long to respond, please try again later.";
+
+/* No comment provided by engineer. */
+"Session expired, please log in." = "Session expired, please log in.";
 
 /* No comment provided by engineer. */
 "Set Arduino digital pin" = "Definir Pino Digital Arduino";
@@ -1410,6 +1425,9 @@
 
 /* No comment provided by engineer. */
 "Set description" = "Definir descrição";
+
+/* No comment provided by engineer. */
+"Set pen size to" = "Set pen size to";
 
 /* No comment provided by engineer. */
 "Set Phiro light" = "Definir luz do Phiro";
@@ -1439,7 +1457,7 @@
 "Show" = "Mostrar";
 
 /* No comment provided by engineer. */
-"Show details" = "Mostrar pormenores";
+"Show details" = "Show details";
 
 /* No comment provided by engineer. */
 "Show variable" = "Mostrar variável";
@@ -1455,6 +1473,9 @@
 
 /* No comment provided by engineer. */
 "SO" = "Sol";
+
+/* No comment provided by engineer. */
+"Something went wrong while uploading the project." = "Ocorreu um erro ao fazer o upload do programa.";
 
 /* No comment provided by engineer. */
 "Sound" = "Som";
@@ -1590,6 +1611,9 @@
 
 /* No comment provided by engineer. */
 "This feature is coming soon!" = "Este recurso está chegando em breve!";
+
+/* No comment provided by engineer. */
+"This list can not be deleted because it is still in use." = "A lista não pôde ser deletada pois ela ainda está em uso.";
 
 /* No comment provided by engineer. */
 "This variable can not be deleted because it is still in use." = "Esta variável não pode ser excluída porque ainda está em uso.";
@@ -1769,7 +1793,7 @@
 "When project started" = "When project started";
 
 /* No comment provided by engineer. */
-"When stage is tapped" = "Quando alguém toca no ecrã";
+"When stage is tapped" = "When stage is tapped";
 
 /* No comment provided by engineer. */
 "When tapped" = "Quando tocado";

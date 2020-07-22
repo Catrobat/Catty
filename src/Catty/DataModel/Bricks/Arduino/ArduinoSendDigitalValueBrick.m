@@ -50,7 +50,7 @@
 
 - (NSArray*)getFormulas
 {
-    return @[self.pin,self.value];
+   return @[self.pin,self.value];
 }
 
 - (BOOL)allowsStringFormula

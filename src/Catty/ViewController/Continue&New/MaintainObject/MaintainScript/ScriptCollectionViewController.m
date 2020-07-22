@@ -116,7 +116,7 @@
     [[BrickInsertManager sharedInstance] reset];
     self.isEditingBrickMode = NO;
     self.batchUpdateMutex = NO;
-    self.formulaManager = [[FormulaManager alloc] initWithSceneSize: CGSizeMake([self.object.project.header.screenWidth floatValue], [self.object.project.header.screenHeight floatValue])];
+    self.formulaManager = [[FormulaManager alloc] initWithSceneSize: CGSizeMake([self.object.project.header.screenWidth floatValue], [self.object.project.header.screenHeight floatValue]) andLandscapeMode: self.object.project.header.landscapeMode];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -282,28 +282,34 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         NSString *disableTitle = ([brick isIfLogicBrick] ? (brick.isDisabled ? kLocalizedEnableCondition : kLocalizedDisableCondition)
                                   : ([brick isLoopBrick]) ? (brick.isDisabled ? kLocalizedEnableLoop : kLocalizedDisableLoop)
                                   : (brick.isDisabled ? kLocalizedEnableBrick : kLocalizedDisableBrick));
-        
-        actionSheet = [[[[[[AlertControllerBuilder actionSheetWithTitle:kLocalizedEditBrick]
-                       addCancelActionWithTitle:kLocalizedCancel handler:nil]
-                       addDestructiveActionWithTitle:destructiveTitle handler:^{
-                           [self removeBrickOrScript:scriptOrBrick atIndexPath:indexPath];
-                       }]
-                      addDefaultActionWithTitle:disableTitle handler:^{
-                           [self disableOrEnableWithBrick:brick];
-                           [self reloadData];
-                           [self.object.project saveToDiskWithNotification:YES];
-                       }]
-                       addDefaultActionWithTitle:kLocalizedCopyBrick handler:^{
-                           [self copyBrick:brick atIndexPath:indexPath];
-                       }]
-                       addDefaultActionWithTitle:kLocalizedMoveBrick handler:^{
-                           brick.animateInsertBrick = YES;
-                           brick.animateMoveBrick = YES;
-                           [[BrickInsertManager sharedInstance] setBrickMoveMode:YES];
-                           [self turnOnInsertingBrickMode];
-                           [self reloadData];
-                       }];
-        
+
+        actionSheet = [[AlertControllerBuilder actionSheetWithTitle:kLocalizedEditBrick]
+            addCancelActionWithTitle:kLocalizedCancel handler:nil];
+
+        [actionSheet addDestructiveActionWithTitle:destructiveTitle handler:^{
+            [self removeBrickOrScript:scriptOrBrick atIndexPath:indexPath];
+        }];
+
+        if (![self isInsideDisabledLoopOrIfWithBrick:brick]) {
+            [actionSheet addDefaultActionWithTitle:disableTitle handler:^{
+                [self disableOrEnableWithBrick:brick];
+                [self reloadData];
+                [self.object.project saveToDiskWithNotification:YES];
+            }];
+        }
+
+        [actionSheet addDefaultActionWithTitle:kLocalizedCopyBrick handler:^{
+            [self copyBrick:brick atIndexPath:indexPath];
+        }];
+
+        [actionSheet addDefaultActionWithTitle:kLocalizedMoveBrick handler:^{
+            brick.animateInsertBrick = YES;
+            brick.animateMoveBrick = YES;
+            [[BrickInsertManager sharedInstance] setBrickMoveMode:YES];
+            [self turnOnInsertingBrickMode];
+            [self reloadData];
+        }];
+
         if (brick.isAnimateable) {
             [actionSheet addDefaultActionWithTitle:kLocalizedAnimateBrick handler:^{
                 [self animate:indexPath brickCell:brickCell];
@@ -953,11 +959,11 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 
     NSMutableArray *allVariableNames = [NSMutableArray new];
     if (isProjectVar) {
-        for(UserVariable *var in [self.object.project.variables allVariables]) {
+        for(UserVariable *var in [UserDataContainer allVariablesForProject: self.object.project]) {
             [allVariableNames addObject:var.name];
         }
     } else {
-        for(UserVariable *var in [self.object.project.variables allVariablesForObject:self.object]) {
+        for(UserVariable *var in [UserDataContainer objectAndProjectVariablesForObject:self.object]) {
             [allVariableNames addObject:var.name];
         }
     }
@@ -968,16 +974,14 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                                         target:self
                                   cancelAction:@selector(reloadData)
                                     withObject:(id) ^(NSString* variableName) {
-                                        UserVariable *variable = [UserVariable new];
-                                        variable.name = variableName;
+                                        UserVariable *variable = [[UserVariable alloc] initWithName:variableName];
                                         variable.value = [NSNumber numberWithInt:0];
-                                        variable.isList = NO;
                                         if (isProjectVar) {
-                                            [self.object.project.variables.programVariableList addObject:variable];
+                                            [self.object.project.userData.programVariableList addObject:variable];
                                         } else { // object variable
-                                            [self.object.project.variables addObjectVariable:variable forObject:self.object];
+                                            [self.object.project.userData addObjectVariable:variable forObject:self.object];
                                         }
-                                        UserVariable *var = [self.object.project.variables getUserVariableNamed:(NSString*)variableName forSpriteObject:self.object];
+                                        UserVariable *var = [self.object.project.userData getUserVariableNamed:(NSString*)variableName forSpriteObject:self.object];
                                         BrickCell *brickCell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:self.variableIndexPath];
                                         Brick * brick = (Brick*)brickCell.scriptOrBrick;
                                         Brick<BrickVariableProtocol> *variableBrick;
@@ -1004,11 +1008,11 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 
     NSMutableArray *allListNames = [NSMutableArray new];
     if (isProjectList) {
-        for(UserVariable *list in [self.object.project.variables allLists]) {
+        for(UserVariable *list in [UserDataContainer allListsForProject: self.object.project]) {
             [allListNames addObject:list.name];
         }
     } else {
-        for(UserVariable *list in [self.object.project.variables allListsForObject:self.object]) {
+        for(UserVariable *list in [UserDataContainer objectAndProjectListsForObject:self.object]) {
             [allListNames addObject:list.name];
         }
     }
@@ -1019,16 +1023,13 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                                         target:self
                                   cancelAction:@selector(reloadData)
                                     withObject:(id) ^(NSString* listName) {
-                                        UserVariable *list = [UserVariable new];
-                                        list.name = listName;
-                                        list.value = [[NSMutableArray alloc] init];
-                                        list.isList = YES;
+                                        UserList *list = [[UserList alloc] initWithName:listName];
                                         if (isProjectList) {
-                                            [self.object.project.variables.programListOfLists addObject:list];
+                                            [self.object.project.userData.programListOfLists addObject:list];
                                         } else { // object list
-                                            [self.object.project.variables addObjectList:list forObject:self.object];
+                                            [self.object.project.userData addObjectList:list forObject:self.object];
                                         }
-                                        UserVariable *listToSet = [self.object.project.variables getUserListNamed:(NSString*)listName forSpriteObject:self.object];
+                                        UserList *listToSet = [self.object.project.userData getUserListNamed:(NSString*)listName forSpriteObject:self.object];
                                         BrickCell *brickCell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:self.variableIndexPath];
                                         Brick * brick = (Brick*)brickCell.scriptOrBrick;
                                         Brick<BrickListProtocol> *listBrick;
@@ -1206,7 +1207,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             return;
         } else {
             Brick<BrickVariableProtocol> *variableBrick = (Brick<BrickVariableProtocol>*)brick;
-            UserVariable *variable = [self.object.project.variables getUserVariableNamed:(NSString*)value forSpriteObject:self.object];
+            UserVariable *variable = [self.object.project.userData getUserVariableNamed:(NSString*)value forSpriteObject:self.object];
             if(variable)
                 [variableBrick setVariable:variable forLineNumber:line andParameterNumber:parameter];
         }
@@ -1232,7 +1233,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             return;
         } else {
             Brick<BrickListProtocol> *listBrick = (Brick<BrickListProtocol>*)brick;
-            UserVariable *list = [self.object.project.variables getUserListNamed:(NSString*)value forSpriteObject:self.object];
+            UserList *list = [self.object.project.userData getUserListNamed:(NSString*)value forSpriteObject:self.object];
             if(list)
                 [listBrick setList:list forLineNumber:line andParameterNumber:parameter];
         }

@@ -38,13 +38,34 @@
         type(of: self).tag
     }
 
-    func rawValue() -> Double {
+    func rawValue(landscapeMode: Bool) -> Double {
+        if !landscapeMode {
+            guard let inclinationSensor = self.getMotionManager() else { return type(of: self).defaultRawValue }
+            guard let deviceMotion = inclinationSensor.deviceMotion else {
+                return type(of: self).defaultRawValue
+            }
+            return deviceMotion.attitude.roll
+        } else {
+            let faceDown = (getMotionManager()?.accelerometerData?.acceleration.z ?? 0) > 0
+            if faceDown == false {
+                // screen up
+                return -rawValueYSensor()
+            } else {
+                if rawValueYSensor() > Double.epsilon {
+                    return Double.pi + rawValueYSensor()
+                } else {
+                    return -Double.pi + rawValueYSensor()
+                }
+            }
+        }
+    }
+
+    func rawValueYSensor() -> Double {
         guard let inclinationSensor = self.getMotionManager() else { return type(of: self).defaultRawValue }
         guard let deviceMotion = inclinationSensor.deviceMotion else {
             return type(of: self).defaultRawValue
         }
-
-        return deviceMotion.attitude.roll
+        return deviceMotion.attitude.pitch
     }
 
     // roll is between -pi, pi on both iOS and Android

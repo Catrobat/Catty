@@ -74,7 +74,9 @@
             self.look = nil;
         } else {
             GDataXMLElement *referenceXMLElement = [GDataXMLElement elementWithName:@"look" context:context];
-            NSString *refPath = [CBXMLSerializerHelper relativeXPathToLook:self.look inLookList:context.spriteObject.lookList];
+            
+            NSInteger depthOfResource = [CBXMLSerializerHelper getDepthOfResource:self forSpriteObject:context.spriteObject];
+            NSString *refPath = [CBXMLSerializerHelper relativeXPathToLook:self.look inLookList:context.spriteObject.lookList withDepth:depthOfResource];
             [referenceXMLElement addAttribute:[GDataXMLElement attributeWithName:@"reference" escapedStringValue:refPath]];
             [brick addChild:referenceXMLElement context:context];
         }

@@ -25,7 +25,6 @@
     @nonobjc func instruction() -> CBInstruction {
 
         guard let spriteObject = self.script?.object,
-            let variablesContainer = spriteObject.project?.variables,
             let elementFormula = self.elementFormula,
             let position = self.index
             else { fatalError("This should never happen!") }
@@ -36,7 +35,7 @@
             if userList != nil {
                 let valueResult = context.formulaInterpreter.interpret(elementFormula, for: spriteObject)
                 let positionResult = context.formulaInterpreter.interpretInteger(position, for: spriteObject)
-                variablesContainer.replaceItem(inUserList: userList, value: valueResult, atIndex: positionResult)
+                userList?.replace(at: positionResult, with: valueResult)
             }
             context.state = .runnable
         }

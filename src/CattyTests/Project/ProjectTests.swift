@@ -25,16 +25,20 @@
 import Nimble
 import XCTest
 
-class ProjectsTest: XCTestCase {
+class ProjectTest: XCTestCase {
 
     var project: Project!
     var fileManager: CBFileManager!
+    var object: SpriteObject!
 
     override func setUp() {
         super.setUp()
 
         fileManager = CBFileManager.shared()
         deleteAllProjectsAndCreateDefaultProject()
+
+        self.object = SpriteObject()
+        self.object.project = self.project
     }
 
     override func tearDown() {
@@ -80,7 +84,6 @@ class ProjectsTest: XCTestCase {
         let objectName = "newObject"
         let copiedObjectName = "copiedObject"
 
-        let object = SpriteObject()
         object.name = objectName
 
         let ifThenLogicBeginBrick = IfThenLogicBeginBrick()
@@ -93,7 +96,7 @@ class ProjectsTest: XCTestCase {
         let script = StartScript()
         script.brickList.addObjects(from: [ifThenLogicBeginBrick, ifThenLogicEndBrick] as [AnyObject])
         object.scriptList.add(script)
-        project.objectList.add(object)
+        project.objectList.add(object as Any)
 
         let initialObjectSize = project.objectList.count
         XCTAssertTrue(initialObjectSize > 0)
@@ -123,7 +126,6 @@ class ProjectsTest: XCTestCase {
         let objectName = "newObject"
         let copiedObjectName = "copiedObject"
 
-        let object = SpriteObject()
         object.name = objectName
 
         let ifLogicBeginBrick = IfLogicBeginBrick()
@@ -141,7 +143,7 @@ class ProjectsTest: XCTestCase {
         let script = StartScript()
         script.brickList.addObjects(from: [ifLogicBeginBrick, ifLogicElseBrick, ifLogicEndBrick] as [AnyObject])
         object.scriptList.add(script)
-        project.objectList.add(object)
+        project.objectList.add(object as Any)
 
         let initialObjectSize = project.objectList.count
         XCTAssertTrue(initialObjectSize > 0)
@@ -179,13 +181,11 @@ class ProjectsTest: XCTestCase {
     }
 
     func testCopyObjectWithObjectVariable() {
-        let object = SpriteObject()
         object.name = "newObjectName"
-        project.objectList.add(object)
+        project.objectList.add(object as Any)
 
-        let variable = UserVariable()
-        variable.name = "userVariable"
-        project.variables.addObjectVariable(variable, for: object)
+        let variable = UserVariable(name: "userVariable")
+        project.userData.addObjectVariable(variable, for: object)
 
         let setVariableBrick = SetVariableBrick()
         setVariableBrick.userVariable = variable
@@ -197,7 +197,7 @@ class ProjectsTest: XCTestCase {
         let initialObjectSize = project.objectList.count
         XCTAssertTrue(initialObjectSize > 0)
 
-        let initialVariableSize = project.variables.allVariables().count
+        let initialVariableSize = UserDataContainer.allVariables(for: project).count
         XCTAssertTrue(initialVariableSize > 0)
 
         let copiedObject = project.copy(object, withNameForCopiedObject: "copiedObjectName")
@@ -205,7 +205,7 @@ class ProjectsTest: XCTestCase {
 
         let objectList = project.objectList
         XCTAssertEqual(initialObjectSize + 1, objectList.count)
-        XCTAssertEqual(initialVariableSize + 1, project.variables.allVariables().count)
+        XCTAssertEqual(initialVariableSize + 1, UserDataContainer.allVariables(for: project).count)
         XCTAssertEqual((objectList[initialObjectSize] as! SpriteObject).name, copiedObject.name)
 
         let copiedScript = copiedObject.scriptList[0] as! Script
@@ -215,55 +215,47 @@ class ProjectsTest: XCTestCase {
 
         let copiedSetVariableBrick = copiedScript.brickList[0] as! SetVariableBrick
         XCTAssertNotNil(copiedSetVariableBrick.userVariable)
-        XCTAssertNotEqual(variable, copiedSetVariableBrick.userVariable)
+        XCTAssertFalse(variable === copiedSetVariableBrick.userVariable)
         XCTAssertEqual(variable.name, copiedSetVariableBrick.userVariable.name)
     }
 
     func testCopyObjectWithObjectList() {
-        let object = SpriteObject()
         object.name = "newObjectName"
-        project.objectList.add(object)
+        project.objectList.add(object as Any)
 
-        let list = UserVariable()
-        list.name = "userList"
-        list.isList = true
+        let list = UserList(name: "userList")
+        project.userData.addObjectList(list, for: object)
 
-        project.variables.addObjectList(list, for: object)
-
-        let variable = UserVariable()
-        variable.name = "userVariable"
-        project.variables.addObjectVariable(variable, for: object)
-
-        let setVariableBrick = SetVariableBrick()
-        setVariableBrick.userVariable = list
+        let brick = InsertItemIntoUserListBrick()
+        brick.userList = list
 
         let script = StartScript()
-        script.brickList.addObjects(from: [setVariableBrick] as [AnyObject])
+        script.brickList.addObjects(from: [brick] as [AnyObject])
         object.scriptList.add(script)
 
         let initialObjectSize = project.objectList.count
         XCTAssertTrue(initialObjectSize > 0)
 
-        let initialVariableSize = project.variables.allVariables().count
-        XCTAssertTrue(initialVariableSize > 0)
+        let initialListSize = UserDataContainer.allLists(for: project).count
+        XCTAssertTrue(initialListSize > 0)
 
         let copiedObject = project.copy(object, withNameForCopiedObject: "copiedObjectName")
         XCTAssertEqual(1, copiedObject.scriptList.count)
 
         let objectList = project.objectList
         XCTAssertEqual(initialObjectSize + 1, objectList.count)
-        XCTAssertEqual(initialVariableSize + 1, project.variables.allVariables().count)
+        XCTAssertEqual(initialListSize + 1, UserDataContainer.allLists(for: project).count)
         XCTAssertEqual((objectList[initialObjectSize] as! SpriteObject).name, copiedObject.name)
 
         let copiedScript = copiedObject.scriptList[0] as! Script
 
         XCTAssertEqual(1, copiedScript.brickList.count)
-        XCTAssertTrue(copiedScript.brickList[0] is SetVariableBrick)
+        XCTAssertTrue(copiedScript.brickList[0] is InsertItemIntoUserListBrick)
 
-        let copiedSetVariableBrick = copiedScript.brickList[0] as! SetVariableBrick
-        XCTAssertNotNil(copiedSetVariableBrick.userVariable)
-        XCTAssertNotEqual(list, copiedSetVariableBrick.userVariable)
-        XCTAssertEqual(list.name, copiedSetVariableBrick.userVariable.name)
+        let copiedBrick = copiedScript.brickList[0] as! InsertItemIntoUserListBrick
+        XCTAssertNotNil(copiedBrick.userList)
+        XCTAssertFalse(list === copiedBrick.userList)
+        XCTAssertEqual(list.name, copiedBrick.userList.name)
     }
 
     func testRenameProject() {
@@ -372,5 +364,18 @@ class ProjectsTest: XCTestCase {
 
         let expectedNotification = Notification(name: .projectInvalidVersion, object: loadingInfo)
         expect(Project(loadingInfo: loadingInfo!)).to(postNotifications(equal([expectedNotification])))
+    }
+
+    func testAllObject() {
+        self.project = Project()
+
+        XCTAssertEqual(0, self.project.allObjects().count)
+
+        let objectA = SpriteObject()
+        objectA.name = "objectA"
+
+        project.objectList.add(objectA)
+        XCTAssertEqual(1, self.project.allObjects().count)
+        XCTAssertTrue(self.project.allObjects()[0] === objectA)
     }
 }

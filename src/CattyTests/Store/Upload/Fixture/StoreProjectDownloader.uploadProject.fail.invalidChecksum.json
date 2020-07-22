@@ -1,0 +1,38 @@
+{
+  "interactions" : [
+    {
+      "response" : {
+        "headers" : {
+          "x-status-code" : "200",
+          "Server" : "nginx",
+          "Strict-Transport-Security" : "max-age=15768000",
+          "Expires" : "Sun, 28 Jun 2020 16:29:50 GMT",
+          "Content-Encoding" : "gzip",
+          "Pragma" : "no-cache",
+          "Cache-Control" : "max-age=0, must-revalidate, private",
+          "Date" : "Sun, 30 Jun 2020 20:29:50 GMT",
+          "Set-Cookie" : "PHPSESSID=08r5ovfk57po7h9n69foiifi47; path=\/; HttpOnly, dtCookie=v_4_srv_1_sn_5FC9DA820BF6D321D76FF2DC94A60284_perc_100000_ol_0_mul_1; Path=\/; Domain=.catrob.at",
+          "Content-Type" : "application\/json"
+        },
+        "status" : 200,
+        "body" : {
+          "answer" : "invalid checksum",
+          "statusCode" : 504,
+          "preHeaderMessages" : ""
+        },
+        "url" : "https:\/\/web-test.catrob.at\/pocketcode\/api\/upload\/upload.json"
+      },
+      "request" : {
+        "headers" : {
+          "Content-Type" : "multipart\/form-data; boundary=---------------------------98598263596598246508247098291---------------------------",
+          "Content-Length" : "1229"
+        },
+        "method" : "POST",
+        "url" : "https:\/\/web-test.catrob.at\/pocketcode\/api\/upload\/upload.json",
+        "body" : "LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS05ODU5ODI2MzU5NjU5ODI0NjUwODI0NzA5ODI5MS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KQ29udGVudC1EaXNwb3NpdGlvbjogZm9ybS1kYXRhOyBuYW1lPSJwcm9qZWN0VGl0bGUiDQoNCk15IGZpcnN0IHByb2plY3QNCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tOTg1OTgyNjM1OTY1OTgyNDY1MDgyNDcwOTgyOTEtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCkNvbnRlbnQtRGlzcG9zaXRpb246IGZvcm0tZGF0YTsgbmFtZT0icHJvamVjdERlc2NyaXB0aW9uIg0KDQoNCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tOTg1OTgyNjM1OTY1OTgyNDY1MDgyNDcwOTgyOTEtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCkNvbnRlbnQtRGlzcG9zaXRpb246IGZvcm0tZGF0YTsgbmFtZT0iZmlsZUNoZWNrc3VtIg0KDQphYTY1NTk1NGYzMTYyY2NmNTJhMGU3YTUyNTNjZjlmMw0KLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS05ODU5ODI2MzU5NjU5ODI0NjUwODI0NzA5ODI5MS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KQ29udGVudC1EaXNwb3NpdGlvbjogZm9ybS1kYXRhOyBuYW1lPSJ0b2tlbiINCg0KdmFsaWRUb2tlbg0KLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS05ODU5ODI2MzU5NjU5ODI0NjUwODI0NzA5ODI5MS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KQ29udGVudC1EaXNwb3NpdGlvbjogZm9ybS1kYXRhOyBuYW1lPSJ1c2VybmFtZSINCg0KVXNlck5hbWUNCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tOTg1OTgyNjM1OTY1OTgyNDY1MDgyNDcwOTgyOTEtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCkNvbnRlbnQtRGlzcG9zaXRpb246IGZvcm0tZGF0YTsgbmFtZT0iZGV2aWNlTGFuZ3VhZ2UiDQoNCmVuDQotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLTk4NTk4MjYzNTk2NTk4MjQ2NTA4MjQ3MDk4MjkxLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQpDb250ZW50LURpc3Bvc2l0aW9uOiBhdHRhY2htZW50OyBuYW1lPSJ1cGxvYWQiOyBmaWxlbmFtZT0iLnppcCIgDQpDb250ZW50LVR5cGU6IGFwcGxpY2F0aW9uL29jdGV0LXN0cmVhbQ0KDQp6aXBwZWRQcm9qZWN0RGF0YQ0KLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS05ODU5ODI2MzU5NjU5ODI0NjUwODI0NzA5ODI5MS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQo="
+      },
+      "recorded_at" : 1593361790.962342
+    }
+  ],
+  "name" : "StoreProjectDownloader.uploadProject.fail.invalidChecksum"
+}

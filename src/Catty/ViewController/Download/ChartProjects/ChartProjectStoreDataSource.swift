@@ -194,7 +194,7 @@ class ChartProjectStoreDataSource: NSObject, UITableViewDataSource, UITableViewD
         }
         self.delegate?.showLoadingIndicator(false)
 
-        self.downloader.fetchProjectDetails(for: cellProject) { project, error in
+        self.downloader.fetchProjectDetails(for: cellProject.projectId) { project, error in
             guard timer.isValid else { return }
             guard let StoreProject = project, error == nil else { return }
             cell.project = StoreProject

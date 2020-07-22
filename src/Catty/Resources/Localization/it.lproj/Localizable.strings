@@ -254,6 +254,9 @@
 "Choose image" = "Scegli immagine";
 
 /* No comment provided by engineer. */
+"Clear" = "Ripulisci";
+
+/* No comment provided by engineer. */
 "Clear graphic effects" = "Elimina gli effetti grafici";
 
 /* No comment provided by engineer. */
@@ -1118,6 +1121,15 @@
 "Passwords do not match" = "Le password non corrispondono";
 
 /* No comment provided by engineer. */
+"Pen" = "Penna";
+
+/* No comment provided by engineer. */
+"Pen down" = "Penna giù";
+
+/* No comment provided by engineer. */
+"Pen up" = "Penna su";
+
+/* No comment provided by engineer. */
 "Phiro" = "Phiro";
 
 /* No comment provided by engineer. */
@@ -1221,9 +1233,6 @@
 
 /* No comment provided by engineer. */
 "Privacy Settings" = "Impostazioni Privacy";
-
-/* No comment provided by engineer. */
-"Problems occured while uploading your project" = "Si sono verificati dei problemi durante il caricamento del progetto";
 
 /* No comment provided by engineer. */
 "Project" = "Progetto";
@@ -1337,6 +1346,9 @@
 "Say" = "Dire";
 
 /* No comment provided by engineer. */
+"Scene" = "Scene";
+
+/* No comment provided by engineer. */
 "Script" = "Script";
 
 /* No comment provided by engineer. */
@@ -1394,6 +1406,9 @@
 "Server is taking to long to respond, please try again later." = "Il server non ha risposto nei tempi previsti, riprova più tardi.";
 
 /* No comment provided by engineer. */
+"Session expired, please log in." = "Sessione scaduta, effettua nuovamente il login.";
+
+/* No comment provided by engineer. */
 "Set Arduino digital pin" = "Imposta Pin Digitale Arduino";
 
 /* No comment provided by engineer. */
@@ -1410,6 +1425,9 @@
 
 /* No comment provided by engineer. */
 "Set description" = "Imposta descrizione";
+
+/* No comment provided by engineer. */
+"Set pen size to" = "Imposta dimensione della penna a";
 
 /* No comment provided by engineer. */
 "Set Phiro light" = "Imposta la luce di Phiro";
@@ -1455,6 +1473,9 @@
 
 /* No comment provided by engineer. */
 "SO" = "SO";
+
+/* No comment provided by engineer. */
+"Something went wrong while uploading the project." = "Errore durante il caricamento del programma.";
 
 /* No comment provided by engineer. */
 "Sound" = "Suono";
@@ -1590,6 +1611,9 @@
 
 /* No comment provided by engineer. */
 "This feature is coming soon!" = "Questa funzionalità non è ancora attiva, arriverà presto!";
+
+/* No comment provided by engineer. */
+"This list can not be deleted because it is still in use." = "This list can not be deleted because it is still in use.";
 
 /* No comment provided by engineer. */
 "This variable can not be deleted because it is still in use." = "Questa variabile non può essere eliminata perché è ancora in uso.";

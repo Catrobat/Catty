@@ -1,18 +1,18 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <program>
   <header>
-    <applicationBuildName/>
+    <applicationBuildName></applicationBuildName>
     <applicationBuildNumber>0</applicationBuildNumber>
     <applicationName>Pocket Code</applicationName>
-    <applicationVersion>0.9.27</applicationVersion>
+    <applicationVersion>0.9.2-691-debug</applicationVersion>
     <catrobatLanguageVersion>0.992</catrobatLanguageVersion>
-    <dateTimeUpload/>
+    <dateTimeUpload></dateTimeUpload>
     <description>Credits: jga8gkimberleyt, and of course the excellent cast of Gossip Girl </description>
-    <deviceName>PRA-LX1</deviceName>
+    <deviceName>Nexus 7</deviceName>
     <landscapeMode>false</landscapeMode>
-    <mediaLicense>http://developer.catrobat.org/ccbysa_v4</mediaLicense>
+    <mediaLicense>http://developer.catrobat.org/ccbysa_v3</mediaLicense>
     <platform>Android</platform>
-    <platformVersion>26.0</platformVersion>
+    <platformVersion>18.0</platformVersion>
     <programLicense>http://developer.catrobat.org/agpl_v3</programLicense>
     <programName>Gossip Girl</programName>
     <remixOf></remixOf>
@@ -20,14 +20,14 @@
     <screenHeight>1824</screenHeight>
     <screenMode>STRETCH</screenMode>
     <screenWidth>1200</screenWidth>
-    <tags>Spiele</tags>
-    <url>/pocketcode/program/983</url>
+    <tags></tags>
+    <url>http://pocketcode.org/details/983</url>
     <userHandle>juliety</userHandle>
   </header>
   <settings/>
   <scenes>
     <scene>
-      <name>Szene 1</name>
+      <name>Scene 1</name>
       <objectList>
         <object type="SingleSprite" name="Background">
           <lookList>
@@ -698,6 +698,10 @@
                 <brick type="PlaceAtBrick">
                   <commentedOut>false</commentedOut>
                   <formulaList>
+                    <formula category="Y_POSITION">
+                      <type>NUMBER</type>
+                      <value>650</value>
+                    </formula>
                     <formula category="X_POSITION">
                       <rightChild>
                         <type>NUMBER</type>
@@ -705,10 +709,6 @@
                       </rightChild>
                       <type>OPERATOR</type>
                       <value>MINUS</value>
-                    </formula>
-                    <formula category="Y_POSITION">
-                      <type>NUMBER</type>
-                      <value>650</value>
                     </formula>
                   </formulaList>
                 </brick>
@@ -979,6 +979,10 @@
                 <brick type="PlaceAtBrick">
                   <commentedOut>false</commentedOut>
                   <formulaList>
+                    <formula category="Y_POSITION">
+                      <type>NUMBER</type>
+                      <value>150</value>
+                    </formula>
                     <formula category="X_POSITION">
                       <rightChild>
                         <type>NUMBER</type>
@@ -986,10 +990,6 @@
                       </rightChild>
                       <type>OPERATOR</type>
                       <value>MINUS</value>
-                    </formula>
-                    <formula category="Y_POSITION">
-                      <type>NUMBER</type>
-                      <value>150</value>
                     </formula>
                   </formulaList>
                 </brick>
@@ -1116,11 +1116,11 @@
                 <brick type="PlaceAtBrick">
                   <commentedOut>false</commentedOut>
                   <formulaList>
-                    <formula category="X_POSITION">
+                    <formula category="Y_POSITION">
                       <type>NUMBER</type>
                       <value>0</value>
                     </formula>
-                    <formula category="Y_POSITION">
+                    <formula category="X_POSITION">
                       <type>NUMBER</type>
                       <value>0</value>
                     </formula>
@@ -1426,4 +1426,3 @@
   <programVariableList/>
   <programListOfLists/>
 </program>
-

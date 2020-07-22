@@ -33,6 +33,7 @@ final class CBScene: SKScene {
     private final let formulaManager: FormulaManagerProtocol
     private final let soundEngine: AudioEngineProtocol
     private final let logger: CBLogger
+    private var frameCounter: Int
 
     init(size: CGSize,
          logger: CBLogger,
@@ -49,6 +50,7 @@ final class CBScene: SKScene {
         self.broadcastHandler = broadcastHandler
         self.formulaManager = formulaManager
         self.soundEngine = soundEngine
+        self.frameCounter = 0
         super.init(size: size)
         backgroundColor = UIColor.white
     }
@@ -59,6 +61,18 @@ final class CBScene: SKScene {
 
     // MARK: - Deinitializer
     @objc deinit { logger.info("Dealloc Scene") }
+
+    override func update(_ currentTime: TimeInterval) {
+
+        if frameCounter >= PlayerConfig.NumberOfFramesPerSpriteNodeUpdate {
+            frameCounter = 0
+            let spriteNodes = scheduler.spriteNodes()
+            spriteNodes.forEach { $0.update(currentTime) }
+        }
+
+        frameCounter += 1
+
+    }
 
     // MARK: - Scene events
     @objc override func willMove(from view: SKView) {
@@ -129,7 +143,7 @@ final class CBScene: SKScene {
         }
 
         guard let spriteObjectList = project.objectList as NSArray? as? [SpriteObject],
-            let variableList = frontend.project?.variables.allVariables() as NSArray? as? [UserVariable] else {
+            let variableList = UserDataContainer.allVariables(for: project) as NSArray? as? [UserVariable] else {
                 //fatalError
                 debugPrint("!! Invalid sprite object list given !! This should never happen!")
                 return false
@@ -199,14 +213,15 @@ final class CBScene: SKScene {
             }
         }
         for variable: UserVariable in variableList {
-            variable.textLabel = SKLabelNode(fontNamed: kSceneDefaultFont)
-            variable.textLabel.text = ""
-            variable.textLabel.zPosition = CGFloat(zPosition + 1)
-            variable.textLabel.fontColor = UIColor.black
-            variable.textLabel.fontSize = CGFloat(kSceneLabelFontSize)
-            variable.textLabel.isHidden = true
-            variable.textLabel.horizontalAlignmentMode = .left
-            addChild(variable.textLabel)
+            let label = SKLabelNode(fontNamed: SpriteKitDefines.defaultFont)
+            variable.textLabel = label
+            variable.textLabel?.text = ""
+            variable.textLabel?.zPosition = CGFloat(zPosition + 1)
+            variable.textLabel?.fontColor = UIColor.black
+            variable.textLabel?.fontSize = CGFloat(SpriteKitDefines.defaultLabelFontSize)
+            variable.textLabel?.isHidden = true
+            variable.textLabel?.horizontalAlignmentMode = .left
+            addChild(label)
         }
 
         formulaManager.setup(for: project, and: self)
@@ -238,5 +253,16 @@ final class CBScene: SKScene {
         formulaManager.stop()
         logger.info("All SpriteObjects and Scripts have been removed from Scene!")
         soundEngine.stop()
+    }
+
+    func clearPenLines() {
+
+        self.enumerateChildNodes(withName: SpriteKitDefines.penShapeNodeName) { node, _ in
+            guard let line = node as? LineShapeNode else {
+                fatalError("Could not cast SKNode named SpriteKitDefines.penShapeNodeName to LineShapeNode")
+            }
+            line.removeFromParent()
+        }
+
     }
 }

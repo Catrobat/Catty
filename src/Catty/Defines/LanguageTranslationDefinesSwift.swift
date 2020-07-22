@@ -257,6 +257,7 @@ let kLocalizedOn = NSLocalizedString("on", comment: "")
 let kLocalizedCameraBack = NSLocalizedString("back", comment: "")
 let kLocalizedCameraFront = NSLocalizedString("front", comment: "")
 let kLocalizedMoreInformation = NSLocalizedString("More information", comment: "")
+let kLocalizedScene = NSLocalizedString("Scene", comment: "")
 
 //************************************************************************************************************
 //**********************************       SHORT DESCRIPTIONS      *******************************************
@@ -401,6 +402,12 @@ let kLocalizedCamera = NSLocalizedString("Turn camera", comment: "")
 let kLocalizedChooseCamera = NSLocalizedString("Use camera", comment: "")
 let kLocalizedFor = NSLocalizedString("for", comment: "")
 
+// pen bricks
+let kLocalizedPenDown = NSLocalizedString("Pen down", comment: "")
+let kLocalizedPenUp = NSLocalizedString("Pen up", comment: "")
+let kLocalizedPenClear = NSLocalizedString("Clear", comment: "")
+let kLocalizedSetPenSize = NSLocalizedString("Set pen size to", comment: "")
+
 // sound bricks
 let kLocalizedSound = NSLocalizedString("Sound", comment: "")
 let kLocalizedPlaySound = NSLocalizedString("Start sound", comment: "")
@@ -487,7 +494,8 @@ let kLocalizedUploadSuccessful = NSLocalizedString("Upload successful", comment:
 let kLocalizedRegistrationSuccessful = NSLocalizedString("Registration successful", comment: "")
 let kLocalizedLoginSuccessful = NSLocalizedString("Login successful", comment: "")
 let kUploadSelectedProject = NSLocalizedString("Upload selected project", comment: "")
-let kLocalizedUploadProblem = NSLocalizedString("Problems occured while uploading your project", comment: "")
+let kLocalizedUploadProblem = NSLocalizedString("Something went wrong while uploading the project.", comment: "")
+let kLocalizedSessionExpired = NSLocalizedString("Session expired, please log in.", comment: "")
 let kLocalizedUploadSelectProject = NSLocalizedString("Please select a project to upload", comment: "")
 let kLocalizedNoWhitespaceAllowed = NSLocalizedString("No whitespace character allowed", comment: "")
 let kLocalizedAuthenticationFailed = NSLocalizedString("Authentication failed", comment: "")
@@ -578,6 +586,7 @@ let kUIFEObjectVars = NSLocalizedString("Object variables:", comment: "")
 let kUIFEProjectLists = NSLocalizedString("Project lists:", comment: "")
 let kUIFEObjectLists = NSLocalizedString("Object lists:", comment: "")
 let kUIFEDeleteVarBeingUsed = NSLocalizedString("This variable can not be deleted because it is still in use.", comment: "")
+let kUIFEDeleteListBeingUsed = NSLocalizedString("This list can not be deleted because it is still in use.", comment: "")
 let kUIFEActionVar = NSLocalizedString("Variable type", comment: "")
 let kUIFEActionList = NSLocalizedString("List type", comment: "")
 let kUIFEActionVarObj = NSLocalizedString("for this actor or object", comment: "")
@@ -689,6 +698,7 @@ let kLocalizedCategorySound = NSLocalizedString("Sound", comment: "")
 let kLocalizedCategoryVariable = NSLocalizedString("Variable", comment: "")
 let kLocalizedCategoryArduino = NSLocalizedString("Arduino", comment: "")
 let kLocalizedCategoryPhiro = NSLocalizedString("Phiro", comment: "")
+let kLocalizedCategoryPen = NSLocalizedString("Pen", comment: "")
 
 //************************************************************************************************************
 //************************************       PhiroDefines         ********************************************

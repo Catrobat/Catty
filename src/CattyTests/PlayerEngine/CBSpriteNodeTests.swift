@@ -40,7 +40,7 @@ final class CBSpriteNodeTests: XCTestCase {
     }
 
     func testPosition() {
-        spriteNode.catrobatPosition = CGPoint(x: 10, y: 20)
+        spriteNode.catrobatPosition = CBPosition(x: 10, y: 20)
 
         XCTAssertEqual(PositionXSensor.convertToRaw(userInput: 10, for: spriteNode.spriteObject),
                        Double(spriteNode.position.x),
@@ -53,7 +53,7 @@ final class CBSpriteNodeTests: XCTestCase {
     }
 
     func testPositionX() {
-        spriteNode.catrobatPositionX = 10
+        spriteNode.catrobatPosition = CBPosition(x: 10, y: spriteNode.catrobatPosition.y)
         XCTAssertEqual(PositionXSensor.convertToRaw(userInput: 10, for: spriteNode.spriteObject),
                        Double(spriteNode.position.x),
                        accuracy: epsilon,
@@ -61,7 +61,7 @@ final class CBSpriteNodeTests: XCTestCase {
     }
 
     func testPositionY() {
-        spriteNode.catrobatPositionY = 20
+        spriteNode.catrobatPosition = CBPosition(x: spriteNode.catrobatPosition.x, y: 20)
         XCTAssertEqual(PositionYSensor.convertToRaw(userInput: 20, for: spriteNode.spriteObject),
                        Double(spriteNode.position.y),
                        accuracy: epsilon,

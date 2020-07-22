@@ -46,18 +46,22 @@ final class FaceSizeSensorTest: XCTestCase {
     func testDefaultRawValue() {
         let sensor = FaceSizeSensor(sceneSize: sceneSize, faceDetectionManagerGetter: { nil })
 
-        XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(landscapeMode: false), accuracy: Double.epsilon)
+        XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(landscapeMode: true), accuracy: Double.epsilon)
     }
 
     func testRawValue() {
         self.cameraManagerMock.faceSizeRatio = 0.2
-        XCTAssertEqual(0.2, sensor.rawValue(), accuracy: Double.epsilon)
+        XCTAssertEqual(0.2, sensor.rawValue(landscapeMode: false), accuracy: Double.epsilon)
+        XCTAssertEqual(0.2, sensor.rawValue(landscapeMode: true), accuracy: Double.epsilon)
 
         self.cameraManagerMock.faceSizeRatio = 0.5
-        XCTAssertEqual(0.5, sensor.rawValue(), accuracy: Double.epsilon)
+        XCTAssertEqual(0.5, sensor.rawValue(landscapeMode: false), accuracy: Double.epsilon)
+        XCTAssertEqual(0.5, sensor.rawValue(landscapeMode: true), accuracy: Double.epsilon)
 
         self.cameraManagerMock.faceSizeRatio = 1.0
-        XCTAssertEqual(1.0, sensor.rawValue(), accuracy: Double.epsilon)
+        XCTAssertEqual(1.0, sensor.rawValue(landscapeMode: false), accuracy: Double.epsilon)
+        XCTAssertEqual(1.0, sensor.rawValue(landscapeMode: true), accuracy: Double.epsilon)
     }
 
     func testConvertToStandardized() {
@@ -73,6 +77,14 @@ final class FaceSizeSensorTest: XCTestCase {
 
         self.cameraManagerMock.faceDetectionFrameSize = nil
         XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.convertToStandardized(rawValue: 20), accuracy: Double.epsilon)
+    }
+
+    func testStandardizedValue() {
+        let convertToStandardizedValue = sensor.convertToStandardized(rawValue: sensor.rawValue(landscapeMode: false))
+        let standardizedValue = sensor.standardizedValue(landscapeMode: false)
+        let standardizedValueLandscape = sensor.standardizedValue(landscapeMode: true)
+        XCTAssertEqual(convertToStandardizedValue, standardizedValue)
+        XCTAssertEqual(standardizedValue, standardizedValueLandscape)
     }
 
     func testTag() {

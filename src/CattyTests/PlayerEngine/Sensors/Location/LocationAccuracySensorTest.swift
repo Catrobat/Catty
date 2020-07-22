@@ -43,17 +43,20 @@ final class LocationAccuracySensorTest: XCTestCase {
 
     func testDefaultRawValue() {
         let sensor = LocationAccuracySensor { nil }
-        XCTAssertEqual(LocationAccuracySensor.defaultRawValue, sensor.rawValue(), accuracy: Double.epsilon)
+        XCTAssertEqual(LocationAccuracySensor.defaultRawValue, sensor.rawValue(landscapeMode: false), accuracy: Double.epsilon)
+        XCTAssertEqual(LocationAccuracySensor.defaultRawValue, sensor.rawValue(landscapeMode: true), accuracy: Double.epsilon)
     }
 
     func testRawValue() {
         // positive value => valid location
         locationManager.locationAccuracy = 10
-        XCTAssertEqual(10, sensor.rawValue())
+        XCTAssertEqual(10, sensor.rawValue(landscapeMode: false))
+        XCTAssertEqual(10, sensor.rawValue(landscapeMode: true))
 
         // negative value => invalid location
         locationManager.locationAccuracy = -5
-        XCTAssertEqual(-5, sensor.rawValue())
+        XCTAssertEqual(-5, sensor.rawValue(landscapeMode: false))
+        XCTAssertEqual(-5, sensor.rawValue(landscapeMode: true))
     }
 
     func testConvertToStandardized() {
@@ -62,6 +65,14 @@ final class LocationAccuracySensorTest: XCTestCase {
 
         // invalid location
         XCTAssertEqual(0, sensor.convertToStandardized(rawValue: -1))
+    }
+
+    func testStandardizedValue() {
+        let convertToStandardizedValue = sensor.convertToStandardized(rawValue: sensor.rawValue(landscapeMode: false))
+        let standardizedValue = sensor.standardizedValue(landscapeMode: false)
+        let standardizedValueLandscape = sensor.standardizedValue(landscapeMode: true)
+        XCTAssertEqual(convertToStandardizedValue, standardizedValue)
+        XCTAssertEqual(standardizedValue, standardizedValueLandscape)
     }
 
     func testTag() {

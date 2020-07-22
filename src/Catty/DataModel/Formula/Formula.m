@@ -49,10 +49,10 @@
         if(value < 0) {
             double absValue = fabs(value);
             self.formulaTree = [[FormulaElement alloc] initWithElementType:OPERATOR value:MinusOperator.tag leftChild:nil rightChild:nil parent:nil];
-            FormulaElement *rightChild = [[FormulaElement alloc] initWithElementType:NUMBER value:[NSString stringWithFormat:@"%f", absValue] leftChild:nil rightChild:nil parent:self.formulaTree];
+            FormulaElement *rightChild = [[FormulaElement alloc] initWithElementType:NUMBER value:[NSString stringWithFormat:@"%.2f", absValue] leftChild:nil rightChild:nil parent:self.formulaTree];
             self.formulaTree.rightChild = rightChild;
         } else {
-            self.formulaTree = [[FormulaElement alloc] initWithElementType:NUMBER value:[NSString stringWithFormat:@"%f", value] leftChild:nil rightChild:nil parent:nil];
+            self.formulaTree = [[FormulaElement alloc] initWithElementType:NUMBER value:[NSString stringWithFormat:@"%.2f", value] leftChild:nil rightChild:nil parent:nil];
         }
     }
     return self;

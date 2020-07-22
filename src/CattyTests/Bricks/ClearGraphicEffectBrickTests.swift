@@ -41,7 +41,7 @@ final class ClearGraphicEffectBrickTests: AbstractBrickTest {
         object.spriteNode = spriteNode
         object.project = project
         self.scene.addChild(spriteNode)
-        spriteNode.catrobatPosition = CGPoint(x: 0.0, y: 0.0)
+        spriteNode.catrobatPosition = CBPosition(x: 0.0, y: 0.0)
 
         let bundle = Bundle(for: type(of: self))
         let filePath = bundle.path(forResource: "test.png", ofType: nil)
@@ -116,5 +116,14 @@ final class ClearGraphicEffectBrickTests: AbstractBrickTest {
 
         XCTAssertEqual(Double(spriteNode.alpha), TransparencySensor.defaultRawValue, accuracy: 0.0001, "ClearGraphic is not correctly calculated")
         XCTAssertEqual(Double(spriteNode.ciBrightness), BrightnessSensor.defaultRawValue, accuracy: 0.0001, "ClearGraphic brightness is not correctly calculated")
+    }
+
+    func testMutableCopy() {
+        let clearBrick = ClearGraphicEffectBrick()
+
+        let copiedClearBrick: ClearGraphicEffectBrick = clearBrick.mutableCopy(with: CBMutableCopyContext()) as! ClearGraphicEffectBrick
+
+        XCTAssertTrue(clearBrick.isEqual(to: copiedClearBrick))
+        XCTAssertFalse(clearBrick === copiedClearBrick)
     }
 }

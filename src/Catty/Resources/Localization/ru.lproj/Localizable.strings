@@ -32,7 +32,7 @@
 "Add" = "Добавить";
 
 /* No comment provided by engineer. */
-"Add actor or object" = "Add actor or object";
+"Add actor or object" = "Добавить актера или объект";
 
 /* No comment provided by engineer. */
 "add comment here..." = "добавьте здесь комментарий...";
@@ -86,7 +86,7 @@
 "and wait" = "и ждать";
 
 /* No comment provided by engineer. */
-"Animate brick-parts" = "Animate brick-parts";
+"Animate brick-parts" = "Анимированные кирпичи";
 
 /* No comment provided by engineer. */
 "Apr" = "Апр";
@@ -98,7 +98,7 @@
 "Arduino" = "Arduino";
 
 /* No comment provided by engineer. */
-"arduino analog" = "arduino analog";
+"arduino analog" = "аналог arduino";
 
 /* No comment provided by engineer. */
 "arduino digital" = "arduino digital";
@@ -252,6 +252,9 @@
 
 /* No comment provided by engineer. */
 "Choose image" = "Выбрать изображение";
+
+/* No comment provided by engineer. */
+"Clear" = "Стереть";
 
 /* No comment provided by engineer. */
 "Clear graphic effects" = "Очистить графические эффекты";
@@ -1118,6 +1121,15 @@
 "Passwords do not match" = "Пароли не совпадают";
 
 /* No comment provided by engineer. */
+"Pen" = "Перо";
+
+/* No comment provided by engineer. */
+"Pen down" = "Опустить перо";
+
+/* No comment provided by engineer. */
+"Pen up" = "Поднять перо";
+
+/* No comment provided by engineer. */
 "Phiro" = "Phiro";
 
 /* No comment provided by engineer. */
@@ -1221,9 +1233,6 @@
 
 /* No comment provided by engineer. */
 "Privacy Settings" = "Настройки приватности";
-
-/* No comment provided by engineer. */
-"Problems occured while uploading your project" = "Возникли проблемы при загрузке вашего проекта";
 
 /* No comment provided by engineer. */
 "Project" = "Проект";
@@ -1337,6 +1346,9 @@
 "Say" = "Cказать";
 
 /* No comment provided by engineer. */
+"Scene" = "Сцена\n";
+
+/* No comment provided by engineer. */
 "Script" = "Скрипт";
 
 /* No comment provided by engineer. */
@@ -1394,6 +1406,9 @@
 "Server is taking to long to respond, please try again later." = "Сервер слишком долго не отвечает, пожалуйста, попробуйте позже.";
 
 /* No comment provided by engineer. */
+"Session expired, please log in." = "Session expired, please log in.";
+
+/* No comment provided by engineer. */
 "Set Arduino digital pin" = "Установить Pin-код для Arduino";
 
 /* No comment provided by engineer. */
@@ -1410,6 +1425,9 @@
 
 /* No comment provided by engineer. */
 "Set description" = "Добавить описание";
+
+/* No comment provided by engineer. */
+"Set pen size to" = "Установить размер пера";
 
 /* No comment provided by engineer. */
 "Set Phiro light" = "Установить Phiro свет";
@@ -1455,6 +1473,9 @@
 
 /* No comment provided by engineer. */
 "SO" = "СО";
+
+/* No comment provided by engineer. */
+"Something went wrong while uploading the project." = "Произошла ошибка во время закачивания проекта.";
 
 /* No comment provided by engineer. */
 "Sound" = "Звук";
@@ -1590,6 +1611,9 @@
 
 /* No comment provided by engineer. */
 "This feature is coming soon!" = "В разработке!";
+
+/* No comment provided by engineer. */
+"This list can not be deleted because it is still in use." = "This list can not be deleted because it is still in use.";
 
 /* No comment provided by engineer. */
 "This variable can not be deleted because it is still in use." = "Эта переменная не может быть удалена, потому что она все еще используется.";

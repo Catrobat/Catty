@@ -21,9 +21,9 @@
  */
 
 #import "Project.h"
-#import "VariablesContainer.h"
+#import "UserDataContainer.h"
 #import "Util.h"
-#import "AppDelegate.h"
+#import "CBFileManager.h"
 #import "Parser.h"
 #import "Script.h"
 #import "Brick.h"
@@ -82,8 +82,8 @@
         if (currentObject == object) {
             [currentObject removeSounds:currentObject.soundList AndSaveToDisk:NO];
             [currentObject removeLooks:currentObject.lookList AndSaveToDisk:NO];
-            [currentObject.project.variables removeObjectVariablesForSpriteObject:currentObject];
-            [currentObject.project.variables removeObjectListsForSpriteObject:currentObject];
+            [currentObject.project.userData removeObjectVariablesForSpriteObject:currentObject];
+            [currentObject.project.userData removeObjectListsForSpriteObject:currentObject];
             currentObject.project = nil;
             [self.objectList removeObjectAtIndex:index];
             break;
@@ -137,12 +137,12 @@
     _objectList = objectList;
 }
 
-- (VariablesContainer*)variables
+- (UserDataContainer*)userData
 {
     // lazy instantiation
-    if (! _variables)
-        _variables = [VariablesContainer new];
-    return _variables;
+    if (! _userData)
+        _userData = [UserDataContainer new];
+    return _userData;
 }
 
 - (NSString*)projectPath
@@ -252,6 +252,11 @@
     return [objectNames copy];
 }
 
+- (NSArray<SpriteObject*>*)allObjects
+{
+    return self.objectList;
+}
+
 - (BOOL)hasObject:(SpriteObject *)object
 {
     return [self.objectList containsObject:object];
@@ -264,28 +269,36 @@
         return nil;
     }
     CBMutableCopyContext *context = [CBMutableCopyContext new];
-    NSMutableArray<UserVariable*> *copiedVariablesAndLists = [NSMutableArray new];
+    NSMutableArray<UserVariable*> *copiedVariables = [NSMutableArray new];
+    NSMutableArray<UserList*> *copiedLists = [NSMutableArray new];
     
-    NSMutableArray<UserVariable*> *variablesAndLists = [[NSMutableArray alloc] initWithArray:[self.variables objectVariablesForObject:sourceObject]];
-    [variablesAndLists addObjectsFromArray: [self.variables objectListsForObject:sourceObject]];
+    NSArray<UserVariable*> *variables = [[NSMutableArray alloc] initWithArray:[UserDataContainer objectVariablesForObject:sourceObject]];
+    NSArray<UserList*> *lists = [[NSMutableArray alloc] initWithArray:[UserDataContainer objectListsForObject:sourceObject]];
     
-    for (UserVariable *variableOrList in variablesAndLists) {
-        UserVariable *copiedVariableOrList = [[UserVariable alloc] initWithVariable:variableOrList];
+    for (UserVariable *variable in variables) {
+        UserVariable *copiedVariable = [[UserVariable alloc] initWithVariable:variable];
         
-        [copiedVariablesAndLists addObject:copiedVariableOrList];
-        [context updateReference:variableOrList WithReference:copiedVariableOrList];
+        [copiedVariables addObject:copiedVariable];
+        [context updateReference:variable WithReference:copiedVariable];
+    }
+    
+    for (UserList *list in lists) {
+        UserList *copiedList = [[UserList alloc] initWithList:list];
+        
+        [copiedLists addObject:copiedList];
+        [context updateReference:list WithReference:copiedList];
     }
     
     SpriteObject *copiedObject = [sourceObject mutableCopyWithContext:context];
     copiedObject.name = [Util uniqueName:nameOfCopiedObject existingNames:[self allObjectNames]];
     [self.objectList addObject:copiedObject];
     
-    for (UserVariable *variableOrList in copiedVariablesAndLists) {
-        if (variableOrList.isList) {
-            [self.variables addObjectList:variableOrList forObject:copiedObject];
-        } else {
-            [self.variables addObjectVariable:variableOrList forObject:copiedObject];
-        }
+    for (UserVariable *variable in copiedVariables) {
+       [self.userData addObjectVariable:variable forObject:copiedObject];
+    }
+    
+    for (UserList *list in copiedLists) {
+       [self.userData addObjectList:list forObject:copiedObject];
     }
     
     [self saveToDiskWithNotification:YES];
@@ -296,7 +309,7 @@
 {
     if (! [self.header isEqualToHeader:project.header])
         return NO;
-    if (! [self.variables isEqualToVariablesContainer:project.variables])
+    if (! [self.userData isEqualToUserDataContainer:project.userData])
         return NO;
     if ([self.objectList count] != [project.objectList count])
         return NO;
@@ -359,7 +372,7 @@
     [ret appendFormat:@"Sprite List: %@\n", self.objectList];
     [ret appendFormat:@"URL: %@\n", self.header.url];
     [ret appendFormat:@"User Handle: %@\n", self.header.userHandle];
-    [ret appendFormat:@"Variables: %@\n", self.variables];
+    [ret appendFormat:@"Variables: %@\n", self.userData];
     [ret appendFormat:@"------------------------------------------------\n"];
     return [ret copy];
 }

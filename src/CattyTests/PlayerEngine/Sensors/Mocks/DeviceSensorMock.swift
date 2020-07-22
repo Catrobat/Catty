@@ -52,7 +52,7 @@ final class DeviceSensorMock: SensorMock, DeviceSensor {
         self.init(tag: tag, formulaEditorSections: [])
     }
 
-    func rawValue() -> Double {
+    func rawValue(landscapeMode: Bool) -> Double {
         mockedValue
     }
 

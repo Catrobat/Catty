@@ -25,7 +25,6 @@
     @nonobjc func instruction() -> CBInstruction {
 
         guard let spriteObject = self.script?.object,
-            let variablesContainer = spriteObject.project?.variables,
             let listFormula = self.listFormula
             else { fatalError("This should never happen!") }
 
@@ -34,7 +33,7 @@
         return CBInstruction.execClosure { context, _ in
             if userList != nil {
                 let result = context.formulaInterpreter.interpretInteger(listFormula, for: spriteObject)
-                variablesContainer.delete(fromUserList: userList, atIndex: result)
+                userList?.delete(at: result)
             }
             context.state = .runnable
         }

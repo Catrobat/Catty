@@ -28,6 +28,8 @@ class CBSpriteNode: SKSpriteNode {
     @objc var currentLook: Look?
     @objc var currentUIImageLook: UIImage?
 
+    var penConfiguration: PenConfiguration
+
     @objc var filterDict = ["brightness": false, "color": false]
     @objc var ciBrightness = CGFloat(BrightnessSensor.defaultRawValue) // CoreImage specific brightness
     @objc var ciHueAdjust = CGFloat(ColorSensor.defaultRawValue) // CoreImage specific hue adjust
@@ -41,6 +43,7 @@ class CBSpriteNode: SKSpriteNode {
     @objc required init(spriteObject: SpriteObject) {
         let color = UIColor.clear
         self.spriteObject = spriteObject
+        self.penConfiguration = PenConfiguration()
 
         if let firstLook = spriteObject.lookList.firstObject as? Look,
             let filePathForLook = spriteObject.path(for: firstLook),
@@ -62,6 +65,10 @@ class CBSpriteNode: SKSpriteNode {
 
     @objc required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    @objc func update(_ currentTime: TimeInterval) {
+        self.drawPenLine()
     }
 
     // MARK: - Operations
@@ -203,12 +210,14 @@ class CBSpriteNode: SKSpriteNode {
 
     // MARK: Events
     @objc func start(_ zPosition: CGFloat) {
-        self.catrobatPositionX = PositionXSensor.defaultRawValue
-        self.catrobatPositionY = PositionYSensor.defaultRawValue
+
+        self.catrobatPosition = CBPosition(x: PositionXSensor.defaultRawValue, y: PositionYSensor.defaultRawValue)
 
         self.zRotation = CGFloat(RotationSensor.defaultRawValue)
         self.xScale = CGFloat(SizeSensor.defaultRawValue)
         self.yScale = CGFloat(SizeSensor.defaultRawValue)
+
+        self.penConfiguration.previousPosition = self.position
 
         self.ciBrightness = CGFloat(BrightnessSensor.defaultRawValue)
 

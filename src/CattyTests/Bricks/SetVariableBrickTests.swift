@@ -48,7 +48,7 @@ final class SetVariableBrickTests: XCTestCase {
 
         let logger = CBLogger(name: "Logger")
         let broadcastHandler = CBBroadcastHandler(logger: logger)
-        let formulaInterpreter = FormulaManager(sceneSize: Util.screenSize(true))
+        let formulaInterpreter = FormulaManager(sceneSize: Util.screenSize(true), landscapeMode: false)
         scheduler = CBScheduler(logger: logger, broadcastHandler: broadcastHandler, formulaInterpreter: formulaInterpreter, audioEngine: AudioEngineMock())
         context = CBScriptContext(script: script, spriteNode: spriteNode, formulaInterpreter: formulaInterpreter)
     }
@@ -56,8 +56,8 @@ final class SetVariableBrickTests: XCTestCase {
     func testSetVariableBrickUserVariablesNil() {
         spriteNode.position = CGPoint(x: 0, y: 0)
 
-        let varContainer = VariablesContainer()
-        spriteObject.project.variables = varContainer
+        let userDataContainer = UserDataContainer()
+        spriteObject.project.userData = userDataContainer
 
         let brick = SetVariableBrick()
         brick.variableFormula = Formula(integer: 0)
