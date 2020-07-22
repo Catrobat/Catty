@@ -877,22 +877,23 @@
                 UIImageWriteToSavedPhotosAlbum(self.saveView.image, nil, nil, nil);
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self showSavedView];
-                    NSDebug(@"saved to Camera Roll");
                 });
             } else {
-                [[[[[AlertControllerBuilder alertWithTitle:nil message:kLocalizedNoAccesToImagesCheckSettingsDescription]
-                 addCancelActionWithTitle:kLocalizedCancel handler:nil]
-                 addDefaultActionWithTitle:kLocalizedSettings handler:^{
-                     if ([self.delegate respondsToSelector:@selector(addPaintedImage:andPath:)]) {
-                         if (self.editingPath) {
-                             [self.delegate addPaintedImage:self.saveView.image andPath:self.editingPath];
-                         } else {
-                             [self.delegate addPaintedImage:self.saveView.image andPath:@"settings"];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [[[[[AlertControllerBuilder alertWithTitle:nil message:kLocalizedNoAccesToImagesCheckSettingsDescription]
+                     addCancelActionWithTitle:kLocalizedCancel handler:nil]
+                     addDefaultActionWithTitle:kLocalizedSettings handler:^{
+                         if ([self.delegate respondsToSelector:@selector(addPaintedImage:andPath:)]) {
+                             if (self.editingPath) {
+                                 [self.delegate addPaintedImage:self.saveView.image andPath:self.editingPath];
+                             } else {
+                                 [self.delegate addPaintedImage:self.saveView.image andPath:@"settings"];
+                             }
                          }
-                     }
-                     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
-                 }] build]
-                 showWithController:self];
+                         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+                     }] build]
+                     showWithController:self];
+                });
             }
         }];
     });
