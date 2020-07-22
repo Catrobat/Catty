@@ -254,6 +254,9 @@
 "Choose image" = "اختر الصورة";
 
 /* No comment provided by engineer. */
+"Clear" = "امسح";
+
+/* No comment provided by engineer. */
 "Clear graphic effects" = "مسح التأثيرات الرسومية";
 
 /* No comment provided by engineer. */
@@ -1118,6 +1121,15 @@
 "Passwords do not match" = "كلمات المرور لا تتطابق";
 
 /* No comment provided by engineer. */
+"Pen" = "القلم";
+
+/* No comment provided by engineer. */
+"Pen down" = "القلم إلى الأسفل";
+
+/* No comment provided by engineer. */
+"Pen up" = "القلم الى الأعلى";
+
+/* No comment provided by engineer. */
 "Phiro" = "روبوت الاطفال";
 
 /* No comment provided by engineer. */
@@ -1221,9 +1233,6 @@
 
 /* No comment provided by engineer. */
 "Privacy Settings" = "اعدادات الخصوصية";
-
-/* No comment provided by engineer. */
-"Problems occured while uploading your project" = "Problems occured while uploading your project";
 
 /* No comment provided by engineer. */
 "Project" = "المشروع";
@@ -1337,6 +1346,9 @@
 "Say" = "قُل";
 
 /* No comment provided by engineer. */
+"Scene" = "Scene";
+
+/* No comment provided by engineer. */
 "Script" = "النصوص البرمجية";
 
 /* No comment provided by engineer. */
@@ -1394,6 +1406,9 @@
 "Server is taking to long to respond, please try again later." = "Server is taking to long to respond, please try again later.";
 
 /* No comment provided by engineer. */
+"Session expired, please log in." = "Session expired, please log in.";
+
+/* No comment provided by engineer. */
 "Set Arduino digital pin" = "تعيين قيمة إبرة أردوينو الرقمية";
 
 /* No comment provided by engineer. */
@@ -1410,6 +1425,9 @@
 
 /* No comment provided by engineer. */
 "Set description" = "وصف مجموعة";
+
+/* No comment provided by engineer. */
+"Set pen size to" = "تعيين حجم قلم التلوين بنسبة";
 
 /* No comment provided by engineer. */
 "Set Phiro light" = "تعيين ضوء روبوت الاطفال";
@@ -1455,6 +1473,9 @@
 
 /* No comment provided by engineer. */
 "SO" = "صو";
+
+/* No comment provided by engineer. */
+"Something went wrong while uploading the project." = "حدث خطأ أثناء تحميل البرنامج.";
 
 /* No comment provided by engineer. */
 "Sound" = "الصوت";
@@ -1590,6 +1611,9 @@
 
 /* No comment provided by engineer. */
 "This feature is coming soon!" = "هذه الميزة قريبا!";
+
+/* No comment provided by engineer. */
+"This list can not be deleted because it is still in use." = "This list can not be deleted because it is still in use.";
 
 /* No comment provided by engineer. */
 "This variable can not be deleted because it is still in use." = "لا يمكن حذف هذا المتغير لأنه لا يزال قيد الاستخدام.";

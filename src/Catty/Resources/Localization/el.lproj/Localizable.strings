@@ -254,6 +254,9 @@
 "Choose image" = "Choose image";
 
 /* No comment provided by engineer. */
+"Clear" = "Clear";
+
+/* No comment provided by engineer. */
 "Clear graphic effects" = "Clear graphic effects";
 
 /* No comment provided by engineer. */
@@ -1118,6 +1121,15 @@
 "Passwords do not match" = "Passwords do not match";
 
 /* No comment provided by engineer. */
+"Pen" = "Πένα";
+
+/* No comment provided by engineer. */
+"Pen down" = "Κατέβασε πένα";
+
+/* No comment provided by engineer. */
+"Pen up" = "Ανέβασε πένα";
+
+/* No comment provided by engineer. */
 "Phiro" = "Phiro";
 
 /* No comment provided by engineer. */
@@ -1221,9 +1233,6 @@
 
 /* No comment provided by engineer. */
 "Privacy Settings" = "Privacy Settings";
-
-/* No comment provided by engineer. */
-"Problems occured while uploading your project" = "Problems occured while uploading your project";
 
 /* No comment provided by engineer. */
 "Project" = "Project";
@@ -1337,6 +1346,9 @@
 "Say" = "Say";
 
 /* No comment provided by engineer. */
+"Scene" = "Scene";
+
+/* No comment provided by engineer. */
 "Script" = "Σενάριο";
 
 /* No comment provided by engineer. */
@@ -1394,6 +1406,9 @@
 "Server is taking to long to respond, please try again later." = "Server is taking to long to respond, please try again later.";
 
 /* No comment provided by engineer. */
+"Session expired, please log in." = "Session expired, please log in.";
+
+/* No comment provided by engineer. */
 "Set Arduino digital pin" = "Set Arduino digital pin";
 
 /* No comment provided by engineer. */
@@ -1410,6 +1425,9 @@
 
 /* No comment provided by engineer. */
 "Set description" = "Ορίστε περιγραφή";
+
+/* No comment provided by engineer. */
+"Set pen size to" = "Όρισε μέγεθος πένας σε";
 
 /* No comment provided by engineer. */
 "Set Phiro light" = "Set Phiro light";
@@ -1455,6 +1473,9 @@
 
 /* No comment provided by engineer. */
 "SO" = "SO";
+
+/* No comment provided by engineer. */
+"Something went wrong while uploading the project." = "Something went wrong while uploading the project.";
 
 /* No comment provided by engineer. */
 "Sound" = "Ήχος";
@@ -1590,6 +1611,9 @@
 
 /* No comment provided by engineer. */
 "This feature is coming soon!" = "This feature is coming soon!";
+
+/* No comment provided by engineer. */
+"This list can not be deleted because it is still in use." = "This list can not be deleted because it is still in use.";
 
 /* No comment provided by engineer. */
 "This variable can not be deleted because it is still in use." = "This variable can not be deleted because it is still in use.";

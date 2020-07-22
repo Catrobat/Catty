@@ -254,6 +254,9 @@
 "Choose image" = "படத்தைத் தேர்வுசெய்க";
 
 /* No comment provided by engineer. */
+"Clear" = "அழி";
+
+/* No comment provided by engineer. */
 "Clear graphic effects" = "கிராஃபிக் விளைவுகளை அழிக்கவும்";
 
 /* No comment provided by engineer. */
@@ -1118,6 +1121,15 @@
 "Passwords do not match" = "கடவுச்சொற்கள் பொருத்தமாக இல்லை";
 
 /* No comment provided by engineer. */
+"Pen" = "பேனா";
+
+/* No comment provided by engineer. */
+"Pen down" = "பேனா கீழே";
+
+/* No comment provided by engineer. */
+"Pen up" = "பேனா கீழே";
+
+/* No comment provided by engineer. */
 "Phiro" = "பிரோ";
 
 /* No comment provided by engineer. */
@@ -1221,9 +1233,6 @@
 
 /* No comment provided by engineer. */
 "Privacy Settings" = "தனியுரிமை அமைப்புகள்";
-
-/* No comment provided by engineer. */
-"Problems occured while uploading your project" = "உங்கள் திட்டத்தைப் பதிவேற்றும்போது சிக்கல்கள் ஏற்பட்டன";
 
 /* No comment provided by engineer. */
 "Project" = "திட்டம்";
@@ -1337,6 +1346,9 @@
 "Say" = "சொல்";
 
 /* No comment provided by engineer. */
+"Scene" = "Scene";
+
+/* No comment provided by engineer. */
 "Script" = "ஸ்கிரிப்ட்";
 
 /* No comment provided by engineer. */
@@ -1394,6 +1406,9 @@
 "Server is taking to long to respond, please try again later." = "பதிலளிக்க சேவையகம் நீண்ட நேரம் எடுக்கும், தயவுசெய்து பின்னர் மீண்டும் முயற்சிக்கவும்.";
 
 /* No comment provided by engineer. */
+"Session expired, please log in." = "அமர்வு காலாவதியானது, தயவுசெய்து உள்நுழைக.";
+
+/* No comment provided by engineer. */
 "Set Arduino digital pin" = "Arduino டிஜிட்டல் முள் அமைக்கவும்";
 
 /* No comment provided by engineer. */
@@ -1410,6 +1425,9 @@
 
 /* No comment provided by engineer. */
 "Set description" = "விளக்கத்தை அமைக்கவும்";
+
+/* No comment provided by engineer. */
+"Set pen size to" = "பேனா அளவை அமைக்கவும்";
 
 /* No comment provided by engineer. */
 "Set Phiro light" = "பைரோ ஒளியை அமைக்கவும்";
@@ -1455,6 +1473,9 @@
 
 /* No comment provided by engineer. */
 "SO" = "SO";
+
+/* No comment provided by engineer. */
+"Something went wrong while uploading the project." = "திட்டத்தை பதிவேற்றும் போது ஏதோ தவறு ஏற்பட்டது.";
 
 /* No comment provided by engineer. */
 "Sound" = "ஒலி";
@@ -1590,6 +1611,9 @@
 
 /* No comment provided by engineer. */
 "This feature is coming soon!" = "இந்த அம்சம் விரைவில் வருகிறது!";
+
+/* No comment provided by engineer. */
+"This list can not be deleted because it is still in use." = "This list can not be deleted because it is still in use.";
 
 /* No comment provided by engineer. */
 "This variable can not be deleted because it is still in use." = "இந்த மாறி இன்னும் பயன்பாட்டில் இருப்பதால் அதை நீக்க முடியாது.";

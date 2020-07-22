@@ -254,6 +254,9 @@
 "Choose image" = "Elige una imagen";
 
 /* No comment provided by engineer. */
+"Clear" = "Borrar";
+
+/* No comment provided by engineer. */
 "Clear graphic effects" = "Limpie los efectos gráficos";
 
 /* No comment provided by engineer. */
@@ -1118,6 +1121,15 @@
 "Passwords do not match" = "Las contraseñas no coinciden";
 
 /* No comment provided by engineer. */
+"Pen" = "Lápiz";
+
+/* No comment provided by engineer. */
+"Pen down" = "Bajar Lápiz (Escribir)";
+
+/* No comment provided by engineer. */
+"Pen up" = "Subir Lápiz (Parar de Escribir)";
+
+/* No comment provided by engineer. */
 "Phiro" = "Phiro";
 
 /* No comment provided by engineer. */
@@ -1221,9 +1233,6 @@
 
 /* No comment provided by engineer. */
 "Privacy Settings" = "Privacy Settings";
-
-/* No comment provided by engineer. */
-"Problems occured while uploading your project" = "Problems occured while uploading your project";
 
 /* No comment provided by engineer. */
 "Project" = "Proyecto";
@@ -1337,6 +1346,9 @@
 "Say" = "Decir";
 
 /* No comment provided by engineer. */
+"Scene" = "Scene";
+
+/* No comment provided by engineer. */
 "Script" = "Línea de Comando";
 
 /* No comment provided by engineer. */
@@ -1394,6 +1406,9 @@
 "Server is taking to long to respond, please try again later." = "Server is taking to long to respond, please try again later.";
 
 /* No comment provided by engineer. */
+"Session expired, please log in." = "La sesión expiró. Por favor inicie sesión de nuevo.";
+
+/* No comment provided by engineer. */
 "Set Arduino digital pin" = "Configurar pin digital de Arduino";
 
 /* No comment provided by engineer. */
@@ -1410,6 +1425,9 @@
 
 /* No comment provided by engineer. */
 "Set description" = "Descripción del set";
+
+/* No comment provided by engineer. */
+"Set pen size to" = "Establecer tamaño del trazo";
 
 /* No comment provided by engineer. */
 "Set Phiro light" = "Establecer luz de Phiro";
@@ -1455,6 +1473,9 @@
 
 /* No comment provided by engineer. */
 "SO" = "SO";
+
+/* No comment provided by engineer. */
+"Something went wrong while uploading the project." = "Un error ha ocurrido durante el proceso de carga";
 
 /* No comment provided by engineer. */
 "Sound" = "Sonido";
@@ -1590,6 +1611,9 @@
 
 /* No comment provided by engineer. */
 "This feature is coming soon!" = "Esta característica viene pronto!";
+
+/* No comment provided by engineer. */
+"This list can not be deleted because it is still in use." = "This list can not be deleted because it is still in use.";
 
 /* No comment provided by engineer. */
 "This variable can not be deleted because it is still in use." = "Esta variable no puede ser eliminada porque todavía está en uso.";

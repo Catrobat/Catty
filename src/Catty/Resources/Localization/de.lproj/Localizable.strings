@@ -254,6 +254,9 @@
 "Choose image" = "Bild auswählen";
 
 /* No comment provided by engineer. */
+"Clear" = "Wische Malspuren weg";
+
+/* No comment provided by engineer. */
 "Clear graphic effects" = "Schalte Grafikeffekte aus";
 
 /* No comment provided by engineer. */
@@ -431,10 +434,10 @@
 "Disable brick" = "Baustein deaktivieren";
 
 /* No comment provided by engineer. */
-"Disable condition" = "Disable condition";
+"Disable condition" = "Bedingung deaktivieren";
 
 /* No comment provided by engineer. */
-"Disable loop" = "Disable loop";
+"Disable loop" = "Schleife deaktivieren";
 
 /* No comment provided by engineer. */
 "Disable script" = "Skript deaktivieren";
@@ -530,10 +533,10 @@
 "Enable brick" = "Baustein aktivieren";
 
 /* No comment provided by engineer. */
-"Enable condition" = "Enable condition";
+"Enable condition" = "Bedingung aktivieren";
 
 /* No comment provided by engineer. */
-"Enable loop" = "Enable loop";
+"Enable loop" = "Schleife aktivieren";
 
 /* No comment provided by engineer. */
 "Enable script" = "Skript aktivieren";
@@ -941,7 +944,7 @@
 "Most downloaded" = "meist heruntergeladen";
 
 /* No comment provided by engineer. */
-"Most viewed" = "meist gesehen";
+"Most viewed" = "Am meisten angesehen";
 
 /* No comment provided by engineer. */
 "Motion" = "Bewegung";
@@ -956,7 +959,7 @@
 "Move brick" = "Baustein verschieben";
 
 /* No comment provided by engineer. */
-"Move looks" = "Move looks";
+"Move looks" = "Aussehen verschieben";
 
 /* No comment provided by engineer. */
 "Move Phiro motor backward" = "Phiro Motor rückwärts bewegen";
@@ -965,7 +968,7 @@
 "Move Phiro motor forward" = "Phiro Motor vorwärts bewegen";
 
 /* No comment provided by engineer. */
-"Move sounds" = "Move sounds";
+"Move sounds" = "Sound verschieben";
 
 /* Name of the default catrobat project (used as filename!!) */
 "My first project" = "Mein erstes Projekt";
@@ -1118,6 +1121,15 @@
 "Passwords do not match" = "Passwörter stimmen nicht überein";
 
 /* No comment provided by engineer. */
+"Pen" = "Malstift";
+
+/* No comment provided by engineer. */
+"Pen down" = "Schalte Stift ein";
+
+/* No comment provided by engineer. */
+"Pen up" = "Schalte Stift aus";
+
+/* No comment provided by engineer. */
 "Phiro" = "Phiro";
 
 /* No comment provided by engineer. */
@@ -1221,9 +1233,6 @@
 
 /* No comment provided by engineer. */
 "Privacy Settings" = "Datenschutz-Einstellungen";
-
-/* No comment provided by engineer. */
-"Problems occured while uploading your project" = "Es gab Probleme beim Hochladen Ihres Projekts";
 
 /* No comment provided by engineer. */
 "Project" = "Projekt";
@@ -1337,6 +1346,9 @@
 "Say" = "Sage";
 
 /* No comment provided by engineer. */
+"Scene" = "Scene";
+
+/* No comment provided by engineer. */
 "Script" = "Skript";
 
 /* No comment provided by engineer. */
@@ -1394,6 +1406,9 @@
 "Server is taking to long to respond, please try again later." = "Der Server braucht zu lange, um zu antworten, bitte versuchen Sie es später erneut.";
 
 /* No comment provided by engineer. */
+"Session expired, please log in." = "Sitzung abgelaufen, bitte erneut einloggen.";
+
+/* No comment provided by engineer. */
 "Set Arduino digital pin" = "Setze Arduino Digital Pin";
 
 /* No comment provided by engineer. */
@@ -1410,6 +1425,9 @@
 
 /* No comment provided by engineer. */
 "Set description" = "Beschreibung";
+
+/* No comment provided by engineer. */
+"Set pen size to" = "Setze Stiftdicke auf";
 
 /* No comment provided by engineer. */
 "Set Phiro light" = "Setze Phiro Licht";
@@ -1455,6 +1473,9 @@
 
 /* No comment provided by engineer. */
 "SO" = "SO";
+
+/* No comment provided by engineer. */
+"Something went wrong while uploading the project." = "Beim Hochladen des Projekts ist ein Fehler aufgetreten.";
 
 /* No comment provided by engineer. */
 "Sound" = "Klang";
@@ -1590,6 +1611,9 @@
 
 /* No comment provided by engineer. */
 "This feature is coming soon!" = "Diese Funktion ist demnächst verfügbar!";
+
+/* No comment provided by engineer. */
+"This list can not be deleted because it is still in use." = "This list can not be deleted because it is still in use.";
 
 /* No comment provided by engineer. */
 "This variable can not be deleted because it is still in use." = "Diese Variable kann nicht gelöscht werden, weil sie noch in Gebrauch ist.";

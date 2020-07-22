@@ -254,6 +254,9 @@
 "Choose image" = "تصویر منتخب کریں";
 
 /* No comment provided by engineer. */
+"Clear" = "واضح ";
+
+/* No comment provided by engineer. */
 "Clear graphic effects" = "گرافک اثرات صاف کریں";
 
 /* No comment provided by engineer. */
@@ -1118,6 +1121,15 @@
 "Passwords do not match" = "پاس ورڈ ایک جیسے نہیں ہیں";
 
 /* No comment provided by engineer. */
+"Pen" = "قلم";
+
+/* No comment provided by engineer. */
+"Pen down" = "قلم نیچے";
+
+/* No comment provided by engineer. */
+"Pen up" = "قلم اٹھاو";
+
+/* No comment provided by engineer. */
 "Phiro" = "پہرو";
 
 /* No comment provided by engineer. */
@@ -1221,9 +1233,6 @@
 
 /* No comment provided by engineer. */
 "Privacy Settings" = "رازداری کی ترتیبات";
-
-/* No comment provided by engineer. */
-"Problems occured while uploading your project" = "آپ کے منصوبے کو اپ لوڈ کرنے کے دوران مسائل پیدا ہوگئیں";
 
 /* No comment provided by engineer. */
 "Project" = "منصوبہ";
@@ -1337,6 +1346,9 @@
 "Say" = "کہہ دو";
 
 /* No comment provided by engineer. */
+"Scene" = "Scene";
+
+/* No comment provided by engineer. */
 "Script" = "سکرپٹ";
 
 /* No comment provided by engineer. */
@@ -1394,6 +1406,9 @@
 "Server is taking to long to respond, please try again later." = "سرور جواب دینے میں لمبا وقت لگ رہا ہے، براہ کرم بعد میں دوبارہ کوشش کریں.";
 
 /* No comment provided by engineer. */
+"Session expired, please log in." = "Session expired, please log in.";
+
+/* No comment provided by engineer. */
 "Set Arduino digital pin" = "اردینو ڈیجیٹل پن سیٹ کریں";
 
 /* No comment provided by engineer. */
@@ -1410,6 +1425,9 @@
 
 /* No comment provided by engineer. */
 "Set description" = "تفصیل مقرر کریں";
+
+/* No comment provided by engineer. */
+"Set pen size to" = "قلم کا سائز مقرر کریں";
 
 /* No comment provided by engineer. */
 "Set Phiro light" = "Phiro روشنی مقرر کریں";
@@ -1455,6 +1473,9 @@
 
 /* No comment provided by engineer. */
 "SO" = "تو";
+
+/* No comment provided by engineer. */
+"Something went wrong while uploading the project." = "اس منصوبے کو اپ لوڈ کرتے وقت کچھ غلط ہوگیا.";
 
 /* No comment provided by engineer. */
 "Sound" = "آواز";
@@ -1590,6 +1611,9 @@
 
 /* No comment provided by engineer. */
 "This feature is coming soon!" = "یہ خصوصیت جلد ہی آ رہا ہے!";
+
+/* No comment provided by engineer. */
+"This list can not be deleted because it is still in use." = "This list can not be deleted because it is still in use.";
 
 /* No comment provided by engineer. */
 "This variable can not be deleted because it is still in use." = "یہ متغیر حذف نہیں ہوسکتا ہے کیونکہ یہ ابھی بھی استعمال میں ہے.";
