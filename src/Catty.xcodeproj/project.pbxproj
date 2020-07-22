@@ -11336,7 +11336,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
-				CURRENT_PROJECT_VERSION = 40;
+				CURRENT_PROJECT_VERSION = 41;
 				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = 8FL5R8726S;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -11354,7 +11354,7 @@
 				INFOPLIST_FILE = "Catty/Supporting Files/App-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 0.6.14;
+				MARKETING_VERSION = 0.6.15;
 				OTHER_LDFLAGS = (
 					"-lxml2",
 					"$(inherited)",
@@ -11384,7 +11384,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
-				CURRENT_PROJECT_VERSION = 40;
+				CURRENT_PROJECT_VERSION = 41;
 				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = 8FL5R8726S;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -11402,7 +11402,7 @@
 				INFOPLIST_FILE = "Catty/Supporting Files/App-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 0.6.14;
+				MARKETING_VERSION = 0.6.15;
 				OTHER_LDFLAGS = (
 					"-lxml2",
 					"$(inherited)",
