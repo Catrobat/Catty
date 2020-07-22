@@ -202,6 +202,7 @@
 #import "SegueDefines.h"
 #import "ProjectDetailStoreViewController.h"
 #import "DarkBlueGradientFeaturedCell.h"
+#import "DarkBlueGradientImageCell.h"
 #import "CBXMLParser.h"
 #import "Parser.h"
 #import "GDataXMLNode.h"

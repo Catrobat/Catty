@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="62e-MX-z1C">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="62e-MX-z1C">
     <device id="retina4_7" orientation="portrait" appearance="dark"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -629,13 +629,13 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="12" contentMode="left" text="Title" lineBreakMode="tailTruncation" numberOfLines="0" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oyd-DV-hcJ">
-                                            <rect key="frame" x="99" y="29" width="38.5" height="21.5"/>
+                                            <rect key="frame" x="89" y="29" width="38.5" height="21.5"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </label>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="11" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dd5-sU-Ffl">
-                                            <rect key="frame" x="28" y="16" width="47" height="47"/>
+                                            <rect key="frame" x="28" y="21" width="37" height="37"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="50" id="MiG-Yz-VYh"/>
                                                 <constraint firstAttribute="width" secondItem="dd5-sU-Ffl" secondAttribute="height" multiplier="1:1" id="Ppr-xt-Zbl"/>
@@ -650,9 +650,9 @@
                                         </imageView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="bottomMargin" secondItem="dd5-sU-Ffl" secondAttribute="bottom" constant="5" id="HGS-yL-Rdl"/>
+                                        <constraint firstItem="dd5-sU-Ffl" firstAttribute="bottom" secondItem="2ii-X1-I6m" secondAttribute="bottomMargin" constant="-10" id="HGS-yL-Rdl"/>
                                         <constraint firstItem="Oyd-DV-hcJ" firstAttribute="top" secondItem="2ii-X1-I6m" secondAttribute="topMargin" constant="20" id="HkJ-L9-PD3"/>
-                                        <constraint firstItem="dd5-sU-Ffl" firstAttribute="top" secondItem="2ii-X1-I6m" secondAttribute="topMargin" constant="5" id="Pba-xh-SlI"/>
+                                        <constraint firstItem="dd5-sU-Ffl" firstAttribute="top" secondItem="2ii-X1-I6m" secondAttribute="topMargin" constant="10" id="Pba-xh-SlI"/>
                                         <constraint firstItem="dd5-sU-Ffl" firstAttribute="leading" secondItem="2ii-X1-I6m" secondAttribute="leadingMargin" constant="12" id="QAR-cn-Ycz"/>
                                         <constraint firstItem="dd5-sU-Ffl" firstAttribute="centerY" secondItem="2ii-X1-I6m" secondAttribute="centerY" id="VFB-Y2-tyY"/>
                                         <constraint firstItem="Oyd-DV-hcJ" firstAttribute="centerY" secondItem="2ii-X1-I6m" secondAttribute="centerY" id="XoI-lR-0e5"/>
@@ -676,6 +676,8 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="iconImageView" destination="dd5-sU-Ffl" id="6nP-8y-1YV"/>
+                                    <outlet property="imageViewBottomConstraint" destination="HGS-yL-Rdl" id="D63-SM-tMN"/>
+                                    <outlet property="imageViewTopConstraint" destination="Pba-xh-SlI" id="5T6-R1-kWA"/>
                                     <outlet property="titleLabel" destination="Oyd-DV-hcJ" id="oX4-mm-VEJ"/>
                                 </connections>
                             </tableViewCell>

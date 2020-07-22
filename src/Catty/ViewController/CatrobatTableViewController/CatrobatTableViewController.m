@@ -209,6 +209,21 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
     }
     if (indexPath.row == 0) {
         [self configureTitleLabelForCell:(UITableViewCell <CatrobatImageCell>*) cell];
+    } else {
+        
+        DarkBlueGradientImageCell *imageCell = (DarkBlueGradientImageCell*) cell;
+        if (([UIDevice currentDevice].orientation == UIDeviceOrientationLandscapeLeft) || ([UIDevice currentDevice].orientation == UIDeviceOrientationLandscapeRight)) {
+            
+            imageCell.imageViewBottomConstraint.constant = 0;
+            imageCell.imageViewTopConstraint.constant = 0;
+            
+        } else {
+            
+            imageCell.imageViewBottomConstraint.constant = -10;
+            imageCell.imageViewTopConstraint.constant = 10;
+            
+        }
+        
     }
     
     if (indexPath.row == [self.tableView numberOfRowsInSection:indexPath.section] - 1) {
@@ -367,6 +382,7 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
     } else {
         self.dynamicStatusBarHeight = 0;
     }
+    [self.tableView reloadData];
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
 }
 
