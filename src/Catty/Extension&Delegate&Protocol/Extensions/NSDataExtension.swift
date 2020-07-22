@@ -22,7 +22,7 @@
 
 @objc extension NSData {
     func md5() -> String {
-        let data = Data(self)
+        let data = Data(referencing: self)
         return data.md5()
     }
 }
