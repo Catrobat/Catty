@@ -191,9 +191,6 @@
 "By registering you agree to our" = "By registering you agree to our";
 
 /* No comment provided by engineer. */
-"Camera roll" = "Camera roll";
-
-/* No comment provided by engineer. */
 "Can't restart project!" = "Can't restart project!";
 
 /* No comment provided by engineer. */
@@ -1334,7 +1331,7 @@
 "Saturday" = "Saturday";
 
 /* paint */
-"Save to cameraRoll" = "Save to cameraRoll";
+"Save to Photos" = "Save to Photos";
 
 /* No comment provided by engineer. */
 "Save to PocketCode" = "Save to PocketCode";
