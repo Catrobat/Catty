@@ -20,18 +20,12 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#define kSegueToContinue @"segueToContinue"
-#define kSegueToNewProject @"segueToNewProject"
-#define kSegueToProjects @"segueToProjects"
-#define kSegueToHelp @"segueToHelp"
-#define kSegueToExplore @"segueToExplore"
-#define kSegueToUpload @"segueToUpload"
-#define kSegueToSelectCategories @"segueToSelectCategories"
+@testable import Pocket_Code
 
-#define kSegueToProjectDetail @"segueToProjectDetail"
-#define kSegueToObject @"segueToObject"
-#define kSegueToScripts @"segueToScripts"
-#define kSegueToLooks @"segueToLooks"
-#define kSegueToSounds @"segueToSounds"
-#define kSegueToImage @"segueToImage"
+final class UploadCategoryViewControllerDelegateMock: UploadCategoryViewControllerDelegate {
+    var tags: [String]?
 
+    func categoriesSelected(tags: [String]) {
+        self.tags = tags
+    }
+}

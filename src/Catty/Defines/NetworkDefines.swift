@@ -87,4 +87,6 @@ class NetworkDefines: NSObject {
     static let searchStoreMaxResults = 50
     @objc static let reportProjectNoteMaxLength = 100
     @objc static let reportProjectNoteMinLength = 3
+
+    static let projectCategories = ["Game", "Animation", "Story", "Music", "Art", "Experimental", "Tutorial"]
 }

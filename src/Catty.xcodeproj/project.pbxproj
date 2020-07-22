@@ -902,6 +902,8 @@
 		6F6EA568248A657400FAFBB6 /* SynchronizedArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6EA567248A657400FAFBB6 /* SynchronizedArrayTests.swift */; };
 		6F87B80D2441300A00D79A2C /* StoreProjectDownloader.downloadProject.success.json in Resources */ = {isa = PBXBuildFile; fileRef = 6F87B80C2441300A00D79A2C /* StoreProjectDownloader.downloadProject.success.json */; };
 		6F93037E247BDEE40079FD41 /* UserListXMLHandlerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F93037D247BDEE40079FD41 /* UserListXMLHandlerTests.m */; };
+		6F954C6624D1A3E400E10BB3 /* UploadCategoryViewControllerDelegateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F954C6324D1A3E300E10BB3 /* UploadCategoryViewControllerDelegateMock.swift */; };
+		6F954C6824D1A41200E10BB3 /* UploadCategoryViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F954C6724D1A41200E10BB3 /* UploadCategoryViewControllerTests.swift */; };
 		6F96E9F5246D52C70054E2F7 /* UserDataProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F96E9F4246D52C70054E2F7 /* UserDataProtocol.swift */; };
 		6F9CF120246E7AA7008CED1C /* UserList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9CF11F246E7AA7008CED1C /* UserList.swift */; };
 		6F9CF123246E8767008CED1C /* UserListTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9CF122246E8767008CED1C /* UserListTest.swift */; };
@@ -909,6 +911,7 @@
 		6FA48C4C2497710300248AE7 /* UserDataContainerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA48C4B2497710300248AE7 /* UserDataContainerExtension.swift */; };
 		6FAAD43824740B1D00FF2A34 /* FormulaElementExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FAAD43724740B1D00FF2A34 /* FormulaElementExtension.swift */; };
 		6FAAD8B6244CAFDA00142FA7 /* SpeakBrickWithoutCommentedOut_0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = 6FAAD8B5244CAFDA00142FA7 /* SpeakBrickWithoutCommentedOut_0991.xml */; };
+		6FAD028624C838E700C50710 /* UploadCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FAD028524C838E700C50710 /* UploadCategoryViewController.swift */; };
 		6FB09D2324A29F1E009C69A0 /* StoreProjectUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB09D2224A29F1E009C69A0 /* StoreProjectUploader.swift */; };
 		6FCC9CC624B89D2B000DB08F /* StoreProjectUploaderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FCC9CC524B89D2B000DB08F /* StoreProjectUploaderMock.swift */; };
 		6FD28D0A24702CAD0035F606 /* NSDateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD28D0924702CAD0035F606 /* NSDateExtension.swift */; };
@@ -2599,6 +2602,8 @@
 		6F6EA567248A657400FAFBB6 /* SynchronizedArrayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronizedArrayTests.swift; sourceTree = "<group>"; };
 		6F87B80C2441300A00D79A2C /* StoreProjectDownloader.downloadProject.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectDownloader.downloadProject.success.json; sourceTree = "<group>"; };
 		6F93037D247BDEE40079FD41 /* UserListXMLHandlerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = UserListXMLHandlerTests.m; path = "Parser & Serialization/UserListXMLHandlerTests.m"; sourceTree = "<group>"; };
+		6F954C6324D1A3E300E10BB3 /* UploadCategoryViewControllerDelegateMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadCategoryViewControllerDelegateMock.swift; sourceTree = "<group>"; };
+		6F954C6724D1A41200E10BB3 /* UploadCategoryViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadCategoryViewControllerTests.swift; sourceTree = "<group>"; };
 		6F96E9F4246D52C70054E2F7 /* UserDataProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataProtocol.swift; sourceTree = "<group>"; };
 		6F9CF11F246E7AA7008CED1C /* UserList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserList.swift; sourceTree = "<group>"; };
 		6F9CF122246E8767008CED1C /* UserListTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListTest.swift; sourceTree = "<group>"; };
@@ -2606,6 +2611,7 @@
 		6FA48C4B2497710300248AE7 /* UserDataContainerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataContainerExtension.swift; sourceTree = "<group>"; };
 		6FAAD43724740B1D00FF2A34 /* FormulaElementExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaElementExtension.swift; sourceTree = "<group>"; };
 		6FAAD8B5244CAFDA00142FA7 /* SpeakBrickWithoutCommentedOut_0991.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SpeakBrickWithoutCommentedOut_0991.xml; sourceTree = "<group>"; };
+		6FAD028524C838E700C50710 /* UploadCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadCategoryViewController.swift; sourceTree = "<group>"; };
 		6FB09D2224A29F1E009C69A0 /* StoreProjectUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreProjectUploader.swift; sourceTree = "<group>"; };
 		6FCC9CC524B89D2B000DB08F /* StoreProjectUploaderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreProjectUploaderMock.swift; sourceTree = "<group>"; };
 		6FD28D0924702CAD0035F606 /* NSDateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSDateExtension.swift; sourceTree = "<group>"; };
@@ -4980,6 +4986,7 @@
 				4C7182DB23EEB22B00195BC7 /* PaintViewControllerTests.swift */,
 				4C1A596023FD9E79001A78D2 /* SettingsTableViewControllerTests.swift */,
 				6F17FA1724B7579000885E07 /* UploadViewControllerTests.swift */,
+				6F954C6724D1A41200E10BB3 /* UploadCategoryViewControllerTests.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -6391,6 +6398,7 @@
 				599E649D202D9F95009494B5 /* URLSessionMock.swift */,
 				6F4B2FC02466F58500B5F0ED /* CBFileManagerMock.swift */,
 				6FCC9CC524B89D2B000DB08F /* StoreProjectUploaderMock.swift */,
+				6F954C6324D1A3E300E10BB3 /* UploadCategoryViewControllerDelegateMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -6708,6 +6716,7 @@
 				9235038E1BA707DE00021F6A /* LoginViewController.h */,
 				9235038F1BA707DE00021F6A /* LoginViewController.m */,
 				5E21DA6C21A5255500017D2C /* UploadViewController.swift */,
+				6FAD028524C838E700C50710 /* UploadCategoryViewController.swift */,
 			);
 			name = Upload/Login;
 			path = Upload;
@@ -9795,6 +9804,7 @@
 				BA38080C21A1D8920075B831 /* ConvertExceptionToError.m in Sources */,
 				4C68FC8E1B25A00B00AB3EE8 /* FormulaParserOperatorsTest.m in Sources */,
 				9E24D7092326ED6C00608203 /* SetYBrickTests.swift in Sources */,
+				6F954C6624D1A3E400E10BB3 /* UploadCategoryViewControllerDelegateMock.swift in Sources */,
 				4C6FE15C212D2D2E0067B7D5 /* FloorFunctionTest.swift in Sources */,
 				4C5AEEF322F6F22700280F8B /* MoveNStepsBrickCellTests.swift in Sources */,
 				18B5B529247E542A007D24A3 /* NSDataExtensionTests.swift in Sources */,
@@ -9913,6 +9923,7 @@
 				4C82267A213FA7A400F3D750 /* LookNumberSensorTest.swift in Sources */,
 				4C82267C213FA7A400F3D750 /* BackgroundNameSensorTest.swift in Sources */,
 				4C38B3762371529600F33721 /* GlideToBrickCellTests.swift in Sources */,
+				6F954C6824D1A41200E10BB3 /* UploadCategoryViewControllerTests.swift in Sources */,
 				9EBCBD8B2329C3BF0074C2D9 /* PreviousLookBrickTests.swift in Sources */,
 				4C38B3742371522200F33721 /* BrickManagerTests.swift in Sources */,
 				2ED418C52411213E00AFE2FD /* XMLParserBlackBoxTests096.swift in Sources */,
@@ -10537,6 +10548,7 @@
 				929CC0BD1BC39AD60027DEC0 /* BluetoothBrick.m in Sources */,
 				4C0F9F7A204BD1E300E71B2D /* SayBubbleBrick+Instruction.swift in Sources */,
 				9E2C2D862325673C004B66C6 /* AudioEngine.swift in Sources */,
+				6FAD028624C838E700C50710 /* UploadCategoryViewController.swift in Sources */,
 				186AA3442482DDD5001E38FD /* PenDownBrick+Instruction.swift in Sources */,
 				18E83F812493C32C003295DA /* PenClearBrick+Instruction.swift in Sources */,
 				5EF590BA2192D81F00C19F12 /* DoubleExtension.swift in Sources */,

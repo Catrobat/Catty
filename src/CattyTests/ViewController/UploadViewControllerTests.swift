@@ -30,14 +30,16 @@ class UploadViewControllerTests: XCTestCase {
     var uploadViewController: UploadViewController!
     var uploaderMock: StoreProjectUploaderMock!
     var project: Project!
+    var selectedCategoriesValueLabel: UILabel!
 
     override func setUp() {
         super.setUp()
         self.project = ProjectMock()
         self.project.header.programName = "testProjectName"
+        self.selectedCategoriesValueLabel = UILabel()
 
         self.uploaderMock = StoreProjectUploaderMock()
-        self.uploadViewController = UploadViewController(uploader: uploaderMock, project: project)
+        self.uploadViewController = UploadViewController(uploader: uploaderMock, project: project, selectCategoriesValueLabel: selectedCategoriesValueLabel)
     }
 
     func testUploadAction() {
@@ -47,5 +49,21 @@ class UploadViewControllerTests: XCTestCase {
         uploadViewController.uploadAction()
         XCTAssertEqual(1, uploaderMock.timesUploadMethodCalled)
         XCTAssertEqual(project, uploaderMock.projectToUpload)
+    }
+
+    func testCatagoriesSelected() {
+        XCTAssertNil(selectedCategoriesValueLabel.text)
+        XCTAssertNil(project.header.tags)
+
+        uploadViewController.categoriesSelected(tags: [String]())
+        XCTAssertNotNil(selectedCategoriesValueLabel.text)
+        XCTAssertEqual(selectedCategoriesValueLabel.text, kLocalizedNoCategoriesSelected)
+        XCTAssertTrue(project.header.tags.isEmpty)
+
+        uploadViewController.categoriesSelected(tags: ["testTag1", "testTag2"])
+        XCTAssertNotNil(selectedCategoriesValueLabel.text)
+        XCTAssertEqual(selectedCategoriesValueLabel.text, "testTag1, testTag2")
+        XCTAssertFalse(project.header.tags.isEmpty)
+        XCTAssertEqual(project.header.tags, "testTag1,testTag2")
     }
 }

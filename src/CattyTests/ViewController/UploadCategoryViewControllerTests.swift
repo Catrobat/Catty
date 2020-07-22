@@ -20,18 +20,29 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#define kSegueToContinue @"segueToContinue"
-#define kSegueToNewProject @"segueToNewProject"
-#define kSegueToProjects @"segueToProjects"
-#define kSegueToHelp @"segueToHelp"
-#define kSegueToExplore @"segueToExplore"
-#define kSegueToUpload @"segueToUpload"
-#define kSegueToSelectCategories @"segueToSelectCategories"
+import XCTest
 
-#define kSegueToProjectDetail @"segueToProjectDetail"
-#define kSegueToObject @"segueToObject"
-#define kSegueToScripts @"segueToScripts"
-#define kSegueToLooks @"segueToLooks"
-#define kSegueToSounds @"segueToSounds"
-#define kSegueToImage @"segueToImage"
+@testable import Pocket_Code
 
+class UploadCategoryViewControllerTests: XCTestCase {
+
+    var uploadCategoryViewController: UploadCategoryViewController!
+    var delegateMock: UploadCategoryViewControllerDelegateMock!
+
+    override func setUp() {
+        delegateMock = UploadCategoryViewControllerDelegateMock()
+        uploadCategoryViewController = UploadCategoryViewController(delegate: delegateMock)
+    }
+
+    func testDelegate() {
+        XCTAssertNil(delegateMock.tags)
+
+        uploadCategoryViewController.delegate?.categoriesSelected(tags: ["testTag1", "testTag2"])
+
+        XCTAssertNotNil(delegateMock.tags)
+        XCTAssertEqual(delegateMock.tags?.count, 2)
+        XCTAssertEqual(delegateMock.tags![0], "testTag1")
+        XCTAssertEqual(delegateMock.tags![1], "testTag2")
+    }
+
+}
