@@ -43,8 +43,11 @@ extension FormulaManager {
     func interpretInteger(_ formula: Formula, for spriteObject: SpriteObject) -> Int {
         let doubleValue = interpretDouble(formula, for: spriteObject)
 
-        if doubleValue > Double(Int.max) {
+        if doubleValue >= Double(Int.max) {
             return Int.max
+        }
+        if doubleValue <= Double(Int.min) {
+            return Int.min
         }
         if doubleValue.isNaN {
             return 0

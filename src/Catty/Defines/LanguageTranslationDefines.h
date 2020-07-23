@@ -409,6 +409,10 @@
 #define kLocalizedPenUp NSLocalizedString(@"Pen up", nil)
 #define kLocalizedPenClear NSLocalizedString(@"Clear", nil)
 #define kLocalizedSetPenSize NSLocalizedString(@"Set pen size to", nil)
+#define kLocalizedSetPenColor NSLocalizedString(@"Set pen color to", nil)
+#define kLocalizedRed NSLocalizedString(@"red", nil)
+#define kLocalizedGreen NSLocalizedString(@"green", nil)
+#define kLocalizedBlue NSLocalizedString(@"blue", nil)
 
 // sound bricks
 #define kLocalizedSound NSLocalizedString(@"Sound", nil)
