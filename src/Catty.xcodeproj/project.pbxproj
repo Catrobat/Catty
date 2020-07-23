@@ -6426,6 +6426,8 @@
 				22C48767240FFAA3003CB222 /* BrickCellTests.swift */,
 				59F5C2AE23F2E36D00D95016 /* BrickCellPickerViewerTest.swift */,
 				4C1EDCA9218A080200B60464 /* ScriptCollectionVCTests.swift */,
+				BA6805AD21303B48004F004F /* VariableTests.swift */,
+				6F38BF65247536F70052C692 /* ListTests.swift */,
 			);
 			path = ScriptCollectionView;
 			sourceTree = "<group>";
@@ -8619,9 +8621,7 @@
 				4C7F50F921E62B0E0010AC36 /* ProjectsTVCTests.swift */,
 				4C48E5CB23FD7F4B004C6E6A /* SettingsTVCTests.swift */,
 				4CF8747221C8E7AB00C8143F /* SoundsTVCTests.swift */,
-				BA6805AD21303B48004F004F /* VariableTests.swift */,
 				2D227D93220B38E0008A2BC9 /* ScenePresenterVCTests.swift */,
-				6F38BF65247536F70052C692 /* ListTests.swift */,
 			);
 			path = CattyUITests;
 			sourceTree = "<group>";
