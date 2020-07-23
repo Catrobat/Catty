@@ -124,8 +124,10 @@ import CoreBluetooth
                 let bvc: BluetoothPopupVC = storyboard.instantiateViewController(withIdentifier: "bluetoothPopupVC") as! BluetoothPopupVC
                 bvc.deviceArray = intDevices
 
+                let top = UIApplication.shared.keyWindow?.rootViewController
                 let navController = UINavigationController(rootViewController: bvc)
-                self.present(navController, animated: true)
+                navController.modalPresentationStyle = .fullScreen
+                top?.present(navController, animated: true)
 
             } else if CentralManager.sharedInstance.state == ManagerState.poweredOff {
                 Util.alert(withText: kLocalizedBluetoothPoweredOff)
