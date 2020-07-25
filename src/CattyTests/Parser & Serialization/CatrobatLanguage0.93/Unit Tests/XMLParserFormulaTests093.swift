@@ -31,7 +31,7 @@ class XMLParserFormulaTests093: XMLAbstractTest {
     override func setUp() {
         super.setUp()
         parserContext = CBXMLParserContext(languageVersion: CGFloat(Float32(0.93)), andRootElement: GDataXMLElement())
-        formulaManager = FormulaManager(sceneSize: Util.screenSize(true), landscapeMode: false)
+        formulaManager = FormulaManager(stageSize: Util.screenSize(true), landscapeMode: false)
     }
 
     func testValidFormulaList() {

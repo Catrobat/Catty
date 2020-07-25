@@ -28,7 +28,7 @@
 @class FormulaManager;
 @class LoadingView;
 
-@interface ScenePresenterViewController : UIViewController
+@interface StagePresenterViewController : UIViewController
 
 @property (nonatomic, strong) UIView *menuView;
 @property (nonatomic, strong) NSLayoutConstraint *menuViewLeadingConstraint;

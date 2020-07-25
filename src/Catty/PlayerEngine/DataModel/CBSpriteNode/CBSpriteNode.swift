@@ -206,8 +206,8 @@ class CBSpriteNode: SKSpriteNode {
     }
 
     @objc func touchedWithTouch(_ touch: UITouch, atPosition position: CGPoint) -> Bool {
-        guard let playerScene = (scene as? CBScene) else { return false }
-        let scheduler = playerScene.scheduler
+        guard let playerStage = (scene as? Stage) else { return false }
+        let scheduler = playerStage.scheduler
 
         guard let imageLook = currentUIImageLook, scheduler.running else { return false }
 

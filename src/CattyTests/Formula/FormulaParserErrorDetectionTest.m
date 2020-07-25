@@ -39,7 +39,7 @@
 
 - (void)setUp {
     [super setUp];
-    self.formulaManager = (id<FormulaManagerProtocol>)[[FormulaManager alloc] initWithSceneSize:[Util screenSize:true] andLandscapeMode: false];
+    self.formulaManager = (id<FormulaManagerProtocol>)[[FormulaManager alloc] initWithStageSize:[Util screenSize:true] andLandscapeMode: false];
 }
 
 - (void)testTooManyOperators

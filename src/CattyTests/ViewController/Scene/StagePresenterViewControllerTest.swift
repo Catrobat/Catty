@@ -25,15 +25,15 @@ import XCTest
 
 @testable import Pocket_Code
 
-final class ScenePresenterViewControllerTest: XCTestCase {
+final class StagePresenterViewControllerTest: XCTestCase {
 
-    var vc: ScenePresenterViewController!
+    var vc: StagePresenterViewController!
     var skView: SKView!
     var project: Project!
 
     override func setUp() {
         super.setUp()
-        vc = ScenePresenterViewController()
+        vc = StagePresenterViewController()
         skView = SKView(frame: CGRect(origin: CGPoint.zero, size: CGSize(width: 1000, height: 2500)))
 
         project = Project.defaultProject(withName: "testProject", projectID: "")
@@ -72,7 +72,7 @@ final class ScenePresenterViewControllerTest: XCTestCase {
     }
 
     func testNotification() {
-        let expectedNotification = Notification(name: .scenePresenterViewControllerDidAppear, object: vc)
+        let expectedNotification = Notification(name: .stagePresenterViewControllerDidAppear, object: vc)
 
         expect(self.vc.viewDidAppear(true)).to(postNotifications(contain(expectedNotification)))
     }

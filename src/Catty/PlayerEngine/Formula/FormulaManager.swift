@@ -36,8 +36,8 @@ import CoreMotion
     let bluetoothService: BluetoothService
     let formulaCache: FormulaCache
 
-    @objc(initWithSceneSize: andLandscapeMode:)
-    convenience init(sceneSize: CGSize, landscapeMode: Bool) {
+    @objc(initWithStageSize: andLandscapeMode:)
+    convenience init(stageSize: CGSize, landscapeMode: Bool) {
         let motionManager = CMMotionManager()
         let locationManager = CLLocationManager()
         let faceDetectionManager = FaceDetectionManager()
@@ -46,7 +46,7 @@ import CoreMotion
         let bluetoothService = BluetoothService.sharedInstance()
 
         let sensorManager =
-            FormulaManager.buildSensorManager(sceneSize: sceneSize,
+            FormulaManager.buildSensorManager(stageSize: stageSize,
                                               motionManager: motionManager,
                                               locationManager: locationManager,
                                               faceDetectionManager: faceDetectionManager,
@@ -132,7 +132,7 @@ import CoreMotion
         self.operatorManager.getOperator(tag: tag)
     }
 
-    private static func buildSensorManager(sceneSize: CGSize,
+    private static func buildSensorManager(stageSize: CGSize,
                                            motionManager: MotionManager,
                                            locationManager: LocationManager,
                                            faceDetectionManager: FaceDetectionManager,
@@ -141,7 +141,7 @@ import CoreMotion
                                            bluetoothService: BluetoothService,
                                            landscapeMode: Bool) -> SensorManager {
 
-        let sensors = CatrobatSetup.registeredSensors(sceneSize: sceneSize,
+        let sensors = CatrobatSetup.registeredSensors(stageSize: stageSize,
                                                       motionManager: motionManager,
                                                       locationManager: locationManager,
                                                       faceDetectionManager: faceDetectionManager,

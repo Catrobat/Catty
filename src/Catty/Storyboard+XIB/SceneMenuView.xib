@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ScenePresenterViewController">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StagePresenterViewController">
             <connections>
                 <outlet property="menuAspectRatioButton" destination="XeV-oO-Ywc" id="LiZ-q8-8lM"/>
                 <outlet property="menuAxisButton" destination="nLo-Oa-NMT" id="Zn4-CZ-XDz"/>
@@ -31,7 +29,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mj0-sa-z3d" userLabel="Back">
-                    <rect key="frame" x="5" y="25" width="20" height="25"/>
+                    <rect key="frame" x="5" y="5" width="20" height="25"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="20" id="4ba-39-Fax"/>
                         <constraint firstAttribute="height" constant="25" id="aCS-b6-Sdy"/>
@@ -39,7 +37,7 @@
                     <state key="normal" backgroundImage="back"/>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hdn-Xp-GRX" userLabel="BackLabel">
-                    <rect key="frame" x="5" y="8.5" width="100" height="58"/>
+                    <rect key="frame" x="5" y="-11.5" width="100" height="58"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="100" id="lKm-tO-cwj"/>
                     </constraints>
@@ -47,22 +45,22 @@
                     <state key="normal" title="Button"/>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uJb-gF-5Jq">
-                    <rect key="frame" x="5" y="60" width="90" height="673"/>
+                    <rect key="frame" x="5" y="40" width="90" height="693"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8o1-uS-vGJ" userLabel="RestartLabel">
-                            <rect key="frame" x="22" y="302" width="46" height="30"/>
+                            <rect key="frame" x="22" y="322" width="46" height="30"/>
                             <state key="normal" title="Button"/>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uSi-Se-IyC" userLabel="ScreenshotLabel">
-                            <rect key="frame" x="22" y="377" width="46" height="30"/>
+                            <rect key="frame" x="22" y="397" width="46" height="30"/>
                             <state key="normal" title="Button"/>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ENa-kr-PS6" userLabel="AxisLabel">
-                            <rect key="frame" x="22" y="452" width="46" height="30"/>
+                            <rect key="frame" x="22" y="472" width="46" height="30"/>
                             <state key="normal" title="Button"/>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c75-sd-NgK" userLabel="Restart">
-                            <rect key="frame" x="25" y="262" width="40" height="40"/>
+                            <rect key="frame" x="25" y="282" width="40" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="ApL-gK-N9Z"/>
                                 <constraint firstAttribute="width" constant="40" id="VJb-pB-eMy"/>
@@ -70,11 +68,11 @@
                             <state key="normal" backgroundImage="stage_dialog_button_restart"/>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iAP-Vg-EGc" userLabel="ContinueLabel">
-                            <rect key="frame" x="22" y="227" width="46" height="30"/>
+                            <rect key="frame" x="22" y="247" width="46" height="30"/>
                             <state key="normal" title="Button"/>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wtc-93-gtF" userLabel="Continue">
-                            <rect key="frame" x="25" y="187" width="40" height="40"/>
+                            <rect key="frame" x="25" y="207" width="40" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="RPP-ne-rK4"/>
                                 <constraint firstAttribute="width" constant="40" id="s2z-fl-MUo"/>
@@ -148,10 +146,10 @@
     </objects>
     <resources>
         <image name="back" width="43" height="56"/>
-        <image name="stage_dialog_button_aspect_ratio" width="64" height="64"/>
-        <image name="stage_dialog_button_continue" width="128" height="128"/>
-        <image name="stage_dialog_button_restart" width="64" height="64"/>
-        <image name="stage_dialog_button_screenshot" width="64" height="64"/>
-        <image name="stage_dialog_button_toggle_axis" width="64" height="64"/>
+        <image name="stage_dialog_button_aspect_ratio" width="21.333333969116211" height="21.333333969116211"/>
+        <image name="stage_dialog_button_continue" width="42.666667938232422" height="42.666667938232422"/>
+        <image name="stage_dialog_button_restart" width="21.333333969116211" height="21.333333969116211"/>
+        <image name="stage_dialog_button_screenshot" width="21.333333969116211" height="21.333333969116211"/>
+        <image name="stage_dialog_button_toggle_axis" width="21.333333969116211" height="21.333333969116211"/>
     </resources>
 </document>

@@ -31,7 +31,7 @@ final class PointInDirectionBrickTests: AbstractBrickTest {
         let spriteNode = CBSpriteNode(spriteObject: object)
         object.spriteNode = spriteNode
 
-        self.scene.addChild(spriteNode)
+        self.stage.addChild(spriteNode)
         spriteNode.catrobatPosition = CBPosition(x: 0, y: 0)
 
         let script = WhenScript()

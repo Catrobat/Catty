@@ -28,13 +28,13 @@ final class FacePositionXSensorTest: XCTestCase {
 
     var sensor: FacePositionXSensor!
     var cameraManagerMock: FaceDetectionManagerMock!
-    var sceneSize: CGSize!
+    var stageSize: CGSize!
 
     override func setUp() {
         super.setUp()
         self.cameraManagerMock = FaceDetectionManagerMock()
-        self.sceneSize = CGSize(width: 1080, height: 1920)
-        self.sensor = FacePositionXSensor(sceneSize: sceneSize, faceDetectionManagerGetter: { [ weak self ] in self?.cameraManagerMock })
+        self.stageSize = CGSize(width: 1080, height: 1920)
+        self.sensor = FacePositionXSensor(stageSize: stageSize, faceDetectionManagerGetter: { [ weak self ] in self?.cameraManagerMock })
     }
 
     override func tearDown() {
@@ -44,7 +44,7 @@ final class FacePositionXSensorTest: XCTestCase {
     }
 
     func testDefaultRawValue() {
-        let sensor = FacePositionXSensor(sceneSize: sceneSize, faceDetectionManagerGetter: { nil })
+        let sensor = FacePositionXSensor(stageSize: stageSize, faceDetectionManagerGetter: { nil })
         XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(landscapeMode: false), accuracy: Double.epsilon)
         XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(landscapeMode: true), accuracy: Double.epsilon)
     }
@@ -63,10 +63,10 @@ final class FacePositionXSensorTest: XCTestCase {
     func testConvertToStandardized() {
         XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.convertToStandardized(rawValue: 0))
 
-        XCTAssertEqual(Double(sceneSize.width * 0.02) - Double(sceneSize.width / 2), sensor.convertToStandardized(rawValue: 0.02))
-        XCTAssertEqual(Double(sceneSize.width * 0.45) - Double(sceneSize.width / 2), sensor.convertToStandardized(rawValue: 0.45))
-        XCTAssertEqual(Double(sceneSize.width * 0.93) - Double(sceneSize.width / 2), sensor.convertToStandardized(rawValue: 0.93))
-        XCTAssertEqual(Double(sceneSize.width / 2), sensor.convertToStandardized(rawValue: 1.0))
+        XCTAssertEqual(Double(stageSize.width * 0.02) - Double(stageSize.width / 2), sensor.convertToStandardized(rawValue: 0.02))
+        XCTAssertEqual(Double(stageSize.width * 0.45) - Double(stageSize.width / 2), sensor.convertToStandardized(rawValue: 0.45))
+        XCTAssertEqual(Double(stageSize.width * 0.93) - Double(stageSize.width / 2), sensor.convertToStandardized(rawValue: 0.93))
+        XCTAssertEqual(Double(stageSize.width / 2), sensor.convertToStandardized(rawValue: 1.0))
     }
 
     func testStandardizedValue() {

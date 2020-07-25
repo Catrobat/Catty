@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc class SceneBuilder: NSObject {
+@objc class StageBuilder: NSObject {
 
     private var project: Project
     private var logger: CBLogger
@@ -35,9 +35,9 @@
     @objc init(project: Project) {
         self.project = project
 
-        guard let sceneLogger = Swell.getLogger(LoggerConfig.PlayerSceneID) else { preconditionFailure() }
+        guard let stageLogger = Swell.getLogger(LoggerConfig.PlayerSceneID) else { preconditionFailure() }
 
-        self.logger = sceneLogger
+        self.logger = stageLogger
 
         self.size = CGSize(
             width: CGFloat(project.header.screenWidth.floatValue),
@@ -82,7 +82,7 @@
         return self
     }
 
-    @objc func build() -> CBScene {
+    @objc func build() -> Stage {
         let formulaManager = getFormulaManager()
         let frontend = getFrontend()
         let backend = getBackend()
@@ -90,19 +90,19 @@
         let audioEngine = getAudioEngine()
         let scheduler = getScheduler(broadcastHandler: broadcastHandler, formulaInterpreter: formulaManager, audioEngine: audioEngine)
 
-        return CBScene(size: size,
-                       logger: logger,
-                       scheduler: scheduler,
-                       frontend: frontend,
-                       backend: backend,
-                       broadcastHandler: broadcastHandler,
-                       formulaManager: formulaManager,
-                       soundEngine: audioEngine)
+        return Stage(size: size,
+                     logger: logger,
+                     scheduler: scheduler,
+                     frontend: frontend,
+                     backend: backend,
+                     broadcastHandler: broadcastHandler,
+                     formulaManager: formulaManager,
+                     soundEngine: audioEngine)
     }
 
     private func getFormulaManager() -> FormulaManagerProtocol {
         guard let formulaManager = self.formulaManager else {
-            return FormulaManager(sceneSize: self.size, landscapeMode: self.project.header.landscapeMode)
+            return FormulaManager(stageSize: self.size, landscapeMode: self.project.header.landscapeMode)
         }
         return formulaManager
     }

@@ -40,7 +40,7 @@
 @property (nonatomic, strong) LoadingView* loadingView;
 @property (nonatomic, strong) UIBarButtonItem *selectAllRowsButtonItem;
 @property (nonatomic, strong) UIBarButtonItem *normalModeRightBarButtonItem;
-@property (nonatomic, strong) ScenePresenterViewController *scenePresenterViewController;
+@property (nonatomic, strong) StagePresenterViewController *stagePresenterViewController;
 @end
 
 @implementation BaseTableViewController
@@ -119,7 +119,7 @@
     [self.placeHolderView addConstraints:@[centerXConstraint, centerYConstraint]];
     [self.view addConstraints:@[topConstraint, leadingConstraint, widthConstraint, heightConstraint]];
     
-    self.scenePresenterViewController = [ScenePresenterViewController new];
+    self.stagePresenterViewController = [StagePresenterViewController new];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -390,7 +390,7 @@
     [[UIDevice currentDevice] setValue:@(UIInterfaceOrientationPortrait) forKey:@"orientation"];
     [UINavigationController attemptRotationToDeviceOrientation];
     
-    [self.scenePresenterViewController checkResourcesAndPushViewControllerTo:self.navigationController];
+    [self.stagePresenterViewController checkResourcesAndPushViewControllerTo:self.navigationController];
 }
 
 - (void)showLoadingView

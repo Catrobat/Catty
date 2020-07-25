@@ -116,7 +116,7 @@
     [[BrickInsertManager sharedInstance] reset];
     self.isEditingBrickMode = NO;
     self.batchUpdateMutex = NO;
-    self.formulaManager = [[FormulaManager alloc] initWithSceneSize: CGSizeMake([self.object.project.header.screenWidth floatValue], [self.object.project.header.screenHeight floatValue]) andLandscapeMode: self.object.project.header.landscapeMode];
+    self.formulaManager = [[FormulaManager alloc] initWithStageSize: CGSizeMake([self.object.project.header.screenWidth floatValue], [self.object.project.header.screenHeight floatValue]) andLandscapeMode: self.object.project.header.landscapeMode];
 }
 
 - (void)viewWillAppear:(BOOL)animated

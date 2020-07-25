@@ -29,7 +29,7 @@ class XMLParserTests0991: XMLAbstractTest {
 
     override func setUp() {
         super.setUp()
-        formulaManager = FormulaManager(sceneSize: Util.screenSize(true), landscapeMode: false)
+        formulaManager = FormulaManager(stageSize: Util.screenSize(true), landscapeMode: false)
     }
 
     func testFlashBrick() {

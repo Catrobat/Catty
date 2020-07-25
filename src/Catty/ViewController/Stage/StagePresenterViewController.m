@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "ScenePresenterViewController.h"
+#import "StagePresenterViewController.h"
 #import "Util.h"
 #import "Script.h"
 #import "AudioManager.h"
@@ -30,8 +30,8 @@
 #import "RuntimeImageCache.h"
 #import "Pocket_Code-Swift.h"
 
-@interface ScenePresenterViewController() <UIActionSheetDelegate>
-@property (nonatomic, strong) CBScene *scene;
+@interface StagePresenterViewController() <UIActionSheetDelegate>
+@property (nonatomic, strong) Stage *stage;
 @property (nonatomic, strong) SKView *skView;
 
 @property (nonatomic) BOOL menuOpen;
@@ -40,11 +40,11 @@
 @property (nonatomic, strong) UIView *gridView;
 @end
 
-@implementation ScenePresenterViewController
+@implementation StagePresenterViewController
 
 - (void)stopProject
 {
-    [self.scene stopProject];
+    [self.stage stopProject];
     
     // TODO remove Singletons
     [[CameraPreviewHandler shared] stopCamera];
@@ -52,7 +52,7 @@
     [[FlashHelper sharedFlashHandler] reset];
     [[FlashHelper sharedFlashHandler] turnOff]; // always turn off flash light when Scene is stopped
     
-    [[BluetoothService sharedInstance] setScenePresenter:nil];
+    [[BluetoothService sharedInstance] setStagePresenter:nil];
     [[BluetoothService sharedInstance] resetBluetoothDevice];
 }
 
@@ -94,13 +94,13 @@
     [self setUpGridView];
     [self checkAspectRatio];
     
-    [self setupSceneAndStart];
+    [self setupStageAndStart];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [[NSNotificationCenter defaultCenter] postNotificationName:NotificationName.scenePresenterViewControllerDidAppear object:self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:NotificationName.stagePresenterViewControllerDidAppear object:self];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -134,7 +134,7 @@
 - (void)freeRessources
 {
     self.project = nil;
-    self.scene = nil;
+    self.stage = nil;
     
     // Delete sound rec for loudness sensor
     NSError *error;
@@ -260,26 +260,26 @@
     }
 }
 
-- (void)setupSceneAndStart
+- (void)setupStageAndStart
 {
     // Initialize scene
-    CBScene *scene = [[[[SceneBuilder alloc] initWithProject:self.project] andFormulaManager:self.formulaManager] build];
+    Stage *stage = [[[[StageBuilder alloc] initWithProject:self.project] andFormulaManager:self.formulaManager] build];
     
     if ([self.project.header.screenMode isEqualToString: kCatrobatHeaderScreenModeMaximize]) {
-        scene.scaleMode = SKSceneScaleModeFill;
+        stage.scaleMode = SKSceneScaleModeFill;
     } else if ([self.project.header.screenMode isEqualToString: kCatrobatHeaderScreenModeStretch]){
-        scene.scaleMode = SKSceneScaleModeAspectFit;
+        stage.scaleMode = SKSceneScaleModeAspectFit;
     } else {
-        scene.scaleMode = SKSceneScaleModeFill;
+        stage.scaleMode = SKSceneScaleModeFill;
     }
     self.skView.paused = NO;
-    self.scene = scene;
+    self.stage = stage;
     
-    [[BluetoothService sharedInstance] setScenePresenter:self];
+    [[BluetoothService sharedInstance] setStagePresenter:self];
     [[CameraPreviewHandler shared] setCamView:self.view];
 
-    [self.skView presentScene:self.scene];
-    if (![self.scene startProject]) {
+    [self.skView presentScene:self.stage];
+    if (![self.stage startProject]) {
         [self stopAction];
     }
     
@@ -307,25 +307,25 @@
 - (void)pauseAction
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void) {
-        [[self.scene getSoundEngine] pause];
+        [[self.stage getSoundEngine] pause];
         [[FlashHelper sharedFlashHandler] pause];
         [[BluetoothService sharedInstance] pauseBluetoothDevice];
     });
     
-    [self.scene pauseScheduler];
+    [self.stage pauseScheduler];
 }
 
 - (void)resumeAction
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void) {
-        [[self.scene getSoundEngine] resume];
+        [[self.stage getSoundEngine] resume];
         [[BluetoothService sharedInstance] continueBluetoothDevice];
         if ([FlashHelper sharedFlashHandler].wasTurnedOn == FlashON) {
             [[FlashHelper sharedFlashHandler] resume];
         }
     });
     
-    [self.scene resumeScheduler];
+    [self.stage resumeScheduler];
 }
 
 - (void)continueAction:(UIButton*)sender withDuration:(CGFloat)duration
@@ -353,13 +353,13 @@
 
 - (void)stopAction
 {
-    CBScene *previousScene = self.scene;
+    Stage *previousStage = self.stage;
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void) {
         self.menuView.userInteractionEnabled = NO;
-        previousScene.userInteractionEnabled = NO;
+        previousStage.userInteractionEnabled = NO;
         [self stopProject];
-        previousScene.userInteractionEnabled = YES;
+        previousStage.userInteractionEnabled = YES;
     });
     
     [self.navigationController popViewControllerAnimated:YES];
@@ -370,14 +370,14 @@
     [self showLoadingView];
     
     self.menuView.userInteractionEnabled = NO;
-    self.scene.userInteractionEnabled = NO;
+    self.stage.userInteractionEnabled = NO;
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [self stopProject];
     
         dispatch_async(dispatch_get_main_queue(), ^{
             self.project = [Project projectWithLoadingInfo:[Util lastUsedProjectLoadingInfo]];
-            [self setupSceneAndStart];
+            [self setupStageAndStart];
         });
     });
 }
@@ -387,10 +387,10 @@
 {
     [self showLoadingView];
     self.menuView.userInteractionEnabled = NO;
-    CBScene *previousScene = self.scene;
-    previousScene.userInteractionEnabled = NO;
+    Stage *previousStage = self.stage;
+    previousStage.userInteractionEnabled = NO;
     [self stopProject];
-    previousScene.userInteractionEnabled = YES;
+    previousStage.userInteractionEnabled = YES;
     [self hideLoadingView];
     
     [[[[AlertControllerBuilder alertWithTitle:@"Lost Bluetooth Connection" message:kLocalizedPocketCode]
@@ -415,7 +415,7 @@
 
 - (void)manageAspectRatioAction:(UIButton *)sender
 {
-    self.scene.scaleMode = self.scene.scaleMode == SKSceneScaleModeAspectFit ? SKSceneScaleModeFill : SKSceneScaleModeAspectFit;
+    self.stage.scaleMode = self.stage.scaleMode == SKSceneScaleModeAspectFit ? SKSceneScaleModeFill : SKSceneScaleModeAspectFit;
     self.project.header.screenMode = [self.project.header.screenMode isEqualToString:kCatrobatHeaderScreenModeStretch] ? kCatrobatHeaderScreenModeMaximize :kCatrobatHeaderScreenModeStretch;
     [self.skView setNeedsLayout];
     self.menuOpen = YES;

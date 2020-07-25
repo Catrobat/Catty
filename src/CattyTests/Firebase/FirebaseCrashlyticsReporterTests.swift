@@ -92,7 +92,7 @@ final class FirebaseCrashlyticsReporterTests: XCTestCase {
     }
 
     func testScenePresenterViewControllerDidAppearNotification() {
-        NotificationCenter.default.post(name: .scenePresenterViewControllerDidAppear, object: nil)
+        NotificationCenter.default.post(name: .stagePresenterViewControllerDidAppear, object: nil)
 
         XCTAssertEqual(1, crashlytics!.logs.count)
         XCTAssertEqual(0, crashlytics!.records.count)

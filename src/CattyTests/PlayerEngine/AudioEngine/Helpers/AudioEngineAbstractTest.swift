@@ -48,12 +48,12 @@ class AudioEngineAbstractTest: XMLAbstractTest {
         audioEngine.stop()
     }
 
-    func runAndRecord(duration: Double, scene: CBScene, muted: Bool) -> AKAudioFile {
+    func runAndRecord(duration: Double, stage: Stage, muted: Bool) -> AKAudioFile {
         do {
             audioEngine.postProcessingMixer.volume = muted ? 0.0 : 1.0
             audioEngine.speechSynth.utteranceVolume = muted ? 0.0 : 1.0
             try recorder.record()
-            _ = scene.startProject()
+            _ = stage.startProject()
             RunLoop.current.run(until: Date(timeIntervalSinceNow: duration))
             recorder.stop()
         } catch {
@@ -98,11 +98,11 @@ class AudioEngineAbstractTest: XMLAbstractTest {
         return similarity
     }
 
-    func createScene(xmlFile: String) -> CBScene {
+    func createStage(xmlFile: String) -> Stage {
         let project = self.getProjectForXML(xmlFile: xmlFile)
-        let sceneBuilder = SceneBuilder(project: project)
-            .withFormulaManager(formulaManager: FormulaManager(sceneSize: Util.screenSize(true), landscapeMode: false))
+        let stageBuilder = StageBuilder(project: project)
+            .withFormulaManager(formulaManager: FormulaManager(stageSize: Util.screenSize(true), landscapeMode: false))
             .withAudioEngine(audioEngine: audioEngine)
-        return sceneBuilder.build()
+        return stageBuilder.build()
     }
 }

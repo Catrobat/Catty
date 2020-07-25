@@ -63,13 +63,13 @@ open class MockImage: UIImage {
 
 final class CBSceneTouchTests: XCTestCase {
 
-    var scene: CBScene!
+    var stage: Stage!
     var spriteNodeA: CBSpriteNode!
     var spriteNodeB: CBSpriteNode!
 
     override func setUp() {
-        scene = SceneBuilder(project: ProjectMock(width: 400, andHeight: 800)).build()
-        scene.scheduler.running = true
+        stage = StageBuilder(project: ProjectMock(width: 400, andHeight: 800)).build()
+        stage.scheduler.running = true
 
         let look = Look()
         look.name = "Look"
@@ -90,15 +90,15 @@ final class CBSceneTouchTests: XCTestCase {
     func testTouchedWithTouch() {
         spriteNodeA.size = CGSize(width: 10, height: 10)
         spriteNodeA.position = CGPoint(x: 10, y: 10)
-        scene.addChild(spriteNodeA)
+        stage.addChild(spriteNodeA)
 
         var touch = MockTouch(point: CGPoint(x: 10, y: 10))
-        var touchResult = scene.touchedWithTouch(touch)
+        var touchResult = stage.touchedWithTouch(touch)
         XCTAssertTrue(touchResult, "Error while detecting touch event")
         XCTAssertEqual(spriteNodeA.name, touch.lastNodeName, "Invalid object touched")
 
         touch = MockTouch(point: CGPoint(x: 21, y: 21))
-        touchResult = scene.touchedWithTouch(touch)
+        touchResult = stage.touchedWithTouch(touch)
         XCTAssertFalse(touchResult, "Error while detecting touch event")
         XCTAssertNotEqual(spriteNodeA.name, touch.lastNodeName, "Invalid object touched")
     }
@@ -107,27 +107,27 @@ final class CBSceneTouchTests: XCTestCase {
         spriteNodeA.size = CGSize(width: 10, height: 10)
         spriteNodeA.position = CGPoint(x: 10, y: 10)
         spriteNodeA.zPosition = 1
-        scene.addChild(spriteNodeA)
+        stage.addChild(spriteNodeA)
 
         spriteNodeB.size = spriteNodeA.size
         spriteNodeB.position = spriteNodeA.position
         spriteNodeB.zPosition = 2
-        scene.addChild(spriteNodeB)
+        stage.addChild(spriteNodeB)
 
         let touch = MockTouch(point: CGPoint(x: 10, y: 10))
-        let nodes = scene.nodes(at: touch.point)
+        let nodes = stage.nodes(at: touch.point)
         XCTAssertEqual(2, nodes.count, "Invalid number of nodes")
 
-        var touchResult = scene.touchedWithTouch(touch)
+        var touchResult = stage.touchedWithTouch(touch)
         XCTAssertTrue(touchResult, "Error while detecting touch event")
         XCTAssertEqual(spriteNodeB.name, touch.lastNodeName, "Invalid object touched")
 
         spriteNodeA.zPosition = 10
-        touchResult = scene.touchedWithTouch(touch)
+        touchResult = stage.touchedWithTouch(touch)
         XCTAssertTrue(touchResult, "Error while detecting touch event")
         XCTAssertEqual(spriteNodeA.name, touch.lastNodeName, "Invalid object touched")
 
-        touchResult = scene.touchedWithTouch(MockTouch(point: CGPoint(x: 21, y: 21)))
+        touchResult = stage.touchedWithTouch(MockTouch(point: CGPoint(x: 21, y: 21)))
         XCTAssertFalse(touchResult, "Error while detecting touch event")
     }
 
@@ -135,13 +135,13 @@ final class CBSceneTouchTests: XCTestCase {
         let nonSpriteObject = SKSpriteNode()
         nonSpriteObject.size = CGSize(width: 10, height: 10)
         nonSpriteObject.position = CGPoint(x: 10, y: 10)
-        scene.addChild(nonSpriteObject)
+        stage.addChild(nonSpriteObject)
 
         let touch = MockTouch(point: CGPoint(x: 10, y: 10))
-        let nodes = scene.nodes(at: touch.point)
+        let nodes = stage.nodes(at: touch.point)
         XCTAssertEqual(1, nodes.count, "Invalid number of nodes")
 
-        let touchResult = scene.touchedWithTouch(touch)
+        let touchResult = stage.touchedWithTouch(touch)
         XCTAssertFalse(touchResult, "Error while detecting touch event")
     }
 }

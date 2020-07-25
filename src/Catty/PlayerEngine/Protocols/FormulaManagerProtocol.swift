@@ -22,7 +22,7 @@
 
 protocol FormulaManagerProtocol: FormulaInterpreterProtocol {
 
-    func setup(for project: Project, and scene: CBScene)
+    func setup(for project: Project, and stage: Stage)
 
     func setup(for formula: Formula)
 

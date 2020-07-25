@@ -27,13 +27,13 @@ import XCTest
 class AbstractBrickTest: XCTestCase {
 
     var skView: SKView?
-    var scene: CBScene!
+    var stage: Stage!
     var formulaInterpreter: FormulaManager!
 
     override func setUp() {
         super.setUp()
-        formulaInterpreter = FormulaManager(sceneSize: Util.screenSize(true), landscapeMode: false)
-        scene = SceneBuilder(project: ProjectMock()).build()
+        formulaInterpreter = FormulaManager(stageSize: Util.screenSize(true), landscapeMode: false)
+        stage = StageBuilder(project: ProjectMock()).build()
     }
 
     override func tearDown() {

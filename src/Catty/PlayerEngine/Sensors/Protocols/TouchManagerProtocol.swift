@@ -22,7 +22,7 @@
 
 protocol TouchManagerProtocol {
 
-    func startTrackingTouches(for scene: CBScene)
+    func startTrackingTouches(for stage: Stage)
 
     func stopTrackingTouches()
 

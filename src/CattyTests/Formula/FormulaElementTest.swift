@@ -31,7 +31,7 @@ final class FormulaElementTest: XCTestCase {
     override func setUp() {
         super.setUp()
         let screenSize = Util.screenSize(true)
-        formulaManager = FormulaManager(sceneSize: screenSize, landscapeMode: false)
+        formulaManager = FormulaManager(stageSize: screenSize, landscapeMode: false)
     }
 
     func testGetInternTokenList() {

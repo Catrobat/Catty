@@ -32,7 +32,7 @@ final class SpriteBubbleConstraintsTests: XCTestCase {
 
     override func setUp() {
         parent = CBSpriteNodeMock(spriteObject: SpriteObject())
-        parent.mockedScene = SceneBuilder(project: ProjectMock(width: CGFloat(kIphoneXSceneWidth), andHeight: CGFloat(kIphoneXSceneHeight))).build()
+        parent.mockedStage = StageBuilder(project: ProjectMock(width: CGFloat(kIphoneXStageWidth), andHeight: CGFloat(kIphoneXStageHeight))).build()
 
         BubbleBrickHelper.addBubble(to: parent, withText: "Hello", andType: CBBubbleType.thought)
         child = parent.children.first!
@@ -80,7 +80,7 @@ final class SpriteBubbleConstraintsTests: XCTestCase {
         parent.position.y = 100000
         bubbleConstraint.apply()
         let topEdge = parent.scene.size.height - parent.yScale * child.frame.size.height
-        guard let yCollision = parent.mockedScene?.convert(child.position, from: parent).y else {
+        guard let yCollision = parent.mockedStage?.convert(child.position, from: parent).y else {
             XCTAssert(false)
             return
         }
@@ -92,7 +92,7 @@ final class SpriteBubbleConstraintsTests: XCTestCase {
         bubbleConstraint.apply()
         parent.position.y = -100000
         bubbleConstraint.apply()
-        guard let yCollision = parent.mockedScene?.convert(child.position, from: parent).y else {
+        guard let yCollision = parent.mockedStage?.convert(child.position, from: parent).y else {
             XCTAssert(false)
             return
         }
@@ -106,7 +106,7 @@ final class SpriteBubbleConstraintsTests: XCTestCase {
         parent.position.y = 10000
         bubbleConstraint.apply()
 
-        guard let yCollision = parent.mockedScene?.convert(child.position, from: parent).y else {
+        guard let yCollision = parent.mockedStage?.convert(child.position, from: parent).y else {
             XCTAssert(false)
             return
         }

@@ -59,10 +59,10 @@ extension FormulaManager {
         return unavailableResource
     }
 
-    @objc(setupForProject: andScene:)
-    func setup(for project: Project, and scene: CBScene) {
+    @objc(setupForProject: andStage:)
+    func setup(for project: Project, and stage: Stage) {
         let requiredResources = project.getRequiredResources()
-        setup(for: requiredResources, and: scene, startTrackingTouches: true)
+        setup(for: requiredResources, and: stage, startTrackingTouches: true)
     }
 
     @objc(setupForFormula:)
@@ -71,7 +71,7 @@ extension FormulaManager {
         setup(for: requiredResources, and: nil, startTrackingTouches: false)
     }
 
-    private func setup(for requiredResources: Int, and scene: CBScene?, startTrackingTouches: Bool) {
+    private func setup(for requiredResources: Int, and stage: Stage?, startTrackingTouches: Bool) {
         let unavailableResource = unavailableResources(for: requiredResources)
 
         if (requiredResources & ResourceType.accelerometer.rawValue > 0) && (unavailableResource & ResourceType.accelerometer.rawValue) == 0 {
@@ -102,8 +102,8 @@ extension FormulaManager {
         }
 
         if startTrackingTouches {
-            guard let sc = scene else { return }
-            touchManager.startTrackingTouches(for: sc)
+            guard let stage = stage else { return }
+            touchManager.startTrackingTouches(for: stage)
         }
     }
 
