@@ -24,10 +24,40 @@ import XCTest
 
 @testable import Pocket_Code
 
-final class XMLParserObjectTests095: XMLParserObjectTests093 {
+final class XMLParserObjectTests095: XMLAbstractTest {
+
+    var parserContext: CBXMLParserContext!
 
     override func setUp( ) {
         super.setUp()
-        parserContext = CBXMLParserContext(languageVersion: CGFloat(Float32(0.95)))
+    }
+
+    override func getXMLDocumentForPath(xmlPath: String) -> GDataXMLDocument {
+        let document = super.getXMLDocumentForPath(xmlPath: xmlPath)
+
+        parserContext = CBXMLParserContext(languageVersion: CGFloat(Float32(0.95)), andRootElement: document.rootElement())
+
+        return document
+    }
+
+    func testValidObjectListForAllBricks() {
+        let document = self.getXMLDocumentForPath(xmlPath: self.getPathForXML(xmlFile: "ValidProjectAllBricks095"))
+
+        let xmlElement = document.rootElement()
+
+        let objectListElements = xmlElement?.elements(forName: "objectList")
+        XCTAssertEqual(objectListElements!.count, 1)
+
+        let objectElements = (objectListElements?.first as! GDataXMLElement).children() as! [GDataXMLElement]
+        let objectList = NSMutableArray(capacity: objectElements.count)
+
+        for objectElement in objectElements {
+            let spriteObject = self.parserContext?.parse(from: objectElement, withClass: SpriteObject.self as CBXMLNodeProtocol.Type) as! SpriteObject
+            objectList.add(spriteObject)
+        }
+
+        XCTAssertEqual(objectList.count, 2)
+        let background = objectList.object(at: 0) as! SpriteObject
+        XCTAssertEqual(background.name, "Hintergrund", "SpriteObject[0]: Name not correctly parsed")
     }
 }

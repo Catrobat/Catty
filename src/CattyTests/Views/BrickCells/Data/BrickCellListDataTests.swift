@@ -53,10 +53,10 @@ class BrickCellListDataTests: XCTestCase {
         secondObjectList = UserList(name: "testList3")
         programList = UserList(name: "testList4")
 
-        userDataContainer.addObjectList(objectList1, for: spriteObject)
-        userDataContainer.addObjectList(objectList2, for: spriteObject)
-        userDataContainer.addObjectList(secondObjectList, for: spriteObject2)
-        userDataContainer.programListOfLists.add(programList as Any)
+        spriteObject.userData.addList(objectList1)
+        spriteObject.userData.addList(objectList2)
+        spriteObject2.userData.addList(secondObjectList)
+        userDataContainer.addList(programList)
 
         project = Project()
         project.userData = userDataContainer
@@ -130,6 +130,7 @@ class BrickCellListDataTests: XCTestCase {
     func testValuesWhenNoListInContainer() {
 
         project.userData = UserDataContainer()
+        spriteObject.userData.removeAllLists()
         brick.userList = nil
         brickCell.scriptOrBrick = brick
 

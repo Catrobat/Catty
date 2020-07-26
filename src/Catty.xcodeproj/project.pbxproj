@@ -878,6 +878,7 @@
 		5EFBD5F92145533B003B3CDC /* ProjectDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFBD5F82145533B003B3CDC /* ProjectDescriptionViewController.swift */; };
 		5EFBD5FC2145AADC003B3CDC /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFBD5FB2145AADC003B3CDC /* UIView+Extensions.swift */; };
 		6F021E6724A682350097F21A /* StoreProjectUploaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F021E6524A681410097F21A /* StoreProjectUploaderTests.swift */; };
+		6F17FA1124B6F85000885E07 /* SpriteObjectTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F17FA1024B6F85000885E07 /* SpriteObjectTest.swift */; };
 		6F17FA1824B7579000885E07 /* UploadViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F17FA1724B7579000885E07 /* UploadViewControllerTests.swift */; };
 		6F348C85245499F1000C963B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F348C84245499F1000C963B /* AppDelegate.swift */; };
 		6F38BF69247537290052C692 /* ListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F38BF65247536F70052C692 /* ListTests.swift */; };
@@ -904,7 +905,7 @@
 		6F9CF120246E7AA7008CED1C /* UserList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9CF11F246E7AA7008CED1C /* UserList.swift */; };
 		6F9CF123246E8767008CED1C /* UserListTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9CF122246E8767008CED1C /* UserListTest.swift */; };
 		6F9CF133246F0B81008CED1C /* NSDateExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9CF132246F0B81008CED1C /* NSDateExtensionTests.swift */; };
-		6FA48C4C2497710300248AE7 /* UserDataExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA48C4B2497710300248AE7 /* UserDataExtension.swift */; };
+		6FA48C4C2497710300248AE7 /* UserDataContainerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA48C4B2497710300248AE7 /* UserDataContainerExtension.swift */; };
 		6FAAD43824740B1D00FF2A34 /* FormulaElementExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FAAD43724740B1D00FF2A34 /* FormulaElementExtension.swift */; };
 		6FAAD8B6244CAFDA00142FA7 /* SpeakBrickWithoutCommentedOut_0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = 6FAAD8B5244CAFDA00142FA7 /* SpeakBrickWithoutCommentedOut_0991.xml */; };
 		6FB09D2324A29F1E009C69A0 /* StoreProjectUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB09D2224A29F1E009C69A0 /* StoreProjectUploader.swift */; };
@@ -2573,6 +2574,7 @@
 		602C3F3AB880252BC2FA6D5D /* nl */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6F021E6524A681410097F21A /* StoreProjectUploaderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreProjectUploaderTests.swift; sourceTree = "<group>"; };
 		6F021E6924A68AB70097F21A /* StoreProjectUpload.uploadProject.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectUpload.uploadProject.success.json; sourceTree = "<group>"; };
+		6F17FA1024B6F85000885E07 /* SpriteObjectTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteObjectTest.swift; sourceTree = "<group>"; };
 		6F17FA1724B7579000885E07 /* UploadViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadViewControllerTests.swift; sourceTree = "<group>"; };
 		6F348C84245499F1000C963B /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = "Supporting Files/AppDelegate.swift"; sourceTree = "<group>"; };
 		6F38BF65247536F70052C692 /* ListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTests.swift; sourceTree = "<group>"; };
@@ -2599,7 +2601,7 @@
 		6F9CF11F246E7AA7008CED1C /* UserList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserList.swift; sourceTree = "<group>"; };
 		6F9CF122246E8767008CED1C /* UserListTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListTest.swift; sourceTree = "<group>"; };
 		6F9CF132246F0B81008CED1C /* NSDateExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NSDateExtensionTests.swift; path = Extensions/NSDateExtensionTests.swift; sourceTree = "<group>"; };
-		6FA48C4B2497710300248AE7 /* UserDataExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataExtension.swift; sourceTree = "<group>"; };
+		6FA48C4B2497710300248AE7 /* UserDataContainerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataContainerExtension.swift; sourceTree = "<group>"; };
 		6FAAD43724740B1D00FF2A34 /* FormulaElementExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaElementExtension.swift; sourceTree = "<group>"; };
 		6FAAD8B5244CAFDA00142FA7 /* SpeakBrickWithoutCommentedOut_0991.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SpeakBrickWithoutCommentedOut_0991.xml; sourceTree = "<group>"; };
 		6FB09D2224A29F1E009C69A0 /* StoreProjectUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreProjectUploader.swift; sourceTree = "<group>"; };
@@ -4808,6 +4810,7 @@
 			isa = PBXGroup;
 			children = (
 				BA651EEC21A319BF00A94D67 /* SpriteObjectMutableCopyTests.swift */,
+				6F17FA1024B6F85000885E07 /* SpriteObjectTest.swift */,
 			);
 			name = SpriteObject;
 			sourceTree = "<group>";
@@ -7128,7 +7131,7 @@
 				6F5ADF12247D4703008FC2C5 /* BrickExtension.swift */,
 				222A693D247EA490004BE434 /* UIDeviceExtension.swift */,
 				184949B8248130A9000B8CDA /* NSStringExtension.swift */,
-				6FA48C4B2497710300248AE7 /* UserDataExtension.swift */,
+				6FA48C4B2497710300248AE7 /* UserDataContainerExtension.swift */,
 				184CA798249E839A00D3668B /* CBFileManagerExtension.swift */,
 			);
 			name = Extensions;
@@ -10088,6 +10091,7 @@
 				4C7182E323EF0AEB00195BC7 /* FormulaEditorViewControllerTests.swift in Sources */,
 				D311958823C72BBF005FC1A1 /* FormulaElementTest.swift in Sources */,
 				2ED418C02411213E00AFE2FD /* XMLParserHeaderTests093.swift in Sources */,
+				6F17FA1124B6F85000885E07 /* SpriteObjectTest.swift in Sources */,
 				D3AF5C19243F6A4C00B04BC6 /* BrickCategoryTest.swift in Sources */,
 				4CC50A5C213BBD7D004BC914 /* FormulaManagerInterpreterTests.swift in Sources */,
 				4C5AEEF722F6F3EA00280F8B /* NextLookBrickCellTests.swift in Sources */,
@@ -10337,7 +10341,7 @@
 				4C0F9F79204BD1E300E71B2D /* SayForBubbleBrick+Instruction.swift in Sources */,
 				4CF429F1213A876000B78897 /* RepeatBrick+Condition.swift in Sources */,
 				92D56C301BF202E700A54750 /* BluetoothDevice.swift in Sources */,
-				6FA48C4C2497710300248AE7 /* UserDataExtension.swift in Sources */,
+				6FA48C4C2497710300248AE7 /* UserDataContainerExtension.swift in Sources */,
 				4C0F9F91204BD28100E71B2D /* CameraBrickCell.m in Sources */,
 				92FF2EBE1A24C8A700093DA7 /* CatrobatInformation.m in Sources */,
 				921D46891BDF698A0086AD20 /* ClearGraphicEffectBrick+Instruction.swift in Sources */,

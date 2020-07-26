@@ -977,11 +977,11 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                                         UserVariable *variable = [[UserVariable alloc] initWithName:variableName];
                                         variable.value = [NSNumber numberWithInt:0];
                                         if (isProjectVar) {
-                                            [self.object.project.userData.programVariableList addObject:variable];
+                                            [self.object.project.userData addVariable:variable];
                                         } else { // object variable
-                                            [self.object.project.userData addObjectVariable:variable forObject:self.object];
+                                            [self.object.userData addVariable:variable];
                                         }
-                                        UserVariable *var = [self.object.project.userData getUserVariableNamed:(NSString*)variableName forSpriteObject:self.object];
+                                        UserVariable *var = [UserDataContainer objectOrProjectVariableForObject:self.object andName:(NSString*)variableName];
                                         BrickCell *brickCell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:self.variableIndexPath];
                                         Brick * brick = (Brick*)brickCell.scriptOrBrick;
                                         Brick<BrickVariableProtocol> *variableBrick;
@@ -1025,11 +1025,11 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                                     withObject:(id) ^(NSString* listName) {
                                         UserList *list = [[UserList alloc] initWithName:listName];
                                         if (isProjectList) {
-                                            [self.object.project.userData.programListOfLists addObject:list];
+                                            [self.object.project.userData addList:list];
                                         } else { // object list
-                                            [self.object.project.userData addObjectList:list forObject:self.object];
+                                            [self.object.userData addList:list];
                                         }
-                                        UserList *listToSet = [self.object.project.userData getUserListNamed:(NSString*)listName forSpriteObject:self.object];
+                                        UserList *listToSet = [UserDataContainer objectOrProjectListForObject:self.object andName:(NSString*)listName];
                                         BrickCell *brickCell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:self.variableIndexPath];
                                         Brick * brick = (Brick*)brickCell.scriptOrBrick;
                                         Brick<BrickListProtocol> *listBrick;
@@ -1207,7 +1207,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             return;
         } else {
             Brick<BrickVariableProtocol> *variableBrick = (Brick<BrickVariableProtocol>*)brick;
-            UserVariable *variable = [self.object.project.userData getUserVariableNamed:(NSString*)value forSpriteObject:self.object];
+            UserVariable *variable = [UserDataContainer objectOrProjectVariableForObject:self.object andName:(NSString*)value];
             if(variable)
                 [variableBrick setVariable:variable forLineNumber:line andParameterNumber:parameter];
         }
@@ -1233,7 +1233,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             return;
         } else {
             Brick<BrickListProtocol> *listBrick = (Brick<BrickListProtocol>*)brick;
-            UserList *list = [self.object.project.userData getUserListNamed:(NSString*)value forSpriteObject:self.object];
+            UserList *list = [UserDataContainer objectOrProjectListForObject:self.object andName:(NSString*)value];
             if(list)
                 [listBrick setList:list forLineNumber:line andParameterNumber:parameter];
         }

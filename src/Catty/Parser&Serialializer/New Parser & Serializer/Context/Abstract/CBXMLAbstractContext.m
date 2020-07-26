@@ -51,15 +51,6 @@
     return _spriteObjectList;
 }
 
-- (UserDataContainer*)userData
-{
-    if (! _userData) {
-        _userData = [UserDataContainer new];
-    }
-    return _userData;
-}
-
-
 - (id)mutableCopy
 {
     CBXMLAbstractContext *copiedContext = [[self class] new];
@@ -67,7 +58,6 @@
     copiedContext.pointedSpriteObjectList = [self.pointedSpriteObjectList mutableCopy];
     copiedContext.spriteObjectList = [self.spriteObjectList mutableCopy];
     copiedContext.spriteObject = self.spriteObject;
-    copiedContext.userData = [self.userData mutableCopy];
     return copiedContext;
 }
 

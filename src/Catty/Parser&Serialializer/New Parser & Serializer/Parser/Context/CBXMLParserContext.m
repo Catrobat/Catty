@@ -29,11 +29,12 @@
 @implementation CBXMLParserContext
 
 #pragma mark - Initialisation
-- (id)initWithLanguageVersion:(CGFloat)languageVersion
+- (instancetype)initWithLanguageVersion:(CGFloat)languageVersion andRootElement:(GDataXMLElement *)rootElement
 {
     self = [super init];
     if (self) {
         _languageVersion = languageVersion;
+        _rootElement = rootElement;
     }
     return self;
 }
@@ -66,38 +67,6 @@
     return _programListOfLists;
 }
 
-- (NSMutableDictionary*)spriteObjectNameVariableList
-{
-    if (! _spriteObjectNameVariableList) {
-        _spriteObjectNameVariableList = [NSMutableDictionary dictionary];
-    }
-    return _spriteObjectNameVariableList;
-}
-
-- (NSMutableDictionary*)spriteObjectNameListOfLists
-{
-    if (! _spriteObjectNameListOfLists) {
-        _spriteObjectNameListOfLists = [NSMutableDictionary dictionary];
-    }
-    return _spriteObjectNameListOfLists;
-}
-
-- (NSMutableDictionary*)formulaVariableNameList
-{
-    if (! _formulaVariableNameList) {
-        _formulaVariableNameList = [NSMutableDictionary dictionary];
-    }
-    return _formulaVariableNameList;
-}
-
-- (NSMutableDictionary*)formulaListNameList
-{
-    if (! _formulaListNameList) {
-        _formulaListNameList = [NSMutableDictionary dictionary];
-    }
-    return _formulaListNameList;
-}
-
 - (NSMutableSet<NSString*>*)unsupportedElements
 {
     if (! _unsupportedElements) {
@@ -117,11 +86,8 @@
     CBXMLParserContext *copiedContext = [super mutableCopy];
     copiedContext.programVariableList = [self.programVariableList mutableCopy];
     copiedContext.programListOfLists = [self.programListOfLists mutableCopy];
-    copiedContext.formulaVariableNameList = [self.formulaVariableNameList mutableCopy];
-    copiedContext.formulaListNameList = [self.formulaListNameList mutableCopy];
-    copiedContext.spriteObjectNameVariableList = [self.spriteObjectNameVariableList mutableCopy];
-    copiedContext.spriteObjectNameListOfLists = [self.spriteObjectNameListOfLists mutableCopy];
     [copiedContext setLanguageVersion:self.languageVersion];
+    copiedContext.rootElement = self.rootElement;
     return copiedContext;
 }
 

@@ -21,6 +21,7 @@
  */
 
 #import "SpriteObject+CBXMLHandler.h"
+#import "UserDataContainer+CBXMLHandler.h"
 #import "GDataXMLElement+CustomExtensions.h"
 #import "CBXMLValidator.h"
 #import "Look+CBXMLHandler.h"
@@ -92,6 +93,7 @@
     // IMPORTANT: DO NOT CHANGE ORDER HERE!
     [context.spriteObjectList addObject:spriteObject];
     
+    spriteObject.userData = [[UserDataContainer class] parseForSpriteObject:xmlElement withContext:context];
     spriteObject.lookList = [self parseAndCreateLooks:xmlElement withContext:context];
     spriteObject.soundList = [self parseAndCreateSounds:xmlElement withContext:context];
     spriteObject.scriptList = [self parseAndCreateScripts:xmlElement withContext:context];

@@ -48,9 +48,9 @@
     [child setStringValue:@"testUserList"];
     [self.xmlElement addChild:child];
     
-    self.paeserContext = [[CBXMLParserContext alloc] initWithLanguageVersion:0.991];
+    self.paeserContext = [[CBXMLParserContext alloc] initWithLanguageVersion:0.991 andRootElement: [GDataXMLElement new]];
     
-    self.serializerContext = [[CBXMLSerializerContext alloc] init];
+    self.serializerContext = [[CBXMLSerializerContext alloc] initWithProject:[Project new]];
 
     self.userList = [[UserList alloc] initWithName: @"testUserList"];
     self.userVariable = [[UserVariable alloc] initWithName: @"testUserListOfTypeUserVariable"];
@@ -81,18 +81,17 @@
     XCTAssertTrue([self.userList isEqual: userListToComapare2]);
 }
 
-- (void)testParseFromElementUserListExistsInContextInSpriteObjectNameListOfLists
+- (void)testParseFromElementUserListExistsInSpriteObject
 {
-    NSArray *userListArray = [[NSArray alloc] initWithObjects: self.userList, nil];
-    
     SpriteObject *object = [SpriteObject alloc];
+    [object.userData addList:self.userList];
+    
     self.paeserContext.spriteObject = object;
     
     XCTAssertThrows([UserList parseFromElement:self.xmlElement withContext:self.paeserContext], "Given SpriteObject has no name");
     
     object.name = @"spriteObject";
     self.paeserContext.spriteObject = object;
-    [self.paeserContext.spriteObjectNameListOfLists setObject:userListArray forKey:@"spriteObject"];
     
     UserList *userListToComapare3 = [UserList parseFromElement:self.xmlElement withContext:self.paeserContext];
     
@@ -103,8 +102,9 @@
 - (void)testXmlElementWithContext
 {
     NSMutableArray *userListArray = [[NSMutableArray alloc] initWithObjects: self.userList,nil];
-    
-    [self.serializerContext.userData setProgramListOfLists:userListArray];
+    for(UserList *list in userListArray) {
+        [self.serializerContext.project.userData addList:list];
+    }
     
     GDataXMLElement *xmlElement = [self.userList xmlElementWithContext:self.serializerContext];
     NSString *expectedXMLString = [NSString stringWithFormat:@"<userList><name>testUserList</name></userList>"];
@@ -115,8 +115,10 @@
 - (void)testXmlElementWithContextWithObjectListAlreadySerialized
 {
     NSMutableArray *userListArray = [[NSMutableArray alloc] initWithObjects: self.userVariable, nil];
+    for(UserList *list in userListArray) {
+        [self.serializerContext.project.userData addList:list];
+    }
     
-    [self.serializerContext.userData setProgramListOfLists:userListArray];
     SpriteObject *object = [SpriteObject alloc];
     object.name = @"spriteObject";
     self.serializerContext.spriteObject = object;
@@ -143,7 +145,9 @@
 - (void)testXmlElementWithContextWithObjectListNotAlreadySerialized
 {
     NSMutableArray *userListArray = [[NSMutableArray alloc] initWithObjects: self.userVariable, nil];
-    [self.serializerContext.userData setProgramListOfLists:userListArray];
+    for(UserList *list in userListArray) {
+        [self.serializerContext.project.userData addList:list];
+    }
     
     SpriteObject *object = [SpriteObject alloc];
     object.name = @"spriteObject";
@@ -158,8 +162,9 @@
 - (void)testXmlElementWithContextWithAlreadySerializedList
 {
     NSMutableArray *userListArray = [[NSMutableArray alloc] initWithObjects: self.userList, nil];
-    [self.serializerContext.userData setProgramListOfLists:userListArray];
-    
+    for(UserList *list in userListArray) {
+        [self.serializerContext.project.userData addList:list];
+    }
     
     CBXMLPositionStack *destinationPositionStack = [[CBXMLPositionStack alloc] init];
     [destinationPositionStack pushXmlElementName:@"newXmlElement"];

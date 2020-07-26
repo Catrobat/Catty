@@ -50,7 +50,7 @@ final class ReplaceItemInUserListBrickTests: XCTestCase {
         spriteObject.project.userData = UserDataContainer()
 
         userList = UserList(name: "testName")
-        spriteObject.project.userData.addObjectList(userList, for: spriteObject)
+        spriteObject.userData.addList(userList)
 
         brick = ReplaceItemInUserListBrick()
         brick.userList = userList

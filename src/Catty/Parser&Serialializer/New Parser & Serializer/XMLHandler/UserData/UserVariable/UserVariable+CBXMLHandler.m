@@ -61,8 +61,7 @@
     SpriteObject *spriteObject = context.spriteObject;
     if (spriteObject) {
         [XMLError exceptionIfNil:spriteObject.name message:@"Given SpriteObject has no name."];
-        NSMutableArray *objectUserVariables = [context.spriteObjectNameVariableList objectForKey:spriteObject.name];
-        for (UserVariable *userVariableToCompare in objectUserVariables) {
+        for (UserVariable *userVariableToCompare in spriteObject.userData.variables) {
             if ([userVariableToCompare.name isEqualToString:userVariableName]) {
                 return userVariableToCompare;
             }
@@ -94,7 +93,7 @@
     CBXMLPositionStack *positionStackOfUserVariable = nil;
 
     // check whether object variable/list or project variable/list
-    if (! [context.userData isProjectVariable:self]) {
+    if (! [context.project.userData containsVariable:self]) {
         // it is an object variable/list!
         SpriteObject *spriteObject = context.spriteObject;
         NSMutableDictionary *alreadySerializedVarsOrLists = [context.spriteObjectNameUserVariableListPositions objectForKey:spriteObject.name];

@@ -27,6 +27,6 @@ import XCTest
 final class XMLFormulaTests095: XMLParserFormulaTests093 {
     override func setUp( ) {
         super.setUp()
-        self.parserContext = CBXMLParserContext(languageVersion: CGFloat(Float32(0.95)))
+        self.parserContext = CBXMLParserContext(languageVersion: CGFloat(Float32(0.95)), andRootElement: GDataXMLElement())
     }
 }

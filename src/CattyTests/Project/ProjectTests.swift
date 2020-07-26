@@ -185,7 +185,7 @@ class ProjectTest: XCTestCase {
         project.objectList.add(object as Any)
 
         let variable = UserVariable(name: "userVariable")
-        project.userData.addObjectVariable(variable, for: object)
+        object.userData.addVariable(variable)
 
         let setVariableBrick = SetVariableBrick()
         setVariableBrick.userVariable = variable
@@ -224,7 +224,7 @@ class ProjectTest: XCTestCase {
         project.objectList.add(object as Any)
 
         let list = UserList(name: "userList")
-        project.userData.addObjectList(list, for: object)
+        object.userData.addList(list)
 
         let brick = InsertItemIntoUserListBrick()
         brick.userList = list

@@ -31,29 +31,23 @@
 
 @interface UserDataContainer : NSObject
 
-// Map<Sprite, List<UserVariable>
-@property (nonatomic, strong) OrderedMapTable *objectListOfLists;
-@property (nonatomic, strong) OrderedMapTable *objectVariableList;
+- (NSArray<UserList*> *)lists;
+- (NSArray<UserVariable*> *)variables;
 
-// List<UserVariable>
-@property (nonatomic, strong) NSMutableArray<UserVariable*> *programVariableList;
-@property (nonatomic, strong) NSMutableArray<UserList*> *programListOfLists;
+- (UserVariable*)getUserVariableWithName:(NSString*)name;
+- (UserList*)getUserListWithName:(NSString*)name;
 
-- (UserVariable*)getUserVariableNamed:(NSString*)name forSpriteObject:(SpriteObject*)sprite;
-- (UserList*)getUserListNamed:(NSString*)name forSpriteObject:(SpriteObject*)sprite;
+- (BOOL)removeUserVariableWithName:(NSString*)name;
+- (BOOL)removeUserListWithName:(NSString*)name;
 
+- (void)removeAllVariables;
+- (void)removeAllLists;
 
-- (BOOL)removeUserVariableNamed:(NSString*)name forSpriteObject:(SpriteObject*)sprite;
-- (BOOL)removeUserListNamed:(NSString*)name forSpriteObject:(SpriteObject*)sprite;
+- (BOOL)addVariable:(UserVariable*)userVariable;
+- (BOOL)addList:(UserList*)userList;
 
-- (BOOL)addObjectVariable:(UserVariable*)userVariable forObject:(SpriteObject*)spriteObject;
-- (BOOL)addObjectList:(UserList*)userList forObject:(SpriteObject*)spriteObject;
-
-- (BOOL)isProjectList: (UserList*)userList;
-- (BOOL)isProjectVariable: (UserVariable*)userVariable;
-
-- (void)removeObjectVariablesForSpriteObject:(SpriteObject*)object;
-- (void)removeObjectListsForSpriteObject:(SpriteObject*)object;
+- (BOOL)containsList: (UserList*)userList;
+- (BOOL)containsVariable: (UserVariable*)userVariable;
 
 - (BOOL)isEqualToUserDataContainer:(UserDataContainer*)userDataContainer;
 

@@ -39,6 +39,7 @@
 @property (nonatomic, strong) NSMutableArray<Script*> *scriptList;
 @property (nonatomic, weak) Project *project;
 @property (nonatomic, weak) CBSpriteNode *spriteNode;
+@property (nonatomic, strong) UserDataContainer *userData;
 
 - (NSUInteger)numberOfScripts;
 - (NSUInteger)numberOfTotalBricks; // including script bricks

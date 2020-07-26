@@ -368,14 +368,24 @@
         
         if(objectVariableListArray) {
             GDataXMLElement* objectVariableList = [objectVariableListArray objectAtIndex:0];
-            userData.objectVariableList = [self parseObjectVariableMap:objectVariableList andParent:ref];
+            OrderedMapTable * objectVariables = [self parseObjectVariableMap:objectVariableList andParent:ref];
+            
+            for(int index = 0; index < [objectVariables count]; index++) {
+                SpriteObject* spriteObject = [objectVariables keyAtIndex:index];
+                
+                for(UserVariable *variable in [objectVariables objectAtIndex:index]) {
+                    [spriteObject.userData addVariable:variable];
+                }
+            }
         }
         
         NSArray* programVariableListArray = [element elementsForName:@"programVariableList"];
         
         if(programVariableListArray) {
             GDataXMLElement* programVariableList  = [programVariableListArray objectAtIndex:0];
-            userData.programVariableList = [self parseProgramVariableList:programVariableList andParent:ref];
+            for(UserVariable* variable in [self parseProgramVariableList:programVariableList andParent:ref]) {
+                [userData addVariable:variable];
+            }
         }
     }
     
@@ -449,7 +459,6 @@
                 }
             
             NSInteger index = [self indexForArrayObject:pathComponent];
-            
             if (index+1 > [list count] || index < 0) {
                 [NSException raise:@"IndexOutOfBoundsException" format:@"IndexOutOfBounds for lastComponent!"];
             }
@@ -503,7 +512,6 @@
         XMLObjectReference* listReference = [[XMLObjectReference alloc] initWithParent:entryRef andObject:list];
         
         for(GDataXMLElement* var in listElement.children) {
-            
             UserVariable* userVariable = nil;
             if([self isReferenceElement:var]) {
                 userVariable = [self parseReferenceElement:var withParent:listReference];

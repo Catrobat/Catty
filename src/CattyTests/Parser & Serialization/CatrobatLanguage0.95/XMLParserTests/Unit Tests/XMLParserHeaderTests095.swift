@@ -30,7 +30,7 @@ final class XMLParserHeaderTests095: XMLAbstractTest {
 
     override func setUp( ) {
         super.setUp()
-        parserContext = CBXMLParserContext(languageVersion: CGFloat(Float32(0.95)))
+        parserContext = CBXMLParserContext(languageVersion: CGFloat(Float32(0.95)), andRootElement: GDataXMLElement())
     }
 
     func testValidHeader() {

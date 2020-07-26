@@ -30,7 +30,7 @@ class XMLParserFormulaTests093: XMLAbstractTest {
 
     override func setUp() {
         super.setUp()
-        parserContext = CBXMLParserContext(languageVersion: CGFloat(Float32(0.93)))
+        parserContext = CBXMLParserContext(languageVersion: CGFloat(Float32(0.93)), andRootElement: GDataXMLElement())
         formulaManager = FormulaManager(sceneSize: Util.screenSize(true), landscapeMode: false)
     }
 

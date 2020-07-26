@@ -227,4 +227,42 @@ final class SpriteObjectMutableCopyTests: XMLAbstractTest {
 
         XCTAssertEqual(brickCopy.sound, sound)
     }
+
+    func testUserDataContainerCopyContainingList() {
+        let list = UserList(name: "testList")
+
+        let container = UserDataContainer()
+        container.addList(list)
+
+        let object = SpriteObject()
+        object.name = "testObject"
+        object.userData = container
+
+        let context = CBMutableCopyContext()
+        let copyObject = object.mutableCopy(with: context) as! SpriteObject
+
+        XCTAssertTrue(copyObject.userData.isEqual(to: object.userData))
+        XCTAssertFalse(copyObject.userData === object.userData)
+        XCTAssertEqual(1, copyObject.userData.lists().count)
+        XCTAssertEqual("testList", (copyObject.userData.lists()[0]).name)
+    }
+
+    func testUserDataContainerCopyContainingVariable() {
+        let variable = UserVariable(name: "testVariable")
+
+        let container = UserDataContainer()
+        container.addVariable(variable)
+
+        let object = SpriteObject()
+        object.name = "testObject"
+        object.userData = container
+
+        let context = CBMutableCopyContext()
+        let copyObject = object.mutableCopy(with: context) as! SpriteObject
+
+        XCTAssertTrue(copyObject.userData.isEqual(to: object.userData))
+        XCTAssertFalse(copyObject.userData === object.userData)
+        XCTAssertEqual(1, copyObject.userData.variables().count)
+        XCTAssertEqual("testVariable", (copyObject.userData.variables()[0]).name)
+    }
 }

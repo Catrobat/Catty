@@ -46,7 +46,6 @@
     project.userData = [self parseAndCreateVariablesFromElement:xmlElement withContext:context];
     project.objectList = [self parseAndCreateObjectsFromElement:xmlElement withContext:context];
     
-    [self addMissingVariablesAndListsToVariablesContainer:project.userData withContext:context];
     return project;
 }
 
@@ -112,49 +111,6 @@
     return [context parseFromElement:projectElement withClass:[UserDataContainer class]];
 }
 
-+ (void)addMissingVariablesAndListsToVariablesContainer:(UserDataContainer*)varAndListContainer
-                                    withContext:(CBXMLParserContext*)context
-{
-    for(NSString *objectName in context.formulaVariableNameList) {
-        NSArray *variableList = [context.formulaVariableNameList objectForKey:objectName];
-         SpriteObject *object = [self getSpriteObject:objectName withContext:context];
-        if(!object) {
-            NSWarn(@"SpriteObject with name %@ is not found in object list", objectName);
-            return;
-        }
-        
-        for(NSString *variableName in variableList) {
-            if(![varAndListContainer getUserVariableNamed:variableName forSpriteObject:object]) {
-                UserVariable *userVariable = [[UserVariable alloc] initWithName:variableName];
-                
-                [varAndListContainer addObjectVariable:userVariable forObject:object];
-                NSDebug(@"Added UserVariable with name %@ to global object "\
-                        "variable list with object %@", variableName, object.name);
-            }
-        }
-    }
-    
-    for(NSString *objectName in context.formulaListNameList) {
-        NSArray *listOfLists = [context.formulaListNameList objectForKey:objectName];
-        SpriteObject *object = [self getSpriteObject:objectName withContext:context];
-        
-        if(!object) {
-            NSWarn(@"SpriteObject with name %@ is not found in object list", objectName);
-            return;
-        }
-        
-        for(NSString *listName in listOfLists) {
-            if(![varAndListContainer getUserListNamed:listName forSpriteObject:object]) {
-                UserList *userList = [[UserList alloc] initWithName:listName];
-                
-                [varAndListContainer addObjectList:userList forObject:object];
-                NSDebug(@"Added a user list with name %@ to global object "\
-                        "list of lists with object %@", listName, object.name);
-            }
-        }
-    }
-}
-
 + (SpriteObject *)getSpriteObject:(NSString*)spriteName withContext:(CBXMLParserContext*)context
 {
     SpriteObject *object = nil;
@@ -175,8 +131,7 @@
 {
     // update context object
     context.spriteObjectList = self.objectList;
-    context.userData = self.userData;
-
+    
     // generate xml element for program
     GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"program" context:context];
     [xmlElement addChild:[self.header xmlElementWithContext:context] context:context];

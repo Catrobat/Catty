@@ -139,7 +139,7 @@
         <object reference="../../../../objectList/object"/>
         <list>
           <userVariable reference="../../../../../objectList/object/scriptList/startScript/brickList/setVariableBrick/userVariable"/>
-          <userVariable reference="../../../../../objectList/object/scriptList/startScript/brickList/setVariableBrick/userVariable"/>
+          <userVariable reference="../../../../../objectList/object/scriptList/startScript/brickList/setVariableBrick[2]/userVariable"/>
         </list>
       </entry>
       <entry>

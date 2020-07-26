@@ -110,7 +110,7 @@
         CGFloat languageVersion = [Util detectCBLanguageVersionFromXMLWithPath:self.xmlPath];
         NSInfo(@"Parsing Project with CatrobatLanguageVersion %g...", languageVersion);
         CBXMLParserContext *parserContext = [[CBXMLParserContext alloc]
-                                             initWithLanguageVersion:languageVersion];
+                                             initWithLanguageVersion:languageVersion andRootElement: xmlDocument.rootElement];
         project = [parserContext parseFromElement:xmlDocument.rootElement withClass:[Project class]];
         project.unsupportedElements = parserContext.unsupportedElements;
         NSInfo(@"Parsing finished...");
