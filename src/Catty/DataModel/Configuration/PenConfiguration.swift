@@ -36,5 +36,5 @@ struct PenConfiguration {
     }
 
     var color = SpriteKitDefines.defaultPenColor
-    var previousPosition: CGPoint?
+    var previousPositions = SynchronizedArray<CGPoint>()
 }

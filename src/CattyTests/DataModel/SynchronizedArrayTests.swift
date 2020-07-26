@@ -158,6 +158,57 @@ final class SynchronizedArrayTests: XCTestCase {
         XCTAssertEqual(7, array[0])
     }
 
+    func testRemoveAll() {
+        let array = SynchronizedArray<Int>()
+
+        array.append(5)
+        array.append(6)
+        array.append(7)
+        XCTAssertEqual(3, array.count)
+
+        array.removeAll()
+        XCTAssertEqual(0, array.count)
+    }
+
+    func testRemoveSubrange() {
+        let array = SynchronizedArray<Int>()
+
+        array.append(5)
+        array.append(6)
+        array.append(7)
+        array.append(8)
+        array.append(9)
+        array.append(10)
+
+        XCTAssertEqual(6, array.count)
+        array.removeSubrange(2..<5)
+        XCTAssertEqual(3, array.count)
+
+        XCTAssertEqual(5, array[0])
+        XCTAssertEqual(6, array[1])
+        XCTAssertEqual(10, array[2])
+    }
+
+    func testEnumeration() {
+        let syncronizedArray = SynchronizedArray<Int>()
+        syncronizedArray.append(5)
+        syncronizedArray.append(6)
+        syncronizedArray.append(7)
+
+        var array = [Int]()
+        array.append(5)
+        array.append(6)
+        array.append(7)
+
+        let syncArrayEnumerated = syncronizedArray.enumerated()
+        let arrayEnumerated = array.enumerated()
+
+        for ((index1, value1), (index2, value2)) in zip(syncArrayEnumerated, arrayEnumerated) {
+            XCTAssertEqual(index1, index2)
+            XCTAssertEqual(value1, value2)
+        }
+    }
+
     func testContains() {
         let array = SynchronizedArray<Int>()
 

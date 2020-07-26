@@ -32,9 +32,10 @@ extension PenClearBrick: CBInstructionProtocol {
             else { fatalError("This should never happen!") }
 
         return {
-            spriteNode.penConfiguration.previousPosition = spriteNode.position
             let scene = spriteNode.scene as? CBScene
             scene?.clearPenLines()
+
+            spriteNode.penConfiguration.previousPositions.removeAll()
         }
     }
 
