@@ -1082,6 +1082,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     }
     [self.object.project saveToDiskWithNotification:YES];
     [self enableUserInteractionAndResetHighlight];
+    [self.object.project.allBroadcastMessages addObject:messageName];
 }
 
 - (void)addVariableWithName:(NSString*)variableName andCompletion:(id)completion
@@ -1164,6 +1165,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             [(Brick<BrickStaticChoiceProtocol>*)brick setChoice:(NSString*)value forLineNumber:line andParameterNumber:parameter];
     }else
     if ([brickCellData isKindOfClass:[BrickCellMessageData class]] && [brick conformsToProtocol:@protocol(BrickMessageProtocol)]) {
+        [self.object.project.allBroadcastMessages addObject:value];
         Brick<BrickMessageProtocol> *messageBrick = (Brick<BrickMessageProtocol>*)brick;
         if([(NSString*)value isEqualToString:kLocalizedNewElement]) {
             [Util askUserForUniqueNameAndPerformAction:@selector(addMessageWithName:andCompletion:)
@@ -1179,7 +1181,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                                         minInputLength:kMinNumOfMessageNameCharacters
                                         maxInputLength:kMaxNumOfMessageNameCharacters
                               invalidInputAlertMessage:kLocalizedMessageAlreadyExistsDescription
-                                         existingNames:[Util allMessagesForProject:self.object.project]];
+                                         existingNames:[Util allMessagesForProject:self.object.project].array];
             [self enableUserInteractionAndResetHighlight];
             return;
         } else {

@@ -37,6 +37,15 @@
 
 @synthesize objectList = _objectList;
 
+- (instancetype)init
+{
+    if (self = [super init])
+    {
+        _allBroadcastMessages = [[NSMutableOrderedSet alloc] init];
+    }
+    return self;
+}
+
 - (NSInteger)numberOfTotalObjects
 {
     return [self.objectList count];
@@ -446,8 +455,8 @@
 
 + (instancetype)defaultProjectWithName:(NSString*)projectName projectID:(NSString*)projectID
 {
-    projectName = [Util uniqueName:projectName existingNames:[[self class] allProjectNames]];
     Project *project = [[Project alloc] init];
+    projectName = [Util uniqueName:projectName existingNames:[[self class] allProjectNames]];
     project.header = [Header defaultHeader];
     project.header.programName = projectName;
     project.header.programID = projectID;

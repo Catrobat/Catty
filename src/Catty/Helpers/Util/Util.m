@@ -559,9 +559,10 @@
     return nil;
 }
 
-+ (NSArray*)allMessagesForProject:(Project*)project
++ (NSMutableOrderedSet*)allMessagesForProject:(Project*)project
 {
-    NSMutableArray *messages = [[NSMutableArray alloc] init];
+    NSMutableOrderedSet* messages = [[NSMutableOrderedSet alloc] init];
+    [messages addObjectsFromArray:project.allBroadcastMessages.array];
     for(SpriteObject *object in project.allObjects) {
         for(Script *script in object.scriptList) {
             if([script isKindOfClass:[BroadcastScript class]]) {
