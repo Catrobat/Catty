@@ -22,7 +22,6 @@
 
 #import "CBXMLAbstractContext.h"
 #import "CBXMLOpenedNestingBricksStack.h"
-#import "UserDataContainer.h"
 
 @implementation CBXMLAbstractContext
 

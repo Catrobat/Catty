@@ -31,6 +31,7 @@
 #import "CBFileManager.h"
 #import "NSString+FastImageSize.h"
 #import "CBMutableCopyContext.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation SpriteObject
 
@@ -62,7 +63,7 @@
 {
     // lazy instantiation
     if (! _userData)
-        _userData = [UserDataContainer new];
+        _userData = [[UserDataContainer alloc] init];
     return _userData;
 }
 
@@ -425,7 +426,7 @@
     }
     
     if(self.userData && spriteObject.userData) {
-        if (![self.userData isEqualToUserDataContainer:spriteObject.userData]) {
+        if (![self.userData isEqual:spriteObject.userData]) {
             return NO;
         }
     }

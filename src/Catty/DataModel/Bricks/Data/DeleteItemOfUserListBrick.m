@@ -24,7 +24,6 @@
 #import "DeleteItemOfUserListBrick.h"
 #import "Formula.h"
 #import "Project.h"
-#import "UserDataContainer.h"
 #import "Script.h"
 
 @implementation DeleteItemOfUserListBrick

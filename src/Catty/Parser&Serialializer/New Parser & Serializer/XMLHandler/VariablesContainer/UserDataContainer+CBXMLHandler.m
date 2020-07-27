@@ -54,7 +54,7 @@
     NSArray *variablesElements = [xmlElement elementsForName:rootElementName];
     [XMLError exceptionIf:[variablesElements count] notEquals:1 message:@"Too many %@-elements given!", rootElementName];
     GDataXMLElement *variablesElement = [variablesElements firstObject];
-    UserDataContainer *varContainer = [UserDataContainer new];
+    UserDataContainer *varContainer = [[UserDataContainer alloc] init];
     
     if (objectXmlElement != nil) {
         
