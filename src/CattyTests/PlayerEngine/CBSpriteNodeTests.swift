@@ -29,6 +29,15 @@ final class CBSpriteNodeTests: XCTestCase {
     final let epsilon = 0.001
     var spriteNode: CBSpriteNodeMock!
 
+    private func calculateScreenRatio(width: CGFloat, height: CGFloat) -> CGFloat {
+        let deviceScreenRect = UIScreen.main.nativeBounds
+        let deviceDiagonalPixel = CGFloat(sqrt(pow(deviceScreenRect.width, 2) + pow(deviceScreenRect.height, 2)))
+
+        let creatorDiagonalPixel = CGFloat(sqrt(pow(width, 2) + pow(height, 2)))
+
+        return creatorDiagonalPixel / deviceDiagonalPixel
+    }
+
     override func setUp() {
         let spriteObject = SpriteObject()
         spriteObject.name = "SpriteObjectName"
@@ -172,5 +181,22 @@ final class CBSpriteNodeTests: XCTestCase {
                        Double(spriteNode.ciHueAdjust),
                        accuracy: epsilon,
                        "SpriteNode catrobatColor not correct")
+    }
+
+    func testPenConfigurationInit() {
+        XCTAssertEqual(spriteNode.penConfiguration.screenRatio, 1)
+
+        let testProject1 = ProjectMock(width: 100, andHeight: 100)
+        let newSpriteObject = SpriteObject()
+        newSpriteObject.project = testProject1
+        spriteNode = CBSpriteNodeMock(spriteObject: newSpriteObject)
+
+        XCTAssertEqual(spriteNode.penConfiguration.screenRatio, calculateScreenRatio(width: 100, height: 100))
+
+        let testProject2 = ProjectMock(width: 200, andHeight: 200)
+        newSpriteObject.project = testProject2
+        spriteNode = CBSpriteNodeMock(spriteObject: newSpriteObject)
+
+        XCTAssertEqual(spriteNode.penConfiguration.screenRatio, calculateScreenRatio(width: 200, height: 200))
     }
 }

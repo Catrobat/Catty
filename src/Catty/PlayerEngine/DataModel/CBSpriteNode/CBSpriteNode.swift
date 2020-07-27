@@ -43,7 +43,8 @@ class CBSpriteNode: SKSpriteNode {
     @objc required init(spriteObject: SpriteObject) {
         let color = UIColor.clear
         self.spriteObject = spriteObject
-        self.penConfiguration = PenConfiguration()
+
+        self.penConfiguration = PenConfiguration(projectWidth: self.spriteObject.project?.header.screenWidth as? CGFloat, projectHeight: self.spriteObject.project?.header.screenHeight as? CGFloat)
 
         if let firstLook = spriteObject.lookList.firstObject as? Look,
             let filePathForLook = spriteObject.path(for: firstLook),

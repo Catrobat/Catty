@@ -26,18 +26,42 @@ import XCTest
 
 final class PenConfigurationTests: XCTestCase {
 
+    private let width: CGFloat = 100
+    private let height: CGFloat = 200
+
+    private func calculateScreenRatio(width: CGFloat, height: CGFloat) -> CGFloat {
+        let deviceScreenRect = UIScreen.main.nativeBounds
+        let deviceDiagonalPixel = CGFloat(sqrt(pow(deviceScreenRect.width, 2) + pow(deviceScreenRect.height, 2)))
+
+        let creatorDiagonalPixel = CGFloat(sqrt(pow(width, 2) + pow(height, 2)))
+
+        return creatorDiagonalPixel / deviceDiagonalPixel
+    }
+
+    func testScreenRatio() {
+        let penConfiguration = PenConfiguration(projectWidth: width, projectHeight: height)
+        XCTAssertEqual(penConfiguration.screenRatio, calculateScreenRatio(width: width, height: height))
+    }
+
+    func testScreenRatioWithParametersNil() {
+        let penConfiguration = PenConfiguration(projectWidth: nil, projectHeight: nil)
+        XCTAssertEqual(penConfiguration.screenRatio, 1)
+    }
+
     func testCatrobatSizeSKSizeConversion() {
-        var penConfiguration = PenConfiguration()
+        var penConfiguration = PenConfiguration(projectWidth: width, projectHeight: height)
+        let screenRatio = calculateScreenRatio(width: width, height: height)
 
-        XCTAssertEqual(penConfiguration.catrobatSize, SpriteKitDefines.defaultCatrobatPenSize)
+        XCTAssertEqual(penConfiguration.catrobatSize, SpriteKitDefines.defaultCatrobatPenSize, accuracy: 0.01)
 
-        var expectedPenSize = SpriteKitDefines.defaultCatrobatPenSize * CGFloat(PenConfiguration.sizeConversionFactor)
+        var expectedPenSize = SpriteKitDefines.defaultCatrobatPenSize * CGFloat(PenConfiguration.sizeConversionFactor) * screenRatio
+
         XCTAssertEqual(penConfiguration.size, expectedPenSize, accuracy: 0.01)
 
         penConfiguration.catrobatSize = 10.0
 
-        expectedPenSize = penConfiguration.catrobatSize * CGFloat(PenConfiguration.sizeConversionFactor)
-        XCTAssertEqual(penConfiguration.size, expectedPenSize)
+        expectedPenSize = penConfiguration.catrobatSize * CGFloat(PenConfiguration.sizeConversionFactor) * screenRatio
+        XCTAssertEqual(penConfiguration.size, expectedPenSize, accuracy: 0.01)
     }
 
 }
