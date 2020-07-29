@@ -12,6 +12,11 @@
 		1822C1392471C7CB00F8F158 /* BrickCellListDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1822C1382471C7CB00F8F158 /* BrickCellListDataTests.swift */; };
 		1833ED942446572F0053BF7C /* HelpWebViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1833ED912446572E0053BF7C /* HelpWebViewControllerTests.swift */; };
 		18385C68247C0EB30050819A /* LineShapeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18385C67247C0EB30050819A /* LineShapeNode.swift */; };
+		18390A6924D0576100A07DFD /* StampBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18390A6824D0576100A07DFD /* StampBrick.swift */; };
+		18390A6D24D057E100A07DFD /* StampBrickCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18390A6C24D057E100A07DFD /* StampBrickCell.swift */; };
+		18390A6F24D058BA00A07DFD /* StampBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18390A6E24D058BA00A07DFD /* StampBrick+Instruction.swift */; };
+		18390A7124D0594300A07DFD /* StampBrick+CBXMLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18390A7024D0594300A07DFD /* StampBrick+CBXMLHandler.swift */; };
+		18390A7324D0A33D00A07DFD /* StampBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18390A7224D0A33D00A07DFD /* StampBrickTests.swift */; };
 		184949B9248130A9000B8CDA /* NSStringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184949B8248130A9000B8CDA /* NSStringExtension.swift */; };
 		184CA799249E839A00D3668B /* CBFileManagerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184CA798249E839A00D3668B /* CBFileManagerExtension.swift */; };
 		1858252B24D1A5E300092407 /* UIColorExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1858252A24D1A5E300092407 /* UIColorExtensionTests.swift */; };
@@ -1617,6 +1622,11 @@
 		1822C1382471C7CB00F8F158 /* BrickCellListDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrickCellListDataTests.swift; sourceTree = "<group>"; };
 		1833ED912446572E0053BF7C /* HelpWebViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpWebViewControllerTests.swift; sourceTree = "<group>"; };
 		18385C67247C0EB30050819A /* LineShapeNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LineShapeNode.swift; path = PlayerEngine/DataModel/LineShapeNode.swift; sourceTree = "<group>"; };
+		18390A6824D0576100A07DFD /* StampBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StampBrick.swift; sourceTree = "<group>"; };
+		18390A6C24D057E100A07DFD /* StampBrickCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StampBrickCell.swift; sourceTree = "<group>"; };
+		18390A6E24D058BA00A07DFD /* StampBrick+Instruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StampBrick+Instruction.swift"; sourceTree = "<group>"; };
+		18390A7024D0594300A07DFD /* StampBrick+CBXMLHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StampBrick+CBXMLHandler.swift"; sourceTree = "<group>"; };
+		18390A7224D0A33D00A07DFD /* StampBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StampBrickTests.swift; sourceTree = "<group>"; };
 		184949B8248130A9000B8CDA /* NSStringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSStringExtension.swift; sourceTree = "<group>"; };
 		184CA798249E839A00D3668B /* CBFileManagerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBFileManagerExtension.swift; sourceTree = "<group>"; };
 		1858252A24D1A5E300092407 /* UIColorExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIColorExtensionTests.swift; path = Extensions/UIColorExtensionTests.swift; sourceTree = "<group>"; };
@@ -3738,6 +3748,7 @@
 				18E83F7A2493BEFF003295DA /* PenClearBrick.swift */,
 				18AAC22E24A6088100C96335 /* SetPenSizeBrick.swift */,
 				1882475424C84B8100B01653 /* SetPenColorBrick.swift */,
+				18390A6824D0576100A07DFD /* StampBrick.swift */,
 			);
 			path = Pen;
 			sourceTree = "<group>";
@@ -3750,6 +3761,7 @@
 				18E83F7E2493BFE6003295DA /* PenClearBrickCell.swift */,
 				18AAC23224A60C8800C96335 /* SetPenSizeBrickCell.swift */,
 				1882475824C84D9C00B01653 /* SetPenColorBrickCell.swift */,
+				18390A6C24D057E100A07DFD /* StampBrickCell.swift */,
 			);
 			path = Pen;
 			sourceTree = "<group>";
@@ -3762,6 +3774,7 @@
 				18E83F802493C32C003295DA /* PenClearBrick+Instruction.swift */,
 				18AAC23624A6170600C96335 /* SetPenSizeBrick+Instruction.swift */,
 				1882475A24C8514300B01653 /* SetPenColorBrick+Instruction.swift */,
+				18390A6E24D058BA00A07DFD /* StampBrick+Instruction.swift */,
 			);
 			name = Pen;
 			path = PlayerEngine/Instructions/Pen;
@@ -3775,6 +3788,7 @@
 				18E83F822493C4C3003295DA /* PenClearBrick+CBXMLHandler.swift */,
 				18AAC23824A61B1300C96335 /* SetPenSizeBrick+CBXMLHandler.swift */,
 				18D939E624C96FA800A32544 /* SetPenColorBrick+CBXMLHandler.swift */,
+				18390A7024D0594300A07DFD /* StampBrick+CBXMLHandler.swift */,
 			);
 			path = Pen;
 			sourceTree = "<group>";
@@ -6217,6 +6231,7 @@
 				18E83F842493C978003295DA /* PenClearBrickTests.swift */,
 				18B9A1B924A75F3C009028F8 /* SetPenSizeBrickTests.swift */,
 				18D939EA24C97A1C00A32544 /* SetPenColorBrickTests.swift */,
+				18390A7224D0A33D00A07DFD /* StampBrickTests.swift */,
 			);
 			path = Bricks;
 			sourceTree = "<group>";
@@ -9958,6 +9973,7 @@
 				4C82267B213FA7A400F3D750 /* BackgroundNumberSensorTest.swift in Sources */,
 				59A58D83202C714A008B1A8F /* MediaLibraryDownloaderTests.swift in Sources */,
 				9E24D7072326EBC300608203 /* ShowBrickTests.swift in Sources */,
+				18390A7324D0A33D00A07DFD /* StampBrickTests.swift in Sources */,
 				2ED418BE2411213E00AFE2FD /* XMLParserTests0991.swift in Sources */,
 				4C822659213FA7A400F3D750 /* AudioManagerMock.swift in Sources */,
 				9E4D238C232AF688009D0C3C /* SetColorBrickTests.swift in Sources */,
@@ -10207,6 +10223,7 @@
 				AABCB3D91BB3648E009F67D2 /* CBOperation.swift in Sources */,
 				5E7E7F8A2341CB8100411298 /* UIColorExtension.swift in Sources */,
 				4C72EA3D2108ED0800E7407F /* TouchManager.swift in Sources */,
+				18390A6F24D058BA00A07DFD /* StampBrick+Instruction.swift in Sources */,
 				4C0F9F69204BD19400E71B2D /* SetBackgroundBrick+CBXMLHandler.m in Sources */,
 				4C11795420AEC36D006C6E32 /* ProtocolConformance.swift in Sources */,
 				9E169FE4238361030004311D /* AudioEngineHelper.swift in Sources */,
@@ -10246,6 +10263,7 @@
 				4C8C3616213AA2BD00279BC7 /* PhiroIfLogicBeginBrick+Condition.swift in Sources */,
 				CA02C5E71B14386900233FB0 /* CBSpriteNode.swift in Sources */,
 				AA74F0BD1BC05FCE00D1E954 /* PlaceAtBrickCell.m in Sources */,
+				18390A6924D0576100A07DFD /* StampBrick.swift in Sources */,
 				CA3E72E81B0C00A500D6B184 /* CBStack.swift in Sources */,
 				AA74EFFE1BC05B5F00D1E954 /* ComeToFrontBrick.m in Sources */,
 				92FF31051A24DCAA00093DA7 /* WhenScript.m in Sources */,
@@ -10382,6 +10400,7 @@
 				4CF429F1213A876000B78897 /* RepeatBrick+Condition.swift in Sources */,
 				92D56C301BF202E700A54750 /* BluetoothDevice.swift in Sources */,
 				4C0F9F91204BD28100E71B2D /* CameraBrickCell.m in Sources */,
+				18390A7124D0594300A07DFD /* StampBrick+CBXMLHandler.swift in Sources */,
 				92FF2EBE1A24C8A700093DA7 /* CatrobatInformation.m in Sources */,
 				921D46891BDF698A0086AD20 /* ClearGraphicEffectBrick+Instruction.swift in Sources */,
 				4C0F9F39204ADC4E00E71B2D /* SayBubbleBrick.m in Sources */,
@@ -10410,6 +10429,7 @@
 				AA74EEE51BC057B900D1E954 /* WaitBrick+CBXMLHandler.m in Sources */,
 				5E43D71821928053006FDF2A /* SwellAll.swift in Sources */,
 				AA74F0B01BC05FCE00D1E954 /* SetBrightnessBrickCell.m in Sources */,
+				18390A6D24D057E100A07DFD /* StampBrickCell.swift in Sources */,
 				AA74F0A61BC05FCE00D1E954 /* RepeatBrickCell.m in Sources */,
 				99B2C3731D884E8A00736769 /* FlashBrickCell.m in Sources */,
 				AA74F0BA1BC05FCE00D1E954 /* GoNStepsBackBrickCell.m in Sources */,

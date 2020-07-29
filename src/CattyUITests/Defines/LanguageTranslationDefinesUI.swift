@@ -413,6 +413,7 @@ let kLocalizedSetPenColor = NSLocalizedString("Set pen color to", bundle: Bundle
 let kLocalizedRed = NSLocalizedString("red", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedGreen = NSLocalizedString("green", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedBlue = NSLocalizedString("blue", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedStamp = NSLocalizedString("Stamp", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
 // sound bricks
 let kLocalizedSound = NSLocalizedString("Sound", bundle: Bundle(for: LanguageTranslation.self), comment: "")

@@ -20,16 +20,19 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class SpriteKitDefines: NSObject {
+class StampBrickCell: BrickCell, BrickCellProtocol {
 
-    static let defaultFont = "Helvetica"
-    static let defaultLabelFontSize = Float(45.0)
+    var textLabel: UILabel?
 
-    static let bubbleBrickNodeName = "textBubble"
+    static func cellHeight() -> CGFloat {
+        CGFloat(kBrickHeight1h)
+    }
 
-    static let defaultCatrobatPenSize = CGFloat(3.15)
-    static let defaultPenZPosition = CGFloat(0)
-    static let defaultPenColor = UIColor(red: 0, green: 0, blue: 255)
-    static let penShapeNodeName = "penShapeNode"
-    static let stampedSpriteNodeName = "stampedSpriteNode"
+    func brickTitle(forBackground isBackground: Bool, andInsertionScreen isInsertion: Bool) -> String! {
+        kLocalizedStamp
+    }
+
+    override func hookUpSubViews(_ inlineViewSubViews: [Any]!) {
+        self.textLabel = inlineViewSubViews[0] as? UILabel
+    }
 }

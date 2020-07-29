@@ -20,16 +20,30 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class SpriteKitDefines: NSObject {
+extension StampBrick: CBInstructionProtocol {
 
-    static let defaultFont = "Helvetica"
-    static let defaultLabelFontSize = Float(45.0)
+    func instruction() -> CBInstruction {
+        .action { _ in SKAction.run(self.actionBlock()) }
+    }
 
-    static let bubbleBrickNodeName = "textBubble"
+    func actionBlock() -> () -> Void {
+        guard let object = self.script?.object,
+            let spriteNode = object.spriteNode
+            else { fatalError("This should never happen!") }
 
-    static let defaultCatrobatPenSize = CGFloat(3.15)
-    static let defaultPenZPosition = CGFloat(0)
-    static let defaultPenColor = UIColor(red: 0, green: 0, blue: 255)
-    static let penShapeNodeName = "penShapeNode"
-    static let stampedSpriteNodeName = "stampedSpriteNode"
+        return {
+            let texture = spriteNode.texture
+            let sprite = SKSpriteNode(texture: texture)
+            sprite.name = SpriteKitDefines.stampedSpriteNodeName
+
+            sprite.position = spriteNode.position
+            sprite.size = spriteNode.size
+            sprite.zPosition = SpriteKitDefines.defaultPenZPosition
+            sprite.zRotation = spriteNode.zRotation
+            sprite.alpha = spriteNode.alpha
+
+            spriteNode.scene?.addChild(sprite)
+        }
+    }
+
 }

@@ -34,8 +34,9 @@ extension PenClearBrick: CBInstructionProtocol {
         return {
             let stage = spriteNode.scene as? Stage
             stage?.clearPenLines()
-
             spriteNode.penConfiguration.previousPositions.removeAll()
+
+            stage?.clearStampedSpriteNodes()
         }
     }
 
