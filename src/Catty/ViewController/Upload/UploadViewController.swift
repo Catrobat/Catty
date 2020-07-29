@@ -391,6 +391,8 @@ class UploadViewController: UIViewController, UploadCategoryViewControllerDelega
                                                     self.navigationController?.pushViewController(loginViewController, animated: true)
                                                 }
                                             }.build().showWithController(self)
+                                    default:
+                                        break
                                     }
                                     return
                                 }
