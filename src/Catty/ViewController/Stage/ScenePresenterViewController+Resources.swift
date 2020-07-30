@@ -23,7 +23,7 @@
 import BluetoothHelper
 import CoreBluetooth
 
-@objc extension ScenePresenterViewController {
+@objc extension StagePresenterViewController {
 
     @objc(checkResourcesAndPushViewControllerTo:)
     func checkResourcesAndPushViewControllerTo(navigationController: UINavigationController) {
@@ -32,11 +32,11 @@ import CoreBluetooth
 
         DispatchQueue.global(qos: .userInitiated).async {
             self.project = Project.init(loadingInfo: Util.lastUsedProjectLoadingInfo())!
-            self.formulaManager = FormulaManager(sceneSize: Util.screenSize(true), landscapeMode: self.project.header.landscapeMode)
+            self.formulaManager = FormulaManager(stageSize: Util.screenSize(true), landscapeMode: self.project.header.landscapeMode)
             let readyToStart = self.notifyUserAboutUnavailableResources(navigationController: navigationController)
 
             DispatchQueue.main.async {
-                if readyToStart && !(self.navigationController?.topViewController is ScenePresenterViewController) {
+                if readyToStart && !(self.navigationController?.topViewController is StagePresenterViewController) {
                     navigationController.pushViewController(self, animated: true)
                 } else {
                     self.hideLoadingView()

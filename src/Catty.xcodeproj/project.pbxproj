@@ -31,7 +31,7 @@
 		187A3F202434BC4300EF1B02 /* PlaySoundAndWaitBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187A3F1F2434BC4300EF1B02 /* PlaySoundAndWaitBrickTests.swift */; };
 		187CECAB24314F1600C3EDCA /* SetLookBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187CECAA24314F1600C3EDCA /* SetLookBrickTests.swift */; };
 		187D119C2472AAF200A09CE5 /* DataExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187D11992472AAF100A09CE5 /* DataExtensionTests.swift */; };
-		189B8A0F24784A03009BC735 /* SceneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189B8A0E24784A03009BC735 /* SceneTests.swift */; };
+		189B8A0F24784A03009BC735 /* StageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189B8A0E24784A03009BC735 /* StageTests.swift */; };
 		18A9DBA92434C7F400F4C390 /* IfLogicBeginBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A9DBA82434C7F400F4C390 /* IfLogicBeginBrickTests.swift */; };
 		18AAC22F24A6088100C96335 /* SetPenSizeBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AAC22E24A6088100C96335 /* SetPenSizeBrick.swift */; };
 		18AAC23324A60C8800C96335 /* SetPenSizeBrickCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AAC23224A60C8800C96335 /* SetPenSizeBrickCell.swift */; };
@@ -736,8 +736,8 @@
 		4CDE4CFE203DBCC100B43034 /* Kingfisher.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CFD203DBCC100B43034 /* Kingfisher.license */; };
 		4CDE4D00203DBD0C00B43034 /* DVR.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CFF203DBD0B00B43034 /* DVR.license */; };
 		4CDE807421A1A0AE009EFD31 /* ScenePresenterViewController+Screenshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDE807121A1A0AE009EFD31 /* ScenePresenterViewController+Screenshot.swift */; };
-		4CDE807621A1B112009EFD31 /* ScenePresenterViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDE807521A1B112009EFD31 /* ScenePresenterViewControllerTest.swift */; };
-		4CDF7BB62138735700FFF7F4 /* SceneBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDF7BB52138735700FFF7F4 /* SceneBuilder.swift */; };
+		4CDE807621A1B112009EFD31 /* StagePresenterViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDE807521A1B112009EFD31 /* StagePresenterViewControllerTest.swift */; };
+		4CDF7BB62138735700FFF7F4 /* StageBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDF7BB52138735700FFF7F4 /* StageBuilder.swift */; };
 		4CE1D431213E5C130014DAF9 /* CBSpriteNodeMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE1D430213E5C130014DAF9 /* CBSpriteNodeMock.swift */; };
 		4CE1D433213E5C6E0014DAF9 /* SpriteObjectMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE1D432213E5C6E0014DAF9 /* SpriteObjectMock.swift */; };
 		4CE3D68B2107A89B00005629 /* FaceDetectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE3D68A2107A89B00005629 /* FaceDetectionManager.swift */; };
@@ -1111,7 +1111,7 @@
 		92FF31591A24DEB300093DA7 /* DownloadTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31341A24DEB300093DA7 /* DownloadTabBarController.m */; };
 		92FF315B1A24DEB300093DA7 /* ProjectDetailStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31381A24DEB300093DA7 /* ProjectDetailStoreViewController.m */; };
 		92FF315F1A24DEB300093DA7 /* MyProjectsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31421A24DEB300093DA7 /* MyProjectsViewController.m */; };
-		92FF31611A24DEB300093DA7 /* ScenePresenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31471A24DEB300093DA7 /* ScenePresenterViewController.m */; };
+		92FF31611A24DEB300093DA7 /* StagePresenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31471A24DEB300093DA7 /* StagePresenterViewController.m */; };
 		92FF325B1A24E2F400093DA7 /* BDKNotifyHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31701A24E2F400093DA7 /* BDKNotifyHUD.m */; };
 		92FF325C1A24E2F400093DA7 /* LICENSE_BDKNotifyHUD in Resources */ = {isa = PBXBuildFile; fileRef = 92FF31711A24E2F400093DA7 /* LICENSE_BDKNotifyHUD */; };
 		92FF325D1A24E2F400093DA7 /* EVCircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31741A24E2F400093DA7 /* EVCircularProgressView.m */; };
@@ -1404,7 +1404,7 @@
 		AABCB3E11BB3650B009F67D2 /* CBSchedulerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABCB3C71BB36120009F67D2 /* CBSchedulerProtocol.swift */; };
 		AABCB3E21BB36529009F67D2 /* CBScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2D44481B1249DD00A3B53D /* CBScheduler.swift */; };
 		AABCB3E71BB3671F009F67D2 /* LLNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3E72EB1B0C01CD00D6B184 /* LLNode.swift */; };
-		AABCB3EA1BB3687D009F67D2 /* CBScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABCB3CC1BB36131009F67D2 /* CBScene.swift */; };
+		AABCB3EA1BB3687D009F67D2 /* Stage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABCB3CC1BB36131009F67D2 /* Stage.swift */; };
 		AABCB3EC1BB368C2009F67D2 /* CBFrontendSequenceFilters.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABCB3D11BB36161009F67D2 /* CBFrontendSequenceFilters.swift */; };
 		AABCB3ED1BB368CF009F67D2 /* CBFrontend.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABCB3D01BB36161009F67D2 /* CBFrontend.swift */; };
 		AABCB3EF1BB3697E009F67D2 /* CBCustomTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABCB3EE1BB3697E009F67D2 /* CBCustomTypes.swift */; };
@@ -1628,7 +1628,7 @@
 		187A3F1F2434BC4300EF1B02 /* PlaySoundAndWaitBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaySoundAndWaitBrickTests.swift; sourceTree = "<group>"; };
 		187CECAA24314F1600C3EDCA /* SetLookBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetLookBrickTests.swift; sourceTree = "<group>"; };
 		187D11992472AAF100A09CE5 /* DataExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataExtensionTests.swift; sourceTree = "<group>"; };
-		189B8A0E24784A03009BC735 /* SceneTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SceneTests.swift; path = Scene/SceneTests.swift; sourceTree = "<group>"; };
+		189B8A0E24784A03009BC735 /* StageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StageTests.swift; path = Scene/StageTests.swift; sourceTree = "<group>"; };
 		18A9DBA82434C7F400F4C390 /* IfLogicBeginBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IfLogicBeginBrickTests.swift; sourceTree = "<group>"; };
 		18AAC22E24A6088100C96335 /* SetPenSizeBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPenSizeBrick.swift; sourceTree = "<group>"; };
 		18AAC23224A60C8800C96335 /* SetPenSizeBrickCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPenSizeBrickCell.swift; sourceTree = "<group>"; };
@@ -2434,8 +2434,8 @@
 		4CDE4CFD203DBCC100B43034 /* Kingfisher.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Kingfisher.license; sourceTree = "<group>"; };
 		4CDE4CFF203DBD0B00B43034 /* DVR.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DVR.license; sourceTree = "<group>"; };
 		4CDE807121A1A0AE009EFD31 /* ScenePresenterViewController+Screenshot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ScenePresenterViewController+Screenshot.swift"; sourceTree = "<group>"; };
-		4CDE807521A1B112009EFD31 /* ScenePresenterViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScenePresenterViewControllerTest.swift; sourceTree = "<group>"; };
-		4CDF7BB52138735700FFF7F4 /* SceneBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneBuilder.swift; sourceTree = "<group>"; };
+		4CDE807521A1B112009EFD31 /* StagePresenterViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StagePresenterViewControllerTest.swift; sourceTree = "<group>"; };
+		4CDF7BB52138735700FFF7F4 /* StageBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageBuilder.swift; sourceTree = "<group>"; };
 		4CE1D430213E5C130014DAF9 /* CBSpriteNodeMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBSpriteNodeMock.swift; sourceTree = "<group>"; };
 		4CE1D432213E5C6E0014DAF9 /* SpriteObjectMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpriteObjectMock.swift; sourceTree = "<group>"; };
 		4CE3D68A2107A89B00005629 /* FaceDetectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceDetectionManager.swift; sourceTree = "<group>"; };
@@ -2988,8 +2988,8 @@
 		92FF31381A24DEB300093DA7 /* ProjectDetailStoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectDetailStoreViewController.m; sourceTree = "<group>"; };
 		92FF31411A24DEB300093DA7 /* MyProjectsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyProjectsViewController.h; sourceTree = "<group>"; };
 		92FF31421A24DEB300093DA7 /* MyProjectsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyProjectsViewController.m; sourceTree = "<group>"; };
-		92FF31461A24DEB300093DA7 /* ScenePresenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScenePresenterViewController.h; sourceTree = "<group>"; };
-		92FF31471A24DEB300093DA7 /* ScenePresenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScenePresenterViewController.m; sourceTree = "<group>"; };
+		92FF31461A24DEB300093DA7 /* StagePresenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StagePresenterViewController.h; sourceTree = "<group>"; };
+		92FF31471A24DEB300093DA7 /* StagePresenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StagePresenterViewController.m; sourceTree = "<group>"; };
 		92FF316F1A24E2F400093DA7 /* BDKNotifyHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKNotifyHUD.h; sourceTree = "<group>"; };
 		92FF31701A24E2F400093DA7 /* BDKNotifyHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKNotifyHUD.m; sourceTree = "<group>"; };
 		92FF31711A24E2F400093DA7 /* LICENSE_BDKNotifyHUD */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE_BDKNotifyHUD; sourceTree = "<group>"; };
@@ -3445,7 +3445,7 @@
 		AABCB3C51BB36120009F67D2 /* CBBroadcastHandlerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBBroadcastHandlerProtocol.swift; path = PlayerEngine/Protocols/CBBroadcastHandlerProtocol.swift; sourceTree = "<group>"; };
 		AABCB3C61BB36120009F67D2 /* CBFrontendProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBFrontendProtocol.swift; path = PlayerEngine/Protocols/CBFrontendProtocol.swift; sourceTree = "<group>"; };
 		AABCB3C71BB36120009F67D2 /* CBSchedulerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBSchedulerProtocol.swift; path = PlayerEngine/Protocols/CBSchedulerProtocol.swift; sourceTree = "<group>"; };
-		AABCB3CC1BB36131009F67D2 /* CBScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBScene.swift; path = Catty/PlayerEngine/Scene/CBScene.swift; sourceTree = SOURCE_ROOT; };
+		AABCB3CC1BB36131009F67D2 /* Stage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Stage.swift; path = Catty/PlayerEngine/Stage/Stage.swift; sourceTree = SOURCE_ROOT; };
 		AABCB3D01BB36161009F67D2 /* CBFrontend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBFrontend.swift; path = PlayerEngine/Frontend/CBFrontend.swift; sourceTree = "<group>"; };
 		AABCB3D11BB36161009F67D2 /* CBFrontendSequenceFilters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBFrontendSequenceFilters.swift; path = PlayerEngine/Frontend/CBFrontendSequenceFilters.swift; sourceTree = "<group>"; };
 		AABCB3D41BB3616F009F67D2 /* CBBackend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBBackend.swift; path = PlayerEngine/Backend/CBBackend.swift; sourceTree = "<group>"; };
@@ -6026,7 +6026,7 @@
 		4CDF7BB42138735700FFF7F4 /* Builder */ = {
 			isa = PBXGroup;
 			children = (
-				4CDF7BB52138735700FFF7F4 /* SceneBuilder.swift */,
+				4CDF7BB52138735700FFF7F4 /* StageBuilder.swift */,
 			);
 			path = Builder;
 			sourceTree = "<group>";
@@ -7514,15 +7514,15 @@
 			path = Project;
 			sourceTree = "<group>";
 		};
-		92FF30AF1A24DCAA00093DA7 /* Scene */ = {
+		92FF30AF1A24DCAA00093DA7 /* Stage */ = {
 			isa = PBXGroup;
 			children = (
 				4CDF7BB42138735700FFF7F4 /* Builder */,
 				4C6FA80522F17F89000A72F6 /* Constraints */,
-				AABCB3CC1BB36131009F67D2 /* CBScene.swift */,
+				AABCB3CC1BB36131009F67D2 /* Stage.swift */,
 			);
-			name = Scene;
-			path = PlayerEngine/Scene;
+			name = Stage;
+			path = PlayerEngine/Stage;
 			sourceTree = "<group>";
 		};
 		92FF30B21A24DCAA00093DA7 /* Scripts */ = {
@@ -7581,7 +7581,7 @@
 				92FF313D1A24DEB300093DA7 /* Help */,
 				5947F6D3200CF3A20079DBCE /* MediaLibrary */,
 				92FF31401A24DEB300093DA7 /* Projects */,
-				92FF31431A24DEB300093DA7 /* Scene */,
+				92FF31431A24DEB300093DA7 /* Stage */,
 				9238C57C1A3AE9920099F061 /* Upload/Login */,
 			);
 			path = ViewController;
@@ -7702,15 +7702,15 @@
 			path = Projects;
 			sourceTree = "<group>";
 		};
-		92FF31431A24DEB300093DA7 /* Scene */ = {
+		92FF31431A24DEB300093DA7 /* Stage */ = {
 			isa = PBXGroup;
 			children = (
-				92FF31461A24DEB300093DA7 /* ScenePresenterViewController.h */,
-				92FF31471A24DEB300093DA7 /* ScenePresenterViewController.m */,
+				92FF31461A24DEB300093DA7 /* StagePresenterViewController.h */,
+				92FF31471A24DEB300093DA7 /* StagePresenterViewController.m */,
 				4C0E25E820D39E5000A80273 /* ScenePresenterViewController+Resources.swift */,
 				4CDE807121A1A0AE009EFD31 /* ScenePresenterViewController+Screenshot.swift */,
 			);
-			path = Scene;
+			path = Stage;
 			sourceTree = "<group>";
 		};
 		92FF31621A24E2F400093DA7 /* Views */ = {
@@ -7907,7 +7907,7 @@
 		9E05FAAF247FF557008951DE /* Scene */ = {
 			isa = PBXGroup;
 			children = (
-				4CDE807521A1B112009EFD31 /* ScenePresenterViewControllerTest.swift */,
+				4CDE807521A1B112009EFD31 /* StagePresenterViewControllerTest.swift */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -8677,7 +8677,7 @@
 				4CD194F21A0631B200484E4F /* Parser & Serialization */,
 				4CE5C56C1E0AD71800FD021C /* Project */,
 				4C1608A31A095480002C7032 /* Resources */,
-				B496F5131775996D004BF78A /* Scene */,
+				B496F5131775996D004BF78A /* Stage */,
 				4C3746ED22FC7CBE007B2BE1 /* Setup */,
 				4C26506D1A6566C60050775B /* SpriteObject */,
 				B46B270417703F9400172837 /* Supporting Files */,
@@ -8702,16 +8702,16 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		B496F5131775996D004BF78A /* Scene */ = {
+		B496F5131775996D004BF78A /* Stage */ = {
 			isa = PBXGroup;
 			children = (
-				189B8A0E24784A03009BC735 /* SceneTests.swift */,
+				189B8A0E24784A03009BC735 /* StageTests.swift */,
 				4CAC7DA11DCF444A00EC7D6F /* CBSceneTouchTests.swift */,
 				9EA3FD802327089900551B6C /* CBSpriteNodePenExtensionTests.swift */,
 				186FBE64247C29AD00AE3F17 /* LineShapeNodeTests.swift */,
 				18AB0ACC24C032EF00508536 /* PenConfigurationTests.swift */,
 			);
-			name = Scene;
+			name = Stage;
 			sourceTree = "<group>";
 		};
 		B4BCF409170ECFC3008EDF3A /* Extensions & Delegates & Protocols */ = {
@@ -8797,7 +8797,7 @@
 				AA401FE51BBEF5F5001BC49F /* Instructions */,
 				4C595F3A21CAE4FC0097D850 /* Operators */,
 				AAD498B51B8D2431005894C4 /* Protocols */,
-				92FF30AF1A24DCAA00093DA7 /* Scene */,
+				92FF30AF1A24DCAA00093DA7 /* Stage */,
 				CA2D44471B1249C400A3B53D /* Scheduler */,
 				4C994DFA207A3D4100C415FD /* Sensors */,
 			);
@@ -9807,7 +9807,7 @@
 				4C2732A91CE4F30F00CA61AC /* CBSpriteNodeTests.swift in Sources */,
 				4C6FE169212D2D2E0067B7D5 /* ExpFunctionTest.swift in Sources */,
 				9ECDCB132328578F00EBDA63 /* HideBrickTests.swift in Sources */,
-				189B8A0F24784A03009BC735 /* SceneTests.swift in Sources */,
+				189B8A0F24784A03009BC735 /* StageTests.swift in Sources */,
 				4C82265C213FA7A400F3D750 /* FingerXSensorTest.swift in Sources */,
 				9E2D47C72328428100917D92 /* ChangeColorByNBrickTests.swift in Sources */,
 				2ED418B22411213E00AFE2FD /* XMLParserBlackBoxTests097.swift in Sources */,
@@ -9982,7 +9982,7 @@
 				2ED418C12411213E00AFE2FD /* XMLParserObjectTests093.swift in Sources */,
 				4C822664213FA7A400F3D750 /* LatitudeSensorTest.swift in Sources */,
 				4C5AEEEB22F6EFF900280F8B /* VibrationBrickCellTests.swift in Sources */,
-				4CDE807621A1B112009EFD31 /* ScenePresenterViewControllerTest.swift in Sources */,
+				4CDE807621A1B112009EFD31 /* StagePresenterViewControllerTest.swift in Sources */,
 				186AA34924830491001E38FD /* PenDownBrickTests.swift in Sources */,
 				4C822683213FA7A400F3D750 /* SensorManagerTests.swift in Sources */,
 				9E3AF79A2326F4D100AB16F1 /* IfOnEdgeBounceBrickTests.swift in Sources */,
@@ -10143,12 +10143,12 @@
 				99EBDBFA1D562088008D6860 /* ChangeColorByNBrick+CBXMLHandler.m in Sources */,
 				99C8D1BB1D8AE339003FBC42 /* BrickCellStaticChoiceData.m in Sources */,
 				E4668B4220FE02F40021FA0B /* FeaturedProjectsCell.swift in Sources */,
-				4CDF7BB62138735700FFF7F4 /* SceneBuilder.swift in Sources */,
+				4CDF7BB62138735700FFF7F4 /* StageBuilder.swift in Sources */,
 				AA74F0C91BC05FCE00D1E954 /* BrickShapeFactory.m in Sources */,
 				AABCB3F11BB36DCE009F67D2 /* InternFormulaUtils.m in Sources */,
 				AABCB3ED1BB368CF009F67D2 /* CBFrontend.swift in Sources */,
 				AABCB3EC1BB368C2009F67D2 /* CBFrontendSequenceFilters.swift in Sources */,
-				AABCB3EA1BB3687D009F67D2 /* CBScene.swift in Sources */,
+				AABCB3EA1BB3687D009F67D2 /* Stage.swift in Sources */,
 				AA74F0B61BC05FCE00D1E954 /* ChangeXByNBrickCell.m in Sources */,
 				4C595F5121CAEC060097D850 /* GreaterOrEqualOperator.swift in Sources */,
 				AABCB3E71BB3671F009F67D2 /* LLNode.swift in Sources */,
@@ -10860,7 +10860,7 @@
 				AA74F0091BC05B5F00D1E954 /* TurnRightBrick.m in Sources */,
 				AA74F0071BC05B5F00D1E954 /* SetYBrick.m in Sources */,
 				9200C2D01C808206002F5CA4 /* ShowTextBrick+Instruction.swift in Sources */,
-				92FF31611A24DEB300093DA7 /* ScenePresenterViewController.m in Sources */,
+				92FF31611A24DEB300093DA7 /* StagePresenterViewController.m in Sources */,
 				92B46FA21BC7BDF7004980C1 /* ArduinoSendDigitalValueBrickCell.m in Sources */,
 				929CC0ED1BC39B8C0027DEC0 /* PhiroMotorMoveBackwardBrickCell.m in Sources */,
 				BA9CAB621EC3853600796056 /* AddItemToUserListBrick+Instruction.swift in Sources */,

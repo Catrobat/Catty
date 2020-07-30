@@ -23,7 +23,7 @@
 import SpriteKit
 
 @objc
-final class CBScene: SKScene {
+final class Stage: SKScene {
 
     // MARK: - Properties
     final let scheduler: CBSchedulerProtocol

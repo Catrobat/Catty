@@ -32,7 +32,7 @@ final class PointToBrickTests: AbstractBrickTest {
     var brick: PointToBrick!
 
     override func setUp() {
-        self.scene = SceneBuilder(project: ProjectMock()).build()
+        self.stage = StageBuilder(project: ProjectMock()).build()
 
         let firstObject = SpriteObject()
         firstSpriteNode = CBSpriteNode(spriteObject: firstObject)
@@ -41,8 +41,8 @@ final class PointToBrickTests: AbstractBrickTest {
         secondSpriteNode = CBSpriteNode(spriteObject: secondObject)
         secondObject.spriteNode = secondSpriteNode
 
-        self.scene.addChild(firstSpriteNode)
-        self.scene.addChild(secondSpriteNode)
+        self.stage.addChild(firstSpriteNode)
+        self.stage.addChild(secondSpriteNode)
 
         script = WhenScript()
         script.object = firstObject

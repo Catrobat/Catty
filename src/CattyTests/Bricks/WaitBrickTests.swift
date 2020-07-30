@@ -47,7 +47,7 @@ final class WaitBrickTests: XCTestCase {
 
         script = Script()
         script.object = spriteObject
-        formulaInterpreter = FormulaManager(sceneSize: Util.screenSize(true), landscapeMode: false)
+        formulaInterpreter = FormulaManager(stageSize: Util.screenSize(true), landscapeMode: false)
 
         scheduler = CBScheduler(logger: self.logger,
                                 broadcastHandler: CBBroadcastHandler(logger: self.logger),

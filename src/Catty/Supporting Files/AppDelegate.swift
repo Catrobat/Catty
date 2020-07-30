@@ -58,7 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillResignActive(_ application: UIApplication) {
         let vc = self.window?.rootViewController as! UINavigationController
 
-        if let spvc = vc.topViewController as? ScenePresenterViewController {
+        if let spvc = vc.topViewController as? StagePresenterViewController {
             spvc.pauseAction()
         }
     }
@@ -69,14 +69,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         let vc = self.window?.rootViewController as! UINavigationController
-        if let _ = vc.topViewController as? ScenePresenterViewController {
+        if let _ = vc.topViewController as? StagePresenterViewController {
             audioEngineHelper.activateAudioSession()
         }
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         let vc = window!.rootViewController as! UINavigationController
-        if let spvc = vc.topViewController as? ScenePresenterViewController {
+        if let spvc = vc.topViewController as? StagePresenterViewController {
             if !spvc.isPaused() {
                 spvc.resumeAction()
             }

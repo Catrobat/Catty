@@ -30,7 +30,7 @@ class XMLParserBrickTests093: XMLAbstractTest {
 
     override func setUp() {
         super.setUp()
-        formulaManager = FormulaManager(sceneSize: Util.screenSize(true), landscapeMode: false)
+        formulaManager = FormulaManager(stageSize: Util.screenSize(true), landscapeMode: false)
     }
 
     override func getXMLDocumentForPath(xmlPath: String) -> GDataXMLDocument {

@@ -30,7 +30,7 @@ final class FormulaManagerInterpreterTests: XCTestCase {
     var object: SpriteObject!
 
     override func setUp() {
-        interpreter = FormulaManager(sceneSize: Util.screenSize(true), landscapeMode: false)
+        interpreter = FormulaManager(stageSize: Util.screenSize(true), landscapeMode: false)
         object = SpriteObject()
     }
 

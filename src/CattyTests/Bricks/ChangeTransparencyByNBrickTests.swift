@@ -38,7 +38,7 @@ final class ChangeTransparencyByNBrickTests: AbstractBrickTest {
         object = SpriteObject()
         spriteNode = CBSpriteNode(spriteObject: object)
         object.spriteNode = spriteNode
-        self.scene.addChild(spriteNode)
+        self.stage.addChild(spriteNode)
 
         let transparency = Formula()
         formulaTree = FormulaElement()

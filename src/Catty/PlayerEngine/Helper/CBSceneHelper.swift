@@ -23,12 +23,12 @@
 @objc class CBSceneHelper: NSObject {
 
     // MARK: - Operations (Helpers)
-    @objc class func convertTouchCoordinateToPoint(coordinate: CGPoint, sceneSize: CGSize) -> CGPoint {
+    @objc class func convertTouchCoordinateToPoint(coordinate: CGPoint, stageSize: CGSize) -> CGPoint {
         let screenSize = Util.screenSize(false)
         var x = (coordinate.x - screenSize.width / 2.0)
-        x = x * (sceneSize.width / screenSize.width)
+        x = x * (stageSize.width / screenSize.width)
         var y = (screenSize.height / 2.0 - coordinate.y)
-        y = y * (sceneSize.height / screenSize.height)
+        y = y * (stageSize.height / screenSize.height)
         return CGPoint(x: x, y: y)
     }
 }

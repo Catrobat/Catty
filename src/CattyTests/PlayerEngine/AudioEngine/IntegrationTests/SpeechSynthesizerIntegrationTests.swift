@@ -42,10 +42,10 @@ final class SpeechSynthesizerIntegrationTests: AudioEngineAbstractTest {
 
     func testSpeakBrickExpectScriptToImmediatelyContinueExecution() {
         let referenceSimHash = "01100001100111000000000000101010"
-        let scene = self.createScene(xmlFile: "SpeakBrickWithSoundBrick")
+        let stage = self.createStage(xmlFile: "SpeakBrickWithSoundBrick")
 
         // Run program and record
-        let recordedTape = self.runAndRecord(duration: 3, scene: scene, muted: true)
+        let recordedTape = self.runAndRecord(duration: 3, stage: stage, muted: true)
 
         let similarity = self.calculateSimilarity(tape: recordedTape, referenceHash: referenceSimHash)
         expect(similarity) > 0.80
@@ -53,10 +53,10 @@ final class SpeechSynthesizerIntegrationTests: AudioEngineAbstractTest {
 
     func testSpeakAndWaitBrickExpectScriptToWaitUntilFinishedSpeaking() {
         let referenceSimHash = "00010000011011011011000110111010"
-        let scene = self.createScene(xmlFile: "SpeakAndWaitBrickWithSoundBrick")
+        let stage = self.createStage(xmlFile: "SpeakAndWaitBrickWithSoundBrick")
 
         // Run program and record
-        let recordedTape = self.runAndRecord(duration: 3, scene: scene, muted: true)
+        let recordedTape = self.runAndRecord(duration: 3, stage: stage, muted: true)
 
         let similarity = self.calculateSimilarity(tape: recordedTape, referenceHash: referenceSimHash)
         expect(similarity) > 0.80
@@ -64,10 +64,10 @@ final class SpeechSynthesizerIntegrationTests: AudioEngineAbstractTest {
 
     func testOneSpeakAndWaitAndOneSpeakBrickExpectExpectSpeakAndWaitBrickToBeInterruptedBySpeakBrick() {
         let referenceSimHash = "01100011001011101010110011001000"
-        let scene = self.createScene(xmlFile: "SpeakAndWaitInterruptedBySpeak")
+        let stage = self.createStage(xmlFile: "SpeakAndWaitInterruptedBySpeak")
 
         // Run program and record
-        let recordedTape = self.runAndRecord(duration: 3, scene: scene, muted: true)
+        let recordedTape = self.runAndRecord(duration: 3, stage: stage, muted: true)
 
         let similarity = self.calculateSimilarity(tape: recordedTape, referenceHash: referenceSimHash)
         expect(similarity) > 0.80
@@ -75,10 +75,10 @@ final class SpeechSynthesizerIntegrationTests: AudioEngineAbstractTest {
 
     func testThreeSpeakAndWaitBricksExpectFirstTwoToBeImmediatelyInterrupted() {
         let referenceSimHash = "01100000100111000000000000101110"
-        let scene = self.createScene(xmlFile: "SpeakAndWaitTwoInterruptingSpeakBricks")
+        let stage = self.createStage(xmlFile: "SpeakAndWaitTwoInterruptingSpeakBricks")
 
         // Run program and record
-        let recordedTape = self.runAndRecord(duration: 3, scene: scene, muted: true)
+        let recordedTape = self.runAndRecord(duration: 3, stage: stage, muted: true)
 
         let similarity = self.calculateSimilarity(tape: recordedTape, referenceHash: referenceSimHash)
         expect(similarity) > 0.80

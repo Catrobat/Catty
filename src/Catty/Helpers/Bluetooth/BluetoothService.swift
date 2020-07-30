@@ -45,7 +45,7 @@ open class BluetoothService: NSObject {
     @objc var phiro: PhiroDevice?
     @objc var arduino: ArduinoDevice?
     @objc weak var selectionManager: BluetoothDevicesTableViewController?
-    @objc weak var scenePresenter: ScenePresenterViewController?
+    @objc weak var stagePresenter: StagePresenterViewController?
     @objc var connectionTimer: Timer?
 
     @objc func setDigitalSemaphore(_ semaphore: DispatchSemaphore) {
@@ -120,8 +120,8 @@ open class BluetoothService: NSObject {
                 manager.deviceConnected(peripheral)
                 manager.updateWhenActive()
             case .disconnected:
-                if let scene = self.scenePresenter {
-                    scene.connectionLost()
+                if let stage = self.stagePresenter {
+                    stage.connectionLost()
                 }
                 //                peripheral.reconnect()
                 CentralManager.sharedInstance.stopScanning()
@@ -134,8 +134,8 @@ open class BluetoothService: NSObject {
             case .timeout:
                 peripheral.reconnect()
             case .forcedDisconnected:
-                if let scene = self.scenePresenter {
-                    scene.connectionLost()
+                if let stage = self.stagePresenter {
+                    stage.connectionLost()
                 }
                 CentralManager.sharedInstance.disconnectAllPeripherals()
                 CentralManager.sharedInstance.removeAllPeripherals()

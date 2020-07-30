@@ -43,7 +43,7 @@ class FirebaseCrashlyticsReporter {
             addObserver(selector: #selector(self.alertDidAppear(notification:)), name: .alertDidAppear)
             addObserver(selector: #selector(self.paintViewControllerDidAppear(notification:)), name: .paintViewControllerDidAppear)
             addObserver(selector: #selector(self.formulaEditorViewControllerDidAppear(notification:)), name: .formulaEditorControllerDidAppear)
-            addObserver(selector: #selector(self.scenePresenterViewControllerDidAppear(notification:)), name: .scenePresenterViewControllerDidAppear)
+            addObserver(selector: #selector(self.stagePresenterViewControllerDidAppear(notification:)), name: .stagePresenterViewControllerDidAppear)
             addObserver(selector: #selector(self.brickSelected(notification:)), name: .brickSelected)
             addObserver(selector: #selector(self.projectInvalidVersion(notification:)), name: .projectInvalidVersion)
             addObserver(selector: #selector(self.projectInvalidXml(notification:)), name: .projectInvalidXml)
@@ -87,9 +87,9 @@ class FirebaseCrashlyticsReporter {
         crashlytics.log("FormulaEditor started")
     }
 
-    @objc func scenePresenterViewControllerDidAppear(notification: Notification) {
-        let projectName = (notification.object as? ScenePresenterViewController)?.project?.header.programName ?? type(of: self).logNoValue
-        let projectId = (notification.object as? ScenePresenterViewController)?.project?.header.programID ?? type(of: self).logNoValue
+    @objc func stagePresenterViewControllerDidAppear(notification: Notification) {
+        let projectName = (notification.object as? StagePresenterViewController)?.project?.header.programName ?? type(of: self).logNoValue
+        let projectId = (notification.object as? StagePresenterViewController)?.project?.header.programID ?? type(of: self).logNoValue
         crashlytics.log("Scene started with Project: \"" + projectName + "\" (" + projectId + ")")
     }
 

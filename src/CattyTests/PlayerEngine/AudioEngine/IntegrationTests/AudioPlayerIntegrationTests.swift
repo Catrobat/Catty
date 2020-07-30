@@ -38,10 +38,10 @@ final class AudioPlayerIntegrationTests: AudioEngineAbstractTest {
 
     func testPlaySoundSameSoundTwiceFromSameObjectExpectSoundToStopAndStartFromBeginningAgain() {
         let referenceSimHash = "11100010001011111011000000111000"
-        let scene = self.createScene(xmlFile: "PlaySameSoundTwiceSameObject")
+        let stage = self.createStage(xmlFile: "PlaySameSoundTwiceSameObject")
 
         // Run program and record
-        let recordedTape = self.runAndRecord(duration: 3, scene: scene, muted: true)
+        let recordedTape = self.runAndRecord(duration: 3, stage: stage, muted: true)
 
         let similarity = calculateSimilarity(tape: recordedTape, referenceHash: referenceSimHash)
         expect(similarity) >= 0.8
@@ -49,10 +49,10 @@ final class AudioPlayerIntegrationTests: AudioEngineAbstractTest {
 
     func testPlaySoundSameSoundTwiceFromDifferentObjectsExpectSameSoundsToPlaySimultaneously() {
         let referenceSimHash = "01100011001111111111000000101011"
-        let scene = self.createScene(xmlFile: "PlaySameSoundTwiceDifferentObjects")
+        let stage = self.createStage(xmlFile: "PlaySameSoundTwiceDifferentObjects")
 
         // Run program and record
-        let recordedTape = self.runAndRecord(duration: 3, scene: scene, muted: true)
+        let recordedTape = self.runAndRecord(duration: 3, stage: stage, muted: true)
 
         let similarity = calculateSimilarity(tape: recordedTape, referenceHash: referenceSimHash)
         expect(similarity) >= 0.85
@@ -60,10 +60,10 @@ final class AudioPlayerIntegrationTests: AudioEngineAbstractTest {
 
     func testPlaySoundAndWaitExpectSoundInterruptedBySameSoundInSameObject() {
         let referenceSimHash = "01111100010001001010100110000100"
-        let scene = self.createScene(xmlFile: "PlaySoundAndWaitBrickContinueWhenInterrupted")
+        let stage = self.createStage(xmlFile: "PlaySoundAndWaitBrickContinueWhenInterrupted")
 
         // Run program and record
-        let recordedTape = self.runAndRecord(duration: 3, scene: scene, muted: true)
+        let recordedTape = self.runAndRecord(duration: 3, stage: stage, muted: true)
 
         let similarity = calculateSimilarity(tape: recordedTape, referenceHash: referenceSimHash)
         expect(similarity) >= 0.85
@@ -71,10 +71,10 @@ final class AudioPlayerIntegrationTests: AudioEngineAbstractTest {
 
     func testPlaySoundAndWaitExpectSoundNotInterruptedByDifferentSoundInSameObjet() {
         let referenceSimHash = "01100100000011101001101010100100"
-        let scene = self.createScene(xmlFile: "PlaySoundAndWaitBrickSoundNotInterruptedByDifferentSound")
+        let stage = self.createStage(xmlFile: "PlaySoundAndWaitBrickSoundNotInterruptedByDifferentSound")
 
         // Run program and record
-        let recordedTape = self.runAndRecord(duration: 3, scene: scene, muted: true)
+        let recordedTape = self.runAndRecord(duration: 3, stage: stage, muted: true)
 
         let similarity = calculateSimilarity(tape: recordedTape, referenceHash: referenceSimHash)
         expect(similarity) >= 0.85
@@ -82,10 +82,10 @@ final class AudioPlayerIntegrationTests: AudioEngineAbstractTest {
 
     func testPlaySoundAndWaitExpectScriptToStopUntilSoundFinished() {
         let referenceSimHash = "10100000000010001110111010100010"
-        let scene = self.createScene(xmlFile: "PlaySoundAndWaitBrickStopUntilFinished")
+        let stage = self.createStage(xmlFile: "PlaySoundAndWaitBrickStopUntilFinished")
 
         // Run program and record
-        let recordedTape = self.runAndRecord(duration: 4, scene: scene, muted: true)
+        let recordedTape = self.runAndRecord(duration: 4, stage: stage, muted: true)
 
         let similarity = calculateSimilarity(tape: recordedTape, referenceHash: referenceSimHash)
         expect(similarity) >= 0.85
@@ -93,10 +93,10 @@ final class AudioPlayerIntegrationTests: AudioEngineAbstractTest {
 
     func testPlaySoundAndWaitExpectScriptToContinueWhenSoundFinished() {
         let referenceSimHash = "01100011001111101000000011001001"
-        let scene = self.createScene(xmlFile: "PlaySoundAndWaitBrickContinueWhenFinished")
+        let stage = self.createStage(xmlFile: "PlaySoundAndWaitBrickContinueWhenFinished")
 
         // Run program and record
-        let recordedTape = self.runAndRecord(duration: 3, scene: scene, muted: true)
+        let recordedTape = self.runAndRecord(duration: 3, stage: stage, muted: true)
 
         let similarity = calculateSimilarity(tape: recordedTape, referenceHash: referenceSimHash)
         expect(similarity) >= 0.85

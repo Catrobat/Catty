@@ -25,7 +25,7 @@
 class CBSpriteNodeMock: CBSpriteNode {
 
     var mockedPosition: CGPoint?
-    var mockedScene: SKScene?
+    var mockedStage: SKScene?
 
     var updateMethodCallCount = 0
 
@@ -48,10 +48,10 @@ class CBSpriteNodeMock: CBSpriteNode {
 
     override var scene: SKScene {
         get {
-            mockedScene ?? super.scene!
+            mockedStage ?? super.scene!
         }
         set {
-            self.mockedScene = newValue
+            self.mockedStage = newValue
         }
     }
 

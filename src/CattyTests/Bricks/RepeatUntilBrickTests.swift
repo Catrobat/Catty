@@ -32,7 +32,7 @@ final class RepeatUntilBrickTests: XCTestCase {
     var brick: RepeatUntilBrick!
 
     override func setUp() {
-        formulaInterpreter = FormulaManager(sceneSize: Util.screenSize(true), landscapeMode: false)
+        formulaInterpreter = FormulaManager(stageSize: Util.screenSize(true), landscapeMode: false)
         brick = RepeatUntilBrick()
 
         object = SpriteObjectMock()

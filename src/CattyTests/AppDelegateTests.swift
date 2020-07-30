@@ -28,12 +28,12 @@ import XCTest
 
 final class AppDelegateTests: XCTestCase {
 
-    var scenePresenterViewController: ScenePresenterViewControllerSpy!
+    var scenePresenterViewController: StagePresenterViewControllerSpy!
     var audioEngineHelper: AudioEngineHelperSpy!
     weak var appDelegate: AppDelegate!
 
     override func setUp() {
-        scenePresenterViewController = ScenePresenterViewControllerSpy()
+        scenePresenterViewController = StagePresenterViewControllerSpy()
         audioEngineHelper = AudioEngineHelperSpy()
         let rootViewController = UINavigationController()
         rootViewController.pushViewController(scenePresenterViewController, animated: false)

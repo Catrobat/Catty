@@ -30,7 +30,7 @@ final class FormulaManagerCacheTests: XCTestCase {
     var object: SpriteObject!
 
     override func setUp() {
-        manager = FormulaManager(sceneSize: Util.screenSize(true), landscapeMode: false)
+        manager = FormulaManager(stageSize: Util.screenSize(true), landscapeMode: false)
         object = SpriteObject()
     }
 

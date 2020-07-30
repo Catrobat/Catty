@@ -45,7 +45,7 @@
     
     if ([currentViewController isKindOfClass:[PaintViewController class]])
         return NO;
-    if ([currentViewController isKindOfClass:[ScenePresenterViewController class]])
+    if ([currentViewController isKindOfClass:[StagePresenterViewController class]])
         return NO;
     if ([currentViewController isKindOfClass:[CatrobatTableViewController class]]){
         CatrobatTableViewController *ctvc = (CatrobatTableViewController*)currentViewController;

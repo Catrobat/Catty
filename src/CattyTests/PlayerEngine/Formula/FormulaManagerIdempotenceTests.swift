@@ -29,7 +29,7 @@ final class FormulaManagerIdempotenceTests: XCTestCase {
     var interpreter: FormulaInterpreterProtocol!
 
     override func setUp() {
-        interpreter = FormulaManager(sceneSize: Util.screenSize(true), landscapeMode: false)
+        interpreter = FormulaManager(stageSize: Util.screenSize(true), landscapeMode: false)
     }
 
     func testIsIdempotentDefaultValue() {

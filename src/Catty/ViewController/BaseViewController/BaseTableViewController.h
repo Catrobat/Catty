@@ -21,7 +21,7 @@
  */
 
 #import <UIKit/UIKit.h>
-#import "ScenePresenterViewController.h"
+#import "StagePresenterViewController.h"
 @class PlaceHolderView;
 
 @interface BaseTableViewController : UITableViewController

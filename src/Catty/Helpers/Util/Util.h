@@ -39,7 +39,7 @@ if (__functor) __functor(__VA_ARGS__);  \
 
 @protocol MYIntroductionDelegate;
 @protocol BrickProtocol;
-@class SceneViewController;
+@class StageViewController;
 @class ProjectLoadingInfo;
 @class InputValidationResult;
 @class Util;

@@ -22,7 +22,7 @@
 
 extension CatrobatSetup {
 
-    static func registeredSensors(sceneSize: CGSize,
+    static func registeredSensors(stageSize: CGSize,
                                   motionManager: MotionManager,
                                   locationManager: LocationManager,
                                   faceDetectionManager: FaceDetectionManager,
@@ -54,9 +54,9 @@ extension CatrobatSetup {
          TimeSecondSensor(),
 
          FaceDetectedSensor(faceDetectionManagerGetter: { faceDetectionManager }),
-         FaceSizeSensor(sceneSize: sceneSize, faceDetectionManagerGetter: { faceDetectionManager }),
-         FacePositionXSensor(sceneSize: sceneSize, faceDetectionManagerGetter: { faceDetectionManager }),
-         FacePositionYSensor(sceneSize: sceneSize, faceDetectionManagerGetter: { faceDetectionManager }),
+         FaceSizeSensor(stageSize: stageSize, faceDetectionManagerGetter: { faceDetectionManager }),
+         FacePositionXSensor(stageSize: stageSize, faceDetectionManagerGetter: { faceDetectionManager }),
+         FacePositionYSensor(stageSize: stageSize, faceDetectionManagerGetter: { faceDetectionManager }),
 
          PhiroFrontLeftSensor(bluetoothServiceGetter: { bluetoothService }),
          PhiroFrontRightSensor(bluetoothServiceGetter: { bluetoothService }),

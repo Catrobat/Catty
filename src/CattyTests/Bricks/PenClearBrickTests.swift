@@ -27,22 +27,22 @@ import XCTest
 final class PenClearBrickTests: XCTestCase {
 
     func testPenClearBrick() {
-        let scene = SceneBuilder(project: ProjectMock()).build()
+        let stage = StageBuilder(project: ProjectMock()).build()
 
         let line1 = LineShapeNode(pathStartPoint: CGPoint.zero, pathEndPoint: CGPoint(x: 1, y: 1))
         line1.name = SpriteKitDefines.penShapeNodeName
-        scene.addChild(line1)
+        stage.addChild(line1)
 
         let line2 = LineShapeNode(pathStartPoint: CGPoint(x: 1, y: 1), pathEndPoint: CGPoint(x: 2, y: 2))
         line2.name = SpriteKitDefines.penShapeNodeName
-        scene.addChild(line2)
+        stage.addChild(line2)
 
         let object = SpriteObject()
         let spriteNode = CBSpriteNode(spriteObject: object)
         spriteNode.name = "testName"
         object.spriteNode = spriteNode
 
-        scene.addChild(spriteNode)
+        stage.addChild(spriteNode)
 
         let script = Script()
         script.object = object
@@ -51,11 +51,11 @@ final class PenClearBrickTests: XCTestCase {
         brick.script = script
 
         let action = brick.actionBlock()
-        XCTAssertEqual(scene.children.count, 3)
+        XCTAssertEqual(stage.children.count, 3)
         action()
-        XCTAssertEqual(scene.children.count, 1)
-        XCTAssertNil(scene.childNode(withName: SpriteKitDefines.penShapeNodeName))
-        XCTAssertNotNil(scene.childNode(withName: "testName"))
+        XCTAssertEqual(stage.children.count, 1)
+        XCTAssertNil(stage.childNode(withName: SpriteKitDefines.penShapeNodeName))
+        XCTAssertNotNil(stage.childNode(withName: "testName"))
     }
 
     func testRemoveAllPreviousPositions() {

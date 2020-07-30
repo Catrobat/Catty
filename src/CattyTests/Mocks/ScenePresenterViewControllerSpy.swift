@@ -26,7 +26,7 @@ import XCTest
 
 @testable import Pocket_Code
 
-class ScenePresenterViewControllerSpy: ScenePresenterViewController {
+class StagePresenterViewControllerSpy: StagePresenterViewController {
 
     public var methodCalls = [String]()
     public var paused = false

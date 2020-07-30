@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc extension ScenePresenterViewController {
+@objc extension StagePresenterViewController {
 
     public static var previewImageWidth: CGFloat { UIScreen.main.bounds.width }
     public static var previewImageHeight: CGFloat { previewImageWidth }

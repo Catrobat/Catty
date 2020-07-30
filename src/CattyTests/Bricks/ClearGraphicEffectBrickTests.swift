@@ -40,7 +40,7 @@ final class ClearGraphicEffectBrickTests: AbstractBrickTest {
         spriteNode = CBSpriteNode.init(spriteObject: object)
         object.spriteNode = spriteNode
         object.project = project
-        self.scene.addChild(spriteNode)
+        self.stage.addChild(spriteNode)
         spriteNode.catrobatPosition = CBPosition(x: 0.0, y: 0.0)
 
         let bundle = Bundle(for: type(of: self))

@@ -37,7 +37,7 @@ final class SetTransparencyToBrickTests: AbstractBrickTest {
         object = SpriteObject()
         spriteNode = CBSpriteNode(spriteObject: object)
         object.spriteNode = spriteNode
-        self.scene.addChild(spriteNode)
+        self.stage.addChild(spriteNode)
 
         script = WhenScript()
         script.object = object
