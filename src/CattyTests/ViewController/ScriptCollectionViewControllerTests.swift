@@ -37,7 +37,7 @@ final class ScriptCollectionViewControllerTests: XCTestCase {
     override func setUp() {
         super.setUp()
 
-        project = Project()
+        project = ProjectMock()
         layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: 100, height: 100)
         viewController = ScriptCollectionViewController(collectionViewLayout: layout)
