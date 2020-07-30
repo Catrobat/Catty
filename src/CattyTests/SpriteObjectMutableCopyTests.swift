@@ -232,7 +232,7 @@ final class SpriteObjectMutableCopyTests: XMLAbstractTest {
         let list = UserList(name: "testList")
 
         let container = UserDataContainer()
-        container.addList(list)
+        container.add(list)
 
         let object = SpriteObject()
         object.name = "testObject"
@@ -241,7 +241,7 @@ final class SpriteObjectMutableCopyTests: XMLAbstractTest {
         let context = CBMutableCopyContext()
         let copyObject = object.mutableCopy(with: context) as! SpriteObject
 
-        XCTAssertTrue(copyObject.userData.isEqual(to: object.userData))
+        XCTAssertTrue(copyObject.userData.isEqual(object.userData))
         XCTAssertFalse(copyObject.userData === object.userData)
         XCTAssertEqual(1, copyObject.userData.lists().count)
         XCTAssertEqual("testList", (copyObject.userData.lists()[0]).name)
@@ -251,7 +251,7 @@ final class SpriteObjectMutableCopyTests: XMLAbstractTest {
         let variable = UserVariable(name: "testVariable")
 
         let container = UserDataContainer()
-        container.addVariable(variable)
+        container.add(variable)
 
         let object = SpriteObject()
         object.name = "testObject"
@@ -260,7 +260,7 @@ final class SpriteObjectMutableCopyTests: XMLAbstractTest {
         let context = CBMutableCopyContext()
         let copyObject = object.mutableCopy(with: context) as! SpriteObject
 
-        XCTAssertTrue(copyObject.userData.isEqual(to: object.userData))
+        XCTAssertTrue(copyObject.userData.isEqual(object.userData))
         XCTAssertFalse(copyObject.userData === object.userData)
         XCTAssertEqual(1, copyObject.userData.variables().count)
         XCTAssertEqual("testVariable", (copyObject.userData.variables()[0]).name)

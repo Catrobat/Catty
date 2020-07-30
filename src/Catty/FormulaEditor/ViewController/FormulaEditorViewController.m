@@ -1153,9 +1153,9 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 - (void)deleteVariable: (UserVariable*)userVariable atRow:(NSInteger)row isProjectData:(BOOL)isProjectData
 {
-    BOOL removed = [self.object.userData removeUserVariableWithName: userVariable.name];
+    BOOL removed = [self.object.userData removeUserVariableIdentifiedBy: userVariable.name];
     if (!removed) {
-        removed = [self.object.project.userData removeUserVariableWithName: userVariable.name];
+        removed = [self.object.project.userData removeUserVariableIdentifiedBy: userVariable.name];
     }
     if (removed) {
         if (isProjectData) {
@@ -1170,9 +1170,9 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 - (void)deleteList: (id<UserDataProtocol>)userList atRow:(NSInteger)row isProjectData:(BOOL)isProjectData
 {
-    BOOL removed = [self.object.userData removeUserListWithName: userList.name];
+    BOOL removed = [self.object.userData removeUserListIdentifiedBy: userList.name];
     if (!removed) {
-        removed = [self.object.project.userData removeUserListWithName: userList.name];
+        removed = [self.object.project.userData removeUserListIdentifiedBy: userList.name];
     }
     if (removed) {
         if (isProjectData) {

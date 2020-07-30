@@ -28,7 +28,6 @@
 #import "CBXMLSerializerContext.h"
 #import "CBXMLPositionStack.h"
 #import "CBXMLSerializerHelper.h"
-#import "UserDataContainer.h"
 #import "SpriteObject.h"
 #import "Pocket_Code-Swift.h"
 

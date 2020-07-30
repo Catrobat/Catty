@@ -112,17 +112,17 @@ class SpriteObjectTest: XCTestCase {
         let variable = UserVariable(name: "testvariable")
 
         let container1 = UserDataContainer()
-        container1.addList(list)
+        container1.add(list)
 
         let container2 = UserDataContainer()
-        container2.addVariable(variable)
+        container2.add(variable)
 
         objectB.userData = container1
         objectA.userData = container2
         XCTAssertFalse(objectA.isEqual(to: objectB))
 
-        container1.addVariable(variable)
-        container2.addList(list)
+        container1.add(variable)
+        container2.add(list)
         XCTAssertTrue(objectA.isEqual(to: objectB))
     }
 

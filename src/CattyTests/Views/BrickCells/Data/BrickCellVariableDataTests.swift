@@ -53,10 +53,10 @@ class BrickCellVariableDataTests: XCTestCase {
         secondObjectVariable = UserVariable(name: "testVariable3")
         programVariable = UserVariable(name: "testVariable4")
 
-        spriteObject.userData.addVariable(objectVariable1)
-        spriteObject.userData.addVariable(objectVariable2)
-        spriteObject2.userData.addVariable(secondObjectVariable)
-        userDataContainer.addVariable(programVariable)
+        spriteObject.userData.add(objectVariable1)
+        spriteObject.userData.add(objectVariable2)
+        spriteObject2.userData.add(secondObjectVariable)
+        userDataContainer.add(programVariable)
         project = Project()
         project.userData = userDataContainer
 

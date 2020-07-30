@@ -50,7 +50,7 @@ final class DeleteItemOfUserListBrickTests: XCTestCase {
         spriteObject.project.userData = UserDataContainer()
 
         userList = UserList(name: "testName")
-        spriteObject.userData.addList(userList)
+        spriteObject.userData.add(userList)
 
         brick = DeleteItemOfUserListBrick()
         brick.userList = userList

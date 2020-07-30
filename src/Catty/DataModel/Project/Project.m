@@ -21,7 +21,6 @@
  */
 
 #import "Project.h"
-#import "UserDataContainer.h"
 #import "Util.h"
 #import "CBFileManager.h"
 #import "Parser.h"
@@ -150,7 +149,7 @@
 {
     // lazy instantiation
     if (! _userData)
-        _userData = [UserDataContainer new];
+        _userData = [[UserDataContainer alloc] init];
     return _userData;
 }
 
@@ -318,7 +317,7 @@
 {
     if (! [self.header isEqualToHeader:project.header])
         return NO;
-    if (! [self.userData isEqualToUserDataContainer:project.userData])
+    if (! [self.userData isEqual:project.userData])
         return NO;
     if ([self.objectList count] != [project.objectList count])
         return NO;

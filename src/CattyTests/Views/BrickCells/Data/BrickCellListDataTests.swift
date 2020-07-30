@@ -53,10 +53,10 @@ class BrickCellListDataTests: XCTestCase {
         secondObjectList = UserList(name: "testList3")
         programList = UserList(name: "testList4")
 
-        spriteObject.userData.addList(objectList1)
-        spriteObject.userData.addList(objectList2)
-        spriteObject2.userData.addList(secondObjectList)
-        userDataContainer.addList(programList)
+        spriteObject.userData.add(objectList1)
+        spriteObject.userData.add(objectList2)
+        spriteObject2.userData.add(secondObjectList)
+        userDataContainer.add(programList)
 
         project = Project()
         project.userData = userDataContainer
