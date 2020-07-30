@@ -134,34 +134,30 @@
         case TOKEN_TYPE_NUMBER:{
             NSDecimalNumber *number = [NSDecimalNumber decimalNumberWithString:tokenString];
             [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
-
             if(![[NSDecimalNumber notANumber] isEqual:number])
             {
                 NSString *priorityString = [[internToken getTokenStringValue] stringByReplacingOccurrencesOfString:@" " withString:@""];
+                NSString *returnString = priorityString;
                 NSRange range = [priorityString rangeOfString:@"."];
-                NSInteger digits = 0;
-                if (range.location != NSNotFound) {
-                    priorityString = [priorityString substringFromIndex:range.location + 1];
-                    digits = [priorityString length];
-                } else {
-                    range = [priorityString rangeOfString:@"e-"];
-                    if (range.location != NSNotFound) {
-                        priorityString = [priorityString substringFromIndex:range.location + 2];
-                        digits = [priorityString intValue];
-                    } else {
-                        digits = 0;
+                if(range.location != NSNotFound)
+                {
+                    if(![@"."  isEqual:[formatter decimalSeparator]])
+                    {
+                        returnString = [priorityString stringByReplacingOccurrencesOfString:@"." withString:[formatter decimalSeparator]];
                     }
                 }
-                NSString *returnString = [NSString stringWithFormat:[NSString stringWithFormat:@"%%.%luf", (long)digits], number.doubleValue];
-                if([[internToken getTokenStringValue] hasSuffix:@"."])
+                
+                range = [priorityString rangeOfString:@","];
+                if(range.location != NSNotFound)
                 {
-                    returnString = [returnString stringByAppendingString:[formatter decimalSeparator]];
+                    if(![@","  isEqual:[formatter decimalSeparator]])
+                    {
+                        returnString = [priorityString stringByReplacingOccurrencesOfString:@"," withString:[formatter decimalSeparator]];
+                    }
                 }
                 return returnString;
-            } else {
-                return [internToken getTokenStringValue];
             }
-            
+            return [internToken getTokenStringValue];
             break;
         }
         
