@@ -39,7 +39,9 @@ final class CBSpriteNodeTests: XCTestCase {
     }
 
     override func setUp() {
+        let scene1 = Scene(name: "testScene")
         let spriteObject = SpriteObject()
+        spriteObject.scene = scene1
         spriteObject.name = "SpriteObjectName"
 
         spriteNode = CBSpriteNodeMock(spriteObject: spriteObject)
@@ -187,14 +189,16 @@ final class CBSpriteNodeTests: XCTestCase {
         XCTAssertEqual(spriteNode.penConfiguration.screenRatio, 1)
 
         let testProject1 = ProjectMock(width: 100, andHeight: 100)
+        let scene = Scene(name: "testScene")
         let newSpriteObject = SpriteObject()
-        newSpriteObject.project = testProject1
+        newSpriteObject.scene = scene
+        newSpriteObject.scene.project = testProject1
         spriteNode = CBSpriteNodeMock(spriteObject: newSpriteObject)
 
         XCTAssertEqual(spriteNode.penConfiguration.screenRatio, calculateScreenRatio(width: 100, height: 100))
 
         let testProject2 = ProjectMock(width: 200, andHeight: 200)
-        newSpriteObject.project = testProject2
+        newSpriteObject.scene.project = testProject2
         spriteNode = CBSpriteNodeMock(spriteObject: newSpriteObject)
 
         XCTAssertEqual(spriteNode.penConfiguration.screenRatio, calculateScreenRatio(width: 200, height: 200))

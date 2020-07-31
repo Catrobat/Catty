@@ -233,6 +233,62 @@
 #pragma mark - Serialization
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context
 {
+    GDataXMLElement *xmlElement = [self serializeForObject:context];
+    GDataXMLElement *container = [self serializeForProject:context];
+    
+    NSArray *containerChildren = [container children];
+    [XMLError exceptionIf:[containerChildren count] notEquals:2 message:@"programListOfLists & programVariableList not present"];
+    
+    for (GDataXMLElement *projectVariableXmlElement in containerChildren) {
+        [xmlElement addChild:projectVariableXmlElement context:nil];
+    }
+    
+    // add pseudo element to produce a Catroid equivalent XML (unused at the moment)
+    [xmlElement addChild:[GDataXMLElement elementWithName:@"userBrickVariableList" context:context] context:context];
+    
+    // TODO implement objectListOfList, programListOfLists and userBrickVariableList
+    NSLog(@"%@", [xmlElement XMLStringPrettyPrinted:YES]);
+    return xmlElement;
+}
+
+-(GDataXMLElement *)serializeForProject:(CBXMLSerializerContext*)context
+{
+    GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"container" context:nil];
+    
+    //------------------
+    // Project Lists
+    //------------------
+    GDataXMLElement *programListOfListsXmlElement = [GDataXMLElement elementWithName:@"programListOfLists"
+                                                                              context:context];
+    for (id list in self.lists) {
+        [XMLError exceptionIf:[list isKindOfClass:[UserList class]] equals:NO
+                      message:@"Invalid user list instance given"];
+        GDataXMLElement *userListXmlElement = [(UserList*)list xmlElementWithContext:context];
+        [programListOfListsXmlElement addChild:userListXmlElement context:context];
+    }
+    [xmlElement addChild:programListOfListsXmlElement context:context];
+
+    
+    
+    
+    //------------------
+    // Project Variables
+    //------------------
+    GDataXMLElement *programVariableListXmlElement = [GDataXMLElement elementWithName:@"programVariableList"
+                                                                              context:context];
+    for (id variable in self.variables) {
+        [XMLError exceptionIf:[variable isKindOfClass:[UserVariable class]] equals:NO
+                      message:@"Invalid user variable instance given"];
+        GDataXMLElement *userVariableXmlElement = [(UserVariable*)variable xmlElementWithContext:context];
+        [programVariableListXmlElement addChild:userVariableXmlElement context:context];
+    }
+    [xmlElement addChild:programVariableListXmlElement context:context];
+    
+    return xmlElement;
+}
+
+-(GDataXMLElement *)serializeForObject:(CBXMLSerializerContext*)context
+{
     GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"data" context:context];
     
     //------------------
@@ -314,51 +370,16 @@
         [objectVariableListXmlElement addChild:entryXmlElement context:context];
     }
     [xmlElement addChild:objectVariableListXmlElement context:context];
-
     
-    
-    
-    
-    
-    //------------------
-    // Project Lists
-    //------------------
-    GDataXMLElement *programListOfListsXmlElement = [GDataXMLElement elementWithName:@"programListOfLists"
-                                                                              context:context];
-    for (id list in self.lists) {
-        [XMLError exceptionIf:[list isKindOfClass:[UserList class]] equals:NO
-                      message:@"Invalid user list instance given"];
-        GDataXMLElement *userListXmlElement = [(UserList*)list xmlElementWithContext:context];
-        [programListOfListsXmlElement addChild:userListXmlElement context:context];
-    }
-    [xmlElement addChild:programListOfListsXmlElement context:context];
-
-    
-    
-    
-    //------------------
-    // Project Variables
-    //------------------
-    GDataXMLElement *programVariableListXmlElement = [GDataXMLElement elementWithName:@"programVariableList"
-                                                                              context:context];
-    for (id variable in self.variables) {
-        [XMLError exceptionIf:[variable isKindOfClass:[UserVariable class]] equals:NO
-                      message:@"Invalid user variable instance given"];
-        GDataXMLElement *userVariableXmlElement = [(UserVariable*)variable xmlElementWithContext:context];
-        [programVariableListXmlElement addChild:userVariableXmlElement context:context];
-    }
-    [xmlElement addChild:programVariableListXmlElement context:context];
-    
-    
-    
-    
-    
-    // add pseudo element to produce a Catroid equivalent XML (unused at the moment)
-    [xmlElement addChild:[GDataXMLElement elementWithName:@"userBrickVariableList" context:context] context:context];
-    
-    // TODO implement objectListOfList, programListOfLists and userBrickVariableList
-
     return xmlElement;
+}
+
+-(GDataXMLElement *)xmlElementForObjectWithContext:(CBXMLSerializerContext*)context
+{
+    GDataXMLElement *objectVariableXmlElement = [self serializeForObject:context];
+    [objectVariableXmlElement addChild:[GDataXMLElement elementWithName:@"userBrickVariableList" context:context] context:context];
+    
+    return objectVariableXmlElement;
 }
 
 @end

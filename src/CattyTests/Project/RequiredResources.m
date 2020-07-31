@@ -65,11 +65,12 @@
 -(Project*)getProjectWithOneSpriteWithBrick:(Brick*)brick
 {
     Project * project = [Project new];
-    SpriteObject* obj = [SpriteObject new];
+    project.scene = [[Scene alloc] init];
+    SpriteObject* obj = [[SpriteObject alloc] init];
     Script *script = [Script new];
     [script.brickList addObject:brick];
     [obj.scriptList addObject:script];
-    [project.objectList addObject:obj];
+    [project.scene addObject:obj];
     
     return project;
 }
@@ -120,7 +121,7 @@
     brick.size = [[Formula alloc] initWithInteger:1];
     Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [project getRequiredResources];
+    NSInteger resources = [project.scene getRequiredResources];
     XCTAssertEqual(resources, kNoResources, @"Resourses SetSizeToBrick not correctly calculated");
 }
 
@@ -171,7 +172,7 @@
     brick.changeTransparency = [[Formula alloc] initWithInteger:1];
     Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [project getRequiredResources];
+    NSInteger resources = [project.scene getRequiredResources];
     XCTAssertEqual(resources, kNoResources, @"Resourses ChangeTransparencyByNBrick not correctly calculated");
 }
 
@@ -526,7 +527,7 @@
     brick.degrees  =[[Formula alloc] initWithInteger:1];
     Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [project getRequiredResources];
+    NSInteger resources = [project.scene getRequiredResources];
     XCTAssertEqual(resources, kNoResources, @"Resourses PointInDirectionBrick not correctly calculated");
 }
 - (void)testPointInDirectionBrick2Resources
@@ -577,7 +578,7 @@
     brick.steps = [[Formula alloc] initWithFormulaElement:element];
     Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
-    NSInteger resources = [project getRequiredResources];
+    NSInteger resources = [project.scene getRequiredResources];
     XCTAssertEqual(resources, kBluetoothPhiro, @"Resourses MoveNStepsBrick not correctly calculated");
 }
 - (void)testIfOnEdgeBounceBrickResources
@@ -861,7 +862,8 @@
 -(Project*)getProjectWithTwoScriptsWithBricks:(NSArray*)brickArray andBrickArray2:(NSArray*)brickArray2
 {
     Project * project = [Project new];
-    SpriteObject* obj = [SpriteObject new];
+    project.scene = [[Scene alloc] init];
+    SpriteObject* obj = [[SpriteObject alloc] init];
     Script *script = [Script new];
     Script *script2 = [Script new];
     for (Brick* brick in brickArray) {
@@ -872,7 +874,7 @@
     }
     [obj.scriptList addObject:script];
     [obj.scriptList addObject:script2];
-    [project.objectList addObject:obj];
+    [project.scene addObject:obj];
     
     return project;
 }
@@ -952,8 +954,9 @@
 -(Project*)getProjectWithTwoSpritesWithBricks:(NSArray*)brickArray andBrickArray2:(NSArray*)brickArray2
 {
     Project *project = [Project new];
-    SpriteObject* obj = [SpriteObject new];
-    SpriteObject* obj1 = [SpriteObject new];
+    project.scene = [[Scene alloc] init];
+    SpriteObject* obj = [[SpriteObject alloc] init];
+    SpriteObject* obj1 = [[SpriteObject alloc] init];
     Script *script = [Script new];
     Script *script2 = [Script new];
     for (Brick* brick in brickArray) {
@@ -964,8 +967,8 @@
     }
     [obj.scriptList addObject:script];
     [obj1.scriptList addObject:script2];
-    [project.objectList addObject:obj];
-    [project.objectList addObject:obj1];
+    [project.scene addObject:obj];
+    [project.scene addObject:obj1];
     
     return project;
 }

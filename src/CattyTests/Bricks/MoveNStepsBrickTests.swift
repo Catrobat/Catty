@@ -39,7 +39,10 @@ final class MoveNStepsBrickTests: AbstractBrickTest {
     override func setUp() {
         super.setUp()
         self.stage = StageBuilder(project: ProjectMock(width: CGFloat(SCREEN_WIDTH), andHeight: CGFloat(SCREEN_HEIGHT))).build()
+
         let spriteObject = SpriteObject()
+        let scene = Scene(name: "testScene")
+        spriteObject.scene = scene
 
         self.spriteNode = CBSpriteNode(spriteObject: spriteObject)
         self.spriteNode.color = UIColor.black

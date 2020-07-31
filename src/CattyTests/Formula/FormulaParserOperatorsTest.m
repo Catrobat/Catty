@@ -81,7 +81,7 @@
     XCTAssertNotNil(parseTree, @"Formula is not parsed correctly!");
     
     Formula *formula = [[Formula alloc] initWithFormulaElement:parseTree];
-    XCTAssertEqual([self.interpreter interpretInteger:formula forSpriteObject:[SpriteObject new]], [result intValue], @"Formula interpretation is not as expected!");
+    XCTAssertEqual([self.interpreter interpretInteger:formula forSpriteObject:[[SpriteObject alloc] init]], [result intValue], @"Formula interpretation is not as expected!");
 }
 
 - (void)testOperatorChain
@@ -134,7 +134,7 @@
     XCTAssertNotNil(parseTree, @"Formula is not parsed correctly: - 42.42");
     
     Formula *formula = [[Formula alloc] initWithFormulaElement:parseTree];
-    XCTAssertEqual([self.interpreter interpretDouble:formula forSpriteObject:[SpriteObject new]], -42.42, @"Formula interpretation is not as expected");
+    XCTAssertEqual([self.interpreter interpretDouble:formula forSpriteObject:[[SpriteObject alloc] init]], -42.42, @"Formula interpretation is not as expected");
 }
 
 - (void)testGreaterThan
@@ -300,7 +300,7 @@
     XCTAssertNotNil(parseTree, @"Formula is not parsed correctly!");
     
     Formula *formula = [[Formula alloc] initWithFormulaElement:parseTree];
-    XCTAssertEqual(0.0, [self.interpreter interpretDouble:formula forSpriteObject:[SpriteObject new]]);
+    XCTAssertEqual(0.0, [self.interpreter interpretDouble:formula forSpriteObject:[[SpriteObject alloc] init]]);
     
     internTokenList = [[NSMutableArray alloc]init];
     [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_OPERATOR AndValue:NotOperator.tag]];
@@ -311,7 +311,7 @@
     XCTAssertNotNil(parseTree, @"Formula is not parsed correctly!");
     
     formula = [[Formula alloc] initWithFormulaElement:parseTree];
-    XCTAssertEqual([self.interpreter interpretDouble:formula forSpriteObject:[SpriteObject new]], 1.0);
+    XCTAssertEqual([self.interpreter interpretDouble:formula forSpriteObject:[[SpriteObject alloc] init]], 1.0);
     
     internTokenList = [[NSMutableArray alloc]init];
     [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_OPERATOR AndValue:NotOperator.tag]];
@@ -322,7 +322,7 @@
     XCTAssertNotNil(parseTree, @"Formula is not parsed correctly!");
     
     formula = [[Formula alloc] initWithFormulaElement:parseTree];
-    XCTAssertEqual(0.0, [self.interpreter interpretDouble:formula forSpriteObject:[SpriteObject new]]);
+    XCTAssertEqual(0.0, [self.interpreter interpretDouble:formula forSpriteObject:[[SpriteObject alloc] init]]);
     
     internTokenList = [[NSMutableArray alloc]init];
     [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_OPERATOR AndValue:NotOperator.tag]];
@@ -333,7 +333,7 @@
     XCTAssertNotNil(parseTree, @"Formula is not parsed correctly!");
     
     formula = [[Formula alloc] initWithFormulaElement:parseTree];
-    XCTAssertEqual(1.0, [self.interpreter interpretDouble:formula forSpriteObject:[SpriteObject new]]);
+    XCTAssertEqual(1.0, [self.interpreter interpretDouble:formula forSpriteObject:[[SpriteObject alloc] init]]);
 }
 
 - (void)testAnd

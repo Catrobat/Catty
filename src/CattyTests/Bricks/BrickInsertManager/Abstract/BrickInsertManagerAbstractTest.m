@@ -28,6 +28,7 @@
 #import "LoopEndBrick.h"
 #import "SetVariableBrick.h"
 #import "WhenScript.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation BrickInsertManagerAbstractTest
 

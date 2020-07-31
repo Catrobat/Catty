@@ -393,7 +393,7 @@
     Look* itemToMove = self.object.lookList[sourceIndexPath.row];
     [self.object.lookList removeObjectAtIndex:sourceIndexPath.row];
     [self.object.lookList insertObject:itemToMove atIndex:destinationIndexPath.row];
-    [self.object.project saveToDiskWithNotification:NO];
+    [self.object.scene.project saveToDiskWithNotification:NO];
 }
 
 - (NSArray<UITableViewRowAction*>*)tableView:(UITableView*)tableView
@@ -653,8 +653,8 @@
              PaintViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:kPaintViewControllerIdentifier];
              vc.delegate = self;
              vc.editingPath = nil;
-             vc.projectHeight = self.object.project.header.screenHeight.floatValue;
-             vc.projectWidth = self.object.project.header.screenWidth.floatValue;
+             vc.projectHeight = self.object.scene.project.header.screenHeight.floatValue;
+             vc.projectWidth = self.object.scene.project.header.screenWidth.floatValue;
              NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
              [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
              [self.navigationController pushViewController:vc animated:YES];
@@ -823,7 +823,7 @@
         
         NSDebug(@"Writing file to disk");
         [imageData writeToFile:path atomically:YES];
-        [self.object.project saveToDiskWithNotification:YES];
+        [self.object.scene.project saveToDiskWithNotification:YES];
         
         RuntimeImageCache *cache = [RuntimeImageCache sharedImageCache];
         

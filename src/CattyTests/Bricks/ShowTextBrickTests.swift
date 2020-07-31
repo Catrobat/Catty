@@ -38,17 +38,21 @@ final class ShowTextBrickTests: XCTestCase {
         project = Project()
 
         spriteObject = SpriteObject()
+        let scene = Scene(name: "testScene")
+        spriteObject.scene = scene
         spriteObject.name = "SpriteObjectName"
 
         spriteNode = CBSpriteNode(spriteObject: spriteObject)
         spriteObject.spriteNode = spriteNode
-        spriteObject.project = project
+        spriteObject.scene.project = project
+
+        project.scene = spriteObject.scene
 
         script = Script()
         script.object = spriteObject
 
         userDataContainer = UserDataContainer()
-        spriteObject.project.userData = userDataContainer
+        spriteObject.scene.project!.userData = userDataContainer
 
         let logger = CBLogger(name: "Logger")
         let broadcastHandler = CBBroadcastHandler(logger: logger)

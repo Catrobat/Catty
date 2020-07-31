@@ -28,6 +28,8 @@ final class PenDownBrickTests: XCTestCase {
 
     func testPenDownBrick() {
         let object = SpriteObject()
+        let scene = Scene(name: "testScene")
+        object.scene = scene
         let spriteNode = CBSpriteNode(spriteObject: object)
         object.spriteNode = spriteNode
 

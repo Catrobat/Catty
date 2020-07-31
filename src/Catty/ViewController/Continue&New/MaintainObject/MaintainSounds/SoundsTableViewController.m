@@ -217,7 +217,7 @@
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:0];
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
     //Error on save?
-    [self.object.project saveToDiskWithNotification:YES];
+    [self.object.scene.project saveToDiskWithNotification:YES];
     
     if(self.afterSafeBlock) {
         self.afterSafeBlock(sound);
@@ -436,7 +436,7 @@
     Sound* itemToMove = self.object.soundList[sourceIndexPath.row];
     [self.object.soundList removeObjectAtIndex:sourceIndexPath.row];
     [self.object.soundList insertObject:itemToMove atIndex:destinationIndexPath.row];
-    [self.object.project saveToDiskWithNotification:NO];
+    [self.object.scene.project saveToDiskWithNotification:NO];
 }
 
 - (NSArray<UITableViewRowAction*>*)tableView:(UITableView*)tableView

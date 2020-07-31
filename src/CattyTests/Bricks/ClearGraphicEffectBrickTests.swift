@@ -35,11 +35,14 @@ final class ClearGraphicEffectBrickTests: AbstractBrickTest {
     override func setUp() {
         super.setUp()
 
+        let scene = Scene(name: "testScene")
         object = SpriteObject()
+        object.scene = scene
         project = Project.defaultProject(withName: "a", projectID: "1")
         spriteNode = CBSpriteNode.init(spriteObject: object)
         object.spriteNode = spriteNode
-        object.project = project
+        object.scene.project = project
+        project.scene = object.scene
         self.stage.addChild(spriteNode)
         spriteNode.catrobatPosition = CBPosition(x: 0.0, y: 0.0)
 

@@ -81,7 +81,7 @@
         self.title = self.project.header.programName;
     }
     self.placeHolderView.title = kLocalizedTapPlusToAddSprite;
-    [self showPlaceHolder:!(BOOL)[self.project numberOfNormalObjects]];
+    [self showPlaceHolder:!(BOOL)[self.project.scene numberOfNormalObjects]];
     [self setupToolBar];
     if(self.showAddObjectActionSheetAtStart) {
         [self addObjectAction:nil];
@@ -116,7 +116,7 @@
                return result;
            }
            // Alert for Objects with same name
-           if ([[self.project allObjectNames] containsObject:name]) {
+           if ([[self.project.scene allObjectNames] containsObject:name]) {
                return [InputValidationResult invalidInputWithLocalizedMessage:kLocalizedObjectNameAlreadyExistsDescription];
            }
            return [InputValidationResult validInput];
@@ -134,36 +134,36 @@
 - (void)addObjectActionWithName:(NSString*)objectName
 {
     [self showLoadingView];
-    [self.project addObjectWithName:[Util uniqueName:objectName existingNames:[self.project allObjectNames]]];
+    [self.project.scene addObjectWithName:[Util uniqueName:objectName existingNames:[self.project.scene allObjectNames]]];
     NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:kObjectSectionIndex];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:kObjectSectionIndex];
     [self.tableView insertRowsAtIndexPaths:@[indexPath]
-                          withRowAnimation:(([self.project numberOfNormalObjects] == 1) ? UITableViewRowAnimationFade : UITableViewRowAnimationBottom)];
+                          withRowAnimation:(([self.project.scene numberOfNormalObjects] == 1) ? UITableViewRowAnimationFade : UITableViewRowAnimationBottom)];
 
     LooksTableViewController *ltvc = [self.storyboard instantiateViewControllerWithIdentifier:kLooksTableViewControllerIdentifier];
-    [ltvc setObject:[self.project.objectList objectAtIndex:(kBackgroundObjectIndex + indexPath.section + indexPath.row)]];
+    [ltvc setObject:[self.project.scene.objects objectAtIndex:(kBackgroundObjectIndex + indexPath.section + indexPath.row)]];
     ltvc.showAddLookActionSheetAtStartForObject = YES;
     ltvc.showAddLookActionSheetAtStartForScriptEditor = NO;
     ltvc.afterSafeBlock =  ^(Look* look) {
         [self.navigationController popViewControllerAnimated:YES];
         if (!look) {
             NSUInteger index = (kBackgroundObjects + indexPath.row);
-            SpriteObject *object = (SpriteObject*)[self.project.objectList objectAtIndex:index];
-            [self.project removeObjectFromList:object];
+            SpriteObject *object = (SpriteObject*)[self.project.scene.objects objectAtIndex:index];
+            [self.project.scene removeObject:object];
             [self.project saveToDiskWithNotification:NO];
             [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:((indexPath.row != 0) ? UITableViewRowAnimationTop : UITableViewRowAnimationFade)];
         }
         if (self.afterSafeBlock && look ) {
             NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:kObjectSectionIndex];
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:kObjectSectionIndex];
-            self.afterSafeBlock([self.project.objectList objectAtIndex:(kBackgroundObjectIndex + indexPath.section + indexPath.row)]);
+            self.afterSafeBlock([self.project.scene.objects objectAtIndex:(kBackgroundObjectIndex + indexPath.section + indexPath.row)]);
         }else if (self.afterSafeBlock && !look){
             self.afterSafeBlock(nil);
         }
-        [self showPlaceHolder:!(BOOL)[self.project numberOfNormalObjects]];
+        [self showPlaceHolder:!(BOOL)[self.project.scene numberOfNormalObjects]];
     };
     [self.navigationController pushViewController:ltvc animated:NO];
-    [self showPlaceHolder:!(BOOL)[self.project numberOfNormalObjects]];
+    [self showPlaceHolder:!(BOOL)[self.project.scene numberOfNormalObjects]];
     [self hideLoadingView];
 }
 
@@ -186,8 +186,8 @@
 - (void)copyObjectActionWithSourceObject:(SpriteObject*)sourceObject
 {
     [self showLoadingView];
-    NSString *nameOfCopiedObject = [Util uniqueName:sourceObject.name existingNames:[self.project allObjectNames]];
-    [self.project copyObject:sourceObject withNameForCopiedObject:nameOfCopiedObject];
+    NSString *nameOfCopiedObject = [Util uniqueName:sourceObject.name existingNames:[self.project.scene allObjectNames]];
+    (void)[self.project.scene copyObject:sourceObject withNameForCopiedObject:nameOfCopiedObject];
 
     // create new cell
     NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:kObjectSectionIndex];
@@ -203,9 +203,9 @@
         return;
 
     [self showLoadingView];
-    newObjectName = [Util uniqueName:newObjectName existingNames:[self.project allObjectNames]];
-    [self.project renameObject:spriteObject toName:newObjectName];
-    NSUInteger spriteObjectIndex = [self.project.objectList indexOfObject:spriteObject];
+    newObjectName = [Util uniqueName:newObjectName existingNames:[self.project.scene allObjectNames]];
+    [self.project.scene renameObject:spriteObject toName:newObjectName];
+    NSUInteger spriteObjectIndex = [self.project.scene.objects indexOfObject:spriteObject];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(spriteObjectIndex - kBackgroundObjects)
                                                 inSection:kObjectSectionIndex];
     [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
@@ -220,14 +220,14 @@
                                                addCancelActionWithTitle:kLocalizedCancel handler:nil];
     
 
-    if ([self.project numberOfNormalObjects]) {
+    if ([self.project.scene numberOfNormalObjects]) {
         [actionSheet addDestructiveActionWithTitle:kLocalizedDeleteObjects handler:^{
             self.deletionMode = YES;
             [self setupEditingToolBar];
             [super changeToEditingMode:sender];
         }];
     }
-    if ([self.project numberOfNormalObjects] >= 2) {
+    if ([self.project.scene numberOfNormalObjects] >= 2) {
         [actionSheet addDefaultActionWithTitle:kLocalizedMoveObjects handler:^{
             self.deletionMode = NO;
             [super changeToMoveMode:sender];
@@ -303,13 +303,13 @@
         if (selectedRowIndexPath.section != kObjectSectionIndex) {
             continue;
         }
-        SpriteObject *object = (SpriteObject*)[self.project.objectList objectAtIndex:(kObjectSectionIndex + selectedRowIndexPath.row)];
+        SpriteObject *object = (SpriteObject*)[self.project.scene.objects objectAtIndex:(kObjectSectionIndex + selectedRowIndexPath.row)];
         [objectsToRemove addObject:object];
     }
-    [self.project removeObjects:objectsToRemove];
+    [self.project.scene removeObjects:objectsToRemove];
     [super exitEditingMode];
-    [self.tableView deleteRowsAtIndexPaths:selectedRowsIndexPaths withRowAnimation:(([self.project numberOfNormalObjects] != 0) ? UITableViewRowAnimationTop : UITableViewRowAnimationFade)];
-    [self showPlaceHolder:!(BOOL)[self.project numberOfNormalObjects]];
+    [self.tableView deleteRowsAtIndexPaths:selectedRowsIndexPaths withRowAnimation:(([self.project.scene numberOfNormalObjects] != 0) ? UITableViewRowAnimationTop : UITableViewRowAnimationFade)];
+    [self showPlaceHolder:!(BOOL)[self.project.scene numberOfNormalObjects]];
     [self hideLoadingView];
 }
 
@@ -317,10 +317,10 @@
 {
     [self showLoadingView];
     NSUInteger index = (kBackgroundObjects + indexPath.row);
-    SpriteObject *object = (SpriteObject*)[self.project.objectList objectAtIndex:index];
-    [self.project removeObject:object];
+    SpriteObject *object = (SpriteObject*)[self.project.scene.objects objectAtIndex:index];
+    [self.project.scene removeObject:object];
     [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:((indexPath.row != 0) ? UITableViewRowAnimationTop : UITableViewRowAnimationFade)];
-    [self showPlaceHolder:!(BOOL)[self.project numberOfNormalObjects]];
+    [self showPlaceHolder:!(BOOL)[self.project.scene numberOfNormalObjects]];
     [self hideLoadingView];
 }
 
@@ -342,9 +342,9 @@
 {
     switch (section) {
         case kBackgroundSectionIndex:
-            return [self.project numberOfBackgroundObjects];
+            return [self.project.scene numberOfBackgroundObjects];
         case kObjectSectionIndex:
-            return [self.project numberOfNormalObjects];
+            return [self.project.scene numberOfNormalObjects];
         default:
             return 0;
     }
@@ -367,7 +367,7 @@
 
     CatrobatBaseCell<CatrobatImageCell> *imageCell = (CatrobatBaseCell<CatrobatImageCell>*)cell;
     NSInteger index = (kBackgroundSectionIndex + indexPath.section + indexPath.row);
-    SpriteObject *object = [self.project.objectList objectAtIndex:index];
+    SpriteObject *object = [self.project.scene.objects objectAtIndex:index];
     imageCell.iconImageView.image = nil;
 
     if (self.useDetailCells && [cell isKindOfClass:[DarkBlueGradientImageDetailCell class]]) {
@@ -469,9 +469,9 @@
 {
     NSInteger index = (kBackgroundSectionIndex + sourceIndexPath.section + sourceIndexPath.row);
     NSInteger destIndex = (kBackgroundSectionIndex + destinationIndexPath.section + destinationIndexPath.row);
-    SpriteObject* itemToMove = self.project.objectList[index];
-    [self.project.objectList removeObjectAtIndex:index];
-    [self.project.objectList insertObject:itemToMove atIndex:destIndex];
+    SpriteObject* itemToMove = self.project.scene.objects[index];
+    [self.project.scene removeObjectAtIndex:index];
+    [self.project.scene insertObject:itemToMove atIndex:destIndex];
     [self.project saveToDiskWithNotification:NO];
 }
 
@@ -482,7 +482,7 @@
         // More button was pressed
         NSInteger spriteObjectIndex = (kBackgroundSectionIndex + indexPath.section + indexPath.row);
         
-        SpriteObject *spriteObject = [self.project.objectList objectAtIndex:spriteObjectIndex];
+        SpriteObject *spriteObject = [self.project.scene.objects objectAtIndex:spriteObjectIndex];
         
         [[[[[[[AlertControllerBuilder actionSheetWithTitle:kLocalizedEditObject]
               addCancelActionWithTitle:kLocalizedCancel handler:nil]
@@ -490,7 +490,7 @@
                  [self copyObjectActionWithSourceObject:spriteObject];
              }]
             addDefaultActionWithTitle:kLocalizedRename handler:^{
-                NSMutableArray *unavailableNames = [[self.project allObjectNames] mutableCopy];
+                NSMutableArray *unavailableNames = [[self.project.scene allObjectNames] mutableCopy];
                 [unavailableNames removeString:spriteObject.name];
                 [Util askUserForUniqueNameAndPerformAction:@selector(renameObjectActionToName:spriteObject:)
                                                     target:self
@@ -547,7 +547,7 @@
     if (section == 0) {
         headerView.textLabel.text = [kLocalizedBackground uppercaseString];
     } else {
-        headerView.textLabel.text = (([self.project numberOfNormalObjects] != 1)
+        headerView.textLabel.text = (([self.project.scene numberOfNormalObjects] != 1)
                                      ? [kLocalizedObjects uppercaseString]
                                      : [kLocalizedObject uppercaseString]);
     }
@@ -586,7 +586,7 @@
             if ([destController isKindOfClass:[ObjectTableViewController class]]) {
                 ObjectTableViewController *tvc = (ObjectTableViewController*) destController;
                 if ([tvc respondsToSelector:@selector(setObject:)]) {
-                    SpriteObject* object = [self.project.objectList objectAtIndex:(kBackgroundObjectIndex + indexPath.section + indexPath.row)];
+                    SpriteObject* object = [self.project.scene.objects objectAtIndex:(kBackgroundObjectIndex + indexPath.section + indexPath.row)];
                     [destController performSelector:@selector(setObject:) withObject:object];
                 }
             }

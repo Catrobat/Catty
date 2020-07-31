@@ -37,11 +37,15 @@ final class SetVariableBrickTests: XCTestCase {
         project = Project()
 
         spriteObject = SpriteObject()
+        let scene = Scene(name: "testScene")
+        spriteObject.scene = scene
         spriteObject.name = "SpriteObjectName"
 
         spriteNode = CBSpriteNode(spriteObject: spriteObject)
         spriteObject.spriteNode = spriteNode
-        spriteObject.project = project
+        spriteObject.scene.project = project
+
+        project.scene = spriteObject.scene
 
         script = Script()
         script.object = spriteObject
@@ -57,7 +61,7 @@ final class SetVariableBrickTests: XCTestCase {
         spriteNode.position = CGPoint(x: 0, y: 0)
 
         let userDataContainer = UserDataContainer()
-        spriteObject.project.userData = userDataContainer
+        spriteObject.scene.project!.userData = userDataContainer
 
         let brick = SetVariableBrick()
         brick.variableFormula = Formula(integer: 0)

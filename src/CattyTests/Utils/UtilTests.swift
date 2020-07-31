@@ -36,6 +36,7 @@ final class UtilTests: XCTestCase {
     override func setUp() {
 
         project = Project()
+        project.scene = Scene()
 
         super.setUp()
     }
@@ -175,7 +176,7 @@ final class UtilTests: XCTestCase {
         project.allBroadcastMessages?.add("firstValue")
 
         spriteObject = SpriteObject()
-        project.objectList.add(spriteObject!)
+        project.scene.add(object: spriteObject!)
         broadcastScript = BroadcastScript()
         spriteObject.scriptList.add(broadcastScript!)
         broadcastScript.receivedMessage = "secondValue"

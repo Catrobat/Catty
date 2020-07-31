@@ -29,10 +29,13 @@ final class LayerSensorTest: XCTestCase {
     var spriteObject: SpriteObject!
     var spriteNode: CBSpriteNodeMock!
     var sensor: LayerSensor!
+    var scene: Scene!
 
     override func setUp() {
         super.setUp()
+        scene = Scene(name: "testScene")
         spriteObject = SpriteObject()
+        spriteObject.scene = scene
         spriteNode = CBSpriteNodeMock(spriteObject: spriteObject)
         sensor = LayerSensor()
     }
@@ -44,18 +47,17 @@ final class LayerSensorTest: XCTestCase {
 
     func testDefaultRawValue() {
         let project = Project()
+        scene.project = project
+        project.scene = scene
 
         let spriteObjectA = SpriteObjectMock()
-        spriteObjectA.project = project
-        project.objectList.add(spriteObjectA)
+        project.scene.add(object: spriteObjectA)
 
         let spriteObjectB = SpriteObjectMock()
-        spriteObjectB.project = project
-        project.objectList.add(spriteObjectB)
+        project.scene.add(object: spriteObjectB)
 
         let spriteObjectC = SpriteObjectMock()
-        spriteObjectC.project = project
-        project.objectList.add(spriteObjectC)
+        project.scene.add(object: spriteObjectC)
 
         XCTAssertEqual(type(of: sensor).defaultRawValue, type(of: sensor).defaultRawValue(for: spriteObjectA), accuracy: Double.epsilon)
         XCTAssertEqual(type(of: sensor).defaultRawValue, type(of: sensor).rawValue(for: spriteObjectA), accuracy: Double.epsilon)

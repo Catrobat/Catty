@@ -31,7 +31,10 @@ final class CBSpriteNodePenExtensionTests: XCTestCase {
     var initialPosition: CGPoint!
 
     override func setUp() {
-        spriteNode = CBSpriteNode(spriteObject: SpriteObject())
+        let scene = Scene(name: "testScene")
+        let object = SpriteObject()
+        object.scene = scene
+        spriteNode = CBSpriteNode(spriteObject: object)
         spriteNode.name = "testName"
 
         stage = StageBuilder(project: ProjectMock()).build()

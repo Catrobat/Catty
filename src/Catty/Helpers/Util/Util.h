@@ -147,7 +147,7 @@ if (__functor) __functor(__VA_ARGS__);  \
 
 + (BOOL)isEqual:(id _Nullable)object toObject:(id _Nullable)objectToCompare;
 
-+ (SpriteObject* _Nullable)objectWithName:(NSString* _Nullable)objectName forProject:(Project* _Nullable)project;
++ (SpriteObject* _Nullable)objectWithName:(NSString* _Nullable)objectName forScene:(Scene* _Nullable)scene;
 
 + (Sound* _Nullable)soundWithName:(NSString* _Nullable)objectName forObject:(SpriteObject* _Nullable)object;
 

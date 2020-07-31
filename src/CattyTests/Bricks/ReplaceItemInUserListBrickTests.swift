@@ -37,17 +37,20 @@ final class ReplaceItemInUserListBrickTests: XCTestCase {
 
     override func setUp() {
         project = Project()
+        let scene = Scene(name: "testScene")
         spriteObject = SpriteObject()
+        spriteObject.scene = scene
         spriteObject.name = "SpriteObjectName"
 
         spriteNode = CBSpriteNode(spriteObject: spriteObject)
         spriteObject.spriteNode = spriteNode
-        spriteObject.project = project
+        spriteObject.scene.project = project
+        project.scene = spriteObject.scene
 
         script = Script()
         script.object = spriteObject
 
-        spriteObject.project.userData = UserDataContainer()
+        spriteObject.scene.project!.userData = UserDataContainer()
 
         userList = UserList(name: "testName")
         spriteObject.userData.add(userList)

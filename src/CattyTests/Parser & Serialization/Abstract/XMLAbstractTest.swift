@@ -61,8 +61,8 @@ class XMLAbstractTest: XCTestCase {
         // FIXME: HACK => assign same header to both versions => this forces to ignore header
         firstProject.header = secondProject.header
         // FIXME: HACK => for background objects always replace german name "Hintergrund" with "Background"
-        let firstBgObject = firstProject.objectList[0] as! SpriteObject
-        let secondBgObject = secondProject.objectList[0] as! SpriteObject
+        let firstBgObject = firstProject.scene.object(at: 0)!
+        let secondBgObject = secondProject.scene.object(at: 0)!
         firstBgObject.name = firstBgObject.name.replacingOccurrences(of: "Hintergrund", with: "Background")
         secondBgObject.name = secondBgObject.name.replacingOccurrences(of: "Hintergrund", with: "Background")
 

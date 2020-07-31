@@ -28,6 +28,8 @@ final class SetPenColorBrickTests: AbstractBrickTest {
 
     func testSetPenColorBrick() {
         let object = SpriteObject()
+        let scene = Scene(name: "testScene")
+        object.scene = scene
         let spriteNode = CBSpriteNode(spriteObject: object)
         object.spriteNode = spriteNode
 
@@ -51,6 +53,8 @@ final class SetPenColorBrickTests: AbstractBrickTest {
 
     func testPenColorBrickWhenMaxValueOutOfRange() {
         let object = SpriteObject()
+        let scene = Scene(name: "testScene")
+        object.scene = scene
         let spriteNode = CBSpriteNode(spriteObject: object)
         object.spriteNode = spriteNode
 
@@ -74,6 +78,8 @@ final class SetPenColorBrickTests: AbstractBrickTest {
 
     func testPenColorBrickWhenMinValueOutOfRange() {
         let object = SpriteObject()
+        let scene = Scene(name: "testScene")
+        object.scene = scene
         let spriteNode = CBSpriteNode(spriteObject: object)
         object.spriteNode = spriteNode
 

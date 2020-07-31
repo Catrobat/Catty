@@ -44,7 +44,8 @@ class CBSpriteNode: SKSpriteNode {
         let color = UIColor.clear
         self.spriteObject = spriteObject
 
-        self.penConfiguration = PenConfiguration(projectWidth: self.spriteObject.project?.header.screenWidth as? CGFloat, projectHeight: self.spriteObject.project?.header.screenHeight as? CGFloat)
+        self.penConfiguration = PenConfiguration(projectWidth: self.spriteObject.scene.project?.header.screenWidth as? CGFloat,
+                                                 projectHeight: self.spriteObject.scene.project?.header.screenHeight as? CGFloat)
 
         if let firstLook = spriteObject.lookList.firstObject as? Look,
             let filePathForLook = spriteObject.path(for: firstLook),

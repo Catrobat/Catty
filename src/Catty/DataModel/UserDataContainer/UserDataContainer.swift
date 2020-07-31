@@ -190,7 +190,7 @@
     @objc(objectAndProjectVariablesForObject:)
     static func objectAndProjectVariables(for object: SpriteObject) -> [UserVariable] {
         var objectAndProjectVariables = [UserVariable]()
-        if let project = object.project {
+        if let project = object.scene.project {
             if let vars = NSMutableArray(array: project.userData.variables()) as? [UserVariable] {
                 objectAndProjectVariables = vars
             }
@@ -202,7 +202,7 @@
     @objc(objectAndProjectListsForObject:)
     static func objectAndProjectLists(for object: SpriteObject) -> [UserList] {
         var objectAndProjectLists = [UserList]()
-        if let project = object.project {
+        if let project = object.scene.project {
             if let lists = NSMutableArray(array: project.userData.lists()) as? [UserList] {
                 objectAndProjectLists = lists
             }
@@ -216,7 +216,7 @@
         if let variable = object.userData.getUserVariable(identifiedBy: name) {
             return variable
         }
-        if let project = object.project {
+        if let project = object.scene.project {
             return project.userData.getUserVariable(identifiedBy: name)
         }
         return nil
@@ -227,7 +227,7 @@
         if let list = object.userData.getUserList(identifiedBy: name) {
             return list
         }
-        if let project = object.project {
+        if let project = object.scene.project {
             return project.userData.getUserList(identifiedBy: name)
         }
         return nil

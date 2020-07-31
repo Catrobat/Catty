@@ -41,7 +41,7 @@
 #define kParserObjectTypeMutableArray   @"T@\"NSMutableArray\""
 #define kParserObjectTypeMutableDictionary @"T@\"NSMutableDictionary\""
 #define kParserObjectTypeDate           @"T@\"NSDate\""
-
+#define kParserObjectTypeScene          @"T@\"Scene\""
 #define kParserObjectTypeSprite         @"T@\"SpriteObject\""
 #define kParserObjectTypeLookData       @"T@\"Look\""
 #define kParserObjectTypeLoopBeginBrick @"T@\"LoopBeginBrick\""
@@ -157,7 +157,7 @@
     // just an educated guess...
     if ([object isKindOfClass:[SpriteObject class]]) {
         SpriteObject* spriteObject = (SpriteObject*)object;
-        spriteObject.project = self.project;
+        spriteObject.scene.project = self.project;
         self.currentActiveSprite = spriteObject;
     }
     
@@ -181,11 +181,23 @@
                 [NSException raise:@"WrongPropertyException" format:@"We need to keep the references at all time, please use NSMutableArray for property: %@", propertyName];
             }
             
-            else if ([propertyType isEqualToString:kParserObjectTypeMutableArray]) {
-                NSMutableArray* arr = [object valueForKey:propertyName];
-                if (!arr) {
+            else if ([propertyType isEqualToString:kParserObjectTypeMutableArray] || [propertyType isEqualToString:kParserObjectTypeScene]) {
+                NSMutableArray* arr = nil;
+                Scene *scene = nil;
+                if ([propertyType isEqualToString:kParserObjectTypeScene]) {
+                    scene = [object valueForKey:propertyName];
+                    if (!scene) {
+                        scene = [[Scene alloc] init];
+                        [object setValue:scene forKey:propertyName];
+                    }
+                    scene.project = self.project;
                     arr = [[NSMutableArray alloc] initWithCapacity:child.childCount];
-                    [object setValue:arr forKey:propertyName];
+                } else {
+                    arr = [object valueForKey:propertyName];
+                    if (!arr) {
+                        arr = [[NSMutableArray alloc] initWithCapacity:child.childCount];
+                        [object setValue:arr forKey:propertyName];
+                    }
                 }
                 XMLObjectReference* arrayReference = [[XMLObjectReference alloc] initWithParent:ref andObject:arr];
                 for (GDataXMLElement *arrElement in child.children) {
@@ -199,7 +211,11 @@
                         [arr addObject:[self parseNode:arrElement withParent:arrayReference]];
                     }
                 }
-                
+                if (scene) {
+                    for(SpriteObject *object in arr) {
+                        [scene addObject:object];
+                    }
+                }
             }
             else { // NOT ARRAY
                 id value = [self getSingleValue:child ofType:propertyType withParent:ref];
@@ -407,6 +423,7 @@
     for(int i=0; i<[components count]; i++) {
         
         NSString* pathComponent = [components objectAtIndex:i];
+        pathComponent = [self propertyNameForString:pathComponent];
         if([pathComponent isEqualToString:@".."]) {
             continue;
         }
@@ -640,6 +657,10 @@ const char *property_getTypeString(objc_property_t property)
     
     if ([propertyName isEqualToString:@"variables"]) {
         propertyName = @"userData";
+    }
+    
+    if ([propertyName isEqualToString:@"objectList"]) {
+        propertyName = @"scene";
     }
     
     return propertyName;

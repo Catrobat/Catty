@@ -25,7 +25,7 @@
     @nonobjc func instruction() -> CBInstruction {
 
         guard let spriteObject = self.script?.object,
-            let _ = spriteObject.project?.userData,
+            let _ = spriteObject.scene.project?.userData,
             let xFormula = self.xFormula,
             let yFormula = self.yFormula
             else { fatalError("This should never happen!") }

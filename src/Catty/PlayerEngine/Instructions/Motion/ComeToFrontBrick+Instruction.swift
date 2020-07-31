@@ -29,17 +29,18 @@
     @objc func actionBlock() -> () -> Void {
         guard let currentObject = self.script?.object,
             let currentSpriteNode = currentObject.spriteNode,
-            let project = self.script?.object?.project,
-            let objectList = self.script?.object?.project?.objectList
+            let scene = self.script?.object?.scene
             else { fatalError("This should never happen!") }
+
+        let objectList = scene.objects()
 
         return {
             let currentLayer = currentSpriteNode.catrobatLayer
-            let frontValue = Double(project.numberOfNormalObjects())
+            let frontValue = Double(scene.numberOfNormalObjects())
             currentSpriteNode.catrobatLayer = frontValue
 
-            for obj in objectList {
-                guard let spriteObject = obj as? SpriteObject, let spriteNode = spriteObject.spriteNode else {
+            for spriteObject in objectList {
+                guard let spriteNode = spriteObject.spriteNode else {
                     continue
                 }
                 if spriteNode.catrobatLayer > currentLayer && spriteNode.catrobatLayer <= frontValue && spriteObject != currentObject {

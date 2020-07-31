@@ -45,12 +45,14 @@ final class ScriptCollectionViewControllerTests: XCTestCase {
     }
 
     func testUpdateBrickCellDataSavesBroadcastMessage() {
+        let scene = Scene(name: "testScene")
         spriteObject = SpriteObject()
+        spriteObject.scene = scene
         broadcastBrick = BroadcastBrick()
         broadcastBrickCell = BroadcastBrickCell()
         brickCellMessageData = BrickCellMessageData()
         viewController.object = spriteObject
-        spriteObject.project = project
+        spriteObject.scene.project = project
         broadcastBrickCell.scriptOrBrick = broadcastBrick
         broadcastBrickCell.dataDelegate = viewController as? BrickCellDataDelegate
         brickCellMessageData.brickCell = broadcastBrickCell

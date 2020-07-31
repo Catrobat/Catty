@@ -30,6 +30,8 @@ final class StampBrickTests: XCTestCase {
         let stage = StageBuilder(project: ProjectMock()).build()
 
         let object = SpriteObject()
+        let scene = Scene()
+        object.scene = scene
         let spriteNode = CBSpriteNode(spriteObject: object)
         object.spriteNode = spriteNode
 

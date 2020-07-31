@@ -27,6 +27,7 @@
 #import "Brick.h"
 #import "BroadcastScript.h"
 #import "Util.h"
+#import "Pocket_Code-Swift.h"
 
 NSString *const ACCESSIBILITY_LABEL = @"MessageView_%@";
 
@@ -50,9 +51,9 @@ static NSMutableArray *messages = nil;
                 NSString *currentMessage = [messageBrick messageForLineNumber:line andParameterNumber:parameter];
                 NSMutableOrderedSet *messages;
                 if ([brickCell.scriptOrBrick isKindOfClass:[Script class]]) {
-                    messages = [Util allMessagesForProject: ((Script*)brickCell.scriptOrBrick).object.project];
+                    messages = [Util allMessagesForProject: ((Script*)brickCell.scriptOrBrick).object.scene.project];
                 } else {
-                    messages = [Util allMessagesForProject: messageBrick.script.object.project];
+                    messages = [Util allMessagesForProject: messageBrick.script.object.scene.project];
                 }
                 for (NSString *message in messages) {
                     if (! [options containsObject:message]) {

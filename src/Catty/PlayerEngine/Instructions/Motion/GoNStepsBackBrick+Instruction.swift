@@ -30,7 +30,7 @@
         guard let currentObject = self.script?.object,
             let currentSpriteNode = currentObject.spriteNode,
             let stepsFormula = self.steps,
-            let objectList = self.script?.object?.project?.objectList
+            let objectList = self.script?.object?.scene.objects()
             else { fatalError("This should never happen!") }
 
         return {
@@ -38,8 +38,8 @@
             let steps = formulaInterpreter.interpretDouble(stepsFormula, for: currentObject)
             currentSpriteNode.catrobatLayer -= steps
 
-            for obj in objectList {
-                guard let spriteObject = obj as? SpriteObject, let spriteNode = spriteObject.spriteNode else {
+            for spriteObject in objectList {
+                guard let spriteNode = spriteObject.spriteNode else {
                     continue
                 }
                 if spriteNode.catrobatLayer < currentLayer && spriteNode.catrobatLayer >= currentSpriteNode.catrobatLayer && spriteObject != currentObject {

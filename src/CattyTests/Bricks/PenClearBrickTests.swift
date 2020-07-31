@@ -38,6 +38,8 @@ final class PenClearBrickTests: XCTestCase {
         stage.addChild(line2)
 
         let object = SpriteObject()
+        let scene = Scene(name: "testScene")
+        object.scene = scene
         let spriteNode = CBSpriteNode(spriteObject: object)
         spriteNode.name = "testName"
         object.spriteNode = spriteNode
@@ -59,8 +61,9 @@ final class PenClearBrickTests: XCTestCase {
     }
 
     func testRemoveAllPreviousPositions() {
-
         let object = SpriteObject()
+        let scene = Scene(name: "testScene")
+        object.scene = scene
         let spriteNode = CBSpriteNode(spriteObject: object)
         spriteNode.name = "testName"
         object.spriteNode = spriteNode

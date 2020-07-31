@@ -109,6 +109,7 @@ final class StageTests: XCTestCase {
 
     func testVariableLabel() {
         let project = ProjectMock(width: self.screenSize.width, andHeight: self.screenSize.height)
+        project.scene = Scene()
         let stage = StageBuilder(project: project).build()
 
         let userVariable = UserVariable(name: "testName")
@@ -128,12 +129,15 @@ final class StageTests: XCTestCase {
 
         let stage = StageBuilder(project: ProjectMock()).build()
 
-        let spriteNode1 = CBSpriteNodeMock(spriteObject: SpriteObject())
+        let object = SpriteObject()
+        let scene = Scene(name: "testScene")
+        object.scene = scene
+        let spriteNode1 = CBSpriteNodeMock(spriteObject: object)
         spriteNode1.name = "testObject1"
         spriteNode1.scene = stage
         stage.scheduler.registerSpriteNode(spriteNode1)
 
-        let spriteNode2 = CBSpriteNodeMock(spriteObject: SpriteObject())
+        let spriteNode2 = CBSpriteNodeMock(spriteObject: object)
         spriteNode2.name = "testObject2"
         spriteNode2.scene = stage
         stage.scheduler.registerSpriteNode(spriteNode2)
@@ -202,11 +206,14 @@ final class StageTests: XCTestCase {
     func testClearStampSpriteNode() {
         let stage = StageBuilder(project: ProjectMock()).build()
 
-        let cbSpriteNode1 = CBSpriteNode(spriteObject: SpriteObject())
+        let object = SpriteObject()
+        let scene = Scene(name: "testScene")
+        object.scene = scene
+        let cbSpriteNode1 = CBSpriteNode(spriteObject: object)
         cbSpriteNode1.name = "testName1"
         stage.addChild(cbSpriteNode1)
 
-        let cbSpriteNode2 = CBSpriteNode(spriteObject: SpriteObject())
+        let cbSpriteNode2 = CBSpriteNode(spriteObject: object)
         cbSpriteNode2.name = "testName2"
         stage.addChild(cbSpriteNode2)
 

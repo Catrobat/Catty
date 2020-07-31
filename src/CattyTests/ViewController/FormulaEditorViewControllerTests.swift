@@ -31,6 +31,7 @@ final class FormulaEditorViewControllerTests: XCTestCase {
     var project: Project!
     var spriteObject: SpriteObject!
     var script: Script!
+    var scene: Scene!
 
     override func setUp() {
         super.setUp()
@@ -38,9 +39,12 @@ final class FormulaEditorViewControllerTests: XCTestCase {
         project = Project()
         project.userData = UserDataContainer()
 
+        scene = Scene(name: "testScene")
+        scene.project = project
+        project.scene = scene
+
         spriteObject = SpriteObjectMock()
-        spriteObject.project = project
-        project.objectList.add(spriteObject!)
+        project.scene.add(object: spriteObject!)
 
         script = StartScript()
         spriteObject.scriptList.add(script!)
@@ -105,7 +109,7 @@ final class FormulaEditorViewControllerTests: XCTestCase {
 
         XCTAssertFalse(controller.isVariableUsed(variable))
 
-        project.objectList.add(objectB)
+        project.scene.add(object: objectB)
         XCTAssertTrue(controller.isVariableUsed(variable))
     }
 
@@ -156,7 +160,7 @@ final class FormulaEditorViewControllerTests: XCTestCase {
         brick.userVariable = variable
         scriptB.brickList.add(brick)
         objectB.scriptList.add(scriptB)
-        project.objectList.add(objectB)
+        project.scene.add(object: objectB)
 
         XCTAssertFalse(controller.isVariableUsed(variable))
 
@@ -221,7 +225,7 @@ final class FormulaEditorViewControllerTests: XCTestCase {
 
         XCTAssertFalse(controller.isListUsed(list))
 
-        project.objectList.add(objectB)
+        project.scene.add(object: objectB)
         XCTAssertTrue(controller.isListUsed(list))
     }
 
@@ -279,7 +283,7 @@ final class FormulaEditorViewControllerTests: XCTestCase {
         brick.userList = list
         scriptB.brickList.add(brick)
         objectB.scriptList.add(scriptB)
-        project.objectList.add(objectB)
+        project.scene.add(object: objectB)
 
         XCTAssertFalse(controller.isListUsed(list))
 

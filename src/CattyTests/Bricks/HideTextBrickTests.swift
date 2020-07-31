@@ -36,12 +36,15 @@ final class HideTextBrickTests: XCTestCase {
     override func setUp() {
         project = Project()
 
+        let scene = Scene(name: "testScene")
         spriteObject = SpriteObject()
         spriteObject.name = "SpriteObjectName"
+        spriteObject.scene = scene
 
         spriteNode = CBSpriteNode(spriteObject: spriteObject)
         spriteObject.spriteNode = spriteNode
-        spriteObject.project = project
+        spriteObject.scene.project = project
+        project.scene = spriteObject.scene
 
         script = Script()
         script.object = spriteObject
@@ -55,7 +58,7 @@ final class HideTextBrickTests: XCTestCase {
 
     func testHideTextBrickUserVariablesNil() {
         let userDataContainer = UserDataContainer()
-        spriteObject.project.userData = userDataContainer
+        spriteObject.scene.project!.userData = userDataContainer
 
         let brick = HideTextBrick()
         brick.script = script

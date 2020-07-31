@@ -116,7 +116,7 @@
     [[BrickInsertManager sharedInstance] reset];
     self.isEditingBrickMode = NO;
     self.batchUpdateMutex = NO;
-    self.formulaManager = [[FormulaManager alloc] initWithStageSize: CGSizeMake([self.object.project.header.screenWidth floatValue], [self.object.project.header.screenHeight floatValue]) andLandscapeMode: self.object.project.header.landscapeMode];
+    self.formulaManager = [[FormulaManager alloc] initWithStageSize: CGSizeMake([self.object.scene.project.header.screenWidth floatValue], [self.object.scene.project.header.screenHeight floatValue]) andLandscapeMode: self.object.scene.project.header.landscapeMode];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -294,7 +294,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             [actionSheet addDefaultActionWithTitle:disableTitle handler:^{
                 [self disableOrEnableWithBrick:brick];
                 [self reloadData];
-                [self.object.project saveToDiskWithNotification:YES];
+                [self.object.scene.project saveToDiskWithNotification:YES];
             }];
         }
 
@@ -348,7 +348,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
                 }
             }
             [self reloadData];
-            [self.object.project saveToDiskWithNotification:YES];
+            [self.object.scene.project saveToDiskWithNotification:YES];
         }];
     }
     
@@ -500,7 +500,7 @@ didEndDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         [self turnOffInsertingBrickMode];
     } else {
         [[BrickMoveManager sharedInstance] getReadyForNewBrickMovement];
-        [self.object.project saveToDiskWithNotification:YES];
+        [self.object.scene.project saveToDiskWithNotification:YES];
     }
     [self reloadData];
 }
@@ -644,7 +644,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
        
         manager.isInsertingScript = YES;
         if (self.object.scriptList.count == 1) {
-            [self.object.project saveToDiskWithNotification:YES];
+            [self.object.scene.project saveToDiskWithNotification:YES];
             return;
         }
         script.animateInsertBrick = YES;
@@ -814,7 +814,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         [[BrickSelectionManager sharedInstance] reset];
         [self reloadData];
         self.placeHolderView.hidden = (self.object.scriptList.count != 0);
-        [self.object.project saveToDiskWithNotification:YES];
+        [self.object.scene.project saveToDiskWithNotification:YES];
     }];
 }
 
@@ -911,7 +911,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     NSArray* indexArray = [[BrickManager sharedBrickManager] scriptCollectionCopyBrickWithIndexPath:indexPath andBrick:brick];
     [self.collectionView insertItemsAtIndexPaths:indexArray];
     self.placeHolderView.hidden = YES;
-    [self.object.project saveToDiskWithNotification:YES];
+    [self.object.scene.project saveToDiskWithNotification:YES];
     
     NSIndexPath *lastIndexPath = [self findLastIndexPath];
     if(lastIndexPath == indexArray[0])
@@ -943,7 +943,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         self.batchUpdateMutex = NO;
         self.placeHolderView.hidden = (self.object.scriptList.count != 0);
         [self reloadData];
-        [self.object.project saveToDiskWithNotification:YES];
+        [self.object.scene.project saveToDiskWithNotification:YES];
         [self setEditing:NO animated:NO];
     }];
 
@@ -959,7 +959,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 
     NSMutableArray *allVariableNames = [NSMutableArray new];
     if (isProjectVar) {
-        for(UserVariable *var in [UserDataContainer allVariablesForProject: self.object.project]) {
+        for(UserVariable *var in [UserDataContainer allVariablesForProject: self.object.scene.project]) {
             [allVariableNames addObject:var.name];
         }
     } else {
@@ -977,7 +977,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                                         UserVariable *variable = [[UserVariable alloc] initWithName:variableName];
                                         variable.value = [NSNumber numberWithInt:0];
                                         if (isProjectVar) {
-                                            [self.object.project.userData addVariable:variable];
+                                            [self.object.scene.project.userData addVariable:variable];
                                         } else { // object variable
                                             [self.object.userData addVariable:variable];
                                         }
@@ -1008,7 +1008,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 
     NSMutableArray *allListNames = [NSMutableArray new];
     if (isProjectList) {
-        for(UserVariable *list in [UserDataContainer allListsForProject: self.object.project]) {
+        for(UserVariable *list in [UserDataContainer allListsForProject: self.object.scene.project]) {
             [allListNames addObject:list.name];
         }
     } else {
@@ -1025,7 +1025,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                                     withObject:(id) ^(NSString* listName) {
                                         UserList *list = [[UserList alloc] initWithName:listName];
                                         if (isProjectList) {
-                                            [self.object.project.userData addList:list];
+                                            [self.object.scene.project.userData addList:list];
                                         } else { // object list
                                             [self.object.userData addList:list];
                                         }
@@ -1080,9 +1080,9 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         void (^block)(NSString*) = (void (^)(NSString*))completion;
         block(messageName);
     }
-    [self.object.project saveToDiskWithNotification:YES];
+    [self.object.scene.project saveToDiskWithNotification:YES];
     [self enableUserInteractionAndResetHighlight];
-    [self.object.project.allBroadcastMessages addObject:messageName];
+    [self.object.scene.project.allBroadcastMessages addObject:messageName];
 }
 
 - (void)addVariableWithName:(NSString*)variableName andCompletion:(id)completion
@@ -1091,7 +1091,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         void (^block)(NSString*) = (void (^)(NSString*))completion;
         block(variableName);
     }
-    [self.object.project saveToDiskWithNotification:YES];
+    [self.object.scene.project saveToDiskWithNotification:YES];
     [self enableUserInteractionAndResetHighlight];
 }
 
@@ -1140,7 +1140,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         Brick<BrickObjectProtocol> *objectBrick = (Brick<BrickObjectProtocol>*)brick;
         if([(NSString*)value isEqualToString:kLocalizedNewElement]) {
             ProjectTableViewController *ptvc = [self.storyboard instantiateViewControllerWithIdentifier:kProjectTableViewControllerIdentifier];
-            [ptvc setProject:self.object.project];
+            [ptvc setProject:self.object.scene.project];
             ptvc.showAddObjectActionSheetAtStart = YES;
             ptvc.afterSafeBlock =  ^(SpriteObject* object) {
                 [objectBrick setObject:object forLineNumber:line andParameterNumber:parameter];
@@ -1150,12 +1150,12 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             [self.navigationController pushViewController:ptvc animated:YES];
             return;
         } else {
-            [objectBrick setObject:[Util objectWithName:(NSString*)value forProject:self.object.project] forLineNumber:line andParameterNumber:parameter];
+            [objectBrick setObject:[Util objectWithName:(NSString*)value forScene:self.object.scene] forLineNumber:line andParameterNumber:parameter];
         }
     } else
     if ([brickCellData isKindOfClass:[BrickCellFormulaData class]] && [brick conformsToProtocol:@protocol(BrickFormulaProtocol)]) {
         [(Brick<BrickFormulaProtocol>*)brick setFormula:(Formula*)value forLineNumber:line andParameterNumber:parameter];
-        [self.object.project saveToDiskWithNotification:YES];
+        [self.object.scene.project saveToDiskWithNotification:YES];
         return;
     } else
     if ([brickCellData isKindOfClass:[BrickCellTextData class]] && [brick conformsToProtocol:@protocol(BrickTextProtocol)]) {
@@ -1165,7 +1165,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             [(Brick<BrickStaticChoiceProtocol>*)brick setChoice:(NSString*)value forLineNumber:line andParameterNumber:parameter];
     }else
     if ([brickCellData isKindOfClass:[BrickCellMessageData class]] && [brick conformsToProtocol:@protocol(BrickMessageProtocol)]) {
-        [self.object.project.allBroadcastMessages addObject:value];
+        [self.object.scene.project.allBroadcastMessages addObject:value];
         Brick<BrickMessageProtocol> *messageBrick = (Brick<BrickMessageProtocol>*)brick;
         if([(NSString*)value isEqualToString:kLocalizedNewElement]) {
             [Util askUserForUniqueNameAndPerformAction:@selector(addMessageWithName:andCompletion:)
@@ -1181,7 +1181,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                                         minInputLength:kMinNumOfMessageNameCharacters
                                         maxInputLength:kMaxNumOfMessageNameCharacters
                               invalidInputAlertMessage:kLocalizedMessageAlreadyExistsDescription
-                                         existingNames:[Util allMessagesForProject:self.object.project].array];
+                                         existingNames:[Util allMessagesForProject:self.object.scene.project].array];
             [self enableUserInteractionAndResetHighlight];
             return;
         } else {
@@ -1257,7 +1257,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         [phiroIfBrick setSensor:(NSString*)value forLineNumber:line andParameterNumber:parameter];
     }
     
-    [self.object.project saveToDiskWithNotification:NO];
+    [self.object.scene.project saveToDiskWithNotification:NO];
     [self enableUserInteractionAndResetHighlight];
 }
 

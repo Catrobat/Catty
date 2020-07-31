@@ -26,24 +26,18 @@
 @class UserDataContainer;
 @class SpriteObject;
 @class ProjectLoadingInfo;
+@class Scene;
 
 @interface Project : NSObject
 
 @property (nonatomic, strong, nonnull) Header *header;
-@property (nonatomic, strong, nonnull) NSMutableArray<SpriteObject*> *objectList;
+@property (nonatomic, strong, nonnull) Scene *scene;
 @property (nonatomic, strong, nonnull) UserDataContainer *userData;
 @property (nonatomic, strong, nonnull) NSMutableSet<NSString*> *unsupportedElements;
 @property (nonatomic) BOOL requiresBluetooth;
 @property (nonatomic, strong, nullable) NSMutableOrderedSet *allBroadcastMessages;
 
 - (instancetype _Nonnull)init;
-- (NSInteger)numberOfTotalObjects;
-- (NSInteger)numberOfBackgroundObjects;
-- (NSInteger)numberOfNormalObjects;
-- (SpriteObject* _Nonnull)addObjectWithName:(NSString* _Nonnull)objectName;
-- (void)removeObjects:(NSArray* _Nonnull)objects;
-- (void)removeObject:(SpriteObject* _Nonnull)object;
-- (void)removeObjectFromList:(SpriteObject* _Nonnull)object;
 - (NSString* _Nonnull)projectPath;
 - (void)removeFromDisk;
 - (void)removeReferences;
@@ -53,13 +47,8 @@
 - (void)translateDefaultProject;
 - (void)renameToProjectName:(NSString* _Nonnull)projectName andShowSaveNotification:(BOOL)showSaveNotification;
 - (void)renameToProjectName:(NSString* _Nonnull)projectName andProjectId:(NSString* _Nonnull)projectId andShowSaveNotification:(BOOL)showSaveNotification;
-- (void)renameObject:(SpriteObject* _Nonnull)object toName:(NSString* _Nonnull)newObjectName;
 - (void)updateDescriptionWithText:(NSString* _Nonnull)descriptionText;
-- (nonnull NSArray*)allObjectNames;
 - (NSArray<SpriteObject*>* _Nonnull)allObjects;
-- (BOOL)hasObject:(SpriteObject* _Nonnull)object;
-- (SpriteObject* _Nonnull)copyObject:(SpriteObject* _Nonnull)sourceObject
-    withNameForCopiedObject:(NSString* _Nonnull)nameOfCopiedObject;
 - (BOOL)isEqualToProject:(Project* _Nonnull)project;
 - (NSInteger)getRequiredResources;
 

@@ -28,10 +28,13 @@ final class PreviousLookBrickTests: AbstractBrickTest {
 
     func testNextLookBrick() {
         let object = SpriteObject()
+        let scene = Scene(name: "testScene")
+        object.scene = scene
         let project = Project.defaultProject(withName: "a", projectID: "1")
         let spriteNode = CBSpriteNode(spriteObject: object)
         object.spriteNode = spriteNode
-        object.project = project
+        object.scene.project = project
+        project.scene = object.scene
 
         let bundle = Bundle(for: type(of: self))
         let filePath = bundle.path(forResource: "test.png", ofType: nil)
