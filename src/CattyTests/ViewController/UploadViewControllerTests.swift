@@ -64,6 +64,27 @@ class UploadViewControllerTests: XCTestCase {
         XCTAssertNotNil(selectedCategoriesValueLabel.text)
         XCTAssertEqual(selectedCategoriesValueLabel.text, "testTag1, testTag2")
         XCTAssertFalse(project.header.tags.isEmpty)
-        XCTAssertEqual(project.header.tags, "testTag1,testTag2")
+        XCTAssertEqual(project.header.tags, "testTag1, testTag2")
+    }
+
+    func testProjectTag() {
+        XCTAssertNil(uploaderMock.projectToUpload?.header.tags)
+
+        uploadViewController.uploadAction()
+        XCTAssertNil(uploaderMock.projectToUpload?.header.tags)
+
+        uploadViewController.categoriesSelected(tags: [String]())
+        uploadViewController.uploadAction()
+        XCTAssertTrue(uploaderMock.projectToUpload!.header.tags.isEmpty)
+
+        uploadViewController.categoriesSelected(tags: ["testTag1", "testTag2"])
+        uploadViewController.uploadAction()
+        XCTAssertFalse(uploaderMock.projectToUpload!.header.tags.isEmpty)
+        XCTAssertEqual(uploaderMock.projectToUpload!.header.tags, "testTag1, testTag2")
+
+        uploadViewController.categoriesSelected(tags: ["testTag1", "testTag2 with space"])
+        uploadViewController.uploadAction()
+        XCTAssertFalse(uploaderMock.projectToUpload!.header.tags.isEmpty)
+        XCTAssertEqual(uploaderMock.projectToUpload!.header.tags, "testTag1, testTag2 with space")
     }
 }

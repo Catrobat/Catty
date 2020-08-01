@@ -337,7 +337,7 @@ class UploadViewController: UIViewController, UploadCategoryViewControllerDelega
         } else {
             selectCategoriesValueLabel.text = kLocalizedNoCategoriesSelected
         }
-        project?.header.tags = tags.joined(separator: ",")
+        project?.header.tags = tags.joined(separator: ", ")
     }
     // MARK: - Actions
 
