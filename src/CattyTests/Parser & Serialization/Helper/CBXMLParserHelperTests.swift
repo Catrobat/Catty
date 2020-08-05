@@ -43,11 +43,13 @@ final class CBXMLParserHelperTests: XCTestCase {
     }
 
     func testGetDepthOfResourceAndRelativePathToResourceList() {
+
         let scene = Scene(name: "testScene")
         let object = SpriteObject()
         object.scene = scene
-        let project: Project! = Project.defaultProject(withName: "a", projectID: "1")
+        let project: Project! = ProjectManager.createProject(name: "a", projectId: "1")
         project.scene = object.scene
+
         let spriteNode = CBSpriteNode(spriteObject: object)
         let startScript = StartScript()
         object.spriteNode = spriteNode

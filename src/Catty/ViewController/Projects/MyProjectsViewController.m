@@ -149,7 +149,7 @@
 - (void)createAndOpenProjectWithName:(NSString*)projectName
 {
     projectName = [Util uniqueName:projectName existingNames:[Project allProjectNames]];
-    self.defaultProject = [Project defaultProjectWithName:projectName projectID:nil];
+    self.defaultProject = [ProjectManager createProjectWithName:projectName projectId:nil];
     
     if (self.defaultProject) {
         [self addProject:self.defaultProject.header.programName];
@@ -475,20 +475,6 @@
                     [self.tableView endUpdates];
                 });
             }
-        } else {
-            RuntimeImageCache *imageCache = [RuntimeImageCache sharedImageCache];
-            [imageCache loadImageWithName:@"projects" onCompletion:^(UIImage *image){
-
-                if ([cell.indexPath isEqual:indexPath]) {
-                    cell.iconImageView.image = image;
-                    [cell setNeedsLayout];
-                    dispatch_queue_main_t queue = dispatch_get_main_queue();
-                    dispatch_async(queue, ^{
-                        [self.tableView endUpdates];
-                    });
-                }
-
-            }];
         }
         
     }];

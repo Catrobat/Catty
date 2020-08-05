@@ -323,8 +323,10 @@ final class CBFileManagerTests: XCTestCase {
         let imageCache = RuntimeImageCacheMock(thumbnails: [:], cachedImages: [:])
         let fileManager = CBFileManagerMock(imageCache: imageCache)
 
+        let expectedImage = UIImage(named: "catrobat")
+
         fileManager.loadPreviewImageAndCache(projectLoadingInfo: info) { image, path in
-            XCTAssertNil(image)
+            XCTAssertEqual(expectedImage, image)
             XCTAssertNil(path)
         }
         fileManager.addDefaultProjectToProjectsRootDirectoryIfNoProjectsExist()

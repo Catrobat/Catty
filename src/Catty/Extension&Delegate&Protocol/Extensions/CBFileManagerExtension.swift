@@ -62,9 +62,19 @@ extension CBFileManager {
                     return
                 }
             }
-            completion(nil, nil)
+            completion(UIImage(named: "catrobat"), nil)
         }
 
         return
+    }
+
+    func writeData(_ data: Data, path: String) {
+
+        do {
+            try data.write(to: URL(fileURLWithPath: path), options: .atomic)
+        } catch {
+            debugPrint(error.localizedDescription)
+        }
+
     }
 }

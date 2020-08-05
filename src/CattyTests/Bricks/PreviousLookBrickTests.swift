@@ -30,7 +30,9 @@ final class PreviousLookBrickTests: AbstractBrickTest {
         let object = SpriteObject()
         let scene = Scene(name: "testScene")
         object.scene = scene
-        let project = Project.defaultProject(withName: "a", projectID: "1")
+
+        let project = ProjectManager.createProject(name: "a", projectId: "1")
+
         let spriteNode = CBSpriteNode(spriteObject: object)
         object.spriteNode = spriteNode
         object.scene.project = project

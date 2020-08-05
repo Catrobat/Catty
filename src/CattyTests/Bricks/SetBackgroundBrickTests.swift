@@ -36,7 +36,9 @@ final class SetBackgroundBrickTests: AbstractBrickTest {
         object = SpriteObject()
         object.scene = scene
         scene.add(object: object)
-        project = Project.defaultProject(withName: "a", projectID: "1")
+
+        project = ProjectManager.createProject(name: "a", projectId: "1")
+
         spriteNode = CBSpriteNode(spriteObject: object)
         object.spriteNode = spriteNode
         object.scene.project = project

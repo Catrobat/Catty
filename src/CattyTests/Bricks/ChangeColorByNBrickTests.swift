@@ -39,9 +39,11 @@ final class ChangeColorByNBrickTests: AbstractBrickTest {
         let scene = Scene(name: "testScene")
         object = SpriteObject()
         object.scene = scene
-        project = Project.defaultProject(withName: "a", projectID: "1")
+
+        project = ProjectManager.createProject(name: "a", projectId: "1")
         object.scene.project = project
         project.scene = object.scene
+
         spriteNode = CBSpriteNode(spriteObject: object)
         object.spriteNode = spriteNode
         object.scene.project = project

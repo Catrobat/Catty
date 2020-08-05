@@ -52,8 +52,6 @@
 - (BOOL)isEqualToProject:(Project* _Nonnull)project;
 - (NSInteger)getRequiredResources;
 
-+ (instancetype _Nonnull)defaultProjectWithName:(NSString* _Nonnull)projectName
-                                      projectID:(NSString* _Nullable)projectID;
 + (instancetype _Nonnull)lastUsedProject;
 + (void)updateLastModificationTimeForProjectWithName:(NSString* _Nonnull)projectName
                                            projectID:(NSString* _Nonnull)projectID;
