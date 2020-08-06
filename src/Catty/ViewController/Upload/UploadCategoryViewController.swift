@@ -33,7 +33,7 @@ class UploadCategoryViewController: UIViewController {
     private let eachElementEstimatedHight: CGFloat = 40
     private var selectedCategoryTag: [Int]
     private let categories: [String]
-    private var backgroundViewHight: CGFloat
+    private var backgroundViewHeight: CGFloat
 
     private var categoryElementViews: [UIView]
     private let backgroundView: UIView
@@ -42,19 +42,18 @@ class UploadCategoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if self.nibName != nil {
-            if let tags = tags {
-                for tag in tags.components(separatedBy: ", ") {
-                    if let tagIndex = categories.firstIndex(of: tag) {
-                        selectedCategoryTag.append(tagIndex)
-                    }
+        self.view.backgroundColor = UIColor.background
+        if let tags = tags {
+            for tag in tags.components(separatedBy: ", ") {
+                if let tagIndex = categories.firstIndex(of: tag) {
+                    selectedCategoryTag.append(tagIndex)
                 }
             }
-
-            self.initCategoriesElements()
-            self.initSelectCategoriesDescription()
-            navigationItem.title = kLocalizedSelectCategories
         }
+
+        self.initCategoriesElements()
+        self.initSelectCategoriesDescription()
+        navigationItem.title = kLocalizedSelectCategories
     }
 
     override func viewDidLayoutSubviews() {
@@ -71,29 +70,22 @@ class UploadCategoryViewController: UIViewController {
         self.sendBack(selectedCategories: selectedCategories)
     }
 
-    required init?(coder aDecoder: NSCoder) {
-        categoryElementViews = [UIView]()
-        selectedCategoryTag = [Int]()
-        backgroundView = UIView()
-        backgroundViewHight = 30.0
-        scrollView = UIScrollView(frame: .zero)
-        categories = NetworkDefines.projectCategories
-        super.init(coder: aDecoder)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
-    init(delegate: UploadCategoryViewControllerDelegate) {
+    required init(tags: [String]) {
         categoryElementViews = [UIView]()
         selectedCategoryTag = [Int]()
         backgroundView = UIView()
-        backgroundViewHight = 0
-        scrollView = UIScrollView()
-        categories = [String]()
+        backgroundViewHeight = 30.0
+        scrollView = UIScrollView(frame: .zero)
+        categories = tags
         super.init(nibName: nil, bundle: nil)
-        self.delegate = delegate
     }
 
     func initScrollView() {
-        let contentViewSize = CGSize(width: self.view.frame.width, height: backgroundViewHight)
+        let contentViewSize = CGSize(width: self.view.frame.width, height: backgroundViewHeight)
         backgroundView.frame.size = contentViewSize
 
         scrollView.contentSize = contentViewSize
@@ -153,7 +145,7 @@ class UploadCategoryViewController: UIViewController {
             selectedImageView.trailingAnchor.constraint(equalTo: elemetView.trailingAnchor, constant: -horizontalConstrainValue).isActive = true
 
             lastSeperationView = addLineViewElement(withTopConstraint: verticalConstrainValue, fromElement: elemetView)
-            backgroundViewHight += eachElementEstimatedHight
+            backgroundViewHeight += eachElementEstimatedHight
         }
     }
 
@@ -169,7 +161,7 @@ class UploadCategoryViewController: UIViewController {
             label.topAnchor.constraint(equalTo: lastView.bottomAnchor, constant: 15).isActive = true
         }
         label.leftAnchor.constraint(equalTo: self.backgroundView.leftAnchor, constant: horizontalConstrainValue).isActive = true
-        backgroundViewHight += eachElementEstimatedHight
+        backgroundViewHeight += eachElementEstimatedHight
     }
 
     func addLineViewElement(withTopConstraint topConstraint: CGFloat, fromElement element: UIView) -> UIView {

@@ -35,6 +35,7 @@ class UploadViewController: UIViewController, UploadCategoryViewControllerDelega
     private var uploader: StoreProjectUploaderProtocol?
     private var projectNameTextFieldRenderingForFirstTime = true
     private var keyboardIsCoveringDescriptionView = false
+    private var shouldHideLoadingView = false
 
     private var projectNameTextField: UITextField
     private var descriptionTextView: UITextView
@@ -42,7 +43,7 @@ class UploadViewController: UIViewController, UploadCategoryViewControllerDelega
     private var separationViews: [UIView]
     private var values: [UILabel]
     private var selectCategoriesValueLabel: UILabel
-
+    private var availableTags: [String]
     private var loadingView: LoadingView?
 
     // MARK: - View Lifecycle
@@ -51,30 +52,37 @@ class UploadViewController: UIViewController, UploadCategoryViewControllerDelega
         super.viewDidLoad()
         if self.nibName != nil {
             view.backgroundColor = UIColor.background
-            initProjectNameViewElements()
-            initSizeViewElements()
-            initSelectCategoriesElements()
-            initDescriptionViewElements()
-            initObservers()
-            hideKeyboardWhenTapInViewController()
-
             self.uploadBarButton = UIBarButtonItem(title: kLocalizedUploadProject,
                                                    style: .plain,
                                                    target: self,
                                                    action: #selector(UploadViewController.checkProjectAction))
+            self.uploadBarButton?.isEnabled = false
             navigationItem.rightBarButtonItem = self.uploadBarButton
         }
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if !shouldHideLoadingView {
+            fetchTags()
+        }
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        projectNameTextFieldRenderingForFirstTime = false
+    }
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        if projectNameTextFieldRenderingForFirstTime {
+        if projectNameTextFieldRenderingForFirstTime && shouldHideLoadingView {
             projectNameTextField.becomeFirstResponder()
             projectNameTextFieldRenderingForFirstTime = false
         }
         if descriptionTextView.frame.height < minimumHeightOfDescriptionTextView
             && descriptionTextView.isFirstResponder
-            && !keyboardIsCoveringDescriptionView {
+            && !keyboardIsCoveringDescriptionView
+            && shouldHideLoadingView {
             firstLineViewTopConstraint.constant = -minimumHeightOfDescriptionTextView
         }
     }
@@ -87,6 +95,7 @@ class UploadViewController: UIViewController, UploadCategoryViewControllerDelega
         self.projectNameTextField = UITextField()
         self.descriptionTextView = UITextView()
         self.selectCategoriesValueLabel = UILabel()
+        self.availableTags = [String]()
         super.init(coder: aDecoder)
         self.project = Project.init(loadingInfo: Util.lastUsedProjectLoadingInfo())!
 
@@ -102,8 +111,19 @@ class UploadViewController: UIViewController, UploadCategoryViewControllerDelega
         self.projectNameTextField = UITextField()
         self.descriptionTextView = UITextView()
         self.selectCategoriesValueLabel = selectCategoriesValueLabel
+        self.availableTags = [String]()
         super.init(nibName: nil, bundle: nil)
         self.uploader = uploader
+    }
+
+    func showUIElements() {
+        initProjectNameViewElements()
+        initSizeViewElements()
+        initSelectCategoriesElements()
+        initDescriptionViewElements()
+        initObservers()
+        hideKeyboardWhenTapInViewController()
+        self.uploadBarButton?.isEnabled = true
     }
 
     func initProjectNameViewElements() {
@@ -264,8 +284,11 @@ class UploadViewController: UIViewController, UploadCategoryViewControllerDelega
             loadingView = LoadingView()
             view.addSubview(loadingView!)
         }
-
         loadingView?.show()
+    }
+
+    func showLoadingForUploadng() {
+        showLoading()
         let barButtonSpinner = UIActivityIndicatorView(style: .white)
         barButtonSpinner.startAnimating()
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: barButtonSpinner)
@@ -349,7 +372,7 @@ class UploadViewController: UIViewController, UploadCategoryViewControllerDelega
         project?.rename(toProjectName: projectNameTextField.text!, andShowSaveNotification: true)
         project?.updateDescription(withText: descriptionTextView.text)
 
-        self.showLoading()
+        self.showLoadingForUploadng()
         for view: UIView in view.subviews where !(view is LoadingView) {
             view.alpha = 0.3
         }
@@ -361,7 +384,10 @@ class UploadViewController: UIViewController, UploadCategoryViewControllerDelega
     @objc func selectCategories() {
         projectNameTextField.endEditing(true)
         descriptionTextView.endEditing(true)
-        performSegue(withIdentifier: kSegueToSelectCategories, sender: self)
+        let viewController = UploadCategoryViewController(tags: availableTags)
+        viewController.tags = project?.header.tags
+        viewController.delegate = self
+        navigationController?.pushViewController(viewController, animated: true)
     }
     // MARK: - Upload
 
@@ -406,6 +432,33 @@ class UploadViewController: UIViewController, UploadCategoryViewControllerDelega
         }
     }
 
+    func fetchTags() {
+        showLoading()
+        if let uploader = uploader, let languageCode = Locale.current.languageCode {
+            uploader.fetchTags(for: languageCode) { tags, error in
+                self.loadingView?.hide()
+                if let error = error {
+                    switch error {
+                    case .unexpectedError, .timeout:
+                        AlertControllerBuilder.alert(title: kLocalizedPocketCode, message: kLocalizedErrorInternetConnection)
+                        .addDefaultAction(title: kLocalizedOK) {
+                            DispatchQueue.main.async(execute: {
+                                self.dismissView()
+                            })
+                        }.build().showWithController(self)
+                        return
+                    case .invalidLanguageTag:
+                        break
+                    default:
+                        return
+                    }
+                }
+                self.availableTags = tags
+                self.shouldHideLoadingView = true
+                self.showUIElements()
+            }
+        }
+    }
     // MARK: - Keyboard
 
     @objc func keyboardWillShow(notification: Notification) {
