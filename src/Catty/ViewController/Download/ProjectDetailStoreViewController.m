@@ -222,7 +222,7 @@
 - (void)reportProject
 {
     NSDebug(@"report");
-    BOOL isLoggedIn = [[NSUserDefaults standardUserDefaults] boolForKey:kUserIsLoggedIn];
+    BOOL isLoggedIn = [[NSUserDefaults standardUserDefaults] boolForKey: NetworkDefines.kUserIsLoggedIn];
     if (isLoggedIn) {
         [[[[[[AlertControllerBuilder textFieldAlertWithTitle:kLocalizedReportProject message:kLocalizedEnterReason]
               addCancelActionWithTitle:kLocalizedCancel handler:nil]

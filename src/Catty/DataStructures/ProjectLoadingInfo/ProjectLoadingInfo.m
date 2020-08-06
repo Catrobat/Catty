@@ -21,7 +21,7 @@
  */
 
 #import "ProjectLoadingInfo.h"
-#import "ProgramDefines.h"
+#import "ProjectDefines.h"
 #import "Util.h"
 
 @implementation ProjectLoadingInfo

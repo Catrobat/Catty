@@ -355,12 +355,12 @@
         NSDebug(@"Token is %@", token);
         
         //save username, password and email in keychain and token in nsuserdefaults
-        [[NSUserDefaults standardUserDefaults] setBool:true forKey:kUserIsLoggedIn];
+        [[NSUserDefaults standardUserDefaults] setBool:true forKey: NetworkDefines.kUserIsLoggedIn];
         [[NSUserDefaults standardUserDefaults] setValue:self.userName forKey:kcUsername];
         [[NSUserDefaults standardUserDefaults] setValue:self.userEmail forKey:kcEmail];
         [[NSUserDefaults standardUserDefaults] synchronize];
         
-        [JNKeychain saveValue:token forKey:kUserLoginToken];
+        [JNKeychain saveValue:token forKey: NetworkDefines.kUserLoginToken];
         
         [self hideLoadingView];
         [self.navigationController popViewControllerAnimated:NO];

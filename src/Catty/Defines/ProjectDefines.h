@@ -20,14 +20,6 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#define kSirenUpdateIntervallImmediately 0
-#define kSirenUpdateIntervallDaily 1
-#define kSirenUpdateIntervallWeekly 7
-#define kSirenAlertTypeForce 1
-#define kSirenAlertTypeOption 2
-#define kSirenAlertTypeSkip 3
-#define kSirenAlertTypeNone 4
-
 #define kLengthOfShortCommitHash 7
 #define kLastUsedProject @"lastUsedProject"
 #define kMinLoopDurationTime (20 * 1000 * 1000) // in nanoseconds!
@@ -88,13 +80,6 @@ typedef NS_ENUM(NSInteger, ResourceType) {
     kAccelerometerAndDeviceMotion = kAccelerometer | kDeviceMotion // TODO Pass ResourceType parameters as array (e.g. in "Sensor")
 };
 
-#define kUserDetailsShowDetailsKey @"showDetails"
-#define kUserIsLoggedIn @"userIsLoggedIn"
-#define kUserLoginToken @"userLoginToken"
-#define kUserDetailsShowDetailsObjectsKey @"detailsForObjects"
-#define kUserDetailsShowDetailsLooksKey @"detailsForLooks"
-#define kUserDetailsShowDetailsSoundsKey @"detailsForSounds"
-#define kUserDetailsShowDetailsProjectsKey @"detailsForProjects"
 #define kScreenshotThumbnailPrefix @".thumb_"
 #define kScreenshotFilename @"screenshot.png"
 #define kScreenshotManualFilename @"manual_screenshot.png"

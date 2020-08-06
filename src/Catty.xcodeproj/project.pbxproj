@@ -2879,7 +2879,7 @@
 		92FF2E011A24C3BE00093DA7 /* CatrobatLanguageDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatLanguageDefines.h; sourceTree = "<group>"; };
 		92FF2E021A24C3BE00093DA7 /* CellTagDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellTagDefines.h; sourceTree = "<group>"; };
 		92FF2E031A24C3BE00093DA7 /* LanguageTranslationDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanguageTranslationDefines.h; sourceTree = "<group>"; };
-		92FF2E051A24C3BE00093DA7 /* ProgramDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramDefines.h; sourceTree = "<group>"; };
+		92FF2E051A24C3BE00093DA7 /* ProjectDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectDefines.h; sourceTree = "<group>"; };
 		92FF2E061A24C3BE00093DA7 /* SegueDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SegueDefines.h; sourceTree = "<group>"; };
 		92FF2E071A24C3BE00093DA7 /* UIDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIDefines.h; sourceTree = "<group>"; };
 		92FF2E0C1A24C5A700093DA7 /* CAGradientLayer+CatrobatCAGradientExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CAGradientLayer+CatrobatCAGradientExtensions.h"; sourceTree = "<group>"; };
@@ -7105,7 +7105,7 @@
 				92C631901BC50DEE00486958 /* LanguageTranslationDefinesSwift.swift */,
 				597AB575202089DF007CD10D /* NetworkDefines.swift */,
 				929CC0E11BC39B7B0027DEC0 /* PhiroDefines.h */,
-				92FF2E051A24C3BE00093DA7 /* ProgramDefines.h */,
+				92FF2E051A24C3BE00093DA7 /* ProjectDefines.h */,
 				92FF2E061A24C3BE00093DA7 /* SegueDefines.h */,
 				92FF2E071A24C3BE00093DA7 /* UIDefines.h */,
 				4C5517BC1ABC16B600A52FF4 /* ViewControllerDefines.h */,
