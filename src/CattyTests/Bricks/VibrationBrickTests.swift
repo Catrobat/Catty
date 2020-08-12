@@ -26,11 +26,55 @@ import XCTest
 
 final class VibrationBrickTests: XCTestCase {
 
+    var project: Project!
+    var spriteObject: SpriteObject!
+    var spriteNode: CBSpriteNode!
+    var script: Script!
+    var scheduler: CBScheduler!
+    var context: CBScriptContextProtocol!
+
+     override func setUp() {
+        project = Project()
+        spriteObject = SpriteObject()
+        spriteObject.name = "SpriteObjectName"
+
+        spriteNode = CBSpriteNode(spriteObject: spriteObject)
+        spriteObject.spriteNode = spriteNode
+        spriteObject.project = project
+
+        script = Script()
+        script.object = spriteObject
+
+        let logger = CBLogger(name: "Logger")
+        let broadcastHandler = CBBroadcastHandler(logger: logger)
+        let formulaInterpreter = FormulaManager(sceneSize: Util.screenSize(true), landscapeMode: false)
+
+        scheduler = CBScheduler(logger: logger, broadcastHandler: broadcastHandler, formulaInterpreter: formulaInterpreter, audioEngine: AudioEngineMock())
+        context = CBScriptContext(script: script, spriteNode: spriteNode, formulaInterpreter: formulaInterpreter)
+     }
+
     func testFormulaForLineNumber() {
         let brick = VibrationBrick()
 
         brick.durationInSeconds = Formula(double: 1)
 
         XCTAssertEqual(brick.durationInSeconds, brick.formula(forLineNumber: 1, andParameterNumber: 1))
+    }
+
+    func testNumberSmallerIntMin() {
+        let brick = VibrationBrick()
+        brick.durationInSeconds = Formula(double: -100000000000000000000)
+        brick.script = script
+
+        let instruction = brick.instruction()
+
+        switch instruction {
+        case let .execClosure(closure):
+            closure(context, scheduler)
+        default:
+            break
+        }
+
+        XCTAssertTrue(true); // The purpose of this test is to show that the program does not crash
     }
 }
