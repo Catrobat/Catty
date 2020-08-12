@@ -87,7 +87,7 @@ final class StoreProjectUploader: StoreProjectUploaderProtocol {
 
         setFormDataParameter(fileChecksumParameterTag, with: checksum.data(using: .utf8), forHTTPBody: &body)
 
-        if let token = JNKeychain.loadValue(forKey: kUserLoginToken) as? String {
+        if let token = JNKeychain.loadValue(forKey: NetworkDefines.kUserLoginToken) as? String {
             setFormDataParameter(tokenParameterTag, with: token.data(using: .utf8), forHTTPBody: &body)
         }
 

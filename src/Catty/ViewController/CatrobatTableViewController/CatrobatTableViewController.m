@@ -262,7 +262,7 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
             }
             break;
         case kUploadVC:
-            if ([[[NSUserDefaults standardUserDefaults] valueForKey:kUserIsLoggedIn] boolValue]) {
+            if ([[[NSUserDefaults standardUserDefaults] valueForKey: NetworkDefines.kUserIsLoggedIn] boolValue]) {
                 if ([self shouldPerformSegueWithIdentifier:identifier sender:self]) {
                     [self performSegueWithIdentifier:@"segueToUpload" sender:self];
                 }
@@ -285,7 +285,7 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
 -(void)afterSuccessfulLogin
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        if ([[[NSUserDefaults standardUserDefaults] valueForKey:kUserIsLoggedIn] boolValue]) {
+        if ([[[NSUserDefaults standardUserDefaults] valueForKey: NetworkDefines.kUserIsLoggedIn] boolValue]) {
             static NSString *segueToUploadIdentifier = kSegueToUpload;
             
             if ([self shouldPerformSegueWithIdentifier:segueToUploadIdentifier sender:self]) {

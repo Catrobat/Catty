@@ -89,4 +89,6 @@ class NetworkDefines: NSObject {
     @objc static let reportProjectNoteMinLength = 3
 
     static let projectCategories = ["Game", "Animation", "Story", "Music", "Art", "Experimental", "Tutorial"]
+    @objc static let kUserIsLoggedIn  = "userIsLoggedIn"
+    @objc static let kUserLoginToken = "userLoginToken"
 }

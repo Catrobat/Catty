@@ -186,7 +186,7 @@
 // Defines
 //------------------------------------------------------------------------------------------------------------
 
-#import "ProgramDefines.h"
+#import "ProjectDefines.h"
 #import "KeychainUserDefaultsDefines.h"
 #import "CatrobatLanguageDefines.h"
 

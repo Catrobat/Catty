@@ -382,7 +382,7 @@ class UploadViewController: UIViewController, UploadCategoryViewControllerDelega
                                     case .zippingError, .invalidProject, .request:
                                         Util.alert(withText: kLocalizedUploadProblem)
                                     case .authenticationFailed:
-                                        UserDefaults.standard.set(false, forKey: kUserIsLoggedIn)
+                                        UserDefaults.standard.set(false, forKey: NetworkDefines.kUserIsLoggedIn)
 
                                         AlertControllerBuilder.alert(title: kLocalizedPocketCode, message: kLocalizedSessionExpired)
                                             .addDefaultAction(title: kLocalizedOK) {

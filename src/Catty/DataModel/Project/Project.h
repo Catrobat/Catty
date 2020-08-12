@@ -21,7 +21,7 @@
  */
 
 #import "Header.h"
-#import "ProgramDefines.h"
+#import "ProjectDefines.h"
 
 @class UserDataContainer;
 @class SpriteObject;

@@ -58,7 +58,7 @@ class LoginViewControllerTests: XCTestCase {
     func testServerForStatusCodeOK() {
         let statusOk = ["statusCode": "200"]
         loginViewController.handleLoginResponse(with: dataMock(status_code: statusOk), andResponse: nil)
-        let isLoggedIn = UserDefaults.standard.bool(forKey: kUserIsLoggedIn)
+        let isLoggedIn = UserDefaults.standard.bool(forKey: NetworkDefines.kUserIsLoggedIn)
         XCTAssertEqual(true, isLoggedIn)
     }
 

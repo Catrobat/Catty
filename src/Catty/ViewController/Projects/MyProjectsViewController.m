@@ -35,6 +35,7 @@
 #import "NSMutableArray+CustomExtensions.h"
 #import "UIUtil.h"
 #import "Pocket_Code-Swift.h"
+#import "ViewControllerDefines.h"
 
 @interface MyProjectsViewController () <ProjectUpdateDelegate, UITextFieldDelegate, SetProjectDescriptionDelegate>
 @property (nonatomic) BOOL useDetailCells;
