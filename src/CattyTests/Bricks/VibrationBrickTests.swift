@@ -33,7 +33,7 @@ final class VibrationBrickTests: XCTestCase {
     var scheduler: CBScheduler!
     var context: CBScriptContextProtocol!
 
-     override func setUp() {
+    override func setUp() {
         project = Project()
         spriteObject = SpriteObject()
         spriteObject.name = "SpriteObjectName"
@@ -51,7 +51,7 @@ final class VibrationBrickTests: XCTestCase {
 
         scheduler = CBScheduler(logger: logger, broadcastHandler: broadcastHandler, formulaInterpreter: formulaInterpreter, audioEngine: AudioEngineMock())
         context = CBScriptContext(script: script, spriteNode: spriteNode, formulaInterpreter: formulaInterpreter)
-     }
+    }
 
     func testFormulaForLineNumber() {
         let brick = VibrationBrick()
