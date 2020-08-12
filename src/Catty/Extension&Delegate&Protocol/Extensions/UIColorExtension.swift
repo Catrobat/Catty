@@ -36,11 +36,59 @@ extension UIColor {
     /*
      * from: https://stackoverflow.com/a/24263296
      */
-    convenience init(red: Int, green: Int, blue: Int) {
-        assert(red >= 0 && red <= 255, "Invalid red component")
-        assert(green >= 0 && green <= 255, "Invalid green component")
-        assert(blue >= 0 && blue <= 255, "Invalid blue component")
 
+    @nonobjc var redComponent: Int? {
+        if let components = self.cgColor.components {
+
+            if CGFloat(components[0] * 255) >= CGFloat(Int.max) {
+                return Int.max
+            }
+
+            if CGFloat(components[0] * 255) <= CGFloat(Int.min) {
+                return Int.min
+            }
+
+            return Int(components[0] * 255)
+        }
+
+        return nil
+    }
+
+    @nonobjc var greenComponent: Int? {
+        if let components = self.cgColor.components {
+
+            if CGFloat(components[1] * 255) >= CGFloat(Int.max) {
+                return Int.max
+            }
+
+            if CGFloat(components[1] * 255) <= CGFloat(Int.min) {
+                return Int.min
+            }
+
+            return Int(components[1] * 255)
+        }
+
+        return nil
+    }
+
+    @nonobjc var blueComponent: Int? {
+        if let components = self.cgColor.components {
+
+            if CGFloat(components[2] * 255) >= CGFloat(Int.max) {
+                return Int.max
+            }
+
+            if CGFloat(components[2] * 255) <= CGFloat(Int.min) {
+                return Int.min
+            }
+
+            return Int(components[2] * 255)
+        }
+
+        return nil
+    }
+
+    convenience init(red: Int, green: Int, blue: Int) {
         self.init(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: 1.0)
     }
 

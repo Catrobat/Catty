@@ -20,15 +20,26 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class SpriteKitDefines: NSObject {
+extension SetPenColorBrick: CBInstructionProtocol {
 
-    static let defaultFont = "Helvetica"
-    static let defaultLabelFontSize = Float(45.0)
+    func instruction() -> CBInstruction {
+        .action { context in SKAction.run(self.actionBlock(context.formulaInterpreter)) }
+    }
 
-    static let bubbleBrickNodeName = "textBubble"
+    func actionBlock(_ formulaInterpreter: FormulaInterpreterProtocol) -> () -> Void {
+        guard let object = self.script?.object,
+            let spriteNode = object.spriteNode,
+            let redFormula = self.red,
+            let greenFormula = self.green,
+            let blueFormula = self.blue
+            else { fatalError("This should never happen!") }
 
-    static let defaultCatrobatPenSize = CGFloat(3.15)
-    static let defaultPenZPosition = CGFloat(0)
-    static let defaultPenColor = UIColor(red: 0, green: 0, blue: 255)
-    static let penShapeNodeName = "penShapeNode"
+        return {
+            let red = formulaInterpreter.interpretInteger(redFormula, for: object)
+            let green = formulaInterpreter.interpretInteger(greenFormula, for: object)
+            let blue = formulaInterpreter.interpretInteger(blueFormula, for: object)
+            spriteNode.penConfiguration.color = UIColor(red: red, green: green, blue: blue)
+        }
+    }
+
 }

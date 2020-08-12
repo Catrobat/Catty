@@ -624,6 +624,23 @@
                 </formula>
               </formulaList>
             </brick>
+            <brick type="SetPenColorBrick">
+              <commentedOut>false</commentedOut>
+              <formulaList>
+                <formula category="PEN_COLOR_RED">
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formula>
+                <formula category="PEN_COLOR_BLUE">
+                  <type>NUMBER</type>
+                  <value>255</value>
+                </formula>
+                <formula category="PEN_COLOR_GREEN">
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formula>
+              </formulaList>
+            </brick>
           </brickList>
           <commentedOut>false</commentedOut>
           <isUserScript>false</isUserScript>

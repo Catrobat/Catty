@@ -409,6 +409,10 @@ let kLocalizedPenDown = NSLocalizedString("Pen down", comment: "")
 let kLocalizedPenUp = NSLocalizedString("Pen up", comment: "")
 let kLocalizedPenClear = NSLocalizedString("Clear", comment: "")
 let kLocalizedSetPenSize = NSLocalizedString("Set pen size to", comment: "")
+let kLocalizedSetPenColor = NSLocalizedString("Set pen color to", comment: "")
+let kLocalizedRed = NSLocalizedString("red", comment: "")
+let kLocalizedGreen = NSLocalizedString("green", comment: "")
+let kLocalizedBlue = NSLocalizedString("blue", comment: "")
 
 // sound bricks
 let kLocalizedSound = NSLocalizedString("Sound", comment: "")

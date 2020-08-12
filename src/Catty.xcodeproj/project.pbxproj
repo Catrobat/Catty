@@ -14,6 +14,7 @@
 		18385C68247C0EB30050819A /* LineShapeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18385C67247C0EB30050819A /* LineShapeNode.swift */; };
 		184949B9248130A9000B8CDA /* NSStringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184949B8248130A9000B8CDA /* NSStringExtension.swift */; };
 		184CA799249E839A00D3668B /* CBFileManagerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184CA798249E839A00D3668B /* CBFileManagerExtension.swift */; };
+		1858252B24D1A5E300092407 /* UIColorExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1858252A24D1A5E300092407 /* UIColorExtensionTests.swift */; };
 		186212382475A1070098F4C5 /* SpriteKitDefines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186212372475A1070098F4C5 /* SpriteKitDefines.swift */; };
 		186212462475C9140098F4C5 /* PenConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186212452475C9140098F4C5 /* PenConfiguration.swift */; };
 		186AA33C2482D0CA001E38FD /* PenDownBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186AA33B2482D0CA001E38FD /* PenDownBrick.swift */; };
@@ -31,7 +32,9 @@
 		187A3F202434BC4300EF1B02 /* PlaySoundAndWaitBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187A3F1F2434BC4300EF1B02 /* PlaySoundAndWaitBrickTests.swift */; };
 		187CECAB24314F1600C3EDCA /* SetLookBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187CECAA24314F1600C3EDCA /* SetLookBrickTests.swift */; };
 		187D119C2472AAF200A09CE5 /* DataExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187D11992472AAF100A09CE5 /* DataExtensionTests.swift */; };
-		189B8A0F24784A03009BC735 /* StageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189B8A0E24784A03009BC735 /* StageTests.swift */; };
+		1882475524C84B8100B01653 /* SetPenColorBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1882475424C84B8100B01653 /* SetPenColorBrick.swift */; };
+		1882475924C84D9C00B01653 /* SetPenColorBrickCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1882475824C84D9C00B01653 /* SetPenColorBrickCell.swift */; };
+		1882475B24C8514300B01653 /* SetPenColorBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1882475A24C8514300B01653 /* SetPenColorBrick+Instruction.swift */; };
 		18A9DBA92434C7F400F4C390 /* IfLogicBeginBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A9DBA82434C7F400F4C390 /* IfLogicBeginBrickTests.swift */; };
 		18AAC22F24A6088100C96335 /* SetPenSizeBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AAC22E24A6088100C96335 /* SetPenSizeBrick.swift */; };
 		18AAC23324A60C8800C96335 /* SetPenSizeBrickCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AAC23224A60C8800C96335 /* SetPenSizeBrickCell.swift */; };
@@ -42,6 +45,9 @@
 		18B5B530247EB059007D24A3 /* NSStringExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B5B52F247EB059007D24A3 /* NSStringExtensionTests.swift */; };
 		18B8021F2469170400201847 /* BrickCellVariableDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B8021E2469170400201847 /* BrickCellVariableDataTests.swift */; };
 		18B9A1BA24A75F3C009028F8 /* SetPenSizeBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B9A1B924A75F3C009028F8 /* SetPenSizeBrickTests.swift */; };
+		18CAFAF624D4910A003324DA /* StageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CAFAF524D4910A003324DA /* StageTests.swift */; };
+		18D939E724C96FA800A32544 /* SetPenColorBrick+CBXMLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D939E624C96FA800A32544 /* SetPenColorBrick+CBXMLHandler.swift */; };
+		18D939EB24C97A1C00A32544 /* SetPenColorBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D939EA24C97A1C00A32544 /* SetPenColorBrickTests.swift */; };
 		18DAFC5A247BD1700082C62A /* CBSpriteNodePenExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DAFC59247BD1700082C62A /* CBSpriteNodePenExtension.swift */; };
 		18E83F7B2493BEFF003295DA /* PenClearBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E83F7A2493BEFF003295DA /* PenClearBrick.swift */; };
 		18E83F7F2493BFE6003295DA /* PenClearBrickCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E83F7E2493BFE6003295DA /* PenClearBrickCell.swift */; };
@@ -1613,6 +1619,7 @@
 		18385C67247C0EB30050819A /* LineShapeNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LineShapeNode.swift; path = PlayerEngine/DataModel/LineShapeNode.swift; sourceTree = "<group>"; };
 		184949B8248130A9000B8CDA /* NSStringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSStringExtension.swift; sourceTree = "<group>"; };
 		184CA798249E839A00D3668B /* CBFileManagerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBFileManagerExtension.swift; sourceTree = "<group>"; };
+		1858252A24D1A5E300092407 /* UIColorExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIColorExtensionTests.swift; path = Extensions/UIColorExtensionTests.swift; sourceTree = "<group>"; };
 		186212372475A1070098F4C5 /* SpriteKitDefines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteKitDefines.swift; sourceTree = "<group>"; };
 		186212452475C9140098F4C5 /* PenConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PenConfiguration.swift; sourceTree = "<group>"; };
 		186AA33B2482D0CA001E38FD /* PenDownBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PenDownBrick.swift; sourceTree = "<group>"; };
@@ -1630,7 +1637,9 @@
 		187A3F1F2434BC4300EF1B02 /* PlaySoundAndWaitBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaySoundAndWaitBrickTests.swift; sourceTree = "<group>"; };
 		187CECAA24314F1600C3EDCA /* SetLookBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetLookBrickTests.swift; sourceTree = "<group>"; };
 		187D11992472AAF100A09CE5 /* DataExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataExtensionTests.swift; sourceTree = "<group>"; };
-		189B8A0E24784A03009BC735 /* StageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StageTests.swift; path = Scene/StageTests.swift; sourceTree = "<group>"; };
+		1882475424C84B8100B01653 /* SetPenColorBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPenColorBrick.swift; sourceTree = "<group>"; };
+		1882475824C84D9C00B01653 /* SetPenColorBrickCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPenColorBrickCell.swift; sourceTree = "<group>"; };
+		1882475A24C8514300B01653 /* SetPenColorBrick+Instruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SetPenColorBrick+Instruction.swift"; sourceTree = "<group>"; };
 		18A9DBA82434C7F400F4C390 /* IfLogicBeginBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IfLogicBeginBrickTests.swift; sourceTree = "<group>"; };
 		18AAC22E24A6088100C96335 /* SetPenSizeBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPenSizeBrick.swift; sourceTree = "<group>"; };
 		18AAC23224A60C8800C96335 /* SetPenSizeBrickCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPenSizeBrickCell.swift; sourceTree = "<group>"; };
@@ -1641,6 +1650,9 @@
 		18B5B52F247EB059007D24A3 /* NSStringExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NSStringExtensionTests.swift; path = Extensions/NSStringExtensionTests.swift; sourceTree = "<group>"; };
 		18B8021E2469170400201847 /* BrickCellVariableDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrickCellVariableDataTests.swift; sourceTree = "<group>"; };
 		18B9A1B924A75F3C009028F8 /* SetPenSizeBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPenSizeBrickTests.swift; sourceTree = "<group>"; };
+		18CAFAF524D4910A003324DA /* StageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StageTests.swift; path = Scene/StageTests.swift; sourceTree = "<group>"; };
+		18D939E624C96FA800A32544 /* SetPenColorBrick+CBXMLHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SetPenColorBrick+CBXMLHandler.swift"; sourceTree = "<group>"; };
+		18D939EA24C97A1C00A32544 /* SetPenColorBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPenColorBrickTests.swift; sourceTree = "<group>"; };
 		18DAFC59247BD1700082C62A /* CBSpriteNodePenExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBSpriteNodePenExtension.swift; sourceTree = "<group>"; };
 		18E83F7A2493BEFF003295DA /* PenClearBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PenClearBrick.swift; sourceTree = "<group>"; };
 		18E83F7E2493BFE6003295DA /* PenClearBrickCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PenClearBrickCell.swift; sourceTree = "<group>"; };
@@ -3725,6 +3737,7 @@
 				186E99122488F3FF00627E36 /* PenUpBrick.swift */,
 				18E83F7A2493BEFF003295DA /* PenClearBrick.swift */,
 				18AAC22E24A6088100C96335 /* SetPenSizeBrick.swift */,
+				1882475424C84B8100B01653 /* SetPenColorBrick.swift */,
 			);
 			path = Pen;
 			sourceTree = "<group>";
@@ -3736,6 +3749,7 @@
 				186E99162488F4F400627E36 /* PenUpBrickCell.swift */,
 				18E83F7E2493BFE6003295DA /* PenClearBrickCell.swift */,
 				18AAC23224A60C8800C96335 /* SetPenSizeBrickCell.swift */,
+				1882475824C84D9C00B01653 /* SetPenColorBrickCell.swift */,
 			);
 			path = Pen;
 			sourceTree = "<group>";
@@ -3747,6 +3761,7 @@
 				186E99182488F74500627E36 /* PenUpBrick+Instruction.swift */,
 				18E83F802493C32C003295DA /* PenClearBrick+Instruction.swift */,
 				18AAC23624A6170600C96335 /* SetPenSizeBrick+Instruction.swift */,
+				1882475A24C8514300B01653 /* SetPenColorBrick+Instruction.swift */,
 			);
 			name = Pen;
 			path = PlayerEngine/Instructions/Pen;
@@ -3759,6 +3774,7 @@
 				186E991A2488F89200627E36 /* PenUpBrick+CBXMLHandler.swift */,
 				18E83F822493C4C3003295DA /* PenClearBrick+CBXMLHandler.swift */,
 				18AAC23824A61B1300C96335 /* SetPenSizeBrick+CBXMLHandler.swift */,
+				18D939E624C96FA800A32544 /* SetPenColorBrick+CBXMLHandler.swift */,
 			);
 			path = Pen;
 			sourceTree = "<group>";
@@ -6200,6 +6216,7 @@
 				186E991C2488FBDB00627E36 /* PenUpBrickTests.swift */,
 				18E83F842493C978003295DA /* PenClearBrickTests.swift */,
 				18B9A1B924A75F3C009028F8 /* SetPenSizeBrickTests.swift */,
+				18D939EA24C97A1C00A32544 /* SetPenColorBrickTests.swift */,
 			);
 			path = Bricks;
 			sourceTree = "<group>";
@@ -8711,7 +8728,7 @@
 		B496F5131775996D004BF78A /* Stage */ = {
 			isa = PBXGroup;
 			children = (
-				189B8A0E24784A03009BC735 /* StageTests.swift */,
+				18CAFAF524D4910A003324DA /* StageTests.swift */,
 				4CAC7DA11DCF444A00EC7D6F /* CBSceneTouchTests.swift */,
 				9EA3FD802327089900551B6C /* CBSpriteNodePenExtensionTests.swift */,
 				186FBE64247C29AD00AE3F17 /* LineShapeNodeTests.swift */,
@@ -8766,6 +8783,7 @@
 				18B5B528247E542A007D24A3 /* NSDataExtensionTests.swift */,
 				18B5B52F247EB059007D24A3 /* NSStringExtensionTests.swift */,
 				6F59BB5424B46A3000BBD6EA /* GDataXMLElementExtensionTests.swift */,
+				1858252A24D1A5E300092407 /* UIColorExtensionTests.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -9815,7 +9833,6 @@
 				4C2732A91CE4F30F00CA61AC /* CBSpriteNodeTests.swift in Sources */,
 				4C6FE169212D2D2E0067B7D5 /* ExpFunctionTest.swift in Sources */,
 				9ECDCB132328578F00EBDA63 /* HideBrickTests.swift in Sources */,
-				189B8A0F24784A03009BC735 /* StageTests.swift in Sources */,
 				4C82265C213FA7A400F3D750 /* FingerXSensorTest.swift in Sources */,
 				9E2D47C72328428100917D92 /* ChangeColorByNBrickTests.swift in Sources */,
 				2ED418B22411213E00AFE2FD /* XMLParserBlackBoxTests097.swift in Sources */,
@@ -9870,6 +9887,7 @@
 				926197F01BF3249E006D1A61 /* ArduinoTests.swift in Sources */,
 				2ED418B42411213E00AFE2FD /* XMLParserBlackBoxTests098.swift in Sources */,
 				BA651EED21A319BF00A94D67 /* SpriteObjectMutableCopyTests.swift in Sources */,
+				1858252B24D1A5E300092407 /* UIColorExtensionTests.swift in Sources */,
 				6F5CACA1246ADE0000BC58A4 /* CBFileManagerMockTests.swift in Sources */,
 				4C5AEEF922F6F46600280F8B /* PreviousLookBrickCellTests.swift in Sources */,
 				599E649E202D9F95009494B5 /* URLSessionMock.swift in Sources */,
@@ -9962,6 +9980,7 @@
 				4C6FE171212D2D2E0067B7D5 /* CosFunctionTest.swift in Sources */,
 				4C53E38821D5238900F2EC76 /* GreaterOrEqualOperatorTest.swift in Sources */,
 				D3F2717923CC9ADF00E339FD /* FormulaFunctionsTest.swift in Sources */,
+				18D939EB24C97A1C00A32544 /* SetPenColorBrickTests.swift in Sources */,
 				4C6FE15F212D2D2E0067B7D5 /* FalseFunctionTest.swift in Sources */,
 				4C82266D213FA7A400F3D750 /* DateDaySensorTest.swift in Sources */,
 				92BCDC851BF1DE2A00F9CB23 /* FirmataTests.swift in Sources */,
@@ -10109,6 +10128,7 @@
 				4C7182E323EF0AEB00195BC7 /* FormulaEditorViewControllerTests.swift in Sources */,
 				D311958823C72BBF005FC1A1 /* FormulaElementTest.swift in Sources */,
 				2ED418C02411213E00AFE2FD /* XMLParserHeaderTests093.swift in Sources */,
+				18CAFAF624D4910A003324DA /* StageTests.swift in Sources */,
 				6F17FA1124B6F85000885E07 /* SpriteObjectTest.swift in Sources */,
 				D3AF5C19243F6A4C00B04BC6 /* BrickCategoryTest.swift in Sources */,
 				4CC50A5C213BBD7D004BC914 /* FormulaManagerInterpreterTests.swift in Sources */,
@@ -10245,6 +10265,7 @@
 				AA74EFEC1BC05B5F00D1E954 /* ChangeVariableBrick.m in Sources */,
 				92FF31031A24DCAA00093DA7 /* Script.m in Sources */,
 				4C822693213FBC4400F3D750 /* MultiFingerTouchedFunction.swift in Sources */,
+				1882475924C84D9C00B01653 /* SetPenColorBrickCell.swift in Sources */,
 				4C0F9F9E204BD2B100E71B2D /* SayBubbleBrickCell.m in Sources */,
 				4C2EE41E1B555B55006DE9B8 /* CBXMLOpenedNestingBricksStack.m in Sources */,
 				5EFBD5F92145533B003B3CDC /* ProjectDescriptionViewController.swift in Sources */,
@@ -10441,6 +10462,7 @@
 				921D46871BDF698A0086AD20 /* ChangeBrightnessByNBrick+Instruction.swift in Sources */,
 				4C724E221B4D3E8C00E27479 /* CBXMLParserHelper.m in Sources */,
 				923503911BA707DE00021F6A /* LoginViewController.m in Sources */,
+				18D939E724C96FA800A32544 /* SetPenColorBrick+CBXMLHandler.swift in Sources */,
 				D346B25923FAFEAB00FDBFA8 /* ScriptCollectionViewController+Disable.swift in Sources */,
 				92FF2E941A24C7D800093DA7 /* Logger.m in Sources */,
 				6F96E9F5246D52C70054E2F7 /* UserDataProtocol.swift in Sources */,
@@ -10532,6 +10554,7 @@
 				AA74EF7E1BC05A3400D1E954 /* IfOnEdgeBounceBrick+CBXMLHandler.m in Sources */,
 				4CF429F8213A8DA600B78897 /* LoopBeginBrick.m in Sources */,
 				AA74F00B1BC05B5F00D1E954 /* PlaySoundBrick.m in Sources */,
+				1882475B24C8514300B01653 /* SetPenColorBrick+Instruction.swift in Sources */,
 				F4A2AFB92110D4A800C53234 /* LengthFunction.swift in Sources */,
 				92FF31551A24DEB300093DA7 /* SoundsTableViewController.m in Sources */,
 				F4E6E58A210DFECA00D86FE6 /* SqrtFunction.swift in Sources */,
@@ -10817,6 +10840,7 @@
 				593E4DDE1FE11D410016DCB9 /* CatrobatReorderableCollectionViewFlowLayout.m in Sources */,
 				4CEFFAD32105DE4800DC5CFE /* ObjectSensor.swift in Sources */,
 				921D467B1BDF61350086AD20 /* ChangeXByNBrick+Instruction.swift in Sources */,
+				1882475524C84B8100B01653 /* SetPenColorBrick.swift in Sources */,
 				4CB0F9F220A1739400D1BE2F /* SizeSensor.swift in Sources */,
 				F4A2AFB52110D48C00C53234 /* JoinFunction.swift in Sources */,
 				92FF2E901A24C7D800093DA7 /* GDataXMLNode.m in Sources */,
