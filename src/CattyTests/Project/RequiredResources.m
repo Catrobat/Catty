@@ -183,7 +183,7 @@
     Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
     NSInteger resources = [project getRequiredResources];
-    XCTAssertEqual(resources, kDeviceMotion, @"Resourses ChangeTransparencyByNBrick not correctly calculated");
+    XCTAssertEqual(resources, kAccelerometerAndDeviceMotion, @"Resourses ChangeTransparencyByNBrick not correctly calculated");
 }
 - (void)testChangeBrightnessByNBrickResources
 {
@@ -202,7 +202,7 @@
     Project *project = [self getProjectWithOneSpriteWithBrick:brick];
     
     NSInteger resources = [project getRequiredResources];
-    XCTAssertEqual(resources, kDeviceMotion, @"Resourses ChangeBrightnessByNBrick not correctly calculated");
+    XCTAssertEqual(resources, kAccelerometerAndDeviceMotion, @"Resourses ChangeBrightnessByNBrick not correctly calculated");
 }
 - (void)testChangeColorByNBrickResources
 {

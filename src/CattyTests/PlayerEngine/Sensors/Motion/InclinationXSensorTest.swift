@@ -100,7 +100,7 @@ final class InclinationXSensorTest: XCTestCase {
         XCTAssertEqual(sensor.rawValue(landscapeMode: true), -Double.pi + motionManager.attitude.pitch, accuracy: Double.epsilon)
 
         motionManager.attitude.pitch = -Double.pi / 4
-        XCTAssertEqual(sensor.rawValue(landscapeMode: true), -Double.pi + motionManager.attitude.pitch, accuracy: Double.epsilon)
+        XCTAssertEqual(sensor.rawValue(landscapeMode: true), -Double.pi - motionManager.attitude.pitch, accuracy: Double.epsilon)
     }
 
     // does not depend on the orientation of the screen (left/right, up/down)
@@ -109,22 +109,22 @@ final class InclinationXSensorTest: XCTestCase {
         XCTAssertEqual(sensor.convertToStandardized(rawValue: 0), 0, accuracy: Double.epsilon)
 
         // test screen half left
-        XCTAssertEqual(sensor.convertToStandardized(rawValue: -Double.pi / 4), 45, accuracy: Double.epsilon)
+        XCTAssertEqual(sensor.convertToStandardized(rawValue: Double.pi / 4), 45, accuracy: Double.epsilon)
 
         // test screen half right
-        XCTAssertEqual(sensor.convertToStandardized(rawValue: Double.pi / 4), -45, accuracy: Double.epsilon)
+        XCTAssertEqual(sensor.convertToStandardized(rawValue: -Double.pi / 4), -45, accuracy: Double.epsilon)
 
         // test screen left
-        XCTAssertEqual(sensor.convertToStandardized(rawValue: -Double.pi / 2), 90, accuracy: Double.epsilon)
+        XCTAssertEqual(sensor.convertToStandardized(rawValue: Double.pi / 2), 90, accuracy: Double.epsilon)
 
         // test screen right
-        XCTAssertEqual(sensor.convertToStandardized(rawValue: Double.pi / 2), -90, accuracy: Double.epsilon)
+        XCTAssertEqual(sensor.convertToStandardized(rawValue: -Double.pi / 2), -90, accuracy: Double.epsilon)
 
         // test screen left, then down
-        XCTAssertEqual(sensor.convertToStandardized(rawValue: -Double.pi), 180, accuracy: Double.epsilon)
+        XCTAssertEqual(sensor.convertToStandardized(rawValue: Double.pi), 180, accuracy: Double.epsilon)
 
         // test screen right, then down
-        XCTAssertEqual(sensor.convertToStandardized(rawValue: Double.pi), -180, accuracy: Double.epsilon)
+        XCTAssertEqual(sensor.convertToStandardized(rawValue: -Double.pi), -180, accuracy: Double.epsilon)
     }
 
     func testStandardizedValue() {
@@ -140,7 +140,7 @@ final class InclinationXSensorTest: XCTestCase {
     }
 
     func testRequiredResources() {
-        XCTAssertEqual(ResourceType.deviceMotion, type(of: sensor).requiredResource)
+        XCTAssertEqual(ResourceType.accelerometerAndDeviceMotion, type(of: sensor).requiredResource)
     }
 
     func testFormulaEditorSections() {

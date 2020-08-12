@@ -42,7 +42,7 @@
         if !landscapeMode {
             return self.getMotionManager()?.deviceMotion?.userAcceleration.x ?? type(of: self).defaultRawValue
         } else {
-            return self.getMotionManager()?.deviceMotion?.userAcceleration.y ?? type(of: self).defaultRawValue
+            return -(self.getMotionManager()?.deviceMotion?.userAcceleration.y ?? type(of: self).defaultRawValue)
         }
     }
 

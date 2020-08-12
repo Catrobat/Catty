@@ -26,7 +26,7 @@
     static let name = kUIFESensorInclinationX
     static let defaultRawValue = 0.0
     static let position = 50
-    static let requiredResource = ResourceType.deviceMotion
+    static let requiredResource = ResourceType.accelerometerAndDeviceMotion
 
     let getMotionManager: () -> MotionManager?
 
@@ -54,7 +54,7 @@
                 if rawValueYSensor > Double.epsilon {
                     return Double.pi + rawValueYSensor
                 } else {
-                    return -Double.pi + rawValueYSensor
+                    return -Double.pi - rawValueYSensor
                 }
             }
         }
@@ -64,7 +64,7 @@
     // going to right, it is negative on Android and positive on iOS
     // going to left, it is positive on Android and negative on iOS
     func convertToStandardized(rawValue: Double) -> Double {
-        Util.radians(toDegree: -rawValue)
+        Util.radians(toDegree: rawValue)
     }
 
     func formulaEditorSections(for spriteObject: SpriteObject) -> [FormulaEditorSection] {

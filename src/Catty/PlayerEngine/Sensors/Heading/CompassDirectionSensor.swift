@@ -45,7 +45,7 @@
         if !landscapeMode {
             return compassSensorHeading
         } else {
-            return compassSensorHeading - 90.0
+            return compassSensorHeading + 90.0
         }
     }
 
