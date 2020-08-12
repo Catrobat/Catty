@@ -48,6 +48,11 @@ class ChartProjectCell: UITableViewCell {
 
     func updateTable() {
         chartProjectImage?.image = chartImage
+        chartProjectImage?.layer.borderColor = UIColor.medium.cgColor
+        chartProjectImage?.layer.borderWidth = CGFloat(kPreviewImageBorderWidth)
+        chartProjectImage?.layer.cornerRadius = CGFloat(kPreviewImageCornerRadius)
+        chartProjectImage?.clipsToBounds = true
+
         chartProjectTitle?.text = chartTitle
         chartProjectTitle.textColor = UIColor.globalTint
     }

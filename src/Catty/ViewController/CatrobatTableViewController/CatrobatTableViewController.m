@@ -312,8 +312,8 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
         
         cell.iconImageView.image = [UIImage imageWithColor:UIColor.whiteColor];
         [cell.iconImageView.layer setBorderColor: [[UIColor medium] CGColor]];
-        [cell.iconImageView.layer setBorderWidth: 1.0f];
-        cell.iconImageView.layer.cornerRadius = 10.0;
+        [cell.iconImageView.layer setBorderWidth: kPreviewImageBorderWidth];
+        cell.iconImageView.layer.cornerRadius = kPreviewImageCornerRadius;
         cell.iconImageView.clipsToBounds = true;
         [cell setNeedsLayout];
     } else {

@@ -81,6 +81,8 @@ static NSString *const kUserInfoSound = @"UserInfoSound";
 #define kHandleImageHeight 15.0f
 #define kHandleImageWidth 40.0f
 #define kOffsetTopBrickSelectionView 70.0f
+#define kPreviewImageCornerRadius 10.0
+#define kPreviewImageBorderWidth 1.0f
 
 //BDKNotifyHUD
 #define kBDKNotifyHUDDestinationOpacity 0.3f

@@ -459,6 +459,11 @@
     cell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
     cell.iconImageView.image = nil;
     cell.indexPath = indexPath;
+    [cell.iconImageView.layer setBorderColor: [[UIColor medium] CGColor]];
+    [cell.iconImageView.layer setBorderWidth: kPreviewImageBorderWidth];
+    cell.iconImageView.layer.cornerRadius = kPreviewImageCornerRadius;
+    cell.iconImageView.clipsToBounds = true;
+    [cell setNeedsLayout];
     
     CBFileManager *fileManager = [CBFileManager sharedManager];
     [fileManager loadPreviewImageAndCacheWithProjectLoadingInfo:info completion:^(UIImage *image, NSString *path) {
