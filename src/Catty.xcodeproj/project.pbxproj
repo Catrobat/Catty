@@ -905,6 +905,8 @@
 		6F93037E247BDEE40079FD41 /* UserListXMLHandlerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F93037D247BDEE40079FD41 /* UserListXMLHandlerTests.m */; };
 		6F954C6624D1A3E400E10BB3 /* UploadCategoryViewControllerDelegateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F954C6324D1A3E300E10BB3 /* UploadCategoryViewControllerDelegateMock.swift */; };
 		6F954C6824D1A41200E10BB3 /* UploadCategoryViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F954C6724D1A41200E10BB3 /* UploadCategoryViewControllerTests.swift */; };
+		6F954C7424D1DA8C00E10BB3 /* StoreProjectUpload.fetchTags.success.json in Resources */ = {isa = PBXBuildFile; fileRef = 6F954C7124D1DA8C00E10BB3 /* StoreProjectUpload.fetchTags.success.json */; };
+		6F954C7624D1E19000E10BB3 /* StoreProjectUpload.fetchTags.invalidLanguageTag.json in Resources */ = {isa = PBXBuildFile; fileRef = 6F954C7524D1E18F00E10BB3 /* StoreProjectUpload.fetchTags.invalidLanguageTag.json */; };
 		6F96E9F5246D52C70054E2F7 /* UserDataProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F96E9F4246D52C70054E2F7 /* UserDataProtocol.swift */; };
 		6F9CF120246E7AA7008CED1C /* UserList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9CF11F246E7AA7008CED1C /* UserList.swift */; };
 		6F9CF123246E8767008CED1C /* UserListTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9CF122246E8767008CED1C /* UserListTest.swift */; };
@@ -2604,6 +2606,8 @@
 		6F93037D247BDEE40079FD41 /* UserListXMLHandlerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = UserListXMLHandlerTests.m; path = "Parser & Serialization/UserListXMLHandlerTests.m"; sourceTree = "<group>"; };
 		6F954C6324D1A3E300E10BB3 /* UploadCategoryViewControllerDelegateMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadCategoryViewControllerDelegateMock.swift; sourceTree = "<group>"; };
 		6F954C6724D1A41200E10BB3 /* UploadCategoryViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadCategoryViewControllerTests.swift; sourceTree = "<group>"; };
+		6F954C7124D1DA8C00E10BB3 /* StoreProjectUpload.fetchTags.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectUpload.fetchTags.success.json; sourceTree = "<group>"; };
+		6F954C7524D1E18F00E10BB3 /* StoreProjectUpload.fetchTags.invalidLanguageTag.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectUpload.fetchTags.invalidLanguageTag.json; sourceTree = "<group>"; };
 		6F96E9F4246D52C70054E2F7 /* UserDataProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataProtocol.swift; sourceTree = "<group>"; };
 		6F9CF11F246E7AA7008CED1C /* UserList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserList.swift; sourceTree = "<group>"; };
 		6F9CF122246E8767008CED1C /* UserListTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListTest.swift; sourceTree = "<group>"; };
@@ -6501,6 +6505,8 @@
 				6F61FD8824A90B4D00C6C969 /* StoreProjectDownloader.uploadProject.fail.invalidProject.json */,
 				6F61FD8424A8B38800C6C969 /* StoreProjectDownloader.uploadProject.fail.authentication.json */,
 				6F021E6924A68AB70097F21A /* StoreProjectUpload.uploadProject.success.json */,
+				6F954C7124D1DA8C00E10BB3 /* StoreProjectUpload.fetchTags.success.json */,
+				6F954C7524D1E18F00E10BB3 /* StoreProjectUpload.fetchTags.invalidLanguageTag.json */,
 			);
 			path = Fixture;
 			sourceTree = "<group>";
@@ -9291,6 +9297,7 @@
 				4C55CD1724BF2C7400FB8393 /* ValidProject0992.xml in Resources */,
 				2DCB492A212EA547005E8E3D /* StoreProjectDownloader.fetchMostRecentProjects.fail.request.json in Resources */,
 				2ED41869241120B000AFE2FD /* EscapingChars_0993.xml in Resources */,
+				6F954C7624D1E19000E10BB3 /* StoreProjectUpload.fetchTags.invalidLanguageTag.json in Resources */,
 				2ED4187C241120B000AFE2FD /* InsertItemIntoUserListBrick098.xml in Resources */,
 				599E64A4202DB037009494B5 /* MediaLibraryDownloader.downloadIndex.fail.parse.json in Resources */,
 				2ED41806241120AF00AFE2FD /* Pong_Starter_093.xml in Resources */,
@@ -9346,6 +9353,7 @@
 				2DCB4938212EAB36005E8E3D /* StoreProjectDownloader.fetchProjectDetails.fail.request.json in Resources */,
 				9E8176E72389C14B00A4912B /* SpeakAndWaitTwoInterruptingSpeakBricks.xml in Resources */,
 				2ED41856241120B000AFE2FD /* BroadcastMapping.xml in Resources */,
+				6F954C7424D1DA8C00E10BB3 /* StoreProjectUpload.fetchTags.success.json in Resources */,
 				6F58F0C224AC956000AB8C99 /* StoreProjectUpload.uploadProject.fail.invalidBody.json in Resources */,
 				2ED417A6241120AF00AFE2FD /* Word_balloon_demo_0991.xml in Resources */,
 				6F58F0B124ABA59900AB8C99 /* StoreProjectDownloader.uploadProject.fail.invalidChecksum.json in Resources */,

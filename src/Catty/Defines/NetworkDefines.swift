@@ -58,6 +58,7 @@ class NetworkDefines: NSObject {
     static var uploadUrl: String { baseUrl.appending("api/upload") }
     static var downloadUrl: String { baseUrl.appending("download") }
     static var helpUrl: String { baseUrl.appending("help") }
+    static var tagUrl: String { baseUrl.appending("api/tags/getTags.json") }
 
     static let connectionSearch = "search.json"
     static let connectionUpload = "upload.json"
@@ -70,6 +71,7 @@ class NetworkDefines: NSObject {
     static let projectsOffset = "offset="
     static let projectsLimit = "limit="
     static let maxVersion = "max_version="
+    static let tagLanguage = "language="
 
     // MARK: MediaLibrary
 
