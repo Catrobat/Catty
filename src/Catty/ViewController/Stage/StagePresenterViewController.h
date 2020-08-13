@@ -36,6 +36,7 @@
 @property (nonatomic, strong) Project *project;
 @property (nonatomic, strong) FormulaManager *formulaManager;
 @property (nonatomic, strong) LoadingView* loadingView;
+@property (nonatomic, strong) UIView *gridView;
 
 @property (weak,nonatomic) IBOutlet UIButton *menuBackButton;
 @property (weak,nonatomic) IBOutlet UIButton *menuContinueButton;
@@ -55,6 +56,7 @@
 
 - (void)showLoadingView;
 - (void)hideLoadingView;
+- (void)setUpGridView;
 
 - (BOOL)isPaused;
 

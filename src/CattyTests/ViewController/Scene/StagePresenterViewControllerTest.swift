@@ -76,4 +76,34 @@ final class StagePresenterViewControllerTest: XCTestCase {
 
         expect(self.vc.viewDidAppear(true)).to(postNotifications(contain(expectedNotification)))
     }
+
+    func testSetupGridViewPortraitMode() {
+        let stagePresenterViewController = vc
+        stagePresenterViewController!.project = Project.defaultProject(withName: "testProject", projectID: "")
+        stagePresenterViewController!.project.header.landscapeMode = false
+
+        stagePresenterViewController!.setUpGridView()
+        let gridLabels = stagePresenterViewController!.gridView?.subviews.compactMap { $0 as? UILabel }
+
+        XCTAssertEqual(gridLabels![0].text, "0")
+        XCTAssertEqual(gridLabels![1].text, String(project.header.screenWidth.intValue / 2))
+        XCTAssertEqual(gridLabels![2].text, String(-project.header.screenWidth.intValue / 2))
+        XCTAssertEqual(gridLabels![3].text, String(-project.header.screenHeight.intValue / 2))
+        XCTAssertEqual(gridLabels![4].text, String(project.header.screenHeight.intValue / 2))
+    }
+
+    func testSetupGridViewLandscapeMode() {
+        let stagePresenterViewController = vc
+        stagePresenterViewController!.project = Project.defaultProject(withName: "testProject", projectID: "")
+        stagePresenterViewController!.project.header.landscapeMode = true
+
+        stagePresenterViewController!.setUpGridView()
+        let gridLabels = stagePresenterViewController!.gridView?.subviews.compactMap { $0 as? UILabel }
+
+        XCTAssertEqual(gridLabels![0].text, "0")
+        XCTAssertEqual(gridLabels![1].text, String(project.header.screenHeight.intValue / 2))
+        XCTAssertEqual(gridLabels![2].text, String(-project.header.screenHeight.intValue / 2))
+        XCTAssertEqual(gridLabels![3].text, String(-project.header.screenWidth.intValue / 2))
+        XCTAssertEqual(gridLabels![4].text, String(project.header.screenWidth.intValue / 2))
+    }
 }
