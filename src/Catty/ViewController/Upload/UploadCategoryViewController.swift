@@ -44,8 +44,8 @@ class UploadCategoryViewController: UIViewController {
 
         if self.nibName != nil {
             if let tags = tags {
-                for tag in tags.split(separator: ",") {
-                    if let tagIndex = categories.firstIndex(of: String(tag)) {
+                for tag in tags.components(separatedBy: ", ") {
+                    if let tagIndex = categories.firstIndex(of: tag) {
                         selectedCategoryTag.append(tagIndex)
                     }
                 }

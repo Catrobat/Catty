@@ -27,8 +27,7 @@
             let _ = object.spriteNode
             else { fatalError("This should never happen!") }
 
-        return .longDurationAction(duration: CBDuration.varTime(formula: self.intFormula), closure: {
-            duration, context -> SKAction in
+        return .longDurationAction(duration: CBDuration.varTime(formula: self.intFormula), closure: { duration, context -> SKAction in
             SKAction.sequence([SKAction.run(self.actionBlock(object, context.formulaInterpreter)), SKAction.wait(forDuration: duration), SKAction.run(self.removeActionBlock(object))])
         })
     }
