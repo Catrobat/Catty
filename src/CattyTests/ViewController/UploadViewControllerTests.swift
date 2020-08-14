@@ -51,6 +51,15 @@ class UploadViewControllerTests: XCTestCase {
         XCTAssertEqual(project, uploaderMock.projectToUpload)
     }
 
+    func testFetchTag() {
+        XCTAssertEqual(0, uploaderMock.timesFetchTagsMethodCalled)
+        XCTAssertNil(uploaderMock.language)
+
+        uploadViewController.fetchTags()
+        XCTAssertEqual(1, uploaderMock.timesFetchTagsMethodCalled)
+        XCTAssertEqual("en", uploaderMock.language)
+    }
+
     func testCatagoriesSelected() {
         XCTAssertNil(selectedCategoriesValueLabel.text)
         XCTAssertNil(project.header.tags)

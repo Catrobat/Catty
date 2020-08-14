@@ -31,7 +31,8 @@ class UploadCategoryViewControllerTests: XCTestCase {
 
     override func setUp() {
         delegateMock = UploadCategoryViewControllerDelegateMock()
-        uploadCategoryViewController = UploadCategoryViewController(delegate: delegateMock)
+        uploadCategoryViewController = UploadCategoryViewController(tags: [String]())
+        uploadCategoryViewController.delegate = delegateMock
     }
 
     func testDelegate() {
