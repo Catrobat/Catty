@@ -133,17 +133,20 @@ final class ImagesLibraryCollectionViewDataSource: MediaLibraryCollectionViewDat
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.imageCellReuseIdentifier, for: indexPath)
         if let cell = cell as? LibraryImageCollectionViewCell, let itemIndex = self.items.itemIndex(for: indexPath) {
+            let item = self.items[indexPath]
+
             cell.tag = itemIndex
+            cell.accessibilityIdentifier = item.name
 
             // if image is cached, just display it
-            if let data = self.items[indexPath].cachedData, let image = UIImage(data: data) {
+            if let data = item.cachedData, let image = UIImage(data: data) {
                 cell.state = .loaded(image: image)
                 return cell
             }
 
             // otherwise fetch the image from cache or library first
             cell.state = .loading
-            fetchData(for: self.items[indexPath]) { data in
+            fetchData(for: item) { data in
                 // this check is supposed to prevent setting an asynchronously downloaded
                 // image into a cell that has already been reused since then
                 guard cell.tag == itemIndex else { return }

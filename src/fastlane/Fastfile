@@ -227,4 +227,18 @@ platform :ios do
     crashylytics_update_dsyms
   end
 
+  desc "Generate localized screenshots for Pocket Code"
+  lane(:screenshots) do |options|
+  snapshot(
+    project: 'Catty.xcodeproj',
+    scheme: 'Snapshots',
+    reinstall_app: true,
+    override_status_bar: true,
+    output_simulator_logs: true,
+    clear_previous_screenshots: true,
+    concurrent_simulators: false,
+    localize_simulator: true
+  )
+end
+
 end

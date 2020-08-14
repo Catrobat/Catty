@@ -12,6 +12,8 @@
 		05A3D46A24F517350051DB39 /* CatrobatTableViewControllerExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A3D46924F517350051DB39 /* CatrobatTableViewControllerExtensionTests.swift */; };
 		180DDF3F25067E1700EA526C /* FirebaseAnalyticsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180DDF3E25067E1700EA526C /* FirebaseAnalyticsTests.swift */; };
 		180DDF432506800600EA526C /* AnalyticsMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180DDF422506800600EA526C /* AnalyticsMock.swift */; };
+		181A12C224E40E3500358440 /* LanguageTranslationDefinesUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181A12BF24E40E3500358440 /* LanguageTranslationDefinesUI.swift */; };
+		181A12C324E42B6E00358440 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 92300CE918B2196700F2B4DC /* Localizable.strings */; };
 		181CC10724B750AF004A783E /* CBPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181CC10424B750AE004A783E /* CBPosition.swift */; };
 		181DB738247DA62600B82B20 /* NSDataExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181DB737247DA62600B82B20 /* NSDataExtension.swift */; };
 		1822C1392471C7CB00F8F158 /* BrickCellListDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1822C1382471C7CB00F8F158 /* BrickCellListDataTests.swift */; };
@@ -43,11 +45,15 @@
 		187A3F202434BC4300EF1B02 /* PlaySoundAndWaitBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187A3F1F2434BC4300EF1B02 /* PlaySoundAndWaitBrickTests.swift */; };
 		187CECAB24314F1600C3EDCA /* SetLookBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187CECAA24314F1600C3EDCA /* SetLookBrickTests.swift */; };
 		187D119C2472AAF200A09CE5 /* DataExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187D11992472AAF100A09CE5 /* DataExtensionTests.swift */; };
+		187E07A324E26CED00E652C4 /* CattyUISnapshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187E07A224E26CED00E652C4 /* CattyUISnapshots.swift */; };
 		1882475524C84B8100B01653 /* SetPenColorBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1882475424C84B8100B01653 /* SetPenColorBrick.swift */; };
 		1882475924C84D9C00B01653 /* SetPenColorBrickCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1882475824C84D9C00B01653 /* SetPenColorBrickCell.swift */; };
 		1882475B24C8514300B01653 /* SetPenColorBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1882475A24C8514300B01653 /* SetPenColorBrick+Instruction.swift */; };
 		188746B824DA914E003F5E81 /* ProjectManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188746B724DA914E003F5E81 /* ProjectManager.swift */; };
 		188746BC24DA91EB003F5E81 /* ProjectManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188746BB24DA91EB003F5E81 /* ProjectManagerTests.swift */; };
+		187E07A324E26CED00E652C4 /* CattyUISnapshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187E07A224E26CED00E652C4 /* CattyUISnapshots.swift */; };
+		187E07AD24E288BE00E652C4 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187E07AC24E288BD00E652C4 /* SnapshotHelper.swift */; };
+		189B8A0F24784A03009BC735 /* StageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189B8A0E24784A03009BC735 /* StageTests.swift */; };
 		18A9DBA92434C7F400F4C390 /* IfLogicBeginBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A9DBA82434C7F400F4C390 /* IfLogicBeginBrickTests.swift */; };
 		18AAC22F24A6088100C96335 /* SetPenSizeBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AAC22E24A6088100C96335 /* SetPenSizeBrick.swift */; };
 		18AAC23324A60C8800C96335 /* SetPenSizeBrickCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AAC23224A60C8800C96335 /* SetPenSizeBrickCell.swift */; };
@@ -484,6 +490,7 @@
 		4C4B4CE623EEA6C00054C861 /* BaseTableViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4B4CE523EEA6BF0054C861 /* BaseTableViewControllerTests.swift */; };
 		4C4EE29D210901E70045F890 /* FormulaEditorSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4EE29A210901E70045F890 /* FormulaEditorSection.swift */; };
 		4C4F21702314F73C0036E245 /* LXReorderableCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4F216D2314F73C0036E245 /* LXReorderableCollectionViewFlowLayout.m */; };
+		4C5176A32541B92400601406 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5176A22541B92400601406 /* SnapshotHelper.swift */; };
 		4C53E38821D5238900F2EC76 /* GreaterOrEqualOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C53E38721D5238900F2EC76 /* GreaterOrEqualOperatorTest.swift */; };
 		4C53E38D21D5241300F2EC76 /* SmallerOrEqualOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C53E38C21D5241300F2EC76 /* SmallerOrEqualOperatorTest.swift */; };
 		4C53E39021D5247C00F2EC76 /* NotOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C53E38F21D5247C00F2EC76 /* NotOperatorTest.swift */; };
@@ -1617,6 +1624,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		187E07A524E26CED00E652C4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CADBD6D319B0E8C200C62836;
+			remoteInfo = Catty;
+		};
 		92C631981BC5173200486958 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 92C631931BC5173100486958 /* BluetoothHelper.xcodeproj */;
@@ -1688,6 +1702,8 @@
 		13B5EB79EDA9CF73908FF75C /* no */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = no; path = no.lproj/Localizable.strings; sourceTree = "<group>"; };
 		180DDF3E25067E1700EA526C /* FirebaseAnalyticsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAnalyticsTests.swift; sourceTree = "<group>"; };
 		180DDF422506800600EA526C /* AnalyticsMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsMock.swift; sourceTree = "<group>"; };
+		181A12BF24E40E3500358440 /* LanguageTranslationDefinesUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LanguageTranslationDefinesUI.swift; path = CattyUITests/Defines/LanguageTranslationDefinesUI.swift; sourceTree = SOURCE_ROOT; };
+		181A12BF24E40E3500358440 /* LanguageTranslationDefinesUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LanguageTranslationDefinesUI.swift; path = CattyUISnapshots/Defines/LanguageTranslationDefinesUI.swift; sourceTree = SOURCE_ROOT; };
 		181CC10424B750AE004A783E /* CBPosition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBPosition.swift; sourceTree = "<group>"; };
 		181DB737247DA62600B82B20 /* NSDataExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSDataExtension.swift; sourceTree = "<group>"; };
 		1822C1382471C7CB00F8F158 /* BrickCellListDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrickCellListDataTests.swift; sourceTree = "<group>"; };
@@ -1719,6 +1735,9 @@
 		187A3F1F2434BC4300EF1B02 /* PlaySoundAndWaitBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaySoundAndWaitBrickTests.swift; sourceTree = "<group>"; };
 		187CECAA24314F1600C3EDCA /* SetLookBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetLookBrickTests.swift; sourceTree = "<group>"; };
 		187D11992472AAF100A09CE5 /* DataExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataExtensionTests.swift; sourceTree = "<group>"; };
+		187E07A024E26CED00E652C4 /* Catty UISnapshots.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Catty UISnapshots.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		187E07A224E26CED00E652C4 /* CattyUISnapshots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CattyUISnapshots.swift; sourceTree = "<group>"; };
+		187E07A424E26CED00E652C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1882475424C84B8100B01653 /* SetPenColorBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPenColorBrick.swift; sourceTree = "<group>"; };
 		1882475824C84D9C00B01653 /* SetPenColorBrickCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPenColorBrickCell.swift; sourceTree = "<group>"; };
 		1882475A24C8514300B01653 /* SetPenColorBrick+Instruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SetPenColorBrick+Instruction.swift"; sourceTree = "<group>"; };
@@ -2225,6 +2244,7 @@
 		4C4EE29A210901E70045F890 /* FormulaEditorSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormulaEditorSection.swift; sourceTree = "<group>"; };
 		4C4F216C2314F73C0036E245 /* LXReorderableCollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXReorderableCollectionViewFlowLayout.h; sourceTree = "<group>"; };
 		4C4F216D2314F73C0036E245 /* LXReorderableCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXReorderableCollectionViewFlowLayout.m; sourceTree = "<group>"; };
+		4C5176A22541B92400601406 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
 		4C53E38721D5238900F2EC76 /* GreaterOrEqualOperatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreaterOrEqualOperatorTest.swift; sourceTree = "<group>"; };
 		4C53E38C21D5241300F2EC76 /* SmallerOrEqualOperatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallerOrEqualOperatorTest.swift; sourceTree = "<group>"; };
 		4C53E38F21D5247C00F2EC76 /* NotOperatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotOperatorTest.swift; sourceTree = "<group>"; };
@@ -3795,6 +3815,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		187E079D24E26CED00E652C4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AAADA0011B9B29D500E0CA9A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -3935,6 +3962,16 @@
 			path = Pen;
 			sourceTree = "<group>";
 		};
+		187E07A124E26CED00E652C4 /* CattyUISnapshots */ = {
+			isa = PBXGroup;
+			children = (
+				4C5176A02541B6E800601406 /* Defines */,
+				4C5176A12541B72100601406 /* Supporting Files */,
+				187E07A224E26CED00E652C4 /* CattyUISnapshots.swift */,
+			);
+			path = CattyUISnapshots;
+			sourceTree = "<group>";
+		};
 		18B8021B246916CB00201847 /* Data */ = {
 			isa = PBXGroup;
 			children = (
@@ -3961,6 +3998,7 @@
 				CADBD7FB19B0E8C200C62836 /* Pocket Code.app */,
 				CA7698AA1B0E4A97000D0340 /* Catty Tests.xctest */,
 				AAADA0041B9B29D500E0CA9A /* Catty UITests.xctest */,
+				187E07A024E26CED00E652C4 /* Catty UISnapshots.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -3974,6 +4012,7 @@
 				B43498471927A3AB002F9075 /* Resources */,
 				B46B270317703F9400172837 /* CattyTests */,
 				AAADA0051B9B29D500E0CA9A /* CattyUITests */,
+				187E07A124E26CED00E652C4 /* CattyUISnapshots */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
@@ -5178,6 +5217,23 @@
 				4C4F216D2314F73C0036E245 /* LXReorderableCollectionViewFlowLayout.m */,
 			);
 			path = LXReorderableCollectionViewFlowLayout;
+			sourceTree = "<group>";
+		};
+		4C5176A02541B6E800601406 /* Defines */ = {
+			isa = PBXGroup;
+			children = (
+				181A12BF24E40E3500358440 /* LanguageTranslationDefinesUI.swift */,
+			);
+			path = Defines;
+			sourceTree = "<group>";
+		};
+		4C5176A12541B72100601406 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				187E07A424E26CED00E652C4 /* Info.plist */,
+				4C5176A22541B92400601406 /* SnapshotHelper.swift */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		4C53E38B21D523ED00F2EC76 /* Binary */ = {
@@ -9356,6 +9412,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		187E079F24E26CED00E652C4 /* Catty UISnapshots */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 187E07AB24E26CED00E652C4 /* Build configuration list for PBXNativeTarget "Catty UISnapshots" */;
+			buildPhases = (
+				187E079C24E26CED00E652C4 /* Sources */,
+				187E079D24E26CED00E652C4 /* Frameworks */,
+				187E079E24E26CED00E652C4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				187E07A624E26CED00E652C4 /* PBXTargetDependency */,
+			);
+			name = "Catty UISnapshots";
+			productName = CattyUISnapshots;
+			productReference = 187E07A024E26CED00E652C4 /* Catty UISnapshots.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		AAADA0031B9B29D500E0CA9A /* Catty UITests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = AAADA00D1B9B29D500E0CA9A /* Build configuration list for PBXNativeTarget "Catty UITests" */;
@@ -9424,9 +9498,14 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0700;
+				LastSwiftUpdateCheck = 1120;
 				LastUpgradeCheck = 1030;
 				TargetAttributes = {
+					187E079F24E26CED00E652C4 = {
+						CreatedOnToolsVersion = 11.2.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = CADBD6D319B0E8C200C62836;
+					};
 					AAADA0031B9B29D500E0CA9A = {
 						CreatedOnToolsVersion = 7.0;
 						LastSwiftMigration = 1020;
@@ -9540,6 +9619,7 @@
 				CADBD6D319B0E8C200C62836 /* Catty */,
 				CA7698A91B0E4A97000D0340 /* Catty Tests */,
 				AAADA0031B9B29D500E0CA9A /* Catty UITests */,
+				187E079F24E26CED00E652C4 /* Catty UISnapshots */,
 			);
 		};
 /* End PBXProject section */
@@ -9562,6 +9642,14 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
+		187E079E24E26CED00E652C4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				181A12C324E42B6E00358440 /* Localizable.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AAADA0021B9B29D500E0CA9A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -10086,6 +10174,16 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		187E079C24E26CED00E652C4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				181A12C224E40E3500358440 /* LanguageTranslationDefinesUI.swift in Sources */,
+				187E07A324E26CED00E652C4 /* CattyUISnapshots.swift in Sources */,
+				4C5176A32541B92400601406 /* SnapshotHelper.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AAADA0001B9B29D500E0CA9A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -11300,6 +11398,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		187E07A624E26CED00E652C4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CADBD6D319B0E8C200C62836 /* Catty */;
+			targetProxy = 187E07A524E26CED00E652C4 /* PBXContainerItemProxy */;
+		};
 		AAADA00A1B9B29D500E0CA9A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = CADBD6D319B0E8C200C62836 /* Catty */;
@@ -11397,6 +11500,79 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		187E07A724E26CED00E652C4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = "CattyUISnapshots/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = org.catrobat.pocketcode.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Catty;
+			};
+			name = Debug;
+		};
+		187E07A824E26CED00E652C4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = "CattyUISnapshots/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = org.catrobat.pocketcode.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Catty;
+			};
+			name = Release;
+		};
 		AAADA00B1B9B29D500E0CA9A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -11829,6 +12005,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		187E07AB24E26CED00E652C4 /* Build configuration list for PBXNativeTarget "Catty UISnapshots" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				187E07A724E26CED00E652C4 /* Debug */,
+				187E07A824E26CED00E652C4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		AAADA00D1B9B29D500E0CA9A /* Build configuration list for PBXNativeTarget "Catty UITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
