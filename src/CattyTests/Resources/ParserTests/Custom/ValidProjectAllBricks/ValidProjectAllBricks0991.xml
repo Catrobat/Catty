@@ -641,6 +641,9 @@
                 </formula>
               </formulaList>
             </brick>
+            <brick type="StampBrick">
+              <commentedOut>false</commentedOut>
+            </brick>
           </brickList>
           <commentedOut>false</commentedOut>
           <isUserScript>false</isUserScript>

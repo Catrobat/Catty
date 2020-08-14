@@ -413,6 +413,7 @@ let kLocalizedSetPenColor = NSLocalizedString("Set pen color to", comment: "")
 let kLocalizedRed = NSLocalizedString("red", comment: "")
 let kLocalizedGreen = NSLocalizedString("green", comment: "")
 let kLocalizedBlue = NSLocalizedString("blue", comment: "")
+let kLocalizedStamp = NSLocalizedString("Stamp", comment: "")
 
 // sound bricks
 let kLocalizedSound = NSLocalizedString("Sound", comment: "")

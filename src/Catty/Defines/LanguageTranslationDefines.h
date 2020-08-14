@@ -413,6 +413,7 @@
 #define kLocalizedRed NSLocalizedString(@"red", nil)
 #define kLocalizedGreen NSLocalizedString(@"green", nil)
 #define kLocalizedBlue NSLocalizedString(@"blue", nil)
+#define kLocalizedStamp NSLocalizedString(@"Stamp", nil)
 
 // sound bricks
 #define kLocalizedSound NSLocalizedString(@"Sound", nil)

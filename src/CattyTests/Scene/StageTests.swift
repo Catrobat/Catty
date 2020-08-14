@@ -198,4 +198,34 @@ final class StageTests: XCTestCase {
         XCTAssertEqual(allLineShapeNodes.count, 0)
 
     }
+
+    func testClearStampSpriteNode() {
+        let stage = StageBuilder(project: ProjectMock()).build()
+
+        let cbSpriteNode1 = CBSpriteNode(spriteObject: SpriteObject())
+        cbSpriteNode1.name = "testName1"
+        stage.addChild(cbSpriteNode1)
+
+        let cbSpriteNode2 = CBSpriteNode(spriteObject: SpriteObject())
+        cbSpriteNode2.name = "testName2"
+        stage.addChild(cbSpriteNode2)
+
+        let stampedSpriteNode1 = SKSpriteNode(color: UIColor.blue, size: CGSize(width: 100, height: 50))
+        stampedSpriteNode1.name = SpriteKitDefines.stampedSpriteNodeName
+        stage.addChild(stampedSpriteNode1)
+
+        let stampedSpriteNode2 = SKSpriteNode(color: UIColor.red, size: CGSize(width: 200, height: 100))
+        stampedSpriteNode2.name = SpriteKitDefines.stampedSpriteNodeName
+        stage.addChild(stampedSpriteNode2)
+
+        XCTAssertNotNil(stage.childNode(withName: SpriteKitDefines.stampedSpriteNodeName))
+        XCTAssertEqual(stage.children.count, 4)
+
+        stage.clearStampedSpriteNodes()
+
+        XCTAssertNil(stage.childNode(withName: SpriteKitDefines.stampedSpriteNodeName))
+        XCTAssertNotNil(stage.childNode(withName: "testName1"))
+        XCTAssertNotNil(stage.childNode(withName: "testName2"))
+        XCTAssertEqual(stage.children.count, 2)
+    }
 }

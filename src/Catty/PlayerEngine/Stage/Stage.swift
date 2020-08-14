@@ -265,4 +265,12 @@ final class Stage: SKScene {
         }
 
     }
+
+    func clearStampedSpriteNodes() {
+
+        self.enumerateChildNodes(withName: SpriteKitDefines.stampedSpriteNodeName) { node, _ in
+            node.removeFromParent()
+        }
+
+    }
 }
