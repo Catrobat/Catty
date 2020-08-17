@@ -28,6 +28,8 @@
 @interface UserDataContainer (CBXMLHandler) <CBXMLNodeProtocol>
 
 + (instancetype)parseForSpriteObject:(GDataXMLElement*)objectXmlElement withContext:(CBXMLParserContext *)context;
-- (GDataXMLElement *)xmlElementForObjectWithContext:(CBXMLSerializerContext*)context;
+
+-(GDataXMLElement *)serializeForProject:(CBXMLSerializerContext*)context;
+-(GDataXMLElement *)serializeForObject:(CBXMLSerializerContext*)context;
 
 @end

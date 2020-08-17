@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class ProjectMigrator: ProjectMigratorProtocol {
+@objcMembers class ProjectMigrator: NSObject, ProjectMigratorProtocol {
 
     static let minimumCatrobatLanguageVersionForScenes: Float = 0.992
     var fileManager: CBFileManager
@@ -52,24 +52,23 @@ class ProjectMigrator: ProjectMigratorProtocol {
         }
 
         if fileManager.directoryExists(directoryPath) {
-            self.moveToSceneDirectory(for: kScreenshotAutoFilename, projectPath: projectPath)
-            self.moveToSceneDirectory(for: kProjectImagesDirName, projectPath: projectPath)
-            self.moveToSceneDirectory(for: kProjectSoundsDirName, projectPath: projectPath)
-            self.moveToSceneDirectory(for: kScreenshotManualFilename, projectPath: projectPath)
-            self.moveToSceneDirectory(for: kScreenshotFilename, projectPath: projectPath)
+            self.moveDirectoryOrCopyFileToSceneDirectory(for: kScreenshotAutoFilename, projectPath: projectPath)
+            self.moveDirectoryOrCopyFileToSceneDirectory(for: kProjectImagesDirName, projectPath: projectPath)
+            self.moveDirectoryOrCopyFileToSceneDirectory(for: kProjectSoundsDirName, projectPath: projectPath)
+            self.moveDirectoryOrCopyFileToSceneDirectory(for: kScreenshotManualFilename, projectPath: projectPath)
+            self.moveDirectoryOrCopyFileToSceneDirectory(for: kScreenshotFilename, projectPath: projectPath)
         } else {
             throw ProjectMigratorError.unknown(description: "Unable to create \(kLocalizedScene) directory")
         }
-
     }
 
-    private func moveToSceneDirectory(for projectResouceName: String, projectPath: String) {
+    private func moveDirectoryOrCopyFileToSceneDirectory(for projectResouceName: String, projectPath: String) {
         let fileOrDirectoryAtPath = projectPath + projectResouceName
         let fileOrDirectoryToPath = "\(projectPath + Util.defaultSceneName(forSceneNumber: 1))/\(projectResouceName)"
 
         if fileManager.fileExists(fileOrDirectoryAtPath) {
 
-            fileManager.moveExistingFile(atPath: fileOrDirectoryAtPath, toPath: fileOrDirectoryToPath, overwrite: false)
+            fileManager.copyExistingFile(atPath: fileOrDirectoryAtPath, toPath: fileOrDirectoryToPath, overwrite: false)
 
         } else if fileManager.directoryExists(fileOrDirectoryAtPath) {
 

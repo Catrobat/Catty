@@ -41,12 +41,17 @@
             fileManager.createDirectory(project.projectPath())
         }
 
-        let imagesDirName = project.projectPath() + kProjectImagesDirName
+        let sceneDir = project.scene.path()
+        if !fileManager.directoryExists(sceneDir) {
+            fileManager.createDirectory(sceneDir)
+        }
+
+        let imagesDirName = project.scene.imagesPath()
         if fileManager.directoryExists(imagesDirName) == false {
             fileManager.createDirectory(imagesDirName)
         }
 
-        let soundDirName = project.projectPath() + kProjectSoundsDirName
+        let soundDirName = project.scene.soundsPath()
         if fileManager.directoryExists(soundDirName) == false {
             fileManager.createDirectory(soundDirName)
         }
@@ -74,7 +79,6 @@
                                          image: defaultScreenshotImage,
                                          thumbnailFrameSize: CGSize(width: CGFloat(kPreviewThumbnailWidth),
                                                                     height: CGFloat(kPreviewThumbnailHeight)))
-
         return project
     }
 

@@ -109,9 +109,8 @@
     Look* look = [self.lookList objectAtIndex:index];
     if (! look)
         return nil;
-
-    NSString *imageDirPath = [[self projectPath] stringByAppendingString:kProjectImagesDirName];
-    return [NSString stringWithFormat:@"%@/%@", imageDirPath, [look previewImageFileName]];
+    
+    return [look pathForScene:self.scene];
 }
 
 - (NSString*)previewImagePath
@@ -126,40 +125,30 @@
     return NO;
 }
 
-- (NSString*)pathForLook:(Look*)look
-{
-  return [NSString stringWithFormat:@"%@%@/%@", [self projectPath], kProjectImagesDirName, look.fileName];
-}
-
-- (NSString*)pathForSound:(Sound*)sound
-{
-  return [NSString stringWithFormat:@"%@%@/%@", [self projectPath], kProjectSoundsDirName, sound.fileName];
-}
-
 - (NSUInteger)fileSizeOfLook:(Look*)look
 {
-    NSString *path = [self pathForLook:look];
+    NSString *path = [look pathForScene:self.scene];
     CBFileManager *fileManager = [CBFileManager sharedManager];
     return [fileManager sizeOfFileAtPath:path];
 }
 
 - (CGSize)dimensionsOfLook:(Look*)look
 {
-    NSString *path = [self pathForLook:look];
+    NSString *path = [look pathForScene:self.scene];
     // very fast implementation! far more quicker than UIImage's size method/property
     return [path sizeOfImageForFilePath];
 }
 
 - (NSUInteger)fileSizeOfSound:(Sound*)sound
 {
-    NSString *path = [self pathForSound:sound];
+    NSString *path = [sound pathForScene:self.scene];
     CBFileManager *fileManager = [CBFileManager sharedManager];
     return [fileManager sizeOfFileAtPath:path];
 }
 
 - (CGFloat)durationOfSound:(Sound*)sound
 {
-    NSString *path = [self pathForSound:sound];
+    NSString *path = [sound pathForScene:self.scene];
     return [[AudioManager sharedAudioManager] durationOfSoundWithFilePath:path];
 }
 
@@ -228,7 +217,7 @@
         if (lookImageReferenceCounter <= 1) {
             CBFileManager *fileManager = [CBFileManager sharedManager];
             [fileManager deleteFile:[self previewImagePathForLookAtIndex:index]];
-            [fileManager deleteFile:[self pathForLook:look]];
+            [fileManager deleteFile:[look pathForScene:self.scene]];
         }
         [self.lookList removeObjectAtIndex:index];
         break;
@@ -274,7 +263,7 @@
         // if sound is not used by other objects, delete it
         if (soundReferenceCounter <= 1) {
             CBFileManager *fileManager = [CBFileManager sharedManager];
-            [fileManager deleteFile:[self pathForSound:sound]];
+            [fileManager deleteFile:[sound pathForScene:self.scene]];
         }
         [self.soundList removeObjectAtIndex:index];
         break;

@@ -38,10 +38,7 @@ class ProjectTest: XCTestCase {
         fileManager = CBFileManager.shared()
         deleteAllProjectsAndCreateDefaultProject()
 
-        scene = Scene(name: "testScene")
-        project.scene = scene
-        scene.project = project
-
+        self.scene = project.scene
         self.object = SpriteObject()
         self.object.scene = scene
     }
@@ -74,13 +71,13 @@ class ProjectTest: XCTestCase {
     }
 
     func testImagesDirectoryExists() {
-        let imageDirectory = project.projectPath() + kProjectImagesDirName
+        let imageDirectory = project.scene.imagesPath()
         let directoryExists = fileManager.directoryExists(imageDirectory)
         XCTAssertTrue(directoryExists)
     }
 
     func testSoundsDirectoryExists() {
-        let soundsDirectory = project.projectPath() + kProjectSoundsDirName
+        let soundsDirectory = project.scene.soundsPath()
         let directoryExists = fileManager.directoryExists(soundsDirectory)
         XCTAssertTrue(directoryExists)
     }
@@ -373,7 +370,7 @@ class ProjectTest: XCTestCase {
 
     func testAllObject() {
         self.project = Project()
-        self.project.scene = scene
+        self.project.scene = Scene()
 
         XCTAssertEqual(0, self.project.scene.objects().count)
 

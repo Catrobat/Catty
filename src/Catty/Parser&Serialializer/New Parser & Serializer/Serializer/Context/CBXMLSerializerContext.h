@@ -56,6 +56,8 @@
 // a CBXMLPositionStack instance) as the dictionary's values (used for serialization only)
 @property (nonatomic, strong) NSMutableDictionary *projectUserListNamePositions;
 
+@property (nonatomic, strong) NSMutableDictionary *soundNamePositions;
+
 //------------------------------------------------------------------------------------------------------------
 // resources data used while traversing the tree
 //------------------------------------------------------------------------------------------------------------

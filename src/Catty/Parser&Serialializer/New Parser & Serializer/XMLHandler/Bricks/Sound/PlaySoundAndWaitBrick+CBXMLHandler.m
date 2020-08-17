@@ -48,15 +48,31 @@
     NSMutableArray *soundList = context.spriteObject.soundList;
 
     Sound *sound = nil;
-    GDataXMLNode *referenceAttribute = [soundElement attributeForName:@"reference"];
-    [XMLError exceptionIfNil:referenceAttribute message:@"No reference to a sound defined!"];
-    NSString *xPath = [referenceAttribute stringValue];
-    soundElement = [soundElement singleNodeForCatrobatXPath:xPath];
-    [XMLError exceptionIfNil:soundElement message:@"Invalid reference in PlaySoundAndWaitBrick. No or too many sounds found!"];
-    GDataXMLNode *nameElement = [soundElement childWithElementName:@"name"];
-    [XMLError exceptionIfNil:nameElement message:@"Sound element does not contain a name child element!"];
-    sound = [CBXMLParserHelper findSoundInArray:soundList withName:[nameElement stringValue]];
-    [XMLError exceptionIfNil:sound message:@"Fatal error: no sound found in list, but should already exist!"];
+    if ([CBXMLParserHelper isReferenceElement:soundElement]) {
+        GDataXMLNode *referenceAttribute = [soundElement attributeForName:@"reference"];
+        [XMLError exceptionIfNil:referenceAttribute message:@"No reference to a sound defined!"];
+        NSString *xPath = [referenceAttribute stringValue];
+        soundElement = [soundElement singleNodeForCatrobatXPath:xPath];
+        [XMLError exceptionIfNil:soundElement message:@"Invalid reference in PlaySoundAndWaitBrick. No or too many sounds found!"];
+        GDataXMLNode *nameElement = [soundElement childWithElementName:@"name"];
+        [XMLError exceptionIfNil:nameElement message:@"Sound element does not contain a name child element!"];
+        sound = [CBXMLParserHelper findSoundInArray:soundList withName:[nameElement stringValue]];
+        [XMLError exceptionIfNil:sound message:@"Fatal error: no sound found in list, but should already exist!"];
+    } else {
+        GDataXMLElement *soundElement = [xmlElement childWithElementName:@"sound"];
+        [XMLError exceptionIfNil:soundElement message:@"sound element not present"];
+        
+        GDataXMLElement *soundName = [soundElement childWithElementName:@"name"];
+        [XMLError exceptionIfNil:soundName message:@"Sound name not present"];
+        
+        sound = [CBXMLParserHelper findSoundInArray:soundList withName:[soundName stringValue]];
+        
+        if (sound == nil) {
+            sound = [context parseFromElement:soundElement withClass:[Sound class]];
+            [XMLError exceptionIfNil:sound message:@"Unable to parse sound..."];
+            [soundList addObject:sound];
+        }
+    }
         
     playSoundAndWaitBrick.sound = sound;
     return playSoundAndWaitBrick;

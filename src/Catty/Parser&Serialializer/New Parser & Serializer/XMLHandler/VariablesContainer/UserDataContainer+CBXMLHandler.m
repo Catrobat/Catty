@@ -44,16 +44,24 @@
 
 + (instancetype)parseForSpriteObject:(GDataXMLElement*)objectXmlElement withContext:(CBXMLParserContext*)context
 {
-    return [self parseFromElement:context.rootElement withObjectElement:objectXmlElement andContext:context];
+    if (context.languageVersion <= 0.991) {
+        return [self parseFromElement:context.rootElement withObjectElement:objectXmlElement andContext:context];
+    } else {
+        return [self parseFromElement:context.currentSceneElement withObjectElement:objectXmlElement andContext:context];
+    }
 }
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withObjectElement:(GDataXMLElement*)objectXmlElement andContext:(CBXMLParserContext*)context
 {
     NSString *rootElementName = context.languageVersion == 0.93f ? @"variables" : @"data";
+    GDataXMLElement *variablesElement = xmlElement;
     
-    NSArray *variablesElements = [xmlElement elementsForName:rootElementName];
-    [XMLError exceptionIf:[variablesElements count] notEquals:1 message:@"Too many %@-elements given!", rootElementName];
-    GDataXMLElement *variablesElement = [variablesElements firstObject];
+    if (context.languageVersion <= 0.991 || context.currentSceneElement) {
+        NSArray *variablesElements = [xmlElement elementsForName:rootElementName];
+        [XMLError exceptionIf:[variablesElements count] notEquals:1 message:@"Too many %@-elements given!", rootElementName];
+        variablesElement = [variablesElements firstObject];
+    }
+        
     UserDataContainer *varContainer = [[UserDataContainer alloc] init];
     
     if (objectXmlElement != nil) {
@@ -371,15 +379,9 @@
     }
     [xmlElement addChild:objectVariableListXmlElement context:context];
     
-    return xmlElement;
-}
-
--(GDataXMLElement *)xmlElementForObjectWithContext:(CBXMLSerializerContext*)context
-{
-    GDataXMLElement *objectVariableXmlElement = [self serializeForObject:context];
-    [objectVariableXmlElement addChild:[GDataXMLElement elementWithName:@"userBrickVariableList" context:context] context:context];
+    [xmlElement addChild:[GDataXMLElement elementWithName:@"userBrickVariableList" context:context] context:context];
     
-    return objectVariableXmlElement;
+    return xmlElement;
 }
 
 @end

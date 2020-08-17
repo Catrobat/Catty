@@ -83,6 +83,12 @@ final class CBFileManagerMock: CBFileManager {
         }
     }
 
+    override func copyExistingFile(atPath oldPath: String!, toPath newPath: String!, overwrite: Bool) {
+        if existingFiles.contains(oldPath) {
+            self.existingFiles.append(newPath)
+        }
+    }
+
     override func zip(_ project: Project) -> Data? {
         zipData
     }

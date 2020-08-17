@@ -27,6 +27,13 @@
 #import "CBXMLSerializerContext.h"
 #import "CBXMLSerializerHelper.h"
 #import "SpriteObject.h"
+#import "CBXMLParserHelper.h"
+#import "Brick.h"
+#import "Script.h"
+#import "PlaySoundBrick.h"
+#import "PlaySoundAndWaitBrick.h"
+#import "CBXMLPositionStack.h"
+#import "CBXMLSerializerHelper.h"
 
 @implementation Sound (CBXMLHandler)
 
@@ -35,6 +42,10 @@
 {
     [XMLError exceptionIfNode:xmlElement isNilOrNodeNameNotEquals:@"sound"];
     Sound *sound = [self new];
+    if ([CBXMLParserHelper isReferenceElement: xmlElement]) {
+        sound = [self parseSoundWithReferenceForElement:xmlElement withContext:context];
+        return sound;
+    }
     NSArray *soundChildElements = [xmlElement children];
     [XMLError exceptionIf:[soundChildElements count] notEquals:2 message:@"Sound must contain two child nodes"];
     
@@ -56,11 +67,35 @@
     return sound;
 }
 
++ (Sound *)parseSoundWithReferenceForElement:(GDataXMLElement*)xmlElement withContext:(CBXMLParserContext*)context
+{
+    GDataXMLNode *referenceAttribute = [xmlElement attributeForName:@"reference"];
+    [XMLError exceptionIfNil:referenceAttribute message:@"Reference for sound not present"];
+    
+    NSString *xPath = [referenceAttribute stringValue];
+    
+    GDataXMLElement *soundElement = [xmlElement singleNodeForCatrobatXPath:xPath];
+    [XMLError exceptionIfNode:soundElement isNilOrNodeNameNotEquals:@"sound"];
+    return [self parseFromElement:soundElement withContext:context];
+}
+
 #pragma mark - Serialization
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context
 {
-    NSUInteger indexOfSound = [CBXMLSerializerHelper indexOfElement:self inArray:context.spriteObject.soundList];
-    GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"sound" xPathIndex:(indexOfSound+1) context:context];
+    GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"sound" context:context];
+    
+    CBXMLPositionStack *currentPositionStack = [context.currentPositionStack mutableCopy];
+    CBXMLPositionStack *positionStackOfSound = context.soundNamePositions[self.name];
+    
+    if(positionStackOfSound) {
+        NSString *refPath = [CBXMLSerializerHelper relativeXPathFromSourcePositionStack:currentPositionStack
+                                                             toDestinationPositionStack:positionStackOfSound];
+        [xmlElement addAttribute:[GDataXMLElement attributeWithName:@"reference" escapedStringValue:refPath]];
+        return xmlElement;
+    }
+    
+    context.soundNamePositions[self.name] = currentPositionStack;
+    
     [xmlElement addChild:[GDataXMLElement elementWithName:@"fileName" stringValue:self.fileName context:context] context:context];
     [xmlElement addChild:[GDataXMLElement elementWithName:@"name" stringValue:self.name context:context] context:context];
     return xmlElement;

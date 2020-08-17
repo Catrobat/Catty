@@ -187,7 +187,7 @@
                 if ([propertyType isEqualToString:kParserObjectTypeScene]) {
                     scene = [object valueForKey:propertyName];
                     if (!scene) {
-                        scene = [[Scene alloc] init];
+                        scene = [[Scene alloc] initWithName: [Util defaultSceneNameForSceneNumber:1]];
                         [object setValue:scene forKey:propertyName];
                     }
                     scene.project = self.project;

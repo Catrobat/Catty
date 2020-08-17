@@ -22,6 +22,7 @@
 
 #import "Sound.h"
 #import "CBMutableCopyContext.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation Sound
 
@@ -46,6 +47,10 @@
     return NO;
 }
 
+- (NSString*)pathForScene: (Scene *)scene
+{
+    return [NSString stringWithFormat:@"%@/%@", [scene soundsPath], self.fileName];
+}
 #pragma mark - Copy
 - (id)mutableCopyWithContext:(CBMutableCopyContext*)context;
 {

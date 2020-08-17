@@ -374,7 +374,7 @@
     imageCell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
     RuntimeImageCache *imageCache = [RuntimeImageCache sharedImageCache];
     NSString *previewImagePath = [object previewImagePath];
-    NSString *imagePath = [object pathForLook:[object.lookList firstObject]];
+    NSString *imagePath = [[object.lookList firstObject] pathForScene:object.scene];
     imageCell.iconImageView.image = nil;
     imageCell.indexPath = indexPath;
     

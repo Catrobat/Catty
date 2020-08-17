@@ -108,7 +108,7 @@
 {
     self.scene = [[SceneMock alloc] initWithName:@"testMockScene"];
     
-    NSString *expectedXml = @"<scene><name>testMockScene</name><objectList><object name=\"testObject\"><lookList/><soundList/><scriptList/><userBricks/><nfcTagList/></object></objectList><data><objectListOfList><entry><object reference=\"../../../../objectList/object\"/><list/></entry></objectListOfList><objectVariableList><entry><object reference=\"../../../../objectList/object\"/><list/></entry></objectVariableList><userBrickVariableList/></data><originalWidth>750</originalWidth><originalHeight>1334</originalHeight></scene>";
+    NSString *expectedXml = @"<scene><name>testMockScene</name><objectList><object type=\"SingleSprite\" name=\"testObject\"><lookList/><nfcTagList/><scriptList/><soundList/><userBricks/></object></objectList><data><objectListOfList><entry><object reference=\"../../../../objectList/object\"/><list/></entry></objectListOfList><objectVariableList><entry><object reference=\"../../../../objectList/object\"/><list/></entry></objectVariableList><userBrickVariableList/></data><originalWidth>750</originalWidth><originalHeight>1334</originalHeight></scene>";
     
     SpriteObject *object = [[SpriteObject alloc] init];
     object.name = @"testObject";

@@ -179,6 +179,27 @@
         return resources
     }
 
+    func imagesPath() -> String? {
+        if let path = self.path() {
+            return path + kProjectImagesDirName
+        }
+        return nil
+    }
+
+    func soundsPath() -> String? {
+        if let path = self.path() {
+            return path + kProjectSoundsDirName
+        }
+        return nil
+    }
+
+    func path() -> String? {
+        if let project = project {
+            return "\(project.projectPath() + self.name)/"
+        }
+        return nil
+    }
+
     @objc(copyObject:withNameForCopiedObject:)
     func copy(_ sourceObject: SpriteObject, withNameForCopiedObject nameOfCopiedObject: String) -> SpriteObject? {
         if !self.hasObject(sourceObject) {

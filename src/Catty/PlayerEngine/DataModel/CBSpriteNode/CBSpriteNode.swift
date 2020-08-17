@@ -48,7 +48,7 @@ class CBSpriteNode: SKSpriteNode {
                                                  projectHeight: self.spriteObject.scene.project?.header.screenHeight as? CGFloat)
 
         if let firstLook = spriteObject.lookList.firstObject as? Look,
-            let filePathForLook = spriteObject.path(for: firstLook),
+            let filePathForLook = firstLook.path(for: spriteObject.scene),
             let image = UIImage(contentsOfFile: filePathForLook) {
             let texture = SKTexture(image: image)
             let textureSize = texture.size()
@@ -156,7 +156,7 @@ class CBSpriteNode: SKSpriteNode {
 
     @objc func changeLook(_ look: Look?) {
         guard let look = look,
-            let filePathForLook = spriteObject.path(for: look),
+            let filePathForLook = look.path(for: spriteObject.scene),
             let image = UIImage(contentsOfFile: filePathForLook)
             else { return }
 
