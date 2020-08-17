@@ -38,11 +38,15 @@ final class SetColorBrickTests: AbstractBrickTest {
         script = WhenScript()
 
         object = SpriteObject()
+        let scene = Scene(name: "testScene")
+        object.scene = scene
         project = Project.defaultProject(withName: "a", projectID: "1")
         spriteNode = CBSpriteNode.init(spriteObject: object)
 
         object.spriteNode = spriteNode
-        object.project = project
+        object.scene.project = project
+
+        project.scene = object.scene
 
         let bundle = Bundle(for: type(of: self))
         let filePath = bundle.path(forResource: "test.png", ofType: nil)

@@ -290,7 +290,7 @@
 -(void)resaveLooks
 {
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
-        for (SpriteObject *object in self.project.objectList) {
+        for (SpriteObject *object in self.project.scene.objects) {
             for (Look *look in object.lookList) {
                 [[RuntimeImageCache sharedImageCache] loadImageFromDiskWithPath:look.fileName];
             }

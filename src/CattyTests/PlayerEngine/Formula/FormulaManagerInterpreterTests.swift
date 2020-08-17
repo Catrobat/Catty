@@ -28,10 +28,15 @@ final class FormulaManagerInterpreterTests: XCTestCase {
 
     var interpreter: FormulaInterpreterProtocol!
     var object: SpriteObject!
+    var project: ProjectMock!
 
     override func setUp() {
         interpreter = FormulaManager(stageSize: Util.screenSize(true), landscapeMode: false)
+        let scene = Scene(name: "testScene")
         object = SpriteObject()
+        object.scene = scene
+        project = ProjectMock()
+        project.scene = object.scene
     }
 
     func testInterpretDouble() {
@@ -731,10 +736,9 @@ final class FormulaManagerInterpreterTests: XCTestCase {
     }
 
     func testUserVariable() {
-        let project = ProjectMock()
         let userData = UserDataContainer()
         project.userData = userData
-        object.project = project
+        object.scene.project = project
 
         let userVariable = UserVariable(name: "testName")
         userVariable.value = "testValue"
@@ -760,10 +764,9 @@ final class FormulaManagerInterpreterTests: XCTestCase {
     }
 
     func testUserList() {
-        let project = ProjectMock()
         let userData = UserDataContainer()
         project.userData = userData
-        object.project = project
+        object.scene.project = project
 
         let userList = UserList(name: "test")
         userList.add(element: 12.3)

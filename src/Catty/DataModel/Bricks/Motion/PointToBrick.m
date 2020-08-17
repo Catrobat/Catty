@@ -22,6 +22,7 @@
 
 #import "PointToBrick.h"
 #import "Script.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation PointToBrick
 
@@ -62,7 +63,7 @@
 {
     if(spriteObject) {
         SpriteObject *firstObject = nil;
-        for(SpriteObject *object in spriteObject.project.objectList) {
+        for(SpriteObject *object in spriteObject.scene.objects) {
             if(![object.name isEqualToString:spriteObject.name] && ![object.name isEqualToString:kLocalizedBackground]) {
                 firstObject = object;
                 break;

@@ -32,7 +32,9 @@ final class ColorSensorTest: XCTestCase {
 
     override func setUp() {
         super.setUp()
+        let scene = Scene(name: "testScene")
         spriteObject = SpriteObject()
+        spriteObject.scene = scene
         spriteNode = CBSpriteNodeMock(spriteObject: spriteObject)
         sensor = ColorSensor()
     }

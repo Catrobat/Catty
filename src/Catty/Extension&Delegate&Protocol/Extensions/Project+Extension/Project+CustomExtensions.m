@@ -24,6 +24,7 @@
 #import "SpriteObject.h"
 #import "Brick.h"
 #import "Script.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation Project (CustomExtensions)
 
@@ -31,7 +32,7 @@
 {
     NSArray <SpriteObject*> *allObjects = [[NSMutableArray alloc] initWithArray: self.allObjects];
     for (SpriteObject *sprite in allObjects) {
-        sprite.project = self;
+        sprite.scene.project = self;
         for (Script *script in sprite.scriptList) {
             script.object = sprite;
             for (Brick *brick in script.brickList) {

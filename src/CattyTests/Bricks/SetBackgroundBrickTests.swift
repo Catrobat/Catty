@@ -32,12 +32,15 @@ final class SetBackgroundBrickTests: AbstractBrickTest {
     var script: Script!
 
     override func setUp() {
-
+        let scene = Scene(name: "testScene1")
         object = SpriteObject()
+        object.scene = scene
+        scene.add(object: object)
         project = Project.defaultProject(withName: "a", projectID: "1")
         spriteNode = CBSpriteNode(spriteObject: object)
         object.spriteNode = spriteNode
-        object.project = project
+        object.scene.project = project
+        project.scene = object.scene
 
         script = WhenScript()
         script.object = object
@@ -46,7 +49,7 @@ final class SetBackgroundBrickTests: AbstractBrickTest {
 
     func testSetBackgroundBrick() {
 
-        let backgroundObject = project.objectList.firstObject as! SpriteObject
+        let backgroundObject = project.scene.objects().first!
         XCTAssertNotNil(backgroundObject)
 
         let bgSpriteNode = CBSpriteNode(spriteObject: object)

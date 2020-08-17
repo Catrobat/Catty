@@ -31,6 +31,8 @@ final class RepeatBrickTests: XCTestCase {
         let repeatBrick = RepeatBrick()
         let script = Script()
         let object = SpriteObject()
+        let scene = Scene(name: "testScene")
+        object.scene = scene
 
         script.object = object
         repeatBrick.script = script
@@ -52,6 +54,8 @@ final class RepeatBrickTests: XCTestCase {
         let repeatBrick = RepeatBrick()
         let script = Script()
         let object = SpriteObject()
+        let scene = Scene(name: "testScene")
+        object.scene = scene
 
         script.object = object
         repeatBrick.script = script
@@ -80,6 +84,8 @@ final class RepeatBrickTests: XCTestCase {
         let brick = RepeatBrick()
         let script = Script()
         let object = SpriteObject()
+        let scene = Scene(name: "testScene")
+        object.scene = scene
 
         script.object = object
         brick.script = script

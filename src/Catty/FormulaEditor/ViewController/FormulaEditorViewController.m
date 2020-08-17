@@ -819,7 +819,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 }
 
 - (void)updateVariablePickerData {
-    UserDataContainer *userData = self.object.project.userData;
+    UserDataContainer *userData = self.object.scene.project.userData;
     [self.variableSourceProject  removeAllObjects];
     [self.variableSourceObject  removeAllObjects];
     [self.listSourceProject  removeAllObjects];
@@ -894,7 +894,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 - (void)saveVariable:(NSString*)name
 {
     if (self.isProjectVariable){
-        for (UserVariable* variable in [UserDataContainer allVariablesForProject: self.object.project]) {
+        for (UserVariable* variable in [UserDataContainer allVariablesForProject: self.object.scene.project]) {
             if ([variable.name isEqualToString:name]) {
                 [self askForVariableName];
                 return;
@@ -915,12 +915,12 @@ NS_ENUM(NSInteger, ButtonIndex) {
     int buttonType = 0;
     
     if (self.isProjectVariable) {
-        [self.object.project.userData addVariable:variable];
+        [self.object.scene.project.userData addVariable:variable];
     }  else {
         [self.object.userData addVariable:variable];
     }
     
-    [self.object.project saveToDiskWithNotification:YES];
+    [self.object.scene.project saveToDiskWithNotification:YES];
     [self updateVariablePickerData];
     [self handleInputWithTitle:variable.name AndButtonType:buttonType];
 }
@@ -928,7 +928,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 - (void)saveList:(NSString*)name
 {
     if (self.isProjectVariable){
-        for (UserVariable* variable in [UserDataContainer allListsForProject: self.object.project]) {
+        for (UserVariable* variable in [UserDataContainer allListsForProject: self.object.scene.project]) {
             if ([variable.name isEqualToString:name]) {
                 [self askForListName];
                 return;
@@ -948,12 +948,12 @@ NS_ENUM(NSInteger, ButtonIndex) {
     int buttonType = 11;
     
     if (self.isProjectVariable){
-        [self.object.project.userData addList:list];
+        [self.object.scene.project.userData addList:list];
     } else {
         [self.object.userData addList:list];
     }
     
-    [self.object.project saveToDiskWithNotification:YES];
+    [self.object.scene.project saveToDiskWithNotification:YES];
     [self updateVariablePickerData];
     [self handleInputWithTitle:list.name AndButtonType:buttonType];
 }
@@ -1155,7 +1155,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 {
     BOOL removed = [self.object.userData removeUserVariableIdentifiedBy: userVariable.name];
     if (!removed) {
-        removed = [self.object.project.userData removeUserVariableIdentifiedBy: userVariable.name];
+        removed = [self.object.scene.project.userData removeUserVariableIdentifiedBy: userVariable.name];
     }
     if (removed) {
         if (isProjectData) {
@@ -1163,7 +1163,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
         } else {
             [self.variableSourceObject removeObjectAtIndex:row];
         }
-        [self.object.project saveToDiskWithNotification:YES];
+        [self.object.scene.project saveToDiskWithNotification:YES];
         [self updateVariablePickerData];
     }
 }
@@ -1172,7 +1172,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 {
     BOOL removed = [self.object.userData removeUserListIdentifiedBy: userList.name];
     if (!removed) {
-        removed = [self.object.project.userData removeUserListIdentifiedBy: userList.name];
+        removed = [self.object.scene.project.userData removeUserListIdentifiedBy: userList.name];
     }
     if (removed) {
         if (isProjectData) {
@@ -1180,15 +1180,15 @@ NS_ENUM(NSInteger, ButtonIndex) {
         } else {
             [self.listSourceObject removeObjectAtIndex:row];
         }
-        [self.object.project saveToDiskWithNotification:YES];
+        [self.object.scene.project saveToDiskWithNotification:YES];
         [self updateVariablePickerData];
     }
 }
 
 - (BOOL)isVariableUsed:(UserVariable*)variable
 {
-    if([self.object.project.userData containsVariable:variable]) {
-        for(SpriteObject *spriteObject in self.object.project.allObjects) {
+    if([self.object.scene.project.userData containsVariable:variable]) {
+        for(SpriteObject *spriteObject in self.object.scene.objects) {
             for(Script *script in spriteObject.scriptList) {
                 for(id brick in script.brickList) {
                     if([brick isKindOfClass:[Brick class]] && [brick isVariableUsedWithVariable:variable]) {
@@ -1212,8 +1212,8 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 - (BOOL)isListUsed:(id<UserDataProtocol>)list
 {
-    if([self.object.project.userData containsList:list]) {
-        for(SpriteObject *spriteObject in self.object.project.allObjects) {
+    if([self.object.scene.project.userData containsList:list]) {
+        for(SpriteObject *spriteObject in self.object.scene.objects) {
             for(Script *script in spriteObject.scriptList) {
                 for(id brick in script.brickList) {
                     if([brick isKindOfClass:[Brick class]] && [brick isListUsedWithList:list]) {

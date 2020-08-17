@@ -37,12 +37,16 @@ final class SetBrightnessBrickTests: AbstractBrickTest {
         brick = SetBrightnessBrick()
         script = WhenScript()
 
+        let scene = Scene(name: "testScene")
         object = SpriteObject()
+        object.scene = scene
         project = Project.defaultProject(withName: "a", projectID: "1")
         spriteNode = CBSpriteNode.init(spriteObject: object)
 
         object.spriteNode = spriteNode
-        object.project = project
+        object.scene.project = project
+
+        project.scene = object.scene
 
         let bundle = Bundle(for: type(of: self))
         let filePath = bundle.path(forResource: "test.png", ofType: nil)

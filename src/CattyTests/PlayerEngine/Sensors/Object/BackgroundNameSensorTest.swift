@@ -32,7 +32,12 @@ final class BackgroundNameSensorTest: XCTestCase {
 
     override func setUp() {
         super.setUp()
+        let project = Project()
+        project.header = Header.default()
+        let scene = Scene()
         spriteObject = SpriteObjectMock()
+        spriteObject.scene = scene
+        spriteObject.scene.project = project
         spriteNode = CBSpriteNodeMock(spriteObject: spriteObject)
         sensor = BackgroundNameSensor()
     }

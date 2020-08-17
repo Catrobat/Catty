@@ -28,25 +28,30 @@ final class ComeToFrontBrickTests: AbstractBrickTest {
 
     func testComeToFrontBrick() {
         let project = Project()
+        let scene = Scene(name: "testScene")
+        scene.project = project
+        project.scene = scene
+
         let background = SpriteObject()
+        background.scene = scene
         let spriteNodeBG = CBSpriteNode(spriteObject: background)
         background.spriteNode = spriteNodeBG
-        background.project = project
 
         let object1 = SpriteObject()
+        object1.scene = scene
         let spriteNode1 = CBSpriteNode(spriteObject: object1)
         object1.spriteNode = spriteNode1
-        object1.project = project
         spriteNode1.zPosition = 1
 
         let object2 = SpriteObject()
+        object2.scene = scene
         let spriteNode2 = CBSpriteNode(spriteObject: object2)
         object2.spriteNode = spriteNode2
         spriteNode2.zPosition = 2
 
-        project.objectList.add(background)
-        project.objectList.add(object1)
-        project.objectList.add(object2)
+        project.scene.add(object: background)
+        project.scene.add(object: object1)
+        project.scene.add(object: object2)
 
         let script = WhenScript()
         script.object = object1

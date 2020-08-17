@@ -48,7 +48,9 @@ final class IfOnEdgeBounceBrickTests: AbstractBrickTest {
         super.setUp()
         self.stage = StageBuilder(project: ProjectMock(width: IfOnEdgeBounceBrickTests.SCREEN_WIDTH, andHeight: IfOnEdgeBounceBrickTests.SCREEN_HEIGHT)).build()
 
+        let scene = Scene(name: "testScene")
         self.spriteObject = SpriteObject()
+        self.spriteObject.scene = scene
         let spriteNode = CBSpriteNode(spriteObject: self.spriteObject)
         self.stage.addChild(spriteNode)
         spriteNode.color = UIColor.black

@@ -529,9 +529,9 @@
     return NO;
 }
 
-+ (SpriteObject*)objectWithName:(NSString*)objectName forProject:(Project*)project
++ (SpriteObject*)objectWithName:(NSString*)objectName forScene:(Scene*)scene
 {
-    for(SpriteObject *object in project.objectList) {
+    for(SpriteObject *object in scene.objects) {
         if([object.name isEqualToString:objectName]) {
             return object;
         }

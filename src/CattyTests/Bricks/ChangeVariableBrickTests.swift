@@ -35,12 +35,15 @@ final class ChangeVariableBrickTests: XCTestCase {
 
     override func setUp() {
         project = Project()
+        let scene = Scene(name: "testScene")
         spriteObject = SpriteObject()
+        spriteObject.scene = scene
+        project.scene = spriteObject.scene
         spriteObject.name = "SpriteObjectName"
 
         spriteNode = CBSpriteNode(spriteObject: spriteObject)
         spriteObject.spriteNode = spriteNode
-        spriteObject.project = project
+        spriteObject.scene.project = project
 
         script = Script()
         script.object = spriteObject
@@ -63,7 +66,7 @@ final class ChangeVariableBrickTests: XCTestCase {
         formula.formulaTree = formulaTree
 
         let userDataContainer = UserDataContainer()
-        spriteObject.project.userData = userDataContainer
+        spriteObject.scene.project!.userData = userDataContainer
 
         let brick = ChangeVariableBrick()
         brick.variableFormula = formula

@@ -142,7 +142,7 @@ final class Stage: SKScene {
             return false
         }
 
-        guard let spriteObjectList = project.objectList as NSArray? as? [SpriteObject],
+        guard let spriteObjectList = project.scene.objects() as NSArray? as? [SpriteObject],
             let variableList = UserDataContainer.allVariables(for: project) as NSArray? as? [UserVariable] else {
                 //fatalError
                 debugPrint("!! Invalid sprite object list given !! This should never happen!")

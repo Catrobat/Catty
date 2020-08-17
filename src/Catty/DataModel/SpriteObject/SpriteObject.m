@@ -98,7 +98,7 @@
 
 - (NSString*)projectPath
 {
-  return [self.project projectPath];
+  return [self.scene.project projectPath];
 }
 
 - (NSString*)previewImagePathForLookAtIndex:(NSUInteger)index
@@ -121,8 +121,8 @@
 
 - (BOOL)isBackground
 {
-    if (self.project && [self.project.objectList count])
-        return ([self.project.objectList objectAtIndex:0] == self);
+    if (self.scene && [self.scene.objects count])
+        return ([self.scene.objects objectAtIndex:0] == self);
     return NO;
 }
 
@@ -193,19 +193,18 @@
     look.name = [Util uniqueName:look.name existingNames:[self allLookNames]];
     [self.lookList addObject:look];
     if(save) {
-        [self.project saveToDiskWithNotification:YES];
+        [self.scene.project saveToDiskWithNotification:YES];
     }
     return;
 }
 
-- (void)removeFromProject
+- (void)removeFromScene
 {
-    CBAssert(self.project);
     NSUInteger index = 0;
-    for (SpriteObject *spriteObject in self.project.objectList) {
+    for (SpriteObject *spriteObject in self.scene.objects) {
         if (spriteObject == self) {
-            [self.project.objectList removeObjectAtIndex:index];
-            self.project = nil;
+            [self.scene removeObjectAtIndex:index];
+            self.scene = nil;
             break;
         }
         ++index;
@@ -247,7 +246,7 @@
         }
     }
     if(save) {
-        [self.project saveToDiskWithNotification:YES];
+        [self.scene.project saveToDiskWithNotification:YES];
     }
 }
 
@@ -255,7 +254,7 @@
 {
     [self removeLookFromList:look];
     if(save) {
-        [self.project saveToDiskWithNotification:YES];
+        [self.scene.project saveToDiskWithNotification:YES];
     }
 }
 
@@ -293,7 +292,7 @@
         }
     }
     if(save) {
-        [self.project saveToDiskWithNotification:YES];
+        [self.scene.project saveToDiskWithNotification:YES];
     }
 }
 
@@ -301,7 +300,7 @@
 {
     [self removeSoundFromList:sound];
     if(save) {
-        [self.project saveToDiskWithNotification:YES];
+        [self.scene.project saveToDiskWithNotification:YES];
     }
 }
 
@@ -324,7 +323,7 @@
     copiedLook.name = [Util uniqueName:nameOfCopiedLook existingNames:[self allLookNames]];
     [self.lookList addObject:copiedLook];
     if(save) {
-        [self.project saveToDiskWithNotification:YES];
+        [self.scene.project saveToDiskWithNotification:YES];
     }
     return copiedLook;
 }
@@ -338,7 +337,7 @@
     copiedSound.name = [Util uniqueName:nameOfCopiedSound existingNames:[self allSoundNames]];
     [self.soundList addObject:copiedSound];
     if(save) {
-        [self.project saveToDiskWithNotification:YES];
+        [self.scene.project saveToDiskWithNotification:YES];
     }
     return copiedSound;
 }
@@ -350,7 +349,7 @@
     }
     look.name = [Util uniqueName:newLookName existingNames:[self allLookNames]];
     if(save) {
-        [self.project saveToDiskWithNotification:YES];
+        [self.scene.project saveToDiskWithNotification:YES];
     }
 }
 
@@ -361,13 +360,13 @@
     }
     sound.name = [Util uniqueName:newSoundName existingNames:[self allSoundNames]];
     if(save) {
-        [self.project saveToDiskWithNotification:YES];
+        [self.scene.project saveToDiskWithNotification:YES];
     }
 }
 
 - (void)removeReferences
 {
-    self.project = nil;
+    self.scene = nil;
     [self.scriptList makeObjectsPerformSelector:@selector(removeReferences)];
 }
 
@@ -440,8 +439,8 @@
     if (! context) { NSError(@"%@ must not be nil!", [CBMutableCopyContext class]); }
 
     SpriteObject *newObject = [[SpriteObject alloc] init];
+    newObject.scene = self.scene;
     newObject.name = [NSString stringWithString:self.name];
-    newObject.project = self.project;
     newObject.userData = [self.userData mutableCopy];
     [context updateReference:self WithReference:newObject];
 
@@ -483,7 +482,7 @@
 - (NSUInteger)referenceCountForLook:(NSString*)fileName
 {
     NSUInteger referenceCount = 0;
-    for (SpriteObject *object in self.project.objectList) {
+    for (SpriteObject *object in self.scene.objects) {
         for (Look *look in object.lookList) {
             if ([look.fileName isEqualToString:fileName]) {
                 ++referenceCount;
@@ -496,7 +495,7 @@
 - (NSUInteger)referenceCountForSound:(NSString*)fileName
 {
     NSUInteger referenceCount = 0;
-    for (SpriteObject *object in self.project.objectList) {
+    for (SpriteObject *object in self.scene.objects) {
         for (Sound *sound in object.soundList) {
             if ([sound.fileName isEqualToString:fileName]) {
                 ++referenceCount;

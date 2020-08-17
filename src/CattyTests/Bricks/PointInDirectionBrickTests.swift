@@ -28,6 +28,8 @@ final class PointInDirectionBrickTests: AbstractBrickTest {
 
     func testPointInDirectionBrick() {
         let object = SpriteObject()
+        let scene = Scene(name: "testScene")
+        object.scene = scene
         let spriteNode = CBSpriteNode(spriteObject: object)
         object.spriteNode = spriteNode
 

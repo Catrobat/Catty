@@ -31,9 +31,12 @@ final class CBBackendTests: XCTestCase {
     var spriteNode: CBSpriteNode!
     var frontend: CBFrontend!
     var backend: CBBackend!
+    var scene: Scene!
 
     override func setUp() {
+        scene = Scene(name: "testScene")
         spriteObject = SpriteObject()
+        spriteObject.scene = scene
         spriteObject.name = "SpriteObjectName"
 
         spriteNode = CBSpriteNode(spriteObject: spriteObject)
@@ -341,7 +344,7 @@ final class CBBackendTests: XCTestCase {
 
         let whenScript = WhenScript()
         whenScript.action = kWhenScriptDefaultAction
-        spriteObject.project = project
+        spriteObject.scene.project = project
         whenScript.object = spriteObject
 
         let waitBrick = WaitBrick()

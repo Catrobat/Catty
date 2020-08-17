@@ -36,11 +36,13 @@ final class VibrationBrickTests: XCTestCase {
     override func setUp() {
         project = Project()
         spriteObject = SpriteObject()
+        let scene = Scene()
+        spriteObject.scene = scene
         spriteObject.name = "SpriteObjectName"
 
         spriteNode = CBSpriteNode(spriteObject: spriteObject)
         spriteObject.spriteNode = spriteNode
-        spriteObject.project = project
+        spriteObject.scene.project = project
 
         script = Script()
         script.object = spriteObject

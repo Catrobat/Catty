@@ -39,6 +39,8 @@ final class WaitBrickTests: XCTestCase {
         logger = CBLogger(name: "Logger")
 
         spriteObject = SpriteObject()
+        let scene = Scene()
+        spriteObject.scene = scene
 
         spriteNode = CBSpriteNode(spriteObject: spriteObject)
         spriteNode.name = "SpriteNode"

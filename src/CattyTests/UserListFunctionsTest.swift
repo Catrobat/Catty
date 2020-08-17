@@ -35,8 +35,10 @@ final class UserListFunctionsTest: XCTestCase {
 
     func testNumberOfItems() {
         let project = Project()
+        let scene = Scene(name: "testScene")
         let object = SpriteObject()
-        object.project = project
+        object.scene = scene
+        object.scene.project = project
 
         let userList = UserList(name: "TestList")
         userList.add(element: 0)
@@ -55,8 +57,10 @@ final class UserListFunctionsTest: XCTestCase {
 
     func testElement() {
         let project = Project()
+        let scene = Scene(name: "testScene")
         let object = SpriteObject()
-        object.project = project
+        object.scene = scene
+        object.scene.project = project
 
         let userList = UserList(name: "TestList")
         userList.add(element: 1)
@@ -89,8 +93,10 @@ final class UserListFunctionsTest: XCTestCase {
 
     func testContains() {
         let project = Project()
+        let scene = Scene(name: "testScene")
         let object = SpriteObject()
-        object.project = project
+        object.scene = scene
+        object.scene.project = project
 
         let userList = UserList(name: "TestList")
         userList.add(element: 0)

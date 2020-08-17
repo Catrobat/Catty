@@ -360,7 +360,10 @@ class XMLParserBrickTests093: XMLAbstractTest {
         let formula = moveNStepsBrick.steps
 
         XCTAssertNotNil(formula, "Invalid formula")
-        XCTAssertEqual(self.formulaManager.interpretDouble(formula!, for: SpriteObject()), log10(sqrt(5)) / log10(10), accuracy: 0.00001, "Formula not correctly parsed")
+        XCTAssertEqual(self.formulaManager.interpretDouble(formula!, for: SpriteObject()),
+                       log10(sqrt(5)) / log10(10),
+                       accuracy: 0.00001,
+                       "Formula not correctly parsed")
     }
 
     func testValidTurnLeftBrick() {
@@ -447,7 +450,7 @@ class XMLParserBrickTests093: XMLAbstractTest {
         let project = self.getProjectForXML(xmlFile: "PointToBrickWithoutSpriteObject")
         XCTAssertNotNil(project, "Project must not be nil!")
 
-        let moleTwo = project.objectList.object(at: 1) as! SpriteObject
+        let moleTwo = project.scene.object(at: 1)!
         XCTAssertNotNil(moleTwo, "SpriteObject must not be nil!")
         XCTAssertEqual(moleTwo.name, "Mole 2", "Invalid object name!")
 

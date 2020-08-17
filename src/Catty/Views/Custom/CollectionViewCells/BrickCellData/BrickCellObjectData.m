@@ -25,6 +25,7 @@
 #import "Script.h"
 #import "Brick.h"
 #import "BrickObjectProtocol.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation BrickCellObjectData
 
@@ -42,7 +43,7 @@
             if([self.brickCell.scriptOrBrick conformsToProtocol:@protocol(BrickObjectProtocol)]) {
                 Brick<BrickObjectProtocol> *objectBrick = (Brick<BrickObjectProtocol>*)self.brickCell.scriptOrBrick;
                 SpriteObject *currentObject = [objectBrick objectForLineNumber:self.lineNumber andParameterNumber:self.parameterNumber];
-                for(SpriteObject *object in objectBrick.script.object.project.objectList) {
+                for(SpriteObject *object in objectBrick.script.object.scene.objects) {
                     [options addObject:object.name];
                     if([currentObject.name isEqualToString:object.name])
                         currentOptionIndex = optionIndex;

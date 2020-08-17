@@ -31,7 +31,7 @@ final class XMLSerializerBlackBoxTests: XMLAbstractTest {
 
     func testInvalidAirFight() {
         let project095 = self.getProjectForXML(xmlFile: "Air_fight_0.5_095")
-        let background = project095.objectList.object(at: 0) as! SpriteObject
+        let background = project095.scene.object(at: 0)!
         background.name = "Invalid"
         let equal = self.isProject(firstProject: project095, equalToXML: "Air_fight_0.5_0991")
         XCTAssertFalse(equal, "Serialized project and XML are not equal")

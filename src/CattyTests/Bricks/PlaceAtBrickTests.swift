@@ -34,6 +34,8 @@ final class PlaceAtBrickTests: AbstractBrickTest {
     override func setUp() {
         super.setUp()
         object = SpriteObject()
+        let scene = Scene(name: "testScene")
+        object.scene = scene
         spriteNode = CBSpriteNode(spriteObject: object)
         object.spriteNode = spriteNode
 

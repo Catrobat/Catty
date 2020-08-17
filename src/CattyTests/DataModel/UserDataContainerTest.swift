@@ -37,16 +37,24 @@ final class UserDataContainerTest: XCTestCase {
         self.container = UserDataContainer()
         self.project.userData = self.container
 
+        let scene = Scene(name: "testScene")
+
+        self.project.scene = scene
+
         self.objectA = SpriteObject()
+        self.objectA.scene = scene
         self.objectA.name = "testObjectA"
-        objectA.project = self.project
+        objectA.scene.project = self.project
 
         self.objectB = SpriteObject()
         self.objectB.name = "testObjectB"
-        self.objectB.project = self.project
+        self.objectB.scene = scene
+        self.objectB.scene.project = self.project
 
-        self.project.objectList.add(objectA as Any)
-        self.project.objectList.add(objectB as Any)
+        self.project.scene.add(object: objectA)
+        self.project.scene.add(object: objectB)
+
+        self.project.scene = objectA.scene
     }
 
     func testAddObjectVariable() {
@@ -354,8 +362,9 @@ final class UserDataContainerTest: XCTestCase {
 
         let copyContainer = container.mutableCopy() as! UserDataContainer
         let copyProject = Project()
-        copyProject.objectList.add(objectA as Any)
-        copyProject.objectList.add(objectB as Any)
+        copyProject.scene = Scene()
+        copyProject.scene.add(object: objectA)
+        copyProject.scene.add(object: objectB)
         copyProject.userData = copyContainer
 
         XCTAssertTrue(container.isEqual(copyContainer))
@@ -401,6 +410,8 @@ final class UserDataContainerTest: XCTestCase {
 
     func testRemoveUserVariableNamed() {
         let objectC = SpriteObject()
+        let scene = Scene(name: "testScene")
+        objectC.scene = scene
         objectC.name = "testObjectC"
 
         let userVariable1 = UserVariable(name: "testName1")
@@ -435,6 +446,8 @@ final class UserDataContainerTest: XCTestCase {
 
     func testRemoveUserListNamed() {
         let objectC = SpriteObject()
+        let scene = Scene(name: "testScene")
+        objectC.scene = scene
         objectC.name = "testObjectC"
 
         let list1 = UserList(name: "testName1")

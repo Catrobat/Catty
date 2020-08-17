@@ -32,7 +32,9 @@ final class BackgroundNumberSensorTest: XCTestCase {
 
     override func setUp() {
         super.setUp()
+        let scene = Scene()
         spriteObject = SpriteObjectMock()
+        spriteObject.scene = scene
         spriteNode = CBSpriteNodeMock(spriteObject: spriteObject)
         sensor = BackgroundNumberSensor()
     }

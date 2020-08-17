@@ -22,6 +22,7 @@
 
 #import "BroadcastBrick.h"
 #import "Util.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation BroadcastBrick
 
@@ -43,7 +44,7 @@
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     if(spriteObject) {
-        NSOrderedSet *messages = [Util allMessagesForProject:spriteObject.project];
+        NSOrderedSet *messages = [Util allMessagesForProject:spriteObject.scene.project];
         if([messages count] > 0)
             self.broadcastMessage = [messages firstObject];
         else
