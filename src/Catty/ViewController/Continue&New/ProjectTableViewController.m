@@ -30,7 +30,6 @@
 #import "DarkBlueGradientImageDetailCell.h"
 #import "Util.h"
 #import "UIUtil.h"
-#import "ProjectUpdateDelegate.h"
 #import "CellTagDefines.h"
 #import "ProjectTableHeaderView.h"
 #import "RuntimeImageCache.h"
@@ -46,13 +45,6 @@
 @end
 
 @implementation ProjectTableViewController
-
-#pragma mark - getter and setters
-- (void)setProject:(Project *)project
-{
-    [project setAsLastUsedProject];
-    _project = project;
-}
 
 #pragma mark - initialization
 - (void)initNavigationBar
@@ -173,12 +165,8 @@
         return;
 
     [self showLoadingView];
-    NSString *oldProjectName = self.project.header.programName;
     newProjectName = [Util uniqueName:newProjectName existingNames:[Project allProjectNames]];
     [self.project renameToProjectName:newProjectName andShowSaveNotification:YES];
-    [self.delegate renameOldProjectWithName:oldProjectName
-                                  projectID:self.project.header.programID
-                           toNewProjectName:self.project.header.programName];
     self.navigationItem.title = self.title = self.project.header.programName;
     [self hideLoadingView];
 }
@@ -322,14 +310,6 @@
     [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:((indexPath.row != 0) ? UITableViewRowAnimationTop : UITableViewRowAnimationFade)];
     [self showPlaceHolder:!(BOOL)[self.project.scene numberOfNormalObjects]];
     [self hideLoadingView];
-}
-
-- (void)deleteProjectAction
-{
-    [self.delegate removeProjectWithName:self.project.header.programName projectID:self.project.header.programID];
-    [self.project removeFromDisk];
-    self.project = nil;
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - table view data source

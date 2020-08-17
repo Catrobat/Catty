@@ -703,6 +703,7 @@
 		4CB412202198635900FC4594 /* UserDataContainerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB4121D2198635900FC4594 /* UserDataContainerTest.swift */; };
 		4CB4FE061B95DF2900431757 /* BrickInsertManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB4FE031B95DF2900431757 /* BrickInsertManager.m */; };
 		4CB4FE071B95DF2900431757 /* BrickMoveManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB4FE051B95DF2900431757 /* BrickMoveManager.m */; };
+		4CB562FC24EA95C40000A5A9 /* UIViewControllerExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB562FB24EA95C40000A5A9 /* UIViewControllerExtensionTests.swift */; };
 		4CB73A9023FC1F0400D5E9A7 /* CatrobatTableViewControllerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB73A8F23FC1F0300D5E9A7 /* CatrobatTableViewControllerMock.swift */; };
 		4CB73A9223FC1F1300D5E9A7 /* NavigationControllerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB73A9123FC1F1300D5E9A7 /* NavigationControllerMock.swift */; };
 		4CBDF1A621CF82F100325338 /* Operator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBDF1A521CF82F000325338 /* Operator.swift */; };
@@ -2418,6 +2419,7 @@
 		4CB4FE031B95DF2900431757 /* BrickInsertManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BrickInsertManager.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		4CB4FE041B95DF2900431757 /* BrickMoveManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickMoveManager.h; sourceTree = "<group>"; };
 		4CB4FE051B95DF2900431757 /* BrickMoveManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickMoveManager.m; sourceTree = "<group>"; };
+		4CB562FB24EA95C40000A5A9 /* UIViewControllerExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIViewControllerExtensionTests.swift; path = Extensions/UIViewControllerExtensionTests.swift; sourceTree = "<group>"; };
 		4CB73A8F23FC1F0300D5E9A7 /* CatrobatTableViewControllerMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatrobatTableViewControllerMock.swift; sourceTree = "<group>"; };
 		4CB73A9123FC1F1300D5E9A7 /* NavigationControllerMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationControllerMock.swift; sourceTree = "<group>"; };
 		4CBDF1A521CF82F000325338 /* Operator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Operator.swift; sourceTree = "<group>"; };
@@ -2931,7 +2933,6 @@
 		92FF2E2A1A24C5A700093DA7 /* UIImage+CatrobatUIImageExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+CatrobatUIImageExtensions.h"; sourceTree = "<group>"; };
 		92FF2E2B1A24C5A700093DA7 /* UIImage+CatrobatUIImageExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+CatrobatUIImageExtensions.m"; sourceTree = "<group>"; };
 		92FF2E431A24C5F300093DA7 /* ProjectStoreDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectStoreDelegate.h; sourceTree = "<group>"; };
-		92FF2E441A24C5F300093DA7 /* ProjectUpdateDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectUpdateDelegate.h; sourceTree = "<group>"; };
 		92FF2E451A24C5F300093DA7 /* SpriteManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpriteManagerDelegate.h; sourceTree = "<group>"; };
 		92FF2E4E1A24C7D800093DA7 /* AudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioManager.h; sourceTree = "<group>"; };
 		92FF2E4F1A24C7D800093DA7 /* AudioManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioManager.m; sourceTree = "<group>"; };
@@ -7285,7 +7286,6 @@
 			isa = PBXGroup;
 			children = (
 				92FF2E431A24C5F300093DA7 /* ProjectStoreDelegate.h */,
-				92FF2E441A24C5F300093DA7 /* ProjectUpdateDelegate.h */,
 				92FF2E451A24C5F300093DA7 /* SpriteManagerDelegate.h */,
 			);
 			name = Delegates;
@@ -8832,6 +8832,7 @@
 				18B5B52F247EB059007D24A3 /* NSStringExtensionTests.swift */,
 				6F59BB5424B46A3000BBD6EA /* GDataXMLElementExtensionTests.swift */,
 				1858252A24D1A5E300092407 /* UIColorExtensionTests.swift */,
+				4CB562FB24EA95C40000A5A9 /* UIViewControllerExtensionTests.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -10127,6 +10128,7 @@
 				186FBE65247C29AD00AE3F17 /* LineShapeNodeTests.swift in Sources */,
 				E4C5C1122143A3150054F236 /* SearchStoreDataSourceTests.swift in Sources */,
 				4CAEB26C23F3F8BC00DB31BB /* CatrobatTableViewControllerTests.swift in Sources */,
+				4CB562FC24EA95C40000A5A9 /* UIViewControllerExtensionTests.swift in Sources */,
 				4C6FE177212D2D2E0067B7D5 /* LengthFunctionTest.swift in Sources */,
 				22524C38239FAFC500DD515E /* LoginViewControllerTests.swift in Sources */,
 				6F5865FA2471756900A7B4B2 /* CBXMLParserHelperTests.swift in Sources */,
