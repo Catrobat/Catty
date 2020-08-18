@@ -26,11 +26,9 @@
 
 @class ProjectLoadingInfo;
 @class Project;
-@protocol ProjectUpdateDelegate;
 
 @interface ProjectTableViewController : BaseTableViewController
 
-@property (nonatomic, weak) id<ProjectUpdateDelegate> delegate;
 @property (nonatomic, strong) Project *project;
 
 @property (nonatomic,assign) BOOL showAddObjectActionSheetAtStart;

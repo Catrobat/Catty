@@ -20,25 +20,32 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension UIViewController {
-    func hideKeyboardWhenTapInViewController() {
-        let tapGesture = UITapGestureRecognizer(target: self,
-                                                action: #selector(UIViewController.dismissKeyboard))
-        tapGesture.cancelsTouchesInView = false
-        view.addGestureRecognizer(tapGesture)
+import XCTest
+
+@testable import Pocket_Code
+
+final class UIViewControllerExtensionTests: XCTestCase {
+
+    var controller: CatrobatTableViewControllerMock?
+    var navigationController: NavigationControllerMock?
+
+    override func setUp() {
+        super.setUp()
+        navigationController = NavigationControllerMock()
+        controller = CatrobatTableViewControllerMock(navigationController!)
     }
 
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
-    }
+    func testOpenProject() {
+        XCTAssertNil(navigationController?.currentViewController)
 
-    @objc func openProject(_ project: Project) {
-        let storyboard = UIStoryboard.init(name: "iPhone", bundle: nil)
-        guard let viewController = storyboard.instantiateViewController(withIdentifier: "ProjectTableViewController") as? ProjectTableViewController else { return }
+        let project = ProjectMock()
+        XCTAssertFalse(project.isLastUsedProject)
 
-        viewController.project = project
-        project.setAsLastUsedProject()
+        controller!.openProject(project)
 
-        self.navigationController?.pushViewController(viewController, animated: true)
+        let projectTableViewController = navigationController?.currentViewController as? ProjectTableViewController
+
+        XCTAssertEqual(project, projectTableViewController?.project)
+        XCTAssertTrue(project.isLastUsedProject)
     }
 }
