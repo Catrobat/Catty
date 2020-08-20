@@ -125,6 +125,13 @@
 
 - (void)playSceneAction:(id)sender
 {
+    if (!Project.lastUsedProject.header.landscapeMode) {
+        [[UIDevice currentDevice] setValue:@(UIInterfaceOrientationPortrait) forKey:@"orientation"];
+        [UINavigationController attemptRotationToDeviceOrientation];
+    } else {
+        [[UIDevice currentDevice] setValue:@(UIInterfaceOrientationLandscapeRight) forKey:@"orientation"];
+        [UINavigationController attemptRotationToDeviceOrientation];
+    }
     [self.stagePresenterViewController checkResourcesAndPushViewControllerTo:self.navigationController];
 }
 
