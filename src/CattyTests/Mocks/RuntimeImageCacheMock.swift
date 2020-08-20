@@ -23,8 +23,8 @@
 @testable import Pocket_Code
 
 final class RuntimeImageCacheMock: RuntimeImageCache {
-    let thumbnails: [String: UIImage]
-    let cachedImages: [String: UIImage]
+    var thumbnails: [String: UIImage]
+    var cachedImages: [String: UIImage]
 
     init(thumbnails: [String: UIImage], cachedImages: [String: UIImage]) {
         self.thumbnails = thumbnails
@@ -49,5 +49,10 @@ final class RuntimeImageCacheMock: RuntimeImageCache {
 
     override func cachedImage(forPath path: String!) -> UIImage? {
         cachedImages[path]
+    }
+
+    override func overwriteThumbnailImageFromDisk(withThumbnailPath thumbnailPath: String!, image: UIImage!, thumbnailFrameSize: CGSize) {
+        thumbnails[thumbnailPath] = image
+        cachedImages[thumbnailPath] = image
     }
 }

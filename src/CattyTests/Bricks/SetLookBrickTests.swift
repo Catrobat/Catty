@@ -35,7 +35,9 @@ final class SetLookBrickTests: XCTestCase {
         scene.project = project
         object = SpriteObject()
         object.scene = scene
-        project = Project.defaultProject(withName: "a", projectID: "1")
+
+        project = ProjectManager.createProject(name: "a", projectId: "1")
+
         spriteNode = CBSpriteNode(spriteObject: object)
         object.spriteNode = spriteNode
 

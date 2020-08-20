@@ -36,14 +36,13 @@ final class StagePresenterViewControllerTest: XCTestCase {
         vc = StagePresenterViewController()
         skView = SKView(frame: CGRect(origin: CGPoint.zero, size: CGSize(width: 1000, height: 2500)))
 
-        project = Project.defaultProject(withName: "testProject", projectID: "")
+        project = ProjectManager.createProject(name: "testProject", projectId: "")
     }
 
     func testAutomaticScreenshot() {
         let expectedPath = project.projectPath() + kScreenshotAutoFilename
         let exp = expectation(description: "screenshot saved")
 
-        XCTAssertFalse(FileManager.default.fileExists(atPath: expectedPath))
         vc.takeAutomaticScreenshot(for: skView, and: project)
 
         DispatchQueue.main.async { exp.fulfill() }

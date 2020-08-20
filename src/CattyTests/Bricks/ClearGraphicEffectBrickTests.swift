@@ -37,8 +37,10 @@ final class ClearGraphicEffectBrickTests: AbstractBrickTest {
 
         let scene = Scene(name: "testScene")
         object = SpriteObject()
+
         object.scene = scene
-        project = Project.defaultProject(withName: "a", projectID: "1")
+        project = ProjectManager.createProject(name: "a", projectId: "1")
+
         spriteNode = CBSpriteNode.init(spriteObject: object)
         object.spriteNode = spriteNode
         object.scene.project = project

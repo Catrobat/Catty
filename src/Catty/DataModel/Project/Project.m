@@ -259,36 +259,6 @@
     return NO;
 }
 
-+ (instancetype)defaultProjectWithName:(NSString*)projectName projectID:(NSString*)projectID
-{
-    Project *project = [[Project alloc] init];
-    project.scene = [[Scene alloc] initWithName:@"Scene 1"];
-    project.scene.project = project;
-    projectName = [Util uniqueName:projectName existingNames:[[self class] allProjectNames]];
-    project.header = [Header defaultHeader];
-    project.header.programName = projectName;
-    project.header.programID = projectID;
-
-    CBFileManager *fileManager = [CBFileManager sharedManager];
-    if (! [fileManager directoryExists:projectName]) {
-        [fileManager createDirectory:[project projectPath]];
-    }
-
-    NSString *imagesDirName = [NSString stringWithFormat:@"%@%@", [project projectPath], kProjectImagesDirName];
-    if (! [fileManager directoryExists:imagesDirName]) {
-        [fileManager createDirectory:imagesDirName];
-    }
-
-    NSString *soundsDirName = [NSString stringWithFormat:@"%@%@", [project projectPath], kProjectSoundsDirName];
-    if (! [fileManager directoryExists:soundsDirName]) {
-        [fileManager createDirectory:soundsDirName];
-    }
-
-    [project.scene addObjectWithName:kLocalizedBackground];
-    NSDebug(@"%@", [project description]);
-    return project;
-}
-
 + (nullable instancetype)projectWithLoadingInfo:(ProjectLoadingInfo*)loadingInfo
 {
     NSDebug(@"Try to load project '%@'", loadingInfo.visibleName);
