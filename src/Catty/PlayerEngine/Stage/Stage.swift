@@ -240,7 +240,7 @@ final class Stage: SKScene {
             variable.textLabel?.fontColor = UIColor.black
             variable.textLabel?.fontSize = CGFloat(SpriteKitDefines.defaultLabelFontSize)
             variable.textLabel?.isHidden = true
-            variable.textLabel?.horizontalAlignmentMode = .left
+            variable.textLabel?.horizontalAlignmentMode = .center
             addChild(label)
         }
 
