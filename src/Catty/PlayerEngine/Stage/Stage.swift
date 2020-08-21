@@ -89,6 +89,11 @@ final class Stage: SKScene, StageProtocol {
         scheduler.startWhenBackgroundChangesContexts()
     }
 
+    func notifyWhenCondition() {
+        logger.debug("StartWhenConditionScript")
+        scheduler.startWhenConditionContexts()
+    }
+
     @objc
     @discardableResult
     func touchedWithTouch(_ touch: UITouch) -> Bool {
@@ -233,6 +238,15 @@ final class Stage: SKScene, StageProtocol {
                     if let broadcastContext = context as? CBBroadcastScriptContext {
                         broadcastHandler.subscribeBroadcastContext(broadcastContext)
                     }
+
+                case let whenConditionScript as WhenConditionScript:
+                    context = CBWhenConditionScriptContext(
+                        whenConditionScript: whenConditionScript,
+                        spriteNode: spriteNode,
+                        formulaInterpreter: formulaManager,
+                        touchManager: formulaManager.touchManager,
+                        state: .runnable)
+
                 default:
                     break
                 }

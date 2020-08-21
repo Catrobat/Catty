@@ -93,6 +93,10 @@
     if ([self isKindOfClass:[WhenBackgroundChangesScript class]]) {
         ((WhenBackgroundChangesScript*)copiedScript).look = ((WhenBackgroundChangesScript*)self).look;
     }
+    if ([self isKindOfClass:[WhenConditionScript class]]) {
+        ((WhenConditionScript*)copiedScript).condition = ((WhenConditionScript*)self).condition;
+    }
+    
     return copiedScript;
 }
 

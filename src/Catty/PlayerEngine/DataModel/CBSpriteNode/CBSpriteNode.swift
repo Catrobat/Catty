@@ -77,6 +77,11 @@ class CBSpriteNode: SKSpriteNode {
 
     @objc func update(_ currentTime: TimeInterval) {
         self.drawPenLine()
+
+        for script in self.spriteObject.scriptList where ((script as? WhenConditionScript) != nil) {
+            guard let stage = self.scene as? StageProtocol else { return }
+            stage.notifyWhenCondition()
+        }
     }
 
     // MARK: - Operations

@@ -24,14 +24,6 @@ import XCTest
 
 @testable import Pocket_Code
 
-class StageMock: SKScene, StageProtocol {
-    public var notifyBackgroundChangeWasCalled = false
-
-    func notifyBackgroundChange() {
-        self.notifyBackgroundChangeWasCalled = true
-    }
-}
-
 final class WhenBackgroundChangesScriptTests: XCTestCase {
 
     var project: Project!

@@ -836,7 +836,9 @@
 		4CFD5C5B23C47E2100980CD0 /* GlideToBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFD5C5823C47E2100980CD0 /* GlideToBrickTests.swift */; };
 		590200D223FC03A900F0978B /* BrickExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590200D123FC03A900F0978B /* BrickExtensionTests.swift */; };
 		59032EE524A29CAE00BD86C4 /* WhenBackgroundChangesScript+Condition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59032EE424A29CAE00BD86C4 /* WhenBackgroundChangesScript+Condition.swift */; };
+		5908EBE024EE64A6002EB16E /* WhenConditionScript+Condition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5908EBDF24EE64A6002EB16E /* WhenConditionScript+Condition.swift */; };
 		5912C21623C4EAC700B3D9C0 /* FormulaTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5912C21523C4EAC700B3D9C0 /* FormulaTest.swift */; };
+		591553B724F274C9005BBF75 /* WhenConditionScriptTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591553B624F274C9005BBF75 /* WhenConditionScriptTests.swift */; };
 		591FCF0324EFB81500E5DD6B /* WhenBackgroundChangesScriptTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591FCF0224EFB81500E5DD6B /* WhenBackgroundChangesScriptTests.swift */; };
 		5921F2AB24F51F3B0044D936 /* BrickCellLookDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5921F2AA24F51F3B0044D936 /* BrickCellLookDataTests.swift */; };
 		592EF6E62094B3D700BD6000 /* SpriteObjectProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592EF6E52094B3D700BD6000 /* SpriteObjectProtocol.swift */; };
@@ -885,6 +887,7 @@
 		59A58D83202C714A008B1A8F /* MediaLibraryDownloaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A58D82202C714A008B1A8F /* MediaLibraryDownloaderTests.swift */; };
 		59ABDC622021BBFB00061403 /* LooksTableViewController+MediaLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59ABDC5F2021BBFB00061403 /* LooksTableViewController+MediaLibrary.swift */; };
 		59ABDC652021D7DA00061403 /* UIAlertController+AddAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59ABDC642021D7DA00061403 /* UIAlertController+AddAction.swift */; };
+		59B7A8D32504E83F001C736A /* StageMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B7A8D22504E83F001C736A /* StageMock.swift */; };
 		59B9F633202D8F8500937299 /* MediaLibraryDownloader.downloadIndex.success.json in Resources */ = {isa = PBXBuildFile; fileRef = 59B9F631202D8F6200937299 /* MediaLibraryDownloader.downloadIndex.success.json */; };
 		59D008E9208E3FDC000539E7 /* MotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D008E8208E3FDC000539E7 /* MotionManager.swift */; };
 		59D008ED208E4249000539E7 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D008EC208E4249000539E7 /* LocationManager.swift */; };
@@ -892,6 +895,8 @@
 		59D9EC672061171F0019EC10 /* DVR.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 59D9EC62206117000019EC10 /* DVR.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		59EA52B424FCD1E800AC6E8D /* WhenBackgroundChangesScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59EA52B324FCD1E800AC6E8D /* WhenBackgroundChangesScript.swift */; };
 		59EA52B824FCF9E400AC6E8D /* WhenBackgroundChangesScriptCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59EA52B724FCF9E400AC6E8D /* WhenBackgroundChangesScriptCell.swift */; };
+		59EA52BB24FD468900AC6E8D /* WhenConditionScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59EA52BA24FD468900AC6E8D /* WhenConditionScript.swift */; };
+		59EA52BF24FD4BEE00AC6E8D /* WhenConditionScriptCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59EA52BE24FD4BEE00AC6E8D /* WhenConditionScriptCell.swift */; };
 		59F5C2AF23F2E36D00D95016 /* BrickCellPickerViewerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F5C2AE23F2E36D00D95016 /* BrickCellPickerViewerTest.swift */; };
 		5E0B361E220A55BB0056EB12 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 92300CE918B2196700F2B4DC /* Localizable.strings */; };
 		5E0B3622220A5F3C0056EB12 /* LanguageTranslationDefinesUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0B3621220A5F3C0056EB12 /* LanguageTranslationDefinesUI.swift */; };
@@ -2590,7 +2595,9 @@
 		58272AE1A8D3A638A258B722 /* bs */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = bs; path = bs.lproj/Localizable.strings; sourceTree = "<group>"; };
 		590200D123FC03A900F0978B /* BrickExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrickExtensionTests.swift; sourceTree = "<group>"; };
 		59032EE424A29CAE00BD86C4 /* WhenBackgroundChangesScript+Condition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WhenBackgroundChangesScript+Condition.swift"; sourceTree = "<group>"; };
+		5908EBDF24EE64A6002EB16E /* WhenConditionScript+Condition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WhenConditionScript+Condition.swift"; sourceTree = "<group>"; };
 		5912C21523C4EAC700B3D9C0 /* FormulaTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FormulaTest.swift; path = Formula/FormulaTest.swift; sourceTree = "<group>"; };
+		591553B624F274C9005BBF75 /* WhenConditionScriptTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhenConditionScriptTests.swift; sourceTree = "<group>"; };
 		591FCF0224EFB81500E5DD6B /* WhenBackgroundChangesScriptTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhenBackgroundChangesScriptTests.swift; sourceTree = "<group>"; };
 		5921F2AA24F51F3B0044D936 /* BrickCellLookDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrickCellLookDataTests.swift; sourceTree = "<group>"; };
 		592EF6E52094B3D700BD6000 /* SpriteObjectProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteObjectProtocol.swift; sourceTree = "<group>"; };
@@ -2633,12 +2640,15 @@
 		59A58D82202C714A008B1A8F /* MediaLibraryDownloaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaLibraryDownloaderTests.swift; sourceTree = "<group>"; };
 		59ABDC5F2021BBFB00061403 /* LooksTableViewController+MediaLibrary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LooksTableViewController+MediaLibrary.swift"; sourceTree = "<group>"; };
 		59ABDC642021D7DA00061403 /* UIAlertController+AddAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+AddAction.swift"; sourceTree = "<group>"; };
+		59B7A8D22504E83F001C736A /* StageMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageMock.swift; sourceTree = "<group>"; };
 		59B9F631202D8F6200937299 /* MediaLibraryDownloader.downloadIndex.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MediaLibraryDownloader.downloadIndex.success.json; sourceTree = "<group>"; };
 		59D008E8208E3FDC000539E7 /* MotionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionManager.swift; sourceTree = "<group>"; };
 		59D008EC208E4249000539E7 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		59D9EC62206117000019EC10 /* DVR.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVR.framework; path = Carthage/Build/iOS/DVR.framework; sourceTree = "<group>"; };
 		59EA52B324FCD1E800AC6E8D /* WhenBackgroundChangesScript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhenBackgroundChangesScript.swift; sourceTree = "<group>"; };
 		59EA52B724FCF9E400AC6E8D /* WhenBackgroundChangesScriptCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhenBackgroundChangesScriptCell.swift; sourceTree = "<group>"; };
+		59EA52BA24FD468900AC6E8D /* WhenConditionScript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhenConditionScript.swift; sourceTree = "<group>"; };
+		59EA52BE24FD4BEE00AC6E8D /* WhenConditionScriptCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhenConditionScriptCell.swift; sourceTree = "<group>"; };
 		59F5C2AE23F2E36D00D95016 /* BrickCellPickerViewerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrickCellPickerViewerTest.swift; sourceTree = "<group>"; };
 		5E0B3621220A5F3C0056EB12 /* LanguageTranslationDefinesUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageTranslationDefinesUI.swift; sourceTree = "<group>"; };
 		5E18A81121A547AA00541536 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
@@ -6439,6 +6449,7 @@
 				4CF429F2213A88A600B78897 /* RepeatUntilBrick+Condition.swift */,
 				BA987D0C2194E647002DAA05 /* WaitUntilBrick+Condition.swift */,
 				59032EE424A29CAE00BD86C4 /* WhenBackgroundChangesScript+Condition.swift */,
+				5908EBDF24EE64A6002EB16E /* WhenConditionScript+Condition.swift */,
 			);
 			path = Condition;
 			sourceTree = "<group>";
@@ -6447,6 +6458,7 @@
 			isa = PBXGroup;
 			children = (
 				591FCF0224EFB81500E5DD6B /* WhenBackgroundChangesScriptTests.swift */,
+				591553B624F274C9005BBF75 /* WhenConditionScriptTests.swift */,
 			);
 			path = Scripts;
 			sourceTree = "<group>";
@@ -6555,6 +6567,7 @@
 				6F954C6324D1A3E300E10BB3 /* UploadCategoryViewControllerDelegateMock.swift */,
 				6F19119D24E7C8CF00CF1B4F /* SceneMock.swift */,
 				180DDF422506800600EA526C /* AnalyticsMock.swift */,
+				59B7A8D22504E83F001C736A /* StageMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -7753,6 +7766,7 @@
 				92FF30B91A24DCAA00093DA7 /* WhenScript.h */,
 				92FF30BA1A24DCAA00093DA7 /* WhenScript.m */,
 				59EA52B324FCD1E800AC6E8D /* WhenBackgroundChangesScript.swift */,
+				59EA52BA24FD468900AC6E8D /* WhenConditionScript.swift */,
 			);
 			path = Scripts;
 			sourceTree = "<group>";
@@ -8823,6 +8837,7 @@
 				AA74F0911BC05FCE00D1E954 /* WhenScriptCell.h */,
 				AA74F0921BC05FCE00D1E954 /* WhenScriptCell.m */,
 				59EA52B724FCF9E400AC6E8D /* WhenBackgroundChangesScriptCell.swift */,
+				59EA52BE24FD4BEE00AC6E8D /* WhenConditionScriptCell.swift */,
 			);
 			path = ScriptCells;
 			sourceTree = "<group>";
@@ -10244,6 +10259,7 @@
 				9E0F741822B55E4D0030CD89 /* MockAudioPlayerFactory.swift in Sources */,
 				4C7182DA23EEAFF600195BC7 /* BaseCollectionViewControllerTests.swift in Sources */,
 				4C822670213FA7A400F3D750 /* AccelerationYSensorTest.swift in Sources */,
+				591553B724F274C9005BBF75 /* WhenConditionScriptTests.swift in Sources */,
 				4C6FE16A212D2D2E0067B7D5 /* AtanFunctionTest.swift in Sources */,
 				4CEB224F1B95E47500B3BE2F /* BrickMoveManagerForeverTests.m in Sources */,
 				4C68FC951B25A00B00AB3EE8 /* InternFormulaTokenSelectionTest.m in Sources */,
@@ -10301,6 +10317,7 @@
 				9E05FAB1247FF57F008951DE /* ScenePresenterViewControllerSpy.swift in Sources */,
 				4C6FE170212D2D2E0067B7D5 /* AbsFunctionTest.swift in Sources */,
 				4C68FC931B25A00B00AB3EE8 /* InternFormulaTest.m in Sources */,
+				59B7A8D32504E83F001C736A /* StageMock.swift in Sources */,
 				18E83F852493C978003295DA /* PenClearBrickTests.swift in Sources */,
 				44B76EC12476BF0100DC30E2 /* FirebaseCrashlyticsReporterTests.swift in Sources */,
 				186FBE65247C29AD00AE3F17 /* LineShapeNodeTests.swift in Sources */,
@@ -10662,6 +10679,7 @@
 				927F79E01BEE39CB008D1635 /* PhiroIfLogicBeginBrick.m in Sources */,
 				AA74EEFF1BC057C900D1E954 /* SetTransparencyBrick+CBXMLHandler.m in Sources */,
 				44B76EC82476C19600DC30E2 /* FirebaseAnalyticsReporter.swift in Sources */,
+				59EA52BF24FD4BEE00AC6E8D /* WhenConditionScriptCell.swift in Sources */,
 				92EC985F1BC3ABB90003A891 /* PhiroPlayToneBrick+CBXMLHandler.m in Sources */,
 				92FF2EA21A24C7D800093DA7 /* TableUtil.m in Sources */,
 				4CDA808121366AD20052FA24 /* FormulaInterpreterProtocol.swift in Sources */,
@@ -10748,6 +10766,7 @@
 				AA74EFE81BC05B5F00D1E954 /* LoopEndBrick.m in Sources */,
 				9200C2DB1C8084AA002F5CA4 /* HideTextBrick+CBXMLHandler.m in Sources */,
 				AA74EEDD1BC057B900D1E954 /* ForeverBrick+CBXMLHandler.m in Sources */,
+				59EA52BB24FD468900AC6E8D /* WhenConditionScript.swift in Sources */,
 				4C0F9F22204ADBAF00E71B2D /* IfThenLogicEndBrick+CBXMLHandler.m in Sources */,
 				4CF0728C20D659F700F93AB5 /* PhiroSideLeftSensor.swift in Sources */,
 				AA74F0C01BC05FCE00D1E954 /* SetXBrickCell.m in Sources */,
@@ -10929,6 +10948,7 @@
 				F4E6E59A210E048700D86FE6 /* MaxFunction.swift in Sources */,
 				5936893C2021979A00FC3115 /* SoundsTableViewController+MediaLibrary.swift in Sources */,
 				592EF6E62094B3D700BD6000 /* SpriteObjectProtocol.swift in Sources */,
+				5908EBE024EE64A6002EB16E /* WhenConditionScript+Condition.swift in Sources */,
 				F4E6E5BE210E1FA400D86FE6 /* RoundFunction.swift in Sources */,
 				99EBDBFF1D5621D3008D6860 /* ChangeColorByNBrick.m in Sources */,
 				4C724E5D1B4D3E8C00E27479 /* SpriteObject+CBXMLHandler.m in Sources */,

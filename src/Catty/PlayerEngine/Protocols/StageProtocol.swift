@@ -22,4 +22,5 @@
 
 protocol StageProtocol {
     func notifyBackgroundChange()
+    func notifyWhenCondition()
 }

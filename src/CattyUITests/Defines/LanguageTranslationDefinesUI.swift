@@ -352,6 +352,8 @@ let kLocalizedUntilIsTrue = NSLocalizedString("is true", bundle: Bundle(for: Lan
 let kLocalizedTime = NSLocalizedString("time", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedTimes = NSLocalizedString("times", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedEndOfLoop = NSLocalizedString("End of Loop", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedWhen = NSLocalizedString("When", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedBecomesTrue = NSLocalizedString("becomes true", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
 // motion bricks
 let kLocalizedPlaceAt = NSLocalizedString("Place at ", bundle: Bundle(for: LanguageTranslation.self), comment: "")
