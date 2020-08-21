@@ -26,7 +26,7 @@
     static let name = kUIFESensorInclinationX
     static let defaultRawValue = 0.0
     static let position = 50
-    static let requiredResource = ResourceType.deviceMotion
+    static let requiredResource = ResourceType.accelerometerAndDeviceMotion
 
     let getMotionManager: () -> MotionManager?
 
@@ -49,12 +49,12 @@
             let faceDown = (getMotionManager()?.accelerometerData?.acceleration.z ?? 0) > 0
             if faceDown == false {
             // screen up
-                return -rawValueYSensor
+                return rawValueYSensor
             } else {
                 if rawValueYSensor > Double.epsilon {
-                    return Double.pi + rawValueYSensor
+                    return -Double.pi - rawValueYSensor
                 } else {
-                    return -Double.pi + rawValueYSensor
+                    return Double.pi + rawValueYSensor
                 }
             }
         }

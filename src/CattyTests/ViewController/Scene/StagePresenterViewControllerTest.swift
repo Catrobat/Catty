@@ -78,7 +78,7 @@ final class StagePresenterViewControllerTest: XCTestCase {
 
     func testSetupGridViewPortraitMode() {
         let stagePresenterViewController = vc
-        stagePresenterViewController!.project = Project.defaultProject(withName: "testProject", projectID: "")
+        stagePresenterViewController!.project = ProjectManager.createProject(name: "testProject", projectId: "")
         stagePresenterViewController!.project.header.landscapeMode = false
 
         stagePresenterViewController!.setUpGridView()
@@ -93,7 +93,7 @@ final class StagePresenterViewControllerTest: XCTestCase {
 
     func testSetupGridViewLandscapeMode() {
         let stagePresenterViewController = vc
-        stagePresenterViewController!.project = Project.defaultProject(withName: "testProject", projectID: "")
+        stagePresenterViewController!.project = ProjectManager.createProject(name: "testProject", projectId: "")
         stagePresenterViewController!.project.header.landscapeMode = true
 
         stagePresenterViewController!.setUpGridView()

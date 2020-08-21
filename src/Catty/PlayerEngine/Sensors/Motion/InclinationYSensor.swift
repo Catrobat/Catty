@@ -46,7 +46,7 @@ import CoreMotion
         if !landscapeMode {
             return deviceMotion.attitude.pitch
         } else {
-            return deviceMotion.attitude.roll
+            return -deviceMotion.attitude.roll
         }
     }
 

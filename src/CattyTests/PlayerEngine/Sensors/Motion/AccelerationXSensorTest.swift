@@ -51,21 +51,21 @@ final class AccelerationXSensorTest: XCTestCase {
         motionManager.xUserAcceleration = 0
         motionManager.yUserAcceleration = 0
         XCTAssertEqual(motionManager.xUserAcceleration, sensor.rawValue(landscapeMode: false), accuracy: Double.epsilon)
-        XCTAssertEqual(motionManager.yUserAcceleration, sensor.rawValue(landscapeMode: true), accuracy: Double.epsilon)
+        XCTAssertEqual(motionManager.yUserAcceleration, -sensor.rawValue(landscapeMode: true), accuracy: Double.epsilon)
 
         motionManager.xUserAcceleration = 9.8
         XCTAssertEqual(motionManager.xUserAcceleration, sensor.rawValue(landscapeMode: false), accuracy: Double.epsilon)
-        XCTAssertNotEqual(motionManager.xUserAcceleration, sensor.rawValue(landscapeMode: true), accuracy: Double.epsilon)
+        XCTAssertNotEqual(motionManager.xUserAcceleration, -sensor.rawValue(landscapeMode: true), accuracy: Double.epsilon)
 
         motionManager.yUserAcceleration = 9.8
-        XCTAssertEqual(sensor.rawValue(landscapeMode: true), sensor.rawValue(landscapeMode: false), accuracy: Double.epsilon)
+        XCTAssertEqual(-sensor.rawValue(landscapeMode: true), sensor.rawValue(landscapeMode: false), accuracy: Double.epsilon)
 
         motionManager.xUserAcceleration = -9.8
         XCTAssertEqual(motionManager.xUserAcceleration, sensor.rawValue(landscapeMode: false), accuracy: Double.epsilon)
-        XCTAssertNotEqual(motionManager.xUserAcceleration, sensor.rawValue(landscapeMode: true), accuracy: Double.epsilon)
+        XCTAssertNotEqual(motionManager.xUserAcceleration, -sensor.rawValue(landscapeMode: true), accuracy: Double.epsilon)
 
         motionManager.yUserAcceleration = -9.8
-        XCTAssertEqual(sensor.rawValue(landscapeMode: true), sensor.rawValue(landscapeMode: false), accuracy: Double.epsilon)
+        XCTAssertEqual(-sensor.rawValue(landscapeMode: true), sensor.rawValue(landscapeMode: false), accuracy: Double.epsilon)
     }
 
     func testConvertToStandardized() {
@@ -81,7 +81,7 @@ final class AccelerationXSensorTest: XCTestCase {
         let standardizedValue = sensor.standardizedValue(landscapeMode: false)
         let standardizedValueLandscape = sensor.standardizedValue(landscapeMode: true)
         XCTAssertEqual(convertToStandardizedValue, standardizedValue)
-        XCTAssertEqual(standardizedValue, standardizedValueLandscape)
+        XCTAssertEqual(standardizedValue, -standardizedValueLandscape)
     }
 
     func testTag() {
