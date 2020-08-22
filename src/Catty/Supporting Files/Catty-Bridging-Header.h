@@ -129,6 +129,7 @@
 #import "PreviousLookBrickCell.h"
 #import "ChangeVariableBrickCell.h"
 #import "ReplaceItemInUserListBrickCell.h"
+#import "SetBackgroundBrickCell.h"
 
 #import "BrickCellVariableData.h"
 #import "BrickCellListData.h"

@@ -1119,6 +1119,25 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             [lookBrick setLook:[Util lookWithName:(NSString*)value forObject:self.object] forLineNumber:line andParameterNumber:parameter];
         }
     } else
+    if ([brickCellData isKindOfClass:[BrickCellBackgroundData class]] && [brick conformsToProtocol:@protocol(BrickLookProtocol)]) {
+        Brick<BrickLookProtocol> *lookBrick = (Brick<BrickLookProtocol>*)brick;
+        SpriteObject *backgroundObject = self.object.scene.objects.firstObject;
+        if([(NSString*)value isEqualToString:kLocalizedNewElement]) {
+            LooksTableViewController *ltvc = [self.storyboard instantiateViewControllerWithIdentifier:kLooksTableViewControllerIdentifier];
+            [ltvc setObject:backgroundObject];
+            ltvc.showAddLookActionSheetAtStartForScriptEditor = YES;
+            ltvc.showAddLookActionSheetAtStartForObject = NO;
+            ltvc.afterSafeBlock = ^(Look* look) {
+                [lookBrick setLook:look forLineNumber:line andParameterNumber:parameter];
+                [self.navigationController popViewControllerAnimated:YES];
+                [self enableUserInteractionAndResetHighlight];
+            };
+            [self.navigationController pushViewController:ltvc animated:YES];
+            return;
+        } else {
+            [lookBrick setLook:[Util lookWithName:(NSString*)value forObject:backgroundObject] forLineNumber:line andParameterNumber:parameter];
+        }
+    } else
     if ([brickCellData isKindOfClass:[BrickCellSoundData class]] && [brick conformsToProtocol:@protocol(BrickSoundProtocol)]) {
         Brick<BrickSoundProtocol> *soundBrick = (Brick<BrickSoundProtocol>*)brick;
         if([(NSString*)value isEqualToString:kLocalizedNewElement]) {

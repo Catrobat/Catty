@@ -20,22 +20,21 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
+import XCTest
 
-@class Sound;
-@class Look;
-@class CBXMLPositionStack;
-@class SpriteObject;
-@protocol BrickProtocol;
+@testable import Pocket_Code
 
-@interface CBXMLSerializerHelper : NSObject
+final class CBXMLSerializerHelperTests: XCTestCase {
 
-+ (NSUInteger)indexOfElement:(id)element inArray:(NSArray*)array;
-+ (NSString*)relativeXPathToSound:(Sound*)sound inSoundList:(NSArray*)soundList withDepth:(NSInteger)depth;
-+ (NSString*)relativeXPathToLook:(Look*)look inLookList:(NSArray*)lookList withDepth:(NSInteger)depth;
-+ (NSString*)relativeXPathToBackground:(Look*)look forBackgroundObject:(SpriteObject*)backgroundObject withDepth:(NSInteger)depth;
-+ (NSString*)relativeXPathFromSourcePositionStack:(CBXMLPositionStack*)sourcePositionStack
-                       toDestinationPositionStack:(CBXMLPositionStack*)destinationPositionStack;
-+ (NSInteger)getDepthOfResource:(id<BrickProtocol>)scriptOrBrick forSpriteObject:(SpriteObject*)spriteObject;
+    func testRelativeXPathToBackground() {
+        let expectedXPath = "../../../object/lookList/look[2]"
 
-@end
+        let object = SpriteObject()
+        object.lookList = [
+            Look(name: "lookA", andPath: "path") as Any,
+            Look(name: "lookB", andPath: "path") as Any
+        ]
+
+        XCTAssertEqual(expectedXPath, CBXMLSerializerHelper.relativeXPath(toBackground: object.lookList![1] as? Look, forBackgroundObject: object, withDepth: 2))
+    }
+}

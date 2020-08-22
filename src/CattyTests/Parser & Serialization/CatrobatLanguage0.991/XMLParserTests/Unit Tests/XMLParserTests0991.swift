@@ -568,4 +568,17 @@ class XMLParserTests0991: XMLAbstractTest {
         XCTAssertEqual(speakBrick.formula.formulaTree.value!, "Panda")
         XCTAssertFalse(speakBrick.isDisabled)
     }
+
+    func testSetBackgroundBrickReference() {
+        let project = self.getProjectForXML(xmlFile: "SetBackgroundBrick_0991")
+        let background = project.scene.object(at: 0)!
+        let objectA = project.scene.object(at: 1)!
+        let objectB = project.scene.object(at: 2)!
+        let brickWithValidBackgroundReference = (objectA.scriptList.object(at: 0) as! Script).brickList.object(at: 0) as! SetBackgroundBrick
+        let brickWithInvalidBackgroundReference = (objectB.scriptList.object(at: 0) as! Script).brickList.object(at: 0) as! SetBackgroundBrick
+
+        XCTAssertEqual(1, background.lookList.count)
+        XCTAssertEqual((background.lookList.object(at: 0) as! Look), brickWithValidBackgroundReference.look)
+        XCTAssertNil(brickWithInvalidBackgroundReference.look)
+    }
 }

@@ -26,33 +26,37 @@ import XCTest
 
 final class ScriptCollectionViewControllerTests: XCTestCase {
 
-    var layout: UICollectionViewFlowLayout!
     var viewController: ScriptCollectionViewController!
+    var navigationController: NavigationControllerMock!
+    var storyboard: StoryboardMock!
     var project: Project!
-    var broadcastBrick: BroadcastBrick!
+    var scene: Scene!
     var spriteObject: SpriteObject!
-    var broadcastBrickCell: BroadcastBrickCell!
-    var brickCellMessageData: BrickCellMessageData!
 
     override func setUp() {
         super.setUp()
 
         project = ProjectMock()
-        layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: 100, height: 100)
-        viewController = ScriptCollectionViewController(collectionViewLayout: layout)
-        XCTAssertNotNil(viewController, "ScriptCollectionViewController must not be nil")
+
+        scene = Scene(name: "testScene")
+        scene.project = project
+
+        spriteObject = SpriteObject()
+        spriteObject.scene = scene
+        scene.add(object: spriteObject)
+
+        navigationController = NavigationControllerMock()
+        storyboard = StoryboardMock(viewControllers: ["LooksTableViewController": LooksTableViewController()])
+
+        viewController = ScriptCollectionViewControllerMock(navigationController, storyboard: storyboard)
+        viewController.object = spriteObject
     }
 
     func testUpdateBrickCellDataSavesBroadcastMessage() {
-        let scene = Scene(name: "testScene")
-        spriteObject = SpriteObject()
-        spriteObject.scene = scene
-        broadcastBrick = BroadcastBrick()
-        broadcastBrickCell = BroadcastBrickCell()
-        brickCellMessageData = BrickCellMessageData()
-        viewController.object = spriteObject
-        spriteObject.scene.project = project
+        let broadcastBrick = BroadcastBrick()
+        let broadcastBrickCell = BroadcastBrickCell()
+        let brickCellMessageData = BrickCellMessageData()
+
         broadcastBrickCell.scriptOrBrick = broadcastBrick
         broadcastBrickCell.dataDelegate = viewController as? BrickCellDataDelegate
         brickCellMessageData.brickCell = broadcastBrickCell
@@ -60,5 +64,51 @@ final class ScriptCollectionViewControllerTests: XCTestCase {
         broadcastBrickCell.dataDelegate.updateBrickCellData(brickCellMessageData, withValue: "Message1")
 
         XCTAssertTrue((project.allBroadcastMessages?.contains("Message1"))!)
+    }
+
+    func testUpdateBrickCellDataForBackground() {
+        let brick = SetBackgroundBrick()
+        let brickCell = SetBackgroundBrickCell()
+        let brickCellBackgroundData = BrickCellBackgroundData(frame: CGRect.zero, andBrickCell: brickCell, andLineNumber: 0, andParameterNumber: 0)!
+        let look = Look(name: "lookA", andPath: "path")
+
+        spriteObject.lookList = [look as Any]
+
+        let spriteObjectB = SpriteObject()
+        spriteObjectB.scene = scene
+
+        scene.add(object: spriteObjectB)
+        viewController.object = spriteObjectB
+
+        XCTAssertNil(brick.look)
+
+        brickCell.scriptOrBrick = brick
+        brickCell.dataDelegate = viewController as? BrickCellDataDelegate
+        brickCellBackgroundData.brickCell = brickCell
+
+        brickCell.dataDelegate.updateBrickCellData(brickCellBackgroundData, withValue: look!.name)
+
+        XCTAssertEqual(look, brick.look)
+    }
+
+    func testUpdateBrickCellDataForNewBackground() {
+        let brick = SetBackgroundBrick()
+        let brickCell = SetBackgroundBrickCell()
+        let brickCellBackgroundData = BrickCellBackgroundData(frame: CGRect.zero, andBrickCell: brickCell, andLineNumber: 0, andParameterNumber: 0)!
+
+        let spriteObjectB = SpriteObject()
+        spriteObjectB.scene = scene
+
+        scene.add(object: spriteObjectB)
+        viewController.object = spriteObjectB
+
+        brickCell.scriptOrBrick = brick
+        brickCell.dataDelegate = viewController as? BrickCellDataDelegate
+        brickCellBackgroundData.brickCell = brickCell
+
+        brickCell.dataDelegate.updateBrickCellData(brickCellBackgroundData, withValue: kLocalizedNewElement)
+
+        let looksTableViewController = navigationController.currentViewController as? LooksTableViewController
+        XCTAssertEqual(spriteObject, looksTableViewController?.object)
     }
 }
