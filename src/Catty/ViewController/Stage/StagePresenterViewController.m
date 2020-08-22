@@ -238,7 +238,13 @@
     positiveHeight.textColor = UIColor.redColor;
 
     // negativeHeight
-    UILabel *negativeHeight = [[UILabel alloc] initWithFrame:CGRectMake([Util screenWidth]/2 + 5,5, 40, 15)];
+    UIViewController *root = UIApplication.sharedApplication.keyWindow.rootViewController;
+    UILabel *negativeHeight;
+    if (@available(iOS 11.0, *)) {
+        negativeHeight = [[UILabel alloc] initWithFrame:CGRectMake([Util screenWidth]/2 + 5,root.view.safeAreaInsets.top, 40, 15)];
+    } else {
+        negativeHeight = [[UILabel alloc] initWithFrame:CGRectMake([Util screenWidth]/2 + 5,5, 40, 15)];
+    }
     negativeHeight.textColor = UIColor.redColor;
 
     if (!self.project.header.landscapeMode) {
