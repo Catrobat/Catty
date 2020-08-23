@@ -174,7 +174,7 @@
 #import "LooksTableViewController.h"
 #import "FormulaEditorViewController.h"
 #import "MyProjectsViewController.h"
-#import "ProjectTableViewController.h"
+#import "SceneTableViewController.h"
 #import "TermsOfUseOptionTableViewController.h"
 #import "AboutPocketCodeOptionTableViewController.h"
 #import "CatrobatTableViewController.h"

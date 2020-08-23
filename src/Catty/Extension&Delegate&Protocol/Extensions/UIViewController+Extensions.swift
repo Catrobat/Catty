@@ -34,9 +34,9 @@ extension UIViewController {
 
     @objc func openProject(_ project: Project) {
         let storyboard = UIStoryboard.init(name: "iPhone", bundle: nil)
-        guard let viewController = storyboard.instantiateViewController(withIdentifier: "ProjectTableViewController") as? ProjectTableViewController else { return }
+        guard let viewController = storyboard.instantiateViewController(withIdentifier: "SceneTableViewController") as? SceneTableViewController else { return }
 
-        viewController.project = project
+        viewController.scene = project.scene
         project.setAsLastUsedProject()
 
         self.navigationController?.pushViewController(viewController, animated: true)

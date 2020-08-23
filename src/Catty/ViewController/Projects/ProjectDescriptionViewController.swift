@@ -132,10 +132,10 @@ import UIKit
             mpvc = delegate as? MyProjectsViewController
             descriptionTextView.text = mpvc?.selectedProject.header.programDescription ?? ""
         }
-        if delegate is ProjectTableViewController {
-            var mpvc: ProjectTableViewController?
-            mpvc = delegate as? ProjectTableViewController
-            descriptionTextView.text = mpvc?.project.header.programDescription ?? ""
+        if delegate is SceneTableViewController {
+            var mpvc: SceneTableViewController?
+            mpvc = delegate as? SceneTableViewController
+            descriptionTextView.text = mpvc?.scene.project?.header.programDescription ?? ""
         }
     }
 

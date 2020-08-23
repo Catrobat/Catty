@@ -53,7 +53,7 @@
 #import "BrickCellListData.h"
 #import "LooksTableViewController.h"
 #import "SoundsTableViewController.h"
-#import "ProjectTableViewController.h"
+#import "SceneTableViewController.h"
 #import "ViewControllerDefines.h"
 #import "Look.h"
 #import "Sound.h"
@@ -1139,8 +1139,8 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     if ([brickCellData isKindOfClass:[BrickCellObjectData class]] && [brick conformsToProtocol:@protocol(BrickObjectProtocol)]) {
         Brick<BrickObjectProtocol> *objectBrick = (Brick<BrickObjectProtocol>*)brick;
         if([(NSString*)value isEqualToString:kLocalizedNewElement]) {
-            ProjectTableViewController *ptvc = [self.storyboard instantiateViewControllerWithIdentifier:kProjectTableViewControllerIdentifier];
-            [ptvc setProject:self.object.scene.project];
+            SceneTableViewController *ptvc = [self.storyboard instantiateViewControllerWithIdentifier:kSceneTableViewControllerIdentifier];
+            [ptvc setScene:self.object.scene];
             ptvc.showAddObjectActionSheetAtStart = YES;
             ptvc.afterSafeBlock =  ^(SpriteObject* object) {
                 [objectBrick setObject:object forLineNumber:line andParameterNumber:parameter];

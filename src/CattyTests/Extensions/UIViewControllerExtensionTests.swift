@@ -39,13 +39,19 @@ final class UIViewControllerExtensionTests: XCTestCase {
         XCTAssertNil(navigationController?.currentViewController)
 
         let project = ProjectMock()
+        let scene = Scene(name: "testScene")
+        scene.project = project
+
+        project.scene = scene
+
         XCTAssertFalse(project.isLastUsedProject)
 
         controller!.openProject(project)
 
-        let projectTableViewController = navigationController?.currentViewController as? ProjectTableViewController
+        let sceneTableViewController = navigationController?.currentViewController as? SceneTableViewController
 
-        XCTAssertEqual(project, projectTableViewController?.project)
+        XCTAssertEqual(scene, sceneTableViewController?.scene)
+        XCTAssertEqual(project, sceneTableViewController?.scene.project)
         XCTAssertTrue(project.isLastUsedProject)
     }
 }

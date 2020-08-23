@@ -23,7 +23,7 @@
 #import "MyProjectsViewController.h"
 #import "Util.h"
 #import "ProjectLoadingInfo.h"
-#import "ProjectTableViewController.h"
+#import "SceneTableViewController.h"
 #import "CBFileManager.h"
 #import "TableUtil.h"
 #import "CellTagDefines.h"
