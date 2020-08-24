@@ -55,7 +55,7 @@
 #define kDefaultProjectBundleOtherObjectsNamePrefix @"Mole"
 
 // indexes
-#define kNumberOfSectionsInProjectTableViewController 2
+#define kNumberOfSectionsInSceneTableViewController 2
 #define kBackgroundSectionIndex 0
 #define kBackgroundObjectIndex 0
 #define kObjectSectionIndex 1

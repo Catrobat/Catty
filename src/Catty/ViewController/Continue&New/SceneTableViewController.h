@@ -24,12 +24,9 @@
 #import "BaseTableViewController.h"
 #import "SpriteObject.h"
 
-@class ProjectLoadingInfo;
-@class Project;
+@interface SceneTableViewController : BaseTableViewController
 
-@interface ProjectTableViewController : BaseTableViewController
-
-@property (nonatomic, strong) Project *project;
+@property (nonatomic, strong) Scene *scene;
 
 @property (nonatomic,assign) BOOL showAddObjectActionSheetAtStart;
 @property (copy) void (^afterSafeBlock)(SpriteObject* object);

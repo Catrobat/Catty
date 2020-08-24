@@ -30,7 +30,7 @@
 #import "ProjectDetailStoreViewController.h"
 #import "SegueDefines.h"
 #import "Script.h"
-#import "ProjectTableViewController.h"
+#import "SceneTableViewController.h"
 #import "LoginViewController.h"
 #import "Pocket_Code-Swift.h"
 

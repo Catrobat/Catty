@@ -24,7 +24,7 @@
 #import "CBFileManager.h"
 #import "ButtonTags.h"
 #import "SegueDefines.h"
-#import "ProjectTableViewController.h"
+#import "SceneTableViewController.h"
 #import "Util.h"
 #import "EVCircularProgressView.h"
 #import "CreateView.h"
