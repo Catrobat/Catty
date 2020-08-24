@@ -44,18 +44,18 @@
     [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1];
     
     GDataXMLElement *lookElement = [children firstObject];
-    NSMutableArray *lookList = context.spriteObject.lookList;
+    SpriteObject *backgroundObject = context.spriteObjectList.firstObject;
+    NSMutableArray *lookList = backgroundObject.lookList;
 
     Look *look = nil;
     if ([CBXMLParserHelper isReferenceElement:lookElement]) {
         GDataXMLNode *referenceAttribute = [lookElement attributeForName:@"reference"];
         NSString *xPath = [referenceAttribute stringValue];
         lookElement = [lookElement singleNodeForCatrobatXPath:xPath];
-        [XMLError exceptionIfNil:lookElement message:@"Invalid reference in SetLookBrick. No or too many looks found!"];
+        [XMLError exceptionIfNil:lookElement message:@"Invalid reference in SetBackgroundBrick. No or too many looks found!"];
         GDataXMLNode *nameAttribute = [lookElement attributeForName:@"name"];
         [XMLError exceptionIfNil:nameAttribute message:@"Look element does not contain a name attribute!"];
         look = [CBXMLParserHelper findLookInArray:lookList withName:[nameAttribute stringValue]];
-        [XMLError exceptionIfNil:look message:@"Fatal error: no look found in list, but should already exist!"];
     } else {
         // OMG!! a look has been defined within the brick element...
         look = [context parseFromElement:xmlElement withClass:[Look class]];
@@ -69,14 +69,16 @@
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context
 {
     GDataXMLElement *brick = [super xmlElementForBrickType:@"SetBackgroundBrick" withContext:context];
+    SpriteObject *backgroundObject = self.script.object.scene.objects.firstObject; 
+    
     if (self.look) {
-        if([CBXMLSerializerHelper indexOfElement:self.look inArray:context.spriteObject.lookList] == NSNotFound) {
+        if([CBXMLSerializerHelper indexOfElement:self.look inArray:backgroundObject.lookList] == NSNotFound) {
             self.look = nil;
         } else {
             GDataXMLElement *referenceXMLElement = [GDataXMLElement elementWithName:@"look" context:context];
             
             NSInteger depthOfResource = [CBXMLSerializerHelper getDepthOfResource:self forSpriteObject:context.spriteObject];
-            NSString *refPath = [CBXMLSerializerHelper relativeXPathToLook:self.look inLookList:context.spriteObject.lookList withDepth:depthOfResource];
+            NSString *refPath = [CBXMLSerializerHelper relativeXPathToBackground:self.look forBackgroundObject:backgroundObject withDepth:depthOfResource];
             [referenceXMLElement addAttribute:[GDataXMLElement attributeWithName:@"reference" escapedStringValue:refPath]];
             [brick addChild:referenceXMLElement context:context];
         }

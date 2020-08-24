@@ -79,6 +79,14 @@
             [[self class] relativeXPathToRessourceList:depth], index];
 }
 
++ (NSString*)relativeXPathToBackground:(Look*)look forBackgroundObject:(SpriteObject*)backgroundObject withDepth:(NSInteger)depth
+{
+    NSString *index = [[self class] indexXPathStringForIndexNumber:[[self class] indexOfElement:look
+                                                                                        inArray:backgroundObject.lookList]];
+    return [NSString stringWithFormat:@"%@object/lookList/look%@",
+            [[self class] relativeXPathToRessourceList:depth + 1], index];
+}
+
 + (NSString*)relativeXPathFromSourcePositionStack:(CBXMLPositionStack*)sourcePositionStack
                        toDestinationPositionStack:(CBXMLPositionStack*)destinationPositionStack
 {

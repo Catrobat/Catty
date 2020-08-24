@@ -20,22 +20,24 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
+class ScriptCollectionViewControllerMock: ScriptCollectionViewController {
 
-@class Sound;
-@class Look;
-@class CBXMLPositionStack;
-@class SpriteObject;
-@protocol BrickProtocol;
+    let navigationControllerMock: UINavigationController
+    let storyboardMock: UIStoryboard
 
-@interface CBXMLSerializerHelper : NSObject
+    override var navigationController: UINavigationController? { navigationControllerMock }
+    override var storyboard: UIStoryboard? { storyboardMock }
 
-+ (NSUInteger)indexOfElement:(id)element inArray:(NSArray*)array;
-+ (NSString*)relativeXPathToSound:(Sound*)sound inSoundList:(NSArray*)soundList withDepth:(NSInteger)depth;
-+ (NSString*)relativeXPathToLook:(Look*)look inLookList:(NSArray*)lookList withDepth:(NSInteger)depth;
-+ (NSString*)relativeXPathToBackground:(Look*)look forBackgroundObject:(SpriteObject*)backgroundObject withDepth:(NSInteger)depth;
-+ (NSString*)relativeXPathFromSourcePositionStack:(CBXMLPositionStack*)sourcePositionStack
-                       toDestinationPositionStack:(CBXMLPositionStack*)destinationPositionStack;
-+ (NSInteger)getDepthOfResource:(id<BrickProtocol>)scriptOrBrick forSpriteObject:(SpriteObject*)spriteObject;
+    init(_ navigationController: UINavigationController, storyboard: UIStoryboard) {
+        self.navigationControllerMock = navigationController
+        self.storyboardMock = storyboard
 
-@end
+        let layout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSize(width: 100, height: 100)
+        super.init(collectionViewLayout: layout)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}

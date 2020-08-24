@@ -354,6 +354,9 @@
             } else if ([afterLabelParam rangeOfString:@"LOOK"].location != NSNotFound) {
                 inputViewFrame.size.width = kBrickComboBoxWidth;
                 inputField = [[BrickCellLookData alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
+            } else if ([afterLabelParam rangeOfString:@"BACKGROUND"].location != NSNotFound) {
+                inputViewFrame.size.width = kBrickComboBoxWidth;
+                inputField = [[BrickCellBackgroundData alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
             } else if ([afterLabelParam rangeOfString:@"VARIABLE"].location != NSNotFound) {
                 inputViewFrame.size.width = kBrickComboBoxWidth;
                 inputField = [[BrickCellVariableData alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
