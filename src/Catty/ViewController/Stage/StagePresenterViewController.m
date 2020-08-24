@@ -550,8 +550,10 @@
 
 - (void)hideMenuView
 {
-    self.menuViewLeadingConstraint.constant = -self.menuView.frame.size.width;
-    [self.view layoutIfNeeded];
+    dispatch_async(dispatch_get_main_queue(), ^(void){
+        self.menuViewLeadingConstraint.constant = -self.menuView.frame.size.width;
+        [self.view layoutIfNeeded];
+    });
 }
 
 #pragma mark - Getters & Setters
