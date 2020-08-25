@@ -52,8 +52,6 @@
 - (NSString*)projectPath;
 - (NSString*)previewImagePathForLookAtIndex:(NSUInteger)index;
 - (NSString*)previewImagePath; // thumbnail/preview image-path of first (!) look shown in several TableViewCells!!!
-- (NSString*)pathForLook:(Look*)look;
-- (NSString*)pathForSound:(Sound*)sound;
 - (NSUInteger)fileSizeOfLook:(Look*)look;
 - (CGSize)dimensionsOfLook:(Look*)look;
 - (NSUInteger)fileSizeOfSound:(Sound*)sound;

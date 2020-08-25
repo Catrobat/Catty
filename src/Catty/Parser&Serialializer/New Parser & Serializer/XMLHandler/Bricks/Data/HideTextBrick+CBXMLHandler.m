@@ -55,9 +55,6 @@
 
     if (self.userVariable) {
         [brick addChild:[self.userVariable xmlElementWithContext:context] context:context];
-        
-        // Element to produce Catroid equivalent XML
-        [brick addChild:[GDataXMLElement elementWithName:@"userVariableName" stringValue:self.userVariable.name context:context] context:context];
     }
     
     return brick;

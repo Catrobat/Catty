@@ -39,10 +39,12 @@
 {
     Scene *scene = nil;
     if ([xmlElement.name  isEqual: @"scene"]){
+        context.currentSceneElement = xmlElement;
         scene = [self parseScene: xmlElement withContext: context];
     } else{
         [XMLError exceptionIfNode:xmlElement isNilOrNodeNameNotEquals:@"scene"];
     }
+    context.currentSceneElement = nil;
     return scene;
 }
 
@@ -137,16 +139,16 @@
         }
     }
     
-    GDataXMLElement *userDataXmlElement = [userData xmlElementForObjectWithContext:context];
-    [sceneXmlElement addChild:userDataXmlElement];
+    GDataXMLElement *userDataXmlElement = [userData serializeForObject:context];
+    [sceneXmlElement addChild:userDataXmlElement context:context];
     
     [XMLError exceptionIfNil:self.width message:@"Original Width not present"];
     GDataXMLElement *originalWidth = [GDataXMLElement elementWithName:@"originalWidth" stringValue:self.width context:context];
-    [sceneXmlElement addChild:originalWidth];
+    [sceneXmlElement addChild:originalWidth context:context];
     
     [XMLError exceptionIfNil:self.height message:@"Original Hight not present"];
     GDataXMLElement *originalHeight = [GDataXMLElement elementWithName:@"originalHeight" stringValue:self.height context:context];
-    [sceneXmlElement addChild:originalHeight];
+    [sceneXmlElement addChild:originalHeight context:context];
     
     return sceneXmlElement;
 }

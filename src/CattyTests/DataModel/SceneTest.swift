@@ -237,6 +237,26 @@ final class SceneTest: XCTestCase {
         XCTAssertEqual(copyObject?.name, "testObject")
     }
 
+    func testImagesPath() {
+        let project = Project()
+        let expectedPath = project.projectPath() + scene.name + "/\(kProjectImagesDirName)"
+
+        XCTAssertNil(scene.imagesPath())
+
+        scene.project = project
+        XCTAssertEqual(expectedPath, scene.imagesPath())
+    }
+
+    func testSoundsPath() {
+        let project = Project()
+        let expectedPath = project.projectPath() + scene.name + "/\(kProjectSoundsDirName)"
+
+        XCTAssertNil(scene.soundsPath())
+
+        scene.project = project
+        XCTAssertEqual(expectedPath, scene.soundsPath())
+    }
+
     func testIsEqual() {
         let newScene = Scene(name: "newTestScene")
 

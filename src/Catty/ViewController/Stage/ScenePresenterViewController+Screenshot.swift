@@ -58,6 +58,9 @@
         DispatchQueue.main.async {
             do {
                 try data.write(to: URL(fileURLWithPath: filePath), options: .atomic)
+                if let scenePath = project.scene.path() {
+                    try data.write(to: URL(fileURLWithPath: scenePath + fileName), options: .atomic)
+                }
                 RuntimeImageCache.shared()?
                     .overwriteThumbnailImageFromDisk(withThumbnailPath: thumbnailPath,
                                                      image: screenshot,

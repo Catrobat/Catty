@@ -51,6 +51,14 @@
     return _spriteObjectNamePositions;
 }
 
+- (NSMutableDictionary*)soundNamePositions
+{
+    if(! _soundNamePositions)
+        _soundNamePositions = [NSMutableDictionary dictionary];
+
+    return _soundNamePositions;
+}
+
 - (NSMutableDictionary*)spriteObjectNameUserVariableListPositions
 {
     if(! _spriteObjectNameUserVariableListPositions)
@@ -96,6 +104,7 @@
     CBXMLSerializerContext *copiedContext = [super mutableCopy];
     copiedContext.currentPositionStack = [self.currentPositionStack mutableCopy];
     copiedContext.spriteObjectNamePositions = [self.spriteObjectNamePositions mutableCopy];
+    copiedContext.soundNamePositions = [self.soundNamePositions mutableCopy];
     copiedContext.projectUserVariableNamePositions = [self.projectUserVariableNamePositions mutableCopy];
     copiedContext.projectUserListNamePositions = [self.projectUserListNamePositions mutableCopy];
     copiedContext.spriteObjectNameUserVariableListPositions = [self.spriteObjectNameUserVariableListPositions mutableCopy];

@@ -31,13 +31,9 @@ final class SetLookBrickTests: XCTestCase {
     var spriteNode: CBSpriteNode!
 
     override func setUp() {
-        let scene = Scene(name: "testScene")
-        scene.project = project
         object = SpriteObject()
-        object.scene = scene
-
         project = ProjectManager.createProject(name: "a", projectId: "1")
-
+        object.scene = project.scene
         spriteNode = CBSpriteNode(spriteObject: object)
         object.spriteNode = spriteNode
 

@@ -40,6 +40,8 @@ class ProjectMigratorTest: XCTestCase {
 
         project = Project()
         project.header = header
+        project.scene = Scene(name: newFolderName)
+        project.scene.project = project
     }
 
     func testMigrateToScene() {
@@ -61,11 +63,11 @@ class ProjectMigratorTest: XCTestCase {
             XCTFail("Some error occured")
         }
 
-        XCTAssertFalse(fileManager.fileExists(automaticScreenShortAtPath))
+        XCTAssertTrue(fileManager.fileExists(automaticScreenShortAtPath))
         XCTAssertFalse(fileManager.directoryExists(imageDirectoryAtPath))
         XCTAssertFalse(fileManager.directoryExists(soundDirectoryAtPath))
-        XCTAssertFalse(fileManager.fileExists(manualScreenShotAtPath))
-        XCTAssertFalse(fileManager.fileExists(screeShotAtPath))
+        XCTAssertTrue(fileManager.fileExists(manualScreenShotAtPath))
+        XCTAssertTrue(fileManager.fileExists(screeShotAtPath))
 
         automaticScreenShortAtPath = "\(String(describing: projectPath) + newFolderName)/" + kScreenshotAutoFilename
         imageDirectoryAtPath = "\(String(describing: projectPath) + newFolderName)/" + kProjectImagesDirName
@@ -98,10 +100,10 @@ class ProjectMigratorTest: XCTestCase {
             XCTFail("Some error occured")
         }
 
-        XCTAssertFalse(fileManager.fileExists(automaticScreenShortAtPath))
+        XCTAssertTrue(fileManager.fileExists(automaticScreenShortAtPath))
         XCTAssertFalse(fileManager.directoryExists(soundDirectoryAtPath))
-        XCTAssertFalse(fileManager.fileExists(manualScreenShotAtPath))
-        XCTAssertFalse(fileManager.fileExists(screeShotAtPath))
+        XCTAssertTrue(fileManager.fileExists(manualScreenShotAtPath))
+        XCTAssertTrue(fileManager.fileExists(screeShotAtPath))
 
         automaticScreenShortAtPath = "\(String(describing: projectPath) + newFolderName)/" + kScreenshotAutoFilename
         soundDirectoryAtPath = "\(String(describing: projectPath) + newFolderName)/" + kProjectSoundsDirName
@@ -132,10 +134,10 @@ class ProjectMigratorTest: XCTestCase {
            XCTFail("Some error occured")
        }
 
-       XCTAssertFalse(fileManager.fileExists(automaticScreenShortAtPath))
+       XCTAssertTrue(fileManager.fileExists(automaticScreenShortAtPath))
        XCTAssertFalse(fileManager.directoryExists(imageDirectoryAtPath))
-       XCTAssertFalse(fileManager.fileExists(manualScreenShotAtPath))
-       XCTAssertFalse(fileManager.fileExists(screeShotAtPath))
+       XCTAssertTrue(fileManager.fileExists(manualScreenShotAtPath))
+       XCTAssertTrue(fileManager.fileExists(screeShotAtPath))
 
        automaticScreenShortAtPath = "\(String(describing: projectPath) + newFolderName)/" + kScreenshotAutoFilename
        imageDirectoryAtPath = "\(String(describing: projectPath) + newFolderName)/" + kProjectImagesDirName
@@ -168,8 +170,8 @@ class ProjectMigratorTest: XCTestCase {
 
        XCTAssertFalse(fileManager.directoryExists(imageDirectoryAtPath))
        XCTAssertFalse(fileManager.directoryExists(soundDirectoryAtPath))
-       XCTAssertFalse(fileManager.fileExists(manualScreenShotAtPath))
-       XCTAssertFalse(fileManager.fileExists(screeShotAtPath))
+       XCTAssertTrue(fileManager.fileExists(manualScreenShotAtPath))
+       XCTAssertTrue(fileManager.fileExists(screeShotAtPath))
 
        imageDirectoryAtPath = "\(String(describing: projectPath) + newFolderName)/" + kProjectImagesDirName
        soundDirectoryAtPath = "\(String(describing: projectPath) + newFolderName)/" + kProjectSoundsDirName
@@ -200,10 +202,10 @@ class ProjectMigratorTest: XCTestCase {
             XCTFail("Some error occured")
         }
 
-        XCTAssertFalse(fileManager.fileExists(automaticScreenShortAtPath))
+        XCTAssertTrue(fileManager.fileExists(automaticScreenShortAtPath))
         XCTAssertFalse(fileManager.directoryExists(imageDirectoryAtPath))
         XCTAssertFalse(fileManager.directoryExists(soundDirectoryAtPath))
-        XCTAssertFalse(fileManager.fileExists(screeShotAtPath))
+        XCTAssertTrue(fileManager.fileExists(screeShotAtPath))
 
         automaticScreenShortAtPath = "\(String(describing: projectPath) + newFolderName)/" + kScreenshotAutoFilename
         imageDirectoryAtPath = "\(String(describing: projectPath) + newFolderName)/" + kProjectImagesDirName
@@ -252,6 +254,44 @@ class ProjectMigratorTest: XCTestCase {
         let error = ProjectMigratorError.unknown(description: "Unable to convert version number to Float")
 
         expect { try migrate.migrateToScene(project: self.project) }.to(throwError(error))
+    }
+
+    func testMigrateToSceneForCopyScreenshot() {
+        let projectPath = project.projectPath()
+
+        let automaticScreenshortAtPath = String(describing: projectPath) + kScreenshotAutoFilename
+        let manualScreenshotAtPath = String(describing: projectPath) + kScreenshotManualFilename
+        let screeshotAtPath = String(describing: projectPath) + kScreenshotFilename
+
+        let automaticScreenshortExpectedPath = "\(String(describing: projectPath) + newFolderName)/" + kScreenshotAutoFilename
+        let manualScreenshotExpectedPath = "\(String(describing: projectPath) + newFolderName)/" + kScreenshotManualFilename
+        let screeshotExpectedPath = "\(String(describing: projectPath) + newFolderName)/" + kScreenshotFilename
+
+        let fileManager = CBFileManagerMock(filePath: [automaticScreenshortAtPath, manualScreenshotAtPath, screeshotAtPath], directoryPath: [projectPath])
+
+        XCTAssertTrue(fileManager.fileExists(automaticScreenshortAtPath))
+        XCTAssertTrue(fileManager.fileExists(manualScreenshotAtPath))
+        XCTAssertTrue(fileManager.fileExists(screeshotAtPath))
+
+        XCTAssertFalse(fileManager.fileExists(automaticScreenshortExpectedPath))
+        XCTAssertFalse(fileManager.fileExists(manualScreenshotExpectedPath))
+        XCTAssertFalse(fileManager.fileExists(screeshotExpectedPath))
+
+        let migrate = ProjectMigrator(fileManager: fileManager)
+
+        do {
+            try migrate.migrateToScene(project: project)
+        } catch {
+             XCTFail("Some error occured")
+        }
+
+        XCTAssertTrue(fileManager.fileExists(automaticScreenshortAtPath))
+        XCTAssertTrue(fileManager.fileExists(manualScreenshotAtPath))
+        XCTAssertTrue(fileManager.fileExists(screeshotAtPath))
+
+        XCTAssertTrue(fileManager.fileExists(automaticScreenshortExpectedPath))
+        XCTAssertTrue(fileManager.fileExists(manualScreenshotExpectedPath))
+        XCTAssertTrue(fileManager.fileExists(screeshotExpectedPath))
     }
 
 }

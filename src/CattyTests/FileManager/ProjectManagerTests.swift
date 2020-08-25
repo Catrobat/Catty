@@ -40,8 +40,9 @@ final class ProjectManagerTests: XCTestCase {
         }
 
         let expectedProjectPath = Project.basePath() + projectName + kProjectIDSeparator + projectId + "/"
-        let expectedImageDir = expectedProjectPath + "images"
-        let expectedSoundsDir = expectedProjectPath + "sounds"
+        let expectedImageDir = expectedProjectPath + Util.defaultSceneName(forSceneNumber: 1) + "/images"
+        let expectedSoundsDir = expectedProjectPath + Util.defaultSceneName(forSceneNumber: 1) + "/sounds"
+        let defaultAutoScreenshotPath = expectedProjectPath + kScreenshotAutoFilename
 
         let automaticScreenshotThumbnailPath = info.basePath + kScreenshotThumbnailPrefix + kScreenshotAutoFilename
 
@@ -52,12 +53,14 @@ final class ProjectManagerTests: XCTestCase {
             }
         }
 
-        let imageCache = RuntimeImageCacheMock(thumbnails: [automaticScreenshotThumbnailPath: UIImage()], cachedImages: [:])
+        let imageCache = RuntimeImageCacheMock(thumbnails: [:], cachedImages: [:])
         let fileManager = CBFileManagerMock(imageCache: imageCache)
 
         XCTAssertFalse(fileManager.directoryExists(expectedProjectPath))
         XCTAssertFalse(fileManager.directoryExists(expectedImageDir))
         XCTAssertFalse(fileManager.directoryExists(expectedSoundsDir))
+        XCTAssertFalse(fileManager.fileExists(defaultAutoScreenshotPath))
+        XCTAssertNil(imageCache.thumbnails[automaticScreenshotThumbnailPath])
 
         let expectation1 = XCTestExpectation(description: "cannot find any screenshot for project abcd")
         fileManager.loadPreviewImageAndCache(projectLoadingInfo: ProjectLoadingInfo(forProjectWithName: projectName, projectID: projectId)) { image, path in
@@ -73,6 +76,8 @@ final class ProjectManagerTests: XCTestCase {
         XCTAssertTrue(fileManager.directoryExists(expectedProjectPath))
         XCTAssertTrue(fileManager.directoryExists(expectedImageDir))
         XCTAssertTrue(fileManager.directoryExists(expectedSoundsDir))
+        XCTAssertTrue(fileManager.fileExists(defaultAutoScreenshotPath))
+        XCTAssertNotNil(imageCache.thumbnails[automaticScreenshotThumbnailPath])
 
         let expectation2 = XCTestExpectation(description: "found default screenshot for project abcd")
         fileManager.loadPreviewImageAndCache(projectLoadingInfo: info) { image, path in

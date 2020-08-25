@@ -299,6 +299,16 @@
     NSDebug(@"%@", [project description]);
     NSDebug(@"ProjectResolution: width/height:  %f / %f", project.header.screenWidth.floatValue, project.header.screenHeight.floatValue);
     [self updateLastModificationTimeForProjectWithName:loadingInfo.visibleName projectID:loadingInfo.projectID];
+    
+    CBFileManager *fileManager = [[CBFileManager alloc] init];
+    NSString *defaultSceneDirectoryPath = [NSString stringWithFormat:@"%@%@", [project projectPath], [Util defaultSceneNameForSceneNumber:1]];
+    if (![fileManager directoryExists:defaultSceneDirectoryPath]) {
+        project.header.catrobatLanguageVersion = Util.catrobatLanguageVersion;
+        ProjectMigrator *migrator = [[ProjectMigrator alloc] initWithFileManager:fileManager];
+        NSError *error;
+        [migrator migrateToSceneWithProject:project error:&error];
+    }
+    
     return project;
 }
 

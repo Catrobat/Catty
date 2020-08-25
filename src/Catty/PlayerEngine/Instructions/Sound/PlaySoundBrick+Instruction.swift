@@ -25,14 +25,13 @@
     @nonobjc func instruction() -> CBInstruction {
 
         guard let objectName = self.script?.object?.name,
-            let projectPath = self.script?.object?.projectPath()
+            let scene = self.script?.object?.scene
             else { fatalError("This should never happen!") }
 
         guard let sound = self.sound,
-            let fileName = sound.fileName
+            let fileName = sound.fileName,
+            let filePath = scene.soundsPath()
             else { return .invalidInstruction }
-
-        let filePath = projectPath + kProjectSoundsDirName
 
         return CBInstruction.execClosure { context, scheduler in
             let audioEngine = scheduler.getAudioEngine()

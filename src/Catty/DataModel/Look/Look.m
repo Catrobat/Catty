@@ -23,6 +23,7 @@
 #import "Look.h"
 #import "ProjectDefines.h"
 #import "CBMutableCopyContext.h"
+#import "Pocket_Code-Swift.h"
 
 @interface Look ()
 @end
@@ -78,6 +79,10 @@
     ];
 }
 
+- (NSString*)pathForScene: (Scene *)scene
+{
+    return [NSString stringWithFormat:@"%@/%@", [scene imagesPath], self.fileName];
+}
 #pragma mark - Copy
 - (id)mutableCopyWithContext:(CBMutableCopyContext*)context;
 {

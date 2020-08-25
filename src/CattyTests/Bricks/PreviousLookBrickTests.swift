@@ -28,15 +28,10 @@ final class PreviousLookBrickTests: AbstractBrickTest {
 
     func testNextLookBrick() {
         let object = SpriteObject()
-        let scene = Scene(name: "testScene")
-        object.scene = scene
-
         let project = ProjectManager.createProject(name: "a", projectId: "1")
-
+        object.scene = project.scene
         let spriteNode = CBSpriteNode(spriteObject: object)
         object.spriteNode = spriteNode
-        object.scene.project = project
-        project.scene = object.scene
 
         let bundle = Bundle(for: type(of: self))
         let filePath = bundle.path(forResource: "test.png", ofType: nil)
@@ -46,9 +41,9 @@ final class PreviousLookBrickTests: AbstractBrickTest {
         var look2: Look!
         do {
             look = Look(name: "test", andPath: "test.png")
-            try imageData?.write(to: URL(fileURLWithPath: object.projectPath() + "images/test.png"))
+            try imageData?.write(to: URL(fileURLWithPath: object.scene.imagesPath()! + "/test.png"))
             look2 = Look(name: "test2", andPath: "test2.png")
-            try imageData?.write(to: URL(fileURLWithPath: object.projectPath() + "images/test2.png"))
+            try imageData?.write(to: URL(fileURLWithPath: object.scene.imagesPath()! + "/test2.png"))
         } catch {
             XCTFail("Error when writing image data")
         }

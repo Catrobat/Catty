@@ -427,7 +427,7 @@
     self.images = [[NSMutableArray alloc] initWithCapacity:self.object.lookList.count];
     NSInteger count = 0;
     for(Look *look in self.object.lookList) {
-        NSString *path = [NSString stringWithFormat:@"%@%@/%@", [self.object projectPath], kProjectImagesDirName, look.fileName];
+        NSString *path = [look pathForScene:self.object.scene];
         RuntimeImageCache *imageCache = [RuntimeImageCache sharedImageCache];
         UIImage *image = [imageCache cachedImageForPath:path];
         if (!image) {

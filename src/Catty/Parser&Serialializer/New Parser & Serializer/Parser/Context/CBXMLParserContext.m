@@ -88,6 +88,7 @@
     copiedContext.programListOfLists = [self.programListOfLists mutableCopy];
     [copiedContext setLanguageVersion:self.languageVersion];
     copiedContext.rootElement = self.rootElement;
+    copiedContext.currentSceneElement = self.currentSceneElement;
     return copiedContext;
 }
 

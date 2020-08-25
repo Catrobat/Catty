@@ -44,6 +44,7 @@
     header.programLicense = [Util catrobatProgramLicense];
     header.programName = nil;
     header.remixOf = nil;
+    header.scenesEnabled = true;
     header.screenHeight = @([Util screenHeight:TRUE]);
     header.screenWidth = @([Util screenWidth:TRUE]);
     header.screenMode = kCatrobatHeaderScreenModeStretch;
@@ -94,6 +95,8 @@
     if (! [self.url isEqualToString:header.url])
         return NO;
     if (self.landscapeMode != header.landscapeMode)
+        return NO;
+    if (self.scenesEnabled != header.scenesEnabled)
         return NO;
     return YES;
 }

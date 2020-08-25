@@ -36,14 +36,9 @@ final class ChangeColorByNBrickTests: AbstractBrickTest {
         super.setUp()
         brick = ChangeColorByNBrick()
         script = WhenScript()
-        let scene = Scene(name: "testScene")
         object = SpriteObject()
-        object.scene = scene
-
         project = ProjectManager.createProject(name: "a", projectId: "1")
-        object.scene.project = project
-        project.scene = object.scene
-
+        object.scene = project.scene
         spriteNode = CBSpriteNode(spriteObject: object)
         object.spriteNode = spriteNode
         object.scene.project = project
@@ -54,7 +49,7 @@ final class ChangeColorByNBrickTests: AbstractBrickTest {
         let look = Look(name: "test", andPath: "test.png")
 
         do {
-            try imageData?.write(to: URL(fileURLWithPath: object.projectPath() + "images/test.png"))
+            try imageData?.write(to: URL(fileURLWithPath: object.scene.imagesPath()! + "/test.png"))
         } catch {
             XCTFail("Error when writing image data")
         }

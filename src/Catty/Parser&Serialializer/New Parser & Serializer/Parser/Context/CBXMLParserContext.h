@@ -35,6 +35,7 @@
 @property (nonatomic, readonly) CGFloat languageVersion;
 
 @property (nonatomic, strong) GDataXMLElement *rootElement;
+@property (nonatomic, strong) GDataXMLElement *currentSceneElement;
 
 //------------------------------------------------------------------------------------------------------------
 // resources data used while traversing the tree

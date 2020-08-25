@@ -58,9 +58,19 @@
         [XMLError exceptionIfNil:sound message:@"Fatal error: no sound found in list, but should already exist!"];
     } else {
         // OMG!! a sound has been defined within the brick element...
-        sound = [context parseFromElement:xmlElement withClass:[Sound class]];
-        [XMLError exceptionIfNil:sound message:@"Unable to parse sound..."];
-        [soundList addObject:sound];
+        GDataXMLElement *soundElement = [xmlElement childWithElementName:@"sound"];
+        [XMLError exceptionIfNil:soundElement message:@"sound element not present"];
+        
+        GDataXMLElement *soundName = [soundElement childWithElementName:@"name"];
+        [XMLError exceptionIfNil:soundName message:@"Sound name not present"];
+        
+        sound = [CBXMLParserHelper findSoundInArray:soundList withName:[soundName stringValue]];
+        
+        if (sound == nil) {
+            sound = [context parseFromElement:soundElement withClass:[Sound class]];
+            [XMLError exceptionIfNil:sound message:@"Unable to parse sound..."];
+            [soundList addObject:sound];
+        }
     }
     playSoundBrick.sound = sound;
     return playSoundBrick;
@@ -73,12 +83,7 @@
         if([CBXMLSerializerHelper indexOfElement:self.sound inArray:context.spriteObject.soundList] == NSNotFound) {
             self.sound = nil;
         } else {
-            GDataXMLElement *referenceXMLElement = [GDataXMLElement elementWithName:@"sound" context:context];
-            NSInteger depthOfResource = [CBXMLSerializerHelper getDepthOfResource:self forSpriteObject:context.spriteObject];
-            NSString *refPath = [CBXMLSerializerHelper relativeXPathToSound:self.sound
-                                inSoundList:context.spriteObject.soundList withDepth:depthOfResource];
-            [referenceXMLElement addAttribute:[GDataXMLElement attributeWithName:@"reference" escapedStringValue:refPath]];
-            [brick addChild:referenceXMLElement context:context];
+            [brick addChild:[self.sound xmlElementWithContext:context] context:context];
         }
     }
     return brick;

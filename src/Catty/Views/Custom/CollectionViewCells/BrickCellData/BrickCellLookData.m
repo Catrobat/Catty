@@ -50,7 +50,7 @@
                 for(Look *look in lookBrick.script.object.lookList) {
                     [options addObject:look.name];
                     if([look.name isEqualToString:currentLook.name]){
-                        NSString *path = [NSString stringWithFormat:@"%@%@/%@", [lookBrick.script.object projectPath], kProjectImagesDirName, look.fileName];
+                        NSString *path = [look pathForScene:lookBrick.script.object.scene];
                         RuntimeImageCache *imageCache = [RuntimeImageCache sharedImageCache];
                         UIImage *image = [imageCache cachedImageForPath:path];
                         
