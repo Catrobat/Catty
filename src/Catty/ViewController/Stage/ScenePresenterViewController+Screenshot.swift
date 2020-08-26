@@ -26,15 +26,15 @@
     public static var previewImageHeight: CGFloat { previewImageWidth }
 
     @objc(takeAutomaticScreenshotForSKView: andProject:)
-    func takeAutomaticScreenshot(for skView: SKView, and project: Project) {
+    func takeAutomaticScreenshot(for skView: SKView, and scene: Scene) {
         guard let snapshot = self.screenshot(for: skView) else { return }
-        saveScreenshot(snapshot, for: project, manualScreenshot: false)
+        saveScreenshot(snapshot, for: scene, manualScreenshot: false)
     }
 
     @objc(takeManualScreenshotForSKView: andProject:)
-    func takeManualScreenshot(for skView: SKView, and project: Project) {
+    func takeManualScreenshot(for skView: SKView, and scene: Scene) {
         guard let snapshot = self.screenshot(for: skView) else { return }
-        saveScreenshot(snapshot, for: project, manualScreenshot: true)
+        saveScreenshot(snapshot, for: scene, manualScreenshot: true)
     }
 
     private func screenshot(for skView: SKView) -> UIImage? {
@@ -49,7 +49,9 @@
         return image.crop(rect: CGRect(origin: center, size: size))!
     }
 
-    private func saveScreenshot(_ screenshot: UIImage, for project: Project, manualScreenshot: Bool) {
+    private func saveScreenshot(_ screenshot: UIImage, for scene: Scene, manualScreenshot: Bool) {
+        guard let project = scene.project else { return }
+
         let fileName = manualScreenshot ? kScreenshotManualFilename : kScreenshotAutoFilename
         let filePath = project.projectPath() + fileName
         let thumbnailPath = project.projectPath() + kScreenshotThumbnailPrefix + fileName
@@ -58,7 +60,7 @@
         DispatchQueue.main.async {
             do {
                 try data.write(to: URL(fileURLWithPath: filePath), options: .atomic)
-                if let scenePath = project.scene.path() {
+                if let scenePath = scene.path() {
                     try data.write(to: URL(fileURLWithPath: scenePath + fileName), options: .atomic)
                 }
                 RuntimeImageCache.shared()?
