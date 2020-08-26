@@ -40,34 +40,54 @@ final class StagePresenterViewControllerTest: XCTestCase {
     }
 
     func testAutomaticScreenshot() {
-        let expectedPath = project.projectPath() + kScreenshotAutoFilename
+        let expectedRootPath = project.projectPath() + kScreenshotAutoFilename
+        let expectedScenePath = project.scene.path()! + kScreenshotAutoFilename
+
         let exp = expectation(description: "screenshot saved")
 
-        vc.takeAutomaticScreenshot(for: skView, and: project)
+        vc.takeAutomaticScreenshot(for: skView, and: project.scene)
 
         DispatchQueue.main.async { exp.fulfill() }
         waitForExpectations(timeout: 5, handler: nil)
 
-        XCTAssertTrue(FileManager.default.fileExists(atPath: expectedPath))
+        XCTAssertTrue(FileManager.default.fileExists(atPath: expectedRootPath))
+        XCTAssertTrue(FileManager.default.fileExists(atPath: expectedScenePath))
 
-        let image = UIImage(contentsOfFile: expectedPath)
-        XCTAssertEqual(CGFloat(type(of: vc).previewImageWidth), image?.size.width)
-        XCTAssertEqual(CGFloat(type(of: vc).previewImageHeight), image?.size.height)
+        let rootImage = UIImage(contentsOfFile: expectedRootPath)
+        let sceneImage = UIImage(contentsOfFile: expectedScenePath)
+        XCTAssertFalse(rootImage === sceneImage)
+        XCTAssertEqual(sceneImage?.size.width, rootImage?.size.width)
+        XCTAssertEqual(sceneImage?.size.height, rootImage?.size.height)
+
+        XCTAssertEqual(CGFloat(type(of: vc).previewImageWidth), rootImage?.size.width)
+        XCTAssertEqual(CGFloat(type(of: vc).previewImageHeight), rootImage?.size.height)
+        XCTAssertEqual(CGFloat(type(of: vc).previewImageWidth), sceneImage?.size.width)
+        XCTAssertEqual(CGFloat(type(of: vc).previewImageHeight), sceneImage?.size.height)
     }
 
     func testManualScreenshot() {
-        let expectedPath = project.projectPath() + kScreenshotManualFilename
+        let expectedRootPath = project.projectPath() + kScreenshotManualFilename
+        let expectedScenePath = project.scene.path()! + kScreenshotManualFilename
+
         let exp = expectation(description: "screenshot saved")
-        vc.takeManualScreenshot(for: skView, and: project)
+        vc.takeManualScreenshot(for: skView, and: project.scene)
 
         DispatchQueue.main.async { exp.fulfill() }
         waitForExpectations(timeout: 5, handler: nil)
 
-        XCTAssertTrue(FileManager.default.fileExists(atPath: expectedPath))
+        XCTAssertTrue(FileManager.default.fileExists(atPath: expectedRootPath))
+        XCTAssertTrue(FileManager.default.fileExists(atPath: expectedScenePath))
 
-        let image = UIImage(contentsOfFile: expectedPath)
-        XCTAssertEqual(CGFloat(type(of: vc).previewImageWidth), image?.size.width)
-        XCTAssertEqual(CGFloat(type(of: vc).previewImageHeight), image?.size.height)
+        let rootImage = UIImage(contentsOfFile: expectedRootPath)
+        let sceneImage = UIImage(contentsOfFile: expectedScenePath)
+        XCTAssertFalse(rootImage === sceneImage)
+        XCTAssertEqual(sceneImage?.size.width, rootImage?.size.width)
+        XCTAssertEqual(sceneImage?.size.height, rootImage?.size.height)
+
+        XCTAssertEqual(CGFloat(type(of: vc).previewImageWidth), rootImage?.size.width)
+        XCTAssertEqual(CGFloat(type(of: vc).previewImageHeight), rootImage?.size.height)
+        XCTAssertEqual(CGFloat(type(of: vc).previewImageWidth), sceneImage?.size.width)
+        XCTAssertEqual(CGFloat(type(of: vc).previewImageHeight), sceneImage?.size.height)
     }
 
     func testNotification() {
