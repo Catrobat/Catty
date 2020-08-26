@@ -644,6 +644,10 @@
             <brick type="StampBrick">
               <commentedOut>false</commentedOut>
             </brick>
+            <brick type="GoToBrick">
+              <commentedOut>false</commentedOut>
+              <spinnerSelection>80</spinnerSelection>
+            </brick>
           </brickList>
           <commentedOut>false</commentedOut>
           <isUserScript>false</isUserScript>

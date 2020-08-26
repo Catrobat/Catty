@@ -187,16 +187,36 @@ final class Stage: SKScene {
                 var context: CBScriptContext?
                 switch script {
                 case let startScript as StartScript:
-                    context = CBStartScriptContext(startScript: startScript, spriteNode: spriteNode, formulaInterpreter: formulaManager, state: .runnable)
+                    context = CBStartScriptContext(
+                        startScript: startScript,
+                        spriteNode: spriteNode,
+                        formulaInterpreter: formulaManager,
+                        touchManager: formulaManager.touchManager,
+                        state: .runnable)
 
                 case let whenScript as WhenScript:
-                    context = CBWhenScriptContext(whenScript: whenScript, spriteNode: spriteNode, formulaInterpreter: formulaManager, state: .runnable)
+                    context = CBWhenScriptContext(
+                        whenScript: whenScript,
+                        spriteNode: spriteNode,
+                        formulaInterpreter: formulaManager,
+                        touchManager: formulaManager.touchManager,
+                        state: .runnable)
 
                 case let whenTouchDownScript as WhenTouchDownScript:
-                    context = CBWhenTouchDownScriptContext(whenTouchDownScript: whenTouchDownScript, spriteNode: spriteNode, formulaInterpreter: formulaManager, state: .runnable)
+                    context = CBWhenTouchDownScriptContext(
+                        whenTouchDownScript: whenTouchDownScript,
+                        spriteNode: spriteNode,
+                        formulaInterpreter: formulaManager,
+                        touchManager: formulaManager.touchManager,
+                        state: .runnable)
 
                 case let bcScript as BroadcastScript:
-                    context = CBBroadcastScriptContext(broadcastScript: bcScript, spriteNode: spriteNode, formulaInterpreter: formulaManager, state: .runnable)
+                    context = CBBroadcastScriptContext(
+                        broadcastScript: bcScript,
+                        spriteNode: spriteNode,
+                        formulaInterpreter: formulaManager,
+                        touchManager: formulaManager.touchManager,
+                        state: .runnable)
                     if let broadcastContext = context as? CBBroadcastScriptContext {
                         broadcastHandler.subscribeBroadcastContext(broadcastContext)
                     }

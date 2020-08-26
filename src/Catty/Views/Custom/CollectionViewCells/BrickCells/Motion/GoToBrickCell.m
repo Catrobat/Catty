@@ -20,16 +20,33 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "SpriteObject.h"
-#import "CBXMLNodeProtocol.h"
+#import "GoToBrickCell.h"
 
-@interface SpriteObject (CBXMLHandler) <CBXMLNodeProtocol>
+@interface GoToBrickCell()
+@property (nonatomic, strong) UILabel *textLabel;
+@end
 
-#if TESTMODE
-+ (NSMutableArray*)parseAndCreateLooks:(GDataXMLElement*)objectElement withContext:(CBXMLParserContext*)context;
-+ (NSMutableArray*)parseAndCreateSounds:(GDataXMLElement*)objectElement withContext:(CBXMLParserContext*)context;
-#endif
+@implementation GoToBrickCell
 
-- (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context asPointedObject:(BOOL)asPointedObject asGoToObject:(BOOL)asGoToObject;
++ (CGFloat)cellHeight
+{
+    return kBrickHeight2h;
+}
+
+- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
+{
+    self.textLabel = inlineViewSubViews[0];
+    self.objectComboBoxView = inlineViewSubViews[1];
+}
+
+- (NSString*)brickTitleForBackground:(BOOL)isBackground andInsertionScreen:(BOOL)isInsertion
+{
+    return [kLocalizedGoTo stringByAppendingString:@"\n%@"];
+}
+
+- (NSArray<NSString*>*)parameters
+{
+    return [[NSArray alloc] initWithObjects:@"{STATICCHOICE}", nil];
+}
 
 @end

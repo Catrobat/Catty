@@ -56,6 +56,7 @@
             TurnLeftBrick(),
             TurnRightBrick(),
             PointToBrick(),
+            GoToBrick(),
             IfOnEdgeBounceBrick(),
             GoNStepsBackBrick(),
             VibrationBrick(),

@@ -20,16 +20,9 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "SpriteObject.h"
+#import "GoToBrick.h"
 #import "CBXMLNodeProtocol.h"
 
-@interface SpriteObject (CBXMLHandler) <CBXMLNodeProtocol>
-
-#if TESTMODE
-+ (NSMutableArray*)parseAndCreateLooks:(GDataXMLElement*)objectElement withContext:(CBXMLParserContext*)context;
-+ (NSMutableArray*)parseAndCreateSounds:(GDataXMLElement*)objectElement withContext:(CBXMLParserContext*)context;
-#endif
-
-- (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context asPointedObject:(BOOL)asPointedObject asGoToObject:(BOOL)asGoToObject;
+@interface GoToBrick (CBXMLHandler) <CBXMLNodeProtocol>
 
 @end

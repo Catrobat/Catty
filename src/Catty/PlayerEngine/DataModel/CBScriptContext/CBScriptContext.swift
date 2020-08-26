@@ -25,6 +25,7 @@ protocol CBScriptContextProtocol: AnyObject {
     var spriteNode: CBSpriteNode { get }
     var script: Script { get }
     var formulaInterpreter: FormulaInterpreterProtocol { get }
+    var touchManager: TouchManagerProtocol { get }
     var state: CBScriptContextState { get set }
     var index: Int { get set }
 
@@ -47,6 +48,7 @@ class CBScriptContext: CBScriptContextProtocol {
     final let spriteNode: CBSpriteNode
     final let script: Script
     final let formulaInterpreter: FormulaInterpreterProtocol
+    final let touchManager: TouchManagerProtocol
     final var state: CBScriptContextState
     final var count: Int { _instructionList.count }
     final var index: Int = 0
@@ -55,17 +57,18 @@ class CBScriptContext: CBScriptContextProtocol {
     private lazy final var _instructionList = [CBInstruction]()
 
     // MARK: - Initializers
-    convenience init?(script: Script, spriteNode: CBSpriteNode, formulaInterpreter: FormulaInterpreterProtocol) {
-        self.init(script: script, spriteNode: spriteNode, formulaInterpreter: formulaInterpreter, state: .runnable, instructionList: [])
+    convenience init?(script: Script, spriteNode: CBSpriteNode, formulaInterpreter: FormulaInterpreterProtocol, touchManager: TouchManagerProtocol) {
+        self.init(script: script, spriteNode: spriteNode, formulaInterpreter: formulaInterpreter, touchManager: touchManager, state: .runnable, instructionList: [])
     }
 
-    init?(script: Script, spriteNode: CBSpriteNode, formulaInterpreter: FormulaInterpreterProtocol, state: CBScriptContextState, instructionList: [CBInstruction]) {
+    init?(script: Script, spriteNode: CBSpriteNode, formulaInterpreter: FormulaInterpreterProtocol, touchManager: TouchManagerProtocol, state: CBScriptContextState, instructionList: [CBInstruction]) {
         guard let spriteNodeName = spriteNode.name else { return nil }
         let nodeIndex = spriteNode.spriteObject.scriptList.index(of: script)
 
         self.spriteNode = spriteNode
         self.script = script
         self.formulaInterpreter = formulaInterpreter
+        self.touchManager = touchManager
         self.state = state
         self.id = "[\(spriteNodeName)][\(nodeIndex)]"
         print(self.id)
@@ -119,15 +122,19 @@ class CBScriptContext: CBScriptContextProtocol {
 //--------------------------------------------------------------------------------------------------
 final class CBWhenScriptContext: CBScriptContext {
 
-    convenience init?(whenScript: WhenScript, spriteNode: CBSpriteNode, formulaInterpreter: FormulaInterpreterProtocol, state: CBScriptContextState) {
-        self.init(whenScript: whenScript, spriteNode: spriteNode, formulaInterpreter: formulaInterpreter, state: state, instructionList: [])
+    convenience init?(whenScript: WhenScript, spriteNode: CBSpriteNode, formulaInterpreter: FormulaInterpreterProtocol, touchManager: TouchManagerProtocol, state: CBScriptContextState) {
+        self.init(whenScript: whenScript, spriteNode: spriteNode, formulaInterpreter: formulaInterpreter, touchManager: touchManager, state: state, instructionList: [])
     }
 
-    init?(whenScript: WhenScript, spriteNode: CBSpriteNode, formulaInterpreter: FormulaInterpreterProtocol, state: CBScriptContextState, instructionList: [CBInstruction]
+    init?(whenScript: WhenScript, spriteNode: CBSpriteNode,
+          formulaInterpreter: FormulaInterpreterProtocol,
+          touchManager: TouchManagerProtocol, state: CBScriptContextState,
+          instructionList: [CBInstruction]
         ) {
         super.init(script: whenScript,
                    spriteNode: spriteNode,
                    formulaInterpreter: formulaInterpreter,
+                   touchManager: touchManager,
                    state: state,
                    instructionList: instructionList)
     }
@@ -137,15 +144,25 @@ final class CBWhenScriptContext: CBScriptContext {
 //--------------------------------------------------------------------------------------------------
 final class CBWhenTouchDownScriptContext: CBScriptContext {
 
-    convenience init?(whenTouchDownScript: WhenTouchDownScript, spriteNode: CBSpriteNode, formulaInterpreter: FormulaInterpreterProtocol, state: CBScriptContextState) {
-        self.init(whenTouchDownScript: whenTouchDownScript, spriteNode: spriteNode, formulaInterpreter: formulaInterpreter, state: state, instructionList: [])
+    convenience init?(whenTouchDownScript: WhenTouchDownScript,
+                      spriteNode: CBSpriteNode,
+                      formulaInterpreter: FormulaInterpreterProtocol,
+                      touchManager: TouchManagerProtocol,
+                      state: CBScriptContextState) {
+        self.init(whenTouchDownScript: whenTouchDownScript, spriteNode: spriteNode, formulaInterpreter: formulaInterpreter, touchManager: touchManager, state: state, instructionList: [])
     }
 
-    init?(whenTouchDownScript: WhenTouchDownScript, spriteNode: CBSpriteNode, formulaInterpreter: FormulaInterpreterProtocol, state: CBScriptContextState, instructionList: [CBInstruction]
+    init?(whenTouchDownScript: WhenTouchDownScript,
+          spriteNode: CBSpriteNode,
+          formulaInterpreter: FormulaInterpreterProtocol,
+          touchManager: TouchManagerProtocol,
+          state: CBScriptContextState,
+          instructionList: [CBInstruction]
         ) {
         super.init(script: whenTouchDownScript,
                    spriteNode: spriteNode,
                    formulaInterpreter: formulaInterpreter,
+                   touchManager: touchManager,
                    state: state,
                    instructionList: instructionList)
     }
@@ -158,17 +175,23 @@ final class CBBroadcastScriptContext: CBScriptContext, CBBroadcastScriptContextP
     let broadcastMessage: String
     var waitingContext: CBScriptContextProtocol?
 
-    convenience init?(broadcastScript: BroadcastScript, spriteNode: CBSpriteNode, formulaInterpreter: FormulaInterpreterProtocol, state: CBScriptContextState) {
-        self.init(broadcastScript: broadcastScript, spriteNode: spriteNode, formulaInterpreter: formulaInterpreter, state: state, instructionList: [])
+    convenience init?(broadcastScript: BroadcastScript, spriteNode: CBSpriteNode, formulaInterpreter: FormulaInterpreterProtocol, touchManager: TouchManagerProtocol, state: CBScriptContextState) {
+        self.init(broadcastScript: broadcastScript, spriteNode: spriteNode, formulaInterpreter: formulaInterpreter, touchManager: touchManager, state: state, instructionList: [])
     }
 
-    init?(broadcastScript: BroadcastScript, spriteNode: CBSpriteNode, formulaInterpreter: FormulaInterpreterProtocol, state: CBScriptContextState, instructionList: [CBInstruction]
+    init?(broadcastScript: BroadcastScript,
+          spriteNode: CBSpriteNode,
+          formulaInterpreter: FormulaInterpreterProtocol,
+          touchManager: TouchManagerProtocol,
+          state: CBScriptContextState,
+          instructionList: [CBInstruction]
         ) {
         broadcastMessage = broadcastScript.receivedMessage
         waitingContext = nil
         super.init(script: broadcastScript,
                    spriteNode: spriteNode,
                    formulaInterpreter: formulaInterpreter,
+                   touchManager: touchManager,
                    state: state,
                    instructionList: instructionList)
     }
@@ -178,15 +201,21 @@ final class CBBroadcastScriptContext: CBScriptContext, CBBroadcastScriptContextP
 //--------------------------------------------------------------------------------------------------
 final class CBStartScriptContext: CBScriptContext {
 
-    convenience init?(startScript: StartScript, spriteNode: CBSpriteNode, formulaInterpreter: FormulaInterpreterProtocol, state: CBScriptContextState) {
-        self.init(startScript: startScript, spriteNode: spriteNode, formulaInterpreter: formulaInterpreter, state: state, instructionList: [])
+    convenience init?(startScript: StartScript, spriteNode: CBSpriteNode, formulaInterpreter: FormulaInterpreterProtocol, touchManager: TouchManagerProtocol, state: CBScriptContextState) {
+        self.init(startScript: startScript, spriteNode: spriteNode, formulaInterpreter: formulaInterpreter, touchManager: touchManager, state: state, instructionList: [])
     }
 
-    init?(startScript: StartScript, spriteNode: CBSpriteNode, formulaInterpreter: FormulaInterpreterProtocol, state: CBScriptContextState, instructionList: [CBInstruction]
+    init?(startScript: StartScript,
+          spriteNode: CBSpriteNode,
+          formulaInterpreter: FormulaInterpreterProtocol,
+          touchManager: TouchManagerProtocol,
+          state: CBScriptContextState,
+          instructionList: [CBInstruction]
         ) {
         super.init(script: startScript,
                    spriteNode: spriteNode,
                    formulaInterpreter: formulaInterpreter,
+                   touchManager: touchManager,
                    state: state,
                    instructionList: instructionList)
     }

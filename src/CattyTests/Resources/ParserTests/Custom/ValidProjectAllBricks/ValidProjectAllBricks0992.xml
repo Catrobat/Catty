@@ -654,6 +654,40 @@
                 <brick type="StampBrick">
                   <commentedOut>false</commentedOut>
                 </brick>
+                <brick type="GoToBrick">
+                  <commentedOut>false</commentedOut>
+                  <spinnerSelection>80</spinnerSelection>
+                </brick>
+                <brick type="GoToBrick">
+                  <commentedOut>false</commentedOut>
+                  <spinnerSelection>81</spinnerSelection>
+                </brick>
+              </brickList>
+              <commentedOut>false</commentedOut>
+              <isUserScript>false</isUserScript>
+            </script>
+          </scriptList>
+          <soundList/>
+          <userBricks/>
+        </object>
+        
+        <object type="SingleSprite" name="object 1">
+          <lookList/>
+          <nfcTagList/>
+          <scriptList>
+            <script type="StartScript">
+              <brickList>
+                <brick type="GoToBrick">
+                  <commentedOut>false</commentedOut>
+                  <destinationSprite type="SingleSprite" name="object 2">
+                    <lookList/>
+                    <nfcTagList/>
+                    <scriptList/>
+                    <soundList/>
+                    <userBricks/>
+                  </destinationSprite>
+                  <spinnerSelection>82</spinnerSelection>
+                </brick>
               </brickList>
               <commentedOut>false</commentedOut>
               <isUserScript>false</isUserScript>
@@ -663,6 +697,7 @@
           <userBricks/>
         </object>
         <object reference="../object/scriptList/script/brickList/brick[10]/pointedObject"/>
+        <object reference="../object[2]/scriptList/script/brickList/brick/destinationSprite"/>
       </objectList>
       <data>
         <objectListOfList>
@@ -672,6 +707,18 @@
           </entry>
           <entry>
             <object reference="../../../../objectList/object/scriptList/script/brickList/brick[10]/pointedObject"/>
+            <list/>
+          </entry>
+          <entry>
+            <object reference="../../../../objectList/object[2]"/>
+            <list/>
+          </entry>
+          <entry>
+            <object reference="../../../../objectList/object[3]"/>
+            <list/>
+          </entry>
+          <entry>
+            <object reference="../../../../objectList/object[3]/scriptList/script/brickList/brick/destinationSprite"/>
             <list/>
           </entry>
         </objectListOfList>
@@ -684,6 +731,18 @@
           </entry>
           <entry>
             <object reference="../../../../objectList/object/scriptList/script/brickList/brick[10]/pointedObject"/>
+            <list/>
+          </entry>
+          <entry>
+            <object reference="../../../../objectList/object[2]"/>
+            <list/>
+          </entry>
+          <entry>
+            <object reference="../../../../objectList/object[3]"/>
+            <list/>
+          </entry>
+          <entry>
+            <object reference="../../../../objectList/object[3]/scriptList/script/brickList/brick/destinationSprite"/>
             <list/>
           </entry>
         </objectVariableList>

@@ -1508,15 +1508,21 @@
 		CAE3C79D1B49FABC00AFE9D7 /* CBSequenceVisitProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE3C79B1B49FABC00AFE9D7 /* CBSequenceVisitProtocol.swift */; };
 		CAE3E4EB1B4C509800CC88BD /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = CAE3E4E91B4C509800CC88BD /* test.png */; };
 		CAE3E4EC1B4C509800CC88BD /* test2.png in Resources */ = {isa = PBXBuildFile; fileRef = CAE3E4EA1B4C509800CC88BD /* test2.png */; };
+		D30359E624445ABE006688F5 /* GoToBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = D30359E524445ABE006688F5 /* GoToBrick+CBXMLHandler.m */; };
+		D30359E82444723D006688F5 /* GoToBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30359E72444723D006688F5 /* GoToBrick+Instruction.swift */; };
 		D30ECD1C2440963100FAD17D /* CBFrontendTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30ECD1A2440963100FAD17D /* CBFrontendTests.swift */; };
 		D30ECD1D2440963100FAD17D /* CBFilterDisabledTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30ECD1B2440963100FAD17D /* CBFilterDisabledTests.swift */; };
 		D311958823C72BBF005FC1A1 /* FormulaElementTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D311958723C72BBF005FC1A1 /* FormulaElementTest.swift */; };
 		D3374C4423AA5AC10088FA36 /* UserListFunctionsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3374C4323AA5AC10088FA36 /* UserListFunctionsTest.swift */; };
 		D346B25923FAFEAB00FDBFA8 /* ScriptCollectionViewController+Disable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D346B25823FAFEAB00FDBFA8 /* ScriptCollectionViewController+Disable.swift */; };
+		D38F58622441B19F0079F6EA /* GoToBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = D38F58612441B19F0079F6EA /* GoToBrick.m */; };
+		D38F58672441CFCA0079F6EA /* GoToBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D38F58662441CFCA0079F6EA /* GoToBrickCell.m */; };
 		D3AF5C19243F6A4C00B04BC6 /* BrickCategoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AF5C18243F6A4C00B04BC6 /* BrickCategoryTest.swift */; };
 		D3AF5C1E243F822F00B04BC6 /* DisabledBricks_0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = D3AF5C1D243F822E00B04BC6 /* DisabledBricks_0991.xml */; };
+		D3C6E3A824C8134A00A9E186 /* GoToBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C6E3A724C8134A00A9E186 /* GoToBrickTests.swift */; };
 		D3CF3A0F23D07F06006B2667 /* ProjectMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CF3A0E23D07F06006B2667 /* ProjectMock.swift */; };
 		D3CF986223FD23E40076F366 /* ScriptCollectionViewControllerDisableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CF986123FD23E40076F366 /* ScriptCollectionViewControllerDisableTests.swift */; };
+		D3E4865C24766DE9002FAEBA /* GoToBrick_0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = D3E4865B24766DE9002FAEBA /* GoToBrick_0991.xml */; };
 		D3F2717923CC9ADF00E339FD /* FormulaFunctionsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F2717823CC9ADF00E339FD /* FormulaFunctionsTest.swift */; };
 		E405EABB212D4E420074ADDB /* SearchStoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E405EABA212D4E420074ADDB /* SearchStoreCell.swift */; };
 		E4668B3820FDC1B90021FA0B /* FeaturedProjectsStoreTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4668B3720FDC1B90021FA0B /* FeaturedProjectsStoreTableViewController.swift */; };
@@ -3622,15 +3628,24 @@
 		CC7AC0EC7C3FE7D0298ABB4B /* sl */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CC8375C29E5886620CED275A /* ja */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CD83AA3639A4C0DD990858AD /* ps */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = ps; path = ps.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D30359E424445A6B006688F5 /* GoToBrick+CBXMLHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "GoToBrick+CBXMLHandler.h"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Motion/GoToBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
+		D30359E524445ABE006688F5 /* GoToBrick+CBXMLHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "GoToBrick+CBXMLHandler.m"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Motion/GoToBrick+CBXMLHandler.m"; sourceTree = SOURCE_ROOT; };
+		D30359E72444723D006688F5 /* GoToBrick+Instruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "GoToBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Motion/GoToBrick+Instruction.swift"; sourceTree = "<group>"; };
 		D30ECD1A2440963100FAD17D /* CBFrontendTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBFrontendTests.swift; sourceTree = "<group>"; };
 		D30ECD1B2440963100FAD17D /* CBFilterDisabledTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBFilterDisabledTests.swift; sourceTree = "<group>"; };
 		D311958723C72BBF005FC1A1 /* FormulaElementTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FormulaElementTest.swift; path = Formula/FormulaElementTest.swift; sourceTree = "<group>"; };
 		D3374C4323AA5AC10088FA36 /* UserListFunctionsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListFunctionsTest.swift; sourceTree = "<group>"; };
 		D346B25823FAFEAB00FDBFA8 /* ScriptCollectionViewController+Disable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScriptCollectionViewController+Disable.swift"; sourceTree = "<group>"; };
+		D38F58612441B19F0079F6EA /* GoToBrick.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GoToBrick.m; sourceTree = "<group>"; };
+		D38F58652441B24C0079F6EA /* GoToBrick.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoToBrick.h; sourceTree = "<group>"; };
+		D38F58662441CFCA0079F6EA /* GoToBrickCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GoToBrickCell.m; sourceTree = "<group>"; };
+		D38F58682441CFDA0079F6EA /* GoToBrickCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoToBrickCell.h; sourceTree = "<group>"; };
 		D3AF5C18243F6A4C00B04BC6 /* BrickCategoryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrickCategoryTest.swift; sourceTree = "<group>"; };
 		D3AF5C1D243F822E00B04BC6 /* DisabledBricks_0991.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = DisabledBricks_0991.xml; sourceTree = "<group>"; };
+		D3C6E3A724C8134A00A9E186 /* GoToBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoToBrickTests.swift; sourceTree = "<group>"; };
 		D3CF3A0E23D07F06006B2667 /* ProjectMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectMock.swift; sourceTree = "<group>"; };
 		D3CF986123FD23E40076F366 /* ScriptCollectionViewControllerDisableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptCollectionViewControllerDisableTests.swift; sourceTree = "<group>"; };
+		D3E4865B24766DE9002FAEBA /* GoToBrick_0991.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = GoToBrick_0991.xml; path = CattyTests/Resources/ParserTests/Custom/GoToBricks/GoToBrick_0991.xml; sourceTree = SOURCE_ROOT; };
 		D3F2717823CC9ADF00E339FD /* FormulaFunctionsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FormulaFunctionsTest.swift; path = Formula/FormulaFunctionsTest.swift; sourceTree = "<group>"; };
 		D638646D1AE63F80008569E6 /* KeychainUserDefaultsDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeychainUserDefaultsDefines.h; sourceTree = "<group>"; };
 		D737B9D786A63C4A5EEB17B4 /* it */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -4368,6 +4383,7 @@
 		2ED4175F241120AF00AFE2FD /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				D3EBE87C2488E6A90026F51A /* GoToBricks */,
 				D3AF5C1C243F81FC00B04BC6 /* DisabledBricks */,
 				2ED41787241120AF00AFE2FD /* CameraBricks */,
 				2ED4177A241120AF00AFE2FD /* ControlBricks */,
@@ -5582,6 +5598,8 @@
 				AA74EF491BC0586F00D1E954 /* TurnLeftBrick+CBXMLHandler.m */,
 				AA74EF4A1BC0586F00D1E954 /* TurnRightBrick+CBXMLHandler.h */,
 				AA74EF4B1BC0586F00D1E954 /* TurnRightBrick+CBXMLHandler.m */,
+				D30359E424445A6B006688F5 /* GoToBrick+CBXMLHandler.h */,
+				D30359E524445ABE006688F5 /* GoToBrick+CBXMLHandler.m */,
 			);
 			name = Motion;
 			path = MotionBricks;
@@ -6269,6 +6287,7 @@
 				187A3F1F2434BC4300EF1B02 /* PlaySoundAndWaitBrickTests.swift */,
 				9EBCBD862329BD700074C2D9 /* PointInDirectionBrickTests.swift */,
 				9EBCBD882329BF5F0074C2D9 /* PointToBrickTests.swift */,
+				D3C6E3A724C8134A00A9E186 /* GoToBrickTests.swift */,
 				9EBCBD8A2329C3BF0074C2D9 /* PreviousLookBrickTests.swift */,
 				4C0F9FD8204BD3D500E71B2D /* RepeatUntilBrickTests.swift */,
 				4CF4CB7621E65A9B009D6DD9 /* ReplaceItemInUserListBrickTests.swift */,
@@ -8279,6 +8298,7 @@
 				AAAF22851BC0CA590076F11E /* SetYBrick+Instruction.swift */,
 				AAAF22871BC0CFC00076F11E /* TurnLeftBrick+Instruction.swift */,
 				AAAF22891BC0D0630076F11E /* TurnRightBrick+Instruction.swift */,
+				D30359E72444723D006688F5 /* GoToBrick+Instruction.swift */,
 			);
 			name = Motion;
 			sourceTree = "<group>";
@@ -8475,6 +8495,8 @@
 				AA74EFD31BC05B5F00D1E954 /* TurnLeftBrick.m */,
 				AA74EFD41BC05B5F00D1E954 /* TurnRightBrick.h */,
 				AA74EFD51BC05B5F00D1E954 /* TurnRightBrick.m */,
+				D38F58652441B24C0079F6EA /* GoToBrick.h */,
+				D38F58612441B19F0079F6EA /* GoToBrick.m */,
 			);
 			path = Motion;
 			sourceTree = "<group>";
@@ -8709,6 +8731,8 @@
 				AA74F0761BC05FCE00D1E954 /* TurnLeftBrickCell.m */,
 				AA74F0771BC05FCE00D1E954 /* TurnRightBrickCell.h */,
 				AA74F0781BC05FCE00D1E954 /* TurnRightBrickCell.m */,
+				D38F58682441CFDA0079F6EA /* GoToBrickCell.h */,
+				D38F58662441CFCA0079F6EA /* GoToBrickCell.m */,
 			);
 			path = Motion;
 			sourceTree = "<group>";
@@ -9110,6 +9134,14 @@
 				4C55CCF824BF2B7F00FB8393 /* DisabledBricks_0992.xml */,
 			);
 			path = DisabledBricks;
+			sourceTree = "<group>";
+		};
+		D3EBE87C2488E6A90026F51A /* GoToBricks */ = {
+			isa = PBXGroup;
+			children = (
+				D3E4865B24766DE9002FAEBA /* GoToBrick_0991.xml */,
+			);
+			path = GoToBricks;
 			sourceTree = "<group>";
 		};
 		D63864691AE63EB4008569E6 /* Keychain */ = {
@@ -9586,6 +9618,7 @@
 				2ED417BC241120AF00AFE2FD /* Piano_0991.xml in Resources */,
 				2ED41847241120B000AFE2FD /* Minions__0994.xml in Resources */,
 				2ED417ED241120AF00AFE2FD /* Rock_paper_scissors_0994.xml in Resources */,
+				D3E4865C24766DE9002FAEBA /* GoToBrick_0991.xml in Resources */,
 				2ED4180F241120AF00AFE2FD /* Flap_Pac_Man_0991.xml in Resources */,
 				2ED417C1241120AF00AFE2FD /* SKYPASCAL_08.xml in Resources */,
 				2ED417A7241120AF00AFE2FD /* Word_balloon_demo_0993.xml in Resources */,
@@ -10111,6 +10144,7 @@
 				4C822659213FA7A400F3D750 /* AudioManagerMock.swift in Sources */,
 				9E4D238C232AF688009D0C3C /* SetColorBrickTests.swift in Sources */,
 				6F9CF123246E8767008CED1C /* UserListTest.swift in Sources */,
+				D3C6E3A824C8134A00A9E186 /* GoToBrickTests.swift in Sources */,
 				4CD27AAA21B5765C00DDADB5 /* FeatureMock.swift in Sources */,
 				4CEB22501B95E47500B3BE2F /* BrickMoveManagerLogicTests.m in Sources */,
 				2ED418B92411213E00AFE2FD /* XMLParserBrickTests095.swift in Sources */,
@@ -10446,6 +10480,7 @@
 				AA74EEE41BC057B900D1E954 /* RepeatBrick+CBXMLHandler.m in Sources */,
 				4C724E5F1B4D3E8C00E27479 /* UserDataContainer+CBXMLHandler.m in Sources */,
 				E405EABB212D4E420074ADDB /* SearchStoreCell.swift in Sources */,
+				D30359E82444723D006688F5 /* GoToBrick+Instruction.swift in Sources */,
 				9E5811842399BAA2004EFB56 /* PlaySoundAndWaitBrick+CBXMLHandler.m in Sources */,
 				9E78D88922A9B16200948AC3 /* AudioPlayer.swift in Sources */,
 				9218B2121CC4AB75007B4C60 /* ResizeViewManager.m in Sources */,
@@ -10971,6 +11006,7 @@
 				4C0F9F1C204ADB5900E71B2D /* ChooseCameraBrick+Instruction.swift in Sources */,
 				AA74EEDE1BC057B900D1E954 /* IfLogicBeginBrick+CBXMLHandler.m in Sources */,
 				92FF2E931A24C7D800093DA7 /* RuntimeImageCache.m in Sources */,
+				D38F58672441CFCA0079F6EA /* GoToBrickCell.m in Sources */,
 				92D56C3B1BF20B4700A54750 /* PhiroHelper.swift in Sources */,
 				AA74F0C31BC05FCE00D1E954 /* TurnRightBrickCell.m in Sources */,
 				AA74F0A01BC05FCE00D1E954 /* IfLogicElseBrickCell.m in Sources */,
@@ -11035,6 +11071,7 @@
 				F411560320E7732D00E2F254 /* InternFormula+KeyboardAdapter.swift in Sources */,
 				AA74EF781BC0589700D1E954 /* SetVariableBrick+CBXMLHandler.m in Sources */,
 				9218B2151CC4AB75007B4C60 /* ColorPickerViewController.m in Sources */,
+				D38F58622441B19F0079F6EA /* GoToBrick.m in Sources */,
 				AA74F0B91BC05FCE00D1E954 /* GlideToBrickCell.m in Sources */,
 				9218B2071CC4AB75007B4C60 /* SPUserResizableView.m in Sources */,
 				F4E6E579210DDD5C00D86FE6 /* CosFunction.swift in Sources */,
@@ -11072,6 +11109,7 @@
 				6F9CF120246E7AA7008CED1C /* UserList.swift in Sources */,
 				4C724E561B4D3E8C00E27479 /* Formula+CBXMLHandler.m in Sources */,
 				F4E6E5C2210E23D500D86FE6 /* CeilFunction.swift in Sources */,
+				D30359E624445ABE006688F5 /* GoToBrick+CBXMLHandler.m in Sources */,
 				92C6318B1BC502CB00486958 /* SearchDevicesTableViewController.swift in Sources */,
 				BA3337372195BC6D00DA3505 /* RepeatUntilBrick+CBXMLHandler.m in Sources */,
 				AA74F0031BC05B5F00D1E954 /* PlaceAtBrick.m in Sources */,

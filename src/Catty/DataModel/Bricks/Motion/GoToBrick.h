@@ -20,16 +20,16 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "SpriteObject.h"
-#import "CBXMLNodeProtocol.h"
+#import "Brick.h"
+#import "BrickStaticChoiceProtocol.h"
 
-@interface SpriteObject (CBXMLHandler) <CBXMLNodeProtocol>
+@class SpriteObject;
 
-#if TESTMODE
-+ (NSMutableArray*)parseAndCreateLooks:(GDataXMLElement*)objectElement withContext:(CBXMLParserContext*)context;
-+ (NSMutableArray*)parseAndCreateSounds:(GDataXMLElement*)objectElement withContext:(CBXMLParserContext*)context;
-#endif
+@interface GoToBrick : Brick<BrickStaticChoiceProtocol>
 
-- (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context asPointedObject:(BOOL)asPointedObject asGoToObject:(BOOL)asGoToObject;
+@property (nonatomic) int spinnerSelection;
+@property (nonatomic, weak) SpriteObject* goToObject;
+
+- (id)initWithChoice:(int)selection;
 
 @end

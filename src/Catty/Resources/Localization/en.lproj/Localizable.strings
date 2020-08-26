@@ -680,6 +680,9 @@
 "Go back" = "Go back";
 
 /* No comment provided by engineer. */
+"Go to" = "Go to";
+
+/* No comment provided by engineer. */
 "Go to front" = "Go to front";
 
 /* paint */
@@ -1259,6 +1262,9 @@
 "Projects on device" = "Projects on device";
 
 /* No comment provided by engineer. */
+"random position" = "random position";
+
+/* No comment provided by engineer. */
 "Rate Us" = "Rate Us";
 
 /* No comment provided by engineer. */
@@ -1656,6 +1662,9 @@
 
 /* No comment provided by engineer. */
 "Today" = "Today";
+
+/* No comment provided by engineer. */
+"touch position" = "touch position";
 
 /* No comment provided by engineer. */
 "transparency" = "transparency";

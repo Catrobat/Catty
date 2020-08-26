@@ -375,6 +375,9 @@
 #define kLocalizedLayer NSLocalizedString(@"layer", nil)
 #define kLocalizedLayers NSLocalizedString(@"layers", nil)
 #define kLocalizedComeToFront NSLocalizedString(@"Go to front", nil)
+#define kLocalizedGoTo NSLocalizedString(@"Go to", nil)
+#define kLocalizedGoToTouchPosition NSLocalizedString(@"touch position", nil)
+#define kLocalizedGoToRandomPosition NSLocalizedString(@"random position", nil)
 
 // look bricks
 #define kLocalizedLook NSLocalizedString(@"Look", nil)

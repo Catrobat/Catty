@@ -96,7 +96,11 @@ final class WaitBrickTests: XCTestCase {
             let expectation = self.expectation(description: "Wait expectation")
             DispatchQueue.global(qos: .background).async {
                 let start = NSDate()
-                closure(CBScriptContext(script: self.script, spriteNode: self.spriteNode, formulaInterpreter: self.formulaInterpreter)!, self.scheduler)
+                closure(CBScriptContext(script: self.script,
+                                        spriteNode: self.spriteNode,
+                                        formulaInterpreter: self.formulaInterpreter,
+                                        touchManager: self.formulaInterpreter.touchManager)!,
+                        self.scheduler)
                 let end = NSDate()
                 timeIntervalInSeconds = end.timeIntervalSince(start as Date)
                 expectation.fulfill()
