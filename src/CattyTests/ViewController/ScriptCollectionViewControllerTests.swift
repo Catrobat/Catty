@@ -20,6 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+import Nimble
 import XCTest
 
 @testable import Pocket_Code
@@ -110,5 +111,20 @@ final class ScriptCollectionViewControllerTests: XCTestCase {
 
         let looksTableViewController = navigationController.currentViewController as? LooksTableViewController
         XCTAssertEqual(spriteObject, looksTableViewController?.object)
+    }
+
+    func testBrickRemovedNotification() {
+        let viewController = ScriptCollectionViewController()
+        let brickCell = WaitBrickCell()
+        brickCell.scriptOrBrick = WaitBrick()
+
+        let collectionView = UICollectionViewMock(cell: brickCell)
+        viewController.collectionView = collectionView
+
+        let expectedNotification = Notification(name: .brickRemoved, object: brickCell.scriptOrBrick)
+        let path = IndexPath()
+
+        expect(viewController.removeBrickOrScript(brickCell.scriptOrBrick, at: path)).toEventually(postNotifications(contain(expectedNotification)))
+
     }
 }

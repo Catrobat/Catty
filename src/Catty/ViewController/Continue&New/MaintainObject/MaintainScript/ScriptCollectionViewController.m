@@ -940,6 +940,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             }
         }
     } completion:^(BOOL finished) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:NotificationName.brickRemoved object:scriptOrBrick];
         self.batchUpdateMutex = NO;
         self.placeHolderView.hidden = (self.object.scriptList.count != 0);
         [self reloadData];

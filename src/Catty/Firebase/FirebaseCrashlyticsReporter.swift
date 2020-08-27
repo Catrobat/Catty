@@ -45,6 +45,7 @@ class FirebaseCrashlyticsReporter {
             addObserver(selector: #selector(self.formulaEditorViewControllerDidAppear(notification:)), name: .formulaEditorControllerDidAppear)
             addObserver(selector: #selector(self.stagePresenterViewControllerDidAppear(notification:)), name: .stagePresenterViewControllerDidAppear)
             addObserver(selector: #selector(self.brickSelected(notification:)), name: .brickSelected)
+            addObserver(selector: #selector(self.brickRemoved(notification:)), name: .brickRemoved)
             addObserver(selector: #selector(self.projectInvalidVersion(notification:)), name: .projectInvalidVersion)
             addObserver(selector: #selector(self.projectInvalidXml(notification:)), name: .projectInvalidXml)
             addObserver(selector: #selector(self.projectFetchFailure(notification:)), name: .projectFetchFailure)
@@ -96,6 +97,11 @@ class FirebaseCrashlyticsReporter {
     @objc func brickSelected(notification: Notification) {
         let brickClass = getObjectClassName(for: notification)
         crashlytics.log("Brick selected: " + brickClass)
+    }
+
+    @objc func brickRemoved(notification: Notification) {
+        let brickClass = getObjectClassName(for: notification)
+        crashlytics.log("Brick removed: " + brickClass)
     }
 
     @objc func projectInvalidVersion(notification: Notification) {

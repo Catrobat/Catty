@@ -105,6 +105,13 @@ final class FirebaseCrashlyticsReporterTests: XCTestCase {
         XCTAssertEqual(0, crashlytics!.records.count)
     }
 
+    func testBrickRemovedNotification() {
+        NotificationCenter.default.post(name: .brickRemoved, object: nil)
+
+        XCTAssertEqual(1, crashlytics!.logs.count)
+        XCTAssertEqual(0, crashlytics!.records.count)
+    }
+
     func testProjectInvalidVersionNotification() {
         NotificationCenter.default.post(name: .projectInvalidVersion, object: nil)
 

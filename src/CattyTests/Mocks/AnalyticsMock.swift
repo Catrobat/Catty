@@ -20,28 +20,13 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class UICollectionViewMock: UICollectionView {
+import Firebase
 
-    let cell: UICollectionViewCell
+class AnalyticsMock: Analytics {
+    static var loggedEvents = [String: [String: Any]?]()
 
-    init(cell: UICollectionViewCell) {
-        self.cell = cell
-        super.init(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout())
+    override class func logEvent(_ name: String, parameters: [String: Any]?) {
+        loggedEvents[name] = parameters
     }
 
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    override func numberOfItems(inSection section: Int) -> Int {
-        1
-    }
-
-    override func cellForItem(at indexPath: IndexPath) -> UICollectionViewCell? {
-        cell
-    }
-
-    override func deleteSections(_ sections: IndexSet) { }
-
-    override func deleteItems(at indexPaths: [IndexPath]) { }
 }
