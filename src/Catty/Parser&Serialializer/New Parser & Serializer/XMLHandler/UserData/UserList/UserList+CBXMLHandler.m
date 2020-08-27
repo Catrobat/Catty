@@ -29,7 +29,6 @@
 #import "CBXMLPositionStack.h"
 #import "CBXMLSerializerHelper.h"
 #import "SpriteObject.h"
-#import "Pocket_Code-Swift.h"
 
 @implementation UserList (CBXMLHandler)
 

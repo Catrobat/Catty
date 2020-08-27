@@ -346,6 +346,7 @@
 		2ED418C52411213E00AFE2FD /* XMLParserBlackBoxTests096.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED418AF2411213D00AFE2FD /* XMLParserBlackBoxTests096.swift */; };
 		2ED418C62411213E00AFE2FD /* XMLParserTests092.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED418B12411213D00AFE2FD /* XMLParserTests092.swift */; };
 		3DA1BED924365A3400133C99 /* BrickMutableCopyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA1BED824365A3400133C99 /* BrickMutableCopyTests.swift */; };
+		4405C95A24F803EA005C36DC /* UserVariable+CBXMLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4405C95724F803EA005C36DC /* UserVariable+CBXMLHandler.swift */; };
 		44B76EC12476BF0100DC30E2 /* FirebaseCrashlyticsReporterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B76EBE2476BF0100DC30E2 /* FirebaseCrashlyticsReporterTests.swift */; };
 		44B76EC72476C19600DC30E2 /* FirebaseCrashlyticsReporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B76EC52476C19500DC30E2 /* FirebaseCrashlyticsReporter.swift */; };
 		44B76EC82476C19600DC30E2 /* FirebaseAnalyticsReporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B76EC62476C19500DC30E2 /* FirebaseAnalyticsReporter.swift */; };
@@ -601,7 +602,6 @@
 		4C724E5B1B4D3E8C00E27479 /* Script+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C724E0C1B4D3E8C00E27479 /* Script+CBXMLHandler.m */; };
 		4C724E5C1B4D3E8C00E27479 /* Sound+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C724E0F1B4D3E8C00E27479 /* Sound+CBXMLHandler.m */; };
 		4C724E5D1B4D3E8C00E27479 /* SpriteObject+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C724E121B4D3E8C00E27479 /* SpriteObject+CBXMLHandler.m */; };
-		4C724E5E1B4D3E8C00E27479 /* UserVariable+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C724E151B4D3E8C00E27479 /* UserVariable+CBXMLHandler.m */; };
 		4C724E5F1B4D3E8C00E27479 /* UserDataContainer+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C724E181B4D3E8C00E27479 /* UserDataContainer+CBXMLHandler.m */; };
 		4C724E601B4D3E8C00E27479 /* Parser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C724E1B1B4D3E8C00E27479 /* Parser.m */; };
 		4C724E611B4D3E8C00E27479 /* ProjectParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C724E1D1B4D3E8C00E27479 /* ProjectParser.m */; };
@@ -2005,6 +2005,7 @@
 		389FA65050440F173C5147C5 /* bg */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = bg; path = bg.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3D5D59359A67834683175607 /* th */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3DA1BED824365A3400133C99 /* BrickMutableCopyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrickMutableCopyTests.swift; sourceTree = "<group>"; };
+		4405C95724F803EA005C36DC /* UserVariable+CBXMLHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserVariable+CBXMLHandler.swift"; sourceTree = "<group>"; };
 		44B76EBE2476BF0100DC30E2 /* FirebaseCrashlyticsReporterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseCrashlyticsReporterTests.swift; sourceTree = "<group>"; };
 		44B76EC52476C19500DC30E2 /* FirebaseCrashlyticsReporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseCrashlyticsReporter.swift; sourceTree = "<group>"; };
 		44B76EC62476C19500DC30E2 /* FirebaseAnalyticsReporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseAnalyticsReporter.swift; sourceTree = "<group>"; };
@@ -2334,8 +2335,6 @@
 		4C724E0F1B4D3E8C00E27479 /* Sound+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "Sound+CBXMLHandler.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		4C724E111B4D3E8C00E27479 /* SpriteObject+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = "SpriteObject+CBXMLHandler.h"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		4C724E121B4D3E8C00E27479 /* SpriteObject+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "SpriteObject+CBXMLHandler.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		4C724E141B4D3E8C00E27479 /* UserVariable+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UserVariable+CBXMLHandler.h"; sourceTree = "<group>"; };
-		4C724E151B4D3E8C00E27479 /* UserVariable+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "UserVariable+CBXMLHandler.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		4C724E171B4D3E8C00E27479 /* UserDataContainer+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UserDataContainer+CBXMLHandler.h"; sourceTree = "<group>"; };
 		4C724E181B4D3E8C00E27479 /* UserDataContainer+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "UserDataContainer+CBXMLHandler.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		4C724E1A1B4D3E8C00E27479 /* Parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Parser.h; sourceTree = "<group>"; };
@@ -5755,8 +5754,7 @@
 		4C724E131B4D3E8C00E27479 /* UserVariable */ = {
 			isa = PBXGroup;
 			children = (
-				4C724E141B4D3E8C00E27479 /* UserVariable+CBXMLHandler.h */,
-				4C724E151B4D3E8C00E27479 /* UserVariable+CBXMLHandler.m */,
+				4405C95724F803EA005C36DC /* UserVariable+CBXMLHandler.swift */,
 			);
 			path = UserVariable;
 			sourceTree = "<group>";
@@ -10398,6 +10396,7 @@
 				AAA2979C1BB371EB006F8793 /* ExternInternRepresentationMapping.m in Sources */,
 				AA74EF571BC0586F00D1E954 /* SetXBrick+CBXMLHandler.m in Sources */,
 				4C994E10207A3D4100C415FD /* LoudnessSensor.swift in Sources */,
+				4405C95A24F803EA005C36DC /* UserVariable+CBXMLHandler.swift in Sources */,
 				AA74F00E1BC05B5F00D1E954 /* StopAllSoundsBrick.m in Sources */,
 				AA74EEDF1BC057B900D1E954 /* IfLogicElseBrick+CBXMLHandler.m in Sources */,
 				AAA2979B1BB3711B006F8793 /* BrickCategoryViewController.m in Sources */,
@@ -11015,7 +11014,6 @@
 				4CF0728420D6581900F93AB5 /* PhiroFrontLeftSensor.swift in Sources */,
 				6F4B2FBB246670C800B5F0ED /* ProjectMigratorProtocol.swift in Sources */,
 				9218B2001CC4AB75007B4C60 /* YKImageCropperOverlayView.m in Sources */,
-				4C724E5E1B4D3E8C00E27479 /* UserVariable+CBXMLHandler.m in Sources */,
 				4C0F9F2E204ADC2300E71B2D /* CameraBrick.m in Sources */,
 				92C631891BC502CB00486958 /* ConnectedDevicesTableViewController.swift in Sources */,
 				92FF30F91A24DCAA00093DA7 /* FormulaElement.m in Sources */,
