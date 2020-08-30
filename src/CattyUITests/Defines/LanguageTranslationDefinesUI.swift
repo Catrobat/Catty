@@ -440,6 +440,7 @@ let kLocalizedPlaySoundAndWait = NSLocalizedString("Start sound and wait", bundl
 let kLocalizedStopAllSounds = NSLocalizedString("Stop all sounds", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedSetVolumeTo = NSLocalizedString("Set volume to", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedChangeVolumeBy = NSLocalizedString("Change volume by", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedSetInstrumentTo = NSLocalizedString("Set Instrument to", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedSay = NSLocalizedString("Say", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedThink = NSLocalizedString("Think", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedSpeak = NSLocalizedString("Speak", bundle: Bundle(for: LanguageTranslation.self), comment: "")
@@ -790,6 +791,31 @@ let kLocalizedServerTimeoutIssueMessage = NSLocalizedString("Server is taking to
 let kLocalizedUnexpectedErrorTitle = NSLocalizedString("Unexpected Error", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedUnexpectedErrorMessage = NSLocalizedString("Unexpected Error, please try again later.", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
+//************************************************************************************************************
+//**************************************       Audio Engine        *********************************************
+//************************************************************************************************************
+
+let kLocalizedPiano = NSLocalizedString("Piano", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedElectricPiano = NSLocalizedString("Electric Piano", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedCello = NSLocalizedString("Cello", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedFlute = NSLocalizedString("Flute", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedVibraphone = NSLocalizedString("Vibraphone", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedOrgan = NSLocalizedString("Organ", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedGuitar = NSLocalizedString("Guitar", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedElectricGuitar = NSLocalizedString("Electric Guitar", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedBass = NSLocalizedString("Bass", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedPizzicato = NSLocalizedString("Pizzicato", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedSynthPad = NSLocalizedString("Synth Pad", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedChoir = NSLocalizedString("Choir", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedSynthLead = NSLocalizedString("Synth Lead", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedWoodenFlute = NSLocalizedString("Wooden Flute", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedTrombone = NSLocalizedString("Trombone", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedSaxophone = NSLocalizedString("Saxophone", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedBassoon = NSLocalizedString("Bassoon", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedClarinet = NSLocalizedString("Clarinet", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedMusicBox = NSLocalizedString("Music Box", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedSteelDrum = NSLocalizedString("Steel Drum", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedMarimba = NSLocalizedString("Marimba", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 //************************************************************************************************************
 //****************************************       Debug        ************************************************
 //************************************************************************************************************

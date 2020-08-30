@@ -102,6 +102,7 @@
             SpeakAndWaitBrick(),
             SetVolumeToBrick(),
             ChangeVolumeByNBrick(),
+            SetInstrumentBrick(),
             // variable bricks
             SetVariableBrick(),
             ChangeVariableBrick(),

@@ -22,7 +22,7 @@
 
 import Foundation
 
-class AudioEngineHelper: NSObject {
+@objc class AudioEngineHelper: NSObject {
 
     class func stringFormulaToUtterance(text: Formula, volume: Float, spriteObject: SpriteObject, context: CBScriptContextProtocol) -> AVSpeechUtterance {
         var speakText = context.formulaInterpreter.interpretString(text, for: spriteObject)
@@ -56,4 +56,8 @@ class AudioEngineHelper: NSObject {
             debugPrint(error)
         }
     }
+}
+
+enum SamplerType: String {
+    case instrument, drum
 }
