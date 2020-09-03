@@ -262,7 +262,6 @@ let kLocalizedProjectNotReported = NSLocalizedString("Error occurred while repor
 let kLocalizedEnterReason = NSLocalizedString("Enter a reason", comment: "")
 let kLocalizedLoginToReport = NSLocalizedString("Please log in to report this project as inappropriate", comment: "")
 let kLocalizedName = NSLocalizedString("Name", comment: "")
-let kLocalizedDownloaded = NSLocalizedString("Download successful", comment: "")
 let kLocalizedSettings = NSLocalizedString("Settings", comment: "")
 let kLocalizedOff = NSLocalizedString("off", comment: "")
 let kLocalizedOn = NSLocalizedString("on", comment: "")
@@ -299,8 +298,6 @@ let kLocalizedEmbroideryBricksDescription = NSLocalizedString("Create patterns f
 
 let kLocalizedAboutPocketCodeDescription = NSLocalizedString("Pocket Code is a programming environment for iOS for the visual programming language Catrobat. The code of Pocket Code is mostly under GNU AGPL v3 licence. For further information to the licence please visit following links:", comment: "")
 let kLocalizedTermsOfUseDescription = NSLocalizedString("In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation.", comment: "")
-let kLocalizedNotEnoughFreeMemoryDescription = NSLocalizedString("Not enough free memory to download this project. Please delete some of your projects", comment: "")
-let kLocalizedProjectNotFound = NSLocalizedString("The requested project can not be found. Please choose a different one.", comment: "")
 let kLocalizedInvalidZip = NSLocalizedString("The requested project can not be loaded. Please try again later.", comment: "")
 let kLocalizedEnterYourProjectNameHere = NSLocalizedString("Enter your project name here...", comment: "Placeholder for project-name input field")
 let kLocalizedEnterNameForImportedProjectTitle = NSLocalizedString("Import File", comment: "Title of prompt shown when a *.catrobat file is imported from a third-party app.")

@@ -22,7 +22,7 @@
 
 import WebKit
 
-class HelpWebViewController: UIViewController, WKUIDelegate, WKNavigationDelegate, UIScrollViewDelegate, CBFileManagerDelegate {
+class HelpWebViewController: UIViewController, WKUIDelegate, WKNavigationDelegate, UIScrollViewDelegate {
     private var errorLoadingURL = false
     private var doneLoadingURL = false
     private var controlsHidden = false
@@ -172,73 +172,23 @@ class HelpWebViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
 
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
 
-        let request = navigationAction.request
-
-        // Check whether the URL is valid
-        if request.url?.absoluteString
-            .components(separatedBy: CharacterSet(charactersIn: "/")).count ?? 0 <= 1 {
+        guard let requestUrl = navigationAction.request.url else {
             decisionHandler(.cancel)
             return
         }
 
-        if !((request.url?.absoluteString ?? "").contains(NetworkDefines.downloadUrl)) {
-            decisionHandler(.allow)
-            return
-        }
-
-        let urlWithoutParams: String? = request.url?.absoluteString
-            .components(separatedBy: CharacterSet(charactersIn: "?"))[0]
-
-        // extract project ID from URL => example: https://pocketcode.org/download/959.catrobat
-        var urlParts = urlWithoutParams?.components(separatedBy: "/")
-
-        // get last part of url and split by using separator "." => 959.catrobat
-        urlParts = urlParts?.last?.components(separatedBy: ".")
-        if urlParts?.count != 2 {
-            Util.alert(withText: kLocalizedInvalidURLGiven)
+        if requestUrl.absoluteString.components(separatedBy: CharacterSet(charactersIn: "/")).count <= 1 {
             decisionHandler(.cancel)
             return
         }
 
-        // check projectID
-        let projectID = urlParts?.first ?? ""
-        if projectID.isEmpty {
-            Util.alert(withText: kLocalizedInvalidURLGiven)
+        if requestUrl.absoluteString.contains(NetworkDefines.projectDetailsUrlPrefix) {
+            self.openProjectDetails(url: requestUrl)
             decisionHandler(.cancel)
             return
         }
 
-        // get url parameters
-        let urlComp = URLComponents(string: (request.url?.absoluteString) ?? "")
-
-        // parse project name
-        let projectName: String = urlComp?.queryItems?
-            .first(where: { $0.name == "fname" })?.value?
-            .replacingOccurrences(of: "+", with: " ") ?? ""
-        if projectName.isEmpty {
-            Util.alert(withText: kLocalizedInvalidURLGiven)
-            decisionHandler(.cancel)
-            return
-        }
-
-        // check if project exists
-        if Project.projectExists(withProjectName: projectName,
-                                 projectID: projectID) {
-            Util.alert(withText: kLocalizedProjectAlreadyDownloadedDescription)
-            decisionHandler(.cancel)
-            return
-        }
-
-        let url = URL(string: urlWithoutParams ?? "")
-        if let fileManager = CBFileManager.shared() {
-            fileManager.delegate = self
-            fileManager.downloadProject(from: url, withProjectID: projectID, andName: projectName)
-            DispatchQueue.main.async(execute: {
-                self.loadingView?.show()
-            })
-        }
-
-        decisionHandler(.cancel)
+        decisionHandler(.allow)
         return
     }
 
@@ -332,25 +282,6 @@ class HelpWebViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
         })
     }
 
-    private func showDownloadedView() {
-        let hud = BDKNotifyHUD(image: UIImage(named: "checkmark.png"),
-                               text: kLocalizedDownloaded)
-        hud?.destinationOpacity = CGFloat(kBDKNotifyHUDDestinationOpacity)
-        hud?.center = CGPoint(x: view.center.x,
-                              y: view.center.y + CGFloat(kBDKNotifyHUDCenterOffsetY))
-        hud?.tag = Int(kSavedViewTag)
-
-        if let hud = hud {
-            view.addSubview(hud)
-        }
-
-        hud?.present(withDuration: CGFloat(kBDKNotifyHUDPresentationDuration),
-                     speed: CGFloat(kBDKNotifyHUDPresentationSpeed),
-                     in: view) {
-                        hud?.removeFromSuperview()
-        }
-    }
-
     // MARK: - Handler
 
     @objc func openInSafari() {
@@ -368,47 +299,5 @@ class HelpWebViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
         default:
             break
         }
-    }
-
-    // MARK: - FileManagerDelegate
-
-    func downloadFinished(with url: URL?, andProjectLoadingInfo info: ProjectLoadingInfo?) {
-        DispatchQueue.main.async(execute: {
-            self.loadingView?.hide()
-            self.showDownloadedView()
-            self.setProgress(0)
-        })
-    }
-
-    func updateProgress(_ progress: Double) {
-        if progress < 1.0 {
-            doneLoadingURL = false
-        } else {
-            doneLoadingURL = true
-        }
-    }
-
-    func timeoutReached() {
-        setBackDownloadStatus()
-        Util.defaultAlertForNetworkError()
-    }
-
-    func maximumFilesizeReached() {
-        setBackDownloadStatus()
-        Util.alert(withText: kLocalizedNotEnoughFreeMemoryDescription)
-    }
-
-    func fileNotFound() {
-        setBackDownloadStatus()
-        Util.alert(withText: kLocalizedProjectNotFound)
-    }
-
-    func invalidZip() {
-        setBackDownloadStatus()
-        Util.alert(withText: kLocalizedInvalidZip)
-    }
-
-    func setBackDownloadStatus() {
-        //FileManagerDelegate (necessary)
     }
 }

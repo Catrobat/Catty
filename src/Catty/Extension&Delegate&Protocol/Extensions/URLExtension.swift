@@ -20,24 +20,20 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
-#import "ProjectStoreDelegate.h"
-#import "CBFileManager.h"
-#import <TTTAttributedLabel/TTTAttributedLabel.h>
-#import "BaseTableViewController.h"
-#import "EVCircularProgressView.h"
-#import "ButtonTags.h"
-#import "RoundBorderedButton.h"
+extension URL {
 
-@class CatrobatProject;
-@class StoreProjectDownloader;
-
-@interface ProjectDetailStoreViewController : UIViewController<ProjectStoreDelegate, UIScrollViewDelegate, TTTAttributedLabelDelegate, NSURLConnectionDataDelegate, UIGestureRecognizerDelegate>
-
-@property (nonatomic, strong) CatrobatProject *project;
-@property (nonatomic, weak) IBOutlet UIScrollView *scrollViewOutlet;
-@property (nonatomic, strong) StoreProjectDownloader *storeProjectDownloader;
-
-- (void) hideLoadingView;
-
-@end
+    func catrobatProjectId() -> String? {
+        let pathComponents = self.pathComponents
+        guard pathComponents.count >= 4 else {
+            return nil
+        }
+        switch pathComponents[2] {
+        case "project":
+            return pathComponents[3]
+        case "download":
+            return String(pathComponents[3].dropLast(9))
+        default:
+            return nil
+        }
+    }
+}

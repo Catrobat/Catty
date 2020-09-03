@@ -44,29 +44,6 @@
 
 @implementation ProjectDetailStoreViewController
 
-- (NSMutableDictionary*)projects
-{
-    if (!_projects) {
-        _projects = [[NSMutableDictionary alloc] init];
-    }
-    return _projects;
-}
-
-- (NSURLSession *)session {
-    if (!_session) {
-        // Initialize Session Configuration
-        NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
-        
-        // Configure Session Configuration
-        [sessionConfiguration setHTTPAdditionalHeaders:@{ @"Accept" : @"application/json" }];
-        
-        // Initialize Session
-        _session = [NSURLSession sessionWithConfiguration:sessionConfiguration];
-    }
-    
-    return _session;
-}
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -84,9 +61,14 @@
     self.view.backgroundColor = UIColor.background;
     NSDebug(@"%@",self.project.author);
     [self loadProject:self.project];
-    CBFileManager *fileManager = [CBFileManager sharedManager];
-    fileManager.delegate = self;
-    fileManager.projectURL = [NSURL URLWithString:self.project.downloadUrl];
+}
+
+- (StoreProjectDownloader*)storeProjectDownloader
+{
+    if (_storeProjectDownloader == nil) {
+        _storeProjectDownloader = [[StoreProjectDownloader alloc] initWithSession:[StoreProjectDownloader defaultSession] fileManager:[CBFileManager sharedManager]];
+    }
+    return _storeProjectDownloader;
 }
 
 -(void)loadProject:(CatrobatProject*)project {
@@ -110,6 +92,7 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.scrollViewOutlet.userInteractionEnabled = YES;
 }
+
 - (void)initNavigationBar
 {
     self.title = self.navigationItem.title = kLocalizedDetails;
@@ -206,33 +189,6 @@
     [self downloadWithName:duplicateName];
 }
 
--(void)downloadWithName:(NSString*)name
-{
-    NSURL *url = [NSURL URLWithString:self.project.downloadUrl];
-    CBFileManager *fileManager = [CBFileManager sharedManager];
-    fileManager.delegate = self;
-    [fileManager downloadProjectFromURL:url withProjectID:self.project.projectID andName:name];
-    self.project.isdownloading = YES;
-    [self.projects setObject:self.project forKey:url];
-    [self reloadInputViews];
-}
-
-#pragma mark - File Manager Delegate
-- (void) downloadFinishedWithURL:(NSURL*)url andProjectLoadingInfo:(ProjectLoadingInfo *)info
-{
-    NSDebug(@"Download Finished!!!!!!");
-    self.project.isdownloading = NO;
-    [self.projects removeObjectForKey:url];
-    EVCircularProgressView* button = (EVCircularProgressView*)[self.view viewWithTag:kStopLoadingTag];
-    button.hidden = YES;
-    button.progress = 0;
-    [self.view viewWithTag:kOpenButtonTag].hidden = NO;
-    UIButton* downloadAgainButton = (UIButton*)[self.projectView viewWithTag:kDownloadAgainButtonTag];
-    downloadAgainButton.enabled = YES;
-    downloadAgainButton.hidden = NO;
-    [self loadingIndicator:NO];
-}
-
 #pragma mark - TTTAttributedLabelDelegate
 - (void)attributedLabel:(TTTAttributedLabel *)label didSelectLinkWithURL:(NSURL *)url
 {
@@ -277,71 +233,23 @@
 #pragma mark - actions
 - (void)stopLoading
 {
-    NSURL *url = [NSURL URLWithString:self.project.downloadUrl];
-    CBFileManager *fileManager = [CBFileManager sharedManager];
-    [fileManager stopLoading:url];
-    fileManager.delegate = self;
+    [self.storeProjectDownloader cancelDownloadForProjectWithId:self.project.projectID];
+    
     EVCircularProgressView* button = (EVCircularProgressView*)[self.view viewWithTag:kStopLoadingTag];
     button.hidden = YES;
     button.progress = 0;
+    
     UIButton* downloadAgainButton = (UIButton*)[self.projectView viewWithTag:kDownloadAgainButtonTag];
-    if(downloadAgainButton.enabled){
+    if(downloadAgainButton.enabled) {
         [self.view viewWithTag:kDownloadButtonTag].hidden = NO;
     } else {
         [self.view viewWithTag:kOpenButtonTag].hidden = NO;
         downloadAgainButton.enabled = YES;
     }
-    [self loadingIndicator:NO];
-    
-}
-- (void)updateProgress:(double)progress
-{
-    NSDebug(@"updateProgress:%f",((float)progress));
-    EVCircularProgressView* button = (EVCircularProgressView*)[self.view viewWithTag:kStopLoadingTag];
-    [button setProgress:progress animated:YES];
-}
-
-- (void)timeoutReached
-{
-    [self setBackDownloadStatus];
-    [Util defaultAlertForNetworkError];
-}
-
-- (void)maximumFilesizeReached
-{
-    [self setBackDownloadStatus];
-    [Util alertWithText:kLocalizedNotEnoughFreeMemoryDescription];
-}
-
-- (void)fileNotFound
-{
-    [self setBackDownloadStatus];
-    [Util alertWithText:kLocalizedProjectNotFound];
-}
-
-- (void)invalidZip
-{
-    [self setBackDownloadStatus];
-    [Util alertWithText:kLocalizedInvalidZip];
-}
-
-- (void)setBackDownloadStatus
-{
-    [self.view viewWithTag:kDownloadButtonTag].hidden = NO;
-    [self.view viewWithTag:kOpenButtonTag].hidden = YES;
-    [self.view viewWithTag:kStopLoadingTag].hidden = YES;
-    [self.view viewWithTag:kDownloadAgainButtonTag].hidden = YES;
-    [self loadingIndicator:NO];
-}
-
-- (void)loadingIndicator:(BOOL)value
-{
-    UIApplication* app = [UIApplication sharedApplication];
-    app.networkActivityIndicatorVisible = value;
+    [[Util class] setNetworkActivityIndicator:NO];
 }
 
 #pragma mark Rotation
-
 -(void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
 {
     dispatch_async(dispatch_get_main_queue(), ^{

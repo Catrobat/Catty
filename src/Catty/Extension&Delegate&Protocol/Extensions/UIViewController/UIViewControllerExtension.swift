@@ -21,6 +21,7 @@
  */
 
 extension UIViewController {
+
     func hideKeyboardWhenTapInViewController() {
         let tapGesture = UITapGestureRecognizer(target: self,
                                                 action: #selector(UIViewController.dismissKeyboard))
@@ -33,12 +34,43 @@ extension UIViewController {
     }
 
     @objc func openProject(_ project: Project) {
-        let storyboard = UIStoryboard.init(name: "iPhone", bundle: nil)
-        guard let viewController = storyboard.instantiateViewController(withIdentifier: "SceneTableViewController") as? SceneTableViewController else { return }
+        guard let viewController = self.instantiateViewController("SceneTableViewController") as? SceneTableViewController else { return }
 
         viewController.scene = project.scene
         project.setAsLastUsedProject()
-
         self.navigationController?.pushViewController(viewController, animated: true)
+    }
+
+    func openProjectDetails(url: URL) {
+        self.openProjectDetails(url: url, storeProjectDownloader: StoreProjectDownloader())
+    }
+
+    @nonobjc func openProjectDetails(url: URL, storeProjectDownloader: StoreProjectDownloaderProtocol) {
+        guard let projectId = url.catrobatProjectId() else {
+            Util.alert(withText: kLocalizedInvalidURLGiven)
+            return
+        }
+
+        storeProjectDownloader.fetchProjectDetails(for: projectId, completion: {project, error in
+
+            guard error == nil else {
+                Util.alert(withText: kLocalizedUnableToLoadProject)
+                return
+            }
+            guard let storeProject = project else {
+                Util.alert(withText: kLocalizedInvalidZip)
+                return
+            }
+            let catrobatProject = storeProject.toCatrobatProject()
+
+            guard let viewController = self.instantiateViewController("ProjectDetailStoreViewController") as? ProjectDetailStoreViewController else { return }
+            viewController.project = catrobatProject
+            self.navigationController?.pushViewController(viewController, animated: true)
+        })
+    }
+
+    private func instantiateViewController(_ identifier: String) -> UIViewController? {
+        let storyboard = UIStoryboard.init(name: "iPhone", bundle: nil)
+        return storyboard.instantiateViewController(withIdentifier: identifier)
     }
 }

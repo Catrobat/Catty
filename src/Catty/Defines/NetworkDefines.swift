@@ -59,6 +59,7 @@ class NetworkDefines: NSObject {
     static var downloadUrl: String { baseUrl.appending("download") }
     static var tagUrl: String { baseUrl.appending("api/tags/getTags.json") }
     static var helpUrl: String { "https://catrob.at/help" }
+    static var projectDetailsUrlPrefix: String { baseUrlProduction.appending("project/") }
 
     static let connectionSearch = "search.json"
     static let connectionUpload = "upload.json"

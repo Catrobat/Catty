@@ -140,10 +140,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         guard userActivity.activityType == NSUserActivityTypeBrowsingWeb,
             let url = userActivity.webpageURL,
-            let ctvc = vc?.topViewController as? CatrobatTableViewController else {
-                return false
+            let topViewController = vc?.topViewController else {
+            return false
         }
-        ctvc.openURL(url: url)
+        topViewController.openProjectDetails(url: url)
         return true
     }
 
