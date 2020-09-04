@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		05A3CE6D24F5164A0051DB39 /* CatrobatTableViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A3CE6A24F516490051DB39 /* CatrobatTableViewControllerExtension.swift */; };
+		05A3D46824F517220051DB39 /* StoreProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A3D46724F517220051DB39 /* StoreProjectTests.swift */; };
+		05A3D46A24F517350051DB39 /* CatrobatTableViewControllerExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A3D46924F517350051DB39 /* CatrobatTableViewControllerExtensionTests.swift */; };
 		181CC10724B750AF004A783E /* CBPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181CC10424B750AE004A783E /* CBPosition.swift */; };
 		181DB738247DA62600B82B20 /* NSDataExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181DB737247DA62600B82B20 /* NSDataExtension.swift */; };
 		1822C1392471C7CB00F8F158 /* BrickCellListDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1822C1382471C7CB00F8F158 /* BrickCellListDataTests.swift */; };
@@ -1638,6 +1641,9 @@
 		008104EAAB0CBEC616F8EABD /* uz */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = uz; path = uz.lproj/Localizable.strings; sourceTree = "<group>"; };
 		04A3B489CBF02EB8C919DC3B /* sr */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = sr; path = sr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		04FC473CDF0FCFB7BD890320 /* el */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/Localizable.strings; sourceTree = "<group>"; };
+		05A3CE6A24F516490051DB39 /* CatrobatTableViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatrobatTableViewControllerExtension.swift; sourceTree = "<group>"; };
+		05A3D46724F517220051DB39 /* StoreProjectTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreProjectTests.swift; sourceTree = "<group>"; };
+		05A3D46924F517350051DB39 /* CatrobatTableViewControllerExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatrobatTableViewControllerExtensionTests.swift; sourceTree = "<group>"; };
 		0A1A12A18F2C85AB4CBCDD4D /* lt */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = lt; path = lt.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0C2E3B83D1DDFF32F7255F50 /* pl */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0C64E34E5347DA71ECB56DE6 /* pt */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -6110,6 +6116,7 @@
 		4CD0BA9721467C4500BF17A4 /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
+				05A3D46724F517220051DB39 /* StoreProjectTests.swift */,
 				4CD0BA9821467C5A00BF17A4 /* HeaderTests.swift */,
 				4CAA66C121469C0400CCDD6E /* UserVariableTests.swift */,
 				4CB4121D2198635900FC4594 /* UserDataContainerTest.swift */,
@@ -7296,6 +7303,7 @@
 		92FF2E081A24C5A700093DA7 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				05A3CE6A24F516490051DB39 /* CatrobatTableViewControllerExtension.swift */,
 				18DAFC56247BD1400082C62A /* SpriteNode */,
 				6FAAD43724740B1D00FF2A34 /* FormulaElementExtension.swift */,
 				5EA1089021B8FBB800B837B9 /* Audio */,
@@ -8937,6 +8945,7 @@
 		C34B44FB17F3403400624730 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				05A3D46924F517350051DB39 /* CatrobatTableViewControllerExtensionTests.swift */,
 				187D11992472AAF100A09CE5 /* DataExtensionTests.swift */,
 				4CFAD35C1CFAB3EC0019C636 /* CustomExtensionsTests.m */,
 				4CFAD35D1CFAB3EC0019C636 /* UIImageExtensionTests.swift */,
@@ -10196,6 +10205,7 @@
 				186AA34924830491001E38FD /* PenDownBrickTests.swift in Sources */,
 				4C822683213FA7A400F3D750 /* SensorManagerTests.swift in Sources */,
 				9E3AF79A2326F4D100AB16F1 /* IfOnEdgeBounceBrickTests.swift in Sources */,
+				05A3D46824F517220051DB39 /* StoreProjectTests.swift in Sources */,
 				4C82266F213FA7A400F3D750 /* DateMonthSensorTest.swift in Sources */,
 				9E0F741822B55E4D0030CD89 /* MockAudioPlayerFactory.swift in Sources */,
 				4C7182DA23EEAFF600195BC7 /* BaseCollectionViewControllerTests.swift in Sources */,
@@ -10324,6 +10334,7 @@
 				6F59BB5524B46A3000BBD6EA /* GDataXMLElementExtensionTests.swift in Sources */,
 				4C82265E213FA7A400F3D750 /* LastFingerIndexSensorTest.swift in Sources */,
 				4C6FE168212D2D2E0067B7D5 /* TanFunctionTest.swift in Sources */,
+				05A3D46A24F517350051DB39 /* CatrobatTableViewControllerExtensionTests.swift in Sources */,
 				4C7182E123EEF47500195BC7 /* UICollectionViewMock.swift in Sources */,
 				187CECAB24314F1600C3EDCA /* SetLookBrickTests.swift in Sources */,
 				2ED418BB2411213E00AFE2FD /* XMLParserBlackBoxTests095.swift in Sources */,
@@ -10957,6 +10968,7 @@
 				186212462475C9140098F4C5 /* PenConfiguration.swift in Sources */,
 				AAAF228A1BC0D0630076F11E /* TurnRightBrick+Instruction.swift in Sources */,
 				AA74EEDB1BC057B900D1E954 /* BroadcastBrick+CBXMLHandler.m in Sources */,
+				05A3CE6D24F5164A0051DB39 /* CatrobatTableViewControllerExtension.swift in Sources */,
 				AA74F0C11BC05FCE00D1E954 /* SetYBrickCell.m in Sources */,
 				AA74EF4E1BC0586F00D1E954 /* ChangeYByNBrick+CBXMLHandler.m in Sources */,
 				99B2C3701D884D2900736769 /* FlashBrick.m in Sources */,
@@ -11601,7 +11613,7 @@
 					"-lc++",
 				);
 				OTHER_SWIFT_FLAGS = "-DDEBUG";
-				PRODUCT_BUNDLE_IDENTIFIER = org.catrobat.pocketcode.debug;
+				PRODUCT_BUNDLE_IDENTIFIER = org.catrobat.pocketcode.develop;
 				PRODUCT_NAME = "Pocket Code";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Catty/Supporting Files/Catty-Bridging-Header.h";

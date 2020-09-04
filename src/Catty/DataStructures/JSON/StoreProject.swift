@@ -105,4 +105,25 @@ struct StoreProject: Codable {
         fileSize = try container.decodeIfPresent(Float.self, forKey: .fileSize)
         featuredImage = try container.decodeIfPresent(String.self, forKey: .featuredImage)
     }
+
+    func toCatrobatProject() -> CatrobatProject {
+        var projectDictionary = [String: Any]()
+        projectDictionary["ProjectName"] = self.projectName
+        projectDictionary["Author"] =  self.author
+        projectDictionary["Description"] = self.description ?? ""
+        projectDictionary["DownloadUrl"] = self.downloadUrl ?? ""
+        projectDictionary["Downloads"] = self.downloads ?? 0
+        projectDictionary["ProjectId"] = self.projectId
+        projectDictionary["ProjectName"] = self.projectName
+        projectDictionary["ProjectUrl"] = self.projectUrl ?? ""
+        projectDictionary["ScreenshotBig"] = self.screenshotBig ?? ""
+        projectDictionary["ScreenshotSmall"] = self.screenshotSmall ?? ""
+        projectDictionary["FeaturedImage"] = self.featuredImage ?? ""
+        projectDictionary["Uploaded"] = self.uploaded ?? 0
+        projectDictionary["Version"] = self.version ?? ""
+        projectDictionary["Views"] = self.views ?? 0
+        projectDictionary["FileSize"] = self.fileSize ?? 0.0
+
+        return CatrobatProject(dict: projectDictionary, andBaseUrl: NetworkDefines.featuredImageBaseUrl)
+    }
 }

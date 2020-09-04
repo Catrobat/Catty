@@ -63,34 +63,13 @@ class SearchStoreViewController: UIViewController, SelectedSearchStoreDataSource
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == kSegueToProjectDetail {
             if let projectDetailStoreViewController = segue.destination as? ProjectDetailStoreViewController,
-                let catrobatProject = projectForSegue {
-                projectDetailStoreViewController.project = mapStoreProjectToCatrobatProject(project: catrobatProject)
+                let storeProject = projectForSegue {
+                projectDetailStoreViewController.project = storeProject.toCatrobatProject()
             }
         }
     }
 
     // MARK: - Helper Methods
-
-    private func mapStoreProjectToCatrobatProject(project: StoreProject) -> CatrobatProject {
-        var projectDictionary = [String: Any]()
-        projectDictionary["ProjectName"] = project.projectName
-        projectDictionary["Author"] =  project.author
-        projectDictionary["Description"] = project.description ?? ""
-        projectDictionary["DownloadUrl"] = project.downloadUrl ?? ""
-        projectDictionary["Downloads"] = project.downloads ?? 0
-        projectDictionary["ProjectId"] = project.projectId
-        projectDictionary["ProjectName"] = project.projectName
-        projectDictionary["ProjectUrl"] = project.projectUrl ?? ""
-        projectDictionary["ScreenshotBig"] = project.screenshotBig ?? ""
-        projectDictionary["ScreenshotSmall"] = project.screenshotSmall ?? ""
-        projectDictionary["FeaturedImage"] = project.featuredImage ?? ""
-        projectDictionary["Uploaded"] = project.uploaded ?? 0
-        projectDictionary["Version"] = project.version ?? ""
-        projectDictionary["Views"] = project.views ?? 0
-        projectDictionary["FileSize"] = project.fileSize ?? 0.0
-
-        return CatrobatProject(dict: projectDictionary, andBaseUrl: NetworkDefines.featuredImageBaseUrl)
-    }
 
     func initNoSearchResultsLabel() {
         DispatchQueue.main.async {

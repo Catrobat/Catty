@@ -706,11 +706,12 @@
                         <segue destination="39D-hJ-FD1" kind="show" identifier="segueToExplore" id="7JT-6F-5d1"/>
                         <segue destination="IZh-b2-DYW" kind="show" identifier="segueToHelp" id="A6m-lh-qyH"/>
                         <segue destination="bYj-Ga-eye" kind="show" identifier="segueToUpload" id="d5M-d9-Nnc"/>
+                        <segue destination="5oV-85-Xov" kind="show" identifier="segueToProjectDetail" id="O7z-Si-jt2"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d1W-id-jRf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5861.25" y="-1560.2112676056338"/>
+            <point key="canvasLocation" x="-5870" y="-1861"/>
         </scene>
         <!--Looks-->
         <scene sceneID="wWp-yc-EGI">
@@ -1472,12 +1473,12 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qpj-ch-Y40" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3431.25" y="-1527.4647887323943"/>
+            <point key="canvasLocation" x="-3433" y="-1509"/>
         </scene>
         <!--Project Detail Store View Controller-->
         <scene sceneID="9qo-sP-Szn">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="5oV-85-Xov" customClass="ProjectDetailStoreViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProjectDetailStoreViewController" hidesBottomBarWhenPushed="YES" id="5oV-85-Xov" customClass="ProjectDetailStoreViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7CA-Mb-E8z"/>
                         <viewControllerLayoutGuide type="bottom" id="3qA-Jo-aw8"/>
@@ -1507,7 +1508,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dmN-gD-N9f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2429" y="-1860"/>
+            <point key="canvasLocation" x="-2430" y="-1838"/>
         </scene>
         <!--Charts-->
         <scene sceneID="SIN-nq-kFT">
@@ -1600,7 +1601,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Ln-bV-RG1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3450" y="-2255"/>
+            <point key="canvasLocation" x="-3433" y="-2228"/>
         </scene>
         <!--SoundRecorder-->
         <scene sceneID="glL-eY-bAy">
@@ -2249,6 +2250,6 @@
         <image name="top_charts" width="25.5" height="23"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="5UD-6W-Ykq"/>
+        <segue reference="O7z-Si-jt2"/>
     </inferredMetricsTieBreakers>
 </document>

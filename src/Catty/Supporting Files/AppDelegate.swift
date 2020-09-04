@@ -117,16 +117,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Siren.shared.wail()
     }
 
-    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [: ]) -> Bool {
-
+    func application(_ application: UIApplication,
+                     continue userActivity: NSUserActivity,
+                     restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
         let vc = self.window?.rootViewController as! UINavigationController
+        vc.setNavigationBarHidden(false, animated: false)
         vc.popToRootViewController(animated: true)
 
-        if let ctvc = vc.topViewController as? CatrobatTableViewController {
-            ctvc.addProjectFromInbox()
-            return true
+        guard userActivity.activityType == NSUserActivityTypeBrowsingWeb,
+            let url = userActivity.webpageURL,
+            let ctvc = vc.topViewController as? CatrobatTableViewController else {
+                return false
         }
-
-        return false
+        ctvc.openURL(url: url)
+        return true
     }
 }
