@@ -331,6 +331,7 @@
 #define kLocalizedWhenProjectStarted NSLocalizedString(@"When project started", nil)
 #define kLocalizedWhenTapped NSLocalizedString(@"When tapped", nil)
 #define kLocalizedTouchDown NSLocalizedString(@"When stage is tapped", nil)
+#define kLocalizedWhenBackgroundChanges NSLocalizedString(@"When background changes to", nil)
 #define kLocalizedWait NSLocalizedString(@"Wait", nil)
 #define kLocalizedSecond NSLocalizedString(@"second ", nil)
 #define kLocalizedSeconds NSLocalizedString(@"seconds ", nil)

@@ -20,47 +20,41 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@testable import Pocket_Code
+import Foundation
 
-class CBSpriteNodeMock: CBSpriteNode {
+@objc(WhenBackgroundChangesScriptCell)
+class WhenBackgroundChangesScriptCell: BrickCell, BrickCellProtocol {
 
-    var mockedPosition: CGPoint?
-    var mockedStage: SKScene?
+    public var lookComboBox: iOSCombobox?
+    public var textLabel: UILabel?
 
-    var updateMethodCallCount = 0
-
-    required init(spriteObject: SpriteObject) {
-        super.init(spriteObject: spriteObject)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
     }
 
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
     }
 
-    override var position: CGPoint {
-        get {
-            mockedPosition ?? super.position
-        }
-        set {
-            self.mockedPosition = newValue
-        }
+    static func cellHeight() -> CGFloat {
+        CGFloat(kBrickHeightControl2h)
     }
 
-    override var scene: SKScene {
-        get {
-            if mockedStage == nil {
-                guard super.scene != nil else { return SKScene() }
-                return super.scene!
-            }
-            return mockedStage!
-        }
-        set {
-            self.mockedStage = newValue
-        }
+    override func brickShapeType() -> kBrickShapeType {
+        kBrickShapeType.brickShapeRoundedBig
     }
 
-    override func update(_ currentTime: TimeInterval) {
-        super.update(currentTime)
-        self.updateMethodCallCount += 1
+    override func hookUpSubViews(_ inlineViewSubViews: [Any]!) {
+        self.textLabel = inlineViewSubViews[0] as? UILabel
+        self.lookComboBox = inlineViewSubViews[1] as? iOSCombobox
     }
+
+    func brickTitle(forBackground isBackground: Bool, andInsertionScreen isInsertion: Bool) -> String! {
+        kLocalizedWhenBackgroundChanges.appending("\n%@")
+    }
+
+    override func parameters() -> [String] {
+        ["{BACKGROUND}"]
+    }
+
 }

@@ -20,12 +20,6 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "Script.h"
-#import "CBXMLNodeProtocol.h"
-
-@class CBXMLContext;
-@class WhenBackgroundChangesScript;
-
-@interface Script (CBXMLHandler) <CBXMLNodeProtocol>
-
-@end
+protocol StageProtocol {
+    func notifyBackgroundChange()
+}

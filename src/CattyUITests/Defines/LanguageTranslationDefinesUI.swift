@@ -331,6 +331,7 @@ let kLocalizedScript = NSLocalizedString("Script", bundle: Bundle(for: LanguageT
 let kLocalizedWhenProjectStarted = NSLocalizedString("When project started", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedWhenTapped = NSLocalizedString("When tapped", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedTouchDown = NSLocalizedString("When stage is tapped", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedWhenBackgroundChanges = NSLocalizedString("When background changes to", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedWait = NSLocalizedString("Wait", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedSecond = NSLocalizedString("second ", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedSeconds = NSLocalizedString("seconds ", bundle: Bundle(for: LanguageTranslation.self), comment: "")

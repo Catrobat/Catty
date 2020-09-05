@@ -23,7 +23,7 @@
 import SpriteKit
 
 @objc
-final class Stage: SKScene {
+final class Stage: SKScene, StageProtocol {
 
     // MARK: - Properties
     final let scheduler: CBSchedulerProtocol
@@ -82,6 +82,11 @@ final class Stage: SKScene {
 
     override func didMove(to view: SKView) {
         view.isMultipleTouchEnabled = true
+    }
+
+    func notifyBackgroundChange() {
+        logger.debug("StartWhenBackgroundChanges")
+        scheduler.startWhenBackgroundChangesContexts()
     }
 
     @objc
@@ -205,6 +210,14 @@ final class Stage: SKScene {
                 case let whenTouchDownScript as WhenTouchDownScript:
                     context = CBWhenTouchDownScriptContext(
                         whenTouchDownScript: whenTouchDownScript,
+                        spriteNode: spriteNode,
+                        formulaInterpreter: formulaManager,
+                        touchManager: formulaManager.touchManager,
+                        state: .runnable)
+
+                case let whenBackgroundChangesScript as WhenBackgroundChangesScript:
+                    context = CBWhenBackgroundChangesScriptContext(
+                        whenBackgroundChangesScript: whenBackgroundChangesScript,
                         spriteNode: spriteNode,
                         formulaInterpreter: formulaManager,
                         touchManager: formulaManager.touchManager,

@@ -45,9 +45,21 @@
             int optionIndex = 1;
             if([brickCell.scriptOrBrick conformsToProtocol:@protocol(BrickLookProtocol)]) {
                 Brick<BrickLookProtocol> *lookBrick = (Brick<BrickLookProtocol>*)brickCell.scriptOrBrick;
-                object = lookBrick.script.object;
                 Look *currentLook = [lookBrick lookForLineNumber:line andParameterNumber:parameter];
-                for(Look *look in lookBrick.script.object.lookList) {
+                
+                NSArray *looks;
+                
+                if ([brickCell.scriptOrBrick isKindOfClass:[Script class]]){
+                    Script<BrickLookProtocol> *lookScript = (Script<BrickLookProtocol>*)brickCell.scriptOrBrick;
+                    object = lookScript.object;
+                    looks = lookScript.object.lookList;
+                }
+                else {
+                    object = lookBrick.script.object;
+                    looks = lookBrick.script.object.lookList;
+                }
+                
+                for(Look *look in looks) {
                     [options addObject:look.name];
                     if([look.name isEqualToString:currentLook.name]){
                         NSString *path = [look pathForScene:lookBrick.script.object.scene];

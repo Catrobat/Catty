@@ -30,6 +30,7 @@ protocol CBSchedulerProtocol: AnyObject {
     func startWhenContextsOfSpriteNodeWithName(_ spriteName: String)
     func startWhenTouchDownContexts()
     func startBroadcastContexts(_ broadcastContexts: [CBBroadcastScriptContextProtocol])
+    func startWhenBackgroundChangesContexts()
 
     // registration
     func registerSpriteNode(_ spriteNode: CBSpriteNode)

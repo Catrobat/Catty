@@ -25,7 +25,13 @@ class CBSpriteNode: SKSpriteNode {
 
     // MARK: - Properties
     @objc var spriteObject: SpriteObject
-    @objc var currentLook: Look?
+    @objc var currentLook: Look? {
+        didSet {
+            guard let stage = self.scene as? StageProtocol else { return }
+            if !self.spriteObject.isBackground() { return }
+            stage.notifyBackgroundChange()
+        }
+    }
     @objc var currentUIImageLook: UIImage?
 
     var penConfiguration: PenConfiguration

@@ -27,6 +27,7 @@
 #import "BroadcastScript.h"
 #import "WhenScript.h"
 #import "Util.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation Script
 
@@ -88,6 +89,9 @@
     }
     if ([self isKindOfClass:[BroadcastScript class]]) {
         ((BroadcastScript*)copiedScript).receivedMessage = ((BroadcastScript*)self).receivedMessage;
+    }
+    if ([self isKindOfClass:[WhenBackgroundChangesScript class]]) {
+        ((WhenBackgroundChangesScript*)copiedScript).look = ((WhenBackgroundChangesScript*)self).look;
     }
     return copiedScript;
 }

@@ -40,6 +40,10 @@ protocol CBBroadcastScriptContextProtocol: CBScriptContextProtocol {
     var waitingContext: CBScriptContextProtocol? { get set }
 }
 
+protocol CBWhenBackgroundChangesScriptContextProtocol: CBScriptContextProtocol {
+    var background: Look? { get }
+}
+
 // TODO: refactor abstract class, maybe protocol extension??
 class CBScriptContext: CBScriptContextProtocol {
 
@@ -160,6 +164,44 @@ final class CBWhenTouchDownScriptContext: CBScriptContext {
           instructionList: [CBInstruction]
         ) {
         super.init(script: whenTouchDownScript,
+                   spriteNode: spriteNode,
+                   formulaInterpreter: formulaInterpreter,
+                   touchManager: touchManager,
+                   state: state,
+                   instructionList: instructionList)
+    }
+
+}
+
+//--------------------------------------------------------------------------------------------------
+final class CBWhenBackgroundChangesScriptContext: CBScriptContext, CBWhenBackgroundChangesScriptContextProtocol {
+
+    var background: Look?
+
+    convenience init?(whenBackgroundChangesScript: WhenBackgroundChangesScript,
+                      spriteNode: CBSpriteNode,
+                      formulaInterpreter: FormulaInterpreterProtocol,
+                      touchManager: TouchManagerProtocol,
+                      state: CBScriptContextState) {
+        self.init(whenBackgroundChangesScript: whenBackgroundChangesScript,
+                  spriteNode: spriteNode,
+                  formulaInterpreter: formulaInterpreter,
+                  touchManager: touchManager,
+                  state: state,
+                  instructionList: [])
+    }
+
+    init?(whenBackgroundChangesScript: WhenBackgroundChangesScript,
+          spriteNode: CBSpriteNode,
+          formulaInterpreter: FormulaInterpreterProtocol,
+          touchManager: TouchManagerProtocol,
+          state: CBScriptContextState,
+          instructionList: [CBInstruction]
+        ) {
+        if whenBackgroundChangesScript.look != nil {
+            background = whenBackgroundChangesScript.look
+        }
+        super.init(script: whenBackgroundChangesScript,
                    spriteNode: spriteNode,
                    formulaInterpreter: formulaInterpreter,
                    touchManager: touchManager,

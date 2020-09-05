@@ -126,7 +126,7 @@
     }
     
     for (Script* script in spriteObject.scriptList) {
-        if ([script.brickList containsObject:scriptOrBrick]) {
+        if ([script.brickList containsObject:(id)scriptOrBrick]) {
             return 5;
         }
     }
