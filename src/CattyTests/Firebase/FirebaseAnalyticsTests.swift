@@ -20,28 +20,27 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class UICollectionViewMock: UICollectionView {
+import Firebase
 
-    let cell: UICollectionViewCell
+@testable import Pocket_Code
 
-    init(cell: UICollectionViewCell) {
-        self.cell = cell
-        super.init(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout())
+import XCTest
+
+final class FirebaseAnalyticsTests: XCTestCase {
+
+    var analytics = AnalyticsMock.self
+    var reporter: FirebaseAnalyticsReporter?
+
+    override func setUp() {
+        reporter = FirebaseAnalyticsReporter(analytics: analytics)
     }
 
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    func testBrickRemovedNotification() {
+        XCTAssertEqual(analytics.loggedEvents.count, 0)
+
+        NotificationCenter.default.post(name: .brickRemoved, object: nil)
+
+        XCTAssertEqual(analytics.loggedEvents.count, 1)
     }
 
-    override func numberOfItems(inSection section: Int) -> Int {
-        1
-    }
-
-    override func cellForItem(at indexPath: IndexPath) -> UICollectionViewCell? {
-        cell
-    }
-
-    override func deleteSections(_ sections: IndexSet) { }
-
-    override func deleteItems(at indexPaths: [IndexPath]) { }
 }
