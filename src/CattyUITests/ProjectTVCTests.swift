@@ -56,8 +56,18 @@ class ProjectTVCTests: XCTestCase {
 
         //Add new Object
         app.toolbars.buttons[kLocalizedUserListAdd].tap()
-        app.alerts[kLocalizedAddObject].textFields[kLocalizedEnterYourObjectNameHere].typeText(objectName)
-        app.alerts[kLocalizedAddObject].buttons[kLocalizedOK].tap()
+        waitForElementToAppear(app.buttons[kLocalizedDrawNewImage]).tap()
+
+        XCTAssertNotNil(waitForElementToAppear(app.navigationBars[kLocalizedPaintPocketPaint]))
+
+        app.tap()
+        app.navigationBars.buttons[kLocalizedLooks].tap()
+
+        waitForElementToAppear(app.alerts[kLocalizedSaveToPocketCode]).buttons[kLocalizedYes].tap()
+
+        let alert = waitForElementToAppear(app.alerts[kLocalizedAddObject])
+         alert.textFields[kLocalizedEnterYourObjectNameHere].typeText(objectName)
+         alert.buttons[kLocalizedOK].tap()
 
         XCTAssert(waitForElementToAppear(app.alerts[kLocalizedPocketCode]).exists)
     }

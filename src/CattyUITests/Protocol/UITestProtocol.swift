@@ -80,18 +80,20 @@ extension XCTestCase {
     func addObjectAndDrawNewImage(name: String, in app: XCUIApplication) {
         app.toolbars.buttons[kLocalizedUserListAdd].tap()
 
-        let alert = waitForElementToAppear(app.alerts[kLocalizedAddObject])
-        alert.textFields[kLocalizedEnterYourObjectNameHere].typeText(name)
-        alert.buttons[kLocalizedOK].tap()
-
         waitForElementToAppear(app.buttons[kLocalizedDrawNewImage]).tap()
+
         XCTAssertNotNil(waitForElementToAppear(app.navigationBars[kLocalizedPaintPocketPaint]))
 
         app.tap()
         app.navigationBars.buttons[kLocalizedLooks].tap()
 
         waitForElementToAppear(app.alerts[kLocalizedSaveToPocketCode]).buttons[kLocalizedYes].tap()
+        let alert = waitForElementToAppear(app.alerts[kLocalizedAddObject])
+         alert.textFields[kLocalizedEnterYourObjectNameHere].typeText(name)
+         alert.buttons[kLocalizedOK].tap()
+
         XCTAssertNotNil(waitForElementToAppear(app.navigationBars.buttons[kLocalizedPocketCode]))
+
     }
 
     func addBrick(label: String, section: String, in app: XCUIApplication) {
