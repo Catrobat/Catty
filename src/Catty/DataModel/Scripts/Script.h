@@ -31,6 +31,7 @@
 @class SpriteObject;
 @class GDataXMLElement;
 @class WhenBackgroundChangesScript;
+@class WhenConditionScript;
 
 @interface Script : NSObject <ScriptProtocol, CBMutableCopying>
 

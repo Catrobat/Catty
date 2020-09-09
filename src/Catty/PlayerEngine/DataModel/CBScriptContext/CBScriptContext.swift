@@ -44,6 +44,10 @@ protocol CBWhenBackgroundChangesScriptContextProtocol: CBScriptContextProtocol {
     var background: Look? { get }
 }
 
+protocol CBWhenConditionScriptContextProtocol: CBScriptContextProtocol {
+    var condition: Formula { get }
+}
+
 // TODO: refactor abstract class, maybe protocol extension??
 class CBScriptContext: CBScriptContextProtocol {
 
@@ -142,6 +146,32 @@ final class CBWhenScriptContext: CBScriptContext {
                    state: state,
                    instructionList: instructionList)
     }
+
+}
+
+//--------------------------------------------------------------------------------------------------
+final class CBWhenConditionScriptContext: CBScriptContext, CBWhenConditionScriptContextProtocol {
+
+    let condition: Formula
+
+    convenience init?(whenConditionScript: WhenConditionScript, spriteNode: CBSpriteNode,
+                      formulaInterpreter: FormulaInterpreterProtocol, touchManager: TouchManagerProtocol,
+                      state: CBScriptContextState) {
+        self.init(whenConditionScript: whenConditionScript, spriteNode: spriteNode, formulaInterpreter: formulaInterpreter, touchManager: touchManager, state: state, instructionList: [])
+    }
+
+    init?(whenConditionScript: WhenConditionScript, spriteNode: CBSpriteNode,
+          formulaInterpreter: FormulaInterpreterProtocol, touchManager: TouchManagerProtocol,
+          state: CBScriptContextState, instructionList: [CBInstruction]
+        ) {
+        condition = whenConditionScript.condition
+        super.init(script: whenConditionScript,
+                   spriteNode: spriteNode,
+                   formulaInterpreter: formulaInterpreter,
+                   touchManager: touchManager,
+                   state: state,
+                   instructionList: instructionList)
+        }
 
 }
 

@@ -33,6 +33,7 @@
 #import "Brick.h"
 #import "CBXMLParserHelper.h"
 #import "CBXMLSerializerHelper.h"
+#import "Formula+CBXMLHandler.h"
 #import "Pocket_Code-Swift.h"
 
 @implementation Script (CBXMLHandler)
@@ -93,6 +94,16 @@
         
         whenBackgroundChangesScript.look = look;
         script = whenBackgroundChangesScript;
+    } else if ([scriptType isEqualToString:@"WhenConditionScript"]) {
+        WhenConditionScript *whenConditionScript = [WhenConditionScript new];
+        NSArray *formulaMap = [xmlElement elementsForName:@"formulaMap"];
+        [XMLError exceptionIfNil:formulaMap message:@"No formulaMap element found..."];
+        GDataXMLElement *formulaElement = [[formulaMap firstObject] childWithElementName:@"formula" containingAttribute:@"category" withValue:@"IF_CONDITION"];
+        [XMLError exceptionIfNil:formulaElement message:@"No formula with category IF_CONDITION found..."];
+        Formula *formula = [context parseFromElement:formulaElement withClass:[Formula class]];
+        [XMLError exceptionIfNil:formula message:@"Unable to parse formula..."];
+        whenConditionScript.condition = formula;
+        script = whenConditionScript;
     } else if ([scriptType isEqualToString:@"BroadcastScript"]) {
         BroadcastScript *broadcastScript = [BroadcastScript new];
         NSArray *receivedMessageElements = [xmlElement elementsForName:@"receivedMessage"];
@@ -274,7 +285,15 @@
         [xmlElement addChild:actionXmlElement context:context];
     } else if ([self isKindOfClass:[WhenTouchDownScript class]]) {
         // Nothing to do
-    } else {
+    } else if ([self isKindOfClass:[WhenConditionScript class]]) {
+        WhenConditionScript *whenConditionScript = (WhenConditionScript*)self;
+        GDataXMLElement *formulaList = [GDataXMLElement elementWithName:@"formulaMap" context:context];
+        GDataXMLElement *formula = [whenConditionScript.condition xmlElementWithContext:context];
+        [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"IF_CONDITION"]];
+        [formulaList addChild:formula context:context];
+        [xmlElement addChild:formulaList context:context];
+    }
+    else {
         [XMLError exceptionWithMessage:@"Unsupported script type: %@!", NSStringFromClass([self class])];
     }
     

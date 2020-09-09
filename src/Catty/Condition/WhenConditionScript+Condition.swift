@@ -20,13 +20,25 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "Script.h"
-#import "CBXMLNodeProtocol.h"
+extension WhenConditionScript: CBConditionProtocol {
 
-@class CBXMLContext;
-@class WhenBackgroundChangesScript;
-@class WhenConditionScript;
+    func checkCondition(formulaInterpreter: FormulaInterpreterProtocol) -> Bool {
+        let condition = formulaInterpreter.interpretBool(self.condition, for: self.object)
 
-@interface Script (CBXMLHandler) <CBXMLNodeProtocol>
+        if condition && !self.preCondition {
+            return false
+        } else if !condition && !self.preCondition {
+            self.preCondition = true
+        }
 
-@end
+        return condition
+    }
+
+    func resetCondition() {
+        self.preCondition = false
+    }
+
+    func conditionFormulas() -> [Formula] {
+        self.getFormulas()
+    }
+}

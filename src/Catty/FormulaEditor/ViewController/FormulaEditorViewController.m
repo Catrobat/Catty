@@ -143,8 +143,17 @@ NS_ENUM(NSInteger, ButtonIndex) {
 {
     InternFormulaParser *internFormulaParser = [[InternFormulaParser alloc] initWithTokens:[self.internFormula getInternTokenList] andFormulaManager:(id<FormulaManagerProtocol>)self.formulaManager];
     
-    Brick *brick = (Brick*)self.brickCellData.brickCell.scriptOrBrick; // must be a brick!
-    [internFormulaParser parseFormulaForSpriteObject:brick.script.object];
+    Brick *brick = (Brick*)self.brickCellData.brickCell.scriptOrBrick;
+    SpriteObject *object;
+    
+    if ([brick isKindOfClass:[Script class]]) {
+        Script *script = (Script*)brick;
+        object = script.object;
+    } else {
+        object = brick.script.object;
+    }
+    
+    [internFormulaParser parseFormulaForSpriteObject:object];
     FormulaParserStatus formulaParserStatus = [internFormulaParser getErrorTokenIndex];
     
     if(formulaParserStatus == FORMULA_PARSER_OK) {
@@ -458,12 +467,21 @@ NS_ENUM(NSInteger, ButtonIndex) {
     if (self.internFormula != nil) {
         InternFormulaParser *internFormulaParser = [[InternFormulaParser alloc] initWithTokens:[self.internFormula getInternTokenList] andFormulaManager:(id<FormulaManagerProtocol>)self.formulaManager];
         
-        Brick *brick = (Brick*)self.brickCellData.brickCell.scriptOrBrick; // must be a brick!
-        Formula *formula = [[Formula alloc] initWithFormulaElement:[internFormulaParser parseFormulaForSpriteObject:brick.script.object]];
+        Brick *brick = (Brick*)self.brickCellData.brickCell.scriptOrBrick;
+        SpriteObject *object;
+        
+        if ([brick isKindOfClass:[Script class]]) {
+            Script *script = (Script*)brick;
+            object = script.object;
+        } else {
+            object = brick.script.object;
+        }
+        
+        Formula *formula = [[Formula alloc] initWithFormulaElement:[internFormulaParser parseFormulaForSpriteObject:object]];
         
         switch ([internFormulaParser getErrorTokenIndex]) {
             case FORMULA_PARSER_OK:
-                [self showComputeDialog:formula andSpriteObject:brick.script.object];
+                [self showComputeDialog:formula andSpriteObject:object];
                 break;
             case FORMULA_PARSER_STACK_OVERFLOW:
                 [self showFormulaTooLongView];
@@ -474,7 +492,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
                     if (![brick allowsStringFormula]) {
                         [self showSyntaxErrorView];
                     } else {
-                        [self showComputeDialog:formula andSpriteObject:brick.script.object];
+                        [self showComputeDialog:formula andSpriteObject:object];
                     }
                 }
                 
@@ -635,8 +653,15 @@ NS_ENUM(NSInteger, ButtonIndex) {
         if(self.internFormula != nil) {
             InternFormulaParser *internFormulaParser = [[InternFormulaParser alloc] initWithTokens:[self.internFormula getInternTokenList] andFormulaManager:(id<FormulaManagerProtocol>)self.formulaManager];
             
-            Brick *brick = (Brick*)self.brickCellData.brickCell.scriptOrBrick; // must be a brick!
-            FormulaElement *formulaElement = [internFormulaParser parseFormulaForSpriteObject:brick.script.object];
+            Brick *brick = (Brick*)self.brickCellData.brickCell.scriptOrBrick;
+            FormulaElement *formulaElement = nil;
+            if ([brick isKindOfClass:[Script class]]) {
+                Script *script = (Script*)brick;
+                formulaElement = [internFormulaParser parseFormulaForSpriteObject:script.object];
+            } else {
+                formulaElement = [internFormulaParser parseFormulaForSpriteObject:brick.script.object];
+            }
+            
             Formula *formula = [[Formula alloc] initWithFormulaElement:formulaElement];
             switch ([internFormulaParser getErrorTokenIndex]) {
                 case FORMULA_PARSER_OK:

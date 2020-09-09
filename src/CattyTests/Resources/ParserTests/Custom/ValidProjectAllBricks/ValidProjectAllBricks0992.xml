@@ -671,6 +671,16 @@
               <commentedOut>false</commentedOut>
               <look reference="../../../lookList/look"/>
             </script>
+            <script type="WhenConditionScript">
+              <brickList/>
+              <commentedOut>false</commentedOut>
+              <formulaMap>
+                <formula category="IF_CONDITION">
+                  <type>NUMBER</type>
+                  <value>1</value>
+                </formula>
+              </formulaMap>
+            </script>
           </scriptList>
           <soundList/>
           <userBricks/>

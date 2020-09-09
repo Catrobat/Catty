@@ -34,6 +34,7 @@
             IfLogicElseBrick(),
             IfLogicEndBrick(),
             WhenScript(),
+            WhenConditionScript(),
             BroadcastBrick(),
             BroadcastWaitBrick(),
             ForeverBrick(),

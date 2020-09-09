@@ -20,13 +20,17 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "Script.h"
-#import "CBXMLNodeProtocol.h"
+@testable import Pocket_Code
 
-@class CBXMLContext;
-@class WhenBackgroundChangesScript;
-@class WhenConditionScript;
+final class StageMock: SKScene, StageProtocol {
+    public var notifyBackgroundChangeWasCalled = false
+    public var notifyWhenConditionWasCalled = false
 
-@interface Script (CBXMLHandler) <CBXMLNodeProtocol>
+    func notifyBackgroundChange() {
+        self.notifyBackgroundChangeWasCalled = true
+    }
 
-@end
+    func notifyWhenCondition() {
+        self.notifyWhenConditionWasCalled = true
+    }
+}
