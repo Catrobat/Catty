@@ -26,7 +26,6 @@
 #import "OrderedMapTable.h"
 #import "CBXMLParserHelper.h"
 #import "SpriteObject+CBXMLHandler.h"
-#import "UserVariable+CBXMLHandler.h"
 #import "UserList+CBXMLHandler.h"
 #import "CBXMLParserContext.h"
 #import "CBXMLSerializerContext.h"

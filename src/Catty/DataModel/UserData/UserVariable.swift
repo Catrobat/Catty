@@ -21,7 +21,7 @@
  */
 
 @objc(UserVariable)
-@objcMembers class UserVariable: NSObject, UserVariableProtocol {
+@objcMembers final class UserVariable: NSObject, UserVariableProtocol {
 
     var name: String
     var textLabel: SKLabelNode?

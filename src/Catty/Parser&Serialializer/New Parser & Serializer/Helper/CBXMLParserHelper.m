@@ -29,9 +29,9 @@
 #import "Header+CBXMLHandler.h"
 #import "Look+CBXMLHandler.h"
 #import "Sound+CBXMLHandler.h"
-#import "UserVariable+CBXMLHandler.h"
 #import "SpriteObject+CBXMLHandler.h"
 #import <objc/runtime.h>
+#import "Pocket_Code-Swift.h"
 
 #define kCatroidXMLPrefix               @"org.catrobat.catroid.content."
 #define kCatroidXMLSpriteList           @"spriteList"
