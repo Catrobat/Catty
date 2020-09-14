@@ -28,7 +28,6 @@
 + (instancetype)shared;
 
 @property (readonly, nonatomic) UIView* camView;
-@property (readonly, nonatomic) AVCaptureDevicePosition cameraPosition;
 
 - (void)setCamView:(UIView *)camView;
 - (void)startCameraPreview;
@@ -36,5 +35,6 @@
 - (void)switchCameraPositionTo:(AVCaptureDevicePosition)position;
 - (void)reset;
 - (AVCaptureSession*)getSession;
+- (AVCaptureDevicePosition) getCameraPosition;
 
 @end

@@ -157,7 +157,7 @@ class FaceDetectionManager: NSObject, FaceDetectionManagerProtocol, AVCaptureVid
     }
 
     func cameraPosition() -> AVCaptureDevice.Position {
-        CameraPreviewHandler.shared().cameraPosition
+        (CameraPreviewHandler.shared()?.getCameraPosition())!
     }
 
     private func camera(for cameraPosition: AVCaptureDevice.Position) -> AVCaptureDevice? {
