@@ -74,9 +74,11 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *colorButton;
 
+- (void)setupZoomForImage:(UIImage*)image;
 - (void)updateToolbar;
 - (void)setImagePickerImage:(UIImage*)image;
 - (id)getUndoManager;
 - (id)getResizeViewManager;
 - (id)getPointerTool;
+
 @end
