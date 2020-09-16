@@ -158,6 +158,7 @@
 {
     [self.formula setRoot:formula.formulaTree];
     [self.brickCell.dataDelegate updateBrickCellData:self withValue:self.formula];
+
 }
 
 # pragma mark - User interaction

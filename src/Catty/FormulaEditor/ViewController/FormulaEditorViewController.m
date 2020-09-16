@@ -668,6 +668,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
                     if(self.delegate) {
                         [self.delegate saveFormula:formula];
                     }
+                    [[NSNotificationCenter defaultCenter] postNotificationName:NotificationName.formulaSaved object:formula];
                     return YES;
                     break;
                 case FORMULA_PARSER_STACK_OVERFLOW:

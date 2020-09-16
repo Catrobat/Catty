@@ -32,6 +32,8 @@ final class FormulaEditorViewControllerTests: XCTestCase {
     var spriteObject: SpriteObject!
     var script: Script!
     var scene: Scene!
+    var analytics = AnalyticsMock.self
+    var reporter: FirebaseAnalyticsReporter?
 
     override func setUp() {
         super.setUp()
@@ -289,5 +291,11 @@ final class FormulaEditorViewControllerTests: XCTestCase {
 
         controller.object = objectB
         XCTAssertTrue(controller.isListUsed(list))
+    }
+
+    func testFormulaSavedNotification() {
+        let formulaEditorViewControllerMock = FormulaEditorViewControllerMock()
+        let expectedNotification = Notification(name: .formulaSaved, object: formulaEditorViewControllerMock)
+        expect(formulaEditorViewControllerMock.showFormulaSavedNotification()).to(postNotifications(contain(expectedNotification)))
     }
 }
