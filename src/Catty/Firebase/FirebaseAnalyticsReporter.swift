@@ -38,7 +38,9 @@ class FirebaseAnalyticsReporter {
         addObserver(selector: #selector(self.brickEnabled(notification:)), name: .brickEnabled)
         addObserver(selector: #selector(self.brickDisabled(notification:)), name: .brickDisabled)
         addObserver(selector: #selector(self.scriptEnabled(notification:)), name: .scriptEnabled)
+        addObserver(selector: #selector(self.formulaSaved(notification:)), name: .formulaSaved)
         addObserver(selector: #selector(self.scriptDisabled(notification:)), name: .scriptDisabled)
+        addObserver(selector: #selector(self.formulaSaved(notification:)), name: .formulaSaved)
     }
 
     @objc func brickSelected(notification: Notification) {
@@ -80,5 +82,11 @@ class FirebaseAnalyticsReporter {
             return String(describing: type(of: object))
         }
         return ""
+    }
+
+    @objc func formulaSaved(notification: Notification) {
+        let formula_string = getObjectClassName(for: notification)
+
+        analytics.logEvent("formula_saved", parameters: [AnalyticsParameterItemName: formula_string])
     }
 }

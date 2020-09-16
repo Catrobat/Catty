@@ -88,6 +88,7 @@
 		2219ED93251DDB7E00EBA379 /* NSMutableArrayExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2219ED92251DDB7E00EBA379 /* NSMutableArrayExtensionTests.swift */; };
 		222A6934247E43AB004BE434 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2D44451B123B7E00A3B53D /* Util.swift */; };
 		222A693E247EA490004BE434 /* UIDeviceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222A693D247EA490004BE434 /* UIDeviceExtension.swift */; };
+		223EE03F255F368A00BBA648 /* FormulaEditorViewControllerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223EE03E255F368A00BBA648 /* FormulaEditorViewControllerMock.swift */; };
 		224D5C582423AEF900CD6302 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224D5C512420C8B400CD6302 /* SettingsTableViewController.swift */; };
 		22524C38239FAFC500DD515E /* LoginViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22524C37239FAFC500DD515E /* LoginViewControllerTests.swift */; };
 		22524C3D23A2533F00DD515E /* LoginViewControllerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22524C3C23A2533F00DD515E /* LoginViewControllerMock.swift */; };
@@ -1953,6 +1954,7 @@
 		2219ED89251745EA00EBA379 /* NSMutableArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSMutableArrayExtension.swift; sourceTree = "<group>"; };
 		2219ED92251DDB7E00EBA379 /* NSMutableArrayExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NSMutableArrayExtensionTests.swift; path = Extensions/NSMutableArrayExtensionTests.swift; sourceTree = "<group>"; };
 		222A693D247EA490004BE434 /* UIDeviceExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDeviceExtension.swift; sourceTree = "<group>"; };
+		223EE03E255F368A00BBA648 /* FormulaEditorViewControllerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaEditorViewControllerMock.swift; sourceTree = "<group>"; };
 		224D5C512420C8B400CD6302 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		22524C37239FAFC500DD515E /* LoginViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewControllerTests.swift; sourceTree = "<group>"; };
 		22524C3C23A2533F00DD515E /* LoginViewControllerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewControllerMock.swift; sourceTree = "<group>"; };
@@ -7321,6 +7323,7 @@
 				6F19119D24E7C8CF00CF1B4F /* SceneMock.swift */,
 				180DDF422506800600EA526C /* AnalyticsMock.swift */,
 				59B7A8D22504E83F001C736A /* StageMock.swift */,
+				223EE03E255F368A00BBA648 /* FormulaEditorViewControllerMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -11724,7 +11727,11 @@
 				92BCDC851BF1DE2A00F9CB23 /* FirmataTests.swift in Sources */,
 				9EBCBD852329B73D0074C2D9 /* PlaceAtBrickTests.swift in Sources */,
 				4C822652213FA7A400F3D750 /* LocationManagerMock.swift in Sources */,
+<<<<<<< HEAD
 				4C2CBB5725A5AA8400C1C143 /* XMLParserBlackBoxTests096.swift in Sources */,
+=======
+				223EE03F255F368A00BBA648 /* FormulaEditorViewControllerMock.swift in Sources */,
+>>>>>>> CATTY-372 FirebaseReporter Notification
 				6F4B2FC12466F58500B5F0ED /* CBFileManagerMock.swift in Sources */,
 				599E64A6202DB2FB009494B5 /* MediaLibraryDownloaderMock.swift in Sources */,
 				4C2CBB4525A5AA8400C1C143 /* UserListXMLHandlerTests.m in Sources */,

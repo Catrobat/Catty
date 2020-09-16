@@ -1,0 +1,109 @@
+From 06d5ae97216d43e68cc1a035da8e47fe0141ff7a Mon Sep 17 00:00:00 2001
+From: Unknown <stefan.bortolas@student.tugraz.at>
+Date: Fri, 13 Nov 2020 23:12:35 +0100
+Subject: [PATCH] CATTY-372 Add FormulaEditorViewControllerMock, add Test for
+ Editor
+
+---
+ src/Catty.xcodeproj/project.pbxproj           |  4 +++
+ .../FormulaEditorViewControllerMock.swift     | 29 +++++++++++++++++++
+ .../FormulaEditorViewControllerTests.swift    | 12 +++-----
+ 3 files changed, 37 insertions(+), 8 deletions(-)
+ create mode 100644 src/CattyTests/Mocks/FormulaEditorViewControllerMock.swift
+
+diff --git a/src/Catty.xcodeproj/project.pbxproj b/src/Catty.xcodeproj/project.pbxproj
+index e8f509b61..9d54e51b6 100644
+--- a/src/Catty.xcodeproj/project.pbxproj
++++ b/src/Catty.xcodeproj/project.pbxproj
+@@ -69,6 +69,7 @@
+ 		18E83F852493C978003295DA /* PenClearBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E83F842493C978003295DA /* PenClearBrickTests.swift */; };
+ 		222A6934247E43AB004BE434 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2D44451B123B7E00A3B53D /* Util.swift */; };
+ 		222A693E247EA490004BE434 /* UIDeviceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222A693D247EA490004BE434 /* UIDeviceExtension.swift */; };
++		223EE03F255F368A00BBA648 /* FormulaEditorViewControllerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223EE03E255F368A00BBA648 /* FormulaEditorViewControllerMock.swift */; };
+ 		224D5C582423AEF900CD6302 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224D5C512420C8B400CD6302 /* SettingsTableViewController.swift */; };
+ 		22524C38239FAFC500DD515E /* LoginViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22524C37239FAFC500DD515E /* LoginViewControllerTests.swift */; };
+ 		22524C3D23A2533F00DD515E /* LoginViewControllerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22524C3C23A2533F00DD515E /* LoginViewControllerMock.swift */; };
+@@ -1725,6 +1726,7 @@
+ 		1C035A070A526C061039C146 /* ha */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = ha; path = ha.lproj/Localizable.strings; sourceTree = "<group>"; };
+ 		1C557E56F94895CB30ED2558 /* en-CA */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = "en-CA"; path = "en-CA.lproj/Localizable.strings"; sourceTree = "<group>"; };
+ 		222A693D247EA490004BE434 /* UIDeviceExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDeviceExtension.swift; sourceTree = "<group>"; };
++		223EE03E255F368A00BBA648 /* FormulaEditorViewControllerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaEditorViewControllerMock.swift; sourceTree = "<group>"; };
+ 		224D5C512420C8B400CD6302 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+ 		22524C37239FAFC500DD515E /* LoginViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewControllerTests.swift; sourceTree = "<group>"; };
+ 		22524C3C23A2533F00DD515E /* LoginViewControllerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewControllerMock.swift; sourceTree = "<group>"; };
+@@ -6569,6 +6571,7 @@
+ 				6F19119D24E7C8CF00CF1B4F /* SceneMock.swift */,
+ 				180DDF422506800600EA526C /* AnalyticsMock.swift */,
+ 				59B7A8D22504E83F001C736A /* StageMock.swift */,
++				223EE03E255F368A00BBA648 /* FormulaEditorViewControllerMock.swift */,
+ 			);
+ 			path = Mocks;
+ 			sourceTree = "<group>";
+@@ -10228,6 +10231,7 @@
+ 				92BCDC851BF1DE2A00F9CB23 /* FirmataTests.swift in Sources */,
+ 				9EBCBD852329B73D0074C2D9 /* PlaceAtBrickTests.swift in Sources */,
+ 				4C822652213FA7A400F3D750 /* LocationManagerMock.swift in Sources */,
++				223EE03F255F368A00BBA648 /* FormulaEditorViewControllerMock.swift in Sources */,
+ 				6F4B2FC12466F58500B5F0ED /* CBFileManagerMock.swift in Sources */,
+ 				599E64A6202DB2FB009494B5 /* MediaLibraryDownloaderMock.swift in Sources */,
+ 				4C3A5C9F21D3B3F9008FD83F /* AndOperatorTest.swift in Sources */,
+diff --git a/src/CattyTests/Mocks/FormulaEditorViewControllerMock.swift b/src/CattyTests/Mocks/FormulaEditorViewControllerMock.swift
+new file mode 100644
+index 000000000..3339f3597
+--- /dev/null
++++ b/src/CattyTests/Mocks/FormulaEditorViewControllerMock.swift
+@@ -0,0 +1,29 @@
++/**
++ *  Copyright (C) 2010-2020 The Catrobat Team
++ *  (http://developer.catrobat.org/credits)
++ *
++ *  This program is free software: you can redistribute it and/or modify
++ *  it under the terms of the GNU Affero General Public License as
++ *  published by the Free Software Foundation, either version 3 of the
++ *  License, or (at your option) any later version.
++ *
++ *  An additional term exception under section 7 of the GNU Affero
++ *  General Public License, version 3, is available at
++ *  (http://developer.catrobat.org/license_additional_term)
++ *
++ *  This program is distributed in the hope that it will be useful,
++ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
++ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
++ *  GNU Affero General Public License for more details.
++ *
++ *  You should have received a copy of the GNU Affero General Public License
++ *  along with this program.  If not, see http://www.gnu.org/licenses/.
++ */
++
++@testable import Pocket_Code
++
++class FormulaEditorViewControllerMock: FormulaEditorViewController {
++    func showFormulaSavedNotification() {
++        NotificationCenter.default.post(name: .formulaSaved, object: self)
++    }
++}
+diff --git a/src/CattyTests/ViewController/FormulaEditorViewControllerTests.swift b/src/CattyTests/ViewController/FormulaEditorViewControllerTests.swift
+index 2dd1c66fd..300dcd6a8 100644
+--- a/src/CattyTests/ViewController/FormulaEditorViewControllerTests.swift
++++ b/src/CattyTests/ViewController/FormulaEditorViewControllerTests.swift
+@@ -293,13 +293,9 @@ final class FormulaEditorViewControllerTests: XCTestCase {
+         XCTAssertTrue(controller.isListUsed(list))
+     }
+ 
+-    func testFormulaSavedNotification(){
+-
+-
+-        //expect(self.controller.delegate .save(<#T##formula: Formula!##Formula!#>))
+-
+-        let expectedNotification = Notification(name: .formulaSaved, object: controller)
+-
+-        //expect(self.controller(self.controller.update())).to(postNotifications(expectedNotification)))
++    func testFormulaSavedNotification() {
++        let formulaEditorViewControllerMock = FormulaEditorViewControllerMock()
++        let expectedNotification = Notification(name: .formulaSaved, object: formulaEditorViewControllerMock)
++        expect(formulaEditorViewControllerMock.showFormulaSavedNotification()).to(postNotifications(contain(expectedNotification)))
+     }
+ }
+-- 
+2.19.1
+
