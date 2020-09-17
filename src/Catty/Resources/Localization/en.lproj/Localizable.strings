@@ -149,6 +149,9 @@
 "Backgrounds" = "Backgrounds";
 
 /* No comment provided by engineer. */
+"becomes true" = "becomes true";
+
+/* No comment provided by engineer. */
 "Before you can start coding, please read and accept our Privacy Policy to use the app:" = "Before you can start coding, please read and accept our Privacy Policy to use the app:";
 
 /* paint */
@@ -1806,6 +1809,9 @@
 
 /* No comment provided by engineer. */
 "Welcome!" = "Welcome!";
+
+/* No comment provided by engineer. */
+"When" = "When";
 
 /* No comment provided by engineer. */
 "When background changes to" = "When background changes to";

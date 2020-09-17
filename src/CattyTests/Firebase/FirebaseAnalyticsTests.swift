@@ -36,11 +36,27 @@ final class FirebaseAnalyticsTests: XCTestCase {
     }
 
     func testBrickRemovedNotification() {
-        XCTAssertEqual(analytics.loggedEvents.count, 0)
+        let previousCount = analytics.loggedEvents.count
 
         NotificationCenter.default.post(name: .brickRemoved, object: nil)
 
-        XCTAssertEqual(analytics.loggedEvents.count, 1)
+        XCTAssertEqual(analytics.loggedEvents.count, previousCount + 1)
+    }
+
+    func testBrickEnabledNotification() {
+        let previousCount = analytics.loggedEvents.count
+
+        NotificationCenter.default.post(name: .brickEnabled, object: nil)
+
+        XCTAssertEqual(analytics.loggedEvents.count, previousCount + 1)
+    }
+
+    func testBrickDisabledNotification() {
+        let previousCount = analytics.loggedEvents.count
+
+        NotificationCenter.default.post(name: .brickDisabled, object: nil)
+
+        XCTAssertEqual(analytics.loggedEvents.count, previousCount + 1)
     }
 
 }
