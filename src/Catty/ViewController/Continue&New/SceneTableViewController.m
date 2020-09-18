@@ -224,7 +224,12 @@
 
     NSString *detailActionTitle = self.useDetailCells ? kLocalizedHideDetails : kLocalizedShowDetails;
     
-    [[[[[actionSheet
+    NSString *changeOrientation = self.scene.project.header.landscapeMode ? kLocalizedMakeItPortrait : kLocalizedMakeItLandscape;
+    
+    [[[[[[actionSheet
+         addDefaultActionWithTitle:changeOrientation handler:^{
+             [self changeProjectOrientationAction:self.scene.project];
+         }]
          addDefaultActionWithTitle:kLocalizedRenameProject handler:^{
              NSMutableArray *unavailableNames = [[Project allProjectNames] mutableCopy];
              [unavailableNames removeString:self.scene.project.header.programName];
@@ -251,6 +256,18 @@
            [self.navigationController presentViewController:navigationController animated:YES completion:nil];
        }] build]
      showWithController:self];
+}
+
+- (void)changeProjectOrientationAction:(Project*) project {
+    [self showLoadingView];
+    [self.scene.project changeProjectOrientation];
+    
+    [self.scene.project saveToDiskWithNotification:YES andCompletion:^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [super viewDidLoad];
+            [self hideLoadingView];
+        });    
+    }];
 }
 
 - (void)toggleDetailCellsMode {

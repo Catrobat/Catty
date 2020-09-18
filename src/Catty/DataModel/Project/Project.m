@@ -66,6 +66,11 @@
 
 - (void)saveToDiskWithNotification:(BOOL)notify
 {
+    [self saveToDiskWithNotification:notify andCompletion:nil];
+}
+
+- (void)saveToDiskWithNotification:(BOOL)notify andCompletion:(void (^)(void))completion
+{
     CBFileManager *fileManager = [CBFileManager sharedManager];
     dispatch_queue_t saveToDiskQ = dispatch_queue_create("save to disk", NULL);
     dispatch_async(saveToDiskQ, ^{
@@ -73,7 +78,6 @@
         if (notify) {
             dispatch_sync(dispatch_get_main_queue(), ^{
                 NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-                [notificationCenter postNotificationName:kHideLoadingViewNotification object:self];
                 [notificationCenter postNotificationName:kShowSavedViewNotification object:self];
             });
         }
@@ -81,12 +85,29 @@
         NSString *xmlPath = [NSString stringWithFormat:@"%@%@", [self projectPath], kProjectCodeFileName];
         id<CBSerializerProtocol> serializer = [[CBXMLSerializer alloc] initWithPath:xmlPath fileManager:fileManager];
         [serializer serializeProject:self];
+        
+        if (completion) {
+            completion();
+        }
 
         dispatch_async(dispatch_get_main_queue(), ^{
             [[NSNotificationCenter defaultCenter] postNotificationName:kHideLoadingViewNotification object:self];
             [[NSNotificationCenter defaultCenter] postNotificationName:kReadyToUpload object:self];
         });
     });
+}
+
+- (void)changeProjectOrientation
+{
+    NSNumber *tmpScreenWidth = self.header.screenWidth;
+    self.header.screenWidth = self.header.screenHeight;
+    self.header.screenHeight = tmpScreenWidth;
+    
+    if (self.header.landscapeMode) {
+        self.header.landscapeMode = false;
+    } else {
+        self.header.landscapeMode = true;
+    }
 }
 
 - (BOOL)isLastUsedProject
