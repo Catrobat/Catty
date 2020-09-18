@@ -20,6 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+import Nimble
 import XCTest
 
 @testable import Pocket_Code
@@ -51,6 +52,28 @@ final class ScriptCollectionViewControllerDisableTests: XCTestCase {
 
         XCTAssertFalse(setVariableBrick.isDisabled)
 
+    }
+
+    func testBrickDisabledNotification() {
+        let startScript = StartScript()
+        let setVariableBrick = SetVariableBrick()
+        startScript.brickList = NSMutableArray(array: [setVariableBrick])
+        setVariableBrick.script = startScript
+
+        let expectedNotification = Notification(name: .brickDisabled, object: setVariableBrick)
+        expect(self.viewController.disableOrEnable(brick: setVariableBrick)).toEventually(postNotifications(contain(expectedNotification)))
+
+    }
+
+    func testBrickEnabledNotification() {
+        let startScript = StartScript()
+        let setVariableBrick = SetVariableBrick()
+        startScript.brickList = NSMutableArray(array: [setVariableBrick])
+        setVariableBrick.script = startScript
+        setVariableBrick.isDisabled = true
+
+        let expectedNotification = Notification(name: .brickEnabled, object: setVariableBrick)
+        expect(self.viewController.disableOrEnable(brick: setVariableBrick)).toEventually(postNotifications(contain(expectedNotification)))
     }
 
     func testDisableAndEnableIfLogicByBeginBrick() {

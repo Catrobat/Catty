@@ -30,6 +30,8 @@ extension Notification.Name {
     static var stagePresenterViewControllerDidAppear: Notification.Name { .init(rawValue: NotificationName.stagePresenterViewControllerDidAppear) }
     static var brickSelected: Notification.Name { .init(rawValue: NotificationName.brickSelected) }
     static var brickRemoved: Notification.Name { .init(rawValue: NotificationName.brickRemoved) }
+    static var brickEnabled: Notification.Name { .init(rawValue: NotificationName.brickEnabled) }
+    static var brickDisabled: Notification.Name { .init(rawValue: NotificationName.brickDisabled) }
     static var projectInvalidVersion: Notification.Name { .init(rawValue: NotificationName.projectInvalidVersion) }
     static var projectInvalidXml: Notification.Name { .init(rawValue: NotificationName.projectInvalidXml) }
     static var projectFetchFailure: Notification.Name { .init(rawValue: NotificationName.projectFetchFailure) }
@@ -51,6 +53,8 @@ public class NotificationName: NSObject {
     public static let stagePresenterViewControllerDidAppear = "StagePresenterViewController.didAppear"
     public static let brickSelected = "BrickCategoryViewController.brickSelected"
     public static let brickRemoved = "BrickCategoryViewController.brickRemoved"
+    public static let brickEnabled = "BrickCategoryViewController.brickEnabled"
+    public static let brickDisabled = "BrickCategoryViewController.brickDisabled"
     public static let projectInvalidVersion = "Project.invalidVersion"
     public static let projectInvalidXml = "Project.invalidXml"
     public static let projectFetchFailure = "Project.fetchFailure"

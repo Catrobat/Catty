@@ -34,11 +34,23 @@ class FirebaseAnalyticsReporter {
         analytics.setAnalyticsCollectionEnabled(true)
 
         addObserver(selector: #selector(self.brickRemoved(notification:)), name: .brickRemoved)
+        addObserver(selector: #selector(self.brickEnabled(notification:)), name: .brickEnabled)
+        addObserver(selector: #selector(self.brickDisabled(notification:)), name: .brickDisabled)
     }
 
     @objc func brickRemoved(notification: Notification) {
         let brickClass = getObjectClassName(for: notification)
         analytics.logEvent("brick_removed", parameters: [AnalyticsParameterItemName: brickClass])
+    }
+
+    @objc func brickEnabled(notification: Notification) {
+        let brickClass = getObjectClassName(for: notification)
+        analytics.logEvent("brick_enabled", parameters: [AnalyticsParameterItemName: brickClass])
+    }
+
+    @objc func brickDisabled(notification: Notification) {
+        let brickClass = getObjectClassName(for: notification)
+        analytics.logEvent("brick_disabled", parameters: [AnalyticsParameterItemName: brickClass])
     }
 
     private func addObserver(selector aSelector: Selector, name notification: NSNotification.Name) {

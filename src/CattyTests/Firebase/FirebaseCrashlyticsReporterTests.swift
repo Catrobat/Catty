@@ -112,6 +112,20 @@ final class FirebaseCrashlyticsReporterTests: XCTestCase {
         XCTAssertEqual(0, crashlytics!.records.count)
     }
 
+    func testBrickEnabledNotification() {
+        NotificationCenter.default.post(name: .brickEnabled, object: nil)
+
+        XCTAssertEqual(1, crashlytics!.logs.count)
+        XCTAssertEqual(0, crashlytics!.records.count)
+    }
+
+    func testBrickDisabledNotification() {
+        NotificationCenter.default.post(name: .brickDisabled, object: nil)
+
+        XCTAssertEqual(1, crashlytics!.logs.count)
+        XCTAssertEqual(0, crashlytics!.records.count)
+    }
+
     func testProjectInvalidVersionNotification() {
         NotificationCenter.default.post(name: .projectInvalidVersion, object: nil)
 

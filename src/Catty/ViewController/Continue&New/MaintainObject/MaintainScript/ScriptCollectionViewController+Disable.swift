@@ -33,6 +33,13 @@ extension ScriptCollectionViewController {
         } else if brick.isIfLogicBrick() {
             disableOrEnableIfLogic(brick: brick, brickList: brickList)
         }
+
+        if brick.isDisabled {
+            NotificationCenter.default.post(name: Notification.Name.brickDisabled, object: brick)
+        } else {
+            NotificationCenter.default.post(name: Notification.Name.brickEnabled, object: brick)
+        }
+
     }
 
     fileprivate func disableOrEnableLoop(brick: Brick, brickList: [Brick]) {
