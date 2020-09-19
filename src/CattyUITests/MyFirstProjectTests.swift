@@ -80,8 +80,11 @@ class MyFirstProjectTests: XCTestCase {
 
         XCTAssert(app.buttons[kLocalizedMakeItLandscape].exists)
         app.buttons[kLocalizedMakeItLandscape].tap()
+
+        XCTAssertFalse(waitForElementToDisappear(app.staticTexts["\(kLocalizedLoading)..."]).exists)
+
         app.navigationBars[kLocalizedMyFirstProject].buttons[kLocalizedEdit].tap()
-        XCTAssert(app.buttons[kLocalizedMakeItPortrait].exists)
+        XCTAssert(waitForElementToAppear(app.buttons[kLocalizedMakeItPortrait]).exists)
     }
 
     func testCanAbortRenameProjectViaEditMode() {
