@@ -149,6 +149,9 @@
 "Backgrounds" = "배경";
 
 /* No comment provided by engineer. */
+"becomes true" = "참이 된다";
+
+/* No comment provided by engineer. */
 "Before you can start coding, please read and accept our Privacy Policy to use the app:" = "Before you can start coding, please read and accept our Privacy Policy to use the app:";
 
 /* paint */
@@ -189,9 +192,6 @@
 
 /* No comment provided by engineer. */
 "By registering you agree to our" = "등록함으로써, 우리에게 동의하는 것입니다";
-
-/* No comment provided by engineer. */
-"Camera roll" = "카메라 롤";
 
 /* No comment provided by engineer. */
 "Can't restart project!" = "프로그램을 다시 시작할 수 없습니다!";
@@ -683,6 +683,9 @@
 "Go back" = "돌아가기";
 
 /* No comment provided by engineer. */
+"Go to" = "이동";
+
+/* No comment provided by engineer. */
 "Go to front" = "앞으로 이동";
 
 /* paint */
@@ -1025,6 +1028,9 @@
 "No camera available" = "사용 가능한 카메라 없음";
 
 /* No comment provided by engineer. */
+"No categories selected" = "No categories selected";
+
+/* No comment provided by engineer. */
 "No description available" = "설명이 없습니다";
 
 /* No comment provided by engineer. */
@@ -1162,6 +1168,9 @@
 /* No comment provided by engineer. */
 "Please choose another name:" = "다른 이름을 선택하기:";
 
+/* No comment provided by engineer. */
+"Please choose up to three categories" = "최대 3개의 카테고리 선택";
+
 /* paint */
 "Please enter a text." = "Please enter a text.";
 
@@ -1256,6 +1265,9 @@
 "Projects on device" = "프로그램";
 
 /* No comment provided by engineer. */
+"random position" = "랜덤 위치";
+
+/* No comment provided by engineer. */
 "Rate Us" = "평가하기";
 
 /* No comment provided by engineer. */
@@ -1334,7 +1346,7 @@
 "Saturday" = "토요일";
 
 /* paint */
-"Save to cameraRoll" = "Save to cameraRoll";
+"Save to Photos" = "Save to Photos";
 
 /* No comment provided by engineer. */
 "Save to PocketCode" = "PocketCode에 저장";
@@ -1377,6 +1389,9 @@
 
 /* No comment provided by engineer. */
 "Select brick category" = "Select brick category";
+
+/* No comment provided by engineer. */
+"Select categories" = "Select categories";
 
 /* No comment provided by engineer. */
 "Select logical operator" = "논리 연산자를 선택";
@@ -1425,6 +1440,9 @@
 
 /* No comment provided by engineer. */
 "Set description" = "설명 설정";
+
+/* No comment provided by engineer. */
+"Set pen color to" = "펜 색 정하기";
 
 /* No comment provided by engineer. */
 "Set pen size to" = "펜 굵기 정하기";
@@ -1649,6 +1667,9 @@
 "Today" = "오늘";
 
 /* No comment provided by engineer. */
+"touch position" = "터치 위치";
+
+/* No comment provided by engineer. */
 "transparency" = "투명도";
 
 /* No comment provided by engineer. */
@@ -1788,6 +1809,12 @@
 
 /* No comment provided by engineer. */
 "Welcome!" = "환영합니다!";
+
+/* No comment provided by engineer. */
+"When" = "언제";
+
+/* No comment provided by engineer. */
+"When background changes to" = "배경이 바뀔 때";
 
 /* No comment provided by engineer. */
 "When project started" = "프로그램을 시작할 때";

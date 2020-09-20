@@ -149,6 +149,9 @@
 "Backgrounds" = "Pozadia";
 
 /* No comment provided by engineer. */
+"becomes true" = "bude platiť";
+
+/* No comment provided by engineer. */
 "Before you can start coding, please read and accept our Privacy Policy to use the app:" = "Before you can start coding, please read and accept our Privacy Policy to use the app:";
 
 /* paint */
@@ -189,9 +192,6 @@
 
 /* No comment provided by engineer. */
 "By registering you agree to our" = "Registráciou súhlasíte s našimi";
-
-/* No comment provided by engineer. */
-"Camera roll" = "Camera roll";
 
 /* No comment provided by engineer. */
 "Can't restart project!" = "Can't restart project!";
@@ -683,6 +683,9 @@
 "Go back" = "Späť";
 
 /* No comment provided by engineer. */
+"Go to" = "Choď na";
+
+/* No comment provided by engineer. */
 "Go to front" = "Presuň sa na popredie";
 
 /* paint */
@@ -1025,6 +1028,9 @@
 "No camera available" = "No camera available";
 
 /* No comment provided by engineer. */
+"No categories selected" = "No categories selected";
+
+/* No comment provided by engineer. */
 "No description available" = "No description available";
 
 /* No comment provided by engineer. */
@@ -1162,6 +1168,9 @@
 /* No comment provided by engineer. */
 "Please choose another name:" = "Please choose another name:";
 
+/* No comment provided by engineer. */
+"Please choose up to three categories" = "Please choose up to three categories";
+
 /* paint */
 "Please enter a text." = "Please enter a text.";
 
@@ -1256,6 +1265,9 @@
 "Projects on device" = "Programy";
 
 /* No comment provided by engineer. */
+"random position" = "Náhodná pozícia";
+
+/* No comment provided by engineer. */
 "Rate Us" = "Rate Us";
 
 /* No comment provided by engineer. */
@@ -1334,7 +1346,7 @@
 "Saturday" = "Saturday";
 
 /* paint */
-"Save to cameraRoll" = "Save to cameraRoll";
+"Save to Photos" = "Save to Photos";
 
 /* No comment provided by engineer. */
 "Save to PocketCode" = "Save to PocketCode";
@@ -1377,6 +1389,9 @@
 
 /* No comment provided by engineer. */
 "Select brick category" = "Select brick category";
+
+/* No comment provided by engineer. */
+"Select categories" = "Select categories";
 
 /* No comment provided by engineer. */
 "Select logical operator" = "Select logical operator";
@@ -1425,6 +1440,9 @@
 
 /* No comment provided by engineer. */
 "Set description" = "Zadať popis";
+
+/* No comment provided by engineer. */
+"Set pen color to" = "Nastaviť farbu pera na";
 
 /* No comment provided by engineer. */
 "Set pen size to" = "Nastaviť veľkosť pera na";
@@ -1649,6 +1667,9 @@
 "Today" = "Dnes";
 
 /* No comment provided by engineer. */
+"touch position" = "Pozícia dotyku";
+
+/* No comment provided by engineer. */
 "transparency" = "transparency";
 
 /* No comment provided by engineer. */
@@ -1788,6 +1809,12 @@
 
 /* No comment provided by engineer. */
 "Welcome!" = "Welcome!";
+
+/* No comment provided by engineer. */
+"When" = "Keď";
+
+/* No comment provided by engineer. */
+"When background changes to" = "Keď sa pozadie zmení na";
 
 /* No comment provided by engineer. */
 "When project started" = "When project started";
