@@ -177,7 +177,6 @@ class HelpWebViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
         // Check whether the URL is valid
         if request.url?.absoluteString
             .components(separatedBy: CharacterSet(charactersIn: "/")).count ?? 0 <= 1 {
-            Util.alert(withText: kLocalizedInvalidURLGiven)
             decisionHandler(.cancel)
             return
         }

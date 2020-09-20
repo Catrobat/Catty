@@ -57,8 +57,8 @@ class NetworkDefines: NSObject {
     @objc static var recoverPassword: String { baseUrl.appending("resetting/request") }
     static var uploadUrl: String { baseUrl.appending("api/upload") }
     static var downloadUrl: String { baseUrl.appending("download") }
-    static var helpUrl: String { baseUrl.appending("help") }
     static var tagUrl: String { baseUrl.appending("api/tags/getTags.json") }
+    static var helpUrl: String { "https://catrob.at/help" }
 
     static let connectionSearch = "search.json"
     static let connectionUpload = "upload.json"
