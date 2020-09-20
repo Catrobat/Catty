@@ -47,12 +47,22 @@ extension XCTestCase {
         return app
     }
 
-    func waitForElementToAppear(_ element: XCUIElement) -> XCUIElement {
+    func waitForElementToAppear(_ element: XCUIElement, timeout: TimeInterval = 5) -> XCUIElement {
         let expectation = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == true"), object: element)
 
-        let result = XCTWaiter().wait(for: [expectation], timeout: 5)
+        let result = XCTWaiter().wait(for: [expectation], timeout: timeout)
 
         XCTAssert(result == .completed, "waitForElementToAppear failed for \(element.label) ")
+
+        return element
+    }
+
+    func waitForElementToDisappear(_ element: XCUIElement, timeout: TimeInterval = 5) -> XCUIElement {
+        let expectation = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: element)
+
+        let result = XCTWaiter().wait(for: [expectation], timeout: timeout)
+
+        XCTAssert(result == .completed, "waitForElementToDisappear failed for \(element.label) ")
 
         return element
     }

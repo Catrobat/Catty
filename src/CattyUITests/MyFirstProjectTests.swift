@@ -73,6 +73,20 @@ class MyFirstProjectTests: XCTestCase {
 
     }
 
+    func testCanChangeOrientationViaEditMode() {
+        app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
+        app.tables.staticTexts[kLocalizedMyFirstProject].tap()
+        app.navigationBars[kLocalizedMyFirstProject].buttons[kLocalizedEdit].tap()
+
+        XCTAssert(app.buttons[kLocalizedMakeItLandscape].exists)
+        app.buttons[kLocalizedMakeItLandscape].tap()
+
+        XCTAssertFalse(waitForElementToDisappear(app.staticTexts["\(kLocalizedLoading)..."]).exists)
+
+        app.navigationBars[kLocalizedMyFirstProject].buttons[kLocalizedEdit].tap()
+        XCTAssert(waitForElementToAppear(app.buttons[kLocalizedMakeItPortrait]).exists)
+    }
+
     func testCanAbortRenameProjectViaEditMode() {
         app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
         app.tables.staticTexts[kLocalizedMyFirstProject].tap()

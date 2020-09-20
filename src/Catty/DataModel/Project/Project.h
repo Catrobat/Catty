@@ -42,6 +42,7 @@
 - (void)removeFromDisk;
 - (void)removeReferences;
 - (void)saveToDiskWithNotification:(BOOL)notify;
+- (void)saveToDiskWithNotification:(BOOL)notify andCompletion:(void (^ _Nullable)(void))completion;
 - (BOOL)isLastUsedProject;
 - (void)setAsLastUsedProject;
 - (void)translateDefaultProject;
@@ -51,6 +52,7 @@
 - (NSArray<SpriteObject*>* _Nonnull)allObjects;
 - (BOOL)isEqualToProject:(Project* _Nonnull)project;
 - (NSInteger)getRequiredResources;
+-(void)changeProjectOrientation;
 
 + (instancetype _Nonnull)lastUsedProject;
 + (void)updateLastModificationTimeForProjectWithName:(NSString* _Nonnull)projectName

@@ -169,6 +169,8 @@
 #define kLocalizedMoveSounds NSLocalizedString(@"Move sounds",nil)
 #define kLocalizedHideDetails NSLocalizedString(@"Hide details", nil)
 #define kLocalizedShowDetails NSLocalizedString(@"Show details", nil)
+#define kLocalizedMakeItLandscape NSLocalizedString(@"Change to landscape", nil)
+#define kLocalizedMakeItPortrait NSLocalizedString(@"Change to portrait", nil)
 #define kLocalizedDeleteLooks NSLocalizedString(@"Delete looks",nil)
 #define kLocalizedDeleteBackgrounds NSLocalizedString(@"Delete backgrounds",nil)
 #define kLocalizedMoveLooks NSLocalizedString(@"Move looks",nil)

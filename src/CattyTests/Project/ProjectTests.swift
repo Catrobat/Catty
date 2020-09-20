@@ -381,4 +381,22 @@ class ProjectTest: XCTestCase {
         XCTAssertEqual(1, self.project.scene.objects().count)
         XCTAssertTrue(self.project.scene.objects()[0] === objectA)
     }
+
+    func testChangeProjectOrientation() {
+        let project = ProjectMock()
+        let screenWidth = project.header.screenWidth
+        let screenHeight = project.header.screenHeight
+
+        project.header.landscapeMode = false
+        project.changeOrientation()
+
+        XCTAssertEqual(project.header.landscapeMode, true)
+        XCTAssertEqual(screenWidth, project.header.screenHeight)
+        XCTAssertEqual(screenHeight, project.header.screenWidth)
+        project.changeOrientation()
+
+        XCTAssertEqual(project.header.landscapeMode, false)
+        XCTAssertEqual(screenWidth, project.header.screenWidth)
+        XCTAssertEqual(screenHeight, project.header.screenHeight)
+    }
 }
