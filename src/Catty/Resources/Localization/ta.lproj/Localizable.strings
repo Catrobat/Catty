@@ -149,6 +149,9 @@
 "Backgrounds" = "பின்னணிகள்";
 
 /* No comment provided by engineer. */
+"becomes true" = "உண்மை ஆகிறது";
+
+/* No comment provided by engineer. */
 "Before you can start coding, please read and accept our Privacy Policy to use the app:" = "Before you can start coding, please read and accept our Privacy Policy to use the app:";
 
 /* paint */
@@ -189,9 +192,6 @@
 
 /* No comment provided by engineer. */
 "By registering you agree to our" = "பதிவு செய்வதன் மூலம் நீங்கள் எங்கள் ஒப்புக்கொள்கிறீர்கள்";
-
-/* No comment provided by engineer. */
-"Camera roll" = "புகைப்படச்சுருள்";
 
 /* No comment provided by engineer. */
 "Can't restart project!" = "திட்டத்தை மறுதொடக்கம் செய்ய முடியாது!";
@@ -683,6 +683,9 @@
 "Go back" = "பின்னால் செல்";
 
 /* No comment provided by engineer. */
+"Go to" = "செல்லுங்கள்";
+
+/* No comment provided by engineer. */
 "Go to front" = "முன் செல்லுங்கள்";
 
 /* paint */
@@ -1025,6 +1028,9 @@
 "No camera available" = "கேமரா கிடைக்கவில்லை";
 
 /* No comment provided by engineer. */
+"No categories selected" = "No categories selected";
+
+/* No comment provided by engineer. */
 "No description available" = "விவரம் இல்லை";
 
 /* No comment provided by engineer. */
@@ -1162,6 +1168,9 @@
 /* No comment provided by engineer. */
 "Please choose another name:" = "தயவுசெய்து மற்றொரு பெயரைத் தேர்வுசெய்க:";
 
+/* No comment provided by engineer. */
+"Please choose up to three categories" = "மூன்று வகைகள் வரை தேர்வு செய்யவும்";
+
 /* paint */
 "Please enter a text." = "ஒரு உரையை உள்ளிடவும்.";
 
@@ -1256,6 +1265,9 @@
 "Projects on device" = "சாதனத்தில் உள்ள திட்டங்கள்";
 
 /* No comment provided by engineer. */
+"random position" = "சீரற்ற நிலை";
+
+/* No comment provided by engineer. */
 "Rate Us" = "எங்களுக்கு மதிப்பிடுக";
 
 /* No comment provided by engineer. */
@@ -1334,7 +1346,7 @@
 "Saturday" = "சனிக்கிழமை";
 
 /* paint */
-"Save to cameraRoll" = "கேமரா ரோலில் சேமிக்கவும்";
+"Save to Photos" = "Save to Photos";
 
 /* No comment provided by engineer. */
 "Save to PocketCode" = "பாக்கெட் குறியீட்டில் சேமிக்கவும்";
@@ -1377,6 +1389,9 @@
 
 /* No comment provided by engineer. */
 "Select brick category" = "செங்கல் வகையைத் தேர்ந்தெடுக்கவும்";
+
+/* No comment provided by engineer. */
+"Select categories" = "Select categories";
 
 /* No comment provided by engineer. */
 "Select logical operator" = "தருக்க ஆபரேட்டரைத் தேர்ந்தெடுக்கவும்";
@@ -1425,6 +1440,9 @@
 
 /* No comment provided by engineer. */
 "Set description" = "விளக்கத்தை அமைக்கவும்";
+
+/* No comment provided by engineer. */
+"Set pen color to" = "பேனா நிறத்தை அமைக்கவும்";
 
 /* No comment provided by engineer. */
 "Set pen size to" = "பேனா அளவை அமைக்கவும்";
@@ -1649,6 +1667,9 @@
 "Today" = "இன்று";
 
 /* No comment provided by engineer. */
+"touch position" = "தொடு நிலை";
+
+/* No comment provided by engineer. */
 "transparency" = "வெளிப்படைத்தன்மை";
 
 /* No comment provided by engineer. */
@@ -1788,6 +1809,12 @@
 
 /* No comment provided by engineer. */
 "Welcome!" = "வருக!";
+
+/* No comment provided by engineer. */
+"When" = "எப்பொழுது";
+
+/* No comment provided by engineer. */
+"When background changes to" = "பின்னணி மாறும்போது";
 
 /* No comment provided by engineer. */
 "When project started" = "திட்டம் தொடங்கியபோது";

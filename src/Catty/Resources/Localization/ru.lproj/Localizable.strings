@@ -149,6 +149,9 @@
 "Backgrounds" = "Фоны";
 
 /* No comment provided by engineer. */
+"becomes true" = "становится истинным";
+
+/* No comment provided by engineer. */
 "Before you can start coding, please read and accept our Privacy Policy to use the app:" = "Before you can start coding, please read and accept our Privacy Policy to use the app:";
 
 /* paint */
@@ -189,9 +192,6 @@
 
 /* No comment provided by engineer. */
 "By registering you agree to our" = "Регистрируясь, вы соглашаетесь с нашими";
-
-/* No comment provided by engineer. */
-"Camera roll" = "Camera roll";
 
 /* No comment provided by engineer. */
 "Can't restart project!" = "Не удается перезапустить проект!";
@@ -683,6 +683,9 @@
 "Go back" = "Назад на";
 
 /* No comment provided by engineer. */
+"Go to" = "Перейти в";
+
+/* No comment provided by engineer. */
 "Go to front" = "Переместить на передний план";
 
 /* paint */
@@ -1025,6 +1028,9 @@
 "No camera available" = "No camera available";
 
 /* No comment provided by engineer. */
+"No categories selected" = "No categories selected";
+
+/* No comment provided by engineer. */
 "No description available" = "No description available";
 
 /* No comment provided by engineer. */
@@ -1162,6 +1168,9 @@
 /* No comment provided by engineer. */
 "Please choose another name:" = "Пожалуйста, выберите другое имя:";
 
+/* No comment provided by engineer. */
+"Please choose up to three categories" = "Пожалуйста, выберите до трех категорий";
+
 /* paint */
 "Please enter a text." = "Please enter a text.";
 
@@ -1256,6 +1265,9 @@
 "Projects on device" = "Проекты на устройстве";
 
 /* No comment provided by engineer. */
+"random position" = "Случайное место";
+
+/* No comment provided by engineer. */
 "Rate Us" = "Оценить нас";
 
 /* No comment provided by engineer. */
@@ -1334,7 +1346,7 @@
 "Saturday" = "Суббота";
 
 /* paint */
-"Save to cameraRoll" = "Save to cameraRoll";
+"Save to Photos" = "Сохранить фотографии ";
 
 /* No comment provided by engineer. */
 "Save to PocketCode" = "Сохранить в PocketCode";
@@ -1377,6 +1389,9 @@
 
 /* No comment provided by engineer. */
 "Select brick category" = "Select brick category";
+
+/* No comment provided by engineer. */
+"Select categories" = "Выберите категории";
 
 /* No comment provided by engineer. */
 "Select logical operator" = "Выберите логический оператор";
@@ -1425,6 +1440,9 @@
 
 /* No comment provided by engineer. */
 "Set description" = "Добавить описание";
+
+/* No comment provided by engineer. */
+"Set pen color to" = "Задать цвет пера:";
 
 /* No comment provided by engineer. */
 "Set pen size to" = "Установить размер пера";
@@ -1649,6 +1667,9 @@
 "Today" = "Сегодня";
 
 /* No comment provided by engineer. */
+"touch position" = "Место, к которому прикоснулись";
+
+/* No comment provided by engineer. */
 "transparency" = "прозрачность";
 
 /* No comment provided by engineer. */
@@ -1788,6 +1809,12 @@
 
 /* No comment provided by engineer. */
 "Welcome!" = "Добро пожаловать!";
+
+/* No comment provided by engineer. */
+"When" = "Как только";
+
+/* No comment provided by engineer. */
+"When background changes to" = "Когда фон изменится на";
 
 /* No comment provided by engineer. */
 "When project started" = "При старте";

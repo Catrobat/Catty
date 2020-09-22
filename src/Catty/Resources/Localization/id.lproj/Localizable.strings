@@ -149,6 +149,9 @@
 "Backgrounds" = "Latar belakang";
 
 /* No comment provided by engineer. */
+"becomes true" = "menjadi kenyataan";
+
+/* No comment provided by engineer. */
 "Before you can start coding, please read and accept our Privacy Policy to use the app:" = "Before you can start coding, please read and accept our Privacy Policy to use the app:";
 
 /* paint */
@@ -189,9 +192,6 @@
 
 /* No comment provided by engineer. */
 "By registering you agree to our" = "Dengan mendaftar, Anda setuju dengan";
-
-/* No comment provided by engineer. */
-"Camera roll" = "Camera roll";
 
 /* No comment provided by engineer. */
 "Can't restart project!" = "Can't restart project!";
@@ -683,6 +683,9 @@
 "Go back" = "Kembali";
 
 /* No comment provided by engineer. */
+"Go to" = "Pergi ke";
+
+/* No comment provided by engineer. */
 "Go to front" = "Pergi ke depan";
 
 /* paint */
@@ -1025,6 +1028,9 @@
 "No camera available" = "No camera available";
 
 /* No comment provided by engineer. */
+"No categories selected" = "No categories selected";
+
+/* No comment provided by engineer. */
 "No description available" = "No description available";
 
 /* No comment provided by engineer. */
@@ -1162,6 +1168,9 @@
 /* No comment provided by engineer. */
 "Please choose another name:" = "Please choose another name:";
 
+/* No comment provided by engineer. */
+"Please choose up to three categories" = "Please choose up to three categories";
+
 /* paint */
 "Please enter a text." = "Please enter a text.";
 
@@ -1256,6 +1265,9 @@
 "Projects on device" = "Program";
 
 /* No comment provided by engineer. */
+"random position" = "Posisi acak";
+
+/* No comment provided by engineer. */
 "Rate Us" = "Beri Peringkat";
 
 /* No comment provided by engineer. */
@@ -1334,7 +1346,7 @@
 "Saturday" = "Sabtu";
 
 /* paint */
-"Save to cameraRoll" = "Save to cameraRoll";
+"Save to Photos" = "Save to Photos";
 
 /* No comment provided by engineer. */
 "Save to PocketCode" = "Simpan ke Pocket Code";
@@ -1377,6 +1389,9 @@
 
 /* No comment provided by engineer. */
 "Select brick category" = "Select brick category";
+
+/* No comment provided by engineer. */
+"Select categories" = "Select categories";
 
 /* No comment provided by engineer. */
 "Select logical operator" = "Pilih operator logika";
@@ -1425,6 +1440,9 @@
 
 /* No comment provided by engineer. */
 "Set description" = "Atur keterangan";
+
+/* No comment provided by engineer. */
+"Set pen color to" = "Tetapkan warna pena";
 
 /* No comment provided by engineer. */
 "Set pen size to" = "Tetapkan ukuran pena ke";
@@ -1649,6 +1667,9 @@
 "Today" = "Hari ini";
 
 /* No comment provided by engineer. */
+"touch position" = "Sentuh posisi";
+
+/* No comment provided by engineer. */
 "transparency" = "transparansi";
 
 /* No comment provided by engineer. */
@@ -1788,6 +1809,12 @@
 
 /* No comment provided by engineer. */
 "Welcome!" = "Welcome!";
+
+/* No comment provided by engineer. */
+"When" = "Kapan";
+
+/* No comment provided by engineer. */
+"When background changes to" = "Saat latar belakang berubah";
 
 /* No comment provided by engineer. */
 "When project started" = "When project started";

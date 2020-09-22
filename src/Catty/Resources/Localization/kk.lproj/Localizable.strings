@@ -26,7 +26,7 @@
 "acceleration-sensor" = "acceleration-sensor";
 
 /* No comment provided by engineer. */
-"Actors and objects" = "Actors and objects";
+"Actors and objects" = "Актерлер мен объектілер";
 
 /* No comment provided by engineer. */
 "Add" = "Add";
@@ -47,7 +47,7 @@
 "Add sound" = "Add sound";
 
 /* No comment provided by engineer. */
-"Agree" = "Agree";
+"Agree" = "Келісу";
 
 /* No comment provided by engineer. */
 "All Bluetooth devices successfully disconnected" = "All Bluetooth devices successfully disconnected";
@@ -56,10 +56,10 @@
 "All known Bluetooth devices successfully removed" = "All known Bluetooth devices successfully removed";
 
 /* No comment provided by engineer. */
-"Allow the app to control Arduino boards" = "Allow the app to control Arduino boards";
+"Allow the app to control Arduino boards" = "Қолданбаға Arduino тақталарын басқаруға рұқсат ету";
 
 /* No comment provided by engineer. */
-"Allow the app to send crash reports automatically" = "Allow the app to send crash reports automatically";
+"Allow the app to send crash reports automatically" = "Қолданбаға қателер туралы анонимдік есептер жіберуге рұқсат ету";
 
 /* paint */
 "Alpha" = "Alpha";
@@ -104,7 +104,7 @@
 "arduino digital" = "arduino digital";
 
 /* No comment provided by engineer. */
-"Arduino extension" = "Arduino extension";
+"Arduino extension" = "Arduino кеңейтімі";
 
 /* No comment provided by engineer. */
 "at " = "at ";
@@ -149,6 +149,9 @@
 "Backgrounds" = "Backgrounds";
 
 /* No comment provided by engineer. */
+"becomes true" = "becomes true";
+
+/* No comment provided by engineer. */
 "Before you can start coding, please read and accept our Privacy Policy to use the app:" = "Before you can start coding, please read and accept our Privacy Policy to use the app:";
 
 /* paint */
@@ -191,9 +194,6 @@
 "By registering you agree to our" = "By registering you agree to our";
 
 /* No comment provided by engineer. */
-"Camera roll" = "Camera roll";
-
-/* No comment provided by engineer. */
 "Can't restart project!" = "Can't restart project!";
 
 /* No comment provided by engineer. */
@@ -212,7 +212,7 @@
 "Categories" = "Categories";
 
 /* No comment provided by engineer. */
-"Catrobat community" = "Catrobat community";
+"Catrobat community" = "Catrobat қауымдастығы";
 
 /* No comment provided by engineer. */
 "ceil" = "ceil";
@@ -302,7 +302,7 @@
 "Continue" = "Continue";
 
 /* No comment provided by engineer. */
-"Continue project" = "Continue project";
+"Continue project" = "Жобаны жалғастыру";
 
 /* No comment provided by engineer. */
 "Control" = "Control";
@@ -335,7 +335,7 @@
 "December" = "December";
 
 /* No comment provided by engineer. */
-"degrees" = "degrees";
+"degrees" = "градус";
 
 /* No comment provided by engineer. */
 "Delete" = "Delete";
@@ -443,7 +443,7 @@
 "Disable script" = "Disable script";
 
 /* No comment provided by engineer. */
-"Disagree" = "Disagree";
+"Disagree" = "Келіспеу";
 
 /* No comment provided by engineer. */
 "Disconnect all devices" = "Disconnect all devices";
@@ -683,6 +683,9 @@
 "Go back" = "Go back";
 
 /* No comment provided by engineer. */
+"Go to" = "Go to";
+
+/* No comment provided by engineer. */
 "Go to front" = "Go to front";
 
 /* paint */
@@ -704,7 +707,7 @@
 "Hide" = "Hide";
 
 /* No comment provided by engineer. */
-"Hide details" = "Hide details";
+"Hide details" = "Мәліметтерді жасыру";
 
 /* No comment provided by engineer. */
 "Hide variable" = "Hide variable";
@@ -860,7 +863,7 @@
 "Login successful" = "Login successful";
 
 /* No comment provided by engineer. */
-"Logout" = "Logout";
+"Logout" = "Шығу";
 
 /* No comment provided by engineer. */
 "longitude" = "longitude";
@@ -998,7 +1001,7 @@
 "New message" = "New message";
 
 /* No comment provided by engineer. */
-"New project" = "New project";
+"New project" = "Жаңа жоба";
 
 /* No comment provided by engineer. */
 "New text" = "New text";
@@ -1023,6 +1026,9 @@
 
 /* No comment provided by engineer. */
 "No camera available" = "No camera available";
+
+/* No comment provided by engineer. */
+"No categories selected" = "No categories selected";
 
 /* No comment provided by engineer. */
 "No description available" = "No description available";
@@ -1162,6 +1168,9 @@
 /* No comment provided by engineer. */
 "Please choose another name:" = "Please choose another name:";
 
+/* No comment provided by engineer. */
+"Please choose up to three categories" = "Please choose up to three categories";
+
 /* paint */
 "Please enter a text." = "Please enter a text.";
 
@@ -1241,7 +1250,7 @@
 "Project lists:" = "Project lists:";
 
 /* No comment provided by engineer. */
-"Project name" = "Project name";
+"Project name" = "Жоба атауы";
 
 /* No comment provided by engineer. */
 "Project Name is necessary!" = "Project Name is necessary!";
@@ -1250,10 +1259,13 @@
 "Project variables:" = "Project variables:";
 
 /* No comment provided by engineer. */
-"Projects" = "Projects";
+"Projects" = "Жобалар";
 
 /* No comment provided by engineer. */
-"Projects on device" = "Projects on device";
+"Projects on device" = "Құрылғыдағы жобалар";
+
+/* No comment provided by engineer. */
+"random position" = "random position";
 
 /* No comment provided by engineer. */
 "Rate Us" = "Rate Us";
@@ -1286,16 +1298,16 @@
 "Rename" = "Rename";
 
 /* No comment provided by engineer. */
-"Rename actor or object" = "Rename actor or object";
+"Rename actor or object" = "Актер немесе объектінің атын өзгерту";
 
 /* No comment provided by engineer. */
 "Rename image" = "Rename image";
 
 /* No comment provided by engineer. */
-"Rename project" = "Rename project";
+"Rename project" = "Жобаның атын өзгерту";
 
 /* No comment provided by engineer. */
-"Rename sound" = "Rename sound";
+"Rename sound" = "Дыбыстың атын өзгерту";
 
 /* No comment provided by engineer. */
 "Repeat" = "Repeat";
@@ -1334,7 +1346,7 @@
 "Saturday" = "Saturday";
 
 /* paint */
-"Save to cameraRoll" = "Save to cameraRoll";
+"Save to Photos" = "Save to Photos";
 
 /* No comment provided by engineer. */
 "Save to PocketCode" = "Save to PocketCode";
@@ -1370,13 +1382,16 @@
 "seconds " = "seconds ";
 
 /* No comment provided by engineer. */
-"Select all" = "Select all";
+"Select all" = "Барлығын таңдау";
 
 /* bluetooth */
 "Select Arduino" = "Select Arduino";
 
 /* No comment provided by engineer. */
 "Select brick category" = "Select brick category";
+
+/* No comment provided by engineer. */
+"Select categories" = "Select categories";
 
 /* No comment provided by engineer. */
 "Select logical operator" = "Select logical operator";
@@ -1391,7 +1406,7 @@
 "Select Phiro" = "Select Phiro";
 
 /* No comment provided by engineer. */
-"Sending anonymous crash reports" = "Sending anonymous crash reports";
+"Sending anonymous crash reports" = "Қателер туралы анонимдік есептер жіберу";
 
 /* No comment provided by engineer. */
 "Sensors" = "Sensors";
@@ -1424,7 +1439,10 @@
 "Set color " = "Set color ";
 
 /* No comment provided by engineer. */
-"Set description" = "Set description";
+"Set description" = "Сипаттама орнату";
+
+/* No comment provided by engineer. */
+"Set pen color to" = "Set pen color to";
 
 /* No comment provided by engineer. */
 "Set pen size to" = "Set pen size to";
@@ -1457,7 +1475,7 @@
 "Show" = "Show";
 
 /* No comment provided by engineer. */
-"Show details" = "Show details";
+"Show details" = "Мәліметтерді көрсету";
 
 /* No comment provided by engineer. */
 "Show variable" = "Show variable";
@@ -1544,22 +1562,22 @@
 "Syntax Error!" = "Syntax Error!";
 
 /* No comment provided by engineer. */
-"Tap \"+\" to add actors or objects" = "Tap \"+\" to add actors or objects";
+"Tap \"+\" to add actors or objects" = "Актерлер немесе объектілерді қосу үшін \"+\" түймесін басыңыз";
 
 /* No comment provided by engineer. */
 "Tap \"+\" to add backgrounds" = "Tap \"+\" to add backgrounds";
 
 /* No comment provided by engineer. */
-"Tap \"+\" to add looks" = "Tap \"+\" to add looks";
+"Tap \"+\" to add looks" = "Суреттерді қосу үшін «+» түймесін басыңыз";
 
 /* No comment provided by engineer. */
-"Tap \"+\" to add scripts" = "Tap \"+\" to add scripts";
+"Tap \"+\" to add scripts" = "Скриптілерді қосу үшін \"+\" түймесін басыңыз";
 
 /* No comment provided by engineer. */
 "Tap \"+\" to add sounds" = "Tap \"+\" to add sounds";
 
 /* Button title at the settings screen to get to the terms of use and service. */
-"Terms of Use and Service" = "Terms of Use and Service";
+"Terms of Use and Service" = "Пайдалану және Қызмет Көрсету шарттары";
 
 /* paint */
 "Text" = "Text";
@@ -1646,7 +1664,10 @@
 "to x:" = "to x:";
 
 /* No comment provided by engineer. */
-"Today" = "Today";
+"Today" = "Бүгін";
+
+/* No comment provided by engineer. */
+"touch position" = "touch position";
 
 /* No comment provided by engineer. */
 "transparency" = "transparency";
@@ -1788,6 +1809,12 @@
 
 /* No comment provided by engineer. */
 "Welcome!" = "Welcome!";
+
+/* No comment provided by engineer. */
+"When" = "When";
+
+/* No comment provided by engineer. */
+"When background changes to" = "When background changes to";
 
 /* No comment provided by engineer. */
 "When project started" = "When project started";
