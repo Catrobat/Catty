@@ -29,7 +29,9 @@ protocol CBSchedulerProtocol: AnyObject {
     func isContextScheduled(_ context: CBScriptContextProtocol) -> Bool
     func startWhenContextsOfSpriteNodeWithName(_ spriteName: String)
     func startWhenTouchDownContexts()
+    func startWhenConditionContexts()
     func startBroadcastContexts(_ broadcastContexts: [CBBroadcastScriptContextProtocol])
+    func startWhenBackgroundChangesContexts()
 
     // registration
     func registerSpriteNode(_ spriteNode: CBSpriteNode)

@@ -206,9 +206,9 @@
                       [[[data md5] stringByReplacingOccurrencesOfString:@"-" withString:@""] uppercaseString],
                       kResourceFileNameSeparator,
                       sound.name, fileExtension];
-    NSString *newPath = [self.object pathForSound:sound];
+    NSString *newPath = [sound pathForScene:self.object.scene];
     if (![self checkIfSoundFolderExists]) {
-        [fileManager createDirectory:[NSString stringWithFormat:@"%@%@", [self.object projectPath], kProjectSoundsDirName]];
+        [fileManager createDirectory:self.object.scene.soundsPath];
     }
     [fileManager copyExistingFileAtPath:oldPath toPath:newPath overwrite:YES];
     [self.object.soundList addObject:sound];
@@ -217,7 +217,7 @@
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:0];
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
     //Error on save?
-    [self.object.project saveToDiskWithNotification:YES];
+    [self.object.scene.project saveToDiskWithNotification:YES];
     
     if(self.afterSafeBlock) {
         self.afterSafeBlock(sound);
@@ -227,8 +227,7 @@
 
 -(BOOL)checkIfSoundFolderExists{
     CBFileManager* manager = [CBFileManager sharedManager];
-    NSString * path = [NSString stringWithFormat:@"%@%@", [self.object projectPath], kProjectSoundsDirName];
-    if ([manager directoryExists:path]) {
+    if ([manager directoryExists:self.object.scene.soundsPath]) {
         return YES;
     }
     return NO;
@@ -436,7 +435,7 @@
     Sound* itemToMove = self.object.soundList[sourceIndexPath.row];
     [self.object.soundList removeObjectAtIndex:sourceIndexPath.row];
     [self.object.soundList insertObject:itemToMove atIndex:destinationIndexPath.row];
-    [self.object.project saveToDiskWithNotification:NO];
+    [self.object.scene.project saveToDiskWithNotification:NO];
 }
 
 - (NSArray<UITableViewRowAction*>*)tableView:(UITableView*)tableView
@@ -540,8 +539,7 @@
                 AudioManager *am = [AudioManager sharedAudioManager];
                 BOOL isPlayable = [am playSoundWithFileName:sound.fileName
                                                      andKey:self.object.name
-                                                 atFilePath:[NSString stringWithFormat:@"%@%@",
-                                                             [self.object projectPath], kProjectSoundsDirName]
+                                                 atFilePath:self.object.scene.soundsPath
                                                    delegate:self];
                 if (isPlayable) {
                     return;

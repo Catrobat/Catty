@@ -26,7 +26,6 @@
 #import "OrderedMapTable.h"
 #import "CBXMLParserHelper.h"
 #import "SpriteObject+CBXMLHandler.h"
-#import "UserVariable+CBXMLHandler.h"
 #import "UserList+CBXMLHandler.h"
 #import "CBXMLParserContext.h"
 #import "CBXMLSerializerContext.h"
@@ -39,120 +38,69 @@
 #pragma mark - Parsing
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLParserContext *)context
 {
-    if (context.languageVersion == 0.93f) {
-        return [self parseFromElement:xmlElement withContext:context andRootElementName:@"variables"];
-    }
-    
-    return [self parseFromElement:xmlElement withContext:context andRootElementName:@"data"];
+    return [self parseFromElement:xmlElement withObjectElement:nil andContext:context];
 }
 
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLParserContext *)context andRootElementName:(NSString*)elementName
++ (instancetype)parseForSpriteObject:(GDataXMLElement*)objectXmlElement withContext:(CBXMLParserContext*)context
 {
-    NSArray *variablesElements = [xmlElement elementsForName:elementName];
-    [XMLError exceptionIf:[variablesElements count] notEquals:1 message:@"Too many %@-elements given!", elementName];
-    GDataXMLElement *variablesElement = [variablesElements firstObject];
-    UserDataContainer *varContainer = [UserDataContainer new];
+    if (context.languageVersion <= 0.991) {
+        return [self parseFromElement:context.rootElement withObjectElement:objectXmlElement andContext:context];
+    } else {
+        return [self parseFromElement:context.currentSceneElement withObjectElement:objectXmlElement andContext:context];
+    }
+}
+
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withObjectElement:(GDataXMLElement*)objectXmlElement andContext:(CBXMLParserContext*)context
+{
+    NSString *rootElementName = context.languageVersion == 0.93f ? @"variables" : @"data";
+    GDataXMLElement *variablesElement = xmlElement;
     
+    if (context.languageVersion <= 0.991 || context.currentSceneElement) {
+        NSArray *variablesElements = [xmlElement elementsForName:rootElementName];
+        [XMLError exceptionIf:[variablesElements count] notEquals:1 message:@"Too many %@-elements given!", rootElementName];
+        variablesElement = [variablesElements firstObject];
+    }
+        
+    UserDataContainer *varContainer = [[UserDataContainer alloc] init];
     
-    
-    //------------------
-    // Project Variables
-    //------------------
-    NSArray *projectVarListElements = [variablesElement elementsForName:@"programVariableList"];
-    if ([projectVarListElements count]) {
-        [XMLError exceptionIf:[projectVarListElements count] notEquals:1
-                      message:@"Too many programVariableList-elements!"];
-        GDataXMLElement *projectVarListElement = [projectVarListElements firstObject];
-        varContainer.programVariableList = [[self class] parseAndCreateProjectVariables:projectVarListElement withContext:context];
-        context.programVariableList = varContainer.programVariableList;
+    if (objectXmlElement != nil) {
+        
+         for (UserVariable* variable in [[self class] parseAndCreateObjectVariables:variablesElement withObjectElement:objectXmlElement andContext:context]) {
+          [varContainer addVariable: variable];
+         }
+         for (UserList* list in [[self class] parseAndCreateObjectLists:variablesElement withObjectElement:objectXmlElement andContext:context]) {
+             [varContainer addList: list];
+         }
+    } else {
+         for (UserVariable* variable in [[self class] parseAndCreateProjectVariables:variablesElement withContext:context]) {
+          [varContainer addVariable: variable];
+         }
+        context.programVariableList = [[NSMutableArray alloc] initWithArray: varContainer.variables];
+        
+
+         for (UserList* list in [[self class] parseAndCreateProjectLists:variablesElement withContext:context]) {
+             [varContainer addList: list];
+         }
+        context.programListOfLists = [[NSMutableArray alloc] initWithArray: varContainer.lists];
     }
     
-    
-    
-    //------------------
-    // Project Lists
-    //------------------
-    NSArray *programListOfListsElements = [variablesElement elementsForName:@"programListOfLists"];
-    if ([programListOfListsElements count]) {
-        [XMLError exceptionIf:[programListOfListsElements count] notEquals:1
-                      message:@"Too many programListOfLists-elements!"];
-        GDataXMLElement *programListOfListsElement = [programListOfListsElements firstObject];
-        varContainer.programListOfLists = [[self class] parseAndCreateProjectLists:programListOfListsElement withContext:context];
-        context.programListOfLists = varContainer.programListOfLists;
-    }
-    
-    
-    
-    
-    //------------------
-    // Object Variables
-    //------------------
-    NSMutableDictionary *objectVariableMap = nil;
-    NSMutableDictionary *spriteObjectElementMapVar = [NSMutableDictionary dictionary];
-    NSArray *objectVarListElements = [variablesElement elementsForName:@"objectVariableList"];
-    if ([objectVarListElements count]) {
-        [XMLError exceptionIf:[objectVarListElements count] notEquals:1 message:@"Too many objectVariableList-elements!"];
-        GDataXMLElement *objectVarListElement = [objectVarListElements firstObject];
-        objectVariableMap = [[self class] parseAndCreateObjectVariables:objectVarListElement
-                                                   spriteObjectElements:spriteObjectElementMapVar
-                                                            withContext:context];
-        context.spriteObjectNameVariableList = objectVariableMap; // needed to correctly parse SpriteObjects
-    }
-    
-    //------------------
-    // Object Lists
-    //------------------
-    NSMutableDictionary *objectListMap = nil;
-    NSMutableDictionary *spriteObjectElementMapList = [NSMutableDictionary dictionary];
-    NSArray *objectListOfListsElements = [variablesElement elementsForName:@"objectListOfList"];
-    if ([objectListOfListsElements count]) {
-        [XMLError exceptionIf:[objectListOfListsElements count] notEquals:1 message:@"Too many objectVariableList-elements!"];
-        GDataXMLElement *objectListOfListsElement = [objectListOfListsElements firstObject];
-        objectListMap = [[self class] parseAndCreateObjectLists:objectListOfListsElement
-                                           spriteObjectElements:spriteObjectElementMapList
-                                                    withContext:context];
-        context.spriteObjectNameListOfLists = objectListMap; // needed to correctly parse SpriteObjects
-    }
-    
-    
-    
-    // create ordered map table and parse all those SpriteObjects that contain objectUserVariable(s)
-    OrderedMapTable *objectVariableList = [OrderedMapTable weakToStrongObjectsMapTable];
-    for (NSString *spriteObjectName in objectVariableMap) {
-        GDataXMLElement *xmlElement = [spriteObjectElementMapVar objectForKey:spriteObjectName];
-        [XMLError exceptionIfNil:xmlElement message:@"Xml element for SpriteObject missing. This \
-         should never happen!"];
-        SpriteObject *spriteObject = [context parseFromElement:xmlElement withClass:[SpriteObject class]];
-        [XMLError exceptionIfNil:spriteObject message:@"Unable to parse SpriteObject!"];
-        [objectVariableList setObject:[objectVariableMap objectForKey:spriteObjectName]
-                               forKey:spriteObject];
-    }
-    varContainer.objectVariableList = objectVariableList;
-    
-    // create ordered map table and parse all those SpriteObjects that contain objectUserVariable(s)
-    OrderedMapTable *objectListOfLists = [OrderedMapTable weakToStrongObjectsMapTable];
-    for (NSString *spriteObjectName in objectListMap) {
-        GDataXMLElement *xmlElement = [spriteObjectElementMapList objectForKey:spriteObjectName];
-        [XMLError exceptionIfNil:xmlElement message:@"Xml element for SpriteObject missing. This \
-         should never happen!"];
-        SpriteObject *spriteObject = [context parseFromElement:xmlElement withClass:[SpriteObject class]];
-        [XMLError exceptionIfNil:spriteObject message:@"Unable to parse SpriteObject!"];
-        [objectListOfLists setObject:[objectListMap objectForKey:spriteObjectName]
-                              forKey:spriteObject];
-    }
-    varContainer.objectListOfLists = objectListOfLists;
-    
-    
-    
-    context.userData = varContainer;
     return varContainer;
 }
 
-+ (OrderedDictionary*)parseAndCreateObjectVariables:(GDataXMLElement*)objectVarListElement spriteObjectElements:(NSMutableDictionary*)spriteObjectElementMap withContext:(CBXMLParserContext*)context
++ (NSMutableArray<UserVariable*>*)parseAndCreateObjectVariables:(GDataXMLElement*)variablesElement withObjectElement:(GDataXMLElement*)objectXmlElement andContext:(CBXMLParserContext*)context
 {
+    NSMutableArray<UserVariable*>* userVariables = [[NSMutableArray alloc] init];
+    NSArray *objectVarListElements = [variablesElement elementsForName:@"objectVariableList"];
+    
+    if (![objectVarListElements count]) {
+        return userVariables;
+    }
+    
+    [XMLError exceptionIf:[objectVarListElements count] notEquals:1 message:@"Too many objectVariableList-elements!"];
+    GDataXMLElement *objectVarListElement = [objectVarListElements firstObject];
+    
     NSArray *entries = [objectVarListElement children];
-    OrderedDictionary *objectVariableMap = [[OrderedDictionary alloc] initWithCapacity:[entries count]];
-    NSUInteger index = 0;
+    
     for (GDataXMLElement *entry in entries) {
         [XMLError exceptionIfNode:entry isNilOrNodeNameNotEquals:@"entry"];
         NSArray *objectElements = [entry elementsForName:@"object"];
@@ -172,35 +120,30 @@
             objectElement = [objectElement singleNodeForCatrobatXPath:xPath];
             [XMLError exceptionIfNil:objectElement message:@"Invalid reference in object. No or too many objects found!"];
         }
-
-        // extract sprite object name out of sprite object definition
-        GDataXMLNode *nameAttribute = [objectElement attributeForName:@"name"];
-        [XMLError exceptionIfNil:nameAttribute message:@"Object element does not contain a name attribute!"];
-        NSString *spriteObjectName = [nameAttribute stringValue];
-        [spriteObjectElementMap setObject:objectElement forKey:spriteObjectName];
-
-        // check if that SpriteObject has been already parsed some time before
-        if ([objectVariableMap objectForKey:spriteObjectName]) {
-            [XMLError exceptionWithMessage:@"An objectVariable-entry for same \
-             SpriteObject already exists. This should never happen!"];
+        
+        if ([[objectElement stringValue] isEqualToString:[objectXmlElement stringValue]]) {
+            NSArray *listElements = [entry elementsForName:@"list"];
+            GDataXMLElement *listElement = [listElements firstObject];
+            return [[self class] parseUserVariablesList:[listElement children] withContext:context];
         }
-
-        // create all user variables of this sprite object
-        NSArray *listElements = [entry elementsForName:@"list"];
-        GDataXMLElement *listElement = [listElements firstObject];
-        [objectVariableMap insertObject:[[self class] parseUserVariablesList:[listElement children] withContext:context]
-                                 forKey:spriteObjectName
-                                atIndex:index];
-        ++index;
     }
-    return objectVariableMap;
+    return userVariables;
 }
 
-+ (OrderedDictionary*)parseAndCreateObjectLists:(GDataXMLElement*)objectListOfListsElement spriteObjectElements:(NSMutableDictionary*)spriteObjectElementMap withContext:(CBXMLParserContext*)context
++ (NSMutableArray<UserList*>*)parseAndCreateObjectLists:(GDataXMLElement*)variablesElement withObjectElement:(GDataXMLElement*)objectXmlElement andContext:(CBXMLParserContext*)context
 {
+    NSMutableArray<UserList*>* userLists = [[NSMutableArray alloc] init];
+    NSArray *objectListOfListsElements = [variablesElement elementsForName:@"objectListOfList"];
+    
+    if (![objectListOfListsElements count]) {
+        return userLists;
+    }
+    
+    [XMLError exceptionIf:[objectListOfListsElements count] notEquals:1 message:@"Too many objectListOfList-elements!"];
+    GDataXMLElement *objectListOfListsElement = [objectListOfListsElements firstObject];
+    
     NSArray *entries = [objectListOfListsElement children];
-    OrderedDictionary *objectListMap = [[OrderedDictionary alloc] initWithCapacity:[entries count]];
-    NSUInteger index = 0;
+    
     for (GDataXMLElement *entry in entries) {
         [XMLError exceptionIfNode:entry isNilOrNodeNameNotEquals:@"entry"];
         NSArray *objectElements = [entry elementsForName:@"object"];
@@ -221,39 +164,40 @@
             [XMLError exceptionIfNil:objectElement message:@"Invalid reference in object. No or too many objects found!"];
         }
         
-        // extract sprite object name out of sprite object definition
-        GDataXMLNode *nameAttribute = [objectElement attributeForName:@"name"];
-        [XMLError exceptionIfNil:nameAttribute message:@"Object element does not contain a name attribute!"];
-        NSString *spriteObjectName = [nameAttribute stringValue];
-        [spriteObjectElementMap setObject:objectElement forKey:spriteObjectName];
-        
-        // check if that SpriteObject has been already parsed some time before
-        if ([objectListMap objectForKey:spriteObjectName]) {
-            [XMLError exceptionWithMessage:@"An objectList-entry for same \
-             SpriteObject already exists. This should never happen!"];
+        if ([[objectElement stringValue] isEqualToString:[objectXmlElement stringValue]]) {
+            NSArray *listElements = [entry elementsForName:@"list"];
+            GDataXMLElement *listElement = [listElements firstObject];
+            return [[self class] parseUserListOfLists:[listElement children] withContext:context];
         }
-        
-        // create all user lists of this sprite object
-        NSArray *listElements = [entry elementsForName:@"list"];
-        GDataXMLElement *listElement = [listElements firstObject];
-        [objectListMap insertObject:[[self class] parseUserListOfLists:[listElement children] withContext:context]
-                                 forKey:spriteObjectName
-                                atIndex:index];
-        ++index;
     }
-    return objectListMap;
+    return userLists;
 }
 
-+ (NSMutableArray*)parseAndCreateProjectVariables:(GDataXMLElement*)projectVarListElement withContext:(CBXMLParserContext*)context
++ (NSMutableArray*)parseAndCreateProjectVariables:(GDataXMLElement*)variablesElement withContext:(CBXMLParserContext*)context
 {
+    NSArray *projectVarListElements = [variablesElement elementsForName:@"programVariableList"];
+    if (![projectVarListElements count]) {
+        return [NSMutableArray new];
+    }
+    
+    [XMLError exceptionIf:[projectVarListElements count] notEquals:1 message:@"Too many programVariableList-elements!"];
+    GDataXMLElement *projectVarListElement = [projectVarListElements firstObject];
+    
     return [[self class] parseUserVariablesList:[projectVarListElement children] withContext:context];
 }
 
-+ (NSMutableArray*)parseAndCreateProjectLists:(GDataXMLElement*)programListOfListsElement withContext:(CBXMLParserContext*)context
++ (NSMutableArray*)parseAndCreateProjectLists:(GDataXMLElement*)variablesElement withContext:(CBXMLParserContext*)context
 {
+    NSArray *programListOfListsElements = [variablesElement elementsForName:@"programListOfLists"];
+    if (![programListOfListsElements count]) {
+        return [NSMutableArray new];
+    }
+    
+    [XMLError exceptionIf:[programListOfListsElements count] notEquals:1 message:@"Too many programListOfLists-elements!"];
+    GDataXMLElement *programListOfListsElement = [programListOfListsElements firstObject];
+    
     return [[self class] parseUserListOfLists:[programListOfListsElement children] withContext:context];
 }
-
 
 + (NSMutableArray*)parseUserVariablesList:(NSArray*)userVariablesListElements withContext:(CBXMLParserContext*)context
 {
@@ -296,22 +240,72 @@
 #pragma mark - Serialization
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context
 {
+    GDataXMLElement *xmlElement = [self serializeForObject:context];
+    GDataXMLElement *container = [self serializeForProject:context];
+    
+    NSArray *containerChildren = [container children];
+    [XMLError exceptionIf:[containerChildren count] notEquals:2 message:@"programListOfLists & programVariableList not present"];
+    
+    for (GDataXMLElement *projectVariableXmlElement in containerChildren) {
+        [xmlElement addChild:projectVariableXmlElement context:nil];
+    }
+    
+    // add pseudo element to produce a Catroid equivalent XML (unused at the moment)
+    [xmlElement addChild:[GDataXMLElement elementWithName:@"userBrickVariableList" context:context] context:context];
+    
+    // TODO implement objectListOfList, programListOfLists and userBrickVariableList
+    NSLog(@"%@", [xmlElement XMLStringPrettyPrinted:YES]);
+    return xmlElement;
+}
+
+-(GDataXMLElement *)serializeForProject:(CBXMLSerializerContext*)context
+{
+    GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"container" context:nil];
+    
+    //------------------
+    // Project Lists
+    //------------------
+    GDataXMLElement *programListOfListsXmlElement = [GDataXMLElement elementWithName:@"programListOfLists"
+                                                                              context:context];
+    for (id list in self.lists) {
+        [XMLError exceptionIf:[list isKindOfClass:[UserList class]] equals:NO
+                      message:@"Invalid user list instance given"];
+        GDataXMLElement *userListXmlElement = [(UserList*)list xmlElementWithContext:context];
+        [programListOfListsXmlElement addChild:userListXmlElement context:context];
+    }
+    [xmlElement addChild:programListOfListsXmlElement context:context];
+
+    
+    
+    
+    //------------------
+    // Project Variables
+    //------------------
+    GDataXMLElement *programVariableListXmlElement = [GDataXMLElement elementWithName:@"programVariableList"
+                                                                              context:context];
+    for (id variable in self.variables) {
+        [XMLError exceptionIf:[variable isKindOfClass:[UserVariable class]] equals:NO
+                      message:@"Invalid user variable instance given"];
+        GDataXMLElement *userVariableXmlElement = [(UserVariable*)variable xmlElementWithContext:context];
+        [programVariableListXmlElement addChild:userVariableXmlElement context:context];
+    }
+    [xmlElement addChild:programVariableListXmlElement context:context];
+    
+    return xmlElement;
+}
+
+-(GDataXMLElement *)serializeForObject:(CBXMLSerializerContext*)context
+{
     GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"data" context:context];
-    
-    
-    
-    
-    
-    
     
     //------------------
     // Object Lists
     //------------------
     GDataXMLElement *objectListOfListXmlElement = [GDataXMLElement elementWithName:@"objectListOfList" context:context];
-    NSUInteger totalNumOfObjectLists = [self.objectListOfLists count];
+    NSUInteger totalNumOfObjectLists = [context.spriteObjectList count];
     
     for (NSUInteger index = 0; index < totalNumOfObjectLists; ++index) {
-        id spriteObject = [self.objectListOfLists keyAtIndex:index];
+        id spriteObject = [context.spriteObjectList objectAtIndex: index];
         [XMLError exceptionIf:[spriteObject isKindOfClass:[SpriteObject class]] equals:NO
                       message:@"Instance in objectListOfLists at index: %lu is no SpriteObject", (unsigned long)index];
         if (![context.spriteObjectList containsObject:spriteObject]) {
@@ -332,7 +326,7 @@
         [entryXmlElement addChild:entryToObjectReferenceXmlElement context:context];
         
         GDataXMLElement *listXmlElement = [GDataXMLElement elementWithName:@"list" context:context];
-        NSArray *lists = [self.objectListOfLists objectAtIndex:index];
+        NSArray *lists = ((SpriteObject*)spriteObject).userData.lists;
         for (id list in lists) {
             [XMLError exceptionIf:[list isKindOfClass:[UserList class]] equals:NO
                           message:@"Invalid user List instance given"];
@@ -344,23 +338,14 @@
     }
     [xmlElement addChild:objectListOfListXmlElement context:context];
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
     //------------------
     // Object Variables
     //------------------
     GDataXMLElement *objectVariableListXmlElement = [GDataXMLElement elementWithName:@"objectVariableList" context:context];
-    NSUInteger totalNumOfObjectVariables = [self.objectVariableList count];
-
+    NSUInteger totalNumOfObjectVariables = [context.spriteObjectList count];
+    
     for (NSUInteger index = 0; index < totalNumOfObjectVariables; ++index) {
-        id spriteObject = [self.objectVariableList keyAtIndex:index];
+        id spriteObject = [context.spriteObjectList objectAtIndex: index];
         [XMLError exceptionIf:[spriteObject isKindOfClass:[SpriteObject class]] equals:NO
                       message:@"Instance in objectVariableList at index: %lu is no SpriteObject", (unsigned long)index];
         if (![context.spriteObjectList containsObject:spriteObject]) {
@@ -381,7 +366,7 @@
         [entryXmlElement addChild:entryToObjectReferenceXmlElement context:context];
 
         GDataXMLElement *listXmlElement = [GDataXMLElement elementWithName:@"list" context:context];
-        NSArray *variables = [self.objectVariableList objectAtIndex:index];
+        NSArray *variables = ((SpriteObject*)spriteObject).userData.variables;
         for (id variable in variables) {
             [XMLError exceptionIf:[variable isKindOfClass:[UserVariable class]] equals:NO
                           message:@"Invalid user variable instance given"];
@@ -392,50 +377,9 @@
         [objectVariableListXmlElement addChild:entryXmlElement context:context];
     }
     [xmlElement addChild:objectVariableListXmlElement context:context];
-
     
-    
-    
-    
-    
-    //------------------
-    // Project Lists
-    //------------------
-    GDataXMLElement *programListOfListsXmlElement = [GDataXMLElement elementWithName:@"programListOfLists"
-                                                                              context:context];
-    for (id list in self.programListOfLists) {
-        [XMLError exceptionIf:[list isKindOfClass:[UserList class]] equals:NO
-                      message:@"Invalid user list instance given"];
-        GDataXMLElement *userListXmlElement = [(UserList*)list xmlElementWithContext:context];
-        [programListOfListsXmlElement addChild:userListXmlElement context:context];
-    }
-    [xmlElement addChild:programListOfListsXmlElement context:context];
-
-    
-    
-    
-    //------------------
-    // Project Variables
-    //------------------
-    GDataXMLElement *programVariableListXmlElement = [GDataXMLElement elementWithName:@"programVariableList"
-                                                                              context:context];
-    for (id variable in self.programVariableList) {
-        [XMLError exceptionIf:[variable isKindOfClass:[UserVariable class]] equals:NO
-                      message:@"Invalid user variable instance given"];
-        GDataXMLElement *userVariableXmlElement = [(UserVariable*)variable xmlElementWithContext:context];
-        [programVariableListXmlElement addChild:userVariableXmlElement context:context];
-    }
-    [xmlElement addChild:programVariableListXmlElement context:context];
-    
-    
-    
-    
-    
-    // add pseudo element to produce a Catroid equivalent XML (unused at the moment)
     [xmlElement addChild:[GDataXMLElement elementWithName:@"userBrickVariableList" context:context] context:context];
     
-    // TODO implement objectListOfList, programListOfLists and userBrickVariableList
-
     return xmlElement;
 }
 

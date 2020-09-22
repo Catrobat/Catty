@@ -2,6 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "help.png",
       "scale" : "1x"
     },
     {
@@ -10,15 +11,11 @@
     },
     {
       "idiom" : "universal",
-      "filename" : "Icons_main_menu_forum.png",
       "scale" : "3x"
     }
   ],
   "info" : {
     "version" : 1,
     "author" : "xcode"
-  },
-  "properties" : {
-    "template-rendering-intent" : "template"
   }
 }

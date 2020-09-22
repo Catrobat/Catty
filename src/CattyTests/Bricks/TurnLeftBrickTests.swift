@@ -42,6 +42,8 @@ final class TurnLeftBrickTests: AbstractBrickTest {
 
     private func turnLeft(initialRotation: Double, rotation: Double) {
         let object = SpriteObject()
+        let scene = Scene(name: "testScene")
+        object.scene = scene
         let spriteNode = CBSpriteNode.init(spriteObject: object)
         object.spriteNode = spriteNode
 

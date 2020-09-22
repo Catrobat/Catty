@@ -33,7 +33,7 @@
 
 @interface BaseCollectionViewController ()
 @property (nonatomic, strong) LoadingView* loadingView;
-@property (nonatomic, strong) ScenePresenterViewController *scenePresenterViewController;
+@property (nonatomic, strong) StagePresenterViewController *stagePresenterViewController;
 @end
 
 @implementation BaseCollectionViewController
@@ -93,7 +93,7 @@
     [self.placeHolderView addConstraints:@[centerXConstraint, centerYConstraint]];
     [self.view addConstraints:@[topConstraint, leadingConstraint, widthConstraint, heightConstraint]];
     
-    self.scenePresenterViewController = [ScenePresenterViewController new];
+    self.stagePresenterViewController = [StagePresenterViewController new];
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -125,7 +125,14 @@
 
 - (void)playSceneAction:(id)sender
 {
-    [self.scenePresenterViewController checkResourcesAndPushViewControllerTo:self.navigationController];
+    if (!Project.lastUsedProject.header.landscapeMode) {
+        [[UIDevice currentDevice] setValue:@(UIInterfaceOrientationPortrait) forKey:@"orientation"];
+        [UINavigationController attemptRotationToDeviceOrientation];
+    } else {
+        [[UIDevice currentDevice] setValue:@(UIInterfaceOrientationLandscapeRight) forKey:@"orientation"];
+        [UINavigationController attemptRotationToDeviceOrientation];
+    }
+    [self.stagePresenterViewController checkResourcesAndPushViewControllerTo:self.navigationController];
 }
 
 #pragma mark - Setup Toolbar

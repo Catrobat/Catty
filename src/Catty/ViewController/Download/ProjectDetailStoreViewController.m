@@ -24,16 +24,15 @@
 #import "CBFileManager.h"
 #import "ButtonTags.h"
 #import "SegueDefines.h"
-#import "ProjectTableViewController.h"
+#import "SceneTableViewController.h"
 #import "Util.h"
 #import "EVCircularProgressView.h"
 #import "CreateView.h"
-#import "ProjectUpdateDelegate.h"
 #import "KeychainUserDefaultsDefines.h"
 #import "Pocket_Code-Swift.h"
 
 
-@interface ProjectDetailStoreViewController () <ProjectUpdateDelegate>
+@interface ProjectDetailStoreViewController ()
 
 @property (nonatomic, strong) UIView *projectView;
 @property (nonatomic, strong) LoadingView *loadingView;
@@ -164,65 +163,12 @@
     [self setScrollViewOutlet:nil];
 }
 
-#pragma mark - segue handling
-- (BOOL)shouldPerformSegueWithIdentifier:(NSString*)identifier sender:(id)sender
-{
-    static NSString *segueToContinue = kSegueToContinue;
-    if ([identifier isEqualToString:segueToContinue]) {
-        // The local project name with same project ID could differ from the original project name.
-        // That's because the user could have renamed the downloaded project.
-        NSString *localProjectName = [Project projectNameForProjectID:self.project.projectID];
-        
-        [self showLoadingView];
-        [CATransaction flush];
-        
-        // check if project loaded successfully -> not nil
-        self.loadedProject = [Project projectWithLoadingInfo:[ProjectLoadingInfo projectLoadingInfoForProjectWithName:localProjectName projectID:self.project.projectID]];
-        
-        [self hideLoadingView];
-        
-        if (self.loadedProject) {
-            return YES;
-        }
-        // project failed loading...
-        [Util alertWithText:kLocalizedUnableToLoadProject];
-        return NO;
-    }
-    return [super shouldPerformSegueWithIdentifier:identifier sender:sender];
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue*)segue sender:(id)sender
-{
-    static NSString *segueToContinue = kSegueToContinue;
-    if ([[segue identifier] isEqualToString:segueToContinue]) {
-        if ([segue.destinationViewController isKindOfClass:[ProjectTableViewController class]]) {
-            self.hidesBottomBarWhenPushed = YES;
-            ProjectTableViewController *projectTableViewController = (ProjectTableViewController*)segue.destinationViewController;
-            projectTableViewController.project = self.loadedProject;
-            projectTableViewController.delegate = self;
-        }
-    }
-}
-
-#pragma mark - project update delegates
-- (void)removeProjectWithName:(NSString*)projectName projectID:(NSString*)projectID
-{
-    [self showOpenButton];
-}
-
-- (void)renameOldProjectWithName:(NSString*)oldProjectName
-                       projectID:(NSString*)projectID
-                toNewProjectName:(NSString*)newProjectName
-{
-    return; // IMPORTANT: this method does nothing but has to be implemented!!
-}
-
 #pragma mark - ProjectStore Delegate
 
 - (void)reportProject
 {
     NSDebug(@"report");
-    BOOL isLoggedIn = [[NSUserDefaults standardUserDefaults] boolForKey:kUserIsLoggedIn];
+    BOOL isLoggedIn = [[NSUserDefaults standardUserDefaults] boolForKey: NetworkDefines.kUserIsLoggedIn];
     if (isLoggedIn) {
         [[[[[[AlertControllerBuilder textFieldAlertWithTitle:kLocalizedReportProject message:kLocalizedEnterReason]
               addCancelActionWithTitle:kLocalizedCancel handler:nil]
@@ -293,11 +239,22 @@
 
 - (void)openButtonPressed:(id)sender
 {
-    NSDebug(@"Open Button");
-    static NSString* segueToContinue = kSegueToContinue;
-    if ([self shouldPerformSegueWithIdentifier:segueToContinue sender:self]) {
-        [self performSegueWithIdentifier:segueToContinue sender:self];
+    
+    NSString *localProjectName = [Project projectNameForProjectID:self.project.projectID];
+    
+    [self showLoadingView];
+    [CATransaction flush];
+    
+    self.loadedProject = [Project projectWithLoadingInfo:[ProjectLoadingInfo projectLoadingInfoForProjectWithName:localProjectName projectID:self.project.projectID]];
+    
+    [self hideLoadingView];
+    
+    if (!self.loadedProject) {
+        [Util alertWithText:kLocalizedUnableToLoadProject];
+        return;
     }
+    
+    [self openProject:self.loadedProject];
 }
 
 - (void)downloadButtonPressed

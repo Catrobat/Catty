@@ -20,11 +20,16 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "UserDataContainer.h"
+#import "Pocket_Code-Swift.h"
 #import "CBXMLNodeProtocol.h"
 
 @class CBXMLContext;
 
 @interface UserDataContainer (CBXMLHandler) <CBXMLNodeProtocol>
+
++ (instancetype)parseForSpriteObject:(GDataXMLElement*)objectXmlElement withContext:(CBXMLParserContext *)context;
+
+-(GDataXMLElement *)serializeForProject:(CBXMLSerializerContext*)context;
+-(GDataXMLElement *)serializeForObject:(CBXMLSerializerContext*)context;
 
 @end

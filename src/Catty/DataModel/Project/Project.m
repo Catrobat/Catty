@@ -21,7 +21,6 @@
  */
 
 #import "Project.h"
-#import "UserDataContainer.h"
 #import "Util.h"
 #import "CBFileManager.h"
 #import "Parser.h"
@@ -35,113 +34,23 @@
 
 @implementation Project
 
-@synthesize objectList = _objectList;
+@synthesize scene = _scene;
 
-- (NSInteger)numberOfTotalObjects
+- (instancetype)init
 {
-    return [self.objectList count];
-}
-
-- (NSInteger)numberOfBackgroundObjects
-{
-    NSInteger numberOfTotalObjects = [self numberOfTotalObjects];
-    if (numberOfTotalObjects < kBackgroundObjects) {
-        return numberOfTotalObjects;
+    if (self = [super init])
+    {
+        _allBroadcastMessages = [[NSMutableOrderedSet alloc] init];
     }
-    return kBackgroundObjects;
-}
-
-- (NSInteger)numberOfNormalObjects
-{
-    NSInteger numberOfTotalObjects = [self numberOfTotalObjects];
-    if (numberOfTotalObjects > kBackgroundObjects) {
-        return (numberOfTotalObjects - kBackgroundObjects);
-    }
-    return 0;
-}
-
-- (SpriteObject*)addObjectWithName:(NSString*)objectName
-{
-    SpriteObject *object = [[SpriteObject alloc] init];
-    //object.originalSize;
-    object.spriteNode.currentLook = nil;
-
-    object.name = [Util uniqueName:objectName existingNames:[self allObjectNames]];
-    object.project = self;
-    [self.objectList addObject:object];
-    [self saveToDiskWithNotification:YES];
-    return object;
-}
-
-- (void)removeObjectFromList:(SpriteObject*)object
-{
-    // do not use NSArray's removeObject here
-    // => if isEqual is overriden this would lead to wrong results
-    NSUInteger index = 0;
-    for (SpriteObject *currentObject in self.objectList) {
-        if (currentObject == object) {
-            [currentObject removeSounds:currentObject.soundList AndSaveToDisk:NO];
-            [currentObject removeLooks:currentObject.lookList AndSaveToDisk:NO];
-            [currentObject.project.userData removeObjectVariablesForSpriteObject:currentObject];
-            [currentObject.project.userData removeObjectListsForSpriteObject:currentObject];
-            currentObject.project = nil;
-            [self.objectList removeObjectAtIndex:index];
-            break;
-        }
-        ++index;
-    }
-}
-
-- (void)removeObject:(SpriteObject*)object
-{
-    [self removeObjectFromList:object];
-    [self saveToDiskWithNotification:YES];
-}
-
-- (void)removeObjects:(NSArray*)objects
-{
-    for (id object in objects) {
-        if ([object isKindOfClass:[SpriteObject class]]) {
-            [self removeObject:((SpriteObject*)object)];
-        }
-    }
-    [self saveToDiskWithNotification:YES];
-}
-
-- (BOOL)objectExistsWithName:(NSString*)objectName
-{
-    for (SpriteObject *object in self.objectList) {
-        if ([object.name isEqualToString:objectName]) {
-            return YES;
-        }
-    }
-    return NO;
+    return self;
 }
 
 #pragma mark - Custom getter and setter
-- (NSMutableArray<SpriteObject*>*)objectList
-{
-    if (! _objectList) {
-         _objectList = [NSMutableArray array];
-    }
-    return _objectList;
-}
-
-- (void)setObjectList:(NSMutableArray<SpriteObject*>*)objectList
-{
-    for (id object in objectList) {
-        if ([object isKindOfClass:[SpriteObject class]]) {
-            ((SpriteObject*)object).project = self;
-        }
-    }
-    _objectList = objectList;
-}
-
 - (UserDataContainer*)userData
 {
     // lazy instantiation
     if (! _userData)
-        _userData = [UserDataContainer new];
+        _userData = [[UserDataContainer alloc] init];
     return _userData;
 }
 
@@ -157,6 +66,11 @@
 
 - (void)saveToDiskWithNotification:(BOOL)notify
 {
+    [self saveToDiskWithNotification:notify andCompletion:nil];
+}
+
+- (void)saveToDiskWithNotification:(BOOL)notify andCompletion:(void (^)(void))completion
+{
     CBFileManager *fileManager = [CBFileManager sharedManager];
     dispatch_queue_t saveToDiskQ = dispatch_queue_create("save to disk", NULL);
     dispatch_async(saveToDiskQ, ^{
@@ -164,7 +78,6 @@
         if (notify) {
             dispatch_sync(dispatch_get_main_queue(), ^{
                 NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-                [notificationCenter postNotificationName:kHideLoadingViewNotification object:self];
                 [notificationCenter postNotificationName:kShowSavedViewNotification object:self];
             });
         }
@@ -172,12 +85,29 @@
         NSString *xmlPath = [NSString stringWithFormat:@"%@%@", [self projectPath], kProjectCodeFileName];
         id<CBSerializerProtocol> serializer = [[CBXMLSerializer alloc] initWithPath:xmlPath fileManager:fileManager];
         [serializer serializeProject:self];
+        
+        if (completion) {
+            completion();
+        }
 
         dispatch_async(dispatch_get_main_queue(), ^{
             [[NSNotificationCenter defaultCenter] postNotificationName:kHideLoadingViewNotification object:self];
             [[NSNotificationCenter defaultCenter] postNotificationName:kReadyToUpload object:self];
         });
     });
+}
+
+- (void)changeProjectOrientation
+{
+    NSNumber *tmpScreenWidth = self.header.screenWidth;
+    self.header.screenWidth = self.header.screenHeight;
+    self.header.screenHeight = tmpScreenWidth;
+    
+    if (self.header.landscapeMode) {
+        self.header.landscapeMode = false;
+    } else {
+        self.header.landscapeMode = true;
+    }
 }
 
 - (BOOL)isLastUsedProject
@@ -221,13 +151,9 @@
     [self saveToDiskWithNotification:showSaveNotification];
 }
 
-- (void)renameObject:(SpriteObject*)object toName:(NSString*)newObjectName
+- (NSArray<SpriteObject*>*)allObjects
 {
-    if (! [self hasObject:object] || [object.name isEqualToString:newObjectName]) {
-        return;
-    }
-    object.name = [Util uniqueName:newObjectName existingNames:[self allObjectNames]];
-    [self saveToDiskWithNotification:YES];
+    return self.scene.objects;
 }
 
 - (void)updateDescriptionWithText:(NSString*)descriptionText
@@ -238,114 +164,24 @@
 
 - (void)removeReferences
 {
-    [self.objectList makeObjectsPerformSelector:@selector(removeReferences)];
-}
-
-- (NSArray*)allObjectNames
-{
-    NSMutableArray *objectNames = [NSMutableArray arrayWithCapacity:[self.objectList count]];
-    for (id spriteObject in self.objectList) {
-        if ([spriteObject isKindOfClass:[SpriteObject class]]) {
-            [objectNames addObject:((SpriteObject*)spriteObject).name];
-        }
-    }
-    return [objectNames copy];
-}
-
-- (NSArray<SpriteObject*>*)allObjects
-{
-    return self.objectList;
-}
-
-- (BOOL)hasObject:(SpriteObject *)object
-{
-    return [self.objectList containsObject:object];
-}
-
-- (SpriteObject*)copyObject:(SpriteObject*)sourceObject
-    withNameForCopiedObject:(NSString *)nameOfCopiedObject
-{
-    if (! [self hasObject:sourceObject]) {
-        return nil;
-    }
-    CBMutableCopyContext *context = [CBMutableCopyContext new];
-    NSMutableArray<UserVariable*> *copiedVariables = [NSMutableArray new];
-    NSMutableArray<UserList*> *copiedLists = [NSMutableArray new];
-    
-    NSArray<UserVariable*> *variables = [[NSMutableArray alloc] initWithArray:[UserDataContainer objectVariablesForObject:sourceObject]];
-    NSArray<UserList*> *lists = [[NSMutableArray alloc] initWithArray:[UserDataContainer objectListsForObject:sourceObject]];
-    
-    for (UserVariable *variable in variables) {
-        UserVariable *copiedVariable = [[UserVariable alloc] initWithVariable:variable];
-        
-        [copiedVariables addObject:copiedVariable];
-        [context updateReference:variable WithReference:copiedVariable];
-    }
-    
-    for (UserList *list in lists) {
-        UserList *copiedList = [[UserList alloc] initWithList:list];
-        
-        [copiedLists addObject:copiedList];
-        [context updateReference:list WithReference:copiedList];
-    }
-    
-    SpriteObject *copiedObject = [sourceObject mutableCopyWithContext:context];
-    copiedObject.name = [Util uniqueName:nameOfCopiedObject existingNames:[self allObjectNames]];
-    [self.objectList addObject:copiedObject];
-    
-    for (UserVariable *variable in copiedVariables) {
-       [self.userData addObjectVariable:variable forObject:copiedObject];
-    }
-    
-    for (UserList *list in copiedLists) {
-       [self.userData addObjectList:list forObject:copiedObject];
-    }
-    
-    [self saveToDiskWithNotification:YES];
-    return copiedObject;
+    [self.scene.objects makeObjectsPerformSelector:@selector(removeReferences)];
 }
 
 - (BOOL)isEqualToProject:(Project*)project
 {
     if (! [self.header isEqualToHeader:project.header])
         return NO;
-    if (! [self.userData isEqualToUserDataContainer:project.userData])
+    if (! [self.userData isEqual:project.userData])
         return NO;
-    if ([self.objectList count] != [project.objectList count])
+    if (![self.scene isEqual:project.scene])
         return NO;
-    
-    NSUInteger idx;
-    for (idx = 0; idx < [self.objectList count]; idx++) {
-        SpriteObject *firstObject = [self.objectList objectAtIndex:idx];
-        SpriteObject *secondObject = nil;
-        
-        NSUInteger projectIdx;
-        for (projectIdx = 0; projectIdx < [project.objectList count]; projectIdx++) {
-            SpriteObject *projectObject = [project.objectList objectAtIndex:projectIdx];
-            
-            if ([projectObject.name isEqualToString:firstObject.name]) {
-                secondObject = projectObject;
-                break;
-            }
-        }
-        
-        if (secondObject == nil || ! [firstObject isEqualToSpriteObject:secondObject])
-            return NO;
-    }
     return YES;
 }
 
 - (NSInteger)getRequiredResources
 {
-    NSInteger resources = kNoResources;
-    
-    for (SpriteObject *obj in self.objectList) {
-        resources |= [obj getRequiredResources];
-    }
-    return resources;
-
+    return [self.scene getRequiredResources];
 }
-
 #pragma mark - helpers
 
 - (NSString*)description
@@ -369,7 +205,7 @@
     [ret appendFormat:@"Screen Height: %@\n", self.header.screenHeight];
     [ret appendFormat:@"Screen Width: %@\n", self.header.screenWidth];
     [ret appendFormat:@"Screen Mode: %@\n", self.header.screenMode];
-    [ret appendFormat:@"Sprite List: %@\n", self.objectList];
+    [ret appendFormat:@"Scene: %@\n", self.scene];
     [ret appendFormat:@"URL: %@\n", self.header.url];
     [ret appendFormat:@"User Handle: %@\n", self.header.userHandle];
     [ret appendFormat:@"Variables: %@\n", self.userData];
@@ -444,34 +280,6 @@
     return NO;
 }
 
-+ (instancetype)defaultProjectWithName:(NSString*)projectName projectID:(NSString*)projectID
-{
-    projectName = [Util uniqueName:projectName existingNames:[[self class] allProjectNames]];
-    Project *project = [[Project alloc] init];
-    project.header = [Header defaultHeader];
-    project.header.programName = projectName;
-    project.header.programID = projectID;
-
-    CBFileManager *fileManager = [CBFileManager sharedManager];
-    if (! [fileManager directoryExists:projectName]) {
-        [fileManager createDirectory:[project projectPath]];
-    }
-
-    NSString *imagesDirName = [NSString stringWithFormat:@"%@%@", [project projectPath], kProjectImagesDirName];
-    if (! [fileManager directoryExists:imagesDirName]) {
-        [fileManager createDirectory:imagesDirName];
-    }
-
-    NSString *soundsDirName = [NSString stringWithFormat:@"%@%@", [project projectPath], kProjectSoundsDirName];
-    if (! [fileManager directoryExists:soundsDirName]) {
-        [fileManager createDirectory:soundsDirName];
-    }
-
-    [project addObjectWithName:kLocalizedBackground];
-    NSDebug(@"%@", [project description]);
-    return project;
-}
-
 + (nullable instancetype)projectWithLoadingInfo:(ProjectLoadingInfo*)loadingInfo
 {
     NSDebug(@"Try to load project '%@'", loadingInfo.visibleName);
@@ -512,6 +320,16 @@
     NSDebug(@"%@", [project description]);
     NSDebug(@"ProjectResolution: width/height:  %f / %f", project.header.screenWidth.floatValue, project.header.screenHeight.floatValue);
     [self updateLastModificationTimeForProjectWithName:loadingInfo.visibleName projectID:loadingInfo.projectID];
+    
+    CBFileManager *fileManager = [[CBFileManager alloc] init];
+    NSString *defaultSceneDirectoryPath = [NSString stringWithFormat:@"%@%@", [project projectPath], [Util defaultSceneNameForSceneNumber:1]];
+    if (![fileManager directoryExists:defaultSceneDirectoryPath]) {
+        project.header.catrobatLanguageVersion = Util.catrobatLanguageVersion;
+        ProjectMigrator *migrator = [[ProjectMigrator alloc] initWithFileManager:fileManager];
+        NSError *error;
+        [migrator migrateToSceneWithProject:project error:&error];
+    }
+    
     return project;
 }
 
@@ -571,7 +389,7 @@
 - (void)translateDefaultProject
 {
     NSUInteger index = 0;
-    for (SpriteObject *spriteObject in self.objectList) {
+    for (SpriteObject *spriteObject in self.scene.objects) {
         if (index == kBackgroundObjectIndex) {
             spriteObject.name = kLocalizedBackground;
         } else {

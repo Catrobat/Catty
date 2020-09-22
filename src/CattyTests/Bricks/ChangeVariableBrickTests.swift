@@ -35,22 +35,25 @@ final class ChangeVariableBrickTests: XCTestCase {
 
     override func setUp() {
         project = Project()
+        let scene = Scene(name: "testScene")
         spriteObject = SpriteObject()
+        spriteObject.scene = scene
+        project.scene = spriteObject.scene
         spriteObject.name = "SpriteObjectName"
 
         spriteNode = CBSpriteNode(spriteObject: spriteObject)
         spriteObject.spriteNode = spriteNode
-        spriteObject.project = project
+        spriteObject.scene.project = project
 
         script = Script()
         script.object = spriteObject
 
         let logger = CBLogger(name: "Logger")
         let broadcastHandler = CBBroadcastHandler(logger: logger)
-        let formulaInterpreter = FormulaManager(sceneSize: Util.screenSize(true), landscapeMode: false)
+        let formulaInterpreter = FormulaManager(stageSize: Util.screenSize(true), landscapeMode: false)
 
         scheduler = CBScheduler(logger: logger, broadcastHandler: broadcastHandler, formulaInterpreter: formulaInterpreter, audioEngine: AudioEngineMock())
-        context = CBScriptContext(script: script, spriteNode: spriteNode, formulaInterpreter: formulaInterpreter)
+        context = CBScriptContext(script: script, spriteNode: spriteNode, formulaInterpreter: formulaInterpreter, touchManager: formulaInterpreter.touchManager)
     }
 
     func testChangeVariableBrickUserVariablesNil() {
@@ -63,7 +66,7 @@ final class ChangeVariableBrickTests: XCTestCase {
         formula.formulaTree = formulaTree
 
         let userDataContainer = UserDataContainer()
-        spriteObject.project.userData = userDataContainer
+        spriteObject.scene.project!.userData = userDataContainer
 
         let brick = ChangeVariableBrick()
         brick.variableFormula = formula

@@ -10,15 +10,12 @@
     },
     {
       "idiom" : "universal",
-      "filename" : "Icons_main_menu_community.png",
+      "filename" : "explore.png",
       "scale" : "3x"
     }
   ],
   "info" : {
     "version" : 1,
     "author" : "xcode"
-  },
-  "properties" : {
-    "template-rendering-intent" : "template"
   }
 }

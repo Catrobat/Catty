@@ -40,7 +40,7 @@ class StoreProjectUploaderTests: XCTestCase {
         self.project = Project()
         self.project.header = header
 
-        JNKeychain.saveValue("validToken", forKey: kUserLoginToken)
+        JNKeychain.saveValue("validToken", forKey: NetworkDefines.kUserLoginToken)
         UserDefaults.standard.setValue("UserName", forKey: kcUsername)
 
         self.expectedZippedProjectData = "zippedProjectData".data(using: .utf8)
@@ -49,7 +49,7 @@ class StoreProjectUploaderTests: XCTestCase {
 
     override func tearDown() {
         UserDefaults.standard.removeObject(forKey: kcUsername)
-        JNKeychain.deleteValue(forKey: kUserLoginToken)
+        JNKeychain.deleteValue(forKey: NetworkDefines.kUserLoginToken)
         super.tearDown()
     }
 
@@ -84,7 +84,7 @@ class StoreProjectUploaderTests: XCTestCase {
     }
 
     func testUploadProjectFailsForAuthenticationError() {
-        JNKeychain.deleteValue(forKey: kUserLoginToken)
+        JNKeychain.deleteValue(forKey: NetworkDefines.kUserLoginToken)
         let dvrSession = Session(cassetteName: "StoreProjectDownloader.uploadProject.fail.authentication")
         let expectation = XCTestExpectation(description: "Upload Projects")
         let uploader = StoreProjectUploader(fileManager: fileManagerMock, session: dvrSession)
@@ -178,6 +178,51 @@ class StoreProjectUploaderTests: XCTestCase {
 
         wait(for: [expectation], timeout: 1)
     }
+
+    func testFetchTagsSuccess() {
+        let dvrSession = Session(cassetteName: "StoreProjectUpload.fetchTags.success")
+        let expectation = XCTestExpectation(description: "Fetch tags")
+        let uploader = StoreProjectUploader(fileManager: fileManagerMock, session: dvrSession)
+        let languageTag = "en"
+        uploader.fetchTags(for: languageTag,
+                           completion: { tags, error in
+                            XCTAssertNil(error)
+                            XCTAssertFalse(tags.isEmpty)
+                            expectation.fulfill()
+        })
+        wait(for: [expectation], timeout: 1)
+    }
+
+    func testFetchTagsFailsWithUnexpectedError() {
+        let mockSession = URLSessionMock()
+        let uploader = StoreProjectUploader(fileManager: fileManagerMock, session: mockSession)
+        let expectation = XCTestExpectation(description: "Fetch tags")
+        let languageTag = "en"
+        uploader.fetchTags(for: languageTag,
+                           completion: { tags, error in
+                            guard let error = error else { XCTFail("no error returned"); return }
+                            XCTAssertEqual(error, .unexpectedError)
+                            XCTAssertTrue(tags.isEmpty)
+                            expectation.fulfill()
+        })
+        wait(for: [expectation], timeout: 1)
+    }
+
+    func testFetchTagsFailsWithInvalidLanguageTag() {
+        let dvrSession = Session(cassetteName: "StoreProjectUpload.fetchTags.invalidLanguageTag")
+        let uploader = StoreProjectUploader(fileManager: fileManagerMock, session: dvrSession)
+        let expectation = XCTestExpectation(description: "Fetch tags")
+        let languageTag = "invalidLanguageTag"
+        uploader.fetchTags(for: languageTag,
+                           completion: { tags, error in
+                            guard let error = error else { XCTFail("no error returned"); return }
+                            XCTAssertEqual(error, .invalidLanguageTag)
+                            XCTAssertFalse(tags.isEmpty)
+                            expectation.fulfill()
+        })
+        wait(for: [expectation], timeout: 1)
+    }
+
 }
 
 extension StoreProjectUploaderError: Equatable {
@@ -188,7 +233,8 @@ extension StoreProjectUploaderError: Equatable {
              (.unexpectedError, .unexpectedError),
              (.timeout, .timeout),
              (.authenticationFailed, .authenticationFailed),
-             (.invalidProject, .invalidProject):
+             (.invalidProject, .invalidProject),
+             (.invalidLanguageTag, .invalidLanguageTag) :
             return true
         default:
             return false

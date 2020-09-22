@@ -33,6 +33,7 @@
 + (NSUInteger)indexOfElement:(id)element inArray:(NSArray*)array;
 + (NSString*)relativeXPathToSound:(Sound*)sound inSoundList:(NSArray*)soundList withDepth:(NSInteger)depth;
 + (NSString*)relativeXPathToLook:(Look*)look inLookList:(NSArray*)lookList withDepth:(NSInteger)depth;
++ (NSString*)relativeXPathToBackground:(Look*)look forBackgroundObject:(SpriteObject*)backgroundObject withDepth:(NSInteger)depth;
 + (NSString*)relativeXPathFromSourcePositionStack:(CBXMLPositionStack*)sourcePositionStack
                        toDestinationPositionStack:(CBXMLPositionStack*)destinationPositionStack;
 + (NSInteger)getDepthOfResource:(id<BrickProtocol>)scriptOrBrick forSpriteObject:(SpriteObject*)spriteObject;

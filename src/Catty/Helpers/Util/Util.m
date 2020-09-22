@@ -54,7 +54,7 @@
 }
 
 + (NSString*)applicationDocumentsDirectory
-{    
+{
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
     return basePath;
@@ -529,9 +529,9 @@
     return NO;
 }
 
-+ (SpriteObject*)objectWithName:(NSString*)objectName forProject:(Project*)project
++ (SpriteObject*)objectWithName:(NSString*)objectName forScene:(Scene*)scene
 {
-    for(SpriteObject *object in project.objectList) {
+    for(SpriteObject *object in scene.objects) {
         if([object.name isEqualToString:objectName]) {
             return object;
         }
@@ -559,9 +559,10 @@
     return nil;
 }
 
-+ (NSArray*)allMessagesForProject:(Project*)project
++ (NSMutableOrderedSet*)allMessagesForProject:(Project*)project
 {
-    NSMutableArray *messages = [[NSMutableArray alloc] init];
+    NSMutableOrderedSet* messages = [[NSMutableOrderedSet alloc] init];
+    [messages addObjectsFromArray:project.allBroadcastMessages.array];
     for(SpriteObject *object in project.allObjects) {
         for(Script *script in object.scriptList) {
             if([script isKindOfClass:[BroadcastScript class]]) {

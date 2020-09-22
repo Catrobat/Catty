@@ -40,4 +40,8 @@ class UICollectionViewMock: UICollectionView {
     override func cellForItem(at indexPath: IndexPath) -> UICollectionViewCell? {
         cell
     }
+
+    override func deleteSections(_ sections: IndexSet) { }
+
+    override func deleteItems(at indexPaths: [IndexPath]) { }
 }

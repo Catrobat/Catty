@@ -30,7 +30,7 @@
 #import "ProjectDetailStoreViewController.h"
 #import "SegueDefines.h"
 #import "Script.h"
-#import "ProjectTableViewController.h"
+#import "SceneTableViewController.h"
 #import "LoginViewController.h"
 #import "Pocket_Code-Swift.h"
 
@@ -47,7 +47,6 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
 
 @property (nonatomic, strong) NSArray *cells;
 @property (nonatomic, strong) NSArray *imageNames;
-@property (nonatomic, strong) NSMutableArray *identifiers;
 @property (nonatomic, strong) Project *lastUsedProject;
 @property (nonatomic, strong) Project *defaultProject;
 @property (nonatomic, assign) BOOL freshLogin;
@@ -140,7 +139,6 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
                   kLocalizedUploadProject, nil];
 
     self.imageNames = [[NSArray alloc] initWithObjects:kMenuImageNameContinue, kMenuImageNameNew, kMenuImageNameProjects, kMenuImageNameHelp, kMenuImageNameExplore, kMenuImageNameUpload, nil];
-    self.identifiers = [[NSMutableArray alloc] initWithObjects:kSegueToContinue, kSegueToNewProject, kSegueToProjects, kSegueToHelp, kSegueToExplore, kSegueToUpload, nil];
 }
 
 - (void)initNavigationBar
@@ -172,14 +170,13 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
     [self.navigationController pushViewController:sTVC animated:YES];
 }
 
-- (void)addProjectAndSegueToItActionForProjectWithName:(NSString*)projectName
+- (void)createAndOpenProjectWithName:(NSString*)projectName
 {
-    static NSString *segueToNewProjectIdentifier = kSegueToNewProject;
     [self showLoadingView];
-    self.defaultProject = [Project defaultProjectWithName:projectName projectID:nil];
-    if ([self shouldPerformSegueWithIdentifier:segueToNewProjectIdentifier sender:self]) {
+    self.defaultProject = [ProjectManager createProjectWithName:projectName projectId:nil];
+    if (self.defaultProject) {
         [self hideLoadingView];
-        [self performSegueWithIdentifier:segueToNewProjectIdentifier sender:self];
+        [self openProject:self.defaultProject];
     }
 }
 
@@ -209,6 +206,21 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
     }
     if (indexPath.row == 0) {
         [self configureTitleLabelForCell:(UITableViewCell <CatrobatImageCell>*) cell];
+    } else {
+        
+        DarkBlueGradientImageCell *imageCell = (DarkBlueGradientImageCell*) cell;
+        if (([UIDevice currentDevice].orientation == UIDeviceOrientationLandscapeLeft) || ([UIDevice currentDevice].orientation == UIDeviceOrientationLandscapeRight)) {
+            
+            imageCell.imageViewBottomConstraint.constant = 0;
+            imageCell.imageViewTopConstraint.constant = 0;
+            
+        } else {
+            
+            imageCell.imageViewBottomConstraint.constant = -10;
+            imageCell.imageViewTopConstraint.constant = 10;
+            
+        }
+        
     }
     
     if (indexPath.row == [self.tableView numberOfRowsInSection:indexPath.section] - 1) {
@@ -224,10 +236,11 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
 #pragma mark - table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
 {
-    NSString* identifier = [self.identifiers objectAtIndex:indexPath.row];
+    NSString *segueIdentifier = nil;
+    
     switch (indexPath.row) {
         case kNewProjectVC:
-            [Util askUserForUniqueNameAndPerformAction:@selector(addProjectAndSegueToItActionForProjectWithName:)
+            [Util askUserForUniqueNameAndPerformAction:@selector(createAndOpenProjectWithName:)
                                                 target:self
                                            promptTitle:kLocalizedNewProject
                                          promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedProjectName]
@@ -239,19 +252,29 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
                                          existingNames:[Project allProjectNames]];
             break;
         case kContinueProjectVC:
-        case kLocalProjectsVC:
-        case kExploreVC:
-        case kHelpVC:
-            if ([self shouldPerformSegueWithIdentifier:identifier sender:self]) {
-                [self performSegueWithIdentifier:identifier sender:self];
+            if (!self.lastUsedProject) {
+                [Util setLastProjectWithName:nil projectID:nil];
+                NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+                [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+                [Util alertWithText:kLocalizedUnableToLoadProject];
+                
+                return;
             }
+            
+            [self openProject:self.lastUsedProject];
+            break;
+        case kLocalProjectsVC:
+            segueIdentifier = kSegueToProjects;
+            break;
+        case kExploreVC:
+            segueIdentifier = kSegueToExplore;
+            break;
+        case kHelpVC:
+            segueIdentifier = kSegueToHelp;
             break;
         case kUploadVC:
-            if ([[[NSUserDefaults standardUserDefaults] valueForKey:kUserIsLoggedIn] boolValue]) {
-                if ([self shouldPerformSegueWithIdentifier:identifier sender:self]) {
-                    [self performSegueWithIdentifier:@"segueToUpload" sender:self];
-                }
-    
+            if ([[[NSUserDefaults standardUserDefaults] valueForKey:NetworkDefines.kUserIsLoggedIn] boolValue]) {
+                segueIdentifier = kSegueToUpload;
             } else {
                 UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle: nil];
                 LoginViewController * vc = [storyboard instantiateViewControllerWithIdentifier:@"LoginController"];
@@ -260,17 +283,21 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
             }
 
             break;
-            
         default:
             break;
     }
+    
+    if (segueIdentifier && [self shouldPerformSegueWithIdentifier:segueIdentifier sender:self]) {
+        [self performSegueWithIdentifier:segueIdentifier sender:self];
+    }
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 -(void)afterSuccessfulLogin
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        if ([[[NSUserDefaults standardUserDefaults] valueForKey:kUserIsLoggedIn] boolValue]) {
+        if ([[[NSUserDefaults standardUserDefaults] valueForKey: NetworkDefines.kUserIsLoggedIn] boolValue]) {
             static NSString *segueToUploadIdentifier = kSegueToUpload;
             
             if ([self shouldPerformSegueWithIdentifier:segueToUploadIdentifier sender:self]) {
@@ -297,8 +324,8 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
         
         cell.iconImageView.image = [UIImage imageWithColor:UIColor.whiteColor];
         [cell.iconImageView.layer setBorderColor: [[UIColor medium] CGColor]];
-        [cell.iconImageView.layer setBorderWidth: 1.0f];
-        cell.iconImageView.layer.cornerRadius = 10.0;
+        [cell.iconImageView.layer setBorderWidth: kPreviewImageBorderWidth];
+        cell.iconImageView.layer.cornerRadius = kPreviewImageCornerRadius;
         cell.iconImageView.clipsToBounds = true;
         [cell setNeedsLayout];
     } else {
@@ -367,97 +394,8 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
     } else {
         self.dynamicStatusBarHeight = 0;
     }
+    [self.tableView reloadData];
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
 }
 
-#pragma mark - segue handling
-- (BOOL)shouldPerformSegueWithIdentifier:(NSString*)identifier sender:(id)sender
-{
-    if ([identifier isEqualToString:kSegueToContinue]) {
-        // check if project loaded successfully -> not nil
-        if (self.lastUsedProject) {
-            return YES;
-        }
-
-        // project failed loading...
-        // update continue cell
-        [Util setLastProjectWithName:nil projectID:nil];
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-        [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-        [Util alertWithText:kLocalizedUnableToLoadProject];
-        return NO;
-    } else if ([identifier isEqualToString:kSegueToNewProject]) {
-        // if there is no project name, abort performing this segue and ask user for project name
-        // after user entered a valid project name this segue will be called again and accepted
-        if (! self.defaultProject) {
-            return NO;
-        }
-        return YES;
-    }
-    
-    return [super shouldPerformSegueWithIdentifier:identifier sender:sender];
-}
-
-#pragma mark - segue handling
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([segue.identifier isEqualToString:kSegueToContinue]) {
-        if ([segue.destinationViewController isKindOfClass:[ProjectTableViewController class]]) {
-            ProjectTableViewController *projectTableViewController = (ProjectTableViewController*)segue.destinationViewController;
-            projectTableViewController.project = self.lastUsedProject;
-            self.lastUsedProject = nil;
-        }
-    } else if ([segue.identifier isEqualToString:kSegueToNewProject]) {
-        if ([segue.destinationViewController isKindOfClass:[ProjectTableViewController class]]) {
-            ProjectTableViewController *projectTableViewController = (ProjectTableViewController*)segue.destinationViewController;
-            projectTableViewController.project = self.defaultProject;
-            self.defaultProject = nil;
-        }
-    }
-}
-
-#pragma mark - network status
-
-- (void)dealloc
-{
-    [self.identifiers removeAllObjects];
-}
-
--(void)addProjectFromInboxWithName:(NSString*)newProjectName
-{
-    NSFileManager* filemgr = [NSFileManager defaultManager];
-    NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString* documentsDirectory = [paths objectAtIndex:0];
-    NSString* inboxPath = [documentsDirectory stringByAppendingPathComponent:@"Inbox"];
-    NSArray* dirFiles = [filemgr contentsOfDirectoryAtPath:inboxPath
-                                                     error:nil];
-    if(![dirFiles firstObject])
-    {
-        return;
-    }
-    NSString* newProjectPath = [NSString stringWithFormat:@"%@/%@", inboxPath, [dirFiles firstObject]];
-    
-    NSData* newProject = [NSData dataWithContentsOfFile:newProjectPath];
-    
-    CBFileManager *fileManager = [CBFileManager sharedManager];
-    [fileManager unzipAndStore:newProject withProjectID:nil withName:newProjectName];
-    
-    [[NSFileManager defaultManager] removeItemAtPath:newProjectPath error:nil];
-}
-
--(void)addProjectFromInbox
-{
-    [Util askUserForUniqueNameAndPerformAction:@selector(addProjectFromInboxWithName:)
-                                        target:self
-                                   promptTitle:kLocalizedEnterNameForImportedProjectTitle
-                                 promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedProjectName]
-                                   promptValue:nil
-                             promptPlaceholder:kLocalizedEnterYourProjectNameHere
-                                minInputLength:kMinNumOfProjectNameCharacters
-                                maxInputLength:kMaxNumOfProjectNameCharacters
-                      invalidInputAlertMessage:kLocalizedProjectNameAlreadyExistsDescription
-                                 existingNames:[Project allProjectNames]];
-}
-
 @end
-

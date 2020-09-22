@@ -34,20 +34,21 @@
 
 @property (nonatomic, readonly) CGFloat languageVersion;
 
+@property (nonatomic, strong) GDataXMLElement *rootElement;
+@property (nonatomic, strong) GDataXMLElement *currentSceneElement;
+
 //------------------------------------------------------------------------------------------------------------
-// ressources data used while traversing the tree
+// resources data used while traversing the tree
 //------------------------------------------------------------------------------------------------------------
-// TODO: refactor this later: remove brickList here and dynamically find brick in scriptList. maybe scripts should be referenced in bricks as well!!
 @property (nonatomic, strong) NSMutableArray *programVariableList; // (used for parsing only)
 @property (nonatomic, strong) NSMutableArray *programListOfLists; // (used for parsing only)
 
-@property (nonatomic, strong) NSMutableDictionary *spriteObjectNameVariableList; // (used for parsing only)
-@property (nonatomic, strong) NSMutableDictionary *spriteObjectNameListOfLists; // (used for parsing only)
-@property (nonatomic, strong) NSMutableDictionary *formulaVariableNameList; // (used for parsing only)
-@property (nonatomic, strong) NSMutableDictionary *formulaListNameList; // (used for parsing only)
 @property (nonatomic, strong) NSMutableSet<NSString*> *unsupportedElements; // (used for parsing only)
 
-- (id)initWithLanguageVersion:(CGFloat)languageVersion;
+- (instancetype)initWithLanguageVersion:(CGFloat)languageVersion andRootElement:(GDataXMLElement *)rootElement NS_DESIGNATED_INITIALIZER;
+- (instancetype)init NS_UNAVAILABLE;
++ (instancetype)new NS_UNAVAILABLE;
+
 - (id)parseFromElement:(GDataXMLElement*)xmlElement withClass:(Class<CBXMLNodeProtocol>)modelClass;
 - (id)mutableCopy;
 

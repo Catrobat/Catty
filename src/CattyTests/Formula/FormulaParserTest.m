@@ -41,9 +41,9 @@
 
 - (void)setUp {
     [super setUp];
-    self.formulaManager = (id<FormulaManagerProtocol>)[[FormulaManager alloc] initWithSceneSize:[Util screenSize:true] andLandscapeMode: false];
+    self.formulaManager = (id<FormulaManagerProtocol>)[[FormulaManager alloc] initWithStageSize:[Util screenSize:true] andLandscapeMode: false];
     self.interpreter = (id<FormulaInterpreterProtocol>)self.formulaManager;
-    self.object = [SpriteObject new];
+    self.object = [[SpriteObject alloc] init];
 }
 
 - (void) testNumbers {

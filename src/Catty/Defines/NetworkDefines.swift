@@ -57,7 +57,8 @@ class NetworkDefines: NSObject {
     @objc static var recoverPassword: String { baseUrl.appending("resetting/request") }
     static var uploadUrl: String { baseUrl.appending("api/upload") }
     static var downloadUrl: String { baseUrl.appending("download") }
-    static var helpUrl: String { baseUrl.appending("help") }
+    static var tagUrl: String { baseUrl.appending("api/tags/getTags.json") }
+    static var helpUrl: String { "https://catrob.at/help" }
 
     static let connectionSearch = "search.json"
     static let connectionUpload = "upload.json"
@@ -70,6 +71,7 @@ class NetworkDefines: NSObject {
     static let projectsOffset = "offset="
     static let projectsLimit = "limit="
     static let maxVersion = "max_version="
+    static let tagLanguage = "language="
 
     // MARK: MediaLibrary
 
@@ -87,4 +89,7 @@ class NetworkDefines: NSObject {
     static let searchStoreMaxResults = 50
     @objc static let reportProjectNoteMaxLength = 100
     @objc static let reportProjectNoteMinLength = 3
+
+    @objc static let kUserIsLoggedIn  = "userIsLoggedIn"
+    @objc static let kUserLoginToken = "userLoginToken"
 }

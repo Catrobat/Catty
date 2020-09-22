@@ -25,6 +25,7 @@
 
 @class GDataXMLElement;
 @class SpriteObject;
+@class Scene;
 
 @interface Look : NSObject<CBMutableCopying>
 
@@ -35,6 +36,7 @@
 - (id)initWithName:(NSString*)name andPath:(NSString*)filePath;
 - (NSString*)previewImageFileName;
 - (NSString*)description;
+- (NSString*)pathForScene: (Scene *)scene;
 - (BOOL)isEqualToLook:(Look*)look;
 
 @end

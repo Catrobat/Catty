@@ -40,9 +40,11 @@ final class FingerYSensorTest: XCTestCase {
         touchManager = TouchManagerMock()
         sensor = FingerYSensor { [weak self] in self?.touchManager }
 
+        let scene = Scene(name: "testScene")
         spriteObject = SpriteObject()
+        spriteObject.scene = scene
         spriteNode = CBSpriteNodeMock(spriteObject: spriteObject)
-        spriteNode.mockedScene = SceneBuilder(project: ProjectMock(width: CGFloat(screenWidth), andHeight: CGFloat(screenHeight))).build()
+        spriteNode.mockedStage = StageBuilder(project: ProjectMock(width: CGFloat(screenWidth), andHeight: CGFloat(screenHeight))).build()
     }
 
     override func tearDown() {

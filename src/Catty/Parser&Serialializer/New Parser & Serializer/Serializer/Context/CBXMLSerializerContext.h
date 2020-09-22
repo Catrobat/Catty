@@ -25,8 +25,7 @@
 
 @class CBXMLOpenedNestingBricksStack;
 @class CBXMLPositionStack;
-@class SpriteObject;
-@class UserDataContainer;
+@class Project;
 
 @interface CBXMLSerializerContext : CBXMLAbstractContext
 
@@ -57,11 +56,19 @@
 // a CBXMLPositionStack instance) as the dictionary's values (used for serialization only)
 @property (nonatomic, strong) NSMutableDictionary *projectUserListNamePositions;
 
+@property (nonatomic, strong) NSMutableDictionary *soundNamePositions;
+
 //------------------------------------------------------------------------------------------------------------
-// ressources data used while traversing the tree
+// resources data used while traversing the tree
 //------------------------------------------------------------------------------------------------------------
 // TODO: refactor this later: remove brickList here and dynamically find brick in scriptList. maybe scripts should be referenced in bricks as well!!
 @property (nonatomic, strong) NSMutableArray *brickList; // contains all bricks (used only by serializer)
+
+@property (nonatomic, strong) Project *project;
+
+- (instancetype)initWithProject:(Project *)project NS_DESIGNATED_INITIALIZER;
+- (instancetype)init NS_UNAVAILABLE;
++ (instancetype)new NS_UNAVAILABLE;
 
 - (id)mutableCopy;
 

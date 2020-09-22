@@ -20,19 +20,16 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#define kSegueToContinue @"segueToContinue"
-#define kSegueToNewProject @"segueToNewProject"
 #define kSegueToProjects @"segueToProjects"
 #define kSegueToHelp @"segueToHelp"
 #define kSegueToExplore @"segueToExplore"
 #define kSegueToUpload @"segueToUpload"
-#define kSegueToLogin @"segueToLogin"
-#define kSegueToAddNewProject @"segueToAddProject"
+#define kSegueToSelectCategories @"segueToSelectCategories"
 
 #define kSegueToProjectDetail @"segueToProjectDetail"
-#define kSegueToScene @"segueToScene"
 #define kSegueToObject @"segueToObject"
 #define kSegueToScripts @"segueToScripts"
 #define kSegueToLooks @"segueToLooks"
 #define kSegueToSounds @"segueToSounds"
 #define kSegueToImage @"segueToImage"
+

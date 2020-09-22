@@ -28,9 +28,7 @@
 #import "CBXMLSerializerContext.h"
 #import "CBXMLPositionStack.h"
 #import "CBXMLSerializerHelper.h"
-#import "UserDataContainer.h"
 #import "SpriteObject.h"
-#import "Pocket_Code-Swift.h"
 
 @implementation UserList (CBXMLHandler)
 
@@ -63,8 +61,7 @@
     SpriteObject *spriteObject = context.spriteObject;
     if (spriteObject) {
         [XMLError exceptionIfNil:spriteObject.name message:@"Given SpriteObject has no name."];
-        NSMutableArray *objectUserLists = [context.spriteObjectNameListOfLists objectForKey:spriteObject.name];
-        for (UserList *userListToCompare in objectUserLists) {
+        for (UserList *userListToCompare in spriteObject.userData.lists) {
             if ([userListToCompare.name isEqualToString:userListName]) {
                 return userListToCompare;
             }
@@ -96,7 +93,7 @@
     CBXMLPositionStack *positionStackOfUserList = nil;
 
     // check whether object variable/list or project variable/list
-    if (! [context.userData isProjectList:self]) {
+    if (! [context.project.userData containsList:self]) {
         // it is an object variable/list!
         SpriteObject *spriteObject = context.spriteObject;
         NSMutableDictionary *alreadySerializedLists = [context.spriteObjectNameUserListOfListsPositions objectForKey:spriteObject.name];

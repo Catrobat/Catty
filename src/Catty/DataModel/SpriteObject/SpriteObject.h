@@ -23,7 +23,7 @@
 
 #import <SpriteKit/SpriteKit.h>
 #import "Project.h"
-#import "ProgramDefines.h"
+#import "ProjectDefines.h"
 #import "CBMutableCopying.h"
 
 @class Script;
@@ -37,8 +37,9 @@
 @property (nonatomic, strong) NSMutableArray<Look*> *lookList;
 @property (nonatomic, strong) NSMutableArray<Sound*> *soundList;
 @property (nonatomic, strong) NSMutableArray<Script*> *scriptList;
-@property (nonatomic, weak) Project *project;
+@property (nonatomic, weak) Scene *scene;
 @property (nonatomic, weak) CBSpriteNode *spriteNode;
+@property (nonatomic, strong) UserDataContainer *userData;
 
 - (NSUInteger)numberOfScripts;
 - (NSUInteger)numberOfTotalBricks; // including script bricks
@@ -48,11 +49,9 @@
 - (BOOL)isBackground;
 
 // helpers
-- (NSString*)projectPath; //for image-path!!!
+- (NSString*)projectPath;
 - (NSString*)previewImagePathForLookAtIndex:(NSUInteger)index;
 - (NSString*)previewImagePath; // thumbnail/preview image-path of first (!) look shown in several TableViewCells!!!
-- (NSString*)pathForLook:(Look*)look;
-- (NSString*)pathForSound:(Sound*)sound;
 - (NSUInteger)fileSizeOfLook:(Look*)look;
 - (CGSize)dimensionsOfLook:(Look*)look;
 - (NSUInteger)fileSizeOfSound:(Sound*)sound;
@@ -64,7 +63,7 @@
 
 // actions
 - (void)addLook:(Look*)look AndSaveToDisk:(BOOL)save;
-- (void)removeFromProject;
+- (void)removeFromScene;
 - (void)removeLooks:(NSArray*)looks AndSaveToDisk:(BOOL)save;
 - (void)removeLook:(Look*)look AndSaveToDisk:(BOOL)save;
 - (void)removeSounds:(NSArray*)sounds AndSaveToDisk:(BOOL)save;

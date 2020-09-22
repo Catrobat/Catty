@@ -65,6 +65,12 @@ final class CBFileManagerMock: CBFileManager {
         self.existingDirectories.append(path)
     }
 
+    override func writeData(_ data: Data, path: String) {
+        if !existingFiles.contains(path) {
+            existingFiles.append(path)
+        }
+    }
+
     override func moveExistingDirectory(atPath oldPath: String, toPath newPath: String) {
         for i in 0..<existingDirectories.count where oldPath == self.existingDirectories[i] {
             self.existingDirectories[i] = newPath
@@ -77,7 +83,14 @@ final class CBFileManagerMock: CBFileManager {
         }
     }
 
+    override func copyExistingFile(atPath oldPath: String!, toPath newPath: String!, overwrite: Bool) {
+        if existingFiles.contains(oldPath) {
+            self.existingFiles.append(newPath)
+        }
+    }
+
     override func zip(_ project: Project) -> Data? {
         zipData
     }
+
 }

@@ -34,13 +34,12 @@ final class ClearGraphicEffectBrickTests: AbstractBrickTest {
 
     override func setUp() {
         super.setUp()
-
         object = SpriteObject()
-        project = Project.defaultProject(withName: "a", projectID: "1")
+        project = ProjectManager.createProject(name: "a", projectId: "1")
+        object.scene = project.scene
         spriteNode = CBSpriteNode.init(spriteObject: object)
         object.spriteNode = spriteNode
-        object.project = project
-        self.scene.addChild(spriteNode)
+        self.stage.addChild(spriteNode)
         spriteNode.catrobatPosition = CBPosition(x: 0.0, y: 0.0)
 
         let bundle = Bundle(for: type(of: self))
@@ -49,7 +48,7 @@ final class ClearGraphicEffectBrickTests: AbstractBrickTest {
         let look = Look(name: "test", andPath: "test.png")
 
         do {
-            try imageData?.write(to: URL(fileURLWithPath: object.projectPath() + "images/test.png"))
+            try imageData?.write(to: URL(fileURLWithPath: object.scene.imagesPath()! + "/test.png"))
         } catch {
             XCTFail("Error when writing image data")
         }

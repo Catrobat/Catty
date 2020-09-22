@@ -326,7 +326,6 @@
                       </brickList>
                   <commentedOut>false</commentedOut>
                   </script>
-
                 </scriptList>
                 <userBricks/>
                 <nfcTagList/>
@@ -508,7 +507,7 @@
             </brick>
             <brick type="SetBackgroundBrick">
                 <commentedOut>false</commentedOut>
-                <look reference="../../../../../lookList/look"/>
+                <look reference="../../../../../../object/lookList/look"/>
             </brick>
             <brick type="SpeakAndWaitBrick">
                 <commentedOut>false</commentedOut>
@@ -623,6 +622,30 @@
                   <value>3.15</value>
                 </formula>
               </formulaList>
+            </brick>
+            <brick type="SetPenColorBrick">
+              <commentedOut>false</commentedOut>
+              <formulaList>
+                <formula category="PEN_COLOR_RED">
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formula>
+                <formula category="PEN_COLOR_BLUE">
+                  <type>NUMBER</type>
+                  <value>255</value>
+                </formula>
+                <formula category="PEN_COLOR_GREEN">
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="StampBrick">
+              <commentedOut>false</commentedOut>
+            </brick>
+            <brick type="GoToBrick">
+              <commentedOut>false</commentedOut>
+              <spinnerSelection>80</spinnerSelection>
             </brick>
           </brickList>
           <commentedOut>false</commentedOut>

@@ -26,23 +26,26 @@ import XCTest
 
 final class CBSpriteNodePenExtensionTests: XCTestCase {
 
-    var scene: CBScene!
+    var stage: Stage!
     var spriteNode: CBSpriteNode!
     var initialPosition: CGPoint!
 
     override func setUp() {
-        spriteNode = CBSpriteNode(spriteObject: SpriteObject())
+        let scene = Scene(name: "testScene")
+        let object = SpriteObject()
+        object.scene = scene
+        spriteNode = CBSpriteNode(spriteObject: object)
         spriteNode.name = "testName"
 
-        scene = SceneBuilder(project: ProjectMock()).build()
-        scene.addChild(spriteNode)
+        stage = StageBuilder(project: ProjectMock()).build()
+        stage.addChild(spriteNode)
 
         initialPosition = CGPoint.zero
     }
 
     private func getAllLineShapeNodes() -> [LineShapeNode] {
         var allShapeNodes = [LineShapeNode]()
-        scene.enumerateChildNodes(withName: SpriteKitDefines.penShapeNodeName) { node, _ in
+        stage.enumerateChildNodes(withName: SpriteKitDefines.penShapeNodeName) { node, _ in
             guard let line = node as? LineShapeNode else {
                 XCTFail("Could not cast SKNode to LineShapeNode")
                 return
@@ -54,27 +57,26 @@ final class CBSpriteNodePenExtensionTests: XCTestCase {
 
     func testWhenSpritePositionChangedPenUp() {
         spriteNode.penConfiguration.penDown = false
-        spriteNode.penConfiguration.previousPosition = initialPosition
         spriteNode.position = CGPoint(x: 1, y: 1)
 
-        XCTAssertEqual(scene.children.count, 1)
+        XCTAssertEqual(stage.children.count, 1)
 
         spriteNode.update(CACurrentMediaTime())
 
-        XCTAssertEqual(scene.children.count, 1)
+        XCTAssertEqual(stage.children.count, 1)
     }
 
     func testWhenSpritePositionChangedPenDown() {
         spriteNode.penConfiguration.penDown = true
-        spriteNode.penConfiguration.previousPosition = initialPosition
+        spriteNode.penConfiguration.previousPositions.append(initialPosition)
         spriteNode.position = initialPosition
 
-        XCTAssertEqual(scene.children.count, 1)
+        XCTAssertEqual(stage.children.count, 1)
 
         spriteNode.position = CGPoint(x: 1, y: 1)
         spriteNode.update(CACurrentMediaTime())
 
-        XCTAssertEqual(scene.children.count, 2)
+        XCTAssertEqual(stage.children.count, 2)
 
         var allShapeNodes = getAllLineShapeNodes()
 
@@ -87,7 +89,7 @@ final class CBSpriteNodePenExtensionTests: XCTestCase {
         spriteNode.position = CGPoint(x: 2, y: 2)
         spriteNode.update(CACurrentMediaTime())
 
-        XCTAssertEqual(scene.children.count, 3)
+        XCTAssertEqual(stage.children.count, 3)
 
         allShapeNodes = getAllLineShapeNodes()
 
@@ -99,51 +101,39 @@ final class CBSpriteNodePenExtensionTests: XCTestCase {
 
     func testWhenSpritePositionNotChangedPenUp() {
         spriteNode.penConfiguration.penDown = false
-        spriteNode.penConfiguration.previousPosition = initialPosition
         spriteNode.position = initialPosition
 
-        XCTAssertEqual(scene.children.count, 1)
+        XCTAssertEqual(stage.children.count, 1)
 
         spriteNode.update(CACurrentMediaTime())
 
-        XCTAssertEqual(scene.children.count, 1)
+        XCTAssertEqual(stage.children.count, 1)
     }
 
     func testWhenSpritePositionNotChangedPenDown() {
         spriteNode.penConfiguration.penDown = true
-        spriteNode.penConfiguration.previousPosition = initialPosition
         spriteNode.position = initialPosition
 
-        XCTAssertEqual(scene.children.count, 1)
+        XCTAssertEqual(stage.children.count, 1)
 
         spriteNode.update(CACurrentMediaTime())
 
-        XCTAssertEqual(scene.children.count, 1)
-    }
-
-    func testStartAndSetDefaultPenPosition() {
-        let expectedPosition = CGPoint(
-          x: PositionXSensor.convertToRaw(userInput: PositionXSensor.defaultRawValue, for: spriteNode.spriteObject),
-          y: PositionYSensor.convertToRaw(userInput: PositionYSensor.defaultRawValue, for: spriteNode.spriteObject)
-        )
-
-        spriteNode.start(1)
-
-        XCTAssertEqual(spriteNode.penConfiguration.previousPosition, expectedPosition)
+        XCTAssertEqual(stage.children.count, 1)
     }
 
     func testDrawnLineAttributes() {
         spriteNode.penConfiguration.penDown = true
+        spriteNode.penConfiguration.previousPositions.append(initialPosition)
         spriteNode.penConfiguration.color = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
+
         spriteNode.penConfiguration.catrobatSize = 5.0
-        spriteNode.penConfiguration.previousPosition = initialPosition
 
         spriteNode.position = CGPoint(x: 1, y: 1)
         spriteNode.update(CACurrentMediaTime())
 
-        XCTAssertEqual(scene.children.count, 2)
+        XCTAssertEqual(stage.children.count, 2)
 
-        guard let line = scene.childNode(withName: SpriteKitDefines.penShapeNodeName) as? LineShapeNode else {
+        guard let line = stage.childNode(withName: SpriteKitDefines.penShapeNodeName) as? LineShapeNode else {
             XCTFail("LineShapeNode for the drawn line not found with default name")
             return
         }

@@ -100,7 +100,7 @@
     [self setupTools];
     [self setupGestures];
     [self setupToolbar];
-    [self setupZoom];
+    [self setupZoomForImage: self.editingImage];
     [self setupUndoManager];
     [self setupNavigationBar];
     self.colorBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"color"] style:UIBarButtonItemStylePlain target:self action:@selector(colorAction)];
@@ -271,11 +271,9 @@
     [self.view addGestureRecognizer:self.fillRecognizer];
     self.fillRecognizer.enabled = NO;
     
-    
 }
 
-
-- (void)setupZoom
+- (void)setupZoomForImage:(UIImage*)image
 {
     self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height+[UIApplication sharedApplication].statusBarFrame.size.height)];
     self.scrollView.scrollEnabled = NO;
@@ -285,20 +283,46 @@
     self.scrollView.delegate = self;
     [self.scrollView addSubview:self.helper];
     [self.view addSubview:self.scrollView];
-    NSInteger width = self.view.bounds.size.width;
-    NSInteger height = (NSInteger)self.view.bounds.size.height+[UIApplication sharedApplication].statusBarFrame.size.height;
-    NSInteger imageWidth = self.editingImage.size.width;
-    NSInteger imageHeight = self.editingImage.size.height;
-    if ((imageWidth >= width) || (imageHeight >= height)) {
-        [self.scrollView zoomToRect:CGRectMake(0, 0, imageWidth / 0.8f, imageHeight / 0.8f) animated:NO];
+    CGFloat width = self.view.bounds.size.width;
+    CGFloat height = self.navigationController.toolbar.frame.origin.y - Util.statusBarHeight - self.navigationController.navigationBar.frame.size.height;
+    CGFloat imageWidth = image.size.width;
+    CGFloat imageHeight = image.size.height;
+    
+    CGFloat scaling = 0.8f;
+    BOOL resize = NO;
+            
+    if(imageWidth >= imageHeight && imageWidth >= width) {
+        resize = YES;
+        scaling = imageWidth / (width * 0.9);
+    } else if (imageHeight > imageWidth && imageHeight >= height) {
+        if(imageWidth * 3 < imageHeight) {
+            resize = YES;
+            scaling = imageHeight / (height * 0.9);
+            
+            if((imageWidth / scaling) > width) {
+                scaling = imageWidth / (width * 0.9);
+            }
+        }
     }
     
+    if(resize) {
+        CGFloat newImageWidth = imageWidth / scaling;
+        CGFloat newImageHeight = imageHeight / scaling;
+        self.helper.frame = CGRectMake(0, 0, newImageWidth*self.scrollView.zoomScale, newImageHeight*self.scrollView.zoomScale);
+        self.drawView.frame = CGRectMake(0, 0, newImageWidth, newImageHeight);
+        self.saveView.frame =CGRectMake(0, 0, newImageWidth, newImageHeight);
+    } else {
+        [self.scrollView zoomToRect:CGRectMake(0, 0, imageWidth / scaling, imageHeight / scaling) animated:NO];
+    }
+
     CGSize boundsSize = self.scrollView.bounds.size;
     CGRect frameToCenter = self.helper.frame;
+    
     // center horizontally
     frameToCenter.origin.x = (boundsSize.width - frameToCenter.size.width) / 2;
     // center vertically
-    frameToCenter.origin.y = (boundsSize.height - frameToCenter.size.height) / 2 - 64;
+    frameToCenter.origin.y = (height - frameToCenter.size.height) / 2;
+    
     self.helper.frame = frameToCenter;
 }
 

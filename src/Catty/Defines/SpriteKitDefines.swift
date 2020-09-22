@@ -29,6 +29,7 @@ class SpriteKitDefines: NSObject {
 
     static let defaultCatrobatPenSize = CGFloat(3.15)
     static let defaultPenZPosition = CGFloat(0)
-    static let defaultPenColor = UIColor(red: 0.0, green: 0.0, blue: 1.0, alpha: 1.0)
+    static let defaultPenColor = UIColor(red: 0, green: 0, blue: 255)
     static let penShapeNodeName = "penShapeNode"
+    static let stampedSpriteNodeName = "stampedSpriteNode"
 }

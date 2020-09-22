@@ -1,0 +1,42 @@
+{
+  "interactions" : [
+    {
+      "recorded_at" : 1596038942.5517058,
+      "response" : {
+        "body" : {
+          "statusCode" : 200,
+          "constantTags" : [
+            "Game",
+            "Animation",
+            "Story",
+            "Music",
+            "Art",
+            "Experimental",
+            "Tutorial"
+          ]
+        },
+        "status" : 200,
+        "url" : "https:\/\/web-test.catrob.at\/pocketcode\/api\/tags\/getTags.json?language=en",
+        "headers" : {
+          "Content-Type" : "application\/json",
+          "Content-Encoding" : "gzip",
+          "Cache-Control" : "max-age=0, must-revalidate, private",
+          "Strict-Transport-Security" : "max-age=15768000",
+          "x-debug-token-link" : "http:\/\/web-test.catrob.at\/_profiler\/ffcf0f",
+          "x-robots-tag" : "noindex",
+          "Expires" : "Wed, 29 Jul 2020 16:09:02 GMT",
+          "Server" : "nginx",
+          "Set-Cookie" : "PHPSESSID=jfu753vku0u2e38tck39d2v41e; path=\/; HttpOnly, dtCookie=v_4_srv_3_sn_0DA2799EC08D82CD40CF1E3827EB2D12_perc_100000_ol_0_mul_1; Path=\/; Domain=.catrob.at",
+          "Date" : "Wed, 29 Jul 2020 16:09:02 GMT",
+          "x-debug-token" : "ffcf0f",
+          "Pragma" : "no-cache"
+        }
+      },
+      "request" : {
+        "url" : "https:\/\/web-test.catrob.at\/pocketcode\/api\/tags\/getTags.json?language=en",
+        "method" : "GET"
+      }
+    }
+  ],
+  "name" : "StoreProjectUpload.fetchTags.success"
+}

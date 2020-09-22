@@ -25,14 +25,14 @@
 final class TouchManagerMock: TouchManagerProtocol {
 
     var touchRecognizer: UILongPressGestureRecognizer?
-    var scene: CBScene?
+    var stage: Stage?
     var isScreenTouched: Bool = false
     var touches: [CGPoint] = []
     var lastTouch: CGPoint?
 
     var isStarted = false
 
-    func startTrackingTouches(for scene: CBScene) {
+    func startTrackingTouches(for stage: Stage) {
         isStarted = true
     }
 

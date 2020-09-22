@@ -27,17 +27,17 @@ import XCTest
 class TouchManagerTests: XCTestCase {
 
     var touchManager: TouchManager!
-    var scene: CBScene!
+    var stage: Stage!
 
     override func setUp() {
-        scene = SceneBuilder(project: ProjectMock(width: 500, andHeight: 500)).build()
+        stage = StageBuilder(project: ProjectMock(width: 500, andHeight: 500)).build()
         touchManager = TouchManager()
-        touchManager.startTrackingTouches(for: scene)
+        touchManager.startTrackingTouches(for: stage)
     }
 
     override func tearDown() {
         touchManager = nil
-        scene = nil
+        stage = nil
         super.tearDown()
     }
 

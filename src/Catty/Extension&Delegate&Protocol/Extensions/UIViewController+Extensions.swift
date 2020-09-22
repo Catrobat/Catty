@@ -31,4 +31,14 @@ extension UIViewController {
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
+
+    @objc func openProject(_ project: Project) {
+        let storyboard = UIStoryboard.init(name: "iPhone", bundle: nil)
+        guard let viewController = storyboard.instantiateViewController(withIdentifier: "SceneTableViewController") as? SceneTableViewController else { return }
+
+        viewController.scene = project.scene
+        project.setAsLastUsedProject()
+
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
 }

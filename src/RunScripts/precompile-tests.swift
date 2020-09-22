@@ -207,7 +207,7 @@ func licenseCheck(_ filePath: String, fileContent: String, lineNumberOffset: Int
                 lineNumber = 1
             }
         }
-        return (true, "\(filePath):\(lineNumber + lineNumberOffset): error : Wrong year in license header!\n")
+        return (false, "\(filePath):\(lineNumber + lineNumberOffset): warning : Wrong year in license header!\n")
     }
 
     let lineNumber = 1 // license header must be at the very top of source file

@@ -41,5 +41,4 @@
              equals:(NSInteger)integerValue
             message:(NSString*)exceptionMessage, ... NS_FORMAT_FUNCTION(3,4);
 + (void)exceptionWithMessage:(NSString*)exceptionMessage, ... NS_FORMAT_FUNCTION(1,2);
-
 @end

@@ -36,28 +36,31 @@ final class ChooseCameraBrickTests: XCTestCase {
     override func setUp() {
         project = Project()
 
+        let scene = Scene(name: "testScene")
         spriteObject = SpriteObject()
+        spriteObject.scene = scene
         spriteObject.name = "SpriteObjectName"
 
         spriteNode = CBSpriteNode(spriteObject: spriteObject)
         spriteObject.spriteNode = spriteNode
-        spriteObject.project = project
+        spriteObject.scene.project = project
+        project.scene = spriteObject.scene
 
         script = Script()
         script.object = spriteObject
 
         let logger = CBLogger(name: "Logger")
         let broadcastHandler = CBBroadcastHandler(logger: logger)
-        let formulaInterpreter = FormulaManager(sceneSize: Util.screenSize(true), landscapeMode: false)
+        let formulaInterpreter = FormulaManager(stageSize: Util.screenSize(true), landscapeMode: false)
         scheduler = CBScheduler(logger: logger, broadcastHandler: broadcastHandler, formulaInterpreter: formulaInterpreter, audioEngine: AudioEngineMock())
 
-        context = CBScriptContext(script: script, spriteNode: spriteNode, formulaInterpreter: formulaInterpreter)
+        context = CBScriptContext(script: script, spriteNode: spriteNode, formulaInterpreter: formulaInterpreter, touchManager: formulaInterpreter.touchManager)
     }
 
     func testDefaultCameraPosition() {
         // front camera should be default
         CameraPreviewHandler.shared().reset()
-        XCTAssertEqual(AVCaptureDevice.Position.front, CameraPreviewHandler.shared().cameraPosition)
+        XCTAssertEqual(AVCaptureDevice.Position.front, CameraPreviewHandler.shared().getCameraPosition())
     }
 
     func testChooseCameraBrick() {
@@ -73,7 +76,7 @@ final class ChooseCameraBrickTests: XCTestCase {
             break
         }
 
-        XCTAssertEqual(AVCaptureDevice.Position.back, CameraPreviewHandler.shared().cameraPosition)
+        XCTAssertEqual(AVCaptureDevice.Position.back, CameraPreviewHandler.shared().getCameraPosition())
     }
 
     func testChooseCameraBrickInitWithZero() {
@@ -89,7 +92,7 @@ final class ChooseCameraBrickTests: XCTestCase {
             break
         }
 
-        XCTAssertEqual(AVCaptureDevice.Position.back, CameraPreviewHandler.shared().cameraPosition)
+        XCTAssertEqual(AVCaptureDevice.Position.back, CameraPreviewHandler.shared().getCameraPosition())
     }
 
     func testChooseCameraBrickInitWithOne() {
@@ -105,7 +108,7 @@ final class ChooseCameraBrickTests: XCTestCase {
             break
         }
 
-        XCTAssertEqual(AVCaptureDevice.Position.front, CameraPreviewHandler.shared().cameraPosition)
+        XCTAssertEqual(AVCaptureDevice.Position.front, CameraPreviewHandler.shared().getCameraPosition())
     }
 
     func testMutableCopy() {

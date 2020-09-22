@@ -143,8 +143,17 @@ NS_ENUM(NSInteger, ButtonIndex) {
 {
     InternFormulaParser *internFormulaParser = [[InternFormulaParser alloc] initWithTokens:[self.internFormula getInternTokenList] andFormulaManager:(id<FormulaManagerProtocol>)self.formulaManager];
     
-    Brick *brick = (Brick*)self.brickCellData.brickCell.scriptOrBrick; // must be a brick!
-    [internFormulaParser parseFormulaForSpriteObject:brick.script.object];
+    Brick *brick = (Brick*)self.brickCellData.brickCell.scriptOrBrick;
+    SpriteObject *object;
+    
+    if ([brick isKindOfClass:[Script class]]) {
+        Script *script = (Script*)brick;
+        object = script.object;
+    } else {
+        object = brick.script.object;
+    }
+    
+    [internFormulaParser parseFormulaForSpriteObject:object];
     FormulaParserStatus formulaParserStatus = [internFormulaParser getErrorTokenIndex];
     
     if(formulaParserStatus == FORMULA_PARSER_OK) {
@@ -458,12 +467,21 @@ NS_ENUM(NSInteger, ButtonIndex) {
     if (self.internFormula != nil) {
         InternFormulaParser *internFormulaParser = [[InternFormulaParser alloc] initWithTokens:[self.internFormula getInternTokenList] andFormulaManager:(id<FormulaManagerProtocol>)self.formulaManager];
         
-        Brick *brick = (Brick*)self.brickCellData.brickCell.scriptOrBrick; // must be a brick!
-        Formula *formula = [[Formula alloc] initWithFormulaElement:[internFormulaParser parseFormulaForSpriteObject:brick.script.object]];
+        Brick *brick = (Brick*)self.brickCellData.brickCell.scriptOrBrick;
+        SpriteObject *object;
+        
+        if ([brick isKindOfClass:[Script class]]) {
+            Script *script = (Script*)brick;
+            object = script.object;
+        } else {
+            object = brick.script.object;
+        }
+        
+        Formula *formula = [[Formula alloc] initWithFormulaElement:[internFormulaParser parseFormulaForSpriteObject:object]];
         
         switch ([internFormulaParser getErrorTokenIndex]) {
             case FORMULA_PARSER_OK:
-                [self showComputeDialog:formula andSpriteObject:brick.script.object];
+                [self showComputeDialog:formula andSpriteObject:object];
                 break;
             case FORMULA_PARSER_STACK_OVERFLOW:
                 [self showFormulaTooLongView];
@@ -474,7 +492,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
                     if (![brick allowsStringFormula]) {
                         [self showSyntaxErrorView];
                     } else {
-                        [self showComputeDialog:formula andSpriteObject:brick.script.object];
+                        [self showComputeDialog:formula andSpriteObject:object];
                     }
                 }
                 
@@ -635,8 +653,15 @@ NS_ENUM(NSInteger, ButtonIndex) {
         if(self.internFormula != nil) {
             InternFormulaParser *internFormulaParser = [[InternFormulaParser alloc] initWithTokens:[self.internFormula getInternTokenList] andFormulaManager:(id<FormulaManagerProtocol>)self.formulaManager];
             
-            Brick *brick = (Brick*)self.brickCellData.brickCell.scriptOrBrick; // must be a brick!
-            FormulaElement *formulaElement = [internFormulaParser parseFormulaForSpriteObject:brick.script.object];
+            Brick *brick = (Brick*)self.brickCellData.brickCell.scriptOrBrick;
+            FormulaElement *formulaElement = nil;
+            if ([brick isKindOfClass:[Script class]]) {
+                Script *script = (Script*)brick;
+                formulaElement = [internFormulaParser parseFormulaForSpriteObject:script.object];
+            } else {
+                formulaElement = [internFormulaParser parseFormulaForSpriteObject:brick.script.object];
+            }
+            
             Formula *formula = [[Formula alloc] initWithFormulaElement:formulaElement];
             switch ([internFormulaParser getErrorTokenIndex]) {
                 case FORMULA_PARSER_OK:
@@ -819,7 +844,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 }
 
 - (void)updateVariablePickerData {
-    UserDataContainer *userData = self.object.project.userData;
+    UserDataContainer *userData = self.object.scene.project.userData;
     [self.variableSourceProject  removeAllObjects];
     [self.variableSourceObject  removeAllObjects];
     [self.listSourceProject  removeAllObjects];
@@ -828,14 +853,14 @@ NS_ENUM(NSInteger, ButtonIndex) {
     // ------------------
     // Project Variables
     // ------------------
-    for(UserVariable *userVariable in userData.programVariableList) {
+    for(UserVariable *userVariable in userData.variables) {
         [self.variableSourceProject addObject:userVariable];
     }
     
     // ------------------
     // Project Lists
     // ------------------
-    for(UserVariable *userVariable in userData.programListOfLists) {
+    for(UserVariable *userVariable in userData.lists) {
         [self.listSourceProject addObject:userVariable];
     }
     
@@ -894,7 +919,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 - (void)saveVariable:(NSString*)name
 {
     if (self.isProjectVariable){
-        for (UserVariable* variable in [UserDataContainer allVariablesForProject: self.object.project]) {
+        for (UserVariable* variable in [UserDataContainer allVariablesForProject: self.object.scene.project]) {
             if ([variable.name isEqualToString:name]) {
                 [self askForVariableName];
                 return;
@@ -915,12 +940,12 @@ NS_ENUM(NSInteger, ButtonIndex) {
     int buttonType = 0;
     
     if (self.isProjectVariable) {
-        [self.object.project.userData.programVariableList addObject:variable];
+        [self.object.scene.project.userData addVariable:variable];
     }  else {
-        [self.object.project.userData addObjectVariable:variable forObject:self.object];
+        [self.object.userData addVariable:variable];
     }
     
-    [self.object.project saveToDiskWithNotification:YES];
+    [self.object.scene.project saveToDiskWithNotification:YES];
     [self updateVariablePickerData];
     [self handleInputWithTitle:variable.name AndButtonType:buttonType];
 }
@@ -928,7 +953,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 - (void)saveList:(NSString*)name
 {
     if (self.isProjectVariable){
-        for (UserVariable* variable in [UserDataContainer allListsForProject: self.object.project]) {
+        for (UserVariable* variable in [UserDataContainer allListsForProject: self.object.scene.project]) {
             if ([variable.name isEqualToString:name]) {
                 [self askForListName];
                 return;
@@ -948,12 +973,12 @@ NS_ENUM(NSInteger, ButtonIndex) {
     int buttonType = 11;
     
     if (self.isProjectVariable){
-        [self.object.project.userData.programListOfLists addObject:list];
+        [self.object.scene.project.userData addList:list];
     } else {
-        [self.object.project.userData addObjectList:list forObject:self.object];
+        [self.object.userData addList:list];
     }
     
-    [self.object.project saveToDiskWithNotification:YES];
+    [self.object.scene.project saveToDiskWithNotification:YES];
     [self updateVariablePickerData];
     [self handleInputWithTitle:list.name AndButtonType:buttonType];
 }
@@ -1153,36 +1178,42 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 - (void)deleteVariable: (UserVariable*)userVariable atRow:(NSInteger)row isProjectData:(BOOL)isProjectData
 {
-    BOOL removed = [self.object.project.userData removeUserVariableNamed:userVariable.name forSpriteObject:self.object];
+    BOOL removed = [self.object.userData removeUserVariableIdentifiedBy: userVariable.name];
+    if (!removed) {
+        removed = [self.object.scene.project.userData removeUserVariableIdentifiedBy: userVariable.name];
+    }
     if (removed) {
         if (isProjectData) {
             [self.variableSourceProject removeObjectAtIndex:row];
         } else {
             [self.variableSourceObject removeObjectAtIndex:row];
         }
-        [self.object.project saveToDiskWithNotification:YES];
+        [self.object.scene.project saveToDiskWithNotification:YES];
         [self updateVariablePickerData];
     }
 }
 
 - (void)deleteList: (id<UserDataProtocol>)userList atRow:(NSInteger)row isProjectData:(BOOL)isProjectData
 {
-    BOOL removed = [self.object.project.userData removeUserListNamed:userList.name forSpriteObject:self.object];
+    BOOL removed = [self.object.userData removeUserListIdentifiedBy: userList.name];
+    if (!removed) {
+        removed = [self.object.scene.project.userData removeUserListIdentifiedBy: userList.name];
+    }
     if (removed) {
         if (isProjectData) {
             [self.listSourceProject removeObjectAtIndex:row];
         } else {
             [self.listSourceObject removeObjectAtIndex:row];
         }
-        [self.object.project saveToDiskWithNotification:YES];
+        [self.object.scene.project saveToDiskWithNotification:YES];
         [self updateVariablePickerData];
     }
 }
 
 - (BOOL)isVariableUsed:(UserVariable*)variable
 {
-    if([self.object.project.userData isProjectVariable:variable]) {
-        for(SpriteObject *spriteObject in self.object.project.allObjects) {
+    if([self.object.scene.project.userData containsVariable:variable]) {
+        for(SpriteObject *spriteObject in self.object.scene.objects) {
             for(Script *script in spriteObject.scriptList) {
                 for(id brick in script.brickList) {
                     if([brick isKindOfClass:[Brick class]] && [brick isVariableUsedWithVariable:variable]) {
@@ -1206,8 +1237,8 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 - (BOOL)isListUsed:(id<UserDataProtocol>)list
 {
-    if([self.object.project.userData isProjectList:list]) {
-        for(SpriteObject *spriteObject in self.object.project.allObjects) {
+    if([self.object.scene.project.userData containsList:list]) {
+        for(SpriteObject *spriteObject in self.object.scene.objects) {
             for(Script *script in spriteObject.scriptList) {
                 for(id brick in script.brickList) {
                     if([brick isKindOfClass:[Brick class]] && [brick isListUsedWithList:list]) {

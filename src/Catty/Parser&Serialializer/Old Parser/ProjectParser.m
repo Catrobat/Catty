@@ -20,10 +20,10 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+#import "Pocket_Code-Swift.h"
 #import "ProjectParser.h"
 #import "GDataXMLNode.h"
 #import "Project.h"
-#import "UserDataContainer.h"
 #import <objc/runtime.h>
 #import "Sound.h"
 #import "Formula.h"
@@ -32,7 +32,6 @@
 #import "OrderedMapTable.h"
 #import "SpriteObject.h"
 #import "NoteBrick.h"
-#import "Pocket_Code-Swift.h"
 
 #define kCatroidXMLPrefix               @"org.catrobat.catroid.content."
 #define kCatroidXMLSpriteList           @"spriteList"
@@ -42,7 +41,7 @@
 #define kParserObjectTypeMutableArray   @"T@\"NSMutableArray\""
 #define kParserObjectTypeMutableDictionary @"T@\"NSMutableDictionary\""
 #define kParserObjectTypeDate           @"T@\"NSDate\""
-
+#define kParserObjectTypeScene          @"T@\"Scene\""
 #define kParserObjectTypeSprite         @"T@\"SpriteObject\""
 #define kParserObjectTypeLookData       @"T@\"Look\""
 #define kParserObjectTypeLoopBeginBrick @"T@\"LoopBeginBrick\""
@@ -158,7 +157,7 @@
     // just an educated guess...
     if ([object isKindOfClass:[SpriteObject class]]) {
         SpriteObject* spriteObject = (SpriteObject*)object;
-        spriteObject.project = self.project;
+        spriteObject.scene.project = self.project;
         self.currentActiveSprite = spriteObject;
     }
     
@@ -182,11 +181,23 @@
                 [NSException raise:@"WrongPropertyException" format:@"We need to keep the references at all time, please use NSMutableArray for property: %@", propertyName];
             }
             
-            else if ([propertyType isEqualToString:kParserObjectTypeMutableArray]) {
-                NSMutableArray* arr = [object valueForKey:propertyName];
-                if (!arr) {
+            else if ([propertyType isEqualToString:kParserObjectTypeMutableArray] || [propertyType isEqualToString:kParserObjectTypeScene]) {
+                NSMutableArray* arr = nil;
+                Scene *scene = nil;
+                if ([propertyType isEqualToString:kParserObjectTypeScene]) {
+                    scene = [object valueForKey:propertyName];
+                    if (!scene) {
+                        scene = [[Scene alloc] initWithName: [Util defaultSceneNameForSceneNumber:1]];
+                        [object setValue:scene forKey:propertyName];
+                    }
+                    scene.project = self.project;
                     arr = [[NSMutableArray alloc] initWithCapacity:child.childCount];
-                    [object setValue:arr forKey:propertyName];
+                } else {
+                    arr = [object valueForKey:propertyName];
+                    if (!arr) {
+                        arr = [[NSMutableArray alloc] initWithCapacity:child.childCount];
+                        [object setValue:arr forKey:propertyName];
+                    }
                 }
                 XMLObjectReference* arrayReference = [[XMLObjectReference alloc] initWithParent:ref andObject:arr];
                 for (GDataXMLElement *arrElement in child.children) {
@@ -200,7 +211,11 @@
                         [arr addObject:[self parseNode:arrElement withParent:arrayReference]];
                     }
                 }
-                
+                if (scene) {
+                    for(SpriteObject *object in arr) {
+                        [scene addObject:object];
+                    }
+                }
             }
             else { // NOT ARRAY
                 id value = [self getSingleValue:child ofType:propertyType withParent:ref];
@@ -368,14 +383,24 @@
         
         if(objectVariableListArray) {
             GDataXMLElement* objectVariableList = [objectVariableListArray objectAtIndex:0];
-            userData.objectVariableList = [self parseObjectVariableMap:objectVariableList andParent:ref];
+            OrderedMapTable * objectVariables = [self parseObjectVariableMap:objectVariableList andParent:ref];
+            
+            for(int index = 0; index < [objectVariables count]; index++) {
+                SpriteObject* spriteObject = [objectVariables keyAtIndex:index];
+                
+                for(UserVariable *variable in [objectVariables objectAtIndex:index]) {
+                    [spriteObject.userData addVariable:variable];
+                }
+            }
         }
         
         NSArray* programVariableListArray = [element elementsForName:@"programVariableList"];
         
         if(programVariableListArray) {
             GDataXMLElement* programVariableList  = [programVariableListArray objectAtIndex:0];
-            userData.programVariableList = [self parseProgramVariableList:programVariableList andParent:ref];
+            for(UserVariable* variable in [self parseProgramVariableList:programVariableList andParent:ref]) {
+                [userData addVariable:variable];
+            }
         }
     }
     
@@ -398,6 +423,7 @@
     for(int i=0; i<[components count]; i++) {
         
         NSString* pathComponent = [components objectAtIndex:i];
+        pathComponent = [self propertyNameForString:pathComponent];
         if([pathComponent isEqualToString:@".."]) {
             continue;
         }
@@ -449,7 +475,6 @@
                 }
             
             NSInteger index = [self indexForArrayObject:pathComponent];
-            
             if (index+1 > [list count] || index < 0) {
                 [NSException raise:@"IndexOutOfBoundsException" format:@"IndexOutOfBounds for lastComponent!"];
             }
@@ -503,7 +528,6 @@
         XMLObjectReference* listReference = [[XMLObjectReference alloc] initWithParent:entryRef andObject:list];
         
         for(GDataXMLElement* var in listElement.children) {
-            
             UserVariable* userVariable = nil;
             if([self isReferenceElement:var]) {
                 userVariable = [self parseReferenceElement:var withParent:listReference];
@@ -633,6 +657,10 @@ const char *property_getTypeString(objc_property_t property)
     
     if ([propertyName isEqualToString:@"variables"]) {
         propertyName = @"userData";
+    }
+    
+    if ([propertyName isEqualToString:@"objectList"]) {
+        propertyName = @"scene";
     }
     
     return propertyName;

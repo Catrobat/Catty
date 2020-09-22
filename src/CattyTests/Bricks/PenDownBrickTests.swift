@@ -28,6 +28,8 @@ final class PenDownBrickTests: XCTestCase {
 
     func testPenDownBrick() {
         let object = SpriteObject()
+        let scene = Scene(name: "testScene")
+        object.scene = scene
         let spriteNode = CBSpriteNode(spriteObject: object)
         object.spriteNode = spriteNode
 
@@ -39,10 +41,9 @@ final class PenDownBrickTests: XCTestCase {
 
         let action = brick.actionBlock()
         XCTAssertFalse(spriteNode.penConfiguration.penDown)
-        XCTAssertNil(spriteNode.penConfiguration.previousPosition)
         action()
         XCTAssertTrue(spriteNode.penConfiguration.penDown)
-        XCTAssertEqual(spriteNode.penConfiguration.previousPosition, spriteNode.position)
+        XCTAssertEqual(spriteNode.penConfiguration.previousPositions.last, spriteNode.position)
     }
 
 }

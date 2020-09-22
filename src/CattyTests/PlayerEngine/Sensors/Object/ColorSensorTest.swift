@@ -32,7 +32,9 @@ final class ColorSensorTest: XCTestCase {
 
     override func setUp() {
         super.setUp()
+        let scene = Scene(name: "testScene")
         spriteObject = SpriteObject()
+        spriteObject.scene = scene
         spriteNode = CBSpriteNodeMock(spriteObject: spriteObject)
         sensor = ColorSensor()
     }
@@ -74,6 +76,7 @@ final class ColorSensorTest: XCTestCase {
         XCTAssertEqual(0, type(of: sensor).convertToRaw(userInput: 0, for: spriteObject), accuracy: Double.epsilon)
         XCTAssertEqual(Double.pi, type(of: sensor).convertToRaw(userInput: 100, for: spriteObject), accuracy: Double.epsilon)
         XCTAssertEqual(Double.pi / 4, type(of: sensor).convertToRaw(userInput: 25, for: spriteObject), accuracy: Double.epsilon)
+        XCTAssertEqual(0.5 * Double.pi, type(of: sensor).convertToRaw(userInput: 10000000050, for: spriteObject), accuracy: Double.epsilon)
 
         // outside the range
         XCTAssertEqual(0, type(of: sensor).convertToRaw(userInput: 200, for: spriteObject), accuracy: Double.epsilon)
@@ -81,7 +84,8 @@ final class ColorSensorTest: XCTestCase {
         XCTAssertEqual(0, type(of: sensor).convertToRaw(userInput: 400, for: spriteObject), accuracy: Double.epsilon)
         XCTAssertEqual(Double.pi, type(of: sensor).convertToRaw(userInput: -100, for: spriteObject), accuracy: Double.epsilon)
         XCTAssertEqual(Double.pi, type(of: sensor).convertToRaw(userInput: -300, for: spriteObject), accuracy: Double.epsilon)
-
+        XCTAssertEqual(0, type(of: sensor).convertToRaw(userInput: 100000000000000000000, for: spriteObject), accuracy: Double.epsilon)
+        XCTAssertEqual(0, type(of: sensor).convertToRaw(userInput: -100000000000000000000, for: spriteObject), accuracy: Double.epsilon)
     }
 
     func testTag() {

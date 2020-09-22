@@ -26,15 +26,16 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @class SpriteObject;
+@class Scene;
 
 @interface Sound : NSObject<CBMutableCopying>
 
 @property (strong, nonatomic, nullable) NSString *name;
 @property (strong, nonatomic, nullable) NSString *fileName;
 @property (atomic, getter = isPlaying) BOOL playing; // this property must be thread-safe!
-
 - (instancetype)initWithName:(NSString *)name fileName:(NSString *)fileName;
 
+- (NSString*)pathForScene: (Scene *)scene;
 - (BOOL)isEqualToSound:(Sound*)sound;
 
 @end

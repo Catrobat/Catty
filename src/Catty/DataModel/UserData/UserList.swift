@@ -110,4 +110,37 @@
         }
         return result
     }
+
+    func stringRepresentation() -> String {
+        var value = ""
+        if !self.isEmpty {
+            var allElementsAreSingleLength = true
+            var elements = [String]()
+
+            for index in 1...self.count {
+                var newValue = ""
+
+                if let listElement = self.element(at: index) {
+                    if let stringElement = listElement as? String {
+                        newValue = stringElement
+                    } else if let intElement = listElement as? Int {
+                        newValue = String(intElement)
+                    } else if let doubleElement = listElement as? Double {
+                        newValue = String(doubleElement)
+                    }
+                }
+
+                elements.append(newValue)
+                if newValue.count > 1 {
+                    allElementsAreSingleLength = false
+                }
+            }
+            if allElementsAreSingleLength {
+                value = elements.joined()
+            } else {
+                value = elements.joined(separator: " ")
+            }
+        }
+        return value
+    }
 }

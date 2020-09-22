@@ -31,6 +31,7 @@
 #import "CBFileManager.h"
 #import "NSString+FastImageSize.h"
 #import "CBMutableCopyContext.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation SpriteObject
 
@@ -56,6 +57,14 @@
     if (! _scriptList)
         _scriptList = [NSMutableArray array];
     return _scriptList;
+}
+
+- (UserDataContainer*)userData
+{
+    // lazy instantiation
+    if (! _userData)
+        _userData = [[UserDataContainer alloc] init];
+    return _userData;
 }
 
 - (NSUInteger)numberOfScripts
@@ -89,7 +98,7 @@
 
 - (NSString*)projectPath
 {
-  return [self.project projectPath];
+  return [self.scene.project projectPath];
 }
 
 - (NSString*)previewImagePathForLookAtIndex:(NSUInteger)index
@@ -100,9 +109,8 @@
     Look* look = [self.lookList objectAtIndex:index];
     if (! look)
         return nil;
-
-    NSString *imageDirPath = [[self projectPath] stringByAppendingString:kProjectImagesDirName];
-    return [NSString stringWithFormat:@"%@/%@", imageDirPath, [look previewImageFileName]];
+    
+    return [look pathForScene:self.scene];
 }
 
 - (NSString*)previewImagePath
@@ -112,45 +120,35 @@
 
 - (BOOL)isBackground
 {
-    if (self.project && [self.project.objectList count])
-        return ([self.project.objectList objectAtIndex:0] == self);
+    if (self.scene && [self.scene.objects count])
+        return ([self.scene.objects objectAtIndex:0] == self);
     return NO;
-}
-
-- (NSString*)pathForLook:(Look*)look
-{
-  return [NSString stringWithFormat:@"%@%@/%@", [self projectPath], kProjectImagesDirName, look.fileName];
-}
-
-- (NSString*)pathForSound:(Sound*)sound
-{
-  return [NSString stringWithFormat:@"%@%@/%@", [self projectPath], kProjectSoundsDirName, sound.fileName];
 }
 
 - (NSUInteger)fileSizeOfLook:(Look*)look
 {
-    NSString *path = [self pathForLook:look];
+    NSString *path = [look pathForScene:self.scene];
     CBFileManager *fileManager = [CBFileManager sharedManager];
     return [fileManager sizeOfFileAtPath:path];
 }
 
 - (CGSize)dimensionsOfLook:(Look*)look
 {
-    NSString *path = [self pathForLook:look];
+    NSString *path = [look pathForScene:self.scene];
     // very fast implementation! far more quicker than UIImage's size method/property
     return [path sizeOfImageForFilePath];
 }
 
 - (NSUInteger)fileSizeOfSound:(Sound*)sound
 {
-    NSString *path = [self pathForSound:sound];
+    NSString *path = [sound pathForScene:self.scene];
     CBFileManager *fileManager = [CBFileManager sharedManager];
     return [fileManager sizeOfFileAtPath:path];
 }
 
 - (CGFloat)durationOfSound:(Sound*)sound
 {
-    NSString *path = [self pathForSound:sound];
+    NSString *path = [sound pathForScene:self.scene];
     return [[AudioManager sharedAudioManager] durationOfSoundWithFilePath:path];
 }
 
@@ -184,19 +182,18 @@
     look.name = [Util uniqueName:look.name existingNames:[self allLookNames]];
     [self.lookList addObject:look];
     if(save) {
-        [self.project saveToDiskWithNotification:YES];
+        [self.scene.project saveToDiskWithNotification:YES];
     }
     return;
 }
 
-- (void)removeFromProject
+- (void)removeFromScene
 {
-    CBAssert(self.project);
     NSUInteger index = 0;
-    for (SpriteObject *spriteObject in self.project.objectList) {
+    for (SpriteObject *spriteObject in self.scene.objects) {
         if (spriteObject == self) {
-            [self.project.objectList removeObjectAtIndex:index];
-            self.project = nil;
+            [self.scene removeObjectAtIndex:index];
+            self.scene = nil;
             break;
         }
         ++index;
@@ -220,7 +217,7 @@
         if (lookImageReferenceCounter <= 1) {
             CBFileManager *fileManager = [CBFileManager sharedManager];
             [fileManager deleteFile:[self previewImagePathForLookAtIndex:index]];
-            [fileManager deleteFile:[self pathForLook:look]];
+            [fileManager deleteFile:[look pathForScene:self.scene]];
         }
         [self.lookList removeObjectAtIndex:index];
         break;
@@ -238,7 +235,7 @@
         }
     }
     if(save) {
-        [self.project saveToDiskWithNotification:YES];
+        [self.scene.project saveToDiskWithNotification:YES];
     }
 }
 
@@ -246,7 +243,7 @@
 {
     [self removeLookFromList:look];
     if(save) {
-        [self.project saveToDiskWithNotification:YES];
+        [self.scene.project saveToDiskWithNotification:YES];
     }
 }
 
@@ -266,7 +263,7 @@
         // if sound is not used by other objects, delete it
         if (soundReferenceCounter <= 1) {
             CBFileManager *fileManager = [CBFileManager sharedManager];
-            [fileManager deleteFile:[self pathForSound:sound]];
+            [fileManager deleteFile:[sound pathForScene:self.scene]];
         }
         [self.soundList removeObjectAtIndex:index];
         break;
@@ -284,7 +281,7 @@
         }
     }
     if(save) {
-        [self.project saveToDiskWithNotification:YES];
+        [self.scene.project saveToDiskWithNotification:YES];
     }
 }
 
@@ -292,7 +289,7 @@
 {
     [self removeSoundFromList:sound];
     if(save) {
-        [self.project saveToDiskWithNotification:YES];
+        [self.scene.project saveToDiskWithNotification:YES];
     }
 }
 
@@ -315,7 +312,7 @@
     copiedLook.name = [Util uniqueName:nameOfCopiedLook existingNames:[self allLookNames]];
     [self.lookList addObject:copiedLook];
     if(save) {
-        [self.project saveToDiskWithNotification:YES];
+        [self.scene.project saveToDiskWithNotification:YES];
     }
     return copiedLook;
 }
@@ -329,7 +326,7 @@
     copiedSound.name = [Util uniqueName:nameOfCopiedSound existingNames:[self allSoundNames]];
     [self.soundList addObject:copiedSound];
     if(save) {
-        [self.project saveToDiskWithNotification:YES];
+        [self.scene.project saveToDiskWithNotification:YES];
     }
     return copiedSound;
 }
@@ -341,7 +338,7 @@
     }
     look.name = [Util uniqueName:newLookName existingNames:[self allLookNames]];
     if(save) {
-        [self.project saveToDiskWithNotification:YES];
+        [self.scene.project saveToDiskWithNotification:YES];
     }
 }
 
@@ -352,13 +349,13 @@
     }
     sound.name = [Util uniqueName:newSoundName existingNames:[self allSoundNames]];
     if(save) {
-        [self.project saveToDiskWithNotification:YES];
+        [self.scene.project saveToDiskWithNotification:YES];
     }
 }
 
 - (void)removeReferences
 {
-    self.project = nil;
+    self.scene = nil;
     [self.scriptList makeObjectsPerformSelector:@selector(removeReferences)];
 }
 
@@ -415,6 +412,13 @@
         if (! [firstScript isEqualToScript:secondScript])
             return NO;
     }
+    
+    if(self.userData && spriteObject.userData) {
+        if (![self.userData isEqual:spriteObject.userData]) {
+            return NO;
+        }
+    }
+    
     return YES;
 }
 
@@ -424,8 +428,9 @@
     if (! context) { NSError(@"%@ must not be nil!", [CBMutableCopyContext class]); }
 
     SpriteObject *newObject = [[SpriteObject alloc] init];
+    newObject.scene = self.scene;
     newObject.name = [NSString stringWithString:self.name];
-    newObject.project = self.project;
+    newObject.userData = [self.userData mutableCopy];
     [context updateReference:self WithReference:newObject];
 
     // deep copy
@@ -466,7 +471,7 @@
 - (NSUInteger)referenceCountForLook:(NSString*)fileName
 {
     NSUInteger referenceCount = 0;
-    for (SpriteObject *object in self.project.objectList) {
+    for (SpriteObject *object in self.scene.objects) {
         for (Look *look in object.lookList) {
             if ([look.fileName isEqualToString:fileName]) {
                 ++referenceCount;
@@ -479,7 +484,7 @@
 - (NSUInteger)referenceCountForSound:(NSString*)fileName
 {
     NSUInteger referenceCount = 0;
-    for (SpriteObject *object in self.project.objectList) {
+    for (SpriteObject *object in self.scene.objects) {
         for (Sound *sound in object.soundList) {
             if ([sound.fileName isEqualToString:fileName]) {
                 ++referenceCount;

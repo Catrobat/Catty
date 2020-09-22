@@ -62,6 +62,7 @@
 #import "ChangeVariableBrick.h"
 #import "VibrationBrick.h"
 #import "GlideToBrick.h"
+#import "GoToBrick.h"
 #import "MoveNStepsBrick.h"
 #import "IfOnEdgeBounceBrick.h"
 #import "ShowBrick.h"
@@ -121,6 +122,7 @@
 #import "SayForBubbleBrickCell.h"
 #import "ThinkForBubbleBrickCell.h"
 #import "GlideToBrickCell.h"
+#import "GoToBrickCell.h"
 #import "VibrationBrickCell.h"
 #import "MoveNStepsBrickCell.h"
 #import "GoNStepsBackBrickCell.h"
@@ -129,9 +131,12 @@
 #import "PreviousLookBrickCell.h"
 #import "ChangeVariableBrickCell.h"
 #import "ReplaceItemInUserListBrickCell.h"
+#import "SetBackgroundBrickCell.h"
+#import "SetLookBrickCell.h"
 
 #import "BrickCellVariableData.h"
 #import "BrickCellListData.h"
+#import "BrickCellLookData.h"
 
 // Formulas
 #import "Formula.h"
@@ -174,7 +179,7 @@
 #import "LooksTableViewController.h"
 #import "FormulaEditorViewController.h"
 #import "MyProjectsViewController.h"
-#import "ProjectTableViewController.h"
+#import "SceneTableViewController.h"
 #import "TermsOfUseOptionTableViewController.h"
 #import "AboutPocketCodeOptionTableViewController.h"
 #import "CatrobatTableViewController.h"
@@ -186,7 +191,7 @@
 // Defines
 //------------------------------------------------------------------------------------------------------------
 
-#import "ProgramDefines.h"
+#import "ProjectDefines.h"
 #import "KeychainUserDefaultsDefines.h"
 #import "CatrobatLanguageDefines.h"
 
@@ -202,6 +207,7 @@
 #import "SegueDefines.h"
 #import "ProjectDetailStoreViewController.h"
 #import "DarkBlueGradientFeaturedCell.h"
+#import "DarkBlueGradientImageCell.h"
 #import "CBXMLParser.h"
 #import "Parser.h"
 #import "GDataXMLNode.h"
@@ -217,7 +223,6 @@
 #import "Project+CBXMLHandler.h"
 #import "Header+CBXMLHandler.h"
 #import "SpriteObject+CBXMLHandler.h"
-#import "UserDataContainer.h"
 #import "OrderedMapTable.h"
 #import "UIDefines.h"
 #import "SpriteObject.h"
@@ -227,3 +232,4 @@
 #import "iOSCombobox.h"
 #import "CBXMLValidator.h"
 #import "CBXMLSerializerHelper.h"
+#import "CBXMLPositionStack.h"

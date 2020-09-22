@@ -83,6 +83,18 @@ public class SynchronizedArray<Element> {
         }
     }
 
+    public func removeAll() {
+        queue.async(flags: .barrier) {
+            self.array.removeAll()
+        }
+    }
+
+    public func removeSubrange(_ bounds: Range<Int>) {
+        queue.async(flags: .barrier) {
+            self.array.removeSubrange(bounds)
+        }
+    }
+
     public func insert(_ element: Element, at index: Int) {
         queue.async(flags: .barrier) {
             self.array.insert(element, at: index)
@@ -95,6 +107,14 @@ public class SynchronizedArray<Element> {
             result = self.array.index(i, offsetBy: distance)
         }
         return result
+    }
+
+    public func enumerated() -> EnumeratedSequence<[Element]> {
+        var result: EnumeratedSequence<[Element]>?
+        queue.sync {
+            result = self.array.enumerated()
+        }
+        return result!
     }
 
     public func contains(where predicate: (Element) throws -> Bool) rethrows -> Bool {

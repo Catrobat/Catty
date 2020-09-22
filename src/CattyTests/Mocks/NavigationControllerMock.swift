@@ -23,6 +23,20 @@
 class NavigationControllerMock: UINavigationController {
 
     var currentViewController: UIViewController?
+    var navigationBarFrame = CGRect.zero
+    var toolbarFrame = CGRect.zero
+
+    override var navigationBar: UINavigationBar {
+        let navigationBar = UINavigationBar()
+        navigationBar.frame = self.navigationBarFrame
+        return navigationBar
+    }
+
+    override var toolbar: UIToolbar {
+        let toolbar = UIToolbar()
+        toolbar.frame = self.toolbarFrame
+        return toolbar
+    }
 
     override func pushViewController(_ viewController: UIViewController, animated: Bool) {
         self.currentViewController = viewController

@@ -29,11 +29,11 @@ class FacePositionYSensor: DeviceSensor {
     static let requiredResource = ResourceType.faceDetection
 
     let getFaceDetectionManager: () -> FaceDetectionManagerProtocol?
-    let sceneHeight: Double?
+    let stageHeight: Double?
 
-    init(sceneSize: CGSize, faceDetectionManagerGetter: @escaping () -> FaceDetectionManagerProtocol?) {
+    init(stageSize: CGSize, faceDetectionManagerGetter: @escaping () -> FaceDetectionManagerProtocol?) {
         self.getFaceDetectionManager = faceDetectionManagerGetter
-        self.sceneHeight = Double(sceneSize.height)
+        self.stageHeight = Double(stageSize.height)
     }
 
     func tag() -> String {
@@ -49,8 +49,8 @@ class FacePositionYSensor: DeviceSensor {
         if rawValue == type(of: self).defaultRawValue {
             return rawValue
         }
-        guard let sceneHeight = self.sceneHeight else { return type(of: self).defaultRawValue }
-        return sceneHeight * rawValue - sceneHeight / 2.0
+        guard let stageHeight = self.stageHeight else { return type(of: self).defaultRawValue }
+        return stageHeight * rawValue - stageHeight / 2.0
     }
 
     func formulaEditorSections(for spriteObject: SpriteObject) -> [FormulaEditorSection] {

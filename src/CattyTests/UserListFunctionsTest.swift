@@ -30,19 +30,21 @@ final class UserListFunctionsTest: XCTestCase {
 
     override func setUp() {
         let screenSize = Util.screenSize(true)
-        formulaManager = FormulaManager(sceneSize: screenSize, landscapeMode: false)
+        formulaManager = FormulaManager(stageSize: screenSize, landscapeMode: false)
     }
 
     func testNumberOfItems() {
         let project = Project()
+        let scene = Scene(name: "testScene")
         let object = SpriteObject()
-        object.project = project
+        object.scene = scene
+        object.scene.project = project
 
         let userList = UserList(name: "TestList")
         userList.add(element: 0)
         userList.add(element: 0)
         userList.add(element: 0)
-        project.userData.programListOfLists.add(userList)
+        project.userData.add(userList)
 
         let leftChild = FormulaElement(elementType: ElementType.USER_LIST, value: "TestList", leftChild: nil, rightChild: nil, parent: nil)
         let formulaTree = FormulaElement(elementType: ElementType.FUNCTION, value: NumberOfItemsFunction.tag, leftChild: leftChild, rightChild: nil, parent: nil)
@@ -55,14 +57,16 @@ final class UserListFunctionsTest: XCTestCase {
 
     func testElement() {
         let project = Project()
+        let scene = Scene(name: "testScene")
         let object = SpriteObject()
-        object.project = project
+        object.scene = scene
+        object.scene.project = project
 
         let userList = UserList(name: "TestList")
         userList.add(element: 1)
         userList.add(element: 4)
         userList.add(element: 8)
-        project.userData.programListOfLists.add(userList)
+        project.userData.add(userList)
 
         var leftChild = FormulaElement(elementType: ElementType.NUMBER, value: "2", leftChild: nil, rightChild: nil, parent: nil)
         let rightChild = FormulaElement(elementType: ElementType.USER_LIST, value: "TestList", leftChild: nil, rightChild: nil, parent: nil)
@@ -89,14 +93,16 @@ final class UserListFunctionsTest: XCTestCase {
 
     func testContains() {
         let project = Project()
+        let scene = Scene(name: "testScene")
         let object = SpriteObject()
-        object.project = project
+        object.scene = scene
+        object.scene.project = project
 
         let userList = UserList(name: "TestList")
         userList.add(element: 0)
         userList.add(element: 4)
         userList.add(element: 8)
-        project.userData.programListOfLists.add(userList)
+        project.userData.add(userList)
 
         let rightChild = FormulaElement(elementType: ElementType.NUMBER, value: "4", leftChild: nil, rightChild: nil, parent: nil)
         let leftChild = FormulaElement(elementType: ElementType.USER_LIST, value: "TestList", leftChild: nil, rightChild: nil, parent: nil)

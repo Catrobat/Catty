@@ -29,4 +29,7 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageViewBottomConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageViewTopConstraint;
+
 @end

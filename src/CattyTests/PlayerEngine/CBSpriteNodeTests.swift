@@ -29,14 +29,25 @@ final class CBSpriteNodeTests: XCTestCase {
     final let epsilon = 0.001
     var spriteNode: CBSpriteNodeMock!
 
+    private func calculateScreenRatio(width: CGFloat, height: CGFloat) -> CGFloat {
+        let deviceScreenRect = UIScreen.main.nativeBounds
+        let deviceDiagonalPixel = CGFloat(sqrt(pow(deviceScreenRect.width, 2) + pow(deviceScreenRect.height, 2)))
+
+        let creatorDiagonalPixel = CGFloat(sqrt(pow(width, 2) + pow(height, 2)))
+
+        return creatorDiagonalPixel / deviceDiagonalPixel
+    }
+
     override func setUp() {
+        let scene1 = Scene(name: "testScene")
         let spriteObject = SpriteObject()
+        spriteObject.scene = scene1
         spriteObject.name = "SpriteObjectName"
 
         spriteNode = CBSpriteNodeMock(spriteObject: spriteObject)
         spriteObject.spriteNode = spriteNode
 
-        spriteNode.mockedScene = SceneBuilder(project: ProjectMock(width: 300, andHeight: 400)).build()
+        spriteNode.mockedStage = StageBuilder(project: ProjectMock(width: 300, andHeight: 400)).build()
     }
 
     func testPosition() {
@@ -172,5 +183,24 @@ final class CBSpriteNodeTests: XCTestCase {
                        Double(spriteNode.ciHueAdjust),
                        accuracy: epsilon,
                        "SpriteNode catrobatColor not correct")
+    }
+
+    func testPenConfigurationInit() {
+        XCTAssertEqual(spriteNode.penConfiguration.screenRatio, 1)
+
+        let testProject1 = ProjectMock(width: 100, andHeight: 100)
+        let scene = Scene(name: "testScene")
+        let newSpriteObject = SpriteObject()
+        newSpriteObject.scene = scene
+        newSpriteObject.scene.project = testProject1
+        spriteNode = CBSpriteNodeMock(spriteObject: newSpriteObject)
+
+        XCTAssertEqual(spriteNode.penConfiguration.screenRatio, calculateScreenRatio(width: 100, height: 100))
+
+        let testProject2 = ProjectMock(width: 200, andHeight: 200)
+        newSpriteObject.scene.project = testProject2
+        spriteNode = CBSpriteNodeMock(spriteObject: newSpriteObject)
+
+        XCTAssertEqual(spriteNode.penConfiguration.screenRatio, calculateScreenRatio(width: 200, height: 200))
     }
 }

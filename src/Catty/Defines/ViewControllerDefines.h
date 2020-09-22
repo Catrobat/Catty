@@ -23,6 +23,11 @@
 #define kPaintViewControllerIdentifier @"paint"
 #define kLooksTableViewControllerIdentifier @"LooksTableViewController"
 #define kSoundsTableViewControllerIdentifier @"SoundsTableViewController"
-#define kProjectTableViewControllerIdentifier @"ProjectTableViewController"
+#define kSceneTableViewControllerIdentifier @"SceneTableViewController"
 #define kSoundRecorderViewControllerIdentifier @"SoundRecorder"
+#define kUserDetailsShowDetailsKey @"showDetails"
+#define kUserDetailsShowDetailsObjectsKey @"detailsForObjects"
+#define kUserDetailsShowDetailsLooksKey @"detailsForLooks"
+#define kUserDetailsShowDetailsSoundsKey @"detailsForSounds"
+#define kUserDetailsShowDetailsProjectsKey @"detailsForProjects"
 

@@ -27,10 +27,12 @@ import XCTest
 final class RepeatBrickTests: XCTestCase {
 
     func testCondition() {
-        let interpreter = FormulaManager(sceneSize: CGSize.zero, landscapeMode: false)
+        let interpreter = FormulaManager(stageSize: CGSize.zero, landscapeMode: false)
         let repeatBrick = RepeatBrick()
         let script = Script()
         let object = SpriteObject()
+        let scene = Scene(name: "testScene")
+        object.scene = scene
 
         script.object = object
         repeatBrick.script = script
@@ -48,10 +50,12 @@ final class RepeatBrickTests: XCTestCase {
     }
 
     func testConditionInterpretOnce() {
-        let interpreter = FormulaManager(sceneSize: CGSize.zero, landscapeMode: false)
+        let interpreter = FormulaManager(stageSize: CGSize.zero, landscapeMode: false)
         let repeatBrick = RepeatBrick()
         let script = Script()
         let object = SpriteObject()
+        let scene = Scene(name: "testScene")
+        object.scene = scene
 
         script.object = object
         repeatBrick.script = script
@@ -75,11 +79,13 @@ final class RepeatBrickTests: XCTestCase {
     }
 
     func testMutableCopy() {
-        let interpreter = FormulaManager(sceneSize: CGSize.zero, landscapeMode: false)
+        let interpreter = FormulaManager(stageSize: CGSize.zero, landscapeMode: false)
 
         let brick = RepeatBrick()
         let script = Script()
         let object = SpriteObject()
+        let scene = Scene(name: "testScene")
+        object.scene = scene
 
         script.object = object
         brick.script = script

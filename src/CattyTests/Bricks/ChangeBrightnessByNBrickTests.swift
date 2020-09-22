@@ -37,10 +37,11 @@ final class ChangeBrightnessByNBrickTests: AbstractBrickTest {
         brick = ChangeBrightnessByNBrick()
         script = WhenScript()
         object = SpriteObject()
-        project = Project.defaultProject(withName: "a", projectID: "1")
+        project = ProjectManager.createProject(name: "a", projectId: "1")
+        object.scene = project.scene
         spriteNode = CBSpriteNode.init(spriteObject: object)
         object.spriteNode = spriteNode
-        object.project = project
+        object.scene.project = project
 
         let bundle = Bundle(for: type(of: self))
         let filePath = bundle.path(forResource: "test.png", ofType: nil)
@@ -48,7 +49,7 @@ final class ChangeBrightnessByNBrickTests: AbstractBrickTest {
         let look = Look(name: "test", andPath: "test.png")
 
         do {
-            try imageData?.write(to: URL(fileURLWithPath: object.projectPath() + "images/test.png"))
+            try imageData?.write(to: URL(fileURLWithPath: object.scene.imagesPath()! + "/test.png"))
         } catch {
             XCTFail("Error when writing image data")
         }

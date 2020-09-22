@@ -24,6 +24,8 @@ class ProjectMock: Project {
 
     private var mockedRequiredResources: Int = 0
     public var saveNotificationShown: Bool = false
+    public var saved: Bool = false
+    public var isLastUsedProject = false
 
     override convenience init() {
         self.init(width: 300, andHeight: 400)
@@ -50,7 +52,15 @@ class ProjectMock: Project {
     }
 
     override func rename(toProjectName projectName: String, andShowSaveNotification showSaveNotification: Bool) {
-        self.saveNotificationShown = showSaveNotification
         super.rename(toProjectName: projectName, andShowSaveNotification: showSaveNotification)
+    }
+
+    override func saveToDisk(withNotification notify: Bool) {
+        self.saved = true
+        self.saveNotificationShown = notify
+    }
+
+    override func setAsLastUsedProject() {
+        isLastUsedProject = true
     }
 }

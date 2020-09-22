@@ -81,6 +81,8 @@ static NSString *const kUserInfoSound = @"UserInfoSound";
 #define kHandleImageHeight 15.0f
 #define kHandleImageWidth 40.0f
 #define kOffsetTopBrickSelectionView 70.0f
+#define kPreviewImageCornerRadius 10.0
+#define kPreviewImageBorderWidth 1.0f
 
 //BDKNotifyHUD
 #define kBDKNotifyHUDDestinationOpacity 0.3f
@@ -161,3 +163,8 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 #define kBrickInputFieldRightMargin 4.0f
 #define kBrickInputFieldMinRowHeight kBrickInputFieldHeight
 #define kDefaultImageCellBorderWidth 0.5f
+
+#define kGoToTouchPosition 80
+#define kGoToRandomPosition 81
+#define kGoToOtherSpritePosition 82
+

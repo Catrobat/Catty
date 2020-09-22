@@ -27,11 +27,13 @@ import XCTest
 final class HideBrickTests: AbstractBrickTest {
 
     func testHideBrick() {
+        let scene = Scene(name: "testScene1")
         let object = SpriteObject()
+        object.scene = scene
         let spriteNode = CBSpriteNode(spriteObject: object)
         object.spriteNode = spriteNode
 
-        self.scene.addChild(spriteNode)
+        self.stage.addChild(spriteNode)
         spriteNode.catrobatPosition = CBPosition(x: 0, y: 0)
 
         let script = WhenScript()

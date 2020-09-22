@@ -43,8 +43,11 @@ extension FormulaManager {
     func interpretInteger(_ formula: Formula, for spriteObject: SpriteObject) -> Int {
         let doubleValue = interpretDouble(formula, for: spriteObject)
 
-        if doubleValue > Double(Int.max) {
+        if doubleValue >= Double(Int.max) {
             return Int.max
+        }
+        if doubleValue <= Double(Int.min) {
+            return Int.min
         }
         if doubleValue.isNaN {
             return 0
@@ -198,34 +201,16 @@ extension FormulaManager {
     }
 
     private func interpretVariable(_ formulaElement: FormulaElement, for spriteObject: SpriteObject) -> AnyObject {
-        guard let project = spriteObject.project,
-            let variable = project.userData.getUserVariableNamed(formulaElement.value, for: spriteObject),
+        guard let variable = UserDataContainer.objectOrProjectVariable(for: spriteObject, and: formulaElement.value),
             let value = variable.value else { return 0 as AnyObject }
 
         return value as AnyObject
     }
 
     private func interpretList(_ formulaElement: FormulaElement, for spriteObject: SpriteObject) -> AnyObject {
-        guard let project = spriteObject.project,
-            let list = project.userData.getUserListNamed(formulaElement.value, for: spriteObject)
-            else { return 0 as AnyObject }
+        guard let list = UserDataContainer.objectOrProjectList(for: spriteObject, and: formulaElement.value) else { return 0 as AnyObject }
 
-        var stringElements = [String]()
-        if !list.isEmpty {
-            for i in 1...list.count {
-                if let listElement = list.element(at: i) {
-                    if let stringElem = listElement as? String {
-                        stringElements.append(stringElem)
-                    } else if let intElem = listElement as? Int {
-                        stringElements.append(String(intElem))
-                    } else if let doubleElem = listElement as? Double {
-                        stringElements.append(String(doubleElem))
-                    }
-                }
-            }
-        }
-
-        return stringElements.joined(separator: " ") as AnyObject
+        return list.stringRepresentation() as AnyObject
     }
 
     private func interpretSensor(_ formulaElement: FormulaElement, for spriteObject: SpriteObject) -> AnyObject {
@@ -250,7 +235,7 @@ extension FormulaManager {
         guard let formulaElement = formulaElement else { return nil }
 
         if formulaElement.type == .USER_LIST {
-            return spriteObject.project.userData.getUserListNamed(formulaElement.value, for: spriteObject)
+            return UserDataContainer.objectOrProjectList(for: spriteObject, and: formulaElement.value)
         }
 
         return interpretRecursive(formulaElement: formulaElement, for: spriteObject)

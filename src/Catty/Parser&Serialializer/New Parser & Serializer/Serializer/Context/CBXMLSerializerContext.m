@@ -25,6 +25,15 @@
 
 @implementation CBXMLSerializerContext
 
+- (instancetype)initWithProject:(Project *)project {
+    
+    self = [super init];
+    if (self) {
+        _project = project;
+    }
+    return self;
+}
+
 #pragma mark - Getters and Setters
 - (CBXMLPositionStack*)currentPositionStack
 {
@@ -40,6 +49,14 @@
         _spriteObjectNamePositions = [NSMutableDictionary dictionary];
 
     return _spriteObjectNamePositions;
+}
+
+- (NSMutableDictionary*)soundNamePositions
+{
+    if(! _soundNamePositions)
+        _soundNamePositions = [NSMutableDictionary dictionary];
+
+    return _soundNamePositions;
 }
 
 - (NSMutableDictionary*)spriteObjectNameUserVariableListPositions
@@ -87,11 +104,13 @@
     CBXMLSerializerContext *copiedContext = [super mutableCopy];
     copiedContext.currentPositionStack = [self.currentPositionStack mutableCopy];
     copiedContext.spriteObjectNamePositions = [self.spriteObjectNamePositions mutableCopy];
+    copiedContext.soundNamePositions = [self.soundNamePositions mutableCopy];
     copiedContext.projectUserVariableNamePositions = [self.projectUserVariableNamePositions mutableCopy];
     copiedContext.projectUserListNamePositions = [self.projectUserListNamePositions mutableCopy];
     copiedContext.spriteObjectNameUserVariableListPositions = [self.spriteObjectNameUserVariableListPositions mutableCopy];
     copiedContext.spriteObjectNameUserListOfListsPositions = [self.spriteObjectNameUserListOfListsPositions mutableCopy];
     copiedContext.brickList = [self.brickList mutableCopy];
+    copiedContext.project = self.project;
     return copiedContext;
 }
 

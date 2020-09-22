@@ -43,12 +43,17 @@ final class CBXMLParserHelperTests: XCTestCase {
     }
 
     func testGetDepthOfResourceAndRelativePathToResourceList() {
-        let object: SpriteObject! = SpriteObject()
-        let project: Project! = Project.defaultProject(withName: "a", projectID: "1")
+
+        let scene = Scene(name: "testScene")
+        let object = SpriteObject()
+        object.scene = scene
+        let project: Project! = ProjectManager.createProject(name: "a", projectId: "1")
+        project.scene = object.scene
+
         let spriteNode = CBSpriteNode(spriteObject: object)
         let startScript = StartScript()
         object.spriteNode = spriteNode
-        object.project = project
+        object.scene.project = project
         object.scriptList.add(startScript)
 
         let lookBrick = SetLookBrick()
@@ -69,7 +74,7 @@ final class CBXMLParserHelperTests: XCTestCase {
 
         XCTAssertEqual(CBXMLSerializerHelper.getDepthOfResource(lookBrick, for: object), expected_depth)
         XCTAssertEqual(CBXMLSerializerHelper.getDepthOfResource(soundBrick, for: object), expected_depth)
-        XCTAssertEqual(CBXMLSerializerHelper.relativeXPath(to: look, inLookList: object?.lookList as? [Any], withDepth: expected_depth), expected_relativePathLook)
-        XCTAssertEqual(CBXMLSerializerHelper.relativeXPath(to: sound, inSoundList: (object?.soundList as! [Any]), withDepth: expected_depth), expected_relativePathSound)
+        XCTAssertEqual(CBXMLSerializerHelper.relativeXPath(to: look, inLookList: object.lookList as? [Any], withDepth: expected_depth), expected_relativePathLook)
+        XCTAssertEqual(CBXMLSerializerHelper.relativeXPath(to: sound, inSoundList: (object.soundList as! [Any]), withDepth: expected_depth), expected_relativePathSound)
     }
 }

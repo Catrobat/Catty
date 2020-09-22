@@ -39,14 +39,22 @@
     }
 
     func rawValue(landscapeMode: Bool) -> Double {
-        self.getLocationManager()?.heading?.magneticHeading ?? type(of: self).defaultRawValue
+        guard let compassSensor = self.getLocationManager() else { return type(of: self).defaultRawValue }
+        guard let compassSensorHeading = compassSensor.heading?.magneticHeading else { return type(of: self).defaultRawValue }
+
+        if !landscapeMode {
+            return compassSensorHeading
+        } else {
+            return compassSensorHeading + 90.0
+        }
     }
 
     func convertToStandardized(rawValue: Double) -> Double {
         if rawValue <= 180 {
             return -rawValue
+        } else {
+            return 360 - rawValue
         }
-        return 360 - rawValue
     }
 
     func formulaEditorSections(for spriteObject: SpriteObject) -> [FormulaEditorSection] {

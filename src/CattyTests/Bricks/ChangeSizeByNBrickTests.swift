@@ -34,7 +34,9 @@ final class ChangeSizeByNBrickTests: AbstractBrickTest {
 
     override func setUp() {
         super.setUp()
+        let scene = Scene(name: "testScene")
         object = SpriteObject()
+        object.scene = scene
         spriteNode = CBSpriteNode(spriteObject: object)
         object.spriteNode = spriteNode
         script = WhenScript()

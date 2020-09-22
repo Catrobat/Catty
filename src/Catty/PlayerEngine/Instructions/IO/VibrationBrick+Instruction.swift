@@ -43,8 +43,7 @@
             var previousOperation: BlockOperation?
             let delayTime = UInt32(0.5 * Double(USEC_PER_SEC))
 
-            let max = Int(numberOfVibrations)
-            for _ in 0 ..< max {
+            for _ in stride(from: 0, to: numberOfVibrations, by: 1) {
                 let operation = BlockOperation (block: {
                     AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
                     usleep(delayTime)})

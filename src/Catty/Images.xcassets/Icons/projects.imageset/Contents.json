@@ -10,15 +10,12 @@
     },
     {
       "idiom" : "universal",
-      "filename" : "Icons_main_menu_programs.png",
+      "filename" : "projects.png",
       "scale" : "3x"
     }
   ],
   "info" : {
     "version" : 1,
     "author" : "xcode"
-  },
-  "properties" : {
-    "template-rendering-intent" : "template"
   }
 }

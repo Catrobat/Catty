@@ -26,7 +26,7 @@
     static let name = kUIFESensorInclinationX
     static let defaultRawValue = 0.0
     static let position = 50
-    static let requiredResource = ResourceType.deviceMotion
+    static let requiredResource = ResourceType.accelerometerAndDeviceMotion
 
     let getMotionManager: () -> MotionManager?
 
@@ -39,33 +39,25 @@
     }
 
     func rawValue(landscapeMode: Bool) -> Double {
+        guard let inclinationSensor = self.getMotionManager() else { return type(of: self).defaultRawValue }
+        guard let deviceMotion = inclinationSensor.deviceMotion else { return type(of: self).defaultRawValue }
+
         if !landscapeMode {
-            guard let inclinationSensor = self.getMotionManager() else { return type(of: self).defaultRawValue }
-            guard let deviceMotion = inclinationSensor.deviceMotion else {
-                return type(of: self).defaultRawValue
-            }
             return deviceMotion.attitude.roll
         } else {
+            let rawValueYSensor = deviceMotion.attitude.pitch
             let faceDown = (getMotionManager()?.accelerometerData?.acceleration.z ?? 0) > 0
             if faceDown == false {
-                // screen up
-                return -rawValueYSensor()
+            // screen up
+                return rawValueYSensor
             } else {
-                if rawValueYSensor() > Double.epsilon {
-                    return Double.pi + rawValueYSensor()
+                if rawValueYSensor > Double.epsilon {
+                    return -Double.pi - rawValueYSensor
                 } else {
-                    return -Double.pi + rawValueYSensor()
+                    return Double.pi + rawValueYSensor
                 }
             }
         }
-    }
-
-    func rawValueYSensor() -> Double {
-        guard let inclinationSensor = self.getMotionManager() else { return type(of: self).defaultRawValue }
-        guard let deviceMotion = inclinationSensor.deviceMotion else {
-            return type(of: self).defaultRawValue
-        }
-        return deviceMotion.attitude.pitch
     }
 
     // roll is between -pi, pi on both iOS and Android

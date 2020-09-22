@@ -33,3 +33,5 @@
 #import "ScriptCollectionViewController.h"
 #import "FormulaEditorViewController.h"
 #import "PaintViewController.h"
+#import "BrickCellMessageData.h"
+#import "BroadcastBrickCell.h"

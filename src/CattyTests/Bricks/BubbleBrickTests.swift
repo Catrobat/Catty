@@ -24,8 +24,8 @@ import XCTest
 
 @testable import Pocket_Code
 
-let kIphoneXSceneHeight = 2436.0
-let kIphoneXSceneWidth = 1125.0
+let kIphoneXStageHeight = 2436.0
+let kIphoneXStageWidth = 1125.0
 
 let kBubbleFrameConstant = 2.1999969482421875
 let kBubbleVerticalPadding = (SpriteKitDefines.defaultLabelFontSize + 20)
@@ -45,15 +45,18 @@ final class BubbleBrickTests: XMLAbstractTest {
     private func createSpriteNodeWithBubble(x xPosition: Double, y yPosition: Double, andSentence sentence: String) -> CBSpriteNode {
         let project = ProjectMock()
 
+        let scene = Scene(name: "testScene")
         let spriteObject = SpriteObject()
+        spriteObject.scene = scene
         spriteObject.name = "SpriteObjectName"
 
+        project.scene = spriteObject.scene
         let spriteNode = CBSpriteNodeMock(spriteObject: spriteObject)
         spriteObject.spriteNode = spriteNode
-        spriteObject.project = project
+        spriteObject.scene.project = project
 
-        project.objectList.add(spriteObject)
-        spriteNode.mockedScene = SceneBuilder(project: ProjectMock(width: CGFloat(kIphoneXSceneWidth), andHeight: CGFloat(kIphoneXSceneHeight))).build()
+        project.scene.add(object: spriteObject)
+        spriteNode.mockedStage = StageBuilder(project: ProjectMock(width: CGFloat(kIphoneXStageWidth), andHeight: CGFloat(kIphoneXStageHeight))).build()
 
         BubbleBrickHelper.addBubble(to: spriteNode, withText: sentence, andType: CBBubbleType.thought)
         spriteNode.catrobatPosition = CBPosition(x: 0, y: 0)

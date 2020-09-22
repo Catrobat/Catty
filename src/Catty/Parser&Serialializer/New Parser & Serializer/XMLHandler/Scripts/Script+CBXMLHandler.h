@@ -24,6 +24,8 @@
 #import "CBXMLNodeProtocol.h"
 
 @class CBXMLContext;
+@class WhenBackgroundChangesScript;
+@class WhenConditionScript;
 
 @interface Script (CBXMLHandler) <CBXMLNodeProtocol>
 

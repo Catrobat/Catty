@@ -51,7 +51,7 @@ class FormulaEditorItemTest: XCTestCase {
         let expectedSection = FormulaEditorSection.object(position: 10)
         let sensor = SensorMock(tag: "tag", formulaEditorSection: expectedSection)
 
-        let item = FormulaEditorItem(sensor: sensor, spriteObject: SpriteObjectMock())
+        let item = FormulaEditorItem(sensor: sensor, spriteObject: SpriteObject())
         XCTAssertEqual(type(of: sensor).name, item.title)
         XCTAssertEqual(1, item.sections.count)
         XCTAssertEqual(expectedSection, item.sections[0])

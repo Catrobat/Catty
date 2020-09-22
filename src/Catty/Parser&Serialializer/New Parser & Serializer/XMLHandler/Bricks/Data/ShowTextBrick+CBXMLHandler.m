@@ -25,7 +25,6 @@
 #import "GDataXMLElement+CustomExtensions.h"
 #import "GDataXMLNode+CustomExtensions.h"
 #import "Formula+CBXMLHandler.h"
-#import "UserVariable+CBXMLHandler.h"
 #import "CBXMLParserContext.h"
 #import "CBXMLSerializerContext.h"
 #import "CBXMLParserHelper.h"
@@ -95,9 +94,6 @@
 
     if (self.userVariable) {
         [brick addChild:[self.userVariable xmlElementWithContext:context] context:context];
-        
-        GDataXMLElement *userVariableName = [GDataXMLElement elementWithName:@"userVariableName" stringValue:self.userVariable.name context:context];
-        [brick addChild:userVariableName context:context];
     }
     
     return brick;

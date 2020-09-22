@@ -39,6 +39,8 @@ final class WaitBrickTests: XCTestCase {
         logger = CBLogger(name: "Logger")
 
         spriteObject = SpriteObject()
+        let scene = Scene()
+        spriteObject.scene = scene
 
         spriteNode = CBSpriteNode(spriteObject: spriteObject)
         spriteNode.name = "SpriteNode"
@@ -47,7 +49,7 @@ final class WaitBrickTests: XCTestCase {
 
         script = Script()
         script.object = spriteObject
-        formulaInterpreter = FormulaManager(sceneSize: Util.screenSize(true), landscapeMode: false)
+        formulaInterpreter = FormulaManager(stageSize: Util.screenSize(true), landscapeMode: false)
 
         scheduler = CBScheduler(logger: self.logger,
                                 broadcastHandler: CBBroadcastHandler(logger: self.logger),
@@ -94,7 +96,11 @@ final class WaitBrickTests: XCTestCase {
             let expectation = self.expectation(description: "Wait expectation")
             DispatchQueue.global(qos: .background).async {
                 let start = NSDate()
-                closure(CBScriptContext(script: self.script, spriteNode: self.spriteNode, formulaInterpreter: self.formulaInterpreter)!, self.scheduler)
+                closure(CBScriptContext(script: self.script,
+                                        spriteNode: self.spriteNode,
+                                        formulaInterpreter: self.formulaInterpreter,
+                                        touchManager: self.formulaInterpreter.touchManager)!,
+                        self.scheduler)
                 let end = NSDate()
                 timeIntervalInSeconds = end.timeIntervalSince(start as Date)
                 expectation.fulfill()

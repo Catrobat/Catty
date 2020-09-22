@@ -32,12 +32,11 @@ final class SetBackgroundBrickTests: AbstractBrickTest {
     var script: Script!
 
     override func setUp() {
-
         object = SpriteObject()
-        project = Project.defaultProject(withName: "a", projectID: "1")
+        project = ProjectManager.createProject(name: "a", projectId: "1")
+        object.scene = project.scene
         spriteNode = CBSpriteNode(spriteObject: object)
         object.spriteNode = spriteNode
-        object.project = project
 
         script = WhenScript()
         script.object = object
@@ -46,7 +45,7 @@ final class SetBackgroundBrickTests: AbstractBrickTest {
 
     func testSetBackgroundBrick() {
 
-        let backgroundObject = project.objectList.firstObject as! SpriteObject
+        let backgroundObject = project.scene.objects().first!
         XCTAssertNotNil(backgroundObject)
 
         let bgSpriteNode = CBSpriteNode(spriteObject: object)
@@ -60,9 +59,9 @@ final class SetBackgroundBrickTests: AbstractBrickTest {
         var look1: Look!
         do {
             look = Look(name: "test", andPath: "test.png")
-            try imageData?.write(to: URL(fileURLWithPath: object.projectPath() + "images/test.png"))
+            try imageData?.write(to: URL(fileURLWithPath: object.scene.imagesPath()! + "/test.png"))
             look1 = Look(name: "test2", andPath: "test2.png")
-            try imageData?.write(to: URL(fileURLWithPath: object.projectPath() + "images/test2.png"))
+            try imageData?.write(to: URL(fileURLWithPath: object.scene.imagesPath()! + "/test2.png"))
         } catch {
             XCTFail("Error when writing image data")
         }

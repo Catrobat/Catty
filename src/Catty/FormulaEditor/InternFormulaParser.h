@@ -23,7 +23,6 @@
 #import <Foundation/Foundation.h>
 #import "InternToken.h"
 #import "FormulaElement.h"
-#import "UserDataContainer.h"
 
 typedef enum {
     FORMULA_PARSER_OK = -1,

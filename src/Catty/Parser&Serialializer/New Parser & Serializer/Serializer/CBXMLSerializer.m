@@ -55,7 +55,7 @@
 #pragma mark - Project serialization
 + (GDataXMLDocument*)xmlDocumentForProject:(Project*)project
 {
-    CBXMLSerializerContext *context = [CBXMLSerializerContext new];
+    CBXMLSerializerContext *context = [[CBXMLSerializerContext alloc] initWithProject:project];
     GDataXMLElement *programElement = [project xmlElementWithContext:context];
     
     // sanity check => stack must contain only one element!!

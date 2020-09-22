@@ -30,8 +30,8 @@ final class XMLParserBrickTests095: XMLAbstractTest {
 
     override func setUp( ) {
         super.setUp()
-        serializerContext = CBXMLSerializerContext()
-        parserContext = CBXMLParserContext(languageVersion: CGFloat(Float32(0.95)))
+        serializerContext = CBXMLSerializerContext(project: Project())
+        parserContext = CBXMLParserContext(languageVersion: CGFloat(Float32(0.95)), andRootElement: GDataXMLElement())
     }
 
     func testInvalidSetVariableBrickWithoutFormula() {
@@ -59,7 +59,7 @@ final class XMLParserBrickTests095: XMLAbstractTest {
 
     func testCompleteSetVariableBrick() {
         let userVariable = UserVariable(name: "test")
-        self.serializerContext.userData.programVariableList.add(userVariable)
+        self.serializerContext.project.userData.add(userVariable)
 
         let setVariableBrick = SetVariableBrick()
         setVariableBrick.setDefaultValuesFor(nil)
@@ -107,7 +107,7 @@ final class XMLParserBrickTests095: XMLAbstractTest {
 
     func testCompleteChangeVariableBrick() {
         let userVariable = UserVariable(name: "testName")
-        self.serializerContext.userData.programVariableList.add(userVariable)
+        self.serializerContext.project.userData.add(userVariable)
 
         let changeVariableBrick = ChangeVariableBrick()
         changeVariableBrick.setDefaultValuesFor(nil)

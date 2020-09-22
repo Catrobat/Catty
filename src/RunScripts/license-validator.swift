@@ -54,6 +54,7 @@ let licenseSearchStringTemplate = "/**\n *  Copyright (C) 2010-%d The Catrobat T
 
 let year = Calendar.current.component(.year, from: Date())
 let licenseSearchStringCurrentYear = String(format: licenseSearchStringTemplate, year)
+let licenseSearchStringPreviousYear = String(format: licenseSearchStringTemplate, year - 1)
 
 let kErrorSuccess: Int32 = 0
 let kErrorFailed: Int32 = 1
@@ -201,7 +202,18 @@ func checkLicenseOfFile(_ filePath: String) {
                 return
             }
         }
-
+        
+        do {
+            let content = try String(contentsOfFile: filePath, encoding: String.Encoding.utf8)
+            let previousYear = content.range(of: licenseSearchStringPreviousYear)
+            if previousYear != nil {
+                printWarning("Wrong year in license header!\n", withFilePath: filePath)
+                return
+            }
+        } catch let error as NSError {
+            printErrorAndExitIfFailed("Could not open file \(error)")
+        }
+        
         guard let license = license3rdPartyDict[libraryName] else {
             printErrorAndExitIfFailed("No license specified for library: \(libraryName).Please add the license also to our license folder", withFilePath: filePath)
             return

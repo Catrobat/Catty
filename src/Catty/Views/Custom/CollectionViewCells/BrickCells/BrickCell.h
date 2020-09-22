@@ -21,7 +21,7 @@
  */
 
 #import <UIKit/UIKit.h>
-#import "ProgramDefines.h"
+#import "ProjectDefines.h"
 #import "UIDefines.h"
 #import "BrickProtocol.h"
 #import "BrickCellProtocol.h"

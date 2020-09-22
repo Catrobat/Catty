@@ -58,7 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillResignActive(_ application: UIApplication) {
         let vc = self.window?.rootViewController as! UINavigationController
 
-        if let spvc = vc.topViewController as? ScenePresenterViewController {
+        if let spvc = vc.topViewController as? StagePresenterViewController {
             spvc.pauseAction()
         }
     }
@@ -69,14 +69,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         let vc = self.window?.rootViewController as! UINavigationController
-        if let _ = vc.topViewController as? ScenePresenterViewController {
+        if let _ = vc.topViewController as? StagePresenterViewController {
             audioEngineHelper.activateAudioSession()
         }
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         let vc = window!.rootViewController as! UINavigationController
-        if let spvc = vc.topViewController as? ScenePresenterViewController {
+        if let spvc = vc.topViewController as? StagePresenterViewController {
             if !spvc.isPaused() {
                 spvc.resumeAction()
             }
@@ -117,16 +117,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Siren.shared.wail()
     }
 
-    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [: ]) -> Bool {
-
+    func application(_ application: UIApplication,
+                     continue userActivity: NSUserActivity,
+                     restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
         let vc = self.window?.rootViewController as! UINavigationController
+        vc.setNavigationBarHidden(false, animated: false)
         vc.popToRootViewController(animated: true)
 
-        if let ctvc = vc.topViewController as? CatrobatTableViewController {
-            ctvc.addProjectFromInbox()
-            return true
+        guard userActivity.activityType == NSUserActivityTypeBrowsingWeb,
+            let url = userActivity.webpageURL,
+            let ctvc = vc.topViewController as? CatrobatTableViewController else {
+                return false
         }
-
-        return false
+        ctvc.openURL(url: url)
+        return true
     }
 }

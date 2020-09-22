@@ -33,7 +33,6 @@ extension PenUpBrick: CBInstructionProtocol {
 
         return {
             spriteNode.penConfiguration.penDown = false
-            spriteNode.penConfiguration.previousPosition = nil
         }
     }
 

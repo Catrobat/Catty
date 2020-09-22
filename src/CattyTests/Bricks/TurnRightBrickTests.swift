@@ -88,6 +88,8 @@ final class TurnRightBrickTests: AbstractBrickTest {
 
     private func initialiseTestData() {
         object = SpriteObject()
+        let scene = Scene(name: "testScene")
+        object.scene = scene
         spriteNode = CBSpriteNode.init(spriteObject: object)
         object.spriteNode = spriteNode
 

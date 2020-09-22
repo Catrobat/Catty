@@ -50,13 +50,13 @@
 
     static func convertToRaw(userInput: Double, for spriteObject: SpriteObject) -> Double {
         var valueToConvert = userInput
-        let whole = Int(valueToConvert)
+        let whole = valueToConvert.rounded(.down)
         let fraction = valueToConvert.truncatingRemainder(dividingBy: 1)
 
         if valueToConvert >= 200 {
-            valueToConvert = Double(whole % 200) + fraction
+            valueToConvert = whole.truncatingRemainder(dividingBy: 200) + fraction
         } else if valueToConvert < 0 {
-            valueToConvert = 200 - (Double(-whole % 200) + fraction)
+            valueToConvert = 200 - (-whole.truncatingRemainder(dividingBy: 200) + fraction)
             if valueToConvert == 200 {
                 valueToConvert = 0
             }

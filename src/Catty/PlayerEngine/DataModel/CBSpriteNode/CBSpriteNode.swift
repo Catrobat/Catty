@@ -25,7 +25,13 @@ class CBSpriteNode: SKSpriteNode {
 
     // MARK: - Properties
     @objc var spriteObject: SpriteObject
-    @objc var currentLook: Look?
+    @objc var currentLook: Look? {
+        didSet {
+            guard let stage = self.scene as? StageProtocol else { return }
+            if !self.spriteObject.isBackground() { return }
+            stage.notifyBackgroundChange()
+        }
+    }
     @objc var currentUIImageLook: UIImage?
 
     var penConfiguration: PenConfiguration
@@ -43,10 +49,12 @@ class CBSpriteNode: SKSpriteNode {
     @objc required init(spriteObject: SpriteObject) {
         let color = UIColor.clear
         self.spriteObject = spriteObject
-        self.penConfiguration = PenConfiguration()
+
+        self.penConfiguration = PenConfiguration(projectWidth: self.spriteObject.scene.project?.header.screenWidth as? CGFloat,
+                                                 projectHeight: self.spriteObject.scene.project?.header.screenHeight as? CGFloat)
 
         if let firstLook = spriteObject.lookList.firstObject as? Look,
-            let filePathForLook = spriteObject.path(for: firstLook),
+            let filePathForLook = firstLook.path(for: spriteObject.scene),
             let image = UIImage(contentsOfFile: filePathForLook) {
             let texture = SKTexture(image: image)
             let textureSize = texture.size()
@@ -69,6 +77,11 @@ class CBSpriteNode: SKSpriteNode {
 
     @objc func update(_ currentTime: TimeInterval) {
         self.drawPenLine()
+
+        for script in self.spriteObject.scriptList where ((script as? WhenConditionScript) != nil) {
+            guard let stage = self.scene as? StageProtocol else { return }
+            stage.notifyWhenCondition()
+        }
     }
 
     // MARK: - Operations
@@ -154,37 +167,15 @@ class CBSpriteNode: SKSpriteNode {
 
     @objc func changeLook(_ look: Look?) {
         guard let look = look,
-            let filePathForLook = spriteObject.path(for: look),
+            let filePathForLook = look.path(for: spriteObject.scene),
             let image = UIImage(contentsOfFile: filePathForLook)
             else { return }
 
         let texture = SKTexture(image: image)
         self.currentUIImageLook = image
         self.size = texture.size()
-        //if spriteObject?.isBackground() == true {
-        //    self.currentUIImageLook = image
-        //    self.size = texture.size()
-        //} else {
-        // We do not need cropping if touch through transparent pixel is possible!!!!
-        //        CGRect newRect = [image cropRectForImage:image];
-        //        if ((newRect.size.height <= image.size.height - 50 && newRect.size.height <= image.size.height - 50)) {
-        //            CGImageRef imageRef = CGImageCreateWithImageInRect(image.CGImage, newRect);
-        //            UIImage *newImage = [UIImage imageWithCGImage:imageRef];
-        ////            NSLog(@"%f,%f,%f,%f",newRect.origin.x,newRect.origin.y,newRect.size.width,newRect.size.height);
-        //            [self setPositionForCropping:CGPointMake(newRect.origin.x+newRect.size.width/2,self.scene.size.height-newRect.origin.y-newRect.size.height/2)];
-        //            CGImageRelease(imageRef);
-        //            texture = [SKTexture textureWithImage:newImage];
-        //            self.currentUIImageLook = newImage;
-        //        }
-        //        else{
-        //          self.currentUIImageLook = image
-        //        }
-        //        self.size = texture.size()
-        //}
-
         let xScale = self.xScale
         let yScale = self.yScale
-
         let defaultSize = CGFloat(SizeSensor.defaultRawValue)
         self.xScale = defaultSize
         self.yScale = defaultSize
@@ -217,8 +208,6 @@ class CBSpriteNode: SKSpriteNode {
         self.xScale = CGFloat(SizeSensor.defaultRawValue)
         self.yScale = CGFloat(SizeSensor.defaultRawValue)
 
-        self.penConfiguration.previousPosition = self.position
-
         self.ciBrightness = CGFloat(BrightnessSensor.defaultRawValue)
 
         if self.spriteObject.isBackground() == true {
@@ -229,8 +218,8 @@ class CBSpriteNode: SKSpriteNode {
     }
 
     @objc func touchedWithTouch(_ touch: UITouch, atPosition position: CGPoint) -> Bool {
-        guard let playerScene = (scene as? CBScene) else { return false }
-        let scheduler = playerScene.scheduler
+        guard let playerStage = (scene as? Stage) else { return false }
+        let scheduler = playerStage.scheduler
 
         guard let imageLook = currentUIImageLook, scheduler.running else { return false }
 

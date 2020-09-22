@@ -23,6 +23,7 @@
 #import "BroadcastScript.h"
 #import "SpriteObject.h"
 #import "Util.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation BroadcastScript
 
@@ -34,9 +35,9 @@
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     if(spriteObject) {
-        NSArray *messages = [Util allMessagesForProject:spriteObject.project];
+        NSOrderedSet *messages = [Util allMessagesForProject:spriteObject.scene.project];
         if([messages count] > 0)
-            self.receivedMessage = [messages objectAtIndex:0];
+            self.receivedMessage = [messages firstObject];
         else
             self.receivedMessage = nil;
     }

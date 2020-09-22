@@ -40,11 +40,14 @@ class BrickCellListDataTests: XCTestCase {
     var programList: UserList!
 
     override func setUp() {
+        let scene = Scene(name: "testScene")
 
         spriteObject = SpriteObject()
+        spriteObject.scene = scene
         spriteObject.name = "testObject"
 
         spriteObject2 = SpriteObject()
+        spriteObject2.scene = scene
         spriteObject2.name = "testObject2"
 
         userDataContainer = UserDataContainer()
@@ -53,16 +56,17 @@ class BrickCellListDataTests: XCTestCase {
         secondObjectList = UserList(name: "testList3")
         programList = UserList(name: "testList4")
 
-        userDataContainer.addObjectList(objectList1, for: spriteObject)
-        userDataContainer.addObjectList(objectList2, for: spriteObject)
-        userDataContainer.addObjectList(secondObjectList, for: spriteObject2)
-        userDataContainer.programListOfLists.add(programList as Any)
+        spriteObject.userData.add(objectList1)
+        spriteObject.userData.add(objectList2)
+        spriteObject2.userData.add(secondObjectList)
+        userDataContainer.add(programList)
 
         project = Project()
+        project.scene = spriteObject.scene
         project.userData = userDataContainer
 
-        spriteObject.project = project
-        spriteObject2.project = project
+        spriteObject.scene.project = project
+        spriteObject2.scene.project = project
 
         script = Script()
         script.object = spriteObject
@@ -130,6 +134,7 @@ class BrickCellListDataTests: XCTestCase {
     func testValuesWhenNoListInContainer() {
 
         project.userData = UserDataContainer()
+        spriteObject.userData.removeAllLists()
         brick.userList = nil
         brickCell.scriptOrBrick = brick
 

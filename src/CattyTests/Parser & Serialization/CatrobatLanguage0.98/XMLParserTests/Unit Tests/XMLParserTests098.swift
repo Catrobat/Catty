@@ -29,14 +29,14 @@ final class XMLParserTests098: XMLAbstractTest {
 
     override func setUp( ) {
         super.setUp()
-        formulaManager = FormulaManager(sceneSize: Util.screenSize(true), landscapeMode: false)
+        formulaManager = FormulaManager(stageSize: Util.screenSize(true), landscapeMode: false)
     }
 
     func testFlashBrick() {
         let project = self.getProjectForXML(xmlFile: "LedFlashBrick098")
 
-        XCTAssertEqual(1, project.objectList.count, "Invalid object list")
-        let object = project.objectList.object(at: 0) as! SpriteObject
+        XCTAssertEqual(1, project.scene.objects().count, "Invalid object list")
+        let object = project.scene.object(at: 0)!
 
         XCTAssertEqual(1, object.scriptList.count, "Invalid script list")
         let script = object.scriptList.object(at: 0) as! Script
@@ -53,8 +53,8 @@ final class XMLParserTests098: XMLAbstractTest {
     func testLedBrick() {
         let project = self.getProjectForXML(xmlFile: "LedFlashBrick098")
 
-        XCTAssertEqual(1, project.objectList.count, "Invalid object list")
-        let object = project.objectList.object(at: 0) as! SpriteObject
+        XCTAssertEqual(1, project.scene.objects().count, "Invalid object list")
+        let object = project.scene.object(at: 0)!
 
         XCTAssertEqual(1, object.scriptList.count, "Invalid script list")
         let script = object.scriptList.object(at: 0) as! Script
@@ -70,9 +70,9 @@ final class XMLParserTests098: XMLAbstractTest {
 
     func testAddItemToUserListBrick() {
         let project = self.getProjectForXML(xmlFile: "AddItemToUserListBrick098")
-        XCTAssertEqual(1, project.objectList.count, "Invalid object list")
+        XCTAssertEqual(1, project.scene.objects().count, "Invalid object list")
 
-        let object = project.objectList.object(at: 0) as! SpriteObject
+        let object = project.scene.object(at: 0)!
         XCTAssertEqual(1, object.scriptList.count, "Invalid script list")
 
         let script = object.scriptList.object(at: 0) as! Script
@@ -94,9 +94,9 @@ final class XMLParserTests098: XMLAbstractTest {
 
     func testDeleteItemOfUserListBrick() {
         let project = self.getProjectForXML(xmlFile: "DeleteItemOfUserListBrick098")
-        XCTAssertEqual(1, project.objectList.count, "Invalid object list")
+        XCTAssertEqual(1, project.scene.objects().count, "Invalid object list")
 
-        let object = project.objectList.object(at: 0) as! SpriteObject
+        let object = project.scene.object(at: 0)!
         XCTAssertEqual(1, object.scriptList.count, "Invalid script list")
 
         let script = object.scriptList.object(at: 0) as! Script
@@ -117,9 +117,9 @@ final class XMLParserTests098: XMLAbstractTest {
 
     func testInsertItemIntoUserListBrick() {
         let project = self.getProjectForXML(xmlFile: "InsertItemIntoUserListBrick098")
-        XCTAssertEqual(1, project.objectList.count, "Invalid object list")
+        XCTAssertEqual(1, project.scene.objects().count, "Invalid object list")
 
-        let object = project.objectList.object(at: 0) as! SpriteObject
+        let object = project.scene.object(at: 0)!
         XCTAssertEqual(1, object.scriptList.count, "Invalid script list")
 
         let script = object.scriptList.object(at: 0) as! Script
@@ -146,9 +146,9 @@ final class XMLParserTests098: XMLAbstractTest {
 
     func testReplaceItemInUserListBrick() {
         let project = self.getProjectForXML(xmlFile: "ReplaceItemInUserListBrick098")
-            XCTAssertEqual(1, project.objectList.count, "Invalid object list")
+        XCTAssertEqual(1, project.scene.objects().count, "Invalid object list")
 
-        let object = project.objectList.object(at: 0) as! SpriteObject
+        let object = project.scene.object(at: 0)!
         XCTAssertEqual(1, object.scriptList.count, "Invalid script list")
 
         let script = object.scriptList.object(at: 0) as! Script

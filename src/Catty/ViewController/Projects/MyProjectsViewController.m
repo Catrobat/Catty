@@ -23,20 +23,20 @@
 #import "MyProjectsViewController.h"
 #import "Util.h"
 #import "ProjectLoadingInfo.h"
-#import "ProjectTableViewController.h"
+#import "SceneTableViewController.h"
 #import "CBFileManager.h"
 #import "TableUtil.h"
 #import "CellTagDefines.h"
 #import "CatrobatImageCell.h"
 #import "SegueDefines.h"
-#import "ProjectUpdateDelegate.h"
 #import "DarkBlueGradientImageDetailCell.h"
 #import "RuntimeImageCache.h"
 #import "NSMutableArray+CustomExtensions.h"
 #import "UIUtil.h"
 #import "Pocket_Code-Swift.h"
+#import "ViewControllerDefines.h"
 
-@interface MyProjectsViewController () <ProjectUpdateDelegate, UITextFieldDelegate, SetProjectDescriptionDelegate>
+@interface MyProjectsViewController () <UITextFieldDelegate, SetProjectDescriptionDelegate>
 @property (nonatomic) BOOL useDetailCells;
 @property (nonatomic) NSInteger projectsCounter;
 @property (nonatomic, strong) NSArray *sectionTitles;
@@ -71,8 +71,6 @@
     self.tableView.separatorInset = UIEdgeInsetsZero;
     self.tableView.sectionIndexBackgroundColor = UIColor.background;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-
-    [self setupObservers];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -136,7 +134,7 @@
 - (void)addProjectAction:(id)sender
 {
     [self.tableView setEditing:false animated:YES];
-    [Util askUserForUniqueNameAndPerformAction:@selector(addProjectAndSegueToItActionForProjectWithName:)
+    [Util askUserForUniqueNameAndPerformAction:@selector(createAndOpenProjectWithName:)
                                         target:self
                                    promptTitle:kLocalizedNewProject
                                  promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedProjectName]
@@ -148,14 +146,14 @@
                                  existingNames:[Project allProjectNames]];
 }
 
-- (void)addProjectAndSegueToItActionForProjectWithName:(NSString*)projectName
+- (void)createAndOpenProjectWithName:(NSString*)projectName
 {
-    static NSString *segueToNewProjectIdentifier = kSegueToNewProject;
     projectName = [Util uniqueName:projectName existingNames:[Project allProjectNames]];
-    self.defaultProject = [Project defaultProjectWithName:projectName projectID:nil];
-    if ([self shouldPerformSegueWithIdentifier:segueToNewProjectIdentifier sender:self]) {
+    self.defaultProject = [ProjectManager createProjectWithName:projectName projectId:nil];
+    
+    if (self.defaultProject) {
         [self addProject:self.defaultProject.header.programName];
-        [self performSegueWithIdentifier:segueToNewProjectIdentifier sender:self];
+        [self openProject:self.defaultProject];
     }
 }
 
@@ -459,6 +457,11 @@
     cell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
     cell.iconImageView.image = nil;
     cell.indexPath = indexPath;
+    [cell.iconImageView.layer setBorderColor: [[UIColor medium] CGColor]];
+    [cell.iconImageView.layer setBorderWidth: kPreviewImageBorderWidth];
+    cell.iconImageView.layer.cornerRadius = kPreviewImageCornerRadius;
+    cell.iconImageView.clipsToBounds = true;
+    [cell setNeedsLayout];
     
     CBFileManager *fileManager = [CBFileManager sharedManager];
     [fileManager loadPreviewImageAndCacheWithProjectLoadingInfo:info completion:^(UIImage *image, NSString *path) {
@@ -472,20 +475,6 @@
                     [self.tableView endUpdates];
                 });
             }
-        } else {
-            RuntimeImageCache *imageCache = [RuntimeImageCache sharedImageCache];
-            [imageCache loadImageWithName:@"projects" onCompletion:^(UIImage *image){
-
-                if ([cell.indexPath isEqual:indexPath]) {
-                    cell.iconImageView.image = image;
-                    [cell setNeedsLayout];
-                    dispatch_queue_main_t queue = dispatch_get_main_queue();
-                    dispatch_async(queue, ^{
-                        [self.tableView endUpdates];
-                    });
-                }
-
-            }];
         }
         
     }];
@@ -495,12 +484,24 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [super tableView:tableView didSelectRowAtIndexPath:indexPath];
-    static NSString *segueToContinue = kSegueToContinue;
     if (! self.editing) {
-        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-        if ([self shouldPerformSegueWithIdentifier:segueToContinue sender:cell]) {
-            [self performSegueWithIdentifier:segueToContinue sender:cell];
+        NSString *sectionTitle = [self.sectionTitles objectAtIndex:indexPath.section];
+        NSArray *sectionInfos = [self.projectLoadingInfoDict objectForKey:[[sectionTitle substringToIndex:1] uppercaseString]];
+
+        ProjectLoadingInfo *info = [sectionInfos objectAtIndex:indexPath.row];
+        self.selectedProject = [Project projectWithLoadingInfo:info];
+        
+        if (!self.selectedProject) {
+            [Util alertWithText:kLocalizedUnableToLoadProject];
+            return;
         }
+        
+        if (![self.selectedProject.header.programName isEqualToString:info.visibleName]) {
+            self.selectedProject.header.programName = info.visibleName;
+            [self.selectedProject saveToDiskWithNotification:YES];
+        }
+        
+        [self openProject:self.selectedProject];
     }
 }
 
@@ -517,65 +518,6 @@
 {
     return [self.sectionTitles indexOfObject:title];
 }
-#pragma mark - segue handling
-- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
-{
-    if (self.editing) {
-        return NO;
-    }
-    
-    static NSString *segueToContinue = kSegueToContinue;
-    static NSString *segueToNewProject = kSegueToNewProject;
-    if ([identifier isEqualToString:segueToContinue]) {
-        if ([sender isKindOfClass:[UITableViewCell class]]) {
-            NSIndexPath *path = [self.tableView indexPathForCell:sender];
-            // check if project loaded successfully -> not nil
-            NSString *sectionTitle = [self.sectionTitles objectAtIndex:path.section];
-            NSArray *sectionInfos = [self.projectLoadingInfoDict objectForKey:[[sectionTitle substringToIndex:1] uppercaseString]];
-
-            ProjectLoadingInfo *info = [sectionInfos objectAtIndex:path.row];
-            self.selectedProject = [Project projectWithLoadingInfo:info];
-            if (![self.selectedProject.header.programName isEqualToString:info.visibleName]) {
-                self.selectedProject.header.programName = info.visibleName;
-                [self.selectedProject saveToDiskWithNotification:YES];
-            }
-            if (self.selectedProject) {
-                return YES;
-            }
-            
-            // project failed loading...
-            [Util alertWithText:kLocalizedUnableToLoadProject];
-            return NO;
-        }
-    } else if ([identifier isEqualToString:segueToNewProject]) {
-        if (! self.defaultProject) {
-            return NO;
-        }
-        return YES;
-    }
-    return [super shouldPerformSegueWithIdentifier:identifier sender:sender];
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue*)segue sender:(id)sender
-{
-    static NSString *segueToContinue = kSegueToContinue;
-    static NSString *segueToNewProject = kSegueToNewProject;
-    if ([segue.identifier isEqualToString:segueToContinue]) {
-        if ([segue.destinationViewController isKindOfClass:[ProjectTableViewController class]]) {
-            if ([sender isKindOfClass:[UITableViewCell class]]) {
-                [self.dataCache removeObjectForKey:self.selectedProject.header.programName];
-                ProjectTableViewController *projectTableViewController = (ProjectTableViewController*)segue.destinationViewController;
-                projectTableViewController.delegate = self;
-                projectTableViewController.project = self.selectedProject;
-            }
-        }
-    } else if ([segue.identifier isEqualToString:segueToNewProject]) {
-        ProjectTableViewController *projectTableViewController = (ProjectTableViewController*)segue.destinationViewController;
-        projectTableViewController.delegate = self;
-        projectTableViewController.project = self.defaultProject;
-    }
-}
-
 #pragma mark - project handling
 - (ProjectLoadingInfo*)addProject:(NSString*)projectName
 {
@@ -731,24 +673,6 @@
     }
     
     self.sectionTitles = [[self.projectLoadingInfoDict allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
-}
-
-#pragma mark - Notifications
-
-- (void)setupObservers
-{
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(downloadFinished:)
-                                                 name:kProjectDownloadedNotification
-                                               object:nil];
-}
-
-- (void)downloadFinished:(NSNotification*)notification
-{
-    if ([[notification name] isEqualToString:kProjectDownloadedNotification]){
-        [self reloadTableView];
-        
-    }
 }
 
 #pragma mark reload TableView

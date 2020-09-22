@@ -30,6 +30,6 @@
 + (NSMutableArray*)parseAndCreateSounds:(GDataXMLElement*)objectElement withContext:(CBXMLParserContext*)context;
 #endif
 
-- (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context asPointedObject:(BOOL)asPointedObject;
+- (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context asPointedObject:(BOOL)asPointedObject asGoToObject:(BOOL)asGoToObject;
 
 @end

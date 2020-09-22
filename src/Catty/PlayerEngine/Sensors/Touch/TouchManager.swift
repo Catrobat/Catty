@@ -23,26 +23,26 @@
 class TouchManager: TouchManagerProtocol, CBMultiTouchRecognizerDelegate {
 
     private var touchRecognizer: CBMultiTouchRecognizer?
-    private var scene: CBScene?
+    private var stage: Stage?
     private var allTouches = [UITouch]()
     private var activeTouches = [UITouch]()
 
-    func startTrackingTouches(for scene: CBScene) {
-        self.scene = scene
+    func startTrackingTouches(for stage: Stage) {
+        self.stage = stage
 
         let touchRecognizer = CBMultiTouchRecognizer(delegate: self)
         self.touchRecognizer = touchRecognizer
-        self.scene?.view?.addGestureRecognizer(touchRecognizer)
-        self.scene?.view?.isMultipleTouchEnabled = true
+        self.stage?.view?.addGestureRecognizer(touchRecognizer)
+        self.stage?.view?.isMultipleTouchEnabled = true
     }
 
     func stopTrackingTouches() {
         reset()
-        scene = nil
+        stage = nil
 
         guard let touchRecognizer = self.touchRecognizer else { return }
         touchRecognizer.isEnabled = false
-        self.scene?.view?.removeGestureRecognizer(touchRecognizer)
+        self.stage?.view?.removeGestureRecognizer(touchRecognizer)
         self.touchRecognizer = nil
     }
 
@@ -73,8 +73,8 @@ class TouchManager: TouchManagerProtocol, CBMultiTouchRecognizerDelegate {
     }
 
     func getPositionInScene(for touchNumber: Int) -> CGPoint? {
-        guard let scene = self.scene, let touch = self.touch(for: touchNumber) else { return nil }
-        return touch.location(in: scene)
+        guard let stage = self.stage, let touch = self.touch(for: touchNumber) else { return nil }
+        return touch.location(in: stage)
     }
 
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
@@ -87,7 +87,7 @@ class TouchManager: TouchManagerProtocol, CBMultiTouchRecognizerDelegate {
             activeTouches.append(touch)
             allTouches.append(touch)
 
-            scene?.touchedWithTouch(touch)
+            stage?.touchedWithTouch(touch)
         } else if state == .ended || state == .cancelled {
             activeTouches.removeObject(touch)
         }

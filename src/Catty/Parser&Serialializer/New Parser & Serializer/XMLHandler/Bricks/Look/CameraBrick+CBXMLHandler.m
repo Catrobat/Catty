@@ -75,7 +75,16 @@
     
     NSString *numberString = [NSString stringWithFormat:@"%i", self.cameraChoice];
     GDataXMLElement *spinnerID = [GDataXMLElement elementWithName:@"spinnerSelectionID" stringValue:numberString context:context];
+    GDataXMLElement *spinnerValues = [GDataXMLElement elementWithName:@"spinnerValues" context:context];
+    
+    GDataXMLElement *off = [GDataXMLElement elementWithName:@"string" stringValue:@"off" context:context];
+    GDataXMLElement *on = [GDataXMLElement elementWithName:@"string" stringValue:@"on" context:context];
+    
+    [spinnerValues addChild:off context:context];
+    [spinnerValues addChild:on context:context];
+    
     [brick addChild:spinnerID context:context];
+    [brick addChild:spinnerValues context:context];
     
     return brick;
 }

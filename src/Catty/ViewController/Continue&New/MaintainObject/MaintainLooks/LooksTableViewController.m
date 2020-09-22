@@ -161,13 +161,13 @@
 {
     look.name = [Util uniqueName:lookName existingNames:[self.object allLookNames]];
     // rename temporary file name (example: "temp_D41D8CD98F00B204E9800998ECF8427E.png") as well
-    NSString *oldPath = [self.object pathForLook:look];
+    NSString *oldPath = [look pathForScene:self.object.scene];
     NSArray *fileNameParts = [look.fileName componentsSeparatedByString:@"."];
     NSString *hash = [[[fileNameParts firstObject] componentsSeparatedByString:kResourceFileNameSeparator] lastObject];
     NSString *fileExtension = [fileNameParts lastObject];
     look.fileName = [NSString stringWithFormat:@"%@%@%@.%@", hash, kResourceFileNameSeparator,
                      look.name, fileExtension];
-    NSString *newPath = [self.object pathForLook:look];
+    NSString *newPath = [look pathForScene:self.object.scene];
     CBFileManager *fileManager = [CBFileManager sharedManager];
     [fileManager moveExistingFileAtPath:oldPath toPath:newPath overwrite:YES];
     [self.dataCache removeObjectForKey:look.fileName]; // just to ensure
@@ -312,7 +312,7 @@
     imageCell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
     RuntimeImageCache *imageCache = [RuntimeImageCache sharedImageCache];
     NSString *previewImagePath = [self.object previewImagePathForLookAtIndex:indexPath.row];
-    NSString *imagePath = [self.object pathForLook:look];
+    NSString *imagePath = [look pathForScene:self.object.scene];
     imageCell.iconImageView.image = nil;
     imageCell.indexPath = indexPath;
 
@@ -393,7 +393,7 @@
     Look* itemToMove = self.object.lookList[sourceIndexPath.row];
     [self.object.lookList removeObjectAtIndex:sourceIndexPath.row];
     [self.object.lookList insertObject:itemToMove atIndex:destinationIndexPath.row];
-    [self.object.project saveToDiskWithNotification:NO];
+    [self.object.scene.project saveToDiskWithNotification:NO];
 }
 
 - (NSArray<UITableViewRowAction*>*)tableView:(UITableView*)tableView
@@ -455,7 +455,7 @@
         PaintViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:kPaintViewControllerIdentifier];
         vc.delegate = self;
         self.selectedLookIndex = indexPath.row;
-        NSString *lookImagePath = [self.object pathForLook:[self.object.lookList objectAtIndex:self.selectedLookIndex]];
+        NSString *lookImagePath = [[self.object.lookList objectAtIndex:self.selectedLookIndex] pathForScene: self.object.scene];
         UIImage *image = [[UIImage alloc] initWithContentsOfFile:lookImagePath];
         vc.editingImage = image;
         vc.editingPath = lookImagePath;
@@ -571,8 +571,7 @@
                                                existingNames:[self.object allLookNames]]
                                     andPath:newImageFileName];
     
-    NSString *newImagePath = [NSString stringWithFormat:@"%@%@/%@",
-                              [self.object projectPath], kProjectImagesDirName, newImageFileName];
+    NSString *newImagePath = [look pathForScene:self.object.scene];
     self.filePath = newImagePath;
     // leaving the main queue here!
     [imageData writeToFile:newImagePath atomically:YES];
@@ -653,8 +652,8 @@
              PaintViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:kPaintViewControllerIdentifier];
              vc.delegate = self;
              vc.editingPath = nil;
-             vc.projectHeight = self.object.project.header.screenHeight.floatValue;
-             vc.projectWidth = self.object.project.header.screenWidth.floatValue;
+             vc.projectHeight = self.object.scene.project.header.screenHeight.floatValue;
+             vc.projectWidth = self.object.scene.project.header.screenWidth.floatValue;
              NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
              [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
              [self.navigationController pushViewController:vc animated:YES];
@@ -778,8 +777,7 @@
     Look *look = [[Look alloc] initWithName:[Util uniqueName:lookName
                                                existingNames:[self.object allLookNames]]
                                     andPath:newImageFileName];
-    NSString *newImagePath = [NSString stringWithFormat:@"%@%@/%@",
-                              [self.object projectPath], kProjectImagesDirName, newImageFileName];
+    NSString *newImagePath = [look pathForScene:self.object.scene];
     self.filePath = newImagePath;
     NSDebug(@"Writing file to disk");
     
@@ -799,7 +797,7 @@
     if (checkImage) {
 //        NSDebug(@"Updating");
         NSData *imageData = UIImagePNGRepresentation(image);
-        NSString *imageDirPath = [[self.object projectPath] stringByAppendingString:kProjectImagesDirName];
+        NSString *imageDirPath = self.object.scene.imagesPath;
         NSString *fileName = [path stringByReplacingOccurrencesOfString:imageDirPath withString:@""];
         
         NSRange result = [fileName rangeOfString:kResourceFileNameSeparator];
@@ -823,7 +821,7 @@
         
         NSDebug(@"Writing file to disk");
         [imageData writeToFile:path atomically:YES];
-        [self.object.project saveToDiskWithNotification:YES];
+        [self.object.scene.project saveToDiskWithNotification:YES];
         
         RuntimeImageCache *cache = [RuntimeImageCache sharedImageCache];
         
@@ -852,8 +850,7 @@
         Look *look = [[Look alloc] initWithName:[Util uniqueName:lookName
                                                    existingNames:[self.object allLookNames]]
                                         andPath:newImageFileName];
-        NSString *newImagePath = [NSString stringWithFormat:@"%@%@/%@",
-                                  [self.object projectPath], kProjectImagesDirName, newImageFileName];
+        NSString *newImagePath = [look pathForScene:self.object.scene];
         self.filePath = newImagePath;
         NSDebug(@"Writing file to disk");
         [imageData writeToFile:newImagePath atomically:YES];

@@ -28,13 +28,13 @@ final class FaceSizeSensorTest: XCTestCase {
 
     var sensor: FaceSizeSensor!
     var cameraManagerMock: FaceDetectionManagerMock!
-    var sceneSize: CGSize!
+    var stageSize: CGSize!
 
     override func setUp() {
         super.setUp()
         self.cameraManagerMock = FaceDetectionManagerMock()
-        self.sceneSize = CGSize(width: 640, height: 1136)
-        self.sensor = FaceSizeSensor(sceneSize: sceneSize, faceDetectionManagerGetter: { [ weak self ] in self?.cameraManagerMock })
+        self.stageSize = CGSize(width: 640, height: 1136)
+        self.sensor = FaceSizeSensor(stageSize: stageSize, faceDetectionManagerGetter: { [ weak self ] in self?.cameraManagerMock })
     }
 
     override func tearDown() {
@@ -44,7 +44,7 @@ final class FaceSizeSensorTest: XCTestCase {
     }
 
     func testDefaultRawValue() {
-        let sensor = FaceSizeSensor(sceneSize: sceneSize, faceDetectionManagerGetter: { nil })
+        let sensor = FaceSizeSensor(stageSize: stageSize, faceDetectionManagerGetter: { nil })
 
         XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(landscapeMode: false), accuracy: Double.epsilon)
         XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(landscapeMode: true), accuracy: Double.epsilon)
@@ -66,7 +66,7 @@ final class FaceSizeSensorTest: XCTestCase {
 
     func testConvertToStandardized() {
         let frameWidth = 400
-        let scaleFactor = Double(self.sceneSize.width) / Double(frameWidth)
+        let scaleFactor = Double(self.stageSize.width) / Double(frameWidth)
         self.cameraManagerMock.faceDetectionFrameSize = CGSize(width: frameWidth, height: 700)
 
         XCTAssertEqual(0, sensor.convertToStandardized(rawValue: 0), accuracy: Double.epsilon)

@@ -46,11 +46,13 @@ final class IfOnEdgeBounceBrickTests: AbstractBrickTest {
 
     override func setUp() {
         super.setUp()
-        self.scene = SceneBuilder(project: ProjectMock(width: IfOnEdgeBounceBrickTests.SCREEN_WIDTH, andHeight: IfOnEdgeBounceBrickTests.SCREEN_HEIGHT)).build()
+        self.stage = StageBuilder(project: ProjectMock(width: IfOnEdgeBounceBrickTests.SCREEN_WIDTH, andHeight: IfOnEdgeBounceBrickTests.SCREEN_HEIGHT)).build()
 
+        let scene = Scene(name: "testScene")
         self.spriteObject = SpriteObject()
+        self.spriteObject.scene = scene
         let spriteNode = CBSpriteNode(spriteObject: self.spriteObject)
-        self.scene.addChild(spriteNode)
+        self.stage.addChild(spriteNode)
         spriteNode.color = UIColor.black
         spriteNode.size = CGSize(width: IfOnEdgeBounceBrickTests.OBJECT_WIDTH, height: IfOnEdgeBounceBrickTests.OBJECT_HEIGHT)
         self.spriteObject.spriteNode = spriteNode

@@ -40,11 +40,14 @@ class BrickCellVariableDataTests: XCTestCase {
     var programVariable: UserVariable!
 
     override func setUp() {
+        let scene = Scene(name: "testScene2")
 
         spriteObject = SpriteObject()
+        spriteObject.scene = scene
         spriteObject.name = "testObject"
 
         spriteObject2 = SpriteObject()
+        spriteObject2.scene = scene
         spriteObject2.name = "testObject2"
 
         userDataContainer = UserDataContainer()
@@ -53,15 +56,16 @@ class BrickCellVariableDataTests: XCTestCase {
         secondObjectVariable = UserVariable(name: "testVariable3")
         programVariable = UserVariable(name: "testVariable4")
 
-        userDataContainer.addObjectVariable(objectVariable1, for: spriteObject)
-        userDataContainer.addObjectVariable(objectVariable2, for: spriteObject)
-        userDataContainer.addObjectVariable(secondObjectVariable, for: spriteObject2)
-        userDataContainer.programVariableList.add(programVariable as Any)
+        spriteObject.userData.add(objectVariable1)
+        spriteObject.userData.add(objectVariable2)
+        spriteObject2.userData.add(secondObjectVariable)
+        userDataContainer.add(programVariable)
         project = Project()
+        project.scene = spriteObject.scene
         project.userData = userDataContainer
 
-        spriteObject.project = project
-        spriteObject2.project = project
+        spriteObject.scene.project = project
+        spriteObject2.scene.project = project
 
         script = Script()
         script.object = spriteObject
@@ -129,6 +133,7 @@ class BrickCellVariableDataTests: XCTestCase {
     func testValuesWhenNoVariableInContainer() {
 
         project.userData = UserDataContainer()
+        spriteObject.userData.removeAllVariables()
         brick.userVariable = nil
         brickCell.scriptOrBrick = brick
 

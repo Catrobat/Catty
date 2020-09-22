@@ -149,6 +149,9 @@
 "Backgrounds" = "Hintergründe";
 
 /* No comment provided by engineer. */
+"becomes true" = "wahr wird";
+
+/* No comment provided by engineer. */
 "Before you can start coding, please read and accept our Privacy Policy to use the app:" = "Bevor du mit der App loslegen kannst, lese und akzeptiere bitte unsere Datenschutzvereinbarung:";
 
 /* paint */
@@ -189,9 +192,6 @@
 
 /* No comment provided by engineer. */
 "By registering you agree to our" = "Mit der Registrierung akzeptierst du unsere";
-
-/* No comment provided by engineer. */
-"Camera roll" = "Fotoalbum";
 
 /* No comment provided by engineer. */
 "Can't restart project!" = "Projekt kann nicht neugestartet werden!";
@@ -683,6 +683,9 @@
 "Go back" = "Gehe nach hinten";
 
 /* No comment provided by engineer. */
+"Go to" = "Gehe zu";
+
+/* No comment provided by engineer. */
 "Go to front" = "Komme nach vorn";
 
 /* paint */
@@ -941,7 +944,7 @@
 "More information" = "Mehr Information";
 
 /* No comment provided by engineer. */
-"Most downloaded" = "meist heruntergeladen";
+"Most downloaded" = "Meist heruntergeladen";
 
 /* No comment provided by engineer. */
 "Most viewed" = "Am meisten angesehen";
@@ -1023,6 +1026,9 @@
 
 /* No comment provided by engineer. */
 "No camera available" = "Keine Kamera verfügbar";
+
+/* No comment provided by engineer. */
+"No categories selected" = "No categories selected";
 
 /* No comment provided by engineer. */
 "No description available" = "Keine Beschreibung verfügbar";
@@ -1162,6 +1168,9 @@
 /* No comment provided by engineer. */
 "Please choose another name:" = "Bitte wählen Sie einen anderen Namen:";
 
+/* No comment provided by engineer. */
+"Please choose up to three categories" = "Bitte wähle bis zu drei Kategorien";
+
 /* paint */
 "Please enter a text." = "Bitte geben Sie einen Text ein.";
 
@@ -1256,6 +1265,9 @@
 "Projects on device" = "Projekte am Gerät";
 
 /* No comment provided by engineer. */
+"random position" = "Zufallsposition";
+
+/* No comment provided by engineer. */
 "Rate Us" = "Bewerten Sie uns";
 
 /* No comment provided by engineer. */
@@ -1334,7 +1346,7 @@
 "Saturday" = "Samstag";
 
 /* paint */
-"Save to cameraRoll" = "In Galerie speichern";
+"Save to Photos" = "In Fotos speichern";
 
 /* No comment provided by engineer. */
 "Save to PocketCode" = "Abspeichern in PocketCode";
@@ -1377,6 +1389,9 @@
 
 /* No comment provided by engineer. */
 "Select brick category" = "Brick-Kategorie auswählen";
+
+/* No comment provided by engineer. */
+"Select categories" = "Select categories";
 
 /* No comment provided by engineer. */
 "Select logical operator" = "Wähle einen logischen Operator";
@@ -1425,6 +1440,9 @@
 
 /* No comment provided by engineer. */
 "Set description" = "Beschreibung";
+
+/* No comment provided by engineer. */
+"Set pen color to" = "Setze Stiftfarbe auf";
 
 /* No comment provided by engineer. */
 "Set pen size to" = "Setze Stiftdicke auf";
@@ -1649,6 +1667,9 @@
 "Today" = "Heute";
 
 /* No comment provided by engineer. */
+"touch position" = "Berührungsposition";
+
+/* No comment provided by engineer. */
 "transparency" = "Transparenz";
 
 /* No comment provided by engineer. */
@@ -1788,6 +1809,12 @@
 
 /* No comment provided by engineer. */
 "Welcome!" = "Willkommen!";
+
+/* No comment provided by engineer. */
+"When" = "Wenn";
+
+/* No comment provided by engineer. */
+"When background changes to" = "Wenn der Hintergrund wechselt zu";
 
 /* No comment provided by engineer. */
 "When project started" = "Wenn Projekt gestartet";

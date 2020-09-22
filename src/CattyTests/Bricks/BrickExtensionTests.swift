@@ -44,7 +44,7 @@ final class BrickExtensionTests: XCTestCase {
         let userDataContainer = UserDataContainer()
         let userList = UserList(name: "testName")
 
-        userDataContainer.programListOfLists = [userList]
+        userDataContainer.add(userList)
         userList.add(element: 4)
         userList.add(element: "testValue")
 
@@ -64,7 +64,7 @@ final class BrickExtensionTests: XCTestCase {
         let userDataContainer = UserDataContainer()
         let userList = UserList(name: "testName")
 
-        userDataContainer.programListOfLists = [userList]
+        userDataContainer.add(userList)
         userList.add(element: 4)
         userList.add(element: "testValue")
 
@@ -79,7 +79,7 @@ final class BrickExtensionTests: XCTestCase {
         let userList = UserList(name: "testName")
         let userList2 = UserList(name: "testName")
 
-        userDataContainer.programListOfLists = [userList]
+        userDataContainer.add(userList)
         userList.add(element: 4)
         userList.add(element: "testValue")
 
@@ -96,7 +96,7 @@ final class BrickExtensionTests: XCTestCase {
         let userDataContainer = UserDataContainer()
         let userList = UserList(name: "testName")
 
-        userDataContainer.programListOfLists = [userList]
+        userDataContainer.add(userList)
         userList.add(element: 4)
         userList.add(element: "testValue")
 

@@ -106,7 +106,7 @@ class SettingsTableViewController: BOTableViewController {
             }))
         }
 
-        if (UserDefaults.standard.value(forKey: kUserIsLoggedIn) as? NSNumber)?.boolValue ?? false {
+        if (UserDefaults.standard.value(forKey: NetworkDefines.kUserIsLoggedIn) as? NSNumber)?.boolValue ?? false {
             addSection(BOTableViewSection(headerTitle: "", handler: { section in
                 section?.addCell(BOButtonTableViewCell(title: kLocalizedLogout, key: type(of: self).unusedKey, handler: { cell in
                     if let userIsLoggedInCellButton = cell as? BOButtonTableViewCell {
@@ -207,8 +207,8 @@ class SettingsTableViewController: BOTableViewController {
     }
 
     fileprivate func logoutUser() {
-        UserDefaults.standard.setValue(false, forKey: kUserIsLoggedIn)
-        UserDefaults.standard.setValue("", forKey: kUserLoginToken)
+        UserDefaults.standard.setValue(false, forKey: NetworkDefines.kUserIsLoggedIn)
+        UserDefaults.standard.setValue("", forKey: NetworkDefines.kUserLoginToken)
         UserDefaults.standard.setValue("", forKey: kcUsername)
     }
 }

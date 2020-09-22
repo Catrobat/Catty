@@ -41,23 +41,13 @@ import CoreMotion
     }
 
     func rawValue(landscapeMode: Bool) -> Double {
+        guard let inclinationSensor = getMotionManager() else { return type(of: self).defaultRawValue }
+        guard let deviceMotion = inclinationSensor.deviceMotion else { return type(of: self).defaultRawValue }
         if !landscapeMode {
-            guard let inclinationSensor = getMotionManager() else { return type(of: self).defaultRawValue }
-            guard let deviceMotion = inclinationSensor.deviceMotion else {
-                return type(of: self).defaultRawValue
-            }
             return deviceMotion.attitude.pitch
         } else {
-            return rawValueXSensor()
+            return -deviceMotion.attitude.roll
         }
-    }
-
-    func rawValueXSensor() -> Double {
-        guard let inclinationSensor = self.getMotionManager() else { return type(of: self).defaultRawValue }
-        guard let deviceMotion = inclinationSensor.deviceMotion else {
-            return type(of: self).defaultRawValue
-        }
-        return deviceMotion.attitude.roll
     }
 
     // pitch is between -pi/2, pi/2 on iOS and -pi,pi on Android
