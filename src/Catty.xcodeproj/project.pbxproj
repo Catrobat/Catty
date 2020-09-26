@@ -67,6 +67,8 @@
 		18E83F812493C32C003295DA /* PenClearBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E83F802493C32C003295DA /* PenClearBrick+Instruction.swift */; };
 		18E83F832493C4C3003295DA /* PenClearBrick+CBXMLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E83F822493C4C3003295DA /* PenClearBrick+CBXMLHandler.swift */; };
 		18E83F852493C978003295DA /* PenClearBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E83F842493C978003295DA /* PenClearBrickTests.swift */; };
+		2219ED8D2519EB8100EBA379 /* NSMutableArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2219ED89251745EA00EBA379 /* NSMutableArrayExtension.swift */; };
+		2219ED93251DDB7E00EBA379 /* NSMutableArrayExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2219ED92251DDB7E00EBA379 /* NSMutableArrayExtensionTests.swift */; };
 		222A6934247E43AB004BE434 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2D44451B123B7E00A3B53D /* Util.swift */; };
 		222A693E247EA490004BE434 /* UIDeviceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222A693D247EA490004BE434 /* UIDeviceExtension.swift */; };
 		224D5C582423AEF900CD6302 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224D5C512420C8B400CD6302 /* SettingsTableViewController.swift */; };
@@ -1109,7 +1111,6 @@
 		92ED4D7D1BA9C1380052C852 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92ED4D7C1BA9C1380052C852 /* RegisterViewController.m */; };
 		92FC85CE1B9E1EB5001C728F /* BrickManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FC85CD1B9E1EB5001C728F /* BrickManager.m */; };
 		92FF2E331A24C5A700093DA7 /* CAGradientLayer+CatrobatCAGradientExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E0D1A24C5A700093DA7 /* CAGradientLayer+CatrobatCAGradientExtensions.m */; };
-		92FF2E371A24C5A700093DA7 /* NSMutableArray+CustomExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E191A24C5A700093DA7 /* NSMutableArray+CustomExtensions.m */; };
 		92FF2E391A24C5A700093DA7 /* LICENSE_NSString+FastImageSize in Resources */ = {isa = PBXBuildFile; fileRef = 92FF2E1E1A24C5A700093DA7 /* LICENSE_NSString+FastImageSize */; };
 		92FF2E3A1A24C5A700093DA7 /* NSString+FastImageSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E201A24C5A700093DA7 /* NSString+FastImageSize.m */; };
 		92FF2E3B1A24C5A700093DA7 /* Project+CustomExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E231A24C5A700093DA7 /* Project+CustomExtensions.m */; };
@@ -1724,6 +1725,8 @@
 		1B5E0F4EFA8B76CD707F0556 /* ur */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = ur; path = ur.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1C035A070A526C061039C146 /* ha */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = ha; path = ha.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1C557E56F94895CB30ED2558 /* en-CA */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = "en-CA"; path = "en-CA.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		2219ED89251745EA00EBA379 /* NSMutableArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSMutableArrayExtension.swift; sourceTree = "<group>"; };
+		2219ED92251DDB7E00EBA379 /* NSMutableArrayExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NSMutableArrayExtensionTests.swift; path = Extensions/NSMutableArrayExtensionTests.swift; sourceTree = "<group>"; };
 		222A693D247EA490004BE434 /* UIDeviceExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDeviceExtension.swift; sourceTree = "<group>"; };
 		224D5C512420C8B400CD6302 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		22524C37239FAFC500DD515E /* LoginViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewControllerTests.swift; sourceTree = "<group>"; };
@@ -2990,8 +2993,6 @@
 		92FF2E071A24C3BE00093DA7 /* UIDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIDefines.h; sourceTree = "<group>"; };
 		92FF2E0C1A24C5A700093DA7 /* CAGradientLayer+CatrobatCAGradientExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CAGradientLayer+CatrobatCAGradientExtensions.h"; sourceTree = "<group>"; };
 		92FF2E0D1A24C5A700093DA7 /* CAGradientLayer+CatrobatCAGradientExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CAGradientLayer+CatrobatCAGradientExtensions.m"; sourceTree = "<group>"; };
-		92FF2E181A24C5A700093DA7 /* NSMutableArray+CustomExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+CustomExtensions.h"; sourceTree = "<group>"; };
-		92FF2E191A24C5A700093DA7 /* NSMutableArray+CustomExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+CustomExtensions.m"; sourceTree = "<group>"; };
 		92FF2E1E1A24C5A700093DA7 /* LICENSE_NSString+FastImageSize */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "LICENSE_NSString+FastImageSize"; sourceTree = "<group>"; };
 		92FF2E1F1A24C5A700093DA7 /* NSString+FastImageSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+FastImageSize.h"; sourceTree = "<group>"; };
 		92FF2E201A24C5A700093DA7 /* NSString+FastImageSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+FastImageSize.m"; sourceTree = "<group>"; };
@@ -7357,7 +7358,6 @@
 				4C6066371A5ACC3100F486CE /* GDataXMLNode+CustomExtensions */,
 				4C4B4CD523EE8A9F0054C861 /* Notification */,
 				92FF2E141A24C5A700093DA7 /* NSDate+Extension */,
-				92FF2E171A24C5A700093DA7 /* NSMutableArray+CustomExtension */,
 				92FF2E1D1A24C5A700093DA7 /* NSString+FastImageSize */,
 				92FF2E211A24C5A700093DA7 /* Project+Extension */,
 				92FF2E291A24C5A700093DA7 /* UIImage+Extension */,
@@ -7368,6 +7368,7 @@
 				181DB737247DA62600B82B20 /* NSDataExtension.swift */,
 				6F5ADF12247D4703008FC2C5 /* BrickExtension.swift */,
 				222A693D247EA490004BE434 /* UIDeviceExtension.swift */,
+				2219ED89251745EA00EBA379 /* NSMutableArrayExtension.swift */,
 				184949B8248130A9000B8CDA /* NSStringExtension.swift */,
 				184CA798249E839A00D3668B /* CBFileManagerExtension.swift */,
 			);
@@ -7400,15 +7401,6 @@
 				6FD28D0924702CAD0035F606 /* NSDateExtension.swift */,
 			);
 			path = "NSDate+Extension";
-			sourceTree = "<group>";
-		};
-		92FF2E171A24C5A700093DA7 /* NSMutableArray+CustomExtension */ = {
-			isa = PBXGroup;
-			children = (
-				92FF2E181A24C5A700093DA7 /* NSMutableArray+CustomExtensions.h */,
-				92FF2E191A24C5A700093DA7 /* NSMutableArray+CustomExtensions.m */,
-			);
-			path = "NSMutableArray+CustomExtension";
 			sourceTree = "<group>";
 		};
 		92FF2E1D1A24C5A700093DA7 /* NSString+FastImageSize */ = {
@@ -9003,6 +8995,7 @@
 				6F59BB5424B46A3000BBD6EA /* GDataXMLElementExtensionTests.swift */,
 				1858252A24D1A5E300092407 /* UIColorExtensionTests.swift */,
 				4CB562FB24EA95C40000A5A9 /* UIViewControllerExtensionTests.swift */,
+				2219ED92251DDB7E00EBA379 /* NSMutableArrayExtensionTests.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -10067,6 +10060,7 @@
 				4C6FE169212D2D2E0067B7D5 /* ExpFunctionTest.swift in Sources */,
 				9ECDCB132328578F00EBDA63 /* HideBrickTests.swift in Sources */,
 				4C82265C213FA7A400F3D750 /* FingerXSensorTest.swift in Sources */,
+				2219ED93251DDB7E00EBA379 /* NSMutableArrayExtensionTests.swift in Sources */,
 				9E2D47C72328428100917D92 /* ChangeColorByNBrickTests.swift in Sources */,
 				2ED418B22411213E00AFE2FD /* XMLParserBlackBoxTests097.swift in Sources */,
 				D3CF986223FD23E40076F366 /* ScriptCollectionViewControllerDisableTests.swift in Sources */,
@@ -10792,7 +10786,6 @@
 				921D467E1BDF61350086AD20 /* GoNStepsBackBrick+Instruction.swift in Sources */,
 				AA74EF531BC0586F00D1E954 /* PlaceAtBrick+CBXMLHandler.m in Sources */,
 				4C2EE41F1B555B55006DE9B8 /* CBXMLPositionStack.m in Sources */,
-				92FF2E371A24C5A700093DA7 /* NSMutableArray+CustomExtensions.m in Sources */,
 				AAF6D9D41BC0B9EA00686849 /* HideBrick+Instruction.swift in Sources */,
 				4CF8276C24F0E54C006E562A /* BrickCellBackgroundData.swift in Sources */,
 				F4E6E58E210E00E100D86FE6 /* ModFunction.swift in Sources */,
@@ -11088,6 +11081,7 @@
 				4CF0729620D66B2800F93AB5 /* ColorSensor.swift in Sources */,
 				92FF2E921A24C7D800093DA7 /* ImageCache.m in Sources */,
 				AAAF22861BC0CA590076F11E /* SetYBrick+Instruction.swift in Sources */,
+				2219ED8D2519EB8100EBA379 /* NSMutableArrayExtension.swift in Sources */,
 				BA1FA9981F02AD770084184D /* InsertItemIntoUserListBrick+CBXMLHandler.m in Sources */,
 				9218B2021CC4AB75007B4C60 /* ImageHelper.m in Sources */,
 				92FF31041A24DCAA00093DA7 /* StartScript.m in Sources */,

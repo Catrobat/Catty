@@ -20,23 +20,23 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "NSMutableArray+CustomExtensions.h"
+import XCTest
 
-@implementation NSMutableArray (CustomExtensions)
+@testable import Pocket_Code
 
-- (void)removeString:(NSString*)string
-{
-    NSMutableArray *stringsToRemove = [NSMutableArray array];
-    for (id stringObject in self) {
-        if (! [stringObject isKindOfClass:[NSString class]]) {
-            continue;
-        }
-        NSString *compareString = (NSString*)stringObject;
-        if ([compareString isEqualToString:string]) {
-            [stringsToRemove addObject:compareString];
-        }
+final class NSMutableArrayExtensionTests: XCTestCase {
+
+    func testRemoveString() {
+        let firstProjectName = "My first Project"
+        let secondProjectName = "My second Project"
+        let projectNamesArray = [firstProjectName, secondProjectName]
+        let mutableArray = NSMutableArray()
+
+        mutableArray.addObjects(from: projectNamesArray)
+        XCTAssertEqual(projectNamesArray, mutableArray as! [String])
+
+        mutableArray.removeString(firstProjectName)
+        XCTAssertNotEqual(projectNamesArray, mutableArray as! [String])
+        XCTAssertEqual(mutableArray as! [String], [secondProjectName])
     }
-    [self removeObjectsInArray:stringsToRemove];
 }
-
-@end
