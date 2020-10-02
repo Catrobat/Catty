@@ -32,6 +32,8 @@ extension Notification.Name {
     static var brickRemoved: Notification.Name { .init(rawValue: NotificationName.brickRemoved) }
     static var brickEnabled: Notification.Name { .init(rawValue: NotificationName.brickEnabled) }
     static var brickDisabled: Notification.Name { .init(rawValue: NotificationName.brickDisabled) }
+    static var scriptEnabled: Notification.Name { .init(rawValue: NotificationName.scriptEnabled) }
+    static var scriptDisabled: Notification.Name { .init(rawValue: NotificationName.scriptDisabled) }
     static var projectInvalidVersion: Notification.Name { .init(rawValue: NotificationName.projectInvalidVersion) }
     static var projectInvalidXml: Notification.Name { .init(rawValue: NotificationName.projectInvalidXml) }
     static var projectFetchFailure: Notification.Name { .init(rawValue: NotificationName.projectFetchFailure) }
@@ -55,6 +57,8 @@ public class NotificationName: NSObject {
     public static let brickRemoved = "BrickCategoryViewController.brickRemoved"
     public static let brickEnabled = "BrickCategoryViewController.brickEnabled"
     public static let brickDisabled = "BrickCategoryViewController.brickDisabled"
+    public static let scriptEnabled = "BrickCategoryViewController.scriptEnabled"
+    public static let scriptDisabled = "BrickCategoryViewController.scriptDisabled"
     public static let projectInvalidVersion = "Project.invalidVersion"
     public static let projectInvalidXml = "Project.invalidXml"
     public static let projectFetchFailure = "Project.fetchFailure"

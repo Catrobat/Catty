@@ -59,4 +59,24 @@ final class FirebaseAnalyticsTests: XCTestCase {
         XCTAssertEqual(analytics.loggedEvents.count, previousCount + 1)
     }
 
+    func testScriptEnabledNotification() {
+        let previousCount = analytics.loggedEvents.count
+        let script = WhenScript()
+
+        NotificationCenter.default.post(name: .scriptEnabled, object: script)
+
+        XCTAssertEqual(analytics.loggedEvents.count, previousCount + 1)
+        XCTAssertEqual(String(describing: type(of: script)), analytics.loggedEvents["script_enabled"]??.first?.value as! String)
+    }
+
+    func testScriptDisabledNotification() {
+        let previousCount = analytics.loggedEvents.count
+        let script = WhenScript()
+
+        NotificationCenter.default.post(name: .scriptDisabled, object: script)
+
+        XCTAssertEqual(analytics.loggedEvents.count, previousCount + 1)
+        XCTAssertEqual(String(describing: type(of: script)), analytics.loggedEvents["script_disabled"]??.first?.value as! String)
+    }
+
 }

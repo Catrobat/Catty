@@ -38,6 +38,56 @@ final class ScriptCollectionViewControllerDisableTests: XCTestCase {
         XCTAssertNotNil(viewController, "ScriptCollectionViewController must not be nil")
     }
 
+    func testDisableAndEnableEmptyScript() {
+        let startScript = StartScript()
+
+        viewController.disableOrEnable(script: startScript)
+
+        XCTAssertTrue(startScript.isDisabled)
+
+        viewController.disableOrEnable(script: startScript)
+
+        XCTAssertFalse(startScript.isDisabled)
+    }
+
+    func testDisableAndEnableScript() {
+        let startScript = StartScript()
+        let setVariableBrick = SetVariableBrick()
+        let changeVariableBrick = ChangeVariableBrick()
+        startScript.brickList = NSMutableArray(array: [setVariableBrick, changeVariableBrick])
+        setVariableBrick.script = startScript
+        changeVariableBrick.script = startScript
+
+        viewController.disableOrEnable(script: startScript)
+
+        XCTAssertTrue(startScript.isDisabled)
+        XCTAssertTrue(setVariableBrick.isDisabled)
+        XCTAssertTrue(changeVariableBrick.isDisabled)
+
+        viewController.disableOrEnable(script: startScript)
+
+        XCTAssertFalse(startScript.isDisabled)
+        XCTAssertFalse(setVariableBrick.isDisabled)
+        XCTAssertFalse(changeVariableBrick.isDisabled)
+    }
+
+    func testScriptDisabledNotification() {
+        let startScript = StartScript()
+        startScript.brickList = NSMutableArray(array: [])
+
+        let expectedNotification = Notification(name: .scriptDisabled, object: startScript)
+        expect(self.viewController.disableOrEnable(script: startScript)).toEventually(postNotifications(contain(expectedNotification)))
+    }
+
+    func testScriptEnabledNotification() {
+        let startScript = StartScript()
+        startScript.brickList = NSMutableArray(array: [])
+        startScript.isDisabled = true
+
+        let expectedNotification = Notification(name: .scriptEnabled, object: startScript)
+        expect(self.viewController.disableOrEnable(script: startScript)).toEventually(postNotifications(contain(expectedNotification)))
+    }
+
     func testDisableAndEnableBrick() {
         let startScript = StartScript()
         let setVariableBrick = SetVariableBrick()

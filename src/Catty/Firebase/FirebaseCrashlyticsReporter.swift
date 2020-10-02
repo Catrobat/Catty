@@ -48,6 +48,8 @@ class FirebaseCrashlyticsReporter {
             addObserver(selector: #selector(self.brickRemoved(notification:)), name: .brickRemoved)
             addObserver(selector: #selector(self.brickEnabled(notification:)), name: .brickEnabled)
             addObserver(selector: #selector(self.brickDisabled(notification:)), name: .brickDisabled)
+            addObserver(selector: #selector(self.scriptEnabled(notification:)), name: .scriptEnabled)
+            addObserver(selector: #selector(self.scriptDisabled(notification:)), name: .scriptDisabled)
             addObserver(selector: #selector(self.projectInvalidVersion(notification:)), name: .projectInvalidVersion)
             addObserver(selector: #selector(self.projectInvalidXml(notification:)), name: .projectInvalidXml)
             addObserver(selector: #selector(self.projectFetchFailure(notification:)), name: .projectFetchFailure)
@@ -114,6 +116,16 @@ class FirebaseCrashlyticsReporter {
     @objc func brickDisabled(notification: Notification) {
         let brickClass = getObjectClassName(for: notification)
         crashlytics.log("Brick disabled: " + brickClass)
+    }
+
+    @objc func scriptEnabled(notification: Notification) {
+        let scriptClass = getObjectClassName(for: notification)
+        crashlytics.log("Script enabled: " + scriptClass)
+    }
+
+    @objc func scriptDisabled(notification: Notification) {
+        let scriptClass = getObjectClassName(for: notification)
+        crashlytics.log("Script disabled: " + scriptClass)
     }
 
     @objc func projectInvalidVersion(notification: Notification) {
