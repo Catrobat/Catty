@@ -20,10 +20,20 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
+import Foundation
 
-@interface NSMutableArray (CustomExtensions)
-
-- (void)removeString:(NSString*)string;
-
-@end
+extension NSMutableArray {
+    @objc func removeString(_ string: String?) {
+        var stringsToRemove: [AnyHashable] = []
+        for stringObject in self {
+            if !(stringObject is NSString) {
+                continue
+            }
+            let compareString = stringObject as? String
+            if compareString == string {
+                stringsToRemove.append(compareString)
+            }
+        }
+        self.removeObjects(in: stringsToRemove)
+    }
+}
