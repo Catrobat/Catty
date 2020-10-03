@@ -33,6 +33,9 @@
 @property (nonatomic, strong) CatrobatProject *project;
 @property (nonatomic, strong) NSMutableDictionary *projects;
 @property (nonatomic, weak) IBOutlet UIScrollView *scrollViewOutlet;
+
+- (void) hideLoadingView;
+
 @end
 
 

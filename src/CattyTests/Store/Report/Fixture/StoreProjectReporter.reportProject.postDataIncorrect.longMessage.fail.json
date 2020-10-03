@@ -1,0 +1,37 @@
+{
+  "name" : "StoreProjectReporter.reportProject.postDataIncorrect.longMessage.fail",
+  "interactions" : [
+    {
+      "recorded_at" : 1602340888.2437801,
+      "request" : {
+        "body" : "cHJvZ3JhbT04MTcmbm90ZT1hYWFhYWJiYmJiY2NjY2NkZGRkZCBhYWFhYWJiYmJiY2NjY2NkZGRkZCBhYWFhYWJiYmJiY2NjY2NkZGRkZCBhYWFhYWJiYmJiY2NjY2NkZGRkZCBhYWFhYWJiYmJiY2NjY2NkZGRkZCBhYWFhYWJiYmJiY2NjY2NkZGRkZCZjYXRlZ29yeT1JbmFwcHJvcHJpYXRl",
+        "url" : "https:\/\/web-test.catrob.at\/pocketcode\/api\/reportProject\/reportProject.json",
+        "headers" : {
+          "Content-Type" : "multipart\/form-data; boundary=---------------------------98551263596598746108249098092---------------------------",
+          "Content-Length" : "165",
+          "Authorization" : "validToken"
+        },
+        "method" : "POST"
+      },
+      "response" : {
+        "status" : 501,
+        "url" : "https:\/\/web-test.catrob.at\/pocketcode\/api\/reportProject\/reportProject.json",
+        "headers" : {
+          "Date" : "Sat, 10 Oct 2020 14:41:28 GMT",
+          "Pragma" : "no-cache",
+          "Server" : "nginx",
+          "Set-Cookie" : "PHPSESSID=99a37vflkfhuijib7os2csaj3t; path=\/; HttpOnly",
+          "Content-Type" : "application\/json",
+          "Content-Encoding" : "gzip",
+          "x-robots-tag" : "noindex",
+          "x-debug-token" : "d2bde0",
+          "Strict-Transport-Security" : "max-age=15768000",
+          "x-debug-token-link" : "http:\/\/web-test.catrob.at\/_profiler\/d2bde0",
+          "Cache-Control" : "max-age=0, must-revalidate, private",
+          "Expires" : "Sat, 10 Oct 2020 14:41:27 GMT"
+        }
+      }
+    }
+  ]
+}
+
