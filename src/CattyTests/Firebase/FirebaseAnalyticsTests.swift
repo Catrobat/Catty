@@ -35,6 +35,15 @@ final class FirebaseAnalyticsTests: XCTestCase {
         reporter = FirebaseAnalyticsReporter(analytics: analytics)
     }
 
+    func testBrickSelectedNotification() {
+        let previousCount = analytics.loggedEvents.count
+        let brick = NoteBrick()
+        NotificationCenter.default.post(name: .brickSelected, object: brick)
+
+        XCTAssertEqual(analytics.loggedEvents.count, previousCount + 1)
+        XCTAssertEqual(String(describing: type(of: brick)), analytics.loggedEvents["brick_selected"]??.first?.value as! String)
+    }
+
     func testBrickRemovedNotification() {
         let previousCount = analytics.loggedEvents.count
 

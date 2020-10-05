@@ -99,10 +99,13 @@ final class FirebaseCrashlyticsReporterTests: XCTestCase {
     }
 
     func testBrickSelectedNotification() {
-        NotificationCenter.default.post(name: .brickSelected, object: nil)
+        let brick = NoteBrick()
+        NotificationCenter.default.post(name: .brickSelected, object: brick)
 
         XCTAssertEqual(1, crashlytics!.logs.count)
         XCTAssertEqual(0, crashlytics!.records.count)
+
+        XCTAssertEqual("Brick selected: " + String(describing: type(of: brick)), crashlytics!.logs.first as String?)
     }
 
     func testBrickRemovedNotification() {
