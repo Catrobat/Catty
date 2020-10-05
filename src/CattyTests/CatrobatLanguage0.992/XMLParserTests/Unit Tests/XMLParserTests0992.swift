@@ -371,7 +371,15 @@ class XMLParserTests0992: XMLAbstractTest {
         let object = project.allObjects().first!
         let whenConditionScript = object.scriptList.object(at: 2) as! Script
 
-         XCTAssertEqual(0, project.unsupportedElements.count)
+        XCTAssertEqual(0, project.unsupportedElements.count)
         XCTAssertTrue(whenConditionScript.isKind(of: WhenConditionScript.self), "Invalid script type")
+    }
+
+    func testAskBrick() {
+        let project = self.getProjectForXML(xmlFile: "ValidProjectAllBricks0992")
+        let askBrick = (project.scene.object(at: 1)!.scriptList.object(at: 0) as! Script).brickList.object(at: 1) as! Brick
+
+        XCTAssertEqual(0, project.unsupportedElements.count)
+        XCTAssertTrue(askBrick.isKind(of: AskBrick.self), "Invalid brick type")
     }
 }

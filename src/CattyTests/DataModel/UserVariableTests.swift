@@ -156,4 +156,60 @@ final class UserVariableTests: XCTestCase {
         }
         XCTAssertEqual(iterations, userVariable.value as! Int)
     }
+
+    func testTextLabelString() {
+        let expectedValue = "text"
+
+        let userVariable = UserVariable(name: "name")
+        userVariable.textLabel = SKLabelNode()
+        XCTAssertNil(userVariable.textLabel?.text)
+
+        userVariable.value = expectedValue
+        XCTAssertEqual(expectedValue, userVariable.textLabel?.text)
+    }
+
+    func testTextLabelInteger() {
+        let expectedValue = 123
+
+        let userVariable = UserVariable(name: "name")
+        userVariable.textLabel = SKLabelNode()
+        XCTAssertNil(userVariable.textLabel?.text)
+
+        userVariable.value = expectedValue
+        XCTAssertEqual(String(expectedValue), userVariable.textLabel?.text)
+    }
+
+    func testTextLabelFloat() {
+        let expectedValue = 12.3
+
+        let userVariable = UserVariable(name: "name")
+        userVariable.textLabel = SKLabelNode()
+        XCTAssertNil(userVariable.textLabel?.text)
+
+        userVariable.value = expectedValue
+        XCTAssertEqual(String(expectedValue), userVariable.textLabel?.text)
+    }
+
+    func testTextLabelInvalid() {
+        let userVariable = UserVariable(name: "name")
+        userVariable.textLabel = SKLabelNode()
+        XCTAssertNil(userVariable.textLabel?.text)
+
+        userVariable.value = userVariable
+        XCTAssertEqual(SpriteKitDefines.defaultValueShowVariable, userVariable.textLabel?.text)
+    }
+
+    func testChangeTextLabel() {
+        let initialValue = 1
+        let incrementValue = 2
+
+        let userVariable = UserVariable(name: "name")
+        userVariable.textLabel = SKLabelNode()
+
+        userVariable.value = initialValue
+        XCTAssertEqual(String(initialValue), userVariable.textLabel?.text)
+
+        userVariable.change(by: Double(incrementValue))
+        XCTAssertEqual(String(initialValue + incrementValue), userVariable.textLabel?.text)
+    }
 }

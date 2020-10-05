@@ -262,7 +262,7 @@ final class Stage: SKScene, StageProtocol {
         for variable: UserVariable in variableList {
             let label = SKLabelNode(fontNamed: SpriteKitDefines.defaultFont)
             variable.textLabel = label
-            variable.textLabel?.text = ""
+            variable.textLabel?.text = SpriteKitDefines.defaultValueShowVariable
             variable.textLabel?.zPosition = CGFloat(zPosition + 1)
             variable.textLabel?.fontColor = UIColor.black
             variable.textLabel?.fontSize = CGFloat(SpriteKitDefines.defaultLabelFontSize)

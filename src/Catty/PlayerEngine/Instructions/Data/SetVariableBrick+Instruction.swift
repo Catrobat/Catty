@@ -33,19 +33,6 @@
             guard let formula = variableFormula else { return }
             let result = context.formulaInterpreter.interpret(formula, for: spriteObject)
             userVariable?.value = result
-
-            //update visible userVariable
-            var value = ""
-            if let userVariable = userVariable {
-                if let userVariableNumber = userVariable.value as? NSNumber {
-                    value = userVariableNumber.stringValue
-                } else if let userVariableValue = userVariable.value as? String {
-                    value = userVariableValue
-                } else {
-                    value = ""
-                }
-                userVariable.textLabel?.text = value
-            }
             context.state = .runnable
         }
     }

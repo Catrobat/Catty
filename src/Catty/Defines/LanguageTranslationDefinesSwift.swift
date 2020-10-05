@@ -411,6 +411,10 @@ let kLocalizedFlash = NSLocalizedString("Turn flashlight", comment: "")
 let kLocalizedCamera = NSLocalizedString("Turn camera", comment: "")
 let kLocalizedChooseCamera = NSLocalizedString("Use camera", comment: "")
 let kLocalizedFor = NSLocalizedString("for", comment: "")
+let kLocalizedAsk = NSLocalizedString("Ask ", comment: "")
+let kLocalizedAndStoreWrittenAnswerIn = NSLocalizedString("and store written answer in ", comment: "")
+let kLocalizedDefaultAskBrickQuestion = NSLocalizedString("What's your name?", comment: "")
+let kLocalizedAskBrickAnswer = NSLocalizedString("Your answer", comment: "")
 
 // pen bricks
 let kLocalizedPenDown = NSLocalizedString("Pen down", comment: "")

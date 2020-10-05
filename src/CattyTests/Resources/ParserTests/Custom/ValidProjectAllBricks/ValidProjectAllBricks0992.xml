@@ -703,6 +703,16 @@
                   </destinationSprite>
                   <spinnerSelection>82</spinnerSelection>
                 </brick>
+                <brick type="AskBrick">
+                    <commentedOut>false</commentedOut>
+                     <formulaList>
+                       <formula category="ASK_QUESTION">
+                         <type>STRING</type>
+                         <value>What&apos;s your name?</value>
+                       </formula>
+                     </formulaList>
+                 <userVariable>globale</userVariable>
+               </brick>
               </brickList>
               <commentedOut>false</commentedOut>
               <isUserScript>false</isUserScript>

@@ -411,6 +411,10 @@ let kLocalizedFlash = NSLocalizedString("Turn flashlight", bundle: Bundle(for: L
 let kLocalizedCamera = NSLocalizedString("Turn camera", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedChooseCamera = NSLocalizedString("Use camera", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedFor = NSLocalizedString("for", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedAsk = NSLocalizedString("Ask ", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedAndStoreWrittenAnswerIn = NSLocalizedString("and store written answer in ", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedDefaultAskBrickQuestion = NSLocalizedString("What's your name?", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedAskBrickAnswer = NSLocalizedString("Your answer", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
 // pen bricks
 let kLocalizedPenDown = NSLocalizedString("Pen down", bundle: Bundle(for: LanguageTranslation.self), comment: "")
