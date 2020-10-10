@@ -31,6 +31,6 @@ public extension String {
             let byte = strtol((string as NSString).utf8String, nil, 16)
             bytes.append(UInt8(byte))
         }
-        return Data(bytes: UnsafePointer<UInt8>(bytes), count: bytes.count)
+        return Data(bytes)
     }
 }

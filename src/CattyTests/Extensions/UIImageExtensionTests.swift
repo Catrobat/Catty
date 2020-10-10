@@ -135,7 +135,7 @@ final class UIImageExtensionTests: XCTestCase {
 
         let data = pixels
         let providerRef = CGDataProvider(
-            data: Data(bytes: UnsafeRawPointer(data).assumingMemoryBound(to: UInt8.self), count: data.count * 4) as CFData
+            data: data.withUnsafeBytes { Data($0) as CFData }
         )
 
         let cgim = CGImage(

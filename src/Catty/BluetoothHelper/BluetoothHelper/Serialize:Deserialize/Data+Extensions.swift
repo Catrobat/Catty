@@ -30,14 +30,12 @@ extension Data: Serialize {
 
     public static func serialize<T>(_ value: T) -> Data {
         let values = [fromHostByteOrder(value)]
-        let bytes = UnsafeRawPointer(values).assumingMemoryBound(to: UInt8.self)
-        return Data(bytes: bytes, count: MemoryLayout<T>.size)
+        return values.withUnsafeBytes { Data($0) }
     }
 
     public static func serializeArray<T>(_ values: [T]) -> Data {
         let littleValues = values.map { fromHostByteOrder($0) }
-        let bytes = UnsafeRawPointer(littleValues).assumingMemoryBound(to: UInt8.self)
-        return Data(bytes: bytes, count: MemoryLayout<T>.size * littleValues.count)
+        return littleValues.withUnsafeBytes { Data($0) }
     }
 
     public static func serialize<T1, T2>(_ value1: T1, value2: T2) -> Data {
