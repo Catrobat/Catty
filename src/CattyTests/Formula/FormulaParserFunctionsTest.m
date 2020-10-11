@@ -33,7 +33,7 @@
 #import "Pocket_Code-Swift.h"
 
 @interface FormulaParserFunctionsTest : XCTestCase
-@property (nonatomic, strong) id<FormulaManagerProtocol> formulaManager;
+@property (nonatomic, strong) FormulaManager* formulaManager;
 @property (nonatomic, strong) id<FormulaInterpreterProtocol> interpreter;
 @property (nonatomic, strong) SpriteObject *spriteObject;
 @end
@@ -44,7 +44,7 @@
 
 - (void)setUp
 {
-    self.formulaManager = (id<FormulaManagerProtocol>)[[FormulaManager alloc] initWithStageSize:[Util screenSize:true] andLandscapeMode: false];
+    self.formulaManager = [[FormulaManager alloc] initWithStageSize:[Util screenSize:true] andLandscapeMode: false];
     self.interpreter = (id<FormulaInterpreterProtocol>)self.formulaManager;
     self.spriteObject = [[SpriteObject alloc] init];
 }
