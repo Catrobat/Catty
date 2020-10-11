@@ -340,13 +340,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
              }
             }]
         addDefaultActionWithTitle: disableTitle handler:^{
-            script.isDisabled = !script.isDisabled;
-            NSInteger numberOfBricksInSection = [self.collectionView numberOfItemsInSection:indexPath.section];
-            if (numberOfBricksInSection > 1) {
-                for (Brick* brick in script.brickList) {
-                    brick.isDisabled = script.isDisabled;
-                }
-            }
+            [self disableOrEnableWithScript:script];
             [self reloadData];
             [self.object.scene.project saveToDiskWithNotification:YES];
         }];

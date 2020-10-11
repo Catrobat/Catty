@@ -37,6 +37,8 @@ class FirebaseAnalyticsReporter {
         addObserver(selector: #selector(self.brickRemoved(notification:)), name: .brickRemoved)
         addObserver(selector: #selector(self.brickEnabled(notification:)), name: .brickEnabled)
         addObserver(selector: #selector(self.brickDisabled(notification:)), name: .brickDisabled)
+        addObserver(selector: #selector(self.scriptEnabled(notification:)), name: .scriptEnabled)
+        addObserver(selector: #selector(self.scriptDisabled(notification:)), name: .scriptDisabled)
     }
 
     @objc func brickSelected(notification: Notification) {
@@ -57,6 +59,16 @@ class FirebaseAnalyticsReporter {
     @objc func brickDisabled(notification: Notification) {
         let brickClass = getObjectClassName(for: notification)
         analytics.logEvent("brick_disabled", parameters: [AnalyticsParameterItemName: brickClass])
+    }
+
+    @objc func scriptEnabled(notification: Notification) {
+        let scriptClass = getObjectClassName(for: notification)
+        analytics.logEvent("script_enabled", parameters: [AnalyticsParameterItemName: scriptClass])
+    }
+
+    @objc func scriptDisabled(notification: Notification) {
+        let scriptClass = getObjectClassName(for: notification)
+        analytics.logEvent("script_disabled", parameters: [AnalyticsParameterItemName: scriptClass])
     }
 
     private func addObserver(selector aSelector: Selector, name notification: NSNotification.Name) {

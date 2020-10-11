@@ -21,6 +21,34 @@
  */
 
 extension ScriptCollectionViewController {
+
+    @objc func disableOrEnable(script: Script) {
+        script.isDisabled = !script.isDisabled
+
+        if script.isDisabled {
+            NotificationCenter.default.post(name: Notification.Name.scriptDisabled, object: script)
+        } else {
+            NotificationCenter.default.post(name: Notification.Name.scriptEnabled, object: script)
+        }
+
+        guard let brickList = script.brickList as? [Brick] else {
+            NSLog("Cannot cast bricklist to array of Brick elements!")
+            return
+        }
+
+        if !brickList.isEmpty {
+            for brick in brickList {
+                brick.isDisabled = script.isDisabled
+
+                if brick.isDisabled {
+                    NotificationCenter.default.post(name: Notification.Name.brickDisabled, object: brick)
+                } else {
+                    NotificationCenter.default.post(name: Notification.Name.brickEnabled, object: brick)
+                }
+            }
+        }
+    }
+
     @objc func disableOrEnable(brick: Brick) {
         brick.isDisabled = !brick.isDisabled
         guard let brickList = brick.script.brickList as? [Brick] else {

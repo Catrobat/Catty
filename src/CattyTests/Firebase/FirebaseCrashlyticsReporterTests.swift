@@ -129,6 +129,26 @@ final class FirebaseCrashlyticsReporterTests: XCTestCase {
         XCTAssertEqual(0, crashlytics!.records.count)
     }
 
+    func testScriptEnabledNotification() {
+        let script = WhenScript()
+        NotificationCenter.default.post(name: .scriptEnabled, object: script)
+
+        XCTAssertEqual(1, crashlytics!.logs.count)
+        XCTAssertEqual(0, crashlytics!.records.count)
+
+        XCTAssertEqual("Script enabled: " + String(describing: type(of: script)), crashlytics!.logs.first as String?)
+    }
+
+    func testScriptDisabledNotification() {
+        let script = WhenScript()
+        NotificationCenter.default.post(name: .scriptDisabled, object: script)
+
+        XCTAssertEqual(1, crashlytics!.logs.count)
+        XCTAssertEqual(0, crashlytics!.records.count)
+
+        XCTAssertEqual("Script disabled: " + String(describing: type(of: script)), crashlytics!.logs.first as String?)
+    }
+
     func testProjectInvalidVersionNotification() {
         NotificationCenter.default.post(name: .projectInvalidVersion, object: nil)
 
