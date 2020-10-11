@@ -168,3 +168,11 @@ extension SynchronizedArray where Element: UserDataProtocol {
         }
     }
 }
+
+extension SynchronizedArray where Element: Equatable {
+    func remove(element: Element) {
+        queue.async(flags: .barrier) {
+            self.array.removeObject(element)
+        }
+    }
+}
