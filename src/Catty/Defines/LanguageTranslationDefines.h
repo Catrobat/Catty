@@ -411,6 +411,10 @@
 #define kLocalizedCamera NSLocalizedString(@"Turn camera", nil)
 #define kLocalizedChooseCamera NSLocalizedString(@"Use camera", nil)
 #define kLocalizedFor NSLocalizedString(@"for", nil)
+#define kLocalizedAsk NSLocalizedString(@"Ask ", nil)
+#define kLocalizedAndStoreWrittenAnswerIn NSLocalizedString(@"and store written answer in ", nil)
+#define kLocalizedDefaultAskBrickQuestion NSLocalizedString(@"What's your name?", nil)
+#define kLocalizedAskBrickAnswer NSLocalizedString(@"Your answer", nil)
 
 // pen bricks
 #define kLocalizedPenDown NSLocalizedString(@"Pen down", nil)

@@ -349,6 +349,11 @@
 		2ED418C62411213E00AFE2FD /* XMLParserTests092.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED418B12411213D00AFE2FD /* XMLParserTests092.swift */; };
 		3DA1BED924365A3400133C99 /* BrickMutableCopyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA1BED824365A3400133C99 /* BrickMutableCopyTests.swift */; };
 		4405C95A24F803EA005C36DC /* UserVariable+CBXMLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4405C95724F803EA005C36DC /* UserVariable+CBXMLHandler.swift */; };
+		440B1D59250FE6B10041CC7D /* AskBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440B1D58250FE6B10041CC7D /* AskBrickTests.swift */; };
+		4420ACB1250929AE00951328 /* AskBrick+CBXMLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4420ACAE250929AE00951328 /* AskBrick+CBXMLHandler.swift */; };
+		4420ACB3250929DA00951328 /* AskBrickCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4420ACB2250929DA00951328 /* AskBrickCell.swift */; };
+		4420ACB5250929E800951328 /* AskBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4420ACB4250929E800951328 /* AskBrick.swift */; };
+		44801DA925235511007CDBA5 /* AskBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44801DA825235511007CDBA5 /* AskBrick+Instruction.swift */; };
 		44B76EC12476BF0100DC30E2 /* FirebaseCrashlyticsReporterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B76EBE2476BF0100DC30E2 /* FirebaseCrashlyticsReporterTests.swift */; };
 		44B76EC72476C19600DC30E2 /* FirebaseCrashlyticsReporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B76EC52476C19500DC30E2 /* FirebaseCrashlyticsReporter.swift */; };
 		44B76EC82476C19600DC30E2 /* FirebaseAnalyticsReporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B76EC62476C19500DC30E2 /* FirebaseAnalyticsReporter.swift */; };
@@ -2015,6 +2020,11 @@
 		3D5D59359A67834683175607 /* th */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3DA1BED824365A3400133C99 /* BrickMutableCopyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrickMutableCopyTests.swift; sourceTree = "<group>"; };
 		4405C95724F803EA005C36DC /* UserVariable+CBXMLHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserVariable+CBXMLHandler.swift"; sourceTree = "<group>"; };
+		440B1D58250FE6B10041CC7D /* AskBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskBrickTests.swift; sourceTree = "<group>"; };
+		4420ACAE250929AE00951328 /* AskBrick+CBXMLHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AskBrick+CBXMLHandler.swift"; sourceTree = "<group>"; };
+		4420ACB2250929DA00951328 /* AskBrickCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AskBrickCell.swift; sourceTree = "<group>"; };
+		4420ACB4250929E800951328 /* AskBrick.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AskBrick.swift; sourceTree = "<group>"; };
+		44801DA825235511007CDBA5 /* AskBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "AskBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Look/AskBrick+Instruction.swift"; sourceTree = "<group>"; };
 		44B76EBE2476BF0100DC30E2 /* FirebaseCrashlyticsReporterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseCrashlyticsReporterTests.swift; sourceTree = "<group>"; };
 		44B76EC52476C19500DC30E2 /* FirebaseCrashlyticsReporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseCrashlyticsReporter.swift; sourceTree = "<group>"; };
 		44B76EC62476C19500DC30E2 /* FirebaseAnalyticsReporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseAnalyticsReporter.swift; sourceTree = "<group>"; };
@@ -5556,6 +5566,7 @@
 		4C724DB71B4D3E8C00E27479 /* Look */ = {
 			isa = PBXGroup;
 			children = (
+				4420ACAE250929AE00951328 /* AskBrick+CBXMLHandler.swift */,
 				4C0F9F58204BD16300E71B2D /* CameraBrick+CBXMLHandler.h */,
 				4C0F9F59204BD16300E71B2D /* CameraBrick+CBXMLHandler.m */,
 				AA74EEE61BC057C900D1E954 /* ChangeBrightnessByNBrick+CBXMLHandler.h */,
@@ -6353,6 +6364,7 @@
 				18B9A1B924A75F3C009028F8 /* SetPenSizeBrickTests.swift */,
 				18D939EA24C97A1C00A32544 /* SetPenColorBrickTests.swift */,
 				18390A7224D0A33D00A07DFD /* StampBrickTests.swift */,
+				440B1D58250FE6B10041CC7D /* AskBrickTests.swift */,
 			);
 			path = Bricks;
 			sourceTree = "<group>";
@@ -8364,6 +8376,7 @@
 		AA74EDDF1BC0525300D1E954 /* Look */ = {
 			isa = PBXGroup;
 			children = (
+				44801DA825235511007CDBA5 /* AskBrick+Instruction.swift */,
 				4C0F9F73204BD1CE00E71B2D /* CameraBrick+Instruction.swift */,
 				921D46811BDF698A0086AD20 /* ChangeBrightnessByNBrick+Instruction.swift */,
 				99EBDC031D5624D2008D6860 /* ChangeColorByNBrick+Instruction.swift */,
@@ -8462,6 +8475,7 @@
 		AA74EFA21BC05B5F00D1E954 /* Look */ = {
 			isa = PBXGroup;
 			children = (
+				4420ACB4250929E800951328 /* AskBrick.swift */,
 				4C0F9F2C204ADC2300E71B2D /* CameraBrick.h */,
 				4C0F9F2D204ADC2300E71B2D /* CameraBrick.m */,
 				AA74EFA31BC05B5F00D1E954 /* ChangeBrightnessByNBrick.h */,
@@ -8698,6 +8712,7 @@
 		AA74F0451BC05FCE00D1E954 /* Look */ = {
 			isa = PBXGroup;
 			children = (
+				4420ACB2250929DA00951328 /* AskBrickCell.swift */,
 				4C0F9F8F204BD28100E71B2D /* CameraBrickCell.h */,
 				4C0F9F90204BD28100E71B2D /* CameraBrickCell.m */,
 				AA74F0461BC05FCE00D1E954 /* ChangeBrightnessByNBrickCell.h */,
@@ -10149,6 +10164,7 @@
 				9E0F740E22B53C9F0030CD89 /* AudioPlayerMock.swift in Sources */,
 				46F1754E24C46837006B2ACA /* ScriptCollectionViewControllerTests.swift in Sources */,
 				4C82265B213FA7A400F3D750 /* ObjectStringSensorMock.swift in Sources */,
+				440B1D59250FE6B10041CC7D /* AskBrickTests.swift in Sources */,
 				9E4D2386232AE9E5009D0C3C /* GoNStepsBackBrickTests.swift in Sources */,
 				4CEB22751B95E4BC00B3BE2F /* BrickInsertManagerLogicTests.m in Sources */,
 				4C82265D213FA7A400F3D750 /* FingerYSensorTest.swift in Sources */,
@@ -10518,6 +10534,7 @@
 				AA74EFEC1BC05B5F00D1E954 /* ChangeVariableBrick.m in Sources */,
 				92FF31031A24DCAA00093DA7 /* Script.m in Sources */,
 				4C822693213FBC4400F3D750 /* MultiFingerTouchedFunction.swift in Sources */,
+				4420ACB1250929AE00951328 /* AskBrick+CBXMLHandler.swift in Sources */,
 				1882475924C84D9C00B01653 /* SetPenColorBrickCell.swift in Sources */,
 				4C0F9F9E204BD2B100E71B2D /* SayBubbleBrickCell.m in Sources */,
 				4C2EE41E1B555B55006DE9B8 /* CBXMLOpenedNestingBricksStack.m in Sources */,
@@ -10569,6 +10586,7 @@
 				4CB0F9EC20A1731700D1BE2F /* PositionYSensor.swift in Sources */,
 				AA6CC28B1BB4AB9A0007A621 /* CBScriptContext.swift in Sources */,
 				4C0F9F28204ADBE000E71B2D /* RepeatUntilBrick.m in Sources */,
+				4420ACB5250929E800951328 /* AskBrick.swift in Sources */,
 				92FF2EC21A24C8A700093DA7 /* ProjectLoadingInfo.m in Sources */,
 				4CF072A020D670C400F93AB5 /* TouchSensor.swift in Sources */,
 				AA74EE2C1BC0541E00D1E954 /* IfOnEdgeBounceBrick+Instruction.swift in Sources */,
@@ -10925,6 +10943,7 @@
 				92EC985C1BC3ABB90003A891 /* PhiroMotorMoveBackwardBrick+CBXMLHandler.m in Sources */,
 				4C0F9F4F204BD0B400E71B2D /* CameraPreviewHandler.m in Sources */,
 				4C724E611B4D3E8C00E27479 /* ProjectParser.m in Sources */,
+				44801DA925235511007CDBA5 /* AskBrick+Instruction.swift in Sources */,
 				5E99F2E323442E1A007878C1 /* ThemesHelper.swift in Sources */,
 				AA74F0931BC05FCE00D1E954 /* BrickCellFormulaData.m in Sources */,
 				AA74EF701BC0588A00D1E954 /* SetVolumeToBrick+CBXMLHandler.m in Sources */,
@@ -11108,6 +11127,7 @@
 				593E4DDE1FE11D410016DCB9 /* CatrobatReorderableCollectionViewFlowLayout.m in Sources */,
 				4CEFFAD32105DE4800DC5CFE /* ObjectSensor.swift in Sources */,
 				921D467B1BDF61350086AD20 /* ChangeXByNBrick+Instruction.swift in Sources */,
+				4420ACB3250929DA00951328 /* AskBrickCell.swift in Sources */,
 				1882475524C84B8100B01653 /* SetPenColorBrick.swift in Sources */,
 				4CB0F9F220A1739400D1BE2F /* SizeSensor.swift in Sources */,
 				F4A2AFB52110D48C00C53234 /* JoinFunction.swift in Sources */,

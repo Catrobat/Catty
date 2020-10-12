@@ -85,6 +85,7 @@
             ChooseCameraBrick(),
             ThinkForBubbleBrick(),
             ThinkBubbleBrick(),
+            AskBrick(),
             // pen bricks
             PenDownBrick(),
             PenUpBrick(),

@@ -121,7 +121,8 @@ final class StageTests: XCTestCase {
         XCTAssertTrue(userVariable.textLabel?.isHidden == true)
         XCTAssertEqual(SKLabelHorizontalAlignmentMode.center, userVariable.textLabel?.horizontalAlignmentMode)
         XCTAssertEqual(CGFloat(SpriteKitDefines.defaultLabelFontSize), userVariable.textLabel?.fontSize)
-        XCTAssertEqual(0, userVariable.textLabel?.text?.count)
+        XCTAssertEqual(1, userVariable.textLabel?.text?.count)
+
         stage.stopProject()
     }
 

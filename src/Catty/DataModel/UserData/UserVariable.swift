@@ -36,10 +36,13 @@
             variableLocker.lock()
             if let value = newValue as? NSString {
                 _value = value
+                textLabel?.text = value as String
             } else if let value = newValue as? NSNumber {
                 _value = value
+                textLabel?.text = value.stringValue
             } else {
                 _value = NSNumber(value: 0)
+                textLabel?.text = SpriteKitDefines.defaultValueShowVariable
             }
             variableLocker.unlock()
         }
@@ -80,7 +83,9 @@
     func change(by value: Double) {
         variableLocker.lock()
         if let valueAsDouble = _value as? NSNumber {
-         _value = NSNumber(value: valueAsDouble.doubleValue + value)
+            let newValue = valueAsDouble.doubleValue + value
+            _value = NSNumber(value: newValue)
+            textLabel?.text = (newValue as NSNumber).stringValue
         }
         variableLocker.unlock()
     }

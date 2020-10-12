@@ -83,6 +83,9 @@
 "and" = "and";
 
 /* No comment provided by engineer. */
+"and store written answer in " = "and store written answer in ";
+
+/* No comment provided by engineer. */
 "and wait" = "and wait";
 
 /* No comment provided by engineer. */
@@ -105,6 +108,9 @@
 
 /* No comment provided by engineer. */
 "Arduino extension" = "Arduino extension";
+
+/* No comment provided by engineer. */
+"Ask " = "Ask ";
 
 /* No comment provided by engineer. */
 "at " = "at ";
@@ -1817,6 +1823,9 @@
 "Welcome!" = "Welcome!";
 
 /* No comment provided by engineer. */
+"What's your name?" = "What's your name?";
+
+/* No comment provided by engineer. */
 "When" = "When";
 
 /* No comment provided by engineer. */
@@ -1857,6 +1866,9 @@
 
 /* No comment provided by engineer. */
 "You have already downloaded this project!" = "You have already downloaded this project!";
+
+/* No comment provided by engineer. */
+"Your answer" = "Your answer";
 
 /* No comment provided by engineer. */
 "Your email seems to be invalid" = "Your email seems to be invalid";
