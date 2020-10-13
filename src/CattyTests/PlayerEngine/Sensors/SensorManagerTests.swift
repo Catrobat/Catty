@@ -67,32 +67,6 @@ final class SensorManagerTests: XCTestCase {
         XCTAssertEqual(sensorB.tag(), sensor?.tag())
     }
 
-    func testRequiredResource() {
-        let sensorA = AccelerationXSensor(motionManagerGetter: { nil })
-        let sensorB = SensorMock(tag: "tagB")
-        type(of: sensorB).requiredResource = ResourceType.accelerometer
-
-        let manager = SensorManager(sensors: [sensorA, sensorB], landscapeMode: false)
-
-        XCTAssertEqual(ResourceType.noResources, type(of: manager).requiredResource(tag: "invalidTag"))
-        XCTAssertEqual(type(of: sensorA).requiredResource, type(of: manager).requiredResource(tag: sensorA.tag()))
-        XCTAssertEqual(type(of: sensorB).requiredResource, type(of: manager).requiredResource(tag: sensorB.tag()))
-        XCTAssertNotEqual(type(of: sensorA).requiredResource, type(of: sensorB).requiredResource)
-    }
-
-    func testName() {
-        let sensorA = AccelerationXSensor(motionManagerGetter: { nil })
-        let sensorB = SensorMock(tag: "tagB")
-        type(of: sensorB).name = "testName"
-
-        let manager = SensorManager(sensors: [sensorA, sensorB], landscapeMode: false)
-
-        XCTAssertNil(type(of: manager).name(tag: "invalidTag"))
-        XCTAssertEqual(type(of: sensorA).name, type(of: manager).name(tag: sensorA.tag()))
-        XCTAssertEqual(type(of: sensorB).name, type(of: manager).name(tag: sensorB.tag()))
-        XCTAssertNotEqual(type(of: sensorA).name, type(of: sensorB).name)
-    }
-
     func testFormulaEditorItems() {
         let sensorA = SensorMock(tag: "tagA", formulaEditorSections: [])
         let sensorB = SensorMock(tag: "tagB", formulaEditorSections: [.device(position: 1), .math(position: 10)])

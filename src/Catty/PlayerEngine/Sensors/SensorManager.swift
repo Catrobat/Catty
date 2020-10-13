@@ -26,18 +26,13 @@ import CoreMotion
 @objc class SensorManager: NSObject, SensorManagerProtocol {
 
     public static var defaultValueForUndefinedSensor: Double = 0
-    private static var sensorMap = [String: Sensor]() // TODO: make instance let
+    private let sensorMap: [String: Sensor]
     private let landscapeMode: Bool
 
     public required init(sensors: [Sensor], landscapeMode: Bool) {
         self.landscapeMode = landscapeMode
+        self.sensorMap = Dictionary(uniqueKeysWithValues: sensors.map { ($0.tag(), $0) })
         super.init()
-        registerSensors(sensorList: sensors)
-    }
-
-    private func registerSensors(sensorList: [Sensor]) {
-        type(of: self).sensorMap.removeAll()
-        sensorList.forEach { type(of: self).sensorMap[$0.tag()] = $0 }
     }
 
     func formulaEditorItems(for spriteObject: SpriteObject) -> [FormulaEditorItem] {
@@ -51,11 +46,11 @@ import CoreMotion
     }
 
     func sensors() -> [Sensor] {
-        Array(type(of: self).sensorMap.values)
+        Array(self.sensorMap.values)
     }
 
     func sensor(tag: String) -> Sensor? {
-        type(of: self).sensorMap[tag]
+        self.sensorMap[tag]
     }
 
     func tag(sensor: Sensor) -> String {
@@ -82,15 +77,5 @@ import CoreMotion
             rawValue = sensor.standardizedValue(landscapeMode: landscapeMode) as AnyObject
         }
         return rawValue
-    }
-
-    @objc static func requiredResource(tag: String) -> ResourceType {
-        guard let sensor = sensorMap[tag] else { return .noResources }
-        return type(of: sensor).requiredResource
-    }
-
-    @objc static func name(tag: String) -> String? {
-        guard let sensor = sensorMap[tag] else { return nil }
-        return type(of: sensor).name
     }
 }
