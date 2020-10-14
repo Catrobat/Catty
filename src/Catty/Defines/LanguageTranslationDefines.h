@@ -330,7 +330,7 @@
 
 // control bricks
 #define kLocalizedScript NSLocalizedString(@"Script", nil)
-#define kLocalizedWhenProjectStarted NSLocalizedString(@"When project started", nil)
+#define kLocalizedWhenProjectStarted NSLocalizedString(@"When project starts", nil)
 #define kLocalizedWhenTapped NSLocalizedString(@"When tapped", nil)
 #define kLocalizedTouchDown NSLocalizedString(@"When stage is tapped", nil)
 #define kLocalizedWhenBackgroundChanges NSLocalizedString(@"When background changes to", nil)

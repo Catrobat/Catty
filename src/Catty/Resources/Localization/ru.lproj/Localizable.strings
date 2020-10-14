@@ -1817,7 +1817,7 @@
 "When background changes to" = "Когда фон изменится на";
 
 /* No comment provided by engineer. */
-"When project started" = "При старте";
+"When project starts" = "При старте";
 
 /* No comment provided by engineer. */
 "When stage is tapped" = "При прикосновении к экрану";
