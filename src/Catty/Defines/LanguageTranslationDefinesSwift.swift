@@ -330,7 +330,7 @@ let kLocalizedUnsupportedElementsDescription = NSLocalizedString("Following feat
 
 // control bricks
 let kLocalizedScript = NSLocalizedString("Script", comment: "")
-let kLocalizedWhenProjectStarted = NSLocalizedString("When project started", comment: "")
+let kLocalizedWhenProjectStarted = NSLocalizedString("When project starts", comment: "")
 let kLocalizedWhenTapped = NSLocalizedString("When tapped", comment: "")
 let kLocalizedTouchDown = NSLocalizedString("When stage is tapped", comment: "")
 let kLocalizedWhenBackgroundChanges = NSLocalizedString("When background changes to", comment: "")
