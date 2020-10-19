@@ -116,7 +116,9 @@ final class PaintViewControllerTests: XCTestCase {
         XCTAssertTrue(Double(horizontalDistanceLeftEdge - horizontalDistanceRightEdge) <= Double.epsilon)
 
         let verticalDistanceUpperEdge = controller!.helper.frame.origin.y
-        let verticalDistanceLowerEdge = controller!.scrollView.bounds.size.height - (verticalDistanceUpperEdge + controller!.helper.frame.size.height)
+
+        let boundsHeight = navigationController.toolbar.frame.origin.y - Util.statusBarHeight() - navigationController.navigationBar.frame.size.height
+        let verticalDistanceLowerEdge = boundsHeight - (verticalDistanceUpperEdge + controller!.helper.frame.size.height)
 
         XCTAssertTrue(Double(verticalDistanceUpperEdge - verticalDistanceLowerEdge) <= Double.epsilon)
     }
