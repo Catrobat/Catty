@@ -418,7 +418,6 @@
 		4C10D9C823ED8CDC00EB0C6E /* GoogleUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C10D9BD23ED8CDA00EB0C6E /* GoogleUtilities.framework */; };
 		4C10D9CA23ED8CDC00EB0C6E /* nanopb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C10D9C023ED8CDA00EB0C6E /* nanopb.framework */; };
 		4C10D9CC23ED8CDC00EB0C6E /* FirebaseCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C10D9C123ED8CDB00EB0C6E /* FirebaseCore.framework */; };
-		4C10D9D023ED8CDC00EB0C6E /* FirebaseInstanceID.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C10D9C323ED8CDB00EB0C6E /* FirebaseInstanceID.framework */; };
 		4C10D9D423ED8CDC00EB0C6E /* FirebaseCoreDiagnostics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C10D9C523ED8CDB00EB0C6E /* FirebaseCoreDiagnostics.framework */; };
 		4C10D9D623ED8CDC00EB0C6E /* FIRAnalyticsConnector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C10D9C623ED8CDB00EB0C6E /* FIRAnalyticsConnector.framework */; };
 		4C10D9DD23ED8DA900EB0C6E /* GoogleDataTransport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C10D9DA23ED8D7500EB0C6E /* GoogleDataTransport.framework */; };
@@ -3812,7 +3811,6 @@
 				4C4B4CD323EE76370054C861 /* GoogleAppMeasurement.framework in Frameworks */,
 				4C10D9CA23ED8CDC00EB0C6E /* nanopb.framework in Frameworks */,
 				4C4B4CCC23EDE1560054C861 /* FirebaseAnalytics.framework in Frameworks */,
-				4C10D9D023ED8CDC00EB0C6E /* FirebaseInstanceID.framework in Frameworks */,
 				4C10D9CC23ED8CDC00EB0C6E /* FirebaseCore.framework in Frameworks */,
 				59A0599D1F7512D200EB696D /* Siren.framework in Frameworks */,
 				4C10D9C823ED8CDC00EB0C6E /* GoogleUtilities.framework in Frameworks */,
