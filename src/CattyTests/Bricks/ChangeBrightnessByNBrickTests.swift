@@ -126,4 +126,20 @@ final class ChangeBrightnessByNBrickTests: AbstractBrickTest {
         XCTAssertTrue(brick.changeBrightness.isEqual(to: copiedBrick.changeBrightness))
         XCTAssertFalse(brick.changeBrightness === copiedBrick.changeBrightness)
     }
+
+    func testGetFormulas() {
+        brick.changeBrightness = Formula(integer: 1)
+        var formulas = brick.getFormulas()
+
+        XCTAssertTrue(brick.changeBrightness.isEqual(to: formulas?[0]))
+        XCTAssertTrue(brick.changeBrightness.isEqual(to: Formula(integer: 1)))
+        XCTAssertFalse(brick.changeBrightness.isEqual(to: Formula(integer: -22)))
+
+        brick.changeBrightness = Formula(integer: -22)
+        formulas = brick.getFormulas()
+
+        XCTAssertTrue(brick.changeBrightness.isEqual(to: formulas?[0]))
+        XCTAssertTrue(brick.changeBrightness.isEqual(to: Formula(integer: -22)))
+        XCTAssertFalse(brick.changeBrightness.isEqual(to: Formula(integer: 1)))
+    }
 }

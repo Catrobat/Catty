@@ -24,23 +24,10 @@ import XCTest
 
 @testable import Pocket_Code
 
-final class IfLogicBeginBrickTests: XCTestCase {
-
-    func testMutableCopy() {
-        let brick = IfLogicBeginBrick()
-        brick.ifCondition = Formula(float: 1)
-
-        let copiedBrick: IfLogicBeginBrick = brick.mutableCopy(with: CBMutableCopyContext(), andErrorReporting: true) as! IfLogicBeginBrick
-
-        XCTAssertTrue(brick.isEqual(to: copiedBrick))
-        XCTAssertFalse(brick === copiedBrick)
-        XCTAssertTrue(brick.ifCondition.isEqual(to: copiedBrick.ifCondition))
-        XCTAssertFalse(copiedBrick.ifCondition.isEqual(to: Formula(float: 0)))
-        XCTAssertFalse(brick.ifCondition === copiedBrick.ifCondition)
-    }
+final class IfThenLogicBeginBrickTests: XCTestCase {
 
     func testGetFormulas() {
-        let brick = IfLogicBeginBrick()
+        let brick = IfThenLogicBeginBrick()
         brick.ifCondition = Formula(float: 1)
         var formulas = brick.getFormulas()
 
