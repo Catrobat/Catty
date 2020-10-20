@@ -32,32 +32,20 @@ extension CBFileManager {
             projectLoadingInfo.basePath + kScreenshotAutoFilename
         ]
 
-        for fallbackPath in fallbackPaths {
-
-            let filename = NSString(string: fallbackPath).lastPathComponent
-            let thumbnailPath = projectLoadingInfo.basePath + kScreenshotThumbnailPrefix + filename
-
-            let image = imageCache.cachedImage(forPath: thumbnailPath)
+        for imagePath in fallbackPaths {
+            let image = imageCache.cachedImage(forPath: imagePath, andSize: UIDefines.previewImageSize)
             if image != nil {
-                completion(image, thumbnailPath)
+                completion(image, imagePath)
                 return
             }
         }
 
         DispatchQueue.global(qos: .default).async {
-
-            for fallbackPath in fallbackPaths {
-
-                if self.fileExists(fallbackPath as String) {
-
-                    let filename = NSString(string: fallbackPath).lastPathComponent
-                    let thumbnailPath = projectLoadingInfo.basePath + kScreenshotThumbnailPrefix + filename
-
-                    self.imageCache.loadThumbnailImageFromDisk(withThumbnailPath: thumbnailPath,
-                                                               imagePath: fallbackPath,
-                                                               thumbnailFrameSize: CGSize(width: Int(kPreviewThumbnailWidth), height: Int(kPreviewThumbnailHeight)),
-                                                               onCompletion: { image, path in completion(image, path) }
-                    )
+            for imagePath in fallbackPaths {
+                if self.fileExists(imagePath as String) {
+                    self.imageCache.loadImageFromDisk(withPath: imagePath,
+                                                      andSize: UIDefines.previewImageSize,
+                                                      onCompletion: { image, path in completion(image, path) })
 
                     return
                 }
@@ -69,12 +57,10 @@ extension CBFileManager {
     }
 
     func writeData(_ data: Data, path: String) {
-
         do {
             try data.write(to: URL(fileURLWithPath: path), options: .atomic)
         } catch {
             debugPrint(error.localizedDescription)
         }
-
     }
 }

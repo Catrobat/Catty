@@ -65,20 +65,6 @@
     return self;
 }
 
-- (NSString*)previewImageFileName
-{
-    // e.g. 34A109A82231694B6FE09C216B390570_normalCat
-    NSRange result = [self.fileName rangeOfString:kResourceFileNameSeparator];
-    if ((result.location == NSNotFound) || (result.location == 0) || (result.location >= ([self.fileName length]-1)))
-        return nil; // Invalid file name convention -> this should not happen. FIXME: maybe abort here??
-
-    return [NSString stringWithFormat:@"%@_%@%@",
-        [self.fileName substringToIndex:result.location],
-        kPreviewImageNamePrefix,
-        [self.fileName substringFromIndex:(result.location + 1)]
-    ];
-}
-
 - (NSString*)pathForScene: (Scene *)scene
 {
     return [NSString stringWithFormat:@"%@/%@", [scene imagesPath], self.fileName];

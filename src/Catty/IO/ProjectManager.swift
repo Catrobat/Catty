@@ -59,9 +59,7 @@
         project.scene.addObject(withName: kLocalizedBackground)
 
         let filePath = project.projectPath() + kScreenshotAutoFilename
-        let thumbnailPath = project.projectPath() + kScreenshotThumbnailPrefix + kScreenshotAutoFilename
-
-        let projectIconNames = kDefaultScreenshots
+        let projectIconNames = UIDefines.defaultScreenshots
         let randomIndex = Int(arc4random_uniform(UInt32(projectIconNames.count)))
 
         guard let defaultScreenshotImage = UIImage(named: projectIconNames[randomIndex]) else {
@@ -74,11 +72,7 @@
         }
 
         fileManager.writeData(data, path: filePath)
-        fileManager.imageCache
-        .overwriteThumbnailImageFromDisk(withThumbnailPath: thumbnailPath,
-                                         image: defaultScreenshotImage,
-                                         thumbnailFrameSize: CGSize(width: CGFloat(kPreviewThumbnailWidth),
-                                                                    height: CGFloat(kPreviewThumbnailHeight)))
+        fileManager.imageCache.clear()
         return project
     }
 

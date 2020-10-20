@@ -101,21 +101,13 @@
   return [self.scene.project projectPath];
 }
 
-- (NSString*)previewImagePathForLookAtIndex:(NSUInteger)index
+- (NSString*)previewImagePath
 {
-    if (index >= [self.lookList count])
-        return nil;
-
-    Look* look = [self.lookList objectAtIndex:index];
+    Look* look = [self.lookList objectAtIndex:0];
     if (! look)
         return nil;
     
     return [look pathForScene:self.scene];
-}
-
-- (NSString*)previewImagePath
-{
-    return [self previewImagePathForLookAtIndex:0];
 }
 
 - (BOOL)isBackground
@@ -216,7 +208,6 @@
         // if image is not used by other objects, delete it
         if (lookImageReferenceCounter <= 1) {
             CBFileManager *fileManager = [CBFileManager sharedManager];
-            [fileManager deleteFile:[self previewImagePathForLookAtIndex:index]];
             [fileManager deleteFile:[look pathForScene:self.scene]];
         }
         [self.lookList removeObjectAtIndex:index];
