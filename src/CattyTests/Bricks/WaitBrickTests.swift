@@ -113,4 +113,23 @@ final class WaitBrickTests: XCTestCase {
 
         return timeIntervalInSeconds
     }
+
+    func testGetFormulas() {
+        let waitBrick = WaitBrick()
+        waitBrick.timeToWaitInSeconds = Formula(double: 1)
+        waitBrick.script = script
+        var formulas = waitBrick.getFormulas()
+
+        XCTAssertTrue(waitBrick.timeToWaitInSeconds.isEqual(to: formulas?[0]))
+        XCTAssertTrue(waitBrick.timeToWaitInSeconds.isEqual(to: Formula(float: 1)))
+        XCTAssertFalse(waitBrick.timeToWaitInSeconds.isEqual(to: Formula(float: 22)))
+
+        waitBrick.timeToWaitInSeconds = Formula(float: 22)
+        formulas = waitBrick.getFormulas()
+
+        XCTAssertTrue(waitBrick.timeToWaitInSeconds.isEqual(to: formulas?[0]))
+        XCTAssertTrue(waitBrick.timeToWaitInSeconds.isEqual(to: Formula(float: 22)))
+        XCTAssertFalse(waitBrick.timeToWaitInSeconds.isEqual(to: Formula(float: 1)))
+    }
+
 }

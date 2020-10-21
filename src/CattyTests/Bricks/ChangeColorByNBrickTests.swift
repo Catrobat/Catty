@@ -126,4 +126,20 @@ final class ChangeColorByNBrickTests: AbstractBrickTest {
         XCTAssertTrue(brick.changeColor.isEqual(to: copiedBrick.changeColor))
         XCTAssertFalse(brick.changeColor === copiedBrick.changeColor)
     }
+
+    func testGetFormulas() {
+        brick.changeColor = Formula(integer: 1)
+        var formulas = brick.getFormulas()
+
+        XCTAssertTrue(brick.changeColor.isEqual(to: formulas?[0]))
+        XCTAssertTrue(brick.changeColor.isEqual(to: Formula(integer: 1)))
+        XCTAssertFalse(brick.changeColor.isEqual(to: Formula(integer: -22)))
+
+        brick.changeColor = Formula(integer: -22)
+        formulas = brick.getFormulas()
+
+        XCTAssertTrue(brick.changeColor.isEqual(to: formulas?[0]))
+        XCTAssertTrue(brick.changeColor.isEqual(to: Formula(integer: -22)))
+        XCTAssertFalse(brick.changeColor.isEqual(to: Formula(integer: 1)))
+    }
 }
