@@ -244,9 +244,7 @@
     [xmlElement addChild:[GDataXMLElement elementWithName:@"commentedOut" stringValue: commentedOutValue context:context] context:context];
     
     if ([self isKindOfClass:[StartScript class]]) {
-        //  Unused at the moment => TODO: implement this after Catroid has decided to officially use this feature!
-        //GDataXMLElement *isUserScriptXmlElement = [GDataXMLElement elementWithName:@"isUserScript" stringValue:@"false" context:context];
-        //[xmlElement addChild:isUserScriptXmlElement context:context];
+       [xmlElement addChild:[GDataXMLElement elementWithName:@"isUserScript" stringValue:@"false" context:context] context:context];
     } else if ([self isKindOfClass:[BroadcastScript class]]) {
         BroadcastScript *broadcastScript = (BroadcastScript*)self;
         [XMLError exceptionIfNil:broadcastScript.receivedMessage
@@ -296,12 +294,7 @@
     else {
         [XMLError exceptionWithMessage:@"Unsupported script type: %@!", NSStringFromClass([self class])];
     }
-    
-    // add pseudo <isUserScript> element for StartScript to produce a Catroid equivalent XML (unused at the moment)
-    if ([self isKindOfClass:[StartScript class]]) {
-        [xmlElement addChild:[GDataXMLElement elementWithName:@"isUserScript" stringValue:@"false" context:context] context:context];
-    }
-    
+
     return xmlElement;
 }
 
