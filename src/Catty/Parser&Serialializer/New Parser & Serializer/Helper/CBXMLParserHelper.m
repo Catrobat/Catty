@@ -128,7 +128,7 @@
 + (SpriteObject*)findSpriteObjectInArray:(NSArray*)spriteObjectList withName:(NSString*)spriteObjectName
 {
     for (SpriteObject *spriteObject in spriteObjectList) {
-        if ([spriteObject.name isEqualToString:spriteObjectName]) { // TODO: implement isEqual in SpriteObject class
+        if ([spriteObject.name isEqualToString:spriteObjectName]) { 
             return spriteObject;
         }
     }
@@ -137,7 +137,7 @@
 + (Look*)findLookInArray:(NSArray*)lookList withName:(NSString*)lookName
 {
     for (Look *look in lookList) {
-        if ([look.name isEqualToString:lookName]) { // TODO: implement isEqual in SpriteObject class
+        if ([look.name isEqualToString:lookName]) {
             return look;
         }
     }
@@ -147,7 +147,7 @@
 + (Sound*)findSoundInArray:(NSArray*)soundList withName:(NSString*)soundName
 {
     for (Sound *sound in soundList) {
-        if ([sound.name isEqualToString:soundName]) { // TODO: implement isEqual in SpriteObject class
+        if ([sound.name isEqualToString:soundName]) {
             return sound;
         }
     }
@@ -157,7 +157,7 @@
 + (UserVariable*)findUserVariableInArray:(NSArray<UserVariable *>*)userVariableList withName:(NSString*)userVariableName
 {
     for (UserVariable *userVariable in userVariableList) {
-        if ([userVariable.name isEqualToString:userVariableName]) { // TODO: implement isEqual in UserVariable class
+        if ([userVariable.name isEqualToString:userVariableName]) {
             return userVariable;
         }
     }
