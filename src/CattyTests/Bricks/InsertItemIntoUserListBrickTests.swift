@@ -128,4 +128,21 @@ final class InsertItemIntoUserListBrickTests: XCTestCase {
         XCTAssertTrue(brick.elementFormula.isEqual(to: copiedBrick.elementFormula))
         XCTAssertFalse(brick.elementFormula == copiedBrick.elementFormula)
     }
+
+    func testGetFormulas() {
+        brick.index = Formula(integer: 1)
+        brick.elementFormula = Formula(integer: 10)
+        var formulas = brick.getFormulas()
+
+        XCTAssertEqual(formulas?.count, 2)
+        XCTAssertEqual(brick.elementFormula, formulas?[0])
+        XCTAssertEqual(brick.index, formulas?[1])
+
+        brick.index = Formula(integer: 2)
+        brick.elementFormula = Formula(integer: 22)
+        formulas = brick.getFormulas()
+
+        XCTAssertEqual(brick.elementFormula, formulas?[0])
+        XCTAssertEqual(brick.index, formulas?[1])
+    }
 }

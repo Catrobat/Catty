@@ -85,4 +85,17 @@ final class SetYBrickTests: AbstractBrickTest {
 
         XCTAssertEqual(spriteNode.catrobatPosition.y, 0.0, "SetyBrick is not correctly calculated")
     }
+
+    func testGetFormulas() {
+        brick.yPosition = Formula(integer: 1)
+        var formulas = brick.getFormulas()
+
+        XCTAssertEqual(formulas?.count, 1)
+        XCTAssertEqual(brick.yPosition, formulas?[0])
+
+        brick.yPosition = Formula(integer: 22)
+        formulas = brick.getFormulas()
+
+        XCTAssertEqual(brick.yPosition, formulas?[0])
+    }
 }

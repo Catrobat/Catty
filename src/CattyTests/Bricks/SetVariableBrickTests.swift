@@ -79,4 +79,18 @@ final class SetVariableBrickTests: XCTestCase {
         XCTAssertTrue(true) // The purpose of this test is to show that the program does not crash
         // when no UserVariable is selected in the IDE and the brick is executed
     }
+
+    func testGetFormulas() {
+        let brick = SetVariableBrick()
+        brick.variableFormula = Formula(integer: 1)
+        var formulas = brick.getFormulas()
+
+        XCTAssertEqual(formulas?.count, 1)
+        XCTAssertEqual(brick.variableFormula, formulas?[0])
+
+        brick.variableFormula = Formula(integer: 21)
+        formulas = brick.getFormulas()
+
+        XCTAssertEqual(brick.variableFormula, formulas?[0])
+    }
 }

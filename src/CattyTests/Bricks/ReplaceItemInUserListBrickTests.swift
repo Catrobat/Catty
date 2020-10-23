@@ -115,4 +115,21 @@ final class ReplaceItemInUserListBrickTests: XCTestCase {
 
        XCTAssertEqual(userList.count, 0)
     }
+
+    func testGetFormulas() {
+        brick.index = Formula(integer: 1)
+        brick.elementFormula = Formula(integer: 10)
+        var formulas = brick.getFormulas()
+
+        XCTAssertEqual(formulas?.count, 2)
+        XCTAssertEqual(brick.elementFormula, formulas?[0])
+        XCTAssertEqual(brick.index, formulas?[1])
+
+        brick.index = Formula(integer: 2)
+        brick.elementFormula = Formula(integer: 22)
+        formulas = brick.getFormulas()
+
+        XCTAssertEqual(brick.elementFormula, formulas?[0])
+        XCTAssertEqual(brick.index, formulas?[1])
+    }
 }
