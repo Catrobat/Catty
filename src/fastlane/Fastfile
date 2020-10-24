@@ -120,22 +120,14 @@ platform :ios do
       project: File.absolute_path('../Catty.xcodeproj'),
       try_count: 3,
       fail_build: false,
+      collate_reports: true,
+      output_types: "junit",
       scheme: $catty_schemes["debug"],
       testrun_completed_block: test_run_block
     )
     unless result[:failed_testcount].zero?
       UI.message("There are #{result[:failed_testcount]} legitimate failing tests")
     end
-  end
-
-  desc "Collate all test reports"
-  lane :test_reports do
-    collate_junit_reports(
-      reports: ["./fastlane/test_output/results-BluetoothHelperTests/report.junit",
-                "./fastlane/test_output/results-Catty Tests/report.junit",
-                "./fastlane/test_output/results-Catty UITests/report.junit"],
-      collated_report: './fastlane/test_output/TestSummaries.xml'
-    )
   end
 
   ##########################################################################
