@@ -52,8 +52,7 @@ pipeline {
       archiveArtifacts(artifacts: 'src/fastlane/builds/', allowEmptyArchive: true)
       archiveArtifacts(artifacts: 'src/fastlane/Install.html', allowEmptyArchive: true)
       archiveArtifacts(artifacts: 'src/fastlane/Adhoc.plist', allowEmptyArchive: true)
-      sh 'cd src && fastlane test_reports'
-      junit testResults: 'src/fastlane/test_output/TestSummaries.xml', allowEmptyResults: true
+      junit testResults: 'src/fastlane/test_output/report.junit', allowEmptyResults: true
     }
   }
 }
