@@ -103,4 +103,17 @@ final class SetBrightnessBrickTests: AbstractBrickTest {
 
         XCTAssertEqual(0.0, spriteNode.catrobatBrightness, accuracy: 0.1, "SetBrightnessBrick - Brightness not correct")
     }
+
+    func testGetFormulas() {
+        brick.brightness = Formula(integer: 1)
+        var formulas = brick.getFormulas()
+
+        XCTAssertEqual(formulas?.count, 1)
+        XCTAssertEqual(brick.brightness, formulas?[0])
+
+        brick.brightness = Formula(integer: 22)
+        formulas = brick.getFormulas()
+
+        XCTAssertEqual(brick.brightness, formulas?[0])
+     }
 }
