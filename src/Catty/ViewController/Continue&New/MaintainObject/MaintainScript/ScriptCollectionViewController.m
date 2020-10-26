@@ -494,7 +494,7 @@ didEndDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         [self turnOffInsertingBrickMode];
     } else {
         [[BrickMoveManager sharedInstance] getReadyForNewBrickMovement];
-        [self.object.scene.project saveToDiskWithNotification:YES];
+        [self.object.scene.project saveToDiskWithNotification:NO];
     }
     [self reloadData];
 }
