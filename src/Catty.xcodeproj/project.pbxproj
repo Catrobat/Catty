@@ -772,7 +772,7 @@
 		4CE3D68B2107A89B00005629 /* FaceDetectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE3D68A2107A89B00005629 /* FaceDetectionManager.swift */; };
 		4CE3D68D2107B4E300005629 /* FaceDetectedSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE3D68C2107B4E300005629 /* FaceDetectedSensor.swift */; };
 		4CE3D68F2107B68600005629 /* FaceDetectionManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE3D68E2107B68600005629 /* FaceDetectionManagerProtocol.swift */; };
-		4CE5C5701E0AD71800FD021C /* RequiredResources.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE5C56E1E0AD71800FD021C /* RequiredResources.m */; };
+		4CE5C5701E0AD71800FD021C /* RequiredResourcesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE5C56E1E0AD71800FD021C /* RequiredResourcesTests.swift */; };
 		4CE67888210C4B1D00D90B5D /* Function.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE67887210C4B1D00D90B5D /* Function.swift */; };
 		4CE6788B210C4E1C00D90B5D /* FunctionParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE6788A210C4E1C00D90B5D /* FunctionParameter.swift */; };
 		4CE6788D210C503600D90B5D /* FunctionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE6788C210C503600D90B5D /* FunctionManager.swift */; };
@@ -2531,7 +2531,7 @@
 		4CE3D68A2107A89B00005629 /* FaceDetectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceDetectionManager.swift; sourceTree = "<group>"; };
 		4CE3D68C2107B4E300005629 /* FaceDetectedSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceDetectedSensor.swift; sourceTree = "<group>"; };
 		4CE3D68E2107B68600005629 /* FaceDetectionManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceDetectionManagerProtocol.swift; sourceTree = "<group>"; };
-		4CE5C56E1E0AD71800FD021C /* RequiredResources.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequiredResources.m; sourceTree = "<group>"; };
+		4CE5C56E1E0AD71800FD021C /* RequiredResourcesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequiredResourcesTests.swift; sourceTree = "<group>"; };
 		4CE67887210C4B1D00D90B5D /* Function.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Function.swift; sourceTree = "<group>"; };
 		4CE6788A210C4E1C00D90B5D /* FunctionParameter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionParameter.swift; sourceTree = "<group>"; };
 		4CE6788C210C503600D90B5D /* FunctionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionManager.swift; sourceTree = "<group>"; };
@@ -6236,7 +6236,7 @@
 			children = (
 				6F4B2FB82466706B00B5F0ED /* ProjectMigratorTest.swift */,
 				4CBF96BE2351B3EC0063D5FC /* ProjectTests.swift */,
-				4CE5C56E1E0AD71800FD021C /* RequiredResources.m */,
+				4CE5C56E1E0AD71800FD021C /* RequiredResourcesTests.swift */,
 			);
 			path = Project;
 			sourceTree = "<group>";
@@ -10098,7 +10098,7 @@
 				4CA6DFC123069337003A729B /* FormulaManagerCacheTests.swift in Sources */,
 				4C822658213FA7A400F3D750 /* FaceDetectionManagerMock.swift in Sources */,
 				4C1F6FA5213CF6BE00C20BEB /* SingleParameterStringFunctionMock.swift in Sources */,
-				4CE5C5701E0AD71800FD021C /* RequiredResources.m in Sources */,
+				4CE5C5701E0AD71800FD021C /* RequiredResourcesTests.swift in Sources */,
 				2ED418B82411213E00AFE2FD /* XMLParserFormulaTests095.swift in Sources */,
 				18B5B530247EB059007D24A3 /* NSStringExtensionTests.swift in Sources */,
 				4C822675213FA7A400F3D750 /* LoudnessSensorTest.swift in Sources */,
