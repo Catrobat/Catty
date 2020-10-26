@@ -1565,6 +1565,12 @@
 		E57E6D89254041BE00E775DF /* SpeakAndWaitBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57E6D88254041BE00E775DF /* SpeakAndWaitBrickTests.swift */; };
 		E57E6D8B2540427000E775DF /* SpeakBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57E6D8A2540427000E775DF /* SpeakBrickTests.swift */; };
 		E57E6D8F2540552F00E775DF /* AddItemToUserListBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57E6D8E2540552F00E775DF /* AddItemToUserListBrickTests.swift */; };
+		E579F105253D88B4009107C8 /* PhiroMotorMoveBackwardBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E579F104253D88B4009107C8 /* PhiroMotorMoveBackwardBrickTests.swift */; };
+		E579F109253D9485009107C8 /* PhiroMotorMoveForwardBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E579F108253D9485009107C8 /* PhiroMotorMoveForwardBrickTests.swift */; };
+		E579F10B253D98B0009107C8 /* PhiroPlayToneBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E579F10A253D98B0009107C8 /* PhiroPlayToneBrickTests.swift */; };
+		E579F10D253D9C58009107C8 /* PhiroRGBLightBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E579F10C253D9C58009107C8 /* PhiroRGBLightBrickTests.swift */; };
+		E579F10F253DAF20009107C8 /* SayBubbleBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E579F10E253DAF20009107C8 /* SayBubbleBrickTests.swift */; };
+		E579F111253DB124009107C8 /* SayForBubbleBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E579F110253DB124009107C8 /* SayForBubbleBrickTests.swift */; };
 		F411560320E7732D00E2F254 /* InternFormula+KeyboardAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F411560220E7732D00E2F254 /* InternFormula+KeyboardAdapter.swift */; };
 		F4201CF220D795DB0030181B /* DateWeekdaySensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4201CF120D795DB0030181B /* DateWeekdaySensor.swift */; };
 		F4201CF920D79CA80030181B /* TimeHourSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4201CF820D79CA80030181B /* TimeHourSensor.swift */; };
@@ -3726,6 +3732,12 @@
 		E57E6D88254041BE00E775DF /* SpeakAndWaitBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakAndWaitBrickTests.swift; sourceTree = "<group>"; };
 		E57E6D8A2540427000E775DF /* SpeakBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakBrickTests.swift; sourceTree = "<group>"; };
 		E57E6D8E2540552F00E775DF /* AddItemToUserListBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemToUserListBrickTests.swift; sourceTree = "<group>"; };
+		E579F104253D88B4009107C8 /* PhiroMotorMoveBackwardBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhiroMotorMoveBackwardBrickTests.swift; sourceTree = "<group>"; };
+		E579F108253D9485009107C8 /* PhiroMotorMoveForwardBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhiroMotorMoveForwardBrickTests.swift; sourceTree = "<group>"; };
+		E579F10A253D98B0009107C8 /* PhiroPlayToneBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhiroPlayToneBrickTests.swift; sourceTree = "<group>"; };
+		E579F10C253D9C58009107C8 /* PhiroRGBLightBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhiroRGBLightBrickTests.swift; sourceTree = "<group>"; };
+		E579F10E253DAF20009107C8 /* SayBubbleBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SayBubbleBrickTests.swift; sourceTree = "<group>"; };
+		E579F110253DB124009107C8 /* SayForBubbleBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SayForBubbleBrickTests.swift; sourceTree = "<group>"; };
 		EACB63B95D9C0A7F1388E4F3 /* id */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/Localizable.strings; sourceTree = "<group>"; };
 		EC696D21025B1BA13FAA0039 /* he */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = he; path = he.lproj/Localizable.strings; sourceTree = "<group>"; };
 		ED43A997870B76068912C26D /* pt-BR */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -6387,6 +6399,12 @@
 				E592D1552539DD6A00B9F288 /* ArduinoSendDigitalValueBrickTests.swift */,
 				E592D1592539E16400B9F288 /* ArduinoSendPWMValueBrickTests.swift */,
 				E592D15B2539E1E300B9F288 /* IfThenLogicBeginBrickTests.swift */,
+				E579F104253D88B4009107C8 /* PhiroMotorMoveBackwardBrickTests.swift */,
+				E579F108253D9485009107C8 /* PhiroMotorMoveForwardBrickTests.swift */,
+				E579F10A253D98B0009107C8 /* PhiroPlayToneBrickTests.swift */,
+				E579F10C253D9C58009107C8 /* PhiroRGBLightBrickTests.swift */,
+				E579F10E253DAF20009107C8 /* SayBubbleBrickTests.swift */,
+				E579F110253DB124009107C8 /* SayForBubbleBrickTests.swift */,
 			);
 			path = Bricks;
 			sourceTree = "<group>";
@@ -10146,6 +10164,7 @@
 				4CC50A5E213BE036004BC914 /* ZeroParameterDoubleFunctionMock.swift in Sources */,
 				4CEB22521B95E47500B3BE2F /* BrickMoveManagerTests.m in Sources */,
 				6F4B2FB92466706B00B5F0ED /* ProjectMigratorTest.swift in Sources */,
+				E579F10F253DAF20009107C8 /* SayBubbleBrickTests.swift in Sources */,
 				4CF429EA213A64B600B78897 /* InternFormulaKeyboardAdapterTests.swift in Sources */,
 				4C822681213FA7A400F3D750 /* TransparencySensorTest.swift in Sources */,
 				590200D223FC03A900F0978B /* BrickExtensionTests.swift in Sources */,
@@ -10192,6 +10211,7 @@
 				4CEB22751B95E4BC00B3BE2F /* BrickInsertManagerLogicTests.m in Sources */,
 				4C82265D213FA7A400F3D750 /* FingerYSensorTest.swift in Sources */,
 				9ECDCB0B2328491F00EBDA63 /* ChangeTransparencyByNBrickTests.swift in Sources */,
+				E579F105253D88B4009107C8 /* PhiroMotorMoveBackwardBrickTests.swift in Sources */,
 				4C1F6FA7213CFB5800C20BEB /* FunctionTests.swift in Sources */,
 				4C3A5CAB21D3B967008FD83F /* SmallerThanOperatorTest.swift in Sources */,
 				4C822653213FA7A400F3D750 /* ObjectDoubleSensorMock.swift in Sources */,
@@ -10202,6 +10222,7 @@
 				4C37A0A3212DBF510074F417 /* ArduinoAnalogPinFunctionTest.swift in Sources */,
 				4CFD5C5B23C47E2100980CD0 /* GlideToBrickTests.swift in Sources */,
 				9E4D238A232AF24B009D0C3C /* SetBrightnessBrickTests.swift in Sources */,
+				E579F10D253D9C58009107C8 /* PhiroRGBLightBrickTests.swift in Sources */,
 				4C6FE175212D2D2E0067B7D5 /* ContainsFunctionTest.swift in Sources */,
 				4CF8276E24F0F5B0006E562A /* BrickCellBackgroundDataTests.swift in Sources */,
 				4C822663213FA7A400F3D750 /* FacePositionXSensorTest.swift in Sources */,
@@ -10247,6 +10268,7 @@
 				9E24D7032326E8E600608203 /* TurnLeftBrickTests.swift in Sources */,
 				E57E6D872540414700E775DF /* SetVolumeToBrickTests.swift in Sources */,
 				4C968C401F00288500355C0D /* BrickTests.swift in Sources */,
+				E579F10B253D98B0009107C8 /* PhiroPlayToneBrickTests.swift in Sources */,
 				2ED418BC2411213E00AFE2FD /* XMLSerializerTests.swift in Sources */,
 				9EA3FD812327089900551B6C /* CBSpriteNodePenExtensionTests.swift in Sources */,
 				4C0F9FD9204BD3D500E71B2D /* RepeatUntilBrickTests.swift in Sources */,
@@ -10303,6 +10325,7 @@
 				591553B724F274C9005BBF75 /* WhenConditionScriptTests.swift in Sources */,
 				4C6FE16A212D2D2E0067B7D5 /* AtanFunctionTest.swift in Sources */,
 				4CEB224F1B95E47500B3BE2F /* BrickMoveManagerForeverTests.m in Sources */,
+				E579F109253D9485009107C8 /* PhiroMotorMoveForwardBrickTests.swift in Sources */,
 				4C68FC951B25A00B00AB3EE8 /* InternFormulaTokenSelectionTest.m in Sources */,
 				4C68FC8C1B25A00B00AB3EE8 /* FormulaParserErrorDetectionTest.m in Sources */,
 				9EA6DCB02329A9E1007E837A /* MoveNStepsBrickTests.swift in Sources */,
@@ -10382,6 +10405,7 @@
 				4C82267F213FA7A400F3D750 /* PositionXSensorTest.swift in Sources */,
 				4C0C164921439B2F005ADE86 /* ChartProjectsStoreDataSourceTests.swift in Sources */,
 				4CC50A62213BE4D3004BC914 /* DoubleParameterDoubleFunctionMock.swift in Sources */,
+				E579F111253DB124009107C8 /* SayForBubbleBrickTests.swift in Sources */,
 				4CB23D7221E6613D00A0FEA7 /* DeleteItemOfUserListBrickTests.swift in Sources */,
 				D3CF3A0F23D07F06006B2667 /* ProjectMock.swift in Sources */,
 				4CD27AA821B55DBC00DDADB5 /* FaceDetectionManagerTest.swift in Sources */,

@@ -107,4 +107,17 @@ final class ChangeTransparencyByNBrickTests: AbstractBrickTest {
         XCTAssertTrue(brick.changeTransparency.isEqual(to: copiedBrick.changeTransparency))
         XCTAssertFalse(brick.changeTransparency === copiedBrick.changeTransparency)
     }
+
+    func testGetFormulas() {
+        brick.changeTransparency = Formula(integer: 1)
+        var formulas = brick.getFormulas()
+
+        XCTAssertEqual(formulas?.count, 1)
+        XCTAssertEqual(brick.changeTransparency, formulas?[0])
+
+        brick.changeTransparency = Formula(integer: -22)
+        formulas = brick.getFormulas()
+
+        XCTAssertEqual(brick.changeTransparency, formulas?[0])
+     }
 }

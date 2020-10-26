@@ -76,4 +76,17 @@ final class SetTransparencyToBrickTests: AbstractBrickTest {
 
         XCTAssertEqual(0.0, spriteNode.catrobatTransparency, accuracy: 0.01, "ChangeTransparencyBrick is not correctly calculated")
     }
+
+    func testGetFormulas() {
+        brick.transparency = Formula(integer: 1)
+        var formulas = brick.getFormulas()
+
+        XCTAssertEqual(formulas?.count, 1)
+        XCTAssertEqual(brick.transparency, formulas?[0])
+
+        brick.transparency = Formula(integer: 22)
+        formulas = brick.getFormulas()
+
+        XCTAssertEqual(brick.transparency, formulas?[0])
+     }
 }

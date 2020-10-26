@@ -107,4 +107,16 @@ final class SetColorBrickTests: AbstractBrickTest {
         XCTAssertEqual(0.0, spriteNode.catrobatColor, accuracy: 0.1, "SetColorBrick - Color not correct")
     }
 
+    func testGetFormulas() {
+        brick.color = Formula(integer: 1)
+        var formulas = brick.getFormulas()
+
+        XCTAssertEqual(formulas?.count, 1)
+        XCTAssertEqual(brick.color, formulas?[0])
+
+        brick.color = Formula(integer: 22)
+        formulas = brick.getFormulas()
+
+        XCTAssertEqual(brick.color, formulas?[0])
+     }
 }
