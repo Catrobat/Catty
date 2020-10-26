@@ -5,7 +5,7 @@
     <applicationBuildNumber>0</applicationBuildNumber>
     <applicationName>Pocket Code</applicationName>
     <applicationVersion>v0.9.10-111-geb1b919 master</applicationVersion>
-    <catrobatLanguageVersion>0.992</catrobatLanguageVersion>
+    <catrobatLanguageVersion>0.993</catrobatLanguageVersion>
     <dateTimeUpload></dateTimeUpload>
     <description></description>
     <deviceName>Nexus 4</deviceName>
@@ -425,10 +425,6 @@
                 <brick type="FlashBrick">
                   <commentedOut>false</commentedOut>
                   <spinnerSelectionID>1</spinnerSelectionID>
-                  <spinnerValues>
-                    <string>off</string>
-                    <string>on</string>
-                  </spinnerValues>
                 </brick>
                 <brick type="IfThenLogicBeginBrick">
                   <commentedOut>false</commentedOut>
@@ -526,18 +522,10 @@
                 <brick type="CameraBrick">
                   <commentedOut>false</commentedOut>
                   <spinnerSelectionID>1</spinnerSelectionID>
-                  <spinnerValues>
-                    <string>off</string>
-                    <string>on</string>
-                  </spinnerValues>
                 </brick>
                 <brick type="CameraBrick">
                   <commentedOut>false</commentedOut>
                   <spinnerSelectionID>0</spinnerSelectionID>
-                  <spinnerValues>
-                    <string>off</string>
-                    <string>on</string>
-                  </spinnerValues>
                 </brick>
                 <brick type="SayBubbleBrick">
                   <commentedOut>false</commentedOut>
@@ -590,21 +578,23 @@
                 <brick type="ChooseCameraBrick">
                   <commentedOut>false</commentedOut>
                   <spinnerSelectionID>0</spinnerSelectionID>
-                  <spinnerValues>
-                    <string>back</string>
-                    <string>front</string>
-                  </spinnerValues>
                 </brick>
                 <brick type="ChooseCameraBrick">
                   <commentedOut>false</commentedOut>
                   <spinnerSelectionID>1</spinnerSelectionID>
-                  <spinnerValues>
-                    <string>back</string>
-                    <string>front</string>
-                  </spinnerValues>
                 </brick>
                 <brick type="HideTextBrick">
                   <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="Y_POSITION">
+                      <type>NUMBER</type>
+                      <value>0</value>
+                    </formula>
+                    <formula category="X_POSITION">
+                      <type>NUMBER</type>
+                      <value>0</value>
+                    </formula>
+                  </formulaList>
                   <userVariable reference="../../brick[13]/userVariable"/>
                 </brick>
                 <brick type="WaitUntilBrick">
@@ -637,13 +627,13 @@
                 <brick type="SetPenColorBrick">
                   <commentedOut>false</commentedOut>
                   <formulaList>
-                    <formula category="PEN_COLOR_RED">
-                      <type>NUMBER</type>
-                      <value>0</value>
-                    </formula>
                     <formula category="PEN_COLOR_BLUE">
                       <type>NUMBER</type>
                       <value>255</value>
+                    </formula>
+                    <formula category="PEN_COLOR_RED">
+                      <type>NUMBER</type>
+                      <value>0</value>
                     </formula>
                     <formula category="PEN_COLOR_GREEN">
                       <type>NUMBER</type>
@@ -685,7 +675,6 @@
           <soundList/>
           <userBricks/>
         </object>
-        
         <object type="SingleSprite" name="object 1">
           <lookList/>
           <nfcTagList/>
@@ -704,20 +693,20 @@
                   <spinnerSelection>82</spinnerSelection>
                 </brick>
                 <brick type="AskBrick">
-                    <commentedOut>false</commentedOut>
-                     <formulaList>
-                       <formula category="ASK_QUESTION">
-                         <type>STRING</type>
-                         <value>What&apos;s your name?</value>
-                       </formula>
-                     </formulaList>
-                 <userVariable>globale</userVariable>
-               </brick>
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="ASK_QUESTION">
+                      <type>STRING</type>
+                      <value>What&apos;s your name?</value>
+                    </formula>
+                  </formulaList>
+                  <userVariable>globale</userVariable>
+                </brick>
               </brickList>
               <commentedOut>false</commentedOut>
               <isUserScript>false</isUserScript>
             </script>
-            </scriptList>
+          </scriptList>
           <soundList/>
           <userBricks/>
         </object>
@@ -727,7 +716,11 @@
       <data>
         <objectListOfList>
           <entry>
-            <object reference="../../../../objectList/object"/>
+            <object reference="../../../../objectList/object[2]"/>
+            <list/>
+          </entry>
+          <entry>
+            <object reference="../../../../objectList/object[2]/scriptList/script/brickList/brick/destinationSprite"/>
             <list/>
           </entry>
           <entry>
@@ -735,40 +728,28 @@
             <list/>
           </entry>
           <entry>
-            <object reference="../../../../objectList/object[2]"/>
-            <list/>
-          </entry>
-          <entry>
-            <object reference="../../../../objectList/object[3]"/>
-            <list/>
-          </entry>
-          <entry>
-            <object reference="../../../../objectList/object[3]/scriptList/script/brickList/brick/destinationSprite"/>
+            <object reference="../../../../objectList/object"/>
             <list/>
           </entry>
         </objectListOfList>
         <objectVariableList>
           <entry>
-            <object reference="../../../../objectList/object"/>
-            <list>
-              <userVariable reference="../../../../../objectList/object/scriptList/script/brickList/brick[14]/userVariable"/>
-            </list>
+            <object reference="../../../../objectList/object[2]"/>
+            <list/>
+          </entry>
+          <entry>
+            <object reference="../../../../objectList/object[2]/scriptList/script/brickList/brick/destinationSprite"/>
+            <list/>
           </entry>
           <entry>
             <object reference="../../../../objectList/object/scriptList/script/brickList/brick[10]/pointedObject"/>
             <list/>
           </entry>
           <entry>
-            <object reference="../../../../objectList/object[2]"/>
-            <list/>
-          </entry>
-          <entry>
-            <object reference="../../../../objectList/object[3]"/>
-            <list/>
-          </entry>
-          <entry>
-            <object reference="../../../../objectList/object[3]/scriptList/script/brickList/brick/destinationSprite"/>
-            <list/>
+            <object reference="../../../../objectList/object"/>
+            <list>
+              <userVariable reference="../../../../../objectList/object/scriptList/script/brickList/brick[14]/userVariable"/>
+            </list>
           </entry>
         </objectVariableList>
         <userBrickVariableList/>

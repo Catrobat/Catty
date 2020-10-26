@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<program>
+  <header>
+    <applicationBuildName>Catty</applicationBuildName>
+    <applicationBuildNumber>39</applicationBuildNumber>
+    <applicationName>Pocket Code</applicationName>
+    <applicationVersion>0.6.13</applicationVersion>
+    <catrobatLanguageVersion>0.993</catrobatLanguageVersion>
+    <dateTimeUpload></dateTimeUpload>
+    <description></description>
+    <deviceName>x86_64</deviceName>
+    <landscapeMode>false</landscapeMode>
+    <mediaLicense>https://developer.catrobat.org/ccbysa_v4</mediaLicense>
+    <platform>iOS</platform>
+    <platformVersion>13.3</platformVersion>
+    <programLicense>https://developer.catrobat.org/agpl_v3</programLicense>
+    <programName>UserVariable</programName>
+    <remixOf></remixOf>
+    <scenesEnabled>true</scenesEnabled>
+    <screenHeight>1792</screenHeight>
+    <screenMode>STRETCH</screenMode>
+    <screenWidth>828</screenWidth>
+    <tags></tags>
+    <url></url>
+    <userHandle></userHandle>
+  </header>
+  <settings/>
+  <scenes>
+    <scene>
+      <name>Scene 1</name>
+      <objectList>
+        <object type="SingleSprite" name="Background">
+          <lookList/>
+          <nfcTagList/>
+          <scriptList>
+            <script type="StartScript">
+              <brickList>
+                <brick type="SetVariableBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="VARIABLE">
+                      <type>NUMBER</type>
+                      <value>1</value>
+                    </formula>
+                  </formulaList>
+                  <userVariable>localBackground</userVariable>
+                </brick>
+                <brick type="SetVariableBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="VARIABLE">
+                      <type>NUMBER</type>
+                      <value>1</value>
+                    </formula>
+                  </formulaList>
+                  <userVariable>localBackground2</userVariable>
+                </brick>
+                <brick type="ChangeVariableBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="VARIABLE_CHANGE">
+                      <type>NUMBER</type>
+                      <value>1</value>
+                    </formula>
+                  </formulaList>
+                  <userVariable>global3</userVariable>
+                </brick>
+              </brickList>
+              <commentedOut>false</commentedOut>
+              <isUserScript>false</isUserScript>
+            </script>
+          </scriptList>
+          <soundList/>
+          <userBricks/>
+        </object>
+        <object type="SingleSprite" name="A">
+          <lookList/>
+          <nfcTagList/>
+          <scriptList>
+            <script type="StartScript">
+              <brickList>
+                <brick type="ChangeVariableBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="VARIABLE_CHANGE">
+                      <type>NUMBER</type>
+                      <value>2</value>
+                    </formula>
+                  </formulaList>
+                  <userVariable>localB</userVariable>
+                </brick>
+                <brick type="SetVariableBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="VARIABLE">
+                      <type>NUMBER</type>
+                      <value>1</value>
+                    </formula>
+                  </formulaList>
+                  <userVariable>global1</userVariable>
+                </brick>
+              </brickList>
+              <commentedOut>false</commentedOut>
+              <isUserScript>false</isUserScript>
+            </script>
+          </scriptList>
+          <soundList/>
+          <userBricks/>
+        </object>
+        <object type="SingleSprite" name="B">
+          <lookList/>
+          <nfcTagList/>
+          <scriptList>
+            <script type="StartScript">
+              <brickList>
+                <brick type="SetVariableBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="VARIABLE">
+                      <type>NUMBER</type>
+                      <value>1</value>
+                    </formula>
+                  </formulaList>
+                  <userVariable>localB</userVariable>
+                </brick>
+                <brick type="ChangeVariableBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="VARIABLE_CHANGE">
+                      <type>NUMBER</type>
+                      <value>1</value>
+                    </formula>
+                  </formulaList>
+                  <userVariable>global2</userVariable>
+                </brick>
+              </brickList>
+              <commentedOut>false</commentedOut>
+              <isUserScript>false</isUserScript>
+            </script>
+          </scriptList>
+          <soundList/>
+          <userBricks/>
+        </object>
+      </objectList>
+      <data>
+        <objectListOfList/>
+        <objectVariableList>
+          <entry>
+            <object reference="../../../../objectList/object[3]"/>
+            <list>
+              <userVariable reference="../../../../../objectList/object[3]/scriptList/script/brickList/brick/userVariable"/>
+            </list>
+          </entry>
+          <entry>
+            <object reference="../../../../objectList/object[2]"/>
+            <list>
+              <userVariable reference="../../../../../objectList/object[2]/scriptList/script/brickList/brick/userVariable"/>
+            </list>
+          </entry>
+          <entry>
+            <object reference="../../../../objectList/object"/>
+            <list>
+              <userVariable reference="../../../../../objectList/object/scriptList/script/brickList/brick/userVariable"/>
+              <userVariable reference="../../../../../objectList/object/scriptList/script/brickList/brick[2]/userVariable"/>
+            </list>
+          </entry>
+        </objectVariableList>
+        <userBrickVariableList/>
+      </data>
+      <originalWidth>828</originalWidth>
+      <originalHeight>1792</originalHeight>
+    </scene>
+  </scenes>
+  <programVariableList>
+    <userVariable reference="../../scenes/scene/objectList/object[2]/scriptList/script/brickList/brick[2]/userVariable"/>
+    <userVariable reference="../../scenes/scene/objectList/object[3]/scriptList/script/brickList/brick[2]/userVariable"/>
+    <userVariable reference="../../scenes/scene/objectList/object/scriptList/script/brickList/brick[3]/userVariable"/>
+  </programVariableList>
+  <programListOfLists/>
+</program>

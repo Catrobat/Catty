@@ -1,18 +1,18 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <program>
   <header>
-    <applicationBuildName/>
+    <applicationBuildName></applicationBuildName>
     <applicationBuildNumber>0</applicationBuildNumber>
     <applicationName>Pocket Code</applicationName>
-    <applicationVersion>0.9.28</applicationVersion>
+    <applicationVersion>0.9.6</applicationVersion>
     <catrobatLanguageVersion>0.993</catrobatLanguageVersion>
-    <dateTimeUpload/>
-    <description>The Pac-Men are falling to their doom! Luckily enough though they've sprouted wings - tap them quick enough and they'll fly away from danger. Can you make it to the highest rank of Fantastic Pactastic? Tap screen to start.</description>
-    <deviceName>PRA-LX1</deviceName>
+    <dateTimeUpload></dateTimeUpload>
+    <description>The Pac-Men are falling to their doom! Luckily enough though they&apos;ve sprouted wings - tap them quick enough and they&apos;ll fly away from danger. Can you make it to the highest rank of Fantastic Pactastic? Tap screen to start.</description>
+    <deviceName>GT-I8160</deviceName>
     <landscapeMode>false</landscapeMode>
-    <mediaLicense>http://developer.catrobat.org/ccbysa_v4</mediaLicense>
+    <mediaLicense>http://developer.catrobat.org/ccbysa_v3</mediaLicense>
     <platform>Android</platform>
-    <platformVersion>26.0</platformVersion>
+    <platformVersion>10.0</platformVersion>
     <programLicense>http://developer.catrobat.org/agpl_v3</programLicense>
     <programName>Flap-Pac-Man</programName>
     <remixOf></remixOf>
@@ -20,14 +20,14 @@
     <screenHeight>800</screenHeight>
     <screenMode>STRETCH</screenMode>
     <screenWidth>480</screenWidth>
-    <tags>Spiele</tags>
-    <url>/pocketcode/program/1532</url>
+    <tags></tags>
+    <url>http://pocketcode.org/details/1532</url>
     <userHandle>garygreen</userHandle>
   </header>
   <settings/>
   <scenes>
     <scene>
-      <name>Szene 1</name>
+      <name>Scene 1</name>
       <objectList>
         <object type="SingleSprite" name="Background">
           <lookList>
@@ -232,6 +232,10 @@
                 <brick type="PlaceAtBrick">
                   <commentedOut>false</commentedOut>
                   <formulaList>
+                    <formula category="Y_POSITION">
+                      <type>NUMBER</type>
+                      <value>450</value>
+                    </formula>
                     <formula category="X_POSITION">
                       <leftChild>
                         <rightChild>
@@ -251,10 +255,6 @@
                       </rightChild>
                       <type>FUNCTION</type>
                       <value>RAND</value>
-                    </formula>
-                    <formula category="Y_POSITION">
-                      <type>NUMBER</type>
-                      <value>450</value>
                     </formula>
                   </formulaList>
                 </brick>
@@ -661,10 +661,6 @@
                 <brick type="PlaceAtBrick">
                   <commentedOut>false</commentedOut>
                   <formulaList>
-                    <formula category="X_POSITION">
-                      <type>NUMBER</type>
-                      <value>0</value>
-                    </formula>
                     <formula category="Y_POSITION">
                       <rightChild>
                         <type>NUMBER</type>
@@ -672,6 +668,10 @@
                       </rightChild>
                       <type>OPERATOR</type>
                       <value>MINUS</value>
+                    </formula>
+                    <formula category="X_POSITION">
+                      <type>NUMBER</type>
+                      <value>0</value>
                     </formula>
                   </formulaList>
                 </brick>
@@ -812,13 +812,13 @@
                 <brick type="PlaceAtBrick">
                   <commentedOut>false</commentedOut>
                   <formulaList>
-                    <formula category="X_POSITION">
-                      <type>NUMBER</type>
-                      <value>0</value>
-                    </formula>
                     <formula category="Y_POSITION">
                       <type>NUMBER</type>
                       <value>100</value>
+                    </formula>
+                    <formula category="X_POSITION">
+                      <type>NUMBER</type>
+                      <value>0</value>
                     </formula>
                   </formulaList>
                 </brick>
@@ -1082,6 +1082,10 @@
                 <brick type="PlaceAtBrick">
                   <commentedOut>false</commentedOut>
                   <formulaList>
+                    <formula category="Y_POSITION">
+                      <type>NUMBER</type>
+                      <value>450</value>
+                    </formula>
                     <formula category="X_POSITION">
                       <leftChild>
                         <type>NUMBER</type>
@@ -1093,10 +1097,6 @@
                       </rightChild>
                       <type>FUNCTION</type>
                       <value>RAND</value>
-                    </formula>
-                    <formula category="Y_POSITION">
-                      <type>NUMBER</type>
-                      <value>450</value>
                     </formula>
                   </formulaList>
                 </brick>
@@ -1539,6 +1539,10 @@
                 <brick type="PlaceAtBrick">
                   <commentedOut>false</commentedOut>
                   <formulaList>
+                    <formula category="Y_POSITION">
+                      <type>NUMBER</type>
+                      <value>450</value>
+                    </formula>
                     <formula category="X_POSITION">
                       <leftChild>
                         <rightChild>
@@ -1554,10 +1558,6 @@
                       </rightChild>
                       <type>FUNCTION</type>
                       <value>RAND</value>
-                    </formula>
-                    <formula category="Y_POSITION">
-                      <type>NUMBER</type>
-                      <value>450</value>
                     </formula>
                   </formulaList>
                 </brick>
@@ -1954,7 +1954,7 @@
         <objectListOfList/>
         <objectVariableList>
           <entry>
-            <object reference="../../../../objectList/object"/>
+            <object reference="../../../../objectList/object[4]"/>
             <list/>
           </entry>
           <entry>
@@ -1966,11 +1966,11 @@
             </list>
           </entry>
           <entry>
-            <object reference="../../../../objectList/object[3]"/>
+            <object reference="../../../../objectList/object"/>
             <list/>
           </entry>
           <entry>
-            <object reference="../../../../objectList/object[4]"/>
+            <object reference="../../../../objectList/object[3]"/>
             <list/>
           </entry>
           <entry>
@@ -2004,4 +2004,3 @@
   </programVariableList>
   <programListOfLists/>
 </program>
-
