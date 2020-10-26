@@ -106,4 +106,18 @@ final class ChangeVariableBrickTests: XCTestCase {
         XCTAssertTrue(brick.userVariable.isEqual(copiedBrick.userVariable))
         XCTAssertTrue(brick.userVariable === copiedBrick.userVariable)
     }
+
+    func testGetFormulas() {
+        let brick = ChangeVariableBrick()
+        brick.variableFormula = Formula(integer: 1)
+        var formulas = brick.getFormulas()
+
+        XCTAssertEqual(formulas?.count, 1)
+        XCTAssertEqual(brick.variableFormula, formulas?[0])
+
+        brick.variableFormula = Formula(integer: 22)
+        formulas = brick.getFormulas()
+
+        XCTAssertEqual(brick.variableFormula, formulas?[0])
+    }
 }

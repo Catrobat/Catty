@@ -1560,6 +1560,11 @@
 		E592D1562539DD6A00B9F288 /* ArduinoSendDigitalValueBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E592D1552539DD6A00B9F288 /* ArduinoSendDigitalValueBrickTests.swift */; };
 		E592D15A2539E16400B9F288 /* ArduinoSendPWMValueBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E592D1592539E16400B9F288 /* ArduinoSendPWMValueBrickTests.swift */; };
 		E592D15C2539E1E300B9F288 /* IfThenLogicBeginBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E592D15B2539E1E300B9F288 /* IfThenLogicBeginBrickTests.swift */; };
+		E57E6D85254040B400E775DF /* ChangeVolumeByNBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57E6D84254040B400E775DF /* ChangeVolumeByNBrickTests.swift */; };
+		E57E6D872540414700E775DF /* SetVolumeToBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57E6D862540414700E775DF /* SetVolumeToBrickTests.swift */; };
+		E57E6D89254041BE00E775DF /* SpeakAndWaitBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57E6D88254041BE00E775DF /* SpeakAndWaitBrickTests.swift */; };
+		E57E6D8B2540427000E775DF /* SpeakBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57E6D8A2540427000E775DF /* SpeakBrickTests.swift */; };
+		E57E6D8F2540552F00E775DF /* AddItemToUserListBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57E6D8E2540552F00E775DF /* AddItemToUserListBrickTests.swift */; };
 		F411560320E7732D00E2F254 /* InternFormula+KeyboardAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F411560220E7732D00E2F254 /* InternFormula+KeyboardAdapter.swift */; };
 		F4201CF220D795DB0030181B /* DateWeekdaySensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4201CF120D795DB0030181B /* DateWeekdaySensor.swift */; };
 		F4201CF920D79CA80030181B /* TimeHourSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4201CF820D79CA80030181B /* TimeHourSensor.swift */; };
@@ -3716,6 +3721,11 @@
 		E592D1552539DD6A00B9F288 /* ArduinoSendDigitalValueBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArduinoSendDigitalValueBrickTests.swift; sourceTree = "<group>"; };
 		E592D1592539E16400B9F288 /* ArduinoSendPWMValueBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArduinoSendPWMValueBrickTests.swift; sourceTree = "<group>"; };
 		E592D15B2539E1E300B9F288 /* IfThenLogicBeginBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IfThenLogicBeginBrickTests.swift; sourceTree = "<group>"; };
+		E57E6D84254040B400E775DF /* ChangeVolumeByNBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeVolumeByNBrickTests.swift; sourceTree = "<group>"; };
+		E57E6D862540414700E775DF /* SetVolumeToBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetVolumeToBrickTests.swift; sourceTree = "<group>"; };
+		E57E6D88254041BE00E775DF /* SpeakAndWaitBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakAndWaitBrickTests.swift; sourceTree = "<group>"; };
+		E57E6D8A2540427000E775DF /* SpeakBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakBrickTests.swift; sourceTree = "<group>"; };
+		E57E6D8E2540552F00E775DF /* AddItemToUserListBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemToUserListBrickTests.swift; sourceTree = "<group>"; };
 		EACB63B95D9C0A7F1388E4F3 /* id */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/Localizable.strings; sourceTree = "<group>"; };
 		EC696D21025B1BA13FAA0039 /* he */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = he; path = he.lproj/Localizable.strings; sourceTree = "<group>"; };
 		ED43A997870B76068912C26D /* pt-BR */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -6369,6 +6379,11 @@
 				18D939EA24C97A1C00A32544 /* SetPenColorBrickTests.swift */,
 				18390A7224D0A33D00A07DFD /* StampBrickTests.swift */,
 				440B1D58250FE6B10041CC7D /* AskBrickTests.swift */,
+				E57E6D84254040B400E775DF /* ChangeVolumeByNBrickTests.swift */,
+				E57E6D862540414700E775DF /* SetVolumeToBrickTests.swift */,
+				E57E6D88254041BE00E775DF /* SpeakAndWaitBrickTests.swift */,
+				E57E6D8A2540427000E775DF /* SpeakBrickTests.swift */,
+				E57E6D8E2540552F00E775DF /* AddItemToUserListBrickTests.swift */,
 				E592D1552539DD6A00B9F288 /* ArduinoSendDigitalValueBrickTests.swift */,
 				E592D1592539E16400B9F288 /* ArduinoSendPWMValueBrickTests.swift */,
 				E592D15B2539E1E300B9F288 /* IfThenLogicBeginBrickTests.swift */,
@@ -10063,6 +10078,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E57E6D89254041BE00E775DF /* SpeakAndWaitBrickTests.swift in Sources */,
 				4C099F6E1C282B3C00E190CA /* CBBackendTests.swift in Sources */,
 				4C3A5CAD21D3BAB9008FD83F /* GreaterThanOperatorTest.swift in Sources */,
 				4C6FE165212D2D2E0067B7D5 /* PiFunctionTest.swift in Sources */,
@@ -10193,6 +10209,7 @@
 				4CBDF1AA21CF830E00325338 /* BinaryOperatorMock.swift in Sources */,
 				9E22CC8D2323FC6700BA4CBA /* AudioEngineFingerprintingStub.swift in Sources */,
 				9E2C2D8A23256901004B66C6 /* AudioEngineMock.swift in Sources */,
+				E57E6D8B2540427000E775DF /* SpeakBrickTests.swift in Sources */,
 				4C822668213FA7A400F3D750 /* CompassDirectionSensorTest.swift in Sources */,
 				4C5AEEE522F6EC9900280F8B /* RepeatBrickCellTests.swift in Sources */,
 				4C1D26611E84EFBD00BAA2D2 /* RepeatBrickTests.swift in Sources */,
@@ -10213,6 +10230,7 @@
 				2ED418C42411213E00AFE2FD /* XMLParserBlackBoxTests093.swift in Sources */,
 				4CD487761ED2C2A3001BB80A /* ChangeVariableBrickTests.swift in Sources */,
 				2ED418C62411213E00AFE2FD /* XMLParserTests092.swift in Sources */,
+				E57E6D85254040B400E775DF /* ChangeVolumeByNBrickTests.swift in Sources */,
 				4C0A209824CEA46700CC9B04 /* PaintViewControllerMock.swift in Sources */,
 				4C82267B213FA7A400F3D750 /* BackgroundNumberSensorTest.swift in Sources */,
 				59A58D83202C714A008B1A8F /* MediaLibraryDownloaderTests.swift in Sources */,
@@ -10227,6 +10245,7 @@
 				4CEB22501B95E47500B3BE2F /* BrickMoveManagerLogicTests.m in Sources */,
 				2ED418B92411213E00AFE2FD /* XMLParserBrickTests095.swift in Sources */,
 				9E24D7032326E8E600608203 /* TurnLeftBrickTests.swift in Sources */,
+				E57E6D872540414700E775DF /* SetVolumeToBrickTests.swift in Sources */,
 				4C968C401F00288500355C0D /* BrickTests.swift in Sources */,
 				2ED418BC2411213E00AFE2FD /* XMLSerializerTests.swift in Sources */,
 				9EA3FD812327089900551B6C /* CBSpriteNodePenExtensionTests.swift in Sources */,
@@ -10295,6 +10314,7 @@
 				4C1C8B16213FE7F1003B3AA4 /* StoreProjectDownloaderMock.swift in Sources */,
 				E4AEC8A0210852030081A980 /* FeaturedProjectsStoreDataSourceTests.swift in Sources */,
 				1822C1392471C7CB00F8F158 /* BrickCellListDataTests.swift in Sources */,
+				E57E6D8F2540552F00E775DF /* AddItemToUserListBrickTests.swift in Sources */,
 				4C822680213FA7A400F3D750 /* BrightnessSensorTest.swift in Sources */,
 				9EBCBD832329B44E0074C2D9 /* NextLookBrickTests.swift in Sources */,
 				2ED418B52411213E00AFE2FD /* XMLAbstractTest.swift in Sources */,

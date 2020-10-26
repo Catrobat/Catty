@@ -79,4 +79,18 @@ final class VibrationBrickTests: XCTestCase {
 
         XCTAssertTrue(true); // The purpose of this test is to show that the program does not crash
     }
+
+    func testGetFormulas() {
+        let brick = VibrationBrick()
+        brick.durationInSeconds = Formula(double: 1)
+        var formulas = brick.getFormulas()
+
+        XCTAssertEqual(formulas?.count, 1)
+        XCTAssertEqual(brick.durationInSeconds, formulas?[0])
+
+        brick.durationInSeconds = Formula(double: 22)
+        formulas = brick.getFormulas()
+
+        XCTAssertEqual(brick.durationInSeconds, formulas?[0])
+    }
 }

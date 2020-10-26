@@ -63,4 +63,18 @@ final class TurnLeftBrickTests: AbstractBrickTest {
         let expectedRawRotation = RotationSensor.convertToRaw(userInput: initialRotation - rotation, for: object)
         XCTAssertEqual(CGFloat(expectedRawRotation), spriteNode.zRotation, accuracy: 0.0001, "TurnLeftBrick not correct")
     }
+
+    func testGetFormulas() {
+        let brick = TurnLeftBrick()
+        brick.degrees = Formula(double: 1)
+        var formulas = brick.getFormulas()
+
+        XCTAssertEqual(formulas?.count, 1)
+        XCTAssertEqual(brick.degrees, formulas?[0])
+
+        brick.degrees = Formula(double: 22)
+        formulas = brick.getFormulas()
+
+        XCTAssertEqual(brick.degrees, formulas?[0])
+    }
 }
