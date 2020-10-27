@@ -938,7 +938,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         self.batchUpdateMutex = NO;
         self.placeHolderView.hidden = (self.object.scriptList.count != 0);
         [self reloadData];
-        [self.object.scene.project saveToDiskWithNotification:YES];
+        [self.object.scene.project saveToDiskWithNotification:NO];
         [self setEditing:NO animated:NO];
     }];
 
