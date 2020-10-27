@@ -20,4 +20,8 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-let kDefaultScreenshots = ["catrobat", "elephant", "lynx", "panda", "pingu", "racoon"]
+@objc
+class UIDefines: NSObject {
+    @objc static let previewImageSize = CGSize(width: Int(kPreviewThumbnailWidth), height: Int(kPreviewThumbnailHeight))
+    static let defaultScreenshots = ["catrobat", "elephant", "lynx", "panda", "pingu", "racoon"]
+}

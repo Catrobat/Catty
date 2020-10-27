@@ -54,7 +54,6 @@
 
         let fileName = manualScreenshot ? kScreenshotManualFilename : kScreenshotAutoFilename
         let filePath = project.projectPath() + fileName
-        let thumbnailPath = project.projectPath() + kScreenshotThumbnailPrefix + fileName
         guard let data = screenshot.pngData() else { return }
 
         DispatchQueue.main.async {
@@ -63,11 +62,7 @@
                 if let scenePath = scene.path() {
                     try data.write(to: URL(fileURLWithPath: scenePath + fileName), options: .atomic)
                 }
-                RuntimeImageCache.shared()?
-                    .overwriteThumbnailImageFromDisk(withThumbnailPath: thumbnailPath,
-                                                     image: screenshot,
-                                                     thumbnailFrameSize: CGSize(width: CGFloat(kPreviewThumbnailWidth),
-                                                                                height: CGFloat(kPreviewThumbnailHeight)))
+                RuntimeImageCache.shared()?.clear()
                 if manualScreenshot {
                     Util.showNotificationForSaveAction()
                 }

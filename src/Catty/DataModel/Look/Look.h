@@ -34,7 +34,6 @@
 
 - (id)initWithPath:(NSString*)filePath;
 - (id)initWithName:(NSString*)name andPath:(NSString*)filePath;
-- (NSString*)previewImageFileName;
 - (NSString*)description;
 - (NSString*)pathForScene: (Scene *)scene;
 - (BOOL)isEqualToLook:(Look*)look;

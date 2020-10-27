@@ -389,23 +389,21 @@
 
     imageCell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
     RuntimeImageCache *imageCache = [RuntimeImageCache sharedImageCache];
-    NSString *previewImagePath = [object previewImagePath];
-    NSString *imagePath = [[object.lookList firstObject] pathForScene:object.scene];
     imageCell.iconImageView.image = nil;
     imageCell.indexPath = indexPath;
     
-    UIImage *image = [imageCache cachedImageForPath:previewImagePath];
+    NSString *previewImagePath = [object previewImagePath];
+    
+    UIImage *image = [imageCache cachedImageForPath:previewImagePath andSize:UIDefines.previewImageSize];
     if (! image) {
-        [imageCache loadThumbnailImageFromDiskWithThumbnailPath:previewImagePath
-                                                      imagePath:imagePath
-                                             thumbnailFrameSize:CGSizeMake(kPreviewThumbnailWidth, kPreviewThumbnailHeight)
-                                                   onCompletion:^(UIImage *img, NSString* path){
-                                                       // check if cell still needed
-                                                       if ([imageCell.indexPath isEqual:indexPath]) {
-                                                           imageCell.iconImageView.image = img;
-                                                           [imageCell setNeedsLayout];
-                                                       }
-                                                   }];
+        [imageCache loadImageFromDiskWithPath:previewImagePath
+                                      andSize:UIDefines.previewImageSize
+                                 onCompletion:^(UIImage *img, NSString* path) {
+            if ([imageCell.indexPath isEqual:indexPath]) {
+                imageCell.iconImageView.image = img;
+                [imageCell setNeedsLayout];    
+            }
+        }];
     } else {
         imageCell.iconImageView.image = image;
     }
