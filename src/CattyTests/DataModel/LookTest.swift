@@ -37,4 +37,71 @@ final class LookTest: XCTestCase {
         let expectedPath = project.projectPath() + "testScene/images/testLookFile"
         XCTAssertEqual(expectedPath, look?.path(for: scene))
     }
+
+    func testIsEqualToLook() {
+        let project = Project()
+        let scene = Scene(name: "testScene")
+        project.scene = scene
+        scene.project = project
+
+        let look = Look(name: "testLook", andPath: "testLookFile")
+        let equalLook = Look(name: "testLook", andPath: "testLookFile")
+
+        XCTAssertTrue(look!.isEqual(to: equalLook))
+    }
+
+    func testMutableCopyWithContext() {
+        let look = Look(name: "testLook", andPath: "testLookFile")
+        let context = CBMutableCopyContext()
+
+        let lookCopy = look!.mutableCopy(with: context) as! Look
+
+        XCTAssertEqual(look!.name, lookCopy.name)
+        XCTAssertFalse(look === lookCopy)
+        XCTAssertEqual(look!.fileName, lookCopy.fileName)
+    }
+
+    func testInitWithPath() {
+        let object = SpriteObject()
+        let project = ProjectManager.createProject(name: "a", projectId: "1")
+        object.scene = project.scene
+        let spriteNode = CBSpriteNode.init(spriteObject: object)
+        object.spriteNode = spriteNode
+        object.scene.project = project
+
+        let bundle = Bundle(for: type(of: self))
+        let param = "test.png"
+        let filePath = bundle.path(forResource: param, ofType: nil)
+        let look = Look.init(path: filePath)
+
+        XCTAssertNotNil(look)
+        XCTAssertFalse(look!.fileName.isEmpty)
+        XCTAssertEqual(look!.fileName, filePath)
+        XCTAssertEqual(String(look!.fileName.split(separator: "/").last!), param)
+        XCTAssertNil(look!.name)
+    }
+
+    func testInitWithName() {
+        let object = SpriteObject()
+        let project = ProjectManager.createProject(name: "a", projectId: "1")
+        object.scene = project.scene
+        let spriteNode = CBSpriteNode.init(spriteObject: object)
+        object.spriteNode = spriteNode
+        object.scene.project = project
+
+        let bundle = Bundle(for: type(of: self))
+        let param1 = "test.png"
+        let filePath = bundle.path(forResource: param1, ofType: nil)
+        let param2 = "testLook"
+        let look = Look.init(name: param2, andPath: filePath)
+
+        XCTAssertNotNil(look)
+        XCTAssertFalse(look!.fileName.isEmpty)
+        XCTAssertEqual(look!.fileName, filePath)
+        XCTAssertEqual(String(look!.fileName.split(separator: "/").last!), param1)
+        XCTAssertFalse(look!.name.isEmpty)
+        XCTAssertEqual(look!.name, param2)
+
+    }
+
 }
