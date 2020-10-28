@@ -30,13 +30,12 @@ class CattyUISnapshots: XCTestCase {
     override func setUp() {
         setupSnapshot(app)
         app.launch()
+
+        dismissPrivacyPolicyScreenIfShown()
+        restoreDefaultProject()
     }
 
     func testUIScreenshots() {
-        if app.buttons[kLocalizedPrivacyPolicyAgree].exists {
-            app.buttons[kLocalizedPrivacyPolicyAgree].tap()
-        }
-
         app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
         app.navigationBars[kLocalizedProjects].buttons[kLocalizedEdit].tap()
 
@@ -94,11 +93,6 @@ class CattyUISnapshots: XCTestCase {
     }
 
     func testCatrobatCommunityScreenshot() {
-
-        if app.buttons[kLocalizedPrivacyPolicyAgree].exists {
-            app.buttons[kLocalizedPrivacyPolicyAgree].tap()
-        }
-
         app.tables.staticTexts[kLocalizedCatrobatCommunity].tap()
         app.tabBars.buttons["Charts"].tap()
 

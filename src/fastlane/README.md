@@ -36,11 +36,6 @@ Upload Development Build to Browserstack
 fastlane ios tests
 ```
 Run tests
-### ios test_reports
-```
-fastlane ios test_reports
-```
-Collate all test reports
 ### ios crowdin_upload
 ```
 fastlane ios crowdin_upload

@@ -130,6 +130,27 @@ extension XCTestCase {
         }
     }
 
+    func restoreDefaultProject() {
+        let app = XCUIApplication()
+        app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
+        waitForElementToAppear(app.navigationBars[kLocalizedProjects]).buttons[kLocalizedEdit].tap()
+        waitForElementToAppear(app.buttons[kLocalizedDeleteProjects]).tap()
+        let toolbarsQuery = app.toolbars
+        waitForElementToAppear(toolbarsQuery.buttons[kLocalizedSelectAllItems]).tap()
+        waitForElementToAppear(toolbarsQuery.buttons[kLocalizedDelete]).tap()
+        XCTAssert(app.tables.cells.count == 1)
+        // finally go back to main menu, because this method is used by other tests
+        app.navigationBars[kLocalizedProjects].buttons[kLocalizedPocketCode].tap()
+    }
+
+    func dismissPrivacyPolicyScreenIfShown() {
+        let app = XCUIApplication()
+
+        if app.buttons[kLocalizedPrivacyPolicyAgree].exists {
+            app.buttons[kLocalizedPrivacyPolicyAgree].tap()
+        }
+    }
+
     private func findCell(with labels: [String], in collectionView: XCUIElement) -> XCUIElement? {
         for cellIndex in 0...collectionView.cells.count {
             let cell = collectionView.cells.element(boundBy: cellIndex)
@@ -148,26 +169,5 @@ extension XCTestCase {
             }
         }
         return nil
-    }
-
-    private func restoreDefaultProject() {
-        let app = XCUIApplication()
-        app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
-        waitForElementToAppear(app.navigationBars[kLocalizedProjects]).buttons[kLocalizedEdit].tap()
-        waitForElementToAppear(app.buttons[kLocalizedDeleteProjects]).tap()
-        let toolbarsQuery = app.toolbars
-        waitForElementToAppear(toolbarsQuery.buttons[kLocalizedSelectAllItems]).tap()
-        waitForElementToAppear(toolbarsQuery.buttons[kLocalizedDelete]).tap()
-        XCTAssert(app.tables.cells.count == 1)
-        // finally go back to main menu, because this method is used by other tests
-        app.navigationBars[kLocalizedProjects].buttons[kLocalizedPocketCode].tap()
-    }
-
-    private func dismissPrivacyPolicyScreenIfShown() {
-        let app = XCUIApplication()
-
-        if app.buttons[kLocalizedPrivacyPolicyAgree].exists {
-            app.buttons[kLocalizedPrivacyPolicyAgree].tap()
-        }
     }
 }
