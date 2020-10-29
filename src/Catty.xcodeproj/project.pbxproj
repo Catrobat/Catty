@@ -12,6 +12,7 @@
 		05A3D46A24F517350051DB39 /* CatrobatTableViewControllerExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A3D46924F517350051DB39 /* CatrobatTableViewControllerExtensionTests.swift */; };
 		180DDF3F25067E1700EA526C /* FirebaseAnalyticsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180DDF3E25067E1700EA526C /* FirebaseAnalyticsTests.swift */; };
 		180DDF432506800600EA526C /* AnalyticsMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180DDF422506800600EA526C /* AnalyticsMock.swift */; };
+		181A12C324E42B6E00358440 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 92300CE918B2196700F2B4DC /* Localizable.strings */; };
 		181CC10724B750AF004A783E /* CBPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181CC10424B750AE004A783E /* CBPosition.swift */; };
 		181DB738247DA62600B82B20 /* NSDataExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181DB737247DA62600B82B20 /* NSDataExtension.swift */; };
 		1822C1392471C7CB00F8F158 /* BrickCellListDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1822C1382471C7CB00F8F158 /* BrickCellListDataTests.swift */; };
@@ -43,6 +44,7 @@
 		187A3F202434BC4300EF1B02 /* PlaySoundAndWaitBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187A3F1F2434BC4300EF1B02 /* PlaySoundAndWaitBrickTests.swift */; };
 		187CECAB24314F1600C3EDCA /* SetLookBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187CECAA24314F1600C3EDCA /* SetLookBrickTests.swift */; };
 		187D119C2472AAF200A09CE5 /* DataExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187D11992472AAF100A09CE5 /* DataExtensionTests.swift */; };
+		187E07A324E26CED00E652C4 /* CattyUISnapshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187E07A224E26CED00E652C4 /* CattyUISnapshots.swift */; };
 		1882475524C84B8100B01653 /* SetPenColorBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1882475424C84B8100B01653 /* SetPenColorBrick.swift */; };
 		1882475924C84D9C00B01653 /* SetPenColorBrickCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1882475824C84D9C00B01653 /* SetPenColorBrickCell.swift */; };
 		1882475B24C8514300B01653 /* SetPenColorBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1882475A24C8514300B01653 /* SetPenColorBrick+Instruction.swift */; };
@@ -75,7 +77,7 @@
 		22524C38239FAFC500DD515E /* LoginViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22524C37239FAFC500DD515E /* LoginViewControllerTests.swift */; };
 		22524C3D23A2533F00DD515E /* LoginViewControllerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22524C3C23A2533F00DD515E /* LoginViewControllerMock.swift */; };
 		22C48768240FFAA3003CB222 /* BrickCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C48767240FFAA3003CB222 /* BrickCellTests.swift */; };
-		2D010F4822240C9F00CAAA06 /* XCUIElement+staticTexts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D010F4722240C9F00CAAA06 /* XCUIElement+staticTexts.swift */; };
+		2D010F4822240C9F00CAAA06 /* XCUIElementExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D010F4722240C9F00CAAA06 /* XCUIElementExtension.swift */; };
 		2D227D94220B38E0008A2BC9 /* ScenePresenterVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D227D93220B38E0008A2BC9 /* ScenePresenterVCTests.swift */; };
 		2D6E3F39210A0A9F00FB8139 /* ChartProjectStoreDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6E3F38210A0A9F00FB8139 /* ChartProjectStoreDataSource.swift */; };
 		2D6E3F3B210A0AB700FB8139 /* ChartProjectsStoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6E3F3A210A0AB700FB8139 /* ChartProjectsStoreViewController.swift */; };
@@ -484,6 +486,7 @@
 		4C4B4CE623EEA6C00054C861 /* BaseTableViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4B4CE523EEA6BF0054C861 /* BaseTableViewControllerTests.swift */; };
 		4C4EE29D210901E70045F890 /* FormulaEditorSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4EE29A210901E70045F890 /* FormulaEditorSection.swift */; };
 		4C4F21702314F73C0036E245 /* LXReorderableCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4F216D2314F73C0036E245 /* LXReorderableCollectionViewFlowLayout.m */; };
+		4C5176A32541B92400601406 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5176A22541B92400601406 /* SnapshotHelper.swift */; };
 		4C53E38821D5238900F2EC76 /* GreaterOrEqualOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C53E38721D5238900F2EC76 /* GreaterOrEqualOperatorTest.swift */; };
 		4C53E38D21D5241300F2EC76 /* SmallerOrEqualOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C53E38C21D5241300F2EC76 /* SmallerOrEqualOperatorTest.swift */; };
 		4C53E39021D5247C00F2EC76 /* NotOperatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C53E38F21D5247C00F2EC76 /* NotOperatorTest.swift */; };
@@ -549,6 +552,8 @@
 		4C5AEF0622F7037200280F8B /* CatrobatSetup+Sensors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5AEF0222F7037100280F8B /* CatrobatSetup+Sensors.swift */; };
 		4C5AEF0722F7037200280F8B /* CatrobatSetup+Bricks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5AEF0322F7037100280F8B /* CatrobatSetup+Bricks.swift */; };
 		4C5AEF0822F7037200280F8B /* CatrobatSetup+Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5AEF0422F7037100280F8B /* CatrobatSetup+Functions.swift */; };
+		4C5D6916254953B700391AD4 /* XCTestCaseExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5D6915254953B700391AD4 /* XCTestCaseExtension.swift */; };
+		4C5D6918254953F400391AD4 /* XCUIElementExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5D6917254953F300391AD4 /* XCUIElementExtension.swift */; };
 		4C60663A1A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6066391A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m */; };
 		4C665F66253EEB2900A84BB6 /* RuntimeImageCacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C665F65253EEB2900A84BB6 /* RuntimeImageCacheTests.swift */; };
 		4C665F68253F1ADF00A84BB6 /* LookImageViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C665F67253F1ADF00A84BB6 /* LookImageViewControllerTests.swift */; };
@@ -714,7 +719,7 @@
 		4CB0F9F220A1739400D1BE2F /* SizeSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB0F9F120A1739400D1BE2F /* SizeSensor.swift */; };
 		4CB0F9F420A173B700D1BE2F /* RotationSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB0F9F320A173B600D1BE2F /* RotationSensor.swift */; };
 		4CB0F9F620A1741400D1BE2F /* LayerSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB0F9F520A1741400D1BE2F /* LayerSensor.swift */; };
-		4CB1FB741BC2D74F0000A2FE /* UITestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB1FB731BC2D74F0000A2FE /* UITestProtocol.swift */; };
+		4CB1FB741BC2D74F0000A2FE /* XCTestCaseExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB1FB731BC2D74F0000A2FE /* XCTestCaseExtension.swift */; };
 		4CB23D7221E6613D00A0FEA7 /* DeleteItemOfUserListBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB23D6F21E6613D00A0FEA7 /* DeleteItemOfUserListBrickTests.swift */; };
 		4CB2CFA11D7AD762009F3034 /* SetColorBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB2CFA01D7AD762009F3034 /* SetColorBrick.m */; };
 		4CB2CFA61D7AD7E7009F3034 /* SetColorBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB2CFA51D7AD7E7009F3034 /* SetColorBrick+CBXMLHandler.m */; };
@@ -793,6 +798,7 @@
 		4CEB22751B95E4BC00B3BE2F /* BrickInsertManagerLogicTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB22701B95E4BC00B3BE2F /* BrickInsertManagerLogicTests.m */; };
 		4CEB22761B95E4BC00B3BE2F /* BrickInsertManagerRepeatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB22711B95E4BC00B3BE2F /* BrickInsertManagerRepeatTests.m */; };
 		4CEB22771B95E4BC00B3BE2F /* BrickInsertManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB22721B95E4BC00B3BE2F /* BrickInsertManagerTests.m */; };
+		4CECF3BE254969ED0031B024 /* LanguageTranslationDefinesUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CECF3BD254969ED0031B024 /* LanguageTranslationDefinesUI.swift */; };
 		4CEFFAD32105DE4800DC5CFE /* ObjectSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEFFAD02105DE4800DC5CFE /* ObjectSensor.swift */; };
 		4CEFFADA2105E46500DC5CFE /* ObjectStringSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEFFAD82105E46400DC5CFE /* ObjectStringSensor.swift */; };
 		4CEFFADB2105E46500DC5CFE /* ObjectDoubleSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEFFAD92105E46400DC5CFE /* ObjectDoubleSensor.swift */; };
@@ -1561,20 +1567,20 @@
 		E4B7DC5620F6857B001351E3 /* StoreProjectDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B7DC5520F6857A001351E3 /* StoreProjectDownloader.swift */; };
 		E4C5C1122143A3150054F236 /* SearchStoreDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C5C1112143A3150054F236 /* SearchStoreDataSourceTests.swift */; };
 		E4E5599820FCD6AD004B4A08 /* StoreProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E5599620FCD6AD004B4A08 /* StoreProject.swift */; };
-		E592D1562539DD6A00B9F288 /* ArduinoSendDigitalValueBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E592D1552539DD6A00B9F288 /* ArduinoSendDigitalValueBrickTests.swift */; };
-		E592D15A2539E16400B9F288 /* ArduinoSendPWMValueBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E592D1592539E16400B9F288 /* ArduinoSendPWMValueBrickTests.swift */; };
-		E592D15C2539E1E300B9F288 /* IfThenLogicBeginBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E592D15B2539E1E300B9F288 /* IfThenLogicBeginBrickTests.swift */; };
-		E57E6D85254040B400E775DF /* ChangeVolumeByNBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57E6D84254040B400E775DF /* ChangeVolumeByNBrickTests.swift */; };
-		E57E6D872540414700E775DF /* SetVolumeToBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57E6D862540414700E775DF /* SetVolumeToBrickTests.swift */; };
-		E57E6D89254041BE00E775DF /* SpeakAndWaitBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57E6D88254041BE00E775DF /* SpeakAndWaitBrickTests.swift */; };
-		E57E6D8B2540427000E775DF /* SpeakBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57E6D8A2540427000E775DF /* SpeakBrickTests.swift */; };
-		E57E6D8F2540552F00E775DF /* AddItemToUserListBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57E6D8E2540552F00E775DF /* AddItemToUserListBrickTests.swift */; };
 		E579F105253D88B4009107C8 /* PhiroMotorMoveBackwardBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E579F104253D88B4009107C8 /* PhiroMotorMoveBackwardBrickTests.swift */; };
 		E579F109253D9485009107C8 /* PhiroMotorMoveForwardBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E579F108253D9485009107C8 /* PhiroMotorMoveForwardBrickTests.swift */; };
 		E579F10B253D98B0009107C8 /* PhiroPlayToneBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E579F10A253D98B0009107C8 /* PhiroPlayToneBrickTests.swift */; };
 		E579F10D253D9C58009107C8 /* PhiroRGBLightBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E579F10C253D9C58009107C8 /* PhiroRGBLightBrickTests.swift */; };
 		E579F10F253DAF20009107C8 /* SayBubbleBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E579F10E253DAF20009107C8 /* SayBubbleBrickTests.swift */; };
 		E579F111253DB124009107C8 /* SayForBubbleBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E579F110253DB124009107C8 /* SayForBubbleBrickTests.swift */; };
+		E57E6D85254040B400E775DF /* ChangeVolumeByNBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57E6D84254040B400E775DF /* ChangeVolumeByNBrickTests.swift */; };
+		E57E6D872540414700E775DF /* SetVolumeToBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57E6D862540414700E775DF /* SetVolumeToBrickTests.swift */; };
+		E57E6D89254041BE00E775DF /* SpeakAndWaitBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57E6D88254041BE00E775DF /* SpeakAndWaitBrickTests.swift */; };
+		E57E6D8B2540427000E775DF /* SpeakBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57E6D8A2540427000E775DF /* SpeakBrickTests.swift */; };
+		E57E6D8F2540552F00E775DF /* AddItemToUserListBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57E6D8E2540552F00E775DF /* AddItemToUserListBrickTests.swift */; };
+		E592D1562539DD6A00B9F288 /* ArduinoSendDigitalValueBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E592D1552539DD6A00B9F288 /* ArduinoSendDigitalValueBrickTests.swift */; };
+		E592D15A2539E16400B9F288 /* ArduinoSendPWMValueBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E592D1592539E16400B9F288 /* ArduinoSendPWMValueBrickTests.swift */; };
+		E592D15C2539E1E300B9F288 /* IfThenLogicBeginBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E592D15B2539E1E300B9F288 /* IfThenLogicBeginBrickTests.swift */; };
 		F411560320E7732D00E2F254 /* InternFormula+KeyboardAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F411560220E7732D00E2F254 /* InternFormula+KeyboardAdapter.swift */; };
 		F4201CF220D795DB0030181B /* DateWeekdaySensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4201CF120D795DB0030181B /* DateWeekdaySensor.swift */; };
 		F4201CF920D79CA80030181B /* TimeHourSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4201CF820D79CA80030181B /* TimeHourSensor.swift */; };
@@ -1617,6 +1623,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		187E07A524E26CED00E652C4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CADBD6D319B0E8C200C62836;
+			remoteInfo = Catty;
+		};
 		92C631981BC5173200486958 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 92C631931BC5173100486958 /* BluetoothHelper.xcodeproj */;
@@ -1719,6 +1732,9 @@
 		187A3F1F2434BC4300EF1B02 /* PlaySoundAndWaitBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaySoundAndWaitBrickTests.swift; sourceTree = "<group>"; };
 		187CECAA24314F1600C3EDCA /* SetLookBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetLookBrickTests.swift; sourceTree = "<group>"; };
 		187D11992472AAF100A09CE5 /* DataExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataExtensionTests.swift; sourceTree = "<group>"; };
+		187E07A024E26CED00E652C4 /* Catty UISnapshots.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Catty UISnapshots.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		187E07A224E26CED00E652C4 /* CattyUISnapshots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CattyUISnapshots.swift; sourceTree = "<group>"; };
+		187E07A424E26CED00E652C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1882475424C84B8100B01653 /* SetPenColorBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPenColorBrick.swift; sourceTree = "<group>"; };
 		1882475824C84D9C00B01653 /* SetPenColorBrickCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPenColorBrickCell.swift; sourceTree = "<group>"; };
 		1882475A24C8514300B01653 /* SetPenColorBrick+Instruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SetPenColorBrick+Instruction.swift"; sourceTree = "<group>"; };
@@ -1756,7 +1772,7 @@
 		22C48767240FFAA3003CB222 /* BrickCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrickCellTests.swift; sourceTree = "<group>"; };
 		232DAAC73BFD01550ECFD889 /* sk */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2B9E6447F112720F0F74D139 /* tw */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = tw; path = tw.lproj/Localizable.strings; sourceTree = "<group>"; };
-		2D010F4722240C9F00CAAA06 /* XCUIElement+staticTexts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCUIElement+staticTexts.swift"; sourceTree = "<group>"; };
+		2D010F4722240C9F00CAAA06 /* XCUIElementExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCUIElementExtension.swift; sourceTree = "<group>"; };
 		2D227D93220B38E0008A2BC9 /* ScenePresenterVCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScenePresenterVCTests.swift; sourceTree = "<group>"; };
 		2D6E3F38210A0A9F00FB8139 /* ChartProjectStoreDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartProjectStoreDataSource.swift; sourceTree = "<group>"; };
 		2D6E3F3A210A0AB700FB8139 /* ChartProjectsStoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartProjectsStoreViewController.swift; sourceTree = "<group>"; };
@@ -2225,6 +2241,7 @@
 		4C4EE29A210901E70045F890 /* FormulaEditorSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormulaEditorSection.swift; sourceTree = "<group>"; };
 		4C4F216C2314F73C0036E245 /* LXReorderableCollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXReorderableCollectionViewFlowLayout.h; sourceTree = "<group>"; };
 		4C4F216D2314F73C0036E245 /* LXReorderableCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXReorderableCollectionViewFlowLayout.m; sourceTree = "<group>"; };
+		4C5176A22541B92400601406 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
 		4C53E38721D5238900F2EC76 /* GreaterOrEqualOperatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreaterOrEqualOperatorTest.swift; sourceTree = "<group>"; };
 		4C53E38C21D5241300F2EC76 /* SmallerOrEqualOperatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallerOrEqualOperatorTest.swift; sourceTree = "<group>"; };
 		4C53E38F21D5247C00F2EC76 /* NotOperatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotOperatorTest.swift; sourceTree = "<group>"; };
@@ -2298,6 +2315,8 @@
 		4C5AEF0222F7037100280F8B /* CatrobatSetup+Sensors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CatrobatSetup+Sensors.swift"; sourceTree = "<group>"; };
 		4C5AEF0322F7037100280F8B /* CatrobatSetup+Bricks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CatrobatSetup+Bricks.swift"; sourceTree = "<group>"; };
 		4C5AEF0422F7037100280F8B /* CatrobatSetup+Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CatrobatSetup+Functions.swift"; sourceTree = "<group>"; };
+		4C5D6915254953B700391AD4 /* XCTestCaseExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XCTestCaseExtension.swift; path = CattyUITests/Extensions/XCTestCaseExtension.swift; sourceTree = SOURCE_ROOT; };
+		4C5D6917254953F300391AD4 /* XCUIElementExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XCUIElementExtension.swift; path = CattyUITests/Extensions/XCUIElementExtension.swift; sourceTree = SOURCE_ROOT; };
 		4C6066381A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GDataXMLNode+CustomExtensions.h"; sourceTree = "<group>"; };
 		4C6066391A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GDataXMLNode+CustomExtensions.m"; sourceTree = "<group>"; };
 		4C665F65253EEB2900A84BB6 /* RuntimeImageCacheTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuntimeImageCacheTests.swift; sourceTree = "<group>"; };
@@ -2485,7 +2504,7 @@
 		4CB0F9F120A1739400D1BE2F /* SizeSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SizeSensor.swift; sourceTree = "<group>"; };
 		4CB0F9F320A173B600D1BE2F /* RotationSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RotationSensor.swift; sourceTree = "<group>"; };
 		4CB0F9F520A1741400D1BE2F /* LayerSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayerSensor.swift; sourceTree = "<group>"; };
-		4CB1FB731BC2D74F0000A2FE /* UITestProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITestProtocol.swift; sourceTree = "<group>"; };
+		4CB1FB731BC2D74F0000A2FE /* XCTestCaseExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCTestCaseExtension.swift; sourceTree = "<group>"; };
 		4CB23D6F21E6613D00A0FEA7 /* DeleteItemOfUserListBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteItemOfUserListBrickTests.swift; sourceTree = "<group>"; };
 		4CB2CF9F1D7AD762009F3034 /* SetColorBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetColorBrick.h; sourceTree = "<group>"; };
 		4CB2CFA01D7AD762009F3034 /* SetColorBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetColorBrick.m; sourceTree = "<group>"; };
@@ -2572,6 +2591,7 @@
 		4CEB22701B95E4BC00B3BE2F /* BrickInsertManagerLogicTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickInsertManagerLogicTests.m; sourceTree = "<group>"; };
 		4CEB22711B95E4BC00B3BE2F /* BrickInsertManagerRepeatTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickInsertManagerRepeatTests.m; sourceTree = "<group>"; };
 		4CEB22721B95E4BC00B3BE2F /* BrickInsertManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickInsertManagerTests.m; sourceTree = "<group>"; };
+		4CECF3BD254969ED0031B024 /* LanguageTranslationDefinesUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LanguageTranslationDefinesUI.swift; path = CattyUITests/Defines/LanguageTranslationDefinesUI.swift; sourceTree = SOURCE_ROOT; };
 		4CEFFAD02105DE4800DC5CFE /* ObjectSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectSensor.swift; sourceTree = "<group>"; };
 		4CEFFAD82105E46400DC5CFE /* ObjectStringSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectStringSensor.swift; sourceTree = "<group>"; };
 		4CEFFAD92105E46400DC5CFE /* ObjectDoubleSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectDoubleSensor.swift; sourceTree = "<group>"; };
@@ -3732,20 +3752,20 @@
 		E4E5599620FCD6AD004B4A08 /* StoreProject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreProject.swift; sourceTree = "<group>"; };
 		E5505707FE2839B02A26E338 /* en-AU */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		E57396A397CC08132F593B32 /* en */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		E592D1552539DD6A00B9F288 /* ArduinoSendDigitalValueBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArduinoSendDigitalValueBrickTests.swift; sourceTree = "<group>"; };
-		E592D1592539E16400B9F288 /* ArduinoSendPWMValueBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArduinoSendPWMValueBrickTests.swift; sourceTree = "<group>"; };
-		E592D15B2539E1E300B9F288 /* IfThenLogicBeginBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IfThenLogicBeginBrickTests.swift; sourceTree = "<group>"; };
-		E57E6D84254040B400E775DF /* ChangeVolumeByNBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeVolumeByNBrickTests.swift; sourceTree = "<group>"; };
-		E57E6D862540414700E775DF /* SetVolumeToBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetVolumeToBrickTests.swift; sourceTree = "<group>"; };
-		E57E6D88254041BE00E775DF /* SpeakAndWaitBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakAndWaitBrickTests.swift; sourceTree = "<group>"; };
-		E57E6D8A2540427000E775DF /* SpeakBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakBrickTests.swift; sourceTree = "<group>"; };
-		E57E6D8E2540552F00E775DF /* AddItemToUserListBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemToUserListBrickTests.swift; sourceTree = "<group>"; };
 		E579F104253D88B4009107C8 /* PhiroMotorMoveBackwardBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhiroMotorMoveBackwardBrickTests.swift; sourceTree = "<group>"; };
 		E579F108253D9485009107C8 /* PhiroMotorMoveForwardBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhiroMotorMoveForwardBrickTests.swift; sourceTree = "<group>"; };
 		E579F10A253D98B0009107C8 /* PhiroPlayToneBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhiroPlayToneBrickTests.swift; sourceTree = "<group>"; };
 		E579F10C253D9C58009107C8 /* PhiroRGBLightBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhiroRGBLightBrickTests.swift; sourceTree = "<group>"; };
 		E579F10E253DAF20009107C8 /* SayBubbleBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SayBubbleBrickTests.swift; sourceTree = "<group>"; };
 		E579F110253DB124009107C8 /* SayForBubbleBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SayForBubbleBrickTests.swift; sourceTree = "<group>"; };
+		E57E6D84254040B400E775DF /* ChangeVolumeByNBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeVolumeByNBrickTests.swift; sourceTree = "<group>"; };
+		E57E6D862540414700E775DF /* SetVolumeToBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetVolumeToBrickTests.swift; sourceTree = "<group>"; };
+		E57E6D88254041BE00E775DF /* SpeakAndWaitBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakAndWaitBrickTests.swift; sourceTree = "<group>"; };
+		E57E6D8A2540427000E775DF /* SpeakBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakBrickTests.swift; sourceTree = "<group>"; };
+		E57E6D8E2540552F00E775DF /* AddItemToUserListBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemToUserListBrickTests.swift; sourceTree = "<group>"; };
+		E592D1552539DD6A00B9F288 /* ArduinoSendDigitalValueBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArduinoSendDigitalValueBrickTests.swift; sourceTree = "<group>"; };
+		E592D1592539E16400B9F288 /* ArduinoSendPWMValueBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArduinoSendPWMValueBrickTests.swift; sourceTree = "<group>"; };
+		E592D15B2539E1E300B9F288 /* IfThenLogicBeginBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IfThenLogicBeginBrickTests.swift; sourceTree = "<group>"; };
 		EACB63B95D9C0A7F1388E4F3 /* id */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/Localizable.strings; sourceTree = "<group>"; };
 		EC696D21025B1BA13FAA0039 /* he */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = he; path = he.lproj/Localizable.strings; sourceTree = "<group>"; };
 		ED43A997870B76068912C26D /* pt-BR */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -3795,6 +3815,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		187E079D24E26CED00E652C4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AAADA0011B9B29D500E0CA9A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -3935,6 +3962,17 @@
 			path = Pen;
 			sourceTree = "<group>";
 		};
+		187E07A124E26CED00E652C4 /* CattyUISnapshots */ = {
+			isa = PBXGroup;
+			children = (
+				4CECF3BC254969DF0031B024 /* Defines */,
+				4C5D6914254953A300391AD4 /* Extensions */,
+				4C5176A12541B72100601406 /* Supporting Files */,
+				187E07A224E26CED00E652C4 /* CattyUISnapshots.swift */,
+			);
+			path = CattyUISnapshots;
+			sourceTree = "<group>";
+		};
 		18B8021B246916CB00201847 /* Data */ = {
 			isa = PBXGroup;
 			children = (
@@ -3961,6 +3999,7 @@
 				CADBD7FB19B0E8C200C62836 /* Pocket Code.app */,
 				CA7698AA1B0E4A97000D0340 /* Catty Tests.xctest */,
 				AAADA0041B9B29D500E0CA9A /* Catty UITests.xctest */,
+				187E07A024E26CED00E652C4 /* Catty UISnapshots.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -3974,6 +4013,7 @@
 				B43498471927A3AB002F9075 /* Resources */,
 				B46B270317703F9400172837 /* CattyTests */,
 				AAADA0051B9B29D500E0CA9A /* CattyUITests */,
+				187E07A124E26CED00E652C4 /* CattyUISnapshots */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
@@ -4039,7 +4079,8 @@
 		2D010F4422240C6400CAAA06 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				2D010F4722240C9F00CAAA06 /* XCUIElement+staticTexts.swift */,
+				2D010F4722240C9F00CAAA06 /* XCUIElementExtension.swift */,
+				4CB1FB731BC2D74F0000A2FE /* XCTestCaseExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -5180,6 +5221,15 @@
 			path = LXReorderableCollectionViewFlowLayout;
 			sourceTree = "<group>";
 		};
+		4C5176A12541B72100601406 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				187E07A424E26CED00E652C4 /* Info.plist */,
+				4C5176A22541B92400601406 /* SnapshotHelper.swift */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		4C53E38B21D523ED00F2EC76 /* Binary */ = {
 			isa = PBXGroup;
 			children = (
@@ -5329,6 +5379,15 @@
 				4C5AEF0222F7037100280F8B /* CatrobatSetup+Sensors.swift */,
 			);
 			path = Setup;
+			sourceTree = "<group>";
+		};
+		4C5D6914254953A300391AD4 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				4C5D6917254953F300391AD4 /* XCUIElementExtension.swift */,
+				4C5D6915254953B700391AD4 /* XCTestCaseExtension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		4C6066371A5ACC3100F486CE /* GDataXMLNode+CustomExtensions */ = {
@@ -6144,14 +6203,6 @@
 			path = PlayerEngine/Formula;
 			sourceTree = "<group>";
 		};
-		4CB1FB721BC2D74F0000A2FE /* Protocol */ = {
-			isa = PBXGroup;
-			children = (
-				4CB1FB731BC2D74F0000A2FE /* UITestProtocol.swift */,
-			);
-			path = Protocol;
-			sourceTree = "<group>";
-		};
 		4CB4FE011B95DF2900431757 /* BrickManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -6467,6 +6518,14 @@
 				4CEB226E1B95E4BC00B3BE2F /* BrickInsertManagerAbstractTest.m */,
 			);
 			path = Abstract;
+			sourceTree = "<group>";
+		};
+		4CECF3BC254969DF0031B024 /* Defines */ = {
+			isa = PBXGroup;
+			children = (
+				4CECF3BD254969ED0031B024 /* LanguageTranslationDefinesUI.swift */,
+			);
+			name = Defines;
 			sourceTree = "<group>";
 		};
 		4CF0728220D657EB00F93AB5 /* Phiro */ = {
@@ -8914,7 +8973,6 @@
 			children = (
 				5E0B3620220A5ED40056EB12 /* Defines */,
 				2D010F4422240C6400CAAA06 /* Extensions */,
-				4CB1FB721BC2D74F0000A2FE /* Protocol */,
 				59DC626D23FAF7A6009C28E3 /* ScriptCollectionView */,
 				AAADA0081B9B29D500E0CA9A /* Info.plist */,
 				BCFED6EC2111C04000BE57BF /* BackgroundsTests.swift */,
@@ -9356,6 +9414,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		187E079F24E26CED00E652C4 /* Catty UISnapshots */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 187E07AB24E26CED00E652C4 /* Build configuration list for PBXNativeTarget "Catty UISnapshots" */;
+			buildPhases = (
+				187E079C24E26CED00E652C4 /* Sources */,
+				187E079D24E26CED00E652C4 /* Frameworks */,
+				187E079E24E26CED00E652C4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				187E07A624E26CED00E652C4 /* PBXTargetDependency */,
+			);
+			name = "Catty UISnapshots";
+			productName = CattyUISnapshots;
+			productReference = 187E07A024E26CED00E652C4 /* Catty UISnapshots.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		AAADA0031B9B29D500E0CA9A /* Catty UITests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = AAADA00D1B9B29D500E0CA9A /* Build configuration list for PBXNativeTarget "Catty UITests" */;
@@ -9424,9 +9500,14 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0700;
+				LastSwiftUpdateCheck = 1120;
 				LastUpgradeCheck = 1030;
 				TargetAttributes = {
+					187E079F24E26CED00E652C4 = {
+						CreatedOnToolsVersion = 11.2.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = CADBD6D319B0E8C200C62836;
+					};
 					AAADA0031B9B29D500E0CA9A = {
 						CreatedOnToolsVersion = 7.0;
 						LastSwiftMigration = 1020;
@@ -9540,6 +9621,7 @@
 				CADBD6D319B0E8C200C62836 /* Catty */,
 				CA7698A91B0E4A97000D0340 /* Catty Tests */,
 				AAADA0031B9B29D500E0CA9A /* Catty UITests */,
+				187E079F24E26CED00E652C4 /* Catty UISnapshots */,
 			);
 		};
 /* End PBXProject section */
@@ -9562,6 +9644,14 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
+		187E079E24E26CED00E652C4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				181A12C324E42B6E00358440 /* Localizable.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AAADA0021B9B29D500E0CA9A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -10086,6 +10176,18 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		187E079C24E26CED00E652C4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C5D6916254953B700391AD4 /* XCTestCaseExtension.swift in Sources */,
+				187E07A324E26CED00E652C4 /* CattyUISnapshots.swift in Sources */,
+				4CECF3BE254969ED0031B024 /* LanguageTranslationDefinesUI.swift in Sources */,
+				4C5D6918254953F400391AD4 /* XCUIElementExtension.swift in Sources */,
+				4C5176A32541B92400601406 /* SnapshotHelper.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AAADA0001B9B29D500E0CA9A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -10105,8 +10207,8 @@
 				2D227D94220B38E0008A2BC9 /* ScenePresenterVCTests.swift in Sources */,
 				4CF8747521C8E7AB00C8143F /* SoundsTVCTests.swift in Sources */,
 				BCFED6F8211318A100BE57BF /* ProjectTVCTests.swift in Sources */,
-				2D010F4822240C9F00CAAA06 /* XCUIElement+staticTexts.swift in Sources */,
-				4CB1FB741BC2D74F0000A2FE /* UITestProtocol.swift in Sources */,
+				2D010F4822240C9F00CAAA06 /* XCUIElementExtension.swift in Sources */,
+				4CB1FB741BC2D74F0000A2FE /* XCTestCaseExtension.swift in Sources */,
 				BC19327F21186504009DE43A /* CreateProjectTests.swift in Sources */,
 				BCFED6ED2111C04000BE57BF /* BackgroundsTests.swift in Sources */,
 			);
@@ -11300,6 +11402,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		187E07A624E26CED00E652C4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CADBD6D319B0E8C200C62836 /* Catty */;
+			targetProxy = 187E07A524E26CED00E652C4 /* PBXContainerItemProxy */;
+		};
 		AAADA00A1B9B29D500E0CA9A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = CADBD6D319B0E8C200C62836 /* Catty */;
@@ -11397,6 +11504,79 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		187E07A724E26CED00E652C4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = "CattyUISnapshots/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = org.catrobat.pocketcode.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Catty;
+			};
+			name = Debug;
+		};
+		187E07A824E26CED00E652C4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = "CattyUISnapshots/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = org.catrobat.pocketcode.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Catty;
+			};
+			name = Release;
+		};
 		AAADA00B1B9B29D500E0CA9A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -11829,6 +12009,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		187E07AB24E26CED00E652C4 /* Build configuration list for PBXNativeTarget "Catty UISnapshots" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				187E07A724E26CED00E652C4 /* Debug */,
+				187E07A824E26CED00E652C4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		AAADA00D1B9B29D500E0CA9A /* Build configuration list for PBXNativeTarget "Catty UITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -12,7 +12,7 @@ Install _fastlane_ using
 ```
 [sudo] gem install fastlane -NV
 ```
-or alternatively using `brew cask install fastlane`
+or alternatively using `brew install fastlane`
 
 # Available Actions
 ## iOS
@@ -36,11 +36,6 @@ Upload Development Build to Browserstack
 fastlane ios tests
 ```
 Run tests
-### ios test_reports
-```
-fastlane ios test_reports
-```
-Collate all test reports
 ### ios crowdin_upload
 ```
 fastlane ios crowdin_upload
@@ -66,6 +61,11 @@ Download dSYMs from Apple and upload to Firebase Crashlytics
 fastlane ios release
 ```
 Release Pocket Code to Testflight
+### ios screenshots
+```
+fastlane ios screenshots
+```
+Generate localized screenshots for Pocket Code
 
 ----
 
