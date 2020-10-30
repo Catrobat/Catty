@@ -2,34 +2,34 @@
 <program>
   <header>
     <applicationBuildName>Catty</applicationBuildName>
-    <applicationBuildNumber>24</applicationBuildNumber>
+    <applicationBuildNumber>18</applicationBuildNumber>
     <applicationName>Pocket Code</applicationName>
-    <applicationVersion>0.6.9</applicationVersion>
+    <applicationVersion>0.6.4</applicationVersion>
     <catrobatLanguageVersion>0.993</catrobatLanguageVersion>
     <dateTimeUpload></dateTimeUpload>
-    <description>Hello, this is an escaping char test: @ &amp; € „ ‚ ? # ~ £ ¥ 🍺 🎉 🔬</description>
-    <deviceName>iPhone9,3</deviceName>
+    <description></description>
+    <deviceName>x86_64</deviceName>
     <landscapeMode>false</landscapeMode>
-    <mediaLicense>http://developer.catrobat.org/ccbysa_v4</mediaLicense>
+    <mediaLicense>http://developer.catrobat.org/ccbysa_v3</mediaLicense>
     <platform>iOS</platform>
     <platformVersion>12.0</platformVersion>
     <programLicense>http://developer.catrobat.org/agpl_v3</programLicense>
-    <programName>EscapingChars</programName>
+    <programName>WaitUntilBrickTest</programName>
     <remixOf></remixOf>
     <scenesEnabled>true</scenesEnabled>
     <screenHeight>1334</screenHeight>
     <screenMode>STRETCH</screenMode>
     <screenWidth>750</screenWidth>
     <tags></tags>
-    <url>/pocketcode/program/91168</url>
-    <userHandle>gatcodedev</userHandle>
+    <url></url>
+    <userHandle></userHandle>
   </header>
   <settings/>
   <scenes>
     <scene>
       <name>Scene 1</name>
       <objectList>
-        <object type="SingleSprite" name="Hintergrund">
+        <object type="SingleSprite" name="Background">
           <lookList/>
           <nfcTagList/>
           <scriptList>
@@ -40,55 +40,51 @@
                   <formulaList>
                     <formula category="VARIABLE">
                       <type>NUMBER</type>
-                      <value>1</value>
+                      <value>0</value>
                     </formula>
                   </formulaList>
-                  <userVariable>escape &quot; &amp; &lt;&gt; ⚙️</userVariable>
+                  <userVariable>testVar</userVariable>
                 </brick>
-                <brick type="ChangeXByNBrick">
+                <brick type="SetVariableBrick">
                   <commentedOut>false</commentedOut>
                   <formulaList>
-                    <formula category="X_POSITION_CHANGE">
-                      <type>USER_VARIABLE</type>
-                      <value>escape &quot; &amp; &lt;&gt; ⚙️</value>
+                    <formula category="VARIABLE">
+                      <type>NUMBER</type>
+                      <value>0</value>
                     </formula>
                   </formulaList>
+                  <userVariable>hasFinishedWaiting</userVariable>
                 </brick>
-                <brick type="SetXBrick">
+                <brick type="WaitUntilBrick">
                   <commentedOut>false</commentedOut>
                   <formulaList>
-                    <formula category="X_POSITION">
+                    <formula category="IF_CONDITION">
                       <leftChild>
-                        <type>NUMBER</type>
-                        <value>10</value>
+                        <type>USER_VARIABLE</type>
+                        <value>testVar</value>
                       </leftChild>
                       <rightChild>
                         <type>NUMBER</type>
-                        <value>2</value>
+                        <value>1</value>
                       </rightChild>
                       <type>OPERATOR</type>
-                      <value>GREATER_OR_EQUAL</value>
+                      <value>EQUAL</value>
                     </formula>
                   </formulaList>
+                </brick>
+                <brick type="SetVariableBrick">
+                  <commentedOut>false</commentedOut>
+                  <formulaList>
+                    <formula category="VARIABLE">
+                      <type>NUMBER</type>
+                      <value>1</value>
+                    </formula>
+                  </formulaList>
+                  <userVariable reference="../../brick[2]/userVariable"/>
                 </brick>
               </brickList>
               <commentedOut>false</commentedOut>
               <isUserScript>false</isUserScript>
-            </script>
-            <script type="BroadcastScript">
-              <brickList>
-                <brick type="ChangeXByNBrick">
-                  <commentedOut>false</commentedOut>
-                  <formulaList>
-                    <formula category="X_POSITION_CHANGE">
-                      <type>SENSOR</type>
-                      <value>OBJECT_BRIGHTNESS</value>
-                    </formula>
-                  </formulaList>
-                </brick>
-              </brickList>
-              <commentedOut>false</commentedOut>
-              <receivedMessage>&amp;€@45</receivedMessage>
             </script>
           </scriptList>
           <soundList/>
@@ -106,6 +102,7 @@
   </scenes>
   <programVariableList>
     <userVariable reference="../../scenes/scene/objectList/object/scriptList/script/brickList/brick/userVariable"/>
+    <userVariable reference="../../scenes/scene/objectList/object/scriptList/script/brickList/brick[2]/userVariable"/>
   </programVariableList>
   <programListOfLists/>
 </program>
