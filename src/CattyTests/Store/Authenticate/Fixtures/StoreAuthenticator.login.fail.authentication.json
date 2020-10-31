@@ -1,0 +1,40 @@
+{
+  "interactions" : [
+    {
+      "response" : {
+        "headers" : {
+          "x-debug-token-link" : "http:\/\/web-test.catrob.at\/_profiler\/5111dc",
+          "x-debug-token" : "5111dc",
+          "Pragma" : "no-cache",
+          "x-robots-tag" : "noindex",
+          "Expires" : "Sat, 31 Oct 2020 06:49:38 GMT",
+          "Content-Type" : "application\/json",
+          "Strict-Transport-Security" : "max-age=15768000",
+          "Cache-Control" : "max-age=0, must-revalidate, private",
+          "Server" : "nginx",
+          "Content-Encoding" : "gzip",
+          "Date" : "Sat, 31 Oct 2020 06:49:38 GMT",
+          "Set-Cookie" : "PHPSESSID=6r9892g2olsdmlvpv6ov1pfioa; path=\/; HttpOnly"
+        },
+        "url" : "https:\/\/web-test.catrob.at\/pocketcode\/api\/login\/Login.json",
+        "status" : 200,
+        "body" : {
+          "answer" : "The password or username was incorrect.",
+          "statusCode" : 601,
+          "preHeaderMessages" : ""
+        }
+      },
+      "recorded_at" : 1604126979.3846841,
+      "request" : {
+        "url" : "https:\/\/web-test.catrob.at\/pocketcode\/api\/login\/Login.json",
+        "method" : "POST",
+        "body" : "LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS05ODU5ODI2MzU5NjU5ODI0NjUwODI0NzA5ODI5MS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KQ29udGVudC1EaXNwb3NpdGlvbjogZm9ybS1kYXRhOyBuYW1lPSJyZWdpc3RyYXRpb25Vc2VybmFtZSINCg0KdGVzdF91c2VyDQotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLTk4NTk4MjYzNTk2NTk4MjQ2NTA4MjQ3MDk4MjkxLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQpDb250ZW50LURpc3Bvc2l0aW9uOiBmb3JtLWRhdGE7IG5hbWU9InJlZ2lzdHJhdGlvblBhc3N3b3JkIg0KDQppbmNvcnJlY3RfcGFzc3dvcmQNCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tOTg1OTgyNjM1OTY1OTgyNDY1MDgyNDcwOTgyOTEtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0K",
+        "headers" : {
+          "Content-Type" : "multipart\/form-data; boundary=---------------------------98598263596598246508247098291---------------------------",
+          "Content-Length" : "420"
+        }
+      }
+    }
+  ],
+  "name" : "StoreAuthenticator.login.fail.authentication"
+}

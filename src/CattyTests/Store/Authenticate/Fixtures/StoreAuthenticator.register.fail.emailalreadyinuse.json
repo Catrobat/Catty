@@ -1,0 +1,40 @@
+{
+  "interactions" : [
+    {
+      "recorded_at" : 1604145829.5476642,
+      "request" : {
+        "url" : "https:\/\/web-test.catrob.at\/pocketcode\/api\/register\/Register.json",
+        "body" : "LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS05ODU5ODI2MzU5NjU5ODI0NjUwODI0NzA5ODI5MS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KQ29udGVudC1EaXNwb3NpdGlvbjogZm9ybS1kYXRhOyBuYW1lPSJyZWdpc3RyYXRpb25Vc2VybmFtZSINCg0KdGVzdF91c2VyMg0KLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS05ODU5ODI2MzU5NjU5ODI0NjUwODI0NzA5ODI5MS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KQ29udGVudC1EaXNwb3NpdGlvbjogZm9ybS1kYXRhOyBuYW1lPSJyZWdpc3RyYXRpb25QYXNzd29yZCINCg0KbmV3X3Rlc3RfdXNlcl9wYXNzd29yZA0KLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS05ODU5ODI2MzU5NjU5ODI0NjUwODI0NzA5ODI5MS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KQ29udGVudC1EaXNwb3NpdGlvbjogZm9ybS1kYXRhOyBuYW1lPSJyZWdpc3RyYXRpb25FbWFpbCINCg0KdGVzdF91c2VyQGVtYWlsLmNvbQ0KLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS05ODU5ODI2MzU5NjU5ODI0NjUwODI0NzA5ODI5MS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KQ29udGVudC1EaXNwb3NpdGlvbjogZm9ybS1kYXRhOyBuYW1lPSJyZWdpc3RyYXRpb25Db3VudHJ5Ig0KDQpVUw0KLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS05ODU5ODI2MzU5NjU5ODI0NjUwODI0NzA5ODI5MS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQo=",
+        "headers" : {
+          "Content-Length" : "746",
+          "Content-Type" : "multipart\/form-data; boundary=---------------------------98598263596598246508247098291---------------------------"
+        },
+        "method" : "POST"
+      },
+      "response" : {
+        "headers" : {
+          "Expires" : "Sat, 31 Oct 2020 12:03:48 GMT",
+          "Server" : "nginx",
+          "Pragma" : "no-cache",
+          "x-debug-token" : "3ff581",
+          "Cache-Control" : "max-age=0, must-revalidate, private",
+          "Date" : "Sat, 31 Oct 2020 12:03:49 GMT",
+          "Strict-Transport-Security" : "max-age=15768000",
+          "Content-Type" : "application\/json",
+          "Set-Cookie" : "PHPSESSID=src5i0v310596ios7pfh9gjcvd; path=\/; HttpOnly",
+          "Content-Encoding" : "gzip",
+          "x-debug-token-link" : "http:\/\/web-test.catrob.at\/_profiler\/3ff581",
+          "x-robots-tag" : "noindex"
+        },
+        "status" : 200,
+        "body" : {
+          "answer" : "This email address already exists.",
+          "statusCode" : 757,
+          "preHeaderMessages" : ""
+        },
+        "url" : "https:\/\/web-test.catrob.at\/pocketcode\/api\/register\/Register.json"
+      }
+    }
+  ],
+  "name" : "StoreAuthenticator.register.fail.emailalreadyinuse"
+}
