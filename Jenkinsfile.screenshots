@@ -1,0 +1,49 @@
+#!/usr/bin/env groovy
+
+pipeline {
+  agent {
+    label 'MAC'
+  }
+  parameters {
+    gitParameter defaultValue: 'origin/master', name: 'gitBranch', type: 'BRANCH', description: 'Select the branch you want to build e.g. origin/master.'
+    password name: 'CI_PASSWORD', description: ''
+    password name: 'FASTLANE_SESSION', description: ''
+    password name: 'FIREBASE_API_KEY', description: ''
+    password name: 'FIREBASE_GOOGLE_APP_ID', description: ''
+  }
+  options {
+    timeout(time: 2, unit: 'HOURS')
+    timestamps()
+    buildDiscarder(logRotator(numToKeepStr: '30', artifactNumToKeepStr: '30'))
+  }
+
+  stages {
+    stage('Unlock keychain') {
+      steps {
+        withCredentials([usernamePassword(credentialsId: 'eb111b76-63f8-4546-bc26-5fcb94721e1a', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
+          script {
+            unlockMACKeychain "${PASSWORD}"
+          }
+        }
+      }
+    }
+
+    stage('Take Catty_Screenshots') {
+      steps {
+        sh 'fastlane ios screenshots'
+      }
+    }
+    stage('Save Catty_Screenshots artifacts') {
+      steps {
+        sh 'archiveArtifacts artifacts: 'src/fastlane/screenshots/*.png'
+      }
+    }
+  }
+
+  post {
+    always {
+      // clean workspace
+      deleteDir()
+    }
+  }
+}
