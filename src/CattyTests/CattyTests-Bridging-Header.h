@@ -32,6 +32,8 @@
 #import "BaseCollectionViewController.h"
 #import "ScriptCollectionViewController.h"
 #import "FormulaEditorViewController.h"
+#import "LookImageViewController.h"
+#import "LooksTableViewController.h"
 #import "PaintViewController.h"
 #import "BrickCellMessageData.h"
 #import "BroadcastBrickCell.h"

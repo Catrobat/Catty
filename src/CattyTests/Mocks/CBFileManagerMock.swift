@@ -23,6 +23,8 @@
 @testable import Pocket_Code
 
 final class CBFileManagerMock: CBFileManager {
+    var dataWritten: [String: Data]
+
     private var existingFiles: [String]
     private var existingDirectories: [String]
     private var zipData: Data?
@@ -36,6 +38,7 @@ final class CBFileManagerMock: CBFileManager {
     init(filePath: [String], directoryPath: [String]) {
         self.existingFiles = filePath
         self.existingDirectories = directoryPath
+        self.dataWritten = [:]
     }
 
     convenience init(zipData: Data) {
@@ -68,6 +71,7 @@ final class CBFileManagerMock: CBFileManager {
     override func writeData(_ data: Data, path: String) {
         if !existingFiles.contains(path) {
             existingFiles.append(path)
+            dataWritten[path] = data
         }
     }
 

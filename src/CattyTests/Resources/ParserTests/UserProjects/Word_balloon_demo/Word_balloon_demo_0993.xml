@@ -1,18 +1,18 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <program>
   <header>
-    <applicationBuildName/>
+    <applicationBuildName></applicationBuildName>
     <applicationBuildNumber>0</applicationBuildNumber>
     <applicationName>Pocket Code</applicationName>
-    <applicationVersion>0.9.28</applicationVersion>
+    <applicationVersion>0.9.0</applicationVersion>
     <catrobatLanguageVersion>0.993</catrobatLanguageVersion>
-    <dateTimeUpload/>
+    <dateTimeUpload></dateTimeUpload>
     <description>I made the word balloons using PicSay. Details =&gt; http://catrob.at/WordBalloonExplanation</description>
-    <deviceName>PRA-LX1</deviceName>
+    <deviceName>HTC Sensation Z710e</deviceName>
     <landscapeMode>false</landscapeMode>
-    <mediaLicense>http://developer.catrobat.org/ccbysa_v4</mediaLicense>
+    <mediaLicense>http://developer.catrobat.org/ccbysa_v3</mediaLicense>
     <platform>Android</platform>
-    <platformVersion>26.0</platformVersion>
+    <platformVersion>15.0</platformVersion>
     <programLicense>http://developer.catrobat.org/agpl_v3</programLicense>
     <programName>Word balloon demo</programName>
     <remixOf>http://pocketcode.org/details/0</remixOf>
@@ -20,14 +20,14 @@
     <screenHeight>960</screenHeight>
     <screenMode>STRETCH</screenMode>
     <screenWidth>540</screenWidth>
-    <tags>Spiele</tags>
-    <url>/pocketcode/program/828</url>
+    <tags></tags>
+    <url>http://pocketcode.org/details/828</url>
     <userHandle>hej-wickie-hej</userHandle>
   </header>
   <settings/>
   <scenes>
     <scene>
-      <name>Szene 1</name>
+      <name>Scene 1</name>
       <objectList>
         <object type="SingleSprite" name="Background">
           <lookList>
@@ -51,9 +51,9 @@
           <soundList/>
           <userBricks/>
         </object>
-        <object type="SingleSprite" name="Scratch's cat">
+        <object type="SingleSprite" name="Scratch&apos;s cat">
           <lookList>
-            <look name="Scratch' cat">
+            <look name="Scratch&apos; cat">
               <fileName>EF0968C51AD708EDA1D3B556BFAEAF46_cat1-a.gif</fileName>
             </look>
           </lookList>
@@ -88,13 +88,13 @@
                 <brick type="PlaceAtBrick">
                   <commentedOut>false</commentedOut>
                   <formulaList>
-                    <formula category="X_POSITION">
-                      <type>USER_VARIABLE</type>
-                      <value>cat offset x</value>
-                    </formula>
                     <formula category="Y_POSITION">
                       <type>USER_VARIABLE</type>
                       <value>cat offset y</value>
+                    </formula>
+                    <formula category="X_POSITION">
+                      <type>USER_VARIABLE</type>
+                      <value>cat offset x</value>
                     </formula>
                   </formulaList>
                 </brick>
@@ -184,13 +184,13 @@
                       <type>NUMBER</type>
                       <value>1.0</value>
                     </formula>
-                    <formula category="X_DESTINATION">
-                      <type>USER_VARIABLE</type>
-                      <value>random x</value>
-                    </formula>
                     <formula category="Y_DESTINATION">
                       <type>USER_VARIABLE</type>
                       <value>random y</value>
+                    </formula>
+                    <formula category="X_DESTINATION">
+                      <type>USER_VARIABLE</type>
+                      <value>random x</value>
                     </formula>
                   </formulaList>
                 </brick>
@@ -218,10 +218,6 @@
                 <brick type="PlaceAtBrick">
                   <commentedOut>false</commentedOut>
                   <formulaList>
-                    <formula category="X_POSITION">
-                      <type>NUMBER</type>
-                      <value>150</value>
-                    </formula>
                     <formula category="Y_POSITION">
                       <rightChild>
                         <type>NUMBER</type>
@@ -229,6 +225,10 @@
                       </rightChild>
                       <type>OPERATOR</type>
                       <value>MINUS</value>
+                    </formula>
+                    <formula category="X_POSITION">
+                      <type>NUMBER</type>
+                      <value>150</value>
                     </formula>
                   </formulaList>
                 </brick>
@@ -284,13 +284,13 @@
                 <brick type="PlaceAtBrick">
                   <commentedOut>false</commentedOut>
                   <formulaList>
-                    <formula category="X_POSITION">
-                      <type>USER_VARIABLE</type>
-                      <value>offset x</value>
-                    </formula>
                     <formula category="Y_POSITION">
                       <type>USER_VARIABLE</type>
                       <value>offset y</value>
+                    </formula>
+                    <formula category="X_POSITION">
+                      <type>USER_VARIABLE</type>
+                      <value>offset x</value>
                     </formula>
                   </formulaList>
                 </brick>
@@ -322,26 +322,6 @@
                       <type>NUMBER</type>
                       <value>1.0</value>
                     </formula>
-                    <formula category="X_DESTINATION">
-                      <leftChild>
-                        <leftChild>
-                          <type>USER_VARIABLE</type>
-                          <value>random x</value>
-                        </leftChild>
-                        <rightChild>
-                          <type>USER_VARIABLE</type>
-                          <value>offset x</value>
-                        </rightChild>
-                        <type>OPERATOR</type>
-                        <value>PLUS</value>
-                      </leftChild>
-                      <rightChild>
-                        <type>USER_VARIABLE</type>
-                        <value>cat offset x</value>
-                      </rightChild>
-                      <type>OPERATOR</type>
-                      <value>MINUS</value>
-                    </formula>
                     <formula category="Y_DESTINATION">
                       <leftChild>
                         <leftChild>
@@ -358,6 +338,26 @@
                       <rightChild>
                         <type>USER_VARIABLE</type>
                         <value>cat offset y</value>
+                      </rightChild>
+                      <type>OPERATOR</type>
+                      <value>MINUS</value>
+                    </formula>
+                    <formula category="X_DESTINATION">
+                      <leftChild>
+                        <leftChild>
+                          <type>USER_VARIABLE</type>
+                          <value>random x</value>
+                        </leftChild>
+                        <rightChild>
+                          <type>USER_VARIABLE</type>
+                          <value>offset x</value>
+                        </rightChild>
+                        <type>OPERATOR</type>
+                        <value>PLUS</value>
+                      </leftChild>
+                      <rightChild>
+                        <type>USER_VARIABLE</type>
+                        <value>cat offset x</value>
                       </rightChild>
                       <type>OPERATOR</type>
                       <value>MINUS</value>
@@ -401,4 +401,3 @@
   </programVariableList>
   <programListOfLists/>
 </program>
-

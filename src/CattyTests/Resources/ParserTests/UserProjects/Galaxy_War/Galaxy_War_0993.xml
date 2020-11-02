@@ -1,35 +1,35 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <program>
   <header>
-    <applicationBuildName/>
+    <applicationBuildName></applicationBuildName>
     <applicationBuildNumber>0</applicationBuildNumber>
     <applicationName>Pocket Code</applicationName>
-    <applicationVersion>0.9.28</applicationVersion>
+    <applicationVersion>0.7.0beta</applicationVersion>
     <catrobatLanguageVersion>0.993</catrobatLanguageVersion>
-    <dateTimeUpload/>
+    <dateTimeUpload></dateTimeUpload>
     <description>Control the ship by tilting the phone and shoot down as many enemies as possible.</description>
-    <deviceName>PRA-LX1</deviceName>
+    <deviceName>Nexus 4</deviceName>
     <landscapeMode>false</landscapeMode>
-    <mediaLicense>http://developer.catrobat.org/ccbysa_v4</mediaLicense>
+    <mediaLicense>http://developer.catrobat.org/ccbysa_v3</mediaLicense>
     <platform>Android</platform>
-    <platformVersion>26.0</platformVersion>
+    <platformVersion>17.0</platformVersion>
     <programLicense>http://developer.catrobat.org/agpl_v3</programLicense>
     <programName>Galaxy War</programName>
-    <remixOf>http://pocketcode.org/details/719</remixOf>
+    <remixOf>https://pocketcode.org/details/719</remixOf>
     <scenesEnabled>true</scenesEnabled>
     <screenHeight>1184</screenHeight>
     <screenMode>STRETCH</screenMode>
     <screenWidth>768</screenWidth>
-    <tags>Spiele</tags>
-    <url>/pocketcode/program/719</url>
+    <tags></tags>
+    <url>http://pocketcode.org/details/719</url>
     <userHandle>DavidR</userHandle>
   </header>
   <settings/>
   <scenes>
     <scene>
-      <name>Szene 1</name>
+      <name>Scene 1</name>
       <objectList>
-        <object type="SingleSprite" name="Hintergrund">
+        <object type="SingleSprite" name="Background">
           <lookList>
             <look name="Space_Background_bigger">
               <fileName>827829F8866ACCF1050373EC6DFBAD98_Space_Background_bigger.gif</fileName>
@@ -217,10 +217,6 @@
                 <brick type="PlaceAtBrick">
                   <commentedOut>false</commentedOut>
                   <formulaList>
-                    <formula category="X_POSITION">
-                      <type>NUMBER</type>
-                      <value>0</value>
-                    </formula>
                     <formula category="Y_POSITION">
                       <rightChild>
                         <type>NUMBER</type>
@@ -228,6 +224,10 @@
                       </rightChild>
                       <type>OPERATOR</type>
                       <value>MINUS</value>
+                    </formula>
+                    <formula category="X_POSITION">
+                      <type>NUMBER</type>
+                      <value>0</value>
                     </formula>
                   </formulaList>
                 </brick>
@@ -739,6 +739,10 @@
                 <brick type="PlaceAtBrick">
                   <commentedOut>false</commentedOut>
                   <formulaList>
+                    <formula category="Y_POSITION">
+                      <type>NUMBER</type>
+                      <value>550</value>
+                    </formula>
                     <formula category="X_POSITION">
                       <leftChild>
                         <rightChild>
@@ -754,10 +758,6 @@
                       </rightChild>
                       <type>FUNCTION</type>
                       <value>RAND</value>
-                    </formula>
-                    <formula category="Y_POSITION">
-                      <type>NUMBER</type>
-                      <value>550</value>
                     </formula>
                   </formulaList>
                 </brick>
@@ -957,7 +957,7 @@
                   <formulaList>
                     <formula category="NOTE">
                       <type>STRING</type>
-                      <value>Place somewhere outside the screen so laserbeam can't hit again.</value>
+                      <value>Place somewhere outside the screen so laserbeam can&apos;t hit again.</value>
                     </formula>
                   </formulaList>
                 </brick>
@@ -1012,6 +1012,10 @@
                 <brick type="PlaceAtBrick">
                   <commentedOut>false</commentedOut>
                   <formulaList>
+                    <formula category="Y_POSITION">
+                      <type>NUMBER</type>
+                      <value>1000</value>
+                    </formula>
                     <formula category="X_POSITION">
                       <rightChild>
                         <type>NUMBER</type>
@@ -1019,10 +1023,6 @@
                       </rightChild>
                       <type>OPERATOR</type>
                       <value>MINUS</value>
-                    </formula>
-                    <formula category="Y_POSITION">
-                      <type>NUMBER</type>
-                      <value>1000</value>
                     </formula>
                   </formulaList>
                 </brick>
@@ -1112,6 +1112,10 @@
                 <brick type="PlaceAtBrick">
                   <commentedOut>false</commentedOut>
                   <formulaList>
+                    <formula category="Y_POSITION">
+                      <type>NUMBER</type>
+                      <value>550</value>
+                    </formula>
                     <formula category="X_POSITION">
                       <leftChild>
                         <rightChild>
@@ -1127,10 +1131,6 @@
                       </rightChild>
                       <type>FUNCTION</type>
                       <value>RAND</value>
-                    </formula>
-                    <formula category="Y_POSITION">
-                      <type>NUMBER</type>
-                      <value>550</value>
                     </formula>
                   </formulaList>
                 </brick>
@@ -1330,7 +1330,7 @@
                   <formulaList>
                     <formula category="NOTE">
                       <type>STRING</type>
-                      <value>Place somewhere outside the screen so laserbeam can't hit again.</value>
+                      <value>Place somewhere outside the screen so laserbeam can&apos;t hit again.</value>
                     </formula>
                   </formulaList>
                 </brick>
@@ -1385,6 +1385,10 @@
                 <brick type="PlaceAtBrick">
                   <commentedOut>false</commentedOut>
                   <formulaList>
+                    <formula category="Y_POSITION">
+                      <type>NUMBER</type>
+                      <value>1000</value>
+                    </formula>
                     <formula category="X_POSITION">
                       <rightChild>
                         <type>NUMBER</type>
@@ -1392,10 +1396,6 @@
                       </rightChild>
                       <type>OPERATOR</type>
                       <value>MINUS</value>
-                    </formula>
-                    <formula category="Y_POSITION">
-                      <type>NUMBER</type>
-                      <value>1000</value>
                     </formula>
                   </formulaList>
                 </brick>
@@ -1485,6 +1485,10 @@
                 <brick type="PlaceAtBrick">
                   <commentedOut>false</commentedOut>
                   <formulaList>
+                    <formula category="Y_POSITION">
+                      <type>NUMBER</type>
+                      <value>550</value>
+                    </formula>
                     <formula category="X_POSITION">
                       <leftChild>
                         <rightChild>
@@ -1500,10 +1504,6 @@
                       </rightChild>
                       <type>FUNCTION</type>
                       <value>RAND</value>
-                    </formula>
-                    <formula category="Y_POSITION">
-                      <type>NUMBER</type>
-                      <value>550</value>
                     </formula>
                   </formulaList>
                 </brick>
@@ -1703,7 +1703,7 @@
                   <formulaList>
                     <formula category="NOTE">
                       <type>STRING</type>
-                      <value>Place somewhere outside the screen so laserbeam can't hit again.</value>
+                      <value>Place somewhere outside the screen so laserbeam can&apos;t hit again.</value>
                     </formula>
                   </formulaList>
                 </brick>
@@ -1758,6 +1758,10 @@
                 <brick type="PlaceAtBrick">
                   <commentedOut>false</commentedOut>
                   <formulaList>
+                    <formula category="Y_POSITION">
+                      <type>NUMBER</type>
+                      <value>1000</value>
+                    </formula>
                     <formula category="X_POSITION">
                       <rightChild>
                         <type>NUMBER</type>
@@ -1765,10 +1769,6 @@
                       </rightChild>
                       <type>OPERATOR</type>
                       <value>MINUS</value>
-                    </formula>
-                    <formula category="Y_POSITION">
-                      <type>NUMBER</type>
-                      <value>1000</value>
                     </formula>
                   </formulaList>
                 </brick>
@@ -1858,6 +1858,10 @@
                 <brick type="PlaceAtBrick">
                   <commentedOut>false</commentedOut>
                   <formulaList>
+                    <formula category="Y_POSITION">
+                      <type>NUMBER</type>
+                      <value>550</value>
+                    </formula>
                     <formula category="X_POSITION">
                       <leftChild>
                         <rightChild>
@@ -1873,10 +1877,6 @@
                       </rightChild>
                       <type>FUNCTION</type>
                       <value>RAND</value>
-                    </formula>
-                    <formula category="Y_POSITION">
-                      <type>NUMBER</type>
-                      <value>550</value>
                     </formula>
                   </formulaList>
                 </brick>
@@ -2076,7 +2076,7 @@
                   <formulaList>
                     <formula category="NOTE">
                       <type>STRING</type>
-                      <value>Place somewhere outside the screen so laserbeam can't hit again.</value>
+                      <value>Place somewhere outside the screen so laserbeam can&apos;t hit again.</value>
                     </formula>
                   </formulaList>
                 </brick>
@@ -2131,6 +2131,10 @@
                 <brick type="PlaceAtBrick">
                   <commentedOut>false</commentedOut>
                   <formulaList>
+                    <formula category="Y_POSITION">
+                      <type>NUMBER</type>
+                      <value>1000</value>
+                    </formula>
                     <formula category="X_POSITION">
                       <rightChild>
                         <type>NUMBER</type>
@@ -2138,10 +2142,6 @@
                       </rightChild>
                       <type>OPERATOR</type>
                       <value>MINUS</value>
-                    </formula>
-                    <formula category="Y_POSITION">
-                      <type>NUMBER</type>
-                      <value>1000</value>
                     </formula>
                   </formulaList>
                 </brick>
@@ -2219,15 +2219,7 @@
         <objectListOfList/>
         <objectVariableList>
           <entry>
-            <object reference="../../../../objectList/object[5]"/>
-            <list/>
-          </entry>
-          <entry>
-            <object reference="../../../../objectList/object"/>
-            <list/>
-          </entry>
-          <entry>
-            <object reference="../../../../objectList/object[4]"/>
+            <object reference="../../../../objectList/object[3]"/>
             <list/>
           </entry>
           <entry>
@@ -2235,15 +2227,23 @@
             <list/>
           </entry>
           <entry>
-            <object reference="../../../../objectList/object[2]"/>
-            <list/>
-          </entry>
-          <entry>
-            <object reference="../../../../objectList/object[3]"/>
+            <object reference="../../../../objectList/object[5]"/>
             <list/>
           </entry>
           <entry>
             <object reference="../../../../objectList/object[7]"/>
+            <list/>
+          </entry>
+          <entry>
+            <object reference="../../../../objectList/object"/>
+            <list/>
+          </entry>
+          <entry>
+            <object reference="../../../../objectList/object[2]"/>
+            <list/>
+          </entry>
+          <entry>
+            <object reference="../../../../objectList/object[4]"/>
             <list/>
           </entry>
         </objectVariableList>
@@ -2262,4 +2262,3 @@
   </programVariableList>
   <programListOfLists/>
 </program>
-

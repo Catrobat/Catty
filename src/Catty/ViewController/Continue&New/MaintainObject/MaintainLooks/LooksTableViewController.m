@@ -310,24 +310,22 @@
     imageCell.iconImageView.image = nil;
 
     imageCell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
-    RuntimeImageCache *imageCache = [RuntimeImageCache sharedImageCache];
-    NSString *previewImagePath = [self.object previewImagePathForLookAtIndex:indexPath.row];
-    NSString *imagePath = [look pathForScene:self.object.scene];
     imageCell.iconImageView.image = nil;
     imageCell.indexPath = indexPath;
+    
+    RuntimeImageCache *imageCache = [RuntimeImageCache sharedImageCache];
+    NSString *imagePath = [look pathForScene:self.object.scene];
 
-    UIImage *image = [imageCache cachedImageForPath:previewImagePath];
+    UIImage *image = [imageCache cachedImageForPath:imagePath andSize:UIDefines.previewImageSize];
     if (! image) {
-        [imageCache loadThumbnailImageFromDiskWithThumbnailPath:previewImagePath
-                                                      imagePath:imagePath
-                                                  thumbnailFrameSize:CGSizeMake(kPreviewThumbnailWidth, kPreviewThumbnailHeight)
-                                                   onCompletion:^(UIImage *img, NSString* path){
-                                                       // check if cell still needed
-                                                       if ([imageCell.indexPath isEqual:indexPath]) {
-                                                           imageCell.iconImageView.image = img;
-                                                           [imageCell setNeedsLayout];
-                                                       }
-                                                   }];
+        [imageCache loadImageFromDiskWithPath:imagePath
+                                      andSize:UIDefines.previewImageSize
+                                 onCompletion:^(UIImage *img, NSString* path) {
+            if ([imageCell.indexPath isEqual:indexPath]) {
+                imageCell.iconImageView.image = img;
+                [imageCell setNeedsLayout];
+            }
+        }];
     } else {
         imageCell.iconImageView.image = image;
     }
@@ -824,19 +822,7 @@
         [self.object.scene.project saveToDiskWithNotification:YES];
         
         RuntimeImageCache *cache = [RuntimeImageCache sharedImageCache];
-        
-        NSString *previewImageName =  [NSString stringWithFormat:@"%@%@%@",
-                                       [fileName substringToIndex:result.location+1],
-                                       kPreviewImageNamePrefix,
-                                       [fileName substringFromIndex:(result.location+1)]
-                                       ];
-        
-        
-        NSString *filePath = [NSString stringWithFormat:@"%@/%@", imageDirPath, previewImageName];
-        [cache overwriteThumbnailImageFromDiskWithThumbnailPath:filePath image:image thumbnailFrameSize:CGSizeMake(kPreviewThumbnailWidth, kPreviewThumbnailHeight)];
-        
-        
-        [cache replaceImage:image withName:filePath];
+        [cache clearImageCache];
     } else {
           NSDebug(@"SAVING");  // add image to object now
         [self showLoadingView];

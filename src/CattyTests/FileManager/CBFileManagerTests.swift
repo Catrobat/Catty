@@ -128,32 +128,17 @@ final class CBFileManagerTests: XCTestCase {
             return
         }
 
-        let manualScreenshotThumbnailPath = info.basePath + kScreenshotThumbnailPrefix + kScreenshotManualFilename
-        let manualScreenshotCached = UIImage(color: UIColor.green)!
-        let manualScreenshotOnDisk = UIImage(color: UIColor.yellow)!
+        let screenshotPath = info.basePath + kScreenshotFilename
+        let screenshot = UIImage(color: UIColor.green)!
 
-        let automaticScreenshotThumbnailPath = info.basePath + kScreenshotThumbnailPrefix + kScreenshotAutoFilename
-        let automaticScreenshotCached = UIImage(color: UIColor.red)!
-        let automaticScreenshotOnDisk = UIImage(color: UIColor.blue)!
-
-        let screenshotThumbnailPath = info.basePath + kScreenshotThumbnailPrefix + kScreenshotFilename
-        let screenshotCached = UIImage(color: UIColor.orange)!
-        let screenshotOnDisk = UIImage(color: UIColor.brown)!
-
-        let imageCache = RuntimeImageCacheMock(thumbnails: [manualScreenshotThumbnailPath: manualScreenshotOnDisk,
-                                                            automaticScreenshotThumbnailPath: automaticScreenshotOnDisk,
-                                                            screenshotThumbnailPath: screenshotOnDisk],
-                                               cachedImages: [manualScreenshotThumbnailPath: manualScreenshotCached,
-                                                              automaticScreenshotThumbnailPath: automaticScreenshotCached,
-                                                              screenshotThumbnailPath: screenshotCached])
-
+        let imageCache = RuntimeImageCacheMock(imagesOnDisk: [:], cachedImages: [CachedImage(path: screenshotPath, image: screenshot, size: UIDefines.previewImageSize)])
         let fileManager = CBFileManagerMock(imageCache: imageCache)
 
         let expectation = XCTestExpectation(description: "Load image from cache - Screenshot")
 
         fileManager.loadPreviewImageAndCache(projectLoadingInfo: info) { image, path in
-            XCTAssertEqual(screenshotThumbnailPath, path)
-            XCTAssertEqual(screenshotCached, image)
+            XCTAssertEqual(screenshotPath, path)
+            XCTAssertEqual(screenshot, image)
 
             expectation.fulfill()
         }
@@ -167,24 +152,17 @@ final class CBFileManagerTests: XCTestCase {
             return
         }
 
-        let manualScreenshotThumbnailPath = info.basePath + kScreenshotThumbnailPrefix + kScreenshotManualFilename
-        let manualScreenshotCached = UIImage(color: UIColor.green)!
-        let manualScreenshotOnDisk = UIImage(color: UIColor.yellow)!
+        let manualScreenshotPath = info.basePath + kScreenshotManualFilename
+        let manualScreenshot = UIImage(color: UIColor.green)!
 
-        let automaticScreenshotThumbnailPath = info.basePath + kScreenshotThumbnailPrefix + kScreenshotAutoFilename
-        let automaticScreenshotCached = UIImage(color: UIColor.red)!
-        let automaticScreenshotOnDisk = UIImage(color: UIColor.blue)!
-
-        let imageCache = RuntimeImageCacheMock(thumbnails: [manualScreenshotThumbnailPath: manualScreenshotOnDisk, automaticScreenshotThumbnailPath: automaticScreenshotOnDisk],
-                                               cachedImages: [manualScreenshotThumbnailPath: manualScreenshotCached, automaticScreenshotThumbnailPath: automaticScreenshotCached])
-
+        let imageCache = RuntimeImageCacheMock(imagesOnDisk: [:], cachedImages: [CachedImage(path: manualScreenshotPath, image: manualScreenshot, size: UIDefines.previewImageSize)])
         let fileManager = CBFileManagerMock(imageCache: imageCache)
 
         let expectation = XCTestExpectation(description: "Load image from cache - Manual Screenshot")
 
         fileManager.loadPreviewImageAndCache(projectLoadingInfo: info) { image, path in
-            XCTAssertEqual(manualScreenshotThumbnailPath, path)
-            XCTAssertEqual(manualScreenshotCached, image)
+            XCTAssertEqual(manualScreenshotPath, path)
+            XCTAssertEqual(manualScreenshot, image)
 
             expectation.fulfill()
         }
@@ -198,20 +176,17 @@ final class CBFileManagerTests: XCTestCase {
             return
         }
 
-        let automaticScreenshotThumbnailPath = info.basePath + kScreenshotThumbnailPrefix + kScreenshotAutoFilename
-        let automaticScreenshotCached = UIImage(color: UIColor.red)!
-        let automaticScreenshotOnDisk = UIImage(color: UIColor.blue)!
+        let automaticScreenshotPath = info.basePath + kScreenshotAutoFilename
+        let automaticScreenshot = UIImage(color: UIColor.blue)!
 
-        let imageCache = RuntimeImageCacheMock(thumbnails: [automaticScreenshotThumbnailPath: automaticScreenshotOnDisk],
-                                               cachedImages: [automaticScreenshotThumbnailPath: automaticScreenshotCached])
-
+        let imageCache = RuntimeImageCacheMock(imagesOnDisk: [:], cachedImages: [CachedImage(path: automaticScreenshotPath, image: automaticScreenshot, size: UIDefines.previewImageSize)])
         let fileManager = CBFileManagerMock(imageCache: imageCache)
 
         let expectation = XCTestExpectation(description: "Load image from cache - Automatic Screenshot")
 
         fileManager.loadPreviewImageAndCache(projectLoadingInfo: info) { image, path in
-            XCTAssertEqual(automaticScreenshotThumbnailPath, path)
-            XCTAssertEqual(automaticScreenshotCached, image)
+            XCTAssertEqual(automaticScreenshotPath, path)
+            XCTAssertEqual(automaticScreenshot, image)
 
             expectation.fulfill()
         }
@@ -225,18 +200,16 @@ final class CBFileManagerTests: XCTestCase {
             return
         }
 
-        let automaticScreenshotThumbnailPath = info.basePath + kScreenshotThumbnailPrefix + kScreenshotAutoFilename
+        let automaticScreenshotPath = info.basePath + kScreenshotAutoFilename
         let automaticScreenshot = UIImage(color: UIColor.red)!
 
-        let imageCache = RuntimeImageCacheMock(thumbnails: [automaticScreenshotThumbnailPath: automaticScreenshot], cachedImages: [:])
-        let filePath = info.basePath + kScreenshotAutoFilename
-
-        let fileManager = CBFileManagerMock(imageCache: imageCache, filePath: [filePath])
+        let imageCache = RuntimeImageCacheMock(imagesOnDisk: [automaticScreenshotPath: automaticScreenshot], cachedImages: [])
+        let fileManager = CBFileManagerMock(imageCache: imageCache, filePath: [automaticScreenshotPath])
 
         let expectation = XCTestExpectation(description: "Load image from disk - Automatic Screenshot")
 
         fileManager.loadPreviewImageAndCache(projectLoadingInfo: info) { image, path in
-            XCTAssertEqual(automaticScreenshotThumbnailPath, path)
+            XCTAssertEqual(automaticScreenshotPath, path)
             XCTAssertEqual(automaticScreenshot, image)
 
             expectation.fulfill()
@@ -251,23 +224,16 @@ final class CBFileManagerTests: XCTestCase {
             return
         }
 
-        let manualScreenshotThumbnailPath = info.basePath + kScreenshotThumbnailPrefix + kScreenshotManualFilename
+        let manualScreenshotPath = info.basePath + kScreenshotManualFilename
         let manualScreenshot = UIImage(color: UIColor.green)!
 
-        let automaticScreenshotThumbnailPath = info.basePath + kScreenshotThumbnailPrefix + kScreenshotAutoFilename
-        let automaticScreenshot = UIImage(color: UIColor.red)!
-
-        let imageCache = RuntimeImageCacheMock(thumbnails: [automaticScreenshotThumbnailPath: automaticScreenshot, manualScreenshotThumbnailPath: manualScreenshot], cachedImages: [:])
-
-        let autoScreenshotFilePath = info.basePath + kScreenshotAutoFilename
-        let manualScreenshotFilePath = info.basePath + kScreenshotManualFilename
-
-        let fileManager = CBFileManagerMock(imageCache: imageCache, filePath: [autoScreenshotFilePath, manualScreenshotFilePath])
+        let imageCache = RuntimeImageCacheMock(imagesOnDisk: [manualScreenshotPath: manualScreenshot], cachedImages: [])
+        let fileManager = CBFileManagerMock(imageCache: imageCache, filePath: [manualScreenshotPath])
 
         let expectation = XCTestExpectation(description: "Load image from disk - Manual Screenshot")
 
         fileManager.loadPreviewImageAndCache(projectLoadingInfo: info) { image, path in
-            XCTAssertEqual(manualScreenshotThumbnailPath, path)
+            XCTAssertEqual(manualScreenshotPath, path)
             XCTAssertEqual(manualScreenshot, image)
 
             expectation.fulfill()
@@ -282,30 +248,16 @@ final class CBFileManagerTests: XCTestCase {
             return
         }
 
-        let manualScreenshotThumbnailPath = info.basePath + kScreenshotThumbnailPrefix + kScreenshotManualFilename
-        let manualScreenshot = UIImage(color: UIColor.green)!
-
-        let automaticScreenshotThumbnailPath = info.basePath + kScreenshotThumbnailPrefix + kScreenshotAutoFilename
-        let automaticScreenshot = UIImage(color: UIColor.red)!
-
-        let screenshotThumbnailPath = info.basePath + kScreenshotThumbnailPrefix + kScreenshotFilename
+        let screenshotPath = info.basePath + kScreenshotFilename
         let screenshot = UIImage(color: UIColor.orange)!
 
-        let imageCache = RuntimeImageCacheMock(thumbnails: [automaticScreenshotThumbnailPath: automaticScreenshot,
-                                                            manualScreenshotThumbnailPath: manualScreenshot,
-                                                            screenshotThumbnailPath: screenshot],
-                                               cachedImages: [:])
-
-        let autoScreenshotFilePath = info.basePath + kScreenshotAutoFilename
-        let manualScreenshotFilePath = info.basePath + kScreenshotManualFilename
-        let screenshotFilePath = info.basePath + kScreenshotFilename
-
-        let fileManager = CBFileManagerMock(imageCache: imageCache, filePath: [autoScreenshotFilePath, manualScreenshotFilePath, screenshotFilePath])
+        let imageCache = RuntimeImageCacheMock(imagesOnDisk: [screenshotPath: screenshot], cachedImages: [])
+        let fileManager = CBFileManagerMock(imageCache: imageCache, filePath: [screenshotPath])
 
         let expectation = XCTestExpectation(description: "Load image from disk - Screenshot")
 
         fileManager.loadPreviewImageAndCache(projectLoadingInfo: info) { image, path in
-            XCTAssertEqual(screenshotThumbnailPath, path)
+            XCTAssertEqual(screenshotPath, path)
             XCTAssertEqual(screenshot, image)
 
             expectation.fulfill()
@@ -320,7 +272,7 @@ final class CBFileManagerTests: XCTestCase {
             return
         }
 
-        let imageCache = RuntimeImageCacheMock(thumbnails: [:], cachedImages: [:])
+        let imageCache = RuntimeImageCacheMock(imagesOnDisk: [:], cachedImages: [])
         let fileManager = CBFileManagerMock(imageCache: imageCache)
 
         let expectedImage = UIImage(named: "catrobat")

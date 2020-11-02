@@ -43,6 +43,11 @@
     return [super getImageWithName:path];
 }
 
+- (UIImage*)cachedImageForPath:(NSString*)path andSize:(CGSize)size
+{
+    return [super getImageWithName:[self keyForPath:path andSize:size]];
+}
+
 - (void)loadImageWithName:(NSString*)imageName
              onCompletion:(void(^)(UIImage *image))completion
 {
@@ -50,7 +55,6 @@
         UIImage *image = [UIImage imageNamed:imageName];
         [super addImage:image withName:imageName];
 
-        // run completion handling block on main queue
         dispatch_sync(dispatch_get_main_queue(), ^{
             completion(image);
         });
@@ -72,75 +76,47 @@
         UIImage *image = [[UIImage alloc] initWithContentsOfFile:path];
         [super addImage:image withName:path];
 
-        // run completion handling block on main queue
         dispatch_sync(dispatch_get_main_queue(), ^{
             completion(image,path);
         });
     });
 }
 
-- (void)loadThumbnailImageFromDiskWithThumbnailPath:(NSString*)thumbnailPath
-                                          imagePath:(NSString*)imagePath
-                                 thumbnailFrameSize:(CGSize)thumbnailFrameSize
-                                       onCompletion:(void(^)(UIImage *image, NSString* path))completion
+- (void)loadImageFromDiskWithPath:(NSString*)imagePath
+                          andSize:(CGSize)size
+                     onCompletion:(void(^)(UIImage *image, NSString* path))completion
 {
     dispatch_async(self.imageCacheQueue, ^{
-        CBFileManager *fileManager = [CBFileManager sharedManager];
-        if ([fileManager fileExists:thumbnailPath]) {
-            [self loadImageFromDiskWithPath:thumbnailPath
-                               onCompletion:completion];
-            return;
-        }
-
-        // create thumbnail
         UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
 
-        // generate thumbnail image (retina)
-        CGSize thumbnailImageSize = CGSizeMake(thumbnailFrameSize.width, thumbnailFrameSize.height);
-        // determine right aspect ratio
+        CGSize imageSize = CGSizeMake(size.width, size.height);
         if (image.size.height > image.size.width)
-            thumbnailImageSize.width = (image.size.width*thumbnailImageSize.width)/image.size.height;
+            imageSize.width = (image.size.width * size.width) / image.size.height;
         else
-            thumbnailImageSize.height = (image.size.height*thumbnailImageSize.height)/image.size.width;
+            imageSize.height = (image.size.height * size.height) / image.size.width;
 
-        UIGraphicsBeginImageContext(thumbnailImageSize);
-        UIImage *thumbnailImage = [image copy];
-        [thumbnailImage drawInRect:CGRectMake(0, 0, thumbnailImageSize.width, thumbnailImageSize.height)];
-        thumbnailImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsBeginImageContext(imageSize);
+        UIImage *resizedImage = [image copy];
+        [resizedImage drawInRect:CGRectMake(0, 0, imageSize.width, imageSize.height)];
+        resizedImage = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
-        [UIImagePNGRepresentation(thumbnailImage) writeToFile:thumbnailPath atomically:YES];
-        [super addImage:thumbnailImage withName:thumbnailPath];
+        
+        [super addImage:resizedImage withName:[self keyForPath:imagePath andSize:size]];
 
-        // run completion handling block on main queue
         dispatch_sync(dispatch_get_main_queue(), ^{
-            completion(thumbnailImage,nil);
+            completion(resizedImage, imagePath);
         });
     });
 }
 
-- (void)overwriteThumbnailImageFromDiskWithThumbnailPath:(NSString*)thumbnailPath image:(UIImage*)image thumbnailFrameSize:(CGSize)thumbnailFrameSize
-{
-        // generate thumbnail image (retina)
-    CGSize thumbnailImageSize = CGSizeMake(thumbnailFrameSize.width, thumbnailFrameSize.height);
-        // determine right aspect ratio
-    if (image.size.height > image.size.width)
-        thumbnailImageSize.width = (image.size.width*thumbnailImageSize.width)/image.size.height;
-    else
-        thumbnailImageSize.height = (image.size.height*thumbnailImageSize.height)/image.size.width;
-    
-    UIGraphicsBeginImageContext(thumbnailImageSize);
-    UIImage *thumbnailImage = [image copy];
-    [thumbnailImage drawInRect:CGRectMake(0, 0, thumbnailImageSize.width, thumbnailImageSize.height)];
-    thumbnailImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    [UIImagePNGRepresentation(thumbnailImage) writeToFile:thumbnailPath atomically:YES];
-    [self clearImageCache];
-}
-
-
 - (void)clearImageCache
 {
     [super clearImageCache];
+}
+
+- (NSString*)keyForPath:(NSString*)path andSize:(CGSize)size
+{
+    return [[NSString alloc] initWithFormat:@"%@_%.3f_%.3f", path, size.height, size.width];
 }
 
 @end

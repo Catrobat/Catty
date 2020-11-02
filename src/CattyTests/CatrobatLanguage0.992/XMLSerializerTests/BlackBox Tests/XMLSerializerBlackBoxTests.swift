@@ -130,6 +130,6 @@ final class XMLSerializerBlackBoxTests: XMLAbstractTest {
     }
 
     func testGoToBrickWithNotYetSerializedSpriteObject() {
-        self.testParseXMLAndSerializeProjectAndCompareXML(xmlFile: "GoToBrick_0991")
+        self.testParseXMLAndSerializeProjectAndCompareXML(xmlFile: "GoToBrick_0992")
     }
 }

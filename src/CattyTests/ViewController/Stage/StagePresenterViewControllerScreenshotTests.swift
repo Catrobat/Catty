@@ -25,7 +25,7 @@ import XCTest
 
 @testable import Pocket_Code
 
-final class StagePresenterViewControllerTest: XCTestCase {
+final class StagePresenterViewControllerScreenshotTest: XCTestCase {
 
     var vc: StagePresenterViewController!
     var skView: SKView!
@@ -42,6 +42,8 @@ final class StagePresenterViewControllerTest: XCTestCase {
     func testAutomaticScreenshot() {
         let expectedRootPath = project.projectPath() + kScreenshotAutoFilename
         let expectedScenePath = project.scene.path()! + kScreenshotAutoFilename
+
+        XCTAssertFalse(FileManager.default.fileExists(atPath: expectedScenePath))
 
         let exp = expectation(description: "screenshot saved")
 
@@ -69,6 +71,9 @@ final class StagePresenterViewControllerTest: XCTestCase {
         let expectedRootPath = project.projectPath() + kScreenshotManualFilename
         let expectedScenePath = project.scene.path()! + kScreenshotManualFilename
 
+        XCTAssertFalse(FileManager.default.fileExists(atPath: expectedScenePath))
+        XCTAssertFalse(FileManager.default.fileExists(atPath: expectedRootPath))
+
         let exp = expectation(description: "screenshot saved")
         vc.takeManualScreenshot(for: skView, and: project.scene)
 
@@ -90,39 +95,24 @@ final class StagePresenterViewControllerTest: XCTestCase {
         XCTAssertEqual(CGFloat(type(of: vc).previewImageHeight), sceneImage?.size.height)
     }
 
-    func testNotification() {
-        let expectedNotification = Notification(name: .stagePresenterViewControllerDidAppear, object: vc)
+    func testManualScreenshotAndClearCache() {
+        let imageCache = RuntimeImageCache.shared()!
+        let existingPath = Bundle(for: type(of: self)).path(forResource: "test.png", ofType: nil)
+        let cacheExpectation = expectation(description: "image cached")
 
-        expect(self.vc.viewDidAppear(true)).to(postNotifications(contain(expectedNotification)))
-    }
+        imageCache.loadImageFromDisk(withPath: existingPath, onCompletion: { _, _ in
+            cacheExpectation.fulfill()
+        })
 
-    func testSetupGridViewPortraitMode() {
-        let stagePresenterViewController = vc
-        stagePresenterViewController!.project = ProjectManager.createProject(name: "testProject", projectId: "")
-        stagePresenterViewController!.project.header.landscapeMode = false
+        wait(for: [cacheExpectation], timeout: 1.0)
+        XCTAssertNotNil(imageCache.cachedImage(forPath: existingPath)!)
 
-        stagePresenterViewController!.setUpGridView()
-        let gridLabels = stagePresenterViewController!.gridView?.subviews.compactMap { $0 as? UILabel }
+        let exp = expectation(description: "screenshot saved")
+        vc.takeManualScreenshot(for: skView, and: project.scene)
 
-        XCTAssertEqual(gridLabels![0].text, "0")
-        XCTAssertEqual(gridLabels![1].text, String(project.header.screenWidth.intValue / 2))
-        XCTAssertEqual(gridLabels![2].text, String(-project.header.screenWidth.intValue / 2))
-        XCTAssertEqual(gridLabels![3].text, String(-project.header.screenHeight.intValue / 2))
-        XCTAssertEqual(gridLabels![4].text, String(project.header.screenHeight.intValue / 2))
-    }
+        DispatchQueue.main.async { exp.fulfill() }
+        waitForExpectations(timeout: 5, handler: nil)
 
-    func testSetupGridViewLandscapeMode() {
-        let stagePresenterViewController = vc
-        stagePresenterViewController!.project = ProjectManager.createProject(name: "testProject", projectId: "")
-        stagePresenterViewController!.project.header.landscapeMode = true
-
-        stagePresenterViewController!.setUpGridView()
-        let gridLabels = stagePresenterViewController!.gridView?.subviews.compactMap { $0 as? UILabel }
-
-        XCTAssertEqual(gridLabels![0].text, "0")
-        XCTAssertEqual(gridLabels![1].text, String(project.header.screenHeight.intValue / 2))
-        XCTAssertEqual(gridLabels![2].text, String(-project.header.screenHeight.intValue / 2))
-        XCTAssertEqual(gridLabels![3].text, String(-project.header.screenWidth.intValue / 2))
-        XCTAssertEqual(gridLabels![4].text, String(project.header.screenWidth.intValue / 2))
+        XCTAssertNil(imageCache.cachedImage(forPath: existingPath))
     }
 }
