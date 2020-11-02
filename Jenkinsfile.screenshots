@@ -35,7 +35,7 @@ pipeline {
     }
     stage('Save Catty_Screenshots artifacts') {
       steps {
-        sh 'archiveArtifacts artifacts: 'src/fastlane/screenshots/*.png'
+        archiveArtifacts artifacts: 'src/fastlane/screenshots/*.png'
       }
     }
   }
