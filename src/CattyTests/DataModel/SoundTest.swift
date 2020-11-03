@@ -60,7 +60,6 @@ final class SoundTest: XCTestCase {
        }
 
        func testInitWithName() {
-           let bundle = Bundle(for: type(of: self))
            let param1 = "testSoundFile"
            let param2 = "testSound"
            let sound = Sound(name: param1, fileName: param2)
