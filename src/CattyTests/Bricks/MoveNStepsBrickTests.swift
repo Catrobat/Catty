@@ -170,4 +170,17 @@ final class MoveNStepsBrickTests: AbstractBrickTest {
         XCTAssertTrue(brick.steps.isEqual(to: copiedBrick.steps))
         XCTAssertFalse(brick.steps === copiedBrick.steps)
     }
+
+    func testGetFormulas() {
+        brick.steps = Formula(double: 1)
+        var formulas = brick.getFormulas()
+
+        XCTAssertEqual(formulas?.count, 1)
+        XCTAssertEqual(brick.steps, formulas?[0])
+
+        brick.steps = Formula(double: 22)
+        formulas = brick.getFormulas()
+
+        XCTAssertEqual(brick.steps, formulas?[0])
+    }
 }

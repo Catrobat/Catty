@@ -1613,6 +1613,10 @@
 		E592D1562539DD6A00B9F288 /* ArduinoSendDigitalValueBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E592D1552539DD6A00B9F288 /* ArduinoSendDigitalValueBrickTests.swift */; };
 		E592D15A2539E16400B9F288 /* ArduinoSendPWMValueBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E592D1592539E16400B9F288 /* ArduinoSendPWMValueBrickTests.swift */; };
 		E592D15C2539E1E300B9F288 /* IfThenLogicBeginBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E592D15B2539E1E300B9F288 /* IfThenLogicBeginBrickTests.swift */; };
+		E579F114253DCA96009107C8 /* ThinkBubbleBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E579F113253DCA96009107C8 /* ThinkBubbleBrickTests.swift */; };
+		E579F118253DCC65009107C8 /* ThinkForBubbleBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E579F117253DCC65009107C8 /* ThinkForBubbleBrickTests.swift */; };
+		E579F11A253DCD90009107C8 /* ChangeXByNBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E579F119253DCD90009107C8 /* ChangeXByNBrickTests.swift */; };
+		E579F11C253DCE2C009107C8 /* ChangeYByNBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E579F11B253DCE2C009107C8 /* ChangeYByNBrickTests.swift */; };
 		F411560320E7732D00E2F254 /* InternFormula+KeyboardAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F411560220E7732D00E2F254 /* InternFormula+KeyboardAdapter.swift */; };
 		F4201CF220D795DB0030181B /* DateWeekdaySensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4201CF120D795DB0030181B /* DateWeekdaySensor.swift */; };
 		F4201CF920D79CA80030181B /* TimeHourSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4201CF820D79CA80030181B /* TimeHourSensor.swift */; };
@@ -3831,6 +3835,10 @@
 		E592D1552539DD6A00B9F288 /* ArduinoSendDigitalValueBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArduinoSendDigitalValueBrickTests.swift; sourceTree = "<group>"; };
 		E592D1592539E16400B9F288 /* ArduinoSendPWMValueBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArduinoSendPWMValueBrickTests.swift; sourceTree = "<group>"; };
 		E592D15B2539E1E300B9F288 /* IfThenLogicBeginBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IfThenLogicBeginBrickTests.swift; sourceTree = "<group>"; };
+		E579F113253DCA96009107C8 /* ThinkBubbleBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThinkBubbleBrickTests.swift; sourceTree = "<group>"; };
+		E579F117253DCC65009107C8 /* ThinkForBubbleBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThinkForBubbleBrickTests.swift; sourceTree = "<group>"; };
+		E579F119253DCD90009107C8 /* ChangeXByNBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeXByNBrickTests.swift; sourceTree = "<group>"; };
+		E579F11B253DCE2C009107C8 /* ChangeYByNBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeYByNBrickTests.swift; sourceTree = "<group>"; };
 		EACB63B95D9C0A7F1388E4F3 /* id */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/Localizable.strings; sourceTree = "<group>"; };
 		EC696D21025B1BA13FAA0039 /* he */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = he; path = he.lproj/Localizable.strings; sourceTree = "<group>"; };
 		ED43A997870B76068912C26D /* pt-BR */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -6570,6 +6578,10 @@
 				E579F10C253D9C58009107C8 /* PhiroRGBLightBrickTests.swift */,
 				E579F10E253DAF20009107C8 /* SayBubbleBrickTests.swift */,
 				E579F110253DB124009107C8 /* SayForBubbleBrickTests.swift */,
+				E579F113253DCA96009107C8 /* ThinkBubbleBrickTests.swift */,
+				E579F117253DCC65009107C8 /* ThinkForBubbleBrickTests.swift */,
+				E579F119253DCD90009107C8 /* ChangeXByNBrickTests.swift */,
+				E579F11B253DCE2C009107C8 /* ChangeYByNBrickTests.swift */,
 			);
 			path = Bricks;
 			sourceTree = "<group>";
@@ -10525,6 +10537,7 @@
 				E579F10B253D98B0009107C8 /* PhiroPlayToneBrickTests.swift in Sources */,
 				2ED418BC2411213E00AFE2FD /* XMLSerializerTests.swift in Sources */,
 				9EA3FD812327089900551B6C /* CBSpriteNodePenExtensionTests.swift in Sources */,
+				E579F114253DCA96009107C8 /* ThinkBubbleBrickTests.swift in Sources */,
 				4C0F9FD9204BD3D500E71B2D /* RepeatUntilBrickTests.swift in Sources */,
 				4C82266B213FA7A400F3D750 /* DateYearSensorTest.swift in Sources */,
 				4C3A5C9921D3B23E008FD83F /* PlusOperatorTest.swift in Sources */,
@@ -10567,6 +10580,7 @@
 				4C822664213FA7A400F3D750 /* LatitudeSensorTest.swift in Sources */,
 				4C5AEEEB22F6EFF900280F8B /* VibrationBrickCellTests.swift in Sources */,
 				4CDE807621A1B112009EFD31 /* StagePresenterViewControllerTests.swift in Sources */,
+				E579F118253DCC65009107C8 /* ThinkForBubbleBrickTests.swift in Sources */,
 				186AA34924830491001E38FD /* PenDownBrickTests.swift in Sources */,
 				4C822683213FA7A400F3D750 /* SensorManagerTests.swift in Sources */,
 				180DDF432506800600EA526C /* AnalyticsMock.swift in Sources */,
@@ -10578,6 +10592,7 @@
 				4C822670213FA7A400F3D750 /* AccelerationYSensorTest.swift in Sources */,
 				591553B724F274C9005BBF75 /* WhenConditionScriptTests.swift in Sources */,
 				4C6FE16A212D2D2E0067B7D5 /* AtanFunctionTest.swift in Sources */,
+				E579F11A253DCD90009107C8 /* ChangeXByNBrickTests.swift in Sources */,
 				4CEB224F1B95E47500B3BE2F /* BrickMoveManagerForeverTests.m in Sources */,
 				E579F109253D9485009107C8 /* PhiroMotorMoveForwardBrickTests.swift in Sources */,
 				4C68FC951B25A00B00AB3EE8 /* InternFormulaTokenSelectionTest.m in Sources */,
@@ -10693,6 +10708,7 @@
 				4C822666213FA7A400F3D750 /* LongitudeSensorTest.swift in Sources */,
 				4C822665213FA7A400F3D750 /* AltitudeSensorTest.swift in Sources */,
 				4C245CAC244481F3004C941C /* NimbleMatcher.swift in Sources */,
+				E579F11C253DCE2C009107C8 /* ChangeYByNBrickTests.swift in Sources */,
 				9E40C100248C07B20061E7FB /* AudioEngineHelperSpy.swift in Sources */,
 				4CB73A9023FC1F0400D5E9A7 /* CatrobatTableViewControllerMock.swift in Sources */,
 				9E445888230A021100222B14 /* ChromaprintFingerprinter.swift in Sources */,
