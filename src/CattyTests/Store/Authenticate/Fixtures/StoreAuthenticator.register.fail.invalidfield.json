@@ -30,7 +30,7 @@
         "url" : "https:\/\/web-test.catrob.at\/pocketcode\/api\/register\/Register.json",
         "body" : {
           "answer" : "This value is not valid.",
-          "statusCode" : 401,
+          "statusCode" : 400,
           "preHeaderMessages" : ""
         }
       },

@@ -1,0 +1,40 @@
+{
+  "interactions" : [
+    {
+      "request" : {
+        "headers" : {
+          "Content-Length" : "882",
+          "Content-Type" : "multipart\/form-data; boundary=---------------------------98598263596598246508247098291---------------------------"
+        },
+        "url" : "https:\/\/web-test.catrob.at\/pocketcode\/api\/register\/Register.json",
+        "method" : "POST",
+        "body" : "LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS05ODU5ODI2MzU5NjU5ODI0NjUwODI0NzA5ODI5MS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KQ29udGVudC1EaXNwb3NpdGlvbjogZm9ybS1kYXRhOyBuYW1lPSJyZWdpc3RyYXRpb25Vc2VybmFtZSINCg0KYWINCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tOTg1OTgyNjM1OTY1OTgyNDY1MDgyNDcwOTgyOTEtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCkNvbnRlbnQtRGlzcG9zaXRpb246IGZvcm0tZGF0YTsgbmFtZT0icmVnaXN0cmF0aW9uUGFzc3dvcmQiDQoNCm5ld190ZXN0X3VzZXJfcGFzc3dvcmQNCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tOTg1OTgyNjM1OTY1OTgyNDY1MDgyNDcwOTgyOTEtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCkNvbnRlbnQtRGlzcG9zaXRpb246IGZvcm0tZGF0YTsgbmFtZT0icmVnaXN0cmF0aW9uRW1haWwiDQoNCnRlc3RfdXNlcjNAZW1haWwuY29tDQotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLTk4NTk4MjYzNTk2NTk4MjQ2NTA4MjQ3MDk4MjkxLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQpDb250ZW50LURpc3Bvc2l0aW9uOiBmb3JtLWRhdGE7IG5hbWU9ImRyeS1ydW4iDQoNCnRydWUNCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tOTg1OTgyNjM1OTY1OTgyNDY1MDgyNDcwOTgyOTEtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCkNvbnRlbnQtRGlzcG9zaXRpb246IGZvcm0tZGF0YTsgbmFtZT0icmVnaXN0cmF0aW9uQ291bnRyeSINCg0KVVMNCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tOTg1OTgyNjM1OTY1OTgyNDY1MDgyNDcwOTgyOTEtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0K"
+      },
+      "recorded_at" : 1604668727.3275452,
+      "response" : {
+        "url" : "https:\/\/web-test.catrob.at\/pocketcode\/api\/register\/Register.json",
+        "body" : {
+          "answer" : "Username too short",
+          "statusCode" : 422,
+          "preHeaderMessages" : ""
+        },
+        "headers" : {
+          "x-debug-token" : "304b4c",
+          "Server" : "nginx",
+          "Content-Encoding" : "gzip",
+          "x-robots-tag" : "noindex",
+          "Date" : "Fri, 06 Nov 2020 13:18:47 GMT",
+          "Cache-Control" : "max-age=0, must-revalidate, private",
+          "x-debug-token-link" : "http:\/\/web-test.catrob.at\/_profiler\/304b4c",
+          "Set-Cookie" : "PHPSESSID=to8s5saje5uijpmra2qg0vafhg; path=\/; HttpOnly",
+          "Pragma" : "no-cache",
+          "Content-Type" : "application\/json",
+          "Strict-Transport-Security" : "max-age=15768000",
+          "Expires" : "Fri, 06 Nov 2020 13:18:47 GMT"
+        },
+        "status" : 200
+      }
+    }
+  ],
+  "name" : "StoreAuthenticator.register.fail.usernametooshort"
+}

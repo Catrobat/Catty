@@ -48,12 +48,14 @@ final class StoreAuthenticator: StoreAuthenticatorProtocol {
     let passwordTag = "registrationPassword"
     let emailTag = "registrationEmail"
     let registrationCountryTag = "registrationCountry"
+    let dryRunTag = "dry-run"
     let defaultCountryCode = "US"
     let statusCodeTag = "statusCode"
     let statusCodeOK = "200"
     let statusCodeRegistrationOK = "201"
-    let statusCodeAuthenticationFailed = "601"
-    let statusCodeUserDoesNotExist = "803"
+    let validationSuccesful = "204"
+    let invalidParameters = "400"
+    let statusCodeAuthenticationFailed = "401"
     let tokenTag = "token"
     let answerTag = "answer"
 
@@ -106,6 +108,13 @@ final class StoreAuthenticator: StoreAuthenticatorProtocol {
             }
             debugPrint("Token is: \(token)")
 
+            if let email = dictionary?["email"] as? String {
+                self.email = email
+                UserDefaults.standard.set(self.email!, forKey: kcEmail)
+            } else {
+                debugPrint("Could not receieve email")
+            }
+
             UserDefaults.standard.set(true, forKey: NetworkDefines.kUserIsLoggedIn)
             UserDefaults.standard.set(self.username!, forKey: kcUsername)
 
@@ -114,8 +123,6 @@ final class StoreAuthenticator: StoreAuthenticatorProtocol {
             return nil
         } else if statusCodeAuthenticationFailed == "\(statusCode)" {
             return .authenticationFailed
-        } else if statusCodeUserDoesNotExist == "\(statusCode)"{
-            return .userDoesNotExist
         } else {
             return .timeout
         }
@@ -195,9 +202,6 @@ final class StoreAuthenticator: StoreAuthenticatorProtocol {
 
         request.timeoutInterval = TimeInterval(NetworkDefines.connectionTimeout)
 
-        print("REQUEST #1")
-        print(request.allHTTPHeaderFields)
-
         let task = self.session.dataTask(with: request) { data, response, error in
 
             guard let response = response as? HTTPURLResponse else {
@@ -217,9 +221,6 @@ final class StoreAuthenticator: StoreAuthenticatorProtocol {
                 completion(.request(error: error, statusCode: response.statusCode))
                 return
             }
-
-            print("RESPONSE #1")
-            print(response)
             completion(self.handleLoginResponse(data: data, response: response))
 
         }
@@ -249,6 +250,7 @@ final class StoreAuthenticator: StoreAuthenticatorProtocol {
         self.setFormDataParameter(usernameTag, with: username.data(using: .utf8), forHTTPBody: &body)
         self.setFormDataParameter(passwordTag, with: password.data(using: .utf8), forHTTPBody: &body)
         self.setFormDataParameter(emailTag, with: email.data(using: .utf8), forHTTPBody: &body)
+        self.setFormDataParameter(dryRunTag, with: "false".data(using: .utf8), forHTTPBody: &body)
 
         let countryCode = Locale.current.regionCode ?? defaultCountryCode
         debugPrint("Current Country is: \(countryCode)")
@@ -293,8 +295,9 @@ final class StoreAuthenticator: StoreAuthenticatorProtocol {
 
     func logout() {
         UserDefaults.standard.setValue(false, forKey: NetworkDefines.kUserIsLoggedIn)
-        UserDefaults.standard.setValue("", forKey: NetworkDefines.kUserLoginToken)
-        UserDefaults.standard.setValue("", forKey: kcUsername)
+        UserDefaults.standard.removeObject(forKey: NetworkDefines.kUserLoginToken)
+        UserDefaults.standard.removeObject(forKey: kcUsername)
+        UserDefaults.standard.removeObject(forKey: kcEmail)
     }
 
     static func defaultSession() -> URLSession {

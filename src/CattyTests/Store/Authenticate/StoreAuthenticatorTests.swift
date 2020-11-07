@@ -26,6 +26,14 @@ import XCTest
 
 class StoreAuthenticatorTests: XCTestCase {
 
+    override func setUp() {
+        StoreAuthenticator().logout()
+    }
+
+    override func tearDown() {
+        StoreAuthenticator().logout()
+    }
+
     func testLoginSuccess() {
         let dvrSession = Session(cassetteName: "StoreAuthenticator.login.success.authentication")
 
@@ -55,25 +63,6 @@ class StoreAuthenticatorTests: XCTestCase {
                 return
             }
             XCTAssertEqual(error, .authenticationFailed)
-
-            expectation.fulfill()
-        }
-
-        wait(for: [expectation], timeout: 5)
-    }
-
-    func testLoginUserDoesNotExistError() {
-        let dvrSession = Session(cassetteName: "StoreAuthenticator.login.fail.userdoesnotexist")
-
-        let expectation = XCTestExpectation(description: "Login")
-
-        let authenticator = StoreAuthenticator(session: dvrSession)
-        authenticator.login(username: "random_user", password: "test_user") { error in
-            guard let error = error else {
-                XCTFail("authentication was succesful. Replace username and password with some other values.")
-                return
-            }
-            XCTAssertEqual(error, .userDoesNotExist)
 
             expectation.fulfill()
         }
@@ -114,7 +103,7 @@ class StoreAuthenticatorTests: XCTestCase {
 
             switch error {
             case let .serverResponse(response: response):
-                XCTAssertTrue(response == "This email address already exists.")
+                XCTAssertTrue(response == "Email already in use")
 
             default:
                 XCTFail("wrong error received")
@@ -126,13 +115,13 @@ class StoreAuthenticatorTests: XCTestCase {
         wait(for: [expectation], timeout: 5)
     }
 
-    func testRegisterServerResponseUsernameAlreadyExist() {
-        let dvrSession = Session(cassetteName: "StoreAuthenticator.register.fail.usernamealreadyexist")
+    func testRegisterServerResponseUsernameTooShort() {
+        let dvrSession = Session(cassetteName: "StoreAuthenticator.register.fail.usernametooshort")
 
         let expectation = XCTestExpectation(description: "Register")
 
         let authenticator = StoreAuthenticator(session: dvrSession)
-        authenticator.register(username: "test_user", password: "new_test_user_password", email: "test_user2@email.com") { error in
+        authenticator.register(username: "ab", password: "new_test_user_password", email: "test_user3@email.com") { error in
 
             guard let error = error else {
                 XCTFail("No error occured")
@@ -141,7 +130,7 @@ class StoreAuthenticatorTests: XCTestCase {
 
             switch error {
             case let .serverResponse(response: response):
-                XCTAssertTrue(response == "This username already exists.")
+                XCTAssertTrue(response == "Username too short")
 
             default:
                 XCTFail("wrong error received")
@@ -153,13 +142,13 @@ class StoreAuthenticatorTests: XCTestCase {
         wait(for: [expectation], timeout: 5)
     }
 
-    func testRegisterServerResponseInvalidEmailID() {
-        let dvrSession = Session(cassetteName: "StoreAuthenticator.register.fail.invalidemail")
+    func testRegisterServerResponsePasswordTooShort() {
+        let dvrSession = Session(cassetteName: "StoreAuthenticator.register.fail.passwordtooshort")
 
         let expectation = XCTestExpectation(description: "Register")
 
         let authenticator = StoreAuthenticator(session: dvrSession)
-        authenticator.register(username: "test_user", password: "new_test_user_password", email: "test_user@email") { error in
+        authenticator.register(username: "abcdefg", password: "a", email: "test_user4@email.com") { error in
 
             guard let error = error else {
                 XCTFail("No error occured")
@@ -168,7 +157,7 @@ class StoreAuthenticatorTests: XCTestCase {
 
             switch error {
             case let .serverResponse(response: response):
-                XCTAssertTrue(response == "Your email seems to be invalid")
+                XCTAssertTrue(response == "Password too short")
 
             default:
                 XCTFail("wrong error received")
