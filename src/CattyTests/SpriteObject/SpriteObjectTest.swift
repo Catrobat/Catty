@@ -44,11 +44,11 @@ class SpriteObjectTest: XCTestCase {
     }
 
     func testIsEqualForDifferentNumberOfLooks() {
-        let look1 = Look(name: "testLook1", andPath: "testPath1")!
+        let look1 = Look(name: "testLook1", filePath: "testPath1")
         objectB.lookList.add(look1)
         XCTAssertFalse(objectA.isEqual(to: objectB))
 
-        let look2 = Look(name: "testLook2", andPath: "testPath2")!
+        let look2 = Look(name: "testLook2", filePath: "testPath2")
         objectA.lookList.add(look2)
         XCTAssertFalse(objectA.isEqual(to: objectB))
 

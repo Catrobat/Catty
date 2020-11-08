@@ -136,6 +136,13 @@
     if ([className isEqualToString:@"UserVariable"]) {
         NSString *userVariableName = [node stringValue];
         object = [[UserVariable alloc] initWithName:userVariableName];
+    } else if ([className isEqualToString:@"Look"]) {
+        GDataXMLElement *lookName = [node childWithElementName:@"name"];
+        GDataXMLElement *lookFileName = [node childWithElementName:@"fileName"];
+        
+        if (lookName && lookFileName) {
+            object = [[Look alloc] initWithName:[lookName stringValue] andPath:[lookFileName stringValue]];
+        }
     } else {
         object = [[NSClassFromString(className) alloc] init];
     }

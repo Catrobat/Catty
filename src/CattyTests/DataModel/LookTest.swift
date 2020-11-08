@@ -32,33 +32,33 @@ final class LookTest: XCTestCase {
         project.scene = scene
         scene.project = project
 
-        let look = Look(name: "testLook", andPath: "testLookFile")
+        let look = Look(name: "testLook", filePath: "testLookFile")
 
         let expectedPath = project.projectPath() + "testScene/images/testLookFile"
-        XCTAssertEqual(expectedPath, look?.path(for: scene))
+        XCTAssertEqual(expectedPath, look.path(for: scene))
     }
 
-    func testIsEqualToLook() {
+    func testIsEqual() {
         let project = Project()
         let scene = Scene(name: "testScene")
         project.scene = scene
         scene.project = project
 
-        let look = Look(name: "testLook", andPath: "testLookFile")
-        let equalLook = Look(name: "testLook", andPath: "testLookFile")
+        let look = Look(name: "testLook", filePath: "testLookFile")
+        let equalLook = Look(name: "testLook", filePath: "testLookFile")
 
-        XCTAssertTrue(look!.isEqual(to: equalLook))
+        XCTAssertTrue(look.isEqual(equalLook))
     }
 
     func testMutableCopyWithContext() {
-        let look = Look(name: "testLook", andPath: "testLookFile")
+        let look = Look(name: "testLook", filePath: "testLookFile")
         let context = CBMutableCopyContext()
 
-        let lookCopy = look!.mutableCopy(with: context) as! Look
+        let lookCopy = look.mutableCopy(with: context) as! Look
 
-        XCTAssertEqual(look!.name, lookCopy.name)
+        XCTAssertEqual(look.name, lookCopy.name)
         XCTAssertFalse(look === lookCopy)
-        XCTAssertEqual(look!.fileName, lookCopy.fileName)
+        XCTAssertEqual(look.fileName, lookCopy.fileName)
     }
 
     func testInitWithPath() {
@@ -72,13 +72,12 @@ final class LookTest: XCTestCase {
         let bundle = Bundle(for: type(of: self))
         let param = "test.png"
         let filePath = bundle.path(forResource: param, ofType: nil)
-        let look = Look.init(path: filePath)
+        let look = Look.init(name: "", filePath: filePath!)
 
         XCTAssertNotNil(look)
-        XCTAssertFalse(look!.fileName.isEmpty)
-        XCTAssertEqual(look!.fileName, filePath)
-        XCTAssertEqual(String(look!.fileName.split(separator: "/").last!), param)
-        XCTAssertNil(look!.name)
+        XCTAssertFalse(look.fileName.isEmpty)
+        XCTAssertEqual(look.fileName, filePath)
+        XCTAssertEqual(String(look.fileName.split(separator: "/").last!), param)
     }
 
     func testInitWithName() {
@@ -93,14 +92,14 @@ final class LookTest: XCTestCase {
         let param1 = "test.png"
         let filePath = bundle.path(forResource: param1, ofType: nil)
         let param2 = "testLook"
-        let look = Look.init(name: param2, andPath: filePath)
+        let look = Look.init(name: param2, filePath: filePath!)
 
         XCTAssertNotNil(look)
-        XCTAssertFalse(look!.fileName.isEmpty)
-        XCTAssertEqual(look!.fileName, filePath)
-        XCTAssertEqual(String(look!.fileName.split(separator: "/").last!), param1)
-        XCTAssertFalse(look!.name.isEmpty)
-        XCTAssertEqual(look!.name, param2)
+        XCTAssertFalse(look.fileName.isEmpty)
+        XCTAssertEqual(look.fileName, filePath)
+        XCTAssertEqual(String(look.fileName.split(separator: "/").last!), param1)
+        XCTAssertFalse(look.name.isEmpty)
+        XCTAssertEqual(look.name, param2)
 
     }
 

@@ -40,9 +40,9 @@ final class PreviousLookBrickTests: AbstractBrickTest {
         var look: Look!
         var look2: Look!
         do {
-            look = Look(name: "test", andPath: "test.png")
+            look = Look(name: "test", filePath: "test.png")
             try imageData?.write(to: URL(fileURLWithPath: object.scene.imagesPath()! + "/test.png"))
-            look2 = Look(name: "test2", andPath: "test2.png")
+            look2 = Look(name: "test2", filePath: "test2.png")
             try imageData?.write(to: URL(fileURLWithPath: object.scene.imagesPath()! + "/test2.png"))
         } catch {
             XCTFail("Error when writing image data")

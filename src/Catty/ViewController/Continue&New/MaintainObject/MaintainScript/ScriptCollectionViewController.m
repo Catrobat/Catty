@@ -55,7 +55,6 @@
 #import "SoundsTableViewController.h"
 #import "SceneTableViewController.h"
 #import "ViewControllerDefines.h"
-#import "Look.h"
 #import "Sound.h"
 #import "CBMutableCopyContext.h"
 #import "RepeatBrick.h"

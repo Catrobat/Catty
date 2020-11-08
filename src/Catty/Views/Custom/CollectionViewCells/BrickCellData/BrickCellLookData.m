@@ -24,10 +24,10 @@
 #import "BrickCellLookData.h"
 #import "BrickCell.h"
 #import "Script.h"
-#import "Look.h"
 #import "Brick.h"
 #import "BrickLookProtocol.h"
 #import "RuntimeImageCache.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation BrickCellLookData
 

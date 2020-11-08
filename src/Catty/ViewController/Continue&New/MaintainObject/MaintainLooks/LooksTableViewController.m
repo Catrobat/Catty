@@ -29,7 +29,6 @@
 #import "CellTagDefines.h"
 #import "CatrobatImageCell.h"
 #import "DarkBlueGradientImageDetailCell.h"
-#import "Look.h"
 #import "SpriteObject.h"
 #import "LookImageViewController.h"
 #import "CBFileManager.h"
