@@ -28,10 +28,10 @@ extension XCUIElement {
     }
 
     func staticTextBeginsWith(_ queryString: String, ignoreLeadingWhiteSpace: Bool) -> XCUIElement {
-        var predicate = NSPredicate(format: "label BEGINSWITH '"+queryString+"'")
+        var predicate = NSPredicate(format: "label BEGINSWITH '" + queryString + "'")
 
         if ignoreLeadingWhiteSpace {
-            predicate = NSPredicate(format: "label BEGINSWITH '"+queryString+"' OR label BEGINSWITH ' "+queryString+"'")
+            predicate = NSPredicate(format: "label BEGINSWITH '" + queryString + "' OR label BEGINSWITH ' " + queryString + "'")
         }
         return self.staticTexts.element(matching: predicate)
     }
@@ -62,16 +62,16 @@ extension XCUIElementQuery {
     }
 
     func staticTextBeginsWith(_ queryString: String, ignoreLeadingWhiteSpace: Bool) -> XCUIElement {
-        var predicate = NSPredicate(format: "label BEGINSWITH '"+queryString+"'")
+        var predicate = NSPredicate(format: "label BEGINSWITH '" + queryString + "'")
 
         if ignoreLeadingWhiteSpace {
-            predicate = NSPredicate(format: "label BEGINSWITH '"+queryString+"' OR label BEGINSWITH ' "+queryString+"'")
+            predicate = NSPredicate(format: "label BEGINSWITH '" + queryString + "' OR label BEGINSWITH ' " + queryString + "'")
         }
         return self.staticTexts.element(matching: predicate)
     }
 
     func identifierTextBeginsWith(_ queryString: String) -> XCUIElementQuery {
-        self.containing(NSPredicate(format: "label BEGINSWITH '"+queryString+"'"))
+        self.containing(NSPredicate(format: "label BEGINSWITH '" + queryString + "'"))
     }
 
     func staticTextEquals(_ queryString: String, ignoreLeadingWhiteSpace: Bool) -> XCUIElement {

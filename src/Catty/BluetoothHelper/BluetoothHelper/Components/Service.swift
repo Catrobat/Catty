@@ -31,7 +31,7 @@ public final class Service: ServiceWrapper {
     internal let _peripheral: Peripheral
     internal let cbService: CBService
 
-    internal var ownCharacteristics  = [CBUUID: Characteristic]()
+    internal var ownCharacteristics = [CBUUID: Characteristic]()
 
     // MARK: init
     internal init(ownService: CBService, peripheral: Peripheral) {

@@ -32,7 +32,7 @@ import UIKit
 
     private let cbCentralManager: CBCentralManager
 
-    internal var ownPeripherals   = [CBPeripheral: Peripheral]()
+    internal var ownPeripherals = [CBPeripheral: Peripheral]()
 
     @objc open class var sharedInstance: CentralManager {
         self.instance = self.instance ?? CentralManager()
