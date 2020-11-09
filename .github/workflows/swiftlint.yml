@@ -13,4 +13,4 @@ jobs:
       - name: GitHub Action for SwiftLint
         uses: norio-nomura/action-swiftlint@3.1.0
         with:
-          args: --path src --config RunScripts/.swiftlint.yml --strict
+          args: --path src --config src/.swiftlint.yml --strict

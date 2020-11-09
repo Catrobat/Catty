@@ -1131,7 +1131,7 @@
 		92C6318A1BC502CB00486958 /* KnownDevicesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C631861BC502CB00486958 /* KnownDevicesTableViewController.swift */; };
 		92C6318B1BC502CB00486958 /* SearchDevicesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C631871BC502CB00486958 /* SearchDevicesTableViewController.swift */; };
 		92C631911BC50DEE00486958 /* LanguageTranslationDefinesSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C631901BC50DEE00486958 /* LanguageTranslationDefinesSwift.swift */; };
-		92C6319E1BC5183D00486958 /* BluetoothHelper.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 92C631991BC5173200486958 /* BluetoothHelper.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		92C6319E1BC5183D00486958 /* BluetoothHelper.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = 92C631991BC5173200486958 /* BluetoothHelper.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		92C631A01BC5193B00486958 /* BluetoothDevicesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C6319F1BC5193B00486958 /* BluetoothDevicesTableViewController.swift */; };
 		92C95FDB1BD8DBEB00742F7E /* BluetoothService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C95FDA1BD8DBEB00742F7E /* BluetoothService.swift */; };
 		92D346BD1B8DDC0A009EB8F7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92D346BC1B8DDC0A009EB8F7 /* LaunchScreen.storyboard */; };
@@ -1713,14 +1713,15 @@
 			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		92C6319D1BC5180B00486958 /* CopyFiles */ = {
+		92C6319D1BC5180B00486958 /* Copy Files */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				92C6319E1BC5183D00486958 /* BluetoothHelper.framework in CopyFiles */,
+				92C6319E1BC5183D00486958 /* BluetoothHelper.framework in Copy Files */,
 			);
+			name = "Copy Files";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -9599,7 +9600,7 @@
 				CADBD70119B0E8C200C62836 /* Sources */,
 				CADBD7E419B0E8C200C62836 /* Frameworks */,
 				929DC44A1BCB9C5000421443 /* License Validator */,
-				92C6319D1BC5180B00486958 /* CopyFiles */,
+				92C6319D1BC5180B00486958 /* Copy Files */,
 				BCE07DCC213D427900154E4C /* Display TODO and FIXME comments */,
 				5E43D71421919F6A006FDF2A /* SwiftLint Run Script */,
 				59A0599E1F75130D00EB696D /* Carthage Copy Frameworks Run Script */,
@@ -10252,7 +10253,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint autocorrect --config \"RunScripts/.swiftlint.auto.yml\" && swiftlint --config \"RunScripts/.swiftlint.yml\"\nelse\n    echo \"warning: SwiftLint not installed, please run 'brew install swiftlint' or download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint autocorrect --config \"${SRCROOT}/.swiftlint.auto.yml\" && swiftlint --config \"${SRCROOT}/.swiftlint.yml\"\nelse\n    echo \"warning: SwiftLint not installed, please run 'brew install swiftlint' or download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		929DC44A1BCB9C5000421443 /* License Validator */ = {
 			isa = PBXShellScriptBuildPhase;

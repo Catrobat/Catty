@@ -109,7 +109,7 @@ struct StoreProject: Codable {
     func toCatrobatProject() -> CatrobatProject {
         var projectDictionary = [String: Any]()
         projectDictionary["ProjectName"] = self.projectName
-        projectDictionary["Author"] =  self.author
+        projectDictionary["Author"] = self.author
         projectDictionary["Description"] = self.description ?? ""
         projectDictionary["DownloadUrl"] = self.downloadUrl ?? ""
         projectDictionary["Downloads"] = self.downloads ?? 0
