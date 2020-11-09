@@ -71,4 +71,19 @@ final class SetSizeToBrickTests: AbstractBrickTest {
 
         XCTAssertEqual(0.0, spriteNode.catrobatSize, accuracy: 0.0001, "Size not correct")
     }
+    func testMutableCopy() {
+              let brick = SetSizeToBrick()
+              let script = Script()
+              let object = SpriteObject()
+              let scene = Scene(name: "testScene")
+              object.scene = scene
+
+              script.object = object
+              brick.script = script
+              brick.size = Formula(integer: 130)
+              let copiedBrick: SetSizeToBrick = brick.mutableCopy(with: CBMutableCopyContext()) as! SetSizeToBrick
+
+              XCTAssertTrue(brick.isEqual(to: copiedBrick))
+              XCTAssertFalse(brick === copiedBrick)
+       }
 }

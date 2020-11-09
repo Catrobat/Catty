@@ -86,7 +86,18 @@ final class PointToBrickTests: AbstractBrickTest {
     }
 
     func testMutableCopy() {
-        secondSpriteNode.spriteObject.name = "second object"
+        let brick = PointToBrick()
+        let script = Script()
+        let object = SpriteObject()
+        let scene = Scene(name: "testScene")
+        object.scene = scene
+
+        script.object = object
+        brick.script = script
+        let pointedObject = SpriteObject()
+        pointedObject.name = "pointedObject"
+        brick.pointedObject = pointedObject
+
         let copiedBrick: PointToBrick = brick.mutableCopy(with: CBMutableCopyContext(), andErrorReporting: true) as! PointToBrick
 
         XCTAssertTrue(brick.isEqual(to: copiedBrick))

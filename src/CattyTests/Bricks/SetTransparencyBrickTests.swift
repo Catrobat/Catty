@@ -76,7 +76,21 @@ final class SetTransparencyToBrickTests: AbstractBrickTest {
 
         XCTAssertEqual(0.0, spriteNode.catrobatTransparency, accuracy: 0.01, "ChangeTransparencyBrick is not correctly calculated")
     }
+    func testMutableCopy() {
+           let brick = SetTransparencyBrick()
+           let script = Script()
+           let object = SpriteObject()
+           let scene = Scene(name: "testScene")
+           object.scene = scene
 
+           script.object = object
+           brick.script = script
+           brick.transparency = Formula(integer: 1)
+           let copiedBrick: SetTransparencyBrick = brick.mutableCopy(with: CBMutableCopyContext()) as! SetTransparencyBrick
+
+           XCTAssertTrue(brick.isEqual(to: copiedBrick))
+           XCTAssertFalse(brick === copiedBrick)
+    }
     func testGetFormulas() {
         brick.transparency = Formula(integer: 1)
         var formulas = brick.getFormulas()
@@ -89,4 +103,5 @@ final class SetTransparencyToBrickTests: AbstractBrickTest {
 
         XCTAssertEqual(brick.transparency, formulas?[0])
      }
+
 }

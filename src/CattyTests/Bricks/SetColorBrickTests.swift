@@ -106,7 +106,22 @@ final class SetColorBrickTests: AbstractBrickTest {
 
         XCTAssertEqual(0.0, spriteNode.catrobatColor, accuracy: 0.1, "SetColorBrick - Color not correct")
     }
+    func testMutableCopy() {
+             let brick = SetColorBrick()
+             let script = Script()
+             let object = SpriteObject()
+             let scene = Scene(name: "testScene")
+             object.scene = scene
 
+             script.object = object
+             brick.script = script
+             brick.color = Formula(integer: 100)
+
+             let copiedBrick: SetColorBrick = brick.mutableCopy(with: CBMutableCopyContext()) as! SetColorBrick
+
+             XCTAssertTrue(brick.isEqual(to: copiedBrick))
+             XCTAssertFalse(brick === copiedBrick)
+      }
     func testGetFormulas() {
         brick.color = Formula(integer: 1)
         var formulas = brick.getFormulas()

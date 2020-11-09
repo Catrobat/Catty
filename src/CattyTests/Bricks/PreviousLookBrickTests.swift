@@ -64,4 +64,19 @@ final class PreviousLookBrickTests: AbstractBrickTest {
         XCTAssertEqual(spriteNode.currentLook, look, "PreviousLookBrick not correct")
         Project.removeProjectFromDisk(withProjectName: project.header.programName, projectID: project.header.programID)
     }
+    func testMutableCopy() {
+          let brick = PreviousLookBrick()
+          let script = Script()
+          let object = SpriteObject()
+          let scene = Scene(name: "testScene")
+          object.scene = scene
+
+          script.object = object
+          brick.script = script
+
+          let copiedBrick: PreviousLookBrick = brick.mutableCopy(with: CBMutableCopyContext(), andErrorReporting: true) as! PreviousLookBrick
+
+          XCTAssertTrue(brick.isEqual(to: copiedBrick))
+          XCTAssertFalse(brick === copiedBrick)
+      }
 }
