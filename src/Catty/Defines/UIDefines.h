@@ -167,4 +167,3 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 #define kGoToTouchPosition 80
 #define kGoToRandomPosition 81
 #define kGoToOtherSpritePosition 82
-

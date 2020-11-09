@@ -20,20 +20,26 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class SpriteKitDefines: NSObject {
+ class SetRotationStyleBrickCell: BrickCell, BrickCellProtocol {
 
-    static let defaultFont = "Helvetica"
-    static let defaultLabelFontSize = Float(45.0)
+    var titleLabel: UILabel?
+    var comboBox: iOSCombobox?
 
-    static let bubbleBrickNodeName = "textBubble"
+     static func cellHeight() -> CGFloat {
+        CGFloat(kBrickHeight2h)
+    }
 
-    static let defaultCatrobatPenSize = CGFloat(3.15)
-    static let defaultPenZPosition = CGFloat(0)
-    static let defaultPenColor = UIColor(red: 0, green: 0, blue: 255)
-    static let penShapeNodeName = "penShapeNode"
-    static let stampedSpriteNodeName = "stampedSpriteNode"
+     func brickTitle(forBackground isBackground: Bool, andInsertionScreen isInsertion: Bool) -> String! {
+        kLocalizedSetRotationStyle + "\n%@"
+    }
 
-    static let defaultValueShowVariable = "0"
+     override func hookUpSubViews(_ inlineViewSubViews: [Any]!) {
+        self.titleLabel = inlineViewSubViews[0] as? UILabel
+        self.comboBox = inlineViewSubViews[1] as? iOSCombobox
+    }
 
-    static let defaultRotationStyle = RotationStyle.allAround
+     override func parameters() -> [String]! {
+        let params = NSArray.init(objects: "{STATICCHOICE}") as? [String]
+        return params
+    }
 }

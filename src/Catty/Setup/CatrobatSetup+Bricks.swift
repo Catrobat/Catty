@@ -62,6 +62,7 @@
             IfOnEdgeBounceBrick(),
             GoNStepsBackBrick(),
             VibrationBrick(),
+            SetRotationStyleBrick(),
             // look bricks
             HideBrick(),
             SetLookBrick(),
