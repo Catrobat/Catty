@@ -385,6 +385,10 @@ let kLocalizedComeToFront = NSLocalizedString("Go to front", comment: "")
 let kLocalizedGoTo = NSLocalizedString("Go to", comment: "")
 let kLocalizedGoToTouchPosition = NSLocalizedString("touch position", comment: "")
 let kLocalizedGoToRandomPosition = NSLocalizedString("random position", comment: "")
+let kLocalizedSetRotationStyle = NSLocalizedString("Set rotation style", comment: "")
+let kLocalizedLeftRight = NSLocalizedString("left-right only", comment: "")
+let kLocalizedAllAround = NSLocalizedString("all around", comment: "")
+let kLocalizedDoNotRotate = NSLocalizedString("don't rotate", comment: "")
 
 // look bricks
 let kLocalizedLook = NSLocalizedString("Look", comment: "")

@@ -20,20 +20,33 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class SpriteKitDefines: NSObject {
+enum RotationStyle: Int, CaseIterable {
+    case leftRight = 0
+    case allAround = 1
+    case notRotate = 2
 
-    static let defaultFont = "Helvetica"
-    static let defaultLabelFontSize = Float(45.0)
+    func localizedString() -> String {
+        switch self {
+        case .leftRight:
+            return kLocalizedLeftRight
+        case .allAround:
+            return kLocalizedAllAround
+        case .notRotate:
+            return kLocalizedDoNotRotate
+        }
+    }
 
-    static let bubbleBrickNodeName = "textBubble"
+    static func from(rawValue: Int) -> RotationStyle? {
+        for style in RotationStyle.allCases where style.rawValue == rawValue {
+            return style
+        }
+        return nil
+    }
 
-    static let defaultCatrobatPenSize = CGFloat(3.15)
-    static let defaultPenZPosition = CGFloat(0)
-    static let defaultPenColor = UIColor(red: 0, green: 0, blue: 255)
-    static let penShapeNodeName = "penShapeNode"
-    static let stampedSpriteNodeName = "stampedSpriteNode"
-
-    static let defaultValueShowVariable = "0"
-
-    static let defaultRotationStyle = RotationStyle.allAround
+    static func from(localizedString: String) -> RotationStyle? {
+        for style in RotationStyle.allCases where style.localizedString() == localizedString {
+            return style
+        }
+        return nil
+    }
 }

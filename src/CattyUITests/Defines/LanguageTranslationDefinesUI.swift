@@ -385,6 +385,10 @@ let kLocalizedComeToFront = NSLocalizedString("Go to front", bundle: Bundle(for:
 let kLocalizedGoTo = NSLocalizedString("Go to", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedGoToTouchPosition = NSLocalizedString("touch position", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedGoToRandomPosition = NSLocalizedString("random position", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedSetRotationStyle = NSLocalizedString("Set rotation style", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedLeftRight = NSLocalizedString("left-right only", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedAllAround = NSLocalizedString("all around", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedDoNotRotate = NSLocalizedString("don't rotate", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
 // look bricks
 let kLocalizedLook = NSLocalizedString("Look", bundle: Bundle(for: LanguageTranslation.self), comment: "")

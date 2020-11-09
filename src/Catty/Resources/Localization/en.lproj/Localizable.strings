@@ -50,6 +50,9 @@
 "Agree" = "Agree";
 
 /* No comment provided by engineer. */
+"all around" = "all around";
+
+/* No comment provided by engineer. */
 "All Bluetooth devices successfully disconnected" = "All Bluetooth devices successfully disconnected";
 
 /* No comment provided by engineer. */
@@ -470,6 +473,9 @@
 "Do you want to save the changes" = "Do you want to save the changes";
 
 /* No comment provided by engineer. */
+"don't rotate" = "don't rotate";
+
+/* No comment provided by engineer. */
 "Done" = "Done";
 
 /* No comment provided by engineer. */
@@ -834,6 +840,9 @@
 
 /* No comment provided by engineer. */
 "Left" = "Left";
+
+/* No comment provided by engineer. */
+"left-right only" = "left-right only";
 
 /* No comment provided by engineer. */
 "Length" = "Length";
@@ -1464,6 +1473,9 @@
 
 /* No comment provided by engineer. */
 "Set Phiro light" = "Set Phiro light";
+
+/* No comment provided by engineer. */
+"Set rotation style" = "Set rotation style";
 
 /* No comment provided by engineer. */
 "Set size to" = "Set size to";

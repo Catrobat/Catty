@@ -34,6 +34,8 @@ class CBSpriteNode: SKSpriteNode {
     }
     @objc var currentUIImageLook: UIImage?
 
+    var rotationStyle: RotationStyle
+    var rotationDegreeOffset = 90.0
     var penConfiguration: PenConfiguration
 
     @objc var filterDict = ["brightness": false, "color": false]
@@ -49,6 +51,7 @@ class CBSpriteNode: SKSpriteNode {
     @objc required init(spriteObject: SpriteObject) {
         let color = UIColor.clear
         self.spriteObject = spriteObject
+        self.rotationStyle = SpriteKitDefines.defaultRotationStyle
 
         self.penConfiguration = PenConfiguration(projectWidth: self.spriteObject.scene.project?.header.screenWidth as? CGFloat,
                                                  projectHeight: self.spriteObject.scene.project?.header.screenHeight as? CGFloat)
@@ -235,6 +238,13 @@ class CBSpriteNode: SKSpriteNode {
         scheduler.startWhenContextsOfSpriteNodeWithName(spriteName)
 
         return true
+    }
+
+    @objc func isFlipped() -> Bool {
+        if self.xScale < 0 {
+            return true
+        }
+        return false
     }
 
 }

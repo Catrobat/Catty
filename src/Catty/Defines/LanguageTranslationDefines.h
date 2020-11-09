@@ -385,6 +385,10 @@
 #define kLocalizedGoTo NSLocalizedString(@"Go to", nil)
 #define kLocalizedGoToTouchPosition NSLocalizedString(@"touch position", nil)
 #define kLocalizedGoToRandomPosition NSLocalizedString(@"random position", nil)
+#define kLocalizedSetRotationStyle NSLocalizedString(@"Set rotation style", nil)
+#define kLocalizedLeftRight NSLocalizedString(@"left-right only", nil)
+#define kLocalizedAllAround NSLocalizedString(@"all around", nil)
+#define kLocalizedDoNotRotate NSLocalizedString(@"don't rotate", nil)
 
 // look bricks
 #define kLocalizedLook NSLocalizedString(@"Look", nil)
