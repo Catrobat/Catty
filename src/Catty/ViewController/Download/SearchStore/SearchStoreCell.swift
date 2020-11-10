@@ -48,10 +48,6 @@ class SearchStoreCell: UITableViewCell {
 
     func updateTable() {
         searchProjectImage?.image = searchImage
-        searchProjectImage?.layer.borderColor = UIColor.medium.cgColor
-        searchProjectImage?.layer.borderWidth = CGFloat(kPreviewImageBorderWidth)
-        searchProjectImage?.layer.cornerRadius = CGFloat(kPreviewImageCornerRadius)
-        searchProjectImage?.clipsToBounds = true
 
         searchProjectTitle?.text = searchTitle
         searchProjectTitle.textColor = UIColor.globalTint
