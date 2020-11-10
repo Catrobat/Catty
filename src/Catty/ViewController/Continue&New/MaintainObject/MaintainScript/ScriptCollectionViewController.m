@@ -519,6 +519,10 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 
 - (BOOL)collectionView:(UICollectionView*)collectionView canMoveItemAtIndexPath:(NSIndexPath*)indexPath
 {
+    if (![self isBrickInMovingMode:indexPath]) {
+        return NO;
+    }
+    
     BOOL editable = ((self.isEditing || indexPath.item == 0) ? NO : YES);
     return ((editable || [[BrickInsertManager sharedInstance] isBrickInsertionMode]) ? YES : editable);
 }
@@ -1451,6 +1455,24 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 -(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
 {
     return NO;
+}
+
+- (BOOL)isBrickInMovingMode:(NSIndexPath*)indexPath
+{
+    CatrobatReorderableCollectionViewFlowLayout *layout = (CatrobatReorderableCollectionViewFlowLayout*)self.collectionView.collectionViewLayout;
+    if(layout.longPressGestureRecognizer.minimumPressDuration == 0.1) {
+        Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
+        Brick *brick;
+        
+        if (indexPath.item != 0) {
+            brick = [script.brickList objectAtIndex:indexPath.item - 1];
+        }
+        
+        if(!(script.animateInsertBrick || brick.animateMoveBrick || brick.animateInsertBrick)) {
+            return NO;
+        }
+    }
+    return YES;
 }
 
 @end

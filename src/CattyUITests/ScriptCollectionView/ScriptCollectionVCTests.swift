@@ -149,4 +149,55 @@ class ScriptCollectionVCTests: XCTestCase {
         XCTAssertTrue(app.sheets[kLocalizedEditBrick].exists)
         XCTAssertTrue(disableButton.exists)
     }
+    
+    func testMoveABrickWithMoveMode() {
+        app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
+        app.tables.staticTexts[kLocalizedMyFirstProject].tap()
+        app.tables.staticTexts["Mole 1"].tap()
+        app.tables.staticTexts[kLocalizedScripts].tap()
+
+        app.collectionViews.cells.element(boundBy: 5).tap()
+        XCTAssertTrue(app.sheets[kLocalizedEditBrick].exists)
+
+        let moveButton = app.sheets[kLocalizedEditBrick].buttons[kLocalizedMoveBrick]
+        print(moveButton.label)
+        XCTAssertEqual(kLocalizedMoveBrick, moveButton.label)
+        moveButton.tap()
+
+        XCTAssert(app.collectionViews.cells.element(boundBy: 1).staticTextBeginsWith(kLocalizedSetSizeTo, ignoreLeadingWhiteSpace: true).exists)
+        XCTAssert(app.collectionViews.cells.element(boundBy: 2).staticTexts[kLocalizedForever].exists)
+        XCTAssert(app.collectionViews.cells.element(boundBy: 3).staticTexts[kLocalizedPlaceAt].exists)
+        XCTAssert(app.collectionViews.cells.element(boundBy: 4).staticTextBeginsWith(kLocalizedWait, ignoreLeadingWhiteSpace: true).exists)
+        XCTAssert(app.collectionViews.cells.element(boundBy: 5).staticTexts[kLocalizedShow].exists)
+
+        app.collectionViews.cells.element(boundBy: 4).press(forDuration: 1.0, thenDragTo: app.collectionViews.cells.element(boundBy: 2))
+        app.collectionViews.cells.element(boundBy: 5).press(forDuration: 1.0, thenDragTo: app.collectionViews.cells.element(boundBy: 3))
+
+        XCTAssert(app.collectionViews.cells.element(boundBy: 1).staticTextBeginsWith(kLocalizedSetSizeTo, ignoreLeadingWhiteSpace: true).exists)
+        XCTAssert(app.collectionViews.cells.element(boundBy: 2).staticTexts[kLocalizedForever].exists)
+        XCTAssert(app.collectionViews.cells.element(boundBy: 3).staticTexts[kLocalizedShow].exists)
+        XCTAssert(app.collectionViews.cells.element(boundBy: 4).staticTexts[kLocalizedPlaceAt].exists)
+        XCTAssert(app.collectionViews.cells.element(boundBy: 5).staticTextBeginsWith(kLocalizedWait, ignoreLeadingWhiteSpace: true).exists)
+    }
+
+    func testMoveABrickWitouthMoveMode() {
+        app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
+        app.tables.staticTexts[kLocalizedMyFirstProject].tap()
+        app.tables.staticTexts["Mole 1"].tap()
+        app.tables.staticTexts[kLocalizedScripts].tap()
+
+        XCTAssert(app.collectionViews.cells.element(boundBy: 1).staticTextBeginsWith(kLocalizedSetSizeTo, ignoreLeadingWhiteSpace: true).exists)
+        XCTAssert(app.collectionViews.cells.element(boundBy: 2).staticTexts[kLocalizedForever].exists)
+        XCTAssert(app.collectionViews.cells.element(boundBy: 3).staticTexts[kLocalizedPlaceAt].exists)
+        XCTAssert(app.collectionViews.cells.element(boundBy: 4).staticTextBeginsWith(kLocalizedWait, ignoreLeadingWhiteSpace: true).exists)
+        XCTAssert(app.collectionViews.cells.element(boundBy: 5).staticTexts[kLocalizedShow].exists)
+
+        app.collectionViews.cells.element(boundBy: 5).press(forDuration: 1.0, thenDragTo: app.collectionViews.cells.element(boundBy: 3))
+
+        XCTAssert(app.collectionViews.cells.element(boundBy: 1).staticTextBeginsWith(kLocalizedSetSizeTo, ignoreLeadingWhiteSpace: true).exists)
+        XCTAssert(app.collectionViews.cells.element(boundBy: 2).staticTexts[kLocalizedForever].exists)
+        XCTAssert(app.collectionViews.cells.element(boundBy: 3).staticTexts[kLocalizedShow].exists)
+        XCTAssert(app.collectionViews.cells.element(boundBy: 4).staticTexts[kLocalizedPlaceAt].exists)
+        XCTAssert(app.collectionViews.cells.element(boundBy: 5).staticTextBeginsWith(kLocalizedWait, ignoreLeadingWhiteSpace: true).exists)
+    }
 }
