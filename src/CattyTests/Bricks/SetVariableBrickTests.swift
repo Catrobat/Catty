@@ -80,7 +80,27 @@ final class SetVariableBrickTests: XCTestCase {
         // when no UserVariable is selected in the IDE and the brick is executed
     }
 
-    func testGetFormulas() {
+      func testMutableCopy() {
+        let brick = SetVariableBrick()
+        let script = Script()
+        let object = SpriteObject()
+        let scene = Scene(name: "testScene")
+        object.scene = scene
+
+        script.object = object
+        brick.script = script
+        brick.userVariable = UserVariable(name: "testVariable")
+        brick.variableFormula = Formula(integer: 0)
+
+        let copiedBrick: SetVariableBrick = brick.mutableCopy(with: CBMutableCopyContext()) as! SetVariableBrick
+
+        XCTAssertTrue(brick.isEqual(to: copiedBrick))
+        XCTAssertFalse(brick === copiedBrick)
+        XCTAssertTrue(brick.variableFormula.isEqual(to: copiedBrick.variableFormula))
+        XCTAssertFalse(brick.variableFormula === copiedBrick.variableFormula)
+ }
+
+   func testGetFormulas() {
         let brick = SetVariableBrick()
         brick.variableFormula = Formula(integer: 1)
         var formulas = brick.getFormulas()
