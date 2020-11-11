@@ -10,6 +10,19 @@
 		05A3CE6D24F5164A0051DB39 /* CatrobatTableViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A3CE6A24F516490051DB39 /* CatrobatTableViewControllerExtension.swift */; };
 		05A3D46824F517220051DB39 /* StoreProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A3D46724F517220051DB39 /* StoreProjectTests.swift */; };
 		05A3D46A24F517350051DB39 /* CatrobatTableViewControllerExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A3D46924F517350051DB39 /* CatrobatTableViewControllerExtensionTests.swift */; };
+		05E6801A255B5DAA00D1E295 /* EmbroideryStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E68012255B5DAA00D1E295 /* EmbroideryStream.swift */; };
+		05E6801B255B5DAA00D1E295 /* EmbroideryDefines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E68013255B5DAA00D1E295 /* EmbroideryDefines.swift */; };
+		05E6801C255B5DAA00D1E295 /* Stitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E68014255B5DAA00D1E295 /* Stitch.swift */; };
+		05E6801D255B5DAA00D1E295 /* EmbroideryDSTHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E68015255B5DAA00D1E295 /* EmbroideryDSTHeader.swift */; };
+		05E6801E255B5DAA00D1E295 /* EmbroideryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E68016255B5DAA00D1E295 /* EmbroideryProtocol.swift */; };
+		05E6801F255B5DAA00D1E295 /* EmbroideryDSTService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E68017255B5DAA00D1E295 /* EmbroideryDSTService.swift */; };
+		05E68025255B5DEE00D1E295 /* EmbroideryDSTHeaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E68021255B5DED00D1E295 /* EmbroideryDSTHeaderTests.swift */; };
+		05E68026255B5DEE00D1E295 /* StitchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E68022255B5DED00D1E295 /* StitchTests.swift */; };
+		05E68027255B5DEE00D1E295 /* EmbroideryStreamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E68023255B5DED00D1E295 /* EmbroideryStreamTests.swift */; };
+		05E68028255B5DEE00D1E295 /* EmbroideryDSTServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E68024255B5DED00D1E295 /* EmbroideryDSTServiceTests.swift */; };
+		05E6802A255B5E0300D1E295 /* CGVectorExtentionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E68029255B5E0300D1E295 /* CGVectorExtentionsTests.swift */; };
+		05E6802C255B5E3400D1E295 /* CGVectorExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E6802B255B5E3400D1E295 /* CGVectorExtentions.swift */; };
+		05E6802F255B602700D1E295 /* stitch.dst in Resources */ = {isa = PBXBuildFile; fileRef = 05E6802E255B602700D1E295 /* stitch.dst */; };
 		180DDF3F25067E1700EA526C /* FirebaseAnalyticsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180DDF3E25067E1700EA526C /* FirebaseAnalyticsTests.swift */; };
 		180DDF432506800600EA526C /* AnalyticsMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180DDF422506800600EA526C /* AnalyticsMock.swift */; };
 		181A12C324E42B6E00358440 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 92300CE918B2196700F2B4DC /* Localizable.strings */; };
@@ -1734,6 +1747,19 @@
 		05A3CE6A24F516490051DB39 /* CatrobatTableViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatrobatTableViewControllerExtension.swift; sourceTree = "<group>"; };
 		05A3D46724F517220051DB39 /* StoreProjectTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreProjectTests.swift; sourceTree = "<group>"; };
 		05A3D46924F517350051DB39 /* CatrobatTableViewControllerExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatrobatTableViewControllerExtensionTests.swift; sourceTree = "<group>"; };
+		05E68012255B5DAA00D1E295 /* EmbroideryStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmbroideryStream.swift; sourceTree = "<group>"; };
+		05E68013255B5DAA00D1E295 /* EmbroideryDefines.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmbroideryDefines.swift; sourceTree = "<group>"; };
+		05E68014255B5DAA00D1E295 /* Stitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stitch.swift; sourceTree = "<group>"; };
+		05E68015255B5DAA00D1E295 /* EmbroideryDSTHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmbroideryDSTHeader.swift; sourceTree = "<group>"; };
+		05E68016255B5DAA00D1E295 /* EmbroideryProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmbroideryProtocol.swift; sourceTree = "<group>"; };
+		05E68017255B5DAA00D1E295 /* EmbroideryDSTService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmbroideryDSTService.swift; sourceTree = "<group>"; };
+		05E68021255B5DED00D1E295 /* EmbroideryDSTHeaderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmbroideryDSTHeaderTests.swift; sourceTree = "<group>"; };
+		05E68022255B5DED00D1E295 /* StitchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StitchTests.swift; sourceTree = "<group>"; };
+		05E68023255B5DED00D1E295 /* EmbroideryStreamTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmbroideryStreamTests.swift; sourceTree = "<group>"; };
+		05E68024255B5DED00D1E295 /* EmbroideryDSTServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmbroideryDSTServiceTests.swift; sourceTree = "<group>"; };
+		05E68029255B5E0300D1E295 /* CGVectorExtentionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGVectorExtentionsTests.swift; sourceTree = "<group>"; };
+		05E6802B255B5E3400D1E295 /* CGVectorExtentions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGVectorExtentions.swift; sourceTree = "<group>"; };
+		05E6802E255B602700D1E295 /* stitch.dst */ = {isa = PBXFileReference; lastKnownFileType = file; path = stitch.dst; sourceTree = "<group>"; };
 		0A1A12A18F2C85AB4CBCDD4D /* lt */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = lt; path = lt.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0C2E3B83D1DDFF32F7255F50 /* pl */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0C64E34E5347DA71ECB56DE6 /* pt */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -3965,6 +3991,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		05E68011255B5DAA00D1E295 /* Embroidery */ = {
+			isa = PBXGroup;
+			children = (
+				05E68012255B5DAA00D1E295 /* EmbroideryStream.swift */,
+				05E68013255B5DAA00D1E295 /* EmbroideryDefines.swift */,
+				05E68014255B5DAA00D1E295 /* Stitch.swift */,
+				05E68015255B5DAA00D1E295 /* EmbroideryDSTHeader.swift */,
+				05E68016255B5DAA00D1E295 /* EmbroideryProtocol.swift */,
+				05E68017255B5DAA00D1E295 /* EmbroideryDSTService.swift */,
+			);
+			path = Embroidery;
+			sourceTree = "<group>";
+		};
+		05E68020255B5DED00D1E295 /* Embroidery */ = {
+			isa = PBXGroup;
+			children = (
+				05E68021255B5DED00D1E295 /* EmbroideryDSTHeaderTests.swift */,
+				05E68022255B5DED00D1E295 /* StitchTests.swift */,
+				05E68023255B5DED00D1E295 /* EmbroideryStreamTests.swift */,
+				05E68024255B5DED00D1E295 /* EmbroideryDSTServiceTests.swift */,
+			);
+			path = Embroidery;
+			sourceTree = "<group>";
+		};
+		05E6802D255B602700D1E295 /* EmbroideryReference */ = {
+			isa = PBXGroup;
+			children = (
+				05E6802E255B602700D1E295 /* stitch.dst */,
+			);
+			name = EmbroideryReference;
+			path = CattyTests/Resources/EmbroideryReference;
+			sourceTree = SOURCE_ROOT;
+		};
 		180D12E424D979A800341518 /* IO */ = {
 			isa = PBXGroup;
 			children = (
@@ -5118,6 +5177,7 @@
 		4C1608A31A095480002C7032 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				05E6802D255B602700D1E295 /* EmbroideryReference */,
 				9EBED605230C919D00049BBC /* Audio Engine Tests */,
 				4C6A64B31AF7CC5A00D04559 /* Images */,
 				4C1608A41A09548F002C7032 /* ParserTests */,
@@ -7590,6 +7650,7 @@
 		92FF2E081A24C5A700093DA7 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				05E6802B255B5E3400D1E295 /* CGVectorExtentions.swift */,
 				05A3CE6A24F516490051DB39 /* CatrobatTableViewControllerExtension.swift */,
 				18DAFC56247BD1400082C62A /* SpriteNode */,
 				6FAAD43724740B1D00FF2A34 /* FormulaElementExtension.swift */,
@@ -9145,6 +9206,7 @@
 		B46B270317703F9400172837 /* CattyTests */ = {
 			isa = PBXGroup;
 			children = (
+				05E68020255B5DED00D1E295 /* Embroidery */,
 				46C5D9ED254FF4F9003D58D9 /* SpriteObject */,
 				591FCEFF24EFB7CF00E5DD6B /* Scripts */,
 				6F021E6124A6811A0097F21A /* Store */,
@@ -9238,6 +9300,7 @@
 		C34B44FB17F3403400624730 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				05E68029255B5E0300D1E295 /* CGVectorExtentionsTests.swift */,
 				05A3D46924F517350051DB39 /* CatrobatTableViewControllerExtensionTests.swift */,
 				187D11992472AAF100A09CE5 /* DataExtensionTests.swift */,
 				4CFAD35C1CFAB3EC0019C636 /* CustomExtensionsTests.m */,
@@ -9398,6 +9461,7 @@
 		CD0CCE54170CB39600B70036 /* Catty */ = {
 			isa = PBXGroup;
 			children = (
+				05E68011255B5DAA00D1E295 /* Embroidery */,
 				6FB09D1F24A29EF4009C69A0 /* Store */,
 				44B76EC42476C19500DC30E2 /* Firebase */,
 				4C5AEEFE22F702F600280F8B /* Setup */,
@@ -10035,6 +10099,7 @@
 				4C32860D2546D50100C31F9D /* Minecraft_Work_In_Progress_0993.xml in Resources */,
 				4C3286072546D4AA00C31F9D /* Demonstration_0993.xml in Resources */,
 				4C3285FF2546D40700C31F9D /* ValidProjectAllBricks0993.xml in Resources */,
+				05E6802F255B602700D1E295 /* stitch.dst in Resources */,
 				4CF8A5822359B96500905BA9 /* StoreProjectDownloader.searchProjects.IntegerId.success.json in Resources */,
 				2ED417B2241120AF00AFE2FD /* Tic_Tac_Toe_Master_093.xml in Resources */,
 				599E6498202D953F009494B5 /* MediaLibraryDownloader.downloadData.success.json in Resources */,
@@ -10413,6 +10478,7 @@
 				4C822672213FA7A400F3D750 /* InclinationYSensorTest.swift in Sources */,
 				4C822657213FA7A400F3D750 /* MotionManagerMock.swift in Sources */,
 				4CA6DFC123069337003A729B /* FormulaManagerCacheTests.swift in Sources */,
+				05E68027255B5DEE00D1E295 /* EmbroideryStreamTests.swift in Sources */,
 				4C822658213FA7A400F3D750 /* FaceDetectionManagerMock.swift in Sources */,
 				4C1F6FA5213CF6BE00C20BEB /* SingleParameterStringFunctionMock.swift in Sources */,
 				4CE5C5701E0AD71800FD021C /* RequiredResourcesTests.swift in Sources */,
@@ -10536,6 +10602,7 @@
 				9E24D7072326EBC300608203 /* ShowBrickTests.swift in Sources */,
 				18390A7324D0A33D00A07DFD /* StampBrickTests.swift in Sources */,
 				2ED418BE2411213E00AFE2FD /* XMLParserTests0991.swift in Sources */,
+				05E68025255B5DEE00D1E295 /* EmbroideryDSTHeaderTests.swift in Sources */,
 				4C822659213FA7A400F3D750 /* AudioManagerMock.swift in Sources */,
 				9E4D238C232AF688009D0C3C /* SetColorBrickTests.swift in Sources */,
 				6F9CF123246E8767008CED1C /* UserListTest.swift in Sources */,
@@ -10625,6 +10692,7 @@
 				4CF4CB7521E64BEE009D6DD9 /* InsertItemIntoUserListBrickTests.swift in Sources */,
 				9E05FAAC247FF356008951DE /* AppDelegateTests.swift in Sources */,
 				9E44588A230A024600222B14 /* AudioPlayerIntegrationTests.swift in Sources */,
+				05E68028255B5DEE00D1E295 /* EmbroideryDSTServiceTests.swift in Sources */,
 				D3374C4423AA5AC10088FA36 /* UserListFunctionsTest.swift in Sources */,
 				6F7D0C9924EBD896008C1D4C /* SoundTest.swift in Sources */,
 				4C6FE16C212D2D2E0067B7D5 /* AcosFunctionTest.swift in Sources */,
@@ -10739,9 +10807,11 @@
 				4C7182E123EEF47500195BC7 /* UICollectionViewMock.swift in Sources */,
 				187CECAB24314F1600C3EDCA /* SetLookBrickTests.swift in Sources */,
 				2ED418BB2411213E00AFE2FD /* XMLParserBlackBoxTests095.swift in Sources */,
+				05E68026255B5DEE00D1E295 /* StitchTests.swift in Sources */,
 				4CD0BA9921467C5A00BF17A4 /* HeaderTests.swift in Sources */,
 				4C3A5CA721D3B687008FD83F /* EqualOperatorTest.swift in Sources */,
 				4C3A5CA321D3B542008FD83F /* MultOperator.swift in Sources */,
+				05E6802A255B5E0300D1E295 /* CGVectorExtentionsTests.swift in Sources */,
 				22524C3D23A2533F00DD515E /* LoginViewControllerMock.swift in Sources */,
 				4C82268F213FB2C600F3D750 /* MultiFingerYFunctionTests.swift in Sources */,
 				4C6FE16D212D2D2E0067B7D5 /* PowFunctionTest.swift in Sources */,
@@ -10758,6 +10828,7 @@
 				4CB2CFAE1D7ADA1D009F3034 /* SetColorBrick+Instruction.swift in Sources */,
 				188746B824DA914E003F5E81 /* ProjectManager.swift in Sources */,
 				186AA33F2482DA65001E38FD /* PenDownBrickCell.swift in Sources */,
+				05E6801E255B5DAA00D1E295 /* EmbroideryProtocol.swift in Sources */,
 				AA74F0BF1BC05FCE00D1E954 /* PointToBrickCell.m in Sources */,
 				AA74EF771BC0589700D1E954 /* ChangeVariableBrick+CBXMLHandler.m in Sources */,
 				AAA2979C1BB371EB006F8793 /* ExternInternRepresentationMapping.m in Sources */,
@@ -10961,6 +11032,7 @@
 				59EA52B424FCD1E800AC6E8D /* WhenBackgroundChangesScript.swift in Sources */,
 				92D56C321BF202E700A54750 /* ArduinoHelper.swift in Sources */,
 				AAAF22881BC0CFC00076F11E /* TurnLeftBrick+Instruction.swift in Sources */,
+				05E6801A255B5DAA00D1E295 /* EmbroideryStream.swift in Sources */,
 				5E84B7A72341FC68009982AA /* UITextField+Extension.swift in Sources */,
 				4C5AEF0622F7037200280F8B /* CatrobatSetup+Sensors.swift in Sources */,
 				4C0F9F80204BD1F800E71B2D /* ThinkBubbleBrick+Instruction.swift in Sources */,
@@ -11163,6 +11235,7 @@
 				92EC985D1BC3ABB90003A891 /* PhiroMotorMoveForwardBrick+CBXMLHandler.m in Sources */,
 				AA74EF5A1BC0586F00D1E954 /* TurnRightBrick+CBXMLHandler.m in Sources */,
 				4CF0729D20D66F8D00F93AB5 /* LookNumberSensor.swift in Sources */,
+				05E6802C255B5E3400D1E295 /* CGVectorExtentions.swift in Sources */,
 				597AB56E202081E8007CD10D /* LibrarySoundCollectionViewCell.swift in Sources */,
 				4CE3D68D2107B4E300005629 /* FaceDetectedSensor.swift in Sources */,
 				4C724E5B1B4D3E8C00E27479 /* Script+CBXMLHandler.m in Sources */,
@@ -11253,6 +11326,7 @@
 				4CF0729A20D66C4800F93AB5 /* BackgroundNumberSensor.swift in Sources */,
 				6F4B2FB72466704500B5F0ED /* ProjectMigrator.swift in Sources */,
 				4C724E5A1B4D3E8C00E27479 /* Project+CBXMLHandler.m in Sources */,
+				05E6801B255B5DAA00D1E295 /* EmbroideryDefines.swift in Sources */,
 				6FB09D2324A29F1E009C69A0 /* StoreProjectUploader.swift in Sources */,
 				92FF30FB1A24DCAA00093DA7 /* InternFormulaParserException.m in Sources */,
 				4C1C8B14213FE76B003B3AA4 /* ChartProjectCell.swift in Sources */,
@@ -11394,6 +11468,7 @@
 				9218B2001CC4AB75007B4C60 /* YKImageCropperOverlayView.m in Sources */,
 				4C0F9F2E204ADC2300E71B2D /* CameraBrick.m in Sources */,
 				92C631891BC502CB00486958 /* ConnectedDevicesTableViewController.swift in Sources */,
+				05E6801D255B5DAA00D1E295 /* EmbroideryDSTHeader.swift in Sources */,
 				92FF30F91A24DCAA00093DA7 /* FormulaElement.m in Sources */,
 				184CA799249E839A00D3668B /* CBFileManagerExtension.swift in Sources */,
 				AA74EE211BC053FD00D1E954 /* BroadcastBrick+Instruction.swift in Sources */,
@@ -11443,6 +11518,7 @@
 				92FF2E921A24C7D800093DA7 /* ImageCache.m in Sources */,
 				AAAF22861BC0CA590076F11E /* SetYBrick+Instruction.swift in Sources */,
 				2219ED8D2519EB8100EBA379 /* NSMutableArrayExtension.swift in Sources */,
+				05E6801C255B5DAA00D1E295 /* Stitch.swift in Sources */,
 				BA1FA9981F02AD770084184D /* InsertItemIntoUserListBrick+CBXMLHandler.m in Sources */,
 				9218B2021CC4AB75007B4C60 /* ImageHelper.m in Sources */,
 				92FF31041A24DCAA00093DA7 /* StartScript.m in Sources */,
@@ -11522,6 +11598,7 @@
 				AA74F0B21BC05FCE00D1E954 /* SetLookBrickCell.m in Sources */,
 				AA74F0091BC05B5F00D1E954 /* TurnRightBrick.m in Sources */,
 				AA74F0071BC05B5F00D1E954 /* SetYBrick.m in Sources */,
+				05E6801F255B5DAA00D1E295 /* EmbroideryDSTService.swift in Sources */,
 				9200C2D01C808206002F5CA4 /* ShowTextBrick+Instruction.swift in Sources */,
 				92FF31611A24DEB300093DA7 /* StagePresenterViewController.m in Sources */,
 				92B46FA21BC7BDF7004980C1 /* ArduinoSendDigitalValueBrickCell.m in Sources */,
