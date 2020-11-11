@@ -23,7 +23,8 @@
 @objc
 class UIDefines: NSObject {
     @objc static let previewImageSize = CGSize(width: Int(kPreviewThumbnailWidth), height: Int(kPreviewThumbnailHeight))
+    static let previewImageCornerRadius = 10.0
+    static let previewImageBorderWidth = 1.0
+
     static let defaultScreenshots = ["catrobat", "elephant", "lynx", "panda", "pingu", "racoon"]
-    static let kPreviewImageCornerRadius = 10.0
-    static let kPreviewImageBorderWidth = 1.0
 }

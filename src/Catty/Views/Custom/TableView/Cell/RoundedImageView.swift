@@ -19,12 +19,14 @@
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
-@objc class RoundedImageView: UIImageView {
+
+class RoundedImageView: UIImageView {
+
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.layer.borderWidth = CGFloat(UIDefines.kPreviewImageBorderWidth)
+        self.layer.borderWidth = CGFloat(UIDefines.previewImageBorderWidth)
         self.layer.borderColor = UIColor.medium.cgColor
-        self.layer.cornerRadius = CGFloat(UIDefines.kPreviewImageCornerRadius)
+        self.layer.cornerRadius = CGFloat(UIDefines.previewImageCornerRadius)
         self.clipsToBounds = true
     }
 }
