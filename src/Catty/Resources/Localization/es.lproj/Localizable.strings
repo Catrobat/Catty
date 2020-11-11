@@ -50,6 +50,9 @@
 "Agree" = "Acepto";
 
 /* No comment provided by engineer. */
+"all around" = "todo alrededor";
+
+/* No comment provided by engineer. */
 "All Bluetooth devices successfully disconnected" = "Todos los dispositivos Bluetooth fueron desconectados con éxito";
 
 /* No comment provided by engineer. */
@@ -83,6 +86,9 @@
 "and" = "y ";
 
 /* No comment provided by engineer. */
+"and store written answer in " = "and store written answer in ";
+
+/* No comment provided by engineer. */
 "and wait" = "y esperar";
 
 /* No comment provided by engineer. */
@@ -105,6 +111,9 @@
 
 /* No comment provided by engineer. */
 "Arduino extension" = "Bloques Arduino";
+
+/* No comment provided by engineer. */
+"Ask " = "Ask ";
 
 /* No comment provided by engineer. */
 "at " = "en ";
@@ -225,6 +234,12 @@
 
 /* No comment provided by engineer. */
 "Change size by" = "Cambiar el tamaño";
+
+/* No comment provided by engineer. */
+"Change to landscape" = "Cambiar a modo horizontal";
+
+/* No comment provided by engineer. */
+"Change to portrait" = "Cambiar a modo vertical";
 
 /* No comment provided by engineer. */
 "Change transparency " = "Cambiar el nivel de transparencia ";
@@ -456,6 +471,9 @@
 
 /* paint */
 "Do you want to save the changes" = "¿Desea guardar los cambios realizados?";
+
+/* No comment provided by engineer. */
+"don't rotate" = "no rotar";
 
 /* No comment provided by engineer. */
 "Done" = "Listo";
@@ -824,6 +842,9 @@
 "Left" = "Izquierda";
 
 /* No comment provided by engineer. */
+"left-right only" = "de izquierda a derecha solamente";
+
+/* No comment provided by engineer. */
 "Length" = "Largo";
 
 /* No comment provided by engineer. */
@@ -1163,6 +1184,9 @@
 "Place at " = "Coloque en ";
 
 /* No comment provided by engineer. */
+"Play" = "Jugar";
+
+/* No comment provided by engineer. */
 "Play Phiro music\n" = "Play Phiro music\n";
 
 /* No comment provided by engineer. */
@@ -1449,6 +1473,9 @@
 
 /* No comment provided by engineer. */
 "Set Phiro light" = "Establecer luz de Phiro";
+
+/* No comment provided by engineer. */
+"Set rotation style" = "Ajuste estilo de la rotación ";
 
 /* No comment provided by engineer. */
 "Set size to" = "Establecer el tamaño en";
@@ -1811,13 +1838,16 @@
 "Welcome!" = "¡Bienvenido!";
 
 /* No comment provided by engineer. */
+"What's your name?" = "¿Cómo te llamas?";
+
+/* No comment provided by engineer. */
 "When" = "Cuando";
 
 /* No comment provided by engineer. */
 "When background changes to" = "Cuando el fondo cambia a";
 
 /* No comment provided by engineer. */
-"When project starts" = "Cuando el proyecto comience";
+"When project starts" = "When project starts";
 
 /* No comment provided by engineer. */
 "When stage is tapped" = "Cuando se toca la pantalla";
@@ -1851,6 +1881,9 @@
 
 /* No comment provided by engineer. */
 "You have already downloaded this project!" = "¡Ya has descargado este proyecto!";
+
+/* No comment provided by engineer. */
+"Your answer" = "Your answer";
 
 /* No comment provided by engineer. */
 "Your email seems to be invalid" = "Tu correo electrónico parece ser no válido";

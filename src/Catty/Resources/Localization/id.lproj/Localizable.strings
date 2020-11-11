@@ -50,6 +50,9 @@
 "Agree" = "Setuju";
 
 /* No comment provided by engineer. */
+"all around" = "all around";
+
+/* No comment provided by engineer. */
 "All Bluetooth devices successfully disconnected" = "Semua perangkat Bluetooth berhasil diputuskan";
 
 /* No comment provided by engineer. */
@@ -83,6 +86,9 @@
 "and" = "dan";
 
 /* No comment provided by engineer. */
+"and store written answer in " = "and store written answer in ";
+
+/* No comment provided by engineer. */
 "and wait" = "dan tunggu";
 
 /* No comment provided by engineer. */
@@ -105,6 +111,9 @@
 
 /* No comment provided by engineer. */
 "Arduino extension" = "Batu bata Arduino";
+
+/* No comment provided by engineer. */
+"Ask " = "Ask ";
 
 /* No comment provided by engineer. */
 "at " = "di ";
@@ -225,6 +234,12 @@
 
 /* No comment provided by engineer. */
 "Change size by" = "Ubah ukuran menjadi";
+
+/* No comment provided by engineer. */
+"Change to landscape" = "Change to landscape";
+
+/* No comment provided by engineer. */
+"Change to portrait" = "Change to portrait";
 
 /* No comment provided by engineer. */
 "Change transparency " = "Ubah transparasi ";
@@ -456,6 +471,9 @@
 
 /* paint */
 "Do you want to save the changes" = "Anda yakin ingin menyimpan perubahan?";
+
+/* No comment provided by engineer. */
+"don't rotate" = "jangan memutar";
 
 /* No comment provided by engineer. */
 "Done" = "Selesai";
@@ -824,6 +842,9 @@
 "Left" = "Kiri";
 
 /* No comment provided by engineer. */
+"left-right only" = "kiri kanan saja";
+
+/* No comment provided by engineer. */
 "Length" = "Panjang";
 
 /* No comment provided by engineer. */
@@ -1163,6 +1184,9 @@
 "Place at " = "Tempatkan di ";
 
 /* No comment provided by engineer. */
+"Play" = "Mainkan";
+
+/* No comment provided by engineer. */
 "Play Phiro music\n" = "Mainkan musik Phiro\n";
 
 /* No comment provided by engineer. */
@@ -1449,6 +1473,9 @@
 
 /* No comment provided by engineer. */
 "Set Phiro light" = "Atur lampu Phiro";
+
+/* No comment provided by engineer. */
+"Set rotation style" = "Atur gaya rotasi ";
 
 /* No comment provided by engineer. */
 "Set size to" = "Atur ukuran ke";
@@ -1811,6 +1838,9 @@
 "Welcome!" = "Welcome!";
 
 /* No comment provided by engineer. */
+"What's your name?" = "What's your name?";
+
+/* No comment provided by engineer. */
 "When" = "Kapan";
 
 /* No comment provided by engineer. */
@@ -1851,6 +1881,9 @@
 
 /* No comment provided by engineer. */
 "You have already downloaded this project!" = "You have already downloaded this project!";
+
+/* No comment provided by engineer. */
+"Your answer" = "Your answer";
 
 /* No comment provided by engineer. */
 "Your email seems to be invalid" = "Email Anda tampaknya tidak sah";

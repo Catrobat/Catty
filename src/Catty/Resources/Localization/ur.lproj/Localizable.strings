@@ -50,6 +50,9 @@
 "Agree" = "متفق";
 
 /* No comment provided by engineer. */
+"all around" = "all around";
+
+/* No comment provided by engineer. */
 "All Bluetooth devices successfully disconnected" = "تمام بلوٹوت آلات کو کامیابی سے منقطع کیا گیا";
 
 /* No comment provided by engineer. */
@@ -83,6 +86,9 @@
 "and" = "اور";
 
 /* No comment provided by engineer. */
+"and store written answer in " = "and store written answer in ";
+
+/* No comment provided by engineer. */
 "and wait" = "اور انتظار کریں";
 
 /* No comment provided by engineer. */
@@ -105,6 +111,9 @@
 
 /* No comment provided by engineer. */
 "Arduino extension" = "آردوانو توسیع";
+
+/* No comment provided by engineer. */
+"Ask " = "Ask ";
 
 /* No comment provided by engineer. */
 "at " = "پر";
@@ -225,6 +234,12 @@
 
 /* No comment provided by engineer. */
 "Change size by" = "سائز تبدیل کریں";
+
+/* No comment provided by engineer. */
+"Change to landscape" = "Change to landscape";
+
+/* No comment provided by engineer. */
+"Change to portrait" = "Change to portrait";
 
 /* No comment provided by engineer. */
 "Change transparency " = "شفافیت کو تبدیل کریں";
@@ -456,6 +471,9 @@
 
 /* paint */
 "Do you want to save the changes" = "کیا آپ تبدیلیاں محفوظ کرنا چاہتے ہیں";
+
+/* No comment provided by engineer. */
+"don't rotate" = "گھومنا مت کرو";
 
 /* No comment provided by engineer. */
 "Done" = "ہوگیا";
@@ -824,6 +842,9 @@
 "Left" = "بائیں طرف";
 
 /* No comment provided by engineer. */
+"left-right only" = "بایاں-دایاں صرف";
+
+/* No comment provided by engineer. */
 "Length" = "لمبائی";
 
 /* No comment provided by engineer. */
@@ -1163,6 +1184,9 @@
 "Place at " = "جگہ رکھیں";
 
 /* No comment provided by engineer. */
+"Play" = "چلائیں";
+
+/* No comment provided by engineer. */
 "Play Phiro music\n" = "پہرو موسیقی کھیلیں \\ n";
 
 /* No comment provided by engineer. */
@@ -1449,6 +1473,9 @@
 
 /* No comment provided by engineer. */
 "Set Phiro light" = "Phiro روشنی مقرر کریں";
+
+/* No comment provided by engineer. */
+"Set rotation style" = "گردش سٹائل مقرر کریں";
 
 /* No comment provided by engineer. */
 "Set size to" = "سائز کو سیٹ کریں";
@@ -1811,13 +1838,16 @@
 "Welcome!" = "خوش آمدید";
 
 /* No comment provided by engineer. */
+"What's your name?" = "آپ کا نام کيا ہے?";
+
+/* No comment provided by engineer. */
 "When" = "جب";
 
 /* No comment provided by engineer. */
 "When background changes to" = "جب پس منظر کو تبدیل کرتا ہے";
 
 /* No comment provided by engineer. */
-"When project starts" = "جب منصوبے شروع ہوگئے";
+"When project starts" = "When project starts";
 
 /* No comment provided by engineer. */
 "When stage is tapped" = "جب اسٹیج  ٹیپ کیا جاتا ہے";
@@ -1851,6 +1881,9 @@
 
 /* No comment provided by engineer. */
 "You have already downloaded this project!" = "آپ پہلے ہی اس پروگرام کو ڈاؤن لوڈ کرچکے ہیں!";
+
+/* No comment provided by engineer. */
+"Your answer" = "Your answer";
 
 /* No comment provided by engineer. */
 "Your email seems to be invalid" = "آپکی ای میل غلط لگ رہی ہے";

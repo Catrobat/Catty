@@ -50,6 +50,9 @@
 "Agree" = "ஏற்கிறேன்";
 
 /* No comment provided by engineer. */
+"all around" = "all around";
+
+/* No comment provided by engineer. */
 "All Bluetooth devices successfully disconnected" = "அனைத்து புளூடூத் சாதனங்களும் வெற்றிகரமாக துண்டிக்கப்பட்டுள்ளன";
 
 /* No comment provided by engineer. */
@@ -83,6 +86,9 @@
 "and" = "மற்றும்";
 
 /* No comment provided by engineer. */
+"and store written answer in " = "and store written answer in ";
+
+/* No comment provided by engineer. */
 "and wait" = "காத்திருங்கள்";
 
 /* No comment provided by engineer. */
@@ -105,6 +111,9 @@
 
 /* No comment provided by engineer. */
 "Arduino extension" = "அர்டினோ நீட்டிப்பு";
+
+/* No comment provided by engineer. */
+"Ask " = "Ask ";
 
 /* No comment provided by engineer. */
 "at " = "at";
@@ -225,6 +234,12 @@
 
 /* No comment provided by engineer. */
 "Change size by" = "அளவை மாற்று";
+
+/* No comment provided by engineer. */
+"Change to landscape" = "Change to landscape";
+
+/* No comment provided by engineer. */
+"Change to portrait" = "Change to portrait";
 
 /* No comment provided by engineer. */
 "Change transparency " = "வெளிப்படைத்தன்மையை மாற்றவும் ";
@@ -456,6 +471,9 @@
 
 /* paint */
 "Do you want to save the changes" = "மாற்றங்களைச் சேமிக்க விரும்புகிறீர்களா";
+
+/* No comment provided by engineer. */
+"don't rotate" = "சுழற்ற வேண்டாம்";
 
 /* No comment provided by engineer. */
 "Done" = "முடிந்தது";
@@ -824,6 +842,9 @@
 "Left" = "இடது";
 
 /* No comment provided by engineer. */
+"left-right only" = "இடது-வலது மட்டும்";
+
+/* No comment provided by engineer. */
 "Length" = "நீளம்";
 
 /* No comment provided by engineer. */
@@ -1163,6 +1184,9 @@
 "Place at " = "இடத்தில் ";
 
 /* No comment provided by engineer. */
+"Play" = "விளையாடு";
+
+/* No comment provided by engineer. */
 "Play Phiro music\n" = "பைரோ இசையை வாசிக்கவும்\n";
 
 /* No comment provided by engineer. */
@@ -1449,6 +1473,9 @@
 
 /* No comment provided by engineer. */
 "Set Phiro light" = "பைரோ ஒளியை அமைக்கவும்";
+
+/* No comment provided by engineer. */
+"Set rotation style" = "சுழற்சி பாணியை அமைக்கவும்";
 
 /* No comment provided by engineer. */
 "Set size to" = "அளவை அமைக்கவும்";
@@ -1811,13 +1838,16 @@
 "Welcome!" = "வருக!";
 
 /* No comment provided by engineer. */
+"What's your name?" = "உங்கள் பெயர் என்ன?";
+
+/* No comment provided by engineer. */
 "When" = "எப்பொழுது";
 
 /* No comment provided by engineer. */
 "When background changes to" = "பின்னணி மாறும்போது";
 
 /* No comment provided by engineer. */
-"When project starts" = "திட்டம் தொடங்கியபோது";
+"When project starts" = "When project starts";
 
 /* No comment provided by engineer. */
 "When stage is tapped" = "மேடை தட்டும்போது";
@@ -1851,6 +1881,9 @@
 
 /* No comment provided by engineer. */
 "You have already downloaded this project!" = "இந்த திட்டத்தை நீங்கள் ஏற்கனவே பதிவிறக்கம் செய்துள்ளீர்கள்!";
+
+/* No comment provided by engineer. */
+"Your answer" = "Your answer";
 
 /* No comment provided by engineer. */
 "Your email seems to be invalid" = "உங்கள் மின்னஞ்சல் தவறானது என்று தெரிகிறது";
