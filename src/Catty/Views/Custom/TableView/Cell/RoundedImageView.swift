@@ -20,11 +20,13 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc
-class UIDefines: NSObject {
-    @objc static let previewImageSize = CGSize(width: Int(kPreviewThumbnailWidth), height: Int(kPreviewThumbnailHeight))
-    static let previewImageCornerRadius = 10.0
-    static let previewImageBorderWidth = 1.0
+class RoundedImageView: UIImageView {
 
-    static let defaultScreenshots = ["catrobat", "elephant", "lynx", "panda", "pingu", "racoon"]
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.layer.borderWidth = CGFloat(UIDefines.previewImageBorderWidth)
+        self.layer.borderColor = UIColor.medium.cgColor
+        self.layer.cornerRadius = CGFloat(UIDefines.previewImageCornerRadius)
+        self.clipsToBounds = true
+    }
 }

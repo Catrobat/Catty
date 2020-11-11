@@ -323,10 +323,6 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
         subtitleLabel.text = [self.cells objectAtIndex:indexPath.row];
         
         cell.iconImageView.image = [UIImage imageWithColor:UIColor.whiteColor];
-        [cell.iconImageView.layer setBorderColor: [[UIColor medium] CGColor]];
-        [cell.iconImageView.layer setBorderWidth: kPreviewImageBorderWidth];
-        cell.iconImageView.layer.cornerRadius = kPreviewImageCornerRadius;
-        cell.iconImageView.clipsToBounds = true;
         [cell setNeedsLayout];
     } else {
         cell.titleLabel.text = [self.cells objectAtIndex:indexPath.row];
