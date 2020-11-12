@@ -37,3 +37,4 @@
 #import "PaintViewController.h"
 #import "BrickCellMessageData.h"
 #import "BroadcastBrickCell.h"
+#import "BrickInsertManager.h"
