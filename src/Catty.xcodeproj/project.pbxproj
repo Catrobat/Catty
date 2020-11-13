@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		05501DE7255E106F00C64E58 /* color_change.dst in Resources */ = {isa = PBXBuildFile; fileRef = 05501DE4255E106F00C64E58 /* color_change.dst */; };
 		05A3CE6D24F5164A0051DB39 /* CatrobatTableViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A3CE6A24F516490051DB39 /* CatrobatTableViewControllerExtension.swift */; };
 		05A3D46824F517220051DB39 /* StoreProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A3D46724F517220051DB39 /* StoreProjectTests.swift */; };
 		05A3D46A24F517350051DB39 /* CatrobatTableViewControllerExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A3D46924F517350051DB39 /* CatrobatTableViewControllerExtensionTests.swift */; };
@@ -1744,6 +1745,7 @@
 		008104EAAB0CBEC616F8EABD /* uz */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = uz; path = uz.lproj/Localizable.strings; sourceTree = "<group>"; };
 		04A3B489CBF02EB8C919DC3B /* sr */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = sr; path = sr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		04FC473CDF0FCFB7BD890320 /* el */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/Localizable.strings; sourceTree = "<group>"; };
+		05501DE4255E106F00C64E58 /* color_change.dst */ = {isa = PBXFileReference; lastKnownFileType = file; path = color_change.dst; sourceTree = "<group>"; };
 		05A3CE6A24F516490051DB39 /* CatrobatTableViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatrobatTableViewControllerExtension.swift; sourceTree = "<group>"; };
 		05A3D46724F517220051DB39 /* StoreProjectTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreProjectTests.swift; sourceTree = "<group>"; };
 		05A3D46924F517350051DB39 /* CatrobatTableViewControllerExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatrobatTableViewControllerExtensionTests.swift; sourceTree = "<group>"; };
@@ -4018,6 +4020,7 @@
 		05E6802D255B602700D1E295 /* EmbroideryReference */ = {
 			isa = PBXGroup;
 			children = (
+				05501DE4255E106F00C64E58 /* color_change.dst */,
 				05E6802E255B602700D1E295 /* stitch.dst */,
 			);
 			name = EmbroideryReference;
@@ -10053,6 +10056,7 @@
 				CA2D44441B1231F900A3B53D /* Swell.plist in Resources */,
 				4C3285FB2546CFA300C31F9D /* ValidHeader0993.xml in Resources */,
 				2ED417E2241120AF00AFE2FD /* Memory_096.xml in Resources */,
+				05501DE7255E106F00C64E58 /* color_change.dst in Resources */,
 				4C55CCFD24BF2B9D00FB8393 /* WaitUntilBrick0992.xml in Resources */,
 				4C55CD1124BF2C1800FB8393 /* LogicBricks_0992.xml in Resources */,
 				2ED4184B241120B000AFE2FD /* Flappy_v3.0_095.xml in Resources */,

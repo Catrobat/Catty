@@ -26,8 +26,7 @@ import XCTest
 
 final class EmbroideryDSTServiceTests: XCTestCase {
 
-    func testGenerateOutput() {
-
+    func testGenerateOutputInterpolation() {
         let bundlePath = Bundle(for: type(of: self)).path(forResource: "stitch", ofType: "dst")
         let reference = try? Data(contentsOf: URL(fileURLWithPath: bundlePath!))
 
@@ -38,6 +37,22 @@ final class EmbroideryDSTServiceTests: XCTestCase {
 
         let out = DSTService.generateOutput(embroideryStream: stream)
         XCTAssertEqual(out, reference)
+    }
 
+    func testGenerateOutputColorChange() {
+        let bundlePath = Bundle(for: type(of: self)).path(forResource: "color_change", ofType: "dst")
+        let reference = try? Data(contentsOf: URL(fileURLWithPath: bundlePath!))
+
+        let DSTService = EmbroideryDSTService()
+        let stream = EmbroideryStream(withName: "EmbroideryStitc")
+
+        stream.addStich(stitch: Stitch(atPosition: CGPoint(x: 0, y: 0)))
+        stream.addStich(stitch: Stitch(atPosition: CGPoint(x: 250, y: 0)))
+        stream.addColorChange()
+        stream.addStich(stitch: Stitch(atPosition: CGPoint(x: 0, y: 0)))
+        stream.addStich(stitch: Stitch(atPosition: CGPoint(x: 0, y: 250)))
+
+        let out = DSTService.generateOutput(embroideryStream: stream)
+        XCTAssertEqual(out, reference)
     }
 }

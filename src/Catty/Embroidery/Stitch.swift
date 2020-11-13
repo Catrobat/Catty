@@ -26,6 +26,7 @@ class Stitch {
     let x: CGFloat
     let y: CGFloat
     let isJump: Bool
+    var isColorChange = false
 
     init<T: BinaryInteger>(x: T, y: T, asJump isJump: Bool = false) {
         self.x = CGFloat(x)

@@ -72,7 +72,106 @@ final class EmbroideryStreamTests: XCTestCase {
         }
 
         XCTAssertEqual(stream.count, output.count)
-        for i in 0..<input.count {
+        for i in 0..<stream.count {
+            XCTAssertEqual(stream[i].embroideryDimensions().x,
+                           output[i].embroideryDimensions().x)
+            XCTAssertEqual(stream[i].embroideryDimensions().y,
+                           output[i].embroideryDimensions().y)
+        }
+    }
+
+    func testInterpolationNegDirection() {
+        let input = [
+            Stitch(atPosition: CGPoint(x: 250, y: 0)),
+            Stitch(atPosition: CGPoint(x: 0, y: 0))
+        ]
+
+        let output = [
+            Stitch(atPosition: CGPoint(x: 250, y: 0), asJump: false),
+            Stitch(atPosition: CGPoint(x: 250, y: 0), asJump: true),
+            Stitch(atPosition: CGPoint(x: 200, y: 0), asJump: true),
+            Stitch(atPosition: CGPoint(x: 150, y: 0), asJump: true),
+            Stitch(atPosition: CGPoint(x: 100, y: 0), asJump: true),
+            Stitch(atPosition: CGPoint(x: 50, y: 0), asJump: true),
+            Stitch(atPosition: CGPoint(x: 0, y: 0), asJump: true),
+            Stitch(atPosition: CGPoint(x: 0, y: 0), asJump: false)
+        ]
+
+        let stream = EmbroideryStream()
+        for stitch in input {
+            stream.addStich(stitch: stitch)
+        }
+
+        XCTAssertEqual(stream.count, output.count)
+        for i in 0..<stream.count {
+            XCTAssertEqual(stream[i].embroideryDimensions().x,
+                           output[i].embroideryDimensions().x)
+            XCTAssertEqual(stream[i].embroideryDimensions().y,
+                           output[i].embroideryDimensions().y)
+        }
+    }
+
+    func testColorChange() {
+        let output = [
+            Stitch(atPosition: CGPoint(x: 0, y: 0)),
+            Stitch(atPosition: CGPoint(x: 10, y: 0)),
+            Stitch(atPosition: CGPoint(x: 0, y: 0)),
+            Stitch(atPosition: CGPoint(x: 10, y: 0))
+        ]
+        output[2].isColorChange = true
+
+        let stream = EmbroideryStream()
+        stream.addStich(stitch: Stitch(atPosition: CGPoint(x: 0, y: 0)))
+        stream.addStich(stitch: Stitch(atPosition: CGPoint(x: 10, y: 0)))
+        stream.addColorChange()
+        stream.addStich(stitch: Stitch(atPosition: CGPoint(x: 0, y: 0)))
+        stream.addStich(stitch: Stitch(atPosition: CGPoint(x: 10, y: 0)))
+
+        XCTAssertEqual(stream.count, output.count)
+        for i in 0..<stream.count {
+            XCTAssertEqual(stream[i].embroideryDimensions().x,
+                           output[i].embroideryDimensions().x)
+            XCTAssertEqual(stream[i].embroideryDimensions().y,
+                           output[i].embroideryDimensions().y)
+        }
+    }
+
+    func testCombined() {
+        let output = [
+            Stitch(atPosition: CGPoint(x: 0, y: 0), asJump: false),
+            Stitch(atPosition: CGPoint(x: 0, y: 0), asJump: true),
+            Stitch(atPosition: CGPoint(x: 50, y: 0), asJump: true),
+            Stitch(atPosition: CGPoint(x: 100, y: 0), asJump: true),
+            Stitch(atPosition: CGPoint(x: 150, y: 0), asJump: true),
+            Stitch(atPosition: CGPoint(x: 200, y: 0), asJump: true),
+            Stitch(atPosition: CGPoint(x: 250, y: 0), asJump: true),
+            Stitch(atPosition: CGPoint(x: 250, y: 0), asJump: false),
+            Stitch(atPosition: CGPoint(x: 250, y: 0), asJump: true),
+            Stitch(atPosition: CGPoint(x: 200, y: 0), asJump: true),
+            Stitch(atPosition: CGPoint(x: 150, y: 0), asJump: true),
+            Stitch(atPosition: CGPoint(x: 100, y: 0), asJump: true),
+            Stitch(atPosition: CGPoint(x: 50, y: 0), asJump: true),
+            Stitch(atPosition: CGPoint(x: 0, y: 0), asJump: true),
+            Stitch(atPosition: CGPoint(x: 0, y: 0), asJump: false), // <- ColorChange
+            Stitch(atPosition: CGPoint(x: 0, y: 0), asJump: true),
+            Stitch(atPosition: CGPoint(x: 50, y: 0), asJump: true),
+            Stitch(atPosition: CGPoint(x: 100, y: 0), asJump: true),
+            Stitch(atPosition: CGPoint(x: 150, y: 0), asJump: true),
+            Stitch(atPosition: CGPoint(x: 200, y: 0), asJump: true),
+            Stitch(atPosition: CGPoint(x: 250, y: 0), asJump: true),
+            Stitch(atPosition: CGPoint(x: 250, y: 0), asJump: false)
+        ]
+        output[14].isColorChange = true
+
+        let stream = EmbroideryStream()
+        stream.addStich(stitch: Stitch(atPosition: CGPoint(x: 0, y: 0)))
+        stream.addStich(stitch: Stitch(atPosition: CGPoint(x: 250, y: 0)))
+        stream.addColorChange()
+        stream.addStich(stitch: Stitch(atPosition: CGPoint(x: 0, y: 0)))
+        stream.addStich(stitch: Stitch(atPosition: CGPoint(x: 250, y: 0)))
+
+        XCTAssertEqual(stream.count, output.count)
+        for i in 0..<stream.count {
             XCTAssertEqual(stream[i].embroideryDimensions().x,
                            output[i].embroideryDimensions().x)
             XCTAssertEqual(stream[i].embroideryDimensions().y,

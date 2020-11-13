@@ -32,8 +32,11 @@ class EmbroideryStream: Collection {
     var startIndex: IndexType { stitches.startIndex }
     var endIndex: IndexType { stitches.endIndex }
 
+    var nextStitchIsColorChange: Bool
+
     init(withName name: String? = nil) {
         self.name = name
+        self.nextStitchIsColorChange = false
     }
 
     subscript(index: IndexType) -> Stitch {
@@ -50,7 +53,11 @@ class EmbroideryStream: Collection {
                 addInterpolatedStiches(stitch: stitch)
             }
         }
-        stitches.append(stitch)
+        appendStitch(stitch: stitch)
+    }
+
+    func addColorChange() {
+        nextStitchIsColorChange = true
     }
 
     private func addInterpolatedStiches(stitch: Stitch) {
@@ -64,9 +71,17 @@ class EmbroideryStream: Collection {
 
         for i in 0...Int(splitCount) {
             let splitFactor = CGFloat(Double(i) / splitCount)
-            let interploatedX = round(lastStitch.x + splitFactor * stitch.x - lastStitch.x)
-            let interploatedY = round(lastStitch.y + splitFactor * stitch.y - lastStitch.y)
-            stitches.append(Stitch(atPosition: CGPoint(x: interploatedX, y: interploatedY), asJump: true))
+            let interploatedX = round(lastStitch.x + splitFactor * (stitch.x - lastStitch.x))
+            let interploatedY = round(lastStitch.y + splitFactor * (stitch.y - lastStitch.y))
+            appendStitch(stitch: Stitch(atPosition: CGPoint(x: interploatedX, y: interploatedY), asJump: true))
         }
+    }
+
+    private func appendStitch(stitch: Stitch) {
+        if nextStitchIsColorChange {
+            stitch.isColorChange = true
+            nextStitchIsColorChange = false
+        }
+        stitches.append(stitch)
     }
 }
