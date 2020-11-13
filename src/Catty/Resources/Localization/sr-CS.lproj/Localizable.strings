@@ -50,6 +50,9 @@
 "Agree" = "Prihvati";
 
 /* No comment provided by engineer. */
+"all around" = "all around";
+
+/* No comment provided by engineer. */
 "All Bluetooth devices successfully disconnected" = "Svi Bluetooth uređaji su uspešno prekinuli vezu";
 
 /* No comment provided by engineer. */
@@ -83,6 +86,9 @@
 "and" = "i";
 
 /* No comment provided by engineer. */
+"and store written answer in " = "and store written answer in ";
+
+/* No comment provided by engineer. */
 "and wait" = "i čekaj";
 
 /* No comment provided by engineer. */
@@ -105,6 +111,9 @@
 
 /* No comment provided by engineer. */
 "Arduino extension" = "Arduino ekstenzija";
+
+/* No comment provided by engineer. */
+"Ask " = "Ask ";
 
 /* No comment provided by engineer. */
 "at " = "at ";
@@ -225,6 +234,12 @@
 
 /* No comment provided by engineer. */
 "Change size by" = "Promena veličine";
+
+/* No comment provided by engineer. */
+"Change to landscape" = "Change to landscape";
+
+/* No comment provided by engineer. */
+"Change to portrait" = "Change to portrait";
 
 /* No comment provided by engineer. */
 "Change transparency " = "Promeni transparentnost";
@@ -456,6 +471,9 @@
 
 /* paint */
 "Do you want to save the changes" = "Da li želite da sačuvate svoje izmene?";
+
+/* No comment provided by engineer. */
+"don't rotate" = "ne rotiraj";
 
 /* No comment provided by engineer. */
 "Done" = "Gotovo";
@@ -824,6 +842,9 @@
 "Left" = "Levo";
 
 /* No comment provided by engineer. */
+"left-right only" = "samo levo-desno";
+
+/* No comment provided by engineer. */
 "Length" = "Dužina";
 
 /* No comment provided by engineer. */
@@ -1163,6 +1184,9 @@
 "Place at " = "Place at ";
 
 /* No comment provided by engineer. */
+"Play" = "Igraj";
+
+/* No comment provided by engineer. */
 "Play Phiro music\n" = "Play Phiro music\n";
 
 /* No comment provided by engineer. */
@@ -1449,6 +1473,9 @@
 
 /* No comment provided by engineer. */
 "Set Phiro light" = "Set Phiro light";
+
+/* No comment provided by engineer. */
+"Set rotation style" = "Podesite stil rotacije";
 
 /* No comment provided by engineer. */
 "Set size to" = "Podesi veličinu za";
@@ -1811,13 +1838,16 @@
 "Welcome!" = "Dobrodošli!";
 
 /* No comment provided by engineer. */
+"What's your name?" = "Kako se zovete?";
+
+/* No comment provided by engineer. */
 "When" = "Kada";
 
 /* No comment provided by engineer. */
 "When background changes to" = "Kada se pozadina promeni u";
 
 /* No comment provided by engineer. */
-"When project started" = "Kad je projekat pokrenut";
+"When project starts" = "When project starts";
 
 /* No comment provided by engineer. */
 "When stage is tapped" = "Kad je scena pritisnuta";
@@ -1851,6 +1881,9 @@
 
 /* No comment provided by engineer. */
 "You have already downloaded this project!" = "Već ste preuzeli ovaj projekat!";
+
+/* No comment provided by engineer. */
+"Your answer" = "Your answer";
 
 /* No comment provided by engineer. */
 "Your email seems to be invalid" = "Tvoja e-mail adresa je nevažeća";

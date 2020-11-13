@@ -14,13 +14,13 @@
 "About Pocket Code" = "About Pocket Code";
 
 /* No comment provided by engineer. */
-"acceleration x" = "acceleration_x";
+"acceleration x" = "acceleration x";
 
 /* No comment provided by engineer. */
-"acceleration y" = "acceleration_y";
+"acceleration y" = "acceleration y";
 
 /* No comment provided by engineer. */
-"acceleration z" = "acceleration_z";
+"acceleration z" = "acceleration z";
 
 /* No comment provided by engineer. */
 "acceleration-sensor" = "acceleration-sensor";
@@ -48,6 +48,9 @@
 
 /* No comment provided by engineer. */
 "Agree" = "Agree";
+
+/* No comment provided by engineer. */
+"all around" = "all around";
 
 /* No comment provided by engineer. */
 "All Bluetooth devices successfully disconnected" = "All Bluetooth devices successfully disconnected";
@@ -83,6 +86,9 @@
 "and" = "and";
 
 /* No comment provided by engineer. */
+"and store written answer in " = "and store written answer in ";
+
+/* No comment provided by engineer. */
 "and wait" = "and wait";
 
 /* No comment provided by engineer. */
@@ -105,6 +111,9 @@
 
 /* No comment provided by engineer. */
 "Arduino extension" = "Arduino extension";
+
+/* No comment provided by engineer. */
+"Ask " = "Ask ";
 
 /* No comment provided by engineer. */
 "at " = "at ";
@@ -225,6 +234,12 @@
 
 /* No comment provided by engineer. */
 "Change size by" = "Change size by";
+
+/* No comment provided by engineer. */
+"Change to landscape" = "Change to landscape";
+
+/* No comment provided by engineer. */
+"Change to portrait" = "Change to portrait";
 
 /* No comment provided by engineer. */
 "Change transparency " = "Change transparency ";
@@ -456,6 +471,9 @@
 
 /* paint */
 "Do you want to save the changes" = "Do you want to save the changes";
+
+/* No comment provided by engineer. */
+"don't rotate" = "don't rotate";
 
 /* No comment provided by engineer. */
 "Done" = "Done";
@@ -740,10 +758,10 @@
 "In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation." = "In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation.";
 
 /* No comment provided by engineer. */
-"inclination x" = "inclination_x";
+"inclination x" = "inclination x";
 
 /* No comment provided by engineer. */
-"inclination y" = "inclination_y";
+"inclination y" = "inclination y";
 
 /* No comment provided by engineer. */
 "Information" = "Information";
@@ -822,6 +840,9 @@
 
 /* No comment provided by engineer. */
 "Left" = "Left";
+
+/* No comment provided by engineer. */
+"left-right only" = "left-right only";
 
 /* No comment provided by engineer. */
 "Length" = "Length";
@@ -1163,6 +1184,9 @@
 "Place at " = "Place at ";
 
 /* No comment provided by engineer. */
+"Play" = "Play";
+
+/* No comment provided by engineer. */
 "Play Phiro music\n" = "Play Phiro music\n";
 
 /* No comment provided by engineer. */
@@ -1226,10 +1250,10 @@
 "Pointer" = "Pointer";
 
 /* No comment provided by engineer. */
-"position x" = "position_x";
+"position x" = "position x";
 
 /* No comment provided by engineer. */
-"position y" = "position_y";
+"position y" = "position y";
 
 /* No comment provided by engineer. */
 "Preview" = "Preview";
@@ -1449,6 +1473,9 @@
 
 /* No comment provided by engineer. */
 "Set Phiro light" = "Set Phiro light";
+
+/* No comment provided by engineer. */
+"Set rotation style" = "Set rotation style";
 
 /* No comment provided by engineer. */
 "Set size to" = "Set size to";
@@ -1811,6 +1838,9 @@
 "Welcome!" = "Welcome!";
 
 /* No comment provided by engineer. */
+"What's your name?" = "What's your name?";
+
+/* No comment provided by engineer. */
 "When" = "When";
 
 /* No comment provided by engineer. */
@@ -1851,6 +1881,9 @@
 
 /* No comment provided by engineer. */
 "You have already downloaded this project!" = "You have already downloaded this project!";
+
+/* No comment provided by engineer. */
+"Your answer" = "Your answer";
 
 /* No comment provided by engineer. */
 "Your email seems to be invalid" = "Your email seems to be invalid";

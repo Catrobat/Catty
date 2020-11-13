@@ -47,7 +47,10 @@
 "Add sound" = "Geluid toevoegen";
 
 /* No comment provided by engineer. */
-"Agree" = "Agree";
+"Agree" = "Akkoord";
+
+/* No comment provided by engineer. */
+"all around" = "all around";
 
 /* No comment provided by engineer. */
 "All Bluetooth devices successfully disconnected" = "Verbinding met alle Bluetooth-apparaten met succes verbroken";
@@ -83,6 +86,9 @@
 "and" = "en";
 
 /* No comment provided by engineer. */
+"and store written answer in " = "and store written answer in ";
+
+/* No comment provided by engineer. */
 "and wait" = "and wait";
 
 /* No comment provided by engineer. */
@@ -105,6 +111,9 @@
 
 /* No comment provided by engineer. */
 "Arduino extension" = "Arduino extension";
+
+/* No comment provided by engineer. */
+"Ask " = "Ask ";
 
 /* No comment provided by engineer. */
 "at " = "bij ";
@@ -225,6 +234,12 @@
 
 /* No comment provided by engineer. */
 "Change size by" = "Verander grootte met";
+
+/* No comment provided by engineer. */
+"Change to landscape" = "Change to landscape";
+
+/* No comment provided by engineer. */
+"Change to portrait" = "Change to portrait";
 
 /* No comment provided by engineer. */
 "Change transparency " = "Verander doorzichtigheid";
@@ -443,7 +458,7 @@
 "Disable script" = "Disable script";
 
 /* No comment provided by engineer. */
-"Disagree" = "Disagree";
+"Disagree" = "Niet akkoord";
 
 /* No comment provided by engineer. */
 "Disconnect all devices" = "Disconnect all devices";
@@ -456,6 +471,9 @@
 
 /* paint */
 "Do you want to save the changes" = "Do you want to save the changes";
+
+/* No comment provided by engineer. */
+"don't rotate" = "don't rotate";
 
 /* No comment provided by engineer. */
 "Done" = "Gereed";
@@ -824,6 +842,9 @@
 "Left" = "Links";
 
 /* No comment provided by engineer. */
+"left-right only" = "left-right only";
+
+/* No comment provided by engineer. */
 "Length" = "Lengte";
 
 /* No comment provided by engineer. */
@@ -1163,6 +1184,9 @@
 "Place at " = "Plaats op:";
 
 /* No comment provided by engineer. */
+"Play" = "Speel af";
+
+/* No comment provided by engineer. */
 "Play Phiro music\n" = "Speel Phiro muziek af\n";
 
 /* No comment provided by engineer. */
@@ -1382,7 +1406,7 @@
 "seconds " = "seconds ";
 
 /* No comment provided by engineer. */
-"Select all" = "Select all";
+"Select all" = "Alles selecteren";
 
 /* bluetooth */
 "Select Arduino" = "Select Arduino";
@@ -1449,6 +1473,9 @@
 
 /* No comment provided by engineer. */
 "Set Phiro light" = "Set Phiro light";
+
+/* No comment provided by engineer. */
+"Set rotation style" = "Set rotation style";
 
 /* No comment provided by engineer. */
 "Set size to" = "Maak grootte";
@@ -1811,6 +1838,9 @@
 "Welcome!" = "Welcome!";
 
 /* No comment provided by engineer. */
+"What's your name?" = "What's your name?";
+
+/* No comment provided by engineer. */
 "When" = "When";
 
 /* No comment provided by engineer. */
@@ -1851,6 +1881,9 @@
 
 /* No comment provided by engineer. */
 "You have already downloaded this project!" = "You have already downloaded this project!";
+
+/* No comment provided by engineer. */
+"Your answer" = "Your answer";
 
 /* No comment provided by engineer. */
 "Your email seems to be invalid" = "Je e-mailadres lijkt ongeldig te zijn";

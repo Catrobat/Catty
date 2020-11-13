@@ -50,6 +50,9 @@
 "Agree" = "Agree";
 
 /* No comment provided by engineer. */
+"all around" = "all around";
+
+/* No comment provided by engineer. */
 "All Bluetooth devices successfully disconnected" = "Bütün Bluetooth cihazları uğurlu şəkildə ayrıldı";
 
 /* No comment provided by engineer. */
@@ -83,6 +86,9 @@
 "and" = "və";
 
 /* No comment provided by engineer. */
+"and store written answer in " = "and store written answer in ";
+
+/* No comment provided by engineer. */
 "and wait" = "and wait";
 
 /* No comment provided by engineer. */
@@ -105,6 +111,9 @@
 
 /* No comment provided by engineer. */
 "Arduino extension" = "Arduino extension";
+
+/* No comment provided by engineer. */
+"Ask " = "Ask ";
 
 /* No comment provided by engineer. */
 "at " = "at ";
@@ -225,6 +234,12 @@
 
 /* No comment provided by engineer. */
 "Change size by" = "Change size by";
+
+/* No comment provided by engineer. */
+"Change to landscape" = "Change to landscape";
+
+/* No comment provided by engineer. */
+"Change to portrait" = "Change to portrait";
 
 /* No comment provided by engineer. */
 "Change transparency " = "Change transparency ";
@@ -458,6 +473,9 @@
 "Do you want to save the changes" = "Do you want to save the changes";
 
 /* No comment provided by engineer. */
+"don't rotate" = "don't rotate";
+
+/* No comment provided by engineer. */
 "Done" = "Hazır";
 
 /* No comment provided by engineer. */
@@ -575,7 +593,7 @@
 "Enter your variable name here..." = "Enter your variable name here...";
 
 /* paint */
-"Eraser" = "Eraser";
+"Eraser" = "Pozan";
 
 /* No comment provided by engineer. */
 "Error" = "Səhv";
@@ -626,7 +644,7 @@
 "February" = "February";
 
 /* paint */
-"Fill" = "Fill";
+"Fill" = "Doldur";
 
 /* No comment provided by engineer. */
 "Flashlight off" = "Flashlight off";
@@ -824,6 +842,9 @@
 "Left" = "Left";
 
 /* No comment provided by engineer. */
+"left-right only" = "left-right only";
+
+/* No comment provided by engineer. */
 "Length" = "Length";
 
 /* No comment provided by engineer. */
@@ -833,7 +854,7 @@
 "letter" = "letter";
 
 /* paint */
-"Line" = "Line";
+"Line" = "Xətt";
 
 /* No comment provided by engineer. */
 "List name:" = "List name:";
@@ -1157,10 +1178,13 @@
 "phiro side right" = "phiro side right";
 
 /* paint */
-"Pipette" = "Pipette";
+"Pipette" = "Pipetka";
 
 /* No comment provided by engineer. */
 "Place at " = "Place at ";
+
+/* No comment provided by engineer. */
+"Play" = "Başla";
 
 /* No comment provided by engineer. */
 "Play Phiro music\n" = "Play Phiro music\n";
@@ -1451,6 +1475,9 @@
 "Set Phiro light" = "Set Phiro light";
 
 /* No comment provided by engineer. */
+"Set rotation style" = "Set rotation style";
+
+/* No comment provided by engineer. */
 "Set size to" = "Set size to";
 
 /* No comment provided by engineer. */
@@ -1526,7 +1553,7 @@
 "stage touch y" = "stage touch y";
 
 /* paint */
-"Stamp" = "Stamp";
+"Stamp" = "Ştamp";
 
 /* paint */
 "Stamped" = "Stamped";
@@ -1580,7 +1607,7 @@
 "Terms of Use and Service" = "Terms of Use and Service";
 
 /* paint */
-"Text" = "Text";
+"Text" = "Mətn";
 
 /* No comment provided by engineer. */
 "Text message:" = "Text message:";
@@ -1811,6 +1838,9 @@
 "Welcome!" = "Welcome!";
 
 /* No comment provided by engineer. */
+"What's your name?" = "What's your name?";
+
+/* No comment provided by engineer. */
 "When" = "When";
 
 /* No comment provided by engineer. */
@@ -1851,6 +1881,9 @@
 
 /* No comment provided by engineer. */
 "You have already downloaded this project!" = "You have already downloaded this project!";
+
+/* No comment provided by engineer. */
+"Your answer" = "Your answer";
 
 /* No comment provided by engineer. */
 "Your email seems to be invalid" = "Your email seems to be invalid";
