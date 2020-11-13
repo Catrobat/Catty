@@ -26,10 +26,6 @@ import XCTest
 
 class StoreAuthenticatorTests: XCTestCase {
 
-    override func setUp() {
-        StoreAuthenticator().logout()
-    }
-
     override func tearDown() {
         StoreAuthenticator().logout()
     }
@@ -76,7 +72,7 @@ class StoreAuthenticatorTests: XCTestCase {
         let expectation = XCTestExpectation(description: "Register")
 
         let authenticator = StoreAuthenticator(session: dvrSession)
-        authenticator.register(username: "new_test_user", password: "new_test_user_password", email: "new_test_user@email.com") { error in
+        authenticator.register(username: "test_user5", password: "test_user5", email: "test_user5@email.com") { error in
             if error != nil {
                 XCTFail("An error occured")
                 return
@@ -94,7 +90,7 @@ class StoreAuthenticatorTests: XCTestCase {
         let expectation = XCTestExpectation(description: "Register")
 
         let authenticator = StoreAuthenticator(session: dvrSession)
-        authenticator.register(username: "test_user2", password: "new_test_user_password", email: "test_user@email.com") { error in
+        authenticator.register(username: "test_user10", password: "test_user5", email: "test_user5@email.com") { error in
 
             guard let error = error else {
                 XCTFail("No error occured")
@@ -103,7 +99,7 @@ class StoreAuthenticatorTests: XCTestCase {
 
             switch error {
             case let .serverResponse(response: response):
-                XCTAssertTrue(response == "Email already in use")
+                XCTAssertTrue(response == " Email already in use")
 
             default:
                 XCTFail("wrong error received")
@@ -130,7 +126,7 @@ class StoreAuthenticatorTests: XCTestCase {
 
             switch error {
             case let .serverResponse(response: response):
-                XCTAssertTrue(response == "Username too short")
+                XCTAssertTrue(response == " Username too short")
 
             default:
                 XCTFail("wrong error received")
@@ -157,34 +153,7 @@ class StoreAuthenticatorTests: XCTestCase {
 
             switch error {
             case let .serverResponse(response: response):
-                XCTAssertTrue(response == "Password too short")
-
-            default:
-                XCTFail("wrong error received")
-            }
-
-            expectation.fulfill()
-        }
-
-        wait(for: [expectation], timeout: 5)
-    }
-
-    func testRegisterServerResponseInvalidField() {
-        let dvrSession = Session(cassetteName: "StoreAuthenticator.register.fail.invalidfield")
-
-        let expectation = XCTestExpectation(description: "Register")
-
-        let authenticator = StoreAuthenticator(session: dvrSession)
-        authenticator.register(username: "@test_user*", password: "new_test_user_password", email: "test_user3@email.com") { error in
-
-            guard let error = error else {
-                XCTFail("No error occured")
-                return
-            }
-
-            switch error {
-            case let .serverResponse(response: response):
-                XCTAssertTrue(response == "This value is not valid.")
+                XCTAssertTrue(response == " Password too short")
 
             default:
                 XCTFail("wrong error received")

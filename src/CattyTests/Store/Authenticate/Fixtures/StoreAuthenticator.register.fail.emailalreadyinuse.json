@@ -2,39 +2,37 @@
   "name" : "StoreAuthenticator.register.fail.emailalreadyinuse",
   "interactions" : [
     {
-      "response" : {
-        "body" : {
-          "answer" : "Email already in use",
-          "statusCode" : 422,
-          "preHeaderMessages" : ""
-        },
-        "status" : 200,
-        "headers" : {
-          "Server" : "nginx",
-          "Content-Type" : "application\/json",
-          "Strict-Transport-Security" : "max-age=15768000",
-          "x-debug-token-link" : "http:\/\/web-test.catrob.at\/_profiler\/34855d",
-          "Cache-Control" : "max-age=0, must-revalidate, private",
-          "Pragma" : "no-cache",
-          "Expires" : "Fri, 06 Nov 2020 13:06:36 GMT",
-          "x-robots-tag" : "noindex",
-          "Set-Cookie" : "PHPSESSID=4o2ke157dcdagafuupbok7esnp; path=\/; HttpOnly",
-          "Content-Encoding" : "gzip",
-          "Date" : "Fri, 06 Nov 2020 13:06:36 GMT",
-          "x-debug-token" : "34855d"
-        },
-        "url" : "https:\/\/web-test.catrob.at\/pocketcode\/api\/register\/Register.json"
-      },
+      "recorded_at" : 1605256082.4153371,
       "request" : {
-        "body" : "LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS05ODU5ODI2MzU5NjU5ODI0NjUwODI0NzA5ODI5MS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KQ29udGVudC1EaXNwb3NpdGlvbjogZm9ybS1kYXRhOyBuYW1lPSJyZWdpc3RyYXRpb25Vc2VybmFtZSINCg0KdGVzdF91c2VyMg0KLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS05ODU5ODI2MzU5NjU5ODI0NjUwODI0NzA5ODI5MS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KQ29udGVudC1EaXNwb3NpdGlvbjogZm9ybS1kYXRhOyBuYW1lPSJyZWdpc3RyYXRpb25QYXNzd29yZCINCg0KbmV3X3Rlc3RfdXNlcl9wYXNzd29yZA0KLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS05ODU5ODI2MzU5NjU5ODI0NjUwODI0NzA5ODI5MS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KQ29udGVudC1EaXNwb3NpdGlvbjogZm9ybS1kYXRhOyBuYW1lPSJyZWdpc3RyYXRpb25FbWFpbCINCg0KdGVzdF91c2VyQGVtYWlsLmNvbQ0KLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS05ODU5ODI2MzU5NjU5ODI0NjUwODI0NzA5ODI5MS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KQ29udGVudC1EaXNwb3NpdGlvbjogZm9ybS1kYXRhOyBuYW1lPSJkcnktcnVuIg0KDQp0cnVlDQotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLTk4NTk4MjYzNTk2NTk4MjQ2NTA4MjQ3MDk4MjkxLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQpDb250ZW50LURpc3Bvc2l0aW9uOiBmb3JtLWRhdGE7IG5hbWU9InJlZ2lzdHJhdGlvbkNvdW50cnkiDQoNClVTDQotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLTk4NTk4MjYzNTk2NTk4MjQ2NTA4MjQ3MDk4MjkxLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCg==",
+        "headers" : {
+          "Content-Length" : "691",
+          "Content-Type" : "multipart\/form-data; boundary=---------------------------98598263596598246508247098291---------------------------"
+        },
+        "method" : "POST",
+        "url" : "https:\/\/web-test.catrob.at\/pocketcode\/api\/register\/Register.json",
+        "body" : "LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS05ODU5ODI2MzU5NjU5ODI0NjUwODI0NzA5ODI5MS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KQ29udGVudC1EaXNwb3NpdGlvbjogZm9ybS1kYXRhOyBuYW1lPSJ1c2VybmFtZSINCg0KdGVzdF91c2VyMTANCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tOTg1OTgyNjM1OTY1OTgyNDY1MDgyNDcwOTgyOTEtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCkNvbnRlbnQtRGlzcG9zaXRpb246IGZvcm0tZGF0YTsgbmFtZT0icGFzc3dvcmQiDQoNCnRlc3RfdXNlcjUNCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tOTg1OTgyNjM1OTY1OTgyNDY1MDgyNDcwOTgyOTEtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCkNvbnRlbnQtRGlzcG9zaXRpb246IGZvcm0tZGF0YTsgbmFtZT0iZW1haWwiDQoNCnRlc3RfdXNlcjVAZW1haWwuY29tDQotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLTk4NTk4MjYzNTk2NTk4MjQ2NTA4MjQ3MDk4MjkxLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQpDb250ZW50LURpc3Bvc2l0aW9uOiBmb3JtLWRhdGE7IG5hbWU9ImRyeS1ydW4iDQoNCmZhbHNlDQotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLTk4NTk4MjYzNTk2NTk4MjQ2NTA4MjQ3MDk4MjkxLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCg=="
+      },
+      "response" : {
+        "status" : 422,
         "url" : "https:\/\/web-test.catrob.at\/pocketcode\/api\/register\/Register.json",
         "headers" : {
-          "Content-Type" : "multipart\/form-data; boundary=---------------------------98598263596598246508247098291---------------------------",
-          "Content-Length" : "889"
+          "x-robots-tag" : "noindex",
+          "Content-Type" : "application\/json",
+          "x-debug-token" : "079d3e",
+          "Date" : "Fri, 13 Nov 2020 08:28:02 GMT",
+          "Cache-Control" : "max-age=0, must-revalidate, private",
+          "Pragma" : "no-cache",
+          "Strict-Transport-Security" : "max-age=15768000",
+          "x-debug-token-link" : "http:\/\/web-test.catrob.at\/_profiler\/079d3e",
+          "Set-Cookie" : "PHPSESSID=n5q4h8l8arlpit4e2e3k7va10l; path=\/; HttpOnly",
+          "Content-Encoding" : "gzip",
+          "Expires" : "Fri, 13 Nov 2020 08:28:02 GMT",
+          "Server" : "nginx"
         },
-        "method" : "POST"
-      },
-      "recorded_at" : 1604667997.260849
+        "body" : {
+          "email" : "Email already in use",
+        }
+      }
     }
   ]
 }

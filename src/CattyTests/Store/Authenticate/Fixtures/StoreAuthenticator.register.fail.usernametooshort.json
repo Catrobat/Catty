@@ -2,37 +2,35 @@
   "interactions" : [
     {
       "request" : {
+        "method" : "POST",
+        "url" : "https:\/\/web-test.catrob.at\/pocketcode\/api\/register\/Register.json",
         "headers" : {
-          "Content-Length" : "882",
+          "Content-Length" : "694",
           "Content-Type" : "multipart\/form-data; boundary=---------------------------98598263596598246508247098291---------------------------"
         },
-        "url" : "https:\/\/web-test.catrob.at\/pocketcode\/api\/register\/Register.json",
-        "method" : "POST",
-        "body" : "LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS05ODU5ODI2MzU5NjU5ODI0NjUwODI0NzA5ODI5MS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KQ29udGVudC1EaXNwb3NpdGlvbjogZm9ybS1kYXRhOyBuYW1lPSJyZWdpc3RyYXRpb25Vc2VybmFtZSINCg0KYWINCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tOTg1OTgyNjM1OTY1OTgyNDY1MDgyNDcwOTgyOTEtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCkNvbnRlbnQtRGlzcG9zaXRpb246IGZvcm0tZGF0YTsgbmFtZT0icmVnaXN0cmF0aW9uUGFzc3dvcmQiDQoNCm5ld190ZXN0X3VzZXJfcGFzc3dvcmQNCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tOTg1OTgyNjM1OTY1OTgyNDY1MDgyNDcwOTgyOTEtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCkNvbnRlbnQtRGlzcG9zaXRpb246IGZvcm0tZGF0YTsgbmFtZT0icmVnaXN0cmF0aW9uRW1haWwiDQoNCnRlc3RfdXNlcjNAZW1haWwuY29tDQotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLTk4NTk4MjYzNTk2NTk4MjQ2NTA4MjQ3MDk4MjkxLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQpDb250ZW50LURpc3Bvc2l0aW9uOiBmb3JtLWRhdGE7IG5hbWU9ImRyeS1ydW4iDQoNCnRydWUNCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tOTg1OTgyNjM1OTY1OTgyNDY1MDgyNDcwOTgyOTEtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCkNvbnRlbnQtRGlzcG9zaXRpb246IGZvcm0tZGF0YTsgbmFtZT0icmVnaXN0cmF0aW9uQ291bnRyeSINCg0KVVMNCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tOTg1OTgyNjM1OTY1OTgyNDY1MDgyNDcwOTgyOTEtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0K"
+        "body" : "LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS05ODU5ODI2MzU5NjU5ODI0NjUwODI0NzA5ODI5MS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KQ29udGVudC1EaXNwb3NpdGlvbjogZm9ybS1kYXRhOyBuYW1lPSJ1c2VybmFtZSINCg0KYWINCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tOTg1OTgyNjM1OTY1OTgyNDY1MDgyNDcwOTgyOTEtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCkNvbnRlbnQtRGlzcG9zaXRpb246IGZvcm0tZGF0YTsgbmFtZT0icGFzc3dvcmQiDQoNCm5ld190ZXN0X3VzZXJfcGFzc3dvcmQNCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tOTg1OTgyNjM1OTY1OTgyNDY1MDgyNDcwOTgyOTEtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCkNvbnRlbnQtRGlzcG9zaXRpb246IGZvcm0tZGF0YTsgbmFtZT0iZW1haWwiDQoNCnRlc3RfdXNlcjNAZW1haWwuY29tDQotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLTk4NTk4MjYzNTk2NTk4MjQ2NTA4MjQ3MDk4MjkxLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQpDb250ZW50LURpc3Bvc2l0aW9uOiBmb3JtLWRhdGE7IG5hbWU9ImRyeS1ydW4iDQoNCmZhbHNlDQotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLTk4NTk4MjYzNTk2NTk4MjQ2NTA4MjQ3MDk4MjkxLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCg=="
       },
-      "recorded_at" : 1604668727.3275452,
+      "recorded_at" : 1605256799.6603899,
       "response" : {
+        "status" : 422,
         "url" : "https:\/\/web-test.catrob.at\/pocketcode\/api\/register\/Register.json",
         "body" : {
-          "answer" : "Username too short",
-          "statusCode" : 422,
-          "preHeaderMessages" : ""
+          "username" : "Username too short"
         },
         "headers" : {
-          "x-debug-token" : "304b4c",
-          "Server" : "nginx",
-          "Content-Encoding" : "gzip",
-          "x-robots-tag" : "noindex",
-          "Date" : "Fri, 06 Nov 2020 13:18:47 GMT",
           "Cache-Control" : "max-age=0, must-revalidate, private",
-          "x-debug-token-link" : "http:\/\/web-test.catrob.at\/_profiler\/304b4c",
-          "Set-Cookie" : "PHPSESSID=to8s5saje5uijpmra2qg0vafhg; path=\/; HttpOnly",
-          "Pragma" : "no-cache",
           "Content-Type" : "application\/json",
+          "x-robots-tag" : "noindex",
+          "Pragma" : "no-cache",
           "Strict-Transport-Security" : "max-age=15768000",
-          "Expires" : "Fri, 06 Nov 2020 13:18:47 GMT"
-        },
-        "status" : 200
+          "Expires" : "Fri, 13 Nov 2020 08:39:59 GMT",
+          "x-debug-token" : "c89aff",
+          "Server" : "nginx",
+          "Date" : "Fri, 13 Nov 2020 08:39:59 GMT",
+          "Set-Cookie" : "PHPSESSID=hrfm0089kfb4kvcveapfa4lsrc; path=\/; HttpOnly",
+          "x-debug-token-link" : "http:\/\/web-test.catrob.at\/_profiler\/c89aff",
+          "Content-Encoding" : "gzip"
+        }
       }
     }
   ],

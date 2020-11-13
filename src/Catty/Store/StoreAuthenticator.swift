@@ -44,18 +44,17 @@ enum StoreAuthenticatorLoginError: Error {
 final class StoreAuthenticator: StoreAuthenticatorProtocol {
 
     let httpBoundary = "---------------------------98598263596598246508247098291---------------------------"
-    let usernameTag = "registrationUsername"
-    let passwordTag = "registrationPassword"
-    let emailTag = "registrationEmail"
+    let usernameTag = "username"
+    let passwordTag = "password"
+    let emailTag = "email"
     let registrationCountryTag = "registrationCountry"
     let dryRunTag = "dry-run"
     let defaultCountryCode = "US"
     let statusCodeTag = "statusCode"
-    let statusCodeOK = "200"
-    let statusCodeRegistrationOK = "201"
-    let validationSuccesful = "204"
-    let invalidParameters = "400"
-    let statusCodeAuthenticationFailed = "401"
+    let statusCodeLoginSuccess = 200
+    let statusCodeRegistrationSuccess = 201
+    let statusCodeAuthenticationFailed = 401
+    let statusCodeRegisterFailedWithServerResponse = 422
     let tokenTag = "token"
     let answerTag = "answer"
 
@@ -95,41 +94,21 @@ final class StoreAuthenticator: StoreAuthenticatorProtocol {
             return .unexpectedError
         }
 
-        guard let statusCode = dictionary?[statusCodeTag] else {
+        debugPrint("Login successful")
+        guard let token = dictionary?[tokenTag] else {
             return .unexpectedError
         }
+        debugPrint("Token is: \(token)")
 
-        debugPrint("StatusCode is: \(statusCode)")
+        UserDefaults.standard.set(true, forKey: NetworkDefines.kUserIsLoggedIn)
+        UserDefaults.standard.set(self.username!, forKey: kcUsername)
 
-        if statusCodeOK == "\(statusCode)" {
-            debugPrint("Login successful")
-            guard let token = dictionary?[tokenTag] else {
-                return .unexpectedError
-            }
-            debugPrint("Token is: \(token)")
+        JNKeychain.saveValue(token, forKey: NetworkDefines.kUserLoginToken)
 
-            if let email = dictionary?["email"] as? String {
-                self.email = email
-                UserDefaults.standard.set(self.email!, forKey: kcEmail)
-            } else {
-                debugPrint("Could not receieve email")
-            }
-
-            UserDefaults.standard.set(true, forKey: NetworkDefines.kUserIsLoggedIn)
-            UserDefaults.standard.set(self.username!, forKey: kcUsername)
-
-            JNKeychain.saveValue(token, forKey: NetworkDefines.kUserLoginToken)
-
-            return nil
-        } else if statusCodeAuthenticationFailed == "\(statusCode)" {
-            return .authenticationFailed
-        } else {
-            return .timeout
-        }
-
+        return nil
     }
 
-    private func handleRegisterResponse(data: Data, response: URLResponse) -> StoreAuthenticatorRegisterError? {
+    private func handleRegisterResponse(data: Data, statusCode: Int) -> StoreAuthenticatorRegisterError? {
 
         var dictionary: [String: Any]?
         do {
@@ -139,33 +118,44 @@ final class StoreAuthenticator: StoreAuthenticatorProtocol {
             return .unexpectedError
         }
 
-        guard let statusCode = dictionary?[statusCodeTag] else {
-            return .unexpectedError
-        }
-        debugPrint("Statuscode is \(statusCode)")
+        if statusCode == 201 {
 
-        if statusCodeOK == "\(statusCode)" || statusCodeRegistrationOK == "\(statusCode)" {
-            debugPrint("Registration successful")
-
+            debugPrint("Register successful")
             guard let token = dictionary?[tokenTag] else {
                 return .unexpectedError
             }
-
-            debugPrint("Token is \(token)")
+            debugPrint("Token is: \(token)")
 
             UserDefaults.standard.set(true, forKey: NetworkDefines.kUserIsLoggedIn)
-            UserDefaults.standard.set(self.username, forKey: kcUsername)
-            UserDefaults.standard.set(self.email, forKey: kcEmail)
+            UserDefaults.standard.set(self.username!, forKey: kcUsername)
+            UserDefaults.standard.set(self.email!, forKey: kcEmail)
 
             JNKeychain.saveValue(token, forKey: NetworkDefines.kUserLoginToken)
 
             return nil
-        } else {
-            guard let serverResponseString = dictionary?[answerTag] else {
-                return .unexpectedError
+
+        } else if statusCode == self.statusCodeRegisterFailedWithServerResponse {
+
+            var serverResponseString = ""
+
+            if let usernameErrorMessage = dictionary?[usernameTag] as? String {
+                serverResponseString += " " + usernameErrorMessage
             }
 
-            return .serverResponse(response: "\(serverResponseString)")
+            if let emailErrorMessage = dictionary?[emailTag] as? String {
+                serverResponseString += " " + emailErrorMessage
+            }
+
+            if let passwordErrorMessage = dictionary?[passwordTag] as? String {
+                serverResponseString += " " + passwordErrorMessage
+            }
+
+            debugPrint("All Server Error Responses: \(serverResponseString)")
+            return .serverResponse(response: serverResponseString)
+
+        } else {
+
+            return .unexpectedError
         }
 
     }
@@ -213,8 +203,8 @@ final class StoreAuthenticator: StoreAuthenticatorProtocol {
                 completion(.timeout)
             }
 
-            guard let data = data, response.statusCode == 200, error == nil else {
-                if response.statusCode == 401 {
+            guard let data = data, response.statusCode == self.statusCodeLoginSuccess, error == nil else {
+                if response.statusCode == self.statusCodeAuthenticationFailed {
                     completion(.authenticationFailed)
                     return
                 }
@@ -252,11 +242,6 @@ final class StoreAuthenticator: StoreAuthenticatorProtocol {
         self.setFormDataParameter(emailTag, with: email.data(using: .utf8), forHTTPBody: &body)
         self.setFormDataParameter(dryRunTag, with: "false".data(using: .utf8), forHTTPBody: &body)
 
-        let countryCode = Locale.current.regionCode ?? defaultCountryCode
-        debugPrint("Current Country is: \(countryCode)")
-
-        self.setFormDataParameter(registrationCountryTag, with: countryCode.data(using: .utf8), forHTTPBody: &body)
-
         let encoding = "--\(httpBoundary)--\r\n"
 
         if let data = encoding.data(using: .utf8) {
@@ -280,12 +265,11 @@ final class StoreAuthenticator: StoreAuthenticatorProtocol {
                 completion(.timeout)
             }
 
-            guard let data = data, response.statusCode == 200, error == nil else {
+            if let data = data, error == nil {
+                completion(self.handleRegisterResponse(data: data, statusCode: response.statusCode))
+            } else {
                 completion(.request(error: error, statusCode: response.statusCode))
-                return
             }
-
-            completion(self.handleRegisterResponse(data: data, response: response))
 
         }
 
