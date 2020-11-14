@@ -519,6 +519,15 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 
 - (BOOL)collectionView:(UICollectionView*)collectionView canMoveItemAtIndexPath:(NSIndexPath*)indexPath
 {
+    if ([[BrickInsertManager sharedInstance] isBrickInsertionMode]) {
+        Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
+        Brick *brick;
+        
+        if (indexPath.item != 0) {
+            brick = [script.brickList objectAtIndex:indexPath.item - 1];
+        }
+        return (script.animateInsertBrick || brick.animateMoveBrick || brick.animateInsertBrick);
+    }
     BOOL editable = ((self.isEditing || indexPath.item == 0) ? NO : YES);
     return ((editable || [[BrickInsertManager sharedInstance] isBrickInsertionMode]) ? YES : editable);
 }
