@@ -42,6 +42,10 @@
         NSUInteger childrenCount = [[xmlElement childrenWithoutCommentsAndCommentedOutTag] count];
         if (childrenCount != 1 && childrenCount != 2) {
             [XMLError exceptionWithMessage:@"Wrong number of child elements for ChooseCameraBrick"];
+        } else if (childrenCount == 2) {
+            GDataXMLElement *spinnerValuesElement = [xmlElement childWithElementName:@"spinnerValues"];
+            [XMLError exceptionIfNil:spinnerValuesElement
+                             message:@"ChooseCameraBrick element does not contain a spinnerValues child element!"];
         }
         
         GDataXMLElement *cameraChoiceElement = [xmlElement childWithElementName:@"spinnerSelectionID"];
@@ -70,14 +74,8 @@
     
     NSString *numberString = [NSString stringWithFormat:@"%i", self.cameraPosition];   
     GDataXMLElement *spinnerID = [GDataXMLElement elementWithName:@"spinnerSelectionID" stringValue:numberString context:context];
-    GDataXMLElement *backString = [GDataXMLElement elementWithName:@"string" stringValue:@"back" context:context];
-    GDataXMLElement *frontString = [GDataXMLElement elementWithName:@"string" stringValue:@"front" context:context];
-    GDataXMLElement *spinnerValues = [GDataXMLElement elementWithName:@"spinnerValues" context:context];
-    
-    [spinnerValues addChild:backString context:context];
-    [spinnerValues addChild:frontString context:context];
     [brick addChild:spinnerID context:context];
-    [brick addChild:spinnerValues context:context];
+
     return brick;
 }
 
