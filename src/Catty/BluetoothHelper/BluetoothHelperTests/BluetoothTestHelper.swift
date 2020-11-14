@@ -77,9 +77,8 @@ class TestPeripheral: PeripheralWrapper {
 
     init(name: String = "Mock Peripheral",
          state: CBPeripheralState = .disconnected,
-         services: [TestService]=[TestService(uuid: CBUUID(string: "2f0a0017-69aa-f316-3e78-4194989a6ccc"),
-                                              name: "Service Mock-1"),
-                                  TestService(uuid: CBUUID(string: "2f0a0017-69aa-f316-3e78-4194989a6aaa"), name: "Service Mock-2")]) {
+         services: [TestService] = [TestService(uuid: CBUUID(string: "2f0a0017-69aa-f316-3e78-4194989a6ccc"), name: "Service Mock-1"),
+                                    TestService(uuid: CBUUID(string: "2f0a0017-69aa-f316-3e78-4194989a6aaa"), name: "Service Mock-2")]) {
         self.state = state
         self.name = name
         self.services = services

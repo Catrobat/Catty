@@ -90,6 +90,6 @@ class NetworkDefines: NSObject {
     @objc static let reportProjectNoteMaxLength = 100
     @objc static let reportProjectNoteMinLength = 3
 
-    @objc static let kUserIsLoggedIn  = "userIsLoggedIn"
+    @objc static let kUserIsLoggedIn = "userIsLoggedIn"
     @objc static let kUserLoginToken = "userLoginToken"
 }
