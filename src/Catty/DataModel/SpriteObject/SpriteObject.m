@@ -22,7 +22,6 @@
 
 #import "SpriteObject.h"
 #import "StartScript.h"
-#import "Look.h"
 #import "Sound.h"
 #import "Util.h"
 #import "Brick.h"
@@ -377,7 +376,7 @@
         Look *firstLook = [self.lookList objectAtIndex:index];
         Look *secondLook = [spriteObject.lookList objectAtIndex:index];
 
-        if (! [firstLook isEqualToLook:secondLook])
+        if (! [firstLook isEqual:secondLook])
             return NO;
     }
 

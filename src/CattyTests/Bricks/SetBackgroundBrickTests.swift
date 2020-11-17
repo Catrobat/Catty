@@ -58,9 +58,9 @@ final class SetBackgroundBrickTests: AbstractBrickTest {
         var look: Look!
         var look1: Look!
         do {
-            look = Look(name: "test", andPath: "test.png")
+            look = Look(name: "test", filePath: "test.png")
             try imageData?.write(to: URL(fileURLWithPath: object.scene.imagesPath()! + "/test.png"))
-            look1 = Look(name: "test2", andPath: "test2.png")
+            look1 = Look(name: "test2", filePath: "test2.png")
             try imageData?.write(to: URL(fileURLWithPath: object.scene.imagesPath()! + "/test2.png"))
         } catch {
             XCTFail("Error when writing image data")
@@ -83,15 +83,15 @@ final class SetBackgroundBrickTests: AbstractBrickTest {
     func testMutableCopy() {
 
         let brick = SetBackgroundBrick()
-        let look = Look(name: "backgroundToCopy", andPath: "background")
+        let look = Look(name: "backgroundToCopy", filePath: "background")
         brick.look = look
 
         let copiedBrick: SetBackgroundBrick = brick.mutableCopy(with: CBMutableCopyContext()) as! SetBackgroundBrick
 
         XCTAssertTrue(brick.isEqual(to: copiedBrick))
         XCTAssertFalse(brick === copiedBrick)
-        XCTAssertTrue(brick.look.isEqual(to: copiedBrick.look))
-        XCTAssertTrue(copiedBrick.look.isEqual(to: look))
+        XCTAssertTrue(brick.look.isEqual(copiedBrick.look))
+        XCTAssertTrue(copiedBrick.look.isEqual(look))
         XCTAssertTrue(copiedBrick.look === brick.look)
     }
 

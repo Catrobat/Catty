@@ -363,6 +363,7 @@
 		2ED418C62411213E00AFE2FD /* XMLParserTests092.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED418B12411213D00AFE2FD /* XMLParserTests092.swift */; };
 		3DA1BED924365A3400133C99 /* BrickMutableCopyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA1BED824365A3400133C99 /* BrickMutableCopyTests.swift */; };
 		4405C95A24F803EA005C36DC /* UserVariable+CBXMLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4405C95724F803EA005C36DC /* UserVariable+CBXMLHandler.swift */; };
+		440A4ECB254829FE0048AEA7 /* Look.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440A4ECA254829FE0048AEA7 /* Look.swift */; };
 		440B1D59250FE6B10041CC7D /* AskBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440B1D58250FE6B10041CC7D /* AskBrickTests.swift */; };
 		4420ACB1250929AE00951328 /* AskBrick+CBXMLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4420ACAE250929AE00951328 /* AskBrick+CBXMLHandler.swift */; };
 		4420ACB3250929DA00951328 /* AskBrickCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4420ACB2250929DA00951328 /* AskBrickCell.swift */; };
@@ -742,6 +743,7 @@
 		4C8C3612213A9FDF00279BC7 /* ForeverBrick+Condition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8C3611213A9FDF00279BC7 /* ForeverBrick+Condition.swift */; };
 		4C8C3616213AA2BD00279BC7 /* PhiroIfLogicBeginBrick+Condition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8C3615213AA2BD00279BC7 /* PhiroIfLogicBeginBrick+Condition.swift */; };
 		4C968C401F00288500355C0D /* BrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C968C3F1F00288500355C0D /* BrickTests.swift */; };
+		4C9852D02563CCDD000D9C10 /* Whack_A_Mole_092.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C9852CD2563CCDD000D9C10 /* Whack_A_Mole_092.xml */; };
 		4C994E08207A3D4100C415FD /* SensorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C994DFB207A3D4100C415FD /* SensorManager.swift */; };
 		4C994E0A207A3D4100C415FD /* Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C994DFE207A3D4100C415FD /* Sensor.swift */; };
 		4C994E10207A3D4100C415FD /* LoudnessSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C994E06207A3D4100C415FD /* LoudnessSensor.swift */; };
@@ -1209,7 +1211,6 @@
 		92FF30F91A24DCAA00093DA7 /* FormulaElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF309B1A24DCAA00093DA7 /* FormulaElement.m */; };
 		92FF30FB1A24DCAA00093DA7 /* InternFormulaParserException.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30A01A24DCAA00093DA7 /* InternFormulaParserException.m */; };
 		92FF30FD1A24DCAA00093DA7 /* Header.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30A51A24DCAA00093DA7 /* Header.m */; };
-		92FF30FE1A24DCAA00093DA7 /* Look.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30A81A24DCAA00093DA7 /* Look.m */; };
 		92FF30FF1A24DCAA00093DA7 /* Project.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30AB1A24DCAA00093DA7 /* Project.m */; };
 		92FF31021A24DCAA00093DA7 /* BroadcastScript.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30B41A24DCAA00093DA7 /* BroadcastScript.m */; };
 		92FF31031A24DCAA00093DA7 /* Script.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30B61A24DCAA00093DA7 /* Script.m */; };
@@ -2119,6 +2120,7 @@
 		3D5D59359A67834683175607 /* th */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3DA1BED824365A3400133C99 /* BrickMutableCopyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrickMutableCopyTests.swift; sourceTree = "<group>"; };
 		4405C95724F803EA005C36DC /* UserVariable+CBXMLHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserVariable+CBXMLHandler.swift"; sourceTree = "<group>"; };
+		440A4ECA254829FE0048AEA7 /* Look.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Look.swift; sourceTree = "<group>"; };
 		440B1D58250FE6B10041CC7D /* AskBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskBrickTests.swift; sourceTree = "<group>"; };
 		4420ACAE250929AE00951328 /* AskBrick+CBXMLHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AskBrick+CBXMLHandler.swift"; sourceTree = "<group>"; };
 		4420ACB2250929DA00951328 /* AskBrickCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AskBrickCell.swift; sourceTree = "<group>"; };
@@ -2581,6 +2583,7 @@
 		4C8C3611213A9FDF00279BC7 /* ForeverBrick+Condition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ForeverBrick+Condition.swift"; sourceTree = "<group>"; };
 		4C8C3615213AA2BD00279BC7 /* PhiroIfLogicBeginBrick+Condition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhiroIfLogicBeginBrick+Condition.swift"; sourceTree = "<group>"; };
 		4C968C3F1F00288500355C0D /* BrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrickTests.swift; sourceTree = "<group>"; };
+		4C9852CD2563CCDD000D9C10 /* Whack_A_Mole_092.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Whack_A_Mole_092.xml; sourceTree = "<group>"; };
 		4C994DFB207A3D4100C415FD /* SensorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorManager.swift; sourceTree = "<group>"; };
 		4C994DFE207A3D4100C415FD /* Sensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sensor.swift; sourceTree = "<group>"; };
 		4C994E06207A3D4100C415FD /* LoudnessSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoudnessSensor.swift; sourceTree = "<group>"; };
@@ -3213,8 +3216,6 @@
 		92FF30A01A24DCAA00093DA7 /* InternFormulaParserException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InternFormulaParserException.m; sourceTree = "<group>"; };
 		92FF30A41A24DCAA00093DA7 /* Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		92FF30A51A24DCAA00093DA7 /* Header.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Header.m; sourceTree = "<group>"; };
-		92FF30A71A24DCAA00093DA7 /* Look.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Look.h; sourceTree = "<group>"; };
-		92FF30A81A24DCAA00093DA7 /* Look.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Look.m; sourceTree = "<group>"; };
 		92FF30AA1A24DCAA00093DA7 /* Project.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Project.h; sourceTree = "<group>"; };
 		92FF30AB1A24DCAA00093DA7 /* Project.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Project.m; sourceTree = "<group>"; };
 		92FF30B31A24DCAA00093DA7 /* BroadcastScript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BroadcastScript.h; sourceTree = "<group>"; };
@@ -4146,7 +4147,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		29B97314FDCFA39411CA2CEA = {
+		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
 				CD0CCE54170CB39600B70036 /* Catty */,
@@ -4272,6 +4273,7 @@
 				2ED41720241120AE00AFE2FD /* Solar_System_v1.0 */,
 				2ED416B6241120AE00AFE2FD /* Test_Your_NFC */,
 				2ED416A5241120AE00AFE2FD /* Tic_Tac_Toe_Master */,
+				4C9852CC2563CCDD000D9C10 /* Whack_A_Mole */,
 				2ED4169B241120AE00AFE2FD /* Word_balloon_demo */,
 				2ED41740241120AE00AFE2FD /* X_Ray_phone */,
 			);
@@ -6251,6 +6253,14 @@
 			path = Touch;
 			sourceTree = "<group>";
 		};
+		4C9852CC2563CCDD000D9C10 /* Whack_A_Mole */ = {
+			isa = PBXGroup;
+			children = (
+				4C9852CD2563CCDD000D9C10 /* Whack_A_Mole_092.xml */,
+			);
+			path = Whack_A_Mole;
+			sourceTree = "<group>";
+		};
 		4C994DFA207A3D4100C415FD /* Sensors */ = {
 			isa = PBXGroup;
 			children = (
@@ -8026,8 +8036,7 @@
 		92FF30A61A24DCAA00093DA7 /* Look */ = {
 			isa = PBXGroup;
 			children = (
-				92FF30A71A24DCAA00093DA7 /* Look.h */,
-				92FF30A81A24DCAA00093DA7 /* Look.m */,
+				440A4ECA254829FE0048AEA7 /* Look.swift */,
 			);
 			path = Look;
 			sourceTree = "<group>";
@@ -9794,8 +9803,9 @@
 				chr,
 				"sr-Latn",
 				uz,
+				fil,
 			);
-			mainGroup = 29B97314FDCFA39411CA2CEA;
+			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			productRefGroup = 19C28FACFE9D520D11CA2CBB /* Products */;
 			projectDirPath = "";
 			projectReferences = (
@@ -10167,6 +10177,7 @@
 				2ED4183E241120B000AFE2FD /* X_Ray_phone_091.xml in Resources */,
 				2ED41837241120B000AFE2FD /* X_Ray_phone_0993.xml in Resources */,
 				4CF8A57C2359B5DD00905BA9 /* StoreProjectDownloader.fetchMostDownloadedProjects.IntegerId.success.json in Resources */,
+				4C9852D02563CCDD000D9C10 /* Whack_A_Mole_092.xml in Resources */,
 				2ED417E0241120AF00AFE2FD /* Airplane_with_shadow_0991.xml in Resources */,
 				4C55CCF724BF2B3300FB8393 /* Word_balloon_demo_0992.xml in Resources */,
 				2ED41878241120B000AFE2FD /* PointToBrickWithoutSpriteObject.xml in Resources */,
@@ -11129,7 +11140,6 @@
 				AA74EE2B1BC0541E00D1E954 /* GlideToBrick+Instruction.swift in Sources */,
 				AA74F09A1BC05FCE00D1E954 /* BrickCellInlineView.m in Sources */,
 				AA74EE3B1BC0543700D1E954 /* SetVolumeToBrick+Instruction.swift in Sources */,
-				92FF30FE1A24DCAA00093DA7 /* Look.m in Sources */,
 				4CC6CE592104715700AA2A04 /* CBSpriteNodeSensorExtension.swift in Sources */,
 				AA74EF631BC0587B00D1E954 /* VibrationBrick+CBXMLHandler.m in Sources */,
 				921D46881BDF698A0086AD20 /* ChangeTransparencyByNBrick+Instruction.swift in Sources */,
@@ -11449,6 +11459,7 @@
 				9218B2041CC4AB75007B4C60 /* LCTableViewPickerControl.m in Sources */,
 				92DFB0111A38949E00FA9B0F /* NSMutableArray+Reverse.m in Sources */,
 				AA74EF4F1BC0586F00D1E954 /* ComeToFrontBrick+CBXMLHandler.m in Sources */,
+				440A4ECB254829FE0048AEA7 /* Look.swift in Sources */,
 				9200C2CA1C808006002F5CA4 /* ShowTextBrick.m in Sources */,
 				AA74EFEA1BC05B5F00D1E954 /* RepeatBrick.m in Sources */,
 				92B46F9C1BC7BC8C004980C1 /* ArduinoSendPWMValueBrick+CBXMLHandler.m in Sources */,
@@ -12069,7 +12080,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"$SDKROOT/usr/include/libxml2",
+					$SDKROOT/usr/include/libxml2,
 					"\"$(TARGET_TEMP_DIR)/../$(PROJECT_NAME).build/DerivedSources\"",
 				);
 				INFOPLIST_FILE = CattyTests/Info.plist;
@@ -12128,7 +12139,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"$SDKROOT/usr/include/libxml2",
+					$SDKROOT/usr/include/libxml2,
 					"\"$(TARGET_TEMP_DIR)/../$(PROJECT_NAME).build/DerivedSources\"",
 				);
 				INFOPLIST_FILE = CattyTests/Info.plist;
@@ -12178,7 +12189,7 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				HEADER_SEARCH_PATHS = "$SDKROOT/usr/include/libxml2";
+				HEADER_SEARCH_PATHS = $SDKROOT/usr/include/libxml2;
 				INFOPLIST_FILE = "Catty/Supporting Files/App-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -12226,7 +12237,7 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				HEADER_SEARCH_PATHS = "$SDKROOT/usr/include/libxml2";
+				HEADER_SEARCH_PATHS = $SDKROOT/usr/include/libxml2;
 				INFOPLIST_FILE = "Catty/Supporting Files/App-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

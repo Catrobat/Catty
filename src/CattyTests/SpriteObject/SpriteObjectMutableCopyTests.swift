@@ -139,8 +139,8 @@ final class SpriteObjectMutableCopyTests: XMLAbstractTest {
 
     func testMutableCopyAndUpdateReferenceForLook() {
         let brick = SetLookBrick()
-        let lookA = Look(name: "lookA", andPath: "look")
-        let lookB = Look(name: "lookB", andPath: "look")
+        let lookA = Look(name: "lookA", filePath: "look")
+        let lookB = Look(name: "lookB", filePath: "look")
 
         brick.look = lookA
 
@@ -156,8 +156,8 @@ final class SpriteObjectMutableCopyTests: XMLAbstractTest {
 
     func testMutableCopyAndUpdateReferenceForBackground() {
         let brick = SetBackgroundBrick()
-        let lookA = Look(name: "lookA", andPath: "look")
-        let lookB = Look(name: "lookB", andPath: "look")
+        let lookA = Look(name: "lookA", filePath: "look")
+        let lookB = Look(name: "lookB", filePath: "look")
 
         brick.look = lookA
 
@@ -190,7 +190,7 @@ final class SpriteObjectMutableCopyTests: XMLAbstractTest {
 
     func testBrickCopyForLook() {
         let brick = SetLookBrick()
-        let look = Look(name: "lookToCopy", andPath: "look")
+        let look = Look(name: "lookToCopy", filePath: "look")
         brick.look = look
 
         let context = CBMutableCopyContext()
@@ -203,7 +203,7 @@ final class SpriteObjectMutableCopyTests: XMLAbstractTest {
 
     func testBrickCopyForBackground() {
         let brick = SetBackgroundBrick()
-        let look = Look(name: "backgroundToCopy", andPath: "background")
+        let look = Look(name: "backgroundToCopy", filePath: "background")
         brick.look = look
 
         let context = CBMutableCopyContext()

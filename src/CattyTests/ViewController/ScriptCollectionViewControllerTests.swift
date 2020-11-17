@@ -71,7 +71,7 @@ final class ScriptCollectionViewControllerTests: XCTestCase {
         let brick = SetBackgroundBrick()
         let brickCell = SetBackgroundBrickCell()
         let brickCellBackgroundData = BrickCellBackgroundData(frame: CGRect.zero, andBrickCell: brickCell, andLineNumber: 0, andParameterNumber: 0)!
-        let look = Look(name: "lookA", andPath: "path")
+        let look = Look(name: "lookA", filePath: "path")
 
         spriteObject.lookList = [look as Any]
 
@@ -87,7 +87,7 @@ final class ScriptCollectionViewControllerTests: XCTestCase {
         brickCell.dataDelegate = viewController as? BrickCellDataDelegate
         brickCellBackgroundData.brickCell = brickCell
 
-        brickCell.dataDelegate.updateBrickCellData(brickCellBackgroundData, withValue: look!.name)
+        brickCell.dataDelegate.updateBrickCellData(brickCellBackgroundData, withValue: look.name)
 
         XCTAssertEqual(look, brick.look)
     }

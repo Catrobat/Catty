@@ -144,7 +144,6 @@
 #import "Formula+CBXMLHandler.h"
 
 // Assets
-#import "Look.h"
 #import "Sound.h"
 
 // User

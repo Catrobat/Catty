@@ -24,7 +24,6 @@
 #import "TableUtil.h"
 #import "ObjectTableViewController.h"
 #import "SegueDefines.h"
-#import "Look.h"
 #import "Brick.h"
 #import "CatrobatImageCell.h"
 #import "DarkBlueGradientImageDetailCell.h"

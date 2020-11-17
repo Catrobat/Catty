@@ -22,7 +22,6 @@
 
 
 #import "SetBrightnessBrick.h"
-#import "Look.h"
 #import "Script.h"
 #import "Pocket_Code-Swift.h"
 

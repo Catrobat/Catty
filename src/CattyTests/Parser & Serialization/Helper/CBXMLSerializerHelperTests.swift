@@ -31,8 +31,8 @@ final class CBXMLSerializerHelperTests: XCTestCase {
 
         let object = SpriteObject()
         object.lookList = [
-            Look(name: "lookA", andPath: "path") as Any,
-            Look(name: "lookB", andPath: "path") as Any
+            Look(name: "lookA", filePath: "path") as Any,
+            Look(name: "lookB", filePath: "path") as Any
         ]
 
         XCTAssertEqual(expectedXPath, CBXMLSerializerHelper.relativeXPath(toBackground: object.lookList![1] as? Look, forBackgroundObject: object, withDepth: 2))
