@@ -335,11 +335,11 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
         CBFileManager *fileManager = [CBFileManager sharedManager];
         [fileManager loadPreviewImageAndCacheWithProjectLoadingInfo:info completion:^(UIImage * image, NSString * path) {
             
-            if(image) {
-                cell.iconImageView.image = image;
-                cell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
+            if(image && cell) {
                 dispatch_queue_main_t queue = dispatch_get_main_queue();
                 dispatch_async(queue, ^{
+                    cell.iconImageView.image = image;
+                    cell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
                     [self.tableView endUpdates];
                 });
             }
