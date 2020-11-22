@@ -25,7 +25,7 @@ import XCTest
 class CattyUISnapshots: XCTestCase {
 
     let app = XCUIApplication()
-    let mediaLibraryImageName = "Panda-5"
+    let mediaLibraryImageName = "Penguin"
 
     override func setUp() {
         setupSnapshot(app)
@@ -46,6 +46,8 @@ class CattyUISnapshots: XCTestCase {
         toolbar.buttons[kLocalizedDelete].tap()
         app.navigationBars[kLocalizedProjects].buttons[kLocalizedPocketCode].tap()
         snapshot("Catrobat landing page screenshot")
+
+        app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
 
         let tablesQuery = XCUIApplication().tables
         tablesQuery.staticTexts[kLocalizedMyFirstProject].tap()
@@ -77,10 +79,11 @@ class CattyUISnapshots: XCTestCase {
         snapshot("Pocket Paint screenshot with Penguin")
     }
 
-    func testRunningProjectScreenshot() {
+    func testMyFirstProjectScreenshot() {
+        app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
         app.tables.staticTexts[kLocalizedMyFirstProject].tap()
 
-        app.toolbars["Toolbar"].buttons[kLocalizedPlay].tap()
+        app.toolbars["Toolbar"].buttons["Play"].tap()
 
         let projectLoadExpectation = XCTestExpectation(description: "Arbitrarily wait till the project loads")
 

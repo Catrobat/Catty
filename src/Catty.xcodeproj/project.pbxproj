@@ -1621,6 +1621,7 @@
 		E4B7DC5620F6857B001351E3 /* StoreProjectDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B7DC5520F6857A001351E3 /* StoreProjectDownloader.swift */; };
 		E4C5C1122143A3150054F236 /* SearchStoreDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C5C1112143A3150054F236 /* SearchStoreDataSourceTests.swift */; };
 		E4E5599820FCD6AD004B4A08 /* StoreProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E5599620FCD6AD004B4A08 /* StoreProject.swift */; };
+		E564EBE1255D60F5001F0CD0 /* PlayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E564EBE0255D60F4001F0CD0 /* PlayButton.swift */; };
 		E579F105253D88B4009107C8 /* PhiroMotorMoveBackwardBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E579F104253D88B4009107C8 /* PhiroMotorMoveBackwardBrickTests.swift */; };
 		E579F109253D9485009107C8 /* PhiroMotorMoveForwardBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E579F108253D9485009107C8 /* PhiroMotorMoveForwardBrickTests.swift */; };
 		E579F10B253D98B0009107C8 /* PhiroPlayToneBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E579F10A253D98B0009107C8 /* PhiroPlayToneBrickTests.swift */; };
@@ -3861,6 +3862,7 @@
 		E4D3652C8768AA771E9ED4BC /* mk */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = mk; path = mk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E4E5599620FCD6AD004B4A08 /* StoreProject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreProject.swift; sourceTree = "<group>"; };
 		E5505707FE2839B02A26E338 /* en-AU */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		E564EBE0255D60F4001F0CD0 /* PlayButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayButton.swift; sourceTree = "<group>"; };
 		E57396A397CC08132F593B32 /* en */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E579F104253D88B4009107C8 /* PhiroMotorMoveBackwardBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhiroMotorMoveBackwardBrickTests.swift; sourceTree = "<group>"; };
 		E579F108253D9485009107C8 /* PhiroMotorMoveForwardBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhiroMotorMoveForwardBrickTests.swift; sourceTree = "<group>"; };
@@ -8293,6 +8295,7 @@
 		92FF31A21A24E2F400093DA7 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				E564EBDF255D60F4001F0CD0 /* Button */,
 				91FC81FA01E91B5CF3266F79 /* AlertController */,
 				593E4DDC1FE11D410016DCB9 /* CatrobatReorderableCollectionViewFlowLayout */,
 				928D4D7A1A7BD1A400E6DFA8 /* CatrobatSlider */,
@@ -9586,6 +9589,15 @@
 			);
 			path = FeaturedProjects;
 			sourceTree = "<group>";
+		};
+		E564EBDF255D60F4001F0CD0 /* Button */ = {
+			isa = PBXGroup;
+			children = (
+				E564EBE0255D60F4001F0CD0 /* PlayButton.swift */,
+			);
+			name = Button;
+			path = Catty/Views/Custom/Button;
+			sourceTree = SOURCE_ROOT;
 		};
 		F470A2DF2129DAE1005EC9A3 /* List */ = {
 			isa = PBXGroup;
@@ -10940,6 +10952,7 @@
 				CA3E72E81B0C00A500D6B184 /* CBStack.swift in Sources */,
 				AA74EFFE1BC05B5F00D1E954 /* ComeToFrontBrick.m in Sources */,
 				92FF31051A24DCAA00093DA7 /* WhenScript.m in Sources */,
+				E564EBE1255D60F5001F0CD0 /* PlayButton.swift in Sources */,
 				4C595F5721CAF6590097D850 /* AndOperator.swift in Sources */,
 				4C724E251B4D3E8C00E27479 /* CBXMLParser.m in Sources */,
 				6F4F8AFF24CF261C002C3814 /* UserDataContainer.swift in Sources */,

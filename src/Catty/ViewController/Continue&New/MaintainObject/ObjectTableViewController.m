@@ -28,6 +28,7 @@
 #import "TableUtil.h"
 #import "CatrobatImageCell.h"
 #import "Util.h"
+#import "Pocket_Code-Swift.h"
 
 @interface ObjectTableViewController ()
 
@@ -135,9 +136,8 @@
 {
     [super setupToolBar];
 
-    UIBarButtonItem *play = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
-                                                                          target:self
-                                                                          action:@selector(playSceneAction:)];
+    UIBarButtonItem *play = [[PlayButton alloc] initWithTarget:self
+                                                        action:@selector(playSceneAction:)];
     UIBarButtonItem *flex = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                                                           target:self
                                                                           action:nil];

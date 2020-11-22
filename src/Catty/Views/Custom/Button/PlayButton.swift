@@ -21,12 +21,14 @@
  */
 
 @objc
-class UIDefines: NSObject {
-    @objc static let previewImageSize = CGSize(width: Int(kPreviewThumbnailWidth), height: Int(kPreviewThumbnailHeight))
-    static let previewImageCornerRadius = 10.0
-    static let previewImageBorderWidth = 1.0
+class PlayButton: UIBarButtonItem {
 
-    static let defaultScreenshots = ["catrobat", "elephant", "lynx", "panda", "pingu", "racoon"]
+    override var accessibilityLabel: String? {
+        get { UIDefines.playButtonAccessibilityLabel }
+        set { }
+    }
 
-    static let playButtonAccessibilityLabel = "Play"
+    @objc(initWithTarget: action:) convenience init(target: Any?, action: Selector?) {
+            self.init(barButtonSystemItem: .play, target: target, action: action)
+    }
 }
