@@ -43,11 +43,14 @@ class EmbroideryDSTHeader {
         self.boundingBox = CGRect.zero
     }
 
-    func update(relativeX: Int, relativeY: Int) {
+    func update(relativeX: Int, relativeY: Int, isColorChange: Bool = false) {
         delta += CGVector(dx: relativeX, dy: relativeY)
 
         if !boundingBox.contains(delta.toCGPoint()) {
             boundingBox = boundingBox.union(CGRect(x: 0, y: 0, width: delta.dx, height: delta.dy))
+        }
+        if isColorChange {
+            colorChangeCount += 1
         }
         pointAmount += 1
     }

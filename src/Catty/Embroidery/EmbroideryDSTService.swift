@@ -36,13 +36,26 @@ class EmbroideryDSTService: EmbroideryProtocol {
         }
 
         for currentStitch in embroideryStream {
-            let relativeX = abs(Int(currentStitch.embroideryDimensions().x - previousStitch.embroideryDimensions().x))
-            let relativeY = abs(Int(currentStitch.embroideryDimensions().y - previousStitch.embroideryDimensions().y))
+            let relativeX = Int(currentStitch.embroideryDimensions().x - previousStitch.embroideryDimensions().x)
+            let relativeY = Int(currentStitch.embroideryDimensions().y - previousStitch.embroideryDimensions().y)
+
+            DSTHeader.update(relativeX: relativeX,
+                             relativeY: relativeY,
+                             isColorChange: currentStitch.isColorChange)
+
             DSTStitches.append(contentsOf: StichDTSBytes(
                 relativeX: relativeX,
                 relativeY: relativeY,
-                isJumpPoint: currentStitch.isJump))
-            DSTHeader.update(relativeX: relativeX, relativeY: relativeY)
+                isJump: currentStitch.isJump,
+                isColorChange: currentStitch.isColorChange))
+
+            if currentStitch.isColorChange {
+                DSTHeader.update(relativeX: 0, relativeY: 0, isColorChange: false)
+                DSTStitches.append(contentsOf: StichDTSBytes(relativeX: 0, relativeY: 0, isJump: true))
+                DSTHeader.update(relativeX: 0, relativeY: 0, isColorChange: false)
+                DSTStitches.append(contentsOf: StichDTSBytes(relativeX: 0, relativeY: 0, isJump: true))
+            }
+
             previousStitch = currentStitch
         }
 
@@ -53,7 +66,9 @@ class EmbroideryDSTService: EmbroideryProtocol {
         return DSTData
     }
 
-    func StichDTSBytes(relativeX: Int, relativeY: Int, isJumpPoint: Bool) -> [UInt8] {
+    func StichDTSBytes(relativeX: Int, relativeY: Int,
+                       isJump: Bool = false, isColorChange: Bool = false) -> [UInt8] {
+
         var bytes: [UInt8] = [0x00, 0x00, 0x03]
         let xValue = byteFromConversionTable(position: relativeX)
         let yValue = byteFromConversionTable(position: relativeY)
@@ -93,7 +108,9 @@ class EmbroideryDSTService: EmbroideryProtocol {
 
         bytes[2] |= UInt8((xValue >> 6) & 0xC)
 
-        if isJumpPoint {
+        if isColorChange {
+            bytes[2] |= (0x3 << 6)
+        } else if isJump {
             bytes[2] |= (0x1 << 7)
         }
         return bytes

@@ -34,7 +34,6 @@ class EmbroideryDSTHeaderTests: XCTestCase {
             Stitch(x: -10, y: -10),
             Stitch(x: 0, y: 0)
         ]
-
         let header = EmbroideryDSTHeader(withName: "stitch")
 
         var previous = stitches[0]
@@ -58,7 +57,6 @@ class EmbroideryDSTHeaderTests: XCTestCase {
             Stitch(x: 10, y: -10),
             Stitch(x: 5, y: 5)
         ]
-
         let header = EmbroideryDSTHeader(withName: "stitch")
 
         var previous = stitches[0]
@@ -69,7 +67,6 @@ class EmbroideryDSTHeaderTests: XCTestCase {
             )
             previous = current
         }
-
         XCTAssertEqual(header.delta, CGVector(dx: 10, dy: 10))
     }
 }
