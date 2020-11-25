@@ -382,6 +382,7 @@
 		46D0516324F8147F00A79155 /* SetRotationStyleBrick+CBXMLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D0516224F8147F00A79155 /* SetRotationStyleBrick+CBXMLHandler.swift */; };
 		46D0516524F814FE00A79155 /* SetRotationStyleBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D0516424F814FE00A79155 /* SetRotationStyleBrick.swift */; };
 		46D0516724F8155600A79155 /* SetRotationStyleBrickCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D0516624F8155600A79155 /* SetRotationStyleBrickCell.swift */; };
+		46E271E7256D3205005DF607 /* TextInputViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E271E6256D3205005DF607 /* TextInputViewControllerTests.swift */; };
 		46F1754E24C46837006B2ACA /* ScriptCollectionViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F1754D24C46837006B2ACA /* ScriptCollectionViewControllerTests.swift */; };
 		4C03A4BE2133FD05007BFFD2 /* FormulaManager+Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C03A4BD2133FD05007BFFD2 /* FormulaManager+Resources.swift */; };
 		4C03A4C22133FDE7007BFFD2 /* FormulaManager+Editor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C03A4C12133FDE7007BFFD2 /* FormulaManager+Editor.swift */; };
@@ -2141,6 +2142,7 @@
 		46D0516224F8147F00A79155 /* SetRotationStyleBrick+CBXMLHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SetRotationStyleBrick+CBXMLHandler.swift"; path = "Catty/Views/Custom/CollectionViewCells/BrickCells/Motion/SetRotationStyleBrick+CBXMLHandler.swift"; sourceTree = SOURCE_ROOT; };
 		46D0516424F814FE00A79155 /* SetRotationStyleBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetRotationStyleBrick.swift; sourceTree = "<group>"; };
 		46D0516624F8155600A79155 /* SetRotationStyleBrickCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetRotationStyleBrickCell.swift; sourceTree = "<group>"; };
+		46E271E6256D3205005DF607 /* TextInputViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputViewControllerTests.swift; sourceTree = "<group>"; };
 		46F1754D24C46837006B2ACA /* ScriptCollectionViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptCollectionViewControllerTests.swift; sourceTree = "<group>"; };
 		481639B0D938C88A5E2E6963 /* ms */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = ms; path = ms.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4997640FD2AB79927E45C4EF /* ca */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = ca; path = ca.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -5384,6 +5386,7 @@
 				4C7182E223EF0AEB00195BC7 /* FormulaEditorViewControllerTests.swift */,
 				1833ED912446572E0053BF7C /* HelpWebViewControllerTests.swift */,
 				4C665F67253F1ADF00A84BB6 /* LookImageViewControllerTests.swift */,
+				46E271E6256D3205005DF607 /* TextInputViewControllerTests.swift */,
 				4C665F6B253F209D00A84BB6 /* LooksTableViewControllerTests.swift */,
 				4C7182DB23EEB22B00195BC7 /* PaintViewControllerTests.swift */,
 				4C1A596023FD9E79001A78D2 /* SettingsTableViewControllerTests.swift */,
@@ -10540,6 +10543,7 @@
 				4CF429EA213A64B600B78897 /* InternFormulaKeyboardAdapterTests.swift in Sources */,
 				4C822681213FA7A400F3D750 /* TransparencySensorTest.swift in Sources */,
 				590200D223FC03A900F0978B /* BrickExtensionTests.swift in Sources */,
+				46E271E7256D3205005DF607 /* TextInputViewControllerTests.swift in Sources */,
 				4C822661213FA7A400F3D750 /* FaceSizeSensorTest.swift in Sources */,
 				4C6FE16E212D2D2E0067B7D5 /* AsinFunctionTest.swift in Sources */,
 				4CB04BE12541618A00D85C31 /* StagePresenterViewControllerScreenshotTests.swift in Sources */,

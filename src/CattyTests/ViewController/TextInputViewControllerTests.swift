@@ -20,14 +20,34 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc
-class UIDefines: NSObject {
-    @objc static let previewImageSize = CGSize(width: Int(kPreviewThumbnailWidth), height: Int(kPreviewThumbnailHeight))
-    static let previewImageCornerRadius = 10.0
-    static let previewImageBorderWidth = 1.0
+import XCTest
 
-    static let defaultScreenshots = ["catrobat", "elephant", "lynx", "panda", "pingu", "racoon"]
+@testable import Pocket_Code
 
-    static let playButtonAccessibilityLabel = "Play"
-    @objc static var iOS12OrLessAccessibilityLabel = "iOS 12.0 or less"
+final class TextInputViewControllerTests: XCTestCase {
+
+    var controller: TextInputViewController!
+
+    override func setUp() {
+        super.setUp()
+        controller = TextInputViewController()
+    }
+
+    func testCancelDoneButtonVisible() {
+        controller.viewDidLoad()
+        let accessibilityLabel = lookingForAccessibilityLabel(view: controller.view)
+
+        if #available(iOS 13, *) {
+            XCTAssertFalse(accessibilityLabel)
+        } else {
+            XCTAssertTrue(accessibilityLabel)
+        }
+    }
+
+    func lookingForAccessibilityLabel(view: UIView) -> Bool {
+        for subview in view.subviews where subview.accessibilityLabel == UIDefines.iOS12OrLessAccessibilityLabel {
+            return true
+        }
+        return false
+    }
 }
