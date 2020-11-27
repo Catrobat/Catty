@@ -62,4 +62,17 @@ final class PointInDirectionBrickTests: AbstractBrickTest {
         XCTAssertFalse(brick.degrees === copiedBrick.degrees)
     }
 
+    func testGetFormulas() {
+        let brick = PointInDirectionBrick()
+        brick.degrees = Formula(double: 1)
+        var formulas = brick.getFormulas()
+
+        XCTAssertEqual(formulas?.count, 1)
+        XCTAssertEqual(brick.degrees, formulas?[0])
+
+        brick.degrees = Formula(double: 22)
+        formulas = brick.getFormulas()
+
+        XCTAssertEqual(brick.degrees, formulas?[0])
+    }
 }

@@ -86,4 +86,17 @@ final class ChangeSizeByNBrickTests: AbstractBrickTest {
         XCTAssertTrue(brick.size.isEqual(to: copiedBrick.size))
         XCTAssertFalse(brick.size === copiedBrick.size)
     }
+
+    func testGetFormulas() {
+        brick.size = Formula(integer: 1)
+        var formulas = brick.getFormulas()
+
+        XCTAssertEqual(formulas?.count, 1)
+        XCTAssertEqual(brick.size, formulas?[0])
+
+        brick.size = Formula(integer: 22)
+        formulas = brick.getFormulas()
+
+        XCTAssertEqual(brick.size, formulas?[0])
+    }
 }
