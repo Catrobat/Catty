@@ -39,6 +39,13 @@ pipeline {
       steps {
         sh 'cd src && fastlane build_catty'
       }
+      post {
+        always {
+          archiveArtifacts(artifacts: 'src/fastlane/builds/', allowEmptyArchive: true)
+          archiveArtifacts(artifacts: 'src/fastlane/Install.html', allowEmptyArchive: true)
+          archiveArtifacts(artifacts: 'src/fastlane/Adhoc.plist', allowEmptyArchive: true)
+        }
+      }
     }
     stage('Test') {
       steps {
@@ -49,9 +56,6 @@ pipeline {
 
   post {
     always {
-      archiveArtifacts(artifacts: 'src/fastlane/builds/', allowEmptyArchive: true)
-      archiveArtifacts(artifacts: 'src/fastlane/Install.html', allowEmptyArchive: true)
-      archiveArtifacts(artifacts: 'src/fastlane/Adhoc.plist', allowEmptyArchive: true)
       junit testResults: 'src/fastlane/test_output/report.junit', allowEmptyResults: true
     }
   }
