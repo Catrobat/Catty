@@ -36,7 +36,6 @@
 #import "IfLogicEndBrick.h"
 #import "BrickCellFormulaData.h"
 #import "NoteBrick.h"
-#import "BrickSelectionViewController.h"
 #import "BrickLookProtocol.h"
 #import "BrickSoundProtocol.h"
 #import "BrickObjectProtocol.h"
@@ -90,7 +89,6 @@
 @property (nonatomic, strong) NSIndexPath *variableIndexPath;
 @property (nonatomic, assign) BOOL isEditingBrickMode;
 @property (nonatomic, assign) BOOL batchUpdateMutex;
-@property (nonatomic, strong) BrickCategory *lastSelectedCategory;
 @property (nonatomic, strong) FormulaManager *formulaManager;
 @end
 
@@ -156,24 +154,12 @@
 
 - (void)showBrickPickerAction:(id)sender
 {
-    if ([sender isKindOfClass:[UIBarButtonItem class]]) {
-
-        BrickSelectionViewController *bsvc = [[BrickSelectionViewController alloc]
-                                              initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll
-                                              navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal
-                                              options:@{
-                                                        UIPageViewControllerOptionInterPageSpacingKey : @20.f
-                                                        }];
-        BrickCategory *selectedCategory = self.lastSelectedCategory == nil ? [bsvc.categories firstObject] : self.lastSelectedCategory;
-        BrickCategoryViewController *bcvc = [[BrickCategoryViewController alloc] initWithBrickCategory:selectedCategory andObject:self.object];
-        bcvc.delegate = self;
+    if ([sender isKindOfClass:[UIBarButtonItem class]])
+    {
+        BrickCategoryOverviewController *bcoc = [[BrickCategoryOverviewController alloc] init:self];
         
-        [bsvc setViewControllers:@[bcvc]
-                       direction:UIPageViewControllerNavigationDirectionForward
-                        animated:NO
-                      completion:NULL];
+        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:bcoc];
         
-        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:bsvc];
         [self presentViewController:navController animated:YES completion:NULL];
     }
 }
@@ -221,7 +207,7 @@
                         layout:(UICollectionViewLayout*)collectionViewLayout
         insetForSectionAtIndex:(NSInteger)section
 {
-    return UIEdgeInsetsMake(kScriptCollectionViewInset, 0.0f, kScriptCollectionViewInset, 0.0f);
+    return UIEdgeInsetsMake(UIDefines.brickCategorySectionInset, 0.0f, UIDefines.brickCategorySectionInset, 0.0f);
 }
 
 - (CGFloat)collectionView:(UICollectionView*)collectionView
@@ -631,7 +617,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     [self dismissViewControllerAnimated:YES completion:NULL];
     scriptOrBrick = [scriptOrBrick mutableCopyWithContext:[CBMutableCopyContext new]];
     [scriptOrBrick setDefaultValuesForObject:self.object];
-    self.lastSelectedCategory = brickCategoryViewController.category;
     brickCategoryViewController.delegate = nil;
     self.placeHolderView.hidden = YES;
     BrickInsertManager* manager = [BrickInsertManager sharedInstance];

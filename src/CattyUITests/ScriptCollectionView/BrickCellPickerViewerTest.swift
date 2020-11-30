@@ -88,10 +88,10 @@ class BrickCellPickerViewerTests: XCTestCase {
 
         for brick in bricks {
             clearScript()
-            addBrick(label: brick, section: kLocalizedCategoryVariable, in: app)
+            addBrick(label: brick, section: kLocalizedCategoryData, in: app)
 
             if variableBrickHasValues == false {
-                addValuesForVariableBrick(brick: brick, category: kLocalizedCategoryVariable)
+                addValuesForVariableBrick(brick: brick, category: kLocalizedCategoryData)
                 variableBrickHasValues = true
             }
 

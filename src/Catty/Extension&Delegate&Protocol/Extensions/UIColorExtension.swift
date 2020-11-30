@@ -301,11 +301,19 @@ extension UIColor {
     }
 
     static var arduinoBrick: UIColor {
-        UIColor(red: 234.0 / 255.0, green: 200.0 / 255.0, blue: 59.0 / 255.0, alpha: 1.0)
+        UIColor(red: 38.0 / 255.0, green: 166.0 / 255.0, blue: 174.0 / 255.0, alpha: 1.0)
     }
 
     static var arduinoBrickStroke: UIColor {
-        UIColor(red: 179.0 / 255.0, green: 137.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0)
+        UIColor(red: 120.0 / 255.0, green: 220.0 / 255.0, blue: 225.0 / 255.0, alpha: 1.0)
+    }
+
+    static var frequentlyUsedBricks: UIColor {
+        UIColor(red: 234.0 / 255.0, green: 200.0 / 255.0, blue: 59.0 / 255.0, alpha: 1.0)
+    }
+
+    static var frequentlyUsedBricksStroke: UIColor {
+        UIColor(red: 240.0 / 255.0, green: 240.0 / 255.0, blue: 150.0 / 255.0, alpha: 1.0)
     }
 
     static var penBrickGreen: UIColor {

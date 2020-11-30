@@ -31,3 +31,4 @@
 - (void)removeBrickOrScript:(id<BrickProtocol>)scriptOrBrick atIndexPath:(NSIndexPath*)indexPath;
 
 @end
+

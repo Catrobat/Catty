@@ -67,7 +67,7 @@
 
 - (kBrickCategoryType)category
 {
-    return kVariableBrick;
+    return kDataBrick;
 }
 
 - (BOOL)allowsStringFormula

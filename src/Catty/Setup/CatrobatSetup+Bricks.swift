@@ -154,8 +154,8 @@
                           color: UIColor.soundBrickViolet,
                           strokeColor: UIColor.soundBrickStroke),
 
-            BrickCategory(type: kBrickCategoryType.variableBrick,
-                          name: kLocalizedCategoryVariable,
+            BrickCategory(type: kBrickCategoryType.dataBrick,
+                          name: kLocalizedCategoryData,
                           color: UIColor.variableBrickRed,
                           strokeColor: UIColor.variableBrickStroke)
         ]
@@ -163,8 +163,8 @@
         if isFavouritesCategoryAvailable() {
             categories.prepend(BrickCategory(type: kBrickCategoryType.favouriteBricks,
                                              name: kLocalizedCategoryFrequentlyUsed,
-                                             color: UIColor.controlBrickOrange,
-                                             strokeColor: UIColor.controlBrickStroke))
+                                             color: UIColor.frequentlyUsedBricks,
+                                             strokeColor: UIColor.frequentlyUsedBricksStroke))
         }
         if isArduinoEnabled() {
             categories.append(BrickCategory(type: kBrickCategoryType.arduinoBrick,

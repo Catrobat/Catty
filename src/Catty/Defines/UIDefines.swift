@@ -26,6 +26,9 @@ class UIDefines: NSObject {
     static let previewImageCornerRadius = 10.0
     static let previewImageBorderWidth = 1.0
 
+    @objc static let brickCategorySectionInset = CGFloat(10.0)
+    @objc static let brickCategoryBrickInset = CGFloat(5.0)
+
     static let defaultScreenshots = ["catrobat", "elephant", "lynx", "panda", "pingu", "racoon"]
 
     static let playButtonAccessibilityLabel = "Play"
