@@ -55,6 +55,7 @@
     }
     self.automaticallyAdjustsScrollViewInsets = YES;
     [self setupSubviews];
+    [self updateTitle];
 }
 
 #pragma mark - Setup
@@ -149,12 +150,12 @@ didSelectItemAtIndexPath:(NSIndexPath*)indexPath
     if (@available(iOS 13, *))
     {
         return UIEdgeInsetsMake(CGRectGetHeight(self.navigationController.navigationBar.bounds) +
-        kScriptCollectionViewInset, 0.0f, kScriptCollectionViewInset, 0.0f);
+        UIDefines.brickCategorySectionInset, 0.0f, UIDefines.brickCategorySectionInset, 0.0f);
     } else
     {
         return UIEdgeInsetsMake(CGRectGetHeight(self.navigationController.navigationBar.bounds) +
         CGRectGetHeight([UIApplication sharedApplication].statusBarFrame) +
-        kScriptCollectionViewInset, 0.0f, kScriptCollectionViewInset, 0.0f);
+        UIDefines.brickCategorySectionInset, 0.0f, UIDefines.brickCategorySectionInset, 0.0f);
     }
     
 }
@@ -163,7 +164,13 @@ didSelectItemAtIndexPath:(NSIndexPath*)indexPath
                    layout:(UICollectionViewLayout*)collectionViewLayout
 minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
-    return 8.f;
+    return UIDefines.brickCategoryBrickInset;
 }
+
+- (void) updateTitle
+{
+    self.title = self.category.name;
+}
+
 
 @end

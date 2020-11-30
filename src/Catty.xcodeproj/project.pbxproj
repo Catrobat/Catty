@@ -1041,7 +1041,6 @@
 		6FDC3CB82439423D0033F252 /* RegularExpressionFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FDC3CB52439423D0033F252 /* RegularExpressionFunction.swift */; };
 		6FDC3CBA243942980033F252 /* RegularExpressionFunctionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FDC3CB9243942980033F252 /* RegularExpressionFunctionTest.swift */; };
 		811FB6EA1A4980EF00957E10 /* ScriptCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 811FB6E91A4980EF00957E10 /* ScriptCollectionViewController.m */; };
-		81C0A67F1A4EE8CF003A77C5 /* BrickSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C0A67E1A4EE8CF003A77C5 /* BrickSelectionViewController.m */; };
 		81D46EA41CC29E3000653EAB /* ShapeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D46EA31CC29E3000653EAB /* ShapeButton.m */; };
 		91FC87CEFA4B1008B213EA31 /* AlertControllerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FC8B4C21851D2F18232470 /* AlertControllerBuilder.swift */; };
 		91FC8B6AB3345BC25B02DF81 /* BaseAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FC8E53F7F6FEA7225F910E /* BaseAlertController.swift */; };
@@ -1624,6 +1623,8 @@
 		E4C5C1122143A3150054F236 /* SearchStoreDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C5C1112143A3150054F236 /* SearchStoreDataSourceTests.swift */; };
 		E4E5599820FCD6AD004B4A08 /* StoreProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E5599620FCD6AD004B4A08 /* StoreProject.swift */; };
 		E564EBE1255D60F5001F0CD0 /* PlayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E564EBE0255D60F4001F0CD0 /* PlayButton.swift */; };
+		E577F0462563C5A400368C18 /* BrickCategoryOverviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E577F0452563C5A400368C18 /* BrickCategoryOverviewController.swift */; };
+		E577F04A2563E8F200368C18 /* BrickCategoryOverviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E577F0492563E8F200368C18 /* BrickCategoryOverviewCollectionViewCell.swift */; };
 		E579F105253D88B4009107C8 /* PhiroMotorMoveBackwardBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E579F104253D88B4009107C8 /* PhiroMotorMoveBackwardBrickTests.swift */; };
 		E579F109253D9485009107C8 /* PhiroMotorMoveForwardBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E579F108253D9485009107C8 /* PhiroMotorMoveForwardBrickTests.swift */; };
 		E579F10B253D98B0009107C8 /* PhiroPlayToneBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E579F10A253D98B0009107C8 /* PhiroPlayToneBrickTests.swift */; };
@@ -2907,8 +2908,6 @@
 		811FB6EB1A49812700957E10 /* BrickCategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickCategoryViewController.h; sourceTree = "<group>"; };
 		811FB6EC1A49812700957E10 /* BrickCategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickCategoryViewController.m; sourceTree = "<group>"; };
 		8120AF21A605CC5BCBCC7453 /* ig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = ig; path = ig.lproj/Localizable.strings; sourceTree = "<group>"; };
-		81C0A67D1A4EE8CF003A77C5 /* BrickSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickSelectionViewController.h; sourceTree = "<group>"; };
-		81C0A67E1A4EE8CF003A77C5 /* BrickSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickSelectionViewController.m; sourceTree = "<group>"; };
 		81C27425189EF94600827A95 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		81D46EA21CC29E3000653EAB /* ShapeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShapeButton.h; sourceTree = "<group>"; };
 		81D46EA31CC29E3000653EAB /* ShapeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShapeButton.m; sourceTree = "<group>"; };
@@ -3872,6 +3871,8 @@
 		E5505707FE2839B02A26E338 /* en-AU */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		E564EBE0255D60F4001F0CD0 /* PlayButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayButton.swift; sourceTree = "<group>"; };
 		E57396A397CC08132F593B32 /* en */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		E577F0452563C5A400368C18 /* BrickCategoryOverviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrickCategoryOverviewController.swift; sourceTree = "<group>"; };
+		E577F0492563E8F200368C18 /* BrickCategoryOverviewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrickCategoryOverviewCollectionViewCell.swift; sourceTree = "<group>"; };
 		E579F104253D88B4009107C8 /* PhiroMotorMoveBackwardBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhiroMotorMoveBackwardBrickTests.swift; sourceTree = "<group>"; };
 		E579F108253D9485009107C8 /* PhiroMotorMoveForwardBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhiroMotorMoveForwardBrickTests.swift; sourceTree = "<group>"; };
 		E579F10A253D98B0009107C8 /* PhiroPlayToneBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhiroPlayToneBrickTests.swift; sourceTree = "<group>"; };
@@ -8207,11 +8208,10 @@
 				4CB4FE011B95DF2900431757 /* BrickManager */,
 				811FB6EB1A49812700957E10 /* BrickCategoryViewController.h */,
 				811FB6EC1A49812700957E10 /* BrickCategoryViewController.m */,
-				81C0A67D1A4EE8CF003A77C5 /* BrickSelectionViewController.h */,
-				81C0A67E1A4EE8CF003A77C5 /* BrickSelectionViewController.m */,
 				811FB6E81A4980EF00957E10 /* ScriptCollectionViewController.h */,
 				811FB6E91A4980EF00957E10 /* ScriptCollectionViewController.m */,
 				D346B25823FAFEAB00FDBFA8 /* ScriptCollectionViewController+Disable.swift */,
+				E577F0452563C5A400368C18 /* BrickCategoryOverviewController.swift */,
 			);
 			path = MaintainScript;
 			sourceTree = "<group>";
@@ -8956,6 +8956,7 @@
 		AA74F0211BC05FCE00D1E954 /* BrickCells */ = {
 			isa = PBXGroup;
 			children = (
+				E577F0492563E8F200368C18 /* BrickCategoryOverviewCollectionViewCell.swift */,
 				92B46F9D1BC7BDF7004980C1 /* Arduino */,
 				929CC0E21BC39B8C0027DEC0 /* Phiro */,
 				AA74F0221BC05FCE00D1E954 /* BrickCell.h */,
@@ -11096,6 +11097,7 @@
 				92FF2E3A1A24C5A700093DA7 /* NSString+FastImageSize.m in Sources */,
 				4C03A4C22133FDE7007BFFD2 /* FormulaManager+Editor.swift in Sources */,
 				BA987D082194E158002DAA05 /* WaitUntilBrick.m in Sources */,
+				E577F0462563C5A400368C18 /* BrickCategoryOverviewController.swift in Sources */,
 				E4B7DC5620F6857B001351E3 /* StoreProjectDownloader.swift in Sources */,
 				4C0F9F1F204ADB9200E71B2D /* IfThenLogicBeginBrick.m in Sources */,
 				92C95FDB1BD8DBEB00742F7E /* BluetoothService.swift in Sources */,
@@ -11393,6 +11395,7 @@
 				F4201CF220D795DB0030181B /* DateWeekdaySensor.swift in Sources */,
 				4CB4FE061B95DF2900431757 /* BrickInsertManager.m in Sources */,
 				4CAB933B2132753A00AEB86D /* FormulaManager.swift in Sources */,
+				E577F04A2563E8F200368C18 /* BrickCategoryOverviewCollectionViewCell.swift in Sources */,
 				92FF2E331A24C5A700093DA7 /* CAGradientLayer+CatrobatCAGradientExtensions.m in Sources */,
 				5E219F2621C8B46A000439BA /* SelectButton.swift in Sources */,
 				927F79D71BEE39A3008D1635 /* BrickCellPhiroIfSensorData.m in Sources */,
@@ -11536,7 +11539,6 @@
 				4C595F5E21CAF8CC0097D850 /* OperatorManager.swift in Sources */,
 				99B2C36B1D884C1300736769 /* FlashBrick+CBXMLHandler.m in Sources */,
 				AA74F0011BC05B5F00D1E954 /* IfOnEdgeBounceBrick.m in Sources */,
-				81C0A67F1A4EE8CF003A77C5 /* BrickSelectionViewController.m in Sources */,
 				AAF6D9E01BC0C2AA00686849 /* PointInDirectionBrick+Instruction.swift in Sources */,
 				4C4B4CD723EE8ABB0054C861 /* NotificationExtension.swift in Sources */,
 				AA74EF541BC0586F00D1E954 /* PointInDirectionBrick+CBXMLHandler.m in Sources */,

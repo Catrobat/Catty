@@ -37,7 +37,7 @@ class VariableTests: XCTestCase {
         app.tables.staticTexts[kLocalizedBackground].tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
 
-        addBrick(label: kLocalizedSetVariable, section: kLocalizedCategoryVariable, in: app)
+        addBrick(label: kLocalizedSetVariable, section: kLocalizedCategoryData, in: app)
     }
 
     func testDontShowVariablePickerWhenNoVariablesDefinedForObject() {

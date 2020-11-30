@@ -104,12 +104,14 @@ extension XCTestCase {
         XCTAssertNotNil(app.staticTexts[kLocalizedScripts])
 
         waitForElementToAppear(app.toolbars.buttons[kLocalizedUserListAdd]).tap()
+
         findBrickSection(section, in: app)
 
         XCTAssertTrue(app.navigationBars[section].exists)
+        XCTAssertNotNil(waitForElementToAppear(app.navigationBars[section]))
 
         for _ in 0..<maxPageLengthTries {
-            if let cell = findCell(with: labels, in: app.collectionViews.element(boundBy: 1)) {
+            if let cell = findCell(with: labels, in: app) {
                 cell.tap()
 
                 XCTAssert(waitForElementToAppear(app.navigationBars[kLocalizedScripts]).exists)
@@ -120,13 +122,21 @@ extension XCTestCase {
     }
 
     func findBrickSection(_ name: String, in app: XCUIApplication) {
-        let maxTries = 8
-
-        for _ in 0..<maxTries {
-            if app.navigationBars[name].exists {
-                return
+        if (app.navigationBars[name]).exists {
+            return
+        } else if (app.navigationBars[kLocalizedCategories]).exists {
+            if let cell = findCell(with: [name], in: app) {
+                cell.tap()
             }
-            app.swipeLeft()
+            return
+        } else if (app.navigationBars.buttons[kLocalizedCategories]).exists {
+            app.navigationBars.buttons[kLocalizedCategories].tap()
+            if let cell = findCell(with: [name], in: app) {
+                cell.tap()
+            }
+            return
+        } else {
+            XCTFail("no valid View open")
         }
     }
 
@@ -154,7 +164,6 @@ extension XCTestCase {
     private func findCell(with labels: [String], in collectionView: XCUIElement) -> XCUIElement? {
         for cellIndex in 0...collectionView.cells.count {
             let cell = collectionView.cells.element(boundBy: cellIndex)
-
             if cell.staticTexts.count >= labels.count {
                 var allLabelsPresent = true
 

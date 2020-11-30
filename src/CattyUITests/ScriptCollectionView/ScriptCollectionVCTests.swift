@@ -109,7 +109,7 @@ class ScriptCollectionVCTests: XCTestCase {
         XCUIApplication().tables.staticTexts[kLocalizedBackground].tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
 
-        addBrick(label: kLocalizedSetVariable, section: kLocalizedCategoryVariable, in: app)
+        addBrick(label: kLocalizedSetVariable, section: kLocalizedCategoryData, in: app)
 
         app.collectionViews.cells.otherElements.containing(.staticText, identifier: kLocalizedSetVariable).children(matching: .button).element.tap()
 

@@ -57,7 +57,6 @@
 #define kBrickCellDeleteButtonWidthHeight 55.0f
 #define kSelectButtonOffset 30.0f
 #define kSelectButtonTranslationOffsetX 60.0f
-#define kScriptCollectionViewInset 5.0f
 
 // Notifications
 static NSString *const kBrickCellAddedNotification = @"BrickCellAddedNotification";
@@ -100,7 +99,7 @@ typedef NS_ENUM(NSUInteger, kBrickCategoryType) {
     kMotionBrick               = 2,
     kLookBrick                 = 3,
     kSoundBrick                = 4,
-    kVariableBrick             = 5,
+    kDataBrick                 = 5,
     kArduinoBrick              = 6,
     kPhiroBrick                = 7,
     kPenBrick                  = 8,

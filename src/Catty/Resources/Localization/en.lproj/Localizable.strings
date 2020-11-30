@@ -338,6 +338,9 @@
 "Create account" = "Create account";
 
 /* No comment provided by engineer. */
+"Data" = "Data";
+
+/* No comment provided by engineer. */
 "day" = "day";
 
 /* No comment provided by engineer. */
@@ -1791,9 +1794,6 @@
 
 /* No comment provided by engineer. */
 "Var/List" = "Var/List";
-
-/* No comment provided by engineer. */
-"Variable" = "Variable";
 
 /* No comment provided by engineer. */
 "Variable name:" = "Variable name:";
