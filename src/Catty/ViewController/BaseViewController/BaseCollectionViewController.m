@@ -177,7 +177,6 @@
 
 - (void)showLoadingView
 {
-    self.loadingView.alpha = 1.0;
     self.collectionView.scrollEnabled = NO;
     self.collectionView.userInteractionEnabled = NO;
     self.navigationController.navigationBar.userInteractionEnabled = NO;

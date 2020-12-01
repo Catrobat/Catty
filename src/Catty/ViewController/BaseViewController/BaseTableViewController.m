@@ -399,7 +399,6 @@
 
 - (void)showLoadingView
 {
-    self.loadingView.alpha = 1.0;
     self.tableView.userInteractionEnabled = NO;
     self.navigationController.navigationBar.userInteractionEnabled = NO;
     self.navigationController.toolbar.userInteractionEnabled = NO;

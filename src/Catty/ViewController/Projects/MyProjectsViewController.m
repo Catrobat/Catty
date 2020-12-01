@@ -202,15 +202,6 @@
     [self hideLoadingView];
 }
 
-- (void)updateProjectDescriptionActionWithText:(NSString*)descriptionText
-                                 sourceProject:(Project*)project
-{
-    [self showLoadingView];
-    [project updateDescriptionWithText:descriptionText];
-    [self reloadTableView];
-    [self hideLoadingView];
-}
-
 - (void)confirmDeleteSelectedProjectsAction:(id)sender
 {
     NSArray *selectedRowsIndexPaths = [self.tableView indexPathsForSelectedRows];
@@ -679,10 +670,19 @@
 }
 
 #pragma mark - description delegate
-
--(void) setDescription:(NSString *)description
+- (void)setDescription:(NSString *)description
 {
-    [self updateProjectDescriptionActionWithText:description sourceProject:self.selectedProject];
+    [self showLoadingView];
+    [self.selectedProject setDescription:description];
+    [self.selectedProject saveToDiskWithNotification:NO andCompletion:^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self reloadTableView];
+            [self hideLoadingView];
+            [Util showNotificationForSaveAction];
+        });
+    }];
 }
+
+
 
 @end

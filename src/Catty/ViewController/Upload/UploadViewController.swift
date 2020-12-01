@@ -20,12 +20,18 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+@objc protocol UploadViewControllerDelegate: AnyObject {
+    func uploadSuccessful(project: Project, projectId: String)
+}
+
 class UploadViewController: UIViewController, UploadCategoryViewControllerDelegate {
     let labelFontSize: CGFloat = 17.0
     let valueFontSize: CGFloat = 17.0
     let horizontalConstrainValue: CGFloat = 25.0
     let verticalConstrainValue: CGFloat = 10.0
     let minimumHeightOfDescriptionTextView: CGFloat = 50
+
+    @objc weak var delegate: UploadViewControllerDelegate?
 
     private var uploadBarButton: UIBarButtonItem?
     private var activeRequest: Bool = false
@@ -287,7 +293,7 @@ class UploadViewController: UIViewController, UploadCategoryViewControllerDelega
         loadingView?.show()
     }
 
-    func showLoadingForUploadng() {
+    func showLoadingForUploading() {
         showLoading()
         let barButtonSpinner = UIActivityIndicatorView(style: .white)
         barButtonSpinner.startAnimating()
@@ -316,7 +322,7 @@ class UploadViewController: UIViewController, UploadCategoryViewControllerDelega
         if addConstraint {
             label.translatesAutoresizingMaskIntoConstraints = false
             if let lastSeperationView = self.separationViews.last {
-             label.topAnchor.constraint(equalTo: lastSeperationView.bottomAnchor, constant: verticalConstrainValue).isActive = true
+                label.topAnchor.constraint(equalTo: lastSeperationView.bottomAnchor, constant: verticalConstrainValue).isActive = true
             }
             label.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: horizontalConstrainValue).isActive = true
         }
@@ -335,7 +341,7 @@ class UploadViewController: UIViewController, UploadCategoryViewControllerDelega
             firstLineViewTopConstraint = lineView.topAnchor.constraint(equalTo: element.topAnchor, constant: topConstraint)
             firstLineViewTopConstraint.isActive = true
         } else if values.count == 2, let selectCategoryValueLabel = self.values.last {
-           lineView.topAnchor.constraint(equalTo: selectCategoryValueLabel.bottomAnchor, constant: topConstraint).isActive = true
+            lineView.topAnchor.constraint(equalTo: selectCategoryValueLabel.bottomAnchor, constant: topConstraint).isActive = true
         } else {
             lineView.topAnchor.constraint(equalTo: element.bottomAnchor, constant: topConstraint).isActive = true
         }
@@ -369,16 +375,19 @@ class UploadViewController: UIViewController, UploadCategoryViewControllerDelega
             Util.alert(withText: kLocalizedUploadProjectNecessary)
             return
         }
-        project?.rename(toProjectName: projectNameTextField.text!, andShowSaveNotification: true)
-        project?.updateDescription(withText: descriptionTextView.text)
 
-        self.showLoadingForUploadng()
+        self.showLoadingForUploading()
+
         for view: UIView in view.subviews where !(view is LoadingView) {
             view.alpha = 0.3
         }
         view.isUserInteractionEnabled = false
 
         activeRequest = true
+
+        project?.rename(toProjectName: projectNameTextField.text!, andShowSaveNotification: false)
+        project?.setDescription(descriptionTextView.text)
+        project?.saveToDisk(withNotification: false)
     }
 
     @objc func selectCategories() {
@@ -422,9 +431,11 @@ class UploadViewController: UIViewController, UploadCategoryViewControllerDelega
                                     }
                                     return
                                 }
+
                                 DispatchQueue.main.async(execute: {
                                     if let projectId = projectId {
-                                        project.rename(toProjectName: project.header.programName, andProjectId: projectId, andShowSaveNotification: true)
+                                        project.rename(toProjectName: project.header.programName, andProjectId: projectId, andShowSaveNotification: false)
+                                        self.delegate?.uploadSuccessful(project: project, projectId: projectId)
                                     }
                                     self.dismissView()
                                 })
@@ -441,11 +452,11 @@ class UploadViewController: UIViewController, UploadCategoryViewControllerDelega
                     switch error {
                     case .unexpectedError, .timeout:
                         AlertControllerBuilder.alert(title: kLocalizedPocketCode, message: kLocalizedErrorInternetConnection)
-                        .addDefaultAction(title: kLocalizedOK) {
-                            DispatchQueue.main.async(execute: {
-                                self.dismissView()
-                            })
-                        }.build().showWithController(self)
+                            .addDefaultAction(title: kLocalizedOK) {
+                                DispatchQueue.main.async(execute: {
+                                    self.dismissView()
+                                })
+                            }.build().showWithController(self)
                         return
                     case .invalidLanguageTag:
                         break

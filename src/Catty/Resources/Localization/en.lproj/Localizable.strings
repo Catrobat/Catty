@@ -1820,6 +1820,9 @@
 "vibration" = "vibration";
 
 /* No comment provided by engineer. */
+"View" = "View";
+
+/* No comment provided by engineer. */
 "Views" = "Views";
 
 /* No comment provided by engineer. */
@@ -1890,6 +1893,9 @@
 
 /* No comment provided by engineer. */
 "Your email seems to be invalid" = "Your email seems to be invalid";
+
+/* No comment provided by engineer. */
+"Your project was uploaded to the Catrobat community where others can use and download it." = "Your project was uploaded to the Catrobat community where others can use and download it.";
 
 /* paint */
 "Zoom" = "Zoom";

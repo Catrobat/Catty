@@ -156,10 +156,9 @@
     return self.scene.objects;
 }
 
-- (void)updateDescriptionWithText:(NSString*)descriptionText
+- (void)setDescription:(NSString*)description
 {
-    self.header.programDescription = descriptionText;
-    [self saveToDiskWithNotification:YES];
+    self.header.programDescription = description;
 }
 
 - (void)removeReferences
