@@ -716,6 +716,7 @@ let kUIFETextMessage = NSLocalizedString("Text message:", comment: "")
 //************************************************************************************************************
 
 let kLocalizedCategoryFrequentlyUsed = NSLocalizedString("Frequently used", comment: "Title of View where the user can see the frequently used bricks.")
+let kLocalizedCategoryEvent = NSLocalizedString("Event", comment: "")
 let kLocalizedCategoryControl = NSLocalizedString("Control", comment: "")
 let kLocalizedCategoryMotion = NSLocalizedString("Motion", comment: "")
 let kLocalizedCategoryLook = NSLocalizedString("Look", comment: "")

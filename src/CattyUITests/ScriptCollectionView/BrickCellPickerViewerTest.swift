@@ -122,7 +122,7 @@ class BrickCellPickerViewerTests: XCTestCase {
         app.tables.staticTexts[kLocalizedScripts].tap()
 
         for brick in bricks {
-            addControlBrickWithValuesToProject(brick: brick, category: kLocalizedCategoryControl)
+            addControlBrickWithValuesToProject(brick: brick, category: kLocalizedCategoryEvent)
             app.collectionViews.cells.otherElements.containing(.staticText, identifier: brick).children(matching: .other).element.tap()
 
             app.pickerWheels.element.adjust(toPickerWheelValue: testValues[2])

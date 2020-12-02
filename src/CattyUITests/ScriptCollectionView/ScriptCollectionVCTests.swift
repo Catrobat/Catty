@@ -66,7 +66,7 @@ class ScriptCollectionVCTests: XCTestCase {
         XCUIApplication().tables.staticTexts[kLocalizedBackground].tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
 
-        addBrick(label: kLocalizedBroadcast, section: kLocalizedCategoryControl, in: app)
+        addBrick(label: kLocalizedBroadcast, section: kLocalizedCategoryEvent, in: app)
 
         app.collectionViews.cells.otherElements.containing(.staticText, identifier: kLocalizedBroadcast).children(matching: .other).element.tap()
 

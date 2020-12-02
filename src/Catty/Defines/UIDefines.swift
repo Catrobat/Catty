@@ -26,6 +26,7 @@ class UIDefines: NSObject {
     static let previewImageCornerRadius = 10.0
     static let previewImageBorderWidth = 1.0
 
+    static let brickCategoryHeight = CGFloat(70)
     @objc static let brickCategorySectionInset = CGFloat(10.0)
     @objc static let brickCategoryBrickInset = CGFloat(5.0)
 
