@@ -276,6 +276,14 @@ extension UIColor {
         UIColor(red: 247.0 / 255.0, green: 208.0 / 255.0, blue: 187.0 / 255.0, alpha: 1.0)
     }
 
+    static var eventBrick: UIColor {
+        UIColor(red: 207.0 / 255.0, green: 87.0 / 255.0, blue: 23.0 / 255.0, alpha: 1.0)
+    }
+
+    static var eventBrickStroke: UIColor {
+        UIColor(red: 241.0 / 255.0, green: 167.0 / 255.0, blue: 126.0 / 255.0, alpha: 1.0)
+    }
+
     static var variableBrickRed: UIColor {
         UIColor(red: 234.0 / 255.0, green: 59.0 / 255.0, blue: 59.0 / 255.0, alpha: 1.0)
     }

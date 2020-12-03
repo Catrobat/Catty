@@ -48,7 +48,9 @@ import UIKit
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.sectionInset = UIEdgeInsets(top: UIDefines.brickCategorySectionInset, left: 0, bottom: UIDefines.brickCategorySectionInset, right: 0)
-        layout.itemSize = CGSize(width: view.frame.width, height: CGFloat(kBrickHeight2h))
+        layout.itemSize = CGSize(width: view.frame.width, height: UIDefines.brickCategoryHeight)
+        layout.minimumInteritemSpacing = UIDefines.brickCategorySectionInset
+        layout.minimumLineSpacing = UIDefines.brickCategorySectionInset
 
         brickCategoryOverviewCollectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
 
@@ -77,7 +79,6 @@ import UIKit
         cell.contentView.backgroundColor = categegoriesBricks[indexPath.row].color
         cell.contentView.layer.borderWidth = 1
         cell.contentView.layer.borderColor = categegoriesBricks[indexPath.row].strokeColor.cgColor
-
         return cell
     }
 
@@ -94,7 +95,7 @@ import UIKit
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         DispatchQueue.main.async {
            if let layout = self.brickCategoryOverviewCollectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
-            layout.itemSize = CGSize(width: self.view.frame.width, height: CGFloat(kBrickHeight2h))
+            layout.itemSize = CGSize(width: self.view.frame.width, height: UIDefines.brickCategoryHeight)
            }
         }
     }

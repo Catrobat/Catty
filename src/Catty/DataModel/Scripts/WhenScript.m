@@ -35,7 +35,7 @@
 
 - (kBrickCategoryType)category
 {
-    return kControlBrick;
+    return kEventBrick;
 }
 
 - (BOOL)isEqualToScript:(Script *)script

@@ -716,6 +716,7 @@
 //************************************************************************************************************
 
 #define kLocalizedCategoryFrequentlyUsed NSLocalizedString(@"Frequently used", @"Title of View where the user can see the frequently used bricks.")
+#define kLocalizedCategoryEvent NSLocalizedString(@"Event", nil)
 #define kLocalizedCategoryControl NSLocalizedString(@"Control", nil)
 #define kLocalizedCategoryMotion NSLocalizedString(@"Motion", nil)
 #define kLocalizedCategoryLook NSLocalizedString(@"Look", nil)
