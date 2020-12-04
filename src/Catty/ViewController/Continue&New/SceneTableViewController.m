@@ -93,24 +93,24 @@
     [[[[[[[AlertControllerBuilder textFieldAlertWithTitle:kLocalizedAddObject message:[NSString stringWithFormat:@"%@:", kLocalizedObjectName]]
           placeholder:kLocalizedEnterYourObjectNameHere]
          addCancelActionWithTitle:kLocalizedCancel handler:^{
-             [self cancelAddingObjectFromScriptEditor];
-         }]
+        [self cancelAddingObjectFromScriptEditor];
+    }]
         addDefaultActionWithTitle:kLocalizedOK handler:^(NSString *name) {
-            [self addObjectActionWithName:name];
-        }]
+        [self addObjectActionWithName:name];
+    }]
        valueValidator:^InputValidationResult *(NSString *name) {
-           InputValidationResult *result = [Util validationResultWithName:name
-                                                                minLength:kMinNumOfObjectNameCharacters
-                                                                maxlength:kMaxNumOfObjectNameCharacters];
-           if (!result.valid) {
-               return result;
-           }
-           // Alert for Objects with same name
-           if ([[self.scene allObjectNames] containsObject:name]) {
-               return [InputValidationResult invalidInputWithLocalizedMessage:kLocalizedObjectNameAlreadyExistsDescription];
-           }
-           return [InputValidationResult validInput];
-       }] build]
+        InputValidationResult *result = [Util validationResultWithName:name
+                                                             minLength:kMinNumOfObjectNameCharacters
+                                                             maxlength:kMaxNumOfObjectNameCharacters];
+        if (!result.valid) {
+            return result;
+        }
+        // Alert for Objects with same name
+        if ([[self.scene allObjectNames] containsObject:name]) {
+            return [InputValidationResult invalidInputWithLocalizedMessage:kLocalizedObjectNameAlreadyExistsDescription];
+        }
+        return [InputValidationResult validInput];
+    }] build]
      showWithController:self];
 }
 
@@ -129,7 +129,7 @@
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:kObjectSectionIndex];
     [self.tableView insertRowsAtIndexPaths:@[indexPath]
                           withRowAnimation:(([self.scene numberOfNormalObjects] == 1) ? UITableViewRowAnimationFade : UITableViewRowAnimationBottom)];
-
+    
     LooksTableViewController *ltvc = [self.storyboard instantiateViewControllerWithIdentifier:kLooksTableViewControllerIdentifier];
     [ltvc setObject:[self.scene.objects objectAtIndex:(kBackgroundObjectIndex + indexPath.section + indexPath.row)]];
     ltvc.showAddLookActionSheetAtStartForObject = YES;
@@ -161,7 +161,7 @@
 {
     if ([newProjectName isEqualToString:self.scene.project.header.programName])
         return;
-
+    
     [self showLoadingView];
     newProjectName = [Util uniqueName:newProjectName existingNames:[Project allProjectNames]];
     [self.scene.project renameToProjectName:newProjectName andShowSaveNotification:YES];
@@ -174,7 +174,7 @@
     [self showLoadingView];
     NSString *nameOfCopiedObject = [Util uniqueName:sourceObject.name existingNames:[self.scene allObjectNames]];
     (void)[self.scene copyObject:sourceObject withNameForCopiedObject:nameOfCopiedObject];
-
+    
     // create new cell
     NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:kObjectSectionIndex];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:kObjectSectionIndex];
@@ -183,11 +183,46 @@
     [self hideLoadingView];
 }
 
+- (void)confirmCopySelectedObjectsAction:(id)sender
+{
+    NSArray *selectedRowsIndexPaths = [self.tableView indexPathsForSelectedRows];
+    if (! [selectedRowsIndexPaths count]) {
+        // nothing selected, nothing to copy...
+        [super exitEditingMode];
+        return;
+    }
+    [self copySelectedObjectsAction];
+}
+
+- (void)copySelectedObjectsAction
+{
+    [self showLoadingView];
+    NSArray *selectedRowsIndexPaths = [self.tableView indexPathsForSelectedRows];
+    NSMutableArray *objectsToCopy = [NSMutableArray arrayWithCapacity:[selectedRowsIndexPaths count]];
+    for (NSIndexPath *selectedRowIndexPath in selectedRowsIndexPaths) {
+        
+        if (selectedRowIndexPath.section != kObjectSectionIndex) {
+            continue;
+        }
+        SpriteObject *object = (SpriteObject*)[self.scene.objects objectAtIndex:(kObjectSectionIndex + selectedRowIndexPath.row)];
+        [objectsToCopy addObject:object];
+    }
+    (void)[self.scene copyObjects:objectsToCopy];
+    [self showPlaceHolder:!(BOOL)[self.scene numberOfNormalObjects]];
+    [super exitEditingMode];
+    NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:kObjectSectionIndex];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:kObjectSectionIndex];
+    [self.tableView insertRowsAtIndexPaths:selectedRowsIndexPaths withRowAnimation:UITableViewRowAnimationBottom];
+    [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    [self.tableView reloadData];
+    [self hideLoadingView];
+}
+
 - (void)renameObjectActionToName:(NSString*)newObjectName spriteObject:(SpriteObject*)spriteObject
 {
     if ([newObjectName isEqualToString:spriteObject.name])
         return;
-
+    
     [self showLoadingView];
     newObjectName = [Util uniqueName:newObjectName existingNames:[self.scene allObjectNames]];
     [self.scene renameObject:spriteObject toName:newObjectName];
@@ -201,11 +236,11 @@
 - (void)editAction:(id)sender
 {
     [self.tableView setEditing:false animated:YES];
-
+    
     id<AlertControllerBuilding> actionSheet = [[AlertControllerBuilder actionSheetWithTitle:kLocalizedEditProject]
                                                addCancelActionWithTitle:kLocalizedCancel handler:nil];
     
-
+    
     if ([self.scene numberOfNormalObjects]) {
         [actionSheet addDestructiveActionWithTitle:kLocalizedDeleteObjects handler:^{
             self.deletionMode = YES;
@@ -219,40 +254,41 @@
             [super changeToMoveMode:sender];
         }];
     }
-
+    if ([self.scene numberOfNormalObjects]) {
+        [actionSheet addDefaultActionWithTitle:kLocalizedCopyObjects handler:^{
+            self.deletionMode = NO;
+            [self setupCopyingToolBar];
+            [self changeToCopyMode:sender];
+        }];
+    }
+    
     NSString *detailActionTitle = self.useDetailCells ? kLocalizedHideDetails : kLocalizedShowDetails;
     
     NSString *changeOrientation = self.scene.project.header.landscapeMode ? kLocalizedMakeItPortrait : kLocalizedMakeItLandscape;
     
-    [[[[[[actionSheet
+    [[[[[actionSheet
          addDefaultActionWithTitle:changeOrientation handler:^{
-             [self changeProjectOrientationAction:self.scene.project];
-         }]
-         addDefaultActionWithTitle:kLocalizedRenameProject handler:^{
-             NSMutableArray *unavailableNames = [[Project allProjectNames] mutableCopy];
-             [unavailableNames removeString:self.scene.project.header.programName];
-             [Util askUserForUniqueNameAndPerformAction:@selector(renameProjectActionForProjectWithName:)
-                                                 target:self
-                                            promptTitle:kLocalizedRenameProject
-                                          promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedProjectName]
-                                            promptValue:((! [self.scene.project.header.programName isEqualToString:kLocalizedNewProject])
-                                                         ? self.scene.project.header.programName : nil)
-                                      promptPlaceholder:kLocalizedEnterYourProjectNameHere
-                                         minInputLength:kMinNumOfProjectNameCharacters
-                                         maxInputLength:kMaxNumOfProjectNameCharacters
-                               invalidInputAlertMessage:kLocalizedProjectNameAlreadyExistsDescription
-                                          existingNames:unavailableNames];
-         }]
-        addDefaultActionWithTitle:detailActionTitle handler:^{
-            [self toggleDetailCellsMode];
-        }]
-       addDefaultActionWithTitle:kLocalizedDescription handler:^{
-           ProjectDescriptionViewController *dViewController = [[ProjectDescriptionViewController alloc] init];
-           dViewController.delegate = self;
-
-           UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:dViewController];
-           [self.navigationController presentViewController:navigationController animated:YES completion:nil];
-       }] build]
+        [self changeProjectOrientationAction:self.scene.project];
+    }]
+        addDefaultActionWithTitle:kLocalizedRenameProject handler:^{
+        NSMutableArray *unavailableNames = [[Project allProjectNames] mutableCopy];
+        [unavailableNames removeString:self.scene.project.header.programName];
+        [Util askUserForUniqueNameAndPerformAction:@selector(renameProjectActionForProjectWithName:)
+                                            target:self
+                                       promptTitle:kLocalizedRenameProject
+                                     promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedProjectName]
+                                       promptValue:((! [self.scene.project.header.programName isEqualToString:kLocalizedNewProject])
+                                                    ? self.scene.project.header.programName : nil)
+                                 promptPlaceholder:kLocalizedEnterYourProjectNameHere
+                                    minInputLength:kMinNumOfProjectNameCharacters
+                                    maxInputLength:kMaxNumOfProjectNameCharacters
+                          invalidInputAlertMessage:kLocalizedProjectNameAlreadyExistsDescription
+                                     existingNames:unavailableNames];
+    }]
+       addDefaultActionWithTitle:detailActionTitle handler:^{
+        [self toggleDetailCellsMode];
+    }]
+      build]
      showWithController:self];
 }
 
@@ -264,7 +300,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             [super viewDidLoad];
             [self hideLoadingView];
-        });    
+        });
     }];
 }
 
@@ -355,16 +391,16 @@
     } else {
         cell = [tableView dequeueReusableCellWithIdentifier:DetailCellIdentifier forIndexPath:indexPath];
     }
-
+    
     if (! [cell conformsToProtocol:@protocol(CatrobatImageCell)] || ! [cell isKindOfClass:[CatrobatBaseCell class]]) {
         return cell;
     }
-
+    
     CatrobatBaseCell<CatrobatImageCell> *imageCell = (CatrobatBaseCell<CatrobatImageCell>*)cell;
     NSInteger index = (kBackgroundSectionIndex + indexPath.section + indexPath.row);
     SpriteObject *object = [self.scene.objects objectAtIndex:index];
     imageCell.iconImageView.image = nil;
-
+    
     if (self.useDetailCells && [cell isKindOfClass:[DarkBlueGradientImageDetailCell class]]) {
         DarkBlueGradientImageDetailCell *detailCell = (DarkBlueGradientImageDetailCell*)imageCell;
         detailCell.topLeftDetailLabel.textColor = UIColor.textTint;
@@ -380,12 +416,12 @@
         detailCell.bottomRightDetailLabel.text = [NSString stringWithFormat:@"%@: %lu", kLocalizedSounds,
                                                   (unsigned long)[object numberOfSounds]];
     }
-
+    
     if (! [object.lookList count]) {
         imageCell.titleLabel.text = object.name;
         return imageCell;
     }
-
+    
     imageCell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
     RuntimeImageCache *imageCache = [RuntimeImageCache sharedImageCache];
     imageCell.iconImageView.image = nil;
@@ -400,7 +436,7 @@
                                  onCompletion:^(UIImage *img, NSString* path) {
             if ([imageCell.indexPath isEqual:indexPath]) {
                 imageCell.iconImageView.image = img;
-                [imageCell setNeedsLayout];    
+                [imageCell setNeedsLayout];
             }
         }];
     } else {
@@ -480,27 +516,27 @@
         [[[[[[[AlertControllerBuilder actionSheetWithTitle:kLocalizedEditObject]
               addCancelActionWithTitle:kLocalizedCancel handler:nil]
              addDefaultActionWithTitle:kLocalizedCopy handler:^{
-                 [self copyObjectActionWithSourceObject:spriteObject];
-             }]
+            [self copyObjectActionWithSourceObject:spriteObject];
+        }]
             addDefaultActionWithTitle:kLocalizedRename handler:^{
-                NSMutableArray *unavailableNames = [[self.scene allObjectNames] mutableCopy];
-                [unavailableNames removeString:spriteObject.name];
-                [Util askUserForUniqueNameAndPerformAction:@selector(renameObjectActionToName:spriteObject:)
-                                                    target:self
-                                              cancelAction:nil
-                                                withObject:spriteObject
-                                               promptTitle:kLocalizedRenameObject
-                                             promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedObjectName]
-                                               promptValue:spriteObject.name
-                                         promptPlaceholder:kLocalizedEnterYourObjectNameHere
-                                            minInputLength:kMinNumOfObjectNameCharacters
-                                            maxInputLength:kMaxNumOfObjectNameCharacters
-                                  invalidInputAlertMessage:kLocalizedObjectNameAlreadyExistsDescription
-                                             existingNames:unavailableNames];
-            }] build]
+            NSMutableArray *unavailableNames = [[self.scene allObjectNames] mutableCopy];
+            [unavailableNames removeString:spriteObject.name];
+            [Util askUserForUniqueNameAndPerformAction:@selector(renameObjectActionToName:spriteObject:)
+                                                target:self
+                                          cancelAction:nil
+                                            withObject:spriteObject
+                                           promptTitle:kLocalizedRenameObject
+                                         promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedObjectName]
+                                           promptValue:spriteObject.name
+                                     promptPlaceholder:kLocalizedEnterYourObjectNameHere
+                                        minInputLength:kMinNumOfObjectNameCharacters
+                                        maxInputLength:kMaxNumOfObjectNameCharacters
+                              invalidInputAlertMessage:kLocalizedObjectNameAlreadyExistsDescription
+                                         existingNames:unavailableNames];
+        }] build]
           viewWillDisappear:^{
-              [self.tableView setEditing:false animated:YES];
-          }]
+            [self.tableView setEditing:false animated:YES];
+        }]
          showWithController:self];
     }];
     moreAction.backgroundColor = UIColor.globalTint;
@@ -513,8 +549,8 @@
         [[[[[AlertControllerBuilder alertWithTitle:kLocalizedDeleteThisObject message:kLocalizedThisActionCannotBeUndone]
             addCancelActionWithTitle:kLocalizedCancel handler:nil]
            addDefaultActionWithTitle:kLocalizedYes handler:^{
-               [self deleteObjectForIndexPath:indexPath];
-           }] build]
+            [self deleteObjectForIndexPath:indexPath];
+        }] build]
          showWithController:self];
     }];
     return @[deleteAction, moreAction];
@@ -570,7 +606,7 @@
 {
     // Pass the selected object to the new view controller.
     static NSString *toObjectSegueID = kSegueToObject;
-
+    
     UIViewController *destController = segue.destinationViewController;
     if ([sender isKindOfClass:[UITableViewCell class]]) {
         UITableViewCell *cell = (UITableViewCell*) sender;
@@ -605,7 +641,7 @@
 - (void)setupToolBar
 {
     [super setupToolBar];
-
+    
     UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                          target:self
                                                                          action:@selector(addObjectAction:)];
@@ -620,7 +656,7 @@
 - (void)setupEditingToolBar
 {
     [super setupEditingToolBar];
-
+    
     UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedDelete
                                                                      style:UIBarButtonItemStylePlain
                                                                     target:self
@@ -631,6 +667,19 @@
     self.toolbarItems = [NSArray arrayWithObjects:self.selectAllRowsButtonItem, flex, deleteButton, nil];
 }
 
+- (void)setupCopyingToolBar
+{
+    [super setupEditingToolBar];
+    
+    UIBarButtonItem *copyButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedCopy
+                                                                   style:UIBarButtonItemStylePlain
+                                                                  target:self
+                                                                  action:@selector(confirmCopySelectedObjectsAction:)];
+    UIBarButtonItem *flex = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                                                          target:self
+                                                                          action:nil];
+    self.toolbarItems = [NSArray arrayWithObjects:self.selectAllRowsButtonItem, flex, copyButton, nil];
+}
 
 #pragma mark description delegate
 - (void)setDescription:(NSString *)description

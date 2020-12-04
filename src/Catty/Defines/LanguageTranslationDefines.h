@@ -184,6 +184,7 @@
 #define kLocalizedCopy NSLocalizedString(@"Copy", nil)
 #define kLocalizedDeleteObjects NSLocalizedString(@"Delete actors or objects", nil)
 #define kLocalizedMoveObjects NSLocalizedString(@"Move actors or objects",nil)
+#define kLocalizedCopyObjects NSLocalizedString(@"Copy actors or objects",nil)
 #define kLocalizedDeleteProjects NSLocalizedString(@"Delete projects", nil)
 #define kLocalizedPocketCodeRecorder NSLocalizedString(@"Pocket Code Recorder", nil)
 #define kLocalizedOpen NSLocalizedString(@"Open", nil)
