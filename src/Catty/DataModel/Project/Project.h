@@ -48,7 +48,7 @@
 - (void)translateDefaultProject;
 - (void)renameToProjectName:(NSString* _Nonnull)projectName andShowSaveNotification:(BOOL)showSaveNotification;
 - (void)renameToProjectName:(NSString* _Nonnull)projectName andProjectId:(NSString* _Nonnull)projectId andShowSaveNotification:(BOOL)showSaveNotification;
-- (void)updateDescriptionWithText:(NSString* _Nonnull)descriptionText;
+- (void)setDescription:(NSString* _Nonnull)description;
 - (NSArray<SpriteObject*>* _Nonnull)allObjects;
 - (BOOL)isEqualToProject:(Project* _Nonnull)project;
 - (NSInteger)getRequiredResources;

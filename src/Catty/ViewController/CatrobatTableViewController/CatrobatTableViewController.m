@@ -124,6 +124,13 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
     self.tableView.alwaysBounceVertical = NO;
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.destinationViewController isKindOfClass:[UploadViewController class]]) {
+        ((UploadViewController*) segue.destinationViewController).delegate = self;
+    }
+}
+
 #pragma mark init
 - (void)initTableView
 {

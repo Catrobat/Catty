@@ -22,7 +22,20 @@
 
 import Foundation
 
-@objc extension CatrobatTableViewController {
+@objc extension CatrobatTableViewController: UploadViewControllerDelegate {
+
+    func uploadSuccessful(project: Project, projectId: String) {
+        DispatchQueue.main.async(execute: {
+            AlertControllerBuilder.alert(title: kLocalizedProjectUploaded, message: kLocalizedProjectUploadedBody)
+                .addDefaultAction(title: kLocalizedView) {
+                    if let projectURL = URL(string: NetworkDefines.projectDetailsBaseUrl + projectId) {
+                        self.openURL(url: projectURL)
+                    }
+                }
+            .addDefaultAction(title: kLocalizedOK) { }
+            .build().showWithController(self)
+        })
+    }
 
     func openURL(url: URL) {
         self.openURL(url: url, storeProjectDownloader: StoreProjectDownloader())
@@ -33,7 +46,11 @@ import Foundation
             Util.alert(withText: kLocalizedInvalidURLGiven)
             return
         }
+        self.showLoadingView()
+
         storeProjectDownloader.fetchProjectDetails(for: projectId, completion: {project, error in
+            self.hideLoadingView()
+
             guard error == nil else {
                 Util.alert(withText: kLocalizedUnableToLoadProject)
                 return

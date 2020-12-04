@@ -635,7 +635,14 @@
 #pragma mark description delegate
 - (void)setDescription:(NSString *)description
 {
-    [self.scene.project updateDescriptionWithText:description];
+    [self showLoadingView];
+    [self.scene.project setDescription:description];
+    [self.scene.project saveToDiskWithNotification:NO andCompletion:^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self hideLoadingView];
+            [Util showNotificationForSaveAction];
+        });
+    }];
 }
 
 @end

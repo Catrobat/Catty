@@ -146,7 +146,9 @@ class MyFirstProjectTests: XCTestCase {
         app.textViews["descriptionTextView"].typeText("This is test description")
 
         app.navigationBars.buttons[kLocalizedDone].tap()
+
         XCTAssert(app.navigationBars[kLocalizedMyFirstProject].exists)
+        XCTAssertFalse(waitForElementToDisappear(app.staticTexts["\(kLocalizedLoading)..."]).exists)
 
         app.navigationBars[kLocalizedMyFirstProject].buttons[kLocalizedEdit].tap()
 
