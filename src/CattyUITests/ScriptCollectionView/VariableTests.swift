@@ -28,7 +28,7 @@ class VariableTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        app = launchAppWithDefaultProject()
+        app = launchAppWithoutAnimations()
     }
 
     private func createNewProjectAndAddSetVariableBrick(name: String) {
@@ -92,7 +92,6 @@ class VariableTests: XCTestCase {
     }
 
     func testCreateVariableAndTapChooseButton() {
-
         let testVariable = "testVariable"
 
         createNewProjectAndAddSetVariableBrick(name: "Test Project")
@@ -117,7 +116,7 @@ class VariableTests: XCTestCase {
     }
 
     func testCreateVariableAndTapSelectedRowInPickerView() {
-        let testVariable = ["testVariable1", "testVariable2", "testVariable3"]
+        let testVariable = ["testVariable1", "testVariable2"]
 
         createNewProjectAndAddSetVariableBrick(name: "Test Project")
         app.collectionViews.cells.otherElements.containing(.staticText, identifier: kLocalizedSetVariable).children(matching: .button).element.tap()
@@ -136,10 +135,10 @@ class VariableTests: XCTestCase {
 
         app.buttons["del active"].tap()
         app.buttons[kUIFEVariableList].tap()
-        app.pickerWheels.element.adjust(toPickerWheelValue: testVariable[2])
-        app.pickerWheels[testVariable[2]].tap()
+        app.pickerWheels.element.adjust(toPickerWheelValue: testVariable[1])
+        app.pickerWheels[testVariable[1]].tap()
 
-        XCTAssertTrue(waitForElementToAppear(app.buttons[" \"" + testVariable[2] + "\" "]).exists)
+        XCTAssertTrue(waitForElementToAppear(app.buttons[" \"" + testVariable[1] + "\" "]).exists)
     }
 
     func testEditMarkedTextVariableInFormularEditor() {
@@ -183,7 +182,7 @@ class VariableTests: XCTestCase {
     }
 
     func testDeleteVariableInFormulaEditor() {
-        let testVariable = ["testVariable1", "testVariable2", "testVariable3"]
+        let testVariable = ["testVariable1", "testVariable2"]
 
         createNewProjectAndAddSetVariableBrick(name: "Test Project")
         app.collectionViews.cells.otherElements.containing(.staticText, identifier: kLocalizedSetVariable).children(matching: .button).element.tap()

@@ -48,9 +48,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         self.setDefaultUserDefaults(defaults: defaults)
         defaults.synchronize()
-        if ProcessInfo.processInfo.arguments.contains("UITests") {
+
+        #if DEBUG
+        if ProcessInfo.processInfo.arguments.contains(LaunchArguments.UITests) {
             UIApplication.shared.keyWindow?.layer.speed = 10.0
         }
+        if ProcessInfo.processInfo.arguments.contains(LaunchArguments.disableAnimations) {
+            UIView.setAnimationsEnabled(false)
+        }
+        if ProcessInfo.processInfo.arguments.contains(LaunchArguments.restoreDefaultProject) {
+            CBFileManager.shared()?.deleteAllFilesInDocumentsDirectory()
+            CBFileManager.shared()?.addDefaultProjectToProjectsRootDirectoryIfNoProjectsExist()
+            Util.setLastProjectWithName(nil, projectID: nil)
+        }
+        #endif
 
         return true
     }

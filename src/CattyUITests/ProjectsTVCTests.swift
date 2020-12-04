@@ -28,7 +28,7 @@ class ProjectsTVCTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        app = launchAppWithDefaultProject()
+        app = launchApp()
     }
 
     func testCanAddNewProject() {

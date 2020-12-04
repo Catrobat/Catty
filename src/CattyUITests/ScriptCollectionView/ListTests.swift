@@ -27,7 +27,7 @@ class ListTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        app = launchAppWithDefaultProject()
+        app = launchAppWithoutAnimations()
     }
 
     private func createProjectAndAddAddToListBrick(name: String) {
@@ -121,7 +121,7 @@ class ListTests: XCTestCase {
     }
 
     func testCreateListAndTapSelectedRowInPickerView() {
-        let testLists = ["testList1", "testList2", "testList3"]
+        let testLists = ["testList1", "testList2"]
 
         createProjectAndAddAddToListBrick(name: "Test Project")
         app.collectionViews.cells.element(boundBy: 1).staticTextBeginsWith(kLocalizedUserListAdd).tap()
@@ -143,10 +143,10 @@ class ListTests: XCTestCase {
         app.buttons["del active"].tap()
         app.buttons[kUIFEVariableList].tap()
         app.buttons["Lists"].tap()
-        app.pickerWheels.element.adjust(toPickerWheelValue: testLists[2])
-        app.pickerWheels[testLists[2]].tap()
+        app.pickerWheels.element.adjust(toPickerWheelValue: testLists[1])
+        app.pickerWheels[testLists[1]].tap()
 
-        XCTAssertTrue(waitForElementToAppear(app.buttons[" *" + testLists[2] + "* "]).exists)
+        XCTAssertTrue(waitForElementToAppear(app.buttons[" *" + testLists[1] + "* "]).exists)
     }
 
     func testEditMarkedTextListInFormularEditor() {
@@ -196,7 +196,7 @@ class ListTests: XCTestCase {
     }
 
     func testDeleteListInFormulaEditor() {
-        let testLists = ["testList1", "testList2", "testList3"]
+        let testLists = ["testList1", "testList2"]
 
         createProjectAndAddAddToListBrick(name: "Test Project")
         app.collectionViews.cells.element(boundBy: 1).staticTextBeginsWith(kLocalizedUserListAdd).tap()
