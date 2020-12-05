@@ -53,7 +53,7 @@
     if (@available(iOS 11, *)) {
         self.collectionView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     }
-    self.automaticallyAdjustsScrollViewInsets = YES;
+    self.automaticallyAdjustsScrollViewInsets = NO;
     [self setupSubviews];
     [self updateTitle];
 }
