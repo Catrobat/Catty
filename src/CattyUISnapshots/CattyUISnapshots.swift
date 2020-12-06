@@ -45,7 +45,7 @@ class CattyUISnapshots: XCTestCase {
         toolbar.buttons[kLocalizedSelectAllItems].tap()
         toolbar.buttons[kLocalizedDelete].tap()
         app.navigationBars[kLocalizedProjects].buttons[kLocalizedPocketCode].tap()
-        snapshot("Catrobat landing page screenshot")
+        snapshot("01-Landing page")
 
         app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
 
@@ -53,7 +53,7 @@ class CattyUISnapshots: XCTestCase {
         tablesQuery.staticTexts[kLocalizedMyFirstProject].tap()
         tablesQuery.staticTexts[kLocalizedMole + " 1"].tap()
         tablesQuery.staticTexts[kLocalizedScripts].tap()
-        snapshot("Mole 1 script screenshot")
+        snapshot("02-Mole 1 script")
 
         app.navigationBars[kLocalizedScripts].buttons[kLocalizedMole + " 1"].tap()
 
@@ -67,7 +67,7 @@ class CattyUISnapshots: XCTestCase {
             loadMediaLibraryExpectation.fulfill()
         }
         wait(for: [loadMediaLibraryExpectation], timeout: 5.1)
-        snapshot("Media library screenshot")
+        snapshot("04-Media library")
 
         let imageCell = app.collectionViews.children(matching: .cell)[mediaLibraryImageName].children(matching: .other).element
         let exists = NSPredicate(format: "exists == 1")
@@ -76,7 +76,7 @@ class CattyUISnapshots: XCTestCase {
         imageCell.tap()
 
         tablesQuery.staticTexts[mediaLibraryImageName].tap()
-        snapshot("Pocket Paint screenshot with Penguin")
+        snapshot("05-Paint with Penguin")
     }
 
     func testMyFirstProjectScreenshot() {
@@ -92,7 +92,7 @@ class CattyUISnapshots: XCTestCase {
         }
 
         wait(for: [projectLoadExpectation], timeout: 3.1)
-        snapshot("My first project stage screenshot")
+        snapshot("06-My first project stage")
     }
 
     func testCatrobatCommunityScreenshot() {
@@ -106,6 +106,6 @@ class CattyUISnapshots: XCTestCase {
         }
 
         wait(for: [loadCompleteExpectation], timeout: 2.1)
-        snapshot("Catrobat community 'charts' tab screenshot")
+        snapshot("03-Catrobat community charts")
     }
 }
