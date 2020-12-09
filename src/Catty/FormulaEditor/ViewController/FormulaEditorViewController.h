@@ -54,7 +54,5 @@
 - (void)backspace:(id)sender;
 - (NSString*)interpretFormula:(Formula*)formula forSpriteObject:(SpriteObject*)spriteObject;
 - (void)setParseErrorCursorAndSelection;
-
 - (void)handleInput;
-
 @end

@@ -99,6 +99,7 @@
     @try {
         NSInfo(@"Loading Project...");
         project = [self parseNode:doc.rootElement withParent:nil];
+        project.scenes[0] = project.scene;
         NSInfo(@"Loading done...");
     } @catch(NSException* ex) {
         NSError(@"Project could not be loaded! %@", [ex description]);

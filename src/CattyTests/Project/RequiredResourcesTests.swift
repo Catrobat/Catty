@@ -48,13 +48,13 @@ final class RequiredResourcesTests: XCTestCase {
 
     func getProjectWithOneSpriteWithBrick(brick: Brick?) -> Project? {
         let project = Project()
-        project.scene = Scene()
+        project.scenes[0] = Scene()
         let obj = SpriteObject()
         let script = Script()
 
         script.brickList.add(brick as AnyObject)
         obj.scriptList.add(script)
-        project.scene.add(object: obj)
+        (project.scenes[0] as! Scene).add(object: obj)
 
         return project
     }
@@ -840,7 +840,7 @@ final class RequiredResourcesTests: XCTestCase {
     // MARK: MoreScripts
     func getProjectWithTwoScriptsWithBricks(brickArray: [AnyObject]?, andBrickArray2 brickArray2: [AnyObject]?) -> Project {
         let project = Project()
-        project.scene = Scene()
+        project.scenes[0] = Scene()
         let obj = SpriteObject()
         let script = Script()
         let script2 = Script()
@@ -859,7 +859,7 @@ final class RequiredResourcesTests: XCTestCase {
 
         obj.scriptList.add(script)
         obj.scriptList.add(script2)
-        project.scene.add(object: obj)
+        (project.scenes[0] as! Scene).add(object: obj)
 
         return project
     }
@@ -957,8 +957,8 @@ final class RequiredResourcesTests: XCTestCase {
 
         obj.scriptList.add(script)
         obj1.scriptList.add(script2)
-        project.scene.add(object: obj)
-        project.scene.add(object: obj1)
+        (project.scenes[0] as! Scene).add(object: obj)
+        (project.scenes[0] as! Scene).add(object: obj1)
         return project
 }
 

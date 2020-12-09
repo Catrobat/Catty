@@ -35,18 +35,23 @@ final class CBSpriteNodePhysicsTests: XMLAbstractTest {
     func testPhysicsBodyRightAmountPhysicsObjectNames() {
         let project = getProjectForXML(xmlFile: "collisionTest0993")
         let filePath = Bundle(for: type(of: self)).path(forResource: "test.png", ofType: nil)!
-
         let look = LookMock(name: "look", absolutePath: filePath)
-        project.scene.object(at: 1)?.lookList = [look]
-        project.scene.object(at: 2)?.lookList = [look]
-        project.scene.object(at: 3)?.lookList = [look]
+
+        guard let scene = project.scenes[0] as? Scene else {
+         XCTFail("Project has no Scenes.")
+            return
+        }
+
+        scene.object(at: 1)?.lookList = [look]
+        scene.object(at: 2)?.lookList = [look]
+        scene.object(at: 3)?.lookList = [look]
 
         let stage = createStage(project: project)
         let started = stage.startProject()
 
         XCTAssertTrue(started)
 
-        XCTAssertEqual(project.scene.objects().count, 4)
+        XCTAssertEqual(scene.objects().count, 4)
         XCTAssertEqual(project.physicsObjectNames.count, 2)
         XCTAssertTrue(project.physicsObjectNames.contains("obj1"))
         XCTAssertTrue(project.physicsObjectNames.contains("obj2"))
@@ -57,11 +62,15 @@ final class CBSpriteNodePhysicsTests: XMLAbstractTest {
     func testPhysicsObjectsNamesManuallySet() {
         let project = getProjectForXML(xmlFile: "collisionTest0993")
         let filePath = Bundle(for: type(of: self)).path(forResource: "test.png", ofType: nil)!
-
         let look = LookMock(name: "look", absolutePath: filePath)
-        project.scene.object(at: 1)?.lookList = [look]
-        project.scene.object(at: 2)?.lookList = [look]
-        project.scene.object(at: 3)?.lookList = [look]
+
+        guard let scene = project.scenes[0] as? Scene else {
+         XCTFail("Project has no Scenes.")
+            return
+        }
+        scene.object(at: 1)?.lookList = [look]
+        scene.object(at: 2)?.lookList = [look]
+        scene.object(at: 3)?.lookList = [look]
 
         let stage = createStage(project: project)
 
@@ -72,15 +81,15 @@ final class CBSpriteNodePhysicsTests: XMLAbstractTest {
 
         XCTAssertTrue(started)
 
-        XCTAssertEqual(project.scene.objects().count, 4)
+        XCTAssertEqual(scene.objects().count, 4)
         XCTAssertEqual(project.physicsObjectNames.count, 1)
         XCTAssertTrue(project.physicsObjectNames.contains("obj3"))
 
-        var physicsNode = project.scene.object(at: 1)?.spriteNode.childNode(withName: SpriteKitDefines.physicsNodeName)
+        var physicsNode = scene.object(at: 1)?.spriteNode.childNode(withName: SpriteKitDefines.physicsNodeName)
         XCTAssertNil(physicsNode)
-        physicsNode = project.scene.object(at: 2)?.spriteNode.childNode(withName: SpriteKitDefines.physicsNodeName)
+        physicsNode = scene.object(at: 2)?.spriteNode.childNode(withName: SpriteKitDefines.physicsNodeName)
         XCTAssertNil(physicsNode)
-        physicsNode = project.scene.object(at: 3)?.spriteNode.childNode(withName: SpriteKitDefines.physicsNodeName)
+        physicsNode = scene.object(at: 3)?.spriteNode.childNode(withName: SpriteKitDefines.physicsNodeName)
         XCTAssertNotNil(physicsNode)
         for child in physicsNode!.children {
             XCTAssertNotNil(child.physicsBody)
@@ -92,26 +101,31 @@ final class CBSpriteNodePhysicsTests: XMLAbstractTest {
     func testPhysicsBodyRightAmountChildNotes() {
         let project = getProjectForXML(xmlFile: "collisionTest0993")
         let filePath = Bundle(for: type(of: self)).path(forResource: "test.png", ofType: nil)!
-
         let look = LookMock(name: "look", absolutePath: filePath)
-        project.scene.object(at: 1)?.lookList = [look]
-        project.scene.object(at: 2)?.lookList = [look]
+
+        guard let scene = project.scenes[0] as? Scene else {
+         XCTFail("Project has no Scenes.")
+            return
+        }
+
+        scene.object(at: 1)?.lookList = [look]
+        scene.object(at: 2)?.lookList = [look]
 
         let stage = createStage(project: project)
         let started = stage.startProject()
 
         XCTAssertTrue(started)
 
-        var supernode = project.scene.object(at: 1)?.spriteNode.childNode(withName: SpriteKitDefines.physicsNodeName)
-        var size = project.scene.object(at: 1)!.spriteNode.size
+        var supernode = scene.object(at: 1)?.spriteNode.childNode(withName: SpriteKitDefines.physicsNodeName)
+        var size = scene.object(at: 1)!.spriteNode.size
         var amountNodes = Int((size.height > size.width ?
                                 size.height / CGFloat(SpriteKitDefines.physicsSubnodeSize) :
                                 size.width / CGFloat(SpriteKitDefines.physicsSubnodeSize)
                                 ).rounded(.up))
         XCTAssertEqual(supernode?.children.count, amountNodes * amountNodes)
 
-        supernode = project.scene.object(at: 2)?.spriteNode.childNode(withName: SpriteKitDefines.physicsNodeName)
-        size = project.scene.object(at: 2)!.spriteNode.size
+        supernode = scene.object(at: 2)?.spriteNode.childNode(withName: SpriteKitDefines.physicsNodeName)
+        size = scene.object(at: 2)!.spriteNode.size
         amountNodes = Int((size.height > size.width ?
                                 size.height / CGFloat(SpriteKitDefines.physicsSubnodeSize) :
                                 size.width / CGFloat(SpriteKitDefines.physicsSubnodeSize)
@@ -124,29 +138,33 @@ final class CBSpriteNodePhysicsTests: XMLAbstractTest {
     func testRightAmountPhysicsBodys() {
         let project = getProjectForXML(xmlFile: "collisionTest0993")
         let filePath = Bundle(for: type(of: self)).path(forResource: "test.png", ofType: nil)!
-
         let look = LookMock(name: "look", absolutePath: filePath)
-        project.scene.object(at: 1)?.lookList = [look]
-        project.scene.object(at: 2)?.lookList = [look]
-        project.scene.object(at: 3)?.lookList = [look]
+
+        guard let scene = project.scenes[0] as? Scene else {
+         XCTFail("Project has no Scenes.")
+            return
+        }
+        scene.object(at: 1)?.lookList = [look]
+        scene.object(at: 2)?.lookList = [look]
+        scene.object(at: 3)?.lookList = [look]
 
         let stage = createStage(project: project)
         let started = stage.startProject()
 
         XCTAssertTrue(started)
 
-        XCTAssertEqual(project.scene.objects().count, 4)
-        var physicsNode = project.scene.object(at: 1)?.spriteNode.childNode(withName: SpriteKitDefines.physicsNodeName)
+        XCTAssertEqual(scene.objects().count, 4)
+        var physicsNode = scene.object(at: 1)?.spriteNode.childNode(withName: SpriteKitDefines.physicsNodeName)
         XCTAssertNotNil(physicsNode)
         for child in physicsNode!.children {
             XCTAssertNotNil(child.physicsBody)
         }
-        physicsNode = project.scene.object(at: 2)?.spriteNode.childNode(withName: SpriteKitDefines.physicsNodeName)
+        physicsNode = scene.object(at: 2)?.spriteNode.childNode(withName: SpriteKitDefines.physicsNodeName)
         XCTAssertNotNil(physicsNode)
         for child in physicsNode!.children {
             XCTAssertNotNil(child.physicsBody)
         }
-        physicsNode = project.scene.object(at: 3)?.spriteNode.childNode(withName: SpriteKitDefines.physicsNodeName)
+        physicsNode = scene.object(at: 3)?.spriteNode.childNode(withName: SpriteKitDefines.physicsNodeName)
         XCTAssertNil(physicsNode)
 
         stage.stopProject()

@@ -39,7 +39,7 @@ final class WhenBackgroundChangesScriptTests: XCTestCase {
         project = ProjectMock(width: 400, andHeight: 800)
         scene = SceneMock(name: "sceneMock")
         scene.project = project
-        project.scene = scene
+        project.scenes[0] = scene!
 
         object = SpriteObject()
         object.name = "object"

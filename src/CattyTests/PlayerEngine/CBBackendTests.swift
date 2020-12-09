@@ -42,7 +42,7 @@ final class CBBackendTests: XCTestCase {
         spriteNode = CBSpriteNode(spriteObject: spriteObject)
         spriteObject.spriteNode = spriteNode
 
-        frontend = CBFrontend(logger: logger, project: nil)
+        frontend = CBFrontend(logger: logger)
         backend = CBBackend(logger: logger)
     }
 

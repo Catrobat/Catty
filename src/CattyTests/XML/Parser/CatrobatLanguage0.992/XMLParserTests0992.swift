@@ -35,8 +35,8 @@ class XMLParserTests0992: XMLAbstractTest {
     func testFlashBrick() {
         let project = self.getProjectForXML(xmlFile: "LedFlashBrick0992")
 
-        XCTAssertEqual(1, project.scene.objects().count, "Invalid object list")
-        let object = project.scene.object(at: 0)!
+        XCTAssertEqual(1, (project.scenes[0] as! Scene).objects().count, "Invalid object list")
+        let object = (project.scenes[0] as! Scene).object(at: 0)!
 
         XCTAssertEqual(1, object.scriptList.count, "Invalid script list")
         let script = object.scriptList.object(at: 0) as! Script
@@ -53,8 +53,8 @@ class XMLParserTests0992: XMLAbstractTest {
     func testIfThenLogicBeginBrick() {
         let project = self.getProjectForXML(xmlFile: "LogicBricks_0992")
 
-        XCTAssertEqual(1, project.scene.objects().count, "Invalid object list")
-        let object = project.scene.object(at: 0)!
+        XCTAssertEqual(1, (project.scenes[0] as! Scene).objects().count, "Invalid object list")
+        let object = (project.scenes[0] as! Scene).object(at: 0)!
 
         XCTAssertEqual(1, object.scriptList.count, "Invalid script list")
         let script = object.scriptList.object(at: 0) as! Script
@@ -105,9 +105,9 @@ class XMLParserTests0992: XMLAbstractTest {
     func testObjectLookSensors() {
         let project = self.getProjectForXML(xmlFile: "Sensors_0992")
 
-        XCTAssertGreaterThanOrEqual(project.scene.objects().count, 2, "Invalid object list")
-        let background = project.scene.object(at: 0)!
-        let object = project.scene.object(at: 1)!
+        XCTAssertGreaterThanOrEqual((project.scenes[0] as! Scene).objects().count, 2, "Invalid object list")
+        let background = (project.scenes[0] as! Scene).object(at: 0)!
+        let object = (project.scenes[0] as! Scene).object(at: 1)!
 
         XCTAssertEqual(1, background.scriptList.count, "Invalid script list")
         XCTAssertEqual(1, object.scriptList.count, "Invalid script list")
@@ -144,8 +144,8 @@ class XMLParserTests0992: XMLAbstractTest {
     func testLocationSensors() {
         let project = self.getProjectForXML(xmlFile: "Sensors_0992")
 
-        XCTAssertGreaterThanOrEqual(project.scene.objects().count, 3, "Invalid object list")
-        let object = project.scene.object(at: 2)!
+        XCTAssertGreaterThanOrEqual((project.scenes[0] as! Scene).objects().count, 3, "Invalid object list")
+        let object = (project.scenes[0] as! Scene).object(at: 2)!
 
         XCTAssertEqual(1, object.scriptList.count, "Invalid script list")
 
@@ -171,8 +171,8 @@ class XMLParserTests0992: XMLAbstractTest {
     func testScreenTouchSensors() {
         let project = self.getProjectForXML(xmlFile: "Sensors_0992")
 
-        XCTAssertGreaterThanOrEqual(project.scene.objects().count, 4, "Invalid object list")
-        let object = project.scene.object(at: 3)!
+        XCTAssertGreaterThanOrEqual((project.scenes[0] as! Scene).objects().count, 4, "Invalid object list")
+        let object = (project.scenes[0] as! Scene).object(at: 3)!
 
         XCTAssertEqual(1, object.scriptList.count, "Invalid script list")
 
@@ -197,7 +197,7 @@ class XMLParserTests0992: XMLAbstractTest {
 
     func testChooseCameraBrick() {
         let project = self.getProjectForXML(xmlFile: "CameraBricks_0992")
-        let background = project.scene.object(at: 0)!
+        let background = (project.scenes[0] as! Scene).object(at: 0)!
 
         let backgroundScript = background.scriptList.object(at: 0) as! Script
         XCTAssertEqual(backgroundScript.brickList.count, 4, "Invalid brick list")
@@ -221,9 +221,9 @@ class XMLParserTests0992: XMLAbstractTest {
 
     func testNumberOfItemsFunction() {
         let project = self.getProjectForXML(xmlFile: "NumberOfItemsInListFunction0992")
-        XCTAssertEqual(1, project.scene.objects().count, "Invalid object list")
+        XCTAssertEqual(1, (project.scenes[0] as! Scene).objects().count, "Invalid object list")
 
-        let object = project.scene.object(at: 0)!
+        let object = (project.scenes[0] as! Scene).object(at: 0)!
         XCTAssertEqual(1, object.scriptList.count, "Invalid script list")
 
         let script = object.scriptList.object(at: 0) as! Script
@@ -240,9 +240,9 @@ class XMLParserTests0992: XMLAbstractTest {
 
     func testElementOfListFunction() {
         let project = self.getProjectForXML(xmlFile: "ElementOfListFunction0992")
-        XCTAssertEqual(1, project.scene.objects().count, "Invalid object list")
+        XCTAssertEqual(1, (project.scenes[0] as! Scene).objects().count, "Invalid object list")
 
-        let object = project.scene.object(at: 0)!
+        let object = (project.scenes[0] as! Scene).object(at: 0)!
         XCTAssertEqual(1, object.scriptList.count, "Invalid script list")
 
         let script = object.scriptList.object(at: 0) as! Script
@@ -265,9 +265,9 @@ class XMLParserTests0992: XMLAbstractTest {
 
     func testDeleteItemOfUserListBrick() {
         let project = self.getProjectForXML(xmlFile: "DeleteItemOfUserListBrick0992")
-        XCTAssertEqual(1, project.scene.objects().count, "Invalid object list")
+        XCTAssertEqual(1, (project.scenes[0] as! Scene).objects().count, "Invalid object list")
 
-        let object = project.scene.object(at: 0)!
+        let object = (project.scenes[0] as! Scene).object(at: 0)!
         XCTAssertEqual(1, object.scriptList.count, "Invalid script list")
 
         let script = object.scriptList.object(at: 0) as! Script
@@ -288,9 +288,9 @@ class XMLParserTests0992: XMLAbstractTest {
 
     func testInsertItemIntoUserListBrick() {
         let project = self.getProjectForXML(xmlFile: "InsertItemIntoUserListBrick0992")
-        XCTAssertEqual(1, project.scene.objects().count, "Invalid object list")
+        XCTAssertEqual(1, (project.scenes[0] as! Scene).objects().count, "Invalid object list")
 
-        let object = project.scene.object(at: 0)!
+        let object = (project.scenes[0] as! Scene).object(at: 0)!
         XCTAssertEqual(1, object.scriptList.count, "Invalid script list")
 
         let script = object.scriptList.object(at: 0) as! Script
@@ -317,9 +317,9 @@ class XMLParserTests0992: XMLAbstractTest {
 
     func testReplaceItemInUserListBrick() {
         let project = self.getProjectForXML(xmlFile: "ReplaceItemInUserListBrick0992")
-        XCTAssertEqual(1, project.scene.objects().count, "Invalid object list")
+        XCTAssertEqual(1, (project.scenes[0] as! Scene).objects().count, "Invalid object list")
 
-        let object = project.scene.object(at: 0)!
+        let object = (project.scenes[0] as! Scene).object(at: 0)!
         XCTAssertEqual(1, object.scriptList.count, "Invalid script list")
 
         let script = object.scriptList.object(at: 0) as! Script
@@ -346,7 +346,7 @@ class XMLParserTests0992: XMLAbstractTest {
 
     func testDisabledBricks() {
         let project = self.getProjectForXML(xmlFile: "DisabledBricks_0992")
-        let object = project.scene.object(at: 0)!
+        let object = (project.scenes[0] as! Scene).object(at: 0)!
         let startScript = object.scriptList.object(at: 0) as! Script
 
         let disabledBrick = startScript.brickList.object(at: 0) as! SetVariableBrick
@@ -377,7 +377,7 @@ class XMLParserTests0992: XMLAbstractTest {
 
     func testAskBrick() {
         let project = self.getProjectForXML(xmlFile: "ValidProjectAllBricks0992")
-        let askBrick = (project.scene.object(at: 1)!.scriptList.object(at: 0) as! Script).brickList.object(at: 1) as! Brick
+        let askBrick = ((project.scenes[0] as! Scene).object(at: 1)!.scriptList.object(at: 0) as! Script).brickList.object(at: 1) as! Brick
 
         XCTAssertEqual(0, project.unsupportedElements.count)
         XCTAssertTrue(askBrick.isKind(of: AskBrick.self), "Invalid brick type")
@@ -386,7 +386,7 @@ class XMLParserTests0992: XMLAbstractTest {
     func testSetInstrumentBrick() {
         let availableInstruments = Instrument.allCases
         let project = self.getProjectForXML(xmlFile: "SamplerBricks_0992")
-        let object = project.scene.object(at: 0)!
+        let object = (project.scenes[0] as! Scene).object(at: 0)!
         let startScript = object.scriptList.object(at: 0) as! Script
 
         XCTAssertEqual(availableInstruments.count, startScript.brickList.count)
@@ -407,7 +407,7 @@ class XMLParserTests0992: XMLAbstractTest {
 
     func testSetTempoToBrick() {
         let project = self.getProjectForXML(xmlFile: "ValidProjectAllBricks0992")
-        let setTempoToBrick = (project.scene.object(at: 1)!.scriptList.object(at: 0) as! Script).brickList.object(at: 5) as! Brick
+        let setTempoToBrick = ((project.scenes[0] as! Scene).object(at: 1)!.scriptList.object(at: 0) as! Script).brickList.object(at: 5) as! Brick
 
         XCTAssertTrue(setTempoToBrick.isKind(of: SetTempoToBrick.self), "Invalid brick type")
     }

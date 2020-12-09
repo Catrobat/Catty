@@ -49,7 +49,7 @@ class XMLParserTests0998: XMLAbstractTest {
 
     func testSetPenColorBrick() {
         let project = self.getProjectForXML(xmlFile: "ValidProjectAllBricks0998")
-        let setPenColorBrick = (project.scene.object(at: 0)!.scriptList.object(at: 0) as! Script).brickList.object(at: 46) as! Brick
+        let setPenColorBrick = ((project.scenes[0] as! Scene).object(at: 0)!.scriptList.object(at: 0) as! Script).brickList.object(at: 46) as! Brick
 
         XCTAssertEqual(0, project.unsupportedElements.count)
         XCTAssertTrue(setPenColorBrick.isKind(of: SetPenColorBrick.self), "Invalid brick type")
@@ -62,7 +62,7 @@ class XMLParserTests0998: XMLAbstractTest {
 
     func testGlideToBrick() {
         let project = self.getProjectForXML(xmlFile: "ValidProjectAllBricks0998")
-        let glideToBrick = (project.scene.object(at: 0)!.scriptList.object(at: 0) as! Script).brickList.object(at: 10) as! Brick
+        let glideToBrick = ((project.scenes[0] as! Scene).object(at: 0)!.scriptList.object(at: 0) as! Script).brickList.object(at: 10) as! Brick
 
         XCTAssertEqual(0, project.unsupportedElements.count)
         XCTAssertTrue(glideToBrick.isKind(of: GlideToBrick.self), "Invalid brick type")
@@ -75,7 +75,7 @@ class XMLParserTests0998: XMLAbstractTest {
 
     func testThinkForBubbleBrick() {
         let project = self.getProjectForXML(xmlFile: "ValidProjectAllBricks0998")
-        let thinkForBubbleBrick = (project.scene.object(at: 0)!.scriptList.object(at: 0) as! Script).brickList.object(at: 37) as! Brick
+        let thinkForBubbleBrick = ((project.scenes[0] as! Scene).object(at: 0)!.scriptList.object(at: 0) as! Script).brickList.object(at: 37) as! Brick
 
         XCTAssertEqual(0, project.unsupportedElements.count)
         XCTAssertTrue(thinkForBubbleBrick.isKind(of: ThinkForBubbleBrick.self), "Invalid brick type")
@@ -87,7 +87,7 @@ class XMLParserTests0998: XMLAbstractTest {
 
     func testThinkBubbleBrick() {
         let project = self.getProjectForXML(xmlFile: "ValidProjectAllBricks0998")
-        let thinkBubbleBrick = (project.scene.object(at: 0)!.scriptList.object(at: 0) as! Script).brickList.object(at: 35) as! Brick
+        let thinkBubbleBrick = ((project.scenes[0] as! Scene).object(at: 0)!.scriptList.object(at: 0) as! Script).brickList.object(at: 35) as! Brick
 
         XCTAssertEqual(0, project.unsupportedElements.count)
         XCTAssertTrue(thinkBubbleBrick.isKind(of: ThinkBubbleBrick.self), "Invalid brick type")
@@ -98,7 +98,7 @@ class XMLParserTests0998: XMLAbstractTest {
 
     func testSpeakAndWaitBrick() {
         let project = self.getProjectForXML(xmlFile: "ValidProjectAllBricks0998")
-        let speakAndWaitBrick = (project.scene.object(at: 0)!.scriptList.object(at: 0) as! Script).brickList.object(at: 31) as! Brick
+        let speakAndWaitBrick = ((project.scenes[0] as! Scene).object(at: 0)!.scriptList.object(at: 0) as! Script).brickList.object(at: 31) as! Brick
 
         XCTAssertEqual(0, project.unsupportedElements.count)
         XCTAssertTrue(speakAndWaitBrick.isKind(of: SpeakAndWaitBrick.self), "Invalid brick type")

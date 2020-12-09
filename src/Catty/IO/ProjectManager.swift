@@ -35,32 +35,34 @@
     @objc func createProject(name: String, projectId: String?) -> Project {
         let project = Project()
         let projectName = Util.uniqueName(name, existingNames: Project.allProjectNames())
-        project.scene = Scene(name: Util.defaultSceneName(forSceneNumber: 1))
-        project.scene.project = project
         project.header = Header.default()
         project.header.programName = projectName
         project.header.programID = projectId
+
+        let scene = Scene(name: Util.defaultSceneName(forSceneNumber: 1))
+        scene.project = project
 
         if fileManager.directoryExists(projectName) == false {
             fileManager.createDirectory(project.projectPath())
         }
 
-        let sceneDir = project.scene.path()
+        let sceneDir = scene.path()
         if !fileManager.directoryExists(sceneDir) {
             fileManager.createDirectory(sceneDir)
         }
 
-        let imagesDirName = project.scene.imagesPath()
+        let imagesDirName = scene.imagesPath()
         if fileManager.directoryExists(imagesDirName) == false {
             fileManager.createDirectory(imagesDirName)
         }
 
-        let soundDirName = project.scene.soundsPath()
+        let soundDirName = scene.soundsPath()
         if fileManager.directoryExists(soundDirName) == false {
             fileManager.createDirectory(soundDirName)
         }
 
-        project.scene.addObject(withName: kLocalizedBackground)
+        scene.addObject(withName: kLocalizedBackground)
+        project.scenes[0] = scene
 
         let filePath = project.projectPath() + kScreenshotAutoFilename
         let projectIconNames = UIDefines.defaultScreenshots
@@ -172,7 +174,7 @@
     }
 
     @objc func removeObjects(_ project: Project, objects: [SpriteObject]) {
-        let scene = project.scene
+        guard let scene = project.scenes[0] as? Scene else {return}
         for object in objects where scene.objects().contains(object) {
             scene.removeObject(object)
         }

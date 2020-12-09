@@ -27,6 +27,7 @@ final class Stage: SKScene, StageProtocol {
 
     // MARK: - Properties
     final let scheduler: CBSchedulerProtocol
+    private final let CBScene: Scene
     private final let frontend: CBFrontendProtocol
     private final let backend: CBBackendProtocol
     private final let broadcastHandler: CBBroadcastHandlerProtocol
@@ -35,7 +36,8 @@ final class Stage: SKScene, StageProtocol {
     private final let logger: CBLogger
     private var frameCounter: Int
 
-    init(size: CGSize,
+    init(scene: Scene,
+         size: CGSize,
          logger: CBLogger,
          scheduler: CBSchedulerProtocol,
          frontend: CBFrontendProtocol,
@@ -43,6 +45,7 @@ final class Stage: SKScene, StageProtocol {
          broadcastHandler: CBBroadcastHandlerProtocol,
          formulaManager: FormulaManagerProtocol,
          soundEngine: AudioEngineProtocol) {
+        self.CBScene = scene
         self.logger = logger
         self.scheduler = scheduler
         self.frontend = frontend
@@ -149,16 +152,12 @@ final class Stage: SKScene, StageProtocol {
     // MARK: - Start project
 
     @objc func startProject() -> Bool {
-        guard let project = frontend.project else {
-            //fatalError
-            debugPrint("Invalid project. This should never happen!")
-            return false
-        }
 
-        guard let spriteObjectList = project.scene.objects() as NSArray? as? [SpriteObject],
+        guard let spriteObjectList = CBScene.objects() as NSArray? as? [SpriteObject],
+            let project = CBScene.project,
             let variableList = UserDataContainer.allVariables(for: project) as NSArray? as? [UserVariable] else {
                 //fatalError
-                debugPrint("!! Invalid sprite object list given !! This should never happen!")
+                debugPrint("!! Invalid scene or sprite object list given !! This should never happen!")
                 return false
         }
         assert(Thread.current.isMainThread)
@@ -302,7 +301,9 @@ final class Stage: SKScene, StageProtocol {
         DispatchQueue.main.async {
             self.removeAllChildren() // remove all CBSpriteNodes from Scene
         }
-        frontend.project?.removeReferences() // remove all references in project hierarchy
+        CBScene.objects().forEach {
+            $0.removeReferences()
+        }
         formulaManager.stop()
         logger.info("All SpriteObjects and Scripts have been removed from Scene!")
         soundEngine.stop()

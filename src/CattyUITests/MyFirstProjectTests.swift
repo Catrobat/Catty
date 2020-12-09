@@ -37,14 +37,14 @@ class MyFirstProjectTests: XCTestCase {
         app.navigationBars[kLocalizedMyFirstProject].buttons[kLocalizedEdit].tap()
         app.buttons[kLocalizedDeleteObjects].tap()
         let tablesQuery = app.tables
-        tablesQuery.staticTexts["Mole 1"].tap()
-        tablesQuery.staticTexts["Mole 2"].tap()
+        tablesQuery.staticTexts["\(kLocalizedMole) 1"].tap()
+        tablesQuery.staticTexts["\(kLocalizedMole) 2"].tap()
         app.toolbars.buttons[kLocalizedDelete].tap()
         XCTAssert(app.tables.staticTexts[kLocalizedBackground].exists)
-        XCTAssert(app.tables.staticTexts["Mole 1"].exists == false)
-        XCTAssert(app.tables.staticTexts["Mole 2"].exists == false)
-        XCTAssert(app.tables.staticTexts["Mole 3"].exists)
-        XCTAssert(app.tables.staticTexts["Mole 4"].exists)
+        XCTAssert(app.tables.staticTexts["\(kLocalizedMole) 1"].exists == false)
+        XCTAssert(app.tables.staticTexts["\(kLocalizedMole) 2"].exists == false)
+        XCTAssert(app.tables.staticTexts["\(kLocalizedMole) 3"].exists)
+        XCTAssert(app.tables.staticTexts["\(kLocalizedMole) 4"].exists)
     }
 
     func testCanRenameProjectViaEditMode() {
@@ -139,33 +139,33 @@ class MyFirstProjectTests: XCTestCase {
         app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
         app.tables.staticTexts[kLocalizedMyFirstProject].tap()
         let tablesQuery = app.tables
-        tablesQuery.staticTexts["Mole 3"].swipeLeft()
+        tablesQuery.staticTexts["\(kLocalizedMole) 3"].swipeLeft()
         XCTAssert(app.buttons[kLocalizedDelete].exists)
 
         app.buttons[kLocalizedDelete].tap()
         let yesButton = app.alerts[kLocalizedDeleteThisObject].buttons[kLocalizedCancel]
         yesButton.tap()
-        XCTAssert(app.tables.staticTexts["Mole 3"].exists)
+        XCTAssert(app.tables.staticTexts["\(kLocalizedMole) 3"].exists)
     }
 
     func testCanDeleteSingleObjectViaSwipe() {
         app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
         app.tables.staticTexts[kLocalizedMyFirstProject].tap()
         let tablesQuery = app.tables
-        tablesQuery.staticTexts["Mole 1"].swipeLeft()
+        tablesQuery.staticTexts["\(kLocalizedMole) 1"].swipeLeft()
         XCTAssert(app.buttons[kLocalizedDelete].exists)
 
         app.buttons[kLocalizedDelete].tap()
         let yesButton = app.alerts[kLocalizedDeleteThisObject].buttons[kLocalizedYes]
         yesButton.tap()
-        XCTAssert(app.tables.staticTexts["Mole 1"].exists == false)
+        XCTAssert(app.tables.staticTexts["\(kLocalizedMole) 1"].exists == false)
     }
 
     func testCanRenameSingleObjectViaSwipe() {
         app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
         app.tables.staticTexts[kLocalizedMyFirstProject].tap()
         let tablesQuery = app.tables
-        tablesQuery.staticTexts["Mole 3"].swipeLeft()
+        tablesQuery.staticTexts["\(kLocalizedMole) 3"].swipeLeft()
         XCTAssert(app.buttons[kLocalizedMore].exists)
 
         app.buttons[kLocalizedMore].tap()
@@ -173,17 +173,17 @@ class MyFirstProjectTests: XCTestCase {
 
         let alert = waitForElementToAppear(app.alerts[kLocalizedRenameObject])
         alert.buttons["Clear text"].tap()
-        alert.textFields[kLocalizedEnterYourObjectNameHere].typeText("Mole 5")
+        alert.textFields[kLocalizedEnterYourObjectNameHere].typeText("\(kLocalizedMole) 5")
         alert.buttons[kLocalizedOK].tap()
 
-        XCTAssert(app.tables.staticTexts["Mole 5"].exists)
+        XCTAssert(app.tables.staticTexts["\(kLocalizedMole) 5"].exists)
     }
 
     func testCanAbortRenameSingleObjectViaSwipe() {
         app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
         app.tables.staticTexts[kLocalizedMyFirstProject].tap()
         let tablesQuery = app.tables
-        tablesQuery.staticTexts["Mole 1"].swipeLeft()
+        tablesQuery.staticTexts["\(kLocalizedMole) 1"].swipeLeft()
         XCTAssert(app.buttons[kLocalizedMore].exists)
 
         app.buttons[kLocalizedMore].tap()
@@ -191,30 +191,30 @@ class MyFirstProjectTests: XCTestCase {
 
         let alert = waitForElementToAppear(app.alerts[kLocalizedRenameObject])
         alert.buttons["Clear text"].tap()
-        alert.textFields[kLocalizedEnterYourObjectNameHere].typeText("Mole 5")
+        alert.textFields[kLocalizedEnterYourObjectNameHere].typeText("\(kLocalizedMole) 5")
         alert.buttons[kLocalizedCancel].tap()
 
-        XCTAssert(app.tables.staticTexts["Mole 1"].exists)
+        XCTAssert(app.tables.staticTexts["\(kLocalizedMole) 1"].exists)
     }
 
     func testCanCopySingleObjectViaSwipe() {
         app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
         app.tables.staticTexts[kLocalizedMyFirstProject].tap()
         let tablesQuery = app.tables
-        tablesQuery.staticTexts["Mole 1"].swipeLeft()
+        tablesQuery.staticTexts["\(kLocalizedMole) 1"].swipeLeft()
         XCTAssert(app.buttons[kLocalizedMore].exists)
 
         app.buttons[kLocalizedMore].tap()
         app.buttons[kLocalizedCopy].tap()
         app.swipeDown()
-        XCTAssert(app.tables.staticTexts["Mole 1 (1)"].exists)
+        XCTAssert(app.tables.staticTexts["\(kLocalizedMole) 1 (1)"].exists)
     }
 
     func testCanAbortSwipe() {
         app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
         app.tables.staticTexts[kLocalizedMyFirstProject].tap()
         let tablesQuery = app.tables
-        tablesQuery.staticTexts["Mole 1"].swipeLeft()
+        tablesQuery.staticTexts["\(kLocalizedMole) 1"].swipeLeft()
         XCTAssert(app.buttons[kLocalizedMore].exists)
 
         app.buttons[kLocalizedMore].tap()

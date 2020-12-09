@@ -46,8 +46,8 @@ final class CBXMLParserHelperTests: XCTestCase {
         let scene = Scene(name: "testScene")
         let object = SpriteObject()
         object.scene = scene
-        let project = Project()
-        project.scene = object.scene
+        let project: Project! = ProjectManager.shared.createProject(name: "a", projectId: "1")
+        project.scenes[0] = object.scene!
 
         let spriteNode = CBSpriteNode(spriteObject: object)
         let startScript = StartScript()
