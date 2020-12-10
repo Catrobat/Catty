@@ -2,7 +2,7 @@
 "A message with the same name already exists, try again." = "इस नाम की सूचना पहले से मौजूद है, दुबारा कोशिश करें\nA message with the same name already exists, try again.";
 
 /* No comment provided by engineer. */
-"A project with the same name already exists, try again." = "A project with the same name already exists, try again.";
+"A project with the same name already exists, try again." = "समान नाम वाली परियोजना पहले से मौजूद है, फिर से प्रयास करें।";
 
 /* No comment provided by engineer. */
 "Abc" = "ए बी सी";
@@ -26,13 +26,13 @@
 "acceleration-sensor" = "त्वरण संवेदक";
 
 /* No comment provided by engineer. */
-"Actors and objects" = "Actors and objects";
+"Actors and objects" = "अभिनेता और वस्तुएं";
 
 /* No comment provided by engineer. */
-"Add" = "Add";
+"Add" = "जोड़े";
 
 /* No comment provided by engineer. */
-"Add actor or object" = "Add actor or object";
+"Add actor or object" = "अभिनेता या वस्तु जोड़ें";
 
 /* No comment provided by engineer. */
 "add comment here..." = "यहां टिप्पणी करें";
@@ -50,16 +50,19 @@
 "Agree" = "सहमत";
 
 /* No comment provided by engineer. */
+"all around" = "आसपास";
+
+/* No comment provided by engineer. */
 "All Bluetooth devices successfully disconnected" = "सभी ब्लूटूथ युक्ति सफलतापूर्वक असम्बद्ध";
 
 /* No comment provided by engineer. */
 "All known Bluetooth devices successfully removed" = "सभी ज्ञात ब्लूटूथ युक्ति सफलतापूर्वक हटा दी गई हैं।";
 
 /* No comment provided by engineer. */
-"Allow the app to control Arduino boards" = "Allow the app to control Arduino boards";
+"Allow the app to control Arduino boards" = "एप्लिकेशन को Arduino बोर्डों को नियंत्रित करने की अनुमति दें";
 
 /* No comment provided by engineer. */
-"Allow the app to send crash reports automatically" = "Allow the app to send crash reports automatically";
+"Allow the app to send crash reports automatically" = "एप्लिकेशन को स्वचालित रूप से क्रैश रिपोर्ट भेजने की अनुमति दें";
 
 /* paint */
 "Alpha" = "अल्फा";
@@ -83,10 +86,13 @@
 "and" = "और";
 
 /* No comment provided by engineer. */
-"and wait" = "and wait";
+"and store written answer in " = "और लिखित उत्तर को स्टोर करें";
 
 /* No comment provided by engineer. */
-"Animate brick-parts" = "Animate brick-parts";
+"and wait" = "और प्रतीक्ष करो";
+
+/* No comment provided by engineer. */
+"Animate brick-parts" = "ईंट-भागों को चेतन करना";
 
 /* No comment provided by engineer. */
 "Apr" = "अप्रैल";
@@ -98,19 +104,22 @@
 "Arduino" = "Arduino";
 
 /* No comment provided by engineer. */
-"arduino analog" = "arduino analog";
+"arduino analog" = "Arduino एनालॉग";
 
 /* No comment provided by engineer. */
-"arduino digital" = "arduino digital";
+"arduino digital" = "Arduino डिजिटल";
 
 /* No comment provided by engineer. */
 "Arduino extension" = "ार्डुइनो ईंटें";
 
 /* No comment provided by engineer. */
+"Ask " = "पूछना";
+
+/* No comment provided by engineer. */
 "at " = "पर ";
 
 /* No comment provided by engineer. */
-"at position" = "at position";
+"at position" = "स्थिति पर";
 
 /* paint */
 "Attributes:" = "मत्थे मढ़ना:";
@@ -128,7 +137,7 @@
 "Author" = "लेखक";
 
 /* Title of icon shown in the side bar to enable or disable an overlayed view to show the origin of the coordinate system and implicitly the display size. */
-"Axes" = "Axes";
+"Axes" = "अक्ष";
 
 /* No comment provided by engineer. */
 "back" = "वापस जाएँ।";
@@ -140,7 +149,7 @@
 "Background" = "पृष्ठभूमि";
 
 /* No comment provided by engineer. */
-"background name" = "background name";
+"background name" = "पृष्ठभूमि का नाम";
 
 /* No comment provided by engineer. */
 "background number" = "background number";
@@ -212,7 +221,7 @@
 "Categories" = "श्रेणियाँ :";
 
 /* No comment provided by engineer. */
-"Catrobat community" = "Catrobat community";
+"Catrobat community" = "Catrobat समुदाय";
 
 /* No comment provided by engineer. */
 "ceil" = "ceil";
@@ -225,6 +234,12 @@
 
 /* No comment provided by engineer. */
 "Change size by" = "इसके द्वारा आकार बदलें";
+
+/* No comment provided by engineer. */
+"Change to landscape" = "Change to landscape";
+
+/* No comment provided by engineer. */
+"Change to portrait" = "Change to portrait";
 
 /* No comment provided by engineer. */
 "Change transparency " = "पारदर्शिता बदलें ";
@@ -302,7 +317,7 @@
 "Continue" = "जारी रखें";
 
 /* No comment provided by engineer. */
-"Continue project" = "Continue project";
+"Continue project" = "प्रोजेक्ट जारी रखें";
 
 /* No comment provided by engineer. */
 "Control" = "नियंत्रण";
@@ -321,6 +336,9 @@
 
 /* No comment provided by engineer. */
 "Create account" = "खाता बनाएँ";
+
+/* No comment provided by engineer. */
+"Data" = "जानकारी";
 
 /* No comment provided by engineer. */
 "day" = "दिन";
@@ -458,6 +476,9 @@
 "Do you want to save the changes" = "क्या आप परिवर्तनों को सहेजना चाहते हैं";
 
 /* No comment provided by engineer. */
+"don't rotate" = "घुमाएँ नहीं";
+
+/* No comment provided by engineer. */
 "Done" = "पूर्ण";
 
 /* No comment provided by engineer. */
@@ -582,6 +603,9 @@
 
 /* No comment provided by engineer. */
 "Error saving file" = "Error saving file";
+
+/* No comment provided by engineer. */
+"Event" = "Event";
 
 /* No comment provided by engineer. */
 "FA" = "FA";
@@ -824,6 +848,9 @@
 "Left" = "बाएँ";
 
 /* No comment provided by engineer. */
+"left-right only" = "बाएं-दाएं ही";
+
+/* No comment provided by engineer. */
 "Length" = "Length";
 
 /* No comment provided by engineer. */
@@ -1001,7 +1028,7 @@
 "New message" = "नया संदेश";
 
 /* No comment provided by engineer. */
-"New project" = "New project";
+"New project" = "नया काम";
 
 /* No comment provided by engineer. */
 "New text" = "नया पाठ";
@@ -1161,6 +1188,9 @@
 
 /* No comment provided by engineer. */
 "Place at " = "Place at ";
+
+/* No comment provided by engineer. */
+"Play" = "चलाएँ";
 
 /* No comment provided by engineer. */
 "Play Phiro music\n" = "Play Phiro music\n";
@@ -1449,6 +1479,9 @@
 
 /* No comment provided by engineer. */
 "Set Phiro light" = "Set Phiro light";
+
+/* No comment provided by engineer. */
+"Set rotation style" = "रोटेशन शैली सेट करें";
 
 /* No comment provided by engineer. */
 "Set size to" = "आकार सहीं करें";
@@ -1766,9 +1799,6 @@
 "Var/List" = "Var/List";
 
 /* No comment provided by engineer. */
-"Variable" = "Variable";
-
-/* No comment provided by engineer. */
 "Variable name:" = "चर का नाम";
 
 /* No comment provided by engineer. */
@@ -1788,6 +1818,9 @@
 
 /* No comment provided by engineer. */
 "vibration" = "vibration";
+
+/* No comment provided by engineer. */
+"View" = "View";
 
 /* No comment provided by engineer. */
 "Views" = "Views";
@@ -1811,13 +1844,16 @@
 "Welcome!" = "Welcome!";
 
 /* No comment provided by engineer. */
+"What's your name?" = "What's your name?";
+
+/* No comment provided by engineer. */
 "When" = "When";
 
 /* No comment provided by engineer. */
 "When background changes to" = "When background changes to";
 
 /* No comment provided by engineer. */
-"When project started" = "When project started";
+"When project starts" = "When project starts";
 
 /* No comment provided by engineer. */
 "When stage is tapped" = "When stage is tapped";
@@ -1853,7 +1889,13 @@
 "You have already downloaded this project!" = "You have already downloaded this project!";
 
 /* No comment provided by engineer. */
+"Your answer" = "Your answer";
+
+/* No comment provided by engineer. */
 "Your email seems to be invalid" = "Your email seems to be invalid";
+
+/* No comment provided by engineer. */
+"Your project was uploaded to the Catrobat community where others can use and download it." = "Your project was uploaded to the Catrobat community where others can use and download it.";
 
 /* paint */
 "Zoom" = "Zoom";

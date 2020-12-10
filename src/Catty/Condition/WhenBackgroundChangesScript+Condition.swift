@@ -26,7 +26,7 @@ extension WhenBackgroundChangesScript: CBConditionProtocol {
         guard let backgroundObject = self.object.scene.objects().first else { return false }
         guard let currentLook = backgroundObject.spriteNode.currentLook else { return false }
 
-        if currentLook.isEqual(to: self.look) {
+        if currentLook.isEqual(self.look) {
             return true
         }
         return false

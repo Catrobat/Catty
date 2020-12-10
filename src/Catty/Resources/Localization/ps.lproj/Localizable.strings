@@ -47,7 +47,10 @@
 "Add sound" = "Add sound";
 
 /* No comment provided by engineer. */
-"Agree" = "زه دا منم ";
+"Agree" = "زه دا منم";
+
+/* No comment provided by engineer. */
+"all around" = "all around";
 
 /* No comment provided by engineer. */
 "All Bluetooth devices successfully disconnected" = "All Bluetooth devices successfully disconnected";
@@ -83,6 +86,9 @@
 "and" = "and";
 
 /* No comment provided by engineer. */
+"and store written answer in " = "and store written answer in ";
+
+/* No comment provided by engineer. */
 "and wait" = "and wait";
 
 /* No comment provided by engineer. */
@@ -105,6 +111,9 @@
 
 /* No comment provided by engineer. */
 "Arduino extension" = "Arduino extension";
+
+/* No comment provided by engineer. */
+"Ask " = "Ask ";
 
 /* No comment provided by engineer. */
 "at " = "at ";
@@ -227,6 +236,12 @@
 "Change size by" = "Change size by";
 
 /* No comment provided by engineer. */
+"Change to landscape" = "Change to landscape";
+
+/* No comment provided by engineer. */
+"Change to portrait" = "Change to portrait";
+
+/* No comment provided by engineer. */
 "Change transparency " = "Change transparency ";
 
 /* No comment provided by engineer. */
@@ -321,6 +336,9 @@
 
 /* No comment provided by engineer. */
 "Create account" = "Create account";
+
+/* No comment provided by engineer. */
+"Data" = "Data";
 
 /* No comment provided by engineer. */
 "day" = "day";
@@ -458,6 +476,9 @@
 "Do you want to save the changes" = "Do you want to save the changes";
 
 /* No comment provided by engineer. */
+"don't rotate" = "don't rotate";
+
+/* No comment provided by engineer. */
 "Done" = "Done";
 
 /* No comment provided by engineer. */
@@ -582,6 +603,9 @@
 
 /* No comment provided by engineer. */
 "Error saving file" = "Error saving file";
+
+/* No comment provided by engineer. */
+"Event" = "Event";
 
 /* No comment provided by engineer. */
 "FA" = "FA";
@@ -822,6 +846,9 @@
 
 /* No comment provided by engineer. */
 "Left" = "Left";
+
+/* No comment provided by engineer. */
+"left-right only" = "left-right only";
 
 /* No comment provided by engineer. */
 "Length" = "Length";
@@ -1163,6 +1190,9 @@
 "Place at " = "Place at ";
 
 /* No comment provided by engineer. */
+"Play" = "چلول";
+
+/* No comment provided by engineer. */
 "Play Phiro music\n" = "Play Phiro music\n";
 
 /* No comment provided by engineer. */
@@ -1449,6 +1479,9 @@
 
 /* No comment provided by engineer. */
 "Set Phiro light" = "Set Phiro light";
+
+/* No comment provided by engineer. */
+"Set rotation style" = "Set rotation style";
 
 /* No comment provided by engineer. */
 "Set size to" = "Set size to";
@@ -1766,9 +1799,6 @@
 "Var/List" = "Var/List";
 
 /* No comment provided by engineer. */
-"Variable" = "Variable";
-
-/* No comment provided by engineer. */
 "Variable name:" = "Variable name:";
 
 /* No comment provided by engineer. */
@@ -1788,6 +1818,9 @@
 
 /* No comment provided by engineer. */
 "vibration" = "vibration";
+
+/* No comment provided by engineer. */
+"View" = "View";
 
 /* No comment provided by engineer. */
 "Views" = "Views";
@@ -1811,13 +1844,16 @@
 "Welcome!" = "Welcome!";
 
 /* No comment provided by engineer. */
+"What's your name?" = "What's your name?";
+
+/* No comment provided by engineer. */
 "When" = "When";
 
 /* No comment provided by engineer. */
 "When background changes to" = "When background changes to";
 
 /* No comment provided by engineer. */
-"When project started" = "When project started";
+"When project starts" = "When project starts";
 
 /* No comment provided by engineer. */
 "When stage is tapped" = "When stage is tapped";
@@ -1853,7 +1889,13 @@
 "You have already downloaded this project!" = "You have already downloaded this project!";
 
 /* No comment provided by engineer. */
+"Your answer" = "Your answer";
+
+/* No comment provided by engineer. */
 "Your email seems to be invalid" = "Your email seems to be invalid";
+
+/* No comment provided by engineer. */
+"Your project was uploaded to the Catrobat community where others can use and download it." = "Your project was uploaded to the Catrobat community where others can use and download it.";
 
 /* paint */
 "Zoom" = "Zoom";

@@ -26,7 +26,7 @@
 
 - (kBrickCategoryType)category
 {
-    return kControlBrick;
+    return kEventBrick;
 }
 
 @end

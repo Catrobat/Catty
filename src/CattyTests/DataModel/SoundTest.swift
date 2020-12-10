@@ -32,9 +32,41 @@ final class SoundTest: XCTestCase {
         project.scene = scene
         scene.project = project
 
-        let sound = Sound(name: "testLook", fileName: "testSoundFile")
+        let sound = Sound(name: "testSound", fileName: "testSoundFile")
 
         let expectedPath = project.projectPath() + "testScene/sounds/testSoundFile"
         XCTAssertEqual(expectedPath, sound.path(for: scene))
     }
+
+    func testIsEqualToSound() {
+          let sound = Sound(name: "testSound", fileName: "testSoundFile")
+          let equalSound = Sound(name: "testSound", fileName: "testSoundFile")
+          let otherSound = Sound(name: "otherSound", fileName: "testSoundFile")
+
+           XCTAssertTrue(sound.isEqual(to: equalSound))
+           XCTAssertFalse(sound === equalSound)
+           XCTAssertFalse(sound.isEqual(to: otherSound))
+       }
+
+       func testMutableCopyWithContext() {
+           let sound = Sound(name: "testSound", fileName: "testSoundFile")
+           let context = CBMutableCopyContext()
+
+           let soundCopy = sound.mutableCopy(with: context) as! Sound
+
+           XCTAssertEqual(sound.name, soundCopy.name)
+           XCTAssertFalse(sound === soundCopy)
+           XCTAssertEqual(sound.fileName, soundCopy.fileName)
+       }
+
+       func testInitWithName() {
+           let param1 = "testSoundFile"
+           let param2 = "testSound"
+           let sound = Sound(name: param1, fileName: param2)
+
+           XCTAssertNotNil(sound)
+           XCTAssertEqual(sound.name, param1)
+           XCTAssertEqual(sound.fileName, param2)
+       }
+
 }

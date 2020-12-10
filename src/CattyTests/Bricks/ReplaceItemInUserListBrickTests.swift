@@ -113,6 +113,42 @@ final class ReplaceItemInUserListBrickTests: XCTestCase {
             XCTFail("Fatal Error")
         }
 
-       XCTAssertEqual(userList.count, 0)
+        XCTAssertEqual(userList.count, 0)
+    }
+
+    func testMutableCopy() {
+        let brick = ReplaceItemInUserListBrick()
+        let script = Script()
+        let object = SpriteObject()
+        let scene = Scene(name: "testScene")
+        object.scene = scene
+
+        script.object = object
+        brick.script = script
+        brick.userList = UserList(name: "testName")
+        brick.index = Formula(integer: 1)
+        brick.elementFormula = Formula(integer: 10)
+
+        let copiedBrick: ReplaceItemInUserListBrick = brick.mutableCopy(with: CBMutableCopyContext()) as! ReplaceItemInUserListBrick
+
+        XCTAssertTrue(brick.isEqual(to: copiedBrick))
+        XCTAssertFalse(brick === copiedBrick)
+    }
+
+    func testGetFormulas() {
+        brick.index = Formula(integer: 1)
+        brick.elementFormula = Formula(integer: 10)
+        var formulas = brick.getFormulas()
+
+        XCTAssertEqual(formulas?.count, 2)
+        XCTAssertEqual(brick.elementFormula, formulas?[0])
+        XCTAssertEqual(brick.index, formulas?[1])
+
+        brick.index = Formula(integer: 2)
+        brick.elementFormula = Formula(integer: 22)
+        formulas = brick.getFormulas()
+
+        XCTAssertEqual(brick.elementFormula, formulas?[0])
+        XCTAssertEqual(brick.index, formulas?[1])
     }
 }

@@ -41,15 +41,15 @@ class BrickCellBackgroundDataTests: XCTestCase {
         backgroundObject = SpriteObject()
         backgroundObject.scene = scene
         backgroundObject.lookList = [
-            Look(name: "backgroundLookA", andPath: "path") as Any,
-            Look(name: "backgroundLookB", andPath: "path") as Any
+            Look(name: "backgroundLookA", filePath: "path") as Any,
+            Look(name: "backgroundLookB", filePath: "path") as Any
         ]
 
         scene.add(object: backgroundObject)
 
         spriteObject = SpriteObject()
         spriteObject.scene = scene
-        spriteObject.lookList = [ Look(name: "objectLook", andPath: "path") as Any ]
+        spriteObject.lookList = [ Look(name: "objectLook", filePath: "path") as Any ]
 
         scene.add(object: spriteObject)
 

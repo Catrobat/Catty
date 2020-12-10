@@ -24,24 +24,25 @@
 
     @objc public static func registeredBricks() -> [BrickProtocol] {
         var bricks: [BrickProtocol] = [
-            // control bricks
+            // event bricks
             BroadcastScript(),
             StartScript(),
+            WhenScript(),
+            WhenConditionScript(),
+            WhenTouchDownScript(),
+            BroadcastBrick(),
+            BroadcastWaitBrick(),
+            WhenBackgroundChangesScript(),
+            // control bricks
             WaitBrick(),
             IfThenLogicBeginBrick(),
             IfThenLogicEndBrick(),
             IfLogicBeginBrick(),
             IfLogicElseBrick(),
             IfLogicEndBrick(),
-            WhenScript(),
-            WhenConditionScript(),
-            BroadcastBrick(),
-            BroadcastWaitBrick(),
             ForeverBrick(),
             RepeatBrick(),
             RepeatUntilBrick(),
-            WhenBackgroundChangesScript(),
-            WhenTouchDownScript(),
             NoteBrick(),
             WaitUntilBrick(),
             LoopEndBrick(),
@@ -62,6 +63,7 @@
             IfOnEdgeBounceBrick(),
             GoNStepsBackBrick(),
             VibrationBrick(),
+            SetRotationStyleBrick(),
             // look bricks
             HideBrick(),
             SetLookBrick(),
@@ -85,6 +87,7 @@
             ChooseCameraBrick(),
             ThinkForBubbleBrick(),
             ThinkBubbleBrick(),
+            AskBrick(),
             // pen bricks
             PenDownBrick(),
             PenUpBrick(),
@@ -127,6 +130,11 @@
 
     @objc public static func registeredBrickCategories() -> [BrickCategory] {
         var categories = [
+            BrickCategory(type: kBrickCategoryType.eventBrick,
+                          name: kLocalizedCategoryEvent,
+                          color: UIColor.eventBrick,
+                          strokeColor: UIColor.eventBrickStroke),
+
             BrickCategory(type: kBrickCategoryType.controlBrick,
                           name: kLocalizedCategoryControl,
                           color: UIColor.controlBrickOrange,
@@ -152,8 +160,8 @@
                           color: UIColor.soundBrickViolet,
                           strokeColor: UIColor.soundBrickStroke),
 
-            BrickCategory(type: kBrickCategoryType.variableBrick,
-                          name: kLocalizedCategoryVariable,
+            BrickCategory(type: kBrickCategoryType.dataBrick,
+                          name: kLocalizedCategoryData,
                           color: UIColor.variableBrickRed,
                           strokeColor: UIColor.variableBrickStroke)
         ]
@@ -161,8 +169,8 @@
         if isFavouritesCategoryAvailable() {
             categories.prepend(BrickCategory(type: kBrickCategoryType.favouriteBricks,
                                              name: kLocalizedCategoryFrequentlyUsed,
-                                             color: UIColor.controlBrickOrange,
-                                             strokeColor: UIColor.controlBrickStroke))
+                                             color: UIColor.frequentlyUsedBricks,
+                                             strokeColor: UIColor.frequentlyUsedBricksStroke))
         }
         if isArduinoEnabled() {
             categories.append(BrickCategory(type: kBrickCategoryType.arduinoBrick,

@@ -1,0 +1,15 @@
+devices([
+  "iPhone 11 Pro Max",
+  "iPhone 8 Plus"
+])
+
+languages([
+  "en-US",
+  "de-DE",
+  "ru-RU"
+])
+
+
+concurrent_simulators(false)
+clean(true)
+stop_after_first_error(true)

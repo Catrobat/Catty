@@ -112,4 +112,20 @@ final class PlaceAtBrickTests: AbstractBrickTest {
         XCTAssertFalse(brick.yPosition === copiedBrick.yPosition)
     }
 
+    func testGetFormulas() {
+        brick.xPosition = Formula(double: 1)
+        brick.yPosition = Formula(double: 2)
+        var formulas = brick.getFormulas()
+
+        XCTAssertEqual(formulas?.count, 2)
+        XCTAssertEqual(brick.xPosition, formulas?[0])
+        XCTAssertEqual(brick.yPosition, formulas?[1])
+
+        brick.xPosition = Formula(double: 22)
+        brick.yPosition = Formula(double: 21)
+        formulas = brick.getFormulas()
+
+        XCTAssertEqual(brick.xPosition, formulas?[0])
+        XCTAssertEqual(brick.yPosition, formulas?[1])
+    }
 }

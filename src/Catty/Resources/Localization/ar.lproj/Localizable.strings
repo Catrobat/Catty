@@ -50,6 +50,9 @@
 "Agree" = "موافق";
 
 /* No comment provided by engineer. */
+"all around" = "all around";
+
+/* No comment provided by engineer. */
 "All Bluetooth devices successfully disconnected" = "جميع أجهزة Bluetooth التي تم قطع الاتصال بنجاح";
 
 /* No comment provided by engineer. */
@@ -83,6 +86,9 @@
 "and" = "و";
 
 /* No comment provided by engineer. */
+"and store written answer in " = "and store written answer in ";
+
+/* No comment provided by engineer. */
 "and wait" = "والانتظار";
 
 /* No comment provided by engineer. */
@@ -105,6 +111,9 @@
 
 /* No comment provided by engineer. */
 "Arduino extension" = "لبّنات برمجية لـ اردوينو";
+
+/* No comment provided by engineer. */
+"Ask " = "Ask ";
 
 /* No comment provided by engineer. */
 "at " = "في ";
@@ -227,6 +236,12 @@
 "Change size by" = "تغيير الحجم بمقدار";
 
 /* No comment provided by engineer. */
+"Change to landscape" = "Change to landscape";
+
+/* No comment provided by engineer. */
+"Change to portrait" = "Change to portrait";
+
+/* No comment provided by engineer. */
 "Change transparency " = "تغيير درجة الشفافية ";
 
 /* No comment provided by engineer. */
@@ -321,6 +336,9 @@
 
 /* No comment provided by engineer. */
 "Create account" = "إنشاء حساب";
+
+/* No comment provided by engineer. */
+"Data" = "البيانات";
 
 /* No comment provided by engineer. */
 "day" = "اليوم";
@@ -458,6 +476,9 @@
 "Do you want to save the changes" = "هل تريد حفظ التغييرات";
 
 /* No comment provided by engineer. */
+"don't rotate" = "لا تدور";
+
+/* No comment provided by engineer. */
 "Done" = "موافق";
 
 /* No comment provided by engineer. */
@@ -582,6 +603,9 @@
 
 /* No comment provided by engineer. */
 "Error saving file" = "Error saving file";
+
+/* No comment provided by engineer. */
+"Event" = "الحدث";
 
 /* No comment provided by engineer. */
 "FA" = "فا";
@@ -822,6 +846,9 @@
 
 /* No comment provided by engineer. */
 "Left" = "اليسار";
+
+/* No comment provided by engineer. */
+"left-right only" = "من اليسار-اليمين فقط";
 
 /* No comment provided by engineer. */
 "Length" = "طول";
@@ -1163,6 +1190,9 @@
 "Place at " = "تحديد موقع الكائن في ";
 
 /* No comment provided by engineer. */
+"Play" = "تشغيل";
+
+/* No comment provided by engineer. */
 "Play Phiro music\n" = "تشغيل موسيقى روبوت الاطفال\n";
 
 /* No comment provided by engineer. */
@@ -1449,6 +1479,9 @@
 
 /* No comment provided by engineer. */
 "Set Phiro light" = "تعيين ضوء روبوت الاطفال";
+
+/* No comment provided by engineer. */
+"Set rotation style" = "تعيين نمط الاستدارة الى ";
 
 /* No comment provided by engineer. */
 "Set size to" = "تعيين الحجم الى";
@@ -1766,9 +1799,6 @@
 "Var/List" = "متغير/قائمة";
 
 /* No comment provided by engineer. */
-"Variable" = "متغير";
-
-/* No comment provided by engineer. */
 "Variable name:" = "اسم المتغير:";
 
 /* No comment provided by engineer. */
@@ -1788,6 +1818,9 @@
 
 /* No comment provided by engineer. */
 "vibration" = "الاهتزاز";
+
+/* No comment provided by engineer. */
+"View" = "View";
 
 /* No comment provided by engineer. */
 "Views" = "عرض";
@@ -1811,13 +1844,16 @@
 "Welcome!" = "مرحبا!";
 
 /* No comment provided by engineer. */
+"What's your name?" = "ما هو اسمك؟";
+
+/* No comment provided by engineer. */
 "When" = "عندما";
 
 /* No comment provided by engineer. */
 "When background changes to" = "عند تغيير الخلفية إلى";
 
 /* No comment provided by engineer. */
-"When project started" = "When project started";
+"When project starts" = "When project starts";
 
 /* No comment provided by engineer. */
 "When stage is tapped" = "عند لمس الشاشة";
@@ -1853,7 +1889,13 @@
 "You have already downloaded this project!" = "You have already downloaded this project!";
 
 /* No comment provided by engineer. */
+"Your answer" = "Your answer";
+
+/* No comment provided by engineer. */
 "Your email seems to be invalid" = "البريد الالكتروني الخاص بك غير صحيح";
+
+/* No comment provided by engineer. */
+"Your project was uploaded to the Catrobat community where others can use and download it." = "Your project was uploaded to the Catrobat community where others can use and download it.";
 
 /* paint */
 "Zoom" = "Zoom";

@@ -23,6 +23,7 @@
 #import "SetLookBrick.h"
 #import "Script.h"
 #import "CBMutableCopyContext.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation SetLookBrick
 
@@ -49,7 +50,7 @@
 
 - (BOOL)isEqualToBrick:(Brick*)brick
 {
-    if([self.look isEqualToLook:((SetLookBrick*)brick).look])
+    if([self.look isEqual:((SetLookBrick*)brick).look])
         return YES;
     return NO;
 }

@@ -41,14 +41,14 @@ final class SetLookBrickTests: XCTestCase {
 
     func testMutableCopy() {
         let brick = SetLookBrick()
-        let look = Look(name: "lookToCopy", andPath: "look")
+        let look = Look(name: "lookToCopy", filePath: "look")
         brick.look = look
 
         let copiedBrick: SetLookBrick = brick.mutableCopy(with: CBMutableCopyContext()) as! SetLookBrick
 
         XCTAssertTrue(brick.isEqual(to: copiedBrick))
         XCTAssertFalse(brick === copiedBrick)
-        XCTAssertTrue(brick.look.isEqual(to: copiedBrick.look))
+        XCTAssertTrue(brick.look.isEqual(copiedBrick.look))
         XCTAssertTrue(copiedBrick.look === brick.look)
     }
 

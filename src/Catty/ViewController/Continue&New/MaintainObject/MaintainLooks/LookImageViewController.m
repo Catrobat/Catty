@@ -162,20 +162,8 @@
         return;
     }
     
-    NSString *previewImageName =  [NSString stringWithFormat:@"%@_%@%@",
-            [fileName substringToIndex:result.location],
-            kPreviewImageNamePrefix,
-            [fileName substringFromIndex:(result.location + 1)]
-            ];
-
     RuntimeImageCache *cache = [RuntimeImageCache sharedImageCache];
-    NSString *filePath = [NSString stringWithFormat:@"%@%@", imageDirPath, previewImageName];
-    [cache overwriteThumbnailImageFromDiskWithThumbnailPath:filePath image:image thumbnailFrameSize:CGSizeMake(kPreviewThumbnailWidth, kPreviewThumbnailHeight)];
-    
-    
-    [cache replaceImage:image withName:filePath];
-    
-
+    [cache clearImageCache];
 }
 
 - (void)addMediaLibraryLoadedImage:(UIImage *)image withName:(NSString *)lookName

@@ -32,7 +32,7 @@ typedef enum {
     FORMULA_PARSER_NO_INPUT = -5
 } FormulaParserStatus;
 
-@protocol FormulaManagerProtocol;
+@class FormulaManager;
 @class UserVariable;
 
 @interface InternFormulaParser : NSObject
@@ -43,7 +43,7 @@ typedef enum {
 @property (nonatomic, weak) InternToken* currentToken;
 @property (nonatomic) BOOL isBool;
 
-- (id)initWithTokens:(NSArray<InternToken*>*)tokens andFormulaManager:(id<FormulaManagerProtocol>)formulaManager;
+- (id)initWithTokens:(NSArray<InternToken*>*)tokens andFormulaManager:(FormulaManager*)formulaManager;
 - (FormulaElement*)parseFormulaForSpriteObject:(SpriteObject*)object;
 - (int)getErrorTokenIndex;
 

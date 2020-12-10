@@ -28,7 +28,7 @@
 
 - (kBrickCategoryType)category
 {
-    return kVariableBrick;
+    return kDataBrick;
 }
 
 - (UserVariable*)variableForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber

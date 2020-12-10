@@ -64,19 +64,19 @@ final class WaitBrickTests: XCTestCase {
         waitBrick.script = script
         let executionTime = self.measureExecutionTime(instruction: waitBrick.instruction(), expectation: nil)
         XCTAssertEqual(executionTime, duration, accuracy: 0.5, "Wrong execution time")
-        XCTAssertEqual(scheduler._activeTimers.count, 0)
+        XCTAssertEqual(scheduler.synchronizedTimerArray.count, 0)
     }
 
-    func testSchedulerSetTimer_activeTimersCountIsOne() {
+    func testSchedulerSetTimer() {
         let extendedTimer = ExtendedTimer.init(timeInterval: 2,
                                                repeats: false,
                                                execOnMainRunLoop: true,
                                                startTimerImmediately: true) { _ in }
         self.scheduler.registerTimer(extendedTimer)
-        XCTAssertEqual(scheduler._activeTimers.count, 1)
+        XCTAssertEqual(scheduler.synchronizedTimerArray.count, 1)
     }
 
-    func testSchedulerRemoveTimer_activeTimersCountIsZero() {
+    func testSchedulerRemoveTimer() {
         let extendedTimer = ExtendedTimer.init(timeInterval: 2,
                                                repeats: false,
                                                execOnMainRunLoop: true,
@@ -84,7 +84,31 @@ final class WaitBrickTests: XCTestCase {
         self.scheduler.registerTimer(extendedTimer)
         self.scheduler.removeTimer(extendedTimer)
 
-        XCTAssertEqual(scheduler._activeTimers.count, 0)
+        XCTAssertEqual(scheduler.synchronizedTimerArray.count, 0)
+    }
+
+    func testSchedulerThreadSafeArrayWithAppend() {
+        DispatchQueue.concurrentPerform(iterations: 1000) { _ in
+            let last = scheduler.synchronizedTimerArray.last ??
+            ExtendedTimer.init(timeInterval: 2,
+                               repeats: false,
+                               execOnMainRunLoop: true,
+                               startTimerImmediately: true) { _ in }
+            scheduler.synchronizedTimerArray.append(last)
+        }
+        XCTAssertEqual(1000, scheduler.synchronizedTimerArray.count)
+    }
+
+    func testSchedulerThreadSafeArrayWithRegister() {
+        DispatchQueue.concurrentPerform(iterations: 1000) { _ in
+            let last = scheduler.synchronizedTimerArray.last ??
+                    ExtendedTimer.init(timeInterval: 2,
+                                       repeats: false,
+                                       execOnMainRunLoop: true,
+                                       startTimerImmediately: true) { _ in }
+            scheduler.registerTimer(last)
+        }
+        XCTAssertEqual(1000, scheduler.synchronizedTimerArray.count)
     }
 
     func measureExecutionTime(instruction: CBInstruction, expectation: XCTestExpectation?) -> Double {
@@ -113,4 +137,23 @@ final class WaitBrickTests: XCTestCase {
 
         return timeIntervalInSeconds
     }
+
+    func testGetFormulas() {
+        let waitBrick = WaitBrick()
+        waitBrick.timeToWaitInSeconds = Formula(double: 1)
+        waitBrick.script = script
+        var formulas = waitBrick.getFormulas()
+
+        XCTAssertTrue(waitBrick.timeToWaitInSeconds.isEqual(to: formulas?[0]))
+        XCTAssertTrue(waitBrick.timeToWaitInSeconds.isEqual(to: Formula(float: 1)))
+        XCTAssertFalse(waitBrick.timeToWaitInSeconds.isEqual(to: Formula(float: 22)))
+
+        waitBrick.timeToWaitInSeconds = Formula(float: 22)
+        formulas = waitBrick.getFormulas()
+
+        XCTAssertTrue(waitBrick.timeToWaitInSeconds.isEqual(to: formulas?[0]))
+        XCTAssertTrue(waitBrick.timeToWaitInSeconds.isEqual(to: Formula(float: 22)))
+        XCTAssertFalse(waitBrick.timeToWaitInSeconds.isEqual(to: Formula(float: 1)))
+    }
+
 }

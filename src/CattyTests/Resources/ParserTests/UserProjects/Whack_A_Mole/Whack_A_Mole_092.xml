@@ -1,0 +1,844 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<program>
+  <header>
+    <applicationBuildName/>
+    <applicationBuildNumber>0</applicationBuildNumber>
+    <applicationName>Pocket Code</applicationName>
+    <applicationVersion>0.9.14</applicationVersion>
+    <catrobatLanguageVersion>0.92</catrobatLanguageVersion>
+    <dateTimeUpload/>
+    <description>Fun Time</description>
+    <deviceName>XT1023</deviceName>
+    <mediaLicense>http://developer.catrobat.org/ccbysa_v4</mediaLicense>
+    <platform>Android</platform>
+    <platformVersion>19</platformVersion>
+    <programLicense>http://developer.catrobat.org/agpl_v3</programLicense>
+    <programName>Whack-a-Mole</programName>
+    <remixOf/>
+    <screenHeight>888</screenHeight>
+    <screenMode>STRETCH</screenMode>
+    <screenWidth>540</screenWidth>
+    <tags/>
+    <url>http://pocketcode.org/details/2296</url>
+    <userHandle>daniel786A5</userHandle>
+  </header>
+  <objectList>
+    <object>
+      <lookList>
+        <look>
+          <fileName>8aeb3b860b90a69a1078d525cc8e5507_Background.png</fileName>
+          <name>Background</name>
+        </look>
+      </lookList>
+      <name>Background</name>
+      <scriptList>
+        <startScript>
+          <brickList>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look"/>
+            </setLookBrick>
+            <setVariableBrick>
+              <object reference="../../../../.."/>
+              <userVariable>
+                <name>random from</name>
+              </userVariable>
+              <variableFormula>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>1</value>
+                </formulaTree>
+              </variableFormula>
+            </setVariableBrick>
+            <setVariableBrick>
+              <object reference="../../../../.."/>
+              <userVariable>
+                <name>random to</name>
+              </userVariable>
+              <variableFormula>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>5</value>
+                </formulaTree>
+              </variableFormula>
+            </setVariableBrick>
+          </brickList>
+          <object reference="../../.."/>
+        </startScript>
+      </scriptList>
+      <soundList/>
+    </object>
+    <object>
+      <lookList>
+        <look>
+          <fileName>06e01b636e184f82c05532292ace0de4_Moving Mole.png</fileName>
+          <name>Moving Mole</name>
+        </look>
+        <look>
+          <fileName>c1a4cf63f691c3e5db6239c2dff29ab3_Mole.png</fileName>
+          <name>Mole</name>
+        </look>
+        <look>
+          <fileName>802d77e8cf67fda4a18076798433aefd_Whacked Mole.png</fileName>
+          <name>Whacked Mole</name>
+        </look>
+      </lookList>
+      <name>Mole 1</name>
+      <scriptList>
+        <startScript>
+          <brickList>
+            <setSizeToBrick>
+              <object reference="../../../../.."/>
+              <size>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>30</value>
+                </formulaTree>
+              </size>
+            </setSizeToBrick>
+            <foreverBrick>
+              <object reference="../../../../.."/>
+              <loopEndBrick class="loopEndlessBrick">
+                <object reference="../../../../../.."/>
+                <loopBeginBrick class="foreverBrick" reference="../.."/>
+              </loopEndBrick>
+            </foreverBrick>
+            <placeAtBrick>
+              <object reference="../../../../.."/>
+              <xPosition>
+                <formulaTree>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>125</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formulaTree>
+              </xPosition>
+              <yPosition>
+                <formulaTree>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>85</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formulaTree>
+              </yPosition>
+            </placeAtBrick>
+            <waitBrick>
+              <object reference="../../../../.."/>
+              <timeToWaitInSeconds>
+                <formulaTree>
+                  <leftChild>
+                    <type>NUMBER</type>
+                    <value>1</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>2</value>
+                  </rightChild>
+                  <type>FUNCTION</type>
+                  <value>RAND</value>
+                </formulaTree>
+              </timeToWaitInSeconds>
+            </waitBrick>
+            <showBrick>
+              <object reference="../../../../.."/>
+            </showBrick>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look"/>
+            </setLookBrick>
+            <glideToBrick>
+              <object reference="../../../../.."/>
+              <durationInSeconds>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0.1</value>
+                </formulaTree>
+              </durationInSeconds>
+              <xDestination>
+                <formulaTree>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>125</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formulaTree>
+              </xDestination>
+              <yDestination>
+                <formulaTree>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>70</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formulaTree>
+              </yDestination>
+            </glideToBrick>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look[2]"/>
+            </setLookBrick>
+            <waitBrick>
+              <object reference="../../../../.."/>
+              <timeToWaitInSeconds>
+                <formulaTree>
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>random from</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>USER_VARIABLE</type>
+                    <value>random to</value>
+                  </rightChild>
+                  <type>FUNCTION</type>
+                  <value>RAND</value>
+                </formulaTree>
+              </timeToWaitInSeconds>
+            </waitBrick>
+            <hideBrick>
+              <object reference="../../../../.."/>
+            </hideBrick>
+            <waitBrick>
+              <object reference="../../../../.."/>
+              <timeToWaitInSeconds>
+                <formulaTree>
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>random from</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>USER_VARIABLE</type>
+                    <value>random to</value>
+                  </rightChild>
+                  <type>FUNCTION</type>
+                  <value>RAND</value>
+                </formulaTree>
+              </timeToWaitInSeconds>
+            </waitBrick>
+            <loopEndlessBrick reference="../foreverBrick/loopEndBrick"/>
+          </brickList>
+          <object reference="../../.."/>
+        </startScript>
+        <whenScript>
+          <brickList>
+            <playSoundBrick>
+              <object reference="../../../../.."/>
+              <sound>
+                <fileName>6f231e6406d3554d691f3c9ffb37c043_Hit1.m4a</fileName>
+                <name>Hit</name>
+              </sound>
+            </playSoundBrick>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look[3]"/>
+            </setLookBrick>
+            <waitBrick>
+              <object reference="../../../../.."/>
+              <timeToWaitInSeconds>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>1.5</value>
+                </formulaTree>
+              </timeToWaitInSeconds>
+            </waitBrick>
+            <hideBrick>
+              <object reference="../../../../.."/>
+            </hideBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <action>Tapped</action>
+        </whenScript>
+      </scriptList>
+      <soundList>
+        <sound reference="../../scriptList/whenScript/brickList/playSoundBrick/sound"/>
+      </soundList>
+    </object>
+    <object>
+      <lookList>
+        <look>
+          <fileName>06e01b636e184f82c05532292ace0de4_Moving Mole.png</fileName>
+          <name>Moving Mole</name>
+        </look>
+        <look>
+          <fileName>c1a4cf63f691c3e5db6239c2dff29ab3_Mole.png</fileName>
+          <name>Mole</name>
+        </look>
+        <look>
+          <fileName>802d77e8cf67fda4a18076798433aefd_Whacked Mole.png</fileName>
+          <name>Whacked Mole</name>
+        </look>
+      </lookList>
+      <name>Mole 2</name>
+      <scriptList>
+        <startScript>
+          <brickList>
+            <setSizeToBrick>
+              <object reference="../../../../.."/>
+              <size>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>30</value>
+                </formulaTree>
+              </size>
+            </setSizeToBrick>
+            <foreverBrick>
+              <object reference="../../../../.."/>
+              <loopEndBrick class="loopEndlessBrick">
+                <object reference="../../../../../.."/>
+                <loopBeginBrick class="foreverBrick" reference="../.."/>
+              </loopEndBrick>
+            </foreverBrick>
+            <placeAtBrick>
+              <object reference="../../../../.."/>
+              <xPosition>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>125</value>
+                </formulaTree>
+              </xPosition>
+              <yPosition>
+                <formulaTree>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>85</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formulaTree>
+              </yPosition>
+            </placeAtBrick>
+            <waitBrick>
+              <object reference="../../../../.."/>
+              <timeToWaitInSeconds>
+                <formulaTree>
+                  <leftChild>
+                    <type>NUMBER</type>
+                    <value>1</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>2</value>
+                  </rightChild>
+                  <type>FUNCTION</type>
+                  <value>RAND</value>
+                </formulaTree>
+              </timeToWaitInSeconds>
+            </waitBrick>
+            <showBrick>
+              <object reference="../../../../.."/>
+            </showBrick>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look"/>
+            </setLookBrick>
+            <glideToBrick>
+              <object reference="../../../../.."/>
+              <durationInSeconds>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0.1</value>
+                </formulaTree>
+              </durationInSeconds>
+              <xDestination>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>125</value>
+                </formulaTree>
+              </xDestination>
+              <yDestination>
+                <formulaTree>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>70</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formulaTree>
+              </yDestination>
+            </glideToBrick>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look[2]"/>
+            </setLookBrick>
+            <waitBrick>
+              <object reference="../../../../.."/>
+              <timeToWaitInSeconds>
+                <formulaTree>
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>random from</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>USER_VARIABLE</type>
+                    <value>random to</value>
+                  </rightChild>
+                  <type>FUNCTION</type>
+                  <value>RAND</value>
+                </formulaTree>
+              </timeToWaitInSeconds>
+            </waitBrick>
+            <hideBrick>
+              <object reference="../../../../.."/>
+            </hideBrick>
+            <waitBrick>
+              <object reference="../../../../.."/>
+              <timeToWaitInSeconds>
+                <formulaTree>
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>random from</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>USER_VARIABLE</type>
+                    <value>random to</value>
+                  </rightChild>
+                  <type>FUNCTION</type>
+                  <value>RAND</value>
+                </formulaTree>
+              </timeToWaitInSeconds>
+            </waitBrick>
+            <loopEndlessBrick reference="../foreverBrick/loopEndBrick"/>
+          </brickList>
+          <object reference="../../.."/>
+        </startScript>
+        <whenScript>
+          <brickList>
+            <playSoundBrick>
+              <object reference="../../../../.."/>
+              <sound>
+                <fileName>0370b09e8cd2cd025397a47e24b129d5_Hit2.m4a</fileName>
+                <name>Hit</name>
+              </sound>
+            </playSoundBrick>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look[3]"/>
+            </setLookBrick>
+            <waitBrick>
+              <object reference="../../../../.."/>
+              <timeToWaitInSeconds>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>1.5</value>
+                </formulaTree>
+              </timeToWaitInSeconds>
+            </waitBrick>
+            <hideBrick>
+              <object reference="../../../../.."/>
+            </hideBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <action>Tapped</action>
+        </whenScript>
+      </scriptList>
+      <soundList>
+        <sound reference="../../scriptList/whenScript/brickList/playSoundBrick/sound"/>
+      </soundList>
+    </object>
+    <object>
+      <lookList>
+        <look>
+          <fileName>06e01b636e184f82c05532292ace0de4_Moving Mole.png</fileName>
+          <name>Moving Mole</name>
+        </look>
+        <look>
+          <fileName>c1a4cf63f691c3e5db6239c2dff29ab3_Mole.png</fileName>
+          <name>Mole</name>
+        </look>
+        <look>
+          <fileName>802d77e8cf67fda4a18076798433aefd_Whacked Mole.png</fileName>
+          <name>Whacked Mole</name>
+        </look>
+      </lookList>
+      <name>Mole 3</name>
+      <scriptList>
+        <startScript>
+          <brickList>
+            <setSizeToBrick>
+              <object reference="../../../../.."/>
+              <size>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>30</value>
+                </formulaTree>
+              </size>
+            </setSizeToBrick>
+            <foreverBrick>
+              <object reference="../../../../.."/>
+              <loopEndBrick class="loopEndlessBrick">
+                <object reference="../../../../../.."/>
+                <loopBeginBrick class="foreverBrick" reference="../.."/>
+              </loopEndBrick>
+            </foreverBrick>
+            <placeAtBrick>
+              <object reference="../../../../.."/>
+              <xPosition>
+                <formulaTree>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>125</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formulaTree>
+              </xPosition>
+              <yPosition>
+                <formulaTree>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>225</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formulaTree>
+              </yPosition>
+            </placeAtBrick>
+            <waitBrick>
+              <object reference="../../../../.."/>
+              <timeToWaitInSeconds>
+                <formulaTree>
+                  <leftChild>
+                    <type>NUMBER</type>
+                    <value>1</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>2</value>
+                  </rightChild>
+                  <type>FUNCTION</type>
+                  <value>RAND</value>
+                </formulaTree>
+              </timeToWaitInSeconds>
+            </waitBrick>
+            <showBrick>
+              <object reference="../../../../.."/>
+            </showBrick>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look"/>
+            </setLookBrick>
+            <glideToBrick>
+              <object reference="../../../../.."/>
+              <durationInSeconds>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0.1</value>
+                </formulaTree>
+              </durationInSeconds>
+              <xDestination>
+                <formulaTree>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>125</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formulaTree>
+              </xDestination>
+              <yDestination>
+                <formulaTree>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>215</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formulaTree>
+              </yDestination>
+            </glideToBrick>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look[2]"/>
+            </setLookBrick>
+            <waitBrick>
+              <object reference="../../../../.."/>
+              <timeToWaitInSeconds>
+                <formulaTree>
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>random from</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>USER_VARIABLE</type>
+                    <value>random to</value>
+                  </rightChild>
+                  <type>FUNCTION</type>
+                  <value>RAND</value>
+                </formulaTree>
+              </timeToWaitInSeconds>
+            </waitBrick>
+            <hideBrick>
+              <object reference="../../../../.."/>
+            </hideBrick>
+            <waitBrick>
+              <object reference="../../../../.."/>
+              <timeToWaitInSeconds>
+                <formulaTree>
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>random from</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>USER_VARIABLE</type>
+                    <value>random to</value>
+                  </rightChild>
+                  <type>FUNCTION</type>
+                  <value>RAND</value>
+                </formulaTree>
+              </timeToWaitInSeconds>
+            </waitBrick>
+            <loopEndlessBrick reference="../foreverBrick/loopEndBrick"/>
+          </brickList>
+          <object reference="../../.."/>
+        </startScript>
+        <whenScript>
+          <brickList>
+            <playSoundBrick>
+              <object reference="../../../../.."/>
+              <sound>
+                <fileName>8c76ef726dc0e88f2a2417a95fabc1ec_Hit3.m4a</fileName>
+                <name>Hit</name>
+              </sound>
+            </playSoundBrick>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look[3]"/>
+            </setLookBrick>
+            <waitBrick>
+              <object reference="../../../../.."/>
+              <timeToWaitInSeconds>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>1.5</value>
+                </formulaTree>
+              </timeToWaitInSeconds>
+            </waitBrick>
+            <hideBrick>
+              <object reference="../../../../.."/>
+            </hideBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <action>Tapped</action>
+        </whenScript>
+      </scriptList>
+      <soundList>
+        <sound reference="../../scriptList/whenScript/brickList/playSoundBrick/sound"/>
+      </soundList>
+    </object>
+    <object>
+      <lookList>
+        <look>
+          <fileName>06e01b636e184f82c05532292ace0de4_Moving Mole.png</fileName>
+          <name>Moving Mole</name>
+        </look>
+        <look>
+          <fileName>c1a4cf63f691c3e5db6239c2dff29ab3_Mole.png</fileName>
+          <name>Mole</name>
+        </look>
+        <look>
+          <fileName>802d77e8cf67fda4a18076798433aefd_Whacked Mole.png</fileName>
+          <name>Whacked Mole</name>
+        </look>
+      </lookList>
+      <name>Mole 4</name>
+      <scriptList>
+        <startScript>
+          <brickList>
+            <setSizeToBrick>
+              <object reference="../../../../.."/>
+              <size>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>30</value>
+                </formulaTree>
+              </size>
+            </setSizeToBrick>
+            <foreverBrick>
+              <object reference="../../../../.."/>
+              <loopEndBrick class="loopEndlessBrick">
+                <object reference="../../../../../.."/>
+                <loopBeginBrick class="foreverBrick" reference="../.."/>
+              </loopEndBrick>
+            </foreverBrick>
+            <placeAtBrick>
+              <object reference="../../../../.."/>
+              <xPosition>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>125</value>
+                </formulaTree>
+              </xPosition>
+              <yPosition>
+                <formulaTree>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>225</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formulaTree>
+              </yPosition>
+            </placeAtBrick>
+            <waitBrick>
+              <object reference="../../../../.."/>
+              <timeToWaitInSeconds>
+                <formulaTree>
+                  <leftChild>
+                    <type>NUMBER</type>
+                    <value>1</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>2</value>
+                  </rightChild>
+                  <type>FUNCTION</type>
+                  <value>RAND</value>
+                </formulaTree>
+              </timeToWaitInSeconds>
+            </waitBrick>
+            <showBrick>
+              <object reference="../../../../.."/>
+            </showBrick>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look"/>
+            </setLookBrick>
+            <glideToBrick>
+              <object reference="../../../../.."/>
+              <durationInSeconds>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0.1</value>
+                </formulaTree>
+              </durationInSeconds>
+              <xDestination>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>125</value>
+                </formulaTree>
+              </xDestination>
+              <yDestination>
+                <formulaTree>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>215</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formulaTree>
+              </yDestination>
+            </glideToBrick>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look[2]"/>
+            </setLookBrick>
+            <waitBrick>
+              <object reference="../../../../.."/>
+              <timeToWaitInSeconds>
+                <formulaTree>
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>random from</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>USER_VARIABLE</type>
+                    <value>random to</value>
+                  </rightChild>
+                  <type>FUNCTION</type>
+                  <value>RAND</value>
+                </formulaTree>
+              </timeToWaitInSeconds>
+            </waitBrick>
+            <hideBrick>
+              <object reference="../../../../.."/>
+            </hideBrick>
+            <waitBrick>
+              <object reference="../../../../.."/>
+              <timeToWaitInSeconds>
+                <formulaTree>
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>random from</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>USER_VARIABLE</type>
+                    <value>random to</value>
+                  </rightChild>
+                  <type>FUNCTION</type>
+                  <value>RAND</value>
+                </formulaTree>
+              </timeToWaitInSeconds>
+            </waitBrick>
+            <loopEndlessBrick reference="../foreverBrick/loopEndBrick"/>
+          </brickList>
+          <object reference="../../.."/>
+        </startScript>
+        <whenScript>
+          <brickList>
+            <playSoundBrick>
+              <object reference="../../../../.."/>
+              <sound>
+                <fileName>7b7734e2cbbad82c62eea43bf04103f8_Hit4.m4a</fileName>
+                <name>Hit</name>
+              </sound>
+            </playSoundBrick>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look[3]"/>
+            </setLookBrick>
+            <waitBrick>
+              <object reference="../../../../.."/>
+              <timeToWaitInSeconds>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>1.5</value>
+                </formulaTree>
+              </timeToWaitInSeconds>
+            </waitBrick>
+            <hideBrick>
+              <object reference="../../../../.."/>
+            </hideBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <action>Tapped</action>
+        </whenScript>
+      </scriptList>
+      <soundList>
+        <sound reference="../../scriptList/whenScript/brickList/playSoundBrick/sound"/>
+      </soundList>
+    </object>
+  </objectList>
+  <variables>
+    <objectVariableList>
+      <entry>
+        <object reference="../../../../objectList/object[2]"/>
+        <list/>
+      </entry>
+      <entry>
+        <object reference="../../../../objectList/object[5]"/>
+        <list/>
+      </entry>
+      <entry>
+        <object reference="../../../../objectList/object"/>
+        <list/>
+      </entry>
+      <entry>
+        <object reference="../../../../objectList/object[4]"/>
+        <list/>
+      </entry>
+      <entry>
+        <object reference="../../../../objectList/object[3]"/>
+        <list/>
+      </entry>
+    </objectVariableList>
+    <programVariableList>
+      <userVariable reference="../../../objectList/object/scriptList/startScript/brickList/setVariableBrick/userVariable"/>
+      <userVariable reference="../../../objectList/object/scriptList/startScript/brickList/setVariableBrick[2]/userVariable"/>
+    </programVariableList>
+  </variables>
+</program>

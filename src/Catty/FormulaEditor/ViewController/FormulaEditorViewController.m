@@ -141,7 +141,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 - (BOOL)changeBrickCellFormulaData:(BrickCellFormulaData *)brickCellData andForce:(BOOL)forceChange
 {
-    InternFormulaParser *internFormulaParser = [[InternFormulaParser alloc] initWithTokens:[self.internFormula getInternTokenList] andFormulaManager:(id<FormulaManagerProtocol>)self.formulaManager];
+    InternFormulaParser *internFormulaParser = [[InternFormulaParser alloc] initWithTokens:[self.internFormula getInternTokenList] andFormulaManager:self.formulaManager];
     
     Brick *brick = (Brick*)self.brickCellData.brickCell.scriptOrBrick;
     SpriteObject *object;
@@ -465,7 +465,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 - (IBAction)compute:(id)sender
 {
     if (self.internFormula != nil) {
-        InternFormulaParser *internFormulaParser = [[InternFormulaParser alloc] initWithTokens:[self.internFormula getInternTokenList] andFormulaManager:(id<FormulaManagerProtocol>)self.formulaManager];
+        InternFormulaParser *internFormulaParser = [[InternFormulaParser alloc] initWithTokens:[self.internFormula getInternTokenList] andFormulaManager:self.formulaManager];
         
         Brick *brick = (Brick*)self.brickCellData.brickCell.scriptOrBrick;
         SpriteObject *object;
@@ -651,7 +651,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 - (BOOL)saveIfPossible
 {
         if(self.internFormula != nil) {
-            InternFormulaParser *internFormulaParser = [[InternFormulaParser alloc] initWithTokens:[self.internFormula getInternTokenList] andFormulaManager:(id<FormulaManagerProtocol>)self.formulaManager];
+            InternFormulaParser *internFormulaParser = [[InternFormulaParser alloc] initWithTokens:[self.internFormula getInternTokenList] andFormulaManager:self.formulaManager];
             
             Brick *brick = (Brick*)self.brickCellData.brickCell.scriptOrBrick;
             FormulaElement *formulaElement = nil;

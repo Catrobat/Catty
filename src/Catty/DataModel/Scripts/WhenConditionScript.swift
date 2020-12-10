@@ -44,7 +44,7 @@ class WhenConditionScript: Script, BrickFormulaProtocol {
     }
 
     public func category() -> kBrickCategoryType {
-        kBrickCategoryType.controlBrick
+        kBrickCategoryType.eventBrick
     }
 
     override func isAnimateable() -> Bool {

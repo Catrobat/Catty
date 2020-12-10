@@ -20,4 +20,18 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-let kDefaultScreenshots = ["catrobat", "elephant", "lynx", "panda", "pingu", "racoon"]
+@objc
+class UIDefines: NSObject {
+    @objc static let previewImageSize = CGSize(width: Int(kPreviewThumbnailWidth), height: Int(kPreviewThumbnailHeight))
+    static let previewImageCornerRadius = 10.0
+    static let previewImageBorderWidth = 1.0
+
+    static let brickCategoryHeight = CGFloat(70)
+    @objc static let brickCategorySectionInset = CGFloat(10.0)
+    @objc static let brickCategoryBrickInset = CGFloat(5.0)
+
+    static let defaultScreenshots = ["catrobat", "elephant", "lynx", "panda", "pingu", "racoon"]
+
+    static let playButtonAccessibilityLabel = "Play"
+    @objc static var iOS12OrLessAccessibilityLabel = "iOS 12.0 or less"
+}

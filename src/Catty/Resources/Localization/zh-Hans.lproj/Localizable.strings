@@ -50,6 +50,9 @@
 "Agree" = "同意";
 
 /* No comment provided by engineer. */
+"all around" = "all around";
+
+/* No comment provided by engineer. */
 "All Bluetooth devices successfully disconnected" = "已经成功断开所有的蓝牙设备";
 
 /* No comment provided by engineer. */
@@ -83,6 +86,9 @@
 "and" = "与";
 
 /* No comment provided by engineer. */
+"and store written answer in " = "and store written answer in ";
+
+/* No comment provided by engineer. */
 "and wait" = "并等待";
 
 /* No comment provided by engineer. */
@@ -105,6 +111,9 @@
 
 /* No comment provided by engineer. */
 "Arduino extension" = "Arduino积木";
+
+/* No comment provided by engineer. */
+"Ask " = "Ask ";
 
 /* No comment provided by engineer. */
 "at " = "在 ";
@@ -227,6 +236,12 @@
 "Change size by" = "将大小增加";
 
 /* No comment provided by engineer. */
+"Change to landscape" = "Change to landscape";
+
+/* No comment provided by engineer. */
+"Change to portrait" = "Change to portrait";
+
+/* No comment provided by engineer. */
 "Change transparency " = "增加透明度 ";
 
 /* No comment provided by engineer. */
@@ -321,6 +336,9 @@
 
 /* No comment provided by engineer. */
 "Create account" = "创造帐户";
+
+/* No comment provided by engineer. */
+"Data" = "数据";
 
 /* No comment provided by engineer. */
 "day" = "日";
@@ -458,6 +476,9 @@
 "Do you want to save the changes" = "您要保存这些更改吗？";
 
 /* No comment provided by engineer. */
+"don't rotate" = "不要旋转";
+
+/* No comment provided by engineer. */
 "Done" = "已完成";
 
 /* No comment provided by engineer. */
@@ -582,6 +603,9 @@
 
 /* No comment provided by engineer. */
 "Error saving file" = "存储文件时发生错误";
+
+/* No comment provided by engineer. */
+"Event" = "事件";
 
 /* No comment provided by engineer. */
 "FA" = "FA";
@@ -822,6 +846,9 @@
 
 /* No comment provided by engineer. */
 "Left" = "左移";
+
+/* No comment provided by engineer. */
+"left-right only" = "水平翻转";
 
 /* No comment provided by engineer. */
 "Length" = "长度";
@@ -1163,6 +1190,9 @@
 "Place at " = "放在 ";
 
 /* No comment provided by engineer. */
+"Play" = "开始";
+
+/* No comment provided by engineer. */
 "Play Phiro music\n" = "播放Phiro音乐\n";
 
 /* No comment provided by engineer. */
@@ -1449,6 +1479,9 @@
 
 /* No comment provided by engineer. */
 "Set Phiro light" = "设置Phiro灯光";
+
+/* No comment provided by engineer. */
+"Set rotation style" = "设置旋转方式 ";
 
 /* No comment provided by engineer. */
 "Set size to" = "设置大小为";
@@ -1766,9 +1799,6 @@
 "Var/List" = "Var/List";
 
 /* No comment provided by engineer. */
-"Variable" = "变量";
-
-/* No comment provided by engineer. */
 "Variable name:" = "变量名:";
 
 /* No comment provided by engineer. */
@@ -1788,6 +1818,9 @@
 
 /* No comment provided by engineer. */
 "vibration" = "振动";
+
+/* No comment provided by engineer. */
+"View" = "View";
 
 /* No comment provided by engineer. */
 "Views" = "查看";
@@ -1811,13 +1844,16 @@
 "Welcome!" = "欢迎!";
 
 /* No comment provided by engineer. */
+"What's your name?" = "您的名字是什么？";
+
+/* No comment provided by engineer. */
 "When" = "当";
 
 /* No comment provided by engineer. */
 "When background changes to" = "当背景更改为";
 
 /* No comment provided by engineer. */
-"When project started" = "项目启动时";
+"When project starts" = "When project starts";
 
 /* No comment provided by engineer. */
 "When stage is tapped" = "当屏幕被点击";
@@ -1853,7 +1889,13 @@
 "You have already downloaded this project!" = "You have already downloaded this project!";
 
 /* No comment provided by engineer. */
+"Your answer" = "Your answer";
+
+/* No comment provided by engineer. */
 "Your email seems to be invalid" = "您的电子邮件是无效的";
+
+/* No comment provided by engineer. */
+"Your project was uploaded to the Catrobat community where others can use and download it." = "Your project was uploaded to the Catrobat community where others can use and download it.";
 
 /* paint */
 "Zoom" = "Zoom";

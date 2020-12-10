@@ -117,8 +117,10 @@ let kLocalizedBack = NSLocalizedString("Back", bundle: Bundle(for: LanguageTrans
 let kLocalizedSourceCodeLicenseButtonLabel = NSLocalizedString("Pocket Code Source Code License", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedAboutCatrobatButtonLabel = NSLocalizedString("About Catrobat", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedEdit = NSLocalizedString("Edit", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedAdd = NSLocalizedString("Add", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedCancel = NSLocalizedString("Cancel", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedDone = NSLocalizedString("Done", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedPlay = NSLocalizedString("Play", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedUndo = NSLocalizedString("Undo", bundle: Bundle(for: LanguageTranslation.self), comment: "Button title of alert view to invoke undo if user shakes device")
 let kLocalizedUndoDrawingDescription = NSLocalizedString("Undo Drawing?", bundle: Bundle(for: LanguageTranslation.self), comment: "Description text in alert view if user shakes the device")
 let kLocalizedUndoTypingDescription = NSLocalizedString("Undo Typing?", bundle: Bundle(for: LanguageTranslation.self), comment: "Description text in alert view if user shakes the device")
@@ -214,12 +216,15 @@ let kLocalizedNo = NSLocalizedString("No", bundle: Bundle(for: LanguageTranslati
 let kLocalizedDeleteProject = NSLocalizedString("Delete project", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedLoading = NSLocalizedString("Loading", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedSaved = NSLocalizedString("Saved", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedProjectUploaded = NSLocalizedString("Upload successful", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedProjectUploadedBody = NSLocalizedString("Your project was uploaded to the Catrobat community where others can use and download it.", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedSaveError = NSLocalizedString("Error saving file", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedAuthor = NSLocalizedString("Author", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedDownloads = NSLocalizedString("Downloads", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedUploaded = NSLocalizedString("Uploaded", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedVersion = NSLocalizedString("Version", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedViews = NSLocalizedString("Views", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedView = NSLocalizedString("View", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedInformation = NSLocalizedString("Information", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedMeasure = NSLocalizedString("Measure", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedSize = NSLocalizedString("Size", bundle: Bundle(for: LanguageTranslation.self), comment: "")
@@ -330,7 +335,7 @@ let kLocalizedUnsupportedElementsDescription = NSLocalizedString("Following feat
 
 // control bricks
 let kLocalizedScript = NSLocalizedString("Script", bundle: Bundle(for: LanguageTranslation.self), comment: "")
-let kLocalizedWhenProjectStarted = NSLocalizedString("When project started", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedWhenProjectStarted = NSLocalizedString("When project starts", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedWhenTapped = NSLocalizedString("When tapped", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedTouchDown = NSLocalizedString("When stage is tapped", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedWhenBackgroundChanges = NSLocalizedString("When background changes to", bundle: Bundle(for: LanguageTranslation.self), comment: "")
@@ -383,6 +388,10 @@ let kLocalizedComeToFront = NSLocalizedString("Go to front", bundle: Bundle(for:
 let kLocalizedGoTo = NSLocalizedString("Go to", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedGoToTouchPosition = NSLocalizedString("touch position", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedGoToRandomPosition = NSLocalizedString("random position", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedSetRotationStyle = NSLocalizedString("Set rotation style", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedLeftRight = NSLocalizedString("left-right only", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedAllAround = NSLocalizedString("all around", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedDoNotRotate = NSLocalizedString("don't rotate", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
 // look bricks
 let kLocalizedLook = NSLocalizedString("Look", bundle: Bundle(for: LanguageTranslation.self), comment: "")
@@ -411,6 +420,10 @@ let kLocalizedFlash = NSLocalizedString("Turn flashlight", bundle: Bundle(for: L
 let kLocalizedCamera = NSLocalizedString("Turn camera", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedChooseCamera = NSLocalizedString("Use camera", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedFor = NSLocalizedString("for", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedAsk = NSLocalizedString("Ask ", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedAndStoreWrittenAnswerIn = NSLocalizedString("and store written answer in ", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedDefaultAskBrickQuestion = NSLocalizedString("What's your name?", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedAskBrickAnswer = NSLocalizedString("Your answer", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
 // pen bricks
 let kLocalizedPenDown = NSLocalizedString("Pen down", bundle: Bundle(for: LanguageTranslation.self), comment: "")
@@ -706,11 +719,12 @@ let kUIFETextMessage = NSLocalizedString("Text message:", bundle: Bundle(for: La
 //************************************************************************************************************
 
 let kLocalizedCategoryFrequentlyUsed = NSLocalizedString("Frequently used", bundle: Bundle(for: LanguageTranslation.self), comment: "Title of View where the user can see the frequently used bricks.")
+let kLocalizedCategoryEvent = NSLocalizedString("Event", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedCategoryControl = NSLocalizedString("Control", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedCategoryMotion = NSLocalizedString("Motion", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedCategoryLook = NSLocalizedString("Look", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedCategorySound = NSLocalizedString("Sound", bundle: Bundle(for: LanguageTranslation.self), comment: "")
-let kLocalizedCategoryVariable = NSLocalizedString("Variable", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedCategoryData = NSLocalizedString("Data", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedCategoryArduino = NSLocalizedString("Arduino", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedCategoryPhiro = NSLocalizedString("Phiro", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedCategoryPen = NSLocalizedString("Pen", bundle: Bundle(for: LanguageTranslation.self), comment: "")

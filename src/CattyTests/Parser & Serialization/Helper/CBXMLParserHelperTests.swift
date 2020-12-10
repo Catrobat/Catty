@@ -57,7 +57,7 @@ final class CBXMLParserHelperTests: XCTestCase {
         object.scriptList.add(startScript)
 
         let lookBrick = SetLookBrick()
-        let look = Look(name: "lookResource", andPath: "look")
+        let look = Look(name: "lookResource", filePath: "look")
         lookBrick.look = look
         object.add(look, andSaveToDisk: false)
         startScript.add(lookBrick, at: 0)

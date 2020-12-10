@@ -50,6 +50,9 @@
 "Agree" = "Agree";
 
 /* No comment provided by engineer. */
+"all around" = "all around";
+
+/* No comment provided by engineer. */
 "All Bluetooth devices successfully disconnected" = "All Bluetooth devices successfully disconnected";
 
 /* No comment provided by engineer. */
@@ -83,6 +86,9 @@
 "and" = "na";
 
 /* No comment provided by engineer. */
+"and store written answer in " = "and store written answer in ";
+
+/* No comment provided by engineer. */
 "and wait" = "na subiri";
 
 /* No comment provided by engineer. */
@@ -105,6 +111,9 @@
 
 /* No comment provided by engineer. */
 "Arduino extension" = "Matofali ya Arduino";
+
+/* No comment provided by engineer. */
+"Ask " = "Ask ";
 
 /* No comment provided by engineer. */
 "at " = "katika ";
@@ -227,6 +236,12 @@
 "Change size by" = "Badilisha ukubwa kwa";
 
 /* No comment provided by engineer. */
+"Change to landscape" = "Change to landscape";
+
+/* No comment provided by engineer. */
+"Change to portrait" = "Change to portrait";
+
+/* No comment provided by engineer. */
 "Change transparency " = "Badili uwazi ";
 
 /* No comment provided by engineer. */
@@ -321,6 +336,9 @@
 
 /* No comment provided by engineer. */
 "Create account" = "Unda akaunti";
+
+/* No comment provided by engineer. */
+"Data" = "Data";
 
 /* No comment provided by engineer. */
 "day" = "siku";
@@ -458,6 +476,9 @@
 "Do you want to save the changes" = "Je, unataka kuhifadhi mabadiliko";
 
 /* No comment provided by engineer. */
+"don't rotate" = "usizungushe";
+
+/* No comment provided by engineer. */
 "Done" = "Maliza";
 
 /* No comment provided by engineer. */
@@ -582,6 +603,9 @@
 
 /* No comment provided by engineer. */
 "Error saving file" = "Error saving file";
+
+/* No comment provided by engineer. */
+"Event" = "Tukio";
 
 /* No comment provided by engineer. */
 "FA" = "FA";
@@ -822,6 +846,9 @@
 
 /* No comment provided by engineer. */
 "Left" = "Kushoto";
+
+/* No comment provided by engineer. */
+"left-right only" = "kushoto-kulia tu";
 
 /* No comment provided by engineer. */
 "Length" = "Urefu";
@@ -1163,6 +1190,9 @@
 "Place at " = "Weka ";
 
 /* No comment provided by engineer. */
+"Play" = "Cheza";
+
+/* No comment provided by engineer. */
 "Play Phiro music\n" = "Cheza Phiro muziki\n";
 
 /* No comment provided by engineer. */
@@ -1449,6 +1479,9 @@
 
 /* No comment provided by engineer. */
 "Set Phiro light" = "Seti mwanga wa Phiro";
+
+/* No comment provided by engineer. */
+"Set rotation style" = "Mzunguko wa Seti mtindo ";
 
 /* No comment provided by engineer. */
 "Set size to" = "Weka ukubwa kuwa";
@@ -1766,9 +1799,6 @@
 "Var/List" = "Var/List";
 
 /* No comment provided by engineer. */
-"Variable" = "Kitofautishi";
-
-/* No comment provided by engineer. */
 "Variable name:" = "Jina la kitofautishi:";
 
 /* No comment provided by engineer. */
@@ -1788,6 +1818,9 @@
 
 /* No comment provided by engineer. */
 "vibration" = "vibration";
+
+/* No comment provided by engineer. */
+"View" = "View";
 
 /* No comment provided by engineer. */
 "Views" = "Angalia";
@@ -1811,13 +1844,16 @@
 "Welcome!" = "Welcome!";
 
 /* No comment provided by engineer. */
+"What's your name?" = "What's your name?";
+
+/* No comment provided by engineer. */
 "When" = "Wakati";
 
 /* No comment provided by engineer. */
 "When background changes to" = "Itakapobadilika mandharinyuma kuwa";
 
 /* No comment provided by engineer. */
-"When project started" = "When project started";
+"When project starts" = "When project starts";
 
 /* No comment provided by engineer. */
 "When stage is tapped" = "Wakati skrini imeguswa";
@@ -1853,7 +1889,13 @@
 "You have already downloaded this project!" = "You have already downloaded this project!";
 
 /* No comment provided by engineer. */
+"Your answer" = "Your answer";
+
+/* No comment provided by engineer. */
 "Your email seems to be invalid" = "Your email seems to be invalid";
+
+/* No comment provided by engineer. */
+"Your project was uploaded to the Catrobat community where others can use and download it." = "Your project was uploaded to the Catrobat community where others can use and download it.";
 
 /* paint */
 "Zoom" = "Zoom";

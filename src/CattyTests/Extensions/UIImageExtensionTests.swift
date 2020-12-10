@@ -41,7 +41,7 @@ final class UIImageExtensionTests: XCTestCase {
     }
 
     func testTransparencyRGBA() {
-        let bundlePath = Bundle(for: type(of: self)).path(forResource: "transparency-rgba", ofType: "png")
+        let bundlePath = Bundle(for: type(of: self)).path(forResource: "transparency_rgba", ofType: "png")
         let image = UIImage(contentsOfFile: bundlePath!)
 
         let nonTransparentPoints = [
@@ -72,7 +72,7 @@ final class UIImageExtensionTests: XCTestCase {
     }
 
     func testTransparencyGrayAlpha() {
-        let bundlePath = Bundle(for: type(of: self)).path(forResource: "transparency-gray-alpha", ofType: "png")
+        let bundlePath = Bundle(for: type(of: self)).path(forResource: "transparency_gray_alpha", ofType: "png")
         let image = UIImage(contentsOfFile: bundlePath!)
 
         let nonTransparentPoints = [
@@ -103,7 +103,7 @@ final class UIImageExtensionTests: XCTestCase {
     }
 
     func testTransparencyRGB() {
-        let bundlePath = Bundle(for: type(of: self)).path(forResource: "transparency-rgb", ofType: "png")
+        let bundlePath = Bundle(for: type(of: self)).path(forResource: "transparency_rgb", ofType: "png")
         let image = UIImage(contentsOfFile: bundlePath!)
 
         for pixelX in 0..<10 {
@@ -135,7 +135,7 @@ final class UIImageExtensionTests: XCTestCase {
 
         let data = pixels
         let providerRef = CGDataProvider(
-            data: Data(bytes: UnsafeRawPointer(data).assumingMemoryBound(to: UInt8.self), count: data.count * 4) as CFData
+            data: data.withUnsafeBytes { Data($0) as CFData }
         )
 
         let cgim = CGImage(

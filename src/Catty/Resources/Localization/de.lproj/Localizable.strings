@@ -17,10 +17,10 @@
 "acceleration x" = "Beschleunigung x";
 
 /* No comment provided by engineer. */
-"acceleration y" = "Beschleunigung_y";
+"acceleration y" = "Beschleunigung y";
 
 /* No comment provided by engineer. */
-"acceleration z" = "Beschleunigung_z";
+"acceleration z" = "Beschleunigung z";
 
 /* No comment provided by engineer. */
 "acceleration-sensor" = "Beschleunigungssensor";
@@ -48,6 +48,9 @@
 
 /* No comment provided by engineer. */
 "Agree" = "Zustimmen";
+
+/* No comment provided by engineer. */
+"all around" = "rundherum";
 
 /* No comment provided by engineer. */
 "All Bluetooth devices successfully disconnected" = "Alle Bluetooth-Verbindungen wurden getrennt";
@@ -83,6 +86,9 @@
 "and" = "und";
 
 /* No comment provided by engineer. */
+"and store written answer in " = "und speichere das Eingegebene in";
+
+/* No comment provided by engineer. */
 "and wait" = "und warte";
 
 /* No comment provided by engineer. */
@@ -105,6 +111,9 @@
 
 /* No comment provided by engineer. */
 "Arduino extension" = "Arduino Bausteine";
+
+/* No comment provided by engineer. */
+"Ask " = "Frage ";
 
 /* No comment provided by engineer. */
 "at " = "bei ";
@@ -227,6 +236,12 @@
 "Change size by" = "Ändere Größe um";
 
 /* No comment provided by engineer. */
+"Change to landscape" = "Auf Querformat wechseln";
+
+/* No comment provided by engineer. */
+"Change to portrait" = "Auf Hochformat wechseln";
+
+/* No comment provided by engineer. */
 "Change transparency " = "Ändere Transparenz ";
 
 /* No comment provided by engineer. */
@@ -321,6 +336,9 @@
 
 /* No comment provided by engineer. */
 "Create account" = "Konto erstellen";
+
+/* No comment provided by engineer. */
+"Data" = "Daten";
 
 /* No comment provided by engineer. */
 "day" = "Tag";
@@ -458,6 +476,9 @@
 "Do you want to save the changes" = "Willst du die Änderungen speichern";
 
 /* No comment provided by engineer. */
+"don't rotate" = "nicht drehen";
+
+/* No comment provided by engineer. */
 "Done" = "Fertig";
 
 /* No comment provided by engineer. */
@@ -584,6 +605,9 @@
 "Error saving file" = "Fehler beim Speicher der Datei";
 
 /* No comment provided by engineer. */
+"Event" = "Event";
+
+/* No comment provided by engineer. */
 "FA" = "FA";
 
 /* No comment provided by engineer. */
@@ -686,7 +710,7 @@
 "Go to" = "Gehe zu";
 
 /* No comment provided by engineer. */
-"Go to front" = "Komme nach vorn";
+"Go to front" = "Gehe nach vorne";
 
 /* paint */
 "Green" = "Grün";
@@ -821,7 +845,10 @@
 "LED" = "LED";
 
 /* No comment provided by engineer. */
-"Left" = "Fliege links";
+"Left" = "Links";
+
+/* No comment provided by engineer. */
+"left-right only" = "links-rechts";
 
 /* No comment provided by engineer. */
 "Length" = "Länge";
@@ -923,7 +950,7 @@
 "minute" = "Minute";
 
 /* paint */
-"Mirror" = "Mirror";
+"Mirror" = "Spiegeln";
 
 /* No comment provided by engineer. */
 "Mo" = "Mo";
@@ -1163,6 +1190,9 @@
 "Place at " = "Setze an Position ";
 
 /* No comment provided by engineer. */
+"Play" = "Spielen";
+
+/* No comment provided by engineer. */
 "Play Phiro music\n" = "Play Phiro music\n";
 
 /* No comment provided by engineer. */
@@ -1226,7 +1256,7 @@
 "Pointer" = "Zeiger";
 
 /* No comment provided by engineer. */
-"position x" = "Position_x";
+"position x" = "Position x";
 
 /* No comment provided by engineer. */
 "position y" = "Position y";
@@ -1331,7 +1361,7 @@
 "Result" = "Ergebnis";
 
 /* No comment provided by engineer. */
-"Right" = "Fliege rechts";
+"Right" = "Rechts";
 
 /* paint */
 "Rotate" = "Drehen";
@@ -1358,7 +1388,7 @@
 "Say" = "Sage";
 
 /* No comment provided by engineer. */
-"Scene" = "Scene";
+"Scene" = "Szene";
 
 /* No comment provided by engineer. */
 "Script" = "Skript";
@@ -1451,6 +1481,9 @@
 "Set Phiro light" = "Setze Phiro Licht";
 
 /* No comment provided by engineer. */
+"Set rotation style" = "Setze Rotations-Stil";
+
+/* No comment provided by engineer. */
 "Set size to" = "Setze Größe auf";
 
 /* No comment provided by engineer. */
@@ -1523,7 +1556,7 @@
 "stage touch x" = "Bildschirm berührt x";
 
 /* No comment provided by engineer. */
-"stage touch y" = "bildschirm_berührt_y";
+"stage touch y" = "Bildschirm berührt y";
 
 /* paint */
 "Stamp" = "Stempel";
@@ -1643,10 +1676,10 @@
 "TI" = "TI";
 
 /* No comment provided by engineer. */
-"time" = "time";
+"time" = "mal";
 
 /* No comment provided by engineer. */
-"times" = "times";
+"times" = "mal";
 
 /* No comment provided by engineer. */
 "to" = "auf";
@@ -1766,9 +1799,6 @@
 "Var/List" = "Var/Liste";
 
 /* No comment provided by engineer. */
-"Variable" = "Variable 1";
-
-/* No comment provided by engineer. */
 "Variable name:" = "Variablennamen:";
 
 /* No comment provided by engineer. */
@@ -1788,6 +1818,9 @@
 
 /* No comment provided by engineer. */
 "vibration" = "Vibration";
+
+/* No comment provided by engineer. */
+"View" = "Ansehen";
 
 /* No comment provided by engineer. */
 "Views" = "Aufrufe";
@@ -1811,13 +1844,16 @@
 "Welcome!" = "Willkommen!";
 
 /* No comment provided by engineer. */
+"What's your name?" = "Wie heißt du?";
+
+/* No comment provided by engineer. */
 "When" = "Wenn";
 
 /* No comment provided by engineer. */
 "When background changes to" = "Wenn der Hintergrund wechselt zu";
 
 /* No comment provided by engineer. */
-"When project started" = "Wenn Projekt gestartet";
+"When project starts" = "Wenn Projekt startet";
 
 /* No comment provided by engineer. */
 "When stage is tapped" = "Wenn der Bildschirm berührt wird";
@@ -1853,7 +1889,13 @@
 "You have already downloaded this project!" = "Du hast dieses Projekt bereits heruntergeladen!";
 
 /* No comment provided by engineer. */
+"Your answer" = "Deine Antwort";
+
+/* No comment provided by engineer. */
 "Your email seems to be invalid" = "Deine E-Mail Adresse scheint ungültig zu sein";
+
+/* No comment provided by engineer. */
+"Your project was uploaded to the Catrobat community where others can use and download it." = "Dein Projekt wurde in die Catrobat Community hochgeladen, wo andere es verwenden und herunterladen können.";
 
 /* paint */
 "Zoom" = "Vergrößern";

@@ -44,8 +44,7 @@ final class CBScheduler: CBSchedulerProtocol {
     private let _lockBufferQueue = DispatchQueue(label: "org.catrobat.LockBufferQueue", attributes: [])
     private var _lastQueueIndex = 0
 
-    var _activeTimers = Set<ExtendedTimer>()
-    let timerQueue = DispatchQueue(label: "timer")
+    var synchronizedTimerArray = SynchronizedArray<ExtendedTimer>()
 
     // MARK: Static properties
     static let vibrateSerialQueue = OperationQueue()
@@ -431,8 +430,8 @@ final class CBScheduler: CBSchedulerProtocol {
     func pause() {
         running = false
         CBScheduler.vibrateSerialQueue.isSuspended = true
-        for timer in self._activeTimers {
-            timer.pause()
+        for timer in self.synchronizedTimerArray.enumerated() {
+            timer.element.pause()
         }
     }
 
@@ -441,23 +440,19 @@ final class CBScheduler: CBSchedulerProtocol {
             running = true
             runNextInstructionsGroup()
             CBScheduler.vibrateSerialQueue.isSuspended = false
-            for timer in self._activeTimers {
-                timer.resume()
+            for timer in self.synchronizedTimerArray.enumerated() {
+                timer.element.resume()
             }
         }
     }
 
     func registerTimer(_ timer: ExtendedTimer) {
-        _ = timerQueue.sync {
-            self._activeTimers.insert(timer)
-        }
+        self.synchronizedTimerArray.append(timer)
         timer.startTimer()
     }
 
     func removeTimer(_ timer: ExtendedTimer) {
-        _ = timerQueue.sync {
-            self._activeTimers.remove(timer)
-        }
+        self.synchronizedTimerArray.remove(element: timer)
     }
 
     func getAudioEngine() -> AudioEngineProtocol {

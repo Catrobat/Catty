@@ -26,7 +26,6 @@
     static let name = kUIFEObjectDirection
     static let defaultRawValue = 0.0
     static let requiredResource = ResourceType.noResources
-    static let rotationDegreeOffset = 90.0
     static let circleMaxDegrees = 360.0
     static let position = 60
 
@@ -42,6 +41,20 @@
     }
 
     static func setRawValue(userInput: Double, for spriteObject: SpriteObject) {
+        switch spriteObject.spriteNode.rotationStyle {
+        case .leftRight:
+            let orientedRight = userInput > -Double.epsilon && userInput - 180.0 < Double.epsilon
+            let orientedLeft = userInput < -Double.epsilon && userInput + 180.0 > Double.epsilon
+            let needsFlipping = (spriteObject.spriteNode.isFlipped() && orientedRight) || (!spriteObject.spriteNode.isFlipped() && orientedLeft)
+            if needsFlipping {
+                spriteObject.spriteNode.xScale *= -1
+            }
+            spriteObject.spriteNode.rotationDegreeOffset = userInput
+        case .allAround:
+            spriteObject.spriteNode.rotationDegreeOffset = 90
+        case .notRotate:
+            spriteObject.spriteNode.rotationDegreeOffset = userInput
+        }
         let rawValue = self.convertToRaw(userInput: userInput, for: spriteObject)
         spriteObject.spriteNode.zRotation = CGFloat(rawValue)
     }
@@ -49,27 +62,27 @@
     // raw value is in radians, standardized value is in degrees
     @objc static func convertToStandardized(rawValue: Double, for spriteObject: SpriteObject) -> Double {
         let rawValueDegrees = Util.radians(toDegree: rawValue)
-        return self.convertSceneToDegrees(rawValueDegrees)
+        return self.convertSceneToDegrees(rawValueDegrees, for: spriteObject)
     }
 
     @objc static func convertToRaw(userInput: Double, for spriteObject: SpriteObject) -> Double {
-        let standardizedValueOnScreen = convertMathDegreesToSceneDegrees(userInput)
+        let standardizedValueOnScreen = convertMathDegreesToSceneDegrees(userInput, for: spriteObject)
         return Util.degree(toRadians: standardizedValueOnScreen)
     }
 
-    static func convertMathDegreesToSceneDegrees(_ mathDegrees: Double) -> Double {
+    static func convertMathDegreesToSceneDegrees(_ mathDegrees: Double, for spriteObject: SpriteObject) -> Double {
         // converts a given value to make it belong to the interval [0, 360) - moves to the first trigonometric circle due to periodicity
         let circleDegrees = circleMaxDegrees
         if mathDegrees < 0.0 {
-            return (-1 * (circleDegrees - rotationDegreeOffset) - (mathDegrees.truncatingRemainder(dividingBy: -circleDegrees))).truncatingRemainder(dividingBy: -circleDegrees)
+            return (-1 * (circleDegrees - spriteObject.spriteNode.rotationDegreeOffset) - (mathDegrees.truncatingRemainder(dividingBy: -circleDegrees))).truncatingRemainder(dividingBy: -circleDegrees)
         }
 
-        return (circleDegrees - (mathDegrees.truncatingRemainder(dividingBy: circleDegrees) - rotationDegreeOffset)).truncatingRemainder(dividingBy: circleDegrees)
+        return (circleDegrees - (mathDegrees.truncatingRemainder(dividingBy: circleDegrees) - spriteObject.spriteNode.rotationDegreeOffset)).truncatingRemainder(dividingBy: circleDegrees)
     }
 
-    static func convertSceneToDegrees(_ mathDegrees: Double) -> Double {
+    static func convertSceneToDegrees(_ mathDegrees: Double, for spriteObject: SpriteObject) -> Double {
         //  ensures that the value is reduced to the first trigonometric circle, meaning [0, 360)
-        let sceneDegrees = self.convertMathDegreesToSceneDegrees(mathDegrees)
+        let sceneDegrees = self.convertMathDegreesToSceneDegrees(mathDegrees, for: spriteObject)
 
         // ensures that the scene degree (direction of the object) is between (-179, 180]
         if sceneDegrees > 180.0 {

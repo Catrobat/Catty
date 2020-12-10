@@ -31,7 +31,6 @@
 #import "SegueDefines.h"
 #import "DarkBlueGradientImageDetailCell.h"
 #import "RuntimeImageCache.h"
-#import "NSMutableArray+CustomExtensions.h"
 #import "UIUtil.h"
 #import "Pocket_Code-Swift.h"
 #import "ViewControllerDefines.h"
@@ -199,15 +198,6 @@
     [self renameOldProjectWithName:projectLoadingInfo.visibleName
                          projectID:projectLoadingInfo.projectID
                   toNewProjectName:project.header.programName];
-    [self reloadTableView];
-    [self hideLoadingView];
-}
-
-- (void)updateProjectDescriptionActionWithText:(NSString*)descriptionText
-                                 sourceProject:(Project*)project
-{
-    [self showLoadingView];
-    [project updateDescriptionWithText:descriptionText];
     [self reloadTableView];
     [self hideLoadingView];
 }
@@ -457,10 +447,6 @@
     cell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
     cell.iconImageView.image = nil;
     cell.indexPath = indexPath;
-    [cell.iconImageView.layer setBorderColor: [[UIColor medium] CGColor]];
-    [cell.iconImageView.layer setBorderWidth: kPreviewImageBorderWidth];
-    cell.iconImageView.layer.cornerRadius = kPreviewImageCornerRadius;
-    cell.iconImageView.clipsToBounds = true;
     [cell setNeedsLayout];
     
     CBFileManager *fileManager = [CBFileManager sharedManager];
@@ -684,10 +670,19 @@
 }
 
 #pragma mark - description delegate
-
--(void) setDescription:(NSString *)description
+- (void)setDescription:(NSString *)description
 {
-    [self updateProjectDescriptionActionWithText:description sourceProject:self.selectedProject];
+    [self showLoadingView];
+    [self.selectedProject setDescription:description];
+    [self.selectedProject saveToDiskWithNotification:NO andCompletion:^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self reloadTableView];
+            [self hideLoadingView];
+            [Util showNotificationForSaveAction];
+        });
+    }];
 }
+
+
 
 @end

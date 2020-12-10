@@ -14,7 +14,7 @@
     <platform>Android</platform>
     <platformVersion>19.0</platformVersion>
     <programLicense></programLicense>
-    <programName>Alle Bricks</programName>
+    <programName>All Bricks</programName>
     <remixOf></remixOf>
     <scenesEnabled>true</scenesEnabled>
     <screenHeight>1184</screenHeight>
@@ -662,6 +662,18 @@
                   <commentedOut>false</commentedOut>
                   <spinnerSelection>81</spinnerSelection>
                 </brick>
+                <brick type="SetRotationStyleBrick">
+                  <commentedOut>false</commentedOut>
+                  <selection>0</selection>
+                </brick>
+                <brick type="SetRotationStyleBrick">
+                  <commentedOut>false</commentedOut>
+                  <selection>1</selection>
+                </brick>
+                <brick type="SetRotationStyleBrick">
+                  <commentedOut>false</commentedOut>
+                  <selection>2</selection>
+                </brick>
               </brickList>
               <commentedOut>false</commentedOut>
               <isUserScript>false</isUserScript>
@@ -703,6 +715,16 @@
                   </destinationSprite>
                   <spinnerSelection>82</spinnerSelection>
                 </brick>
+                <brick type="AskBrick">
+                    <commentedOut>false</commentedOut>
+                     <formulaList>
+                       <formula category="ASK_QUESTION">
+                         <type>STRING</type>
+                         <value>What&apos;s your name?</value>
+                       </formula>
+                     </formulaList>
+                 <userVariable>globale</userVariable>
+               </brick>
               </brickList>
               <commentedOut>false</commentedOut>
               <isUserScript>false</isUserScript>

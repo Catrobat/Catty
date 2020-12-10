@@ -107,4 +107,23 @@ final class ShowTextBrickTests: XCTestCase {
             XCTFail("Fatal Error")
         }
     }
+
+    func testGetFormulas() {
+        let brick = ShowTextBrick()
+        brick.script = script
+        brick.xFormula = Formula(integer: 1)
+        brick.yFormula = Formula(integer: 2)
+        var formulas = brick.getFormulas()
+
+        XCTAssertEqual(formulas?.count, 2)
+        XCTAssertEqual(brick.xFormula, formulas?[0])
+        XCTAssertEqual(brick.yFormula, formulas?[1])
+
+        brick.xFormula = Formula(integer: 21)
+        brick.yFormula = Formula(integer: 22)
+        formulas = brick.getFormulas()
+
+        XCTAssertEqual(brick.xFormula, formulas?[0])
+        XCTAssertEqual(brick.yFormula, formulas?[1])
+    }
 }

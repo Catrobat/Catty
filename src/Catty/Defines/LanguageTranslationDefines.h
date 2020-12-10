@@ -117,8 +117,10 @@
 #define kLocalizedSourceCodeLicenseButtonLabel NSLocalizedString(@"Pocket Code Source Code License", nil)
 #define kLocalizedAboutCatrobatButtonLabel NSLocalizedString(@"About Catrobat", nil)
 #define kLocalizedEdit NSLocalizedString(@"Edit", nil)
+#define kLocalizedAdd NSLocalizedString(@"Add", nil)
 #define kLocalizedCancel NSLocalizedString(@"Cancel", nil)
 #define kLocalizedDone NSLocalizedString(@"Done", nil)
+#define kLocalizedPlay NSLocalizedString(@"Play", nil)
 #define kLocalizedUndo NSLocalizedString(@"Undo", @"Button title of alert view to invoke undo if user shakes device")
 #define kLocalizedUndoDrawingDescription NSLocalizedString(@"Undo Drawing?", @"Description text in alert view if user shakes the device")
 #define kLocalizedUndoTypingDescription NSLocalizedString(@"Undo Typing?", @"Description text in alert view if user shakes the device")
@@ -214,12 +216,15 @@
 #define kLocalizedDeleteProject NSLocalizedString(@"Delete project", nil)
 #define kLocalizedLoading NSLocalizedString(@"Loading", nil)
 #define kLocalizedSaved NSLocalizedString(@"Saved", nil)
+#define kLocalizedProjectUploaded NSLocalizedString(@"Upload successful", nil)
+#define kLocalizedProjectUploadedBody NSLocalizedString(@"Your project was uploaded to the Catrobat community where others can use and download it.", nil)
 #define kLocalizedSaveError NSLocalizedString(@"Error saving file", nil)
 #define kLocalizedAuthor NSLocalizedString(@"Author", nil)
 #define kLocalizedDownloads NSLocalizedString(@"Downloads", nil)
 #define kLocalizedUploaded NSLocalizedString(@"Uploaded", nil)
 #define kLocalizedVersion NSLocalizedString(@"Version", nil)
 #define kLocalizedViews NSLocalizedString(@"Views", nil)
+#define kLocalizedView NSLocalizedString(@"View", nil)
 #define kLocalizedInformation NSLocalizedString(@"Information", nil)
 #define kLocalizedMeasure NSLocalizedString(@"Measure", nil)
 #define kLocalizedSize NSLocalizedString(@"Size", nil)
@@ -330,7 +335,7 @@
 
 // control bricks
 #define kLocalizedScript NSLocalizedString(@"Script", nil)
-#define kLocalizedWhenProjectStarted NSLocalizedString(@"When project started", nil)
+#define kLocalizedWhenProjectStarted NSLocalizedString(@"When project starts", nil)
 #define kLocalizedWhenTapped NSLocalizedString(@"When tapped", nil)
 #define kLocalizedTouchDown NSLocalizedString(@"When stage is tapped", nil)
 #define kLocalizedWhenBackgroundChanges NSLocalizedString(@"When background changes to", nil)
@@ -383,6 +388,10 @@
 #define kLocalizedGoTo NSLocalizedString(@"Go to", nil)
 #define kLocalizedGoToTouchPosition NSLocalizedString(@"touch position", nil)
 #define kLocalizedGoToRandomPosition NSLocalizedString(@"random position", nil)
+#define kLocalizedSetRotationStyle NSLocalizedString(@"Set rotation style", nil)
+#define kLocalizedLeftRight NSLocalizedString(@"left-right only", nil)
+#define kLocalizedAllAround NSLocalizedString(@"all around", nil)
+#define kLocalizedDoNotRotate NSLocalizedString(@"don't rotate", nil)
 
 // look bricks
 #define kLocalizedLook NSLocalizedString(@"Look", nil)
@@ -411,6 +420,10 @@
 #define kLocalizedCamera NSLocalizedString(@"Turn camera", nil)
 #define kLocalizedChooseCamera NSLocalizedString(@"Use camera", nil)
 #define kLocalizedFor NSLocalizedString(@"for", nil)
+#define kLocalizedAsk NSLocalizedString(@"Ask ", nil)
+#define kLocalizedAndStoreWrittenAnswerIn NSLocalizedString(@"and store written answer in ", nil)
+#define kLocalizedDefaultAskBrickQuestion NSLocalizedString(@"What's your name?", nil)
+#define kLocalizedAskBrickAnswer NSLocalizedString(@"Your answer", nil)
 
 // pen bricks
 #define kLocalizedPenDown NSLocalizedString(@"Pen down", nil)
@@ -706,11 +719,12 @@
 //************************************************************************************************************
 
 #define kLocalizedCategoryFrequentlyUsed NSLocalizedString(@"Frequently used", @"Title of View where the user can see the frequently used bricks.")
+#define kLocalizedCategoryEvent NSLocalizedString(@"Event", nil)
 #define kLocalizedCategoryControl NSLocalizedString(@"Control", nil)
 #define kLocalizedCategoryMotion NSLocalizedString(@"Motion", nil)
 #define kLocalizedCategoryLook NSLocalizedString(@"Look", nil)
 #define kLocalizedCategorySound NSLocalizedString(@"Sound", nil)
-#define kLocalizedCategoryVariable NSLocalizedString(@"Variable", nil)
+#define kLocalizedCategoryData NSLocalizedString(@"Data", nil)
 #define kLocalizedCategoryArduino NSLocalizedString(@"Arduino", nil)
 #define kLocalizedCategoryPhiro NSLocalizedString(@"Phiro", nil)
 #define kLocalizedCategoryPen NSLocalizedString(@"Pen", nil)

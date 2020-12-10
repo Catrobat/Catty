@@ -98,17 +98,17 @@
 - (void)rotateRight
 {
   self.canvas.degrees += 90;
-    UIImage *image =[self.canvas.saveView.image imageRotatedByDegrees:90];
+    UIImage *image = [self.canvas.saveView.image imageRotatedByDegrees:90];
     CGFloat zoomScale = self.canvas.scrollView.zoomScale;
     self.canvas.scrollView.zoomScale = 1.0;
 
-    self.canvas.saveView.frame =CGRectMake(0,0, (self.canvas.helper.frame.size.height), (self.canvas.helper.frame.size.width));
-    self.canvas.drawView.frame =CGRectMake(0,0, (self.canvas.helper.frame.size.height), (self.canvas.helper.frame.size.width));
-    self.canvas.helper.frame =CGRectMake(self.canvas.helper.frame.origin.x,self.canvas.helper.frame.origin.y, self.canvas.helper.frame.size.height, self.canvas.helper.frame.size.width);
+    self.canvas.saveView.frame = CGRectMake(0, 0, floor(self.canvas.helper.frame.size.height), floor(self.canvas.helper.frame.size.width));
+    self.canvas.drawView.frame = CGRectMake(0, 0, floor(self.canvas.helper.frame.size.height), floor(self.canvas.helper.frame.size.width));
+    self.canvas.helper.frame = CGRectMake(self.canvas.helper.frame.origin.x, self.canvas.helper.frame.origin.y, floor(self.canvas.helper.frame.size.height), floor(self.canvas.helper.frame.size.width));
 
     self.canvas.scrollView.zoomScale = zoomScale;
     
-    CGSize imageSize = CGSizeMake(self.canvas.helper.frame.size.width, self.canvas.helper.frame.size.height);
+    CGSize imageSize = CGSizeMake(floor(self.canvas.helper.frame.size.width), floor(self.canvas.helper.frame.size.height));
     
     UIGraphicsBeginImageContext(imageSize);
     UIImage *tempImage = [image copy];
@@ -125,15 +125,15 @@
 - (void)rotateLeft
 {
   self.canvas.degrees -= 90;
-  UIImage *image =[self.canvas.saveView.image imageRotatedByDegrees:-90];
+  UIImage *image = [self.canvas.saveView.image imageRotatedByDegrees:-90];
   CGFloat zoomScale = self.canvas.scrollView.zoomScale;
   self.canvas.scrollView.zoomScale = 1.0;
-  self.canvas.saveView.frame =CGRectMake(0,0, (self.canvas.helper.frame.size.height), (self.canvas.helper.frame.size.width));
-  self.canvas.drawView.frame =CGRectMake(0,0, (self.canvas.helper.frame.size.height), (self.canvas.helper.frame.size.width));
-  self.canvas.helper.frame =CGRectMake(self.canvas.helper.frame.origin.x,self.canvas.helper.frame.origin.y, self.canvas.helper.frame.size.height, self.canvas.helper.frame.size.width);
+  self.canvas.saveView.frame =CGRectMake(0, 0, floor(self.canvas.helper.frame.size.height), floor(self.canvas.helper.frame.size.width));
+  self.canvas.drawView.frame = CGRectMake(0, 0, floor(self.canvas.helper.frame.size.height), floor(self.canvas.helper.frame.size.width));
+  self.canvas.helper.frame = CGRectMake(self.canvas.helper.frame.origin.x, self.canvas.helper.frame.origin.y, floor(self.canvas.helper.frame.size.height), floor(self.canvas.helper.frame.size.width));
   self.canvas.scrollView.zoomScale = zoomScale;
     
-    CGSize imageSize = CGSizeMake(self.canvas.helper.frame.size.width, self.canvas.helper.frame.size.height);
+    CGSize imageSize = CGSizeMake(floor(self.canvas.helper.frame.size.width), floor(self.canvas.helper.frame.size.height));
     
     UIGraphicsBeginImageContext(imageSize);
     UIImage *tempImage = [image copy];

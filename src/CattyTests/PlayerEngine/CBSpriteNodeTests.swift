@@ -203,4 +203,18 @@ final class CBSpriteNodeTests: XCTestCase {
 
         XCTAssertEqual(spriteNode.penConfiguration.screenRatio, calculateScreenRatio(width: 200, height: 200))
     }
+
+    func testIsFlipped() {
+        spriteNode.xScale = 1
+        XCTAssertFalse(spriteNode.isFlipped(), "Should not be flipped!")
+
+        spriteNode.xScale = -1
+        XCTAssertTrue(spriteNode.isFlipped(), "Should be flipped!")
+
+        spriteNode.xScale = 2
+        XCTAssertFalse(spriteNode.isFlipped(), "Should not be flipped with size two!")
+
+        spriteNode.xScale = -2
+        XCTAssertTrue(spriteNode.isFlipped(), "Should be flipped with size two!")
+    }
 }

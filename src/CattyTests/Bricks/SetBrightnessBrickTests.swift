@@ -46,7 +46,7 @@ final class SetBrightnessBrickTests: AbstractBrickTest {
         let bundle = Bundle(for: type(of: self))
         let filePath = bundle.path(forResource: "test.png", ofType: nil)
         let imageData = UIImage(contentsOfFile: filePath!)!.pngData()
-        let look = Look(name: "test", andPath: "test.png")
+        let look = Look(name: "test", filePath: "test.png")
 
         do {
             try imageData?.write(to: URL(fileURLWithPath: object.scene.imagesPath()! + "/test.png"))
@@ -54,8 +54,8 @@ final class SetBrightnessBrickTests: AbstractBrickTest {
             XCTFail("Error when writing image data")
         }
 
-        object.lookList.add(look!)
-        object.lookList.add(look!)
+        object.lookList.add(look)
+        object.lookList.add(look)
         object.spriteNode.currentLook = look
         object.spriteNode.currentUIImageLook = UIImage(contentsOfFile: filePath!)
 
@@ -103,4 +103,34 @@ final class SetBrightnessBrickTests: AbstractBrickTest {
 
         XCTAssertEqual(0.0, spriteNode.catrobatBrightness, accuracy: 0.1, "SetBrightnessBrick - Brightness not correct")
     }
+
+    func testMutableCopy() {
+        let brick = SetBrightnessBrick()
+        let script = Script()
+        let object = SpriteObject()
+        let scene = Scene(name: "testScene")
+        object.scene = scene
+
+        script.object = object
+        brick.script = script
+        brick.brightness = Formula(integer: 0)
+
+        let copiedBrick: SetBrightnessBrick = brick.mutableCopy(with: CBMutableCopyContext()) as! SetBrightnessBrick
+
+        XCTAssertTrue(brick.isEqual(to: copiedBrick))
+        XCTAssertFalse(brick === copiedBrick)
+    }
+
+    func testGetFormulas() {
+        brick.brightness = Formula(integer: 1)
+        var formulas = brick.getFormulas()
+
+        XCTAssertEqual(formulas?.count, 1)
+        XCTAssertEqual(brick.brightness, formulas?[0])
+
+        brick.brightness = Formula(integer: 22)
+        formulas = brick.getFormulas()
+
+        XCTAssertEqual(brick.brightness, formulas?[0])
+     }
 }

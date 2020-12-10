@@ -1,18 +1,18 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <program>
   <header>
-    <applicationBuildName/>
+    <applicationBuildName></applicationBuildName>
     <applicationBuildNumber>0</applicationBuildNumber>
     <applicationName>Pocket Code</applicationName>
-    <applicationVersion>0.9.28</applicationVersion>
+    <applicationVersion>0.9.5</applicationVersion>
     <catrobatLanguageVersion>0.993</catrobatLanguageVersion>
-    <dateTimeUpload/>
+    <dateTimeUpload></dateTimeUpload>
     <description>Hold your phone in the right hand then move it up and down and it will show random gestures on the screen.</description>
-    <deviceName>PRA-LX1</deviceName>
+    <deviceName>HTC Sensation Z710e</deviceName>
     <landscapeMode>false</landscapeMode>
-    <mediaLicense>http://developer.catrobat.org/ccbysa_v4</mediaLicense>
+    <mediaLicense>http://developer.catrobat.org/ccbysa_v3</mediaLicense>
     <platform>Android</platform>
-    <platformVersion>26.0</platformVersion>
+    <platformVersion>15.0</platformVersion>
     <programLicense>http://developer.catrobat.org/agpl_v3</programLicense>
     <programName>Rock paper scissors</programName>
     <remixOf>http://pocketcode.org/details/0</remixOf>
@@ -20,14 +20,14 @@
     <screenHeight>960</screenHeight>
     <screenMode>STRETCH</screenMode>
     <screenWidth>540</screenWidth>
-    <tags>Spiele</tags>
-    <url>/pocketcode/program/710</url>
+    <tags></tags>
+    <url>http://pocketcode.org/details/710</url>
     <userHandle>hej-wickie-hej</userHandle>
   </header>
   <settings/>
   <scenes>
     <scene>
-      <name>Szene 1</name>
+      <name>Scene 1</name>
       <objectList>
         <object type="SingleSprite" name="Background">
           <lookList>
@@ -299,12 +299,9 @@
     </scene>
   </scenes>
   <programVariableList>
-    <userVariable>
-    </userVariable>
-    <userVariable>
-    </userVariable>
+    <userVariable>counter</userVariable>
+    <userVariable>still speaking</userVariable>
     <userVariable reference="../../scenes/scene/objectList/object[2]/scriptList/script/brickList/brick[2]/userVariable"/>
   </programVariableList>
   <programListOfLists/>
 </program>
-

@@ -43,8 +43,6 @@
                 if let _ = (userVariable.value as? NSNumber)?.doubleValue,
                     let numberDoubleValue = (result as? NSNumber)?.doubleValue {
                     userVariable.change(by: numberDoubleValue)
-                    //update active UserVariable
-                    userVariable.textLabel?.text = (userVariable.value as? NSNumber)?.stringValue
                 } else if userVariable.value is NSString {
                     // do nothing
                 } else {

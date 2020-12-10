@@ -109,18 +109,18 @@ final class RotationSensorTest: XCTestCase {
         // rotationDegreeOffset = ± 90
 
         // on the first trigonometric circle, in absolute value
-        XCTAssertEqual(90, type(of: sensor).convertSceneToDegrees(0), accuracy: Double.epsilon)
-        XCTAssertEqual(0, type(of: sensor).convertSceneToDegrees(90), accuracy: Double.epsilon)
-        XCTAssertEqual(-90, type(of: sensor).convertSceneToDegrees(-180), accuracy: Double.epsilon)
-        XCTAssertEqual(-90, type(of: sensor).convertSceneToDegrees(180), accuracy: Double.epsilon)
-        XCTAssertEqual(-130, type(of: sensor).convertSceneToDegrees(220), accuracy: Double.epsilon)
-        XCTAssertEqual(150, type(of: sensor).convertSceneToDegrees(-60), accuracy: Double.epsilon)
+        XCTAssertEqual(90, type(of: sensor).convertSceneToDegrees(0, for: spriteObject), accuracy: Double.epsilon)
+        XCTAssertEqual(0, type(of: sensor).convertSceneToDegrees(90, for: spriteObject), accuracy: Double.epsilon)
+        XCTAssertEqual(-90, type(of: sensor).convertSceneToDegrees(-180, for: spriteObject), accuracy: Double.epsilon)
+        XCTAssertEqual(-90, type(of: sensor).convertSceneToDegrees(180, for: spriteObject), accuracy: Double.epsilon)
+        XCTAssertEqual(-130, type(of: sensor).convertSceneToDegrees(220, for: spriteObject), accuracy: Double.epsilon)
+        XCTAssertEqual(150, type(of: sensor).convertSceneToDegrees(-60, for: spriteObject), accuracy: Double.epsilon)
 
         // on other trigonometric circles => periodicity
-        XCTAssertEqual(0, type(of: sensor).convertSceneToDegrees(450), accuracy: Double.epsilon)
-        XCTAssertEqual(-90, type(of: sensor).convertSceneToDegrees(900), accuracy: Double.epsilon)
-        XCTAssertEqual(-130, type(of: sensor).convertSceneToDegrees(-500), accuracy: Double.epsilon)
-        XCTAssertEqual(90, type(of: sensor).convertSceneToDegrees(-1080), accuracy: Double.epsilon)
+        XCTAssertEqual(0, type(of: sensor).convertSceneToDegrees(450, for: spriteObject), accuracy: Double.epsilon)
+        XCTAssertEqual(-90, type(of: sensor).convertSceneToDegrees(900, for: spriteObject), accuracy: Double.epsilon)
+        XCTAssertEqual(-130, type(of: sensor).convertSceneToDegrees(-500, for: spriteObject), accuracy: Double.epsilon)
+        XCTAssertEqual(90, type(of: sensor).convertSceneToDegrees(-1080, for: spriteObject), accuracy: Double.epsilon)
 
         // Note: the values returned are always between (-179, 180) - a single circle rotated
     }
@@ -137,5 +137,123 @@ final class RotationSensorTest: XCTestCase {
         let sections = sensor.formulaEditorSections(for: spriteObject)
         XCTAssertEqual(1, sections.count)
         XCTAssertEqual(.object(position: type(of: sensor).position), sections.first)
+    }
+
+    func testSetRawValueWithRotationStyleAllAround() {
+        spriteNode.rotationStyle = RotationStyle.allAround
+
+        type(of: sensor).setRawValue(userInput: 90.0, for: spriteObject)
+        XCTAssertEqual(90.0, spriteNode.rotationDegreeOffset)
+        XCTAssertEqual(0.0, Double(spriteNode.zRotation), accuracy: Double.epsilon)
+        XCTAssertEqual(90.0, Double(spriteNode.catrobatRotation), accuracy: Double.epsilon)
+
+        type(of: sensor).setRawValue(userInput: -90.0, for: spriteObject)
+        XCTAssertEqual(90.0, spriteNode.rotationDegreeOffset)
+        XCTAssertEqual(-3.1416, Double(spriteNode.zRotation), accuracy: Double.epsilon)
+        XCTAssertEqual(-90.0, Double(spriteNode.catrobatRotation), accuracy: Double.epsilon)
+
+        type(of: sensor).setRawValue(userInput: 180.0, for: spriteObject)
+        XCTAssertEqual(90.0, spriteNode.rotationDegreeOffset)
+        XCTAssertEqual(4.7124, Double(spriteNode.zRotation), accuracy: Double.epsilon)
+        XCTAssertEqual(180.0, Double(spriteNode.catrobatRotation), accuracy: Double.epsilon)
+
+        type(of: sensor).setRawValue(userInput: 0.0, for: spriteObject)
+        XCTAssertEqual(90.0, spriteNode.rotationDegreeOffset)
+        XCTAssertEqual(1.5708, Double(spriteNode.zRotation), accuracy: Double.epsilon)
+        XCTAssertEqual(0.0, Double(spriteNode.catrobatRotation), accuracy: Double.epsilon)
+
+        type(of: sensor).setRawValue(userInput: 400.0, for: spriteObject)
+        XCTAssertEqual(90.0, spriteNode.rotationDegreeOffset)
+        XCTAssertEqual(0.8727, Double(spriteNode.zRotation), accuracy: Double.epsilon)
+        XCTAssertEqual(40.0, Double(spriteNode.catrobatRotation), accuracy: Double.epsilon)
+
+        type(of: sensor).setRawValue(userInput: -400.0, for: spriteObject)
+        XCTAssertEqual(90.0, spriteNode.rotationDegreeOffset)
+        XCTAssertEqual(-4.0143, Double(spriteNode.zRotation), accuracy: Double.epsilon)
+        XCTAssertEqual(-40.0, Double(spriteNode.catrobatRotation), accuracy: Double.epsilon)
+    }
+
+    func testSetRawValueWithRotationStyleDonNotRotate() {
+        spriteNode.rotationStyle = RotationStyle.notRotate
+
+        type(of: sensor).setRawValue(userInput: 90.0, for: spriteObject)
+        XCTAssertEqual(90.0, spriteNode.rotationDegreeOffset)
+        XCTAssertEqual(0.0, Double(spriteNode.zRotation), accuracy: Double.epsilon)
+        XCTAssertEqual(90.0, Double(spriteNode.catrobatRotation), accuracy: Double.epsilon)
+
+        type(of: sensor).setRawValue(userInput: -90.0, for: spriteObject)
+        XCTAssertEqual(-90.0, spriteNode.rotationDegreeOffset)
+        XCTAssertEqual(0.0, Double(spriteNode.zRotation), accuracy: Double.epsilon)
+        XCTAssertEqual(-90.0, Double(spriteNode.catrobatRotation), accuracy: Double.epsilon)
+
+        type(of: sensor).setRawValue(userInput: 180.0, for: spriteObject)
+        XCTAssertEqual(180.0, spriteNode.rotationDegreeOffset)
+        XCTAssertEqual(0.0, Double(spriteNode.zRotation), accuracy: Double.epsilon)
+        XCTAssertEqual(180.0, Double(spriteNode.catrobatRotation), accuracy: Double.epsilon)
+
+        type(of: sensor).setRawValue(userInput: 0, for: spriteObject)
+        XCTAssertEqual(0.0, spriteNode.rotationDegreeOffset)
+        XCTAssertEqual(0.0, Double(spriteNode.zRotation), accuracy: Double.epsilon)
+        XCTAssertEqual(0.0, Double(spriteNode.catrobatRotation), accuracy: Double.epsilon)
+
+        type(of: sensor).setRawValue(userInput: 400.0, for: spriteObject)
+        XCTAssertEqual(400.0, spriteNode.rotationDegreeOffset)
+        XCTAssertEqual(0.0, Double(spriteNode.zRotation), accuracy: Double.epsilon)
+        XCTAssertEqual(40.0, Double(spriteNode.catrobatRotation), accuracy: Double.epsilon)
+
+        type(of: sensor).setRawValue(userInput: -400.0, for: spriteObject)
+        XCTAssertEqual(-400.0, spriteNode.rotationDegreeOffset)
+        XCTAssertEqual(0.0, Double(spriteNode.zRotation), accuracy: Double.epsilon)
+        XCTAssertEqual(-40.0, Double(spriteNode.catrobatRotation), accuracy: Double.epsilon)
+    }
+
+    func testSetRawValueWithRotationStyleLeftRight() {
+        spriteNode.rotationStyle = RotationStyle.leftRight
+
+        type(of: sensor).setRawValue(userInput: 90.0, for: spriteObject)
+        XCTAssertEqual(90.0, spriteNode.rotationDegreeOffset)
+        XCTAssertFalse(spriteNode.isFlipped())
+        XCTAssertEqual(0.0, Double(spriteNode.zRotation), accuracy: Double.epsilon)
+        XCTAssertEqual(90.0, Double(spriteNode.catrobatRotation), accuracy: Double.epsilon)
+
+        type(of: sensor).setRawValue(userInput: -90.0, for: spriteObject)
+        XCTAssertEqual(-90.0, spriteNode.rotationDegreeOffset)
+        XCTAssertTrue(spriteNode.isFlipped())
+        XCTAssertEqual(0.0, Double(spriteNode.zRotation), accuracy: Double.epsilon)
+        XCTAssertEqual(-90.0, Double(spriteNode.catrobatRotation), accuracy: Double.epsilon)
+
+        type(of: sensor).setRawValue(userInput: 180.0, for: spriteObject)
+        XCTAssertEqual(180.0, spriteNode.rotationDegreeOffset)
+        XCTAssertFalse(spriteNode.isFlipped())
+        XCTAssertEqual(0.0, Double(spriteNode.zRotation), accuracy: Double.epsilon)
+        XCTAssertEqual(180.0, Double(spriteNode.catrobatRotation), accuracy: Double.epsilon)
+
+        type(of: sensor).setRawValue(userInput: 0, for: spriteObject)
+        XCTAssertEqual(0.0, spriteNode.rotationDegreeOffset)
+        XCTAssertFalse(spriteNode.isFlipped())
+        XCTAssertEqual(0.0, Double(spriteNode.zRotation), accuracy: Double.epsilon)
+        XCTAssertEqual(0.0, Double(spriteNode.catrobatRotation), accuracy: Double.epsilon)
+
+        type(of: sensor).setRawValue(userInput: 400.0, for: spriteObject)
+        XCTAssertEqual(400.0, spriteNode.rotationDegreeOffset)
+        XCTAssertFalse(spriteNode.isFlipped())
+        XCTAssertEqual(0.0, Double(spriteNode.zRotation), accuracy: Double.epsilon)
+        XCTAssertEqual(40.0, Double(spriteNode.catrobatRotation), accuracy: Double.epsilon)
+
+        type(of: sensor).setRawValue(userInput: -400, for: spriteObject)
+        XCTAssertEqual(-400.0, spriteNode.rotationDegreeOffset)
+        XCTAssertFalse(spriteNode.isFlipped())
+        XCTAssertEqual(0.0, Double(spriteNode.zRotation), accuracy: Double.epsilon)
+        XCTAssertEqual(-40.0, Double(spriteNode.catrobatRotation), accuracy: Double.epsilon)
+    }
+
+    func testSetRawValueWithRotationStyleAllAroundAfterLeftRight() {
+        spriteNode.rotationStyle = RotationStyle.leftRight
+        type(of: sensor).setRawValue(userInput: 180.0, for: spriteObject)
+        XCTAssertEqual(180.0, spriteNode.rotationDegreeOffset)
+
+        spriteNode.rotationStyle = RotationStyle.allAround
+        type(of: sensor).setRawValue(userInput: 180.0, for: spriteObject)
+        XCTAssertEqual(90.0, spriteNode.rotationDegreeOffset)
     }
 }

@@ -30,7 +30,7 @@
 
 - (kBrickCategoryType)category
 {
-    return kVariableBrick;
+    return kDataBrick;
 }
 
 - (Formula*)formulaForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber

@@ -46,7 +46,7 @@ final class ChangeBrightnessByNBrickTests: AbstractBrickTest {
         let bundle = Bundle(for: type(of: self))
         let filePath = bundle.path(forResource: "test.png", ofType: nil)
         let imageData = UIImage(contentsOfFile: filePath!)!.pngData()
-        let look = Look(name: "test", andPath: "test.png")
+        let look = Look(name: "test", filePath: "test.png")
 
         do {
             try imageData?.write(to: URL(fileURLWithPath: object.scene.imagesPath()! + "/test.png"))
@@ -54,8 +54,8 @@ final class ChangeBrightnessByNBrickTests: AbstractBrickTest {
             XCTFail("Error when writing image data")
         }
 
-        object.lookList.add(look!)
-        object.lookList.add(look!)
+        object.lookList.add(look)
+        object.lookList.add(look)
         object.spriteNode.currentLook = look
         object.spriteNode.currentUIImageLook = UIImage(contentsOfFile: filePath!)
 
@@ -125,5 +125,21 @@ final class ChangeBrightnessByNBrickTests: AbstractBrickTest {
 
         XCTAssertTrue(brick.changeBrightness.isEqual(to: copiedBrick.changeBrightness))
         XCTAssertFalse(brick.changeBrightness === copiedBrick.changeBrightness)
+    }
+
+    func testGetFormulas() {
+        brick.changeBrightness = Formula(integer: 1)
+        var formulas = brick.getFormulas()
+
+        XCTAssertTrue(brick.changeBrightness.isEqual(to: formulas?[0]))
+        XCTAssertTrue(brick.changeBrightness.isEqual(to: Formula(integer: 1)))
+        XCTAssertFalse(brick.changeBrightness.isEqual(to: Formula(integer: -22)))
+
+        brick.changeBrightness = Formula(integer: -22)
+        formulas = brick.getFormulas()
+
+        XCTAssertTrue(brick.changeBrightness.isEqual(to: formulas?[0]))
+        XCTAssertTrue(brick.changeBrightness.isEqual(to: Formula(integer: -22)))
+        XCTAssertFalse(brick.changeBrightness.isEqual(to: Formula(integer: 1)))
     }
 }

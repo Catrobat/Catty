@@ -70,4 +70,20 @@ final class RepeatUntilBrickTests: XCTestCase {
         XCTAssertFalse(brick.repeatCondition.isEqual(to: copiedBrick.repeatCondition))
     }
 
+    func testGetFormulas() {
+        brick.repeatCondition = Formula(double: 1)
+        var formulas = brick.getFormulas()
+
+        XCTAssertTrue(brick.repeatCondition.isEqual(to: formulas?[0]))
+        XCTAssertTrue(brick.repeatCondition.isEqual(to: Formula(float: 1)))
+        XCTAssertFalse(brick.repeatCondition.isEqual(to: Formula(float: 22)))
+
+        brick.repeatCondition = Formula(float: 22)
+        formulas = brick.getFormulas()
+
+        XCTAssertTrue(brick.repeatCondition.isEqual(to: formulas?[0]))
+        XCTAssertTrue(brick.repeatCondition.isEqual(to: Formula(float: 22)))
+        XCTAssertFalse(brick.repeatCondition.isEqual(to: Formula(float: 1)))
+    }
+
 }

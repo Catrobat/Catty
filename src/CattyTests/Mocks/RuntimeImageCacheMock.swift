@@ -22,24 +22,31 @@
 
 @testable import Pocket_Code
 
-final class RuntimeImageCacheMock: RuntimeImageCache {
-    var thumbnails: [String: UIImage]
-    var cachedImages: [String: UIImage]
+final class CachedImage {
+    let path: String
+    let image: UIImage
+    let size: CGSize?
 
-    init(thumbnails: [String: UIImage], cachedImages: [String: UIImage]) {
-        self.thumbnails = thumbnails
+    init(path: String, image: UIImage, size: CGSize? = nil) {
+        self.path = path
+        self.image = image
+        self.size = size
+    }
+}
+
+final class RuntimeImageCacheMock: RuntimeImageCache {
+    var imagesOnDisk: [String: UIImage]
+    var cachedImages: [CachedImage]
+    var cleared = false
+
+    init(imagesOnDisk: [String: UIImage], cachedImages: [CachedImage]) {
+        self.imagesOnDisk = imagesOnDisk
         self.cachedImages = cachedImages
         super.init()
     }
 
-    override func loadThumbnailImageFromDisk(withThumbnailPath thumbnailPath: String!, imagePath: String!, thumbnailFrameSize: CGSize, onCompletion completion: ((UIImage?, String?) -> Void)!) {
-
-        if let thumbnail = thumbnails[thumbnailPath] {
-            completion(thumbnail, thumbnailPath)
-            return
-        }
-
-        if let image = cachedImages[imagePath] {
+    override func loadImageFromDisk(withPath imagePath: String!, andSize size: CGSize, onCompletion completion: ((UIImage?, String?) -> Void)!) {
+        if let image = self.imagesOnDisk[imagePath] {
             completion(image, imagePath)
             return
         }
@@ -48,11 +55,23 @@ final class RuntimeImageCacheMock: RuntimeImageCache {
     }
 
     override func cachedImage(forPath path: String!) -> UIImage? {
-        cachedImages[path]
+        findInCache(path)?.image
     }
 
-    override func overwriteThumbnailImageFromDisk(withThumbnailPath thumbnailPath: String!, image: UIImage!, thumbnailFrameSize: CGSize) {
-        thumbnails[thumbnailPath] = image
-        cachedImages[thumbnailPath] = image
+    override func cachedImage(forPath path: String!, andSize size: CGSize) -> UIImage! {
+        findInCache(path, size: size)?.image
+    }
+
+    override func clear() {
+        cleared = true
+    }
+
+    private func findInCache(_ path: String, size: CGSize? = nil) -> CachedImage? {
+        for cachedImage in cachedImages {
+            if cachedImage.path == path && ((size == nil && cachedImage.size == nil) || (size == cachedImage.size)) {
+                return cachedImage
+            }
+        }
+        return nil
     }
 }

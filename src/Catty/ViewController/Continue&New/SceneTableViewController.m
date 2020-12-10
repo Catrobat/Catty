@@ -24,7 +24,6 @@
 #import "TableUtil.h"
 #import "ObjectTableViewController.h"
 #import "SegueDefines.h"
-#import "Look.h"
 #import "Brick.h"
 #import "CatrobatImageCell.h"
 #import "DarkBlueGradientImageDetailCell.h"
@@ -33,7 +32,6 @@
 #import "CellTagDefines.h"
 #import "ProjectTableHeaderView.h"
 #import "RuntimeImageCache.h"
-#import "NSMutableArray+CustomExtensions.h"
 #import "LooksTableViewController.h"
 #import "ViewControllerDefines.h"
 #import "PlaceHolderView.h"
@@ -390,23 +388,21 @@
 
     imageCell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
     RuntimeImageCache *imageCache = [RuntimeImageCache sharedImageCache];
-    NSString *previewImagePath = [object previewImagePath];
-    NSString *imagePath = [[object.lookList firstObject] pathForScene:object.scene];
     imageCell.iconImageView.image = nil;
     imageCell.indexPath = indexPath;
     
-    UIImage *image = [imageCache cachedImageForPath:previewImagePath];
+    NSString *previewImagePath = [object previewImagePath];
+    
+    UIImage *image = [imageCache cachedImageForPath:previewImagePath andSize:UIDefines.previewImageSize];
     if (! image) {
-        [imageCache loadThumbnailImageFromDiskWithThumbnailPath:previewImagePath
-                                                      imagePath:imagePath
-                                             thumbnailFrameSize:CGSizeMake(kPreviewThumbnailWidth, kPreviewThumbnailHeight)
-                                                   onCompletion:^(UIImage *img, NSString* path){
-                                                       // check if cell still needed
-                                                       if ([imageCell.indexPath isEqual:indexPath]) {
-                                                           imageCell.iconImageView.image = img;
-                                                           [imageCell setNeedsLayout];
-                                                       }
-                                                   }];
+        [imageCache loadImageFromDiskWithPath:previewImagePath
+                                      andSize:UIDefines.previewImageSize
+                                 onCompletion:^(UIImage *img, NSString* path) {
+            if ([imageCell.indexPath isEqual:indexPath]) {
+                imageCell.iconImageView.image = img;
+                [imageCell setNeedsLayout];    
+            }
+        }];
     } else {
         imageCell.iconImageView.image = image;
     }
@@ -613,9 +609,8 @@
     UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                          target:self
                                                                          action:@selector(addObjectAction:)];
-    UIBarButtonItem *play = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
-                                                                          target:self
-                                                                          action:@selector(playSceneAction:)];
+    UIBarButtonItem *play = [[PlayButton alloc] initWithTarget:self
+                                                        action:@selector(playSceneAction:)];
     UIBarButtonItem *flex = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                                                           target:self
                                                                           action:nil];
@@ -640,7 +635,14 @@
 #pragma mark description delegate
 - (void)setDescription:(NSString *)description
 {
-    [self.scene.project updateDescriptionWithText:description];
+    [self showLoadingView];
+    [self.scene.project setDescription:description];
+    [self.scene.project saveToDiskWithNotification:NO andCompletion:^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self hideLoadingView];
+            [Util showNotificationForSaveAction];
+        });
+    }];
 }
 
 @end

@@ -50,6 +50,9 @@
 "Agree" = "Acepto";
 
 /* No comment provided by engineer. */
+"all around" = "todo alrededor";
+
+/* No comment provided by engineer. */
 "All Bluetooth devices successfully disconnected" = "Todos los dispositivos Bluetooth fueron desconectados con éxito";
 
 /* No comment provided by engineer. */
@@ -83,6 +86,9 @@
 "and" = "y ";
 
 /* No comment provided by engineer. */
+"and store written answer in " = "and store written answer in ";
+
+/* No comment provided by engineer. */
 "and wait" = "y esperar";
 
 /* No comment provided by engineer. */
@@ -105,6 +111,9 @@
 
 /* No comment provided by engineer. */
 "Arduino extension" = "Bloques Arduino";
+
+/* No comment provided by engineer. */
+"Ask " = "Ask ";
 
 /* No comment provided by engineer. */
 "at " = "en ";
@@ -227,6 +236,12 @@
 "Change size by" = "Cambiar el tamaño";
 
 /* No comment provided by engineer. */
+"Change to landscape" = "Cambiar a modo horizontal";
+
+/* No comment provided by engineer. */
+"Change to portrait" = "Cambiar a modo vertical";
+
+/* No comment provided by engineer. */
 "Change transparency " = "Cambiar el nivel de transparencia ";
 
 /* No comment provided by engineer. */
@@ -321,6 +336,9 @@
 
 /* No comment provided by engineer. */
 "Create account" = "Crear una cuenta";
+
+/* No comment provided by engineer. */
+"Data" = "Datos";
 
 /* No comment provided by engineer. */
 "day" = "día";
@@ -458,6 +476,9 @@
 "Do you want to save the changes" = "¿Desea guardar los cambios realizados?";
 
 /* No comment provided by engineer. */
+"don't rotate" = "no rotar";
+
+/* No comment provided by engineer. */
 "Done" = "Listo";
 
 /* No comment provided by engineer. */
@@ -582,6 +603,9 @@
 
 /* No comment provided by engineer. */
 "Error saving file" = "Error al guardar el archivo";
+
+/* No comment provided by engineer. */
+"Event" = "Eventos";
 
 /* No comment provided by engineer. */
 "FA" = "FA";
@@ -822,6 +846,9 @@
 
 /* No comment provided by engineer. */
 "Left" = "Izquierda";
+
+/* No comment provided by engineer. */
+"left-right only" = "de izquierda a derecha solamente";
 
 /* No comment provided by engineer. */
 "Length" = "Largo";
@@ -1163,6 +1190,9 @@
 "Place at " = "Coloque en ";
 
 /* No comment provided by engineer. */
+"Play" = "Jugar";
+
+/* No comment provided by engineer. */
 "Play Phiro music\n" = "Play Phiro music\n";
 
 /* No comment provided by engineer. */
@@ -1449,6 +1479,9 @@
 
 /* No comment provided by engineer. */
 "Set Phiro light" = "Establecer luz de Phiro";
+
+/* No comment provided by engineer. */
+"Set rotation style" = "Ajuste estilo de la rotación ";
 
 /* No comment provided by engineer. */
 "Set size to" = "Establecer el tamaño en";
@@ -1766,9 +1799,6 @@
 "Var/List" = "Variable/Lista";
 
 /* No comment provided by engineer. */
-"Variable" = "Variable";
-
-/* No comment provided by engineer. */
 "Variable name:" = "Nombre de la variable:";
 
 /* No comment provided by engineer. */
@@ -1788,6 +1818,9 @@
 
 /* No comment provided by engineer. */
 "vibration" = "vibración";
+
+/* No comment provided by engineer. */
+"View" = "View";
 
 /* No comment provided by engineer. */
 "Views" = "Vistas";
@@ -1811,13 +1844,16 @@
 "Welcome!" = "¡Bienvenido!";
 
 /* No comment provided by engineer. */
+"What's your name?" = "¿Cómo te llamas?";
+
+/* No comment provided by engineer. */
 "When" = "Cuando";
 
 /* No comment provided by engineer. */
 "When background changes to" = "Cuando el fondo cambia a";
 
 /* No comment provided by engineer. */
-"When project started" = "Cuando el proyecto comience";
+"When project starts" = "When project starts";
 
 /* No comment provided by engineer. */
 "When stage is tapped" = "Cuando se toca la pantalla";
@@ -1853,7 +1889,13 @@
 "You have already downloaded this project!" = "¡Ya has descargado este proyecto!";
 
 /* No comment provided by engineer. */
+"Your answer" = "Your answer";
+
+/* No comment provided by engineer. */
 "Your email seems to be invalid" = "Tu correo electrónico parece ser no válido";
+
+/* No comment provided by engineer. */
+"Your project was uploaded to the Catrobat community where others can use and download it." = "Your project was uploaded to the Catrobat community where others can use and download it.";
 
 /* paint */
 "Zoom" = "Zoom";

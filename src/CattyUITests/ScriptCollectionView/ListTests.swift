@@ -36,7 +36,7 @@ class ListTests: XCTestCase {
         app.tables.staticTexts[kLocalizedBackground].tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
 
-        addBrick(label: kLocalizedUserListAdd, section: kLocalizedCategoryVariable, in: app)
+        addBrick(label: kLocalizedUserListAdd, section: kLocalizedCategoryData, in: app)
     }
 
     func testDontShowVListPickerWhenNoListsDefinedForObject() {

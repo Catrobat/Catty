@@ -21,7 +21,6 @@
  */
 
 #import "Brick.h"
-#import "Look.h"
 #import "SpriteObject.h"
 #import "BrickLookProtocol.h"
 

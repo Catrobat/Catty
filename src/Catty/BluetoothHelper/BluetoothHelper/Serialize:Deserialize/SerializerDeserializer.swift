@@ -33,8 +33,7 @@ func fromHostByteOrder<T>(_ value: T) -> T {
 
 func byteArrayValue<T>(_ value: T) -> [UInt8] {
     let values = [value]
-    let bytes = UnsafeRawPointer(values).assumingMemoryBound(to: UInt8.self)
-    let data = Data(bytes: bytes, count: MemoryLayout<T>.size)
+    let data = values.withUnsafeBytes { Data($0) }
     var byteArray = [UInt8](repeating: 0, count: MemoryLayout<T>.size)
     (data as NSData).getBytes(&byteArray, length: MemoryLayout<T>.size)
     return byteArray
@@ -42,7 +41,7 @@ func byteArrayValue<T>(_ value: T) -> [UInt8] {
 
 func reverseBytes<T>(_ value: T) -> T {
     var result = value
-    let swappedBytes = Data(bytes: UnsafePointer<UInt8>(byteArrayValue(value).reversed()), count: MemoryLayout<T>.size)
+    let swappedBytes = Data(byteArrayValue(value).reversed())
     (swappedBytes as NSData).getBytes(&result, length: MemoryLayout<T>.size)
     return result
 }

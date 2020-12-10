@@ -29,7 +29,7 @@
 
 - (kBrickCategoryType)category
 {
-    return kControlBrick;
+    return kEventBrick;
 }
 
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject

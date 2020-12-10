@@ -25,7 +25,7 @@ import XCTest
 @testable import Pocket_Code
 
 final class FormulaTest: XCTestCase {
-    var formulaManager: FormulaManagerProtocol!
+    var formulaManager: FormulaManager!
     var interpreter: FormulaInterpreterProtocol!
 
     override func setUp() {

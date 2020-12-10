@@ -26,90 +26,62 @@ import XCTest
 
 final class ProjectManagerTests: XCTestCase {
 
-    let filePaths = [String]()
-    let directoryPaths = [String]()
+    var imageCache: RuntimeImageCacheMock!
+    var fileManager: CBFileManagerMock!
+
+    override func setUp() {
+        imageCache = RuntimeImageCacheMock(imagesOnDisk: [:], cachedImages: [])
+        fileManager = CBFileManagerMock(imageCache: imageCache)
+    }
 
     func testCreateProject() {
-
-        let projectName = "abcd"
+        let projectName = "projectName"
         let projectId = "1234"
-
-        guard let info = ProjectLoadingInfo(forProjectWithName: projectName, projectID: projectId) else {
-            XCTFail("Coult not create projectLoadingInfo")
-            return
-        }
 
         let expectedProjectPath = Project.basePath() + projectName + kProjectIDSeparator + projectId + "/"
         let expectedImageDir = expectedProjectPath + Util.defaultSceneName(forSceneNumber: 1) + "/images"
         let expectedSoundsDir = expectedProjectPath + Util.defaultSceneName(forSceneNumber: 1) + "/sounds"
-        let defaultAutoScreenshotPath = expectedProjectPath + kScreenshotAutoFilename
+        let automaticScreenshotPath = expectedProjectPath + kScreenshotAutoFilename
 
-        let automaticScreenshotThumbnailPath = info.basePath + kScreenshotThumbnailPrefix + kScreenshotAutoFilename
-
-        var projectIconImages = [UIImage]()
-        for name in kDefaultScreenshots {
+        var projectIconImages = [Data]()
+        for name in UIDefines.defaultScreenshots {
             if let image = UIImage(named: name) {
-                projectIconImages.append(image)
+                projectIconImages.append(image.pngData()!)
             }
         }
-
-        let imageCache = RuntimeImageCacheMock(thumbnails: [:], cachedImages: [:])
-        let fileManager = CBFileManagerMock(imageCache: imageCache)
 
         XCTAssertFalse(fileManager.directoryExists(expectedProjectPath))
         XCTAssertFalse(fileManager.directoryExists(expectedImageDir))
         XCTAssertFalse(fileManager.directoryExists(expectedSoundsDir))
-        XCTAssertFalse(fileManager.fileExists(defaultAutoScreenshotPath))
-        XCTAssertNil(imageCache.thumbnails[automaticScreenshotThumbnailPath])
-
-        let expectation1 = XCTestExpectation(description: "cannot find any screenshot for project abcd")
-        fileManager.loadPreviewImageAndCache(projectLoadingInfo: ProjectLoadingInfo(forProjectWithName: projectName, projectID: projectId)) { image, path in
-            XCTAssertEqual(image, UIImage(named: "catrobat"))
-            XCTAssertNil(path)
-
-            expectation1.fulfill()
-        }
-        wait(for: [expectation1], timeout: 1)
+        XCTAssertFalse(fileManager.fileExists(automaticScreenshotPath))
+        XCTAssertFalse(imageCache.cleared)
 
         _ = ProjectManager.createProject(name: projectName, projectId: projectId, fileManager: fileManager)
 
         XCTAssertTrue(fileManager.directoryExists(expectedProjectPath))
         XCTAssertTrue(fileManager.directoryExists(expectedImageDir))
         XCTAssertTrue(fileManager.directoryExists(expectedSoundsDir))
-        XCTAssertTrue(fileManager.fileExists(defaultAutoScreenshotPath))
-        XCTAssertNotNil(imageCache.thumbnails[automaticScreenshotThumbnailPath])
+        XCTAssertTrue(fileManager.fileExists(automaticScreenshotPath))
+        XCTAssertTrue(imageCache.cleared)
 
-        let expectation2 = XCTestExpectation(description: "found default screenshot for project abcd")
-        fileManager.loadPreviewImageAndCache(projectLoadingInfo: info) { image, path in
-            XCTAssertEqual(path, automaticScreenshotThumbnailPath)
-
-            if let iconImage = image {
-                XCTAssertTrue(projectIconImages.contains(iconImage))
-            } else {
-                XCTFail("Image is nil")
-            }
-
-            expectation2.fulfill()
-        }
-        wait(for: [expectation2], timeout: 1.0)
+        let automaticScreenshot = fileManager.dataWritten[automaticScreenshotPath]
+        XCTAssertTrue(projectIconImages.contains(automaticScreenshot!))
     }
 
     func testRandomScreenshotSelectionOfNewProjects() {
-
         var differentScreenshots = false
-        var previousSelectedScreenshot: UIImage?
+        var previousSelectedScreenshot: Data?
 
-        var projectIconImages = [UIImage]()
-        for name in kDefaultScreenshots {
+        var projectIconImages = [Data]()
+        for name in UIDefines.defaultScreenshots {
             if let image = UIImage(named: name) {
-                projectIconImages.append(image)
+                projectIconImages.append(image.pngData()!)
             }
         }
 
         var count = 0
         while count < projectIconImages.count && !differentScreenshots {
-
-            let projectName = "abcd_\(count)"
+            let projectName = "projectName_\(count)"
             let projectId = "1234\(count)"
 
             guard let info = ProjectLoadingInfo(forProjectWithName: projectName, projectID: projectId) else {
@@ -117,43 +89,21 @@ final class ProjectManagerTests: XCTestCase {
                 return
             }
 
-            let automaticScreenshotThumbnailPath = info.basePath + kScreenshotThumbnailPrefix + kScreenshotAutoFilename
-            let imageCache = RuntimeImageCacheMock(thumbnails: [automaticScreenshotThumbnailPath: UIImage()], cachedImages: [:])
-            let fileManager = CBFileManagerMock(imageCache: imageCache)
-
+            let automaticScreenshotPath = info.basePath + kScreenshotAutoFilename
             _ = ProjectManager.createProject(name: projectName, projectId: projectId, fileManager: fileManager)
 
-            let expectation = XCTestExpectation(description: "found default screenshot for testProject")
-            fileManager.loadPreviewImageAndCache(projectLoadingInfo: info) { image, path in
-                XCTAssertEqual(path, automaticScreenshotThumbnailPath)
+            let automaticScreenshot = fileManager.dataWritten[automaticScreenshotPath]
+            XCTAssertTrue(projectIconImages.contains(automaticScreenshot!))
 
-                if previousSelectedScreenshot == nil {
-                    previousSelectedScreenshot = image
-
-                    if let img = image {
-                        XCTAssertTrue(projectIconImages.contains(img))
-                    } else {
-                        XCTFail("Received nil instead of an expected default screenshot")
-                    }
-
-                } else if previousSelectedScreenshot != image {
-
-                    if let img = image {
-                        XCTAssertTrue(projectIconImages.contains(img))
-                    } else {
-                        XCTFail("Received nil instead of an expected default screenshot")
-                    }
-                    differentScreenshots = true
-                }
-
-                expectation.fulfill()
+            if previousSelectedScreenshot == nil {
+                previousSelectedScreenshot = automaticScreenshot
+            } else if previousSelectedScreenshot != automaticScreenshot {
+                differentScreenshots = true
             }
-            wait(for: [expectation], timeout: 1.0)
+
             count += 1
         }
 
         XCTAssertTrue(differentScreenshots)
-
     }
-
 }

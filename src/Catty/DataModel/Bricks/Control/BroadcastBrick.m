@@ -28,7 +28,7 @@
 
 - (kBrickCategoryType)category
 {
-    return kControlBrick;
+    return kEventBrick;
 }
 
 - (id)initWithMessage:(NSString *)message

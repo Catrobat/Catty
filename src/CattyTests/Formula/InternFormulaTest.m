@@ -597,4 +597,50 @@
     XCTAssertEqual(AM_RIGHT, [internFormula replaceCursorPositionInternTokenByTokenList:tokensToReplaceWith],@"Do not modify on error");
 }
 
+- (void)testLongDecimalNumber
+{
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+    NSMutableArray *internTokens = [[NSMutableArray alloc]init];
+    NSString *expectedValue = [NSString stringWithFormat:@"5%@5555", [formatter decimalSeparator]];
+    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER AndValue:expectedValue]];
+    
+    InternFormula *internFormula = [[InternFormula alloc]initWithInternTokenList:internTokens];
+    [internFormula generateExternFormulaStringAndInternExternMapping];
+    
+    XCTAssertTrue([expectedValue isEqualToString:[internFormula getExternFormulaString]], @"The value changed!");
+    
+    [internTokens removeAllObjects];
+    
+    expectedValue = [NSString stringWithFormat:@"5%@555555555555555", [formatter decimalSeparator]];
+    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER AndValue:expectedValue]];
+    
+    internFormula = [[InternFormula alloc]initWithInternTokenList:internTokens];
+    [internFormula generateExternFormulaStringAndInternExternMapping];
+    
+    XCTAssertTrue([expectedValue isEqualToString:[internFormula getExternFormulaString]], @"The value changed!");
+    
+    [internTokens removeAllObjects];
+    
+    NSString *inputValue = @"5,5555";
+    expectedValue = [NSString stringWithFormat:@"5%@5555", [formatter decimalSeparator]];
+    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER AndValue:inputValue]];
+    
+    internFormula = [[InternFormula alloc]initWithInternTokenList:internTokens];
+    [internFormula generateExternFormulaStringAndInternExternMapping];
+    
+    XCTAssertTrue([expectedValue isEqualToString:[internFormula getExternFormulaString]], @"The value changed!");
+    
+    [internTokens removeAllObjects];
+    
+    inputValue = @"5,55555555555555555555555";
+    expectedValue = [NSString stringWithFormat:@"5%@55555555555555555555555", [formatter decimalSeparator]];
+    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER AndValue:inputValue]];
+    
+    internFormula = [[InternFormula alloc]initWithInternTokenList:internTokens];
+    [internFormula generateExternFormulaStringAndInternExternMapping];
+    
+    XCTAssertTrue([expectedValue isEqualToString:[internFormula getExternFormulaString]], @"The value changed!");
+    
+}
 @end

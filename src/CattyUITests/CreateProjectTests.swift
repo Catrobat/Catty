@@ -78,7 +78,7 @@ class CreateProjectTests: XCTestCase {
         app.tables.staticTexts[testObject].tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
 
-        addBrick(label: kLocalizedWhenProjectStarted, section: kLocalizedCategoryControl, in: app)
+        addBrick(label: kLocalizedWhenProjectStarted, section: kLocalizedCategoryEvent, in: app)
         XCTAssert(app.collectionViews.cells.element(boundBy: 0).staticTexts[kLocalizedWhenProjectStarted].exists)
 
         addBrick(label: kLocalizedSetLook, section: kLocalizedCategoryLook, in: app)
@@ -90,7 +90,7 @@ class CreateProjectTests: XCTestCase {
         app.tables.staticTexts[kLocalizedBackground].tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
 
-        addBrick(label: kLocalizedWhenProjectStarted, section: kLocalizedCategoryControl, in: app)
+        addBrick(label: kLocalizedWhenProjectStarted, section: kLocalizedCategoryEvent, in: app)
         XCTAssert(app.collectionViews.cells.element(boundBy: 0).staticTexts[kLocalizedWhenProjectStarted].exists)
 
         addBrick(label: kLocalizedNextBackground, section: kLocalizedCategoryLook, in: app)

@@ -124,5 +124,14 @@ andParameterNumber:(NSInteger)paramNumber
     return YES;
 }
 
+- (id)mutableCopyWithContext:(CBMutableCopyContext*)context
+{
+    GoToBrick *copy = [super mutableCopyWithContext:context];
+    if(self.goToObject)
+        copy.goToObject = self.goToObject;
+    return copy;
+}
+
+
 @end
 

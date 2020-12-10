@@ -121,4 +121,25 @@ final class WaitUntilBrickTests: XMLAbstractTest {
             .withAudioEngine(audioEngine: AudioEngineMock())
         return stageBuilder.build()
     }
+
+    func testGetFormulas() {
+        let brick = WaitUntilBrick()
+        let script = Script()
+        let object = SpriteObjectMock()
+        script.object = object
+        brick.script = script
+        brick.waitCondition = Formula(float: 1)
+        var formulas = brick.getFormulas()
+
+        XCTAssertTrue(brick.waitCondition.isEqual(to: formulas?[0]))
+        XCTAssertTrue(brick.waitCondition.isEqual(to: Formula(float: 1)))
+        XCTAssertFalse(brick.waitCondition.isEqual(to: Formula(float: 22)))
+
+        brick.waitCondition = Formula(float: 22)
+        formulas = brick.getFormulas()
+
+        XCTAssertTrue(brick.waitCondition.isEqual(to: formulas?[0]))
+        XCTAssertTrue(brick.waitCondition.isEqual(to: Formula(float: 22)))
+        XCTAssertFalse(brick.waitCondition.isEqual(to: Formula(float: 1)))
+    }
 }

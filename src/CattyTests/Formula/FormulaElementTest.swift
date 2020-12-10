@@ -26,7 +26,7 @@ import XCTest
 
 final class FormulaElementTest: XCTestCase {
 
-    var formulaManager: FormulaManagerProtocol!
+    var formulaManager: FormulaManager!
 
     override func setUp() {
         super.setUp()

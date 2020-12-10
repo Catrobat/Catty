@@ -32,14 +32,14 @@
 #import "Pocket_Code-Swift.h"
 
 @interface FormulaParserErrorDetectionTest : XCTestCase
-@property(nonatomic, strong) id<FormulaManagerProtocol> formulaManager;
+@property(nonatomic, strong) FormulaManager* formulaManager;
 @end
 
 @implementation FormulaParserErrorDetectionTest
 
 - (void)setUp {
     [super setUp];
-    self.formulaManager = (id<FormulaManagerProtocol>)[[FormulaManager alloc] initWithStageSize:[Util screenSize:true] andLandscapeMode: false];
+    self.formulaManager = [[FormulaManager alloc] initWithStageSize:[Util screenSize:true] andLandscapeMode: false];
 }
 
 - (void)testTooManyOperators

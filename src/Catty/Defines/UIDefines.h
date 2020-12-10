@@ -57,7 +57,6 @@
 #define kBrickCellDeleteButtonWidthHeight 55.0f
 #define kSelectButtonOffset 30.0f
 #define kSelectButtonTranslationOffsetX 60.0f
-#define kScriptCollectionViewInset 5.0f
 
 // Notifications
 static NSString *const kBrickCellAddedNotification = @"BrickCellAddedNotification";
@@ -81,8 +80,6 @@ static NSString *const kUserInfoSound = @"UserInfoSound";
 #define kHandleImageHeight 15.0f
 #define kHandleImageWidth 40.0f
 #define kOffsetTopBrickSelectionView 70.0f
-#define kPreviewImageCornerRadius 10.0
-#define kPreviewImageBorderWidth 1.0f
 
 //BDKNotifyHUD
 #define kBDKNotifyHUDDestinationOpacity 0.3f
@@ -98,14 +95,15 @@ static NSString *const kBDKNotifyHUDCheckmarkImageName = @"checkmark.png";
 // ---------------------- BRICK CONFIG ---------------------------------------
 // brick categories
 typedef NS_ENUM(NSUInteger, kBrickCategoryType) {
-    kControlBrick              = 1,
-    kMotionBrick               = 2,
-    kLookBrick                 = 3,
-    kSoundBrick                = 4,
-    kVariableBrick             = 5,
-    kArduinoBrick              = 6,
-    kPhiroBrick                = 7,
-    kPenBrick                  = 8,
+    kEventBrick                = 1,
+    kControlBrick              = 2,
+    kMotionBrick               = 3,
+    kLookBrick                 = 4,
+    kSoundBrick                = 5,
+    kDataBrick                 = 6,
+    kArduinoBrick              = 7,
+    kPhiroBrick                = 8,
+    kPenBrick                  = 9,
     kInvisible                = 99,
     kFavouriteBricks           = 0
 };
@@ -167,4 +165,3 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 #define kGoToTouchPosition 80
 #define kGoToRandomPosition 81
 #define kGoToOtherSpritePosition 82
-

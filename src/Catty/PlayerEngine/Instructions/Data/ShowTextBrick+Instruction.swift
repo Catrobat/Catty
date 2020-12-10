@@ -35,18 +35,8 @@
         return CBInstruction.execClosure { context, _ in
             let xResult = context.formulaInterpreter.interpretDouble(xFormula, for: spriteObject)
             let yResult = context.formulaInterpreter.interpretDouble(yFormula, for: spriteObject)
-            var value = ""
 
             if let userVariable = userVariable {
-                if let userVariableValue = (userVariable.value as? NSNumber) {
-                    value = userVariableValue.stringValue
-                } else if let userVariableValue = userVariable.value as? String {
-                    value = userVariableValue
-                } else {
-                    value = "0"
-                }
-                userVariable.textLabel?.text = value
-
                 guard let scene = userVariable.textLabel?.scene else {
                     fatalError("This should never happen!")
                 }

@@ -30,6 +30,8 @@
 
 - (UIImage*)cachedImageForPath:(NSString*)path;
 
+- (UIImage*)cachedImageForPath:(NSString*)path andSize:(CGSize)size;
+
 - (void)loadImageWithName:(NSString*)imageName
              onCompletion:(void(^)(UIImage *image))completion;
 
@@ -38,12 +40,9 @@
 - (void)loadImageFromDiskWithPath:(NSString*)path
                      onCompletion:(void(^)(UIImage *image, NSString* path))completion;
 
-- (void)loadThumbnailImageFromDiskWithThumbnailPath:(NSString*)thumbnailPath
-                                          imagePath:(NSString*)imagePath
-                                 thumbnailFrameSize:(CGSize)thumbnailFrameSize
-                                       onCompletion:(void(^)(UIImage *image, NSString* path))completion;
-
-- (void)overwriteThumbnailImageFromDiskWithThumbnailPath:(NSString*)thumbnailPath image:(UIImage*)image thumbnailFrameSize:(CGSize)thumbnailFrameSize;
+- (void)loadImageFromDiskWithPath:(NSString*)imagePath
+                          andSize:(CGSize)size
+                     onCompletion:(void(^)(UIImage *image, NSString* path))completion;
 
 - (void)clearImageCache;
 

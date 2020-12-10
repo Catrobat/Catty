@@ -39,4 +39,20 @@ final class IfLogicBeginBrickTests: XCTestCase {
         XCTAssertFalse(brick.ifCondition === copiedBrick.ifCondition)
     }
 
+    func testGetFormulas() {
+        let brick = IfLogicBeginBrick()
+        brick.ifCondition = Formula(float: 1)
+        var formulas = brick.getFormulas()
+
+        XCTAssertTrue(brick.ifCondition.isEqual(to: formulas?[0]))
+        XCTAssertTrue(brick.ifCondition.isEqual(to: Formula(float: 1)))
+        XCTAssertFalse(brick.ifCondition.isEqual(to: Formula(float: 22)))
+
+        brick.ifCondition = Formula(float: 22)
+        formulas = brick.getFormulas()
+
+        XCTAssertTrue(brick.ifCondition.isEqual(to: formulas?[0]))
+        XCTAssertTrue(brick.ifCondition.isEqual(to: Formula(float: 22)))
+        XCTAssertFalse(brick.ifCondition.isEqual(to: Formula(float: 1)))
+    }
 }

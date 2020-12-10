@@ -50,6 +50,9 @@
 "Agree" = "Zgadzam się";
 
 /* No comment provided by engineer. */
+"all around" = "Dookoła";
+
+/* No comment provided by engineer. */
 "All Bluetooth devices successfully disconnected" = "Wszystkie urządzenia Bluetooth pomyślnie rozłączono";
 
 /* No comment provided by engineer. */
@@ -83,6 +86,9 @@
 "and" = "i";
 
 /* No comment provided by engineer. */
+"and store written answer in " = "i przechowaj zapisaną odpowiedź w";
+
+/* No comment provided by engineer. */
 "and wait" = "i czekaj";
 
 /* No comment provided by engineer. */
@@ -105,6 +111,9 @@
 
 /* No comment provided by engineer. */
 "Arduino extension" = "Bloki Arduino";
+
+/* No comment provided by engineer. */
+"Ask " = "Zapytaj";
 
 /* No comment provided by engineer. */
 "at " = "w ";
@@ -227,6 +236,12 @@
 "Change size by" = "Zmień rozmiar o";
 
 /* No comment provided by engineer. */
+"Change to landscape" = "Zmień na poziomo";
+
+/* No comment provided by engineer. */
+"Change to portrait" = "Zmień na portret";
+
+/* No comment provided by engineer. */
 "Change transparency " = "Zmień przezroczystość ";
 
 /* No comment provided by engineer. */
@@ -323,10 +338,13 @@
 "Create account" = "Utwórz konto";
 
 /* No comment provided by engineer. */
+"Data" = "Dane";
+
+/* No comment provided by engineer. */
 "day" = "dzień";
 
 /* No comment provided by engineer. */
-"debug" = "debug";
+"debug" = "Debuguj";
 
 /* No comment provided by engineer. */
 "Dec" = "gru";
@@ -434,10 +452,10 @@
 "Disable brick" = "Wyłącz bloczek";
 
 /* No comment provided by engineer. */
-"Disable condition" = "Disable condition";
+"Disable condition" = "Wyłącz warunek";
 
 /* No comment provided by engineer. */
-"Disable loop" = "Disable loop";
+"Disable loop" = "Wyłącz pętle";
 
 /* No comment provided by engineer. */
 "Disable script" = "Wyłącz skrypt";
@@ -456,6 +474,9 @@
 
 /* paint */
 "Do you want to save the changes" = "Czy chcesz zapisać zmiany";
+
+/* No comment provided by engineer. */
+"don't rotate" = "nie obracaj";
 
 /* No comment provided by engineer. */
 "Done" = "Zrobione";
@@ -527,16 +548,16 @@
 "Email" = "Adres e-mail";
 
 /* No comment provided by engineer. */
-"Empty input!" = "Empty input!";
+"Empty input!" = "Puste wejście!";
 
 /* No comment provided by engineer. */
 "Enable brick" = "Włącz bloczek";
 
 /* No comment provided by engineer. */
-"Enable condition" = "Enable condition";
+"Enable condition" = "Włącz warunek";
 
 /* No comment provided by engineer. */
-"Enable loop" = "Enable loop";
+"Enable loop" = "Włącz pętlę";
 
 /* No comment provided by engineer. */
 "Enable script" = "Włącz skrypt";
@@ -582,6 +603,9 @@
 
 /* No comment provided by engineer. */
 "Error saving file" = "Błąd zapisu pliku";
+
+/* No comment provided by engineer. */
+"Event" = "Wydarzenie";
 
 /* No comment provided by engineer. */
 "FA" = "FA";
@@ -824,6 +848,9 @@
 "Left" = "Lewe";
 
 /* No comment provided by engineer. */
+"left-right only" = "tylko lewo-prawo";
+
+/* No comment provided by engineer. */
 "Length" = "Długość";
 
 /* No comment provided by engineer. */
@@ -992,7 +1019,7 @@
 "New" = "Nowy";
 
 /* paint */
-"New canvas" = "New canvas";
+"New canvas" = "Nowe tło";
 
 /* No comment provided by engineer. */
 "New list" = "Nowa lista";
@@ -1028,7 +1055,7 @@
 "No camera available" = "Aparat niedostępny";
 
 /* No comment provided by engineer. */
-"No categories selected" = "No categories selected";
+"No categories selected" = "Nie wybrano żadnej kategorii";
 
 /* No comment provided by engineer. */
 "No description available" = "Brak opisu";
@@ -1161,6 +1188,9 @@
 
 /* No comment provided by engineer. */
 "Place at " = "Idź do ";
+
+/* No comment provided by engineer. */
+"Play" = "Graj";
 
 /* No comment provided by engineer. */
 "Play Phiro music\n" = "Graj muzykę Phiro\n";
@@ -1449,6 +1479,9 @@
 
 /* No comment provided by engineer. */
 "Set Phiro light" = "Ustaw światło Phiro";
+
+/* No comment provided by engineer. */
+"Set rotation style" = "Ustaw styl obrotu";
 
 /* No comment provided by engineer. */
 "Set size to" = "Ustaw rozmiar na";
@@ -1766,9 +1799,6 @@
 "Var/List" = "Zmienna/lista";
 
 /* No comment provided by engineer. */
-"Variable" = "Zmienna";
-
-/* No comment provided by engineer. */
 "Variable name:" = "Nazwa zmiennej:";
 
 /* No comment provided by engineer. */
@@ -1788,6 +1818,9 @@
 
 /* No comment provided by engineer. */
 "vibration" = "wibracje";
+
+/* No comment provided by engineer. */
+"View" = "View";
 
 /* No comment provided by engineer. */
 "Views" = "widoki";
@@ -1811,13 +1844,16 @@
 "Welcome!" = "Witaj!";
 
 /* No comment provided by engineer. */
+"What's your name?" = "Jak się nazywasz?";
+
+/* No comment provided by engineer. */
 "When" = "Kiedy";
 
 /* No comment provided by engineer. */
 "When background changes to" = "Kiedy tło zmieni się na";
 
 /* No comment provided by engineer. */
-"When project started" = "Kiedy projekt startuje";
+"When project starts" = "Kiedy projekt startuje";
 
 /* No comment provided by engineer. */
 "When stage is tapped" = "Kiedy dotknięto ekran";
@@ -1853,7 +1889,13 @@
 "You have already downloaded this project!" = "Ten projekt już został pobrany!";
 
 /* No comment provided by engineer. */
+"Your answer" = "Twoja odpowiedź";
+
+/* No comment provided by engineer. */
 "Your email seems to be invalid" = "Twój e-mail wydaje się być nieprawidłowy";
+
+/* No comment provided by engineer. */
+"Your project was uploaded to the Catrobat community where others can use and download it." = "Your project was uploaded to the Catrobat community where others can use and download it.";
 
 /* paint */
 "Zoom" = "Powiększ";

@@ -32,4 +32,8 @@ class SpriteKitDefines: NSObject {
     static let defaultPenColor = UIColor(red: 0, green: 0, blue: 255)
     static let penShapeNodeName = "penShapeNode"
     static let stampedSpriteNodeName = "stampedSpriteNode"
+
+    static let defaultValueShowVariable = "0"
+
+    static let defaultRotationStyle = RotationStyle.allAround
 }

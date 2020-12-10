@@ -80,6 +80,10 @@ class NetworkDefines: NSObject {
     static var mediaLibrarySoundsIndex: String { baseUrl.appending("/api/media/package/Sounds/json") }
     static var mediaLibraryDownloadBaseUrl: String { baseUrl.replacingOccurrences(of: "/pocketcode/", with: "") }
 
+    // MARK: Share
+
+    static var projectDetailsBaseUrl: String { baseUrl.appending("project/") }
+
     // MARK: FeaturedProjectStoreViewController
 
     static var connectionHost: String { baseUrl.appending("api/projects") }
@@ -90,6 +94,6 @@ class NetworkDefines: NSObject {
     @objc static let reportProjectNoteMaxLength = 100
     @objc static let reportProjectNoteMinLength = 3
 
-    @objc static let kUserIsLoggedIn  = "userIsLoggedIn"
+    @objc static let kUserIsLoggedIn = "userIsLoggedIn"
     @objc static let kUserLoginToken = "userLoginToken"
 }

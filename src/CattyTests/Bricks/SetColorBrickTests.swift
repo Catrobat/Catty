@@ -46,7 +46,7 @@ final class SetColorBrickTests: AbstractBrickTest {
         let bundle = Bundle(for: type(of: self))
         let filePath = bundle.path(forResource: "test.png", ofType: nil)
         let imageData = UIImage(contentsOfFile: filePath!)!.pngData()
-        let look = Look(name: "test", andPath: "test.png")
+        let look = Look(name: "test", filePath: "test.png")
 
         do {
             try imageData?.write(to: URL(fileURLWithPath: object.scene.imagesPath()! + "/test.png"))
@@ -54,8 +54,8 @@ final class SetColorBrickTests: AbstractBrickTest {
             XCTFail("Error when writing image data")
         }
 
-        object.lookList.add(look!)
-        object.lookList.add(look!)
+        object.lookList.add(look)
+        object.lookList.add(look)
         object.spriteNode.currentLook = look
         object.spriteNode.currentUIImageLook = UIImage(contentsOfFile: filePath!)
 
@@ -106,5 +106,32 @@ final class SetColorBrickTests: AbstractBrickTest {
 
         XCTAssertEqual(0.0, spriteNode.catrobatColor, accuracy: 0.1, "SetColorBrick - Color not correct")
     }
+    func testMutableCopy() {
+             let brick = SetColorBrick()
+             let script = Script()
+             let object = SpriteObject()
+             let scene = Scene(name: "testScene")
+             object.scene = scene
 
+             script.object = object
+             brick.script = script
+             brick.color = Formula(integer: 100)
+
+             let copiedBrick: SetColorBrick = brick.mutableCopy(with: CBMutableCopyContext()) as! SetColorBrick
+
+             XCTAssertTrue(brick.isEqual(to: copiedBrick))
+             XCTAssertFalse(brick === copiedBrick)
+      }
+    func testGetFormulas() {
+        brick.color = Formula(integer: 1)
+        var formulas = brick.getFormulas()
+
+        XCTAssertEqual(formulas?.count, 1)
+        XCTAssertEqual(brick.color, formulas?[0])
+
+        brick.color = Formula(integer: 22)
+        formulas = brick.getFormulas()
+
+        XCTAssertEqual(brick.color, formulas?[0])
+     }
 }

@@ -348,4 +348,21 @@ final class SynchronizedArrayTests: XCTestCase {
         }
         XCTAssertEqual(1000, array.count)
     }
+
+    func testRemoveElement() {
+        let array = SynchronizedArray<Int>()
+
+        array.append(5)
+        array.append(6)
+        array.append(7)
+        XCTAssertEqual(3, array.count)
+
+        array.remove(element: 5)
+        XCTAssertEqual(2, array.count)
+        XCTAssertEqual(6, array[0])
+
+        array.remove(element: 6)
+        XCTAssertEqual(1, array.count)
+        XCTAssertEqual(7, array[0])
+    }
 }

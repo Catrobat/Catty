@@ -100,7 +100,7 @@ class Firmata: FirmataProtocol {
         let data2 = UInt8(newMode.rawValue)    //Mode
 
         let bytes: [UInt8] = [data0, data1, data2]
-        let newData = Data(bytes: UnsafePointer<UInt8>(bytes), count: 3)
+        let newData = Data(bytes)
 
         delegate?.sendData(newData)
     }
@@ -113,7 +113,7 @@ class Firmata: FirmataProtocol {
 
         let data0: UInt8 = kREPORT_VERSION //0xF9
         let bytes: [UInt8] = [data0]
-        let newData = Data(bytes: UnsafePointer<UInt8>(bytes), count: 1)
+        let newData = Data(bytes)
 
         print("reportVersion bytes in hex \(newData.description)")
         delegate?.sendData(newData)
@@ -129,7 +129,7 @@ class Firmata: FirmataProtocol {
         let data1: UInt8 = kREPORT_FIRMWARE
         let data2: UInt8 = kEND_SYSEX
         let bytes: [UInt8] = [data0, data1, data2]
-        let newData = Data(bytes: UnsafePointer<UInt8>(bytes), count: 3)
+        let newData = Data(bytes)
         print("reportFirmware bytes in hex \(newData.description)")
         delegate?.sendData(newData)
     }
@@ -145,7 +145,7 @@ class Firmata: FirmataProtocol {
         let data1: UInt8 = kANALOG_MAPPING_QUERY
         let data2: UInt8 = kEND_SYSEX
         let bytes: [UInt8] = [data0, data1, data2]
-        let newData = Data(bytes: UnsafePointer<UInt8>(bytes), count: 3)
+        let newData = Data(bytes)
         print("analogMappingQuery bytes in hex \(newData.description)")
         delegate?.sendData(newData)
     }
@@ -161,7 +161,7 @@ class Firmata: FirmataProtocol {
         let data1: UInt8 = kCAPABILITY_QUERY
         let data2: UInt8 = kEND_SYSEX
         let bytes: [UInt8] = [data0, data1, data2]
-        let newData = Data(bytes: UnsafePointer<UInt8>(bytes), count: 3)
+        let newData = Data(bytes)
         print("capabilityQuery bytes in hex \(newData.description)")
         delegate?.sendData(newData)
     }
@@ -179,7 +179,7 @@ class Firmata: FirmataProtocol {
         let data2: UInt8 = pin
         let data3: UInt8 = kEND_SYSEX
         let bytes: [UInt8] = [data0, data1, data2, data3]
-        let newData = Data(bytes: UnsafePointer<UInt8>(bytes), count: 4)
+        let newData = Data(bytes)
         print("pinStateQuery bytes in hex \(newData.description)")
         delegate?.sendData(newData)
     }
@@ -205,7 +205,7 @@ class Firmata: FirmataProtocol {
         let data6: UInt8 = maxPulse >> 7
         let data7: UInt8 = kEND_SYSEX
         let bytes: [UInt8] = [data0, data1, data2, data3, data4, data5, data6, data7]
-        let newData = Data(bytes: UnsafePointer<UInt8>(bytes), count: 8)
+        let newData = Data(bytes)
         print("servoConfig bytes in hex \(newData.description)")
         delegate?.sendData(newData)
     }
@@ -246,12 +246,12 @@ class Firmata: FirmataProtocol {
             let lsb = bytes[i] & 0x7f
             let append1: UInt8 = lsb
             let appendData: [UInt8] = [append1]
-            newData.append(Data(bytes: UnsafePointer<UInt8>(appendData), count: 1))
+            newData.append(Data(appendData))
 
         }
         let end3: UInt8 = kEND_SYSEX
         let endData: [UInt8] = [end3]
-        newData.append(Data(bytes: UnsafePointer<UInt8>(endData), count: 1))
+        newData.append(Data(endData))
 
         print("stringdata bytes in hex \(newData.description)")
         delegate?.sendData(newData)
@@ -272,7 +272,7 @@ class Firmata: FirmataProtocol {
         let data3: UInt8 = (intervalMilliseconds >> 7)
         let data4: UInt8 = kEND_SYSEX
         let bytes: [UInt8] = [data0, data1, data2, data3, data4]
-        let newData = Data(bytes: UnsafePointer<UInt8>(bytes), count: 5)
+        let newData = Data(bytes)
         print("samplingInterval bytes in hex \(newData.description)")
         delegate?.sendData(newData)
     }
@@ -297,7 +297,7 @@ class Firmata: FirmataProtocol {
         data2 = value >> 7;     //top bit in second byte // &0x7f ??
 
         let bytes: [UInt8] = [data0, data1, data2]
-        let newData = Data(bytes: UnsafePointer<UInt8>(bytes), count: 3)
+        let newData = Data(bytes)
 
         delegate?.sendData(newData)
 
@@ -347,7 +347,7 @@ class Firmata: FirmataProtocol {
         }
 
         let bytes: [UInt8] = [data0, data1, data2]
-        let newData = Data(bytes: UnsafePointer<UInt8>(bytes), count: 3)
+        let newData = Data(bytes)
         delegate?.sendData(newData)
 
         print(self, "setting pin states -->", "[\(binaryforByte(portMasks[0]))] [\(binaryforByte(portMasks[1]))] [\(binaryforByte(portMasks[2]))]")
@@ -369,7 +369,7 @@ class Firmata: FirmataProtocol {
 
         let bytes: [UInt8] = [data0, data1]
 
-        let newData = Data(bytes: UnsafePointer<UInt8>(bytes), count: 2)
+        let newData = Data(bytes)
 
         delegate?.sendData(newData)
     }
@@ -399,7 +399,7 @@ class Firmata: FirmataProtocol {
         }
 
         let bytes: [UInt8] = [data0, data1]
-        let newData = Data(bytes: UnsafePointer<UInt8>(bytes), count: 2)
+        let newData = Data(bytes)
 
         portMasks[Int(port)] = data1    //save new pin
 
@@ -421,7 +421,7 @@ class Firmata: FirmataProtocol {
         if enabled { data1 = 1 }
 
         let bytes: [UInt8] = [data0, data1]
-        let newData = Data(bytes: UnsafePointer<UInt8>(bytes), count: 2)
+        let newData = Data(bytes)
         delegate?.sendData(newData)
 
     }
@@ -450,12 +450,12 @@ class Firmata: FirmataProtocol {
             let msb: UInt8 = bytes[i] >> 7 & 0x7f
 
             let append: [UInt8] = [lsb, msb]
-            newData.append(Data(bytes: UnsafePointer<UInt8>(append), count: 2))
+            newData.append(Data(append))
         }
 
         data0 = kEND_SYSEX
         let append: [UInt8] = [data0]
-        newData.append(Data(bytes: UnsafePointer<UInt8>(append), count: 1))
+        newData.append(Data(append))
 
         delegate?.sendData(newData)
     }
@@ -633,7 +633,7 @@ class Firmata: FirmataProtocol {
             } else if data[i] == kREPORT_VERSION {
                 print("Report Version")
                 let bytes: [UInt8] = [data[i], data[i + 1], data[i + 2]]
-                parseReportVersionResponse(Data(bytes: UnsafePointer<UInt8>(bytes), count: 3))
+                parseReportVersionResponse(Data(bytes))
             }
 
             i += 3

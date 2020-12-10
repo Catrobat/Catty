@@ -124,6 +124,13 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
     self.tableView.alwaysBounceVertical = NO;
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.destinationViewController isKindOfClass:[UploadViewController class]]) {
+        ((UploadViewController*) segue.destinationViewController).delegate = self;
+    }
+}
+
 #pragma mark init
 - (void)initTableView
 {
@@ -323,10 +330,6 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
         subtitleLabel.text = [self.cells objectAtIndex:indexPath.row];
         
         cell.iconImageView.image = [UIImage imageWithColor:UIColor.whiteColor];
-        [cell.iconImageView.layer setBorderColor: [[UIColor medium] CGColor]];
-        [cell.iconImageView.layer setBorderWidth: kPreviewImageBorderWidth];
-        cell.iconImageView.layer.cornerRadius = kPreviewImageCornerRadius;
-        cell.iconImageView.clipsToBounds = true;
         [cell setNeedsLayout];
     } else {
         cell.titleLabel.text = [self.cells objectAtIndex:indexPath.row];
@@ -339,11 +342,11 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
         CBFileManager *fileManager = [CBFileManager sharedManager];
         [fileManager loadPreviewImageAndCacheWithProjectLoadingInfo:info completion:^(UIImage * image, NSString * path) {
             
-            if(image) {
-                cell.iconImageView.image = image;
-                cell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
+            if(image && cell) {
                 dispatch_queue_main_t queue = dispatch_get_main_queue();
                 dispatch_async(queue, ^{
+                    cell.iconImageView.image = image;
+                    cell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
                     [self.tableView endUpdates];
                 });
             }

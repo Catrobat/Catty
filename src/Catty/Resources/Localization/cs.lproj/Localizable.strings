@@ -50,6 +50,9 @@
 "Agree" = "Souhlasím";
 
 /* No comment provided by engineer. */
+"all around" = "all around";
+
+/* No comment provided by engineer. */
 "All Bluetooth devices successfully disconnected" = "Všechna Bluetooth zařízení úspěšně odpojena";
 
 /* No comment provided by engineer. */
@@ -83,6 +86,9 @@
 "and" = "a";
 
 /* No comment provided by engineer. */
+"and store written answer in " = "and store written answer in ";
+
+/* No comment provided by engineer. */
 "and wait" = "a počkat";
 
 /* No comment provided by engineer. */
@@ -105,6 +111,9 @@
 
 /* No comment provided by engineer. */
 "Arduino extension" = "Arduino bloky";
+
+/* No comment provided by engineer. */
+"Ask " = "Ask ";
 
 /* No comment provided by engineer. */
 "at " = "na ";
@@ -227,6 +236,12 @@
 "Change size by" = "Změnit velikost o";
 
 /* No comment provided by engineer. */
+"Change to landscape" = "Change to landscape";
+
+/* No comment provided by engineer. */
+"Change to portrait" = "Change to portrait";
+
+/* No comment provided by engineer. */
 "Change transparency " = "Změnit průhlednost ";
 
 /* No comment provided by engineer. */
@@ -321,6 +336,9 @@
 
 /* No comment provided by engineer. */
 "Create account" = "Vytvořit účet";
+
+/* No comment provided by engineer. */
+"Data" = "Data";
 
 /* No comment provided by engineer. */
 "day" = "den";
@@ -458,6 +476,9 @@
 "Do you want to save the changes" = "Chcete uložit změny";
 
 /* No comment provided by engineer. */
+"don't rotate" = "Neotáčet";
+
+/* No comment provided by engineer. */
 "Done" = "Hotovo";
 
 /* No comment provided by engineer. */
@@ -582,6 +603,9 @@
 
 /* No comment provided by engineer. */
 "Error saving file" = "Error saving file";
+
+/* No comment provided by engineer. */
+"Event" = "Událost";
 
 /* No comment provided by engineer. */
 "FA" = "FA";
@@ -822,6 +846,9 @@
 
 /* No comment provided by engineer. */
 "Left" = "Nalevo";
+
+/* No comment provided by engineer. */
+"left-right only" = "zleva doprava";
 
 /* No comment provided by engineer. */
 "Length" = "Délka";
@@ -1163,6 +1190,9 @@
 "Place at " = "Umístěte na ";
 
 /* No comment provided by engineer. */
+"Play" = "Přehrát";
+
+/* No comment provided by engineer. */
 "Play Phiro music\n" = "Přehrávat hudbu Phiro ";
 
 /* No comment provided by engineer. */
@@ -1449,6 +1479,9 @@
 
 /* No comment provided by engineer. */
 "Set Phiro light" = "Nastavit Phiro světla";
+
+/* No comment provided by engineer. */
+"Set rotation style" = "Nastavit styl otáčení";
 
 /* No comment provided by engineer. */
 "Set size to" = "Nastavit velikost na";
@@ -1766,9 +1799,6 @@
 "Var/List" = "Var/List";
 
 /* No comment provided by engineer. */
-"Variable" = "Proměnná";
-
-/* No comment provided by engineer. */
 "Variable name:" = "Název proměnné:";
 
 /* No comment provided by engineer. */
@@ -1788,6 +1818,9 @@
 
 /* No comment provided by engineer. */
 "vibration" = "vibrace";
+
+/* No comment provided by engineer. */
+"View" = "View";
 
 /* No comment provided by engineer. */
 "Views" = "Názory";
@@ -1811,13 +1844,16 @@
 "Welcome!" = "Vítej!";
 
 /* No comment provided by engineer. */
+"What's your name?" = "Jak se jmenuješ?";
+
+/* No comment provided by engineer. */
 "When" = "Když";
 
 /* No comment provided by engineer. */
 "When background changes to" = "Když se pozadí změní na";
 
 /* No comment provided by engineer. */
-"When project started" = "When project started";
+"When project starts" = "When project starts";
 
 /* No comment provided by engineer. */
 "When stage is tapped" = "Při dotyku obrazovky";
@@ -1853,7 +1889,13 @@
 "You have already downloaded this project!" = "You have already downloaded this project!";
 
 /* No comment provided by engineer. */
+"Your answer" = "Your answer";
+
+/* No comment provided by engineer. */
 "Your email seems to be invalid" = "Your email seems to be invalid";
+
+/* No comment provided by engineer. */
+"Your project was uploaded to the Catrobat community where others can use and download it." = "Your project was uploaded to the Catrobat community where others can use and download it.";
 
 /* paint */
 "Zoom" = "Zoom";

@@ -50,6 +50,9 @@
 "Agree" = "Принять";
 
 /* No comment provided by engineer. */
+"all around" = "вокруг";
+
+/* No comment provided by engineer. */
 "All Bluetooth devices successfully disconnected" = "Все Bluetooth устройства успешно отключены";
 
 /* No comment provided by engineer. */
@@ -83,6 +86,9 @@
 "and" = "И";
 
 /* No comment provided by engineer. */
+"and store written answer in " = "и сохранить напечатанный ответ в";
+
+/* No comment provided by engineer. */
 "and wait" = "и ждать";
 
 /* No comment provided by engineer. */
@@ -101,10 +107,13 @@
 "arduino analog" = "аналог arduino";
 
 /* No comment provided by engineer. */
-"arduino digital" = "arduino digital";
+"arduino digital" = "arduino цифровой";
 
 /* No comment provided by engineer. */
 "Arduino extension" = "Расширение Arduino";
+
+/* No comment provided by engineer. */
+"Ask " = "Спросить";
 
 /* No comment provided by engineer. */
 "at " = "в ";
@@ -152,7 +161,7 @@
 "becomes true" = "становится истинным";
 
 /* No comment provided by engineer. */
-"Before you can start coding, please read and accept our Privacy Policy to use the app:" = "Before you can start coding, please read and accept our Privacy Policy to use the app:";
+"Before you can start coding, please read and accept our Privacy Policy to use the app:" = "Прежде чем вы сможете приступить к программированию, прочтите и примите нашу политику конфиденциальности, чтобы использовать приложение:";
 
 /* paint */
 "Blue" = "Синий";
@@ -206,7 +215,7 @@
 "Cannot connect to device. The device is not responding." = "Не удается подключиться к устройству. Устройство не отвечает.";
 
 /* No comment provided by engineer. */
-"Cannot connect to the media library. Please check your internet connection." = "Cannot connect to the media library. Please check your internet connection.";
+"Cannot connect to the media library. Please check your internet connection." = "Не удается подключиться к библиотеке. Пожалуйста, проверьте подключение к Интернету.";
 
 /* No comment provided by engineer. */
 "Categories" = "Категории";
@@ -227,6 +236,12 @@
 "Change size by" = "Изменить размер на";
 
 /* No comment provided by engineer. */
+"Change to landscape" = "Перейти в альбомный режим";
+
+/* No comment provided by engineer. */
+"Change to portrait" = "Изменить на портретный режим";
+
+/* No comment provided by engineer. */
 "Change transparency " = "Изменить прозрачность ";
 
 /* No comment provided by engineer. */
@@ -236,13 +251,13 @@
 "Change volume by" = "Изменить громкость на";
 
 /* No comment provided by engineer. */
-"Change x by " = "Change x by ";
+"Change x by " = "Изменить по X ";
 
 /* No comment provided by engineer. */
-"Change y by " = "Change y by ";
+"Change y by " = "Изменить по Y ";
 
 /* No comment provided by engineer. */
-"Changes discarded." = "Changes discarded.";
+"Changes discarded." = "Изменения сброшены!";
 
 /* No comment provided by engineer. */
 "Changes saved." = "Изменения сохранены!";
@@ -290,7 +305,7 @@
 "Connection failed" = "Подключиться не удалось";
 
 /* bluetooth */
-"Connection lost" = "Connection lost";
+"Connection lost" = "Соединение потеряно";
 
 /* bluetooth */
 "Connection not possible" = "Соединение невозможно";
@@ -311,10 +326,10 @@
 "Copy" = "Копировать";
 
 /* No comment provided by engineer. */
-"Copy brick" = "Copy brick";
+"Copy brick" = "Копировать блок";
 
 /* No comment provided by engineer. */
-"Copy looks" = "Copy looks";
+"Copy looks" = "Копировать образы";
 
 /* No comment provided by engineer. */
 "Copy project" = "Копировать проект";
@@ -323,10 +338,13 @@
 "Create account" = "Зарегистрироваться";
 
 /* No comment provided by engineer. */
+"Data" = "Данные";
+
+/* No comment provided by engineer. */
 "day" = "день";
 
 /* No comment provided by engineer. */
-"debug" = "debug";
+"debug" = "отладка";
 
 /* No comment provided by engineer. */
 "Dec" = "Дек";
@@ -341,79 +359,79 @@
 "Delete" = "Удалить";
 
 /* No comment provided by engineer. */
-"Delete actors or objects" = "Delete actors or objects";
+"Delete actors or objects" = "Удалить персонажа или объекты";
 
 /* No comment provided by engineer. */
-"Delete backgrounds" = "Delete backgrounds";
+"Delete backgrounds" = "Удалить фон";
 
 /* No comment provided by engineer. */
-"Delete brick" = "Delete brick";
+"Delete brick" = "Удалить кирпич";
 
 /* No comment provided by engineer. */
-"Delete condition" = "Delete condition";
+"Delete condition" = "Удалить условие";
 
 /* No comment provided by engineer. */
 "Delete item from list" = "Удалить элемент из списка";
 
 /* No comment provided by engineer. */
-"Delete looks" = "Delete looks";
+"Delete looks" = "Удалить образ";
 
 /* No comment provided by engineer. */
-"Delete loop" = "Delete loop";
+"Delete loop" = "Удалить цикл";
 
 /* No comment provided by engineer. */
-"Delete project" = "Delete project";
+"Delete project" = "Удалить проект";
 
 /* No comment provided by engineer. */
-"Delete projects" = "Delete projects";
+"Delete projects" = "Удалить проекты";
 
 /* No comment provided by engineer. */
-"Delete script" = "Delete script";
+"Delete script" = "Удалить скрипт";
 
 /* No comment provided by engineer. */
-"Delete sounds" = "Delete sounds";
+"Delete sounds" = "Удалить Звуки";
 
 /* No comment provided by engineer. */
-"Delete these bricks?" = "Delete these bricks?";
+"Delete these bricks?" = "Вы уверены, что хотите удалить эти блоки?";
 
 /* No comment provided by engineer. */
-"Delete these conditions?" = "Delete these conditions?";
+"Delete these conditions?" = "Удалить эти блоки условий?";
 
 /* No comment provided by engineer. */
-"Delete these loops?" = "Delete these loops?";
+"Delete these loops?" = "Удалить эти блоки циклов?";
 
 /* No comment provided by engineer. */
-"Delete these scripts?" = "Delete these scripts?";
+"Delete these scripts?" = "Удалить эти скрипты?";
 
 /* No comment provided by engineer. */
-"Delete this actor or object" = "Delete this actor or object";
+"Delete this actor or object" = "Удалить этого актера или объект";
 
 /* No comment provided by engineer. */
 "Delete this background" = "Удалить этот фон";
 
 /* No comment provided by engineer. */
-"Delete this brick?" = "Delete this brick?";
+"Delete this brick?" = "Удалить этот блок?";
 
 /* No comment provided by engineer. */
-"Delete this condition?" = "Delete this condition?";
+"Delete this condition?" = "Удалить этот блок условия?";
 
 /* No comment provided by engineer. */
 "Delete this look" = "Удалить этот образ";
 
 /* No comment provided by engineer. */
-"Delete this loop?" = "Delete this loop?";
+"Delete this loop?" = "Удалить этот блок цикла?";
 
 /* No comment provided by engineer. */
 "Delete this project" = "Удалить этот проект";
 
 /* No comment provided by engineer. */
-"Delete this script?" = "Delete this script?";
+"Delete this script?" = "Удалить этот скрипт?";
 
 /* No comment provided by engineer. */
 "Delete this sound" = "Удалить этот звук";
 
 /* No comment provided by engineer. */
-"Deletion mode" = "Deletion mode";
+"Deletion mode" = "Режим удаления";
 
 /* No comment provided by engineer. */
 "Description" = "Описание";
@@ -431,13 +449,13 @@
 "direction" = "направление";
 
 /* No comment provided by engineer. */
-"Disable brick" = "Disable brick";
+"Disable brick" = "Отключить блок";
 
 /* No comment provided by engineer. */
-"Disable condition" = "Disable condition";
+"Disable condition" = "Отключить блок условия";
 
 /* No comment provided by engineer. */
-"Disable loop" = "Disable loop";
+"Disable loop" = "Отключить блок цикла";
 
 /* No comment provided by engineer. */
 "Disable script" = "Отключить скрипт";
@@ -456,6 +474,9 @@
 
 /* paint */
 "Do you want to save the changes" = "Вы хотите сохранить изменения";
+
+/* No comment provided by engineer. */
+"don't rotate" = "не вращать";
 
 /* No comment provided by engineer. */
 "Done" = "Готово";
@@ -479,40 +500,40 @@
 "Edit" = "Редактирование";
 
 /* No comment provided by engineer. */
-"Edit actor or object" = "Edit actor or object";
+"Edit actor or object" = "Редактирование персонажа или объекта";
 
 /* Action sheet menu title */
-"Edit background" = "Edit background";
+"Edit background" = "Изменить фон";
 
 /* Action sheet menu title */
-"Edit backgrounds" = "Edit backgrounds";
+"Edit backgrounds" = "Изменить фоны";
 
 /* Action sheet menu title */
-"Edit brick" = "Edit brick";
+"Edit brick" = "Изменить кирпич";
 
 /* No comment provided by engineer. */
-"Edit formula" = "Edit formula";
+"Edit formula" = "Изменить формулу";
 
 /* Action sheet menu title */
-"Edit look" = "Edit look";
+"Edit look" = "Изменить образ";
 
 /* Action sheet menu title */
-"Edit looks" = "Edit looks";
+"Edit looks" = "Изменить образы";
 
 /* No comment provided by engineer. */
-"Edit project" = "Edit project";
+"Edit project" = "Редактировать проект";
 
 /* No comment provided by engineer. */
-"Edit projects" = "Edit projects";
+"Edit projects" = "Редактировать проекты";
 
 /* Action sheet menu title */
-"Edit script" = "Edit script";
+"Edit script" = "Редактировать скрипт";
 
 /* Action sheet menu title */
-"Edit sound" = "Edit sound";
+"Edit sound" = "Изменить звук";
 
 /* Action sheet menu title */
-"Edit sounds" = "Edit sounds";
+"Edit sounds" = "Изменить звуки";
 
 /* No comment provided by engineer. */
 "element" = "элемент";
@@ -530,13 +551,13 @@
 "Empty input!" = "Пустой ввод!";
 
 /* No comment provided by engineer. */
-"Enable brick" = "Enable brick";
+"Enable brick" = "Включить кирпич";
 
 /* No comment provided by engineer. */
-"Enable condition" = "Enable condition";
+"Enable condition" = "Включить блок условия";
 
 /* No comment provided by engineer. */
-"Enable loop" = "Enable loop";
+"Enable loop" = "Включить цикл";
 
 /* No comment provided by engineer. */
 "Enable script" = "Включить скрипт";
@@ -584,10 +605,13 @@
 "Error saving file" = "Ошибка сохранения файла";
 
 /* No comment provided by engineer. */
+"Event" = "Событие";
+
+/* No comment provided by engineer. */
 "FA" = "ФА";
 
 /* No comment provided by engineer. */
-"face detected" = "face detected";
+"face detected" = "Обнаружение лиц";
 
 /* No comment provided by engineer. */
 "faceposition x" = "faceposition x";
@@ -617,7 +641,7 @@
 "false" = "Ложь";
 
 /* No comment provided by engineer. */
-"Featured projects" = "Featured projects";
+"Featured projects" = "Избранные проекты";
 
 /* No comment provided by engineer. */
 "Feb" = "Фев";
@@ -644,10 +668,10 @@
 "for" = "в течении";
 
 /* No comment provided by engineer. */
-"for all actors or objects" = "for all actors or objects";
+"for all actors or objects" = "для всех актеров или объектов";
 
 /* No comment provided by engineer. */
-"for this actor or object" = "for this actor or object";
+"for this actor or object" = "для этого персонажа или объекта";
 
 /* No comment provided by engineer. */
 "Forever" = "Вечно";
@@ -662,13 +686,13 @@
 "Fr" = "Пт";
 
 /* Title of View where the user can see the frequently used bricks. */
-"Frequently used" = "Frequently used";
+"Frequently used" = "Часто используемые";
 
 /* No comment provided by engineer. */
 "Friday" = "Пятница";
 
 /* No comment provided by engineer. */
-"From camera" = "From camera";
+"From camera" = "Из камеры";
 
 /* No comment provided by engineer. */
 "front" = "переднюю";
@@ -824,6 +848,9 @@
 "Left" = "Налево";
 
 /* No comment provided by engineer. */
+"left-right only" = "только влево-вправо";
+
+/* No comment provided by engineer. */
 "Length" = "Длина";
 
 /* No comment provided by engineer. */
@@ -956,13 +983,13 @@
 "Move" = "Переместить";
 
 /* No comment provided by engineer. */
-"Move actors or objects" = "Move actors or objects";
+"Move actors or objects" = "Перемещение персонажей или объектов";
 
 /* No comment provided by engineer. */
-"Move brick" = "Move brick";
+"Move brick" = "Переместить кирпич";
 
 /* No comment provided by engineer. */
-"Move looks" = "Move looks";
+"Move looks" = "Переместить образы";
 
 /* No comment provided by engineer. */
 "Move Phiro motor backward" = "Двигать Phiro мотор назад";
@@ -971,16 +998,16 @@
 "Move Phiro motor forward" = "Двигать Phiro мотор в перед";
 
 /* No comment provided by engineer. */
-"Move sounds" = "Move sounds";
+"Move sounds" = "Переместить звуки";
 
 /* Name of the default catrobat project (used as filename!!) */
 "My first project" = "Мой первый проект";
 
 /* Default title of imported photo from camera (taken by camera) */
-"My image" = "My image";
+"My image" = "Мои изображения";
 
 /* Title for first (default) object */
-"My object" = "My object";
+"My object" = "Мой объект";
 
 /* No comment provided by engineer. */
 "Name" = "Название";
@@ -992,7 +1019,7 @@
 "New" = "Новый";
 
 /* paint */
-"New canvas" = "New canvas";
+"New canvas" = "Новый холст";
 
 /* No comment provided by engineer. */
 "New list" = "Новый список";
@@ -1025,13 +1052,13 @@
 "No" = "Нет";
 
 /* No comment provided by engineer. */
-"No camera available" = "No camera available";
+"No camera available" = "Камера недоступна";
 
 /* No comment provided by engineer. */
-"No categories selected" = "No categories selected";
+"No categories selected" = "Не выбрана категория!";
 
 /* No comment provided by engineer. */
-"No description available" = "No description available";
+"No description available" = "Нет описания";
 
 /* No comment provided by engineer. */
 "No or invalid image name entered, try again." = "Нет или введено недопустимое имя изображения, попробуйте снова.";
@@ -1082,7 +1109,7 @@
 "Object lists:" = "Списки объектов:";
 
 /* No comment provided by engineer. */
-"Object or actor name" = "Object or actor name";
+"Object or actor name" = "Имя объекта или актера";
 
 /* No comment provided by engineer. */
 "Object variables:" = "Переменные объекта:";
@@ -1163,6 +1190,9 @@
 "Place at " = "Поставить на ";
 
 /* No comment provided by engineer. */
+"Play" = "Запуск";
+
+/* No comment provided by engineer. */
 "Play Phiro music\n" = "Играть музыку Phiro\n";
 
 /* No comment provided by engineer. */
@@ -1172,10 +1202,10 @@
 "Please choose up to three categories" = "Пожалуйста, выберите до трех категорий";
 
 /* paint */
-"Please enter a text." = "Please enter a text.";
+"Please enter a text." = "Пожалуйста, введите текст!";
 
 /* No comment provided by engineer. */
-"Please enter at least %lu character(s)." = "Please enter at least %lu character(s).";
+"Please enter at least %lu character(s)." = "Пожалуйста, введите хотя бы %lu символ(ов).";
 
 /* No comment provided by engineer. */
 "Please log in to report this project as inappropriate" = "Пожалуйста, войдите, чтобы пожаловаться на этот проект";
@@ -1232,7 +1262,7 @@
 "position y" = "координата_y";
 
 /* No comment provided by engineer. */
-"Preview" = "Снимок";
+"Preview" = "Предпросмотр";
 
 /* No comment provided by engineer. */
 "Previous background" = "Предыдущий фон";
@@ -1388,7 +1418,7 @@
 "Select Arduino" = "Выбрать Arduino";
 
 /* No comment provided by engineer. */
-"Select brick category" = "Select brick category";
+"Select brick category" = "Выберите категорию блока";
 
 /* No comment provided by engineer. */
 "Select categories" = "Выберите категории";
@@ -1421,7 +1451,7 @@
 "Server is taking to long to respond, please try again later." = "Сервер слишком долго не отвечает, пожалуйста, попробуйте позже.";
 
 /* No comment provided by engineer. */
-"Session expired, please log in." = "Session expired, please log in.";
+"Session expired, please log in." = "Сессия истекла, пожалуйста, войдите в систему.";
 
 /* No comment provided by engineer. */
 "Set Arduino digital pin" = "Установить Pin-код для Arduino";
@@ -1451,6 +1481,9 @@
 "Set Phiro light" = "Установить Phiro свет";
 
 /* No comment provided by engineer. */
+"Set rotation style" = "Задать тип вращения ";
+
+/* No comment provided by engineer. */
 "Set size to" = "Установить размер";
 
 /* No comment provided by engineer. */
@@ -1463,16 +1496,16 @@
 "Set volume to" = "Установить громкость";
 
 /* No comment provided by engineer. */
-"Set x to " = "Set x to ";
+"Set x to " = "Установить X в ";
 
 /* No comment provided by engineer. */
-"Set y to " = "Set y to ";
+"Set y to " = "Установить Y в ";
 
 /* No comment provided by engineer. */
 "Settings" = "Настройки";
 
 /* No comment provided by engineer. */
-"Show" = "Показать";
+"Show" = "Посмотреть";
 
 /* No comment provided by engineer. */
 "Show details" = "Показать детали";
@@ -1565,7 +1598,7 @@
 "Tap \"+\" to add actors or objects" = "Нажми \"+\", чтобы добавить актеров или объектов";
 
 /* No comment provided by engineer. */
-"Tap \"+\" to add backgrounds" = "Tap \"+\" to add backgrounds";
+"Tap \"+\" to add backgrounds" = "Нажмите «+», чтобы добавить фон";
 
 /* No comment provided by engineer. */
 "Tap \"+\" to add looks" = "Нажмите «+», чтобы добавить образы";
@@ -1598,7 +1631,7 @@
 "The featured projects cannot be loaded" = "Избранные проекты не могут быть загружены";
 
 /* No comment provided by engineer. */
-"The following item could not be imported from the media library:" = "The following item could not be imported from the media library:";
+"The following item could not be imported from the media library:" = "Невозможно импортировать следующие элементы из библиотеки:";
 
 /* No comment provided by engineer. */
 "The input is too long. Please enter maximal %lu character(s)." = "Ввод слишком длинный. Пожалуйста, введите максимально %lu символ(ов).";
@@ -1631,7 +1664,7 @@
 "This feature is coming soon!" = "В разработке!";
 
 /* No comment provided by engineer. */
-"This list can not be deleted because it is still in use." = "This list can not be deleted because it is still in use.";
+"This list can not be deleted because it is still in use." = "Эта переменная не может быть удалена, потому что она все еще используется.";
 
 /* No comment provided by engineer. */
 "This variable can not be deleted because it is still in use." = "Эта переменная не может быть удалена, потому что она все еще используется.";
@@ -1655,10 +1688,10 @@
 "to list" = "к списку";
 
 /* No comment provided by engineer. */
-"To offer you all the benefits of our services and the associated account, it is necessary to collect certain data from you.\n\n\u{2022} To maintain and improve our services (apps and websites) and to do scientific research on ICT and STEM/STEAM education, we use Google Analytics, Crashlytics, and Firebase, all by Google LLC (USA), as well as Dynatrace by Dynatrace LLC (USA) to get metadata about the usage of our services, e.g., crash information, timestamps, visited pages/screens, usage of our apps and services, used operating system, and information about the network provider. This analysis and the collected data is not linked to your profile and does not contain any personal information (last bits of the IP address get anonymized). However, the collected data will get transferred to the service-provider (Google LLC, USA and Dynatrace LLC, USA). Data processing is based on agreements with Google LLC and Dynatrace LLC. This relationship to the service provider conforms to the European Union\'s General Data Protection Regulation (EU GDPR) and EU-USA \"Privacy Shield\" agreement.\n\n\u{2022} To create and use an account in our systems, and to inform you about necessary changes about your account per e-mail, e.g., updates or violations of our Terms of Use and Service, our community rules, or our policies, we will store your username and, if provided by you, your e-mail address. If you have connected your account via your Google or Facebook account, we additionally store an identification key connected to your account on these services. We will not use this data for any other (e.g., marketing) purposes, unless you explicitly allowed us to do so.\n\n\u{2022} On a voluntary basis, you can give us your country of residence through your account page on the sharing site. This will get displayed on your public profile and only be used for statistical and research purposes by us. It can be removed at any time in your profile settings.\n\n\u{2022} You can withdraw the usage of the personal data belonging to your account at any time by deleting your account through your profile page on https://share.catrob.at. After deleting your account you will still be able to use the provided services, but not to collaborate, e.g., through uploading programs, commenting, or liking. Also, all provided content linked to your account, e.g., uploaded programs, comments, etc., will be deleted.\n\n\u{2022} To avoid misuse of our services, e.g., through user contributed uploads or comments for illegal purposes, all user generated public data (uploads, comments) will be stored internally in a database, together with a timestamp and the used internet address. This data will not be used by or forwarded to any institutions, unless sufficiently illegal actions are reasonably suspected and officially entitled legal institutions request it based on applicable law. Each case will be thoroughly checked on an individual basis by us first.\n\n\u{2022} You can voluntarily subscribe to the Catrobat Newsletter, on https://catrob.at/newsletter provided by us through the MailChimp service (The Rocket Science Group LLC d/b/a MailChimp, USA). You will then receive updates on the Catrobat project and its services to your provided e-mail address. You can withdraw the newsletter at any time by using the \"unsubscribe\" link in the footer of every newsletter. This newsletter is provided by MailChimp with whom we do have a data-processing agreement and who committed to the EU General Data Protection Regulation and EU-USA \"Privacy Shield\". For further details on MailChimp please also look up MailChimp\'s Privacy Policy and Terms of Use.\n\n\u{2022} All Services are provided by the free open source Catrobat project under the umbrella of the International Catrobat Association – Verein zur Förderung freier Software, a non-profit NGO incorporated in Graz, Austria (European Union). Our policies pay respect to EU and Austrian data protection law (GDPR). To get in touch with us, please send an e-mail to contact@catrobat.org or mail us to Catrobat,\nc/o\nInstitute of Software Technology,\nGraz University of Technology,\nInffeldgasse 16b,\nA-8010 Graz, Austria\n(European Union).\n\nIn case you are below the age of 14, this policy must be accepted by a legal guardian (usually a parent).\n\nCatrobat\'s official English language privacy policy is available on the web under https://catrob.at/privacypolicy.\n\nVersion 2.2, 17 October 2019\n\nFind the previous, outdated, version of our privacy policy (2.0) here: http://developer.catrobat.org/privacy_policy_2-0" = "To offer you all the benefits of our services and the associated account, it is necessary to collect certain data from you.\n\n\u{2022} To maintain and improve our services (apps and websites) and to do scientific research on ICT and STEM/STEAM education, we use Google Analytics, Crashlytics, and Firebase, all by Google LLC (USA), as well as Dynatrace by Dynatrace LLC (USA) to get metadata about the usage of our services, e.g., crash information, timestamps, visited pages/screens, usage of our apps and services, used operating system, and information about the network provider. This analysis and the collected data is not linked to your profile and does not contain any personal information (last bits of the IP address get anonymized). However, the collected data will get transferred to the service-provider (Google LLC, USA and Dynatrace LLC, USA). Data processing is based on agreements with Google LLC and Dynatrace LLC. This relationship to the service provider conforms to the European Union\'s General Data Protection Regulation (EU GDPR) and EU-USA \"Privacy Shield\" agreement.\n\n\u{2022} To create and use an account in our systems, and to inform you about necessary changes about your account per e-mail, e.g., updates or violations of our Terms of Use and Service, our community rules, or our policies, we will store your username and, if provided by you, your e-mail address. If you have connected your account via your Google or Facebook account, we additionally store an identification key connected to your account on these services. We will not use this data for any other (e.g., marketing) purposes, unless you explicitly allowed us to do so.\n\n\u{2022} On a voluntary basis, you can give us your country of residence through your account page on the sharing site. This will get displayed on your public profile and only be used for statistical and research purposes by us. It can be removed at any time in your profile settings.\n\n\u{2022} You can withdraw the usage of the personal data belonging to your account at any time by deleting your account through your profile page on https://share.catrob.at. After deleting your account you will still be able to use the provided services, but not to collaborate, e.g., through uploading programs, commenting, or liking. Also, all provided content linked to your account, e.g., uploaded programs, comments, etc., will be deleted.\n\n\u{2022} To avoid misuse of our services, e.g., through user contributed uploads or comments for illegal purposes, all user generated public data (uploads, comments) will be stored internally in a database, together with a timestamp and the used internet address. This data will not be used by or forwarded to any institutions, unless sufficiently illegal actions are reasonably suspected and officially entitled legal institutions request it based on applicable law. Each case will be thoroughly checked on an individual basis by us first.\n\n\u{2022} You can voluntarily subscribe to the Catrobat Newsletter, on https://catrob.at/newsletter provided by us through the MailChimp service (The Rocket Science Group LLC d/b/a MailChimp, USA). You will then receive updates on the Catrobat project and its services to your provided e-mail address. You can withdraw the newsletter at any time by using the \"unsubscribe\" link in the footer of every newsletter. This newsletter is provided by MailChimp with whom we do have a data-processing agreement and who committed to the EU General Data Protection Regulation and EU-USA \"Privacy Shield\". For further details on MailChimp please also look up MailChimp\'s Privacy Policy and Terms of Use.\n\n\u{2022} All Services are provided by the free open source Catrobat project under the umbrella of the International Catrobat Association – Verein zur Förderung freier Software, a non-profit NGO incorporated in Graz, Austria (European Union). Our policies pay respect to EU and Austrian data protection law (GDPR). To get in touch with us, please send an e-mail to contact@catrobat.org or mail us to Catrobat,\nc/o\nInstitute of Software Technology,\nGraz University of Technology,\nInffeldgasse 16b,\nA-8010 Graz, Austria\n(European Union).\n\nIn case you are below the age of 14, this policy must be accepted by a legal guardian (usually a parent).\n\nCatrobat\'s official English language privacy policy is available on the web under https://catrob.at/privacypolicy.\n\nVersion 2.2, 17 October 2019\n\nFind the previous, outdated, version of our privacy policy (2.0) here: http://developer.catrobat.org/privacy_policy_2-0";
+"To offer you all the benefits of our services and the associated account, it is necessary to collect certain data from you.\n\n\u{2022} To maintain and improve our services (apps and websites) and to do scientific research on ICT and STEM/STEAM education, we use Google Analytics, Crashlytics, and Firebase, all by Google LLC (USA), as well as Dynatrace by Dynatrace LLC (USA) to get metadata about the usage of our services, e.g., crash information, timestamps, visited pages/screens, usage of our apps and services, used operating system, and information about the network provider. This analysis and the collected data is not linked to your profile and does not contain any personal information (last bits of the IP address get anonymized). However, the collected data will get transferred to the service-provider (Google LLC, USA and Dynatrace LLC, USA). Data processing is based on agreements with Google LLC and Dynatrace LLC. This relationship to the service provider conforms to the European Union\'s General Data Protection Regulation (EU GDPR) and EU-USA \"Privacy Shield\" agreement.\n\n\u{2022} To create and use an account in our systems, and to inform you about necessary changes about your account per e-mail, e.g., updates or violations of our Terms of Use and Service, our community rules, or our policies, we will store your username and, if provided by you, your e-mail address. If you have connected your account via your Google or Facebook account, we additionally store an identification key connected to your account on these services. We will not use this data for any other (e.g., marketing) purposes, unless you explicitly allowed us to do so.\n\n\u{2022} On a voluntary basis, you can give us your country of residence through your account page on the sharing site. This will get displayed on your public profile and only be used for statistical and research purposes by us. It can be removed at any time in your profile settings.\n\n\u{2022} You can withdraw the usage of the personal data belonging to your account at any time by deleting your account through your profile page on https://share.catrob.at. After deleting your account you will still be able to use the provided services, but not to collaborate, e.g., through uploading programs, commenting, or liking. Also, all provided content linked to your account, e.g., uploaded programs, comments, etc., will be deleted.\n\n\u{2022} To avoid misuse of our services, e.g., through user contributed uploads or comments for illegal purposes, all user generated public data (uploads, comments) will be stored internally in a database, together with a timestamp and the used internet address. This data will not be used by or forwarded to any institutions, unless sufficiently illegal actions are reasonably suspected and officially entitled legal institutions request it based on applicable law. Each case will be thoroughly checked on an individual basis by us first.\n\n\u{2022} You can voluntarily subscribe to the Catrobat Newsletter, on https://catrob.at/newsletter provided by us through the MailChimp service (The Rocket Science Group LLC d/b/a MailChimp, USA). You will then receive updates on the Catrobat project and its services to your provided e-mail address. You can withdraw the newsletter at any time by using the \"unsubscribe\" link in the footer of every newsletter. This newsletter is provided by MailChimp with whom we do have a data-processing agreement and who committed to the EU General Data Protection Regulation and EU-USA \"Privacy Shield\". For further details on MailChimp please also look up MailChimp\'s Privacy Policy and Terms of Use.\n\n\u{2022} All Services are provided by the free open source Catrobat project under the umbrella of the International Catrobat Association – Verein zur Förderung freier Software, a non-profit NGO incorporated in Graz, Austria (European Union). Our policies pay respect to EU and Austrian data protection law (GDPR). To get in touch with us, please send an e-mail to contact@catrobat.org or mail us to Catrobat,\nc/o\nInstitute of Software Technology,\nGraz University of Technology,\nInffeldgasse 16b,\nA-8010 Graz, Austria\n(European Union).\n\nIn case you are below the age of 14, this policy must be accepted by a legal guardian (usually a parent).\n\nCatrobat\'s official English language privacy policy is available on the web under https://catrob.at/privacypolicy.\n\nVersion 2.2, 17 October 2019\n\nFind the previous, outdated, version of our privacy policy (2.0) here: http://developer.catrobat.org/privacy_policy_2-0" = "Translation activity for the string To offer you all the benefits of our services and the associated account, it is necessary to collect certain data from you. \u{2022} To maintain and improve our services (apps and websites) and to do scientific research on ICT and STEM/STEAM education, we use Google Analytics, Crashlytics, and Firebase, all by Google LLC (USA), as well as Dynatrace by Dynatrace LLC (USA) to get metadata about the usage of our services, e.g., crash information, timestamps, visited pages/screens, usage of our apps and services, used operating system, and information about the network provider. This analysis and the collected data is not linked to your profile and does not contain any personal information (last bits of the IP address get anonymized). However, the collected data will get transferred to the service-provider (Google LLC, USA and Dynatrace LLC, USA). Data processing is based on agreements with Google LLC and Dynatrace LLC. This relationship to the service provider conforms to the European Union\'s General Data Protection Regulation (EU GDPR) and EU-USA \"Privacy Shield\" agreement. \u{2022} To create and use an account in our systems, and to inform you about necessary changes about your account per e-mail, e.g., updates or violations of our Terms of Use and Service, our community rules, or our policies, we will store your username and, if provided by you, your e-mail address. If you have connected your account via your Google or Facebook account, we additionally store an identification key connected to your account on these services. We will not use this data for any other (e.g., marketing) purposes, unless you explicitly allowed us to do so. \u{2022} On a voluntary basis, you can give us your country of residence through your account page on the sharing site. This will get displayed on your public profile and only be used for statistical and research purposes by us. It can be removed at any time in your profile settings. \u{2022} You can withdraw the usage of the personal data belonging to your account at any time by deleting your account through your profile page on https://share.catrob.at. After deleting your account you will still be able to use the provided services, but not to collaborate, e.g., through uploading programs, commenting, or liking. Also, all provided content linked to your account, e.g., uploaded programs, comments, etc., will be deleted. \u{2022} To avoid misuse of our services, e.g., through user contributed uploads or comments for illegal purposes, all user generated public data (uploads, comments) will be stored internally in a database, together with a timestamp and the used internet address. This data will not be used by or forwarded to any institutions, unless sufficiently illegal actions are reasonably suspected and officially entitled legal institutions request it based on applicable law. Each case will be thoroughly checked on an individual basis by us first. \u{2022} You can voluntarily subscribe to the Catrobat Newsletter, on https://catrob.at/newsletter provided by us through the MailChimp service (The Rocket Science Group LLC d/b/a MailChimp, USA). You will then receive updates on the Catrobat project and its services to your provided e-mail address. You can withdraw the newsletter at any time by using the \"unsubscribe\" link in the footer of every newsletter. This newsletter is provided by MailChimp with whom we do have a data-processing agreement and who committed to the EU General Data Protection Regulation and EU-USA \"Privacy Shield\". For further details on MailChimp please also look up MailChimp\'s Privacy Policy and Terms of Use. \u{2022} All Services are provided by the free open source Catrobat project under the umbrella of the International Catrobat Association – Verein zur Förderung freier Software, a non-profit NGO incorporated in Graz, Austria (European Union). Our policies pay respect to EU and Austrian data protection law (GDPR). To get in touch with us, please send an e-mail to contact@catrobat.org or mail us to Catrobat, c/o Institute of Software Technology, Graz University of Technology, Inffeldgasse 16b, A-8010 Graz, Austria (European Union). In case you are below the age of 14, this policy must be accepted by a legal guardian (usually a parent). Catrobat\'s official English language privacy policy is available on the web under https://catrob.at/privacypolicy. Version 2.2, 17 October 2019 Find the previous, outdated, version of our privacy policy (2.0) here: http://developer.catrobat.org/privacy_policy_2-0\nNo comment provided by engineer.\nFile: https://crowdin.com/translate/catrobat/9/en-ru";
 
 /* No comment provided by engineer. */
-"To use our app, it is necessary to accept our Privacy Policy. However, if you don\'t feel comfortable to do so, you can use our free web-services on share.catrob.at" = "To use our app, it is necessary to accept our Privacy Policy. However, if you don\'t feel comfortable to do so, you can use our free web-services on share.catrob.at";
+"To use our app, it is necessary to accept our Privacy Policy. However, if you don\'t feel comfortable to do so, you can use our free web-services on share.catrob.at" = "Для использования нашего приложения необходимо принять нашу Политику конфиденциальности. Однако, если вам это не удобно, вы можете воспользоваться нашими бесплатными веб-сервисами на share.catrob.at";
 
 /* No comment provided by engineer. */
 "to x:" = "по X:";
@@ -1727,7 +1760,7 @@
 "Unknown Element" = "Неизвестный элемент";
 
 /* No comment provided by engineer. */
-"Unselect all" = "Unselect all";
+"Unselect all" = "Снять все";
 
 /* No comment provided by engineer. */
 "Unsupported Brick:" = "Неподдерживаемый блок:";
@@ -1766,13 +1799,10 @@
 "Var/List" = "Переменная/Список";
 
 /* No comment provided by engineer. */
-"Variable" = "Переменная";
-
-/* No comment provided by engineer. */
 "Variable name:" = "Имя переменной:";
 
 /* No comment provided by engineer. */
-"Variable or list" = "Variable or list";
+"Variable or list" = "Переменная или список";
 
 /* No comment provided by engineer. */
 "Variable type" = "Тип переменной";
@@ -1788,6 +1818,9 @@
 
 /* No comment provided by engineer. */
 "vibration" = "вибрация";
+
+/* No comment provided by engineer. */
+"View" = "View";
 
 /* No comment provided by engineer. */
 "Views" = "Просмотры";
@@ -1811,13 +1844,16 @@
 "Welcome!" = "Добро пожаловать!";
 
 /* No comment provided by engineer. */
+"What's your name?" = "Как тебя зовут?";
+
+/* No comment provided by engineer. */
 "When" = "Как только";
 
 /* No comment provided by engineer. */
 "When background changes to" = "Когда фон изменится на";
 
 /* No comment provided by engineer. */
-"When project started" = "При старте";
+"When project starts" = "При старте";
 
 /* No comment provided by engineer. */
 "When stage is tapped" = "При прикосновении к экрану";
@@ -1853,7 +1889,13 @@
 "You have already downloaded this project!" = "Вы уже загрузили этот проект!";
 
 /* No comment provided by engineer. */
+"Your answer" = "Ваш ответ";
+
+/* No comment provided by engineer. */
 "Your email seems to be invalid" = "Ваш электронный адрес, похоже, не действителен.";
 
+/* No comment provided by engineer. */
+"Your project was uploaded to the Catrobat community where others can use and download it." = "Ваш проект был загружен в сообщество Catrobat, где его могут использовать и загружать другие.";
+
 /* paint */
-"Zoom" = "Zoom";
+"Zoom" = "Масштаб";

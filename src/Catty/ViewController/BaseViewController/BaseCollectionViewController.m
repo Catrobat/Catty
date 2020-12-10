@@ -164,9 +164,8 @@
                                                                          target:self
                                                                          action:@selector(showBrickPickerAction:)];
     add.enabled = (! self.editing);
-    UIBarButtonItem *play = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
-                                                                          target:self
-                                                                          action:@selector(playSceneAction:)];
+    UIBarButtonItem *play = [[PlayButton alloc] initWithTarget:self
+                                                        action:@selector(playSceneAction:)];
     play.enabled = (! self.editing);
     if (self.editing) {
         self.toolbarItems = @[selectAllRowsButtonItem,flex,delete];
@@ -178,7 +177,6 @@
 
 - (void)showLoadingView
 {
-    self.loadingView.alpha = 1.0;
     self.collectionView.scrollEnabled = NO;
     self.collectionView.userInteractionEnabled = NO;
     self.navigationController.navigationBar.userInteractionEnabled = NO;

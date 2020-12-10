@@ -101,4 +101,28 @@ final class RepeatBrickTests: XCTestCase {
         XCTAssertFalse(brick.timesToRepeat === copiedBrick.timesToRepeat)
     }
 
+    func testGetFormulas() {
+        let brick = RepeatBrick()
+        let script = Script()
+        let object = SpriteObject()
+        let scene = Scene(name: "testScene")
+        object.scene = scene
+
+        script.object = object
+        brick.script = script
+        brick.timesToRepeat = Formula(double: 1)
+        var formulas = brick.getFormulas()
+
+        XCTAssertTrue(brick.timesToRepeat.isEqual(to: formulas?[0]))
+        XCTAssertTrue(brick.timesToRepeat.isEqual(to: Formula(float: 1)))
+        XCTAssertFalse(brick.timesToRepeat.isEqual(to: Formula(float: 22)))
+
+        brick.timesToRepeat = Formula(float: 22)
+        formulas = brick.getFormulas()
+
+        XCTAssertTrue(brick.timesToRepeat.isEqual(to: formulas?[0]))
+        XCTAssertTrue(brick.timesToRepeat.isEqual(to: Formula(float: 22)))
+        XCTAssertFalse(brick.timesToRepeat.isEqual(to: Formula(float: 1)))
+    }
+
 }

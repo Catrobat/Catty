@@ -28,7 +28,6 @@
 #define kProjectImagesDirName @"images"
 #define kProjectsFolder @".projects"
 #define kResourceFileNameSeparator @"_" // [md5]_[fileName] e.g. D32285BE8042D8D8071FAF0A33054DD0_music.mp3                                      //         or for images: 34A109A82231694B6FE09C216B390570_normalCat
-#define kPreviewImageNamePrefix @"small_" // [md5]_small_[fileName] e.g. 34A109A82231694B6FE09C216B390570_small_normalCat
 #define kLocalizedMyImageExtension @"png"
 #define kPreviewThumbnailWidth 160
 #define kPreviewThumbnailHeight 160
@@ -80,7 +79,6 @@ typedef NS_ENUM(NSInteger, ResourceType) {
     kAccelerometerAndDeviceMotion = kAccelerometer | kDeviceMotion // TODO Pass ResourceType parameters as array (e.g. in "Sensor")
 };
 
-#define kScreenshotThumbnailPrefix @".thumb_"
 #define kScreenshotFilename @"screenshot.png"
 #define kScreenshotManualFilename @"manual_screenshot.png"
 #define kScreenshotAutoFilename @"automatic_screenshot.png"

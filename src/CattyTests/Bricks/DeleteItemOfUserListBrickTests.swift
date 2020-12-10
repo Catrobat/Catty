@@ -122,4 +122,19 @@ final class DeleteItemOfUserListBrickTests: XCTestCase {
         XCTAssertTrue(brick.userList.isEqual(userList))
         XCTAssertTrue(brick.userList === copiedBrick.userList)
     }
+
+    func testGetFormulas() {
+        userList.add(element: 1)
+        brick.listFormula = Formula(integer: 1)
+        var formulas = brick.getFormulas()
+
+        XCTAssertEqual(formulas?.count, 1)
+        XCTAssertEqual(brick.listFormula, formulas?[0])
+
+        userList.add(element: 1)
+        brick.listFormula = Formula(integer: 22)
+        formulas = brick.getFormulas()
+
+        XCTAssertEqual(brick.listFormula, formulas?[0])
+    }
 }

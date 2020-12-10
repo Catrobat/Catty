@@ -113,10 +113,10 @@ class BluetoothDevicesTableViewController: UITableViewController {
 
     func startScan() {
 
-        let afterPeripheralDiscovered = {(peripheral: Peripheral) -> Void in
+        let afterPeripheralDiscovered = {(_: Peripheral) -> Void in
             self.updateWhenActive()
         }
-        let afterTimeout = {(error: NSError) -> Void in
+        let afterTimeout = {(_: NSError) -> Void in
         }
         let future: FutureStream<Peripheral> = CentralManager.sharedInstance.startScan()
         future.onSuccess(afterPeripheralDiscovered)

@@ -1,18 +1,18 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <program>
   <header>
-    <applicationBuildName/>
+    <applicationBuildName></applicationBuildName>
     <applicationBuildNumber>0</applicationBuildNumber>
     <applicationName>Pocket Code</applicationName>
-    <applicationVersion>0.9.28</applicationVersion>
+    <applicationVersion>0.9.4</applicationVersion>
     <catrobatLanguageVersion>0.993</catrobatLanguageVersion>
-    <dateTimeUpload/>
+    <dateTimeUpload></dateTimeUpload>
     <description>Put your left hand on a table. Set phone 6&quot; over it, Top of phone alligned toward your fingertips. Tilt and turn the phone to look at your bones!</description>
-    <deviceName>PRA-LX1</deviceName>
+    <deviceName>Nexus 4</deviceName>
     <landscapeMode>false</landscapeMode>
-    <mediaLicense>http://developer.catrobat.org/ccbysa_v4</mediaLicense>
+    <mediaLicense>http://developer.catrobat.org/ccbysa_v3</mediaLicense>
     <platform>Android</platform>
-    <platformVersion>26.0</platformVersion>
+    <platformVersion>17.0</platformVersion>
     <programLicense>http://developer.catrobat.org/agpl_v3</programLicense>
     <programName>X-Ray phone</programName>
     <remixOf></remixOf>
@@ -20,14 +20,14 @@
     <screenHeight>1184</screenHeight>
     <screenMode>STRETCH</screenMode>
     <screenWidth>768</screenWidth>
-    <tags>Spiele</tags>
-    <url>/pocketcode/program/1447</url>
+    <tags></tags>
+    <url>http://pocketcode.org/details/1447</url>
     <userHandle>Yan</userHandle>
   </header>
   <settings/>
   <scenes>
     <scene>
-      <name>Szene 1</name>
+      <name>Scene 1</name>
       <objectList>
         <object type="SingleSprite" name="Background">
           <lookList>
@@ -116,41 +116,6 @@
                 <brick type="PlaceAtBrick">
                   <commentedOut>false</commentedOut>
                   <formulaList>
-                    <formula category="X_POSITION">
-                      <leftChild>
-                        <rightChild>
-                          <type>NUMBER</type>
-                          <value>0.75</value>
-                        </rightChild>
-                        <type>OPERATOR</type>
-                        <value>MINUS</value>
-                      </leftChild>
-                      <rightChild>
-                        <rightChild>
-                          <leftChild>
-                            <leftChild>
-                              <type>SENSOR</type>
-                              <value>X_INCLINATION</value>
-                            </leftChild>
-                            <rightChild>
-                              <type>SENSOR</type>
-                              <value>X_INCLINATION</value>
-                            </rightChild>
-                            <type>OPERATOR</type>
-                            <value>MULT</value>
-                          </leftChild>
-                          <rightChild>
-                            <type>SENSOR</type>
-                            <value>X_INCLINATION</value>
-                          </rightChild>
-                          <type>OPERATOR</type>
-                          <value>MULT</value>
-                        </rightChild>
-                        <type>BRACKET</type>
-                      </rightChild>
-                      <type>OPERATOR</type>
-                      <value>MULT</value>
-                    </formula>
                     <formula category="Y_POSITION">
                       <leftChild>
                         <rightChild>
@@ -186,6 +151,41 @@
                       <type>OPERATOR</type>
                       <value>MULT</value>
                     </formula>
+                    <formula category="X_POSITION">
+                      <leftChild>
+                        <rightChild>
+                          <type>NUMBER</type>
+                          <value>0.75</value>
+                        </rightChild>
+                        <type>OPERATOR</type>
+                        <value>MINUS</value>
+                      </leftChild>
+                      <rightChild>
+                        <rightChild>
+                          <leftChild>
+                            <leftChild>
+                              <type>SENSOR</type>
+                              <value>X_INCLINATION</value>
+                            </leftChild>
+                            <rightChild>
+                              <type>SENSOR</type>
+                              <value>X_INCLINATION</value>
+                            </rightChild>
+                            <type>OPERATOR</type>
+                            <value>MULT</value>
+                          </leftChild>
+                          <rightChild>
+                            <type>SENSOR</type>
+                            <value>X_INCLINATION</value>
+                          </rightChild>
+                          <type>OPERATOR</type>
+                          <value>MULT</value>
+                        </rightChild>
+                        <type>BRACKET</type>
+                      </rightChild>
+                      <type>OPERATOR</type>
+                      <value>MULT</value>
+                    </formula>
                   </formulaList>
                 </brick>
                 <brick type="LoopEndlessBrick">
@@ -204,11 +204,11 @@
         <objectListOfList/>
         <objectVariableList>
           <entry>
-            <object reference="../../../../objectList/object"/>
+            <object reference="../../../../objectList/object[2]"/>
             <list/>
           </entry>
           <entry>
-            <object reference="../../../../objectList/object[2]"/>
+            <object reference="../../../../objectList/object"/>
             <list/>
           </entry>
         </objectVariableList>
@@ -219,20 +219,13 @@
     </scene>
   </scenes>
   <programVariableList>
-    <userVariable>
-    </userVariable>
-    <userVariable>
-    </userVariable>
-    <userVariable>
-    </userVariable>
-    <userVariable>
-    </userVariable>
-    <userVariable>
-    </userVariable>
-    <userVariable>
-    </userVariable>
+    <userVariable>X</userVariable>
+    <userVariable>Y</userVariable>
+    <userVariable>Yp</userVariable>
+    <userVariable>Xp</userVariable>
+    <userVariable>Yoffset</userVariable>
+    <userVariable>Xoffset</userVariable>
     <userVariable reference="../../scenes/scene/objectList/object[2]/scriptList/script/brickList/brick[2]/userVariable"/>
   </programVariableList>
   <programListOfLists/>
 </program>
-
