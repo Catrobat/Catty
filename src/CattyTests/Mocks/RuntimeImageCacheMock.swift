@@ -38,20 +38,30 @@ final class RuntimeImageCacheMock: RuntimeImageCache {
     var imagesOnDisk: [String: UIImage]
     var cachedImages: [CachedImage]
     var cleared = false
+    var loadImageFromDiskCalledPaths: [String]
 
     init(imagesOnDisk: [String: UIImage], cachedImages: [CachedImage]) {
         self.imagesOnDisk = imagesOnDisk
         self.cachedImages = cachedImages
+        self.loadImageFromDiskCalledPaths = []
         super.init()
     }
 
+    override func loadImageFromDisk(withPath path: String!) {
+        loadImageFromDisk(withPath: path, andSize: .zero, onCompletion: nil)
+    }
+
     override func loadImageFromDisk(withPath imagePath: String!, andSize size: CGSize, onCompletion completion: ((UIImage?, String?) -> Void)!) {
-        if let image = self.imagesOnDisk[imagePath] {
+        self.loadImageFromDiskCalledPaths.append(imagePath)
+
+        if let image = self.imagesOnDisk[imagePath], let completion = completion {
             completion(image, imagePath)
             return
         }
 
-        completion(nil, nil)
+        if let completion = completion {
+            completion(nil, nil)
+        }
     }
 
     override func cachedImage(forPath path: String!) -> UIImage? {
