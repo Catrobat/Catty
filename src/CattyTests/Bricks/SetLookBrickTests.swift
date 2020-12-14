@@ -24,19 +24,43 @@ import XCTest
 
 @testable import Pocket_Code
 
-final class SetLookBrickTests: XCTestCase {
+final class SetLookBrickTests: AbstractBrickTest {
 
+    var lookA: Look!
+    var lookB: Look!
+    var image: UIImage!
+
+    var scene: Scene!
     var object: SpriteObject!
-    var project: Project!
     var spriteNode: CBSpriteNode!
+    var script: Script!
+    var context: CBScriptContextProtocol!
 
     override func setUp() {
+        super.setUp()
+
+        let filePath = Bundle(for: type(of: self)).path(forResource: "test.png", ofType: nil)!
+        image = UIImage(contentsOfFile: filePath)
+
+        lookA = LookMock(name: "LookA", absolutePath: filePath)
+        lookB = LookMock(name: "LookB", absolutePath: filePath)
+        scene = Scene(name: "scene")
+
+        scene.project = Project()
+
         object = SpriteObject()
-        project = ProjectManager.createProject(name: "a", projectId: "1")
-        object.scene = project.scene
+        scene.add(object: object)
+
+        object.lookList.add(lookA!)
+        object.lookList.add(lookB!)
+
         spriteNode = CBSpriteNode(spriteObject: object)
         object.spriteNode = spriteNode
 
+        script = Script()
+        script.object = object
+
+        context = CBScriptContext(script: script, spriteNode: spriteNode, formulaInterpreter: formulaInterpreter, touchManager: formulaInterpreter.touchManager)
     }
 
     func testMutableCopy() {
@@ -52,4 +76,73 @@ final class SetLookBrickTests: XCTestCase {
         XCTAssertTrue(copiedBrick.look === brick.look)
     }
 
+    func testInstructionWithCache() {
+        let imageCacheMock = RuntimeImageCacheMock(imagesOnDisk: [:],
+                                                   cachedImages: [CachedImage(path: lookB.path(for: scene)!, image: image)])
+
+        let brick = SetLookBrick()
+        brick.script = script
+        brick.look = lookB
+
+        spriteNode.currentLook = lookA
+
+        let instruction = brick.actionBlock(imageCache: imageCacheMock)
+        instruction()
+
+        XCTAssertEqual(lookB, spriteNode.currentLook)
+        XCTAssertEqual(0, imageCacheMock.loadImageFromDiskCalledPaths.count)
+    }
+
+    func testInstructionWithoutCache() {
+        let imageCacheMock = RuntimeImageCacheMock(imagesOnDisk: [lookB.path(for: scene)!: image],
+                                                   cachedImages: [])
+
+        let brick = SetLookBrick()
+        brick.script = script
+        brick.look = lookB
+
+        spriteNode.currentLook = lookA
+
+        let instruction = brick.actionBlock(imageCache: imageCacheMock)
+        instruction()
+
+        XCTAssertEqual(lookB, spriteNode.currentLook)
+        XCTAssertEqual(1, imageCacheMock.loadImageFromDiskCalledPaths.count)
+        XCTAssertEqual(lookB.path(for: scene), imageCacheMock.loadImageFromDiskCalledPaths.first!)
+    }
+
+    func testInstructionWithoutLook() {
+        let imageCacheMock = RuntimeImageCacheMock(imagesOnDisk: [lookB.path(for: scene)!: image],
+                                                   cachedImages: [])
+
+        let brick = SetLookBrick()
+        brick.script = script
+        brick.look = nil
+
+        spriteNode.currentLook = lookA
+
+        let instruction = brick.actionBlock(imageCache: imageCacheMock)
+        instruction()
+
+        XCTAssertEqual(lookA, spriteNode.currentLook)
+        XCTAssertEqual(0, imageCacheMock.loadImageFromDiskCalledPaths.count)
+    }
+
+    func testInstructionInvalidImage() {
+        let imageCacheMock = RuntimeImageCacheMock(imagesOnDisk: [:], cachedImages: [])
+        let lookWithInvalidPath = LookMock(name: "LookWithInvalidPath", absolutePath: "invalidPath")
+
+        let brick = SetLookBrick()
+        brick.script = script
+        brick.look = lookWithInvalidPath
+
+        spriteNode.currentLook = lookA
+
+        let instruction = brick.actionBlock(imageCache: imageCacheMock)
+        instruction()
+
+        XCTAssertEqual(lookA, spriteNode.currentLook)
+        XCTAssertEqual(1, imageCacheMock.loadImageFromDiskCalledPaths.count)
+        XCTAssertEqual(lookWithInvalidPath.path(for: scene), imageCacheMock.loadImageFromDiskCalledPaths.first!)
+    }
 }

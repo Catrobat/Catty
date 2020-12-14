@@ -20,30 +20,17 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension SetLookBrick: CBInstructionProtocol {
+@testable import Pocket_Code
 
-    func instruction() -> CBInstruction {
-        .action { _ in SKAction.run(self.actionBlock(imageCache: RuntimeImageCache.shared())) }
+final class LookMock: Look {
+    let absolutePath: String
+
+    init(name: String, absolutePath: String) {
+        self.absolutePath = absolutePath
+        super.init(name: name, filePath: absolutePath)
     }
 
-    func actionBlock(imageCache: RuntimeImageCache) -> () -> Void {
-        guard let object = self.script?.object,
-            let spriteNode = object.spriteNode
-            else { fatalError("This should never happen!") }
-
-        return {
-            guard let _ = self.look else { return }
-
-            var image = imageCache.cachedImage(forPath: self.pathForLook())
-
-            if image == nil {
-                imageCache.loadImageFromDisk(withPath: self.pathForLook())
-                guard let imageFromDisk = UIImage(contentsOfFile: self.pathForLook()) else { return }
-                image = imageFromDisk
-            }
-
-            spriteNode.currentLook = self.look
-            spriteNode.executeFilter(image)
-        }
+    override func path(for scene: Scene) -> String {
+        self.absolutePath
     }
 }
