@@ -212,6 +212,20 @@
     return [ret copy];
 }
 
+- (void)updateReferences
+{
+    NSArray <SpriteObject*> *allObjects = [[NSMutableArray alloc] initWithArray: self.allObjects];
+    for (SpriteObject *sprite in allObjects) {
+        sprite.scene.project = self;
+        for (Script *script in sprite.scriptList) {
+            script.object = sprite;
+            for (Brick *brick in script.brickList) {
+                brick.script = script;
+            }
+        }
+    }
+}
+
 #pragma mark - Manager
 
 + (NSString*)projectDirectoryNameForProjectName:(NSString*)projectName projectID:(NSString*)projectID
