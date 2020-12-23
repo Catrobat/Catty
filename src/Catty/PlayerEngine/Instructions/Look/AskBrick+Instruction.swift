@@ -47,8 +47,7 @@ extension AskBrick: CBInstructionProtocol {
     }
 
     func callbackSubmit(with input: String, scheduler: CBSchedulerProtocol) {
-        guard let userVariable = self.userVariable else { fatalError("Unexpected found nil.") }
-        if input.isNotEmpty {
+        if let userVariable = self.userVariable, input.isNotEmpty {
             userVariable.value = input
         }
         scheduler.resume()
