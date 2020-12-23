@@ -976,21 +976,21 @@
 		59F5C2AF23F2E36D00D95016 /* BrickCellPickerViewerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F5C2AE23F2E36D00D95016 /* BrickCellPickerViewerTest.swift */; };
 		5E0B361E220A55BB0056EB12 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 92300CE918B2196700F2B4DC /* Localizable.strings */; };
 		5E0B3622220A5F3C0056EB12 /* LanguageTranslationDefinesUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0B3621220A5F3C0056EB12 /* LanguageTranslationDefinesUI.swift */; };
-		5E18A81221A547AA00541536 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E18A81121A547AA00541536 /* UIViewController+Extensions.swift */; };
+		5E18A81221A547AA00541536 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E18A81121A547AA00541536 /* UIViewControllerExtension.swift */; };
 		5E219F2621C8B46A000439BA /* SelectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E219F2521C8B46A000439BA /* SelectButton.swift */; };
-		5E21DA6821A3E4AF00017D2C /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E21DA6721A3E4AF00017D2C /* UIImage+Extensions.swift */; };
+		5E21DA6821A3E4AF00017D2C /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E21DA6721A3E4AF00017D2C /* UIImageExtension.swift */; };
 		5E21DA6F21A5255600017D2C /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E21DA6C21A5255500017D2C /* UploadViewController.swift */; };
 		5E21DA7121A5289F00017D2C /* DataExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E21DA7021A5289F00017D2C /* DataExtension.swift */; };
 		5E43D71821928053006FDF2A /* SwellAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E43D71721928052006FDF2A /* SwellAll.swift */; };
 		5E7B5B0D21EC0FCF002E4B57 /* HelpWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7B5B0A21EC0FCF002E4B57 /* HelpWebViewController.swift */; };
 		5E7E7F8A2341CB8100411298 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7E7F892341CB8100411298 /* UIColorExtension.swift */; };
-		5E84B7A72341FC68009982AA /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E84B7A62341FC68009982AA /* UITextField+Extension.swift */; };
+		5E84B7A72341FC68009982AA /* UITextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E84B7A62341FC68009982AA /* UITextFieldExtension.swift */; };
 		5E99F2E323442E1A007878C1 /* ThemesHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E99F2E223442E1A007878C1 /* ThemesHelper.swift */; };
-		5EA1089421B8FBD200B837B9 /* AVAudioSession+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA1089321B8FBD200B837B9 /* AVAudioSession+Extensions.swift */; };
+		5EA1089421B8FBD200B837B9 /* AVAudioSessionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA1089321B8FBD200B837B9 /* AVAudioSessionExtension.swift */; };
 		5EDBA043219549AE000EFFEF /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EDBA042219549AE000EFFEF /* LoadingView.swift */; };
 		5EF590BA2192D81F00C19F12 /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF590B92192D81F00C19F12 /* DoubleExtension.swift */; };
 		5EFBD5F92145533B003B3CDC /* ProjectDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFBD5F82145533B003B3CDC /* ProjectDescriptionViewController.swift */; };
-		5EFBD5FC2145AADC003B3CDC /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFBD5FB2145AADC003B3CDC /* UIView+Extensions.swift */; };
+		5EFBD5FC2145AADC003B3CDC /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFBD5FB2145AADC003B3CDC /* UIViewExtension.swift */; };
 		6F021E6724A682350097F21A /* StoreProjectUploaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F021E6524A681410097F21A /* StoreProjectUploaderTests.swift */; };
 		6F17FA1824B7579000885E07 /* UploadViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F17FA1724B7579000885E07 /* UploadViewControllerTests.swift */; };
 		6F1911A124E7CE0D00CF1B4F /* SceneMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F19119D24E7C8CF00CF1B4F /* SceneMock.swift */; };
@@ -1184,7 +1184,6 @@
 		92FF2E331A24C5A700093DA7 /* CAGradientLayer+CatrobatCAGradientExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E0D1A24C5A700093DA7 /* CAGradientLayer+CatrobatCAGradientExtensions.m */; };
 		92FF2E391A24C5A700093DA7 /* LICENSE_NSString+FastImageSize in Resources */ = {isa = PBXBuildFile; fileRef = 92FF2E1E1A24C5A700093DA7 /* LICENSE_NSString+FastImageSize */; };
 		92FF2E3A1A24C5A700093DA7 /* NSString+FastImageSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E201A24C5A700093DA7 /* NSString+FastImageSize.m */; };
-		92FF2E3B1A24C5A700093DA7 /* Project+CustomExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E231A24C5A700093DA7 /* Project+CustomExtensions.m */; };
 		92FF2E3D1A24C5A700093DA7 /* UIImage+CatrobatUIImageExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E2B1A24C5A700093DA7 /* UIImage+CatrobatUIImageExtensions.m */; };
 		92FF2E8C1A24C7D800093DA7 /* AudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E4F1A24C7D800093DA7 /* AudioManager.m */; };
 		92FF2E8D1A24C7D800093DA7 /* CatrobatAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E511A24C7D800093DA7 /* CatrobatAudioPlayer.m */; };
@@ -2830,21 +2829,21 @@
 		59EA52BE24FD4BEE00AC6E8D /* WhenConditionScriptCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhenConditionScriptCell.swift; sourceTree = "<group>"; };
 		59F5C2AE23F2E36D00D95016 /* BrickCellPickerViewerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrickCellPickerViewerTest.swift; sourceTree = "<group>"; };
 		5E0B3621220A5F3C0056EB12 /* LanguageTranslationDefinesUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageTranslationDefinesUI.swift; sourceTree = "<group>"; };
-		5E18A81121A547AA00541536 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
+		5E18A81121A547AA00541536 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		5E219F2521C8B46A000439BA /* SelectButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectButton.swift; sourceTree = "<group>"; };
-		5E21DA6721A3E4AF00017D2C /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
+		5E21DA6721A3E4AF00017D2C /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		5E21DA6C21A5255500017D2C /* UploadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadViewController.swift; sourceTree = "<group>"; };
 		5E21DA7021A5289F00017D2C /* DataExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataExtension.swift; sourceTree = "<group>"; };
 		5E43D71721928052006FDF2A /* SwellAll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwellAll.swift; sourceTree = "<group>"; };
 		5E7B5B0A21EC0FCF002E4B57 /* HelpWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpWebViewController.swift; sourceTree = "<group>"; };
 		5E7E7F892341CB8100411298 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
-		5E84B7A62341FC68009982AA /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
+		5E84B7A62341FC68009982AA /* UITextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExtension.swift; sourceTree = "<group>"; };
 		5E99F2E223442E1A007878C1 /* ThemesHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemesHelper.swift; sourceTree = "<group>"; };
-		5EA1089321B8FBD200B837B9 /* AVAudioSession+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVAudioSession+Extensions.swift"; sourceTree = "<group>"; };
+		5EA1089321B8FBD200B837B9 /* AVAudioSessionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVAudioSessionExtension.swift; sourceTree = "<group>"; };
 		5EDBA042219549AE000EFFEF /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		5EF590B92192D81F00C19F12 /* DoubleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleExtension.swift; sourceTree = "<group>"; };
 		5EFBD5F82145533B003B3CDC /* ProjectDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDescriptionViewController.swift; sourceTree = "<group>"; };
-		5EFBD5FB2145AADC003B3CDC /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		5EFBD5FB2145AADC003B3CDC /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		5F4B40BB347790D38FB5B19E /* de */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		602C3F3AB880252BC2FA6D5D /* nl */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6F021E6524A681410097F21A /* StoreProjectUploaderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreProjectUploaderTests.swift; sourceTree = "<group>"; };
@@ -3169,8 +3168,6 @@
 		92FF2E1E1A24C5A700093DA7 /* LICENSE_NSString+FastImageSize */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "LICENSE_NSString+FastImageSize"; sourceTree = "<group>"; };
 		92FF2E1F1A24C5A700093DA7 /* NSString+FastImageSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+FastImageSize.h"; sourceTree = "<group>"; };
 		92FF2E201A24C5A700093DA7 /* NSString+FastImageSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+FastImageSize.m"; sourceTree = "<group>"; };
-		92FF2E221A24C5A700093DA7 /* Project+CustomExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Project+CustomExtensions.h"; sourceTree = "<group>"; };
-		92FF2E231A24C5A700093DA7 /* Project+CustomExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Project+CustomExtensions.m"; sourceTree = "<group>"; };
 		92FF2E2A1A24C5A700093DA7 /* UIImage+CatrobatUIImageExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+CatrobatUIImageExtensions.h"; sourceTree = "<group>"; };
 		92FF2E2B1A24C5A700093DA7 /* UIImage+CatrobatUIImageExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+CatrobatUIImageExtensions.m"; sourceTree = "<group>"; };
 		92FF2E431A24C5F300093DA7 /* ProjectStoreDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectStoreDelegate.h; sourceTree = "<group>"; };
@@ -5376,14 +5373,6 @@
 			path = Context;
 			sourceTree = "<group>";
 		};
-		4C4B4CD523EE8A9F0054C861 /* Notification */ = {
-			isa = PBXGroup;
-			children = (
-				4C4B4CD623EE8ABB0054C861 /* NotificationExtension.swift */,
-			);
-			path = Notification;
-			sourceTree = "<group>";
-		};
 		4C4B4CE023EEA3F40054C861 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -5586,13 +5575,12 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		4C6066371A5ACC3100F486CE /* GDataXMLNode+CustomExtensions */ = {
+		4C6066371A5ACC3100F486CE /* GDataXMLNode */ = {
 			isa = PBXGroup;
 			children = (
 				4C6066381A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.h */,
 				4C6066391A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m */,
 			);
-			name = "GDataXMLNode+CustomExtensions";
 			path = GDataXMLNode;
 			sourceTree = "<group>";
 		};
@@ -6966,12 +6954,13 @@
 			path = Defines;
 			sourceTree = "<group>";
 		};
-		5E84B7A32341FC4E009982AA /* UITextField+Extension */ = {
+		5E84B7A32341FC4E009982AA /* UIView */ = {
 			isa = PBXGroup;
 			children = (
-				5E84B7A62341FC68009982AA /* UITextField+Extension.swift */,
+				5E84B7A62341FC68009982AA /* UITextFieldExtension.swift */,
+				5EFBD5FB2145AADC003B3CDC /* UIViewExtension.swift */,
 			);
-			path = "UITextField+Extension";
+			path = UIView;
 			sourceTree = "<group>";
 		};
 		5E99F2E123442DD2007878C1 /* ThemesHelper */ = {
@@ -6985,9 +6974,17 @@
 		5EA1089021B8FBB800B837B9 /* Audio */ = {
 			isa = PBXGroup;
 			children = (
-				5EA1089321B8FBD200B837B9 /* AVAudioSession+Extensions.swift */,
 			);
 			path = Audio;
+			sourceTree = "<group>";
+		};
+		6399624725913E5800A7ED4B /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				5E21DA7021A5289F00017D2C /* DataExtension.swift */,
+				181DB737247DA62600B82B20 /* NSDataExtension.swift */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 		6F021E6124A6811A0097F21A /* Store */ = {
@@ -7288,13 +7285,13 @@
 			path = Upload;
 			sourceTree = "<group>";
 		};
-		925819851C0208E8003247A9 /* CALayer+XibConfiguration */ = {
+		925819851C0208E8003247A9 /* CALayer */ = {
 			isa = PBXGroup;
 			children = (
 				925819861C0208E8003247A9 /* CALayer+XibConfiguration.h */,
 				925819871C0208E8003247A9 /* CALayer+XibConfiguration.m */,
 			);
-			path = "CALayer+XibConfiguration";
+			path = CALayer;
 			sourceTree = "<group>";
 		};
 		926198001BF48384006D1A61 /* BluetoothMocks */ = {
@@ -7687,91 +7684,72 @@
 		92FF2E081A24C5A700093DA7 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				4C4B4CD623EE8ABB0054C861 /* NotificationExtension.swift */,
+				5EA1089321B8FBD200B837B9 /* AVAudioSessionExtension.swift */,
 				05E6802B255B5E3400D1E295 /* CGVectorExtentions.swift */,
 				05A3CE6A24F516490051DB39 /* CatrobatTableViewControllerExtension.swift */,
+				6FD28D0924702CAD0035F606 /* NSDateExtension.swift */,
 				18DAFC56247BD1400082C62A /* SpriteNode */,
 				6FAAD43724740B1D00FF2A34 /* FormulaElementExtension.swift */,
 				5EA1089021B8FBB800B837B9 /* Audio */,
-				92FF2E0B1A24C5A700093DA7 /* CAGradient+Extension */,
-				925819851C0208E8003247A9 /* CALayer+XibConfiguration */,
-				5E21DA7021A5289F00017D2C /* DataExtension.swift */,
+				92FF2E0B1A24C5A700093DA7 /* CAGradient */,
+				925819851C0208E8003247A9 /* CALayer */,
 				5EF590B92192D81F00C19F12 /* DoubleExtension.swift */,
-				92FF2E0E1A24C5A700093DA7 /* GDataXMLElement+CustomExtensions */,
-				4C6066371A5ACC3100F486CE /* GDataXMLNode+CustomExtensions */,
-				4C4B4CD523EE8A9F0054C861 /* Notification */,
-				92FF2E141A24C5A700093DA7 /* NSDate+Extension */,
-				92FF2E1D1A24C5A700093DA7 /* NSString+FastImageSize */,
-				92FF2E211A24C5A700093DA7 /* Project+Extension */,
-				92FF2E291A24C5A700093DA7 /* UIImage+Extension */,
-				5E84B7A32341FC4E009982AA /* UITextField+Extension */,
-				5EFBD5FB2145AADC003B3CDC /* UIView+Extensions.swift */,
+				6399624725913E5800A7ED4B /* Data */,
+				92FF2E0E1A24C5A700093DA7 /* GDataXMLElement */,
+				4C6066371A5ACC3100F486CE /* GDataXMLNode */,
+				92FF2E1D1A24C5A700093DA7 /* NSString */,
+				92FF2E291A24C5A700093DA7 /* UIImage */,
+				5E84B7A32341FC4E009982AA /* UIView */,
 				5E7E7F892341CB8100411298 /* UIColorExtension.swift */,
-				5E18A81121A547AA00541536 /* UIViewController+Extensions.swift */,
-				181DB737247DA62600B82B20 /* NSDataExtension.swift */,
+				5E18A81121A547AA00541536 /* UIViewControllerExtension.swift */,
 				6F5ADF12247D4703008FC2C5 /* BrickExtension.swift */,
 				222A693D247EA490004BE434 /* UIDeviceExtension.swift */,
 				2219ED89251745EA00EBA379 /* NSMutableArrayExtension.swift */,
-				184949B8248130A9000B8CDA /* NSStringExtension.swift */,
 				184CA798249E839A00D3668B /* CBFileManagerExtension.swift */,
 			);
 			name = Extensions;
 			path = "Extension&Delegate&Protocol/Extensions";
 			sourceTree = "<group>";
 		};
-		92FF2E0B1A24C5A700093DA7 /* CAGradient+Extension */ = {
+		92FF2E0B1A24C5A700093DA7 /* CAGradient */ = {
 			isa = PBXGroup;
 			children = (
 				92FF2E0C1A24C5A700093DA7 /* CAGradientLayer+CatrobatCAGradientExtensions.h */,
 				92FF2E0D1A24C5A700093DA7 /* CAGradientLayer+CatrobatCAGradientExtensions.m */,
 			);
-			path = "CAGradient+Extension";
+			path = CAGradient;
 			sourceTree = "<group>";
 		};
-		92FF2E0E1A24C5A700093DA7 /* GDataXMLElement+CustomExtensions */ = {
+		92FF2E0E1A24C5A700093DA7 /* GDataXMLElement */ = {
 			isa = PBXGroup;
 			children = (
 				CAD116E31A46B6B300F560B4 /* GDataXMLElement+CustomExtensions.h */,
 				CAD116E41A46B6B300F560B4 /* GDataXMLElement+CustomExtensions.m */,
 			);
-			name = "GDataXMLElement+CustomExtensions";
+			name = GDataXMLElement;
 			path = GDataXMLNode;
 			sourceTree = "<group>";
 		};
-		92FF2E141A24C5A700093DA7 /* NSDate+Extension */ = {
-			isa = PBXGroup;
-			children = (
-				6FD28D0924702CAD0035F606 /* NSDateExtension.swift */,
-			);
-			path = "NSDate+Extension";
-			sourceTree = "<group>";
-		};
-		92FF2E1D1A24C5A700093DA7 /* NSString+FastImageSize */ = {
+		92FF2E1D1A24C5A700093DA7 /* NSString */ = {
 			isa = PBXGroup;
 			children = (
 				92FF2E1E1A24C5A700093DA7 /* LICENSE_NSString+FastImageSize */,
 				92FF2E1F1A24C5A700093DA7 /* NSString+FastImageSize.h */,
 				92FF2E201A24C5A700093DA7 /* NSString+FastImageSize.m */,
+				184949B8248130A9000B8CDA /* NSStringExtension.swift */,
 			);
-			path = "NSString+FastImageSize";
+			path = NSString;
 			sourceTree = "<group>";
 		};
-		92FF2E211A24C5A700093DA7 /* Project+Extension */ = {
-			isa = PBXGroup;
-			children = (
-				92FF2E221A24C5A700093DA7 /* Project+CustomExtensions.h */,
-				92FF2E231A24C5A700093DA7 /* Project+CustomExtensions.m */,
-			);
-			path = "Project+Extension";
-			sourceTree = "<group>";
-		};
-		92FF2E291A24C5A700093DA7 /* UIImage+Extension */ = {
+		92FF2E291A24C5A700093DA7 /* UIImage */ = {
 			isa = PBXGroup;
 			children = (
 				92FF2E2A1A24C5A700093DA7 /* UIImage+CatrobatUIImageExtensions.h */,
 				92FF2E2B1A24C5A700093DA7 /* UIImage+CatrobatUIImageExtensions.m */,
-				5E21DA6721A3E4AF00017D2C /* UIImage+Extensions.swift */,
+				5E21DA6721A3E4AF00017D2C /* UIImageExtension.swift */,
 			);
-			path = "UIImage+Extension";
+			path = UIImage;
 			sourceTree = "<group>";
 		};
 		92FF2E411A24C5F300093DA7 /* Delegates */ = {
@@ -11090,7 +11068,7 @@
 				92D56C321BF202E700A54750 /* ArduinoHelper.swift in Sources */,
 				AAAF22881BC0CFC00076F11E /* TurnLeftBrick+Instruction.swift in Sources */,
 				05E6801A255B5DAA00D1E295 /* EmbroideryStream.swift in Sources */,
-				5E84B7A72341FC68009982AA /* UITextField+Extension.swift in Sources */,
+				5E84B7A72341FC68009982AA /* UITextFieldExtension.swift in Sources */,
 				4C5AEF0622F7037200280F8B /* CatrobatSetup+Sensors.swift in Sources */,
 				4C0F9F80204BD1F800E71B2D /* ThinkBubbleBrick+Instruction.swift in Sources */,
 				4C0F9F9D204BD2B100E71B2D /* SetBackgroundBrickCell.m in Sources */,
@@ -11423,7 +11401,7 @@
 				AA74EF701BC0588A00D1E954 /* SetVolumeToBrick+CBXMLHandler.m in Sources */,
 				186E991B2488F89200627E36 /* PenUpBrick+CBXMLHandler.swift in Sources */,
 				92FC85CE1B9E1EB5001C728F /* BrickManager.m in Sources */,
-				5E18A81221A547AA00541536 /* UIViewController+Extensions.swift in Sources */,
+				5E18A81221A547AA00541536 /* UIViewControllerExtension.swift in Sources */,
 				AA74F0951BC05FCE00D1E954 /* BrickCellMessageData.m in Sources */,
 				597AB578202089E0007CD10D /* NetworkDefines.swift in Sources */,
 				F4E6E59C210E051200D86FE6 /* MinFunction.swift in Sources */,
@@ -11432,7 +11410,7 @@
 				4C5AEF0822F7037200280F8B /* CatrobatSetup+Functions.swift in Sources */,
 				AA74EF591BC0586F00D1E954 /* TurnLeftBrick+CBXMLHandler.m in Sources */,
 				4C0F9F6F204BD1A300E71B2D /* ThinkForBubbleBrick+CBXMLHandler.m in Sources */,
-				5EFBD5FC2145AADC003B3CDC /* UIView+Extensions.swift in Sources */,
+				5EFBD5FC2145AADC003B3CDC /* UIViewExtension.swift in Sources */,
 				92FF31591A24DEB300093DA7 /* DownloadTabBarController.m in Sources */,
 				F4E6E59A210E048700D86FE6 /* MaxFunction.swift in Sources */,
 				5936893C2021979A00FC3115 /* SoundsTableViewController+MediaLibrary.swift in Sources */,
@@ -11456,7 +11434,7 @@
 				AA74F0AB1BC05FCE00D1E954 /* ChangeBrightnessByNBrickCell.m in Sources */,
 				9E0F740C22B532280030CD89 /* MathUtil.swift in Sources */,
 				929CC0E01BC39B690027DEC0 /* BrickCellPhiroToneData.m in Sources */,
-				5E21DA6821A3E4AF00017D2C /* UIImage+Extensions.swift in Sources */,
+				5E21DA6821A3E4AF00017D2C /* UIImageExtension.swift in Sources */,
 				4CB2CFAB1D7AD86D009F3034 /* SetColorBrickCell.m in Sources */,
 				4C0F9F6E204BD1A300E71B2D /* ThinkBubbleBrick+CBXMLHandler.m in Sources */,
 				AA74F0041BC05B5F00D1E954 /* PointInDirectionBrick.m in Sources */,
@@ -11627,7 +11605,7 @@
 				5E7B5B0D21EC0FCF002E4B57 /* HelpWebViewController.swift in Sources */,
 				9218B2111CC4AB75007B4C60 /* PointerTool.m in Sources */,
 				AA74F0CE1BC05FCE00D1E954 /* WhenScriptCell.m in Sources */,
-				5EA1089421B8FBD200B837B9 /* AVAudioSession+Extensions.swift in Sources */,
+				5EA1089421B8FBD200B837B9 /* AVAudioSessionExtension.swift in Sources */,
 				F4E6E580210DE61900D86FE6 /* PowerFunction.swift in Sources */,
 				92FF32B91A24E2F400093DA7 /* DarkBlueGradientCell.m in Sources */,
 				AA74EF551BC0586F00D1E954 /* PointToBrick+CBXMLHandler.m in Sources */,
@@ -11640,7 +11618,6 @@
 				9218B2071CC4AB75007B4C60 /* SPUserResizableView.m in Sources */,
 				F4E6E579210DDD5C00D86FE6 /* CosFunction.swift in Sources */,
 				4C5AEF0722F7037200280F8B /* CatrobatSetup+Bricks.swift in Sources */,
-				92FF2E3B1A24C5A700093DA7 /* Project+CustomExtensions.m in Sources */,
 				AA74EFE11BC05B5F00D1E954 /* BroadcastBrick.m in Sources */,
 				4CB0F9F620A1741400D1BE2F /* LayerSensor.swift in Sources */,
 				4C2EE4201B555B55006DE9B8 /* CBXMLPropertyMapping.m in Sources */,
