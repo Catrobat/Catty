@@ -382,4 +382,26 @@ class XMLParserTests0992: XMLAbstractTest {
         XCTAssertEqual(0, project.unsupportedElements.count)
         XCTAssertTrue(askBrick.isKind(of: AskBrick.self), "Invalid brick type")
     }
+
+    func testSetInstrumentBrick() {
+        let availableInstruments = Instrument.allCases
+        let project = self.getProjectForXML(xmlFile: "SamplerBricks_0992")
+        let object = project.scene.object(at: 0)!
+        let startScript = object.scriptList.object(at: 0) as! Script
+
+        XCTAssertEqual(availableInstruments.count, startScript.brickList.count)
+
+        var instruments = Set<Instrument>()
+
+        for brick in startScript.brickList {
+            let setInstrumentBrick = brick as! SetInstrumentBrick
+            instruments.insert(setInstrumentBrick.instrument)
+        }
+
+        XCTAssertEqual(availableInstruments.count, instruments.count)
+
+        for instrument in availableInstruments {
+            XCTAssertTrue(instruments.contains(instrument))
+        }
+    }
 }

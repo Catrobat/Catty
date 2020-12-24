@@ -702,6 +702,10 @@
                   </formulaList>
                   <userVariable>globale</userVariable>
                 </brick>
+                <brick type="SetInstrumentBrick">
+                    <commentedOut>false</commentedOut>
+                    <instrumentSelection>PIANO</instrumentSelection>
+                </brick>
               </brickList>
               <commentedOut>false</commentedOut>
               <isUserScript>false</isUserScript>

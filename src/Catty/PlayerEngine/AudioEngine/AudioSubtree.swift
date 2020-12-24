@@ -26,8 +26,12 @@ import Foundation
 @objc class AudioSubtree: NSObject {
     var subtreeOutputMixer = AKMixer()
     var audioPlayerMixer = AKMixer()
-    var audioPlayerCache = IterableCache<AudioPlayer>()
     var audioPlayerFactory: AudioPlayerFactory
+
+    var instrument = AudioEngineDefines.defaultInstrument
+
+    var audioPlayerCache = IterableCache<AudioPlayer>()
+    var samplerCache = IterableCache<Sampler>()
 
     let playerCreationQueue = DispatchQueue(label: "PlayerCreationQueue")
 
@@ -82,6 +86,13 @@ import Foundation
     func resumeAllAudioPlayers() {
         for audioPlayerKey in audioPlayerCache.getKeySet() {
             audioPlayerCache.object(forKey: audioPlayerKey)?.resume()
+        }
+    }
+
+    func setInstrument(_ instrument: Instrument) {
+        self.instrument = instrument
+        if let instrumentPath = instrument.path {
+            samplerCache.object(forKey: SamplerType.instrument.rawValue)?.loadSFZ(path: instrumentPath, fileName: instrument.fileName)
         }
     }
 
