@@ -689,12 +689,12 @@
             }
           ]
         },
-        "url" : "https:\/\/web-test.catrob.at\/pocketcode\/api\/projects\/search.json?q=Galaxy&limit=50&offset=0&max_version=0.992"
+        "url" : "https:\/\/web-test.catrob.at\/pocketcode\/api\/projects\/search.json?q=Galaxy&limit=50&offset=0&max_version=0.993"
       },
       "recorded_at" : 1536420857.668016,
       "request" : {
         "method" : "GET",
-        "url" : "https:\/\/web-test.catrob.at\/pocketcode\/api\/projects\/search.json?q=Galaxy&limit=50&offset=0&max_version=0.992"
+        "url" : "https:\/\/web-test.catrob.at\/pocketcode\/api\/projects\/search.json?q=Galaxy&limit=50&offset=0&max_version=0.993"
       }
     }
   ],
