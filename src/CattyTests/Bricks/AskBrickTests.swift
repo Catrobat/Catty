@@ -98,6 +98,20 @@ final class AskBrickTests: XCTestCase {
         XCTAssertEqual(variableBefore, variableAfter)
     }
 
+    func testAnswerNoUserVariable() {
+        brick.userVariable = nil
+
+        switch brick.instruction() {
+        case let .waitExecClosure(closure):
+            closure(context, scheduler)
+            brick.callbackSubmit(with: "an answer", scheduler: scheduler)
+        default:
+            XCTFail("Fatal Error")
+        }
+
+        XCTAssertEqual(brick.userVariable, nil)
+    }
+
     func testSchedulerPaused() {
         let variableBefore = brick.userVariable?.value as? String
 
