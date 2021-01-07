@@ -28,7 +28,7 @@ class ScriptCollectionVCTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        app = launchAppWithDefaultProject()
+        app = launchApp()
     }
 
     func testCopyIfLogicBeginBrick() {

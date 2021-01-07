@@ -22,35 +22,18 @@
 
 import XCTest
 
-class ScenePresenterVCTests: XCTestCase {
+class PrivacyPolicyTests: XCTestCase {
 
     var app: XCUIApplication!
 
     override func setUp() {
         super.setUp()
-        app = launchApp()
+        app = launchApp(with: ["UITests"])
     }
 
-    override func tearDown() {
-        XCUIDevice.shared.orientation = .portrait
-        super.tearDown()
-    }
-
-    func testScenePresenterOrientation() {
-        let projectName = "testProject"
-
-        //Create new Project
-        app.tables.staticTexts[kLocalizedNewProject].tap()
-        let alertQuery = app.alerts[kLocalizedNewProject]
-        alertQuery.textFields[kLocalizedEnterYourProjectNameHere].typeText(projectName)
-        app.alerts[kLocalizedNewProject].buttons[kLocalizedOK].tap()
-        XCTAssertNotNil(waitForElementToAppear(app.navigationBars[projectName]))
-
-        //Change orientation to landscape
-        XCUIDevice.shared.orientation = .landscapeLeft
-
-        //Start scence and check the orientation
-        app.toolbars.buttons["Play"].tap()
-        XCTAssertTrue(UIApplication.shared.statusBarOrientation == .portrait)
+    func testPrivacyPolicy() {
+        XCTAssertTrue(waitForElementToAppear(app.buttons[kLocalizedPrivacyPolicyAgree]).exists)
+        app.buttons[kLocalizedPrivacyPolicyAgree].tap()
+        XCTAssertTrue(waitForElementToAppear(app.navigationBars[kLocalizedPocketCode]).exists)
     }
 }

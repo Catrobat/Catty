@@ -809,6 +809,8 @@
 		4CBF5F9C21AF1D200079C834 /* TouchManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBF5F9B21AF1D200079C834 /* TouchManagerTests.swift */; };
 		4CBF5F9E21AF1D390079C834 /* UIGestureRecognizerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBF5F9D21AF1D390079C834 /* UIGestureRecognizerMock.swift */; };
 		4CBF96BF2351B3EC0063D5FC /* ProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBF96BE2351B3EC0063D5FC /* ProjectTests.swift */; };
+		4CC147B1257A22D3001A93F9 /* LaunchArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC147B0257A22D3001A93F9 /* LaunchArguments.swift */; };
+		4CC147B3257A25C1001A93F9 /* PrivacyPolicyVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC147B2257A25C1001A93F9 /* PrivacyPolicyVCTests.swift */; };
 		4CC50A53213AE386004BC914 /* FormulaManagerIdempotenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC50A52213AE385004BC914 /* FormulaManagerIdempotenceTests.swift */; };
 		4CC50A5C213BBD7D004BC914 /* FormulaManagerInterpreterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC50A5B213BBD7D004BC914 /* FormulaManagerInterpreterTests.swift */; };
 		4CC50A5E213BE036004BC914 /* ZeroParameterDoubleFunctionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC50A5D213BE036004BC914 /* ZeroParameterDoubleFunctionMock.swift */; };
@@ -2762,6 +2764,8 @@
 		4CBF5F9D21AF1D390079C834 /* UIGestureRecognizerMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIGestureRecognizerMock.swift; sourceTree = "<group>"; };
 		4CBF96BE2351B3EC0063D5FC /* ProjectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectTests.swift; sourceTree = "<group>"; };
 		4CC0D51F1B01FB73006193C4 /* BrickVariableProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickVariableProtocol.h; sourceTree = "<group>"; };
+		4CC147B0257A22D3001A93F9 /* LaunchArguments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchArguments.swift; sourceTree = "<group>"; };
+		4CC147B2257A25C1001A93F9 /* PrivacyPolicyVCTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyVCTests.swift; sourceTree = "<group>"; };
 		4CC50A52213AE385004BC914 /* FormulaManagerIdempotenceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormulaManagerIdempotenceTests.swift; sourceTree = "<group>"; };
 		4CC50A5B213BBD7D004BC914 /* FormulaManagerInterpreterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaManagerInterpreterTests.swift; sourceTree = "<group>"; };
 		4CC50A5D213BE036004BC914 /* ZeroParameterDoubleFunctionMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZeroParameterDoubleFunctionMock.swift; sourceTree = "<group>"; };
@@ -7961,6 +7965,7 @@
 				D638646D1AE63F80008569E6 /* KeychainUserDefaultsDefines.h */,
 				92FF2E031A24C3BE00093DA7 /* LanguageTranslationDefines.h */,
 				92C631901BC50DEE00486958 /* LanguageTranslationDefinesSwift.swift */,
+				4CC147B0257A22D3001A93F9 /* LaunchArguments.swift */,
 				597AB575202089DF007CD10D /* NetworkDefines.swift */,
 				929CC0E11BC39B7B0027DEC0 /* PhiroDefines.h */,
 				92FF2E051A24C3BE00093DA7 /* ProjectDefines.h */,
@@ -10026,6 +10031,7 @@
 				BCFED6F52113188700BE57BF /* MyFirstProjectTests.swift */,
 				A988832B1BCA86FF005029E8 /* ObjectTVCTests.swift */,
 				BCFED6EE2111C54100BE57BF /* PocketCodeMainScreenTests.swift */,
+				4CC147B2257A25C1001A93F9 /* PrivacyPolicyVCTests.swift */,
 				BCFED6F7211318A100BE57BF /* ProjectTVCTests.swift */,
 				4C7F50F921E62B0E0010AC36 /* ProjectsTVCTests.swift */,
 				4C48E5CB23FD7F4B004C6E6A /* SettingsTVCTests.swift */,
@@ -11390,6 +11396,7 @@
 				2D227D94220B38E0008A2BC9 /* ScenePresenterVCTests.swift in Sources */,
 				4CF8747521C8E7AB00C8143F /* SoundsTVCTests.swift in Sources */,
 				BCFED6F8211318A100BE57BF /* ProjectTVCTests.swift in Sources */,
+				4CC147B3257A25C1001A93F9 /* PrivacyPolicyVCTests.swift in Sources */,
 				2D010F4822240C9F00CAAA06 /* XCUIElementExtension.swift in Sources */,
 				4CB1FB741BC2D74F0000A2FE /* XCTestCaseExtension.swift in Sources */,
 				BC19327F21186504009DE43A /* CreateProjectTests.swift in Sources */,
@@ -12235,6 +12242,7 @@
 				92FF31551A24DEB300093DA7 /* SoundsTableViewController.m in Sources */,
 				F4E6E58A210DFECA00D86FE6 /* SqrtFunction.swift in Sources */,
 				F4E6E586210DFE0800D86FE6 /* LnFunction.swift in Sources */,
+				4CC147B1257A22D3001A93F9 /* LaunchArguments.swift in Sources */,
 				92FF31561A24DEB300093DA7 /* SRViewController.m in Sources */,
 				AAF6D9DA1BC0BB1F00686849 /* SetLookBrick+Instruction.swift in Sources */,
 				4C0F9F8B204BD26100E71B2D /* IfThenLogicBeginBrickCell.m in Sources */,

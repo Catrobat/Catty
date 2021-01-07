@@ -162,6 +162,12 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
 #pragma mark - privacy policy
 - (void)presentPrivacyPolicyIfNeeded
 {
+    #if DEBUG
+    if ([[[NSProcessInfo processInfo] arguments] containsObject:LaunchArguments.skipPrivacyPolicy]) {
+        return;
+    }
+    #endif
+
     if (!PrivacyPolicyViewController.hasBeenShown || PrivacyPolicyViewController.showOnEveryLaunch) {
         UIViewController *viewController = [PrivacyPolicyViewController new];
         viewController.modalPresentationStyle = UIModalPresentationOverFullScreen;
