@@ -158,6 +158,12 @@
 "Backgrounds" = "Pozadia";
 
 /* No comment provided by engineer. */
+"Bass" = "Bass";
+
+/* No comment provided by engineer. */
+"Bassoon" = "Bassoon";
+
+/* No comment provided by engineer. */
 "becomes true" = "bude platiť";
 
 /* No comment provided by engineer. */
@@ -227,6 +233,9 @@
 "ceil" = "ceil";
 
 /* No comment provided by engineer. */
+"Cello" = "Cello";
+
+/* No comment provided by engineer. */
 "Change brightness " = "Zmeniť jas ";
 
 /* No comment provided by engineer. */
@@ -263,10 +272,16 @@
 "Changes saved." = "Changes saved.";
 
 /* No comment provided by engineer. */
+"Choir" = "Choir";
+
+/* No comment provided by engineer. */
 "Choose" = "Choose";
 
 /* No comment provided by engineer. */
 "Choose image" = "Choose image";
+
+/* No comment provided by engineer. */
+"Clarinet" = "Clarinet";
 
 /* No comment provided by engineer. */
 "Clear" = "Vymazať";
@@ -536,6 +551,12 @@
 "Edit sounds" = "Edit sounds";
 
 /* No comment provided by engineer. */
+"Electric Guitar" = "Electric Guitar";
+
+/* No comment provided by engineer. */
+"Electric Piano" = "Electric Piano";
+
+/* No comment provided by engineer. */
 "element" = "element";
 
 /* paint */
@@ -662,6 +683,9 @@
 "floor" = "floor";
 
 /* No comment provided by engineer. */
+"Flute" = "Flute";
+
+/* No comment provided by engineer. */
 "Following features used in this project are not compatible with this version of Pocket Code:" = "Following features used in this project are not compatible with this version of Pocket Code:";
 
 /* No comment provided by engineer. */
@@ -717,6 +741,9 @@
 
 /* No comment provided by engineer. */
 "green" = "green";
+
+/* No comment provided by engineer. */
+"Guitar" = "Guitar";
 
 /* No comment provided by engineer. */
 "gyro-sensor" = "gyro-sensor";
@@ -923,6 +950,9 @@
 "March" = "March";
 
 /* No comment provided by engineer. */
+"Marimba" = "Marimba";
+
+/* No comment provided by engineer. */
 "Math" = "Math";
 
 /* No comment provided by engineer. */
@@ -999,6 +1029,9 @@
 
 /* No comment provided by engineer. */
 "Move sounds" = "Move sounds";
+
+/* No comment provided by engineer. */
+"Music Box" = "Music Box";
 
 /* Name of the default catrobat project (used as filename!!) */
 "My first project" = "My first project";
@@ -1145,6 +1178,9 @@
 "or" = "or";
 
 /* No comment provided by engineer. */
+"Organ" = "Organ";
+
+/* No comment provided by engineer. */
 "Password" = "Password";
 
 /* No comment provided by engineer. */
@@ -1183,8 +1219,14 @@
 /* No comment provided by engineer. */
 "phiro side right" = "phiro side right";
 
+/* No comment provided by engineer. */
+"Piano" = "Piano";
+
 /* paint */
 "Pipette" = "Pipette";
+
+/* No comment provided by engineer. */
+"Pizzicato" = "Pizzicato";
 
 /* No comment provided by engineer. */
 "Place at " = "Umiestni na ";
@@ -1385,6 +1427,9 @@
 "Saved" = "Saved";
 
 /* No comment provided by engineer. */
+"Saxophone" = "Saxophone";
+
+/* No comment provided by engineer. */
 "Say" = "Povedz";
 
 /* No comment provided by engineer. */
@@ -1470,6 +1515,9 @@
 
 /* No comment provided by engineer. */
 "Set description" = "Zadať popis";
+
+/* No comment provided by engineer. */
+"Set Instrument to" = "Set Instrument to";
 
 /* No comment provided by engineer. */
 "Set pen color to" = "Nastaviť farbu pera na";
@@ -1571,6 +1619,9 @@
 "Start sound and wait" = "Spustiť zvuk a čakať";
 
 /* No comment provided by engineer. */
+"Steel Drum" = "Steel Drum";
+
+/* No comment provided by engineer. */
 "step" = "krok";
 
 /* No comment provided by engineer. */
@@ -1593,6 +1644,12 @@
 
 /* No comment provided by engineer. */
 "Syntax Error!" = "Syntax Error!";
+
+/* No comment provided by engineer. */
+"Synth Lead" = "Synth Lead";
+
+/* No comment provided by engineer. */
+"Synth Pad" = "Synth Pad";
 
 /* No comment provided by engineer. */
 "Tap \"+\" to add actors or objects" = "Tap \"+\" to add actors or objects";
@@ -1706,6 +1763,9 @@
 "transparency" = "transparency";
 
 /* No comment provided by engineer. */
+"Trombone" = "Trombone";
+
+/* No comment provided by engineer. */
 "true" = "true";
 
 /* No comment provided by engineer. */
@@ -1814,6 +1874,9 @@
 "Version" = "Version";
 
 /* No comment provided by engineer. */
+"Vibraphone" = "Vibraphone";
+
+/* No comment provided by engineer. */
 "Vibrate for" = "Vibrovať";
 
 /* No comment provided by engineer. */
@@ -1869,6 +1932,9 @@
 
 /* No comment provided by engineer. */
 "with" = "with";
+
+/* No comment provided by engineer. */
+"Wooden Flute" = "Wooden Flute";
 
 /* No comment provided by engineer. */
 "x: " = "x: ";

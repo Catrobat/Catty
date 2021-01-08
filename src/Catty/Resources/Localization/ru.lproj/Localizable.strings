@@ -158,6 +158,12 @@
 "Backgrounds" = "Фоны";
 
 /* No comment provided by engineer. */
+"Bass" = "Бас";
+
+/* No comment provided by engineer. */
+"Bassoon" = "Бассон";
+
+/* No comment provided by engineer. */
 "becomes true" = "становится истинным";
 
 /* No comment provided by engineer. */
@@ -227,6 +233,9 @@
 "ceil" = "округление к большему";
 
 /* No comment provided by engineer. */
+"Cello" = "Виолончель";
+
+/* No comment provided by engineer. */
 "Change brightness " = "Изменить яркость ";
 
 /* No comment provided by engineer. */
@@ -263,10 +272,16 @@
 "Changes saved." = "Изменения сохранены!";
 
 /* No comment provided by engineer. */
+"Choir" = "Хоар";
+
+/* No comment provided by engineer. */
 "Choose" = "Выберите";
 
 /* No comment provided by engineer. */
 "Choose image" = "Выбрать изображение";
+
+/* No comment provided by engineer. */
+"Clarinet" = "Кларнет";
 
 /* No comment provided by engineer. */
 "Clear" = "Стереть";
@@ -536,6 +551,12 @@
 "Edit sounds" = "Изменить звуки";
 
 /* No comment provided by engineer. */
+"Electric Guitar" = "Электрическая гитара";
+
+/* No comment provided by engineer. */
+"Electric Piano" = "Электрическое Пианино";
+
+/* No comment provided by engineer. */
 "element" = "элемент";
 
 /* paint */
@@ -662,6 +683,9 @@
 "floor" = "округление к меньшему";
 
 /* No comment provided by engineer. */
+"Flute" = "Флейта";
+
+/* No comment provided by engineer. */
 "Following features used in this project are not compatible with this version of Pocket Code:" = "Следующие функции, используемые в этом проекте, несовместимы с этой версией Pocket Code:";
 
 /* No comment provided by engineer. */
@@ -717,6 +741,9 @@
 
 /* No comment provided by engineer. */
 "green" = "зелёный";
+
+/* No comment provided by engineer. */
+"Guitar" = "Гитара";
 
 /* No comment provided by engineer. */
 "gyro-sensor" = "гироскопический датчик";
@@ -923,6 +950,9 @@
 "March" = "Март";
 
 /* No comment provided by engineer. */
+"Marimba" = "Маримба";
+
+/* No comment provided by engineer. */
 "Math" = "Математика";
 
 /* No comment provided by engineer. */
@@ -999,6 +1029,9 @@
 
 /* No comment provided by engineer. */
 "Move sounds" = "Переместить звуки";
+
+/* No comment provided by engineer. */
+"Music Box" = "Музыкальный блок";
 
 /* Name of the default catrobat project (used as filename!!) */
 "My first project" = "Мой первый проект";
@@ -1145,6 +1178,9 @@
 "or" = "ИЛИ";
 
 /* No comment provided by engineer. */
+"Organ" = "Орган";
+
+/* No comment provided by engineer. */
 "Password" = "Пароль";
 
 /* No comment provided by engineer. */
@@ -1183,8 +1219,14 @@
 /* No comment provided by engineer. */
 "phiro side right" = "phiro side right";
 
+/* No comment provided by engineer. */
+"Piano" = "Пианино";
+
 /* paint */
 "Pipette" = "Пипетка";
+
+/* No comment provided by engineer. */
+"Pizzicato" = "Пиццикато";
 
 /* No comment provided by engineer. */
 "Place at " = "Поставить на ";
@@ -1385,6 +1427,9 @@
 "Saved" = "Сохранено";
 
 /* No comment provided by engineer. */
+"Saxophone" = "Саксофон";
+
+/* No comment provided by engineer. */
 "Say" = "Cказать";
 
 /* No comment provided by engineer. */
@@ -1470,6 +1515,9 @@
 
 /* No comment provided by engineer. */
 "Set description" = "Добавить описание";
+
+/* No comment provided by engineer. */
+"Set Instrument to" = "Установить инструмент к";
 
 /* No comment provided by engineer. */
 "Set pen color to" = "Задать цвет пера:";
@@ -1571,6 +1619,9 @@
 "Start sound and wait" = "Играть звук и ждать";
 
 /* No comment provided by engineer. */
+"Steel Drum" = "Стальной барабан";
+
+/* No comment provided by engineer. */
 "step" = "шаг";
 
 /* No comment provided by engineer. */
@@ -1593,6 +1644,12 @@
 
 /* No comment provided by engineer. */
 "Syntax Error!" = "Ошибка формулы!";
+
+/* No comment provided by engineer. */
+"Synth Lead" = "Ведущий Синтезатор";
+
+/* No comment provided by engineer. */
+"Synth Pad" = "Фоновый Синтезатор";
 
 /* No comment provided by engineer. */
 "Tap \"+\" to add actors or objects" = "Нажми \"+\", чтобы добавить актеров или объектов";
@@ -1706,6 +1763,9 @@
 "transparency" = "прозрачность";
 
 /* No comment provided by engineer. */
+"Trombone" = "Тромбон";
+
+/* No comment provided by engineer. */
 "true" = "Истина";
 
 /* No comment provided by engineer. */
@@ -1814,13 +1874,16 @@
 "Version" = "Версия";
 
 /* No comment provided by engineer. */
+"Vibraphone" = "Вибрафон";
+
+/* No comment provided by engineer. */
 "Vibrate for" = "Вибрировать";
 
 /* No comment provided by engineer. */
 "vibration" = "вибрация";
 
 /* No comment provided by engineer. */
-"View" = "View";
+"View" = "Вид";
 
 /* No comment provided by engineer. */
 "Views" = "Просмотры";
@@ -1869,6 +1932,9 @@
 
 /* No comment provided by engineer. */
 "with" = "на";
+
+/* No comment provided by engineer. */
+"Wooden Flute" = "Деревянная флейта";
 
 /* No comment provided by engineer. */
 "x: " = "x: ";

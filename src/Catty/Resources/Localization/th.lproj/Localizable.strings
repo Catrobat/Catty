@@ -158,6 +158,12 @@
 "Backgrounds" = "พื้นหลัง";
 
 /* No comment provided by engineer. */
+"Bass" = "เบส";
+
+/* No comment provided by engineer. */
+"Bassoon" = "บาสซูน";
+
+/* No comment provided by engineer. */
 "becomes true" = "กลายเป็นจริง";
 
 /* No comment provided by engineer. */
@@ -227,6 +233,9 @@
 "ceil" = "ceil";
 
 /* No comment provided by engineer. */
+"Cello" = "เชลโล";
+
+/* No comment provided by engineer. */
 "Change brightness " = "เปลี่ยนแปลงความสว่าง ";
 
 /* No comment provided by engineer. */
@@ -263,10 +272,16 @@
 "Changes saved." = "บันทึกการเปลี่ยนแปลงแล้ว!";
 
 /* No comment provided by engineer. */
+"Choir" = "นักร้องประสานเสียง";
+
+/* No comment provided by engineer. */
 "Choose" = "Choose";
 
 /* No comment provided by engineer. */
 "Choose image" = "เลือกภาพ";
+
+/* No comment provided by engineer. */
+"Clarinet" = "ปี่ชวา\n";
 
 /* No comment provided by engineer. */
 "Clear" = "ลบ";
@@ -536,6 +551,12 @@
 "Edit sounds" = "แก้ไขเสียง";
 
 /* No comment provided by engineer. */
+"Electric Guitar" = "กีต้าร์ไฟฟ้า";
+
+/* No comment provided by engineer. */
+"Electric Piano" = "เปียโนไฟฟ้า";
+
+/* No comment provided by engineer. */
 "element" = "องค์ประกอบ";
 
 /* paint */
@@ -662,6 +683,9 @@
 "floor" = "ชั้น";
 
 /* No comment provided by engineer. */
+"Flute" = "ขลุ่ย";
+
+/* No comment provided by engineer. */
 "Following features used in this project are not compatible with this version of Pocket Code:" = "Following features used in this project are not compatible with this version of Pocket Code:";
 
 /* No comment provided by engineer. */
@@ -717,6 +741,9 @@
 
 /* No comment provided by engineer. */
 "green" = "สีเขียว";
+
+/* No comment provided by engineer. */
+"Guitar" = "กีตาร์";
 
 /* No comment provided by engineer. */
 "gyro-sensor" = "gyro-sensor";
@@ -923,6 +950,9 @@
 "March" = "มีนาคม";
 
 /* No comment provided by engineer. */
+"Marimba" = "ระนาด";
+
+/* No comment provided by engineer. */
 "Math" = "คณิตศาสตร์";
 
 /* No comment provided by engineer. */
@@ -999,6 +1029,9 @@
 
 /* No comment provided by engineer. */
 "Move sounds" = "ย้ายเสียง";
+
+/* No comment provided by engineer. */
+"Music Box" = "กล่องดนตรี";
 
 /* Name of the default catrobat project (used as filename!!) */
 "My first project" = "โปรแกรมแรกของฉัน";
@@ -1145,6 +1178,9 @@
 "or" = "หรือ";
 
 /* No comment provided by engineer. */
+"Organ" = "ออร์แกน";
+
+/* No comment provided by engineer. */
 "Password" = "รหัสผ่าน";
 
 /* No comment provided by engineer. */
@@ -1183,8 +1219,14 @@
 /* No comment provided by engineer. */
 "phiro side right" = "phiro เซ็นเซอร์ด้านขวา";
 
+/* No comment provided by engineer. */
+"Piano" = "เปียโน";
+
 /* paint */
 "Pipette" = "ดูดสี";
+
+/* No comment provided by engineer. */
+"Pizzicato" = "Pizzicato";
 
 /* No comment provided by engineer. */
 "Place at " = "วางที่";
@@ -1385,6 +1427,9 @@
 "Saved" = "บันทึกเรียบร้อย";
 
 /* No comment provided by engineer. */
+"Saxophone" = "แซกโซโฟน";
+
+/* No comment provided by engineer. */
 "Say" = "พูด";
 
 /* No comment provided by engineer. */
@@ -1470,6 +1515,9 @@
 
 /* No comment provided by engineer. */
 "Set description" = "กำหนดคำอธิบาย";
+
+/* No comment provided by engineer. */
+"Set Instrument to" = "ตั้งค่าเครื่องมือเป็น";
 
 /* No comment provided by engineer. */
 "Set pen color to" = "ตั้งค่าสีปากกาเป็น";
@@ -1571,6 +1619,9 @@
 "Start sound and wait" = "เริ่มเสียงแล้วรอ";
 
 /* No comment provided by engineer. */
+"Steel Drum" = "กลองเหล็ก";
+
+/* No comment provided by engineer. */
 "step" = "step";
 
 /* No comment provided by engineer. */
@@ -1593,6 +1644,12 @@
 
 /* No comment provided by engineer. */
 "Syntax Error!" = "ไวยากรณ์ผิดพลาด!";
+
+/* No comment provided by engineer. */
+"Synth Lead" = "Synth Lead";
+
+/* No comment provided by engineer. */
+"Synth Pad" = "Synth Pad";
 
 /* No comment provided by engineer. */
 "Tap \"+\" to add actors or objects" = "แตะ \"+\" เพื่อเพิ่มนักแสดงหรือวัตถุ";
@@ -1706,6 +1763,9 @@
 "transparency" = "ความโปร่งใส";
 
 /* No comment provided by engineer. */
+"Trombone" = "ทรอมโบน";
+
+/* No comment provided by engineer. */
 "true" = "จริง";
 
 /* No comment provided by engineer. */
@@ -1814,6 +1874,9 @@
 "Version" = "รุ่น";
 
 /* No comment provided by engineer. */
+"Vibraphone" = "ไวบราโฟน";
+
+/* No comment provided by engineer. */
 "Vibrate for" = "สั่นเป็นเวลา";
 
 /* No comment provided by engineer. */
@@ -1869,6 +1932,9 @@
 
 /* No comment provided by engineer. */
 "with" = "แทนด้วย";
+
+/* No comment provided by engineer. */
+"Wooden Flute" = "ขลุ่ยไม้";
 
 /* No comment provided by engineer. */
 "x: " = "X: ";

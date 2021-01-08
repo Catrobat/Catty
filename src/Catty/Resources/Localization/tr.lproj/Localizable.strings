@@ -158,6 +158,12 @@
 "Backgrounds" = "Arka planlar";
 
 /* No comment provided by engineer. */
+"Bass" = "Bas";
+
+/* No comment provided by engineer. */
+"Bassoon" = "Fagot";
+
+/* No comment provided by engineer. */
 "becomes true" = "Olurşa";
 
 /* No comment provided by engineer. */
@@ -227,6 +233,9 @@
 "ceil" = "tavan yapmak";
 
 /* No comment provided by engineer. */
+"Cello" = "Çello";
+
+/* No comment provided by engineer. */
 "Change brightness " = "Parlaklığı değiştir";
 
 /* No comment provided by engineer. */
@@ -263,10 +272,16 @@
 "Changes saved." = "Değişiklikler kaydedildi!";
 
 /* No comment provided by engineer. */
+"Choir" = "Koro";
+
+/* No comment provided by engineer. */
 "Choose" = "Seç";
 
 /* No comment provided by engineer. */
 "Choose image" = "Resim seç";
+
+/* No comment provided by engineer. */
+"Clarinet" = "Klarnet";
 
 /* No comment provided by engineer. */
 "Clear" = "Temizle";
@@ -515,7 +530,7 @@
 "Edit formula" = "Formülü düzenleyin";
 
 /* Action sheet menu title */
-"Edit look" = "Görüntüyü düzenle";
+"Edit look" = "Görünümü düzenle";
 
 /* Action sheet menu title */
 "Edit looks" = "Görüntüyü düzenle";
@@ -534,6 +549,12 @@
 
 /* Action sheet menu title */
 "Edit sounds" = "Sesi düzenle";
+
+/* No comment provided by engineer. */
+"Electric Guitar" = "Elektrikli gitar";
+
+/* No comment provided by engineer. */
+"Electric Piano" = "Elektrikli Piano";
 
 /* No comment provided by engineer. */
 "element" = "öğeler";
@@ -662,6 +683,9 @@
 "floor" = "zemin";
 
 /* No comment provided by engineer. */
+"Flute" = "Flüt";
+
+/* No comment provided by engineer. */
 "Following features used in this project are not compatible with this version of Pocket Code:" = "Bu projede kullanılan aşağıdaki özellikler, Cep Kodunun bu sürümü ile uyumlu değildir:";
 
 /* No comment provided by engineer. */
@@ -717,6 +741,9 @@
 
 /* No comment provided by engineer. */
 "green" = "Yeşil";
+
+/* No comment provided by engineer. */
+"Guitar" = "Gitar";
 
 /* No comment provided by engineer. */
 "gyro-sensor" = "gyro sensörü";
@@ -923,6 +950,9 @@
 "March" = "Mart";
 
 /* No comment provided by engineer. */
+"Marimba" = "Marimba";
+
+/* No comment provided by engineer. */
 "Math" = "Matematik";
 
 /* No comment provided by engineer. */
@@ -999,6 +1029,9 @@
 
 /* No comment provided by engineer. */
 "Move sounds" = "Sesi taşı";
+
+/* No comment provided by engineer. */
+"Music Box" = "Müzik kutusu";
 
 /* Name of the default catrobat project (used as filename!!) */
 "My first project" = "İlk projem";
@@ -1145,6 +1178,9 @@
 "or" = "veya";
 
 /* No comment provided by engineer. */
+"Organ" = "Org";
+
+/* No comment provided by engineer. */
 "Password" = "Şifre";
 
 /* No comment provided by engineer. */
@@ -1183,8 +1219,14 @@
 /* No comment provided by engineer. */
 "phiro side right" = "phiro sağ tarafı";
 
+/* No comment provided by engineer. */
+"Piano" = "Piyano";
+
 /* paint */
 "Pipette" = "Renk Seçici";
+
+/* No comment provided by engineer. */
+"Pizzicato" = "Pizzicato";
 
 /* No comment provided by engineer. */
 "Place at " = "Yerleştirin ";
@@ -1385,6 +1427,9 @@
 "Saved" = "Kaydedilmiş";
 
 /* No comment provided by engineer. */
+"Saxophone" = "Saksafon";
+
+/* No comment provided by engineer. */
 "Say" = "Söylemek";
 
 /* No comment provided by engineer. */
@@ -1470,6 +1515,9 @@
 
 /* No comment provided by engineer. */
 "Set description" = "Açıklayınız";
+
+/* No comment provided by engineer. */
+"Set Instrument to" = "Enstrümanı şuna ayarla";
 
 /* No comment provided by engineer. */
 "Set pen color to" = "Kalem rengini şuna ayarla:";
@@ -1571,6 +1619,9 @@
 "Start sound and wait" = "Sesi başlat ve bekle";
 
 /* No comment provided by engineer. */
+"Steel Drum" = "Çelik Varil";
+
+/* No comment provided by engineer. */
 "step" = "adım";
 
 /* No comment provided by engineer. */
@@ -1593,6 +1644,12 @@
 
 /* No comment provided by engineer. */
 "Syntax Error!" = "Yazım Hatası!";
+
+/* No comment provided by engineer. */
+"Synth Lead" = "Synth Kurşun";
+
+/* No comment provided by engineer. */
+"Synth Pad" = "Synth Pad";
 
 /* No comment provided by engineer. */
 "Tap \"+\" to add actors or objects" = "Obje eklemek için \"+\" simgesine dokunun";
@@ -1706,6 +1763,9 @@
 "transparency" = "Şeffaflık";
 
 /* No comment provided by engineer. */
+"Trombone" = "Trombon";
+
+/* No comment provided by engineer. */
 "true" = "doğru";
 
 /* No comment provided by engineer. */
@@ -1814,6 +1874,9 @@
 "Version" = "Sürüm";
 
 /* No comment provided by engineer. */
+"Vibraphone" = "Vibrafon";
+
+/* No comment provided by engineer. */
 "Vibrate for" = "Titreşim için";
 
 /* No comment provided by engineer. */
@@ -1869,6 +1932,9 @@
 
 /* No comment provided by engineer. */
 "with" = "ile";
+
+/* No comment provided by engineer. */
+"Wooden Flute" = "Ahşap Flüt";
 
 /* No comment provided by engineer. */
 "x: " = "x: ";

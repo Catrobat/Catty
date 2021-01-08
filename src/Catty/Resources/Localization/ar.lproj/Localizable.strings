@@ -158,6 +158,12 @@
 "Backgrounds" = "خلفيات الشاشة";
 
 /* No comment provided by engineer. */
+"Bass" = "Bass";
+
+/* No comment provided by engineer. */
+"Bassoon" = "Bassoon";
+
+/* No comment provided by engineer. */
 "becomes true" = "يتحقق الشرط";
 
 /* No comment provided by engineer. */
@@ -227,6 +233,9 @@
 "ceil" = "تقريب للأعلى";
 
 /* No comment provided by engineer. */
+"Cello" = "Cello";
+
+/* No comment provided by engineer. */
 "Change brightness " = "تغيير درجة السطوع ";
 
 /* No comment provided by engineer. */
@@ -263,10 +272,16 @@
 "Changes saved." = "تم حفظ التغييرات!";
 
 /* No comment provided by engineer. */
+"Choir" = "Choir";
+
+/* No comment provided by engineer. */
 "Choose" = "إختيار";
 
 /* No comment provided by engineer. */
 "Choose image" = "اختر الصورة";
+
+/* No comment provided by engineer. */
+"Clarinet" = "Clarinet";
 
 /* No comment provided by engineer. */
 "Clear" = "امسح";
@@ -536,6 +551,12 @@
 "Edit sounds" = "Edit sounds";
 
 /* No comment provided by engineer. */
+"Electric Guitar" = "Electric Guitar";
+
+/* No comment provided by engineer. */
+"Electric Piano" = "Electric Piano";
+
+/* No comment provided by engineer. */
 "element" = "عنصر";
 
 /* paint */
@@ -662,6 +683,9 @@
 "floor" = "تقريب للاسفل";
 
 /* No comment provided by engineer. */
+"Flute" = "Flute";
+
+/* No comment provided by engineer. */
 "Following features used in this project are not compatible with this version of Pocket Code:" = "Following features used in this project are not compatible with this version of Pocket Code:";
 
 /* No comment provided by engineer. */
@@ -717,6 +741,9 @@
 
 /* No comment provided by engineer. */
 "green" = "أخضر";
+
+/* No comment provided by engineer. */
+"Guitar" = "Guitar";
 
 /* No comment provided by engineer. */
 "gyro-sensor" = "جهاز إستشعار الدوران";
@@ -923,6 +950,9 @@
 "March" = "اذار/ مارس";
 
 /* No comment provided by engineer. */
+"Marimba" = "Marimba";
+
+/* No comment provided by engineer. */
 "Math" = "رياضيات";
 
 /* No comment provided by engineer. */
@@ -999,6 +1029,9 @@
 
 /* No comment provided by engineer. */
 "Move sounds" = "Move sounds";
+
+/* No comment provided by engineer. */
+"Music Box" = "Music Box";
 
 /* Name of the default catrobat project (used as filename!!) */
 "My first project" = "مشروعي الأول";
@@ -1145,6 +1178,9 @@
 "or" = "أو";
 
 /* No comment provided by engineer. */
+"Organ" = "Organ";
+
+/* No comment provided by engineer. */
 "Password" = "كلمة المرور";
 
 /* No comment provided by engineer. */
@@ -1183,8 +1219,14 @@
 /* No comment provided by engineer. */
 "phiro side right" = "phiro side right";
 
+/* No comment provided by engineer. */
+"Piano" = "Piano";
+
 /* paint */
 "Pipette" = "التقاط اللون";
+
+/* No comment provided by engineer. */
+"Pizzicato" = "Pizzicato";
 
 /* No comment provided by engineer. */
 "Place at " = "تحديد موقع الكائن في ";
@@ -1385,6 +1427,9 @@
 "Saved" = "تم الحفظ";
 
 /* No comment provided by engineer. */
+"Saxophone" = "Saxophone";
+
+/* No comment provided by engineer. */
 "Say" = "قُل";
 
 /* No comment provided by engineer. */
@@ -1470,6 +1515,9 @@
 
 /* No comment provided by engineer. */
 "Set description" = "وصف مجموعة";
+
+/* No comment provided by engineer. */
+"Set Instrument to" = "Set Instrument to";
 
 /* No comment provided by engineer. */
 "Set pen color to" = "تعيين لون قلم التلوين الى";
@@ -1571,6 +1619,9 @@
 "Start sound and wait" = "بدء تشغيل مقطع صوتي والانتظار";
 
 /* No comment provided by engineer. */
+"Steel Drum" = "Steel Drum";
+
+/* No comment provided by engineer. */
 "step" = "خطوات";
 
 /* No comment provided by engineer. */
@@ -1593,6 +1644,12 @@
 
 /* No comment provided by engineer. */
 "Syntax Error!" = "خطأ في بناء الجملة!";
+
+/* No comment provided by engineer. */
+"Synth Lead" = "Synth Lead";
+
+/* No comment provided by engineer. */
+"Synth Pad" = "Synth Pad";
 
 /* No comment provided by engineer. */
 "Tap \"+\" to add actors or objects" = "اضغط على \"+\" لإضافة أشكال او عناصر";
@@ -1706,6 +1763,9 @@
 "transparency" = "الشفافية";
 
 /* No comment provided by engineer. */
+"Trombone" = "Trombone";
+
+/* No comment provided by engineer. */
 "true" = "صحيح";
 
 /* No comment provided by engineer. */
@@ -1814,6 +1874,9 @@
 "Version" = "الإصدار";
 
 /* No comment provided by engineer. */
+"Vibraphone" = "Vibraphone";
+
+/* No comment provided by engineer. */
 "Vibrate for" = "الإهتزاز لـفترة";
 
 /* No comment provided by engineer. */
@@ -1869,6 +1932,9 @@
 
 /* No comment provided by engineer. */
 "with" = "مع";
+
+/* No comment provided by engineer. */
+"Wooden Flute" = "Wooden Flute";
 
 /* No comment provided by engineer. */
 "x: " = "x: ";

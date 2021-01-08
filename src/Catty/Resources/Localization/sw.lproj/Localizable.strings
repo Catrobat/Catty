@@ -158,6 +158,12 @@
 "Backgrounds" = "Mandharinyuma";
 
 /* No comment provided by engineer. */
+"Bass" = "Bass";
+
+/* No comment provided by engineer. */
+"Bassoon" = "Bassoon";
+
+/* No comment provided by engineer. */
 "becomes true" = "inakuwa kweli";
 
 /* No comment provided by engineer. */
@@ -227,6 +233,9 @@
 "ceil" = "ubao wa paa";
 
 /* No comment provided by engineer. */
+"Cello" = "Cello";
+
+/* No comment provided by engineer. */
 "Change brightness " = "Badili mwangaza ";
 
 /* No comment provided by engineer. */
@@ -263,10 +272,16 @@
 "Changes saved." = "Mabadiliko yametunzwa!";
 
 /* No comment provided by engineer. */
+"Choir" = "Choir";
+
+/* No comment provided by engineer. */
 "Choose" = "Chagua";
 
 /* No comment provided by engineer. */
 "Choose image" = "Chagua picha";
+
+/* No comment provided by engineer. */
+"Clarinet" = "Clarinet";
 
 /* No comment provided by engineer. */
 "Clear" = "Safisha";
@@ -536,6 +551,12 @@
 "Edit sounds" = "Edit sounds";
 
 /* No comment provided by engineer. */
+"Electric Guitar" = "Electric Guitar";
+
+/* No comment provided by engineer. */
+"Electric Piano" = "Electric Piano";
+
+/* No comment provided by engineer. */
 "element" = "elementi";
 
 /* paint */
@@ -662,6 +683,9 @@
 "floor" = "sakafu";
 
 /* No comment provided by engineer. */
+"Flute" = "Flute";
+
+/* No comment provided by engineer. */
 "Following features used in this project are not compatible with this version of Pocket Code:" = "Following features used in this project are not compatible with this version of Pocket Code:";
 
 /* No comment provided by engineer. */
@@ -717,6 +741,9 @@
 
 /* No comment provided by engineer. */
 "green" = "Kijani";
+
+/* No comment provided by engineer. */
+"Guitar" = "Guitar";
 
 /* No comment provided by engineer. */
 "gyro-sensor" = "gyro-kihisio";
@@ -923,6 +950,9 @@
 "March" = "Machi";
 
 /* No comment provided by engineer. */
+"Marimba" = "Marimba";
+
+/* No comment provided by engineer. */
 "Math" = "Hesabu";
 
 /* No comment provided by engineer. */
@@ -999,6 +1029,9 @@
 
 /* No comment provided by engineer. */
 "Move sounds" = "Move sounds";
+
+/* No comment provided by engineer. */
+"Music Box" = "Music Box";
 
 /* Name of the default catrobat project (used as filename!!) */
 "My first project" = "Programu yangu ya kwanza";
@@ -1145,6 +1178,9 @@
 "or" = "au";
 
 /* No comment provided by engineer. */
+"Organ" = "Organ";
+
+/* No comment provided by engineer. */
 "Password" = "Nenosiri";
 
 /* No comment provided by engineer. */
@@ -1183,8 +1219,14 @@
 /* No comment provided by engineer. */
 "phiro side right" = "phiro side right";
 
+/* No comment provided by engineer. */
+"Piano" = "Piano";
+
 /* paint */
 "Pipette" = "Pipette";
+
+/* No comment provided by engineer. */
+"Pizzicato" = "Pizzicato";
 
 /* No comment provided by engineer. */
 "Place at " = "Weka ";
@@ -1385,6 +1427,9 @@
 "Saved" = "Hifadhiwa";
 
 /* No comment provided by engineer. */
+"Saxophone" = "Saxophone";
+
+/* No comment provided by engineer. */
 "Say" = "Sema";
 
 /* No comment provided by engineer. */
@@ -1470,6 +1515,9 @@
 
 /* No comment provided by engineer. */
 "Set description" = "Weka maelezo";
+
+/* No comment provided by engineer. */
+"Set Instrument to" = "Set Instrument to";
 
 /* No comment provided by engineer. */
 "Set pen color to" = "Seti rangi ya kalamu kwa";
@@ -1571,6 +1619,9 @@
 "Start sound and wait" = "Anzisha sauti na subiri";
 
 /* No comment provided by engineer. */
+"Steel Drum" = "Steel Drum";
+
+/* No comment provided by engineer. */
 "step" = "hatua";
 
 /* No comment provided by engineer. */
@@ -1593,6 +1644,12 @@
 
 /* No comment provided by engineer. */
 "Syntax Error!" = "Kosa la kisintaksia!";
+
+/* No comment provided by engineer. */
+"Synth Lead" = "Synth Lead";
+
+/* No comment provided by engineer. */
+"Synth Pad" = "Synth Pad";
 
 /* No comment provided by engineer. */
 "Tap \"+\" to add actors or objects" = "Tap \"+\" to add actors or objects";
@@ -1706,6 +1763,9 @@
 "transparency" = "uwazi";
 
 /* No comment provided by engineer. */
+"Trombone" = "Trombone";
+
+/* No comment provided by engineer. */
 "true" = "kweli";
 
 /* No comment provided by engineer. */
@@ -1814,6 +1874,9 @@
 "Version" = "Toleo";
 
 /* No comment provided by engineer. */
+"Vibraphone" = "Vibraphone";
+
+/* No comment provided by engineer. */
 "Vibrate for" = "Tetemesha kwa";
 
 /* No comment provided by engineer. */
@@ -1869,6 +1932,9 @@
 
 /* No comment provided by engineer. */
 "with" = "na";
+
+/* No comment provided by engineer. */
+"Wooden Flute" = "Wooden Flute";
 
 /* No comment provided by engineer. */
 "x: " = "x: ";

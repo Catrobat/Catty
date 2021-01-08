@@ -158,6 +158,12 @@
 "Backgrounds" = "Fondos";
 
 /* No comment provided by engineer. */
+"Bass" = "Bass";
+
+/* No comment provided by engineer. */
+"Bassoon" = "Bassoon";
+
+/* No comment provided by engineer. */
 "becomes true" = "se convierte en verdadero";
 
 /* No comment provided by engineer. */
@@ -227,6 +233,9 @@
 "ceil" = "ceil";
 
 /* No comment provided by engineer. */
+"Cello" = "Cello";
+
+/* No comment provided by engineer. */
 "Change brightness " = "Cambiar el brillo ";
 
 /* No comment provided by engineer. */
@@ -263,10 +272,16 @@
 "Changes saved." = "¡Cambios guardados!";
 
 /* No comment provided by engineer. */
+"Choir" = "Choir";
+
+/* No comment provided by engineer. */
 "Choose" = "Elige";
 
 /* No comment provided by engineer. */
 "Choose image" = "Elige una imagen";
+
+/* No comment provided by engineer. */
+"Clarinet" = "Clarinet";
 
 /* No comment provided by engineer. */
 "Clear" = "Borrar";
@@ -536,6 +551,12 @@
 "Edit sounds" = "Edit sounds";
 
 /* No comment provided by engineer. */
+"Electric Guitar" = "Electric Guitar";
+
+/* No comment provided by engineer. */
+"Electric Piano" = "Electric Piano";
+
+/* No comment provided by engineer. */
 "element" = "elemento";
 
 /* paint */
@@ -662,6 +683,9 @@
 "floor" = "suelo";
 
 /* No comment provided by engineer. */
+"Flute" = "Flute";
+
+/* No comment provided by engineer. */
 "Following features used in this project are not compatible with this version of Pocket Code:" = "Las siguientes características usadas en este proyecto no son compatibles con esta versión de Pocket Code:";
 
 /* No comment provided by engineer. */
@@ -717,6 +741,9 @@
 
 /* No comment provided by engineer. */
 "green" = "verde";
+
+/* No comment provided by engineer. */
+"Guitar" = "Guitar";
 
 /* No comment provided by engineer. */
 "gyro-sensor" = "sensor-giroscopio";
@@ -923,6 +950,9 @@
 "March" = "Marzo";
 
 /* No comment provided by engineer. */
+"Marimba" = "Marimba";
+
+/* No comment provided by engineer. */
 "Math" = "Matemáticas";
 
 /* No comment provided by engineer. */
@@ -999,6 +1029,9 @@
 
 /* No comment provided by engineer. */
 "Move sounds" = "Move sounds";
+
+/* No comment provided by engineer. */
+"Music Box" = "Music Box";
 
 /* Name of the default catrobat project (used as filename!!) */
 "My first project" = "Mi primer programa";
@@ -1145,6 +1178,9 @@
 "or" = "o";
 
 /* No comment provided by engineer. */
+"Organ" = "Organ";
+
+/* No comment provided by engineer. */
 "Password" = "Contraseña";
 
 /* No comment provided by engineer. */
@@ -1183,8 +1219,14 @@
 /* No comment provided by engineer. */
 "phiro side right" = "phiro side right";
 
+/* No comment provided by engineer. */
+"Piano" = "Piano";
+
 /* paint */
 "Pipette" = "Pipeta";
+
+/* No comment provided by engineer. */
+"Pizzicato" = "Pizzicato";
 
 /* No comment provided by engineer. */
 "Place at " = "Coloque en ";
@@ -1385,6 +1427,9 @@
 "Saved" = "Guardado";
 
 /* No comment provided by engineer. */
+"Saxophone" = "Saxophone";
+
+/* No comment provided by engineer. */
 "Say" = "Decir";
 
 /* No comment provided by engineer. */
@@ -1470,6 +1515,9 @@
 
 /* No comment provided by engineer. */
 "Set description" = "Descripción del set";
+
+/* No comment provided by engineer. */
+"Set Instrument to" = "Set Instrument to";
 
 /* No comment provided by engineer. */
 "Set pen color to" = "Establecer color del trazo";
@@ -1571,6 +1619,9 @@
 "Start sound and wait" = "Reproducir sonido y esperar";
 
 /* No comment provided by engineer. */
+"Steel Drum" = "Steel Drum";
+
+/* No comment provided by engineer. */
 "step" = "paso";
 
 /* No comment provided by engineer. */
@@ -1593,6 +1644,12 @@
 
 /* No comment provided by engineer. */
 "Syntax Error!" = "Error de sintaxis.";
+
+/* No comment provided by engineer. */
+"Synth Lead" = "Synth Lead";
+
+/* No comment provided by engineer. */
+"Synth Pad" = "Synth Pad";
 
 /* No comment provided by engineer. */
 "Tap \"+\" to add actors or objects" = "Pulsa \"+\" para añadir actores u objetos";
@@ -1706,6 +1763,9 @@
 "transparency" = "transparencia";
 
 /* No comment provided by engineer. */
+"Trombone" = "Trombone";
+
+/* No comment provided by engineer. */
 "true" = "verdadero";
 
 /* No comment provided by engineer. */
@@ -1814,6 +1874,9 @@
 "Version" = "Versión";
 
 /* No comment provided by engineer. */
+"Vibraphone" = "Vibraphone";
+
+/* No comment provided by engineer. */
 "Vibrate for" = "Vibrar por";
 
 /* No comment provided by engineer. */
@@ -1869,6 +1932,9 @@
 
 /* No comment provided by engineer. */
 "with" = "con";
+
+/* No comment provided by engineer. */
+"Wooden Flute" = "Wooden Flute";
 
 /* No comment provided by engineer. */
 "x: " = "x: ";

@@ -158,7 +158,13 @@
 "Backgrounds" = "Pano de fundo";
 
 /* No comment provided by engineer. */
-"becomes true" = "se torna verdadeiro";
+"Bass" = "Baixo";
+
+/* No comment provided by engineer. */
+"Bassoon" = "Basbreve";
+
+/* No comment provided by engineer. */
+"becomes true" = "for verdadeiro";
 
 /* No comment provided by engineer. */
 "Before you can start coding, please read and accept our Privacy Policy to use the app:" = "Antes de começar a codificar, leia e aceite nossa Política de Privacidade para usar o aplicativo:";
@@ -227,6 +233,9 @@
 "ceil" = "teto";
 
 /* No comment provided by engineer. */
+"Cello" = "Cello";
+
+/* No comment provided by engineer. */
 "Change brightness " = "Alterar brilho ";
 
 /* No comment provided by engineer. */
@@ -263,10 +272,16 @@
 "Changes saved." = "Alterações salvas!";
 
 /* No comment provided by engineer. */
+"Choir" = "Corte";
+
+/* No comment provided by engineer. */
 "Choose" = "Escolher";
 
 /* No comment provided by engineer. */
 "Choose image" = "Selecionar Imagem";
+
+/* No comment provided by engineer. */
+"Clarinet" = "Clarinet";
 
 /* No comment provided by engineer. */
 "Clear" = "Limpar";
@@ -536,6 +551,12 @@
 "Edit sounds" = "Editar sons";
 
 /* No comment provided by engineer. */
+"Electric Guitar" = "Guitarra Elétrica";
+
+/* No comment provided by engineer. */
+"Electric Piano" = "Piano Elétrico";
+
+/* No comment provided by engineer. */
 "element" = "elemento";
 
 /* paint */
@@ -662,10 +683,13 @@
 "floor" = "piso";
 
 /* No comment provided by engineer. */
+"Flute" = "Flauta";
+
+/* No comment provided by engineer. */
 "Following features used in this project are not compatible with this version of Pocket Code:" = "Os seguintes recursos usados neste projeto não são compatíveis com esta versão do Pocket Code:";
 
 /* No comment provided by engineer. */
-"for" = "para";
+"for" = "por";
 
 /* No comment provided by engineer. */
 "for all actors or objects" = "para todos os atores ou objetos";
@@ -717,6 +741,9 @@
 
 /* No comment provided by engineer. */
 "green" = "verde";
+
+/* No comment provided by engineer. */
+"Guitar" = "Guitarra";
 
 /* No comment provided by engineer. */
 "gyro-sensor" = "sensor-giroscópico";
@@ -830,7 +857,7 @@
 "Last access" = "Último acesso";
 
 /* No comment provided by engineer. */
-"last stage touch index" = "índice de toque da última etapa";
+"last stage touch index" = "Índice do último toque";
 
 /* No comment provided by engineer. */
 "latitude" = "latitude";
@@ -923,6 +950,9 @@
 "March" = "Março";
 
 /* No comment provided by engineer. */
+"Marimba" = "Marimba";
+
+/* No comment provided by engineer. */
 "Math" = "Matemática";
 
 /* No comment provided by engineer. */
@@ -999,6 +1029,9 @@
 
 /* No comment provided by engineer. */
 "Move sounds" = "Mover sons";
+
+/* No comment provided by engineer. */
+"Music Box" = "Caixa de música";
 
 /* Name of the default catrobat project (used as filename!!) */
 "My first project" = "Meu primeiro programa";
@@ -1097,7 +1130,7 @@
 "November" = "Novembro";
 
 /* No comment provided by engineer. */
-"number of items" = "número de itens";
+"number of items" = "Número de itens";
 
 /* No comment provided by engineer. */
 "Numbers" = "Números";
@@ -1145,6 +1178,9 @@
 "or" = "ou";
 
 /* No comment provided by engineer. */
+"Organ" = "Órgão";
+
+/* No comment provided by engineer. */
 "Password" = "Senha";
 
 /* No comment provided by engineer. */
@@ -1183,8 +1219,14 @@
 /* No comment provided by engineer. */
 "phiro side right" = "phiro lado direito";
 
+/* No comment provided by engineer. */
+"Piano" = "Piano";
+
 /* paint */
 "Pipette" = "Pipeta";
+
+/* No comment provided by engineer. */
+"Pizzicato" = "Pizzicato";
 
 /* No comment provided by engineer. */
 "Place at " = "Colocar em ";
@@ -1292,7 +1334,7 @@
 "Projects" = "Programas";
 
 /* No comment provided by engineer. */
-"Projects on device" = "Programas";
+"Projects on device" = "Projetos";
 
 /* No comment provided by engineer. */
 "random position" = "posição aleatória";
@@ -1385,7 +1427,10 @@
 "Saved" = "Salvo";
 
 /* No comment provided by engineer. */
-"Say" = "Diga";
+"Saxophone" = "Saxofone";
+
+/* No comment provided by engineer. */
+"Say" = "Fale";
 
 /* No comment provided by engineer. */
 "Scene" = "Cena";
@@ -1472,6 +1517,9 @@
 "Set description" = "Definir descrição";
 
 /* No comment provided by engineer. */
+"Set Instrument to" = "Definir Instrumento para";
+
+/* No comment provided by engineer. */
 "Set pen color to" = "Definir cor da caneta para";
 
 /* No comment provided by engineer. */
@@ -1550,13 +1598,13 @@
 "square" = "quadrado";
 
 /* No comment provided by engineer. */
-"stage is touched" = "tela é tocada";
+"stage is touched" = "Tela está sendo tocada";
 
 /* No comment provided by engineer. */
-"stage touch x" = "toque x";
+"stage touch x" = "Posição de toque X";
 
 /* No comment provided by engineer. */
-"stage touch y" = "toque y";
+"stage touch y" = "Posição de toque Y";
 
 /* paint */
 "Stamp" = "Carimbo";
@@ -1569,6 +1617,9 @@
 
 /* No comment provided by engineer. */
 "Start sound and wait" = "Iniciar som e aguardar";
+
+/* No comment provided by engineer. */
+"Steel Drum" = "Tambor de Aço";
 
 /* No comment provided by engineer. */
 "step" = "passo";
@@ -1593,6 +1644,12 @@
 
 /* No comment provided by engineer. */
 "Syntax Error!" = "Erro de sintaxe!";
+
+/* No comment provided by engineer. */
+"Synth Lead" = "Sintetizador";
+
+/* No comment provided by engineer. */
+"Synth Pad" = "Teclado Sintetizador";
 
 /* No comment provided by engineer. */
 "Tap \"+\" to add actors or objects" = "Toque em \"+\" para adicionar atores ou objetos";
@@ -1706,6 +1763,9 @@
 "transparency" = "transparência";
 
 /* No comment provided by engineer. */
+"Trombone" = "Trombone";
+
+/* No comment provided by engineer. */
 "true" = "verdadeiro";
 
 /* No comment provided by engineer. */
@@ -1814,13 +1874,16 @@
 "Version" = "Versão";
 
 /* No comment provided by engineer. */
+"Vibraphone" = "Vibrafone";
+
+/* No comment provided by engineer. */
 "Vibrate for" = "Vibrar por";
 
 /* No comment provided by engineer. */
 "vibration" = "vibração";
 
 /* No comment provided by engineer. */
-"View" = "View";
+"View" = "Visualizar";
 
 /* No comment provided by engineer. */
 "Views" = "Visualizações";
@@ -1871,6 +1934,9 @@
 "with" = "com";
 
 /* No comment provided by engineer. */
+"Wooden Flute" = "Flauta de Madeira";
+
+/* No comment provided by engineer. */
 "x: " = "x: ";
 
 /* No comment provided by engineer. */
@@ -1895,7 +1961,7 @@
 "Your email seems to be invalid" = "Seu e-mail parece ser inválido";
 
 /* No comment provided by engineer. */
-"Your project was uploaded to the Catrobat community where others can use and download it." = "Your project was uploaded to the Catrobat community where others can use and download it.";
+"Your project was uploaded to the Catrobat community where others can use and download it." = "Seu projeto foi carregado para a comunidade Catrobat, onde outros podem usar e baixá-lo.";
 
 /* paint */
 "Zoom" = "Ampliar";
