@@ -28,7 +28,7 @@ class LooksTVCTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        app = launchAppWithDefaultProject()
+        app = launchApp()
     }
 
     func testLengthOfLook() {

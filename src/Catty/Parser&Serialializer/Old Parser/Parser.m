@@ -24,7 +24,6 @@
 #import "ProjectParser.h"
 #import "SpriteObject.h"
 #import "Script.h"
-#import "Project+CustomExtensions.h"
 
 @implementation Parser
 

@@ -26,6 +26,7 @@ import Foundation
 @testable import Pocket_Code
 
 @objc class AudioEngineMock: NSObject, AudioEngineProtocol {
+
     func getSpeechSynth() -> SpeechSynthesizer {
         SpeechSynthesizer()
     }
@@ -47,4 +48,6 @@ import Foundation
     func stopAllAudioPlayers() {}
 
     func speak(_ utterance: AVSpeechUtterance, expectation: CBExpectation?) {}
+
+    func setInstrument(_ instrument: Instrument, key: String) {}
 }

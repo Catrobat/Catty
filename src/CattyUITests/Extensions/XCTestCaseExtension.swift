@@ -24,36 +24,28 @@ import XCTest
 
 extension XCTestCase {
 
-    private func defaultApp() -> XCUIApplication {
+    static let defaultLaunchArguments = ["UITests", "skipPrivacyPolicy", "restoreDefaultProject"]
+
+    private func defaultApp(with launchArguments: [String]) -> XCUIApplication {
         continueAfterFailure = false
 
         let app = XCUIApplication()
-        app.launchArguments = ["UITests"]
+        app.launchArguments = launchArguments
         return app
     }
 
-    func launchApp() -> XCUIApplication {
-        let app = defaultApp()
+    func launchApp(with launchArguments: [String] = defaultLaunchArguments) -> XCUIApplication {
+        let app = defaultApp(with: launchArguments)
         app.launch()
-
-        dismissPrivacyPolicyScreenIfShown()
         return app
     }
 
-    func launchAppWithDefaultProject() -> XCUIApplication {
-        let app = launchApp()
-
-        restoreDefaultProject()
-        return app
+    func launchAppWithoutAnimations() -> XCUIApplication {
+        launchApp(with: type(of: self).defaultLaunchArguments + ["disableAnimations"])
     }
 
     func waitForElementToAppear(_ element: XCUIElement, timeout: TimeInterval = 5) -> XCUIElement {
-        let expectation = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == true"), object: element)
-
-        let result = XCTWaiter().wait(for: [expectation], timeout: timeout)
-
-        XCTAssert(result == .completed, "waitForElementToAppear failed for \(element.label) ")
-
+        XCTAssertTrue(element.waitForExistence(timeout: timeout), "waitForElementToAppear failed for \(element.label) ")
         return element
     }
 
@@ -137,27 +129,6 @@ extension XCTestCase {
             return
         } else {
             XCTFail("no valid View open")
-        }
-    }
-
-    func restoreDefaultProject() {
-        let app = XCUIApplication()
-        app.tables.staticTexts[kLocalizedProjectsOnDevice].tap()
-        waitForElementToAppear(app.navigationBars[kLocalizedProjects]).buttons[kLocalizedEdit].tap()
-        waitForElementToAppear(app.buttons[kLocalizedDeleteProjects]).tap()
-        let toolbarsQuery = app.toolbars
-        waitForElementToAppear(toolbarsQuery.buttons[kLocalizedSelectAllItems]).tap()
-        waitForElementToAppear(toolbarsQuery.buttons[kLocalizedDelete]).tap()
-        XCTAssert(app.tables.cells.count == 1)
-        // finally go back to main menu, because this method is used by other tests
-        app.navigationBars[kLocalizedProjects].buttons[kLocalizedPocketCode].tap()
-    }
-
-    func dismissPrivacyPolicyScreenIfShown() {
-        let app = XCUIApplication()
-
-        if app.buttons[kLocalizedPrivacyPolicyAgree].exists {
-            app.buttons[kLocalizedPrivacyPolicyAgree].tap()
         }
     }
 

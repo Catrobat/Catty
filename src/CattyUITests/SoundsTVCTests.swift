@@ -28,7 +28,7 @@ class SoundsTVCTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        app = launchAppWithDefaultProject()
+        app = launchApp()
     }
 
     func testLengthOfSounds() {

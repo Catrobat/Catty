@@ -28,7 +28,7 @@ class ScenePresenterVCTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        app = launchAppWithDefaultProject()
+        app = launchApp()
     }
 
     override func tearDown() {

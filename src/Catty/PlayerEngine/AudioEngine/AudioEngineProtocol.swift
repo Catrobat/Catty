@@ -43,4 +43,6 @@ import Foundation
     func getSpeechSynth() -> SpeechSynthesizer
 
     func speak(_ utterance: AVSpeechUtterance, expectation: CBExpectation?)
+
+    func setInstrument(_ instrument: Instrument, key: String)
 }

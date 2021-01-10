@@ -28,7 +28,7 @@ class ObjectTVCTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        app = launchAppWithDefaultProject()
+        app = launchApp()
     }
 
     func testScriptsCanEnterScriptsOfAllMoles() {

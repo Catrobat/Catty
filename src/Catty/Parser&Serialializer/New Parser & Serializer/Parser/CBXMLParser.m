@@ -23,7 +23,6 @@
 #import "CBXMLParser.h"
 #import "GDataXMLNode.h"
 #import "Project+CBXMLHandler.h"
-#import "Project+CustomExtensions.h"
 #import "CBXMLParserContext.h"
 #import "Util.h"
 #import "Pocket_Code-Swift.h"

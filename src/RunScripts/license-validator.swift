@@ -117,7 +117,8 @@ let license3rdPartyDict: [String: License] = [
     "AudioKit": .MIT,
     "chromaprint": .LGPL,
     "ChromaprintAudioDecoder": .MIT,
-    "SnapshotHelper": .MIT
+    "SnapshotHelper": .MIT,
+    "ScratchSampleInstruments": .BSD
 ]
 
 let licenseCheckDirs: [String: License] = [

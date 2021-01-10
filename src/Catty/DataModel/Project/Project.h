@@ -52,7 +52,8 @@
 - (NSArray<SpriteObject*>* _Nonnull)allObjects;
 - (BOOL)isEqualToProject:(Project* _Nonnull)project;
 - (NSInteger)getRequiredResources;
--(void)changeProjectOrientation;
+- (void)changeProjectOrientation;
+- (void)updateReferences;
 
 + (instancetype _Nonnull)lastUsedProject;
 + (void)updateLastModificationTimeForProjectWithName:(NSString* _Nonnull)projectName

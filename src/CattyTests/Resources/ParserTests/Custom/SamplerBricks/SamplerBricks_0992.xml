@@ -1,0 +1,151 @@
+<program>
+    <header>
+        <applicationBuildName>Catty</applicationBuildName>
+        <applicationBuildNumber>42</applicationBuildNumber>
+        <applicationName>Pocket Code</applicationName>
+        <applicationVersion>0.6.16</applicationVersion>
+        <catrobatLanguageVersion>0.992</catrobatLanguageVersion>
+        <dateTimeUpload/>
+        <description/>
+        <deviceName>x86_64</deviceName>
+        <landscapeMode>false</landscapeMode>
+        <mediaLicense>https://developer.catrobat.org/ccbysa_v4</mediaLicense>
+        <platform>iOS</platform>
+        <platformVersion>12.2</platformVersion>
+        <programLicense>https://developer.catrobat.org/agpl_v3</programLicense>
+        <programName>sef</programName>
+        <remixOf/>
+        <scenesEnabled>true</scenesEnabled>
+        <screenHeight>1136</screenHeight>
+        <screenMode>STRETCH</screenMode>
+        <screenWidth>640</screenWidth>
+        <tags/>
+        <url/>
+        <userHandle/>
+    </header>
+    <settings/>
+    <scenes>
+        <scene>
+            <name>Scene 1</name>
+            <objectList>
+                <object type="SingleSprite" name="Background">
+                    <lookList/>
+                    <nfcTagList/>
+                    <scriptList>
+                        <script type="StartScript">
+                            <brickList>
+                                <brick type="SetInstrumentBrick">
+                                    <commentedOut>false</commentedOut>
+                                    <instrumentSelection>PIANO</instrumentSelection>
+                                </brick>
+                                <brick type="SetInstrumentBrick">
+                                    <commentedOut>false</commentedOut>
+                                    <instrumentSelection>ELECTRIC_PIANO</instrumentSelection>
+                                </brick>
+                                <brick type="SetInstrumentBrick">
+                                    <commentedOut>false</commentedOut>
+                                    <instrumentSelection>CELLO</instrumentSelection>
+                                </brick>
+                                <brick type="SetInstrumentBrick">
+                                    <commentedOut>false</commentedOut>
+                                    <instrumentSelection>FLUTE</instrumentSelection>
+                                </brick>
+                                <brick type="SetInstrumentBrick">
+                                    <commentedOut>false</commentedOut>
+                                    <instrumentSelection>VIBRAPHONE</instrumentSelection>
+                                </brick>
+                                <brick type="SetInstrumentBrick">
+                                    <commentedOut>false</commentedOut>
+                                    <instrumentSelection>ORGAN</instrumentSelection>
+                                </brick>
+                                <brick type="SetInstrumentBrick">
+                                    <commentedOut>false</commentedOut>
+                                    <instrumentSelection>GUITAR</instrumentSelection>
+                                </brick>
+                                <brick type="SetInstrumentBrick">
+                                    <commentedOut>false</commentedOut>
+                                    <instrumentSelection>ELECTRIC_GUITAR</instrumentSelection>
+                                </brick>
+                                <brick type="SetInstrumentBrick">
+                                    <commentedOut>false</commentedOut>
+                                    <instrumentSelection>BASS</instrumentSelection>
+                                </brick>
+                                <brick type="SetInstrumentBrick">
+                                    <commentedOut>false</commentedOut>
+                                    <instrumentSelection>PIZZICATO</instrumentSelection>
+                                </brick>
+                                <brick type="SetInstrumentBrick">
+                                    <commentedOut>false</commentedOut>
+                                    <instrumentSelection>SYNTH_PAD</instrumentSelection>
+                                </brick>
+                                <brick type="SetInstrumentBrick">
+                                    <commentedOut>false</commentedOut>
+                                    <instrumentSelection>CHOIR</instrumentSelection>
+                                </brick>
+                                <brick type="SetInstrumentBrick">
+                                    <commentedOut>false</commentedOut>
+                                    <instrumentSelection>SYNTH_LEAD</instrumentSelection>
+                                </brick>
+                                <brick type="SetInstrumentBrick">
+                                    <commentedOut>false</commentedOut>
+                                    <instrumentSelection>WOODEN_FLUTE</instrumentSelection>
+                                </brick>
+                                <brick type="SetInstrumentBrick">
+                                    <commentedOut>false</commentedOut>
+                                    <instrumentSelection>TROMBONE</instrumentSelection>
+                                </brick>
+                                <brick type="SetInstrumentBrick">
+                                    <commentedOut>false</commentedOut>
+                                    <instrumentSelection>SAXOPHONE</instrumentSelection>
+                                </brick>
+                                <brick type="SetInstrumentBrick">
+                                    <commentedOut>false</commentedOut>
+                                    <instrumentSelection>BASSOON</instrumentSelection>
+                                </brick>
+                                <brick type="SetInstrumentBrick">
+                                    <commentedOut>false</commentedOut>
+                                    <instrumentSelection>CLARINET</instrumentSelection>
+                                </brick>
+                                <brick type="SetInstrumentBrick">
+                                    <commentedOut>false</commentedOut>
+                                    <instrumentSelection>MUSIC_BOX</instrumentSelection>
+                                </brick>
+                                <brick type="SetInstrumentBrick">
+                                    <commentedOut>false</commentedOut>
+                                    <instrumentSelection>STEEL_DRUM</instrumentSelection>
+                                </brick>
+                                <brick type="SetInstrumentBrick">
+                                    <commentedOut>false</commentedOut>
+                                    <instrumentSelection>MARIMBA</instrumentSelection>
+                                </brick>
+                            </brickList>
+                            <commentedOut>false</commentedOut>
+                            <isUserScript>false</isUserScript>
+                        </script>
+                    </scriptList>
+                    <soundList/>
+                    <userBricks/>
+                </object>
+            </objectList>
+            <data>
+                <objectListOfList>
+                    <entry>
+                        <object reference="../../../../objectList/object"/>
+                        <list/>
+                    </entry>
+                </objectListOfList>
+                <objectVariableList>
+                    <entry>
+                        <object reference="../../../../objectList/object"/>
+                        <list/>
+                    </entry>
+                </objectVariableList>
+                <userBrickVariableList/>
+            </data>
+            <originalWidth>640</originalWidth>
+            <originalHeight>1136</originalHeight>
+        </scene>
+    </scenes>
+    <programVariableList/>
+    <programListOfLists/>
+</program>

@@ -136,6 +136,11 @@ import Foundation
         speechSynth
     }
 
+    func setInstrument(_ instrument: Instrument, key: String) {
+        let subtree = getSubtree(key: key)
+        subtree.setInstrument(instrument)
+    }
+
     private func getSubtree(key: String) -> AudioSubtree {
         subtreeCreationQueue.sync {
             if subtrees[key] == nil {
