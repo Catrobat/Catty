@@ -158,6 +158,12 @@
 "Backgrounds" = "पृष्ठभूमियाँ";
 
 /* No comment provided by engineer. */
+"Bass" = "बास";
+
+/* No comment provided by engineer. */
+"Bassoon" = "अलगोजा";
+
+/* No comment provided by engineer. */
 "becomes true" = "becomes true";
 
 /* No comment provided by engineer. */
@@ -227,6 +233,9 @@
 "ceil" = "ceil";
 
 /* No comment provided by engineer. */
+"Cello" = "वायलनचेलो";
+
+/* No comment provided by engineer. */
 "Change brightness " = "चमक बदलें ";
 
 /* No comment provided by engineer. */
@@ -263,10 +272,16 @@
 "Changes saved." = "परिवर्तन सहेजा गया!";
 
 /* No comment provided by engineer. */
+"Choir" = "बजानेवालों";
+
+/* No comment provided by engineer. */
 "Choose" = "चुनें";
 
 /* No comment provided by engineer. */
 "Choose image" = "चित्र चुने";
+
+/* No comment provided by engineer. */
+"Clarinet" = "शहनाई";
 
 /* No comment provided by engineer. */
 "Clear" = "Clear";
@@ -536,6 +551,12 @@
 "Edit sounds" = "Edit sounds";
 
 /* No comment provided by engineer. */
+"Electric Guitar" = "विद्युत गिटार";
+
+/* No comment provided by engineer. */
+"Electric Piano" = "विद्युत गिटार";
+
+/* No comment provided by engineer. */
 "element" = "element";
 
 /* paint */
@@ -662,6 +683,9 @@
 "floor" = "मंजिल";
 
 /* No comment provided by engineer. */
+"Flute" = "बांसुरी";
+
+/* No comment provided by engineer. */
 "Following features used in this project are not compatible with this version of Pocket Code:" = "Following features used in this project are not compatible with this version of Pocket Code:";
 
 /* No comment provided by engineer. */
@@ -717,6 +741,9 @@
 
 /* No comment provided by engineer. */
 "green" = "green";
+
+/* No comment provided by engineer. */
+"Guitar" = "गिटार";
 
 /* No comment provided by engineer. */
 "gyro-sensor" = "gyro-sensor";
@@ -923,6 +950,9 @@
 "March" = "मार्च";
 
 /* No comment provided by engineer. */
+"Marimba" = "Marimba";
+
+/* No comment provided by engineer. */
 "Math" = "गणित";
 
 /* No comment provided by engineer. */
@@ -999,6 +1029,9 @@
 
 /* No comment provided by engineer. */
 "Move sounds" = "Move sounds";
+
+/* No comment provided by engineer. */
+"Music Box" = "संगीत बक्सा";
 
 /* Name of the default catrobat project (used as filename!!) */
 "My first project" = "मेरा पहला प्रोग्राम";
@@ -1145,6 +1178,9 @@
 "or" = "या";
 
 /* No comment provided by engineer. */
+"Organ" = "अंग";
+
+/* No comment provided by engineer. */
 "Password" = "पारण शब्द:";
 
 /* No comment provided by engineer. */
@@ -1183,8 +1219,14 @@
 /* No comment provided by engineer. */
 "phiro side right" = "phiro side right";
 
+/* No comment provided by engineer. */
+"Piano" = "पियानो";
+
 /* paint */
 "Pipette" = "पिपेट";
+
+/* No comment provided by engineer. */
+"Pizzicato" = "पिज्ज़ीकाटो";
 
 /* No comment provided by engineer. */
 "Place at " = "Place at ";
@@ -1385,6 +1427,9 @@
 "Saved" = "Saved";
 
 /* No comment provided by engineer. */
+"Saxophone" = "सैक्सोफोन";
+
+/* No comment provided by engineer. */
 "Say" = "Say";
 
 /* No comment provided by engineer. */
@@ -1470,6 +1515,9 @@
 
 /* No comment provided by engineer. */
 "Set description" = "विवरण ठीक करें";
+
+/* No comment provided by engineer. */
+"Set Instrument to" = "करने के लिए साधन सेट करें";
 
 /* No comment provided by engineer. */
 "Set pen color to" = "Set pen color to";
@@ -1571,6 +1619,9 @@
 "Start sound and wait" = "Start sound and wait";
 
 /* No comment provided by engineer. */
+"Steel Drum" = "स्टील का ड्रम";
+
+/* No comment provided by engineer. */
 "step" = "step";
 
 /* No comment provided by engineer. */
@@ -1593,6 +1644,12 @@
 
 /* No comment provided by engineer. */
 "Syntax Error!" = "वाक्यविनास त्रुटि!";
+
+/* No comment provided by engineer. */
+"Synth Lead" = "सिंट लीड";
+
+/* No comment provided by engineer. */
+"Synth Pad" = "सिंथ पैड";
 
 /* No comment provided by engineer. */
 "Tap \"+\" to add actors or objects" = "Tap \"+\" to add actors or objects";
@@ -1706,6 +1763,9 @@
 "transparency" = "पारदर्शिता:";
 
 /* No comment provided by engineer. */
+"Trombone" = "तुरही";
+
+/* No comment provided by engineer. */
 "true" = "सच";
 
 /* No comment provided by engineer. */
@@ -1814,13 +1874,16 @@
 "Version" = "संस्करण";
 
 /* No comment provided by engineer. */
+"Vibraphone" = "वाइब्राफोन\n";
+
+/* No comment provided by engineer. */
 "Vibrate for" = "थरथराए";
 
 /* No comment provided by engineer. */
 "vibration" = "vibration";
 
 /* No comment provided by engineer. */
-"View" = "View";
+"View" = "राय";
 
 /* No comment provided by engineer. */
 "Views" = "Views";
@@ -1871,6 +1934,9 @@
 "with" = "with";
 
 /* No comment provided by engineer. */
+"Wooden Flute" = "लकड़ी की बाँसुरी";
+
+/* No comment provided by engineer. */
 "x: " = "x: ";
 
 /* No comment provided by engineer. */
@@ -1895,7 +1961,7 @@
 "Your email seems to be invalid" = "Your email seems to be invalid";
 
 /* No comment provided by engineer. */
-"Your project was uploaded to the Catrobat community where others can use and download it." = "Your project was uploaded to the Catrobat community where others can use and download it.";
+"Your project was uploaded to the Catrobat community where others can use and download it." = "आपका प्रोजेक्ट कैटोबैट समुदाय में अपलोड किया गया था, जहां अन्य इसका उपयोग कर सकते हैं और डाउनलोड कर सकते हैं।";
 
 /* paint */
 "Zoom" = "Zoom";

@@ -158,6 +158,12 @@
 "Backgrounds" = "배경";
 
 /* No comment provided by engineer. */
+"Bass" = "베이스";
+
+/* No comment provided by engineer. */
+"Bassoon" = "바순";
+
+/* No comment provided by engineer. */
 "becomes true" = "참이 된다";
 
 /* No comment provided by engineer. */
@@ -227,6 +233,9 @@
 "ceil" = "위";
 
 /* No comment provided by engineer. */
+"Cello" = "첼로";
+
+/* No comment provided by engineer. */
 "Change brightness " = "밝기 바꾸기";
 
 /* No comment provided by engineer. */
@@ -263,10 +272,16 @@
 "Changes saved." = "변경 내용이 저장되었습니다.";
 
 /* No comment provided by engineer. */
+"Choir" = "합창";
+
+/* No comment provided by engineer. */
 "Choose" = "선택";
 
 /* No comment provided by engineer. */
 "Choose image" = "갤러리에서 가져오기";
+
+/* No comment provided by engineer. */
+"Clarinet" = "클라리넷";
 
 /* No comment provided by engineer. */
 "Clear" = "펜 지우기";
@@ -536,6 +551,12 @@
 "Edit sounds" = "소리 편집";
 
 /* No comment provided by engineer. */
+"Electric Guitar" = "전자 기타";
+
+/* No comment provided by engineer. */
+"Electric Piano" = "전자 피아노";
+
+/* No comment provided by engineer. */
 "element" = "항목";
 
 /* paint */
@@ -662,6 +683,9 @@
 "floor" = "아래";
 
 /* No comment provided by engineer. */
+"Flute" = "플루트";
+
+/* No comment provided by engineer. */
 "Following features used in this project are not compatible with this version of Pocket Code:" = "이 프로그램에 사용 되는 다음과 같은 장치 또는 브라우저와 호환되지 않습니다.";
 
 /* No comment provided by engineer. */
@@ -717,6 +741,9 @@
 
 /* No comment provided by engineer. */
 "green" = "초록";
+
+/* No comment provided by engineer. */
+"Guitar" = "기타";
 
 /* No comment provided by engineer. */
 "gyro-sensor" = "자이로 센서";
@@ -923,6 +950,9 @@
 "March" = "3월";
 
 /* No comment provided by engineer. */
+"Marimba" = "마림바";
+
+/* No comment provided by engineer. */
 "Math" = "수학";
 
 /* No comment provided by engineer. */
@@ -999,6 +1029,9 @@
 
 /* No comment provided by engineer. */
 "Move sounds" = "소리 이동";
+
+/* No comment provided by engineer. */
+"Music Box" = "뮤직 박스";
 
 /* Name of the default catrobat project (used as filename!!) */
 "My first project" = "내 첫 프로그램";
@@ -1145,6 +1178,9 @@
 "or" = "또는";
 
 /* No comment provided by engineer. */
+"Organ" = "오르간";
+
+/* No comment provided by engineer. */
 "Password" = "비밀번호";
 
 /* No comment provided by engineer. */
@@ -1183,8 +1219,14 @@
 /* No comment provided by engineer. */
 "phiro side right" = "피로 오른쪽 옆";
 
+/* No comment provided by engineer. */
+"Piano" = "피아노";
+
 /* paint */
 "Pipette" = "색 고르기";
+
+/* No comment provided by engineer. */
+"Pizzicato" = "피치카토";
 
 /* No comment provided by engineer. */
 "Place at " = "위치 설정";
@@ -1385,6 +1427,9 @@
 "Saved" = "저장 완료";
 
 /* No comment provided by engineer. */
+"Saxophone" = "색소폰";
+
+/* No comment provided by engineer. */
 "Say" = "말";
 
 /* No comment provided by engineer. */
@@ -1470,6 +1515,9 @@
 
 /* No comment provided by engineer. */
 "Set description" = "설명 설정";
+
+/* No comment provided by engineer. */
+"Set Instrument to" = "악기 설정";
 
 /* No comment provided by engineer. */
 "Set pen color to" = "펜 색 정하기";
@@ -1571,6 +1619,9 @@
 "Start sound and wait" = "소리 재생하고 기다리기";
 
 /* No comment provided by engineer. */
+"Steel Drum" = "스틸 드럼";
+
+/* No comment provided by engineer. */
 "step" = "단계";
 
 /* No comment provided by engineer. */
@@ -1593,6 +1644,12 @@
 
 /* No comment provided by engineer. */
 "Syntax Error!" = "입력에 오류가 있습니다! 해결하거나 취소하려면 다시 누르십시오.";
+
+/* No comment provided by engineer. */
+"Synth Lead" = "신스 리드";
+
+/* No comment provided by engineer. */
+"Synth Pad" = "신스 패드";
 
 /* No comment provided by engineer. */
 "Tap \"+\" to add actors or objects" = "배우와 오브젝트를 추가하려면 \"+\" 를 터치";
@@ -1706,6 +1763,9 @@
 "transparency" = "투명도";
 
 /* No comment provided by engineer. */
+"Trombone" = "트롬본";
+
+/* No comment provided by engineer. */
 "true" = "참";
 
 /* No comment provided by engineer. */
@@ -1814,13 +1874,16 @@
 "Version" = "버전 정보";
 
 /* No comment provided by engineer. */
+"Vibraphone" = "비브라폰";
+
+/* No comment provided by engineer. */
 "Vibrate for" = "진동하기";
 
 /* No comment provided by engineer. */
 "vibration" = "진동";
 
 /* No comment provided by engineer. */
-"View" = "View";
+"View" = "조회수";
 
 /* No comment provided by engineer. */
 "Views" = "조회수";
@@ -1871,6 +1934,9 @@
 "with" = "으로";
 
 /* No comment provided by engineer. */
+"Wooden Flute" = "나무 플룻";
+
+/* No comment provided by engineer. */
 "x: " = "x:";
 
 /* No comment provided by engineer. */
@@ -1895,7 +1961,7 @@
 "Your email seems to be invalid" = "당신의 이메일은 유효하지 않습니다";
 
 /* No comment provided by engineer. */
-"Your project was uploaded to the Catrobat community where others can use and download it." = "Your project was uploaded to the Catrobat community where others can use and download it.";
+"Your project was uploaded to the Catrobat community where others can use and download it." = "프로젝트는 Catrobat 커뮤니티에 업로드되어 누구나 사용할 수 있습니다.";
 
 /* paint */
 "Zoom" = "줌";

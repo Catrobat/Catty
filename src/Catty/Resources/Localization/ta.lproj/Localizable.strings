@@ -158,6 +158,12 @@
 "Backgrounds" = "பின்னணிகள்";
 
 /* No comment provided by engineer. */
+"Bass" = "Bass";
+
+/* No comment provided by engineer. */
+"Bassoon" = "Bassoon";
+
+/* No comment provided by engineer. */
 "becomes true" = "உண்மை ஆகிறது";
 
 /* No comment provided by engineer. */
@@ -227,6 +233,9 @@
 "ceil" = "ceil";
 
 /* No comment provided by engineer. */
+"Cello" = "Cello";
+
+/* No comment provided by engineer. */
 "Change brightness " = "ப்ரைட்னசை மாற்று ";
 
 /* No comment provided by engineer. */
@@ -263,10 +272,16 @@
 "Changes saved." = "மாற்றங்கள் சேமிக்கப்பட்டன.";
 
 /* No comment provided by engineer. */
+"Choir" = "Choir";
+
+/* No comment provided by engineer. */
 "Choose" = "தேர்வு செய்";
 
 /* No comment provided by engineer. */
 "Choose image" = "படத்தைத் தேர்வுசெய்க";
+
+/* No comment provided by engineer. */
+"Clarinet" = "Clarinet";
 
 /* No comment provided by engineer. */
 "Clear" = "அழி";
@@ -536,6 +551,12 @@
 "Edit sounds" = "ஒலிகளைத் திருத்து";
 
 /* No comment provided by engineer. */
+"Electric Guitar" = "Electric Guitar";
+
+/* No comment provided by engineer. */
+"Electric Piano" = "Electric Piano";
+
+/* No comment provided by engineer. */
 "element" = "உறுப்பு";
 
 /* paint */
@@ -662,6 +683,9 @@
 "floor" = "தரை";
 
 /* No comment provided by engineer. */
+"Flute" = "Flute";
+
+/* No comment provided by engineer. */
 "Following features used in this project are not compatible with this version of Pocket Code:" = "இந்த திட்டத்தில் பயன்படுத்தப்படும் பின்வரும் அம்சங்கள் பாக்கெட் குறியீட்டின் இந்த பதிப்போடு பொருந்தாது:";
 
 /* No comment provided by engineer. */
@@ -717,6 +741,9 @@
 
 /* No comment provided by engineer. */
 "green" = "பச்சை";
+
+/* No comment provided by engineer. */
+"Guitar" = "Guitar";
 
 /* No comment provided by engineer. */
 "gyro-sensor" = "கைரோ-சென்சார்";
@@ -923,6 +950,9 @@
 "March" = "மார்ச்";
 
 /* No comment provided by engineer. */
+"Marimba" = "Marimba";
+
+/* No comment provided by engineer. */
 "Math" = "கணிதம்";
 
 /* No comment provided by engineer. */
@@ -999,6 +1029,9 @@
 
 /* No comment provided by engineer. */
 "Move sounds" = "ஒலிகளை நகர்த்தவும்";
+
+/* No comment provided by engineer. */
+"Music Box" = "Music Box";
 
 /* Name of the default catrobat project (used as filename!!) */
 "My first project" = "எனது முதல் திட்டம்";
@@ -1145,6 +1178,9 @@
 "or" = "அல்லது";
 
 /* No comment provided by engineer. */
+"Organ" = "Organ";
+
+/* No comment provided by engineer. */
 "Password" = "கடவுச்சொல்";
 
 /* No comment provided by engineer. */
@@ -1183,8 +1219,14 @@
 /* No comment provided by engineer. */
 "phiro side right" = "பைரோ பக்க வலது";
 
+/* No comment provided by engineer. */
+"Piano" = "Piano";
+
 /* paint */
 "Pipette" = "குழாயி";
+
+/* No comment provided by engineer. */
+"Pizzicato" = "Pizzicato";
 
 /* No comment provided by engineer. */
 "Place at " = "இடத்தில் ";
@@ -1385,6 +1427,9 @@
 "Saved" = "சேமிக்கப்பட்டது";
 
 /* No comment provided by engineer. */
+"Saxophone" = "Saxophone";
+
+/* No comment provided by engineer. */
 "Say" = "சொல்";
 
 /* No comment provided by engineer. */
@@ -1470,6 +1515,9 @@
 
 /* No comment provided by engineer. */
 "Set description" = "விளக்கத்தை அமைக்கவும்";
+
+/* No comment provided by engineer. */
+"Set Instrument to" = "Set Instrument to";
 
 /* No comment provided by engineer. */
 "Set pen color to" = "பேனா நிறத்தை அமைக்கவும்";
@@ -1571,6 +1619,9 @@
 "Start sound and wait" = "ஒலியைத் தொடங்கி காத்திருங்கள்";
 
 /* No comment provided by engineer. */
+"Steel Drum" = "Steel Drum";
+
+/* No comment provided by engineer. */
 "step" = "படி";
 
 /* No comment provided by engineer. */
@@ -1593,6 +1644,12 @@
 
 /* No comment provided by engineer. */
 "Syntax Error!" = "தொடரியல் பிழை!";
+
+/* No comment provided by engineer. */
+"Synth Lead" = "Synth Lead";
+
+/* No comment provided by engineer. */
+"Synth Pad" = "Synth Pad";
 
 /* No comment provided by engineer. */
 "Tap \"+\" to add actors or objects" = "நடிகர்கள் அல்லது பொருள்களைச் சேர்க்க \"+\" தட்டவும்";
@@ -1706,6 +1763,9 @@
 "transparency" = "வெளிப்படைத்தன்மை";
 
 /* No comment provided by engineer. */
+"Trombone" = "Trombone";
+
+/* No comment provided by engineer. */
 "true" = "சரி";
 
 /* No comment provided by engineer. */
@@ -1814,6 +1874,9 @@
 "Version" = "பதிப்பு";
 
 /* No comment provided by engineer. */
+"Vibraphone" = "Vibraphone";
+
+/* No comment provided by engineer. */
 "Vibrate for" = "க்கு அதிர்வு";
 
 /* No comment provided by engineer. */
@@ -1869,6 +1932,9 @@
 
 /* No comment provided by engineer. */
 "with" = "உடன்";
+
+/* No comment provided by engineer. */
+"Wooden Flute" = "Wooden Flute";
 
 /* No comment provided by engineer. */
 "x: " = "x: ";
