@@ -1,6 +1,5 @@
 github "ArtSabintsev/Siren"
 github "SecondRenaissance/Bohr"
-github "Marxon13/M13ProgressSuite" ~> 1.2.9
 github "TTTAttributedLabel/TTTAttributedLabel" ~> 2.0.0
 github "maxep/MXSegmentedPager" ~> 3.3.0
 github "onevcat/Kingfisher" ~> 4.0

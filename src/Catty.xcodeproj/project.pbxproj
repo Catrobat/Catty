@@ -936,7 +936,6 @@
 		593624C21F76F36F008A588D /* TTTAttributedLabel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59473A601F76F04B00BD634F /* TTTAttributedLabel.framework */; };
 		593624C51F76F374008A588D /* Bohr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59473A641F76F05000BD634F /* Bohr.framework */; };
 		593624C61F76F374008A588D /* HMSegmentedControl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59473A651F76F05000BD634F /* HMSegmentedControl.framework */; };
-		593624C71F76F374008A588D /* M13ProgressSuite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59473A661F76F05000BD634F /* M13ProgressSuite.framework */; };
 		593624C81F76F374008A588D /* MXPagerView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59473A671F76F05000BD634F /* MXPagerView.framework */; };
 		593624C91F76F374008A588D /* MXParallaxHeader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59473A681F76F05000BD634F /* MXParallaxHeader.framework */; };
 		593624CA1F76F374008A588D /* MXSegmentedPager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59473A691F76F05000BD634F /* MXSegmentedPager.framework */; };
@@ -945,7 +944,6 @@
 		59473A611F76F04B00BD634F /* TTTAttributedLabel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59473A601F76F04B00BD634F /* TTTAttributedLabel.framework */; };
 		59473A6A1F76F05000BD634F /* Bohr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59473A641F76F05000BD634F /* Bohr.framework */; };
 		59473A6B1F76F05000BD634F /* HMSegmentedControl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59473A651F76F05000BD634F /* HMSegmentedControl.framework */; };
-		59473A6C1F76F05000BD634F /* M13ProgressSuite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59473A661F76F05000BD634F /* M13ProgressSuite.framework */; };
 		59473A6D1F76F05000BD634F /* MXPagerView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59473A671F76F05000BD634F /* MXPagerView.framework */; };
 		59473A6E1F76F05000BD634F /* MXParallaxHeader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59473A681F76F05000BD634F /* MXParallaxHeader.framework */; };
 		59473A6F1F76F05000BD634F /* MXSegmentedPager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59473A691F76F05000BD634F /* MXSegmentedPager.framework */; };
@@ -2901,7 +2899,6 @@
 		59473A601F76F04B00BD634F /* TTTAttributedLabel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TTTAttributedLabel.framework; path = Carthage/Build/iOS/TTTAttributedLabel.framework; sourceTree = "<group>"; };
 		59473A641F76F05000BD634F /* Bohr.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bohr.framework; path = Carthage/Build/iOS/Bohr.framework; sourceTree = "<group>"; };
 		59473A651F76F05000BD634F /* HMSegmentedControl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HMSegmentedControl.framework; path = Carthage/Build/iOS/HMSegmentedControl.framework; sourceTree = "<group>"; };
-		59473A661F76F05000BD634F /* M13ProgressSuite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = M13ProgressSuite.framework; path = Carthage/Build/iOS/M13ProgressSuite.framework; sourceTree = "<group>"; };
 		59473A671F76F05000BD634F /* MXPagerView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MXPagerView.framework; path = Carthage/Build/iOS/MXPagerView.framework; sourceTree = "<group>"; };
 		59473A681F76F05000BD634F /* MXParallaxHeader.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MXParallaxHeader.framework; path = Carthage/Build/iOS/MXParallaxHeader.framework; sourceTree = "<group>"; };
 		59473A691F76F05000BD634F /* MXSegmentedPager.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MXSegmentedPager.framework; path = Carthage/Build/iOS/MXSegmentedPager.framework; sourceTree = "<group>"; };
@@ -4246,7 +4243,6 @@
 				593624C51F76F374008A588D /* Bohr.framework in Frameworks */,
 				59D9EC65206117000019EC10 /* DVR.framework in Frameworks */,
 				593624C61F76F374008A588D /* HMSegmentedControl.framework in Frameworks */,
-				593624C71F76F374008A588D /* M13ProgressSuite.framework in Frameworks */,
 				593624C81F76F374008A588D /* MXPagerView.framework in Frameworks */,
 				9ECCA3A72395C0D900FE8323 /* Quick.framework in Frameworks */,
 				593624C91F76F374008A588D /* MXParallaxHeader.framework in Frameworks */,
@@ -4271,7 +4267,6 @@
 				59473A6A1F76F05000BD634F /* Bohr.framework in Frameworks */,
 				59473A6B1F76F05000BD634F /* HMSegmentedControl.framework in Frameworks */,
 				59697DAC201F631700A0071A /* Kingfisher.framework in Frameworks */,
-				59473A6C1F76F05000BD634F /* M13ProgressSuite.framework in Frameworks */,
 				59473A6D1F76F05000BD634F /* MXPagerView.framework in Frameworks */,
 				59473A6E1F76F05000BD634F /* MXParallaxHeader.framework in Frameworks */,
 				4C4B4CC223ED94230054C861 /* FirebaseCrashlytics.framework in Frameworks */,
@@ -4506,7 +4501,6 @@
 				59473A651F76F05000BD634F /* HMSegmentedControl.framework */,
 				59697DAB201F631700A0071A /* Kingfisher.framework */,
 				593E4DE31FE120780016DCB9 /* LXReorderableCollectionViewFlowLayout.framework */,
-				59473A661F76F05000BD634F /* M13ProgressSuite.framework */,
 				59473A671F76F05000BD634F /* MXPagerView.framework */,
 				59473A681F76F05000BD634F /* MXParallaxHeader.framework */,
 				59473A691F76F05000BD634F /* MXSegmentedPager.framework */,
@@ -11248,7 +11242,6 @@
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/Bohr.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/HMSegmentedControl.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/M13ProgressSuite.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/MXPagerView.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/MXParallaxHeader.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/MXSegmentedPager.framework",
