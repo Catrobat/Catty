@@ -797,6 +797,7 @@
 		4CB2CFA61D7AD7E7009F3034 /* SetColorBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB2CFA51D7AD7E7009F3034 /* SetColorBrick+CBXMLHandler.m */; };
 		4CB2CFAB1D7AD86D009F3034 /* SetColorBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB2CFAA1D7AD86D009F3034 /* SetColorBrickCell.m */; };
 		4CB2CFAE1D7ADA1D009F3034 /* SetColorBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB2CFA71D7AD833009F3034 /* SetColorBrick+Instruction.swift */; };
+		4CB3E0A125ADEFFD007F4365 /* StagePresenterViewControllerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB3E0A025ADEFFD007F4365 /* StagePresenterViewControllerMock.swift */; };
 		4CB412202198635900FC4594 /* UserDataContainerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB4121D2198635900FC4594 /* UserDataContainerTest.swift */; };
 		4CB4FE061B95DF2900431757 /* BrickInsertManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB4FE031B95DF2900431757 /* BrickInsertManager.m */; };
 		4CB4FE071B95DF2900431757 /* BrickMoveManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB4FE051B95DF2900431757 /* BrickMoveManager.m */; };
@@ -2747,6 +2748,7 @@
 		4CB2CFA71D7AD833009F3034 /* SetColorBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SetColorBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Look/SetColorBrick+Instruction.swift"; sourceTree = "<group>"; };
 		4CB2CFA91D7AD86D009F3034 /* SetColorBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetColorBrickCell.h; sourceTree = "<group>"; };
 		4CB2CFAA1D7AD86D009F3034 /* SetColorBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetColorBrickCell.m; sourceTree = "<group>"; };
+		4CB3E0A025ADEFFD007F4365 /* StagePresenterViewControllerMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StagePresenterViewControllerMock.swift; sourceTree = "<group>"; };
 		4CB4121D2198635900FC4594 /* UserDataContainerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDataContainerTest.swift; sourceTree = "<group>"; };
 		4CB4FE021B95DF2900431757 /* BrickInsertManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickInsertManager.h; sourceTree = "<group>"; };
 		4CB4FE031B95DF2900431757 /* BrickInsertManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BrickInsertManager.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -7222,6 +7224,7 @@
 				4CF8277124F11541006E562A /* ScriptCollectionViewControllerMock.swift */,
 				5973F243202EF37600A4CED9 /* SoundsLibraryCollectionViewDataSourceDelegateMock.swift */,
 				4C1C8B15213FE7F1003B3AA4 /* StoreProjectDownloaderMock.swift */,
+				4CB3E0A025ADEFFD007F4365 /* StagePresenterViewControllerMock.swift */,
 				4CF8277324F1172D006E562A /* StoryboardMock.swift */,
 				4C7182E023EEF47500195BC7 /* UICollectionViewMock.swift */,
 				4CBF5F9D21AF1D390079C834 /* UIGestureRecognizerMock.swift */,
@@ -11423,6 +11426,7 @@
 				9ECDCB132328578F00EBDA63 /* HideBrickTests.swift in Sources */,
 				4C82265C213FA7A400F3D750 /* FingerXSensorTest.swift in Sources */,
 				2219ED93251DDB7E00EBA379 /* NSMutableArrayExtensionTests.swift in Sources */,
+				4CB3E0A125ADEFFD007F4365 /* StagePresenterViewControllerMock.swift in Sources */,
 				9E2D47C72328428100917D92 /* ChangeColorByNBrickTests.swift in Sources */,
 				4C2CBB4725A5AA8400C1C143 /* XMLParserObjectTests093.swift in Sources */,
 				D3CF986223FD23E40076F366 /* ScriptCollectionViewControllerDisableTests.swift in Sources */,

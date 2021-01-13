@@ -165,7 +165,7 @@ class BluetoothDevicesTableViewController: UITableViewController {
         delegate!.rightButton.isEnabled = false
         DispatchQueue.main.async {
             self.loadingView?.hide()
-            self.stagePresenterVC.checkResourcesAndPushViewControllerTo(navigationController: self.navigationController!)
+            self.stagePresenterVC.checkResourcesAndPushViewController(to: self.navigationController!)
         }
     }
 

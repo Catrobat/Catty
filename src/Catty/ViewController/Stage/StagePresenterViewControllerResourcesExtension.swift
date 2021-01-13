@@ -26,16 +26,22 @@ import CoreBluetooth
 @objc extension StagePresenterViewController {
 
     @objc(checkResourcesAndPushViewControllerTo:)
-    func checkResourcesAndPushViewControllerTo(navigationController: UINavigationController) {
+    func checkResourcesAndPushViewController(to navigationController: UINavigationController) {
         navigationController.view.addSubview(self.loadingView)
         self.showLoadingView()
 
         DispatchQueue.global(qos: .userInitiated).async {
-            self.project = Project.init(loadingInfo: Util.lastUsedProjectLoadingInfo())!
-            self.formulaManager = FormulaManager(stageSize: Util.screenSize(true), landscapeMode: self.project.header.landscapeMode)
-            let readyToStart = self.notifyUserAboutUnavailableResources(navigationController: navigationController)
-
+            guard let project = Project.init(loadingInfo: Util.lastUsedProjectLoadingInfo()) else {
+                DispatchQueue.main.async {
+                    self.hideLoadingView()
+                    Util.alert(withText: kLocalizedInvalidZip)
+                }
+                return
+            }
+            self.project = project
             DispatchQueue.main.async {
+                self.formulaManager = FormulaManager(stageSize: Util.screenSize(true), landscapeMode: self.project.header.landscapeMode)
+                let readyToStart = self.notifyUserAboutUnavailableResources(navigationController: navigationController)
                 if readyToStart && !(self.navigationController?.topViewController is StagePresenterViewController) {
                     navigationController.pushViewController(self, animated: true)
                 } else {
@@ -101,10 +107,10 @@ import CoreBluetooth
         if !unavailableResourceNames.isEmpty {
             DispatchQueue.main.async {
                 AlertControllerBuilder.alert(title: kLocalizedPocketCode, message: unavailableResourceNames.joined(separator: ", ") + " " + kLocalizedNotAvailable)
-                .addCancelAction(title: kLocalizedCancel, handler: nil)
-                .addDefaultAction(title: kLocalizedYes) {
-                    self.continueWithoutRequiredResources(navigationController: navigationController)
-                }
+                    .addCancelAction(title: kLocalizedCancel, handler: nil)
+                    .addDefaultAction(title: kLocalizedYes) {
+                        self.continueWithoutRequiredResources(navigationController: navigationController)
+                    }
                 .build()
                 .showWithController(navigationController)
             }

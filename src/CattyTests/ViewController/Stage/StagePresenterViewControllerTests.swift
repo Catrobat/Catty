@@ -27,16 +27,21 @@ import XCTest
 
 final class StagePresenterViewControllerTest: XCTestCase {
 
-    var vc: StagePresenterViewController!
+    var vc: StagePresenterViewControllerMock!
     var skView: SKView!
     var project: Project!
+    var navigationController: NavigationControllerMock!
 
     override func setUp() {
         super.setUp()
-        vc = StagePresenterViewController()
-        skView = SKView(frame: CGRect(origin: CGPoint.zero, size: CGSize(width: 1000, height: 2500)))
 
-        project = ProjectManager.createProject(name: "testProject", projectId: "")
+        vc = StagePresenterViewControllerMock()
+
+        navigationController = NavigationControllerMock()
+        navigationController.view = UIView()
+
+        skView = SKView(frame: CGRect(origin: CGPoint.zero, size: CGSize(width: 1000, height: 2500)))
+        project = ProjectManager.createProject(name: kDefaultProjectBundleName, projectId: kNoProjectIDYetPlaceholder)
     }
 
     func testNotification() {
@@ -73,5 +78,34 @@ final class StagePresenterViewControllerTest: XCTestCase {
         XCTAssertEqual(gridLabels![2].text, String(-project.header.screenHeight.intValue / 2))
         XCTAssertEqual(gridLabels![3].text, String(-project.header.screenWidth.intValue / 2))
         XCTAssertEqual(gridLabels![4].text, String(project.header.screenWidth.intValue / 2))
+    }
+
+    func testCheckResourcesAndPushViewController() {
+        CBFileManager.shared()?.addDefaultProjectToProjectsRootDirectoryIfNoProjectsExist()
+        Util.setLastProjectWithName(kDefaultProjectBundleName, projectID: nil)
+
+        XCTAssertNil(navigationController.currentViewController)
+        XCTAssertEqual(0, navigationController.view.subviews.count)
+        XCTAssertEqual(0, vc.showLoadingViewCalls)
+
+        vc.checkResourcesAndPushViewController(to: navigationController)
+
+        expect(self.navigationController.currentViewController).toEventually(equal(vc))
+        expect(self.navigationController.view.subviews.count).toEventually(equal(1))
+        expect(self.vc.showLoadingViewCalls).toEventually(equal(1))
+        expect(self.vc.hideLoadingViewCalls).toEventually(equal(0))
+    }
+
+    func testCheckResourcesAndPushViewControllerInvalidProject() {
+        Util.setLastProjectWithName("InvalidProject", projectID: Date().timeIntervalSinceNow.description)
+
+        XCTAssertNil(navigationController.currentViewController)
+
+        vc.checkResourcesAndPushViewController(to: navigationController)
+
+        expect(self.navigationController.currentViewController).toEventually(beNil())
+        expect(self.navigationController.view.subviews.count).toEventually(equal(1))
+        expect(self.vc.showLoadingViewCalls).toEventually(equal(1))
+        expect(self.vc.hideLoadingViewCalls).toEventually(equal(1))
     }
 }
