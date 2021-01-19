@@ -785,4 +785,10 @@ final class FormulaManagerInterpreterTests: XCTestCase {
         formula = Formula(formulaElement: element)!
         XCTAssertEqual("12.3 testValue", interpreter.interpretString(formula, for: object))
     }
+
+    func testUnknownType() {
+        let formulaElement = FormulaElement(elementType: ElementType.UNKNOWN_TYPE, value: "unknown")!
+        let formula = Formula(formulaElement: formulaElement)!
+        XCTAssertEqual(0, interpreter.interpretDouble(formula, for: object))
+    }
 }

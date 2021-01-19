@@ -124,8 +124,7 @@
     if (elementType) {
         return (ElementType)elementType.integerValue;
     }
-    NSError(@"Unknown Type: %@", type);
-    return -1;
+    return UNKNOWN_TYPE;
 }
 
 - (NSString*)stringForElementType:(ElementType)type
