@@ -21,19 +21,19 @@
  */
 
 enum FormulaEditorSection {
-    case math(position: Int)
-    case logic(position: Int)
-    case device(position: Int)
-    case object(position: Int)
+    case functions(position: Int, subsection: FunctionSubsection)
+    case logic(position: Int, subsection: LogicSubsection)
+    case sensors(position: Int, subsection: SensorSubsection)
+    case object(position: Int, subsection: ObjectSubsection)
 }
 
 extension FormulaEditorSection: Equatable {
     static func == (left: FormulaEditorSection, right: FormulaEditorSection) -> Bool {
         switch (left, right) {
-        case (let .device(positionLeft), let .device(positionRight)):
+        case (let .sensors(positionLeft), let .sensors(positionRight)):
             return positionLeft == positionRight
 
-        case (let .math(positionLeft), let .math(positionRight)):
+        case (let .functions(positionLeft), let .functions(positionRight)):
             return positionLeft == positionRight
 
         case (let .logic(positionLeft), let .logic(positionRight)):
@@ -49,17 +49,35 @@ extension FormulaEditorSection: Equatable {
 
     func position() -> Int {
         switch self {
-        case let .device(position):
+        case let .sensors(position, _):
             return position
 
-        case let .math(position):
+        case let .functions(position, _):
             return position
 
-        case let .logic(position):
+        case let .logic(position, _):
             return position
 
-        case let .object(position):
+        case let .object(position, _):
             return position
         }
     }
+
+    func subsection() -> FormulaEditorSubsection {
+        switch self {
+        case let .functions(_, subsection):
+            return subsection
+
+        case let .object(position: _, subsection: subsection):
+            return subsection
+
+        case let .logic(position: _, subsection: subsection):
+            return subsection
+
+        case let .sensors(position: _, subsection: subsection):
+            return subsection
+
+        }
+    }
+
 }

@@ -54,6 +54,6 @@ class PositionXSensor: ObjectDoubleSensor {
     }
 
     func formulaEditorSections(for spriteObject: SpriteObject) -> [FormulaEditorSection] {
-        [.object(position: type(of: self).position)]
+        [.object(position: type(of: self).position, subsection: .motion)]
     }
 }

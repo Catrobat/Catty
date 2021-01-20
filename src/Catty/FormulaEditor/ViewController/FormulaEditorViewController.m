@@ -60,24 +60,14 @@ NS_ENUM(NSInteger, ButtonIndex) {
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *highlightedButtons;
 
 @property (weak, nonatomic) IBOutlet UIScrollView *calcScrollView;
-@property (weak, nonatomic) IBOutlet UIScrollView *mathScrollView;
-@property (weak, nonatomic) IBOutlet UIScrollView *logicScrollView;
-@property (weak, nonatomic) IBOutlet UIScrollView *objectScrollView;
-@property (weak, nonatomic) IBOutlet UIScrollView *sensorScrollView;
-@property (weak, nonatomic) IBOutlet UIScrollView *variableScrollView;
-@property (weak, nonatomic) IBOutlet UIPickerView *variablePicker;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *variableSegmentedControl;
-
-@property (weak, nonatomic) IBOutlet UISegmentedControl *varOrListSegmentedControl;
-
 
 @property (weak, nonatomic) IBOutlet UIButton *calcButton;
-@property (weak, nonatomic) IBOutlet UIButton *mathbutton;
+@property (weak, nonatomic) IBOutlet UIButton *functionsButton;
 @property (weak, nonatomic) IBOutlet UIButton *logicButton;
 @property (weak, nonatomic) IBOutlet UIButton *objectButton;
 @property (weak, nonatomic) IBOutlet UIButton *sensorButton;
 @property (weak, nonatomic) IBOutlet ShapeButton *deleteButton;
-@property (weak, nonatomic) IBOutlet UIButton *variableButton;
+@property (weak, nonatomic) IBOutlet UIButton *dataButton;
 
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *buttons;
 @property (weak, nonatomic) IBOutlet UIButton *undoButton;
@@ -95,6 +85,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 @property (nonatomic) BOOL isProjectVariable;
 @property (nonatomic, strong) BDKNotifyHUD *notficicationHud;
+@property (strong, nonatomic) FormulaEditorSectionViewController *formulaEditorSectionViewController;
 
 @property (nonatomic) BOOL isScrolling;
 
@@ -236,22 +227,11 @@ NS_ENUM(NSInteger, ButtonIndex) {
     [self.view addSubview:self.brickCell];
     
     [self showFormulaEditorTextView];
-    
-    [self.normalTypeButton addObjectsFromArray:[self initMathSectionWithScrollView:self.mathScrollView buttonHeight:self.calcButton.frame.size.height]];
-    [self.normalTypeButton addObjectsFromArray:[self initLogicSectionWithScrollView:self.logicScrollView buttonHeight:self.calcButton.frame.size.height]];
-    [self.normalTypeButton addObjectsFromArray:[self initObjectSectionWithScrollView:self.objectScrollView buttonHeight:self.calcButton.frame.size.height]];
-    [self.normalTypeButton addObjectsFromArray:[self initSensorSectionWithScrollView:self.sensorScrollView buttonHeight:self.calcButton.frame.size.height]];
-    
-    [self setupNavigationBar];
-    [self initSegmentedControls];
+
     [self colorFormulaEditor];
     [self hideScrollViews];
     self.calcScrollView.hidden = NO;
     [self.calcButton setSelected:YES];
-    self.mathScrollView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
-    self.logicScrollView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
-    self.objectScrollView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
-    self.sensorScrollView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
     self.calcScrollView.contentSize = CGSizeMake(self.calcScrollView.frame.size.width,self.calcScrollView.frame.size.height);
     
     [self localizeView];
@@ -272,8 +252,13 @@ NS_ENUM(NSInteger, ButtonIndex) {
     
     panRecognizer.delegate = self;
     
-    [self.variablePicker addGestureRecognizer:tapToSelect];
-    [self.variablePicker addGestureRecognizer:panRecognizer];
+    self.formulaEditorSectionViewController = [[FormulaEditorSectionViewController alloc] init];
+    self.formulaEditorSectionViewController.formulaManager = _formulaManager;
+    self.formulaEditorSectionViewController.spriteObject = _object;
+    self.formulaEditorSectionViewController.formulaEditorVC = self;
+    self.formulaEditorSectionViewController.modalPresentationStyle = UIModalPresentationPopover;
+    [self presentViewController:self.formulaEditorSectionViewController animated:YES completion:NULL];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -353,37 +338,15 @@ NS_ENUM(NSInteger, ButtonIndex) {
     }
 }
 
-#pragma mark initPickerView
-
--(void)initSegmentedControls
-{
-    self.variablePicker.delegate = self;
-    self.variablePicker.dataSource = self;
-    self.variablePicker.tintColor = UIColor.globalTint;
-    self.variableSourceProject = [[NSMutableArray alloc] init];
-    self.variableSourceObject = [[NSMutableArray alloc] init];
-    self.listSourceProject = [[NSMutableArray alloc] init];
-    self.listSourceObject = [[NSMutableArray alloc] init];
-    [self updateVariablePickerData];
-    [self.variableSegmentedControl setTitle:kLocalizedObject forSegmentAtIndex:1];
-    [self.variableSegmentedControl setTitle:kLocalizedProject forSegmentAtIndex:0];
-    self.variableSegmentedControl.tintColor = UIColor.globalTint;
-    
-    
-    [self.varOrListSegmentedControl setTitle:kLocalizedVariables forSegmentAtIndex:0];
-    [self.varOrListSegmentedControl setTitle:kLocalizedLists forSegmentAtIndex:1];
-    self.varOrListSegmentedControl.tintColor = UIColor.globalTint;
-}
-
 #pragma mark - localizeView
 - (void)localizeView
 {
     [self.calcButton setTitle:kUIFENumbers forState:UIControlStateNormal];
-    [self.mathbutton setTitle:kUIFEMath forState:UIControlStateNormal];
+    [self.functionsButton setTitle:kUIFEFunctions forState:UIControlStateNormal];
     [self.logicButton setTitle:kUIFELogic forState:UIControlStateNormal];
     [self.objectButton setTitle:kUIFEObject forState:UIControlStateNormal];
     [self.sensorButton setTitle:kUIFESensor forState:UIControlStateNormal];
-    [self.variableButton setTitle:kUIFEVariableList forState:UIControlStateNormal];
+    [self.dataButton setTitle:kUIFEData forState:UIControlStateNormal];
     [self.computeButton setTitle:kUIFECompute forState:UIControlStateNormal];
     [self.doneButton setTitle:kUIFEDone forState:UIControlStateNormal];
     [self.variable setTitle:kUIFEVar forState:UIControlStateNormal];
@@ -639,7 +602,6 @@ NS_ENUM(NSInteger, ButtonIndex) {
         button.titleLabel.adjustsFontSizeToFitWidth = YES;
         button.titleLabel.minimumScaleFactor = 0.01f;
     }
-    self.variableScrollView.backgroundColor = UIColor.background;
     
 }
 
@@ -746,271 +708,34 @@ NS_ENUM(NSInteger, ButtonIndex) {
     [self.calcScrollView scrollsToTop];
 }
 - (IBAction)showFunction:(UIButton *)sender {
-    [self hideScrollViews];
-    self.mathScrollView.hidden = NO;
-    [self.mathbutton setSelected:YES];
-    [self.mathScrollView scrollsToTop];
-    [self.mathScrollView flashScrollIndicators];
+    self.formulaEditorSectionViewController.formulaEditorSectionType = FormulaEditorSectionTypeFunctions;
+    [self presentViewController:self.formulaEditorSectionViewController animated:true completion:nil];
 }
 - (IBAction)showLogic:(UIButton *)sender {
-    [self hideScrollViews];
-    self.logicScrollView.hidden = NO;
-    [self.logicButton setSelected:YES];
-    [self.logicScrollView scrollsToTop];
-    [self.logicScrollView flashScrollIndicators];
+    self.formulaEditorSectionViewController.formulaEditorSectionType = FormulaEditorSectionTypeLogic;
+    [self presentViewController:self.formulaEditorSectionViewController animated:true completion:nil];
 }
 - (IBAction)showObject:(UIButton *)sender {
-    [self hideScrollViews];
-    self.objectScrollView.hidden = NO;
-    [self.objectButton setSelected:YES];
-    [self.objectScrollView scrollsToTop];
-    [self.objectScrollView flashScrollIndicators];
+    self.formulaEditorSectionViewController.formulaEditorSectionType = FormulaEditorSectionTypeObject;
+    [self presentViewController:self.formulaEditorSectionViewController animated:true completion:nil];
 }
 - (IBAction)showSensor:(UIButton *)sender {
-    [self hideScrollViews];
-    self.sensorScrollView.hidden = NO;
-    [self.sensorButton setSelected:YES];
-    [self.sensorScrollView scrollsToTop];
-    [self.sensorScrollView flashScrollIndicators];
+    self.formulaEditorSectionViewController.formulaEditorSectionType = FormulaEditorSectionTypeSensors;
+    [self presentViewController:self.formulaEditorSectionViewController animated:true completion:nil];
 }
 - (IBAction)showVariable:(UIButton *)sender {
-  [self hideScrollViews];
-  self.variableScrollView.hidden = NO;
-  [self.variableButton setSelected:YES];
-  [self.variableScrollView scrollsToTop];
-  [self.variableScrollView flashScrollIndicators];
+    self.formulaEditorSectionViewController.formulaEditorSectionType = FormulaEditorSectionTypeData;
+    [self presentViewController:self.formulaEditorSectionViewController animated:true completion:nil];
 }
 
 - (void)hideScrollViews
 {
-    self.mathScrollView.hidden = YES;
-    self.calcScrollView.hidden = YES;
-    self.logicScrollView.hidden = YES;
-    self.objectScrollView.hidden = YES;
-    self.sensorScrollView.hidden = YES;
-    self.variableScrollView.hidden = YES;
     [self.calcButton setSelected:NO];
-    [self.mathbutton setSelected:NO];
+    [self.functionsButton setSelected:NO];
     [self.objectButton setSelected:NO];
     [self.logicButton setSelected:NO];
     [self.sensorButton setSelected:NO];
-    [self.variableButton setSelected:NO];
-}
-
-- (void)addNewVariable: (BOOL)isProjectVariable
-{
-    NSString* promptTitle =  kUIFENewVar;
-    NSString* promptMessage = kUIFEVarName;
-    self.isProjectVariable = isProjectVariable;
-    self.variableSegmentedControl.selectedSegmentIndex = isProjectVariable ? 0 : 1;
-    [self.variableSegmentedControl setNeedsDisplay];
-
-    [Util askUserForVariableNameAndPerformAction:@selector(saveVariable:)
-                                          target:self
-                                     promptTitle:promptTitle
-                                   promptMessage:promptMessage
-                                  minInputLength:kMinNumOfVariableNameCharacters
-                                  maxInputLength:kMaxNumOfVariableNameCharacters
-                                          isList:NO
-                                    andTextField:self.formulaEditorTextView
-                                     initialText:@""];
-}
-
-- (void)addNewList: (BOOL)isProjectList
-{
-    NSString* promptTitle =  kUIFENewList;
-    NSString* promptMessage = kUIFEListName;
-    self.isProjectVariable = isProjectList;
-    self.variableSegmentedControl.selectedSegmentIndex = isProjectList ? 0 : 1;
-    [self.variableSegmentedControl setNeedsDisplay];
-
-    [Util askUserForVariableNameAndPerformAction:@selector(saveList:)
-                                          target:self
-                                     promptTitle:promptTitle
-                                   promptMessage:promptMessage
-                                  minInputLength:kMinNumOfVariableNameCharacters
-                                  maxInputLength:kMaxNumOfVariableNameCharacters
-                                          isList:YES
-                                    andTextField:self.formulaEditorTextView
-                                     initialText:@""];
-}
-
-- (void)askObjectOrProject:(BOOL)isList {
-    NSString* promptTitle = isList ? kUIFEActionList : kUIFEActionVar;
-    [[[[[[AlertControllerBuilder actionSheetWithTitle:promptTitle]
-         addCancelActionWithTitle:kLocalizedCancel handler:^{
-             [self.formulaEditorTextView becomeFirstResponder];
-         }]
-        addDefaultActionWithTitle:kUIFEActionVarPro handler:^{
-            if (isList) {
-                [self addNewList:YES];
-            } else {
-                [self addNewVariable:YES];
-            }
-        }]
-       addDefaultActionWithTitle:kUIFEActionVarObj handler:^{
-           if (isList) {
-               [self addNewList:NO];
-           } else {
-               [self addNewVariable:NO];
-           }       }] build]
-     showWithController:self];
-}
-
-- (IBAction)askVarOrList:(UIButton *)sender {
-    [self.formulaEditorTextView resignFirstResponder];
-    
-    [[[[[[AlertControllerBuilder actionSheetWithTitle:kUIFEVarOrList]
-         addCancelActionWithTitle:kLocalizedCancel handler:^{
-             [self.formulaEditorTextView becomeFirstResponder];
-         }]
-        addDefaultActionWithTitle:kUIFENewVar handler:^{
-            [self askObjectOrProject: NO];
-        }]
-       addDefaultActionWithTitle:kUIFENewList handler:^{
-           [self askObjectOrProject: YES];
-       }] build]
-     showWithController:self];
-}
-
-- (void)updateVariablePickerData {
-    UserDataContainer *userData = self.object.scene.project.userData;
-    [self.variableSourceProject  removeAllObjects];
-    [self.variableSourceObject  removeAllObjects];
-    [self.listSourceProject  removeAllObjects];
-    [self.listSourceObject  removeAllObjects];
-    
-    // ------------------
-    // Project Variables
-    // ------------------
-    for(UserVariable *userVariable in userData.variables) {
-        [self.variableSourceProject addObject:userVariable];
-    }
-    
-    // ------------------
-    // Project Lists
-    // ------------------
-    for(UserVariable *userVariable in userData.lists) {
-        [self.listSourceProject addObject:userVariable];
-    }
-    
-    // ------------------
-    // Object Variables
-    // ------------------
-    NSArray *array = [UserDataContainer objectAndProjectVariablesForObject:self.object];
-    if (array) {
-        for (UserVariable *var in array) {
-            [self.variableSourceObject addObject:var];
-        }
-    }
-    
-    // ------------------
-    // Object Lists
-    // ------------------
-    array = [UserDataContainer objectAndProjectListsForObject:self.object];
-    if (array) {
-        for (UserVariable *var in array) {
-            [self.listSourceObject addObject:var];
-        }
-    }
-  
-    [self.variablePicker reloadAllComponents];
-    
-    if([self.variableSourceProject count] > 0 || [self.variableSourceObject count] > 0 || [self.listSourceProject count] > 0 || [self.listSourceObject count] > 0)
-        [self.variablePicker selectRow:0 inComponent:0 animated:NO];
-}
-
-- (void)askForVariableName
-{
-    [Util askUserForVariableNameAndPerformAction:@selector(saveVariable:)
-                                          target:self
-                                     promptTitle:kUIFENewVarExists
-                                   promptMessage:kUIFEOtherName
-                                  minInputLength:kMinNumOfVariableNameCharacters
-                                  maxInputLength:kMaxNumOfVariableNameCharacters
-                                          isList:NO
-                                    andTextField:self.formulaEditorTextView
-                                     initialText:@""];
-}
-
-- (void)askForListName
-{
-    [Util askUserForVariableNameAndPerformAction:@selector(saveList:)
-            target:self
-       promptTitle:kUIFENewVarExists
-     promptMessage:kUIFEOtherName
-    minInputLength:kMinNumOfVariableNameCharacters
-    maxInputLength:kMaxNumOfVariableNameCharacters
-            isList:YES
-      andTextField:self.formulaEditorTextView
-       initialText:@""];
-}
-
-- (void)saveVariable:(NSString*)name
-{
-    if (self.isProjectVariable){
-        for (UserVariable* variable in [UserDataContainer allVariablesForProject: self.object.scene.project]) {
-            if ([variable.name isEqualToString:name]) {
-                [self askForVariableName];
-                return;
-            }
-        }
-    } else {
-        for (UserVariable* variable in [UserDataContainer objectAndProjectVariablesForObject:self.object]) {
-            if ([variable.name isEqualToString:name]) {
-                [self askForVariableName];
-                return;
-            }
-        }
-    }
-    
-    [self.formulaEditorTextView becomeFirstResponder];
-    UserVariable* variable = [[UserVariable alloc] initWithName:name];
-    variable.value = [NSNumber numberWithInt:0];
-    int buttonType = 0;
-    
-    if (self.isProjectVariable) {
-        [self.object.scene.project.userData addVariable:variable];
-    }  else {
-        [self.object.userData addVariable:variable];
-    }
-    
-    [self.object.scene.project saveToDiskWithNotification:YES];
-    [self updateVariablePickerData];
-    [self handleInputWithTitle:variable.name AndButtonType:buttonType];
-}
-
-- (void)saveList:(NSString*)name
-{
-    if (self.isProjectVariable){
-        for (UserVariable* variable in [UserDataContainer allListsForProject: self.object.scene.project]) {
-            if ([variable.name isEqualToString:name]) {
-                [self askForListName];
-                return;
-            }
-        }
-    } else {
-        for (UserVariable* variable in [UserDataContainer objectAndProjectListsForObject:self.object]) {
-            if ([variable.name isEqualToString:name]) {
-                [self askForListName];
-                return;
-            }
-        }
-    }
-    
-    [self.formulaEditorTextView becomeFirstResponder];
-    UserList* list = [[UserList alloc] initWithName:name];
-    int buttonType = 11;
-    
-    if (self.isProjectVariable){
-        [self.object.scene.project.userData addList:list];
-    } else {
-        [self.object.userData addList:list];
-    }
-    
-    [self.object.scene.project saveToDiskWithNotification:YES];
-    [self updateVariablePickerData];
-    [self handleInputWithTitle:list.name AndButtonType:buttonType];
+    [self.dataButton setSelected:NO];
 }
 
 - (void)closeMenu
@@ -1037,261 +762,6 @@ NS_ENUM(NSInteger, ButtonIndex) {
     NSDebug(@"Text: %@", text);
     [self handleInputWithTitle:text AndButtonType:TOKEN_TYPE_STRING];
     [self.formulaEditorTextView becomeFirstResponder];
-}
-
-#pragma mark - pickerView
-
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
-{
-    return 1;
-}
-
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
-{
-    if (component == 0 && self.variableSegmentedControl.selectedSegmentIndex == 0 && self.varOrListSegmentedControl.selectedSegmentIndex == 0) {
-        return self.variableSourceProject.count;
-    } else if (component == 0 && self.variableSegmentedControl.selectedSegmentIndex == 1 && self.varOrListSegmentedControl.selectedSegmentIndex == 0) {
-        return self.variableSourceObject.count;
-    } else if (component == 0 && self.variableSegmentedControl.selectedSegmentIndex == 0 && self.varOrListSegmentedControl.selectedSegmentIndex == 1) {
-        return self.listSourceProject.count;
-    } else if (component == 0 && self.variableSegmentedControl.selectedSegmentIndex == 1 && self.varOrListSegmentedControl.selectedSegmentIndex == 1) {
-        return self.listSourceObject.count;
-    }
-    return 0;
-}
-
-- (NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
-{
-    BOOL forObjectOnly = self.variableSegmentedControl.selectedSegmentIndex;
-    BOOL isList = self.varOrListSegmentedControl.selectedSegmentIndex;
-
-    if (component == 0 && !forObjectOnly && !isList) {
-        if (row < self.variableSourceProject.count) {
-            return [self.variableSourceProject objectAtIndex:row].name;
-        }
-    } else if (component == 0 && forObjectOnly && !isList) {
-        if (row < self.variableSourceObject.count) {
-            return [self.variableSourceObject objectAtIndex:row].name;
-        }
-    } else if (component == 0 && !forObjectOnly && isList) {
-        if (row < self.listSourceProject.count) {
-            return [self.listSourceProject objectAtIndex:row].name;
-        }
-    }
-    else if (component == 0 && forObjectOnly && isList) {
-        if (row < self.listSourceObject.count) {
-            return [self.listSourceObject objectAtIndex:row].name;
-        }
-    }
-    
-    return @"";
-}
-
-- (NSAttributedString *)pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component
-{
-    NSString *title = [self pickerView:pickerView titleForRow:row forComponent:component];
-    UIColor *color = UIColor.globalTint;
-    NSAttributedString *attString = [[NSAttributedString alloc] initWithString:title attributes:@{NSForegroundColorAttributeName:color}];
-    return attString;
-}
-
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
-{
-
-}
-
-- (IBAction)tappedToSelectRow:(UITapGestureRecognizer *)tapRecognizer {
-    if (tapRecognizer.state == UIGestureRecognizerStateEnded && self.isScrolling == FALSE) {
-        CGFloat rowHeight = [self.variablePicker rowSizeForComponent:0].height;
-        CGRect selectedRowFrame = CGRectInset(self.variablePicker.bounds, 0.0, (CGRectGetHeight(self.variablePicker.frame) - rowHeight) / 2.0 );
-        BOOL userTappedOnSelectedRow = (CGRectContainsPoint(selectedRowFrame, [tapRecognizer locationInView:self.variablePicker]));
-        if (userTappedOnSelectedRow) {
-            NSInteger selectedRow = [self.variablePicker selectedRowInComponent:0];
-            [self pickerView:self.variablePicker didSelectRow:selectedRow inComponent:0];
-            [self decideVariableOrList];
-        }
-    }
-}
-
-- (IBAction)pickerViewGotScrolled:(UIPanGestureRecognizer *)panRecognizer {
-    if( panRecognizer.state == UIGestureRecognizerStateBegan) {
-        self.isScrolling = TRUE;
-    } else if ( panRecognizer.state == UIGestureRecognizerStateEnded ) {
-        self.isScrolling = FALSE;
-    }
-}
-
-
-
-- (void)decideVariableOrList {
-    NSInteger row = [self.variablePicker selectedRowInComponent:0];
-    if (row >= 0) {
-        int buttonType = 0;
-        UserVariable *userVariable;
-        if (self.variableSegmentedControl.selectedSegmentIndex == 0 && self.varOrListSegmentedControl.selectedSegmentIndex == 0) {
-            if (row < self.variableSourceProject.count) {
-                userVariable = [self.variableSourceProject objectAtIndex:row];
-            }
-        } else if (self.variableSegmentedControl.selectedSegmentIndex == 1 && self.varOrListSegmentedControl.selectedSegmentIndex == 0){
-            if (row < self.variableSourceObject.count) {
-                userVariable = [self.variableSourceObject objectAtIndex:row];
-            }
-        } else if (self.variableSegmentedControl.selectedSegmentIndex == 0 && self.varOrListSegmentedControl.selectedSegmentIndex == 1){
-            if (row < self.listSourceProject.count) {
-                userVariable = [self.listSourceProject objectAtIndex:row];
-                buttonType = 11;
-            }
-        } else if (self.variableSegmentedControl.selectedSegmentIndex == 1 && self.varOrListSegmentedControl.selectedSegmentIndex == 1){
-            if (row < self.listSourceObject.count) {
-                userVariable = [self.listSourceObject objectAtIndex:row];
-                buttonType = 11;
-            }
-        }
-        if (userVariable) {
-            [self handleInputWithTitle:userVariable.name AndButtonType:buttonType];
-        }
-    }
-}
-
-- (IBAction)choseVariableOrList:(UIButton *)sender {
-    [self decideVariableOrList];
-}
-
-
-- (IBAction)deleteUserData:(UIButton *)sender {
-    NSInteger row = [self.variablePicker selectedRowInComponent:0];
-    BOOL isProjectData = false;
-    
-    if (row >= 0) {
-        UserVariable *userVariable;
-        if ((self.variableSegmentedControl.selectedSegmentIndex == 0)
-            && (self.varOrListSegmentedControl.selectedSegmentIndex == 0)) {
-            if (row < self.variableSourceProject.count) {
-                userVariable = [self.variableSourceProject objectAtIndex:row];
-                isProjectData = true;
-            }
-        } else if ((self.variableSegmentedControl.selectedSegmentIndex == 1)
-                   && (self.varOrListSegmentedControl.selectedSegmentIndex == 0)) {
-            if (row < self.variableSourceObject.count) {
-                userVariable = [self.variableSourceObject objectAtIndex:row];
-            }
-        } else if ((self.variableSegmentedControl.selectedSegmentIndex == 0)
-                   && (self.varOrListSegmentedControl.selectedSegmentIndex == 1)) {
-            if (row < self.listSourceProject.count) {
-                userVariable = [self.listSourceProject objectAtIndex:row];
-                isProjectData = true;
-            }
-        } else if ((self.variableSegmentedControl.selectedSegmentIndex == 1)
-                   && (self.varOrListSegmentedControl.selectedSegmentIndex == 1)) {
-            if (row < self.listSourceObject.count) {
-                userVariable = [self.listSourceObject objectAtIndex:row];
-            }
-        }
-        if (userVariable) {
-            BOOL isList = self.varOrListSegmentedControl.selectedSegmentIndex;
-            if (!isList) {
-                if(![self isVariableUsed:userVariable]) {
-                    [self deleteVariable:userVariable atRow:row isProjectData:isProjectData];
-                } else {
-                    [self showNotification:kUIFEDeleteVarBeingUsed andDuration:1.5f];
-                }
-            } else {
-                if(![self isListUsed:(id<UserDataProtocol>)userVariable]) {
-                    [self deleteList:(id<UserDataProtocol>)userVariable atRow:row isProjectData:isProjectData];
-                } else {
-                    [self showNotification:kUIFEDeleteListBeingUsed andDuration:1.5f];
-                }
-            }
-        }
-    }
-}
-
-- (void)deleteVariable: (UserVariable*)userVariable atRow:(NSInteger)row isProjectData:(BOOL)isProjectData
-{
-    BOOL removed = [self.object.userData removeUserVariableIdentifiedBy: userVariable.name];
-    if (!removed) {
-        removed = [self.object.scene.project.userData removeUserVariableIdentifiedBy: userVariable.name];
-    }
-    if (removed) {
-        if (isProjectData) {
-            [self.variableSourceProject removeObjectAtIndex:row];
-        } else {
-            [self.variableSourceObject removeObjectAtIndex:row];
-        }
-        [self.object.scene.project saveToDiskWithNotification:YES];
-        [self updateVariablePickerData];
-    }
-}
-
-- (void)deleteList: (id<UserDataProtocol>)userList atRow:(NSInteger)row isProjectData:(BOOL)isProjectData
-{
-    BOOL removed = [self.object.userData removeUserListIdentifiedBy: userList.name];
-    if (!removed) {
-        removed = [self.object.scene.project.userData removeUserListIdentifiedBy: userList.name];
-    }
-    if (removed) {
-        if (isProjectData) {
-            [self.listSourceProject removeObjectAtIndex:row];
-        } else {
-            [self.listSourceObject removeObjectAtIndex:row];
-        }
-        [self.object.scene.project saveToDiskWithNotification:YES];
-        [self updateVariablePickerData];
-    }
-}
-
-- (BOOL)isVariableUsed:(UserVariable*)variable
-{
-    if([self.object.scene.project.userData containsVariable:variable]) {
-        for(SpriteObject *spriteObject in self.object.scene.objects) {
-            for(Script *script in spriteObject.scriptList) {
-                for(id brick in script.brickList) {
-                    if([brick isKindOfClass:[Brick class]] && [brick isVariableUsedWithVariable:variable]) {
-                        return YES;
-                    }
-                }
-            }
-        }
-    } else {
-        for(Script *script in self.object.scriptList) {
-            for(id brick in script.brickList) {
-                if([brick isKindOfClass:[Brick class]] && [brick isVariableUsedWithVariable:variable]) {
-                    return YES;
-                }
-            }
-        }
-    }
-    
-    return NO;
-}
-
-- (BOOL)isListUsed:(id<UserDataProtocol>)list
-{
-    if([self.object.scene.project.userData containsList:list]) {
-        for(SpriteObject *spriteObject in self.object.scene.objects) {
-            for(Script *script in spriteObject.scriptList) {
-                for(id brick in script.brickList) {
-                    if([brick isKindOfClass:[Brick class]] && [brick isListUsedWithList:list]) {
-                        return YES;
-                    }
-                }
-            }
-        }
-    } else {
-        for(Script *script in self.object.scriptList) {
-            for(id brick in script.brickList) {
-                if([brick isKindOfClass:[Brick class]] && [brick isListUsedWithList:list]) {
-                    return YES;
-                }
-            }
-        }
-    }
-    
-    return NO;
-}
-
-- (IBAction)changeVariablePickerView:(id)sender {
-    [self.variablePicker reloadAllComponents];
 }
 
 - (void)showNotification:(NSString*)text andDuration:(CGFloat)duration

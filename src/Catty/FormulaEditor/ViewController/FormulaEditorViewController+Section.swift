@@ -22,49 +22,16 @@
 
 extension FormulaEditorViewController {
 
-    @objc func initMathSection(scrollView: UIScrollView, buttonHeight: CGFloat) -> [UIButton] {
-        let items = formulaManager.formulaEditorItemsForMathSection(spriteObject: object)
-        return initWithItems(formulaEditorItems: items, scrollView: scrollView, buttonHeight: buttonHeight, fullButtonWidth: true)
-    }
+    func formulaEditorItemSelected(item: FormulaEditorItem) {
 
-    @objc func initLogicSection(scrollView: UIScrollView, buttonHeight: CGFloat) -> [UIButton] {
-        let items = formulaManager.formulaEditorItemsForLogicSection(spriteObject: object)
-        return initWithItems(formulaEditorItems: items, scrollView: scrollView, buttonHeight: buttonHeight, fullButtonWidth: false)
-    }
-
-    @objc func initObjectSection(scrollView: UIScrollView, buttonHeight: CGFloat) -> [UIButton] {
-        let items = formulaManager.formulaEditorItemsForObjectSection(spriteObject: object)
-        return initWithItems(formulaEditorItems: items, scrollView: scrollView, buttonHeight: buttonHeight, fullButtonWidth: true)
-    }
-
-    @objc func initSensorSection(scrollView: UIScrollView, buttonHeight: CGFloat) -> [UIButton] {
-        let items = formulaManager.formulaEditorItemsForDeviceSection(spriteObject: object)
-        return initWithItems(formulaEditorItems: items, scrollView: scrollView, buttonHeight: buttonHeight, fullButtonWidth: true)
-    }
-
-    private func initWithItems(formulaEditorItems: [FormulaEditorItem], scrollView: UIScrollView, buttonHeight: CGFloat, fullButtonWidth: Bool) -> [UIButton] {
-        var button: UIButton?
-        var buttons = [UIButton]()
-
-        for item in formulaEditorItems {
-            button = buttonForScrollView(item: item, scrollView: scrollView, previousButton: button, buttonHeight: buttonHeight, fullButtonWidth: fullButtonWidth)
-            buttons.append(button!)
+        if let sensor = item.sensor {
+            handleInput(for: sensor)
+        } else if let function = item.function {
+            handleInput(for: function)
+        } else if let op = item.op {
+            handleInput(for: op)
         }
 
-        resizeSection(scrollView: scrollView, for: buttons, with: buttonHeight, fullButtonWidth: fullButtonWidth)
-        return buttons
-    }
-
-    @objc func buttonPressed(sender: UIButton) {
-        if let button = sender as? FormulaEditorButton {
-            if let sensor = button.sensor {
-                handleInput(for: sensor)
-            } else if let function = button.function {
-                handleInput(for: function)
-            } else if let op = button.op {
-                handleInput(for: op)
-            }
-        }
     }
 
     @objc func divisionButtonPressed() {
@@ -85,27 +52,6 @@ extension FormulaEditorViewController {
     @objc func additionButtonPressed() {
         guard let op = formulaManager.getOperator(tag: PlusOperator.tag) else { return }
         handleInput(for: op)
-    }
-
-    private func buttonForScrollView(item: FormulaEditorItem, scrollView: UIScrollView, previousButton: UIButton?, buttonHeight: CGFloat, fullButtonWidth: Bool) -> UIButton {
-        let button = FormulaEditorButton(formulaEditorItem: item)
-        button.addTarget(self, action: #selector(buttonPressed(sender:)), for: .touchUpInside)
-        scrollView.addSubview(button)
-
-        button.heightAnchor.constraint(equalToConstant: buttonHeight).isActive = true
-        button.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: fullButtonWidth ? 1.0 : 0.5).isActive = true
-
-        let oddButton = scrollView.subviews.filter { $0 is FormulaEditorButton }.count % 2 != 0
-
-        if fullButtonWidth || oddButton {
-            button.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 0).isActive = true
-            button.topAnchor.constraint(equalTo: previousButton?.bottomAnchor ?? scrollView.topAnchor, constant: 0).isActive = true
-        } else if let topAnchorView = previousButton {
-            button.leftAnchor.constraint(equalTo: topAnchorView.rightAnchor, constant: 0).isActive = true
-            button.topAnchor.constraint(equalTo: topAnchorView.topAnchor, constant: 0).isActive = true
-        }
-
-        return button
     }
 
     private func resizeSection(scrollView: UIScrollView, for buttons: [UIButton], with buttonHeight: CGFloat, fullButtonWidth: Bool) {

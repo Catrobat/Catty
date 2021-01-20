@@ -30,8 +30,10 @@
 		181A12C324E42B6E00358440 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 92300CE918B2196700F2B4DC /* Localizable.strings */; };
 		181CC10724B750AF004A783E /* CBPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181CC10424B750AE004A783E /* CBPosition.swift */; };
 		181DB738247DA62600B82B20 /* NSDataExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181DB737247DA62600B82B20 /* NSDataExtension.swift */; };
+		181E000625B5766700534C24 /* FormulaEditorSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181E000525B5766700534C24 /* FormulaEditorSectionViewController.swift */; };
 		1822C1392471C7CB00F8F158 /* BrickCellListDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1822C1382471C7CB00F8F158 /* BrickCellListDataTests.swift */; };
 		18237D6B24EC3A9300759854 /* UIDefines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18237D6A24EC3A9300759854 /* UIDefines.swift */; };
+		1829DEF925BB13F2002976AB /* FormulaEditorSectionViewControllerDataExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1829DEF825BB13F2002976AB /* FormulaEditorSectionViewControllerDataExtension.swift */; };
 		1833ED942446572F0053BF7C /* HelpWebViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1833ED912446572E0053BF7C /* HelpWebViewControllerTests.swift */; };
 		18385C68247C0EB30050819A /* LineShapeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18385C67247C0EB30050819A /* LineShapeNode.swift */; };
 		18390A6924D0576100A07DFD /* StampBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18390A6824D0576100A07DFD /* StampBrick.swift */; };
@@ -65,6 +67,7 @@
 		1882475B24C8514300B01653 /* SetPenColorBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1882475A24C8514300B01653 /* SetPenColorBrick+Instruction.swift */; };
 		188746B824DA914E003F5E81 /* ProjectManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188746B724DA914E003F5E81 /* ProjectManager.swift */; };
 		188746BC24DA91EB003F5E81 /* ProjectManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188746BB24DA91EB003F5E81 /* ProjectManagerTests.swift */; };
+		18957DDF25B8B870001A623F /* FormulaEditorSubsection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18957DDE25B8B870001A623F /* FormulaEditorSubsection.swift */; };
 		18A9DBA92434C7F400F4C390 /* IfLogicBeginBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A9DBA82434C7F400F4C390 /* IfLogicBeginBrickTests.swift */; };
 		18AAC22F24A6088100C96335 /* SetPenSizeBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AAC22E24A6088100C96335 /* SetPenSizeBrick.swift */; };
 		18AAC23324A60C8800C96335 /* SetPenSizeBrickCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AAC23224A60C8800C96335 /* SetPenSizeBrickCell.swift */; };
@@ -1891,8 +1894,10 @@
 		181321C825C97E9D001BA787 /* FormulaEditorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaEditorTests.swift; sourceTree = "<group>"; };
 		181CC10424B750AE004A783E /* CBPosition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBPosition.swift; sourceTree = "<group>"; };
 		181DB737247DA62600B82B20 /* NSDataExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSDataExtension.swift; sourceTree = "<group>"; };
+		181E000525B5766700534C24 /* FormulaEditorSectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaEditorSectionViewController.swift; sourceTree = "<group>"; };
 		1822C1382471C7CB00F8F158 /* BrickCellListDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrickCellListDataTests.swift; sourceTree = "<group>"; };
 		18237D6A24EC3A9300759854 /* UIDefines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDefines.swift; sourceTree = "<group>"; };
+		1829DEF825BB13F2002976AB /* FormulaEditorSectionViewControllerDataExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaEditorSectionViewControllerDataExtension.swift; sourceTree = "<group>"; };
 		1833ED912446572E0053BF7C /* HelpWebViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpWebViewControllerTests.swift; sourceTree = "<group>"; };
 		18385C67247C0EB30050819A /* LineShapeNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LineShapeNode.swift; path = PlayerEngine/DataModel/LineShapeNode.swift; sourceTree = "<group>"; };
 		18390A6824D0576100A07DFD /* StampBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StampBrick.swift; sourceTree = "<group>"; };
@@ -1928,6 +1933,7 @@
 		1882475A24C8514300B01653 /* SetPenColorBrick+Instruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SetPenColorBrick+Instruction.swift"; sourceTree = "<group>"; };
 		188746B724DA914E003F5E81 /* ProjectManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectManager.swift; sourceTree = "<group>"; };
 		188746BB24DA91EB003F5E81 /* ProjectManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectManagerTests.swift; sourceTree = "<group>"; };
+		18957DDE25B8B870001A623F /* FormulaEditorSubsection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaEditorSubsection.swift; sourceTree = "<group>"; };
 		18A9DBA82434C7F400F4C390 /* IfLogicBeginBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IfLogicBeginBrickTests.swift; sourceTree = "<group>"; };
 		18AAC22E24A6088100C96335 /* SetPenSizeBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPenSizeBrick.swift; sourceTree = "<group>"; };
 		18AAC23224A60C8800C96335 /* SetPenSizeBrickCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPenSizeBrickCell.swift; sourceTree = "<group>"; };
@@ -7980,6 +7986,9 @@
 				92DFB0061A38949E00FA9B0F /* FormulaEditorViewController.m */,
 				F4664F9120DD7A1700E1519A /* FormulaEditorViewController+Section.swift */,
 				4C4EE29A210901E70045F890 /* FormulaEditorSection.swift */,
+				181E000525B5766700534C24 /* FormulaEditorSectionViewController.swift */,
+				1829DEF825BB13F2002976AB /* FormulaEditorSectionViewControllerDataExtension.swift */,
+				18957DDE25B8B870001A623F /* FormulaEditorSubsection.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -11987,6 +11996,7 @@
 				AABCB3DB1BB364B9009F67D2 /* CBBroadcastHandlerProtocol.swift in Sources */,
 				AABCB3D91BB3648E009F67D2 /* CBOperation.swift in Sources */,
 				5E7E7F8A2341CB8100411298 /* UIColorExtension.swift in Sources */,
+				18957DDF25B8B870001A623F /* FormulaEditorSubsection.swift in Sources */,
 				4C72EA3D2108ED0800E7407F /* TouchManager.swift in Sources */,
 				18390A6F24D058BA00A07DFD /* StampBrick+Instruction.swift in Sources */,
 				4C0F9F69204BD19400E71B2D /* SetBackgroundBrick+CBXMLHandler.m in Sources */,
@@ -12445,6 +12455,7 @@
 				6F4B2FB72466704500B5F0ED /* ProjectMigrator.swift in Sources */,
 				4C724E5A1B4D3E8C00E27479 /* Project+CBXMLHandler.m in Sources */,
 				05E6801B255B5DAA00D1E295 /* EmbroideryDefines.swift in Sources */,
+				1829DEF925BB13F2002976AB /* FormulaEditorSectionViewControllerDataExtension.swift in Sources */,
 				6FB09D2324A29F1E009C69A0 /* StoreProjectUploader.swift in Sources */,
 				92FF30FB1A24DCAA00093DA7 /* InternFormulaParserException.m in Sources */,
 				4C1C8B14213FE76B003B3AA4 /* ChartProjectCell.swift in Sources */,
@@ -12739,6 +12750,7 @@
 				92FF314F1A24DEB300093DA7 /* LooksTableViewController.m in Sources */,
 				929CC0D01BC39B0A0027DEC0 /* PhiroRGBLightBrick.m in Sources */,
 				92FF32B51A24E2F400093DA7 /* PlaceHolderView.m in Sources */,
+				181E000625B5766700534C24 /* FormulaEditorSectionViewController.swift in Sources */,
 				6F9CF120246E7AA7008CED1C /* UserList.swift in Sources */,
 				4C724E561B4D3E8C00E27479 /* Formula+CBXMLHandler.m in Sources */,
 				F4E6E5C2210E23D500D86FE6 /* CeilFunction.swift in Sources */,
