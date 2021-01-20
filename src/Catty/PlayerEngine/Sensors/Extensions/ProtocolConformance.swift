@@ -25,51 +25,8 @@ import CoreMotion
 
 // MARK: - CoreMotion protocol conformance
 
-extension CMMotionManager: MotionManager {
-    var accelerometerData: AccelerometerData? {
-        self.value(forKey: "accelerometerData") as? CMAccelerometerData
-    }
-    var deviceMotion: DeviceMotion? {
-        self.value(forKey: "deviceMotion") as? CMDeviceMotion
-    }
-    var gyroData: GyroData? {
-        self.value(forKey: "gyroData") as? CMGyroData
-    }
-}
-
-extension CMAccelerometerData: AccelerometerData {
-}
-
-extension CMDeviceMotion: DeviceMotion {
-    var attitude: Attitude {
-        guard let attitude = self.value(forKey: "attitude") as? CMAttitude else { return CMAttitude() }
-        return attitude
-    }
-}
-
-extension CMGyroData: GyroData {}
-
-extension CMAttitude: Attitude {}
+extension CMMotionManager: MotionManager {}
 
 // MARK: - CoreLocation protocol conformance
 
-extension CLLocationManager: LocationManager {
-    var heading: Heading? {
-        self.value(forKey: "heading") as? CLHeading
-    }
-
-    var location: Location? {
-        self.value(forKey: "location") as? CLLocation
-    }
-}
-
-extension CLHeading: Heading {}
-
-extension CLLocation: Location {
-    var coordinate: LocationCoordinate2D {
-        guard let coordinate = self.value(forKey: "coordinate") as? CLLocationCoordinate2D else { return CLLocationCoordinate2D() }
-        return coordinate
-    }
-}
-
-extension CLLocationCoordinate2D: LocationCoordinate2D {}
+extension CLLocationManager: LocationManager {}

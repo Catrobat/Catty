@@ -70,6 +70,7 @@ class BrickCellBackgroundData: iOSCombobox, BrickCellDataProtocol, iOSComboboxDe
         self.values = backgroundOptions
         self.currentValue = backgroundOptions[currentOptionIndex]
         self.delegate = self
+        self.accessibilityLabel = UIDefines.backgroundPickerAccessibilityLabel + "_" + self.currentValue
     }
 
     required init?(coder: NSCoder) {

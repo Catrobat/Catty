@@ -1166,8 +1166,8 @@ NS_ENUM(NSInteger, ButtonIndex) {
                     [self showNotification:kUIFEDeleteVarBeingUsed andDuration:1.5f];
                 }
             } else {
-                if(![self isListUsed:userVariable]) {
-                    [self deleteList:userVariable atRow:row isProjectData:isProjectData];
+                if(![self isListUsed:(id<UserDataProtocol>)userVariable]) {
+                    [self deleteList:(id<UserDataProtocol>)userVariable atRow:row isProjectData:isProjectData];
                 } else {
                     [self showNotification:kUIFEDeleteListBeingUsed andDuration:1.5f];
                 }

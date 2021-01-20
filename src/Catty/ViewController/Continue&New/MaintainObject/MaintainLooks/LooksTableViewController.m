@@ -673,7 +673,7 @@
      addCancelActionWithTitle:kLocalizedCancel handler:nil]
      addDefaultActionWithTitle:kLocalizedSettings handler:^{
            NSDebug(@"Settings Action");
-           [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+           [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString] options:@{} completionHandler:nil];
      }] build]
      showWithController:self completion: ^{
          if (self.showAddLookActionSheetAtStartForObject || self.showAddLookActionSheetAtStartForScriptEditor) {

@@ -137,7 +137,7 @@
 {
     if (! _inlineView) {
         BrickCellInlineView *inlineView = [[BrickCellInlineView alloc] initWithFrame:CGRectZero];
-        [self addSubview:inlineView];
+        [self.contentView addSubview:inlineView];
         _inlineView = inlineView;
     }
     return _inlineView;

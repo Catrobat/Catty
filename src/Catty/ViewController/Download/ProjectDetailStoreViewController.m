@@ -178,10 +178,10 @@
            valueValidator:^InputValidationResult *(NSString *report) {
                if (report.length < NetworkDefines.reportProjectNoteMinLength) {
                    return [InputValidationResult invalidInputWithLocalizedMessage:
-                           [NSString stringWithFormat:kLocalizedNoOrTooShortInputDescription, NetworkDefines.reportProjectNoteMinLength]];
+                           [NSString stringWithFormat:kLocalizedNoOrTooShortInputDescription, (long)NetworkDefines.reportProjectNoteMinLength]];
                } else if (report.length > NetworkDefines.reportProjectNoteMaxLength) {
                    return [InputValidationResult invalidInputWithLocalizedMessage:
-                           [NSString stringWithFormat:kLocalizedTooLongInputDescription, NetworkDefines.reportProjectNoteMaxLength]];
+                           [NSString stringWithFormat:kLocalizedTooLongInputDescription, (long)NetworkDefines.reportProjectNoteMaxLength]];
                } else {
                    return [InputValidationResult validInput];
                }
@@ -316,7 +316,7 @@
 #pragma mark - TTTAttributedLabelDelegate
 - (void)attributedLabel:(TTTAttributedLabel *)label didSelectLinkWithURL:(NSURL *)url
 {
-    [[UIApplication sharedApplication] openURL:url];
+    [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
 }
 
 - (void)attributedLabel:(TTTAttributedLabel *)label didSelectLinkWithPhoneNumber:(NSString *)phoneNumber
@@ -327,7 +327,7 @@
         NSString *escapedPhoneNumber = [phoneNumber stringByAddingPercentEncodingWithAllowedCharacters:[[NSCharacterSet characterSetWithCharactersInString:@"0123456789-+()"] invertedSet]];
         NSString *phoneURLString = [NSString stringWithFormat:@"telprompt:%@", escapedPhoneNumber];
         NSURL *url = [NSURL URLWithString:phoneURLString];
-        [[UIApplication sharedApplication] openURL:url];
+        [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
     }
 }
 

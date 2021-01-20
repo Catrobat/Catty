@@ -29,8 +29,6 @@
 #import "Util.h"
 #import "Pocket_Code-Swift.h"
 
-NSString *const ACCESSIBILITY_LABEL = @"MessageView_%@";
-
 @implementation BrickCellMessageData
 
 static NSMutableArray *messages = nil;
@@ -73,7 +71,7 @@ static NSMutableArray *messages = nil;
         [self setValues:options];
         [self setCurrentValue:options[currentOptionIndex]];
         [self setDelegate:(id<iOSComboboxDelegate>)self];
-        self.accessibilityLabel = [NSString stringWithFormat:ACCESSIBILITY_LABEL, options[currentOptionIndex]];
+        self.accessibilityLabel = [NSString stringWithFormat:@"%@_%@", UIDefines.messagePickerAccessibilityLabel, options[currentOptionIndex]];
     }
     return self;
 }

@@ -46,7 +46,7 @@
             [self.canvas.delegate addPaintedImage:self.canvas.saveView.image andPath:@"settings"];
         }
     }
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString] options:@{} completionHandler:nil];
 }
 
 - (void)cameraImagePickerAction

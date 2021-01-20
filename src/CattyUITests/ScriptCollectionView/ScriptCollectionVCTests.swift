@@ -67,8 +67,7 @@ class ScriptCollectionVCTests: XCTestCase {
         app.tables.staticTexts[kLocalizedScripts].tap()
 
         addBrick(label: kLocalizedBroadcast, section: kLocalizedCategoryEvent, in: app)
-
-        app.collectionViews.cells.otherElements.containing(.staticText, identifier: kLocalizedBroadcast).children(matching: .other).element.tap()
+        tapOnMessagePicker(of: kLocalizedBroadcast, in: app)
 
         app.pickerWheels.firstMatch.swipeDown()
         app.buttons[kLocalizedDone].tap()
@@ -77,7 +76,7 @@ class ScriptCollectionVCTests: XCTestCase {
         alert.textFields[kLocalizedEnterYourMessageHere].typeText(message)
         alert.buttons[kLocalizedOK].tap()
 
-        app.collectionViews.cells.otherElements.containing(.staticText, identifier: kLocalizedBroadcast).children(matching: .other).element.tap()
+        tapOnMessagePicker(of: kLocalizedBroadcast, in: app)
 
         app.pickerWheels.firstMatch.swipeDown()
         app.buttons[kLocalizedDone].tap()

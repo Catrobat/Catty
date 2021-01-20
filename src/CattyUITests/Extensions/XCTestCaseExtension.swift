@@ -25,6 +25,10 @@ import XCTest
 extension XCTestCase {
 
     static let defaultLaunchArguments = ["UITests", "skipPrivacyPolicy", "restoreDefaultProject"]
+    static var accessibilityLabelVariable = "VariableView_"
+    static var accessibilityLabelMessage = "MessageView_"
+    static var accessibilityLabelList = "ListView_"
+    static var accessibilityLabelBackground = "BackgroundView_"
 
     private func defaultApp(with launchArguments: [String]) -> XCUIApplication {
         continueAfterFailure = false
@@ -38,10 +42,6 @@ extension XCTestCase {
         let app = defaultApp(with: launchArguments)
         app.launch()
         return app
-    }
-
-    func launchAppWithoutAnimations() -> XCUIApplication {
-        launchApp(with: type(of: self).defaultLaunchArguments + ["disableAnimations"])
     }
 
     func waitForElementToAppear(_ element: XCUIElement, timeout: TimeInterval = 5) -> XCUIElement {
@@ -130,6 +130,30 @@ extension XCTestCase {
         } else {
             XCTFail("no valid View open")
         }
+    }
+
+    func tapOnVariablePicker(of brick: String, in app: XCUIApplication) {
+        app.collectionViews.cells.otherElements.containing(.staticText, identifier: brick)
+            .children(matching: .other).element(matching: NSPredicate(format: "label CONTAINS '" + type(of: self).accessibilityLabelVariable + "'")).tap()
+    }
+
+    func tapOnMessagePicker(of brick: String, in app: XCUIApplication) {
+        app.collectionViews.cells.otherElements.containing(.staticText, identifier: brick)
+            .children(matching: .other).element(matching: NSPredicate(format: "label CONTAINS '" + type(of: self).accessibilityLabelMessage + "'")).tap()
+    }
+
+    func tapOnListPicker(of brick: String, in app: XCUIApplication) {
+        app.collectionViews.cells.otherElements.identifierTextBeginsWith(brick)
+            .children(matching: .other)
+            .element(matching: NSPredicate(format: "label CONTAINS '" + type(of: self).accessibilityLabelList + "'"))
+            .tap()
+    }
+
+    func tapOnBackgroundPicker(for brick: String, in app: XCUIApplication) {
+        app.collectionViews.cells.otherElements.containing(.staticText, identifier: brick)
+            .children(matching: .other)
+            .element(matching: NSPredicate(format: "label CONTAINS '" + type(of: self).accessibilityLabelBackground + "'"))
+            .tap()
     }
 
     private func findCell(with labels: [String], in collectionView: XCUIElement) -> XCUIElement? {

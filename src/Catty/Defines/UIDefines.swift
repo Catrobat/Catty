@@ -33,5 +33,10 @@ class UIDefines: NSObject {
     static let defaultScreenshots = ["catrobat", "elephant", "lynx", "panda", "pingu", "racoon"]
 
     static let playButtonAccessibilityLabel = "Play"
+    @objc static let variablePickerAccessibilityLabel = "VariableView"
+    @objc static let listPickerAccessibilityLabel = "ListView"
+    @objc static let messagePickerAccessibilityLabel = "MessageView"
+    @objc static let lookPickerAccessibilityLabel = "LookView"
+    @objc static let backgroundPickerAccessibilityLabel = "BackgroundView"
     @objc static var iOS12OrLessAccessibilityLabel = "iOS 12.0 or less"
 }

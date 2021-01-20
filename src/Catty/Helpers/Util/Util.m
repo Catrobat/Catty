@@ -749,11 +749,7 @@
 
 + (void)openUrlExternal:(NSURL*)url
 {
-    if (@available(iOS 10, *)) {
-        [[UIApplication sharedApplication] openURL:url options:[NSDictionary dictionary] completionHandler:nil];
-    } else {
-        [[UIApplication sharedApplication] openURL:url];
-    }
+    [[UIApplication sharedApplication] openURL:url options:[NSDictionary dictionary] completionHandler:nil];
 }
 
 + (void)setNetworkActivityIndicator:(BOOL)enabled {

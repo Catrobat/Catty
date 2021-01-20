@@ -63,6 +63,7 @@
         [self setValues:options];
         [self setCurrentValue:options[currentOptionIndex]];
         [self setDelegate:(id<iOSComboboxDelegate>)self];
+        self.accessibilityLabel = [NSString stringWithFormat:@"%@_%@", UIDefines.listPickerAccessibilityLabel, options[currentOptionIndex]];
     }
     return self;
 }

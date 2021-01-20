@@ -43,12 +43,13 @@ class BrickCellTests: XCTestCase {
         app.buttons[kLocalizedYes].tap()
     }
 
-    private func addLookBrickWithValuesToProject(brick: String, category: String) {
+    private func addBackgroundBrickWithValuesToProject(brick: String, category: String) {
         clearScript()
         addBrick(label: brick, section: category, in: app)
 
         for lookName in testLookNames {
-            app.collectionViews.cells.otherElements.containing(.staticText, identifier: brick).children(matching: .other).element.tap()
+            tapOnBackgroundPicker(for: brick, in: app)
+
             app.pickerWheels.firstMatch.swipeDown()
             app.buttons[kLocalizedDone].tap()
 
@@ -76,7 +77,6 @@ class BrickCellTests: XCTestCase {
     }
 
     func testVariableBrickParameterSpace() {
-
         let brickWidth: CGFloat
         let initialParameterTextViewWidth: CGFloat
         let firstParameterTextView: XCUIElement
@@ -116,7 +116,9 @@ class BrickCellTests: XCTestCase {
 
         XCTAssertTrue(firstParameterTextViewWidth > initialParameterTextViewWidth)
         XCTAssertEqual(firstParameterTextViewWidth, secondParameterTextViewWidth, accuracy: 0.0001)
-        XCTAssertTrue(brickWidth - (firstParameterTextViewWidth + secondParameterTextViewWidth) < firstParameterTextViewWidth)
+
+        let remainingSpaceRight = brickWidth - (secondParameterTextView.frame.origin.x + secondParameterTextView.frame.size.width)
+        XCTAssertTrue(remainingSpaceRight < firstParameterTextViewWidth)
     }
 
     func testSetBackgroundBrick() {
@@ -126,14 +128,14 @@ class BrickCellTests: XCTestCase {
         app.tables.staticTexts[kLocalizedBackground].tap()
         app.tables.staticTexts[kLocalizedScripts].tap()
 
-        addLookBrickWithValuesToProject(brick: brick, category: kLocalizedCategoryLook)
+        addBackgroundBrickWithValuesToProject(brick: brick, category: kLocalizedCategoryLook)
 
-        app.collectionViews.cells.otherElements.containing(.staticText, identifier: brick).children(matching: .other).element.tap()
+        tapOnBackgroundPicker(for: brick, in: app)
 
         XCTAssertEqual(app.pickerWheels.element.children(matching: .any).count, 5)
 
         for lookName in testLookNames {
-            app.collectionViews.cells.otherElements.containing(.staticText, identifier: brick).children(matching: .other).element.tap()
+            tapOnBackgroundPicker(for: brick, in: app)
 
             app.pickerWheels.element.adjust(toPickerWheelValue: lookName)
             app.buttons[kLocalizedDone].tap()
