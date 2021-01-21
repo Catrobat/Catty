@@ -66,52 +66,35 @@ final class StoreProjectUploader: StoreProjectUploaderProtocol {
     }
 
     func upload(project: Project, completion: @escaping (String?, StoreProjectUploaderError?) -> Void, progression: ((Float) -> Void)?) {
+
         guard let zipFileData = fileManager.zip(project) else { completion(nil, .zippingError); return }
 
         let checksum = zipFileData.md5()
+        let attachments = [AttachmentData(name: uploadParameterTag, data: zipFileData, filename: ".zip")]
 
         let uploadUrl = NetworkDefines.uploadUrl
         let urlString = "\(uploadUrl)/\(NetworkDefines.connectionUpload)"
+        guard let url = URL(string: urlString) else { completion(nil, .unexpectedError); return }
 
-        var request = URLRequest(url: URL(string: urlString)!)
-        request.url = URL(string: urlString)
-        request.httpMethod = "POST"
-
-        let contentType = "multipart/form-data; boundary=\(httpBoundary)"
-        request.addValue(contentType, forHTTPHeaderField: "Content-Type")
-
-        var body = Data()
-
-        setFormDataParameter(projectNameTag, with: project.header.programName.data(using: .utf8), forHTTPBody: &body)
-        setFormDataParameter(projectDescriptionTag, with: project.header.programDescription.data(using: .utf8), forHTTPBody: &body)
-
+        var parameters = [FormData(name: projectNameTag, value: project.header.programName),
+                          FormData(name: projectDescriptionTag, value: project.header.programDescription)]
         if let email = UserDefaults.standard.string(forKey: kcEmail) {
-            setFormDataParameter(userEmailTag, with: email.data(using: .utf8), forHTTPBody: &body)
+            parameters.append(FormData(name: userEmailTag, value: email))
         }
 
-        setFormDataParameter(fileChecksumParameterTag, with: checksum.data(using: .utf8), forHTTPBody: &body)
+        parameters.append(FormData(name: fileChecksumParameterTag, value: checksum))
 
         if let token = JNKeychain.loadValue(forKey: NetworkDefines.kUserLoginToken) as? String {
-            setFormDataParameter(tokenParameterTag, with: token.data(using: .utf8), forHTTPBody: &body)
+            parameters.append(FormData(name: tokenParameterTag, value: token))
         }
 
         if let userName = UserDefaults.standard.string(forKey: kcUsername) {
-            setFormDataParameter(userNameTag, with: userName.data(using: .utf8), forHTTPBody: &body)
+            parameters.append(FormData(name: userNameTag, value: userName))
         }
 
-        setFormDataParameter(deviceLanguageTag, with: NSLocale.preferredLanguages[0].data(using: .utf8), forHTTPBody: &body)
-        setAttachmentParameter(uploadParameterTag, with: zipFileData, forHTTPBody: &body)
+        parameters.append(FormData(name: deviceLanguageTag, value: NSLocale.preferredLanguages[0]))
 
-        if let anEncoding = "--\(httpBoundary)--\r\n".data(using: .utf8) {
-            body.append(anEncoding)
-        }
-
-        request.httpBody = body
-
-        let postLength = String(format: "%lu", UInt(body.count))
-        request.addValue(postLength, forHTTPHeaderField: "Content-Length")
-
-        let task = self.session.dataTask(with: request) { data, response, error in
+        let task = self.session.multipartUploadTask(with: url, from: parameters, attachmentData: attachments) { data, response, error in
             let handleDataTaskCompletion: (Data?, URLResponse?, Error?) -> (projectId: String?, error: StoreProjectUploaderError?)
             handleDataTaskCompletion = { data, response, error in
                 guard let response = response as? HTTPURLResponse else { return (nil, .unexpectedError) }
@@ -157,7 +140,6 @@ final class StoreProjectUploader: StoreProjectUploaderProtocol {
                 progression(progress)
             }
         }
-
         task.resume()
     }
 
@@ -207,40 +189,5 @@ final class StoreProjectUploader: StoreProjectUploaderProtocol {
         let config = URLSessionConfiguration.ephemeral
         config.timeoutIntervalForRequest = Double(NetworkDefines.connectionTimeout)
         return URLSession(configuration: config, delegate: nil, delegateQueue: nil)
-    }
-
-    private func setFormDataParameter(_ parameterID: String?, with data: Data?, forHTTPBody body: inout Data) {
-        if let anEncoding = "--\(httpBoundary)\r\n".data(using: .utf8) {
-            body.append(anEncoding)
-        }
-        let parameterString = "Content-Disposition: form-data; name=\"\(parameterID ?? "")\"\r\n\r\n"
-        if let anEncoding = parameterString.data(using: .utf8) {
-            body.append(anEncoding)
-        }
-        if let aData = data {
-            body.append(aData)
-        }
-        if let anEncoding = "\r\n".data(using: .utf8) {
-            body.append(anEncoding)
-        }
-    }
-
-    private func setAttachmentParameter(_ parameterID: String?, with data: Data?, forHTTPBody body: inout Data) {
-        if let anEncoding = "--\(httpBoundary)\r\n".data(using: .utf8) {
-            body.append(anEncoding)
-        }
-        let parameterString = "Content-Disposition: attachment; name=\"\(parameterID ?? "")\"; filename=\".zip\" \r\n"
-        if let anEncoding = parameterString.data(using: .utf8) {
-            body.append(anEncoding)
-        }
-        if let anEncoding = "Content-Type: application/octet-stream\r\n\r\n".data(using: .utf8) {
-            body.append(anEncoding)
-        }
-        if let aData = data {
-            body.append(aData)
-        }
-        if let anEncoding = "\r\n".data(using: .utf8) {
-            body.append(anEncoding)
-        }
     }
 }

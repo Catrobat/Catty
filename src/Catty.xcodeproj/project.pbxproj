@@ -1260,6 +1260,8 @@
 		92FF32C31A24E33B00093DA7 /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92FF32C21A24E33B00093DA7 /* iPhone.storyboard */; };
 		97B1FCFF2577BCD700E9C446 /* DisabledBricks_0993.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C3285D92546CDF200C31F9D /* DisabledBricks_0993.xml */; };
 		97D015912553392A00B6967D /* RoundedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D0158E2553392A00B6967D /* RoundedImageView.swift */; };
+		97D97BAB257AC141001FF344 /* URLSessionMultipartExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D97BAA257AC141001FF344 /* URLSessionMultipartExtension.swift */; };
+		97D97BB0257AC735001FF344 /* URLSessionMultipartExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D97BAE257AC6DD001FF344 /* URLSessionMultipartExtensionTests.swift */; };
 		99B2C36B1D884C1300736769 /* FlashBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B2C36A1D884C1300736769 /* FlashBrick+CBXMLHandler.m */; };
 		99B2C3701D884D2900736769 /* FlashBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B2C36F1D884D2900736769 /* FlashBrick.m */; };
 		99B2C3731D884E8A00736769 /* FlashBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B2C3721D884E8A00736769 /* FlashBrickCell.m */; };
@@ -3409,6 +3411,8 @@
 		95088280A879E5F515D4569E /* fa-AF */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = "fa-AF"; path = "fa-AF.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		95C607797206029F5B454A53 /* sw */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = sw; path = sw.lproj/Localizable.strings; sourceTree = "<group>"; };
 		97D0158E2553392A00B6967D /* RoundedImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RoundedImageView.swift; path = Catty/Views/Custom/TableView/Cell/RoundedImageView.swift; sourceTree = SOURCE_ROOT; };
+		97D97BAA257AC141001FF344 /* URLSessionMultipartExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionMultipartExtension.swift; sourceTree = "<group>"; };
+		97D97BAE257AC6DD001FF344 /* URLSessionMultipartExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionMultipartExtensionTests.swift; sourceTree = "<group>"; };
 		97FD56903AF79540DDE45F42 /* tl */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = tl; path = tl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		98738650BC99C8766A159B17 /* ko */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9990BB6C1D89D89A0088357A /* BrickStaticChoiceProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickStaticChoiceProtocol.h; sourceTree = "<group>"; };
@@ -8001,6 +8005,7 @@
 				222A693D247EA490004BE434 /* UIDeviceExtension.swift */,
 				2219ED89251745EA00EBA379 /* NSMutableArrayExtension.swift */,
 				184CA798249E839A00D3668B /* CBFileManagerExtension.swift */,
+				97D97BAA257AC141001FF344 /* URLSessionMultipartExtension.swift */,
 			);
 			name = Extensions;
 			path = "Extension&Delegate&Protocol/Extensions";
@@ -10180,6 +10185,7 @@
 				1858252A24D1A5E300092407 /* UIColorExtensionTests.swift */,
 				4CB562FB24EA95C40000A5A9 /* UIViewControllerExtensionTests.swift */,
 				2219ED92251DDB7E00EBA379 /* NSMutableArrayExtensionTests.swift */,
+				97D97BAE257AC6DD001FF344 /* URLSessionMultipartExtensionTests.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -11525,6 +11531,7 @@
 				46F1754E24C46837006B2ACA /* ScriptCollectionViewControllerTests.swift in Sources */,
 				4C82265B213FA7A400F3D750 /* ObjectStringSensorMock.swift in Sources */,
 				440B1D59250FE6B10041CC7D /* AskBrickTests.swift in Sources */,
+				97D97BB0257AC735001FF344 /* URLSessionMultipartExtensionTests.swift in Sources */,
 				9E4D2386232AE9E5009D0C3C /* GoNStepsBackBrickTests.swift in Sources */,
 				4CEB22751B95E4BC00B3BE2F /* BrickInsertManagerLogicTests.m in Sources */,
 				4C82265D213FA7A400F3D750 /* FingerYSensorTest.swift in Sources */,
@@ -12010,6 +12017,7 @@
 				4647D55A23D8AF9F001A67F6 /* PrivacyPolicyViewController.swift in Sources */,
 				46D0516324F8147F00A79155 /* SetRotationStyleBrick+CBXMLHandler.swift in Sources */,
 				BA987D0D2194E647002DAA05 /* WaitUntilBrick+Condition.swift in Sources */,
+				97D97BAB257AC141001FF344 /* URLSessionMultipartExtension.swift in Sources */,
 				59EA52B424FCD1E800AC6E8D /* WhenBackgroundChangesScript.swift in Sources */,
 				92D56C321BF202E700A54750 /* ArduinoHelper.swift in Sources */,
 				AAAF22881BC0CFC00076F11E /* TurnLeftBrick+Instruction.swift in Sources */,
