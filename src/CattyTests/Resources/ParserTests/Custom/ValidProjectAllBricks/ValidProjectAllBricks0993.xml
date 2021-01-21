@@ -250,6 +250,15 @@
                           <brick type="NextLookBrick">
                             <commentedOut>false</commentedOut>
                           </brick>
+                          <brick type="SetLookByIndexBrick">
+                            <commentedOut>false</commentedOut>
+                            <formulaList>
+                              <formula category="LOOK_INDEX">
+                                <type>NUMBER</type>
+                                <value>1</value>
+                              </formula>
+                            </formulaList>
+                          </brick>
                           <brick type="SetSizeToBrick">
                             <commentedOut>false</commentedOut>
                             <formulaList>

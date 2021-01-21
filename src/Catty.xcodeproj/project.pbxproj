@@ -1644,6 +1644,11 @@
 		E592D1562539DD6A00B9F288 /* ArduinoSendDigitalValueBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E592D1552539DD6A00B9F288 /* ArduinoSendDigitalValueBrickTests.swift */; };
 		E592D15A2539E16400B9F288 /* ArduinoSendPWMValueBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E592D1592539E16400B9F288 /* ArduinoSendPWMValueBrickTests.swift */; };
 		E592D15C2539E1E300B9F288 /* IfThenLogicBeginBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E592D15B2539E1E300B9F288 /* IfThenLogicBeginBrickTests.swift */; };
+		E5E1E5AA25780DA100D2F1BC /* SetLookByIndexBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E1E5A925780DA100D2F1BC /* SetLookByIndexBrick.swift */; };
+		E5E1E5AE25780E3200D2F1BC /* SetLookByIndexBrickCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E1E5AD25780E3200D2F1BC /* SetLookByIndexBrickCell.swift */; };
+		E5E1E5B025780F6500D2F1BC /* SetLookByIndexBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E1E5AF25780F6500D2F1BC /* SetLookByIndexBrick+Instruction.swift */; };
+		E5E1E5B2257810E300D2F1BC /* SetLookByIndexBrick+CBXMLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E1E5B1257810E300D2F1BC /* SetLookByIndexBrick+CBXMLHandler.swift */; };
+		E5E1E5B42578117400D2F1BC /* SetLookByIndexBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E1E5B32578117400D2F1BC /* SetLookByIndexBrickTests.swift */; };
 		F411560320E7732D00E2F254 /* InternFormula+KeyboardAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F411560220E7732D00E2F254 /* InternFormula+KeyboardAdapter.swift */; };
 		F4201CF220D795DB0030181B /* DateWeekdaySensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4201CF120D795DB0030181B /* DateWeekdaySensor.swift */; };
 		F4201CF920D79CA80030181B /* TimeHourSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4201CF820D79CA80030181B /* TimeHourSensor.swift */; };
@@ -3894,6 +3899,11 @@
 		E592D1552539DD6A00B9F288 /* ArduinoSendDigitalValueBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArduinoSendDigitalValueBrickTests.swift; sourceTree = "<group>"; };
 		E592D1592539E16400B9F288 /* ArduinoSendPWMValueBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArduinoSendPWMValueBrickTests.swift; sourceTree = "<group>"; };
 		E592D15B2539E1E300B9F288 /* IfThenLogicBeginBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IfThenLogicBeginBrickTests.swift; sourceTree = "<group>"; };
+		E5E1E5A925780DA100D2F1BC /* SetLookByIndexBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetLookByIndexBrick.swift; sourceTree = "<group>"; };
+		E5E1E5AD25780E3200D2F1BC /* SetLookByIndexBrickCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetLookByIndexBrickCell.swift; sourceTree = "<group>"; };
+		E5E1E5AF25780F6500D2F1BC /* SetLookByIndexBrick+Instruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SetLookByIndexBrick+Instruction.swift"; sourceTree = "<group>"; };
+		E5E1E5B1257810E300D2F1BC /* SetLookByIndexBrick+CBXMLHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SetLookByIndexBrick+CBXMLHandler.swift"; sourceTree = "<group>"; };
+		E5E1E5B32578117400D2F1BC /* SetLookByIndexBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetLookByIndexBrickTests.swift; sourceTree = "<group>"; };
 		EACB63B95D9C0A7F1388E4F3 /* id */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/Localizable.strings; sourceTree = "<group>"; };
 		EC696D21025B1BA13FAA0039 /* he */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = he; path = he.lproj/Localizable.strings; sourceTree = "<group>"; };
 		ED43A997870B76068912C26D /* pt-BR */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -5907,6 +5917,7 @@
 				4C0F9F6C204BD1A300E71B2D /* ThinkBubbleBrick+CBXMLHandler.m */,
 				4C0F9F6A204BD1A200E71B2D /* ThinkForBubbleBrick+CBXMLHandler.h */,
 				4C0F9F6D204BD1A300E71B2D /* ThinkForBubbleBrick+CBXMLHandler.m */,
+				E5E1E5B1257810E300D2F1BC /* SetLookByIndexBrick+CBXMLHandler.swift */,
 			);
 			name = Look;
 			path = LookBricks;
@@ -6685,6 +6696,7 @@
 				E579F117253DCC65009107C8 /* ThinkForBubbleBrickTests.swift */,
 				E579F119253DCD90009107C8 /* ChangeXByNBrickTests.swift */,
 				E579F11B253DCE2C009107C8 /* ChangeYByNBrickTests.swift */,
+				E5E1E5B32578117400D2F1BC /* SetLookByIndexBrickTests.swift */,
 			);
 			path = Bricks;
 			sourceTree = "<group>";
@@ -8730,6 +8742,7 @@
 				AAF6D9D71BC0BAF300686849 /* ShowBrick+Instruction.swift */,
 				4C0F9F7E204BD1F700E71B2D /* ThinkBubbleBrick+Instruction.swift */,
 				4C0F9F7D204BD1F700E71B2D /* ThinkForBubbleBrick+Instruction.swift */,
+				E5E1E5AF25780F6500D2F1BC /* SetLookByIndexBrick+Instruction.swift */,
 			);
 			name = Look;
 			sourceTree = "<group>";
@@ -8849,6 +8862,7 @@
 				4C0F9F3F204ADC6600E71B2D /* ThinkBubbleBrick.m */,
 				4C0F9F40204ADC6600E71B2D /* ThinkForBubbleBrick.h */,
 				4C0F9F3E204ADC6600E71B2D /* ThinkForBubbleBrick.m */,
+				E5E1E5A925780DA100D2F1BC /* SetLookByIndexBrick.swift */,
 			);
 			path = Look;
 			sourceTree = "<group>";
@@ -9088,6 +9102,7 @@
 				4C0F9FA2204BD2C200E71B2D /* ThinkBubbleBrickCell.m */,
 				4C0F9FA4204BD2C200E71B2D /* ThinkForBubbleBrickCell.h */,
 				4C0F9FA1204BD2C100E71B2D /* ThinkForBubbleBrickCell.m */,
+				E5E1E5AD25780E3200D2F1BC /* SetLookByIndexBrickCell.swift */,
 			);
 			path = Look;
 			sourceTree = "<group>";
@@ -10611,6 +10626,7 @@
 				4C3A5CAB21D3B967008FD83F /* SmallerThanOperatorTest.swift in Sources */,
 				4C822653213FA7A400F3D750 /* ObjectDoubleSensorMock.swift in Sources */,
 				9EBCBD872329BD700074C2D9 /* PointInDirectionBrickTests.swift in Sources */,
+				E5E1E5B42578117400D2F1BC /* SetLookByIndexBrickTests.swift in Sources */,
 				E592D1562539DD6A00B9F288 /* ArduinoSendDigitalValueBrickTests.swift in Sources */,
 				4C822691213FBB8300F3D750 /* MultiFingerTouchedFunctionTests.swift in Sources */,
 				4CF8277424F1172E006E562A /* StoryboardMock.swift in Sources */,
@@ -11085,6 +11101,7 @@
 				92FF31491A24DEB300093DA7 /* BaseCollectionViewController.m in Sources */,
 				4647D55A23D8AF9F001A67F6 /* PrivacyPolicyViewController.swift in Sources */,
 				46D0516324F8147F00A79155 /* SetRotationStyleBrick+CBXMLHandler.swift in Sources */,
+				E5E1E5AE25780E3200D2F1BC /* SetLookByIndexBrickCell.swift in Sources */,
 				BA987D0D2194E647002DAA05 /* WaitUntilBrick+Condition.swift in Sources */,
 				59EA52B424FCD1E800AC6E8D /* WhenBackgroundChangesScript.swift in Sources */,
 				92D56C321BF202E700A54750 /* ArduinoHelper.swift in Sources */,
@@ -11327,6 +11344,7 @@
 				4C0F9F7A204BD1E300E71B2D /* SayBubbleBrick+Instruction.swift in Sources */,
 				9E2C2D862325673C004B66C6 /* AudioEngine.swift in Sources */,
 				6FAD028624C838E700C50710 /* UploadCategoryViewController.swift in Sources */,
+				E5E1E5B2257810E300D2F1BC /* SetLookByIndexBrick+CBXMLHandler.swift in Sources */,
 				186AA3442482DDD5001E38FD /* PenDownBrick+Instruction.swift in Sources */,
 				18E83F812493C32C003295DA /* PenClearBrick+Instruction.swift in Sources */,
 				5EF590BA2192D81F00C19F12 /* DoubleExtension.swift in Sources */,
@@ -11380,6 +11398,7 @@
 				9E2AEA52239888C100CDF58F /* PlaySoundAndWaitBrick+Instruction.swift in Sources */,
 				92DFB0191A38949E00FA9B0F /* InternToExternGenerator.m in Sources */,
 				AA74EEE31BC057B900D1E954 /* NoteBrick+CBXMLHandler.m in Sources */,
+				E5E1E5B025780F6500D2F1BC /* SetLookByIndexBrick+Instruction.swift in Sources */,
 				4CF0729A20D66C4800F93AB5 /* BackgroundNumberSensor.swift in Sources */,
 				6F4B2FB72466704500B5F0ED /* ProjectMigrator.swift in Sources */,
 				4C724E5A1B4D3E8C00E27479 /* Project+CBXMLHandler.m in Sources */,
@@ -11387,6 +11406,7 @@
 				6FB09D2324A29F1E009C69A0 /* StoreProjectUploader.swift in Sources */,
 				92FF30FB1A24DCAA00093DA7 /* InternFormulaParserException.m in Sources */,
 				4C1C8B14213FE76B003B3AA4 /* ChartProjectCell.swift in Sources */,
+				E5E1E5AA25780DA100D2F1BC /* SetLookByIndexBrick.swift in Sources */,
 				4CF072A820D6710F00F93AB5 /* FingerXSensor.swift in Sources */,
 				4CE3D68B2107A89B00005629 /* FaceDetectionManager.swift in Sources */,
 				AA74EFF71BC05B5F00D1E954 /* SetLookBrick.m in Sources */,
