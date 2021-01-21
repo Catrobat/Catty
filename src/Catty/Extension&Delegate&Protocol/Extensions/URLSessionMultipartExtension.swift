@@ -30,6 +30,9 @@ extension URLSession {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
 
+        let contentType = "multipart/form-data; boundary=\(type(of: self).httpBoundary)"
+        request.addValue(contentType, forHTTPHeaderField: "Content-Type")
+
         var body = Data()
 
         for parameter in formData {
