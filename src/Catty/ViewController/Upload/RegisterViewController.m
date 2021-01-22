@@ -406,7 +406,7 @@
 -(void)openTermsOfUse
 {
     NSString *url = NetworkDefines.termsOfUseUrl;
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url] options:[NSDictionary dictionary] completionHandler:nil];
 }
 
 -(void)dismissKeyboard {

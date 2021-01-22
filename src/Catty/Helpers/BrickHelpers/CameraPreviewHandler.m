@@ -21,6 +21,7 @@
  */
 
 #import "CameraPreviewHandler.h"
+#import "Pocket_Code-Swift.h"
 
 @interface CameraPreviewHandler()
 
@@ -135,8 +136,12 @@ static CameraPreviewHandler* shared = nil;
 }
 
 - (AVCaptureDevice *)getCaptureDevice {
-    NSArray *devices = [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo];
-    for (AVCaptureDevice *device in devices) {
+    AVCaptureDeviceDiscoverySession *session = [AVCaptureDeviceDiscoverySession
+                                               discoverySessionWithDeviceTypes:@[SpriteKitDefines.avCaptureDeviceType]
+                                               mediaType:AVMediaTypeVideo
+                                               position:AVCaptureDevicePositionUnspecified];
+    
+    for (AVCaptureDevice *device in session.devices) {
         if ([device position] == self.cameraPosition) {
             return device;
         }
@@ -175,7 +180,8 @@ static CameraPreviewHandler* shared = nil;
         previewLayer.frame = rootLayer.bounds;
         [rootLayer addSublayer:previewLayer];
     });
-    bool torchWasActive = (device.torchMode != 0 || device.flashMode != 0 || device.torchLevel != 0.0 || device.isTorchActive);
+    AVCapturePhotoSettings *photosettings = [AVCapturePhotoSettings photoSettings];
+    bool torchWasActive = (device.torchMode != 0 || photosettings.flashMode != 0 || device.torchLevel != 0.0 || device.isTorchActive);
     [self.session startRunning];
     if (torchWasActive){
         [device setTorchMode:AVCaptureTorchModeOn];

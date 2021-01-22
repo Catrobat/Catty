@@ -699,7 +699,7 @@
      addCancelActionWithTitle:kLocalizedCancel handler:nil]
      addDefaultActionWithTitle:kLocalizedSettings handler:^{
          NSDebug(@"Settings Action");
-         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString] options:[NSDictionary dictionary] completionHandler:nil];
      }]
      build]
      showWithController:self];

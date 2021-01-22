@@ -36,7 +36,7 @@ class FormulaCache {
     func retrieve(forKey key: FormulaElement) -> AnyObject? {
         var result: AnyObject?
 
-        _ = cacheQueue.sync {
+        cacheQueue.sync {
             result = cachedResults[key]
         }
 

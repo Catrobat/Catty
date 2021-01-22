@@ -29,9 +29,6 @@
 #import "Util.h"
 #import "BrickVariableProtocol.h"
 
-NSString *const ACCESSABILITY_LABEL = @"VariableView_%@";
-
-
 @implementation BrickCellVariableData
 
 - (instancetype)initWithFrame:(CGRect)frame andBrickCell:(BrickCell *)brickCell andLineNumber:(NSInteger)line andParameterNumber:(NSInteger)parameter
@@ -65,7 +62,7 @@ NSString *const ACCESSABILITY_LABEL = @"VariableView_%@";
         [self setValues:options];
         [self setCurrentValue:options[currentOptionIndex]];
         [self setDelegate:(id<iOSComboboxDelegate>)self];
-        self.accessibilityLabel = [NSString stringWithFormat:ACCESSABILITY_LABEL, options[currentOptionIndex]];
+        self.accessibilityLabel = [NSString stringWithFormat:@"%@_%@", UIDefines.variablePickerAccessibilityLabel, options[currentOptionIndex]];
     }
     return self;
 }

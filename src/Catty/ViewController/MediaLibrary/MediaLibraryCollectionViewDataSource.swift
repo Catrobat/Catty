@@ -184,8 +184,8 @@ final class ImagesLibraryCollectionViewDataSource: MediaLibraryCollectionViewDat
         let resource = ImageResource(downloadURL: item.downloadURL)
         let options: KingfisherOptionsInfo = [.onlyFromCache]
         if ImageCache.default.imageCachedType(forKey: resource.cacheKey).cached {
-            ImageCache.default.retrieveImage(forKey: resource.cacheKey, options: options) { image, _ in
-                guard let image = image else { completion(nil); return }
+            ImageCache.default.retrieveImage(forKey: resource.cacheKey, options: options) { result in
+                guard let image = try? result.get().image else { completion(nil); return }
                 DispatchQueue.global().async {
                     let data = image.pngData()
                     DispatchQueue.main.async {

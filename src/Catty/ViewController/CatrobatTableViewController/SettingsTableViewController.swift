@@ -186,13 +186,13 @@ class SettingsTableViewController: BOTableViewController {
 
     fileprivate func openRateUsURL() {
         if let url = URL(string: NetworkDefines.appStoreUrl) {
-            UIApplication.shared.openURL(url)
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
 
     fileprivate func openPrivacySettings() {
         if let url = URL(string: UIApplication.openSettingsURLString) {
-            UIApplication.shared.openURL(url)
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
 

@@ -47,7 +47,7 @@ class AudioPlayer: NSDiscardableContent {
             return
         }
 
-        _ = playingQueue.sync {
+        playingQueue.sync {
             soundCompletionHandler()
             if !self.isDiscarded {
                 if akPlayer.isPlaying {
@@ -65,7 +65,7 @@ class AudioPlayer: NSDiscardableContent {
     }
 
     func remove() {
-        _ = playingQueue.sync {
+        playingQueue.sync {
             self.isDiscarded = true
             self.stop()
             if !akPlayer.connectionPoints.isEmpty {

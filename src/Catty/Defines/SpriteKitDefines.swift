@@ -36,4 +36,5 @@ class SpriteKitDefines: NSObject {
     static let defaultValueShowVariable = "0"
 
     static let defaultRotationStyle = RotationStyle.allAround
+    @objc static let avCaptureDeviceType = AVCaptureDevice.DeviceType.builtInWideAngleCamera
 }

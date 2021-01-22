@@ -22,6 +22,8 @@
 
 @testable import Pocket_Code
 
+import CoreLocation
+
 final class LocationManagerMock: LocationManager {
 
     var magneticHeading: Double = 0
@@ -36,12 +38,12 @@ final class LocationManagerMock: LocationManager {
     static var isHeadingAvailable = true
     static var isLocationServicesEnabled = true
 
-    var heading: Heading? {
+    var heading: CLHeading? {
         HeadingMock(magneticHeading: magneticHeading)
     }
 
-    var location: Location? {
-        LocationMock(coordinate: LocationCoordinate2DMock(longitude: longitude, latitude: latitude), altitude: altitude, horizontalAccuracy: locationAccuracy)
+    var location: CLLocation? {
+        CLLocation(coordinate: CLLocationCoordinate2D(latitude: latitude, longitude: longitude), altitude: altitude, horizontalAccuracy: locationAccuracy, verticalAccuracy: 0, timestamp: Date())
     }
 
     static func headingAvailable() -> Bool {
@@ -72,17 +74,17 @@ final class LocationManagerMock: LocationManager {
     }
 }
 
-struct HeadingMock: Heading {
-    var magneticHeading: Double
-}
+class HeadingMock: CLHeading {
+    let magneticHeadingMock: Double
 
-struct LocationCoordinate2DMock: LocationCoordinate2D {
-    var longitude: Double
-    var latitude: Double
-}
+    override var magneticHeading: CLLocationDirection { magneticHeadingMock }
 
-struct LocationMock: Location {
-    var coordinate: LocationCoordinate2D
-    var altitude: Double
-    var horizontalAccuracy: Double
+    init(magneticHeading: Double) {
+        self.magneticHeadingMock = magneticHeading
+        super.init()
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }

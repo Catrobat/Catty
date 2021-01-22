@@ -30,9 +30,7 @@ class CattyUISnapshots: XCTestCase {
     override func setUp() {
         setupSnapshot(app)
         app.launch()
-
         dismissPrivacyPolicyScreenIfShown()
-        restoreDefaultProject()
     }
 
     func testUIScreenshots() {
@@ -107,5 +105,11 @@ class CattyUISnapshots: XCTestCase {
 
         wait(for: [loadCompleteExpectation], timeout: 2.1)
         snapshot("03-Catrobat community charts")
+    }
+
+    private func dismissPrivacyPolicyScreenIfShown() {
+        if app.buttons[kLocalizedPrivacyPolicyAgree].exists {
+            app.buttons[kLocalizedPrivacyPolicyAgree].tap()
+        }
     }
 }

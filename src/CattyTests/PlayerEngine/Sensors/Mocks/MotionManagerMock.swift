@@ -52,7 +52,7 @@ final class MotionManagerMock: MotionManager {
 
     var attitude: (pitch: Double, roll: Double) = (pitch: 0, roll: 0)
 
-    var accelerometerData: AccelerometerData? {
+    var accelerometerData: CMAccelerometerData? {
         AccelerometerDataMock(
             acceleration: CMAcceleration(
                 x: self.xAcceleration, y: self.yAcceleration, z: self.zAcceleration
@@ -60,7 +60,7 @@ final class MotionManagerMock: MotionManager {
         )
     }
 
-    var gyroData: GyroData? {
+    var gyroData: CMGyroData? {
         GyroDataMock(
             rotationRate: CMRotationRate (
                 x: self.xRotation, y: self.yRotation, z: self.zRotation
@@ -68,7 +68,7 @@ final class MotionManagerMock: MotionManager {
         )
     }
 
-    var deviceMotion: DeviceMotion? {
+    var deviceMotion: CMDeviceMotion? {
         DeviceMotionMock(
             attitude: AttitudeMock(
                 pitch: attitude.pitch, roll: attitude.roll
@@ -115,21 +115,71 @@ final class MotionManagerMock: MotionManager {
     }
 }
 
-struct AccelerometerDataMock: AccelerometerData {
-    var acceleration: CMAcceleration
+class AccelerometerDataMock: CMAccelerometerData {
+    let accelerationMock: CMAcceleration
+
+    override var acceleration: CMAcceleration { accelerationMock }
+
+    init(acceleration: CMAcceleration) {
+        self.accelerationMock = acceleration
+        super.init()
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }
 
-struct DeviceMotionMock: DeviceMotion {
-    var attitude: Attitude
-    var gravity: CMAcceleration
-    var userAcceleration: CMAcceleration
+class DeviceMotionMock: CMDeviceMotion {
+    let attitudeMock: CMAttitude
+    let gravityMock: CMAcceleration
+    let userAccelerationMock: CMAcceleration
+
+    override var attitude: CMAttitude { attitudeMock }
+    override var gravity: CMAcceleration { gravityMock }
+    override var userAcceleration: CMAcceleration { userAccelerationMock }
+
+    init(attitude: CMAttitude, gravity: CMAcceleration, userAcceleration: CMAcceleration) {
+        self.attitudeMock = attitude
+        self.gravityMock = gravity
+        self.userAccelerationMock = userAcceleration
+        super.init()
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }
 
-struct AttitudeMock: Attitude {
-    var pitch: Double
-    var roll: Double
+class AttitudeMock: CMAttitude {
+    let pitchMock: Double
+    let rollMock: Double
+
+    override var pitch: Double { pitchMock }
+    override var roll: Double { rollMock }
+
+    init(pitch: Double, roll: Double) {
+        self.pitchMock = pitch
+        self.rollMock = roll
+        super.init()
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }
 
-struct GyroDataMock: GyroData {
-    var rotationRate: CMRotationRate
+class GyroDataMock: CMGyroData {
+    let rotationRateMock: CMRotationRate
+
+    override var rotationRate: CMRotationRate { rotationRateMock }
+
+    init(rotationRate: CMRotationRate) {
+        self.rotationRateMock = rotationRate
+        super.init()
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }

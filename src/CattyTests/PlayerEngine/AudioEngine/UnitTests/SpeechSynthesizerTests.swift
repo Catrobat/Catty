@@ -51,12 +51,12 @@ final class SpeechSynthesizerTests: XCTestCase {
 
     func testSpeechSynthStartSpeaking() {
         speechSynth.speak(newUtterance, expectation: newUtteranceExpectation)
-        expect(self.speechSynth.isSpeaking).toEventually(beTrue(), timeout: 3)
+        expect(self.speechSynth.isSpeaking).toEventually(beTrue(), timeout: DispatchTimeInterval.seconds(3))
     }
 
     func testSpeechSynthExpectDidFinishCallbackToFulfillExpectation() {
         speechSynth.speak(newUtterance, expectation: newUtteranceExpectation)
-        expect(self.newUtteranceExpectation.isFulfilled).toEventually(beTrue(), timeout: 3)
+        expect(self.newUtteranceExpectation.isFulfilled).toEventually(beTrue(), timeout: DispatchTimeInterval.seconds(3))
     }
 
     func testAlreadySpeakingSpeechSynthExpectCurrentExpectationToBeFulfilledAndRemovedWhenSpeakingNewUtterance() {

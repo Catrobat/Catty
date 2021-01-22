@@ -90,20 +90,22 @@ static FlashHelper *sharedFlashHandler = nil;
         if ((toggle == FlashON && weakSelf.wasTurnedOn != FlashPause && sharedFlashHandler.wasTurnedOn != FlashON) || toggle == FlashResume) {
             if ([self isAvailable]){
                 AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-
+                AVCapturePhotoSettings *photosettings = [AVCapturePhotoSettings photoSettings];
+                
                 [device lockForConfiguration:nil];
                 [device setTorchMode:AVCaptureTorchModeOn];
-                [device setFlashMode:AVCaptureFlashModeOn];
+                photosettings.flashMode = AVCaptureFlashModeOn;
                 [device unlockForConfiguration];
                 sharedFlashHandler.wasTurnedOn = FlashON;
             }
         } else if (toggle == FlashOFF || toggle == FlashPause || toggle == FlashUninitialized) {
             if ([self isAvailable]){
                 AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+                AVCapturePhotoSettings *photosettings = [AVCapturePhotoSettings photoSettings];
                 
                 [device lockForConfiguration:nil];
                 [device setTorchMode:AVCaptureTorchModeOff];
-                [device setFlashMode:AVCaptureFlashModeOff];
+                photosettings.flashMode = AVCaptureFlashModeOff;
                 [device unlockForConfiguration];
             }
             if (toggle != FlashPause) {

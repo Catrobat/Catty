@@ -27,7 +27,7 @@ class ListTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        app = launchAppWithoutAnimations()
+        app = launchApp()
     }
 
     private func createProjectAndAddAddToListBrick(name: String) {
@@ -42,14 +42,14 @@ class ListTests: XCTestCase {
     func testDontShowVListPickerWhenNoListsDefinedForObject() {
         createProjectAndAddAddToListBrick(name: "Test Project")
 
-        app.collectionViews.cells.otherElements.identifierTextBeginsWith(kLocalizedUserListAdd).children(matching: .other).element.tap()
+        tapOnListPicker(of: kLocalizedUserListAdd, in: app)
         XCTAssert(app.sheets[kUIFEActionList].exists)
     }
 
     func testCreateListWithMaxLength() {
         createProjectAndAddAddToListBrick(name: "Test Project")
 
-        app.collectionViews.cells.otherElements.identifierTextBeginsWith(kLocalizedUserListAdd).children(matching: .other).element.tap()
+        tapOnListPicker(of: kLocalizedUserListAdd, in: app)
         XCTAssert(app.sheets[kUIFEActionList].exists)
 
         app.buttons[kUIFEActionVarPro].tap()
@@ -61,7 +61,7 @@ class ListTests: XCTestCase {
     func testCreateListWithMaxLengthPlusOne() {
         createProjectAndAddAddToListBrick(name: "Test Project")
 
-        app.collectionViews.cells.otherElements.identifierTextBeginsWith(kLocalizedUserListAdd).children(matching: .other).element.tap()
+        tapOnListPicker(of: kLocalizedUserListAdd, in: app)
         XCTAssert(app.sheets[kUIFEActionList].exists)
 
         app.buttons[kUIFEActionVarPro].tap()

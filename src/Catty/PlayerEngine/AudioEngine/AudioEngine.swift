@@ -42,10 +42,10 @@ import Foundation
     @objc func start() {
         AKSettings.disableAVAudioSessionCategoryManagement = true
         audioEngineHelper.activateAudioSession()
-        AudioKit.output = postProcessingMixer
+        AKManager.output = postProcessingMixer
         engineOutputMixer.connect(to: postProcessingMixer)
         do {
-            try AudioKit.start()
+            try AKManager.start()
         } catch {
             print("COULD NOT START AUDIO ENGINE! MAKE SURE TO ALWAYS SHUT DOWN AUDIO ENGINE BEFORE" +
                 "INSTANTIATING IT AGAIN (AFTER EVERY TEST CASE)! USE AN AUDIOENGINEMOCK IN TESTS" +
@@ -55,12 +55,12 @@ import Foundation
 
     @objc func pause() {
         pauseAllAudioSources()
-        AudioKit.engine.pause()
+        AKManager.engine.pause()
     }
 
     @objc func resume() {
         do {
-            try AudioKit.engine.start()
+            try AKManager.engine.start()
         } catch let error as NSError {
             print("Could not resume audio engine.")
             print(error)
@@ -73,8 +73,8 @@ import Foundation
         stopAllAudioSources()
 
         do {
-            try AudioKit.stop()
-            try AudioKit.shutdown()
+            try AKManager.stop()
+            try AKManager.shutdown()
         } catch {
             print("Something went wrong when stopping the audio engine!")
         }

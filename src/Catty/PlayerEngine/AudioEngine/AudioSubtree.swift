@@ -97,7 +97,7 @@ import Foundation
     }
 
     private func startNonExistingAudioPlayer(audioPlayer: AudioPlayer, fileName: String, expectation: CBExpectation?) {
-        _ = playerCreationQueue.sync {
+        playerCreationQueue.sync {
             if let audioPlayer = audioPlayerCache.object(forKey: fileName) {
                 startExistingAudioPlayer(audioPlayer: audioPlayer, expectation: expectation)
             } else {

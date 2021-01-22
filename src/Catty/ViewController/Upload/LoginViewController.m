@@ -403,13 +403,13 @@
 -(void)openTermsOfUse
 {
     NSString *url = NetworkDefines.termsOfUseUrl;
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url] options:@{} completionHandler:nil];
 }
 
 - (void)forgotPassword
 {
     NSString *url = NetworkDefines.recoverPassword;
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url] options:@{} completionHandler:nil];
 }
 
 #pragma mark Helpers

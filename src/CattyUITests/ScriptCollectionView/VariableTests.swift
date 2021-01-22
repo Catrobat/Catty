@@ -28,7 +28,7 @@ class VariableTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        app = launchAppWithoutAnimations()
+        app = launchApp()
     }
 
     private func createNewProjectAndAddSetVariableBrick(name: String) {
@@ -43,14 +43,14 @@ class VariableTests: XCTestCase {
     func testDontShowVariablePickerWhenNoVariablesDefinedForObject() {
         createNewProjectAndAddSetVariableBrick(name: "Test Project")
 
-        app.collectionViews.cells.otherElements.containing(.staticText, identifier: kLocalizedSetVariable).children(matching: .other).element.tap()
+        tapOnVariablePicker(of: kLocalizedSetVariable, in: app)
         XCTAssert(app.sheets[kUIFEActionVar].exists)
     }
 
     func testCreateVariableWithMaxLength() {
         createNewProjectAndAddSetVariableBrick(name: "Test Project")
 
-        app.collectionViews.cells.otherElements.containing(.staticText, identifier: kLocalizedSetVariable).children(matching: .other).element.tap()
+        tapOnVariablePicker(of: kLocalizedSetVariable, in: app)
         XCTAssert(app.sheets[kUIFEActionVar].exists)
 
         app.buttons[kUIFEActionVarPro].tap()
@@ -62,7 +62,7 @@ class VariableTests: XCTestCase {
     func testCreateVariableWithMaxLengthPlusOne() {
         createNewProjectAndAddSetVariableBrick(name: "Test Project")
 
-        app.collectionViews.cells.otherElements.containing(.staticText, identifier: kLocalizedSetVariable).children(matching: .other).element.tap()
+        tapOnVariablePicker(of: kLocalizedSetVariable, in: app)
         XCTAssert(app.sheets[kUIFEActionVar].exists)
 
         app.buttons[kUIFEActionVarPro].tap()
