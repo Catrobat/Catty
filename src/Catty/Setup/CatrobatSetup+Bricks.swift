@@ -66,8 +66,9 @@
             SetRotationStyleBrick(),
             // look bricks
             HideBrick(),
-            SetLookBrick(),
             ShowBrick(),
+            SetLookBrick(),
+            SetLookByIndexBrick(),
             SetSizeToBrick(),
             SetTransparencyBrick(),
             NextLookBrick(),

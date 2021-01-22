@@ -424,6 +424,7 @@ let kLocalizedAsk = NSLocalizedString("Ask ", bundle: Bundle(for: LanguageTransl
 let kLocalizedAndStoreWrittenAnswerIn = NSLocalizedString("and store written answer in ", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedDefaultAskBrickQuestion = NSLocalizedString("What's your name?", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedAskBrickAnswer = NSLocalizedString("Your answer", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedSwitchToLookWithNumber = NSLocalizedString("Switch to look with number", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
 // pen bricks
 let kLocalizedPenDown = NSLocalizedString("Pen down", bundle: Bundle(for: LanguageTranslation.self), comment: "")

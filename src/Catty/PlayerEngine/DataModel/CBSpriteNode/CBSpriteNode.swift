@@ -168,6 +168,10 @@ class CBSpriteNode: SKSpriteNode {
         return spriteObject.lookList[index] as? Look
     }
 
+    @objc func getLookList() -> NSMutableArray? {
+        spriteObject.lookList
+    }
+
     @objc func changeLook(_ look: Look?) {
         guard let look = look,
             let filePathForLook = look.path(for: spriteObject.scene),
