@@ -158,6 +158,8 @@ extension FormulaManager {
         }
 
         switch formulaElement.type {
+        case .UNKNOWN_TYPE:
+            result = 0 as AnyObject
         case .OPERATOR:
             result = interpretOperator(formulaElement, for: spriteObject)
         case .FUNCTION:
