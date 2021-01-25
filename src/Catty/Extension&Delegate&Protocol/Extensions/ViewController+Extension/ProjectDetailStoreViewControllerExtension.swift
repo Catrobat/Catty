@@ -59,7 +59,7 @@ extension ProjectDetailStoreViewController {
             }
 
             DispatchQueue.main.async(execute: {
-                Util.alert(withText: kLocaliedReportedProject)
+                Util.alert(withText: kLocalizedReportedProject)
             })
         })
     }

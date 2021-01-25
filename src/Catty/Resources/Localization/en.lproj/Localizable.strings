@@ -623,6 +623,9 @@
 "Error" = "Error";
 
 /* No comment provided by engineer. */
+"Error occurred while reporting the project. Please try again later." = "Error occurred while reporting the project. Please try again later.";
+
+/* No comment provided by engineer. */
 "Error saving file" = "Error saving file";
 
 /* No comment provided by engineer. */
@@ -1965,6 +1968,9 @@
 
 /* No comment provided by engineer. */
 "Your project was uploaded to the Catrobat community where others can use and download it." = "Your project was uploaded to the Catrobat community where others can use and download it.";
+
+/* No comment provided by engineer. */
+"Your report was successfully sent!" = "Your report was successfully sent!";
 
 /* paint */
 "Zoom" = "Zoom";
