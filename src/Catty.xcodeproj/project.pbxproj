@@ -7312,12 +7312,14 @@
 			path = ScriptCollectionView;
 			sourceTree = "<group>";
 		};
-		59F007C2253081FD00039EBD /* ViewController+Extension */ = {
+		59F007C2253081FD00039EBD /* UIViewController */ = {
 			isa = PBXGroup;
 			children = (
+				5E18A81121A547AA00541536 /* UIViewControllerExtension.swift */,
+				05A3CE6A24F516490051DB39 /* CatrobatTableViewControllerExtension.swift */,
 				59F007C52530823100039EBD /* ProjectDetailStoreViewControllerExtension.swift */,
 			);
-			path = "ViewController+Extension";
+			path = UIViewController;
 			sourceTree = "<group>";
 		};
 		5E0B3620220A5ED40056EB12 /* Defines */ = {
@@ -7343,13 +7345,6 @@
 				5E99F2E223442E1A007878C1 /* ThemesHelper.swift */,
 			);
 			path = ThemesHelper;
-			sourceTree = "<group>";
-		};
-		5EA1089021B8FBB800B837B9 /* Audio */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Audio;
 			sourceTree = "<group>";
 		};
 		6399624725913E5800A7ED4B /* Data */ = {
@@ -8021,12 +8016,9 @@
 				4C4B4CD623EE8ABB0054C861 /* NotificationExtension.swift */,
 				5EA1089321B8FBD200B837B9 /* AVAudioSessionExtension.swift */,
 				05E6802B255B5E3400D1E295 /* CGVectorExtentions.swift */,
-				59F007C2253081FD00039EBD /* ViewController+Extension */,
-				05A3CE6A24F516490051DB39 /* CatrobatTableViewControllerExtension.swift */,
 				6FD28D0924702CAD0035F606 /* NSDateExtension.swift */,
 				18DAFC56247BD1400082C62A /* SpriteNode */,
 				6FAAD43724740B1D00FF2A34 /* FormulaElementExtension.swift */,
-				5EA1089021B8FBB800B837B9 /* Audio */,
 				92FF2E0B1A24C5A700093DA7 /* CAGradient */,
 				925819851C0208E8003247A9 /* CALayer */,
 				5EF590B92192D81F00C19F12 /* DoubleExtension.swift */,
@@ -8036,8 +8028,8 @@
 				92FF2E1D1A24C5A700093DA7 /* NSString */,
 				92FF2E291A24C5A700093DA7 /* UIImage */,
 				5E84B7A32341FC4E009982AA /* UIView */,
+				59F007C2253081FD00039EBD /* UIViewController */,
 				5E7E7F892341CB8100411298 /* UIColorExtension.swift */,
-				5E18A81121A547AA00541536 /* UIViewControllerExtension.swift */,
 				6F5ADF12247D4703008FC2C5 /* BrickExtension.swift */,
 				222A693D247EA490004BE434 /* UIDeviceExtension.swift */,
 				2219ED89251745EA00EBA379 /* NSMutableArrayExtension.swift */,
@@ -12641,7 +12633,6 @@
 				9218B2071CC4AB75007B4C60 /* SPUserResizableView.m in Sources */,
 				F4E6E579210DDD5C00D86FE6 /* CosFunction.swift in Sources */,
 				4C5AEF0722F7037200280F8B /* CatrobatSetup+Bricks.swift in Sources */,
-				92FF2E3B1A24C5A700093DA7 /* Project+CustomExtensions.m in Sources */,
 				5907FA96252888DF0042EC5D /* StoreProjectReporter.swift in Sources */,
 				AA74EFE11BC05B5F00D1E954 /* BroadcastBrick.m in Sources */,
 				4C5076D42578DCB000650440 /* Instrument.swift in Sources */,
