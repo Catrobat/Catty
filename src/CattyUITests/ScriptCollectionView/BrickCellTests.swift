@@ -64,7 +64,7 @@ class BrickCellTests: XCTestCase {
             let coordinate: XCUICoordinate = drawView.coordinate(withNormalizedOffset: CGVector(dx: 0.0, dy: 0.0))
             coordinate.tap()
 
-            waitForElementToAppear(app.navigationBars[kLocalizedPaintPocketPaint]).buttons[kLocalizedBackgrounds].tap()
+            waitForElementToAppear(app.navigationBars[kLocalizedPaintPocketPaint]).buttons[kLocalizedBack].tap()
 
             let alert2 = waitForElementToAppear(app.alerts[kLocalizedSaveToPocketCode])
             alert2.buttons[kLocalizedYes].tap()

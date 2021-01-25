@@ -63,7 +63,7 @@ class CreateProjectTests: XCTestCase {
         //Draw image
         app.tap()
 
-        app.navigationBars.buttons[kLocalizedBackgrounds].tap()
+        app.navigationBars.buttons[kLocalizedBack].tap()
         XCTAssert(app.alerts[kLocalizedSaveToPocketCode].exists)
         app.alerts[kLocalizedSaveToPocketCode].buttons[kLocalizedYes].tap()
 
