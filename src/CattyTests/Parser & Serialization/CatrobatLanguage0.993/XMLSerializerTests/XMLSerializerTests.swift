@@ -145,7 +145,6 @@ final class XMLSerializerTests: XMLAbstractTest {
             XCTFail("xmlElement is nil")
             return
         }
-        print("XML Element: \(xmlElement)")
         let equal = self.isXMLElement(xmlElement: xmlElement, equalToXMLElementForXPath: xmlElementPath, inProjectForXML: "ValidProjectAllBricks0991")
         XCTAssertTrue(equal, "XMLElement invalid!")
     }
@@ -160,7 +159,6 @@ final class XMLSerializerTests: XMLAbstractTest {
             XCTFail("xmlElement is nil")
             return
         }
-        print("XML Element: \(xmlElement)")
         let equal = self.isXMLElement(xmlElement: xmlElement, equalToXMLElementForXPath: xmlElementPath, inProjectForXML: "ValidProjectAllBricks0991")
         XCTAssertTrue(equal, "XMLElement invalid!")
 
@@ -176,7 +174,6 @@ final class XMLSerializerTests: XMLAbstractTest {
             XCTFail("xmlElement is nil")
             return
         }
-        print("XML Element: \(xmlElement)")
         let equal = self.isXMLElement(xmlElement: xmlElement, equalToXMLElementForXPath: xmlElementPath, inProjectForXML: "ValidProjectAllBricks0991")
         XCTAssertTrue(equal, "XMLElement invalid!")
     }
@@ -191,7 +188,6 @@ final class XMLSerializerTests: XMLAbstractTest {
             XCTFail("xmlElement is nil")
             return
         }
-        print("XML Element: \(xmlElement)")
         let equal = self.isXMLElement(xmlElement: xmlElement, equalToXMLElementForXPath: xmlElementPath, inProjectForXML: "AddItemToUserListBrick0993")
         XCTAssertTrue(equal, "XMLElement invalid!")
     }
@@ -206,7 +202,6 @@ final class XMLSerializerTests: XMLAbstractTest {
             XCTFail("xmlElement is nil")
             return
         }
-        print("XML Element: \(xmlElement)")
         let equal = self.isXMLElement(xmlElement: xmlElement, equalToXMLElementForXPath: xmlElementPath, inProjectForXML: "UserVariables_0993")
         XCTAssertTrue(equal, "XMLElement invalid!")
     }
