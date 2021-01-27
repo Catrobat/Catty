@@ -41,6 +41,10 @@ import UIKit
 
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         setupCollectionView()
     }
 
