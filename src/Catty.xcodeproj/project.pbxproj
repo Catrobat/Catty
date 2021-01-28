@@ -26,6 +26,7 @@
 		05E6802F255B602700D1E295 /* stitch.dst in Resources */ = {isa = PBXBuildFile; fileRef = 05E6802E255B602700D1E295 /* stitch.dst */; };
 		180DDF3F25067E1700EA526C /* FirebaseAnalyticsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180DDF3E25067E1700EA526C /* FirebaseAnalyticsTests.swift */; };
 		180DDF432506800600EA526C /* AnalyticsMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180DDF422506800600EA526C /* AnalyticsMock.swift */; };
+		181321C925C97E9D001BA787 /* FormulaEditorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181321C825C97E9D001BA787 /* FormulaEditorTests.swift */; };
 		181A12C324E42B6E00358440 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 92300CE918B2196700F2B4DC /* Localizable.strings */; };
 		181CC10724B750AF004A783E /* CBPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181CC10424B750AE004A783E /* CBPosition.swift */; };
 		181DB738247DA62600B82B20 /* NSDataExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181DB737247DA62600B82B20 /* NSDataExtension.swift */; };
@@ -1264,8 +1265,6 @@
 		92FF32BB1A24E2F400093DA7 /* DarkBlueGradientImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF32491A24E2F400093DA7 /* DarkBlueGradientImageCell.m */; };
 		92FF32BC1A24E2F400093DA7 /* DarkBlueGradientImageDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF324B1A24E2F400093DA7 /* DarkBlueGradientImageDetailCell.m */; };
 		92FF32BD1A24E2F400093DA7 /* ProjectTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF324E1A24E2F400093DA7 /* ProjectTableHeaderView.m */; };
-		92FF32BE1A24E2F400093DA7 /* BaseTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF32511A24E2F400093DA7 /* BaseTransition.m */; };
-		92FF32BF1A24E2F400093DA7 /* BrickTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF32531A24E2F400093DA7 /* BrickTransition.m */; };
 		92FF32C31A24E33B00093DA7 /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92FF32C21A24E33B00093DA7 /* iPhone.storyboard */; };
 		97B1FCFF2577BCD700E9C446 /* DisabledBricks_0993.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C3285D92546CDF200C31F9D /* DisabledBricks_0993.xml */; };
 		97D015912553392A00B6967D /* RoundedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D0158E2553392A00B6967D /* RoundedImageView.swift */; };
@@ -1876,6 +1875,7 @@
 		13B5EB79EDA9CF73908FF75C /* no */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = no; path = no.lproj/Localizable.strings; sourceTree = "<group>"; };
 		180DDF3E25067E1700EA526C /* FirebaseAnalyticsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAnalyticsTests.swift; sourceTree = "<group>"; };
 		180DDF422506800600EA526C /* AnalyticsMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsMock.swift; sourceTree = "<group>"; };
+		181321C825C97E9D001BA787 /* FormulaEditorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaEditorTests.swift; sourceTree = "<group>"; };
 		181CC10424B750AE004A783E /* CBPosition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBPosition.swift; sourceTree = "<group>"; };
 		181DB737247DA62600B82B20 /* NSDataExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSDataExtension.swift; sourceTree = "<group>"; };
 		1822C1382471C7CB00F8F158 /* BrickCellListDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrickCellListDataTests.swift; sourceTree = "<group>"; };
@@ -3407,10 +3407,6 @@
 		92FF324B1A24E2F400093DA7 /* DarkBlueGradientImageDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DarkBlueGradientImageDetailCell.m; sourceTree = "<group>"; };
 		92FF324D1A24E2F400093DA7 /* ProjectTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectTableHeaderView.h; sourceTree = "<group>"; };
 		92FF324E1A24E2F400093DA7 /* ProjectTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectTableHeaderView.m; sourceTree = "<group>"; };
-		92FF32501A24E2F400093DA7 /* BaseTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTransition.h; sourceTree = "<group>"; };
-		92FF32511A24E2F400093DA7 /* BaseTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTransition.m; sourceTree = "<group>"; };
-		92FF32521A24E2F400093DA7 /* BrickTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickTransition.h; sourceTree = "<group>"; };
-		92FF32531A24E2F400093DA7 /* BrickTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickTransition.m; sourceTree = "<group>"; };
 		92FF32C21A24E33B00093DA7 /* iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPhone.storyboard; sourceTree = "<group>"; };
 		95088280A879E5F515D4569E /* fa-AF */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = "fa-AF"; path = "fa-AF.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		95C607797206029F5B454A53 /* sw */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = sw; path = sw.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -8634,7 +8630,6 @@
 				92FF32311A24E2F400093DA7 /* MotionEffect */,
 				92FF32341A24E2F400093DA7 /* PlaceHolderView */,
 				92FF32371A24E2F400093DA7 /* TableView */,
-				92FF324F1A24E2F400093DA7 /* ViewControllerTransitions */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -8750,17 +8745,6 @@
 				92FF324E1A24E2F400093DA7 /* ProjectTableHeaderView.m */,
 			);
 			path = Header;
-			sourceTree = "<group>";
-		};
-		92FF324F1A24E2F400093DA7 /* ViewControllerTransitions */ = {
-			isa = PBXGroup;
-			children = (
-				92FF32501A24E2F400093DA7 /* BaseTransition.h */,
-				92FF32511A24E2F400093DA7 /* BaseTransition.m */,
-				92FF32521A24E2F400093DA7 /* BrickTransition.h */,
-				92FF32531A24E2F400093DA7 /* BrickTransition.m */,
-			);
-			path = ViewControllerTransitions;
 			sourceTree = "<group>";
 		};
 		92FF32C11A24E33B00093DA7 /* Storyboard+XIB */ = {
@@ -10071,6 +10055,7 @@
 				4C48E5CB23FD7F4B004C6E6A /* SettingsTVCTests.swift */,
 				4CF8747221C8E7AB00C8143F /* SoundsTVCTests.swift */,
 				2D227D93220B38E0008A2BC9 /* ScenePresenterVCTests.swift */,
+				181321C825C97E9D001BA787 /* FormulaEditorTests.swift */,
 			);
 			path = CattyUITests;
 			sourceTree = "<group>";
@@ -11444,6 +11429,7 @@
 				9E7564B222C7AB1A00D38A3B /* ObjectTVCTests.swift in Sources */,
 				4CA98E8821C8F1D400B2D9CA /* LooksTVCTests.swift in Sources */,
 				BA6805AE21303B48004F004F /* VariableTests.swift in Sources */,
+				181321C925C97E9D001BA787 /* FormulaEditorTests.swift in Sources */,
 				2D227D94220B38E0008A2BC9 /* ScenePresenterVCTests.swift in Sources */,
 				4CF8747521C8E7AB00C8143F /* SoundsTVCTests.swift in Sources */,
 				BCFED6F8211318A100BE57BF /* ProjectTVCTests.swift in Sources */,
@@ -12189,7 +12175,6 @@
 				18AAC22F24A6088100C96335 /* SetPenSizeBrick.swift in Sources */,
 				44B76EC72476C19600DC30E2 /* FirebaseCrashlyticsReporter.swift in Sources */,
 				AA74EEE21BC057B900D1E954 /* LoopEndBrick+CBXMLHandler.m in Sources */,
-				92FF32BF1A24E2F400093DA7 /* BrickTransition.m in Sources */,
 				4CEFFADB2105E46500DC5CFE /* ObjectDoubleSensor.swift in Sources */,
 				921D46871BDF698A0086AD20 /* ChangeBrightnessByNBrick+Instruction.swift in Sources */,
 				4C724E221B4D3E8C00E27479 /* CBXMLParserHelper.m in Sources */,
@@ -12527,7 +12512,6 @@
 				4C595F4521CAEB230097D850 /* DivideOperator.swift in Sources */,
 				9218B2031CC4AB75007B4C60 /* ImagePicker.m in Sources */,
 				AA74EF711BC0588A00D1E954 /* SpeakBrick+CBXMLHandler.m in Sources */,
-				92FF32BE1A24E2F400093DA7 /* BaseTransition.m in Sources */,
 				BA1FA99D1F02AEDC0084184D /* InsertItemIntoUserListBrick.m in Sources */,
 				59D008ED208E4249000539E7 /* LocationManager.swift in Sources */,
 				9218B2061CC4AB75007B4C60 /* RGBAHelper.m in Sources */,

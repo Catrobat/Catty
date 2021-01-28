@@ -24,6 +24,7 @@
 #import "FormulaEditorTextView.h"
 #import "UIDefines.h"
 #import "Brick.h"
+#import "BrickCell.h"
 #import "StartScriptCell.h"
 #import "BrickFormulaProtocol.h"
 #import "UIImage+CatrobatUIImageExtensions.h"
@@ -43,11 +44,12 @@ NS_ENUM(NSInteger, ButtonIndex) {
     kButtonIndexCancel = 4
 };
 
-@interface FormulaEditorViewController ()
+@interface FormulaEditorViewController () <BrickCellDelegate>
 
 
 @property (weak, nonatomic) Formula *formula;
-@property (weak, nonatomic) BrickCellFormulaData *brickCellData;
+@property (strong, nonatomic) BrickCellFormulaData *brickCellData;
+@property (strong, nonatomic) BrickCell *brickCell;
 
 @property (strong, nonatomic) UITapGestureRecognizer *recognizer;
 @property (strong, nonatomic) UITapGestureRecognizer *pickerGesture;
@@ -102,15 +104,16 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 @synthesize formulaEditorTextView;
 
-- (id)initWithBrickCellFormulaData:(BrickCellFormulaData *)brickCellData andFormulaManager:(FormulaManager*)formulaManager
+- (id)initWithBrickCellFormulaData:(BrickCellFormulaData*)brickCellData andFormulaManager:(FormulaManager*)formulaManager
 {
     self = [super init];
     
     if(self) {
-        [self setBrickCellFormulaData:brickCellData];
-        NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
-        [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
+        [[UIDevice currentDevice] setValue:[NSNumber numberWithInt:UIInterfaceOrientationPortrait] forKey:@"orientation"];
+
         self.formulaManager = formulaManager;
+        [self initBrickCell:brickCellData.brickCell];
+        [self initFormulaData:brickCellData];
     }
     
     return self;
@@ -122,11 +125,27 @@ NS_ENUM(NSInteger, ButtonIndex) {
     self.formulaManager = nil;
 }
 
-- (void)setBrickCellFormulaData:(BrickCellFormulaData *)brickCellData
+- (void)initBrickCell:(BrickCell*)originalbrickCell
 {
-    self.brickCellData = brickCellData;
-    self.delegate = brickCellData;
-    self.formula = brickCellData.formula;
+    id<BrickProtocol> brick = originalbrickCell.scriptOrBrick;
+    self.brickCell = [[(Class)[brick brickCell] alloc] init];
+    self.brickCell.scriptOrBrick = brick;
+    self.brickCell.dataDelegate = originalbrickCell.dataDelegate;
+    self.brickCell.delegate = self;
+    
+    CGSize brickCellSize = originalbrickCell.frame.size;
+    
+    self.brickCell.frame = CGRectMake(0, UIDefines.brickCategorySectionInset, brickCellSize.width, brickCellSize.height);
+    [self.brickCell setupBrickCellinSelectionView:false inBackground:self.object.isBackground];
+}
+
+- (void)initFormulaData:(BrickCellFormulaData*)originalBrickCellData
+{
+    BrickCellFormulaData *newFormulaData = (BrickCellFormulaData*)([self.brickCell dataSubviewForLineNumber:originalBrickCellData.lineNumber andParameterNumber:originalBrickCellData.parameterNumber]);
+    
+    self.brickCellData = newFormulaData;
+    self.delegate = newFormulaData;
+    self.formula = newFormulaData.formula;
     self.internFormula = [[InternFormula alloc] initWithInternTokenList:[self.formula.formulaTree getInternTokenList]];
     self.history = [[FormulaEditorHistory alloc] initWithInternFormulaState:[self.internFormula getInternFormulaState]];
     
@@ -134,9 +153,16 @@ NS_ENUM(NSInteger, ButtonIndex) {
     [self update];
     
     [self.formulaEditorTextView highlightSelection:[[self.internFormula getExternFormulaString] length]
-                       start:0
-                         end:(int)[[self.internFormula getExternFormulaString] length]];
+                                             start:0
+                                               end:(int)[[self.internFormula getExternFormulaString] length]];
     [self.internFormula selectWholeFormula];
+}
+
+# pragma mark BrickCellDelegate
+- (void)openFormulaEditor:(BrickCellFormulaData*)formulaData withEvent:(UIEvent*)event {
+    BOOL forceChange = event != nil && ((UITouch*)[[event allTouches] anyObject]).tapCount == 2;
+    [self changeBrickCellFormulaData:formulaData andForce:forceChange];
+    [self.brickCell setNeedsDisplay];
 }
 
 - (BOOL)changeBrickCellFormulaData:(BrickCellFormulaData *)brickCellData andForce:(BOOL)forceChange
@@ -162,7 +188,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
             [self saveIfPossible];
             saved = YES;
         }
-        [self setBrickCellFormulaData:brickCellData];
+        [self initFormulaData:brickCellData];
         if(saved) {
             [self showChangesSavedView];
         }
@@ -171,7 +197,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
         [self showFormulaTooLongView];
     } else {
         if(forceChange) {
-            [self setBrickCellFormulaData:brickCellData];
+            [self initFormulaData:brickCellData];
             [self showChangesDiscardedView];
             return YES;
         } else {
@@ -198,19 +224,25 @@ NS_ENUM(NSInteger, ButtonIndex) {
     return _internFormula;
 }
 
+#pragma mark ViewController
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.edgesForExtendedLayout = UIRectEdgeNone;
     self.view.backgroundColor = UIColor.background;
-    NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
-    [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
-    [self showFormulaEditor];
+    
+    [self.view addSubview:self.brickCell];
+    
+    [self showFormulaEditorTextView];
     
     [self.normalTypeButton addObjectsFromArray:[self initMathSectionWithScrollView:self.mathScrollView buttonHeight:self.calcButton.frame.size.height]];
     [self.normalTypeButton addObjectsFromArray:[self initLogicSectionWithScrollView:self.logicScrollView buttonHeight:self.calcButton.frame.size.height]];
     [self.normalTypeButton addObjectsFromArray:[self initObjectSectionWithScrollView:self.objectScrollView buttonHeight:self.calcButton.frame.size.height]];
     [self.normalTypeButton addObjectsFromArray:[self initSensorSectionWithScrollView:self.sensorScrollView buttonHeight:self.calcButton.frame.size.height]];
     
+    [self setupNavigationBar];
     [self initSegmentedControls];
     [self colorFormulaEditor];
     [self hideScrollViews];
@@ -224,28 +256,6 @@ NS_ENUM(NSInteger, ButtonIndex) {
     
     [self localizeView];
     
-    //Hotfix IOS-559
-    CGFloat topInsetNavigationBar = 0.0f;
-    if (@available(iOS 11, *)) {
-        topInsetNavigationBar = [UIApplication sharedApplication].statusBarFrame.size.height;
-        UIView *insetNavBarView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.view.frame.size.width, topInsetNavigationBar)];
-        insetNavBarView.backgroundColor = UIColor.globalTint;
-        [self.view addSubview:insetNavBarView];
-    }
-    UINavigationBar *myNav = [[UINavigationBar alloc]initWithFrame:CGRectMake(0.0f, topInsetNavigationBar, self.view.frame.size.width, kFormulaEditorTopOffset)];
-    [UINavigationBar appearance].barTintColor = UIColor.globalTint;
-    myNav.translucent = NO;
-    [self.view addSubview:myNav];
-    
-    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:kLocalizedCancel
-                                                      style:UIBarButtonItemStylePlain
-                                                     target:self
-                                                            action:@selector(dismissFormulaEditorViewController)];
-    
-    item.tintColor = UIColor.navTint;
-    UINavigationItem *navigItem = [[UINavigationItem alloc] initWithTitle:@""];
-    navigItem.leftBarButtonItem = item;
-    myNav.items = [NSArray arrayWithObjects: navigItem,nil];
     self.deleteButton.shapeStrokeColor = UIColor.navTint;
     
     [self setupButtons];
@@ -294,6 +304,26 @@ NS_ENUM(NSInteger, ButtonIndex) {
         if([subview isKindOfClass:[UIView class]])
             [(UIView*)subview setUserInteractionEnabled:YES];
     }
+}
+
+- (void) setupNavigationBar {
+    self.navigationItem.title = kUIFormulaEditorTitle;
+    
+    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedCancel
+                                                             style:UIBarButtonItemStylePlain
+                                                            target:self
+                                                            action:@selector(dismissFormulaEditorViewController)];
+    
+    cancelButton.tintColor = UIColor.navTint;
+    self.navigationItem.leftBarButtonItem = cancelButton;
+    
+    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedDone
+                                                             style:UIBarButtonItemStylePlain
+                                                            target:self
+                                                            action:@selector(doneTapped)];
+    
+    doneButton.tintColor = UIColor.navTint;
+    self.navigationItem.rightBarButtonItem = doneButton;
 }
 
 - (void)setupButtons {
@@ -367,8 +397,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 - (void)dismissFormulaEditorViewController
 {
     if (! self.presentingViewController.isBeingDismissed) {
-        [self.brickCellData drawBorder:NO];
-        [self setBrickCellFormulaData:self.brickCellData];
+        [self.formula setDisplayString:nil];
         [self.formulaEditorTextView removeFromSuperview];
         [self.presentingViewController dismissViewControllerAnimated:YES completion:NULL];
     }
@@ -449,12 +478,16 @@ NS_ENUM(NSInteger, ButtonIndex) {
     [self handleInputWithTitle:@"Backspace" AndButtonType:CLEAR];
 }
 
-- (IBAction)done:(id)sender
-{
+- (void)doneTapped {
     if([self saveIfPossible])
     {
         [self dismissFormulaEditorViewController];
     }
+}
+
+- (IBAction)done:(id)sender
+{
+    [self doneTapped];
 }
 
 - (void)updateDeleteButton:(BOOL)enabled
@@ -532,18 +565,15 @@ NS_ENUM(NSInteger, ButtonIndex) {
 }
 
 #pragma mark - UI
-- (void)showFormulaEditor
+- (void)showFormulaEditorTextView
 {
-    CGFloat topPadding = 0.0f;
-    if (@available(iOS 11.0, *)) {
-        UIWindow *window = UIApplication.sharedApplication.keyWindow;
-        topPadding = window.safeAreaInsets.top;
-    }
-    self.formulaEditorTextView = [[FormulaEditorTextView alloc] initWithFrame: CGRectMake(1, topPadding + self.brickCellData.brickCell.frame.size.height + kFormulaEditorTopOffset, self.view.frame.size.width - 2, 0) AndFormulaEditorViewController:self];
+    CGFloat marginTop = self.brickCell.frame.origin.y + self.brickCell.frame.size.height;
+    
+    self.formulaEditorTextView = [[FormulaEditorTextView alloc] initWithFrame: CGRectMake(0, marginTop, self.view.frame.size.width - 2, 120) AndFormulaEditorViewController:self];
+    
     [self.view addSubview:self.formulaEditorTextView];
     
     [self update];
-    
     [self.formulaEditorTextView becomeFirstResponder];
 }
 

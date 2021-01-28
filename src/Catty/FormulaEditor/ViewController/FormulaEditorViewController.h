@@ -47,11 +47,9 @@
 @property (strong, nonatomic) id<FormulaEditorViewControllerDelegate> delegate;
 
 - (id)initWithBrickCellFormulaData:(BrickCellFormulaData *)brickCellData andFormulaManager:(FormulaManager*)formulaManager;
-- (void)setBrickCellFormulaData:(BrickCellFormulaData*)brickCellData;
 - (void)update;
 - (void)updateDeleteButton:(BOOL)enabled;
 - (void)backspace:(id)sender;
-- (BOOL)changeBrickCellFormulaData:(BrickCellFormulaData*)brickCellData andForce:(BOOL)forceChange;
 
 - (void)handleInput;
 - (BOOL)isVariableUsed:(UserVariable*)variable;

@@ -51,7 +51,7 @@ class BrickCellTests: XCTestCase {
             tapOnBackgroundPicker(for: brick, in: app)
 
             app.pickerWheels.firstMatch.swipeDown()
-            app.buttons[kLocalizedDone].tap()
+            app.buttons[kLocalizedDone].firstMatch.tap()
 
             let alert1 = waitForElementToAppear(app.sheets[kLocalizedAddLook])
             alert1.buttons[kLocalizedDrawNewImage].tap()
@@ -100,7 +100,7 @@ class BrickCellTests: XCTestCase {
         for i in 1...8 {
             app.buttons["\(String(i))"].staticTexts["\(String(i))"].doubleTap()
         }
-        app.buttons[kLocalizedDone].tap()
+        app.buttons[kLocalizedDone].firstMatch.tap()
 
         firstParameterTextViewWidth = firstParameterTextView.frame.size.width
 
@@ -111,7 +111,7 @@ class BrickCellTests: XCTestCase {
         for i in 1...8 {
             app.buttons["\(String(i))"].staticTexts["\(String(i))"].doubleTap()
         }
-        app.buttons[kLocalizedDone].tap()
+        app.buttons[kLocalizedDone].firstMatch.tap()
         secondParameterTextViewWidth = secondParameterTextView.frame.size.width
 
         XCTAssertTrue(firstParameterTextViewWidth > initialParameterTextViewWidth)
@@ -138,7 +138,7 @@ class BrickCellTests: XCTestCase {
             tapOnBackgroundPicker(for: brick, in: app)
 
             app.pickerWheels.element.adjust(toPickerWheelValue: lookName)
-            app.buttons[kLocalizedDone].tap()
+            app.buttons[kLocalizedDone].firstMatch.tap()
         }
     }
 }

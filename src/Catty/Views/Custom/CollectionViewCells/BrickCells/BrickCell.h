@@ -30,10 +30,11 @@
 #define marginBottomSquaredBrick -4.9f
 #define marginBottomRoundedBrick 2.6f
 
-@class Brick, BrickCellInlineView, BrickCell, SelectButton;
+@class Brick, BrickCellInlineView, BrickCell, BrickCellFormulaData, SelectButton;
 @protocol BrickCellDataDelegate, BrickCellDataProtocol;
 
 @protocol BrickCellDelegate<NSObject>
+- (void)openFormulaEditor:(BrickCellFormulaData*)formulaData withEvent:(UIEvent*)event;
 @optional
 - (void)brickCell:(BrickCell*)brickCell didSelectBrickCellButton:(SelectButton*)selectButton;
 @end

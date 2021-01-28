@@ -86,7 +86,7 @@ class VariableTests: XCTestCase {
         let alert = waitForElementToAppear(app.alerts[kUIFENewVar])
         alert.textFields.firstMatch.typeText(variableName)
         alert.buttons[kLocalizedOK].tap()
-        app.buttons[kLocalizedDone].tap()
+        app.buttons[kLocalizedDone].firstMatch.tap()
 
         XCTAssertTrue(waitForElementToAppear(app.buttons[" \"" + variableName + "\" "]).exists)
     }
@@ -110,7 +110,7 @@ class VariableTests: XCTestCase {
         app.buttons["del active"].tap()
         app.buttons[kUIFEVariableList].tap()
         app.buttons[kUIFETake].tap()
-        app.buttons[kUIFEDone].tap()
+        app.buttons[kUIFEDone].firstMatch.tap()
 
         XCTAssertTrue(waitForElementToAppear(app.buttons[" \"" + testVariable + "\" "]).exists)
     }
@@ -153,7 +153,7 @@ class VariableTests: XCTestCase {
         let alert = waitForElementToAppear(app.alerts[kUIFENewText])
         alert.textFields.firstMatch.typeText(testVariable)
         app.buttons[kLocalizedOK].tap()
-        app.buttons[kLocalizedDone].tap()
+        app.buttons[kLocalizedDone].firstMatch.tap()
         app.collectionViews.cells.otherElements.containing(.staticText, identifier: kLocalizedSetVariable).children(matching: .button).element.tap()
         app.buttons[kUIFEAddNewText].tap()
         XCTAssertEqual(alert.textFields.firstMatch.value as! String, testVariable)
@@ -171,7 +171,7 @@ class VariableTests: XCTestCase {
         let newTextAlert = waitForElementToAppear(app.alerts[kUIFENewText])
         newTextAlert.textFields.firstMatch.typeText(testVariable)
         app.buttons[kLocalizedOK].tap()
-        app.buttons[kLocalizedDone].tap()
+        app.buttons[kLocalizedDone].firstMatch.tap()
         app.collectionViews.cells.otherElements.containing(.staticText, identifier: kLocalizedSetVariable).children(matching: .button).element.tap()
         app.buttons[kUIFEVariableList].tap()
         app.buttons[kUIFEVar].tap()
@@ -203,7 +203,7 @@ class VariableTests: XCTestCase {
         app.buttons[kUIFEVariableList].tap()
         app.scrollViews.firstMatch.buttons["Delete"].tap()
         app.buttons[kUIFETake].tap()
-        app.buttons[kUIFEDone].tap()
+        app.buttons[kUIFEDone].firstMatch.tap()
         XCTAssertTrue(waitForElementToAppear(app.buttons[" \"" + testVariable[1] + "\" "]).exists)
     }
 }

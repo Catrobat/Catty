@@ -584,6 +584,7 @@ let kLocalizedPaintTextAlert = NSLocalizedString("Please enter a text.", comment
 //************************************       FormulaEditor        ********************************************
 //************************************************************************************************************
 
+let kUIFormulaEditorTitle = NSLocalizedString("Formula Editor", comment: "")
 let kUIActionSheetTitleSelectLogicalOperator = NSLocalizedString("Select logical operator", comment: "")
 let kUIActionSheetTitleSelectMathematicalFunction = NSLocalizedString("Select mathematical function", comment: "")
 let kUIFENumbers = NSLocalizedString("Numbers", comment: "")
