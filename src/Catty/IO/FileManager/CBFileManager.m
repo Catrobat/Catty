@@ -23,7 +23,6 @@
 #import "CBFileManager.h"
 #import "Util.h"
 #import <ZipArchive/ZipArchive.h>
-#import "Sound.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "Pocket_Code-Swift.h"
 
@@ -114,10 +113,9 @@
         CFRelease(fileUTI); // manually free this, because ownership was transfered to ARC
 
         if (isPlayable) {
-            Sound *sound = [[Sound alloc] init];
+            Sound *sound = [[Sound alloc] initWithName:@"" andFileName:fileName];
             NSArray *fileParts = [fileName componentsSeparatedByString:@"."];
             NSString *fileNameWithoutExtension = ([fileParts count] ? [fileParts firstObject] : fileName);
-            sound.fileName = fileName;
             NSUInteger soundNameLength = [fileNameWithoutExtension length];
             if (soundNameLength > kMaxNumOfSoundNameCharacters)
                 soundNameLength = kMaxNumOfSoundNameCharacters;

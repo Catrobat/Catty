@@ -21,8 +21,8 @@
  */
 
 #import "PlaySoundBrick.h"
-#import "Sound.h"
 #import "CBMutableCopyContext.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation PlaySoundBrick
 
@@ -58,7 +58,7 @@
 {
     if([self class] != [brick class])
         return NO;
-    if(![self.sound isEqualToSound:((PlaySoundBrick*)brick).sound])
+    if(![self.sound isEqual:((PlaySoundBrick*)brick).sound])
         return NO;
     return YES;
 }

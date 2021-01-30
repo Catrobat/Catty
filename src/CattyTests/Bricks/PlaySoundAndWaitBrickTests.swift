@@ -35,7 +35,7 @@ final class PlaySoundAndWaitBrickTests: XCTestCase {
 
         XCTAssertTrue(brick.isEqual(to: copiedBrick))
         XCTAssertFalse(brick === copiedBrick)
-        XCTAssertTrue(brick.sound.isEqual(to: copiedBrick.sound))
+        XCTAssertTrue(brick.sound.isEqual(copiedBrick.sound))
         XCTAssertTrue(brick.sound === copiedBrick.sound)
     }
 

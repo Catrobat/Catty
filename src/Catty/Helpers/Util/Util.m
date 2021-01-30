@@ -24,7 +24,6 @@
 #import "ProjectLoadingInfo.h"
 #import "UIImage+CatrobatUIImageExtensions.h"
 #import "CatrobatLanguageDefines.h"
-#import "Sound.h"
 #import "Script.h"
 #import "BroadcastWaitBrick.h"
 #import "BroadcastBrick.h"

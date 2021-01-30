@@ -29,12 +29,13 @@
             else { fatalError("This should never happen!") }
 
         guard let sound = self.sound,
-            let fileName = sound.fileName,
             let filePath = scene.soundsPath()
             else { return .invalidInstruction }
 
         return CBInstruction.execClosure { context, scheduler in
             let audioEngine = scheduler.getAudioEngine()
+            let fileName = sound.fileName
+
             audioEngine.playSound(fileName: fileName, key: objectName, filePath: filePath, expectation: nil)
             context.state = .runnable
         }
