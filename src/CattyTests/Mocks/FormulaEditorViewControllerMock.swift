@@ -24,6 +24,6 @@
 
 class FormulaEditorViewControllerMock: FormulaEditorViewController {
     func showFormulaSavedNotification() {
-        NotificationCenter.default.post(name: .formulaSaved, object: self)
+        NotificationCenter.default.post(name: .formulaSaved, object: Formula.self)
     }
 }

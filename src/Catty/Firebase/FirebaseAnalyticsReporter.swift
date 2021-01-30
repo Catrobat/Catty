@@ -86,11 +86,9 @@ class FirebaseAnalyticsReporter {
     @objc func formulaSaved(notification: Notification) {
         let formula_string = (notification.object as? Formula)?.getDisplayString()
 
-        analytics.logEvent("Formula saved: ", parameters: [AnalyticsParameterItemName: formula_string ])
+        analytics.logEvent("Formula saved: ", parameters: [AnalyticsParameterItemName: formula_string as Any ])
+
     }
-    
-    @objc func formulaSaved(notification: Notification) {
-        let formula_string = (notification.object as? Formula)?.getDisplayString() ?? type(of: self).logNoValue
-        crashlytics.log("Formula saved: " + formula_string)
-    }
+
+
 }

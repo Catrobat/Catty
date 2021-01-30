@@ -295,7 +295,7 @@ final class FormulaEditorViewControllerTests: XCTestCase {
 
     func testFormulaSavedNotification() {
         let formulaEditorViewControllerMock = FormulaEditorViewControllerMock()
-        let expectedNotification = Notification(name: .formulaSaved, object: formulaEditorViewControllerMock)
+        let expectedNotification = Notification(name: .formulaSaved, object: Formula.self)
         expect(formulaEditorViewControllerMock.showFormulaSavedNotification()).to(postNotifications(contain(expectedNotification)))
     }
 }
