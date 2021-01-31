@@ -104,7 +104,7 @@ final class StoreProjectUploader: StoreProjectUploaderProtocol {
                 }
 
                 guard let data = data, response.statusCode == 200, error == nil else {
-                    if response.statusCode == 401 { return (nil, .authenticationFailed) }
+                    if response.statusCode == 401 || response.statusCode == 403 { return (nil, .authenticationFailed) }
                     return (nil, .request(error: error, statusCode: response.statusCode))
                 }
 
