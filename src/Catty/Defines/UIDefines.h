@@ -51,22 +51,6 @@
 #define kSelectButtonOffset 30.0f
 #define kSelectButtonTranslationOffsetX 60.0f
 
-// Notifications
-static NSString *const kBrickCellAddedNotification = @"BrickCellAddedNotification";
-static NSString *const kSoundAddedNotification = @"SoundAddedNotification";
-static NSString *const kRecordAddedNotification = @"RecordAddedNotification";
-static NSString *const kBrickDetailViewDismissed = @"BrickDetailViewDismissed";
-static NSString *const kProjectDownloadedNotification = @"ProjectDownloadedNotification";
-static NSString *const kHideLoadingViewNotification = @"HideLoadingViewNotification";
-static NSString *const kShowSavedViewNotification = @"ShowSavedViewNotification";
-static NSString *const kReadyToUpload = @"ReadyToUploadProject";
-static NSString *const kLoggedInNotification = @"LoggedInNotification";
-
-// Notification keys
-static NSString *const kUserInfoKeyBrickCell = @"UserInfoKeyBrickCell";
-static NSString *const kUserInfoSpriteObject = @"UserInfoSpriteObject";
-static NSString *const kUserInfoSound = @"UserInfoSound";
-
 // UI Elements
 #define kToolbarHeight 44.0f
 

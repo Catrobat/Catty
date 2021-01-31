@@ -254,7 +254,7 @@ class UploadViewController: UIViewController, UploadCategoryViewControllerDelega
     func initObservers() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(UploadViewController.uploadAction),
-                                               name: NSNotification.Name(rawValue: kReadyToUpload),
+                                               name: NSNotification.Name(rawValue: NotificationName.readyToUpload),
                                                object: nil)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.keyboardWillShow),

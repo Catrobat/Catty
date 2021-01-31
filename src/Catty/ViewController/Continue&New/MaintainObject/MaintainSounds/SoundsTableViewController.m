@@ -94,46 +94,17 @@
     }
 }
 
-- (void)dealloc
-{
-    NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
-    [dnc removeObserver:self name:kRecordAddedNotification object:nil];
-}
-
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
-    [dnc addObserver:self selector:@selector(soundAdded:) name:kSoundAddedNotification object:nil];
     [self.navigationController setToolbarHidden:NO];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
-    [dnc removeObserver:self name:kSoundAddedNotification object:nil];
     self.currentPlayingSongCell = nil;
     [self stopAllSounds];
-}
-
-#pragma mark - notification
-- (void)soundAdded:(NSNotification*)notification
-{
-    if (self.isAllowed) {
-        if (notification.userInfo) {
-                NSDebug(@"soundAdded notification received with userInfo: %@", [notification.userInfo description]);
-            id sound = notification.userInfo[kUserInfoSound];
-            if ([sound isKindOfClass:[Sound class]]) {
-                [self addSoundToObjectAction:(Sound*)sound];
-                self.isAllowed = NO;
-            }
-        }
-    }
-    if (self.afterSafeBlock) {
-        self.afterSafeBlock(nil);
-    }
-    [self reloadData];
 }
 
 #pragma mark - start scene

@@ -535,7 +535,7 @@
         [self.projectNameDict removeObjectForKey:downloadTask];
         [self.projectIDDict removeObjectForKey:downloadTask];
         // Notification for reloading MyProjectViewController
-        [[NSNotificationCenter defaultCenter] postNotificationName:kProjectDownloadedNotification object:self];
+        [[NSNotificationCenter defaultCenter] postNotificationName:NotificationName.projectDownloaded object:self];
     }
     [Util setNetworkActivityIndicator:NO];
 }

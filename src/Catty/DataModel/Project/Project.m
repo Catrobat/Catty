@@ -78,7 +78,7 @@
         if (notify) {
             dispatch_sync(dispatch_get_main_queue(), ^{
                 NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-                [notificationCenter postNotificationName:kShowSavedViewNotification object:self];
+                [notificationCenter postNotificationName:NotificationName.showSaved object:self];
             });
         }
         // TODO: find correct serializer class dynamically
@@ -91,8 +91,8 @@
         }
 
         dispatch_async(dispatch_get_main_queue(), ^{
-            [[NSNotificationCenter defaultCenter] postNotificationName:kHideLoadingViewNotification object:self];
-            [[NSNotificationCenter defaultCenter] postNotificationName:kReadyToUpload object:self];
+            [[NSNotificationCenter defaultCenter] postNotificationName:NotificationName.hideLoadingView object:self];
+            [[NSNotificationCenter defaultCenter] postNotificationName:NotificationName.readyToUpload object:self];
         });
     });
 }
