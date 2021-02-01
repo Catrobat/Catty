@@ -55,6 +55,21 @@ class EmbroideryStream: Collection {
         size *= screenRatio
     }
 
+    init(streams: [EmbroideryStream], withName name: String? = nil) {
+        self.name = name
+        self.nextStitchIsColorChange = false
+        size = SpriteKitDefines.defaultCatrobatStitchingSize * EmbroideryDefines.sizeConversionFactor
+
+        for stream in streams {
+            let syncArrayEnumerated = stream.stitches.enumerated()
+
+            for (_, value1) in syncArrayEnumerated {
+                self.append(value1)
+            }
+            self.addColorChange()
+        }
+    }
+
     subscript(index: IndexType) -> Stitch {
         guard let stitch = stitches[index] else {
             fatalError("Array index out of bounds")
