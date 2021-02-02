@@ -254,7 +254,6 @@
     [xmlElement addChild:[GDataXMLElement elementWithName:@"userBrickVariableList" context:context] context:context];
     
     // TODO implement objectListOfList, programListOfLists and userBrickVariableList
-    NSLog(@"%@", [xmlElement XMLStringPrettyPrinted:YES]);
     return xmlElement;
 }
 

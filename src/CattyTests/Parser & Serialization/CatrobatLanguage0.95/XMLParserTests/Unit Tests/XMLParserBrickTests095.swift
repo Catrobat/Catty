@@ -34,18 +34,6 @@ final class XMLParserBrickTests095: XMLAbstractTest {
         parserContext = CBXMLParserContext(languageVersion: CGFloat(Float32(0.95)), andRootElement: GDataXMLElement())
     }
 
-    func testInvalidSetVariableBrickWithoutFormula() {
-        let setVariableBrick = SetVariableBrick()
-        let xmlElement = setVariableBrick.xmlElement(with: self.serializerContext)
-
-        XCTAssertThrowsError(
-            try ConvertExceptionToError.catchException {
-                SetVariableBrick.parse(from: xmlElement, with: self.parserContext)
-            }) { error in
-            XCTAssertTrue(error.localizedDescription.contains(NSStringFromClass(CBXMLParserHelper.self)))
-        }
-    }
-
     func testSetVariableBrickWithoutUserVariableAndWithoutInUserBrickElement() {
         let setVariableBrick = SetVariableBrick()
         setVariableBrick.setDefaultValuesFor(nil)
@@ -74,20 +62,6 @@ final class XMLParserBrickTests095: XMLAbstractTest {
         XCTAssertNotNil(parsedSetVariableBrick, "Could not parse SetVariableBrick")
         XCTAssertNotNil(parsedSetVariableBrick!.variableFormula, "Formula not correctly parsed")
         XCTAssertNotNil(parsedSetVariableBrick!.userVariable, "UserVariable not correctly parsed")
-    }
-
-    func testInvalidChangeVariableBrickWithoutFormula() {
-        let changeVariableBrick = ChangeVariableBrick()
-        let xmlElement = changeVariableBrick.xmlElement(with: self.serializerContext)
-
-        XCTAssertThrowsError(
-            try ConvertExceptionToError.catchException {
-            ChangeVariableBrick.parse(from: xmlElement, with: self.parserContext)
-
-            }
-            ) { error in
-            XCTAssertTrue(error.localizedDescription.contains(NSStringFromClass(CBXMLParserHelper.self)))
-        }
     }
 
     func testChangeVariableBrickWithoutUserVariableAndWithoutInUserBrickElement() {

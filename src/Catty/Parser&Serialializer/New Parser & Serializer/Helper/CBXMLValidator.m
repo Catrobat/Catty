@@ -34,22 +34,6 @@
     [array removeObject:@""];
     NSUInteger index = 0;
     NSDebug(@"Stack = %@", [array objectAtIndex:index++]);
-#if DEBUG == 1
-    NSString *framework = [array objectAtIndex:index++];
-    NSString *tempString = [array objectAtIndex:index++];
-    NSString *memoryAddress = nil;
-    NSCharacterSet *chars = [[NSCharacterSet
-                              characterSetWithCharactersInString:@"0123456789ABCDEF"] invertedSet];
-    BOOL tempStringContainsValidMemoryAddress = (NSNotFound == [tempString rangeOfCharacterFromSet:chars].location);
-    if (tempStringContainsValidMemoryAddress) {
-        memoryAddress = tempString;
-    } else {
-        framework = [NSString stringWithFormat:@"%@ %@", framework, tempString];
-        memoryAddress = [array objectAtIndex:index++];
-    }
-    NSLog(@"Framework = %@", framework);
-    NSLog(@"Memory address = %@", memoryAddress);
-#endif // DEBUG
     NSString *classCaller = [array objectAtIndex:index++];
     return classCaller;
 }
@@ -63,22 +47,6 @@
     [array removeObject:@""];
     NSUInteger index = 0;
     NSDebug(@"Stack = %@", [array objectAtIndex:index++]);
-#if DEBUG == 1
-    NSString *framework = [array objectAtIndex:index++];
-    NSString *tempString = [array objectAtIndex:index++];
-    NSString *memoryAddress = nil;
-    NSCharacterSet *chars = [[NSCharacterSet
-                              characterSetWithCharactersInString:@"0123456789ABCDEF"] invertedSet];
-    BOOL tempStringContainsValidMemoryAddress = (NSNotFound == [tempString rangeOfCharacterFromSet:chars].location);
-    if (tempStringContainsValidMemoryAddress) {
-        memoryAddress = tempString;
-    } else {
-        framework = [NSString stringWithFormat:@"%@ %@", framework, tempString];
-        memoryAddress = [array objectAtIndex:index++];
-    }
-    NSLog(@"Framework = %@", framework);
-    NSLog(@"Memory address = %@", memoryAddress);
-#endif // DEBUG
 
     NSString *classCaller = [array objectAtIndex:index++];
     NSString *functionCaller = [array objectAtIndex:index++];

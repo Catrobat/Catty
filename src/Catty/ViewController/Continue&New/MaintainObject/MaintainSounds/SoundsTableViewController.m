@@ -534,7 +534,6 @@
 
 -(void)audioItemDidFinishPlaying:(NSNotification *) notification {
     // Will be called when AVPlayer finishes playing playerItem
-    NSLog(@"finishTV");
     [[NSNotificationCenter defaultCenter] removeObserver:self name:AVPlayerItemDidPlayToEndTimeNotification object:notification.object];
     if ((! self.currentPlayingSong) || (! self.currentPlayingSongCell)) {
         return;

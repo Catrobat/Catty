@@ -226,8 +226,6 @@
 
 -(void)reset
 {
-    NSLog(@"reset");
-
     self.higherRankBrick = nil;
     self.lowerRankBrick = nil;
     self.moveToOtherScript = NO;

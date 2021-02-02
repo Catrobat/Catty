@@ -177,7 +177,7 @@
     self.view.backgroundColor = UIColor.whiteColor;
     
     self.helper = [[UIView alloc] initWithFrame:rect];
-    
+
     if (self.editingImage) {
         UIImage *image = self.editingImage;
         UIGraphicsBeginImageContext(image.size);
@@ -651,7 +651,6 @@
     
     if (self.undoManager.canUndo) {
         [self.undoManager undo];
-        //    NSLog(@"undo");
     }else{
     }
     [self.undoManager updateUndoToolBarItems];
@@ -662,7 +661,6 @@
     
     if (self.undoManager.canRedo) {
         [self.undoManager redo];
-        //     NSLog(@"redo");
     }else{
     }
     [self.undoManager updateUndoToolBarItems];
@@ -931,7 +929,6 @@
             } else {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [[[[[AlertControllerBuilder alertWithTitle:nil message:kLocalizedNoAccesToImagesCheckSettingsDescription]
-
                         addCancelActionWithTitle:kLocalizedCancel handler:nil]
                        addDefaultActionWithTitle:kLocalizedSettings handler:^{
                         if ([self.delegate respondsToSelector:@selector(addPaintedImage:andPath:)]) {
@@ -943,7 +940,6 @@
                         }
                         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]options:@{} completionHandler:nil];
                     }] build]
-
                      showWithController:self];
                 });
             }
@@ -1014,7 +1010,6 @@
 {
     self.fillTool = nil;
     self.fillRecognizer = nil;
-    NSLog(@"dealloc");
 }
 
 
