@@ -451,6 +451,7 @@ didEndDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         }else{
             script.animateInsertBrick = NO;
         }
+        [self.object.scene.project saveToDiskWithNotification:NO];
         [self turnOffInsertingBrickMode];
     } else {
         [[BrickMoveManager sharedInstance] getReadyForNewBrickMovement];
