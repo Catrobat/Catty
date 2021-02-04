@@ -107,7 +107,7 @@
 
         object.name = Util.uniqueName(name, existingNames: allObjectNames())
         self.add(object: object)
-        project?.saveToDisk(withNotification: true)
+        project?.saveToDisk(withNotification: false)
     }
 
     @objc(removeObjectAtIndex:)
