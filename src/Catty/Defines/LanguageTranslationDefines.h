@@ -584,6 +584,7 @@
 //************************************       FormulaEditor        ********************************************
 //************************************************************************************************************
 
+#define kUIFormulaEditorTitle NSLocalizedString(@"Formula Editor", nil)
 #define kUIActionSheetTitleSelectLogicalOperator NSLocalizedString(@"Select logical operator", nil)
 #define kUIActionSheetTitleSelectMathematicalFunction NSLocalizedString(@"Select mathematical function", nil)
 #define kUIFENumbers NSLocalizedString(@"Numbers", nil)

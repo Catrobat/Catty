@@ -88,7 +88,7 @@ class ListTests: XCTestCase {
         let alert = waitForElementToAppear(app.alerts[kUIFENewList])
         alert.textFields.firstMatch.typeText(listName)
         alert.buttons[kLocalizedOK].tap()
-        app.buttons[kLocalizedDone].tap()
+        app.buttons[kLocalizedDone].firstMatch.tap()
 
         XCTAssertTrue(waitForElementToAppear(app.buttons[" *" + listName + "* "]).exists)
     }
@@ -115,7 +115,7 @@ class ListTests: XCTestCase {
         app.buttons[kUIFEVariableList].tap()
         app.buttons["Lists"].tap()
         app.buttons[kUIFETake].tap()
-        app.buttons[kUIFEDone].tap()
+        app.buttons[kUIFEDone].firstMatch.tap()
 
         XCTAssertTrue(waitForElementToAppear(app.buttons[" *" + listName + "* "]).exists)
     }
@@ -162,7 +162,7 @@ class ListTests: XCTestCase {
         let alert = waitForElementToAppear(app.alerts[kUIFENewText])
         alert.textFields.firstMatch.typeText(listName)
         app.buttons[kLocalizedOK].tap()
-        app.buttons[kLocalizedDone].tap()
+        app.buttons[kLocalizedDone].firstMatch.tap()
         app.collectionViews.cells.element(boundBy: 1).staticTextBeginsWith(kLocalizedUserListAdd).tap()
 
         app.buttons[kLocalizedEditFormula].tap()
@@ -183,7 +183,7 @@ class ListTests: XCTestCase {
         let newTextAlert = waitForElementToAppear(app.alerts[kUIFENewText])
         newTextAlert.textFields.firstMatch.typeText(listName)
         app.buttons[kLocalizedOK].tap()
-        app.buttons[kLocalizedDone].tap()
+        app.buttons[kLocalizedDone].firstMatch.tap()
         app.collectionViews.cells.element(boundBy: 1).staticTextBeginsWith(kLocalizedUserListAdd).tap()
 
         app.buttons[kLocalizedEditFormula].tap()
@@ -220,7 +220,7 @@ class ListTests: XCTestCase {
         app.buttons["Lists"].tap()
         app.scrollViews.firstMatch.buttons["Delete"].tap()
         app.buttons[kUIFETake].tap()
-        app.buttons[kUIFEDone].tap()
+        app.buttons[kUIFEDone].firstMatch.tap()
 
         XCTAssertTrue(waitForElementToAppear(app.buttons[" *" + testLists[1] + "* "]).exists)
     }
