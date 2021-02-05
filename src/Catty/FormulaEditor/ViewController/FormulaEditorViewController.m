@@ -252,18 +252,19 @@ NS_ENUM(NSInteger, ButtonIndex) {
     
     panRecognizer.delegate = self;
     
+    [self setupNavigationBar];
+    
     self.formulaEditorSectionViewController = [[FormulaEditorSectionViewController alloc] init];
     self.formulaEditorSectionViewController.formulaManager = _formulaManager;
     self.formulaEditorSectionViewController.spriteObject = _object;
     self.formulaEditorSectionViewController.formulaEditorVC = self;
-    self.formulaEditorSectionViewController.modalPresentationStyle = UIModalPresentationPopover;
-    [self presentViewController:self.formulaEditorSectionViewController animated:YES completion:NULL];
-
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self.formulaEditorTextView becomeFirstResponder];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -293,6 +294,11 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 - (void) setupNavigationBar {
     self.navigationItem.title = kUIFormulaEditorTitle;
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithTitle:kLocalizedBack
+                                                                 style:UIBarButtonItemStylePlain
+                                                                target:nil
+                                                                action:nil];
+    [self.navigationItem setBackBarButtonItem:backItem];
     
     UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedCancel
                                                              style:UIBarButtonItemStylePlain
@@ -709,23 +715,23 @@ NS_ENUM(NSInteger, ButtonIndex) {
 }
 - (IBAction)showFunction:(UIButton *)sender {
     self.formulaEditorSectionViewController.formulaEditorSectionType = FormulaEditorSectionTypeFunctions;
-    [self presentViewController:self.formulaEditorSectionViewController animated:true completion:nil];
+    [self.navigationController pushViewController:self.formulaEditorSectionViewController animated:true];
 }
 - (IBAction)showLogic:(UIButton *)sender {
     self.formulaEditorSectionViewController.formulaEditorSectionType = FormulaEditorSectionTypeLogic;
-    [self presentViewController:self.formulaEditorSectionViewController animated:true completion:nil];
+    [self.navigationController pushViewController:self.formulaEditorSectionViewController animated:true];
 }
 - (IBAction)showObject:(UIButton *)sender {
     self.formulaEditorSectionViewController.formulaEditorSectionType = FormulaEditorSectionTypeObject;
-    [self presentViewController:self.formulaEditorSectionViewController animated:true completion:nil];
+    [self.navigationController pushViewController:self.formulaEditorSectionViewController animated:true];
 }
 - (IBAction)showSensor:(UIButton *)sender {
     self.formulaEditorSectionViewController.formulaEditorSectionType = FormulaEditorSectionTypeSensors;
-    [self presentViewController:self.formulaEditorSectionViewController animated:true completion:nil];
+    [self.navigationController pushViewController:self.formulaEditorSectionViewController animated:true];
 }
 - (IBAction)showVariable:(UIButton *)sender {
     self.formulaEditorSectionViewController.formulaEditorSectionType = FormulaEditorSectionTypeData;
-    [self presentViewController:self.formulaEditorSectionViewController animated:true completion:nil];
+    [self.navigationController pushViewController:self.formulaEditorSectionViewController animated:true];
 }
 
 - (void)hideScrollViews

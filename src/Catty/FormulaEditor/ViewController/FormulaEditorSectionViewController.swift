@@ -31,9 +31,7 @@
 
 @objc class FormulaEditorSectionViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    private var toolBar = UIToolbar()
     private var placeHolderLabel = UILabel()
-    private var cancelButton = UIBarButtonItem()
     private var addButton = UIBarButtonItem()
     @objc var formulaEditorVC: FormulaEditorViewController?
     @objc var formulaEditorSectionType: FormulaEditorSectionType = .none
@@ -59,34 +57,16 @@
 
     private var allVariablesAndLists = [VariableOrList]()
 
-    convenience init(formulaPopOverType: FormulaEditorSectionType, formulaManager: FormulaManager, spriteObject: SpriteObject) {
-        self.init()
-
-        self.formulaEditorSectionType = formulaPopOverType
-        self.formulaManager = formulaManager
-        self.spriteObject = spriteObject
-    }
-
     private var tableView = UITableView()
 
     override func viewDidLoad() {
 
         self.view.backgroundColor = .white
 
-        self.toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 45))
-        self.toolBar.isTranslucent = false
-        self.toolBar.barTintColor = .toolBar
-        self.view.addSubview(toolBar)
-
-        self.cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(self.cancelTapped))
-        self.cancelButton.tintColor = .light
         self.addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.addButtonTapped))
         self.addButton.tintColor = .light
 
-        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        self.toolBar.items = [cancelButton, flexibleSpace, addButton]
-
-        let tableViewTopConstraint = NSLayoutConstraint(item: self.tableView, attribute: .top, relatedBy: .equal, toItem: self.toolBar, attribute: .bottom, multiplier: 1, constant: 0)
+        let tableViewTopConstraint = NSLayoutConstraint(item: self.tableView, attribute: .top, relatedBy: .equal, toItem: self.view, attribute: .top, multiplier: 1, constant: 0)
         let tableViewBottomConstraint = NSLayoutConstraint(item: self.tableView, attribute: .bottom, relatedBy: .equal, toItem: self.view, attribute: .bottom, multiplier: 1, constant: 0)
         let tableViewLeadingConstraint = NSLayoutConstraint(item: self.tableView, attribute: .leading, relatedBy: .equal, toItem: self.view, attribute: .leading, multiplier: 1, constant: 0)
         let tableViewTrailingConstraint = NSLayoutConstraint(item: self.tableView, attribute: .trailing, relatedBy: .equal, toItem: self.view, attribute: .trailing, multiplier: 1, constant: 0)
@@ -114,10 +94,7 @@
         self.numberOfRowsInSection.removeAll()
         self.titlesOfSections.removeAll()
         self.placeHolderLabel.isHidden = true
-
-        if self.toolBar.items!.count > 2 {
-            self.toolBar.items?.removeLast()
-        }
+        self.navigationItem.rightBarButtonItem = nil
 
         switch formulaEditorSectionType {
         case .functions:
@@ -134,9 +111,7 @@
 
         case .data:
             self.initDataItems()
-            if self.toolBar.items!.count < 3 {
-                self.toolBar.items?.append(self.addButton)
-            }
+            self.navigationItem.rightBarButtonItem = self.addButton
 
         case .none:
             self.presentUnexpectedErrorAlert()
@@ -194,7 +169,7 @@
             self.formulaEditorVC?.formulaEditorItemSelected(item: self.items[getTableViewRowIndex(indexPath: indexPath)])
         }
 
-        self.dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
     }
 
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
@@ -225,10 +200,6 @@
         }
 
         return nil
-    }
-
-    @objc func cancelTapped() {
-        self.dismiss(animated: true, completion: nil)
     }
 
     private func getTableViewRowIndex(indexPath: IndexPath) -> Int {
@@ -393,8 +364,8 @@
 
     private func presentUnexpectedErrorAlert() {
         let alert = UIAlertController(title: "Some unexpected error occured", message: nil, preferredStyle: .alert)
-        let closeAction = UIAlertAction(title: "Close", style: .default) { _ in
-            self.dismiss(animated: true, completion: nil)
+        let closeAction = UIAlertAction(title: kLocalizedClose, style: .default) { _ in
+            self.navigationController?.popViewController(animated: true)
         }
         alert.addAction(closeAction)
         self.present(alert, animated: true, completion: nil)
