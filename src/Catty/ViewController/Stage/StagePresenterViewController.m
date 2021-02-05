@@ -59,6 +59,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    _skView = [[SKView alloc] initWithFrame:self.view.bounds];
+    _skView.paused = NO;
+    
+    #if DEBUG == 1
+        _skView.showsFPS = YES;
+        _skView.showsNodeCount = YES;
+        _skView.showsDrawCount = YES;
+    #endif
+    
     [self.view addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)]];
     self.skView.backgroundColor = UIColor.background;
 }
@@ -591,20 +601,6 @@
 - (BOOL)isPaused
 {
     return self.menuOpen;
-}
-
-- (SKView*)skView
-{
-    if (!_skView) {
-        _skView = [[SKView alloc] initWithFrame:self.view.bounds];
-#if DEBUG == 1
-        _skView.showsFPS = YES;
-        _skView.showsNodeCount = YES;
-        _skView.showsDrawCount = YES;
-#endif
-    }
-    _skView.paused = NO;
-    return _skView;
 }
 
 #pragma mark - Helpers

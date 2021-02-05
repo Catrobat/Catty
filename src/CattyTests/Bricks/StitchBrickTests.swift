@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2020 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -20,21 +20,29 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+import XCTest
 
-#define kcServiceName @"Catty"
-#define kcUsername @"username"
-#define kcEmail @"userEmail"
+@testable import Pocket_Code
 
-#define kUsePhiroBricks @"usePhiroBricks"
-#define kUseArduinoBricks @"useArduinoBricks"
-#define kUseEmbroideryBricks @"useEmbroideryBricks"
+final class StitchBrickTests: XCTestCase {
 
-#define kUserPrivacyPolicyHasBeenShown @"privacyPolicyHasBeenShown"
-#define kUserShowPrivacyPolicyOnEveryLaunch @"showPrivacyPolicyOnEveryLaunch"
+    func testStitchBrick() {
+        let object = SpriteObject()
+        let scene = Scene(name: "testScene")
+        object.scene = scene
+        let spriteNode = CBSpriteNode(spriteObject: object)
+        object.spriteNode = spriteNode
+        spriteNode.position = CGPoint(x: 0, y: 0)
+        let script = Script()
+        script.object = object
 
-#define kFirebaseSendCrashReports @"firebaseSendCrashReports"
+        let brick = StitchBrick()
+        brick.script = script
 
-#define kPhiroActivated 0
-#define kArduinoActivated 1
-#define kEmbroideryActivated 1
-#define kFirebaseSendCrashReportsDefault 1
+        let action = brick.actionBlock()
+        XCTAssertEqual(spriteNode.embroideryStream.count, 0)
+        action()
+        XCTAssertEqual(spriteNode.embroideryStream.count, 1)
+        XCTAssertEqual(spriteNode.embroideryStream[0].getPosition(), spriteNode.position)
+    }
+}

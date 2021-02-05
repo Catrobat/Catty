@@ -27,21 +27,25 @@ class Stitch {
     let y: CGFloat
     let isJump: Bool
     var isColorChange = false
+    var isInterpolated = false
+    var isDrawn = false
 
-    init<T: BinaryInteger>(x: T, y: T, asJump isJump: Bool = false) {
+    init<T: BinaryInteger>(x: T, y: T, asJump isJump: Bool = false, isInterpolated: Bool = false) {
         self.x = CGFloat(x)
         self.y = CGFloat(y)
         self.isJump = isJump
+        self.isInterpolated = isInterpolated
     }
 
-    init<T: BinaryFloatingPoint>(x: T, y: T, asJump isJump: Bool = false) {
+    init<T: BinaryFloatingPoint>(x: T, y: T, asJump isJump: Bool = false, isInterpolated: Bool = false) {
         self.x = CGFloat(x)
         self.y = CGFloat(y)
         self.isJump = isJump
+        self.isInterpolated = isInterpolated
     }
 
-    convenience init(atPosition pos: CGPoint, asJump isJump: Bool = false) {
-        self.init(x: pos.x, y: pos.y, asJump: isJump)
+    convenience init(atPosition pos: CGPoint, asJump isJump: Bool = false, isInterpolated: Bool = false) {
+        self.init(x: pos.x, y: pos.y, asJump: isJump, isInterpolated: isInterpolated)
     }
 
     func embroideryDimensions() -> CGPoint {
@@ -52,5 +56,9 @@ class Stitch {
         let delta_x = abs(stitch.embroideryDimensions().x - self.embroideryDimensions().x)
         let delta_y = abs(stitch.embroideryDimensions().y - self.embroideryDimensions().y)
         return Int(max(delta_x, delta_y))
+    }
+
+    func getPosition() -> CGPoint {
+        CGPoint(x: self.x, y: self.y)
     }
 }

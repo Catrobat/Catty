@@ -766,6 +766,11 @@
     return kArduinoActivated == 1;
 }
 
++ (BOOL)isEmbroideryActivated
+{
+    return kEmbroideryActivated == 1;
+}
+
 + (BOOL)isPhone
 {
 #ifdef IS_IPHONE

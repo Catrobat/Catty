@@ -189,6 +189,8 @@ if (__functor) __functor(__VA_ARGS__);  \
 
 + (BOOL)isArduinoActivated;
 
++ (BOOL)isEmbroideryActivated;
+
 + (BOOL)isPhiroActivated;
 
 + (BOOL)isPhone;

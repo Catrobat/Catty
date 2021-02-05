@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2020 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -20,21 +20,14 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+extension StitchBrick: CBXMLNodeProtocol {
+    static func parse(from xmlElement: GDataXMLElement, with context: CBXMLParserContext) -> Self {
+        CBXMLParserHelper.validate(xmlElement, forNumberOfChildNodes: 0)
+        return self.init()
+    }
 
-#define kcServiceName @"Catty"
-#define kcUsername @"username"
-#define kcEmail @"userEmail"
-
-#define kUsePhiroBricks @"usePhiroBricks"
-#define kUseArduinoBricks @"useArduinoBricks"
-#define kUseEmbroideryBricks @"useEmbroideryBricks"
-
-#define kUserPrivacyPolicyHasBeenShown @"privacyPolicyHasBeenShown"
-#define kUserShowPrivacyPolicyOnEveryLaunch @"showPrivacyPolicyOnEveryLaunch"
-
-#define kFirebaseSendCrashReports @"firebaseSendCrashReports"
-
-#define kPhiroActivated 0
-#define kArduinoActivated 1
-#define kEmbroideryActivated 1
-#define kFirebaseSendCrashReportsDefault 1
+    func xmlElement(with context: CBXMLSerializerContext) -> GDataXMLElement? {
+        let brick = super.xmlElement(for: "StitchBrick", with: context)
+        return brick
+    }
+}

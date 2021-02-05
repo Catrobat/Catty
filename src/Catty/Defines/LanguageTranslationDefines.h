@@ -247,6 +247,7 @@
 #define kLocalizedLists NSLocalizedString(@"Lists", nil)
 #define kLocalizedPhiroBricks NSLocalizedString(@"Use Phiro bricks", nil)
 #define kLocalizedArduinoBricks NSLocalizedString(@"Arduino extension", nil)
+#define kLocalizedEmbroideryBricks NSLocalizedString(@"Embroidery extension", nil)
 #define kLocalizedSendCrashReports NSLocalizedString(@"Sending anonymous crash reports", nil)
 #define kLocalizedSendCrashReportsDescription NSLocalizedString(@"Allow the app to send crash reports automatically", nil)
 #define kLocalizedFrontCamera NSLocalizedString(@"Front camera", nil)
@@ -290,6 +291,7 @@
 #define kLocalizedDisconnectBluetoothDevices NSLocalizedString(@"All Bluetooth devices successfully disconnected", nil)
 #define kLocalizedRemovedKnownBluetoothDevices NSLocalizedString(@"All known Bluetooth devices successfully removed", nil)
 #define kLocalizedArduinoBricksDescription NSLocalizedString(@"Allow the app to control Arduino boards", nil)
+#define kLocalizedEmbroideryBricksDescription NSLocalizedString(@"Create patterns for stiching machines", nil)
 
 //************************************************************************************************************
 //**********************************       LONG DESCRIPTIONS      ********************************************
@@ -334,6 +336,9 @@
 //************************************************************************************************************
 //*******************************       BRICK TITLE TRANSLATIONS      ****************************************
 //************************************************************************************************************
+
+// embroidery bricks
+#define kLocalizedStitch NSLocalizedString(@"Stitch", nil)
 
 // control bricks
 #define kLocalizedScript NSLocalizedString(@"Script", nil)
@@ -733,6 +738,7 @@
 #define kLocalizedCategoryArduino NSLocalizedString(@"Arduino", nil)
 #define kLocalizedCategoryPhiro NSLocalizedString(@"Phiro", nil)
 #define kLocalizedCategoryPen NSLocalizedString(@"Pen", nil)
+#define kLocalizedCategoryEmbroidery NSLocalizedString(@"Embroidery", nil)
 
 //************************************************************************************************************
 //************************************       PhiroDefines         ********************************************

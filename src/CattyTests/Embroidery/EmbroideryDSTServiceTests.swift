@@ -26,14 +26,17 @@ import XCTest
 
 final class EmbroideryDSTServiceTests: XCTestCase {
 
+    private let width: CGFloat = 100
+    private let height: CGFloat = 200
+
     func testGenerateOutputInterpolation() {
         let bundlePath = Bundle(for: type(of: self)).path(forResource: "stitch", ofType: "dst")
         let reference = try? Data(contentsOf: URL(fileURLWithPath: bundlePath!))
 
         let DSTService = EmbroideryDSTService()
-        let stream = EmbroideryStream(withName: "stitch")
-        stream.addStich(stitch: Stitch(atPosition: CGPoint(x: 0, y: 0)))
-        stream.addStich(stitch: Stitch(atPosition: CGPoint(x: 250, y: 0)))
+        let stream = EmbroideryStream(projectWidth: width, projectHeight: height, withName: "stitch")
+        stream.add(Stitch(atPosition: CGPoint(x: 0, y: 0)))
+        stream.add(Stitch(atPosition: CGPoint(x: 250, y: 0)))
 
         let out = DSTService.generateOutput(embroideryStream: stream)
         XCTAssertEqual(out, reference)
@@ -44,13 +47,13 @@ final class EmbroideryDSTServiceTests: XCTestCase {
         let reference = try? Data(contentsOf: URL(fileURLWithPath: bundlePath!))
 
         let DSTService = EmbroideryDSTService()
-        let stream = EmbroideryStream(withName: "EmbroideryStitc")
+        let stream = EmbroideryStream(projectWidth: width, projectHeight: height, withName: "EmbroideryStitc")
 
-        stream.addStich(stitch: Stitch(atPosition: CGPoint(x: 0, y: 0)))
-        stream.addStich(stitch: Stitch(atPosition: CGPoint(x: 250, y: 0)))
+        stream.add(Stitch(atPosition: CGPoint(x: 0, y: 0)))
+        stream.add(Stitch(atPosition: CGPoint(x: 250, y: 0)))
         stream.addColorChange()
-        stream.addStich(stitch: Stitch(atPosition: CGPoint(x: 0, y: 0)))
-        stream.addStich(stitch: Stitch(atPosition: CGPoint(x: 0, y: 250)))
+        stream.add(Stitch(atPosition: CGPoint(x: 0, y: 0)))
+        stream.add(Stitch(atPosition: CGPoint(x: 0, y: 250)))
 
         let out = DSTService.generateOutput(embroideryStream: stream)
         XCTAssertEqual(out, reference)

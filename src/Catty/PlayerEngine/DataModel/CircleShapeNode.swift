@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2020 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -20,21 +20,30 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+class CircleShapeNode: SKShapeNode {
+    let point: CGPoint
+    let radius: CGFloat
+    let startAngle: CGFloat
+    let endAngle: CGFloat
+    let clockwise: Bool
+    let transform: CGAffineTransform
 
-#define kcServiceName @"Catty"
-#define kcUsername @"username"
-#define kcEmail @"userEmail"
+    init(point: CGPoint, radius: CGFloat, startAngle: CGFloat, endAngle: CGFloat, clockwise: Bool, transform: CGAffineTransform) {
+        self.point = point
+        self.radius = radius
+        self.startAngle = startAngle
+        self.endAngle = endAngle
+        self.clockwise = clockwise
+        self.transform = transform
 
-#define kUsePhiroBricks @"usePhiroBricks"
-#define kUseArduinoBricks @"useArduinoBricks"
-#define kUseEmbroideryBricks @"useEmbroideryBricks"
+        super.init()
 
-#define kUserPrivacyPolicyHasBeenShown @"privacyPolicyHasBeenShown"
-#define kUserShowPrivacyPolicyOnEveryLaunch @"showPrivacyPolicyOnEveryLaunch"
+        let path = CGMutablePath()
+        path.addArc(center: point, radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: clockwise, transform: transform)
+        self.path = path
+    }
 
-#define kFirebaseSendCrashReports @"firebaseSendCrashReports"
-
-#define kPhiroActivated 0
-#define kArduinoActivated 1
-#define kEmbroideryActivated 1
-#define kFirebaseSendCrashReportsDefault 1
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}

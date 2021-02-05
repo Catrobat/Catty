@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2020 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -20,21 +20,30 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+@objc(StitchBrick)
+@objcMembers class StitchBrick: Brick, BrickProtocol {
 
-#define kcServiceName @"Catty"
-#define kcUsername @"username"
-#define kcEmail @"userEmail"
+    override required init() {
+        super.init()
+    }
 
-#define kUsePhiroBricks @"usePhiroBricks"
-#define kUseArduinoBricks @"useArduinoBricks"
-#define kUseEmbroideryBricks @"useEmbroideryBricks"
+    func category() -> kBrickCategoryType {
+        kBrickCategoryType.embroideryBrick
+    }
 
-#define kUserPrivacyPolicyHasBeenShown @"privacyPolicyHasBeenShown"
-#define kUserShowPrivacyPolicyOnEveryLaunch @"showPrivacyPolicyOnEveryLaunch"
+    override class func description() -> String {
+        "StitchBrick"
+    }
 
-#define kFirebaseSendCrashReports @"firebaseSendCrashReports"
+    override func getRequiredResources() -> Int {
+        ResourceType.noResources.rawValue
+    }
 
-#define kPhiroActivated 0
-#define kArduinoActivated 1
-#define kEmbroideryActivated 1
-#define kFirebaseSendCrashReportsDefault 1
+    override func brickCell() -> BrickCellProtocol.Type! {
+        StitchBrickCell.self as BrickCellProtocol.Type
+    }
+
+    override func isSelectableForObject() -> Bool {
+        UserDefaults.standard.bool(forKey: kUseEmbroideryBricks)
+    }
+}

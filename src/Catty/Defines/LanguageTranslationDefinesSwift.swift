@@ -247,6 +247,7 @@ let kLocalizedVariables = NSLocalizedString("Variables", comment: "")
 let kLocalizedLists = NSLocalizedString("Lists", comment: "")
 let kLocalizedPhiroBricks = NSLocalizedString("Use Phiro bricks", comment: "")
 let kLocalizedArduinoBricks = NSLocalizedString("Arduino extension", comment: "")
+let kLocalizedEmbroideryBricks = NSLocalizedString("Embroidery extension", comment: "")
 let kLocalizedSendCrashReports = NSLocalizedString("Sending anonymous crash reports", comment: "")
 let kLocalizedSendCrashReportsDescription = NSLocalizedString("Allow the app to send crash reports automatically", comment: "")
 let kLocalizedFrontCamera = NSLocalizedString("Front camera", comment: "")
@@ -290,6 +291,7 @@ let kLocalizedBluetoothNotAvailable = NSLocalizedString("Bluetooth is not availa
 let kLocalizedDisconnectBluetoothDevices = NSLocalizedString("All Bluetooth devices successfully disconnected", comment: "")
 let kLocalizedRemovedKnownBluetoothDevices = NSLocalizedString("All known Bluetooth devices successfully removed", comment: "")
 let kLocalizedArduinoBricksDescription = NSLocalizedString("Allow the app to control Arduino boards", comment: "")
+let kLocalizedEmbroideryBricksDescription = NSLocalizedString("Create patterns for stiching machines", comment: "")
 
 //************************************************************************************************************
 //**********************************       LONG DESCRIPTIONS      ********************************************
@@ -334,6 +336,9 @@ let kLocalizedUnsupportedElementsDescription = NSLocalizedString("Following feat
 //************************************************************************************************************
 //*******************************       BRICK TITLE TRANSLATIONS      ****************************************
 //************************************************************************************************************
+
+// embroidery bricks
+let kLocalizedStitch = NSLocalizedString("Stitch", comment: "")
 
 // control bricks
 let kLocalizedScript = NSLocalizedString("Script", comment: "")
@@ -733,6 +738,7 @@ let kLocalizedCategoryData = NSLocalizedString("Data", comment: "")
 let kLocalizedCategoryArduino = NSLocalizedString("Arduino", comment: "")
 let kLocalizedCategoryPhiro = NSLocalizedString("Phiro", comment: "")
 let kLocalizedCategoryPen = NSLocalizedString("Pen", comment: "")
+let kLocalizedCategoryEmbroidery = NSLocalizedString("Embroidery", comment: "")
 
 //************************************************************************************************************
 //************************************       PhiroDefines         ********************************************
