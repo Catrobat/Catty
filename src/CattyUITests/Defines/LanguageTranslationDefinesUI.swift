@@ -247,6 +247,7 @@ let kLocalizedVariables = NSLocalizedString("Variables", bundle: Bundle(for: Lan
 let kLocalizedLists = NSLocalizedString("Lists", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedPhiroBricks = NSLocalizedString("Use Phiro bricks", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedArduinoBricks = NSLocalizedString("Arduino extension", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedEmbroideryBricks = NSLocalizedString("Embroidery extension", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedSendCrashReports = NSLocalizedString("Sending anonymous crash reports", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedSendCrashReportsDescription = NSLocalizedString("Allow the app to send crash reports automatically", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedFrontCamera = NSLocalizedString("Front camera", bundle: Bundle(for: LanguageTranslation.self), comment: "")
@@ -290,6 +291,7 @@ let kLocalizedBluetoothNotAvailable = NSLocalizedString("Bluetooth is not availa
 let kLocalizedDisconnectBluetoothDevices = NSLocalizedString("All Bluetooth devices successfully disconnected", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedRemovedKnownBluetoothDevices = NSLocalizedString("All known Bluetooth devices successfully removed", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedArduinoBricksDescription = NSLocalizedString("Allow the app to control Arduino boards", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedEmbroideryBricksDescription = NSLocalizedString("Create patterns for stiching machines", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
 //************************************************************************************************************
 //**********************************       LONG DESCRIPTIONS      ********************************************
@@ -334,6 +336,9 @@ let kLocalizedUnsupportedElementsDescription = NSLocalizedString("Following feat
 //************************************************************************************************************
 //*******************************       BRICK TITLE TRANSLATIONS      ****************************************
 //************************************************************************************************************
+
+// embroidery bricks
+let kLocalizedStitch = NSLocalizedString("Stitch", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
 // control bricks
 let kLocalizedScript = NSLocalizedString("Script", bundle: Bundle(for: LanguageTranslation.self), comment: "")
@@ -733,6 +738,7 @@ let kLocalizedCategoryData = NSLocalizedString("Data", bundle: Bundle(for: Langu
 let kLocalizedCategoryArduino = NSLocalizedString("Arduino", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedCategoryPhiro = NSLocalizedString("Phiro", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 let kLocalizedCategoryPen = NSLocalizedString("Pen", bundle: Bundle(for: LanguageTranslation.self), comment: "")
+let kLocalizedCategoryEmbroidery = NSLocalizedString("Embroidery", bundle: Bundle(for: LanguageTranslation.self), comment: "")
 
 //************************************************************************************************************
 //************************************       PhiroDefines         ********************************************

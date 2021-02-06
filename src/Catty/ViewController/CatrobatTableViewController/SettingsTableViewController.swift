@@ -47,6 +47,21 @@ class SettingsTableViewController: BOTableViewController {
                 }))
             }
 
+            if Util.isEmbroideryActivated() {
+                section?.addCell(BOSwitchTableViewCell(title: kLocalizedEmbroideryBricks, key: kUseEmbroideryBricks, handler: { cell in
+                    if let embroideryBricksCellSwitch = cell as? BOSwitchTableViewCell {
+                        embroideryBricksCellSwitch.backgroundColor = UIColor.background
+                        embroideryBricksCellSwitch.mainColor = UIColor.globalTint
+                        embroideryBricksCellSwitch.toggleSwitch.tintColor = UIColor.globalTint
+                        embroideryBricksCellSwitch.toggleSwitch.onTintColor = UIColor.globalTint
+                        embroideryBricksCellSwitch.onFooterTitle = kLocalizedEmbroideryBricksDescription
+                        embroideryBricksCellSwitch.offFooterTitle = kLocalizedEmbroideryBricksDescription
+                    }
+                }))
+            }
+        }))
+
+        addSection(BOTableViewSection(headerTitle: "", handler: { section in
             if Util.isArduinoActivated() {
                 section?.addCell(BOSwitchTableViewCell(title: kLocalizedArduinoBricks, key: kUseArduinoBricks, handler: { cell in
                     if let arduinoBricksCellSwitch = cell as? BOSwitchTableViewCell {

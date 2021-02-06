@@ -37,4 +37,11 @@ class SpriteKitDefines: NSObject {
 
     static let defaultRotationStyle = RotationStyle.allAround
     @objc static let avCaptureDeviceType = AVCaptureDevice.DeviceType.builtInWideAngleCamera
+
+    static let stitchingLineShapeNodeName = "stitchingLineShapeNode"
+    static let stitchingPointShapeNodeName = "stitchingPointShapeNode"
+    static let defaultCatrobatStitchingSize = CGFloat(3.15)
+    static let defaultStitchingZPosition = CGFloat(0)
+    static let defaultStitchingColor = UIColor(red: 0, green: 0, blue: 0)
+    static let stitchingCircleRadius = CGFloat(3.0)
 }

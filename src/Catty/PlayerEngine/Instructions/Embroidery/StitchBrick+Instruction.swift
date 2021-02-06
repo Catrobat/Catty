@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2020 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -20,21 +20,21 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+extension StitchBrick: CBInstructionProtocol {
 
-#define kcServiceName @"Catty"
-#define kcUsername @"username"
-#define kcEmail @"userEmail"
+    func instruction() -> CBInstruction {
+        .action { _ in SKAction.run(self.actionBlock()) }
+    }
 
-#define kUsePhiroBricks @"usePhiroBricks"
-#define kUseArduinoBricks @"useArduinoBricks"
-#define kUseEmbroideryBricks @"useEmbroideryBricks"
+    func actionBlock() -> () -> Void {
+        guard let object = self.script?.object,
+            let spriteNode = object.spriteNode
+            else { fatalError("This should never happen!") }
 
-#define kUserPrivacyPolicyHasBeenShown @"privacyPolicyHasBeenShown"
-#define kUserShowPrivacyPolicyOnEveryLaunch @"showPrivacyPolicyOnEveryLaunch"
-
-#define kFirebaseSendCrashReports @"firebaseSendCrashReports"
-
-#define kPhiroActivated 0
-#define kArduinoActivated 1
-#define kEmbroideryActivated 1
-#define kFirebaseSendCrashReportsDefault 1
+        return {
+            let position = spriteNode.position
+            let stitch = Stitch(x: position.x, y: position.y)
+            spriteNode.embroideryStream.add(stitch)
+        }
+    }
+}

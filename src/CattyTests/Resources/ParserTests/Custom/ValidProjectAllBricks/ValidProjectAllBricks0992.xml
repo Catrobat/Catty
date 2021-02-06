@@ -683,6 +683,9 @@
                   <commentedOut>false</commentedOut>
                   <selection>2</selection>
                 </brick>
+                <brick type="StitchBrick">
+                  <commentedOut>false</commentedOut>
+                </brick>
               </brickList>
               <commentedOut>false</commentedOut>
               <isUserScript>false</isUserScript>

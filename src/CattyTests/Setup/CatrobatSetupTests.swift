@@ -45,6 +45,7 @@ final class CatrobatSetupTests: XCTestCase {
     func testRegisteredBrickCategories() {
         UserDefaults.standard.set(false, forKey: kUsePhiroBricks)
         UserDefaults.standard.set(false, forKey: kUseArduinoBricks)
+        UserDefaults.standard.set(false, forKey: kUseEmbroideryBricks)
 
         let categories = CatrobatSetup.registeredBrickCategories()
 
@@ -57,5 +58,10 @@ final class CatrobatSetupTests: XCTestCase {
 
         let categoriesArduinoEnabled = CatrobatSetup.registeredBrickCategories()
         XCTAssertTrue(categoriesArduinoEnabled.count > categoriesPhiroEnabled.count)
+
+        UserDefaults.standard.set(true, forKey: kUseEmbroideryBricks)
+
+        let categoriesEmbroideryEnabled = CatrobatSetup.registeredBrickCategories()
+        XCTAssertTrue(categoriesEmbroideryEnabled.count > categoriesArduinoEnabled.count)
     }
 }

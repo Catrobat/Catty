@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2021 The Catrobat Team
+ *  Copyright (C) 2010-2020 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -20,21 +20,21 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+import XCTest
 
-#define kcServiceName @"Catty"
-#define kcUsername @"username"
-#define kcEmail @"userEmail"
+@testable import Pocket_Code
 
-#define kUsePhiroBricks @"usePhiroBricks"
-#define kUseArduinoBricks @"useArduinoBricks"
-#define kUseEmbroideryBricks @"useEmbroideryBricks"
+final class CircleShapeNodeTests: XCTestCase {
 
-#define kUserPrivacyPolicyHasBeenShown @"privacyPolicyHasBeenShown"
-#define kUserShowPrivacyPolicyOnEveryLaunch @"showPrivacyPolicyOnEveryLaunch"
+    func testCirleShapeNode() {
 
-#define kFirebaseSendCrashReports @"firebaseSendCrashReports"
+        let position = CGPoint(x: 10, y: 10)
 
-#define kPhiroActivated 0
-#define kArduinoActivated 1
-#define kEmbroideryActivated 1
-#define kFirebaseSendCrashReportsDefault 1
+        let path = CGMutablePath()
+        path.addArc(center: position, radius: 3.0, startAngle: 0, endAngle: 2.0 * CGFloat.pi, clockwise: true, transform: .identity)
+
+        let point = CircleShapeNode(point: position, radius: 3.0, startAngle: 0.0, endAngle: 2.0 * CGFloat.pi, clockwise: true, transform: .identity)
+
+        XCTAssertEqual(point.path, path)
+    }
+}

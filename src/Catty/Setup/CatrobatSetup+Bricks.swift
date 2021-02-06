@@ -115,7 +115,9 @@
             ReplaceItemInUserListBrick(),
             DeleteItemOfUserListBrick(),
             ArduinoSendDigitalValueBrick(),
-            ArduinoSendPWMValueBrick()
+            ArduinoSendPWMValueBrick(),
+            // embroidery brick
+            StitchBrick()
         ]
 
         if isPhiroEnabled() {
@@ -168,23 +170,29 @@
                           strokeColor: UIColor.variableBrickStroke)
         ]
 
+        if isPhiroEnabled() {
+            categories.prepend(BrickCategory(type: kBrickCategoryType.phiroBrick,
+                                             name: kLocalizedCategoryPhiro,
+                                             color: UIColor.phiroBrick,
+                                             strokeColor: UIColor.phiroBrickStroke))
+        }
+        if isArduinoEnabled() {
+            categories.prepend(BrickCategory(type: kBrickCategoryType.arduinoBrick,
+                                             name: kLocalizedCategoryArduino,
+                                             color: UIColor.arduinoBrick,
+                                             strokeColor: UIColor.arduinoBrickStroke))
+        }
+        if isEmbroideryEnabled() {
+            categories.prepend(BrickCategory(type: kBrickCategoryType.embroideryBrick,
+                                             name: kLocalizedCategoryEmbroidery,
+                                             color: UIColor.embroideryBrickPink,
+                                             strokeColor: UIColor.embroideryBrickStroke))
+        }
         if isFavouritesCategoryAvailable() {
             categories.prepend(BrickCategory(type: kBrickCategoryType.favouriteBricks,
                                              name: kLocalizedCategoryFrequentlyUsed,
                                              color: UIColor.frequentlyUsedBricks,
                                              strokeColor: UIColor.frequentlyUsedBricksStroke))
-        }
-        if isArduinoEnabled() {
-            categories.append(BrickCategory(type: kBrickCategoryType.arduinoBrick,
-                                            name: kLocalizedCategoryArduino,
-                                            color: UIColor.arduinoBrick,
-                                            strokeColor: UIColor.arduinoBrickStroke))
-        }
-        if isPhiroEnabled() {
-            categories.append(BrickCategory(type: kBrickCategoryType.phiroBrick,
-                                            name: kLocalizedCategoryPhiro,
-                                            color: UIColor.phiroBrick,
-                                            strokeColor: UIColor.phiroBrickStroke))
         }
 
         return categories
@@ -200,5 +208,9 @@
 
     private static func isFavouritesCategoryAvailable() -> Bool {
         Util.getBrickInsertionDictionaryFromUserDefaults()?.count ?? 0 >= kMinFavouriteBrickSize
+    }
+
+    private static func isEmbroideryEnabled() -> Bool {
+         UserDefaults.standard.bool(forKey: kUseEmbroideryBricks)
     }
 }

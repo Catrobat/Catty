@@ -332,4 +332,11 @@ extension UIColor {
         UIColor(red: 208 / 255.0, green: 218 / 255.0, blue: 203 / 255.0, alpha: 1.0)
     }
 
+    static var embroideryBrickPink: UIColor {
+        UIColor(red: 207 / 255.0, green: 122 / 255.0, blue: 166 / 255.0, alpha: 1.0)
+    }
+
+    static var embroideryBrickStroke: UIColor {
+        UIColor(red: 228 / 255.0, green: 143 / 255.0, blue: 187 / 255.0, alpha: 1.0)
+    }
 }

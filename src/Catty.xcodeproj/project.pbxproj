@@ -353,8 +353,15 @@
 		44B76EC12476BF0100DC30E2 /* FirebaseCrashlyticsReporterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B76EBE2476BF0100DC30E2 /* FirebaseCrashlyticsReporterTests.swift */; };
 		44B76EC72476C19600DC30E2 /* FirebaseCrashlyticsReporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B76EC52476C19500DC30E2 /* FirebaseCrashlyticsReporter.swift */; };
 		44B76EC82476C19600DC30E2 /* FirebaseAnalyticsReporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B76EC62476C19500DC30E2 /* FirebaseAnalyticsReporter.swift */; };
+		4614B1D22560856B004174AD /* StitchBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4614B1CF2560856B004174AD /* StitchBrick.swift */; };
+		4614B1DD25608E8B004174AD /* StitchBrickCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4614B1DC25608E8B004174AD /* StitchBrickCell.swift */; };
 		46162CBD2544AE5600DF6042 /* SetRotationStyleBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46162CB92544AE2D00DF6042 /* SetRotationStyleBrickTests.swift */; };
 		4647D55A23D8AF9F001A67F6 /* PrivacyPolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4647D55923D8AF9F001A67F6 /* PrivacyPolicyViewController.swift */; };
+		46A75DF425752B1200F3963D /* CircleShapeNodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A75DF325752B1200F3963D /* CircleShapeNodeTests.swift */; };
+		46B472BD2560946F007972DB /* StitchBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B472BA2560946E007972DB /* StitchBrick+Instruction.swift */; };
+		46B472C225609573007972DB /* StitchBrick+CBXMLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B472C125609573007972DB /* StitchBrick+CBXMLHandler.swift */; };
+		46B94F8D2577B736007E5ABE /* CBSpriteNodeStitchExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B94F8C2577B736007E5ABE /* CBSpriteNodeStitchExtensionTests.swift */; };
+		46B94F9725791507007E5ABE /* StitchBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B94F9625791507007E5ABE /* StitchBrickTests.swift */; };
 		46C5D9F4254FF637003D58D9 /* SpriteObjectTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C5D9EE254FF4F9003D58D9 /* SpriteObjectTest.swift */; };
 		46C5D9F5254FF63D003D58D9 /* SpriteObjectMutableCopyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C5D9EF254FF4F9003D58D9 /* SpriteObjectMutableCopyTests.swift */; };
 		46C5D9F6254FF641003D58D9 /* RotationStyleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C5D9F0254FF4F9003D58D9 /* RotationStyleTests.swift */; };
@@ -362,7 +369,9 @@
 		46D0516324F8147F00A79155 /* SetRotationStyleBrick+CBXMLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D0516224F8147F00A79155 /* SetRotationStyleBrick+CBXMLHandler.swift */; };
 		46D0516524F814FE00A79155 /* SetRotationStyleBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D0516424F814FE00A79155 /* SetRotationStyleBrick.swift */; };
 		46D0516724F8155600A79155 /* SetRotationStyleBrickCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D0516624F8155600A79155 /* SetRotationStyleBrickCell.swift */; };
+		46D8055D2573E4B300CDDEC8 /* CBSpriteNodeEmbroideryExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D8055C2573E4B300CDDEC8 /* CBSpriteNodeEmbroideryExtension.swift */; };
 		46E271E7256D3205005DF607 /* TextInputViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E271E6256D3205005DF607 /* TextInputViewControllerTests.swift */; };
+		46E9E4A425AF53A100027D28 /* CircleShapeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E9E4A325AF53A100027D28 /* CircleShapeNode.swift */; };
 		46F1754E24C46837006B2ACA /* ScriptCollectionViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F1754D24C46837006B2ACA /* ScriptCollectionViewControllerTests.swift */; };
 		4C03A4BE2133FD05007BFFD2 /* FormulaManager+Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C03A4BD2133FD05007BFFD2 /* FormulaManager+Resources.swift */; };
 		4C03A4C22133FDE7007BFFD2 /* FormulaManager+Editor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C03A4C12133FDE7007BFFD2 /* FormulaManager+Editor.swift */; };
@@ -2216,8 +2225,15 @@
 		44B76EBE2476BF0100DC30E2 /* FirebaseCrashlyticsReporterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseCrashlyticsReporterTests.swift; sourceTree = "<group>"; };
 		44B76EC52476C19500DC30E2 /* FirebaseCrashlyticsReporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseCrashlyticsReporter.swift; sourceTree = "<group>"; };
 		44B76EC62476C19500DC30E2 /* FirebaseAnalyticsReporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseAnalyticsReporter.swift; sourceTree = "<group>"; };
+		4614B1CF2560856B004174AD /* StitchBrick.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StitchBrick.swift; sourceTree = "<group>"; };
+		4614B1DC25608E8B004174AD /* StitchBrickCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StitchBrickCell.swift; sourceTree = "<group>"; };
 		46162CB92544AE2D00DF6042 /* SetRotationStyleBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetRotationStyleBrickTests.swift; sourceTree = "<group>"; };
 		4647D55923D8AF9F001A67F6 /* PrivacyPolicyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyViewController.swift; sourceTree = "<group>"; };
+		46A75DF325752B1200F3963D /* CircleShapeNodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleShapeNodeTests.swift; sourceTree = "<group>"; };
+		46B472BA2560946E007972DB /* StitchBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StitchBrick+Instruction.swift"; sourceTree = "<group>"; };
+		46B472C125609573007972DB /* StitchBrick+CBXMLHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StitchBrick+CBXMLHandler.swift"; sourceTree = "<group>"; };
+		46B94F8C2577B736007E5ABE /* CBSpriteNodeStitchExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBSpriteNodeStitchExtensionTests.swift; sourceTree = "<group>"; };
+		46B94F9625791507007E5ABE /* StitchBrickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StitchBrickTests.swift; sourceTree = "<group>"; };
 		46C5D9EE254FF4F9003D58D9 /* SpriteObjectTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpriteObjectTest.swift; sourceTree = "<group>"; };
 		46C5D9EF254FF4F9003D58D9 /* SpriteObjectMutableCopyTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpriteObjectMutableCopyTests.swift; sourceTree = "<group>"; };
 		46C5D9F0254FF4F9003D58D9 /* RotationStyleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RotationStyleTests.swift; sourceTree = "<group>"; };
@@ -2225,7 +2241,9 @@
 		46D0516224F8147F00A79155 /* SetRotationStyleBrick+CBXMLHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SetRotationStyleBrick+CBXMLHandler.swift"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Motion/SetRotationStyleBrick+CBXMLHandler.swift"; sourceTree = SOURCE_ROOT; };
 		46D0516424F814FE00A79155 /* SetRotationStyleBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetRotationStyleBrick.swift; sourceTree = "<group>"; };
 		46D0516624F8155600A79155 /* SetRotationStyleBrickCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetRotationStyleBrickCell.swift; sourceTree = "<group>"; };
+		46D8055C2573E4B300CDDEC8 /* CBSpriteNodeEmbroideryExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBSpriteNodeEmbroideryExtension.swift; sourceTree = "<group>"; };
 		46E271E6256D3205005DF607 /* TextInputViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputViewControllerTests.swift; sourceTree = "<group>"; };
+		46E9E4A325AF53A100027D28 /* CircleShapeNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CircleShapeNode.swift; path = PlayerEngine/DataModel/CircleShapeNode.swift; sourceTree = "<group>"; };
 		46F1754D24C46837006B2ACA /* ScriptCollectionViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptCollectionViewControllerTests.swift; sourceTree = "<group>"; };
 		481639B0D938C88A5E2E6963 /* ms */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = ms; path = ms.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4997640FD2AB79927E45C4EF /* ca */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = ca; path = ca.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -4339,14 +4357,6 @@
 			path = IO;
 			sourceTree = "<group>";
 		};
-		18385C66247C0E910050819A /* LineShapeNode */ = {
-			isa = PBXGroup;
-			children = (
-				18385C67247C0EB30050819A /* LineShapeNode.swift */,
-			);
-			name = LineShapeNode;
-			sourceTree = "<group>";
-		};
 		186212422475C8F90098F4C5 /* Configuration */ = {
 			isa = PBXGroup;
 			children = (
@@ -4435,6 +4445,7 @@
 			children = (
 				4CC6CE582104715700AA2A04 /* CBSpriteNodeSensorExtension.swift */,
 				18DAFC59247BD1700082C62A /* CBSpriteNodePenExtension.swift */,
+				46D8055C2573E4B300CDDEC8 /* CBSpriteNodeEmbroideryExtension.swift */,
 			);
 			path = SpriteNode;
 			sourceTree = "<group>";
@@ -5177,6 +5188,22 @@
 			path = Firebase;
 			sourceTree = "<group>";
 		};
+		4614B1CE2560856B004174AD /* Embroidery */ = {
+			isa = PBXGroup;
+			children = (
+				4614B1CF2560856B004174AD /* StitchBrick.swift */,
+			);
+			path = Embroidery;
+			sourceTree = "<group>";
+		};
+		4614B1D725608DB3004174AD /* Embroidery */ = {
+			isa = PBXGroup;
+			children = (
+				4614B1DC25608E8B004174AD /* StitchBrickCell.swift */,
+			);
+			path = Embroidery;
+			sourceTree = "<group>";
+		};
 		4647D55823D8AF9F001A67F6 /* PrivacyPolicy */ = {
 			isa = PBXGroup;
 			children = (
@@ -5185,6 +5212,23 @@
 			name = PrivacyPolicy;
 			path = Catty/ViewController/PrivacyPolicy;
 			sourceTree = SOURCE_ROOT;
+		};
+		46B472B92560946E007972DB /* Embroidery */ = {
+			isa = PBXGroup;
+			children = (
+				46B472BA2560946E007972DB /* StitchBrick+Instruction.swift */,
+			);
+			name = Embroidery;
+			path = PlayerEngine/Instructions/Embroidery;
+			sourceTree = "<group>";
+		};
+		46B472BE2560950D007972DB /* Embroidery */ = {
+			isa = PBXGroup;
+			children = (
+				46B472C125609573007972DB /* StitchBrick+CBXMLHandler.swift */,
+			);
+			path = Embroidery;
+			sourceTree = "<group>";
 		};
 		46C5D9ED254FF4F9003D58D9 /* SpriteObject */ = {
 			isa = PBXGroup;
@@ -6148,6 +6192,7 @@
 		4C724D9B1B4D3E8C00E27479 /* Bricks */ = {
 			isa = PBXGroup;
 			children = (
+				46B472BE2560950D007972DB /* Embroidery */,
 				186AA3452482E086001E38FD /* Pen */,
 				92B46F961BC7BC8C004980C1 /* Arduino */,
 				92EC98511BC3ABB90003A891 /* Phiro */,
@@ -6990,6 +7035,7 @@
 				D3AF5C18243F6A4C00B04BC6 /* BrickCategoryTest.swift */,
 				186AA34824830491001E38FD /* PenDownBrickTests.swift */,
 				186E991C2488FBDB00627E36 /* PenUpBrickTests.swift */,
+				46B94F9625791507007E5ABE /* StitchBrickTests.swift */,
 				18E83F842493C978003295DA /* PenClearBrickTests.swift */,
 				18B9A1B924A75F3C009028F8 /* SetPenSizeBrickTests.swift */,
 				18D939EA24C97A1C00A32544 /* SetPenColorBrickTests.swift */,
@@ -8316,6 +8362,7 @@
 		92FF302B1A24DCAA00093DA7 /* Bricks */ = {
 			isa = PBXGroup;
 			children = (
+				4614B1CE2560856B004174AD /* Embroidery */,
 				4C6F413B22F4DAAC00900B3F /* Category */,
 				92B46F8A1BC7B3E5004980C1 /* Arduino */,
 				929CC0BE1BC39B0A0027DEC0 /* Phiro */,
@@ -9450,6 +9497,7 @@
 		AA401FE51BBEF5F5001BC49F /* Instructions */ = {
 			isa = PBXGroup;
 			children = (
+				46B472B92560946E007972DB /* Embroidery */,
 				186AA3422482DD73001E38FD /* Pen */,
 				92B46FA41BC7C2A5004980C1 /* Arduino */,
 				AA74EDD31BC050A000D1E954 /* Control */,
@@ -9811,6 +9859,7 @@
 		AA74F0211BC05FCE00D1E954 /* BrickCells */ = {
 			isa = PBXGroup;
 			children = (
+				4614B1D725608DB3004174AD /* Embroidery */,
 				E577F0492563E8F200368C18 /* BrickCategoryOverviewCollectionViewCell.swift */,
 				92B46F9D1BC7BDF7004980C1 /* Arduino */,
 				929CC0E21BC39B8C0027DEC0 /* Phiro */,
@@ -10148,7 +10197,9 @@
 				18CAFAF524D4910A003324DA /* StageTests.swift */,
 				4CAC7DA11DCF444A00EC7D6F /* CBSceneTouchTests.swift */,
 				9EA3FD802327089900551B6C /* CBSpriteNodePenExtensionTests.swift */,
+				46B94F8C2577B736007E5ABE /* CBSpriteNodeStitchExtensionTests.swift */,
 				186FBE64247C29AD00AE3F17 /* LineShapeNodeTests.swift */,
+				46A75DF325752B1200F3963D /* CircleShapeNodeTests.swift */,
 				18AB0ACC24C032EF00508536 /* PenConfigurationTests.swift */,
 			);
 			name = Stage;
@@ -10286,7 +10337,8 @@
 		CAD232181B10F12600570370 /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
-				18385C66247C0E910050819A /* LineShapeNode */,
+				18385C67247C0EB30050819A /* LineShapeNode.swift */,
+				46E9E4A325AF53A100027D28 /* CircleShapeNode.swift */,
 				CA02C5E81B14386E00233FB0 /* CBSpriteNode */,
 				CAD232191B10F13100570370 /* CBScriptContext */,
 				CAEE3BEA1ABDFADE009FDA72 /* CBSequence */,
@@ -11536,6 +11588,7 @@
 				4C6FE16E212D2D2E0067B7D5 /* AsinFunctionTest.swift in Sources */,
 				4C2CBB4425A5AA8400C1C143 /* SceneXMLHandlerTest.m in Sources */,
 				4CB04BE12541618A00D85C31 /* StagePresenterViewControllerScreenshotTests.swift in Sources */,
+				46B94F8D2577B736007E5ABE /* CBSpriteNodeStitchExtensionTests.swift in Sources */,
 				926197F01BF3249E006D1A61 /* ArduinoTests.swift in Sources */,
 				4C665F68253F1ADF00A84BB6 /* LookImageViewControllerTests.swift in Sources */,
 				1858252B24D1A5E300092407 /* UIColorExtensionTests.swift in Sources */,
@@ -11751,6 +11804,7 @@
 				9E1444F6228B531400104F77 /* ExtendedTimerTests.swift in Sources */,
 				4C822682213FA7A400F3D750 /* PhiroSensorTest.swift in Sources */,
 				4C822669213FA7A400F3D750 /* TimeMinuteSensorTest.swift in Sources */,
+				46B94F9725791507007E5ABE /* StitchBrickTests.swift in Sources */,
 				4CEB22731B95E4BC00B3BE2F /* BrickInsertManagerAbstractTest.m in Sources */,
 				4C822673213FA7A400F3D750 /* AccelerationZSensorTest.swift in Sources */,
 				BC35168C231D00B90090872A /* SpriteBubbleConstraintsTests.swift in Sources */,
@@ -11791,6 +11845,7 @@
 				4CD27AA821B55DBC00DDADB5 /* FaceDetectionManagerTest.swift in Sources */,
 				4C822656213FA7A400F3D750 /* DeviceSensorMock.swift in Sources */,
 				4C822655213FA7A400F3D750 /* SensorMock.swift in Sources */,
+				46A75DF425752B1200F3963D /* CircleShapeNodeTests.swift in Sources */,
 				9EBCBD8D2329C56F0074C2D9 /* SetSizeToBrickTests.swift in Sources */,
 				6FDC3CBA243942980033F252 /* RegularExpressionFunctionTest.swift in Sources */,
 				4C28D7912133BC0B00870CE2 /* FormulaManagerResourceTests.swift in Sources */,
@@ -11887,6 +11942,7 @@
 				AA401FE91BBEF6F9001BC49F /* CBInstructionProtocol.swift in Sources */,
 				AABCB3E21BB36529009F67D2 /* CBScheduler.swift in Sources */,
 				BACDF3521F1F9B7E00346167 /* DeleteItemOfUserListBrick.m in Sources */,
+				4614B1DD25608E8B004174AD /* StitchBrickCell.swift in Sources */,
 				AABCB3DF1BB3650B009F67D2 /* CBBackendProtocol.swift in Sources */,
 				92D56C311BF202E700A54750 /* ArduinoDevice.swift in Sources */,
 				F470A2E52129DF42005EC9A3 /* NumberOfItemsFunction.swift in Sources */,
@@ -12183,10 +12239,12 @@
 				921D46871BDF698A0086AD20 /* ChangeBrightnessByNBrick+Instruction.swift in Sources */,
 				4C724E221B4D3E8C00E27479 /* CBXMLParserHelper.m in Sources */,
 				923503911BA707DE00021F6A /* LoginViewController.m in Sources */,
+				46D8055D2573E4B300CDDEC8 /* CBSpriteNodeEmbroideryExtension.swift in Sources */,
 				18D939E724C96FA800A32544 /* SetPenColorBrick+CBXMLHandler.swift in Sources */,
 				D346B25923FAFEAB00FDBFA8 /* ScriptCollectionViewController+Disable.swift in Sources */,
 				92FF2E941A24C7D800093DA7 /* Logger.m in Sources */,
 				6F96E9F5246D52C70054E2F7 /* UserDataProtocol.swift in Sources */,
+				46B472C225609573007972DB /* StitchBrick+CBXMLHandler.swift in Sources */,
 				AA74F0C61BC05FCE00D1E954 /* SetVolumeToBrickCell.m in Sources */,
 				18E83F832493C4C3003295DA /* PenClearBrick+CBXMLHandler.swift in Sources */,
 				4C0F9F42204ADC6600E71B2D /* ThinkForBubbleBrick.m in Sources */,
@@ -12618,6 +12676,7 @@
 				9218B2151CC4AB75007B4C60 /* ColorPickerViewController.m in Sources */,
 				D38F58622441B19F0079F6EA /* GoToBrick.m in Sources */,
 				AA74F0B91BC05FCE00D1E954 /* GlideToBrickCell.m in Sources */,
+				46B472BD2560946F007972DB /* StitchBrick+Instruction.swift in Sources */,
 				9218B2071CC4AB75007B4C60 /* SPUserResizableView.m in Sources */,
 				F4E6E579210DDD5C00D86FE6 /* CosFunction.swift in Sources */,
 				4C5AEF0722F7037200280F8B /* CatrobatSetup+Bricks.swift in Sources */,
@@ -12639,6 +12698,7 @@
 				AA74F0091BC05B5F00D1E954 /* TurnRightBrick.m in Sources */,
 				AA74F0071BC05B5F00D1E954 /* SetYBrick.m in Sources */,
 				05E6801F255B5DAA00D1E295 /* EmbroideryDSTService.swift in Sources */,
+				4614B1D22560856B004174AD /* StitchBrick.swift in Sources */,
 				9200C2D01C808206002F5CA4 /* ShowTextBrick+Instruction.swift in Sources */,
 				92FF31611A24DEB300093DA7 /* StagePresenterViewController.m in Sources */,
 				92B46FA21BC7BDF7004980C1 /* ArduinoSendDigitalValueBrickCell.m in Sources */,
@@ -12668,6 +12728,7 @@
 				AA74EFE51BC05B5F00D1E954 /* IfLogicElseBrick.m in Sources */,
 				4C0F9F7C204BD1EC00E71B2D /* SetBackgroundBrick+Instruction.swift in Sources */,
 				4C0F9FA6204BD2C200E71B2D /* ThinkBubbleBrickCell.m in Sources */,
+				46E9E4A425AF53A100027D28 /* CircleShapeNode.swift in Sources */,
 				AA74EFFB1BC05B5F00D1E954 /* ChangeSizeByNBrick.m in Sources */,
 				92ED4D7D1BA9C1380052C852 /* RegisterViewController.m in Sources */,
 				4C595F5321CAEC2B0097D850 /* SmallerOrEqualOperator.swift in Sources */,

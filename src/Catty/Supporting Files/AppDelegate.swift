@@ -108,6 +108,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             defaults.set(false, forKey: kUseArduinoBricks)
         }
 
+        if !Util.isEmbroideryActivated() {
+            defaults.set(false, forKey: kUseEmbroideryBricks)
+        }
+
         if defaults.value(forKey: kFirebaseSendCrashReports) == nil {
             defaults.set(kFirebaseSendCrashReportsDefault, forKey: kFirebaseSendCrashReports)
         }

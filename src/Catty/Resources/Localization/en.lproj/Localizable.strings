@@ -353,6 +353,9 @@
 "Create account" = "Create account";
 
 /* No comment provided by engineer. */
+"Create patterns for stiching machines" = "Create patterns for stiching machines";
+
+/* No comment provided by engineer. */
 "Data" = "Data";
 
 /* No comment provided by engineer. */
@@ -567,6 +570,12 @@
 
 /* No comment provided by engineer. */
 "Email" = "Email";
+
+/* No comment provided by engineer. */
+"Embroidery" = "Embroidery";
+
+/* No comment provided by engineer. */
+"Embroidery extension" = "Embroidery extension";
 
 /* No comment provided by engineer. */
 "Empty input!" = "Empty input!";
@@ -1632,6 +1641,9 @@
 
 /* No comment provided by engineer. */
 "steps" = "steps";
+
+/* No comment provided by engineer. */
+"Stitch" = "Stitch";
 
 /* No comment provided by engineer. */
 "Stop all sounds" = "Stop all sounds";
