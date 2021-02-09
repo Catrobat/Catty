@@ -29,22 +29,26 @@ enum FormulaEditorSection {
 
 extension FormulaEditorSection: Equatable {
     static func == (left: FormulaEditorSection, right: FormulaEditorSection) -> Bool {
+
         switch (left, right) {
-        case (let .sensors(positionLeft), let .sensors(positionRight)):
-            return positionLeft == positionRight
 
-        case (let .functions(positionLeft), let .functions(positionRight)):
-            return positionLeft == positionRight
+        case (.sensors(let positionLeft, let subsectionLeft), .sensors(let positionRight, let subsectionRight)):
+            return (positionLeft == positionRight && subsectionLeft == subsectionRight)
 
-        case (let .logic(positionLeft), let .logic(positionRight)):
-            return positionLeft == positionRight
+        case (.functions(let positionLeft, let subsectionLeft), .functions(let positionRight, let subsectionRight)):
+            return (positionLeft == positionRight && subsectionLeft == subsectionRight)
 
-        case (let .object(positionLeft), let .object(positionRight)):
-            return positionLeft == positionRight
+        case (.logic(let positionLeft, let subsectionLeft), .logic(let positionRight, let subsectionRight)):
+            return (positionLeft == positionRight && subsectionLeft == subsectionRight)
+
+        case (.object(let positionLeft, let subsectionLeft), .object(let positionRight, let subsectionRight)):
+            return (positionLeft == positionRight && subsectionLeft == subsectionRight)
 
         default:
             return false
+
         }
+
     }
 
     func position() -> Int {
