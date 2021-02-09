@@ -184,7 +184,8 @@ final class FunctionManagerTests: XCTestCase {
         let functionA = ZeroParameterDoubleFunctionMock(tag: "tagA", value: 12.3, formulaEditorSections: [])
         let functionB = SingleParameterDoubleFunctionMock(tag: "tagB",
                                                           value: 45.6,
-                                                          parameter: FunctionParameter.list(defaultValue: "list"), formulaEditorSection: .sensors(position: 1, subsection: .device))
+                                                          parameter: FunctionParameter.list(defaultValue: "list"),
+                                                          formulaEditorSection: .sensors(position: 1, subsection: .device))
         let functionC = DoubleParameterDoubleFunctionMock(tag: "tagC",
                                                           value: 12.3,
                                                           firstParameter: FunctionParameter.list(defaultValue: "list"),
