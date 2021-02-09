@@ -80,7 +80,7 @@ class ListTests: XCTestCase {
         app.buttons[kLocalizedEditFormula].tap()
         XCTAssert(waitForElementToAppear(app.buttons[kLocalizedCancel]).exists)
 
-        app.buttons[kUIFEVariableList].tap()
+        app.buttons[kUIFEData].tap()
         app.buttons[kLocalizedNew].tap()
         waitForElementToAppear(app.buttons[kUIFENewList]).tap()
         waitForElementToAppear(app.buttons[kUIFEActionVarPro]).tap()
@@ -102,7 +102,7 @@ class ListTests: XCTestCase {
         app.buttons[kLocalizedEditFormula].tap()
         XCTAssert(waitForElementToAppear(app.buttons[kLocalizedCancel]).exists)
 
-        app.buttons[kUIFEVariableList].tap()
+        app.buttons[kUIFEData].tap()
         app.buttons[kLocalizedNew].tap()
         waitForElementToAppear(app.buttons[kUIFENewList]).tap()
         waitForElementToAppear(app.buttons[kUIFEActionVarPro]).tap()
@@ -112,7 +112,7 @@ class ListTests: XCTestCase {
         alert.buttons[kLocalizedOK].tap()
 
         app.buttons["del active"].tap()
-        app.buttons[kUIFEVariableList].tap()
+        app.buttons[kUIFEData].tap()
         app.buttons["Lists"].tap()
         app.buttons[kUIFETake].tap()
         app.buttons[kUIFEDone].firstMatch.tap()
@@ -130,7 +130,7 @@ class ListTests: XCTestCase {
         XCTAssert(waitForElementToAppear(app.buttons[kLocalizedCancel]).exists)
 
         for variable in testLists {
-            app.buttons[kUIFEVariableList].tap()
+            app.buttons[kUIFEData].tap()
             app.buttons[kLocalizedNew].tap()
             waitForElementToAppear(app.buttons[kUIFENewList]).tap()
             waitForElementToAppear(app.buttons[kUIFEActionVarPro]).tap()
@@ -141,7 +141,7 @@ class ListTests: XCTestCase {
         }
 
         app.buttons["del active"].tap()
-        app.buttons[kUIFEVariableList].tap()
+        app.buttons[kUIFEData].tap()
         app.buttons["Lists"].tap()
         app.pickerWheels.element.adjust(toPickerWheelValue: testLists[1])
         app.pickerWheels[testLists[1]].tap()
@@ -187,7 +187,7 @@ class ListTests: XCTestCase {
         app.collectionViews.cells.element(boundBy: 1).staticTextBeginsWith(kLocalizedUserListAdd).tap()
 
         app.buttons[kLocalizedEditFormula].tap()
-        app.buttons[kUIFEVariableList].tap()
+        app.buttons[kUIFEData].tap()
         app.buttons[kUIFEVar].tap()
         waitForElementToAppear(app.buttons[kUIFENewList]).tap()
         waitForElementToAppear(app.buttons[kUIFEActionVarPro]).tap()
@@ -205,7 +205,7 @@ class ListTests: XCTestCase {
         XCTAssert(waitForElementToAppear(app.buttons[kLocalizedCancel]).exists)
 
         for variable in testLists {
-            app.buttons[kUIFEVariableList].tap()
+            app.buttons[kUIFEData].tap()
             app.buttons[kLocalizedNew].tap()
             waitForElementToAppear(app.buttons[kUIFENewList]).tap()
             waitForElementToAppear(app.buttons[kUIFEActionVarPro]).tap()
@@ -216,7 +216,7 @@ class ListTests: XCTestCase {
         }
 
         app.buttons["del active"].tap()
-        app.buttons[kUIFEVariableList].tap()
+        app.buttons[kUIFEData].tap()
         app.buttons["Lists"].tap()
         app.scrollViews.firstMatch.buttons["Delete"].tap()
         app.buttons[kUIFETake].tap()

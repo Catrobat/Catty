@@ -35,7 +35,7 @@ class FormulaEditorItemTest: XCTestCase {
     }
 
     func testInitWithFunction() {
-        let expectedSection = FormulaEditorSection.math(position: 10)
+        let expectedSection = FormulaEditorSection.functions(position: 10, subsection: .maths)
         let function = ZeroParameterDoubleFunctionMock(tag: "tag", value: 1.0, formulaEditorSection: expectedSection)
 
         let item = FormulaEditorItem(function: function)
@@ -48,7 +48,7 @@ class FormulaEditorItemTest: XCTestCase {
     }
 
     func testInitWithSensor() {
-        let expectedSection = FormulaEditorSection.object(position: 10)
+        let expectedSection = FormulaEditorSection.object(position: 10, subsection: .general)
         let sensor = SensorMock(tag: "tag", formulaEditorSection: expectedSection)
 
         let item = FormulaEditorItem(sensor: sensor, spriteObject: SpriteObject())
@@ -61,7 +61,7 @@ class FormulaEditorItemTest: XCTestCase {
     }
 
     func testInitWithOperator() {
-        let expectedSection = FormulaEditorSection.logic(position: 10)
+        let expectedSection = FormulaEditorSection.logic(position: 10, subsection: .logical)
         let op = BinaryOperatorMock(value: 0, formulaEditorSection: expectedSection)
 
         let item = FormulaEditorItem(op: op)
@@ -74,8 +74,8 @@ class FormulaEditorItemTest: XCTestCase {
     }
 
     func testSection() {
-        XCTAssertEqual(FormulaEditorSection.logic(position: 10), FormulaEditorSection.logic(position: 10))
-        XCTAssertNotEqual(FormulaEditorSection.math(position: 1), FormulaEditorSection.math(position: 10))
-        XCTAssertEqual(FormulaEditorSection.math(position: 2), FormulaEditorSection.math(position: 2))
+        XCTAssertEqual(FormulaEditorSection.logic(position: 10, subsection: .logical), FormulaEditorSection.logic(position: 10, subsection: .logical))
+        XCTAssertNotEqual(FormulaEditorSection.functions(position: 1, subsection: .maths), FormulaEditorSection.functions(position: 10, subsection: .maths))
+        XCTAssertEqual(FormulaEditorSection.functions(position: 2, subsection: .maths), FormulaEditorSection.functions(position: 2, subsection: .maths))
     }
 }

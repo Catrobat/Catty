@@ -141,25 +141,10 @@ extension FormulaEditorSectionViewController {
         self.reloadData()
     }
 
-    private func isVariableInUse(userVariableName: String) -> Bool {
+    func isVariableUsed(_ userVariable: UserVariable) -> Bool {
 
         guard let project = self.spriteObject?.scene.project else {
             fatalError("project of the spriteObject is nil")
-        }
-
-        var variable: UserVariable?
-        for projectVariable in self.variableSourceProject where projectVariable.name == userVariableName {
-            variable = projectVariable
-        }
-
-        if variable == nil {
-            for objectVariable in self.variableSourceObject where objectVariable.name == userVariableName {
-                variable = objectVariable
-            }
-        }
-
-        guard let userVariable = variable else {
-            fatalError("Could not find the variable from the project or this object's scope")
         }
 
         if project.userData.contains(userVariable) {
@@ -205,25 +190,10 @@ extension FormulaEditorSectionViewController {
         return false
     }
 
-    private func isListInUse(userListName: String) -> Bool {
+    func isListUsed(_ userList: UserList) -> Bool {
 
         guard let project = self.spriteObject?.scene.project else {
             fatalError("project of the spriteObject is nil")
-        }
-
-        var list: UserList?
-        for projectList in self.listSourceProject where projectList.name == userListName {
-            list = projectList
-        }
-
-        if list == nil {
-            for objectList in self.listSourceObject where objectList.name == userListName {
-                list = objectList
-            }
-        }
-
-        guard let userList = list else {
-            fatalError("Could not find the list from the project or this object's scope")
         }
 
         if project.userData.contains(userList) {
@@ -269,9 +239,9 @@ extension FormulaEditorSectionViewController {
         return false
     }
 
-    func deleteVariable(userVariableName: String, isProjectVariable: Bool) -> Bool {
+    func deleteVariable(userVariable: UserVariable) -> Bool {
 
-        if !self.isVariableInUse(userVariableName: userVariableName) {
+        if !self.isVariableUsed(userVariable) {
 
             guard let object = self.spriteObject else {
                 fatalError("spriteObject is nil")
@@ -281,8 +251,8 @@ extension FormulaEditorSectionViewController {
                 fatalError("project of the spriteObject is nil")
             }
 
-            if !object.userData.removeUserVariable(identifiedBy: userVariableName) {
-                if !project.userData.removeUserVariable(identifiedBy: userVariableName) {
+            if !object.userData.removeUserVariable(identifiedBy: userVariable.name) {
+                if !project.userData.removeUserVariable(identifiedBy: userVariable.name) {
                     fatalError("Could not remove the variable")
                 }
             }
@@ -299,9 +269,9 @@ extension FormulaEditorSectionViewController {
         }
     }
 
-    func deleteList(userListName: String, isProjectList: Bool) -> Bool {
+    func deleteList(userList: UserList) -> Bool {
 
-        if !self.isListInUse(userListName: userListName) {
+        if !self.isListUsed(userList) {
 
             guard let object = self.spriteObject else {
                 fatalError("spriteObject is nil")
@@ -311,8 +281,8 @@ extension FormulaEditorSectionViewController {
                 fatalError("project of the spriteObject is nil")
             }
 
-            if !object.userData.removeUserList(identifiedBy: userListName) {
-                if !project.userData.removeUserList(identifiedBy: userListName) {
+            if !object.userData.removeUserList(identifiedBy: userList.name) {
+                if !project.userData.removeUserList(identifiedBy: userList.name) {
                     fatalError("Could not remove the list")
                 }
             }

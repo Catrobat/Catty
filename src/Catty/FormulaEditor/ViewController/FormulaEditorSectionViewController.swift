@@ -182,13 +182,43 @@
 
                                                             if selectedVariable.isList {
 
-                                                                if !self.deleteList(userListName: selectedVariable.name, isProjectList: selectedVariable.projectScope) {
+                                                                var list: UserList?
+                                                                for projectList in self.listSourceProject where projectList.name == selectedVariable.name {
+                                                                    list = projectList
+                                                                }
+
+                                                                if list == nil {
+                                                                    for objectList in self.listSourceObject where objectList.name == selectedVariable.name {
+                                                                        list = objectList
+                                                                    }
+                                                                }
+
+                                                                guard let userList = list else {
+                                                                    fatalError("Could not find the list from the project or this object's scope")
+                                                                }
+
+                                                                if !self.deleteList(userList: userList) {
                                                                     Util.showNotification(withMessage: kUIFEDeleteVarBeingUsed)
                                                                 }
 
                                                             } else {
 
-                                                                if !self.deleteVariable(userVariableName: selectedVariable.name, isProjectVariable: selectedVariable.projectScope) {
+                                                                var variable: UserVariable?
+                                                                for projectVariable in self.variableSourceProject where projectVariable.name == selectedVariable.name {
+                                                                    variable = projectVariable
+                                                                }
+
+                                                                if variable == nil {
+                                                                    for objectVariable in self.variableSourceObject where objectVariable.name == selectedVariable.name {
+                                                                        variable = objectVariable
+                                                                    }
+                                                                }
+
+                                                                guard let userVariable = variable else {
+                                                                    fatalError("Could not find the variable from the project or this object's scope")
+                                                                }
+
+                                                                if !self.deleteVariable(userVariable: userVariable) {
                                                                     Util.showNotification(withMessage: kUIFEDeleteVarBeingUsed)
                                                                 }
 

@@ -78,7 +78,7 @@ class VariableTests: XCTestCase {
         app.collectionViews.cells.otherElements.containing(.staticText, identifier: kLocalizedSetVariable).children(matching: .button).element.tap()
         XCTAssert(waitForElementToAppear(app.buttons[kLocalizedCancel]).exists)
 
-        app.buttons[kUIFEVariableList].tap()
+        app.buttons[kUIFEData].tap()
         app.buttons[kLocalizedNew].tap()
         waitForElementToAppear(app.buttons[kUIFENewVar]).tap()
         waitForElementToAppear(app.buttons[kUIFEActionVarPro]).tap()
@@ -98,7 +98,7 @@ class VariableTests: XCTestCase {
         app.collectionViews.cells.otherElements.containing(.staticText, identifier: kLocalizedSetVariable).children(matching: .button).element.tap()
         XCTAssert(waitForElementToAppear(app.buttons[kLocalizedCancel]).exists)
 
-        app.buttons[kUIFEVariableList].tap()
+        app.buttons[kUIFEData].tap()
         app.buttons[kLocalizedNew].tap()
         waitForElementToAppear(app.buttons[kUIFENewVar]).tap()
         waitForElementToAppear(app.buttons[kUIFEActionVarPro]).tap()
@@ -108,7 +108,7 @@ class VariableTests: XCTestCase {
         alert.buttons[kLocalizedOK].tap()
 
         app.buttons["del active"].tap()
-        app.buttons[kUIFEVariableList].tap()
+        app.buttons[kUIFEData].tap()
         app.buttons[kUIFETake].tap()
         app.buttons[kUIFEDone].firstMatch.tap()
 
@@ -123,7 +123,7 @@ class VariableTests: XCTestCase {
         XCTAssert(waitForElementToAppear(app.buttons[kLocalizedCancel]).exists)
 
         for variable in testVariable {
-            app.buttons[kUIFEVariableList].tap()
+            app.buttons[kUIFEData].tap()
             app.buttons[kLocalizedNew].tap()
             waitForElementToAppear(app.buttons[kUIFENewVar]).tap()
             waitForElementToAppear(app.buttons[kUIFEActionVarPro]).tap()
@@ -134,7 +134,7 @@ class VariableTests: XCTestCase {
         }
 
         app.buttons["del active"].tap()
-        app.buttons[kUIFEVariableList].tap()
+        app.buttons[kUIFEData].tap()
         app.pickerWheels.element.adjust(toPickerWheelValue: testVariable[1])
         app.pickerWheels[testVariable[1]].tap()
 
@@ -173,7 +173,7 @@ class VariableTests: XCTestCase {
         app.buttons[kLocalizedOK].tap()
         app.buttons[kLocalizedDone].firstMatch.tap()
         app.collectionViews.cells.otherElements.containing(.staticText, identifier: kLocalizedSetVariable).children(matching: .button).element.tap()
-        app.buttons[kUIFEVariableList].tap()
+        app.buttons[kUIFEData].tap()
         app.buttons[kUIFEVar].tap()
         waitForElementToAppear(app.buttons[kUIFENewVar]).tap()
         waitForElementToAppear(app.buttons[kUIFEActionVarPro]).tap()
@@ -189,7 +189,7 @@ class VariableTests: XCTestCase {
         XCTAssert(waitForElementToAppear(app.buttons[kLocalizedCancel]).exists)
 
         for variable in testVariable {
-            app.buttons[kUIFEVariableList].tap()
+            app.buttons[kUIFEData].tap()
             app.buttons[kLocalizedNew].tap()
             waitForElementToAppear(app.buttons[kUIFENewVar]).tap()
             waitForElementToAppear(app.buttons[kUIFEActionVarPro]).tap()
@@ -200,7 +200,7 @@ class VariableTests: XCTestCase {
         }
 
         app.buttons["del active"].tap()
-        app.buttons[kUIFEVariableList].tap()
+        app.buttons[kUIFEData].tap()
         app.scrollViews.firstMatch.buttons["Delete"].tap()
         app.buttons[kUIFETake].tap()
         app.buttons[kUIFEDone].firstMatch.tap()

@@ -87,6 +87,6 @@ final class DateDaySensorTest: XCTestCase {
     func testFormulaEditorSections() {
         let sections = sensor.formulaEditorSections(for: SpriteObject())
         XCTAssertEqual(1, sections.count)
-        XCTAssertEqual(.device(position: type(of: sensor).position), sections.first)
+        XCTAssertEqual(.sensors(position: type(of: sensor).position, subsection: .dateAndTime), sections.first)
     }
 }
