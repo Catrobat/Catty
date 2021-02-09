@@ -126,7 +126,7 @@ class VariableTests: XCTestCase {
         app.buttons[kLocalizedDone].firstMatch.tap()
         app.collectionViews.cells.otherElements.containing(.staticText, identifier: kLocalizedSetVariable).children(matching: .button).element.tap()
         app.buttons[kUIFEData].tap()
-        app.navigationBars.buttons[kLocalizedAdd].tap()
+        waitForElementToAppear(app.navigationBars.buttons[kLocalizedAdd]).tap()
         waitForElementToAppear(app.buttons[kUIFENewVar]).tap()
         waitForElementToAppear(app.buttons[kUIFEActionVarPro]).tap()
         let newVarAlert = waitForElementToAppear(app.alerts[kUIFENewVar])
