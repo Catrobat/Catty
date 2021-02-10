@@ -36,7 +36,7 @@ final class StagePresenterViewControllerScreenshotTest: XCTestCase {
         vc = StagePresenterViewController()
         skView = SKView(frame: CGRect(origin: CGPoint.zero, size: CGSize(width: 1000, height: 2500)))
 
-        project = ProjectManager.createProject(name: "testProject", projectId: "")
+        project = ProjectManager.shared.createProject(name: "testProject", projectId: "")
     }
 
     func testAutomaticScreenshot() {

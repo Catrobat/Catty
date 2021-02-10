@@ -63,7 +63,7 @@ final class LookTest: XCTestCase {
 
     func testInitWithPath() {
         let object = SpriteObject()
-        let project = ProjectManager.createProject(name: "a", projectId: "1")
+        let project = ProjectManager.shared.createProject(name: "a", projectId: "1")
         object.scene = project.scene
         let spriteNode = CBSpriteNode.init(spriteObject: object)
         object.spriteNode = spriteNode
@@ -82,7 +82,7 @@ final class LookTest: XCTestCase {
 
     func testInitWithName() {
         let object = SpriteObject()
-        let project = ProjectManager.createProject(name: "a", projectId: "1")
+        let project = ProjectManager.shared.createProject(name: "a", projectId: "1")
         object.scene = project.scene
         let spriteNode = CBSpriteNode.init(spriteObject: object)
         object.spriteNode = spriteNode

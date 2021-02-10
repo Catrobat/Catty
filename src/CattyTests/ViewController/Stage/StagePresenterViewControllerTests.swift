@@ -41,7 +41,7 @@ final class StagePresenterViewControllerTest: XCTestCase {
         navigationController.view = UIView()
 
         skView = SKView(frame: CGRect(origin: CGPoint.zero, size: CGSize(width: 1000, height: 2500)))
-        project = ProjectManager.createProject(name: kDefaultProjectBundleName, projectId: kNoProjectIDYetPlaceholder)
+        project = ProjectManager.shared.createProject(name: kDefaultProjectBundleName, projectId: kNoProjectIDYetPlaceholder)
     }
 
     func testNotification() {
@@ -52,7 +52,7 @@ final class StagePresenterViewControllerTest: XCTestCase {
 
     func testSetupGridViewPortraitMode() {
         let stagePresenterViewController = vc
-        stagePresenterViewController!.project = ProjectManager.createProject(name: "testProject", projectId: "")
+        stagePresenterViewController!.project = ProjectManager.shared.createProject(name: "testProject", projectId: "")
         stagePresenterViewController!.project.header.landscapeMode = false
 
         stagePresenterViewController!.setUpGridView()
@@ -67,7 +67,7 @@ final class StagePresenterViewControllerTest: XCTestCase {
 
     func testSetupGridViewLandscapeMode() {
         let stagePresenterViewController = vc
-        stagePresenterViewController!.project = ProjectManager.createProject(name: "testProject", projectId: "")
+        stagePresenterViewController!.project = ProjectManager.shared.createProject(name: "testProject", projectId: "")
         stagePresenterViewController!.project.header.landscapeMode = true
 
         stagePresenterViewController!.setUpGridView()
