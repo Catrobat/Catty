@@ -218,4 +218,30 @@ final class EmbroideryStreamTests: XCTestCase {
         let creatorDiagonalPixel = deviceDiagonalPixel * embroideryStream.size / self.defaultSize
         XCTAssertEqual(creatorDiagonalPixel, defaultCreatorDiagonalPixel, accuracy: 0.01)
     }
+
+    func testInitWithStreams() {
+        let stream = EmbroideryStream(projectWidth: width, projectHeight: height)
+        stream.add(Stitch(atPosition: CGPoint(x: 0, y: 0)))
+        stream.add(Stitch(atPosition: CGPoint(x: 10, y: 0)))
+        stream.add(Stitch(atPosition: CGPoint(x: 0, y: 0)))
+        stream.add(Stitch(atPosition: CGPoint(x: 10, y: 0)))
+
+        let streamTwo = EmbroideryStream(projectWidth: width, projectHeight: height)
+        streamTwo.add(Stitch(atPosition: CGPoint(x: 0, y: 0)))
+        streamTwo.add(Stitch(atPosition: CGPoint(x: 5, y: 0)))
+        streamTwo.add(Stitch(atPosition: CGPoint(x: 0, y: 0)))
+        streamTwo.add(Stitch(atPosition: CGPoint(x: 5, y: 0)))
+
+        let streamArray = [stream, streamTwo]
+        let mergedStream = EmbroideryStream(streams: streamArray)
+        XCTAssertEqual(mergedStream.stitches.count, 8)
+        XCTAssertFalse(mergedStream.stitches[0]!.isColorChange)
+        XCTAssertFalse(mergedStream.stitches[1]!.isColorChange)
+        XCTAssertFalse(mergedStream.stitches[2]!.isColorChange)
+        XCTAssertFalse(mergedStream.stitches[3]!.isColorChange)
+        XCTAssertTrue(mergedStream.stitches[4]!.isColorChange)
+        XCTAssertFalse(mergedStream.stitches[5]!.isColorChange)
+        XCTAssertFalse(mergedStream.stitches[6]!.isColorChange)
+        XCTAssertFalse(mergedStream.stitches[7]!.isColorChange)
+    }
 }
