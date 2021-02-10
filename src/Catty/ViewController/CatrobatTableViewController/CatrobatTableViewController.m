@@ -186,7 +186,7 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
 - (void)createAndOpenProjectWithName:(NSString*)projectName
 {
     [self showLoadingView];
-    self.defaultProject = [ProjectManager createProjectWithName:projectName projectId:nil];
+    self.defaultProject = [ProjectManager.shared createProjectWithName:projectName projectId:nil];
     if (self.defaultProject) {
         [self hideLoadingView];
         [self openProject:self.defaultProject];

@@ -309,7 +309,7 @@
         SpriteObject *object = (SpriteObject*)[self.scene.objects objectAtIndex:(kObjectSectionIndex + selectedRowIndexPath.row)];
         [objectsToRemove addObject:object];
     }
-    [self.scene removeObjects:objectsToRemove];
+    [ProjectManager.shared removeObjects:self.scene.project objects:objectsToRemove];
     [super exitEditingMode];
     [self.tableView deleteRowsAtIndexPaths:selectedRowsIndexPaths withRowAnimation:(([self.scene numberOfNormalObjects] != 0) ? UITableViewRowAnimationTop : UITableViewRowAnimationFade)];
     [self showPlaceHolder:!(BOOL)[self.scene numberOfNormalObjects]];
