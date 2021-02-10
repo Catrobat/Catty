@@ -81,6 +81,7 @@
         self.placeHolderLabel.textAlignment = .center
         self.placeHolderLabel.textColor = UIColor.medium
         self.placeHolderLabel.center = self.view.center
+        self.placeHolderLabel.font = UIFont.systemFont(ofSize: 25)
         self.view.addSubview(self.placeHolderLabel)
 
     }

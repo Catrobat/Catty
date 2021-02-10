@@ -221,6 +221,8 @@ NS_ENUM(NSInteger, ButtonIndex) {
 {
     [super viewDidLoad];
     
+    ((AppDelegate*)[UIApplication sharedApplication].delegate).disabledOrientation = true;
+    
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.view.backgroundColor = UIColor.background;
     
@@ -370,6 +372,8 @@ NS_ENUM(NSInteger, ButtonIndex) {
         [self.formulaEditorTextView removeFromSuperview];
         [self.presentingViewController dismissViewControllerAnimated:YES completion:NULL];
     }
+    
+    ((AppDelegate*)[UIApplication sharedApplication].delegate).disabledOrientation = false;
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
@@ -538,7 +542,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 {
     CGFloat marginTop = self.brickCell.frame.origin.y + self.brickCell.frame.size.height;
     
-    self.formulaEditorTextView = [[FormulaEditorTextView alloc] initWithFrame: CGRectMake(0, marginTop, self.view.frame.size.width - 2, 120) AndFormulaEditorViewController:self];
+    self.formulaEditorTextView = [[FormulaEditorTextView alloc] initWithFrame: CGRectMake(0, marginTop, self.view.frame.size.width, 120) AndFormulaEditorViewController:self];
     
     [self.view addSubview:self.formulaEditorTextView];
     
@@ -831,18 +835,6 @@ NS_ENUM(NSInteger, ButtonIndex) {
         self.deleteButton.shapeStrokeColor = containsText ? UIColor.navTint : UIColor.grayColor;
         self.deleteButton.enabled = containsText;
     }
-}
-
-#pragma mark Orientation
-
--(UIInterfaceOrientationMask)supportedInterfaceOrientations
-{
-    return UIInterfaceOrientationMaskPortrait;
-}
-
-- (BOOL)shouldAutorotate
-{
-    return NO;
 }
 
 @end

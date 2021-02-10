@@ -108,7 +108,7 @@ extension FormulaEditorSectionViewController {
             self.spriteObject?.userData.add(userVariable)
         }
 
-        self.spriteObject?.scene.project?.saveToDisk(withNotification: true)
+        self.spriteObject?.scene.project?.saveToDisk(withNotification: false)
         self.reloadData()
     }
 
@@ -137,7 +137,7 @@ extension FormulaEditorSectionViewController {
             self.spriteObject?.userData.add(userList)
         }
 
-        self.spriteObject?.scene.project?.saveToDisk(withNotification: true)
+        self.spriteObject?.scene.project?.saveToDisk(withNotification: false)
         self.reloadData()
     }
 
@@ -257,7 +257,7 @@ extension FormulaEditorSectionViewController {
                 }
             }
 
-            project.saveToDisk(withNotification: true)
+            project.saveToDisk(withNotification: false)
             self.reloadData()
 
             return true
@@ -287,7 +287,7 @@ extension FormulaEditorSectionViewController {
                 }
             }
 
-            project.saveToDisk(withNotification: true)
+            project.saveToDisk(withNotification: false)
             self.reloadData()
 
             return true
