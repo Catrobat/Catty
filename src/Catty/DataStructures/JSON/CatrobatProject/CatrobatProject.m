@@ -24,25 +24,22 @@
 
 @implementation CatrobatProject
 
-- (id)initWithDict:(NSDictionary*)dict andBaseUrl:(NSString*)baseUrl {
+- (id)initWithDict:(NSDictionary*)dict {
     self = [super init];
     if (self) {
         
-        if ([baseUrl hasPrefix:@"//"]) {
-            baseUrl = [NSString stringWithFormat:@"https:%@", baseUrl];
-        }
         
         self.name            = [dict valueForKey:@"ProjectName"];
         self.author          = [dict valueForKey:@"Author"];
         self.projectDescription = [dict valueForKey:@"Description"];
-        self.downloadUrl     = [NSString stringWithFormat:@"%@%@", baseUrl,[dict valueForKey:@"DownloadUrl"]];
+        self.downloadUrl     = [NSString stringWithFormat:@"%@",[dict valueForKey:@"DownloadUrl"]];
         self.downloads       = [dict valueForKey:@"Downloads"];
         self.projectID       = [dict valueForKey:@"ProjectId"];
         self.projectName     = [dict valueForKey:@"ProjectName"];
         self.projectUrl      = [dict valueForKey:@"ProjectUrl"];
-        self.screenshotBig   = [NSString stringWithFormat:@"%@%@", baseUrl,[dict valueForKey:@"ScreenshotBig"]];
-        self.screenshotSmall = [NSString stringWithFormat:@"%@%@", baseUrl,[dict valueForKey:@"ScreenshotSmall"]];
-        self.featuredImage   = [NSString stringWithFormat:@"%@%@", baseUrl,[dict valueForKey:@"FeaturedImage"]];
+        self.screenshotBig   = [NSString stringWithFormat:@"%@", [dict valueForKey:@"ScreenshotBig"]];
+        self.screenshotSmall = [NSString stringWithFormat:@"%@", [dict valueForKey:@"ScreenshotSmall"]];
+        self.featuredImage   = [NSString stringWithFormat:@"%@", [dict valueForKey:@"FeaturedImage"]];
         self.uploaded        = [[dict valueForKey:@"Uploaded"] stringValue];
         self.version         = [dict valueForKey:@"Version"];
         self.views           = [dict valueForKey:@"Views"];

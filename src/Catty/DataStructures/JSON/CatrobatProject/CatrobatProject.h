@@ -40,7 +40,7 @@
 @property (nonatomic, strong) NSString *size;
 @property (nonatomic) BOOL isdownloading;
 
-- (id)initWithDict:(NSDictionary*)dict andBaseUrl:(NSString*)baseUrl;
+- (id)initWithDict:(NSDictionary*)dict;
 + (NSDateFormatter*)uploadDateFormatter;
 
 @end

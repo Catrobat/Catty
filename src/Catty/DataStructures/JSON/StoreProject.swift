@@ -21,9 +21,8 @@
  */
 
 struct StoreProject: Codable {
-    let projectId: String
+    let projectId: String //naming: just id and name
     let projectName: String
-    let projectNameShort: String?
     let author: String
     let description: String?
     let version: String?
@@ -36,35 +35,33 @@ struct StoreProject: Codable {
     let projectUrl: String?
     let downloadUrl: String?
     let fileSize: Float?
-    let featuredImage: String?
     let isPrivate: Bool! = false
+    let tags: [String]?
 
     private enum CodingKeys: String, CodingKey {
-        case projectId = "ProjectId"
-        case projectName = "ProjectName"
-        case projectNameShort = "ProjectNameShort"
-        case author = "Author"
-        case description = "Description"
-        case version = "Version"
-        case views = "Views"
-        case downloads = "Downloads"
-        case uploaded = "Uploaded"
-        case uploadedString = "UploadedString"
-        case screenshotBig = "ScreenshotBig"
-        case screenshotSmall = "ScreenshotSmall"
-        case projectUrl = "ProjectUrl"
-        case downloadUrl = "DownloadUrl"
-        case fileSize = "FileSize"
-        case featuredImage = "FeaturedImage"
-        case isPrivate = "Private"
+        case projectId = "id"
+        case projectName = "name"
+        case author = "author"
+        case description = "description"
+        case version = "version"
+        case views = "views"
+        case downloads = "download"
+        case uploaded = "uploaded"
+        case uploadedString = "uploaded_string"
+        case screenshotBig = "screenshot_large"
+        case screenshotSmall = "screenshot_small"
+        case projectUrl = "project_url"
+        case downloadUrl = "download_url"
+        case fileSize = "filesize"
+        case isPrivate = "private"
+        case tags = "tags"
     }
 
-    init(projectId: String, projectName: String, projectNameShort: String?, author: String, description: String?, version: String?,
+    init(projectId: String, projectName: String, author: String, description: String?, version: String?,
          views: Int?, downloads: Int?, uploaded: Int?, uploadedString: String?, screenshotBig: String?, screenshotSmall: String?,
-         projectUrl: String?, downloadUrl: String?, fileSize: Float?, featuredImage: String?) {
+         projectUrl: String?, downloadUrl: String?, fileSize: Float?, tags: [String]) {
         self.projectId = projectId
         self.projectName = projectName
-        self.projectNameShort = projectNameShort
         self.author = author
         self.description = description
         self.version = version
@@ -77,7 +74,7 @@ struct StoreProject: Codable {
         self.projectUrl = projectUrl
         self.downloadUrl = downloadUrl
         self.fileSize = fileSize
-        self.featuredImage = featuredImage
+        self.tags = tags
     }
 
     init(from decoder: Decoder) throws {
@@ -90,7 +87,6 @@ struct StoreProject: Codable {
         }
 
         projectName = try container.decode(String.self, forKey: .projectName)
-        projectNameShort = try container.decodeIfPresent(String.self, forKey: .projectNameShort)
         author = try container.decode(String.self, forKey: .author)
         description = try container.decodeIfPresent(String.self, forKey: .description)
         version = try container.decodeIfPresent(String.self, forKey: .version)
@@ -103,7 +99,7 @@ struct StoreProject: Codable {
         projectUrl = try container.decodeIfPresent(String.self, forKey: .projectUrl)
         downloadUrl = try container.decodeIfPresent(String.self, forKey: .downloadUrl)
         fileSize = try container.decodeIfPresent(Float.self, forKey: .fileSize)
-        featuredImage = try container.decodeIfPresent(String.self, forKey: .featuredImage)
+        tags = try container.decode([String].self, forKey: .tags)
     }
 
     func toCatrobatProject() -> CatrobatProject {
@@ -118,12 +114,12 @@ struct StoreProject: Codable {
         projectDictionary["ProjectUrl"] = self.projectUrl ?? ""
         projectDictionary["ScreenshotBig"] = self.screenshotBig ?? ""
         projectDictionary["ScreenshotSmall"] = self.screenshotSmall ?? ""
-        projectDictionary["FeaturedImage"] = self.featuredImage ?? ""
         projectDictionary["Uploaded"] = self.uploaded ?? 0
         projectDictionary["Version"] = self.version ?? ""
         projectDictionary["Views"] = self.views ?? 0
         projectDictionary["FileSize"] = self.fileSize ?? 0.0
+        projectDictionary["Tags"] = self.tags ?? ""
 
-        return CatrobatProject(dict: projectDictionary, andBaseUrl: NetworkDefines.featuredImageBaseUrl)
+        return CatrobatProject(dict: projectDictionary)
     }
 }

@@ -21,7 +21,8 @@
  */
 
 protocol StoreProjectDownloaderProtocol {
-    func fetchProjects(forType: ProjectType, offset: Int, completion: @escaping (StoreProjectCollection.StoreProjectCollectionText?, StoreProjectDownloaderError?) -> Void)
+    func fetchProjects(for type: ProjectType, offset: Int, completion: @escaping ([StoreProject]?, StoreProjectDownloaderError?) -> Void)
+    func fetchFeaturedProjects(offset: Int, completion: @escaping ([StoreFeaturedProject]?, StoreProjectDownloaderError?) -> Void)
     func fetchSearchQuery(searchTerm: String, completion: @escaping (StoreProjectCollection.StoreProjectCollectionNumber?, StoreProjectDownloaderError?) -> Void)
     func fetchProjectDetails(for projectId: String, completion: @escaping (StoreProject?, StoreProjectDownloaderError?) -> Void)
     func download(projectId: String, completion: @escaping (Data?, StoreProjectDownloaderError?) -> Void, progression: ((Float) -> Void)?)
@@ -39,7 +40,7 @@ final class StoreProjectDownloader: StoreProjectDownloaderProtocol {
     func fetchSearchQuery(searchTerm: String, completion: @escaping (StoreProjectCollection.StoreProjectCollectionNumber?, StoreProjectDownloaderError?) -> Void) {
 
         guard let indexURL = URL(string: String(format: "%@/%@?q=%@&%@%i&%@%i&%@%@",
-                                                NetworkDefines.connectionHost,
+                                                NetworkDefines.apiEndpointProjects,
                                                 NetworkDefines.connectionSearch,
                                                 searchTerm.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? "",
                                                 NetworkDefines.projectsLimit,
@@ -49,6 +50,8 @@ final class StoreProjectDownloader: StoreProjectDownloaderProtocol {
                                                 NetworkDefines.maxVersion,
                                                 Util.catrobatLanguageVersion()))
             else { return }
+
+        //https://web-test.catrob.at/api/projects/search?query=recent&max_version=0.999&limit=3&offset=2&flavor=luna
 
         self.session.dataTask(with: URLRequest(url: indexURL)) { data, response, error in
             let handleDataTaskCompletion: (Data?, URLResponse?, Error?) -> (items: StoreProjectCollection.StoreProjectCollectionNumber?, error: StoreProjectDownloaderError?)
@@ -94,60 +97,41 @@ final class StoreProjectDownloader: StoreProjectDownloaderProtocol {
         }.resume()
     }
 
-    func fetchProjects(forType: ProjectType, offset: Int, completion: @escaping (StoreProjectCollection.StoreProjectCollectionText?, StoreProjectDownloaderError?) -> Void) {
+    func fetchProjects(for type: ProjectType, offset: Int, completion: @escaping ([StoreProject]?, StoreProjectDownloaderError?) -> Void) {
 
-        let indexURL: URL
         let version: String = Util.catrobatLanguageVersion()
 
-        switch forType {
-        case .featured:
-            let featuredUrl = "\(NetworkDefines.connectionHost)/\(NetworkDefines.connectionFeatured)?\(NetworkDefines.projectsLimit)\(NetworkDefines.chartProjectsMaxResults)"
-            guard let url = URL(string: featuredUrl) else { return }
-            indexURL = url
+        guard let url = URL(string: "\(NetworkDefines.apiEndpointProjects)?category=\(type.apiCategory())&\(NetworkDefines.maxVersion)\(version)&" +
+                                "\(NetworkDefines.projectsLimit)\(NetworkDefines.recentProjectsMaxResults)&\(NetworkDefines.projectsOffset)"
+                                + "\(offset)") else { return }
 
-        case .mostDownloaded:
-            guard let url = URL(string: "\(NetworkDefines.connectionHost)/\(NetworkDefines.connectionMostDownloaded)?\(NetworkDefines.projectsOffset)"
-                + "\(offset)&\(NetworkDefines.projectsLimit)\(NetworkDefines.recentProjectsMaxResults)&\(NetworkDefines.maxVersion)\(version)") else { return }
-            indexURL = url
-
-        case .mostViewed:
-            guard let url = URL(string: "\(NetworkDefines.connectionHost)/\(NetworkDefines.connectionMostViewed)?\(NetworkDefines.projectsOffset)"
-                + "\(offset)&\(NetworkDefines.projectsLimit)\(NetworkDefines.recentProjectsMaxResults)&\(NetworkDefines.maxVersion)\(version)") else { return }
-            indexURL = url
-
-        case .mostRecent:
-            guard let url = URL(string: "\(NetworkDefines.connectionHost)/\(NetworkDefines.connectionRecent)?\(NetworkDefines.projectsOffset)"
-                + "\(offset)&\(NetworkDefines.projectsLimit)\(NetworkDefines.recentProjectsMaxResults)&\(NetworkDefines.maxVersion)\(version)") else { return }
-            indexURL = url
-        }
-
-        self.session.dataTask(with: URLRequest(url: indexURL)) { data, response, error in
-            let handleDataTaskCompletion: (Data?, URLResponse?, Error?) -> (items: StoreProjectCollection.StoreProjectCollectionText?, error: StoreProjectDownloaderError?)
+        self.session.dataTask(with: URLRequest(url: url)) { data, response, error in
+            let handleDataTaskCompletion: (Data?, URLResponse?, Error?) -> (items: [StoreProject]?, error: StoreProjectDownloaderError?)
             handleDataTaskCompletion = { data, response, error in
                 if let error = error as NSError?, error.domain == NSURLErrorDomain && error.code == NSURLErrorTimedOut {
-                    let errorInfo = ProjectFetchFailureInfo(type: forType, url: indexURL.absoluteString, description: error.localizedDescription)
+                    let errorInfo = ProjectFetchFailureInfo(type: type, url: url.absoluteString, description: error.localizedDescription)
 
                     NotificationCenter.default.post(name: .projectFetchFailure, object: errorInfo)
                     return (nil, .timeout)
                 }
 
                 guard let response = response as? HTTPURLResponse else {
-                    let errorInfo = ProjectFetchFailureInfo(type: forType, url: indexURL.absoluteString, description: error?.localizedDescription ?? "")
+                    let errorInfo = ProjectFetchFailureInfo(type: type, url: url.absoluteString, description: error?.localizedDescription ?? "")
 
                     NotificationCenter.default.post(name: .projectFetchFailure, object: errorInfo)
                     return (nil, .unexpectedError)
                 }
                 guard let data = data, response.statusCode == 200, error == nil else {
-                    let errorInfo = ProjectFetchFailureInfo(type: forType, url: indexURL.absoluteString, statusCode: response.statusCode, description: error?.localizedDescription ?? "")
+                    let errorInfo = ProjectFetchFailureInfo(type: type, url: url.absoluteString, statusCode: response.statusCode, description: error?.localizedDescription ?? "")
 
                     NotificationCenter.default.post(name: .projectFetchFailure, object: errorInfo)
                     return (nil, .request(error: error, statusCode: response.statusCode))
                 }
-                let items: StoreProjectCollection.StoreProjectCollectionText?
+                let items: [StoreProject]?
                 do {
-                    items = try JSONDecoder().decode(StoreProjectCollection.StoreProjectCollectionText.self, from: data)
+                    items = try JSONDecoder().decode([StoreProject].self, from: data)
                 } catch {
-                    let errorInfo = ProjectFetchFailureInfo(type: forType, url: indexURL.absoluteString, statusCode: response.statusCode, description: error.localizedDescription)
+                    let errorInfo = ProjectFetchFailureInfo(type: type, url: url.absoluteString, statusCode: response.statusCode, description: error.localizedDescription)
 
                     NotificationCenter.default.post(name: .projectFetchFailure, object: errorInfo)
                     return (nil, .parse(error: error))
@@ -162,8 +146,58 @@ final class StoreProjectDownloader: StoreProjectDownloaderProtocol {
         }.resume()
     }
 
+    func fetchFeaturedProjects(offset: Int, completion: @escaping ([StoreFeaturedProject]?, StoreProjectDownloaderError?) -> Void) {
+        let version: String = Util.catrobatLanguageVersion()
+
+        let featuredUrl = "\(NetworkDefines.apiEndpointProjects)/\(NetworkDefines.connectionFeatured)?\(NetworkDefines.maxVersion)\(version)&"
+            + "\(NetworkDefines.projectsLimit)\(NetworkDefines.recentProjectsMaxResults)&\(NetworkDefines.projectsOffset)"
+            + "\(offset)"
+        guard let url = URL(string: featuredUrl) else { return }
+
+        self.session.dataTask(with: URLRequest(url: url)) { data, response, error in
+            let handleDataTaskCompletion: (Data?, URLResponse?, Error?) -> (items: [StoreFeaturedProject]?, error: StoreProjectDownloaderError?)
+            handleDataTaskCompletion = { data, response, error in
+                if let error = error as NSError?, error.domain == NSURLErrorDomain && error.code == NSURLErrorTimedOut {
+                    let errorInfo = ProjectFetchFailureInfo(url: url.absoluteString, description: error.localizedDescription)
+
+                    NotificationCenter.default.post(name: .projectFetchFailure, object: errorInfo)
+                    return (nil, .timeout)
+                }
+
+                guard let response = response as? HTTPURLResponse else {
+                    let errorInfo = ProjectFetchFailureInfo(url: url.absoluteString, description: error?.localizedDescription ?? "")
+
+                    NotificationCenter.default.post(name: .projectFetchFailure, object: errorInfo)
+                    return (nil, .unexpectedError)
+                }
+                guard let data = data, response.statusCode == 200, error == nil else {
+                    let errorInfo = ProjectFetchFailureInfo(url: url.absoluteString, statusCode: response.statusCode, description: error?.localizedDescription ?? "")
+
+                    NotificationCenter.default.post(name: .projectFetchFailure, object: errorInfo)
+                    return (nil, .request(error: error, statusCode: response.statusCode))
+                }
+                let items: [StoreFeaturedProject]?
+                do {
+                    items = try JSONDecoder().decode([StoreFeaturedProject].self, from: data)
+                } catch {
+                    let errorInfo = ProjectFetchFailureInfo(url: url.absoluteString, statusCode: response.statusCode, description: error.localizedDescription)
+
+                    NotificationCenter.default.post(name: .projectFetchFailure, object: errorInfo)
+                    return (nil, .parse(error: error))
+                }
+                return (items, nil)
+            }
+            let result = handleDataTaskCompletion(data, response, error)
+            DispatchQueue.main.async {
+                completion(result.items, result.error)
+            }
+
+        }.resume()
+
+    }
+
     func fetchProjectDetails(for projectId: String, completion: @escaping (StoreProject?, StoreProjectDownloaderError?) -> Void) {
-        guard let indexURL = URL(string: "\(NetworkDefines.connectionHost)/\(NetworkDefines.connectionIDQuery)?id=\(projectId)") else { return }
+        guard let indexURL = URL(string: "\(NetworkDefines.apiEndpointProjectDetails)/\(projectId)") else { return }
 
         self.session.dataTask(with: URLRequest(url: indexURL)) { data, response, error in
             let handleDataTaskCompletion: (Data?, URLResponse?, Error?) -> (project: StoreProject?, error: StoreProjectDownloaderError?)
@@ -180,13 +214,13 @@ final class StoreProjectDownloader: StoreProjectDownloaderProtocol {
                     return (nil, .request(error: error, statusCode: response.statusCode))
                 }
 
-                let collection: StoreProjectCollection.StoreProjectCollectionNumber?
+                let project: StoreProject?
                 do {
-                    collection = try JSONDecoder().decode(StoreProjectCollection.StoreProjectCollectionNumber.self, from: data)
+                    project = try JSONDecoder().decode(StoreProject.self, from: data)
                 } catch {
                     return (nil, .parse(error: error))
                 }
-                return (collection?.projects.first, nil)
+                return (project, nil)
             }
             let result = handleDataTaskCompletion(data, response, error)
             DispatchQueue.main.async {
@@ -198,6 +232,7 @@ final class StoreProjectDownloader: StoreProjectDownloaderProtocol {
     static func defaultSession() -> URLSession {
         let config = URLSessionConfiguration.ephemeral
         config.timeoutIntervalForRequest = Double(NetworkDefines.connectionTimeout)
+
         return URLSession(configuration: config, delegate: nil, delegateQueue: nil)
     }
 }
@@ -214,10 +249,21 @@ enum StoreProjectDownloaderError: Error {
 }
 
 enum ProjectType {
-    case featured
     case mostDownloaded
     case mostViewed
     case mostRecent
+
+    func apiCategory() -> String {
+        switch self {
+        case .mostDownloaded:
+            return "most_downloaded"
+        case .mostViewed:
+            return "most_viewed"
+        case .mostRecent:
+            return "recent"
+
+        }
+    }
 }
 
 struct ProjectFetchFailureInfo: Equatable {
@@ -227,6 +273,8 @@ struct ProjectFetchFailureInfo: Equatable {
     var description: String
     var projectName: String?
 }
+
+//new file for every enum and struct i.e "Enums" sub-folder
 
 extension StoreProjectDownloader {
     func download(projectId: String, completion: @escaping (Data?, StoreProjectDownloaderError?) -> Void, progression: ((Float) -> Void)?) {
