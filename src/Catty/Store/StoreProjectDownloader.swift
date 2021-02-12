@@ -51,8 +51,6 @@ final class StoreProjectDownloader: StoreProjectDownloaderProtocol {
                                                 Util.catrobatLanguageVersion()))
             else { return }
 
-        //https://web-test.catrob.at/api/projects/search?query=recent&max_version=0.999&limit=3&offset=2&flavor=luna
-
         self.session.dataTask(with: URLRequest(url: indexURL)) { data, response, error in
             let handleDataTaskCompletion: (Data?, URLResponse?, Error?) -> (items: StoreProjectCollection.StoreProjectCollectionNumber?, error: StoreProjectDownloaderError?)
             handleDataTaskCompletion = { data, response, error in
@@ -232,46 +230,8 @@ final class StoreProjectDownloader: StoreProjectDownloaderProtocol {
     static func defaultSession() -> URLSession {
         let config = URLSessionConfiguration.ephemeral
         config.timeoutIntervalForRequest = Double(NetworkDefines.connectionTimeout)
-
         return URLSession(configuration: config, delegate: nil, delegateQueue: nil)
     }
-}
-
-enum StoreProjectDownloaderError: Error {
-    /// Indicates an error with the URLRequest.
-    case request(error: Error?, statusCode: Int)
-    /// Indicates a parsing error of the received data.
-    case parse(error: Error)
-    /// Indicates a server timeout.
-    case timeout
-    /// Indicates an unexpected error.
-    case unexpectedError
-}
-
-enum ProjectType {
-    case mostDownloaded
-    case mostViewed
-    case mostRecent
-
-    func apiCategory() -> String {
-        switch self {
-        case .mostDownloaded:
-            return "most_downloaded"
-        case .mostViewed:
-            return "most_viewed"
-        case .mostRecent:
-            return "recent"
-
-        }
-    }
-}
-
-struct ProjectFetchFailureInfo: Equatable {
-    var type: ProjectType?
-    var url: String
-    var statusCode: Int?
-    var description: String
-    var projectName: String?
 }
 
 //new file for every enum and struct i.e "Enums" sub-folder
