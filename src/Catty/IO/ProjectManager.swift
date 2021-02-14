@@ -24,10 +24,11 @@
 @objcMembers class ProjectManager: NSObject {
 
     public static let shared = ProjectManager()
-    let fileManager: CBFileManager = CBFileManager.shared()
+    let fileManager: CBFileManager
     
     private override init() {
-        
+        fileManager = CBFileManager.shared()
+        super.init()
     }
     
     public func createProject(name: String, projectId: String?) -> Project {
