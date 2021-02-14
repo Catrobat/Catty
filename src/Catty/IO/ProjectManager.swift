@@ -23,11 +23,11 @@
 @objc(ProjectManager)
 @objcMembers class ProjectManager: NSObject {
 
-    public static let shared:ProjectManager = ProjectManager()
-    let fileManager: CBFileManager!
+    public static let shared: ProjectManager = ProjectManager()
+    var fileManager: CBFileManager = CBFileManager.shared()
     
-    private override init() {
-        fileManager = CBFileManager.shared()
+    override private init() {
+        
     }
 
     public func createProject(name: String, projectId: String?) -> Project {
@@ -80,7 +80,6 @@
     }
 
     public func removeObjects(_ project: Project, objects: [SpriteObject]) {
-        
         let scene = project.scene
         for object in objects {
             if scene.objects().contains(object) {

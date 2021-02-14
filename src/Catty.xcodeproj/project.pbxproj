@@ -10669,7 +10669,6 @@
 						TestTargetID = CADBD6D319B0E8C200C62836;
 					};
 					CADBD6D319B0E8C200C62836 = {
-						DevelopmentTeam = 8FL5R8726S;
 						LastSwiftMigration = 0900;
 						SystemCapabilities = {
 							com.apple.Keychain = {
@@ -11364,7 +11363,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+			shellScript = "/opt/homebrew/bin/carthage copy-frameworks\n";
 		};
 		5E43D71421919F6A006FDF2A /* SwiftLint Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -13299,7 +13298,7 @@
 				COMPRESS_PNG_FILES = NO;
 				CURRENT_PROJECT_VERSION = 46;
 				DEFINES_MODULE = NO;
-				DEVELOPMENT_TEAM = 8FL5R8726S;
+				DEVELOPMENT_TEAM = 2Y23VVMDSG;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS/**",
@@ -13325,7 +13324,7 @@
 					"-lc++",
 				);
 				OTHER_SWIFT_FLAGS = "-DDEBUG";
-				PRODUCT_BUNDLE_IDENTIFIER = org.catrobat.pocketcode.develop;
+				PRODUCT_BUNDLE_IDENTIFIER = org.sample12345678907654;
 				PRODUCT_NAME = "Pocket Code";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Catty/Supporting Files/Catty-Bridging-Header.h";
@@ -13350,7 +13349,7 @@
 				COMPRESS_PNG_FILES = NO;
 				CURRENT_PROJECT_VERSION = 46;
 				DEFINES_MODULE = NO;
-				DEVELOPMENT_TEAM = 8FL5R8726S;
+				DEVELOPMENT_TEAM = 2Y23VVMDSG;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS/**",
@@ -13377,7 +13376,7 @@
 					"-lc++",
 				);
 				OTHER_SWIFT_FLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = org.catrobat.pocketcode;
+				PRODUCT_BUNDLE_IDENTIFIER = org.jhgfd65432;
 				PRODUCT_NAME = "Pocket Code";
 				PROVISIONING_PROFILE = "";
 				SWIFT_COMPILATION_MODE = wholemodule;
