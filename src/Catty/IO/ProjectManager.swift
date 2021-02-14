@@ -23,12 +23,14 @@
 @objc(ProjectManager)
 @objcMembers class ProjectManager: NSObject {
 
-    static func createProject(name: String, projectId: String?) -> Project {
-        ProjectManager.createProject(name: name, projectId: projectId, fileManager: CBFileManager.shared())
+    public static let shared = ProjectManager()
+    let fileManager: CBFileManager = CBFileManager.shared()
+    
+    private override init() {
+        
     }
-
-    static func createProject(name: String, projectId: String?, fileManager: CBFileManager) -> Project {
-
+    
+    public func createProject(name: String, projectId: String?) -> Project {
         let project = Project()
         let projectName = Util.uniqueName(name, existingNames: Project.allProjectNames())
         project.scene = Scene(name: Util.defaultSceneName(forSceneNumber: 1))
@@ -76,4 +78,14 @@
         return project
     }
 
+    public func removeObjects(_ project: Project, objects: [SpriteObject]) {
+        
+        let scene = project.scene
+        for object in objects {
+            if scene.objects().contains(object) {
+                scene.removeObject(object)
+            }
+        }
+        project.saveToDisk(withNotification: true)
+    }
 }

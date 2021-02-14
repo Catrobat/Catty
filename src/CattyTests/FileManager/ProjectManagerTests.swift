@@ -56,7 +56,7 @@ final class ProjectManagerTests: XCTestCase {
         XCTAssertFalse(fileManager.fileExists(automaticScreenshotPath))
         XCTAssertFalse(imageCache.cleared)
 
-        _ = ProjectManager.createProject(name: projectName, projectId: projectId, fileManager: fileManager)
+        _ = ProjectManager.shared.createProject(name: projectName, projectId: projectId)
 
         XCTAssertTrue(fileManager.directoryExists(expectedProjectPath))
         XCTAssertTrue(fileManager.directoryExists(expectedImageDir))
@@ -66,6 +66,11 @@ final class ProjectManagerTests: XCTestCase {
 
         let automaticScreenshot = fileManager.dataWritten[automaticScreenshotPath]
         XCTAssertTrue(projectIconImages.contains(automaticScreenshot!))
+    }
+    
+    func testRemoveObjects() {
+        
+        
     }
 
     func testRandomScreenshotSelectionOfNewProjects() {
@@ -90,7 +95,7 @@ final class ProjectManagerTests: XCTestCase {
             }
 
             let automaticScreenshotPath = info.basePath + kScreenshotAutoFilename
-            _ = ProjectManager.createProject(name: projectName, projectId: projectId, fileManager: fileManager)
+            _ = ProjectManager.shared.createProject(name: projectName, projectId: projectId)
 
             let automaticScreenshot = fileManager.dataWritten[automaticScreenshotPath]
             XCTAssertTrue(projectIconImages.contains(automaticScreenshot!))

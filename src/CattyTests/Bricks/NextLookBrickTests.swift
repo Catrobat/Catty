@@ -28,7 +28,7 @@ final class NextLookBrickTests: AbstractBrickTest {
 
     func testNextLookBrick() {
         let object = SpriteObject()
-        let project = ProjectManager.createProject(name: "a", projectId: "1")
+        let project = ProjectManager.shared.createProject(name: "a", projectId: "1")
         object.scene = project.scene
         let spriteNode = CBSpriteNode(spriteObject: object)
         object.spriteNode = spriteNode

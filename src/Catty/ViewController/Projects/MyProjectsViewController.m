@@ -148,7 +148,7 @@
 - (void)createAndOpenProjectWithName:(NSString*)projectName
 {
     projectName = [Util uniqueName:projectName existingNames:[Project allProjectNames]];
-    self.defaultProject = [ProjectManager createProjectWithName:projectName projectId:nil];
+    self.defaultProject = [ProjectManager.shared createProjectWithName:projectName projectId:nil];
     
     if (self.defaultProject) {
         [self addProject:self.defaultProject.header.programName];
