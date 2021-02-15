@@ -22,6 +22,7 @@
 
 #import "DrawTool.h"
 #import "UndoManager.h"
+#import "Pocket_Code-Swift.h"
 
 static const CGFloat kPointMinDistance = 5.0f;
 static const CGFloat kPointMinDistanceSquared = kPointMinDistance * kPointMinDistance;

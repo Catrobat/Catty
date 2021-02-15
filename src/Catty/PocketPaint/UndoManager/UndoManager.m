@@ -21,6 +21,7 @@
  */
 
 #import "UndoManager.h"
+#import "Pocket_Code-Swift.h"
 
 #define kMaxAllowedUndos 10
 @implementation UndoManager

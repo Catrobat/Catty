@@ -449,6 +449,8 @@
 		4C1C8B16213FE7F1003B3AA4 /* StoreProjectDownloaderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1C8B15213FE7F1003B3AA4 /* StoreProjectDownloaderMock.swift */; };
 		4C1D26611E84EFBD00BAA2D2 /* RepeatBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1D26601E84EFBD00BAA2D2 /* RepeatBrickTests.swift */; };
 		4C1D26651E84F12700BAA2D2 /* VibrationBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1D26641E84F12700BAA2D2 /* VibrationBrickTests.swift */; };
+		4C1E33A125DA570D00F44F13 /* PaintImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1E33A025DA570D00F44F13 /* PaintImageView.swift */; };
+		4C1E33A925DA5A3D00F44F13 /* PaintImageViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1E33A825DA5A3D00F44F13 /* PaintImageViewTests.swift */; };
 		4C1EDCAC218A080200B60464 /* ScriptCollectionVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1EDCA9218A080200B60464 /* ScriptCollectionVCTests.swift */; };
 		4C1F6FA5213CF6BE00C20BEB /* SingleParameterStringFunctionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1F6FA4213CF6BE00C20BEB /* SingleParameterStringFunctionMock.swift */; };
 		4C1F6FA7213CFB5800C20BEB /* FunctionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1F6FA6213CFB5800C20BEB /* FunctionTests.swift */; };
@@ -2364,6 +2366,8 @@
 		4C1C8B15213FE7F1003B3AA4 /* StoreProjectDownloaderMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreProjectDownloaderMock.swift; sourceTree = "<group>"; };
 		4C1D26601E84EFBD00BAA2D2 /* RepeatBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepeatBrickTests.swift; sourceTree = "<group>"; };
 		4C1D26641E84F12700BAA2D2 /* VibrationBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VibrationBrickTests.swift; sourceTree = "<group>"; };
+		4C1E33A025DA570D00F44F13 /* PaintImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaintImageView.swift; sourceTree = "<group>"; };
+		4C1E33A825DA5A3D00F44F13 /* PaintImageViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaintImageViewTests.swift; sourceTree = "<group>"; };
 		4C1EB20F1AC19B3D0001F431 /* BrickTextProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickTextProtocol.h; sourceTree = "<group>"; };
 		4C1EDCA9218A080200B60464 /* ScriptCollectionVCTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScriptCollectionVCTests.swift; sourceTree = "<group>"; };
 		4C1F6FA4213CF6BE00C20BEB /* SingleParameterStringFunctionMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleParameterStringFunctionMock.swift; sourceTree = "<group>"; };
@@ -5314,6 +5318,14 @@
 			name = ParserTests;
 			sourceTree = "<group>";
 		};
+		4C1E33A725DA5A0F00F44F13 /* Paint */ = {
+			isa = PBXGroup;
+			children = (
+				4C1E33A825DA5A3D00F44F13 /* PaintImageViewTests.swift */,
+			);
+			path = Paint;
+			sourceTree = "<group>";
+		};
 		4C2650671A6538470050775B /* CBCopyContext */ = {
 			isa = PBXGroup;
 			children = (
@@ -7564,6 +7576,7 @@
 				9218B1DE1CC4AB75007B4C60 /* UIImage+Rotate.m */,
 				9218B1DF1CC4AB75007B4C60 /* UIViewController+KNSemiModal.h */,
 				9218B1E01CC4AB75007B4C60 /* UIViewController+KNSemiModal.m */,
+				4C1E33A025DA570D00F44F13 /* PaintImageView.swift */,
 			);
 			name = Helper;
 			path = Catty/PocketPaint/Helper;
@@ -10166,6 +10179,7 @@
 				599E649C202D9F85009494B5 /* Mocks */,
 				4C2CBB0425A5AA8400C1C143 /* Parser & Serialization */,
 				4CE5C56C1E0AD71800FD021C /* Project */,
+				4C1E33A725DA5A0F00F44F13 /* Paint */,
 				4C1608A31A095480002C7032 /* Resources */,
 				B496F5131775996D004BF78A /* Stage */,
 				4C3746ED22FC7CBE007B2BE1 /* Setup */,
@@ -11806,6 +11820,7 @@
 				4C822669213FA7A400F3D750 /* TimeMinuteSensorTest.swift in Sources */,
 				46B94F9725791507007E5ABE /* StitchBrickTests.swift in Sources */,
 				4CEB22731B95E4BC00B3BE2F /* BrickInsertManagerAbstractTest.m in Sources */,
+				4C1E33A925DA5A3D00F44F13 /* PaintImageViewTests.swift in Sources */,
 				4C822673213FA7A400F3D750 /* AccelerationZSensorTest.swift in Sources */,
 				BC35168C231D00B90090872A /* SpriteBubbleConstraintsTests.swift in Sources */,
 				18B8021F2469170400201847 /* BrickCellVariableDataTests.swift in Sources */,
@@ -12050,6 +12065,7 @@
 				92FF32BC1A24E2F400093DA7 /* DarkBlueGradientImageDetailCell.m in Sources */,
 				92FF32B11A24E2F400093DA7 /* CreateView.m in Sources */,
 				4CF072A920D6710F00F93AB5 /* FingerTouchedSensor.swift in Sources */,
+				4C1E33A125DA570D00F44F13 /* PaintImageView.swift in Sources */,
 				AA74EEE41BC057B900D1E954 /* RepeatBrick+CBXMLHandler.m in Sources */,
 				4C724E5F1B4D3E8C00E27479 /* UserDataContainer+CBXMLHandler.m in Sources */,
 				E405EABB212D4E420074ADDB /* SearchStoreCell.swift in Sources */,

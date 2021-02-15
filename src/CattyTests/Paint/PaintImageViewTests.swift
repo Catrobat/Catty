@@ -21,30 +21,18 @@
  */
 
 @testable import Pocket_Code
+import XCTest
 
-class PaintViewControllerMock: PaintViewController {
+class PaintImageViewTests: XCTestCase {
 
-    let navigationControllerMock: UINavigationController
+    func testHasChanged() {
+        let originalImage = UIImage()
+        let imageView = PaintImageView(frame: .zero, image: originalImage)
 
-    override var navigationController: UINavigationController? { navigationControllerMock }
+        XCTAssertFalse(imageView.hasChanged())
 
-    init?(editingImage: UIImage, navigationController: UINavigationController) {
-        let data = NSMutableData()
-        let archiver = NSKeyedArchiver(forWritingWith: data)
-        archiver.finishEncoding()
-        let coder = NSKeyedUnarchiver(forReadingWith: data as Data)
+        imageView.image = UIImage()
 
-        self.navigationControllerMock = navigationController
-
-        super.init(coder: coder)
-
-        self.editingImage = editingImage
-        self.helper = UIView()
-        self.drawView = PaintImageView(frame: .zero, image: nil)
-        self.saveView = PaintImageView(frame: .zero, image: nil)
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        XCTAssertTrue(imageView.hasChanged())
     }
 }

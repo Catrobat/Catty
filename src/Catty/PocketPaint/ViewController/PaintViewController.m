@@ -170,25 +170,24 @@
     NSInteger width = (NSInteger)self.projectWidth;
     NSInteger height = (NSInteger)self.projectHeight;
     CGRect rect = CGRectMake(0, 0, width, height);
-    self.drawView = [[UIImageView alloc] initWithFrame:rect];
+    
+    self.drawView = [[PaintImageView alloc] initWithFrame:rect andImage:nil];
     self.drawView.accessibilityIdentifier = @"PaintCanvas";
     self.drawView.accessibilityLabel = @"Paint Canvas";
-    self.saveView = [[UIImageView alloc] initWithFrame:rect];
     self.view.backgroundColor = UIColor.whiteColor;
-    self.saveView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]];
-    
     
     self.helper = [[UIView alloc] initWithFrame:rect];
-    //    self.saveView.backgroundColor = UIColor.whiteColor;
-    //add blank image at the beginning
+    
     if (self.editingImage) {
         UIImage *image = self.editingImage;
         UIGraphicsBeginImageContext(image.size);
         [image drawInRect:CGRectMake(0, 0, image.size.width, image.size.height)];
-        self.saveView.image = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-        self.editingImage = self.saveView.image;
         
+        UIImage *saveViewImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        
+        self.saveView = [[PaintImageView alloc] initWithFrame:rect andImage:saveViewImage];
+        self.editingImage = self.saveView.image;
         
         NSInteger imageWidth = self.editingImage.size.width;
         NSInteger imageHeight = self.editingImage.size.height;
@@ -199,12 +198,14 @@
         self.drawView.contentMode = UIViewContentModeScaleAspectFit;
         
     } else {
-        UIGraphicsBeginImageContextWithOptions(self.saveView.frame.size, NO, 0.0);
+        UIGraphicsBeginImageContextWithOptions(rect.size, NO, 0.0);
         UIImage *blank = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
-        self.saveView.image = blank;
+        
+        self.saveView = [[PaintImageView alloc] initWithFrame:rect andImage:blank];
     }
     
+    self.saveView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]];
     self.editingImage = self.saveView.image;
     
     [self.helper addSubview:self.saveView];
@@ -342,18 +343,9 @@
 }
 
 - (void)backButtonPressed {
-    UIGraphicsBeginImageContextWithOptions(self.saveView.frame.size, NO, 0.0);
-    UIImage *blank = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    NSData *blankdata = UIImagePNGRepresentation(blank);
-    NSData *editingData = UIImagePNGRepresentation(self.editingImage);
-    NSData *saveViewData = UIImagePNGRepresentation(self.saveView.image);
-    if (self.editingImage != nil && ![editingData isEqual:saveViewData] && ![blankdata isEqualToData:saveViewData]) {
+    if ([self.drawView hasChanged] || [self.saveView hasChanged]) {
         [self showSavePaintImageAlert];
-    } else if (self.editingPath == nil && ![blankdata isEqualToData:saveViewData]) {
-        [self showSavePaintImageAlert];
-    }
-    else {
+    } else {
         [[self navigationController] popViewControllerAnimated:YES];
     }
 }

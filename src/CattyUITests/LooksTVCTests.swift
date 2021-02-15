@@ -96,7 +96,7 @@ class LooksTVCTests: XCTestCase {
         XCTAssertNotNil(waitForElementToAppear(app.navigationBars.buttons[testObject]))
     }
 
-    func testBackWithoutChanges() {
+    func testPaintBackButton() {
         let testElement = kLocalizedLooks
         let testObject = "Mole 1"
         app.tables.staticTexts[kLocalizedContinueProject].tap()

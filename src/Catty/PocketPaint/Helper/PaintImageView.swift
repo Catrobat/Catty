@@ -20,31 +20,29 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@testable import Pocket_Code
+@objc class PaintImageView: UIImageView {
 
-class PaintViewControllerMock: PaintViewController {
+    private var changed = false
+    private var observer: NSKeyValueObservation?
 
-    let navigationControllerMock: UINavigationController
+    @objc(initWithFrame: andImage:)
+    required init(frame: CGRect, image: UIImage?) {
+        super.init(frame: frame)
+        self.image = image
 
-    override var navigationController: UINavigationController? { navigationControllerMock }
-
-    init?(editingImage: UIImage, navigationController: UINavigationController) {
-        let data = NSMutableData()
-        let archiver = NSKeyedArchiver(forWritingWith: data)
-        archiver.finishEncoding()
-        let coder = NSKeyedUnarchiver(forReadingWith: data as Data)
-
-        self.navigationControllerMock = navigationController
-
-        super.init(coder: coder)
-
-        self.editingImage = editingImage
-        self.helper = UIView()
-        self.drawView = PaintImageView(frame: .zero, image: nil)
-        self.saveView = PaintImageView(frame: .zero, image: nil)
+        self.initObservers()
     }
 
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
+        self.initObservers()
     }
+
+    private func initObservers() {
+        self.observer = self.observe(\.image, options: [.new]) { _, _ in
+            self.changed = true
+        }
+    }
+
+    @objc func hasChanged() -> Bool { changed }
 }
