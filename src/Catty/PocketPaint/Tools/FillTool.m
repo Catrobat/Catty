@@ -23,6 +23,7 @@
 #import "FillTool.h"
 #import "UIImage+FloodFill.h"
 #import "UndoManager.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation FillTool
 - (id) initWithDrawViewCanvas:(PaintViewController *)canvas

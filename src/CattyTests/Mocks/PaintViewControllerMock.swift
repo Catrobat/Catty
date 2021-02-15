@@ -20,6 +20,8 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+@testable import Pocket_Code
+
 class PaintViewControllerMock: PaintViewController {
 
     let navigationControllerMock: UINavigationController
@@ -38,8 +40,8 @@ class PaintViewControllerMock: PaintViewController {
 
         self.editingImage = editingImage
         self.helper = UIView()
-        self.drawView = UIImageView()
-        self.saveView = UIImageView()
+        self.drawView = PaintImageView(frame: .zero, image: nil)
+        self.saveView = PaintImageView(frame: .zero, image: nil)
     }
 
     required init?(coder: NSCoder) {

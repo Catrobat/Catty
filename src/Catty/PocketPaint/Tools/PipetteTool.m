@@ -22,6 +22,7 @@
 
 #import "PipetteTool.h"
 #import "RGBAHelper.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation PipetteTool
 - (id) initWithDrawViewCanvas:(PaintViewController *)canvas

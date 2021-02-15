@@ -28,6 +28,8 @@
 #import "LCTableViewPickerControl.h"
 #import "TextInputViewController.h"
 
+@class PaintImageView;
+
 @interface PaintViewController : UIViewController  <BrushPickerViewControllerDelegate,ColorPickerViewControllerDelegate,UIGestureRecognizerDelegate,UIScrollViewDelegate,UINavigationControllerDelegate,LCItemPickerDelegate,TextInputViewControllerDelegate> {
   CGPoint lastPoint;
   BOOL fingerSwiped;
@@ -49,8 +51,8 @@
 
 @property(nonatomic)  BOOL isEraser;
 
-@property (strong, nonatomic)  UIImageView *drawView;
-@property (strong, nonatomic)  UIImageView *saveView;
+@property (strong, nonatomic) PaintImageView *drawView;
+@property (strong, nonatomic) PaintImageView *saveView;
 @property (nonatomic,strong) UIView *helper;
 @property (strong, nonatomic) UIScrollView *scrollView;
 @property (nonatomic,strong) UIImage *editingImage;

@@ -23,6 +23,7 @@
 #import "MirrorRotationZoomTool.h"
 #import "UIImage+Rotate.h"
 #import "UndoManager.h"
+#import "Pocket_Code-Swift.h"
 
 #define kMaxZoomScale 5.0f
 #define kMinZoomScale 0.25f

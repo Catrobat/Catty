@@ -20,24 +20,19 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
-#import "BaseTableViewController.h"
+@testable import Pocket_Code
+import XCTest
 
-@class SpriteObject;
-@class Brick;
-@class Look;
-@protocol BrickLookProtocol;
+class PaintImageViewTests: XCTestCase {
 
-@protocol PaintDelegate <NSObject>
+    func testHasChanged() {
+        let originalImage = UIImage()
+        let imageView = PaintImageView(frame: .zero, image: originalImage)
 
-- (void)addPaintedImage:(UIImage *)image andPath:(NSString *)path;
-- (void)addMediaLibraryLoadedImage:(UIImage*)image withName:(NSString *)name;
-@end
+        XCTAssertFalse(imageView.hasChanged())
 
+        imageView.image = UIImage()
 
-@interface LooksTableViewController : BaseTableViewController <PaintDelegate>
-@property (strong, nonatomic) SpriteObject *object;
-@property (nonatomic) BOOL showAddLookActionSheetAtStartForScriptEditor;
-@property (nonatomic) BOOL showAddLookActionSheetAtStartForObject;
-@property (copy) void (^afterSafeBlock)(Look* look);
-@end
+        XCTAssertTrue(imageView.hasChanged())
+    }
+}

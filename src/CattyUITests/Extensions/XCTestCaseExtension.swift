@@ -80,7 +80,7 @@ extension XCTestCase {
         XCTAssertNotNil(waitForElementToAppear(app.navigationBars[kLocalizedPaintPocketPaint]))
 
         app.tap()
-        app.navigationBars.buttons[kLocalizedLooks].tap()
+        app.navigationBars.buttons[kLocalizedBack].tap()
 
         waitForElementToAppear(app.alerts[kLocalizedSaveToPocketCode]).buttons[kLocalizedYes].tap()
         XCTAssertNotNil(waitForElementToAppear(app.navigationBars.buttons[kLocalizedPocketCode]))

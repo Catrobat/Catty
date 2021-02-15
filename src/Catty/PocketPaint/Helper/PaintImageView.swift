@@ -20,24 +20,29 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
-#import "BaseTableViewController.h"
+@objc class PaintImageView: UIImageView {
 
-@class SpriteObject;
-@class Brick;
-@class Look;
-@protocol BrickLookProtocol;
+    private var changed = false
+    private var observer: NSKeyValueObservation?
 
-@protocol PaintDelegate <NSObject>
+    @objc(initWithFrame: andImage:)
+    required init(frame: CGRect, image: UIImage?) {
+        super.init(frame: frame)
+        self.image = image
 
-- (void)addPaintedImage:(UIImage *)image andPath:(NSString *)path;
-- (void)addMediaLibraryLoadedImage:(UIImage*)image withName:(NSString *)name;
-@end
+        self.initObservers()
+    }
 
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        self.initObservers()
+    }
 
-@interface LooksTableViewController : BaseTableViewController <PaintDelegate>
-@property (strong, nonatomic) SpriteObject *object;
-@property (nonatomic) BOOL showAddLookActionSheetAtStartForScriptEditor;
-@property (nonatomic) BOOL showAddLookActionSheetAtStartForObject;
-@property (copy) void (^afterSafeBlock)(Look* look);
-@end
+    private func initObservers() {
+        self.observer = self.observe(\.image, options: [.new]) { _, _ in
+            self.changed = true
+        }
+    }
+
+    @objc func hasChanged() -> Bool { changed }
+}
