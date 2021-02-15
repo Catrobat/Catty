@@ -1007,7 +1007,6 @@
 		59EA52B824FCF9E400AC6E8D /* WhenBackgroundChangesScriptCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59EA52B724FCF9E400AC6E8D /* WhenBackgroundChangesScriptCell.swift */; };
 		59EA52BB24FD468900AC6E8D /* WhenConditionScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59EA52BA24FD468900AC6E8D /* WhenConditionScript.swift */; };
 		59EA52BF24FD4BEE00AC6E8D /* WhenConditionScriptCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59EA52BE24FD4BEE00AC6E8D /* WhenConditionScriptCell.swift */; };
-		59F007C62530823100039EBD /* ProjectDetailStoreViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F007C52530823100039EBD /* ProjectDetailStoreViewControllerExtension.swift */; };
 		59F5C2AF23F2E36D00D95016 /* BrickCellPickerViewerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F5C2AE23F2E36D00D95016 /* BrickCellPickerViewerTest.swift */; };
 		5E0B361E220A55BB0056EB12 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 92300CE918B2196700F2B4DC /* Localizable.strings */; };
 		5E0B3622220A5F3C0056EB12 /* LanguageTranslationDefinesUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0B3621220A5F3C0056EB12 /* LanguageTranslationDefinesUI.swift */; };
@@ -1266,7 +1265,6 @@
 		92FF325C1A24E2F400093DA7 /* LICENSE_BDKNotifyHUD in Resources */ = {isa = PBXBuildFile; fileRef = 92FF31711A24E2F400093DA7 /* LICENSE_BDKNotifyHUD */; };
 		92FF325D1A24E2F400093DA7 /* EVCircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31741A24E2F400093DA7 /* EVCircularProgressView.m */; };
 		92FF325E1A24E2F400093DA7 /* LICENSE_EVCircularProgressView in Resources */ = {isa = PBXBuildFile; fileRef = 92FF31751A24E2F400093DA7 /* LICENSE_EVCircularProgressView */; };
-		92FF32B11A24E2F400093DA7 /* CreateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF322B1A24E2F400093DA7 /* CreateView.m */; };
 		92FF32B21A24E2F400093DA7 /* RoundBorderedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF322D1A24E2F400093DA7 /* RoundBorderedButton.m */; };
 		92FF32B41A24E2F400093DA7 /* CellMotionEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF32331A24E2F400093DA7 /* CellMotionEffect.m */; };
 		92FF32B51A24E2F400093DA7 /* PlaceHolderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF32361A24E2F400093DA7 /* PlaceHolderView.m */; };
@@ -1278,8 +1276,10 @@
 		92FF32BC1A24E2F400093DA7 /* DarkBlueGradientImageDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF324B1A24E2F400093DA7 /* DarkBlueGradientImageDetailCell.m */; };
 		92FF32BD1A24E2F400093DA7 /* ProjectTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF324E1A24E2F400093DA7 /* ProjectTableHeaderView.m */; };
 		92FF32C31A24E33B00093DA7 /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92FF32C21A24E33B00093DA7 /* iPhone.storyboard */; };
+		9728AE9E25DEEE5A00708EB6 /* ProjectDetailStoreViewControllerReportExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9728AE9D25DEEE5A00708EB6 /* ProjectDetailStoreViewControllerReportExtension.swift */; };
 		97AC582125C3683B0049C1D5 /* StoreProjectUpload.uploadProject.fail.invalidToken.json in Resources */ = {isa = PBXBuildFile; fileRef = 97AC582025C3683B0049C1D5 /* StoreProjectUpload.uploadProject.fail.invalidToken.json */; };
 		97B1FCFF2577BCD700E9C446 /* DisabledBricks_0993.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C3285D92546CDF200C31F9D /* DisabledBricks_0993.xml */; };
+		97BA19DF25B23612003DE323 /* ProjectDetailStoreViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BA19DE25B23612003DE323 /* ProjectDetailStoreViewControllerExtension.swift */; };
 		97D015912553392A00B6967D /* RoundedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D0158E2553392A00B6967D /* RoundedImageView.swift */; };
 		97D97BAB257AC141001FF344 /* URLSessionMultipartExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D97BAA257AC141001FF344 /* URLSessionMultipartExtension.swift */; };
 		97D97BB0257AC735001FF344 /* URLSessionMultipartExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D97BAE257AC6DD001FF344 /* URLSessionMultipartExtensionTests.swift */; };
@@ -2970,7 +2970,6 @@
 		59EA52B724FCF9E400AC6E8D /* WhenBackgroundChangesScriptCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhenBackgroundChangesScriptCell.swift; sourceTree = "<group>"; };
 		59EA52BA24FD468900AC6E8D /* WhenConditionScript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhenConditionScript.swift; sourceTree = "<group>"; };
 		59EA52BE24FD4BEE00AC6E8D /* WhenConditionScriptCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhenConditionScriptCell.swift; sourceTree = "<group>"; };
-		59F007C52530823100039EBD /* ProjectDetailStoreViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDetailStoreViewControllerExtension.swift; sourceTree = "<group>"; };
 		59F5C2AE23F2E36D00D95016 /* BrickCellPickerViewerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrickCellPickerViewerTest.swift; sourceTree = "<group>"; };
 		5E0B3621220A5F3C0056EB12 /* LanguageTranslationDefinesUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageTranslationDefinesUI.swift; sourceTree = "<group>"; };
 		5E18A81121A547AA00541536 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
@@ -3409,8 +3408,6 @@
 		92FF31731A24E2F400093DA7 /* EVCircularProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EVCircularProgressView.h; sourceTree = "<group>"; };
 		92FF31741A24E2F400093DA7 /* EVCircularProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EVCircularProgressView.m; sourceTree = "<group>"; };
 		92FF31751A24E2F400093DA7 /* LICENSE_EVCircularProgressView */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE_EVCircularProgressView; sourceTree = "<group>"; };
-		92FF322A1A24E2F400093DA7 /* CreateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateView.h; sourceTree = "<group>"; };
-		92FF322B1A24E2F400093DA7 /* CreateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateView.m; sourceTree = "<group>"; };
 		92FF322C1A24E2F400093DA7 /* RoundBorderedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundBorderedButton.h; sourceTree = "<group>"; };
 		92FF322D1A24E2F400093DA7 /* RoundBorderedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundBorderedButton.m; sourceTree = "<group>"; };
 		92FF32321A24E2F400093DA7 /* CellMotionEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellMotionEffect.h; sourceTree = "<group>"; };
@@ -3435,7 +3432,9 @@
 		92FF32C21A24E33B00093DA7 /* iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPhone.storyboard; sourceTree = "<group>"; };
 		95088280A879E5F515D4569E /* fa-AF */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = "fa-AF"; path = "fa-AF.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		95C607797206029F5B454A53 /* sw */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = sw; path = sw.lproj/Localizable.strings; sourceTree = "<group>"; };
+		9728AE9D25DEEE5A00708EB6 /* ProjectDetailStoreViewControllerReportExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDetailStoreViewControllerReportExtension.swift; sourceTree = "<group>"; };
 		97AC582025C3683B0049C1D5 /* StoreProjectUpload.uploadProject.fail.invalidToken.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProjectUpload.uploadProject.fail.invalidToken.json; sourceTree = "<group>"; };
+		97BA19DE25B23612003DE323 /* ProjectDetailStoreViewControllerExtension.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = ProjectDetailStoreViewControllerExtension.swift; sourceTree = "<group>"; };
 		97D0158E2553392A00B6967D /* RoundedImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RoundedImageView.swift; path = Catty/Views/Custom/TableView/Cell/RoundedImageView.swift; sourceTree = SOURCE_ROOT; };
 		97D97BAA257AC141001FF344 /* URLSessionMultipartExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionMultipartExtension.swift; sourceTree = "<group>"; };
 		97D97BAE257AC6DD001FF344 /* URLSessionMultipartExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionMultipartExtensionTests.swift; sourceTree = "<group>"; };
@@ -7376,7 +7375,7 @@
 			children = (
 				5E18A81121A547AA00541536 /* UIViewControllerExtension.swift */,
 				05A3CE6A24F516490051DB39 /* CatrobatTableViewControllerExtension.swift */,
-				59F007C52530823100039EBD /* ProjectDetailStoreViewControllerExtension.swift */,
+				9728AE9D25DEEE5A00708EB6 /* ProjectDetailStoreViewControllerReportExtension.swift */,
 			);
 			path = UIViewController;
 			sourceTree = "<group>";
@@ -8603,14 +8602,13 @@
 		92FF31321A24DEB300093DA7 /* Download */ = {
 			isa = PBXGroup;
 			children = (
+				97BA19DB25B235F7003DE323 /* Details */,
 				E4AEC8702108445D0081A980 /* StoreProjectCollection.swift */,
 				E4B1BF4D20F719DB00800555 /* FeaturedProjects */,
 				2DA8790F212BD67700FE0585 /* ChartProjects */,
 				2DA87910212BD6C000FE0585 /* SearchStore */,
 				92FF31331A24DEB300093DA7 /* DownloadTabBarController.h */,
 				92FF31341A24DEB300093DA7 /* DownloadTabBarController.m */,
-				92FF31371A24DEB300093DA7 /* ProjectDetailStoreViewController.h */,
-				92FF31381A24DEB300093DA7 /* ProjectDetailStoreViewController.m */,
 			);
 			path = Download;
 			sourceTree = "<group>";
@@ -8716,8 +8714,6 @@
 		92FF32291A24E2F400093DA7 /* CreateView */ = {
 			isa = PBXGroup;
 			children = (
-				92FF322A1A24E2F400093DA7 /* CreateView.h */,
-				92FF322B1A24E2F400093DA7 /* CreateView.m */,
 				92FF322C1A24E2F400093DA7 /* RoundBorderedButton.h */,
 				92FF322D1A24E2F400093DA7 /* RoundBorderedButton.m */,
 			);
@@ -8823,6 +8819,16 @@
 			);
 			name = "Storyboard+XIB";
 			path = "Catty/Storyboard+XIB";
+			sourceTree = "<group>";
+		};
+		97BA19DB25B235F7003DE323 /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				92FF31371A24DEB300093DA7 /* ProjectDetailStoreViewController.h */,
+				92FF31381A24DEB300093DA7 /* ProjectDetailStoreViewController.m */,
+				97BA19DE25B23612003DE323 /* ProjectDetailStoreViewControllerExtension.swift */,
+			);
+			path = Details;
 			sourceTree = "<group>";
 		};
 		9E05FAAF247FF557008951DE /* Stage */ = {
@@ -12067,7 +12073,6 @@
 				9E78D88722A9AFB400948AC3 /* AudioSubtree.swift in Sources */,
 				4CE6788B210C4E1C00D90B5D /* FunctionParameter.swift in Sources */,
 				92FF32BC1A24E2F400093DA7 /* DarkBlueGradientImageDetailCell.m in Sources */,
-				92FF32B11A24E2F400093DA7 /* CreateView.m in Sources */,
 				4CF072A920D6710F00F93AB5 /* FingerTouchedSensor.swift in Sources */,
 				4C1E33A125DA570D00F44F13 /* PaintImageView.swift in Sources */,
 				AA74EEE41BC057B900D1E954 /* RepeatBrick+CBXMLHandler.m in Sources */,
@@ -12219,6 +12224,7 @@
 				92EC985F1BC3ABB90003A891 /* PhiroPlayToneBrick+CBXMLHandler.m in Sources */,
 				4C0D2A84254AA2C100A8637F /* RotationStyle.swift in Sources */,
 				92FF2EA21A24C7D800093DA7 /* TableUtil.m in Sources */,
+				97BA19DF25B23612003DE323 /* ProjectDetailStoreViewControllerExtension.swift in Sources */,
 				4CDA808121366AD20052FA24 /* FormulaInterpreterProtocol.swift in Sources */,
 				929CC0DF1BC39B690027DEC0 /* BrickCellPhiroMotorData.m in Sources */,
 				4C0F9F7F204BD1F800E71B2D /* ThinkForBubbleBrick+Instruction.swift in Sources */,
@@ -12491,6 +12497,7 @@
 				AA74EF591BC0586F00D1E954 /* TurnLeftBrick+CBXMLHandler.m in Sources */,
 				4C0F9F6F204BD1A300E71B2D /* ThinkForBubbleBrick+CBXMLHandler.m in Sources */,
 				5EFBD5FC2145AADC003B3CDC /* UIViewExtension.swift in Sources */,
+				9728AE9E25DEEE5A00708EB6 /* ProjectDetailStoreViewControllerReportExtension.swift in Sources */,
 				92FF31591A24DEB300093DA7 /* DownloadTabBarController.m in Sources */,
 				F4E6E59A210E048700D86FE6 /* MaxFunction.swift in Sources */,
 				5936893C2021979A00FC3115 /* SoundsTableViewController+MediaLibrary.swift in Sources */,
@@ -12727,7 +12734,6 @@
 				4C4A71921B52733C00BBE32B /* CBXMLAbstractContext.m in Sources */,
 				59ABDC622021BBFB00061403 /* LooksTableViewController+MediaLibrary.swift in Sources */,
 				811FB6EA1A4980EF00957E10 /* ScriptCollectionViewController.m in Sources */,
-				59F007C62530823100039EBD /* ProjectDetailStoreViewControllerExtension.swift in Sources */,
 				4C4EE29D210901E70045F890 /* FormulaEditorSection.swift in Sources */,
 				6F348C85245499F1000C963B /* AppDelegate.swift in Sources */,
 				92FF32B41A24E2F400093DA7 /* CellMotionEffect.m in Sources */,
