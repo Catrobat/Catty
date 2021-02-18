@@ -138,6 +138,7 @@
 #import "BrickCellVariableData.h"
 #import "BrickCellListData.h"
 #import "BrickCellLookData.h"
+#import "BrickCellFormulaData.h"
 
 // Formulas
 #import "Formula.h"

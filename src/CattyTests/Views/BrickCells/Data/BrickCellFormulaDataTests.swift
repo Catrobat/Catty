@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2020 The Catrobat Team
+ *  Copyright (C) 2010-2021 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -20,10 +20,19 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+import Nimble
+import XCTest
+
 @testable import Pocket_Code
 
-class FormulaEditorViewControllerMock: FormulaEditorViewController {
-    func showFormulaSavedNotification() {
-        NotificationCenter.default.post(name: .formulaSaved, object: Formula.self)
+final class BrickCellFormulaDataTests: XCTestCase {
+
+    func testFormulaSavedNotification() {
+        let formula = Formula(integer: 123)
+        let expectedNotification = Notification(name: .formulaSaved, object: formula)
+
+        let formulaData = BrickCellFormulaData()
+
+        expect(formulaData.save(formula)).to(postNotifications(contain(expectedNotification)))
     }
 }

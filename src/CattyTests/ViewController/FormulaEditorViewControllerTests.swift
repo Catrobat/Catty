@@ -292,10 +292,4 @@ final class FormulaEditorViewControllerTests: XCTestCase {
         controller.object = objectB
         XCTAssertTrue(controller.isListUsed(list))
     }
-
-    func testFormulaSavedNotification() {
-        let formulaEditorViewControllerMock = FormulaEditorViewControllerMock()
-        let expectedNotification = Notification(name: .formulaSaved, object: Formula.self)
-        expect(formulaEditorViewControllerMock.showFormulaSavedNotification()).to(postNotifications(contain(expectedNotification)))
-    }
 }

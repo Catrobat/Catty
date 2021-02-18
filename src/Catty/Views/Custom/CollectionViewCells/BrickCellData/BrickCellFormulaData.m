@@ -156,6 +156,8 @@
 # pragma mark - Delegate
 - (void)saveFormula:(Formula *)formula
 {
+    [[NSNotificationCenter defaultCenter] postNotificationName:NotificationName.formulaSaved object:formula];
+    
     [self.formula setRoot:formula.formulaTree];
     [self.brickCell.dataDelegate updateBrickCellData:self withValue:self.formula];
 

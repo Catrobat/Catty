@@ -88,7 +88,6 @@
 		2219ED93251DDB7E00EBA379 /* NSMutableArrayExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2219ED92251DDB7E00EBA379 /* NSMutableArrayExtensionTests.swift */; };
 		222A6934247E43AB004BE434 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2D44451B123B7E00A3B53D /* Util.swift */; };
 		222A693E247EA490004BE434 /* UIDeviceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222A693D247EA490004BE434 /* UIDeviceExtension.swift */; };
-		223EE03F255F368A00BBA648 /* FormulaEditorViewControllerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223EE03E255F368A00BBA648 /* FormulaEditorViewControllerMock.swift */; };
 		224D5C582423AEF900CD6302 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224D5C512420C8B400CD6302 /* SettingsTableViewController.swift */; };
 		22524C38239FAFC500DD515E /* LoginViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22524C37239FAFC500DD515E /* LoginViewControllerTests.swift */; };
 		22524C3D23A2533F00DD515E /* LoginViewControllerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22524C3C23A2533F00DD515E /* LoginViewControllerMock.swift */; };
@@ -681,6 +680,7 @@
 		4C6FE176212D2D2E0067B7D5 /* LetterFunctionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6FE158212D2D2E0067B7D5 /* LetterFunctionTest.swift */; };
 		4C6FE177212D2D2E0067B7D5 /* LengthFunctionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6FE159212D2D2E0067B7D5 /* LengthFunctionTest.swift */; };
 		4C6FE178212D2D2E0067B7D5 /* JoinFunctionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6FE15A212D2D2E0067B7D5 /* JoinFunctionTest.swift */; };
+		4C7054E025DE457900B265DC /* BrickCellFormulaDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7054DF25DE457900B265DC /* BrickCellFormulaDataTests.swift */; };
 		4C7182DA23EEAFF600195BC7 /* BaseCollectionViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7182D723EEAFF600195BC7 /* BaseCollectionViewControllerTests.swift */; };
 		4C7182DC23EEB22B00195BC7 /* PaintViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7182DB23EEB22B00195BC7 /* PaintViewControllerTests.swift */; };
 		4C7182DF23EEF21800195BC7 /* BrickCategoryViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7182DE23EEF21800195BC7 /* BrickCategoryViewControllerTests.swift */; };
@@ -1954,7 +1954,6 @@
 		2219ED89251745EA00EBA379 /* NSMutableArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSMutableArrayExtension.swift; sourceTree = "<group>"; };
 		2219ED92251DDB7E00EBA379 /* NSMutableArrayExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NSMutableArrayExtensionTests.swift; path = Extensions/NSMutableArrayExtensionTests.swift; sourceTree = "<group>"; };
 		222A693D247EA490004BE434 /* UIDeviceExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDeviceExtension.swift; sourceTree = "<group>"; };
-		223EE03E255F368A00BBA648 /* FormulaEditorViewControllerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaEditorViewControllerMock.swift; sourceTree = "<group>"; };
 		224D5C512420C8B400CD6302 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		22524C37239FAFC500DD515E /* LoginViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewControllerTests.swift; sourceTree = "<group>"; };
 		22524C3C23A2533F00DD515E /* LoginViewControllerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewControllerMock.swift; sourceTree = "<group>"; };
@@ -2619,6 +2618,7 @@
 		4C6FE158212D2D2E0067B7D5 /* LetterFunctionTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LetterFunctionTest.swift; sourceTree = "<group>"; };
 		4C6FE159212D2D2E0067B7D5 /* LengthFunctionTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LengthFunctionTest.swift; sourceTree = "<group>"; };
 		4C6FE15A212D2D2E0067B7D5 /* JoinFunctionTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinFunctionTest.swift; sourceTree = "<group>"; };
+		4C7054DF25DE457900B265DC /* BrickCellFormulaDataTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrickCellFormulaDataTests.swift; sourceTree = "<group>"; };
 		4C7182D723EEAFF600195BC7 /* BaseCollectionViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewControllerTests.swift; sourceTree = "<group>"; };
 		4C7182DB23EEB22B00195BC7 /* PaintViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaintViewControllerTests.swift; sourceTree = "<group>"; };
 		4C7182DE23EEF21800195BC7 /* BrickCategoryViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrickCategoryViewControllerTests.swift; sourceTree = "<group>"; };
@@ -4439,6 +4439,7 @@
 			isa = PBXGroup;
 			children = (
 				4CF8276D24F0F5B0006E562A /* BrickCellBackgroundDataTests.swift */,
+				4C7054DF25DE457900B265DC /* BrickCellFormulaDataTests.swift */,
 				18B8021E2469170400201847 /* BrickCellVariableDataTests.swift */,
 				1822C1382471C7CB00F8F158 /* BrickCellListDataTests.swift */,
 				5921F2AA24F51F3B0044D936 /* BrickCellLookDataTests.swift */,
@@ -7296,10 +7297,10 @@
 			isa = PBXGroup;
 			children = (
 				4CB73A8F23FC1F0300D5E9A7 /* CatrobatTableViewControllerMock.swift */,
-				4C28D78A2132A83D00870CE2 /* FormulaMock.swift */,
 				4C1A596723FE9997001A78D2 /* CrashlyticsMock.swift */,
 				4C3B151A23F07C7800527D4A /* ErrorMock.swift */,
 				4CD27AA921B5765B00DDADB5 /* FeatureMock.swift */,
+				4C28D78A2132A83D00870CE2 /* FormulaMock.swift */,
 				22524C3C23A2533F00DD515E /* LoginViewControllerMock.swift */,
 				4C2DDEE525834A1A00728306 /* LookMock.swift */,
 				5973F235202EF2BB00A4CED9 /* MediaLibraryCollectionViewDataSourceDelegateMock.swift */,
@@ -7323,7 +7324,6 @@
 				6F19119D24E7C8CF00CF1B4F /* SceneMock.swift */,
 				180DDF422506800600EA526C /* AnalyticsMock.swift */,
 				59B7A8D22504E83F001C736A /* StageMock.swift */,
-				223EE03E255F368A00BBA648 /* FormulaEditorViewControllerMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -11727,11 +11727,7 @@
 				92BCDC851BF1DE2A00F9CB23 /* FirmataTests.swift in Sources */,
 				9EBCBD852329B73D0074C2D9 /* PlaceAtBrickTests.swift in Sources */,
 				4C822652213FA7A400F3D750 /* LocationManagerMock.swift in Sources */,
-<<<<<<< HEAD
 				4C2CBB5725A5AA8400C1C143 /* XMLParserBlackBoxTests096.swift in Sources */,
-=======
-				223EE03F255F368A00BBA648 /* FormulaEditorViewControllerMock.swift in Sources */,
->>>>>>> CATTY-372 FirebaseReporter Notification
 				6F4B2FC12466F58500B5F0ED /* CBFileManagerMock.swift in Sources */,
 				599E64A6202DB2FB009494B5 /* MediaLibraryDownloaderMock.swift in Sources */,
 				4C2CBB4525A5AA8400C1C143 /* UserListXMLHandlerTests.m in Sources */,
@@ -11887,6 +11883,7 @@
 				D30ECD1D2440963100FAD17D /* CBFilterDisabledTests.swift in Sources */,
 				4C68FC8D1B25A00B00AB3EE8 /* FormulaParserFunctionsTest.m in Sources */,
 				4C2DDEE825834A1B00728306 /* LookMock.swift in Sources */,
+				4C7054E025DE457900B265DC /* BrickCellFormulaDataTests.swift in Sources */,
 				4C3B151B23F07C7800527D4A /* ErrorMock.swift in Sources */,
 				4CC50A53213AE386004BC914 /* FormulaManagerIdempotenceTests.swift in Sources */,
 				4C822666213FA7A400F3D750 /* LongitudeSensorTest.swift in Sources */,
