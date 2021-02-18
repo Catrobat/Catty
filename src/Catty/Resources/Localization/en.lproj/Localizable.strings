@@ -491,7 +491,7 @@
 "Do you really want to delete the current drawing?" = "Do you really want to delete the current drawing?";
 
 /* paint */
-"Do you want to save the changes" = "Do you want to save the changes";
+"Do you want to save your changes?" = "Do you want to save your changes?";
 
 /* No comment provided by engineer. */
 "don't rotate" = "don't rotate";
@@ -1434,9 +1434,6 @@
 
 /* paint */
 "Save to Photos" = "Save to Photos";
-
-/* No comment provided by engineer. */
-"Save to PocketCode" = "Save to PocketCode";
 
 /* No comment provided by engineer. */
 "Saved" = "Saved";
