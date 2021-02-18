@@ -248,4 +248,15 @@ final class FirebaseCrashlyticsReporterTests: XCTestCase {
         XCTAssertEqual(error.domain, (crashlytics!.records.first as NSError?)?.domain)
         XCTAssertEqual(error.userInfo as NSDictionary, (crashlytics!.records.first! as NSError).userInfo as NSDictionary)
     }
+
+    func testFormulaSavedNotification() {
+        let formula = Formula(string: "1234")!
+
+        XCTAssertEqual(0, crashlytics!.logs.count)
+
+        NotificationCenter.default.post(name: .formulaSaved, object: formula)
+
+        XCTAssertEqual(1, crashlytics!.logs.count)
+        XCTAssertTrue(crashlytics!.logs.first!.contains(formula.getDisplayString()))
+    }
 }

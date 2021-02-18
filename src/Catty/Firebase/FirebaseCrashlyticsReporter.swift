@@ -57,6 +57,7 @@ class FirebaseCrashlyticsReporter {
             addObserver(selector: #selector(self.projectSearchFailure(notification:)), name: .projectSearchFailure)
             addObserver(selector: #selector(self.mediaLibraryDownloadIndexFailure(notification:)), name: .mediaLibraryDownloadIndexFailure)
             addObserver(selector: #selector(self.mediaLibraryDownloadDataFailure(notification:)), name: .mediaLibraryDownloadDataFailure)
+            addObserver(selector: #selector(self.formulaSaved(notification:)), name: .formulaSaved)
         }
 
         addObserver(selector: #selector(self.settingsCrashReportingChanged(notification:)), name: .settingsCrashReportingChanged)
@@ -219,5 +220,10 @@ class FirebaseCrashlyticsReporter {
 
     private func addObserver(selector aSelector: Selector, name notification: NSNotification.Name) {
         NotificationCenter.default.addObserver(self, selector: aSelector, name: notification, object: nil)
+    }
+
+    @objc func formulaSaved(notification: Notification) {
+        let formula_string = (notification.object as? Formula)?.getDisplayString() ?? type(of: self).logNoValue
+        crashlytics.log("Formula saved: " + formula_string)
     }
 }
