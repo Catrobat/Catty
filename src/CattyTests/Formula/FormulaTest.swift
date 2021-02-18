@@ -180,4 +180,32 @@ final class FormulaTest: XCTestCase {
         formula = Formula(formulaElement: parseTree)!
         XCTAssertFalse(formula.isSingularNumber())
     }
+
+    func testMutableCopy() {
+        let parent = FormulaElement(double: 1.0)!
+        let leftChild = FormulaElement(double: 2.0)!
+        let rightChild = FormulaElement(double: 3.0)!
+        let leftChild2 = FormulaElement(double: 4.0)!
+        let rightChild2 = FormulaElement(double: 5.0)!
+
+        leftChild.parent = parent
+        parent.leftChild = leftChild
+        leftChild.leftChild = leftChild2
+        leftChild2.parent = leftChild
+
+        rightChild.parent = parent
+        parent.rightChild = rightChild
+        rightChild.rightChild = rightChild2
+        rightChild2.parent = rightChild
+
+        let formula = Formula(formulaElement: parent)!
+        let copiedFormula = formula.mutableCopy(with: CBMutableCopyContext()) as! Formula
+
+        XCTAssertTrue(formula.isEqual(to: copiedFormula))
+        XCTAssertFalse(formula.formulaTree === copiedFormula.formulaTree)
+
+        copiedFormula.formulaTree.rightChild.value = "6.0"
+
+        XCTAssertFalse(copiedFormula.formulaTree.rightChild.value.isEqual(formula.formulaTree.rightChild.value))
+    }
 }
