@@ -32,8 +32,6 @@ final class FormulaEditorViewControllerTests: XCTestCase {
     var spriteObject: SpriteObject!
     var script: Script!
     var scene: Scene!
-    var analytics = AnalyticsMock.self
-    var reporter: FirebaseAnalyticsReporter?
 
     override func setUp() {
         super.setUp()
