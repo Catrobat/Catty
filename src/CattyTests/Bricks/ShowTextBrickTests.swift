@@ -126,4 +126,19 @@ final class ShowTextBrickTests: XCTestCase {
         XCTAssertEqual(brick.xFormula, formulas?[0])
         XCTAssertEqual(brick.yFormula, formulas?[1])
     }
+
+    func testMutableCopy() {
+        let brick = ShowTextBrick()
+        brick.script = script
+        brick.xFormula = Formula(integer: 1)
+        brick.yFormula = Formula(integer: 2)
+        brick.userVariable = UserVariable(name: "test")
+
+        let copiedBrick: ShowTextBrick = brick.mutableCopy(with: CBMutableCopyContext(), andErrorReporting: true) as! ShowTextBrick
+
+        XCTAssertTrue(brick.isEqual(to: copiedBrick))
+        XCTAssertFalse(brick === copiedBrick)
+        XCTAssertTrue(brick.xFormula.isEqual(to: copiedBrick.xFormula))
+        XCTAssertFalse(brick.xFormula === copiedBrick.xFormula)
+    }
 }

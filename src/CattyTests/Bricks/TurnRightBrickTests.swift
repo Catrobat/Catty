@@ -113,4 +113,16 @@ final class TurnRightBrickTests: AbstractBrickTest {
 
         XCTAssertEqual(brick.degrees, formulas?[0])
     }
+
+    func testMutableCopy() {
+        initialiseTestData()
+        brick.degrees = Formula(double: 2.0)
+
+        let copiedBrick: TurnRightBrick = brick.mutableCopy(with: CBMutableCopyContext(), andErrorReporting: true) as! TurnRightBrick
+
+        XCTAssertTrue(brick.isEqual(to: copiedBrick))
+        XCTAssertFalse(brick === copiedBrick)
+        XCTAssertTrue(brick.degrees.isEqual(to: copiedBrick.degrees))
+        XCTAssertFalse(brick.degrees === copiedBrick.degrees)
+    }
 }
